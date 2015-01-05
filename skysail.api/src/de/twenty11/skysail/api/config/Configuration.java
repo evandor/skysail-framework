@@ -15,12 +15,10 @@ public class Configuration {
     private static volatile ConfigurationProvider configurationProvider;
 
     @Reference
-    @edu.umd.cs.findbugs.annotations.SuppressFBWarnings("ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD")
     public void setConfigurationProvider(ConfigurationProvider provider) {
         configurationProvider = provider;
     }
 
-    @edu.umd.cs.findbugs.annotations.SuppressFBWarnings("ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD")
     public void unsetConfigurationProvider(@SuppressWarnings("unused") ConfigurationProvider provider) {
         configurationProvider = null;
     }

@@ -12,7 +12,6 @@ import org.junit.Test;
 import org.mockito.Mockito;
 
 import de.twenty11.skysail.api.responses.ConstraintViolationDetails;
-import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 
 public class ConstraintViolationDetailsTest {
 
@@ -22,7 +21,6 @@ public class ConstraintViolationDetailsTest {
     }
 
     @Test(expected = IllegalArgumentException.class)
-    @SuppressFBWarnings(value = "NP_NULL_PARAM_DEREF_NONVIRTUAL", justification = "this is what is being tested")
     public void throws_exception_when_null_is_passed() {
         new ConstraintViolationDetails(null);
     }

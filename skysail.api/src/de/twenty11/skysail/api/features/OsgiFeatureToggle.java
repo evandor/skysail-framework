@@ -1,8 +1,10 @@
 package de.twenty11.skysail.api.features;
 
+import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.Reference;
+import org.osgi.service.component.annotations.ReferenceCardinality;
+import org.osgi.service.component.annotations.ReferencePolicy;
 
-import aQute.bnd.annotation.component.Component;
-import aQute.bnd.annotation.component.Reference;
 
 /**
  * An OsgiFeatureToggle is a {@link FeatureToggle} which uses a {@link FeatureManager} provided from the OSGi registry.
@@ -61,12 +63,12 @@ public class OsgiFeatureToggle implements FeatureToggle {
 		return this.getClass().getName();
 	}
 
-	@Reference(multiple = true, dynamic = true, optional = true)
+	@Reference(policy = ReferencePolicy.DYNAMIC, cardinality = ReferenceCardinality.MULTIPLE)
 	public void setFeatureManager(FeatureManager featureManager) {
 		OsgiFeatureToggle.featureManager = featureManager;
 	}
 
-	public void unsetFeatureManager(@SuppressWarnings("unused") FeatureManager featureManager) {
+	public void unsetFeatureManager(FeatureManager featureManager) {
 		OsgiFeatureToggle.featureManager = null;
 	}
 

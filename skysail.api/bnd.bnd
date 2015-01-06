@@ -1,4 +1,4 @@
-Bundle-Version: 0.3.1.${tstamp}
+Bundle-Version: 0.3.2.${tstamp}
 Bundle-Name: SKYSAIL :: api
 Bundle-Description: API Bundle for Skysail
 Bundle-License: http://www.apache.org/licenses/LICENSE-2.0.txt
@@ -19,7 +19,6 @@ Bundle-License: http://www.apache.org/licenses/LICENSE-2.0.txt
 	lombok;version=1.12
 Bundle-ActivationPolicy: lazy
 Export-Package: de.twenty11.skysail.api.responses,\
-	de.twenty11.skysail.api.config,\
 	de.twenty11.skysail.api.forms,\
 	de.twenty11.skysail.api.security,\
 	de.twenty11.skysail.api.services,\

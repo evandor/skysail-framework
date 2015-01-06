@@ -13,3 +13,4 @@ hs_err_pid*
 /.gradle/
 /reports/
 /generated/
+*.DS_Store

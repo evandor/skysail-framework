@@ -1,0 +1,35 @@
+ -----
+ Skysail Component
+ -----
+ evandor
+ -----
+ October 2013
+
+Content
+
+ This section describes some details of how resources are found and what kind of logic is performed "on the way".
+ This section is pretty low-level and might not be relevant to you if you want to use only skysail standard features,
+ but it could give you some insights if you want to extend, adjust or understand skysail server. 
+ 
+* Request Handling in skysail server
+
+
+
+ 
+**  org.restlet.engine.log.LogFilter
+
+ The log filter saves the start time, sets the log level and logs the request (in method beforeHandle). 
+ Then, the request is passed to the next filter, and (later, when all the other processing has been done),
+ we come back to the afterHandle method, where the duration of the call is calculated.
+ 
+** org.restlet.engine.application.StatusFilter
+
+ Called by the LogFilter, the StatusFilter's main responsibility is to add or set the HTTP status (which is done - of course -
+ in the afterHandle method, later, when all the whole request chain has been processed).
+ 
+** org.restlet.engine.component.ServerRouter (extends Router)
+
+ The ServerRouter examines the request and the defined routes to figure out which restlet to call next.
+ 
+    
+ 

@@ -1,0 +1,46 @@
+ -----
+ Routing
+ -----
+ evandor
+ -----
+ October 2013
+
+Content
+
+ This section describes the most general concepts behind routing and resources.
+ 
+=======================================================================
+ 
+[../routing_and_resources.png] Routing and Resources  
+
+=======================================================================
+ 
+
+* Resources
+
+ A <resource>, by its REST definition, is a very generic concept, it is something coherent which can be addressed. So, in this context,
+ typically a resource is something like a <contact>, a <user>, a <note>, a <bill>, an <email> and the like, and all those entities can be accessed
+ by their defining URL, e.g. <http://server.org/contact/carsten>, <http://server.org/notes/27> and so on.
+
+* Routing
+
+ Routing means to find the matching resource for a given URL. This task, among all other REST-related functionality, is handled
+ by the excellent {{{http://www.restlet.org}Restlet}} framework. If you are interested, I recommend to read the 
+ {{{http://restlet.org/learn/tutorial/2.1/}tutorial}}; Resources and Routing are described in the chapters <11. Routers and hierarchical URIs> 
+ and <12. Reaching target Resources>.
+ 
+ If you are interested in the details of routing in skysail server, you can have a {{{./routingdetails.html}look}} here as well.
+ 
+* Resources and Routing in skysail server
+
+ Each skysail application has a {{{http://restlet.org/learn/javadocs/2.1/jse/api/}Router}} instance, and the resources managed
+ by this application are added like this:
+ 
++---
+	router.attach("/mails", MailsResource.class);
+	router.attach("/mails/{id}", MailResource.class);
++---   
+ 
+ This means, that a request to the URL ".../mails" is going to be handled by the MailsResource class. 
+  
+ 

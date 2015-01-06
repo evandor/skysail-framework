@@ -1,0 +1,61 @@
+package de.twenty11.skysail.server.resources;
+
+import org.restlet.data.Form;
+import org.restlet.resource.Get;
+import org.restlet.resource.ResourceException;
+
+import de.twenty11.skysail.api.responses.FormResponse;
+import de.twenty11.skysail.api.responses.SkysailResponse;
+import de.twenty11.skysail.server.app.SkysailRootApplication;
+import de.twenty11.skysail.server.core.restlet.PostEntityServerResource;
+import de.twenty11.skysail.server.domain.Credentials;
+
+public class LoginResource extends PostEntityServerResource<Credentials> {
+
+    @Get("htmlform")
+    public FormResponse<Credentials> createForm() {
+        return new FormResponse<Credentials>(getData(), SkysailRootApplication.LOGIN_PATH);
+    }
+
+    @Override
+    public Credentials getData() {
+        return new Credentials();
+    }
+<<<<<<< HEAD
+
+=======
+    
+>>>>>>> master
+    @Override
+    public Credentials getData(Form form) {
+        if (form == null) {
+            return new Credentials();
+        }
+        return new Credentials(form.getFirstValue("username"), form.getFirstValue("password"));
+    }
+
+    @Override
+    protected void doInit() throws ResourceException {
+    }
+    
+    @Override
+    public Credentials createEntityTemplate() {
+        return new Credentials();
+    }
+
+    @Override
+    public SkysailResponse<?> addEntity(Credentials entity) {
+        return null;
+    }
+
+    @Override
+    public SkysailResponse<?> updateEntity(Credentials entity) {
+        return null;
+    }
+
+    @Override
+    public SkysailResponse<?> eraseEntity() {
+        return null;
+    }
+
+}

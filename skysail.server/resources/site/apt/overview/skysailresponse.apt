@@ -1,0 +1,31 @@
+Content
+
+ This section describes the most general concepts of how the actual response is created.
+ 
+=======================================================================
+ 
+[../skysailresponse_converting.png] Skysail Response and Converting  
+
+=======================================================================
+ 
+
+* SkysailResponses
+
+ A request needs a response. This is clear if you ask skysail server for a list of contacts by issuing a GET request to a URL
+ like "server.org/contacts?surname=Smith". But even when you are posting a new resource, you'd expect to get an answer from the
+ server to inform you that the request was processed successfully (or maybe not).
+ 
+ Each method invocation creates a generic {{{http://carsten.evandor.de/mavensites/skysail.common/packages.html}SkysailResponse}}.
+ 
+* Content negotiation
+
+ {{{http://en.wikipedia.org/wiki/Content_negotiation}Content negotiation}} is a powerful concept included in the HTTP protocol 
+ standard. For example, your browser, as the most generic tool to access applications via HTTP, sends "Accept"-Headers with the
+ request, informing the server about his (or your) preferences. For example, the browser tells the server that it would really
+ love to get an html representation, but it is ok to get a plain text representation if the html version was not available.
+ 
+* Converting
+
+ Again, skysail server utilizes the {{{http://www.restlet.org}Restlet framework}} to convert the SkysailResponse provided by the
+ method execution into the desired format, which could be json, html, xml, csv and so forth. 
+ 

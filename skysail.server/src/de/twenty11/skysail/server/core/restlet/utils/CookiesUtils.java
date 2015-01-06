@@ -1,0 +1,41 @@
+package de.twenty11.skysail.server.core.restlet.utils;
+
+import org.restlet.Request;
+import org.restlet.data.Cookie;
+
+import de.twenty11.skysail.server.Constants;
+
+public class CookiesUtils {
+
+    public static final String FAVORITE_DEFINITION_DELIMITER = "^";
+    public static final String FAVORITES_DELIMITER = "|";
+
+    public static String getTemplateFromCookie(Request request) {
+        return returnCookieOrNull(request,Constants.COOKIE_NAME_TEMPLATE);
+    }
+    
+    public static String getMainPageFromCookie(Request request) {
+        return returnCookieOrNull(request,Constants.COOKIE_NAME_MAINPAGE);
+    }
+
+    public static String getInpsectFromCookie(Request request) {
+        return returnCookieOrNull(request,Constants.COOKIE_NAME_INSPECT);
+    }
+
+    public static String getFavoritesFromCookie(Request request) {
+        return returnCookieOrNull(request,Constants.COOKIE_NAME_FAVORITES);
+    }
+
+    private static String returnCookieOrNull(Request request, String name) {
+        Cookie templateCookie = request.getCookies().getFirst(name);
+        if (templateCookie == null) {
+            return null;
+        }
+        return templateCookie.getValue();
+    }
+
+    public static String createFavoriteEntry(Request request, String name, String img) {
+        return name+"="+img + FAVORITE_DEFINITION_DELIMITER + request.getResourceRef().toString(false, false) + FAVORITES_DELIMITER;
+    }
+
+}

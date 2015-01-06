@@ -1,0 +1,11 @@
+accordion(list)           ::= "<accordion>$list:{ element | $accordionGroup(element,i)$}$</accordion>"
+
+accordionGroup(element,i) ::= "<collapse$i$>$table(element)$</collapse$i$>"
+
+table(map)                ::= "<table>$mapIteration(map)$</table>"
+
+mapIteration(map)         ::= "$map.keys:{key| $asRow(map,key,i)$}$"
+
+asRow(map,k,i)            ::= "<asRow>$k$: $map.(k)$</asRow>"
+
+header(map)               ::= "<i class='icon-play'></i>&nbsp;<b>$map.serviceId$</b> [<b>$map.properties.objectClass$</b>]"

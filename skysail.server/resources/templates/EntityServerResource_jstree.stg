@@ -1,0 +1,50 @@
+jstree(list) ::= <<
+<div id='jstree'>
+  <ul>
+    <li>$first(list).name$
+       <ul>
+         $elements(first(list))$
+       </ul>
+    </li>
+  </ul>
+</div>
+<button>demo button</button>
+>>
+
+elements(rootElement) ::= <<
+    $rootElement.keys:{key| $asRow(rootElement.(key), key)$}$
+>>
+
+asRow(element,k) ::= << 
+    $if (rest(element))$
+      <li>$k$
+        <ul>
+          $element:{ l | $test(l)$}$
+        </ul>
+      </li>
+    $else$
+      $element:{ l | $show(l,k)$}$
+    $endif$
+>>
+
+test(m) ::= <<
+      <li>$m.name$$m.path$</li>
+>>
+
+show(m,k) ::= <<
+    $if (rest(m))$
+      <li>$k$</li>
+    $endif$
+>>
+
+nodes(element,i) ::= <<
+    <li>Entities
+      <ul>
+        <li id='child_node_1'>Child node 1</li>
+        <li>Child node 2</li>\n"+
+      </ul>
+    </li>
+    <li>Routes</li>
+>>
+
+

@@ -1,0 +1,61 @@
+accordion(list) ::= <<
+  <div class="accordion" id="accordion2">
+      $list:{ element | $accordionGroup(element,i)$}$
+  </div>
+>>
+
+accordionGroup(element,i) ::= <<
+
+    <div class="accordion-group">
+        <div class="accordion-heading">
+            $i$. $head(element)$ <a class="accordion-toggle" data-toggle="collapse" style="display:inline;"
+                data-parent="#accordion2" href="#collapse$i$"><i class="icon-zoom-in"></i></a>&nbsp;<form action="?method=DELETE" method="post"><button class="icon-trash"></button></form>
+        </div>
+        <div id="collapse$i$" class="accordion-body collapse">
+            <div class="accordion-inner">
+                    $table(element)$
+            </div>
+        </div> 
+    </div>
+    
+>>
+
+head(map)  ::= <<
+    <b>$map.toString$</b>
+>>
+
+table(map)  ::= <<
+	<form action="?method=PUT" method="POST">
+    <table class='table table-hover table-bordered'>
+        <tr><th colspan=2 style='background-color:red;'></th></tr>
+        $mapIteration(map)$
+        <tr><td colspan=2><input type="submit" value="submit"></td></tr>
+    </table>
+    </form>
+>>
+
+mapIteration(map) ::= <<
+            $map.keys:{key| $asRow(map,key,i)$}$
+>>
+
+asRow(map,k,i)      ::= << 
+    <tr><td><b>$k$</b></td><td>$handleValue(k, map.(k))$</td></tr>
+>>
+
+$! see de.twenty11.skysail.server.webapp.internal.FormRenderer !$ 
+handleValue(k, element) ::= <<
+    $if(rest(element))$
+      <ul>$element.keys:{key| $asList(element,key)$}$</ul>
+    $else$
+      $element;format=(k)$
+    $endif$ 
+>>
+
+asList(map,k) ::= <<
+    <li><b>$key$</b>: $element.(key)$</li>
+>>
+
+
+
+$! comment !$
+header(map)       ::= "<i class='icon-play'></i>&nbsp;<b>$map.serviceId$</b> [<b>$map.properties.objectClass$</b>]"

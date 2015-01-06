@@ -1,0 +1,105 @@
+accordion(list) ::= <<
+  <div class="accordion" id="accordion2">
+      $list:{ element | $accordionGroup(element,i)$}$
+  </div>
+>>
+
+accordionGroup(element,i) ::= <<
+
+    <div class="accordion-group">
+        <div class="accordion-heading">
+            $head(element, i)$ <a class="accordion-toggle" data-toggle="collapse" style="display:inline;"
+                data-parent="#accordion2" href="#collapse$i$"><i class="icon-zoom-in"></i></a>&nbsp;
+        </div>
+        <div id="collapse$i$" class="accordion-body collapse">
+            <div class="accordion-inner">
+                    $table(element)$
+            </div>
+        </div> 
+    </div>
+    
+>>
+
+head(map, i)  ::= <<
+    <span style='float: left'>&nbsp;&nbsp;<b>$map.path$</b></span><span style='float: right'>$map.desc$</span>
+>>
+
+table(map)  ::= <<
+    <table class='table table-hover table-bordered'>
+        <tr><th colspan=2 style='background-color:#F5F5F5;'>Details</th></tr>
+        $mapDetails(map.path,map.securedByRole,map.targetClassName)$
+    </table>
+    <table class='table table-hover table-bordered'>
+        <tr><th colspan=5 style='background-color:#F5F5F5;'>RESTful API - Methods</th></tr>
+        <tr><td>Method</td><td>Request Type</td><td>Response Type</td><td>Entity/Entities</td><td>Description</td></tr>
+        $methodsIteration(map.methods, map.entity)$
+    </table>
+>>
+
+mapDetails(path, securedByRole,target) ::= <<
+           <tr><td><b>Path</b></td><td>$path$</td></tr>
+           <tr><td><b>Secured by Role</b></td><td>$securedByRole$</td></tr>
+           <tr><td><b>Target Class</b></td><td>$target$</td></tr>
+>>
+
+mapIteration(map) ::= <<
+            $map.keys:{key| $asRow(map,key,i)$}$
+>>
+
+asRow(map,k,i)      ::= << 
+    <tr><td><b>$k$</b></td><td>$handleValue(map.(k))$</td></tr>
+>>
+
+handleValue(element) ::= <<
+    $if(rest(element))$
+      <ul>$element.keys:{key| $asList(element,key)$}$</ul>
+    $else$
+      $element$
+    $endif$ 
+>>
+
+asList(map,k) ::= <<
+    <li><b>$key$</b>: $element.(key)$</li>
+>>
+
+methodsIteration(methods, entity) ::= <<
+            $methods:{it| $methodMap(it, entity)$}$
+>>
+
+methodMap(method, entity) ::= <<
+    $if(method.get)$
+            <tr><td style='color:white; background-color:#0F6AB4'>$method.methodName$</td><td>n/a</td><td>$handleGets(method.get)$</td><td><a href='entities/$entity.name$'>$entity.simpleName$</a></td><td>$method.desc$</td></tr>
+    $elseif(method.postRequestTypes)$
+            <tr><td style='color:white; background-color:#10A54A'>$method.methodName$</td><td>$handlePostRequests(method.postRequestTypes)$</td><td>$handlePostRequests(method.postResponseTypes)$</td><td><a href='entities/$entity.name$'>$entity.simpleName$</a></td><td>$method.desc$</td></tr>
+    $elseif(method.put)$
+            <tr><td style='color:white; background-color:#C5862B'>$method.methodName$</td><td>$method.value$</td><td>*</td><td>$entity.simpleName$</td><td>$method.desc$</td></tr>
+    $elseif(method.delete)$
+            <tr><td style='color:white; background-color:#A41E22'>$method.methodName$</td><td>$method.value$</td><td>*</td><td>$entity.simpleName$</td><td>$method.desc$</td></tr>
+    $endif$
+>>
+
+handleGets(links) ::= <<
+   $links:{it| $handleGet(it)$}$
+>>
+
+handleGet(link) ::= <<
+   <a href='/$link.href$' target='_blank'>$link.title$</a>&nbsp;&nbsp;
+>>
+
+handlePostRequests(links) ::= <<
+   $links:{it| $handlePostRequest(it)$}$
+>>
+
+handlePostRequest(link) ::= <<
+   $link.title$&nbsp;&nbsp;
+>>
+
+handlePostResponses(links) ::= <<
+   $links:{it| $handlePostResponse(it)$}$
+>>
+
+handlePostResponse(link) ::= <<
+   $link.title$&nbsp;&nbsp;
+>>
+
+header(map)       ::= "<i class='icon-play'></i>&nbsp;<b>$map.serviceId$</b> [<b>$map.properties.objectClass$</b>]"

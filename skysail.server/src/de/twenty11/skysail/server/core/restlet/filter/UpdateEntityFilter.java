@@ -1,0 +1,24 @@
+package de.twenty11.skysail.server.core.restlet.filter;
+
+import org.restlet.Response;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import de.twenty11.skysail.server.core.restlet.PutEntityServerResource;
+import de.twenty11.skysail.server.core.restlet.ResponseWrapper;
+import de.twenty11.skysail.server.core.restlet.SkysailServerResource;
+
+public class UpdateEntityFilter<R extends PutEntityServerResource<T>, T> extends AbstractResourceFilter<R, T> {
+
+    private static Logger logger = LoggerFactory.getLogger(UpdateEntityFilter.class);
+
+    @Override
+    public FilterResult doHandle(R resource, Response response, ResponseWrapper<T> responseWrapper) {
+        logger.debug("entering {}#doHandle", this.getClass().getSimpleName());
+        T entity = responseWrapper.getEntity();
+        resource.updateEntity(entity);
+        super.doHandle(resource, response, responseWrapper);
+        return FilterResult.CONTINUE;
+    }
+
+}

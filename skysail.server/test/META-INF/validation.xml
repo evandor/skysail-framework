@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- http://stackoverflow.com/questions/25862444/how-to-fix-compatibility-issue-with-jsr-303-validation-and-orientdb -->
+<validation-config
+	xmlns="http://jboss.org/xml/ns/javax/validation/configuration"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://jboss.org/xml/ns/javax/validation/configuration">
+
+	<traversable-resolver>de.twenty11.skysail.server.validation.MyValidationTraversableResolver</traversable-resolver>
+
+</validation-config>

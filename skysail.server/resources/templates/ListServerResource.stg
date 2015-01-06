@@ -1,0 +1,60 @@
+accordion(list) ::= <<
+  <div class="accordion" id="accordion2">
+      $list:{ element | $accordionGroup(element,i)$}$
+  </div>
+>>
+
+accordionGroup(element,i) ::= <<
+
+    <div class="accordion-group" style="height:25px;">
+        <div class="accordion-heading">
+            $i$.) $headLeft(element)$ <a class="accordion-toggle" data-toggle="collapse" style="display:inline;"
+                data-parent="#accordion2" href="#collapse$i$"><i class="icon-zoom-in"></i></a>&nbsp;
+                <span style='float:right'>$headRight(element)$</span>
+        </div>
+        <div id="collapse$i$" class="accordion-body collapse">
+            <div class="accordion-inner">
+                    $table(element)$
+            </div>
+        </div> 
+    </div>
+    
+>>
+
+headLeft(element)  ::= <<
+    <b>$element.name$</b>
+>>
+
+headRight(element)  ::= <<
+    <b>$element.links$</b>
+>>
+
+table(map)  ::= <<
+    <table class='table table-hover table-bordered'>
+        <tr><th colspan=2 style='background-color:#F5F5F5;'></th></tr>
+        $mapIteration(map)$
+    </table>
+>>
+
+mapIteration(map) ::= <<
+            $map.keys:{key| $asRow(map,key,i)$}$
+>>
+
+asRow(map,k,i)      ::= << 
+    <tr><td><b>$k$</b></td><td>$handleValue(map.(k))$</td></tr>
+>>
+
+handleValue(element) ::= <<
+    $if(rest(element))$
+      <ul>$element.keys:{key| $asList(element,key)$}$</ul>
+    $else$
+      $element$
+    $endif$ 
+>>
+
+asList(map,k) ::= <<
+    <li><b>$key$</b>: $element.(key)$</li>
+>>
+
+$! comment !$
+header(map)       ::= "<i class='icon-play'></i>&nbsp;<b>$map.serviceId$</b> [<b>$map.properties.objectClass$</b>]"

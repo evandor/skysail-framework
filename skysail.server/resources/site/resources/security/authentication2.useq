@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sequence-diagram version="1.1.4" icons="true" automaticImage="PNG">  
+  <object id="1" language="java" name="org.restlet.Application" project="skysail.server" 
+    file="/home/carsten/.m2/repository/org/restlet/osgi/org.restlet/2.1.0/org.restlet-2.1.0.jar" binary="true" 
+    label="application" type="class" autoSize="true">    
+    <position height="0" width="0" x="0" y="0"/>    
+    <execution id="2">      
+      <position height="171" width="0" x="0" y="236"/>    
+    </execution>  
+  </object>  
+  <object id="5" language="java" name="de.twenty11.skysail.server.app.SkysailApplicationoject="skysail.server" 
+    file="/skysail.server/src/de/twenty11/skysail/server/app/SkysailApplication.java" binary="false" 
+    label="skysailApplication" type="class" autoSize="true">    
+    <position height="0" width="0" x="0" y="0"/>    
+    <execution id="4">      
+      <position height="133" width="0" x="0" y="255"/>    
+    </execution>  
+  </object>  
+  <object id="8" language="java" name="de.twenty11.skysail.server.security.shiro.ShiroServices" 
+    project="skysail.server.security.shiro" 
+    file="/skysail.server.security.shiro/src/main/java/de/twenty11/skysail/server/security/shiro/ShiroServices.java" 
+    binary="false" label="shiroServices" type="class" autoSize="true">    
+    <position height="0" width="0" x="0" y="0"/>    
+    <execution id="7">      
+      <position height="95" width="0" x="0" y="274"/>    
+    </execution>  
+  </object>  
+  <object id="11" language="java" name="de.twenty11.skysail.server.security.shiro.restlet.ShiroDelegationAuthenticator" 
+    project="skysail.server.security.shiro" 
+    file="/skysail.server.security.shiro/src/main/java/de/twenty11/skysail/server/security/shiro/restlet/ShiroDelegationAuthenticator.java" 
+    binary="false" label="shiroDelegationAuthenticator" type="class" autoSize="true">    
+    <position height="0" width="0" x="0" y="0"/>    
+    <execution id="10">      
+      <position height="57" width="0" x="0" y="293"/>    
+    </execution>  
+  </object>  
+  <object id="14" language="java" name="org.restlet.security.ChallengeAuthenticator" project="skysail.common" 
+    file="/home/carsten/.m2/repository/org/restlet/osgi/org.restlet/2.1.0/org.restlet-2.1.0.jar" binary="true" 
+    label="challengeAuthenticator" type="class" autoSize="true">    
+    <position height="0" width="0" x="0" y="0"/>    
+    <execution id="13">      
+      <position height="19" width="0" x="0" y="312"/>    
+    </execution>  
+  </object>  
+  <message id="3" operation="createInboundRoot():org.restlet.Restlet">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="4"/>  
+  </message>  
+  <message id="6" operation="getAuthenticator(org.restlet.Context):org.restlet.security.Authenticator">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="7"/>  
+  </message>  
+  <message id="9" operation="ShiroDelegationAuthenticator(org.restlet.Context,java.lang.String,byte[])">    
+    <end type="SOURCE" refId="7"/>    
+    <end type="TARGET" refId="10"/>  
+  </message>  
+  <message id="12" operation="setVerifier(org.restlet.security.Verifier):void">    
+    <end type="SOURCE" refId="10"/>    
+    <end type="TARGET" refId="13"/>  
+  </message>
+</sequence-diagram>

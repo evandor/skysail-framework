@@ -1,0 +1,8 @@
+/bin
+/bin_test
+/generated
+/.settings
+/target
+/derby.log
+/services_skysail.dia.autosave
+/bin/

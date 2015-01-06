@@ -1,0 +1,81 @@
+ -----
+ Overview
+ -----
+ skysail3
+ -----
+ October 2013
+
+Content
+
+ This section describes the most fundamental features and the purpose of skysail server.
+ 
+ You might have read this already:
+ 
+ <<skysail in one sentence>>:
+ 
+ skysail is a generic "business server", performing pure business logic, communicating with skysail clients, 
+ which provide the specific user interfaces.
+ 
+* Visualizing this "from 10.000 feet" will give you something like this:
+ 
+=======================================================================
+ 
+[../skysail_server_level_A.png] 10.000 feet view  
+
+=======================================================================
+ 
+ Skysail server waits for <REST requests> (e.g. a GET request from an ordinary browser pointing to a URL managed by the skysail installation).
+ It will process it (and it will take care of authentication, authorization, logging, persistence and the like) and return a response. This
+ response is a representation of the answer to that request. The specific format of the answer (that is, the <response representation>) might
+ depend on the request itself - asking for a JSON-formatted response will give you a JSON string. 
+ 
+* An example 
+
+ Let's assume you have a skysail server installation at myserver.org, running on port 8080, and this installation provides a RESTful "notes" 
+ application, i.e. the following paths are mapped to resources dealing with the following requests: 
+ 
++-----------
+ /notes          -> mapped to NotesResource
+ /notes/{noteId} -> mapped to NoteResource
++-----------
+
+ Now, by typing <http://myserver.org:8080/notes/27> in your browser, what you do is to initiate a GET request to that URL, which
+ is dealt with by your skysail installation and mapped to the second resource, <NoteResource>. 
+ 
+ <NoteResource> reacts to the request according to the business logic defined in the notes application. Typically, assuming you've
+ been authenticated and have the proper permissions, the application will get the note with id 27 from its persistence store, format
+ it according to the request, and deliver it:
+ 
++-------------
+{
+
+    "message": "Note #27",
+    "success": true,
+    "data": [
+        {
+            "pid": 27,
+            "parent": null,
+            "title" : "myNote",
+            "content" : "some content",
+            "owner": {
+               ...
+            },
+        }
+    ],
+}
++-------------
+ 
+* Summary
+
+ As described, skysail is a RESTful "business server" focusing on the business logic. This is, IMHO, a reasonable abstraction,
+ as it really separates the representation of entities (the GUI) from the logic performed in the back-end. 
+
+ Like this, it is very easy to develop various clients (think about a web application, a rich client and multiple mobile apps), all
+ communicating with the same business server. Those clients could be written in any language, too. The only thing they'd have to 
+ suport is the HTTP protocol. 
+
+
+ 
+ 
+ 
+ 

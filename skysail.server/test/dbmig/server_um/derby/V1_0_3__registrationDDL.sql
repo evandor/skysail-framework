@@ -1,0 +1,6 @@
+CREATE TABLE um_registrations(
+    ID VARCHAR(64) NOT NULL ,
+    USERNAME VARCHAR(255) ,
+    PASSWORD VARCHAR(255) ,
+    CONSTRAINT um_regitration_pk PRIMARY KEY(ID)
+); 

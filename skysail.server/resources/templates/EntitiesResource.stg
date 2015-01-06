@@ -1,0 +1,63 @@
+accordion(list) ::= <<
+  <div class="accordion" id="accordion2">
+      $list:{ element | $accordionGroup(element,i)$}$
+  </div>
+>>
+
+accordionGroup(element,i) ::= <<
+
+    <div class="accordion-group">
+        <div class="accordion-heading">
+            $i$. $head(element)$ <a class="accordion-toggle" data-toggle="collapse" style="display:inline;"
+                data-parent="#accordion2" href="#collapse$i$"><i class="icon-zoom-in"></i></a>&nbsp;
+        </div>
+        <div id="collapse$i$" class="accordion-body collapse">
+            <div class="accordion-inner">
+                    $table(element)$
+            </div>
+        </div> 
+    </div>
+    
+>>
+
+head(element)  ::= <<
+    <b>$element.name$</b>
+>>
+
+table(map)  ::= <<
+    <table class='table table-hover table-bordered'>
+        <tr><th colspan=2 style='background-color:#F5F5F5;'></th></tr>
+        $mapIteration(map)$
+    </table>
+>>
+
+mapIteration(map) ::= <<
+            $map.keys:{key| $asRow(map,key,i)$}$
+>>
+
+asRow(map,k,i)      ::= << 
+    <tr><td><b>$k$</b></td><td>$handleValue(map.(k))$</td></tr>
+>>
+
+handleValue(element) ::= <<
+    $if(rest(element))$
+      <ul>$element:{it| $fields(it)$}$</ul>
+    $else$
+      $element$
+    $endif$ 
+>>
+
+asList(map,k) ::= <<
+    <li><b>$key$</b>: $element.(key)$</li>*
+>>
+
+fields(field) ::= <<
+  <li><b>$field.name$</b> ($field.type$) $field.annotationDescriptors:{it|$annotations(it)$}$</li> 
+>>
+
+annotations(annotation) ::= <<
+  <br>$annotation.name$
+>>
+
+$! comment !$
+header(map)       ::= "<i class='icon-play'></i>&nbsp;<b>$map.serviceId$</b> [<b>$map.properties.objectClass$</b>]"

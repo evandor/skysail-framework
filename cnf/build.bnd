@@ -54,7 +54,7 @@ copyright:              Copyright (c) twentyeleven.de (2011, ${tstamp;yyyy}). Al
 copyright.html:         Copyright &copy; twentyeleven.de (2011, ${tstamp;yyyy}). All Rights Reserved.
 
 restlet.version                        2.1.7
-skysail.api.version                    12.2
+skysail.api.version                    0.3
 skysail.server.version                 14.0
 org.apache.felix.scr.version           1.8.2
 com.orientechnologies.orientdb.version 1.7.9

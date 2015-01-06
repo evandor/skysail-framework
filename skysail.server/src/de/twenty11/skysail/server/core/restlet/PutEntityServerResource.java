@@ -169,16 +169,6 @@ public abstract class PutEntityServerResource<T> extends SkysailServerResource<T
         return LinkHeaderRelation.CREATE_FORM;
     }
 
-    @Override
-    public String getLinkName() {
-        return "edit";
-    }
-
-    @Override
-    public String getImageRef() {
-        return "<span class='glyphicon glyphicon-edit' aria-hidden='true'></span>";
-    }
-
     protected ConstraintValidatorFactory getConstraintValidatorFactory() {
         return null;
     }

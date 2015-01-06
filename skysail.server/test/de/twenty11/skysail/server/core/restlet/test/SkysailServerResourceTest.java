@@ -29,15 +29,6 @@ public class SkysailServerResourceTest {
             return LinkHeaderRelation.ABOUT;
         }
 
-        @Override
-        public String getLinkName() {
-            return "linkName";
-        }
-
-        @Override
-        public String getImageRef() {
-            return "imageRef";
-        }
     };
 
     @Before
@@ -55,16 +46,6 @@ public class SkysailServerResourceTest {
        assertThat(serverResource.getLinkRelation(), is(equalTo(LinkHeaderRelation.ABOUT)));
     }
 
-    @Test
-    public void returns_resources_linkName() throws Exception {
-       assertThat(serverResource.getLinkName(), is(equalTo("linkName")));
-    }
-
-    @Test
-    public void returns_resources_imageRef() throws Exception {
-       assertThat(serverResource.getImageRef(), is(equalTo("imageRef")));
-    }
-    
     @Test
     public void testName() throws Exception {
         assertThat(serverResource.getEntityType(), is(equalTo("java.lang.String")));

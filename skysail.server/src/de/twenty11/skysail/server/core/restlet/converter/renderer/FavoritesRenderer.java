@@ -12,7 +12,6 @@ import org.restlet.resource.Resource;
 import de.twenty11.skysail.api.favorites.FavoritesService;
 import de.twenty11.skysail.server.app.SkysailApplication;
 import de.twenty11.skysail.server.core.restlet.SkysailServerResource;
-import de.twenty11.skysail.server.core.restlet.utils.CookiesUtils;
 
 public class FavoritesRenderer {
 
@@ -76,12 +75,6 @@ public class FavoritesRenderer {
         if (!Method.GET.equals(resource.getRequest().getMethod())) {
             return "";
         }
-        String name = ((SkysailServerResource<?>) resource).getLinkName();
-        String img = ((SkysailServerResource<?>) resource).getImageRef();
-
-        // if
-        // (favorites.contains(CookiesUtils.createFavoriteEntry(resource.getRequest(),
-        // name, img))) {
 
         SkysailApplication app = (SkysailApplication) resource.getApplication();
         FavoritesService favoritesService = app.getFavoritesService();
@@ -99,17 +92,6 @@ public class FavoritesRenderer {
     private static boolean favoriteExists(List<de.twenty11.skysail.api.favorites.Favorite> favoritesList, String string) {
         return favoritesList.stream().map(f -> f.getFavoriteLink()).filter(link -> link.equals(string)).findFirst()
                 .isPresent();
-    }
-
-    private static Favorite createFavoriteLink(String part) {
-        if (part == null || part.trim().length() == 0) {
-            return null;
-        }
-        String[] split = part.split("=", 2);
-        String[] favoriteDefintion = split[1].split("\\" + CookiesUtils.FAVORITE_DEFINITION_DELIMITER);
-        String img = favoriteDefintion[0];
-        String href = favoriteDefintion[1].split("\\?")[0];
-        return new Favorite(img, "&nbsp;<a href='" + href + "'>" + split[0] + "</a>");
     }
 
     private static Favorite createFavoriteLink(de.twenty11.skysail.api.favorites.Favorite f) {

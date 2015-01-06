@@ -207,16 +207,6 @@ public abstract class PostEntityServerResource<T> extends SkysailServerResource<
         return LinkHeaderRelation.CREATE_FORM;
     }
 
-    @Override
-    public String getLinkName() {
-        return "new";
-    }
-
-    @Override
-    public String getImageRef() {
-        return "<span class='glyphicon glyphicon-edit' aria-hidden='true'></span>";
-    }
-
     protected ConstraintValidatorFactory getConstraintValidatorFactory() {
         return null;
     }
@@ -225,7 +215,7 @@ public abstract class PostEntityServerResource<T> extends SkysailServerResource<
         return null;
     }
 
-    protected Set<ConstraintViolation<T>> validate(@SuppressWarnings("unused") T entity) {
+    protected Set<ConstraintViolation<T>> validate(T entity) {
         throw new UnsupportedOperationException();
     }
 

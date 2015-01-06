@@ -19,14 +19,5 @@ public class TestServerResource extends SkysailServerResource<String> {
         return LinkHeaderRelation.ITEM;
     }
 
-    @Override
-    public String getLinkName() {
-        return null;
-    }
-
-    @Override
-    public String getImageRef() {
-        return null;
-    }
 
 }

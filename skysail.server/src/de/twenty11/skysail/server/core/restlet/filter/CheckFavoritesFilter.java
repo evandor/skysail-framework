@@ -24,8 +24,8 @@ public class CheckFavoritesFilter<R extends SkysailServerResource<T>, T> extends
         if (favoriteFlag == null || !(resource instanceof SkysailServerResource)) {
             return FilterResult.CONTINUE;
         }
-        String name = ((SkysailServerResource<?>) resource).getLinkName();
-        String img = ((SkysailServerResource<?>) resource).getImageRef();
+        String name = "name";
+        String img = "img";
         String favoritesFromCookie = CookiesUtils.getFavoritesFromCookie(resource.getRequest());
         CookieSetting cookieSetting;
         String value = "";

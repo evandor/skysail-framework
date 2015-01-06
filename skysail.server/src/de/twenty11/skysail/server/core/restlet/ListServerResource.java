@@ -169,11 +169,6 @@ public abstract class ListServerResource<T> extends SkysailServerResource<List<T
         return LinkHeaderRelation.COLLECTION;
     }
 
-    @Override
-    public String getLinkName() {
-        return getLinkName(new Object[0]);
-    }
-
     public String getLinkName(Object... substitutions) {
         Application application = getApplication();
         if (application instanceof TranslationProvider) {
@@ -184,15 +179,6 @@ public abstract class ListServerResource<T> extends SkysailServerResource<List<T
                     FAVORITE_MAX_LENGTH_IN_GUI - 3) + "..." : translation;
         }
         return "list";
-    }
-
-    /**
-     * for example &lt;img src='/static/img/silk/application.png'&gt; or &lt;i
-     * class='icon-list'&gt;&lt;/i&gt;
-     */
-    @Override
-    public String getImageRef() {
-        return "<i class=\"icon-list\"></i>";
     }
 
     protected List<T> getEntities(String defaultMsg) {

@@ -94,19 +94,6 @@ public abstract class SkysailServerResource<T> extends ServerResource {
 	 */
 	public abstract LinkHeaderRelation getLinkRelation();
 
-	/**
-	 * @return a short, but preferably unique name representing this resource.
-	 */
-	@Deprecated
-	public abstract String getLinkName();
-
-	/**
-	 * @return an image reference like <img src='...'> or glyph for this kind of
-	 *         resource.
-	 */
-	@Deprecated
-	public abstract String getImageRef();
-
 	public Map<String, String> getMessages() {
 		Application application = getApplication();
 		if (!(application instanceof TranslationProvider)) {

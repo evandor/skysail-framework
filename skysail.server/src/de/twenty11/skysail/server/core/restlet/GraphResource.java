@@ -21,16 +21,6 @@ public abstract class GraphResource extends SkysailServerResource<Graph> {
         return LinkHeaderRelation.ALTERNATE;
     }
     
-    @Override
-    public String getLinkName() {
-        return "graph";
-    }
-    
-    @Override
-    public String getImageRef() {
-        return "<i class=\"icon-star-empty\"></i>";
-    }
-
     @Get("html|json|graph")
     public Graph getEntity() {
         logger.info("Request entry point: {} @Get('html|json|graph')", this.getClass().getSimpleName());

@@ -131,16 +131,6 @@ public abstract class EntityServerResource<T> extends SkysailServerResource<T> {
         return LinkHeaderRelation.ITEM;
     }
 
-    @Override
-    public String getLinkName() {
-        return "entity";
-    }
-
-    @Override
-    public String getImageRef() {
-        return "<span class='glyphicon glyphicon-zoom-in' aria-hidden='true'></span>";
-    }
-
     @Get("json")
     public T getJson() {
     	EtmPoint point = etmMonitor.createPoint("EntityServerResource:getJson");

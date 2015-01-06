@@ -36,15 +36,6 @@ public class ServerLinkTest {
             return LinkHeaderRelation.COLLECTION;
         }
 
-        @Override
-        public String getLinkName() {
-            return null;
-        }
-
-        @Override
-        public String getImageRef() {
-            return null;
-        }
     }
 
     private SkysailApplication app;

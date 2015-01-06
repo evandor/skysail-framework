@@ -6,8 +6,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import javax.annotation.Nullable;
-
 import org.restlet.data.Method;
 import org.restlet.resource.Delete;
 import org.restlet.resource.Get;
@@ -215,7 +213,7 @@ public class ApplicationApi implements Comparable<ApplicationApi> {
     }
 
     @Override
-    public boolean equals(@Nullable Object obj) {
+    public boolean equals(Object obj) {
         if (this == obj)
             return true;
         if (obj == null)

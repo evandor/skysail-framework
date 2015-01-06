@@ -36,7 +36,7 @@ public class ServerLink extends Linkheader {
             SkysailServerResource<?> newInstance = ssr.newInstance();
             defaultLinkRelation = newInstance.getLinkRelation();
             title = title != null ? title : newInstance.getFromContext(ResourceContextId.LINK_TITLE);
-            imageRef = newInstance.getImageRef();
+            imageRef = "";//newInstance.getImageRef();
         } catch (InstantiationException | IllegalAccessException e) {
             logger.error(e.getMessage(), e);
         }

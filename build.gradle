@@ -6,9 +6,6 @@
 
 /* Add bnd as a script dependency */
 buildscript {
-  repositories {
-      mavenLocal()
-  } 
   dependencies {
     classpath files(bndURI)
   }

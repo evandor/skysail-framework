@@ -8,6 +8,10 @@ import aQute.bnd.build.Workspace
 
 /* Add bnd as a script dependency */
 buildscript {
+  repositories {
+      mavenLocal()
+  } 
+
   dependencies {
     def bndURI = rootDir.toURI().resolve(bnd_jar)
     if (bndURI.scheme != 'file') {

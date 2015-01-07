@@ -1,5 +1,8 @@
 package de.twenty11.skysail.api.favorites;
 
+import lombok.Getter;
+
+@Getter
 public class Favorite {
 
 	String username, favoriteName, favoriteLink, favoriteImg, favoriteTooltip;
@@ -10,28 +13,8 @@ public class Favorite {
         this.favoriteLink = link;
     }
 	
-	public String getUsername() {
-		return username;
-	}
-
-	public String getFavoriteName() {
-		return favoriteName;
-	}
-
-	public String getFavoriteLink() {
-		return favoriteLink;
-	}
-
-	public String getFavoriteImg() {
-		return favoriteImg;
-	}
-
 	public void setFavoriteImg(String favoriteImg) {
 		this.favoriteImg = favoriteImg;
-	}
-
-	public String getFavoriteTooltip() {
-		return favoriteTooltip;
 	}
 
 	public void setFavoriteTooltip(String favoriteTooltip) {

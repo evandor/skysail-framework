@@ -150,7 +150,7 @@ public class Linkheader {
         return needsAuthentication;
     }
 
-    public String toString(@SuppressWarnings("unused") Request request, String path) {
+    public String toString(Request request, String path) {
         StringBuilder sb = new StringBuilder().append("<").append(path + getUri()).append(">");
         if (getRel() != null) {
             sb.append("; rel=\"").append(getRel().getName()).append("\"");

@@ -31,5 +31,4 @@ Export-Package: de.twenty11.skysail.api.responses,\
 	de.twenty11.skysail.api.features
 Service-Component: *
 Private-Package:  \
-	de.twenty11.skysail.api.internal,\
 	de.twenty11.skysail.api.health

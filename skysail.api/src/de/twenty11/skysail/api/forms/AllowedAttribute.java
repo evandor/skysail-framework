@@ -1,6 +1,6 @@
 package de.twenty11.skysail.api.forms;
 
-import org.apache.commons.lang.Validate;
+import lombok.NonNull;
 
 /**
  * An html attribute (like "style") to be allowed on various elements (like "p", "span").
@@ -13,8 +13,7 @@ public class AllowedAttribute {
     private String name;
     private String[] elements;
 
-    public AllowedAttribute(String name) {
-        Validate.notNull(name);
+    public AllowedAttribute(@NonNull String name) {
         this.name = name;
     }
 

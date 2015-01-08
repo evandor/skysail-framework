@@ -36,7 +36,7 @@ public class CheckFavoritesFilter<R extends SkysailServerResource<T>, T> extends
 
         String username = (String) SecurityUtils.getSubject().getPrincipal();
         String link = request.getResourceRef().toString(false, false);
-        Favorite favorite = new Favorite(username, name, link);
+        Favorite favorite = new Favorite().setUsername(username).setFavoriteName(name).setFavoriteLink(link);
         if ("true".equalsIgnoreCase(favoriteFlag.trim())) {
             //value = CookiesUtils.createFavoriteEntry(request, name, img);
             favorite.setFavoriteImg(img);

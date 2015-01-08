@@ -22,6 +22,6 @@ public class IgnoreSelectionProviderTest {
 
 	@Test
 	public void testName() throws Exception {
-		assertThat(ignoreSelectionProvider.getSelections().size(), is(1));
+		assertThat(ignoreSelectionProvider.getSelections().size(), is(0));
 	}
 }

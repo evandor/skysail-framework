@@ -34,7 +34,7 @@ public abstract class AbstractSourceConverter {
         this.target = target;
     }
 
-    protected Comparator<String> getComparator(@SuppressWarnings("unused") SkysailServerResource<?> resource) {
+    protected Comparator<String> getComparator(SkysailServerResource<?> resource) {
         return null;
     }
 

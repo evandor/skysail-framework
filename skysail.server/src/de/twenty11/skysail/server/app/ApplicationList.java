@@ -41,7 +41,8 @@ public class ApplicationList implements ApplicationListProvider {
     private volatile List<SkysailApplication> applications = new ArrayList<>();
     private volatile ServiceListProvider services;
     private SkysailRootApplication rootApplication;
-   // private final Map<String, Role> allRoles = new ConcurrentHashMap<String, Role>();
+    // private final Map<String, Role> allRoles = new ConcurrentHashMap<String,
+    // Role>();
     private Server riapServer = new Server(Protocol.RIAP);
     private SkysailComponent skysailComponent;
 
@@ -76,7 +77,7 @@ public class ApplicationList implements ApplicationListProvider {
         setServices(applications);
     }
 
-    public void unsetServiceListProvider(@SuppressWarnings("unused") ServiceListProvider serviceListProvider) {
+    public void unsetServiceListProvider(ServiceListProvider serviceListProvider) {
         this.services = null;
         unsetServices(applications);
     }
@@ -132,9 +133,9 @@ public class ApplicationList implements ApplicationListProvider {
     }
 
     private void attachToComponent(Application application) {
-    	if (skysailComponent == null) {
-    		return;
-    	}
+        if (skysailComponent == null) {
+            return;
+        }
         if (application instanceof SkysailRootApplication) {
             rootApplication = (SkysailRootApplication) application;
         }
@@ -150,10 +151,10 @@ public class ApplicationList implements ApplicationListProvider {
             skysailComponent.getInternalRouter().attach("/" + skysailApplication.getName(), application);
         }
 
-//        List<Role> roles = application.getRoles();
-//        for (Role role : roles) {
-//            allRoles.put(application.getName() + "." + role.getName(), role);
-//        }
+        // List<Role> roles = application.getRoles();
+        // for (Role role : roles) {
+        // allRoles.put(application.getName() + "." + role.getName(), role);
+        // }
 
         if (rootApplication != null) {
             skysailComponent.getDefaultHost().attachDefault(rootApplication);

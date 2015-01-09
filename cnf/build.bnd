@@ -48,7 +48,7 @@ javac.target:          1.8
 
 
 ## To enable baselining, uncomment the following lines:
-# -baseline: *
+-baseline: *
 
 copyright:              Copyright (c) twentyeleven.de (2011, ${tstamp;yyyy}). All Rights Reserved.
 copyright.html:         Copyright &copy; twentyeleven.de (2011, ${tstamp;yyyy}). All Rights Reserved.
@@ -65,6 +65,6 @@ Bundle-License:         http://www.opensource.org/licenses/apache2.0.php;\
 
 
 ## If you use git, you might want to uncomment the following lines:
-# Git-Descriptor:       ${system-allow-fail;git describe --dirty --always}
-# Git-SHA:              ${system-allow-fail;git rev-list -1 HEAD}
-# -diffignore:          Git-Descriptor,Git-SHA
+Git-Descriptor:       ${system-allow-fail;git describe --dirty --always}
+Git-SHA:              ${system-allow-fail;git rev-list -1 HEAD}
+-diffignore:          Git-Descriptor,Git-SHA

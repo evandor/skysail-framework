@@ -18,7 +18,7 @@ public class AllowedAttributeTest {
         attribute = new AllowedAttribute("style");
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test(expected = NullPointerException.class)
     public void needs_name() throws Exception {
         attribute = new AllowedAttribute(null);
     }

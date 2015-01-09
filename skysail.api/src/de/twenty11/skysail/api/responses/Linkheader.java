@@ -21,8 +21,9 @@ import com.google.common.base.Predicate;
 /**
  * Basic implementation of http://tools.ietf.org/html/rfc5988.
  * 
- * A Linkheader instance is created using the {@link Linkheader.Builder}; some of the attributes like role and relation 
- * can be changed after creation using a fluent API.
+ * A Linkheader instance is created using the {@link Linkheader.Builder}; some
+ * of the attributes like role and relation can be changed after creation using
+ * a fluent API.
  *
  */
 @Slf4j
@@ -33,7 +34,7 @@ public class Linkheader {
     private LinkHeaderRelation rel;
     private String uri;
     private String title;
-    
+
     private Set<Method> verbs = new HashSet<Method>();
     private boolean needsAuthentication;
     private Predicate<String[]> rolesPredicate;
@@ -68,19 +69,19 @@ public class Linkheader {
             this.rel = relation;
             return this;
         }
-        
+
         public Builder authenticationNeeded(boolean authNeeded) {
             this.authenticationNeeded = authNeeded;
             return this;
         }
-        
+
         public Builder verbs(Method... verbs) {
             this.verbs = new HashSet<Method>();
             this.verbs.addAll(Arrays.asList(verbs));
             return this;
         }
-        
-        public Builder needsRoles( Predicate<String[]> needsRoles) {
+
+        public Builder needsRoles(Predicate<String[]> needsRoles) {
             this.needsRoles = needsRoles;
             return this;
         }
@@ -111,7 +112,7 @@ public class Linkheader {
         }
         String uriPart = parts[0].trim();
         String substring = uriPart.substring(1).substring(0, uriPart.length() - 2);
-        
+
         Builder builder = new Linkheader.Builder(substring);
         for (int i = 1; i < parts.length; i++) {
             parsePart(builder, parts[i]);

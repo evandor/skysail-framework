@@ -1,6 +1,5 @@
 package de.twenty11.skysail.server.core.restlet;
 
-import java.text.ParseException;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
@@ -82,7 +81,7 @@ public abstract class PutEntityServerResource<T> extends SkysailServerResource<T
     @Override
     protected void doInit() throws ResourceException {
         // empty
-    };
+    }
 
     /**
      * The concrete resource should provide a template (a potentially non-valid
@@ -114,7 +113,6 @@ public abstract class PutEntityServerResource<T> extends SkysailServerResource<T
      * @param form
      *            the representation of the resource as a form
      * @return the resource of type T
-     * @throws ParseException
      */
     public T getData(Form form) {
         return populate(getEntity(), form);
@@ -130,6 +128,11 @@ public abstract class PutEntityServerResource<T> extends SkysailServerResource<T
         return null;
     }
 
+    /**
+     * getJson.
+     * 
+     * @return json
+     */
     @Get("json")
     public T getJson() {
         logger.info("Request entry point: {} @Get('json')", this.getClass().getSimpleName());
@@ -139,6 +142,12 @@ public abstract class PutEntityServerResource<T> extends SkysailServerResource<T
         return null;// handler.handle(this, getResponse()).getEntity();
     }
 
+    /**
+     * put.
+     * 
+     * @param entity
+     * @return object
+     */
     @Put("json")
     public Object putEntity(T entity) {
         EtmPoint point = etmMonitor.createPoint("PutEntityServerResource:putEntity");

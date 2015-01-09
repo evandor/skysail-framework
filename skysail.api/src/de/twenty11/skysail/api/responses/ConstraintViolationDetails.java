@@ -12,7 +12,12 @@ public class ConstraintViolationDetails {
     public ConstraintViolationDetails() {
         // for jackson
     }
-    
+
+    /**
+     * constructor.
+     * 
+     * @param constraintViolation
+     */
     public ConstraintViolationDetails(ConstraintViolation<?> constraintViolation) {
         Validate.notNull(constraintViolation, "constraintValidation is null when creating ConstraintValidationDetails");
         propertyPath = constraintViolation.getPropertyPath().toString();

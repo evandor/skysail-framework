@@ -19,6 +19,14 @@ public class FormResponse<T> extends SkysailResponse<T> {
         this(entity, null, target, redirectBackTo);
     }
 
+    /**
+     * Constructor.
+     * 
+     * @param entity
+     * @param id
+     * @param target
+     * @param redirectBackTo
+     */
     public FormResponse(T entity, String id, String target, String redirectBackTo) {
         super(entity);
         this.id = id;
@@ -33,7 +41,7 @@ public class FormResponse<T> extends SkysailResponse<T> {
     public String getRedirectBackTo() {
         return redirectBackTo;
     }
-    
+
     public String getId() {
         return id;
     }

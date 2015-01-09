@@ -19,7 +19,7 @@ import de.twenty11.skysail.server.services.RequestResponseMonitor;
 /**
  * traces information when the request contains the debug=true parameter.
  * 
- * @ThreadSafe
+ * ThreadSafe
  * 
  */
 public class Tracer extends Filter {

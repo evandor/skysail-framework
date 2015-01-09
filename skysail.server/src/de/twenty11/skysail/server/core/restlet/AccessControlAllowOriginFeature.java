@@ -6,15 +6,14 @@ import de.twenty11.skysail.api.features.OsgiFeatureToggle;
 @Component
 public class AccessControlAllowOriginFeature extends OsgiFeatureToggle {
 
-	//private static FeatureManager featureManager;
+    // private static FeatureManager featureManager;
 
-	public AccessControlAllowOriginFeature() {
-		setStateRepository("FileBasedStateRepository");
+    public AccessControlAllowOriginFeature() {
+        setStateRepository("FileBasedStateRepository");
     }
 
-	public static boolean myIsActive() {
-		return featureManager != null ? featureManager
-				.isActive(new AccessControlAllowOriginFeature()) : false;
-	}
+    public static boolean myIsActive() {
+        return featureManager != null ? featureManager.isActive(new AccessControlAllowOriginFeature()) : false;
+    }
 
 }

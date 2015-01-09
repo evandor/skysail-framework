@@ -3,9 +3,10 @@ package de.twenty11.skysail.api.forms;
 import lombok.NonNull;
 
 /**
- * An html attribute (like "style") to be allowed on various elements (like "p", "span").
+ * An html attribute (like "style") to be allowed on various elements (like "p",
+ * "span").
  * 
- * This is used for defining {@link HtmlPolicies} to prevent XSS attacks.
+ * This is used for defining HtmlPolicies to prevent XSS attacks.
  * 
  */
 public class AllowedAttribute {

@@ -58,25 +58,25 @@ import etm.core.monitor.EtmPoint;
  *        app = (MailApplication) getApplication();
  *    }
  * 
- *     @Override
+ *     {@literal @}Override
  *    protected void doInit() throws ResourceException {
  *        super.doInit();
  *        connectionName = (String) getRequest().getAttributes().get("conn");
  *    }
  * 
- *    @Override
- *    public List<Account> getData() {
+ *    {@literal @}Override
+ *    public List&lt;Account&gt; getData() {
  *        return app.getAccountRepository().getAll();
  *    }
  * 
- *    @Override
+ *    {@literal @}Override
  *    public String getMessage(String key) {
  *        return "List Accounts";
  *    }
  * 
- *    @Override
- *    public List<Link> getLinks() {
- *        List<Link> links = super.getLinks();
+ *    {@literal @}Override
+ *    public List&lt;Link&gt; getLinks() {
+ *        List&lt;Link&gt; links = super.getLinks();
  *        links.add(new RelativeLink(getContext(), "mail/accounts/?media=htmlform", "new Account"));
  *        return links;
  *    }
@@ -114,7 +114,7 @@ public abstract class ListServerResource<T> extends SkysailServerResource<List<T
      * Constructor which associates this ListServerResource with a corresponding
      * EntityServerResource.
      * 
-     * @param entityResourceClass
+     * @param entityResourceClass the class
      */
     public ListServerResource(Class<? extends EntityServerResource<T>> entityResourceClass) {
     	this();
@@ -191,6 +191,8 @@ public abstract class ListServerResource<T> extends SkysailServerResource<List<T
      * We have cases where we can retrieve JSON representations "early", for example when using a noSQL database. 
      * In this case, we don't want to create objects of type T and then let them converted back to JSON by the
      * JacksonConverter.
+     *
+     * @return the result
      */
     protected List<String> getEntitiesAsJson() {
         RequestHandler<String> requestHandler = new RequestHandler<String>(null);
@@ -221,6 +223,8 @@ public abstract class ListServerResource<T> extends SkysailServerResource<List<T
 	/**
      * will be called in case of a DELETE request. Override in subclasses if
      * they support DELETE requests.
+     *
+     * @return the response
      */
     public SkysailResponse<?> eraseEntity() {
         throw new UnsupportedOperationException();

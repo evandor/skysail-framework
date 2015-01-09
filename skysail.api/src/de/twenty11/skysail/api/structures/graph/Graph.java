@@ -26,7 +26,7 @@ public class Graph {
     public Stream<Node> getNodes() {
         return nodes.stream();
     }
-    
+
     public String getIdent() {
         return ident;
     }
@@ -46,6 +46,9 @@ public class Graph {
         nodes.remove(node);
     }
 
+    /**
+     * @param edge
+     */
     public synchronized void add(Edge edge) {
         if (!nodes.contains(edge.getFrom())) {
             throw new IllegalArgumentException("Edge '" + edge.toString() + "' uses an unknown 'from' node. Add node '"

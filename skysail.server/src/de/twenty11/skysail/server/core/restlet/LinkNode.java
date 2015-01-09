@@ -11,13 +11,19 @@ public class LinkNode {
 
     private String text;
 
+    /**
+     * Constructor.
+     * 
+     * @param responseMap
+     * @param head
+     */
     public LinkNode(Map<String, Object> responseMap, Representation head) {
         if (responseMap != null) {
             @SuppressWarnings("unchecked")
             Series<Header> headers = (Series<Header>) responseMap.get("org.restlet.http.headers");
             String linkheaders = headers.getFirstValue("Link");
             text = linkheaders;
-            //Linkheader.valueOf(linkheader)
+            // Linkheader.valueOf(linkheader)
         } else {
             text = head.toString();
         }
@@ -28,8 +34,7 @@ public class LinkNode {
     }
 
     public void getEdges(Method... verbs) {
-        
-        
-    };
+
+    }
 
 }

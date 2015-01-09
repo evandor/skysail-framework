@@ -8,7 +8,7 @@ import org.osgi.service.event.EventHandler;
 import de.twenty11.skysail.server.core.osgi.internal.EventHelper;
 
 /**
- * captures requests(method & path) in a map, incrementing the count
+ * captures requests(method &amp; path) in a map, incrementing the count.
  * 
  */
 // @Component(immediate = true, properties = { "event.topics=request/*" })

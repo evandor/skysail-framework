@@ -9,6 +9,14 @@ import lombok.experimental.Accessors;
 @Accessors(chain = true)
 public class Favorite {
 
-	String username, favoriteName, favoriteLink, favoriteImg, favoriteTooltip;
+    String username;
+
+    String favoriteName;
+
+    String favoriteLink;
+
+    String favoriteImg;
+
+    String favoriteTooltip;
 
 }

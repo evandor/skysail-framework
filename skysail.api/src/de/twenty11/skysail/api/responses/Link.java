@@ -8,7 +8,7 @@ import org.restlet.Context;
 import aQute.bnd.annotation.ProviderType;
 
 /**
- * Link abstraction to be used in Resources (see HATEOAS)
+ * Link abstraction to be used in Resources (see HATEOAS).
  *
  * Based on http://tools.ietf.org/search/rfc4287
  *
@@ -29,14 +29,30 @@ public class Link {
         this.title = title;
     }
 
+    /**
+     * Constructor.
+     * 
+     * @param context
+     * @param href
+     * @param title
+     */
     public Link(Context context, String href, String title) {
         this.href = href.trim();
         this.title = title;
         handleContext(context);
     }
 
+    /**
+     * 
+     * Constructor.
+     * 
+     * @param restletApplication
+     * @param relativeHref
+     * @param title
+     */
     public Link(Application restletApplication, String relativeHref, String title) {
-        this.href = new StringBuilder("/").append(restletApplication.getName()).append("/").append(relativeHref.trim()).toString();
+        this.href = new StringBuilder("/").append(restletApplication.getName()).append("/").append(relativeHref.trim())
+                .toString();
         this.title = title;
 
     }

@@ -38,7 +38,7 @@ import etm.core.monitor.EtmPoint;
  *
  * <pre>
  *  <code>
- *  public class MyEntityResource extends EntityServerResource<MyEntity> {
+ *  public class MyEntityResource extends EntityServerResource&lt;MyEntity&gt; {
  * 
  *     private MyApplication app;
  *     private String myEntityId;
@@ -62,7 +62,7 @@ import etm.core.monitor.EtmPoint;
  * </code>
  * </pre>
  *
- * @param <T>
+ * @param <T> the entity
  */
 public abstract class EntityServerResource<T> extends SkysailServerResource<T> {
 
@@ -107,6 +107,8 @@ public abstract class EntityServerResource<T> extends SkysailServerResource<T> {
     /**
      * will be called in case of a DELETE request. Override in subclasses if
      * they support DELETE requests.
+     *
+     * @return the response
      */
     public abstract SkysailResponse<?> eraseEntity();
 
@@ -117,7 +119,7 @@ public abstract class EntityServerResource<T> extends SkysailServerResource<T> {
      * @param form
      *            the representation of the resource as a form
      * @return the resource of type T
-     * @throws ParseException
+     * @throws ParseException parse exception
      */
     public T getData(Form form) throws ParseException {
         logger.warn("trying to read data from form {}, but getData(Form form) is not overwritten by {}", form, this
@@ -131,6 +133,9 @@ public abstract class EntityServerResource<T> extends SkysailServerResource<T> {
         return LinkHeaderRelation.ITEM;
     }
 
+    /**
+     * @return the entity as json string
+     */
     @Get("json")
     public T getJson() {
     	EtmPoint point = etmMonitor.createPoint("EntityServerResource:getJson");
@@ -148,6 +153,9 @@ public abstract class EntityServerResource<T> extends SkysailServerResource<T> {
     }
 
     // input: html|json|..., output: html|json|...
+    /**
+     * @return the reponse
+     */
     @Get("html|eventstream|treeform|txt")
     public SkysailResponse<T> getEntity() {
     	EtmPoint point = etmMonitor.createPoint("EntityServerResource:getEntity");
@@ -158,11 +166,17 @@ public abstract class EntityServerResource<T> extends SkysailServerResource<T> {
         return new SkysailResponse<T>(entity);
     }
     
+    /**
+     * @return the response
+     */
     @Get("htmlform")
     public SkysailResponse<T> getDeleteForm() {
     	return new FormResponse<T>(getEntity("dummy"), ".", "/");
     }
 
+    /**
+     * @return the entity
+     */
     @Delete("html|json")
     public T deleteEntity() {
     	EtmPoint point = etmMonitor.createPoint("EntityServerResource:deleteEntity");
@@ -189,6 +203,8 @@ public abstract class EntityServerResource<T> extends SkysailServerResource<T> {
      * We have cases where we can retrieve JSON representations "early", for example when using a noSQL database. 
      * In this case, we don't want to create objects of type T and then let them converted back to JSON by the
      * JacksonConverter.
+     *
+     * @return entity as json
      */
     protected String getEntityAsJson() {
         RequestHandler<String> requestHandler = new RequestHandler<String>(getApplication());

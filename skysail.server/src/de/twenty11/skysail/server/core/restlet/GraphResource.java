@@ -13,14 +13,19 @@ import de.twenty11.skysail.server.core.restlet.filter.AbstractResourceFilter;
 public abstract class GraphResource extends SkysailServerResource<Graph> {
 
     private static final Logger logger = LoggerFactory.getLogger(GraphResource.class);
-    
+
     public abstract Graph getData();
-    
+
     @Override
     public LinkHeaderRelation getLinkRelation() {
         return LinkHeaderRelation.ALTERNATE;
     }
-    
+
+    /**
+     * entity as graph.
+     * 
+     * @return Graph representation
+     */
     @Get("html|json|graph")
     public Graph getEntity() {
         logger.info("Request entry point: {} @Get('html|json|graph')", this.getClass().getSimpleName());

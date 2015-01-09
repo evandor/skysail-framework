@@ -29,19 +29,19 @@ public class PeriodicFrameworkStatusLogger {
 
     private Thread loggerThread;
 
-	private int sleepInSeconds;
+    private int sleepInSeconds;
 
     private static AtomicLong counter = new AtomicLong();
 
     public PeriodicFrameworkStatusLogger() {
-    	this.sleepInSeconds = SLEEP_INTERVAL_IN_SECONDS;
-	}
-    
-    public PeriodicFrameworkStatusLogger(int sleep) {
-    	this.sleepInSeconds = sleep;
-	}
+        this.sleepInSeconds = SLEEP_INTERVAL_IN_SECONDS;
+    }
 
-	@Activate
+    public PeriodicFrameworkStatusLogger(int sleep) {
+        this.sleepInSeconds = sleep;
+    }
+
+    @Activate
     public void activate(BundleContext bundleContext) {
         Runnable runnable = () -> {
             startBundleLogger(bundleContext);
@@ -64,7 +64,7 @@ public class PeriodicFrameworkStatusLogger {
                 Thread.sleep(this.sleepInSeconds * 1000);
             }
         } catch (InterruptedException e) {
-            log.error("Exception running PeriodicFrameworkStatusLogger",e);
+            log.error("Exception running PeriodicFrameworkStatusLogger", e);
         }
     }
 

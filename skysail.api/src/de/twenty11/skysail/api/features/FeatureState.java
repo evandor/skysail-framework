@@ -3,7 +3,6 @@ package de.twenty11.skysail.api.features;
 import java.io.Serializable;
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -50,14 +49,6 @@ public class FeatureState implements Serializable {
         return setEnabled(false);
     }
 
-    /**
-     * @return
-     */
-    @Deprecated
-    public List<String> getUsers() {
-        return Collections.emptyList();
-    }
-
     public String getStrategyId() {
         return strategyId;
     }
@@ -71,6 +62,14 @@ public class FeatureState implements Serializable {
         return this.parameters.get(name);
     }
 
+    /**
+     * 
+     * set parameter.
+     * 
+     * @param name
+     * @param value
+     * @return
+     */
     public FeatureState setParameter(String name, String value) {
         if (value != null) {
             this.parameters.put(name, value);

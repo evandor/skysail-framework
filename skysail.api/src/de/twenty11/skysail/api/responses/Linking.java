@@ -8,8 +8,9 @@ import aQute.bnd.annotation.ConsumerType;
 public interface Linking {
 
     /**
-     * http linkheader 
-     * @return
+     * http linkheader.
+     * 
+     * @return list of links
      */
     List<Linkheader> getLinkheader();
     

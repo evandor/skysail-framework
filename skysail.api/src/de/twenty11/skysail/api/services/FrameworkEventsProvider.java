@@ -8,7 +8,7 @@ import de.twenty11.skysail.api.services.logentry.FrameworkEventLogEntry;
 @ProviderType
 public interface FrameworkEventsProvider {
 
-	  List<FrameworkEventLogEntry> getNewestEvents();
+    List<FrameworkEventLogEntry> getNewestEvents();
 
-	    void clear();
+    void clear();
 }

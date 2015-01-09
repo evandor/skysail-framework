@@ -118,9 +118,8 @@ import de.twenty11.skysail.server.utils.ReflectionUtils;
  * - has a number of {@link Resource}s attached to it - handles access to its
  * resources issues via its {@link AuthenticationService} and
  * {@link AuthorizationService} - knows about the OSGi {@link ComponentContext}
- * - is configured via its {@link ServerConfiguration} - deals with XSS issues
- * via its {@link HtmlPolicyBuilder} - can encrypt/decrypt resource entitiies
- * via its {@link EncryptorService}
+ * - deals with XSS issues via its {@link HtmlPolicyBuilder} - can
+ * encrypt/decrypt resource entitiies via its {@link EncryptorService}
  * 
  * Concurrency note from parent class: instances of this class or its subclasses
  * can be invoked by several threads at the same time and therefore must be
@@ -128,7 +127,7 @@ import de.twenty11.skysail.server.utils.ReflectionUtils;
  * variables.
  * 
  */
-//@lombok.EqualsAndHashCode(callSuper=false)
+// @lombok.EqualsAndHashCode(callSuper=false)
 public abstract class SkysailApplication extends Application implements ApplicationProvider, TranslationProvider,
         ResourceBundleProvider, Comparable<ApplicationProvider> {
 
@@ -136,13 +135,14 @@ public abstract class SkysailApplication extends Application implements Applicat
     private static Logger logger = LoggerFactory.getLogger(SkysailApplication.class);
 
     private Map<ApplicationContextId, String> stringContextMap = new HashMap<>();
-    
+
     public static final String APPLICATION_API_PATH = "/api";
     public static final String APPLICATION_ENTITIES_PATH = "/entities";
     public static final String APPLICATION_LINKS_PATH = "/links";
 
     /**
-     * do not forget to add those media types as extensions in
+     * do not forget to add those media types as extensions in.
+     * 
      * {@link #createInboundRoot()}
      */
     public static final MediaType SKYSAIL_HTMLFORM_MEDIATYPE = MediaType.register("htmlform", "HTML Form document");
@@ -195,10 +195,10 @@ public abstract class SkysailApplication extends Application implements Applicat
 
     private volatile Set<HookFilter> filters = Collections.synchronizedSet(new HashSet<>());
 
+    /**
+     * default Constructor.
+     */
     public SkysailApplication() {
-//        ConverterService converterService = getServices().get(ConverterService.class);
-//        getServices().remove(converterService);
-//        getServices().add(new SkysailConverterService());
     }
 
     /**
@@ -214,7 +214,8 @@ public abstract class SkysailApplication extends Application implements Applicat
      * 
      * or for specific routes.
      * 
-     * router.attach(new RouteBuilder("/",  UsersResource.class).authorizeWith(anyOf("admin")));
+     * router.attach(new RouteBuilder("/",
+     * UsersResource.class).authorizeWith(anyOf("admin")));
      */
     protected void attach() {
         router.attach(new RouteBuilder(APPLICATION_API_PATH, ApiResource.class));
@@ -225,6 +226,11 @@ public abstract class SkysailApplication extends Application implements Applicat
         router.attach(new RouteBuilder(APPLICATION_LINKS_PATH, LinksResource.class));
     }
 
+    /**
+     * setting name.
+     * 
+     * @param home
+     */
     public SkysailApplication(String home) {
         this();
         logger.info("Instanciating new Skysail Application '{}'", this.getClass().getSimpleName());
@@ -267,7 +273,7 @@ public abstract class SkysailApplication extends Application implements Applicat
         try {
             getApplication().stop();
         } catch (Exception e) {
-            logger.error(e.getMessage(),e);
+            logger.error(e.getMessage(), e);
         }
 
         setInboundRoot((Restlet) null);
@@ -289,11 +295,14 @@ public abstract class SkysailApplication extends Application implements Applicat
         try {
             return new Markdown4jProcessor().process(StringEscapeUtils.unescapeHtml(formatted));
         } catch (IOException e) {
-            logger.error(e.getMessage(),e);
+            logger.error(e.getMessage(), e);
             return e.getMessage();
         }
     }
 
+    /**
+     * @return the bundle context.
+     */
     public BundleContext getBundleContext() {
         if (this.bundleContext != null) {
             return bundleContext;
@@ -433,6 +442,12 @@ public abstract class SkysailApplication extends Application implements Applicat
         return result;
     }
 
+    /**
+     * get the route builders.
+     * 
+     * @param cls
+     * @return list of route builders
+     */
     public <T extends SkysailServerResource<?>> List<RouteBuilder> getRouteBuilders(Class<T> cls) {
         if (router == null) {
             return Collections.emptyList();
@@ -541,13 +556,14 @@ public abstract class SkysailApplication extends Application implements Applicat
         return authorizationService;
     }
 
+    /**
+     * setter
+     * 
+     * @param service
+     */
     public void setAuthorizationService(AuthorizationService service) {
         logServiceWasSet("Authorization", service);
         this.authorizationService = service;
-        // if (getContext() != null) {
-        // getContext().setDefaultEnroler(service != null ? new
-        // DefaultEnroler(service) : null);
-        // }
     }
 
     public MetricsService getMetricsService() {
@@ -571,6 +587,11 @@ public abstract class SkysailApplication extends Application implements Applicat
         parameterMap.put(paramName, value);
     }
 
+    /**
+     * gets
+     * 
+     * @return parameters
+     */
     @SuppressWarnings("unchecked")
     public Map<String, String> getParameterMap() {
         Map<String, String> result = (Map<String, String>) getContext().getAttributes().get(
@@ -578,6 +599,13 @@ public abstract class SkysailApplication extends Application implements Applicat
         return result != null ? result : Collections.<String, String> emptyMap();
     }
 
+    /**
+     * returns policy.
+     * 
+     * @param entityClass
+     * @param fieldName
+     * @return
+     */
     public HtmlPolicyBuilder getHtmlPolicy(Class<?> entityClass, String fieldName) {
         HtmlPolicyBuilder result = noHtmlPolicyBuilder;
         List<java.lang.reflect.Field> fields = ReflectionUtils.getInheritedFields(entityClass);
@@ -599,6 +627,13 @@ public abstract class SkysailApplication extends Application implements Applicat
         return result;
     }
 
+    /**
+     * get the encryption parameter.
+     * 
+     * @param entityClass
+     * @param fieldName
+     * @return
+     */
     public String getEncryptionParameter(Class<?> entityClass, String fieldName) {
         List<java.lang.reflect.Field> fields = ReflectionUtils.getInheritedFields(entityClass);
         for (java.lang.reflect.Field field : fields) {
@@ -693,12 +728,24 @@ public abstract class SkysailApplication extends Application implements Applicat
         return role;
     }
 
+    /**
+     * xxx.
+     * 
+     * @param roles
+     * @return
+     */
     public static Predicate<String[]> anyOf(String... roles) {
         List<RolePredicate> predicates = Arrays.stream(roles).map(r -> new RolePredicate(r))
                 .collect(Collectors.toList());
         return com.google.common.base.Predicates.or(predicates);
     }
 
+    /**
+     * yyy.
+     * 
+     * @param roles
+     * @return
+     */
     public static Predicate<String[]> allOf(String... roles) {
         List<RolePredicate> predicates = Arrays.stream(roles).map(r -> new RolePredicate(r))
                 .collect(Collectors.toList());
@@ -724,6 +771,11 @@ public abstract class SkysailApplication extends Application implements Applicat
         filters.remove(filter);
     }
 
+    /**
+     * sets filters.
+     * 
+     * @param hookFilters
+     */
     public void setFilters(Set<HookFilter> hookFilters) {
         logger.debug("setting hookfilters to application '{}'", getName());
         filters.clear();
@@ -734,11 +786,11 @@ public abstract class SkysailApplication extends Application implements Applicat
         return filters;
     }
 
-	protected void addToAppContext(ApplicationContextId id, String value) {
-		 stringContextMap.put(id, value);
-	}
+    protected void addToAppContext(ApplicationContextId id, String value) {
+        stringContextMap.put(id, value);
+    }
 
-	public String getFromContext(ApplicationContextId id) {
+    public String getFromContext(ApplicationContextId id) {
         return stringContextMap.get(id);
     }
 

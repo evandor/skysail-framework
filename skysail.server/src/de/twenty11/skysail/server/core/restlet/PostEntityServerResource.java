@@ -1,7 +1,6 @@
 package de.twenty11.skysail.server.core.restlet;
 
 import java.io.IOException;
-import java.text.ParseException;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -72,9 +71,9 @@ import etm.core.monitor.EtmPoint;
  *        return note;
  *     }
  *    
- *    public SkysailResponse<?> addEntity(Clip entity) {
+ *    public SkysailResponse&lt;?&gt; addEntity(Clip entity) {
  *        app.getClipsRepository().add(entity);
- *        return new SkysailResponse<String>();
+ *        return new SkysailResponse&lt;String&gt;();
  *    }
  * 
  * }
@@ -125,6 +124,9 @@ public abstract class PostEntityServerResource<T> extends SkysailServerResource<
 
     /**
      * will be called in case of a POST request.
+     * 
+     * @param entity the entity
+     * @return the response
      */
     public abstract SkysailResponse<?> addEntity(T entity);
 
@@ -140,7 +142,6 @@ public abstract class PostEntityServerResource<T> extends SkysailServerResource<
      * @param form
      *            the representation of the resource as a form
      * @return the resource of type T
-     * @throws ParseException
      */
     public T getData(Form form) {
         return populate(createEntityTemplate(), form);
@@ -228,6 +229,11 @@ public abstract class PostEntityServerResource<T> extends SkysailServerResource<
     /**
      * String id = entity.getRid().toString().replace("#",""); String link =
      * ServerLink.fromResource(app, ClipResource.class).getUri();
+     *
+     * @param entity the entity 
+     * @param searchService a search service
+     * @param link the link
+     * @param id the id
      */
     protected void index(T entity, SearchService searchService, String link, String id) {
         if (searchService == null) {

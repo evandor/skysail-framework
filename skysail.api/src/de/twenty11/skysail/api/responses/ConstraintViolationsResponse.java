@@ -11,10 +11,12 @@ import org.restlet.data.Reference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 /**
- * Being a "business server", skysail has to deal with business requirements such as constraints (e.g. the field name
- * may not be empty). So when a user requests to add an entity which does not comply with the business rules, you should
- * not create a FailureResponse, but a ConstraintViolationResponse, containing information about the cause and the
- * rules. Skysail utilizes the javax.validation interfaces for this purpose.
+ * Being a "business server", skysail has to deal with business requirements
+ * such as constraints (e.g. the field name may not be empty). So when a user
+ * requests to add an entity which does not comply with the business rules, you
+ * should not create a FailureResponse, but a ConstraintViolationResponse,
+ * containing information about the cause and the rules. Skysail utilizes the
+ * javax.validation interfaces for this purpose.
  */
 public class ConstraintViolationsResponse<T> extends SkysailResponse<T> {
 
@@ -26,7 +28,14 @@ public class ConstraintViolationsResponse<T> extends SkysailResponse<T> {
     public ConstraintViolationsResponse(T entity) {
         super(entity);
     }
-    
+
+    /**
+     * Constructor.
+     * 
+     * @param actionReference
+     * @param entity
+     * @param contraintViolations
+     */
     public ConstraintViolationsResponse(Reference actionReference, T entity,
             Set<ConstraintViolation<T>> contraintViolations) {
         super(entity);
@@ -41,12 +50,17 @@ public class ConstraintViolationsResponse<T> extends SkysailResponse<T> {
         }
     }
 
-	public Set<ConstraintViolationDetails> getViolations() {
+    /**
+     * get violations.
+     * 
+     * @return violations
+     */
+    public Set<ConstraintViolationDetails> getViolations() {
         return violations;
     }
 
     public Reference getActionReference() {
         return actionReference;
     }
-    
+
 }

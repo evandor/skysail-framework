@@ -1,30 +1,34 @@
 -runfw: org.apache.felix.framework;version='[4,5)'
--runee: JavaSE-1.7
+-runee: JavaSE-1.8
 -runsystemcapabilities: ${native_capability}
 
 -resolve.effective: active;skip:="osgi.service"
 
--runbundles:\
-	org.apache.felix.gogo.runtime,\
-	org.apache.felix.gogo.shell,\
-	org.apache.felix.gogo.command,\
-	org.apache.felix.scr;version=1.6,\
-	org.apache.felix.http.jetty,\
-	org.apache.felix.configadmin,\
-	org.apache.felix.metatype,\
-	org.apache.felix.log,\
-	org.apache.felix.webconsole,\
-	osgi.cmpn;version=4.2
-
--runrequires:\
+-runrequires: \
 	osgi.identity;filter:='(osgi.identity=org.apache.felix.gogo.shell)',\
 	osgi.identity;filter:='(osgi.identity=org.apache.felix.gogo.command)',\
-	osgi.identity;filter:='(osgi.identity=org.apache.felix.webconsole)',\
 	osgi.identity;filter:='(osgi.identity=org.apache.felix.configadmin)',\
-	osgi.identity;filter:='(osgi.identity=org.apache.felix.metatype)',\
 	osgi.identity;filter:='(osgi.identity=org.apache.felix.log)',\
-	osgi.identity;filter:='(&(osgi.identity=osgi.cmpn)(version>=4.2))',\
-	osgi.identity;filter:='(&(osgi.identity=org.apache.felix.scr)(version>=1.6.0))'
+	osgi.identity;filter:='(osgi.identity=skysail.api)'
 
 ## Uncomment if you need to change the HTTP port
 #-runproperties: org.osgi.service.http.port=8080
+
+-resolve: auto
+
+-runbundles:  \
+	com.fasterxml.jackson.core.jackson-annotations;version='[2.3.3,2.3.4)',\
+	com.google.guava;version='[15.0.0,15.0.1)',\
+	javax.validation.api;version='[1.1.0,1.1.1)',\
+	org.apache.commons.lang;version='[2.6.0,2.6.1)',\
+	org.apache.felix.configadmin;version='[1.8.0,1.8.1)',\
+	org.apache.felix.gogo.command;version='[0.14.0,0.14.1)',\
+	org.apache.felix.gogo.runtime;version='[0.12.1,0.12.2)',\
+	org.apache.felix.gogo.shell;version='[0.10.0,0.10.1)',\
+	org.apache.felix.log;version='[1.0.1,1.0.2)',\
+	org.apache.felix.scr;version='[1.6.2,1.6.3)',\
+	org.restlet;version='[2.1.7,2.1.8)',\
+	osgi.enterprise;version='[4.2.0,4.2.1)',\
+	osgi.residential;version='[4.3.0,4.3.1)',\
+	skysail.api;version='[0.3.2,0.3.3)',\
+	slf4j.api;version='[1.7.7,1.7.8)'

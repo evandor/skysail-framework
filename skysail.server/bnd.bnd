@@ -45,7 +45,8 @@ Private-Package:  \
 	de.twenty11.skysail.server.core.osgi.internal.listener,\
 	de.twenty11.skysail.server.core.osgi.internal.filter,\
 	de.twenty11.skysail.server.core.restlet.converter,\
-	de.twenty11.skysail.server.app.sourceconverter
+	de.twenty11.skysail.server.app.sourceconverter,\
+	io.skysail.server.db
 Bundle-ClassPath: .,lib/jsr305.jar,lib/markdown4j-2.2.jar
 Service-Component: *
 -buildpath:  \
@@ -68,7 +69,7 @@ Service-Component: *
 	com.fasterxml.jackson.core.jackson-annotations,\
 	org.apache.shiro.core,\
 	com.springsource.org.junit;version=4.11,\
-	org.mockito.mockito-all;version=1.9,\
+	org.mockito.mockito-all;version=1.10,\
 	org.hibernate.validator;version=5.0;resolution:=optional,\
 	javax.validation.api;version=1.1,\
 	org.apache.httpcomponents.httpclient;version=4.3,\

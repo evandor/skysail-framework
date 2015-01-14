@@ -177,7 +177,7 @@ public abstract class EntityServerResource<T> extends SkysailServerResource<T> {
     /**
      * @return the entity
      */
-    @Delete("html|json")
+    @Delete("x-www-form-urlencoded:html|html|json")
     public T deleteEntity() {
     	EtmPoint point = etmMonitor.createPoint("EntityServerResource:deleteEntity");
         logger.info("Request entry point: {} @Delete('html|json')", this.getClass().getSimpleName());

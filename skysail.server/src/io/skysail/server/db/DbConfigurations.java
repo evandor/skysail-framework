@@ -1,16 +1,31 @@
 package io.skysail.server.db;
 
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
-import org.osgi.service.component.annotations.Activate;
-import org.osgi.service.component.annotations.Component;
-import org.osgi.service.component.annotations.ConfigurationPolicy;
+import lombok.NonNull;
+import lombok.extern.slf4j.Slf4j;
+import aQute.bnd.annotation.component.Activate;
+import aQute.bnd.annotation.component.Component;
+import aQute.bnd.annotation.component.ConfigurationPolicy;
 
-@Component(configurationPolicy = ConfigurationPolicy.REQUIRE)
+@Component(immediate = true, configurationPolicy = ConfigurationPolicy.require)
+@Slf4j
 public class DbConfigurations implements DbConfigurationProvider {
+
+    private Map<String, DbConfig> dbConfigs = new ConcurrentHashMap<>();
 
     @Activate
     public void activate(Map<String, String> config) {
-        String url = config.get("url");
+        @NonNull
+        String name = config.get(DbConfig.NAME);
+        DbConfig dbConfig = new DbConfig(config);
+        log.info("activating {} with config {}", this.getClass().getSimpleName(), dbConfig);
+        dbConfigs.put(name, dbConfig);
+    }
+
+    @Override
+    public DbConfig getConfig(String name) {
+        return dbConfigs.get(name);
     }
 }

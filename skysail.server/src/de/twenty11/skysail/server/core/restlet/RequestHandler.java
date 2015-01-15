@@ -17,6 +17,7 @@ import de.twenty11.skysail.server.core.restlet.filter.CheckFavoritesFilter;
 import de.twenty11.skysail.server.core.restlet.filter.CheckInvalidInputFilter;
 import de.twenty11.skysail.server.core.restlet.filter.DataExtractingFilter;
 import de.twenty11.skysail.server.core.restlet.filter.DeleteEntityFilter;
+import de.twenty11.skysail.server.core.restlet.filter.DeleteRedirectGetFilter;
 import de.twenty11.skysail.server.core.restlet.filter.EntityWasAddedFilter;
 import de.twenty11.skysail.server.core.restlet.filter.EntityWasDeletedFilter;
 import de.twenty11.skysail.server.core.restlet.filter.ExceptionCatchingFilter;
@@ -165,7 +166,8 @@ public class RequestHandler<T> {
 		return new ExceptionCatchingFilter<EntityServerResource<T>, T>()
 		        .calling(new AddRequestIdToResourceFilter<EntityServerResource<T>, T>())
 		        .calling(new DeleteEntityFilter<EntityServerResource<T>, T>())
-		        .calling(new EntityWasDeletedFilter<EntityServerResource<T>, T>(application));
+		        .calling(new EntityWasDeletedFilter<EntityServerResource<T>, T>(application))
+		        .calling(new DeleteRedirectGetFilter<EntityServerResource<T>,T>());
 	}
 
 	public AbstractResourceFilter<PostEntityServerResource<T>, T> newInstance(Method method) {

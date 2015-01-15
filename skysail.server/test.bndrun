@@ -11,7 +11,7 @@
 
 -resolve.effective: active;skip:="osgi.service"
 
--runsystempackages: sun.misc
+-runsystempackages: sun.misc,javafx.application,javafx.scene,javafx.scene.control.Label,javafx.scene.layout,javafx.stage
 
 -runproperties: felix.fileinstall.dir=testresources/test,\
     felix.fileinstall.filter=.*\\.jar|.*\\.cfg,\

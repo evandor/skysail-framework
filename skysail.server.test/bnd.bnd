@@ -1,6 +1,10 @@
+Bundle-Name: SKYSAIL :: server :: test
+Bundle-Version: 0.0.0.${tstamp}
+
 -runfw: org.apache.felix.framework;version='[4,5)'
 -runee: JavaSE-1.8
 -runsystemcapabilities: ${native_capability}
+-runvm: -ea
 -runrepos:  \
 	Workspace,\
 	Release,\
@@ -11,32 +15,27 @@
 
 -resolve.effective: active;skip:="osgi.service"
 
--runsystempackages: sun.misc,javafx.application,javafx.scene,javafx.scene.control,javafx.scene.layout,javafx.stage,javafx.beans.property,\
-	javafx.collections, javafx.beans.value,javafx.concurrent,javafx.event,javafx.geometry,javafx.scene.image,javafx.scene.web,javafx.util,\
-	netscape.javascript,javafx.scene.paint
+-buildpath:  \
+	osgi.core;version='[4.2,5)',\
+	osgi.cmpn,\
+	${junit},\
+	org.mockito.mockito-all,\
+	hamcrest-core;version=1.3,\
+	skysail.server;version=latest
 
--runproperties: felix.fileinstall.dir=testresources/test,\
-    felix.fileinstall.filter=.*\\.jar|.*\\.cfg,\
-    felix.fileinstall.noInitialDelay=true,\
-    felix.fileinstall.poll=1000,\
-    org.apache.felix.log.storeDebug=true,\
-    felix.fileinstall.log.level=4,\
-    org.apache.felix.log.storeDebug=true,\
-    logback.configurationFile=testresources/logback.xml
-        
+-runsystempackages: \
+	sun.reflect,sun.misc
+Private-Package:  \
+	io.skysail.server.test
+Test-Cases:  \
+	io.skysail.server.test.ExampleTest
 -runrequires:  \
 	osgi.identity;filter:='(osgi.identity=org.apache.felix.gogo.shell)',\
 	osgi.identity;filter:='(osgi.identity=org.apache.felix.gogo.command)',\
 	osgi.identity;filter:='(osgi.identity=org.apache.felix.log)',\
-	osgi.identity;filter:='(&(osgi.identity=skysail.server)(version>=3.1))',\
 	osgi.identity;filter:='(&(osgi.identity=ch.qos.logback.classic)(version>=1.1.2))',\
-	osgi.identity;filter:='(&(osgi.identity=com.orientechnologies.orientdb-core)(version>=2.0.0))',\
-	osgi.identity;filter:='(&(osgi.identity=com.googlecode.concurrentlinkedhashmap.lru)(version>=1.4.0))',\
-	osgi.identity;filter:='(&(osgi.identity=org.apache.felix.configadmin)(version>=1.8.0))',\
-	osgi.identity;filter:='(&(osgi.identity=org.apache.felix.fileinstall)(version>=3.4.0))'
-
-## Uncomment if you need to change the HTTP port
-#-runproperties: org.osgi.service.http.port=8080
+	osgi.identity;filter:='(&(osgi.identity=org.apache.felix.scr)(version>=1.8.2))',\
+	osgi.identity;filter:='(&(osgi.identity=skysail.server)(version>=3.1))'
 
 -resolve: auto
 
@@ -65,12 +64,11 @@
 	org.apache.commons.lang;version='[2.6.0,2.6.1)',\
 	org.apache.commons.logging;version='[1.1.3,1.1.4)',\
 	org.apache.felix.configadmin;version='[1.8.0,1.8.1)',\
-	org.apache.felix.fileinstall;version='[3.4.0,3.4.1)',\
 	org.apache.felix.gogo.command;version='[0.14.0,0.14.1)',\
 	org.apache.felix.gogo.runtime;version='[0.12.1,0.12.2)',\
 	org.apache.felix.gogo.shell;version='[0.10.0,0.10.1)',\
 	org.apache.felix.log;version='[1.0.1,1.0.2)',\
-	org.apache.felix.scr;version='[1.6.2,1.6.3)',\
+	org.apache.felix.scr;version='[1.8.2,1.8.3)',\
 	org.apache.shiro.core;version='[1.2.2,1.2.3)',\
 	org.hibernate.validator;version='[5.0.1,5.0.2)',\
 	org.jboss.logging.jboss-logging;version='[3.1.2,3.1.3)',\
@@ -78,7 +76,6 @@
 	org.restlet.ext.jackson;version='[2.1.7,2.1.8)',\
 	org.restlet.ext.slf4j;version='[2.1.7,2.1.8)',\
 	org.xerial.snappy.snappy-java;version='[1.1.1,1.1.2)',\
-	osgi.cmpn;version='[5.0.0,5.0.1)',\
 	osgi.enterprise;version='[4.2.0,4.2.1)',\
 	osgi.residential;version='[4.3.0,4.3.1)',\
 	skysail.api;version=latest,\

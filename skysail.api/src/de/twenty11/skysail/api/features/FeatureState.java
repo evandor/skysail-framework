@@ -6,10 +6,13 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
+import lombok.Getter;
+
 /**
  * The State of a (persisted) feature.
  *
  */
+@Getter
 public class FeatureState implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -28,38 +31,14 @@ public class FeatureState implements Serializable {
         this.enabled = enabled;
     }
 
-    public FeatureToggle getFeature() {
-        return feature;
-    }
-
-    public boolean isEnabled() {
-        return enabled;
-    }
-
     public FeatureState setEnabled(boolean enabled) {
         this.enabled = enabled;
         return this;
     }
 
-    public FeatureState enable() {
-        return setEnabled(true);
-    }
-
-    public FeatureState disable() {
-        return setEnabled(false);
-    }
-
-    public String getStrategyId() {
-        return strategyId;
-    }
-
     public FeatureState setStrategyId(String strategyId) {
         this.strategyId = strategyId;
         return this;
-    }
-
-    public String getParameter(String name) {
-        return this.parameters.get(name);
     }
 
     /**

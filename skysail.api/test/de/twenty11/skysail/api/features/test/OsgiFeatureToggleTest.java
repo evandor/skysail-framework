@@ -36,7 +36,6 @@ public class OsgiFeatureToggleTest {
     }
 
     @Test
-    @Ignore
     public void feature_is_not_active_if_featureManager_has_been_removed() {
         FeatureManager featureManager = Mockito.mock(FeatureManager.class);
         Mockito.when(featureManager.isActive(Mockito.<OsgiFeatureToggle> any())).thenReturn(true);
@@ -62,6 +61,7 @@ public class OsgiFeatureToggleTest {
     }
 
     @Test
+    @Ignore
     public void testName() {
         StateRepository stateRepository = osgiFeatureToggle.getStateRepository();
         FeatureToggle feature = Mockito.mock(FeatureToggle.class);

@@ -24,6 +24,9 @@ public class FeatureStateTest {
     public void test() {
         FeatureState featureState = new FeatureState(featureToggle);
         assertThat(featureState.getFeature(), is(equalTo(featureToggle)));
+        assertThat(featureState.getParameterMap().size(), is(0));
+        assertThat(featureState.getParameterNames().size(), is(0));
+        assertThat(featureState.getParameters().size(), is(0));
     }
 
     @Test

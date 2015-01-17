@@ -36,28 +36,6 @@ public class FeatureState implements Serializable {
         return this;
     }
 
-    public FeatureState setStrategyId(String strategyId) {
-        this.strategyId = strategyId;
-        return this;
-    }
-
-    /**
-     * 
-     * set parameter.
-     * 
-     * @param name
-     * @param value
-     * @return
-     */
-    public FeatureState setParameter(String name, String value) {
-        if (value != null) {
-            this.parameters.put(name, value);
-        } else {
-            this.parameters.remove(name);
-        }
-        return this;
-    }
-
     public Set<String> getParameterNames() {
         return this.parameters.keySet();
     }

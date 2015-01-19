@@ -102,29 +102,30 @@ public abstract class ListServerResource<T> extends SkysailServerResource<List<T
     private String filterExpression;
 
     private Class<? extends EntityServerResource<T>> associatedEntityServerResource;
-    
+
     /**
      * Default constructor without associatedEntityServerResource
      */
     public ListServerResource() {
-    	addToContext(ResourceContextId.LINK_TITLE, "list");
+        addToContext(ResourceContextId.LINK_TITLE, "list");
     }
 
     /**
      * Constructor which associates this ListServerResource with a corresponding
      * EntityServerResource.
      * 
-     * @param entityResourceClass the class
+     * @param entityResourceClass
+     *            the class
      */
     public ListServerResource(Class<? extends EntityServerResource<T>> entityResourceClass) {
-    	this();
+        this();
         this.associatedEntityServerResource = entityResourceClass;
     }
 
     @Get("html|json|csv|treeform")
     @API(desc = "lists the entities according to the media type provided")
     public List<T> getEntities() {
-    	EtmPoint point = etmMonitor.createPoint("ListServerResource:getEntities");
+        EtmPoint point = etmMonitor.createPoint("ListServerResource:getEntities");
         log.info("Request entry point: {} @Get('html|json|csv|treeform')", this.getClass().getSimpleName());
         ClientInfo ci = getRequest().getClientInfo();
         log.info("calling getEntities, media types '{}'", ci != null ? ci.getAcceptedMediaTypes() : "test");
@@ -138,13 +139,13 @@ public abstract class ListServerResource<T> extends SkysailServerResource<List<T
 
     @Options
     public void doOptions(Representation entity) {
-    	EtmPoint point = etmMonitor.createPoint("ListServerResource:doOptions");
+        EtmPoint point = etmMonitor.createPoint("ListServerResource:doOptions");
         Form responseHeaders = (Form) getResponse().getAttributes().get("org.restlet.http.headers");
         if (responseHeaders == null) {
             responseHeaders = new Form();
             getResponse().getAttributes().put("org.restlet.http.headers", responseHeaders);
         }
-        if (AccessControlAllowOriginFeature.myIsActive()) {
+        if (SecurityFeatures.ALLOW_ORIGIN_FEATURE.isActive()) {
             responseHeaders.add("Access-Control-Allow-Origin", "*");
             responseHeaders.add("Access-Control-Allow-Methods", "POST,OPTIONS");
             responseHeaders.add("Access-Control-Allow-Headers", "Content-Type");
@@ -188,19 +189,21 @@ public abstract class ListServerResource<T> extends SkysailServerResource<List<T
     }
 
     /**
-     * We have cases where we can retrieve JSON representations "early", for example when using a noSQL database. 
-     * In this case, we don't want to create objects of type T and then let them converted back to JSON by the
+     * We have cases where we can retrieve JSON representations "early", for
+     * example when using a noSQL database. In this case, we don't want to
+     * create objects of type T and then let them converted back to JSON by the
      * JacksonConverter.
      *
      * @return the result
      */
     protected List<String> getEntitiesAsJson() {
         RequestHandler<String> requestHandler = new RequestHandler<String>(null);
-        AbstractResourceFilter<ListServerResource<String>, List<String>> chain = requestHandler.createForList(Method.GET, null);
+        AbstractResourceFilter<ListServerResource<String>, List<String>> chain = requestHandler.createForList(
+                Method.GET, null);
         ListServerResource<String> resource = new ListServerResource<String>() {
             @Override
             public List<String> getData() {
-            	return ListServerResource.this.getDataAsJson();
+                return ListServerResource.this.getDataAsJson();
             }
 
             @Override
@@ -217,10 +220,10 @@ public abstract class ListServerResource<T> extends SkysailServerResource<List<T
     }
 
     protected List<String> getDataAsJson() {
-	    return Arrays.asList("overwrite in subclass");
+        return Arrays.asList("overwrite in subclass");
     }
 
-	/**
+    /**
      * will be called in case of a DELETE request. Override in subclasses if
      * they support DELETE requests.
      *
@@ -257,6 +260,5 @@ public abstract class ListServerResource<T> extends SkysailServerResource<List<T
     protected boolean match(T t, String pattern) {
         return true;
     }
-
 
 }

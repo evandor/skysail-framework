@@ -57,7 +57,7 @@ public class SkysailServerBundleListener implements BundleListener {
         this.socketIoBroadcasting = socketIoBroadcasting;
     }
 
-    public void unsetSocketIoBroadcasting(@SuppressWarnings("unused") SocketIoBroadcasting socketIoBroadcasting) {
+    public void unsetSocketIoBroadcasting(SocketIoBroadcasting socketIoBroadcasting) {
         this.socketIoBroadcasting = null;
     }
 
@@ -73,19 +73,19 @@ public class SkysailServerBundleListener implements BundleListener {
     private synchronized void sendBundleStoppedMessage(BundleEvent event) {
         String symbolicName = event.getBundle().getSymbolicName();
         if (socketIoBroadcasting == null) {
-            log.warn("could not send bundleStoppedMessage for {}", symbolicName);
+            log.debug("could not send bundleStoppedMessage for {}", symbolicName);
             return;
         }
-        socketIoBroadcasting.send("bundle "+ symbolicName + " was stopped");
+        socketIoBroadcasting.send("bundle " + symbolicName + " was stopped");
     }
 
     private synchronized void sendBundleStartedMessage(BundleEvent event) {
         String symbolicName = event.getBundle().getSymbolicName();
         if (socketIoBroadcasting == null) {
-            log.warn("could not send bundleStartedMessage for {}", symbolicName);
+            log.debug("could not send bundleStartedMessage for {}", symbolicName);
             return;
         }
-        socketIoBroadcasting.send("bundle "+ symbolicName + " was started");
+        socketIoBroadcasting.send("bundle " + symbolicName + " was started");
     }
 
 }

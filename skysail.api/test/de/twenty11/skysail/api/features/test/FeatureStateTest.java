@@ -8,16 +8,16 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
 
+import de.twenty11.skysail.api.features.Feature;
 import de.twenty11.skysail.api.features.FeatureState;
-import de.twenty11.skysail.api.features.FeatureToggle;
 
 public class FeatureStateTest {
 
-    private FeatureToggle featureToggle;
+    private Feature featureToggle;
 
     @Before
     public void setUp() throws Exception {
-        featureToggle = Mockito.mock(FeatureToggle.class);
+        featureToggle = Mockito.mock(Feature.class);
     }
 
     @Test

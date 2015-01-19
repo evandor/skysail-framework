@@ -17,16 +17,16 @@ public class FeatureState implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    private final FeatureToggle feature;
+    private final Feature feature;
     private boolean enabled;
     private String strategyId = "username";
     private final Map<String, String> parameters = new HashMap<String, String>();
 
-    public FeatureState(FeatureToggle feature) {
+    public FeatureState(Feature feature) {
         this(feature, false);
     }
 
-    public FeatureState(FeatureToggle feature, boolean enabled) {
+    public FeatureState(Feature feature, boolean enabled) {
         this.feature = feature;
         this.enabled = enabled;
     }

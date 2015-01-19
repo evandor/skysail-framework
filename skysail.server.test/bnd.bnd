@@ -21,6 +21,7 @@ Bundle-Version: 1.0.1.${tstamp}
 	${junit},\
 	org.mockito.mockito-all,\
 	hamcrest-core;version=1.3,\
+	skysail.api;version=latest,\
 	skysail.server;version=latest
 
 Private-Package:  \

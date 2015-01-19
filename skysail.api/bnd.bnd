@@ -18,9 +18,12 @@ Bundle-License: http://www.apache.org/licenses/LICENSE-2.0.txt
 	com.google.guava;version=15.0,\
 	lombok;version=1.12
 Bundle-ActivationPolicy: lazy
-Export-Package: de.twenty11.skysail.api.responses,\
+Export-Package:  \
+	de.twenty11.skysail.api.responses,\
 	de.twenty11.skysail.api.forms,\
 	de.twenty11.skysail.api.security,\
+	de.twenty11.skysail.api.features.context,\
+	de.twenty11.skysail.api.features.repository,\
 	de.twenty11.skysail.api.services,\
 	de.twenty11.skysail.api.structures.graph,\
 	de.twenty11.skysail.api.favorites,\
@@ -31,4 +34,5 @@ Export-Package: de.twenty11.skysail.api.responses,\
 	de.twenty11.skysail.api.features
 Service-Component: *
 Private-Package:  \
-	de.twenty11.skysail.api.health
+	de.twenty11.skysail.api.health,\
+	de.twenty11.skysail.api.features.annotations

@@ -29,8 +29,8 @@ import de.twenty11.skysail.server.services.UserManager;
 import de.twenty11.skysail.server.um.domain.SkysailUser;
 
 public class FormField {
-	
-	private static final Logger logger = LoggerFactory.getLogger(FormField.class);
+
+    private static final Logger logger = LoggerFactory.getLogger(FormField.class);
 
     private final ObjectMapper mapper = new ObjectMapper();
 
@@ -54,8 +54,7 @@ public class FormField {
         if (getHandlerMethod.isPresent()) {
             try {
                 HashMap<String, Object> objectMap = new HashMap<String, Object>();
-                OObjectProxyMethodHandler handler = (OObjectProxyMethodHandler) getHandlerMethod.get().invoke(
-                        entity);
+                OObjectProxyMethodHandler handler = (OObjectProxyMethodHandler) getHandlerMethod.get().invoke(entity);
                 ODocument doc = handler.getDoc();
                 objectMap = mapper.readValue(doc.toJSON(), new TypeReference<Map<String, Object>>() {
                 });
@@ -65,7 +64,7 @@ public class FormField {
                     value = userManager.findById(value).getUsername();
                 }
             } catch (Exception e) {
-            	logger.error(e.getMessage(),e);
+                logger.error(e.getMessage(), e);
             }
         } else {
             String method = "get" + fieldAnnotation.getName().substring(0, 1).toUpperCase()
@@ -84,13 +83,11 @@ public class FormField {
                         value = invocationResult.toString();
                     }
                 } catch (Exception e) {
-                	logger.error(e.getMessage(),e);
+                    logger.error(e.getMessage(), e);
                 }
             });
         }
     }
-
-    
 
     public Field getFieldAnnotation() {
         return fieldAnnotation;
@@ -98,9 +95,9 @@ public class FormField {
 
     public Object getEntity() {
         if (source instanceof SkysailResponse) {
-            return ((SkysailResponse<?>)source).getEntity();
+            return ((SkysailResponse<?>) source).getEntity();
         }
-        return entity;//source.getEntity();
+        return entity;// source.getEntity();
     }
 
     public String getName() {
@@ -161,8 +158,8 @@ public class FormField {
         }
         return true;
     }
-    
-    public Map<String,String> getSelectionProviderOptions() {
+
+    public Map<String, String> getSelectionProviderOptions() {
         if (!isSelectionProvider()) {
             throw new IllegalAccessError("not a selection provider");
         }
@@ -173,23 +170,23 @@ public class FormField {
         SelectionProvider selection;
         try {
             Method method = selectionProvider.getMethod("getInstance");
-            selection = (SelectionProvider) method.invoke(selectionProvider,new Object[]{});
+            selection = (SelectionProvider) method.invoke(selectionProvider, new Object[] {});
             return selection.getSelections();
         } catch (Exception e) {
-            logger.error(e.getMessage(),e);
+            logger.error(e.getMessage(), e);
         }
         return Collections.emptyMap();
     }
 
     public String getViolationMessage() {
         if (!(source instanceof ConstraintViolationsResponse)) {
-            return "";
+            return null;
         }
         String fieldName = getFieldAnnotation().getName();
         Set<ConstraintViolationDetails> violations = ((ConstraintViolationsResponse<?>) source).getViolations();
         Optional<String> validationMessage = violations.stream().filter(v -> v.getPropertyPath().equals(fieldName))
                 .map(v -> v.getMessage()).findFirst();
-        return validationMessage.orElse("");
+        return validationMessage.orElse(null);
     }
 
     private boolean isOfInputType(InputType inputType) {
@@ -205,9 +202,8 @@ public class FormField {
         return new StringBuilder("FormField: [").append(value).append("], isReadonly: ").append(isReadonlyInputType())
                 .append(", isTextareaInputType: ").append(isTextareaInputType())
                 .append(", isMarkdownEditorInputType: ").append(isMarkdownEditorInputType())
-                .append(", isSelectionProvider: ").append(isSelectionProvider())
-                .append(", isTagsInputType: ").append(isTagsInputType())
-                .toString();
+                .append(", isSelectionProvider: ").append(isSelectionProvider()).append(", isTagsInputType: ")
+                .append(isTagsInputType()).toString();
     }
 
 }

@@ -40,10 +40,7 @@ public interface FeatureManager {
     Set<Feature> getFeatures();
 
     /**
-     * Checks whether the supplied feature is active or not. Please note that
-     * this method will internally use the {@link UserProvider} to obtain the
-     * currently acting user as it may be relevant if the feature is enabled
-     * only for specific set of users.
+     * Checks whether the supplied feature is active or not.
      *
      * @param feature
      *            The feature to check

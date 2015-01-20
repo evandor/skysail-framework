@@ -20,10 +20,7 @@ public class FeatureContext {
     private static FeatureManager manager;
 
     /**
-     * Returns the {@link FeatureManager} for the current application (context
-     * class loader). The method uses the {@link FeatureManagerProvider} SPI to
-     * find the correct {@link FeatureManager} instance. It will throw a runtime
-     * exception if no {@link FeatureManager} can be found.
+     * Returns the {@link FeatureManager} for the current application.
      *
      * @return The {@link FeatureManager} for the application, never
      *         <code>null</code>

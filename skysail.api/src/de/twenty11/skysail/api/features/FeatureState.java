@@ -11,6 +11,14 @@ import lombok.Getter;
 /**
  * The State of a (persisted) feature.
  *
+ * <p>
+ * A feature is active if it is enabled and there is either no activation
+ * strategy or the strategy evaluates to true.
+ * </p>
+ * <p>
+ * A feature is inactive if it is either disabled or there is a strategy defined
+ * which evaluates to false.
+ * </p>
  */
 @Getter
 public class FeatureState implements Serializable {
@@ -21,13 +29,15 @@ public class FeatureState implements Serializable {
     private boolean enabled;
     private String strategyId = "username";
     private final Map<String, String> parameters = new HashMap<String, String>();
+    private Map<String, String> config;
 
     public FeatureState(Feature feature) {
-        this(feature, false);
+        this(feature, Collections.emptyMap(), false);
     }
 
-    public FeatureState(Feature feature, boolean enabled) {
+    public FeatureState(Feature feature, Map<String, String> config, boolean enabled) {
         this.feature = feature;
+        this.config = config;
         this.enabled = enabled;
     }
 
@@ -37,11 +47,11 @@ public class FeatureState implements Serializable {
     }
 
     public Set<String> getParameterNames() {
-        return this.parameters.keySet();
+        return this.config.keySet();
     }
 
-    public Map<String, String> getParameterMap() {
-        return Collections.unmodifiableMap(this.parameters);
+    public Map<String, String> getConfig() {
+        return Collections.unmodifiableMap(this.config);
     }
 
 }

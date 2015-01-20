@@ -3,8 +3,8 @@ package de.twenty11.skysail.api.features;
 /**
  *
  * <p>
- * This interface represents a feature and is typically implemented by the
- * feature enum.
+ * This interface represents a feature and is typically implemented by a feature
+ * enum.
  * </p>
  *
  * <p>
@@ -21,6 +21,7 @@ package de.twenty11.skysail.api.features;
  * <p>
  * This is an adaption of the togglz library (http://www.togglz.org/).
  * </p>
+ * 
  *
  */
 public interface Feature {
@@ -32,5 +33,7 @@ public interface Feature {
      * @return Name of the feature
      */
     String name();
+
+    boolean isActive();
 
 }

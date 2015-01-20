@@ -16,27 +16,27 @@ import de.twenty11.skysail.api.features.repository.StateRepository;
 @Slf4j
 public class FeaturesRepository implements StateRepository {
 
-    private Map<String, String> featuresConfig;
+    private Map<String, String> config;
 
     @Activate
     public void activate(Map<String, String> config) {
-        featuresConfig = config;
+        this.config = config;
         log.info("activating {} with config {}", this.getClass().getSimpleName(), config);
     }
 
     @Deactivate
     public void deactivate() {
-        featuresConfig = new HashMap<String, String>();
+        config = new HashMap<String, String>();
     }
 
     @Override
     public FeatureState getFeatureState(Feature feature) {
         boolean enabled = false;
-        String featureConfig = featuresConfig.get(feature.name());
+        String featureConfig = config.get(feature.name());
         if (featureConfig != null && new Boolean(featureConfig)) {
             enabled = true;
         }
-        return new FeatureState(feature, enabled);
+        return new FeatureState(feature, config, enabled);
     }
 
     @Override

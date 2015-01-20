@@ -15,7 +15,7 @@ import de.twenty11.skysail.api.features.repository.StateRepository;
  * original @author Christian Kaltepoth
  * </p>
  * 
- * @see togglz.org
+ * see togglz.org
  *
  */
 @Retention(RetentionPolicy.RUNTIME)

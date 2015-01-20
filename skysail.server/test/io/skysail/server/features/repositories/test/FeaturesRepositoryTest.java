@@ -53,4 +53,20 @@ public class FeaturesRepositoryTest {
         assertThat(featureState.isEnabled(), is(false));
     }
 
+    @Test(expected = UnsupportedOperationException.class)
+    public void setFeatureState_throws_Exception() throws Exception {
+        featuresRepository.setFeatureState(null);
+    }
+
+    @Test
+    public void deactivating_clears_configMap() throws Exception {
+        configMap.put("featureName", "true");
+        featuresRepository.activate(configMap);
+        Mockito.when(feature.name()).thenReturn("featureName");
+        featuresRepository.deactivate();
+        FeatureState featureState = featuresRepository.getFeatureState(feature);
+        assertThat(featureState.isEnabled(), is(false));
+
+    }
+
 }

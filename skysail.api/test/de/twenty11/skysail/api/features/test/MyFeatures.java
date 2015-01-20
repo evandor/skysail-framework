@@ -12,7 +12,9 @@ public enum MyFeatures implements Feature {
 
     @EnabledByDefault
     @Label("Second Feature")
-    FEATURE_TWO;
+    FEATURE_TWO,
+
+    FEATURE_THREE;
 
     public boolean isActive() {
         return FeatureContext.getFeatureManager().isActive(this);

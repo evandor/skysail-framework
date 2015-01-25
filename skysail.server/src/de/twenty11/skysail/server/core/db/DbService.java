@@ -3,11 +3,14 @@ package de.twenty11.skysail.server.core.db;
 import java.util.List;
 import java.util.Map;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.orientechnologies.orient.core.sql.query.OSQLSynchQuery;
 
+@ProviderType
 public interface DbService {
 
-	void register(Class<?>... entities);
+    void register(Class<?>... entities);
 
     <T> T persist(T o, Class<?>... linkedClasses);
 
@@ -16,6 +19,8 @@ public interface DbService {
     String findAndReturnJson(String id, Class<?>... registerClasses);
 
     <T> T findOne(String sql, Class<T> clz, Map<String, Object> params);
+
+    <T> T find(String sql, Class<T> clz, Map<String, Object> params);
 
     <T> List<T> findAll(Class<T> entityClass, Class<?>... linkedClasses);
 
@@ -31,6 +36,4 @@ public interface DbService {
 
     <T> List<T> query(OSQLSynchQuery<T> osqlSynchQuery, Class<?>... registerClasses);
 
-
-	
 }

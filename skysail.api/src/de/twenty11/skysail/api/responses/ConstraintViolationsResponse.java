@@ -37,6 +37,7 @@ public class ConstraintViolationsResponse<T> extends SkysailResponse<T> {
      * @param entity
      *            an entity
      * @param contraintViolations
+     *            a set of violations
      */
     public ConstraintViolationsResponse(Reference actionReference, T entity,
             Set<ConstraintViolation<T>> contraintViolations) {

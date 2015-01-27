@@ -5,9 +5,8 @@
     This configuration file was written by the eclipse-cs plugin configuration editor
 -->
 <!--
-    Checkstyle-Configuration: Copy of Google Checks
-    Description: 
-Checkstyle configurartion that checks the Google coding conventions (https://google-styleguide.googlecode.com/svn-history/r130/trunk/javaguide.html).
+    Checkstyle-Configuration: skysail-framework
+    Description: none
 -->
 <module name="Checker">
   <property name="severity" value="warning"/>
@@ -121,8 +120,10 @@ Checkstyle configurartion that checks the Google coding conventions (https://goo
       <metadata name="net.sf.eclipsecs.core.lastEnabledSeverity" value="inherit"/>
     </module>
     <module name="AbbreviationAsWordInName">
+      <property name="severity" value="ignore"/>
       <property name="allowedAbbreviationLength" value="1"/>
       <property name="ignoreFinal" value="false"/>
+      <metadata name="net.sf.eclipsecs.core.lastEnabledSeverity" value="inherit"/>
     </module>
     <module name="OverloadMethodsDeclarationOrder"/>
     <module name="VariableDeclarationUsageDistance"/>

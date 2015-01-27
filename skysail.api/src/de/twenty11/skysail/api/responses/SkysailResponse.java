@@ -22,6 +22,7 @@ public class SkysailResponse<T> {
      * constructor.
      * 
      * @param entity
+     *            the parameterized entity
      */
     public SkysailResponse(T entity) {
         this.entity = entity;

@@ -17,7 +17,7 @@ import aQute.bnd.annotation.component.Activate;
 import aQute.bnd.annotation.component.Component;
 import aQute.bnd.annotation.component.Deactivate;
 
-@Component
+//@Component
 @Slf4j
 public class PeriodicFrameworkStatusLogger {
 

@@ -1,13 +1,12 @@
 package de.twenty11.skysail.server.core.restlet.filter;
 
+import io.skysail.api.validation.ValidatorService;
+
 import java.util.HashSet;
 import java.util.Set;
 
 import javax.validation.ConstraintViolation;
-import javax.validation.Validation;
 import javax.validation.Validator;
-import javax.validation.ValidatorFactory;
-import javax.validation.bootstrap.GenericBootstrap;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -15,7 +14,7 @@ import org.restlet.Response;
 import org.restlet.data.Status;
 
 import de.twenty11.skysail.api.responses.ConstraintViolationsResponse;
-import de.twenty11.skysail.server.core.osgi.OSGiServiceDiscoverer;
+import de.twenty11.skysail.server.app.SkysailApplication;
 import de.twenty11.skysail.server.core.restlet.ResponseWrapper;
 import de.twenty11.skysail.server.core.restlet.SkysailServerResource;
 
@@ -27,16 +26,17 @@ public class CheckBusinessViolationsFilter<R extends SkysailServerResource<T>, T
     /**
      * constructor.
      * 
+     * @param application
+     * 
      * @param cvf
      *            factory
      */
-    public CheckBusinessViolationsFilter() {
-        GenericBootstrap validationProvider = Validation.byDefaultProvider();
-        javax.validation.Configuration<?> config = validationProvider.providerResolver(new OSGiServiceDiscoverer())
-                .configure();
-        // config.messageInterpolator(arg0)
-        ValidatorFactory factory = config.buildValidatorFactory();
-        validator = factory.getValidator();
+    public CheckBusinessViolationsFilter(SkysailApplication application) {
+        ValidatorService validatorService = application.getValidatorService();
+        if (validatorService == null) {
+            throw new IllegalStateException();
+        }
+        validator = validatorService.getValidator();
     }
 
     @Override

@@ -185,8 +185,6 @@ public abstract class EntityServerResource<T> extends SkysailServerResource<T> {
         logger.info("Request entry point: {} @Delete('x-www-form-urlencoded:html|html|json')", this.getClass()
                 .getSimpleName());
 
-        // getRequest().getAttributes().put(SKYSAIL_SERVER_RESTLET_ENTITY,
-        // entity);
         RequestHandler<T> requestHandler = new RequestHandler<T>(getApplication());
         AbstractResourceFilter<EntityServerResource<T>, T> handler = requestHandler.createForEntity(Method.DELETE);
         T entity = handler.handle(this, getResponse()).getEntity();

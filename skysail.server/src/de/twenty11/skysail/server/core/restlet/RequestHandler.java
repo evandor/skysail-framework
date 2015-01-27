@@ -97,7 +97,7 @@ public class RequestHandler<T> {
                 .calling(new AddRequestIdToResourceFilter<ListServerResource<T>, List<T>>())
                 .calling(new CheckInvalidInputFilter<ListServerResource<T>, List<T>>())
                 .calling(new FormDataExtractingFilter<ListServerResource<T>, List<T>>())
-                .calling(new CheckBusinessViolationsFilter<ListServerResource<T>, List<T>>())
+                .calling(new CheckBusinessViolationsFilter<ListServerResource<T>, List<T>>(application))
                 .calling(new PersistEntityFilter<ListServerResource<T>, List<T>>(application));
     }
 
@@ -136,7 +136,7 @@ public class RequestHandler<T> {
                 .calling(new AddRequestIdToResourceFilter<PostEntityServerResource<T>, T>())
                 .calling(new CheckInvalidInputFilter<PostEntityServerResource<T>, T>(application))
                 .calling(new FormDataExtractingFilter<PostEntityServerResource<T>, T>())
-                .calling(new CheckBusinessViolationsFilter<PostEntityServerResource<T>, T>())
+                .calling(new CheckBusinessViolationsFilter<PostEntityServerResource<T>, T>(application))
                 .calling(new OptionalEncryptionFilter<PostEntityServerResource<T>, T>(application))
                 .calling(new PersistEntityFilter<PostEntityServerResource<T>, T>(application))
                 // .calling(new LocationHeader)
@@ -150,7 +150,7 @@ public class RequestHandler<T> {
                 .calling(new AddRequestIdToResourceFilter<PutEntityServerResource<T>, T>())
                 .calling(new CheckInvalidInputFilter<PutEntityServerResource<T>, T>(application))
                 .calling(new FormDataExtractingFilter<PutEntityServerResource<T>, T>())
-                .calling(new CheckBusinessViolationsFilter<PutEntityServerResource<T>, T>())
+                .calling(new CheckBusinessViolationsFilter<PutEntityServerResource<T>, T>(application))
                 .calling(new OptionalEncryptionFilter<PutEntityServerResource<T>, T>(application))
                 .calling(new UpdateEntityFilter<PutEntityServerResource<T>, T>())
                 // .calling(new LocationHeader)

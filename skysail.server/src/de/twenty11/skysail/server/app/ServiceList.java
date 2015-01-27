@@ -1,5 +1,7 @@
 package de.twenty11.skysail.server.app;
 
+import io.skysail.api.validation.ValidatorService;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
@@ -37,9 +39,9 @@ import de.twenty11.skysail.server.services.RequestResponseMonitor;
  * all currently available skysail applications and injects the services once a
  * new application becomes available.
  * 
- * Non of the references should be defined as mandatory, as, otherwise, the whole
- * ServiceList will not be available. Clients themselves have to decide how to deal with the 
- * absence of services.
+ * Non of the references should be defined as mandatory, as, otherwise, the
+ * whole ServiceList will not be available. Clients themselves have to decide
+ * how to deal with the absence of services.
  *
  */
 @Component(immediate = true)
@@ -62,6 +64,7 @@ public class ServiceList implements ServiceListProvider {
     private volatile SkysailComponent skysailComponent;
     private volatile MetricsService metricsService;
     private volatile Set<HookFilter> hookFilters = Collections.synchronizedSet(new HashSet<>());
+    private volatile ValidatorService validatorService;
 
     /** === ApplicationListProvider Service ============================== */
 
@@ -80,7 +83,7 @@ public class ServiceList implements ServiceListProvider {
     public synchronized void setSkysailComponentProvider(SkysailComponentProvider service) {
         this.skysailComponent = service.getSkysailComponent();
         if (skysailComponent == null) {
-        	log.error("skysailComponent from Provider is null!!!");
+            log.error("skysailComponent from Provider is null!!!");
         }
         Context appContext = skysailComponent.getContext().createChildContext();
         getSkysailApps().forEach(app -> app.setContext(appContext));
@@ -231,7 +234,8 @@ public class ServiceList implements ServiceListProvider {
         getSkysailApps().forEach(app -> app.setRequestResponseMonitor(service));
     }
 
-    public synchronized void unsetRequestResponseMonitorService(@SuppressWarnings("unused") RequestResponseMonitor service) {
+    public synchronized void unsetRequestResponseMonitorService(
+            @SuppressWarnings("unused") RequestResponseMonitor service) {
         this.requestResponseMonitor = null;
         getSkysailApps().forEach(a -> a.setRequestResponseMonitor(null));
     }
@@ -293,6 +297,24 @@ public class ServiceList implements ServiceListProvider {
     @Override
     public Set<HookFilter> getHookFilters() {
         return hookFilters;
+    }
+
+    /** === Validation Provider ============================== */
+
+    @Reference(optional = true, dynamic = true, multiple = false)
+    public synchronized void setValidatorService(ValidatorService service) {
+        this.validatorService = service;
+        getSkysailApps().forEach(app -> app.setValidatorService(service));
+    }
+
+    public synchronized void unsetValidatorService(@SuppressWarnings("unused") ValidatorService service) {
+        this.validatorService = null;
+        getSkysailApps().forEach(a -> a.setValidatorService(null));
+    }
+
+    @Override
+    public ValidatorService getValidatorService() {
+        return validatorService;
     }
 
     private Stream<SkysailApplication> getSkysailApps() {

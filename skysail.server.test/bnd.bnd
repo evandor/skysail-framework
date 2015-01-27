@@ -21,12 +21,11 @@ Bundle-Version: 1.0.2.${tstamp}
 	org.mockito.mockito-all,\
 	hamcrest-core;version=1.3,\
 	skysail.api;version=latest,\
-	skysail.server;version=latest
+	skysail.server;version=latest,\
+	skysail.api.validation;version=latest
 
 Private-Package:  \
 	io.skysail.server.test
-Test-Cases:  \
-	io.skysail.server.test.ServerIntegrationTests
 
 -runsystempackages: \
 	sun.reflect,sun.misc
@@ -63,6 +62,7 @@ Test-Cases:  \
 	com.googlecode.concurrentlinkedhashmap.lru;version='[1.4.0,1.4.1)',\
 	com.orientechnologies.orientdb-core;version='[2.0.0,2.0.1)',\
 	com.orientechnologies.orientdb-object;version='[2.0.0,2.0.1)',\
+	com.springsource.org.junit;version='[4.11.0,4.11.1)',\
 	com.sun.el;version='[2.2.0,2.2.1)',\
 	de.twenty11.owasp-java-html-sanitizer;version='[239.0.0,239.0.1)',\
 	etm.core;version='[1.2.3,1.2.4)',\
@@ -92,5 +92,6 @@ Test-Cases:  \
 	osgi.enterprise;version='[4.2.0,4.2.1)',\
 	osgi.residential;version='[4.3.0,4.3.1)',\
 	skysail.api;version=latest,\
+	skysail.api.validation;version=latest,\
 	skysail.server;version=latest,\
 	slf4j.api;version='[1.7.7,1.7.8)'

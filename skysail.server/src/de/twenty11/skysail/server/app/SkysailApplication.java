@@ -1,5 +1,7 @@
 package de.twenty11.skysail.server.app;
 
+import io.skysail.api.validation.ValidatorService;
+
 import java.io.IOException;
 import java.text.MessageFormat;
 import java.util.ArrayList;
@@ -192,8 +194,8 @@ public abstract class SkysailApplication extends Application implements Applicat
     private volatile FavoritesService favoritesService;
     private volatile ConfigurationAdmin configurationAdmin;
     private volatile MetricsService metricsService;
-
     private volatile Set<HookFilter> filters = Collections.synchronizedSet(new HashSet<>());
+    private volatile ValidatorService validatorService;
 
     /**
      * default Constructor.
@@ -792,6 +794,19 @@ public abstract class SkysailApplication extends Application implements Applicat
 
     public String getFromContext(ApplicationContextId id) {
         return stringContextMap.get(id);
+    }
+
+    public void setValidatorService(ValidatorService service) {
+        logServiceWasSet("Validator", service);
+        this.validatorService = service;
+    }
+
+    public ValidatorService getValidatorService() {
+        return validatorService;
+    }
+
+    public void unsetValidatorService() {
+        this.validatorService = null;
     }
 
 }

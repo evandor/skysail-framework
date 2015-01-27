@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Set;
 
 import javax.validation.ConstraintViolation;
-import javax.validation.Validator;
 
 import org.restlet.data.Form;
 import org.restlet.data.Method;
@@ -174,10 +173,6 @@ public abstract class PutEntityServerResource<T> extends SkysailServerResource<T
     @Override
     public LinkHeaderRelation getLinkRelation() {
         return LinkHeaderRelation.CREATE_FORM;
-    }
-
-    public Validator getValidator() {
-        return null;
     }
 
     protected Set<ConstraintViolation<T>> validate(@SuppressWarnings("unused") T entity) {

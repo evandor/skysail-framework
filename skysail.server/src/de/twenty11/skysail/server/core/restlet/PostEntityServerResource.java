@@ -7,7 +7,6 @@ import java.util.Map;
 import java.util.Set;
 
 import javax.validation.ConstraintViolation;
-import javax.validation.Validator;
 
 import org.apache.shiro.SecurityUtils;
 import org.restlet.data.ClientInfo;
@@ -205,10 +204,6 @@ public abstract class PostEntityServerResource<T> extends SkysailServerResource<
     @Override
     public LinkHeaderRelation getLinkRelation() {
         return LinkHeaderRelation.CREATE_FORM;
-    }
-
-    public Validator getValidator() {
-        return null;
     }
 
     protected Set<ConstraintViolation<T>> validate(T entity) {

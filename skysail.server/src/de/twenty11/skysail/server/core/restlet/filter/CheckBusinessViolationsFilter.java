@@ -28,8 +28,6 @@ public class CheckBusinessViolationsFilter<R extends SkysailServerResource<T>, T
      * 
      * @param application
      * 
-     * @param cvf
-     *            factory
      */
     public CheckBusinessViolationsFilter(SkysailApplication application) {
         ValidatorService validatorService = application.getValidatorService();

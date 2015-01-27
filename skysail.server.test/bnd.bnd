@@ -34,6 +34,7 @@ Test-Cases:  \
 -runsystempackages: \
 	sun.reflect,sun.misc
 
+#  gosh.args=--nointeractive : otherwise I get a "gosh: stopping framework" message when running the integration tests...
 -runproperties: felix.fileinstall.dir=testresources,\
     felix.fileinstall.filter=.*\\.jar|.*\\.cfg,\
     felix.fileinstall.noInitialDelay=true,\
@@ -41,6 +42,7 @@ Test-Cases:  \
     org.apache.felix.log.storeDebug=true,\
     felix.fileinstall.log.level=4,\
     org.apache.felix.log.storeDebug=true,\
+    gosh.args=--nointeractive,\
     logback.configurationFile=testresources/logback.xml
 	
 -runrequires:  \
@@ -48,6 +50,7 @@ Test-Cases:  \
 	osgi.identity;filter:='(osgi.identity=org.apache.felix.gogo.command)',\
 	osgi.identity;filter:='(osgi.identity=org.apache.felix.log)',\
 	osgi.identity;filter:='(&(osgi.identity=org.apache.felix.scr)(version>=1.8.2))',\
+	osgi.identity;filter:='(&(osgi.identity=org.apache.felix.configadmin)(version>=1.8.0))',\
 	osgi.identity;filter:='(&(osgi.identity=skysail.server)(version>=5.0))',\
 	osgi.identity;filter:='(&(osgi.identity=org.apache.felix.fileinstall)(version>=3.4.0))',\
 	osgi.identity;filter:='(&(osgi.identity=skysail.api)(version>=2.0))',\
@@ -79,6 +82,7 @@ Test-Cases:  \
 	org.apache.commons.collections;version='[3.2.1,3.2.2)',\
 	org.apache.commons.lang;version='[2.6.0,2.6.1)',\
 	org.apache.commons.logging;version='[1.1.3,1.1.4)',\
+	org.apache.felix.configadmin;version='[1.8.0,1.8.1)',\
 	org.apache.felix.fileinstall;version='[3.4.0,3.4.1)',\
 	org.apache.felix.gogo.command;version='[0.14.0,0.14.1)',\
 	org.apache.felix.gogo.runtime;version='[0.12.1,0.12.2)',\

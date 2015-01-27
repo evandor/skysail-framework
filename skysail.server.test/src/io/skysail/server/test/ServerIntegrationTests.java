@@ -15,7 +15,6 @@ import java.util.Collection;
 import lombok.extern.slf4j.Slf4j;
 
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleContext;
@@ -36,33 +35,22 @@ public class ServerIntegrationTests {
 
     @Before
     public void setUp() {
-        log.warn("setting up integration test");
+        log.info("setting up integration test");
         Bundle bundle = FrameworkUtil.getBundle(this.getClass());
         log.warn("bundle was set to {}", bundle.getSymbolicName());
         context = bundle.getBundleContext();
     }
 
-    // @Test
-    // @Ignore
-    // public void some_services_are_available() throws Exception {
-    // ServiceReference[] serviceReferences = context.getServiceReferences(null,
-    // null);
-    // assertThat(serviceReferences.length > 10,
-    // org.hamcrest.CoreMatchers.is(true));
-    // }
-
     @Test
-    @Ignore
     public void some_services_are_available2() throws Exception {
-        ServiceReference reference = getServiceReference(ApplicationListProvider.class, null);
+        ServiceReference<?> reference = getServiceReference(ApplicationListProvider.class, null);
         ApplicationListProvider service = (ApplicationListProvider) context.getService(reference);
         assertThat(service instanceof ApplicationList, org.hamcrest.CoreMatchers.is(true));
     }
 
     @Test
-    @Ignore
     public void ConfigurationAdmin_is_available() throws Exception {
-        ServiceReference configAdminReference = getServiceReference(ConfigurationAdmin.class, null);
+        ServiceReference<?> configAdminReference = getServiceReference(ConfigurationAdmin.class, null);
         ConfigurationAdmin configAdmin = (ConfigurationAdmin) context.getService(configAdminReference);
         // Configuration dbConfiguration =
         // configAdmin.createFactoryConfiguration(DbConfigurations.class.getSimpleName()
@@ -72,9 +60,8 @@ public class ServerIntegrationTests {
     }
 
     @Test
-    @Ignore
     public void DbConfigurationProvider_is_available() throws Exception {
-        ServiceReference reference = getServiceReference(DbConfigurationProvider.class, "(name=defaultDbConfig)");
+        ServiceReference<?> reference = getServiceReference(DbConfigurationProvider.class, "(name=defaultDbConfig)");
         DbConfigurationProvider service = (DbConfigurationProvider) context.getService(reference);
         assertThat(service instanceof DbConfigurations, org.hamcrest.CoreMatchers.is(true));
 
@@ -87,16 +74,14 @@ public class ServerIntegrationTests {
     }
 
     @Test
-    @Ignore
     public void StateRepository_is_available() throws Exception {
-        ServiceReference reference = getServiceReference(StateRepository.class, "(name=SecurityFeatures)");
+        ServiceReference<?> reference = getServiceReference(StateRepository.class, "(name=SecurityFeatures)");
         assertThat(reference, is(notNullValue()));
     }
 
     @Test
-    @Ignore
     public void allow_origin_feature_is_active() throws Exception {
-        ServiceReference reference = getServiceReference(StateRepository.class, "(name=SecurityFeatures)");
+        ServiceReference<?> reference = getServiceReference(StateRepository.class, "(name=SecurityFeatures)");
         assertThat(reference, is(notNullValue()));
         StateRepository service = (StateRepository) context.getService(reference);
         assertThat(service instanceof FeaturesRepository, org.hamcrest.CoreMatchers.is(true));

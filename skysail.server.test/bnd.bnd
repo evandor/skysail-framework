@@ -15,14 +15,16 @@ Bundle-Version: 1.0.2.${tstamp}
 -resolve.effective: active;skip:="osgi.service"
 
 -buildpath:  \
-	osgi.core;version='[4.2,5)',\
-	osgi.cmpn,\
+	osgi.core;version=5.0,\
+	osgi.cmpn;version=5.0,\
 	${junit},\
 	org.mockito.mockito-all,\
 	hamcrest-core;version=1.3,\
-	skysail.api;version=latest,\
-	skysail.server;version=latest,\
-	skysail.api.validation;version=latest
+	skysail.api;version=2.0.1,\
+	skysail.server;version=5,\
+	skysail.api.validation;version=0,\
+	lombok;version=1.12,\
+	slf4j.api;version=1.7
 
 Private-Package:  \
 	io.skysail.server.test
@@ -45,13 +47,13 @@ Test-Cases:  \
 	osgi.identity;filter:='(osgi.identity=org.apache.felix.gogo.shell)',\
 	osgi.identity;filter:='(osgi.identity=org.apache.felix.gogo.command)',\
 	osgi.identity;filter:='(osgi.identity=org.apache.felix.log)',\
-	osgi.identity;filter:='(&(osgi.identity=ch.qos.logback.classic)(version>=1.1.2))',\
 	osgi.identity;filter:='(&(osgi.identity=org.apache.felix.scr)(version>=1.8.2))',\
-	osgi.identity;filter:='(&(osgi.identity=skysail.server)(version>=4.0))',\
-	osgi.identity;filter:='(&(osgi.identity=org.apache.felix.fileinstall)(version>=3.4.0))'
-
--resolve: auto
-
+	osgi.identity;filter:='(&(osgi.identity=skysail.server)(version>=5.0))',\
+	osgi.identity;filter:='(&(osgi.identity=org.apache.felix.fileinstall)(version>=3.4.0))',\
+	osgi.identity;filter:='(&(osgi.identity=skysail.api)(version>=2.0))',\
+	osgi.identity;filter:='(&(osgi.identity=skysail.api.validation)(version>=0.1))',\
+	osgi.identity;filter:='(&(osgi.identity=osgi.cmpn)(version>=5.0))',\
+	osgi.identity;filter:='(&(osgi.identity=ch.qos.logback.classic)(version>=1.1.2))'
 
 -runbundles:  \
 	ch.qos.logback.classic;version='[1.1.2,1.1.3)',\
@@ -77,7 +79,6 @@ Test-Cases:  \
 	org.apache.commons.collections;version='[3.2.1,3.2.2)',\
 	org.apache.commons.lang;version='[2.6.0,2.6.1)',\
 	org.apache.commons.logging;version='[1.1.3,1.1.4)',\
-	org.apache.felix.configadmin;version='[1.8.0,1.8.1)',\
 	org.apache.felix.fileinstall;version='[3.4.0,3.4.1)',\
 	org.apache.felix.gogo.command;version='[0.14.0,0.14.1)',\
 	org.apache.felix.gogo.runtime;version='[0.12.1,0.12.2)',\
@@ -91,8 +92,8 @@ Test-Cases:  \
 	org.restlet.ext.jackson;version='[2.1.7,2.1.8)',\
 	org.restlet.ext.slf4j;version='[2.1.7,2.1.8)',\
 	org.xerial.snappy.snappy-java;version='[1.1.1,1.1.2)',\
+	osgi.cmpn;version='[5.0.0,5.0.1)',\
 	osgi.enterprise;version='[4.2.0,4.2.1)',\
-	osgi.residential;version='[4.3.0,4.3.1)',\
 	skysail.api;version=latest,\
 	skysail.api.validation;version=latest,\
 	skysail.server;version=latest,\

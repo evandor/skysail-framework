@@ -307,7 +307,7 @@ public class ServiceList implements ServiceListProvider {
         getSkysailApps().forEach(app -> app.setValidatorService(service));
     }
 
-    public synchronized void unsetValidatorService(@SuppressWarnings("unused") ValidatorService service) {
+    public synchronized void unsetValidatorService(ValidatorService service) {
         this.validatorService = null;
         getSkysailApps().forEach(a -> a.setValidatorService(null));
     }

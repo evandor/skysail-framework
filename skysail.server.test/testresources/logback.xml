@@ -20,7 +20,7 @@
 		<file>etc/testrun.log</file>
 		<append>false</append>
 		<encoder>
-			<pattern>%-5level %logger{55} - %msg%n
+			<pattern>%d{HH:mm:ss.SSS} %-5level %logger{55} - %msg%n
 			</pattern>
 		</encoder>
 	</appender>

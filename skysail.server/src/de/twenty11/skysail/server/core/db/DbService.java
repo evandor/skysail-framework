@@ -20,7 +20,7 @@ public interface DbService {
 
     <T> T findOne(String sql, Class<T> clz, Map<String, Object> params);
 
-    <T> T find(String sql, Class<T> clz, Map<String, Object> params);
+    <T> List<T> find(String sql, Class<T> clz, Map<String, Object> params);
 
     <T> List<T> findAll(Class<T> entityClass, Class<?>... linkedClasses);
 

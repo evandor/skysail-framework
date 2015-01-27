@@ -29,7 +29,7 @@ public class RequestHandlerTest {
 
     @Test
     public void testName() {
-        AbstractResourceFilter filter = requestHandler.createForEntity(Method.DELETE, null);
+        AbstractResourceFilter filter = requestHandler.createForEntity(Method.DELETE);
         Response result = filter.handle(entityServerResource, response).getResponse();
         // assertThat(result.getStatus(),is(Status.CLIENT_ERROR_BAD_REQUEST));
     }

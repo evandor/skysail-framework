@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import javax.validation.ConstraintValidatorFactory;
 import javax.validation.ConstraintViolation;
 import javax.validation.Validator;
 
@@ -125,7 +124,8 @@ public abstract class PostEntityServerResource<T> extends SkysailServerResource<
     /**
      * will be called in case of a POST request.
      * 
-     * @param entity the entity
+     * @param entity
+     *            the entity
      * @return the response
      */
     public abstract SkysailResponse<?> addEntity(T entity);
@@ -192,8 +192,7 @@ public abstract class PostEntityServerResource<T> extends SkysailServerResource<
             getRequest().getAttributes().put(SKYSAIL_SERVER_RESTLET_FORM, form);
         }
         RequestHandler<T> requestHandler = new RequestHandler<T>(getApplication());
-        AbstractResourceFilter<PostEntityServerResource<T>, T> handler = requestHandler
-                .createForPost(getConstraintValidatorFactory());
+        AbstractResourceFilter<PostEntityServerResource<T>, T> handler = requestHandler.createForPost();
         getResponse().setStatus(Status.SUCCESS_CREATED);
         ResponseWrapper<T> handledRequest = handler.handle(this, getResponse());
         point.collect();
@@ -206,10 +205,6 @@ public abstract class PostEntityServerResource<T> extends SkysailServerResource<
     @Override
     public LinkHeaderRelation getLinkRelation() {
         return LinkHeaderRelation.CREATE_FORM;
-    }
-
-    protected ConstraintValidatorFactory getConstraintValidatorFactory() {
-        return null;
     }
 
     public Validator getValidator() {
@@ -230,10 +225,14 @@ public abstract class PostEntityServerResource<T> extends SkysailServerResource<
      * String id = entity.getRid().toString().replace("#",""); String link =
      * ServerLink.fromResource(app, ClipResource.class).getUri();
      *
-     * @param entity the entity 
-     * @param searchService a search service
-     * @param link the link
-     * @param id the id
+     * @param entity
+     *            the entity
+     * @param searchService
+     *            a search service
+     * @param link
+     *            the link
+     * @param id
+     *            the id
      */
     protected void index(T entity, SearchService searchService, String link, String id) {
         if (searchService == null) {

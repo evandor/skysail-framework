@@ -4,7 +4,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 
-import javax.validation.ConstraintValidatorFactory;
 import javax.validation.ConstraintViolation;
 import javax.validation.Validator;
 
@@ -166,8 +165,7 @@ public abstract class PutEntityServerResource<T> extends SkysailServerResource<T
             getRequest().getAttributes().put(SKYSAIL_SERVER_RESTLET_FORM, form);
         }
         RequestHandler<T> requestHandler = new RequestHandler<T>(getApplication());
-        AbstractResourceFilter<PutEntityServerResource<T>, T> handler = requestHandler
-                .createForPut(getConstraintValidatorFactory());
+        AbstractResourceFilter<PutEntityServerResource<T>, T> handler = requestHandler.createForPut();
         T entity = handler.handle(this, getResponse()).getEntity();
         point.collect();
         return entity;
@@ -176,10 +174,6 @@ public abstract class PutEntityServerResource<T> extends SkysailServerResource<T
     @Override
     public LinkHeaderRelation getLinkRelation() {
         return LinkHeaderRelation.CREATE_FORM;
-    }
-
-    protected ConstraintValidatorFactory getConstraintValidatorFactory() {
-        return null;
     }
 
     public Validator getValidator() {

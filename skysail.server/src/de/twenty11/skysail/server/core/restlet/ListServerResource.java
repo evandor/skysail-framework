@@ -184,7 +184,7 @@ public abstract class ListServerResource<T> extends SkysailServerResource<List<T
 
     protected List<T> getEntities(String defaultMsg) {
         RequestHandler<T> requestHandler = new RequestHandler<T>(null);
-        AbstractResourceFilter<ListServerResource<T>, List<T>> chain = requestHandler.createForList(Method.GET, null);
+        AbstractResourceFilter<ListServerResource<T>, List<T>> chain = requestHandler.createForList(Method.GET);
         return chain.handle(this, getResponse()).getEntity();
     }
 
@@ -198,8 +198,8 @@ public abstract class ListServerResource<T> extends SkysailServerResource<List<T
      */
     protected List<String> getEntitiesAsJson() {
         RequestHandler<String> requestHandler = new RequestHandler<String>(null);
-        AbstractResourceFilter<ListServerResource<String>, List<String>> chain = requestHandler.createForList(
-                Method.GET, null);
+        AbstractResourceFilter<ListServerResource<String>, List<String>> chain = requestHandler
+                .createForList(Method.GET);
         ListServerResource<String> resource = new ListServerResource<String>() {
             @Override
             public List<String> getData() {

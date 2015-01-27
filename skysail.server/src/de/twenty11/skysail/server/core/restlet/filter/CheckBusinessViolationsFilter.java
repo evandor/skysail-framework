@@ -3,7 +3,6 @@ package de.twenty11.skysail.server.core.restlet.filter;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.validation.ConstraintValidatorFactory;
 import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
 import javax.validation.Validator;
@@ -31,13 +30,11 @@ public class CheckBusinessViolationsFilter<R extends SkysailServerResource<T>, T
      * @param cvf
      *            factory
      */
-    public CheckBusinessViolationsFilter(ConstraintValidatorFactory cvf) {
+    public CheckBusinessViolationsFilter() {
         GenericBootstrap validationProvider = Validation.byDefaultProvider();
         javax.validation.Configuration<?> config = validationProvider.providerResolver(new OSGiServiceDiscoverer())
                 .configure();
-        if (cvf != null) {
-            config.constraintValidatorFactory(cvf);
-        }
+        // config.messageInterpolator(arg0)
         ValidatorFactory factory = config.buildValidatorFactory();
         validator = factory.getValidator();
     }

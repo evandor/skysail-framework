@@ -62,7 +62,8 @@ import etm.core.monitor.EtmPoint;
  * </code>
  * </pre>
  *
- * @param <T> the entity
+ * @param <T>
+ *            the entity
  */
 public abstract class EntityServerResource<T> extends SkysailServerResource<T> {
 
@@ -73,11 +74,11 @@ public abstract class EntityServerResource<T> extends SkysailServerResource<T> {
     private Class<? extends ListServerResource<?>> associatedResource;
 
     public EntityServerResource() {
-    	addToContext(ResourceContextId.LINK_TITLE, "show");
+        addToContext(ResourceContextId.LINK_TITLE, "show");
     }
 
     public EntityServerResource(Class<? extends ListServerResource<?>> associatedResource) {
-    	this();
+        this();
         this.associatedResource = associatedResource;
     }
 
@@ -101,9 +102,9 @@ public abstract class EntityServerResource<T> extends SkysailServerResource<T> {
      */
     @Override
     public abstract T getData();
-    
+
     public abstract String getId();
-    
+
     /**
      * will be called in case of a DELETE request. Override in subclasses if
      * they support DELETE requests.
@@ -119,7 +120,8 @@ public abstract class EntityServerResource<T> extends SkysailServerResource<T> {
      * @param form
      *            the representation of the resource as a form
      * @return the resource of type T
-     * @throws ParseException parse exception
+     * @throws ParseException
+     *             parse exception
      */
     public T getData(Form form) throws ParseException {
         logger.warn("trying to read data from form {}, but getData(Form form) is not overwritten by {}", form, this
@@ -138,7 +140,7 @@ public abstract class EntityServerResource<T> extends SkysailServerResource<T> {
      */
     @Get("json")
     public T getJson() {
-    	EtmPoint point = etmMonitor.createPoint("EntityServerResource:getJson");
+        EtmPoint point = etmMonitor.createPoint("EntityServerResource:getJson");
         logger.info("Request entry point: {} @Get('json')", this.getClass().getSimpleName());
         logger.info(scoringInfo(getRequest().getClientInfo()));
         point.collect();
@@ -158,20 +160,20 @@ public abstract class EntityServerResource<T> extends SkysailServerResource<T> {
      */
     @Get("html|eventstream|treeform|txt")
     public SkysailResponse<T> getEntity() {
-    	EtmPoint point = etmMonitor.createPoint("EntityServerResource:getEntity");
+        EtmPoint point = etmMonitor.createPoint("EntityServerResource:getEntity");
         logger.info("Request entry point: {} @Get('html|eventstream|treeform|txt')", this.getClass().getSimpleName());
         logger.info(scoringInfo(getRequest().getClientInfo()));
         T entity = getEntity("dummy");
         point.collect();
         return new SkysailResponse<T>(entity);
     }
-    
+
     /**
      * @return the response
      */
     @Get("htmlform")
     public SkysailResponse<T> getDeleteForm() {
-    	return new FormResponse<T>(getEntity("dummy"), ".", "/");
+        return new FormResponse<T>(getEntity("dummy"), ".", "/");
     }
 
     /**
@@ -179,36 +181,37 @@ public abstract class EntityServerResource<T> extends SkysailServerResource<T> {
      */
     @Delete("x-www-form-urlencoded:html|html|json")
     public T deleteEntity() {
-    	EtmPoint point = etmMonitor.createPoint("EntityServerResource:deleteEntity");
-        logger.info("Request entry point: {} @Delete('x-www-form-urlencoded:html|html|json')", this.getClass().getSimpleName());
+        EtmPoint point = etmMonitor.createPoint("EntityServerResource:deleteEntity");
+        logger.info("Request entry point: {} @Delete('x-www-form-urlencoded:html|html|json')", this.getClass()
+                .getSimpleName());
 
         // getRequest().getAttributes().put(SKYSAIL_SERVER_RESTLET_ENTITY,
         // entity);
         RequestHandler<T> requestHandler = new RequestHandler<T>(getApplication());
-        AbstractResourceFilter<EntityServerResource<T>, T> handler = requestHandler.createForEntity(Method.DELETE,
-                getConstraintValidatorFactory());
-         T entity = handler.handle(this, getResponse()).getEntity();
-         point.collect();
-         return entity;
+        AbstractResourceFilter<EntityServerResource<T>, T> handler = requestHandler.createForEntity(Method.DELETE);
+        T entity = handler.handle(this, getResponse()).getEntity();
+        point.collect();
+        return entity;
     }
 
     protected T getEntity(String defaultMsg) {
         RequestHandler<T> requestHandler = new RequestHandler<T>(getApplication());
-        AbstractResourceFilter<EntityServerResource<T>, T> chain = requestHandler.createForEntity(Method.GET, null);
+        AbstractResourceFilter<EntityServerResource<T>, T> chain = requestHandler.createForEntity(Method.GET);
         ResponseWrapper<T> wrapper = chain.handle(this, getResponse());
         return wrapper.getEntity();
     }
 
     /**
-     * We have cases where we can retrieve JSON representations "early", for example when using a noSQL database. 
-     * In this case, we don't want to create objects of type T and then let them converted back to JSON by the
+     * We have cases where we can retrieve JSON representations "early", for
+     * example when using a noSQL database. In this case, we don't want to
+     * create objects of type T and then let them converted back to JSON by the
      * JacksonConverter.
      *
      * @return entity as json
      */
     protected String getEntityAsJson() {
         RequestHandler<String> requestHandler = new RequestHandler<String>(getApplication());
-        AbstractResourceFilter<EntityServerResource<String>, String> chain = requestHandler.createForEntity(Method.GET, null);
+        AbstractResourceFilter<EntityServerResource<String>, String> chain = requestHandler.createForEntity(Method.GET);
         EntityServerResource<String> resource = new EntityServerResource<String>() {
 
             @Override
@@ -225,6 +228,7 @@ public abstract class EntityServerResource<T> extends SkysailServerResource<T> {
             public SkysailResponse<?> eraseEntity() {
                 throw new IllegalAccessError("this method is not supposed to be called in this context");
             }
+
             @Override
             public Response getResponse() {
                 return EntityServerResource.this.getResponse();
@@ -245,7 +249,7 @@ public abstract class EntityServerResource<T> extends SkysailServerResource<T> {
     public Class<? extends ListServerResource<?>> getAssociatedListServerResource() {
         return associatedResource;
     }
-    
+
     protected Set<ConstraintViolation<T>> validate(@SuppressWarnings("unused") T entity) {
         throw new UnsupportedOperationException();
     }

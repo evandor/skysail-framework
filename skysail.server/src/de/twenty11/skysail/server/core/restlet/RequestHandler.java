@@ -40,7 +40,9 @@ public class RequestHandler<T> {
     /**
      * for now, always return new objects
      * 
-     * @param cvf
+     * @param method
+     *            http method
+     * @return
      */
     public synchronized AbstractResourceFilter<ListServerResource<T>, List<T>> createForList(Method method) {
         if (method.equals(Method.GET)) {
@@ -54,7 +56,9 @@ public class RequestHandler<T> {
     /**
      * for now, always return new objects
      * 
-     * @param cvf
+     * @param method
+     *            http method
+     * @return
      */
     public AbstractResourceFilter<EntityServerResource<T>, T> createForEntity(Method method) {
         if (method.equals(Method.GET)) {
@@ -76,7 +80,6 @@ public class RequestHandler<T> {
     /**
      * for now, always return new objects
      * 
-     * @param cvf
      */
     public AbstractResourceFilter<PostEntityServerResource<T>, T> createForPost() {
         return chainForEntityPost();
@@ -85,7 +88,6 @@ public class RequestHandler<T> {
     /**
      * for now, always return new objects
      * 
-     * @param cvf
      */
     public AbstractResourceFilter<PutEntityServerResource<T>, T> createForPut() {
         return chainForEntityPut();

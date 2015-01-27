@@ -29,6 +29,8 @@ public interface FeatureManager {
 
     /**
      * A unique name for this feature manager.
+     *
+     * @return the name
      */
     String getName();
 

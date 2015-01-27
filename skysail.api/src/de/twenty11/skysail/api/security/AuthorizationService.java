@@ -22,7 +22,8 @@ public interface AuthorizationService {
      * get Roles for username.
      * 
      * @param username
-     * @return
+     *            the username
+     * @return the roles
      */
     Set<Role> getRolesFor(String username);
 

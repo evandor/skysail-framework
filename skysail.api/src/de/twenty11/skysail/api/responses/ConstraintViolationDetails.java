@@ -17,6 +17,7 @@ public class ConstraintViolationDetails {
      * constructor.
      * 
      * @param constraintViolation
+     *            a violation
      */
     public ConstraintViolationDetails(ConstraintViolation<?> constraintViolation) {
         Validate.notNull(constraintViolation, "constraintValidation is null when creating ConstraintValidationDetails");

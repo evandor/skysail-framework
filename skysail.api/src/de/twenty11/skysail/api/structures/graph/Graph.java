@@ -48,6 +48,7 @@ public class Graph {
 
     /**
      * @param edge
+     *            the edge
      */
     public synchronized void add(Edge edge) {
         if (!nodes.contains(edge.getFrom())) {

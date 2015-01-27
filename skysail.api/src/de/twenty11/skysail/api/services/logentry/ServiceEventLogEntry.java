@@ -20,6 +20,7 @@ public class ServiceEventLogEntry {
 
     /**
      * @param event
+     *            an osig event
      */
     public ServiceEventLogEntry(ServiceEvent event) {
         timestamp = new Date();

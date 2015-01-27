@@ -117,7 +117,8 @@ public abstract class SkysailServerResource<T> extends ServerResource {
      * get Mssages.
      * 
      * @param fields
-     * @return messages
+     *            a list of fields
+     * @return messages the messages
      */
     public Map<String, String> getMessages(List<FormField> fields) {
         Map<String, String> msgs = getMessages();
@@ -207,7 +208,8 @@ public abstract class SkysailServerResource<T> extends ServerResource {
      * get Linkheader.
      * 
      * @param classes
-     * @return linkheader
+     *            the classes
+     * @return linkheader the linkheader
      */
     @SafeVarargs
     public final List<Linkheader> getLinkheader(Class<? extends SkysailServerResource<?>>... classes) {

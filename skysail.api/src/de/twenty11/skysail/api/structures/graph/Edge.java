@@ -10,7 +10,9 @@ public class Edge {
 
     /**
      * @param nodeA
+     *            first node
      * @param nodeB
+     *            second node
      */
     public Edge(Node nodeA, Node nodeB) {
         Validate.notNull(nodeA, "edge from nodeA to nodeB does not accept null value for nodeA");

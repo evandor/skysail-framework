@@ -42,6 +42,8 @@ public @interface Field {
 
     /**
      * Define the poliy for HTML strings
+     * 
+     * @return the policy
      */
     HtmlPolicy htmlPolicy() default HtmlPolicy.NO_HTML;
 

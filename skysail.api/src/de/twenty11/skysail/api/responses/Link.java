@@ -33,8 +33,11 @@ public class Link {
      * Constructor.
      * 
      * @param context
+     *            context
      * @param href
+     *            href
      * @param title
+     *            the title
      */
     public Link(Context context, String href, String title) {
         this.href = href.trim();
@@ -47,8 +50,11 @@ public class Link {
      * Constructor.
      * 
      * @param restletApplication
+     *            app
      * @param relativeHref
+     *            href
      * @param title
+     *            the title
      */
     public Link(Application restletApplication, String relativeHref, String title) {
         this.href = new StringBuilder("/").append(restletApplication.getName()).append("/").append(relativeHref.trim())

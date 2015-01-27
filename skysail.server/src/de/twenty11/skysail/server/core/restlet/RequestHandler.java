@@ -42,7 +42,7 @@ public class RequestHandler<T> {
      * 
      * @param method
      *            http method
-     * @return
+     * @return chain
      */
     public synchronized AbstractResourceFilter<ListServerResource<T>, List<T>> createForList(Method method) {
         if (method.equals(Method.GET)) {
@@ -58,7 +58,7 @@ public class RequestHandler<T> {
      * 
      * @param method
      *            http method
-     * @return
+     * @return the chain
      */
     public AbstractResourceFilter<EntityServerResource<T>, T> createForEntity(Method method) {
         if (method.equals(Method.GET)) {
@@ -80,6 +80,7 @@ public class RequestHandler<T> {
     /**
      * for now, always return new objects
      * 
+     * @return the filter chain
      */
     public AbstractResourceFilter<PostEntityServerResource<T>, T> createForPost() {
         return chainForEntityPost();

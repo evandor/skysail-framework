@@ -1,4 +1,4 @@
-Bundle-Version: 5.0.1.${tstamp}
+Bundle-Version: 5.0.2.${tstamp}
 Bundle-Name: SKYSAIL :: server
 X-Api-Version: 1
 Export-Package:  \

@@ -99,6 +99,7 @@ public class ApplicationList implements ApplicationListProvider {
         assignService(apps, app -> app.setEventAdmin(services.getEventAdmin()));
         assignService(apps, app -> app.setRequestResponseMonitor(services.getRequestResponseMonitor()));
         assignService(apps, app -> app.setMetricsService(services.getMetricsService()));
+        assignService(apps, app -> app.setValidatorService(services.getValidatorService()));
         assignService(apps, app -> app.setFilters(services.getHookFilters()));
     }
 
@@ -111,6 +112,7 @@ public class ApplicationList implements ApplicationListProvider {
         apps.stream().forEach(app -> app.setEventAdmin(null));
         apps.stream().forEach(app -> app.setRequestResponseMonitor(null));
         apps.stream().forEach(app -> app.setMetricsService(null));
+        apps.stream().forEach(app -> app.setValidatorService(services.getValidatorService()));
         apps.stream().forEach(app -> app.setFilters(Collections.emptySet()));
     }
 

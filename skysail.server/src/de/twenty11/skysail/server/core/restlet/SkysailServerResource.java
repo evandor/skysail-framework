@@ -307,7 +307,11 @@ public abstract class SkysailServerResource<T> extends ServerResource {
 
     public String redirectTo(Class<? extends SkysailServerResource<?>> cls) {
         SkysailApplication app = getApplication();
-        return ServerLink.fromResource(app, cls).getUri();
+        Linkheader linkheader = ServerLink.fromResource(app, cls);
+        if (linkheader == null) {
+            return null;
+        }
+        return linkheader.getUri();
     }
 
     public void addToContext(ResourceContextId id, String value) {

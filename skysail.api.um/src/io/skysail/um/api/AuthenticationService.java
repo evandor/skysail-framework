@@ -18,7 +18,6 @@ public interface AuthenticationService {
      * Validate if provided authToken has the proper credentials for the given
      * user.
      * 
-     * @param authToken
      */
     // boolean validateAuthToken(UsernamePasswordToken authToken);
 

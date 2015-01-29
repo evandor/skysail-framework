@@ -19,16 +19,19 @@ public class ApiResource extends ListServerResource<ApplicationApi> {
     private SkysailApplication app;
     private String applicationName = "";
 
+    /**
+     * Describes the API for the associated application.
+     */
     public ApiResource() {
         super(null);
-        app = (SkysailApplication) getApplication();
         setDescription("Provides information about the RESTful API of this application");
     }
 
     @Override
     protected void doInit() throws ResourceException {
-        super.doInit();
-        applicationName = getRequest().getOriginalRef().getSegments().get(0);
+        // super.doInit();
+        app = (SkysailApplication) getApplication();
+        applicationName = app.getName();// getRequest().getOriginalRef().getSegments().get(0);
     }
 
     @Get("html|json|csv")

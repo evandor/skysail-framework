@@ -22,6 +22,9 @@ public class EntitiesResource extends ListServerResource<EntityDescriptor> {
     private String applicationName = "";
     private String name;
 
+    /**
+     * Describes the entities of the associated application.
+     */
     public EntitiesResource() {
         super(null);
         app = (SkysailApplication) getApplication();

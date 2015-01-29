@@ -4,12 +4,13 @@ import static org.junit.Assert.assertTrue;
 import io.skysail.api.documentation.DocumentationProvider;
 
 import java.util.Collection;
+import java.util.Map;
 
-import org.junit.Ignore;
 import org.junit.Test;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.FrameworkUtil;
 import org.osgi.framework.ServiceReference;
+import org.restlet.resource.ServerResource;
 
 public class DocumentationIntegrationTests {
 
@@ -20,16 +21,14 @@ public class DocumentationIntegrationTests {
         Collection<ServiceReference<DocumentationProvider>> serviceRefs = context.getServiceReferences(
                 DocumentationProvider.class, null);
         assertTrue(serviceRefs.size() > 0);
-        // assertThat(validatorServiceReferences.size(), is(1));
     }
 
     @Test
-    @Ignore
-    public void testName() throws Exception {
+    public void resourceMap_contains_apiResource() throws Exception {
         Collection<ServiceReference<DocumentationProvider>> serviceRefs = context.getServiceReferences(
                 DocumentationProvider.class, null);
-        context.getService(serviceRefs.iterator().next());
-
+        DocumentationProvider documentationProvider = context.getService(serviceRefs.iterator().next());
+        Map<String, Class<? extends ServerResource>> resourceMap = documentationProvider.getResourceMap();
+        assertTrue(resourceMap.size() > 0);
     }
-
 }

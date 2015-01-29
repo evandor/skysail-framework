@@ -26,8 +26,8 @@ Test-Cases:  \
 -resolve.effective: active;skip:="osgi.service"
 
 #  gosh.args=--nointeractive : otherwise I get a "gosh: stopping framework" message when running the integration tests...
-#-runproperties: \
-#    gosh.args=--nointeractive	
+-runproperties: \
+    gosh.args=--nointeractive	
 
 -runrequires:  \
 	osgi.identity;filter:='(osgi.identity=org.apache.felix.gogo.shell)',\
@@ -38,7 +38,8 @@ Test-Cases:  \
 	osgi.identity;filter:='(&(osgi.identity=com.orientechnologies.orientdb-core)(version>=2.0.0))',\
 	osgi.identity;filter:='(&(osgi.identity=org.apache.felix.configadmin)(version>=1.8.0))',\
 	osgi.identity;filter:='(&(osgi.identity=org.apache.felix.fileinstall)(version>=3.4.0))',\
-	osgi.identity;filter:='(&(osgi.identity=org.apache.felix.scr)(version>=1.8.2))'
+	osgi.identity;filter:='(&(osgi.identity=org.apache.felix.scr)(version>=1.8.2))',\
+	osgi.identity;filter:='(&(osgi.identity=skysail.server.documentation)(version>=0.1))'
 
 
 -runbundles:  \
@@ -85,6 +86,7 @@ Test-Cases:  \
 	skysail.api.documentation;version=latest,\
 	skysail.api.validation;version=latest,\
 	skysail.server;version=latest,\
+	skysail.server.documentation;version=latest,\
 	slf4j.api;version='[1.7.7,1.7.8)'
 -resolve: auto
 Private-Package:  \

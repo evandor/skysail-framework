@@ -60,5 +60,3 @@ Service-Component:  \
 	osgi.residential;version='[4.3.0,4.3.1)',\
 	skysail.api.validation;version=latest,\
 	slf4j.api;version='[1.7.7,1.7.8)'
-Private-Package:  \
-	io.skysail.api.documentation.apidoc

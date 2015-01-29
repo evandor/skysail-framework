@@ -20,6 +20,9 @@ public class CheckFavoritesFilter<R extends SkysailServerResource<T>, T> extends
     protected FilterResult beforeHandle(R resource, Response response, ResponseWrapper<T> responseWrapper) {
         super.beforeHandle(resource, response, responseWrapper);
         Request request = resource.getRequest();
+        if (request.getResourceRef() == null || request.getResourceRef().getQueryAsForm() == null) {
+            return FilterResult.CONTINUE;
+        }
         String favoriteFlag = request.getResourceRef().getQueryAsForm().getFirstValue(Constants.QUERY_PARAM_FAVORITE);
         if (favoriteFlag == null || !(resource instanceof SkysailServerResource)) {
             return FilterResult.CONTINUE;
@@ -38,7 +41,7 @@ public class CheckFavoritesFilter<R extends SkysailServerResource<T>, T> extends
         String link = request.getResourceRef().toString(false, false);
         Favorite favorite = new Favorite().setUsername(username).setFavoriteName(name).setFavoriteLink(link);
         if ("true".equalsIgnoreCase(favoriteFlag.trim())) {
-            //value = CookiesUtils.createFavoriteEntry(request, name, img);
+            // value = CookiesUtils.createFavoriteEntry(request, name, img);
             favorite.setFavoriteImg(img);
             service.add(favorite);
             if (favoritesFromCookie != null) {
@@ -46,15 +49,19 @@ public class CheckFavoritesFilter<R extends SkysailServerResource<T>, T> extends
             }
         } else {
             service.remove(favorite);
-//            if (favoritesFromCookie != null) {
-//                value = favoritesFromCookie.replace(CookiesUtils.createFavoriteEntry(request, name, img), "");
-//            }
+            // if (favoritesFromCookie != null) {
+            // value =
+            // favoritesFromCookie.replace(CookiesUtils.createFavoriteEntry(request,
+            // name, img), "");
+            // }
         }
-//        cookieSetting = new CookieSetting(Constants.COOKIE_NAME_FAVORITES, value);
-//        cookieSetting.setPath("/");
-//        response.getCookieSettings().add(cookieSetting);
-//
-//        resource.getContext().getAttributes().put("currentFavoritesCookieValue", value);
+        // cookieSetting = new CookieSetting(Constants.COOKIE_NAME_FAVORITES,
+        // value);
+        // cookieSetting.setPath("/");
+        // response.getCookieSettings().add(cookieSetting);
+        //
+        // resource.getContext().getAttributes().put("currentFavoritesCookieValue",
+        // value);
         return FilterResult.CONTINUE;
     }
 

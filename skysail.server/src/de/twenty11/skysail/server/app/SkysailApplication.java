@@ -1,5 +1,6 @@
 package de.twenty11.skysail.server.app;
 
+import io.skysail.api.documentation.DocumentationProvider;
 import io.skysail.api.validation.ValidatorService;
 
 import java.io.IOException;
@@ -60,9 +61,7 @@ import de.twenty11.skysail.api.security.AuthorizationService;
 import de.twenty11.skysail.api.services.TranslationService;
 import de.twenty11.skysail.server.SkysailComponent;
 import de.twenty11.skysail.server.core.osgi.internal.filter.Blocker;
-import de.twenty11.skysail.server.core.restlet.ApiResource;
 import de.twenty11.skysail.server.core.restlet.ApplicationContextId;
-import de.twenty11.skysail.server.core.restlet.LinksResource;
 import de.twenty11.skysail.server.core.restlet.RouteBuilder;
 import de.twenty11.skysail.server.core.restlet.SkysailRouter;
 import de.twenty11.skysail.server.core.restlet.SkysailServerResource;
@@ -196,6 +195,7 @@ public abstract class SkysailApplication extends Application implements Applicat
     private volatile MetricsService metricsService;
     private volatile Set<HookFilter> filters = Collections.synchronizedSet(new HashSet<>());
     private volatile ValidatorService validatorService;
+    private volatile DocumentationProvider documentationProvider;
 
     /**
      * default Constructor.
@@ -220,12 +220,11 @@ public abstract class SkysailApplication extends Application implements Applicat
      * UsersResource.class).authorizeWith(anyOf("admin")));
      */
     protected void attach() {
-        router.attach(new RouteBuilder(APPLICATION_API_PATH, ApiResource.class));
-        router.attach(new RouteBuilder(APPLICATION_ENTITIES_PATH,
-                de.twenty11.skysail.server.core.restlet.EntitiesResource.class));
-        router.attach(new RouteBuilder(APPLICATION_ENTITIES_PATH + "/{name}",
-                de.twenty11.skysail.server.core.restlet.EntitiesResource.class));
-        router.attach(new RouteBuilder(APPLICATION_LINKS_PATH, LinksResource.class));
+
+        Map<String, Class<? extends ServerResource>> docuMap = getDocumentationProvider().getResourceMap();
+        docuMap.keySet().stream().forEach(key -> {
+            router.attach(new RouteBuilder(key, docuMap.get(key)));
+        });
     }
 
     /**
@@ -807,6 +806,19 @@ public abstract class SkysailApplication extends Application implements Applicat
 
     public void unsetValidatorService() {
         this.validatorService = null;
+    }
+
+    public void setDocumentationProvider(DocumentationProvider service) {
+        logServiceWasSet("Documentation", service);
+        this.documentationProvider = service;
+    }
+
+    public DocumentationProvider getDocumentationProvider() {
+        return documentationProvider;
+    }
+
+    public void unsetDocumentationProvider() {
+        this.documentationProvider = null;
     }
 
 }

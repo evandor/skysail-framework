@@ -1,5 +1,6 @@
 package de.twenty11.skysail.server.app;
 
+import io.skysail.api.documentation.DocumentationProvider;
 import io.skysail.api.validation.ValidatorService;
 
 import java.util.ArrayList;
@@ -65,6 +66,7 @@ public class ServiceList implements ServiceListProvider {
     private volatile MetricsService metricsService;
     private volatile Set<HookFilter> hookFilters = Collections.synchronizedSet(new HashSet<>());
     private volatile ValidatorService validatorService;
+    private volatile DocumentationProvider documentationProvider;
 
     /** === ApplicationListProvider Service ============================== */
 
@@ -315,6 +317,24 @@ public class ServiceList implements ServiceListProvider {
     @Override
     public ValidatorService getValidatorService() {
         return validatorService;
+    }
+
+    /** === Documentation Provider ============================== */
+
+    @Reference(optional = true, dynamic = true, multiple = false)
+    public synchronized void setDocumentationProvider(DocumentationProvider service) {
+        this.documentationProvider = service;
+        getSkysailApps().forEach(app -> app.setDocumentationProvider(service));
+    }
+
+    public synchronized void unsetDocumentationProvider(DocumentationProvider service) {
+        this.documentationProvider = null;
+        getSkysailApps().forEach(a -> a.setDocumentationProvider(null));
+    }
+
+    @Override
+    public DocumentationProvider getDocumentationProvider() {
+        return documentationProvider;
     }
 
     private Stream<SkysailApplication> getSkysailApps() {

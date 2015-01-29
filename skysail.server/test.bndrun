@@ -52,6 +52,7 @@
 	com.googlecode.concurrentlinkedhashmap.lru;version='[1.4.0,1.4.1)',\
 	com.orientechnologies.orientdb-core;version='[2.0.0,2.0.1)',\
 	com.orientechnologies.orientdb-object;version='[2.0.0,2.0.1)',\
+	com.springsource.org.junit;version='[4.11.0,4.11.1)',\
 	com.sun.el;version='[2.2.0,2.2.1)',\
 	de.twenty11.owasp-java-html-sanitizer;version='[239.0.0,239.0.1)',\
 	etm.core;version='[1.2.3,1.2.4)',\
@@ -82,5 +83,7 @@
 	osgi.enterprise;version='[4.2.0,4.2.1)',\
 	osgi.residential;version='[4.3.0,4.3.1)',\
 	skysail.api;version=latest,\
+	skysail.api.documentation;version=latest,\
+	skysail.api.validation;version=latest,\
 	skysail.server;version=latest,\
 	slf4j.api;version='[1.7.7,1.7.8)'

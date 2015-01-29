@@ -1,5 +1,6 @@
 package de.twenty11.skysail.server.app;
 
+import io.skysail.api.documentation.DocumentationProvider;
 import io.skysail.api.validation.ValidatorService;
 
 import java.util.List;
@@ -48,5 +49,7 @@ public interface ServiceListProvider {
     Set<HookFilter> getHookFilters();
 
     ValidatorService getValidatorService();
+
+    DocumentationProvider getDocumentationProvider();
 
 }

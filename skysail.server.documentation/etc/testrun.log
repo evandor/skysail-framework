@@ -1,16 +1,49 @@
-DEBUG de.twenty11.skysail.server.app.SkysailApplication - Documentation service was set to 'SkysailDocumentationProvider' for application 'ApiResourceTest$TestApplication$$EnhancerByMockitoWithCGLIB$$2598b7cf (SkysailApplication)
+DEBUG de.twenty11.skysail.server.app.SkysailApplication - Documentation service was set to 'SkysailDocumentationProvider' for application 'TestApplication$$EnhancerByMockitoWithCGLIB$$f9476b3b (SkysailApplication)
 Home: null, 
 Router: null
 AuthenticationService: null
 '
-INFO  de.twenty11.skysail.server.app.SkysailApplication - creating new Router in io.skysail.server.documentation.test.ApiResourceTest$TestApplication$$EnhancerByMockitoWithCGLIB$$2598b7cf
+INFO  de.twenty11.skysail.server.app.SkysailApplication - creating new Router in io.skysail.server.documentation.test.TestApplication$$EnhancerByMockitoWithCGLIB$$f9476b3b
 INFO  de.twenty11.skysail.server.app.SkysailApplication - adding extensions to metadata service
 INFO  de.twenty11.skysail.server.app.SkysailApplication - adding protocols
 DEBUG de.twenty11.skysail.server.app.SkysailApplication - attaching application-specific routes
-INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/docs/api' -> 'de.twenty11.skysail.server.security.AuthenticatedAuthorizer@38604b81'
-INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/docs/entities/{name}' -> 'de.twenty11.skysail.server.security.AuthenticatedAuthorizer@50de186c'
-INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/docs/entities' -> 'de.twenty11.skysail.server.security.AuthenticatedAuthorizer@1e8b7643'
-INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/path1' -> 'de.twenty11.skysail.server.security.AuthenticatedAuthorizer@71e9ebae'
+INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/docs/api' -> 'de.twenty11.skysail.server.security.AuthenticatedAuthorizer@1534f01b'
+INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/docs/entities/{name}' -> 'de.twenty11.skysail.server.security.AuthenticatedAuthorizer@7f552bd3'
+INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/docs/entities' -> 'de.twenty11.skysail.server.security.AuthenticatedAuthorizer@460d0a57'
+INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/path1' -> 'de.twenty11.skysail.server.security.AuthenticatedAuthorizer@1184ab05'
+DEBUG de.twenty11.skysail.server.app.SkysailApplication - creating blocker...
+DEBUG de.twenty11.skysail.server.app.SkysailApplication - creating tracer...
+DEBUG de.twenty11.skysail.server.app.SkysailApplication - creating original request filter...
+DEBUG de.twenty11.skysail.server.app.SkysailApplication - determining authentication service...
+DEBUG de.twenty11.skysail.server.app.SkysailApplication - creating dummy authentication guard
+INFO  d.t.skysail.server.core.restlet.ListServerResource - Request entry point: ApiResource @Get('html|json|csv|treeform')
+INFO  d.t.skysail.server.core.restlet.ListServerResource - calling getEntities, media types 'test'
+DEBUG d.t.s.s.core.restlet.filter.ExceptionCatchingFilter - entering ExceptionCatchingFilter#doHandle
+INFO  d.t.s.server.core.restlet.filter.AbstractResourceFilter - next filter in chain: AddApiVersionHeader
+INFO  d.t.s.server.core.restlet.filter.AbstractResourceFilter - next filter in chain: GetRequestPreFilterHook
+INFO  d.t.s.server.core.restlet.filter.AbstractResourceFilter - next filter in chain: AddRequestIdToResourceFilter
+INFO  d.t.s.server.core.restlet.filter.AbstractResourceFilter - next filter in chain: DataExtractingFilter
+DEBUG d.t.s.server.core.restlet.filter.DataExtractingFilter - entering DataExtractingFilter#doHandle
+WARN  de.twenty11.skysail.server.apidoc.ApplicationApi - could not create instance from io.skysail.server.documentation.EntitiesResource
+WARN  de.twenty11.skysail.server.apidoc.ApplicationApi - could not create instance from io.skysail.server.documentation.EntitiesResource
+WARN  de.twenty11.skysail.server.apidoc.ApplicationApi - could not create instance from io.skysail.server.documentation.test.ApiResourceTest$TestResource
+INFO  d.t.s.server.core.restlet.filter.AbstractResourceFilter - next filter in chain: AddLinkheadersFilter
+INFO  d.t.s.server.core.restlet.filter.AbstractResourceFilter - next filter in chain: CheckFavoritesFilter
+INFO  d.t.s.server.core.restlet.filter.AbstractResourceFilter - next filter in chain: SetExecutionTimeInResponseFilter
+INFO  d.t.s.server.core.restlet.filter.AbstractResourceFilter - next filter in chain: RedirectFilter
+DEBUG de.twenty11.skysail.server.app.SkysailApplication - Documentation service was set to 'SkysailDocumentationProvider' for application 'TestApplication$$EnhancerByMockitoWithCGLIB$$f9476b3b (SkysailApplication)
+Home: null, 
+Router: null
+AuthenticationService: null
+'
+INFO  de.twenty11.skysail.server.app.SkysailApplication - creating new Router in io.skysail.server.documentation.test.TestApplication$$EnhancerByMockitoWithCGLIB$$f9476b3b
+INFO  de.twenty11.skysail.server.app.SkysailApplication - adding extensions to metadata service
+INFO  de.twenty11.skysail.server.app.SkysailApplication - adding protocols
+DEBUG de.twenty11.skysail.server.app.SkysailApplication - attaching application-specific routes
+INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/docs/api' -> 'de.twenty11.skysail.server.security.AuthenticatedAuthorizer@28eaa59a'
+INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/docs/entities/{name}' -> 'de.twenty11.skysail.server.security.AuthenticatedAuthorizer@647e447'
+INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/docs/entities' -> 'de.twenty11.skysail.server.security.AuthenticatedAuthorizer@3c407114'
+INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/path1' -> 'de.twenty11.skysail.server.security.AuthenticatedAuthorizer@c33b74f'
 DEBUG de.twenty11.skysail.server.app.SkysailApplication - creating blocker...
 DEBUG de.twenty11.skysail.server.app.SkysailApplication - creating tracer...
 DEBUG de.twenty11.skysail.server.app.SkysailApplication - creating original request filter...

@@ -12,7 +12,8 @@ import org.osgi.framework.FrameworkUtil;
 import org.osgi.framework.ServiceReference;
 import org.restlet.resource.ServerResource;
 
-public class DocumentationIntegrationTests {
+public class DocumentationIntegrationTests { // extends
+                                             // ListServerResourceTestBase {
 
     private final BundleContext context = FrameworkUtil.getBundle(this.getClass()).getBundleContext();
 

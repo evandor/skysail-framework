@@ -1,5 +1,7 @@
 package de.twenty11.skysail.server.core.restlet;
 
+import io.skysail.api.documentation.API;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
@@ -117,6 +119,7 @@ public abstract class PutEntityServerResource<T> extends SkysailServerResource<T
     }
 
     @Get("htmlform|html")
+    @API(desc = "create an html form with the current entity to be updated")
     public SkysailResponse<T> createForm() {
         logger.info("Request entry point: {} @Get('htmlform|html')", this.getClass().getSimpleName());
         return new FormResponse<T>(getEntity(), getAttribute("id"), ".", redirectBackTo());
@@ -132,6 +135,7 @@ public abstract class PutEntityServerResource<T> extends SkysailServerResource<T
      * @return json
      */
     @Get("json")
+    @API(desc = "no implementation")
     public T getJson() {
         logger.info("Request entry point: {} @Get('json')", this.getClass().getSimpleName());
         RequestHandler<T> requestHandler = new RequestHandler<T>(getApplication());
@@ -147,6 +151,7 @@ public abstract class PutEntityServerResource<T> extends SkysailServerResource<T
      * @return object
      */
     @Put("json")
+    @API(desc = "generic PUT for JSON")
     public Object putEntity(T entity) {
         EtmPoint point = etmMonitor.createPoint("PutEntityServerResource:putEntity");
         logger.info("Request entry point: {} @Put('json')", this.getClass().getSimpleName());
@@ -157,6 +162,7 @@ public abstract class PutEntityServerResource<T> extends SkysailServerResource<T
     }
 
     @Put("x-www-form-urlencoded:html|json")
+    @API(desc = "generic PUT for x-www-form-urlencoded")
     public T put(Form form) {
         EtmPoint point = etmMonitor.createPoint("PutEntityServerResource:put");
         logger.info("Request entry point: {} @Put('x-www-form-urlencoded:html|json')", this.getClass().getSimpleName());

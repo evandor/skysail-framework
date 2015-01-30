@@ -6,6 +6,9 @@ public class AnnotationDescriptor {
 
     private String name;
 
+    /**
+     * @param annotation
+     */
     public AnnotationDescriptor(Annotation annotation) {
         name = annotation.annotationType().getName(); // e.g.
                                                       // javax.persistence.Id,

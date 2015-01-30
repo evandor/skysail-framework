@@ -1,0 +1,51 @@
+-runfw: org.apache.felix.framework;version='[4,5)'
+-runee: JavaSE-1.8
+-runsystemcapabilities: ${native_capability} 
+-runrepos:  \
+	Skysail Framework Hub,\
+	Bndtools Hub,\
+	Local,\
+	Workspace,\
+	Skysail Repository
+
+-resolve.effective: active;skip:="osgi.service"
+
+-runsystempackages: sun.reflect, sun.misc, javax.imageio.spi, javax.crypto, javax.crypto.spec, javax.script, javax.net,\
+    javax.net.ssl,javax.sql,javax.security.auth.x500,org.ietf.jgss,javax.naming,javax.naming.directory,javax.naming.ldap,\
+    javax.xml.bind,javax.xml.bind.annotation,javax.xml.bind.annotation.adapters,javax.activation,javax.security.auth.callback,\
+    javax.naming.spi,javax.management,javax.management.openmbean,javax.swing.tree,javax.transaction,javax.transaction.xa,\
+    javax.xml.transform.stax,javafx.application,javafx.scene,javafx.scene.control,javafx.scene.layout,javafx.stage,\
+    javafx.beans.property,javafx.collections,javafx.beans.value,javafx.concurrent,javafx.event,javafx.geometry,\
+    javafx.scene.image,javafx.scene.web,javafx.util,netscape.javascript,javafx.scene.paint
+
+-runtrace: false
+
+-runproperties: felix.fileinstall.dir=config/largetest,\
+    felix.fileinstall.filter=.*\\.jar|.*\\.cfg,\
+    felix.fileinstall.noInitialDelay=true,\
+    felix.fileinstall.poll=1000,\
+    org.apache.felix.log.storeDebug=true,\
+    felix.fileinstall.log.level=4,\
+    org.apache.felix.log.storeDebug=true,\
+    logback.configurationFile=config/largetest/logback.xml,\
+    obr.repository.url=https://raw.githubusercontent.com/evandor/skysail-repository/master/release/index.xml.gz http://felix.apache.org/obr/releases.xml
+
+-runrequires:  \
+	osgi.identity;filter:='(osgi.identity=org.apache.felix.gogo.shell)',\
+	osgi.identity;filter:='(osgi.identity=org.apache.felix.gogo.command)',\
+	osgi.identity;filter:='(&(osgi.identity=org.apache.felix.fileinstall)(version>=3.4.0))',\
+	osgi.identity;filter:='(&(osgi.identity=org.apache.felix.log)(version>=1.0.1))',\
+	osgi.identity;filter:='(&(osgi.identity=skysail.server.app.i18n)(version>=0.0.5))',\
+	osgi.identity;filter:='(&(osgi.identity=skysail.server.app.incubator)(version>=0.1.0))',\
+	osgi.identity;filter:='(&(osgi.identity=skysail.server.app.tutorial.model2rest)(version>=0.0.5))',\
+	osgi.identity;filter:='(&(osgi.identity=skysail.server.app.crm)(version>=0.0.0))',\
+	osgi.identity;filter:='(&(osgi.identity=skysail.server.db.orientdb)(version>=0.0.3))',\
+	osgi.identity;filter:='(&(osgi.identity=skysail.server.ext.converter.st)(version>=1.0.5))',\
+	osgi.identity;filter:='(&(osgi.identity=skysail.server.ext.i18n)(version>=0.0.10))',\
+	osgi.identity;filter:='(&(osgi.identity=skysail.server.http)(version>=1.0.15))',\
+	osgi.identity;filter:='(&(osgi.identity=skysail.server.security.shiro)(version>=5.1.2))',\
+	osgi.identity;filter:='(&(osgi.identity=skysail.server.static)(version>=0.5.20))',\
+	osgi.identity;filter:='(&(osgi.identity=skysail.server.um.internal)(version>=0.0.5))',\
+	osgi.identity;filter:='(&(osgi.identity=skysail.server.documentation)(version>=0.1))'
+	
+-resolve: auto

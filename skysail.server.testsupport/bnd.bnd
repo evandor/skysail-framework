@@ -1,0 +1,8 @@
+Bundle-Version: 0.1.0.${tstamp}
+Bundle-Name: SKYSAIL :: server :: testsupport
+Export-Package:  \
+	io.skysail.server.testsupport
+-buildpath:  \
+	org.restlet;version=2.1,\
+	org.mockito.mockito-all;version=1.10,\
+	com.springsource.org.junit;version=4.11

@@ -1,10 +1,14 @@
 package io.skysail.server.documentation;
 
+import io.skysail.api.documentation.API;
+
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+
+import lombok.EqualsAndHashCode;
 
 import org.restlet.data.Method;
 import org.restlet.resource.Delete;
@@ -19,9 +23,17 @@ import de.twenty11.skysail.server.core.restlet.RouteBuilder;
 import de.twenty11.skysail.server.core.restlet.SkysailServerResource;
 import de.twenty11.skysail.server.utils.ReflectionUtils;
 
-public class ApplicationApi implements Comparable<ApplicationApi> {
+/**
+ * A resourceApi connects a path with a target {@link ServerResource} and
+ * analyzes its associated entity and methods.
+ * 
+ * resourceApis defines a natural order based on its path.
+ *
+ */
+@EqualsAndHashCode(of = { "path" })
+public class ResourceApi implements Comparable<ResourceApi> {
 
-    private static final Logger logger = LoggerFactory.getLogger(ApplicationApi.class);
+    private static final Logger logger = LoggerFactory.getLogger(ResourceApi.class);
 
     private String path;
     private String securedByRole;
@@ -31,9 +43,16 @@ public class ApplicationApi implements Comparable<ApplicationApi> {
 
     private EntityDescriptor entity;
 
-    public ApplicationApi(String path, RouteBuilder routeBuilder) {
+    /**
+     * Creates a new instance by analyzing the provided route Builder.
+     * 
+     * @param path
+     *            the path (relative to the applications path)
+     * @param routeBuilder
+     *            the route builder used in the application.
+     */
+    public ResourceApi(String path, RouteBuilder routeBuilder) {
         this.path = path; // e.g. "clipboard", "clipboard/clips/{id}"
-        // securedByRole = routeBuilder.getSecuredByRole();
         target = routeBuilder.getTargetClass(); // e.g. ClipsResource
         setUpEntity(target);
         handleMethodAnnotations();
@@ -78,21 +97,21 @@ public class ApplicationApi implements Comparable<ApplicationApi> {
         List<java.lang.reflect.Method> methods = ReflectionUtils.getInheritedMethods(target);
         for (java.lang.reflect.Method method : methods) {
             SupportedMethod supportedMethod = null;
-            Get get = method.getAnnotation(Get.class);
-            if (get != null) {
-                supportedMethod = addGet(get);
+            Get getAnnotation = method.getAnnotation(Get.class);
+            if (getAnnotation != null) {
+                supportedMethod = addGet(getAnnotation, method);
             }
-            Post post = method.getAnnotation(Post.class);
-            if (post != null) {
-                supportedMethod = addPost(post);
+            Post postAnnotation = method.getAnnotation(Post.class);
+            if (postAnnotation != null) {
+                supportedMethod = addPost(postAnnotation, method);
             }
-            Put put = method.getAnnotation(Put.class);
-            if (put != null) {
-                supportedMethod = addPut(put);
+            Put putAnnotation = method.getAnnotation(Put.class);
+            if (putAnnotation != null) {
+                supportedMethod = addPut(putAnnotation, method);
             }
-            Delete delete = method.getAnnotation(Delete.class);
-            if (delete != null) {
-                supportedMethod = addDelete(delete);
+            Delete deleteAnnotation = method.getAnnotation(Delete.class);
+            if (deleteAnnotation != null) {
+                supportedMethod = addDelete(deleteAnnotation, method);
             }
             API api = method.getAnnotation(API.class);
             if (api != null) {
@@ -121,7 +140,7 @@ public class ApplicationApi implements Comparable<ApplicationApi> {
             if (methodToCheck.equals(method)) {
                 continue;
             }
-            if (methodToCheck.getMethodName().equals(method.getMethodName())
+            if (methodToCheck.getHttpVerb().getName().equals(method.getHttpVerb().getName())
                     && methodToCheck.getValue().equals(method.getValue())) {
                 if (method.getDesc() == null) {
                     continue;
@@ -134,26 +153,26 @@ public class ApplicationApi implements Comparable<ApplicationApi> {
         return null;
     }
 
-    private SupportedMethod addGet(Get htmlMethod) {
-        SupportedMethod supportMethod = new SupportedMethod(Method.GET, htmlMethod, path);
+    private SupportedMethod addGet(Get annotation, java.lang.reflect.Method method) {
+        SupportedMethod supportMethod = new SupportedMethod(Method.GET, annotation, method, path);
         methods.add(supportMethod);
         return supportMethod;
     }
 
-    private SupportedMethod addPost(Post htmlMethod) {
-        SupportedMethod supportMethod = new SupportedMethod(Method.POST, htmlMethod);
+    private SupportedMethod addPost(Post annotation, java.lang.reflect.Method method) {
+        SupportedMethod supportMethod = new SupportedMethod(Method.POST, annotation, method, path);
         methods.add(supportMethod);
         return supportMethod;
     }
 
-    private SupportedMethod addPut(Put htmlMethod) {
-        SupportedMethod supportMethod = new SupportedMethod(Method.PUT, htmlMethod);
+    private SupportedMethod addPut(Put annotation, java.lang.reflect.Method method) {
+        SupportedMethod supportMethod = new SupportedMethod(Method.PUT, annotation, method, path);
         methods.add(supportMethod);
         return supportMethod;
     }
 
-    private SupportedMethod addDelete(Delete htmlMethod) {
-        SupportedMethod supportMethod = new SupportedMethod(Method.DELETE, htmlMethod);
+    private SupportedMethod addDelete(Delete annotation, java.lang.reflect.Method method) {
+        SupportedMethod supportMethod = new SupportedMethod(Method.DELETE, annotation, method, path);
         methods.add(supportMethod);
         return supportMethod;
     }
@@ -173,7 +192,7 @@ public class ApplicationApi implements Comparable<ApplicationApi> {
     }
 
     @Override
-    public int compareTo(ApplicationApi o) {
+    public int compareTo(ResourceApi o) {
         return path.compareTo(o.getPath());
     }
 
@@ -202,31 +221,6 @@ public class ApplicationApi implements Comparable<ApplicationApi> {
 
     private void analyze(Class<?> entityClass, Class<?> rawType) {
         entity = new EntityDescriptor(entityClass, rawType);
-    }
-
-    @Override
-    public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + ((path == null) ? 0 : path.hashCode());
-        return result;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj)
-            return true;
-        if (obj == null)
-            return false;
-        if (getClass() != obj.getClass())
-            return false;
-        ApplicationApi other = (ApplicationApi) obj;
-        if (path == null) {
-            if (other.path != null)
-                return false;
-        } else if (!path.equals(other.path))
-            return false;
-        return true;
     }
 
 }

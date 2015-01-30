@@ -1,7 +1,14 @@
 package io.skysail.server.documentation;
 
+import io.skysail.api.documentation.API;
+
+import java.lang.annotation.Annotation;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
 
 import org.restlet.data.Method;
 import org.restlet.resource.Delete;
@@ -11,60 +18,44 @@ import org.restlet.resource.Put;
 
 import de.twenty11.skysail.api.responses.Link;
 
-//@lombok.EqualsAndHashCode
+@EqualsAndHashCode(of = { "method", "path" })
+@Getter
 public class SupportedMethod implements Comparable<SupportedMethod> {
 
-    private Method method;
-    private Get get;
-    private Post post;
-    private Put put;
-    private Delete delete;
+    private Method httpVerb;
+    private Annotation annotation;
     private String desc;
     private String path;
+    private java.lang.reflect.Method method;
 
-    public SupportedMethod(Method method, Get get, String path) {
+    /**
+     * @param httpVerb
+     * @param annotation
+     * @param method
+     * @param path
+     */
+    public SupportedMethod(Method httpVerb, Annotation annotation, java.lang.reflect.Method method, String path) {
+        // GET, POST, ....
+        this.httpVerb = httpVerb;
+        // e.g. @org.restlet.resource.Get(value=json)
+        this.annotation = annotation;
         this.method = method;
-        this.get = get;
         this.path = path;
     }
 
-    public SupportedMethod(Method method, Post post) {
-        this.method = method;
-        this.post = post;
-    }
-
-    public SupportedMethod(Method method, Put put) {
-        this.method = method;
-        this.put = put;
-    }
-
-    public SupportedMethod(Method method, Delete delete) {
-        this.method = method;
-        this.delete = delete;
-    }
-
-    public String getMethodName() {
-        return method.getName();
-    }
-
     public List<Link> getGet() {
-        if (get == null) {
-            return null;
+        if (!(annotation instanceof Get)) {
+            return Collections.emptyList();
         }
-        List<Link> result = new ArrayList<Link>();
-        String[] types = get.value().split("\\|");
-        for (String type : types) {
-            result.add(new Link(path + "?media=" + type, type));
-        }
-        return result;
+        return getLinks((Get) annotation);
     }
 
     public List<Link> getPostResponseTypes() {
-        if (post == null) {
-            return null;
+        if (!(annotation instanceof Post)) {
+            return Collections.emptyList();
         }
         List<Link> result = new ArrayList<Link>();
-        String[] types = post.value().split(":");
+        String[] types = ((Post) annotation).value().split(":");
         if (types.length == 2) {
             String[] split = types[1].split("\\|");
             for (String type : split) {
@@ -73,45 +64,44 @@ public class SupportedMethod implements Comparable<SupportedMethod> {
         }
         return result;
     }
-    
-    public List<Link> getPostRequestTypes() {
-        if (post == null) {
-            return null;
-        }
-        List<Link> result = new ArrayList<Link>();
-        String[] types = post.value().split(":");
-        if (types.length == 1 || types.length == 2) {
-            String[] split = types[0].split("\\|");
-            for (String type : split) {
-                result.add(new Link(path + "?media=" + type, type));
-            }
-        } else if (types.length > 2) {
-            // invalid input
-        }
-        return result;
-    }
 
-    public String getPut() {
-        return put == null ? null : put.value();
-    }
+    // public List<Link> getPostRequestTypes() {
+    // if (annotation == null) {
+    // return Collections.emptyList();
+    // }
+    // List<Link> result = new ArrayList<Link>();
+    // String[] types = annotation.value().split(":");
+    // if (types.length == 1 || types.length == 2) {
+    // String[] split = types[0].split("\\|");
+    // for (String type : split) {
+    // result.add(new Link(path + "?media=" + type, type));
+    // }
+    // } else if (types.length > 2) {
+    // // invalid input
+    // }
+    // return result;
+    // }
 
-    public String getDelete() {
-        return delete == null ? null : delete.value();
-    }
-
-    public String getDesc() {
-        return desc;
-    }
+    // public String getPut() {
+    // return put == null ? null : put.value();
+    // }
+    //
+    // public String getDelete() {
+    // return delete == null ? null : delete.value();
+    // }
 
     public String getValue() {
-        if (get != null) {
-            return get.value();
-        } else if (post != null) {
-            return post.value();
-        } else if (put != null) {
-            return put.value();
-        } else if (delete != null) {
-            return delete.value();
+        if (annotation == null) {
+            return "";
+        }
+        if (annotation instanceof Get) {
+            return ((Get) annotation).value();
+        } else if (annotation instanceof Post) {
+            return ((Post) annotation).value();
+        } else if (annotation instanceof Put) {
+            return ((Put) annotation).value();
+        } else if (annotation instanceof Delete) {
+            return ((Delete) annotation).value();
         } else {
             return "";
         }
@@ -123,11 +113,20 @@ public class SupportedMethod implements Comparable<SupportedMethod> {
 
     @Override
     public int compareTo(SupportedMethod other) {
-        int compareTo = getMethodName().compareTo(other.getMethodName());
+        int compareTo = getHttpVerb().getName().compareTo(other.getHttpVerb().getName());
         if (compareTo != 0) {
             return compareTo;
         }
-        return 0;
+        return annotation.toString().compareTo(other.annotation.toString());
     }
 
+    private List<Link> getLinks(Get annotation2) {
+        List<Link> result = new ArrayList<Link>();
+        String[] types = ((Get) annotation).value().split("\\|");
+        for (String type : types) {
+            result.add(new Link(path + "?media=" + type, type));
+        }
+        return result;
+
+    }
 }

@@ -1,5 +1,7 @@
 package de.twenty11.skysail.server.core.restlet;
 
+import io.skysail.api.documentation.API;
+
 import java.text.ParseException;
 import java.util.List;
 import java.util.Set;
@@ -139,6 +141,7 @@ public abstract class EntityServerResource<T> extends SkysailServerResource<T> {
      * @return the entity as json string
      */
     @Get("json")
+    @API(desc = "retrieves the entity defined by the url as JSON")
     public T getJson() {
         EtmPoint point = etmMonitor.createPoint("EntityServerResource:getJson");
         logger.info("Request entry point: {} @Get('json')", this.getClass().getSimpleName());
@@ -159,6 +162,7 @@ public abstract class EntityServerResource<T> extends SkysailServerResource<T> {
      * @return the reponse
      */
     @Get("html|eventstream|treeform|txt")
+    @API(desc = "retrieves the entity defined by the url")
     public SkysailResponse<T> getEntity() {
         EtmPoint point = etmMonitor.createPoint("EntityServerResource:getEntity");
         logger.info("Request entry point: {} @Get('html|eventstream|treeform|txt')", this.getClass().getSimpleName());
@@ -172,6 +176,7 @@ public abstract class EntityServerResource<T> extends SkysailServerResource<T> {
      * @return the response
      */
     @Get("htmlform")
+    @API(desc = "provides a form to delete the entity")
     public SkysailResponse<T> getDeleteForm() {
         return new FormResponse<T>(getEntity("dummy"), ".", "/");
     }
@@ -180,6 +185,7 @@ public abstract class EntityServerResource<T> extends SkysailServerResource<T> {
      * @return the entity
      */
     @Delete("x-www-form-urlencoded:html|html|json")
+    @API(desc = "deletes the entity defined in the url")
     public T deleteEntity() {
         EtmPoint point = etmMonitor.createPoint("EntityServerResource:deleteEntity");
         logger.info("Request entry point: {} @Delete('x-www-form-urlencoded:html|html|json')", this.getClass()

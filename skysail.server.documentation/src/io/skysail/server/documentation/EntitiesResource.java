@@ -1,5 +1,7 @@
 package io.skysail.server.documentation;
 
+import io.skysail.api.documentation.API;
+
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -48,7 +50,7 @@ public class EntitiesResource extends ListServerResource<EntityDescriptor> {
         Set<EntityDescriptor> entities = new HashSet<EntityDescriptor>();
         Map<String, RouteBuilder> routes = app.getRoutesMap();
         for (String path : routes.keySet()) {
-            ApplicationApi applicationApi = new ApplicationApi(applicationName + path, routes.get(path));
+            ResourceApi applicationApi = new ResourceApi(applicationName + path, routes.get(path));
             if (applicationApi.getEntity() == null) {
                 continue;
             }

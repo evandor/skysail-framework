@@ -1,5 +1,7 @@
 package de.twenty11.skysail.server.core.restlet;
 
+import io.skysail.api.documentation.API;
+
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
@@ -146,12 +148,14 @@ public abstract class PostEntityServerResource<T> extends SkysailServerResource<
     };
 
     @Get("htmlform|html")
+    @API(desc = "create an html form to post a new entity")
     public SkysailResponse<T> createForm() {
         logger.info("Request entry point: {} @Get('htmlform|html')", this.getClass().getSimpleName());
         return new FormResponse<T>(createEntityTemplate(), ".");
     }
 
     @Get("json")
+    @API(desc = "as Json")
     public T getJson() {
         EtmPoint point = etmMonitor.createPoint("PostEntityServerResource:getJson");
         logger.info("Request entry point: {} @Get('json')", this.getClass().getSimpleName());
@@ -163,7 +167,7 @@ public abstract class PostEntityServerResource<T> extends SkysailServerResource<
     }
 
     @Post("json")
-    // @API(desc = "generic POST for JSON")
+    @API(desc = "generic POST for JSON")
     public Object post(T entity) {
         EtmPoint point = etmMonitor.createPoint("PostEnityServerResource:post");
         logger.info("Request entry point: {} @Post('json')", this.getClass().getSimpleName());
@@ -179,7 +183,7 @@ public abstract class PostEntityServerResource<T> extends SkysailServerResource<
     }
 
     @Post("x-www-form-urlencoded:html|json|xml")
-    // @API(desc = "generic POST for x-www-form-urlencoded")
+    @API(desc = "generic POST for x-www-form-urlencoded")
     public Object post(Form form) {
         EtmPoint point = etmMonitor.createPoint("PostEntityServerResource:postForm");
         logger.info("Request entry point: {} @Post('x-www-form-urlencoded:html|json|xml')", this.getClass()

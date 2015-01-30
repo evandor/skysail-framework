@@ -1,4 +1,4 @@
-package de.twenty11.skysail.server.apidoc;
+package io.skysail.server.documentation;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
@@ -12,8 +12,8 @@ public class FieldDescriptor {
     private Class<?> type;
 
     public FieldDescriptor(Field field) {
-        name = field.getName();
-        type = field.getType();
+        name = field.getName(); // e.g. "rid"
+        type = field.getType(); // e.g. class java.lang.Object
         Annotation[] annotations = field.getAnnotations();
         for (Annotation annotation : annotations) {
             annotationDescriptors.add(new AnnotationDescriptor(annotation));

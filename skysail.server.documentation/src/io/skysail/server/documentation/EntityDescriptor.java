@@ -1,4 +1,4 @@
-package de.twenty11.skysail.server.apidoc;
+package io.skysail.server.documentation;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
@@ -16,9 +16,10 @@ public class EntityDescriptor {
     private List<FieldDescriptor> fieldDescriptors = new ArrayList<FieldDescriptor>();
 
     public EntityDescriptor(Class<?> entityClass, Class<?> rawType) {
-        this.rawType = rawType;
-        name = entityClass.getName();
-        simpleName = entityClass.getSimpleName();
+        this.rawType = rawType; // e.g. class
+                                // de.twenty11.skysail.server.core.restlet.ListServerResource
+        name = entityClass.getName(); // de.twenty11.skysail.server.app.clipboard.clip.Clip
+        simpleName = entityClass.getSimpleName(); // e.g. Clip
         setUpClassAnnotations(entityClass.getAnnotations());
         setUpFieldAnnotations(entityClass);
     }

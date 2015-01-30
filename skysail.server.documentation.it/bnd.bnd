@@ -38,12 +38,27 @@ Test-Cases: \
 	osgi.identity;filter:='(osgi.identity=org.apache.felix.gogo.shell)',\
 	osgi.identity;filter:='(osgi.identity=org.apache.felix.gogo.command)',\
 	osgi.identity;filter:='(osgi.identity=org.apache.felix.log)',\
+	osgi.identity;filter:='(&(osgi.identity=skysail.api.documentation)(version>=0))',\
 	osgi.identity;filter:='(&(osgi.identity=skysail.server)(version>=5.1))',\
 	osgi.identity;filter:='(&(osgi.identity=skysail.server.documentation)(version>=0.1))',\
 	osgi.identity;filter:='(&(osgi.identity=ch.qos.logback.classic)(version>=1.1.2))',\
 	osgi.identity;filter:='(&(osgi.identity=org.apache.felix.configadmin)(version>=1.8.0))',\
 	osgi.identity;filter:='(&(osgi.identity=org.apache.felix.fileinstall)(version>=3.4.0))',\
-	osgi.identity;filter:='(&(osgi.identity=org.apache.felix.scr)(version>=1.8.2))'
+	osgi.identity;filter:='(&(osgi.identity=org.apache.felix.scr)(version>=1.8.2))',\
+	osgi.identity;filter:='(&(osgi.identity=com.fasterxml.jackson.core.jackson-annotations)(version>=2.3.3))',\
+	osgi.identity;filter:='(&(osgi.identity=com.fasterxml.jackson.core.jackson-databind)(version>=2.2.2))',\
+	osgi.identity;filter:='(&(osgi.identity=com.google.guava)(version>=15.0.0)(!(version>=16.0.0)))',\
+	osgi.identity;filter:='(&(osgi.identity=com.orientechnologies.orientdb-object)(version>=2.0.0.rc1))',\
+	osgi.identity;filter:='(&(osgi.identity=skysail.api)(version>=2.0))',\
+	osgi.identity;filter:='(&(osgi.identity=etm.core)(version>=1.2.3.1))',\
+	osgi.identity;filter:='(&(osgi.identity=skysail.api.validation)(version>=0.1))',\
+	osgi.identity;filter:='(&(osgi.identity=org.hibernate.validator)(version>=5.0.1.Final))',\
+	osgi.identity;filter:='(&(osgi.identity=org.apache.commons.beanutils)(version>=1.9.2))',\
+	osgi.identity;filter:='(&(osgi.identity=org.apache.shiro.core)(version>=1.2.2))',\
+	osgi.identity;filter:='(&(osgi.identity=de.twenty11.owasp-java-html-sanitizer)(version>=239.0.0))',\
+	osgi.identity;filter:='(&(osgi.identity=org.restlet.ext.jackson)(version>=2.1.7.v20140209-2035))',\
+	osgi.identity;filter:='(&(osgi.identity=ch.qos.logback.classic)(version>=1.1.2))',\
+	osgi.identity;filter:='(&(osgi.identity=org.restlet.ext.slf4j)(version>=2.1.7.v20140209-2035))'
 
 -runbundles:  \
 	ch.qos.logback.classic;version='[1.1.2,1.1.3)',\
@@ -56,7 +71,6 @@ Test-Cases: \
 	com.googlecode.concurrentlinkedhashmap.lru;version='[1.4.0,1.4.1)',\
 	com.orientechnologies.orientdb-core;version='[2.0.0,2.0.1)',\
 	com.orientechnologies.orientdb-object;version='[2.0.0,2.0.1)',\
-	com.springsource.org.junit;version='[4.11.0,4.11.1)',\
 	com.sun.el;version='[2.2.0,2.2.1)',\
 	de.twenty11.owasp-java-html-sanitizer;version='[239.0.0,239.0.1)',\
 	etm.core;version='[1.2.3,1.2.4)',\

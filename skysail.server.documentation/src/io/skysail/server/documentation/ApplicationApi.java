@@ -1,4 +1,4 @@
-package de.twenty11.skysail.server.apidoc;
+package io.skysail.server.documentation;
 
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
@@ -32,9 +32,9 @@ public class ApplicationApi implements Comparable<ApplicationApi> {
     private EntityDescriptor entity;
 
     public ApplicationApi(String path, RouteBuilder routeBuilder) {
-        this.path = path;
-        //securedByRole = routeBuilder.getSecuredByRole();
-        target = routeBuilder.getTargetClass();
+        this.path = path; // e.g. "clipboard", "clipboard/clips/{id}"
+        // securedByRole = routeBuilder.getSecuredByRole();
+        target = routeBuilder.getTargetClass(); // e.g. ClipsResource
         setUpEntity(target);
         handleMethodAnnotations();
         removeDuplicatedAnnotations();
@@ -106,10 +106,10 @@ public class ApplicationApi implements Comparable<ApplicationApi> {
         for (SupportedMethod method : methods) {
             SupportedMethod duplicate = getDuplicate(method);
             if (duplicate != null) {
-               methodsToRemove.add(duplicate);
+                methodsToRemove.add(duplicate);
             }
-            //List<SupportedMethod> parents = getParents(method);
-            //methodsToRemove.addAll(parents);
+            // List<SupportedMethod> parents = getParents(method);
+            // methodsToRemove.addAll(parents);
         }
         for (SupportedMethod methodToRemove : methodsToRemove) {
             methods.remove(methodToRemove);

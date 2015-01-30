@@ -21,7 +21,7 @@ Bundle-Version: 1.0.4.${tstamp}
 	org.mockito.mockito-all,\
 	hamcrest-core;version=1.3,\
 	skysail.api;version=2.0.1,\
-	skysail.server;version=5,\
+	skysail.server;version=latest,\
 	skysail.api.validation;version=0,\
 	lombok;version=1.12,\
 	slf4j.api;version=1.7
@@ -57,7 +57,8 @@ Test-Cases:  \
 	osgi.identity;filter:='(&(osgi.identity=skysail.api.validation)(version>=0.1))',\
 	osgi.identity;filter:='(&(osgi.identity=skysail.api.documentation)(version>=0.1))',\
 	osgi.identity;filter:='(&(osgi.identity=osgi.cmpn)(version>=5.0))',\
-	osgi.identity;filter:='(&(osgi.identity=ch.qos.logback.classic)(version>=1.1.2))'
+	osgi.identity;filter:='(&(osgi.identity=ch.qos.logback.classic)(version>=1.1.2))',\
+	osgi.identity;filter:='(&(osgi.identity=org.hibernate.validator)(version>=5.0.1.Final))'
 
 -runbundles:  \
 	ch.qos.logback.classic;version='[1.1.2,1.1.3)',\
@@ -70,7 +71,6 @@ Test-Cases:  \
 	com.googlecode.concurrentlinkedhashmap.lru;version='[1.4.0,1.4.1)',\
 	com.orientechnologies.orientdb-core;version='[2.0.0,2.0.1)',\
 	com.orientechnologies.orientdb-object;version='[2.0.0,2.0.1)',\
-	com.springsource.org.junit;version='[4.11.0,4.11.1)',\
 	com.sun.el;version='[2.2.0,2.2.1)',\
 	de.twenty11.owasp-java-html-sanitizer;version='[239.0.0,239.0.1)',\
 	etm.core;version='[1.2.3,1.2.4)',\
@@ -100,7 +100,6 @@ Test-Cases:  \
 	osgi.cmpn;version='[5.0.0,5.0.1)',\
 	osgi.enterprise;version='[4.2.0,4.2.1)',\
 	skysail.api;version=latest,\
-	skysail.api.documentation;version='[0.1.0,0.1.1)',\
 	skysail.api.documentation;version=latest,\
 	skysail.api.validation;version=latest,\
 	skysail.server;version=latest,\

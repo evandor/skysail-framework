@@ -9,9 +9,6 @@ import java.util.Set;
 import org.restlet.resource.Get;
 import org.restlet.resource.ResourceException;
 
-import de.twenty11.skysail.server.apidoc.API;
-import de.twenty11.skysail.server.apidoc.ApplicationApi;
-import de.twenty11.skysail.server.apidoc.EntityDescriptor;
 import de.twenty11.skysail.server.app.SkysailApplication;
 import de.twenty11.skysail.server.core.restlet.ListServerResource;
 import de.twenty11.skysail.server.core.restlet.RouteBuilder;

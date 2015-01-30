@@ -23,7 +23,6 @@ import de.twenty11.skysail.api.responses.FormResponse;
 import de.twenty11.skysail.api.responses.LinkHeaderRelation;
 import de.twenty11.skysail.api.responses.Linkheader;
 import de.twenty11.skysail.api.responses.SkysailResponse;
-import de.twenty11.skysail.server.apidoc.API;
 import de.twenty11.skysail.server.core.restlet.filter.AbstractResourceFilter;
 import de.twenty11.skysail.server.core.restlet.filter.CheckBusinessViolationsFilter;
 import de.twenty11.skysail.server.core.restlet.filter.FormDataExtractingFilter;
@@ -164,7 +163,7 @@ public abstract class PostEntityServerResource<T> extends SkysailServerResource<
     }
 
     @Post("json")
-    @API(desc = "generic POST for JSON")
+    // @API(desc = "generic POST for JSON")
     public Object post(T entity) {
         EtmPoint point = etmMonitor.createPoint("PostEnityServerResource:post");
         logger.info("Request entry point: {} @Post('json')", this.getClass().getSimpleName());
@@ -180,7 +179,7 @@ public abstract class PostEntityServerResource<T> extends SkysailServerResource<
     }
 
     @Post("x-www-form-urlencoded:html|json|xml")
-    @API(desc = "generic POST for x-www-form-urlencoded")
+    // @API(desc = "generic POST for x-www-form-urlencoded")
     public Object post(Form form) {
         EtmPoint point = etmMonitor.createPoint("PostEntityServerResource:postForm");
         logger.info("Request entry point: {} @Post('x-www-form-urlencoded:html|json|xml')", this.getClass()

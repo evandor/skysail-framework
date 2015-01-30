@@ -1,4 +1,4 @@
-package de.twenty11.skysail.server.apidoc;
+package io.skysail.server.documentation;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;

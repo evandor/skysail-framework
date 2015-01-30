@@ -39,7 +39,6 @@ import org.restlet.resource.ServerResource;
 
 import de.twenty11.skysail.api.responses.LinkHeaderRelation;
 import de.twenty11.skysail.api.responses.SkysailResponse;
-import de.twenty11.skysail.server.apidoc.API;
 import de.twenty11.skysail.server.app.TranslationProvider;
 import de.twenty11.skysail.server.core.restlet.filter.AbstractResourceFilter;
 import etm.core.monitor.EtmPoint;
@@ -123,7 +122,7 @@ public abstract class ListServerResource<T> extends SkysailServerResource<List<T
     }
 
     @Get("html|json|csv|treeform")
-    @API(desc = "lists the entities according to the media type provided")
+    // @API(desc = "lists the entities according to the media type provided")
     public List<T> getEntities() {
         EtmPoint point = etmMonitor.createPoint("ListServerResource:getEntities");
         log.info("Request entry point: {} @Get('html|json|csv|treeform')", this.getClass().getSimpleName());

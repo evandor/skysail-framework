@@ -5,6 +5,7 @@ import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
 import io.skysail.api.documentation.DocumentationProvider;
 import io.skysail.server.documentation.ApiResource;
+import io.skysail.server.documentation.ApplicationApi;
 import io.skysail.server.documentation.SkysailDocumentationProvider;
 
 import java.util.Arrays;
@@ -26,7 +27,6 @@ import org.restlet.Context;
 import org.restlet.Request;
 import org.restlet.Response;
 
-import de.twenty11.skysail.server.apidoc.ApplicationApi;
 import de.twenty11.skysail.server.core.restlet.ListServerResource;
 
 @RunWith(MockitoJUnitRunner.class)

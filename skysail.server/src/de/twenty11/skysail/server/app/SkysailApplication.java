@@ -20,6 +20,8 @@ import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
 
+import lombok.extern.slf4j.Slf4j;
+
 import org.apache.commons.lang.StringEscapeUtils;
 import org.apache.commons.lang.Validate;
 import org.markdown4j.Markdown4jProcessor;
@@ -129,6 +131,7 @@ import de.twenty11.skysail.server.utils.ReflectionUtils;
  * 
  */
 // @lombok.EqualsAndHashCode(callSuper=false)
+@Slf4j
 public abstract class SkysailApplication extends Application implements ApplicationProvider, TranslationProvider,
         ResourceBundleProvider, Comparable<ApplicationProvider> {
 
@@ -220,7 +223,10 @@ public abstract class SkysailApplication extends Application implements Applicat
      * UsersResource.class).authorizeWith(anyOf("admin")));
      */
     protected void attach() {
-
+        if (getDocumentationProvider() == null) {
+            log.warn("not documentation provider available. No Selfdocumentation of APIs.");
+            return;
+        }
         Map<String, Class<? extends ServerResource>> docuMap = getDocumentationProvider().getResourceMap();
         docuMap.keySet().stream().forEach(key -> {
             router.attach(new RouteBuilder(key, docuMap.get(key)));

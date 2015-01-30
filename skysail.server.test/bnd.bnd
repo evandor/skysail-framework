@@ -1,5 +1,5 @@
 Bundle-Name: SKYSAIL :: server :: test
-Bundle-Version: 1.0.3.${tstamp}
+Bundle-Version: 1.0.4.${tstamp}
 
 -runfw: org.apache.felix.framework;version='[4,5)'
 -runee: JavaSE-1.8
@@ -100,6 +100,7 @@ Test-Cases:  \
 	osgi.cmpn;version='[5.0.0,5.0.1)',\
 	osgi.enterprise;version='[4.2.0,4.2.1)',\
 	skysail.api;version=latest,\
+	skysail.api.documentation;version='[0.1.0,0.1.1)',\
 	skysail.api.documentation;version=latest,\
 	skysail.api.validation;version=latest,\
 	skysail.server;version=latest,\

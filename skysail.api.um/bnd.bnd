@@ -1,4 +1,4 @@
-Bundle-Version: 0.1.0.${tstamp}
+Bundle-Version: 0.1.1.${tstamp}
 Bundle-Name: SKYSAIL :: api :: um
 Bundle-Description: an incubator bundle for the skysail usermanagement API  (which will be moved \
 	to skysail.api once stable) together with default implementations

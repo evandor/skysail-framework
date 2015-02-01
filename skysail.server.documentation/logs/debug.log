@@ -1,0 +1,1313 @@
+2015-02-01 08:58:58,578 INFO  de.twenty11.skysail.server.app.SkysailApplication - Instanciating new Skysail Application 'SkysailWebsiteApplication'
+2015-02-01 08:58:58,596 INFO  de.twenty11.skysail.server.app.SkysailApplication - Activating Application de.twenty11.skysail.products.website.SkysailWebsiteApplication
+2015-02-01 08:58:58,713 INFO  de.twenty11.skysail.server.app.ApplicationList - ======================================================
+2015-02-01 08:58:58,714 INFO  de.twenty11.skysail.server.app.ApplicationList - Adding application 'website'
+2015-02-01 08:58:58,714 INFO  de.twenty11.skysail.server.app.ApplicationList - ======================================================
+2015-02-01 08:58:58,731 DEBUG de.twenty11.skysail.server.app.SkysailApplication - Validator service was set to 'DefaultValidationImpl' for application 'website'
+2015-02-01 08:58:58,733 DEBUG de.twenty11.skysail.server.app.SkysailApplication - Authorization service was set to null for application 'website'
+2015-02-01 08:58:58,735 DEBUG de.twenty11.skysail.server.app.SkysailApplication - Favorites service was set to null for application 'website'
+2015-02-01 08:58:58,737 DEBUG de.twenty11.skysail.server.app.SkysailApplication - Translation service was set to null for application 'website'
+2015-02-01 08:58:58,754 DEBUG de.twenty11.skysail.server.app.SkysailApplication - Metrics service was set to null for application 'website'
+2015-02-01 08:58:58,761 DEBUG de.twenty11.skysail.server.app.SkysailApplication - Validator service was set to 'DefaultValidationImpl' for application 'website'
+2015-02-01 08:58:58,764 DEBUG de.twenty11.skysail.server.app.SkysailApplication - Documentation service was set to null for application 'website'
+2015-02-01 08:58:58,766 DEBUG de.twenty11.skysail.server.app.SkysailApplication - setting hookfilters to application 'website'
+2015-02-01 08:58:59,055 INFO  d.t.skysail.server.core.restlet.SkysailConverterHelper - initializing new converter 'ServerSentEventsConverter' with typesMatch '{text/event-stream=1.0}'
+2015-02-01 08:58:59,064 INFO  io.skysail.server.db.DbConfigurations - activating DbConfigurations with config DbConfig(name=skysail, driver=, url=memory:website, username=)
+2015-02-01 08:58:59,071 DEBUG d.t.s.s.c.o.i.listener.SkysailServerBundleListener - could not send bundleStartedMessage for skysail.server.app.clipboard
+2015-02-01 08:58:59,084 INFO  de.twenty11.skysail.server.app.SkysailApplication - Instanciating new Skysail Application 'I18nApplication'
+2015-02-01 08:58:59,086 INFO  de.twenty11.skysail.server.app.SkysailApplication - Activating Application de.twenty11.skysail.server.app.i18n.I18nApplication
+2015-02-01 08:58:59,087 INFO  de.twenty11.skysail.server.app.ApplicationList - ======================================================
+2015-02-01 08:58:59,087 INFO  de.twenty11.skysail.server.app.ApplicationList - Adding application 'i18n'
+2015-02-01 08:58:59,088 INFO  de.twenty11.skysail.server.app.ApplicationList - ======================================================
+2015-02-01 08:58:59,088 DEBUG de.twenty11.skysail.server.app.SkysailApplication - Authorization service was set to null for application 'i18n'
+2015-02-01 08:58:59,089 DEBUG de.twenty11.skysail.server.app.SkysailApplication - Favorites service was set to null for application 'i18n'
+2015-02-01 08:58:59,089 DEBUG de.twenty11.skysail.server.app.SkysailApplication - Translation service was set to null for application 'i18n'
+2015-02-01 08:58:59,089 DEBUG de.twenty11.skysail.server.app.SkysailApplication - Metrics service was set to null for application 'i18n'
+2015-02-01 08:58:59,089 DEBUG de.twenty11.skysail.server.app.SkysailApplication - Validator service was set to 'DefaultValidationImpl' for application 'i18n'
+2015-02-01 08:58:59,089 DEBUG de.twenty11.skysail.server.app.SkysailApplication - Documentation service was set to null for application 'i18n'
+2015-02-01 08:58:59,089 DEBUG de.twenty11.skysail.server.app.SkysailApplication - setting hookfilters to application 'i18n'
+2015-02-01 08:58:59,090 DEBUG d.t.s.s.c.o.i.listener.SkysailServerBundleListener - could not send bundleStartedMessage for skysail.server.app.i18n
+2015-02-01 08:59:00,925 DEBUG de.twenty11.skysail.server.db.orientdb.OrientDbService - activating de.twenty11.skysail.server.db.orientdb.OrientDbService
+2015-02-01 08:59:00,931 DEBUG d.t.s.s.c.o.i.listener.SkysailServerBundleListener - could not send bundleStartedMessage for skysail.server.db.orientdb
+2015-02-01 08:59:00,950 INFO  d.t.skysail.server.ext.converter.st.NoopConverter - de.twenty11.skysail.server.ext.converter.st.NoopConverter activated
+2015-02-01 08:59:00,953 INFO  de.twenty11.skysail.server.app.SkysailApplication - Instanciating new Skysail Application 'WebappApplication'
+2015-02-01 08:59:00,955 INFO  de.twenty11.skysail.server.app.SkysailApplication - Activating Application de.twenty11.skysail.server.ext.converter.st.WebappApplication
+2015-02-01 08:59:00,956 INFO  de.twenty11.skysail.server.app.ApplicationList - ======================================================
+2015-02-01 08:59:00,957 INFO  de.twenty11.skysail.server.app.ApplicationList - Adding application 'webapp'
+2015-02-01 08:59:00,957 INFO  de.twenty11.skysail.server.app.ApplicationList - ======================================================
+2015-02-01 08:59:00,957 DEBUG de.twenty11.skysail.server.app.SkysailApplication - Authorization service was set to null for application 'webapp'
+2015-02-01 08:59:00,957 DEBUG de.twenty11.skysail.server.app.SkysailApplication - Favorites service was set to null for application 'webapp'
+2015-02-01 08:59:00,957 DEBUG de.twenty11.skysail.server.app.SkysailApplication - Translation service was set to null for application 'webapp'
+2015-02-01 08:59:00,957 DEBUG de.twenty11.skysail.server.app.SkysailApplication - Metrics service was set to null for application 'webapp'
+2015-02-01 08:59:00,957 DEBUG de.twenty11.skysail.server.app.SkysailApplication - Validator service was set to 'DefaultValidationImpl' for application 'webapp'
+2015-02-01 08:59:00,957 DEBUG de.twenty11.skysail.server.app.SkysailApplication - Documentation service was set to null for application 'webapp'
+2015-02-01 08:59:00,957 DEBUG de.twenty11.skysail.server.app.SkysailApplication - setting hookfilters to application 'webapp'
+2015-02-01 08:59:00,958 DEBUG d.t.s.s.c.o.i.listener.SkysailServerBundleListener - could not send bundleStartedMessage for skysail.server.ext.converter.st
+2015-02-01 08:59:00,968 DEBUG de.twenty11.skysail.server.app.SkysailApplication - Translation service was set to 'BundleResourceTranslationService' for application 'website'
+2015-02-01 08:59:00,968 DEBUG de.twenty11.skysail.server.app.SkysailApplication - Translation service was set to 'BundleResourceTranslationService' for application 'i18n'
+2015-02-01 08:59:00,968 DEBUG de.twenty11.skysail.server.app.SkysailApplication - Translation service was set to 'BundleResourceTranslationService' for application 'webapp'
+2015-02-01 08:59:00,968 DEBUG d.t.s.s.c.o.i.listener.SkysailServerBundleListener - could not send bundleStartedMessage for skysail.server.ext.i18n
+2015-02-01 08:59:00,989 INFO  de.twenty11.skysail.server.http.HttpServer - Activating de.twenty11.skysail.server.http.HttpServer
+2015-02-01 08:59:01,009 INFO  de.twenty11.skysail.server.SkysailComponent - Creating Restlet Component: de.twenty11.skysail.server.SkysailComponent
+2015-02-01 08:59:01,012 INFO  de.twenty11.skysail.server.http.HttpServer - 
+2015-02-01 08:59:01,013 INFO  de.twenty11.skysail.server.http.HttpServer - ====================================
+2015-02-01 08:59:01,013 INFO  de.twenty11.skysail.server.http.HttpServer - Starting skysail server on port 2017
+2015-02-01 08:59:01,013 INFO  de.twenty11.skysail.server.http.HttpServer - ====================================
+2015-02-01 08:59:01,013 INFO  de.twenty11.skysail.server.http.HttpServer - 
+2015-02-01 08:59:01,025 DEBUG d.t.s.s.c.o.i.listener.SkysailServerBundleListener - could not send bundleStartedMessage for skysail.server.http
+2015-02-01 08:59:01,035 INFO  org.restlet - Starting the internal [HTTP/1.1] server on port 2017
+2015-02-01 08:59:01,070 INFO  de.twenty11.skysail.server.security.shiro.ShiroServices - creating new SkysailAuthorizingRealm...
+2015-02-01 08:59:01,085 INFO  de.twenty11.skysail.server.http.SwarmClient - checking 'peers' configuration to connect to swarm servers...
+2015-02-01 08:59:01,116 INFO  de.twenty11.skysail.server.security.shiro.ShiroServices - Setting new SkysailWebSecurityManager as Shiros SecurityManager
+2015-02-01 08:59:01,176 INFO  d.t.s.s.s.shiro.session.mgt.SkysailWebSessionManager - creating new SkysailWebSessionManager
+2015-02-01 08:59:01,179 DEBUG d.t.s.s.c.o.i.listener.SkysailServerBundleListener - could not send bundleStartedMessage for skysail.server.security.shiro
+2015-02-01 08:59:01,186 INFO  de.twenty11.skysail.server.app.SkysailApplication - Instanciating new Skysail Application 'WebappApplication'
+2015-02-01 08:59:01,187 INFO  de.twenty11.skysail.server.app.SkysailApplication - Activating Application de.twenty11.skysail.server.webapp.internal.WebappApplication
+2015-02-01 08:59:01,188 INFO  de.twenty11.skysail.server.app.ApplicationList - ======================================================
+2015-02-01 08:59:01,188 INFO  de.twenty11.skysail.server.app.ApplicationList - Adding application 'static'
+2015-02-01 08:59:01,188 INFO  de.twenty11.skysail.server.app.ApplicationList - ======================================================
+2015-02-01 08:59:01,188 DEBUG de.twenty11.skysail.server.app.SkysailApplication - Authorization service was set to null for application 'static'
+2015-02-01 08:59:01,188 DEBUG de.twenty11.skysail.server.app.SkysailApplication - Favorites service was set to null for application 'static'
+2015-02-01 08:59:01,188 DEBUG de.twenty11.skysail.server.app.SkysailApplication - Translation service was set to 'BundleResourceTranslationService' for application 'static'
+2015-02-01 08:59:01,188 DEBUG de.twenty11.skysail.server.app.SkysailApplication - Metrics service was set to null for application 'static'
+2015-02-01 08:59:01,188 DEBUG de.twenty11.skysail.server.app.SkysailApplication - Validator service was set to 'DefaultValidationImpl' for application 'static'
+2015-02-01 08:59:01,188 DEBUG de.twenty11.skysail.server.app.SkysailApplication - Documentation service was set to null for application 'static'
+2015-02-01 08:59:01,188 DEBUG de.twenty11.skysail.server.app.SkysailApplication - setting hookfilters to application 'static'
+2015-02-01 08:59:01,189 DEBUG d.t.s.s.c.o.i.listener.SkysailServerBundleListener - could not send bundleStartedMessage for skysail.server.static
+2015-02-01 08:59:01,213 INFO  de.twenty11.skysail.server.app.SkysailApplication - Instanciating new Skysail Application 'UserManagementApplication'
+2015-02-01 08:59:01,214 INFO  d.t.s.server.um.internal.UserManagementApplication - instanciating new UserManagementApplication #1227635017
+2015-02-01 08:59:01,215 INFO  d.t.s.server.um.internal.UserManagementApplication - setting ServiceListProvider to de.twenty11.skysail.server.app.ServiceList@538cd0f2
+2015-02-01 08:59:01,215 INFO  de.twenty11.skysail.server.app.SkysailApplication - Activating Application de.twenty11.skysail.server.um.internal.UserManagementApplication
+2015-02-01 08:59:01,217 DEBUG de.twenty11.skysail.server.app.SkysailApplication - Authorization service was set to 'DefaultAuthorizationService' for application 'website'
+2015-02-01 08:59:01,217 DEBUG de.twenty11.skysail.server.app.SkysailApplication - Authorization service was set to 'DefaultAuthorizationService' for application 'i18n'
+2015-02-01 08:59:01,218 DEBUG de.twenty11.skysail.server.app.SkysailApplication - Authorization service was set to 'DefaultAuthorizationService' for application 'webapp'
+2015-02-01 08:59:01,218 DEBUG de.twenty11.skysail.server.app.SkysailApplication - Authorization service was set to 'DefaultAuthorizationService' for application 'static'
+2015-02-01 08:59:01,222 INFO  de.twenty11.skysail.server.app.SkysailApplication - Instanciating new Skysail Application 'ClipboardApplication'
+2015-02-01 08:59:01,223 INFO  de.twenty11.skysail.server.app.SkysailApplication - Activating Application de.twenty11.skysail.server.app.clipboard.ClipboardApplication
+2015-02-01 08:59:01,223 INFO  de.twenty11.skysail.server.app.ApplicationList - ======================================================
+2015-02-01 08:59:01,224 INFO  de.twenty11.skysail.server.app.ApplicationList - Adding application 'clipboard'
+2015-02-01 08:59:01,224 INFO  de.twenty11.skysail.server.app.ApplicationList - ======================================================
+2015-02-01 08:59:01,224 DEBUG de.twenty11.skysail.server.app.SkysailApplication - Authorization service was set to 'DefaultAuthorizationService' for application 'clipboard'
+2015-02-01 08:59:01,224 DEBUG de.twenty11.skysail.server.app.SkysailApplication - Favorites service was set to null for application 'clipboard'
+2015-02-01 08:59:01,224 DEBUG de.twenty11.skysail.server.app.SkysailApplication - Translation service was set to 'BundleResourceTranslationService' for application 'clipboard'
+2015-02-01 08:59:01,224 DEBUG de.twenty11.skysail.server.app.SkysailApplication - Metrics service was set to null for application 'clipboard'
+2015-02-01 08:59:01,224 DEBUG de.twenty11.skysail.server.app.SkysailApplication - Validator service was set to 'DefaultValidationImpl' for application 'clipboard'
+2015-02-01 08:59:01,224 DEBUG de.twenty11.skysail.server.app.SkysailApplication - Documentation service was set to null for application 'clipboard'
+2015-02-01 08:59:01,224 DEBUG de.twenty11.skysail.server.app.SkysailApplication - setting hookfilters to application 'clipboard'
+2015-02-01 08:59:01,227 INFO  de.twenty11.skysail.server.app.ApplicationList - ======================================================
+2015-02-01 08:59:01,228 INFO  de.twenty11.skysail.server.app.ApplicationList - Adding application 'usermanagement'
+2015-02-01 08:59:01,228 INFO  de.twenty11.skysail.server.app.ApplicationList - ======================================================
+2015-02-01 08:59:01,228 DEBUG de.twenty11.skysail.server.app.SkysailApplication - Authorization service was set to 'DefaultAuthorizationService' for application 'usermanagement'
+2015-02-01 08:59:01,228 DEBUG de.twenty11.skysail.server.app.SkysailApplication - Favorites service was set to null for application 'usermanagement'
+2015-02-01 08:59:01,228 DEBUG de.twenty11.skysail.server.app.SkysailApplication - Translation service was set to 'BundleResourceTranslationService' for application 'usermanagement'
+2015-02-01 08:59:01,228 DEBUG de.twenty11.skysail.server.app.SkysailApplication - Metrics service was set to null for application 'usermanagement'
+2015-02-01 08:59:01,228 DEBUG de.twenty11.skysail.server.app.SkysailApplication - Validator service was set to 'DefaultValidationImpl' for application 'usermanagement'
+2015-02-01 08:59:01,229 DEBUG de.twenty11.skysail.server.app.SkysailApplication - Documentation service was set to null for application 'usermanagement'
+2015-02-01 08:59:01,229 DEBUG de.twenty11.skysail.server.app.SkysailApplication - setting hookfilters to application 'usermanagement'
+2015-02-01 08:59:01,235 INFO  de.twenty11.skysail.server.app.SkysailApplication - Instanciating new Skysail Application 'SkysailRootApplication'
+2015-02-01 08:59:01,236 INFO  de.twenty11.skysail.server.app.ApplicationList - ======================================================
+2015-02-01 08:59:01,236 INFO  de.twenty11.skysail.server.app.ApplicationList - Adding application 'root'
+2015-02-01 08:59:01,236 INFO  de.twenty11.skysail.server.app.ApplicationList - ======================================================
+2015-02-01 08:59:01,237 DEBUG de.twenty11.skysail.server.app.SkysailApplication - Authorization service was set to 'DefaultAuthorizationService' for application 'root'
+2015-02-01 08:59:01,237 DEBUG de.twenty11.skysail.server.app.SkysailApplication - Favorites service was set to null for application 'root'
+2015-02-01 08:59:01,237 DEBUG de.twenty11.skysail.server.app.SkysailApplication - Translation service was set to 'BundleResourceTranslationService' for application 'root'
+2015-02-01 08:59:01,237 DEBUG de.twenty11.skysail.server.app.SkysailApplication - Metrics service was set to null for application 'root'
+2015-02-01 08:59:01,238 DEBUG de.twenty11.skysail.server.app.SkysailApplication - Validator service was set to 'DefaultValidationImpl' for application 'root'
+2015-02-01 08:59:01,238 DEBUG de.twenty11.skysail.server.app.SkysailApplication - Documentation service was set to null for application 'root'
+2015-02-01 08:59:01,238 DEBUG de.twenty11.skysail.server.app.SkysailApplication - setting hookfilters to application 'root'
+2015-02-01 08:59:01,309 DEBUG d.t.s.s.c.o.i.listener.SkysailServerBundleListener - could not send bundleStartedMessage for skysail.server.um.internal
+2015-02-01 08:59:01,313 DEBUG d.t.s.s.c.o.i.listener.SkysailServerBundleListener - could not send bundleStartedMessage for slf4j.api
+2015-02-01 08:59:42,314 DEBUG org.restlet - Connection from "/0:0:0:0:0:0:0:1:64125" accepted. New count: 1
+2015-02-01 08:59:42,833 DEBUG org.restlet - GET / HTTP/1.1
+2015-02-01 08:59:42,834 DEBUG org.restlet - Reading message from /0:0:0:0:0:0:0:1:64125
+2015-02-01 08:59:42,843 DEBUG org.restlet - Host: localhost:2017
+2015-02-01 08:59:42,846 DEBUG org.restlet - Connection: keep-alive
+2015-02-01 08:59:42,846 DEBUG org.restlet - Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+2015-02-01 08:59:42,846 DEBUG org.restlet - User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/40.0.2214.94 Safari/537.36
+2015-02-01 08:59:42,846 DEBUG org.restlet - Accept-Encoding: gzip, deflate, sdch
+2015-02-01 08:59:42,846 DEBUG org.restlet - Accept-Language: de-DE,de;q=0.8,en-US;q=0.6,en;q=0.4
+2015-02-01 08:59:42,847 DEBUG org.restlet - Cookie: template=edit; _ga=GA1.1.1616881384.1421522672; OSESSIONID=OS14223535500113443975169242684860; Credentials=q5V4KdTKfj6RL74b+PuzFogYUkXdY+cZ3Grd5q1E7bCOtW6fnmWqIbaChPIEV7eX
+2015-02-01 08:59:42,847 DEBUG org.restlet - 
+2015-02-01 08:59:42,847 DEBUG org.restlet - HttpInboundRequest::setHeaders, IPv4 hostDomain: localhost, hostPort: 2017
+2015-02-01 08:59:42,867 INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '' -> Restlet 'Class'
+2015-02-01 08:59:42,868 WARN  de.twenty11.skysail.server.core.restlet.SkysailRouter - please use a RouteBuilder to attach this resource: class de.twenty11.skysail.products.website.WebsiteRootResource
+2015-02-01 08:59:42,870 INFO  de.twenty11.skysail.server.app.SkysailApplication - creating new Router in de.twenty11.skysail.server.app.i18n.I18nApplication
+2015-02-01 08:59:42,870 INFO  de.twenty11.skysail.server.app.SkysailApplication - adding extensions to metadata service
+2015-02-01 08:59:42,870 INFO  de.twenty11.skysail.server.app.SkysailApplication - adding protocols
+2015-02-01 08:59:42,871 DEBUG de.twenty11.skysail.server.app.SkysailApplication - attaching application-specific routes
+2015-02-01 08:59:42,873 INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '' -> 'de.twenty11.skysail.server.security.AuthenticatedAuthorizer@62ef7314'
+2015-02-01 08:59:42,874 INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/messages/' -> 'de.twenty11.skysail.server.security.AuthenticatedAuthorizer@2156a047'
+2015-02-01 08:59:42,874 INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/messages/{key}' -> 'de.twenty11.skysail.server.security.AuthenticatedAuthorizer@60a475a5'
+2015-02-01 08:59:42,877 INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/messages/{key}/' -> 'de.twenty11.skysail.server.security.AuthenticatedAuthorizer@2561d935'
+2015-02-01 08:59:42,877 DEBUG de.twenty11.skysail.server.app.SkysailApplication - creating blocker...
+2015-02-01 08:59:42,877 DEBUG de.twenty11.skysail.server.app.SkysailApplication - creating tracer...
+2015-02-01 08:59:42,878 DEBUG de.twenty11.skysail.server.app.SkysailApplication - creating original request filter...
+2015-02-01 08:59:42,878 DEBUG de.twenty11.skysail.server.app.SkysailApplication - determining authentication service...
+2015-02-01 08:59:42,878 DEBUG de.twenty11.skysail.server.app.SkysailApplication - setting authenticationGuard from authentication service
+2015-02-01 08:59:42,887 INFO  de.twenty11.skysail.server.app.SkysailApplication - creating new Router in de.twenty11.skysail.server.app.clipboard.ClipboardApplication
+2015-02-01 08:59:42,887 INFO  de.twenty11.skysail.server.app.SkysailApplication - adding extensions to metadata service
+2015-02-01 08:59:42,887 INFO  de.twenty11.skysail.server.app.SkysailApplication - adding protocols
+2015-02-01 08:59:42,888 DEBUG de.twenty11.skysail.server.app.SkysailApplication - attaching application-specific routes
+2015-02-01 08:59:42,888 WARN  de.twenty11.skysail.server.app.SkysailApplication - not documentation provider available. No Selfdocumentation of APIs.
+2015-02-01 08:59:42,889 INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '' -> 'de.twenty11.skysail.server.security.AuthenticatedAuthorizer@7dc67ad9'
+2015-02-01 08:59:42,889 INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/' -> 'de.twenty11.skysail.server.security.AuthenticatedAuthorizer@3aba814e'
+2015-02-01 08:59:42,889 INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/clips' -> 'de.twenty11.skysail.server.security.AuthenticatedAuthorizer@74a87500'
+2015-02-01 08:59:42,893 INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/clips/' -> 'de.twenty11.skysail.server.security.AuthenticatedAuthorizer@57046dea'
+2015-02-01 08:59:42,894 INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/clips/{id}' -> 'de.twenty11.skysail.server.security.AuthenticatedAuthorizer@3c1247d5'
+2015-02-01 08:59:42,895 INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/clips/{id}/' -> 'de.twenty11.skysail.server.security.AuthenticatedAuthorizer@43bbd104'
+2015-02-01 08:59:42,895 INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/about' -> 'de.twenty11.skysail.server.security.AuthenticatedAuthorizer@561dac46'
+2015-02-01 08:59:42,895 DEBUG de.twenty11.skysail.server.app.SkysailApplication - creating blocker...
+2015-02-01 08:59:42,895 DEBUG de.twenty11.skysail.server.app.SkysailApplication - creating tracer...
+2015-02-01 08:59:42,895 DEBUG de.twenty11.skysail.server.app.SkysailApplication - creating original request filter...
+2015-02-01 08:59:42,895 DEBUG de.twenty11.skysail.server.app.SkysailApplication - determining authentication service...
+2015-02-01 08:59:42,895 DEBUG de.twenty11.skysail.server.app.SkysailApplication - setting authenticationGuard from authentication service
+2015-02-01 08:59:42,897 INFO  de.twenty11.skysail.server.app.SkysailApplication - creating new Router in de.twenty11.skysail.server.um.internal.UserManagementApplication
+2015-02-01 08:59:42,897 INFO  de.twenty11.skysail.server.app.SkysailApplication - adding extensions to metadata service
+2015-02-01 08:59:42,897 INFO  de.twenty11.skysail.server.app.SkysailApplication - adding protocols
+2015-02-01 08:59:42,897 DEBUG de.twenty11.skysail.server.app.SkysailApplication - attaching application-specific routes
+2015-02-01 08:59:42,897 INFO  d.t.s.server.um.internal.UserManagementApplication - attaching routes to UserManagementApplication #1227635017
+2015-02-01 08:59:42,901 INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '' -> 'de.twenty11.skysail.server.security.AuthenticatedAuthorizer@2956a158'
+2015-02-01 08:59:42,902 INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/' -> 'de.twenty11.skysail.server.security.AuthenticatedAuthorizer@258c607b'
+2015-02-01 08:59:42,903 INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/about' -> 'de.twenty11.skysail.server.security.AuthenticatedAuthorizer@7415156d'
+2015-02-01 08:59:42,905 INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/api' -> 'de.twenty11.skysail.server.security.AuthenticatedAuthorizer@df19a2a'
+2015-02-01 08:59:42,905 INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/entities' -> 'de.twenty11.skysail.server.security.AuthenticatedAuthorizer@54b70bda'
+2015-02-01 08:59:42,906 INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/entities/{name}' -> 'de.twenty11.skysail.server.security.AuthenticatedAuthorizer@1ad0ce19'
+2015-02-01 08:59:42,908 INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/roles' -> 'de.twenty11.skysail.server.security.AuthenticatedAuthorizer@24973bf4'
+2015-02-01 08:59:42,909 INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/currentUser' -> Restlet 'Class'
+2015-02-01 08:59:42,909 WARN  de.twenty11.skysail.server.core.restlet.SkysailRouter - please use a RouteBuilder to attach this resource: class de.twenty11.skysail.server.um.internal.users.CurrentUserResource
+2015-02-01 08:59:42,909 INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/users' -> 'de.twenty11.skysail.server.security.AuthenticatedAuthorizer@937ce03'
+2015-02-01 08:59:42,910 INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/users/' -> 'de.twenty11.skysail.server.security.AuthenticatedAuthorizer@10f9d2f3'
+2015-02-01 08:59:42,910 INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/users/{username}' -> 'de.twenty11.skysail.server.security.AuthenticatedAuthorizer@46c8dcbe'
+2015-02-01 08:59:42,911 INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/users/{id}/' -> 'de.twenty11.skysail.server.security.AuthenticatedAuthorizer@7c02f9c5'
+2015-02-01 08:59:42,911 INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/users/{username}/groups' -> 'de.twenty11.skysail.server.security.AuthenticatedAuthorizer@26741a55'
+2015-02-01 08:59:42,912 INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/users/{username}/password/' -> 'de.twenty11.skysail.server.security.AuthenticatedAuthorizer@547f10df'
+2015-02-01 08:59:42,912 INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/groups' -> 'de.twenty11.skysail.server.security.AuthenticatedAuthorizer@732590f4'
+2015-02-01 08:59:42,913 INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/groups/' -> 'de.twenty11.skysail.server.security.AuthenticatedAuthorizer@5ccf5e9c'
+2015-02-01 08:59:42,913 INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/groups/{group}' -> 'de.twenty11.skysail.server.security.AuthenticatedAuthorizer@340526a6'
+2015-02-01 08:59:42,913 INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/registrations' -> 'de.twenty11.skysail.server.security.AuthenticatedAuthorizer@22fde133'
+2015-02-01 08:59:42,917 INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/registrations/' -> Restlet 'Class'
+2015-02-01 08:59:42,918 WARN  de.twenty11.skysail.server.core.restlet.SkysailRouter - please use a RouteBuilder to attach this resource: class de.twenty11.skysail.server.um.internal.registration.PostRegistrationResource
+2015-02-01 08:59:42,919 INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/registrationsAdmin/{id}' -> 'de.twenty11.skysail.server.security.AuthenticatedAuthorizer@f660999'
+2015-02-01 08:59:42,920 INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/registrationsAdmin/{id}/' -> 'de.twenty11.skysail.server.security.AuthenticatedAuthorizer@486e2dd'
+2015-02-01 08:59:42,921 INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/registrations/{registrationId}' -> Restlet 'ConfirmationRedirector'
+2015-02-01 08:59:42,922 INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/registrations/{registrationId}/confirmation/' -> Restlet 'Class'
+2015-02-01 08:59:42,922 WARN  de.twenty11.skysail.server.core.restlet.SkysailRouter - please use a RouteBuilder to attach this resource: class de.twenty11.skysail.server.um.internal.registration.PostConfirmationResource
+2015-02-01 08:59:42,922 DEBUG de.twenty11.skysail.server.app.SkysailApplication - creating blocker...
+2015-02-01 08:59:42,922 DEBUG de.twenty11.skysail.server.app.SkysailApplication - creating tracer...
+2015-02-01 08:59:42,922 DEBUG de.twenty11.skysail.server.app.SkysailApplication - creating original request filter...
+2015-02-01 08:59:42,922 DEBUG de.twenty11.skysail.server.app.SkysailApplication - determining authentication service...
+2015-02-01 08:59:42,922 DEBUG de.twenty11.skysail.server.app.SkysailApplication - setting authenticationGuard from authentication service
+2015-02-01 08:59:42,927 INFO  de.twenty11.skysail.server.app.SkysailApplication - creating new Router in de.twenty11.skysail.server.app.SkysailRootApplication
+2015-02-01 08:59:42,927 INFO  de.twenty11.skysail.server.app.SkysailApplication - adding extensions to metadata service
+2015-02-01 08:59:42,927 INFO  de.twenty11.skysail.server.app.SkysailApplication - adding protocols
+2015-02-01 08:59:42,927 DEBUG de.twenty11.skysail.server.app.SkysailApplication - attaching application-specific routes
+2015-02-01 08:59:42,928 INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/' -> Restlet 'Class'
+2015-02-01 08:59:42,928 WARN  de.twenty11.skysail.server.core.restlet.SkysailRouter - please use a RouteBuilder to attach this resource: class de.twenty11.skysail.server.resources.DefaultResource
+2015-02-01 08:59:42,929 INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/_login' -> Restlet 'Class'
+2015-02-01 08:59:42,929 WARN  de.twenty11.skysail.server.core.restlet.SkysailRouter - please use a RouteBuilder to attach this resource: class de.twenty11.skysail.server.resources.LoginResource
+2015-02-01 08:59:42,929 INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/_version' -> 'de.twenty11.skysail.server.security.AuthenticatedAuthorizer@7020dbc6'
+2015-02-01 08:59:42,930 INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/_name' -> 'de.twenty11.skysail.server.security.AuthenticatedAuthorizer@2f15acff'
+2015-02-01 08:59:42,930 INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/_about' -> Restlet 'Class'
+2015-02-01 08:59:42,930 WARN  de.twenty11.skysail.server.core.restlet.SkysailRouter - please use a RouteBuilder to attach this resource: class de.twenty11.skysail.server.resources.AboutResource
+2015-02-01 08:59:42,947 INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/_profile' -> 'de.twenty11.skysail.server.security.AuthenticatedAuthorizer@4e307441'
+2015-02-01 08:59:42,948 INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/_profile/password/' -> 'de.twenty11.skysail.server.security.AuthenticatedAuthorizer@67f7ef00'
+2015-02-01 08:59:42,949 INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/_largetests' -> 'de.twenty11.skysail.server.security.AuthenticatedAuthorizer@6be8c354'
+2015-02-01 08:59:42,949 INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/_largetests/{id}' -> 'de.twenty11.skysail.server.security.AuthenticatedAuthorizer@6454d677'
+2015-02-01 08:59:42,950 INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/_iframe' -> 'de.twenty11.skysail.server.security.AuthenticatedAuthorizer@68ff84eb'
+2015-02-01 08:59:42,950 DEBUG de.twenty11.skysail.server.app.SkysailApplication - creating blocker...
+2015-02-01 08:59:42,950 DEBUG de.twenty11.skysail.server.app.SkysailApplication - creating tracer...
+2015-02-01 08:59:42,950 DEBUG de.twenty11.skysail.server.app.SkysailApplication - creating original request filter...
+2015-02-01 08:59:42,950 DEBUG de.twenty11.skysail.server.app.SkysailApplication - determining authentication service...
+2015-02-01 08:59:42,950 DEBUG de.twenty11.skysail.server.app.SkysailApplication - setting authenticationGuard from authentication service
+2015-02-01 08:59:42,952 DEBUG LogService - Processing request to: "http://localhost:2017/"
+2015-02-01 08:59:42,955 WARN  d.t.skysail.server.core.osgi.internal.EventHelper - eventAdmin is null, cannot fire Event
+2015-02-01 08:59:43,414 DEBUG org.apache.shiro.web.mgt.CookieRememberMeManager - SubjectContext argument is not an HTTP-aware instance.  This is required to obtain a servlet request and response in order to retrieve the rememberMe cookie. Returning immediately and ignoring rememberMe operation.
+2015-02-01 08:59:43,417 INFO  d.t.s.s.security.shiro.restlet.ShiroDelegatingVerifier - login event for user 'admin'
+2015-02-01 08:59:43,446 DEBUG org.apache.shiro.realm.AuthenticatingRealm - Looked up AuthenticationInfo [de.twenty11.skysail.server.security.shiro.SkysailAuthenticationInfo@2c032efd] from doGetAuthenticationInfo
+2015-02-01 08:59:43,910 DEBUG org.apache.shiro.authc.AbstractAuthenticator - Authentication successful for token [org.apache.shiro.authc.UsernamePasswordToken - admin, rememberMe=false].  Returned account [de.twenty11.skysail.server.security.shiro.SkysailAuthenticationInfo@2c032efd]
+2015-02-01 08:59:43,911 DEBUG org.apache.shiro.subject.support.DefaultSubjectContext - No SecurityManager available in subject context map.  Falling back to SecurityUtils.getSecurityManager() lookup.
+2015-02-01 08:59:43,911 DEBUG org.apache.shiro.subject.support.DefaultSubjectContext - No SecurityManager available in subject context map.  Falling back to SecurityUtils.getSecurityManager() lookup.
+2015-02-01 08:59:43,912 DEBUG org.apache.shiro.mgt.AbstractRememberMeManager - AuthenticationToken did not indicate RememberMe is requested.  RememberMe functionality will not be executed for corresponding account.
+2015-02-01 08:59:43,912 INFO  d.t.s.s.security.shiro.restlet.ShiroDelegatingVerifier - login event for user 'admin' successful
+2015-02-01 08:59:43,925 DEBUG o.r.S.InternalRouter.SkysailRootApplication - Authentication succeeded. Valid credentials provided for identifier: admin.
+2015-02-01 08:59:43,927 DEBUG o.r.S.InternalRouter.SkysailRootApplication - The authentication succeeded for the identifer "admin" using the HTTP_Cookie scheme.
+2015-02-01 08:59:43,938 DEBUG o.r.S.InternalRouter.SkysailRootApplication - Selected route: "/" -> Finder for DefaultResource
+2015-02-01 08:59:43,938 DEBUG o.r.S.InternalRouter.SkysailRootApplication - New base URI: "http://localhost:2017/". No remaining part to match
+2015-02-01 08:59:43,942 DEBUG de.twenty11.skysail.server.resources.DefaultResource - instanciation of DefaultResource
+2015-02-01 08:59:43,983 DEBUG o.r.S.InternalRouter.SkysailRootApplication - Score of annotation "AnnotationInfo [javaMethod: public java.util.List de.twenty11.skysail.server.core.restlet.ListServerResource.getEntities(), resourceInterface: class de.twenty11.skysail.server.resources.DefaultResource, restletMethod: GET, input: html|json|csv|treeform, output: html|json|csv|treeform, query: null]"= 0.5
+2015-02-01 08:59:43,983 DEBUG o.r.S.InternalRouter.SkysailRootApplication - Total score of variant "[text/html]"= 0.16666667
+2015-02-01 08:59:43,985 DEBUG o.r.S.InternalRouter.SkysailRootApplication - Score of annotation "AnnotationInfo [javaMethod: public java.util.List de.twenty11.skysail.server.core.restlet.ListServerResource.getEntities(), resourceInterface: class de.twenty11.skysail.server.resources.DefaultResource, restletMethod: GET, input: html|json|csv|treeform, output: html|json|csv|treeform, query: null]"= 0.5
+2015-02-01 08:59:43,985 DEBUG o.r.S.InternalRouter.SkysailRootApplication - Total score of variant "[application/json]"= 0.042416666
+2015-02-01 08:59:43,985 DEBUG o.r.S.InternalRouter.SkysailRootApplication - Score of annotation "AnnotationInfo [javaMethod: public java.util.List de.twenty11.skysail.server.core.restlet.ListServerResource.getEntities(), resourceInterface: class de.twenty11.skysail.server.resources.DefaultResource, restletMethod: GET, input: html|json|csv|treeform, output: html|json|csv|treeform, query: null]"= 0.5
+2015-02-01 08:59:43,985 DEBUG o.r.S.InternalRouter.SkysailRootApplication - Total score of variant "[text/csv]"= 0.042416666
+2015-02-01 08:59:43,985 DEBUG o.r.S.InternalRouter.SkysailRootApplication - Score of annotation "AnnotationInfo [javaMethod: public java.util.List de.twenty11.skysail.server.core.restlet.ListServerResource.getEntities(), resourceInterface: class de.twenty11.skysail.server.resources.DefaultResource, restletMethod: GET, input: html|json|csv|treeform, output: html|json|csv|treeform, query: null]"= 0.5
+2015-02-01 08:59:43,985 DEBUG o.r.S.InternalRouter.SkysailRootApplication - Total score of variant "[treeform/*]"= 0.041791666
+2015-02-01 08:59:43,989 INFO  d.t.skysail.server.core.restlet.ListServerResource - Request entry point: DefaultResource @Get('html|json|csv|treeform')
+2015-02-01 08:59:43,989 INFO  d.t.skysail.server.core.restlet.ListServerResource - calling getEntities, media types '[text/html:1.0, application/xhtml+xml:1.0, application/xml:0.9, image/webp:1.0, */*:0.8]'
+2015-02-01 08:59:43,998 DEBUG d.t.s.s.core.restlet.filter.ExceptionCatchingFilter - entering ExceptionCatchingFilter#doHandle
+2015-02-01 08:59:43,998 INFO  d.t.s.server.core.restlet.filter.AbstractResourceFilter - next filter in chain: AddApiVersionHeader
+2015-02-01 08:59:43,998 INFO  d.t.s.server.core.restlet.filter.AbstractResourceFilter - next filter in chain: GetRequestPreFilterHook
+2015-02-01 08:59:43,999 INFO  d.t.s.server.core.restlet.filter.AbstractResourceFilter - next filter in chain: AddRequestIdToResourceFilter
+2015-02-01 08:59:43,999 INFO  d.t.s.server.core.restlet.filter.AbstractResourceFilter - next filter in chain: DataExtractingFilter
+2015-02-01 08:59:44,001 DEBUG d.t.s.server.core.restlet.filter.DataExtractingFilter - entering DataExtractingFilter#doHandle
+2015-02-01 08:59:44,001 INFO  d.t.s.server.core.restlet.filter.AbstractResourceFilter - next filter in chain: AddLinkheadersFilter
+2015-02-01 08:59:44,002 INFO  d.t.s.server.core.restlet.filter.AbstractResourceFilter - next filter in chain: CheckFavoritesFilter
+2015-02-01 08:59:44,002 INFO  d.t.s.server.core.restlet.filter.AbstractResourceFilter - next filter in chain: SetExecutionTimeInResponseFilter
+2015-02-01 08:59:44,002 INFO  d.t.s.server.core.restlet.filter.AbstractResourceFilter - next filter in chain: RedirectFilter
+2015-02-01 08:59:44,023 INFO  d.t.s.server.ext.converter.st.StringTemplateConverter - converter 'StringTemplateConverter' matched '{text/html=0.95, treeform/*=1.0}' with threshold 0.95
+2015-02-01 08:59:44,024 DEBUG o.r.S.InternalRouter.SkysailRootApplication - Converter selected for EmptyList: StringTemplateConverter
+2015-02-01 08:59:44,030 INFO  de.twenty11.skysail.server.app.SourceWrapper - using converter 'ListSourceHtmlConverter' for EmptyList-Source: []
+2015-02-01 08:59:44,031 INFO  d.t.s.server.ext.converter.st.StringTemplateConverter - reading templates from resource path '/templates/text/html'
+2015-02-01 08:59:44,053 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server [5.1.1.201501300549]: bundle://56.0:1/templates/de/twenty11/skysail/server/resources/DefaultResourceStg/index.st
+2015-02-01 08:59:44,054 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server [5.1.1.201501300549]: bundle://56.0:1/templates/index.st
+2015-02-01 08:59:44,055 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server.ext.converter.st [1.0.5.201501310736]: bundle://60.0:1/templates/text/html/de/twenty11/skysail/server/resources/DefaultResourceStg/index.st
+2015-02-01 08:59:44,056 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - found resource in skysail.server.ext.converter.st [1.0.5.201501310736]: bundle://60.0:1/templates/text/html/index.st
+2015-02-01 08:59:44,245 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server [5.1.1.201501300549]: bundle://56.0:1/templates/de/twenty11/skysail/server/resources/DefaultResourceStg/select2JsHead.st
+2015-02-01 08:59:44,246 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server [5.1.1.201501300549]: bundle://56.0:1/templates/select2JsHead.st
+2015-02-01 08:59:44,247 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server.ext.converter.st [1.0.5.201501310736]: bundle://60.0:1/templates/text/html/de/twenty11/skysail/server/resources/DefaultResourceStg/select2JsHead.st
+2015-02-01 08:59:44,247 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - found resource in skysail.server.ext.converter.st [1.0.5.201501310736]: bundle://60.0:1/templates/text/html/select2JsHead.stg
+2015-02-01 08:59:44,255 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server [5.1.1.201501300549]: bundle://56.0:1/templates/de/twenty11/skysail/server/resources/DefaultResourceStg/_sub1.st
+2015-02-01 08:59:44,255 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server [5.1.1.201501300549]: bundle://56.0:1/templates/_sub1.st
+2015-02-01 08:59:44,258 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server [5.1.1.201501300549]: bundle://56.0:1/templates/de/twenty11/skysail/server/resources/DefaultResourceStg/endOfHeaderJS.st
+2015-02-01 08:59:44,259 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server [5.1.1.201501300549]: bundle://56.0:1/templates/endOfHeaderJS.st
+2015-02-01 08:59:44,259 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server.ext.converter.st [1.0.5.201501310736]: bundle://60.0:1/templates/text/html/de/twenty11/skysail/server/resources/DefaultResourceStg/endOfHeaderJS.st
+2015-02-01 08:59:44,259 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - found resource in skysail.server.ext.converter.st [1.0.5.201501310736]: bundle://60.0:1/templates/text/html/endOfHeaderJS.stg
+2015-02-01 08:59:44,263 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server [5.1.1.201501300549]: bundle://56.0:1/templates/de/twenty11/skysail/server/resources/DefaultResourceStg/dropdownFrontendsNav.st
+2015-02-01 08:59:44,264 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server [5.1.1.201501300549]: bundle://56.0:1/templates/dropdownFrontendsNav.st
+2015-02-01 08:59:44,264 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server.ext.converter.st [1.0.5.201501310736]: bundle://60.0:1/templates/text/html/de/twenty11/skysail/server/resources/DefaultResourceStg/dropdownFrontendsNav.st
+2015-02-01 08:59:44,264 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - found resource in skysail.server.ext.converter.st [1.0.5.201501310736]: bundle://60.0:1/templates/text/html/dropdownFrontendsNav.stg
+2015-02-01 08:59:44,270 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server [5.1.1.201501300549]: bundle://56.0:1/templates/de/twenty11/skysail/server/resources/DefaultResourceStg/dropdownApplicationsNav.st
+2015-02-01 08:59:44,271 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server [5.1.1.201501300549]: bundle://56.0:1/templates/dropdownApplicationsNav.st
+2015-02-01 08:59:44,271 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server.ext.converter.st [1.0.5.201501310736]: bundle://60.0:1/templates/text/html/de/twenty11/skysail/server/resources/DefaultResourceStg/dropdownApplicationsNav.st
+2015-02-01 08:59:44,272 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - found resource in skysail.server.ext.converter.st [1.0.5.201501310736]: bundle://60.0:1/templates/text/html/dropdownApplicationsNav.stg
+2015-02-01 08:59:44,276 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server [5.1.1.201501300549]: bundle://56.0:1/templates/de/twenty11/skysail/server/resources/DefaultResourceStg/_sub3.st
+2015-02-01 08:59:44,276 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server [5.1.1.201501300549]: bundle://56.0:1/templates/_sub3.st
+2015-02-01 08:59:44,277 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server [5.1.1.201501300549]: bundle://56.0:1/templates/de/twenty11/skysail/server/resources/DefaultResourceStg/menuItem.st
+2015-02-01 08:59:44,279 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server [5.1.1.201501300549]: bundle://56.0:1/templates/menuItem.st
+2015-02-01 08:59:44,280 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server [5.1.1.201501300549]: bundle://56.0:1/templates/de/twenty11/skysail/server/resources/DefaultResourceStg/menuItem.st
+2015-02-01 08:59:44,280 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server [5.1.1.201501300549]: bundle://56.0:1/templates/menuItem.st
+2015-02-01 08:59:44,281 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server [5.1.1.201501300549]: bundle://56.0:1/templates/de/twenty11/skysail/server/resources/DefaultResourceStg/dropdownAdminNav.st
+2015-02-01 08:59:44,282 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server [5.1.1.201501300549]: bundle://56.0:1/templates/dropdownAdminNav.st
+2015-02-01 08:59:44,282 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server.ext.converter.st [1.0.5.201501310736]: bundle://60.0:1/templates/text/html/de/twenty11/skysail/server/resources/DefaultResourceStg/dropdownAdminNav.st
+2015-02-01 08:59:44,282 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - found resource in skysail.server.ext.converter.st [1.0.5.201501310736]: bundle://60.0:1/templates/text/html/dropdownAdminNav.stg
+2015-02-01 08:59:44,327 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server [5.1.1.201501300549]: bundle://56.0:1/templates/de/twenty11/skysail/server/resources/DefaultResourceStg/_sub4.st
+2015-02-01 08:59:44,327 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server [5.1.1.201501300549]: bundle://56.0:1/templates/_sub4.st
+2015-02-01 08:59:44,328 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server [5.1.1.201501300549]: bundle://56.0:1/templates/de/twenty11/skysail/server/resources/DefaultResourceStg/adminItem.st
+2015-02-01 08:59:44,329 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server [5.1.1.201501300549]: bundle://56.0:1/templates/adminItem.st
+2015-02-01 08:59:44,330 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server [5.1.1.201501300549]: bundle://56.0:1/templates/de/twenty11/skysail/server/resources/DefaultResourceStg/_sub5.st
+2015-02-01 08:59:44,331 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server [5.1.1.201501300549]: bundle://56.0:1/templates/_sub5.st
+2015-02-01 08:59:44,332 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server [5.1.1.201501300549]: bundle://56.0:1/templates/de/twenty11/skysail/server/resources/DefaultResourceStg/adminInteractivityItem.st
+2015-02-01 08:59:44,332 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server [5.1.1.201501300549]: bundle://56.0:1/templates/adminInteractivityItem.st
+2015-02-01 08:59:44,334 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server [5.1.1.201501300549]: bundle://56.0:1/templates/de/twenty11/skysail/server/resources/DefaultResourceStg/breadcrumb.st
+2015-02-01 08:59:44,334 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server [5.1.1.201501300549]: bundle://56.0:1/templates/breadcrumb.st
+2015-02-01 08:59:44,338 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server.ext.converter.st [1.0.5.201501310736]: bundle://60.0:1/templates/text/html/de/twenty11/skysail/server/resources/DefaultResourceStg/breadcrumb.st
+2015-02-01 08:59:44,338 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - found resource in skysail.server.ext.converter.st [1.0.5.201501310736]: bundle://60.0:1/templates/text/html/breadcrumb.stg
+2015-02-01 08:59:44,349 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server [5.1.1.201501300549]: bundle://56.0:1/templates/de/twenty11/skysail/server/resources/DefaultResourceStg/_sub6.st
+2015-02-01 08:59:44,351 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server [5.1.1.201501300549]: bundle://56.0:1/templates/_sub6.st
+2015-02-01 08:59:44,353 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server [5.1.1.201501300549]: bundle://56.0:1/templates/de/twenty11/skysail/server/resources/DefaultResourceStg/handleSingleBreadcrumb.st
+2015-02-01 08:59:44,355 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server [5.1.1.201501300549]: bundle://56.0:1/templates/handleSingleBreadcrumb.st
+2015-02-01 08:59:44,358 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server [5.1.1.201501300549]: bundle://56.0:1/templates/de/twenty11/skysail/server/resources/DefaultResourceStg/appNavTitle.st
+2015-02-01 08:59:44,359 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server [5.1.1.201501300549]: bundle://56.0:1/templates/appNavTitle.st
+2015-02-01 08:59:44,361 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server.ext.converter.st [1.0.5.201501310736]: bundle://60.0:1/templates/text/html/de/twenty11/skysail/server/resources/DefaultResourceStg/appNavTitle.st
+2015-02-01 08:59:44,361 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - found resource in skysail.server.ext.converter.st [1.0.5.201501310736]: bundle://60.0:1/templates/text/html/appNavTitle.stg
+2015-02-01 08:59:44,366 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server [5.1.1.201501300549]: bundle://56.0:1/templates/de/twenty11/skysail/server/resources/DefaultResourceStg/menuNav.st
+2015-02-01 08:59:44,368 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server [5.1.1.201501300549]: bundle://56.0:1/templates/menuNav.st
+2015-02-01 08:59:44,368 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server.ext.converter.st [1.0.5.201501310736]: bundle://60.0:1/templates/text/html/de/twenty11/skysail/server/resources/DefaultResourceStg/menuNav.st
+2015-02-01 08:59:44,369 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - found resource in skysail.server.ext.converter.st [1.0.5.201501310736]: bundle://60.0:1/templates/text/html/menuNav.stg
+2015-02-01 08:59:44,371 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server [5.1.1.201501300549]: bundle://56.0:1/templates/de/twenty11/skysail/server/resources/DefaultResourceStg/_sub7.st
+2015-02-01 08:59:44,372 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server [5.1.1.201501300549]: bundle://56.0:1/templates/_sub7.st
+2015-02-01 08:59:44,374 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server [5.1.1.201501300549]: bundle://56.0:1/templates/de/twenty11/skysail/server/resources/DefaultResourceStg/linkAsButton.st
+2015-02-01 08:59:44,374 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server [5.1.1.201501300549]: bundle://56.0:1/templates/linkAsButton.st
+2015-02-01 08:59:44,375 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server [5.1.1.201501300549]: bundle://56.0:1/templates/de/twenty11/skysail/server/resources/DefaultResourceStg/linkAsButton.st
+2015-02-01 08:59:44,376 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server [5.1.1.201501300549]: bundle://56.0:1/templates/linkAsButton.st
+2015-02-01 08:59:44,377 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server [5.1.1.201501300549]: bundle://56.0:1/templates/de/twenty11/skysail/server/resources/DefaultResourceStg/linkAsButton.st
+2015-02-01 08:59:44,377 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server [5.1.1.201501300549]: bundle://56.0:1/templates/linkAsButton.st
+2015-02-01 08:59:44,378 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server [5.1.1.201501300549]: bundle://56.0:1/templates/de/twenty11/skysail/server/resources/DefaultResourceStg/linkAsButton.st
+2015-02-01 08:59:44,379 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server [5.1.1.201501300549]: bundle://56.0:1/templates/linkAsButton.st
+2015-02-01 08:59:44,380 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server [5.1.1.201501300549]: bundle://56.0:1/templates/de/twenty11/skysail/server/resources/DefaultResourceStg/linkAsButton.st
+2015-02-01 08:59:44,381 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server [5.1.1.201501300549]: bundle://56.0:1/templates/linkAsButton.st
+2015-02-01 08:59:44,381 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server [5.1.1.201501300549]: bundle://56.0:1/templates/de/twenty11/skysail/server/resources/DefaultResourceStg/mainContent.st
+2015-02-01 08:59:44,382 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server [5.1.1.201501300549]: bundle://56.0:1/templates/mainContent.st
+2015-02-01 08:59:44,386 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server.ext.converter.st [1.0.5.201501310736]: bundle://60.0:1/templates/text/html/de/twenty11/skysail/server/resources/DefaultResourceStg/mainContent.st
+2015-02-01 08:59:44,386 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - found resource in skysail.server.ext.converter.st [1.0.5.201501310736]: bundle://60.0:1/templates/text/html/mainContent.stg
+2015-02-01 08:59:44,391 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server [5.1.1.201501300549]: bundle://56.0:1/templates/de/twenty11/skysail/server/resources/DefaultResourceStg/appNav.st
+2015-02-01 08:59:44,394 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server [5.1.1.201501300549]: bundle://56.0:1/templates/appNav.st
+2015-02-01 08:59:44,395 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server.ext.converter.st [1.0.5.201501310736]: bundle://60.0:1/templates/text/html/de/twenty11/skysail/server/resources/DefaultResourceStg/appNav.st
+2015-02-01 08:59:44,395 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - found resource in skysail.server.ext.converter.st [1.0.5.201501310736]: bundle://60.0:1/templates/text/html/appNav.stg
+2015-02-01 08:59:44,400 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server [5.1.1.201501300549]: bundle://56.0:1/templates/de/twenty11/skysail/server/resources/DefaultResourceStg/_sub8.st
+2015-02-01 08:59:44,402 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server [5.1.1.201501300549]: bundle://56.0:1/templates/_sub8.st
+2015-02-01 08:59:44,404 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server [5.1.1.201501300549]: bundle://56.0:1/templates/de/twenty11/skysail/server/resources/DefaultResourceStg/applinkAsButton.st
+2015-02-01 08:59:44,407 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server [5.1.1.201501300549]: bundle://56.0:1/templates/applinkAsButton.st
+2015-02-01 08:59:44,408 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server [5.1.1.201501300549]: bundle://56.0:1/templates/de/twenty11/skysail/server/resources/DefaultResourceStg/applinkAsButton.st
+2015-02-01 08:59:44,409 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server [5.1.1.201501300549]: bundle://56.0:1/templates/applinkAsButton.st
+2015-02-01 08:59:44,410 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server [5.1.1.201501300549]: bundle://56.0:1/templates/de/twenty11/skysail/server/resources/DefaultResourceStg/applinkAsButton.st
+2015-02-01 08:59:44,410 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server [5.1.1.201501300549]: bundle://56.0:1/templates/applinkAsButton.st
+2015-02-01 08:59:44,413 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server [5.1.1.201501300549]: bundle://56.0:1/templates/de/twenty11/skysail/server/resources/DefaultResourceStg/applinkAsButton.st
+2015-02-01 08:59:44,413 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server [5.1.1.201501300549]: bundle://56.0:1/templates/applinkAsButton.st
+2015-02-01 08:59:44,414 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server [5.1.1.201501300549]: bundle://56.0:1/templates/de/twenty11/skysail/server/resources/DefaultResourceStg/applinkAsButton.st
+2015-02-01 08:59:44,415 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server [5.1.1.201501300549]: bundle://56.0:1/templates/applinkAsButton.st
+2015-02-01 08:59:44,416 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server [5.1.1.201501300549]: bundle://56.0:1/templates/de/twenty11/skysail/server/resources/DefaultResourceStg/contentHeader.st
+2015-02-01 08:59:44,416 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server [5.1.1.201501300549]: bundle://56.0:1/templates/contentHeader.st
+2015-02-01 08:59:44,417 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server.ext.converter.st [1.0.5.201501310736]: bundle://60.0:1/templates/text/html/de/twenty11/skysail/server/resources/DefaultResourceStg/contentHeader.st
+2015-02-01 08:59:44,418 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - found resource in skysail.server.ext.converter.st [1.0.5.201501310736]: bundle://60.0:1/templates/text/html/contentHeader.st
+2015-02-01 08:59:44,433 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server [5.1.1.201501300549]: bundle://56.0:1/templates/de/twenty11/skysail/server/resources/DefaultResourceStg/renderTable.st
+2015-02-01 08:59:44,433 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server [5.1.1.201501300549]: bundle://56.0:1/templates/renderTable.st
+2015-02-01 08:59:44,434 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server.ext.converter.st [1.0.5.201501310736]: bundle://60.0:1/templates/text/html/de/twenty11/skysail/server/resources/DefaultResourceStg/renderTable.st
+2015-02-01 08:59:44,434 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - found resource in skysail.server.ext.converter.st [1.0.5.201501310736]: bundle://60.0:1/templates/text/html/renderTable.stg
+2015-02-01 08:59:44,438 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server [5.1.1.201501300549]: bundle://56.0:1/templates/de/twenty11/skysail/server/resources/DefaultResourceStg/renderHeader.st
+2015-02-01 08:59:44,444 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server [5.1.1.201501300549]: bundle://56.0:1/templates/renderHeader.st
+2015-02-01 08:59:44,447 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server [5.1.1.201501300549]: bundle://56.0:1/templates/de/twenty11/skysail/server/resources/DefaultResourceStg/_sub11.st
+2015-02-01 08:59:44,452 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server [5.1.1.201501300549]: bundle://56.0:1/templates/_sub11.st
+2015-02-01 08:59:44,453 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server [5.1.1.201501300549]: bundle://56.0:1/templates/de/twenty11/skysail/server/resources/DefaultResourceStg/_sub9.st
+2015-02-01 08:59:44,455 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server [5.1.1.201501300549]: bundle://56.0:1/templates/_sub9.st
+2015-02-01 08:59:44,460 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server [5.1.1.201501300549]: bundle://56.0:1/templates/de/twenty11/skysail/server/resources/DefaultResourceStg/notifications.st
+2015-02-01 08:59:44,461 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server [5.1.1.201501300549]: bundle://56.0:1/templates/notifications.st
+2015-02-01 08:59:44,462 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server.ext.converter.st [1.0.5.201501310736]: bundle://60.0:1/templates/text/html/de/twenty11/skysail/server/resources/DefaultResourceStg/notifications.st
+2015-02-01 08:59:44,462 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - found resource in skysail.server.ext.converter.st [1.0.5.201501310736]: bundle://60.0:1/templates/text/html/notifications.stg
+2015-02-01 08:59:44,465 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server [5.1.1.201501300549]: bundle://56.0:1/templates/de/twenty11/skysail/server/resources/DefaultResourceStg/_sub12.st
+2015-02-01 08:59:44,466 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server [5.1.1.201501300549]: bundle://56.0:1/templates/_sub12.st
+2015-02-01 08:59:44,467 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server [5.1.1.201501300549]: bundle://56.0:1/templates/de/twenty11/skysail/server/resources/DefaultResourceStg/select2JsEndOfBody.st
+2015-02-01 08:59:44,468 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server [5.1.1.201501300549]: bundle://56.0:1/templates/select2JsEndOfBody.st
+2015-02-01 08:59:44,469 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server.ext.converter.st [1.0.5.201501310736]: bundle://60.0:1/templates/text/html/de/twenty11/skysail/server/resources/DefaultResourceStg/select2JsEndOfBody.st
+2015-02-01 08:59:44,469 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - found resource in skysail.server.ext.converter.st [1.0.5.201501310736]: bundle://60.0:1/templates/text/html/select2JsEndOfBody.stg
+2015-02-01 08:59:44,471 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server [5.1.1.201501300549]: bundle://56.0:1/templates/de/twenty11/skysail/server/resources/DefaultResourceStg/_sub13.st
+2015-02-01 08:59:44,472 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server [5.1.1.201501300549]: bundle://56.0:1/templates/_sub13.st
+2015-02-01 08:59:44,474 INFO  LogService - 2015-02-01	08:59:44	0:0:0:0:0:0:0:1	admin	-	2017	GET	/	-	200	8919	0	1522	http://localhost:2017	Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/40.0.2214.94 Safari/537.36	-
+2015-02-01 08:59:44,477 DEBUG org.restlet - Writing message to /0:0:0:0:0:0:0:1:64125
+2015-02-01 08:59:44,481 DEBUG org.restlet - HTTP/1.1 200 OK
+2015-02-01 08:59:44,508 DEBUG org.restlet - Date: Sun, 01 Feb 2015 07:59:44 GMT
+2015-02-01 08:59:44,508 DEBUG org.restlet - Accept-Ranges: bytes
+2015-02-01 08:59:44,508 DEBUG org.restlet - Server: Restlet-Framework/2.1.7
+2015-02-01 08:59:44,508 DEBUG org.restlet - Vary: Accept-Charset, Accept-Encoding, Accept-Language, Accept
+2015-02-01 08:59:44,508 DEBUG org.restlet - Set-Cookie: Credentials=Jjy4LUdaxwhXIL+dkMClZ4gYUkXdY+cZ3Grd5q1E7bCOtW6fnmWqIbaChPIEV7eX; Path=/; HttpOnly
+2015-02-01 08:59:44,508 DEBUG org.restlet - X-Duration: 1051
+2015-02-01 08:59:44,508 DEBUG org.restlet - Link: </clipboard>; rel="item"; title="Clipboard"; verbs="GET",</i18n>; rel="item"; title="I18N"; verbs="GET",</usermanagement>; rel="item"; title="Usermanagement"; verbs="GET",</_logout?targetUri=/>; rel="create-form"; title="Logout"; verbs="GET",</usermanagement/registrations/>; rel="create-form"; title="Register new User"; verbs="GET"
+2015-02-01 08:59:44,508 DEBUG org.restlet - X-Api-Version: 1
+2015-02-01 08:59:44,508 DEBUG org.restlet - Content-Length: 8919
+2015-02-01 08:59:44,508 DEBUG org.restlet - Content-Type: text/html; charset=UTF-8
+2015-02-01 08:59:44,511 DEBUG org.restlet - 
+2015-02-01 08:59:44,540 DEBUG org.restlet - GET /webapp/js/jquery-1.11.1.js HTTP/1.1
+2015-02-01 08:59:44,540 DEBUG org.restlet - Reading message from /0:0:0:0:0:0:0:1:64125
+2015-02-01 08:59:44,540 DEBUG org.restlet - Host: localhost:2017
+2015-02-01 08:59:44,540 DEBUG org.restlet - Connection: keep-alive
+2015-02-01 08:59:44,540 DEBUG org.restlet - Accept: */*
+2015-02-01 08:59:44,540 DEBUG org.restlet - User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/40.0.2214.94 Safari/537.36
+2015-02-01 08:59:44,540 DEBUG org.restlet - Referer: http://localhost:2017/
+2015-02-01 08:59:44,540 DEBUG org.restlet - Accept-Encoding: gzip, deflate, sdch
+2015-02-01 08:59:44,540 DEBUG org.restlet - Accept-Language: de-DE,de;q=0.8,en-US;q=0.6,en;q=0.4
+2015-02-01 08:59:44,540 DEBUG org.restlet - Cookie: template=edit; _ga=GA1.1.1616881384.1421522672; OSESSIONID=OS14223535500113443975169242684860; Credentials=Jjy4LUdaxwhXIL+dkMClZ4gYUkXdY+cZ3Grd5q1E7bCOtW6fnmWqIbaChPIEV7eX
+2015-02-01 08:59:44,541 DEBUG org.restlet - 
+2015-02-01 08:59:44,541 DEBUG org.restlet.SkysailComponent.LogFilter - HttpInboundRequest::setHeaders, IPv4 hostDomain: localhost, hostPort: 2017
+2015-02-01 08:59:44,541 DEBUG LogService - Processing request to: "http://localhost:2017/webapp/js/jquery-1.11.1.js"
+2015-02-01 08:59:44,546 DEBUG org.restlet.SkysailComponent.SkysailWebsiteApplication - The default route was selected
+2015-02-01 08:59:44,554 DEBUG org.restlet - Connection from "/0:0:0:0:0:0:0:1:64127" accepted. New count: 2
+2015-02-01 08:59:44,554 DEBUG o.r.SkysailComponent.SkysailWebsiteApplication.Decoder - The protocol used by this request is not declared in the application's connector service. Please update the list of client connectors used by your application and restart it.
+2015-02-01 08:59:44,554 DEBUG org.restlet - GET /webapp/css/bootstrap.min.css HTTP/1.1
+2015-02-01 08:59:44,555 DEBUG org.restlet - Reading message from /0:0:0:0:0:0:0:1:64127
+2015-02-01 08:59:44,555 DEBUG org.restlet - Host: localhost:2017
+2015-02-01 08:59:44,555 DEBUG org.restlet - Connection: keep-alive
+2015-02-01 08:59:44,555 DEBUG org.restlet - Accept: text/css,*/*;q=0.1
+2015-02-01 08:59:44,555 DEBUG org.restlet - User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/40.0.2214.94 Safari/537.36
+2015-02-01 08:59:44,555 DEBUG org.restlet - Referer: http://localhost:2017/
+2015-02-01 08:59:44,555 DEBUG org.restlet - Accept-Encoding: gzip, deflate, sdch
+2015-02-01 08:59:44,555 DEBUG org.restlet - Accept-Language: de-DE,de;q=0.8,en-US;q=0.6,en;q=0.4
+2015-02-01 08:59:44,555 DEBUG org.restlet - Cookie: template=edit; _ga=GA1.1.1616881384.1421522672; OSESSIONID=OS14223535500113443975169242684860; Credentials=Jjy4LUdaxwhXIL+dkMClZ4gYUkXdY+cZ3Grd5q1E7bCOtW6fnmWqIbaChPIEV7eX
+2015-02-01 08:59:44,555 DEBUG org.restlet - 
+2015-02-01 08:59:44,555 DEBUG org.restlet.SkysailComponent.LogFilter - HttpInboundRequest::setHeaders, IPv4 hostDomain: localhost, hostPort: 2017
+2015-02-01 08:59:44,556 DEBUG org.restlet - Connection from "/0:0:0:0:0:0:0:1:64128" accepted. New count: 3
+2015-02-01 08:59:44,556 DEBUG org.restlet - GET /webapp/css/select2.css HTTP/1.1
+2015-02-01 08:59:44,556 DEBUG LogService - Processing request to: "http://localhost:2017/webapp/css/bootstrap.min.css"
+2015-02-01 08:59:44,556 DEBUG org.restlet - Reading message from /0:0:0:0:0:0:0:1:64128
+2015-02-01 08:59:44,557 DEBUG org.restlet - Host: localhost:2017
+2015-02-01 08:59:44,558 DEBUG org.restlet.SkysailComponent.SkysailWebsiteApplication - The default route was selected
+2015-02-01 08:59:44,558 DEBUG org.restlet - Connection: keep-alive
+2015-02-01 08:59:44,558 DEBUG org.restlet - Accept: text/css,*/*;q=0.1
+2015-02-01 08:59:44,558 DEBUG org.restlet - User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/40.0.2214.94 Safari/537.36
+2015-02-01 08:59:44,558 DEBUG org.restlet - Referer: http://localhost:2017/
+2015-02-01 08:59:44,558 DEBUG o.r.SkysailComponent.SkysailWebsiteApplication.Decoder - The protocol used by this request is not declared in the application's connector service. Please update the list of client connectors used by your application and restart it.
+2015-02-01 08:59:44,558 DEBUG org.restlet - Accept-Encoding: gzip, deflate, sdch
+2015-02-01 08:59:44,558 DEBUG org.restlet - Accept-Language: de-DE,de;q=0.8,en-US;q=0.6,en;q=0.4
+2015-02-01 08:59:44,558 DEBUG org.restlet - Cookie: template=edit; _ga=GA1.1.1616881384.1421522672; OSESSIONID=OS14223535500113443975169242684860; Credentials=Jjy4LUdaxwhXIL+dkMClZ4gYUkXdY+cZ3Grd5q1E7bCOtW6fnmWqIbaChPIEV7eX
+2015-02-01 08:59:44,558 DEBUG org.restlet - 
+2015-02-01 08:59:44,558 DEBUG org.restlet.SkysailComponent.LogFilter - HttpInboundRequest::setHeaders, IPv4 hostDomain: localhost, hostPort: 2017
+2015-02-01 08:59:44,559 DEBUG org.restlet - Connection from "/0:0:0:0:0:0:0:1:64129" accepted. New count: 4
+2015-02-01 08:59:44,560 DEBUG LogService - Processing request to: "http://localhost:2017/webapp/css/select2.css"
+2015-02-01 08:59:44,560 DEBUG org.restlet - GET /static/themes/jstree/style.min.css HTTP/1.1
+2015-02-01 08:59:44,560 DEBUG org.restlet - Reading message from /0:0:0:0:0:0:0:1:64129
+2015-02-01 08:59:44,561 DEBUG org.restlet.SkysailComponent.SkysailWebsiteApplication - The default route was selected
+2015-02-01 08:59:44,561 DEBUG o.r.SkysailComponent.SkysailWebsiteApplication.Decoder - The protocol used by this request is not declared in the application's connector service. Please update the list of client connectors used by your application and restart it.
+2015-02-01 08:59:44,562 DEBUG o.r.SkysailComponent.SkysailWebsiteApplication.Decoder - The protocol used by this request is not declared in the application's connector service. Please update the list of client connectors used by your application and restart it.
+2015-02-01 08:59:44,563 DEBUG org.restlet.SkysailComponent.SkysailWebsiteApplication - Getting variants for: clap://thread/webapp/css/select2.css
+2015-02-01 08:59:44,563 DEBUG org.restlet.SkysailComponent.SkysailWebsiteApplication - Converted target URI: clap://thread/webapp/css/select2.css
+2015-02-01 08:59:44,563 DEBUG org.restlet.SkysailComponent.SkysailWebsiteApplication - Converted base name : select2
+2015-02-01 08:59:44,563 DEBUG org.restlet - Host: localhost:2017
+2015-02-01 08:59:44,563 DEBUG org.restlet - Connection: keep-alive
+2015-02-01 08:59:44,563 DEBUG org.restlet - Accept: text/css,*/*;q=0.1
+2015-02-01 08:59:44,563 DEBUG org.restlet - User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/40.0.2214.94 Safari/537.36
+2015-02-01 08:59:44,563 DEBUG org.restlet - Referer: http://localhost:2017/
+2015-02-01 08:59:44,563 DEBUG org.restlet - Accept-Encoding: gzip, deflate, sdch
+2015-02-01 08:59:44,563 DEBUG org.restlet - Accept-Language: de-DE,de;q=0.8,en-US;q=0.6,en;q=0.4
+2015-02-01 08:59:44,563 DEBUG org.restlet - Cookie: template=edit; _ga=GA1.1.1616881384.1421522672; OSESSIONID=OS14223535500113443975169242684860; Credentials=Jjy4LUdaxwhXIL+dkMClZ4gYUkXdY+cZ3Grd5q1E7bCOtW6fnmWqIbaChPIEV7eX
+2015-02-01 08:59:44,564 DEBUG org.restlet - 
+2015-02-01 08:59:44,564 DEBUG org.restlet.SkysailComponent.LogFilter - HttpInboundRequest::setHeaders, IPv4 hostDomain: localhost, hostPort: 2017
+2015-02-01 08:59:44,564 DEBUG o.r.SkysailComponent.SkysailWebsiteApplication.Decoder - The protocol used by this request is not declared in the application's connector service. Please update the list of client connectors used by your application and restart it.
+2015-02-01 08:59:44,565 DEBUG org.restlet - Connection from "/0:0:0:0:0:0:0:1:64130" accepted. New count: 5
+2015-02-01 08:59:44,566 DEBUG LogService - Processing request to: "http://localhost:2017/static/themes/jstree/style.min.css"
+2015-02-01 08:59:44,567 DEBUG org.restlet.SkysailComponent.SkysailWebsiteApplication - Getting variants for: clap://thread/webapp/css/bootstrap.min.css
+2015-02-01 08:59:44,567 DEBUG org.restlet - GET /webapp/css/bootstrap-theme.min.css HTTP/1.1
+2015-02-01 08:59:44,567 DEBUG org.restlet.SkysailComponent.SkysailWebsiteApplication - Converted target URI: clap://thread/webapp/css/bootstrap.min.css
+2015-02-01 08:59:44,567 DEBUG org.restlet - Reading message from /0:0:0:0:0:0:0:1:64130
+2015-02-01 08:59:44,567 DEBUG org.restlet.SkysailComponent.SkysailWebsiteApplication - Converted base name : bootstrap.min
+2015-02-01 08:59:44,567 DEBUG org.restlet - Host: localhost:2017
+2015-02-01 08:59:44,567 DEBUG org.restlet - Connection: keep-alive
+2015-02-01 08:59:44,567 DEBUG org.restlet - Accept: text/css,*/*;q=0.1
+2015-02-01 08:59:44,567 DEBUG org.restlet - User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/40.0.2214.94 Safari/537.36
+2015-02-01 08:59:44,567 DEBUG org.restlet - Referer: http://localhost:2017/
+2015-02-01 08:59:44,567 DEBUG org.restlet - Accept-Encoding: gzip, deflate, sdch
+2015-02-01 08:59:44,567 DEBUG org.restlet - Accept-Language: de-DE,de;q=0.8,en-US;q=0.6,en;q=0.4
+2015-02-01 08:59:44,568 DEBUG org.restlet - Cookie: template=edit; _ga=GA1.1.1616881384.1421522672; OSESSIONID=OS14223535500113443975169242684860; Credentials=Jjy4LUdaxwhXIL+dkMClZ4gYUkXdY+cZ3Grd5q1E7bCOtW6fnmWqIbaChPIEV7eX
+2015-02-01 08:59:44,568 DEBUG org.restlet - 
+2015-02-01 08:59:44,568 DEBUG org.restlet.SkysailComponent.LogFilter - HttpInboundRequest::setHeaders, IPv4 hostDomain: localhost, hostPort: 2017
+2015-02-01 08:59:44,568 INFO  LogService - 2015-02-01	08:59:44	0:0:0:0:0:0:0:1	-	-	2017	GET	/webapp/css/select2.css	-	200	-	0	6	http://localhost:2017	Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/40.0.2214.94 Safari/537.36	http://localhost:2017/
+2015-02-01 08:59:44,573 INFO  LogService - 2015-02-01	08:59:44	0:0:0:0:0:0:0:1	-	-	2017	GET	/webapp/css/bootstrap.min.css	-	200	-	0	17	http://localhost:2017	Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/40.0.2214.94 Safari/537.36	http://localhost:2017/
+2015-02-01 08:59:44,579 DEBUG o.r.SkysailComponent.InternalRouter.WebappApplication - The default route was selected
+2015-02-01 08:59:44,580 DEBUG o.r.S.InternalRouter.WebappApplication.Decoder - The protocol used by this request is not declared in the application's connector service. Please update the list of client connectors used by your application and restart it.
+2015-02-01 08:59:44,581 DEBUG o.r.S.InternalRouter.WebappApplication.Decoder - The protocol used by this request is not declared in the application's connector service. Please update the list of client connectors used by your application and restart it.
+2015-02-01 08:59:44,582 DEBUG o.r.SkysailComponent.InternalRouter.WebappApplication - Getting variants for: clap://thread/static/themes/jstree/style.min.css
+2015-02-01 08:59:44,582 DEBUG o.r.SkysailComponent.InternalRouter.WebappApplication - Converted target URI: clap://thread/static/themes/jstree/style.min.css
+2015-02-01 08:59:44,583 DEBUG o.r.SkysailComponent.InternalRouter.WebappApplication - Converted base name : style.min
+2015-02-01 08:59:44,584 INFO  LogService - 2015-02-01	08:59:44	0:0:0:0:0:0:0:1	-	-	2017	GET	/static/themes/jstree/style.min.css	-	200	-	0	18	http://localhost:2017	Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/40.0.2214.94 Safari/537.36	http://localhost:2017/
+2015-02-01 08:59:44,596 DEBUG org.restlet - Connection from "/0:0:0:0:0:0:0:1:64131" accepted. New count: 6
+2015-02-01 08:59:44,597 DEBUG LogService - Processing request to: "http://localhost:2017/webapp/css/bootstrap-theme.min.css"
+2015-02-01 08:59:44,597 DEBUG org.restlet - Writing message to /0:0:0:0:0:0:0:1:64127
+2015-02-01 08:59:44,598 DEBUG org.restlet.SkysailComponent.SkysailWebsiteApplication - The default route was selected
+2015-02-01 08:59:44,598 DEBUG org.restlet - HTTP/1.1 200 OK
+2015-02-01 08:59:44,598 DEBUG o.r.SkysailComponent.SkysailWebsiteApplication.Decoder - The protocol used by this request is not declared in the application's connector service. Please update the list of client connectors used by your application and restart it.
+2015-02-01 08:59:44,599 DEBUG o.r.SkysailComponent.SkysailWebsiteApplication.Decoder - The protocol used by this request is not declared in the application's connector service. Please update the list of client connectors used by your application and restart it.
+2015-02-01 08:59:44,600 DEBUG org.restlet.SkysailComponent.SkysailWebsiteApplication - Getting variants for: clap://thread/webapp/css/bootstrap-theme.min.css
+2015-02-01 08:59:44,600 DEBUG org.restlet.SkysailComponent.SkysailWebsiteApplication - Converted target URI: clap://thread/webapp/css/bootstrap-theme.min.css
+2015-02-01 08:59:44,600 DEBUG org.restlet.SkysailComponent.SkysailWebsiteApplication - Converted base name : bootstrap-theme.min
+2015-02-01 08:59:44,602 DEBUG org.restlet - Transfer-Encoding: chunked
+2015-02-01 08:59:44,602 DEBUG org.restlet - Date: Sun, 01 Feb 2015 07:59:44 GMT
+2015-02-01 08:59:44,602 DEBUG org.restlet - Accept-Ranges: bytes
+2015-02-01 08:59:44,602 DEBUG org.restlet - Server: Restlet-Framework/2.1.7
+2015-02-01 08:59:44,602 DEBUG org.restlet - Vary: Accept-Charset, Accept-Encoding, Accept-Language, Accept
+2015-02-01 08:59:44,602 DEBUG org.restlet - Content-Language: en
+2015-02-01 08:59:44,602 DEBUG org.restlet - Content-Location: http://localhost:2017/webapp/css/bootstrap.min.css
+2015-02-01 08:59:44,602 DEBUG org.restlet - Content-Type: text/css; charset=UTF-8
+2015-02-01 08:59:44,602 DEBUG org.restlet - Expires: Sun, 01 Feb 2015 08:09:44 GMT
+2015-02-01 08:59:44,603 DEBUG org.restlet - 
+2015-02-01 08:59:44,605 INFO  LogService - 2015-02-01	08:59:44	0:0:0:0:0:0:0:1	-	-	2017	GET	/webapp/css/bootstrap-theme.min.css	-	200	-	0	7	http://localhost:2017	Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/40.0.2214.94 Safari/537.36	http://localhost:2017/
+2015-02-01 08:59:44,606 DEBUG o.r.SkysailComponent.SkysailWebsiteApplication.Decoder - The protocol used by this request is not declared in the application's connector service. Please update the list of client connectors used by your application and restart it.
+2015-02-01 08:59:44,609 DEBUG org.restlet - Writing message to /0:0:0:0:0:0:0:1:64129
+2015-02-01 08:59:44,611 DEBUG org.restlet - HTTP/1.1 200 OK
+2015-02-01 08:59:44,615 DEBUG org.restlet - Transfer-Encoding: chunked
+2015-02-01 08:59:44,616 DEBUG org.restlet - Date: Sun, 01 Feb 2015 07:59:44 GMT
+2015-02-01 08:59:44,616 DEBUG org.restlet - Accept-Ranges: bytes
+2015-02-01 08:59:44,616 DEBUG org.restlet - Server: Restlet-Framework/2.1.7
+2015-02-01 08:59:44,616 DEBUG org.restlet - Vary: Accept-Charset, Accept-Encoding, Accept-Language, Accept
+2015-02-01 08:59:44,617 DEBUG org.restlet - Content-Language: en
+2015-02-01 08:59:44,617 DEBUG org.restlet - Content-Location: http://localhost:2017/static/themes/jstree/style.min.css
+2015-02-01 08:59:44,617 DEBUG org.restlet - Content-Type: text/css; charset=UTF-8
+2015-02-01 08:59:44,617 DEBUG org.restlet - Expires: Sun, 01 Feb 2015 08:09:44 GMT
+2015-02-01 08:59:44,617 DEBUG org.restlet - 
+2015-02-01 08:59:44,631 DEBUG org.restlet - GET /static/js/jstree/jstree.min.js HTTP/1.1
+2015-02-01 08:59:44,631 DEBUG org.restlet - Reading message from /0:0:0:0:0:0:0:1:64131
+2015-02-01 08:59:44,631 DEBUG org.restlet - Host: localhost:2017
+2015-02-01 08:59:44,631 DEBUG org.restlet - Connection: keep-alive
+2015-02-01 08:59:44,631 DEBUG org.restlet - Accept: */*
+2015-02-01 08:59:44,632 DEBUG org.restlet.SkysailComponent.SkysailWebsiteApplication - Getting variants for: clap://thread/webapp/js/jquery-1.11.1.js
+2015-02-01 08:59:44,632 DEBUG org.restlet.SkysailComponent.SkysailWebsiteApplication - Converted target URI: clap://thread/webapp/js/jquery-1.11.1.js
+2015-02-01 08:59:44,632 DEBUG org.restlet.SkysailComponent.SkysailWebsiteApplication - Converted base name : jquery-1.11.1
+2015-02-01 08:59:44,632 DEBUG org.restlet - User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/40.0.2214.94 Safari/537.36
+2015-02-01 08:59:44,632 DEBUG org.restlet - Referer: http://localhost:2017/
+2015-02-01 08:59:44,632 DEBUG org.restlet - Accept-Encoding: gzip, deflate, sdch
+2015-02-01 08:59:44,633 DEBUG org.restlet - Accept-Language: de-DE,de;q=0.8,en-US;q=0.6,en;q=0.4
+2015-02-01 08:59:44,633 DEBUG org.restlet - Cookie: template=edit; _ga=GA1.1.1616881384.1421522672; OSESSIONID=OS14223535500113443975169242684860; Credentials=Jjy4LUdaxwhXIL+dkMClZ4gYUkXdY+cZ3Grd5q1E7bCOtW6fnmWqIbaChPIEV7eX
+2015-02-01 08:59:44,633 DEBUG org.restlet - 
+2015-02-01 08:59:44,633 DEBUG org.restlet.SkysailComponent.LogFilter - HttpInboundRequest::setHeaders, IPv4 hostDomain: localhost, hostPort: 2017
+2015-02-01 08:59:44,633 DEBUG org.restlet - Writing message to /0:0:0:0:0:0:0:1:64128
+2015-02-01 08:59:44,634 DEBUG org.restlet - HTTP/1.1 200 OK
+2015-02-01 08:59:44,635 DEBUG org.restlet - Transfer-Encoding: chunked
+2015-02-01 08:59:44,635 DEBUG org.restlet - Date: Sun, 01 Feb 2015 07:59:44 GMT
+2015-02-01 08:59:44,636 DEBUG org.restlet - Accept-Ranges: bytes
+2015-02-01 08:59:44,636 DEBUG org.restlet - Server: Restlet-Framework/2.1.7
+2015-02-01 08:59:44,636 DEBUG org.restlet - Vary: Accept-Charset, Accept-Encoding, Accept-Language, Accept
+2015-02-01 08:59:44,636 DEBUG org.restlet - Content-Language: en
+2015-02-01 08:59:44,636 DEBUG org.restlet - Content-Location: http://localhost:2017/webapp/css/select2.css
+2015-02-01 08:59:44,636 DEBUG org.restlet - Content-Type: text/css; charset=UTF-8
+2015-02-01 08:59:44,636 DEBUG org.restlet - Expires: Sun, 01 Feb 2015 08:09:44 GMT
+2015-02-01 08:59:44,636 DEBUG org.restlet - 
+2015-02-01 08:59:44,642 DEBUG LogService - Processing request to: "http://localhost:2017/static/js/jstree/jstree.min.js"
+2015-02-01 08:59:44,642 DEBUG org.restlet - Writing message to /0:0:0:0:0:0:0:1:64130
+2015-02-01 08:59:44,642 DEBUG org.restlet - HTTP/1.1 200 OK
+2015-02-01 08:59:44,643 DEBUG o.r.SkysailComponent.InternalRouter.WebappApplication - The default route was selected
+2015-02-01 08:59:44,643 DEBUG o.r.S.InternalRouter.WebappApplication.Decoder - The protocol used by this request is not declared in the application's connector service. Please update the list of client connectors used by your application and restart it.
+2015-02-01 08:59:44,644 DEBUG o.r.S.InternalRouter.WebappApplication.Decoder - The protocol used by this request is not declared in the application's connector service. Please update the list of client connectors used by your application and restart it.
+2015-02-01 08:59:44,644 INFO  LogService - 2015-02-01	08:59:44	0:0:0:0:0:0:0:1	-	-	2017	GET	/webapp/js/jquery-1.11.1.js	-	200	-	0	103	http://localhost:2017	Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/40.0.2214.94 Safari/537.36	http://localhost:2017/
+2015-02-01 08:59:44,646 DEBUG org.restlet - Transfer-Encoding: chunked
+2015-02-01 08:59:44,646 DEBUG o.r.SkysailComponent.InternalRouter.WebappApplication - Getting variants for: clap://thread/static/js/jstree/jstree.min.js
+2015-02-01 08:59:44,646 DEBUG o.r.SkysailComponent.InternalRouter.WebappApplication - Converted target URI: clap://thread/static/js/jstree/jstree.min.js
+2015-02-01 08:59:44,646 DEBUG org.restlet - Date: Sun, 01 Feb 2015 07:59:44 GMT
+2015-02-01 08:59:44,646 DEBUG o.r.SkysailComponent.InternalRouter.WebappApplication - Converted base name : jstree.min
+2015-02-01 08:59:44,646 DEBUG org.restlet - Accept-Ranges: bytes
+2015-02-01 08:59:44,647 INFO  LogService - 2015-02-01	08:59:44	0:0:0:0:0:0:0:1	-	-	2017	GET	/static/js/jstree/jstree.min.js	-	200	-	0	5	http://localhost:2017	Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/40.0.2214.94 Safari/537.36	http://localhost:2017/
+2015-02-01 08:59:44,649 DEBUG org.restlet - Server: Restlet-Framework/2.1.7
+2015-02-01 08:59:44,650 DEBUG org.restlet - Vary: Accept-Charset, Accept-Encoding, Accept-Language, Accept
+2015-02-01 08:59:44,650 DEBUG org.restlet - Content-Language: en
+2015-02-01 08:59:44,650 DEBUG org.restlet - Content-Location: http://localhost:2017/webapp/css/bootstrap-theme.min.css
+2015-02-01 08:59:44,650 DEBUG org.restlet - Content-Type: text/css; charset=UTF-8
+2015-02-01 08:59:44,650 DEBUG org.restlet - Expires: Sun, 01 Feb 2015 08:09:44 GMT
+2015-02-01 08:59:44,651 DEBUG org.restlet - 
+2015-02-01 08:59:44,651 DEBUG org.restlet - GET /webapp/css/select2-bootstrap.css HTTP/1.1
+2015-02-01 08:59:44,652 DEBUG org.restlet - Reading message from /0:0:0:0:0:0:0:1:64127
+2015-02-01 08:59:44,652 DEBUG org.restlet - Host: localhost:2017
+2015-02-01 08:59:44,652 DEBUG org.restlet - Connection: keep-alive
+2015-02-01 08:59:44,652 DEBUG org.restlet - Accept: text/css,*/*;q=0.1
+2015-02-01 08:59:44,652 DEBUG org.restlet - User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/40.0.2214.94 Safari/537.36
+2015-02-01 08:59:44,652 DEBUG org.restlet - Referer: http://localhost:2017/
+2015-02-01 08:59:44,652 DEBUG org.restlet - Accept-Encoding: gzip, deflate, sdch
+2015-02-01 08:59:44,652 DEBUG org.restlet - Accept-Language: de-DE,de;q=0.8,en-US;q=0.6,en;q=0.4
+2015-02-01 08:59:44,652 DEBUG org.restlet - Cookie: template=edit; _ga=GA1.1.1616881384.1421522672; OSESSIONID=OS14223535500113443975169242684860; Credentials=Jjy4LUdaxwhXIL+dkMClZ4gYUkXdY+cZ3Grd5q1E7bCOtW6fnmWqIbaChPIEV7eX
+2015-02-01 08:59:44,652 DEBUG org.restlet - 
+2015-02-01 08:59:44,652 DEBUG org.restlet.SkysailComponent.LogFilter - HttpInboundRequest::setHeaders, IPv4 hostDomain: localhost, hostPort: 2017
+2015-02-01 08:59:44,652 DEBUG org.restlet - GET /static/js/mousetrap/mousetrap.min.js HTTP/1.1
+2015-02-01 08:59:44,652 DEBUG org.restlet - Reading message from /0:0:0:0:0:0:0:1:64129
+2015-02-01 08:59:44,653 DEBUG org.restlet - Host: localhost:2017
+2015-02-01 08:59:44,653 DEBUG org.restlet - Connection: keep-alive
+2015-02-01 08:59:44,653 DEBUG org.restlet - Accept: */*
+2015-02-01 08:59:44,653 DEBUG org.restlet - User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/40.0.2214.94 Safari/537.36
+2015-02-01 08:59:44,653 DEBUG org.restlet - Referer: http://localhost:2017/
+2015-02-01 08:59:44,653 DEBUG org.restlet - Accept-Encoding: gzip, deflate, sdch
+2015-02-01 08:59:44,653 DEBUG org.restlet - Accept-Language: de-DE,de;q=0.8,en-US;q=0.6,en;q=0.4
+2015-02-01 08:59:44,653 DEBUG org.restlet - Cookie: template=edit; _ga=GA1.1.1616881384.1421522672; OSESSIONID=OS14223535500113443975169242684860; Credentials=Jjy4LUdaxwhXIL+dkMClZ4gYUkXdY+cZ3Grd5q1E7bCOtW6fnmWqIbaChPIEV7eX
+2015-02-01 08:59:44,653 DEBUG org.restlet - 
+2015-02-01 08:59:44,653 DEBUG org.restlet.SkysailComponent.LogFilter - HttpInboundRequest::setHeaders, IPv4 hostDomain: localhost, hostPort: 2017
+2015-02-01 08:59:44,653 DEBUG LogService - Processing request to: "http://localhost:2017/webapp/css/select2-bootstrap.css"
+2015-02-01 08:59:44,653 DEBUG LogService - Processing request to: "http://localhost:2017/static/js/mousetrap/mousetrap.min.js"
+2015-02-01 08:59:44,654 DEBUG org.restlet - GET /webapp/js/bootstrap.min.js HTTP/1.1
+2015-02-01 08:59:44,654 DEBUG org.restlet - Reading message from /0:0:0:0:0:0:0:1:64130
+2015-02-01 08:59:44,654 DEBUG o.r.SkysailComponent.InternalRouter.WebappApplication - The default route was selected
+2015-02-01 08:59:44,654 DEBUG org.restlet - Host: localhost:2017
+2015-02-01 08:59:44,654 DEBUG org.restlet.SkysailComponent.SkysailWebsiteApplication - The default route was selected
+2015-02-01 08:59:44,654 DEBUG o.r.S.InternalRouter.WebappApplication.Decoder - The protocol used by this request is not declared in the application's connector service. Please update the list of client connectors used by your application and restart it.
+2015-02-01 08:59:44,654 DEBUG org.restlet - Connection: keep-alive
+2015-02-01 08:59:44,655 DEBUG o.r.SkysailComponent.SkysailWebsiteApplication.Decoder - The protocol used by this request is not declared in the application's connector service. Please update the list of client connectors used by your application and restart it.
+2015-02-01 08:59:44,655 DEBUG org.restlet - Accept: */*
+2015-02-01 08:59:44,655 DEBUG org.restlet - User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/40.0.2214.94 Safari/537.36
+2015-02-01 08:59:44,656 DEBUG org.restlet - Referer: http://localhost:2017/
+2015-02-01 08:59:44,656 DEBUG o.r.SkysailComponent.SkysailWebsiteApplication.Decoder - The protocol used by this request is not declared in the application's connector service. Please update the list of client connectors used by your application and restart it.
+2015-02-01 08:59:44,656 DEBUG o.r.S.InternalRouter.WebappApplication.Decoder - The protocol used by this request is not declared in the application's connector service. Please update the list of client connectors used by your application and restart it.
+2015-02-01 08:59:44,656 DEBUG org.restlet - Accept-Encoding: gzip, deflate, sdch
+2015-02-01 08:59:44,656 DEBUG org.restlet - Accept-Language: de-DE,de;q=0.8,en-US;q=0.6,en;q=0.4
+2015-02-01 08:59:44,656 DEBUG org.restlet - Cookie: template=edit; _ga=GA1.1.1616881384.1421522672; OSESSIONID=OS14223535500113443975169242684860; Credentials=Jjy4LUdaxwhXIL+dkMClZ4gYUkXdY+cZ3Grd5q1E7bCOtW6fnmWqIbaChPIEV7eX
+2015-02-01 08:59:44,656 DEBUG org.restlet - 
+2015-02-01 08:59:44,656 DEBUG org.restlet.SkysailComponent.LogFilter - HttpInboundRequest::setHeaders, IPv4 hostDomain: localhost, hostPort: 2017
+2015-02-01 08:59:44,656 DEBUG org.restlet.SkysailComponent.SkysailWebsiteApplication - Getting variants for: clap://thread/webapp/css/select2-bootstrap.css
+2015-02-01 08:59:44,656 DEBUG org.restlet.SkysailComponent.SkysailWebsiteApplication - Converted target URI: clap://thread/webapp/css/select2-bootstrap.css
+2015-02-01 08:59:44,656 DEBUG org.restlet.SkysailComponent.SkysailWebsiteApplication - Converted base name : select2-bootstrap
+2015-02-01 08:59:44,657 DEBUG o.r.SkysailComponent.InternalRouter.WebappApplication - Getting variants for: clap://thread/static/js/mousetrap/mousetrap.min.js
+2015-02-01 08:59:44,657 DEBUG o.r.SkysailComponent.InternalRouter.WebappApplication - Converted target URI: clap://thread/static/js/mousetrap/mousetrap.min.js
+2015-02-01 08:59:44,657 DEBUG o.r.SkysailComponent.InternalRouter.WebappApplication - Converted base name : mousetrap.min
+2015-02-01 08:59:44,657 DEBUG org.restlet - Writing message to /0:0:0:0:0:0:0:1:64131
+2015-02-01 08:59:44,657 INFO  LogService - 2015-02-01	08:59:44	0:0:0:0:0:0:0:1	-	-	2017	GET	/webapp/css/select2-bootstrap.css	-	200	-	0	4	http://localhost:2017	Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/40.0.2214.94 Safari/537.36	http://localhost:2017/
+2015-02-01 08:59:44,657 INFO  LogService - 2015-02-01	08:59:44	0:0:0:0:0:0:0:1	-	-	2017	GET	/static/js/mousetrap/mousetrap.min.js	-	200	-	0	4	http://localhost:2017	Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/40.0.2214.94 Safari/537.36	http://localhost:2017/
+2015-02-01 08:59:44,661 DEBUG org.restlet - HTTP/1.1 200 OK
+2015-02-01 08:59:44,662 DEBUG org.restlet - Transfer-Encoding: chunked
+2015-02-01 08:59:44,662 DEBUG org.restlet - Date: Sun, 01 Feb 2015 07:59:44 GMT
+2015-02-01 08:59:44,662 DEBUG org.restlet - Accept-Ranges: bytes
+2015-02-01 08:59:44,662 DEBUG org.restlet - Server: Restlet-Framework/2.1.7
+2015-02-01 08:59:44,662 DEBUG org.restlet - Vary: Accept-Charset, Accept-Encoding, Accept-Language, Accept
+2015-02-01 08:59:44,662 DEBUG org.restlet - Content-Language: en
+2015-02-01 08:59:44,662 DEBUG org.restlet - Content-Location: http://localhost:2017/static/js/jstree/jstree.min.js
+2015-02-01 08:59:44,662 DEBUG org.restlet - Content-Type: application/x-javascript; charset=UTF-8
+2015-02-01 08:59:44,663 DEBUG org.restlet - Expires: Sun, 01 Feb 2015 08:09:44 GMT
+2015-02-01 08:59:44,663 DEBUG org.restlet - 
+2015-02-01 08:59:44,666 DEBUG org.restlet - GET /webapp/js/moment.js HTTP/1.1
+2015-02-01 08:59:44,667 DEBUG org.restlet - Reading message from /0:0:0:0:0:0:0:1:64128
+2015-02-01 08:59:44,667 DEBUG org.restlet - Host: localhost:2017
+2015-02-01 08:59:44,667 DEBUG org.restlet - Connection: keep-alive
+2015-02-01 08:59:44,667 DEBUG org.restlet - Accept: */*
+2015-02-01 08:59:44,667 DEBUG org.restlet - User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/40.0.2214.94 Safari/537.36
+2015-02-01 08:59:44,667 DEBUG org.restlet - Referer: http://localhost:2017/
+2015-02-01 08:59:44,667 DEBUG org.restlet - Accept-Encoding: gzip, deflate, sdch
+2015-02-01 08:59:44,667 DEBUG org.restlet - Accept-Language: de-DE,de;q=0.8,en-US;q=0.6,en;q=0.4
+2015-02-01 08:59:44,667 DEBUG org.restlet - Cookie: template=edit; _ga=GA1.1.1616881384.1421522672; OSESSIONID=OS14223535500113443975169242684860; Credentials=Jjy4LUdaxwhXIL+dkMClZ4gYUkXdY+cZ3Grd5q1E7bCOtW6fnmWqIbaChPIEV7eX
+2015-02-01 08:59:44,667 DEBUG org.restlet - 
+2015-02-01 08:59:44,667 DEBUG org.restlet.SkysailComponent.LogFilter - HttpInboundRequest::setHeaders, IPv4 hostDomain: localhost, hostPort: 2017
+2015-02-01 08:59:44,668 DEBUG org.restlet - Writing message to /0:0:0:0:0:0:0:1:64125
+2015-02-01 08:59:44,668 DEBUG org.restlet - HTTP/1.1 200 OK
+2015-02-01 08:59:44,669 DEBUG org.restlet - Transfer-Encoding: chunked
+2015-02-01 08:59:44,669 DEBUG org.restlet - Date: Sun, 01 Feb 2015 07:59:44 GMT
+2015-02-01 08:59:44,669 DEBUG org.restlet - Accept-Ranges: bytes
+2015-02-01 08:59:44,669 DEBUG org.restlet - Server: Restlet-Framework/2.1.7
+2015-02-01 08:59:44,669 DEBUG org.restlet - Vary: Accept-Charset, Accept-Encoding, Accept-Language, Accept
+2015-02-01 08:59:44,669 DEBUG org.restlet - Content-Language: en
+2015-02-01 08:59:44,669 DEBUG org.restlet - Content-Location: http://localhost:2017/webapp/js/jquery-1.11.1.js
+2015-02-01 08:59:44,669 DEBUG org.restlet - Content-Type: application/x-javascript; charset=UTF-8
+2015-02-01 08:59:44,669 DEBUG org.restlet - Expires: Sun, 01 Feb 2015 08:09:44 GMT
+2015-02-01 08:59:44,669 DEBUG org.restlet - 
+2015-02-01 08:59:44,678 DEBUG LogService - Processing request to: "http://localhost:2017/webapp/js/bootstrap.min.js"
+2015-02-01 08:59:44,679 DEBUG org.restlet.SkysailComponent.SkysailWebsiteApplication - The default route was selected
+2015-02-01 08:59:44,679 DEBUG o.r.SkysailComponent.SkysailWebsiteApplication.Decoder - The protocol used by this request is not declared in the application's connector service. Please update the list of client connectors used by your application and restart it.
+2015-02-01 08:59:44,680 DEBUG o.r.SkysailComponent.SkysailWebsiteApplication.Decoder - The protocol used by this request is not declared in the application's connector service. Please update the list of client connectors used by your application and restart it.
+2015-02-01 08:59:44,681 DEBUG org.restlet.SkysailComponent.SkysailWebsiteApplication - Getting variants for: clap://thread/webapp/js/bootstrap.min.js
+2015-02-01 08:59:44,681 DEBUG org.restlet.SkysailComponent.SkysailWebsiteApplication - Converted target URI: clap://thread/webapp/js/bootstrap.min.js
+2015-02-01 08:59:44,681 DEBUG org.restlet.SkysailComponent.SkysailWebsiteApplication - Converted base name : bootstrap.min
+2015-02-01 08:59:44,682 INFO  LogService - 2015-02-01	08:59:44	0:0:0:0:0:0:0:1	-	-	2017	GET	/webapp/js/bootstrap.min.js	-	200	-	0	5	http://localhost:2017	Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/40.0.2214.94 Safari/537.36	http://localhost:2017/
+2015-02-01 08:59:44,683 DEBUG org.restlet - Writing message to /0:0:0:0:0:0:0:1:64130
+2015-02-01 08:59:44,683 DEBUG org.restlet - HTTP/1.1 200 OK
+2015-02-01 08:59:44,683 DEBUG org.restlet - Transfer-Encoding: chunked
+2015-02-01 08:59:44,683 DEBUG org.restlet - Date: Sun, 01 Feb 2015 07:59:44 GMT
+2015-02-01 08:59:44,683 DEBUG org.restlet - Accept-Ranges: bytes
+2015-02-01 08:59:44,683 DEBUG org.restlet - Server: Restlet-Framework/2.1.7
+2015-02-01 08:59:44,683 DEBUG org.restlet - Vary: Accept-Charset, Accept-Encoding, Accept-Language, Accept
+2015-02-01 08:59:44,683 DEBUG org.restlet - Content-Language: en
+2015-02-01 08:59:44,683 DEBUG org.restlet - Content-Location: http://localhost:2017/webapp/js/bootstrap.min.js
+2015-02-01 08:59:44,684 DEBUG org.restlet - Content-Type: application/x-javascript; charset=UTF-8
+2015-02-01 08:59:44,684 DEBUG org.restlet - Expires: Sun, 01 Feb 2015 08:09:44 GMT
+2015-02-01 08:59:44,684 DEBUG org.restlet - 
+2015-02-01 08:59:44,684 DEBUG LogService - Processing request to: "http://localhost:2017/webapp/js/moment.js"
+2015-02-01 08:59:44,684 DEBUG org.restlet.SkysailComponent.SkysailWebsiteApplication - The default route was selected
+2015-02-01 08:59:44,685 DEBUG o.r.SkysailComponent.SkysailWebsiteApplication.Decoder - The protocol used by this request is not declared in the application's connector service. Please update the list of client connectors used by your application and restart it.
+2015-02-01 08:59:44,695 DEBUG o.r.SkysailComponent.SkysailWebsiteApplication.Decoder - The protocol used by this request is not declared in the application's connector service. Please update the list of client connectors used by your application and restart it.
+2015-02-01 08:59:44,696 DEBUG org.restlet.SkysailComponent.SkysailWebsiteApplication - Getting variants for: clap://thread/webapp/js/moment.js
+2015-02-01 08:59:44,696 DEBUG org.restlet.SkysailComponent.SkysailWebsiteApplication - Converted target URI: clap://thread/webapp/js/moment.js
+2015-02-01 08:59:44,696 DEBUG org.restlet.SkysailComponent.SkysailWebsiteApplication - Converted base name : moment
+2015-02-01 08:59:44,723 DEBUG org.restlet - Writing message to /0:0:0:0:0:0:0:1:64127
+2015-02-01 08:59:44,724 DEBUG org.restlet - HTTP/1.1 200 OK
+2015-02-01 08:59:44,724 INFO  LogService - 2015-02-01	08:59:44	0:0:0:0:0:0:0:1	-	-	2017	GET	/webapp/js/moment.js	-	200	-	0	40	http://localhost:2017	Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/40.0.2214.94 Safari/537.36	http://localhost:2017/
+2015-02-01 08:59:44,725 DEBUG org.restlet - Transfer-Encoding: chunked
+2015-02-01 08:59:44,725 DEBUG org.restlet - Date: Sun, 01 Feb 2015 07:59:44 GMT
+2015-02-01 08:59:44,725 DEBUG org.restlet - Accept-Ranges: bytes
+2015-02-01 08:59:44,725 DEBUG org.restlet - Server: Restlet-Framework/2.1.7
+2015-02-01 08:59:44,725 DEBUG org.restlet - Vary: Accept-Charset, Accept-Encoding, Accept-Language, Accept
+2015-02-01 08:59:44,726 DEBUG org.restlet - Content-Language: en
+2015-02-01 08:59:44,726 DEBUG org.restlet - Content-Location: http://localhost:2017/webapp/css/select2-bootstrap.css
+2015-02-01 08:59:44,726 DEBUG org.restlet - Content-Type: text/css; charset=UTF-8
+2015-02-01 08:59:44,726 DEBUG org.restlet - Expires: Sun, 01 Feb 2015 08:09:44 GMT
+2015-02-01 08:59:44,726 DEBUG org.restlet - 
+2015-02-01 08:59:44,726 DEBUG org.restlet - GET /webapp/js/select2.js HTTP/1.1
+2015-02-01 08:59:44,726 DEBUG org.restlet - Reading message from /0:0:0:0:0:0:0:1:64131
+2015-02-01 08:59:44,726 DEBUG org.restlet - Host: localhost:2017
+2015-02-01 08:59:44,726 DEBUG org.restlet - Connection: keep-alive
+2015-02-01 08:59:44,727 DEBUG org.restlet - Accept: */*
+2015-02-01 08:59:44,727 DEBUG org.restlet - User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/40.0.2214.94 Safari/537.36
+2015-02-01 08:59:44,727 DEBUG org.restlet - Referer: http://localhost:2017/
+2015-02-01 08:59:44,727 DEBUG org.restlet - Accept-Encoding: gzip, deflate, sdch
+2015-02-01 08:59:44,727 DEBUG org.restlet - Accept-Language: de-DE,de;q=0.8,en-US;q=0.6,en;q=0.4
+2015-02-01 08:59:44,727 DEBUG org.restlet - Cookie: template=edit; _ga=GA1.1.1616881384.1421522672; OSESSIONID=OS14223535500113443975169242684860; Credentials=Jjy4LUdaxwhXIL+dkMClZ4gYUkXdY+cZ3Grd5q1E7bCOtW6fnmWqIbaChPIEV7eX
+2015-02-01 08:59:44,727 DEBUG org.restlet - 
+2015-02-01 08:59:44,727 DEBUG org.restlet.SkysailComponent.LogFilter - HttpInboundRequest::setHeaders, IPv4 hostDomain: localhost, hostPort: 2017
+2015-02-01 08:59:44,727 DEBUG org.restlet - Writing message to /0:0:0:0:0:0:0:1:64129
+2015-02-01 08:59:44,727 DEBUG org.restlet - HTTP/1.1 200 OK
+2015-02-01 08:59:44,728 DEBUG org.restlet - Transfer-Encoding: chunked
+2015-02-01 08:59:44,728 DEBUG org.restlet - Date: Sun, 01 Feb 2015 07:59:44 GMT
+2015-02-01 08:59:44,728 DEBUG org.restlet - Accept-Ranges: bytes
+2015-02-01 08:59:44,729 DEBUG org.restlet - Server: Restlet-Framework/2.1.7
+2015-02-01 08:59:44,729 DEBUG org.restlet - Vary: Accept-Charset, Accept-Encoding, Accept-Language, Accept
+2015-02-01 08:59:44,729 DEBUG org.restlet - Content-Language: en
+2015-02-01 08:59:44,729 DEBUG org.restlet - Content-Location: http://localhost:2017/static/js/mousetrap/mousetrap.min.js
+2015-02-01 08:59:44,729 DEBUG org.restlet - Content-Type: application/x-javascript; charset=UTF-8
+2015-02-01 08:59:44,729 DEBUG org.restlet - Expires: Sun, 01 Feb 2015 08:09:44 GMT
+2015-02-01 08:59:44,730 DEBUG org.restlet - 
+2015-02-01 08:59:44,750 DEBUG LogService - Processing request to: "http://localhost:2017/webapp/js/select2.js"
+2015-02-01 08:59:44,750 DEBUG org.restlet.SkysailComponent.SkysailWebsiteApplication - The default route was selected
+2015-02-01 08:59:44,751 DEBUG o.r.SkysailComponent.SkysailWebsiteApplication.Decoder - The protocol used by this request is not declared in the application's connector service. Please update the list of client connectors used by your application and restart it.
+2015-02-01 08:59:44,752 DEBUG o.r.SkysailComponent.SkysailWebsiteApplication.Decoder - The protocol used by this request is not declared in the application's connector service. Please update the list of client connectors used by your application and restart it.
+2015-02-01 08:59:44,752 DEBUG org.restlet.SkysailComponent.SkysailWebsiteApplication - Getting variants for: clap://thread/webapp/js/select2.js
+2015-02-01 08:59:44,752 DEBUG org.restlet.SkysailComponent.SkysailWebsiteApplication - Converted target URI: clap://thread/webapp/js/select2.js
+2015-02-01 08:59:44,752 DEBUG org.restlet.SkysailComponent.SkysailWebsiteApplication - Converted base name : select2
+2015-02-01 08:59:44,755 INFO  LogService - 2015-02-01	08:59:44	0:0:0:0:0:0:0:1	-	-	2017	GET	/webapp/js/select2.js	-	200	-	0	5	http://localhost:2017	Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/40.0.2214.94 Safari/537.36	http://localhost:2017/
+2015-02-01 08:59:44,758 DEBUG org.restlet - GET /static/img/silk/note.png HTTP/1.1
+2015-02-01 08:59:44,758 DEBUG org.restlet - Reading message from /0:0:0:0:0:0:0:1:64130
+2015-02-01 08:59:44,758 DEBUG org.restlet - Host: localhost:2017
+2015-02-01 08:59:44,758 DEBUG org.restlet - Connection: keep-alive
+2015-02-01 08:59:44,758 DEBUG org.restlet - Accept: image/webp,*/*;q=0.8
+2015-02-01 08:59:44,758 DEBUG org.restlet - User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/40.0.2214.94 Safari/537.36
+2015-02-01 08:59:44,759 DEBUG org.restlet - Referer: http://localhost:2017/
+2015-02-01 08:59:44,759 DEBUG org.restlet - Accept-Encoding: gzip, deflate, sdch
+2015-02-01 08:59:44,759 DEBUG org.restlet - Accept-Language: de-DE,de;q=0.8,en-US;q=0.6,en;q=0.4
+2015-02-01 08:59:44,760 DEBUG org.restlet - Cookie: template=edit; _ga=GA1.1.1616881384.1421522672; OSESSIONID=OS14223535500113443975169242684860; Credentials=Jjy4LUdaxwhXIL+dkMClZ4gYUkXdY+cZ3Grd5q1E7bCOtW6fnmWqIbaChPIEV7eX
+2015-02-01 08:59:44,760 DEBUG org.restlet - 
+2015-02-01 08:59:44,760 DEBUG org.restlet.SkysailComponent.LogFilter - HttpInboundRequest::setHeaders, IPv4 hostDomain: localhost, hostPort: 2017
+2015-02-01 08:59:44,760 DEBUG org.restlet - Writing message to /0:0:0:0:0:0:0:1:64128
+2015-02-01 08:59:44,760 DEBUG org.restlet - HTTP/1.1 200 OK
+2015-02-01 08:59:44,761 DEBUG org.restlet - Transfer-Encoding: chunked
+2015-02-01 08:59:44,761 DEBUG org.restlet - Date: Sun, 01 Feb 2015 07:59:44 GMT
+2015-02-01 08:59:44,761 DEBUG org.restlet - Accept-Ranges: bytes
+2015-02-01 08:59:44,761 DEBUG org.restlet - Server: Restlet-Framework/2.1.7
+2015-02-01 08:59:44,761 DEBUG org.restlet - Vary: Accept-Charset, Accept-Encoding, Accept-Language, Accept
+2015-02-01 08:59:44,761 DEBUG org.restlet - Content-Language: en
+2015-02-01 08:59:44,761 DEBUG org.restlet - Content-Location: http://localhost:2017/webapp/js/moment.js
+2015-02-01 08:59:44,761 DEBUG org.restlet - Content-Type: application/x-javascript; charset=UTF-8
+2015-02-01 08:59:44,761 DEBUG org.restlet - Expires: Sun, 01 Feb 2015 08:09:44 GMT
+2015-02-01 08:59:44,761 DEBUG org.restlet - 
+2015-02-01 08:59:44,767 DEBUG org.restlet - GET /webapp/js/noty/packaged/jquery.noty.packaged.min.js HTTP/1.1
+2015-02-01 08:59:44,767 DEBUG org.restlet - Reading message from /0:0:0:0:0:0:0:1:64125
+2015-02-01 08:59:44,767 DEBUG org.restlet - Host: localhost:2017
+2015-02-01 08:59:44,767 DEBUG org.restlet - Connection: keep-alive
+2015-02-01 08:59:44,767 DEBUG org.restlet - Accept: */*
+2015-02-01 08:59:44,767 DEBUG org.restlet - User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/40.0.2214.94 Safari/537.36
+2015-02-01 08:59:44,767 DEBUG org.restlet - Referer: http://localhost:2017/
+2015-02-01 08:59:44,767 DEBUG org.restlet - Accept-Encoding: gzip, deflate, sdch
+2015-02-01 08:59:44,768 DEBUG org.restlet - Accept-Language: de-DE,de;q=0.8,en-US;q=0.6,en;q=0.4
+2015-02-01 08:59:44,768 DEBUG org.restlet - Cookie: template=edit; _ga=GA1.1.1616881384.1421522672; OSESSIONID=OS14223535500113443975169242684860; Credentials=Jjy4LUdaxwhXIL+dkMClZ4gYUkXdY+cZ3Grd5q1E7bCOtW6fnmWqIbaChPIEV7eX
+2015-02-01 08:59:44,768 DEBUG org.restlet - 
+2015-02-01 08:59:44,768 DEBUG org.restlet.SkysailComponent.LogFilter - HttpInboundRequest::setHeaders, IPv4 hostDomain: localhost, hostPort: 2017
+2015-02-01 08:59:44,768 DEBUG org.restlet - Writing message to /0:0:0:0:0:0:0:1:64131
+2015-02-01 08:59:44,768 DEBUG org.restlet - HTTP/1.1 200 OK
+2015-02-01 08:59:44,769 DEBUG org.restlet - Transfer-Encoding: chunked
+2015-02-01 08:59:44,769 DEBUG LogService - Processing request to: "http://localhost:2017/static/img/silk/note.png"
+2015-02-01 08:59:44,769 DEBUG org.restlet - Date: Sun, 01 Feb 2015 07:59:44 GMT
+2015-02-01 08:59:44,769 DEBUG org.restlet - Accept-Ranges: bytes
+2015-02-01 08:59:44,769 DEBUG org.restlet - Server: Restlet-Framework/2.1.7
+2015-02-01 08:59:44,769 DEBUG org.restlet - Vary: Accept-Charset, Accept-Encoding, Accept-Language, Accept
+2015-02-01 08:59:44,769 DEBUG org.restlet - Content-Language: en
+2015-02-01 08:59:44,770 DEBUG org.restlet - Content-Location: http://localhost:2017/webapp/js/select2.js
+2015-02-01 08:59:44,770 DEBUG org.restlet - Content-Type: application/x-javascript; charset=UTF-8
+2015-02-01 08:59:44,770 DEBUG org.restlet - Expires: Sun, 01 Feb 2015 08:09:44 GMT
+2015-02-01 08:59:44,770 DEBUG org.restlet - 
+2015-02-01 08:59:44,770 DEBUG o.r.SkysailComponent.InternalRouter.WebappApplication - The default route was selected
+2015-02-01 08:59:44,770 DEBUG o.r.S.InternalRouter.WebappApplication.Decoder - The protocol used by this request is not declared in the application's connector service. Please update the list of client connectors used by your application and restart it.
+2015-02-01 08:59:44,771 DEBUG o.r.S.InternalRouter.WebappApplication.Decoder - The protocol used by this request is not declared in the application's connector service. Please update the list of client connectors used by your application and restart it.
+2015-02-01 08:59:44,772 DEBUG o.r.SkysailComponent.InternalRouter.WebappApplication - Getting variants for: clap://thread/static/img/silk/note.png
+2015-02-01 08:59:44,772 DEBUG o.r.SkysailComponent.InternalRouter.WebappApplication - Converted target URI: clap://thread/static/img/silk/note.png
+2015-02-01 08:59:44,772 DEBUG o.r.SkysailComponent.InternalRouter.WebappApplication - Converted base name : note
+2015-02-01 08:59:44,773 DEBUG LogService - Processing request to: "http://localhost:2017/webapp/js/noty/packaged/jquery.noty.packaged.min.js"
+2015-02-01 08:59:44,773 INFO  LogService - 2015-02-01	08:59:44	0:0:0:0:0:0:0:1	-	-	2017	GET	/static/img/silk/note.png	-	200	-	0	4	http://localhost:2017	Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/40.0.2214.94 Safari/537.36	http://localhost:2017/
+2015-02-01 08:59:44,776 DEBUG org.restlet - Writing message to /0:0:0:0:0:0:0:1:64130
+2015-02-01 08:59:44,777 DEBUG org.restlet - HTTP/1.1 200 OK
+2015-02-01 08:59:44,777 DEBUG org.restlet.SkysailComponent.SkysailWebsiteApplication - The default route was selected
+2015-02-01 08:59:44,777 DEBUG o.r.SkysailComponent.SkysailWebsiteApplication.Decoder - The protocol used by this request is not declared in the application's connector service. Please update the list of client connectors used by your application and restart it.
+2015-02-01 08:59:44,777 DEBUG org.restlet - Transfer-Encoding: chunked
+2015-02-01 08:59:44,777 DEBUG org.restlet - Date: Sun, 01 Feb 2015 07:59:44 GMT
+2015-02-01 08:59:44,777 DEBUG org.restlet - Accept-Ranges: bytes
+2015-02-01 08:59:44,777 DEBUG org.restlet - Server: Restlet-Framework/2.1.7
+2015-02-01 08:59:44,777 DEBUG org.restlet - Vary: Accept-Charset, Accept-Encoding, Accept-Language, Accept
+2015-02-01 08:59:44,777 DEBUG org.restlet - Content-Language: en
+2015-02-01 08:59:44,777 DEBUG org.restlet - Content-Location: http://localhost:2017/static/img/silk/note.png
+2015-02-01 08:59:44,778 DEBUG org.restlet - Content-Type: image/png; charset=UTF-8
+2015-02-01 08:59:44,778 DEBUG org.restlet - Expires: Sun, 01 Feb 2015 08:09:44 GMT
+2015-02-01 08:59:44,778 DEBUG org.restlet - 
+2015-02-01 08:59:44,779 DEBUG o.r.SkysailComponent.SkysailWebsiteApplication.Decoder - The protocol used by this request is not declared in the application's connector service. Please update the list of client connectors used by your application and restart it.
+2015-02-01 08:59:44,785 DEBUG org.restlet - GET /static/img/silk/book_open.png HTTP/1.1
+2015-02-01 08:59:44,785 DEBUG org.restlet - Reading message from /0:0:0:0:0:0:0:1:64130
+2015-02-01 08:59:44,785 DEBUG org.restlet - Host: localhost:2017
+2015-02-01 08:59:44,785 DEBUG org.restlet - Connection: keep-alive
+2015-02-01 08:59:44,785 DEBUG org.restlet - Accept: image/webp,*/*;q=0.8
+2015-02-01 08:59:44,785 DEBUG org.restlet - User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/40.0.2214.94 Safari/537.36
+2015-02-01 08:59:44,785 DEBUG org.restlet.SkysailComponent.SkysailWebsiteApplication - Getting variants for: clap://thread/webapp/js/noty/packaged/jquery.noty.packaged.min.js
+2015-02-01 08:59:44,785 DEBUG org.restlet - Referer: http://localhost:2017/
+2015-02-01 08:59:44,785 DEBUG org.restlet.SkysailComponent.SkysailWebsiteApplication - Converted target URI: clap://thread/webapp/js/noty/packaged/jquery.noty.packaged.min.js
+2015-02-01 08:59:44,785 DEBUG org.restlet.SkysailComponent.SkysailWebsiteApplication - Converted base name : jquery.noty.packaged.min
+2015-02-01 08:59:44,785 DEBUG org.restlet - Accept-Encoding: gzip, deflate, sdch
+2015-02-01 08:59:44,787 INFO  LogService - 2015-02-01	08:59:44	0:0:0:0:0:0:0:1	-	-	2017	GET	/webapp/js/noty/packaged/jquery.noty.packaged.min.js	-	200	-	0	14	http://localhost:2017	Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/40.0.2214.94 Safari/537.36	http://localhost:2017/
+2015-02-01 08:59:44,788 DEBUG org.restlet - Accept-Language: de-DE,de;q=0.8,en-US;q=0.6,en;q=0.4
+2015-02-01 08:59:44,788 DEBUG org.restlet - Cookie: template=edit; _ga=GA1.1.1616881384.1421522672; OSESSIONID=OS14223535500113443975169242684860; Credentials=Jjy4LUdaxwhXIL+dkMClZ4gYUkXdY+cZ3Grd5q1E7bCOtW6fnmWqIbaChPIEV7eX
+2015-02-01 08:59:44,788 DEBUG org.restlet - 
+2015-02-01 08:59:44,788 DEBUG org.restlet.SkysailComponent.LogFilter - HttpInboundRequest::setHeaders, IPv4 hostDomain: localhost, hostPort: 2017
+2015-02-01 08:59:44,788 DEBUG org.restlet - Writing message to /0:0:0:0:0:0:0:1:64125
+2015-02-01 08:59:44,788 DEBUG org.restlet - HTTP/1.1 200 OK
+2015-02-01 08:59:44,789 DEBUG org.restlet - Transfer-Encoding: chunked
+2015-02-01 08:59:44,789 DEBUG org.restlet - Date: Sun, 01 Feb 2015 07:59:44 GMT
+2015-02-01 08:59:44,789 DEBUG org.restlet - Accept-Ranges: bytes
+2015-02-01 08:59:44,789 DEBUG org.restlet - Server: Restlet-Framework/2.1.7
+2015-02-01 08:59:44,789 DEBUG org.restlet - Vary: Accept-Charset, Accept-Encoding, Accept-Language, Accept
+2015-02-01 08:59:44,789 DEBUG org.restlet - Content-Language: en
+2015-02-01 08:59:44,789 DEBUG org.restlet - Content-Location: http://localhost:2017/webapp/js/noty/packaged/jquery.noty.packaged.min.js
+2015-02-01 08:59:44,789 DEBUG org.restlet - Content-Type: application/x-javascript; charset=UTF-8
+2015-02-01 08:59:44,789 DEBUG org.restlet - Expires: Sun, 01 Feb 2015 08:09:44 GMT
+2015-02-01 08:59:44,789 DEBUG org.restlet - 
+2015-02-01 08:59:44,790 DEBUG LogService - Processing request to: "http://localhost:2017/static/img/silk/book_open.png"
+2015-02-01 08:59:44,794 DEBUG org.restlet - GET /static/img/silk/page_white_swoosh.png HTTP/1.1
+2015-02-01 08:59:44,794 DEBUG org.restlet - Reading message from /0:0:0:0:0:0:0:1:64125
+2015-02-01 08:59:44,794 DEBUG org.restlet - Host: localhost:2017
+2015-02-01 08:59:44,794 DEBUG org.restlet - Connection: keep-alive
+2015-02-01 08:59:44,794 DEBUG org.restlet - Accept: image/webp,*/*;q=0.8
+2015-02-01 08:59:44,794 DEBUG org.restlet - User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/40.0.2214.94 Safari/537.36
+2015-02-01 08:59:44,794 DEBUG org.restlet - Referer: http://localhost:2017/
+2015-02-01 08:59:44,794 DEBUG org.restlet - Accept-Encoding: gzip, deflate, sdch
+2015-02-01 08:59:44,794 DEBUG org.restlet - Accept-Language: de-DE,de;q=0.8,en-US;q=0.6,en;q=0.4
+2015-02-01 08:59:44,794 DEBUG org.restlet - Cookie: template=edit; _ga=GA1.1.1616881384.1421522672; OSESSIONID=OS14223535500113443975169242684860; Credentials=Jjy4LUdaxwhXIL+dkMClZ4gYUkXdY+cZ3Grd5q1E7bCOtW6fnmWqIbaChPIEV7eX
+2015-02-01 08:59:44,794 DEBUG org.restlet - 
+2015-02-01 08:59:44,794 DEBUG org.restlet.SkysailComponent.LogFilter - HttpInboundRequest::setHeaders, IPv4 hostDomain: localhost, hostPort: 2017
+2015-02-01 08:59:44,795 DEBUG LogService - Processing request to: "http://localhost:2017/static/img/silk/page_white_swoosh.png"
+2015-02-01 08:59:44,795 DEBUG o.r.SkysailComponent.InternalRouter.WebappApplication - The default route was selected
+2015-02-01 08:59:44,796 DEBUG o.r.S.InternalRouter.WebappApplication.Decoder - The protocol used by this request is not declared in the application's connector service. Please update the list of client connectors used by your application and restart it.
+2015-02-01 08:59:44,796 DEBUG o.r.S.InternalRouter.WebappApplication.Decoder - The protocol used by this request is not declared in the application's connector service. Please update the list of client connectors used by your application and restart it.
+2015-02-01 08:59:44,797 DEBUG o.r.SkysailComponent.InternalRouter.WebappApplication - Getting variants for: clap://thread/static/img/silk/page_white_swoosh.png
+2015-02-01 08:59:44,797 DEBUG o.r.SkysailComponent.InternalRouter.WebappApplication - Converted target URI: clap://thread/static/img/silk/page_white_swoosh.png
+2015-02-01 08:59:44,797 DEBUG o.r.SkysailComponent.InternalRouter.WebappApplication - Converted base name : page_white_swoosh
+2015-02-01 08:59:44,799 DEBUG o.r.SkysailComponent.InternalRouter.WebappApplication - The default route was selected
+2015-02-01 08:59:44,800 DEBUG o.r.S.InternalRouter.WebappApplication.Decoder - The protocol used by this request is not declared in the application's connector service. Please update the list of client connectors used by your application and restart it.
+2015-02-01 08:59:44,800 INFO  LogService - 2015-02-01	08:59:44	0:0:0:0:0:0:0:1	-	-	2017	GET	/static/img/silk/page_white_swoosh.png	-	200	-	0	4	http://localhost:2017	Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/40.0.2214.94 Safari/537.36	http://localhost:2017/
+2015-02-01 08:59:44,800 DEBUG org.restlet - Writing message to /0:0:0:0:0:0:0:1:64125
+2015-02-01 08:59:44,800 DEBUG org.restlet - HTTP/1.1 200 OK
+2015-02-01 08:59:44,801 DEBUG org.restlet - Transfer-Encoding: chunked
+2015-02-01 08:59:44,801 DEBUG org.restlet - Date: Sun, 01 Feb 2015 07:59:44 GMT
+2015-02-01 08:59:44,801 DEBUG org.restlet - Accept-Ranges: bytes
+2015-02-01 08:59:44,801 DEBUG org.restlet - Server: Restlet-Framework/2.1.7
+2015-02-01 08:59:44,801 DEBUG org.restlet - Vary: Accept-Charset, Accept-Encoding, Accept-Language, Accept
+2015-02-01 08:59:44,801 DEBUG org.restlet - Content-Language: en
+2015-02-01 08:59:44,801 DEBUG org.restlet - Content-Location: http://localhost:2017/static/img/silk/page_white_swoosh.png
+2015-02-01 08:59:44,801 DEBUG org.restlet - Content-Type: image/png; charset=UTF-8
+2015-02-01 08:59:44,801 DEBUG org.restlet - Expires: Sun, 01 Feb 2015 08:09:44 GMT
+2015-02-01 08:59:44,801 DEBUG org.restlet - 
+2015-02-01 08:59:44,804 DEBUG o.r.S.InternalRouter.WebappApplication.Decoder - The protocol used by this request is not declared in the application's connector service. Please update the list of client connectors used by your application and restart it.
+2015-02-01 08:59:44,805 DEBUG o.r.SkysailComponent.InternalRouter.WebappApplication - Getting variants for: clap://thread/static/img/silk/book_open.png
+2015-02-01 08:59:44,805 DEBUG o.r.SkysailComponent.InternalRouter.WebappApplication - Converted target URI: clap://thread/static/img/silk/book_open.png
+2015-02-01 08:59:44,805 DEBUG o.r.SkysailComponent.InternalRouter.WebappApplication - Converted base name : book_open
+2015-02-01 08:59:44,810 INFO  LogService - 2015-02-01	08:59:44	0:0:0:0:0:0:0:1	-	-	2017	GET	/static/img/silk/book_open.png	-	200	-	0	20	http://localhost:2017	Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/40.0.2214.94 Safari/537.36	http://localhost:2017/
+2015-02-01 08:59:44,812 DEBUG org.restlet - Writing message to /0:0:0:0:0:0:0:1:64130
+2015-02-01 08:59:44,812 DEBUG org.restlet - HTTP/1.1 200 OK
+2015-02-01 08:59:44,813 DEBUG org.restlet - Transfer-Encoding: chunked
+2015-02-01 08:59:44,813 DEBUG org.restlet - Date: Sun, 01 Feb 2015 07:59:44 GMT
+2015-02-01 08:59:44,813 DEBUG org.restlet - Accept-Ranges: bytes
+2015-02-01 08:59:44,813 DEBUG org.restlet - Server: Restlet-Framework/2.1.7
+2015-02-01 08:59:44,813 DEBUG org.restlet - Vary: Accept-Charset, Accept-Encoding, Accept-Language, Accept
+2015-02-01 08:59:44,813 DEBUG org.restlet - Content-Language: en
+2015-02-01 08:59:44,813 DEBUG org.restlet - Content-Location: http://localhost:2017/static/img/silk/book_open.png
+2015-02-01 08:59:44,813 DEBUG org.restlet - Content-Type: image/png; charset=UTF-8
+2015-02-01 08:59:44,813 DEBUG org.restlet - Expires: Sun, 01 Feb 2015 08:09:44 GMT
+2015-02-01 08:59:44,813 DEBUG org.restlet - 
+2015-02-01 08:59:44,886 DEBUG org.restlet - GET /webapp/fonts/glyphicons-halflings-regular.woff HTTP/1.1
+2015-02-01 08:59:44,886 DEBUG org.restlet - Reading message from /0:0:0:0:0:0:0:1:64130
+2015-02-01 08:59:44,886 DEBUG org.restlet - Host: localhost:2017
+2015-02-01 08:59:44,886 DEBUG org.restlet - Connection: keep-alive
+2015-02-01 08:59:44,886 DEBUG org.restlet - User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/40.0.2214.94 Safari/537.36
+2015-02-01 08:59:44,886 DEBUG org.restlet - Accept: */*
+2015-02-01 08:59:44,886 DEBUG org.restlet - Referer: http://localhost:2017/webapp/css/bootstrap.min.css
+2015-02-01 08:59:44,886 DEBUG org.restlet - Accept-Encoding: gzip, deflate, sdch
+2015-02-01 08:59:44,886 DEBUG org.restlet - Accept-Language: de-DE,de;q=0.8,en-US;q=0.6,en;q=0.4
+2015-02-01 08:59:44,886 DEBUG org.restlet - Cookie: template=edit; _ga=GA1.1.1616881384.1421522672; OSESSIONID=OS14223535500113443975169242684860; Credentials=Jjy4LUdaxwhXIL+dkMClZ4gYUkXdY+cZ3Grd5q1E7bCOtW6fnmWqIbaChPIEV7eX
+2015-02-01 08:59:44,886 DEBUG org.restlet - 
+2015-02-01 08:59:44,886 DEBUG org.restlet.SkysailComponent.LogFilter - HttpInboundRequest::setHeaders, IPv4 hostDomain: localhost, hostPort: 2017
+2015-02-01 08:59:44,887 DEBUG LogService - Processing request to: "http://localhost:2017/webapp/fonts/glyphicons-halflings-regular.woff"
+2015-02-01 08:59:44,888 DEBUG org.restlet.SkysailComponent.SkysailWebsiteApplication - The default route was selected
+2015-02-01 08:59:44,888 DEBUG o.r.SkysailComponent.SkysailWebsiteApplication.Decoder - The protocol used by this request is not declared in the application's connector service. Please update the list of client connectors used by your application and restart it.
+2015-02-01 08:59:44,889 DEBUG o.r.SkysailComponent.SkysailWebsiteApplication.Decoder - The protocol used by this request is not declared in the application's connector service. Please update the list of client connectors used by your application and restart it.
+2015-02-01 08:59:44,890 DEBUG org.restlet.SkysailComponent.SkysailWebsiteApplication - Getting variants for: clap://thread/webapp/fonts/glyphicons-halflings-regular.woff
+2015-02-01 08:59:44,890 DEBUG org.restlet.SkysailComponent.SkysailWebsiteApplication - Converted target URI: clap://thread/webapp/fonts/glyphicons-halflings-regular.woff
+2015-02-01 08:59:44,890 DEBUG org.restlet.SkysailComponent.SkysailWebsiteApplication - Converted base name : glyphicons-halflings-regular.woff
+2015-02-01 08:59:44,893 INFO  LogService - 2015-02-01	08:59:44	0:0:0:0:0:0:0:1	-	-	2017	GET	/webapp/fonts/glyphicons-halflings-regular.woff	-	200	-	0	6	http://localhost:2017	Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/40.0.2214.94 Safari/537.36	http://localhost:2017/webapp/css/bootstrap.min.css
+2015-02-01 08:59:44,894 DEBUG org.restlet - Writing message to /0:0:0:0:0:0:0:1:64130
+2015-02-01 08:59:44,894 DEBUG org.restlet - HTTP/1.1 200 OK
+2015-02-01 08:59:44,895 DEBUG org.restlet - Transfer-Encoding: chunked
+2015-02-01 08:59:44,895 DEBUG org.restlet - Date: Sun, 01 Feb 2015 07:59:44 GMT
+2015-02-01 08:59:44,895 DEBUG org.restlet - Accept-Ranges: bytes
+2015-02-01 08:59:44,895 DEBUG org.restlet - Server: Restlet-Framework/2.1.7
+2015-02-01 08:59:44,895 DEBUG org.restlet - Vary: Accept-Charset, Accept-Encoding, Accept-Language, Accept
+2015-02-01 08:59:44,895 DEBUG org.restlet - Content-Language: en
+2015-02-01 08:59:44,895 DEBUG org.restlet - Content-Location: http://localhost:2017/webapp/fonts/glyphicons-halflings-regular.woff
+2015-02-01 08:59:44,895 DEBUG org.restlet - Content-Type: application/octet-stream; charset=UTF-8
+2015-02-01 08:59:44,895 DEBUG org.restlet - Expires: Sun, 01 Feb 2015 08:09:44 GMT
+2015-02-01 08:59:44,895 DEBUG org.restlet - 
+2015-02-01 08:59:45,093 DEBUG org.restlet - GET /favicon.ico HTTP/1.1
+2015-02-01 08:59:45,093 DEBUG org.restlet - Reading message from /0:0:0:0:0:0:0:1:64130
+2015-02-01 08:59:45,093 DEBUG org.restlet - Host: localhost:2017
+2015-02-01 08:59:45,093 DEBUG org.restlet - Connection: keep-alive
+2015-02-01 08:59:45,093 DEBUG org.restlet - Accept: */*
+2015-02-01 08:59:45,093 DEBUG org.restlet - User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/40.0.2214.94 Safari/537.36
+2015-02-01 08:59:45,093 DEBUG org.restlet - Accept-Encoding: gzip, deflate, sdch
+2015-02-01 08:59:45,094 DEBUG org.restlet - Accept-Language: de-DE,de;q=0.8,en-US;q=0.6,en;q=0.4
+2015-02-01 08:59:45,094 DEBUG org.restlet - Cookie: template=edit; _ga=GA1.1.1616881384.1421522672; OSESSIONID=OS14223535500113443975169242684860; Credentials=Jjy4LUdaxwhXIL+dkMClZ4gYUkXdY+cZ3Grd5q1E7bCOtW6fnmWqIbaChPIEV7eX
+2015-02-01 08:59:45,094 DEBUG org.restlet - 
+2015-02-01 08:59:45,094 DEBUG org.restlet.SkysailComponent.LogFilter - HttpInboundRequest::setHeaders, IPv4 hostDomain: localhost, hostPort: 2017
+2015-02-01 08:59:45,095 DEBUG LogService - Processing request to: "http://localhost:2017/favicon.ico"
+2015-02-01 08:59:45,096 WARN  d.t.skysail.server.core.osgi.internal.EventHelper - eventAdmin is null, cannot fire Event
+2015-02-01 08:59:45,099 DEBUG org.apache.shiro.web.mgt.CookieRememberMeManager - SubjectContext argument is not an HTTP-aware instance.  This is required to obtain a servlet request and response in order to retrieve the rememberMe cookie. Returning immediately and ignoring rememberMe operation.
+2015-02-01 08:59:45,099 INFO  d.t.s.s.security.shiro.restlet.ShiroDelegatingVerifier - login event for user 'admin'
+2015-02-01 08:59:45,100 DEBUG org.apache.shiro.realm.AuthenticatingRealm - Using cached authentication info [de.twenty11.skysail.server.security.shiro.SkysailAuthenticationInfo@2c032efd] to perform credentials matching.
+2015-02-01 08:59:45,850 DEBUG org.apache.shiro.authc.AbstractAuthenticator - Authentication successful for token [org.apache.shiro.authc.UsernamePasswordToken - admin, rememberMe=false].  Returned account [de.twenty11.skysail.server.security.shiro.SkysailAuthenticationInfo@2c032efd]
+2015-02-01 08:59:45,850 DEBUG org.apache.shiro.subject.support.DefaultSubjectContext - No SecurityManager available in subject context map.  Falling back to SecurityUtils.getSecurityManager() lookup.
+2015-02-01 08:59:45,850 DEBUG org.apache.shiro.subject.support.DefaultSubjectContext - No SecurityManager available in subject context map.  Falling back to SecurityUtils.getSecurityManager() lookup.
+2015-02-01 08:59:45,850 DEBUG org.apache.shiro.mgt.AbstractRememberMeManager - AuthenticationToken did not indicate RememberMe is requested.  RememberMe functionality will not be executed for corresponding account.
+2015-02-01 08:59:45,850 INFO  d.t.s.s.security.shiro.restlet.ShiroDelegatingVerifier - login event for user 'admin' successful
+2015-02-01 08:59:45,851 DEBUG o.r.S.InternalRouter.SkysailRootApplication - Authentication succeeded. Valid credentials provided for identifier: admin.
+2015-02-01 08:59:45,851 DEBUG o.r.S.InternalRouter.SkysailRootApplication - The authentication succeeded for the identifer "admin" using the HTTP_Cookie scheme.
+2015-02-01 08:59:45,866 DEBUG o.r.S.InternalRouter.SkysailRootApplication - The default route was selected
+2015-02-01 08:59:45,871 INFO  LogService - 2015-02-01	08:59:45	0:0:0:0:0:0:0:1	admin	-	2017	GET	/favicon.ico	-	404	439	0	776	http://localhost:2017	Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/40.0.2214.94 Safari/537.36	-
+2015-02-01 08:59:45,872 DEBUG org.restlet - Writing message to /0:0:0:0:0:0:0:1:64130
+2015-02-01 08:59:45,873 DEBUG org.restlet - HTTP/1.1 404 Not Found
+2015-02-01 08:59:45,873 DEBUG org.restlet - Date: Sun, 01 Feb 2015 07:59:45 GMT
+2015-02-01 08:59:45,873 DEBUG org.restlet - Accept-Ranges: bytes
+2015-02-01 08:59:45,873 DEBUG org.restlet - Server: Restlet-Framework/2.1.7
+2015-02-01 08:59:45,873 DEBUG org.restlet - Set-Cookie: Credentials=+U/DzhEaFgULZzsCK1CsM4gYUkXdY+cZ3Grd5q1E7bCOtW6fnmWqIbaChPIEV7eX; Path=/; HttpOnly
+2015-02-01 08:59:45,873 DEBUG org.restlet - Content-Length: 439
+2015-02-01 08:59:45,873 DEBUG org.restlet - Content-Type: text/html; charset=UTF-8
+2015-02-01 08:59:45,873 DEBUG org.restlet - 
+2015-02-01 08:59:45,877 DEBUG org.restlet - GET /favicon.ico HTTP/1.1
+2015-02-01 08:59:45,878 DEBUG org.restlet - Reading message from /0:0:0:0:0:0:0:1:64130
+2015-02-01 08:59:45,878 DEBUG org.restlet - Host: localhost:2017
+2015-02-01 08:59:45,878 DEBUG org.restlet - Connection: keep-alive
+2015-02-01 08:59:45,878 DEBUG org.restlet - Accept: */*
+2015-02-01 08:59:45,878 DEBUG org.restlet - User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/40.0.2214.94 Safari/537.36
+2015-02-01 08:59:45,878 DEBUG org.restlet - Accept-Encoding: gzip, deflate, sdch
+2015-02-01 08:59:45,878 DEBUG org.restlet - Accept-Language: de-DE,de;q=0.8,en-US;q=0.6,en;q=0.4
+2015-02-01 08:59:45,878 DEBUG org.restlet - Cookie: template=edit; _ga=GA1.1.1616881384.1421522672; OSESSIONID=OS14223535500113443975169242684860; Credentials=Jjy4LUdaxwhXIL+dkMClZ4gYUkXdY+cZ3Grd5q1E7bCOtW6fnmWqIbaChPIEV7eX
+2015-02-01 08:59:45,878 DEBUG org.restlet - 
+2015-02-01 08:59:45,878 DEBUG org.restlet.SkysailComponent.LogFilter - HttpInboundRequest::setHeaders, IPv4 hostDomain: localhost, hostPort: 2017
+2015-02-01 08:59:45,880 DEBUG LogService - Processing request to: "http://localhost:2017/favicon.ico"
+2015-02-01 08:59:45,882 WARN  d.t.skysail.server.core.osgi.internal.EventHelper - eventAdmin is null, cannot fire Event
+2015-02-01 08:59:45,885 DEBUG org.apache.shiro.web.mgt.CookieRememberMeManager - SubjectContext argument is not an HTTP-aware instance.  This is required to obtain a servlet request and response in order to retrieve the rememberMe cookie. Returning immediately and ignoring rememberMe operation.
+2015-02-01 08:59:45,885 INFO  d.t.s.s.security.shiro.restlet.ShiroDelegatingVerifier - login event for user 'admin'
+2015-02-01 08:59:45,885 DEBUG org.apache.shiro.realm.AuthenticatingRealm - Using cached authentication info [de.twenty11.skysail.server.security.shiro.SkysailAuthenticationInfo@2c032efd] to perform credentials matching.
+2015-02-01 08:59:46,497 DEBUG org.apache.shiro.authc.AbstractAuthenticator - Authentication successful for token [org.apache.shiro.authc.UsernamePasswordToken - admin, rememberMe=false].  Returned account [de.twenty11.skysail.server.security.shiro.SkysailAuthenticationInfo@2c032efd]
+2015-02-01 08:59:46,497 DEBUG org.apache.shiro.subject.support.DefaultSubjectContext - No SecurityManager available in subject context map.  Falling back to SecurityUtils.getSecurityManager() lookup.
+2015-02-01 08:59:46,498 DEBUG org.apache.shiro.subject.support.DefaultSubjectContext - No SecurityManager available in subject context map.  Falling back to SecurityUtils.getSecurityManager() lookup.
+2015-02-01 08:59:46,498 DEBUG org.apache.shiro.mgt.AbstractRememberMeManager - AuthenticationToken did not indicate RememberMe is requested.  RememberMe functionality will not be executed for corresponding account.
+2015-02-01 08:59:46,498 INFO  d.t.s.s.security.shiro.restlet.ShiroDelegatingVerifier - login event for user 'admin' successful
+2015-02-01 08:59:46,498 DEBUG o.r.S.InternalRouter.SkysailRootApplication - Authentication succeeded. Valid credentials provided for identifier: admin.
+2015-02-01 08:59:46,498 DEBUG o.r.S.InternalRouter.SkysailRootApplication - The authentication succeeded for the identifer "admin" using the HTTP_Cookie scheme.
+2015-02-01 08:59:46,501 DEBUG o.r.S.InternalRouter.SkysailRootApplication - The default route was selected
+2015-02-01 08:59:46,502 INFO  LogService - 2015-02-01	08:59:46	0:0:0:0:0:0:0:1	admin	-	2017	GET	/favicon.ico	-	404	439	0	622	http://localhost:2017	Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/40.0.2214.94 Safari/537.36	-
+2015-02-01 08:59:46,502 DEBUG org.restlet - Writing message to /0:0:0:0:0:0:0:1:64130
+2015-02-01 08:59:46,502 DEBUG org.restlet - HTTP/1.1 404 Not Found
+2015-02-01 08:59:46,502 DEBUG org.restlet - Date: Sun, 01 Feb 2015 07:59:46 GMT
+2015-02-01 08:59:46,503 DEBUG org.restlet - Accept-Ranges: bytes
+2015-02-01 08:59:46,503 DEBUG org.restlet - Server: Restlet-Framework/2.1.7
+2015-02-01 08:59:46,503 DEBUG org.restlet - Set-Cookie: Credentials=dnMI8dROloPURZ+DyWLgbIgYUkXdY+cZ3Grd5q1E7bCOtW6fnmWqIbaChPIEV7eX; Path=/; HttpOnly
+2015-02-01 08:59:46,503 DEBUG org.restlet - Content-Length: 439
+2015-02-01 08:59:46,503 DEBUG org.restlet - Content-Type: text/html; charset=UTF-8
+2015-02-01 08:59:46,503 DEBUG org.restlet - 
+2015-02-01 08:59:46,506 DEBUG org.restlet - GET /favicon.ico HTTP/1.1
+2015-02-01 08:59:46,506 DEBUG org.restlet - Reading message from /0:0:0:0:0:0:0:1:64130
+2015-02-01 08:59:46,506 DEBUG org.restlet - Host: localhost:2017
+2015-02-01 08:59:46,506 DEBUG org.restlet - Connection: keep-alive
+2015-02-01 08:59:46,506 DEBUG org.restlet - Accept: */*
+2015-02-01 08:59:46,506 DEBUG org.restlet - User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/40.0.2214.94 Safari/537.36
+2015-02-01 08:59:46,506 DEBUG org.restlet - Accept-Encoding: gzip, deflate, sdch
+2015-02-01 08:59:46,506 DEBUG org.restlet - Accept-Language: de-DE,de;q=0.8,en-US;q=0.6,en;q=0.4
+2015-02-01 08:59:46,506 DEBUG org.restlet - Cookie: template=edit; _ga=GA1.1.1616881384.1421522672; OSESSIONID=OS14223535500113443975169242684860; Credentials=Jjy4LUdaxwhXIL+dkMClZ4gYUkXdY+cZ3Grd5q1E7bCOtW6fnmWqIbaChPIEV7eX
+2015-02-01 08:59:46,506 DEBUG org.restlet - 
+2015-02-01 08:59:46,506 DEBUG org.restlet.SkysailComponent.LogFilter - HttpInboundRequest::setHeaders, IPv4 hostDomain: localhost, hostPort: 2017
+2015-02-01 08:59:46,507 DEBUG LogService - Processing request to: "http://localhost:2017/favicon.ico"
+2015-02-01 08:59:46,507 WARN  d.t.skysail.server.core.osgi.internal.EventHelper - eventAdmin is null, cannot fire Event
+2015-02-01 08:59:46,508 DEBUG org.apache.shiro.web.mgt.CookieRememberMeManager - SubjectContext argument is not an HTTP-aware instance.  This is required to obtain a servlet request and response in order to retrieve the rememberMe cookie. Returning immediately and ignoring rememberMe operation.
+2015-02-01 08:59:46,508 INFO  d.t.s.s.security.shiro.restlet.ShiroDelegatingVerifier - login event for user 'admin'
+2015-02-01 08:59:46,508 DEBUG org.apache.shiro.realm.AuthenticatingRealm - Using cached authentication info [de.twenty11.skysail.server.security.shiro.SkysailAuthenticationInfo@2c032efd] to perform credentials matching.
+2015-02-01 08:59:46,939 DEBUG org.apache.shiro.authc.AbstractAuthenticator - Authentication successful for token [org.apache.shiro.authc.UsernamePasswordToken - admin, rememberMe=false].  Returned account [de.twenty11.skysail.server.security.shiro.SkysailAuthenticationInfo@2c032efd]
+2015-02-01 08:59:46,940 DEBUG org.apache.shiro.subject.support.DefaultSubjectContext - No SecurityManager available in subject context map.  Falling back to SecurityUtils.getSecurityManager() lookup.
+2015-02-01 08:59:46,940 DEBUG org.apache.shiro.subject.support.DefaultSubjectContext - No SecurityManager available in subject context map.  Falling back to SecurityUtils.getSecurityManager() lookup.
+2015-02-01 08:59:46,940 DEBUG org.apache.shiro.mgt.AbstractRememberMeManager - AuthenticationToken did not indicate RememberMe is requested.  RememberMe functionality will not be executed for corresponding account.
+2015-02-01 08:59:46,940 INFO  d.t.s.s.security.shiro.restlet.ShiroDelegatingVerifier - login event for user 'admin' successful
+2015-02-01 08:59:46,940 DEBUG o.r.S.InternalRouter.SkysailRootApplication - Authentication succeeded. Valid credentials provided for identifier: admin.
+2015-02-01 08:59:46,941 DEBUG o.r.S.InternalRouter.SkysailRootApplication - The authentication succeeded for the identifer "admin" using the HTTP_Cookie scheme.
+2015-02-01 08:59:46,944 DEBUG o.r.S.InternalRouter.SkysailRootApplication - The default route was selected
+2015-02-01 08:59:46,944 INFO  LogService - 2015-02-01	08:59:46	0:0:0:0:0:0:0:1	admin	-	2017	GET	/favicon.ico	-	404	439	0	437	http://localhost:2017	Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/40.0.2214.94 Safari/537.36	-
+2015-02-01 08:59:46,945 DEBUG org.restlet - Writing message to /0:0:0:0:0:0:0:1:64130
+2015-02-01 08:59:46,945 DEBUG org.restlet - HTTP/1.1 404 Not Found
+2015-02-01 08:59:46,945 DEBUG org.restlet - Date: Sun, 01 Feb 2015 07:59:46 GMT
+2015-02-01 08:59:46,945 DEBUG org.restlet - Accept-Ranges: bytes
+2015-02-01 08:59:46,945 DEBUG org.restlet - Server: Restlet-Framework/2.1.7
+2015-02-01 08:59:46,945 DEBUG org.restlet - Set-Cookie: Credentials=HUhPue/0Qo8ngUWXZH+Rg4gYUkXdY+cZ3Grd5q1E7bCOtW6fnmWqIbaChPIEV7eX; Path=/; HttpOnly
+2015-02-01 08:59:46,945 DEBUG org.restlet - Content-Length: 439
+2015-02-01 08:59:46,945 DEBUG org.restlet - Content-Type: text/html; charset=UTF-8
+2015-02-01 08:59:46,945 DEBUG org.restlet - 
+2015-02-01 08:59:46,947 DEBUG org.restlet - GET /favicon.ico HTTP/1.1
+2015-02-01 08:59:46,947 DEBUG org.restlet - Reading message from /0:0:0:0:0:0:0:1:64130
+2015-02-01 08:59:46,947 DEBUG org.restlet - Host: localhost:2017
+2015-02-01 08:59:46,947 DEBUG org.restlet - Connection: keep-alive
+2015-02-01 08:59:46,947 DEBUG org.restlet - Accept: */*
+2015-02-01 08:59:46,947 DEBUG org.restlet - User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/40.0.2214.94 Safari/537.36
+2015-02-01 08:59:46,947 DEBUG org.restlet - Accept-Encoding: gzip, deflate, sdch
+2015-02-01 08:59:46,947 DEBUG org.restlet - Accept-Language: de-DE,de;q=0.8,en-US;q=0.6,en;q=0.4
+2015-02-01 08:59:46,947 DEBUG org.restlet - Cookie: template=edit; _ga=GA1.1.1616881384.1421522672; OSESSIONID=OS14223535500113443975169242684860; Credentials=+U/DzhEaFgULZzsCK1CsM4gYUkXdY+cZ3Grd5q1E7bCOtW6fnmWqIbaChPIEV7eX
+2015-02-01 08:59:46,947 DEBUG org.restlet - 
+2015-02-01 08:59:46,948 DEBUG org.restlet.SkysailComponent.LogFilter - HttpInboundRequest::setHeaders, IPv4 hostDomain: localhost, hostPort: 2017
+2015-02-01 08:59:46,948 DEBUG LogService - Processing request to: "http://localhost:2017/favicon.ico"
+2015-02-01 08:59:46,948 WARN  d.t.skysail.server.core.osgi.internal.EventHelper - eventAdmin is null, cannot fire Event
+2015-02-01 08:59:46,949 DEBUG org.apache.shiro.web.mgt.CookieRememberMeManager - SubjectContext argument is not an HTTP-aware instance.  This is required to obtain a servlet request and response in order to retrieve the rememberMe cookie. Returning immediately and ignoring rememberMe operation.
+2015-02-01 08:59:46,949 INFO  d.t.s.s.security.shiro.restlet.ShiroDelegatingVerifier - login event for user 'admin'
+2015-02-01 08:59:46,949 DEBUG org.apache.shiro.realm.AuthenticatingRealm - Using cached authentication info [de.twenty11.skysail.server.security.shiro.SkysailAuthenticationInfo@2c032efd] to perform credentials matching.
+2015-02-01 08:59:47,389 DEBUG org.apache.shiro.authc.AbstractAuthenticator - Authentication successful for token [org.apache.shiro.authc.UsernamePasswordToken - admin, rememberMe=false].  Returned account [de.twenty11.skysail.server.security.shiro.SkysailAuthenticationInfo@2c032efd]
+2015-02-01 08:59:47,389 DEBUG org.apache.shiro.subject.support.DefaultSubjectContext - No SecurityManager available in subject context map.  Falling back to SecurityUtils.getSecurityManager() lookup.
+2015-02-01 08:59:47,389 DEBUG org.apache.shiro.subject.support.DefaultSubjectContext - No SecurityManager available in subject context map.  Falling back to SecurityUtils.getSecurityManager() lookup.
+2015-02-01 08:59:47,389 DEBUG org.apache.shiro.mgt.AbstractRememberMeManager - AuthenticationToken did not indicate RememberMe is requested.  RememberMe functionality will not be executed for corresponding account.
+2015-02-01 08:59:47,389 INFO  d.t.s.s.security.shiro.restlet.ShiroDelegatingVerifier - login event for user 'admin' successful
+2015-02-01 08:59:47,390 DEBUG o.r.S.InternalRouter.SkysailRootApplication - Authentication succeeded. Valid credentials provided for identifier: admin.
+2015-02-01 08:59:47,390 DEBUG o.r.S.InternalRouter.SkysailRootApplication - The authentication succeeded for the identifer "admin" using the HTTP_Cookie scheme.
+2015-02-01 08:59:47,392 DEBUG o.r.S.InternalRouter.SkysailRootApplication - The default route was selected
+2015-02-01 08:59:47,392 INFO  LogService - 2015-02-01	08:59:47	0:0:0:0:0:0:0:1	admin	-	2017	GET	/favicon.ico	-	404	439	0	444	http://localhost:2017	Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/40.0.2214.94 Safari/537.36	-
+2015-02-01 08:59:47,393 DEBUG org.restlet - Writing message to /0:0:0:0:0:0:0:1:64130
+2015-02-01 08:59:47,393 DEBUG org.restlet - HTTP/1.1 404 Not Found
+2015-02-01 08:59:47,393 DEBUG org.restlet - Date: Sun, 01 Feb 2015 07:59:47 GMT
+2015-02-01 08:59:47,393 DEBUG org.restlet - Accept-Ranges: bytes
+2015-02-01 08:59:47,393 DEBUG org.restlet - Server: Restlet-Framework/2.1.7
+2015-02-01 08:59:47,393 DEBUG org.restlet - Set-Cookie: Credentials=OcF+Eu/FuOUxTaFO/9S+3IgYUkXdY+cZ3Grd5q1E7bCOtW6fnmWqIbaChPIEV7eX; Path=/; HttpOnly
+2015-02-01 08:59:47,393 DEBUG org.restlet - Content-Length: 439
+2015-02-01 08:59:47,393 DEBUG org.restlet - Content-Type: text/html; charset=UTF-8
+2015-02-01 08:59:47,393 DEBUG org.restlet - 
+2015-02-01 09:00:09,414 DEBUG org.restlet - GET /clipboard HTTP/1.1
+2015-02-01 09:00:09,423 DEBUG org.restlet - Reading message from /0:0:0:0:0:0:0:1:64130
+2015-02-01 09:00:09,423 DEBUG org.restlet - Host: localhost:2017
+2015-02-01 09:00:09,423 DEBUG org.restlet - Connection: keep-alive
+2015-02-01 09:00:09,423 DEBUG org.restlet - Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+2015-02-01 09:00:09,423 DEBUG org.restlet - User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/40.0.2214.94 Safari/537.36
+2015-02-01 09:00:09,423 DEBUG org.restlet - Referer: http://localhost:2017/
+2015-02-01 09:00:09,423 DEBUG org.restlet - Accept-Encoding: gzip, deflate, sdch
+2015-02-01 09:00:09,423 DEBUG org.restlet - Accept-Language: de-DE,de;q=0.8,en-US;q=0.6,en;q=0.4
+2015-02-01 09:00:09,423 DEBUG org.restlet - Cookie: template=edit; _ga=GA1.1.1616881384.1421522672; OSESSIONID=OS14223535500113443975169242684860; Credentials=OcF+Eu/FuOUxTaFO/9S+3IgYUkXdY+cZ3Grd5q1E7bCOtW6fnmWqIbaChPIEV7eX
+2015-02-01 09:00:09,423 DEBUG org.restlet - 
+2015-02-01 09:00:09,423 DEBUG org.restlet.SkysailComponent.LogFilter - HttpInboundRequest::setHeaders, IPv4 hostDomain: localhost, hostPort: 2017
+2015-02-01 09:00:09,424 DEBUG LogService - Processing request to: "http://localhost:2017/clipboard"
+2015-02-01 09:00:09,425 WARN  d.t.skysail.server.core.osgi.internal.EventHelper - eventAdmin is null, cannot fire Event
+2015-02-01 09:00:09,427 DEBUG org.apache.shiro.web.mgt.CookieRememberMeManager - SubjectContext argument is not an HTTP-aware instance.  This is required to obtain a servlet request and response in order to retrieve the rememberMe cookie. Returning immediately and ignoring rememberMe operation.
+2015-02-01 09:00:09,427 INFO  d.t.s.s.security.shiro.restlet.ShiroDelegatingVerifier - login event for user 'admin'
+2015-02-01 09:00:09,427 DEBUG org.apache.shiro.realm.AuthenticatingRealm - Using cached authentication info [de.twenty11.skysail.server.security.shiro.SkysailAuthenticationInfo@2c032efd] to perform credentials matching.
+2015-02-01 09:00:09,878 DEBUG org.apache.shiro.authc.AbstractAuthenticator - Authentication successful for token [org.apache.shiro.authc.UsernamePasswordToken - admin, rememberMe=false].  Returned account [de.twenty11.skysail.server.security.shiro.SkysailAuthenticationInfo@2c032efd]
+2015-02-01 09:00:09,878 DEBUG org.apache.shiro.subject.support.DefaultSubjectContext - No SecurityManager available in subject context map.  Falling back to SecurityUtils.getSecurityManager() lookup.
+2015-02-01 09:00:09,878 DEBUG org.apache.shiro.subject.support.DefaultSubjectContext - No SecurityManager available in subject context map.  Falling back to SecurityUtils.getSecurityManager() lookup.
+2015-02-01 09:00:09,878 DEBUG org.apache.shiro.mgt.AbstractRememberMeManager - AuthenticationToken did not indicate RememberMe is requested.  RememberMe functionality will not be executed for corresponding account.
+2015-02-01 09:00:09,878 INFO  d.t.s.s.security.shiro.restlet.ShiroDelegatingVerifier - login event for user 'admin' successful
+2015-02-01 09:00:09,879 DEBUG o.r.S.InternalRouter.ClipboardApplication - Authentication succeeded. Valid credentials provided for identifier: admin.
+2015-02-01 09:00:09,879 DEBUG o.r.S.InternalRouter.ClipboardApplication - The authentication succeeded for the identifer "admin" using the HTTP_Cookie scheme.
+2015-02-01 09:00:09,882 DEBUG o.r.S.InternalRouter.ClipboardApplication - Selected route: "" -> de.twenty11.skysail.server.security.AuthenticatedAuthorizer@7dc67ad9
+2015-02-01 09:00:09,884 DEBUG o.r.S.InternalRouter.ClipboardApplication - Score of annotation "AnnotationInfo [javaMethod: public org.restlet.representation.StringRepresentation de.twenty11.skysail.server.app.clipboard.clip.ClipsResource.getJson(), resourceInterface: class de.twenty11.skysail.server.app.clipboard.clip.ClipsResource, restletMethod: GET, input: json, output: json, query: null]"= 0.5
+2015-02-01 09:00:09,884 DEBUG o.r.S.InternalRouter.ClipboardApplication - Total score of variant "[application/json]"= 0.042416666
+2015-02-01 09:00:09,884 DEBUG o.r.S.InternalRouter.ClipboardApplication - Score of annotation "AnnotationInfo [javaMethod: public java.util.List de.twenty11.skysail.server.core.restlet.ListServerResource.getEntities(), resourceInterface: class de.twenty11.skysail.server.app.clipboard.clip.ClipsResource, restletMethod: GET, input: html|json|csv|treeform, output: html|json|csv|treeform, query: null]"= 0.5
+2015-02-01 09:00:09,884 DEBUG o.r.S.InternalRouter.ClipboardApplication - Total score of variant "[text/html]"= 0.16666667
+2015-02-01 09:00:09,885 DEBUG o.r.S.InternalRouter.ClipboardApplication - Score of annotation "AnnotationInfo [javaMethod: public java.util.List de.twenty11.skysail.server.core.restlet.ListServerResource.getEntities(), resourceInterface: class de.twenty11.skysail.server.app.clipboard.clip.ClipsResource, restletMethod: GET, input: html|json|csv|treeform, output: html|json|csv|treeform, query: null]"= 0.5
+2015-02-01 09:00:09,885 DEBUG o.r.S.InternalRouter.ClipboardApplication - Total score of variant "[application/json]"= 0.042416666
+2015-02-01 09:00:09,885 DEBUG o.r.S.InternalRouter.ClipboardApplication - Score of annotation "AnnotationInfo [javaMethod: public java.util.List de.twenty11.skysail.server.core.restlet.ListServerResource.getEntities(), resourceInterface: class de.twenty11.skysail.server.app.clipboard.clip.ClipsResource, restletMethod: GET, input: html|json|csv|treeform, output: html|json|csv|treeform, query: null]"= 0.5
+2015-02-01 09:00:09,885 DEBUG o.r.S.InternalRouter.ClipboardApplication - Total score of variant "[text/csv]"= 0.042416666
+2015-02-01 09:00:09,885 DEBUG o.r.S.InternalRouter.ClipboardApplication - Score of annotation "AnnotationInfo [javaMethod: public java.util.List de.twenty11.skysail.server.core.restlet.ListServerResource.getEntities(), resourceInterface: class de.twenty11.skysail.server.app.clipboard.clip.ClipsResource, restletMethod: GET, input: html|json|csv|treeform, output: html|json|csv|treeform, query: null]"= 0.5
+2015-02-01 09:00:09,885 DEBUG o.r.S.InternalRouter.ClipboardApplication - Total score of variant "[treeform/*]"= 0.041791666
+2015-02-01 09:00:09,885 INFO  d.t.skysail.server.core.restlet.ListServerResource - Request entry point: ClipsResource @Get('html|json|csv|treeform')
+2015-02-01 09:00:09,885 INFO  d.t.skysail.server.core.restlet.ListServerResource - calling getEntities, media types '[text/html:1.0, application/xhtml+xml:1.0, application/xml:0.9, image/webp:1.0, */*:0.8]'
+2015-02-01 09:00:09,885 DEBUG d.t.s.s.core.restlet.filter.ExceptionCatchingFilter - entering ExceptionCatchingFilter#doHandle
+2015-02-01 09:00:09,885 INFO  d.t.s.server.core.restlet.filter.AbstractResourceFilter - next filter in chain: AddApiVersionHeader
+2015-02-01 09:00:09,885 INFO  d.t.s.server.core.restlet.filter.AbstractResourceFilter - next filter in chain: GetRequestPreFilterHook
+2015-02-01 09:00:09,885 INFO  d.t.s.server.core.restlet.filter.AbstractResourceFilter - next filter in chain: AddRequestIdToResourceFilter
+2015-02-01 09:00:09,885 INFO  d.t.s.server.core.restlet.filter.AbstractResourceFilter - next filter in chain: DataExtractingFilter
+2015-02-01 09:00:09,885 DEBUG d.t.s.server.core.restlet.filter.DataExtractingFilter - entering DataExtractingFilter#doHandle
+2015-02-01 09:00:09,959 INFO  d.t.s.server.core.restlet.filter.AbstractResourceFilter - next filter in chain: AddLinkheadersFilter
+2015-02-01 09:00:09,972 INFO  d.t.s.server.core.restlet.filter.AbstractResourceFilter - next filter in chain: CheckFavoritesFilter
+2015-02-01 09:00:09,974 INFO  d.t.s.server.core.restlet.filter.AbstractResourceFilter - next filter in chain: SetExecutionTimeInResponseFilter
+2015-02-01 09:00:09,974 INFO  d.t.s.server.core.restlet.filter.AbstractResourceFilter - next filter in chain: RedirectFilter
+2015-02-01 09:00:09,987 WARN  de.twenty11.skysail.server.core.restlet.ServerLink - problem with linkheader for resource ApiResource; no routeBuilder was found.
+2015-02-01 09:00:09,987 WARN  de.twenty11.skysail.server.core.restlet.ServerLink - problem with linkheader for resource EntitiesResource; no routeBuilder was found.
+2015-02-01 09:00:09,990 INFO  d.t.s.server.ext.converter.st.StringTemplateConverter - converter 'StringTemplateConverter' matched '{text/html=0.95, treeform/*=1.0}' with threshold 0.95
+2015-02-01 09:00:09,993 DEBUG o.r.S.InternalRouter.ClipboardApplication - Converter selected for ArrayList: StringTemplateConverter
+2015-02-01 09:00:09,994 INFO  de.twenty11.skysail.server.app.SourceWrapper - using converter 'ListSourceHtmlConverter' for ArrayList-Source: []
+2015-02-01 09:00:10,006 INFO  d.t.s.server.ext.converter.st.StringTemplateConverter - reading templates from resource path '/templates/text/html'
+2015-02-01 09:00:10,008 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server.app.clipboard [1.0.5.201501310727]: bundle://57.0:1/templates/de/twenty11/skysail/server/app/clipboard/clip/ClipsResourceStg/index.st
+2015-02-01 09:00:10,009 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server.app.clipboard [1.0.5.201501310727]: bundle://57.0:1/templates/index.st
+2015-02-01 09:00:10,009 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server.ext.converter.st [1.0.5.201501310736]: bundle://60.0:1/templates/text/html/de/twenty11/skysail/server/app/clipboard/clip/ClipsResourceStg/index.st
+2015-02-01 09:00:10,011 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - found resource in skysail.server.ext.converter.st [1.0.5.201501310736]: bundle://60.0:1/templates/text/html/index.st
+2015-02-01 09:00:10,078 DEBUG d.t.s.server.ext.i18n.BundleResourceTranslationService - Can't find resource for bundle java.util.PropertyResourceBundle, key de.twenty11.skysail.server.app.clipboard.clip.Clip.tags.placeholder
+2015-02-01 09:00:10,081 DEBUG d.t.s.server.ext.i18n.BundleResourceTranslationService - Can't find resource for bundle java.util.PropertyResourceBundle, key de.twenty11.skysail.server.app.clipboard.clip.Clip.tags.placeholder
+2015-02-01 09:00:10,082 DEBUG d.t.s.server.ext.i18n.BundleResourceTranslationService - Can't find resource for bundle java.util.PropertyResourceBundle, key de.twenty11.skysail.server.app.clipboard.clip.Clip.tags.placeholder
+2015-02-01 09:00:10,082 DEBUG d.t.s.server.ext.i18n.BundleResourceTranslationService - Can't find resource for bundle java.util.PropertyResourceBundle, key de.twenty11.skysail.server.app.clipboard.clip.Clip.tags.placeholder
+2015-02-01 09:00:10,082 DEBUG d.t.s.server.ext.i18n.BundleResourceTranslationService - Can't find resource for bundle java.util.PropertyResourceBundle, key de.twenty11.skysail.server.app.clipboard.clip.Clip.created
+2015-02-01 09:00:10,082 DEBUG d.t.s.server.ext.i18n.BundleResourceTranslationService - Can't find resource for bundle java.util.PropertyResourceBundle, key de.twenty11.skysail.server.app.clipboard.clip.Clip.created
+2015-02-01 09:00:10,083 DEBUG d.t.s.server.ext.i18n.BundleResourceTranslationService - Can't find resource for bundle java.util.PropertyResourceBundle, key de.twenty11.skysail.server.app.clipboard.clip.Clip.created
+2015-02-01 09:00:10,083 DEBUG d.t.s.server.ext.i18n.BundleResourceTranslationService - Can't find resource for bundle java.util.PropertyResourceBundle, key de.twenty11.skysail.server.app.clipboard.clip.Clip.created
+2015-02-01 09:00:10,083 DEBUG d.t.s.server.ext.i18n.BundleResourceTranslationService - Can't find resource for bundle java.util.PropertyResourceBundle, key de.twenty11.skysail.server.app.clipboard.clip.Clip.created.desc
+2015-02-01 09:00:10,083 DEBUG d.t.s.server.ext.i18n.BundleResourceTranslationService - Can't find resource for bundle java.util.PropertyResourceBundle, key de.twenty11.skysail.server.app.clipboard.clip.Clip.created.desc
+2015-02-01 09:00:10,083 DEBUG d.t.s.server.ext.i18n.BundleResourceTranslationService - Can't find resource for bundle java.util.PropertyResourceBundle, key de.twenty11.skysail.server.app.clipboard.clip.Clip.created.desc
+2015-02-01 09:00:10,083 DEBUG d.t.s.server.ext.i18n.BundleResourceTranslationService - Can't find resource for bundle java.util.PropertyResourceBundle, key de.twenty11.skysail.server.app.clipboard.clip.Clip.created.desc
+2015-02-01 09:00:10,083 DEBUG d.t.s.server.ext.i18n.BundleResourceTranslationService - Can't find resource for bundle java.util.PropertyResourceBundle, key de.twenty11.skysail.server.app.clipboard.clip.Clip.created.placeholder
+2015-02-01 09:00:10,083 DEBUG d.t.s.server.ext.i18n.BundleResourceTranslationService - Can't find resource for bundle java.util.PropertyResourceBundle, key de.twenty11.skysail.server.app.clipboard.clip.Clip.created.placeholder
+2015-02-01 09:00:10,083 DEBUG d.t.s.server.ext.i18n.BundleResourceTranslationService - Can't find resource for bundle java.util.PropertyResourceBundle, key de.twenty11.skysail.server.app.clipboard.clip.Clip.created.placeholder
+2015-02-01 09:00:10,083 DEBUG d.t.s.server.ext.i18n.BundleResourceTranslationService - Can't find resource for bundle java.util.PropertyResourceBundle, key de.twenty11.skysail.server.app.clipboard.clip.Clip.created.placeholder
+2015-02-01 09:00:10,084 DEBUG d.t.s.server.ext.i18n.BundleResourceTranslationService - Can't find resource for bundle java.util.PropertyResourceBundle, key de.twenty11.skysail.server.app.clipboard.clip.Clip.modified
+2015-02-01 09:00:10,084 DEBUG d.t.s.server.ext.i18n.BundleResourceTranslationService - Can't find resource for bundle java.util.PropertyResourceBundle, key de.twenty11.skysail.server.app.clipboard.clip.Clip.modified
+2015-02-01 09:00:10,084 DEBUG d.t.s.server.ext.i18n.BundleResourceTranslationService - Can't find resource for bundle java.util.PropertyResourceBundle, key de.twenty11.skysail.server.app.clipboard.clip.Clip.modified
+2015-02-01 09:00:10,084 DEBUG d.t.s.server.ext.i18n.BundleResourceTranslationService - Can't find resource for bundle java.util.PropertyResourceBundle, key de.twenty11.skysail.server.app.clipboard.clip.Clip.modified
+2015-02-01 09:00:10,084 DEBUG d.t.s.server.ext.i18n.BundleResourceTranslationService - Can't find resource for bundle java.util.PropertyResourceBundle, key de.twenty11.skysail.server.app.clipboard.clip.Clip.modified.desc
+2015-02-01 09:00:10,084 DEBUG d.t.s.server.ext.i18n.BundleResourceTranslationService - Can't find resource for bundle java.util.PropertyResourceBundle, key de.twenty11.skysail.server.app.clipboard.clip.Clip.modified.desc
+2015-02-01 09:00:10,084 DEBUG d.t.s.server.ext.i18n.BundleResourceTranslationService - Can't find resource for bundle java.util.PropertyResourceBundle, key de.twenty11.skysail.server.app.clipboard.clip.Clip.modified.desc
+2015-02-01 09:00:10,084 DEBUG d.t.s.server.ext.i18n.BundleResourceTranslationService - Can't find resource for bundle java.util.PropertyResourceBundle, key de.twenty11.skysail.server.app.clipboard.clip.Clip.modified.desc
+2015-02-01 09:00:10,088 DEBUG d.t.s.server.ext.i18n.BundleResourceTranslationService - Can't find resource for bundle java.util.PropertyResourceBundle, key de.twenty11.skysail.server.app.clipboard.clip.Clip.modified.placeholder
+2015-02-01 09:00:10,090 DEBUG d.t.s.server.ext.i18n.BundleResourceTranslationService - Can't find resource for bundle java.util.PropertyResourceBundle, key de.twenty11.skysail.server.app.clipboard.clip.Clip.modified.placeholder
+2015-02-01 09:00:10,091 DEBUG d.t.s.server.ext.i18n.BundleResourceTranslationService - Can't find resource for bundle java.util.PropertyResourceBundle, key de.twenty11.skysail.server.app.clipboard.clip.Clip.modified.placeholder
+2015-02-01 09:00:10,093 DEBUG d.t.s.server.ext.i18n.BundleResourceTranslationService - Can't find resource for bundle java.util.PropertyResourceBundle, key de.twenty11.skysail.server.app.clipboard.clip.Clip.modified.placeholder
+2015-02-01 09:00:10,095 DEBUG d.t.s.server.ext.i18n.BundleResourceTranslationService - Can't find resource for bundle java.util.PropertyResourceBundle, key de.twenty11.skysail.server.app.clipboard.clip.Clip.owner
+2015-02-01 09:00:10,096 DEBUG d.t.s.server.ext.i18n.BundleResourceTranslationService - Can't find resource for bundle java.util.PropertyResourceBundle, key de.twenty11.skysail.server.app.clipboard.clip.Clip.owner
+2015-02-01 09:00:10,097 DEBUG d.t.s.server.ext.i18n.BundleResourceTranslationService - Can't find resource for bundle java.util.PropertyResourceBundle, key de.twenty11.skysail.server.app.clipboard.clip.Clip.owner
+2015-02-01 09:00:10,098 DEBUG d.t.s.server.ext.i18n.BundleResourceTranslationService - Can't find resource for bundle java.util.PropertyResourceBundle, key de.twenty11.skysail.server.app.clipboard.clip.Clip.owner
+2015-02-01 09:00:10,100 DEBUG d.t.s.server.ext.i18n.BundleResourceTranslationService - Can't find resource for bundle java.util.PropertyResourceBundle, key de.twenty11.skysail.server.app.clipboard.clip.Clip.owner.desc
+2015-02-01 09:00:10,100 DEBUG d.t.s.server.ext.i18n.BundleResourceTranslationService - Can't find resource for bundle java.util.PropertyResourceBundle, key de.twenty11.skysail.server.app.clipboard.clip.Clip.owner.desc
+2015-02-01 09:00:10,100 DEBUG d.t.s.server.ext.i18n.BundleResourceTranslationService - Can't find resource for bundle java.util.PropertyResourceBundle, key de.twenty11.skysail.server.app.clipboard.clip.Clip.owner.desc
+2015-02-01 09:00:10,100 DEBUG d.t.s.server.ext.i18n.BundleResourceTranslationService - Can't find resource for bundle java.util.PropertyResourceBundle, key de.twenty11.skysail.server.app.clipboard.clip.Clip.owner.desc
+2015-02-01 09:00:10,100 DEBUG d.t.s.server.ext.i18n.BundleResourceTranslationService - Can't find resource for bundle java.util.PropertyResourceBundle, key de.twenty11.skysail.server.app.clipboard.clip.Clip.owner.placeholder
+2015-02-01 09:00:10,101 DEBUG d.t.s.server.ext.i18n.BundleResourceTranslationService - Can't find resource for bundle java.util.PropertyResourceBundle, key de.twenty11.skysail.server.app.clipboard.clip.Clip.owner.placeholder
+2015-02-01 09:00:10,101 DEBUG d.t.s.server.ext.i18n.BundleResourceTranslationService - Can't find resource for bundle java.util.PropertyResourceBundle, key de.twenty11.skysail.server.app.clipboard.clip.Clip.owner.placeholder
+2015-02-01 09:00:10,101 DEBUG d.t.s.server.ext.i18n.BundleResourceTranslationService - Can't find resource for bundle java.util.PropertyResourceBundle, key de.twenty11.skysail.server.app.clipboard.clip.Clip.owner.placeholder
+2015-02-01 09:00:10,102 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server.app.clipboard [1.0.5.201501310727]: bundle://57.0:1/templates/de/twenty11/skysail/server/app/clipboard/clip/ClipsResourceStg/select2JsHead.st
+2015-02-01 09:00:10,103 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server.app.clipboard [1.0.5.201501310727]: bundle://57.0:1/templates/select2JsHead.st
+2015-02-01 09:00:10,104 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server.ext.converter.st [1.0.5.201501310736]: bundle://60.0:1/templates/text/html/de/twenty11/skysail/server/app/clipboard/clip/ClipsResourceStg/select2JsHead.st
+2015-02-01 09:00:10,104 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - found resource in skysail.server.ext.converter.st [1.0.5.201501310736]: bundle://60.0:1/templates/text/html/select2JsHead.stg
+2015-02-01 09:00:10,106 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server.app.clipboard [1.0.5.201501310727]: bundle://57.0:1/templates/de/twenty11/skysail/server/app/clipboard/clip/ClipsResourceStg/_sub14.st
+2015-02-01 09:00:10,107 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server.app.clipboard [1.0.5.201501310727]: bundle://57.0:1/templates/_sub14.st
+2015-02-01 09:00:10,108 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server.app.clipboard [1.0.5.201501310727]: bundle://57.0:1/templates/de/twenty11/skysail/server/app/clipboard/clip/ClipsResourceStg/handleSelect2Javascript.st
+2015-02-01 09:00:10,109 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server.app.clipboard [1.0.5.201501310727]: bundle://57.0:1/templates/handleSelect2Javascript.st
+2015-02-01 09:00:10,110 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server.app.clipboard [1.0.5.201501310727]: bundle://57.0:1/templates/de/twenty11/skysail/server/app/clipboard/clip/ClipsResourceStg/handleSelect2Javascript.st
+2015-02-01 09:00:10,114 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server.app.clipboard [1.0.5.201501310727]: bundle://57.0:1/templates/handleSelect2Javascript.st
+2015-02-01 09:00:10,116 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server.app.clipboard [1.0.5.201501310727]: bundle://57.0:1/templates/de/twenty11/skysail/server/app/clipboard/clip/ClipsResourceStg/handleSelect2Javascript.st
+2015-02-01 09:00:10,117 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server.app.clipboard [1.0.5.201501310727]: bundle://57.0:1/templates/handleSelect2Javascript.st
+2015-02-01 09:00:10,118 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server.app.clipboard [1.0.5.201501310727]: bundle://57.0:1/templates/de/twenty11/skysail/server/app/clipboard/clip/ClipsResourceStg/handleSelect2Javascript.st
+2015-02-01 09:00:10,120 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server.app.clipboard [1.0.5.201501310727]: bundle://57.0:1/templates/handleSelect2Javascript.st
+2015-02-01 09:00:10,122 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server.app.clipboard [1.0.5.201501310727]: bundle://57.0:1/templates/de/twenty11/skysail/server/app/clipboard/clip/ClipsResourceStg/handleSelect2Javascript.st
+2015-02-01 09:00:10,123 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server.app.clipboard [1.0.5.201501310727]: bundle://57.0:1/templates/handleSelect2Javascript.st
+2015-02-01 09:00:10,124 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server.app.clipboard [1.0.5.201501310727]: bundle://57.0:1/templates/de/twenty11/skysail/server/app/clipboard/clip/ClipsResourceStg/endOfHeaderJS.st
+2015-02-01 09:00:10,124 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server.app.clipboard [1.0.5.201501310727]: bundle://57.0:1/templates/endOfHeaderJS.st
+2015-02-01 09:00:10,125 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server.ext.converter.st [1.0.5.201501310736]: bundle://60.0:1/templates/text/html/de/twenty11/skysail/server/app/clipboard/clip/ClipsResourceStg/endOfHeaderJS.st
+2015-02-01 09:00:10,125 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - found resource in skysail.server.ext.converter.st [1.0.5.201501310736]: bundle://60.0:1/templates/text/html/endOfHeaderJS.stg
+2015-02-01 09:00:10,127 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server.app.clipboard [1.0.5.201501310727]: bundle://57.0:1/templates/de/twenty11/skysail/server/app/clipboard/clip/ClipsResourceStg/dropdownFrontendsNav.st
+2015-02-01 09:00:10,128 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server.app.clipboard [1.0.5.201501310727]: bundle://57.0:1/templates/dropdownFrontendsNav.st
+2015-02-01 09:00:10,129 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server.ext.converter.st [1.0.5.201501310736]: bundle://60.0:1/templates/text/html/de/twenty11/skysail/server/app/clipboard/clip/ClipsResourceStg/dropdownFrontendsNav.st
+2015-02-01 09:00:10,130 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - found resource in skysail.server.ext.converter.st [1.0.5.201501310736]: bundle://60.0:1/templates/text/html/dropdownFrontendsNav.stg
+2015-02-01 09:00:10,132 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server.app.clipboard [1.0.5.201501310727]: bundle://57.0:1/templates/de/twenty11/skysail/server/app/clipboard/clip/ClipsResourceStg/dropdownApplicationsNav.st
+2015-02-01 09:00:10,133 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server.app.clipboard [1.0.5.201501310727]: bundle://57.0:1/templates/dropdownApplicationsNav.st
+2015-02-01 09:00:10,135 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server.ext.converter.st [1.0.5.201501310736]: bundle://60.0:1/templates/text/html/de/twenty11/skysail/server/app/clipboard/clip/ClipsResourceStg/dropdownApplicationsNav.st
+2015-02-01 09:00:10,135 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - found resource in skysail.server.ext.converter.st [1.0.5.201501310736]: bundle://60.0:1/templates/text/html/dropdownApplicationsNav.stg
+2015-02-01 09:00:10,139 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server.app.clipboard [1.0.5.201501310727]: bundle://57.0:1/templates/de/twenty11/skysail/server/app/clipboard/clip/ClipsResourceStg/_sub16.st
+2015-02-01 09:00:10,139 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server.app.clipboard [1.0.5.201501310727]: bundle://57.0:1/templates/_sub16.st
+2015-02-01 09:00:10,140 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server.app.clipboard [1.0.5.201501310727]: bundle://57.0:1/templates/de/twenty11/skysail/server/app/clipboard/clip/ClipsResourceStg/menuItem.st
+2015-02-01 09:00:10,141 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server.app.clipboard [1.0.5.201501310727]: bundle://57.0:1/templates/menuItem.st
+2015-02-01 09:00:10,142 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server.app.clipboard [1.0.5.201501310727]: bundle://57.0:1/templates/de/twenty11/skysail/server/app/clipboard/clip/ClipsResourceStg/menuItem.st
+2015-02-01 09:00:10,142 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server.app.clipboard [1.0.5.201501310727]: bundle://57.0:1/templates/menuItem.st
+2015-02-01 09:00:10,143 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server.app.clipboard [1.0.5.201501310727]: bundle://57.0:1/templates/de/twenty11/skysail/server/app/clipboard/clip/ClipsResourceStg/dropdownAdminNav.st
+2015-02-01 09:00:10,144 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server.app.clipboard [1.0.5.201501310727]: bundle://57.0:1/templates/dropdownAdminNav.st
+2015-02-01 09:00:10,144 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server.ext.converter.st [1.0.5.201501310736]: bundle://60.0:1/templates/text/html/de/twenty11/skysail/server/app/clipboard/clip/ClipsResourceStg/dropdownAdminNav.st
+2015-02-01 09:00:10,145 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - found resource in skysail.server.ext.converter.st [1.0.5.201501310736]: bundle://60.0:1/templates/text/html/dropdownAdminNav.stg
+2015-02-01 09:00:10,149 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server.app.clipboard [1.0.5.201501310727]: bundle://57.0:1/templates/de/twenty11/skysail/server/app/clipboard/clip/ClipsResourceStg/_sub17.st
+2015-02-01 09:00:10,150 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server.app.clipboard [1.0.5.201501310727]: bundle://57.0:1/templates/_sub17.st
+2015-02-01 09:00:10,152 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server.app.clipboard [1.0.5.201501310727]: bundle://57.0:1/templates/de/twenty11/skysail/server/app/clipboard/clip/ClipsResourceStg/adminItem.st
+2015-02-01 09:00:10,152 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server.app.clipboard [1.0.5.201501310727]: bundle://57.0:1/templates/adminItem.st
+2015-02-01 09:00:10,154 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server.app.clipboard [1.0.5.201501310727]: bundle://57.0:1/templates/de/twenty11/skysail/server/app/clipboard/clip/ClipsResourceStg/_sub18.st
+2015-02-01 09:00:10,155 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server.app.clipboard [1.0.5.201501310727]: bundle://57.0:1/templates/_sub18.st
+2015-02-01 09:00:10,156 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server.app.clipboard [1.0.5.201501310727]: bundle://57.0:1/templates/de/twenty11/skysail/server/app/clipboard/clip/ClipsResourceStg/adminInteractivityItem.st
+2015-02-01 09:00:10,157 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server.app.clipboard [1.0.5.201501310727]: bundle://57.0:1/templates/adminInteractivityItem.st
+2015-02-01 09:00:10,158 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server.app.clipboard [1.0.5.201501310727]: bundle://57.0:1/templates/de/twenty11/skysail/server/app/clipboard/clip/ClipsResourceStg/breadcrumb.st
+2015-02-01 09:00:10,158 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server.app.clipboard [1.0.5.201501310727]: bundle://57.0:1/templates/breadcrumb.st
+2015-02-01 09:00:10,159 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server.ext.converter.st [1.0.5.201501310736]: bundle://60.0:1/templates/text/html/de/twenty11/skysail/server/app/clipboard/clip/ClipsResourceStg/breadcrumb.st
+2015-02-01 09:00:10,159 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - found resource in skysail.server.ext.converter.st [1.0.5.201501310736]: bundle://60.0:1/templates/text/html/breadcrumb.stg
+2015-02-01 09:00:10,162 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server.app.clipboard [1.0.5.201501310727]: bundle://57.0:1/templates/de/twenty11/skysail/server/app/clipboard/clip/ClipsResourceStg/_sub19.st
+2015-02-01 09:00:10,164 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server.app.clipboard [1.0.5.201501310727]: bundle://57.0:1/templates/_sub19.st
+2015-02-01 09:00:10,165 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server.app.clipboard [1.0.5.201501310727]: bundle://57.0:1/templates/de/twenty11/skysail/server/app/clipboard/clip/ClipsResourceStg/handleSingleBreadcrumb.st
+2015-02-01 09:00:10,166 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server.app.clipboard [1.0.5.201501310727]: bundle://57.0:1/templates/handleSingleBreadcrumb.st
+2015-02-01 09:00:10,167 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server.app.clipboard [1.0.5.201501310727]: bundle://57.0:1/templates/de/twenty11/skysail/server/app/clipboard/clip/ClipsResourceStg/handleSingleBreadcrumb.st
+2015-02-01 09:00:10,167 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server.app.clipboard [1.0.5.201501310727]: bundle://57.0:1/templates/handleSingleBreadcrumb.st
+2015-02-01 09:00:10,168 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server.app.clipboard [1.0.5.201501310727]: bundle://57.0:1/templates/de/twenty11/skysail/server/app/clipboard/clip/ClipsResourceStg/appNavTitle.st
+2015-02-01 09:00:10,169 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server.app.clipboard [1.0.5.201501310727]: bundle://57.0:1/templates/appNavTitle.st
+2015-02-01 09:00:10,170 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server.ext.converter.st [1.0.5.201501310736]: bundle://60.0:1/templates/text/html/de/twenty11/skysail/server/app/clipboard/clip/ClipsResourceStg/appNavTitle.st
+2015-02-01 09:00:10,170 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - found resource in skysail.server.ext.converter.st [1.0.5.201501310736]: bundle://60.0:1/templates/text/html/appNavTitle.stg
+2015-02-01 09:00:10,171 WARN  de.twenty11.skysail.server.core.restlet.ServerLink - problem with linkheader for resource ApiResource; no routeBuilder was found.
+2015-02-01 09:00:10,172 WARN  de.twenty11.skysail.server.core.restlet.ServerLink - problem with linkheader for resource EntitiesResource; no routeBuilder was found.
+2015-02-01 09:00:10,175 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server.app.clipboard [1.0.5.201501310727]: bundle://57.0:1/templates/de/twenty11/skysail/server/app/clipboard/clip/ClipsResourceStg/menuNav.st
+2015-02-01 09:00:10,178 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server.app.clipboard [1.0.5.201501310727]: bundle://57.0:1/templates/menuNav.st
+2015-02-01 09:00:10,179 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server.ext.converter.st [1.0.5.201501310736]: bundle://60.0:1/templates/text/html/de/twenty11/skysail/server/app/clipboard/clip/ClipsResourceStg/menuNav.st
+2015-02-01 09:00:10,179 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - found resource in skysail.server.ext.converter.st [1.0.5.201501310736]: bundle://60.0:1/templates/text/html/menuNav.stg
+2015-02-01 09:00:10,181 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server.app.clipboard [1.0.5.201501310727]: bundle://57.0:1/templates/de/twenty11/skysail/server/app/clipboard/clip/ClipsResourceStg/_sub20.st
+2015-02-01 09:00:10,182 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server.app.clipboard [1.0.5.201501310727]: bundle://57.0:1/templates/_sub20.st
+2015-02-01 09:00:10,182 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server.app.clipboard [1.0.5.201501310727]: bundle://57.0:1/templates/de/twenty11/skysail/server/app/clipboard/clip/ClipsResourceStg/linkAsButton.st
+2015-02-01 09:00:10,184 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server.app.clipboard [1.0.5.201501310727]: bundle://57.0:1/templates/linkAsButton.st
+2015-02-01 09:00:10,185 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server.app.clipboard [1.0.5.201501310727]: bundle://57.0:1/templates/de/twenty11/skysail/server/app/clipboard/clip/ClipsResourceStg/linkAsButton.st
+2015-02-01 09:00:10,185 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server.app.clipboard [1.0.5.201501310727]: bundle://57.0:1/templates/linkAsButton.st
+2015-02-01 09:00:10,186 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server.app.clipboard [1.0.5.201501310727]: bundle://57.0:1/templates/de/twenty11/skysail/server/app/clipboard/clip/ClipsResourceStg/mainContent.st
+2015-02-01 09:00:10,187 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server.app.clipboard [1.0.5.201501310727]: bundle://57.0:1/templates/mainContent.st
+2015-02-01 09:00:10,188 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server.ext.converter.st [1.0.5.201501310736]: bundle://60.0:1/templates/text/html/de/twenty11/skysail/server/app/clipboard/clip/ClipsResourceStg/mainContent.st
+2015-02-01 09:00:10,188 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - found resource in skysail.server.ext.converter.st [1.0.5.201501310736]: bundle://60.0:1/templates/text/html/mainContent.stg
+2015-02-01 09:00:10,191 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server.app.clipboard [1.0.5.201501310727]: bundle://57.0:1/templates/de/twenty11/skysail/server/app/clipboard/clip/ClipsResourceStg/appNav.st
+2015-02-01 09:00:10,192 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server.app.clipboard [1.0.5.201501310727]: bundle://57.0:1/templates/appNav.st
+2015-02-01 09:00:10,192 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server.ext.converter.st [1.0.5.201501310736]: bundle://60.0:1/templates/text/html/de/twenty11/skysail/server/app/clipboard/clip/ClipsResourceStg/appNav.st
+2015-02-01 09:00:10,192 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - found resource in skysail.server.ext.converter.st [1.0.5.201501310736]: bundle://60.0:1/templates/text/html/appNav.stg
+2015-02-01 09:00:10,194 WARN  de.twenty11.skysail.server.core.restlet.ServerLink - problem with linkheader for resource ApiResource; no routeBuilder was found.
+2015-02-01 09:00:10,195 WARN  de.twenty11.skysail.server.core.restlet.ServerLink - problem with linkheader for resource EntitiesResource; no routeBuilder was found.
+2015-02-01 09:00:10,196 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server.app.clipboard [1.0.5.201501310727]: bundle://57.0:1/templates/de/twenty11/skysail/server/app/clipboard/clip/ClipsResourceStg/_sub21.st
+2015-02-01 09:00:10,198 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server.app.clipboard [1.0.5.201501310727]: bundle://57.0:1/templates/_sub21.st
+2015-02-01 09:00:10,199 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server.app.clipboard [1.0.5.201501310727]: bundle://57.0:1/templates/de/twenty11/skysail/server/app/clipboard/clip/ClipsResourceStg/applinkAsButton.st
+2015-02-01 09:00:10,200 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server.app.clipboard [1.0.5.201501310727]: bundle://57.0:1/templates/applinkAsButton.st
+2015-02-01 09:00:10,225 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server.app.clipboard [1.0.5.201501310727]: bundle://57.0:1/templates/de/twenty11/skysail/server/app/clipboard/clip/ClipsResourceStg/applinkAsButton.st
+2015-02-01 09:00:10,226 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server.app.clipboard [1.0.5.201501310727]: bundle://57.0:1/templates/applinkAsButton.st
+2015-02-01 09:00:10,227 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server.app.clipboard [1.0.5.201501310727]: bundle://57.0:1/templates/de/twenty11/skysail/server/app/clipboard/clip/ClipsResourceStg/contentHeader.st
+2015-02-01 09:00:10,227 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server.app.clipboard [1.0.5.201501310727]: bundle://57.0:1/templates/contentHeader.st
+2015-02-01 09:00:10,228 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server.ext.converter.st [1.0.5.201501310736]: bundle://60.0:1/templates/text/html/de/twenty11/skysail/server/app/clipboard/clip/ClipsResourceStg/contentHeader.st
+2015-02-01 09:00:10,229 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - found resource in skysail.server.ext.converter.st [1.0.5.201501310736]: bundle://60.0:1/templates/text/html/contentHeader.st
+2015-02-01 09:00:10,230 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server.app.clipboard [1.0.5.201501310727]: bundle://57.0:1/templates/de/twenty11/skysail/server/app/clipboard/clip/ClipsResourceStg/renderTable.st
+2015-02-01 09:00:10,247 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server.app.clipboard [1.0.5.201501310727]: bundle://57.0:1/templates/renderTable.st
+2015-02-01 09:00:10,248 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server.ext.converter.st [1.0.5.201501310736]: bundle://60.0:1/templates/text/html/de/twenty11/skysail/server/app/clipboard/clip/ClipsResourceStg/renderTable.st
+2015-02-01 09:00:10,248 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - found resource in skysail.server.ext.converter.st [1.0.5.201501310736]: bundle://60.0:1/templates/text/html/renderTable.stg
+2015-02-01 09:00:10,252 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server.app.clipboard [1.0.5.201501310727]: bundle://57.0:1/templates/de/twenty11/skysail/server/app/clipboard/clip/ClipsResourceStg/renderHeader.st
+2015-02-01 09:00:10,252 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server.app.clipboard [1.0.5.201501310727]: bundle://57.0:1/templates/renderHeader.st
+2015-02-01 09:00:10,253 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server.app.clipboard [1.0.5.201501310727]: bundle://57.0:1/templates/de/twenty11/skysail/server/app/clipboard/clip/ClipsResourceStg/_sub24.st
+2015-02-01 09:00:10,253 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server.app.clipboard [1.0.5.201501310727]: bundle://57.0:1/templates/_sub24.st
+2015-02-01 09:00:10,254 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server.app.clipboard [1.0.5.201501310727]: bundle://57.0:1/templates/de/twenty11/skysail/server/app/clipboard/clip/ClipsResourceStg/_sub22.st
+2015-02-01 09:00:10,255 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server.app.clipboard [1.0.5.201501310727]: bundle://57.0:1/templates/_sub22.st
+2015-02-01 09:00:10,256 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server.app.clipboard [1.0.5.201501310727]: bundle://57.0:1/templates/de/twenty11/skysail/server/app/clipboard/clip/ClipsResourceStg/notifications.st
+2015-02-01 09:00:10,257 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server.app.clipboard [1.0.5.201501310727]: bundle://57.0:1/templates/notifications.st
+2015-02-01 09:00:10,258 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server.ext.converter.st [1.0.5.201501310736]: bundle://60.0:1/templates/text/html/de/twenty11/skysail/server/app/clipboard/clip/ClipsResourceStg/notifications.st
+2015-02-01 09:00:10,258 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - found resource in skysail.server.ext.converter.st [1.0.5.201501310736]: bundle://60.0:1/templates/text/html/notifications.stg
+2015-02-01 09:00:10,261 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server.app.clipboard [1.0.5.201501310727]: bundle://57.0:1/templates/de/twenty11/skysail/server/app/clipboard/clip/ClipsResourceStg/_sub25.st
+2015-02-01 09:00:10,262 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server.app.clipboard [1.0.5.201501310727]: bundle://57.0:1/templates/_sub25.st
+2015-02-01 09:00:10,263 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server.app.clipboard [1.0.5.201501310727]: bundle://57.0:1/templates/de/twenty11/skysail/server/app/clipboard/clip/ClipsResourceStg/select2JsEndOfBody.st
+2015-02-01 09:00:10,263 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server.app.clipboard [1.0.5.201501310727]: bundle://57.0:1/templates/select2JsEndOfBody.st
+2015-02-01 09:00:10,264 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server.ext.converter.st [1.0.5.201501310736]: bundle://60.0:1/templates/text/html/de/twenty11/skysail/server/app/clipboard/clip/ClipsResourceStg/select2JsEndOfBody.st
+2015-02-01 09:00:10,265 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - found resource in skysail.server.ext.converter.st [1.0.5.201501310736]: bundle://60.0:1/templates/text/html/select2JsEndOfBody.stg
+2015-02-01 09:00:10,267 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server.app.clipboard [1.0.5.201501310727]: bundle://57.0:1/templates/de/twenty11/skysail/server/app/clipboard/clip/ClipsResourceStg/_sub26.st
+2015-02-01 09:00:10,268 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server.app.clipboard [1.0.5.201501310727]: bundle://57.0:1/templates/_sub26.st
+2015-02-01 09:00:10,301 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server.app.clipboard [1.0.5.201501310727]: bundle://57.0:1/templates/de/twenty11/skysail/server/app/clipboard/clip/ClipsResourceStg/handleSelect2JsEndOfBody.st
+2015-02-01 09:00:10,345 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server.app.clipboard [1.0.5.201501310727]: bundle://57.0:1/templates/handleSelect2JsEndOfBody.st
+2015-02-01 09:00:10,346 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server.app.clipboard [1.0.5.201501310727]: bundle://57.0:1/templates/de/twenty11/skysail/server/app/clipboard/clip/ClipsResourceStg/handleSelect2JsEndOfBody.st
+2015-02-01 09:00:10,348 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server.app.clipboard [1.0.5.201501310727]: bundle://57.0:1/templates/handleSelect2JsEndOfBody.st
+2015-02-01 09:00:10,349 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server.app.clipboard [1.0.5.201501310727]: bundle://57.0:1/templates/de/twenty11/skysail/server/app/clipboard/clip/ClipsResourceStg/handleSelect2JsEndOfBody.st
+2015-02-01 09:00:10,358 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server.app.clipboard [1.0.5.201501310727]: bundle://57.0:1/templates/handleSelect2JsEndOfBody.st
+2015-02-01 09:00:10,359 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server.app.clipboard [1.0.5.201501310727]: bundle://57.0:1/templates/de/twenty11/skysail/server/app/clipboard/clip/ClipsResourceStg/handleSelect2JsEndOfBody.st
+2015-02-01 09:00:10,359 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server.app.clipboard [1.0.5.201501310727]: bundle://57.0:1/templates/handleSelect2JsEndOfBody.st
+2015-02-01 09:00:10,364 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server.app.clipboard [1.0.5.201501310727]: bundle://57.0:1/templates/de/twenty11/skysail/server/app/clipboard/clip/ClipsResourceStg/handleSelect2JsEndOfBody.st
+2015-02-01 09:00:10,365 DEBUG d.t.skysail.server.ext.converter.st.STGroupBundleDir - resource does not exist in skysail.server.app.clipboard [1.0.5.201501310727]: bundle://57.0:1/templates/handleSelect2JsEndOfBody.st
+2015-02-01 09:00:10,366 INFO  LogService - 2015-02-01	09:00:10	0:0:0:0:0:0:0:1	admin	-	2017	GET	/clipboard	-	200	8960	0	942	http://localhost:2017	Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/40.0.2214.94 Safari/537.36	http://localhost:2017/
+2015-02-01 09:00:10,366 DEBUG org.restlet - Writing message to /0:0:0:0:0:0:0:1:64130
+2015-02-01 09:00:10,367 DEBUG org.restlet - HTTP/1.1 200 OK
+2015-02-01 09:00:10,367 DEBUG org.restlet - Date: Sun, 01 Feb 2015 08:00:10 GMT
+2015-02-01 09:00:10,367 DEBUG org.restlet - Accept-Ranges: bytes
+2015-02-01 09:00:10,367 DEBUG org.restlet - Server: Restlet-Framework/2.1.7
+2015-02-01 09:00:10,367 DEBUG org.restlet - Vary: Accept-Charset, Accept-Encoding, Accept-Language, Accept
+2015-02-01 09:00:10,367 DEBUG org.restlet - Set-Cookie: Credentials=0IqVtyHFfKQ4FxTrla5sHYgYUkXdY+cZ3Grd5q1E7bCOtW6fnmWqIbaChPIEV7eX; Path=/; HttpOnly
+2015-02-01 09:00:10,367 DEBUG org.restlet - X-Pagination-Pages: 1
+2015-02-01 09:00:10,367 DEBUG org.restlet - X-Pagination-Page: 1
+2015-02-01 09:00:10,367 DEBUG org.restlet - X-Pagination-Hits: 0
+2015-02-01 09:00:10,367 DEBUG org.restlet - X-Duration: 550
+2015-02-01 09:00:10,367 DEBUG org.restlet - Link: </clipboard/about>; rel="collection"; title="About Clipboard Application"; verbs="GET",</clipboard/clips/>; rel="create-form"; title="Create new Clip"; verbs="GET"
+2015-02-01 09:00:10,367 DEBUG org.restlet - X-Api-Version: unknown
+2015-02-01 09:00:10,367 DEBUG org.restlet - Content-Length: 8960
+2015-02-01 09:00:10,367 DEBUG org.restlet - Content-Type: text/html; charset=UTF-8
+2015-02-01 09:00:10,367 DEBUG org.restlet - 
+2015-02-01 09:00:18,297 DEBUG org.restlet - GET /clipboard/docs/api HTTP/1.1
+2015-02-01 09:00:18,297 DEBUG org.restlet - Reading message from /0:0:0:0:0:0:0:1:64130
+2015-02-01 09:00:18,297 DEBUG org.restlet - Host: localhost:2017
+2015-02-01 09:00:18,297 DEBUG org.restlet - Connection: keep-alive
+2015-02-01 09:00:18,297 DEBUG org.restlet - Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+2015-02-01 09:00:18,297 DEBUG org.restlet - User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/40.0.2214.94 Safari/537.36
+2015-02-01 09:00:18,297 DEBUG org.restlet - Accept-Encoding: gzip, deflate, sdch
+2015-02-01 09:00:18,297 DEBUG org.restlet - Accept-Language: de-DE,de;q=0.8,en-US;q=0.6,en;q=0.4
+2015-02-01 09:00:18,297 DEBUG org.restlet - Cookie: template=edit; _ga=GA1.1.1616881384.1421522672; OSESSIONID=OS14223535500113443975169242684860; Credentials=0IqVtyHFfKQ4FxTrla5sHYgYUkXdY+cZ3Grd5q1E7bCOtW6fnmWqIbaChPIEV7eX
+2015-02-01 09:00:18,297 DEBUG org.restlet - 
+2015-02-01 09:00:18,297 DEBUG org.restlet.SkysailComponent.LogFilter - HttpInboundRequest::setHeaders, IPv4 hostDomain: localhost, hostPort: 2017
+2015-02-01 09:00:18,298 DEBUG LogService - Processing request to: "http://localhost:2017/clipboard/docs/api"
+2015-02-01 09:00:18,299 WARN  d.t.skysail.server.core.osgi.internal.EventHelper - eventAdmin is null, cannot fire Event
+2015-02-01 09:00:18,301 DEBUG org.apache.shiro.web.mgt.CookieRememberMeManager - SubjectContext argument is not an HTTP-aware instance.  This is required to obtain a servlet request and response in order to retrieve the rememberMe cookie. Returning immediately and ignoring rememberMe operation.
+2015-02-01 09:00:18,301 INFO  d.t.s.s.security.shiro.restlet.ShiroDelegatingVerifier - login event for user 'admin'
+2015-02-01 09:00:18,301 DEBUG org.apache.shiro.realm.AuthenticatingRealm - Using cached authentication info [de.twenty11.skysail.server.security.shiro.SkysailAuthenticationInfo@2c032efd] to perform credentials matching.
+2015-02-01 09:00:18,748 DEBUG org.apache.shiro.authc.AbstractAuthenticator - Authentication successful for token [org.apache.shiro.authc.UsernamePasswordToken - admin, rememberMe=false].  Returned account [de.twenty11.skysail.server.security.shiro.SkysailAuthenticationInfo@2c032efd]
+2015-02-01 09:00:18,749 DEBUG org.apache.shiro.subject.support.DefaultSubjectContext - No SecurityManager available in subject context map.  Falling back to SecurityUtils.getSecurityManager() lookup.
+2015-02-01 09:00:18,749 DEBUG org.apache.shiro.subject.support.DefaultSubjectContext - No SecurityManager available in subject context map.  Falling back to SecurityUtils.getSecurityManager() lookup.
+2015-02-01 09:00:18,749 DEBUG org.apache.shiro.mgt.AbstractRememberMeManager - AuthenticationToken did not indicate RememberMe is requested.  RememberMe functionality will not be executed for corresponding account.
+2015-02-01 09:00:18,749 INFO  d.t.s.s.security.shiro.restlet.ShiroDelegatingVerifier - login event for user 'admin' successful
+2015-02-01 09:00:18,749 DEBUG o.r.S.InternalRouter.ClipboardApplication - Authentication succeeded. Valid credentials provided for identifier: admin.
+2015-02-01 09:00:18,749 DEBUG o.r.S.InternalRouter.ClipboardApplication - The authentication succeeded for the identifer "admin" using the HTTP_Cookie scheme.
+2015-02-01 09:00:18,756 DEBUG o.r.S.InternalRouter.ClipboardApplication - The default route was selected
+2015-02-01 09:00:18,756 INFO  LogService - 2015-02-01	09:00:18	0:0:0:0:0:0:0:1	admin	-	2017	GET	/clipboard/docs/api	-	404	439	0	458	http://localhost:2017	Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/40.0.2214.94 Safari/537.36	-
+2015-02-01 09:00:18,756 DEBUG org.restlet - Writing message to /0:0:0:0:0:0:0:1:64130
+2015-02-01 09:00:18,756 DEBUG org.restlet - HTTP/1.1 404 Not Found
+2015-02-01 09:00:18,757 DEBUG org.restlet - Date: Sun, 01 Feb 2015 08:00:18 GMT
+2015-02-01 09:00:18,757 DEBUG org.restlet - Accept-Ranges: bytes
+2015-02-01 09:00:18,757 DEBUG org.restlet - Server: Restlet-Framework/2.1.7
+2015-02-01 09:00:18,757 DEBUG org.restlet - Set-Cookie: Credentials=XR/hhIj8r9ZZsQfTa4n1O4gYUkXdY+cZ3Grd5q1E7bCOtW6fnmWqIbaChPIEV7eX; Path=/; HttpOnly
+2015-02-01 09:00:18,757 DEBUG org.restlet - Content-Length: 439
+2015-02-01 09:00:18,757 DEBUG org.restlet - Content-Type: text/html; charset=UTF-8
+2015-02-01 09:00:18,757 DEBUG org.restlet - 

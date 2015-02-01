@@ -1,0 +1,21 @@
+WARN  de.twenty11.skysail.server.core.restlet.SkysailRouter - please use a RouteBuilder to attach this resource: class de.twenty11.skysail.products.website.WebsiteRootResource
+WARN  de.twenty11.skysail.server.app.SkysailApplication - not documentation provider available. No Selfdocumentation of APIs.
+WARN  de.twenty11.skysail.server.core.restlet.SkysailRouter - please use a RouteBuilder to attach this resource: class de.twenty11.skysail.server.um.internal.users.CurrentUserResource
+WARN  de.twenty11.skysail.server.core.restlet.SkysailRouter - please use a RouteBuilder to attach this resource: class de.twenty11.skysail.server.um.internal.registration.PostRegistrationResource
+WARN  de.twenty11.skysail.server.core.restlet.SkysailRouter - please use a RouteBuilder to attach this resource: class de.twenty11.skysail.server.um.internal.registration.PostConfirmationResource
+WARN  de.twenty11.skysail.server.core.restlet.SkysailRouter - please use a RouteBuilder to attach this resource: class de.twenty11.skysail.server.resources.DefaultResource
+WARN  de.twenty11.skysail.server.core.restlet.SkysailRouter - please use a RouteBuilder to attach this resource: class de.twenty11.skysail.server.resources.LoginResource
+WARN  de.twenty11.skysail.server.core.restlet.SkysailRouter - please use a RouteBuilder to attach this resource: class de.twenty11.skysail.server.resources.AboutResource
+WARN  d.t.skysail.server.core.osgi.internal.EventHelper - eventAdmin is null, cannot fire Event
+WARN  d.t.skysail.server.core.osgi.internal.EventHelper - eventAdmin is null, cannot fire Event
+WARN  d.t.skysail.server.core.osgi.internal.EventHelper - eventAdmin is null, cannot fire Event
+WARN  d.t.skysail.server.core.osgi.internal.EventHelper - eventAdmin is null, cannot fire Event
+WARN  d.t.skysail.server.core.osgi.internal.EventHelper - eventAdmin is null, cannot fire Event
+WARN  d.t.skysail.server.core.osgi.internal.EventHelper - eventAdmin is null, cannot fire Event
+WARN  de.twenty11.skysail.server.core.restlet.ServerLink - problem with linkheader for resource ApiResource; no routeBuilder was found.
+WARN  de.twenty11.skysail.server.core.restlet.ServerLink - problem with linkheader for resource EntitiesResource; no routeBuilder was found.
+WARN  de.twenty11.skysail.server.core.restlet.ServerLink - problem with linkheader for resource ApiResource; no routeBuilder was found.
+WARN  de.twenty11.skysail.server.core.restlet.ServerLink - problem with linkheader for resource EntitiesResource; no routeBuilder was found.
+WARN  de.twenty11.skysail.server.core.restlet.ServerLink - problem with linkheader for resource ApiResource; no routeBuilder was found.
+WARN  de.twenty11.skysail.server.core.restlet.ServerLink - problem with linkheader for resource EntitiesResource; no routeBuilder was found.
+WARN  d.t.skysail.server.core.osgi.internal.EventHelper - eventAdmin is null, cannot fire Event

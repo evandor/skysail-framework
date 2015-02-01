@@ -1,12 +1,12 @@
-INFO  de.twenty11.skysail.server.app.SkysailApplication - creating new Router in io.skysail.server.documentation.test.TestApplication$$EnhancerByMockitoWithCGLIB$$c52dd2c0
+INFO  de.twenty11.skysail.server.app.SkysailApplication - creating new Router in io.skysail.server.documentation.test.TestApplication$$EnhancerByMockitoWithCGLIB$$cbe003f8
 INFO  de.twenty11.skysail.server.app.SkysailApplication - adding extensions to metadata service
 INFO  de.twenty11.skysail.server.app.SkysailApplication - adding protocols
 DEBUG de.twenty11.skysail.server.app.SkysailApplication - attaching application-specific routes
 WARN  de.twenty11.skysail.server.app.SkysailApplication - not documentation provider available. No Selfdocumentation of APIs.
-INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/path/to/listResource' -> 'de.twenty11.skysail.server.security.AuthenticatedAuthorizer@2bbf180e'
-INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/path/to/entityResource' -> 'de.twenty11.skysail.server.security.AuthenticatedAuthorizer@6193932a'
-INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/path/to/postResource' -> 'de.twenty11.skysail.server.security.AuthenticatedAuthorizer@159f197'
-INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/path/to/putResource' -> 'de.twenty11.skysail.server.security.AuthenticatedAuthorizer@5dd6264'
+INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/path/to/listResource' -> 'de.twenty11.skysail.server.security.AuthenticatedAuthorizer@a82c5f1'
+INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/path/to/entityResource' -> 'de.twenty11.skysail.server.security.AuthenticatedAuthorizer@6b6776cb'
+INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/path/to/postResource' -> 'de.twenty11.skysail.server.security.AuthenticatedAuthorizer@1787bc24'
+INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/path/to/putResource' -> 'de.twenty11.skysail.server.security.AuthenticatedAuthorizer@55c53a33'
 DEBUG de.twenty11.skysail.server.app.SkysailApplication - creating blocker...
 DEBUG de.twenty11.skysail.server.app.SkysailApplication - creating tracer...
 DEBUG de.twenty11.skysail.server.app.SkysailApplication - creating original request filter...
@@ -25,15 +25,15 @@ INFO  d.t.s.server.core.restlet.filter.AbstractResourceFilter - next filter in c
 INFO  d.t.s.server.core.restlet.filter.AbstractResourceFilter - next filter in chain: SetExecutionTimeInResponseFilter
 INFO  d.t.s.server.core.restlet.filter.AbstractResourceFilter - next filter in chain: RedirectFilter
 DEBUG de.twenty11.skysail.server.app.SkysailApplication - Documentation service was set to 'SkysailDocumentationProvider' for application 'testapp'
-INFO  de.twenty11.skysail.server.app.SkysailApplication - creating new Router in io.skysail.server.documentation.test.TestApplication$$EnhancerByMockitoWithCGLIB$$c52dd2c0
+INFO  de.twenty11.skysail.server.app.SkysailApplication - creating new Router in io.skysail.server.documentation.test.TestApplication$$EnhancerByMockitoWithCGLIB$$cbe003f8
 INFO  de.twenty11.skysail.server.app.SkysailApplication - adding extensions to metadata service
 INFO  de.twenty11.skysail.server.app.SkysailApplication - adding protocols
 DEBUG de.twenty11.skysail.server.app.SkysailApplication - attaching application-specific routes
 WARN  de.twenty11.skysail.server.app.SkysailApplication - not documentation provider available. No Selfdocumentation of APIs.
-INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/path/to/listResource' -> 'de.twenty11.skysail.server.security.AuthenticatedAuthorizer@6a192cfe'
-INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/path/to/entityResource' -> 'de.twenty11.skysail.server.security.AuthenticatedAuthorizer@7193666c'
-INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/path/to/postResource' -> 'de.twenty11.skysail.server.security.AuthenticatedAuthorizer@3835c46'
-INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/path/to/putResource' -> 'de.twenty11.skysail.server.security.AuthenticatedAuthorizer@7714e963'
+INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/path/to/listResource' -> 'de.twenty11.skysail.server.security.AuthenticatedAuthorizer@49ff7d8c'
+INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/path/to/entityResource' -> 'de.twenty11.skysail.server.security.AuthenticatedAuthorizer@2ef14fe'
+INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/path/to/postResource' -> 'de.twenty11.skysail.server.security.AuthenticatedAuthorizer@45312be2'
+INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/path/to/putResource' -> 'de.twenty11.skysail.server.security.AuthenticatedAuthorizer@58be6e8'
 DEBUG de.twenty11.skysail.server.app.SkysailApplication - creating blocker...
 DEBUG de.twenty11.skysail.server.app.SkysailApplication - creating tracer...
 DEBUG de.twenty11.skysail.server.app.SkysailApplication - creating original request filter...
@@ -52,15 +52,15 @@ INFO  d.t.s.server.core.restlet.filter.AbstractResourceFilter - next filter in c
 INFO  d.t.s.server.core.restlet.filter.AbstractResourceFilter - next filter in chain: SetExecutionTimeInResponseFilter
 INFO  d.t.s.server.core.restlet.filter.AbstractResourceFilter - next filter in chain: RedirectFilter
 DEBUG de.twenty11.skysail.server.app.SkysailApplication - Documentation service was set to 'SkysailDocumentationProvider' for application 'testapp'
-INFO  de.twenty11.skysail.server.app.SkysailApplication - creating new Router in io.skysail.server.documentation.test.TestApplication$$EnhancerByMockitoWithCGLIB$$c52dd2c0
+INFO  de.twenty11.skysail.server.app.SkysailApplication - creating new Router in io.skysail.server.documentation.test.TestApplication$$EnhancerByMockitoWithCGLIB$$cbe003f8
 INFO  de.twenty11.skysail.server.app.SkysailApplication - adding extensions to metadata service
 INFO  de.twenty11.skysail.server.app.SkysailApplication - adding protocols
 DEBUG de.twenty11.skysail.server.app.SkysailApplication - attaching application-specific routes
 WARN  de.twenty11.skysail.server.app.SkysailApplication - not documentation provider available. No Selfdocumentation of APIs.
-INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/path/to/listResource' -> 'de.twenty11.skysail.server.security.AuthenticatedAuthorizer@43195e57'
-INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/path/to/entityResource' -> 'de.twenty11.skysail.server.security.AuthenticatedAuthorizer@479d31f3'
-INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/path/to/postResource' -> 'de.twenty11.skysail.server.security.AuthenticatedAuthorizer@498d318c'
-INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/path/to/putResource' -> 'de.twenty11.skysail.server.security.AuthenticatedAuthorizer@402bba4f'
+INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/path/to/listResource' -> 'de.twenty11.skysail.server.security.AuthenticatedAuthorizer@64c63c79'
+INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/path/to/entityResource' -> 'de.twenty11.skysail.server.security.AuthenticatedAuthorizer@2b76ff4e'
+INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/path/to/postResource' -> 'de.twenty11.skysail.server.security.AuthenticatedAuthorizer@2f62ea70'
+INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/path/to/putResource' -> 'de.twenty11.skysail.server.security.AuthenticatedAuthorizer@38aa816f'
 DEBUG de.twenty11.skysail.server.app.SkysailApplication - creating blocker...
 DEBUG de.twenty11.skysail.server.app.SkysailApplication - creating tracer...
 DEBUG de.twenty11.skysail.server.app.SkysailApplication - creating original request filter...
@@ -79,15 +79,15 @@ INFO  d.t.s.server.core.restlet.filter.AbstractResourceFilter - next filter in c
 INFO  d.t.s.server.core.restlet.filter.AbstractResourceFilter - next filter in chain: SetExecutionTimeInResponseFilter
 INFO  d.t.s.server.core.restlet.filter.AbstractResourceFilter - next filter in chain: RedirectFilter
 DEBUG de.twenty11.skysail.server.app.SkysailApplication - Documentation service was set to 'SkysailDocumentationProvider' for application 'testapp'
-INFO  de.twenty11.skysail.server.app.SkysailApplication - creating new Router in io.skysail.server.documentation.test.TestApplication$$EnhancerByMockitoWithCGLIB$$c52dd2c0
+INFO  de.twenty11.skysail.server.app.SkysailApplication - creating new Router in io.skysail.server.documentation.test.TestApplication$$EnhancerByMockitoWithCGLIB$$cbe003f8
 INFO  de.twenty11.skysail.server.app.SkysailApplication - adding extensions to metadata service
 INFO  de.twenty11.skysail.server.app.SkysailApplication - adding protocols
 DEBUG de.twenty11.skysail.server.app.SkysailApplication - attaching application-specific routes
 WARN  de.twenty11.skysail.server.app.SkysailApplication - not documentation provider available. No Selfdocumentation of APIs.
-INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/path/to/listResource' -> 'de.twenty11.skysail.server.security.AuthenticatedAuthorizer@61862a7f'
-INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/path/to/entityResource' -> 'de.twenty11.skysail.server.security.AuthenticatedAuthorizer@7334aada'
-INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/path/to/postResource' -> 'de.twenty11.skysail.server.security.AuthenticatedAuthorizer@4d9e68d0'
-INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/path/to/putResource' -> 'de.twenty11.skysail.server.security.AuthenticatedAuthorizer@52e6fdee'
+INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/path/to/listResource' -> 'de.twenty11.skysail.server.security.AuthenticatedAuthorizer@39a2bb97'
+INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/path/to/entityResource' -> 'de.twenty11.skysail.server.security.AuthenticatedAuthorizer@8c3619e'
+INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/path/to/postResource' -> 'de.twenty11.skysail.server.security.AuthenticatedAuthorizer@6f63b475'
+INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/path/to/putResource' -> 'de.twenty11.skysail.server.security.AuthenticatedAuthorizer@29ca3d04'
 DEBUG de.twenty11.skysail.server.app.SkysailApplication - creating blocker...
 DEBUG de.twenty11.skysail.server.app.SkysailApplication - creating tracer...
 DEBUG de.twenty11.skysail.server.app.SkysailApplication - creating original request filter...
@@ -106,15 +106,15 @@ INFO  d.t.s.server.core.restlet.filter.AbstractResourceFilter - next filter in c
 INFO  d.t.s.server.core.restlet.filter.AbstractResourceFilter - next filter in chain: SetExecutionTimeInResponseFilter
 INFO  d.t.s.server.core.restlet.filter.AbstractResourceFilter - next filter in chain: RedirectFilter
 DEBUG de.twenty11.skysail.server.app.SkysailApplication - Documentation service was set to 'SkysailDocumentationProvider' for application 'testapp'
-INFO  de.twenty11.skysail.server.app.SkysailApplication - creating new Router in io.skysail.server.documentation.test.TestApplication$$EnhancerByMockitoWithCGLIB$$c52dd2c0
+INFO  de.twenty11.skysail.server.app.SkysailApplication - creating new Router in io.skysail.server.documentation.test.TestApplication$$EnhancerByMockitoWithCGLIB$$cbe003f8
 INFO  de.twenty11.skysail.server.app.SkysailApplication - adding extensions to metadata service
 INFO  de.twenty11.skysail.server.app.SkysailApplication - adding protocols
 DEBUG de.twenty11.skysail.server.app.SkysailApplication - attaching application-specific routes
 WARN  de.twenty11.skysail.server.app.SkysailApplication - not documentation provider available. No Selfdocumentation of APIs.
-INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/path/to/listResource' -> 'de.twenty11.skysail.server.security.AuthenticatedAuthorizer@32eff876'
-INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/path/to/entityResource' -> 'de.twenty11.skysail.server.security.AuthenticatedAuthorizer@6e20b53a'
-INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/path/to/postResource' -> 'de.twenty11.skysail.server.security.AuthenticatedAuthorizer@3ce1e309'
-INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/path/to/putResource' -> 'de.twenty11.skysail.server.security.AuthenticatedAuthorizer@158da8e'
+INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/path/to/listResource' -> 'de.twenty11.skysail.server.security.AuthenticatedAuthorizer@19e4fcac'
+INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/path/to/entityResource' -> 'de.twenty11.skysail.server.security.AuthenticatedAuthorizer@4b79ac84'
+INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/path/to/postResource' -> 'de.twenty11.skysail.server.security.AuthenticatedAuthorizer@6dab9b6d'
+INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/path/to/putResource' -> 'de.twenty11.skysail.server.security.AuthenticatedAuthorizer@2766ca9d'
 DEBUG de.twenty11.skysail.server.app.SkysailApplication - creating blocker...
 DEBUG de.twenty11.skysail.server.app.SkysailApplication - creating tracer...
 DEBUG de.twenty11.skysail.server.app.SkysailApplication - creating original request filter...

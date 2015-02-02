@@ -16,6 +16,8 @@ import org.restlet.resource.Get;
 import org.restlet.resource.Post;
 import org.restlet.resource.Put;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import de.twenty11.skysail.api.responses.Link;
 
 @EqualsAndHashCode(of = { "method", "path" })
@@ -26,6 +28,7 @@ public class SupportedMethod implements Comparable<SupportedMethod> {
     private Annotation annotation;
     private String desc;
     private String path;
+    @JsonIgnore
     private java.lang.reflect.Method method;
 
     /**
@@ -51,18 +54,18 @@ public class SupportedMethod implements Comparable<SupportedMethod> {
     }
 
     public List<Link> getPostResponseTypes() {
-        if (!(annotation instanceof Post)) {
-            return Collections.emptyList();
-        }
-        List<Link> result = new ArrayList<Link>();
-        String[] types = ((Post) annotation).value().split(":");
-        if (types.length == 2) {
-            String[] split = types[1].split("\\|");
-            for (String type : split) {
-                result.add(new Link(path + "?media=" + type, type));
-            }
-        }
-        return result;
+        // if (!(annotation instanceof Post)) {
+        return Collections.emptyList();
+        // }
+        // List<Link> result = new ArrayList<Link>();
+        // String[] types = ((Post) annotation).value().split(":");
+        // if (types.length == 2) {
+        // String[] split = types[1].split("\\|");
+        // for (String type : split) {
+        // // result.add(new Link(path + "?media=" + type, type));
+        // }
+        // }
+        // return result;
     }
 
     // public List<Link> getPostRequestTypes() {
@@ -122,10 +125,10 @@ public class SupportedMethod implements Comparable<SupportedMethod> {
 
     private List<Link> getLinks(Get annotation2) {
         List<Link> result = new ArrayList<Link>();
-        String[] types = ((Get) annotation).value().split("\\|");
-        for (String type : types) {
-            result.add(new Link(path + "?media=" + type, type));
-        }
+        // String[] types = ((Get) annotation).value().split("\\|");
+        // for (String type : types) {
+        // // result.add(new Link(path + "?media=" + type, type));
+        // }
         return result;
 
     }

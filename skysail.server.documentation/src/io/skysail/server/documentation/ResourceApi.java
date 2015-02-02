@@ -43,6 +43,10 @@ public class ResourceApi implements Comparable<ResourceApi> {
 
     private EntityDescriptor entity;
 
+    public ResourceApi() {
+        // needed by converter
+    }
+
     /**
      * Creates a new instance by analyzing the provided route Builder.
      * 
@@ -140,15 +144,18 @@ public class ResourceApi implements Comparable<ResourceApi> {
             if (methodToCheck.equals(method)) {
                 continue;
             }
-            if (methodToCheck.getHttpVerb().getName().equals(method.getHttpVerb().getName())
-                    && methodToCheck.getValue().equals(method.getValue())) {
-                if (method.getDesc() == null) {
-                    continue;
-                }
-                if (method.getDesc().startsWith("generic API description for ")) {
-                    return method;
-                }
-            }
+            // if
+            // (methodToCheck.getHttpVerb().getName().equals(method.getHttpVerb().getName())
+            // && methodToCheck.getValue().equals(method.getValue())) {
+            // // if (method.getDesc() == null) {
+            // // continue;
+            // // }
+            // // if
+            // // (method.getDesc().startsWith("generic API description for "))
+            // // {
+            // // return method;
+            // // }
+            // }
         }
         return null;
     }

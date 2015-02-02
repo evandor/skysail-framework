@@ -99,13 +99,14 @@
 	osgi.enterprise;version='[4.2.0,4.2.1)',\
 	osgi.residential;version='[4.3.0,4.3.1)',\
 	skysail.api;version='[2.0.0,2.0.1)',\
-	skysail.api.documentation;version='[0.1.0,0.1.1)',\
+	skysail.api.documentation;version=latest,\
 	skysail.api.validation;version='[0.1.1,0.1.2)',\
 	skysail.products.website;version=latest,\
 	skysail.server;version='[5.1.1,5.1.2)',\
 	skysail.server.app.clipboard;version=latest,\
 	skysail.server.app.i18n;version=latest,\
 	skysail.server.db.orientdb;version=latest,\
+	skysail.server.documentation;version=latest,\
 	skysail.server.ext.converter.st;version=latest,\
 	skysail.server.ext.i18n;version=latest,\
 	skysail.server.http;version=latest,\

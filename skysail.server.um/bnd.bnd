@@ -23,6 +23,7 @@ Private-Package:  \
 	io.skysail.server.um.security.shiro.subject,\
 	io.skysail.server.um.security.shiro.util,\
 	io.skysail.server.um.security.shiro,\
-	io.skysail.server.um.security.shiro.session.mgt
+	io.skysail.server.um.security.shiro.session.mgt,\
+	io.skysail.server.um.security.shiro.subject.support
 Service-Component:  \
 	*

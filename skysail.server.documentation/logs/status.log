@@ -1,6 +1,6 @@
-2015-02-02 07:39:52,428 PeriodicFrameworkStatusLogger - current bundle status (invocation #1, 02.39.2015 07:39:52)
-2015-02-02 07:39:52,431 PeriodicFrameworkStatusLogger - ============================================================
-2015-02-02 07:39:52,442 PeriodicFrameworkStatusLogger - 
+2015-02-02 13:21:21,933 PeriodicFrameworkStatusLogger - current bundle status (invocation #1, 02.21.2015 13:21:21)
+2015-02-02 13:21:21,935 PeriodicFrameworkStatusLogger - ============================================================
+2015-02-02 13:21:21,938 PeriodicFrameworkStatusLogger - 
 0: org.apache.felix.framework (4.4.1) [ACTIVE]
 1: ch.qos.logback.classic (1.1.2) [ACTIVE]
 2: ch.qos.logback.core (1.1.2) [ACTIVE]
@@ -54,55 +54,56 @@
 50: osgi.enterprise (4.2.0.201003190513) [ACTIVE]
 51: osgi.residential (4.3.0.201111022239) [ACTIVE]
 52: skysail.api (2.0.0.201501200640) [ACTIVE]
-53: skysail.api.documentation (0.2.0.201502020639) [ACTIVE]
+53: skysail.api.documentation (0.2.0.201502021028) [ACTIVE]
 54: skysail.api.validation (0.1.1.201501300511) [ACTIVE]
-55: skysail.products.website (0.0.5.201501310857) [RESOLVED]
+55: skysail.products.website (0.0.5.201501310857) [STARTING]
 56: skysail.server (5.1.1.201501300549) [RESOLVED]
 57: skysail.server.app.clipboard (1.0.5.201501310727) [RESOLVED]
 58: skysail.server.app.i18n (0.0.5.201501310741) [RESOLVED]
 59: skysail.server.db.orientdb (0.0.3.201501310732) [RESOLVED]
-60: skysail.server.documentation (0.1.1.201502020639) [RESOLVED]
-61: skysail.server.ext.converter.st (1.0.5.201501310736) [RESOLVED]
+60: skysail.server.documentation (0.1.1.201502021028) [RESOLVED]
+61: skysail.server.ext.converter.st (1.0.7.201502020700) [RESOLVED]
 62: skysail.server.ext.i18n (0.0.10.201501310741) [RESOLVED]
 63: skysail.server.http (1.0.15.201501310744) [RESOLVED]
 64: skysail.server.security.shiro (5.1.2.201501310744) [RESOLVED]
 65: skysail.server.static (0.5.20.201501310744) [RESOLVED]
 66: skysail.server.um.internal (0.0.5.201501310744) [RESOLVED]
 67: slf4j.api (1.7.7) [RESOLVED]
-2015-02-02 07:39:52,442 PeriodicFrameworkStatusLogger - 
-2015-02-02 07:39:52,443 PeriodicFrameworkStatusLogger - current services status (invocation #1, 02.39.2015 07:39:52)
-2015-02-02 07:39:52,444 PeriodicFrameworkStatusLogger - ============================================================
-2015-02-02 07:39:52,448 PeriodicFrameworkStatusLogger - 
-6 [Ljava.lang.String;@1064736f
-22 [Ljava.lang.String;@12cc6cf2
-5 [Ljava.lang.String;@138cfdbe
-1 [Ljava.lang.String;@15530dc3
-15 [Ljava.lang.String;@164b775
-7 [Ljava.lang.String;@17eeaf6f
-11 [Ljava.lang.String;@1e3cc6af
-23 [Ljava.lang.String;@33cabfbc
-21 [Ljava.lang.String;@38a9265a
-20 [Ljava.lang.String;@3f175606
-19 [Ljava.lang.String;@418b2a24
-25 [Ljava.lang.String;@431bcfa9
-18 [Ljava.lang.String;@47dfc576
-24 [Ljava.lang.String;@4807303
-17 [Ljava.lang.String;@48da8547
-12 [Ljava.lang.String;@4bbb11da
-26 [Ljava.lang.String;@4d9100ca
-14 [Ljava.lang.String;@506aebe9
-16 [Ljava.lang.String;@611b46e9
-9 [Ljava.lang.String;@65e939e8
-8 [Ljava.lang.String;@67b5d360
-4 [Ljava.lang.String;@6f669c4d
-2 [Ljava.lang.String;@749329e9
-3 [Ljava.lang.String;@7ac59ec4
-13 [Ljava.lang.String;@7df70730
-10 [Ljava.lang.String;@d91df47
-2015-02-02 07:39:52,449 PeriodicFrameworkStatusLogger - 
-2015-02-02 07:40:52,454 PeriodicFrameworkStatusLogger - current bundle status (invocation #2, 02.40.2015 07:40:52)
-2015-02-02 07:40:52,462 PeriodicFrameworkStatusLogger - ============================================================
-2015-02-02 07:40:52,463 PeriodicFrameworkStatusLogger - 
+2015-02-02 13:21:21,938 PeriodicFrameworkStatusLogger - 
+2015-02-02 13:21:21,938 PeriodicFrameworkStatusLogger - current services status (invocation #1, 02.21.2015 13:21:21)
+2015-02-02 13:21:21,938 PeriodicFrameworkStatusLogger - ============================================================
+2015-02-02 13:21:21,942 PeriodicFrameworkStatusLogger - 
+7 [Ljava.lang.String;@1788bc3f
+11 [Ljava.lang.String;@1b1ff0da
+22 [Ljava.lang.String;@1bf028d2
+5 [Ljava.lang.String;@1cf1f0e6
+19 [Ljava.lang.String;@212fdafc
+8 [Ljava.lang.String;@22519b1
+16 [Ljava.lang.String;@2639ba81
+26 [Ljava.lang.String;@31bbd7af
+27 [Ljava.lang.String;@34ee5a17
+20 [Ljava.lang.String;@36a38852
+4 [Ljava.lang.String;@387eecb3
+10 [Ljava.lang.String;@3daf1035
+23 [Ljava.lang.String;@4aff376
+12 [Ljava.lang.String;@4fa12bbf
+24 [Ljava.lang.String;@52e33843
+2 [Ljava.lang.String;@53258545
+17 [Ljava.lang.String;@56e2cfbf
+9 [Ljava.lang.String;@58c6fe41
+18 [Ljava.lang.String;@6ac5c6c7
+25 [Ljava.lang.String;@6b742caf
+13 [Ljava.lang.String;@7019b1ea
+21 [Ljava.lang.String;@70db4abc
+14 [Ljava.lang.String;@761279f
+3 [Ljava.lang.String;@78215b3f
+15 [Ljava.lang.String;@7891959b
+1 [Ljava.lang.String;@7eb5103a
+6 [Ljava.lang.String;@a7c71a3
+2015-02-02 13:21:21,942 PeriodicFrameworkStatusLogger - 
+2015-02-02 13:22:21,945 PeriodicFrameworkStatusLogger - current bundle status (invocation #2, 02.22.2015 13:22:21)
+2015-02-02 13:22:21,945 PeriodicFrameworkStatusLogger - ============================================================
+2015-02-02 13:22:21,945 PeriodicFrameworkStatusLogger - 
 0: org.apache.felix.framework (4.4.1) [ACTIVE]
 1: ch.qos.logback.classic (1.1.2) [ACTIVE]
 2: ch.qos.logback.core (1.1.2) [ACTIVE]
@@ -156,81 +157,81 @@
 50: osgi.enterprise (4.2.0.201003190513) [ACTIVE]
 51: osgi.residential (4.3.0.201111022239) [ACTIVE]
 52: skysail.api (2.0.0.201501200640) [ACTIVE]
-53: skysail.api.documentation (0.2.0.201502020639) [ACTIVE]
+53: skysail.api.documentation (0.2.0.201502021028) [ACTIVE]
 54: skysail.api.validation (0.1.1.201501300511) [ACTIVE]
 55: skysail.products.website (0.0.5.201501310857) [ACTIVE]
 56: skysail.server (5.1.1.201501300549) [ACTIVE]
 57: skysail.server.app.clipboard (1.0.5.201501310727) [ACTIVE]
 58: skysail.server.app.i18n (0.0.5.201501310741) [ACTIVE]
 59: skysail.server.db.orientdb (0.0.3.201501310732) [ACTIVE]
-60: skysail.server.documentation (0.1.1.201502020639) [ACTIVE]
-61: skysail.server.ext.converter.st (1.0.5.201501310736) [ACTIVE]
+60: skysail.server.documentation (0.1.1.201502021028) [ACTIVE]
+61: skysail.server.ext.converter.st (1.0.7.201502020700) [ACTIVE]
 62: skysail.server.ext.i18n (0.0.10.201501310741) [ACTIVE]
 63: skysail.server.http (1.0.15.201501310744) [ACTIVE]
 64: skysail.server.security.shiro (5.1.2.201501310744) [ACTIVE]
 65: skysail.server.static (0.5.20.201501310744) [ACTIVE]
 66: skysail.server.um.internal (0.0.5.201501310744) [ACTIVE]
 67: slf4j.api (1.7.7) [ACTIVE]
-2015-02-02 07:40:52,463 PeriodicFrameworkStatusLogger - 
-2015-02-02 07:40:52,464 PeriodicFrameworkStatusLogger - current services status (invocation #2, 02.40.2015 07:40:52)
-2015-02-02 07:40:52,464 PeriodicFrameworkStatusLogger - ============================================================
-2015-02-02 07:40:52,464 PeriodicFrameworkStatusLogger - 
-6 [Ljava.lang.String;@1064736f
-32 [Ljava.lang.String;@10c77a77
-22 [Ljava.lang.String;@12cc6cf2
-5 [Ljava.lang.String;@138cfdbe
-48 [Ljava.lang.String;@13d0a23b
-1 [Ljava.lang.String;@15530dc3
-15 [Ljava.lang.String;@164b775
-7 [Ljava.lang.String;@17eeaf6f
-31 [Ljava.lang.String;@1be8c660
-52 [Ljava.lang.String;@1c7f7bc7
-35 [Ljava.lang.String;@1d5a4e59
-11 [Ljava.lang.String;@1e3cc6af
-50 [Ljava.lang.String;@229f8236
-41 [Ljava.lang.String;@24e98206
-51 [Ljava.lang.String;@265fc188
-23 [Ljava.lang.String;@33cabfbc
-29 [Ljava.lang.String;@3804a822
-21 [Ljava.lang.String;@38a9265a
-40 [Ljava.lang.String;@3a8e23af
-20 [Ljava.lang.String;@3f175606
-43 [Ljava.lang.String;@3f3d71b0
-49 [Ljava.lang.String;@3fc77854
-47 [Ljava.lang.String;@40cea77f
-19 [Ljava.lang.String;@418b2a24
-25 [Ljava.lang.String;@431bcfa9
-38 [Ljava.lang.String;@44a333a2
-18 [Ljava.lang.String;@47dfc576
-24 [Ljava.lang.String;@4807303
-37 [Ljava.lang.String;@48ccba66
-17 [Ljava.lang.String;@48da8547
-42 [Ljava.lang.String;@496ec28e
-46 [Ljava.lang.String;@4981c333
-12 [Ljava.lang.String;@4bbb11da
-30 [Ljava.lang.String;@4d80078f
-26 [Ljava.lang.String;@4d9100ca
-14 [Ljava.lang.String;@506aebe9
-36 [Ljava.lang.String;@521f7258
-45 [Ljava.lang.String;@55988cc7
-28 [Ljava.lang.String;@569916ed
-44 [Ljava.lang.String;@580191d0
-39 [Ljava.lang.String;@5cb70e9e
-16 [Ljava.lang.String;@611b46e9
-9 [Ljava.lang.String;@65e939e8
-34 [Ljava.lang.String;@675fd493
-8 [Ljava.lang.String;@67b5d360
-4 [Ljava.lang.String;@6f669c4d
-2 [Ljava.lang.String;@749329e9
-27 [Ljava.lang.String;@79ef9b3d
-3 [Ljava.lang.String;@7ac59ec4
-13 [Ljava.lang.String;@7df70730
-10 [Ljava.lang.String;@d91df47
-33 [Ljava.lang.String;@ffbeaa9
-2015-02-02 07:40:52,465 PeriodicFrameworkStatusLogger - 
-2015-02-02 07:41:52,468 PeriodicFrameworkStatusLogger - current bundle status (invocation #3, 02.41.2015 07:41:52)
-2015-02-02 07:41:52,477 PeriodicFrameworkStatusLogger - ============================================================
-2015-02-02 07:41:52,477 PeriodicFrameworkStatusLogger - 
+2015-02-02 13:22:21,945 PeriodicFrameworkStatusLogger - 
+2015-02-02 13:22:21,945 PeriodicFrameworkStatusLogger - current services status (invocation #2, 02.22.2015 13:22:21)
+2015-02-02 13:22:21,945 PeriodicFrameworkStatusLogger - ============================================================
+2015-02-02 13:22:21,946 PeriodicFrameworkStatusLogger - 
+7 [Ljava.lang.String;@1788bc3f
+11 [Ljava.lang.String;@1b1ff0da
+22 [Ljava.lang.String;@1bf028d2
+5 [Ljava.lang.String;@1cf1f0e6
+41 [Ljava.lang.String;@1e08c662
+34 [Ljava.lang.String;@20e27e61
+19 [Ljava.lang.String;@212fdafc
+8 [Ljava.lang.String;@22519b1
+37 [Ljava.lang.String;@23a17f65
+16 [Ljava.lang.String;@2639ba81
+42 [Ljava.lang.String;@265b4ca7
+32 [Ljava.lang.String;@2c909b0b
+51 [Ljava.lang.String;@2dcf40d2
+26 [Ljava.lang.String;@31bbd7af
+27 [Ljava.lang.String;@34ee5a17
+20 [Ljava.lang.String;@36a38852
+39 [Ljava.lang.String;@37635b01
+4 [Ljava.lang.String;@387eecb3
+28 [Ljava.lang.String;@39e26b08
+44 [Ljava.lang.String;@3c9fdee7
+10 [Ljava.lang.String;@3daf1035
+45 [Ljava.lang.String;@3e7e659d
+30 [Ljava.lang.String;@4226e196
+35 [Ljava.lang.String;@44768e2e
+49 [Ljava.lang.String;@4ab2a68c
+23 [Ljava.lang.String;@4aff376
+46 [Ljava.lang.String;@4b21073e
+50 [Ljava.lang.String;@4ee3f00f
+12 [Ljava.lang.String;@4fa12bbf
+29 [Ljava.lang.String;@509583ad
+38 [Ljava.lang.String;@50e4e251
+24 [Ljava.lang.String;@52e33843
+2 [Ljava.lang.String;@53258545
+17 [Ljava.lang.String;@56e2cfbf
+36 [Ljava.lang.String;@58830093
+9 [Ljava.lang.String;@58c6fe41
+31 [Ljava.lang.String;@5ecfc2b0
+40 [Ljava.lang.String;@63c6993e
+48 [Ljava.lang.String;@6603621b
+43 [Ljava.lang.String;@69606b50
+18 [Ljava.lang.String;@6ac5c6c7
+25 [Ljava.lang.String;@6b742caf
+47 [Ljava.lang.String;@6e3a1098
+13 [Ljava.lang.String;@7019b1ea
+21 [Ljava.lang.String;@70db4abc
+33 [Ljava.lang.String;@72139aa0
+14 [Ljava.lang.String;@761279f
+3 [Ljava.lang.String;@78215b3f
+15 [Ljava.lang.String;@7891959b
+52 [Ljava.lang.String;@7ad7969
+1 [Ljava.lang.String;@7eb5103a
+6 [Ljava.lang.String;@a7c71a3
+2015-02-02 13:22:21,946 PeriodicFrameworkStatusLogger - 
+2015-02-02 13:23:21,949 PeriodicFrameworkStatusLogger - current bundle status (invocation #3, 02.23.2015 13:23:21)
+2015-02-02 13:23:21,949 PeriodicFrameworkStatusLogger - ============================================================
+2015-02-02 13:23:21,949 PeriodicFrameworkStatusLogger - 
 0: org.apache.felix.framework (4.4.1) [ACTIVE]
 1: ch.qos.logback.classic (1.1.2) [ACTIVE]
 2: ch.qos.logback.core (1.1.2) [ACTIVE]
@@ -284,81 +285,81 @@
 50: osgi.enterprise (4.2.0.201003190513) [ACTIVE]
 51: osgi.residential (4.3.0.201111022239) [ACTIVE]
 52: skysail.api (2.0.0.201501200640) [ACTIVE]
-53: skysail.api.documentation (0.2.0.201502020639) [ACTIVE]
+53: skysail.api.documentation (0.2.0.201502021028) [ACTIVE]
 54: skysail.api.validation (0.1.1.201501300511) [ACTIVE]
 55: skysail.products.website (0.0.5.201501310857) [ACTIVE]
 56: skysail.server (5.1.1.201501300549) [ACTIVE]
 57: skysail.server.app.clipboard (1.0.5.201501310727) [ACTIVE]
 58: skysail.server.app.i18n (0.0.5.201501310741) [ACTIVE]
 59: skysail.server.db.orientdb (0.0.3.201501310732) [ACTIVE]
-60: skysail.server.documentation (0.1.1.201502020639) [ACTIVE]
-61: skysail.server.ext.converter.st (1.0.5.201501310736) [ACTIVE]
+60: skysail.server.documentation (0.1.1.201502021028) [ACTIVE]
+61: skysail.server.ext.converter.st (1.0.7.201502020700) [ACTIVE]
 62: skysail.server.ext.i18n (0.0.10.201501310741) [ACTIVE]
 63: skysail.server.http (1.0.15.201501310744) [ACTIVE]
 64: skysail.server.security.shiro (5.1.2.201501310744) [ACTIVE]
 65: skysail.server.static (0.5.20.201501310744) [ACTIVE]
 66: skysail.server.um.internal (0.0.5.201501310744) [ACTIVE]
 67: slf4j.api (1.7.7) [ACTIVE]
-2015-02-02 07:41:52,477 PeriodicFrameworkStatusLogger - 
-2015-02-02 07:41:52,477 PeriodicFrameworkStatusLogger - current services status (invocation #3, 02.41.2015 07:41:52)
-2015-02-02 07:41:52,477 PeriodicFrameworkStatusLogger - ============================================================
-2015-02-02 07:41:52,478 PeriodicFrameworkStatusLogger - 
-6 [Ljava.lang.String;@1064736f
-32 [Ljava.lang.String;@10c77a77
-22 [Ljava.lang.String;@12cc6cf2
-5 [Ljava.lang.String;@138cfdbe
-48 [Ljava.lang.String;@13d0a23b
-1 [Ljava.lang.String;@15530dc3
-15 [Ljava.lang.String;@164b775
-7 [Ljava.lang.String;@17eeaf6f
-31 [Ljava.lang.String;@1be8c660
-52 [Ljava.lang.String;@1c7f7bc7
-35 [Ljava.lang.String;@1d5a4e59
-11 [Ljava.lang.String;@1e3cc6af
-50 [Ljava.lang.String;@229f8236
-41 [Ljava.lang.String;@24e98206
-51 [Ljava.lang.String;@265fc188
-23 [Ljava.lang.String;@33cabfbc
-29 [Ljava.lang.String;@3804a822
-21 [Ljava.lang.String;@38a9265a
-40 [Ljava.lang.String;@3a8e23af
-20 [Ljava.lang.String;@3f175606
-43 [Ljava.lang.String;@3f3d71b0
-49 [Ljava.lang.String;@3fc77854
-47 [Ljava.lang.String;@40cea77f
-19 [Ljava.lang.String;@418b2a24
-25 [Ljava.lang.String;@431bcfa9
-38 [Ljava.lang.String;@44a333a2
-18 [Ljava.lang.String;@47dfc576
-24 [Ljava.lang.String;@4807303
-37 [Ljava.lang.String;@48ccba66
-17 [Ljava.lang.String;@48da8547
-42 [Ljava.lang.String;@496ec28e
-46 [Ljava.lang.String;@4981c333
-12 [Ljava.lang.String;@4bbb11da
-30 [Ljava.lang.String;@4d80078f
-26 [Ljava.lang.String;@4d9100ca
-14 [Ljava.lang.String;@506aebe9
-36 [Ljava.lang.String;@521f7258
-45 [Ljava.lang.String;@55988cc7
-28 [Ljava.lang.String;@569916ed
-44 [Ljava.lang.String;@580191d0
-39 [Ljava.lang.String;@5cb70e9e
-16 [Ljava.lang.String;@611b46e9
-9 [Ljava.lang.String;@65e939e8
-34 [Ljava.lang.String;@675fd493
-8 [Ljava.lang.String;@67b5d360
-4 [Ljava.lang.String;@6f669c4d
-2 [Ljava.lang.String;@749329e9
-27 [Ljava.lang.String;@79ef9b3d
-3 [Ljava.lang.String;@7ac59ec4
-13 [Ljava.lang.String;@7df70730
-10 [Ljava.lang.String;@d91df47
-33 [Ljava.lang.String;@ffbeaa9
-2015-02-02 07:41:52,478 PeriodicFrameworkStatusLogger - 
-2015-02-02 07:42:52,481 PeriodicFrameworkStatusLogger - current bundle status (invocation #4, 02.42.2015 07:42:52)
-2015-02-02 07:42:52,489 PeriodicFrameworkStatusLogger - ============================================================
-2015-02-02 07:42:52,489 PeriodicFrameworkStatusLogger - 
+2015-02-02 13:23:21,949 PeriodicFrameworkStatusLogger - 
+2015-02-02 13:23:21,949 PeriodicFrameworkStatusLogger - current services status (invocation #3, 02.23.2015 13:23:21)
+2015-02-02 13:23:21,949 PeriodicFrameworkStatusLogger - ============================================================
+2015-02-02 13:23:21,949 PeriodicFrameworkStatusLogger - 
+7 [Ljava.lang.String;@1788bc3f
+11 [Ljava.lang.String;@1b1ff0da
+22 [Ljava.lang.String;@1bf028d2
+5 [Ljava.lang.String;@1cf1f0e6
+41 [Ljava.lang.String;@1e08c662
+34 [Ljava.lang.String;@20e27e61
+19 [Ljava.lang.String;@212fdafc
+8 [Ljava.lang.String;@22519b1
+37 [Ljava.lang.String;@23a17f65
+16 [Ljava.lang.String;@2639ba81
+42 [Ljava.lang.String;@265b4ca7
+32 [Ljava.lang.String;@2c909b0b
+51 [Ljava.lang.String;@2dcf40d2
+26 [Ljava.lang.String;@31bbd7af
+27 [Ljava.lang.String;@34ee5a17
+20 [Ljava.lang.String;@36a38852
+39 [Ljava.lang.String;@37635b01
+4 [Ljava.lang.String;@387eecb3
+28 [Ljava.lang.String;@39e26b08
+44 [Ljava.lang.String;@3c9fdee7
+10 [Ljava.lang.String;@3daf1035
+45 [Ljava.lang.String;@3e7e659d
+30 [Ljava.lang.String;@4226e196
+35 [Ljava.lang.String;@44768e2e
+49 [Ljava.lang.String;@4ab2a68c
+23 [Ljava.lang.String;@4aff376
+46 [Ljava.lang.String;@4b21073e
+50 [Ljava.lang.String;@4ee3f00f
+12 [Ljava.lang.String;@4fa12bbf
+29 [Ljava.lang.String;@509583ad
+38 [Ljava.lang.String;@50e4e251
+24 [Ljava.lang.String;@52e33843
+2 [Ljava.lang.String;@53258545
+17 [Ljava.lang.String;@56e2cfbf
+36 [Ljava.lang.String;@58830093
+9 [Ljava.lang.String;@58c6fe41
+31 [Ljava.lang.String;@5ecfc2b0
+40 [Ljava.lang.String;@63c6993e
+48 [Ljava.lang.String;@6603621b
+43 [Ljava.lang.String;@69606b50
+18 [Ljava.lang.String;@6ac5c6c7
+25 [Ljava.lang.String;@6b742caf
+47 [Ljava.lang.String;@6e3a1098
+13 [Ljava.lang.String;@7019b1ea
+21 [Ljava.lang.String;@70db4abc
+33 [Ljava.lang.String;@72139aa0
+14 [Ljava.lang.String;@761279f
+3 [Ljava.lang.String;@78215b3f
+15 [Ljava.lang.String;@7891959b
+52 [Ljava.lang.String;@7ad7969
+1 [Ljava.lang.String;@7eb5103a
+6 [Ljava.lang.String;@a7c71a3
+2015-02-02 13:23:21,949 PeriodicFrameworkStatusLogger - 
+2015-02-02 13:24:21,952 PeriodicFrameworkStatusLogger - current bundle status (invocation #4, 02.24.2015 13:24:21)
+2015-02-02 13:24:21,952 PeriodicFrameworkStatusLogger - ============================================================
+2015-02-02 13:24:21,952 PeriodicFrameworkStatusLogger - 
 0: org.apache.felix.framework (4.4.1) [ACTIVE]
 1: ch.qos.logback.classic (1.1.2) [ACTIVE]
 2: ch.qos.logback.core (1.1.2) [ACTIVE]
@@ -412,81 +413,81 @@
 50: osgi.enterprise (4.2.0.201003190513) [ACTIVE]
 51: osgi.residential (4.3.0.201111022239) [ACTIVE]
 52: skysail.api (2.0.0.201501200640) [ACTIVE]
-53: skysail.api.documentation (0.2.0.201502020639) [ACTIVE]
+53: skysail.api.documentation (0.2.0.201502021028) [ACTIVE]
 54: skysail.api.validation (0.1.1.201501300511) [ACTIVE]
 55: skysail.products.website (0.0.5.201501310857) [ACTIVE]
 56: skysail.server (5.1.1.201501300549) [ACTIVE]
 57: skysail.server.app.clipboard (1.0.5.201501310727) [ACTIVE]
 58: skysail.server.app.i18n (0.0.5.201501310741) [ACTIVE]
 59: skysail.server.db.orientdb (0.0.3.201501310732) [ACTIVE]
-60: skysail.server.documentation (0.1.1.201502020639) [ACTIVE]
-61: skysail.server.ext.converter.st (1.0.5.201501310736) [ACTIVE]
+60: skysail.server.documentation (0.1.1.201502021028) [ACTIVE]
+61: skysail.server.ext.converter.st (1.0.7.201502020700) [ACTIVE]
 62: skysail.server.ext.i18n (0.0.10.201501310741) [ACTIVE]
 63: skysail.server.http (1.0.15.201501310744) [ACTIVE]
 64: skysail.server.security.shiro (5.1.2.201501310744) [ACTIVE]
 65: skysail.server.static (0.5.20.201501310744) [ACTIVE]
 66: skysail.server.um.internal (0.0.5.201501310744) [ACTIVE]
 67: slf4j.api (1.7.7) [ACTIVE]
-2015-02-02 07:42:52,490 PeriodicFrameworkStatusLogger - 
-2015-02-02 07:42:52,490 PeriodicFrameworkStatusLogger - current services status (invocation #4, 02.42.2015 07:42:52)
-2015-02-02 07:42:52,490 PeriodicFrameworkStatusLogger - ============================================================
-2015-02-02 07:42:52,491 PeriodicFrameworkStatusLogger - 
-6 [Ljava.lang.String;@1064736f
-32 [Ljava.lang.String;@10c77a77
-22 [Ljava.lang.String;@12cc6cf2
-5 [Ljava.lang.String;@138cfdbe
-48 [Ljava.lang.String;@13d0a23b
-1 [Ljava.lang.String;@15530dc3
-15 [Ljava.lang.String;@164b775
-7 [Ljava.lang.String;@17eeaf6f
-31 [Ljava.lang.String;@1be8c660
-52 [Ljava.lang.String;@1c7f7bc7
-35 [Ljava.lang.String;@1d5a4e59
-11 [Ljava.lang.String;@1e3cc6af
-50 [Ljava.lang.String;@229f8236
-41 [Ljava.lang.String;@24e98206
-51 [Ljava.lang.String;@265fc188
-23 [Ljava.lang.String;@33cabfbc
-29 [Ljava.lang.String;@3804a822
-21 [Ljava.lang.String;@38a9265a
-40 [Ljava.lang.String;@3a8e23af
-20 [Ljava.lang.String;@3f175606
-43 [Ljava.lang.String;@3f3d71b0
-49 [Ljava.lang.String;@3fc77854
-47 [Ljava.lang.String;@40cea77f
-19 [Ljava.lang.String;@418b2a24
-25 [Ljava.lang.String;@431bcfa9
-38 [Ljava.lang.String;@44a333a2
-18 [Ljava.lang.String;@47dfc576
-24 [Ljava.lang.String;@4807303
-37 [Ljava.lang.String;@48ccba66
-17 [Ljava.lang.String;@48da8547
-42 [Ljava.lang.String;@496ec28e
-46 [Ljava.lang.String;@4981c333
-12 [Ljava.lang.String;@4bbb11da
-30 [Ljava.lang.String;@4d80078f
-26 [Ljava.lang.String;@4d9100ca
-14 [Ljava.lang.String;@506aebe9
-36 [Ljava.lang.String;@521f7258
-45 [Ljava.lang.String;@55988cc7
-28 [Ljava.lang.String;@569916ed
-44 [Ljava.lang.String;@580191d0
-39 [Ljava.lang.String;@5cb70e9e
-16 [Ljava.lang.String;@611b46e9
-9 [Ljava.lang.String;@65e939e8
-34 [Ljava.lang.String;@675fd493
-8 [Ljava.lang.String;@67b5d360
-4 [Ljava.lang.String;@6f669c4d
-2 [Ljava.lang.String;@749329e9
-27 [Ljava.lang.String;@79ef9b3d
-3 [Ljava.lang.String;@7ac59ec4
-13 [Ljava.lang.String;@7df70730
-10 [Ljava.lang.String;@d91df47
-33 [Ljava.lang.String;@ffbeaa9
-2015-02-02 07:42:52,491 PeriodicFrameworkStatusLogger - 
-2015-02-02 07:43:52,493 PeriodicFrameworkStatusLogger - current bundle status (invocation #5, 02.43.2015 07:43:52)
-2015-02-02 07:43:52,501 PeriodicFrameworkStatusLogger - ============================================================
-2015-02-02 07:43:52,501 PeriodicFrameworkStatusLogger - 
+2015-02-02 13:24:21,952 PeriodicFrameworkStatusLogger - 
+2015-02-02 13:24:21,952 PeriodicFrameworkStatusLogger - current services status (invocation #4, 02.24.2015 13:24:21)
+2015-02-02 13:24:21,952 PeriodicFrameworkStatusLogger - ============================================================
+2015-02-02 13:24:21,953 PeriodicFrameworkStatusLogger - 
+7 [Ljava.lang.String;@1788bc3f
+11 [Ljava.lang.String;@1b1ff0da
+22 [Ljava.lang.String;@1bf028d2
+5 [Ljava.lang.String;@1cf1f0e6
+41 [Ljava.lang.String;@1e08c662
+34 [Ljava.lang.String;@20e27e61
+19 [Ljava.lang.String;@212fdafc
+8 [Ljava.lang.String;@22519b1
+37 [Ljava.lang.String;@23a17f65
+16 [Ljava.lang.String;@2639ba81
+42 [Ljava.lang.String;@265b4ca7
+32 [Ljava.lang.String;@2c909b0b
+51 [Ljava.lang.String;@2dcf40d2
+26 [Ljava.lang.String;@31bbd7af
+27 [Ljava.lang.String;@34ee5a17
+20 [Ljava.lang.String;@36a38852
+39 [Ljava.lang.String;@37635b01
+4 [Ljava.lang.String;@387eecb3
+28 [Ljava.lang.String;@39e26b08
+44 [Ljava.lang.String;@3c9fdee7
+10 [Ljava.lang.String;@3daf1035
+45 [Ljava.lang.String;@3e7e659d
+30 [Ljava.lang.String;@4226e196
+35 [Ljava.lang.String;@44768e2e
+49 [Ljava.lang.String;@4ab2a68c
+23 [Ljava.lang.String;@4aff376
+46 [Ljava.lang.String;@4b21073e
+50 [Ljava.lang.String;@4ee3f00f
+12 [Ljava.lang.String;@4fa12bbf
+29 [Ljava.lang.String;@509583ad
+38 [Ljava.lang.String;@50e4e251
+24 [Ljava.lang.String;@52e33843
+2 [Ljava.lang.String;@53258545
+17 [Ljava.lang.String;@56e2cfbf
+36 [Ljava.lang.String;@58830093
+9 [Ljava.lang.String;@58c6fe41
+31 [Ljava.lang.String;@5ecfc2b0
+40 [Ljava.lang.String;@63c6993e
+48 [Ljava.lang.String;@6603621b
+43 [Ljava.lang.String;@69606b50
+18 [Ljava.lang.String;@6ac5c6c7
+25 [Ljava.lang.String;@6b742caf
+47 [Ljava.lang.String;@6e3a1098
+13 [Ljava.lang.String;@7019b1ea
+21 [Ljava.lang.String;@70db4abc
+33 [Ljava.lang.String;@72139aa0
+14 [Ljava.lang.String;@761279f
+3 [Ljava.lang.String;@78215b3f
+15 [Ljava.lang.String;@7891959b
+52 [Ljava.lang.String;@7ad7969
+1 [Ljava.lang.String;@7eb5103a
+6 [Ljava.lang.String;@a7c71a3
+2015-02-02 13:24:21,953 PeriodicFrameworkStatusLogger - 
+2015-02-02 13:25:21,956 PeriodicFrameworkStatusLogger - current bundle status (invocation #5, 02.25.2015 13:25:21)
+2015-02-02 13:25:21,956 PeriodicFrameworkStatusLogger - ============================================================
+2015-02-02 13:25:21,956 PeriodicFrameworkStatusLogger - 
 0: org.apache.felix.framework (4.4.1) [ACTIVE]
 1: ch.qos.logback.classic (1.1.2) [ACTIVE]
 2: ch.qos.logback.core (1.1.2) [ACTIVE]
@@ -540,1611 +541,75 @@
 50: osgi.enterprise (4.2.0.201003190513) [ACTIVE]
 51: osgi.residential (4.3.0.201111022239) [ACTIVE]
 52: skysail.api (2.0.0.201501200640) [ACTIVE]
-53: skysail.api.documentation (0.2.0.201502020639) [ACTIVE]
+53: skysail.api.documentation (0.2.0.201502021028) [ACTIVE]
 54: skysail.api.validation (0.1.1.201501300511) [ACTIVE]
 55: skysail.products.website (0.0.5.201501310857) [ACTIVE]
 56: skysail.server (5.1.1.201501300549) [ACTIVE]
 57: skysail.server.app.clipboard (1.0.5.201501310727) [ACTIVE]
 58: skysail.server.app.i18n (0.0.5.201501310741) [ACTIVE]
 59: skysail.server.db.orientdb (0.0.3.201501310732) [ACTIVE]
-60: skysail.server.documentation (0.1.1.201502020639) [ACTIVE]
-61: skysail.server.ext.converter.st (1.0.5.201501310736) [ACTIVE]
+60: skysail.server.documentation (0.1.1.201502021028) [ACTIVE]
+61: skysail.server.ext.converter.st (1.0.7.201502020700) [ACTIVE]
 62: skysail.server.ext.i18n (0.0.10.201501310741) [ACTIVE]
 63: skysail.server.http (1.0.15.201501310744) [ACTIVE]
 64: skysail.server.security.shiro (5.1.2.201501310744) [ACTIVE]
 65: skysail.server.static (0.5.20.201501310744) [ACTIVE]
 66: skysail.server.um.internal (0.0.5.201501310744) [ACTIVE]
 67: slf4j.api (1.7.7) [ACTIVE]
-2015-02-02 07:43:52,502 PeriodicFrameworkStatusLogger - 
-2015-02-02 07:43:52,502 PeriodicFrameworkStatusLogger - current services status (invocation #5, 02.43.2015 07:43:52)
-2015-02-02 07:43:52,502 PeriodicFrameworkStatusLogger - ============================================================
-2015-02-02 07:43:52,503 PeriodicFrameworkStatusLogger - 
-6 [Ljava.lang.String;@1064736f
-32 [Ljava.lang.String;@10c77a77
-22 [Ljava.lang.String;@12cc6cf2
-5 [Ljava.lang.String;@138cfdbe
-48 [Ljava.lang.String;@13d0a23b
-1 [Ljava.lang.String;@15530dc3
-15 [Ljava.lang.String;@164b775
-7 [Ljava.lang.String;@17eeaf6f
-31 [Ljava.lang.String;@1be8c660
-52 [Ljava.lang.String;@1c7f7bc7
-35 [Ljava.lang.String;@1d5a4e59
-11 [Ljava.lang.String;@1e3cc6af
-50 [Ljava.lang.String;@229f8236
-41 [Ljava.lang.String;@24e98206
-51 [Ljava.lang.String;@265fc188
-23 [Ljava.lang.String;@33cabfbc
-29 [Ljava.lang.String;@3804a822
-21 [Ljava.lang.String;@38a9265a
-40 [Ljava.lang.String;@3a8e23af
-20 [Ljava.lang.String;@3f175606
-43 [Ljava.lang.String;@3f3d71b0
-49 [Ljava.lang.String;@3fc77854
-47 [Ljava.lang.String;@40cea77f
-19 [Ljava.lang.String;@418b2a24
-25 [Ljava.lang.String;@431bcfa9
-38 [Ljava.lang.String;@44a333a2
-18 [Ljava.lang.String;@47dfc576
-24 [Ljava.lang.String;@4807303
-37 [Ljava.lang.String;@48ccba66
-17 [Ljava.lang.String;@48da8547
-42 [Ljava.lang.String;@496ec28e
-46 [Ljava.lang.String;@4981c333
-12 [Ljava.lang.String;@4bbb11da
-30 [Ljava.lang.String;@4d80078f
-26 [Ljava.lang.String;@4d9100ca
-14 [Ljava.lang.String;@506aebe9
-36 [Ljava.lang.String;@521f7258
-45 [Ljava.lang.String;@55988cc7
-28 [Ljava.lang.String;@569916ed
-44 [Ljava.lang.String;@580191d0
-39 [Ljava.lang.String;@5cb70e9e
-16 [Ljava.lang.String;@611b46e9
-9 [Ljava.lang.String;@65e939e8
-34 [Ljava.lang.String;@675fd493
-8 [Ljava.lang.String;@67b5d360
-4 [Ljava.lang.String;@6f669c4d
-2 [Ljava.lang.String;@749329e9
-27 [Ljava.lang.String;@79ef9b3d
-3 [Ljava.lang.String;@7ac59ec4
-13 [Ljava.lang.String;@7df70730
-10 [Ljava.lang.String;@d91df47
-33 [Ljava.lang.String;@ffbeaa9
-2015-02-02 07:43:52,503 PeriodicFrameworkStatusLogger - 
-2015-02-02 07:44:52,508 PeriodicFrameworkStatusLogger - current bundle status (invocation #6, 02.44.2015 07:44:52)
-2015-02-02 07:44:52,515 PeriodicFrameworkStatusLogger - ============================================================
-2015-02-02 07:44:52,516 PeriodicFrameworkStatusLogger - 
-0: org.apache.felix.framework (4.4.1) [ACTIVE]
-1: ch.qos.logback.classic (1.1.2) [ACTIVE]
-2: ch.qos.logback.core (1.1.2) [ACTIVE]
-3: classmate (1.0.0) [ACTIVE]
-4: com.fasterxml.jackson.core.jackson-annotations (2.4.4) [ACTIVE]
-5: com.fasterxml.jackson.core.jackson-core (2.4.4) [ACTIVE]
-6: com.fasterxml.jackson.core.jackson-databind (2.4.4) [ACTIVE]
-7: com.google.guava (15.0.0) [ACTIVE]
-8: com.googlecode.concurrentlinkedhashmap.lru (1.4.0) [ACTIVE]
-9: com.orientechnologies.orientdb-client (2.0.0.rc1) [ACTIVE]
-10: com.orientechnologies.orientdb-core (2.0.0.rc1) [ACTIVE]
-11: com.orientechnologies.orientdb-enterprise (2.0.0.rc1) [ACTIVE]
-12: com.orientechnologies.orientdb-object (2.0.0.rc1) [ACTIVE]
-13: com.springsource.org.junit (4.11.0) [ACTIVE]
-14: com.sun.el (2.2.0.v201303151357) [ACTIVE]
-15: de.twenty11.owasp-java-html-sanitizer (239.0.0) [ACTIVE]
-16: de.twentyeleven.skysail.org.antlr.stringtemplate-osgi (4.0.8) [ACTIVE]
-17: etm.contrib (1.2.3.1) [ACTIVE]
-18: etm.core (1.2.3.1) [ACTIVE]
-19: jackson-core-asl (1.9.8) [ACTIVE]
-20: jackson-mapper-asl (1.9.8) [ACTIVE]
-21: javassist (3.18.1.GA) [ACTIVE]
-22: javax.el-api (3.0.0) [ACTIVE]
-23: javax.persistence (2.1.0.v201304241213) [ACTIVE]
-24: javax.servlet (3.0.0.v201103241009) [ACTIVE]
-25: javax.validation.api (1.1.0.Final) [ACTIVE]
-26: org.apache.commons.beanutils (1.9.2) [ACTIVE]
-27: org.apache.commons.collections (3.2.1) [ACTIVE]
-28: org.apache.commons.collections4 (4.0.0) [ACTIVE]
-29: org.apache.commons.configuration (1.10.0) [ACTIVE]
-30: org.apache.commons.lang (2.6.0) [ACTIVE]
-31: org.apache.commons.lang3 (3.3.2) [ACTIVE]
-32: org.apache.commons.logging (1.1.3) [ACTIVE]
-33: org.apache.felix.configadmin (1.8.0) [ACTIVE]
-34: org.apache.felix.fileinstall (3.4.0) [ACTIVE]
-35: org.apache.felix.gogo.command (0.14.0) [ACTIVE]
-36: org.apache.felix.gogo.runtime (0.12.1) [ACTIVE]
-37: org.apache.felix.gogo.shell (0.10.0) [ACTIVE]
-38: org.apache.felix.log (1.0.1) [ACTIVE]
-39: org.apache.felix.scr (1.6.2) [ACTIVE]
-40: org.apache.shiro.core (1.2.2) [ACTIVE]
-41: org.apache.shiro.web (1.2.2) [ACTIVE]
-42: org.hibernate.validator (5.1.2.Final) [ACTIVE]
-43: org.jboss.logging.jboss-logging (3.1.4.GA) [ACTIVE]
-44: org.restlet (2.1.7.v20140209-2035) [ACTIVE]
-45: org.restlet.ext.crypto (2.1.7.v20140209-2035) [ACTIVE]
-46: org.restlet.ext.jackson (2.1.7.v20140209-2035) [ACTIVE]
-47: org.restlet.ext.slf4j (2.1.7.v20140209-2035) [ACTIVE]
-48: org.xerial.snappy.snappy-java (1.1.1.3) [STARTING]
-49: osgi.cmpn (5.0.0.201305092017) [ACTIVE]
-50: osgi.enterprise (4.2.0.201003190513) [ACTIVE]
-51: osgi.residential (4.3.0.201111022239) [ACTIVE]
-52: skysail.api (2.0.0.201501200640) [ACTIVE]
-53: skysail.api.documentation (0.2.0.201502020639) [ACTIVE]
-54: skysail.api.validation (0.1.1.201501300511) [ACTIVE]
-55: skysail.products.website (0.0.5.201501310857) [ACTIVE]
-56: skysail.server (5.1.1.201501300549) [ACTIVE]
-57: skysail.server.app.clipboard (1.0.5.201501310727) [ACTIVE]
-58: skysail.server.app.i18n (0.0.5.201501310741) [ACTIVE]
-59: skysail.server.db.orientdb (0.0.3.201501310732) [ACTIVE]
-60: skysail.server.documentation (0.1.1.201502020639) [ACTIVE]
-61: skysail.server.ext.converter.st (1.0.5.201501310736) [ACTIVE]
-62: skysail.server.ext.i18n (0.0.10.201501310741) [ACTIVE]
-63: skysail.server.http (1.0.15.201501310744) [ACTIVE]
-64: skysail.server.security.shiro (5.1.2.201501310744) [ACTIVE]
-65: skysail.server.static (0.5.20.201501310744) [ACTIVE]
-66: skysail.server.um.internal (0.0.5.201501310744) [ACTIVE]
-67: slf4j.api (1.7.7) [ACTIVE]
-2015-02-02 07:44:52,516 PeriodicFrameworkStatusLogger - 
-2015-02-02 07:44:52,516 PeriodicFrameworkStatusLogger - current services status (invocation #6, 02.44.2015 07:44:52)
-2015-02-02 07:44:52,516 PeriodicFrameworkStatusLogger - ============================================================
-2015-02-02 07:44:52,517 PeriodicFrameworkStatusLogger - 
-6 [Ljava.lang.String;@1064736f
-32 [Ljava.lang.String;@10c77a77
-22 [Ljava.lang.String;@12cc6cf2
-5 [Ljava.lang.String;@138cfdbe
-48 [Ljava.lang.String;@13d0a23b
-1 [Ljava.lang.String;@15530dc3
-15 [Ljava.lang.String;@164b775
-7 [Ljava.lang.String;@17eeaf6f
-31 [Ljava.lang.String;@1be8c660
-52 [Ljava.lang.String;@1c7f7bc7
-35 [Ljava.lang.String;@1d5a4e59
-11 [Ljava.lang.String;@1e3cc6af
-50 [Ljava.lang.String;@229f8236
-41 [Ljava.lang.String;@24e98206
-51 [Ljava.lang.String;@265fc188
-23 [Ljava.lang.String;@33cabfbc
-29 [Ljava.lang.String;@3804a822
-21 [Ljava.lang.String;@38a9265a
-40 [Ljava.lang.String;@3a8e23af
-20 [Ljava.lang.String;@3f175606
-43 [Ljava.lang.String;@3f3d71b0
-49 [Ljava.lang.String;@3fc77854
-47 [Ljava.lang.String;@40cea77f
-19 [Ljava.lang.String;@418b2a24
-25 [Ljava.lang.String;@431bcfa9
-38 [Ljava.lang.String;@44a333a2
-18 [Ljava.lang.String;@47dfc576
-24 [Ljava.lang.String;@4807303
-37 [Ljava.lang.String;@48ccba66
-17 [Ljava.lang.String;@48da8547
-42 [Ljava.lang.String;@496ec28e
-46 [Ljava.lang.String;@4981c333
-12 [Ljava.lang.String;@4bbb11da
-30 [Ljava.lang.String;@4d80078f
-26 [Ljava.lang.String;@4d9100ca
-14 [Ljava.lang.String;@506aebe9
-36 [Ljava.lang.String;@521f7258
-45 [Ljava.lang.String;@55988cc7
-28 [Ljava.lang.String;@569916ed
-44 [Ljava.lang.String;@580191d0
-39 [Ljava.lang.String;@5cb70e9e
-16 [Ljava.lang.String;@611b46e9
-9 [Ljava.lang.String;@65e939e8
-34 [Ljava.lang.String;@675fd493
-8 [Ljava.lang.String;@67b5d360
-4 [Ljava.lang.String;@6f669c4d
-2 [Ljava.lang.String;@749329e9
-27 [Ljava.lang.String;@79ef9b3d
-3 [Ljava.lang.String;@7ac59ec4
-13 [Ljava.lang.String;@7df70730
-10 [Ljava.lang.String;@d91df47
-33 [Ljava.lang.String;@ffbeaa9
-2015-02-02 07:44:52,517 PeriodicFrameworkStatusLogger - 
-2015-02-02 07:45:52,520 PeriodicFrameworkStatusLogger - current bundle status (invocation #7, 02.45.2015 07:45:52)
-2015-02-02 07:45:52,528 PeriodicFrameworkStatusLogger - ============================================================
-2015-02-02 07:45:52,528 PeriodicFrameworkStatusLogger - 
-0: org.apache.felix.framework (4.4.1) [ACTIVE]
-1: ch.qos.logback.classic (1.1.2) [ACTIVE]
-2: ch.qos.logback.core (1.1.2) [ACTIVE]
-3: classmate (1.0.0) [ACTIVE]
-4: com.fasterxml.jackson.core.jackson-annotations (2.4.4) [ACTIVE]
-5: com.fasterxml.jackson.core.jackson-core (2.4.4) [ACTIVE]
-6: com.fasterxml.jackson.core.jackson-databind (2.4.4) [ACTIVE]
-7: com.google.guava (15.0.0) [ACTIVE]
-8: com.googlecode.concurrentlinkedhashmap.lru (1.4.0) [ACTIVE]
-9: com.orientechnologies.orientdb-client (2.0.0.rc1) [ACTIVE]
-10: com.orientechnologies.orientdb-core (2.0.0.rc1) [ACTIVE]
-11: com.orientechnologies.orientdb-enterprise (2.0.0.rc1) [ACTIVE]
-12: com.orientechnologies.orientdb-object (2.0.0.rc1) [ACTIVE]
-13: com.springsource.org.junit (4.11.0) [ACTIVE]
-14: com.sun.el (2.2.0.v201303151357) [ACTIVE]
-15: de.twenty11.owasp-java-html-sanitizer (239.0.0) [ACTIVE]
-16: de.twentyeleven.skysail.org.antlr.stringtemplate-osgi (4.0.8) [ACTIVE]
-17: etm.contrib (1.2.3.1) [ACTIVE]
-18: etm.core (1.2.3.1) [ACTIVE]
-19: jackson-core-asl (1.9.8) [ACTIVE]
-20: jackson-mapper-asl (1.9.8) [ACTIVE]
-21: javassist (3.18.1.GA) [ACTIVE]
-22: javax.el-api (3.0.0) [ACTIVE]
-23: javax.persistence (2.1.0.v201304241213) [ACTIVE]
-24: javax.servlet (3.0.0.v201103241009) [ACTIVE]
-25: javax.validation.api (1.1.0.Final) [ACTIVE]
-26: org.apache.commons.beanutils (1.9.2) [ACTIVE]
-27: org.apache.commons.collections (3.2.1) [ACTIVE]
-28: org.apache.commons.collections4 (4.0.0) [ACTIVE]
-29: org.apache.commons.configuration (1.10.0) [ACTIVE]
-30: org.apache.commons.lang (2.6.0) [ACTIVE]
-31: org.apache.commons.lang3 (3.3.2) [ACTIVE]
-32: org.apache.commons.logging (1.1.3) [ACTIVE]
-33: org.apache.felix.configadmin (1.8.0) [ACTIVE]
-34: org.apache.felix.fileinstall (3.4.0) [ACTIVE]
-35: org.apache.felix.gogo.command (0.14.0) [ACTIVE]
-36: org.apache.felix.gogo.runtime (0.12.1) [ACTIVE]
-37: org.apache.felix.gogo.shell (0.10.0) [ACTIVE]
-38: org.apache.felix.log (1.0.1) [ACTIVE]
-39: org.apache.felix.scr (1.6.2) [ACTIVE]
-40: org.apache.shiro.core (1.2.2) [ACTIVE]
-41: org.apache.shiro.web (1.2.2) [ACTIVE]
-42: org.hibernate.validator (5.1.2.Final) [ACTIVE]
-43: org.jboss.logging.jboss-logging (3.1.4.GA) [ACTIVE]
-44: org.restlet (2.1.7.v20140209-2035) [ACTIVE]
-45: org.restlet.ext.crypto (2.1.7.v20140209-2035) [ACTIVE]
-46: org.restlet.ext.jackson (2.1.7.v20140209-2035) [ACTIVE]
-47: org.restlet.ext.slf4j (2.1.7.v20140209-2035) [ACTIVE]
-48: org.xerial.snappy.snappy-java (1.1.1.3) [STARTING]
-49: osgi.cmpn (5.0.0.201305092017) [ACTIVE]
-50: osgi.enterprise (4.2.0.201003190513) [ACTIVE]
-51: osgi.residential (4.3.0.201111022239) [ACTIVE]
-52: skysail.api (2.0.0.201501200640) [ACTIVE]
-53: skysail.api.documentation (0.2.0.201502020639) [ACTIVE]
-54: skysail.api.validation (0.1.1.201501300511) [ACTIVE]
-55: skysail.products.website (0.0.5.201501310857) [ACTIVE]
-56: skysail.server (5.1.1.201501300549) [ACTIVE]
-57: skysail.server.app.clipboard (1.0.5.201501310727) [ACTIVE]
-58: skysail.server.app.i18n (0.0.5.201501310741) [ACTIVE]
-59: skysail.server.db.orientdb (0.0.3.201501310732) [ACTIVE]
-60: skysail.server.documentation (0.1.1.201502020645) [ACTIVE]
-61: skysail.server.ext.converter.st (1.0.5.201501310736) [ACTIVE]
-62: skysail.server.ext.i18n (0.0.10.201501310741) [ACTIVE]
-63: skysail.server.http (1.0.15.201501310744) [ACTIVE]
-64: skysail.server.security.shiro (5.1.2.201501310744) [ACTIVE]
-65: skysail.server.static (0.5.20.201501310744) [ACTIVE]
-66: skysail.server.um.internal (0.0.5.201501310744) [ACTIVE]
-67: slf4j.api (1.7.7) [ACTIVE]
-2015-02-02 07:45:52,529 PeriodicFrameworkStatusLogger - 
-2015-02-02 07:45:52,529 PeriodicFrameworkStatusLogger - current services status (invocation #7, 02.45.2015 07:45:52)
-2015-02-02 07:45:52,529 PeriodicFrameworkStatusLogger - ============================================================
-2015-02-02 07:45:52,530 PeriodicFrameworkStatusLogger - 
-6 [Ljava.lang.String;@1064736f
-32 [Ljava.lang.String;@10c77a77
-22 [Ljava.lang.String;@12cc6cf2
-5 [Ljava.lang.String;@138cfdbe
-48 [Ljava.lang.String;@13d0a23b
-1 [Ljava.lang.String;@15530dc3
-15 [Ljava.lang.String;@164b775
-7 [Ljava.lang.String;@17eeaf6f
-53 [Ljava.lang.String;@1832af74
-31 [Ljava.lang.String;@1be8c660
-52 [Ljava.lang.String;@1c7f7bc7
-35 [Ljava.lang.String;@1d5a4e59
-11 [Ljava.lang.String;@1e3cc6af
-50 [Ljava.lang.String;@229f8236
-41 [Ljava.lang.String;@24e98206
-51 [Ljava.lang.String;@265fc188
-23 [Ljava.lang.String;@33cabfbc
-29 [Ljava.lang.String;@3804a822
-21 [Ljava.lang.String;@38a9265a
-40 [Ljava.lang.String;@3a8e23af
-20 [Ljava.lang.String;@3f175606
-43 [Ljava.lang.String;@3f3d71b0
-49 [Ljava.lang.String;@3fc77854
-47 [Ljava.lang.String;@40cea77f
-19 [Ljava.lang.String;@418b2a24
-25 [Ljava.lang.String;@431bcfa9
-38 [Ljava.lang.String;@44a333a2
-18 [Ljava.lang.String;@47dfc576
-24 [Ljava.lang.String;@4807303
-37 [Ljava.lang.String;@48ccba66
-17 [Ljava.lang.String;@48da8547
-42 [Ljava.lang.String;@496ec28e
-46 [Ljava.lang.String;@4981c333
-12 [Ljava.lang.String;@4bbb11da
-30 [Ljava.lang.String;@4d80078f
-26 [Ljava.lang.String;@4d9100ca
-14 [Ljava.lang.String;@506aebe9
-36 [Ljava.lang.String;@521f7258
-45 [Ljava.lang.String;@55988cc7
-28 [Ljava.lang.String;@569916ed
-44 [Ljava.lang.String;@580191d0
-16 [Ljava.lang.String;@611b46e9
-9 [Ljava.lang.String;@65e939e8
-34 [Ljava.lang.String;@675fd493
-8 [Ljava.lang.String;@67b5d360
-4 [Ljava.lang.String;@6f669c4d
-2 [Ljava.lang.String;@749329e9
-27 [Ljava.lang.String;@79ef9b3d
-3 [Ljava.lang.String;@7ac59ec4
-13 [Ljava.lang.String;@7df70730
-10 [Ljava.lang.String;@d91df47
-33 [Ljava.lang.String;@ffbeaa9
-2015-02-02 07:45:52,530 PeriodicFrameworkStatusLogger - 
-2015-02-02 07:46:52,536 PeriodicFrameworkStatusLogger - current bundle status (invocation #8, 02.46.2015 07:46:52)
-2015-02-02 07:46:52,536 PeriodicFrameworkStatusLogger - ============================================================
-2015-02-02 07:46:52,536 PeriodicFrameworkStatusLogger - 
-0: org.apache.felix.framework (4.4.1) [ACTIVE]
-1: ch.qos.logback.classic (1.1.2) [ACTIVE]
-2: ch.qos.logback.core (1.1.2) [ACTIVE]
-3: classmate (1.0.0) [ACTIVE]
-4: com.fasterxml.jackson.core.jackson-annotations (2.4.4) [ACTIVE]
-5: com.fasterxml.jackson.core.jackson-core (2.4.4) [ACTIVE]
-6: com.fasterxml.jackson.core.jackson-databind (2.4.4) [ACTIVE]
-7: com.google.guava (15.0.0) [ACTIVE]
-8: com.googlecode.concurrentlinkedhashmap.lru (1.4.0) [ACTIVE]
-9: com.orientechnologies.orientdb-client (2.0.0.rc1) [ACTIVE]
-10: com.orientechnologies.orientdb-core (2.0.0.rc1) [ACTIVE]
-11: com.orientechnologies.orientdb-enterprise (2.0.0.rc1) [ACTIVE]
-12: com.orientechnologies.orientdb-object (2.0.0.rc1) [ACTIVE]
-13: com.springsource.org.junit (4.11.0) [ACTIVE]
-14: com.sun.el (2.2.0.v201303151357) [ACTIVE]
-15: de.twenty11.owasp-java-html-sanitizer (239.0.0) [ACTIVE]
-16: de.twentyeleven.skysail.org.antlr.stringtemplate-osgi (4.0.8) [ACTIVE]
-17: etm.contrib (1.2.3.1) [ACTIVE]
-18: etm.core (1.2.3.1) [ACTIVE]
-19: jackson-core-asl (1.9.8) [ACTIVE]
-20: jackson-mapper-asl (1.9.8) [ACTIVE]
-21: javassist (3.18.1.GA) [ACTIVE]
-22: javax.el-api (3.0.0) [ACTIVE]
-23: javax.persistence (2.1.0.v201304241213) [ACTIVE]
-24: javax.servlet (3.0.0.v201103241009) [ACTIVE]
-25: javax.validation.api (1.1.0.Final) [ACTIVE]
-26: org.apache.commons.beanutils (1.9.2) [ACTIVE]
-27: org.apache.commons.collections (3.2.1) [ACTIVE]
-28: org.apache.commons.collections4 (4.0.0) [ACTIVE]
-29: org.apache.commons.configuration (1.10.0) [ACTIVE]
-30: org.apache.commons.lang (2.6.0) [ACTIVE]
-31: org.apache.commons.lang3 (3.3.2) [ACTIVE]
-32: org.apache.commons.logging (1.1.3) [ACTIVE]
-33: org.apache.felix.configadmin (1.8.0) [ACTIVE]
-34: org.apache.felix.fileinstall (3.4.0) [ACTIVE]
-35: org.apache.felix.gogo.command (0.14.0) [ACTIVE]
-36: org.apache.felix.gogo.runtime (0.12.1) [ACTIVE]
-37: org.apache.felix.gogo.shell (0.10.0) [ACTIVE]
-38: org.apache.felix.log (1.0.1) [ACTIVE]
-39: org.apache.felix.scr (1.6.2) [ACTIVE]
-40: org.apache.shiro.core (1.2.2) [ACTIVE]
-41: org.apache.shiro.web (1.2.2) [ACTIVE]
-42: org.hibernate.validator (5.1.2.Final) [ACTIVE]
-43: org.jboss.logging.jboss-logging (3.1.4.GA) [ACTIVE]
-44: org.restlet (2.1.7.v20140209-2035) [ACTIVE]
-45: org.restlet.ext.crypto (2.1.7.v20140209-2035) [ACTIVE]
-46: org.restlet.ext.jackson (2.1.7.v20140209-2035) [ACTIVE]
-47: org.restlet.ext.slf4j (2.1.7.v20140209-2035) [ACTIVE]
-48: org.xerial.snappy.snappy-java (1.1.1.3) [STARTING]
-49: osgi.cmpn (5.0.0.201305092017) [ACTIVE]
-50: osgi.enterprise (4.2.0.201003190513) [ACTIVE]
-51: osgi.residential (4.3.0.201111022239) [ACTIVE]
-52: skysail.api (2.0.0.201501200640) [ACTIVE]
-53: skysail.api.documentation (0.2.0.201502020639) [ACTIVE]
-54: skysail.api.validation (0.1.1.201501300511) [ACTIVE]
-55: skysail.products.website (0.0.5.201501310857) [ACTIVE]
-56: skysail.server (5.1.1.201501300549) [ACTIVE]
-57: skysail.server.app.clipboard (1.0.5.201501310727) [ACTIVE]
-58: skysail.server.app.i18n (0.0.5.201501310741) [ACTIVE]
-59: skysail.server.db.orientdb (0.0.3.201501310732) [ACTIVE]
-60: skysail.server.documentation (0.1.1.201502020645) [ACTIVE]
-61: skysail.server.ext.converter.st (1.0.5.201501310736) [ACTIVE]
-62: skysail.server.ext.i18n (0.0.10.201501310741) [ACTIVE]
-63: skysail.server.http (1.0.15.201501310744) [ACTIVE]
-64: skysail.server.security.shiro (5.1.2.201501310744) [ACTIVE]
-65: skysail.server.static (0.5.20.201501310744) [ACTIVE]
-66: skysail.server.um.internal (0.0.5.201501310744) [ACTIVE]
-67: slf4j.api (1.7.7) [ACTIVE]
-2015-02-02 07:46:52,537 PeriodicFrameworkStatusLogger - 
-2015-02-02 07:46:52,537 PeriodicFrameworkStatusLogger - current services status (invocation #8, 02.46.2015 07:46:52)
-2015-02-02 07:46:52,537 PeriodicFrameworkStatusLogger - ============================================================
-2015-02-02 07:46:52,538 PeriodicFrameworkStatusLogger - 
-6 [Ljava.lang.String;@1064736f
-32 [Ljava.lang.String;@10c77a77
-22 [Ljava.lang.String;@12cc6cf2
-5 [Ljava.lang.String;@138cfdbe
-48 [Ljava.lang.String;@13d0a23b
-1 [Ljava.lang.String;@15530dc3
-15 [Ljava.lang.String;@164b775
-7 [Ljava.lang.String;@17eeaf6f
-53 [Ljava.lang.String;@1832af74
-31 [Ljava.lang.String;@1be8c660
-52 [Ljava.lang.String;@1c7f7bc7
-35 [Ljava.lang.String;@1d5a4e59
-11 [Ljava.lang.String;@1e3cc6af
-50 [Ljava.lang.String;@229f8236
-41 [Ljava.lang.String;@24e98206
-51 [Ljava.lang.String;@265fc188
-23 [Ljava.lang.String;@33cabfbc
-29 [Ljava.lang.String;@3804a822
-21 [Ljava.lang.String;@38a9265a
-40 [Ljava.lang.String;@3a8e23af
-20 [Ljava.lang.String;@3f175606
-43 [Ljava.lang.String;@3f3d71b0
-49 [Ljava.lang.String;@3fc77854
-47 [Ljava.lang.String;@40cea77f
-19 [Ljava.lang.String;@418b2a24
-25 [Ljava.lang.String;@431bcfa9
-38 [Ljava.lang.String;@44a333a2
-18 [Ljava.lang.String;@47dfc576
-24 [Ljava.lang.String;@4807303
-37 [Ljava.lang.String;@48ccba66
-17 [Ljava.lang.String;@48da8547
-42 [Ljava.lang.String;@496ec28e
-46 [Ljava.lang.String;@4981c333
-12 [Ljava.lang.String;@4bbb11da
-30 [Ljava.lang.String;@4d80078f
-26 [Ljava.lang.String;@4d9100ca
-14 [Ljava.lang.String;@506aebe9
-36 [Ljava.lang.String;@521f7258
-45 [Ljava.lang.String;@55988cc7
-28 [Ljava.lang.String;@569916ed
-44 [Ljava.lang.String;@580191d0
-16 [Ljava.lang.String;@611b46e9
-9 [Ljava.lang.String;@65e939e8
-34 [Ljava.lang.String;@675fd493
-8 [Ljava.lang.String;@67b5d360
-4 [Ljava.lang.String;@6f669c4d
-2 [Ljava.lang.String;@749329e9
-27 [Ljava.lang.String;@79ef9b3d
-3 [Ljava.lang.String;@7ac59ec4
-13 [Ljava.lang.String;@7df70730
-10 [Ljava.lang.String;@d91df47
-33 [Ljava.lang.String;@ffbeaa9
-2015-02-02 07:46:52,538 PeriodicFrameworkStatusLogger - 
-2015-02-02 07:47:52,542 PeriodicFrameworkStatusLogger - current bundle status (invocation #9, 02.47.2015 07:47:52)
-2015-02-02 07:47:52,542 PeriodicFrameworkStatusLogger - ============================================================
-2015-02-02 07:47:52,542 PeriodicFrameworkStatusLogger - 
-0: org.apache.felix.framework (4.4.1) [ACTIVE]
-1: ch.qos.logback.classic (1.1.2) [ACTIVE]
-2: ch.qos.logback.core (1.1.2) [ACTIVE]
-3: classmate (1.0.0) [ACTIVE]
-4: com.fasterxml.jackson.core.jackson-annotations (2.4.4) [ACTIVE]
-5: com.fasterxml.jackson.core.jackson-core (2.4.4) [ACTIVE]
-6: com.fasterxml.jackson.core.jackson-databind (2.4.4) [ACTIVE]
-7: com.google.guava (15.0.0) [ACTIVE]
-8: com.googlecode.concurrentlinkedhashmap.lru (1.4.0) [ACTIVE]
-9: com.orientechnologies.orientdb-client (2.0.0.rc1) [ACTIVE]
-10: com.orientechnologies.orientdb-core (2.0.0.rc1) [ACTIVE]
-11: com.orientechnologies.orientdb-enterprise (2.0.0.rc1) [ACTIVE]
-12: com.orientechnologies.orientdb-object (2.0.0.rc1) [ACTIVE]
-13: com.springsource.org.junit (4.11.0) [ACTIVE]
-14: com.sun.el (2.2.0.v201303151357) [ACTIVE]
-15: de.twenty11.owasp-java-html-sanitizer (239.0.0) [ACTIVE]
-16: de.twentyeleven.skysail.org.antlr.stringtemplate-osgi (4.0.8) [ACTIVE]
-17: etm.contrib (1.2.3.1) [ACTIVE]
-18: etm.core (1.2.3.1) [ACTIVE]
-19: jackson-core-asl (1.9.8) [ACTIVE]
-20: jackson-mapper-asl (1.9.8) [ACTIVE]
-21: javassist (3.18.1.GA) [ACTIVE]
-22: javax.el-api (3.0.0) [ACTIVE]
-23: javax.persistence (2.1.0.v201304241213) [ACTIVE]
-24: javax.servlet (3.0.0.v201103241009) [ACTIVE]
-25: javax.validation.api (1.1.0.Final) [ACTIVE]
-26: org.apache.commons.beanutils (1.9.2) [ACTIVE]
-27: org.apache.commons.collections (3.2.1) [ACTIVE]
-28: org.apache.commons.collections4 (4.0.0) [ACTIVE]
-29: org.apache.commons.configuration (1.10.0) [ACTIVE]
-30: org.apache.commons.lang (2.6.0) [ACTIVE]
-31: org.apache.commons.lang3 (3.3.2) [ACTIVE]
-32: org.apache.commons.logging (1.1.3) [ACTIVE]
-33: org.apache.felix.configadmin (1.8.0) [ACTIVE]
-34: org.apache.felix.fileinstall (3.4.0) [ACTIVE]
-35: org.apache.felix.gogo.command (0.14.0) [ACTIVE]
-36: org.apache.felix.gogo.runtime (0.12.1) [ACTIVE]
-37: org.apache.felix.gogo.shell (0.10.0) [ACTIVE]
-38: org.apache.felix.log (1.0.1) [ACTIVE]
-39: org.apache.felix.scr (1.6.2) [ACTIVE]
-40: org.apache.shiro.core (1.2.2) [ACTIVE]
-41: org.apache.shiro.web (1.2.2) [ACTIVE]
-42: org.hibernate.validator (5.1.2.Final) [ACTIVE]
-43: org.jboss.logging.jboss-logging (3.1.4.GA) [ACTIVE]
-44: org.restlet (2.1.7.v20140209-2035) [ACTIVE]
-45: org.restlet.ext.crypto (2.1.7.v20140209-2035) [ACTIVE]
-46: org.restlet.ext.jackson (2.1.7.v20140209-2035) [ACTIVE]
-47: org.restlet.ext.slf4j (2.1.7.v20140209-2035) [ACTIVE]
-48: org.xerial.snappy.snappy-java (1.1.1.3) [STARTING]
-49: osgi.cmpn (5.0.0.201305092017) [ACTIVE]
-50: osgi.enterprise (4.2.0.201003190513) [ACTIVE]
-51: osgi.residential (4.3.0.201111022239) [ACTIVE]
-52: skysail.api (2.0.0.201501200640) [ACTIVE]
-53: skysail.api.documentation (0.2.0.201502020639) [ACTIVE]
-54: skysail.api.validation (0.1.1.201501300511) [ACTIVE]
-55: skysail.products.website (0.0.5.201501310857) [ACTIVE]
-56: skysail.server (5.1.1.201501300549) [ACTIVE]
-57: skysail.server.app.clipboard (1.0.5.201501310727) [ACTIVE]
-58: skysail.server.app.i18n (0.0.5.201501310741) [ACTIVE]
-59: skysail.server.db.orientdb (0.0.3.201501310732) [ACTIVE]
-60: skysail.server.documentation (0.1.1.201502020645) [ACTIVE]
-61: skysail.server.ext.converter.st (1.0.5.201501310736) [ACTIVE]
-62: skysail.server.ext.i18n (0.0.10.201501310741) [ACTIVE]
-63: skysail.server.http (1.0.15.201501310744) [ACTIVE]
-64: skysail.server.security.shiro (5.1.2.201501310744) [ACTIVE]
-65: skysail.server.static (0.5.20.201501310744) [ACTIVE]
-66: skysail.server.um.internal (0.0.5.201501310744) [ACTIVE]
-67: slf4j.api (1.7.7) [ACTIVE]
-2015-02-02 07:47:52,542 PeriodicFrameworkStatusLogger - 
-2015-02-02 07:47:52,542 PeriodicFrameworkStatusLogger - current services status (invocation #9, 02.47.2015 07:47:52)
-2015-02-02 07:47:52,542 PeriodicFrameworkStatusLogger - ============================================================
-2015-02-02 07:47:52,543 PeriodicFrameworkStatusLogger - 
-6 [Ljava.lang.String;@1064736f
-32 [Ljava.lang.String;@10c77a77
-22 [Ljava.lang.String;@12cc6cf2
-5 [Ljava.lang.String;@138cfdbe
-48 [Ljava.lang.String;@13d0a23b
-1 [Ljava.lang.String;@15530dc3
-15 [Ljava.lang.String;@164b775
-7 [Ljava.lang.String;@17eeaf6f
-53 [Ljava.lang.String;@1832af74
-31 [Ljava.lang.String;@1be8c660
-52 [Ljava.lang.String;@1c7f7bc7
-35 [Ljava.lang.String;@1d5a4e59
-11 [Ljava.lang.String;@1e3cc6af
-50 [Ljava.lang.String;@229f8236
-41 [Ljava.lang.String;@24e98206
-51 [Ljava.lang.String;@265fc188
-23 [Ljava.lang.String;@33cabfbc
-29 [Ljava.lang.String;@3804a822
-21 [Ljava.lang.String;@38a9265a
-40 [Ljava.lang.String;@3a8e23af
-20 [Ljava.lang.String;@3f175606
-43 [Ljava.lang.String;@3f3d71b0
-49 [Ljava.lang.String;@3fc77854
-47 [Ljava.lang.String;@40cea77f
-19 [Ljava.lang.String;@418b2a24
-25 [Ljava.lang.String;@431bcfa9
-38 [Ljava.lang.String;@44a333a2
-18 [Ljava.lang.String;@47dfc576
-24 [Ljava.lang.String;@4807303
-37 [Ljava.lang.String;@48ccba66
-17 [Ljava.lang.String;@48da8547
-42 [Ljava.lang.String;@496ec28e
-46 [Ljava.lang.String;@4981c333
-12 [Ljava.lang.String;@4bbb11da
-30 [Ljava.lang.String;@4d80078f
-26 [Ljava.lang.String;@4d9100ca
-14 [Ljava.lang.String;@506aebe9
-36 [Ljava.lang.String;@521f7258
-45 [Ljava.lang.String;@55988cc7
-28 [Ljava.lang.String;@569916ed
-44 [Ljava.lang.String;@580191d0
-16 [Ljava.lang.String;@611b46e9
-9 [Ljava.lang.String;@65e939e8
-34 [Ljava.lang.String;@675fd493
-8 [Ljava.lang.String;@67b5d360
-4 [Ljava.lang.String;@6f669c4d
-2 [Ljava.lang.String;@749329e9
-27 [Ljava.lang.String;@79ef9b3d
-3 [Ljava.lang.String;@7ac59ec4
-13 [Ljava.lang.String;@7df70730
-10 [Ljava.lang.String;@d91df47
-33 [Ljava.lang.String;@ffbeaa9
-2015-02-02 07:47:52,543 PeriodicFrameworkStatusLogger - 
-2015-02-02 07:48:52,547 PeriodicFrameworkStatusLogger - current bundle status (invocation #10, 02.48.2015 07:48:52)
-2015-02-02 07:48:52,547 PeriodicFrameworkStatusLogger - ============================================================
-2015-02-02 07:48:52,547 PeriodicFrameworkStatusLogger - 
-0: org.apache.felix.framework (4.4.1) [ACTIVE]
-1: ch.qos.logback.classic (1.1.2) [ACTIVE]
-2: ch.qos.logback.core (1.1.2) [ACTIVE]
-3: classmate (1.0.0) [ACTIVE]
-4: com.fasterxml.jackson.core.jackson-annotations (2.4.4) [ACTIVE]
-5: com.fasterxml.jackson.core.jackson-core (2.4.4) [ACTIVE]
-6: com.fasterxml.jackson.core.jackson-databind (2.4.4) [ACTIVE]
-7: com.google.guava (15.0.0) [ACTIVE]
-8: com.googlecode.concurrentlinkedhashmap.lru (1.4.0) [ACTIVE]
-9: com.orientechnologies.orientdb-client (2.0.0.rc1) [ACTIVE]
-10: com.orientechnologies.orientdb-core (2.0.0.rc1) [ACTIVE]
-11: com.orientechnologies.orientdb-enterprise (2.0.0.rc1) [ACTIVE]
-12: com.orientechnologies.orientdb-object (2.0.0.rc1) [ACTIVE]
-13: com.springsource.org.junit (4.11.0) [ACTIVE]
-14: com.sun.el (2.2.0.v201303151357) [ACTIVE]
-15: de.twenty11.owasp-java-html-sanitizer (239.0.0) [ACTIVE]
-16: de.twentyeleven.skysail.org.antlr.stringtemplate-osgi (4.0.8) [ACTIVE]
-17: etm.contrib (1.2.3.1) [ACTIVE]
-18: etm.core (1.2.3.1) [ACTIVE]
-19: jackson-core-asl (1.9.8) [ACTIVE]
-20: jackson-mapper-asl (1.9.8) [ACTIVE]
-21: javassist (3.18.1.GA) [ACTIVE]
-22: javax.el-api (3.0.0) [ACTIVE]
-23: javax.persistence (2.1.0.v201304241213) [ACTIVE]
-24: javax.servlet (3.0.0.v201103241009) [ACTIVE]
-25: javax.validation.api (1.1.0.Final) [ACTIVE]
-26: org.apache.commons.beanutils (1.9.2) [ACTIVE]
-27: org.apache.commons.collections (3.2.1) [ACTIVE]
-28: org.apache.commons.collections4 (4.0.0) [ACTIVE]
-29: org.apache.commons.configuration (1.10.0) [ACTIVE]
-30: org.apache.commons.lang (2.6.0) [ACTIVE]
-31: org.apache.commons.lang3 (3.3.2) [ACTIVE]
-32: org.apache.commons.logging (1.1.3) [ACTIVE]
-33: org.apache.felix.configadmin (1.8.0) [ACTIVE]
-34: org.apache.felix.fileinstall (3.4.0) [ACTIVE]
-35: org.apache.felix.gogo.command (0.14.0) [ACTIVE]
-36: org.apache.felix.gogo.runtime (0.12.1) [ACTIVE]
-37: org.apache.felix.gogo.shell (0.10.0) [ACTIVE]
-38: org.apache.felix.log (1.0.1) [ACTIVE]
-39: org.apache.felix.scr (1.6.2) [ACTIVE]
-40: org.apache.shiro.core (1.2.2) [ACTIVE]
-41: org.apache.shiro.web (1.2.2) [ACTIVE]
-42: org.hibernate.validator (5.1.2.Final) [ACTIVE]
-43: org.jboss.logging.jboss-logging (3.1.4.GA) [ACTIVE]
-44: org.restlet (2.1.7.v20140209-2035) [ACTIVE]
-45: org.restlet.ext.crypto (2.1.7.v20140209-2035) [ACTIVE]
-46: org.restlet.ext.jackson (2.1.7.v20140209-2035) [ACTIVE]
-47: org.restlet.ext.slf4j (2.1.7.v20140209-2035) [ACTIVE]
-48: org.xerial.snappy.snappy-java (1.1.1.3) [STARTING]
-49: osgi.cmpn (5.0.0.201305092017) [ACTIVE]
-50: osgi.enterprise (4.2.0.201003190513) [ACTIVE]
-51: osgi.residential (4.3.0.201111022239) [ACTIVE]
-52: skysail.api (2.0.0.201501200640) [ACTIVE]
-53: skysail.api.documentation (0.2.0.201502020639) [ACTIVE]
-54: skysail.api.validation (0.1.1.201501300511) [ACTIVE]
-55: skysail.products.website (0.0.5.201501310857) [ACTIVE]
-56: skysail.server (5.1.1.201501300549) [ACTIVE]
-57: skysail.server.app.clipboard (1.0.5.201501310727) [ACTIVE]
-58: skysail.server.app.i18n (0.0.5.201501310741) [ACTIVE]
-59: skysail.server.db.orientdb (0.0.3.201501310732) [ACTIVE]
-60: skysail.server.documentation (0.1.1.201502020645) [ACTIVE]
-61: skysail.server.ext.converter.st (1.0.5.201501310736) [ACTIVE]
-62: skysail.server.ext.i18n (0.0.10.201501310741) [ACTIVE]
-63: skysail.server.http (1.0.15.201501310744) [ACTIVE]
-64: skysail.server.security.shiro (5.1.2.201501310744) [ACTIVE]
-65: skysail.server.static (0.5.20.201501310744) [ACTIVE]
-66: skysail.server.um.internal (0.0.5.201501310744) [ACTIVE]
-67: slf4j.api (1.7.7) [ACTIVE]
-2015-02-02 07:48:52,548 PeriodicFrameworkStatusLogger - 
-2015-02-02 07:48:52,548 PeriodicFrameworkStatusLogger - current services status (invocation #10, 02.48.2015 07:48:52)
-2015-02-02 07:48:52,548 PeriodicFrameworkStatusLogger - ============================================================
-2015-02-02 07:48:52,549 PeriodicFrameworkStatusLogger - 
-6 [Ljava.lang.String;@1064736f
-32 [Ljava.lang.String;@10c77a77
-22 [Ljava.lang.String;@12cc6cf2
-5 [Ljava.lang.String;@138cfdbe
-48 [Ljava.lang.String;@13d0a23b
-1 [Ljava.lang.String;@15530dc3
-15 [Ljava.lang.String;@164b775
-7 [Ljava.lang.String;@17eeaf6f
-53 [Ljava.lang.String;@1832af74
-31 [Ljava.lang.String;@1be8c660
-52 [Ljava.lang.String;@1c7f7bc7
-35 [Ljava.lang.String;@1d5a4e59
-11 [Ljava.lang.String;@1e3cc6af
-50 [Ljava.lang.String;@229f8236
-41 [Ljava.lang.String;@24e98206
-51 [Ljava.lang.String;@265fc188
-23 [Ljava.lang.String;@33cabfbc
-29 [Ljava.lang.String;@3804a822
-21 [Ljava.lang.String;@38a9265a
-40 [Ljava.lang.String;@3a8e23af
-20 [Ljava.lang.String;@3f175606
-43 [Ljava.lang.String;@3f3d71b0
-49 [Ljava.lang.String;@3fc77854
-47 [Ljava.lang.String;@40cea77f
-19 [Ljava.lang.String;@418b2a24
-25 [Ljava.lang.String;@431bcfa9
-38 [Ljava.lang.String;@44a333a2
-18 [Ljava.lang.String;@47dfc576
-24 [Ljava.lang.String;@4807303
-37 [Ljava.lang.String;@48ccba66
-17 [Ljava.lang.String;@48da8547
-42 [Ljava.lang.String;@496ec28e
-46 [Ljava.lang.String;@4981c333
-12 [Ljava.lang.String;@4bbb11da
-30 [Ljava.lang.String;@4d80078f
-26 [Ljava.lang.String;@4d9100ca
-14 [Ljava.lang.String;@506aebe9
-36 [Ljava.lang.String;@521f7258
-45 [Ljava.lang.String;@55988cc7
-28 [Ljava.lang.String;@569916ed
-44 [Ljava.lang.String;@580191d0
-16 [Ljava.lang.String;@611b46e9
-9 [Ljava.lang.String;@65e939e8
-34 [Ljava.lang.String;@675fd493
-8 [Ljava.lang.String;@67b5d360
-4 [Ljava.lang.String;@6f669c4d
-2 [Ljava.lang.String;@749329e9
-27 [Ljava.lang.String;@79ef9b3d
-3 [Ljava.lang.String;@7ac59ec4
-13 [Ljava.lang.String;@7df70730
-10 [Ljava.lang.String;@d91df47
-33 [Ljava.lang.String;@ffbeaa9
-2015-02-02 07:48:52,549 PeriodicFrameworkStatusLogger - 
-2015-02-02 07:49:52,554 PeriodicFrameworkStatusLogger - current bundle status (invocation #11, 02.49.2015 07:49:52)
-2015-02-02 07:49:52,554 PeriodicFrameworkStatusLogger - ============================================================
-2015-02-02 07:49:52,555 PeriodicFrameworkStatusLogger - 
-0: org.apache.felix.framework (4.4.1) [ACTIVE]
-1: ch.qos.logback.classic (1.1.2) [ACTIVE]
-2: ch.qos.logback.core (1.1.2) [ACTIVE]
-3: classmate (1.0.0) [ACTIVE]
-4: com.fasterxml.jackson.core.jackson-annotations (2.4.4) [ACTIVE]
-5: com.fasterxml.jackson.core.jackson-core (2.4.4) [ACTIVE]
-6: com.fasterxml.jackson.core.jackson-databind (2.4.4) [ACTIVE]
-7: com.google.guava (15.0.0) [ACTIVE]
-8: com.googlecode.concurrentlinkedhashmap.lru (1.4.0) [ACTIVE]
-9: com.orientechnologies.orientdb-client (2.0.0.rc1) [ACTIVE]
-10: com.orientechnologies.orientdb-core (2.0.0.rc1) [ACTIVE]
-11: com.orientechnologies.orientdb-enterprise (2.0.0.rc1) [ACTIVE]
-12: com.orientechnologies.orientdb-object (2.0.0.rc1) [ACTIVE]
-13: com.springsource.org.junit (4.11.0) [ACTIVE]
-14: com.sun.el (2.2.0.v201303151357) [ACTIVE]
-15: de.twenty11.owasp-java-html-sanitizer (239.0.0) [ACTIVE]
-16: de.twentyeleven.skysail.org.antlr.stringtemplate-osgi (4.0.8) [ACTIVE]
-17: etm.contrib (1.2.3.1) [ACTIVE]
-18: etm.core (1.2.3.1) [ACTIVE]
-19: jackson-core-asl (1.9.8) [ACTIVE]
-20: jackson-mapper-asl (1.9.8) [ACTIVE]
-21: javassist (3.18.1.GA) [ACTIVE]
-22: javax.el-api (3.0.0) [ACTIVE]
-23: javax.persistence (2.1.0.v201304241213) [ACTIVE]
-24: javax.servlet (3.0.0.v201103241009) [ACTIVE]
-25: javax.validation.api (1.1.0.Final) [ACTIVE]
-26: org.apache.commons.beanutils (1.9.2) [ACTIVE]
-27: org.apache.commons.collections (3.2.1) [ACTIVE]
-28: org.apache.commons.collections4 (4.0.0) [ACTIVE]
-29: org.apache.commons.configuration (1.10.0) [ACTIVE]
-30: org.apache.commons.lang (2.6.0) [ACTIVE]
-31: org.apache.commons.lang3 (3.3.2) [ACTIVE]
-32: org.apache.commons.logging (1.1.3) [ACTIVE]
-33: org.apache.felix.configadmin (1.8.0) [ACTIVE]
-34: org.apache.felix.fileinstall (3.4.0) [ACTIVE]
-35: org.apache.felix.gogo.command (0.14.0) [ACTIVE]
-36: org.apache.felix.gogo.runtime (0.12.1) [ACTIVE]
-37: org.apache.felix.gogo.shell (0.10.0) [ACTIVE]
-38: org.apache.felix.log (1.0.1) [ACTIVE]
-39: org.apache.felix.scr (1.6.2) [ACTIVE]
-40: org.apache.shiro.core (1.2.2) [ACTIVE]
-41: org.apache.shiro.web (1.2.2) [ACTIVE]
-42: org.hibernate.validator (5.1.2.Final) [ACTIVE]
-43: org.jboss.logging.jboss-logging (3.1.4.GA) [ACTIVE]
-44: org.restlet (2.1.7.v20140209-2035) [ACTIVE]
-45: org.restlet.ext.crypto (2.1.7.v20140209-2035) [ACTIVE]
-46: org.restlet.ext.jackson (2.1.7.v20140209-2035) [ACTIVE]
-47: org.restlet.ext.slf4j (2.1.7.v20140209-2035) [ACTIVE]
-48: org.xerial.snappy.snappy-java (1.1.1.3) [STARTING]
-49: osgi.cmpn (5.0.0.201305092017) [ACTIVE]
-50: osgi.enterprise (4.2.0.201003190513) [ACTIVE]
-51: osgi.residential (4.3.0.201111022239) [ACTIVE]
-52: skysail.api (2.0.0.201501200640) [ACTIVE]
-53: skysail.api.documentation (0.2.0.201502020639) [ACTIVE]
-54: skysail.api.validation (0.1.1.201501300511) [ACTIVE]
-55: skysail.products.website (0.0.5.201501310857) [ACTIVE]
-56: skysail.server (5.1.1.201501300549) [ACTIVE]
-57: skysail.server.app.clipboard (1.0.5.201501310727) [ACTIVE]
-58: skysail.server.app.i18n (0.0.5.201501310741) [ACTIVE]
-59: skysail.server.db.orientdb (0.0.3.201501310732) [ACTIVE]
-60: skysail.server.documentation (0.1.1.201502020645) [ACTIVE]
-61: skysail.server.ext.converter.st (1.0.5.201501310736) [ACTIVE]
-62: skysail.server.ext.i18n (0.0.10.201501310741) [ACTIVE]
-63: skysail.server.http (1.0.15.201501310744) [ACTIVE]
-64: skysail.server.security.shiro (5.1.2.201501310744) [ACTIVE]
-65: skysail.server.static (0.5.20.201501310744) [ACTIVE]
-66: skysail.server.um.internal (0.0.5.201501310744) [ACTIVE]
-67: slf4j.api (1.7.7) [ACTIVE]
-2015-02-02 07:49:52,555 PeriodicFrameworkStatusLogger - 
-2015-02-02 07:49:52,556 PeriodicFrameworkStatusLogger - current services status (invocation #11, 02.49.2015 07:49:52)
-2015-02-02 07:49:52,556 PeriodicFrameworkStatusLogger - ============================================================
-2015-02-02 07:49:52,556 PeriodicFrameworkStatusLogger - 
-6 [Ljava.lang.String;@1064736f
-32 [Ljava.lang.String;@10c77a77
-22 [Ljava.lang.String;@12cc6cf2
-5 [Ljava.lang.String;@138cfdbe
-48 [Ljava.lang.String;@13d0a23b
-1 [Ljava.lang.String;@15530dc3
-15 [Ljava.lang.String;@164b775
-7 [Ljava.lang.String;@17eeaf6f
-53 [Ljava.lang.String;@1832af74
-31 [Ljava.lang.String;@1be8c660
-52 [Ljava.lang.String;@1c7f7bc7
-35 [Ljava.lang.String;@1d5a4e59
-11 [Ljava.lang.String;@1e3cc6af
-50 [Ljava.lang.String;@229f8236
-41 [Ljava.lang.String;@24e98206
-51 [Ljava.lang.String;@265fc188
-23 [Ljava.lang.String;@33cabfbc
-29 [Ljava.lang.String;@3804a822
-21 [Ljava.lang.String;@38a9265a
-40 [Ljava.lang.String;@3a8e23af
-20 [Ljava.lang.String;@3f175606
-43 [Ljava.lang.String;@3f3d71b0
-49 [Ljava.lang.String;@3fc77854
-47 [Ljava.lang.String;@40cea77f
-19 [Ljava.lang.String;@418b2a24
-25 [Ljava.lang.String;@431bcfa9
-38 [Ljava.lang.String;@44a333a2
-18 [Ljava.lang.String;@47dfc576
-24 [Ljava.lang.String;@4807303
-37 [Ljava.lang.String;@48ccba66
-17 [Ljava.lang.String;@48da8547
-42 [Ljava.lang.String;@496ec28e
-46 [Ljava.lang.String;@4981c333
-12 [Ljava.lang.String;@4bbb11da
-30 [Ljava.lang.String;@4d80078f
-26 [Ljava.lang.String;@4d9100ca
-14 [Ljava.lang.String;@506aebe9
-36 [Ljava.lang.String;@521f7258
-45 [Ljava.lang.String;@55988cc7
-28 [Ljava.lang.String;@569916ed
-44 [Ljava.lang.String;@580191d0
-16 [Ljava.lang.String;@611b46e9
-9 [Ljava.lang.String;@65e939e8
-34 [Ljava.lang.String;@675fd493
-8 [Ljava.lang.String;@67b5d360
-4 [Ljava.lang.String;@6f669c4d
-2 [Ljava.lang.String;@749329e9
-27 [Ljava.lang.String;@79ef9b3d
-3 [Ljava.lang.String;@7ac59ec4
-13 [Ljava.lang.String;@7df70730
-10 [Ljava.lang.String;@d91df47
-33 [Ljava.lang.String;@ffbeaa9
-2015-02-02 07:49:52,556 PeriodicFrameworkStatusLogger - 
-2015-02-02 07:50:52,560 PeriodicFrameworkStatusLogger - current bundle status (invocation #12, 02.50.2015 07:50:52)
-2015-02-02 07:50:52,560 PeriodicFrameworkStatusLogger - ============================================================
-2015-02-02 07:50:52,561 PeriodicFrameworkStatusLogger - 
-0: org.apache.felix.framework (4.4.1) [ACTIVE]
-1: ch.qos.logback.classic (1.1.2) [ACTIVE]
-2: ch.qos.logback.core (1.1.2) [ACTIVE]
-3: classmate (1.0.0) [ACTIVE]
-4: com.fasterxml.jackson.core.jackson-annotations (2.4.4) [ACTIVE]
-5: com.fasterxml.jackson.core.jackson-core (2.4.4) [ACTIVE]
-6: com.fasterxml.jackson.core.jackson-databind (2.4.4) [ACTIVE]
-7: com.google.guava (15.0.0) [ACTIVE]
-8: com.googlecode.concurrentlinkedhashmap.lru (1.4.0) [ACTIVE]
-9: com.orientechnologies.orientdb-client (2.0.0.rc1) [ACTIVE]
-10: com.orientechnologies.orientdb-core (2.0.0.rc1) [ACTIVE]
-11: com.orientechnologies.orientdb-enterprise (2.0.0.rc1) [ACTIVE]
-12: com.orientechnologies.orientdb-object (2.0.0.rc1) [ACTIVE]
-13: com.springsource.org.junit (4.11.0) [ACTIVE]
-14: com.sun.el (2.2.0.v201303151357) [ACTIVE]
-15: de.twenty11.owasp-java-html-sanitizer (239.0.0) [ACTIVE]
-16: de.twentyeleven.skysail.org.antlr.stringtemplate-osgi (4.0.8) [ACTIVE]
-17: etm.contrib (1.2.3.1) [ACTIVE]
-18: etm.core (1.2.3.1) [ACTIVE]
-19: jackson-core-asl (1.9.8) [ACTIVE]
-20: jackson-mapper-asl (1.9.8) [ACTIVE]
-21: javassist (3.18.1.GA) [ACTIVE]
-22: javax.el-api (3.0.0) [ACTIVE]
-23: javax.persistence (2.1.0.v201304241213) [ACTIVE]
-24: javax.servlet (3.0.0.v201103241009) [ACTIVE]
-25: javax.validation.api (1.1.0.Final) [ACTIVE]
-26: org.apache.commons.beanutils (1.9.2) [ACTIVE]
-27: org.apache.commons.collections (3.2.1) [ACTIVE]
-28: org.apache.commons.collections4 (4.0.0) [ACTIVE]
-29: org.apache.commons.configuration (1.10.0) [ACTIVE]
-30: org.apache.commons.lang (2.6.0) [ACTIVE]
-31: org.apache.commons.lang3 (3.3.2) [ACTIVE]
-32: org.apache.commons.logging (1.1.3) [ACTIVE]
-33: org.apache.felix.configadmin (1.8.0) [ACTIVE]
-34: org.apache.felix.fileinstall (3.4.0) [ACTIVE]
-35: org.apache.felix.gogo.command (0.14.0) [ACTIVE]
-36: org.apache.felix.gogo.runtime (0.12.1) [ACTIVE]
-37: org.apache.felix.gogo.shell (0.10.0) [ACTIVE]
-38: org.apache.felix.log (1.0.1) [ACTIVE]
-39: org.apache.felix.scr (1.6.2) [ACTIVE]
-40: org.apache.shiro.core (1.2.2) [ACTIVE]
-41: org.apache.shiro.web (1.2.2) [ACTIVE]
-42: org.hibernate.validator (5.1.2.Final) [ACTIVE]
-43: org.jboss.logging.jboss-logging (3.1.4.GA) [ACTIVE]
-44: org.restlet (2.1.7.v20140209-2035) [ACTIVE]
-45: org.restlet.ext.crypto (2.1.7.v20140209-2035) [ACTIVE]
-46: org.restlet.ext.jackson (2.1.7.v20140209-2035) [ACTIVE]
-47: org.restlet.ext.slf4j (2.1.7.v20140209-2035) [ACTIVE]
-48: org.xerial.snappy.snappy-java (1.1.1.3) [STARTING]
-49: osgi.cmpn (5.0.0.201305092017) [ACTIVE]
-50: osgi.enterprise (4.2.0.201003190513) [ACTIVE]
-51: osgi.residential (4.3.0.201111022239) [ACTIVE]
-52: skysail.api (2.0.0.201501200640) [ACTIVE]
-53: skysail.api.documentation (0.2.0.201502020639) [ACTIVE]
-54: skysail.api.validation (0.1.1.201501300511) [ACTIVE]
-55: skysail.products.website (0.0.5.201501310857) [ACTIVE]
-56: skysail.server (5.1.1.201501300549) [ACTIVE]
-57: skysail.server.app.clipboard (1.0.5.201501310727) [ACTIVE]
-58: skysail.server.app.i18n (0.0.5.201501310741) [ACTIVE]
-59: skysail.server.db.orientdb (0.0.3.201501310732) [ACTIVE]
-60: skysail.server.documentation (0.1.1.201502020645) [ACTIVE]
-61: skysail.server.ext.converter.st (1.0.5.201501310736) [ACTIVE]
-62: skysail.server.ext.i18n (0.0.10.201501310741) [ACTIVE]
-63: skysail.server.http (1.0.15.201501310744) [ACTIVE]
-64: skysail.server.security.shiro (5.1.2.201501310744) [ACTIVE]
-65: skysail.server.static (0.5.20.201501310744) [ACTIVE]
-66: skysail.server.um.internal (0.0.5.201501310744) [ACTIVE]
-67: slf4j.api (1.7.7) [ACTIVE]
-2015-02-02 07:50:52,562 PeriodicFrameworkStatusLogger - 
-2015-02-02 07:50:52,562 PeriodicFrameworkStatusLogger - current services status (invocation #12, 02.50.2015 07:50:52)
-2015-02-02 07:50:52,562 PeriodicFrameworkStatusLogger - ============================================================
-2015-02-02 07:50:52,563 PeriodicFrameworkStatusLogger - 
-6 [Ljava.lang.String;@1064736f
-32 [Ljava.lang.String;@10c77a77
-22 [Ljava.lang.String;@12cc6cf2
-5 [Ljava.lang.String;@138cfdbe
-48 [Ljava.lang.String;@13d0a23b
-1 [Ljava.lang.String;@15530dc3
-15 [Ljava.lang.String;@164b775
-7 [Ljava.lang.String;@17eeaf6f
-53 [Ljava.lang.String;@1832af74
-31 [Ljava.lang.String;@1be8c660
-52 [Ljava.lang.String;@1c7f7bc7
-35 [Ljava.lang.String;@1d5a4e59
-11 [Ljava.lang.String;@1e3cc6af
-50 [Ljava.lang.String;@229f8236
-41 [Ljava.lang.String;@24e98206
-51 [Ljava.lang.String;@265fc188
-23 [Ljava.lang.String;@33cabfbc
-29 [Ljava.lang.String;@3804a822
-21 [Ljava.lang.String;@38a9265a
-40 [Ljava.lang.String;@3a8e23af
-20 [Ljava.lang.String;@3f175606
-43 [Ljava.lang.String;@3f3d71b0
-49 [Ljava.lang.String;@3fc77854
-47 [Ljava.lang.String;@40cea77f
-19 [Ljava.lang.String;@418b2a24
-25 [Ljava.lang.String;@431bcfa9
-38 [Ljava.lang.String;@44a333a2
-18 [Ljava.lang.String;@47dfc576
-24 [Ljava.lang.String;@4807303
-37 [Ljava.lang.String;@48ccba66
-17 [Ljava.lang.String;@48da8547
-42 [Ljava.lang.String;@496ec28e
-46 [Ljava.lang.String;@4981c333
-12 [Ljava.lang.String;@4bbb11da
-30 [Ljava.lang.String;@4d80078f
-26 [Ljava.lang.String;@4d9100ca
-14 [Ljava.lang.String;@506aebe9
-36 [Ljava.lang.String;@521f7258
-45 [Ljava.lang.String;@55988cc7
-28 [Ljava.lang.String;@569916ed
-44 [Ljava.lang.String;@580191d0
-16 [Ljava.lang.String;@611b46e9
-9 [Ljava.lang.String;@65e939e8
-34 [Ljava.lang.String;@675fd493
-8 [Ljava.lang.String;@67b5d360
-4 [Ljava.lang.String;@6f669c4d
-2 [Ljava.lang.String;@749329e9
-27 [Ljava.lang.String;@79ef9b3d
-3 [Ljava.lang.String;@7ac59ec4
-13 [Ljava.lang.String;@7df70730
-10 [Ljava.lang.String;@d91df47
-33 [Ljava.lang.String;@ffbeaa9
-2015-02-02 07:50:52,564 PeriodicFrameworkStatusLogger - 
-2015-02-02 07:51:52,567 PeriodicFrameworkStatusLogger - current bundle status (invocation #13, 02.51.2015 07:51:52)
-2015-02-02 07:51:52,575 PeriodicFrameworkStatusLogger - ============================================================
-2015-02-02 07:51:52,576 PeriodicFrameworkStatusLogger - 
-0: org.apache.felix.framework (4.4.1) [ACTIVE]
-1: ch.qos.logback.classic (1.1.2) [ACTIVE]
-2: ch.qos.logback.core (1.1.2) [ACTIVE]
-3: classmate (1.0.0) [ACTIVE]
-4: com.fasterxml.jackson.core.jackson-annotations (2.4.4) [ACTIVE]
-5: com.fasterxml.jackson.core.jackson-core (2.4.4) [ACTIVE]
-6: com.fasterxml.jackson.core.jackson-databind (2.4.4) [ACTIVE]
-7: com.google.guava (15.0.0) [ACTIVE]
-8: com.googlecode.concurrentlinkedhashmap.lru (1.4.0) [ACTIVE]
-9: com.orientechnologies.orientdb-client (2.0.0.rc1) [ACTIVE]
-10: com.orientechnologies.orientdb-core (2.0.0.rc1) [ACTIVE]
-11: com.orientechnologies.orientdb-enterprise (2.0.0.rc1) [ACTIVE]
-12: com.orientechnologies.orientdb-object (2.0.0.rc1) [ACTIVE]
-13: com.springsource.org.junit (4.11.0) [ACTIVE]
-14: com.sun.el (2.2.0.v201303151357) [ACTIVE]
-15: de.twenty11.owasp-java-html-sanitizer (239.0.0) [ACTIVE]
-16: de.twentyeleven.skysail.org.antlr.stringtemplate-osgi (4.0.8) [ACTIVE]
-17: etm.contrib (1.2.3.1) [ACTIVE]
-18: etm.core (1.2.3.1) [ACTIVE]
-19: jackson-core-asl (1.9.8) [ACTIVE]
-20: jackson-mapper-asl (1.9.8) [ACTIVE]
-21: javassist (3.18.1.GA) [ACTIVE]
-22: javax.el-api (3.0.0) [ACTIVE]
-23: javax.persistence (2.1.0.v201304241213) [ACTIVE]
-24: javax.servlet (3.0.0.v201103241009) [ACTIVE]
-25: javax.validation.api (1.1.0.Final) [ACTIVE]
-26: org.apache.commons.beanutils (1.9.2) [ACTIVE]
-27: org.apache.commons.collections (3.2.1) [ACTIVE]
-28: org.apache.commons.collections4 (4.0.0) [ACTIVE]
-29: org.apache.commons.configuration (1.10.0) [ACTIVE]
-30: org.apache.commons.lang (2.6.0) [ACTIVE]
-31: org.apache.commons.lang3 (3.3.2) [ACTIVE]
-32: org.apache.commons.logging (1.1.3) [ACTIVE]
-33: org.apache.felix.configadmin (1.8.0) [ACTIVE]
-34: org.apache.felix.fileinstall (3.4.0) [ACTIVE]
-35: org.apache.felix.gogo.command (0.14.0) [ACTIVE]
-36: org.apache.felix.gogo.runtime (0.12.1) [ACTIVE]
-37: org.apache.felix.gogo.shell (0.10.0) [ACTIVE]
-38: org.apache.felix.log (1.0.1) [ACTIVE]
-39: org.apache.felix.scr (1.6.2) [ACTIVE]
-40: org.apache.shiro.core (1.2.2) [ACTIVE]
-41: org.apache.shiro.web (1.2.2) [ACTIVE]
-42: org.hibernate.validator (5.1.2.Final) [ACTIVE]
-43: org.jboss.logging.jboss-logging (3.1.4.GA) [ACTIVE]
-44: org.restlet (2.1.7.v20140209-2035) [ACTIVE]
-45: org.restlet.ext.crypto (2.1.7.v20140209-2035) [ACTIVE]
-46: org.restlet.ext.jackson (2.1.7.v20140209-2035) [ACTIVE]
-47: org.restlet.ext.slf4j (2.1.7.v20140209-2035) [ACTIVE]
-48: org.xerial.snappy.snappy-java (1.1.1.3) [STARTING]
-49: osgi.cmpn (5.0.0.201305092017) [ACTIVE]
-50: osgi.enterprise (4.2.0.201003190513) [ACTIVE]
-51: osgi.residential (4.3.0.201111022239) [ACTIVE]
-52: skysail.api (2.0.0.201501200640) [ACTIVE]
-53: skysail.api.documentation (0.2.0.201502020639) [ACTIVE]
-54: skysail.api.validation (0.1.1.201501300511) [ACTIVE]
-55: skysail.products.website (0.0.5.201501310857) [ACTIVE]
-56: skysail.server (5.1.1.201501300549) [ACTIVE]
-57: skysail.server.app.clipboard (1.0.5.201501310727) [ACTIVE]
-58: skysail.server.app.i18n (0.0.5.201501310741) [ACTIVE]
-59: skysail.server.db.orientdb (0.0.3.201501310732) [ACTIVE]
-60: skysail.server.documentation (0.1.1.201502020645) [ACTIVE]
-61: skysail.server.ext.converter.st (1.0.5.201501310736) [ACTIVE]
-62: skysail.server.ext.i18n (0.0.10.201501310741) [ACTIVE]
-63: skysail.server.http (1.0.15.201501310744) [ACTIVE]
-64: skysail.server.security.shiro (5.1.2.201501310744) [ACTIVE]
-65: skysail.server.static (0.5.20.201501310744) [ACTIVE]
-66: skysail.server.um.internal (0.0.5.201501310744) [ACTIVE]
-67: slf4j.api (1.7.7) [ACTIVE]
-2015-02-02 07:51:52,577 PeriodicFrameworkStatusLogger - 
-2015-02-02 07:51:52,577 PeriodicFrameworkStatusLogger - current services status (invocation #13, 02.51.2015 07:51:52)
-2015-02-02 07:51:52,577 PeriodicFrameworkStatusLogger - ============================================================
-2015-02-02 07:51:52,577 PeriodicFrameworkStatusLogger - 
-6 [Ljava.lang.String;@1064736f
-32 [Ljava.lang.String;@10c77a77
-22 [Ljava.lang.String;@12cc6cf2
-5 [Ljava.lang.String;@138cfdbe
-48 [Ljava.lang.String;@13d0a23b
-1 [Ljava.lang.String;@15530dc3
-15 [Ljava.lang.String;@164b775
-7 [Ljava.lang.String;@17eeaf6f
-53 [Ljava.lang.String;@1832af74
-31 [Ljava.lang.String;@1be8c660
-52 [Ljava.lang.String;@1c7f7bc7
-35 [Ljava.lang.String;@1d5a4e59
-11 [Ljava.lang.String;@1e3cc6af
-50 [Ljava.lang.String;@229f8236
-41 [Ljava.lang.String;@24e98206
-51 [Ljava.lang.String;@265fc188
-23 [Ljava.lang.String;@33cabfbc
-29 [Ljava.lang.String;@3804a822
-21 [Ljava.lang.String;@38a9265a
-40 [Ljava.lang.String;@3a8e23af
-20 [Ljava.lang.String;@3f175606
-43 [Ljava.lang.String;@3f3d71b0
-49 [Ljava.lang.String;@3fc77854
-47 [Ljava.lang.String;@40cea77f
-19 [Ljava.lang.String;@418b2a24
-25 [Ljava.lang.String;@431bcfa9
-38 [Ljava.lang.String;@44a333a2
-18 [Ljava.lang.String;@47dfc576
-24 [Ljava.lang.String;@4807303
-37 [Ljava.lang.String;@48ccba66
-17 [Ljava.lang.String;@48da8547
-42 [Ljava.lang.String;@496ec28e
-46 [Ljava.lang.String;@4981c333
-12 [Ljava.lang.String;@4bbb11da
-30 [Ljava.lang.String;@4d80078f
-26 [Ljava.lang.String;@4d9100ca
-14 [Ljava.lang.String;@506aebe9
-36 [Ljava.lang.String;@521f7258
-45 [Ljava.lang.String;@55988cc7
-28 [Ljava.lang.String;@569916ed
-44 [Ljava.lang.String;@580191d0
-16 [Ljava.lang.String;@611b46e9
-9 [Ljava.lang.String;@65e939e8
-34 [Ljava.lang.String;@675fd493
-8 [Ljava.lang.String;@67b5d360
-4 [Ljava.lang.String;@6f669c4d
-2 [Ljava.lang.String;@749329e9
-27 [Ljava.lang.String;@79ef9b3d
-3 [Ljava.lang.String;@7ac59ec4
-13 [Ljava.lang.String;@7df70730
-10 [Ljava.lang.String;@d91df47
-33 [Ljava.lang.String;@ffbeaa9
-2015-02-02 07:51:52,577 PeriodicFrameworkStatusLogger - 
-2015-02-02 07:52:52,581 PeriodicFrameworkStatusLogger - current bundle status (invocation #14, 02.52.2015 07:52:52)
-2015-02-02 07:52:52,589 PeriodicFrameworkStatusLogger - ============================================================
-2015-02-02 07:52:52,589 PeriodicFrameworkStatusLogger - 
-0: org.apache.felix.framework (4.4.1) [ACTIVE]
-1: ch.qos.logback.classic (1.1.2) [ACTIVE]
-2: ch.qos.logback.core (1.1.2) [ACTIVE]
-3: classmate (1.0.0) [ACTIVE]
-4: com.fasterxml.jackson.core.jackson-annotations (2.4.4) [ACTIVE]
-5: com.fasterxml.jackson.core.jackson-core (2.4.4) [ACTIVE]
-6: com.fasterxml.jackson.core.jackson-databind (2.4.4) [ACTIVE]
-7: com.google.guava (15.0.0) [ACTIVE]
-8: com.googlecode.concurrentlinkedhashmap.lru (1.4.0) [ACTIVE]
-9: com.orientechnologies.orientdb-client (2.0.0.rc1) [ACTIVE]
-10: com.orientechnologies.orientdb-core (2.0.0.rc1) [ACTIVE]
-11: com.orientechnologies.orientdb-enterprise (2.0.0.rc1) [ACTIVE]
-12: com.orientechnologies.orientdb-object (2.0.0.rc1) [ACTIVE]
-13: com.springsource.org.junit (4.11.0) [ACTIVE]
-14: com.sun.el (2.2.0.v201303151357) [ACTIVE]
-15: de.twenty11.owasp-java-html-sanitizer (239.0.0) [ACTIVE]
-16: de.twentyeleven.skysail.org.antlr.stringtemplate-osgi (4.0.8) [ACTIVE]
-17: etm.contrib (1.2.3.1) [ACTIVE]
-18: etm.core (1.2.3.1) [ACTIVE]
-19: jackson-core-asl (1.9.8) [ACTIVE]
-20: jackson-mapper-asl (1.9.8) [ACTIVE]
-21: javassist (3.18.1.GA) [ACTIVE]
-22: javax.el-api (3.0.0) [ACTIVE]
-23: javax.persistence (2.1.0.v201304241213) [ACTIVE]
-24: javax.servlet (3.0.0.v201103241009) [ACTIVE]
-25: javax.validation.api (1.1.0.Final) [ACTIVE]
-26: org.apache.commons.beanutils (1.9.2) [ACTIVE]
-27: org.apache.commons.collections (3.2.1) [ACTIVE]
-28: org.apache.commons.collections4 (4.0.0) [ACTIVE]
-29: org.apache.commons.configuration (1.10.0) [ACTIVE]
-30: org.apache.commons.lang (2.6.0) [ACTIVE]
-31: org.apache.commons.lang3 (3.3.2) [ACTIVE]
-32: org.apache.commons.logging (1.1.3) [ACTIVE]
-33: org.apache.felix.configadmin (1.8.0) [ACTIVE]
-34: org.apache.felix.fileinstall (3.4.0) [ACTIVE]
-35: org.apache.felix.gogo.command (0.14.0) [ACTIVE]
-36: org.apache.felix.gogo.runtime (0.12.1) [ACTIVE]
-37: org.apache.felix.gogo.shell (0.10.0) [ACTIVE]
-38: org.apache.felix.log (1.0.1) [ACTIVE]
-39: org.apache.felix.scr (1.6.2) [ACTIVE]
-40: org.apache.shiro.core (1.2.2) [ACTIVE]
-41: org.apache.shiro.web (1.2.2) [ACTIVE]
-42: org.hibernate.validator (5.1.2.Final) [ACTIVE]
-43: org.jboss.logging.jboss-logging (3.1.4.GA) [ACTIVE]
-44: org.restlet (2.1.7.v20140209-2035) [ACTIVE]
-45: org.restlet.ext.crypto (2.1.7.v20140209-2035) [ACTIVE]
-46: org.restlet.ext.jackson (2.1.7.v20140209-2035) [ACTIVE]
-47: org.restlet.ext.slf4j (2.1.7.v20140209-2035) [ACTIVE]
-48: org.xerial.snappy.snappy-java (1.1.1.3) [STARTING]
-49: osgi.cmpn (5.0.0.201305092017) [ACTIVE]
-50: osgi.enterprise (4.2.0.201003190513) [ACTIVE]
-51: osgi.residential (4.3.0.201111022239) [ACTIVE]
-52: skysail.api (2.0.0.201501200640) [ACTIVE]
-53: skysail.api.documentation (0.2.0.201502020639) [ACTIVE]
-54: skysail.api.validation (0.1.1.201501300511) [ACTIVE]
-55: skysail.products.website (0.0.5.201501310857) [ACTIVE]
-56: skysail.server (5.1.1.201501300549) [ACTIVE]
-57: skysail.server.app.clipboard (1.0.5.201501310727) [ACTIVE]
-58: skysail.server.app.i18n (0.0.5.201501310741) [ACTIVE]
-59: skysail.server.db.orientdb (0.0.3.201501310732) [ACTIVE]
-60: skysail.server.documentation (0.1.1.201502020645) [ACTIVE]
-61: skysail.server.ext.converter.st (1.0.5.201501310736) [ACTIVE]
-62: skysail.server.ext.i18n (0.0.10.201501310741) [ACTIVE]
-63: skysail.server.http (1.0.15.201501310744) [ACTIVE]
-64: skysail.server.security.shiro (5.1.2.201501310744) [ACTIVE]
-65: skysail.server.static (0.5.20.201501310744) [ACTIVE]
-66: skysail.server.um.internal (0.0.5.201501310744) [ACTIVE]
-67: slf4j.api (1.7.7) [ACTIVE]
-2015-02-02 07:52:52,590 PeriodicFrameworkStatusLogger - 
-2015-02-02 07:52:52,590 PeriodicFrameworkStatusLogger - current services status (invocation #14, 02.52.2015 07:52:52)
-2015-02-02 07:52:52,590 PeriodicFrameworkStatusLogger - ============================================================
-2015-02-02 07:52:52,591 PeriodicFrameworkStatusLogger - 
-6 [Ljava.lang.String;@1064736f
-32 [Ljava.lang.String;@10c77a77
-22 [Ljava.lang.String;@12cc6cf2
-5 [Ljava.lang.String;@138cfdbe
-48 [Ljava.lang.String;@13d0a23b
-1 [Ljava.lang.String;@15530dc3
-15 [Ljava.lang.String;@164b775
-7 [Ljava.lang.String;@17eeaf6f
-53 [Ljava.lang.String;@1832af74
-31 [Ljava.lang.String;@1be8c660
-52 [Ljava.lang.String;@1c7f7bc7
-35 [Ljava.lang.String;@1d5a4e59
-11 [Ljava.lang.String;@1e3cc6af
-50 [Ljava.lang.String;@229f8236
-41 [Ljava.lang.String;@24e98206
-51 [Ljava.lang.String;@265fc188
-23 [Ljava.lang.String;@33cabfbc
-29 [Ljava.lang.String;@3804a822
-21 [Ljava.lang.String;@38a9265a
-40 [Ljava.lang.String;@3a8e23af
-20 [Ljava.lang.String;@3f175606
-43 [Ljava.lang.String;@3f3d71b0
-49 [Ljava.lang.String;@3fc77854
-47 [Ljava.lang.String;@40cea77f
-19 [Ljava.lang.String;@418b2a24
-25 [Ljava.lang.String;@431bcfa9
-38 [Ljava.lang.String;@44a333a2
-18 [Ljava.lang.String;@47dfc576
-24 [Ljava.lang.String;@4807303
-37 [Ljava.lang.String;@48ccba66
-17 [Ljava.lang.String;@48da8547
-42 [Ljava.lang.String;@496ec28e
-46 [Ljava.lang.String;@4981c333
-12 [Ljava.lang.String;@4bbb11da
-30 [Ljava.lang.String;@4d80078f
-26 [Ljava.lang.String;@4d9100ca
-14 [Ljava.lang.String;@506aebe9
-36 [Ljava.lang.String;@521f7258
-45 [Ljava.lang.String;@55988cc7
-28 [Ljava.lang.String;@569916ed
-44 [Ljava.lang.String;@580191d0
-16 [Ljava.lang.String;@611b46e9
-9 [Ljava.lang.String;@65e939e8
-34 [Ljava.lang.String;@675fd493
-8 [Ljava.lang.String;@67b5d360
-4 [Ljava.lang.String;@6f669c4d
-2 [Ljava.lang.String;@749329e9
-27 [Ljava.lang.String;@79ef9b3d
-3 [Ljava.lang.String;@7ac59ec4
-13 [Ljava.lang.String;@7df70730
-10 [Ljava.lang.String;@d91df47
-33 [Ljava.lang.String;@ffbeaa9
-2015-02-02 07:52:52,591 PeriodicFrameworkStatusLogger - 
-2015-02-02 07:53:52,591 PeriodicFrameworkStatusLogger - current bundle status (invocation #15, 02.53.2015 07:53:52)
-2015-02-02 07:53:52,592 PeriodicFrameworkStatusLogger - ============================================================
-2015-02-02 07:53:52,592 PeriodicFrameworkStatusLogger - 
-0: org.apache.felix.framework (4.4.1) [ACTIVE]
-1: ch.qos.logback.classic (1.1.2) [ACTIVE]
-2: ch.qos.logback.core (1.1.2) [ACTIVE]
-3: classmate (1.0.0) [ACTIVE]
-4: com.fasterxml.jackson.core.jackson-annotations (2.4.4) [ACTIVE]
-5: com.fasterxml.jackson.core.jackson-core (2.4.4) [ACTIVE]
-6: com.fasterxml.jackson.core.jackson-databind (2.4.4) [ACTIVE]
-7: com.google.guava (15.0.0) [ACTIVE]
-8: com.googlecode.concurrentlinkedhashmap.lru (1.4.0) [ACTIVE]
-9: com.orientechnologies.orientdb-client (2.0.0.rc1) [ACTIVE]
-10: com.orientechnologies.orientdb-core (2.0.0.rc1) [ACTIVE]
-11: com.orientechnologies.orientdb-enterprise (2.0.0.rc1) [ACTIVE]
-12: com.orientechnologies.orientdb-object (2.0.0.rc1) [ACTIVE]
-13: com.springsource.org.junit (4.11.0) [ACTIVE]
-14: com.sun.el (2.2.0.v201303151357) [ACTIVE]
-15: de.twenty11.owasp-java-html-sanitizer (239.0.0) [ACTIVE]
-16: de.twentyeleven.skysail.org.antlr.stringtemplate-osgi (4.0.8) [ACTIVE]
-17: etm.contrib (1.2.3.1) [ACTIVE]
-18: etm.core (1.2.3.1) [ACTIVE]
-19: jackson-core-asl (1.9.8) [ACTIVE]
-20: jackson-mapper-asl (1.9.8) [ACTIVE]
-21: javassist (3.18.1.GA) [ACTIVE]
-22: javax.el-api (3.0.0) [ACTIVE]
-23: javax.persistence (2.1.0.v201304241213) [ACTIVE]
-24: javax.servlet (3.0.0.v201103241009) [ACTIVE]
-25: javax.validation.api (1.1.0.Final) [ACTIVE]
-26: org.apache.commons.beanutils (1.9.2) [ACTIVE]
-27: org.apache.commons.collections (3.2.1) [ACTIVE]
-28: org.apache.commons.collections4 (4.0.0) [ACTIVE]
-29: org.apache.commons.configuration (1.10.0) [ACTIVE]
-30: org.apache.commons.lang (2.6.0) [ACTIVE]
-31: org.apache.commons.lang3 (3.3.2) [ACTIVE]
-32: org.apache.commons.logging (1.1.3) [ACTIVE]
-33: org.apache.felix.configadmin (1.8.0) [ACTIVE]
-34: org.apache.felix.fileinstall (3.4.0) [ACTIVE]
-35: org.apache.felix.gogo.command (0.14.0) [ACTIVE]
-36: org.apache.felix.gogo.runtime (0.12.1) [ACTIVE]
-37: org.apache.felix.gogo.shell (0.10.0) [ACTIVE]
-38: org.apache.felix.log (1.0.1) [ACTIVE]
-39: org.apache.felix.scr (1.6.2) [ACTIVE]
-40: org.apache.shiro.core (1.2.2) [ACTIVE]
-41: org.apache.shiro.web (1.2.2) [ACTIVE]
-42: org.hibernate.validator (5.1.2.Final) [ACTIVE]
-43: org.jboss.logging.jboss-logging (3.1.4.GA) [ACTIVE]
-44: org.restlet (2.1.7.v20140209-2035) [ACTIVE]
-45: org.restlet.ext.crypto (2.1.7.v20140209-2035) [ACTIVE]
-46: org.restlet.ext.jackson (2.1.7.v20140209-2035) [ACTIVE]
-47: org.restlet.ext.slf4j (2.1.7.v20140209-2035) [ACTIVE]
-48: org.xerial.snappy.snappy-java (1.1.1.3) [STARTING]
-49: osgi.cmpn (5.0.0.201305092017) [ACTIVE]
-50: osgi.enterprise (4.2.0.201003190513) [ACTIVE]
-51: osgi.residential (4.3.0.201111022239) [ACTIVE]
-52: skysail.api (2.0.0.201501200640) [ACTIVE]
-53: skysail.api.documentation (0.2.0.201502020639) [ACTIVE]
-54: skysail.api.validation (0.1.1.201501300511) [ACTIVE]
-55: skysail.products.website (0.0.5.201501310857) [ACTIVE]
-56: skysail.server (5.1.1.201501300549) [ACTIVE]
-57: skysail.server.app.clipboard (1.0.5.201501310727) [ACTIVE]
-58: skysail.server.app.i18n (0.0.5.201501310741) [ACTIVE]
-59: skysail.server.db.orientdb (0.0.3.201501310732) [ACTIVE]
-60: skysail.server.documentation (0.1.1.201502020645) [ACTIVE]
-61: skysail.server.ext.converter.st (1.0.5.201501310736) [ACTIVE]
-62: skysail.server.ext.i18n (0.0.10.201501310741) [ACTIVE]
-63: skysail.server.http (1.0.15.201501310744) [ACTIVE]
-64: skysail.server.security.shiro (5.1.2.201501310744) [ACTIVE]
-65: skysail.server.static (0.5.20.201501310744) [ACTIVE]
-66: skysail.server.um.internal (0.0.5.201501310744) [ACTIVE]
-67: slf4j.api (1.7.7) [ACTIVE]
-2015-02-02 07:53:52,592 PeriodicFrameworkStatusLogger - 
-2015-02-02 07:53:52,592 PeriodicFrameworkStatusLogger - current services status (invocation #15, 02.53.2015 07:53:52)
-2015-02-02 07:53:52,592 PeriodicFrameworkStatusLogger - ============================================================
-2015-02-02 07:53:52,593 PeriodicFrameworkStatusLogger - 
-6 [Ljava.lang.String;@1064736f
-32 [Ljava.lang.String;@10c77a77
-22 [Ljava.lang.String;@12cc6cf2
-5 [Ljava.lang.String;@138cfdbe
-48 [Ljava.lang.String;@13d0a23b
-1 [Ljava.lang.String;@15530dc3
-15 [Ljava.lang.String;@164b775
-7 [Ljava.lang.String;@17eeaf6f
-53 [Ljava.lang.String;@1832af74
-31 [Ljava.lang.String;@1be8c660
-52 [Ljava.lang.String;@1c7f7bc7
-35 [Ljava.lang.String;@1d5a4e59
-11 [Ljava.lang.String;@1e3cc6af
-50 [Ljava.lang.String;@229f8236
-41 [Ljava.lang.String;@24e98206
-51 [Ljava.lang.String;@265fc188
-23 [Ljava.lang.String;@33cabfbc
-29 [Ljava.lang.String;@3804a822
-21 [Ljava.lang.String;@38a9265a
-40 [Ljava.lang.String;@3a8e23af
-20 [Ljava.lang.String;@3f175606
-43 [Ljava.lang.String;@3f3d71b0
-49 [Ljava.lang.String;@3fc77854
-47 [Ljava.lang.String;@40cea77f
-19 [Ljava.lang.String;@418b2a24
-25 [Ljava.lang.String;@431bcfa9
-38 [Ljava.lang.String;@44a333a2
-18 [Ljava.lang.String;@47dfc576
-24 [Ljava.lang.String;@4807303
-37 [Ljava.lang.String;@48ccba66
-17 [Ljava.lang.String;@48da8547
-42 [Ljava.lang.String;@496ec28e
-46 [Ljava.lang.String;@4981c333
-12 [Ljava.lang.String;@4bbb11da
-30 [Ljava.lang.String;@4d80078f
-26 [Ljava.lang.String;@4d9100ca
-14 [Ljava.lang.String;@506aebe9
-36 [Ljava.lang.String;@521f7258
-45 [Ljava.lang.String;@55988cc7
-28 [Ljava.lang.String;@569916ed
-44 [Ljava.lang.String;@580191d0
-16 [Ljava.lang.String;@611b46e9
-9 [Ljava.lang.String;@65e939e8
-34 [Ljava.lang.String;@675fd493
-8 [Ljava.lang.String;@67b5d360
-4 [Ljava.lang.String;@6f669c4d
-2 [Ljava.lang.String;@749329e9
-27 [Ljava.lang.String;@79ef9b3d
-3 [Ljava.lang.String;@7ac59ec4
-13 [Ljava.lang.String;@7df70730
-10 [Ljava.lang.String;@d91df47
-33 [Ljava.lang.String;@ffbeaa9
-2015-02-02 07:53:52,593 PeriodicFrameworkStatusLogger - 
-2015-02-02 07:54:52,594 PeriodicFrameworkStatusLogger - current bundle status (invocation #16, 02.54.2015 07:54:52)
-2015-02-02 07:54:52,602 PeriodicFrameworkStatusLogger - ============================================================
-2015-02-02 07:54:52,602 PeriodicFrameworkStatusLogger - 
-0: org.apache.felix.framework (4.4.1) [ACTIVE]
-1: ch.qos.logback.classic (1.1.2) [ACTIVE]
-2: ch.qos.logback.core (1.1.2) [ACTIVE]
-3: classmate (1.0.0) [ACTIVE]
-4: com.fasterxml.jackson.core.jackson-annotations (2.4.4) [ACTIVE]
-5: com.fasterxml.jackson.core.jackson-core (2.4.4) [ACTIVE]
-6: com.fasterxml.jackson.core.jackson-databind (2.4.4) [ACTIVE]
-7: com.google.guava (15.0.0) [ACTIVE]
-8: com.googlecode.concurrentlinkedhashmap.lru (1.4.0) [ACTIVE]
-9: com.orientechnologies.orientdb-client (2.0.0.rc1) [ACTIVE]
-10: com.orientechnologies.orientdb-core (2.0.0.rc1) [ACTIVE]
-11: com.orientechnologies.orientdb-enterprise (2.0.0.rc1) [ACTIVE]
-12: com.orientechnologies.orientdb-object (2.0.0.rc1) [ACTIVE]
-13: com.springsource.org.junit (4.11.0) [ACTIVE]
-14: com.sun.el (2.2.0.v201303151357) [ACTIVE]
-15: de.twenty11.owasp-java-html-sanitizer (239.0.0) [ACTIVE]
-16: de.twentyeleven.skysail.org.antlr.stringtemplate-osgi (4.0.8) [ACTIVE]
-17: etm.contrib (1.2.3.1) [ACTIVE]
-18: etm.core (1.2.3.1) [ACTIVE]
-19: jackson-core-asl (1.9.8) [ACTIVE]
-20: jackson-mapper-asl (1.9.8) [ACTIVE]
-21: javassist (3.18.1.GA) [ACTIVE]
-22: javax.el-api (3.0.0) [ACTIVE]
-23: javax.persistence (2.1.0.v201304241213) [ACTIVE]
-24: javax.servlet (3.0.0.v201103241009) [ACTIVE]
-25: javax.validation.api (1.1.0.Final) [ACTIVE]
-26: org.apache.commons.beanutils (1.9.2) [ACTIVE]
-27: org.apache.commons.collections (3.2.1) [ACTIVE]
-28: org.apache.commons.collections4 (4.0.0) [ACTIVE]
-29: org.apache.commons.configuration (1.10.0) [ACTIVE]
-30: org.apache.commons.lang (2.6.0) [ACTIVE]
-31: org.apache.commons.lang3 (3.3.2) [ACTIVE]
-32: org.apache.commons.logging (1.1.3) [ACTIVE]
-33: org.apache.felix.configadmin (1.8.0) [ACTIVE]
-34: org.apache.felix.fileinstall (3.4.0) [ACTIVE]
-35: org.apache.felix.gogo.command (0.14.0) [ACTIVE]
-36: org.apache.felix.gogo.runtime (0.12.1) [ACTIVE]
-37: org.apache.felix.gogo.shell (0.10.0) [ACTIVE]
-38: org.apache.felix.log (1.0.1) [ACTIVE]
-39: org.apache.felix.scr (1.6.2) [ACTIVE]
-40: org.apache.shiro.core (1.2.2) [ACTIVE]
-41: org.apache.shiro.web (1.2.2) [ACTIVE]
-42: org.hibernate.validator (5.1.2.Final) [ACTIVE]
-43: org.jboss.logging.jboss-logging (3.1.4.GA) [ACTIVE]
-44: org.restlet (2.1.7.v20140209-2035) [ACTIVE]
-45: org.restlet.ext.crypto (2.1.7.v20140209-2035) [ACTIVE]
-46: org.restlet.ext.jackson (2.1.7.v20140209-2035) [ACTIVE]
-47: org.restlet.ext.slf4j (2.1.7.v20140209-2035) [ACTIVE]
-48: org.xerial.snappy.snappy-java (1.1.1.3) [STARTING]
-49: osgi.cmpn (5.0.0.201305092017) [ACTIVE]
-50: osgi.enterprise (4.2.0.201003190513) [ACTIVE]
-51: osgi.residential (4.3.0.201111022239) [ACTIVE]
-52: skysail.api (2.0.0.201501200640) [ACTIVE]
-53: skysail.api.documentation (0.2.0.201502020639) [ACTIVE]
-54: skysail.api.validation (0.1.1.201501300511) [ACTIVE]
-55: skysail.products.website (0.0.5.201501310857) [ACTIVE]
-56: skysail.server (5.1.1.201501300549) [ACTIVE]
-57: skysail.server.app.clipboard (1.0.5.201501310727) [ACTIVE]
-58: skysail.server.app.i18n (0.0.5.201501310741) [ACTIVE]
-59: skysail.server.db.orientdb (0.0.3.201501310732) [ACTIVE]
-60: skysail.server.documentation (0.1.1.201502020645) [ACTIVE]
-61: skysail.server.ext.converter.st (1.0.5.201501310736) [ACTIVE]
-62: skysail.server.ext.i18n (0.0.10.201501310741) [ACTIVE]
-63: skysail.server.http (1.0.15.201501310744) [ACTIVE]
-64: skysail.server.security.shiro (5.1.2.201501310744) [ACTIVE]
-65: skysail.server.static (0.5.20.201501310744) [ACTIVE]
-66: skysail.server.um.internal (0.0.5.201501310744) [ACTIVE]
-67: slf4j.api (1.7.7) [ACTIVE]
-2015-02-02 07:54:52,603 PeriodicFrameworkStatusLogger - 
-2015-02-02 07:54:52,603 PeriodicFrameworkStatusLogger - current services status (invocation #16, 02.54.2015 07:54:52)
-2015-02-02 07:54:52,603 PeriodicFrameworkStatusLogger - ============================================================
-2015-02-02 07:54:52,603 PeriodicFrameworkStatusLogger - 
-6 [Ljava.lang.String;@1064736f
-32 [Ljava.lang.String;@10c77a77
-22 [Ljava.lang.String;@12cc6cf2
-5 [Ljava.lang.String;@138cfdbe
-48 [Ljava.lang.String;@13d0a23b
-1 [Ljava.lang.String;@15530dc3
-15 [Ljava.lang.String;@164b775
-7 [Ljava.lang.String;@17eeaf6f
-53 [Ljava.lang.String;@1832af74
-31 [Ljava.lang.String;@1be8c660
-52 [Ljava.lang.String;@1c7f7bc7
-35 [Ljava.lang.String;@1d5a4e59
-11 [Ljava.lang.String;@1e3cc6af
-50 [Ljava.lang.String;@229f8236
-41 [Ljava.lang.String;@24e98206
-51 [Ljava.lang.String;@265fc188
-23 [Ljava.lang.String;@33cabfbc
-29 [Ljava.lang.String;@3804a822
-21 [Ljava.lang.String;@38a9265a
-40 [Ljava.lang.String;@3a8e23af
-20 [Ljava.lang.String;@3f175606
-43 [Ljava.lang.String;@3f3d71b0
-49 [Ljava.lang.String;@3fc77854
-47 [Ljava.lang.String;@40cea77f
-19 [Ljava.lang.String;@418b2a24
-25 [Ljava.lang.String;@431bcfa9
-38 [Ljava.lang.String;@44a333a2
-18 [Ljava.lang.String;@47dfc576
-24 [Ljava.lang.String;@4807303
-37 [Ljava.lang.String;@48ccba66
-17 [Ljava.lang.String;@48da8547
-42 [Ljava.lang.String;@496ec28e
-46 [Ljava.lang.String;@4981c333
-12 [Ljava.lang.String;@4bbb11da
-30 [Ljava.lang.String;@4d80078f
-26 [Ljava.lang.String;@4d9100ca
-14 [Ljava.lang.String;@506aebe9
-36 [Ljava.lang.String;@521f7258
-45 [Ljava.lang.String;@55988cc7
-28 [Ljava.lang.String;@569916ed
-44 [Ljava.lang.String;@580191d0
-16 [Ljava.lang.String;@611b46e9
-9 [Ljava.lang.String;@65e939e8
-34 [Ljava.lang.String;@675fd493
-8 [Ljava.lang.String;@67b5d360
-4 [Ljava.lang.String;@6f669c4d
-2 [Ljava.lang.String;@749329e9
-27 [Ljava.lang.String;@79ef9b3d
-3 [Ljava.lang.String;@7ac59ec4
-13 [Ljava.lang.String;@7df70730
-10 [Ljava.lang.String;@d91df47
-33 [Ljava.lang.String;@ffbeaa9
-2015-02-02 07:54:52,603 PeriodicFrameworkStatusLogger - 
-2015-02-02 07:55:52,608 PeriodicFrameworkStatusLogger - current bundle status (invocation #17, 02.55.2015 07:55:52)
-2015-02-02 07:55:52,616 PeriodicFrameworkStatusLogger - ============================================================
-2015-02-02 07:55:52,616 PeriodicFrameworkStatusLogger - 
-0: org.apache.felix.framework (4.4.1) [ACTIVE]
-1: ch.qos.logback.classic (1.1.2) [ACTIVE]
-2: ch.qos.logback.core (1.1.2) [ACTIVE]
-3: classmate (1.0.0) [ACTIVE]
-4: com.fasterxml.jackson.core.jackson-annotations (2.4.4) [ACTIVE]
-5: com.fasterxml.jackson.core.jackson-core (2.4.4) [ACTIVE]
-6: com.fasterxml.jackson.core.jackson-databind (2.4.4) [ACTIVE]
-7: com.google.guava (15.0.0) [ACTIVE]
-8: com.googlecode.concurrentlinkedhashmap.lru (1.4.0) [ACTIVE]
-9: com.orientechnologies.orientdb-client (2.0.0.rc1) [ACTIVE]
-10: com.orientechnologies.orientdb-core (2.0.0.rc1) [ACTIVE]
-11: com.orientechnologies.orientdb-enterprise (2.0.0.rc1) [ACTIVE]
-12: com.orientechnologies.orientdb-object (2.0.0.rc1) [ACTIVE]
-13: com.springsource.org.junit (4.11.0) [ACTIVE]
-14: com.sun.el (2.2.0.v201303151357) [ACTIVE]
-15: de.twenty11.owasp-java-html-sanitizer (239.0.0) [ACTIVE]
-16: de.twentyeleven.skysail.org.antlr.stringtemplate-osgi (4.0.8) [ACTIVE]
-17: etm.contrib (1.2.3.1) [ACTIVE]
-18: etm.core (1.2.3.1) [ACTIVE]
-19: jackson-core-asl (1.9.8) [ACTIVE]
-20: jackson-mapper-asl (1.9.8) [ACTIVE]
-21: javassist (3.18.1.GA) [ACTIVE]
-22: javax.el-api (3.0.0) [ACTIVE]
-23: javax.persistence (2.1.0.v201304241213) [ACTIVE]
-24: javax.servlet (3.0.0.v201103241009) [ACTIVE]
-25: javax.validation.api (1.1.0.Final) [ACTIVE]
-26: org.apache.commons.beanutils (1.9.2) [ACTIVE]
-27: org.apache.commons.collections (3.2.1) [ACTIVE]
-28: org.apache.commons.collections4 (4.0.0) [ACTIVE]
-29: org.apache.commons.configuration (1.10.0) [ACTIVE]
-30: org.apache.commons.lang (2.6.0) [ACTIVE]
-31: org.apache.commons.lang3 (3.3.2) [ACTIVE]
-32: org.apache.commons.logging (1.1.3) [ACTIVE]
-33: org.apache.felix.configadmin (1.8.0) [ACTIVE]
-34: org.apache.felix.fileinstall (3.4.0) [ACTIVE]
-35: org.apache.felix.gogo.command (0.14.0) [ACTIVE]
-36: org.apache.felix.gogo.runtime (0.12.1) [ACTIVE]
-37: org.apache.felix.gogo.shell (0.10.0) [ACTIVE]
-38: org.apache.felix.log (1.0.1) [ACTIVE]
-39: org.apache.felix.scr (1.6.2) [ACTIVE]
-40: org.apache.shiro.core (1.2.2) [ACTIVE]
-41: org.apache.shiro.web (1.2.2) [ACTIVE]
-42: org.hibernate.validator (5.1.2.Final) [ACTIVE]
-43: org.jboss.logging.jboss-logging (3.1.4.GA) [ACTIVE]
-44: org.restlet (2.1.7.v20140209-2035) [ACTIVE]
-45: org.restlet.ext.crypto (2.1.7.v20140209-2035) [ACTIVE]
-46: org.restlet.ext.jackson (2.1.7.v20140209-2035) [ACTIVE]
-47: org.restlet.ext.slf4j (2.1.7.v20140209-2035) [ACTIVE]
-48: org.xerial.snappy.snappy-java (1.1.1.3) [STARTING]
-49: osgi.cmpn (5.0.0.201305092017) [ACTIVE]
-50: osgi.enterprise (4.2.0.201003190513) [ACTIVE]
-51: osgi.residential (4.3.0.201111022239) [ACTIVE]
-52: skysail.api (2.0.0.201501200640) [ACTIVE]
-53: skysail.api.documentation (0.2.0.201502020639) [ACTIVE]
-54: skysail.api.validation (0.1.1.201501300511) [ACTIVE]
-55: skysail.products.website (0.0.5.201501310857) [ACTIVE]
-56: skysail.server (5.1.1.201501300549) [ACTIVE]
-57: skysail.server.app.clipboard (1.0.5.201501310727) [ACTIVE]
-58: skysail.server.app.i18n (0.0.5.201501310741) [ACTIVE]
-59: skysail.server.db.orientdb (0.0.3.201501310732) [ACTIVE]
-60: skysail.server.documentation (0.1.1.201502020645) [ACTIVE]
-61: skysail.server.ext.converter.st (1.0.5.201501310736) [ACTIVE]
-62: skysail.server.ext.i18n (0.0.10.201501310741) [ACTIVE]
-63: skysail.server.http (1.0.15.201501310744) [ACTIVE]
-64: skysail.server.security.shiro (5.1.2.201501310744) [ACTIVE]
-65: skysail.server.static (0.5.20.201501310744) [ACTIVE]
-66: skysail.server.um.internal (0.0.5.201501310744) [ACTIVE]
-67: slf4j.api (1.7.7) [ACTIVE]
-2015-02-02 07:55:52,617 PeriodicFrameworkStatusLogger - 
-2015-02-02 07:55:52,617 PeriodicFrameworkStatusLogger - current services status (invocation #17, 02.55.2015 07:55:52)
-2015-02-02 07:55:52,617 PeriodicFrameworkStatusLogger - ============================================================
-2015-02-02 07:55:52,617 PeriodicFrameworkStatusLogger - 
-6 [Ljava.lang.String;@1064736f
-32 [Ljava.lang.String;@10c77a77
-22 [Ljava.lang.String;@12cc6cf2
-5 [Ljava.lang.String;@138cfdbe
-48 [Ljava.lang.String;@13d0a23b
-1 [Ljava.lang.String;@15530dc3
-15 [Ljava.lang.String;@164b775
-7 [Ljava.lang.String;@17eeaf6f
-53 [Ljava.lang.String;@1832af74
-31 [Ljava.lang.String;@1be8c660
-52 [Ljava.lang.String;@1c7f7bc7
-35 [Ljava.lang.String;@1d5a4e59
-11 [Ljava.lang.String;@1e3cc6af
-50 [Ljava.lang.String;@229f8236
-41 [Ljava.lang.String;@24e98206
-51 [Ljava.lang.String;@265fc188
-23 [Ljava.lang.String;@33cabfbc
-29 [Ljava.lang.String;@3804a822
-21 [Ljava.lang.String;@38a9265a
-40 [Ljava.lang.String;@3a8e23af
-20 [Ljava.lang.String;@3f175606
-43 [Ljava.lang.String;@3f3d71b0
-49 [Ljava.lang.String;@3fc77854
-47 [Ljava.lang.String;@40cea77f
-19 [Ljava.lang.String;@418b2a24
-25 [Ljava.lang.String;@431bcfa9
-38 [Ljava.lang.String;@44a333a2
-18 [Ljava.lang.String;@47dfc576
-24 [Ljava.lang.String;@4807303
-37 [Ljava.lang.String;@48ccba66
-17 [Ljava.lang.String;@48da8547
-42 [Ljava.lang.String;@496ec28e
-46 [Ljava.lang.String;@4981c333
-12 [Ljava.lang.String;@4bbb11da
-30 [Ljava.lang.String;@4d80078f
-26 [Ljava.lang.String;@4d9100ca
-14 [Ljava.lang.String;@506aebe9
-36 [Ljava.lang.String;@521f7258
-45 [Ljava.lang.String;@55988cc7
-28 [Ljava.lang.String;@569916ed
-44 [Ljava.lang.String;@580191d0
-16 [Ljava.lang.String;@611b46e9
-9 [Ljava.lang.String;@65e939e8
-34 [Ljava.lang.String;@675fd493
-8 [Ljava.lang.String;@67b5d360
-4 [Ljava.lang.String;@6f669c4d
-2 [Ljava.lang.String;@749329e9
-27 [Ljava.lang.String;@79ef9b3d
-3 [Ljava.lang.String;@7ac59ec4
-13 [Ljava.lang.String;@7df70730
-10 [Ljava.lang.String;@d91df47
-33 [Ljava.lang.String;@ffbeaa9
-2015-02-02 07:55:52,617 PeriodicFrameworkStatusLogger - 
+2015-02-02 13:25:21,956 PeriodicFrameworkStatusLogger - 
+2015-02-02 13:25:21,956 PeriodicFrameworkStatusLogger - current services status (invocation #5, 02.25.2015 13:25:21)
+2015-02-02 13:25:21,956 PeriodicFrameworkStatusLogger - ============================================================
+2015-02-02 13:25:21,956 PeriodicFrameworkStatusLogger - 
+7 [Ljava.lang.String;@1788bc3f
+11 [Ljava.lang.String;@1b1ff0da
+22 [Ljava.lang.String;@1bf028d2
+5 [Ljava.lang.String;@1cf1f0e6
+41 [Ljava.lang.String;@1e08c662
+34 [Ljava.lang.String;@20e27e61
+19 [Ljava.lang.String;@212fdafc
+8 [Ljava.lang.String;@22519b1
+37 [Ljava.lang.String;@23a17f65
+16 [Ljava.lang.String;@2639ba81
+42 [Ljava.lang.String;@265b4ca7
+32 [Ljava.lang.String;@2c909b0b
+51 [Ljava.lang.String;@2dcf40d2
+26 [Ljava.lang.String;@31bbd7af
+27 [Ljava.lang.String;@34ee5a17
+20 [Ljava.lang.String;@36a38852
+39 [Ljava.lang.String;@37635b01
+4 [Ljava.lang.String;@387eecb3
+28 [Ljava.lang.String;@39e26b08
+44 [Ljava.lang.String;@3c9fdee7
+10 [Ljava.lang.String;@3daf1035
+45 [Ljava.lang.String;@3e7e659d
+30 [Ljava.lang.String;@4226e196
+35 [Ljava.lang.String;@44768e2e
+49 [Ljava.lang.String;@4ab2a68c
+23 [Ljava.lang.String;@4aff376
+46 [Ljava.lang.String;@4b21073e
+50 [Ljava.lang.String;@4ee3f00f
+12 [Ljava.lang.String;@4fa12bbf
+29 [Ljava.lang.String;@509583ad
+38 [Ljava.lang.String;@50e4e251
+24 [Ljava.lang.String;@52e33843
+2 [Ljava.lang.String;@53258545
+17 [Ljava.lang.String;@56e2cfbf
+36 [Ljava.lang.String;@58830093
+9 [Ljava.lang.String;@58c6fe41
+31 [Ljava.lang.String;@5ecfc2b0
+40 [Ljava.lang.String;@63c6993e
+48 [Ljava.lang.String;@6603621b
+43 [Ljava.lang.String;@69606b50
+18 [Ljava.lang.String;@6ac5c6c7
+25 [Ljava.lang.String;@6b742caf
+47 [Ljava.lang.String;@6e3a1098
+13 [Ljava.lang.String;@7019b1ea
+21 [Ljava.lang.String;@70db4abc
+33 [Ljava.lang.String;@72139aa0
+14 [Ljava.lang.String;@761279f
+3 [Ljava.lang.String;@78215b3f
+15 [Ljava.lang.String;@7891959b
+52 [Ljava.lang.String;@7ad7969
+1 [Ljava.lang.String;@7eb5103a
+6 [Ljava.lang.String;@a7c71a3
+2015-02-02 13:25:21,956 PeriodicFrameworkStatusLogger - 

@@ -6,36 +6,22 @@ WARN  de.twenty11.skysail.server.core.restlet.SkysailRouter - please use a Route
 WARN  de.twenty11.skysail.server.core.restlet.SkysailRouter - please use a RouteBuilder to attach this resource: class de.twenty11.skysail.server.resources.LoginResource
 WARN  de.twenty11.skysail.server.core.restlet.SkysailRouter - please use a RouteBuilder to attach this resource: class de.twenty11.skysail.server.resources.AboutResource
 WARN  d.t.skysail.server.core.osgi.internal.EventHelper - eventAdmin is null, cannot fire Event
-WARN  d.t.skysail.server.core.osgi.internal.EventHelper - eventAdmin is null, cannot fire Event
-WARN  d.t.skysail.server.core.osgi.internal.EventHelper - eventAdmin is null, cannot fire Event
-WARN  d.t.skysail.server.core.osgi.internal.EventHelper - eventAdmin is null, cannot fire Event
-WARN  d.t.skysail.server.core.osgi.internal.EventHelper - eventAdmin is null, cannot fire Event
-WARN  d.t.skysail.server.core.osgi.internal.EventHelper - eventAdmin is null, cannot fire Event
-WARN  d.t.skysail.server.core.osgi.internal.EventHelper - eventAdmin is null, cannot fire Event
-WARN  d.t.skysail.server.core.osgi.internal.EventHelper - eventAdmin is null, cannot fire Event
-WARN  d.t.skysail.server.core.osgi.internal.EventHelper - eventAdmin is null, cannot fire Event
-WARN  d.t.skysail.server.core.osgi.internal.EventHelper - eventAdmin is null, cannot fire Event
-WARN  o.r.S.InternalRouter.ClipboardApplication.StatusFilter - Exception or error caught in status service
-java.lang.NoClassDefFoundError: sun/reflect/ConstructorAccessorImpl
-	at sun.misc.Unsafe.defineClass(Native Method) ~[na:1.8.0_20]
-	at sun.reflect.ClassDefiner.defineClass(ClassDefiner.java:63) ~[na:1.8.0_20]
-	at sun.reflect.MethodAccessorGenerator$1.run(MethodAccessorGenerator.java:399) ~[na:1.8.0_20]
-	at sun.reflect.MethodAccessorGenerator$1.run(MethodAccessorGenerator.java:394) ~[na:1.8.0_20]
-	at java.security.AccessController.doPrivileged(Native Method) ~[na:1.8.0_20]
-	at sun.reflect.MethodAccessorGenerator.generate(MethodAccessorGenerator.java:393) ~[na:1.8.0_20]
-	at sun.reflect.MethodAccessorGenerator.generateConstructor(MethodAccessorGenerator.java:92) ~[na:1.8.0_20]
-	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:55) ~[na:1.8.0_20]
-	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45) ~[na:1.8.0_20]
-	at java.lang.reflect.Constructor.newInstance(Constructor.java:408) ~[na:1.8.0_20]
-	at java.lang.Class.newInstance(Class.java:433) ~[na:1.8.0_20]
-	at org.restlet.resource.Finder.create(Finder.java:157) ~[org.restlet-2.1.7.jar:na]
-	at org.restlet.resource.Finder.create(Finder.java:185) ~[org.restlet-2.1.7.jar:na]
-	at org.restlet.resource.Finder.find(Finder.java:203) ~[org.restlet-2.1.7.jar:na]
-	at org.restlet.resource.Finder.handle(Finder.java:229) ~[org.restlet-2.1.7.jar:na]
-	at org.restlet.routing.Filter.doHandle(Filter.java:159) [org.restlet-2.1.7.jar:na]
-	at org.restlet.routing.Filter.handle(Filter.java:206) [org.restlet-2.1.7.jar:na]
-	at org.restlet.routing.Filter.doHandle(Filter.java:159) [org.restlet-2.1.7.jar:na]
-	at org.restlet.routing.Filter.handle(Filter.java:206) [org.restlet-2.1.7.jar:na]
+WARN  o.r.S.InternalRouter.SkysailRootApplication - Unable to convert object [] to this representation variant: [text/html]
+java.lang.NullPointerException: null
+	at org.stringtemplate.v4.STGroupDir.<init>(STGroupDir.java:94) ~[na:na]
+	at de.twenty11.skysail.server.ext.converter.st.STGroupBundleDir.<init>(STGroupBundleDir.java:35) ~[na:na]
+	at de.twenty11.skysail.server.ext.converter.st.StringTemplateConverter.importTemplate(StringTemplateConverter.java:307) ~[na:na]
+	at de.twenty11.skysail.server.ext.converter.st.StringTemplateConverter.createStGroup(StringTemplateConverter.java:295) ~[na:na]
+	at de.twenty11.skysail.server.ext.converter.st.StringTemplateConverter.toRepresentation(StringTemplateConverter.java:184) ~[na:na]
+	at org.restlet.service.ConverterService.toRepresentation(ConverterService.java:266) ~[org.restlet-2.1.7.jar:na]
+	at org.restlet.resource.Resource.toRepresentation(Resource.java:851) [org.restlet-2.1.7.jar:na]
+	at org.restlet.resource.ServerResource.doHandle(ServerResource.java:521) [org.restlet-2.1.7.jar:na]
+	at org.restlet.resource.ServerResource.get(ServerResource.java:707) [org.restlet-2.1.7.jar:na]
+	at org.restlet.resource.ServerResource.doHandle(ServerResource.java:589) [org.restlet-2.1.7.jar:na]
+	at org.restlet.resource.ServerResource.doNegotiatedHandle(ServerResource.java:649) [org.restlet-2.1.7.jar:na]
+	at org.restlet.resource.ServerResource.doConditionalHandle(ServerResource.java:348) [org.restlet-2.1.7.jar:na]
+	at org.restlet.resource.ServerResource.handle(ServerResource.java:952) [org.restlet-2.1.7.jar:na]
+	at org.restlet.resource.Finder.handle(Finder.java:246) [org.restlet-2.1.7.jar:na]
 	at org.restlet.routing.Filter.doHandle(Filter.java:159) [org.restlet-2.1.7.jar:na]
 	at org.restlet.routing.Filter.handle(Filter.java:206) [org.restlet-2.1.7.jar:na]
 	at org.restlet.routing.Router.doHandle(Router.java:431) [org.restlet-2.1.7.jar:na]
@@ -79,36 +65,26 @@ java.lang.NoClassDefFoundError: sun/reflect/ConstructorAccessorImpl
 	at org.restlet.engine.connector.ServerConnectionHelper.handle(ServerConnectionHelper.java:257) [org.restlet-2.1.7.jar:na]
 	at org.restlet.engine.connector.ServerConnectionHelper.doHandleInbound(ServerConnectionHelper.java:186) [org.restlet-2.1.7.jar:na]
 	at org.restlet.engine.connector.BaseHelper$2.run(BaseHelper.java:593) [org.restlet-2.1.7.jar:na]
-	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142) [na:1.8.0_20]
-	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617) [na:1.8.0_20]
-	at java.lang.Thread.run(Thread.java:745) [na:1.8.0_20]
-Caused by: java.lang.ClassNotFoundException: Unable to load class 'sun.reflect.ConstructorAccessorImpl' because the bundle wiring for skysail.server.documentation is no longer valid.
-	at org.apache.felix.framework.BundleWiringImpl.findClassOrResourceByDelegation(BundleWiringImpl.java:1521) ~[org.apache.felix.framework-4.4.1.jar:na]
-	at org.apache.felix.framework.BundleWiringImpl.access$400(BundleWiringImpl.java:77) ~[org.apache.felix.framework-4.4.1.jar:na]
-	at org.apache.felix.framework.BundleWiringImpl$BundleClassLoader.loadClass(BundleWiringImpl.java:1993) ~[org.apache.felix.framework-4.4.1.jar:na]
-	at java.lang.ClassLoader.loadClass(ClassLoader.java:357) ~[na:1.8.0_20]
-	... 65 common frames omitted
-WARN  o.r.S.InternalRouter.ClipboardApplication.StatusFilter - Exception or error caught in status service
-java.lang.NoClassDefFoundError: sun/reflect/ConstructorAccessorImpl
-	at sun.misc.Unsafe.defineClass(Native Method) ~[na:1.8.0_20]
-	at sun.reflect.ClassDefiner.defineClass(ClassDefiner.java:63) ~[na:1.8.0_20]
-	at sun.reflect.MethodAccessorGenerator$1.run(MethodAccessorGenerator.java:399) ~[na:1.8.0_20]
-	at sun.reflect.MethodAccessorGenerator$1.run(MethodAccessorGenerator.java:394) ~[na:1.8.0_20]
-	at java.security.AccessController.doPrivileged(Native Method) ~[na:1.8.0_20]
-	at sun.reflect.MethodAccessorGenerator.generate(MethodAccessorGenerator.java:393) ~[na:1.8.0_20]
-	at sun.reflect.MethodAccessorGenerator.generateConstructor(MethodAccessorGenerator.java:92) ~[na:1.8.0_20]
-	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:55) ~[na:1.8.0_20]
-	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45) ~[na:1.8.0_20]
-	at java.lang.reflect.Constructor.newInstance(Constructor.java:408) ~[na:1.8.0_20]
-	at java.lang.Class.newInstance(Class.java:433) ~[na:1.8.0_20]
-	at org.restlet.resource.Finder.create(Finder.java:157) ~[org.restlet-2.1.7.jar:na]
-	at org.restlet.resource.Finder.create(Finder.java:185) ~[org.restlet-2.1.7.jar:na]
-	at org.restlet.resource.Finder.find(Finder.java:203) ~[org.restlet-2.1.7.jar:na]
-	at org.restlet.resource.Finder.handle(Finder.java:229) ~[org.restlet-2.1.7.jar:na]
-	at org.restlet.routing.Filter.doHandle(Filter.java:159) [org.restlet-2.1.7.jar:na]
-	at org.restlet.routing.Filter.handle(Filter.java:206) [org.restlet-2.1.7.jar:na]
-	at org.restlet.routing.Filter.doHandle(Filter.java:159) [org.restlet-2.1.7.jar:na]
-	at org.restlet.routing.Filter.handle(Filter.java:206) [org.restlet-2.1.7.jar:na]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source) [na:1.8.0]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source) [na:1.8.0]
+	at java.lang.Thread.run(Unknown Source) [na:1.8.0]
+WARN  d.t.skysail.server.core.osgi.internal.EventHelper - eventAdmin is null, cannot fire Event
+WARN  o.r.S.InternalRouter.SkysailRootApplication - Unable to convert object [] to this representation variant: [text/html]
+java.lang.NullPointerException: null
+	at org.stringtemplate.v4.STGroupDir.<init>(STGroupDir.java:94) ~[na:na]
+	at de.twenty11.skysail.server.ext.converter.st.STGroupBundleDir.<init>(STGroupBundleDir.java:35) ~[na:na]
+	at de.twenty11.skysail.server.ext.converter.st.StringTemplateConverter.importTemplate(StringTemplateConverter.java:307) ~[na:na]
+	at de.twenty11.skysail.server.ext.converter.st.StringTemplateConverter.createStGroup(StringTemplateConverter.java:295) ~[na:na]
+	at de.twenty11.skysail.server.ext.converter.st.StringTemplateConverter.toRepresentation(StringTemplateConverter.java:184) ~[na:na]
+	at org.restlet.service.ConverterService.toRepresentation(ConverterService.java:266) ~[org.restlet-2.1.7.jar:na]
+	at org.restlet.resource.Resource.toRepresentation(Resource.java:851) [org.restlet-2.1.7.jar:na]
+	at org.restlet.resource.ServerResource.doHandle(ServerResource.java:521) [org.restlet-2.1.7.jar:na]
+	at org.restlet.resource.ServerResource.get(ServerResource.java:707) [org.restlet-2.1.7.jar:na]
+	at org.restlet.resource.ServerResource.doHandle(ServerResource.java:589) [org.restlet-2.1.7.jar:na]
+	at org.restlet.resource.ServerResource.doNegotiatedHandle(ServerResource.java:649) [org.restlet-2.1.7.jar:na]
+	at org.restlet.resource.ServerResource.doConditionalHandle(ServerResource.java:348) [org.restlet-2.1.7.jar:na]
+	at org.restlet.resource.ServerResource.handle(ServerResource.java:952) [org.restlet-2.1.7.jar:na]
+	at org.restlet.resource.Finder.handle(Finder.java:246) [org.restlet-2.1.7.jar:na]
 	at org.restlet.routing.Filter.doHandle(Filter.java:159) [org.restlet-2.1.7.jar:na]
 	at org.restlet.routing.Filter.handle(Filter.java:206) [org.restlet-2.1.7.jar:na]
 	at org.restlet.routing.Router.doHandle(Router.java:431) [org.restlet-2.1.7.jar:na]
@@ -152,12 +128,6 @@ java.lang.NoClassDefFoundError: sun/reflect/ConstructorAccessorImpl
 	at org.restlet.engine.connector.ServerConnectionHelper.handle(ServerConnectionHelper.java:257) [org.restlet-2.1.7.jar:na]
 	at org.restlet.engine.connector.ServerConnectionHelper.doHandleInbound(ServerConnectionHelper.java:186) [org.restlet-2.1.7.jar:na]
 	at org.restlet.engine.connector.BaseHelper$2.run(BaseHelper.java:593) [org.restlet-2.1.7.jar:na]
-	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142) [na:1.8.0_20]
-	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617) [na:1.8.0_20]
-	at java.lang.Thread.run(Thread.java:745) [na:1.8.0_20]
-Caused by: java.lang.ClassNotFoundException: Unable to load class 'sun.reflect.ConstructorAccessorImpl' because the bundle wiring for skysail.server.documentation is no longer valid.
-	at org.apache.felix.framework.BundleWiringImpl.findClassOrResourceByDelegation(BundleWiringImpl.java:1521) ~[org.apache.felix.framework-4.4.1.jar:na]
-	at org.apache.felix.framework.BundleWiringImpl.access$400(BundleWiringImpl.java:77) ~[org.apache.felix.framework-4.4.1.jar:na]
-	at org.apache.felix.framework.BundleWiringImpl$BundleClassLoader.loadClass(BundleWiringImpl.java:1993) ~[org.apache.felix.framework-4.4.1.jar:na]
-	at java.lang.ClassLoader.loadClass(ClassLoader.java:357) ~[na:1.8.0_20]
-	... 65 common frames omitted
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source) [na:1.8.0]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source) [na:1.8.0]
+	at java.lang.Thread.run(Unknown Source) [na:1.8.0]

@@ -21,7 +21,7 @@ public class DocumentationIntegrationTests { // extends
     public void documentationProvider_is_available() throws Exception {
         Collection<ServiceReference<DocumentationProvider>> serviceRefs = context.getServiceReferences(
                 DocumentationProvider.class, null);
-        assertTrue(serviceRefs.size() > 0);
+        assertTrue("service not available", serviceRefs.size() > 0);
     }
 
     @Test

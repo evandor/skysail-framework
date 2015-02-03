@@ -8,7 +8,6 @@ import org.apache.commons.lang.StringUtils;
 
 import de.twenty11.skysail.api.features.ActivationStrategy;
 import de.twenty11.skysail.api.features.FeatureState;
-import de.twenty11.skysail.api.um.SkysailUser;
 
 public class UsernameActivationStrategy implements ActivationStrategy {
 
@@ -27,17 +26,17 @@ public class UsernameActivationStrategy implements ActivationStrategy {
     }
 
     @Override
-    public boolean isActive(FeatureState state, SkysailUser user) {
+    public boolean isActive(FeatureState state, String username) {
         String usersAsString = state.getConfig().get(PARAM_USERS);
         if (StringUtils.isBlank(usersAsString)) {
             return false;
         }
         List<String> users = splitAndTrim(usersAsString);
-        if (user == null || StringUtils.isBlank(user.getUsername())) {
+        if (StringUtils.isBlank(username)) {
             return false;
         }
         return users.stream().filter(u -> {
-            return u.equals(user.getUsername());
+            return u.equals(username);
         }).findFirst().isPresent();
     }
 

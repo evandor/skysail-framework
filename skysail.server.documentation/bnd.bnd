@@ -27,3 +27,4 @@ Include-Resource: resources, templates=src;recursive:=true;filter:=*.st|*.stg
 	
 Service-Component:  \
 	*
+Bundle-Name: SKYSAIL :: server :: documentation

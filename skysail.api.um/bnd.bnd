@@ -1,4 +1,4 @@
-Bundle-Version: 0.1.1.${tstamp}
+Bundle-Version: 0.2.0.${tstamp}
 Bundle-Name: SKYSAIL :: api :: um
 Bundle-Description: an incubator bundle for the skysail usermanagement API  (which will be moved \
 	to skysail.api once stable) together with default implementations
@@ -12,7 +12,8 @@ Bundle-Description: an incubator bundle for the skysail usermanagement API  (whi
 	osgi.core;version=5.0,\
 	org.restlet;version=${restlet.version},\
 	lombok;version=1.12,\
-	org.mockito.mockito-all;version=1.9
+	org.mockito.mockito-all;version=1.9,\
+	skysail.api;version=latest
 
 Service-Component:  \
 	*
@@ -56,6 +57,6 @@ Service-Component:  \
 	skysail.api.um;version=latest,\
 	slf4j.api;version='[1.7.7,1.7.8)'
 Private-Package:  \
-	io.skysail.um,\
-	io.skysail.um.api,\
-	io.skysail.um.jsonfiles
+	io.skysail.api.um.jsonfiles
+Export-Package:  \
+	io.skysail.api.um

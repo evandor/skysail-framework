@@ -10,7 +10,6 @@ import org.apache.commons.lang.StringUtils;
 
 import de.twenty11.skysail.api.features.ActivationStrategy;
 import de.twenty11.skysail.api.features.FeatureState;
-import de.twenty11.skysail.api.um.SkysailUser;
 
 @Slf4j
 public class ReleaseDateActivationStrategy implements ActivationStrategy {
@@ -30,7 +29,7 @@ public class ReleaseDateActivationStrategy implements ActivationStrategy {
     }
 
     @Override
-    public boolean isActive(FeatureState featureState, SkysailUser user) {
+    public boolean isActive(FeatureState featureState, String username) {
         String dateStr = featureState.getConfig().get(PARAM_DATE);
         if (dateStr == null || dateStr.trim().length() == 0) {
             return false;

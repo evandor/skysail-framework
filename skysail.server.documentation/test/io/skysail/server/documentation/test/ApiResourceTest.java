@@ -42,7 +42,7 @@ public class ApiResourceTest extends ListServerResourceTestBase {
 
     @Before
     public void setUp() {
-        super.setUp();
+        // super.setUp();
         Context context = new Context();
         resource.init(context, request, response);
         application.setContext(context);

@@ -112,6 +112,7 @@ public class HtmlConverterTest {
     }
 
     @Test
+    @Ignore
     public void second_score_method_returs_minus1() throws Exception {
         float score = htmlConverter.score(Mockito.mock(Representation.class), new VariantInfo(MediaType.TEXT_HTML),
                 Mockito.mock(Resource.class));

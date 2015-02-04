@@ -16,8 +16,6 @@ import org.osgi.framework.Version;
 import org.restlet.resource.Resource;
 import org.stringtemplate.v4.ST;
 
-import de.twenty11.skysail.server.core.restlet.EntityServerResource;
-
 public class STGroupBundleDirTest {
 
     private STGroupBundleDir groupBundleDir;
@@ -25,7 +23,7 @@ public class STGroupBundleDirTest {
     @Before
     public void setUp() throws Exception {
         Resource resource = Mockito.mock(Resource.class);
-        Mockito.doReturn(EntityServerResource.class).when(resource.getClass());
+        // Mockito.doReturn(EntityServerResource.class).when(resource.getClass());
         Bundle bundle = Mockito.mock(Bundle.class);
         Mockito.when(bundle.getSymbolicName()).thenReturn("symbolicName");
         Mockito.when(bundle.getVersion()).thenReturn(new Version("1.0.0"));
@@ -40,34 +38,9 @@ public class STGroupBundleDirTest {
     }
 
     @Test
-    public void testToString() throws Exception {
-
-    }
-
-    @Test
     public void unknown_InstanceOf_yields_null_value() throws Exception {
         ST instanceOf = groupBundleDir.getInstanceOf("unknown");
         assertThat(instanceOf, is(nullValue()));
-    }
-
-    @Test
-    public void testLoadString() throws Exception {
-
-    }
-
-    @Test
-    public void testLoadTemplateFile() throws Exception {
-
-    }
-
-    @Test
-    public void testGetUsedTemplates() throws Exception {
-
-    }
-
-    @Test
-    public void testAddUsedTemplates() throws Exception {
-
     }
 
 }

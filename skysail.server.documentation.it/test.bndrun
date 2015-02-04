@@ -91,5 +91,6 @@
 	skysail.server.db.orientdb;version=latest,\
 	skysail.server.ext.converter.st;version=latest,\
 	skysail.server.ext.i18n;version=latest,\
-	slf4j.api;version='[1.7.7,1.7.8)'
+	slf4j.api;version='[1.7.7,1.7.8)',\
+	de.twentyeleven.skysail.org.antlr.stringtemplate-osgi;version=4.0.8
 	

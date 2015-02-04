@@ -1,5 +1,5 @@
 Bundle-Name: SKYSAIL :: server :: documentation :: test
-Bundle-Version: 0.1.1.${tstamp}
+Bundle-Version: 0.1.2.${tstamp}
 
 Private-Package:  \
 	io.skysail.server.documentation.test

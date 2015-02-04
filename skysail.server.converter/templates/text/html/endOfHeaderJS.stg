@@ -1,0 +1,17 @@
+endOfHeaderJS(fields) ::= <<
+$if(fields.markdownEditor)$
+    <link id="data-uikit-theme" rel="stylesheet" href="/static/css/uikit/uikit.docs.min.css">
+    <link rel="stylesheet" href="/static/css/uikit/docs.css">
+    <!--  <link rel="stylesheet" href="http://getuikit.com/vendor/highlight/highlight.css"> -->
+   
+    <script src="/webapp/js/jquery/2.1.1/jquery.js"></script>
+    <script src="/static/js/uikit.min.js"></script>
+	<!-- <script src="http://getuikit.com/vendor/highlight/highlight.js"></script> -->        
+    <link rel="stylesheet" href="/static/css/codemirror/lib/codemirror.css">
+    <!-- <link rel="stylesheet" href="http://getuikit.com/vendor/codemirror/show-hint.css"> -->
+    
+    <script src="/static/js/codemirror/lib/codemirror.js"></script>
+    <script src="/static/js/marked.js"></script>
+    <script src="/static/js/htmleditor.js"></script>
+$endif$
+>>

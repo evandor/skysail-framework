@@ -1,0 +1,7 @@
+menuNav(list) ::= <<
+    $list:{ element | $linkAsButton(element,i)$}$
+>>
+
+linkAsButton(linkheader,i) ::= <<
+    <a href="$linkheader.uri$" class="btn btn-default btn-xs" role="button">$linkheader.title$</a>&nbsp;
+>>

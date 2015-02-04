@@ -1,0 +1,25 @@
+dropdownAdminNav(services) ::= <<
+    $if(services.adminMenuItems)$
+    <li class="dropdown">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown">Admin <span class="caret"></span></a>
+      <ul class="dropdown-menu" role="menu">
+        <li class="dropdown-header">General</li>
+        $services.adminMenuItems:{ item | $adminItem(item)$}$
+        <li class="dropdown-header">Interactivity</li>
+        $services.adminMenuItems:{ item | $adminInteractivityItem(item)$}$
+      </ul>
+    </li>
+    $endif$
+>>
+
+adminItem(item) ::= <<
+  $if(!item.adminMainMenuInteractivity)$
+    <li><a href='$item.link$'><img src='$item.applicationImage$' width='16px' alt=''>&nbsp;$item.name$</a></li>
+  $endif$
+>>
+
+adminInteractivityItem(item) ::= <<
+  $if(item.adminMainMenuInteractivity)$
+    <li><a href='$item.link$'><img src='$item.applicationImage$' width='16px' alt=''>&nbsp;$item.name$</a></li>
+  $endif$
+>>

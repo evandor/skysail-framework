@@ -1,0 +1,11 @@
+linkheader(list) ::= <<
+  <ul>
+    $list:{ element | $handleSingleLinkheader(element,i)$}$
+  </ul>
+>>
+
+handleSingleLinkheader(linkheader,i) ::= <<
+
+    <li>$i$. <a href='$linkheader.uri$'>$linkheader.title$</a> $linkheader.rel$</li>
+    
+>>

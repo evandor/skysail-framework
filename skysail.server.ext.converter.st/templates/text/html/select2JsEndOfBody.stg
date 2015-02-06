@@ -1,0 +1,16 @@
+select2JsEndOfBody(formFields) ::= <<
+<script type="text/javascript">
+  $formFields:{ formField | $handleSelect2JsEndOfBody(formField,i)$}$
+</script>
+>>
+
+handleSelect2JsEndOfBody(formField,i) ::= <<
+  $if(formField.tagsInputType)$
+    \$("form").submit(function() {
+        //var values = \$('#s2id_$formField.fieldAnnotation.name$').val();
+        //\$('#$formField.fieldAnnotation.name$').val(values);
+        return true;
+    });
+        
+  $endif$
+>>

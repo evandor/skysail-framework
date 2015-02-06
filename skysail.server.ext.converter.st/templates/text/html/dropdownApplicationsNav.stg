@@ -1,0 +1,15 @@
+dropdownApplicationsNav(services) ::= <<
+    $if(services.mainMenuItems)$
+    <li class="dropdown">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown">Applications <span class="caret"></span></a>
+      <ul class="dropdown-menu" role="menu">
+        $services.mainMenuItems:{ item | $menuItem(item)$}$
+      </ul>
+    </li>
+    $endif$
+>>
+
+menuItem(item) ::= <<
+        <li><a href='$item.link$'><img src='$item.applicationImage$' width='16px' alt=''>&nbsp;$item.name$</a></li>
+        
+>>

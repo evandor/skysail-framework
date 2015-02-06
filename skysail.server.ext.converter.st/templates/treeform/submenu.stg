@@ -1,0 +1,13 @@
+submenu(fields) ::= <<
+  $fields: { field | $submenuForField(field)$}$
+>>
+
+submenuForField(field) ::= <<
+	"create_$field.fieldAnnotation.name$" : {
+		"separator_after"	: true,
+		"label"				: "$field.fieldAnnotation.name$",
+		"action"			: function (data) {
+			window.location.href="13:0/routes/";
+		}
+	},
+>>

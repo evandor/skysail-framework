@@ -12,7 +12,8 @@ Test-Cases: \
 	osgi.core;version=5.0,\
 	com.springsource.org.junit;version=4.11,\
 	skysail.api.documentation;version=latest,\
-	org.restlet;version=${restlet.version}
+	org.restlet;version=${restlet.version},\
+	skysail.server.um.internal;version=0.0
 	
 	
 -runfw: org.apache.felix.framework;version='[4,5)'

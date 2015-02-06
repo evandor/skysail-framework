@@ -25,7 +25,6 @@ import de.twenty11.skysail.server.resources.DefaultResource;
 import de.twenty11.skysail.server.resources.LoginResource;
 import de.twenty11.skysail.server.resources.NameResource;
 import de.twenty11.skysail.server.resources.VersionResource;
-import de.twenty11.skysail.server.security.AuthenticationService;
 import de.twenty11.skysail.server.services.MenuItem;
 import de.twenty11.skysail.server.services.MenuItemProvider;
 import de.twenty11.skysail.server.services.ResourceBundleProvider;
@@ -85,11 +84,6 @@ public class SkysailRootApplication extends SkysailApplication implements Applic
         router.attach(new RouteBuilder(LARGETESTS_PATH, LargeTestsResource.class));
         router.attach(new RouteBuilder(LARGETESTS_PATH + "/{id}", LargeTestsFileResource.class));
         router.attach(new RouteBuilder("/_iframe", IFrameResource.class));
-    }
-
-    @Override
-    public void setAuthenticationService(AuthenticationService authService) {
-        super.setAuthenticationService(authService);
     }
 
     public Set<SkysailApplication> getApplications() {
@@ -165,7 +159,7 @@ public class SkysailRootApplication extends SkysailApplication implements Applic
     public UserManager getUserManager() {
         return userManager;
     }
-    
+
     public Set<MenuItem> getMenuItems() {
         return menuProviders.stream()//
                 .map(mp -> mp.getMenuEntries())//
@@ -196,7 +190,5 @@ public class SkysailRootApplication extends SkysailApplication implements Applic
     public void clearCache(String username) {
         getAuthenticationService().clearCache(username);
     }
-
-    
 
 }

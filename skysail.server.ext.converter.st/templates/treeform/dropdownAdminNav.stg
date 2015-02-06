@@ -1,0 +1,12 @@
+dropdownAdminNav(services) ::= <<
+    <li class="dropdown">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown">Admin <span class="caret"></span></a>
+      <ul class="dropdown-menu" role="menu">
+        $services.adminMenuItems:{ item | $adminItem(item)$}$
+      </ul>
+    </li>
+>>
+
+adminItem(item) ::= <<
+        <li><a href='$item.link$'>$item.name$</a></li>
+>>

@@ -1,6 +1,8 @@
 package de.twenty11.skysail.server.app;
 
 import io.skysail.api.documentation.DocumentationProvider;
+import io.skysail.api.um.AuthenticationService;
+import io.skysail.api.um.AuthorizationService;
 import io.skysail.api.validation.ValidatorService;
 
 import java.io.IOException;
@@ -59,7 +61,6 @@ import de.twenty11.skysail.api.favorites.FavoritesService;
 import de.twenty11.skysail.api.forms.Field;
 import de.twenty11.skysail.api.forms.HtmlPolicy;
 import de.twenty11.skysail.api.hooks.EntityChangedHookService;
-import de.twenty11.skysail.api.security.AuthorizationService;
 import de.twenty11.skysail.api.services.TranslationService;
 import de.twenty11.skysail.server.SkysailComponent;
 import de.twenty11.skysail.server.core.osgi.internal.filter.Blocker;
@@ -72,7 +73,6 @@ import de.twenty11.skysail.server.core.restlet.filter.OriginalRequestFilter;
 import de.twenty11.skysail.server.core.restlet.filter.Tracer;
 import de.twenty11.skysail.server.help.HelpTour;
 import de.twenty11.skysail.server.metrics.MetricsService;
-import de.twenty11.skysail.server.security.AuthenticationService;
 import de.twenty11.skysail.server.security.RolePredicate;
 import de.twenty11.skysail.server.security.SkysailRolesAuthorizer;
 import de.twenty11.skysail.server.services.EncryptorService;
@@ -386,7 +386,7 @@ public abstract class SkysailApplication extends Application implements Applicat
             logger.debug("setting authenticationGuard from authentication service");
             authenticationGuard = authenticationService.getAuthenticator(getContext());
         } else {
-            logger.debug("creating dummy authentication guard");
+            logger.warn("creating dummy authentication guard");
             authenticationGuard = new Authenticator(getContext()) {
                 @Override
                 protected boolean authenticate(Request request, Response response) {

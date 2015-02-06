@@ -1,6 +1,9 @@
 package de.twenty11.skysail.server.app;
 
 import io.skysail.api.documentation.DocumentationProvider;
+import io.skysail.api.um.AuthenticationService;
+import io.skysail.api.um.AuthorizationService;
+import io.skysail.api.um.UserManagementProvider;
 import io.skysail.api.validation.ValidatorService;
 
 import java.util.ArrayList;
@@ -20,14 +23,12 @@ import aQute.bnd.annotation.component.Component;
 import aQute.bnd.annotation.component.Reference;
 import de.twenty11.skysail.api.favorites.FavoritesService;
 import de.twenty11.skysail.api.hooks.EntityChangedHookService;
-import de.twenty11.skysail.api.security.AuthorizationService;
 import de.twenty11.skysail.api.services.TranslationService;
 import de.twenty11.skysail.server.SkysailComponent;
 import de.twenty11.skysail.server.core.restlet.SkysailServerResource;
 import de.twenty11.skysail.server.core.restlet.filter.HookFilter;
 import de.twenty11.skysail.server.metrics.MetricsService;
 import de.twenty11.skysail.server.metrics.MetricsServiceProvider;
-import de.twenty11.skysail.server.security.AuthenticationService;
 import de.twenty11.skysail.server.services.EncryptorService;
 import de.twenty11.skysail.server.services.RequestResponseMonitor;
 
@@ -67,6 +68,36 @@ public class ServiceList implements ServiceListProvider {
     private volatile Set<HookFilter> hookFilters = Collections.synchronizedSet(new HashSet<>());
     private volatile ValidatorService validatorService;
     private volatile DocumentationProvider documentationProvider;
+    private volatile UserManagementProvider userManagementProvider;
+
+    /** === UserManagementProvider Service ============================== */
+
+    @Reference(optional = false, dynamic = true, multiple = false)
+    public synchronized void setUserManagementProvider(UserManagementProvider provider) {
+        this.userManagementProvider = provider;
+        this.authenticationService = provider.getAuthenticationService();
+        this.authorizationService = provider.getAuthorizationService();
+        getSkysailApps().forEach(app -> app.setAuthenticationService(provider.getAuthenticationService()));
+        getSkysailApps().forEach(app -> app.setAuthorizationService(provider.getAuthorizationService()));
+    }
+
+    public void unsetUserManagementProvider(@SuppressWarnings("unused") UserManagementProvider provider) {
+        this.userManagementProvider = null;
+        getSkysailApps().forEach(app -> app.setAuthorizationService(null));
+        getSkysailApps().forEach(app -> app.setAuthorizationService(null));
+        this.authenticationService = null;
+        this.authorizationService = null;
+    }
+
+    @Override
+    public AuthenticationService getAuthenticationService() {
+        return authenticationService;
+    }
+
+    @Override
+    public AuthorizationService getAuthorizationService() {
+        return authorizationService;
+    }
 
     /** === ApplicationListProvider Service ============================== */
 
@@ -105,39 +136,35 @@ public class ServiceList implements ServiceListProvider {
 
     /** === Authentication Service ============================== */
 
-    @Reference(optional = true, dynamic = true, multiple = false)
-    public synchronized void setAuthenticationService(AuthenticationService service) {
-        this.authenticationService = service;
-        getSkysailApps().forEach(app -> app.setAuthenticationService(service));
-    }
-
-    public synchronized void unsetAuthenticationService(@SuppressWarnings("unused") AuthenticationService service) {
-        this.authenticationService = null;
-        getSkysailApps().forEach(a -> a.setAuthorizationService(null));
-    }
-
-    @Override
-    public AuthenticationService getAuthenticationService() {
-        return authenticationService;
-    }
+    // @Reference(optional = true, dynamic = true, multiple = false)
+    // public synchronized void setAuthenticationService(AuthenticationService
+    // service) {
+    // this.authenticationService = service;
+    // getSkysailApps().forEach(app -> app.setAuthenticationService(service));
+    // }
+    //
+    // public synchronized void
+    // unsetAuthenticationService(@SuppressWarnings("unused")
+    // AuthenticationService service) {
+    // this.authenticationService = null;
+    // getSkysailApps().forEach(a -> a.setAuthorizationService(null));
+    // }
 
     /** === Authorization Service ============================== */
 
-    @Reference(optional = true, dynamic = true, multiple = false)
-    public synchronized void setAuthorizationService(AuthorizationService service) {
-        this.authorizationService = service;
-        getSkysailApps().forEach(app -> app.setAuthorizationService(service));
-    }
-
-    public synchronized void unsetAuthorizationService(@SuppressWarnings("unused") AuthorizationService service) {
-        this.authorizationService = null;
-        getSkysailApps().forEach(a -> a.setAuthorizationService(null));
-    }
-
-    @Override
-    public AuthorizationService getAuthorizationService() {
-        return authorizationService;
-    }
+    // @Reference(optional = true, dynamic = true, multiple = false)
+    // public synchronized void setAuthorizationService(AuthorizationService
+    // service) {
+    // this.authorizationService = service;
+    // getSkysailApps().forEach(app -> app.setAuthorizationService(service));
+    // }
+    //
+    // public synchronized void
+    // unsetAuthorizationService(@SuppressWarnings("unused")
+    // AuthorizationService service) {
+    // this.authorizationService = null;
+    // getSkysailApps().forEach(a -> a.setAuthorizationService(null));
+    // }
 
     /** === Favorites Service ============================== */
 

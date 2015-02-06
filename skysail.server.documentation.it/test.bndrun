@@ -61,6 +61,7 @@
 	org.apache.commons.beanutils;version='[1.9.2,1.9.3)',\
 	org.apache.commons.collections;version='[3.2.1,3.2.2)',\
 	org.apache.commons.lang;version='[2.6.0,2.6.1)',\
+	org.apache.commons.lang3;version='[3.3.0,3.4)',\
 	org.apache.commons.logging;version='[1.1.3,1.1.4)',\
 	org.apache.felix.configadmin;version='[1.8.0,1.8.1)',\
 	org.apache.felix.fileinstall;version='[3.4.0,3.4.1)',\
@@ -85,8 +86,8 @@
 	skysail.api.documentation;version=latest,\
 	skysail.api.validation;version=latest,\
 	skysail.server;version=latest,\
-	skysail.server.um;version=latest,\
-	skysail.server.http;version=1.0.15,\
+	skysail.server.um.simple;version=latest,\
+	skysail.server.http;version=latest,\
 	skysail.server.documentation;version=latest,\
 	skysail.server.db.orientdb;version=latest,\
 	skysail.server.ext.converter.st;version=latest,\

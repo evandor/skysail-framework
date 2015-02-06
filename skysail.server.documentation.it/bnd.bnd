@@ -103,6 +103,7 @@ Test-Cases: \
 	osgi.enterprise;version='[4.2.0,4.2.1)',\
 	skysail.api;version=latest,\
 	skysail.api.documentation;version=latest,\
+	skysail.api.um;version=latest,\
 	skysail.api.validation;version=latest,\
 	skysail.server;version=latest,\
 	skysail.server.documentation;version=latest,\

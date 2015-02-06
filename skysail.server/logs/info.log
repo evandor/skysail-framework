@@ -1,8 +1,22 @@
 INFO  d.t.skysail.server.core.restlet.SkysailConverterHelper - initializing new converter 'ServerSentEventsConverter' with typesMatch '{text/event-stream=1.0}'
 INFO  io.skysail.server.db.DbConfigurations - activating DbConfigurations with config DbConfig(name=skysail, driver=, url=memory:website, username=)
+INFO  d.t.skysail.server.core.restlet.SkysailConverterHelper - initializing new converter 'ServerSentEventsConverter' with typesMatch '{text/event-stream=1.0}'
+INFO  io.skysail.server.db.DbConfigurations - activating DbConfigurations with config DbConfig(name=skysail, driver=, url=memory:website, username=)
 INFO  d.t.skysail.server.ext.converter.st.NoopConverter - de.twenty11.skysail.server.ext.converter.st.NoopConverter activated
 INFO  de.twenty11.skysail.server.app.SkysailApplication - Instanciating new Skysail Application 'WebappApplication'
 INFO  de.twenty11.skysail.server.app.SkysailApplication - Activating Application de.twenty11.skysail.server.ext.converter.st.WebappApplication
+INFO  de.twenty11.skysail.server.app.ApplicationList - ======================================================
+INFO  de.twenty11.skysail.server.app.ApplicationList - Adding application 'webapp'
+INFO  de.twenty11.skysail.server.app.ApplicationList - ======================================================
+INFO  de.twenty11.skysail.server.app.ApplicationList - ======================================================
+INFO  de.twenty11.skysail.server.app.ApplicationList - Adding application 'webapp'
+INFO  de.twenty11.skysail.server.app.ApplicationList - ======================================================
+INFO  d.t.skysail.server.ext.converter.st.NoopConverter - de.twenty11.skysail.server.ext.converter.st.NoopConverter activated
+INFO  de.twenty11.skysail.server.app.SkysailApplication - Instanciating new Skysail Application 'WebappApplication'
+INFO  de.twenty11.skysail.server.app.SkysailApplication - Activating Application de.twenty11.skysail.server.ext.converter.st.WebappApplication
+INFO  de.twenty11.skysail.server.app.ApplicationList - ======================================================
+INFO  de.twenty11.skysail.server.app.ApplicationList - Adding application 'webapp'
+INFO  de.twenty11.skysail.server.app.ApplicationList - ======================================================
 INFO  de.twenty11.skysail.server.app.ApplicationList - ======================================================
 INFO  de.twenty11.skysail.server.app.ApplicationList - Adding application 'webapp'
 INFO  de.twenty11.skysail.server.app.ApplicationList - ======================================================
@@ -13,11 +27,44 @@ INFO  io.skysail.server.http.HttpServer - ====================================
 INFO  io.skysail.server.http.HttpServer - Starting skysail server on port 2017
 INFO  io.skysail.server.http.HttpServer - ====================================
 INFO  io.skysail.server.http.HttpServer - 
+INFO  io.skysail.server.http.HttpServer - Activating io.skysail.server.http.HttpServer
 INFO  org.restlet - Starting the internal [HTTP/1.1] server on port 2017
+INFO  io.skysail.server.http.HttpServer - 
+INFO  io.skysail.server.http.HttpServer - ====================================
+INFO  io.skysail.server.http.HttpServer - Starting skysail server on port 2017
+INFO  io.skysail.server.http.HttpServer - ====================================
+INFO  io.skysail.server.http.HttpServer - 
 INFO  i.skysail.server.um.simple.web.SkysailWebSessionManager - creating new SkysailWebSessionManager
 INFO  de.twenty11.skysail.server.app.SkysailApplication - Instanciating new Skysail Application 'SkysailRootApplication'
 INFO  de.twenty11.skysail.server.app.ApplicationList - ======================================================
 INFO  de.twenty11.skysail.server.app.ApplicationList - Adding application 'root'
+INFO  de.twenty11.skysail.server.app.ApplicationList - ======================================================
+INFO  de.twenty11.skysail.server.app.ApplicationList - ======================================================
+INFO  de.twenty11.skysail.server.app.ApplicationList - Adding application 'root'
+INFO  de.twenty11.skysail.server.app.ApplicationList - ======================================================
+INFO  de.twenty11.skysail.server.app.SkysailApplication - Instanciating new Skysail Application 'SkysailRootApplication'
+INFO  de.twenty11.skysail.server.app.ApplicationList - ======================================================
+INFO  de.twenty11.skysail.server.app.ApplicationList - Adding application 'root'
+INFO  de.twenty11.skysail.server.app.ApplicationList - ======================================================
+INFO  de.twenty11.skysail.server.app.ApplicationList - ======================================================
+INFO  de.twenty11.skysail.server.app.ApplicationList - Adding application 'root'
+INFO  de.twenty11.skysail.server.app.ApplicationList - ======================================================
+INFO  i.skysail.server.um.simple.web.SkysailWebSessionManager - creating new SkysailWebSessionManager
+INFO  de.twenty11.skysail.server.app.SkysailApplication - Instanciating new Skysail Application 'PluginApplication'
+INFO  de.twenty11.skysail.server.app.SkysailApplication - Activating Application de.twenty11.skysail.server.app.plugins.PluginApplication
+INFO  de.twenty11.skysail.server.app.ApplicationList - ======================================================
+INFO  de.twenty11.skysail.server.app.ApplicationList - Adding application 'plugins'
+INFO  de.twenty11.skysail.server.app.ApplicationList - ======================================================
+INFO  de.twenty11.skysail.server.app.ApplicationList - ======================================================
+INFO  de.twenty11.skysail.server.app.ApplicationList - Adding application 'plugins'
+INFO  de.twenty11.skysail.server.app.ApplicationList - ======================================================
+INFO  de.twenty11.skysail.server.app.SkysailApplication - Instanciating new Skysail Application 'PluginApplication'
+INFO  de.twenty11.skysail.server.app.SkysailApplication - Activating Application de.twenty11.skysail.server.app.plugins.PluginApplication
+INFO  de.twenty11.skysail.server.app.ApplicationList - ======================================================
+INFO  de.twenty11.skysail.server.app.ApplicationList - Adding application 'plugins'
+INFO  de.twenty11.skysail.server.app.ApplicationList - ======================================================
+INFO  de.twenty11.skysail.server.app.ApplicationList - ======================================================
+INFO  de.twenty11.skysail.server.app.ApplicationList - Adding application 'plugins'
 INFO  de.twenty11.skysail.server.app.ApplicationList - ======================================================
 INFO  de.twenty11.skysail.server.app.SkysailApplication - creating new Router in de.twenty11.skysail.server.app.SkysailRootApplication
 INFO  de.twenty11.skysail.server.app.SkysailApplication - adding extensions to metadata service
@@ -26,16 +73,54 @@ INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/' -
 WARN  de.twenty11.skysail.server.core.restlet.SkysailRouter - please use a RouteBuilder to attach this resource: class de.twenty11.skysail.server.resources.DefaultResource
 INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/_login' -> Restlet 'Class'
 WARN  de.twenty11.skysail.server.core.restlet.SkysailRouter - please use a RouteBuilder to attach this resource: class de.twenty11.skysail.server.resources.LoginResource
-INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/_version' -> 'de.twenty11.skysail.server.security.AuthenticatedAuthorizer@48140a7b'
-INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/_name' -> 'de.twenty11.skysail.server.security.AuthenticatedAuthorizer@75e7dc2e'
+INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/_version' -> 'de.twenty11.skysail.server.security.AuthenticatedAuthorizer@642c490d'
+INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/_name' -> 'de.twenty11.skysail.server.security.AuthenticatedAuthorizer@431dda7b'
 INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/_about' -> Restlet 'Class'
 WARN  de.twenty11.skysail.server.core.restlet.SkysailRouter - please use a RouteBuilder to attach this resource: class de.twenty11.skysail.server.resources.AboutResource
-INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/_profile' -> 'de.twenty11.skysail.server.security.AuthenticatedAuthorizer@323e4088'
-INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/_profile/password/' -> 'de.twenty11.skysail.server.security.AuthenticatedAuthorizer@7a0b58fd'
-INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/_largetests' -> 'de.twenty11.skysail.server.security.AuthenticatedAuthorizer@4c133576'
-INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/_largetests/{id}' -> 'de.twenty11.skysail.server.security.AuthenticatedAuthorizer@58164ab7'
-INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/_iframe' -> 'de.twenty11.skysail.server.security.AuthenticatedAuthorizer@56ffd396'
+INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/_profile' -> 'de.twenty11.skysail.server.security.AuthenticatedAuthorizer@4955cca9'
+INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/_profile/password/' -> 'de.twenty11.skysail.server.security.AuthenticatedAuthorizer@1bf2ecbb'
+INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/_largetests' -> 'de.twenty11.skysail.server.security.AuthenticatedAuthorizer@649d76f9'
+INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/_largetests/{id}' -> 'de.twenty11.skysail.server.security.AuthenticatedAuthorizer@12629371'
+INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/_iframe' -> 'de.twenty11.skysail.server.security.AuthenticatedAuthorizer@74b03678'
+INFO  de.twenty11.skysail.server.app.SkysailApplication - creating new Router in de.twenty11.skysail.server.app.SkysailRootApplication
+INFO  de.twenty11.skysail.server.app.SkysailApplication - adding extensions to metadata service
+INFO  de.twenty11.skysail.server.app.SkysailApplication - adding protocols
+INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/' -> Restlet 'Class'
+WARN  de.twenty11.skysail.server.core.restlet.SkysailRouter - please use a RouteBuilder to attach this resource: class de.twenty11.skysail.server.resources.DefaultResource
+INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/_login' -> Restlet 'Class'
+WARN  de.twenty11.skysail.server.core.restlet.SkysailRouter - please use a RouteBuilder to attach this resource: class de.twenty11.skysail.server.resources.LoginResource
+INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/_version' -> 'de.twenty11.skysail.server.security.AuthenticatedAuthorizer@668b329c'
+INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/_name' -> 'de.twenty11.skysail.server.security.AuthenticatedAuthorizer@7436c583'
+INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/_about' -> Restlet 'Class'
+WARN  de.twenty11.skysail.server.core.restlet.SkysailRouter - please use a RouteBuilder to attach this resource: class de.twenty11.skysail.server.resources.AboutResource
+INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/_profile' -> 'de.twenty11.skysail.server.security.AuthenticatedAuthorizer@55e5c6ba'
+INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/_profile/password/' -> 'de.twenty11.skysail.server.security.AuthenticatedAuthorizer@74ab14ae'
+INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/_largetests' -> 'de.twenty11.skysail.server.security.AuthenticatedAuthorizer@3d120b86'
+INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/_largetests/{id}' -> 'de.twenty11.skysail.server.security.AuthenticatedAuthorizer@6466a42c'
+INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/_iframe' -> 'de.twenty11.skysail.server.security.AuthenticatedAuthorizer@419b7b42'
+INFO  de.twenty11.skysail.server.app.SkysailApplication - creating new Router in de.twenty11.skysail.server.app.plugins.PluginApplication
+INFO  de.twenty11.skysail.server.app.SkysailApplication - adding extensions to metadata service
+INFO  de.twenty11.skysail.server.app.SkysailApplication - adding protocols
+INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '' -> 'de.twenty11.skysail.server.security.AuthenticatedAuthorizer@176766f8'
+INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/' -> 'de.twenty11.skysail.server.security.AuthenticatedAuthorizer@670bd97f'
+INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/features/' -> 'de.twenty11.skysail.server.security.AuthenticatedAuthorizer@cbe8994'
+INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/features/{id}/installations/' -> 'de.twenty11.skysail.server.security.AuthenticatedAuthorizer@313ce71d'
+INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/obr/repos/' -> 'de.twenty11.skysail.server.security.AuthenticatedAuthorizer@36c58fdb'
+INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/obr/repos/{id}' -> 'de.twenty11.skysail.server.security.AuthenticatedAuthorizer@4c1c6a5c'
+INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/obr/resolver/' -> 'de.twenty11.skysail.server.security.AuthenticatedAuthorizer@56d3a2db'
+INFO  de.twenty11.skysail.server.app.SkysailApplication - creating new Router in de.twenty11.skysail.server.app.plugins.PluginApplication
+INFO  de.twenty11.skysail.server.app.SkysailApplication - adding extensions to metadata service
+INFO  de.twenty11.skysail.server.app.SkysailApplication - adding protocols
+INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '' -> 'de.twenty11.skysail.server.security.AuthenticatedAuthorizer@4833621'
+INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/' -> 'de.twenty11.skysail.server.security.AuthenticatedAuthorizer@650a95a'
+INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/features/' -> 'de.twenty11.skysail.server.security.AuthenticatedAuthorizer@6b1f36b8'
+INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/features/{id}/installations/' -> 'de.twenty11.skysail.server.security.AuthenticatedAuthorizer@68dc5f04'
+INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/obr/repos/' -> 'de.twenty11.skysail.server.security.AuthenticatedAuthorizer@d80b27b'
+INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/obr/repos/{id}' -> 'de.twenty11.skysail.server.security.AuthenticatedAuthorizer@452367d7'
+INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/obr/resolver/' -> 'de.twenty11.skysail.server.security.AuthenticatedAuthorizer@1536ae68'
 WARN  d.t.skysail.server.core.osgi.internal.EventHelper - eventAdmin is null, cannot fire Event
+INFO  i.s.s.um.simple.authentication.SimpleDelegatingVerifier - login event for user 'admin'
+INFO  i.s.s.um.simple.authentication.SimpleDelegatingVerifier - login event for user 'admin' successful
 INFO  d.t.skysail.server.core.restlet.ListServerResource - Request entry point: DefaultResource @Get('html|json|csv|treeform')
 INFO  d.t.skysail.server.core.restlet.ListServerResource - calling getEntities, media types '[text/html:1.0, application/xhtml+xml:1.0, application/xml:0.9, image/webp:1.0, */*:0.8]'
 INFO  d.t.s.server.core.restlet.filter.AbstractResourceFilter - next filter in chain: AddApiVersionHeader
@@ -47,12 +132,222 @@ INFO  d.t.s.server.core.restlet.filter.AbstractResourceFilter - next filter in c
 INFO  d.t.s.server.core.restlet.filter.AbstractResourceFilter - next filter in chain: SetExecutionTimeInResponseFilter
 INFO  d.t.s.server.core.restlet.filter.AbstractResourceFilter - next filter in chain: RedirectFilter
 INFO  d.t.s.server.ext.converter.st.StringTemplateConverter - converter 'StringTemplateConverter' matched '{text/html=0.95, treeform/*=1.0}' with threshold 0.95
+INFO  d.t.s.server.ext.converter.st.StringTemplateConverter - converter 'StringTemplateConverter' matched '{text/html=0.95, treeform/*=1.0}' with threshold 0.95
+INFO  d.t.s.server.ext.converter.st.StringTemplateConverter - converter 'StringTemplateConverter' matched '{text/html=0.95, treeform/*=1.0}' with threshold 0.95
+INFO  d.t.s.server.ext.converter.st.StringTemplateConverter - converter 'StringTemplateConverter' matched '{text/html=0.95, treeform/*=1.0}' with threshold 0.95
 INFO  de.twenty11.skysail.server.app.SourceWrapper - using converter 'ListSourceHtmlConverter' for EmptyList-Source: []
 INFO  d.t.s.server.ext.converter.st.StringTemplateConverter - reading templates from resource path '/templates/text/html'
-INFO  LogService - 2015-02-06	08:39:59	0:0:0:0:0:0:0:1	-	-	2017	GET	/	-	200	6076	0	482	http://localhost:2017	Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/40.0.2214.94 Safari/537.36	-
+INFO  LogService - 2015-02-06	14:57:41	0:0:0:0:0:0:0:1	admin	-	2017	GET	/	-	200	7558	0	702	http://localhost:2017	Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/40.0.2214.94 Safari/537.36	http://localhost:2017/_login
+WARN  d.t.skysail.server.core.osgi.internal.EventHelper - eventAdmin is null, cannot fire Event
+INFO  i.s.s.um.simple.authentication.SimpleDelegatingVerifier - login event for user 'admin'
 WARN  d.t.skysail.server.core.osgi.internal.EventHelper - eventAdmin is null, cannot fire Event
 WARN  d.t.skysail.server.core.osgi.internal.EventHelper - eventAdmin is null, cannot fire Event
-INFO  LogService - 2015-02-06	08:39:59	0:0:0:0:0:0:0:1	-	-	2017	GET	/static/js/jstree/jstree.min.js	-	404	439	0	3	http://localhost:2017	Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/40.0.2214.94 Safari/537.36	http://localhost:2017/
-INFO  LogService - 2015-02-06	08:39:59	0:0:0:0:0:0:0:1	-	-	2017	GET	/static/js/mousetrap/mousetrap.min.js	-	404	439	0	5	http://localhost:2017	Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/40.0.2214.94 Safari/537.36	http://localhost:2017/
+INFO  i.s.s.um.simple.authentication.SimpleDelegatingVerifier - login event for user 'admin'
+INFO  i.s.s.um.simple.authentication.SimpleDelegatingVerifier - login event for user 'admin'
+INFO  i.s.s.um.simple.authentication.SimpleDelegatingVerifier - login event for user 'admin' successful
+INFO  LogService - 2015-02-06	14:57:42	0:0:0:0:0:0:0:1	admin	-	2017	GET	/static/themes/jstree/style.min.css	-	404	439	0	339	http://localhost:2017	Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/40.0.2214.94 Safari/537.36	http://localhost:2017/
+INFO  i.s.s.um.simple.authentication.SimpleDelegatingVerifier - login event for user 'admin' successful
+INFO  LogService - 2015-02-06	14:57:42	0:0:0:0:0:0:0:1	admin	-	2017	GET	/static/js/jstree/jstree.min.js	-	404	439	0	341	http://localhost:2017	Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/40.0.2214.94 Safari/537.36	http://localhost:2017/
+INFO  i.s.s.um.simple.authentication.SimpleDelegatingVerifier - login event for user 'admin' successful
+INFO  LogService - 2015-02-06	14:57:42	0:0:0:0:0:0:0:1	admin	-	2017	GET	/static/js/mousetrap/mousetrap.min.js	-	404	439	0	348	http://localhost:2017	Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/40.0.2214.94 Safari/537.36	http://localhost:2017/
 WARN  d.t.skysail.server.core.osgi.internal.EventHelper - eventAdmin is null, cannot fire Event
-INFO  LogService - 2015-02-06	08:39:59	0:0:0:0:0:0:0:1	-	-	2017	GET	/static/themes/jstree/style.min.css	-	404	439	0	11	http://localhost:2017	Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/40.0.2214.94 Safari/537.36	http://localhost:2017/
+INFO  i.s.s.um.simple.authentication.SimpleDelegatingVerifier - login event for user 'admin'
+INFO  i.s.s.um.simple.authentication.SimpleDelegatingVerifier - login event for user 'admin' successful
+INFO  d.t.skysail.server.core.restlet.ListServerResource - Request entry point: DefaultResource @Get('html|json|csv|treeform')
+INFO  d.t.skysail.server.core.restlet.ListServerResource - calling getEntities, media types '[text/html:1.0, application/xhtml+xml:1.0, application/xml:0.9, image/webp:1.0, */*:0.8]'
+INFO  d.t.s.server.core.restlet.filter.AbstractResourceFilter - next filter in chain: AddApiVersionHeader
+INFO  d.t.s.server.core.restlet.filter.AbstractResourceFilter - next filter in chain: GetRequestPreFilterHook
+INFO  d.t.s.server.core.restlet.filter.AbstractResourceFilter - next filter in chain: AddRequestIdToResourceFilter
+INFO  d.t.s.server.core.restlet.filter.AbstractResourceFilter - next filter in chain: DataExtractingFilter
+INFO  d.t.s.server.core.restlet.filter.AbstractResourceFilter - next filter in chain: AddLinkheadersFilter
+INFO  d.t.s.server.core.restlet.filter.AbstractResourceFilter - next filter in chain: CheckFavoritesFilter
+INFO  d.t.s.server.core.restlet.filter.AbstractResourceFilter - next filter in chain: SetExecutionTimeInResponseFilter
+INFO  d.t.s.server.core.restlet.filter.AbstractResourceFilter - next filter in chain: RedirectFilter
+INFO  d.t.s.server.ext.converter.st.StringTemplateConverter - converter 'StringTemplateConverter' matched '{text/html=0.95, treeform/*=1.0}' with threshold 0.95
+INFO  d.t.s.server.ext.converter.st.StringTemplateConverter - converter 'StringTemplateConverter' matched '{text/html=0.95, treeform/*=1.0}' with threshold 0.95
+INFO  d.t.s.server.ext.converter.st.StringTemplateConverter - converter 'StringTemplateConverter' matched '{text/html=0.95, treeform/*=1.0}' with threshold 0.95
+INFO  d.t.s.server.ext.converter.st.StringTemplateConverter - converter 'StringTemplateConverter' matched '{text/html=0.95, treeform/*=1.0}' with threshold 0.95
+INFO  de.twenty11.skysail.server.app.SourceWrapper - using converter 'ListSourceHtmlConverter' for EmptyList-Source: []
+INFO  d.t.s.server.ext.converter.st.StringTemplateConverter - reading templates from resource path '/templates/text/html'
+INFO  LogService - 2015-02-06	14:57:46	0:0:0:0:0:0:0:1	admin	-	2017	GET	/	-	200	7558	0	385	http://localhost:2017	Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/40.0.2214.94 Safari/537.36	http://localhost:2017/
+WARN  d.t.skysail.server.core.osgi.internal.EventHelper - eventAdmin is null, cannot fire Event
+INFO  i.s.s.um.simple.authentication.SimpleDelegatingVerifier - login event for user 'admin'
+WARN  d.t.skysail.server.core.osgi.internal.EventHelper - eventAdmin is null, cannot fire Event
+WARN  d.t.skysail.server.core.osgi.internal.EventHelper - eventAdmin is null, cannot fire Event
+INFO  i.s.s.um.simple.authentication.SimpleDelegatingVerifier - login event for user 'admin'
+INFO  i.s.s.um.simple.authentication.SimpleDelegatingVerifier - login event for user 'admin'
+INFO  i.s.s.um.simple.authentication.SimpleDelegatingVerifier - login event for user 'admin' successful
+INFO  i.s.s.um.simple.authentication.SimpleDelegatingVerifier - login event for user 'admin' successful
+INFO  LogService - 2015-02-06	14:57:47	0:0:0:0:0:0:0:1	admin	-	2017	GET	/static/js/jstree/jstree.min.js	-	404	439	0	333	http://localhost:2017	Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/40.0.2214.94 Safari/537.36	http://localhost:2017/
+INFO  LogService - 2015-02-06	14:57:47	0:0:0:0:0:0:0:1	admin	-	2017	GET	/static/js/mousetrap/mousetrap.min.js	-	404	439	0	333	http://localhost:2017	Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/40.0.2214.94 Safari/537.36	http://localhost:2017/
+INFO  i.s.s.um.simple.authentication.SimpleDelegatingVerifier - login event for user 'admin' successful
+INFO  LogService - 2015-02-06	14:57:47	0:0:0:0:0:0:0:1	admin	-	2017	GET	/static/themes/jstree/style.min.css	-	404	439	0	338	http://localhost:2017	Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/40.0.2214.94 Safari/537.36	http://localhost:2017/
+INFO  de.twenty11.skysail.server.app.ApplicationList - ======================================================
+INFO  de.twenty11.skysail.server.app.ApplicationList - Removing application 'plugins'
+INFO  de.twenty11.skysail.server.app.ApplicationList - ======================================================
+INFO  de.twenty11.skysail.server.app.ApplicationList - ======================================================
+INFO  de.twenty11.skysail.server.app.ApplicationList - Removing application 'plugins'
+INFO  de.twenty11.skysail.server.app.ApplicationList - ======================================================
+INFO  de.twenty11.skysail.server.app.SkysailApplication - Deactivating Application de.twenty11.skysail.server.app.plugins.PluginApplication
+INFO  de.twenty11.skysail.server.app.SkysailApplication - daactivating UserManagementApplication #46069464
+INFO  de.twenty11.skysail.server.app.ApplicationList - ======================================================
+INFO  de.twenty11.skysail.server.app.ApplicationList - Removing application 'plugins'
+INFO  de.twenty11.skysail.server.app.ApplicationList - ======================================================
+INFO  de.twenty11.skysail.server.app.ApplicationList - ======================================================
+INFO  de.twenty11.skysail.server.app.ApplicationList - Removing application 'plugins'
+INFO  de.twenty11.skysail.server.app.ApplicationList - ======================================================
+INFO  de.twenty11.skysail.server.app.SkysailApplication - Deactivating Application de.twenty11.skysail.server.app.plugins.PluginApplication
+INFO  de.twenty11.skysail.server.app.SkysailApplication - daactivating UserManagementApplication #1886586910
+INFO  de.twenty11.skysail.server.app.SkysailApplication - Instanciating new Skysail Application 'PluginApplication'
+INFO  de.twenty11.skysail.server.app.SkysailApplication - Activating Application de.twenty11.skysail.server.app.plugins.PluginApplication
+INFO  de.twenty11.skysail.server.app.ApplicationList - ======================================================
+INFO  de.twenty11.skysail.server.app.ApplicationList - Adding application 'plugins'
+INFO  de.twenty11.skysail.server.app.ApplicationList - ======================================================
+INFO  de.twenty11.skysail.server.app.ApplicationList - ======================================================
+INFO  de.twenty11.skysail.server.app.ApplicationList - Adding application 'plugins'
+INFO  de.twenty11.skysail.server.app.ApplicationList - ======================================================
+INFO  de.twenty11.skysail.server.app.SkysailApplication - Instanciating new Skysail Application 'PluginApplication'
+INFO  de.twenty11.skysail.server.app.SkysailApplication - Activating Application de.twenty11.skysail.server.app.plugins.PluginApplication
+INFO  de.twenty11.skysail.server.app.ApplicationList - ======================================================
+INFO  de.twenty11.skysail.server.app.ApplicationList - Adding application 'plugins'
+INFO  de.twenty11.skysail.server.app.ApplicationList - ======================================================
+INFO  de.twenty11.skysail.server.app.ApplicationList - ======================================================
+INFO  de.twenty11.skysail.server.app.ApplicationList - Adding application 'plugins'
+INFO  de.twenty11.skysail.server.app.ApplicationList - ======================================================
+WARN  d.t.skysail.server.core.osgi.internal.EventHelper - eventAdmin is null, cannot fire Event
+INFO  LogService - 2015-02-06	14:57:56	0:0:0:0:0:0:0:1	-	-	2017	GET	/_logout	targetUri=/	303	0	0	3	http://localhost:2017	Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/40.0.2214.94 Safari/537.36	http://localhost:2017/
+WARN  d.t.skysail.server.core.osgi.internal.EventHelper - eventAdmin is null, cannot fire Event
+INFO  d.t.skysail.server.core.restlet.ListServerResource - Request entry point: DefaultResource @Get('html|json|csv|treeform')
+INFO  d.t.skysail.server.core.restlet.ListServerResource - calling getEntities, media types '[text/html:1.0, application/xhtml+xml:1.0, application/xml:0.9, image/webp:1.0, */*:0.8]'
+INFO  d.t.s.server.core.restlet.filter.AbstractResourceFilter - next filter in chain: AddApiVersionHeader
+INFO  d.t.s.server.core.restlet.filter.AbstractResourceFilter - next filter in chain: GetRequestPreFilterHook
+INFO  d.t.s.server.core.restlet.filter.AbstractResourceFilter - next filter in chain: AddRequestIdToResourceFilter
+INFO  d.t.s.server.core.restlet.filter.AbstractResourceFilter - next filter in chain: DataExtractingFilter
+INFO  d.t.s.server.core.restlet.filter.AbstractResourceFilter - next filter in chain: AddLinkheadersFilter
+INFO  d.t.s.server.core.restlet.filter.AbstractResourceFilter - next filter in chain: CheckFavoritesFilter
+INFO  d.t.s.server.core.restlet.filter.AbstractResourceFilter - next filter in chain: SetExecutionTimeInResponseFilter
+INFO  d.t.s.server.core.restlet.filter.AbstractResourceFilter - next filter in chain: RedirectFilter
+WARN  de.twenty11.skysail.server.core.restlet.ServerLink - problem with linkheader for resource PluginRootResource; no routeBuilder was found.
+WARN  de.twenty11.skysail.server.core.restlet.ServerLink - problem with linkheader for resource PluginRootResource; no routeBuilder was found.
+INFO  d.t.s.server.ext.converter.st.StringTemplateConverter - converter 'StringTemplateConverter' matched '{text/html=0.95, treeform/*=1.0}' with threshold 0.95
+INFO  d.t.s.server.ext.converter.st.StringTemplateConverter - converter 'StringTemplateConverter' matched '{text/html=0.95, treeform/*=1.0}' with threshold 0.95
+INFO  d.t.s.server.ext.converter.st.StringTemplateConverter - converter 'StringTemplateConverter' matched '{text/html=0.95, treeform/*=1.0}' with threshold 0.95
+INFO  d.t.s.server.ext.converter.st.StringTemplateConverter - converter 'StringTemplateConverter' matched '{text/html=0.95, treeform/*=1.0}' with threshold 0.95
+INFO  de.twenty11.skysail.server.app.SourceWrapper - using converter 'ListSourceHtmlConverter' for EmptyList-Source: []
+INFO  d.t.s.server.ext.converter.st.StringTemplateConverter - reading templates from resource path '/templates/text/html'
+WARN  de.twenty11.skysail.server.core.restlet.ServerLink - problem with linkheader for resource PluginRootResource; no routeBuilder was found.
+WARN  de.twenty11.skysail.server.core.restlet.ServerLink - problem with linkheader for resource PluginRootResource; no routeBuilder was found.
+WARN  de.twenty11.skysail.server.core.restlet.ServerLink - problem with linkheader for resource PluginRootResource; no routeBuilder was found.
+WARN  de.twenty11.skysail.server.core.restlet.ServerLink - problem with linkheader for resource PluginRootResource; no routeBuilder was found.
+WARN  de.twenty11.skysail.server.core.restlet.ServerLink - problem with linkheader for resource PluginRootResource; no routeBuilder was found.
+WARN  de.twenty11.skysail.server.core.restlet.ServerLink - problem with linkheader for resource PluginRootResource; no routeBuilder was found.
+WARN  de.twenty11.skysail.server.core.restlet.ServerLink - problem with linkheader for resource PluginRootResource; no routeBuilder was found.
+WARN  de.twenty11.skysail.server.core.restlet.ServerLink - problem with linkheader for resource PluginRootResource; no routeBuilder was found.
+WARN  de.twenty11.skysail.server.core.restlet.ServerLink - problem with linkheader for resource PluginRootResource; no routeBuilder was found.
+WARN  de.twenty11.skysail.server.core.restlet.ServerLink - problem with linkheader for resource PluginRootResource; no routeBuilder was found.
+WARN  de.twenty11.skysail.server.core.restlet.ServerLink - problem with linkheader for resource PluginRootResource; no routeBuilder was found.
+WARN  de.twenty11.skysail.server.core.restlet.ServerLink - problem with linkheader for resource PluginRootResource; no routeBuilder was found.
+INFO  LogService - 2015-02-06	14:57:56	0:0:0:0:0:0:0:1	-	-	2017	GET	/	-	200	6427	0	49	http://localhost:2017	Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/40.0.2214.94 Safari/537.36	http://localhost:2017/
+WARN  d.t.skysail.server.core.osgi.internal.EventHelper - eventAdmin is null, cannot fire Event
+INFO  LogService - 2015-02-06	14:57:57	0:0:0:0:0:0:0:1	-	-	2017	GET	/static/themes/jstree/style.min.css	-	404	439	0	1	http://localhost:2017	Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/40.0.2214.94 Safari/537.36	http://localhost:2017/
+WARN  d.t.skysail.server.core.osgi.internal.EventHelper - eventAdmin is null, cannot fire Event
+WARN  d.t.skysail.server.core.osgi.internal.EventHelper - eventAdmin is null, cannot fire Event
+INFO  LogService - 2015-02-06	14:57:57	0:0:0:0:0:0:0:1	-	-	2017	GET	/static/js/mousetrap/mousetrap.min.js	-	404	439	0	1	http://localhost:2017	Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/40.0.2214.94 Safari/537.36	http://localhost:2017/
+INFO  LogService - 2015-02-06	14:57:57	0:0:0:0:0:0:0:1	-	-	2017	GET	/static/js/jstree/jstree.min.js	-	404	439	0	3	http://localhost:2017	Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/40.0.2214.94 Safari/537.36	http://localhost:2017/
+WARN  d.t.skysail.server.core.osgi.internal.EventHelper - eventAdmin is null, cannot fire Event
+INFO  d.t.s.server.ext.converter.st.StringTemplateConverter - converter 'StringTemplateConverter' matched '{text/html=0.95, treeform/*=1.0}' with threshold 0.95
+INFO  d.t.s.server.ext.converter.st.StringTemplateConverter - converter 'StringTemplateConverter' matched '{text/html=0.95, treeform/*=1.0}' with threshold 0.95
+INFO  d.t.s.server.ext.converter.st.StringTemplateConverter - converter 'StringTemplateConverter' matched '{text/html=0.95, treeform/*=1.0}' with threshold 0.95
+INFO  d.t.s.server.ext.converter.st.StringTemplateConverter - converter 'StringTemplateConverter' matched '{text/html=0.95, treeform/*=1.0}' with threshold 0.95
+INFO  de.twenty11.skysail.server.app.SourceWrapper - using converter 'NoopConverter' for FormResponse-Source: FormResponse: 
+INFO  d.t.s.server.ext.converter.st.StringTemplateConverter - reading templates from resource path '/templates/text/html'
+WARN  de.twenty11.skysail.server.core.restlet.ServerLink - problem with linkheader for resource PluginRootResource; no routeBuilder was found.
+WARN  de.twenty11.skysail.server.core.restlet.ServerLink - problem with linkheader for resource PluginRootResource; no routeBuilder was found.
+WARN  de.twenty11.skysail.server.core.restlet.ServerLink - problem with linkheader for resource PluginRootResource; no routeBuilder was found.
+WARN  de.twenty11.skysail.server.core.restlet.ServerLink - problem with linkheader for resource PluginRootResource; no routeBuilder was found.
+WARN  de.twenty11.skysail.server.core.restlet.ServerLink - problem with linkheader for resource PluginRootResource; no routeBuilder was found.
+WARN  de.twenty11.skysail.server.core.restlet.ServerLink - problem with linkheader for resource PluginRootResource; no routeBuilder was found.
+WARN  de.twenty11.skysail.server.core.restlet.ServerLink - problem with linkheader for resource PluginRootResource; no routeBuilder was found.
+WARN  de.twenty11.skysail.server.core.restlet.ServerLink - problem with linkheader for resource PluginRootResource; no routeBuilder was found.
+INFO  LogService - 2015-02-06	14:57:58	0:0:0:0:0:0:0:1	-	-	2017	GET	/_login	-	200	8691	0	121	http://localhost:2017	Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/40.0.2214.94 Safari/537.36	http://localhost:2017/
+WARN  d.t.skysail.server.core.osgi.internal.EventHelper - eventAdmin is null, cannot fire Event
+INFO  LogService - 2015-02-06	14:57:58	0:0:0:0:0:0:0:1	-	-	2017	GET	/static/themes/jstree/style.min.css	-	404	439	0	1	http://localhost:2017	Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/40.0.2214.94 Safari/537.36	http://localhost:2017/_login
+WARN  d.t.skysail.server.core.osgi.internal.EventHelper - eventAdmin is null, cannot fire Event
+INFO  LogService - 2015-02-06	14:57:58	0:0:0:0:0:0:0:1	-	-	2017	GET	/static/js/mousetrap/mousetrap.min.js	-	404	439	0	1	http://localhost:2017	Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/40.0.2214.94 Safari/537.36	http://localhost:2017/_login
+WARN  d.t.skysail.server.core.osgi.internal.EventHelper - eventAdmin is null, cannot fire Event
+INFO  LogService - 2015-02-06	14:57:58	0:0:0:0:0:0:0:1	-	-	2017	GET	/static/js/jstree/jstree.min.js	-	404	439	0	1	http://localhost:2017	Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/40.0.2214.94 Safari/537.36	http://localhost:2017/_login
+WARN  d.t.skysail.server.core.osgi.internal.EventHelper - eventAdmin is null, cannot fire Event
+INFO  i.s.s.um.simple.authentication.SimpleDelegatingVerifier - login event for user 'admin'
+INFO  i.s.s.um.simple.authentication.SimpleDelegatingVerifier - login event for user 'admin' successful
+INFO  d.t.s.server.core.restlet.PostEntityServerResource - Request entry point: LoginResource @Post('x-www-form-urlencoded:html|json|xml')
+INFO  d.t.s.server.core.restlet.PostEntityServerResource - calling post(Form), media types '[text/html:1.0, application/xhtml+xml:1.0, application/xml:0.9, image/webp:1.0, */*:0.8]'
+INFO  d.t.s.server.core.restlet.filter.AbstractResourceFilter - next filter in chain: AddRequestIdToResourceFilter
+INFO  d.t.s.server.core.restlet.filter.AbstractResourceFilter - next filter in chain: CheckInvalidInputFilter
+INFO  d.t.s.server.core.restlet.filter.AbstractResourceFilter - next filter in chain: FormDataExtractingFilter
+INFO  d.t.s.server.core.restlet.filter.AbstractResourceFilter - next filter in chain: CheckBusinessViolationsFilter
+INFO  d.t.s.server.core.restlet.filter.AbstractResourceFilter - next filter in chain: OptionalEncryptionFilter
+INFO  d.t.s.server.core.restlet.filter.AbstractResourceFilter - next filter in chain: PersistEntityFilter
+INFO  d.t.s.server.core.restlet.filter.AbstractResourceFilter - next filter in chain: EntityWasAddedFilter
+INFO  d.t.s.server.core.restlet.filter.AbstractResourceFilter - next filter in chain: AddLinkheadersFilter
+INFO  d.t.s.server.core.restlet.filter.AbstractResourceFilter - next filter in chain: PostRedirectGetFilter
+INFO  d.t.s.server.ext.converter.st.StringTemplateConverter - converter 'StringTemplateConverter' matched '{text/html=0.95, treeform/*=1.0}' with threshold 0.95
+INFO  d.t.s.server.ext.converter.st.StringTemplateConverter - converter 'StringTemplateConverter' matched '{text/html=0.95, treeform/*=1.0}' with threshold 0.95
+INFO  d.t.s.server.ext.converter.st.StringTemplateConverter - converter 'StringTemplateConverter' matched '{text/html=0.95, treeform/*=1.0}' with threshold 0.95
+INFO  d.t.s.server.ext.converter.st.StringTemplateConverter - converter 'StringTemplateConverter' matched '{text/html=0.95, treeform/*=1.0}' with threshold 0.95
+INFO  de.twenty11.skysail.server.app.SourceWrapper - using converter 'NoopConverter' for Credentials-Source: de.twenty11.skysail.server.domain.Credentials@2e6c9a88
+INFO  d.t.s.server.ext.converter.st.StringTemplateConverter - reading templates from resource path '/templates/text/html'
+WARN  de.twenty11.skysail.server.core.restlet.ServerLink - problem with linkheader for resource PluginRootResource; no routeBuilder was found.
+WARN  de.twenty11.skysail.server.core.restlet.ServerLink - problem with linkheader for resource PluginRootResource; no routeBuilder was found.
+WARN  de.twenty11.skysail.server.core.restlet.ServerLink - problem with linkheader for resource PluginRootResource; no routeBuilder was found.
+WARN  de.twenty11.skysail.server.core.restlet.ServerLink - problem with linkheader for resource PluginRootResource; no routeBuilder was found.
+WARN  de.twenty11.skysail.server.core.restlet.ServerLink - problem with linkheader for resource PluginRootResource; no routeBuilder was found.
+WARN  de.twenty11.skysail.server.core.restlet.ServerLink - problem with linkheader for resource PluginRootResource; no routeBuilder was found.
+WARN  de.twenty11.skysail.server.core.restlet.ServerLink - problem with linkheader for resource PluginRootResource; no routeBuilder was found.
+WARN  de.twenty11.skysail.server.core.restlet.ServerLink - problem with linkheader for resource PluginRootResource; no routeBuilder was found.
+WARN  de.twenty11.skysail.server.core.restlet.ServerLink - problem with linkheader for resource PluginRootResource; no routeBuilder was found.
+WARN  de.twenty11.skysail.server.core.restlet.ServerLink - problem with linkheader for resource PluginRootResource; no routeBuilder was found.
+WARN  de.twenty11.skysail.server.core.restlet.ServerLink - problem with linkheader for resource PluginRootResource; no routeBuilder was found.
+WARN  de.twenty11.skysail.server.core.restlet.ServerLink - problem with linkheader for resource PluginRootResource; no routeBuilder was found.
+WARN  de.twenty11.skysail.server.core.restlet.ServerLink - problem with linkheader for resource PluginRootResource; no routeBuilder was found.
+WARN  de.twenty11.skysail.server.core.restlet.ServerLink - problem with linkheader for resource PluginRootResource; no routeBuilder was found.
+WARN  de.twenty11.skysail.server.core.restlet.ServerLink - problem with linkheader for resource PluginRootResource; no routeBuilder was found.
+WARN  de.twenty11.skysail.server.core.restlet.ServerLink - problem with linkheader for resource PluginRootResource; no routeBuilder was found.
+INFO  LogService - 2015-02-06	14:57:59	0:0:0:0:0:0:0:1	admin	-	2017	POST	/_login	-	201	7843	45	469	http://localhost:2017	Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/40.0.2214.94 Safari/537.36	http://localhost:2017/_login
+WARN  d.t.skysail.server.core.osgi.internal.EventHelper - eventAdmin is null, cannot fire Event
+INFO  i.s.s.um.simple.authentication.SimpleDelegatingVerifier - login event for user 'admin'
+WARN  d.t.skysail.server.core.osgi.internal.EventHelper - eventAdmin is null, cannot fire Event
+WARN  d.t.skysail.server.core.osgi.internal.EventHelper - eventAdmin is null, cannot fire Event
+INFO  i.s.s.um.simple.authentication.SimpleDelegatingVerifier - login event for user 'admin'
+INFO  i.s.s.um.simple.authentication.SimpleDelegatingVerifier - login event for user 'admin'
+WARN  d.t.skysail.server.core.osgi.internal.EventHelper - eventAdmin is null, cannot fire Event
+INFO  i.s.s.um.simple.authentication.SimpleDelegatingVerifier - login event for user 'admin'
+INFO  i.s.s.um.simple.authentication.SimpleDelegatingVerifier - login event for user 'admin' successful
+INFO  LogService - 2015-02-06	14:57:59	0:0:0:0:0:0:0:1	admin	-	2017	GET	/static/js/mousetrap/mousetrap.min.js	-	404	439	0	343	http://localhost:2017	Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/40.0.2214.94 Safari/537.36	http://localhost:2017/_login
+INFO  i.s.s.um.simple.authentication.SimpleDelegatingVerifier - login event for user 'admin' successful
+INFO  LogService - 2015-02-06	14:57:59	0:0:0:0:0:0:0:1	admin	-	2017	GET	/static/img/silk/plugin.png	-	404	439	0	344	http://localhost:2017	Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/40.0.2214.94 Safari/537.36	http://localhost:2017/_login
+INFO  i.s.s.um.simple.authentication.SimpleDelegatingVerifier - login event for user 'admin' successful
+INFO  LogService - 2015-02-06	14:57:59	0:0:0:0:0:0:0:1	admin	-	2017	GET	/static/js/jstree/jstree.min.js	-	404	439	0	350	http://localhost:2017	Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/40.0.2214.94 Safari/537.36	http://localhost:2017/_login
+INFO  i.s.s.um.simple.authentication.SimpleDelegatingVerifier - login event for user 'admin' successful
+INFO  LogService - 2015-02-06	14:57:59	0:0:0:0:0:0:0:1	admin	-	2017	GET	/static/themes/jstree/style.min.css	-	404	439	0	359	http://localhost:2017	Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/40.0.2214.94 Safari/537.36	http://localhost:2017/_login
+WARN  d.t.skysail.server.core.osgi.internal.EventHelper - eventAdmin is null, cannot fire Event
+INFO  i.s.s.um.simple.authentication.SimpleDelegatingVerifier - login event for user 'admin'
+INFO  i.s.s.um.simple.authentication.SimpleDelegatingVerifier - login event for user 'admin' successful
+INFO  LogService - 2015-02-06	14:58:00	0:0:0:0:0:0:0:1	admin	-	2017	GET	/static/img/silk/plugin.png	-	404	439	0	321	http://localhost:2017	Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/40.0.2214.94 Safari/537.36	http://localhost:2017/_login
+INFO  de.twenty11.skysail.server.app.SkysailApplication - creating new Router in de.twenty11.skysail.server.app.plugins.PluginApplication
+INFO  de.twenty11.skysail.server.app.SkysailApplication - adding extensions to metadata service
+INFO  de.twenty11.skysail.server.app.SkysailApplication - adding protocols
+INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '' -> 'de.twenty11.skysail.server.security.AuthenticatedAuthorizer@448d8a6e'
+INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/' -> 'de.twenty11.skysail.server.security.AuthenticatedAuthorizer@5744b39a'
+INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/features/' -> 'de.twenty11.skysail.server.security.AuthenticatedAuthorizer@364d0a69'
+INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/features/{id}/installations/' -> 'de.twenty11.skysail.server.security.AuthenticatedAuthorizer@de445ba'
+INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/obr/repos/' -> 'de.twenty11.skysail.server.security.AuthenticatedAuthorizer@14312e34'
+INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/obr/repos/{id}' -> 'de.twenty11.skysail.server.security.AuthenticatedAuthorizer@331c1109'
+INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/obr/resolver/' -> 'de.twenty11.skysail.server.security.AuthenticatedAuthorizer@6fab9fbc'
+WARN  d.t.skysail.server.core.osgi.internal.EventHelper - eventAdmin is null, cannot fire Event
+INFO  i.s.s.um.simple.authentication.SimpleDelegatingVerifier - login event for user 'admin'
+INFO  i.s.s.um.simple.authentication.SimpleDelegatingVerifier - login event for user 'admin' successful
+INFO  LogService - 2015-02-06	14:58:02	0:0:0:0:0:0:0:1	admin	-	2017	GET	/plugins	-	403	445	0	329	http://localhost:2017	Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/40.0.2214.94 Safari/537.36	http://localhost:2017/_login
+WARN  d.t.skysail.server.core.osgi.internal.EventHelper - eventAdmin is null, cannot fire Event
+INFO  i.s.s.um.simple.authentication.SimpleDelegatingVerifier - login event for user 'admin'
+INFO  i.s.s.um.simple.authentication.SimpleDelegatingVerifier - login event for user 'admin' successful
+INFO  LogService - 2015-02-06	14:58:11	0:0:0:0:0:0:0:1	admin	-	2017	GET	/plugins	-	403	445	0	320	http://localhost:2017	Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/40.0.2214.94 Safari/537.36	-

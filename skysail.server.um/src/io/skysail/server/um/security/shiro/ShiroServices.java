@@ -1,7 +1,6 @@
 package io.skysail.server.um.security.shiro;
 
 import io.skysail.api.um.AuthenticationService;
-import io.skysail.api.um.User;
 import io.skysail.server.um.security.shiro.mgt.SkysailWebSecurityManager;
 import io.skysail.server.um.security.shiro.restlet.ShiroDelegationAuthenticator;
 
@@ -13,10 +12,7 @@ import lombok.extern.slf4j.Slf4j;
 
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.SimplePrincipalMap;
-import org.apache.shiro.subject.Subject;
 import org.restlet.Context;
-import org.restlet.Request;
-import org.restlet.Response;
 import org.restlet.security.Authenticator;
 
 import de.twenty11.skysail.server.core.db.DbService;
@@ -45,33 +41,9 @@ public class ShiroServices implements AuthenticationService {
     }
 
     @Override
-    public void logout() {
-        Subject subject = SecurityUtils.getSubject();
-        if (subject.isAuthenticated()) {
-            subject.logout();
-        }
-    }
-
-    // @Override
-    // public boolean validateAuthToken(UsernamePasswordToken authToken) {
-    // AuthenticationInfo authenticationInfo =
-    // authorizingRealm.getAuthenticationInfo(authToken);
-    // return false;
-    // }
-
-    @Override
     public Authenticator getAuthenticator(Context context) {
         // https://github.com/qwerky/DataVault/blob/master/src/qwerky/tools/datavault/DataVault.java
         return new ShiroDelegationAuthenticator(context, SKYSAIL_SHIRO_DB_REALM, "thisHasToBecomeM".getBytes());
-    }
-
-    @Override
-    public User getCurrentUser() {
-        Subject subject = SecurityUtils.getSubject();
-        if (subject == null) {
-            return null;
-        }
-        return new User((String) subject.getPrincipal(), null);
     }
 
     @Override
@@ -81,12 +53,6 @@ public class ShiroServices implements AuthenticationService {
         principals.put(username, "");
         principalsMap.put(SkysailAuthorizingRealm.class.getSimpleName(), username);
         authorizingRealm.clearCache(principalsMap);
-    }
-
-    @Override
-    public boolean authenticate(Request request, Response response) {
-        // TODO Auto-generated method stub
-        return false;
     }
 
 }

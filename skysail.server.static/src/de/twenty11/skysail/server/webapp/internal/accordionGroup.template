@@ -1,0 +1,11 @@
+					<div class="accordion-group">
+						<div class="accordion-heading">
+							${hlink}&nbsp;<a class="accordion-toggle" data-toggle="collapse" style="display:inline;"
+								data-parent="#accordion2" href="#collapse${index}"><i class="icon-zoom-in"></i></a>&nbsp;
+						</div>
+						<div id="collapse${index}" class="accordion-body collapse">
+							<div class="accordion-inner">
+									${inner}
+							</div>
+						</div> 
+					</div>

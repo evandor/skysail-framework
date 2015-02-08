@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Skysail - a business server</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="">
+	<meta name="author" content="">
+
+	<link href="/../static/css/bootstrap.css" rel="stylesheet">
+	<link href="/../static/css/bootstrap-responsive.css" rel="stylesheet">
+	<link href="/../static/js/joyride/joyride-2.1.css" rel="stylesheet">
+
+	<script>
+
+		var parameters = function () {
+		    var query_string = {};
+		    var query = window.location.search.substring(1);
+		    var vars = query.split("&");
+		    for (var i=0;i<vars.length;i++) {
+		        var pair = vars[i].split("=");
+    		    if (typeof query_string[pair[0]] === "undefined") {
+	        	    query_string[pair[0]] = pair[1];
+   		        } else if (typeof query_string[pair[0]] === "string") {
+		            var arr = [ query_string[pair[0]], pair[1] ];
+		            query_string[pair[0]] = arr;
+    		    } else {
+	                query_string[pair[0]].push(pair[1]);
+		        }
+		    }   
+		    return query_string;
+		} ();
+
+		function first() {
+			location.href="?frame=1";
+		}
+		function previous() {
+			nextFrame = -1 + parseInt(parameters.frame);
+			location.href="?frame=" + nextFrame;
+		}
+		function next() {
+			nextFrame = 1 + parseInt(parameters.frame);
+			location.href="?frame=" + nextFrame;
+		}
+
+		function play() {
+			var firstFrame = parseInt(parameters.frame);
+			if (isNaN(firstFrame)) {
+				firstFrame = 1;
+			}
+			nextFrame = 1 + firstFrame;
+			location.href="?play=true&frame=" + nextFrame;
+		}
+
+	</script>
+
+</head>
+
+<body>
+
+	<style>
+		
+	</style>
+
+    <div id="graph" class="aGraph" style="position:absolute;top:30px;left:0; float:left; border: 1px solid blue;"></div>
+    <div>
+    <a href="#" onClick="javascript:first();">&lt;&lt;</a>
+    <a href="#" onClick="javascript:previous();">&lt;</a>
+    <a href="#" onClick="javascript:next();">&gt;</a>
+    <a href="#" onClick="javascript:play();">play</a>
+    </div>
+
+	<link href="/home/carsten/install/novus-nvd3/src/nv.d3.css" rel="stylesheet" type="text/css">
+
+ 	<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/d3/3.3.3/d3.js" type="text/javascript"></script>
+	<script type="text/javascript" src="/../static/js/jquery-1.10.1.js"></script>
+
+	<script type="text/javascript">
+
+		JSONData2 = [
+{"type": "bl", "tstamp": 6572515180668, "method": "start","bsn": "ch.qos.logback.classic"},
+{"type": "bl", "tstamp": 6576589387127, "method": "getState","bsn": "ch.qos.logback.classic", "state": 8},
+{"type": "bl", "tstamp": 6577539915423, "method": "start","bsn": "ch.qos.logback.core"},
+{"type": "bl", "tstamp": 6579547533710, "method": "getState","bsn": "ch.qos.logback.core", "state": 8},
+{"type": "bl", "tstamp": 6579548095532, "method": "start","bsn": "classmate"},
+{"type": "bl", "tstamp": 6579548848238, "method": "getState","bsn": "classmate", "state": 8},
+{"type": "bl", "tstamp": 6579549165593, "method": "start","bsn": "com.fasterxml.jackson.core.jackson-annotations"},
+{"type": "bl", "tstamp": 6579549754915, "method": "getState","bsn": "com.fasterxml.jackson.core.jackson-annotations", "state": 8},
+{"type": "bl", "tstamp": 6579550067421, "method": "start","bsn": "com.google.guava"},
+{"type": "bl", "tstamp": 6579550649929, "method": "getState","bsn": "com.google.guava", "state": 8},
+{"type": "bl", "tstamp": 6579550955915, "method": "start","bsn": "com.jcraft.jsch"},
+{"type": "bl", "tstamp": 6579551523833, "method": "getState","bsn": "com.jcraft.jsch", "state": 8},
+{"type": "bl", "tstamp": 6579551854146, "method": "start","bsn": "de.twentyeleven.skysail.com.googlecode.stateless4j-osgi"},
+{"type": "bl", "tstamp": 6579552644631, "method": "getState","bsn": "de.twentyeleven.skysail.com.googlecode.stateless4j-osgi", "state": 8},
+{"type": "bl", "tstamp": 6579552968923, "method": "start","bsn": "de.twentyeleven.skysail.org.antlr.stringtemplate-osgi"},
+{"type": "bl", "tstamp": 6579553528076, "method": "getState","bsn": "de.twentyeleven.skysail.org.antlr.stringtemplate-osgi", "state": 8},
+{"type": "bl", "tstamp": 6579553831669, "method": "start","bsn": "jackson-core-asl"},
+{"type": "bl", "tstamp": 6579554397749, "method": "getState","bsn": "jackson-core-asl", "state": 8},
+{"type": "bl", "tstamp": 6579554712380, "method": "start","bsn": "jackson-mapper-asl"},
+{"type": "bl", "tstamp": 6579555422265, "method": "getState","bsn": "jackson-mapper-asl", "state": 8},
+{"type": "bl", "tstamp": 6579555730631, "method": "start","bsn": "javax.el"},
+{"type": "bl", "tstamp": 6579556190285, "method": "getState","bsn": "javax.el", "state": 8},
+{"type": "bl", "tstamp": 6579556329990, "method": "start","bsn": "javax.persistence"},
+{"type": "bl", "tstamp": 6579556581480, "method": "getState","bsn": "javax.persistence", "state": 8},
+{"type": "bl", "tstamp": 6579567101597, "method": "start","bsn": "javax.servlet"},
+{"type": "bl", "tstamp": 6579567556270, "method": "getState","bsn": "javax.servlet", "state": 8},
+{"type": "bl", "tstamp": 6579567681187, "method": "start","bsn": "javax.validation.api"},
+{"type": "bl", "tstamp": 6579567895270, "method": "getState","bsn": "javax.validation.api", "state": 8},
+{"type": "bl", "tstamp": 6579568041090, "method": "start","bsn": "jcl.over.slf4j"},
+{"type": "bl", "tstamp": 6579568267885, "method": "getState","bsn": "jcl.over.slf4j", "state": 8},
+{"type": "bl", "tstamp": 6579568394838, "method": "start","bsn": "org.apache.commons.collections"},
+{"type": "bl", "tstamp": 6579568618760, "method": "getState","bsn": "org.apache.commons.collections", "state": 8},
+{"type": "bl", "tstamp": 6579568774749, "method": "start","bsn": "org.apache.commons.dbcp"},
+{"type": "bl", "tstamp": 6579568998188, "method": "getState","bsn": "org.apache.commons.dbcp", "state": 8},
+{"type": "bl", "tstamp": 6579569175762, "method": "start","bsn": "org.apache.commons.lang"},
+{"type": "bl", "tstamp": 6579569398078, "method": "getState","bsn": "org.apache.commons.lang", "state": 8},
+{"type": "bl", "tstamp": 6579569548521, "method": "start","bsn": "org.apache.commons.pool"},
+{"type": "bl", "tstamp": 6579569765525, "method": "getState","bsn": "org.apache.commons.pool", "state": 8},
+{"type": "bl", "tstamp": 6579569915718, "method": "start","bsn": "org.apache.derby"},
+{"type": "bl", "tstamp": 6579570131122, "method": "getState","bsn": "org.apache.derby", "state": 8},
+{"type": "bl", "tstamp": 6579570280269, "method": "start","bsn": "org.apache.felix.configadmin"},
+{"type": "bl", "tstamp": 6579570510365, "method": "getState","bsn": "org.apache.felix.configadmin", "state": 8},
+{"type": "bc", "tstamp": 6579599228934, "method": "registerService", "bsn": "org.apache.felix.configadmin", "classes": "registerService"},
+{"type": "bc", "tstamp": 6579602394926, "method": "registerService", "bsn": "org.apache.felix.configadmin", "classes": "registerService"},
+{"type": "bl", "tstamp": 6579606940452, "method": "start","bsn": "org.apache.felix.eventadmin"},
+{"type": "bl", "tstamp": 6579607061183, "method": "getState","bsn": "org.apache.felix.configadmin", "state": 32},
+			
+		];
+		
+		var toFrame = JSONData2.slice().length;
+		if (parameters.frame > 0) {
+			toFrame = parameters.frame;
+		}
+
+
+		var data = JSONData2.slice(0, toFrame);
+
+
+		function Bundle(bsn, x, y) {
+    		this.bsn = bsn;
+    		this.x = x;
+    		this.y = y;
+    	};
+
+    	var bundles = new Array();
+
+		JSONData2.slice().forEach(function(entry) {
+    		console.log(entry);
+    		if (entry.method === "start") {
+    			bundles.push(new Bundle(entry.bsn, 0,1));
+    		}
+		});
+    	 
+    	//alert(bundles.length);
+
+		var margin = {top: 0, left: 0, right: 0, bottom:0};
+
+		var w = 1000 - margin.right - margin.left; 
+		var h = 600 - margin.top - margin.bottom;
+		var center = [w/2,h/2];
+		var radius = h/2-30;
+
+
+		var graph = d3.select("#graph").append("svg:svg")
+		      .attr("width", w + margin.right + margin.left)
+		      .attr("height", h + margin.top + margin.bottom);
+		      //.append("svg:g")
+		      //.attr("transform", "translate(" + margin.top + "," + margin.width + ")");
+
+		graph.append("svg:circle")
+			.attr("cx", center[0])
+			.attr("cy", center[1])
+			.attr("stroke", "grey")
+			.attr("fill", "white")
+			.attr("r", radius);
+
+		graph.append("svg:circle")
+			.attr("cx", center[0])
+			.attr("cy", center[1])
+			.attr("stroke", "lightgreen")
+			.attr("fill", "white")
+			.attr("r", radius-50);
+
+	    graph.selectAll("bundles")
+		    .data(data) //.filter(function (d) { return d.m === "start" }))
+			.enter().append("circle")
+			.filter(function (d) { return d.method === "start" })
+			.attr("cx", function (d,i) { x = center[0] + radius * Math.sin(2*3.14156295 * i / bundles.length); return x; })
+			.attr("cy", function (d,i) { y = center[1] + radius * Math.cos(2*3.14156295 * i / bundles.length); return y; })
+			.attr("stroke", "grey")
+			.attr("fill", "lightgrey")
+			.attr("r", 10);
+
+		graph.selectAll("bundles")
+		    .data(data) //.filter(function (d) { return d.m === "start" }))
+			.enter().append("circle")
+			.filter(function (d) { return d.method === "getState" })
+			.attr("cx",     function (d,i) { x = center[0] + radius * Math.sin(2*3.14156295 * i / bundles.length); return x; })
+			.attr("cy",     function (d,i) { y = center[1] + radius * Math.cos(2*3.14156295 * i / bundles.length); return y; })
+			.attr("stroke", function (d,i) { 
+				if (d.state == 1) return "white"; // Uninstalled
+				else if(d.state == 2) return "grey"; // installed 
+				else if(d.state == 4) return "black"; // resolved 
+				else if(d.state == 8) return "blue"; // starting 
+				else if(d.state == 16) return "orange"; // stopping 
+				else if(d.state == 32) return "green"; // active 
+				else return "red"; 
+			})
+			.attr("fill", "lightgrey")
+			.attr("r", 10);
+
+	    graph.selectAll("text")
+	        .data(data) //.filter(function (d) { return d.m === "start" }))
+			.enter().append("text")
+			.filter(function (d) { return d.method === "start" })
+			.attr("x", function (d,i) { x = center[0] + radius * Math.sin(2*3.14156295 * i / bundles.length); return x + 12; })
+			.attr("y", function (d,i) { y = center[1] + radius * Math.cos(2*3.14156295 * i / bundles.length); return y - 3; })
+			.attr("fill", "black")
+	        .text(function(d,i) { return d.bsn; });
+
+
+	    graph.selectAll("aaa")
+	        .data(data.filter(function (d) { return d.method === "registerService"  }))
+			.enter().append("text")
+			.attr("x", 10) // function (d,i) { x = center[0] + (radius-50) * Math.sin(2*3.14156295 * i / data.length); return x; })
+			.attr("y", 10) // function (d,i) { y = center[1] + (radius-50) * Math.cos(2*3.14156295 * i / data.length); return y; })
+			.attr("fill", "red")
+	        .text("hi");
+
+
+	</script>
+
+	<script src="/../static/js/jquery.cookie.js"></script>
+	<script src="/../static/js/bootstrap.js"></script>
+
+	<script>
+
+		var playing = parameters.play;
+		var frame = parseInt(parameters.frame);
+		if (playing === "true" && frame < 50) {
+			//alert("playing")
+			play();
+		}
+
+	</script>
+</body>
+</html>
+
+
+
+
+
+

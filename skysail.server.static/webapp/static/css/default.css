@@ -1,0 +1,78 @@
+body {
+	font-family: Verdana, sans-serif;
+	color:gray;
+}
+
+.prop {
+	font-weight: bold;
+}
+
+.null {
+	color: red;
+}
+
+.bool {
+	color: blue;
+}
+
+.num {
+	color: blue;
+}
+
+.string {
+	color: black;
+	white-space: inherit;
+}
+
+.message {
+	color: red;
+}
+
+.collapser {
+	-moz-user-select: none;
+	cursor: pointer;
+	left: -1em;
+	position: absolute;
+}
+
+.q {
+	color: transparent;
+	display: inline-block;
+	width: 0;
+}
+
+li {
+	position: relative;
+}
+
+ul {
+	list-style: none outside none;
+	margin: 0 0 0 2em;
+	padding: 0;
+}
+
+h1 {
+	font-size: 1.2em;
+}
+
+.callback+#json {
+	padding-left: 1em;
+}
+
+.callback {
+	color: red;
+	font-family: monospace;
+}
+
+#json {
+	font-family: monospace;
+	font-size: 11px;
+	white-space: inherit;
+}
+
+#error {
+	background-color: #F7E8E8;
+	border: 1px solid #970000;
+	margin: 0.5em;
+	padding: 0.5em;
+}

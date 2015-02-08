@@ -1,10 +1,9 @@
 package io.skysail.server.um.simple.authorization;
 
-import io.skysail.api.um.AuthorizationService;
-import io.skysail.server.um.simple.SkysailAuthenticationInfo;
-import io.skysail.server.um.simple.SkysailHashedCredentialsMatcher;
+import io.skysail.server.um.simple.SimpleUserManagementProvider;
+import io.skysail.server.um.simple.authentication.SkysailAuthenticationInfo;
+import io.skysail.server.um.simple.authentication.SkysailHashedCredentialsMatcher;
 
-import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -22,12 +21,7 @@ import de.twenty11.skysail.server.um.domain.SkysailUser;
 
 public class SimpleAuthorizingRealm extends AuthorizingRealm {
 
-    private AuthorizationService authenticationSerivce;
-    private static Map<String, String> usernamesAndPasswords = new HashMap<>();
-
-    static {
-        usernamesAndPasswords.put("admin", "$2a$12$52R8v2QH3vQRz8NcdtOm5.HhE5tFPZ0T/.MpfUa9rBzOugK.btAHS");
-    }
+    private SimpleUserManagementProvider simpleUserManagementProvider;
 
     @Override
     public String getName() {
@@ -35,9 +29,9 @@ public class SimpleAuthorizingRealm extends AuthorizingRealm {
     }
 
     public SimpleAuthorizingRealm(SkysailHashedCredentialsMatcher hashedCredetialsMatcher,
-            AuthorizationService authorizationService) {
+            SimpleUserManagementProvider simpleUserManagementProvider) {
 
-        this.authenticationSerivce = authorizationService;
+        this.simpleUserManagementProvider = simpleUserManagementProvider;
         setCredentialsMatcher(hashedCredetialsMatcher);
         setAuthenticationCachingEnabled(true);
         Cache<Object, AuthenticationInfo> authenticationCache = new MapCache<>("credentialsCache",
@@ -80,6 +74,7 @@ public class SimpleAuthorizingRealm extends AuthorizingRealm {
     }
 
     private SkysailUser getUser(String username) {
+        Map<String, String> usernamesAndPasswords = simpleUserManagementProvider.getUsernamesAndPasswords();
         if (usernamesAndPasswords.get(username) == null) {
             return null;
         }
@@ -87,7 +82,7 @@ public class SimpleAuthorizingRealm extends AuthorizingRealm {
     }
 
     @Override
-    protected void clearCache(PrincipalCollection principals) {
+    public void clearCache(PrincipalCollection principals) {
         super.clearCache(principals);
     }
 

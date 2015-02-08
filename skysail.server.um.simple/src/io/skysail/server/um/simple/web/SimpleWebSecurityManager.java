@@ -1,8 +1,5 @@
 package io.skysail.server.um.simple.web;
 
-import io.skysail.server.um.simple.RestletSubjectContext;
-import io.skysail.server.um.simple.SkysailWebSubjectContext;
-
 import java.io.Serializable;
 
 import org.apache.shiro.realm.Realm;

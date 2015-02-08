@@ -11,6 +11,11 @@ import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
 import org.restlet.security.SecretVerifier;
 
+/**
+ * A simple SecretVerifier calling the subjects login method and dealing with
+ * the various outcomes.
+ *
+ */
 @Slf4j
 public class SimpleDelegatingVerifier extends SecretVerifier {
 

@@ -1,7 +1,8 @@
 package io.skysail.server.um.simple.authorization;
 
 import io.skysail.api.um.AuthorizationService;
-import io.skysail.server.um.simple.SkysailHashedCredentialsMatcher;
+import io.skysail.server.um.simple.SimpleUserManagementProvider;
+import io.skysail.server.um.simple.authentication.SkysailHashedCredentialsMatcher;
 
 import java.util.Collections;
 import java.util.Set;
@@ -17,8 +18,9 @@ public class SimpleAuthorizationService implements AuthorizationService, Enroler
 
     private SimpleAuthorizingRealm authorizingRealm;
 
-    public SimpleAuthorizationService() {
-        authorizingRealm = new SimpleAuthorizingRealm(new SkysailHashedCredentialsMatcher(), this);
+    public SimpleAuthorizationService(SimpleUserManagementProvider simpleUserManagementProvider) {
+        authorizingRealm = new SimpleAuthorizingRealm(new SkysailHashedCredentialsMatcher(),
+                simpleUserManagementProvider);
     }
 
     @Override

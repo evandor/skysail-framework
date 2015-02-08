@@ -176,7 +176,7 @@ public class SkysailRootApplication extends SkysailApplication implements Applic
             return (String) properties.get("landingPage.notAuthenticated");
         }
         String landingPage = (String) properties.get("landingPage.authenticated");
-        if (landingPage.equals("") || landingPage.equals("/")) {
+        if (landingPage == null || landingPage.equals("") || landingPage.equals("/")) {
             return null;
         }
         return landingPage;

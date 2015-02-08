@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<repository increment="1423226159656" name="Local" xmlns="http://www.osgi.org/xmlns/repository/v1.0.0">
+<repository increment="1423327924319" name="Local" xmlns="http://www.osgi.org/xmlns/repository/v1.0.0">
   <resource>
     <capability namespace="osgi.identity">
       <attribute name="osgi.identity" value="com.fasterxml.jackson.core.jackson-annotations"/>
@@ -4086,6 +4086,132 @@
     <requirement namespace="osgi.wiring.package">
       <directive name="filter" value="(&amp;(osgi.wiring.package=org.slf4j.spi)(version&gt;=1.6.0))"/>
       <directive name="resolution" value="optional"/>
+    </requirement>
+  </resource>
+  <resource>
+    <capability namespace="osgi.identity">
+      <attribute name="osgi.identity" value="org.yaml.snakeyaml"/>
+      <attribute name="type" value="osgi.bundle"/>
+      <attribute name="version" type="Version" value="1.14.0"/>
+    </capability>
+    <capability namespace="osgi.content">
+      <attribute name="osgi.content" value="39ac5c033b2b4f7cf63d67ecaea53a6219c316a3bb7fc1b78d5b72573977e5d3"/>
+      <attribute name="url" value="org.yaml.snakeyaml/org.yaml.snakeyaml-1.14.0.jar"/>
+      <attribute name="size" type="Long" value="275115"/>
+      <attribute name="mime" value="application/vnd.osgi.bundle"/>
+    </capability>
+    <capability namespace="osgi.wiring.bundle">
+      <attribute name="osgi.wiring.bundle" value="org.yaml.snakeyaml"/>
+      <attribute name="bundle-version" type="Version" value="1.14.0"/>
+    </capability>
+    <capability namespace="osgi.wiring.host">
+      <attribute name="osgi.wiring.host" value="org.yaml.snakeyaml"/>
+      <attribute name="bundle-version" type="Version" value="1.14.0"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.yaml.snakeyaml.util"/>
+      <attribute name="version" type="Version" value="1.14.0"/>
+      <attribute name="bundle-symbolic-name" value="org.yaml.snakeyaml"/>
+      <attribute name="bundle-version" type="Version" value="1.14.0"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.yaml.snakeyaml.parser"/>
+      <attribute name="version" type="Version" value="1.14.0"/>
+      <attribute name="bundle-symbolic-name" value="org.yaml.snakeyaml"/>
+      <attribute name="bundle-version" type="Version" value="1.14.0"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.yaml.snakeyaml.serializer"/>
+      <attribute name="version" type="Version" value="1.14.0"/>
+      <attribute name="bundle-symbolic-name" value="org.yaml.snakeyaml"/>
+      <attribute name="bundle-version" type="Version" value="1.14.0"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.yaml.snakeyaml.introspector"/>
+      <attribute name="version" type="Version" value="1.14.0"/>
+      <attribute name="bundle-symbolic-name" value="org.yaml.snakeyaml"/>
+      <attribute name="bundle-version" type="Version" value="1.14.0"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.yaml.snakeyaml.composer"/>
+      <attribute name="version" type="Version" value="1.14.0"/>
+      <attribute name="bundle-symbolic-name" value="org.yaml.snakeyaml"/>
+      <attribute name="bundle-version" type="Version" value="1.14.0"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.yaml.snakeyaml.tokens"/>
+      <attribute name="version" type="Version" value="1.14.0"/>
+      <attribute name="bundle-symbolic-name" value="org.yaml.snakeyaml"/>
+      <attribute name="bundle-version" type="Version" value="1.14.0"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.yaml.snakeyaml.extensions.compactnotation"/>
+      <attribute name="version" type="Version" value="1.14.0"/>
+      <attribute name="bundle-symbolic-name" value="org.yaml.snakeyaml"/>
+      <attribute name="bundle-version" type="Version" value="1.14.0"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.yaml.snakeyaml.reader"/>
+      <attribute name="version" type="Version" value="1.14.0"/>
+      <attribute name="bundle-symbolic-name" value="org.yaml.snakeyaml"/>
+      <attribute name="bundle-version" type="Version" value="1.14.0"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.yaml.snakeyaml.scanner"/>
+      <attribute name="version" type="Version" value="1.14.0"/>
+      <attribute name="bundle-symbolic-name" value="org.yaml.snakeyaml"/>
+      <attribute name="bundle-version" type="Version" value="1.14.0"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.yaml.snakeyaml.resolver"/>
+      <attribute name="version" type="Version" value="1.14.0"/>
+      <attribute name="bundle-symbolic-name" value="org.yaml.snakeyaml"/>
+      <attribute name="bundle-version" type="Version" value="1.14.0"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.yaml.snakeyaml.error"/>
+      <attribute name="version" type="Version" value="1.14.0"/>
+      <attribute name="bundle-symbolic-name" value="org.yaml.snakeyaml"/>
+      <attribute name="bundle-version" type="Version" value="1.14.0"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.yaml.snakeyaml.emitter"/>
+      <attribute name="version" type="Version" value="1.14.0"/>
+      <attribute name="bundle-symbolic-name" value="org.yaml.snakeyaml"/>
+      <attribute name="bundle-version" type="Version" value="1.14.0"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.yaml.snakeyaml.nodes"/>
+      <attribute name="version" type="Version" value="1.14.0"/>
+      <attribute name="bundle-symbolic-name" value="org.yaml.snakeyaml"/>
+      <attribute name="bundle-version" type="Version" value="1.14.0"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.yaml.snakeyaml.representer"/>
+      <attribute name="version" type="Version" value="1.14.0"/>
+      <attribute name="bundle-symbolic-name" value="org.yaml.snakeyaml"/>
+      <attribute name="bundle-version" type="Version" value="1.14.0"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.yaml.snakeyaml.events"/>
+      <attribute name="version" type="Version" value="1.14.0"/>
+      <attribute name="bundle-symbolic-name" value="org.yaml.snakeyaml"/>
+      <attribute name="bundle-version" type="Version" value="1.14.0"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.yaml.snakeyaml.constructor"/>
+      <attribute name="version" type="Version" value="1.14.0"/>
+      <attribute name="bundle-symbolic-name" value="org.yaml.snakeyaml"/>
+      <attribute name="bundle-version" type="Version" value="1.14.0"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.yaml.snakeyaml"/>
+      <attribute name="version" type="Version" value="1.14.0"/>
+      <attribute name="bundle-symbolic-name" value="org.yaml.snakeyaml"/>
+      <attribute name="bundle-version" type="Version" value="1.14.0"/>
+    </capability>
+    <requirement namespace="osgi.ee">
+      <directive name="filter" value="(&amp;(osgi.ee=JavaSE)(version=1.5))"/>
     </requirement>
   </resource>
   <resource>

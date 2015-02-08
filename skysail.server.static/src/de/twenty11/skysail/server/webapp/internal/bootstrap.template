@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Skysail - a business server</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="">
+	<meta name="author" content="">
+
+	<link href="/../static/css/bootstrap.css" rel="stylesheet">
+
+	<style>
+		body {
+			padding-top: 60px;
+		}
+		
+		#editor { 
+            position: absolute;
+            top: 170px;
+            right: 20px;
+            bottom: 5px;
+            left: 250px;
+        }
+        
+        #console { 
+			height: 400px; 
+			width: 120px;
+			overflow: auto; 
+		}
+	</style>   
+	
+	<link href="/../static/css/bootstrap-responsive.css" rel="stylesheet">
+
+	<link href="/../static/js/joyride/joyride-2.1.css" rel="stylesheet">
+	
+	<!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+	<!--[if lt IE 9]>
+	      <script src="js/html5shiv.js"></script>
+	    <![endif]-->
+	
+	<!-- Fav and touch icons -->
+	<link rel="apple-touch-icon-precomposed" sizes="144x144"
+		href="/../static/ico/apple-touch-icon-144-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" sizes="114x114"
+		href="/../static/ico/apple-touch-icon-114-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" sizes="72x72"
+		href="/../static/ico/apple-touch-icon-72-precomposed.png">
+	<link rel="apple-touch-icon-precomposed"
+		href="/../static/ico/apple-touch-icon-57-precomposed.png">
+	<link rel="shortcut icon" href="/../static/ico/favicon.png">
+	
+	<script type="text/javascript">
+		function searchWithFilter () {
+			var filter = document.getElementById("filter");
+			var hrefSplit = location.href.split("?");
+			var href = hrefSplit[0];
+			var target = href + "?filter=" + filter.value;
+			window.location.href = target;
+		}
+		
+		function getCookies() {
+		    var cookies = { };
+		    if (document.cookie && document.cookie != '') {
+		        var split = document.cookie.split(';');
+		        for (var i = 0; i < split.length; i++) {
+		            var name_value = split[i].split("=");
+		            name_value[0] = name_value[0].replace(/^ /, '');
+		            cookies[decodeURIComponent(name_value[0])] = decodeURIComponent(name_value[1]);
+		        }
+		    }
+		    return cookies;
+		}
+		
+		function openEventWindow() {
+			var eventWindow = window.open("/static/socketio.html","eventWindow","toolbar=no, scrollbars=yes, resizable=yes, top=300, left=300, width=700, height=400");
+			eventWindow.focus();
+		}
+		
+	</script>
+	
+	<script src="/../static/js/socket.io/_socket.io.js"></script>
+	<script src="/../static/js/moment.min.js"></script>
+	
+	<script>
+
+        var userName = 'user' + Math.floor((Math.random()*1000)+1);
+		var socket =  io.connect('http://127.0.0.1:2017');
+
+		socket.on('connect', function() {
+			output('<span class="connect-msg">Client has connected to the server!</span>');
+		});
+		
+		socket.on('message', function(data) {
+			output('<span class="username-msg">' + data.userName + ':</span> ' + data.message);
+		});
+		
+		socket.on('disconnect', function() {
+			output('<span class="disconnect-msg">The client has disconnected!</span>');
+		});
+
+        function sendDisconnect() {
+                socket.disconnect();
+        }
+		
+		function sendMessage() {
+                        var message = $('#msg').val();
+                        $('#msg').val('');
+                        
+                        // don't forget to define type field '@class' 
+                        // it should equals to class name which used 
+                        // to deserialize object on server side
+                        // via ...addJsonObjectListener() method
+                        //
+                        // TIP: you can customize type name field
+                        // via Configuration.jsonTypeFieldName property
+                        
+                        var jsonObject = {'@class': 'de.twenty11.skysail.server.socketio.ChatObject',
+                                          userName: userName, 
+                                          message: message};
+                                          
+		                socket.emit('someevent', jsonObject);                  
+                                          
+                                          
+                        socket.json.send(jsonObject);
+		}
+		
+		function output(message) {
+                        var currentTime = "<span class='time'>" +  moment().format('HH:mm:ss.SSS') + "</span>";
+                        var element = $("<div>" + currentTime + " " + message + "</div>");
+			$('#console').prepend(element);
+		}
+		
+	</script>
+	
+	
+</head>
+
+<body>
+
+	<div class="navbar navbar-inverse navbar-fixed-top">
+		<div class="navbar-inner">
+			<div class="container">
+				<button type="button" class="btn btn-navbar" data-toggle="collapse"
+					data-target=".nav-collapse">
+					<span class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<a id="skysailProductName" class="brand" href="/">Skysail Server *****45678****</a>
+				<div class="nav-collapse collapse">
+					<ul class="nav">
+						${mainNav}
+					</ul>
+				</div>
+				<div style="position: absolute; top: 9px; right: 5px;" id="loginLogoutDiv">
+						${username} ${loginLogout} <!--<a href="/webconsole">[system admin]</a>-->
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="container-fluid">
+
+		<div class="row-fluid">
+            <div class="span1">
+                <h6>...</h6>
+            </div>
+            <div class="span9" id="mainContentDiv">
+    			${breadcrumb}
+    			<pre>${message}</pre>
+    			${linkedPages}
+				${stacktrace}
+				${content}
+			</div>
+			<div class="span2">
+				<div id="navMenu"></div>
+				<h5>Invocation <a href='javascript:location.reload(true)'><i class="icon-refresh"></a></i></h5>
+				<h6>Result / Server Load</h6>
+				<p>${result} &nbsp;&nbsp;&nbsp;<span id="serverLoad" style="font-size: small;"></span></p>
+				<hr>
+				<!--<h6>Filter</h6>
+				<input id="filter" type="text" name="filterExpression" value="${filterExpression}" style="width:80px;" /><a href='javascript:searchWithFilter();'>&nbsp;<i class="icon-search"></a></i>
+				<hr>
+				<h6>History</h6>
+				<p id="history">no history</p>
+				<hr>
+				<h6>Performance</h6>
+				<p><small>Speed: ${performance} / Load: <span id="serverLoadDisabled" title="serverLoad refreshing every 10 sec.">...</span></small></p>
+				<hr>-->
+				<h6 id="altRepresentations">Alternative Representations</h6>
+				<p>${presentations}</p>
+				<hr>
+                <h6 id="altRepresentations">Documentation</h6>
+                <p>${documentation}</p>
+                <hr>
+				<h6 id="request">Request / Response</h6>
+				<p>${request} / ${response}</p>
+				<hr>
+				<h6>Events</h6>
+				<p><a href='#' onClick="javascript:openEventWindow()">open</a></p>
+				<!--<div id="console"></div>-->
+				
+				<hr>
+				<h6>Version</h6>
+				<p>${version}</p>
+			</div>
+		</div>
+
+	</div>
+
+	<!-- Placed at the end of the document so the pages load faster -->
+	<script src="/../static/js/jquery-1.10.1.js"></script>
+	<script src="/../static/js/jquery.cookie.js"></script>
+	<script src="/../static/js/bootstrap.js"></script>
+	<!--<script src="/../static/js/bootstrap-tooltip.js"></script>
+	<script src="/../static/js/bootstrap-popover.js"></script>-->
+
+	<script type="text/javascript">
+		/*var history = document.getElementById("history");
+		var cookieIdentifier = "skysail.history.";
+		var cookies = getCookies();
+		var tmpCookies = new Array();
+		for(var name in cookies) {
+			if (name.indexOf(cookieIdentifier) == 0) {
+				var index = parseInt(name.charAt(cookieIdentifier.length));
+				if (index<5) {
+					tmpCookies[index+1] = cookies[name];
+				}
+		  		//document.write( name + " : " + cookies[name] + "<br />" );
+			}
+		}
+		
+		// save current location
+		tmpCookies[0] = location.href;
+
+		var historyHtml = "";
+		$.cookie("skysail.history.0", location.href, { expires: 1 });
+		for (var i = 1; i < tmpCookies.length; ++i) {
+			$.cookie("skysail.history." + i, tmpCookies[i], { expires: 1 });
+			historyHtml += i + ": <a href='"+tmpCookies[i]+"'>" + tmpCookies[i] + "</a><br>";
+		}
+
+		history.innerHTML = historyHtml;
+		*/	
+		
+		function checkServerLoad() {
+              $.ajax({ 
+                url: "/management/serverLoad?media=json", 
+                success: function(data) {
+                  $("#serverLoad").html(data.data);
+                }, 
+                error: function(xhr, status, error) {
+                  $("#serverLoad").html("<span style='color:red;'>Server down!</span>");
+                }, 
+                dataType: "json"
+              });
+           };
+           	
+    	function poll(){
+		   checkServerLoad();    	   
+           //setTimeout(checkServerLoad,10000);
+           setInterval(checkServerLoad, 60000);
+        }	
+
+        /*$.getJSON('/menu/main/', function(data) {
+			var items = [];
+			items.push('<li class="nav-header">Applications</li>');
+			$.each(data.data, function(key, val) {
+				items.push('<li><a href="'+val.link+'">' + val.name + '</a></li>');
+			});
+			$('<ul/>', { 'class': 'nav nav-list', html: items.join('')}).appendTo('#navMenu');
+		});*/
+
+    	$(document).on("click", "#delete", function(event){
+    		$.ajax({
+				type: "DELETE",
+				url: ".",
+			}).done(function( msg ) {
+				alert( "Data Saved: " + msg );
+			});
+        	return false;
+    	})
+
+        $( document ).ready(function() {
+            // trigger first execution
+            // poll();
+        });
+        
+	</script>
+	
+	<!-- joyRide help content if available -->
+	${joyRide}
+	<!-- done: joyRide help content if available -->
+
+	  
+</body>
+</html>
+
+
+
+
+
+

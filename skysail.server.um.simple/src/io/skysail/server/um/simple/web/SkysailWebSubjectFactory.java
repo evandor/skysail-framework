@@ -1,8 +1,5 @@
 package io.skysail.server.um.simple.web;
 
-import io.skysail.server.um.simple.RestletDelegatingSubject;
-import io.skysail.server.um.simple.RestletSubjectContext;
-
 import org.apache.shiro.mgt.SecurityManager;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.PrincipalCollection;

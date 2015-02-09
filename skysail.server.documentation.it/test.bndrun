@@ -30,7 +30,7 @@
     felix.fileinstall.log.level=4,\
     org.apache.felix.log.storeDebug=true,\
     logback.configurationFile=config/test/logback.xml,\
-    obr.repository.url=https://raw.githubusercontent.com/evandor/skysail-repository/master/release/index.xml.gz http://felix.apache.org/obr/releases.xml
+    obr.repository.url=https://raw.githubusercontent.com/evandor/skysail-repository/master/index.xml https://raw.githubusercontent.com/evandor/skysail/master/cnf/releaserepo/index.xml http://felix.apache.org/obr/releases.xml
 
 # not used here, resolution takes to long...
 #-runrequires:  \
@@ -70,6 +70,7 @@
 	org.apache.felix.gogo.shell;version='[0.10.0,0.10.1)',\
 	org.apache.felix.log;version='[1.0.1,1.0.2)',\
 	org.apache.felix.scr;version='[1.8.2,1.8.3)',\
+    org.apache.felix.bundlerepository;version=latest,\
 	org.apache.shiro.core;version='[1.2.2,1.2.3)',\
 	org.apache.shiro.web;version='[1.2.2,1.2.3)',\
 	org.hibernate.validator;version='[5.1.2,5.1.3)',\
@@ -86,14 +87,15 @@
 	skysail.api.documentation;version=latest,\
 	skysail.api.validation;version=latest,\
 	skysail.server;version=latest,\
-	skysail.server.um.simple;version=latest,\
-	skysail.server.http;version=latest,\
-	skysail.server.static;version=latest,\
-	skysail.server.documentation;version=latest,\
-	skysail.server.db.orientdb;version=latest,\
-	skysail.server.ext.converter.st;version=latest,\
-	skysail.server.ext.i18n;version=latest,\
+	skysail.server.converter;version=latest,\
 	skysail.server.app.intro;version=latest,\
+	skysail.server.db.orientdb;version=latest,\
+	skysail.server.documentation;version=latest,\
+	skysail.server.ext.i18n;version=latest,\
+	skysail.server.http;version=latest,\
+	skysail.server.plugins;version=latest,\
+	skysail.server.static;version=latest,\
+	skysail.server.um.simple;version=latest,\
 	slf4j.api;version='[1.7.7,1.7.8)',\
 	de.twentyeleven.skysail.org.antlr.stringtemplate-osgi;version=4.0.8
 	

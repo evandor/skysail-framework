@@ -11,16 +11,16 @@ Export-Package:  \
 Include-Resource: templates=templates,webapp=webapp
 
 -buildpath:  \
-	biz.aQute.bnd.annotation;version=2.4,\
-	org.restlet;version=${restlet.version},\
 	osgi.core;version=5.0,\
 	osgi.cmpn;version=5.0,\
-	lombok;version=1.12,\
-	etm.core;version=1.2,\
-	de.twentyeleven.skysail.org.antlr.stringtemplate-osgi;version=4.0,\
-	slf4j.api;version=1.7,\
 	skysail.api;version=latest,\
 	skysail.server;version=latest,\
+	de.twentyeleven.skysail.org.antlr.stringtemplate-osgi;version=4.0.8,\
+	biz.aQute.bnd.annotation;version=2.4,\
+	org.restlet;version=${restlet.version},\
+	lombok;version=1.12,\
+	etm.core;version=1.2,\
+	slf4j.api;version=1.7,\
 	org.apache.shiro.core;version=1.2,\
 	com.google.guava;version=15.0,\
 	org.apache.commons.lang;version=2.6,\

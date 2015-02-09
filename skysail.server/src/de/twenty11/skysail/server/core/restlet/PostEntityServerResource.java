@@ -64,10 +64,7 @@ import etm.core.monitor.EtmPoint;
  *     }
  *    
  *     public MyEntity getData(Form form) {
- *        MyEntity note;
- *        note = new MyEntity(form.getFirstValue("content"));
- *        note.setOwner(app.getCurrentUser().getId());
- *        return note;
+ *         return populate(createEntityTemplate(), form);
  *     }
  *    
  *    public SkysailResponse&lt;?&gt; addEntity(Clip entity) {

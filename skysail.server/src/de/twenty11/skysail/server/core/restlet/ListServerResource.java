@@ -56,12 +56,12 @@ import etm.core.monitor.EtmPoint;
  *    ...
  * 
  *    public AccountsResource() {
- *        app = (MailApplication) getApplication();
  *    }
  * 
  *     {@literal @}Override
  *    protected void doInit() throws ResourceException {
  *        super.doInit();
+ *        app = (MailApplication) getApplication();
  *        connectionName = (String) getRequest().getAttributes().get("conn");
  *    }
  * 

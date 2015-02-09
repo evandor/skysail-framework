@@ -1,7 +1,13 @@
+### to be replaced by skysail.server.converter
+
 Bundle-Name: SKYSAIL :: server :: ext :: converter :: st
 Bundle-Version: 2.0.0.${tstamp}
 #https://groups.google.com/forum/#!topic/bndtools-users/aYjvNAs5lPI
 Provide-Capability: osgi.service; objectClass=org.osgi.service.event.EventHandler; uses:="org.osgi.service.event"
+Service-Component:  \
+	*
+Include-Resource: templates=templates,webapp=webapp
+
 -buildpath: \
 	osgi.core;version=5.0,\
 	osgi.cmpn;version=5.0,\
@@ -17,10 +23,7 @@ Provide-Capability: osgi.service; objectClass=org.osgi.service.event.EventHandle
 	com.springsource.org.junit;version=4.11,\
 	com.google.guava;version=15.0,\
 	etm.core;version=1.2
-Include-Resource: templates=templates,webapp=webapp
 Private-Package: de.twenty11.skysail.server.ext.converter.st,\
 	de.twenty11.skysail.server.ext.converter.st.helper,\
 	de.twenty11.skysail.server.ext.converter.st.wrapper,\
 	de.twenty11.skysail.server.ext.converter.st.renderer
-Service-Component:  \
-	*

@@ -5,6 +5,7 @@ import io.skysail.server.converter.stringtemplate.STGroupBundleDir;
 import io.skysail.server.converter.wrapper.STFieldsWrapper;
 import io.skysail.server.converter.wrapper.STListSourceWrapper;
 import io.skysail.server.converter.wrapper.STResourceWrapper;
+import io.skysail.server.converter.wrapper.STServicesWrapper;
 import io.skysail.server.converter.wrapper.STSourceWrapper;
 import io.skysail.server.converter.wrapper.STTargetWrapper;
 
@@ -13,7 +14,6 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.Dictionary;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -30,8 +30,6 @@ import lombok.extern.slf4j.Slf4j;
 
 import org.apache.shiro.SecurityUtils;
 import org.osgi.framework.Bundle;
-import org.osgi.service.cm.ConfigurationException;
-import org.osgi.service.cm.ManagedService;
 import org.osgi.service.event.Event;
 import org.osgi.service.event.EventHandler;
 import org.restlet.data.MediaType;
@@ -58,6 +56,7 @@ import de.twenty11.skysail.server.core.restlet.SkysailServerResource;
 import de.twenty11.skysail.server.core.restlet.utils.CookiesUtils;
 import de.twenty11.skysail.server.core.restlet.utils.StringParserUtils;
 import de.twenty11.skysail.server.services.MenuItemProvider;
+import de.twenty11.skysail.server.services.OsgiConverterHelper;
 import de.twenty11.skysail.server.services.UserManager;
 import etm.core.configuration.EtmManager;
 import etm.core.monitor.EtmMonitor;
@@ -70,9 +69,9 @@ import etm.core.monitor.EtmPoint;
  * TODO get rid of shiro dependency TODO package structure
  *
  */
-@Component(immediate = true, properties = { "event.topics=GUI/alerts/*", "service.pid=core" })
+@Component(immediate = true, properties = { "event.topics=GUI/alerts/*" })
 @Slf4j
-public class HtmlConverter extends ConverterHelper implements EventHandler, ManagedService {
+public class HtmlConverter extends ConverterHelper implements OsgiConverterHelper, EventHandler {
 
     private static final String PRODUCT_NAME = "productName";
 
@@ -94,8 +93,6 @@ public class HtmlConverter extends ConverterHelper implements EventHandler, Mana
     private volatile Set<MenuItemProvider> menuProviders = new HashSet<>();
 
     private UserManager userManager;
-
-    private Dictionary<String, ?> config;
 
     // private SearchService searchService;
 
@@ -307,11 +304,11 @@ public class HtmlConverter extends ConverterHelper implements EventHandler, Mana
         URL templatesResource = appBundle.getResource("/templates");// resourcePath);
         if (templatesResource != null) {
             STGroupBundleDir stGroup = new STGroupBundleDir(appBundle, resource, "/templates");// resourcePath);
-            importTemplate("skysail.server.ext.converter.st", resource, appBundle, resourcePath, stGroup);
+            importTemplate("skysail.server.converter", resource, appBundle, resourcePath, stGroup);
             importTemplate("skysail.server.documentation", resource, appBundle, resourcePath, stGroup);
             return stGroup;
         } else {
-            Optional<Bundle> thisBundle = findBundle(appBundle, "skysail.server.ext.converter.st");
+            Optional<Bundle> thisBundle = findBundle(appBundle, "skysail.server.converter");
             return new STGroupBundleDir(thisBundle.get(), resource, resourcePath);
         }
     }
@@ -320,8 +317,10 @@ public class HtmlConverter extends ConverterHelper implements EventHandler, Mana
             STGroupBundleDir stGroup) {
         Optional<Bundle> theBundle = findBundle(appBundle, symbolicName);
         if (theBundle.isPresent()) {
-            importedGroupBundleDir = new STGroupBundleDir(theBundle.get(), resource, resourcePath);
-            stGroup.importTemplates(importedGroupBundleDir);
+            if (theBundle.get().getResource(resourcePath) != null) {
+                importedGroupBundleDir = new STGroupBundleDir(theBundle.get(), resource, resourcePath);
+                stGroup.importTemplates(importedGroupBundleDir);
+            }
         }
     }
 
@@ -331,8 +330,7 @@ public class HtmlConverter extends ConverterHelper implements EventHandler, Mana
         decl.add("user", SecurityUtils.getSubject());
         decl.add("target", new STTargetWrapper(target));
         decl.add("converter", this);
-        decl.add("services", null);// new STServicesWrapper(menuProviders,
-                                   // searchService, resource));
+        decl.add("services", new STServicesWrapper(menuProviders, null, resource));
         decl.add("resource", new STResourceWrapper(source, resource));
 
         List<FormField> fields = null;
@@ -383,10 +381,7 @@ public class HtmlConverter extends ConverterHelper implements EventHandler, Mana
     }
 
     private String getProductName() {
-        if (config == null || config.get(PRODUCT_NAME) == null) {
-            return "Skysail";
-        }
-        return (String) config.get(PRODUCT_NAME);
+        return "Skysail";
     }
 
     private Optional<Bundle> findBundle(Bundle bundle, String bundleName) {
@@ -478,11 +473,6 @@ public class HtmlConverter extends ConverterHelper implements EventHandler, Mana
                 new Linkheader.Builder(href).relation(LinkHeaderRelation.ITEM)
                         .title("item " + id == null ? "unknown" : id).build());
 
-    }
-
-    @Override
-    public synchronized void updated(Dictionary<String, ?> properties) throws ConfigurationException {
-        this.config = properties;
     }
 
 }

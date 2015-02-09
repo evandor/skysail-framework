@@ -27,7 +27,7 @@
     felix.fileinstall.log.level=4,\
     org.apache.felix.log.storeDebug=true,\
     logback.configurationFile=config/test/logback.xml,\
-    obr.repository.url=https://raw.githubusercontent.com/evandor/skysail-repository/master/release/index.xml.gz http://felix.apache.org/obr/releases.xml
+    obr.repository.url=https://github.com/evandor/skysail-repository/raw/master/index.xml.gz http://felix.apache.org/obr/releases.xml
 
 -runrequires:  \
 	osgi.identity;filter:='(osgi.identity=org.apache.felix.gogo.shell)',\

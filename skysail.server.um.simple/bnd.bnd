@@ -12,6 +12,7 @@ Bundle-Version: 0.1.0.${tstamp}
 	com.springsource.org.junit;version=4.11,\
 	org.mockito.mockito-all;version=1.10
 Private-Package:  \
+	io.skysail.server.um.simple.app,\
 	io.skysail.server.um.simple,\
 	io.skysail.server.um.simple.authentication,\
 	io.skysail.server.um.simple.authorization,\

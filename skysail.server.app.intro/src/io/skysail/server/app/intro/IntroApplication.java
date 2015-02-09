@@ -23,6 +23,7 @@ public class IntroApplication extends SkysailApplication implements ApplicationP
 
     @Override
     protected void attach() {
+        super.attach();
         router.attach(new RouteBuilder("", TopicsResource.class));
         router.attach(new RouteBuilder("/", TopicsResource.class));
         router.attach(new RouteBuilder("/topics", TopicsResource.class));

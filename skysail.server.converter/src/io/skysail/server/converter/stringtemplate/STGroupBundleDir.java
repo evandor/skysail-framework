@@ -11,13 +11,14 @@ import java.util.List;
 
 import lombok.extern.slf4j.Slf4j;
 
-import org.antlr.runtime.ANTLRInputStream;
 import org.osgi.framework.Bundle;
 import org.restlet.resource.Resource;
 import org.stringtemplate.v4.ST;
 import org.stringtemplate.v4.STGroupDir;
 import org.stringtemplate.v4.compiler.CompiledST;
 import org.stringtemplate.v4.misc.Misc;
+
+import st4hidden.org.antlr.runtime.ANTLRInputStream;
 
 @Slf4j
 public class STGroupBundleDir extends STGroupDir {

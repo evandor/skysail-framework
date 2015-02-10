@@ -761,9 +761,9 @@ public abstract class SkysailApplication extends Application implements Applicat
 
     private void logServiceWasSet(String name, Object service) {
         if (service == null) {
-            logger.debug("{} service was set to null for application '{}'", name, getName());
+            logger.trace("{} service was set to null for application '{}'", name, getName());
         } else {
-            logger.debug("{} service was set to '{}' for application '{}'", new Object[] { name,
+            logger.trace("{} service was set to '{}' for application '{}'", new Object[] { name,
                     service.getClass().getSimpleName(), getName() });
         }
     }

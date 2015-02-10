@@ -13,16 +13,16 @@ public class FeaturesRepository {
         feature.setVersion("1.2.3");
         feature.setStatus(FeatureStatus.AVAILABLE);
 
-        feature.addBundleLocation("https://github.com/evandor/skysail-repository/raw/master/release/org.apache.felix.http.jetty/org.apache.felix.http.jetty-2.3.0.jar");
+        feature.addBundleLocation("https://github.com/evandor/skysail-repository/raw/master/release/org.apache.felix.http.jetty-2.3.0.jar");
         feature.addBundleLocation("https://github.com/evandor/skysail-repository/raw/master/release/org.apache.felix.http.bundle/org.apache.felix.http.bundle-2.3.0.jar");
-        feature.addBundleLocation("https://github.com/evandor/skysail-repository/raw/master/release/org.apache.felix.webconsole/org.apache.felix.webconsole-4.2.2.jar");
-        feature.addBundleLocation("https://github.com/evandor/skysail-repository/raw/master/release/org.apache.felix.webconsole.plugins.memoryusage/org.apache.felix.webconsole.plugins.memoryusage-1.0.4.jar");
-        feature.addBundleLocation("https://github.com/evandor/skysail-repository/raw/master/release/org.apache.felix.webconsole.plugins.ds/org.apache.felix.webconsole.plugins.ds-1.0.0.jar");
-        // feature.addBundleLocation(" https://github.com/evandor/skysail-repository/raw/master/release/org.apache.felix.servicediagnostics.plugin/org.apache.felix.servicediagnostics.plugin-0.1.3.jar");
-        feature.addBundleLocation("https://github.com/evandor/skysail-repository/raw/master/release/org.apache.felix.dependencymanager/org.apache.felix.dependencymanager-3.1.0.jar");
-        feature.addBundleLocation("https://github.com/evandor/skysail-repository/raw/master/release/org.apache.felix.dependencymanager.runtime/org.apache.felix.dependencymanager.runtime-3.1.0.jar");
-        feature.addBundleLocation("https://github.com/evandor/skysail-repository/raw/master/release/org.apache.felix.webconsole.plugins.obr/org.apache.felix.webconsole.plugins.obr-1.0.0.jar");
-        feature.addBundleLocation("https://github.com/evandor/skysail-repository/raw/master/release/org.apache.felix.bundlerepository/org.apache.felix.bundlerepository-2.0.2.jar");
+        feature.addBundleLocation("https://github.com/evandor/skysail-repository/raw/master/release/org.apache.felix.webconsole-4.2.2.jar");
+        feature.addBundleLocation("https://github.com/evandor/skysail-repository/raw/master/release/org.apache.felix.webconsole.plugins.memoryusage-1.0.4.jar");
+        feature.addBundleLocation("https://github.com/evandor/skysail-repository/raw/master/release/org.apache.felix.webconsole.plugins.ds-1.0.0.jar");
+        // feature.addBundleLocation(" https://github.com/evandor/skysail-repository/raw/master/release/org.apache.felix.servicediagnostics.plugin-0.1.3.jar");
+        feature.addBundleLocation("https://github.com/evandor/skysail-repository/raw/master/release/org.apache.felix.dependencymanager-3.1.0.jar");
+        feature.addBundleLocation("https://github.com/evandor/skysail-repository/raw/master/release/org.apache.felix.dependencymanager.runtime-3.1.0.jar");
+        feature.addBundleLocation("https://github.com/evandor/skysail-repository/raw/master/release/org.apache.felix.webconsole.plugins.obr-1.0.0.jar");
+        // feature.addBundleLocation("https://github.com/evandor/skysail-repository/raw/master/release/org.apache.felix.bundlerepository-2.0.2.jar");
 
         feature.setLandingPage("http://localhost:8080/system/console/");
         feature.setOpenInNewWindow(true);

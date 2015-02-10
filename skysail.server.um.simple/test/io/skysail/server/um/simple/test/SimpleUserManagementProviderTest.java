@@ -8,7 +8,8 @@ import io.skysail.api.um.AuthenticationService;
 import io.skysail.api.um.AuthorizationService;
 import io.skysail.server.um.simple.SimpleUserManagementProvider;
 
-import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -20,7 +21,9 @@ public class SimpleUserManagementProviderTest {
     @Before
     public void setUp() throws Exception {
         provider = new SimpleUserManagementProvider();
-        provider.activate(Collections.emptyMap());
+        Map<String, String> config = new HashMap<>();
+        config.put("users", "admin");
+        provider.activate(config);
     }
 
     @Test

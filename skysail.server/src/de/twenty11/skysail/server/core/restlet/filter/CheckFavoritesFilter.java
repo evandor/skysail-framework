@@ -1,13 +1,14 @@
 package de.twenty11.skysail.server.core.restlet.filter;
 
+import io.skysail.api.favorites.Favorite;
+import io.skysail.api.favorites.FavoritesService;
+
 import org.apache.shiro.SecurityUtils;
 import org.restlet.Application;
 import org.restlet.Request;
 import org.restlet.Response;
 import org.restlet.data.CookieSetting;
 
-import de.twenty11.skysail.api.favorites.Favorite;
-import de.twenty11.skysail.api.favorites.FavoritesService;
 import de.twenty11.skysail.server.Constants;
 import de.twenty11.skysail.server.app.SkysailApplication;
 import de.twenty11.skysail.server.core.restlet.ResponseWrapper;

@@ -1,5 +1,7 @@
 package de.twenty11.skysail.server.core.restlet.converter.renderer;
 
+import io.skysail.api.favorites.FavoritesService;
+
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -9,7 +11,6 @@ import org.restlet.Request;
 import org.restlet.data.Method;
 import org.restlet.resource.Resource;
 
-import de.twenty11.skysail.api.favorites.FavoritesService;
 import de.twenty11.skysail.server.app.SkysailApplication;
 import de.twenty11.skysail.server.core.restlet.SkysailServerResource;
 
@@ -47,7 +48,7 @@ public class FavoritesRenderer {
             return "";
         }
         String username = (String) SecurityUtils.getSubject().getPrincipal();
-        List<de.twenty11.skysail.api.favorites.Favorite> favoritesList = favoritesService.get(username);
+        List<io.skysail.api.favorites.Favorite> favoritesList = favoritesService.get(username);
         String links = favoritesList.stream().map(f -> createFavoriteLink(f))
                 .filter(f -> f != null && f.getLink() != null && f.getLink().trim().length() > 0)
                 .sorted((Favorite f1, Favorite f2) -> f1.getLink().compareTo(f2.getLink())).map(f -> f.getFavorite())
@@ -81,7 +82,7 @@ public class FavoritesRenderer {
         if (favoritesService == null) {
             return "";
         }
-        List<de.twenty11.skysail.api.favorites.Favorite> favoritesList = favoritesService.get((String) SecurityUtils
+        List<io.skysail.api.favorites.Favorite> favoritesList = favoritesService.get((String) SecurityUtils
                 .getSubject().getPrincipal());
         if (favoriteExists(favoritesList, resource.getRequest().getResourceRef().toString(false, false))) {
             return createRemoveFavoriteLink(resource.getRequest());
@@ -89,12 +90,12 @@ public class FavoritesRenderer {
         return createMakeFavoriteLink(resource.getRequest());
     }
 
-    private static boolean favoriteExists(List<de.twenty11.skysail.api.favorites.Favorite> favoritesList, String string) {
+    private static boolean favoriteExists(List<io.skysail.api.favorites.Favorite> favoritesList, String string) {
         return favoritesList.stream().map(f -> f.getFavoriteLink()).filter(link -> link.equals(string)).findFirst()
                 .isPresent();
     }
 
-    private static Favorite createFavoriteLink(de.twenty11.skysail.api.favorites.Favorite f) {
+    private static Favorite createFavoriteLink(io.skysail.api.favorites.Favorite f) {
         String img = f.getFavoriteImg();
         String href = f.getFavoriteLink();
         String favoriteName = f.getFavoriteName();

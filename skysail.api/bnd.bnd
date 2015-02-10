@@ -22,17 +22,13 @@ Export-Package:  \
 	de.twenty11.skysail.api.responses,\
 	de.twenty11.skysail.api.forms,\
 	de.twenty11.skysail.api.security,\
-	de.twenty11.skysail.api.features.context,\
-	de.twenty11.skysail.api.features.repository,\
 	de.twenty11.skysail.api.services,\
 	de.twenty11.skysail.api.structures.graph,\
 	de.twenty11.skysail.api.favorites,\
 	de.twenty11.skysail.api.services.logentry,\
 	de.twenty11.skysail.api.um,\
 	de.twenty11.skysail.api.hooks,\
-	de.twenty11.skysail.api.domain,\
-	de.twenty11.skysail.api.features
+	de.twenty11.skysail.api.domain
 Service-Component: *
 Private-Package:  \
-	de.twenty11.skysail.api.health,\
-	de.twenty11.skysail.api.features.annotations
+	de.twenty11.skysail.api.health

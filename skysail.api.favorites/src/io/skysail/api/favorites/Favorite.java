@@ -1,4 +1,4 @@
-package de.twenty11.skysail.api.favorites;
+package io.skysail.api.favorites;
 
 import lombok.Getter;
 import lombok.Setter;

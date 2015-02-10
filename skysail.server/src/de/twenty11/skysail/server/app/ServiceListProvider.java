@@ -1,6 +1,7 @@
 package de.twenty11.skysail.server.app;
 
 import io.skysail.api.documentation.DocumentationProvider;
+import io.skysail.api.favorites.FavoritesService;
 import io.skysail.api.um.AuthenticationService;
 import io.skysail.api.um.AuthorizationService;
 import io.skysail.api.validation.ValidatorService;
@@ -12,7 +13,6 @@ import org.osgi.service.cm.ConfigurationAdmin;
 import org.osgi.service.event.EventAdmin;
 
 import aQute.bnd.annotation.ProviderType;
-import de.twenty11.skysail.api.favorites.FavoritesService;
 import de.twenty11.skysail.api.hooks.EntityChangedHookService;
 import de.twenty11.skysail.api.services.TranslationService;
 import de.twenty11.skysail.server.SkysailComponent;

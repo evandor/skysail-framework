@@ -43,6 +43,7 @@ Test-Cases: \
 	osgi.identity;filter:='(&(osgi.identity=skysail.api)(version>=3.0))',\
 	osgi.identity;filter:='(&(osgi.identity=skysail.api.validation)(version>=0.1.2))',\
 	osgi.identity;filter:='(&(osgi.identity=skysail.api.features)(version>=0.1))',\
+	osgi.identity;filter:='(&(osgi.identity=skysail.api.favorites)(version>=0.1))',\
 	osgi.identity;filter:='(&(osgi.identity=skysail.server)(version>=5.1.2))',\
 	osgi.identity;filter:='(&(osgi.identity=skysail.server.documentation)(version>=0.1.1))',\
 	osgi.identity;filter:='(&(osgi.identity=org.apache.commons.beanutils)(version>=1.9.2))',\

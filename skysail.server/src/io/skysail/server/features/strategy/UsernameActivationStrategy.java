@@ -1,13 +1,13 @@
 package io.skysail.server.features.strategy;
 
+import io.skysail.api.features.ActivationStrategy;
+import io.skysail.api.features.FeatureState;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import org.apache.commons.lang.StringUtils;
-
-import de.twenty11.skysail.api.features.ActivationStrategy;
-import de.twenty11.skysail.api.features.FeatureState;
 
 public class UsernameActivationStrategy implements ActivationStrategy {
 

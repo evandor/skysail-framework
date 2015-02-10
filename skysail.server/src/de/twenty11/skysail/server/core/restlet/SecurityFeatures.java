@@ -1,7 +1,7 @@
 package de.twenty11.skysail.server.core.restlet;
 
-import de.twenty11.skysail.api.features.Feature;
-import de.twenty11.skysail.api.features.context.FeatureContext;
+import io.skysail.api.features.Feature;
+import io.skysail.api.features.FeatureContext;
 
 public enum SecurityFeatures implements Feature {
 

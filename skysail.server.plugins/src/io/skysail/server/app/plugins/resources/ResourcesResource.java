@@ -12,6 +12,10 @@ import de.twenty11.skysail.server.core.restlet.ListServerResource;
 
 public class ResourcesResource extends ListServerResource<Resource> {
 
+    public ResourcesResource() {
+        super(ResourceResource.class);
+    }
+
     @Override
     public List<Resource> getData() {
         PluginApplication app = (PluginApplication) getApplication();

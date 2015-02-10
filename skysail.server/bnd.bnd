@@ -59,6 +59,7 @@ Service-Component: *
 	skysail.api;version=latest,\
 	skysail.api.validation;version=latest,\
 	skysail.api.documentation;version=latest,\
+	skysail.api.features;version=latest,\
 	skysail.api.um;version=latest,\
 	de.twentyeleven.skysail.org.antlr.stringtemplate-osgi;version=4.0.8,\
 	de.twentyeleven.skysail.org.hamcrest.hamcrest-all-osgi,\

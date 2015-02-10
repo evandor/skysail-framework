@@ -4,6 +4,8 @@ import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.junit.Assert.assertThat;
+import io.skysail.api.features.FeatureState;
+import io.skysail.api.features.FeatureStateRepository;
 import io.skysail.server.db.DbConfig;
 import io.skysail.server.db.DbConfigurationProvider;
 import io.skysail.server.db.DbConfigurations;
@@ -22,8 +24,6 @@ import org.osgi.framework.FrameworkUtil;
 import org.osgi.framework.ServiceReference;
 import org.osgi.service.cm.ConfigurationAdmin;
 
-import de.twenty11.skysail.api.features.FeatureState;
-import de.twenty11.skysail.api.features.repository.StateRepository;
 import de.twenty11.skysail.server.app.ApplicationList;
 import de.twenty11.skysail.server.app.ApplicationListProvider;
 import de.twenty11.skysail.server.core.restlet.SecurityFeatures;
@@ -75,15 +75,15 @@ public class ServerIntegrationTests {
 
     @Test
     public void StateRepository_is_available() throws Exception {
-        ServiceReference<?> reference = getServiceReference(StateRepository.class, "(name=SecurityFeatures)");
+        ServiceReference<?> reference = getServiceReference(FeatureStateRepository.class, "(name=SecurityFeatures)");
         assertThat(reference, is(notNullValue()));
     }
 
     @Test
     public void allow_origin_feature_is_active() throws Exception {
-        ServiceReference<?> reference = getServiceReference(StateRepository.class, "(name=SecurityFeatures)");
+        ServiceReference<?> reference = getServiceReference(FeatureStateRepository.class, "(name=SecurityFeatures)");
         assertThat(reference, is(notNullValue()));
-        StateRepository service = (StateRepository) context.getService(reference);
+        FeatureStateRepository service = (FeatureStateRepository) context.getService(reference);
         assertThat(service instanceof FeaturesRepository, org.hamcrest.CoreMatchers.is(true));
 
         FeatureState featureState = service.getFeatureState(SecurityFeatures.ALLOW_ORIGIN_FEATURE);

@@ -9,6 +9,7 @@ import io.skysail.server.app.plugins.obr.PostResolverResource;
 import io.skysail.server.app.plugins.obr.RepositoriesResource;
 import io.skysail.server.app.plugins.obr.RepositoryResource;
 import io.skysail.server.app.plugins.query.PostQueryResource;
+import io.skysail.server.app.plugins.resources.ResourceResource;
 import io.skysail.server.app.plugins.resources.ResourcesResource;
 
 import java.util.ArrayList;
@@ -65,6 +66,7 @@ public class PluginApplication extends SkysailApplication implements Application
         router.attach(new RouteBuilder("/query/", PostQueryResource.class));
 
         router.attach(new RouteBuilder("/resources", ResourcesResource.class));
+        router.attach(new RouteBuilder("/resources/{id}", ResourceResource.class));
 
     }
 

@@ -1,5 +1,8 @@
 package io.skysail.server.features.strategy;
 
+import io.skysail.api.features.ActivationStrategy;
+import io.skysail.api.features.FeatureState;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -7,9 +10,6 @@ import java.util.Date;
 import lombok.extern.slf4j.Slf4j;
 
 import org.apache.commons.lang.StringUtils;
-
-import de.twenty11.skysail.api.features.ActivationStrategy;
-import de.twenty11.skysail.api.features.FeatureState;
 
 @Slf4j
 public class ReleaseDateActivationStrategy implements ActivationStrategy {

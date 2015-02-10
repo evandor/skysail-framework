@@ -1,3 +1,4 @@
+package io.skysail.api.features.test;
 //package de.twenty11.skysail.api.features.test;
 //
 //import static org.hamcrest.Matchers.equalTo;
@@ -66,7 +67,7 @@
 //    @Test
 //    public void testName() {
 //        FeatureManager featureManager = Mockito.mock(FeatureManager.class);
-//        StateRepository stateRepository = new StateRepository() {
+//        FeatureStateRepository stateRepository = new FeatureStateRepository() {
 //
 //            @Override
 //            public void setFeatureState(FeatureState featureState) {
@@ -83,7 +84,7 @@
 //        Mockito.when(featureManager.getStateRepositories()).thenReturn(Arrays.asList(stateRepository));
 //        osgiFeatureToggle.setFeatureManager(featureManager);
 //
-//        StateRepository sr = osgiFeatureToggle.getStateRepository();
+//        FeatureStateRepository sr = osgiFeatureToggle.getStateRepository();
 //        // FeatureToggle feature = Mockito.mock(FeatureToggle.class);
 //        // FeatureState featureState = new FeatureState(feature);
 //        // stateRepository.setFeatureState(featureState);

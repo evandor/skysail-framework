@@ -1,4 +1,4 @@
-package de.twenty11.skysail.api.features.annotations;
+package io.skysail.api.features.annotations;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -9,9 +9,8 @@ import java.lang.annotation.Target;
 @Target({ ElementType.FIELD, ElementType.TYPE })
 public @interface Label {
     /**
-     * The human readable label of this feature
+     * The human readable label of this feature.
      *
-     * @return The label
      */
     String value();
 }

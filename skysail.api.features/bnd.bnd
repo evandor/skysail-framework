@@ -1,0 +1,13 @@
+Bundle-Name: SKYSAIL :: api :: features
+Bundle-Version: 0.1.0.${tstamp}
+Bundle-Description: Features API to toggle functionality based on various strategies
+-buildpath:  \
+	lombok;version=1.12,\
+	slf4j.api;version=1.7,\
+	biz.aQute.bnd.annotation;version=2.4,\
+	com.springsource.org.junit;version=4.11,\
+	de.twentyeleven.skysail.org.hamcrest.hamcrest-all-osgi;version=1.3,\
+	org.mockito.mockito-all;version=1.10
+Export-Package:  \
+	io.skysail.api.features,\
+	io.skysail.api.features.annotations

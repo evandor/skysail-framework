@@ -1,9 +1,9 @@
-package de.twenty11.skysail.api.features.test;
+package io.skysail.api.features.test;
 
-import de.twenty11.skysail.api.features.Feature;
-import de.twenty11.skysail.api.features.annotations.EnabledByDefault;
-import de.twenty11.skysail.api.features.annotations.Label;
-import de.twenty11.skysail.api.features.context.FeatureContext;
+import io.skysail.api.features.Feature;
+import io.skysail.api.features.FeatureContext;
+import io.skysail.api.features.annotations.EnabledByDefault;
+import io.skysail.api.features.annotations.Label;
 
 public enum MyFeatures implements Feature {
 

@@ -42,6 +42,7 @@ Test-Cases: \
 	osgi.identity;filter:='(osgi.identity=org.apache.felix.log)',\
 	osgi.identity;filter:='(&(osgi.identity=skysail.api)(version>=3.0))',\
 	osgi.identity;filter:='(&(osgi.identity=skysail.api.validation)(version>=0.1.2))',\
+	osgi.identity;filter:='(&(osgi.identity=skysail.api.features)(version>=0.1))',\
 	osgi.identity;filter:='(&(osgi.identity=skysail.server)(version>=5.1.2))',\
 	osgi.identity;filter:='(&(osgi.identity=skysail.server.documentation)(version>=0.1.1))',\
 	osgi.identity;filter:='(&(osgi.identity=org.apache.commons.beanutils)(version>=1.9.2))',\
@@ -103,6 +104,7 @@ Test-Cases: \
 	osgi.enterprise;version='[4.2.0,4.2.1)',\
 	skysail.api;version=latest,\
 	skysail.api.documentation;version=latest,\
+	skysail.api.features;version=latest,\
 	skysail.api.um;version=latest,\
 	skysail.api.validation;version=latest,\
 	skysail.server;version=latest,\

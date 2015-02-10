@@ -26,7 +26,8 @@ public class Resource {
         symbolicName = r.getSymbolicName();
         version = r.getVersion().toString();
         size = r.getSize();
-        id = r.getId();
+        id = symbolicName + ";" + version;
+
         uri = r.getURI();
         if (installedBundles.stream().filter(installedBundle -> {
             return installedBundle.getSymbolicName().equals(symbolicName);

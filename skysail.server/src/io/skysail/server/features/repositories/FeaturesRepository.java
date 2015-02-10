@@ -1,5 +1,9 @@
 package io.skysail.server.features.repositories;
 
+import io.skysail.api.features.Feature;
+import io.skysail.api.features.FeatureState;
+import io.skysail.api.features.FeatureStateRepository;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -8,13 +12,10 @@ import aQute.bnd.annotation.component.Activate;
 import aQute.bnd.annotation.component.Component;
 import aQute.bnd.annotation.component.ConfigurationPolicy;
 import aQute.bnd.annotation.component.Deactivate;
-import de.twenty11.skysail.api.features.Feature;
-import de.twenty11.skysail.api.features.FeatureState;
-import de.twenty11.skysail.api.features.repository.StateRepository;
 
 @Component(immediate = true, configurationPolicy = ConfigurationPolicy.require)
 @Slf4j
-public class FeaturesRepository implements StateRepository {
+public class FeaturesRepository implements FeatureStateRepository {
 
     private Map<String, String> config;
 

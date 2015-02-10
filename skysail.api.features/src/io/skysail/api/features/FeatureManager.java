@@ -1,9 +1,7 @@
-package de.twenty11.skysail.api.features;
+package io.skysail.api.features;
 
 import java.util.List;
 import java.util.Set;
-
-import de.twenty11.skysail.api.features.repository.StateRepository;
 
 /**
  * A FeatureManager is responsible for the decision whether a certain feature is
@@ -53,13 +51,14 @@ public interface FeatureManager {
 
     FeatureUser getCurrentFeatureUser();
 
-    List<StateRepository> getStateRepositories();
+    List<FeatureStateRepository> getStateRepositories();
 
     /**
      * Returns the {@link FeatureState} for the specified feature. This state
      * represents the current configuration of the feature and is typically
-     * persisted by a {@link StateRepository} across JVM restarts. The state
-     * includes whether the feature is enabled or disabled and the use list.
+     * persisted by a {@link FeatureStateRepository} across JVM restarts. The
+     * state includes whether the feature is enabled or disabled and the use
+     * list.
      *
      * @param feature
      *            The feature to get the state for

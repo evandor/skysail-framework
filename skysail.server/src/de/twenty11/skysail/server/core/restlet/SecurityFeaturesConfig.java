@@ -1,24 +1,24 @@
 package de.twenty11.skysail.server.core.restlet;
 
+import io.skysail.api.features.FeatureStateRepository;
+import io.skysail.api.features.FeaturesConfig;
 import aQute.bnd.annotation.component.Reference;
-import de.twenty11.skysail.api.features.FeaturesConfig;
-import de.twenty11.skysail.api.features.repository.StateRepository;
 
 public class SecurityFeaturesConfig implements FeaturesConfig {
 
-    private StateRepository stateRepository;
+    private FeatureStateRepository stateRepository;
 
     @Override
-    public StateRepository getStateRepository() {
+    public FeatureStateRepository getStateRepository() {
         return stateRepository;
     }
 
     @Reference(dynamic = true, multiple = false, optional = true, target = "(name=SecurityFeatures)")
-    public void setStateRepository(StateRepository stateRepository) {
+    public void setStateRepository(FeatureStateRepository stateRepository) {
         this.stateRepository = stateRepository;
     }
 
-    public void unsetStateRepository(StateRepository stateRepository) {
+    public void unsetStateRepository(FeatureStateRepository stateRepository) {
         this.stateRepository = null;
     }
 

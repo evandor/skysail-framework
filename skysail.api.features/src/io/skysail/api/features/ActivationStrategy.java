@@ -1,6 +1,10 @@
-package de.twenty11.skysail.api.features;
+package io.skysail.api.features;
 
-
+/**
+ * Implementations define a concrete strategy under which circumstances the
+ * feature will be active.
+ *
+ */
 public interface ActivationStrategy {
 
     String getId();

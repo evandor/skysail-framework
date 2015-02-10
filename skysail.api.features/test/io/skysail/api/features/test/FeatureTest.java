@@ -1,4 +1,4 @@
-package de.twenty11.skysail.api.features.test;
+package io.skysail.api.features.test;
 
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;

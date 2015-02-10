@@ -2,6 +2,8 @@ package io.skysail.server.features.repositories.test;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
+import io.skysail.api.features.Feature;
+import io.skysail.api.features.FeatureState;
 import io.skysail.server.features.repositories.FeaturesRepository;
 
 import java.util.HashMap;
@@ -10,9 +12,6 @@ import java.util.Map;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
-
-import de.twenty11.skysail.api.features.Feature;
-import de.twenty11.skysail.api.features.FeatureState;
 
 public class FeaturesRepositoryTest {
 

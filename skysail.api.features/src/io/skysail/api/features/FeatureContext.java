@@ -1,4 +1,6 @@
-package de.twenty11.skysail.api.features.context;
+package io.skysail.api.features;
+
+import io.skysail.api.features.annotations.EnabledByDefault;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
@@ -7,12 +9,6 @@ import java.util.List;
 import java.util.Set;
 
 import lombok.extern.slf4j.Slf4j;
-import de.twenty11.skysail.api.features.Feature;
-import de.twenty11.skysail.api.features.FeatureManager;
-import de.twenty11.skysail.api.features.FeatureState;
-import de.twenty11.skysail.api.features.FeatureUser;
-import de.twenty11.skysail.api.features.annotations.EnabledByDefault;
-import de.twenty11.skysail.api.features.repository.StateRepository;
 
 @Slf4j
 public class FeatureContext {
@@ -30,7 +26,7 @@ public class FeatureContext {
             manager = new FeatureManager() {
 
                 @Override
-                public List<StateRepository> getStateRepositories() {
+                public List<FeatureStateRepository> getStateRepositories() {
                     return null;
                 }
 

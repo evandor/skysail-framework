@@ -1,4 +1,4 @@
-package de.twenty11.skysail.api.features;
+package io.skysail.api.features;
 
 import java.io.Serializable;
 import java.util.Collections;
@@ -35,6 +35,11 @@ public class FeatureState implements Serializable {
         this(feature, Collections.emptyMap(), false);
     }
 
+    /**
+     * @param feature
+     * @param config
+     * @param enabled
+     */
     public FeatureState(Feature feature, Map<String, String> config, boolean enabled) {
         this.feature = feature;
         this.config = config;

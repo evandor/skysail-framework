@@ -1,17 +1,16 @@
-package de.twenty11.skysail.api.features.test;
+package io.skysail.api.features.test;
 
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
+import io.skysail.api.features.Feature;
+import io.skysail.api.features.FeatureState;
 
 import java.util.HashMap;
 
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
-
-import de.twenty11.skysail.api.features.Feature;
-import de.twenty11.skysail.api.features.FeatureState;
 
 public class FeatureStateTest {
 

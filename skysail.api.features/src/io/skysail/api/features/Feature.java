@@ -1,4 +1,4 @@
-package de.twenty11.skysail.api.features;
+package io.skysail.api.features;
 
 /**
  *

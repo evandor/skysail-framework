@@ -21,12 +21,10 @@ Bundle-ActivationPolicy: lazy
 Export-Package:  \
 	de.twenty11.skysail.api.responses,\
 	de.twenty11.skysail.api.forms,\
-	de.twenty11.skysail.api.security,\
 	de.twenty11.skysail.api.services,\
 	de.twenty11.skysail.api.structures.graph,\
 	de.twenty11.skysail.api.favorites,\
 	de.twenty11.skysail.api.services.logentry,\
-	de.twenty11.skysail.api.um,\
 	de.twenty11.skysail.api.hooks,\
 	de.twenty11.skysail.api.domain
 Service-Component: *

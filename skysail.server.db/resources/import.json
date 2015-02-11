@@ -1,0 +1,17 @@
+{
+  "records": [{
+          "@type": "d", "@rid": "#10:0", "@version": 0, "@class": "SkysailUser",
+          "username": "admin",
+          "password": "$2a$12$52R8v2QH3vQRz8NcdtOm5.HhE5tFPZ0T/.MpfUa9rBzOugK.btAHS",
+          "@fieldTypes": "date=t"
+        },{
+          "@type": "d", "@rid": "#10:0", "@version": 0, "@class": "SkysailRole",
+          "name": "admin",
+          "@fieldTypes": "date=t"
+        },{
+          "@type": "d", "@rid": "#20:0", "@version": 0, "@class": "SkysailRole",
+          "name": "system",
+          "@fieldTypes": "date=t"
+        }
+  ]
+}

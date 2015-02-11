@@ -1,0 +1,27 @@
+Bundle-Version: 0.1.0.${tstamp}
+Service-Component: *
+Bundle-Name: SKYSAIL :: server :: db
+Private-Package: de.twenty11.skysail.server.db.orientdb
+Include-Resource: resources=resources
+-buildpath:  \
+	skysail.server;version=latest,\
+	biz.aQute.bnd.annotation;version=2.3,\
+	osgi.cmpn;version=5.0,\
+	com.orientechnologies.orientdb-core;version=latest,\
+	com.orientechnologies.orientdb-object;version=latest,\
+	com.orientechnologies.orient-commons;version=latest,\
+	com.orientechnologies.orientdb-client;version=latest,\
+	com.orientechnologies.orientdb-graphdb;version=latest,\
+	com.orientechnologies.orientdb-enterprise;version=latest,\
+	osgi.core;version=5.0,\
+	org.restlet;version=${restlet.version},\
+	com.springsource.org.junit;version=4.11,\
+	slf4j.api;version=1.7.7,\
+	lombok;version=1.12
+Import-Package:  \
+	javassist.util.proxy,\
+	!cern.colt.*,\
+	!com.tinkerpop.*,\
+	!org.apache.commons.configuration.*,\
+	!org.codehaus.jettison.*,\
+	*

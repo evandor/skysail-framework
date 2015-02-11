@@ -1,0 +1,61 @@
+application(annotations, postResources, putResources, listResources, entityResources, applicationModel,rootResource) ::= <<
+package $applicationModel.packageName$;
+
+import java.util.Arrays;
+import java.util.List;
+
+import aQute.bnd.annotation.component.Component;
+import aQute.bnd.annotation.component.Reference;
+import de.twenty11.skysail.server.app.ApplicationProvider;
+import de.twenty11.skysail.server.app.SkysailApplication;
+
+$importPostResources(postResources, applicationModel.typeName, package)$
+$importPutResources(putResources)$
+$importListResources(listResources)$
+$importEntityResources(entityResources)$
+
+import de.twenty11.skysail.server.core.restlet.ApplicationContextId;
+import de.twenty11.skysail.server.core.restlet.RouteBuilder;
+import de.twenty11.skysail.server.services.MenuItem;
+import de.twenty11.skysail.server.services.MenuItemProvider;
+
+$annotations$
+@javax.annotation.Generated(value = "de.twenty11.skysail.server.ext.apt.GenerateSkysailApplicationProcessor")
+$applicationModel.typeDefinition$ {
+
+	private static final String APP_NAME = "$applicationModel.typeName$";
+
+	public $applicationModel.typeName$() {
+		super(APP_NAME);
+		addToAppContext(ApplicationContextId.IMG, "/static/img/silk/page_link.png");
+	}
+
+	@Override
+	protected void attach() {
+	    // Application root resource
+		router.attach(new RouteBuilder("", RootResource.class));
+		
+		$attachPostResources(postResources)$
+		$attachListResources(listResources)$
+		$attachEntityResources(entityResources)$
+		$attachPutResources(putResources)$
+	}
+
+	public List<MenuItem> getMenuEntries() {
+		MenuItem appMenu = new MenuItem("$applicationModel.typeName$", "/$applicationModel.typeName$", this);
+		appMenu.setCategory(MenuItem.Category.APPLICATION_MAIN_MENU);
+		return Arrays.asList(appMenu);
+	}
+
+}
+>>
+
+attachEntityResources(resources) ::= <%$resources: {resource | router.attach(new RouteBuilder("$resource.path$", $resource.simpleName$Resource.class));$\n$}$%>
+attachPostResources(resources)   ::= <%$resources: {resource | router.attach(new RouteBuilder("$resource.path$", Post$resource.simpleName$Resource.class));$\n$}$%>
+attachPutResources(resources)    ::= <%$resources: {resource | router.attach(new RouteBuilder("$resource.path$", Put$resource.simpleName$Resource.class));$\n$}$%>
+attachListResources(resources)   ::= <%$resources: {resource | router.attach(new RouteBuilder("$resource.path$", $resource.simpleName$sResource.class));$\n$}$%>
+
+importEntityResources(resources) ::= <<$resources: {resource | import $resource.enclosingElement$.$resource.simpleName$Resource;$\n$}$>>
+importPostResources(resources, name, package) ::= <<$resources: {resource | import $resource.enclosingElement$.Post$resource.simpleName$Resource;$\n$}$>>
+importPutResources(resources)    ::= <<$resources: {resource | import $resource.enclosingElement$.Put$resource.simpleName$Resource;$\n$}$>>
+importListResources(resources)   ::= <<$resources: {resource | import $resource.enclosingElement$.$resource.simpleName$sResource;$\n$}$>>

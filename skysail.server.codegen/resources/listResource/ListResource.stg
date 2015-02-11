@@ -1,0 +1,49 @@
+list(name, package, imports, linkheader,getData) ::= <<
+package $package$;
+
+import java.util.List;
+import java.util.function.Consumer;
+
+import org.restlet.resource.ResourceException;
+
+$imports$
+
+import de.twenty11.skysail.api.responses.Linkheader;
+import de.twenty11.skysail.server.core.restlet.ListServerResource;
+import de.twenty11.skysail.server.core.restlet.ResourceContextId;
+
+public class $name$sResource extends ListServerResource<$name$> {
+
+    private String id;
+    
+    public $name$sResource() {
+        super($name$Resource.class);
+        addToContext(ResourceContextId.LINK_TITLE, "List of $name$s");
+    }
+    
+    @Override
+    protected void doInit() throws ResourceException {
+        id = getAttribute("id");
+    }
+    
+    @Override
+    public List<$name$> getData() {
+        $getData$
+    }
+
+    @Override
+    public List<Linkheader> getLinkheader() {
+        $if(linkheader)$
+        return super.getLinkheader($linkheader$);
+        $else$
+        return super.getLinkheader(Post$name$Resource.class);
+        $endif$
+    }
+    
+    @Override
+    public Consumer<? super Linkheader> getPathSubstitutions() {
+        return l -> { l.substitute("id", id); };
+    }
+}
+
+>>

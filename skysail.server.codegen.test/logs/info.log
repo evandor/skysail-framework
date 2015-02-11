@@ -1,0 +1,11 @@
+INFO  d.t.s.server.core.restlet.PostEntityServerResource - Request entry point: PostContactResource @Post('x-www-form-urlencoded:html|json|xml')
+INFO  d.t.s.server.core.restlet.PostEntityServerResource - calling post(Form), media types '[]'
+INFO  d.t.s.server.core.restlet.filter.AbstractResourceFilter - next filter in chain: AddRequestIdToResourceFilter
+INFO  d.t.s.server.core.restlet.filter.AbstractResourceFilter - next filter in chain: CheckInvalidInputFilter
+INFO  d.t.s.server.core.restlet.filter.AbstractResourceFilter - next filter in chain: FormDataExtractingFilter
+INFO  d.t.s.server.core.restlet.filter.AbstractResourceFilter - next filter in chain: CheckBusinessViolationsFilter
+INFO  d.t.s.server.core.restlet.filter.AbstractResourceFilter - next filter in chain: OptionalEncryptionFilter
+INFO  d.t.s.server.core.restlet.filter.AbstractResourceFilter - next filter in chain: PersistEntityFilter
+INFO  d.t.s.server.core.restlet.filter.AbstractResourceFilter - next filter in chain: EntityWasAddedFilter
+INFO  d.t.s.server.core.restlet.filter.AbstractResourceFilter - next filter in chain: AddLinkheadersFilter
+INFO  d.t.s.server.core.restlet.filter.AbstractResourceFilter - next filter in chain: PostRedirectGetFilter

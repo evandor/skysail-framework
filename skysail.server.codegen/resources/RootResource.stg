@@ -1,0 +1,36 @@
+rootResource(name, package, entityResources) ::= <<
+package $package$;
+
+import java.util.Collections;
+import java.util.List;
+
+$importEntities(entityResources)$
+
+import de.twenty11.skysail.api.responses.Linkheader;
+import de.twenty11.skysail.server.core.restlet.ListServerResource;
+
+@javax.annotation.Generated(value = "de.twenty11.skysail.server.ext.apt.GenerateRootResourceProcessor")
+public class RootResource extends ListServerResource<String> {
+
+    @Override
+    public List<String> getData() {
+        return Collections.emptyList();
+    }
+    
+    @Override
+    public List<Linkheader> getLinkheader() {
+        return super.getLinkheader($entityClasses(trunc(entityResources))$$lastEntityClass(last(entityResources))$);
+    }
+
+}
+>>
+
+importEntities(resources) ::= <<$resources: {resource | import $resource.enclosingElement$.$resource.simpleName$sResource;$\n$}$>>
+
+entityClasses(entities) ::= <<
+    $entities: {entity | $entity.name$sResource.class,}$
+>>
+
+lastEntityClass(entity) ::= <<
+    $entity.name$sResource.class
+>>

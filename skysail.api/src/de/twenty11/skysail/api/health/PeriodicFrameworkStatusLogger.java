@@ -14,10 +14,29 @@ import org.osgi.framework.InvalidSyntaxException;
 import org.osgi.framework.ServiceReference;
 
 import aQute.bnd.annotation.component.Activate;
-import aQute.bnd.annotation.component.Component;
 import aQute.bnd.annotation.component.Deactivate;
 
 //@Component
+// Currently not active
+// matching logback config
+
+//<appender name="BUNDLE_STATUS_FILE" class="ch.qos.logback.core.FileAppender">
+//<param name="Append" value="false" />
+//<filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+//    <level>INFO</level>
+//</filter>
+//<maxFileSize>1MB</maxFileSize>
+//<file>logs/status.log</file>
+//<append>false</append>
+//<encoder>
+//    <pattern>%date{ISO8601} PeriodicFrameworkStatusLogger - %msg%n
+//    </pattern>
+//</encoder>
+//</appender>
+//
+//<logger name="de.twenty11.skysail.api.health" level="INFO" additivity="false">
+//<appender-ref ref="BUNDLE_STATUS_FILE"/>
+//</logger>
 @Slf4j
 public class PeriodicFrameworkStatusLogger {
 

@@ -46,21 +46,21 @@ Test-Cases:  \
     gosh.args=--nointeractive,\
     logback.configurationFile=testresources/logback.xml
 	
--runrequires:  \
-	osgi.identity;filter:='(osgi.identity=org.apache.felix.gogo.shell)',\
-	osgi.identity;filter:='(osgi.identity=org.apache.felix.gogo.command)',\
-	osgi.identity;filter:='(osgi.identity=org.apache.felix.log)',\
-	osgi.identity;filter:='(&(osgi.identity=org.apache.felix.scr)(version>=1.8.2))',\
-	osgi.identity;filter:='(&(osgi.identity=org.apache.felix.configadmin)(version>=1.8.0))',\
-	osgi.identity;filter:='(&(osgi.identity=skysail.server)(version>=5.0))',\
-	osgi.identity;filter:='(&(osgi.identity=org.apache.felix.fileinstall)(version>=3.4.0))',\
-	osgi.identity;filter:='(&(osgi.identity=skysail.api)(version>=2.0))',\
-	osgi.identity;filter:='(&(osgi.identity=skysail.api.validation)(version>=0.1))',\
-	osgi.identity;filter:='(&(osgi.identity=skysail.api.features)(version>=0.1))',\
-	osgi.identity;filter:='(&(osgi.identity=skysail.api.documentation)(version>=0.1))',\
-	osgi.identity;filter:='(&(osgi.identity=osgi.cmpn)(version>=5.0))',\
-	osgi.identity;filter:='(&(osgi.identity=ch.qos.logback.classic)(version>=1.1.2))',\
-	osgi.identity;filter:='(&(osgi.identity=org.hibernate.validator)(version>=5.0.1.Final))'
+#-runrequires:  \
+#	osgi.identity;filter:='(osgi.identity=org.apache.felix.gogo.shell)',\
+#	osgi.identity;filter:='(osgi.identity=org.apache.felix.gogo.command)',\
+#	osgi.identity;filter:='(osgi.identity=org.apache.felix.log)',\
+#	osgi.identity;filter:='(&(osgi.identity=org.apache.felix.scr)(version>=1.8.2))',\
+#	osgi.identity;filter:='(&(osgi.identity=org.apache.felix.configadmin)(version>=1.8.0))',\
+#	osgi.identity;filter:='(&(osgi.identity=skysail.server)(version>=5.0))',\
+#	osgi.identity;filter:='(&(osgi.identity=org.apache.felix.fileinstall)(version>=3.4.0))',\
+#	osgi.identity;filter:='(&(osgi.identity=skysail.api)(version>=2.0))',\
+#	osgi.identity;filter:='(&(osgi.identity=skysail.api.validation)(version>=0.1))',\
+#	osgi.identity;filter:='(&(osgi.identity=skysail.api.features)(version>=0.1))',\
+#	osgi.identity;filter:='(&(osgi.identity=skysail.api.documentation)(version>=0.1))',\
+#	osgi.identity;filter:='(&(osgi.identity=osgi.cmpn)(version>=5.0))',\
+#	osgi.identity;filter:='(&(osgi.identity=ch.qos.logback.classic)(version>=1.1.2))',\
+#	osgi.identity;filter:='(&(osgi.identity=org.hibernate.validator)(version>=5.0.1.Final))'
 
 -runbundles:  \
 	ch.qos.logback.classic;version='[1.1.2,1.1.3)',\
@@ -105,8 +105,8 @@ Test-Cases:  \
 	skysail.api;version=latest,\
 	skysail.api.documentation;version=latest,\
 	skysail.api.features;version=latest,\
+	skysail.api.favorites;version=latest,\
 	skysail.api.um;version=latest,\
 	skysail.api.validation;version=latest,\
 	skysail.server;version=latest,\
 	slf4j.api;version='[1.7.7,1.7.8)'
--resolve: auto

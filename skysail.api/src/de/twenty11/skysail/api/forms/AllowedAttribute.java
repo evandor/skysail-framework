@@ -5,8 +5,10 @@ import lombok.NonNull;
 /**
  * An html attribute (like "style") to be allowed on various elements (like "p",
  * "span").
- * 
+ *
+ * <p>
  * This is used for defining HtmlPolicies to prevent XSS attacks.
+ * </p>
  * 
  */
 public class AllowedAttribute {

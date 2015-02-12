@@ -5,6 +5,7 @@ testbin: bin
 Bundle-Version: 0.1.0.${tstamp}
 Bundle-Name: SKYSAIL :: server :: app :: todos
 Service-Component: *
+Include-Resource: resources, templates=src;recursive:=true;filter:=*.st|*.stg
 -buildpath:  \
 	biz.aQute.bnd.annotation,\
 	skysail.api;version=latest,\

@@ -6,6 +6,7 @@ import java.lang.reflect.ParameterizedType;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -15,6 +16,8 @@ import java.util.stream.Collectors;
 import lombok.NonNull;
 
 import org.apache.commons.beanutils.BeanUtils;
+import org.apache.commons.beanutils.ConvertUtils;
+import org.apache.commons.beanutils.converters.DateConverter;
 import org.apache.shiro.SecurityUtils;
 import org.restlet.Application;
 import org.restlet.data.Form;
@@ -332,6 +335,9 @@ public abstract class SkysailServerResource<T> extends ServerResource {
 
     protected T populate(T bean, Form form) {
         try {
+            DateConverter dateConverter = new DateConverter(null);
+            dateConverter.setPattern("yyyy-MM-dd");
+            ConvertUtils.register(dateConverter, Date.class);
             BeanUtils.populate(bean, form.getValuesMap());
             return bean;
         } catch (IllegalAccessException | InvocationTargetException e) {

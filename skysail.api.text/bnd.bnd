@@ -1,0 +1,8 @@
+Bundle-Version: 0.1.0.${tstamp}
+Bundle-Name: SKYSAIL :: api :: text
+Bundle-Description: Text API defining an interface to get formatted, substitued and internationalized \
+	text blocks for given keys
+Export-Package:  \
+	io.skysail.api.text
+-buildpath:  \
+	org.restlet;version=${restlet.version}

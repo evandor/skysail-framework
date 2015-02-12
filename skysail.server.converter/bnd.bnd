@@ -26,7 +26,8 @@ Include-Resource: templates=templates,webapp=webapp
 	org.apache.commons.lang;version=2.6,\
 	com.springsource.org.junit;version=4.11,\
 	org.mockito.mockito-all;version=1.10,\
-	javax.validation.api;version=1.1
+	javax.validation.api;version=1.1,\
+	org.apache.commons.beanutils;version=1.9
 	
 Private-Package:  \
 	io.skysail.server.converter.wrapper,\

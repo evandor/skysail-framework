@@ -696,9 +696,9 @@ public abstract class SkysailApplication extends Application implements Applicat
         this.translationService = service;
     }
 
-    public TranslationService getTranslationService() {
-        return translationService;
-    }
+    // public TranslationService getTranslationService() {
+    // return translationService;
+    // }
 
     public void unsetTranslationService() {
         this.translationService = null;

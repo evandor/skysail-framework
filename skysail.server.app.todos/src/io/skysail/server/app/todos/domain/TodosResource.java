@@ -3,10 +3,8 @@ package io.skysail.server.app.todos.domain;
 import java.util.List;
 import java.util.function.Consumer;
 
+import org.apache.shiro.SecurityUtils;
 import org.restlet.resource.ResourceException;
-
-import io.skysail.server.app.todos.domain.*;
-
 
 import de.twenty11.skysail.api.responses.Linkheader;
 import de.twenty11.skysail.server.core.restlet.ListServerResource;
@@ -28,7 +26,8 @@ public class TodosResource extends ListServerResource<Todo> {
 
     @Override
     public List<Todo> getData() {
-        return TodosRepository.getInstance().getTodos();
+        Object principal = SecurityUtils.getSubject().getPrincipal();
+        return TodosRepository.getInstance().getTodos(principal.toString());
     }
 
     @Override
@@ -38,6 +37,8 @@ public class TodosResource extends ListServerResource<Todo> {
 
     @Override
     public Consumer<? super Linkheader> getPathSubstitutions() {
-        return l -> { l.substitute("id", id); };
+        return l -> {
+            l.substitute("id", id);
+        };
     }
 }

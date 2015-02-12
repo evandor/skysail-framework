@@ -1,0 +1,1 @@
+java -Dfelix.cm.dir=%~dp0\config -jar skysail.jar

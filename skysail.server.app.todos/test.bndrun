@@ -26,7 +26,7 @@
     felix.fileinstall.filter=.*\\.jar|.*\\.cfg,\
     felix.fileinstall.noInitialDelay=true,\
     felix.fileinstall.poll=1000,\
-    felix.cm.dir=../skysail.server.documentation.it/config/test/storage,\
+    felix.cm.dir=../skysail.server.app.todos/config/test/storage,\
     org.apache.felix.log.storeDebug=true,\
     felix.fileinstall.log.level=4,\
     org.apache.felix.log.storeDebug=true,\
@@ -95,7 +95,7 @@
 	skysail.server;version=latest,\
 	skysail.server.converter;version=latest,\
 	skysail.server.app.todos;version=latest,\
-	skysail.server.db.orientdb;version=latest,\
+	skysail.server.db;version=latest,\
 	skysail.server.documentation;version=latest,\
 	skysail.server.ext.i18n;version=latest,\
 	skysail.server.http;version=latest,\

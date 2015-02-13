@@ -1,8 +1,15 @@
 package io.skysail.api.text;
 
-import org.restlet.resource.Resource;
+import org.restlet.Request;
 
+/**
+ * A render service asks a Store for the translation object for a given key and
+ * passes this to its render function to
+ *
+ */
 public interface RenderService {
 
-    String translate(String key, String defaultMsg, Resource resource, Object... subsitutions);
+    Translation getTranslation(String key, ClassLoader cl, Request request, Store store);
+
+    String render(Translation translation, Object... substitutions);
 }

@@ -1,0 +1,18 @@
+Bundle-Version: 0.1.0.${tstamp}
+Bundle-Name: SKYSAIL :: server :: text
+Include-Resource: resources
+-buildpath:  \
+	skysail.api;version=latest,\
+	skysail.server;version=latest,\
+	de.twentyeleven.skysail.org.hamcrest.hamcrest-all-osgi;version=1.3,\
+	biz.aQute.bnd.annotation,\
+	slf4j.api;version=1.7.7,\
+	org.restlet;version=${restlet.version},\
+	com.springsource.org.junit;version=4.11,\
+	skysail.api.text;version=latest,\
+	lombok;version=1.12
+Private-Package:  \
+	de.twenty11.skysail.server.ext.i18n,\
+	io.skysail.server.text
+Service-Component:  \
+	*

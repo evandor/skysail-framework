@@ -5,4 +5,9 @@ Bundle-Description: Text API defining an interface to get formatted, substitued 
 Export-Package:  \
 	io.skysail.api.text
 -buildpath:  \
-	org.restlet;version=${restlet.version}
+	org.restlet;version=${restlet.version},\
+	com.springsource.org.junit;version=4.11,\
+	org.mockito.mockito-all;version=1.10,\
+	de.twentyeleven.skysail.org.hamcrest.hamcrest-all-osgi;version=1.3,\
+	lombok;version=1.12,\
+	biz.aQute.bnd.annotation;version=2.4

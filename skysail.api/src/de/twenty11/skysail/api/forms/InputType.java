@@ -5,4 +5,7 @@ public enum InputType {
     TEXT, PASSWORD, CHECKBOX, RADIO, SUBMIT, RESET, FILE, HIDDEN, IMAGE, BUTTON,
     // textarea tag
     TEXTAREA, TAGS, MARKDOWN_EDITOR, READONLY, EMAIL, DATE;
+
+    // http://www.wufoo.com/html5/
+    // EMAIL,TEL,URL, Search, color, Number, range, Button, reset.
 }

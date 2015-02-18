@@ -76,6 +76,7 @@ public class SkysailRootApplication extends SkysailApplication implements Applic
         router.attach(new RouteBuilder("/", DefaultResource.class).noAuthenticationNeeded());
         // see ShiroDelegationAuthenticator
         router.attach(new RouteBuilder(LOGIN_PATH, LoginResource.class).noAuthenticationNeeded());
+        router.attach(new RouteBuilder(LOGIN_PATH + "/{provider}", OAuthLoginResource.class).noAuthenticationNeeded());
         router.attach(new RouteBuilder(VERSION_PATH, VersionResource.class));
         router.attach(new RouteBuilder(NAME_PATH, NameResource.class));
         router.attach(new RouteBuilder(ABOUT_PATH, AboutResource.class).noAuthenticationNeeded());

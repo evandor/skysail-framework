@@ -13,16 +13,18 @@ public class SkysailComponent extends Component {
 
     public SkysailComponent() {
         logger.info("Creating Restlet Component: {}", SkysailComponent.class.getName());
-        // System.setProperty("org.restlet.engine.loggerFacadeClass", "org.restlet.ext.slf4j.Slf4jLoggerFacade");
+        // System.setProperty("org.restlet.engine.loggerFacadeClass",
+        // "org.restlet.ext.slf4j.Slf4jLoggerFacade");
         getClients().add(Protocol.CLAP);
         getClients().add(Protocol.HTTP);
+        getClients().add(Protocol.HTTPS);
         getClients().add(Protocol.FILE);
-        
-        //setStatusService(new SkysailStatusService());
-//        @NonNull Object ref = null;
+
+        // setStatusService(new SkysailStatusService());
+        // @NonNull Object ref = null;
         Engine.getInstance().setLoggerFacade(new Slf4jLoggerFacade());
-//        Engine.setRestletLogLevel(Level.FINEST);
-//        Engine.setLogLevel(Level.FINEST);
-        //getServices().add(new EnrolerService());
+        // Engine.setRestletLogLevel(Level.FINEST);
+        // Engine.setLogLevel(Level.FINEST);
+        // getServices().add(new EnrolerService());
     }
 }

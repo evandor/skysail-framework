@@ -156,14 +156,14 @@ public abstract class PutEntityServerResource<T> extends SkysailServerResource<T
         EtmPoint point = etmMonitor.createPoint("PutEntityServerResource:putEntity");
         logger.info("Request entry point: {} @Put('json')", this.getClass().getSimpleName());
         getRequest().getAttributes().put(SKYSAIL_SERVER_RESTLET_ENTITY, entity);
-        T put = put((Form) null);
+        Object put = put((Form) null);
         point.collect();
         return put;
     }
 
     @Put("x-www-form-urlencoded:html|json")
     @API(desc = "generic PUT for x-www-form-urlencoded")
-    public T put(Form form) {
+    public Object put(Form form) {
         EtmPoint point = etmMonitor.createPoint("PutEntityServerResource:put");
         logger.info("Request entry point: {} @Put('x-www-form-urlencoded:html|json')", this.getClass().getSimpleName());
         if (form != null) {
@@ -171,9 +171,12 @@ public abstract class PutEntityServerResource<T> extends SkysailServerResource<T
         }
         RequestHandler<T> requestHandler = new RequestHandler<T>(getApplication());
         AbstractResourceFilter<PutEntityServerResource<T>, T> handler = requestHandler.createForPut();
-        T entity = handler.handle(this, getResponse()).getEntity();
+        ResponseWrapper<T> handledRequest = handler.handle(this, getResponse());
         point.collect();
-        return entity;
+        if (handledRequest.getConstraintViolationsResponse() != null) {
+            return handledRequest.getConstraintViolationsResponse();
+        }
+        return handledRequest.getEntity();
     }
 
     @Override

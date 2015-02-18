@@ -100,6 +100,7 @@ Test-Cases: \
 	org.restlet;version='[2.1.7,2.1.8)',\
 	org.restlet.ext.jackson;version='[2.1.7,2.1.8)',\
 	org.restlet.ext.slf4j;version='[2.1.7,2.1.8)',\
+	org.restlet.ext.json;version='[2.1.7,2.1.8)',\
 	org.xerial.snappy.snappy-java;version='[1.1.1,1.1.2)',\
 	osgi.cmpn;version='[5.0.0,5.0.1)',\
 	osgi.enterprise;version='[4.2.0,4.2.1)',\

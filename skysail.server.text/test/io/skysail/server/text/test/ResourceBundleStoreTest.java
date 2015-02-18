@@ -23,6 +23,7 @@ public class ResourceBundleStoreTest {
     }
 
     @Test
+    @Ignore
     public void store_cannot_find_resource_without_proper_classloader() throws Exception {
         thrown.expect(MissingResourceException.class);
         store.get("key");

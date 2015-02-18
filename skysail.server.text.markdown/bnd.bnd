@@ -13,7 +13,8 @@ Include-Resource: lib=lib
 	lib/markdown4j-2.2.jar;version=file,\
 	org.restlet;version=${restlet.version},\
 	org.apache.commons.lang3;version=3.1,\
-	slf4j.api;version=1.7
+	slf4j.api;version=1.7,\
+	skysail.api.text;version=latest
 Private-Package:  \
 	io.skysail.server.text.markdown
 Service-Component:  \

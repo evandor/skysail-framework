@@ -11,8 +11,8 @@ import java.util.stream.Collectors;
 import org.restlet.Application;
 import org.restlet.data.Cookie;
 import org.restlet.data.CookieSetting;
+import org.restlet.data.Header;
 import org.restlet.data.Method;
-import org.restlet.engine.header.Header;
 import org.restlet.resource.ClientResource;
 import org.restlet.util.Series;
 import org.slf4j.Logger;
@@ -86,7 +86,7 @@ public class LinksResource extends EntityServerResource<Node> {
                 edge.setTo(nodes.stream().filter(n -> n.getPath().equals(node.getPath())).collect(Collectors.toList())
                         .get(0));
             } else {
-                //nodes.add(node);
+                // nodes.add(node);
                 edge.setTo(node);
                 return node;
             }

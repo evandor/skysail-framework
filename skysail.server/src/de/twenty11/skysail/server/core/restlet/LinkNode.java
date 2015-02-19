@@ -2,8 +2,8 @@ package de.twenty11.skysail.server.core.restlet;
 
 import java.util.Map;
 
+import org.restlet.data.Header;
 import org.restlet.data.Method;
-import org.restlet.engine.header.Header;
 import org.restlet.representation.Representation;
 import org.restlet.util.Series;
 

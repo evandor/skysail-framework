@@ -14,7 +14,7 @@ public class GitTranslationStore implements TranslationStore {
 
     @Override
     public Optional<String> get(String key) {
-        return Optional.of(key.replace(".", ""));
+        return Optional.ofNullable(key.replace(".", ""));
     }
 
     @Override

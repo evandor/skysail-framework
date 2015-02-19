@@ -296,7 +296,7 @@ public abstract class SkysailServerResource<T> extends ServerResource {
         this.skysailData = skysailData;
     }
 
-    protected void setDescription(String desc) {
+    public void setDescription(String desc) {
         this.desc = desc;
     }
 

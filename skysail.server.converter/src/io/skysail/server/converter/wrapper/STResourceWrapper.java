@@ -2,20 +2,23 @@ package io.skysail.server.converter.wrapper;
 
 import io.skysail.server.converter.Breadcrumb;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import lombok.extern.slf4j.Slf4j;
+
 import org.apache.commons.lang.StringUtils;
 import org.restlet.Request;
+import org.restlet.data.Header;
 import org.restlet.data.MediaType;
 import org.restlet.data.Reference;
 import org.restlet.data.Status;
 import org.restlet.engine.Engine;
 import org.restlet.engine.converter.ConverterHelper;
-import org.restlet.engine.header.Header;
 import org.restlet.engine.resource.VariantInfo;
 import org.restlet.representation.Variant;
 import org.restlet.resource.ServerResource;
@@ -32,6 +35,7 @@ import de.twenty11.skysail.server.core.restlet.ResourceContextId;
 import de.twenty11.skysail.server.core.restlet.SkysailServerResource;
 import de.twenty11.skysail.server.utils.HeadersUtils;
 
+@Slf4j
 public class STResourceWrapper {
 
     private SkysailServerResource<?> resource;
@@ -159,15 +163,20 @@ public class STResourceWrapper {
         Set<String> mediaTypes = new HashSet<String>();
         List<ConverterHelper> registeredConverters = Engine.getInstance().getRegisteredConverters();
         for (ConverterHelper ch : registeredConverters) {
-            List<VariantInfo> variants = ch.getVariants(source.getClass());
-            if (variants == null) {
-                continue;
-            }
-            for (VariantInfo variantInfo : variants) {
-                if (supportedMediaTypes.contains(variantInfo.getMediaType())) {
-                    String subType = variantInfo.getMediaType().getSubType();
-                    mediaTypes.add(subType.equals("*") ? variantInfo.getMediaType().getName() : subType);
+            List<VariantInfo> variants;
+            try {
+                variants = ch.getVariants(source.getClass());
+                if (variants == null) {
+                    continue;
                 }
+                for (VariantInfo variantInfo : variants) {
+                    if (supportedMediaTypes.contains(variantInfo.getMediaType())) {
+                        String subType = variantInfo.getMediaType().getSubType();
+                        mediaTypes.add(subType.equals("*") ? variantInfo.getMediaType().getName() : subType);
+                    }
+                }
+            } catch (IOException e) {
+                log.error(e.getMessage(), e);
             }
         }
         return mediaTypes;

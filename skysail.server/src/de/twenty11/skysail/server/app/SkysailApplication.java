@@ -313,6 +313,8 @@ public abstract class SkysailApplication extends Application implements Applicat
                     Translation translation = service.getService().get()
                             .getTranslation(message, resource.getClass().getClassLoader(), resource.getRequest());
                     return service.getService().get().render(translation);
+                }).filter(t -> {
+                    return t != null;
                 }).findFirst();
         if (bestTranslation.isPresent()) {
             return bestTranslation.get();

@@ -16,7 +16,7 @@ public class DbTranslationStore implements TranslationStore {
     @Override
     public Optional<String> get(String key) {
         Text text = TextRepository.getInstance().getById(key);
-        return Optional.of(text.getValue());
+        return Optional.ofNullable(text.getValue());
     }
 
     @Override

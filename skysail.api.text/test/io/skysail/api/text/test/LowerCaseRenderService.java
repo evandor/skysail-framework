@@ -13,7 +13,7 @@ public class LowerCaseRenderService implements TranslationRenderService {
     public class DefaultTranslation extends Translation {
 
         public DefaultTranslation(String text) {
-            super(Optional.of(text), 1000);
+            super(Optional.ofNullable(text), 1000);
         }
 
         @Override

@@ -9,7 +9,7 @@ import java.util.Map;
 import java.util.TreeMap;
 
 import org.restlet.Response;
-import org.restlet.engine.header.Header;
+import org.restlet.data.Header;
 import org.restlet.util.Series;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -37,7 +37,7 @@ public class HeadersUtils {
     private static final Logger logger = LoggerFactory.getLogger(HeadersUtils.class);
 
     public static final String PAGINATION_PAGES = "X-Pagination-Pages";
-    public static final String PAGINATION_PAGE  = "X-Pagination-Page";
+    public static final String PAGINATION_PAGE = "X-Pagination-Page";
     public static final String PAGINATION_HITS = "X-Pagination-Hits";
 
     public static List<String> parseAcceptedLanguages(String acceptLanguageHeader) {
@@ -69,10 +69,10 @@ public class HeadersUtils {
 
     public static Series<Header> addToHeaders(Response response, String headername, String headervalue) {
         Series<Header> headers = getHeaders(response);
-        headers.add(headername,  headervalue);
+        headers.add(headername, headervalue);
         return headers;
     }
-    
+
     @SuppressWarnings({ "unchecked", "rawtypes" })
     public static Series<Header> getHeaders(Response response) {
         Series<Header> responseHeaders = (Series<Header>) response.getAttributes().get("org.restlet.http.headers");

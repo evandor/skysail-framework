@@ -24,8 +24,8 @@ public class OAuthLoginResource extends EntityServerResource<String> {
     @Override
     public String getData() {
         Map<String, String> map = new HashMap<>();
-        map.put("client_id", "");
-        map.put("client_secret", "");
+        map.put("client_id", System.getenv("GITHUB_CLIENT_ID"));
+        map.put("client_secret", System.getenv("GITHUB_CLIENT_SECRET"));
         map.put("code", code);
         JsonRepresentation json = new JsonRepresentation(map);
         Representation post = new ClientResource("https://github.com/login/oauth/access_token").post(json);

@@ -14,19 +14,12 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 import org.mockito.Mockito;
-import org.osgi.framework.Bundle;
-import org.osgi.framework.BundleContext;
-import org.restlet.Request;
-import org.restlet.data.Cookie;
 import org.restlet.data.MediaType;
 import org.restlet.engine.resource.VariantInfo;
-import org.restlet.engine.util.CookieSeries;
 import org.restlet.representation.Representation;
 import org.restlet.representation.Variant;
 import org.restlet.resource.Resource;
-import org.restlet.util.Series;
 
-import de.twenty11.skysail.server.app.SkysailApplication;
 import de.twenty11.skysail.server.core.restlet.EntityServerResource;
 import de.twenty11.skysail.server.services.MenuItem;
 import de.twenty11.skysail.server.services.MenuItemProvider;
@@ -123,22 +116,24 @@ public class HtmlConverterTest {
     @Ignore
     public void testName() throws Exception {
         EntityServerResource<?> resource = Mockito.mock(EntityServerResource.class);
-        Request request = Mockito.mock(Request.class);
-        Series<Cookie> cookies = new CookieSeries();
-        Mockito.when(request.getCookies()).thenReturn(cookies);
-        Mockito.when(resource.getRequest()).thenReturn(request);
-        SkysailApplication application = Mockito.mock(SkysailApplication.class);
-        Bundle bundle = Mockito.mock(Bundle.class);
-        Mockito.when(bundle.getSymbolicName()).thenReturn("skysail.server.ext.converter.st");
-        BundleContext bundleContext = Mockito.mock(BundleContext.class);
-        Bundle[] bundles = new Bundle[] { bundle };
-        Mockito.when(bundleContext.getBundles()).thenReturn(bundles);
-        Mockito.when(bundle.getBundleContext()).thenReturn(bundleContext);
-        Mockito.when(application.getBundle()).thenReturn(bundle);
-        Mockito.when(resource.getApplication()).thenReturn(application);
-        Variant target = new VariantInfo(MediaType.TEXT_HTML);
-        Representation representation = htmlConverter.toRepresentation("originalSource", target, resource);
-        System.out.println(representation);
+        // Request request = Mockito.mock(Request.class);
+        // Series<Cookie> cookies = new CookieSeries();
+        // Mockito.when(request.getCookies()).thenReturn(cookies);
+        // Mockito.when(resource.getRequest()).thenReturn(request);
+        // SkysailApplication application =
+        // Mockito.mock(SkysailApplication.class);
+        // Bundle bundle = Mockito.mock(Bundle.class);
+        // Mockito.when(bundle.getSymbolicName()).thenReturn("skysail.server.ext.converter.st");
+        // BundleContext bundleContext = Mockito.mock(BundleContext.class);
+        // Bundle[] bundles = new Bundle[] { bundle };
+        // Mockito.when(bundleContext.getBundles()).thenReturn(bundles);
+        // Mockito.when(bundle.getBundleContext()).thenReturn(bundleContext);
+        // Mockito.when(application.getBundle()).thenReturn(bundle);
+        // Mockito.when(resource.getApplication()).thenReturn(application);
+        // Variant target = new VariantInfo(MediaType.TEXT_HTML);
+        // Representation representation =
+        // htmlConverter.toRepresentation("originalSource", target, resource);
+        // System.out.println(representation);
     }
 
 }

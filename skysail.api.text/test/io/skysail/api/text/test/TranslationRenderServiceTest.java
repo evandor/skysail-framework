@@ -33,22 +33,22 @@ public class TranslationRenderServiceTest {
         TranslationStore store = new TranslationStore() {
             @Override
             public Optional<String> get(String key) {
-                return Optional.of(key);
+                return Optional.ofNullable(key);
             }
 
             @Override
             public Optional<String> get(String key, ClassLoader cl) {
-                return Optional.of(key);
+                return Optional.ofNullable(key);
             }
 
             @Override
             public Optional<String> get(String key, ClassLoader cl, Request request) {
-                return Optional.of(key);
+                return Optional.ofNullable(key);
             }
 
             @Override
             public Optional<String> get(String key, ClassLoader cl, Request request, Locale locale) {
-                return Optional.of(key);
+                return Optional.ofNullable(key);
             }
         };
         Translation translation = renderService.getTranslation("KEY", null, null, store);

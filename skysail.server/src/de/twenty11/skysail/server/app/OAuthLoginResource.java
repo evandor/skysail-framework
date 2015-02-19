@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.restlet.ext.json.JsonRepresentation;
+import org.restlet.data.MediaType;
 import org.restlet.representation.Representation;
 import org.restlet.resource.ClientResource;
 import org.restlet.resource.ResourceException;
@@ -28,8 +28,11 @@ public class OAuthLoginResource extends EntityServerResource<String> {
         map.put("client_id", System.getenv("GITHUB_CLIENT_ID"));
         map.put("client_secret", System.getenv("GITHUB_CLIENT_SECRET"));
         map.put("code", code);
-        JsonRepresentation json = new JsonRepresentation(map);
-        Representation post = new ClientResource("https://github.com/login/oauth/access_token").post(json);
+        // JsonRepresentation json = new JsonRepresentation(map);
+        String json = "{\"client_id\":\"" + System.getenv("GITHUB_CLIENT_ID") + "\",\"client_secret\":\""
+                + System.getenv("GITHUB_CLIENT_SECRET") + "\",\"code\": \"" + code + "\"}";
+        Representation post = new ClientResource("https://github.com/login/oauth/access_token").post(json,
+                MediaType.APPLICATION_JSON);
         try {
             String text = post.getText();
             System.out.println(text);

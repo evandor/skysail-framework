@@ -35,6 +35,8 @@ public class TodoApplication extends SkysailApplication implements ApplicationPr
         router.attach(new RouteBuilder("/Todos/{id}", TodoResource.class));
         router.attach(new RouteBuilder("/Todos/{id}/", PutTodoResource.class));
 
+        router.attach(new RouteBuilder("/jira", PostJiraResource.class).noAuthenticationNeeded());
+
     }
 
     public List<MenuItem> getMenuEntries() {

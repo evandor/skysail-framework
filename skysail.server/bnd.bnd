@@ -96,4 +96,6 @@ Service-Component: *
 	javassist;version=3.18,\
 	ch.qos.logback.classic;version=1.0,\
 	ch.qos.logback.core;version=1.0,\
-	skysail.api.text;version=latest
+	skysail.api.text;version=latest,\
+	org.restlet.ext.json;version=2.1,\
+	de.twentyeleven.skysail.org.json-osgi;version=20080701.0

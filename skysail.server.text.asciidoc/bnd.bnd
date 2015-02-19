@@ -15,7 +15,8 @@ Include-Resource: lib=lib
 	org.apache.commons.lang3;version=3.1,\
 	slf4j.api;version=1.7,\
 	skysail.api.text;version=latest,\
-	osgi.core;version=5.0
+	osgi.core;version=5.0,\
+	skysail.api.text;version=latest
 Private-Package:  \
 	io.skysail.server.text.asciidoc
 Service-Component:  \

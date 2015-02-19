@@ -18,12 +18,13 @@ public class OAuthLoginResource extends EntityServerResource<String> {
 
     @Override
     protected void doInit() throws ResourceException {
-        code = getAttribute("code");
+        code = getQueryValue("code");
     }
 
     @Override
     public String getData() {
         Map<String, String> map = new HashMap<>();
+        System.getenv();
         map.put("client_id", System.getenv("GITHUB_CLIENT_ID"));
         map.put("client_secret", System.getenv("GITHUB_CLIENT_SECRET"));
         map.put("code", code);

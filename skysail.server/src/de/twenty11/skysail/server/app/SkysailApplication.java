@@ -2,6 +2,8 @@ package de.twenty11.skysail.server.app;
 
 import io.skysail.api.documentation.DocumentationProvider;
 import io.skysail.api.favorites.FavoritesService;
+import io.skysail.api.text.Translation;
+import io.skysail.api.text.TranslationRenderService;
 import io.skysail.api.um.AuthenticationService;
 import io.skysail.api.um.AuthorizationService;
 import io.skysail.api.validation.ValidatorService;
@@ -18,6 +20,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.MissingResourceException;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
@@ -200,6 +203,8 @@ public abstract class SkysailApplication extends Application implements Applicat
     private volatile ValidatorService validatorService;
     private volatile DocumentationProvider documentationProvider;
 
+    private volatile List<TranslationRenderServiceHolder> translationRenderServices = new ArrayList<>();
+
     /**
      * default Constructor.
      */
@@ -290,6 +295,30 @@ public abstract class SkysailApplication extends Application implements Applicat
     @Override
     public String translate(String message, String defaultMsg, Resource resource, boolean applyMarkdown,
             Object... substitutions) {
+
+        if (translationRenderServices.size() == 0) {
+            // return message;
+        }
+
+        List<TranslationRenderServiceHolder> sortedServices = translationRenderServices.stream().sorted((t1, t2) -> {
+            return t1.getServiceRanking().compareTo(t2.getServiceRanking());
+        }).collect(Collectors.toList());
+
+        Optional<String> bestTranslation = sortedServices
+                .stream()
+                .filter(service -> {
+                    return service.getService().get() != null;
+                })
+                .map(service -> {
+                    Translation translation = service.getService().get()
+                            .getTranslation(message, resource.getClass().getClassLoader(), resource.getRequest());
+                    return service.getService().get().render(translation);
+                }).findFirst();
+        if (bestTranslation.isPresent()) {
+            return bestTranslation.get();
+        }
+
+        // old way, to be removed
         if (translationService == null) {
             return message;
         }
@@ -694,6 +723,18 @@ public abstract class SkysailApplication extends Application implements Applicat
     public void setTranslationService(TranslationService service) {
         logServiceWasSet("Translation", service);
         this.translationService = service;
+    }
+
+    public void addTranslationRenderService(TranslationRenderServiceHolder service) {
+        this.translationRenderServices.add(service);
+    }
+
+    public void removeTranslationRenderService(TranslationRenderService service) {
+        this.translationRenderServices.remove(service);
+    }
+
+    public void setTranslationRenderServices(List<TranslationRenderServiceHolder> services) {
+        this.translationRenderServices = services;
     }
 
     // public TranslationService getTranslationService() {

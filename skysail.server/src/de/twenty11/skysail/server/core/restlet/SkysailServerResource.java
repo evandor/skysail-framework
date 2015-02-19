@@ -110,14 +110,14 @@ public abstract class SkysailServerResource<T> extends ServerResource {
         Map<String, String> msgs = new HashMap<>();
         msgs.put("content.header",
                 "default msg from de.twenty11.skysail.server.core.restlet.SkysailServerResource.getMessages()");
-        String translated = ((TranslationProvider) application).translate(getClass().getName() + ".message", getClass()
-                .getName() + ".message", this, true);
+        String key = getClass().getName() + ".message";
+        String translated = ((TranslationProvider) application).translate(key, key, this, true);
         msgs.put("content.header", translated);
         return msgs;
     }
 
     /**
-     * get Mssages.
+     * get Messages.
      * 
      * @param fields
      *            a list of fields

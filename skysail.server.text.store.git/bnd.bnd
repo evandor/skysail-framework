@@ -1,0 +1,14 @@
+Bundle-Version: 0.1.0.${tstamp}
+Service-Component:  \
+	*
+Bundle-Name: SKYSAIL :: server :: text :: store :: git
+Bundle-Description: TranslationStore based on git repository
+-buildpath:  \
+	lombok;version=1.12,\
+	slf4j.api;version=1.7,\
+	biz.aQute.bnd.annotation;version=2.4,\
+	skysail.api.text;version=latest,\
+	org.restlet;version=${restlet.version},\
+	skysail.server;version=latest
+Private-Package:  \
+	io.skysail.server.text.store.git

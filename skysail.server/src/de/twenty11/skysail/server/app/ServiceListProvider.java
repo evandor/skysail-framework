@@ -52,4 +52,6 @@ public interface ServiceListProvider {
 
     DocumentationProvider getDocumentationProvider();
 
+    List<TranslationRenderServiceHolder> getTranslationRenderServices();
+
 }

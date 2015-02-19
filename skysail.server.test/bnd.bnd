@@ -106,6 +106,7 @@ Test-Cases:  \
 	skysail.api.documentation;version=latest,\
 	skysail.api.features;version=latest,\
 	skysail.api.favorites;version=latest,\
+	skysail.api.text;version=latest,\
 	skysail.api.um;version=latest,\
 	skysail.api.validation;version=latest,\
 	skysail.server;version=latest,\

@@ -101,6 +101,7 @@ public class ApplicationList implements ApplicationListProvider {
         assignService(apps, app -> app.setMetricsService(services.getMetricsService()));
         assignService(apps, app -> app.setValidatorService(services.getValidatorService()));
         assignService(apps, app -> app.setDocumentationProvider(services.getDocumentationProvider()));
+        assignService(apps, app -> app.setTranslationRenderServices(services.getTranslationRenderServices()));
         assignService(apps, app -> app.setFilters(services.getHookFilters()));
     }
 
@@ -115,6 +116,7 @@ public class ApplicationList implements ApplicationListProvider {
         apps.stream().forEach(app -> app.setMetricsService(null));
         apps.stream().forEach(app -> app.setValidatorService(services.getValidatorService()));
         apps.stream().forEach(app -> app.setDocumentationProvider(services.getDocumentationProvider()));
+        apps.stream().forEach(app -> app.setTranslationRenderServices(Collections.emptyList()));
         apps.stream().forEach(app -> app.setFilters(Collections.emptySet()));
     }
 

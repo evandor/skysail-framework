@@ -29,6 +29,7 @@ Private-Package:  \
 	skysail.api;version=latest,\
 	skysail.api.validation;version=latest,\
 	skysail.api.documentation;version=latest,\
+	skysail.api.text;version=latest,\
 	skysail.api.um;version=latest,\
 	skysail.api.favorites;version=latest,\
 	skysail.server;version=latest,\

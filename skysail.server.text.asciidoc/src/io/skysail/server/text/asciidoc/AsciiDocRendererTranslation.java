@@ -1,18 +1,19 @@
 package io.skysail.server.text.asciidoc;
 
 import io.skysail.api.text.Translation;
+import io.skysail.api.text.TranslationRenderService;
 
 import java.util.Optional;
 
-import lombok.Getter;
-
-public class AsciiDocRendererTranslation implements Translation {
-
-    @Getter
-    private String translation;
+public class AsciiDocRendererTranslation extends Translation {
 
     public AsciiDocRendererTranslation(Optional<String> text) {
-        this.translation = text.orElse(null);
+        super(text, Integer.valueOf(AsciiDocRenderService.SERVICE_RANKING));
+    }
+
+    @Override
+    public Class<? extends TranslationRenderService> getTranslatedBy() {
+        return AsciiDocRenderService.class;
     }
 
 }

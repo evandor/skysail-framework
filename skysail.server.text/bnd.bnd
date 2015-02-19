@@ -10,9 +10,13 @@ Include-Resource: resources
 	org.restlet;version=${restlet.version},\
 	com.springsource.org.junit;version=4.11,\
 	skysail.api.text;version=latest,\
-	lombok;version=1.12
+	lombok;version=1.12,\
+	osgi.core;version=5.0,\
+	org.apache.commons.lang3;version=3.3
 Private-Package:  \
 	de.twenty11.skysail.server.ext.i18n,\
-	io.skysail.server.text
+	io.skysail.server.text.impl
 Service-Component:  \
 	*
+Export-Package:  \
+	io.skysail.server.text

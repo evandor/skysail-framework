@@ -2,6 +2,7 @@ package de.twenty11.skysail.server.app;
 
 import io.skysail.api.documentation.DocumentationProvider;
 import io.skysail.api.favorites.FavoritesService;
+import io.skysail.api.text.TranslationRenderService;
 import io.skysail.api.um.AuthenticationService;
 import io.skysail.api.um.AuthorizationService;
 import io.skysail.api.um.UserManagementProvider;
@@ -9,6 +10,7 @@ import io.skysail.api.validation.ValidatorService;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -58,6 +60,9 @@ public class ServiceList implements ServiceListProvider {
     private volatile FavoritesService favoritesService;
     private volatile AuthenticationService authenticationService;
     private volatile TranslationService translationService;
+
+    private volatile List<TranslationRenderServiceHolder> translationRenderServices = new ArrayList<>();
+
     private volatile EncryptorService encryptorService;
     private volatile List<EntityChangedHookService> entityChangedHookServices = new ArrayList<EntityChangedHookService>();
     private volatile EventAdmin eventAdmin;
@@ -183,7 +188,7 @@ public class ServiceList implements ServiceListProvider {
         return favoritesService;
     }
 
-    /** === Translation Service ============================== */
+    /** === Translation Service (deprecated) ============================== */
 
     @Reference(optional = true, dynamic = true, multiple = false)
     public synchronized void setTranslationService(TranslationService service) {
@@ -199,6 +204,26 @@ public class ServiceList implements ServiceListProvider {
     @Override
     public TranslationService getTranslationService() {
         return translationService;
+    }
+
+    /** === TranslationRenderService ============================== */
+
+    @Reference(optional = true, dynamic = true, multiple = true)
+    public synchronized void addTranslationRenderService(TranslationRenderService service) {
+        TranslationRenderServiceHolder holder = new TranslationRenderServiceHolder(service,
+                new HashMap<String, String>());
+        this.translationRenderServices.add(holder);
+        getSkysailApps().forEach(app -> app.addTranslationRenderService(holder));
+    }
+
+    public synchronized void removeTranslationRenderService(TranslationRenderService service) {
+        this.translationRenderServices.remove(service);
+        getSkysailApps().forEach(a -> a.removeTranslationRenderService(service));
+    }
+
+    @Override
+    public List<TranslationRenderServiceHolder> getTranslationRenderServices() {
+        return translationRenderServices;
     }
 
     /** === Encryptor Service ============================== */

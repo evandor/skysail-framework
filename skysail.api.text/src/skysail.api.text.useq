@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sequence-diagram version="1.1.8" icons="true" automaticImage="PNG">  
+  <object id="1" language="java" name="de.twenty11.skysail.server.app.SkysailApplication" project="skysail.server" 
+    file="/skysail.server/src/de/twenty11/skysail/server/app/SkysailApplication.java" binary="false" 
+    label="skysailApplication" type="class" autoSize="true">    
+    <position height="-1" width="-1" x="615" y="0"/>    
+    <execution id="2">      
+      <position height="453" width="0" x="0" y="83"/>    
+    </execution>    
+    <execution id="4">      
+      <position height="390" width="0" x="0" y="125"/>    
+    </execution>  
+  </object>  
+  <object id="23" language="java" name="java.util.Optional" project="skysail.api.text" 
+    file="/Library/Java/JavaVirtualMachines/jdk1.8.0_20.jdk/Contents/Home/jre/lib/rt.jar" binary="true" 
+    label="bestTranslation" type="class" autoSize="true">    
+    <position height="0" width="0" x="0" y="0"/>    
+    <execution id="6">      
+      <position height="21" width="0" x="0" y="150"/>    
+    </execution>    
+    <execution id="8">      
+      <position height="21" width="0" x="0" y="189"/>    
+    </execution>  
+  </object>  
+  <object id="24" language="java" name="io.skysail.api.text.Translation" project="skysail.api.text" 
+    file="/skysail.api.text/src/io/skysail/api/text/Translation.java" binary="false" type="class" autoSize="true">    
+    <position height="0" width="0" x="0" y="0"/>    
+    <execution id="10">      
+      <position height="21" width="0" x="0" y="228"/>    
+    </execution>  
+  </object>  
+  <object id="25" language="java" name="de.twenty11.skysail.api.services.TranslationService" project="skysail.api" 
+    file="/skysail.api/src/de/twenty11/skysail/api/services/TranslationService.java" binary="false" 
+    label="translationService" type="interface" autoSize="true">    
+    <position height="0" width="0" x="0" y="0"/>    
+    <execution id="12">      
+      <position height="21" width="0" x="0" y="274"/>    
+    </execution>  
+  </object>  
+  <object id="26" language="java" name="org.restlet.resource.Resource" project="skysail.api" 
+    file="/Users/carsten/.bnd/cache/https%3A%2F%2Fgithub.com%2Fevandor%2Fskysail-repository%2Fraw%2Fmaster%2Frelease/org.restlet-2.1.7.jar" 
+    binary="true" label="resource" type="class" autoSize="true">    
+    <position height="0" width="0" x="0" y="0"/>    
+    <execution id="14">      
+      <position height="21" width="0" x="0" y="309"/>    
+    </execution>  
+  </object>  
+  <object id="27" language="java" name="java.text.MessageFormat" project="skysail.server" 
+    file="/Library/Java/JavaVirtualMachines/jdk1.8.0_20.jdk/Contents/Home/jre/lib/rt.jar" binary="true" 
+    label="&lt;static&gt;" type="class" autoSize="true">    
+    <position height="0" width="0" x="0" y="0"/>    
+    <execution id="16">      
+      <position height="21" width="0" x="0" y="350"/>    
+    </execution>  
+  </object>  
+  <object id="28" language="java" name="org.markdown4j.Markdown4jProcessor" project="skysail.server" 
+    file="/skysail.server/lib/markdown4j-2.2.jar" binary="true" type="class" autoSize="true">    
+    <position height="0" width="0" x="0" y="0"/>    
+    <execution id="18">      
+      <position height="21" width="0" x="0" y="386"/>    
+    </execution>    
+    <execution id="22">      
+      <position height="21" width="0" x="0" y="473"/>    
+    </execution>  
+  </object>  
+  <object id="29" language="java" name="org.apache.commons.lang.StringEscapeUtils" project="skysail.server" 
+    file="/Users/carsten/.bnd/cache/https%3A%2F%2Fgithub.com%2Fevandor%2Fskysail-repository%2Fraw%2Fmaster%2Frelease/org.apache.commons.lang-2.6.0.jar" 
+    binary="true" label="&lt;static&gt;" type="class" autoSize="true">    
+    <position height="0" width="0" x="0" y="0"/>    
+    <execution id="20">      
+      <position height="21" width="0" x="0" y="426"/>    
+    </execution>  
+  </object>  
+  <message id="3" 
+    operation="translate(java.lang.String,java.lang.String,org.restlet.resource.Resource,boolean,java.lang.Object[]):java.lang.String">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="4"/>  
+  </message>  
+  <message id="5" operation="isPresent():boolean">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="6"/>  
+  </message>  
+  <message id="7" operation="get():T">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="8"/>  
+  </message>  
+  <message id="9" operation="getValue():java.lang.String">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="10"/>  
+  </message>  
+  <message id="11" 
+    operation="translate(java.lang.ClassLoader,org.restlet.Request,java.lang.String,java.lang.String):java.lang.String">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="12"/>  
+  </message>  
+  <message id="13" operation="getRequest():org.restlet.Request">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="14"/>  
+  </message>  
+  <message id="15" operation="format(java.lang.String,java.lang.Object[]):java.lang.String">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="16"/>  
+  </message>  
+  <message id="17" operation="Markdown4jProcessor()">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="18"/>  
+  </message>  
+  <message id="19" operation="unescapeHtml(java.lang.String):java.lang.String">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="20"/>  
+  </message>  
+  <message id="21" operation="process(java.lang.String):java.lang.String">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="22"/>  
+  </message>
+</sequence-diagram>

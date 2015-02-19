@@ -89,13 +89,14 @@
 	skysail.api;version=latest,\
 	skysail.api.um;version=latest,\
 	skysail.api.documentation;version=latest,\
+	skysail.api.text;version=latest,\
 	skysail.api.validation;version=latest,\
 	skysail.api.features;version=latest,\
 	skysail.api.favorites;version=latest,\
 	skysail.server;version=latest,\
 	skysail.server.converter;version=latest,\
 	skysail.server.app.intro;version=latest,\
-	skysail.server.db.orientdb;version=latest,\
+	skysail.server.db;version=latest,\
 	skysail.server.documentation;version=latest,\
 	skysail.server.ext.i18n;version=latest,\
 	skysail.server.http;version=latest,\

@@ -19,7 +19,7 @@ echo "copying skysail.todos.jar to products directory"
 cp skysail.todos.jar /home/carsten/skysail/products/todos/prod/bin/skysail.todos.jar
 
 echo "stopping todos service"
-#/home/carsten/skysail/products/todos/prod/bin/todos_prod stop
+/home/carsten/skysail/products/todos/prod/bin/todos_prod stop
 
 cd /home/carsten/.hudson/jobs/skysail.product.todos.export.prod/workspace/skysail.product.todos
 cp -r deployment/service/* /home/carsten/skysail/products/todos/prod
@@ -28,9 +28,11 @@ cp -r deployment/service/* /home/carsten/skysail/products/todos/prod
 #unzip -o /home/carsten/skysail/products/todos/prod/bin/skysail.todos.jar
 
 #echo "getting config files for installation from svn"
-#cd /home/carsten/skysail/products/todos/prod/bin/config
-#rm -rf prod
-#svn checkout https://85.25.22.125/repos/skysale/skysailconfigs/todos/prod/
+cd /home/carsten/skysail/products/todos/prod/bin
+rm -rf config
+mkdir config
+cd config
+svn checkout https://85.25.22.125/repos/skysale/skysailconfigs/todos/prod/
 
 #echo "starting todos service"
 cd /home/carsten/skysail/products/todos/prod/bin/
@@ -39,6 +41,7 @@ cd /home/carsten/skysail/products/todos/prod/bin/
 #rm -rf jar
 # not really necessary:
 unzip -o skysail.todos.jar
+chmod 755 todos_prod
 ./todos_prod start
 
 

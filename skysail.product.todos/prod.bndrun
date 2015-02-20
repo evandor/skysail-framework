@@ -22,17 +22,16 @@
 
 -runtrace: false
 
--runproperties: felix.fileinstall.dir=config/test,\
+-runproperties: felix.fileinstall.dir=config/prod,\
     felix.fileinstall.filter=.*\\.jar|.*\\.cfg,\
     felix.fileinstall.noInitialDelay=true,\
     felix.fileinstall.poll=1000,\
-    felix.cm.dir=../skysail.server.app.todos/config/test/storage,\
     org.apache.felix.log.storeDebug=true,\
     felix.fileinstall.log.level=4,\
     org.apache.felix.log.storeDebug=true,\
     https.proxyHost=192.168.11.140,\
     https.proxyPort=8080,\
-    logback.configurationFile=config/test/logback.xml,\
+    logback.configurationFile=config/prod/logback.xml,\
     obr.repository.url=https://raw.githubusercontent.com/evandor/skysail-repository/master/index.xml https://raw.githubusercontent.com/evandor/skysail/master/cnf/releaserepo/index.xml http://felix.apache.org/obr/releases.xml
 
 

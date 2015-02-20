@@ -21,3 +21,5 @@ Private-Package:  \
 	io.skysail.server.text.markdown
 Service-Component:  \
 	*
+Export-Package:  \
+	org.markdown4j

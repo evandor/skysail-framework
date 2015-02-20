@@ -42,4 +42,10 @@ public class TranslationStoreHolder {
             return 0;
         }
     }
+
+    @Override
+    public String toString() {
+        return new StringBuilder("TranslationStoreHolder for ").append(store.get()).toString();
+    }
+
 }

@@ -71,7 +71,7 @@ public class ResourceBundleStore implements TranslationStore {
         if (headers == null) {
             return Collections.emptyList();
         }
-        String acceptLanguage = headers.getFirstValue("Accept-Language");
+        String acceptLanguage = headers.getFirstValue("Accept-language");
         List<String> acceptedLanguages = HeadersUtils.parseAcceptedLanguages(acceptLanguage);
         return acceptedLanguages;
     }

@@ -23,12 +23,12 @@
 #             script's ability to control the application.
 
 # Application
-APP_NAME="website_test"
-APP_LONG_NAME="skysail website (test)"
+APP_NAME="todos_prod"
+APP_LONG_NAME="skysail todos (prod)"
 
 # Wrapper
 WRAPPER_CMD="./wrapper"
-WRAPPER_CONF="../conf/wrapper_website_test.conf"
+WRAPPER_CONF="../conf/wrapper_todos_prod.conf"
 
 # Priority at which to run the wrapper.  See "man nice" for valid priorities.
 #  nice is only used if a priority is specified.

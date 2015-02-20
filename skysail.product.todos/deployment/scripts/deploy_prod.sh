@@ -19,7 +19,7 @@ echo "copying skysail.todos.jar to products directory"
 cp skysail.todos.jar /home/carsten/skysail/products/todos/prod/bin/skysail.todos.jar
 
 echo "stopping todos service"
-/home/carsten/skysail/products/todos/prod/bin/todos_prod stop
+#/home/carsten/skysail/products/todos/prod/bin/todos_prod stop
 
 cd /home/carsten/.hudson/jobs/skysail.product.todos.export.prod/workspace/skysail.product.todos
 cp -r deployment/service/* /home/carsten/skysail/products/todos/prod

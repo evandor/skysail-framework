@@ -29,10 +29,11 @@
     org.apache.felix.log.storeDebug=true,\
     felix.fileinstall.log.level=4,\
     org.apache.felix.log.storeDebug=true,\
-    https.proxyHost=192.168.11.140,\
-    https.proxyPort=8080,\
     logback.configurationFile=config/prod/logback.xml,\
     obr.repository.url=https://raw.githubusercontent.com/evandor/skysail-repository/master/index.xml https://raw.githubusercontent.com/evandor/skysail/master/cnf/releaserepo/index.xml http://felix.apache.org/obr/releases.xml
+
+#    https.proxyHost=192.168.11.140,\
+#    https.proxyPort=8080,\
 
 
 # not used here, resolution takes too long...
@@ -91,7 +92,7 @@
 	org.xerial.snappy.snappy-java;version='[1.1.1,1.1.2)',\
 	osgi.cmpn;version='[5.0.0,5.0.1)',\
 	osgi.enterprise;version='[4.2.0,4.2.1)',\
-	skysail.api;version=latest,\
+	skysail.api;version=snapshot,\
 	skysail.api.um;version=latest,\
 	skysail.api.text;version=latest,\
 	skysail.api.documentation;version=latest,\

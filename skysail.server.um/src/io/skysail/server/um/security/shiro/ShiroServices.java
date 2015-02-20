@@ -1,6 +1,7 @@
 package io.skysail.server.um.security.shiro;
 
 import io.skysail.api.um.AuthenticationService;
+import io.skysail.api.um.User;
 import io.skysail.server.um.security.shiro.mgt.SkysailWebSecurityManager;
 import io.skysail.server.um.security.shiro.restlet.ShiroDelegationAuthenticator;
 
@@ -53,6 +54,11 @@ public class ShiroServices implements AuthenticationService {
         principals.put(username, "");
         principalsMap.put(SkysailAuthorizingRealm.class.getSimpleName(), username);
         authorizingRealm.clearCache(principalsMap);
+    }
+
+    @Override
+    public void updatePassword(User user, String newPassword) {
+        throw new UnsupportedOperationException("not yet implemented");
     }
 
 }

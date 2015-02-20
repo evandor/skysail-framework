@@ -2,7 +2,7 @@
 tasks.build.dependsOn(':skysail.server.http:build')
 //tasks.build.dependsOn(':skysail.server.mgt:build')
 //tasks.build.dependsOn(':skysail.server.osgi:build')
-tasks.build.dependsOn(':skysail.server.security.shiro:build')
+//tasks.build.dependsOn(':skysail.server.security.shiro:build')
 tasks.build.dependsOn(':skysail.server.static:build')
 
 //tasks.build.dependsOn(':skysail.server.app.i18n:build')

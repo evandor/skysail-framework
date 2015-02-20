@@ -10,6 +10,8 @@ public interface AuthenticationService {
 
     Authenticator getAuthenticator(Context context);
 
+    void updatePassword(User user, String newPassword);
+
     // Needed?
     void clearCache(String username);
 

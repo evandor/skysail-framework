@@ -1,15 +1,14 @@
 package de.twenty11.skysail.server.app.profile;
 
+import io.skysail.api.um.User;
+
 import org.apache.shiro.SecurityUtils;
-import org.restlet.data.Status;
 import org.restlet.resource.ResourceException;
 
 import de.twenty11.skysail.api.responses.SkysailResponse;
 import de.twenty11.skysail.server.app.SkysailRootApplication;
 import de.twenty11.skysail.server.core.restlet.PutEntityServerResource;
 import de.twenty11.skysail.server.core.restlet.ResourceContextId;
-import de.twenty11.skysail.server.um.domain.SkysailUser;
-import de.twenty11.skysail.server.utils.PasswordUtils;
 
 public class PutPasswordResource extends PutEntityServerResource<ChangePasswordEntity> {
 
@@ -32,18 +31,8 @@ public class PutPasswordResource extends PutEntityServerResource<ChangePasswordE
     @Override
     public SkysailResponse<?> updateEntity(ChangePasswordEntity entity) {
         String username = (String) SecurityUtils.getSubject().getPrincipal();
-        SkysailUser currentUser = app.getUserManager().findByUsername(username);
-
-        if (!PasswordUtils.validate(entity.getOld(), currentUser.getPassword())) {
-            getResponse().setStatus(Status.CLIENT_ERROR_BAD_REQUEST);
-            return null;
-        }
-
-        String bCryptHash = PasswordUtils.createBCryptHash(entity.getPassword());
-        currentUser.setPassword(bCryptHash);
-        app.getUserManager().update(currentUser);
-        // SecurityUtils.getSecurityManager().logout(SecurityUtils.getSubject());
-        app.clearCache(username);
+        User user = new User(username, entity.getOld());
+        app.getAuthenticationService().updatePassword(user, entity.getPassword());
         return new SkysailResponse<String>();
     }
 
@@ -54,6 +43,5 @@ public class PutPasswordResource extends PutEntityServerResource<ChangePasswordE
         }
         return null;
     }
-    
 
 }

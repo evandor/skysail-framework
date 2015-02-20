@@ -8,8 +8,6 @@ import io.skysail.api.um.AuthenticationService;
 import io.skysail.api.um.AuthorizationService;
 import io.skysail.api.validation.ValidatorService;
 
-import java.io.IOException;
-import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -28,9 +26,7 @@ import java.util.stream.Collectors;
 
 import lombok.extern.slf4j.Slf4j;
 
-import org.apache.commons.lang.StringEscapeUtils;
 import org.apache.commons.lang.Validate;
-import org.markdown4j.Markdown4jProcessor;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleContext;
 import org.osgi.service.cm.ConfigurationAdmin;
@@ -318,24 +314,29 @@ public abstract class SkysailApplication extends Application implements Applicat
                 }).findFirst();
         if (bestTranslation.isPresent()) {
             return bestTranslation.get();
+        } else {
+            return defaultMsg;
         }
 
-        // old way, to be removed
-        if (translationService == null) {
-            return message;
-        }
-        String translated = translationService.translate(resource.getClass().getClassLoader(), resource.getRequest(),
-                message, defaultMsg);
-        String formatted = MessageFormat.format(translated, substitutions);
-        if (!applyMarkdown) {
-            return formatted;
-        }
-        try {
-            return new Markdown4jProcessor().process(StringEscapeUtils.unescapeHtml(formatted));
-        } catch (IOException e) {
-            logger.error(e.getMessage(), e);
-            return e.getMessage();
-        }
+        // // old way, to be removed
+        // if (translationService == null) {
+        // return message;
+        // }
+        // String translated =
+        // translationService.translate(resource.getClass().getClassLoader(),
+        // resource.getRequest(),
+        // message, defaultMsg);
+        // String formatted = MessageFormat.format(translated, substitutions);
+        // if (!applyMarkdown) {
+        // return formatted;
+        // }
+        // try {
+        // return new
+        // Markdown4jProcessor().process(StringEscapeUtils.unescapeHtml(formatted));
+        // } catch (IOException e) {
+        // logger.error(e.getMessage(), e);
+        // return e.getMessage();
+        // }
     }
 
     /**

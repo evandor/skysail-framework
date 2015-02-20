@@ -2,12 +2,12 @@ showForm(resource, source, fields, messages) ::= <<
 
   $if (resource.postEntityServerResource)$
     <form action="$source.formTarget$" method="POST" class="form-horizontal" role="form" id="form" name="form">
-      $fields:{ field | $handleField(resource, source, field, messages)$}$
+      $fields:{ field | $handleField(resource, source, field, messages,i)$}$
       $submit("Submit",2,10)$
     </form>
   $elseif (resource.putEntityServerResource)$
     <form action="$source.formTarget$?method=PUT" method="POST" class="form-horizontal" role="form" id="form" name="form">
-      $fields:{ field | $handleField(resource, source, field, messages)$}$
+      $fields:{ field | $handleField(resource, source, field, messages,i)$}$
       $submit("Update",1,9)$
     </form>
   $endif$
@@ -22,21 +22,21 @@ submit(label, o1,o2) ::= <<
       </div>
 >>
 
-handleField(resource, source, field, messages) ::= <<
+handleField(resource, source, field, messages,i) ::= <<
 	$if (source.constraintViolationsResponse && field.violationMessage)$
-        $handleConstraintViolationField(resource, source, field, messages)$
+        $handleConstraintViolationField(resource, source, field, messages,i)$
     $else$
-        $handleInputField(resource, source, field, messages)$
+        $handleInputField(resource, source, field, messages,i)$
     $endif$
 >>
 
-handleConstraintViolationField(resource, source, formField, messages) ::= <<
+handleConstraintViolationField(resource, source, formField, messages,i) ::= <<
 
     $if(formField.tagsInputType)$
 	    <div class='form-group has-error has-feedback'>
 	      $label("s2id_", formField)$
 	      <div class='col-sm-10'>
-	        <input type = 'hidden' name = '$formField.fieldAnnotation.name$' id = '$formField.fieldAnnotation.name$' value='$formField.value$'/>
+	        <input type = 'hidden' name = '$formField.fieldAnnotation.name$' id = '$formField.fieldAnnotation.name$' value='$formField.value$'  tabindex="$i$"/>
 	        <span class='glyphicon glyphicon-remove form-control-feedback' aria-hidden='true'></span>
 	        <small style='' class='help-block' data-bv-validator='notEmpty' data-bv-for='title' data-bv-result='INVALID'>
 	            $formField.violationMessage$
@@ -47,7 +47,7 @@ handleConstraintViolationField(resource, source, formField, messages) ::= <<
         <div class='form-group'>
           $label("", formField)$
           <div class='col-sm-10'>
-            <select name='$field.fieldAnnotation.name$'>
+            <select name='$field.fieldAnnotation.name$' tabindex="$i$">
                 $field.selectionProviderOptions.keys: {key | $options(field.selectionProviderOptions,key)$}$
             </select>
           </div>
@@ -56,7 +56,7 @@ handleConstraintViolationField(resource, source, formField, messages) ::= <<
 	    <div class='form-group has-error has-feedback'>
 	      $label("", formField)$
 	      <div class='col-sm-10'>
-	        <input type="$formField.inputType$" class='form-control' name='$formField.fieldAnnotation.name$' placeholder='' value='$formField.value$'>
+	        <input type="$formField.inputType$" class='form-control' name='$formField.fieldAnnotation.name$' placeholder='' value='$formField.value$' tabindex="$i$">
 	        <span class='glyphicon glyphicon-remove form-control-feedback' aria-hidden='true'></span>
 	        <small style='' class='help-block' data-bv-validator='notEmpty' data-bv-for='title' data-bv-result='INVALID'>
 	            $formField.violationMessage$
@@ -66,13 +66,13 @@ handleConstraintViolationField(resource, source, formField, messages) ::= <<
     $endif$
 >>
 
-handleInputField(resource, source, field, messages) ::= <<
+handleInputField(resource, source, field, messages,i) ::= <<
   $if(!field.readonlyInputType)$
       $if(field.tagsInputType)$
         <div class='form-group'>
           <label for='s2id_$field.fieldAnnotation.name$' class='col-sm-2 control-label' style="text-align: left;">$helpmessage(messages, field.nameKey)$ $if(converter.edit)$<a href='/i18n/messages/$source.entity.entity.class.name$.$field.fieldAnnotation.name$/'><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>$endif$</label>
           <div class='col-sm-10'>
-            <input type = 'hidden' name = '$field.fieldAnnotation.name$' id = '$field.fieldAnnotation.name$' value='$field.value$'/>
+            <input type = 'hidden' name = '$field.fieldAnnotation.name$' id = '$field.fieldAnnotation.name$' value='$field.value$' tabindex="$i$"/>
             <small class="help-block">$helpmessage(messages, field.messageKey)$ $if(converter.edit)$ <a href='/i18n/messages/$source.entity.entity.class.name$.$field.fieldAnnotation.name$.desc/'><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>$endif$</small>
           </div>
         </div>
@@ -80,7 +80,7 @@ handleInputField(resource, source, field, messages) ::= <<
         <div class='form-group'>
           <label for='$field.fieldAnnotation.name$' class='col-sm-2 control-label' style="text-align: left;">$helpmessage(messages, field.nameKey)$ $if(converter.edit)$<a href='/i18n/messages/$source.entity.entity.class.name$.$field.fieldAnnotation.name$/'><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>$endif$</label>
           <div class='col-sm-10'>
-            <textarea class='form-control' rows=3 name='$field.fieldAnnotation.name$' id='$field.fieldAnnotation.name$'>$field.value$</textarea>
+            <textarea class='form-control' rows=3 name='$field.fieldAnnotation.name$' id='$field.fieldAnnotation.name$' tabindex="$i$">$field.value$</textarea>
             <small class="help-block">$helpmessage(messages, field.messageKey)$ $if(converter.edit)$<a href='/i18n/messages/$source.entity.entity.class.name$.$field.fieldAnnotation.name$.desc/'><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>$endif$</small>
           </div>
         </div>
@@ -88,7 +88,7 @@ handleInputField(resource, source, field, messages) ::= <<
         <div class='form-group'>
           <label for='$field.fieldAnnotation.name$' class='col-sm-2 control-label' style="text-align: left;">$helpmessage(messages, field.nameKey)$  $if(converter.edit)$<a href='/i18n/messages/$source.entity.entity.class.name$.$field.fieldAnnotation.name$/'><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>$endif$</label>
           <div class='col-sm-10'>
-            <textarea data-uk-htmleditor="{maxsplitsize:600, markdown:true}" name='$field.fieldAnnotation.name$' id='$field.fieldAnnotation.name$'>$field.value$</textarea>
+            <textarea data-uk-htmleditor="{maxsplitsize:600, markdown:true}" name='$field.fieldAnnotation.name$' id='$field.fieldAnnotation.name$' tabindex="$i$">$field.value$</textarea>
             <small class="help-block">$helpmessage(messages, field.messageKey)$  $if(converter.edit)$ <a href='/i18n/messages/$source.entity.entity.class.name$.$field.fieldAnnotation.name$.desc/'><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>$endif$</small>
           </div>
         </div>
@@ -96,7 +96,7 @@ handleInputField(resource, source, field, messages) ::= <<
         <div class='form-group'>
           <label for='$field.fieldAnnotation.name$' class='col-sm-2 control-label' style="text-align: left;">$helpmessage(messages, field.nameKey)$  $if(converter.edit)$<a href='/i18n/messages/$source.entity.entity.class.name$.$field.fieldAnnotation.name$/'><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>$endif$</label>
           <div class='col-sm-10'>
-            <select name='$field.fieldAnnotation.name$'>
+            <select name='$field.fieldAnnotation.name$' tabindex="$i$">
                 $field.selectionProviderOptions.keys: {key | $options(field.selectionProviderOptions,key)$}$
             </select>
             <small class="help-block">$helpmessage(messages, field.messageKey)$ $if(converter.edit)$ <a href='/i18n/messages/$source.entity.entity.class.name$.$field.fieldAnnotation.name$.desc/'><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>$endif$</small>
@@ -106,7 +106,7 @@ handleInputField(resource, source, field, messages) ::= <<
         <div class='form-group'>
           <label for='$field.fieldAnnotation.name$' class='col-sm-2 control-label' style="text-align: left;">$helpmessage(messages, field.nameKey)$  $if(converter.edit)$<a href='/i18n/messages/$source.entity.entity.class.name$.$field.fieldAnnotation.name$/'><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>$endif$</label>
           <div class='col-sm-10'>
-            <input type="$field.inputType$" class='form-control' name='$field.fieldAnnotation.name$' id='$field.fieldAnnotation.name$' placeholder='$helpmessage(messages, field.placeholderKey)$' value='$field.value$'>
+            <input type="$field.inputType$" class='form-control' name='$field.fieldAnnotation.name$' id='$field.fieldAnnotation.name$' placeholder='$helpmessage(messages, field.placeholderKey)$' value='$field.value$' tabindex="$i$">
             <small class="help-block">$helpmessage(messages, field.messageKey)$  $if(converter.edit)$ <a href='/i18n/messages/$source.entity.entity.class.name$.$field.fieldAnnotation.name$.desc/'><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>$endif$</small>
           </div>
         </div>

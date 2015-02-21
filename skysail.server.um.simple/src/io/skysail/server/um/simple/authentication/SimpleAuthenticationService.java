@@ -2,6 +2,13 @@ package io.skysail.server.um.simple.authentication;
 
 import io.skysail.api.um.AuthenticationService;
 import io.skysail.api.um.User;
+import io.skysail.server.um.simple.SimpleUserManagementProvider;
+
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.Properties;
 
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.UsernamePasswordToken;
@@ -26,12 +33,29 @@ public class SimpleAuthenticationService implements AuthenticationService {
     @Override
     public void updatePassword(User user, String newPassword) {
         validateUser(user);
-
-        String bCryptHash = PasswordUtils.createBCryptHash(newPassword);
+        updateConfigFile(user, newPassword);
+        clearCache(user.getUsername());
         // currentUser.setPassword(bCryptHash);
         // app.getUserManager().update(currentUser);
-        // SecurityUtils.getSecurityManager().logout(SecurityUtils.getSubject());
+        SecurityUtils.getSecurityManager().logout(SecurityUtils.getSubject());
         // app.clearCache(username);
+    }
+
+    private void updateConfigFile(User user, String newPassword) {
+        String bCryptHash = PasswordUtils.createBCryptHash(newPassword);
+        String fileInstallDir = System.getProperty("felix.fileinstall.dir");
+        String configFileName = fileInstallDir + java.io.File.separator + SimpleUserManagementProvider.class.getName()
+                + ".cfg";
+        Properties properties = new Properties();
+
+        File configFile = new File(configFileName);
+        try {
+            properties.load(new FileReader(configFileName));
+            properties.replace(user.getUsername() + ".password", bCryptHash);
+            properties.store(new FileWriter(configFile), "");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void validateUser(User user) {

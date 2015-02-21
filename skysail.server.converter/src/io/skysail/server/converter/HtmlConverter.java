@@ -158,6 +158,9 @@ public class HtmlConverter extends ConverterHelper implements OsgiConverterHelpe
 
     @Override
     public float score(Object source, Variant target, Resource resource) {
+        if (target == null) {
+            return 0.0f;
+        }
         for (MediaType mediaType : mediaTypesMatch.keySet()) {
             if (target.getMediaType().equals(mediaType)) {
                 log.info("converter '{}' matched '{}' with threshold {}", new Object[] {

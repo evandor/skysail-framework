@@ -1,10 +1,11 @@
 package de.twenty11.skysail.server.app;
 
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
 
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.restlet.data.MediaType;
+import org.restlet.ext.json.JsonRepresentation;
 import org.restlet.representation.Representation;
 import org.restlet.resource.ClientResource;
 import org.restlet.resource.ResourceException;
@@ -23,16 +24,15 @@ public class OAuthLoginResource extends EntityServerResource<String> {
 
     @Override
     public String getData() {
-        Map<String, String> map = new HashMap<>();
-        System.getenv();
-        map.put("client_id", System.getenv("GITHUB_CLIENT_ID"));
-        map.put("client_secret", System.getenv("GITHUB_CLIENT_SECRET"));
-        map.put("code", code);
-        // JsonRepresentation json = new JsonRepresentation(map);
-        String json = "{\"client_id\":\"" + System.getenv("GITHUB_CLIENT_ID") + "\",\"client_secret\":\""
-                + System.getenv("GITHUB_CLIENT_SECRET") + "\",\"code\": \"" + code + "\"}";
-        Representation post = new ClientResource("https://github.com/login/oauth/access_token").post(json,
-                MediaType.APPLICATION_JSON);
+        JSONObject jo = new JSONObject();
+        try {
+            jo.put("client_id", System.getenv("GITHUB_CLIENT_ID"));
+            jo.put("client_secret", System.getenv("GITHUB_CLIENT_SECRET"));
+            jo.put("code", code);
+        } catch (JSONException ex) {
+        }
+        Representation post = new ClientResource("https://github.com/login/oauth/access_token").post(
+                new JsonRepresentation(jo), MediaType.APPLICATION_JSON);
         try {
             String text = post.getText();
             System.out.println(text);

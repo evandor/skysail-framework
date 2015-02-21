@@ -2,3 +2,5 @@ Bundle-Version: 0.1.0.${tstamp}
 Bundle-Name: SKYSAIL :: product :: todos
 Private-Package:  \
 	io.skysail.product.todos
+-buildpath:  \
+	skysail.server.um.simple;version=latest

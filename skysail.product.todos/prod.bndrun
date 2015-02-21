@@ -105,7 +105,7 @@
 	skysail.server.security.shiro;version=latest,\
 	skysail.server.static;version=latest,\
 	skysail.server.um.internal;version=latest,\
-	skysail.server.um.simple;version=latest,\
+	skysail.server.um.simple;version=[0.1,0.2),\
 	slf4j.api;version='[1.7.7,1.7.8)',\
 	de.twentyeleven.skysail.org.antlr.stringtemplate-osgi;version=4.0.8,\
 	org.jruby.jruby;version=1.7.19,\

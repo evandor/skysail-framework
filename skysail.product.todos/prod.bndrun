@@ -6,7 +6,8 @@
 	Bndtools Hub,\
 	Local,\
 	Workspace,\
-	Skysail Repository
+	Skysail Repository,\
+	Skysail Hub
 
 -resolve.effective: active;skip:="osgi.service"
 

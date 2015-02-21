@@ -1,4 +1,8 @@
 tasks.build.dependsOn(':skysail.api:build')
+
+tasks.build.dependsOn(':skysail.server.um.simple:build')
+
+
 //tasks.build.dependsOn(':skysail.server.db.orientdb:build')
 tasks.build.dependsOn(':skysail.server.http:build')
 //tasks.build.dependsOn(':skysail.server.mgt:build')

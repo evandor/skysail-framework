@@ -1,4 +1,4 @@
-Bundle-Version: 0.1.0.${tstamp}
+Bundle-Version: 0.1.1.${tstamp}
 -buildpath:  \
 	skysail.api.um;version=latest,\
 	skysail.server;version=latest,\

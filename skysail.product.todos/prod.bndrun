@@ -6,9 +6,7 @@
 	Bndtools Hub,\
 	Local,\
 	Workspace,\
-	Skysail Repository,\
-	Skysail Hub,\
-	Release
+	Skysail Repository
 
 -resolve.effective: active;skip:="osgi.service"
 
@@ -38,7 +36,28 @@
 
 # not used here, resolution takes too long...
 #-runrequires:  \
+-runrequires:  \
+	osgi.identity;filter:='(osgi.identity=org.apache.felix.gogo.shell)',\
+	osgi.identity;filter:='(osgi.identity=org.apache.felix.gogo.command)',\
+	osgi.identity;filter:='(&(osgi.identity=org.apache.felix.fileinstall)(version>=3.4.0))',\
+	osgi.identity;filter:='(&(osgi.identity=org.apache.felix.log)(version>=1.0.1))',\
+	osgi.identity;filter:='(&(osgi.identity=skysail.server)(version>=5.1.2))',\
+	osgi.identity;filter:='(&(osgi.identity=skysail.server.app.i18n)(version>=0.0.5))',\
+	osgi.identity;filter:='(&(osgi.identity=skysail.server.app.tutorial.model2rest)(version>=0.0.5))',\
+	osgi.identity;filter:='(&(osgi.identity=skysail.server.db.orientdb)(version>=0.0.3))',\
+	osgi.identity;filter:='(&(osgi.identity=skysail.server.ext.converter.st)(version>=1.0.5))',\
+	osgi.identity;filter:='(&(osgi.identity=skysail.server.ext.i18n)(version>=0.0.10))',\
+	osgi.identity;filter:='(&(osgi.identity=skysail.server.http)(version>=1.0.15))',\
+	osgi.identity;filter:='(&(osgi.identity=skysail.server.mgt)(version>=0.1))',\
+	osgi.identity;filter:='(&(osgi.identity=skysail.server.security.shiro)(version>=5.1.2))',\
+	osgi.identity;filter:='(&(osgi.identity=skysail.server.static)(version>=0.5.20))',\
+	osgi.identity;filter:='(&(osgi.identity=skysail.server.um.internal)(version>=0.0.5))',\
+	osgi.identity;filter:='(&(osgi.identity=skysail.products.website)(version>=0.0.5))',\
+	osgi.identity;filter:='(&(osgi.identity=skysail.server.app.clipboard)(version>=1.0.5))',\
+	osgi.identity;filter:='(&(osgi.identity=etm.core)(version>=1.2.3.1))',\
+	osgi.identity;filter:='(&(osgi.identity=jackson-mapper-asl)(version>=1.9.8))'
 	
+
 
 -runbundles:  \
 	ch.qos.logback.classic;version='[1.1.2,1.1.3)',\

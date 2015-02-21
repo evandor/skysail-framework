@@ -98,4 +98,4 @@ Service-Component: *
 	ch.qos.logback.classic;version=1.0,\
 	ch.qos.logback.core;version=1.0,\
 	skysail.api.text;version=latest,\
-	de.twentyeleven.skysail.org.json-osgi;version=20080701.0
+	com.googlecode.json-simple;version=1.1

@@ -23,7 +23,8 @@ Include-Resource: resources, templates=src;recursive:=true;filter:=*.st|*.stg
 	javax.validation.api;version=1.1,\
 	skysail.server.testsupport;version=latest,\
 	com.fasterxml.jackson.core.jackson-annotations;version=2.4,\
-	skysail.server.ext.converter.st;version=1.0.9
+	skysail.server.ext.converter.st;version=1.0.9,\
+	de.twentyeleven.skysail.org.json-osgi;version=latest
 	
 Service-Component:  \
 	*

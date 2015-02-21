@@ -9,6 +9,7 @@ import io.skysail.api.validation.ValidatorService;
 import javax.validation.Validator;
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.Mockito;
@@ -18,6 +19,7 @@ import de.twenty11.skysail.server.app.SkysailRootApplication;
 import de.twenty11.skysail.server.app.profile.PutPasswordResource;
 import de.twenty11.skysail.server.validation.PutResourceTest;
 
+@Ignore
 public class PutPasswordResourceTest extends PutResourceTest {
 
     @Spy

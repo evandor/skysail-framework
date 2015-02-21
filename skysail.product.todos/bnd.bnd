@@ -7,4 +7,6 @@ Private-Package:  \
 	skysail.server.text;version=latest,\
 	skysail.server.text.markdown;version=latest,\
 	skysail.server.http;version=latest,\
-	skysail.server.plugins;version=latest
+	skysail.server.plugins;version=latest,\
+	skysail.server.db;version=latest,\
+	skysail.server.documentation;version=latest

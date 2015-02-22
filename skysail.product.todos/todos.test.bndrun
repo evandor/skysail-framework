@@ -99,6 +99,7 @@
 	skysail.api.validation;version=latest,\
 	skysail.api.features;version=latest,\
 	skysail.api.favorites;version=latest,\
+	skysail.products.todos;version=latest,\
 	skysail.server;version=latest,\
 	skysail.server.converter;version=latest,\
 	skysail.server.app.todos;version=latest,\

@@ -22,7 +22,8 @@ Include-Resource: resources, templates=src;recursive:=true;filter:=*.st|*.stg
 	lombok;version=1.12.2,\
 	com.sun.mail.javax.mail;version=1.5,\
 	etm.core;version=1.2,\
-	org.apache.shiro.core;version=1.2
+	org.apache.shiro.core;version=1.2,\
+	com.fasterxml.jackson.core.jackson-annotations;version=2.4
 Import-Package: org.osgi.framework,\
 	javassist.util.proxy,\
 	*

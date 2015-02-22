@@ -4,7 +4,6 @@ import io.skysail.server.app.todos.TodoApplication;
 
 import java.util.Date;
 
-import org.apache.shiro.SecurityUtils;
 import org.restlet.resource.ResourceException;
 
 import de.twenty11.skysail.api.responses.SkysailResponse;
@@ -35,7 +34,7 @@ public class PostTodoResource extends PostEntityServerResource<Todo> {
     @Override
     public SkysailResponse<?> addEntity(Todo entity) {
         entity.setCreated(new Date());
-        entity.setOwner(SecurityUtils.getSubject().getPrincipal().toString());
+        // entity.setOwner(SecurityUtils.getSubject().getPrincipal().toString());
         entity = TodosRepository.getInstance().add(entity);
         return new SkysailResponse<String>();
     }

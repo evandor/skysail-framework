@@ -98,8 +98,8 @@
 	skysail.api.favorites;version=latest,\
 	skysail.products.todos;version=latest,\
 	skysail.server;version=latest,\
-	skysail.server.app.todos;version=latest,\
 	skysail.server.converter;version=latest,\
+	skysail.server.app.todos;version=latest,\
 	skysail.server.db;version=latest,\
 	skysail.server.documentation;version=latest,\
 	skysail.server.http;version=latest,\

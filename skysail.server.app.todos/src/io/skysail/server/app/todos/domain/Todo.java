@@ -7,12 +7,16 @@ import javax.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import de.twenty11.skysail.api.forms.Field;
 import de.twenty11.skysail.api.forms.InputType;
 
 @Getter
 @Setter
 @ToString(of = { "title" })
+@JsonIgnoreProperties({ "handler" })
 public class Todo {
 
     @Field
@@ -31,7 +35,7 @@ public class Todo {
     @Field(type = InputType.READONLY)
     private Date modified;
 
-    @Field(type = InputType.READONLY)
-    private String owner;
+    // @Field(type = InputType.READONLY)
+    // private String owner;
 
 }

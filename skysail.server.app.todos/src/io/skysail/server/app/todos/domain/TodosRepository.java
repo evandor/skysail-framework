@@ -49,9 +49,9 @@ public class TodosRepository {
     }
 
     public List<Todo> getTodos(String username) {
-        String sql = "SELECT from Todo";// WHERE owner= :username";
+        String sql = "SELECT from Todo WHERE owner= :username";
         Map<String, Object> params = new HashMap<String, Object>();
-        // params.put("username", username);
+        params.put("username", username);
         return dbService.findAll(sql, Todo.class, params);
     }
 

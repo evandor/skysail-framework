@@ -121,7 +121,8 @@ public abstract class PutEntityServerResource<T> extends SkysailServerResource<T
     @Get("htmlform|html")
     @API(desc = "create an html form with the current entity to be updated")
     public SkysailResponse<T> createForm() {
-        logger.info("Request entry point: {} @Get('htmlform|html')", this.getClass().getSimpleName());
+        logger.info("Request entry point: {} @Get('htmlform|html') createForm",
+                PutEntityServerResource.class.getSimpleName());
         return new FormResponse<T>(getEntity(), getAttribute("id"), ".", redirectBackTo());
     }
 

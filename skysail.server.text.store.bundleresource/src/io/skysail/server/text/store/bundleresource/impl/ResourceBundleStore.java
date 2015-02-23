@@ -1,4 +1,4 @@
-package io.skysail.server.text.impl;
+package io.skysail.server.text.store.bundleresource.impl;
 
 import io.skysail.api.text.TranslationStore;
 
@@ -14,13 +14,12 @@ import lombok.extern.slf4j.Slf4j;
 import org.restlet.Request;
 import org.restlet.util.Series;
 
+import aQute.bnd.annotation.component.Component;
 import de.twenty11.skysail.server.utils.HeadersUtils;
 
-// moved to skysail.server.text.store.resourcebundle
-//@Component(immediate = true, properties = { org.osgi.framework.Constants.SERVICE_RANKING + "=100" })
+@Component(immediate = true, properties = { org.osgi.framework.Constants.SERVICE_RANKING + "=100" })
 @Slf4j
 // http://viralpatel.net/blogs/eclipse-resource-is-out-of-sync-with-the-filesystem/
-@Deprecated
 public class ResourceBundleStore implements TranslationStore {
 
     /**
@@ -49,11 +48,24 @@ public class ResourceBundleStore implements TranslationStore {
      */
     @Override
     public Optional<String> get(String key, ClassLoader cl, Request request) {
-        return findAcceptedLanguages(request).stream().filter(l -> {
-            return translate(key, ResourceBundle.getBundle("translations/messages", new Locale(l), cl)) != null;
-        }).findFirst().map(l -> {
-            return translate(key, ResourceBundle.getBundle("translations/messages", new Locale(l), cl));
-        });
+        Optional<String> translation = findAcceptedLanguages(request).stream().map(l -> {
+            ResourceBundle dummy = getBundle(cl, l);
+            // if (dummy == null) {
+            // return (Optional<String>) Optional<String>.empty();
+            // }
+                return translate(key, dummy);
+            }).filter(t -> {
+            return t != null;
+        }).findFirst();
+        return translation;
+    }
+
+    private ResourceBundle getBundle(ClassLoader cl, String l) {
+        try {
+            return ResourceBundle.getBundle("translations/messages", new Locale(l), cl);
+        } catch (MissingResourceException e) {
+            return null;
+        }
     }
 
     /**

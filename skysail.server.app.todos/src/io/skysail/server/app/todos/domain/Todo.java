@@ -35,7 +35,7 @@ public class Todo {
     @Field(type = InputType.READONLY)
     private Date modified;
 
-    // @Field(type = InputType.READONLY)
-    // private String owner;
+    @Field(type = InputType.READONLY)
+    private String owner;
 
 }

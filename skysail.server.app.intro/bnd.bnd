@@ -10,7 +10,6 @@ Include-Resource: resources, templates=src;recursive:=true;filter:=*.st|*.stg
     skysail.server;version=latest,\
     slf4j.api;version=1.7.7,\
     org.restlet;version=${restlet.version},\
-    skysail.server.app.i18n;version=latest,\
     javax.validation.api;version=1.1,\
     javax.persistence;version=2.1,\
     com.springsource.org.junit;version=4.11,\

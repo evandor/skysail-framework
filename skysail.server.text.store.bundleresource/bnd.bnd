@@ -14,6 +14,7 @@ Bundle-Description: TranslationStore based on java bundle resources
 	org.apache.commons.lang;version=2.6,\
 	javax.validation.api;version=1.1,\
 	etm.core;version=1.2,\
-	org.apache.commons.configuration;version=1.10
+	org.apache.commons.configuration;version=1.10,\
+	skysail.api;version=latest
 Private-Package:  \
 	io.skysail.server.text.store.bundleresource.impl

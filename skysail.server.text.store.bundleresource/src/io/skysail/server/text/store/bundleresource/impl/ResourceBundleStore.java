@@ -50,11 +50,8 @@ public class ResourceBundleStore implements TranslationStore {
     public Optional<String> get(String key, ClassLoader cl, Request request) {
         Optional<String> translation = findAcceptedLanguages(request).stream().map(l -> {
             ResourceBundle dummy = getBundle(cl, l);
-            // if (dummy == null) {
-            // return (Optional<String>) Optional<String>.empty();
-            // }
-                return translate(key, dummy);
-            }).filter(t -> {
+            return translate(key, dummy);
+        }).filter(t -> {
             return t != null;
         }).findFirst();
         return translation;
@@ -90,6 +87,9 @@ public class ResourceBundleStore implements TranslationStore {
     }
 
     private String translate(String key, ResourceBundle resourceBundle) {
+        if (resourceBundle == null) {
+            return null;
+        }
         try {
             return resourceBundle.getString(key);
         } catch (MissingResourceException mre) {

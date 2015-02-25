@@ -21,7 +21,7 @@ public class Todo {
     @Size(min = 2)
     private String title;
 
-    @Field(type = InputType.TEXTAREA)
+    @Field(type = InputType.TEXTAREA, listView = ListView.TRUNCATE)
     private String desc;
 
     @Field(type = InputType.DATE)

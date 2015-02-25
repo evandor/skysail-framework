@@ -43,6 +43,7 @@ import org.stringtemplate.v4.ST;
 
 import aQute.bnd.annotation.component.Component;
 import aQute.bnd.annotation.component.Reference;
+import de.twenty11.skysail.api.forms.ListView;
 import de.twenty11.skysail.api.responses.LinkHeaderRelation;
 import de.twenty11.skysail.api.responses.Linkheader;
 import de.twenty11.skysail.api.responses.LinkheaderRole;
@@ -58,6 +59,7 @@ import de.twenty11.skysail.server.core.restlet.utils.StringParserUtils;
 import de.twenty11.skysail.server.services.MenuItemProvider;
 import de.twenty11.skysail.server.services.OsgiConverterHelper;
 import de.twenty11.skysail.server.services.UserManager;
+import de.twenty11.skysail.server.utils.ReflectionUtils;
 import etm.core.configuration.EtmManager;
 import etm.core.monitor.EtmMonitor;
 import etm.core.monitor.EtmPoint;
@@ -343,11 +345,8 @@ public class HtmlConverter extends ConverterHelper implements OsgiConverterHelpe
             Object entity;
             try {
                 entity = resource.getParameterType().newInstance();
-                fields = getInheritedFields(resource.getParameterType()).stream()
-                        //
-                        .filter(f -> test(resource, f))
-                        //
-                        .sorted((f1, f2) -> sort(resource, f1, f2))
+                fields = ReflectionUtils.getInheritedFields(resource.getParameterType()).stream()
+                        .filter(f -> test(resource, f)).sorted((f1, f2) -> sort(resource, f1, f2))
                         .map(f -> new FormField(f, userManager, source, entity))//
                         .collect(Collectors.toList());
 
@@ -359,7 +358,7 @@ public class HtmlConverter extends ConverterHelper implements OsgiConverterHelpe
             decl.add("source", new STSourceWrapper(source));
             if (source != null && (source instanceof SkysailResponse)) {
                 Object entity = ((SkysailResponse<?>) source).getEntity();
-                fields = getInheritedFields(entity.getClass()).stream()
+                fields = ReflectionUtils.getInheritedFields(entity.getClass()).stream()
                         //
                         .filter(f -> test(resource, f))
                         .map(f -> new FormField(f, userManager, source, ((SkysailResponse<?>) source).getEntity()))//
@@ -396,26 +395,10 @@ public class HtmlConverter extends ConverterHelper implements OsgiConverterHelpe
 
     private boolean test(SkysailServerResource<?> resource, Field field) {
         List<String> fieldNames = resource.getFields();
-        return (field.getAnnotation(de.twenty11.skysail.api.forms.Field.class) != null && fieldNames.contains(field
-                .getName()));
-    }
-
-    private List<java.lang.reflect.Field> getInheritedFields(Class<?> type) {
-        List<java.lang.reflect.Field> result = new ArrayList<java.lang.reflect.Field>();
-
-        Class<?> i = type;
-        while (i != null && i != Object.class) {
-            while (i != null && i != Object.class) {
-                for (java.lang.reflect.Field field : i.getDeclaredFields()) {
-                    if (!field.isSynthetic()) {
-                        result.add(field);
-                    }
-                }
-                i = i.getSuperclass();
-            }
-        }
-
-        return result;
+        de.twenty11.skysail.api.forms.Field fieldAnnotation = field
+                .getAnnotation(de.twenty11.skysail.api.forms.Field.class);
+        return (fieldAnnotation != null && (!(fieldAnnotation.listView().equals(ListView.HIDE))) && fieldNames
+                .contains(field.getName()));
     }
 
     public boolean isDebug() {

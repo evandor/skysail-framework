@@ -1,6 +1,8 @@
 package de.twenty11.skysail.server.app.sourceconverter;
 
+import java.lang.reflect.Field;
 import java.lang.reflect.Method;
+import java.util.List;
 import java.util.Optional;
 
 import org.restlet.data.MediaType;
@@ -19,7 +21,7 @@ public class SkysailResponseJsonConverter extends AbstractSourceConverter implem
     }
 
     @Override
-    public Object convert(SkysailServerResource<?> resource) {
+    public Object convert(SkysailServerResource<?> resource, List<Field> fields) {
         Object object = ((SkysailResponse<?>) getSource()).getEntity();
         if (object == null || !object.getClass().getName().contains("$$")) {
             return object;

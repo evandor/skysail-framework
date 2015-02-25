@@ -4,18 +4,14 @@ renderTable(resource, source, fields) ::= <<
   
   <table class="table">
     <tr>$renderHeader(fields)$<th>Actions</th></tr>
-    $source:{ row | $renderRow(row,i)$}$
+    $source:{ row | $renderRow(fields,row,i)$}$
   </table>
 >>
 
-renderRow(row,i) ::= <<
-  <tr>$row.keys:{ key | $renderColumn(row, key,i)$}$</tr>
+renderRow(fields, row,i) ::= <<
+  <tr>$fields: { field | <td>$row.(field.name)$</td>}$<td>$row.("_links")$</td></tr>
 >>
 
 renderHeader(fields) ::= <<
   $fields: { field | <th>$field.name$</th>}$
->>
-
-renderColumn(row, key, i) ::= <<
-  <td>&nbsp;$row.(key)$&nbsp;</td>
 >>

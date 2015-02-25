@@ -1,5 +1,8 @@
 package de.twenty11.skysail.server.app;
 
+import java.lang.reflect.Field;
+import java.util.List;
+
 import org.restlet.representation.Variant;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -7,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import de.twenty11.skysail.server.app.sourceconverter.ConverterFactory;
 import de.twenty11.skysail.server.app.sourceconverter.SourceConverter;
 import de.twenty11.skysail.server.core.restlet.SkysailServerResource;
+import de.twenty11.skysail.server.utils.ReflectionUtils;
 
 /**
  * This class converts the provided "source" object according to the logic
@@ -21,9 +25,11 @@ public class SourceWrapper {
     private Object originalSource;
     private Variant target;
     private Object convertedSource;
+    private List<Field> fields;
 
     public SourceWrapper(Object source, Variant target, SkysailServerResource<?> resource) {
         this.originalSource = source;
+        fields = ReflectionUtils.getInheritedFields(resource.getParameterType());
         this.convertedSource = convertSource(source, target, resource);
     }
 
@@ -43,7 +49,7 @@ public class SourceWrapper {
         SourceConverter converter = ConverterFactory.getConverter(source, target);
         logger.info("using converter '{}' for {}-Source: {}", new Object[] { converter.getClass().getSimpleName(),
                 source.getClass().getSimpleName(), source });
-        return converter.convert(resource);
+        return converter.convert(resource, fields);
     }
 
 }

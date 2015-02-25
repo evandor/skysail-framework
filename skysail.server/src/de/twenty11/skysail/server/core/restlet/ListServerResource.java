@@ -118,7 +118,7 @@ public abstract class ListServerResource<T> extends SkysailServerResource<List<T
      * 
      * @return the list of entities in html, csv or treeform format
      */
-    @Get("html|csv|treeform")
+    @Get("csv|treeform")
     @API(desc = "lists the entities according to the media type provided")
     public final List<T> getEntities() {
         EtmPoint point = etmMonitor.createPoint("ListServerResource:getEntities");
@@ -134,7 +134,7 @@ public abstract class ListServerResource<T> extends SkysailServerResource<List<T
      * 
      * @return the list of entities in JSON format
      */
-    @Get("json")
+    @Get("html|json")
     @API(desc = "lists the entities in JSON format")
     public final List<String> getAsJson() {
         EtmPoint point = etmMonitor.createPoint("ListServerResource:getAsJson");

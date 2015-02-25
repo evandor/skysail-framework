@@ -1,20 +1,34 @@
 package de.twenty11.skysail.server.app.sourceconverter;
 
+import java.io.IOException;
+import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
+import lombok.extern.slf4j.Slf4j;
+
 import org.restlet.data.MediaType;
 
 import aQute.bnd.annotation.component.Component;
+
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import de.twenty11.skysail.api.forms.ListView;
 import de.twenty11.skysail.server.app.AbstractSourceConverter;
 import de.twenty11.skysail.server.core.restlet.SkysailServerResource;
 
 @Component
+@Slf4j
 public class ListSourceHtmlConverter extends AbstractSourceConverter implements SourceConverter {
+
+    private static final int MAX_LENGTH_FOR_TRUNCATED_FIELDS = 20;
+    private ObjectMapper mapper = new ObjectMapper();
 
     @Override
     public boolean isCompatible() {
@@ -22,9 +36,19 @@ public class ListSourceHtmlConverter extends AbstractSourceConverter implements 
     }
 
     @Override
-    public Object convert(SkysailServerResource<?> resource) {
+    public Object convert(SkysailServerResource<?> resource, List<Field> fields) {
         List<Object> result = new ArrayList<Object>();
         for (Object object : (List<?>) getSource()) {
+
+            if (object instanceof String && ((String) object).length() > 0
+                    && ((String) object).substring(0, 1).equals("{")) {
+                Map<String, String> mapFromJson = treatAsJson((String) object, fields);
+                if (mapFromJson != null) {
+                    result.add(mapFromJson);
+                }
+                continue;
+            }
+
             if (object instanceof String) {
                 result.add(object);
                 continue;
@@ -42,6 +66,30 @@ public class ListSourceHtmlConverter extends AbstractSourceConverter implements 
             }
         }
         return result;
+    }
+
+    private Map<String, String> treatAsJson(String json, List<Field> fields) {
+        try {
+            Map<String, String> result = mapper.readValue(json, new TypeReference<HashMap<String, String>>() {
+            });
+            fields.stream().forEach(f -> check(f, result));
+            return result;
+        } catch (IOException e) {
+            log.error(e.getMessage(), e);
+            return null;
+        }
+    }
+
+    private Object check(Field f, Map<String, String> result) {
+        de.twenty11.skysail.api.forms.Field fieldAnnotation = f
+                .getAnnotation(de.twenty11.skysail.api.forms.Field.class);
+        if (fieldAnnotation.listView().equals(ListView.TRUNCATE)) {
+            String oldValue = result.get(f.getName());
+            if (oldValue.length() > MAX_LENGTH_FOR_TRUNCATED_FIELDS) {
+                result.put(f.getName(), oldValue.substring(0, MAX_LENGTH_FOR_TRUNCATED_FIELDS - 3) + "...");
+            }
+        }
+        return null;
     }
 
     @Override

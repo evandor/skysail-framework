@@ -208,20 +208,25 @@ public abstract class SkysailApplication extends Application implements Applicat
     }
 
     /**
-     * probably you want to do something like "router.attach..."
-     * 
-     * make sure to match proper resource even if request url contains add.
-     * information router.setDefaultMatchingMode(Template.MODE_STARTS_WITH);
-     * router.setRoutingMode(Router.MODE_LAST_MATCH);
-     * 
+     * probably you want to do something like
+     * "router.attach(new RouteBuilder("", RootResource.class))".
+     *
+     * <p>
      * You can add authorization information like this for all routes:
+     * </p>
      * 
-     * router.setAuthorizationDefaults(anyOf("usermanagement.user", "admin"));
-     * 
-     * or for specific routes.
-     * 
-     * router.attach(new RouteBuilder("/",
-     * UsersResource.class).authorizeWith(anyOf("admin")));
+     * <p>
+     * <code>router.setAuthorizationDefaults(anyOf("usermanagement.user", "admin"));</code>
+     * </p>
+     *
+     * <p>
+     * or for specific routes:
+     * </p>
+     *
+     * <p>
+     * <code>router.attach(new RouteBuilder("/",
+     * UsersResource.class).authorizeWith(anyOf("admin")));</code>
+     * </p>
      */
     protected void attach() {
         if (getDocumentationProvider() == null) {
@@ -624,18 +629,6 @@ public abstract class SkysailApplication extends Application implements Applicat
 
     public void addRequestParameter(String paramName, String value) {
         parameterMap.put(paramName, value);
-    }
-
-    /**
-     * gets
-     * 
-     * @return parameters
-     */
-    @SuppressWarnings("unchecked")
-    public Map<String, String> getParameterMap() {
-        Map<String, String> result = (Map<String, String>) getContext().getAttributes().get(
-                SkysailServerResource.SKYSAIL_CONTEXT_PARAMETERS);
-        return result != null ? result : Collections.<String, String> emptyMap();
     }
 
     /**

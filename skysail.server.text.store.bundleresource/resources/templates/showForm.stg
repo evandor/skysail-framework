@@ -1,0 +1,16 @@
+renderTable(resource, source) ::= <<
+  <table>
+      $source:{ bundleMessages | $renderRow(bundleMessages,i)$}$
+  </table>
+>>
+
+renderRow(row,i) ::= <<
+  <tr>
+    <td>
+      <h4>$i$: $row.name$:</h4>
+      <ul>
+        $row.("messages"): {msg | <li>$msg$ [<a href='$msg$'>edit</a>]</li>}$
+      </ul>
+    </td>
+  </tr>
+>>

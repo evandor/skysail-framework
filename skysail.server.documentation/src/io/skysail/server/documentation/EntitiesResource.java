@@ -1,14 +1,11 @@
 package io.skysail.server.documentation;
 
-import io.skysail.api.documentation.API;
-
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import org.restlet.resource.Get;
 import org.restlet.resource.ResourceException;
 
 import de.twenty11.skysail.server.app.SkysailApplication;
@@ -37,12 +34,6 @@ public class EntitiesResource extends ListServerResource<EntityDescriptor> {
         if (getRequest().getAttributes().get("name") != null) {
             name = (String) getRequest().getAttributes().get("name");
         }
-    }
-
-    @Get("html|json|csv")
-    @API(desc = "returns the list with paths and RESTful methods provided by this application")
-    public List<EntityDescriptor> getEntities() {
-        return super.getEntities();
     }
 
     @Override

@@ -1,0 +1,3 @@
+endOfHeaderJS(fields) ::= <<
+	seems I need this for some reason to use endOfHeaderJS.stg from de.twenty11....messages.MessageResource
+>>

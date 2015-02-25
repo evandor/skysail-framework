@@ -3,6 +3,7 @@ Service-Component:  \
 	*
 Bundle-Name: SKYSAIL :: server :: text :: store :: bundleresource
 Bundle-Description: TranslationStore based on java bundle resources
+Include-Resource: resources, templates=src;recursive:=true;filter:=*.st|*.stg
 -buildpath:  \
 	slf4j.api;version=1.7,\
 	biz.aQute.bnd.annotation;version=2.4,\

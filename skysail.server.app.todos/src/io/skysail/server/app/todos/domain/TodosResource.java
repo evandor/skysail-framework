@@ -31,6 +31,12 @@ public class TodosResource extends ListServerResource<Todo> {
     }
 
     @Override
+    protected List<String> getDataAsJson() {
+        Object principal = SecurityUtils.getSubject().getPrincipal();
+        return TodosRepository.getInstance().getTodosAsJson(principal.toString());
+    }
+
+    @Override
     public List<Linkheader> getLinkheader() {
         return super.getLinkheader(PostTodoResource.class);
     }

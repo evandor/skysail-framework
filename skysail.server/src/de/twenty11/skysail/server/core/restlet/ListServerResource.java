@@ -1,54 +1,45 @@
 package de.twenty11.skysail.server.core.restlet;
 
-/**
- *  Copyright 2011 Carsten GrGraeff
- *
- *  Licensed under the Apache License, Version 2.0 (the "License");
- *  you may not use this file except in compliance with the License.
- *  You may obtain a copy of the License at
- *
- *   http://www.apache.org/licenses/LICENSE-2.0
- *
- *  Unless required by applicable law or agreed to in writing, software
- *  distributed under the License is distributed on an "AS IS" BASIS,
- *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *  See the License for the specific language governing permissions and
- *  limitations under the License.
- *
- */
-
 import io.skysail.api.documentation.API;
 
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import lombok.extern.slf4j.Slf4j;
 
-import org.restlet.Application;
 import org.restlet.Request;
 import org.restlet.Response;
 import org.restlet.Restlet;
-import org.restlet.data.ClientInfo;
 import org.restlet.data.Form;
 import org.restlet.data.Method;
 import org.restlet.representation.Representation;
 import org.restlet.resource.Get;
 import org.restlet.resource.Options;
-import org.restlet.resource.ResourceException;
 import org.restlet.resource.ServerResource;
 
 import de.twenty11.skysail.api.responses.LinkHeaderRelation;
 import de.twenty11.skysail.api.responses.SkysailResponse;
-import de.twenty11.skysail.server.app.TranslationProvider;
 import de.twenty11.skysail.server.core.restlet.filter.AbstractResourceFilter;
 import etm.core.monitor.EtmPoint;
 
 /**
  * A ListServerResource implementation takes care of a List of Entities.
+ * 
+ * <p>
+ * Typically, the request issuer provides headers defining the accepted media
+ * types. Depending on those headers this implementation will provide the
+ * entities associated with the current URI in various formats such as JSON,
+ * Html, etc.
+ * </p>
+ * 
+ * <p>
+ * In a browser, you can add something like <code>?media=json</code> to the URL
+ * to get the desired representation
+ * </p>
  *
- * Example Usage:
+ * <p>
+ * Concrete subclass example:
+ * </p>
  *
  * <pre>
  * <code>
@@ -90,24 +81,22 @@ import etm.core.monitor.EtmPoint;
  * handle several calls concurrently, one instance of {@link ServerResource} is
  * created for each call handled and accessed by only one thread at a time.
  *
- * @author carsten
- *
  */
 @Slf4j
 public abstract class ListServerResource<T> extends SkysailServerResource<List<T>> {
 
-    private static final int FAVORITE_MAX_LENGTH_IN_GUI = 11;
-
     public static final String CONSTRAINT_VIOLATIONS = "constraintViolations";
 
-    private String filterExpression;
-
     private Class<? extends EntityServerResource<T>> associatedEntityServerResource;
+    private RequestHandler<T> requestHandler;
+    private RequestHandler<String> stringRequestHandler;
 
     /**
-     * Default constructor without associatedEntityServerResource
+     * Default constructor without associatedEntityServerResource.
      */
     public ListServerResource() {
+        requestHandler = new RequestHandler<T>(null);
+        stringRequestHandler = new RequestHandler<String>(null);
         addToContext(ResourceContextId.LINK_TITLE, "list");
     }
 
@@ -123,23 +112,43 @@ public abstract class ListServerResource<T> extends SkysailServerResource<List<T
         this.associatedEntityServerResource = entityResourceClass;
     }
 
-    @Get("html|json|csv|treeform")
+    /**
+     * returns the list of entities in the case of a GET request with media
+     * types html, csv or treeform.
+     * 
+     * @return the list of entities in html, csv or treeform format
+     */
+    @Get("html|csv|treeform")
     @API(desc = "lists the entities according to the media type provided")
-    public List<T> getEntities() {
+    public final List<T> getEntities() {
         EtmPoint point = etmMonitor.createPoint("ListServerResource:getEntities");
-        log.info("Request entry point: {} @Get('html|json|csv|treeform')", this.getClass().getSimpleName());
-        ClientInfo ci = getRequest().getClientInfo();
-        log.info("calling getEntities, media types '{}'", ci != null ? ci.getAcceptedMediaTypes() : "test");
-
-        List<T> response = getEntities("default implementation... you might want to override ListServerResource2#getEntities in "
-                + this.getClass().getName());
-        // response.addLinks(getLinks());
+        log.info("Request entry point: {} @Get('html|csv|treeform')", this.getClass().getSimpleName());
+        List<T> response = listEntities();
         point.collect();
         return response;
     }
 
+    /**
+     * returns the list of entities in the case of a GET request with media
+     * types JSON.
+     * 
+     * @return the list of entities in JSON format
+     */
+    @Get("json")
+    @API(desc = "lists the entities in JSON format")
+    public final List<String> getAsJson() {
+        EtmPoint point = etmMonitor.createPoint("ListServerResource:getAsJson");
+        log.info("Request entry point: {} @Get('json')", this.getClass().getSimpleName());
+        List<String> response = listEntitiesAsJson();
+        point.collect();
+        return response;
+    }
+
+    /**
+     * todo
+     */
     @Options
-    public void doOptions(Representation entity) {
+    public final void doOptions(Representation entity) {
         EtmPoint point = etmMonitor.createPoint("ListServerResource:doOptions");
         Form responseHeaders = (Form) getResponse().getAttributes().get("org.restlet.http.headers");
         if (responseHeaders == null) {
@@ -156,37 +165,14 @@ public abstract class ListServerResource<T> extends SkysailServerResource<List<T
         point.collect();
     }
 
-    /**
-     * if (getRequest().getAttributes().get("id") != null) { folderId = (String)
-     * getRequest().getAttributes().get("id"); }
-     */
-    @Override
-    protected void doInit() throws ResourceException {
-        super.doInit();
-        filterExpression = getQuery() != null ? getQuery().getFirstValue("filter") : "";
-    }
-
     @Override
     public LinkHeaderRelation getLinkRelation() {
         return LinkHeaderRelation.COLLECTION;
     }
 
-    public String getLinkName(Object... substitutions) {
-        Application application = getApplication();
-        if (application instanceof TranslationProvider) {
-            String linkKey = getClass().getName() + ".link";
-            String translation = ((TranslationProvider) application).translate(linkKey, linkKey, this, false,
-                    substitutions);
-            return translation.length() > FAVORITE_MAX_LENGTH_IN_GUI ? translation.substring(0,
-                    FAVORITE_MAX_LENGTH_IN_GUI - 3) + "..." : translation;
-        }
-        return "list";
-    }
-
-    protected List<T> getEntities(String defaultMsg) {
-        RequestHandler<T> requestHandler = new RequestHandler<T>(null);
-        AbstractResourceFilter<ListServerResource<T>, List<T>> chain = requestHandler.createForList(Method.GET);
-        return chain.handle(this, getResponse()).getEntity();
+    private final List<T> listEntities() {
+        ResponseWrapper<List<T>> responseWrapper = requestHandler.createForList(Method.GET).handle(this, getResponse());
+        return responseWrapper.getEntity();
     }
 
     /**
@@ -197,9 +183,8 @@ public abstract class ListServerResource<T> extends SkysailServerResource<List<T
      *
      * @return the result
      */
-    protected List<String> getEntitiesAsJson() {
-        RequestHandler<String> requestHandler = new RequestHandler<String>(null);
-        AbstractResourceFilter<ListServerResource<String>, List<String>> chain = requestHandler
+    protected final List<String> listEntitiesAsJson() {
+        AbstractResourceFilter<ListServerResource<String>, List<String>> chain = stringRequestHandler
                 .createForList(Method.GET);
         ListServerResource<String> resource = new ListServerResource<String>() {
             @Override
@@ -221,7 +206,7 @@ public abstract class ListServerResource<T> extends SkysailServerResource<List<T
     }
 
     protected List<String> getDataAsJson() {
-        return Arrays.asList("overwrite in subclass");
+        return Arrays.asList("overwrite " + ListServerResource.class.getSimpleName() + "#getDataAsJson in subclass");
     }
 
     /**
@@ -236,30 +221,6 @@ public abstract class ListServerResource<T> extends SkysailServerResource<List<T
 
     public Class<? extends EntityServerResource<T>> getAssociatedEntityResource() {
         return associatedEntityServerResource;
-    }
-
-    protected Map<String, String> getParamsFromRequest() {
-        Map<String, String> params = new HashMap<String, String>();
-        if (getQuery() != null) {
-            params = getQuery().getValuesMap();
-        }
-        return params;
-    }
-
-    protected String augmentWithFilterMsg(String msg) {
-        return filterExpression == null ? msg : msg + " filtered by '" + filterExpression + "'";
-    }
-
-    protected boolean filterMatches(T t) {
-        if (filterExpression != null && filterExpression.trim().length() != 0) {
-            return match(t, filterExpression);
-        } else {
-            return true;
-        }
-    }
-
-    protected boolean match(T t, String pattern) {
-        return true;
     }
 
 }

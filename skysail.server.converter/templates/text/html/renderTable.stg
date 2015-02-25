@@ -3,7 +3,7 @@ renderTable(resource, source, fields) ::= <<
   $resource.pagination$
   
   <table class="table">
-    <tr><th>#</th>$renderHeader(fields)$<th>Actions</th></tr>
+    <tr>$renderHeader(fields)$<th>Actions</th></tr>
     $source:{ row | $renderRow(row,i)$}$
   </table>
 >>
@@ -12,10 +12,10 @@ renderRow(row,i) ::= <<
   <tr>$row.keys:{ key | $renderColumn(row, key,i)$}$</tr>
 >>
 
-renderColumn(row, key, i) ::= <<
-  <td>&nbsp;$row.(key)$&nbsp;</td>
->>
-
 renderHeader(fields) ::= <<
   $fields: { field | <th>$field.name$</th>}$
+>>
+
+renderColumn(row, key, i) ::= <<
+  <td>&nbsp;$row.(key)$&nbsp;</td>
 >>

@@ -22,7 +22,6 @@ import org.apache.shiro.SecurityUtils;
 import org.restlet.Application;
 import org.restlet.data.Form;
 import org.restlet.data.Reference;
-import org.restlet.resource.ResourceException;
 import org.restlet.resource.ServerResource;
 import org.restlet.security.Role;
 import org.slf4j.Logger;
@@ -63,9 +62,6 @@ public abstract class SkysailServerResource<T> extends ServerResource {
     private static final Logger logger = LoggerFactory.getLogger(SkysailServerResource.class);
 
     public static final String ATTRIBUTES_INTERNAL_REQUEST_ID = "de.twenty11.skysail.server.restlet.SkysailServerResource.requestId";
-
-    // TODO used in api as well
-    public static final String SKYSAIL_CONTEXT_PARAMETERS = "skysail_context_parameters";
 
     protected static final EtmMonitor etmMonitor = EtmManager.getEtmMonitor();
 
@@ -170,23 +166,6 @@ public abstract class SkysailServerResource<T> extends ServerResource {
 
     public Class<?> getParameterType() {
         return (Class<?>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];
-    }
-
-    @Override
-    protected void doInit() throws ResourceException {
-        Application app = getApplication();
-        SkysailApplication skysailApp = (SkysailApplication) app;
-
-        Form form = getRequest().getResourceRef().getQueryAsForm();
-        Map<String, String> parameters = new HashMap<String, String>();
-
-        for (String paramName : skysailApp.getParametersToHandle()) {
-            if (form.getFirst(paramName) != null) {
-                String value = form.getFirst(paramName).getValue();
-                parameters.put(paramName, value);
-            }
-        }
-        getContext().getAttributes().put(SKYSAIL_CONTEXT_PARAMETERS, parameters);
     }
 
     /**

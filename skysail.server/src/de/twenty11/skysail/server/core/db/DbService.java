@@ -36,4 +36,6 @@ public interface DbService {
 
     <T> List<T> query(OSQLSynchQuery<T> osqlSynchQuery, Class<?>... registerClasses);
 
+    <T> List<String> findAndReturnJson(String sql, Class<T> entityClass, Map<String, Object> params);
+
 }

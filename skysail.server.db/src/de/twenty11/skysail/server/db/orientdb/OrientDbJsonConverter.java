@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import org.restlet.data.MediaType;
 import org.restlet.engine.converter.ConverterHelper;
@@ -19,12 +20,22 @@ import org.slf4j.LoggerFactory;
 import aQute.bnd.annotation.component.Component;
 import de.twenty11.skysail.server.services.OsgiConverterHelper;
 
+/**
+ * A converter which creates a JSON representation out of a list of JSON
+ * elements.
+ * 
+ * <p>
+ * This is used when we don't have a list of entities which we want to convert
+ * to JSON using Jackson, but if we already have a list of JSON strings, e.g.
+ * coming from a NoSQL database store.
+ * </p>
+ *
+ */
 @Component
 public class OrientDbJsonConverter extends ConverterHelper implements OsgiConverterHelper {
 
     private static final Logger logger = LoggerFactory.getLogger(OrientDbJsonConverter.class);
 
-    private static final float DEFAULT_MATCH_VALUE = 0.5f;
     private static Map<MediaType, Float> mediaTypesMatch = new HashMap<MediaType, Float>();
 
     static {
@@ -51,25 +62,22 @@ public class OrientDbJsonConverter extends ConverterHelper implements OsgiConver
                 return -1.0F;
             }
         } else {
-            List<?> listSource = (List<?>)source;
+            List<?> listSource = (List<?>) source;
             if (listSource.size() == 0) {
                 return -1.0F;
             }
-            if (!(listSource.get(0).getClass().getName().contains("$$"))) {
-                return -1.0F;
+            if (listSource.get(0).getClass().equals(String.class)) {
+
+                for (MediaType mediaType : mediaTypesMatch.keySet()) {
+                    if (target.getMediaType().equals(mediaType)) {
+                        logger.info("converter '{}' matched '{}' with threshold {}", new Object[] {
+                                this.getClass().getSimpleName(), mediaTypesMatch, mediaTypesMatch.get(mediaType) });
+                        return mediaTypesMatch.get(mediaType);
+                    }
+                }
             }
         }
         return -1.0F;
-        // for (MediaType mediaType : mediaTypesMatch.keySet()) {
-        // if (target.getMediaType().equals(mediaType)) {
-        // logger.info("converter '{}' matched '{}' with threshold {}", new
-        // Object[] {
-        // this.getClass().getSimpleName(), mediaTypesMatch,
-        // mediaTypesMatch.get(mediaType) });
-        // return mediaTypesMatch.get(mediaType);
-        // }
-        // }
-        // return DEFAULT_MATCH_VALUE;
     }
 
     @Override
@@ -84,9 +92,10 @@ public class OrientDbJsonConverter extends ConverterHelper implements OsgiConver
 
     @Override
     public Representation toRepresentation(Object source, Variant target, Resource resource) throws IOException {
-        List<?> listSource = (List<?>)source;
-       // listSource.
-        return new StringRepresentation("Hi");
+        List<?> listSource = (List<?>) source;
+        return new StringRepresentation("["
+                + listSource.stream().map(s -> s.toString()).collect(Collectors.joining(",")) + "]",
+                MediaType.APPLICATION_JSON);
     }
 
 }

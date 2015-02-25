@@ -1,0 +1,14 @@
+showForm(resource, source,fields, messages) ::= <<
+<table>
+    
+    <br>
+    <br>
+    <form role="form" action=".?method=PUT&redirect=/i18n" method="POST">
+        <div class="form-group">
+            <label for="exampleInputEmail1">Markdown [<a href='http://daringfireball.net/projects/markdown/syntax' target='_blank'">?</a>] for $first(fields).entity.msgKey$</label>
+            <textarea class="form-control" rows="15" name="msg">$first(fields).entity.msg$</textarea>
+        </div>
+        <button type="submit" class="btn btn-default""></button>
+    </form>
+</table>
+>>

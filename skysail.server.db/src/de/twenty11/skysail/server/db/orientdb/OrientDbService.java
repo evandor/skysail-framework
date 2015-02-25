@@ -24,6 +24,7 @@ import aQute.bnd.annotation.component.Reference;
 import com.orientechnologies.orient.client.remote.OEngineRemote;
 import com.orientechnologies.orient.core.Orient;
 import com.orientechnologies.orient.core.db.ODatabaseRecordThreadLocal;
+import com.orientechnologies.orient.core.db.document.ODatabaseDocumentTx;
 import com.orientechnologies.orient.core.id.ORID;
 import com.orientechnologies.orient.core.id.ORecordId;
 import com.orientechnologies.orient.core.record.impl.ODocument;
@@ -263,6 +264,20 @@ public class OrientDbService extends AbstractOrientDbService implements DbServic
         }
     }
 
+    @Override
+    public <T> List<String> findAndReturnJson(String sql, Class<T> entityClass, Map<String, Object> params) {
+        ODatabaseDocumentTx db = getDocumentDb();
+        try {
+            OSQLSynchQuery<ODocument> query = new OSQLSynchQuery<ODocument>(sql);
+            List<ODocument> result = db.command(query).execute(params);
+            return result.stream().map(doc -> {
+                return doc.toJSON();
+            }).collect(Collectors.toList());
+        } finally {
+            db.close();
+        }
+    }
+
     protected synchronized void startDb() {
         if (started) {
             return;
@@ -338,6 +353,12 @@ public class OrientDbService extends AbstractOrientDbService implements DbServic
         OObjectDatabaseTx db = OObjectDatabasePool.global().acquire(getDbUrl(), "admin", "admin");
         db.setLazyLoading(false);
         ODatabaseRecordThreadLocal.INSTANCE.set(db.getUnderlying());
+        return db;
+    }
+
+    private ODatabaseDocumentTx getDocumentDb() {
+        ODatabaseDocumentTx db = new ODatabaseDocumentTx(getDbUrl()).open("admin", "admin");
+        // ODatabaseRecordThreadLocal.INSTANCE.set(db.getUnderlying());
         return db;
     }
 

@@ -243,7 +243,7 @@ public abstract class EntityServerResource<T> extends SkysailServerResource<T> {
     }
 
     protected String getDataAsJson() {
-        return "overwrite in subclass";
+        return "    ";
     }
 
     public Validator getValidator() {

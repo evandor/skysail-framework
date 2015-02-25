@@ -1,13 +1,10 @@
 package io.skysail.server.documentation;
 
-import io.skysail.api.documentation.API;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
-import org.restlet.resource.Get;
 import org.restlet.resource.ResourceException;
 
 import de.twenty11.skysail.server.app.SkysailApplication;
@@ -22,11 +19,15 @@ public class ApiResource extends ListServerResource<ResourceApi> {
     /**
      * Describes the API for the associated application.
      * 
+     * <p>
      * The API consists of paths, entities and resources. Paths are connected to
      * resources which manage entities.
+     * </p>
      * 
+     * <p>
      * A Get request to this resource analyzes all paths (and the associated
      * resources and entities) attached to the current application.
+     * </p>
      * 
      */
     public ApiResource() {
@@ -37,12 +38,6 @@ public class ApiResource extends ListServerResource<ResourceApi> {
     protected void doInit() throws ResourceException {
         app = (SkysailApplication) getApplication();
         applicationName = app.getName();// getRequest().getOriginalRef().getSegments().get(0);
-    }
-
-    @Get("html|json|csv")
-    @API(desc = "returns the list with paths and RESTful methods provided by this application")
-    public List<ResourceApi> getEntities() {
-        return super.getEntities();
     }
 
     @Override

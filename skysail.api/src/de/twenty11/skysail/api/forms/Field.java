@@ -54,4 +54,11 @@ public @interface Field {
      * @return passphrase
      */
     String encryptWith() default "";
+
+    /**
+     * Defines the way this entity attribute should be displayed in a list view.
+     * 
+     * @return show or hide
+     */
+    ListView listView() default ListView.SHOW;
 }

@@ -40,7 +40,7 @@ public class TodosRepository {
         this.dbService = dbService;
     }
 
-    public void unsetDbService(@SuppressWarnings("unused") DbService dbService) {
+    public void unsetDbService(DbService dbService) {
         this.dbService = null;
     }
 
@@ -53,6 +53,14 @@ public class TodosRepository {
         Map<String, Object> params = new HashMap<String, Object>();
         params.put("username", username);
         return dbService.findAll(sql, Todo.class, params);
+    }
+
+    public List<String> getTodosAsJson(String username) {
+        String sql = "SELECT from Todo WHERE owner= :username";
+        Map<String, Object> params = new HashMap<String, Object>();
+        params.put("username", username);
+        // return dbService.findAll(sql, Todo.class, params);
+        return dbService.findAndReturnJson(sql, Todo.class, params);
     }
 
     public Todo getById(String id) {

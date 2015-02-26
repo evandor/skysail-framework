@@ -59,12 +59,15 @@ public class TodosRepository {
         String sql = "SELECT from Todo WHERE owner= :username";
         Map<String, Object> params = new HashMap<String, Object>();
         params.put("username", username);
-        // return dbService.findAll(sql, Todo.class, params);
         return dbService.findAndReturnJson(sql, Todo.class, params);
     }
 
     public Todo getById(String id) {
-        return dbService.find(id);
+        return dbService.find(id, Todo.class);
+    }
+
+    public String getJsonById(String id) {
+        return dbService.findAndReturnJson(id, Todo.class);
     }
 
     public void update(Todo entity) {

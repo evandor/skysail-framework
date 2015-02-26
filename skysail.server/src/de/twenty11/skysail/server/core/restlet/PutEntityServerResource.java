@@ -10,6 +10,7 @@ import javax.validation.ConstraintViolation;
 
 import org.restlet.data.Form;
 import org.restlet.data.Method;
+import org.restlet.representation.Variant;
 import org.restlet.resource.Get;
 import org.restlet.resource.Put;
 import org.restlet.resource.ResourceException;
@@ -120,9 +121,9 @@ public abstract class PutEntityServerResource<T> extends SkysailServerResource<T
 
     @Get("htmlform|html")
     @API(desc = "create an html form with the current entity to be updated")
-    public SkysailResponse<T> createForm() {
-        logger.info("Request entry point: {} @Get('htmlform|html') createForm",
-                PutEntityServerResource.class.getSimpleName());
+    public SkysailResponse<T> createForm(Variant variant) {
+        logger.info("Request entry point: {} @Get('htmlform|html') createForm with variant {}",
+                PutEntityServerResource.class.getSimpleName(), variant);
         return new FormResponse<T>(getEntity(), getAttribute("id"), ".", redirectBackTo());
     }
 

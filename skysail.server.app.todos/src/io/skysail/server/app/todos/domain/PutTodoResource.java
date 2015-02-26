@@ -28,4 +28,8 @@ public class PutTodoResource extends PutEntityServerResource<Todo> {
         return null;
     }
 
+    @Override
+    public String redirectTo() {
+        return super.redirectTo(TodosResource.class);
+    }
 }

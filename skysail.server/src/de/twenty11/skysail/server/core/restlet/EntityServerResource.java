@@ -33,10 +33,14 @@ import etm.core.monitor.EtmPoint;
  * Abstract base class for skysail server-side resources representing a single
  * entity with known id.
  *
+ * <p>
  * This class takes care of GET-, PUT- and DELETE-Requests routed to this
  * specific resource.
+ * </p>
  *
+ * <p>
  * Example usage:
+ * </p>
  *
  * <pre>
  *  <code>
@@ -88,10 +92,14 @@ public abstract class EntityServerResource<T> extends SkysailServerResource<T> {
      * If you have a route defined as "/somepath/{key}/whatever", you can get
      * the key like this: key = getAttribute("key");
      *
+     * <p>
      * To get hold on any parameters passed, consider using this pattern:
+     * </p>
      *
-     * Form form = new Form(getRequest().getEntity()); action =
-     * form.getFirstValue("action");
+     * <p>
+     * <code>Form form = new Form(getRequest().getEntity()); action =
+     * form.getFirstValue("action");</code>
+     * </p>
      *
      */
     @Override
@@ -150,13 +158,6 @@ public abstract class EntityServerResource<T> extends SkysailServerResource<T> {
         return getEntity("dummy");
     }
 
-    private String scoringInfo(ClientInfo clientInfo) {
-        List<Preference<MediaType>> acceptedMediaTypes = clientInfo.getAcceptedMediaTypes();
-        StringBuilder sb = new StringBuilder("AcceptedMediaTypes: ");
-        sb.append(acceptedMediaTypes.stream().map(amt -> amt.toString()).collect(Collectors.joining(",")));
-        return sb.toString();
-    }
-
     // input: html|json|..., output: html|json|...
     /**
      * @return the reponse
@@ -196,6 +197,13 @@ public abstract class EntityServerResource<T> extends SkysailServerResource<T> {
         T entity = handler.handle(this, getResponse()).getEntity();
         point.collect();
         return entity;
+    }
+
+    private String scoringInfo(ClientInfo clientInfo) {
+        List<Preference<MediaType>> acceptedMediaTypes = clientInfo.getAcceptedMediaTypes();
+        StringBuilder sb = new StringBuilder("AcceptedMediaTypes: ");
+        sb.append(acceptedMediaTypes.stream().map(amt -> amt.toString()).collect(Collectors.joining(",")));
+        return sb.toString();
     }
 
     protected T getEntity(String defaultMsg) {

@@ -2,7 +2,7 @@ renderTable(resource, source, fields) ::= <<
 
   $resource.pagination$
   
-  <table class="table">
+  <table class="table table-striped">
     <tr>$renderHeader(fields)$<th>Actions</th></tr>
     $source:{ row | $renderRow(fields,row,i)$}$
   </table>

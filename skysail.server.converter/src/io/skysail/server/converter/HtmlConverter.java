@@ -81,21 +81,13 @@ public class HtmlConverter extends ConverterHelper implements OsgiConverterHelpe
 
     private static final float DEFAULT_MATCH_VALUE = 0.5f;
     private static Map<MediaType, Float> mediaTypesMatch = new HashMap<MediaType, Float>();
-
     private String templateNameFromCookie;
-
     private List<Event> events = new CopyOnWriteArrayList<>();
-
     private Map<String, List<String>> userMsgsList = new ConcurrentHashMap<>();
-
     private STGroupBundleDir importedGroupBundleDir;
-
     private STGroupBundleDir stGroup;
-
     private volatile Set<MenuItemProvider> menuProviders = new HashSet<>();
-
     private UserManager userManager;
-
     // private SearchService searchService;
 
     static {

@@ -18,18 +18,15 @@ public class ConverterFactory {
     public void addSourceConverter(SourceConverter sourceConverter) {
         converters.add(sourceConverter);
     }
-    
+
     public void removeSourceConverter(SourceConverter sourceConverter) {
         converters.remove(sourceConverter);
     }
-    
-    static {
-       // converters.add(new ListSourceHtmlConverter());
-        //converters.add(new SkysailResponseJsonConverter());
-    }
 
     public static SourceConverter getConverter(Object source, Variant target) {
-        fallBackConverter.init(source, target); // todo init only if needed... or throw Exception if nothing was found
+        fallBackConverter.init(source, target); // todo init only if needed...
+                                                // or throw Exception if nothing
+                                                // was found
         return converters.stream().map(c -> {
             c.init(source, target);
             return c;

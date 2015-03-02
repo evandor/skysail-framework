@@ -77,16 +77,18 @@ public abstract class EntityServerResource<T> extends SkysailServerResource<T> {
     public static final String SKYSAIL_SERVER_RESTLET_ENTITY = "de.twenty11.skysail.server.core.restlet.entity";
 
     private static final Logger logger = LoggerFactory.getLogger(EntityServerResource.class);
-    private Class<? extends ListServerResource<?>> associatedResource;
+
+    // private Class<? extends ListServerResource<?>> associatedResource;
 
     public EntityServerResource() {
         addToContext(ResourceContextId.LINK_TITLE, "show");
     }
 
-    public EntityServerResource(Class<? extends ListServerResource<?>> associatedResource) {
-        this();
-        this.associatedResource = associatedResource;
-    }
+    // public EntityServerResource(Class<? extends ListServerResource<?>>
+    // associatedResource) {
+    // this();
+    // this.associatedResource = associatedResource;
+    // }
 
     /**
      * If you have a route defined as "/somepath/{key}/whatever", you can get
@@ -251,10 +253,6 @@ public abstract class EntityServerResource<T> extends SkysailServerResource<T> {
 
     public Validator getValidator() {
         return null;
-    }
-
-    public Class<? extends ListServerResource<?>> getAssociatedListServerResource() {
-        return associatedResource;
     }
 
     protected Set<ConstraintViolation<T>> validate(T entity) {

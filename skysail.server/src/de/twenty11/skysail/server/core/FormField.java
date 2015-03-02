@@ -52,7 +52,6 @@ public class FormField {
 
     private JSONObject json;
 
-    @Deprecated
     public FormField(Field fieldAnnotation, UserManager userManager, Object source, Object entity) {
         this.fieldAnnotation = fieldAnnotation;
         this.source = source;

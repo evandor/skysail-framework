@@ -16,7 +16,7 @@ import de.twenty11.skysail.server.utils.ReflectionUtils;
  * This class converts the provided "source" object according to the logic
  * provided by the appropriate converters, and keeps a reference to the original
  * source as well.
- *
+ * 
  */
 public class SourceWrapper {
 
@@ -27,6 +27,13 @@ public class SourceWrapper {
     private Object convertedSource;
     private List<Field> fields;
 
+    /**
+     * Uses target and resource information to convert the source object.
+     * 
+     * @param source
+     * @param target
+     * @param resource
+     */
     public SourceWrapper(Object source, Variant target, SkysailServerResource<?> resource) {
         this.originalSource = source;
         fields = ReflectionUtils.getInheritedFields(resource.getParameterType());

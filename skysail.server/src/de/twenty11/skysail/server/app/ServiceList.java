@@ -25,7 +25,6 @@ import org.restlet.Context;
 import aQute.bnd.annotation.component.Component;
 import aQute.bnd.annotation.component.Reference;
 import de.twenty11.skysail.api.hooks.EntityChangedHookService;
-import de.twenty11.skysail.api.services.TranslationService;
 import de.twenty11.skysail.server.SkysailComponent;
 import de.twenty11.skysail.server.core.restlet.SkysailServerResource;
 import de.twenty11.skysail.server.core.restlet.filter.HookFilter;
@@ -59,7 +58,7 @@ public class ServiceList implements ServiceListProvider {
     private volatile AuthorizationService authorizationService;
     private volatile FavoritesService favoritesService;
     private volatile AuthenticationService authenticationService;
-    private volatile TranslationService translationService;
+    // private volatile TranslationService translationService;
 
     private volatile List<TranslationRenderServiceHolder> translationRenderServices = new ArrayList<>();
 
@@ -190,21 +189,24 @@ public class ServiceList implements ServiceListProvider {
 
     /** === Translation Service (deprecated) ============================== */
 
-    @Reference(optional = true, dynamic = true, multiple = false)
-    public synchronized void setTranslationService(TranslationService service) {
-        this.translationService = service;
-        getSkysailApps().forEach(app -> app.setTranslationService(service));
-    }
-
-    public synchronized void unsetTranslationService(@SuppressWarnings("unused") TranslationService service) {
-        this.translationService = null;
-        getSkysailApps().forEach(a -> a.setTranslationService(null));
-    }
-
-    @Override
-    public TranslationService getTranslationService() {
-        return translationService;
-    }
+    // @Reference(optional = true, dynamic = true, multiple = false)
+    // public synchronized void setTranslationService(TranslationService
+    // service) {
+    // this.translationService = service;
+    // getSkysailApps().forEach(app -> app.setTranslationService(service));
+    // }
+    //
+    // public synchronized void
+    // unsetTranslationService(@SuppressWarnings("unused") TranslationService
+    // service) {
+    // this.translationService = null;
+    // getSkysailApps().forEach(a -> a.setTranslationService(null));
+    // }
+    //
+    // @Override
+    // public TranslationService getTranslationService() {
+    // return translationService;
+    // }
 
     /** === TranslationRenderService ============================== */
 

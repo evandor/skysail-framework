@@ -11,11 +11,6 @@ import de.twenty11.skysail.server.core.restlet.EntityServerResource;
 public class FeatureResource extends EntityServerResource<Feature> {
 
     @Override
-    public Feature getData() {
-        return null;
-    }
-
-    @Override
     public List<Linkheader> getLinkheader() {
         // return super.getLinkheader(PostInstallationResource.class);
         return Arrays.asList(new Linkheader.Builder("123/installations/").relation(LinkHeaderRelation.NEXT)
@@ -31,6 +26,11 @@ public class FeatureResource extends EntityServerResource<Feature> {
     @Override
     public String getId() {
         // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public Feature getEntity() {
         return null;
     }
 

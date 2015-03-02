@@ -14,11 +14,11 @@ public class LoginResource extends PostEntityServerResource<Credentials> {
 
     @Get("htmlform")
     public FormResponse<Credentials> createForm() {
-        return new FormResponse<Credentials>(getData(), SkysailRootApplication.LOGIN_PATH);
+        return new FormResponse<Credentials>(getEntity(), SkysailRootApplication.LOGIN_PATH);
     }
 
     @Override
-    public Credentials getData() {
+    public Credentials getEntity() {
         return new Credentials();
     }
 

@@ -2,6 +2,7 @@ package io.skysail.server.app.todos.domain;
 
 import java.util.Date;
 
+import org.codehaus.jettison.json.JSONObject;
 import org.restlet.resource.ResourceException;
 
 import de.twenty11.skysail.api.responses.SkysailResponse;
@@ -17,8 +18,8 @@ public class PutTodoResource extends PutEntityServerResource<Todo> {
     }
 
     @Override
-    public Todo getEntity() {
-        return TodosRepository.getInstance().getById(id);
+    public JSONObject getEntity3() {
+        return null;// TodosRepository.getInstance().getById(id);
     }
 
     @Override
@@ -31,5 +32,10 @@ public class PutTodoResource extends PutEntityServerResource<Todo> {
     @Override
     public String redirectTo() {
         return super.redirectTo(TodosResource.class);
+    }
+
+    @Override
+    public Todo getEntity() {
+        return null;
     }
 }

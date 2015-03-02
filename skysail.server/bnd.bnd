@@ -98,4 +98,5 @@ Service-Component: *
 	ch.qos.logback.classic;version=1.0,\
 	ch.qos.logback.core;version=1.0,\
 	skysail.api.text;version=latest,\
-	com.googlecode.json-simple;version=1.1
+	com.googlecode.json-simple;version=1.1,\
+	org.codehaus.jettison.jettison;version=1.3

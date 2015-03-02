@@ -4,10 +4,8 @@ import java.io.IOException;
 import java.nio.file.DirectoryStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,14 +13,15 @@ import org.slf4j.LoggerFactory;
 import de.twenty11.skysail.server.core.restlet.ListServerResource;
 
 public class LargeTestsResource extends ListServerResource<String> {
-	
-	private static final Logger logger = LoggerFactory.getLogger(LargeTestsResource.class);
 
-    @Override
-    public List<String> getData() {
-        Path dir = Paths.get("./", "generated", "largetests","response");
-        return fileList(dir).stream().map(d -> d.getFileName().toString()).collect(Collectors.toList());
-    }
+    private static final Logger logger = LoggerFactory.getLogger(LargeTestsResource.class);
+
+    // @Override
+    // public List<String> getData() {
+    // Path dir = Paths.get("./", "generated", "largetests","response");
+    // return fileList(dir).stream().map(d ->
+    // d.getFileName().toString()).collect(Collectors.toList());
+    // }
 
     public static List<Path> fileList(Path directory) {
         List<Path> fileNames = new ArrayList<>();
@@ -31,7 +30,7 @@ public class LargeTestsResource extends ListServerResource<String> {
                 fileNames.add(path);
             }
         } catch (IOException ex) {
-        	logger.error(ex.getMessage(),ex);
+            logger.error(ex.getMessage(), ex);
         }
         return fileNames;
     }

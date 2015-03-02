@@ -1,6 +1,5 @@
 package de.twenty11.skysail.server.resources;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -30,10 +29,10 @@ public class DefaultResource extends ListServerResource<String> {
         logger.debug("instanciation of DefaultResource");
     }
 
-    @Override
-    public List<String> getData() {
-        return Collections.emptyList();
-    }
+    // @Override
+    // public List<String> getData() {
+    // return Collections.emptyList();
+    // }
 
     @Override
     public List<Linkheader> getLinkheader() {
@@ -49,7 +48,8 @@ public class DefaultResource extends ListServerResource<String> {
                     .relation(LinkHeaderRelation.CREATE_FORM).title("Login form").authenticationNeeded(false).build());
         }
         linkheaders.add(new Linkheader.Builder("/usermanagement/registrations/")
-                .relation(LinkHeaderRelation.CREATE_FORM).title("Register new User").authenticationNeeded(false).build());
+                .relation(LinkHeaderRelation.CREATE_FORM).title("Register new User").authenticationNeeded(false)
+                .build());
         return linkheaders;
     }
 

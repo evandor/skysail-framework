@@ -57,4 +57,5 @@ Private-Package:  \
 	com.google.guava;version=15.0,\
 	org.apache.commons.logging;version=1.1,\
 	org.apache.commons.lang;version=2.6,\
-	skysail.server.codegen;version=latest
+	skysail.server.codegen;version=latest,\
+	org.codehaus.jettison.jettison;version=1.3

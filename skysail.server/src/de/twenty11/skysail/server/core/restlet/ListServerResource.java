@@ -3,6 +3,7 @@ package de.twenty11.skysail.server.core.restlet;
 import io.skysail.api.documentation.API;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import lombok.extern.slf4j.Slf4j;
@@ -10,12 +11,14 @@ import lombok.extern.slf4j.Slf4j;
 import org.restlet.Request;
 import org.restlet.Response;
 import org.restlet.Restlet;
-import org.restlet.data.Form;
+import org.restlet.data.Header;
 import org.restlet.data.Method;
 import org.restlet.representation.Representation;
+import org.restlet.representation.Variant;
 import org.restlet.resource.Get;
 import org.restlet.resource.Options;
 import org.restlet.resource.ServerResource;
+import org.restlet.util.Series;
 
 import de.twenty11.skysail.api.responses.LinkHeaderRelation;
 import de.twenty11.skysail.api.responses.SkysailResponse;
@@ -120,9 +123,10 @@ public abstract class ListServerResource<T> extends SkysailServerResource<List<T
      */
     @Get("csv|treeform")
     @API(desc = "lists the entities according to the media type provided")
-    public final List<T> getEntities() {
+    public final List<T> getEntities(Variant variant) {
         EtmPoint point = etmMonitor.createPoint("ListServerResource:getEntities");
-        log.info("Request entry point: {} @Get('html|csv|treeform')", this.getClass().getSimpleName());
+        log.info("Request entry point: {} @Get('html|csv|treeform') with variant {}", this.getClass().getSimpleName(),
+                variant);
         List<T> response = listEntities();
         point.collect();
         return response;
@@ -136,10 +140,18 @@ public abstract class ListServerResource<T> extends SkysailServerResource<List<T
      */
     @Get("html|json")
     @API(desc = "lists the entities in JSON format")
-    public final List<String> getAsJson() {
+    public final List<String> getAsJson(Variant variant) {
         EtmPoint point = etmMonitor.createPoint("ListServerResource:getAsJson");
-        log.info("Request entry point: {} @Get('json')", this.getClass().getSimpleName());
-        List<String> response = listEntitiesAsJson();
+        log.info("Request entry point: {} @Get('html|json') with variant {}", this.getClass().getSimpleName(), variant);
+        List<String> response = getDataAsJson();
+        Series<Header> responseHeaders = getResponse().getHeaders();
+        // if (SecurityFeatures.ALLOW_ORIGIN_FEATURE.isActive()) {
+        responseHeaders.add("Access-Control-Allow-Origin", "*");
+        responseHeaders.add("Access-Control-Allow-Methods", "GET,POST,OPTIONS");
+        responseHeaders.add("Access-Control-Allow-Headers", "Content-Type");
+        responseHeaders.add("Access-Control-Allow-Credentials", "false");
+        responseHeaders.add("Access-Control-Max-Age", "60");
+        // }
         point.collect();
         return response;
     }
@@ -150,18 +162,14 @@ public abstract class ListServerResource<T> extends SkysailServerResource<List<T
     @Options
     public final void doOptions(Representation entity) {
         EtmPoint point = etmMonitor.createPoint("ListServerResource:doOptions");
-        Form responseHeaders = (Form) getResponse().getAttributes().get("org.restlet.http.headers");
-        if (responseHeaders == null) {
-            responseHeaders = new Form();
-            getResponse().getAttributes().put("org.restlet.http.headers", responseHeaders);
-        }
-        if (SecurityFeatures.ALLOW_ORIGIN_FEATURE.isActive()) {
-            responseHeaders.add("Access-Control-Allow-Origin", "*");
-            responseHeaders.add("Access-Control-Allow-Methods", "POST,OPTIONS");
-            responseHeaders.add("Access-Control-Allow-Headers", "Content-Type");
-            responseHeaders.add("Access-Control-Allow-Credentials", "false");
-            responseHeaders.add("Access-Control-Max-Age", "60");
-        }
+        Series<Header> responseHeaders = getResponse().getHeaders();
+        // if (SecurityFeatures.ALLOW_ORIGIN_FEATURE.isActive()) {
+        responseHeaders.add("Access-Control-Allow-Origin", "*");
+        responseHeaders.add("Access-Control-Allow-Methods", "POST,GET,OPTIONS");
+        responseHeaders.add("Access-Control-Allow-Headers", "Content-Type");
+        responseHeaders.add("Access-Control-Allow-Credentials", "false");
+        responseHeaders.add("Access-Control-Max-Age", "60");
+        // }
         point.collect();
     }
 
@@ -187,10 +195,10 @@ public abstract class ListServerResource<T> extends SkysailServerResource<List<T
         AbstractResourceFilter<ListServerResource<String>, List<String>> chain = stringRequestHandler
                 .createForList(Method.GET);
         ListServerResource<String> resource = new ListServerResource<String>() {
-            @Override
-            public List<String> getData() {
-                return ListServerResource.this.getDataAsJson();
-            }
+            // @Override
+            // public List<String> getData() {
+            // return ListServerResource.this.getDataAsJson();
+            // }
 
             @Override
             public Request getRequest() {
@@ -202,7 +210,17 @@ public abstract class ListServerResource<T> extends SkysailServerResource<List<T
                 return ListServerResource.this.getResponse();
             }
         };
-        return chain.handle(resource, getResponse()).getEntity();
+        List<String> entity = chain.handle(resource, getResponse()).getEntity();
+        if (entity == null) {
+            entity = Collections.emptyList();
+        }
+        return entity;
+    }
+
+    @Override
+    public final List<T> getEntity() {
+        return Collections.emptyList();// throw new
+        // IllegalStateException("deprectead API");
     }
 
     protected List<String> getDataAsJson() {

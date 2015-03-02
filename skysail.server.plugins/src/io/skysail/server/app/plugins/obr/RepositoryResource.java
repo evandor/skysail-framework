@@ -21,10 +21,11 @@ public class RepositoryResource extends EntityServerResource<ObrRepository> {
         name = (String) getRequest().getAttributes().get("id");
     }
 
-    @Override
-    public ObrRepository getData() {
-        return app.getReposList().stream().filter(r -> r.getName().equals(name)).findFirst().orElse(null);
-    }
+    // @Override
+    // public ObrRepository getData() {
+    // return app.getReposList().stream().filter(r ->
+    // r.getName().equals(name)).findFirst().orElse(null);
+    // }
 
     @Override
     public SkysailResponse<?> eraseEntity() {
@@ -33,6 +34,11 @@ public class RepositoryResource extends EntityServerResource<ObrRepository> {
 
     @Override
     public String getId() {
+        return null;
+    }
+
+    @Override
+    public ObrRepository getEntity() {
         return null;
     }
 

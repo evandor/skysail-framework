@@ -46,7 +46,6 @@ public class OrientDbService extends AbstractOrientDbService implements DbServic
     @Activate
     public void activate() {
         log.debug("activating {}", this.getClass().getName());
-
     }
 
     @Deactivate

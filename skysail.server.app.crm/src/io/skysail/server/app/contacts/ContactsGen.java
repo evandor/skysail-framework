@@ -1,13 +1,13 @@
 package io.skysail.server.app.contacts;
 
-import io.skysail.server.app.contacts.domain.ContactResource;
-import io.skysail.server.app.contacts.domain.ContactsResource;
-import io.skysail.server.app.contacts.domain.PostContactResource;
-import io.skysail.server.app.contacts.domain.PutContactResource;
+import io.skysail.server.app.contacts.domain.companies.CompaniesResource;
 import io.skysail.server.app.contacts.domain.companies.CompanyResource;
-import io.skysail.server.app.contacts.domain.companies.CompanysResource;
 import io.skysail.server.app.contacts.domain.companies.PostCompanyResource;
-import io.skysail.server.app.contacts.domain.companies.PutCompanyResource;
+import io.skysail.server.app.contacts.domain.companies.PutCompaniesResource;
+import io.skysail.server.app.contacts.domain.contacts.ContactResource;
+import io.skysail.server.app.contacts.domain.contacts.ContactsResource;
+import io.skysail.server.app.contacts.domain.contacts.PostContactResource;
+import io.skysail.server.app.contacts.domain.contacts.PutContactResource;
 
 import java.util.Arrays;
 import java.util.List;
@@ -42,9 +42,9 @@ public class ContactsGen extends SkysailApplication implements MenuItemProvider,
         router.attach(new RouteBuilder("/Contacts/{id}/", PutContactResource.class));
 
         router.attach(new RouteBuilder("/Company/", PostCompanyResource.class));
-        router.attach(new RouteBuilder("/Companys", CompanysResource.class));
-        router.attach(new RouteBuilder("/Companys/{id}", CompanyResource.class));
-        router.attach(new RouteBuilder("/Companys/{id}/", PutCompanyResource.class));
+        router.attach(new RouteBuilder("/Companies", CompaniesResource.class));
+        router.attach(new RouteBuilder("/Companies/{id}", CompanyResource.class));
+        router.attach(new RouteBuilder("/Companies/{id}/", PutCompaniesResource.class));
 
     }
 

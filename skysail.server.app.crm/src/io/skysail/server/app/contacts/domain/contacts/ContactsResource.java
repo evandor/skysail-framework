@@ -1,4 +1,4 @@
-package io.skysail.server.app.contacts.domain;
+package io.skysail.server.app.contacts.domain.contacts;
 
 import java.util.List;
 import java.util.function.Consumer;
@@ -33,21 +33,25 @@ public class ContactsResource extends ListServerResource<Contact> {
         }
     }
 
-    @Override
-    public List<Contact> getData() {
-        int linesPerPage = 10;
-        String username = SecurityUtils.getSubject().getPrincipal().toString();
-
-        Series<Header> headers = HeadersUtils.getHeaders(getResponse());
-        long clipCount = ContactsRepository.getInstance().getContactsCount(username);
-        headers.add(new Header(HeadersUtils.PAGINATION_PAGES, Long.toString(1 + Math.floorDiv(clipCount, linesPerPage))));
-        headers.add(new Header(HeadersUtils.PAGINATION_PAGE, Integer.toString(page)));
-        headers.add(new Header(HeadersUtils.PAGINATION_HITS, Long.toString(clipCount)));
-        return null;// ContactsRepository.getInstance().getContacts(page,
-                    // username, linesPerPage);
-
-        // return ContactsRepository.getInstance().getContacts();
-    }
+    // @Override
+    // public List<Contact> getData() {
+    // int linesPerPage = 10;
+    // String username = SecurityUtils.getSubject().getPrincipal().toString();
+    //
+    // Series<Header> headers = HeadersUtils.getHeaders(getResponse());
+    // long clipCount =
+    // ContactsRepository.getInstance().getContactsCount(username);
+    // headers.add(new Header(HeadersUtils.PAGINATION_PAGES, Long.toString(1 +
+    // Math.floorDiv(clipCount, linesPerPage))));
+    // headers.add(new Header(HeadersUtils.PAGINATION_PAGE,
+    // Integer.toString(page)));
+    // headers.add(new Header(HeadersUtils.PAGINATION_HITS,
+    // Long.toString(clipCount)));
+    // return null;// ContactsRepository.getInstance().getContacts(page,
+    // // username, linesPerPage);
+    //
+    // // return ContactsRepository.getInstance().getContacts();
+    // }
 
     @Override
     protected List<String> getDataAsJson() {

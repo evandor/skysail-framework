@@ -14,7 +14,6 @@ import org.osgi.service.event.EventAdmin;
 
 import aQute.bnd.annotation.ProviderType;
 import de.twenty11.skysail.api.hooks.EntityChangedHookService;
-import de.twenty11.skysail.api.services.TranslationService;
 import de.twenty11.skysail.server.SkysailComponent;
 import de.twenty11.skysail.server.core.restlet.filter.HookFilter;
 import de.twenty11.skysail.server.metrics.MetricsService;
@@ -30,7 +29,7 @@ public interface ServiceListProvider {
 
     AuthenticationService getAuthenticationService();
 
-    TranslationService getTranslationService();
+    // TranslationService getTranslationService();
 
     EncryptorService getEncryptorService();
 

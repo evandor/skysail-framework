@@ -4,6 +4,7 @@ import java.text.ParseException;
 
 import lombok.extern.slf4j.Slf4j;
 
+import org.codehaus.jettison.json.JSONObject;
 import org.restlet.Response;
 
 import de.twenty11.skysail.server.core.restlet.ResponseWrapper;
@@ -19,13 +20,19 @@ public class FormDataExtractingFilter<R extends SkysailServerResource<T>, T> ext
             log.warn("request or resourceRef was null");
             return FilterResult.STOP;
         }
-        T data;
+        Object data;
         try {
             data = getDataFromRequest(response.getRequest(), resource);
+
+            if (data instanceof JSONObject) {
+                responseWrapper.setJson((JSONObject) data);
+            } else {
+                responseWrapper.setEntity((T) data);
+            }
+
         } catch (ParseException e) {
             throw new RuntimeException("could not parse form", e);
         }
-        responseWrapper.setEntity(data);
 
         return super.doHandle(resource, response, responseWrapper);
     }

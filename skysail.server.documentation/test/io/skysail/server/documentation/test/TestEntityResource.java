@@ -9,10 +9,10 @@ public class TestEntityResource extends EntityServerResource<String> {
         setDescription("API description of class '" + this.getClass().getSimpleName() + "'");
     }
 
-    @Override
-    public String getData() {
-        return "data";
-    }
+    // @Override
+    // public String getData() {
+    // return "data";
+    // }
 
     @Override
     public String getId() {
@@ -21,6 +21,11 @@ public class TestEntityResource extends EntityServerResource<String> {
 
     @Override
     public SkysailResponse<?> eraseEntity() {
+        return null;
+    }
+
+    @Override
+    public String getEntity() {
         return null;
     }
 

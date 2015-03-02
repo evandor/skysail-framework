@@ -2,35 +2,36 @@ showForm(resource, source, fields, messages) ::= <<
 
   $if (resource.postEntityServerResource)$
     <form action="$source.formTarget$" method="POST" class="form-horizontal" role="form" id="form" name="form">
-      $fields:{ field | $handleField(resource, source, field, messages,i)$}$
-      $submit("Submit",2,10)$
+      $handleField(resource, source, first(fields), messages,"1", " autofocus")$
+      $rest(fields):{ field | $handleField(resource, source, field, messages,i, "")$}$
+      $submit("Submit",2,10,length(fields))$
     </form>
   $elseif (resource.putEntityServerResource)$
     <form action="$source.formTarget$?method=PUT" method="POST" class="form-horizontal" role="form" id="form" name="form">
-      $fields:{ field | $handleField(resource, source, field, messages,i)$}$
-      $submit("Update",1,9)$
+      $fields:{ field | $handleField(resource, source, field, messages,i,"")$}$
+      $submit("Update",1,9,length(fields))$
     </form>
   $endif$
 
 >>
 
-submit(label, o1,o2) ::= <<
+submit(label, o1,o2,tabindex) ::= <<
       <div class="form-group">
         <div class="col-sm-offset-$o1$ col-sm-$o2$">
-          <button type="submit" id="submitButton" name="submitButton" class="btn btn-default">$label$</button>
+          <button type="submit" id="submitButton" name="submitButton" class="btn btn-default" tabindex="$tabindex$">$label$</button>
         </div>
       </div>
 >>
 
-handleField(resource, source, field, messages,i) ::= <<
+handleField(resource, source, field, messages,i, autofocus) ::= <<
 	$if (source.constraintViolationsResponse && field.violationMessage)$
-        $handleConstraintViolationField(resource, source, field, messages,i)$
+        $handleConstraintViolationField(resource, source, field, messages,i,autofocus)$
     $else$
-        $handleInputField(resource, source, field, messages,i)$
+        $handleInputField(resource, source, field, messages,i, autofocus)$
     $endif$
 >>
 
-handleConstraintViolationField(resource, source, formField, messages,i) ::= <<
+handleConstraintViolationField(resource, source, formField, messages,i,autofocus) ::= <<
 
     $if(formField.tagsInputType)$
 	    <div class='form-group has-error has-feedback'>
@@ -66,13 +67,13 @@ handleConstraintViolationField(resource, source, formField, messages,i) ::= <<
     $endif$
 >>
 
-handleInputField(resource, source, field, messages,i) ::= <<
+handleInputField(resource, source, field, messages,i,autofocus) ::= <<
   $if(!field.readonlyInputType)$
       $if(field.tagsInputType)$
         <div class='form-group'>
           <label for='s2id_$field.fieldAnnotation.name$' class='col-sm-2 control-label' style="text-align: left;">$helpmessage(messages, field.nameKey)$ $if(converter.edit)$<a href='/i18n/messages/$source.entity.entity.class.name$.$field.fieldAnnotation.name$/'><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>$endif$</label>
           <div class='col-sm-10'>
-            <input type = 'hidden' name = '$field.fieldAnnotation.name$' id = '$field.fieldAnnotation.name$' value='$field.value$' tabindex="$i$"/>
+            <input type = 'hidden' name = '$field.fieldAnnotation.name$' id = '$field.fieldAnnotation.name$' value='$field.value$' tabindex="$i$" $autofocus$/>
             <small class="help-block">$helpmessage(messages, field.messageKey)$ $if(converter.edit)$ <a href='/i18n/messages/$source.entity.entity.class.name$.$field.fieldAnnotation.name$.desc/'><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>$endif$</small>
           </div>
         </div>
@@ -80,7 +81,7 @@ handleInputField(resource, source, field, messages,i) ::= <<
         <div class='form-group'>
           <label for='$field.fieldAnnotation.name$' class='col-sm-2 control-label' style="text-align: left;">$helpmessage(messages, field.nameKey)$ $if(converter.edit)$<a href='/i18n/messages/$source.entity.entity.class.name$.$field.fieldAnnotation.name$/'><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>$endif$</label>
           <div class='col-sm-10'>
-            <textarea class='form-control' rows=3 name='$field.fieldAnnotation.name$' id='$field.fieldAnnotation.name$' tabindex="$i$">$field.value$</textarea>
+            <textarea class='form-control' rows=3 name='$field.fieldAnnotation.name$' id='$field.fieldAnnotation.name$' tabindex="$i$" $autofocus$>$field.value$</textarea>
             <small class="help-block">$helpmessage(messages, field.messageKey)$ $if(converter.edit)$<a href='/i18n/messages/$source.entity.entity.class.name$.$field.fieldAnnotation.name$.desc/'><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>$endif$</small>
           </div>
         </div>
@@ -88,7 +89,7 @@ handleInputField(resource, source, field, messages,i) ::= <<
         <div class='form-group'>
           <label for='$field.fieldAnnotation.name$' class='col-sm-2 control-label' style="text-align: left;">$helpmessage(messages, field.nameKey)$  $if(converter.edit)$<a href='/i18n/messages/$source.entity.entity.class.name$.$field.fieldAnnotation.name$/'><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>$endif$</label>
           <div class='col-sm-10'>
-            <textarea data-uk-htmleditor="{maxsplitsize:600, markdown:true}" name='$field.fieldAnnotation.name$' id='$field.fieldAnnotation.name$' tabindex="$i$">$field.value$</textarea>
+            <textarea data-uk-htmleditor="{maxsplitsize:600, markdown:true}" name='$field.fieldAnnotation.name$' id='$field.fieldAnnotation.name$' tabindex="$i$" $autofocus$>$field.value$</textarea>
             <small class="help-block">$helpmessage(messages, field.messageKey)$  $if(converter.edit)$ <a href='/i18n/messages/$source.entity.entity.class.name$.$field.fieldAnnotation.name$.desc/'><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>$endif$</small>
           </div>
         </div>
@@ -96,7 +97,7 @@ handleInputField(resource, source, field, messages,i) ::= <<
         <div class='form-group'>
           <label for='$field.fieldAnnotation.name$' class='col-sm-2 control-label' style="text-align: left;">$helpmessage(messages, field.nameKey)$  $if(converter.edit)$<a href='/i18n/messages/$source.entity.entity.class.name$.$field.fieldAnnotation.name$/'><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>$endif$</label>
           <div class='col-sm-10'>
-            <select name='$field.fieldAnnotation.name$' tabindex="$i$">
+            <select name='$field.fieldAnnotation.name$' tabindex="$i$"  $autofocus$>
                 $field.selectionProviderOptions.keys: {key | $options(field.selectionProviderOptions,key)$}$
             </select>
             <small class="help-block">$helpmessage(messages, field.messageKey)$ $if(converter.edit)$ <a href='/i18n/messages/$source.entity.entity.class.name$.$field.fieldAnnotation.name$.desc/'><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>$endif$</small>
@@ -106,7 +107,7 @@ handleInputField(resource, source, field, messages,i) ::= <<
         <div class='form-group'>
           <label for='$field.fieldAnnotation.name$' class='col-sm-2 control-label' style="text-align: left;">$helpmessage(messages, field.nameKey)$  $if(converter.edit)$<a href='/i18n/messages/$source.entity.entity.class.name$.$field.fieldAnnotation.name$/'><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>$endif$</label>
           <div class='col-sm-10'>
-            <input type="$field.inputType$" class='form-control' name='$field.fieldAnnotation.name$' id='$field.fieldAnnotation.name$' placeholder='$helpmessage(messages, field.placeholderKey)$' value='$field.value$' tabindex="$i$">
+            <input type="$field.inputType$" class='form-control' name='$field.fieldAnnotation.name$' id='$field.fieldAnnotation.name$' placeholder='$helpmessage(messages, field.placeholderKey)$' value='$field.value$' tabindex="$i$" $autofocus$>
             <small class="help-block">$helpmessage(messages, field.messageKey)$  $if(converter.edit)$ <a href='/i18n/messages/$source.entity.entity.class.name$.$field.fieldAnnotation.name$.desc/'><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>$endif$</small>
           </div>
         </div>

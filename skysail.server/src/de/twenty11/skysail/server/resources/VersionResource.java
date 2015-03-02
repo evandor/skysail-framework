@@ -19,7 +19,7 @@ public class VersionResource extends EntityServerResource<Map<String, String>> {
     }
 
     @Override
-    public Map<String, String> getData() {
+    public Map<String, String> getEntity() {
         Map<String, String> result = new HashMap<String, String>();
         result.put("application", getMainVersion());
         return result;

@@ -94,7 +94,8 @@ public class ApplicationList implements ApplicationListProvider {
         assignService(apps, app -> app.setAuthenticationService(services.getAuthenticationService()));
         assignService(apps, app -> app.setAuthorizationService(services.getAuthorizationService()));
         assignService(apps, app -> app.setFavoritesService(services.getFavoritesService()));
-        assignService(apps, app -> app.setTranslationService(services.getTranslationService()));
+        // assignService(apps, app ->
+        // app.setTranslationService(services.getTranslationService()));
         assignService(apps, app -> app.setEntityChangedHookServices(services.getEntityChangedHookService()));
         assignService(apps, app -> app.setEventAdmin(services.getEventAdmin()));
         assignService(apps, app -> app.setRequestResponseMonitor(services.getRequestResponseMonitor()));
@@ -109,7 +110,7 @@ public class ApplicationList implements ApplicationListProvider {
         apps.stream().forEach(app -> app.setAuthenticationService(null));
         apps.stream().forEach(app -> app.setAuthorizationService(null));
         apps.stream().forEach(app -> app.setFavoritesService(null));
-        apps.stream().forEach(app -> app.setTranslationService(null));
+        // apps.stream().forEach(app -> app.setTranslationService(null));
         apps.stream().forEach(app -> app.setEntityChangedHookServices(null));
         apps.stream().forEach(app -> app.setEventAdmin(null));
         apps.stream().forEach(app -> app.setRequestResponseMonitor(null));

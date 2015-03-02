@@ -147,7 +147,7 @@ public class CheckInvalidInputFilter<R extends SkysailServerResource<T>, T> exte
 
         if (application != null && resource instanceof EntityServerResource) {
             htmlPolicyBuilder = application.getHtmlPolicy(
-                    ((EntityServerResource<T>) resource).getData().getClass(), parameter.getName());
+                    ((EntityServerResource<T>) resource).getEntity().getClass(), parameter.getName());
         }
         return htmlPolicyBuilder;
     }

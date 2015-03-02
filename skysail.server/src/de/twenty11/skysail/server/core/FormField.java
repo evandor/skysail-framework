@@ -10,6 +10,10 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 
+import lombok.extern.slf4j.Slf4j;
+
+import org.codehaus.jettison.json.JSONException;
+import org.codehaus.jettison.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -28,6 +32,7 @@ import de.twenty11.skysail.server.core.restlet.MessagesUtils;
 import de.twenty11.skysail.server.services.UserManager;
 import de.twenty11.skysail.server.um.domain.SkysailUser;
 
+@Slf4j
 public class FormField {
 
     private static final Logger logger = LoggerFactory.getLogger(FormField.class);
@@ -43,6 +48,11 @@ public class FormField {
 
     private Object entity;
 
+    private Class<?> cls;
+
+    private JSONObject json;
+
+    @Deprecated
     public FormField(Field fieldAnnotation, UserManager userManager, Object source, Object entity) {
         this.fieldAnnotation = fieldAnnotation;
         this.source = source;
@@ -89,6 +99,21 @@ public class FormField {
         }
     }
 
+    public FormField(Field fieldAnnotation, UserManager userManager, Object source, JSONObject json, Class<?> cls) {
+        this.fieldAnnotation = fieldAnnotation;
+        this.source = source;
+        this.json = json;
+        this.cls = cls;
+
+        try {
+            value = json.getString(fieldAnnotation.getName());
+        } catch (JSONException e) {
+            log.error(e.getMessage(), e);
+            value = "";
+        }
+
+    }
+
     public Field getFieldAnnotation() {
         return fieldAnnotation;
     }
@@ -108,20 +133,24 @@ public class FormField {
         return value;
     }
 
+    public Class<?> getCls() {
+        return cls;
+    }
+
     public String getInputType() {
         return fieldAnnotation.getAnnotation(de.twenty11.skysail.api.forms.Field.class).type().name().toLowerCase();
     }
 
     public String getMessageKey() {
-        return MessagesUtils.getBaseKey(getEntity().getClass(), this) + ".desc";
+        return MessagesUtils.getBaseKey(cls != null ? cls : getEntity().getClass(), this) + ".desc";
     }
 
     public String getNameKey() {
-        return MessagesUtils.getBaseKey(getEntity().getClass(), this);
+        return MessagesUtils.getBaseKey(cls != null ? cls : getEntity().getClass(), this);
     }
 
     public String getPlaceholderKey() {
-        return MessagesUtils.getBaseKey(getEntity().getClass(), this) + ".placeholder";
+        return MessagesUtils.getBaseKey(cls != null ? cls : getEntity().getClass(), this) + ".placeholder";
     }
 
     public boolean isDateType() {

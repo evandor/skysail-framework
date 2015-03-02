@@ -25,7 +25,7 @@ public class LargeTestsFileResource extends EntityServerResource<String> {
     }
 
     @Override
-    public String getData() {
+    public String getEntity() {
         Path file = Paths.get("./", "generated", "largetests", "response", pathid);
         try {
             return Files.readAllLines(file, Charset.forName( "iso-8859-1")).stream().collect(Collectors.joining("\n"));

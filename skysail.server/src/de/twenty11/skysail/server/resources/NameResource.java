@@ -13,7 +13,7 @@ public class NameResource extends EntityServerResource<String> {
     }
 
     @Override
-    public String getData() {
+    public String getEntity() {
         return "productName"; //app.getConfigForKey("productName");
     }
 

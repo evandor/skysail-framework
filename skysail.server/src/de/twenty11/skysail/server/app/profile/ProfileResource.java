@@ -12,7 +12,7 @@ import de.twenty11.skysail.server.core.restlet.EntityServerResource;
 public class ProfileResource extends EntityServerResource<Profile> {
 
 	@Override
-    public Profile getData() {
+    public Profile getEntity() {
 		Subject subject = SecurityUtils.getSubject();
 	    return new Profile(subject.getPrincipal().toString());
     }

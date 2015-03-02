@@ -1,5 +1,6 @@
-package io.skysail.server.app.contacts.domain;
+package io.skysail.server.app.contacts.domain.contacts;
 
+import org.codehaus.jettison.json.JSONObject;
 import org.restlet.resource.ResourceException;
 
 import de.twenty11.skysail.api.responses.SkysailResponse;
@@ -15,8 +16,8 @@ public class PutContactResource extends PutEntityServerResource<Contact> {
     }
 
     @Override
-    public Contact getEntity() {
-        return ContactsRepository.getInstance().getById(id);
+    public JSONObject getEntity3() {
+        return null;// ContactsRepository.getInstance().getById(id);
     }
 
     @Override
@@ -28,6 +29,11 @@ public class PutContactResource extends PutEntityServerResource<Contact> {
     @Override
     public String redirectTo() {
         return super.redirectTo(ContactsResource.class);
+    }
+
+    @Override
+    public Contact getEntity() {
+        return null;
     }
 
 }

@@ -24,11 +24,11 @@ public class TodosResource extends ListServerResource<Todo> {
         id = getAttribute("id");
     }
 
-    @Override
-    public List<Todo> getData() {
-        Object principal = SecurityUtils.getSubject().getPrincipal();
-        return TodosRepository.getInstance().getTodos(principal.toString());
-    }
+    // @Override
+    // public List<Todo> getData() {
+    // Object principal = SecurityUtils.getSubject().getPrincipal();
+    // return TodosRepository.getInstance().getTodos(principal.toString());
+    // }
 
     @Override
     protected List<String> getDataAsJson() {

@@ -1,4 +1,4 @@
-package io.skysail.server.app.contacts.domain;
+package io.skysail.server.app.contacts.domain.contacts;
 
 import java.util.HashMap;
 import java.util.List;

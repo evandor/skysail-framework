@@ -2,7 +2,7 @@ package de.twenty11.skysail.server.core.restlet.test;
 
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertThat;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -20,13 +20,13 @@ public class SkysailServerResourceTest {
     private class TestSkysailServerResource extends SkysailServerResource<String> {
 
         @Override
-        public String getData() {
-            return this.getClass().getSimpleName();
+        public LinkHeaderRelation getLinkRelation() {
+            return LinkHeaderRelation.ABOUT;
         }
 
         @Override
-        public LinkHeaderRelation getLinkRelation() {
-            return LinkHeaderRelation.ABOUT;
+        public String getEntity() {
+            return null;
         }
 
     };
@@ -38,12 +38,12 @@ public class SkysailServerResourceTest {
 
     @Test
     public void returns_resources_data() throws Exception {
-       assertThat(serverResource.getData(), is(equalTo(TestSkysailServerResource.class.getSimpleName())));
+        assertThat(serverResource.getEntity(), is(equalTo(TestSkysailServerResource.class.getSimpleName())));
     }
 
     @Test
     public void returns_resources_linkRelation() throws Exception {
-       assertThat(serverResource.getLinkRelation(), is(equalTo(LinkHeaderRelation.ABOUT)));
+        assertThat(serverResource.getLinkRelation(), is(equalTo(LinkHeaderRelation.ABOUT)));
     }
 
     @Test

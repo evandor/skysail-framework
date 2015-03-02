@@ -156,11 +156,10 @@ public abstract class AbstractResourceFilter<R extends SkysailServerResource<T>,
         return sb.toString();
     }
 
-    @SuppressWarnings("unchecked")
-    protected T getDataFromRequest(Request request, R resource) throws ParseException {
+    protected Object getDataFromRequest(Request request, R resource) throws ParseException {
         Object entityAsObject = request.getAttributes().get(EntityServerResource.SKYSAIL_SERVER_RESTLET_ENTITY);
         if (entityAsObject != null) {
-            return (T) entityAsObject;
+            return entityAsObject;
         }
         Form form = (Form) request.getAttributes().get(EntityServerResource.SKYSAIL_SERVER_RESTLET_FORM);
         if (resource instanceof EntityServerResource) { // git sync

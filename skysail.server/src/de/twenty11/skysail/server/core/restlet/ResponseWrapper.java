@@ -1,20 +1,25 @@
 package de.twenty11.skysail.server.core.restlet;
 
+import org.codehaus.jettison.json.JSONObject;
 import org.restlet.Response;
 
 import de.twenty11.skysail.api.responses.ConstraintViolationsResponse;
-
 
 public class ResponseWrapper<T> {
 
     private T entity;
 
-    /** an internal request id added by a filter to track request and response information */
+    /**
+     * an internal request id added by a filter to track request and response
+     * information
+     */
     private Long requestId;
 
     private Response response;
 
     private ConstraintViolationsResponse<T> constraintViolationsResponse;
+
+    private JSONObject data;
 
     public ResponseWrapper(T entity) {
         this.entity = entity;
@@ -30,11 +35,11 @@ public class ResponseWrapper<T> {
     public T getEntity() {
         return entity;
     }
-    
+
     public void setEntity(T entity) {
         this.entity = entity;
     }
-    
+
     public void setResponse(Response response) {
         this.response = response;
     }
@@ -42,7 +47,7 @@ public class ResponseWrapper<T> {
     public Response getResponse() {
         return response;
     }
-    
+
     public void setConstraintViolationResponse(ConstraintViolationsResponse<T> cvr) {
         this.constraintViolationsResponse = cvr;
     }
@@ -50,7 +55,7 @@ public class ResponseWrapper<T> {
     public ConstraintViolationsResponse<T> getConstraintViolationsResponse() {
         return constraintViolationsResponse;
     }
-    
+
     public void setRequestId(Long requestId) {
         this.requestId = requestId;
     }
@@ -58,10 +63,17 @@ public class ResponseWrapper<T> {
     public Long getRequestId() {
         return requestId;
     }
-    
+
     @Override
     public String toString() {
         return "ResponseWrapper for: " + entity;
     }
-}
 
+    public void setJson(JSONObject data) {
+        this.data = data;
+    }
+
+    public JSONObject getData() {
+        return data;
+    }
+}

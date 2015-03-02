@@ -1,5 +1,7 @@
 package de.twenty11.skysail.api.responses;
 
+import org.codehaus.jettison.json.JSONObject;
+
 /**
  * A skysail server installation responds to (RESTful) Http-Requests by creating
  * responses, which get converted on-the-fly into the desired target format
@@ -18,6 +20,10 @@ public class SkysailResponse<T> {
 
     protected T entity;
 
+    private JSONObject json;
+
+    private Class<?> cls;
+
     /**
      * constructor.
      * 
@@ -29,6 +35,11 @@ public class SkysailResponse<T> {
     }
 
     public SkysailResponse() {
+    }
+
+    public SkysailResponse(JSONObject json, Class<?> cls) {
+        this.json = json;
+        this.cls = cls;
     }
 
     @Override
@@ -44,5 +55,13 @@ public class SkysailResponse<T> {
 
     public T getEntity() {
         return entity;
+    }
+
+    public JSONObject getJson() {
+        return json;
+    }
+
+    public Class<?> getCls() {
+        return cls;
     }
 }

@@ -9,24 +9,24 @@ import de.twenty11.skysail.api.responses.Linkheader;
 import de.twenty11.skysail.server.core.restlet.ListServerResource;
 import de.twenty11.skysail.server.core.restlet.ResourceContextId;
 
-public class FeaturesResource extends ListServerResource<Feature>{
+public class FeaturesResource extends ListServerResource<Feature> {
 
-	private PluginApplication app;
+    private PluginApplication app;
 
     public FeaturesResource() {
-		super(FeatureResource.class);
-		app = (PluginApplication) getApplication();
-		addToContext(ResourceContextId.LINK_TITLE, "Features");
+        super(FeatureResource.class);
+        app = (PluginApplication) getApplication();
+        addToContext(ResourceContextId.LINK_TITLE, "Features");
     }
-	
-	@Override
-    public List<Feature> getData() {
-	    return app.getFeaturesRepository().getFeatures();
+
+    // @Override
+    // public List<Feature> getData() {
+    // return app.getFeaturesRepository().getFeatures();
+    // }
+
+    @Override
+    public List<Linkheader> getLinkheader() {
+        return super.getLinkheader(PluginRootResource.class);
     }
-	
-	@Override
-	public List<Linkheader> getLinkheader() {
-	    return super.getLinkheader(PluginRootResource.class);
-	}
 
 }

@@ -60,7 +60,6 @@ import com.google.common.base.Predicate;
 import de.twenty11.skysail.api.forms.Field;
 import de.twenty11.skysail.api.forms.HtmlPolicy;
 import de.twenty11.skysail.api.hooks.EntityChangedHookService;
-import de.twenty11.skysail.api.services.TranslationService;
 import de.twenty11.skysail.server.SkysailComponent;
 import de.twenty11.skysail.server.core.osgi.internal.filter.Blocker;
 import de.twenty11.skysail.server.core.restlet.ApplicationContextId;
@@ -191,7 +190,7 @@ public abstract class SkysailApplication extends Application implements Applicat
 
     private volatile RequestResponseMonitor requestResponseMonitor;
     private volatile EncryptorService encryptorService;
-    private volatile TranslationService translationService;
+    // private volatile TranslationService translationService;
     private volatile FavoritesService favoritesService;
     private volatile ConfigurationAdmin configurationAdmin;
     private volatile MetricsService metricsService;
@@ -323,25 +322,6 @@ public abstract class SkysailApplication extends Application implements Applicat
             return defaultMsg;
         }
 
-        // // old way, to be removed
-        // if (translationService == null) {
-        // return message;
-        // }
-        // String translated =
-        // translationService.translate(resource.getClass().getClassLoader(),
-        // resource.getRequest(),
-        // message, defaultMsg);
-        // String formatted = MessageFormat.format(translated, substitutions);
-        // if (!applyMarkdown) {
-        // return formatted;
-        // }
-        // try {
-        // return new
-        // Markdown4jProcessor().process(StringEscapeUtils.unescapeHtml(formatted));
-        // } catch (IOException e) {
-        // logger.error(e.getMessage(), e);
-        // return e.getMessage();
-        // }
     }
 
     /**
@@ -716,10 +696,10 @@ public abstract class SkysailApplication extends Application implements Applicat
         this.encryptorService = null;
     }
 
-    public void setTranslationService(TranslationService service) {
-        logServiceWasSet("Translation", service);
-        this.translationService = service;
-    }
+    // public void setTranslationService(TranslationService service) {
+    // logServiceWasSet("Translation", service);
+    // this.translationService = service;
+    // }
 
     public void addTranslationRenderService(TranslationRenderServiceHolder service) {
         this.translationRenderServices.add(service);
@@ -737,9 +717,9 @@ public abstract class SkysailApplication extends Application implements Applicat
     // return translationService;
     // }
 
-    public void unsetTranslationService() {
-        this.translationService = null;
-    }
+    // public void unsetTranslationService() {
+    // this.translationService = null;
+    // }
 
     @Override
     public int compareTo(ApplicationProvider o) {

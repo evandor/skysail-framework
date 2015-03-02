@@ -29,6 +29,7 @@ import javax.management.Notification;
 import lombok.extern.slf4j.Slf4j;
 
 import org.apache.shiro.SecurityUtils;
+import org.codehaus.jettison.json.JSONObject;
 import org.osgi.framework.Bundle;
 import org.osgi.service.event.Event;
 import org.osgi.service.event.EventHandler;
@@ -350,12 +351,23 @@ public class HtmlConverter extends ConverterHelper implements OsgiConverterHelpe
             decl.add("source", new STSourceWrapper(source));
             if (source != null && (source instanceof SkysailResponse)) {
                 Object entity = ((SkysailResponse<?>) source).getEntity();
-                fields = ReflectionUtils.getInheritedFields(entity.getClass()).stream()
-                        //
-                        .filter(f -> test(resource, f))
-                        .map(f -> new FormField(f, userManager, source, ((SkysailResponse<?>) source).getEntity()))//
-                        .collect(Collectors.toList());
-
+                if (entity != null) {
+                    fields = ReflectionUtils.getInheritedFields(entity.getClass()).stream()
+                            //
+                            .filter(f -> test(resource, f))
+                            .map(f -> new FormField(f, userManager, source, ((SkysailResponse<?>) source).getEntity()))//
+                            .collect(Collectors.toList());
+                } else {
+                    JSONObject jsonObject = ((SkysailResponse<?>) source).getJson();
+                    try {
+                        Class<?> cls = ((SkysailResponse<?>) source).getCls();
+                        fields = ReflectionUtils.getInheritedFields(cls).stream().filter(f -> test(resource, f))
+                                .map(f -> new FormField(f, userManager, source, jsonObject, cls))//
+                                .collect(Collectors.toList());
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
                 decl.add("fields", new STFieldsWrapper(fields));
             } else if (source != null && (source instanceof HashMap)) {
 

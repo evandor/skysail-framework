@@ -3,6 +3,7 @@ package de.twenty11.skysail.server.app.profile;
 import io.skysail.api.um.User;
 
 import org.apache.shiro.SecurityUtils;
+import org.codehaus.jettison.json.JSONObject;
 import org.restlet.resource.ResourceException;
 
 import de.twenty11.skysail.api.responses.SkysailResponse;
@@ -24,8 +25,8 @@ public class PutPasswordResource extends PutEntityServerResource<ChangePasswordE
     }
 
     @Override
-    public ChangePasswordEntity getEntity() {
-        return new ChangePasswordEntity();
+    public JSONObject getEntity3() {
+        return null;// new ChangePasswordEntity();
     }
 
     @Override
@@ -41,6 +42,11 @@ public class PutPasswordResource extends PutEntityServerResource<ChangePasswordE
         if (getResponse().getStatus().isSuccess()) {
             return SkysailRootApplication.LOGOUT_PATH;
         }
+        return null;
+    }
+
+    @Override
+    public ChangePasswordEntity getEntity() {
         return null;
     }
 

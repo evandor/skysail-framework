@@ -8,6 +8,9 @@ import java.util.Set;
 
 import javax.validation.ConstraintViolation;
 
+import lombok.extern.slf4j.Slf4j;
+
+import org.codehaus.jettison.json.JSONObject;
 import org.restlet.data.Form;
 import org.restlet.data.Method;
 import org.restlet.representation.Variant;
@@ -58,6 +61,7 @@ import etm.core.monitor.EtmPoint;
  * 
  * @param <T>
  */
+@Slf4j
 public abstract class PutEntityServerResource<T> extends SkysailServerResource<T> {
 
     private static final String SKYSAIL_SERVER_RESTLET_FORM = "de.twenty11.skysail.server.core.restlet.form";
@@ -95,16 +99,15 @@ public abstract class PutEntityServerResource<T> extends SkysailServerResource<T
      * 
      * @return a template instance of type T
      */
-    public abstract T getEntity();
+    public abstract JSONObject getEntity3();
 
     /**
      * will be called in case of a PUT request.
      */
     public abstract SkysailResponse<?> updateEntity(T entity);
 
-    @Override
-    public T getData() {
-        return getEntity();
+    public SkysailResponse<?> updateEntity(JSONObject json) {
+        return null;
     }
 
     /**
@@ -115,8 +118,17 @@ public abstract class PutEntityServerResource<T> extends SkysailServerResource<T
      *            the representation of the resource as a form
      * @return the resource of type T
      */
-    public T getData(Form form) {
-        return populate(getEntity(), form);
+    public JSONObject getData(Form form) {
+        // FIXME dont use everything from the form: dont trust user input
+        JSONObject entity = getEntity3();
+        form.getNames().stream().forEach(name -> {
+            try {
+                entity.put(name, form.getFirstValue(name));
+            } catch (Exception e) {
+                log.error(e.getMessage(), e);
+            }
+        });
+        return entity;
     }
 
     @Get("htmlform|html")
@@ -124,7 +136,7 @@ public abstract class PutEntityServerResource<T> extends SkysailServerResource<T
     public SkysailResponse<T> createForm(Variant variant) {
         logger.info("Request entry point: {} @Get('htmlform|html') createForm with variant {}",
                 PutEntityServerResource.class.getSimpleName(), variant);
-        return new FormResponse<T>(getEntity(), getAttribute("id"), ".", redirectBackTo());
+        return new FormResponse<T>(getEntity3(), getParameterType(), getAttribute("id"), ".", redirectBackTo());
     }
 
     protected String redirectBackTo() {

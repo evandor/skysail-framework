@@ -2,6 +2,7 @@ package de.twenty11.skysail.server.core.restlet.filter;
 
 import lombok.extern.slf4j.Slf4j;
 
+import org.codehaus.jettison.json.JSONObject;
 import org.restlet.Response;
 
 import de.twenty11.skysail.server.core.restlet.ResponseWrapper;
@@ -13,8 +14,13 @@ public class DataExtractingFilter<R extends SkysailServerResource<T>, T> extends
     @Override
     public FilterResult doHandle(R resource, Response response, ResponseWrapper<T> responseWrapper) {
         log.debug("entering {}#doHandle", this.getClass().getSimpleName());
-        T data = resource.getData();
-        responseWrapper.setEntity(data);
+        T data = resource.getEntity();
+        // if (data != null) {
+        // responseWrapper.setEntity(data);
+        // } else {
+        JSONObject asJson = resource.getAsJson();
+        responseWrapper.setJson(asJson);
+        // }
         super.doHandle(resource, response, responseWrapper);
         return FilterResult.CONTINUE;
     }

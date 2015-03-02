@@ -17,9 +17,9 @@ public class IFrameResource extends EntityServerResource<String> {
     protected void doInit() throws ResourceException {
         url = getQueryValue("url");
     }
-    
+
     @Override
-    public String getData() {
+    public String getEntity() {
         return url;
     }
 
@@ -32,6 +32,5 @@ public class IFrameResource extends EntityServerResource<String> {
     public SkysailResponse<?> eraseEntity() {
         return null;
     }
-
 
 }

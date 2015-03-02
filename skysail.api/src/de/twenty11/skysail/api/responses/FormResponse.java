@@ -1,5 +1,7 @@
 package de.twenty11.skysail.api.responses;
 
+import org.codehaus.jettison.json.JSONObject;
+
 /**
  * A last type of Response is the FormResponse: You'd get it in case of an HTML
  * - Request whenever you want to add an entity or to display an existing one
@@ -38,6 +40,13 @@ public class FormResponse<T> extends SkysailResponse<T> {
         this.redirectBackTo = redirectBackTo;
     }
 
+    public FormResponse(JSONObject entity, Class<?> cls, String id, String target, String redirectBackTo) {
+        super(entity, cls);
+        this.id = id;
+        this.target = target;
+        this.redirectBackTo = redirectBackTo;
+    }
+
     public String getTarget() {
         return target;
     }
@@ -49,4 +58,5 @@ public class FormResponse<T> extends SkysailResponse<T> {
     public String getId() {
         return id;
     }
+
 }

@@ -1,5 +1,6 @@
 package io.skysail.server.text.store.bundleresource.impl;
 
+import org.codehaus.jettison.json.JSONObject;
 import org.restlet.data.Form;
 import org.restlet.data.Reference;
 import org.restlet.resource.ResourceException;
@@ -22,12 +23,12 @@ public class PutMessageResource extends PutEntityServerResource<Message> {
     }
 
     @Override
-    public Message getEntity() {
-        return app.getMessage(msgKey);
+    public JSONObject getEntity3() {
+        return null;// app.getMessage(msgKey);
     }
 
-    @Override
-    public Message getData(Form form) {
+    // @Override
+    public Message getData2(Form form) {
         return new Message(msgKey, form.getFirstValue("msg"));
     }
 
@@ -50,4 +51,10 @@ public class PutMessageResource extends PutEntityServerResource<Message> {
         Reference referrerRef = getRequest().getReferrerRef();
         return referrerRef != null ? referrerRef.toString() : "/";
     }
+
+    @Override
+    public Message getEntity() {
+        return null;
+    }
+
 }

@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.restlet.data.Method;
 
-import de.twenty11.skysail.api.structures.graph.Graph;
 import de.twenty11.skysail.server.app.SkysailApplication;
 import de.twenty11.skysail.server.core.restlet.filter.AbstractResourceFilter;
 import de.twenty11.skysail.server.core.restlet.filter.AddApiVersionHeader;
@@ -70,13 +69,6 @@ public class RequestHandler<T> {
         throw new RuntimeException("Method " + method + " is not yet supported");
     }
 
-    public AbstractResourceFilter<GraphResource, Graph> createForGraph(Method method) {
-        if (method.equals(Method.GET)) {
-            return chainForGraphGet();
-        }
-        throw new RuntimeException("Method " + method + " is not yet supported");
-    }
-
     /**
      * for now, always return new objects
      * 
@@ -125,13 +117,6 @@ public class RequestHandler<T> {
                 .calling(new AddRequestIdToResourceFilter<EntityServerResource<T>, T>())
                 .calling(new DataExtractingFilter<EntityServerResource<T>, T>())
                 .calling(new AddLinkheadersFilter<EntityServerResource<T>, T>());
-    }
-
-    private static AbstractResourceFilter<GraphResource, Graph> chainForGraphGet() {
-        return new ExceptionCatchingFilter<GraphResource, Graph>()
-                .calling(new AddRequestIdToResourceFilter<GraphResource, Graph>())
-                .calling(new DataExtractingFilter<GraphResource, Graph>())
-                .calling(new AddLinkheadersFilter<GraphResource, Graph>());
     }
 
     private AbstractResourceFilter<PostEntityServerResource<T>, T> chainForEntityPost() {

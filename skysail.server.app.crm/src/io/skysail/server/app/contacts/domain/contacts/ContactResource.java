@@ -1,4 +1,4 @@
-package io.skysail.server.app.contacts.domain;
+package io.skysail.server.app.contacts.domain.contacts;
 
 import java.util.List;
 
@@ -17,10 +17,10 @@ public class ContactResource extends EntityServerResource<Contact> {
         id = getAttribute("id");
     }
 
-    @Override
-    public Contact getData() {
-        return ContactsRepository.getInstance().getById(id);
-    }
+    // @Override
+    // public Contact getData() {
+    // return ContactsRepository.getInstance().getById(id);
+    // }
 
     @Override
     public String getId() {
@@ -36,6 +36,11 @@ public class ContactResource extends EntityServerResource<Contact> {
     @Override
     public List<Linkheader> getLinkheader() {
         return super.getLinkheader(PutContactResource.class);
+    }
+
+    @Override
+    public Contact getEntity() {
+        return null;
     }
 
 }

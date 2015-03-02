@@ -50,7 +50,7 @@ public class ApiResourceTest extends ListServerResourceTestBase {
         application.setContext(context);
         application.createInboundRoot();
 
-        apis = resource.getEntities();
+        apis = resource.getEntities(null);
         DocumentationProvider documentationProvider = new SkysailDocumentationProvider();
 
         application.setDocumentationProvider(documentationProvider);

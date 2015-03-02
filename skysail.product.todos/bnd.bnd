@@ -11,4 +11,5 @@ Private-Package:  \
 	skysail.server.db;version=latest,\
 	skysail.server.documentation;version=latest,\
 	skysail.server.converter;version=latest,\
-	skysail.server.app.todos;version=latest
+	skysail.server.app.todos;version=latest,\
+	org.codehaus.jettison.jettison;version=1.3

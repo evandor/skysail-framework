@@ -15,7 +15,7 @@ public class OAuthLoginResource extends EntityServerResource<String> {
     }
 
     @Override
-    public String getData() {
+    public String getEntity() {
         // JSONObject jo = new JSONObject();
         // jo.put("client_id", System.getenv("GITHUB_CLIENT_ID"));
         // jo.put("client_secret", System.getenv("GITHUB_CLIENT_SECRET"));

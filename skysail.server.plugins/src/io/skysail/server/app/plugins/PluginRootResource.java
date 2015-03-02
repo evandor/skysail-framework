@@ -5,7 +5,6 @@ import io.skysail.server.app.plugins.obr.PostResolverResource;
 import io.skysail.server.app.plugins.obr.RepositoriesResource;
 import io.skysail.server.app.plugins.resources.ResourcesResource;
 
-import java.util.Collections;
 import java.util.List;
 
 import de.twenty11.skysail.api.responses.Linkheader;
@@ -18,10 +17,10 @@ public class PluginRootResource extends ListServerResource<String> {
         addToContext(ResourceContextId.LINK_TITLE, "Plugins Management");
     }
 
-    @Override
-    public List<String> getData() {
-        return Collections.emptyList();
-    }
+    // @Override
+    // public List<String> getData() {
+    // return Collections.emptyList();
+    // }
 
     @Override
     public List<Linkheader> getLinkheader() {

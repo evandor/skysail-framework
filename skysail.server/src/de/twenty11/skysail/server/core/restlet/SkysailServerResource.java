@@ -19,6 +19,7 @@ import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.beanutils.ConvertUtils;
 import org.apache.commons.beanutils.converters.DateConverter;
 import org.apache.shiro.SecurityUtils;
+import org.codehaus.jettison.json.JSONObject;
 import org.restlet.Application;
 import org.restlet.data.Form;
 import org.restlet.data.Reference;
@@ -48,7 +49,7 @@ import etm.core.monitor.EtmMonitor;
  * SkysailServerResource#eraseEntity() if they support adding, updating and/or
  * deletion of the referenced resource. It is assumed that
  * SkysailServerResources will always support GET requests, which are dealt with
- * by the abstract method @link {@link SkysailServerResource#getData()}.
+ * by the abstract method @link {@link SkysailServerResource#getEntity()}.
  * 
  * Those methods are called from the framework, see {@link RequestHandler} and
  * the various {@link AbstractResourceFilter} implementations. The
@@ -85,7 +86,11 @@ public abstract class SkysailServerResource<T> extends ServerResource {
      * 
      * @return entity of Type T (can be a list as well)
      */
-    public abstract T getData();
+    public abstract T getEntity();
+
+    public JSONObject getAsJson() {
+        return new JSONObject();
+    }
 
     /**
      * @return the type of relation this resource represents, e.g. LIST, ITEM,
@@ -129,7 +134,14 @@ public abstract class SkysailServerResource<T> extends ServerResource {
             return msgs;
         }
         fields.stream().forEach(f -> {
-            Class<? extends Object> entityClass = f.getEntity().getClass();
+
+            Class<? extends Object> entityClass = null;
+            if (f.getEntity() != null) {
+                entityClass = f.getEntity().getClass();
+            } else {
+                entityClass = f.getCls();
+            }
+
             String baseKey = MessagesUtils.getBaseKey(entityClass, f);
             addTranslation(msgs, application, f, baseKey);
             addTranslation(msgs, application, f, baseKey + ".desc");

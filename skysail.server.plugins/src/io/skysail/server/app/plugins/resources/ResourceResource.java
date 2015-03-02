@@ -2,7 +2,6 @@ package io.skysail.server.app.plugins.resources;
 
 import io.skysail.server.app.plugins.PluginApplication;
 
-import java.util.Arrays;
 import java.util.List;
 
 import org.restlet.resource.ResourceException;
@@ -34,16 +33,20 @@ public class ResourceResource extends EntityServerResource<Resource> {
         app = (PluginApplication) getApplication();
     }
 
-    @Override
-    public Resource getData() {
-        // TODO user input! sanitized???
-        String searchTerm = "(&(symbolicname=" + symbolicName + ")(version=" + version + "))";
-        List<org.apache.felix.bundlerepository.Resource> discoverdResources = app.discoverResources(searchTerm);
-        if (discoverdResources.size() != 1) {
-            throw new IllegalStateException("expected exactly one bundle for this search");
-        }
-        return new Resource(discoverdResources.get(0), Arrays.asList(app.getBundleContext().getBundles()));
-    }
+    // @Override
+    // public Resource getData() {
+    // // TODO user input! sanitized???
+    // String searchTerm = "(&(symbolicname=" + symbolicName + ")(version=" +
+    // version + "))";
+    // List<org.apache.felix.bundlerepository.Resource> discoverdResources =
+    // app.discoverResources(searchTerm);
+    // if (discoverdResources.size() != 1) {
+    // throw new
+    // IllegalStateException("expected exactly one bundle for this search");
+    // }
+    // return new Resource(discoverdResources.get(0),
+    // Arrays.asList(app.getBundleContext().getBundles()));
+    // }
 
     @Override
     public String getId() {
@@ -58,5 +61,10 @@ public class ResourceResource extends EntityServerResource<Resource> {
     @Override
     public List<Linkheader> getLinkheader() {
         return super.getLinkheader(ResourceResource.class);
+    }
+
+    @Override
+    public Resource getEntity() {
+        return null;
     }
 }

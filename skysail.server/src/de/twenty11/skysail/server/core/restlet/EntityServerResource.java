@@ -107,12 +107,6 @@ public abstract class EntityServerResource<T> extends SkysailServerResource<T> {
         // this empty implementation provides the comment to subclasses only.
     };
 
-    /**
-     * the representation data of this resource.
-     */
-    @Override
-    public abstract T getData();
-
     public abstract String getId();
 
     /**
@@ -150,12 +144,12 @@ public abstract class EntityServerResource<T> extends SkysailServerResource<T> {
      */
     @Get("json")
     @API(desc = "retrieves the entity defined by the url as JSON")
-    public T getJson() {
+    public String getJson() {
         EtmPoint point = etmMonitor.createPoint("EntityServerResource:getJson");
         logger.info("Request entry point: {} @Get('json')", this.getClass().getSimpleName());
         logger.info(scoringInfo(getRequest().getClientInfo()));
         point.collect();
-        return getEntity("dummy");
+        return getEntityAsJson();
     }
 
     // input: html|json|..., output: html|json|...
@@ -164,7 +158,7 @@ public abstract class EntityServerResource<T> extends SkysailServerResource<T> {
      */
     @Get("html|eventstream|treeform|txt")
     @API(desc = "retrieves the entity defined by the url")
-    public SkysailResponse<T> getEntity() {
+    public SkysailResponse<T> getEntity2() {
         EtmPoint point = etmMonitor.createPoint("EntityServerResource:getEntity");
         logger.info("Request entry point: {} @Get('html|eventstream|treeform|txt')", this.getClass().getSimpleName());
         logger.info(scoringInfo(getRequest().getClientInfo()));
@@ -227,8 +221,8 @@ public abstract class EntityServerResource<T> extends SkysailServerResource<T> {
         EntityServerResource<String> resource = new EntityServerResource<String>() {
 
             @Override
-            public String getData() {
-                return EntityServerResource.this.getDataAsJson();
+            public String getEntity() {
+                return EntityServerResource.this.getAsJson().toString();
             }
 
             @Override
@@ -245,6 +239,7 @@ public abstract class EntityServerResource<T> extends SkysailServerResource<T> {
             public Response getResponse() {
                 return EntityServerResource.this.getResponse();
             }
+
         };
         ResponseWrapper<String> wrapper = chain.handle(resource, getResponse());
         return wrapper.getEntity();
@@ -262,7 +257,7 @@ public abstract class EntityServerResource<T> extends SkysailServerResource<T> {
         return associatedResource;
     }
 
-    protected Set<ConstraintViolation<T>> validate(@SuppressWarnings("unused") T entity) {
+    protected Set<ConstraintViolation<T>> validate(T entity) {
         throw new UnsupportedOperationException();
     }
 

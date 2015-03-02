@@ -1,7 +1,9 @@
 package io.skysail.server.app.contacts.domain.companies;
 
 import java.util.List;
+import java.util.Map;
 
+import org.apache.shiro.SecurityUtils;
 import org.codehaus.jettison.json.JSONObject;
 
 import aQute.bnd.annotation.component.Activate;
@@ -49,10 +51,6 @@ public class CompaniesRepository {
         return null;
     }
 
-    public List<Company> getCompanies() {
-        return null;// dbService.findAll(Company.class);
-    }
-
     public JSONObject getById(String id) {
         return dbService.find(Company.class, id);
     }
@@ -61,16 +59,13 @@ public class CompaniesRepository {
         return dbService.getAll(Company.class, username);
     }
 
+    public List<Map<String, Object>> getCompanys() {
+        String username = SecurityUtils.getSubject().getPrincipal().toString();
+        return dbService.getAllAsMap(Company.class, username);
+    }
+
     public void update(JSONObject json) {
         dbService.update(json);
     }
-
-    // public void update(Company entity) {
-    // dbService.update(entity);
-    // }
-    //
-    // public void delete(String id) {
-    // dbService.delete(id);
-    // }
 
 }

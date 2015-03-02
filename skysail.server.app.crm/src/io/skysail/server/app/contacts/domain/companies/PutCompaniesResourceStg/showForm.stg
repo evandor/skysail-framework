@@ -1,6 +1,19 @@
 showForm(resource, source, fields, messages) ::= <<
 
-  $if (resource.postEntityServerResource)$
+<div role="tabpanel">
+
+  <!-- Nav tabs -->
+  <ul class="nav nav-tabs" role="tablist">
+    <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Company</a></li>
+    <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Contacts</a></li>
+    <li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">Settings</a></li>
+  </ul>
+
+  <!-- Tab panes -->
+  <div class="tab-content">
+    <div role="tabpanel" class="tab-pane active" id="home">
+    
+    $if (resource.postEntityServerResource)$
     <form action="$source.formTarget$" method="POST" class="form-horizontal" role="form" id="form" name="form">
       $handleField(resource, source, first(fields), messages,"1", " autofocus")$
       $rest(fields):{ field | $handleField(resource, source, field, messages,i, "")$}$
@@ -12,6 +25,23 @@ showForm(resource, source, fields, messages) ::= <<
       $submit("Update",1,9,length(fields))$
     </form>
   $endif$
+    
+    
+    
+    </div>
+    <div role="tabpanel" class="tab-pane" id="profile">...</div>
+    <div role="tabpanel" class="tab-pane" id="settings">...</div>
+  </div>
+
+</div>
+
+
+
+
+
+
+
+  
 
 >>
 

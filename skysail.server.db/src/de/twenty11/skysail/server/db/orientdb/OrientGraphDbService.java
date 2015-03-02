@@ -4,6 +4,7 @@ import io.skysail.server.db.DbConfigurationProvider;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 import lombok.extern.slf4j.Slf4j;
@@ -19,6 +20,8 @@ import aQute.bnd.annotation.component.Reference;
 
 import com.orientechnologies.orient.client.remote.OEngineRemote;
 import com.orientechnologies.orient.core.Orient;
+import com.orientechnologies.orient.core.db.ODatabaseRecordThreadLocal;
+import com.orientechnologies.orient.core.db.document.ODatabaseDocumentTx;
 import com.orientechnologies.orient.core.record.impl.ODocument;
 import com.orientechnologies.orient.core.sql.query.OSQLSynchQuery;
 import com.orientechnologies.orient.object.db.OObjectDatabasePool;
@@ -63,8 +66,8 @@ public class OrientGraphDbService extends AbstractOrientDbService implements Gra
     }
 
     @Override
-    public <T> Object persist(T entity) {
-        return new Persister(getDb()).persist(entity);
+    public <T> Object persist(T entity, String... edges) {
+        return new Persister(getDb(), edges).persist(entity);
     }
 
     @Override
@@ -85,6 +88,22 @@ public class OrientGraphDbService extends AbstractOrientDbService implements Gra
             return Collections.emptyList();
         } finally {
             db.shutdown();
+        }
+    }
+
+    @Override
+    public List<Map<String, Object>> getAllAsMap(Class<?> cls, String username) {
+        ODatabaseDocumentTx db = getDb().getRawGraph();
+        ODatabaseRecordThreadLocal.INSTANCE.set(db);
+        try {
+            List<ODocument> result = db.query(new OSQLSynchQuery<ODocument>("select from " + cls.getSimpleName()));
+            return result.stream().map(doc -> {
+                return doc.toMap();
+            }).collect(Collectors.toList());
+        } catch (Exception e) {
+            return Collections.emptyList();
+        } finally {
+            db.close();
         }
     }
 

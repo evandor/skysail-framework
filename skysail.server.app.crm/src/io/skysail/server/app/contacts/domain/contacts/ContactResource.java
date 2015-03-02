@@ -29,7 +29,7 @@ public class ContactResource extends EntityServerResource<Contact> {
 
     @Override
     public SkysailResponse<?> eraseEntity() {
-        ContactsRepository.getInstance().delete(id);
+        // ContactsRepository.getInstance().delete(id);
         return new SkysailResponse<String>();
     }
 

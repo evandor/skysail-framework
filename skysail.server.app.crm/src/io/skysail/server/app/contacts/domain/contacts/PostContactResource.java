@@ -3,7 +3,6 @@ package io.skysail.server.app.contacts.domain.contacts;
 import io.skysail.server.app.contacts.ContactsGen;
 
 import org.apache.shiro.SecurityUtils;
-import org.restlet.data.Form;
 import org.restlet.resource.ResourceException;
 
 import de.twenty11.skysail.api.responses.SkysailResponse;
@@ -26,12 +25,12 @@ public class PostContactResource extends PostEntityServerResource<Contact> {
         id = getAttribute("id");
     }
 
-    @Override
-    public Contact getData(Form form) {
-        Contact entity = populate(createEntityTemplate(), form);
-        entity.setOwner(SecurityUtils.getSubject().getPrincipal().toString());
-        return entity;
-    }
+    // @Override
+    // public Contact getData(Form form) {
+    // Contact entity = populate(createEntityTemplate(), form);
+    // entity.setOwner(SecurityUtils.getSubject().getPrincipal().toString());
+    // return entity;
+    // }
 
     @Override
     public Contact createEntityTemplate() {
@@ -40,6 +39,7 @@ public class PostContactResource extends PostEntityServerResource<Contact> {
 
     @Override
     public SkysailResponse<?> addEntity(Contact entity) {
+        entity.setOwner(SecurityUtils.getSubject().getPrincipal().toString());
         entity = ContactsRepository.getInstance().add(entity);
         return new SkysailResponse<String>();
     }

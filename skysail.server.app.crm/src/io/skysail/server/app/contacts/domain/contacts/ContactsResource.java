@@ -4,14 +4,11 @@ import java.util.List;
 import java.util.function.Consumer;
 
 import org.apache.shiro.SecurityUtils;
-import org.restlet.data.Header;
 import org.restlet.resource.ResourceException;
-import org.restlet.util.Series;
 
 import de.twenty11.skysail.api.responses.Linkheader;
 import de.twenty11.skysail.server.core.restlet.ListServerResource;
 import de.twenty11.skysail.server.core.restlet.ResourceContextId;
-import de.twenty11.skysail.server.utils.HeadersUtils;
 
 public class ContactsResource extends ListServerResource<Contact> {
 
@@ -62,11 +59,15 @@ public class ContactsResource extends ListServerResource<Contact> {
         int linesPerPage = 5;
         String username = SecurityUtils.getSubject().getPrincipal().toString();
 
-        Series<Header> headers = HeadersUtils.getHeaders(getResponse());
-        long clipCount = ContactsRepository.getInstance().getContactsCount(username);
-        headers.add(new Header(HeadersUtils.PAGINATION_PAGES, Long.toString(1 + Math.floorDiv(clipCount, linesPerPage))));
-        headers.add(new Header(HeadersUtils.PAGINATION_PAGE, Integer.toString(page)));
-        headers.add(new Header(HeadersUtils.PAGINATION_HITS, Long.toString(clipCount)));
+        // Series<Header> headers = HeadersUtils.getHeaders(getResponse());
+        // long clipCount =
+        // ContactsRepository.getInstance().getContactsCount(username);
+        // headers.add(new Header(HeadersUtils.PAGINATION_PAGES, Long.toString(1
+        // + Math.floorDiv(clipCount, linesPerPage))));
+        // headers.add(new Header(HeadersUtils.PAGINATION_PAGE,
+        // Integer.toString(page)));
+        // headers.add(new Header(HeadersUtils.PAGINATION_HITS,
+        // Long.toString(clipCount)));
         return ContactsRepository.getInstance().getContacts(page, username, linesPerPage, linesPerPage);
     }
 

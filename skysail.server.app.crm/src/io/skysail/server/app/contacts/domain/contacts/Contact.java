@@ -1,5 +1,7 @@
 package io.skysail.server.app.contacts.domain.contacts;
 
+import io.skysail.server.app.contacts.domain.companies.CompanySelectionProvider;
+
 import javax.validation.constraints.Size;
 
 import lombok.Data;
@@ -20,4 +22,6 @@ public class Contact {
     @Field(type = InputType.READONLY, listView = ListView.HIDE)
     private String owner;
 
+    @Field(selectionProvider = CompanySelectionProvider.class)
+    private String worksFor;
 }

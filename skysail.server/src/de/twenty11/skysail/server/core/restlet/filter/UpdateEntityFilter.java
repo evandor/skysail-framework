@@ -1,7 +1,6 @@
 package de.twenty11.skysail.server.core.restlet.filter;
 
 import org.codehaus.jettison.json.JSONObject;
-import org.restlet.Response;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -13,7 +12,7 @@ public class UpdateEntityFilter<R extends PutEntityServerResource<T>, T> extends
     private static Logger logger = LoggerFactory.getLogger(UpdateEntityFilter.class);
 
     @Override
-    public FilterResult doHandle(R resource, Response response, ResponseWrapper<T> responseWrapper) {
+    public FilterResult doHandle(R resource, ResponseWrapper<T> responseWrapper) {
         logger.debug("entering {}#doHandle", this.getClass().getSimpleName());
         T entity = responseWrapper.getEntity();
         if (entity != null) {
@@ -22,7 +21,7 @@ public class UpdateEntityFilter<R extends PutEntityServerResource<T>, T> extends
             JSONObject data = responseWrapper.getData();
             resource.updateEntity(data);
         }
-        super.doHandle(resource, response, responseWrapper);
+        super.doHandle(resource, responseWrapper);
         return FilterResult.CONTINUE;
     }
 

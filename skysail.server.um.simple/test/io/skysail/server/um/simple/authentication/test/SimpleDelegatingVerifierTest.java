@@ -2,6 +2,7 @@ package io.skysail.server.um.simple.authentication.test;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
+import io.skysail.server.testsupport.AbstractShiroTest;
 import io.skysail.server.um.simple.authentication.SimpleDelegatingVerifier;
 
 import org.apache.shiro.authc.AuthenticationException;

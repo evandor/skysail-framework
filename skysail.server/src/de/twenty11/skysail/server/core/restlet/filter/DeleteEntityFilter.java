@@ -1,6 +1,5 @@
 package de.twenty11.skysail.server.core.restlet.filter;
 
-import org.restlet.Response;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -12,10 +11,10 @@ public class DeleteEntityFilter<R extends EntityServerResource<T>, T> extends Ab
     private static Logger logger = LoggerFactory.getLogger(DeleteEntityFilter.class);
 
     @Override
-    public FilterResult doHandle(R resource, Response response, ResponseWrapper<T> responseWrapper) {
+    public FilterResult doHandle(R resource, ResponseWrapper<T> responseWrapper) {
         logger.debug("entering {}#doHandle", this.getClass().getSimpleName());
         resource.eraseEntity();
-        super.doHandle(resource, response, responseWrapper);
+        super.doHandle(resource, responseWrapper);
         return FilterResult.CONTINUE;
     }
 

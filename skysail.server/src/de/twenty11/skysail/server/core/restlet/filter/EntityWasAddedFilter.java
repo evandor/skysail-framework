@@ -24,7 +24,7 @@ public class EntityWasAddedFilter<R extends SkysailServerResource<T>, T> extends
     }
 
     @Override
-    public FilterResult doHandle(R resource, Response response, ResponseWrapper<T> responseWrapper) {
+    public FilterResult doHandle(R resource, ResponseWrapper<T> responseWrapper) {
         logger.debug("entering {}#doHandle", this.getClass().getSimpleName());
         T entity = responseWrapper.getEntity();
 
@@ -32,11 +32,12 @@ public class EntityWasAddedFilter<R extends SkysailServerResource<T>, T> extends
 
         List<EntityChangedHookService> services = application.getEntityChangedHookServices();
         if (services != null && entity instanceof Identifiable) {
+            Response response = responseWrapper.getResponse();
             for (EntityChangedHookService service : services) {
                 service.pushEntityWasAdded(response.getRequest(), (Identifiable) entity, principal);
             }
         }
-        super.doHandle(resource, response, responseWrapper);
+        super.doHandle(resource, responseWrapper);
         return FilterResult.CONTINUE;
     }
 }

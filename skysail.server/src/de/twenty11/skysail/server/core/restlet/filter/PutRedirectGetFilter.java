@@ -15,7 +15,8 @@ public class PutRedirectGetFilter<R extends PutEntityServerResource<T>, T> exten
     private static final Logger logger = LoggerFactory.getLogger(PostRedirectGetFilter.class);
 
     @Override
-    protected void afterHandle(R resource, Response response, ResponseWrapper<T> responseWrapper) {
+    protected void afterHandle(R resource, ResponseWrapper<T> responseWrapper) {
+        Response response = responseWrapper.getResponse();
         String redirectFromQuery = resource.getQuery().getFirstValue("_redirectTo");
         if (redirectFromQuery != null) {
             String path = response.getRequest().getHostRef().toString() + redirectFromQuery;

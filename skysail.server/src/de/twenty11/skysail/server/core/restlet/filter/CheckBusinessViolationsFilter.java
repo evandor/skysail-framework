@@ -32,19 +32,20 @@ public class CheckBusinessViolationsFilter<R extends SkysailServerResource<T>, T
     public CheckBusinessViolationsFilter(SkysailApplication application) {
         ValidatorService validatorService = application.getValidatorService();
         if (validatorService == null) {
-            throw new IllegalStateException();
+            throw new IllegalStateException("no validatorService found");
         }
         validator = validatorService.getValidator();
     }
 
     @Override
-    public FilterResult doHandle(R resource, Response response, ResponseWrapper<T> responseWrapper) {
+    public FilterResult doHandle(R resource, ResponseWrapper<T> responseWrapper) {
         log.debug("entering {}#doHandle", this.getClass().getSimpleName());
         T entity = responseWrapper.getEntity();
         Set<ConstraintViolation<T>> violations = new HashSet<ConstraintViolation<T>>();
         if (entity != null) {
             violations = validate(entity);
         }
+        Response response = responseWrapper.getResponse();
         if (violations.size() > 0) {
             log.info("found {} business validation violation(s): {}", violations.size(), violations.toString());
             responseWrapper.setConstraintViolationResponse(new ConstraintViolationsResponse<T>(response.getRequest()
@@ -54,6 +55,7 @@ public class CheckBusinessViolationsFilter<R extends SkysailServerResource<T>, T
             // entity));
             responseWrapper.setEntity(entity);
             response.setStatus(Status.CLIENT_ERROR_BAD_REQUEST);
+            response.getHeaders().add("X-Status-Reason", "Validation failed");
 
             return FilterResult.STOP;
             // ObjectMapper mapper = new ObjectMapper();
@@ -69,7 +71,7 @@ public class CheckBusinessViolationsFilter<R extends SkysailServerResource<T>, T
             // throw new ResourceException(Status.CLIENT_ERROR_BAD_REQUEST,
             // "Business violations");
         }
-        super.doHandle(resource, response, responseWrapper);
+        super.doHandle(resource, responseWrapper);
         return FilterResult.CONTINUE;
     }
 

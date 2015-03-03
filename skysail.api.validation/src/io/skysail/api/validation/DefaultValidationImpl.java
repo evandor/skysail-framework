@@ -1,6 +1,6 @@
-package io.skysail.api.validation.hibernate;
+package io.skysail.api.validation;
 
-import io.skysail.api.validation.ValidatorService;
+import io.skysail.api.validation.hibernate.OSGiServiceDiscoverer;
 
 import javax.validation.Validation;
 import javax.validation.Validator;

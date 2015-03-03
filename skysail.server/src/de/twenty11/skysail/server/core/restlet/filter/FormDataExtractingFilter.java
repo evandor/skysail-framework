@@ -14,8 +14,9 @@ import de.twenty11.skysail.server.core.restlet.SkysailServerResource;
 public class FormDataExtractingFilter<R extends SkysailServerResource<T>, T> extends AbstractResourceFilter<R, T> {
 
     @Override
-    public FilterResult doHandle(R resource, Response response, ResponseWrapper<T> responseWrapper) {
+    public FilterResult doHandle(R resource, ResponseWrapper<T> responseWrapper) {
         log.debug("entering {}#doHandle", this.getClass().getSimpleName());
+        Response response = responseWrapper.getResponse();
         if (response.getRequest() == null || response.getRequest().getResourceRef() == null) {
             log.warn("request or resourceRef was null");
             return FilterResult.STOP;
@@ -34,7 +35,7 @@ public class FormDataExtractingFilter<R extends SkysailServerResource<T>, T> ext
             throw new RuntimeException("could not parse form", e);
         }
 
-        return super.doHandle(resource, response, responseWrapper);
+        return super.doHandle(resource, responseWrapper);
     }
 
 }

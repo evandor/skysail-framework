@@ -10,7 +10,8 @@ public class SetExecutionTimeInResponseFilter<R extends SkysailServerResource<T>
         AbstractResourceFilter<R, T> {
 
     @Override
-    protected void afterHandle(R resource, Response response, ResponseWrapper<T> responseWrapper) {
+    protected void afterHandle(R resource, ResponseWrapper<T> responseWrapper) {
+        Response response = responseWrapper.getResponse();
         if (response.getRequest().getAttributes() == null) {
             return;
         }

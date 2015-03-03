@@ -44,7 +44,7 @@ public abstract class AbstractResourceFilter<R extends SkysailServerResource<T>,
      */
     public final ResponseWrapper<T> handle(R resource, Response response) {
         ResponseWrapper<T> responseWrapper = new ResponseWrapper<T>(response);
-        handle(resource, response, responseWrapper);
+        handle(resource, responseWrapper);
         return responseWrapper;
     }
 
@@ -59,7 +59,7 @@ public abstract class AbstractResourceFilter<R extends SkysailServerResource<T>,
      * @return the {@link FilterResult} of the processing, indicating whether to
      *         Continue, Skip or Stop.
      */
-    protected FilterResult beforeHandle(R resource, Response response, ResponseWrapper<T> responseWrapper) {
+    protected FilterResult beforeHandle(R resource, ResponseWrapper<T> responseWrapper) {
         return FilterResult.CONTINUE;
     }
 
@@ -73,11 +73,11 @@ public abstract class AbstractResourceFilter<R extends SkysailServerResource<T>,
      * @return the {@link FilterResult} of the processing, indicating whether to
      *         Continue, Skip or Stop.
      */
-    protected FilterResult doHandle(R resource, Response response, ResponseWrapper<T> responseWrapper) {
+    protected FilterResult doHandle(R resource, ResponseWrapper<T> responseWrapper) {
         AbstractResourceFilter<R, T> next = getNext();
         if (next != null) {
             logger.info("next filter in chain: {}", next.getClass().getSimpleName());
-            next.handle(resource, response, responseWrapper);
+            next.handle(resource, responseWrapper);
         }
         return FilterResult.CONTINUE;
     }
@@ -91,16 +91,16 @@ public abstract class AbstractResourceFilter<R extends SkysailServerResource<T>,
      * @param response
      *            the response to update
      */
-    protected void afterHandle(R resource, Response response, ResponseWrapper<T> responseWrapper) {
+    protected void afterHandle(R resource, ResponseWrapper<T> responseWrapper) {
         // default implementation doesn't do anything
     }
 
-    private final void handle(R resource, Response response, ResponseWrapper<T> responseWrapper) {
-        switch (beforeHandle(resource, response, responseWrapper)) {
+    private final void handle(R resource, ResponseWrapper<T> responseWrapper) {
+        switch (beforeHandle(resource, responseWrapper)) {
         case CONTINUE:
-            switch (doHandle(resource, response, responseWrapper)) {
+            switch (doHandle(resource, responseWrapper)) {
             case CONTINUE:
-                afterHandle(resource, response, responseWrapper);
+                afterHandle(resource, responseWrapper);
                 break;
             case SKIP:
                 logger.info("skipping filter chain at filter {}", this.getClass().getSimpleName());
@@ -114,7 +114,7 @@ public abstract class AbstractResourceFilter<R extends SkysailServerResource<T>,
             break;
         case SKIP:
             logger.info("skipping filter chain at filter {}", this.getClass().getName());
-            afterHandle(resource, response, responseWrapper);
+            afterHandle(resource, responseWrapper);
             break;
         case STOP:
             logger.info("stopping filter chain at filter {}", this.getClass().getName());

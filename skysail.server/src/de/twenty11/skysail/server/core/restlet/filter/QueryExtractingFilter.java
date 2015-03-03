@@ -12,9 +12,9 @@ public class QueryExtractingFilter<R extends SkysailServerResource<T>, T> extend
     private static Logger logger = LoggerFactory.getLogger(QueryExtractingFilter.class);
 
     @Override
-    public FilterResult doHandle(R resource, Response response, ResponseWrapper<T> responseWrapper) {
+    public FilterResult doHandle(R resource, ResponseWrapper<T> responseWrapper) {
         logger.info("entering {}#doHandle", this.getClass().getSimpleName());
-
+        Response response = responseWrapper.getResponse();
         if (response.getRequest() != null && response.getRequest().getOriginalRef() != null) {
             // form = request.getOriginalRef().getQueryAsForm();
         }

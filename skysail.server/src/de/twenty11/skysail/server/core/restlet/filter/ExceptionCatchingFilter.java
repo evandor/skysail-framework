@@ -14,16 +14,18 @@ public class ExceptionCatchingFilter<R extends SkysailServerResource<T>, T> exte
     private static Logger logger = LoggerFactory.getLogger(ExceptionCatchingFilter.class);
 
     @Override
-    public FilterResult doHandle(R resource, Response response, ResponseWrapper<T> responseWrapper) {
+    public FilterResult doHandle(R resource, ResponseWrapper<T> responseWrapper) {
         logger.debug("entering {}#doHandle", this.getClass().getSimpleName());
         try {
-            super.doHandle(resource, response, responseWrapper);
+            super.doHandle(resource, responseWrapper);
         } catch (ResourceException re) {
-        	throw re;
+            throw re;
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
+            Response response = responseWrapper.getResponse();
             response.setStatus(Status.SERVER_ERROR_INTERNAL);
-            //responseWrapper.setSkysailResponse(new FailureResponse<T>(response, e));
+            // responseWrapper.setSkysailResponse(new
+            // FailureResponse<T>(response, e));
         }
         return FilterResult.CONTINUE;
     }

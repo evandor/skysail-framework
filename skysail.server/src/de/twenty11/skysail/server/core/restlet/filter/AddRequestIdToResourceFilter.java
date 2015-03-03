@@ -11,7 +11,8 @@ public class AddRequestIdToResourceFilter<R extends SkysailServerResource<T>, T>
     }
 
     @Override
-    protected FilterResult beforeHandle(R resource, Response response, ResponseWrapper<T> responseWrapper) {
+    protected FilterResult beforeHandle(R resource, ResponseWrapper<T> responseWrapper) {
+        Response response = responseWrapper.getResponse();
         if (response.getRequest() == null || response.getRequest().getAttributes() == null) {
             return FilterResult.CONTINUE;
         }

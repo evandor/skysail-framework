@@ -11,11 +11,12 @@ import de.twenty11.skysail.server.core.restlet.SkysailServerResource;
 public class CheckUserIsLoggedInFilter<R extends SkysailServerResource<T>, T> extends AbstractResourceFilter<R, T> {
 
     @Override
-    protected FilterResult beforeHandle(R resource, Response response, ResponseWrapper<T> responseWrapper) {
+    protected FilterResult beforeHandle(R resource, ResponseWrapper<T> responseWrapper) {
         Subject subject = SecurityUtils.getSubject();
         if (subject.isAuthenticated()) {
             return FilterResult.CONTINUE;
         }
+        Response response = responseWrapper.getResponse();
         response.setStatus(Status.CLIENT_ERROR_UNAUTHORIZED, "user is not logged in");
         return FilterResult.STOP;
     }

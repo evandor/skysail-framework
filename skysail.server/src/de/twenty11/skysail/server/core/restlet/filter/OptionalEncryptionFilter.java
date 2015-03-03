@@ -22,12 +22,13 @@ public class OptionalEncryptionFilter<R extends SkysailServerResource<T>, T> ext
     }
 
     @Override
-    protected FilterResult doHandle(R resource, Response response, ResponseWrapper<T> responseWrapper) {
+    protected FilterResult doHandle(R resource, ResponseWrapper<T> responseWrapper) {
         EncryptorService encryptorService = application.getEncryptorService();
         if (encryptorService == null) {
-            return super.doHandle(resource, response, responseWrapper);
+            return super.doHandle(resource, responseWrapper);
         }
 
+        Response response = responseWrapper.getResponse();
         Form form = (Form) response.getRequest().getAttributes().get(EntityServerResource.SKYSAIL_SERVER_RESTLET_FORM);
 
         if (encryptorService != null) {
@@ -45,7 +46,7 @@ public class OptionalEncryptionFilter<R extends SkysailServerResource<T>, T> ext
         } catch (ParseException e) {
             throw new RuntimeException("could not parse form", e);
         }
-        return super.doHandle(resource, response, responseWrapper);
+        return super.doHandle(resource, responseWrapper);
     }
 
     private void encryptFields(R resource, Form form, EncryptorService encryptorService) {

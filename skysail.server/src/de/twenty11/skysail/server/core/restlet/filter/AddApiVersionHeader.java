@@ -11,7 +11,8 @@ import de.twenty11.skysail.server.utils.HeadersUtils;
 public class AddApiVersionHeader<R extends SkysailServerResource<T>, T> extends AbstractResourceFilter<R, T> {
 
     @Override
-    protected void afterHandle(R resource, Response response, ResponseWrapper<T> responseWrapper) {
+    protected void afterHandle(R resource, ResponseWrapper<T> responseWrapper) {
+        Response response = responseWrapper.getResponse();
         if (response.getRequest().getAttributes() == null) {
             return;
         }

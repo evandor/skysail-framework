@@ -23,7 +23,7 @@ public class EntityWasDeletedFilter<R extends SkysailServerResource<T>, T> exten
     }
 
     @Override
-    public FilterResult doHandle(R resource, Response response, ResponseWrapper<T> responseWrapper) {
+    public FilterResult doHandle(R resource, ResponseWrapper<T> responseWrapper) {
         logger.debug("entering {}#doHandle", this.getClass().getSimpleName());
         T entity = responseWrapper.getEntity();
 
@@ -31,11 +31,12 @@ public class EntityWasDeletedFilter<R extends SkysailServerResource<T>, T> exten
 
         List<EntityChangedHookService> services = application.getEntityChangedHookServices();
         if (services != null) {
+            Response response = responseWrapper.getResponse();
             for (EntityChangedHookService service : services) {
                 service.pushEntityWasDeleted(response.getRequest(), principal);
             }
         }
-        super.doHandle(resource, response, responseWrapper);
+        super.doHandle(resource, responseWrapper);
         return FilterResult.CONTINUE;
     }
 }

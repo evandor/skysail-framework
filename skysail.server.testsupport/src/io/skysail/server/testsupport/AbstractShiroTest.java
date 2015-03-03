@@ -1,4 +1,4 @@
-package io.skysail.server.um.simple.authentication.test;
+package io.skysail.server.testsupport;
 
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.UnavailableSecurityManagerException;

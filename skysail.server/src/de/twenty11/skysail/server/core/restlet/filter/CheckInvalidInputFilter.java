@@ -37,17 +37,18 @@ public class CheckInvalidInputFilter<R extends SkysailServerResource<T>, T> exte
     }
 
     @Override
-    public FilterResult doHandle(R resource, Response response, ResponseWrapper<T> responseWrapper) {
+    public FilterResult doHandle(R resource, ResponseWrapper<T> responseWrapper) {
         log.debug("entering {}#doHandle", this.getClass().getSimpleName());
 
         // do in "before"?
+        Response response = responseWrapper.getResponse();
         Form form = (Form) response.getRequest().getAttributes().get(EntityServerResource.SKYSAIL_SERVER_RESTLET_FORM);
 
         // TODO check: Data from entity (not from form) is not validated!
         if (containsInvalidInput(response.getRequest(), resource, form)) {
             log.info("Input was sanitized");
         }
-        super.doHandle(resource, response, responseWrapper);
+        super.doHandle(resource, responseWrapper);
         return FilterResult.CONTINUE;
     }
 
@@ -68,7 +69,8 @@ public class CheckInvalidInputFilter<R extends SkysailServerResource<T>, T> exte
                         continue;
                     }
                     HtmlPolicy htmlPolicy = formField.htmlPolicy();
-                    // List<String> allowedElements = htmlPolicy.getAllowedElements();
+                    // List<String> allowedElements =
+                    // htmlPolicy.getAllowedElements();
                     HtmlPolicyBuilder htmlPolicyBuilder = createHtmlPolicyBuilder(htmlPolicy);
 
                     field.setAccessible(true);
@@ -80,7 +82,7 @@ public class CheckInvalidInputFilter<R extends SkysailServerResource<T>, T> exte
                         }
                         originalValue = (String) fieldValue;
                     } catch (Exception e) {
-                        log.error(e.getMessage(),e);
+                        log.error(e.getMessage(), e);
                     }
 
                     StringBuilder sb = new StringBuilder();
@@ -92,7 +94,7 @@ public class CheckInvalidInputFilter<R extends SkysailServerResource<T>, T> exte
                             field.set(entity, sanitizedHtml);
                             log.info("sanitized '{}' to '{}'", originalValue, sanitizedHtml);
                         } catch (Exception e) {
-                            log.error(e.getMessage(),e);
+                            log.error(e.getMessage(), e);
                         }
                         foundInvalidInput = true;
                     }
@@ -108,7 +110,7 @@ public class CheckInvalidInputFilter<R extends SkysailServerResource<T>, T> exte
             HtmlPolicyBuilder htmlPolicyBuilder = detectHtmlPolicyBuilder(resource, parameter);
 
             StringBuilder sb = new StringBuilder();
-//            http://stackoverflow.com/questions/12558471/how-to-allow-specific-characters-with-owasp-html-sanitizer
+            // http://stackoverflow.com/questions/12558471/how-to-allow-specific-characters-with-owasp-html-sanitizer
             HtmlSanitizer.Policy policy = createPolicy(htmlPolicyBuilder, sb);
             HtmlSanitizer.sanitize(originalValue, policy);
             String sanitizedHtml = sb.toString();
@@ -146,8 +148,8 @@ public class CheckInvalidInputFilter<R extends SkysailServerResource<T>, T> exte
         HtmlPolicyBuilder htmlPolicyBuilder = noHtmlPolicyBuilder;
 
         if (application != null && resource instanceof EntityServerResource) {
-            htmlPolicyBuilder = application.getHtmlPolicy(
-                    ((EntityServerResource<T>) resource).getEntity().getClass(), parameter.getName());
+            htmlPolicyBuilder = application.getHtmlPolicy(((EntityServerResource<T>) resource).getEntity().getClass(),
+                    parameter.getName());
         }
         return htmlPolicyBuilder;
     }

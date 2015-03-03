@@ -20,16 +20,17 @@ public class PersistEntityFilter<R extends SkysailServerResource<T>, T> extends 
     }
 
     @Override
-    public FilterResult doHandle(R resource, Response response, ResponseWrapper<T> responseWrapper) {
+    public FilterResult doHandle(R resource, ResponseWrapper<T> responseWrapper) {
         logger.debug("entering {}#doHandle", this.getClass().getSimpleName());
+        Response response = responseWrapper.getResponse();
         T entity = responseWrapper.getEntity();
-        SkysailResponse<T> result = (SkysailResponse<T>) ((PostEntityServerResource<T>)resource).addEntity(entity);
+        SkysailResponse<T> result = (SkysailResponse<T>) ((PostEntityServerResource<T>) resource).addEntity(entity);
         // TODO filter of its own?
         if (entity instanceof Identifiable) {
             String id = ((Identifiable) entity).getId();
             response.setLocationRef(response.getRequest().getResourceRef().addSegment(id));
         }
-        super.doHandle(resource, response, responseWrapper);
+        super.doHandle(resource, responseWrapper);
         return FilterResult.CONTINUE;
     }
 }

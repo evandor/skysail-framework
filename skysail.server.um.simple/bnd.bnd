@@ -11,7 +11,8 @@ Bundle-Version: 0.1.1.${tstamp}
 	org.apache.shiro.web;version=1.2,\
 	com.springsource.org.junit;version=4.11,\
 	org.mockito.mockito-all;version=1.10,\
-	org.apache.felix.configadmin;version=1.8
+	org.apache.felix.configadmin;version=1.8,\
+	skysail.server.testsupport;version=latest
 Private-Package:  \
 	io.skysail.server.um.simple.app,\
 	io.skysail.server.um.simple,\

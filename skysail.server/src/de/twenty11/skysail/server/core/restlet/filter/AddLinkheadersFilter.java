@@ -16,7 +16,8 @@ public class AddLinkheadersFilter<R extends SkysailServerResource<T>, T> extends
         ResponseHeadersManipulatingFilter<R, T> {
 
     @Override
-    protected void afterHandle(R resource, Response response, ResponseWrapper<T> responseWrapper) {
+    protected void afterHandle(R resource, ResponseWrapper<T> responseWrapper) {
+        Response response = responseWrapper.getResponse();
         if (resource instanceof SkysailServerResource) {
             SkysailServerResource<?> ssr = resource;
             Series<Header> responseHeaders = HeadersUtils.getHeaders(resource.getResponse());

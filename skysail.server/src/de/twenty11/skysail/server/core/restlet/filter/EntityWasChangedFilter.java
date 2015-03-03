@@ -24,19 +24,20 @@ public class EntityWasChangedFilter<R extends SkysailServerResource<T>, T> exten
     }
 
     @Override
-    public FilterResult doHandle(R resource, Response response, ResponseWrapper<T> responseWrapper) {
+    public FilterResult doHandle(R resource, ResponseWrapper<T> responseWrapper) {
         logger.debug("entering {}#doHandle", this.getClass().getSimpleName());
         T entity = responseWrapper.getEntity();
 
         String principal = (String) SecurityUtils.getSubject().getPrincipal();
 
         List<EntityChangedHookService> services = application.getEntityChangedHookServices();
+        Response response = responseWrapper.getResponse();
         if (services != null && entity instanceof Identifiable) {
             for (EntityChangedHookService service : services) {
                 service.pushEntityWasChanged(response.getRequest(), (Identifiable) entity, principal);
             }
         }
-        super.doHandle(resource, response, responseWrapper);
+        super.doHandle(resource, responseWrapper);
         return FilterResult.CONTINUE;
     }
 }

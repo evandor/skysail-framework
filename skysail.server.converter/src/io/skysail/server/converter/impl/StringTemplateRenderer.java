@@ -30,6 +30,7 @@ import org.restlet.resource.Resource;
 import org.stringtemplate.v4.ST;
 
 import de.twenty11.skysail.api.forms.ListView;
+import de.twenty11.skysail.api.forms.Reference;
 import de.twenty11.skysail.api.responses.LinkHeaderRelation;
 import de.twenty11.skysail.api.responses.Linkheader;
 import de.twenty11.skysail.api.responses.LinkheaderRole;
@@ -277,8 +278,14 @@ public class StringTemplateRenderer {
         List<String> fieldNames = resource.getFields();
         de.twenty11.skysail.api.forms.Field fieldAnnotation = field
                 .getAnnotation(de.twenty11.skysail.api.forms.Field.class);
-        return (fieldAnnotation != null && (!(fieldAnnotation.listView().equals(ListView.HIDE))) && fieldNames
-                .contains(field.getName()));
+        boolean isValidFieldAnnotation = (fieldAnnotation != null
+                && (!(fieldAnnotation.listView().equals(ListView.HIDE))) && fieldNames.contains(field.getName()));
+        if (isValidFieldAnnotation) {
+            return true;
+        }
+
+        Reference referenceAnnotation = field.getAnnotation(Reference.class);
+        return (referenceAnnotation != null);
     }
 
     public void setMenuProviders(Set<MenuItemProvider> menuProviders) {

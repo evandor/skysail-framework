@@ -37,7 +37,9 @@ public class Persister extends AbstractDbAPI {
                     vertex.setProperty(key, properties.get(key));
                 } else {
                     OrientVertex target = db.getVertex(properties.get(key));
-                    db.addEdge(null, vertex, target, key);
+                    if (target != null) {
+                        db.addEdge(null, vertex, target, key);
+                    }
                 }
             });
             return vertex.getId();

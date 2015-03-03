@@ -24,6 +24,7 @@ import com.orientechnologies.orient.object.enhancement.OObjectProxyMethodHandler
 
 import de.twenty11.skysail.api.forms.IgnoreSelectionProvider;
 import de.twenty11.skysail.api.forms.InputType;
+import de.twenty11.skysail.api.forms.Reference;
 import de.twenty11.skysail.api.forms.SelectionProvider;
 import de.twenty11.skysail.api.responses.ConstraintViolationDetails;
 import de.twenty11.skysail.api.responses.ConstraintViolationsResponse;
@@ -39,7 +40,7 @@ public class FormField {
 
     private final ObjectMapper mapper = new ObjectMapper();
 
-    private Field fieldAnnotation;
+    private Field reflectionField;
     private Object source;
     private String value;
 
@@ -53,7 +54,7 @@ public class FormField {
     private JSONObject json;
 
     public FormField(Field fieldAnnotation, UserManager userManager, Object source, Object entity) {
-        this.fieldAnnotation = fieldAnnotation;
+        this.reflectionField = fieldAnnotation;
         this.source = source;
         this.entity = entity;
 
@@ -99,7 +100,7 @@ public class FormField {
     }
 
     public FormField(Field fieldAnnotation, UserManager userManager, Object source, JSONObject json, Class<?> cls) {
-        this.fieldAnnotation = fieldAnnotation;
+        this.reflectionField = fieldAnnotation;
         this.source = source;
         this.json = json;
         this.cls = cls;
@@ -114,7 +115,7 @@ public class FormField {
     }
 
     public Field getFieldAnnotation() {
-        return fieldAnnotation;
+        return reflectionField;
     }
 
     public Object getEntity() {
@@ -125,7 +126,7 @@ public class FormField {
     }
 
     public String getName() {
-        return fieldAnnotation.getName();
+        return reflectionField.getName();
     }
 
     public String getValue() {
@@ -137,7 +138,7 @@ public class FormField {
     }
 
     public String getInputType() {
-        return fieldAnnotation.getAnnotation(de.twenty11.skysail.api.forms.Field.class).type().name().toLowerCase();
+        return reflectionField.getAnnotation(de.twenty11.skysail.api.forms.Field.class).type().name().toLowerCase();
     }
 
     public String getMessageKey() {
@@ -173,28 +174,46 @@ public class FormField {
     }
 
     public boolean isTextareaInputType() {
-        return InputType.TEXTAREA.equals(fieldAnnotation.getAnnotation(de.twenty11.skysail.api.forms.Field.class)
+        return InputType.TEXTAREA.equals(reflectionField.getAnnotation(de.twenty11.skysail.api.forms.Field.class)
                 .type());
     }
 
     public boolean isSelectionProvider() {
-        de.twenty11.skysail.api.forms.Field annotation = fieldAnnotation
+        de.twenty11.skysail.api.forms.Field fieldAnnotation = reflectionField
                 .getAnnotation(de.twenty11.skysail.api.forms.Field.class);
-        Class<? extends SelectionProvider> selectionProvider = annotation.selectionProvider();
-        if (selectionProvider.equals(IgnoreSelectionProvider.class)) {
+        if (fieldAnnotation != null) {
+            Class<? extends SelectionProvider> selectionProvider = fieldAnnotation.selectionProvider();
+            if (!(selectionProvider.equals(IgnoreSelectionProvider.class))) {
+                return true;
+            }
+        }
+        Reference referenceAnnotation = reflectionField.getAnnotation(Reference.class);
+        if (referenceAnnotation == null) {
             return false;
         }
-        return true;
+        if (!(IgnoreSelectionProvider.class.equals(referenceAnnotation.selectionProvider()))) {
+            return true;
+        }
+        return false;
     }
 
     public Map<String, String> getSelectionProviderOptions() {
         if (!isSelectionProvider()) {
             throw new IllegalAccessError("not a selection provider");
         }
-        de.twenty11.skysail.api.forms.Field annotation = fieldAnnotation
+        de.twenty11.skysail.api.forms.Field annotation = reflectionField
                 .getAnnotation(de.twenty11.skysail.api.forms.Field.class);
-        Class<? extends SelectionProvider> selectionProvider = annotation.selectionProvider();
-
+        Class<? extends SelectionProvider> selectionProvider = null;
+        if (annotation != null) {
+            selectionProvider = annotation.selectionProvider();
+        }
+        Reference referenceAnnotation = reflectionField.getAnnotation(Reference.class);
+        if (referenceAnnotation != null) {
+            selectionProvider = referenceAnnotation.selectionProvider();
+        }
+        if (selectionProvider == null) {
+            return Collections.emptyMap();
+        }
         SelectionProvider selection;
         try {
             Method method = selectionProvider.getMethod("getInstance");
@@ -218,7 +237,7 @@ public class FormField {
     }
 
     private boolean isOfInputType(InputType inputType) {
-        return inputType.equals(fieldAnnotation.getAnnotation(de.twenty11.skysail.api.forms.Field.class).type());
+        return inputType.equals(reflectionField.getAnnotation(de.twenty11.skysail.api.forms.Field.class).type());
     }
 
     private boolean checkTypeFor(Class<?> cls) {

@@ -42,7 +42,7 @@ public class ListSourceHtmlConverter extends AbstractSourceConverter implements 
 
             if (object instanceof String && ((String) object).length() > 0
                     && ((String) object).substring(0, 1).equals("{")) {
-                Map<String, String> mapFromJson = treatAsJson((String) object, fields);
+                Map<String, Object> mapFromJson = treatAsJson((String) object, fields);
                 if (mapFromJson != null) {
                     result.add(mapFromJson);
                 }
@@ -68,9 +68,9 @@ public class ListSourceHtmlConverter extends AbstractSourceConverter implements 
         return result;
     }
 
-    private Map<String, String> treatAsJson(String json, List<Field> fields) {
+    private Map<String, Object> treatAsJson(String json, List<Field> fields) {
         try {
-            Map<String, String> result = mapper.readValue(json, new TypeReference<HashMap<String, String>>() {
+            Map<String, Object> result = mapper.readValue(json, new TypeReference<HashMap<String, Object>>() {
             });
             fields.stream().forEach(f -> check(f, result));
             return result;
@@ -80,13 +80,17 @@ public class ListSourceHtmlConverter extends AbstractSourceConverter implements 
         }
     }
 
-    private Object check(Field f, Map<String, String> result) {
+    private Object check(Field f, Map<String, Object> result) {
         de.twenty11.skysail.api.forms.Field fieldAnnotation = f
                 .getAnnotation(de.twenty11.skysail.api.forms.Field.class);
-        if (fieldAnnotation.listView().equals(ListView.TRUNCATE)) {
-            String oldValue = result.get(f.getName());
-            if (oldValue.length() > MAX_LENGTH_FOR_TRUNCATED_FIELDS) {
-                result.put(f.getName(), oldValue.substring(0, MAX_LENGTH_FOR_TRUNCATED_FIELDS - 3) + "...");
+        if (fieldAnnotation != null) {
+            if (fieldAnnotation.listView().equals(ListView.TRUNCATE)) {
+                if (f.getName() instanceof String) {
+                    String oldValue = (String) result.get(f.getName());
+                    if (oldValue.length() > MAX_LENGTH_FOR_TRUNCATED_FIELDS) {
+                        result.put(f.getName(), oldValue.substring(0, MAX_LENGTH_FOR_TRUNCATED_FIELDS - 3) + "...");
+                    }
+                }
             }
         }
         return null;

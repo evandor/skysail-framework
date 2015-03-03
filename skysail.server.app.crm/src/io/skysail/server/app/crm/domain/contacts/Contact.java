@@ -1,7 +1,9 @@
-package io.skysail.server.app.contacts.domain.contacts;
+package io.skysail.server.app.crm.domain.contacts;
 
-import io.skysail.server.app.contacts.domain.companies.Company;
-import io.skysail.server.app.contacts.domain.companies.CompanySelectionProvider;
+import io.skysail.server.app.crm.domain.companies.Company;
+import io.skysail.server.app.crm.domain.companies.CompanySelectionProvider;
+
+import java.util.List;
 
 import javax.validation.constraints.Size;
 
@@ -21,9 +23,13 @@ public class Contact {
     @Field
     private String firstname;
 
+    @Field(type = InputType.EMAIL)
+    private String email;
+
     @Field(type = InputType.READONLY, listView = ListView.HIDE)
     private String owner;
 
     @Reference(selectionProvider = CompanySelectionProvider.class, cls = Company.class)
-    private String worksFor;
+    private List<String> worksFor;
+
 }

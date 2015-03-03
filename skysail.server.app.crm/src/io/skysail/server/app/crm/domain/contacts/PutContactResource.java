@@ -1,6 +1,6 @@
-package io.skysail.server.app.contacts.domain.contacts;
+package io.skysail.server.app.crm.domain.contacts;
 
-import io.skysail.server.app.contacts.domain.companies.CompaniesRepository;
+import io.skysail.server.app.crm.domain.companies.CompaniesRepository;
 
 import org.codehaus.jettison.json.JSONObject;
 import org.restlet.resource.ResourceException;

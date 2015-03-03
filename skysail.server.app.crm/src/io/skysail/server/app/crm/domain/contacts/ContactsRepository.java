@@ -1,4 +1,4 @@
-package io.skysail.server.app.contacts.domain.contacts;
+package io.skysail.server.app.crm.domain.contacts;
 
 import java.util.List;
 

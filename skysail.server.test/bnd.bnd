@@ -111,4 +111,6 @@ Test-Cases:  \
 	skysail.api.um;version=latest,\
 	skysail.api.validation;version=latest,\
 	skysail.server;version=latest,\
-	slf4j.api;version='[1.7.7,1.7.8)'
+	slf4j.api;version='[1.7.7,1.7.8)',\
+	org.codehaus.jettison.jettison;version=1.3.7,\
+	de.twentyeleven.skysail.org.json-osgi;version=20080701.0.0

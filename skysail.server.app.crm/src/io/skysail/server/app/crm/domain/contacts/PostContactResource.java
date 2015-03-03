@@ -1,9 +1,11 @@
-package io.skysail.server.app.contacts.domain.contacts;
+package io.skysail.server.app.crm.domain.contacts;
 
-import io.skysail.server.app.contacts.ContactsGen;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.shiro.SecurityUtils;
-import org.restlet.resource.ResourceException;
+import org.restlet.data.Form;
+import org.restlet.data.Parameter;
 
 import de.twenty11.skysail.api.responses.SkysailResponse;
 import de.twenty11.skysail.server.core.restlet.PostEntityServerResource;
@@ -11,30 +13,29 @@ import de.twenty11.skysail.server.core.restlet.ResourceContextId;
 
 public class PostContactResource extends PostEntityServerResource<Contact> {
 
-    private String id;
-
-    private ContactsGen app;
-
     public PostContactResource() {
         addToContext(ResourceContextId.LINK_TITLE, "Create new Contact");
     }
 
     @Override
-    protected void doInit() throws ResourceException {
-        app = (ContactsGen) getApplication();
-        id = getAttribute("id");
-    }
-
-    // @Override
-    // public Contact getData(Form form) {
-    // Contact entity = populate(createEntityTemplate(), form);
-    // entity.setOwner(SecurityUtils.getSubject().getPrincipal().toString());
-    // return entity;
-    // }
-
-    @Override
     public Contact createEntityTemplate() {
         return new Contact();
+    }
+
+    @Override
+    public Contact getData(Form form) {
+        // TODO need 1.9.3 of beanutils:
+        // https://issues.apache.org/jira/browse/BEANUTILS-465
+        Parameter worksForFromForm = form.getFirst("worksFor");
+        form.removeFirst("worksFor");
+        Contact data = super.getData(form);
+        List<String> worksFor = data.getWorksFor();
+        if (worksFor == null) {
+            worksFor = new ArrayList<String>();
+        }
+        worksFor.add(worksForFromForm.getValue());
+        data.setWorksFor(worksFor);
+        return data;
     }
 
     @Override

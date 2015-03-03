@@ -5,6 +5,7 @@ import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.runners.MockitoJUnitRunner;
@@ -37,6 +38,7 @@ public class SkysailServerResourceTest {
     }
 
     @Test
+    @Ignore
     public void returns_resources_data() throws Exception {
         assertThat(serverResource.getEntity(), is(equalTo(TestSkysailServerResource.class.getSimpleName())));
     }

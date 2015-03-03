@@ -1,13 +1,13 @@
-package io.skysail.server.app.contacts;
+package io.skysail.server.app.crm;
 
-import io.skysail.server.app.contacts.domain.companies.CompaniesResource;
-import io.skysail.server.app.contacts.domain.companies.CompanyResource;
-import io.skysail.server.app.contacts.domain.companies.PostCompanyResource;
-import io.skysail.server.app.contacts.domain.companies.PutCompaniesResource;
-import io.skysail.server.app.contacts.domain.contacts.ContactResource;
-import io.skysail.server.app.contacts.domain.contacts.ContactsResource;
-import io.skysail.server.app.contacts.domain.contacts.PostContactResource;
-import io.skysail.server.app.contacts.domain.contacts.PutContactResource;
+import io.skysail.server.app.crm.domain.companies.CompaniesResource;
+import io.skysail.server.app.crm.domain.companies.CompanyResource;
+import io.skysail.server.app.crm.domain.companies.PostCompanyResource;
+import io.skysail.server.app.crm.domain.companies.PutCompaniesResource;
+import io.skysail.server.app.crm.domain.contacts.ContactResource;
+import io.skysail.server.app.crm.domain.contacts.ContactsResource;
+import io.skysail.server.app.crm.domain.contacts.PostContactResource;
+import io.skysail.server.app.crm.domain.contacts.PutContactResource;
 
 import java.util.Arrays;
 import java.util.List;

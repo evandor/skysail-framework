@@ -1,6 +1,6 @@
 ### bnd allows only two src-Folders; we will use src-gen instead of test to place the generated code into
-testsrc: src-gen
-testbin: bin
+#testsrc: src-gen
+#testbin: bin
 
 Bundle-Version: 0.1.0.${tstamp}
 Bundle-Name: SKYSAIL :: server :: app :: contacts
@@ -24,13 +24,14 @@ Include-Resource: resources, templates=src;recursive:=true;filter:=*.st|*.stg
 	org.apache.shiro.core;version=1.2,\
 	com.fasterxml.jackson.core.jackson-annotations;version=2.4,\
 	com.orientechnologies.orientdb-core;version=2.0,\
-	org.codehaus.jettison.jettison;version=1.3
+	org.codehaus.jettison.jettison;version=1.3,\
+	org.mockito.mockito-all;version=1.10
 Import-Package: org.osgi.framework,\
 	javassist.util.proxy,\
 	*
 Bundle-Description: a contacts application for skysail (used as demo as well) 
 Private-Package:  \
-	io.skysail.server.app.contacts,\
-	io.skysail.server.app.contacts.domain,\
-	io.skysail.server.app.contacts.domain.companies,\
-	io.skysail.server.app.contacts.domain.contacts
+	io.skysail.server.app.crm,\
+	io.skysail.server.app.crm.domain,\
+	io.skysail.server.app.crm.domain.companies,\
+	io.skysail.server.app.crm.domain.contacts

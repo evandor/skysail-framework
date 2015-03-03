@@ -1,11 +1,11 @@
-Bundle-Name: SKYSAIL :: server :: documentation :: test
-Bundle-Version: 0.1.2.${tstamp}
+Bundle-Name: SKYSAIL :: server :: app :: crm :: test
+Bundle-Version: 0.1.0.${tstamp}
 
 Private-Package:  \
-	io.skysail.server.documentation.test
+	io.skysail.server.app.crm.test
 
 Test-Cases: \
-	io.skysail.server.documentation.test.DocumentationIntegrationTests
+	io.skysail.server.app.crm.test.CrmIntegrationTests
 
 -buildpath:  \
 	skysail.api.validation;version=latest,\
@@ -63,9 +63,7 @@ Test-Cases: \
 	osgi.identity;filter:='(&(osgi.identity=com.orientechnologies.orientdb-object)(version>=2.0.0.rc1))',\
 	osgi.identity;filter:='(&(osgi.identity=etm.core)(version>=1.2.3.1))',\
 	osgi.identity;filter:='(&(osgi.identity=de.twenty11.owasp-java-html-sanitizer)(version>=239.0.0))',\
-	osgi.identity;filter:='(&(osgi.identity=ch.qos.logback.classic)(version>=1.1.2))',\
-	osgi.identity;filter:='(&(osgi.identity=org.codehaus.jettison.jettison)(version>=1.3.7))',\
-	osgi.identity;filter:='(&(osgi.identity=de.twentyeleven.skysail.org.json-osgi)(version>=20080701.0.0))'
+	osgi.identity;filter:='(&(osgi.identity=ch.qos.logback.classic)(version>=1.1.2))'
 
 -runbundles:  \
 	ch.qos.logback.classic;version='[1.1.2,1.1.3)',\
@@ -118,5 +116,5 @@ Test-Cases: \
 	skysail.server;version=latest,\
 	skysail.server.documentation;version=latest,\
 	slf4j.api;version='[1.7.7,1.7.8)',\
-	de.twentyeleven.skysail.org.json-osgi;version=20080701.0.0,\
-	org.codehaus.jettison.jettison;version=1.3.7
+	org.codehaus.jettison.jettison;version=1.3.7,\
+	de.twentyeleven.skysail.org.json-osgi;version=20080701.0.0

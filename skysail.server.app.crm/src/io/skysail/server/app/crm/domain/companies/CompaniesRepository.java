@@ -1,4 +1,4 @@
-package io.skysail.server.app.contacts.domain.companies;
+package io.skysail.server.app.crm.domain.companies;
 
 import java.util.List;
 import java.util.Map;

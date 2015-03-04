@@ -1,4 +1,4 @@
-package io.skysail.server.app.crm.domain.companies.test;
+package io.skysail.server.app.crm.domain.contacts.test;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;
@@ -7,8 +7,8 @@ import static org.junit.Assert.assertThat;
 import io.skysail.api.validation.DefaultValidationImpl;
 import io.skysail.server.app.crm.ContactsGen;
 import io.skysail.server.app.crm.domain.companies.CompaniesRepository;
-import io.skysail.server.app.crm.domain.companies.Company;
-import io.skysail.server.app.crm.domain.companies.PostCompanyResource;
+import io.skysail.server.app.crm.domain.contacts.Contact;
+import io.skysail.server.app.crm.domain.contacts.PostContactResource;
 import io.skysail.server.testsupport.AbstractShiroTest;
 
 import org.junit.After;
@@ -26,13 +26,13 @@ import org.restlet.data.Form;
 import de.twenty11.skysail.api.responses.ConstraintViolationsResponse;
 
 @RunWith(MockitoJUnitRunner.class)
-public class PostCompanyResourceTest extends AbstractShiroTest {
+public class PostContactResourceTest extends AbstractShiroTest {
 
     @Rule
     public ExpectedException thrown = ExpectedException.none();
 
     @InjectMocks
-    private PostCompanyResource resource;
+    private PostContactResource resource;
 
     @Mock
     private ContactsGen app;
@@ -55,16 +55,17 @@ public class PostCompanyResourceTest extends AbstractShiroTest {
     @Test
     public void creates_registration_template() throws Exception {
         resource.init(null, null, null);
-        Company company = resource.createEntityTemplate();
-        assertThat(company.getName(), is(nullValue()));
+        Contact contact = resource.createEntityTemplate();
+        assertThat(contact.getLastname(), is(nullValue()));
     }
 
     @Test
-    public void missing_name_yields_failed_validation() {
+    public void missing_lastname_yields_failed_validation() {
+        form.add("worksFor", null);
         Object result = (ConstraintViolationsResponse<?>) resource.post(form);
 
         assertValidationFailed(400, "Validation failed");
-        assertOneConstraintViolation((ConstraintViolationsResponse<?>) result, "name", "may not be null");
+        assertOneConstraintViolation((ConstraintViolationsResponse<?>) result, "lastname", "may not be null");
     }
 
     protected void assertValidationFailed(int statusCode, String xStatusReason) {

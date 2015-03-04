@@ -6,7 +6,7 @@ import org.restlet.resource.ResourceException;
 import de.twenty11.skysail.api.responses.SkysailResponse;
 import de.twenty11.skysail.server.core.restlet.PutEntityServerResource;
 
-public class PutCompaniesResource extends PutEntityServerResource<Company> {
+public class PutCompanyResource extends PutEntityServerResource<Company> {
 
     private String id;
 

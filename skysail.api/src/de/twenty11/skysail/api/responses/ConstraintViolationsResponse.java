@@ -14,9 +14,9 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
  * Being a "business server", skysail has to deal with business requirements
  * such as constraints (e.g. the field name may not be empty). So when a user
  * requests to add an entity which does not comply with the business rules, you
- * should not create a FailureResponse, but a ConstraintViolationResponse,
- * containing information about the cause and the rules. Skysail utilizes the
- * javax.validation interfaces for this purpose.
+ * should crete a ConstraintViolationResponse, containing information about the
+ * cause and the rules. Skysail utilizes the javax.validation interfaces for
+ * this purpose.
  */
 public class ConstraintViolationsResponse<T> extends SkysailResponse<T> {
 
@@ -44,7 +44,6 @@ public class ConstraintViolationsResponse<T> extends SkysailResponse<T> {
         super(entity);
         Validate.notNull(contraintViolations);
         Validate.notEmpty(contraintViolations, "Cannot create ConstraintViolationResponse without violations");
-        this.entity = entity;
         this.actionReference = actionReference;
         if (contraintViolations != null) {
             for (ConstraintViolation<T> constraintViolation : contraintViolations) {

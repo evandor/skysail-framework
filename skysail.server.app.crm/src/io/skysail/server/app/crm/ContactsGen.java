@@ -3,7 +3,7 @@ package io.skysail.server.app.crm;
 import io.skysail.server.app.crm.domain.companies.CompaniesResource;
 import io.skysail.server.app.crm.domain.companies.CompanyResource;
 import io.skysail.server.app.crm.domain.companies.PostCompanyResource;
-import io.skysail.server.app.crm.domain.companies.PutCompaniesResource;
+import io.skysail.server.app.crm.domain.companies.PutCompanyResource;
 import io.skysail.server.app.crm.domain.contacts.ContactResource;
 import io.skysail.server.app.crm.domain.contacts.ContactsResource;
 import io.skysail.server.app.crm.domain.contacts.PostContactResource;
@@ -44,7 +44,7 @@ public class ContactsGen extends SkysailApplication implements MenuItemProvider,
         router.attach(new RouteBuilder("/Company/", PostCompanyResource.class));
         router.attach(new RouteBuilder("/Companies", CompaniesResource.class));
         router.attach(new RouteBuilder("/Companies/{id}", CompanyResource.class));
-        router.attach(new RouteBuilder("/Companies/{id}/", PutCompaniesResource.class));
+        router.attach(new RouteBuilder("/Companies/{id}/", PutCompanyResource.class));
 
     }
 

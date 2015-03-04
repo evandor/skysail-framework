@@ -1,5 +1,15 @@
 package io.skysail.server.testsupport;
 
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.Matchers.containsString;
+import static org.junit.Assert.assertThat;
+import io.skysail.api.validation.ValidatorService;
+
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentMap;
+
+import javax.validation.Validator;
+
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.UnavailableSecurityManagerException;
 import org.apache.shiro.mgt.SecurityManager;
@@ -8,12 +18,24 @@ import org.apache.shiro.subject.support.SubjectThreadState;
 import org.apache.shiro.util.LifecycleUtils;
 import org.apache.shiro.util.ThreadState;
 import org.junit.AfterClass;
+import org.mockito.Mockito;
+import org.restlet.Request;
+import org.restlet.Response;
+import org.restlet.data.ClientInfo;
+import org.restlet.data.Form;
+import org.restlet.data.Reference;
+
+import de.twenty11.skysail.api.responses.ConstraintViolationsResponse;
+import de.twenty11.skysail.server.core.db.GraphDbService;
 
 public class AbstractShiroTest {
     private static ThreadState subjectThreadState;
 
-    public AbstractShiroTest() {
-    }
+    protected GraphDbService dbService;
+    protected ConcurrentMap<String, Object> attributes;
+    protected Form form;
+    protected Response response;
+    protected Request request;
 
     /**
      * Allows subclasses to set the currently executing {@link Subject}
@@ -59,6 +81,28 @@ public class AbstractShiroTest {
         return SecurityUtils.getSecurityManager();
     }
 
+    // @Before
+    public void setUp() throws Exception {
+        Subject subjectUnderTest = Mockito.mock(Subject.class);
+        Mockito.when(subjectUnderTest.isAuthenticated()).thenReturn(true);
+        Mockito.when(subjectUnderTest.getPrincipal()).thenReturn("admin");
+        setSubject(subjectUnderTest);
+
+        ValidatorService validatorServiceMock = Mockito.mock(ValidatorService.class);
+        Validator validator = Mockito.mock(Validator.class);
+        Mockito.when(validatorServiceMock.getValidator()).thenReturn(validator);
+        dbService = new InMemoryDbService();
+
+        attributes = new ConcurrentHashMap<String, Object>();
+
+        request = Mockito.mock(Request.class);
+        Mockito.when(request.getClientInfo()).thenReturn(new ClientInfo());
+        Mockito.when(request.getAttributes()).thenReturn(attributes);
+        Reference resourceRef = Mockito.mock(Reference.class);
+        Mockito.when(request.getResourceRef()).thenReturn(resourceRef);
+        response = new Response(request);
+    }
+
     @AfterClass
     public static void tearDownShiro() {
         doClearSubject();
@@ -73,4 +117,12 @@ public class AbstractShiroTest {
         }
         setSecurityManager(null);
     }
+
+    protected void assertOneConstraintViolation(ConstraintViolationsResponse<?> violationsResponse, String path,
+            String message) {
+        assertThat(violationsResponse.getViolations().size(), is(1));
+        assertThat(violationsResponse.getViolations().iterator().next().getPropertyPath(), containsString(path));
+        assertThat(violationsResponse.getViolations().iterator().next().getMessage(), containsString(message));
+    }
+
 }

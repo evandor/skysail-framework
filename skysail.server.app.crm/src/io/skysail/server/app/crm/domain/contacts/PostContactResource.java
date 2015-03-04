@@ -19,7 +19,8 @@ public class PostContactResource extends PostEntityServerResource<Contact> {
 
     @Override
     public Contact createEntityTemplate() {
-        return new Contact();
+        String creator = SecurityUtils.getSubject().getPrincipal().toString();
+        return new Contact(creator);
     }
 
     @Override
@@ -33,7 +34,9 @@ public class PostContactResource extends PostEntityServerResource<Contact> {
         if (worksFor == null) {
             worksFor = new ArrayList<String>();
         }
-        worksFor.add(worksForFromForm.getValue());
+        if (worksForFromForm != null) {
+            worksFor.add(worksForFromForm.getValue());
+        }
         data.setWorksFor(worksFor);
         return data;
     }

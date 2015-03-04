@@ -14,12 +14,12 @@ public class PostCompanyResource extends PostEntityServerResource<Company> {
 
     @Override
     public Company createEntityTemplate() {
-        return new Company();
+        String creator = SecurityUtils.getSubject().getPrincipal().toString();
+        return new Company(creator);
     }
 
     @Override
     public SkysailResponse<?> addEntity(Company entity) {
-        entity.setOwner(SecurityUtils.getSubject().getPrincipal().toString());
         entity = CompaniesRepository.getInstance().add(entity);
         return new SkysailResponse<String>();
     }

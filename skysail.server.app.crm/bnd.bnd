@@ -43,7 +43,8 @@ Include-Resource: resources, templates=src;recursive:=true;filter:=*.st|*.stg
 	javax.el-api;version=3.0,\
 	classmate;version=1.0,\
 	org.apache.commons.logging;version=1.1,\
-	org.apache.commons.lang3;version=3.3
+	org.apache.commons.lang3;version=3.3,\
+	org.apache.commons.lang;version=2.6
 Import-Package: org.osgi.framework,\
 	javassist.util.proxy,\
 	*

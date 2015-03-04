@@ -17,7 +17,8 @@ public class PutRedirectGetFilter<R extends PutEntityServerResource<T>, T> exten
     @Override
     protected void afterHandle(R resource, ResponseWrapper<T> responseWrapper) {
         Response response = responseWrapper.getResponse();
-        String redirectFromQuery = resource.getQuery().getFirstValue("_redirectTo");
+        String redirectFromQuery = resource.getQuery() != null ? resource.getQuery().getFirstValue("_redirectTo")
+                : null;
         if (redirectFromQuery != null) {
             String path = response.getRequest().getHostRef().toString() + redirectFromQuery;
             try {

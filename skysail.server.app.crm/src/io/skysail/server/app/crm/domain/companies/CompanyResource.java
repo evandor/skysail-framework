@@ -36,7 +36,7 @@ public class CompanyResource extends EntityServerResource<Company> {
 
     @Override
     public List<Linkheader> getLinkheader() {
-        return super.getLinkheader(PutCompaniesResource.class);
+        return super.getLinkheader(PutCompanyResource.class);
     }
 
     @Override

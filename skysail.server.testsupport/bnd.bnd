@@ -15,4 +15,5 @@ Export-Package:  \
 	org.codehaus.jettison.jettison;version=1.3,\
 	org.apache.commons.beanutils;version=1.9,\
 	skysail.server;version=latest,\
-	skysail.api;version=latest
+	skysail.api;version=latest,\
+	com.orientechnologies.orientdb-core;version=2.0

@@ -10,14 +10,14 @@ import aQute.bnd.annotation.component.Activate;
 import aQute.bnd.annotation.component.Component;
 import aQute.bnd.annotation.component.Deactivate;
 import aQute.bnd.annotation.component.Reference;
-import de.twenty11.skysail.server.core.db.GraphDbService;
+import de.twenty11.skysail.server.core.db.DbService2;
 
 @Component
 public class CompaniesRepository {
 
     private static CompaniesRepository instance;
 
-    private GraphDbService dbService;
+    private DbService2 dbService;
 
     public static CompaniesRepository getInstance() {
         // for tests
@@ -38,11 +38,11 @@ public class CompaniesRepository {
     }
 
     @Reference
-    public void setDbService(GraphDbService dbService) {
+    public void setDbService(DbService2 dbService) {
         this.dbService = dbService;
     }
 
-    public void unsetDbService(GraphDbService dbService) {
+    public void unsetDbService(DbService2 dbService) {
         this.dbService = null;
     }
 
@@ -51,8 +51,8 @@ public class CompaniesRepository {
         return null;
     }
 
-    public JSONObject getById(String id) {
-        return dbService.find(Company.class, id);
+    public Company getById(String id) {
+        return dbService.findObjectById(Company.class, id);
     }
 
     public List<String> getCompanysAsJson(String username) {

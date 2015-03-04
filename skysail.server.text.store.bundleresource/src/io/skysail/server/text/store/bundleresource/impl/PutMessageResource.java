@@ -23,7 +23,7 @@ public class PutMessageResource extends PutEntityServerResource<Message> {
     }
 
     @Override
-    public JSONObject getEntity3() {
+    public JSONObject getEntityAsJsonObject() {
         return null;// app.getMessage(msgKey);
     }
 

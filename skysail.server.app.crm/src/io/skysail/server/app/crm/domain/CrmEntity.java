@@ -2,15 +2,21 @@ package io.skysail.server.app.crm.domain;
 
 import java.util.Date;
 
+import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import de.twenty11.skysail.api.forms.Field;
 import de.twenty11.skysail.api.forms.InputType;
 import de.twenty11.skysail.api.forms.ListView;
 
-@Data
+@Getter
+@Setter
 public class CrmEntity {
+
+    @Id
+    private Object id;
 
     public CrmEntity() {
     }

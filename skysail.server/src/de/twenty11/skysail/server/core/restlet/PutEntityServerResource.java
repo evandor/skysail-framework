@@ -99,7 +99,9 @@ public abstract class PutEntityServerResource<T> extends SkysailServerResource<T
      * 
      * @return a template instance of type T
      */
-    public abstract JSONObject getEntity3();
+    public JSONObject getEntityAsJsonObject() {
+        return null;
+    }
 
     /**
      * will be called in case of a PUT request.
@@ -120,7 +122,7 @@ public abstract class PutEntityServerResource<T> extends SkysailServerResource<T
      */
     public JSONObject getData(Form form) {
         // FIXME dont use everything from the form: dont trust user input
-        JSONObject entity = getEntity3();
+        JSONObject entity = getEntityAsJsonObject();
         form.getNames().stream().forEach(name -> {
             try {
                 entity.put(name, form.getFirstValue(name));
@@ -136,7 +138,7 @@ public abstract class PutEntityServerResource<T> extends SkysailServerResource<T
     public SkysailResponse<T> createForm(Variant variant) {
         logger.info("Request entry point: {} @Get('htmlform|html') createForm with variant {}",
                 PutEntityServerResource.class.getSimpleName(), variant);
-        return new FormResponse<T>(getEntity3(), getParameterType(), getAttribute("id"), ".", redirectBackTo());
+        return new FormResponse<T>(getEntity(), getAttribute("id"), ".", redirectBackTo());
     }
 
     protected String redirectBackTo() {

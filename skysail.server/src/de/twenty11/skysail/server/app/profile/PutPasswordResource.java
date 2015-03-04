@@ -25,7 +25,7 @@ public class PutPasswordResource extends PutEntityServerResource<ChangePasswordE
     }
 
     @Override
-    public JSONObject getEntity3() {
+    public JSONObject getEntityAsJsonObject() {
         return null;// new ChangePasswordEntity();
     }
 

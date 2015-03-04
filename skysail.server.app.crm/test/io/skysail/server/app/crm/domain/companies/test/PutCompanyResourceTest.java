@@ -5,11 +5,11 @@ import static org.hamcrest.CoreMatchers.nullValue;
 import static org.junit.Assert.assertThat;
 import io.skysail.api.validation.DefaultValidationImpl;
 import io.skysail.server.app.crm.ContactsGen;
+import io.skysail.server.app.crm.domain.CompanyWithId;
 import io.skysail.server.app.crm.domain.companies.CompaniesRepository;
 import io.skysail.server.app.crm.domain.companies.Company;
 import io.skysail.server.app.crm.domain.companies.PutCompanyResource;
 import io.skysail.server.testsupport.AbstractShiroTest;
-import lombok.Getter;
 
 import org.junit.After;
 import org.junit.Before;
@@ -25,18 +25,6 @@ import org.restlet.data.Form;
 
 @RunWith(MockitoJUnitRunner.class)
 public class PutCompanyResourceTest extends AbstractShiroTest {
-
-    public class CompanyWithId extends Company {
-
-        @Getter
-        private String id;
-
-        public CompanyWithId(String creator, String id) {
-            super(creator);
-            this.id = id;
-        }
-
-    }
 
     @Rule
     public ExpectedException thrown = ExpectedException.none();

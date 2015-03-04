@@ -34,7 +34,9 @@ public class Persister extends AbstractDbAPI {
             Map<String, String> properties = BeanUtils.describe(entity);
             properties.keySet().stream().forEach(key -> {
                 if (!edges.contains(key)) {
-                    vertex.setProperty(key, properties.get(key));
+                    if (properties.get(key) != null) {
+                        vertex.setProperty(key, properties.get(key));
+                    }
                 } else {
                     OrientVertex target = db.getVertex(properties.get(key));
                     if (target != null) {

@@ -16,7 +16,7 @@ public class PutCompanyResource extends PutEntityServerResource<Company> {
     }
 
     @Override
-    public JSONObject getEntity3() {
+    public Company getEntity() {
         return CompaniesRepository.getInstance().getById(id);
     }
 
@@ -32,8 +32,4 @@ public class PutCompanyResource extends PutEntityServerResource<Company> {
         return new SkysailResponse<String>();
     }
 
-    @Override
-    public Company getEntity() {
-        return null;
-    }
 }

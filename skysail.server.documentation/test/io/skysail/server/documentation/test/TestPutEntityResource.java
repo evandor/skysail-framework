@@ -22,7 +22,7 @@ public class TestPutEntityResource extends PutEntityServerResource<String> {
     }
 
     @Override
-    public JSONObject getEntity3() {
+    public JSONObject getEntityAsJsonObject() {
         return null;
     }
 

@@ -1,18 +1,21 @@
 package io.skysail.server.testsupport;
 
-import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import org.apache.commons.beanutils.BeanUtils;
 import org.codehaus.jettison.json.JSONObject;
 
-import de.twenty11.skysail.server.core.db.GraphDbService;
+import de.twenty11.skysail.server.core.db.DbService2;
 
-public class InMemoryDbService implements GraphDbService {
+public class InMemoryDbService implements DbService2 {
 
+    /**
+     * Map ClassIdentifier -> ( Map Id -> Entity)
+     */
     Map<String, Map<String, Object>> db = new HashMap<>();
 
     @Override
@@ -43,7 +46,7 @@ public class InMemoryDbService implements GraphDbService {
         Object object = map.get(id);
         try {
             return new JSONObject(BeanUtils.describe(object));
-        } catch (IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return null;
@@ -51,7 +54,8 @@ public class InMemoryDbService implements GraphDbService {
 
     @Override
     public List<String> getAll(Class<?> cls, String username) {
-        return null;
+        Map<String, Object> map = db.get(cls.getSimpleName());
+        return map.values().stream().map(o -> o.toString()).collect(Collectors.toList());
     }
 
     @Override
@@ -61,6 +65,12 @@ public class InMemoryDbService implements GraphDbService {
 
     @Override
     public void update(JSONObject json) {
+    }
+
+    @Override
+    public <T> T findObjectById(Class<?> cls, String id) {
+        // TODO Auto-generated method stub
+        return null;
     }
 
 }

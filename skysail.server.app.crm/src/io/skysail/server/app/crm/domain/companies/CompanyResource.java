@@ -2,7 +2,6 @@ package io.skysail.server.app.crm.domain.companies;
 
 import java.util.List;
 
-import org.codehaus.jettison.json.JSONObject;
 import org.restlet.resource.ResourceException;
 
 import de.twenty11.skysail.api.responses.Linkheader;
@@ -19,7 +18,7 @@ public class CompanyResource extends EntityServerResource<Company> {
     }
 
     @Override
-    public JSONObject getAsJson() {
+    public Company getEntity() {
         return CompaniesRepository.getInstance().getById(id);
     }
 
@@ -37,11 +36,6 @@ public class CompanyResource extends EntityServerResource<Company> {
     @Override
     public List<Linkheader> getLinkheader() {
         return super.getLinkheader(PutCompanyResource.class);
-    }
-
-    @Override
-    public Company getEntity() {
-        return null;
     }
 
 }

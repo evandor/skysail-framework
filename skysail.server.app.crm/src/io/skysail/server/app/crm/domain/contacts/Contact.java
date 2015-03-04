@@ -9,14 +9,16 @@ import java.util.List;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import de.twenty11.skysail.api.forms.Field;
 import de.twenty11.skysail.api.forms.InputType;
 import de.twenty11.skysail.api.forms.Reference;
 
-@Data
 @NoArgsConstructor
+@Getter
+@Setter
 public class Contact extends CrmEntity {
 
     public Contact(String creator) {

@@ -163,6 +163,11 @@ public abstract class PostEntityServerResource<T> extends SkysailServerResource<
         return entity;
     }
 
+    /**
+     * 
+     * @param entity
+     * @return
+     */
     @Post("json")
     @API(desc = "generic POST for JSON")
     public Object post(T entity) {
@@ -179,10 +184,25 @@ public abstract class PostEntityServerResource<T> extends SkysailServerResource<
         return post;
     }
 
-    @Post("x-www-form-urlencoded:html|json|xml")
+    /**
+     * handles a x-www-form-urlencoded POST to this resource.
+     * 
+     * @param form
+     * @return
+     */
+    @Post("x-www-form-urlencoded:html")
     @API(desc = "generic POST for x-www-form-urlencoded")
     public Object post(Form form) {
         EtmPoint point = etmMonitor.createPoint("PostEntityServerResource:postForm");
+        ResponseWrapper<T> handledRequest = doPost(form);
+        point.collect();
+        if (handledRequest.getConstraintViolationsResponse() != null) {
+            return handledRequest.getConstraintViolationsResponse();
+        }
+        return handledRequest.getEntity();
+    }
+
+    private ResponseWrapper<T> doPost(Form form) {
         logger.info("Request entry point: {} @Post('x-www-form-urlencoded:html|json|xml')", this.getClass()
                 .getSimpleName());
         ClientInfo ci = getRequest().getClientInfo();
@@ -194,11 +214,7 @@ public abstract class PostEntityServerResource<T> extends SkysailServerResource<
         AbstractResourceFilter<PostEntityServerResource<T>, T> handler = requestHandler.createForPost();
         getResponse().setStatus(Status.SUCCESS_CREATED);
         ResponseWrapper<T> handledRequest = handler.handle(this, getResponse());
-        point.collect();
-        if (handledRequest.getConstraintViolationsResponse() != null) {
-            return handledRequest.getConstraintViolationsResponse();
-        }
-        return handledRequest.getEntity();
+        return handledRequest;
     }
 
     @Override

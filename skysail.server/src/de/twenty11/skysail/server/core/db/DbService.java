@@ -8,6 +8,7 @@ import aQute.bnd.annotation.ProviderType;
 import com.orientechnologies.orient.core.sql.query.OSQLSynchQuery;
 
 @ProviderType
+@Deprecated
 public interface DbService {
 
     void register(Class<?>... entities);

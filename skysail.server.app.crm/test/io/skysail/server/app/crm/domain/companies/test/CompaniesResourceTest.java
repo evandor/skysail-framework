@@ -5,12 +5,11 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 import io.skysail.api.validation.DefaultValidationImpl;
 import io.skysail.server.app.crm.ContactsGen;
+import io.skysail.server.app.crm.domain.CompanyWithId;
 import io.skysail.server.app.crm.domain.companies.CompaniesRepository;
 import io.skysail.server.app.crm.domain.companies.CompaniesResource;
-import io.skysail.server.app.crm.domain.companies.Company;
 import io.skysail.server.testsupport.AbstractShiroTest;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.After;
@@ -63,10 +62,7 @@ public class CompaniesResourceTest extends AbstractShiroTest {
 
     @Test
     public void html_request_retrieves_data_from_dbService() {
-        List<String> companies = new ArrayList<>();
-        companies.add("testcompany");
-        Mockito.when(dbService.getAll(Company.class, "admin")).thenReturn(companies);
-
+        dbService.persist(new CompanyWithId("admin", "7"));
         Variant variant = new Variant(MediaType.TEXT_HTML);
         List<String> entities = resource.getAsJson(variant);
         assertThat(entities.size(), is(1));

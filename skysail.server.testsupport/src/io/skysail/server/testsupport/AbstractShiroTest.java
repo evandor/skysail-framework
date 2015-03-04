@@ -26,12 +26,12 @@ import org.restlet.data.Form;
 import org.restlet.data.Reference;
 
 import de.twenty11.skysail.api.responses.ConstraintViolationsResponse;
-import de.twenty11.skysail.server.core.db.GraphDbService;
+import de.twenty11.skysail.server.core.db.DbService2;
 
 public class AbstractShiroTest {
     private static ThreadState subjectThreadState;
 
-    protected GraphDbService dbService;
+    protected DbService2 dbService;
     protected ConcurrentMap<String, Object> attributes;
     protected Form form;
     protected Response response;

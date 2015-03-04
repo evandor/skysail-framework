@@ -9,14 +9,14 @@ import aQute.bnd.annotation.component.Component;
 import aQute.bnd.annotation.component.Deactivate;
 import aQute.bnd.annotation.component.Reference;
 import de.twenty11.skysail.server.core.db.DbService;
-import de.twenty11.skysail.server.core.db.GraphDbService;
+import de.twenty11.skysail.server.core.db.DbService2;
 
 @Component
 public class ContactsRepository {
 
     private static ContactsRepository instance;
 
-    private GraphDbService dbService;
+    private DbService2 dbService;
 
     public static ContactsRepository getInstance() {
         // for tests
@@ -37,7 +37,7 @@ public class ContactsRepository {
     }
 
     @Reference
-    public void setDbService(GraphDbService dbService) {
+    public void setDbService(DbService2 dbService) {
         this.dbService = dbService;
     }
 
@@ -53,9 +53,10 @@ public class ContactsRepository {
     // return dbService.findAll(Contact.class);
     // }
     //
-    // public Contact getById(String id) {
-    // return dbService.find(id, Contact.class);
-    // }
+    public Contact getById(String id) {
+        return dbService.findObjectById(Contact.class, id);
+    }
+
     //
     // public void update(Contact entity) {
     // dbService.update(entity);

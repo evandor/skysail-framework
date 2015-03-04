@@ -23,6 +23,7 @@ import com.orientechnologies.orient.core.Orient;
 import com.orientechnologies.orient.core.db.ODatabaseRecordThreadLocal;
 import com.orientechnologies.orient.core.db.document.ODatabaseDocumentTx;
 import com.orientechnologies.orient.core.id.ORID;
+import com.orientechnologies.orient.core.id.ORecordId;
 import com.orientechnologies.orient.core.record.ORecord;
 import com.orientechnologies.orient.core.record.impl.ODocument;
 import com.orientechnologies.orient.core.sql.query.OSQLSynchQuery;
@@ -34,7 +35,7 @@ import com.tinkerpop.blueprints.impls.orient.OrientVertex;
 import com.tinkerpop.blueprints.util.io.graphson.GraphSONMode;
 import com.tinkerpop.blueprints.util.io.graphson.GraphSONUtility;
 
-import de.twenty11.skysail.server.core.db.GraphDbService;
+import de.twenty11.skysail.server.core.db.DbService2;
 import de.twenty11.skysail.server.db.orientdb.impl.Persister;
 import de.twenty11.skysail.server.db.orientdb.impl.Updater;
 import de.twenty11.skysail.server.events.EventHandler;
@@ -42,7 +43,7 @@ import de.twenty11.skysail.server.events.SkysailEvents;
 
 @Component(immediate = true)
 @Slf4j
-public class OrientGraphDbService extends AbstractOrientDbService implements GraphDbService {
+public class OrientGraphDbService extends AbstractOrientDbService implements DbService2 {
 
     private OrientGraphFactory graphDbFactory;
 
@@ -114,8 +115,11 @@ public class OrientGraphDbService extends AbstractOrientDbService implements Gra
         OrientGraph db = getDb();
         OrientVertex vertex = db.getVertex(id);
         ORID identity = vertex.getIdentity();
-        ORecord loaded = db.getRawGraph().load(identity);
-        System.out.println(loaded);
+        ORecord load = getDocumentDb().load(identity);
+        ORecord load2 = db.getRawGraph().load(identity);
+        OObjectDatabaseTx objectDb = getObjectDb();
+        objectDb.getEntityManager().registerEntityClass(cls);
+        Object load3 = objectDb.load(identity);
         try {
             return new GraphSONUtility(GraphSONMode.NORMAL, null).jsonFromElement(vertex);
         } catch (JSONException e) {
@@ -125,11 +129,10 @@ public class OrientGraphDbService extends AbstractOrientDbService implements Gra
     }
 
     @Override
-    public ODocument findDocument(Class<?> cls, String id) {
-        OrientGraph db = getDb();
-        OrientVertex vertex = db.getVertex(id);
-        ORID identity = vertex.getIdentity();
-        return (ODocument) db.getRawGraph().load(identity);
+    public <T> T findObjectById(Class<?> cls, String id) {
+        OObjectDatabaseTx objectDb = getObjectDb();
+        objectDb.getEntityManager().registerEntityClass(cls);
+        return objectDb.load(new ORecordId(id));
     }
 
     // @Override
@@ -194,6 +197,19 @@ public class OrientGraphDbService extends AbstractOrientDbService implements Gra
 
     private OrientGraph getDb() {
         return graphDbFactory.getTx();
+    }
+
+    private ODatabaseDocumentTx getDocumentDb() {
+        ODatabaseDocumentTx db = new ODatabaseDocumentTx(getDbUrl()).open("admin", "admin");
+        // ODatabaseRecordThreadLocal.INSTANCE.set(db.getUnderlying());
+        return db;
+    }
+
+    private OObjectDatabaseTx getObjectDb() {
+        OObjectDatabaseTx db = OObjectDatabasePool.global().acquire(getDbUrl(), "admin", "admin");
+
+        // ODatabaseRecordThreadLocal.INSTANCE.set(db.getUnderlying());
+        return db;
     }
 
 }

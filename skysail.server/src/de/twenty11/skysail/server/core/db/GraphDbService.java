@@ -7,6 +7,8 @@ import org.codehaus.jettison.json.JSONObject;
 
 import aQute.bnd.annotation.ProviderType;
 
+import com.orientechnologies.orient.core.record.impl.ODocument;
+
 @ProviderType
 public interface GraphDbService {
 
@@ -19,5 +21,7 @@ public interface GraphDbService {
     List<Map<String, Object>> getAllAsMap(Class<?> cls, String username);
 
     void update(JSONObject json);
+
+    ODocument findDocument(Class<?> cls, String id);
 
 }

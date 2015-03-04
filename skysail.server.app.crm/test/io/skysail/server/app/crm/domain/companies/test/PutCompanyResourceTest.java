@@ -23,8 +23,6 @@ import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
 import org.restlet.data.Form;
 
-import de.twenty11.skysail.api.responses.ConstraintViolationsResponse;
-
 @RunWith(MockitoJUnitRunner.class)
 public class PutCompanyResourceTest extends AbstractShiroTest {
 
@@ -68,7 +66,7 @@ public class PutCompanyResourceTest extends AbstractShiroTest {
     public void missing_name_yields_failed_validation() {
         Company myCompany = new CompanyWithId("admin", "7");
         dbService.persist(myCompany);
-        Object result = (ConstraintViolationsResponse<?>) resource.put(form);
+        Object result = resource.put(form);
 
         assertThat(response.getStatus().getCode(), is(200));
         assertThat(response.getHeaders().getFirst("X-Status-Reason"), is(nullValue()));

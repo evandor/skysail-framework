@@ -22,6 +22,8 @@ import com.orientechnologies.orient.client.remote.OEngineRemote;
 import com.orientechnologies.orient.core.Orient;
 import com.orientechnologies.orient.core.db.ODatabaseRecordThreadLocal;
 import com.orientechnologies.orient.core.db.document.ODatabaseDocumentTx;
+import com.orientechnologies.orient.core.id.ORID;
+import com.orientechnologies.orient.core.record.ORecord;
 import com.orientechnologies.orient.core.record.impl.ODocument;
 import com.orientechnologies.orient.core.sql.query.OSQLSynchQuery;
 import com.orientechnologies.orient.object.db.OObjectDatabasePool;
@@ -111,12 +113,23 @@ public class OrientGraphDbService extends AbstractOrientDbService implements Gra
     public <T> JSONObject find(Class<?> cls, String id) {
         OrientGraph db = getDb();
         OrientVertex vertex = db.getVertex(id);
+        ORID identity = vertex.getIdentity();
+        ORecord loaded = db.getRawGraph().load(identity);
+        System.out.println(loaded);
         try {
             return new GraphSONUtility(GraphSONMode.NORMAL, null).jsonFromElement(vertex);
         } catch (JSONException e) {
             log.error(e.getMessage(), e);
             return null;
         }
+    }
+
+    @Override
+    public <T> ODocument findDocument(Class<?> cls, String id) {
+        OrientGraph db = getDb();
+        OrientVertex vertex = db.getVertex(id);
+        ORID identity = vertex.getIdentity();
+        return (ODocument) db.getRawGraph().load(identity);
     }
 
     // @Override

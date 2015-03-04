@@ -28,6 +28,12 @@ public class CrmEntity {
     @Field(type = InputType.READONLY, listView = ListView.HIDE)
     protected Date created;
 
+    @Field(type = InputType.READONLY)
+    protected Date changed;
+
+    @Field(type = InputType.READONLY, listView = ListView.HIDE)
+    protected String changedBy;
+
     @Field(type = InputType.READONLY, listView = ListView.HIDE)
     protected String owner;
 

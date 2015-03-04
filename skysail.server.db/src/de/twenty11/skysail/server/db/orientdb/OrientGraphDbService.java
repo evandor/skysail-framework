@@ -125,7 +125,7 @@ public class OrientGraphDbService extends AbstractOrientDbService implements Gra
     }
 
     @Override
-    public <T> ODocument findDocument(Class<?> cls, String id) {
+    public ODocument findDocument(Class<?> cls, String id) {
         OrientGraph db = getDb();
         OrientVertex vertex = db.getVertex(id);
         ORID identity = vertex.getIdentity();

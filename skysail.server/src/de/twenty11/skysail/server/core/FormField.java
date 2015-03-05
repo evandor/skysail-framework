@@ -10,12 +10,10 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 
+import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 
-import org.codehaus.jettison.json.JSONException;
-import org.codehaus.jettison.json.JSONObject;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.commons.beanutils.DynaProperty;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -29,32 +27,43 @@ import de.twenty11.skysail.api.forms.SelectionProvider;
 import de.twenty11.skysail.api.responses.ConstraintViolationDetails;
 import de.twenty11.skysail.api.responses.ConstraintViolationsResponse;
 import de.twenty11.skysail.api.responses.SkysailResponse;
+import de.twenty11.skysail.server.beans.DynamicEntity;
 import de.twenty11.skysail.server.core.restlet.MessagesUtils;
 import de.twenty11.skysail.server.services.UserManager;
 import de.twenty11.skysail.server.um.domain.SkysailUser;
 
+/**
+ * A FormField instance encapsulates information which can be used to display a
+ * single field in a (web) form.
+ *
+ */
 @Slf4j
 public class FormField {
 
-    private static final Logger logger = LoggerFactory.getLogger(FormField.class);
-
     private final ObjectMapper mapper = new ObjectMapper();
 
-    private Field reflectionField;
-    private Object source;
+    /** the fields name or identifier. */
+    @Getter
+    private String name;
+
+    /** the value to be passed to the GUI renderer. */
+    @Getter
     private String value;
 
-    // maybe pass this in the constructor...
+    private Object source;
     private Class<?> type;
-
     private Object entity;
-
     private Class<?> cls;
 
-    private JSONObject json;
+    private InputType inputType;
+    private Reference referenceAnnotation;
+    private de.twenty11.skysail.api.forms.Field formFieldAnnotation;
 
     public FormField(Field fieldAnnotation, UserManager userManager, Object source, Object entity) {
-        this.reflectionField = fieldAnnotation;
+        this.name = fieldAnnotation.getName();
+        inputType = getFromFieldAnnotation(fieldAnnotation);
+        referenceAnnotation = fieldAnnotation.getAnnotation(Reference.class);
+        formFieldAnnotation = fieldAnnotation.getAnnotation(de.twenty11.skysail.api.forms.Field.class);
         this.source = source;
         this.entity = entity;
 
@@ -74,7 +83,7 @@ public class FormField {
                     value = userManager.findById(value).getUsername();
                 }
             } catch (Exception e) {
-                logger.error(e.getMessage(), e);
+                log.error(e.getMessage(), e);
             }
         } else {
             String method = "get" + fieldAnnotation.getName().substring(0, 1).toUpperCase()
@@ -93,29 +102,18 @@ public class FormField {
                         value = invocationResult.toString();
                     }
                 } catch (Exception e) {
-                    logger.error(e.getMessage(), e);
+                    log.error(e.getMessage(), e);
                 }
             });
         }
     }
 
-    public FormField(Field fieldAnnotation, UserManager userManager, Object source, JSONObject json, Class<?> cls) {
-        this.reflectionField = fieldAnnotation;
-        this.source = source;
-        this.json = json;
-        this.cls = cls;
-
-        try {
-            value = json.getString(fieldAnnotation.getName());
-        } catch (JSONException e) {
-            log.error(e.getMessage(), e);
-            value = "";
-        }
-
-    }
-
-    public Field getFieldAnnotation() {
-        return reflectionField;
+    public FormField(DynamicEntity dynamicBean, DynaProperty d) {
+        this.name = d.getName();
+        Object valueOrNull = dynamicBean.getInstance().get(name);
+        this.value = valueOrNull == null ? null : valueOrNull.toString();
+        this.inputType = InputType.TEXT;
+        this.cls = dynamicBean.getClass();
     }
 
     public Object getEntity() {
@@ -125,20 +123,12 @@ public class FormField {
         return entity;// source.getEntity();
     }
 
-    public String getName() {
-        return reflectionField.getName();
-    }
-
-    public String getValue() {
-        return value;
-    }
-
     public Class<?> getCls() {
         return cls;
     }
 
     public String getInputType() {
-        return reflectionField.getAnnotation(de.twenty11.skysail.api.forms.Field.class).type().name().toLowerCase();
+        return inputType.name().toLowerCase();
     }
 
     public String getMessageKey() {
@@ -174,20 +164,17 @@ public class FormField {
     }
 
     public boolean isTextareaInputType() {
-        return InputType.TEXTAREA.equals(reflectionField.getAnnotation(de.twenty11.skysail.api.forms.Field.class)
-                .type());
+        return InputType.TEXTAREA.equals(inputType);
     }
 
     public boolean isSelectionProvider() {
-        de.twenty11.skysail.api.forms.Field fieldAnnotation = reflectionField
-                .getAnnotation(de.twenty11.skysail.api.forms.Field.class);
-        if (fieldAnnotation != null) {
-            Class<? extends SelectionProvider> selectionProvider = fieldAnnotation.selectionProvider();
+
+        if (formFieldAnnotation != null) {
+            Class<? extends SelectionProvider> selectionProvider = formFieldAnnotation.selectionProvider();
             if (!(selectionProvider.equals(IgnoreSelectionProvider.class))) {
                 return true;
             }
         }
-        Reference referenceAnnotation = reflectionField.getAnnotation(Reference.class);
         if (referenceAnnotation == null) {
             return false;
         }
@@ -201,13 +188,11 @@ public class FormField {
         if (!isSelectionProvider()) {
             throw new IllegalAccessError("not a selection provider");
         }
-        de.twenty11.skysail.api.forms.Field annotation = reflectionField
-                .getAnnotation(de.twenty11.skysail.api.forms.Field.class);
         Class<? extends SelectionProvider> selectionProvider = null;
-        if (annotation != null) {
-            selectionProvider = annotation.selectionProvider();
+        if (formFieldAnnotation != null) {
+            selectionProvider = formFieldAnnotation.selectionProvider();
         }
-        Reference referenceAnnotation = reflectionField.getAnnotation(Reference.class);
+
         if (referenceAnnotation != null) {
             selectionProvider = referenceAnnotation.selectionProvider();
         }
@@ -220,7 +205,7 @@ public class FormField {
             selection = (SelectionProvider) method.invoke(selectionProvider, new Object[] {});
             return selection.getSelections();
         } catch (Exception e) {
-            logger.error(e.getMessage(), e);
+            log.error(e.getMessage(), e);
         }
         return Collections.emptyMap();
     }
@@ -229,7 +214,7 @@ public class FormField {
         if (!(source instanceof ConstraintViolationsResponse)) {
             return null;
         }
-        String fieldName = getFieldAnnotation().getName();
+        String fieldName = getName();
         Set<ConstraintViolationDetails> violations = ((ConstraintViolationsResponse<?>) source).getViolations();
         Optional<String> validationMessage = violations.stream().filter(v -> v.getPropertyPath().equals(fieldName))
                 .map(v -> v.getMessage()).findFirst();
@@ -237,17 +222,23 @@ public class FormField {
     }
 
     private boolean isOfInputType(InputType inputType) {
-        return inputType.equals(reflectionField.getAnnotation(de.twenty11.skysail.api.forms.Field.class).type());
+        return this.inputType.equals(inputType);
     }
 
     private boolean checkTypeFor(Class<?> cls) {
         return this.type != null && this.type.equals(cls);
     }
 
+    private InputType getFromFieldAnnotation(Field fieldAnnotation) {
+        de.twenty11.skysail.api.forms.Field annotation = fieldAnnotation
+                .getAnnotation(de.twenty11.skysail.api.forms.Field.class);
+        return annotation != null ? annotation.type() : null;
+    }
+
     @Override
     public String toString() {
-        return new StringBuilder("FormField: [").append(value).append("], isReadonly: ").append(isReadonlyInputType())
-                .append(", isTextareaInputType: ").append(isTextareaInputType())
+        return new StringBuilder("FormField: [").append(name).append("=").append(value).append("], isReadonly: ")
+                .append(isReadonlyInputType()).append(", isTextareaInputType: ").append(isTextareaInputType())
                 .append(", isMarkdownEditorInputType: ").append(isMarkdownEditorInputType())
                 .append(", isSelectionProvider: ").append(isSelectionProvider()).append(", isTagsInputType: ")
                 .append(isTagsInputType()).toString();

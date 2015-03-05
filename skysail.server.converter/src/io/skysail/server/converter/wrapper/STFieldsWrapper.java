@@ -6,9 +6,10 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
 
-import de.twenty11.skysail.api.forms.InputType;
+import lombok.ToString;
 import de.twenty11.skysail.server.core.FormField;
 
+@ToString(of = { "fields" })
 public class STFieldsWrapper implements List<FormField> {
 
     private List<FormField> fields = new ArrayList<>();
@@ -18,13 +19,9 @@ public class STFieldsWrapper implements List<FormField> {
     }
 
     public boolean hasMarkdownEditor() {
-        return fields
-                .stream()
-                .filter(f -> {
-                    de.twenty11.skysail.api.forms.Field fieldAnnotation = f.getFieldAnnotation().getDeclaredAnnotation(
-                            de.twenty11.skysail.api.forms.Field.class);
-                    return fieldAnnotation.type().equals(InputType.MARKDOWN_EDITOR);
-                }).findFirst().isPresent();
+        return fields.stream().filter(f -> {
+            return f.isMarkdownEditorInputType();
+        }).findFirst().isPresent();
     }
 
     @Override

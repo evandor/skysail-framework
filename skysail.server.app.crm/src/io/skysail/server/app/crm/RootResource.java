@@ -2,6 +2,7 @@ package io.skysail.server.app.crm;
 
 import io.skysail.server.app.crm.domain.companies.CompaniesResource;
 import io.skysail.server.app.crm.domain.contacts.ContactsResource;
+import io.skysail.server.app.crm.domain.contracts.ContractsResource;
 
 import java.util.List;
 
@@ -13,7 +14,7 @@ public class RootResource extends ListServerResource<String> {
 
     @Override
     public List<Linkheader> getLinkheader() {
-        return super.getLinkheader(CompaniesResource.class, ContactsResource.class);
+        return super.getLinkheader(CompaniesResource.class, ContactsResource.class, ContractsResource.class);
     }
 
 }

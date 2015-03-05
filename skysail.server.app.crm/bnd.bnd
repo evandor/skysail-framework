@@ -44,7 +44,8 @@ Include-Resource: resources, templates=src;recursive:=true;filter:=*.st|*.stg
 	classmate;version=1.0,\
 	org.apache.commons.logging;version=1.1,\
 	org.apache.commons.lang3;version=3.3,\
-	org.apache.commons.lang;version=2.6
+	org.apache.commons.lang;version=2.6,\
+	org.apache.commons.collections;version=3.2
 Import-Package: org.osgi.framework,\
 	javassist.util.proxy,\
 	*
@@ -53,4 +54,5 @@ Private-Package:  \
 	io.skysail.server.app.crm,\
 	io.skysail.server.app.crm.domain,\
 	io.skysail.server.app.crm.domain.companies,\
-	io.skysail.server.app.crm.domain.contacts
+	io.skysail.server.app.crm.domain.contacts,\
+	io.skysail.server.app.crm.domain.contracts

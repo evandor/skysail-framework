@@ -48,7 +48,7 @@ handleConstraintViolationField(resource, source, formField, messages,i,autofocus
         <div class='form-group'>
           $label("", formField)$
           <div class='col-sm-10'>
-            <select name='$field.fieldAnnotation.name$' tabindex="$i$">
+            <select name='$field.name$' tabindex="$i$">
                 $field.selectionProviderOptions.keys: {key | $options(field.selectionProviderOptions,key)$}$
             </select>
           </div>
@@ -71,44 +71,44 @@ handleInputField(resource, source, field, messages,i,autofocus) ::= <<
   $if(!field.readonlyInputType)$
       $if(field.tagsInputType)$
         <div class='form-group'>
-          <label for='s2id_$field.fieldAnnotation.name$' class='col-sm-2 control-label' style="text-align: left;">$helpmessage(messages, field.nameKey)$ $if(converter.edit)$<a href='/i18n/messages/$source.entity.entity.class.name$.$field.fieldAnnotation.name$/'><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>$endif$</label>
+          <label for='s2id_$field.name$' class='col-sm-2 control-label' style="text-align: left;">$helpmessage(messages, field.nameKey)$ $if(converter.edit)$<a href='/i18n/messages/$source.entity.entity.class.name$.$field.name$/'><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>$endif$</label>
           <div class='col-sm-10'>
-            <input type = 'hidden' name = '$field.fieldAnnotation.name$' id = '$field.fieldAnnotation.name$' value='$field.value$' tabindex="$i$" $autofocus$/>
-            <small class="help-block">$helpmessage(messages, field.messageKey)$ $if(converter.edit)$ <a href='/i18n/messages/$source.entity.entity.class.name$.$field.fieldAnnotation.name$.desc/'><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>$endif$</small>
+            <input type = 'hidden' name = '$field.name$' id = '$field.name$' value='$field.value$' tabindex="$i$" $autofocus$/>
+            <small class="help-block">$helpmessage(messages, field.messageKey)$ $if(converter.edit)$ <a href='/i18n/messages/$source.entity.entity.class.name$.$field.name$.desc/'><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>$endif$</small>
           </div>
         </div>
       $elseif(field.textareaInputType)$
         <div class='form-group'>
-          <label for='$field.fieldAnnotation.name$' class='col-sm-2 control-label' style="text-align: left;">$helpmessage(messages, field.nameKey)$ $if(converter.edit)$<a href='/i18n/messages/$source.entity.entity.class.name$.$field.fieldAnnotation.name$/'><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>$endif$</label>
+          <label for='$field.name$' class='col-sm-2 control-label' style="text-align: left;">$helpmessage(messages, field.nameKey)$ $if(converter.edit)$<a href='/i18n/messages/$source.entity.entity.class.name$.$field.name$/'><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>$endif$</label>
           <div class='col-sm-10'>
-            <textarea class='form-control' rows=3 name='$field.fieldAnnotation.name$' id='$field.fieldAnnotation.name$' tabindex="$i$" $autofocus$>$field.value$</textarea>
-            <small class="help-block">$helpmessage(messages, field.messageKey)$ $if(converter.edit)$<a href='/i18n/messages/$source.entity.entity.class.name$.$field.fieldAnnotation.name$.desc/'><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>$endif$</small>
+            <textarea class='form-control' rows=3 name='$field.name$' id='$field.name$' tabindex="$i$" $autofocus$>$field.value$</textarea>
+            <small class="help-block">$helpmessage(messages, field.messageKey)$ $if(converter.edit)$<a href='/i18n/messages/$source.entity.entity.class.name$.$field.name$.desc/'><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>$endif$</small>
           </div>
         </div>
       $elseif(field.markdownEditorInputType)$
         <div class='form-group'>
-          <label for='$field.fieldAnnotation.name$' class='col-sm-2 control-label' style="text-align: left;">$helpmessage(messages, field.nameKey)$  $if(converter.edit)$<a href='/i18n/messages/$source.entity.entity.class.name$.$field.fieldAnnotation.name$/'><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>$endif$</label>
+          <label for='$field.name$' class='col-sm-2 control-label' style="text-align: left;">$helpmessage(messages, field.nameKey)$  $if(converter.edit)$<a href='/i18n/messages/$source.entity.entity.class.name$.$field.name$/'><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>$endif$</label>
           <div class='col-sm-10'>
-            <textarea data-uk-htmleditor="{maxsplitsize:600, markdown:true}" name='$field.fieldAnnotation.name$' id='$field.fieldAnnotation.name$' tabindex="$i$" $autofocus$>$field.value$</textarea>
-            <small class="help-block">$helpmessage(messages, field.messageKey)$  $if(converter.edit)$ <a href='/i18n/messages/$source.entity.entity.class.name$.$field.fieldAnnotation.name$.desc/'><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>$endif$</small>
+            <textarea data-uk-htmleditor="{maxsplitsize:600, markdown:true}" name='$field.name$' id='$field.name$' tabindex="$i$" $autofocus$>$field.value$</textarea>
+            <small class="help-block">$helpmessage(messages, field.messageKey)$  $if(converter.edit)$ <a href='/i18n/messages/$source.entity.entity.class.name$.$field.name$.desc/'><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>$endif$</small>
           </div>
         </div>
       $elseif(field.selectionProvider)$
         <div class='form-group'>
-          <label for='$field.fieldAnnotation.name$' class='col-sm-2 control-label' style="text-align: left;">$helpmessage(messages, field.nameKey)$  $if(converter.edit)$<a href='/i18n/messages/$source.entity.entity.class.name$.$field.fieldAnnotation.name$/'><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>$endif$</label>
+          <label for='$field.name$' class='col-sm-2 control-label' style="text-align: left;">$helpmessage(messages, field.nameKey)$  $if(converter.edit)$<a href='/i18n/messages/$source.entity.entity.class.name$.$field.name$/'><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>$endif$</label>
           <div class='col-sm-10'>
-            <select name='$field.fieldAnnotation.name$' tabindex="$i$"  $autofocus$>
+            <select name='$field.name$' tabindex="$i$"  $autofocus$>
                 $field.selectionProviderOptions.keys: {key | $options(field.selectionProviderOptions,key)$}$
             </select>
-            <small class="help-block">$helpmessage(messages, field.messageKey)$ $if(converter.edit)$ <a href='/i18n/messages/$source.entity.entity.class.name$.$field.fieldAnnotation.name$.desc/'><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>$endif$</small>
+            <small class="help-block">$helpmessage(messages, field.messageKey)$ $if(converter.edit)$ <a href='/i18n/messages/$source.entity.entity.class.name$.$field.name$.desc/'><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>$endif$</small>
           </div>
         </div>
       $else$
         <div class='form-group'>
-          <label for='$field.fieldAnnotation.name$' class='col-sm-2 control-label' style="text-align: left;">$helpmessage(messages, field.nameKey)$  $if(converter.edit)$<a href='/i18n/messages/$source.entity.entity.class.name$.$field.fieldAnnotation.name$/'><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>$endif$</label>
+          <label for='$field.name$' class='col-sm-2 control-label' style="text-align: left;">$helpmessage(messages, field.nameKey)$  $if(converter.edit)$<a href='/i18n/messages/$source.entity.entity.class.name$.$field.name$/'><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>$endif$</label>
           <div class='col-sm-10'>
-            <input type="$field.inputType$" class='form-control' name='$field.fieldAnnotation.name$' id='$field.fieldAnnotation.name$' placeholder='$helpmessage(messages, field.placeholderKey)$' value='$field.value$' tabindex="$i$" $autofocus$>
-            <small class="help-block">$helpmessage(messages, field.messageKey)$  $if(converter.edit)$ <a href='/i18n/messages/$source.entity.entity.class.name$.$field.fieldAnnotation.name$.desc/'><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>$endif$</small>
+            <input type="$field.inputType$" class='form-control' name='$field.name$' id='$field.name$' placeholder='$helpmessage(messages, field.placeholderKey)$' value='$field.value$' tabindex="$i$" $autofocus$>
+            <small class="help-block">$helpmessage(messages, field.messageKey)$  $if(converter.edit)$ <a href='/i18n/messages/$source.entity.entity.class.name$.$field.name$.desc/'><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>$endif$</small>
           </div>
         </div>
       $endif$    
@@ -116,7 +116,7 @@ handleInputField(resource, source, field, messages,i,autofocus) ::= <<
 >>
 
 label(prefix, formField) ::= <<
-      <label for='$prefix$$formField.fieldAnnotation.name$' class='col-sm-2 control-label' style="text-align: left;">$helpmessage(messages, field.nameKey)$ $if(converter.edit)$<a href='/i18n/messages/$source.entity.entity.class.name$.$field.fieldAnnotation.name$/'><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>$endif$</label>
+      <label for='$prefix$$formField.fieldAnnotation.name$' class='col-sm-2 control-label' style="text-align: left;">$helpmessage(messages, field.nameKey)$ $if(converter.edit)$<a href='/i18n/messages/$source.entity.entity.class.name$.$field.name$/'><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>$endif$</label>
 >>
 
 helpmessage(messages, identifier) ::= <<

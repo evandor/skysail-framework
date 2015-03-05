@@ -9,6 +9,7 @@ Export-Package:  \
 	de.twenty11.skysail.server.validation,\
 	de.twenty11.skysail.server.persistence,\
 	io.skysail.server.features.repositories,\
+	de.twenty11.skysail.server.beans,\
 	de.twenty11.skysail.server.core,\
 	de.twenty11.skysail.server.core.db,\
 	de.twenty11.skysail.server.um.domain,\

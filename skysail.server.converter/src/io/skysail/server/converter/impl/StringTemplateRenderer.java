@@ -20,8 +20,8 @@ import java.util.stream.Collectors;
 
 import lombok.extern.slf4j.Slf4j;
 
+import org.apache.commons.beanutils.DynaProperty;
 import org.apache.shiro.SecurityUtils;
-import org.codehaus.jettison.json.JSONObject;
 import org.osgi.framework.Bundle;
 import org.restlet.data.MediaType;
 import org.restlet.representation.StringRepresentation;
@@ -37,6 +37,7 @@ import de.twenty11.skysail.api.responses.LinkheaderRole;
 import de.twenty11.skysail.api.responses.SkysailResponse;
 import de.twenty11.skysail.server.app.SkysailApplication;
 import de.twenty11.skysail.server.app.SourceWrapper;
+import de.twenty11.skysail.server.beans.DynamicEntity;
 import de.twenty11.skysail.server.core.FormField;
 import de.twenty11.skysail.server.core.restlet.EntityServerResource;
 import de.twenty11.skysail.server.core.restlet.ListServerResource;
@@ -197,23 +198,34 @@ public class StringTemplateRenderer {
             decl.add("source", new STSourceWrapper(source));
             if (source != null && (source instanceof SkysailResponse)) {
                 Object entity = ((SkysailResponse<?>) source).getEntity();
-                if (entity != null) {
+                // if (entity != null) {
+                if (entity instanceof DynamicEntity) {
+                    DynaProperty[] dynaProperties = ((DynamicEntity) entity).getInstance().getDynaClass()
+                            .getDynaProperties();
+                    fields = Arrays.stream(dynaProperties).map(d -> {
+                        return new FormField((DynamicEntity) entity, d);
+                    }).collect(Collectors.toList());
+                } else {
                     fields = ReflectionUtils.getInheritedFields(entity.getClass()).stream()
                             //
                             .filter(f -> test(resource, f))
                             .map(f -> new FormField(f, userManager, source, ((SkysailResponse<?>) source).getEntity()))//
                             .collect(Collectors.toList());
-                } else {
-                    JSONObject jsonObject = ((SkysailResponse<?>) source).getJson();
-                    try {
-                        Class<?> cls = ((SkysailResponse<?>) source).getCls();
-                        fields = ReflectionUtils.getInheritedFields(cls).stream().filter(f -> test(resource, f))
-                                .map(f -> new FormField(f, userManager, source, jsonObject, cls))//
-                                .collect(Collectors.toList());
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                }
+                }// } else {
+                 // JSONObject jsonObject = ((SkysailResponse<?>)
+                 // source).getJson();
+                 // try {
+                 // Class<?> cls = ((SkysailResponse<?>) source).getCls();
+                 // fields =
+                 // ReflectionUtils.getInheritedFields(cls).stream().filter(f ->
+                 // test(resource, f))
+                 // .map(f -> new FormField(f, userManager, source, jsonObject,
+                 // cls))//
+                 // .collect(Collectors.toList());
+                 // } catch (Exception e) {
+                 // e.printStackTrace();
+                 // }
+                 // }
                 decl.add("fields", new STFieldsWrapper(fields));
             } else if (source != null && (source instanceof HashMap)) {
 

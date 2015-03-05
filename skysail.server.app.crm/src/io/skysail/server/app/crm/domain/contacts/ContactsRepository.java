@@ -94,6 +94,10 @@ public class ContactsRepository {
         return dbService.getAll(Contact.class, username);
     }
 
+    public List<Contact> getContacts(String username) {
+        return dbService.findObjects(Contact.class, username);
+    }
+
     public Contact add(Contact entity) {
         Object id = dbService.persist(entity, "worksFor");
         return null;

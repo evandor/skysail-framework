@@ -35,6 +35,8 @@ public interface DbService2 {
 
     List<String> getAll(Class<?> cls, String username);
 
+    <T> List<T> findObjects(Class<?> cls, String username);
+
     List<Map<String, Object>> getAllAsMap(Class<?> cls, String username);
 
     void update(JSONObject json);

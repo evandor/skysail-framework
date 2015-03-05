@@ -30,6 +30,12 @@ public class ContactsResource extends ListServerResource<Contact> {
         }
     }
 
+    @Override
+    public List<Contact> getEntity() {
+        String username = SecurityUtils.getSubject().getPrincipal().toString();
+        return ContactsRepository.getInstance().getContacts(username);
+    }
+
     // @Override
     // public List<Contact> getData() {
     // int linesPerPage = 10;
@@ -69,6 +75,7 @@ public class ContactsResource extends ListServerResource<Contact> {
         // headers.add(new Header(HeadersUtils.PAGINATION_HITS,
         // Long.toString(clipCount)));
         return ContactsRepository.getInstance().getContacts(page, username, linesPerPage, linesPerPage);
+
     }
 
     @Override

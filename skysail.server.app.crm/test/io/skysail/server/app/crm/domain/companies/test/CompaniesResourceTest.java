@@ -41,6 +41,8 @@ public class CompaniesResourceTest extends AbstractShiroTest {
     @Before
     public void setUp() throws Exception {
         super.setUp();
+        Mockito.when(app.getValidatorService()).thenReturn(new DefaultValidationImpl());
+
         CompaniesRepository.getInstance().setDbService(dbService);
         Mockito.when(app.getValidatorService()).thenReturn(new DefaultValidationImpl());
         resource.init(null, request, response);

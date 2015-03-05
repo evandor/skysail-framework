@@ -27,6 +27,7 @@ public class CrmAppTest extends AbstractShiroTest {
     public void setUp() throws Exception {
         super.setUp();
         Mockito.when(app.getValidatorService()).thenReturn(new DefaultValidationImpl());
+
         form = new Form();
         Locale locale_en = new Locale("en");
         Locale.setDefault(locale_en);

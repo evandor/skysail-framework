@@ -37,7 +37,7 @@ import etm.core.monitor.EtmPoint;
 /**
  * A component providing converting functionality via the StringTemplate
  * library.
- * 
+ *
  * TODO get rid of shiro dependency TODO package structure
  *
  */

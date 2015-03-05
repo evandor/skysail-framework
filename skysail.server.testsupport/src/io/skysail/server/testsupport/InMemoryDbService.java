@@ -73,4 +73,9 @@ public class InMemoryDbService implements DbService2 {
         return null;
     }
 
+    @Override
+    public <T> List<T> findObjects(Class<?> cls, String username) {
+        return null;
+    }
+
 }

@@ -14,8 +14,6 @@ import lombok.extern.slf4j.Slf4j;
 
 import org.codehaus.jettison.json.JSONException;
 import org.codehaus.jettison.json.JSONObject;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -35,8 +33,6 @@ import de.twenty11.skysail.server.um.domain.SkysailUser;
 
 @Slf4j
 public class FormField {
-
-    private static final Logger logger = LoggerFactory.getLogger(FormField.class);
 
     private final ObjectMapper mapper = new ObjectMapper();
 
@@ -74,7 +70,7 @@ public class FormField {
                     value = userManager.findById(value).getUsername();
                 }
             } catch (Exception e) {
-                logger.error(e.getMessage(), e);
+                log.error(e.getMessage(), e);
             }
         } else {
             String method = "get" + fieldAnnotation.getName().substring(0, 1).toUpperCase()
@@ -93,12 +89,13 @@ public class FormField {
                         value = invocationResult.toString();
                     }
                 } catch (Exception e) {
-                    logger.error(e.getMessage(), e);
+                    log.error(e.getMessage(), e);
                 }
             });
         }
     }
 
+    @Deprecated
     public FormField(Field fieldAnnotation, UserManager userManager, Object source, JSONObject json, Class<?> cls) {
         this.reflectionField = fieldAnnotation;
         this.source = source;
@@ -174,8 +171,7 @@ public class FormField {
     }
 
     public boolean isTextareaInputType() {
-        return InputType.TEXTAREA.equals(reflectionField.getAnnotation(de.twenty11.skysail.api.forms.Field.class)
-                .type());
+        return isOfInputType(InputType.TEXTAREA);
     }
 
     public boolean isSelectionProvider() {
@@ -220,7 +216,7 @@ public class FormField {
             selection = (SelectionProvider) method.invoke(selectionProvider, new Object[] {});
             return selection.getSelections();
         } catch (Exception e) {
-            logger.error(e.getMessage(), e);
+            log.error(e.getMessage(), e);
         }
         return Collections.emptyMap();
     }
@@ -237,7 +233,12 @@ public class FormField {
     }
 
     private boolean isOfInputType(InputType inputType) {
-        return inputType.equals(reflectionField.getAnnotation(de.twenty11.skysail.api.forms.Field.class).type());
+        de.twenty11.skysail.api.forms.Field field = reflectionField
+                .getAnnotation(de.twenty11.skysail.api.forms.Field.class);
+        if (field == null) {
+            return false;
+        }
+        return inputType.equals(field.type());
     }
 
     private boolean checkTypeFor(Class<?> cls) {
@@ -246,8 +247,8 @@ public class FormField {
 
     @Override
     public String toString() {
-        return new StringBuilder("FormField: [").append(value).append("], isReadonly: ").append(isReadonlyInputType())
-                .append(", isTextareaInputType: ").append(isTextareaInputType())
+        return new StringBuilder("FormField: [").append(getName()).append("=").append(value).append("], isReadonly: ")
+                .append(isReadonlyInputType()).append(", isTextareaInputType: ").append(isTextareaInputType())
                 .append(", isMarkdownEditorInputType: ").append(isMarkdownEditorInputType())
                 .append(", isSelectionProvider: ").append(isSelectionProvider()).append(", isTagsInputType: ")
                 .append(isTagsInputType()).toString();

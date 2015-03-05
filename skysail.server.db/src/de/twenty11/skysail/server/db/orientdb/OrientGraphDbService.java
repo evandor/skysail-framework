@@ -135,6 +135,13 @@ public class OrientGraphDbService extends AbstractOrientDbService implements DbS
         return objectDb.load(new ORecordId(id));
     }
 
+    @Override
+    public <T> List<T> findObjects(Class<?> cls, String username) {
+        OObjectDatabaseTx objectDb = getObjectDb();
+        objectDb.getEntityManager().registerEntityClass(cls);
+        return objectDb.query(new OSQLSynchQuery<ODocument>("select from " + cls.getSimpleName()));
+    }
+
     // @Override
     public <T> List<T> findAll(Class<T> entityClass, Class<?>... linkedClasses) {
         return null;

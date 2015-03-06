@@ -1,6 +1,6 @@
 package io.skysail.server.app.crm.domain.contracts;
 
-import io.skysail.server.app.crm.domain.CrmRepository;
+import io.skysail.server.app.crm.ContactsGen;
 
 import java.util.List;
 import java.util.function.Consumer;
@@ -18,6 +18,8 @@ public class ContractsResource extends ListServerResource<Contract> {
 
     private int page = 1;
 
+    private ContactsGen app;
+
     public ContractsResource() {
         // super(ContactResource.class);
         addToContext(ResourceContextId.LINK_TITLE, "List of Contracts");
@@ -26,6 +28,7 @@ public class ContractsResource extends ListServerResource<Contract> {
     @Override
     protected void doInit() throws ResourceException {
         id = getAttribute("id");
+        app = (ContactsGen) getApplication();
         String pageAsString = getQueryValue("page");
         if (pageAsString != null && pageAsString.trim().length() > 0) {
             page = Integer.parseInt(pageAsString);
@@ -49,7 +52,7 @@ public class ContractsResource extends ListServerResource<Contract> {
         // return null;// ContactsRepository.getInstance().getContacts(page,
         // username, linesPerPage);
 
-        return (List<Contract>) CrmRepository.getInstance().findAll(Contract.class);
+        return app.getRepository().findAll(Contract.class);
     }
 
     // @Override

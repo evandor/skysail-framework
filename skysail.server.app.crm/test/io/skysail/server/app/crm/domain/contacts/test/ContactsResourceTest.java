@@ -3,8 +3,6 @@ package io.skysail.server.app.crm.domain.contacts.test;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 import io.skysail.api.validation.DefaultValidationImpl;
-import io.skysail.server.app.crm.domain.CrmRepository;
-import io.skysail.server.app.crm.domain.companies.Company;
 import io.skysail.server.app.crm.domain.contacts.Contact;
 import io.skysail.server.app.crm.domain.contacts.ContactsResource;
 import io.skysail.server.app.crm.test.CrmAppTest;
@@ -28,14 +26,15 @@ public class ContactsResourceTest extends CrmAppTest {
     public void setUp() throws Exception {
         super.setUp();
 
-        CrmRepository.getInstance().setDbService(dbService);
+        // CrmRepository.getInstance().setDbService(dbService);
         Mockito.when(app.getValidatorService()).thenReturn(new DefaultValidationImpl());
+        Mockito.when(app.getRepository()).thenReturn(crmRepository);
         resource.init(null, request, response);
     }
 
     @Test
     public void test() {
-        dbService.persist(new Company("admin"));
+        dbService.persist(new Contact("admin"));
         List<Contact> entities = resource.getEntity();
         assertThat(entities.size(), is(1));
         assertThat(response.getStatus().getCode(), is(200));

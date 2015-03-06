@@ -1,6 +1,6 @@
 package io.skysail.server.app.crm.domain.companies;
 
-import io.skysail.server.app.crm.domain.CrmRepository;
+import io.skysail.server.app.crm.ContactsGen;
 
 import java.util.HashMap;
 import java.util.List;
@@ -16,11 +16,13 @@ public class CompanySelectionProvider implements SelectionProvider {
         return new CompanySelectionProvider();
     }
 
+    private ContactsGen app;
+
     @Override
     public Map<String, String> getSelections() {
         Map<String, String> result = new HashMap<>();
         result.put("", "");
-        List<Map<String, Object>> companies = CrmRepository.getInstance().getCompanys();
+        List<Map<String, Object>> companies = app.getRepository().getCompanys();
         companies.stream().forEach(company -> {
             result.put(company.get("@rid").toString(), (String) company.get("name"));
         });
@@ -36,6 +38,7 @@ public class CompanySelectionProvider implements SelectionProvider {
 
     @Override
     public void setResource(Resource resource) {
+        app = (ContactsGen) resource.getApplication();
     }
 
 }

@@ -1,6 +1,6 @@
 package io.skysail.server.app.crm.domain.contacts;
 
-import io.skysail.server.app.crm.domain.CrmRepository;
+import io.skysail.server.app.crm.ContactsGen;
 
 import org.codehaus.jettison.json.JSONObject;
 import org.restlet.resource.ResourceException;
@@ -11,15 +11,17 @@ import de.twenty11.skysail.server.core.restlet.PutEntityServerResource;
 public class PutContactResource extends PutEntityServerResource<Contact> {
 
     private String id;
+    private ContactsGen app;
 
     @Override
     protected void doInit() throws ResourceException {
         id = getAttribute("id");
+        app = (ContactsGen) getApplication();
     }
 
     @Override
     public Contact getEntity() {
-        return (Contact) CrmRepository.getInstance().getById(Contact.class, id);
+        return app.getRepository().getById(Contact.class, id);
     }
 
     @Override

@@ -1,5 +1,6 @@
 package io.skysail.server.app.crm;
 
+import io.skysail.server.app.crm.domain.CrmRepository;
 import io.skysail.server.app.crm.domain.companies.CompaniesResource;
 import io.skysail.server.app.crm.domain.companies.CompanyResource;
 import io.skysail.server.app.crm.domain.companies.PostCompanyResource;
@@ -15,8 +16,10 @@ import java.util.Arrays;
 import java.util.List;
 
 import aQute.bnd.annotation.component.Component;
+import aQute.bnd.annotation.component.Reference;
 import de.twenty11.skysail.server.app.ApplicationProvider;
 import de.twenty11.skysail.server.app.SkysailApplication;
+import de.twenty11.skysail.server.core.db.DbRepository;
 import de.twenty11.skysail.server.core.restlet.ApplicationContextId;
 import de.twenty11.skysail.server.core.restlet.RouteBuilder;
 import de.twenty11.skysail.server.services.MenuItem;
@@ -27,9 +30,24 @@ public class ContactsGen extends SkysailApplication implements MenuItemProvider,
 
     private static final String APP_NAME = "ContactsGen";
 
+    private CrmRepository crmRepo;
+
     public ContactsGen() {
         super(APP_NAME);
         addToAppContext(ApplicationContextId.IMG, "/static/img/silk/page_link.png");
+    }
+
+    @Reference(dynamic = true, multiple = false, optional = false)
+    public void setCrmRepository(DbRepository repo) {
+        this.crmRepo = (CrmRepository) repo;
+    }
+
+    public void unsetCrmRepository(DbRepository repo) {
+        this.crmRepo = null;
+    }
+
+    public CrmRepository getRepository() {
+        return crmRepo;
     }
 
     @Override

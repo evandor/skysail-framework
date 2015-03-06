@@ -26,12 +26,10 @@ import org.restlet.data.Form;
 import org.restlet.data.Reference;
 
 import de.twenty11.skysail.api.responses.ConstraintViolationsResponse;
-import de.twenty11.skysail.server.core.db.DbService2;
 
 public class AbstractShiroTest {
     private static ThreadState subjectThreadState;
 
-    protected DbService2 dbService;
     protected ConcurrentMap<String, Object> attributes;
     protected Form form;
     protected Response response;
@@ -91,7 +89,6 @@ public class AbstractShiroTest {
         ValidatorService validatorServiceMock = Mockito.mock(ValidatorService.class);
         Validator validator = Mockito.mock(Validator.class);
         Mockito.when(validatorServiceMock.getValidator()).thenReturn(validator);
-        dbService = new InMemoryDbService();
 
         attributes = new ConcurrentHashMap<String, Object>();
 

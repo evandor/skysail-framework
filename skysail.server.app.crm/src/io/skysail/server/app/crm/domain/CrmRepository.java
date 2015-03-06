@@ -7,35 +7,19 @@ import java.util.Map;
 
 import aQute.bnd.annotation.component.Activate;
 import aQute.bnd.annotation.component.Component;
-import aQute.bnd.annotation.component.Deactivate;
 import aQute.bnd.annotation.component.Reference;
 import de.twenty11.skysail.server.beans.DynamicEntity;
+import de.twenty11.skysail.server.core.db.DbRepository;
 import de.twenty11.skysail.server.core.db.DbService2;
 
 @Component(immediate = true)
-public class CrmRepository<T> {
-
-    private static CrmRepository instance;
+public class CrmRepository implements DbRepository {
 
     private static DbService2 dbService;
 
-    public static CrmRepository getInstance() {
-        // for tests
-        if (instance == null) {
-            instance = new CrmRepository();
-        }
-        return instance;
-    }
-
     @Activate
     public void activate() {
-        CrmRepository.instance = this;
         dbService.setupVertices(CrmEntity.class.getSimpleName(), DynamicEntity.class.getSimpleName());
-    }
-
-    @Deactivate
-    public void deactivate() {
-        CrmRepository.instance = null;
     }
 
     @Reference
@@ -47,7 +31,7 @@ public class CrmRepository<T> {
         CrmRepository.dbService = null;
     }
 
-    public static List<?> findAll(Class<?> cls) {
+    public <T> List<T> findAll(Class<T> cls) {
         return dbService.findObjects(cls, "username");
     }
 
@@ -55,7 +39,7 @@ public class CrmRepository<T> {
         return dbService.persist(entity, edges);
     }
 
-    public T getById(Class<?> cls, String id) {
+    public <T> T getById(Class<?> cls, String id) {
         return dbService.findObjectById(cls, id);
     }
 

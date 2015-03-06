@@ -19,7 +19,7 @@ public class InMemoryDbService implements DbService2 {
 
     @Override
     public <T> Object persist(T entity, String... edges) {
-        String identifier = entity.getClass().getSuperclass().getSimpleName();
+        String identifier = entity.getClass().getSimpleName();
         Map<String, Object> map = db.get(identifier);
         if (map == null) {
             map = new HashMap<String, Object>();
@@ -59,7 +59,10 @@ public class InMemoryDbService implements DbService2 {
 
     @Override
     public <T> List<T> findObjects(Class<?> cls, String username) {
-        return null;
+        Map<String, Object> map = db.get(cls.getSimpleName());
+        return map.values().stream().map(o -> {
+            return (T) o;
+        }).collect(Collectors.toList());
     }
 
     @Override

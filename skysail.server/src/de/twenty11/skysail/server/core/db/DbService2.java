@@ -39,6 +39,10 @@ public interface DbService2 {
 
     void update(JSONObject json);
 
-    void setup();
+    /**
+     * creates a vertex class in the database if not existent yet for all
+     * provided vertices names.
+     */
+    void setupVertices(String... vertices);
 
 }

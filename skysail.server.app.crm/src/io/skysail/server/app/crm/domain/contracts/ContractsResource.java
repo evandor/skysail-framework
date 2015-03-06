@@ -49,7 +49,7 @@ public class ContractsResource extends ListServerResource<Contract> {
         // return null;// ContactsRepository.getInstance().getContacts(page,
         // username, linesPerPage);
 
-        return CrmRepository.getInstance().findAll(Contract.class);
+        return (List<Contract>) CrmRepository.getInstance().findAll(Contract.class);
     }
 
     // @Override

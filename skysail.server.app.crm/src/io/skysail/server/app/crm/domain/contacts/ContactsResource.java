@@ -35,7 +35,7 @@ public class ContactsResource extends ListServerResource<Contact> {
     @Override
     public List<Contact> getEntity() {
         String username = SecurityUtils.getSubject().getPrincipal().toString();
-        return CrmRepository.getInstance().findAll(Contact.class);
+        return (List<Contact>) CrmRepository.findAll(Contact.class);
     }
 
     // @Override

@@ -9,6 +9,7 @@ import aQute.bnd.annotation.component.Activate;
 import aQute.bnd.annotation.component.Component;
 import aQute.bnd.annotation.component.Deactivate;
 import aQute.bnd.annotation.component.Reference;
+import de.twenty11.skysail.server.beans.DynamicEntity;
 import de.twenty11.skysail.server.core.db.DbService2;
 
 @Component(immediate = true)
@@ -16,7 +17,7 @@ public class CrmRepository<T> {
 
     private static CrmRepository instance;
 
-    private DbService2 dbService;
+    private static DbService2 dbService;
 
     public static CrmRepository getInstance() {
         // for tests
@@ -29,7 +30,7 @@ public class CrmRepository<T> {
     @Activate
     public void activate() {
         CrmRepository.instance = this;
-        dbService.setup();
+        dbService.setupVertices(CrmEntity.class.getSimpleName(), DynamicEntity.class.getSimpleName());
     }
 
     @Deactivate
@@ -39,18 +40,18 @@ public class CrmRepository<T> {
 
     @Reference
     public void setDbService(DbService2 dbService) {
-        this.dbService = dbService;
+        CrmRepository.dbService = dbService;
     }
 
     public void unsetDbService(DbService2 dbService) {
-        this.dbService = null;
+        CrmRepository.dbService = null;
     }
 
-    public List<T> findAll(Class<T> cls) {
+    public static List<?> findAll(Class<?> cls) {
         return dbService.findObjects(cls, "username");
     }
 
-    public Object add(T entity, String... edges) {
+    public static Object add(Object entity, String... edges) {
         return dbService.persist(entity, edges);
     }
 

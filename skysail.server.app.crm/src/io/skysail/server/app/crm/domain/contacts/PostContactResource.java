@@ -46,7 +46,7 @@ public class PostContactResource extends PostEntityServerResource<Contact> {
     @Override
     public SkysailResponse<?> addEntity(Contact entity) {
         entity.setOwner(SecurityUtils.getSubject().getPrincipal().toString());
-        CrmRepository.getInstance().add(entity, "worksFor");
+        CrmRepository.add(entity, "worksFor");
         return new SkysailResponse<String>();
     }
 

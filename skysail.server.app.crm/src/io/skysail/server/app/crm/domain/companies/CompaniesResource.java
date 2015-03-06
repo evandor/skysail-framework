@@ -17,7 +17,7 @@ public class CompaniesResource extends ListServerResource<Company> {
 
     @Override
     public List<Company> getEntity() {
-        return CrmRepository.getInstance().findAll(Company.class);
+        return (List<Company>) CrmRepository.findAll(Company.class);
     }
 
     // @Override

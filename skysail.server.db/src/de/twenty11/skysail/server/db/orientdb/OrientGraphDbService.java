@@ -2,6 +2,7 @@ package de.twenty11.skysail.server.db.orientdb;
 
 import io.skysail.server.db.DbConfigurationProvider;
 
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
@@ -218,11 +219,14 @@ public class OrientGraphDbService extends AbstractOrientDbService implements DbS
     }
 
     @Override
-    public void setup() {
+    public void setupVertices(String... vertices) {
         OObjectDatabaseTx objectDb = getObjectDb();
-        if (objectDb.getMetadata().getSchema().getClass("CrmEntity") == null) {
-            OClass vertexClass = objectDb.getMetadata().getSchema().getClass("V");
-            objectDb.getMetadata().getSchema().createClass("CrmEntity").setSuperClass(vertexClass);
-        }
+        Arrays.stream(vertices).forEach(v -> {
+            if (objectDb.getMetadata().getSchema().getClass(v) == null) {
+                OClass vertexClass = objectDb.getMetadata().getSchema().getClass("V");
+                objectDb.getMetadata().getSchema().createClass(v).setSuperClass(vertexClass);
+            }
+
+        });
     }
 }

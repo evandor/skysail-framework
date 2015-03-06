@@ -63,7 +63,7 @@ public class InMemoryDbService implements DbService2 {
     }
 
     @Override
-    public void setup() {
+    public void setupVertices(String... vertices) {
     }
 
 }

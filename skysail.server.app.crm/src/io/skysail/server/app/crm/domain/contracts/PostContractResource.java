@@ -13,7 +13,7 @@ public class PostContractResource extends PostEntityServerResource<Contract> {
 
     @Override
     public SkysailResponse<?> addEntity(Contract entity) {
-        CrmRepository.getInstance().add(entity);
+        CrmRepository.add(entity);
         return new SkysailResponse<String>();
     }
 }

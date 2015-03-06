@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import org.apache.commons.beanutils.BeanUtils;
 import org.codehaus.jettison.json.JSONObject;
 
 import de.twenty11.skysail.server.core.db.DbService2;
@@ -38,21 +37,6 @@ public class InMemoryDbService implements DbService2 {
     }
 
     @Override
-    public <T> JSONObject find(Class<?> cls, String id) {
-        Map<String, Object> map = db.get(cls.getSimpleName());
-        if (map == null) {
-            return null;
-        }
-        Object object = map.get(id);
-        try {
-            return new JSONObject(BeanUtils.describe(object));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
-
-    @Override
     public List<String> getAll(Class<?> cls, String username) {
         Map<String, Object> map = db.get(cls.getSimpleName());
         return map.values().stream().map(o -> o.toString()).collect(Collectors.toList());
@@ -76,6 +60,10 @@ public class InMemoryDbService implements DbService2 {
     @Override
     public <T> List<T> findObjects(Class<?> cls, String username) {
         return null;
+    }
+
+    @Override
+    public void setup() {
     }
 
 }

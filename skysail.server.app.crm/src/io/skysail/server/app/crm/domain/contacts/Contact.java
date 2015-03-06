@@ -4,7 +4,6 @@ import io.skysail.server.app.crm.domain.CrmEntity;
 import io.skysail.server.app.crm.domain.companies.Company;
 import io.skysail.server.app.crm.domain.companies.CompanySelectionProvider;
 
-import java.util.Arrays;
 import java.util.List;
 
 import javax.validation.constraints.NotNull;
@@ -39,9 +38,5 @@ public class Contact extends CrmEntity {
 
     @Reference(selectionProvider = CompanySelectionProvider.class, cls = Company.class)
     private List<String> worksFor;
-
-    public List<String> getWorksFor() {
-        return Arrays.asList("hi");
-    }
 
 }

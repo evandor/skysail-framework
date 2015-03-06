@@ -1,9 +1,6 @@
-### bnd allows only two src-Folders; we will use src-gen instead of test to place the generated code into
-#testsrc: src-gen
-#testbin: bin
-
 Bundle-Version: 0.1.0.${tstamp}
-Bundle-Name: SKYSAIL :: server :: app :: contacts
+Bundle-Name: SKYSAIL :: server :: app :: designer
+Bundle-Description: an application designer application for skysail (used as demo as well) 
 Service-Component: *
 Include-Resource: resources, templates=src;recursive:=true;filter:=*.st|*.stg
 -buildpath:  \
@@ -48,12 +45,6 @@ Include-Resource: resources, templates=src;recursive:=true;filter:=*.st|*.stg
 	org.apache.commons.collections;version=3.2
 Import-Package: org.osgi.framework,\
 	javassist.util.proxy,\
-	org.apache.commons.beanutils,\
 	*
-Bundle-Description: a contacts application for skysail (used as demo as well) 
 Private-Package:  \
-	io.skysail.server.app.crm,\
-	io.skysail.server.app.crm.domain,\
-	io.skysail.server.app.crm.domain.companies,\
-	io.skysail.server.app.crm.domain.contacts,\
-	io.skysail.server.app.crm.domain.contracts
+	io.skysail.server.app.designer.application

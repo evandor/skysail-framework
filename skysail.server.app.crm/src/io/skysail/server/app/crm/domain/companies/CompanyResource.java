@@ -1,5 +1,7 @@
 package io.skysail.server.app.crm.domain.companies;
 
+import io.skysail.server.app.crm.domain.CrmRepository;
+
 import java.util.List;
 
 import org.restlet.resource.ResourceException;
@@ -19,7 +21,7 @@ public class CompanyResource extends EntityServerResource<Company> {
 
     @Override
     public Company getEntity() {
-        return CompaniesRepository.getInstance().getById(id);
+        return (Company) CrmRepository.getInstance().getById(Company.class, id);
     }
 
     @Override

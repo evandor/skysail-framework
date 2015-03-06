@@ -1,5 +1,7 @@
 package io.skysail.server.app.crm.domain.companies;
 
+import io.skysail.server.app.crm.domain.CrmRepository;
+
 import org.codehaus.jettison.json.JSONObject;
 import org.restlet.resource.ResourceException;
 
@@ -17,7 +19,7 @@ public class PutCompanyResource extends PutEntityServerResource<Company> {
 
     @Override
     public Company getEntity() {
-        return CompaniesRepository.getInstance().getById(id);
+        return (Company) CrmRepository.getInstance().getById(Company.class, id);
     }
 
     @Override
@@ -28,7 +30,7 @@ public class PutCompanyResource extends PutEntityServerResource<Company> {
 
     @Override
     public SkysailResponse<?> updateEntity(JSONObject json) {
-        CompaniesRepository.getInstance().update(json);
+        // CrmRepository.getInstance().update(json);
         return new SkysailResponse<String>();
     }
 

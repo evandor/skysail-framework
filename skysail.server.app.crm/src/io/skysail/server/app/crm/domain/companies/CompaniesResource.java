@@ -1,8 +1,8 @@
 package io.skysail.server.app.crm.domain.companies;
 
-import java.util.List;
+import io.skysail.server.app.crm.domain.CrmRepository;
 
-import org.apache.shiro.SecurityUtils;
+import java.util.List;
 
 import de.twenty11.skysail.api.responses.Linkheader;
 import de.twenty11.skysail.server.core.restlet.ListServerResource;
@@ -16,10 +16,15 @@ public class CompaniesResource extends ListServerResource<Company> {
     }
 
     @Override
-    protected List<String> getDataAsJson() {
-        String username = SecurityUtils.getSubject().getPrincipal().toString();
-        return CompaniesRepository.getInstance().getCompanysAsJson(username);
+    public List<Company> getEntity() {
+        return CrmRepository.getInstance().findAll(Company.class);
     }
+
+    // @Override
+    // protected List<String> getDataAsJson() {
+    // String username = SecurityUtils.getSubject().getPrincipal().toString();
+    // return CrmRepository.getInstance().getCompanysAsJson(username);
+    // }
 
     @Override
     public List<Linkheader> getLinkheader() {

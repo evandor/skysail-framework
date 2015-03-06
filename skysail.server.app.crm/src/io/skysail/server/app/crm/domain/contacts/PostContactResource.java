@@ -1,5 +1,7 @@
 package io.skysail.server.app.crm.domain.contacts;
 
+import io.skysail.server.app.crm.domain.CrmRepository;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -44,7 +46,7 @@ public class PostContactResource extends PostEntityServerResource<Contact> {
     @Override
     public SkysailResponse<?> addEntity(Contact entity) {
         entity.setOwner(SecurityUtils.getSubject().getPrincipal().toString());
-        entity = ContactsRepository.getInstance().add(entity);
+        CrmRepository.getInstance().add(entity, "worksFor");
         return new SkysailResponse<String>();
     }
 

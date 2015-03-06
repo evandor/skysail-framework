@@ -23,7 +23,6 @@ import de.twenty11.skysail.server.services.MenuItem;
 import de.twenty11.skysail.server.services.MenuItemProvider;
 
 @Component(immediate = true)
-@javax.annotation.Generated(value = "de.twenty11.skysail.server.ext.apt.GenerateSkysailApplicationProcessor")
 public class ContactsGen extends SkysailApplication implements MenuItemProvider, ApplicationProvider {
 
     private static final String APP_NAME = "ContactsGen";

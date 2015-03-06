@@ -3,7 +3,7 @@ package io.skysail.server.app.crm.domain.contracts.test;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.nullValue;
 import static org.junit.Assert.assertThat;
-import io.skysail.server.app.crm.domain.companies.CompaniesRepository;
+import io.skysail.server.app.crm.domain.CrmRepository;
 import io.skysail.server.app.crm.domain.contracts.Contract;
 import io.skysail.server.app.crm.domain.contracts.PostContractResource;
 import io.skysail.server.app.crm.test.CrmAppTest;
@@ -25,7 +25,7 @@ public class PostContractResourceTest extends CrmAppTest {
     @Before
     public void setUp() throws Exception {
         super.setUp();
-        CompaniesRepository.getInstance().setDbService(dbService);
+        CrmRepository.getInstance().setDbService(dbService);
         resource.init(null, request, response);
     }
 

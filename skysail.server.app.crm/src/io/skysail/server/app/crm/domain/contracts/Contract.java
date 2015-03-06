@@ -17,7 +17,6 @@ public class Contract extends DynamicEntity {
     private static Set<EntityDynaProperty> getProperties() {
         SortedSet<EntityDynaProperty> properties = new TreeSet<>();
         properties.add(new EntityDynaProperty("name", String.class));
-        properties.add(new EntityDynaProperty("name2", String.class));
         return properties;
     }
 

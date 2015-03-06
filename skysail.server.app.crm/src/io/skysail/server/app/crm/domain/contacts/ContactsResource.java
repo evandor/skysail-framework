@@ -1,5 +1,7 @@
 package io.skysail.server.app.crm.domain.contacts;
 
+import io.skysail.server.app.crm.domain.CrmRepository;
+
 import java.util.List;
 import java.util.function.Consumer;
 
@@ -33,7 +35,7 @@ public class ContactsResource extends ListServerResource<Contact> {
     @Override
     public List<Contact> getEntity() {
         String username = SecurityUtils.getSubject().getPrincipal().toString();
-        return ContactsRepository.getInstance().getContacts(username);
+        return CrmRepository.getInstance().findAll(Contact.class);
     }
 
     // @Override
@@ -56,27 +58,29 @@ public class ContactsResource extends ListServerResource<Contact> {
     // // return ContactsRepository.getInstance().getContacts();
     // }
 
-    @Override
-    protected List<String> getDataAsJson() {
-        Object principal = SecurityUtils.getSubject().getPrincipal();
-        // return
-        // ContactsRepository.getInstance().getContactsAsJson(principal.toString());
-
-        int linesPerPage = 5;
-        String username = SecurityUtils.getSubject().getPrincipal().toString();
-
-        // Series<Header> headers = HeadersUtils.getHeaders(getResponse());
-        // long clipCount =
-        // ContactsRepository.getInstance().getContactsCount(username);
-        // headers.add(new Header(HeadersUtils.PAGINATION_PAGES, Long.toString(1
-        // + Math.floorDiv(clipCount, linesPerPage))));
-        // headers.add(new Header(HeadersUtils.PAGINATION_PAGE,
-        // Integer.toString(page)));
-        // headers.add(new Header(HeadersUtils.PAGINATION_HITS,
-        // Long.toString(clipCount)));
-        return ContactsRepository.getInstance().getContacts(page, username, linesPerPage, linesPerPage);
-
-    }
+    // @Override
+    // protected List<String> getDataAsJson() {
+    // Object principal = SecurityUtils.getSubject().getPrincipal();
+    // // return
+    // //
+    // ContactsRepository.getInstance().getContactsAsJson(principal.toString());
+    //
+    // int linesPerPage = 5;
+    // String username = SecurityUtils.getSubject().getPrincipal().toString();
+    //
+    // // Series<Header> headers = HeadersUtils.getHeaders(getResponse());
+    // // long clipCount =
+    // // ContactsRepository.getInstance().getContactsCount(username);
+    // // headers.add(new Header(HeadersUtils.PAGINATION_PAGES, Long.toString(1
+    // // + Math.floorDiv(clipCount, linesPerPage))));
+    // // headers.add(new Header(HeadersUtils.PAGINATION_PAGE,
+    // // Integer.toString(page)));
+    // // headers.add(new Header(HeadersUtils.PAGINATION_HITS,
+    // // Long.toString(clipCount)));
+    // return CrmRepository.getInstance().getContacts(page, username,
+    // linesPerPage, linesPerPage);
+    //
+    // }
 
     @Override
     public List<Linkheader> getLinkheader() {

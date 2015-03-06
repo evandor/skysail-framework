@@ -6,7 +6,7 @@ import static org.junit.Assert.assertThat;
 import io.skysail.api.validation.DefaultValidationImpl;
 import io.skysail.server.app.crm.ContactsGen;
 import io.skysail.server.app.crm.domain.CompanyWithId;
-import io.skysail.server.app.crm.domain.companies.CompaniesRepository;
+import io.skysail.server.app.crm.domain.CrmRepository;
 import io.skysail.server.app.crm.domain.companies.Company;
 import io.skysail.server.app.crm.domain.companies.PutCompanyResource;
 import io.skysail.server.testsupport.AbstractShiroTest;
@@ -39,7 +39,7 @@ public class PutCompanyResourceTest extends AbstractShiroTest {
     public void setUp() throws Exception {
         super.setUp();
         attributes.put("id", "7");
-        CompaniesRepository.getInstance().setDbService(dbService);
+        CrmRepository.getInstance().setDbService(dbService);
         Mockito.when(app.getValidatorService()).thenReturn(new DefaultValidationImpl());
         resource.init(null, request, response);
         form = Mockito.mock(Form.class);

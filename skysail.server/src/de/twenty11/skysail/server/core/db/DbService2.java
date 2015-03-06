@@ -31,8 +31,6 @@ public interface DbService2 {
      */
     <T> T findObjectById(Class<?> cls, String id);
 
-    <T> JSONObject find(Class<?> cls, String id);
-
     List<String> getAll(Class<?> cls, String username);
 
     <T> List<T> findObjects(Class<?> cls, String username);
@@ -40,5 +38,7 @@ public interface DbService2 {
     List<Map<String, Object>> getAllAsMap(Class<?> cls, String username);
 
     void update(JSONObject json);
+
+    void setup();
 
 }

@@ -1,5 +1,7 @@
 package io.skysail.server.app.crm.domain.companies;
 
+import io.skysail.server.app.crm.domain.CrmRepository;
+
 import org.apache.shiro.SecurityUtils;
 
 import de.twenty11.skysail.api.responses.SkysailResponse;
@@ -20,7 +22,7 @@ public class PostCompanyResource extends PostEntityServerResource<Company> {
 
     @Override
     public SkysailResponse<?> addEntity(Company entity) {
-        entity = CompaniesRepository.getInstance().add(entity);
+        CrmRepository.getInstance().add(entity);
         return new SkysailResponse<String>();
     }
 

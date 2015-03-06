@@ -9,7 +9,6 @@ import java.util.stream.Collectors;
 
 import lombok.extern.slf4j.Slf4j;
 
-import org.codehaus.jettison.json.JSONException;
 import org.codehaus.jettison.json.JSONObject;
 import org.osgi.service.component.ComponentContext;
 
@@ -22,18 +21,14 @@ import com.orientechnologies.orient.client.remote.OEngineRemote;
 import com.orientechnologies.orient.core.Orient;
 import com.orientechnologies.orient.core.db.ODatabaseRecordThreadLocal;
 import com.orientechnologies.orient.core.db.document.ODatabaseDocumentTx;
-import com.orientechnologies.orient.core.id.ORID;
 import com.orientechnologies.orient.core.id.ORecordId;
-import com.orientechnologies.orient.core.record.ORecord;
+import com.orientechnologies.orient.core.metadata.schema.OClass;
 import com.orientechnologies.orient.core.record.impl.ODocument;
 import com.orientechnologies.orient.core.sql.query.OSQLSynchQuery;
 import com.orientechnologies.orient.object.db.OObjectDatabasePool;
 import com.orientechnologies.orient.object.db.OObjectDatabaseTx;
 import com.tinkerpop.blueprints.impls.orient.OrientGraph;
 import com.tinkerpop.blueprints.impls.orient.OrientGraphFactory;
-import com.tinkerpop.blueprints.impls.orient.OrientVertex;
-import com.tinkerpop.blueprints.util.io.graphson.GraphSONMode;
-import com.tinkerpop.blueprints.util.io.graphson.GraphSONUtility;
 
 import de.twenty11.skysail.server.core.db.DbService2;
 import de.twenty11.skysail.server.db.orientdb.impl.Persister;
@@ -51,6 +46,10 @@ public class OrientGraphDbService extends AbstractOrientDbService implements DbS
     public void activate() {
         log.debug("activating {}", this.getClass().getName());
         graphDbFactory = new OrientGraphFactory(getDbUrl()).setupPool(1, 10);
+        // make sure to create a graphDb object first
+        // http://comments.gmane.org/gmane.comp.db.orientdb.user/8588
+        // OrientGraph tx = graphDbFactory.getTx();
+        // System.out.println(tx);
     }
 
     @Deactivate
@@ -110,23 +109,24 @@ public class OrientGraphDbService extends AbstractOrientDbService implements DbS
         }
     }
 
-    @Override
-    public <T> JSONObject find(Class<?> cls, String id) {
-        OrientGraph db = getDb();
-        OrientVertex vertex = db.getVertex(id);
-        ORID identity = vertex.getIdentity();
-        ORecord load = getDocumentDb().load(identity);
-        ORecord load2 = db.getRawGraph().load(identity);
-        OObjectDatabaseTx objectDb = getObjectDb();
-        objectDb.getEntityManager().registerEntityClass(cls);
-        Object load3 = objectDb.load(identity);
-        try {
-            return new GraphSONUtility(GraphSONMode.NORMAL, null).jsonFromElement(vertex);
-        } catch (JSONException e) {
-            log.error(e.getMessage(), e);
-            return null;
-        }
-    }
+    // @Override
+    // public <T> JSONObject find(Class<?> cls, String id) {
+    // OrientGraph db = getDb();
+    // OrientVertex vertex = db.getVertex(id);
+    // ORID identity = vertex.getIdentity();
+    // ORecord load = getDocumentDb().load(identity);
+    // ORecord load2 = db.getRawGraph().load(identity);
+    // OObjectDatabaseTx objectDb = getObjectDb();
+    // objectDb.getEntityManager().registerEntityClass(cls);
+    // Object load3 = objectDb.load(identity);
+    // try {
+    // return new GraphSONUtility(GraphSONMode.NORMAL,
+    // null).jsonFromElement(vertex);
+    // } catch (JSONException e) {
+    // log.error(e.getMessage(), e);
+    // return null;
+    // }
+    // }
 
     @Override
     public <T> T findObjectById(Class<?> cls, String id) {
@@ -214,9 +214,15 @@ public class OrientGraphDbService extends AbstractOrientDbService implements DbS
 
     private OObjectDatabaseTx getObjectDb() {
         OObjectDatabaseTx db = OObjectDatabasePool.global().acquire(getDbUrl(), "admin", "admin");
-
-        // ODatabaseRecordThreadLocal.INSTANCE.set(db.getUnderlying());
         return db;
     }
 
+    @Override
+    public void setup() {
+        OObjectDatabaseTx objectDb = getObjectDb();
+        if (objectDb.getMetadata().getSchema().getClass("CrmEntity") == null) {
+            OClass vertexClass = objectDb.getMetadata().getSchema().getClass("V");
+            objectDb.getMetadata().getSchema().createClass("CrmEntity").setSuperClass(vertexClass);
+        }
+    }
 }

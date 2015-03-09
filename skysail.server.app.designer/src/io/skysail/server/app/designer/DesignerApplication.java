@@ -1,7 +1,11 @@
 package io.skysail.server.app.designer;
 
+import io.skysail.server.app.designer.application.ApplicationResource;
 import io.skysail.server.app.designer.application.ApplicationsResource;
 import io.skysail.server.app.designer.application.PostApplicationResource;
+import io.skysail.server.app.designer.application.PutApplicationResource;
+import io.skysail.server.app.designer.entities.EntitiesResource;
+import io.skysail.server.app.designer.entities.PostEntityResource;
 import io.skysail.server.app.designer.repo.DesignerRepository;
 
 import java.util.Arrays;
@@ -35,10 +39,10 @@ public class DesignerApplication extends SkysailApplication implements MenuItemP
 
         router.attach(new RouteBuilder("/application/", PostApplicationResource.class));
         router.attach(new RouteBuilder("/applications", ApplicationsResource.class));
-        // router.attach(new RouteBuilder("/applications/{id}",
-        // ContactResource.class));
-        // router.attach(new RouteBuilder("/applications/{id}/",
-        // PutContactResource.class));
+        router.attach(new RouteBuilder("/applications/{id}", ApplicationResource.class));
+        router.attach(new RouteBuilder("/applications/{id}/", PutApplicationResource.class));
+        router.attach(new RouteBuilder("/applications/{id}/entities/", PostEntityResource.class));
+        router.attach(new RouteBuilder("/applications/{id}/entities", EntitiesResource.class));
     }
 
     @Reference(dynamic = true, multiple = false, optional = false, target = "(name=DesignerRepository)")

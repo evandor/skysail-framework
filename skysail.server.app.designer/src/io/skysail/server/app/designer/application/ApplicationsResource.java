@@ -13,6 +13,7 @@ public class ApplicationsResource extends ListServerResource<Application> {
     private DesignerApplication app;
 
     public ApplicationsResource() {
+        super(ApplicationResource.class);
         addToContext(ResourceContextId.LINK_TITLE, "list Applications");
     }
 

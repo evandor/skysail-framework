@@ -49,13 +49,10 @@ import etm.core.monitor.EtmPoint;
  *     private MyApplication app;
  *     private String myEntityId;
  * 
- *     public MyEntityResource() {
- *        app = (MyApplication) getApplication();
- *     }
- * 
  *     // if you have "router.attach(new RouteBuilder("/myentity/{id}", ...)" in your SkysailAppliation
  *     protected void doInit() throws ResourceException {
  *         myEntityId = getAttribute("id");
+ *         app = (MyApplication) getApplication();
  *     }
  * 
  * 

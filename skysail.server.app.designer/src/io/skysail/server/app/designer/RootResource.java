@@ -1,7 +1,6 @@
 package io.skysail.server.app.designer;
 
 import io.skysail.server.app.designer.application.ApplicationsResource;
-import io.skysail.server.app.designer.entities.EntitiesResource;
 
 import java.util.List;
 
@@ -12,7 +11,7 @@ public class RootResource extends ListServerResource<String> {
 
     @Override
     public List<Linkheader> getLinkheader() {
-        return super.getLinkheader(ApplicationsResource.class, EntitiesResource.class);
+        return super.getLinkheader(ApplicationsResource.class);
     }
 
 }

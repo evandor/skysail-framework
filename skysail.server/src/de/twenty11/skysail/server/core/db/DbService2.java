@@ -40,4 +40,8 @@ public interface DbService2 {
      */
     void setupVertices(String... vertices);
 
+    void register(Class<?>... classes);
+
+    void delete(Class<?> cls, String id);
+
 }

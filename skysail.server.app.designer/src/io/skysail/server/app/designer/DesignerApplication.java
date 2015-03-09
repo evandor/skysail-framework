@@ -1,11 +1,11 @@
 package io.skysail.server.app.designer;
 
-import io.skysail.server.app.designer.application.ApplicationResource;
-import io.skysail.server.app.designer.application.ApplicationsResource;
-import io.skysail.server.app.designer.application.PostApplicationResource;
-import io.skysail.server.app.designer.application.PutApplicationResource;
-import io.skysail.server.app.designer.entities.EntitiesResource;
-import io.skysail.server.app.designer.entities.PostEntityResource;
+import io.skysail.server.app.designer.application.resources.ApplicationResource;
+import io.skysail.server.app.designer.application.resources.ApplicationsResource;
+import io.skysail.server.app.designer.application.resources.PostApplicationResource;
+import io.skysail.server.app.designer.application.resources.PutApplicationResource;
+import io.skysail.server.app.designer.entities.resources.EntitiesResource;
+import io.skysail.server.app.designer.entities.resources.PostEntityResource;
 import io.skysail.server.app.designer.repo.DesignerRepository;
 
 import java.util.Arrays;

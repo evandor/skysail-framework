@@ -1,6 +1,7 @@
-package io.skysail.server.app.designer.application;
+package io.skysail.server.app.designer.application.resources;
 
 import io.skysail.server.app.designer.DesignerApplication;
+import io.skysail.server.app.designer.application.Application;
 
 import org.restlet.resource.ResourceException;
 

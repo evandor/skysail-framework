@@ -1,9 +1,11 @@
-package io.skysail.server.app.designer.application;
+package io.skysail.server.app.designer.application.resources;
 
 import io.skysail.server.app.designer.DesignerApplication;
-import io.skysail.server.app.designer.entities.PostEntityResource;
+import io.skysail.server.app.designer.application.Application;
+import io.skysail.server.app.designer.entities.resources.PostEntityResource;
 
 import java.util.List;
+import java.util.function.Consumer;
 
 import org.restlet.resource.ResourceException;
 
@@ -34,6 +36,7 @@ public class ApplicationResource extends EntityServerResource<Application> {
 
     @Override
     public SkysailResponse<?> eraseEntity() {
+        app.getRepository().delete(Application.class, id);
         return null;
     }
 
@@ -47,11 +50,13 @@ public class ApplicationResource extends EntityServerResource<Application> {
         return super.getLinkheader(PutApplicationResource.class, ApplicationResource.class, PostEntityResource.class);
     }
 
-    // @Override
-    // public Consumer<? super Linkheader> getPathSubstitutions() {
-    // return l -> {
-    // l.substitute("id", id);
-    // };
-    // }
+    @Override
+    public Consumer<? super Linkheader> getPathSubstitutions() {
+        return l -> {
+            if (id != null) {
+                l.substitute("id", id);
+            }
+        };
+    }
 
 }

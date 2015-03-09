@@ -1,4 +1,6 @@
-package io.skysail.server.app.wiki.application;
+package io.skysail.server.app.wiki;
+
+import io.skysail.server.app.wiki.spaces.PostSpaceResource;
 
 import java.util.List;
 
@@ -9,7 +11,7 @@ public class RootResource extends ListServerResource<String> {
 
     @Override
     public List<Linkheader> getLinkheader() {
-        return null;// super.getLinkheader(EntitiesResource.class);
+        return super.getLinkheader(PostSpaceResource.class);
     }
 
 }

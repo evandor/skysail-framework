@@ -1,7 +1,7 @@
 package io.skysail.server.app.wiki;
 
 import io.skysail.server.app.designer.repo.DesignerRepository;
-import io.skysail.server.app.wiki.application.RootResource;
+import io.skysail.server.app.wiki.spaces.Space;
 
 import java.util.Arrays;
 import java.util.List;
@@ -21,6 +21,7 @@ public class WikiApplication extends SkysailApplication implements MenuItemProvi
 
     private static final String APP_NAME = "Wiki";
     private DesignerRepository designerRepo;
+    private WikiRepository wikiRepo;
 
     public WikiApplication() {
         super(APP_NAME);
@@ -42,17 +43,30 @@ public class WikiApplication extends SkysailApplication implements MenuItemProvi
         // PutContactResource.class));
     }
 
-    @Reference(dynamic = true, multiple = false, optional = false, target = "(name=designerRepository)")
+    @Reference(dynamic = true, multiple = true, optional = false)
     public void setDesignerRepository(DbRepository repo) {
-        this.designerRepo = (DesignerRepository) repo;
+        if (repo instanceof DesignerRepository) {
+            this.designerRepo = (DesignerRepository) repo;
+            Space.inject(designerRepo);
+        }
     }
 
     public void unsetDesignerRepository(DbRepository repo) {
         this.designerRepo = null;
+        Space.inject(null);
     }
 
-    public DesignerRepository getRepository() {
-        return designerRepo;
+    @Reference(dynamic = true, multiple = false, optional = false, target = "(name=wikiRepository)")
+    public void setWikiRepository(DbRepository repo) {
+        this.wikiRepo = (WikiRepository) repo;
+    }
+
+    public void unsetWikiRepository(DbRepository repo) {
+        this.wikiRepo = null;
+    }
+
+    public WikiRepository getRepository() {
+        return wikiRepo;
     }
 
     public List<MenuItem> getMenuEntries() {

@@ -91,43 +91,6 @@ public class OrientGraphDbService extends AbstractOrientDbService implements DbS
         }
     }
 
-    // @Override
-    // public List<Map<String, Object>> getAllAsMap(Class<?> cls, String
-    // username) {
-    // ODatabaseDocumentTx db = getDb().getRawGraph();
-    // ODatabaseRecordThreadLocal.INSTANCE.set(db);
-    // try {
-    // List<ODocument> result = db.query(new
-    // OSQLSynchQuery<ODocument>("select from " + cls.getSimpleName()));
-    // return result.stream().map(doc -> {
-    // return doc.toMap();
-    // }).collect(Collectors.toList());
-    // } catch (Exception e) {
-    // return Collections.emptyList();
-    // } finally {
-    // db.close();
-    // }
-    // }
-
-    // @Override
-    // public <T> JSONObject find(Class<?> cls, String id) {
-    // OrientGraph db = getDb();
-    // OrientVertex vertex = db.getVertex(id);
-    // ORID identity = vertex.getIdentity();
-    // ORecord load = getDocumentDb().load(identity);
-    // ORecord load2 = db.getRawGraph().load(identity);
-    // OObjectDatabaseTx objectDb = getObjectDb();
-    // objectDb.getEntityManager().registerEntityClass(cls);
-    // Object load3 = objectDb.load(identity);
-    // try {
-    // return new GraphSONUtility(GraphSONMode.NORMAL,
-    // null).jsonFromElement(vertex);
-    // } catch (JSONException e) {
-    // log.error(e.getMessage(), e);
-    // return null;
-    // }
-    // }
-
     @Override
     public <T> T findObjectById(Class<?> cls, String id) {
         OObjectDatabaseTx objectDb = getObjectDb();
@@ -145,6 +108,16 @@ public class OrientGraphDbService extends AbstractOrientDbService implements DbS
     // @Override
     public <T> List<T> findAll(Class<T> entityClass, Class<?>... linkedClasses) {
         return null;
+    }
+
+    @Override
+    public void delete(Class<?> cls, String id) {
+        OObjectDatabaseTx objectDb = getObjectDb();
+        objectDb.getEntityManager().registerEntityClass(cls);
+        ORecordId recordId = new ORecordId(id);
+        Object loaded = objectDb.load(recordId);
+        Object cast = cls.cast(loaded);
+        objectDb.delete(recordId);
     }
 
     protected synchronized void startDb() {
@@ -202,6 +175,30 @@ public class OrientGraphDbService extends AbstractOrientDbService implements DbS
         });
     }
 
+    @Override
+    public void setupVertices(String... vertices) {
+        OObjectDatabaseTx objectDb = getObjectDb();
+        Arrays.stream(vertices).forEach(v -> {
+            if (objectDb.getMetadata().getSchema().getClass(v) == null) {
+                OClass vertexClass = objectDb.getMetadata().getSchema().getClass("V");
+                objectDb.getMetadata().getSchema().createClass(v).setSuperClass(vertexClass);
+            }
+
+        });
+    }
+
+    @Override
+    public void register(Class<?>... entities) {
+        OObjectDatabaseTx db = getObjectDb();
+        try {
+            Arrays.stream(entities).forEach(entity -> {
+                db.getEntityManager().registerEntityClass(entity);
+            });
+        } finally {
+            db.close();
+        }
+    }
+
     private OrientGraph getDb() {
         return graphDbFactory.getTx();
     }
@@ -215,18 +212,6 @@ public class OrientGraphDbService extends AbstractOrientDbService implements DbS
     private OObjectDatabaseTx getObjectDb() {
         OObjectDatabaseTx db = OObjectDatabasePool.global().acquire(getDbUrl(), "admin", "admin");
         return db;
-    }
-
-    @Override
-    public void setupVertices(String... vertices) {
-        OObjectDatabaseTx objectDb = getObjectDb();
-        Arrays.stream(vertices).forEach(v -> {
-            if (objectDb.getMetadata().getSchema().getClass(v) == null) {
-                OClass vertexClass = objectDb.getMetadata().getSchema().getClass("V");
-                objectDb.getMetadata().getSchema().createClass(v).setSuperClass(vertexClass);
-            }
-
-        });
     }
 
 }

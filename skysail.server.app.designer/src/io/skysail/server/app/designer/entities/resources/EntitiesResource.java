@@ -1,6 +1,8 @@
-package io.skysail.server.app.designer.entities;
+package io.skysail.server.app.designer.entities.resources;
 
 import io.skysail.server.app.designer.DesignerApplication;
+import io.skysail.server.app.designer.application.Application;
+import io.skysail.server.app.designer.entities.Entity;
 
 import java.util.List;
 
@@ -11,6 +13,7 @@ import de.twenty11.skysail.server.core.restlet.ResourceContextId;
 public class EntitiesResource extends ListServerResource<Entity> {
 
     private DesignerApplication app;
+    private String id;
 
     public EntitiesResource() {
         addToContext(ResourceContextId.LINK_TITLE, "list Entities");
@@ -19,11 +22,13 @@ public class EntitiesResource extends ListServerResource<Entity> {
     @Override
     protected void doInit() {
         app = (DesignerApplication) getApplication();
+        id = getAttribute("id");
     }
 
     @Override
     public List<Entity> getEntity() {
-        return app.getRepository().findAll(Entity.class);
+        Application application = app.getRepository().getById(Application.class, id);
+        return application.getEntities();
     }
 
     @Override

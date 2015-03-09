@@ -2,6 +2,7 @@ package io.skysail.server.app.designer.application;
 
 import io.skysail.server.app.designer.entities.Entity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Id;
@@ -28,4 +29,11 @@ public class Application {
 
     // @Reference(cls = Entity.class)
     private List<Entity> entities;
+
+    public List<Entity> getEntities() {
+        if (entities == null) {
+            entities = new ArrayList<>();
+        }
+        return entities;
+    }
 }

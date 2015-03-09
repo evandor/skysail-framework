@@ -1,6 +1,7 @@
 package io.skysail.server.app.designer.repo;
 
 import io.skysail.server.app.designer.application.Application;
+import io.skysail.server.app.designer.entities.Entity;
 
 import java.util.List;
 
@@ -18,6 +19,7 @@ public class DesignerRepository implements DbRepository {
     @Activate
     public void activate() {
         dbService.setupVertices(Application.class.getSimpleName());
+        dbService.register(Application.class, Entity.class);
     }
 
     @Reference
@@ -43,6 +45,14 @@ public class DesignerRepository implements DbRepository {
 
     public void update(Application entity) {
         dbService.update(entity.getId(), entity);
+    }
+
+    public void register(Class<?>... classes) {
+        dbService.register(classes);
+    }
+
+    public void delete(Class<?> cls, String id) {
+        dbService.delete(cls, id);
     }
 
 }

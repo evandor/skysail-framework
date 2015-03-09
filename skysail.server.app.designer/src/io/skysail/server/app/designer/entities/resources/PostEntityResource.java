@@ -1,7 +1,8 @@
-package io.skysail.server.app.designer.entities;
+package io.skysail.server.app.designer.entities.resources;
 
 import io.skysail.server.app.designer.DesignerApplication;
 import io.skysail.server.app.designer.application.Application;
+import io.skysail.server.app.designer.entities.Entity;
 
 import org.restlet.resource.ResourceException;
 
@@ -32,6 +33,7 @@ public class PostEntityResource extends PostEntityServerResource<Entity> {
     @Override
     public SkysailResponse<?> addEntity(Entity entity) {
         Application application = app.getRepository().getById(Application.class, id);
+        // app.getRepository().register(Entity.class);
         application.getEntities().add(entity);
         app.getRepository().update(application);
         return new SkysailResponse<String>();

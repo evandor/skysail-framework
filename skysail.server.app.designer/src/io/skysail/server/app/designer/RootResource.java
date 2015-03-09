@@ -1,6 +1,6 @@
 package io.skysail.server.app.designer;
 
-import io.skysail.server.app.designer.application.ApplicationsResource;
+import io.skysail.server.app.designer.application.resources.ApplicationsResource;
 
 import java.util.List;
 

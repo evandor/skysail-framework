@@ -85,4 +85,14 @@ public class InMemoryDbService implements DbService2 {
 
     }
 
+    @Override
+    public void register(Class<?>... classes) {
+    }
+
+    @Override
+    public void delete(Class<?> cls, String id) {
+        // TODO Auto-generated method stub
+
+    }
+
 }

@@ -1,6 +1,7 @@
-package io.skysail.server.app.designer.application;
+package io.skysail.server.app.designer.application.resources;
 
 import io.skysail.server.app.designer.DesignerApplication;
+import io.skysail.server.app.designer.application.Application;
 
 import java.util.List;
 
@@ -24,7 +25,9 @@ public class ApplicationsResource extends ListServerResource<Application> {
 
     @Override
     public List<Application> getEntity() {
-        return app.getRepository().findAll(Application.class);
+        List<Application> all = app.getRepository().findAll(Application.class);
+        // all.stream().forEach(a -> System.out.println(a.getEntities()));
+        return all;
     }
 
     @Override

@@ -1,7 +1,5 @@
 package io.skysail.server.app.designer.application;
 
-import io.skysail.server.app.designer.entities.Entity;
-
 import java.util.List;
 
 import javax.persistence.Id;
@@ -12,7 +10,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import de.twenty11.skysail.api.forms.Field;
-import de.twenty11.skysail.api.forms.Reference;
 
 @NoArgsConstructor
 @Getter
@@ -27,6 +24,6 @@ public class Application {
     @Size(min = 1)
     private String name;
 
-    @Reference(cls = Entity.class)
+    // @Reference(cls = Entity.class)
     private List<String> entities;
 }

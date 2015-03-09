@@ -146,11 +146,15 @@ public class StringTemplateRenderer {
     }
 
     private String guessId(Object object) {
-        if (((Map<String, String>) object).get("id") != null) {
-            Object value = ((Map<String, String>) object).get("id");
+        if (!(object instanceof Map))
+            return "";
+        Map<String, String> entity = ((Map<String, String>) object);
+
+        if (entity.get("id") != null) {
+            Object value = entity.get("id");
             return value.toString();
-        } else if (((Map<String, String>) object).get("@rid") != null) {
-            return ((Map<String, String>) object).get("@rid").replace("#", "");
+        } else if (entity.get("@rid") != null) {
+            return (entity.get("@rid").replace("#", ""));
         } else {
             return "";
         }

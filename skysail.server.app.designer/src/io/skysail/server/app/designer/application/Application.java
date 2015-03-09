@@ -1,5 +1,7 @@
 package io.skysail.server.app.designer.application;
 
+import io.skysail.server.app.designer.entities.Entity;
+
 import java.util.List;
 
 import javax.persistence.Id;
@@ -25,5 +27,5 @@ public class Application {
     private String name;
 
     // @Reference(cls = Entity.class)
-    private List<String> entities;
+    private List<Entity> entities;
 }

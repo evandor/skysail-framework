@@ -1,6 +1,7 @@
 package io.skysail.server.app.designer.application;
 
 import io.skysail.server.app.designer.DesignerApplication;
+import io.skysail.server.app.designer.entities.PostEntityResource;
 
 import java.util.List;
 
@@ -43,7 +44,14 @@ public class ApplicationResource extends EntityServerResource<Application> {
 
     @Override
     public List<Linkheader> getLinkheader() {
-        return super.getLinkheader(PutApplicationResource.class, ApplicationResource.class);
+        return super.getLinkheader(PutApplicationResource.class, ApplicationResource.class, PostEntityResource.class);
     }
+
+    // @Override
+    // public Consumer<? super Linkheader> getPathSubstitutions() {
+    // return l -> {
+    // l.substitute("id", id);
+    // };
+    // }
 
 }

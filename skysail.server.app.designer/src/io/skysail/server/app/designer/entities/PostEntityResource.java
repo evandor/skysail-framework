@@ -1,6 +1,7 @@
 package io.skysail.server.app.designer.entities;
 
 import io.skysail.server.app.designer.DesignerApplication;
+import io.skysail.server.app.designer.application.Application;
 
 import org.restlet.resource.ResourceException;
 
@@ -11,6 +12,7 @@ import de.twenty11.skysail.server.core.restlet.ResourceContextId;
 public class PostEntityResource extends PostEntityServerResource<Entity> {
 
     private DesignerApplication app;
+    private String id;
 
     public PostEntityResource() {
         addToContext(ResourceContextId.LINK_TITLE, "Create new Entity");
@@ -19,6 +21,7 @@ public class PostEntityResource extends PostEntityServerResource<Entity> {
     @Override
     protected void doInit() throws ResourceException {
         app = (DesignerApplication) getApplication();
+        id = getAttribute("id");
     }
 
     @Override
@@ -28,7 +31,9 @@ public class PostEntityResource extends PostEntityServerResource<Entity> {
 
     @Override
     public SkysailResponse<?> addEntity(Entity entity) {
-        app.getRepository().add(entity);
+        Application application = app.getRepository().getById(Application.class, id);
+        application.getEntities().add(entity);
+        app.getRepository().update(application);
         return new SkysailResponse<String>();
     }
 

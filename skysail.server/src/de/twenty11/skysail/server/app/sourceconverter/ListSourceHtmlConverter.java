@@ -103,13 +103,23 @@ public class ListSourceHtmlConverter extends AbstractSourceConverter implements 
             @Override
             public int compare(String o1, String o2) {
                 List<String> fieldNames = resource.getFields();
-                if (!fieldNames.contains(o1)) {
-                    fieldNames.add(o1);
+                // if (!fieldNames.contains(o1)) {
+                // fieldNames.add(o1);
+                // }
+                // if (!fieldNames.contains(o2)) {
+                // fieldNames.add(o2);
+                // }
+                if (fieldNames.indexOf(o1) == -1 && fieldNames.indexOf(o2) == -1) {
+                    return o1.compareTo(o2);
                 }
-                if (!fieldNames.contains(o2)) {
-                    fieldNames.add(o2);
+                if (fieldNames.indexOf(o1) == -1) {
+                    return -1;
+                }
+                if (fieldNames.indexOf(o2) == -1) {
+                    return 1;
                 }
                 return fieldNames.indexOf(o1) - fieldNames.indexOf(o2);
+
             }
 
         };

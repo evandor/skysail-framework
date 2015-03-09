@@ -162,13 +162,13 @@ public abstract class AbstractResourceFilter<R extends SkysailServerResource<T>,
             return entityAsObject;
         }
         Form form = (Form) request.getAttributes().get(EntityServerResource.SKYSAIL_SERVER_RESTLET_FORM);
-        if (resource instanceof EntityServerResource) { // git sync
+        if (resource instanceof EntityServerResource) {
             return ((EntityServerResource<T>) resource).getData(form);
         }
-        if (resource instanceof PostEntityServerResource) { // git sync
+        if (resource instanceof PostEntityServerResource) {
             return ((PostEntityServerResource<T>) resource).getData(form);
         }
-        if (resource instanceof PutEntityServerResource) { // git sync
+        if (resource instanceof PutEntityServerResource) {
             return ((PutEntityServerResource<T>) resource).getData(form);
         }
 

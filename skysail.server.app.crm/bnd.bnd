@@ -53,7 +53,12 @@ Import-Package: org.osgi.framework,\
 Bundle-Description: a contacts application for skysail (used as demo as well) 
 Private-Package:  \
 	io.skysail.server.app.crm,\
+	io.skysail.server.app.crm.contracts,\
 	io.skysail.server.app.crm.domain,\
-	io.skysail.server.app.crm.domain.companies,\
-	io.skysail.server.app.crm.domain.contacts,\
-	io.skysail.server.app.crm.domain.contracts
+	io.skysail.server.app.crm.domain.contracts,\
+	io.skysail.server.app.crm.addresses,\
+	io.skysail.server.app.crm.opportunities,\
+	io.skysail.server.app.crm.leads,\
+	io.skysail.server.app.crm.companies,\
+	io.skysail.server.app.crm.contacts,\
+	io.skysail.server.app.crm.emails

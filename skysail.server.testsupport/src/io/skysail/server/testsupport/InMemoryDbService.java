@@ -1,16 +1,22 @@
 package io.skysail.server.testsupport;
 
-import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
-
-import org.codehaus.jettison.json.JSONObject;
 
 import de.twenty11.skysail.server.core.db.DbService2;
 
+/**
+ * An DbService2 implementation to be used in tests.
+ * 
+ * The provided entities need a method "String getId()".
+ *
+ */
 public class InMemoryDbService implements DbService2 {
+
+    private volatile AtomicInteger cnt = new AtomicInteger(0);
 
     /**
      * Map ClassIdentifier -> ( Map Id -> Entity)
@@ -23,17 +29,25 @@ public class InMemoryDbService implements DbService2 {
         Map<String, Object> map = db.get(identifier);
         if (map == null) {
             map = new HashMap<String, Object>();
-        }
-        Method method;
-        try {
-            method = entity.getClass().getMethod("getId");
-            Object invoke = method.invoke(entity);
-            map.put((String) invoke, entity);
             db.put(identifier, map);
-        } catch (Exception e) {
-            e.printStackTrace();
         }
-        return null;
+        String newId = Integer.toString(cnt.incrementAndGet());
+
+        // Method method;
+        // try {
+        // method = entity.getClass().getMethod("setId");
+        // Object invoke = method.invoke(entity);
+        // map.put((String) invoke, entity);
+        // db.put(identifier, map);
+        // } catch (Exception e) {
+        // e.printStackTrace();
+        // }
+        //
+        //
+
+        map.put(newId, entity);
+
+        return newId;
     }
 
     @Override
@@ -42,19 +56,11 @@ public class InMemoryDbService implements DbService2 {
         return map.values().stream().map(o -> o.toString()).collect(Collectors.toList());
     }
 
-    @Override
-    public List<Map<String, Object>> getAllAsMap(Class<?> cls, String username) {
-        return null;
-    }
-
-    @Override
-    public void update(JSONObject json) {
-    }
-
+    @SuppressWarnings("unchecked")
     @Override
     public <T> T findObjectById(Class<?> cls, String id) {
-        // TODO Auto-generated method stub
-        return null;
+        Map<String, Object> map = db.get(cls.getSimpleName());
+        return (T) map.get(id);
     }
 
     @Override
@@ -67,6 +73,16 @@ public class InMemoryDbService implements DbService2 {
 
     @Override
     public void setupVertices(String... vertices) {
+    }
+
+    @Override
+    public <T> void update(Object id, T entity) {
+        Map<String, Object> entities = db.get(entity.getClass().getSimpleName());
+        Object entityFromMemory = entities.get(id);
+        if (entityFromMemory != null) {
+            entities.put(id.toString(), entity);
+        }
+
     }
 
 }

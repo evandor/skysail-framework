@@ -1,8 +1,8 @@
 package io.skysail.server.app.crm;
 
-import io.skysail.server.app.crm.domain.companies.CompaniesResource;
-import io.skysail.server.app.crm.domain.contacts.ContactsResource;
-import io.skysail.server.app.crm.domain.contracts.ContractsResource;
+import io.skysail.server.app.crm.companies.CompaniesResource;
+import io.skysail.server.app.crm.contacts.ContactsResource;
+import io.skysail.server.app.crm.contracts.ContractsResource;
 
 import java.util.List;
 

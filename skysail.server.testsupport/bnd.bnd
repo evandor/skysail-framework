@@ -16,4 +16,5 @@ Export-Package:  \
 	org.apache.commons.beanutils;version=1.9,\
 	skysail.server;version=latest,\
 	skysail.api;version=latest,\
-	com.orientechnologies.orientdb-core;version=2.0
+	com.orientechnologies.orientdb-core;version=2.0,\
+	lombok;version=1.12

@@ -13,7 +13,7 @@ import com.tinkerpop.blueprints.impls.orient.OrientGraph;
 import com.tinkerpop.blueprints.impls.orient.OrientVertex;
 
 @Slf4j
-public class Persister extends AbstractDbAPI {
+public class Persister {
 
     private OrientGraph db;
     private List<String> edges;
@@ -24,11 +24,10 @@ public class Persister extends AbstractDbAPI {
     }
 
     public <T> Object persist(T entity) {
-        return runInTransaction(db, entity);
+        return runInTransaction(entity);
     }
 
-    @Override
-    protected <T> Object execute(OrientGraph db, Object entity) {
+    protected <T> Object execute(Object entity) {
         Vertex vertex = db.addVertex("class:" + entity.getClass().getSimpleName());
         try {
             Map<String, String> properties = BeanUtils.describe(entity);
@@ -48,6 +47,27 @@ public class Persister extends AbstractDbAPI {
         } catch (Exception e) {
             log.error(e.getMessage(), e);
             return null;
+        }
+    }
+
+    /**
+     * Template Method to make sure that the orient db is called correctly.
+     * 
+     * @param db
+     * @param entity
+     * @return
+     */
+    protected <T> Object runInTransaction(Object entity) {
+        try {
+            Object result = execute(entity);
+            db.commit();
+            return result;
+        } catch (Exception e) {
+            db.rollback();
+            log.error("Exception in Database, rolled back transaction", e);
+            return null;
+        } finally {
+            db.shutdown();
         }
     }
 

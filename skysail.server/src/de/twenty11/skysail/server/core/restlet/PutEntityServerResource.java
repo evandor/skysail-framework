@@ -31,9 +31,14 @@ import etm.core.monitor.EtmPoint;
  * An abstract resource template dealing with PUT requests (see
  * http://www.ietf.org/rfc/rfc2616.txt, 9.6).
  * 
+ * <p>
  * Process:
+ * </p>
  * 
- * todo
+ * <p>
+ * Typically, you'd implement doInit to get hold on the id, then getEntity to
+ * retrieve the entitiy to be updated, and finally updateEntity to persist it.
+ * </p>
  * 
  * Example implementing class:
  * 
@@ -41,19 +46,20 @@ import etm.core.monitor.EtmPoint;
  *  <code>
  *  public class MyEntityResource extends PutEntityServerResource&lt;MyEntity&gt; {
  * 
- *     private MyApplication app;
- *     private String myEntityId;
- * 
- *     public MyEntityResource() {
- *        app = (MyApplication) getApplication();
- *     }
- * 
+ *     ...
+ *     
  *     protected void doInit() throws ResourceException {
  *       id = getAttribute("id");
+ *       app = (MyApplication) getApplication();
  *     }
  *     
  *     public T getEntity() {
- *        return app.getRepository().getById(myEntityId)
+ *        return app.getRepository().getById(id)
+ *     }
+ *     
+ *     public SkysailResponse<?> updateEntity(T entity) {
+ *        app.getRepository().update(entity);
+ *        return new SkysailResponse<String>();
  *     }
  * }
  * </code>
@@ -120,17 +126,8 @@ public abstract class PutEntityServerResource<T> extends SkysailServerResource<T
      *            the representation of the resource as a form
      * @return the resource of type T
      */
-    public JSONObject getData(Form form) {
-        // FIXME dont use everything from the form: dont trust user input
-        JSONObject entity = getEntityAsJsonObject();
-        form.getNames().stream().forEach(name -> {
-            try {
-                entity.put(name, form.getFirstValue(name));
-            } catch (Exception e) {
-                log.error(e.getMessage(), e);
-            }
-        });
-        return entity;
+    public T getData(Form form) {
+        return populate(getEntity(), form);
     }
 
     @Get("htmlform|html")

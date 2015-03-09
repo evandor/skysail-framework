@@ -1,6 +1,6 @@
 package io.skysail.server.app.crm.domain;
 
-import io.skysail.server.app.crm.domain.companies.Company;
+import io.skysail.server.app.crm.companies.Company;
 import lombok.Getter;
 
 public class CompanyWithId extends Company {

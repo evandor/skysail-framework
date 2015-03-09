@@ -5,7 +5,7 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 import io.skysail.api.validation.DefaultValidationImpl;
 import io.skysail.server.app.crm.ContactsGen;
-import io.skysail.server.app.crm.domain.CrmRepository;
+import io.skysail.server.app.crm.CrmRepository;
 import io.skysail.server.testsupport.AbstractShiroTest;
 import io.skysail.server.testsupport.InMemoryDbService;
 
@@ -14,8 +14,8 @@ import java.util.Locale;
 import org.junit.After;
 import org.junit.Rule;
 import org.junit.rules.ExpectedException;
-import org.mockito.Mock;
 import org.mockito.Mockito;
+import org.mockito.Spy;
 import org.restlet.data.Form;
 
 import de.twenty11.skysail.server.core.db.DbService2;
@@ -25,7 +25,7 @@ public class CrmAppTest extends AbstractShiroTest {
     @Rule
     public ExpectedException thrown = ExpectedException.none();
 
-    @Mock
+    @Spy
     protected ContactsGen app;
 
     protected CrmRepository crmRepository;
@@ -37,6 +37,7 @@ public class CrmAppTest extends AbstractShiroTest {
         crmRepository = new CrmRepository();
         dbService = new InMemoryDbService();
         crmRepository.setDbService(dbService);
+        app.setCrmRepository(crmRepository);
         Mockito.when(app.getValidatorService()).thenReturn(new DefaultValidationImpl());
 
         form = new Form();

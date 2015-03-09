@@ -5,12 +5,10 @@ import io.skysail.server.db.DbConfigurationProvider;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 import lombok.extern.slf4j.Slf4j;
 
-import org.codehaus.jettison.json.JSONObject;
 import org.osgi.service.component.ComponentContext;
 
 import aQute.bnd.annotation.component.Activate;
@@ -20,7 +18,6 @@ import aQute.bnd.annotation.component.Reference;
 
 import com.orientechnologies.orient.client.remote.OEngineRemote;
 import com.orientechnologies.orient.core.Orient;
-import com.orientechnologies.orient.core.db.ODatabaseRecordThreadLocal;
 import com.orientechnologies.orient.core.db.document.ODatabaseDocumentTx;
 import com.orientechnologies.orient.core.id.ORecordId;
 import com.orientechnologies.orient.core.metadata.schema.OClass;
@@ -74,8 +71,8 @@ public class OrientGraphDbService extends AbstractOrientDbService implements DbS
     }
 
     @Override
-    public void update(JSONObject json) {
-        new Updater(getDb()).update(json);
+    public <T> void update(Object id, T entity) {
+        new Updater(getObjectDb()).update(entity);
     }
 
     @Override
@@ -94,21 +91,23 @@ public class OrientGraphDbService extends AbstractOrientDbService implements DbS
         }
     }
 
-    @Override
-    public List<Map<String, Object>> getAllAsMap(Class<?> cls, String username) {
-        ODatabaseDocumentTx db = getDb().getRawGraph();
-        ODatabaseRecordThreadLocal.INSTANCE.set(db);
-        try {
-            List<ODocument> result = db.query(new OSQLSynchQuery<ODocument>("select from " + cls.getSimpleName()));
-            return result.stream().map(doc -> {
-                return doc.toMap();
-            }).collect(Collectors.toList());
-        } catch (Exception e) {
-            return Collections.emptyList();
-        } finally {
-            db.close();
-        }
-    }
+    // @Override
+    // public List<Map<String, Object>> getAllAsMap(Class<?> cls, String
+    // username) {
+    // ODatabaseDocumentTx db = getDb().getRawGraph();
+    // ODatabaseRecordThreadLocal.INSTANCE.set(db);
+    // try {
+    // List<ODocument> result = db.query(new
+    // OSQLSynchQuery<ODocument>("select from " + cls.getSimpleName()));
+    // return result.stream().map(doc -> {
+    // return doc.toMap();
+    // }).collect(Collectors.toList());
+    // } catch (Exception e) {
+    // return Collections.emptyList();
+    // } finally {
+    // db.close();
+    // }
+    // }
 
     // @Override
     // public <T> JSONObject find(Class<?> cls, String id) {
@@ -229,4 +228,5 @@ public class OrientGraphDbService extends AbstractOrientDbService implements DbS
 
         });
     }
+
 }

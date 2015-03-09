@@ -2,40 +2,46 @@ package de.twenty11.skysail.server.db.orientdb.impl;
 
 import lombok.extern.slf4j.Slf4j;
 
-import org.codehaus.jettison.json.JSONObject;
-
-import com.tinkerpop.blueprints.impls.orient.OrientGraph;
-import com.tinkerpop.blueprints.impls.orient.OrientVertex;
+import com.orientechnologies.orient.object.db.OObjectDatabaseTx;
 
 @Slf4j
-public class Updater extends AbstractDbAPI {
+public class Updater {
 
-    private OrientGraph db;
+    private OObjectDatabaseTx db;
 
-    public Updater(OrientGraph db) {
-        this.db = db;
+    public Updater(OObjectDatabaseTx oObjectDatabaseTx) {
+        this.db = oObjectDatabaseTx;
     }
 
-    public <T> Object update(JSONObject json) {
-        return runInTransaction(db, json);
+    public <T> Object update(Object entity) {
+        return runInTransaction(entity);
     }
 
-    protected <T> Object execute(OrientGraph db, Object entity) {
-        try {
-            System.out.println(entity);
-            JSONObject json = (JSONObject) entity;
-            OrientVertex vertex = db.getVertex(json.get("_id"));
-            vertex.setProperty("name", json.getString("name"));
-
-            // OrientVertex vertexFromJson = (OrientVertex)
-            // GraphSONUtility.vertexFromJson((JSONObject) entity,
-            // new GraphElementFactory(db), GraphSONMode.NORMAL, null);
-            // System.out.println(vertexFromJson);
-            vertex.save();
-        } catch (Exception e) {
-            log.error(e.getMessage(), e);
-        }
+    protected <T> Object execute(Object entity) {
+        // ODatabaseRecordThreadLocal.INSTANCE.set(db.getUnderlying());
+        db.save(entity);
         return null;
+    }
+
+    /**
+     * Template Method to make sure that the orient db is called correctly.
+     * 
+     * @param db
+     * @param entity
+     * @return
+     */
+    protected <T> Object runInTransaction(Object entity) {
+        try {
+            Object result = execute(entity);
+            db.commit();
+            return result;
+        } catch (Exception e) {
+            db.rollback();
+            log.error("Exception in Database, rolled back transaction", e);
+            return null;
+        } finally {
+            db.close();
+        }
     }
 
 }

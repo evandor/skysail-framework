@@ -1,16 +1,15 @@
 package io.skysail.server.app.crm;
 
-import io.skysail.server.app.crm.domain.CrmRepository;
-import io.skysail.server.app.crm.domain.companies.CompaniesResource;
-import io.skysail.server.app.crm.domain.companies.CompanyResource;
-import io.skysail.server.app.crm.domain.companies.PostCompanyResource;
-import io.skysail.server.app.crm.domain.companies.PutCompanyResource;
-import io.skysail.server.app.crm.domain.contacts.ContactResource;
-import io.skysail.server.app.crm.domain.contacts.ContactsResource;
-import io.skysail.server.app.crm.domain.contacts.PostContactResource;
-import io.skysail.server.app.crm.domain.contacts.PutContactResource;
-import io.skysail.server.app.crm.domain.contracts.ContractsResource;
-import io.skysail.server.app.crm.domain.contracts.PostContractResource;
+import io.skysail.server.app.crm.companies.CompaniesResource;
+import io.skysail.server.app.crm.companies.CompanyResource;
+import io.skysail.server.app.crm.companies.PostCompanyResource;
+import io.skysail.server.app.crm.companies.PutCompanyResource;
+import io.skysail.server.app.crm.contacts.ContactResource;
+import io.skysail.server.app.crm.contacts.ContactsResource;
+import io.skysail.server.app.crm.contacts.PostContactResource;
+import io.skysail.server.app.crm.contacts.PutContactResource;
+import io.skysail.server.app.crm.contracts.ContractsResource;
+import io.skysail.server.app.crm.contracts.PostContractResource;
 
 import java.util.Arrays;
 import java.util.List;
@@ -37,7 +36,7 @@ public class ContactsGen extends SkysailApplication implements MenuItemProvider,
         addToAppContext(ApplicationContextId.IMG, "/static/img/silk/page_link.png");
     }
 
-    @Reference(dynamic = true, multiple = false, optional = false)
+    @Reference(dynamic = true, multiple = false, optional = false, target = "(name=CrmRepository)")
     public void setCrmRepository(DbRepository repo) {
         this.crmRepo = (CrmRepository) repo;
     }

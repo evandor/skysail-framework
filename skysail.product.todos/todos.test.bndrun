@@ -106,6 +106,7 @@
 	skysail.server.app.todos;version=latest,\
 	skysail.server.app.crm;version=latest,\
 	skysail.server.app.designer;version=latest,\
+	skysail.server.app.wiki;version=latest,\
 	skysail.server.db;version=latest,\
 	skysail.server.documentation;version=latest,\
 	skysail.server.http;version=latest,\

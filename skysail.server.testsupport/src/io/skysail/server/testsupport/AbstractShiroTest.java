@@ -79,25 +79,33 @@ public class AbstractShiroTest {
         return SecurityUtils.getSecurityManager();
     }
 
-    // @Before
     public void setUp() throws Exception {
-        Subject subjectUnderTest = Mockito.mock(Subject.class);
-        Mockito.when(subjectUnderTest.isAuthenticated()).thenReturn(true);
-        Mockito.when(subjectUnderTest.getPrincipal()).thenReturn("admin");
-        setSubject(subjectUnderTest);
-
-        ValidatorService validatorServiceMock = Mockito.mock(ValidatorService.class);
-        Validator validator = Mockito.mock(Validator.class);
-        Mockito.when(validatorServiceMock.getValidator()).thenReturn(validator);
-
         attributes = new ConcurrentHashMap<String, Object>();
+        setupSubject();
+        setupValidation();
+        setupRestlet();
+    }
 
+    private void setupRestlet() {
         request = Mockito.mock(Request.class);
         Mockito.when(request.getClientInfo()).thenReturn(new ClientInfo());
         Mockito.when(request.getAttributes()).thenReturn(attributes);
         Reference resourceRef = Mockito.mock(Reference.class);
         Mockito.when(request.getResourceRef()).thenReturn(resourceRef);
         response = new Response(request);
+    }
+
+    private void setupValidation() {
+        ValidatorService validatorServiceMock = Mockito.mock(ValidatorService.class);
+        Validator validator = Mockito.mock(Validator.class);
+        Mockito.when(validatorServiceMock.getValidator()).thenReturn(validator);
+    }
+
+    private void setupSubject() {
+        Subject subjectUnderTest = Mockito.mock(Subject.class);
+        Mockito.when(subjectUnderTest.isAuthenticated()).thenReturn(true);
+        Mockito.when(subjectUnderTest.getPrincipal()).thenReturn("admin");
+        setSubject(subjectUnderTest);
     }
 
     @AfterClass

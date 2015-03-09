@@ -14,6 +14,7 @@ import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
 import lombok.NonNull;
+import lombok.extern.slf4j.Slf4j;
 
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.beanutils.ConvertUtils;
@@ -58,6 +59,7 @@ import etm.core.monitor.EtmMonitor;
  * issues and the like are always dealt with in the same way.
  * 
  */
+@Slf4j
 public abstract class SkysailServerResource<T> extends ServerResource {
 
     private static final Logger logger = LoggerFactory.getLogger(SkysailServerResource.class);
@@ -330,10 +332,26 @@ public abstract class SkysailServerResource<T> extends ServerResource {
             dateConverter.setPattern("yyyy-MM-dd");
             ConvertUtils.register(dateConverter, Date.class);
             BeanUtils.populate(bean, form.getValuesMap());
+            // System.out.println(BeanUtils.describe(bean));
+            // callGettersIfOrientDbBean(bean);
             return bean;
-        } catch (IllegalAccessException | InvocationTargetException e) {
+        } catch (Exception e) {
             logger.error(e.getMessage(), e);
             return null;
+        }
+    }
+
+    private void callGettersIfOrientDbBean(T bean) {
+        if (bean.getClass().toString().contains("$$")) {
+            Arrays.stream(bean.getClass().getMethods()).filter(m -> {
+                return m.getName().startsWith("get");
+            }).forEach(m -> {
+                try {
+                    System.out.println(m.invoke(bean));
+                } catch (Exception e) {
+                    log.error(e.getMessage(), e);
+                }
+            });
         }
     }
 

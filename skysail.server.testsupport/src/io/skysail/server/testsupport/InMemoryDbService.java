@@ -95,4 +95,8 @@ public class InMemoryDbService implements DbService2 {
 
     }
 
+    @Override
+    public void persistAsDocument(String doc) {
+    }
+
 }

@@ -44,4 +44,6 @@ public interface DbService2 {
 
     void delete(Class<?> cls, String id);
 
+    void persistAsDocument(String doc);
+
 }

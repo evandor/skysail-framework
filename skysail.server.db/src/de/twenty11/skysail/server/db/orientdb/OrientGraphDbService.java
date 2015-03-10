@@ -18,6 +18,7 @@ import aQute.bnd.annotation.component.Reference;
 
 import com.orientechnologies.orient.client.remote.OEngineRemote;
 import com.orientechnologies.orient.core.Orient;
+import com.orientechnologies.orient.core.db.ODatabaseRecordThreadLocal;
 import com.orientechnologies.orient.core.db.document.ODatabaseDocumentTx;
 import com.orientechnologies.orient.core.id.ORecordId;
 import com.orientechnologies.orient.core.metadata.schema.OClass;
@@ -68,6 +69,19 @@ public class OrientGraphDbService extends AbstractOrientDbService implements DbS
     @Override
     public <T> Object persist(T entity, String... edges) {
         return new Persister(getDb(), edges).persist(entity);
+    }
+
+    @Override
+    public void persistAsDocument(String doc1) {
+        ODatabaseDocumentTx documentDb = getDocumentDb();
+
+        ODocument doc = new ODocument("Person");
+        doc.field("name", "Luke");
+        doc.field("surname", "Skywalker");
+        doc.field("city", new ODocument("City").field("name", "Rome").field("country", "Italy"));
+
+        documentDb.save(doc);
+        documentDb.close();
     }
 
     @Override
@@ -205,7 +219,7 @@ public class OrientGraphDbService extends AbstractOrientDbService implements DbS
 
     private ODatabaseDocumentTx getDocumentDb() {
         ODatabaseDocumentTx db = new ODatabaseDocumentTx(getDbUrl()).open("admin", "admin");
-        // ODatabaseRecordThreadLocal.INSTANCE.set(db.getUnderlying());
+        ODatabaseRecordThreadLocal.INSTANCE.set(db.getUnderlying());
         return db;
     }
 

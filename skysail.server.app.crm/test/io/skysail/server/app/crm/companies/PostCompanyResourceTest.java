@@ -47,6 +47,7 @@ public class PostCompanyResourceTest extends CrmAppTest {
     @Test
     public void posting_valid_html_form_creates_new_entity() {
         form.add("name", "mycompany");
+        form.add("type", "INTEGRATOR");
         Company post = (Company) resource.post(form);
         assertThat(post.getName(), is(equalTo("mycompany")));
 

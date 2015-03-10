@@ -13,6 +13,7 @@ import de.twenty11.skysail.api.responses.Linkheader;
 import de.twenty11.skysail.api.responses.SkysailResponse;
 import de.twenty11.skysail.server.core.restlet.EntityServerResource;
 import de.twenty11.skysail.server.core.restlet.ResourceContextId;
+import de.twenty11.skysail.server.core.restlet.SkysailServerResource;
 
 public class ApplicationResource extends EntityServerResource<Application> {
 
@@ -57,6 +58,11 @@ public class ApplicationResource extends EntityServerResource<Application> {
                 l.substitute("id", id);
             }
         };
+    }
+
+    @Override
+    public String redirectTo(Class<? extends SkysailServerResource<?>> cls) {
+        return super.redirectTo(ApplicationsResource.class);
     }
 
 }

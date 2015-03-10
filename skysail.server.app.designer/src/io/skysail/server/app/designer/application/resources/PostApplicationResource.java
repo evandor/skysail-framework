@@ -33,4 +33,8 @@ public class PostApplicationResource extends PostEntityServerResource<Applicatio
         return new SkysailResponse<String>();
     }
 
+    @Override
+    public String redirectTo() {
+        return super.redirectTo(ApplicationsResource.class);
+    }
 }

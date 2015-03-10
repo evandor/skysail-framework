@@ -191,7 +191,7 @@ public class StringTemplateRenderer {
                 entity = resource.getParameterType().newInstance();
                 fields = ReflectionUtils.getInheritedFields(resource.getParameterType()).stream()
                         .filter(f -> test(resource, f)).sorted((f1, f2) -> sort(resource, f1, f2))
-                        .map(f -> new FormField(f, userManager, source, entity))//
+                        .map(f -> new FormField(f, resource, userManager, source, entity))//
                         .collect(Collectors.toList());
 
                 decl.add("fields", new STFieldsWrapper(fields));
@@ -207,13 +207,15 @@ public class StringTemplateRenderer {
                     DynaProperty[] dynaProperties = ((DynamicEntity) entity).getInstance().getDynaClass()
                             .getDynaProperties();
                     fields = Arrays.stream(dynaProperties).map(d -> {
-                        return new FormField((DynamicEntity) entity, d);
+                        return new FormField((DynamicEntity) entity, d, resource);
                     }).collect(Collectors.toList());
                 } else {
-                    fields = ReflectionUtils.getInheritedFields(entity.getClass()).stream()
+                    fields = ReflectionUtils.getInheritedFields(entity.getClass())
+                            .stream()
                             //
                             .filter(f -> test(resource, f))
-                            .map(f -> new FormField(f, userManager, source, ((SkysailResponse<?>) source).getEntity()))//
+                            .map(f -> new FormField(f, resource, userManager, source, ((SkysailResponse<?>) source)
+                                    .getEntity()))//
                             .collect(Collectors.toList());
                 }// } else {
                  // JSONObject jsonObject = ((SkysailResponse<?>)

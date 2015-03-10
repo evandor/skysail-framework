@@ -10,6 +10,10 @@ import de.twenty11.skysail.api.forms.SelectionProvider;
 
 public class SalutationSelectionProvider implements SelectionProvider {
 
+    public static SalutationSelectionProvider getInstance() {
+        return new SalutationSelectionProvider();
+    }
+
     @Override
     public Map<String, String> getSelections() {
         Map<String, String> result = new HashMap<>();

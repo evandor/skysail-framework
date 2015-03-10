@@ -25,15 +25,15 @@ import de.twenty11.skysail.server.services.MenuItem;
 import de.twenty11.skysail.server.services.MenuItemProvider;
 
 @Component(immediate = true)
-public class ContactsGen extends SkysailApplication implements MenuItemProvider, ApplicationProvider {
+public class CrmApplication extends SkysailApplication implements MenuItemProvider, ApplicationProvider {
 
-    private static final String APP_NAME = "ContactsGen";
+    private static final String APP_NAME = "CRM";
 
     private CrmRepository crmRepo;
 
-    public ContactsGen() {
+    public CrmApplication() {
         super(APP_NAME);
-        addToAppContext(ApplicationContextId.IMG, "/static/img/silk/page_link.png");
+        addToAppContext(ApplicationContextId.IMG, "/static/img/silk/vcard.png");
     }
 
     @Reference(dynamic = true, multiple = false, optional = false, target = "(name=CrmRepository)")
@@ -74,7 +74,7 @@ public class ContactsGen extends SkysailApplication implements MenuItemProvider,
     }
 
     public List<MenuItem> getMenuEntries() {
-        MenuItem appMenu = new MenuItem("ContactsGen", "/ContactsGen", this);
+        MenuItem appMenu = new MenuItem(APP_NAME, "/" + APP_NAME, this);
         appMenu.setCategory(MenuItem.Category.APPLICATION_MAIN_MENU);
         return Arrays.asList(appMenu);
     }

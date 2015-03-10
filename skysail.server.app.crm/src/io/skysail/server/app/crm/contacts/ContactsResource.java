@@ -1,6 +1,6 @@
 package io.skysail.server.app.crm.contacts;
 
-import io.skysail.server.app.crm.ContactsGen;
+import io.skysail.server.app.crm.CrmApplication;
 
 import java.util.List;
 import java.util.function.Consumer;
@@ -18,7 +18,7 @@ public class ContactsResource extends ListServerResource<Contact> {
 
     private int page = 1;
 
-    private ContactsGen app;
+    private CrmApplication app;
 
     public ContactsResource() {
         super(ContactResource.class);
@@ -28,7 +28,7 @@ public class ContactsResource extends ListServerResource<Contact> {
     @Override
     protected void doInit() throws ResourceException {
         id = getAttribute("id");
-        app = (ContactsGen) getApplication();
+        app = (CrmApplication) getApplication();
         String pageAsString = getQueryValue("page");
         if (pageAsString != null && pageAsString.trim().length() > 0) {
             page = Integer.parseInt(pageAsString);

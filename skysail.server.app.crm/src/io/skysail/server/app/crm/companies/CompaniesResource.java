@@ -1,6 +1,6 @@
 package io.skysail.server.app.crm.companies;
 
-import io.skysail.server.app.crm.ContactsGen;
+import io.skysail.server.app.crm.CrmApplication;
 
 import java.util.List;
 
@@ -12,7 +12,7 @@ import de.twenty11.skysail.server.core.restlet.ResourceContextId;
 
 public class CompaniesResource extends ListServerResource<Company> {
 
-    private ContactsGen app;
+    private CrmApplication app;
 
     public CompaniesResource() {
         super(CompanyResource.class);
@@ -21,7 +21,7 @@ public class CompaniesResource extends ListServerResource<Company> {
 
     @Override
     protected void doInit() throws ResourceException {
-        app = (ContactsGen) getApplication();
+        app = (CrmApplication) getApplication();
     }
 
     @Override

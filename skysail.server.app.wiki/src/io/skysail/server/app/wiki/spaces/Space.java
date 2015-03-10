@@ -18,10 +18,10 @@ public class Space extends DynamicEntity {
     private static DesignerRepository repo;
 
     public Space() {
-        super("Contract", getProperties());
+        super("Space");
     }
 
-    private static Set<EntityDynaProperty> getProperties() {
+    public Set<EntityDynaProperty> getProperties() {
         SortedSet<EntityDynaProperty> properties = new TreeSet<>();
 
         Application designerApplication = repo.getById(Application.class, "25:1");

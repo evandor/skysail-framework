@@ -1,6 +1,6 @@
 package io.skysail.server.app.crm.companies;
 
-import io.skysail.server.app.crm.ContactsGen;
+import io.skysail.server.app.crm.CrmApplication;
 
 import java.util.Date;
 
@@ -13,12 +13,12 @@ import de.twenty11.skysail.server.core.restlet.PutEntityServerResource;
 public class PutCompanyResource extends PutEntityServerResource<Company> {
 
     private String id;
-    private ContactsGen app;
+    private CrmApplication app;
 
     @Override
     protected void doInit() throws ResourceException {
         id = getAttribute("id");
-        app = (ContactsGen) getApplication();
+        app = (CrmApplication) getApplication();
     }
 
     @Override

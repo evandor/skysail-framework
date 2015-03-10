@@ -19,7 +19,7 @@ public class PostContractResource extends PostEntityServerResource<Contract> {
 
     @Override
     protected Contract populate(Contract bean, Form form) {
-        Set<EntityDynaProperty> properties = Contract.getProperties();
+        Set<EntityDynaProperty> properties = bean.getProperties();
         properties.stream().forEach(p -> {
             String value = form.getFirstValue(p.getName());
             if (value != null) {
@@ -31,8 +31,7 @@ public class PostContractResource extends PostEntityServerResource<Contract> {
 
     @Override
     public SkysailResponse<?> addEntity(Contract entity) {
-
-        CrmRepository.addAsDocument(null);
+        CrmRepository.add(entity);
         return new SkysailResponse<String>();
     }
 }

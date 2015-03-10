@@ -17,7 +17,9 @@ import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
 
 import org.apache.commons.beanutils.BeanUtils;
+import org.apache.commons.beanutils.BeanUtilsBean;
 import org.apache.commons.beanutils.ConvertUtils;
+import org.apache.commons.beanutils.ConvertUtilsBean;
 import org.apache.commons.beanutils.converters.DateConverter;
 import org.apache.shiro.SecurityUtils;
 import org.codehaus.jettison.json.JSONObject;
@@ -26,8 +28,6 @@ import org.restlet.data.Form;
 import org.restlet.data.Reference;
 import org.restlet.resource.ServerResource;
 import org.restlet.security.Role;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -62,8 +62,6 @@ import etm.core.monitor.EtmMonitor;
 @Slf4j
 public abstract class SkysailServerResource<T> extends ServerResource {
 
-    private static final Logger logger = LoggerFactory.getLogger(SkysailServerResource.class);
-
     public static final String ATTRIBUTES_INTERNAL_REQUEST_ID = "de.twenty11.skysail.server.restlet.SkysailServerResource.requestId";
 
     protected static final EtmMonitor etmMonitor = EtmManager.getEtmMonitor();
@@ -76,6 +74,17 @@ public abstract class SkysailServerResource<T> extends ServerResource {
     private Map<ResourceContextId, String> stringContextMap = new HashMap<>();
 
     private Map<ResourceContextId, Map<String, String>> mapContextMap = new HashMap<>();
+
+    BeanUtilsBean beanUtilsBean = new BeanUtilsBean(new ConvertUtilsBean() {
+        @Override
+        public Object convert(String value, Class clazz) {
+            if (clazz.isEnum()) {
+                return Enum.valueOf(clazz, value);
+            } else {
+                return super.convert(value, clazz);
+            }
+        }
+    });
 
     @Override
     public SkysailApplication getApplication() {
@@ -329,14 +338,18 @@ public abstract class SkysailServerResource<T> extends ServerResource {
     protected T populate(T bean, Form form) {
         try {
             DateConverter dateConverter = new DateConverter(null);
+
             dateConverter.setPattern("yyyy-MM-dd");
             ConvertUtils.register(dateConverter, Date.class);
-            BeanUtils.populate(bean, form.getValuesMap());
+
+            beanUtilsBean.populate(bean, form.getValuesMap());
+
+            // BeanUtils.populate(bean, form.getValuesMap());
             // System.out.println(BeanUtils.describe(bean));
             // callGettersIfOrientDbBean(bean);
             return bean;
         } catch (Exception e) {
-            logger.error(e.getMessage(), e);
+            log.error("Error populating bean {} from form {}", bean, form.getValuesMap(), e);
             return null;
         }
     }
@@ -359,7 +372,7 @@ public abstract class SkysailServerResource<T> extends ServerResource {
         try {
             return BeanUtils.describe(bean);
         } catch (IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
-            logger.error(e.getMessage(), e);
+            log.error(e.getMessage(), e);
             return null;
         }
     }

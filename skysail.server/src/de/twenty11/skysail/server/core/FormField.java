@@ -14,6 +14,7 @@ import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 
 import org.apache.commons.beanutils.DynaProperty;
+import org.restlet.resource.Resource;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -29,6 +30,7 @@ import de.twenty11.skysail.api.responses.ConstraintViolationsResponse;
 import de.twenty11.skysail.api.responses.SkysailResponse;
 import de.twenty11.skysail.server.beans.DynamicEntity;
 import de.twenty11.skysail.server.core.restlet.MessagesUtils;
+import de.twenty11.skysail.server.core.restlet.SkysailServerResource;
 import de.twenty11.skysail.server.services.UserManager;
 import de.twenty11.skysail.server.um.domain.SkysailUser;
 
@@ -59,7 +61,11 @@ public class FormField {
     private Reference referenceAnnotation;
     private de.twenty11.skysail.api.forms.Field formFieldAnnotation;
 
-    public FormField(Field fieldAnnotation, UserManager userManager, Object source, Object entity) {
+    private SkysailServerResource<?> resource;
+
+    public FormField(Field fieldAnnotation, SkysailServerResource<?> resource, UserManager userManager, Object source,
+            Object entity) {
+        this.resource = resource;
         this.name = fieldAnnotation.getName();
         inputType = getFromFieldAnnotation(fieldAnnotation);
         referenceAnnotation = fieldAnnotation.getAnnotation(Reference.class);
@@ -108,7 +114,7 @@ public class FormField {
         }
     }
 
-    public FormField(DynamicEntity dynamicBean, DynaProperty d) {
+    public FormField(DynamicEntity dynamicBean, DynaProperty d, SkysailServerResource<?> resource) {
         this.name = d.getName();
         Object valueOrNull = dynamicBean.getInstance().get(name);
         this.value = valueOrNull == null ? null : valueOrNull.toString();
@@ -203,6 +209,9 @@ public class FormField {
         try {
             Method method = selectionProvider.getMethod("getInstance");
             selection = (SelectionProvider) method.invoke(selectionProvider, new Object[] {});
+
+            method = selectionProvider.getMethod("setResource", Resource.class);
+            method.invoke(selectionProvider.newInstance(), resource);
             return selection.getSelections();
         } catch (Exception e) {
             log.error(e.getMessage(), e);

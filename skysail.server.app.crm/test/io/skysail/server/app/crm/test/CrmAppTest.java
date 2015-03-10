@@ -4,7 +4,7 @@ import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 import io.skysail.api.validation.DefaultValidationImpl;
-import io.skysail.server.app.crm.ContactsGen;
+import io.skysail.server.app.crm.CrmApplication;
 import io.skysail.server.app.crm.CrmRepository;
 import io.skysail.server.testsupport.AbstractShiroTest;
 import io.skysail.server.testsupport.InMemoryDbService;
@@ -26,7 +26,7 @@ public class CrmAppTest extends AbstractShiroTest {
     public ExpectedException thrown = ExpectedException.none();
 
     @Spy
-    protected ContactsGen app;
+    protected CrmApplication app;
 
     protected CrmRepository crmRepository;
 

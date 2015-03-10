@@ -33,13 +33,13 @@ public class DesignerApplication extends SkysailApplication implements MenuItemP
 
     public DesignerApplication() {
         super(APP_NAME);
-        addToAppContext(ApplicationContextId.IMG, "/static/img/silk/page_link.png");
+        addToAppContext(ApplicationContextId.IMG, "/static/img/silk/paintbrush.png");
     }
 
     @Override
     protected void attach() {
         // Application root resource
-        router.attach(new RouteBuilder("", RootResource.class));
+        router.attach(new RouteBuilder("", ApplicationsResource.class));
 
         router.attach(new RouteBuilder("/application/", PostApplicationResource.class));
         router.attach(new RouteBuilder("/applications", ApplicationsResource.class));

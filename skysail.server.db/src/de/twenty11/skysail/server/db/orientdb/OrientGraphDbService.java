@@ -29,6 +29,7 @@ import com.orientechnologies.orient.object.db.OObjectDatabaseTx;
 import com.tinkerpop.blueprints.impls.orient.OrientGraph;
 import com.tinkerpop.blueprints.impls.orient.OrientGraphFactory;
 
+import de.twenty11.skysail.server.beans.DynamicEntity;
 import de.twenty11.skysail.server.core.db.DbService2;
 import de.twenty11.skysail.server.db.orientdb.impl.Persister;
 import de.twenty11.skysail.server.db.orientdb.impl.Updater;
@@ -68,21 +69,33 @@ public class OrientGraphDbService extends AbstractOrientDbService implements DbS
 
     @Override
     public <T> Object persist(T entity, String... edges) {
+        if (entity instanceof DynamicEntity) {
+            DynamicEntity dynamicEntity = (DynamicEntity) entity;
+            ODatabaseDocumentTx documentDb = getDocumentDb();
+            ODocument doc = new ODocument(dynamicEntity.getInstance().getDynaClass().getName());
+            dynamicEntity.getProperties().stream().forEach(p -> {
+                doc.field(p.getName(), dynamicEntity.getString(p.getName()));
+            });
+            documentDb.save(doc);
+            documentDb.close();
+            return doc;
+        }
         return new Persister(getDb(), edges).persist(entity);
     }
 
-    @Override
-    public void persistAsDocument(String doc1) {
-        ODatabaseDocumentTx documentDb = getDocumentDb();
-
-        ODocument doc = new ODocument("Person");
-        doc.field("name", "Luke");
-        doc.field("surname", "Skywalker");
-        doc.field("city", new ODocument("City").field("name", "Rome").field("country", "Italy"));
-
-        documentDb.save(doc);
-        documentDb.close();
-    }
+    // @Override
+    // public void persistAsDocument(String doc1) {
+    // ODatabaseDocumentTx documentDb = getDocumentDb();
+    //
+    // ODocument doc = new ODocument("Person");
+    // doc.field("name", "Luke");
+    // doc.field("surname", "Skywalker");
+    // doc.field("city", new ODocument("City").field("name",
+    // "Rome").field("country", "Italy"));
+    //
+    // documentDb.save(doc);
+    // documentDb.close();
+    // }
 
     @Override
     public <T> void update(Object id, T entity) {
@@ -219,7 +232,7 @@ public class OrientGraphDbService extends AbstractOrientDbService implements DbS
 
     private ODatabaseDocumentTx getDocumentDb() {
         ODatabaseDocumentTx db = new ODatabaseDocumentTx(getDbUrl()).open("admin", "admin");
-        ODatabaseRecordThreadLocal.INSTANCE.set(db.getUnderlying());
+        ODatabaseRecordThreadLocal.INSTANCE.set(db);
         return db;
     }
 

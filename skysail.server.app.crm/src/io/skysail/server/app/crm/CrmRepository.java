@@ -54,8 +54,4 @@ public class CrmRepository implements DbRepository {
         dbService.update(entity.getId(), entity);
     }
 
-    public static void addAsDocument(String doc) {
-        dbService.persistAsDocument(doc);
-    }
-
 }

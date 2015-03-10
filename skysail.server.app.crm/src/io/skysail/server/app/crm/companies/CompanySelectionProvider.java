@@ -1,6 +1,6 @@
 package io.skysail.server.app.crm.companies;
 
-import io.skysail.server.app.crm.ContactsGen;
+import io.skysail.server.app.crm.CrmApplication;
 
 import java.util.HashMap;
 import java.util.List;
@@ -16,7 +16,7 @@ public class CompanySelectionProvider implements SelectionProvider {
         return new CompanySelectionProvider();
     }
 
-    private ContactsGen app;
+    private static CrmApplication app;
 
     @Override
     public Map<String, String> getSelections() {
@@ -36,7 +36,7 @@ public class CompanySelectionProvider implements SelectionProvider {
 
     @Override
     public void setResource(Resource resource) {
-        app = (ContactsGen) resource.getApplication();
+        app = (CrmApplication) resource.getApplication();
     }
 
 }

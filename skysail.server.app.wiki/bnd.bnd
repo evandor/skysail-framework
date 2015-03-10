@@ -46,6 +46,7 @@ Include-Resource: resources, templates=src;recursive:=true;filter:=*.st|*.stg
 	skysail.server.app.designer;version=latest
 Import-Package: org.osgi.framework,\
 	javassist.util.proxy,\
+	org.apache.commons.beanutils,\
 	*
 Private-Package:  \
 	io.skysail.server.app.wiki,\

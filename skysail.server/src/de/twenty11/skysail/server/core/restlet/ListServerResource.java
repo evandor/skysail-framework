@@ -49,12 +49,8 @@ import etm.core.monitor.EtmPoint;
  *    private MailApplication app;
  *    ...
  * 
- *    public AccountsResource() {
- *    }
- * 
- *     {@literal @}Override
+ *    {@literal @}Override
  *    protected void doInit() throws ResourceException {
- *        super.doInit();
  *        app = (MailApplication) getApplication();
  *        connectionName = (String) getRequest().getAttributes().get("conn");
  *    }

@@ -1,11 +1,15 @@
 package io.skysail.server.app.designer;
 
+import io.skysail.server.app.designer.application.Application;
 import io.skysail.server.app.designer.application.resources.ApplicationResource;
 import io.skysail.server.app.designer.application.resources.ApplicationsResource;
 import io.skysail.server.app.designer.application.resources.PostApplicationResource;
 import io.skysail.server.app.designer.application.resources.PutApplicationResource;
+import io.skysail.server.app.designer.entities.Entity;
 import io.skysail.server.app.designer.entities.resources.EntitiesResource;
 import io.skysail.server.app.designer.entities.resources.PostEntityResource;
+import io.skysail.server.app.designer.fields.resources.FieldsResource;
+import io.skysail.server.app.designer.fields.resources.PostFieldResource;
 import io.skysail.server.app.designer.repo.DesignerRepository;
 
 import java.util.Arrays;
@@ -41,16 +45,20 @@ public class DesignerApplication extends SkysailApplication implements MenuItemP
         router.attach(new RouteBuilder("/applications", ApplicationsResource.class));
         router.attach(new RouteBuilder("/applications/{id}", ApplicationResource.class));
         router.attach(new RouteBuilder("/applications/{id}/", PutApplicationResource.class));
-        router.attach(new RouteBuilder("/applications/{id}/entities/", PostEntityResource.class));
         router.attach(new RouteBuilder("/applications/{id}/entities", EntitiesResource.class));
+        router.attach(new RouteBuilder("/applications/{id}/entities/", PostEntityResource.class));
+
+        router.attach(new RouteBuilder("/applications/{id}/entities/{entityName}/fields", FieldsResource.class));
+        router.attach(new RouteBuilder("/applications/{id}/entities/{entityName}/fields/", PostFieldResource.class));
+
     }
 
     @Reference(dynamic = true, multiple = false, optional = false, target = "(name=DesignerRepository)")
-    public void setCrmRepository(DbRepository repo) {
+    public void setDesignerRepository(DbRepository repo) {
         this.repo = (DesignerRepository) repo;
     }
 
-    public void unsetCrmRepository(DbRepository repo) {
+    public void unsetDesignerRepository(DbRepository repo) {
         this.repo = null;
     }
 
@@ -62,6 +70,19 @@ public class DesignerApplication extends SkysailApplication implements MenuItemP
         MenuItem appMenu = new MenuItem("AppDesigner", "/" + APP_NAME, this);
         appMenu.setCategory(MenuItem.Category.APPLICATION_MAIN_MENU);
         return Arrays.asList(appMenu);
+    }
+
+    public Entity getEntity(Application application, String entityName) {
+        for (Entity entity : application.getEntities()) {
+            if (entity.getName().equals(entityName)) {
+                return entity;
+            }
+        }
+        return null;
+    }
+
+    public Application getApplication(String id) {
+        return getRepository().getById(Application.class, id);
     }
 
 }

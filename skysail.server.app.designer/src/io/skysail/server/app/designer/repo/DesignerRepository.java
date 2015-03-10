@@ -2,6 +2,7 @@ package io.skysail.server.app.designer.repo;
 
 import io.skysail.server.app.designer.application.Application;
 import io.skysail.server.app.designer.entities.Entity;
+import io.skysail.server.app.designer.fields.EntityField;
 
 import java.util.List;
 
@@ -19,7 +20,7 @@ public class DesignerRepository implements DbRepository {
     @Activate
     public void activate() {
         dbService.setupVertices(Application.class.getSimpleName());
-        dbService.register(Application.class, Entity.class);
+        dbService.register(Application.class, Entity.class, EntityField.class);
     }
 
     @Reference

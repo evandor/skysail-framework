@@ -64,7 +64,7 @@ public class ContactsGen extends SkysailApplication implements MenuItemProvider,
         router.attach(new RouteBuilder("/Companies/{id}", CompanyResource.class));
         router.attach(new RouteBuilder("/Companies/{id}/", PutCompanyResource.class));
 
-        router.attach(new RouteBuilder("/Contract/", PostContractResource.class));
+        router.attach(new RouteBuilder("/Contracts/", PostContractResource.class));
         router.attach(new RouteBuilder("/Contracts", ContractsResource.class));
         // router.attach(new RouteBuilder("/Contracts/{id}",
         // ContractResource.class));

@@ -3,6 +3,7 @@ package io.skysail.server.app.wiki;
 import io.skysail.server.app.designer.repo.DesignerRepository;
 import io.skysail.server.app.wiki.spaces.PostSpaceResource;
 import io.skysail.server.app.wiki.spaces.Space;
+import io.skysail.server.app.wiki.spaces.SpacesResource;
 
 import java.util.Arrays;
 import java.util.List;
@@ -34,6 +35,7 @@ public class WikiApplication extends SkysailApplication implements MenuItemProvi
         // Application root resource
         router.attach(new RouteBuilder("", RootResource.class));
         router.attach(new RouteBuilder("/", RootResource.class));
+        router.attach(new RouteBuilder("/spaces", SpacesResource.class));
         router.attach(new RouteBuilder("/spaces/", PostSpaceResource.class));
 
         // router.attach(new RouteBuilder("/application/",

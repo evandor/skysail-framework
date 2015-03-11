@@ -55,9 +55,12 @@ public class StringTemplateRenderer {
     private STGroupBundleDir importedGroupBundleDir;
     private Set<MenuItemProvider> menuProviders;
     private UserManager userManager;
+    private String templateFromCookie;
 
     public StringRepresentation createRepresenation(Object originalSource, Variant target,
             SkysailServerResource<?> resource) {
+
+        templateFromCookie = CookiesUtils.getTemplateFromCookie(resource.getRequest());
 
         SourceWrapper sourceWrapper = new SourceWrapper(originalSource, target, resource);
         STGroupBundleDir stGroup = createSringTemplateGroup(resource, target.getMediaType().getName());
@@ -141,8 +144,12 @@ public class StringTemplateRenderer {
         return rep;
     }
 
-    private boolean isDebug() {
-        return false;
+    public boolean isDebug() {
+        return "debug".equalsIgnoreCase(templateFromCookie);
+    }
+
+    public boolean isEdit() {
+        return "edit".equalsIgnoreCase(templateFromCookie);
     }
 
     private String guessId(Object object) {

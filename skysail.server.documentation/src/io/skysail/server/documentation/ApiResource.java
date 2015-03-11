@@ -1,9 +1,15 @@
 package io.skysail.server.documentation;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
+
 import org.restlet.resource.ResourceException;
 
 import de.twenty11.skysail.server.app.SkysailApplication;
 import de.twenty11.skysail.server.core.restlet.ListServerResource;
+import de.twenty11.skysail.server.core.restlet.RouteBuilder;
 
 public class ApiResource extends ListServerResource<ResourceApi> {
 
@@ -34,19 +40,19 @@ public class ApiResource extends ListServerResource<ResourceApi> {
         applicationName = app.getName();// getRequest().getOriginalRef().getSegments().get(0);
     }
 
-    // @Override
-    // public List<ResourceApi> getData() {
-    // Map<String, RouteBuilder> routes = app.getRoutesMap();
-    // List<ResourceApi> result = new ArrayList<ResourceApi>();
-    // for (String path : routes.keySet()) {
-    // // TODO extend with redirectors and so on
-    // if (routes.get(path).getTargetClass() == null) {
-    // continue;
-    // }
-    // result.add(new ResourceApi(applicationName + path, routes.get(path)));
-    // }
-    // Collections.sort(result);
-    // return result;
-    // }
+    @Override
+    public List<ResourceApi> getEntity() {
+        Map<String, RouteBuilder> routes = app.getRoutesMap();
+        List<ResourceApi> result = new ArrayList<ResourceApi>();
+        for (String path : routes.keySet()) {
+            // TODO extend with redirectors and so on
+            if (routes.get(path).getTargetClass() == null) {
+                continue;
+            }
+            result.add(new ResourceApi(applicationName + path, routes.get(path)));
+        }
+        Collections.sort(result);
+        return result;
+    }
 
 }

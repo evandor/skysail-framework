@@ -25,8 +25,8 @@ public class CompanySelectionProvider implements SelectionProvider {
 
         List<Company> findAll = app.getRepository().findAll(Company.class);
         findAll.stream().forEach(c -> {
-            result.put(c.getId().toString(), c.getName());
-        });
+            // result.put(c.getId().toString(), c.getName());
+            });
         return result;
     }
 

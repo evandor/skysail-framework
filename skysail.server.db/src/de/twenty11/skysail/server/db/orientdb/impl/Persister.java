@@ -1,5 +1,6 @@
 package de.twenty11.skysail.server.db.orientdb.impl;
 
+import java.lang.reflect.Method;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -34,7 +35,7 @@ public class Persister {
             properties.keySet().stream().forEach(key -> {
                 if (!edges.contains(key)) {
                     if (properties.get(key) != null) {
-                        vertex.setProperty(key, properties.get(key));
+                        setProperty(entity, vertex, properties, key);
                     }
                 } else {
                     OrientVertex target = db.getVertex(properties.get(key));
@@ -47,6 +48,16 @@ public class Persister {
         } catch (Exception e) {
             log.error(e.getMessage(), e);
             return null;
+        }
+    }
+
+    private void setProperty(Object entity, Vertex vertex, Map<String, String> properties, String key) {
+        try {
+            Method method = entity.getClass().getMethod("get" + key.substring(0, 1).toUpperCase() + key.substring(1));
+            Object result = method.invoke(entity);
+            vertex.setProperty(key, result);
+        } catch (Exception e) {
+            log.error(e.getMessage(), e);
         }
     }
 

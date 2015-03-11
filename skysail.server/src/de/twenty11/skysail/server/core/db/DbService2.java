@@ -4,6 +4,8 @@ import java.util.List;
 
 import aQute.bnd.annotation.ProviderType;
 
+import com.orientechnologies.orient.core.metadata.schema.OType;
+
 @ProviderType
 public interface DbService2 {
 
@@ -43,5 +45,7 @@ public interface DbService2 {
     void register(Class<?>... classes);
 
     void delete(Class<?> cls, String id);
+
+    void createProperty(String simpleName, String string, OType date);
 
 }

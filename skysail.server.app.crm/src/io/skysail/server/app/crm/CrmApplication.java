@@ -51,6 +51,7 @@ public class CrmApplication extends SkysailApplication implements MenuItemProvid
 
     @Override
     protected void attach() {
+        super.attach();
         // Application root resource
         router.attach(new RouteBuilder("", RootResource.class));
 

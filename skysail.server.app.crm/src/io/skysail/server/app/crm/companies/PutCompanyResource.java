@@ -2,8 +2,6 @@ package io.skysail.server.app.crm.companies;
 
 import io.skysail.server.app.crm.CrmApplication;
 
-import java.util.Date;
-
 import org.apache.shiro.SecurityUtils;
 import org.restlet.resource.ResourceException;
 
@@ -28,7 +26,7 @@ public class PutCompanyResource extends PutEntityServerResource<Company> {
 
     @Override
     public SkysailResponse<?> updateEntity(Company entity) {
-        entity.setChanged(new Date());
+        // entity.setChanged(new Date());
         entity.setChangedBy(SecurityUtils.getSubject().getPrincipal().toString());
         app.getRepository().update(entity);
         return new SkysailResponse<String>();

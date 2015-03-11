@@ -12,6 +12,7 @@ import org.restlet.Request;
 import org.restlet.Response;
 import org.restlet.Restlet;
 import org.restlet.data.Header;
+import org.restlet.data.MediaType;
 import org.restlet.data.Method;
 import org.restlet.representation.Representation;
 import org.restlet.representation.Variant;
@@ -50,27 +51,19 @@ import etm.core.monitor.EtmPoint;
  *    ...
  * 
  *    {@literal @}Override
- *    protected void doInit() throws ResourceException {
+ *    protected void doInit() {
  *        app = (MailApplication) getApplication();
- *        connectionName = (String) getRequest().getAttributes().get("conn");
  *    }
  * 
  *    {@literal @}Override
- *    public List&lt;Account&gt; getData() {
- *        return app.getAccountRepository().getAll();
+ *    public List<Company> getEntity() {
+ *       return app.getRepository().findAll(Company.class);
  *    }
- * 
+ *     
  *    {@literal @}Override
- *    public String getMessage(String key) {
- *        return "List Accounts";
- *    }
- * 
- *    {@literal @}Override
- *    public List&lt;Link&gt; getLinks() {
- *        List&lt;Link&gt; links = super.getLinks();
- *        links.add(new RelativeLink(getContext(), "mail/accounts/?media=htmlform", "new Account"));
- *        return links;
- *    }
+ *    public List<Linkheader> getLinkheader() {
+ *       return super.getLinkheader(PostCompanyResource.class);
+ *    } 
  * </code>
  * </pre>
  *
@@ -117,7 +110,7 @@ public abstract class ListServerResource<T> extends SkysailServerResource<List<T
      * 
      * @return the list of entities in html, csv or treeform format
      */
-    @Get("html|csv|treeform")
+    @Get("html|json|csv|treeform")
     @API(desc = "lists the entities according to the media type provided")
     public final List<T> getEntities(Variant variant) {
         EtmPoint point = etmMonitor.createPoint("ListServerResource:getEntities");
@@ -134,11 +127,16 @@ public abstract class ListServerResource<T> extends SkysailServerResource<List<T
      * 
      * @return the list of entities in JSON format
      */
-    @Get("json")
+    // @Get("json")
     @API(desc = "lists the entities in JSON format")
     public final List<String> getAsJson(Variant variant) {
         EtmPoint point = etmMonitor.createPoint("ListServerResource:getAsJson");
         log.info("Request entry point: {} @Get('html|json') with variant {}", this.getClass().getSimpleName(), variant);
+        List<T> entities = getEntities(new Variant(MediaType.APPLICATION_JSON));
+        // for (T t : entities) {
+        // t.
+        // }
+
         List<String> response = getDataAsJson();
         Series<Header> responseHeaders = getResponse().getHeaders();
         // if (SecurityFeatures.ALLOW_ORIGIN_FEATURE.isActive()) {

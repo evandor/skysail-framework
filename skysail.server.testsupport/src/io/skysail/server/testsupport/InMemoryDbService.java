@@ -6,6 +6,8 @@ import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
+import com.orientechnologies.orient.core.metadata.schema.OType;
+
 import de.twenty11.skysail.server.core.db.DbService2;
 
 /**
@@ -93,6 +95,10 @@ public class InMemoryDbService implements DbService2 {
     public void delete(Class<?> cls, String id) {
         // TODO Auto-generated method stub
 
+    }
+
+    @Override
+    public void createProperty(String simpleName, String string, OType date) {
     }
 
 }

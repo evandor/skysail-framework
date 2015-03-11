@@ -71,8 +71,8 @@ Test-Cases:  \
 	com.fasterxml.jackson.core.jackson-databind;version='[2.4.4,2.4.5)',\
 	com.google.guava;version='[15.0.0,15.0.1)',\
 	com.googlecode.concurrentlinkedhashmap.lru;version='[1.4.0,1.4.1)',\
-	com.orientechnologies.orientdb-core;version='[2.0.0,2.0.1)',\
-	com.orientechnologies.orientdb-object;version='[2.0.0,2.0.1)',\
+	com.orientechnologies.orientdb-core;version='[2.0,2.1)',\
+	com.orientechnologies.orientdb-object;version='[2.0,2.1)',\
 	com.springsource.org.junit;version='[4.11.0,4.11.1)',\
 	com.sun.el;version='[2.2.0,2.2.1)',\
 	de.twenty11.owasp-java-html-sanitizer;version='[239.0.0,239.0.1)',\

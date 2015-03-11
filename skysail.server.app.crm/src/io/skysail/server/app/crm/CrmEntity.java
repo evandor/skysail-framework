@@ -18,7 +18,7 @@ import de.twenty11.skysail.api.forms.ListView;
 public class CrmEntity {
 
     @Id
-    private Object id;
+    private String id;
 
     public CrmEntity(String creator) {
         this.creator = creator;
@@ -38,7 +38,7 @@ public class CrmEntity {
 
     @Field(type = InputType.READONLY, listView = ListView.HIDE)
     protected Date created;
-
+    //
     @Field(type = InputType.READONLY)
     protected Date changed;
 

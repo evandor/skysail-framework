@@ -4,8 +4,6 @@ import io.skysail.server.app.crm.CrmApplication;
 
 import java.util.List;
 
-import org.restlet.resource.ResourceException;
-
 import de.twenty11.skysail.api.responses.Linkheader;
 import de.twenty11.skysail.server.core.restlet.ListServerResource;
 import de.twenty11.skysail.server.core.restlet.ResourceContextId;
@@ -20,13 +18,18 @@ public class CompaniesResource extends ListServerResource<Company> {
     }
 
     @Override
-    protected void doInit() throws ResourceException {
+    protected void doInit() {
         app = (CrmApplication) getApplication();
     }
 
     @Override
     public List<Company> getEntity() {
-        return app.getRepository().findAll(Company.class);
+        List<Company> companies = app.getRepository().findAll(Company.class);
+        /*
+         * for (Company company : companies) { Object id = company.getId();
+         * app.getRepository().getById(Company.class, id); }
+         */
+        return companies;
     }
 
     @Override

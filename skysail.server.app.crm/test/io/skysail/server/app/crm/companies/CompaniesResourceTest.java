@@ -5,7 +5,6 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 import io.skysail.api.validation.DefaultValidationImpl;
 import io.skysail.server.app.crm.CrmRepository;
-import io.skysail.server.app.crm.companies.CompaniesResource;
 import io.skysail.server.app.crm.domain.CompanyWithId;
 import io.skysail.server.app.crm.test.CrmAppTest;
 
@@ -38,13 +37,6 @@ public class CompaniesResourceTest extends CrmAppTest {
         resource.init(null, request, response);
         form = Mockito.mock(Form.class);
 
-    }
-
-    @Test
-    public void creates_registration_template() throws Exception {
-        resource.init(null, null, null);
-        // Company company = resource.createEntityTemplate();
-        // assertThat(company.getName(), is(nullValue()));
     }
 
     @Test

@@ -2,6 +2,7 @@ package de.twenty11.skysail.server.db.orientdb;
 
 import io.skysail.server.db.DbConfigurationProvider;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -22,6 +23,7 @@ import com.orientechnologies.orient.core.db.ODatabaseRecordThreadLocal;
 import com.orientechnologies.orient.core.db.document.ODatabaseDocumentTx;
 import com.orientechnologies.orient.core.id.ORecordId;
 import com.orientechnologies.orient.core.metadata.schema.OClass;
+import com.orientechnologies.orient.core.metadata.schema.OType;
 import com.orientechnologies.orient.core.record.impl.ODocument;
 import com.orientechnologies.orient.core.sql.query.OSQLSynchQuery;
 import com.orientechnologies.orient.object.db.OObjectDatabasePool;
@@ -129,7 +131,13 @@ public class OrientGraphDbService extends AbstractOrientDbService implements DbS
     public <T> List<T> findObjects(Class<?> cls, String username) {
         OObjectDatabaseTx objectDb = getObjectDb();
         objectDb.getEntityManager().registerEntityClass(cls);
-        return objectDb.query(new OSQLSynchQuery<ODocument>("select from " + cls.getSimpleName()));
+        List<T> query = objectDb.query(new OSQLSynchQuery<ODocument>("select from " + cls.getSimpleName()));
+        List<T> detachedEntities = new ArrayList<>();
+        for (T t : query) {
+            T newOne = objectDb.detachAll(t, true);
+            detachedEntities.add(newOne);
+        }
+        return detachedEntities;
     }
 
     // @Override
@@ -239,6 +247,11 @@ public class OrientGraphDbService extends AbstractOrientDbService implements DbS
     private OObjectDatabaseTx getObjectDb() {
         OObjectDatabaseTx db = OObjectDatabasePool.global().acquire(getDbUrl(), "admin", "admin");
         return db;
+    }
+
+    @Override
+    public void createProperty(String iClassName, String iPropertyName, OType type) {
+        getObjectDb().getMetadata().getSchema().getClass(iClassName).createProperty(iPropertyName, type);
     }
 
 }

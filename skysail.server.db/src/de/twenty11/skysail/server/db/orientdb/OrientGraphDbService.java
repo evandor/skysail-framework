@@ -28,6 +28,7 @@ import com.orientechnologies.orient.core.record.impl.ODocument;
 import com.orientechnologies.orient.core.sql.query.OSQLSynchQuery;
 import com.orientechnologies.orient.object.db.OObjectDatabasePool;
 import com.orientechnologies.orient.object.db.OObjectDatabaseTx;
+import com.orientechnologies.orient.object.metadata.schema.OSchemaProxyObject;
 import com.tinkerpop.blueprints.impls.orient.OrientGraph;
 import com.tinkerpop.blueprints.impls.orient.OrientGraphFactory;
 
@@ -251,7 +252,13 @@ public class OrientGraphDbService extends AbstractOrientDbService implements DbS
 
     @Override
     public void createProperty(String iClassName, String iPropertyName, OType type) {
-        getObjectDb().getMetadata().getSchema().getClass(iClassName).createProperty(iPropertyName, type);
+        OSchemaProxyObject schema = getObjectDb().getMetadata().getSchema();
+        OClass cls = schema.getClass(iClassName);
+        if (cls == null) {
+            // schema.createClass(cls);
+        }
+
+        cls.createProperty(iPropertyName, type);
     }
 
 }

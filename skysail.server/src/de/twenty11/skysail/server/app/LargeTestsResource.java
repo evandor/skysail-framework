@@ -34,4 +34,10 @@ public class LargeTestsResource extends ListServerResource<String> {
         }
         return fileNames;
     }
+
+    @Override
+    public List<String> getEntity() {
+        // TODO Auto-generated method stub
+        return null;
+    }
 }

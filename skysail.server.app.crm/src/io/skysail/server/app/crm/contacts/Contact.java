@@ -4,7 +4,7 @@ import io.skysail.server.app.crm.CrmEntity;
 import io.skysail.server.app.crm.Salutation;
 import io.skysail.server.app.crm.SalutationSelectionProvider;
 import io.skysail.server.app.crm.companies.Company;
-import io.skysail.server.app.crm.companies.CompanySelectionProvider;
+import io.skysail.server.app.crm.companies.resources.CompanySelectionProvider;
 
 import java.util.List;
 

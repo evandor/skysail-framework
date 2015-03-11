@@ -17,4 +17,10 @@ public class I18nRootResource extends ListServerResource<String> {
         return super.getLinkheader(MessagesResource.class);
     }
 
+    @Override
+    public List<String> getEntity() {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
 }

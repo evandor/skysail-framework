@@ -1,6 +1,10 @@
 package io.skysail.server.app.crm.companies;
 
 import io.skysail.server.app.crm.CrmEntity;
+import io.skysail.server.app.crm.companies.resources.CompanyType;
+import io.skysail.server.app.crm.companies.resources.CompanyTypeSelectionProvider;
+import io.skysail.server.app.crm.companies.resources.IndustryType;
+import io.skysail.server.app.crm.companies.resources.IndustryTypeSelectionProvider;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;

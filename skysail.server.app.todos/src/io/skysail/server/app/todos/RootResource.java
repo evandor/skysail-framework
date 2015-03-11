@@ -15,4 +15,10 @@ public class RootResource extends ListServerResource<String> {
         return super.getLinkheader(TodosResource.class);
     }
 
+    @Override
+    public List<String> getEntity() {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
 }

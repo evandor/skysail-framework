@@ -1,9 +1,9 @@
 package io.skysail.server.app.crm;
 
-import io.skysail.server.app.crm.companies.CompaniesResource;
-import io.skysail.server.app.crm.companies.CompanyResource;
-import io.skysail.server.app.crm.companies.PostCompanyResource;
-import io.skysail.server.app.crm.companies.PutCompanyResource;
+import io.skysail.server.app.crm.companies.resources.CompaniesResource;
+import io.skysail.server.app.crm.companies.resources.CompanyResource;
+import io.skysail.server.app.crm.companies.resources.PostCompanyResource;
+import io.skysail.server.app.crm.companies.resources.PutCompanyResource;
 import io.skysail.server.app.crm.contacts.ContactResource;
 import io.skysail.server.app.crm.contacts.ContactsResource;
 import io.skysail.server.app.crm.contacts.PostContactResource;

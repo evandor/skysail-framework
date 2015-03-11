@@ -1,11 +1,19 @@
 package io.skysail.server.app.plugins.resources;
 
+import java.util.List;
+
 import de.twenty11.skysail.server.core.restlet.ListServerResource;
 
 public class ResourcesResource extends ListServerResource<Resource> {
 
     public ResourcesResource() {
         super(ResourceResource.class);
+    }
+
+    @Override
+    public List<Resource> getEntity() {
+        // TODO Auto-generated method stub
+        return null;
     }
 
     // @Override

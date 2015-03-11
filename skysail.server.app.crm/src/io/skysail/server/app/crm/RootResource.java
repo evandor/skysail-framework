@@ -1,6 +1,6 @@
 package io.skysail.server.app.crm;
 
-import io.skysail.server.app.crm.companies.CompaniesResource;
+import io.skysail.server.app.crm.companies.resources.CompaniesResource;
 import io.skysail.server.app.crm.contacts.ContactsResource;
 import io.skysail.server.app.crm.contracts.ContractsResource;
 
@@ -15,6 +15,12 @@ public class RootResource extends ListServerResource<String> {
     @Override
     public List<Linkheader> getLinkheader() {
         return super.getLinkheader(CompaniesResource.class, ContactsResource.class, ContractsResource.class);
+    }
+
+    @Override
+    public List<String> getEntity() {
+        // TODO Auto-generated method stub
+        return null;
     }
 
 }

@@ -1,7 +1,5 @@
 package io.skysail.server.app.todos.domain;
 
-import java.util.Date;
-
 import javax.validation.constraints.Size;
 
 import lombok.Getter;
@@ -24,14 +22,14 @@ public class Todo {
     @Field(type = InputType.TEXTAREA, listView = ListView.TRUNCATE)
     private String desc;
 
-    @Field(type = InputType.DATE)
-    private Date due;
+    // @Field(type = InputType.DATE)
+    // private Date due;
 
-    @Field(type = InputType.READONLY)
-    private Date created;
-
-    @Field(type = InputType.READONLY)
-    private Date modified;
+    // @Field(type = InputType.READONLY)
+    // private Date created;
+    //
+    // @Field(type = InputType.READONLY)
+    // private Date modified;
 
     @Field(type = InputType.READONLY, listView = ListView.HIDE)
     private String owner;

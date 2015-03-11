@@ -34,7 +34,7 @@ public class Persister {
             Map<String, String> properties = BeanUtils.describe(entity);
             properties.keySet().stream().forEach(key -> {
                 if (!edges.contains(key)) {
-                    if (properties.get(key) != null) {
+                    if (properties.get(key) != null && !("class".equals(key))) {
                         setProperty(entity, vertex, properties, key);
                     }
                 } else {
@@ -55,6 +55,7 @@ public class Persister {
         try {
             Method method = entity.getClass().getMethod("get" + key.substring(0, 1).toUpperCase() + key.substring(1));
             Object result = method.invoke(entity);
+            log.info("setting {}={} [{}]", new Object[] { key, result, result.getClass() });
             vertex.setProperty(key, result);
         } catch (Exception e) {
             log.error(e.getMessage(), e);

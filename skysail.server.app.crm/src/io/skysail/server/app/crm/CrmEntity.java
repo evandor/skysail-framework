@@ -1,5 +1,6 @@
 package io.skysail.server.app.crm;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Id;
@@ -15,8 +16,12 @@ import de.twenty11.skysail.api.forms.ListView;
 @Getter
 @Setter
 @NoArgsConstructor
-public class CrmEntity {
+public class CrmEntity implements Serializable {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -8977053023931029701L;
     @Id
     private String id;
 
@@ -39,8 +44,8 @@ public class CrmEntity {
     @Field(type = InputType.READONLY, listView = ListView.HIDE)
     protected Date created;
     //
-    @Field(type = InputType.READONLY)
-    protected Date changed;
+    // @Field(type = InputType.READONLY)
+    // protected Date changed;
 
     @Field(type = InputType.READONLY, listView = ListView.HIDE)
     protected String changedBy;

@@ -5,7 +5,7 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.nullValue;
 import static org.junit.Assert.assertThat;
 import io.skysail.server.app.crm.companies.Company;
-import io.skysail.server.app.crm.companies.PostCompanyResource;
+import io.skysail.server.app.crm.companies.resources.PostCompanyResource;
 import io.skysail.server.app.crm.test.CrmAppTest;
 
 import org.junit.Before;

@@ -1,5 +1,7 @@
 package io.skysail.server.documentation;
 
+import java.util.List;
+
 import org.restlet.resource.ResourceException;
 
 import de.twenty11.skysail.server.app.SkysailApplication;
@@ -27,6 +29,12 @@ public class EntitiesResource extends ListServerResource<EntityDescriptor> {
         if (getRequest().getAttributes().get("name") != null) {
             name = (String) getRequest().getAttributes().get("name");
         }
+    }
+
+    @Override
+    public List<EntityDescriptor> getEntity() {
+        // TODO Auto-generated method stub
+        return null;
     }
 
     // @Override

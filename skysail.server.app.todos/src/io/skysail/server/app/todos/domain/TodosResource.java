@@ -47,4 +47,10 @@ public class TodosResource extends ListServerResource<Todo> {
             l.substitute("id", id);
         };
     }
+
+    @Override
+    public List<Todo> getEntity() {
+        // TODO Auto-generated method stub
+        return null;
+    }
 }

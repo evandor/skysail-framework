@@ -1,6 +1,7 @@
-package io.skysail.server.app.crm.companies;
+package io.skysail.server.app.crm.companies.resources;
 
 import io.skysail.server.app.crm.CrmApplication;
+import io.skysail.server.app.crm.companies.Company;
 
 import java.util.List;
 

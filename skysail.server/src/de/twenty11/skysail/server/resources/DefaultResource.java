@@ -65,4 +65,9 @@ public class DefaultResource extends ListServerResource<String> {
         // "/_iframe?url=http://evandor.gitbooks.io/skysail/content/about.html";
     }
 
+    @Override
+    public List<String> getEntity() {
+        return null;
+    }
+
 }

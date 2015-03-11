@@ -1,7 +1,5 @@
 package io.skysail.server.app.todos.domain;
 
-import java.util.Date;
-
 import org.codehaus.jettison.json.JSONObject;
 import org.restlet.resource.ResourceException;
 
@@ -24,7 +22,7 @@ public class PutTodoResource extends PutEntityServerResource<Todo> {
 
     @Override
     public SkysailResponse<?> updateEntity(Todo entity) {
-        entity.setModified(new Date());
+        // entity.setModified(new Date());
         TodosRepository.getInstance().update(entity);
         return null;
     }

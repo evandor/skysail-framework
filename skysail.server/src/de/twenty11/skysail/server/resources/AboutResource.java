@@ -1,8 +1,16 @@
 package de.twenty11.skysail.server.resources;
 
+import java.util.List;
+
 import de.twenty11.skysail.server.core.restlet.ListServerResource;
 
 public class AboutResource extends ListServerResource<String> {
+
+    @Override
+    public List<String> getEntity() {
+        // TODO Auto-generated method stub
+        return null;
+    }
 
     // @Override
     // public List<String> getData() {

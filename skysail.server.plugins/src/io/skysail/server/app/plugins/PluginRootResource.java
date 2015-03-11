@@ -28,4 +28,10 @@ public class PluginRootResource extends ListServerResource<String> {
                 ResourcesResource.class);
     }
 
+    @Override
+    public List<String> getEntity() {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
 }

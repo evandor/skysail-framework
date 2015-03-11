@@ -61,4 +61,7 @@ Private-Package:  \
 	io.skysail.server.app.crm.leads,\
 	io.skysail.server.app.crm.companies,\
 	io.skysail.server.app.crm.contacts,\
-	io.skysail.server.app.crm.emails
+	io.skysail.server.app.crm.emails,\
+	io.skysail.server.app.crm.companies.resources
+Export-Package:  \
+	io.skysail.server.app.crm.companies

@@ -14,4 +14,10 @@ public class RootResource extends ListServerResource<String> {
         return super.getLinkheader(PostSpaceResource.class);
     }
 
+    @Override
+    public List<String> getEntity() {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
 }

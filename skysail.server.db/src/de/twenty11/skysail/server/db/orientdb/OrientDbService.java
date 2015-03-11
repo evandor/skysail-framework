@@ -17,7 +17,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.osgi.service.component.ComponentContext;
 
 import aQute.bnd.annotation.component.Activate;
-import aQute.bnd.annotation.component.Component;
 import aQute.bnd.annotation.component.Deactivate;
 import aQute.bnd.annotation.component.Reference;
 
@@ -39,7 +38,7 @@ import de.twenty11.skysail.server.events.SkysailEvents;
 import de.twenty11.skysail.server.um.domain.SkysailRole;
 import de.twenty11.skysail.server.um.domain.SkysailUser;
 
-@Component(immediate = true)
+//@Component(immediate = true)
 @Slf4j
 public class OrientDbService extends AbstractOrientDbService implements DbService {
 

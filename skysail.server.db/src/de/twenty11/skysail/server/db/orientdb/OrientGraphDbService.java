@@ -255,10 +255,11 @@ public class OrientGraphDbService extends AbstractOrientDbService implements DbS
         OSchemaProxyObject schema = getObjectDb().getMetadata().getSchema();
         OClass cls = schema.getClass(iClassName);
         if (cls == null) {
-            // schema.createClass(cls);
+            cls = schema.createClass(iClassName);
         }
-
-        cls.createProperty(iPropertyName, type);
+        if (cls.getProperty(iPropertyName) == null) {
+            cls.createProperty(iPropertyName, type);
+        }
     }
 
 }

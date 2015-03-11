@@ -1,4 +1,4 @@
-package io.skysail.server.app.crm.companies;
+package io.skysail.server.app.crm.companies.resources;
 
 import java.util.Arrays;
 import java.util.HashMap;

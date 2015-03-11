@@ -29,4 +29,10 @@ public class FeaturesResource extends ListServerResource<Feature> {
         return super.getLinkheader(PluginRootResource.class);
     }
 
+    @Override
+    public List<Feature> getEntity() {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
 }

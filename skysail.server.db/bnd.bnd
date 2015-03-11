@@ -34,3 +34,4 @@ Import-Package:  \
 	*
 Export-Package:  \
 	com.tinkerpop.blueprints.*
+DynamicImport-Package: *

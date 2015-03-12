@@ -57,8 +57,10 @@ public class DbConfigurations implements DbConfigurationProvider {
             if (props == null) {
                 props = new Hashtable<String, Object>();
             }
-            props.put("name", "skysail");
+            props.put("name", "skysailgraph");
             props.put("url", "memory:skysail");
+            props.put("username", "admin");
+            props.put("password", "admin");
             // props.put("service.factoryPid",
             // DbConfigurations.class.getName());
             config.update(props);

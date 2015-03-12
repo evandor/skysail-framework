@@ -151,53 +151,6 @@ public abstract class ListServerResource<T> extends SkysailServerResource<List<T
         return responseWrapper.getEntity();
     }
 
-    // /**
-    // * We have cases where we can retrieve JSON representations "early", for
-    // * example when using a noSQL database. In this case, we don't want to
-    // * create objects of type T and then let them converted back to JSON by
-    // the
-    // * JacksonConverter.
-    // *
-    // * @return the result
-    // */
-    // protected final List<String> listEntitiesAsJson() {
-    // AbstractResourceFilter<ListServerResource<String>, List<String>> chain =
-    // stringRequestHandler
-    // .createForList(Method.GET);
-    // ListServerResource<String> resource = new ListServerResource<String>() {
-    // // @Override
-    // // public List<String> getData() {
-    // // return ListServerResource.this.getDataAsJson();
-    // // }
-    //
-    // @Override
-    // public Request getRequest() {
-    // return ListServerResource.this.getRequest();
-    // }
-    //
-    // @Override
-    // public Response getResponse() {
-    // return ListServerResource.this.getResponse();
-    // }
-    // };
-    // List<String> entity = chain.handle(resource, getResponse()).getEntity();
-    // if (entity == null) {
-    // entity = Collections.emptyList();
-    // }
-    // return entity;
-    // }
-
-    // @Override
-    // public List<T> getEntity() {
-    // return Collections.emptyList();// throw new
-    // // IllegalStateException("deprectead API");
-    // }
-
-    // protected List<String> getDataAsJson() {
-    // return Arrays.asList("overwrite " +
-    // ListServerResource.class.getSimpleName() + "#getDataAsJson in subclass");
-    // }
-
     /**
      * will be called in case of a DELETE request. Override in subclasses if
      * they support DELETE requests.

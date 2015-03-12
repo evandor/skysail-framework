@@ -86,20 +86,6 @@ public class OrientGraphDbService extends AbstractOrientDbService implements DbS
         return new Persister(getDb(), edges).persist(entity);
     }
 
-    // @Override
-    // public void persistAsDocument(String doc1) {
-    // ODatabaseDocumentTx documentDb = getDocumentDb();
-    //
-    // ODocument doc = new ODocument("Person");
-    // doc.field("name", "Luke");
-    // doc.field("surname", "Skywalker");
-    // doc.field("city", new ODocument("City").field("name",
-    // "Rome").field("country", "Italy"));
-    //
-    // documentDb.save(doc);
-    // documentDb.close();
-    // }
-
     @Override
     public <T> void update(Object id, T entity) {
         new Updater(getObjectDb()).update(entity);

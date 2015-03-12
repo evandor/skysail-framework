@@ -1,4 +1,5 @@
 INFO  de.twenty11.skysail.server.app.SkysailApplication - Instanciating new Skysail Application 'TodoApplication$$EnhancerByMockitoWithCGLIB$$b7ea9fea'
+INFO  d.t.s.server.core.restlet.PostEntityServerResource - Request entry point: PostTodoResource @Post('json')
 INFO  d.t.s.server.core.restlet.PostEntityServerResource - Request entry point: PostTodoResource @Post('x-www-form-urlencoded:html|json|xml')
 INFO  d.t.s.server.core.restlet.PostEntityServerResource - calling post(Form), media types '[]'
 DEBUG org.jboss.logging - Logging Provider: org.jboss.logging.Slf4jLoggerProvider

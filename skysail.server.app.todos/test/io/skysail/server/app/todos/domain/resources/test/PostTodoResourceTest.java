@@ -50,6 +50,14 @@ public class PostTodoResourceTest extends TodoAppTest {
         form.add("due", "");
         Todo post = (Todo) resource.post(form);
         assertThat(post.getTitle(), is(equalTo("mytitle")));
-
     }
+
+    @Test
+    public void posting_minimal_entity_creates_new_entity() {
+        Todo todo = new Todo();
+        todo.setTitle("mytitle");
+        Todo post = (Todo) resource.post(todo);
+        assertThat(post.getTitle(), is(equalTo("mytitle")));
+    }
+
 }

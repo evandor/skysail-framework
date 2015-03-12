@@ -14,8 +14,6 @@ import de.twenty11.skysail.server.core.restlet.ResourceContextId;
 
 public class PostTodoResource extends PostEntityServerResource<Todo> {
 
-    private String id;
-
     private TodoApplication app;
 
     public PostTodoResource() {
@@ -25,7 +23,6 @@ public class PostTodoResource extends PostEntityServerResource<Todo> {
     @Override
     protected void doInit() throws ResourceException {
         app = (TodoApplication) getApplication();
-        id = getAttribute("id");
         app = (TodoApplication) getApplication();
     }
 

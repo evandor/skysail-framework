@@ -1,4 +1,7 @@
-package io.skysail.server.app.todos.domain;
+package io.skysail.server.app.todos.domain.resources;
+
+import io.skysail.server.app.todos.TodoApplication;
+import io.skysail.server.app.todos.domain.Todo;
 
 import java.util.List;
 import java.util.function.Consumer;
@@ -13,6 +16,7 @@ import de.twenty11.skysail.server.core.restlet.ResourceContextId;
 public class TodosResource extends ListServerResource<Todo> {
 
     private String id;
+    private TodoApplication app;
 
     public TodosResource() {
         super(TodoResource.class);
@@ -22,18 +26,13 @@ public class TodosResource extends ListServerResource<Todo> {
     @Override
     protected void doInit() throws ResourceException {
         id = getAttribute("id");
+        app = (TodoApplication) getApplication();
     }
 
-    // @Override
-    // public List<Todo> getData() {
-    // Object principal = SecurityUtils.getSubject().getPrincipal();
-    // return TodosRepository.getInstance().getTodos(principal.toString());
-    // }
-
     @Override
-    protected List<String> getDataAsJson() {
+    public List<Todo> getEntity() {
         Object principal = SecurityUtils.getSubject().getPrincipal();
-        return TodosRepository.getInstance().getTodosAsJson(principal.toString());
+        return app.getRepository().findAll(Todo.class);
     }
 
     @Override
@@ -48,9 +47,4 @@ public class TodosResource extends ListServerResource<Todo> {
         };
     }
 
-    @Override
-    public List<Todo> getEntity() {
-        // TODO Auto-generated method stub
-        return null;
-    }
 }

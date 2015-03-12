@@ -1,5 +1,7 @@
 package io.skysail.server.um.simple.web;
 
+import io.skysail.server.um.simple.web.impl.SkysailWebSubjectContext;
+
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.mgt.SecurityManager;
 import org.apache.shiro.subject.Subject;

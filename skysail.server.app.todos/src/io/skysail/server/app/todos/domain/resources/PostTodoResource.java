@@ -1,6 +1,9 @@
-package io.skysail.server.app.todos.domain;
+package io.skysail.server.app.todos.domain.resources;
 
 import io.skysail.server.app.todos.TodoApplication;
+import io.skysail.server.app.todos.domain.Todo;
+
+import java.util.Date;
 
 import org.apache.shiro.SecurityUtils;
 import org.restlet.resource.ResourceException;
@@ -23,6 +26,7 @@ public class PostTodoResource extends PostEntityServerResource<Todo> {
     protected void doInit() throws ResourceException {
         app = (TodoApplication) getApplication();
         id = getAttribute("id");
+        app = (TodoApplication) getApplication();
     }
 
     @Override
@@ -32,9 +36,9 @@ public class PostTodoResource extends PostEntityServerResource<Todo> {
 
     @Override
     public SkysailResponse<?> addEntity(Todo entity) {
-        // entity.setCreated(new Date());
+        entity.setCreated(new Date());
         entity.setOwner(SecurityUtils.getSubject().getPrincipal().toString());
-        TodosRepository.getInstance().add(entity);
+        app.getRepository().add(entity);
         return new SkysailResponse<String>();
     }
 

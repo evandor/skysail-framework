@@ -7,7 +7,7 @@ import io.skysail.server.um.simple.authentication.SimpleAuthenticationService;
 import io.skysail.server.um.simple.authorization.RestletRolesProvider;
 import io.skysail.server.um.simple.authorization.SimpleAuthorizationService;
 import io.skysail.server.um.simple.usermanager.UserManagementRepository;
-import io.skysail.server.um.simple.web.SimpleWebSecurityManager;
+import io.skysail.server.um.simple.web.impl.SimpleWebSecurityManager;
 
 import java.io.IOException;
 import java.util.Dictionary;
@@ -29,7 +29,7 @@ import aQute.bnd.annotation.component.Reference;
 
 /**
  * A UserManagerProvider based on a configuration file containing information
- * about existing users, their passwords and roles.
+ * about existing users, their ids, passwords and roles.
  *
  */
 @Component(immediate = true, configurationPolicy = ConfigurationPolicy.optional)
@@ -120,6 +120,7 @@ public class SimpleUserManagementProvider implements UserManagementProvider {
 
             props.put("admin.password", "$2a$12$52R8v2QH3vQRz8NcdtOm5.HhE5tFPZ0T/.MpfUa9rBzOugK.btAHS");
             props.put("admin.roles", "admin");
+            props.put("admin.id", "#1");
 
             config.update(props);
         } catch (IOException e) {

@@ -1,5 +1,8 @@
 package io.skysail.server.app.todos.domain;
 
+import java.util.Date;
+
+import javax.persistence.Id;
 import javax.validation.constraints.Size;
 
 import lombok.Getter;
@@ -12,8 +15,10 @@ import de.twenty11.skysail.api.forms.ListView;
 @Getter
 @Setter
 @ToString(of = { "title" })
-// @JsonIgnoreProperties({ "handler" })
 public class Todo {
+
+    @Id
+    private String id;
 
     @Field(listView = ListView.TRUNCATE)
     @Size(min = 2)
@@ -22,14 +27,14 @@ public class Todo {
     @Field(type = InputType.TEXTAREA, listView = ListView.TRUNCATE)
     private String desc;
 
-    // @Field(type = InputType.DATE)
-    // private Date due;
+    @Field(type = InputType.DATE)
+    private Date due;
 
-    // @Field(type = InputType.READONLY)
-    // private Date created;
-    //
-    // @Field(type = InputType.READONLY)
-    // private Date modified;
+    @Field(type = InputType.READONLY)
+    private Date created;
+
+    @Field(type = InputType.READONLY)
+    private Date modified;
 
     @Field(type = InputType.READONLY, listView = ListView.HIDE)
     private String owner;

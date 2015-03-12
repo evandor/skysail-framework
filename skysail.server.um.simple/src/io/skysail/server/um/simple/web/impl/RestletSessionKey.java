@@ -1,4 +1,6 @@
-package io.skysail.server.um.simple.web;
+package io.skysail.server.um.simple.web.impl;
+
+import io.skysail.server.um.simple.web.RestletRequestPairSource;
 
 import java.io.Serializable;
 

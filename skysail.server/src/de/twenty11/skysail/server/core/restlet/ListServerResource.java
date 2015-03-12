@@ -2,7 +2,6 @@ package de.twenty11.skysail.server.core.restlet;
 
 import io.skysail.api.documentation.API;
 
-import java.util.Arrays;
 import java.util.List;
 
 import lombok.extern.slf4j.Slf4j;
@@ -194,9 +193,10 @@ public abstract class ListServerResource<T> extends SkysailServerResource<List<T
     // // IllegalStateException("deprectead API");
     // }
 
-    protected List<String> getDataAsJson() {
-        return Arrays.asList("overwrite " + ListServerResource.class.getSimpleName() + "#getDataAsJson in subclass");
-    }
+    // protected List<String> getDataAsJson() {
+    // return Arrays.asList("overwrite " +
+    // ListServerResource.class.getSimpleName() + "#getDataAsJson in subclass");
+    // }
 
     /**
      * will be called in case of a DELETE request. Override in subclasses if

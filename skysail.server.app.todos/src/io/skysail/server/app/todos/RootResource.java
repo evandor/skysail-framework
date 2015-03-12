@@ -1,6 +1,6 @@
 package io.skysail.server.app.todos;
 
-import io.skysail.server.app.todos.domain.TodosResource;
+import io.skysail.server.app.todos.domain.resources.TodosResource;
 
 import java.util.List;
 

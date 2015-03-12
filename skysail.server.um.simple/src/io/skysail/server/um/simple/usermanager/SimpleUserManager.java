@@ -12,25 +12,21 @@ public class SimpleUserManager implements UserManager {
 
     @Override
     public SkysailUser findByUsername(String username) {
-        // TODO Auto-generated method stub
         return null;
     }
 
     @Override
     public SkysailUser findById(String id) {
-        // TODO Auto-generated method stub
         return null;
     }
 
     @Override
     public List<SkysailGroup> getGroupsForUser(String username) {
-        // TODO Auto-generated method stub
         return null;
     }
 
     @Override
     public void update(SkysailUser user) {
-        // TODO Auto-generated method stub
 
     }
 

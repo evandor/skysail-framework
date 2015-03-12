@@ -80,6 +80,8 @@ public abstract class SkysailServerResource<T> extends ServerResource {
         public Object convert(String value, Class clazz) {
             if (clazz.isEnum()) {
                 return Enum.valueOf(clazz, value);
+            } else if (clazz.equals(Date.class) && value.equals("")) {
+                return null;
             } else {
                 return super.convert(value, clazz);
             }
@@ -351,20 +353,6 @@ public abstract class SkysailServerResource<T> extends ServerResource {
         } catch (Exception e) {
             log.error("Error populating bean {} from form {}", bean, form.getValuesMap(), e);
             return null;
-        }
-    }
-
-    private void callGettersIfOrientDbBean(T bean) {
-        if (bean.getClass().toString().contains("$$")) {
-            Arrays.stream(bean.getClass().getMethods()).filter(m -> {
-                return m.getName().startsWith("get");
-            }).forEach(m -> {
-                try {
-                    System.out.println(m.invoke(bean));
-                } catch (Exception e) {
-                    log.error(e.getMessage(), e);
-                }
-            });
         }
     }
 

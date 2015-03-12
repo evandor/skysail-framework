@@ -37,6 +37,8 @@
 
 # not used here, resolution takes too long...
 #-runrequires:  \
+	
+
 -runbundles:  \
 	ch.qos.logback.classic;version='[1.1.2,1.1.3)',\
 	ch.qos.logback.core;version='[1.1.2,1.1.3)',\
@@ -66,6 +68,7 @@
 	javax.validation.api;version='[1.1.0,1.1.1)',\
 	org.apache.commons.beanutils;version='[1.9.2,1.9.3)',\
 	org.apache.commons.collections;version='[3.2.1,3.2.2)',\
+	org.apache.commons.configuration;version=1.10.0,\
 	org.apache.commons.lang;version='[2.6.0,2.6.1)',\
 	org.apache.commons.lang3;version='[3.3.0,3.4)',\
 	org.apache.commons.logging;version='[1.1.3,1.1.4)',\
@@ -96,10 +99,13 @@
 	skysail.api.validation;version=latest,\
 	skysail.api.features;version=latest,\
 	skysail.api.favorites;version=latest,\
-	skysail.products.todos;version=latest,\
+	skysail.product.todos;version=latest,\
 	skysail.server;version=latest,\
 	skysail.server.converter;version=latest,\
 	skysail.server.app.todos;version=latest,\
+	skysail.server.app.crm;version=latest,\
+	skysail.server.app.designer;version=latest,\
+	skysail.server.app.wiki;version=latest,\
 	skysail.server.db;version=latest,\
 	skysail.server.documentation;version=latest,\
 	skysail.server.http;version=latest,\
@@ -107,10 +113,12 @@
 	skysail.server.static;version=latest,\
 	skysail.server.text;version=latest,\
 	skysail.server.text.markdown;version=latest,\
+	skysail.server.text.store.bundleresource;version=latest,\
 	skysail.server.um.simple;version=latest,\
 	slf4j.api;version='[1.7.7,1.7.8)',\
 	de.twentyeleven.skysail.org.antlr.stringtemplate-osgi;version=4.0.8,\
 	org.jruby.jruby;version=1.7.19,\
 	com.beust.jcommander;version=1.47.0,\
 	stax2-api;version=3.1.4,\
-	com.fasterxml.jackson.module.jackson-module-jaxb-annotations;version=2.5.1
+	com.fasterxml.jackson.module.jackson-module-jaxb-annotations;version=2.5.1,\
+	org.codehaus.jettison.jettison;version=1.3.7

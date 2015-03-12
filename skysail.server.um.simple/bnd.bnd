@@ -20,7 +20,9 @@ Private-Package:  \
 	io.skysail.server.um.simple.authentication,\
 	io.skysail.server.um.simple.authorization,\
 	io.skysail.server.um.simple.usermanager,\
-	io.skysail.server.um.simple.web
+	io.skysail.server.um.simple.web,\
+	io.skysail.server.um.simple.web.impl,\
+	io.skysail.server.um.simple.web.utils
 Service-Component:  \
 	*
 Bundle-Name: SKYSAIL :: server :: um :: simple

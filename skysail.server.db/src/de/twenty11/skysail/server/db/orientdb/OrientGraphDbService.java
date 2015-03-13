@@ -166,10 +166,11 @@ public class OrientGraphDbService extends AbstractOrientDbService implements DbS
     }
 
     protected synchronized void stopDb() {
-        OObjectDatabaseTx db = OObjectDatabasePool.global().acquire(getDbUrl(), "admin", "admin");
-        if (db != null) {
-            db.close();
-        }
+        // OObjectDatabaseTx db =
+        // OObjectDatabasePool.global().acquire(getDbUrl(), "admin", "admin");
+        // if (db != null) {
+        // db.close();
+        // }
         started = false;
     }
 

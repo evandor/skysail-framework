@@ -21,7 +21,7 @@ public class ListServerResourceTestBase {
     protected ConcurrentMap<String, Object> concurrentMap;
 
     @Before
-    public void setUp() {
+    public void setUp() throws Exception {
         request = Mockito.mock(Request.class);
         response = Mockito.mock(Response.class);
 

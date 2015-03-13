@@ -8,6 +8,7 @@ import java.util.Collection;
 import java.util.Map;
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.FrameworkUtil;
@@ -44,9 +45,9 @@ public class TodosIntegrationTests {
             // "username=admin&password=skysail&submitButt  on="
             Representation post = cr.post(form, MediaType.TEXT_HTML);
             // System.out.println(post.getText());
-            System.out.println(cr.getResponse().getHeaders());
-            System.out.println(cr.getRequest().getHeaders());
-            System.out.println(cr.getResponse().getStatus());
+            // System.out.println(cr.getResponse().getHeaders());
+            // System.out.println(cr.getRequest().getHeaders());
+            // System.out.println(cr.getResponse().getStatus());
             return cr.getResponse().getCookieSettings().getFirstValue("Credentials");
         } catch (IOException e) {
             e.printStackTrace();
@@ -77,16 +78,24 @@ public class TodosIntegrationTests {
     }
 
     @Test
-    public void get_TodosResource_returns_200() throws Exception {
+    public void get_html_on_TodosResource_returns_200() throws Exception {
         ClientResource cr = new ClientResource(getBaseUrl() + "/TodoGen/Todos");
         cr.getCookies().add("Credentials", credentials);
-        Representation representation = cr.get();
-        // System.out.println(representation.getText());
+        Representation representation = cr.get(MediaType.TEXT_HTML);
+        assertTrue(representation.getMediaType().getName().equals("text/html"));
+        assertTrue(cr.getResponse().getStatus().getCode() == 200);
     }
 
-    public static void main(String[] args) throws Exception {
-        TodosIntegrationTests tests = new TodosIntegrationTests();
-        credentials = tests.loginAs("admin", "skysail");
-        tests.get_TodosResource_returns_200();
+    @Test
+    @Ignore
+    public void get_json_on_TodosResource_returns_200() throws Exception {
+        ClientResource cr = new ClientResource(getBaseUrl() + "/TodoGen/Todos");
+        cr.getCookies().add("Credentials", credentials);
+        Representation representation = cr.get(MediaType.APPLICATION_JSON);
+        assertTrue(cr.getResponse().getStatus().getCode() == 200);
+        assertTrue(representation.getMediaType().getName().equals("application/json"));
+        assertTrue(representation.getText().startsWith("["));
+        assertTrue(representation.getText().endsWith("]"));
     }
+
 }

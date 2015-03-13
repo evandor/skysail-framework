@@ -1,0 +1,5 @@
+Bundle-Version: 0.1.0.${tstamp}
+Export-Package:  \
+	io.skysail.client.testsupport
+Bundle-Name: SKYSAIL :: client :: testsupport
+Bundle-Description: Utility classes for writing integration tests

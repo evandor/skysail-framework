@@ -8,7 +8,6 @@ import java.util.Collection;
 import java.util.Map;
 
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.FrameworkUtil;
@@ -44,7 +43,7 @@ public class TodosIntegrationTests {
             form.add("password", "skysail");
             // "username=admin&password=skysail&submitButt  on="
             Representation post = cr.post(form, MediaType.TEXT_HTML);
-            System.out.println(post.getText());
+            // System.out.println(post.getText());
             System.out.println(cr.getResponse().getHeaders());
             System.out.println(cr.getRequest().getHeaders());
             System.out.println(cr.getResponse().getStatus());
@@ -78,12 +77,11 @@ public class TodosIntegrationTests {
     }
 
     @Test
-    @Ignore
     public void get_TodosResource_returns_200() throws Exception {
         ClientResource cr = new ClientResource(getBaseUrl() + "/TodoGen/Todos");
         cr.getCookies().add("Credentials", credentials);
         Representation representation = cr.get();
-        System.out.println(representation.getText());
+        // System.out.println(representation.getText());
     }
 
     public static void main(String[] args) throws Exception {

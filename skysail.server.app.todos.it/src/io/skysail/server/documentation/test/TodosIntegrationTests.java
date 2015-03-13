@@ -8,7 +8,6 @@ import java.util.Collection;
 import java.util.Map;
 
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.FrameworkUtil;
@@ -87,15 +86,15 @@ public class TodosIntegrationTests {
     }
 
     @Test
-    @Ignore
     public void get_json_on_TodosResource_returns_200() throws Exception {
         ClientResource cr = new ClientResource(getBaseUrl() + "/TodoGen/Todos");
         cr.getCookies().add("Credentials", credentials);
         Representation representation = cr.get(MediaType.APPLICATION_JSON);
         assertTrue(cr.getResponse().getStatus().getCode() == 200);
         assertTrue(representation.getMediaType().getName().equals("application/json"));
-        assertTrue(representation.getText().startsWith("["));
-        assertTrue(representation.getText().endsWith("]"));
+        String text = representation.getText();
+        assertTrue(text.startsWith("["));
+        assertTrue(text.endsWith("]"));
     }
 
 }

@@ -1,0 +1,6 @@
+test {
+    reports {
+        junitXml.enabled = false
+        html.enabled = true
+    }               
+}

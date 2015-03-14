@@ -51,7 +51,6 @@
 	com.fasterxml.jackson.dataformat.jackson-dataformat-smile;version='[2.5,2.6)',\
 	com.fasterxml.jackson.dataformat.jackson-dataformat-yaml;version='[2.5,2.6)',\
 	com.fasterxml.jackson.dataformat.jackson-dataformat-csv;version='[2.5,2.6)',\
-	com.fasterxml.jackson.module.jackson-module-jsonSchema;version=2.5.1,\
 	com.google.guava;version='[16.0,16.1)',\
 	com.googlecode.concurrentlinkedhashmap.lru;version='[1.4.0,1.4.1)',\
 	com.orientechnologies.orientdb-client;version='[2.0,2.1)',\

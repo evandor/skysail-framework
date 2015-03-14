@@ -48,7 +48,7 @@ public class OrientGraphDbService extends AbstractOrientDbService implements DbS
     @Activate
     public void activate() {
         log.debug("activating {}", this.getClass().getName());
-        graphDbFactory = new OrientGraphFactory(getDbUrl()).setupPool(1, 10);
+        graphDbFactory = new OrientGraphFactory(getDbUrl(), getDbUsername(), getDbPassword()).setupPool(1, 10);
         // make sure to create a graphDb object first
         // http://comments.gmane.org/gmane.comp.db.orientdb.user/8588
         // OrientGraph tx = graphDbFactory.getTx();

@@ -67,6 +67,7 @@ public abstract class AbstractOrientDbService {
             log.warn("falling back to default username as username is null or empty");
             return DEFAULT_DB_USERNAME;
         }
+        log.warn("falling back to default username {}", username);
         return username;
     }
 
@@ -80,6 +81,7 @@ public abstract class AbstractOrientDbService {
             log.warn("falling back to default password as password is null or empty");
             return DEFAULT_DB_PASSWORD;
         }
+        log.warn("falling back to default password {}", password);
         return password;
     }
 

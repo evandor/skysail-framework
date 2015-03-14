@@ -86,7 +86,7 @@ Service-Component: *
 	org.apache.commons.io;version=2.4,\
 	org.jboss.logging.jboss-logging;version=3.1,\
 	classmate;version=1.0,\
-	com.google.guava;version=15.0,\
+	com.google.guava;version=${guava.version},\
 	com.fasterxml.jackson.core.jackson-core;version=2.2,\
 	com.fasterxml.jackson.core.jackson-databind;version=2.2,\
 	com.orientechnologies.orientdb-object;version=2.0,\
@@ -100,5 +100,4 @@ Service-Component: *
 	ch.qos.logback.core;version=1.0,\
 	skysail.api.text;version=latest,\
 	com.googlecode.json-simple;version=1.1,\
-	org.codehaus.jettison.jettison;version=1.3,\
-	org.restlet.ext.raml;version=2.3
+	org.codehaus.jettison.jettison;version=1.3

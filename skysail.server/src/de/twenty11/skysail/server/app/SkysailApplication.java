@@ -41,7 +41,6 @@ import org.restlet.Restlet;
 import org.restlet.data.MediaType;
 import org.restlet.data.Protocol;
 import org.restlet.data.Reference;
-import org.restlet.ext.raml.RamlApplication;
 import org.restlet.resource.Resource;
 import org.restlet.resource.ServerResource;
 import org.restlet.routing.Filter;
@@ -131,7 +130,7 @@ import de.twenty11.skysail.server.utils.ReflectionUtils;
  */
 // @lombok.EqualsAndHashCode(callSuper=false)
 @Slf4j
-public abstract class SkysailApplication extends RamlApplication implements ApplicationProvider, TranslationProvider,
+public abstract class SkysailApplication extends Application implements ApplicationProvider, TranslationProvider,
         ResourceBundleProvider, Comparable<ApplicationProvider> {
 
     /** slf4j based logger implementation. */

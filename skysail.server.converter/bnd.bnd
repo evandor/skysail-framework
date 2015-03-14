@@ -18,12 +18,11 @@ Include-Resource: templates=templates,webapp=webapp
 	de.twentyeleven.skysail.org.antlr.stringtemplate-osgi;version=4.0.8,\
 	biz.aQute.bnd.annotation;version=2.4,\
 	org.restlet;version=${restlet.version},\
-	org.restlet.ext.raml;version=${restlet.version},\
 	lombok;version=1.12,\
 	etm.core;version=1.2,\
 	slf4j.api;version=1.7,\
 	org.apache.shiro.core;version=1.2,\
-	com.google.guava;version=15.0,\
+	com.google.guava;version=${guava.version},\
 	org.apache.commons.lang;version=2.6,\
 	com.springsource.org.junit;version=4.11,\
 	org.mockito.mockito-all;version=1.10,\

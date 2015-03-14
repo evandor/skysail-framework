@@ -51,7 +51,8 @@
 	com.fasterxml.jackson.dataformat.jackson-dataformat-smile;version='[2.5,2.6)',\
 	com.fasterxml.jackson.dataformat.jackson-dataformat-yaml;version='[2.5,2.6)',\
 	com.fasterxml.jackson.dataformat.jackson-dataformat-csv;version='[2.5,2.6)',\
-	com.google.guava;version='[15.0.0,15.0.1)',\
+	com.fasterxml.jackson.module.jackson-module-jsonSchema;version=2.5.1,\
+	com.google.guava;version='[16.0,16.1)',\
 	com.googlecode.concurrentlinkedhashmap.lru;version='[1.4.0,1.4.1)',\
 	com.orientechnologies.orientdb-client;version='[2.0,2.1)',\
 	com.orientechnologies.orientdb-core;version='[2.0,2.1)',\
@@ -88,7 +89,6 @@
 	org.restlet;version='[2.3,2.4)',\
 	org.restlet.ext.jackson;version='[2.3,2.4)',\
 	org.restlet.ext.json;version='[2.3,2.4)',\
-	org.restlet.ext.raml;version='[2.3,2.4)',\
 	org.restlet.ext.slf4j;version='[2.3,2.4)',\
 	org.restlet.ext.crypto;version='[2.3,2.4)',\
 	org.xerial.snappy.snappy-java;version='[1.1.1,1.1.2)',\

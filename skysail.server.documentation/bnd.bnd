@@ -4,7 +4,6 @@ Private-Package:  \
 Include-Resource: resources, templates=src;recursive:=true;filter:=*.st|*.stg
 -buildpath:  \
 	org.restlet;version=${restlet.version},\
-	org.restlet.ext.raml;version=${restlet.version},\
 	skysail.api;version=latest,\
 	skysail.api.validation;version=latest,\
 	skysail.api.documentation;version=latest,\
@@ -17,7 +16,7 @@ Include-Resource: resources, templates=src;recursive:=true;filter:=*.st|*.stg
 	com.springsource.org.junit;version=4.11,\
 	org.mockito.mockito-all;version=1.9,\
 	de.twenty11.owasp-java-html-sanitizer;version=239.0,\
-	com.google.guava;version=15.0,\
+	com.google.guava;version=${guava.version},\
 	osgi.cmpn;version=5.0,\
 	org.apache.commons.lang;version=2.6,\
 	lombok;version=1.12,\

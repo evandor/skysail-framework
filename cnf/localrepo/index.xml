@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<repository increment="1426077187115" name="Local" xmlns="http://www.osgi.org/xmlns/repository/v1.0.0">
+<repository increment="1426337595876" name="Local" xmlns="http://www.osgi.org/xmlns/repository/v1.0.0">
   <resource>
     <capability namespace="osgi.identity">
       <attribute name="osgi.identity" value="com.beust.jcommander"/>
@@ -3299,6 +3299,335 @@
     <requirement namespace="osgi.wiring.package">
       <directive name="filter" value="(osgi.wiring.package=sun.nio.cs)"/>
       <directive name="resolution" value="optional"/>
+    </requirement>
+  </resource>
+  <resource>
+    <capability namespace="osgi.identity">
+      <attribute name="osgi.identity" value="org.restlet.ext.apispark"/>
+      <attribute name="type" value="osgi.bundle"/>
+      <attribute name="version" type="Version" value="2.3.1.v20150203-1110"/>
+    </capability>
+    <capability namespace="osgi.content">
+      <attribute name="osgi.content" value="44c7afdadce529af8ab8e93d49906e49a28f646d9bcf6c15c88801a9e93035b1"/>
+      <attribute name="url" value="org.restlet.ext.apispark/org.restlet.ext.apispark-2.3.1.jar"/>
+      <attribute name="size" type="Long" value="237162"/>
+      <attribute name="mime" value="application/vnd.osgi.bundle"/>
+    </capability>
+    <capability namespace="osgi.wiring.bundle">
+      <attribute name="osgi.wiring.bundle" value="org.restlet.ext.apispark"/>
+      <attribute name="bundle-version" type="Version" value="2.3.1.v20150203-1110"/>
+    </capability>
+    <capability namespace="osgi.wiring.host">
+      <attribute name="osgi.wiring.host" value="org.restlet.ext.apispark"/>
+      <attribute name="bundle-version" type="Version" value="2.3.1.v20150203-1110"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.restlet.ext.apispark"/>
+      <attribute name="version" type="Version" value="0.0.0"/>
+      <attribute name="bundle-symbolic-name" value="org.restlet.ext.apispark"/>
+      <attribute name="bundle-version" type="Version" value="2.3.1.v20150203-1110"/>
+      <directive name="uses" value="org.restlet.engine.application,org.restlet.ext.apispark.internal,org.restlet,org.restlet.ext.apispark.internal.firewall.rule,org.restlet.routing,org.restlet.service,org.restlet.engine.util,org.restlet.ext.apispark.internal.agent,org.restlet.ext.apispark.internal.firewall.handler.policy,org.restlet.ext.apispark.internal.firewall.rule.policy,org.restlet.ext.apispark.internal.firewall.handler,org.restlet.ext.apispark.internal.model,org.restlet.ext.apispark.internal.introspection.application,org.restlet.ext.apispark.internal.utils,org.restlet.ext.apispark.internal.introspection.jaxrs,org.restlet.ext.apispark.internal.conversion.swagger.v1_2,org.restlet.engine,org.restlet.data,org.restlet.ext.apispark.internal.introspection,org.restlet.ext.apispark.internal.conversion,javax.ws.rs.core"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.restlet.ext.apispark.internal"/>
+      <attribute name="version" type="Version" value="0.0.0"/>
+      <attribute name="bundle-symbolic-name" value="org.restlet.ext.apispark"/>
+      <attribute name="bundle-version" type="Version" value="2.3.1.v20150203-1110"/>
+      <directive name="uses" value="org.restlet.ext.apispark.internal.agent.module,org.restlet.ext.apispark.internal.utils,org.restlet.ext.apispark,org.restlet.ext.apispark.internal.agent.bean,org.restlet,org.restlet.ext.apispark.internal.firewall.rule,org.restlet.routing,org.restlet.ext.apispark.internal.firewall,org.restlet.engine.util,org.restlet.ext.apispark.internal.agent"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.restlet.ext.apispark.internal.agent"/>
+      <attribute name="version" type="Version" value="0.0.0"/>
+      <attribute name="bundle-symbolic-name" value="org.restlet.ext.apispark"/>
+      <attribute name="bundle-version" type="Version" value="2.3.1.v20150203-1110"/>
+      <directive name="uses" value="org.restlet.ext.apispark.internal,org.restlet.data,org.restlet.resource,org.restlet.ext.apispark.internal.agent.bean,org.restlet,org.restlet.util"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.restlet.ext.apispark.internal.agent.bean"/>
+      <attribute name="version" type="Version" value="0.0.0"/>
+      <attribute name="bundle-symbolic-name" value="org.restlet.ext.apispark"/>
+      <attribute name="bundle-version" type="Version" value="2.3.1.v20150203-1110"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.restlet.ext.apispark.internal.agent.module"/>
+      <attribute name="version" type="Version" value="0.0.0"/>
+      <attribute name="bundle-symbolic-name" value="org.restlet.ext.apispark"/>
+      <attribute name="bundle-version" type="Version" value="2.3.1.v20150203-1110"/>
+      <directive name="uses" value="org.restlet.ext.apispark.internal,org.restlet.ext.apispark.internal.agent.bean,org.restlet.ext.apispark.internal.agent.resource,com.google.common.collect,org.restlet,com.google.common.util.concurrent,org.restlet.data,org.restlet.security,org.restlet.ext.apispark.internal.agent,org.restlet.routing,com.google.common.cache,org.restlet.resource,com.google.common.base,org.restlet.ext.apispark,org.restlet.util"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.restlet.ext.apispark.internal.agent.resource"/>
+      <attribute name="version" type="Version" value="0.0.0"/>
+      <attribute name="bundle-symbolic-name" value="org.restlet.ext.apispark"/>
+      <attribute name="bundle-version" type="Version" value="2.3.1.v20150203-1110"/>
+      <directive name="uses" value="org.restlet.resource,org.restlet.ext.apispark.internal.agent.bean"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.restlet.ext.apispark.internal.conversion"/>
+      <attribute name="version" type="Version" value="0.0.0"/>
+      <attribute name="bundle-symbolic-name" value="org.restlet.ext.apispark"/>
+      <attribute name="bundle-version" type="Version" value="2.3.1.v20150203-1110"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.restlet.ext.apispark.internal.conversion.raml"/>
+      <attribute name="version" type="Version" value="0.0.0"/>
+      <attribute name="bundle-symbolic-name" value="org.restlet.ext.apispark"/>
+      <attribute name="bundle-version" type="Version" value="2.3.1.v20150203-1110"/>
+      <directive name="uses" value="com.fasterxml.jackson.core,org.raml.model.parameter,com.fasterxml.jackson.databind,org.restlet.ext.apispark.internal.model,org.restlet.data,org.raml.model,org.restlet.ext.apispark.internal.utils,com.fasterxml.jackson.module.jsonSchema.types,org.restlet.ext.apispark.internal.conversion,org.restlet.ext.apispark.internal.introspection.util,com.fasterxml.jackson.module.jsonSchema,org.raml.parser.rule,org.raml.parser.visitor"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.restlet.ext.apispark.internal.conversion.swagger.v1_2"/>
+      <attribute name="version" type="Version" value="0.0.0"/>
+      <attribute name="bundle-symbolic-name" value="org.restlet.ext.apispark"/>
+      <attribute name="bundle-version" type="Version" value="2.3.1.v20150203-1110"/>
+      <directive name="uses" value="org.restlet.ext.apispark.internal.model,org.restlet.ext.apispark.internal.conversion.swagger.v1_2.model,org.restlet.data,org.restlet.ext.apispark.internal.conversion,org.restlet.ext.apispark.internal.reflect,org.restlet.ext.apispark.internal.introspection.util,com.fasterxml.jackson.databind,org.restlet.resource,org.restlet.engine.util"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.restlet.ext.apispark.internal.conversion.swagger.v1_2.model"/>
+      <attribute name="version" type="Version" value="0.0.0"/>
+      <attribute name="bundle-symbolic-name" value="org.restlet.ext.apispark"/>
+      <attribute name="bundle-version" type="Version" value="2.3.1.v20150203-1110"/>
+      <directive name="uses" value="com.fasterxml.jackson.annotation"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.restlet.ext.apispark.internal.conversion.swagger.v2_0"/>
+      <attribute name="version" type="Version" value="0.0.0"/>
+      <attribute name="bundle-symbolic-name" value="org.restlet.ext.apispark"/>
+      <attribute name="bundle-version" type="Version" value="2.3.1.v20150203-1110"/>
+      <directive name="uses" value="com.wordnik.swagger.models.properties,com.wordnik.swagger.models.parameters,org.restlet.ext.apispark.internal.model,org.restlet.ext.apispark.internal.utils,org.restlet.engine.util,com.wordnik.swagger.models,org.restlet.ext.apispark.internal.introspection.util"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.restlet.ext.apispark.internal.firewall"/>
+      <attribute name="version" type="Version" value="0.0.0"/>
+      <attribute name="bundle-symbolic-name" value="org.restlet.ext.apispark"/>
+      <attribute name="bundle-version" type="Version" value="2.3.1.v20150203-1110"/>
+      <directive name="uses" value="org.restlet.routing,org.restlet,org.restlet.ext.apispark.internal.firewall.rule"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.restlet.ext.apispark.internal.firewall.handler"/>
+      <attribute name="version" type="Version" value="0.0.0"/>
+      <attribute name="bundle-symbolic-name" value="org.restlet.ext.apispark"/>
+      <attribute name="bundle-version" type="Version" value="2.3.1.v20150203-1110"/>
+      <directive name="uses" value="org.restlet.ext.apispark.internal.firewall.handler.policy,org.restlet.data,org.restlet,org.restlet.ext.apispark.internal.firewall.rule,org.restlet.util"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.restlet.ext.apispark.internal.firewall.handler.policy"/>
+      <attribute name="version" type="Version" value="0.0.0"/>
+      <attribute name="bundle-symbolic-name" value="org.restlet.ext.apispark"/>
+      <attribute name="bundle-version" type="Version" value="2.3.1.v20150203-1110"/>
+      <directive name="uses" value="org.restlet,org.restlet.data,org.restlet.security"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.restlet.ext.apispark.internal.firewall.rule"/>
+      <attribute name="version" type="Version" value="0.0.0"/>
+      <attribute name="bundle-symbolic-name" value="org.restlet.ext.apispark"/>
+      <attribute name="bundle-version" type="Version" value="2.3.1.v20150203-1110"/>
+      <directive name="uses" value="org.restlet.ext.apispark.internal.firewall.rule.counter,com.google.common.cache,org.restlet.ext.apispark.internal.firewall.rule.policy,org.restlet.ext.apispark.internal.firewall.handler,org.restlet,org.restlet.data,org.restlet.routing"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.restlet.ext.apispark.internal.firewall.rule.counter"/>
+      <attribute name="version" type="Version" value="0.0.0"/>
+      <attribute name="bundle-symbolic-name" value="org.restlet.ext.apispark"/>
+      <attribute name="bundle-version" type="Version" value="2.3.1.v20150203-1110"/>
+      <directive name="uses" value="org.restlet.ext.apispark.internal.firewall.rule,com.google.common.base,org.restlet"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.restlet.ext.apispark.internal.firewall.rule.policy"/>
+      <attribute name="version" type="Version" value="0.0.0"/>
+      <attribute name="bundle-symbolic-name" value="org.restlet.ext.apispark"/>
+      <attribute name="bundle-version" type="Version" value="2.3.1.v20150203-1110"/>
+      <directive name="uses" value="org.restlet,org.restlet.data,org.restlet.security"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.restlet.ext.apispark.internal.introspection"/>
+      <attribute name="version" type="Version" value="0.0.0"/>
+      <attribute name="bundle-symbolic-name" value="org.restlet.ext.apispark"/>
+      <attribute name="bundle-version" type="Version" value="2.3.1.v20150203-1110"/>
+      <directive name="uses" value="org.restlet.ext.apispark.internal.model"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.restlet.ext.apispark.internal.introspection.application"/>
+      <attribute name="version" type="Version" value="0.0.0"/>
+      <attribute name="bundle-symbolic-name" value="org.restlet.ext.apispark"/>
+      <attribute name="bundle-version" type="Version" value="2.3.1.v20150203-1110"/>
+      <directive name="uses" value="org.restlet.routing,org.restlet.ext.apispark.internal.model,org.restlet.data,org.restlet.ext.apispark.internal.introspection,org.restlet.ext.apispark.internal.utils,org.restlet.engine.util,org.restlet.ext.apispark.internal.reflect,org.restlet,org.restlet.util,com.fasterxml.jackson.databind,org.restlet.ext.apispark,com.fasterxml.jackson.databind.introspect,org.restlet.ext.apispark.internal.introspection.util,org.restlet.engine,com.fasterxml.jackson.annotation,org.restlet.engine.application,org.restlet.resource,org.restlet.representation,org.restlet.service,org.restlet.engine.resource,org.restlet.security"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.restlet.ext.apispark.internal.introspection.helper"/>
+      <attribute name="version" type="Version" value="0.0.0"/>
+      <attribute name="bundle-symbolic-name" value="org.restlet.ext.apispark"/>
+      <attribute name="bundle-version" type="Version" value="2.3.1.v20150203-1110"/>
+      <directive name="uses" value="org.restlet.ext.apispark.internal.model,com.wordnik.swagger.annotations,org.restlet.ext.apispark.internal.introspection,com.google.common.base,com.google.common.collect,org.restlet.data,org.restlet.engine.util,org.restlet.ext.apispark.internal.introspection.util"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.restlet.ext.apispark.internal.introspection.jaxrs"/>
+      <attribute name="version" type="Version" value="0.0.0"/>
+      <attribute name="bundle-symbolic-name" value="org.restlet.ext.apispark"/>
+      <attribute name="bundle-version" type="Version" value="2.3.1.v20150203-1110"/>
+      <directive name="uses" value="javax.ws.rs,org.restlet.ext.apispark.internal.model,org.restlet.data,com.fasterxml.jackson.databind,org.restlet.ext.apispark.internal.utils,com.fasterxml.jackson.databind.introspect,org.restlet.ext.apispark.internal.reflect,org.restlet.ext.apispark.internal.introspection.util,org.restlet.ext.apispark.internal.introspection,com.fasterxml.jackson.annotation,org.restlet.engine.util,javax.ws.rs.core"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.restlet.ext.apispark.internal.introspection.util"/>
+      <attribute name="version" type="Version" value="0.0.0"/>
+      <attribute name="bundle-symbolic-name" value="org.restlet.ext.apispark"/>
+      <attribute name="bundle-version" type="Version" value="2.3.1.v20150203-1110"/>
+      <directive name="uses" value="org.restlet.representation,org.restlet.ext.apispark.internal.reflect,org.restlet.ext.apispark.internal.model"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.restlet.ext.apispark.internal.model"/>
+      <attribute name="version" type="Version" value="0.0.0"/>
+      <attribute name="bundle-symbolic-name" value="org.restlet.ext.apispark"/>
+      <attribute name="bundle-version" type="Version" value="2.3.1.v20150203-1110"/>
+      <directive name="uses" value="org.restlet.data"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.restlet.ext.apispark.internal.reflect"/>
+      <attribute name="version" type="Version" value="0.0.0"/>
+      <attribute name="bundle-symbolic-name" value="org.restlet.ext.apispark"/>
+      <attribute name="bundle-version" type="Version" value="2.3.1.v20150203-1110"/>
+      <directive name="uses" value="org.restlet.ext.apispark.internal.introspection.util"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.restlet.ext.apispark.internal.utils"/>
+      <attribute name="version" type="Version" value="0.0.0"/>
+      <attribute name="bundle-symbolic-name" value="org.restlet.ext.apispark"/>
+      <attribute name="bundle-version" type="Version" value="2.3.1.v20150203-1110"/>
+      <directive name="uses" value="org.restlet.ext.apispark.internal.model,org.restlet.data,org.restlet.resource,org.restlet.ext.apispark.internal.introspection,org.restlet.representation,org.restlet,org.restlet.routing,org.restlet.service,org.restlet.ext.jackson"/>
+    </capability>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=com.fasterxml.jackson.annotation)"/>
+      <directive name="resolution" value="optional"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=com.fasterxml.jackson.core)"/>
+      <directive name="resolution" value="optional"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=com.fasterxml.jackson.databind)"/>
+      <directive name="resolution" value="optional"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=com.fasterxml.jackson.databind.introspect)"/>
+      <directive name="resolution" value="optional"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=com.fasterxml.jackson.module.jsonSchema)"/>
+      <directive name="resolution" value="optional"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=com.fasterxml.jackson.module.jsonSchema.types)"/>
+      <directive name="resolution" value="optional"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=com.google.common.base)"/>
+      <directive name="resolution" value="optional"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=com.google.common.cache)"/>
+      <directive name="resolution" value="optional"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=com.google.common.collect)"/>
+      <directive name="resolution" value="optional"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=com.google.common.util.concurrent)"/>
+      <directive name="resolution" value="optional"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=com.wordnik.swagger.annotations)"/>
+      <directive name="resolution" value="optional"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=com.wordnik.swagger.models)"/>
+      <directive name="resolution" value="optional"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=com.wordnik.swagger.models.parameters)"/>
+      <directive name="resolution" value="optional"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=com.wordnik.swagger.models.properties)"/>
+      <directive name="resolution" value="optional"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=javax.ws.rs)"/>
+      <directive name="resolution" value="optional"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=javax.ws.rs.core)"/>
+      <directive name="resolution" value="optional"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.raml.model)"/>
+      <directive name="resolution" value="optional"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.raml.model.parameter)"/>
+      <directive name="resolution" value="optional"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.raml.parser.rule)"/>
+      <directive name="resolution" value="optional"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.raml.parser.visitor)"/>
+      <directive name="resolution" value="optional"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.restlet)"/>
+      <directive name="resolution" value="optional"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.restlet.data)"/>
+      <directive name="resolution" value="optional"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.restlet.engine)"/>
+      <directive name="resolution" value="optional"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.restlet.engine.application)"/>
+      <directive name="resolution" value="optional"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.restlet.engine.resource)"/>
+      <directive name="resolution" value="optional"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.restlet.engine.util)"/>
+      <directive name="resolution" value="optional"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.restlet.ext.jackson)"/>
+      <directive name="resolution" value="optional"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.restlet.representation)"/>
+      <directive name="resolution" value="optional"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.restlet.resource)"/>
+      <directive name="resolution" value="optional"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.restlet.routing)"/>
+      <directive name="resolution" value="optional"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.restlet.security)"/>
+      <directive name="resolution" value="optional"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.restlet.service)"/>
+      <directive name="resolution" value="optional"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.restlet.util)"/>
+      <directive name="resolution" value="optional"/>
+    </requirement>
+    <requirement namespace="osgi.ee">
+      <directive name="filter" value="(&amp;(osgi.ee=JavaSE)(version=1.7))"/>
     </requirement>
   </resource>
   <resource>

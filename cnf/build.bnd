@@ -54,6 +54,7 @@ copyright:              Copyright (c) twentyeleven.de (2011, ${tstamp;yyyy}). Al
 copyright.html:         Copyright &copy; twentyeleven.de (2011, ${tstamp;yyyy}). All Rights Reserved.
 
 restlet.version                        2.3.1
+guava.version                          16.0
 org.apache.felix.scr.version           1.8.2
 com.orientechnologies.orientdb.version 2.0
 

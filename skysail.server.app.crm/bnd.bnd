@@ -13,7 +13,6 @@ Include-Resource: resources, templates=src;recursive:=true;filter:=*.st|*.stg
 	skysail.server.codegen;version=latest,\
 	slf4j.api;version=1.7.7,\
 	org.restlet;version=${restlet.version},\
-	org.restlet.ext.raml;version=${restlet.version},\
 	javax.validation.api;version=1.1,\
 	javax.persistence;version=2.1,\
 	com.springsource.org.junit;version=4.11,\
@@ -33,7 +32,7 @@ Include-Resource: resources, templates=src;recursive:=true;filter:=*.st|*.stg
 	osgi.core;version=5.0,\
 	osgi.cmpn;version=5.0,\
 	de.twenty11.owasp-java-html-sanitizer;version=239.0,\
-	com.google.guava;version=15.0,\
+	com.google.guava;version=${guava.version},\
 	skysail.api.um;version=latest,\
 	skysail.api.favorites;version=latest,\
 	skysail.api.text;version=latest,\

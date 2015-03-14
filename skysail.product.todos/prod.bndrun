@@ -88,6 +88,7 @@
 	org.restlet;version='[2.3,2.4)',\
 	org.restlet.ext.jackson;version='[2.3,2.4)',\
 	org.restlet.ext.json;version='[2.3,2.4)',\
+	org.restlet.ext.raml;version='[2.3,2.4)',\
 	org.restlet.ext.slf4j;version='[2.3,2.4)',\
 	org.restlet.ext.crypto;version='[2.3,2.4)',\
 	org.xerial.snappy.snappy-java;version='[1.1.1,1.1.2)',\

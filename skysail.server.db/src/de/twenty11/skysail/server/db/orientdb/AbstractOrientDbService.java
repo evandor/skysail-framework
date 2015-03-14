@@ -1,11 +1,13 @@
 package de.twenty11.skysail.server.db.orientdb;
 
 import io.skysail.server.db.DbConfigurationProvider;
+import lombok.extern.slf4j.Slf4j;
 
 import org.restlet.engine.util.StringUtils;
 
 import com.orientechnologies.orient.core.exception.ODatabaseException;
 
+@Slf4j
 public abstract class AbstractOrientDbService {
 
     static final String DB_URL = "db.url";
@@ -57,10 +59,12 @@ public abstract class AbstractOrientDbService {
 
     protected String getDbUsername() {
         if (provider == null || provider.getConfig() == null) {
+            log.warn("falling back to default username as provider is null");
             return DEFAULT_DB_USERNAME;
         }
         String username = provider.getConfig().getUsername();
         if (StringUtils.isNullOrEmpty(username)) {
+            log.warn("falling back to default username as username is null or empty");
             return DEFAULT_DB_USERNAME;
         }
         return username;
@@ -68,10 +72,12 @@ public abstract class AbstractOrientDbService {
 
     protected String getDbPassword() {
         if (provider == null || provider.getConfig() == null) {
+            log.warn("falling back to default password as provider is null");
             return DEFAULT_DB_PASSWORD;
         }
         String password = provider.getConfig().getPassword();
         if (StringUtils.isNullOrEmpty(password)) {
+            log.warn("falling back to default password as password is null or empty");
             return DEFAULT_DB_PASSWORD;
         }
         return password;

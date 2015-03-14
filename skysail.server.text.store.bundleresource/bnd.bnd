@@ -9,6 +9,7 @@ Include-Resource: resources, templates=src;recursive:=true;filter:=*.st|*.stg
 	biz.aQute.bnd.annotation;version=2.4,\
 	skysail.api.text;version=latest,\
 	org.restlet;version=${restlet.version},\
+	org.restlet.ext.raml;version=${restlet.version},\
 	lombok;version=1.12,\
 	skysail.server;version=latest,\
 	osgi.core;version=5.0,\

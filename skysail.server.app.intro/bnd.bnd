@@ -18,7 +18,8 @@ Include-Resource: resources, templates=src;recursive:=true;filter:=*.st|*.stg
 	org.mockito.mockito-all;version=1.9,\
 	lombok;version=1.12,\
 	etm.core;version=1.2,\
-	org.codehaus.jettison.jettison;version=1.3
+	org.codehaus.jettison.jettison;version=1.3,\
+	org.restlet.ext.raml;version=2.3
 Import-Package: org.osgi.framework,\
     javassist.util.proxy,\
     *

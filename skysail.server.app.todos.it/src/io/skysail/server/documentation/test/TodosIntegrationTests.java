@@ -66,7 +66,7 @@ public class TodosIntegrationTests {
         assertTrue("service not available", serviceRefs.size() > 0);
     }
 
-    // @Test
+    @Test
     public void resourceMap_contains_apiResource() throws Exception {
         Collection<ServiceReference<DocumentationProvider>> serviceRefs = thisBundle.getBundleContext()
                 .getServiceReferences(DocumentationProvider.class, null);

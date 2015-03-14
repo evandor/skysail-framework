@@ -13,6 +13,7 @@ Test-Cases: \
 	com.springsource.org.junit;version=4.11,\
 	skysail.api.documentation;version=latest,\
 	org.restlet;version=${restlet.version},\
+	org.restlet.ext.raml;version=${restlet.version},\
 	skysail.server.um.internal;version=0.0,\
 	de.twentyeleven.skysail.org.json-osgi;version=latest,\
 	org.codehaus.jettison.jettison;version=1.3,\
@@ -54,7 +55,7 @@ Test-Cases: \
     https.proxyPort=8080,\
     logback.configurationFile=config/test/logback.xml,\
     obr.repository.url=https://raw.githubusercontent.com/evandor/skysail-repository/master/index.xml https://raw.githubusercontent.com/evandor/skysail/master/cnf/releaserepo/index.xml http://felix.apache.org/obr/releases.xml,\
-    gosh.args=--nointeractive	
+    gosh.args=--nointeractive
 
 
 #  gosh.args=--nointeractive : otherwise I get a "gosh: stopping framework" message when running the integration tests...
@@ -108,6 +109,7 @@ Test-Cases: \
 	org.restlet;version='[2.3,2.4)',\
 	org.restlet.ext.jackson;version='[2.3,2.4)',\
 	org.restlet.ext.json;version='[2.3,2.4)',\
+	org.restlet.ext.raml;version='[2.3,2.4)',\
 	org.restlet.ext.slf4j;version='[2.3,2.4)',\
 	org.restlet.ext.crypto;version='[2.3,2.4)',\
 	org.xerial.snappy.snappy-java;version='[1.1.1,1.1.2)',\

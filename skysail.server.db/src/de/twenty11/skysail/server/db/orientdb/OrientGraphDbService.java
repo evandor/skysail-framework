@@ -148,7 +148,7 @@ public class OrientGraphDbService extends AbstractOrientDbService implements DbS
         }
         try {
             createDbIfNeeded();
-            OObjectDatabaseTx db = OObjectDatabasePool.global().acquire(getDbUrl(), "admin", "admin");
+            OObjectDatabaseTx db = OObjectDatabasePool.global().acquire(getDbUrl(), getDbUsername(), getDbPassword());
             db.setLazyLoading(false);
             // registerDefaultClasses();
             initDbIfNeeded();
@@ -227,13 +227,13 @@ public class OrientGraphDbService extends AbstractOrientDbService implements DbS
     }
 
     private ODatabaseDocumentTx getDocumentDb() {
-        ODatabaseDocumentTx db = new ODatabaseDocumentTx(getDbUrl()).open("admin", "admin");
+        ODatabaseDocumentTx db = new ODatabaseDocumentTx(getDbUrl()).open(getDbUsername(), getDbPassword());
         ODatabaseRecordThreadLocal.INSTANCE.set(db);
         return db;
     }
 
     private OObjectDatabaseTx getObjectDb() {
-        OObjectDatabaseTx db = OObjectDatabasePool.global().acquire(getDbUrl(), "admin", "admin");
+        OObjectDatabaseTx db = OObjectDatabasePool.global().acquire(getDbUrl(), getDbUsername(), getDbPassword());
         return db;
     }
 

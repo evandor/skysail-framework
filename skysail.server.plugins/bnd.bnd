@@ -4,6 +4,7 @@ Service-Component: *
 	skysail.server;version=latest,\
 	biz.aQute.bnd.annotation,\
 	javax.validation.api;version=1.1,\
+	org.restlet.ext.raml;version=${restlet.version},\
 	org.restlet;version=${restlet.version},\
 	skysail.api;version=latest,\
 	slf4j.api;version=1.7.7,\

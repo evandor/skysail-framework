@@ -2,12 +2,16 @@ package de.twenty11.skysail.server.db.orientdb;
 
 import io.skysail.server.db.DbConfigurationProvider;
 
+import org.restlet.engine.util.StringUtils;
+
 import com.orientechnologies.orient.core.exception.ODatabaseException;
 
 public abstract class AbstractOrientDbService {
 
     static final String DB_URL = "db.url";
     static final String DEFAULT_DB_URL = "memory:skysail";
+    static final String DEFAULT_DB_USERNAME = "admin";
+    static final String DEFAULT_DB_PASSWORD = "admin";
 
     protected DbConfigurationProvider provider;
     protected boolean started = false;
@@ -49,6 +53,28 @@ public abstract class AbstractOrientDbService {
             return url;
         }
         return DEFAULT_DB_URL;
+    }
+
+    protected String getDbUsername() {
+        if (provider == null || provider.getConfig() == null) {
+            return DEFAULT_DB_USERNAME;
+        }
+        String username = provider.getConfig().getUsername();
+        if (StringUtils.isNullOrEmpty(username)) {
+            return DEFAULT_DB_USERNAME;
+        }
+        return username;
+    }
+
+    protected String getDbPassword() {
+        if (provider == null || provider.getConfig() == null) {
+            return DEFAULT_DB_PASSWORD;
+        }
+        String password = provider.getConfig().getPassword();
+        if (StringUtils.isNullOrEmpty(password)) {
+            return DEFAULT_DB_PASSWORD;
+        }
+        return password;
     }
 
 }

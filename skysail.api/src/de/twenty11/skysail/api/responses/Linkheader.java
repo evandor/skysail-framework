@@ -168,6 +168,10 @@ public class Linkheader {
         images.put(mediaType, img);
     }
 
+    public String getImage() {
+        return images.get(MediaType.TEXT_HTML);
+    }
+
     public String getImage(MediaType mediaType) {
         return images.get(mediaType);
     }

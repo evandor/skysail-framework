@@ -17,7 +17,7 @@ public class PostTodoResource extends PostEntityServerResource<Todo> {
     private TodoApplication app;
 
     public PostTodoResource() {
-        addToContext(ResourceContextId.LINK_TITLE, "Create new TodoApplication");
+        addToContext(ResourceContextId.LINK_TITLE, "Create new Todo");
     }
 
     @Override

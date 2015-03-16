@@ -3,6 +3,7 @@ package io.skysail.server.app.todos.domain;
 import java.util.Date;
 
 import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import lombok.Getter;
@@ -21,6 +22,7 @@ public class Todo {
     private String id;
 
     @Field(listView = { ListView.TRUNCATE, ListView.LINK })
+    @NotNull
     @Size(min = 2)
     private String title;
 

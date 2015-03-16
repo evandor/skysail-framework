@@ -100,6 +100,7 @@ public abstract class PostEntityServerResource<T> extends SkysailServerResource<
 
     public PostEntityServerResource() {
         addToContext(ResourceContextId.LINK_TITLE, "create");
+        addToContext(ResourceContextId.LINK_GLYPH, "plus");
     }
 
     /**

@@ -9,7 +9,9 @@ import java.util.Collection;
 import java.util.Map;
 
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.FrameworkUtil;
 import org.osgi.framework.ServiceReference;
@@ -28,9 +30,15 @@ public class TodosIntegrationTests {
     private Bundle thisBundle = FrameworkUtil.getBundle(this.getClass());
     private Form form;
 
+    @Rule
+    public ExpectedException thrown = ExpectedException.none();
+
+    private Client client;
+
     @Before
     public void setUp() throws Exception {
         credentials = loginAs("admin", "syksail");
+        client = new Client(getBaseUrl(), credentials);
         form = new Form();
     }
 
@@ -81,19 +89,15 @@ public class TodosIntegrationTests {
 
     @Test
     public void get_html_on_TodosResource_returns_200() throws Exception {
-        ClientResource cr = new ClientResource(getBaseUrl() + "/TodoGen/Todos");
-        cr.getCookies().add("Credentials", credentials);
-        Representation representation = cr.get(MediaType.TEXT_HTML);
+        Representation representation = client.setUrl("/TodoGen/Todos").get(MediaType.TEXT_HTML);
         assertTrue(representation.getMediaType().getName().equals("text/html"));
-        assertTrue(cr.getResponse().getStatus().getCode() == 200);
+        assertTrue(client.getResponse().getStatus().getCode() == 200);
     }
 
     @Test
     public void get_json_on_TodosResource_returns_200() throws Exception {
-        ClientResource cr = new ClientResource(getBaseUrl() + "/TodoGen/Todos");
-        cr.getCookies().add("Credentials", credentials);
-        Representation representation = cr.get(MediaType.APPLICATION_JSON);
-        assertTrue(cr.getResponse().getStatus().getCode() == 200);
+        Representation representation = client.setUrl("/TodoGen/Todos").get(MediaType.APPLICATION_JSON);
+        assertTrue(client.getResponse().getStatus().getCode() == 200);
         assertTrue(representation.getMediaType().getName().equals("application/json"));
         String text = representation.getText();
         assertTrue(text.startsWith("["));
@@ -101,15 +105,20 @@ public class TodosIntegrationTests {
     }
 
     @Test
-    public void post_html_with_missing_title_returns_400() {
-        Client client = new Client(getBaseUrl(), credentials);
+    public void post_html_with_missing_title_returns_badRequest() {
+        form.add("title", "");
+        thrown.expectMessage("Bad Request");
         client.setUrl("/TodoGen/Todos/").post(form, MediaType.TEXT_HTML);
-        assertTrue(client.getResponse().getStatus().getCode() == 400);
+    }
+
+    @Test
+    public void post_json_with_missing_title_returns_badRequest() {
+        thrown.expectMessage("Bad Request");
+        client.setUrl("/TodoGen/Todos/").post("{\"title\":\"\"}", MediaType.APPLICATION_JSON);
     }
 
     @Test
     public void post_html_on_TodosResource_returns_200() {
-        Client client = new Client(getBaseUrl(), credentials);
         form.add("title", "mytitle");
         client.setUrl("/TodoGen/Todos/").post(form, MediaType.TEXT_HTML);
         assertTrue(client.getResponse().getStatus().getCode() == 200);

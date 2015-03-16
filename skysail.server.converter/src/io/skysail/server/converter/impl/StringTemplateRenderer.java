@@ -159,7 +159,7 @@ public class StringTemplateRenderer {
 
         if (entity.get("id") != null) {
             Object value = entity.get("id");
-            return value.toString();
+            return value.toString().replace("#", "");
         } else if (entity.get("@rid") != null) {
             return (entity.get("@rid").replace("#", ""));
         } else {
@@ -209,7 +209,6 @@ public class StringTemplateRenderer {
             decl.add("source", new STSourceWrapper(source));
             if (source != null && (source instanceof SkysailResponse)) {
                 Object entity = ((SkysailResponse<?>) source).getEntity();
-                // if (entity != null) {
                 if (entity instanceof DynamicEntity) {
                     DynaProperty[] dynaProperties = ((DynamicEntity) entity).getInstance().getDynaClass()
                             .getDynaProperties();
@@ -217,28 +216,13 @@ public class StringTemplateRenderer {
                         return new FormField((DynamicEntity) entity, d, resource);
                     }).collect(Collectors.toList());
                 } else {
-                    fields = ReflectionUtils.getInheritedFields(entity.getClass())
+                    fields = ReflectionUtils
+                            .getInheritedFields(entity.getClass())
                             .stream()
-                            //
                             .filter(f -> test(resource, f))
                             .map(f -> new FormField(f, resource, userManager, source, ((SkysailResponse<?>) source)
-                                    .getEntity()))//
-                            .collect(Collectors.toList());
-                }// } else {
-                 // JSONObject jsonObject = ((SkysailResponse<?>)
-                 // source).getJson();
-                 // try {
-                 // Class<?> cls = ((SkysailResponse<?>) source).getCls();
-                 // fields =
-                 // ReflectionUtils.getInheritedFields(cls).stream().filter(f ->
-                 // test(resource, f))
-                 // .map(f -> new FormField(f, userManager, source, jsonObject,
-                 // cls))//
-                 // .collect(Collectors.toList());
-                 // } catch (Exception e) {
-                 // e.printStackTrace();
-                 // }
-                 // }
+                                    .getEntity())).collect(Collectors.toList());
+                }
                 decl.add("fields", new STFieldsWrapper(fields));
             } else if (source != null && (source instanceof HashMap)) {
 

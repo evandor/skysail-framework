@@ -70,9 +70,6 @@ import etm.core.monitor.EtmPoint;
 @Slf4j
 public abstract class PutEntityServerResource<T> extends SkysailServerResource<T> {
 
-    private static final String SKYSAIL_SERVER_RESTLET_FORM = "de.twenty11.skysail.server.core.restlet.form";
-    private static final String SKYSAIL_SERVER_RESTLET_ENTITY = "de.twenty11.skysail.server.core.restlet.entity";
-
     private static final Logger logger = LoggerFactory.getLogger(PutEntityServerResource.class);
 
     public PutEntityServerResource() {

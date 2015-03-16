@@ -20,11 +20,11 @@ public class Todo {
     @Id
     private String id;
 
-    @Field(listView = ListView.TRUNCATE)
+    @Field(listView = { ListView.TRUNCATE, ListView.LINK })
     @Size(min = 2)
     private String title;
 
-    @Field(type = InputType.TEXTAREA, listView = ListView.TRUNCATE)
+    @Field(type = InputType.TEXTAREA, listView = { ListView.TRUNCATE })
     private String desc;
 
     @Field(type = InputType.DATE)

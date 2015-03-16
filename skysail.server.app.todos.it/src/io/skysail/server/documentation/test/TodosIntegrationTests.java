@@ -2,6 +2,7 @@ package io.skysail.server.documentation.test;
 
 import static org.junit.Assert.assertTrue;
 import io.skysail.api.documentation.DocumentationProvider;
+import io.skysail.client.testsupport.Client;
 
 import java.io.IOException;
 import java.util.Collection;
@@ -25,10 +26,12 @@ public class TodosIntegrationTests {
     private static String credentials;
 
     private Bundle thisBundle = FrameworkUtil.getBundle(this.getClass());
+    private Form form;
 
     @Before
     public void setUp() throws Exception {
         credentials = loginAs("admin", "syksail");
+        form = new Form();
     }
 
     private String loginAs(String username, String password) {
@@ -95,6 +98,22 @@ public class TodosIntegrationTests {
         String text = representation.getText();
         assertTrue(text.startsWith("["));
         assertTrue(text.endsWith("]"));
+    }
+
+    @Test
+    public void post_html_with_missing_title_returns_400() {
+        Client client = new Client(getBaseUrl(), credentials);
+        client.setUrl("/TodoGen/Todos/").post(form, MediaType.TEXT_HTML);
+        assertTrue(client.getResponse().getStatus().getCode() == 400);
+    }
+
+    @Test
+    public void post_html_on_TodosResource_returns_200() {
+        Client client = new Client(getBaseUrl(), credentials);
+        form.add("title", "mytitle");
+        client.setUrl("/TodoGen/Todos/").post(form, MediaType.TEXT_HTML);
+        assertTrue(client.getResponse().getStatus().getCode() == 200);
+
     }
 
 }

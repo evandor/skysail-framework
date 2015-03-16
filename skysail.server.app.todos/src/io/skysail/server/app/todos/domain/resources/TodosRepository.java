@@ -66,7 +66,7 @@ public class TodosRepository implements DbRepository {
     }
 
     public Todo getById(String id) {
-        return null;// dbService.find(id, Todo.class);
+        return dbService.findObjectById(Todo.class, id);
     }
 
     public String getJsonById(String id) {

@@ -23,6 +23,11 @@ public class PutTodoResource extends PutEntityServerResource<Todo> {
     }
 
     @Override
+    public Todo getEntity() {
+        return app.getRepository().getById(id);
+    }
+
+    @Override
     public JSONObject getEntityAsJsonObject() {
         return null;// TodosRepository.getInstance().getById(id);
     }
@@ -39,8 +44,4 @@ public class PutTodoResource extends PutEntityServerResource<Todo> {
         return super.redirectTo(TodosResource.class);
     }
 
-    @Override
-    public Todo getEntity() {
-        return null;
-    }
 }

@@ -3,3 +3,5 @@ Export-Package:  \
 	io.skysail.client.testsupport
 Bundle-Name: SKYSAIL :: client :: testsupport
 Bundle-Description: Utility classes for writing integration tests
+-buildpath:  \
+	org.restlet;version=${restlet.version}

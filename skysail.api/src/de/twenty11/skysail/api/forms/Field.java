@@ -60,5 +60,5 @@ public @interface Field {
      * 
      * @return show or hide
      */
-    ListView listView() default ListView.SHOW;
+    ListView[] listView() default ListView.SHOW;
 }

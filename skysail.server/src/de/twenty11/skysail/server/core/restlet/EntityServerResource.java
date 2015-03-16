@@ -70,9 +70,6 @@ import etm.core.monitor.EtmPoint;
  */
 public abstract class EntityServerResource<T> extends SkysailServerResource<T> {
 
-    public static final String SKYSAIL_SERVER_RESTLET_FORM = "de.twenty11.skysail.server.core.restlet.form";
-    public static final String SKYSAIL_SERVER_RESTLET_ENTITY = "de.twenty11.skysail.server.core.restlet.entity";
-
     private static final Logger logger = LoggerFactory.getLogger(EntityServerResource.class);
 
     // private Class<? extends ListServerResource<?>> associatedResource;

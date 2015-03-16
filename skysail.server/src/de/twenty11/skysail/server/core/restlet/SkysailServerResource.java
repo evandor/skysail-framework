@@ -64,6 +64,9 @@ public abstract class SkysailServerResource<T> extends ServerResource {
 
     public static final String ATTRIBUTES_INTERNAL_REQUEST_ID = "de.twenty11.skysail.server.restlet.SkysailServerResource.requestId";
 
+    public static final String SKYSAIL_SERVER_RESTLET_FORM = "de.twenty11.skysail.server.core.restlet.form";
+    public static final String SKYSAIL_SERVER_RESTLET_ENTITY = "de.twenty11.skysail.server.core.restlet.entity";
+
     protected static final EtmMonitor etmMonitor = EtmManager.getEtmMonitor();
 
     /** the payload. */

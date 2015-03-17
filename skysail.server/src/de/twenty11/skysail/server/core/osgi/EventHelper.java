@@ -95,6 +95,7 @@ public class EventHelper {
     public void fire() {
         if (eventAdmin == null) {
             log.warn("eventAdmin is null, cannot fire Event");
+            return;
         }
         Dictionary<String, Object> properties = new Hashtable<>();
         properties.put("msg", msg);

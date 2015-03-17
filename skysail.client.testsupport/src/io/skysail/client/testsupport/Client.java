@@ -23,7 +23,7 @@ public class Client {
     }
 
     public Representation get(MediaType mediaType) {
-        ClientResource cr = new ClientResource(baseUrl + url);
+        cr = new ClientResource(baseUrl + url);
         cr.getCookies().add("Credentials", credentials);
         return cr.get(mediaType);
     }

@@ -9,12 +9,15 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Optional;
 
 import lombok.extern.slf4j.Slf4j;
 
+import org.restlet.data.Language;
 import org.restlet.data.MediaType;
+import org.restlet.data.Preference;
 import org.restlet.data.Reference;
 
 import aQute.bnd.annotation.component.Component;
@@ -36,7 +39,6 @@ public class ListSourceHtmlConverter extends AbstractSourceConverter implements 
 
     public ListSourceHtmlConverter() {
         mapper.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false);
-        mapper.setDateFormat(DateFormat.getDateInstance(DateFormat.SHORT));
     }
 
     @Override
@@ -46,6 +48,9 @@ public class ListSourceHtmlConverter extends AbstractSourceConverter implements 
 
     @Override
     public Object convert(SkysailServerResource<?> resource, List<Field> fields) {
+
+        mapper.setDateFormat(DateFormat.getDateInstance(DateFormat.LONG, determineLocale(resource)));
+
         List<Object> result = new ArrayList<Object>();
         for (Object object : (List<?>) getSource()) {
 
@@ -76,6 +81,20 @@ public class ListSourceHtmlConverter extends AbstractSourceConverter implements 
             }
         }
         return result;
+    }
+
+    private Locale determineLocale(SkysailServerResource<?> resource) {
+        List<Preference<Language>> acceptedLanguages = resource.getRequest().getClientInfo().getAcceptedLanguages();
+        Locale localeToUse = Locale.getDefault();
+        if (!acceptedLanguages.isEmpty()) {
+            String[] languageSplit = acceptedLanguages.get(0).getMetadata().getName().split("-");
+            if (languageSplit.length == 1) {
+                localeToUse = new Locale(languageSplit[0]);
+            } else if (languageSplit.length == 2) {
+                localeToUse = new Locale(languageSplit[0], languageSplit[1]);
+            }
+        }
+        return localeToUse;
     }
 
     private Map<String, Object> treatAsJson(String json, List<Field> fields, SkysailServerResource<?> resource) {

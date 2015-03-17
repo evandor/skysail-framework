@@ -21,6 +21,7 @@ import org.apache.commons.beanutils.BeanUtilsBean;
 import org.apache.commons.beanutils.ConvertUtils;
 import org.apache.commons.beanutils.ConvertUtilsBean;
 import org.apache.commons.beanutils.converters.DateConverter;
+import org.apache.commons.beanutils.converters.DateTimeConverter;
 import org.apache.shiro.SecurityUtils;
 import org.codehaus.jettison.json.JSONObject;
 import org.restlet.Application;
@@ -342,7 +343,7 @@ public abstract class SkysailServerResource<T> extends ServerResource {
 
     protected T populate(T bean, Form form) {
         try {
-            DateConverter dateConverter = new DateConverter(null);
+            DateTimeConverter dateConverter = new DateConverter(null);
 
             dateConverter.setPattern("yyyy-MM-dd");
             ConvertUtils.register(dateConverter, Date.class);

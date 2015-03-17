@@ -5,6 +5,7 @@ import io.skysail.server.um.simple.web.utils.RestletUtils;
 
 import java.io.Serializable;
 
+import org.apache.shiro.cache.MemoryConstrainedCacheManager;
 import org.apache.shiro.realm.Realm;
 import org.apache.shiro.session.mgt.SessionKey;
 import org.apache.shiro.subject.Subject;
@@ -19,6 +20,7 @@ public class SimpleWebSecurityManager extends DefaultWebSecurityManager {
         super();
         setSubjectFactory(new SkysailWebSubjectFactory());
         setSessionManager(new SkysailWebSessionManager());
+        setCacheManager(new MemoryConstrainedCacheManager());
     }
 
     public SimpleWebSecurityManager(Realm singleRealm) {

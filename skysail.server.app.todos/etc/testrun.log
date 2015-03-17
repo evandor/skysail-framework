@@ -1,4 +1,4 @@
-INFO  de.twenty11.skysail.server.app.SkysailApplication - Instanciating new Skysail Application 'TodoApplication$$EnhancerByMockitoWithCGLIB$$c3133c35'
+INFO  de.twenty11.skysail.server.app.SkysailApplication - Instanciating new Skysail Application 'TodoApplication$$EnhancerByMockitoWithCGLIB$$f2e7b1bf'
 INFO  d.t.s.server.core.restlet.PostEntityServerResource - Request entry point: PostTodoResource @Post('x-www-form-urlencoded:html|json|xml')
 INFO  d.t.s.server.core.restlet.PostEntityServerResource - calling post(Form), media types '[]'
 DEBUG org.jboss.logging - Logging Provider: org.jboss.logging.Slf4jLoggerProvider
@@ -26,7 +26,7 @@ DEBUG d.t.s.server.core.restlet.filter.EntityWasAddedFilter - entering EntityWas
 INFO  d.t.s.server.core.restlet.filter.AbstractResourceFilter - next filter in chain: AddLinkheadersFilter
 INFO  d.t.s.server.core.restlet.filter.AbstractResourceFilter - next filter in chain: PostRedirectGetFilter
 WARN  de.twenty11.skysail.server.core.restlet.ServerLink - problem with linkheader for resource TodosResource; no routeBuilder was found.
-INFO  de.twenty11.skysail.server.app.SkysailApplication - Instanciating new Skysail Application 'TodoApplication$$EnhancerByMockitoWithCGLIB$$c3133c35'
+INFO  de.twenty11.skysail.server.app.SkysailApplication - Instanciating new Skysail Application 'TodoApplication$$EnhancerByMockitoWithCGLIB$$f2e7b1bf'
 INFO  d.t.s.server.core.restlet.PostEntityServerResource - Request entry point: PostTodoResource @Post('json')
 INFO  d.t.s.server.core.restlet.PostEntityServerResource - Request entry point: PostTodoResource @Post('x-www-form-urlencoded:html|json|xml')
 INFO  d.t.s.server.core.restlet.PostEntityServerResource - calling post(Form), media types '[]'
@@ -53,4 +53,4 @@ DEBUG d.t.s.server.core.restlet.filter.EntityWasAddedFilter - entering EntityWas
 INFO  d.t.s.server.core.restlet.filter.AbstractResourceFilter - next filter in chain: AddLinkheadersFilter
 INFO  d.t.s.server.core.restlet.filter.AbstractResourceFilter - next filter in chain: PostRedirectGetFilter
 WARN  de.twenty11.skysail.server.core.restlet.ServerLink - problem with linkheader for resource TodosResource; no routeBuilder was found.
-INFO  de.twenty11.skysail.server.app.SkysailApplication - Instanciating new Skysail Application 'TodoApplication$$EnhancerByMockitoWithCGLIB$$c3133c35'
+INFO  de.twenty11.skysail.server.app.SkysailApplication - Instanciating new Skysail Application 'TodoApplication$$EnhancerByMockitoWithCGLIB$$f2e7b1bf'

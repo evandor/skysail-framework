@@ -13,7 +13,7 @@ import org.restlet.util.Series;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import de.twenty11.skysail.server.core.osgi.internal.EventHelper;
+import de.twenty11.skysail.server.core.osgi.EventHelper;
 import de.twenty11.skysail.server.services.RequestResponseMonitor;
 
 /**

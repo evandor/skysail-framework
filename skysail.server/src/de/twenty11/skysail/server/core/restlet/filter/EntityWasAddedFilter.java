@@ -2,20 +2,20 @@ package de.twenty11.skysail.server.core.restlet.filter;
 
 import java.util.List;
 
+import lombok.extern.slf4j.Slf4j;
+
 import org.apache.shiro.SecurityUtils;
 import org.restlet.Response;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import de.twenty11.skysail.api.domain.Identifiable;
 import de.twenty11.skysail.api.hooks.EntityChangedHookService;
 import de.twenty11.skysail.server.app.SkysailApplication;
+import de.twenty11.skysail.server.core.osgi.EventHelper;
 import de.twenty11.skysail.server.core.restlet.ResponseWrapper;
 import de.twenty11.skysail.server.core.restlet.SkysailServerResource;
 
+@Slf4j
 public class EntityWasAddedFilter<R extends SkysailServerResource<T>, T> extends AbstractResourceFilter<R, T> {
-
-    private static Logger logger = LoggerFactory.getLogger(EntityWasAddedFilter.class);
 
     private SkysailApplication application;
 
@@ -25,7 +25,7 @@ public class EntityWasAddedFilter<R extends SkysailServerResource<T>, T> extends
 
     @Override
     public FilterResult doHandle(R resource, ResponseWrapper<T> responseWrapper) {
-        logger.debug("entering {}#doHandle", this.getClass().getSimpleName());
+        log.debug("entering {}#doHandle", this.getClass().getSimpleName());
         T entity = responseWrapper.getEntity();
 
         String principal = (String) SecurityUtils.getSubject().getPrincipal();
@@ -37,6 +37,12 @@ public class EntityWasAddedFilter<R extends SkysailServerResource<T>, T> extends
                 service.pushEntityWasAdded(response.getRequest(), (Identifiable) entity, principal);
             }
         }
+
+        new EventHelper(application.getEventAdmin())//
+                .channel(EventHelper.GUI_MSG)//
+                .info(resource.getClass().getSimpleName() + ".saved.success")//
+                .fire();
+
         super.doHandle(resource, responseWrapper);
         return FilterResult.CONTINUE;
     }

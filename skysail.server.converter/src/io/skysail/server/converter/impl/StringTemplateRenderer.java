@@ -1,5 +1,7 @@
 package io.skysail.server.converter.impl;
 
+import io.skysail.server.converter.HtmlConverter;
+import io.skysail.server.converter.Notification;
 import io.skysail.server.converter.stringtemplate.STGroupBundleDir;
 import io.skysail.server.converter.wrapper.STFieldsWrapper;
 import io.skysail.server.converter.wrapper.STListSourceWrapper;
@@ -56,6 +58,11 @@ public class StringTemplateRenderer {
     private Set<MenuItemProvider> menuProviders;
     private UserManager userManager;
     private String templateFromCookie;
+    private HtmlConverter htmlConverter;
+
+    public StringTemplateRenderer(HtmlConverter htmlConverter) {
+        this.htmlConverter = htmlConverter;
+    }
 
     public StringRepresentation createRepresenation(Object originalSource, Variant target,
             SkysailServerResource<?> resource) {
@@ -233,7 +240,10 @@ public class StringTemplateRenderer {
         Map<String, String> messages = resource.getMessages(fields);
         messages.put("productName", getProductName());
         decl.add("messages", messages);
+    }
 
+    public List<Notification> getNotifications() {
+        return htmlConverter.getNotifications();
     }
 
     private void importTemplate(String symbolicName, Resource resource, Bundle appBundle, String resourcePath,

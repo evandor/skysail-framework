@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import de.twenty11.skysail.api.domain.Identifiable;
 import de.twenty11.skysail.api.hooks.EntityChangedHookService;
 import de.twenty11.skysail.server.app.SkysailApplication;
+import de.twenty11.skysail.server.core.osgi.EventHelper;
 import de.twenty11.skysail.server.core.restlet.ResponseWrapper;
 import de.twenty11.skysail.server.core.restlet.SkysailServerResource;
 
@@ -37,6 +38,12 @@ public class EntityWasChangedFilter<R extends SkysailServerResource<T>, T> exten
                 service.pushEntityWasChanged(response.getRequest(), (Identifiable) entity, principal);
             }
         }
+
+        new EventHelper(application.getEventAdmin())//
+                .channel(EventHelper.GUI_MSG)//
+                .info(resource.getClass().getSimpleName() + ".changed.success")//
+                .fire();
+
         super.doHandle(resource, responseWrapper);
         return FilterResult.CONTINUE;
     }

@@ -34,10 +34,10 @@ import com.tinkerpop.blueprints.impls.orient.OrientGraphFactory;
 
 import de.twenty11.skysail.server.beans.DynamicEntity;
 import de.twenty11.skysail.server.core.db.DbService2;
+import de.twenty11.skysail.server.core.osgi.EventHelper;
 import de.twenty11.skysail.server.db.orientdb.impl.Persister;
 import de.twenty11.skysail.server.db.orientdb.impl.Updater;
 import de.twenty11.skysail.server.events.EventHandler;
-import de.twenty11.skysail.server.events.SkysailEvents;
 
 @Component(immediate = true)
 @Slf4j
@@ -156,7 +156,7 @@ public class OrientGraphDbService extends AbstractOrientDbService implements DbS
             if (getDbUrl().startsWith("memory:")) {
                 // remark: this might be called without an eventhandler already
                 // listening and so the event might be lost
-                EventHandler.sendEvent(SkysailEvents.GUI_ALERT_WARNING,
+                EventHandler.sendEvent(EventHelper.GUI_MSG,
                         "In-Memory database is being used, all data will be lost when application is shut down",
                         "warning");
             }

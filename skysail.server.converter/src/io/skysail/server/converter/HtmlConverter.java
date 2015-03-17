@@ -2,6 +2,7 @@ package io.skysail.server.converter;
 
 import io.skysail.server.converter.impl.StringTemplateRenderer;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
@@ -13,9 +14,11 @@ import java.util.concurrent.CopyOnWriteArrayList;
 
 import lombok.extern.slf4j.Slf4j;
 
+import org.apache.shiro.SecurityUtils;
 import org.osgi.service.event.Event;
 import org.osgi.service.event.EventHandler;
 import org.restlet.data.MediaType;
+import org.restlet.data.Method;
 import org.restlet.engine.converter.ConverterHelper;
 import org.restlet.engine.resource.VariantInfo;
 import org.restlet.representation.Representation;
@@ -26,6 +29,7 @@ import org.restlet.resource.Resource;
 import aQute.bnd.annotation.component.Component;
 import aQute.bnd.annotation.component.Reference;
 import de.twenty11.skysail.server.app.SkysailApplication;
+import de.twenty11.skysail.server.core.osgi.EventHelper;
 import de.twenty11.skysail.server.core.restlet.SkysailServerResource;
 import de.twenty11.skysail.server.services.MenuItemProvider;
 import de.twenty11.skysail.server.services.OsgiConverterHelper;
@@ -41,7 +45,7 @@ import etm.core.monitor.EtmPoint;
  * TODO get rid of shiro dependency TODO package structure
  *
  */
-@Component(immediate = true, properties = { "event.topics=GUI/alerts/*" })
+@Component(immediate = true, properties = { "event.topics=" + EventHelper.GUI_MSG + "/*" })
 @Slf4j
 public class HtmlConverter extends ConverterHelper implements OsgiConverterHelper, EventHandler {
 
@@ -54,6 +58,8 @@ public class HtmlConverter extends ConverterHelper implements OsgiConverterHelpe
     private List<Event> events = new CopyOnWriteArrayList<>();
     private volatile Set<MenuItemProvider> menuProviders = new HashSet<>();
     private UserManager userManager;
+
+    private Resource resource;
 
     static {
         mediaTypesMatch.put(MediaType.TEXT_HTML, 0.95F);
@@ -134,10 +140,11 @@ public class HtmlConverter extends ConverterHelper implements OsgiConverterHelpe
      */
     @Override
     public Representation toRepresentation(Object originalSource, Variant target, Resource resource) {
-
         EtmPoint point = etmMonitor.createPoint(this.getClass().getSimpleName() + ":toRepresentation");
 
-        StringTemplateRenderer stringTemplateRenderer = new StringTemplateRenderer();
+        this.resource = resource;
+
+        StringTemplateRenderer stringTemplateRenderer = new StringTemplateRenderer(this);
         stringTemplateRenderer.setMenuProviders(menuProviders);
         stringTemplateRenderer.setUserManager(userManager);
         StringRepresentation rep = stringTemplateRenderer.createRepresenation(originalSource, target,
@@ -160,32 +167,22 @@ public class HtmlConverter extends ConverterHelper implements OsgiConverterHelpe
         events.add(event);
     }
 
-    // public List<Notification> getNotifications() {
-    // String currentUser =
-    // SecurityUtils.getSubject().getPrincipal().toString();
-    // if (currentUser == null) {
-    // return Collections.emptyList();
-    // }
-    // List<Notification> result = new ArrayList<>();
-    // List<String> oldMessages = getOldMessages(currentUser);
-    // events.stream().forEach(e -> {
-    // String msg = (String) e.getProperty("msg");
-    // String type = (String) e.getProperty("type");
-    // if (!oldMessages.contains(msg)) {
-    // oldMessages.add(msg);
-    // // result.add(new Notification(msg, type));
-    // }
-    // });
-    // return result;
-    // }
-    //
-    // private List<String> getOldMessages(String currentUser) {
-    // List<String> oldMessages = userMsgsList.get(currentUser);
-    // if (oldMessages == null) {
-    // oldMessages = new ArrayList<String>();
-    // userMsgsList.put(currentUser, oldMessages);
-    // }
-    // return oldMessages;
-    // }
+    public List<Notification> getNotifications() {
+        String currentUser = SecurityUtils.getSubject().getPrincipal().toString();
+        if (currentUser == null) {
+            return Collections.emptyList();
+        }
+        if (!(resource.getRequest().getMethod().equals(Method.GET))) {
+            return Collections.emptyList();
+        }
+        List<Notification> result = new ArrayList<>();
+        events.stream().forEach(e -> {
+            String msg = (String) e.getProperty("msg");
+            String type = (String) e.getProperty("type");
+            result.add(new Notification(msg, type));
+            events.remove(e);
+        });
+        return result;
+    }
 
 }

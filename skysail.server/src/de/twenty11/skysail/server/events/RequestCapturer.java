@@ -5,7 +5,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import org.osgi.service.event.Event;
 import org.osgi.service.event.EventHandler;
 
-import de.twenty11.skysail.server.core.osgi.internal.EventHelper;
+import de.twenty11.skysail.server.core.osgi.EventHelper;
 
 /**
  * captures requests(method &amp; path) in a map, incrementing the count.

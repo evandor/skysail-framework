@@ -20,6 +20,8 @@ index(user, messages, source, converter, services, resource, fields, target) ::=
     <link rel="stylesheet" href="/webapp/css/select2.css">
     <link rel="stylesheet" href="/webapp/css/select2-bootstrap.css">
     
+    <link rel="stylesheet" href="/webapp/js/animate/animate.css">
+    
     <!-- jstree -->
     <link rel="stylesheet" href="/static/themes/jstree/style.min.css" />
     <script src="/static/js/jstree/jstree.min.js"></script>

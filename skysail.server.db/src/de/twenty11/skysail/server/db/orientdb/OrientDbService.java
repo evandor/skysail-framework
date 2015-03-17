@@ -33,8 +33,8 @@ import com.orientechnologies.orient.object.db.OObjectDatabaseTx;
 import com.orientechnologies.orient.object.iterator.OObjectIteratorClass;
 
 import de.twenty11.skysail.server.core.db.DbService;
+import de.twenty11.skysail.server.core.osgi.EventHelper;
 import de.twenty11.skysail.server.events.EventHandler;
-import de.twenty11.skysail.server.events.SkysailEvents;
 import de.twenty11.skysail.server.um.domain.SkysailRole;
 import de.twenty11.skysail.server.um.domain.SkysailUser;
 
@@ -290,7 +290,7 @@ public class OrientDbService extends AbstractOrientDbService implements DbServic
             if (getDbUrl().startsWith("memory:")) {
                 // remark: this might be called without an eventhandler already
                 // listening and so the event might be lost
-                EventHandler.sendEvent(SkysailEvents.GUI_ALERT_WARNING,
+                EventHandler.sendEvent(EventHelper.GUI_MSG,
                         "In-Memory database is being used, all data will be lost when application is shut down",
                         "warning");
             }

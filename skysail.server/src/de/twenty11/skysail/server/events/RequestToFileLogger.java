@@ -13,7 +13,7 @@ import org.osgi.service.event.Event;
 import org.osgi.service.event.EventHandler;
 import org.slf4j.Logger;
 
-import de.twenty11.skysail.server.core.osgi.internal.EventHelper;
+import de.twenty11.skysail.server.core.osgi.EventHelper;
 
 //@Component(immediate = true, properties = { "event.topics=request/*" })
 public class RequestToFileLogger implements EventHandler {

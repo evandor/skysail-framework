@@ -9,7 +9,6 @@ import java.util.Collection;
 import java.util.Map;
 
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
@@ -113,10 +112,10 @@ public class TodosIntegrationTests {
     }
 
     @Test
-    @Ignore
     public void post_json_with_missing_title_returns_badRequest() {
         thrown.expectMessage("Bad Request");
-        client.setUrl("/TodoGen/Todos/").post("{\"title\":\"\"}", MediaType.APPLICATION_JSON);
+        form.add("title", "");
+        client.setUrl("/TodoGen/Todos/").post(form, MediaType.APPLICATION_JSON);
     }
 
     @Test

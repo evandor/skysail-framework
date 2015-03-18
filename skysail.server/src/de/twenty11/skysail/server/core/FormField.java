@@ -31,7 +31,6 @@ import de.twenty11.skysail.api.responses.SkysailResponse;
 import de.twenty11.skysail.server.beans.DynamicEntity;
 import de.twenty11.skysail.server.core.restlet.MessagesUtils;
 import de.twenty11.skysail.server.core.restlet.SkysailServerResource;
-import de.twenty11.skysail.server.services.UserManager;
 import de.twenty11.skysail.server.um.domain.SkysailUser;
 
 /**
@@ -63,8 +62,7 @@ public class FormField {
 
     private SkysailServerResource<?> resource;
 
-    public FormField(Field fieldAnnotation, SkysailServerResource<?> resource, UserManager userManager, Object source,
-            Object entity) {
+    public FormField(Field fieldAnnotation, SkysailServerResource<?> resource, Object source, Object entity) {
         this.resource = resource;
         this.name = fieldAnnotation.getName();
         inputType = getFromFieldAnnotation(fieldAnnotation);
@@ -85,9 +83,10 @@ public class FormField {
                 });
                 value = (String) objectMap.get(fieldAnnotation.getName());
                 type = fieldAnnotation.getType();
-                if (type.equals(SkysailUser.class) && userManager != null && value != null) {
-                    value = userManager.findById(value).getUsername();
-                }
+                // if (type.equals(SkysailUser.class) && userManager != null &&
+                // value != null) {
+                // value = userManager.findById(value).getUsername();
+                // }
             } catch (Exception e) {
                 log.error(e.getMessage(), e);
             }

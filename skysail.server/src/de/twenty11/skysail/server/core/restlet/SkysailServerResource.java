@@ -92,6 +92,16 @@ public abstract class SkysailServerResource<T> extends ServerResource {
         }
     });
 
+    public SkysailServerResource() {
+        DateTimeConverter dateConverter = new DateConverter(null);
+
+        dateConverter.setPattern("yyyy-MM-dd");
+        dateConverter.setUseLocaleFormat(true);
+        ConvertUtils.deregister(Date.class);
+        ConvertUtils.register(dateConverter, Date.class);
+        beanUtilsBean.getConvertUtils().register(dateConverter, Date.class);
+    }
+
     @Override
     public SkysailApplication getApplication() {
         return (SkysailApplication) super.getApplication();
@@ -343,10 +353,6 @@ public abstract class SkysailServerResource<T> extends ServerResource {
 
     protected T populate(T bean, Form form) {
         try {
-            DateTimeConverter dateConverter = new DateConverter(null);
-
-            dateConverter.setPattern("yyyy-MM-dd");
-            ConvertUtils.register(dateConverter, Date.class);
 
             beanUtilsBean.populate(bean, form.getValuesMap());
 

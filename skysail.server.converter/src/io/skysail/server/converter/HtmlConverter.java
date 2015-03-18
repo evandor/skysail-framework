@@ -33,7 +33,6 @@ import de.twenty11.skysail.server.core.osgi.EventHelper;
 import de.twenty11.skysail.server.core.restlet.SkysailServerResource;
 import de.twenty11.skysail.server.services.MenuItemProvider;
 import de.twenty11.skysail.server.services.OsgiConverterHelper;
-import de.twenty11.skysail.server.services.UserManager;
 import etm.core.configuration.EtmManager;
 import etm.core.monitor.EtmMonitor;
 import etm.core.monitor.EtmPoint;
@@ -57,7 +56,6 @@ public class HtmlConverter extends ConverterHelper implements OsgiConverterHelpe
     private String templateNameFromCookie;
     private List<Event> events = new CopyOnWriteArrayList<>();
     private volatile Set<MenuItemProvider> menuProviders = new HashSet<>();
-    private UserManager userManager;
 
     private Resource resource;
 
@@ -82,21 +80,6 @@ public class HtmlConverter extends ConverterHelper implements OsgiConverterHelpe
 
     public Set<MenuItemProvider> getMenuProviders() {
         return Collections.unmodifiableSet(menuProviders);
-    }
-
-    // --- User Manager ------------------------------------------------
-
-    @Reference(multiple = false, optional = false, dynamic = true)
-    public void setUserManager(UserManager userManager) {
-        this.userManager = userManager;
-    }
-
-    public void unsetUserManager(UserManager userManager) {
-        this.userManager = null;
-    }
-
-    public UserManager getUserManager() {
-        return userManager;
     }
 
     @Override
@@ -146,7 +129,6 @@ public class HtmlConverter extends ConverterHelper implements OsgiConverterHelpe
 
         StringTemplateRenderer stringTemplateRenderer = new StringTemplateRenderer(this);
         stringTemplateRenderer.setMenuProviders(menuProviders);
-        stringTemplateRenderer.setUserManager(userManager);
         StringRepresentation rep = stringTemplateRenderer.createRepresenation(originalSource, target,
                 (SkysailServerResource<?>) resource);
 

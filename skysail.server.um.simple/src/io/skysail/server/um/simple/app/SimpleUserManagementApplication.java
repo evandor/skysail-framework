@@ -6,5 +6,5 @@ import de.twenty11.skysail.server.app.SkysailApplication;
 
 @Component(immediate = true)
 public class SimpleUserManagementApplication extends SkysailApplication implements RestletRolesProvider {
-
+    // providing restlet roles.
 }

@@ -6,7 +6,6 @@ import io.skysail.api.favorites.FavoritesService;
 import org.apache.shiro.SecurityUtils;
 import org.restlet.Application;
 import org.restlet.Request;
-import org.restlet.data.CookieSetting;
 
 import de.twenty11.skysail.server.Constants;
 import de.twenty11.skysail.server.app.SkysailApplication;
@@ -19,6 +18,14 @@ public class CheckFavoritesFilter<R extends SkysailServerResource<T>, T> extends
     @Override
     protected FilterResult beforeHandle(R resource, ResponseWrapper<T> responseWrapper) {
         super.beforeHandle(resource, responseWrapper);
+
+        Application app = resource.getApplication();
+        SkysailApplication skysailApp = (SkysailApplication) app;
+        FavoritesService service = skysailApp.getFavoritesService();
+        if (service == null) {
+            return FilterResult.CONTINUE;
+        }
+
         Request request = resource.getRequest();
         if (request.getResourceRef() == null || request.getResourceRef().getQueryAsForm() == null) {
             return FilterResult.CONTINUE;
@@ -27,15 +34,11 @@ public class CheckFavoritesFilter<R extends SkysailServerResource<T>, T> extends
         if (favoriteFlag == null || !(resource instanceof SkysailServerResource)) {
             return FilterResult.CONTINUE;
         }
+
         String name = "name";
         String img = "img";
         String favoritesFromCookie = CookiesUtils.getFavoritesFromCookie(resource.getRequest());
-        CookieSetting cookieSetting;
         String value = "";
-
-        Application app = resource.getApplication();
-        SkysailApplication skysailApp = (SkysailApplication) app;
-        FavoritesService service = skysailApp.getFavoritesService();
 
         String username = (String) SecurityUtils.getSubject().getPrincipal();
         String link = request.getResourceRef().toString(false, false);

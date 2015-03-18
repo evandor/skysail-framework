@@ -57,7 +57,7 @@ public class STResourceWrapper {
     public List<Breadcrumb> getBreadcrumbs() {
 
         List<Breadcrumb> breadcrumbs = new ArrayList<Breadcrumb>();
-        breadcrumbs.add(new Breadcrumb("/", null, "<span class='glyphicon glyphicon-home'></span>"));
+        breadcrumbs.add(new Breadcrumb("/", null, "<span class='glyphicon glyphicon-home'></span>", null));
 
         Reference reference = resource.getReference();
         SkysailApplication application = resource.getApplication();
@@ -71,7 +71,7 @@ public class STResourceWrapper {
         Route match = null;
         if (segments != null && segments.size() > 0) {
             String text = imgHtml + " " + resource.getApplication().getName();
-            breadcrumbs.add(new Breadcrumb("/" + resource.getApplication().getName(), null, text));
+            breadcrumbs.add(new Breadcrumb("/" + resource.getApplication().getName(), null, text, false));
         }
         for (int i = 1; i < segments.size(); i++) {
             path = path + "/" + segments.get(i);
@@ -83,9 +83,9 @@ public class STResourceWrapper {
                 match = best;
                 if (i < segments.size() - 1) {
                     breadcrumbs.add(new Breadcrumb("/" + resource.getApplication().getName() + path, null, limit(
-                            segments.get(i), 12)));
+                            segments.get(i), 12), false));
                 } else {
-                    breadcrumbs.add(new Breadcrumb(null, null, segments.get(i)));
+                    breadcrumbs.add(new Breadcrumb(null, null, segments.get(i), true));
                 }
             }
         }

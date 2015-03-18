@@ -22,7 +22,7 @@ import de.twenty11.skysail.server.services.MenuItemProvider;
 @Component(immediate = true)
 public class TodoApplication extends SkysailApplication implements ApplicationProvider, MenuItemProvider {
 
-    private static final String APP_NAME = "TodoGen";
+    private static final String APP_NAME = "Todos";
     private TodosRepository todosRepo;
 
     public TodoApplication() {
@@ -47,7 +47,7 @@ public class TodoApplication extends SkysailApplication implements ApplicationPr
     protected void attach() {
         super.attach();
         // Application root resource
-        router.attach(new RouteBuilder("", RootResource.class));
+        router.attach(new RouteBuilder("", TodosResource.class));
         router.attach(new RouteBuilder("/Todos/", PostTodoResource.class));
         router.attach(new RouteBuilder("/Todos", TodosResource.class));
         router.attach(new RouteBuilder("/Todos/{id}", TodoResource.class));
@@ -55,7 +55,7 @@ public class TodoApplication extends SkysailApplication implements ApplicationPr
     }
 
     public List<MenuItem> getMenuEntries() {
-        MenuItem appMenu = new MenuItem("TodoGen", "/TodoGen", this);
+        MenuItem appMenu = new MenuItem(APP_NAME, "/" + APP_NAME, this);
         appMenu.setCategory(MenuItem.Category.APPLICATION_MAIN_MENU);
         return Arrays.asList(appMenu);
     }

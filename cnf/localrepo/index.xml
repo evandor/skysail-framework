@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<repository increment="1426337595876" name="Local" xmlns="http://www.osgi.org/xmlns/repository/v1.0.0">
+<repository increment="1426603698046" name="Local" xmlns="http://www.osgi.org/xmlns/repository/v1.0.0">
   <resource>
     <capability namespace="osgi.identity">
       <attribute name="osgi.identity" value="com.beust.jcommander"/>
@@ -1469,6 +1469,798 @@
     </capability>
     <requirement namespace="osgi.wiring.package">
       <directive name="filter" value="(&amp;(osgi.wiring.package=javax.el)(version&gt;=3.0.0))"/>
+    </requirement>
+  </resource>
+  <resource>
+    <capability namespace="osgi.identity">
+      <attribute name="osgi.identity" value="net.sf.ehcache"/>
+      <attribute name="type" value="osgi.bundle"/>
+      <attribute name="version" type="Version" value="2.9.1"/>
+    </capability>
+    <capability namespace="osgi.content">
+      <attribute name="osgi.content" value="a826e942133de534637144e7611f4344e0d2ea7506197f34dafc19e960577462"/>
+      <attribute name="url" value="net.sf.ehcache/net.sf.ehcache-2.9.1.jar"/>
+      <attribute name="size" type="Long" value="9024949"/>
+      <attribute name="mime" value="application/vnd.osgi.bundle"/>
+    </capability>
+    <capability namespace="osgi.wiring.bundle">
+      <attribute name="osgi.wiring.bundle" value="net.sf.ehcache"/>
+      <attribute name="bundle-version" type="Version" value="2.9.1"/>
+    </capability>
+    <capability namespace="osgi.wiring.host">
+      <attribute name="osgi.wiring.host" value="net.sf.ehcache"/>
+      <attribute name="bundle-version" type="Version" value="2.9.1"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="net.sf.ehcache.transaction.manager.selector"/>
+      <attribute name="version" type="Version" value="2.9.1"/>
+      <attribute name="bundle-symbolic-name" value="net.sf.ehcache"/>
+      <attribute name="bundle-version" type="Version" value="2.9.1"/>
+      <directive name="uses" value="javax.transaction.xa,net.sf.ehcache.transaction.xa,org.slf4j,javax.transaction,javax.naming"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="net.sf.ehcache.hibernate.strategy"/>
+      <attribute name="version" type="Version" value="2.9.1"/>
+      <attribute name="bundle-symbolic-name" value="net.sf.ehcache"/>
+      <attribute name="bundle-version" type="Version" value="2.9.1"/>
+      <directive name="uses" value="org.hibernate.cache.access,org.hibernate.cfg,net.sf.ehcache.hibernate.regions,org.hibernate.cache,org.slf4j,net.sf.ehcache"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="net.sf.ehcache"/>
+      <attribute name="version" type="Version" value="2.9.1"/>
+      <attribute name="bundle-symbolic-name" value="net.sf.ehcache"/>
+      <attribute name="bundle-version" type="Version" value="2.9.1"/>
+      <directive name="uses" value="net.sf.ehcache.pool,net.sf.ehcache.config,net.sf.ehcache.terracotta,net.sf.ehcache.search.attribute,net.sf.ehcache.store,net.sf.ehcache.loader,org.slf4j,net.sf.ehcache.transaction.local,net.sf.ehcache.search.aggregator,net.sf.ehcache.transaction,net.sf.ehcache.util,net.sf.ehcache.cluster,net.sf.ehcache.search,net.sf.ehcache.event,net.sf.ehcache.pool.impl,net.sf.ehcache.constructs.nonstop.concurrency,net.sf.ehcache.store.disk,net.sf.ehcache.concurrent,net.sf.ehcache.transaction.manager,net.sf.ehcache.statistics,net.sf.ehcache.exceptionhandler,net.sf.ehcache.search.expression,net.sf.ehcache.extension,net.sf.ehcache.transaction.xa,javax.transaction,net.sf.ehcache.bootstrap,net.sf.ehcache.store.compound,net.sf.ehcache.writer,net.sf.ehcache.transaction.xa.processor,net.sf.ehcache.config.generator,net.sf.ehcache.writer.writebehind,net.sf.ehcache.management,net.sf.ehcache.management.provider,net.sf.ehcache.distribution,net.sf.ehcache.management.event,net.sf.ehcache.pool.sizeof.annotations,org.terracotta.toolkit.internal.cache,net.sf.ehcache.util.lang"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="net.sf.ehcache.writer.writebehind.operations"/>
+      <attribute name="version" type="Version" value="2.9.1"/>
+      <attribute name="bundle-symbolic-name" value="net.sf.ehcache"/>
+      <attribute name="bundle-version" type="Version" value="2.9.1"/>
+      <directive name="uses" value="net.sf.ehcache.writer,net.sf.ehcache"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="net.sf.ehcache.management.sampled"/>
+      <attribute name="version" type="Version" value="2.9.1"/>
+      <attribute name="bundle-symbolic-name" value="net.sf.ehcache"/>
+      <attribute name="bundle-version" type="Version" value="2.9.1"/>
+      <directive name="uses" value="net.sf.ehcache.util,net.sf.ehcache.search.expression,net.sf.ehcache.search.aggregator,net.sf.ehcache.store,net.sf.ehcache.search,net.sf.ehcache.search.query,net.sf.ehcache.statistics.extended,net.sf.ehcache.config,net.sf.ehcache.writer.writebehind,net.sf.ehcache.statistics,net.sf.ehcache,net.sf.ehcache.writer,net.sf.ehcache.util.counter.sampled,net.sf.ehcache.event,org.slf4j,net.sf.ehcache.hibernate.management.impl,javax.management,net.sf.ehcache.management.provider,net.sf.ehcache.terracotta"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="net.sf.ehcache.management"/>
+      <attribute name="version" type="Version" value="2.9.1"/>
+      <attribute name="bundle-symbolic-name" value="net.sf.ehcache"/>
+      <attribute name="bundle-version" type="Version" value="2.9.1"/>
+      <directive name="uses" value="net.sf.ehcache.util,net.sf.ehcache.hibernate.management.impl,net.sf.ehcache,javax.management,net.sf.ehcache.config,net.sf.ehcache.store,net.sf.ehcache.statistics,org.slf4j,net.sf.ehcache.distribution,net.sf.ehcache.event"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="net.sf.ehcache.transaction.xa"/>
+      <attribute name="version" type="Version" value="2.9.1"/>
+      <attribute name="bundle-symbolic-name" value="net.sf.ehcache"/>
+      <attribute name="bundle-version" type="Version" value="2.9.1"/>
+      <directive name="uses" value="javax.transaction.xa,javax.transaction,net.sf.ehcache.transaction,net.sf.ehcache,net.sf.ehcache.transaction.xa.processor,net.sf.ehcache.store,org.slf4j,net.sf.ehcache.transaction.xa.commands,net.sf.ehcache.transaction.manager,net.sf.ehcache.util,net.sf.ehcache.statistics,net.sf.ehcache.writer"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="net.sf.ehcache.constructs.refreshahead"/>
+      <attribute name="version" type="Version" value="2.9.1"/>
+      <attribute name="bundle-symbolic-name" value="net.sf.ehcache"/>
+      <attribute name="bundle-version" type="Version" value="2.9.1"/>
+      <directive name="uses" value="net.sf.ehcache.extension,net.sf.ehcache,net.sf.ehcache.loader,net.sf.ehcache.util,net.sf.ehcache.store,net.sf.ehcache.constructs,net.sf.ehcache.statistics.extended,net.sf.ehcache.config,net.sf.ehcache.statistics"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="net.sf.ehcache.bootstrap"/>
+      <attribute name="version" type="Version" value="2.9.1"/>
+      <attribute name="bundle-symbolic-name" value="net.sf.ehcache"/>
+      <attribute name="bundle-version" type="Version" value="2.9.1"/>
+      <directive name="uses" value="net.sf.ehcache,net.sf.ehcache.util"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="net.sf.ehcache.store.cachingtier"/>
+      <attribute name="version" type="Version" value="2.9.1"/>
+      <attribute name="bundle-symbolic-name" value="net.sf.ehcache"/>
+      <attribute name="bundle-version" type="Version" value="2.9.1"/>
+      <directive name="uses" value="net.sf.ehcache.util.concurrent,net.sf.ehcache.store,net.sf.ehcache,org.slf4j,net.sf.ehcache.pool,net.sf.ehcache.config,net.sf.ehcache.pool.sizeof.annotations,net.sf.ehcache.statistics"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="net.sf.ehcache.transaction"/>
+      <attribute name="version" type="Version" value="2.9.1"/>
+      <attribute name="bundle-symbolic-name" value="net.sf.ehcache"/>
+      <attribute name="bundle-version" type="Version" value="2.9.1"/>
+      <directive name="uses" value="net.sf.ehcache.transaction.local,net.sf.ehcache.store,net.sf.ehcache,net.sf.ehcache.transaction.xa,net.sf.ehcache.terracotta,net.sf.ehcache.writer.writebehind,net.sf.ehcache.search.attribute,net.sf.ehcache.search,net.sf.ehcache.config,javax.transaction.xa"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="net.sf.ehcache.event"/>
+      <attribute name="version" type="Version" value="2.9.1"/>
+      <attribute name="bundle-symbolic-name" value="net.sf.ehcache"/>
+      <attribute name="bundle-version" type="Version" value="2.9.1"/>
+      <directive name="uses" value="net.sf.ehcache,net.sf.ehcache.distribution,net.sf.ehcache.store,net.sf.ehcache.statistics,net.sf.ehcache.config"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="net.sf.ehcache.store.disk"/>
+      <attribute name="version" type="Version" value="2.9.1"/>
+      <attribute name="bundle-symbolic-name" value="net.sf.ehcache"/>
+      <attribute name="bundle-version" type="Version" value="2.9.1"/>
+      <directive name="uses" value="net.sf.ehcache.pool,net.sf.ehcache.event,net.sf.ehcache,net.sf.ehcache.config,net.sf.ehcache.util,net.sf.ehcache.pool.sizeof.annotations,org.slf4j,net.sf.ehcache.concurrent,net.sf.ehcache.store.disk.ods,net.sf.ehcache.store,net.sf.ehcache.pool.impl,net.sf.ehcache.statistics,net.sf.ehcache.store.cachingtier,net.sf.ehcache.writer"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="net.sf.ehcache.util.concurrent"/>
+      <attribute name="version" type="Version" value="2.9.1"/>
+      <attribute name="bundle-symbolic-name" value="net.sf.ehcache"/>
+      <attribute name="bundle-version" type="Version" value="2.9.1"/>
+      <directive name="uses" value="net.sf.ehcache.pool.impl,net.sf.ehcache.pool,net.sf.ehcache,net.sf.ehcache.util.lang"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="net.sf.ehcache.config.generator"/>
+      <attribute name="version" type="Version" value="2.9.1"/>
+      <attribute name="bundle-symbolic-name" value="net.sf.ehcache"/>
+      <attribute name="bundle-version" type="Version" value="2.9.1"/>
+      <directive name="uses" value="net.sf.ehcache.config,net.sf.ehcache,net.sf.ehcache.config.generator.model.elements,net.sf.ehcache.config.generator.model"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="net.sf.ehcache.pool"/>
+      <attribute name="version" type="Version" value="2.9.1"/>
+      <attribute name="bundle-symbolic-name" value="net.sf.ehcache"/>
+      <attribute name="bundle-version" type="Version" value="2.9.1"/>
+      <directive name="uses" value="net.sf.ehcache.pool.impl"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="net.sf.ehcache.constructs.readthrough"/>
+      <attribute name="version" type="Version" value="2.9.1"/>
+      <attribute name="bundle-symbolic-name" value="net.sf.ehcache"/>
+      <attribute name="bundle-version" type="Version" value="2.9.1"/>
+      <directive name="uses" value="net.sf.ehcache.loader,net.sf.ehcache,net.sf.ehcache.constructs"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="net.sf.ehcache.util.counter"/>
+      <attribute name="version" type="Version" value="2.9.1"/>
+      <attribute name="bundle-symbolic-name" value="net.sf.ehcache"/>
+      <attribute name="bundle-version" type="Version" value="2.9.1"/>
+      <directive name="uses" value="net.sf.ehcache.util.counter.sampled,net.sf.ehcache.util"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="net.sf.ehcache.statistics.beans"/>
+      <attribute name="version" type="Version" value="2.9.1"/>
+      <attribute name="bundle-symbolic-name" value="net.sf.ehcache"/>
+      <attribute name="bundle-version" type="Version" value="2.9.1"/>
+      <directive name="uses" value="net.sf.ehcache.statistics.extended,net.sf.ehcache,org.slf4j,javax.management"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="net.sf.ehcache.hibernate.ccs"/>
+      <attribute name="version" type="Version" value="2.9.1"/>
+      <attribute name="bundle-symbolic-name" value="net.sf.ehcache"/>
+      <attribute name="bundle-version" type="Version" value="2.9.1"/>
+      <directive name="uses" value="net.sf.ehcache.hibernate,org.hibernate.cache,org.slf4j,org.hibernate.cache.access"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="net.sf.ehcache.config"/>
+      <attribute name="version" type="Version" value="2.9.1"/>
+      <attribute name="bundle-symbolic-name" value="net.sf.ehcache"/>
+      <attribute name="bundle-version" type="Version" value="2.9.1"/>
+      <directive name="uses" value="org.slf4j,org.xml.sax.helpers,org.xml.sax,net.sf.ehcache.event,net.sf.ehcache.pool,net.sf.ehcache,net.sf.ehcache.search.attribute,net.sf.ehcache.store,net.sf.ehcache.store.compound,net.sf.ehcache.writer.writethrough,net.sf.ehcache.writer,net.sf.ehcache.writer.writebehind,net.sf.ehcache.util,net.sf.ehcache.transaction.manager,net.sf.ehcache.config.generator,javax.xml.parsers,net.sf.ehcache.exceptionhandler,net.sf.ehcache.distribution,net.sf.ehcache.bootstrap,net.sf.ehcache.constructs,net.sf.ehcache.util.counter.sampled,net.sf.ehcache.config.generator.model,net.sf.ehcache.search"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="net.sf.ehcache.pool.sizeof.filter"/>
+      <attribute name="version" type="Version" value="2.9.1"/>
+      <attribute name="bundle-symbolic-name" value="net.sf.ehcache"/>
+      <attribute name="bundle-version" type="Version" value="2.9.1"/>
+      <directive name="uses" value="net.sf.ehcache.pool.sizeof.annotations,org.slf4j"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="net.sf.ehcache.constructs.web"/>
+      <attribute name="version" type="Version" value="2.9.1"/>
+      <attribute name="bundle-symbolic-name" value="net.sf.ehcache"/>
+      <attribute name="bundle-version" type="Version" value="2.9.1"/>
+      <directive name="uses" value="javax.servlet,net.sf.ehcache,org.slf4j"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="net.sf.ehcache.store.compound"/>
+      <attribute name="version" type="Version" value="2.9.1"/>
+      <attribute name="bundle-symbolic-name" value="net.sf.ehcache"/>
+      <attribute name="bundle-version" type="Version" value="2.9.1"/>
+      <directive name="uses" value="net.sf.ehcache,net.sf.ehcache.util"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="net.sf.ehcache.search.parser"/>
+      <attribute name="version" type="Version" value="2.9.1"/>
+      <attribute name="bundle-symbolic-name" value="net.sf.ehcache"/>
+      <attribute name="bundle-version" type="Version" value="2.9.1"/>
+      <directive name="uses" value="net.sf.ehcache.search.aggregator,net.sf.ehcache.search,net.sf.ehcache.search.expression,net.sf.ehcache.store,net.sf.ehcache,net.sf.ehcache.config,net.sf.ehcache.search.query"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="net.sf.ehcache.search"/>
+      <attribute name="version" type="Version" value="2.9.1"/>
+      <attribute name="bundle-symbolic-name" value="net.sf.ehcache"/>
+      <attribute name="bundle-version" type="Version" value="2.9.1"/>
+      <directive name="uses" value="net.sf.ehcache.search.expression,net.sf.ehcache.search.aggregator,net.sf.ehcache"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="net.sf.ehcache.constructs"/>
+      <attribute name="version" type="Version" value="2.9.1"/>
+      <attribute name="bundle-symbolic-name" value="net.sf.ehcache"/>
+      <attribute name="bundle-version" type="Version" value="2.9.1"/>
+      <directive name="uses" value="net.sf.ehcache,net.sf.ehcache.exceptionhandler,net.sf.ehcache.loader,net.sf.ehcache.terracotta,net.sf.ehcache.extension,net.sf.ehcache.event,net.sf.ehcache.search,net.sf.ehcache.config,net.sf.ehcache.search.attribute,net.sf.ehcache.transaction.manager,net.sf.ehcache.bootstrap,net.sf.ehcache.statistics,net.sf.ehcache.writer"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="net.sf.ehcache.writer.writethrough"/>
+      <attribute name="version" type="Version" value="2.9.1"/>
+      <attribute name="bundle-symbolic-name" value="net.sf.ehcache"/>
+      <attribute name="bundle-version" type="Version" value="2.9.1"/>
+      <directive name="uses" value="net.sf.ehcache,net.sf.ehcache.writer"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="net.sf.ehcache.constructs.nonstop.concurrency"/>
+      <attribute name="version" type="Version" value="2.9.1"/>
+      <attribute name="bundle-symbolic-name" value="net.sf.ehcache"/>
+      <attribute name="bundle-version" type="Version" value="2.9.1"/>
+      <directive name="uses" value="net.sf.ehcache.constructs.nonstop"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="net.sf.ehcache.config.generator.model"/>
+      <attribute name="version" type="Version" value="2.9.1"/>
+      <attribute name="bundle-symbolic-name" value="net.sf.ehcache"/>
+      <attribute name="bundle-version" type="Version" value="2.9.1"/>
+      <directive name="uses" value="net.sf.ehcache.config.generator.model.elements,net.sf.ehcache.config"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="net.sf.ehcache.search.query"/>
+      <attribute name="version" type="Version" value="2.9.1"/>
+      <attribute name="bundle-symbolic-name" value="net.sf.ehcache"/>
+      <attribute name="bundle-version" type="Version" value="2.9.1"/>
+      <directive name="uses" value="net.sf.ehcache.search,net.sf.ehcache"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="net.sf.ehcache.hibernate.nonstop"/>
+      <attribute name="version" type="Version" value="2.9.1"/>
+      <attribute name="bundle-symbolic-name" value="net.sf.ehcache"/>
+      <attribute name="bundle-version" type="Version" value="2.9.1"/>
+      <directive name="uses" value="net.sf.ehcache.constructs.nonstop,org.slf4j,org.hibernate.cache.access,net.sf.ehcache.hibernate.strategy,net.sf.ehcache.hibernate.regions,org.hibernate.cache"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="net.sf.ehcache.pool.sizeof"/>
+      <attribute name="version" type="Version" value="2.9.1"/>
+      <attribute name="bundle-symbolic-name" value="net.sf.ehcache"/>
+      <attribute name="bundle-version" type="Version" value="2.9.1"/>
+      <directive name="uses" value="org.slf4j,net.sf.ehcache.config,net.sf.ehcache.pool.sizeof.filter,javax.xml.namespace,javax.xml.datatype,javax.management.openmbean,javax.management,net.sf.ehcache.util,net.sf.ehcache.pool"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="net.sf.ehcache.util.counter.sampled"/>
+      <attribute name="version" type="Version" value="2.9.1"/>
+      <attribute name="bundle-symbolic-name" value="net.sf.ehcache"/>
+      <attribute name="bundle-version" type="Version" value="2.9.1"/>
+      <directive name="uses" value="net.sf.ehcache.util.counter,net.sf.ehcache.util"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="net.sf.ehcache.util.lang"/>
+      <attribute name="version" type="Version" value="2.9.1"/>
+      <attribute name="bundle-symbolic-name" value="net.sf.ehcache"/>
+      <attribute name="bundle-version" type="Version" value="2.9.1"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="net.sf.ehcache.store.disk.ods"/>
+      <attribute name="version" type="Version" value="2.9.1"/>
+      <attribute name="bundle-symbolic-name" value="net.sf.ehcache"/>
+      <attribute name="bundle-version" type="Version" value="2.9.1"/>
+      <directive name="uses" value="org.slf4j"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="net.sf.ehcache.transaction.xa.processor"/>
+      <attribute name="version" type="Version" value="2.9.1"/>
+      <attribute name="bundle-symbolic-name" value="net.sf.ehcache"/>
+      <attribute name="bundle-version" type="Version" value="2.9.1"/>
+      <directive name="uses" value="javax.transaction.xa,net.sf.ehcache.transaction.xa"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="net.sf.ehcache.pool.impl"/>
+      <attribute name="version" type="Version" value="2.9.1"/>
+      <attribute name="bundle-symbolic-name" value="net.sf.ehcache"/>
+      <attribute name="bundle-version" type="Version" value="2.9.1"/>
+      <directive name="uses" value="net.sf.ehcache.pool,net.sf.ehcache.pool.sizeof.filter,net.sf.ehcache.pool.sizeof,net.sf.ehcache,org.slf4j"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="net.sf.ehcache.concurrent"/>
+      <attribute name="version" type="Version" value="2.9.1"/>
+      <attribute name="bundle-symbolic-name" value="net.sf.ehcache"/>
+      <attribute name="bundle-version" type="Version" value="2.9.1"/>
+      <directive name="uses" value="net.sf.ehcache"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="net.sf.ehcache.statistics"/>
+      <attribute name="version" type="Version" value="2.9.1"/>
+      <attribute name="bundle-symbolic-name" value="net.sf.ehcache"/>
+      <attribute name="bundle-version" type="Version" value="2.9.1"/>
+      <directive name="uses" value="net.sf.ehcache.store,net.sf.ehcache,net.sf.ehcache.transaction.xa,net.sf.ehcache.statistics.extended,net.sf.ehcache.config"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="net.sf.ehcache.exceptionhandler"/>
+      <attribute name="version" type="Version" value="2.9.1"/>
+      <attribute name="bundle-symbolic-name" value="net.sf.ehcache"/>
+      <attribute name="bundle-version" type="Version" value="2.9.1"/>
+      <directive name="uses" value="net.sf.ehcache,org.slf4j"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="net.sf.ehcache.constructs.nonstop.util"/>
+      <attribute name="version" type="Version" value="2.9.1"/>
+      <attribute name="bundle-symbolic-name" value="net.sf.ehcache"/>
+      <attribute name="bundle-version" type="Version" value="2.9.1"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="net.sf.ehcache.hibernate.management.impl"/>
+      <attribute name="version" type="Version" value="2.9.1"/>
+      <attribute name="bundle-symbolic-name" value="net.sf.ehcache"/>
+      <attribute name="bundle-version" type="Version" value="2.9.1"/>
+      <directive name="uses" value="javax.management,javax.management.openmbean,org.hibernate.stat,org.hibernate,net.sf.ehcache.hibernate.management.api,net.sf.ehcache,net.sf.ehcache.event,org.slf4j,net.sf.ehcache.management.sampled,net.sf.ehcache.statistics,net.sf.ehcache.statistics.extended,net.sf.ehcache.config,org.hibernate.impl,org.hibernate.cache,net.sf.ehcache.util"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="net.sf.ehcache.constructs.classloader"/>
+      <attribute name="version" type="Version" value="2.9.1"/>
+      <attribute name="bundle-symbolic-name" value="net.sf.ehcache"/>
+      <attribute name="bundle-version" type="Version" value="2.9.1"/>
+      <directive name="uses" value="net.sf.ehcache.exceptionhandler,net.sf.ehcache.loader,net.sf.ehcache.terracotta,net.sf.ehcache.extension,net.sf.ehcache.event,net.sf.ehcache.search,net.sf.ehcache.config,net.sf.ehcache.search.attribute,net.sf.ehcache.transaction.manager,net.sf.ehcache.bootstrap,net.sf.ehcache.statistics,net.sf.ehcache,net.sf.ehcache.writer"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="net.sf.ehcache.search.impl"/>
+      <attribute name="version" type="Version" value="2.9.1"/>
+      <attribute name="bundle-symbolic-name" value="net.sf.ehcache"/>
+      <attribute name="bundle-version" type="Version" value="2.9.1"/>
+      <directive name="uses" value="net.sf.ehcache.store,net.sf.ehcache.search.expression,net.sf.ehcache.search.aggregator,net.sf.ehcache.search,net.sf.ehcache.search.attribute,net.sf.ehcache"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="net.sf.ehcache.search.attribute"/>
+      <attribute name="version" type="Version" value="2.9.1"/>
+      <attribute name="bundle-symbolic-name" value="net.sf.ehcache"/>
+      <attribute name="bundle-version" type="Version" value="2.9.1"/>
+      <directive name="uses" value="net.sf.ehcache,net.sf.ehcache.search,net.sf.ehcache.config"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="net.sf.ehcache.writer"/>
+      <attribute name="version" type="Version" value="2.9.1"/>
+      <attribute name="bundle-symbolic-name" value="net.sf.ehcache"/>
+      <attribute name="bundle-version" type="Version" value="2.9.1"/>
+      <directive name="uses" value="net.sf.ehcache.writer.writebehind.operations,net.sf.ehcache"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="net.sf.ehcache.transaction.local"/>
+      <attribute name="version" type="Version" value="2.9.1"/>
+      <attribute name="bundle-symbolic-name" value="net.sf.ehcache"/>
+      <attribute name="bundle-version" type="Version" value="2.9.1"/>
+      <directive name="uses" value="javax.transaction,net.sf.ehcache,net.sf.ehcache.writer,net.sf.ehcache.transaction,net.sf.ehcache.util.lang,org.slf4j,javax.transaction.xa,net.sf.ehcache.transaction.manager,net.sf.ehcache.transaction.xa,net.sf.ehcache.store,net.sf.ehcache.util"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="net.sf.ehcache.cluster"/>
+      <attribute name="version" type="Version" value="2.9.1"/>
+      <attribute name="bundle-symbolic-name" value="net.sf.ehcache"/>
+      <attribute name="bundle-version" type="Version" value="2.9.1"/>
+      <directive name="uses" value="net.sf.ehcache"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="net.sf.ehcache.config.generator.model.elements"/>
+      <attribute name="version" type="Version" value="2.9.1"/>
+      <attribute name="bundle-symbolic-name" value="net.sf.ehcache"/>
+      <attribute name="bundle-version" type="Version" value="2.9.1"/>
+      <directive name="uses" value="net.sf.ehcache.store,net.sf.ehcache.config.generator.model,net.sf.ehcache.event,net.sf.ehcache.config,net.sf.ehcache"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="net.sf.ehcache.search.expression"/>
+      <attribute name="version" type="Version" value="2.9.1"/>
+      <attribute name="bundle-symbolic-name" value="net.sf.ehcache"/>
+      <attribute name="bundle-version" type="Version" value="2.9.1"/>
+      <directive name="uses" value="net.sf.ehcache.search.attribute,net.sf.ehcache.search,net.sf.ehcache"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="net.sf.ehcache.extension"/>
+      <attribute name="version" type="Version" value="2.9.1"/>
+      <attribute name="bundle-symbolic-name" value="net.sf.ehcache"/>
+      <attribute name="bundle-version" type="Version" value="2.9.1"/>
+      <directive name="uses" value="net.sf.ehcache"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="net.sf.ehcache.constructs.scheduledrefresh"/>
+      <attribute name="version" type="Version" value="2.9.1"/>
+      <attribute name="bundle-symbolic-name" value="net.sf.ehcache"/>
+      <attribute name="bundle-version" type="Version" value="2.9.1"/>
+      <directive name="uses" value="org.quartz,net.sf.ehcache,org.slf4j,org.quartz.impl.matchers,net.sf.ehcache.loader,net.sf.ehcache.extension,net.sf.ehcache.statistics.extended,org.quartz.impl,net.sf.ehcache.statistics,org.quartz.impl.jdbcjobstore,org.quartz.simpl,org.terracotta.quartz"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="net.sf.ehcache.store.chm"/>
+      <attribute name="version" type="Version" value="2.9.1"/>
+      <attribute name="bundle-symbolic-name" value="net.sf.ehcache"/>
+      <attribute name="bundle-version" type="Version" value="2.9.1"/>
+      <directive name="uses" value="net.sf.ehcache,net.sf.ehcache.pool,net.sf.ehcache.event,net.sf.ehcache.statistics"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="net.sf.ehcache.search.aggregator"/>
+      <attribute name="version" type="Version" value="2.9.1"/>
+      <attribute name="bundle-symbolic-name" value="net.sf.ehcache"/>
+      <attribute name="bundle-version" type="Version" value="2.9.1"/>
+      <directive name="uses" value="net.sf.ehcache.search"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="net.sf.ehcache.statistics.extended"/>
+      <attribute name="version" type="Version" value="2.9.1"/>
+      <attribute name="bundle-symbolic-name" value="net.sf.ehcache"/>
+      <attribute name="bundle-version" type="Version" value="2.9.1"/>
+      <directive name="uses" value="net.sf.ehcache,net.sf.ehcache.store,net.sf.ehcache.transaction.xa,net.sf.ehcache.util.concurrent,org.slf4j"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="net.sf.ehcache.hibernate.regions"/>
+      <attribute name="version" type="Version" value="2.9.1"/>
+      <attribute name="bundle-symbolic-name" value="net.sf.ehcache"/>
+      <attribute name="bundle-version" type="Version" value="2.9.1"/>
+      <directive name="uses" value="org.hibernate.cache.access,net.sf.ehcache.hibernate.strategy,org.hibernate.cfg,org.hibernate.cache,net.sf.ehcache,org.slf4j,net.sf.ehcache.hibernate.nonstop,net.sf.ehcache.util,net.sf.ehcache.constructs.nonstop,net.sf.ehcache.concurrent"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="net.sf.ehcache.writer.writebehind"/>
+      <attribute name="version" type="Version" value="2.9.1"/>
+      <attribute name="bundle-symbolic-name" value="net.sf.ehcache"/>
+      <attribute name="bundle-version" type="Version" value="2.9.1"/>
+      <directive name="uses" value="net.sf.ehcache.writer.writebehind.operations,net.sf.ehcache,net.sf.ehcache.writer,net.sf.ehcache.config,net.sf.ehcache.store"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="net.sf.ehcache.hibernate.management.api"/>
+      <attribute name="version" type="Version" value="2.9.1"/>
+      <attribute name="bundle-symbolic-name" value="net.sf.ehcache"/>
+      <attribute name="bundle-version" type="Version" value="2.9.1"/>
+      <directive name="uses" value="javax.management,javax.management.openmbean"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="net.sf.ehcache.constructs.blocking"/>
+      <attribute name="version" type="Version" value="2.9.1"/>
+      <attribute name="bundle-symbolic-name" value="net.sf.ehcache"/>
+      <attribute name="bundle-version" type="Version" value="2.9.1"/>
+      <directive name="uses" value="net.sf.ehcache,net.sf.ehcache.loader,net.sf.ehcache.concurrent,net.sf.ehcache.statistics,net.sf.ehcache.config,net.sf.ehcache.constructs,org.slf4j"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="net.sf.ehcache.constructs.eventual"/>
+      <attribute name="version" type="Version" value="2.9.1"/>
+      <attribute name="bundle-symbolic-name" value="net.sf.ehcache"/>
+      <attribute name="bundle-version" type="Version" value="2.9.1"/>
+      <directive name="uses" value="net.sf.ehcache.loader,net.sf.ehcache.store,net.sf.ehcache,net.sf.ehcache.config,net.sf.ehcache.constructs"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="net.sf.ehcache.management.provider"/>
+      <attribute name="version" type="Version" value="2.9.1"/>
+      <attribute name="bundle-symbolic-name" value="net.sf.ehcache"/>
+      <attribute name="bundle-version" type="Version" value="2.9.1"/>
+      <directive name="uses" value="net.sf.ehcache.terracotta,net.sf.ehcache,net.sf.ehcache.config,net.sf.ehcache.management.sampled"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="net.sf.ehcache.distribution"/>
+      <attribute name="version" type="Version" value="2.9.1"/>
+      <attribute name="bundle-symbolic-name" value="net.sf.ehcache"/>
+      <attribute name="bundle-version" type="Version" value="2.9.1"/>
+      <directive name="uses" value="net.sf.ehcache.event,net.sf.ehcache,org.slf4j,net.sf.ehcache.util,net.sf.ehcache.bootstrap,net.sf.ehcache.config"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="net.sf.ehcache.management.event"/>
+      <attribute name="version" type="Version" value="2.9.1"/>
+      <attribute name="bundle-symbolic-name" value="net.sf.ehcache"/>
+      <attribute name="bundle-version" type="Version" value="2.9.1"/>
+      <directive name="uses" value="net.sf.ehcache.terracotta"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="net.sf.ehcache.loader"/>
+      <attribute name="version" type="Version" value="2.9.1"/>
+      <attribute name="bundle-symbolic-name" value="net.sf.ehcache"/>
+      <attribute name="bundle-version" type="Version" value="2.9.1"/>
+      <directive name="uses" value="net.sf.ehcache"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="net.sf.ehcache.terracotta"/>
+      <attribute name="version" type="Version" value="2.9.1"/>
+      <attribute name="bundle-symbolic-name" value="net.sf.ehcache"/>
+      <attribute name="bundle-version" type="Version" value="2.9.1"/>
+      <directive name="uses" value="net.sf.ehcache.transaction,net.sf.ehcache.writer.writebehind,net.sf.ehcache.store,net.sf.ehcache.event,net.sf.ehcache.cluster,net.sf.ehcache,net.sf.ehcache.management.event,net.sf.ehcache.config,net.sf.ehcache.util,org.slf4j,net.sf.ehcache.distribution,net.sf.ehcache.bootstrap"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="net.sf.ehcache.util"/>
+      <attribute name="version" type="Version" value="2.9.1"/>
+      <attribute name="bundle-symbolic-name" value="net.sf.ehcache"/>
+      <attribute name="bundle-version" type="Version" value="2.9.1"/>
+      <directive name="uses" value="net.sf.ehcache.config,net.sf.ehcache.transaction.local,javax.transaction,net.sf.ehcache.transaction.manager,net.sf.ehcache,org.slf4j,net.sf.ehcache.util.lang"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="net.sf.ehcache.hibernate"/>
+      <attribute name="version" type="Version" value="2.9.1"/>
+      <attribute name="bundle-symbolic-name" value="net.sf.ehcache"/>
+      <attribute name="bundle-version" type="Version" value="2.9.1"/>
+      <directive name="uses" value="net.sf.ehcache.util,org.hibernate.cache,net.sf.ehcache,org.slf4j,org.hibernate.cache.access,org.hibernate.cfg,net.sf.ehcache.hibernate.management.impl,net.sf.ehcache.hibernate.strategy,net.sf.ehcache.hibernate.nonstop,net.sf.ehcache.hibernate.regions,net.sf.ehcache.concurrent,net.sf.ehcache.statistics,net.sf.ehcache.config,org.hibernate,javax.transaction,org.hibernate.transaction,net.sf.ehcache.transaction.manager"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="net.sf.ehcache.pool.sizeof.annotations"/>
+      <attribute name="version" type="Version" value="2.9.1"/>
+      <attribute name="bundle-symbolic-name" value="net.sf.ehcache"/>
+      <attribute name="bundle-version" type="Version" value="2.9.1"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="net.sf.ehcache.transaction.manager"/>
+      <attribute name="version" type="Version" value="2.9.1"/>
+      <attribute name="bundle-symbolic-name" value="net.sf.ehcache"/>
+      <attribute name="bundle-version" type="Version" value="2.9.1"/>
+      <directive name="uses" value="javax.transaction,net.sf.ehcache.transaction.manager.selector,net.sf.ehcache,net.sf.ehcache.transaction.xa,org.slf4j"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="net.sf.ehcache.constructs.nonstop"/>
+      <attribute name="version" type="Version" value="2.9.1"/>
+      <attribute name="bundle-symbolic-name" value="net.sf.ehcache"/>
+      <attribute name="bundle-version" type="Version" value="2.9.1"/>
+      <directive name="uses" value="net.sf.ehcache"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="net.sf.ehcache.store"/>
+      <attribute name="version" type="Version" value="2.9.1"/>
+      <attribute name="bundle-symbolic-name" value="net.sf.ehcache"/>
+      <attribute name="bundle-version" type="Version" value="2.9.1"/>
+      <directive name="uses" value="net.sf.ehcache.terracotta,net.sf.ehcache.search.attribute,net.sf.ehcache.search,net.sf.ehcache.store.compound,net.sf.ehcache,net.sf.ehcache.writer,net.sf.ehcache.search.impl,net.sf.ehcache.config,net.sf.ehcache.search.expression,net.sf.ehcache.search.aggregator,net.sf.ehcache.transaction,org.slf4j,net.sf.ehcache.store.disk,net.sf.ehcache.concurrent,net.sf.ehcache.distribution,net.sf.ehcache.bootstrap,net.sf.ehcache.util,net.sf.ehcache.event,net.sf.ehcache.pool,net.sf.ehcache.statistics,net.sf.ehcache.store.chm,net.sf.ehcache.pool.impl,net.sf.ehcache.writer.writebehind"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="net.sf.ehcache.transaction.xa.commands"/>
+      <attribute name="version" type="Version" value="2.9.1"/>
+      <attribute name="bundle-symbolic-name" value="net.sf.ehcache"/>
+      <attribute name="bundle-version" type="Version" value="2.9.1"/>
+      <directive name="uses" value="net.sf.ehcache.transaction,net.sf.ehcache.store,net.sf.ehcache,net.sf.ehcache.transaction.xa"/>
+    </capability>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=bitronix.tm)"/>
+      <directive name="resolution" value="optional"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=bitronix.tm.resource.ehcache)"/>
+      <directive name="resolution" value="optional"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=com.atomikos.icatch.jta)"/>
+      <directive name="resolution" value="optional"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=javax.activation)"/>
+      <directive name="resolution" value="optional"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=javax.management)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=javax.management.openmbean)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=javax.naming)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=javax.net.ssl)"/>
+      <directive name="resolution" value="optional"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=javax.servlet)"/>
+      <directive name="resolution" value="optional"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=javax.swing.event)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=javax.transaction)"/>
+      <directive name="resolution" value="optional"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=javax.transaction.xa)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=javax.xml.datatype)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=javax.xml.namespace)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=javax.xml.parsers)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=javax.xml.stream)"/>
+      <directive name="resolution" value="optional"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=javax.xml.transform.dom)"/>
+      <directive name="resolution" value="optional"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=javax.xml.transform.sax)"/>
+      <directive name="resolution" value="optional"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=javax.xml.transform.stream)"/>
+      <directive name="resolution" value="optional"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=net.sf.ehcache.cluster)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=net.sf.ehcache.concurrent)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=net.sf.ehcache.config)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=net.sf.ehcache.config.generator)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=net.sf.ehcache.constructs.nonstop)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=net.sf.ehcache.constructs.nonstop.concurrency)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=net.sf.ehcache.management.event)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=net.sf.ehcache.search)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=net.sf.ehcache.search.attribute)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=net.sf.ehcache.transaction.local)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=net.sf.ehcache.util)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=net.sf.ehcache.writer)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=net.sf.ehcache.writer.writebehind.operations)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.hibernate)"/>
+      <directive name="resolution" value="optional"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.hibernate.cache)"/>
+      <directive name="resolution" value="optional"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.hibernate.cache.access)"/>
+      <directive name="resolution" value="optional"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.hibernate.cfg)"/>
+      <directive name="resolution" value="optional"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.hibernate.impl)"/>
+      <directive name="resolution" value="optional"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.hibernate.stat)"/>
+      <directive name="resolution" value="optional"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.hibernate.transaction)"/>
+      <directive name="resolution" value="optional"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.quartz)"/>
+      <directive name="resolution" value="optional"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.quartz.impl)"/>
+      <directive name="resolution" value="optional"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.quartz.impl.jdbcjobstore)"/>
+      <directive name="resolution" value="optional"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.quartz.impl.matchers)"/>
+      <directive name="resolution" value="optional"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.quartz.simpl)"/>
+      <directive name="resolution" value="optional"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(&amp;(osgi.wiring.package=org.slf4j)(version&gt;=1.7.0)(!(version&gt;=2.0.0)))"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.terracotta.quartz)"/>
+      <directive name="resolution" value="optional"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.terracotta.toolkit)"/>
+      <directive name="resolution" value="optional"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.terracotta.toolkit.atomic)"/>
+      <directive name="resolution" value="optional"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.terracotta.toolkit.builder)"/>
+      <directive name="resolution" value="optional"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.terracotta.toolkit.cache)"/>
+      <directive name="resolution" value="optional"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.terracotta.toolkit.cluster)"/>
+      <directive name="resolution" value="optional"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.terracotta.toolkit.collections)"/>
+      <directive name="resolution" value="optional"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.terracotta.toolkit.concurrent.locks)"/>
+      <directive name="resolution" value="optional"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.terracotta.toolkit.config)"/>
+      <directive name="resolution" value="optional"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.terracotta.toolkit.events)"/>
+      <directive name="resolution" value="optional"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.terracotta.toolkit.feature)"/>
+      <directive name="resolution" value="optional"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.terracotta.toolkit.internal)"/>
+      <directive name="resolution" value="optional"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.terracotta.toolkit.internal.cache)"/>
+      <directive name="resolution" value="optional"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.terracotta.toolkit.internal.cluster)"/>
+      <directive name="resolution" value="optional"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.terracotta.toolkit.internal.collections)"/>
+      <directive name="resolution" value="optional"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.terracotta.toolkit.internal.concurrent.locks)"/>
+      <directive name="resolution" value="optional"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.terracotta.toolkit.internal.feature)"/>
+      <directive name="resolution" value="optional"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.terracotta.toolkit.monitoring)"/>
+      <directive name="resolution" value="optional"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.terracotta.toolkit.nonstop)"/>
+      <directive name="resolution" value="optional"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.terracotta.toolkit.rejoin)"/>
+      <directive name="resolution" value="optional"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.terracotta.toolkit.search)"/>
+      <directive name="resolution" value="optional"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.terracotta.toolkit.search.attribute)"/>
+      <directive name="resolution" value="optional"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.terracotta.toolkit.store)"/>
+      <directive name="resolution" value="optional"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.xml.sax)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.xml.sax.helpers)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=weblogic.transaction)"/>
+      <directive name="resolution" value="optional"/>
+    </requirement>
+    <requirement namespace="osgi.ee">
+      <directive name="filter" value="(&amp;(osgi.ee=JavaSE)(version=1.6))"/>
     </requirement>
   </resource>
   <resource>

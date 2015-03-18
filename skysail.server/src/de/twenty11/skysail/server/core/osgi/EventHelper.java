@@ -99,7 +99,8 @@ public class EventHelper {
         }
         Dictionary<String, Object> properties = new Hashtable<>();
         properties.put("msg", msg);
-        properties.put("username", SecurityUtils.getSubject().getPrincipal().toString());
+        Object principal = SecurityUtils.getSubject().getPrincipal();
+        properties.put("username", principal != null ? principal.toString() : "");
         properties.put("time", System.currentTimeMillis());
         properties.put("type", type);
         properties.put("msgId", msgIdCounter);

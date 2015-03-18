@@ -1,6 +1,8 @@
 package io.skysail.server.um.simple.usermanager.test;
 
+import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.nullValue;
 import static org.junit.Assert.assertThat;
 import io.skysail.server.um.simple.usermanager.UserManagementRepository;
 
@@ -21,32 +23,28 @@ public class UserManagementRepositoryTest {
     @Test
     public void empty_config_yields_empty_usernamesAndPasswords() {
         UserManagementRepository repository = new UserManagementRepository(new HashMap<String, String>());
-        assertThat(repository.getUsernamesAndPasswords().size(), is(0));
-    }
-
-    @Test
-    public void empty_config_yields_empty_usernamesAndRoles() {
-        UserManagementRepository repository = new UserManagementRepository(new HashMap<String, String>());
-        assertThat(repository.getUsernamesAndRoles().size(), is(0));
+        assertThat(repository.getByUsername("username"), is(nullValue()));
     }
 
     @Test
     public void username_with_password_is_found_inUsernamesAndPasswords() {
         config.put("users", "admin , user");
         config.put("admin.password", "pwd");
+        config.put("admin.id", "#1");
+        config.put("user.id", "#2");
         UserManagementRepository repository = new UserManagementRepository(config);
-        assertThat(repository.getUsernamesAndPasswords().size(), is(1));
-        assertThat(repository.getUsernamesAndPasswords().get("admin"), is("pwd"));
+        assertThat(repository.getByUsername("admin").getUsername(), is(equalTo("admin")));
+        assertThat(repository.getByUsername("admin").getPassword(), is(equalTo("pwd")));
     }
 
     @Test
     public void username_with_role_is_found_inUsernamesAndRoles() {
         config.put("users", "admin , user");
         config.put("admin.password", "pwd");
+        config.put("admin.id", "#1");
+        config.put("user.id", "#2");
         config.put("admin.roles", "role1, role2");
         UserManagementRepository repository = new UserManagementRepository(config);
-        assertThat(repository.getUsernamesAndRoles().size(), is(1));
-        assertThat(repository.getUsernamesAndRoles().get("admin").size(), is(2));
+        assertThat(repository.getByUsername("admin").getRoles().size(), is(2));
     }
-
 }

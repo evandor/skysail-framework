@@ -204,6 +204,7 @@ public abstract class SkysailApplication extends Application implements Applicat
      * default Constructor.
      */
     public SkysailApplication() {
+        getEncoderService().setEnabled(true);
     }
 
     /**

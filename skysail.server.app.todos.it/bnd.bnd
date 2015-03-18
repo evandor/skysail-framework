@@ -25,7 +25,9 @@ Test-Cases: \
 -runfw: org.apache.felix.framework;version='[4,5)'
 -runee: JavaSE-1.8
 -runsystemcapabilities: ${native_capability}
--runvm: -ea
+
+-runvm: -ea,-XX:+UnlockCommercialFeatures,-XX:+FlightRecorder,-XX:StartFlightRecording="duration=120m,filename=flightrecorder.jfr"
+
 -runrepos:  \
 	Workspace,\
 	Release,\
@@ -43,7 +45,7 @@ Test-Cases: \
 
 
 -resolve.effective: active;skip:="osgi.service"
-
+#-XX:+UnlockCommercialFeatures -XX:+FlightRecorder -XX:StartFlightRecording=duration=120m,filename=recording1.jfr
 -runproperties: felix.fileinstall.dir=config/test,\
     felix.fileinstall.filter=.*\\.jar|.*\\.cfg,\
     felix.fileinstall.noInitialDelay=true,\

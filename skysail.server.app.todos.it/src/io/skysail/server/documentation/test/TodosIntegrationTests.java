@@ -95,6 +95,17 @@ public class TodosIntegrationTests {
     }
 
     @Test
+    public void perfTest() throws Exception {
+        form.add("title", "mytitle");
+        for (int i = 0; i < 1; i++) {
+            client.setUrl("/TodoGen/Todos/").post(form, MediaType.TEXT_HTML);
+        }
+        for (int i = 0; i < 1; i++) {
+            client.setUrl("/TodoGen/Todos").get(MediaType.TEXT_HTML);
+        }
+    }
+
+    @Test
     public void get_json_on_TodosResource_returns_200() throws Exception {
         Representation representation = client.setUrl("/Todos/Todos").get(MediaType.APPLICATION_JSON);
         assertTrue(client.getResponse().getStatus().getCode() == 200);

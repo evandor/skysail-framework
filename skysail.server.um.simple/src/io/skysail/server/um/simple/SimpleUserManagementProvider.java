@@ -6,6 +6,7 @@ import io.skysail.api.um.UserManagementProvider;
 import io.skysail.server.um.simple.authentication.SimpleAuthenticationService;
 import io.skysail.server.um.simple.authorization.RestletRolesProvider;
 import io.skysail.server.um.simple.authorization.SimpleAuthorizationService;
+import io.skysail.server.um.simple.authorization.SimpleUser;
 import io.skysail.server.um.simple.usermanager.UserManagementRepository;
 import io.skysail.server.um.simple.web.impl.SimpleWebSecurityManager;
 
@@ -13,7 +14,6 @@ import java.io.IOException;
 import java.util.Dictionary;
 import java.util.Hashtable;
 import java.util.Map;
-import java.util.Set;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -100,12 +100,8 @@ public class SimpleUserManagementProvider implements UserManagementProvider {
         return authorizationService;
     }
 
-    public Map<String, String> getUsernamesAndPasswords() {
-        return userManagerRepo.getUsernamesAndPasswords();
-    }
-
-    public Map<String, Set<String>> getUsernamesAndRoles() {
-        return userManagerRepo.getUsernamesAndRoles();
+    public SimpleUser getByUsername(String username) {
+        return userManagerRepo.getByUsername(username);
     }
 
     private void createDefautConfiguration() {
@@ -129,4 +125,5 @@ public class SimpleUserManagementProvider implements UserManagementProvider {
         }
 
     }
+
 }

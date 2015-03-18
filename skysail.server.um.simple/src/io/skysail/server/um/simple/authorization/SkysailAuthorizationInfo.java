@@ -12,6 +12,8 @@ import de.twenty11.skysail.server.um.domain.SkysailUser;
 
 public class SkysailAuthorizationInfo implements AuthorizationInfo {
 
+    private static final long serialVersionUID = -8205213326342471105L;
+
     private SimpleAuthorizationInfo authInfo;
 
     public SkysailAuthorizationInfo(SkysailUser user) {

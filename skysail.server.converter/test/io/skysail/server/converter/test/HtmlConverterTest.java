@@ -23,7 +23,6 @@ import org.restlet.resource.Resource;
 import de.twenty11.skysail.server.core.restlet.EntityServerResource;
 import de.twenty11.skysail.server.services.MenuItem;
 import de.twenty11.skysail.server.services.MenuItemProvider;
-import de.twenty11.skysail.server.services.UserManager;
 
 public class HtmlConverterTest {
 
@@ -58,13 +57,6 @@ public class HtmlConverterTest {
         htmlConverter.addMenuProvider(menuItemProvider);
         htmlConverter.removeMenuProvider(menuItemProvider);
         assertThat(htmlConverter.getMenuProviders().size(), is(0));
-    }
-
-    @Test
-    public void returns_added_usermanager() throws Exception {
-        UserManager userManager = Mockito.mock(UserManager.class);
-        htmlConverter.setUserManager(userManager);
-        assertThat(htmlConverter.getUserManager(), is(equalTo(userManager)));
     }
 
     @Test

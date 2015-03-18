@@ -1,5 +1,7 @@
 package io.skysail.server.converter.impl;
 
+import io.skysail.server.converter.HtmlConverter;
+import io.skysail.server.converter.Notification;
 import io.skysail.server.converter.stringtemplate.STGroupBundleDir;
 import io.skysail.server.converter.wrapper.STFieldsWrapper;
 import io.skysail.server.converter.wrapper.STListSourceWrapper;
@@ -45,7 +47,6 @@ import de.twenty11.skysail.server.core.restlet.SkysailServerResource;
 import de.twenty11.skysail.server.core.restlet.utils.CookiesUtils;
 import de.twenty11.skysail.server.core.restlet.utils.StringParserUtils;
 import de.twenty11.skysail.server.services.MenuItemProvider;
-import de.twenty11.skysail.server.services.UserManager;
 import de.twenty11.skysail.server.utils.ReflectionUtils;
 import de.twenty11.skysail.server.utils.ResourceUtils;
 
@@ -54,8 +55,12 @@ public class StringTemplateRenderer {
 
     private STGroupBundleDir importedGroupBundleDir;
     private Set<MenuItemProvider> menuProviders;
-    private UserManager userManager;
     private String templateFromCookie;
+    private HtmlConverter htmlConverter;
+
+    public StringTemplateRenderer(HtmlConverter htmlConverter) {
+        this.htmlConverter = htmlConverter;
+    }
 
     public StringRepresentation createRepresenation(Object originalSource, Variant target,
             SkysailServerResource<?> resource) {
@@ -67,7 +72,7 @@ public class StringTemplateRenderer {
         ST index = getStringTemplateIndex(resource, stGroup);
 
         addAssociatedLinks(resource, sourceWrapper);
-        addSubstitutions(sourceWrapper.getConvertedSource(), resource, index, target, menuProviders, userManager);
+        addSubstitutions(sourceWrapper.getConvertedSource(), resource, index, target, menuProviders);
         checkForInspection(resource, index);
 
         return createRepresentation(index, stGroup);
@@ -181,7 +186,7 @@ public class StringTemplateRenderer {
 
     @SuppressWarnings("unchecked")
     private void addSubstitutions(Object source, SkysailServerResource<?> resource, ST decl, Variant target,
-            Set<MenuItemProvider> menuProviders, UserManager userManager) {
+            Set<MenuItemProvider> menuProviders) {
 
         decl.add("user", SecurityUtils.getSubject());
         decl.add("target", new STTargetWrapper(target));
@@ -198,7 +203,7 @@ public class StringTemplateRenderer {
                 entity = resource.getParameterType().newInstance();
                 fields = ReflectionUtils.getInheritedFields(resource.getParameterType()).stream()
                         .filter(f -> test(resource, f)).sorted((f1, f2) -> sort(resource, f1, f2))
-                        .map(f -> new FormField(f, resource, userManager, source, entity))//
+                        .map(f -> new FormField(f, resource, source, entity))//
                         .collect(Collectors.toList());
 
                 decl.add("fields", new STFieldsWrapper(fields));
@@ -216,12 +221,10 @@ public class StringTemplateRenderer {
                         return new FormField((DynamicEntity) entity, d, resource);
                     }).collect(Collectors.toList());
                 } else {
-                    fields = ReflectionUtils
-                            .getInheritedFields(entity.getClass())
-                            .stream()
+                    fields = ReflectionUtils.getInheritedFields(entity.getClass()).stream()
                             .filter(f -> test(resource, f))
-                            .map(f -> new FormField(f, resource, userManager, source, ((SkysailResponse<?>) source)
-                                    .getEntity())).collect(Collectors.toList());
+                            .map(f -> new FormField(f, resource, source, ((SkysailResponse<?>) source).getEntity()))
+                            .collect(Collectors.toList());
                 }
                 decl.add("fields", new STFieldsWrapper(fields));
             } else if (source != null && (source instanceof HashMap)) {
@@ -233,7 +236,10 @@ public class StringTemplateRenderer {
         Map<String, String> messages = resource.getMessages(fields);
         messages.put("productName", getProductName());
         decl.add("messages", messages);
+    }
 
+    public List<Notification> getNotifications() {
+        return htmlConverter.getNotifications();
     }
 
     private void importTemplate(String symbolicName, Resource resource, Bundle appBundle, String resourcePath,
@@ -300,10 +306,6 @@ public class StringTemplateRenderer {
     public void setMenuProviders(Set<MenuItemProvider> menuProviders) {
         this.menuProviders = menuProviders;
 
-    }
-
-    public void setUserManager(UserManager userManager) {
-        this.userManager = userManager;
     }
 
     private void checkForInspection(Resource resource, ST index) {

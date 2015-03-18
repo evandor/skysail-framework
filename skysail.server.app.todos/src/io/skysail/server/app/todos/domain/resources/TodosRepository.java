@@ -74,7 +74,7 @@ public class TodosRepository implements DbRepository {
     }
 
     public void delete(String id) {
-        // dbService.delete(id);
+        dbService.delete(Todo.class, id);
     }
 
 }

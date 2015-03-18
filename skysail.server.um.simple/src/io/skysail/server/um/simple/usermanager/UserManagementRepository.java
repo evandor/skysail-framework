@@ -9,6 +9,12 @@ import java.util.stream.Collectors;
 
 import lombok.extern.slf4j.Slf4j;
 
+/**
+ * A repository for users, passwords and roles, created in memory and
+ * initialized with data from the configuration admin, that is, from a
+ * configuration file.
+ *
+ */
 @Slf4j
 public class UserManagementRepository {
 

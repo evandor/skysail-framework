@@ -1,4 +1,4 @@
-package de.twenty11.skysail.server.core.osgi.internal.test;
+package de.twenty11.skysail.server.core.osgi;
 
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
@@ -19,7 +19,7 @@ import org.restlet.Request;
 import org.restlet.data.Method;
 import org.restlet.data.Reference;
 
-import de.twenty11.skysail.server.core.osgi.internal.EventHelper;
+import de.twenty11.skysail.server.core.osgi.EventHelper;
 
 public class EventHelperTest {
 

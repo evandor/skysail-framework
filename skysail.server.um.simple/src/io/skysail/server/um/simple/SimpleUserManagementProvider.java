@@ -30,18 +30,19 @@ import aQute.bnd.annotation.component.Reference;
 /**
  * A UserManagerProvider based on a configuration file containing information
  * about existing users, their ids, passwords and roles.
+ * 
+ * Delegates to various services and creates a default configuration if no other
+ * configuration is provided.
  *
  */
 @Component(immediate = true, configurationPolicy = ConfigurationPolicy.optional)
 @Slf4j
 public class SimpleUserManagementProvider implements UserManagementProvider {
 
-    private SimpleAuthenticationService authenticationService;
-    private SimpleAuthorizationService authorizationService;
-
-    private UserManagementRepository userManagerRepo;
-    private RestletRolesProvider restletRolesProvider;
-
+    private volatile SimpleAuthenticationService authenticationService;
+    private volatile SimpleAuthorizationService authorizationService;
+    private volatile UserManagementRepository userManagerRepo;
+    private volatile RestletRolesProvider restletRolesProvider;
     private volatile ConfigurationAdmin configurationAdmin;
 
     @Activate
@@ -50,10 +51,10 @@ public class SimpleUserManagementProvider implements UserManagementProvider {
             createDefautConfiguration();
             return;
         }
+        userManagerRepo = new UserManagementRepository(config);
         authenticationService = new SimpleAuthenticationService();
         authorizationService = new SimpleAuthorizationService(this);
         SecurityUtils.setSecurityManager(new SimpleWebSecurityManager(authorizationService.getRealm()));
-        userManagerRepo = new UserManagementRepository(config);
     }
 
     @Deactivate

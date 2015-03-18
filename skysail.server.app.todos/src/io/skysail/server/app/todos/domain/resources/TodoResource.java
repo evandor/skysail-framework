@@ -43,4 +43,9 @@ public class TodoResource extends EntityServerResource<Todo> {
         return super.getLinkheader(PutTodoResource.class);
     }
 
+    @Override
+    public String redirectTo() {
+        return super.redirectTo(TodosResource.class);
+    }
+
 }

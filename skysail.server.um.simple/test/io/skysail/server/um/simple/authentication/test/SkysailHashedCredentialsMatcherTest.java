@@ -8,6 +8,7 @@ import io.skysail.server.um.simple.authentication.SkysailHashedCredentialsMatche
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;
 import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.cache.MemoryConstrainedCacheManager;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -39,4 +40,14 @@ public class SkysailHashedCredentialsMatcherTest {
         assertThat(doCredentialsMatch, is(true));
     }
 
+    @Test
+    public void testName() {
+        matcher.setCacheManager(new MemoryConstrainedCacheManager());
+        AuthenticationToken userProvidedToken = new UsernamePasswordToken("username", "skysail".toCharArray());
+        assertThat(matcher.getCacheSize(), is(0L));
+        matcher.doCredentialsMatch(userProvidedToken, info);
+        assertThat(matcher.getCacheSize(), is(1L));
+        matcher.doCredentialsMatch(userProvidedToken, info);
+        assertThat(matcher.getCacheSize(), is(1L));
+    }
 }

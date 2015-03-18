@@ -1,8 +1,9 @@
 notifications(notificationList) ::= <<
 <script src="/webapp/js/noty/packaged/jquery.noty.packaged.min.js"></script>
+<script type="text/javascript" src="/webapp/js/noty/layouts/skysail.js"></script>
     <script>
     \$.noty.defaults = {
-    		layout: 'topRight',
+    		layout: 'skysail',
     	    theme: 'bootstrapTheme', // or 'relax'
     	    type: 'success',
     	    text: '', // can be html or string
@@ -14,7 +15,7 @@ notifications(notificationList) ::= <<
     	        easing: 'swing', // unavailable - no need
     	        speed: 500 // unavailable - no need
     	    },
-    	    timeout: 2000, // delay for closing event. Set false for sticky notifications
+    	    timeout: 2500, // delay for closing event. Set false for sticky notifications
     	    force: false, // adds notification to the beginning of queue when set to true
     	    modal: false,
     	    maxVisible: 5, // you can set max visible notification for dismissQueue true option,

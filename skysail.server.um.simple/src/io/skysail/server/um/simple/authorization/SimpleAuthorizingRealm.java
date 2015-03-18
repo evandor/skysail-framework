@@ -4,7 +4,6 @@ import io.skysail.server.um.simple.SimpleUserManagementProvider;
 import io.skysail.server.um.simple.authentication.SkysailAuthenticationInfo;
 import io.skysail.server.um.simple.authentication.SkysailHashedCredentialsMatcher;
 
-import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 import org.apache.shiro.authc.AuthenticationException;
@@ -78,11 +77,11 @@ public class SimpleAuthorizingRealm extends AuthorizingRealm {
     }
 
     private SkysailUser getUser(String username) {
-        Map<String, String> usernamesAndPasswords = simpleUserManagementProvider.getUsernamesAndPasswords();
-        if (usernamesAndPasswords.get(username) == null) {
+        SimpleUser simpleUser = simpleUserManagementProvider.getByUsername(username);
+        if (simpleUser == null) {
             return null;
         }
-        return new SkysailUser(username, usernamesAndPasswords.get(username));
+        return new SkysailUser(simpleUser.getUsername(), simpleUser.getPassword());
     }
 
     @Override

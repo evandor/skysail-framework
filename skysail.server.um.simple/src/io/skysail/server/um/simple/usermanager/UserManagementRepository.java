@@ -1,10 +1,11 @@
 package io.skysail.server.um.simple.usermanager;
 
+import io.skysail.server.um.simple.authorization.SimpleUser;
+
 import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
 
 import lombok.extern.slf4j.Slf4j;
@@ -18,8 +19,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class UserManagementRepository {
 
-    private Map<String, String> usernamesAndPasswords = new HashMap<>();
-    private Map<String, Set<String>> usernamesAndRoles = new HashMap<>();
+    private volatile Map<String, SimpleUser> users = new ConcurrentHashMap<>();
 
     public UserManagementRepository(Map<String, String> config) {
         String usersDefinition = config.get("users");
@@ -30,12 +30,8 @@ public class UserManagementRepository {
         createUsernamesAndPasswords(usersDefinition, config);
     }
 
-    public Map<String, String> getUsernamesAndPasswords() {
-        return Collections.unmodifiableMap(usernamesAndPasswords);
-    }
-
-    public Map<String, Set<String>> getUsernamesAndRoles() {
-        return Collections.unmodifiableMap(usernamesAndRoles);
+    public SimpleUser getByUsername(String username) {
+        return users.get(username);
     }
 
     private void createUsernamesAndPasswords(String usersDefinition, Map<String, String> config) {
@@ -44,17 +40,24 @@ public class UserManagementRepository {
             return u.trim();
         }).forEach(username -> {
             String password = config.get(username + ".password");
-            if (password != null) {
-                usernamesAndPasswords.put(username, password);
+            String id = config.get(username + ".id");
+            if (id == null) {
+                throw new IllegalStateException("could not find ID for user " + username);
+            }
+            SimpleUser simpleUser = null;
+            if (password != null && id != null) {
+                simpleUser = new SimpleUser(id, username, password);
+                users.put(username, simpleUser);
             }
             ;
             String rolesDefinition = config.get(username + ".roles");
-            if (rolesDefinition != null) {
+            if (rolesDefinition != null && simpleUser != null) {
                 Set<String> roles = Arrays.stream(rolesDefinition.split(",")).map(r -> {
                     return r.trim();
                 }).collect(Collectors.toSet());
-                usernamesAndRoles.put(username, roles);
+                simpleUser.setRoles(roles);
             }
         });
     }
+
 }

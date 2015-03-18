@@ -5,7 +5,6 @@ import io.skysail.server.um.simple.SimpleUserManagementProvider;
 import io.skysail.server.um.simple.authentication.SkysailHashedCredentialsMatcher;
 
 import java.util.Collections;
-import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -32,8 +31,8 @@ public class SimpleAuthorizationService implements AuthorizationService, Enroler
 
     @Override
     public Set<Role> getRolesFor(String username) {
-        Map<String, Set<String>> usernamesAndRoles = userManagementProvider.getUsernamesAndRoles();
-        Set<String> roles = usernamesAndRoles.get(username);
+        SimpleUser user = userManagementProvider.getByUsername(username);
+        Set<String> roles = user.getRoles();
         if (roles == null) {
             log.warn("User '" + username + "' could not be found in the Repository");
             return Collections.emptySet();

@@ -1,5 +1,6 @@
 package io.skysail.server.app.todos.domain;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Id;
@@ -9,6 +10,9 @@ import javax.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+
 import de.twenty11.skysail.api.forms.Field;
 import de.twenty11.skysail.api.forms.InputType;
 import de.twenty11.skysail.api.forms.ListView;
@@ -16,7 +20,10 @@ import de.twenty11.skysail.api.forms.ListView;
 @Getter
 @Setter
 @ToString(of = { "title" })
-public class Todo {
+@JsonPropertyOrder({ "title", "desc" })
+public class Todo implements Serializable {
+
+    private static final long serialVersionUID = -6320289870876900108L;
 
     @Id
     private String id;

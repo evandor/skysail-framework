@@ -49,6 +49,23 @@ public class Tracer extends Filter {
 
     @Override
     protected void afterHandle(Request request, Response response) {
+        // if (response.getEntity() instanceof JacksonRepresentation) {
+        // JacksonRepresentation rep = (JacksonRepresentation)
+        // response.getEntity();
+        // CsvMapper mapper = (CsvMapper) rep.getObjectMapper();
+        // Class<?> cls;
+        // try {
+        // cls = ((List) rep.getObject()).get(0).getClass();
+        // CsvSchema csvSchema = mapper.schemaFor(cls);
+        // ObjectWriter result = mapper.writer(csvSchema);
+        //
+        // response.setEntity(new JacksonRepresentation(result));
+        // } catch (IOException e) {
+        // // TODO Auto-generated catch block
+        // e.printStackTrace();
+        // }
+        //
+        // }
         monitor(request, response);
         trackResponse(response);
     }

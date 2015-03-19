@@ -152,7 +152,7 @@ public abstract class EntityServerResource<T> extends SkysailServerResource<T> {
     /**
      * @return the reponse
      */
-    @Get("html|eventstream|treeform|txt")
+    @Get("html|eventstream|treeform|txt|csv|yaml")
     @API(desc = "retrieves the entity defined by the url")
     public SkysailResponse<T> getEntity2() {
         EtmPoint point = etmMonitor.createPoint("EntityServerResource:getEntity");

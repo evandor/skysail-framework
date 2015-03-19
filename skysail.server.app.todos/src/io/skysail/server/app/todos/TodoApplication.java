@@ -48,6 +48,7 @@ public class TodoApplication extends SkysailApplication implements ApplicationPr
         super.attach();
         // Application root resource
         router.attach(new RouteBuilder("", RootResource.class));
+        router.attach(new RouteBuilder("/", RootResource.class));
         router.attach(new RouteBuilder("/Todos/", PostTodoResource.class));
         router.attach(new RouteBuilder("/Todos", TodosResource.class));
         router.attach(new RouteBuilder("/Todos/{id}", TodoResource.class));

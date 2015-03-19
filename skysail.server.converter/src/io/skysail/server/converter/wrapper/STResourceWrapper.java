@@ -1,5 +1,7 @@
 package io.skysail.server.converter.wrapper;
 
+import io.skysail.api.favorites.Favorite;
+import io.skysail.api.favorites.FavoritesService;
 import io.skysail.server.converter.Breadcrumb;
 
 import java.io.IOException;
@@ -12,6 +14,7 @@ import java.util.Set;
 import lombok.extern.slf4j.Slf4j;
 
 import org.apache.commons.lang.StringUtils;
+import org.apache.shiro.SecurityUtils;
 import org.restlet.Request;
 import org.restlet.data.Header;
 import org.restlet.data.MediaType;
@@ -40,10 +43,12 @@ public class STResourceWrapper {
 
     private SkysailServerResource<?> resource;
     private Object source;
+    private FavoritesService favoritesService;
 
-    public STResourceWrapper(Object source, SkysailServerResource<?> resource) {
+    public STResourceWrapper(Object source, SkysailServerResource<?> resource, FavoritesService favoritesService) {
         this.source = source;
         this.resource = resource;
+        this.favoritesService = favoritesService;
     }
 
     public STApplicationWrapper getApplication() {
@@ -57,7 +62,7 @@ public class STResourceWrapper {
     public List<Breadcrumb> getBreadcrumbs() {
 
         List<Breadcrumb> breadcrumbs = new ArrayList<Breadcrumb>();
-        breadcrumbs.add(new Breadcrumb("/", null, "<span class='glyphicon glyphicon-home'></span>"));
+        breadcrumbs.add(new Breadcrumb("/", null, "<span class='glyphicon glyphicon-home'></span>", null));
 
         Reference reference = resource.getReference();
         SkysailApplication application = resource.getApplication();
@@ -71,7 +76,8 @@ public class STResourceWrapper {
         Route match = null;
         if (segments != null && segments.size() > 0) {
             String text = imgHtml + " " + resource.getApplication().getName();
-            breadcrumbs.add(new Breadcrumb("/" + resource.getApplication().getName(), null, text));
+            breadcrumbs.add(new Breadcrumb("/" + resource.getApplication().getName(), null, text,
+                    getFavoriteIndicator()));
         }
         for (int i = 1; i < segments.size(); i++) {
             path = path + "/" + segments.get(i);
@@ -83,13 +89,26 @@ public class STResourceWrapper {
                 match = best;
                 if (i < segments.size() - 1) {
                     breadcrumbs.add(new Breadcrumb("/" + resource.getApplication().getName() + path, null, limit(
-                            segments.get(i), 12)));
+                            segments.get(i), 12), false));
                 } else {
-                    breadcrumbs.add(new Breadcrumb(null, null, segments.get(i)));
+                    Boolean favoriteIndicator = getFavoriteIndicator();
+                    breadcrumbs.add(new Breadcrumb(null, null, segments.get(i), favoriteIndicator));
                 }
             }
         }
         return breadcrumbs;
+    }
+
+    private synchronized Boolean getFavoriteIndicator() {
+        if (favoritesService == null) {
+            return null;
+        }
+        String username = SecurityUtils.getSubject().getPrincipal().toString();
+        List<Favorite> list = favoritesService.get(username);
+        String link = resource.getRequest().getResourceRef().toString(false, false);
+        return list.stream().filter(l -> {
+            return l.getFavoriteLink().equals(link);
+        }).findFirst().isPresent();
     }
 
     public String getClassname() {

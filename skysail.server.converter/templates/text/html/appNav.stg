@@ -3,6 +3,7 @@ appNav(resource) ::= <<
 >>
 
 applinkAsButton(linkheader,i) ::= <<
+
     $if(linkheader.applicationNavigation)$
       $if(linkheader.selfRelation)$
         <a href="$linkheader.uri$" class="btn btn-link btn-sm" role="button" style="max-width:110px;margin-bottom:6px;text-align: left;padding: 0px 2px;background-color:#000066;color:white"><span style="text-decoration: none;"><b>$linkheader.title$</b></span></a><br>

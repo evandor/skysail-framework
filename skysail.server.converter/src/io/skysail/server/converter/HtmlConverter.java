@@ -1,5 +1,6 @@
 package io.skysail.server.converter;
 
+import io.skysail.api.favorites.FavoritesService;
 import io.skysail.server.converter.impl.StringTemplateRenderer;
 
 import java.util.ArrayList;
@@ -59,6 +60,8 @@ public class HtmlConverter extends ConverterHelper implements OsgiConverterHelpe
 
     private Resource resource;
 
+    private volatile FavoritesService favoritesService;
+
     static {
         mediaTypesMatch.put(MediaType.TEXT_HTML, 0.95F);
         mediaTypesMatch.put(SkysailApplication.SKYSAIL_TREE_FORM, 1.0F);
@@ -80,6 +83,17 @@ public class HtmlConverter extends ConverterHelper implements OsgiConverterHelpe
 
     public Set<MenuItemProvider> getMenuProviders() {
         return Collections.unmodifiableSet(menuProviders);
+    }
+
+    // --- Favorites Service ------------------------------------------------
+
+    @Reference(multiple = false, optional = true, dynamic = true)
+    public void setFavoritesService(FavoritesService service) {
+        this.favoritesService = service;
+    }
+
+    public void unsetFavoritesService(FavoritesService service) {
+        this.favoritesService = null;
     }
 
     @Override
@@ -129,6 +143,7 @@ public class HtmlConverter extends ConverterHelper implements OsgiConverterHelpe
 
         StringTemplateRenderer stringTemplateRenderer = new StringTemplateRenderer(this);
         stringTemplateRenderer.setMenuProviders(menuProviders);
+        stringTemplateRenderer.setFavoritesService(favoritesService);
         StringRepresentation rep = stringTemplateRenderer.createRepresenation(originalSource, target,
                 (SkysailServerResource<?>) resource);
 

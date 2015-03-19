@@ -1,5 +1,6 @@
 package io.skysail.server.converter.impl;
 
+import io.skysail.api.favorites.FavoritesService;
 import io.skysail.server.converter.HtmlConverter;
 import io.skysail.server.converter.Notification;
 import io.skysail.server.converter.stringtemplate.STGroupBundleDir;
@@ -57,6 +58,7 @@ public class StringTemplateRenderer {
     private Set<MenuItemProvider> menuProviders;
     private String templateFromCookie;
     private HtmlConverter htmlConverter;
+    private FavoritesService favoritesService;
 
     public StringTemplateRenderer(HtmlConverter htmlConverter) {
         this.htmlConverter = htmlConverter;
@@ -192,7 +194,7 @@ public class StringTemplateRenderer {
         decl.add("target", new STTargetWrapper(target));
         decl.add("converter", this);
         decl.add("services", new STServicesWrapper(menuProviders, null, resource));
-        decl.add("resource", new STResourceWrapper(source, resource));
+        decl.add("resource", new STResourceWrapper(source, resource, favoritesService));
 
         List<FormField> fields = null;
 
@@ -314,6 +316,10 @@ public class StringTemplateRenderer {
                 && inspect.equalsIgnoreCase("on")) {
             index.inspect();
         }
+    }
+
+    public void setFavoritesService(FavoritesService favoritesService) {
+        this.favoritesService = favoritesService;
     }
 
 }

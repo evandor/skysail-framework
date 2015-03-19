@@ -9,6 +9,7 @@ import java.util.Collection;
 import java.util.Map;
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
@@ -89,12 +90,13 @@ public class TodosIntegrationTests {
 
     @Test
     public void get_html_on_TodosResource_returns_200() throws Exception {
-        Representation representation = client.setUrl("/TodoGen/Todos").get(MediaType.TEXT_HTML);
+        Representation representation = client.setUrl("/Todos/Todos").get(MediaType.TEXT_HTML);
         assertTrue(representation.getMediaType().getName().equals("text/html"));
         assertTrue(client.getResponse().getStatus().getCode() == 200);
     }
 
     @Test
+    @Ignore
     public void perfTest() throws Exception {
         form.add("title", "mytitle");
         for (int i = 0; i < 1; i++) {
@@ -107,7 +109,7 @@ public class TodosIntegrationTests {
 
     @Test
     public void get_json_on_TodosResource_returns_200() throws Exception {
-        Representation representation = client.setUrl("/TodoGen/Todos").get(MediaType.APPLICATION_JSON);
+        Representation representation = client.setUrl("/Todos/Todos").get(MediaType.APPLICATION_JSON);
         assertTrue(client.getResponse().getStatus().getCode() == 200);
         assertTrue(representation.getMediaType().getName().equals("application/json"));
         String text = representation.getText();
@@ -119,20 +121,20 @@ public class TodosIntegrationTests {
     public void post_html_with_missing_title_returns_badRequest() {
         form.add("title", "");
         thrown.expectMessage("Bad Request");
-        client.setUrl("/TodoGen/Todos/").post(form, MediaType.TEXT_HTML);
+        client.setUrl("/Todos/Todos/").post(form, MediaType.TEXT_HTML);
     }
 
     @Test
     public void post_json_with_missing_title_returns_badRequest() {
         thrown.expectMessage("Bad Request");
         form.add("title", "");
-        client.setUrl("/TodoGen/Todos/").post(form, MediaType.APPLICATION_JSON);
+        client.setUrl("/Todos/Todos/").post(form, MediaType.APPLICATION_JSON);
     }
 
     @Test
     public void post_html_on_TodosResource_returns_200() {
         form.add("title", "mytitle");
-        client.setUrl("/TodoGen/Todos/").post(form, MediaType.TEXT_HTML);
+        client.setUrl("/Todos/Todos/").post(form, MediaType.TEXT_HTML);
         assertTrue(client.getResponse().getStatus().getCode() == 200);
 
     }

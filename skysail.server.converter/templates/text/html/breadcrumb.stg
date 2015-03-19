@@ -6,7 +6,10 @@ breadcrumb(resource) ::= <<
 
 handleSingleBreadcrumb(bc,i) ::= <<
     $if(bc.href)$
-      <li><a href='$bc.href$'>$bc.value$</a></li>
+      <li><a href='$bc.href$'>$bc.value$</a>
+         $if(bc.favoriteEmpty)$<a href='?favorite=true'><span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span></a>$endif$
+         $if(bc.favoriteFull)$<a href='?favorite=false'><span class="glyphicon glyphicon-star" aria-hidden="true"></span></a>$endif$
+      </li>
     $else$
       <li><b>$bc.value$</b></li>
     $endif$

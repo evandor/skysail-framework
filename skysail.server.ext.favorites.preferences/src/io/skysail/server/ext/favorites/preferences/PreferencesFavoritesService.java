@@ -49,10 +49,10 @@ public class PreferencesFavoritesService implements FavoritesService {
             Preferences favoriteNode;
             if (favoritesNode.nodeExists(favorite.getFavoriteName())) {
                 favoriteNode = favoritesNode.node(favorite.getFavoriteName());
-                log.info("updating favorite '{}' for user '{}'", favorite.getFavoriteName(), favorite.getUsername());
+                log.info("updating favorite '{}' for user '{}'", favorite, favorite.getUsername());
             } else {
                 favoriteNode = favoritesNode.node(favorite.getFavoriteName());
-                log.info("adding new favorite '{}' for user '{}'", favorite.getFavoriteName(), favorite.getUsername());
+                log.info("adding new favorite '{}' for user '{}'", favorite, favorite.getUsername());
             }
             favoriteNode.put(FAVORITE_LINK, favorite.getFavoriteLink());
             favoriteNode.put(FAVORITE_TOOLTIP,
@@ -90,7 +90,10 @@ public class PreferencesFavoritesService implements FavoritesService {
         try {
             Optional<Preferences> pref = Arrays.stream(favoritesNode.childrenNames())
                     .map(name -> getFavoriteNode(favoritesNode, name)).filter(f -> find(f, favorite)).findFirst();
-            pref.ifPresent(p -> favoritesNode.remove(p.name()));
+            pref.ifPresent(p -> {
+                log.info("removing favorite {}", p.name());
+                favoritesNode.remove(p.name());
+            });
         } catch (BackingStoreException e) {
             e.printStackTrace();
         }

@@ -9,6 +9,7 @@ import java.util.Collection;
 import java.util.Map;
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
@@ -95,6 +96,7 @@ public class TodosIntegrationTests {
     }
 
     @Test
+    @Ignore
     public void perfTest() throws Exception {
         form.add("title", "mytitle");
         for (int i = 0; i < 1; i++) {

@@ -25,7 +25,7 @@ public class SimpleUserManagementProviderTest {
         provider = new SimpleUserManagementProvider();
         Map<String, String> config = new HashMap<>();
         config.put("users", "admin");
-        config.put("admin", "#1");
+        config.put("admin.id", "#1");
         provider.activate(config);
     }
 

@@ -3,10 +3,13 @@ package de.twenty11.skysail.server.core.restlet.filter;
 import io.skysail.api.favorites.Favorite;
 import io.skysail.api.favorites.FavoritesService;
 
+import java.util.List;
+
 import org.apache.shiro.SecurityUtils;
 import org.restlet.Application;
 import org.restlet.Request;
 
+import de.twenty11.skysail.api.responses.Linkheader;
 import de.twenty11.skysail.server.Constants;
 import de.twenty11.skysail.server.app.SkysailApplication;
 import de.twenty11.skysail.server.core.restlet.ResponseWrapper;
@@ -26,12 +29,16 @@ public class CheckFavoritesFilter<R extends SkysailServerResource<T>, T> extends
             return FilterResult.CONTINUE;
         }
 
+        String username = (String) SecurityUtils.getSubject().getPrincipal();
+
         Request request = resource.getRequest();
         if (request.getResourceRef() == null || request.getResourceRef().getQueryAsForm() == null) {
+            addFavoritesAsLinks(resource, service.get(username));
             return FilterResult.CONTINUE;
         }
         String favoriteFlag = request.getResourceRef().getQueryAsForm().getFirstValue(Constants.QUERY_PARAM_FAVORITE);
         if (favoriteFlag == null || !(resource instanceof SkysailServerResource)) {
+            addFavoritesAsLinks(resource, service.get(username));
             return FilterResult.CONTINUE;
         }
 
@@ -40,7 +47,6 @@ public class CheckFavoritesFilter<R extends SkysailServerResource<T>, T> extends
         String favoritesFromCookie = CookiesUtils.getFavoritesFromCookie(resource.getRequest());
         String value = "";
 
-        String username = (String) SecurityUtils.getSubject().getPrincipal();
         String link = request.getResourceRef().toString(false, false);
         Favorite favorite = new Favorite().setUsername(username).setFavoriteName(name).setFavoriteLink(link);
         if ("true".equalsIgnoreCase(favoriteFlag.trim())) {
@@ -65,7 +71,18 @@ public class CheckFavoritesFilter<R extends SkysailServerResource<T>, T> extends
         //
         // resource.getContext().getAttributes().put("currentFavoritesCookieValue",
         // value);
+
+        addFavoritesAsLinks(resource, service.get(username));
+
         return FilterResult.CONTINUE;
+    }
+
+    private void addFavoritesAsLinks(R resource, List<Favorite> favorites) {
+        favorites.stream().forEach(
+                fav -> {
+                    resource.getLinkheader().add(
+                            new Linkheader.Builder(fav.getFavoriteLink()).title(fav.getFavoriteName()).build());
+                });
     }
 
     private void getFavoritesService() {

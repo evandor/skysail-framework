@@ -4,7 +4,6 @@ import static org.junit.Assert.assertTrue;
 import io.skysail.api.documentation.DocumentationProvider;
 import io.skysail.client.testsupport.Client;
 
-import java.io.IOException;
 import java.util.Collection;
 import java.util.Map;
 
@@ -19,7 +18,6 @@ import org.osgi.framework.ServiceReference;
 import org.restlet.data.Form;
 import org.restlet.data.MediaType;
 import org.restlet.representation.Representation;
-import org.restlet.resource.ClientResource;
 import org.restlet.resource.ServerResource;
 
 public class TodosIntegrationTests {
@@ -38,33 +36,8 @@ public class TodosIntegrationTests {
 
     @Before
     public void setUp() throws Exception {
-        credentials = loginAs("admin", "syksail");
-        client = new Client(getBaseUrl(), credentials);
+        client = new Client(getBaseUrl()).loginAs("admin", "syksail");
         form = new Form();
-    }
-
-    private String loginAs(String username, String password) {
-        ClientResource cr = new ClientResource(getBaseUrl() + "/_logout?targetUri=/");
-        Representation representation = cr.get();
-        try {
-            System.out.println(representation.getText());
-            cr = new ClientResource(getBaseUrl() + "/_login");
-            cr.setFollowingRedirects(true);
-            Form form = new Form();
-            form.add("username", "admin");
-            form.add("password", "skysail");
-            // "username=admin&password=skysail&submitButt  on="
-            Representation post = cr.post(form, MediaType.TEXT_HTML);
-            // System.out.println(post.getText());
-            // System.out.println(cr.getResponse().getHeaders());
-            // System.out.println(cr.getRequest().getHeaders());
-            // System.out.println(cr.getResponse().getStatus());
-            return cr.getResponse().getCookieSettings().getFirstValue("Credentials");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return "";
-
     }
 
     private String getBaseUrl() {
@@ -136,7 +109,6 @@ public class TodosIntegrationTests {
         form.add("title", "mytitle");
         client.setUrl("/Todos/Todos/").post(form, MediaType.TEXT_HTML);
         assertTrue(client.getResponse().getStatus().getCode() == 200);
-
     }
 
 }

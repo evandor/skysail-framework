@@ -8,7 +8,6 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.ParameterizedType;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -36,7 +35,6 @@ import org.restlet.security.Role;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import de.twenty11.skysail.server.app.SkysailApplication;
-import de.twenty11.skysail.server.app.TranslationProvider;
 import de.twenty11.skysail.server.core.FormField;
 import de.twenty11.skysail.server.core.restlet.filter.AbstractResourceFilter;
 import etm.core.configuration.EtmManager;
@@ -46,6 +44,7 @@ import etm.core.monitor.EtmMonitor;
  * Abstract base class for all skysail resources, parameterized with T, the type
  * of the entity handled.
  * 
+ * <p>
  * Subclasses should override the methods
  * SkysailServerResource#addEntity(Object),
  * SkysailServerResource#updateEntity(Object) and/or
@@ -53,13 +52,15 @@ import etm.core.monitor.EtmMonitor;
  * deletion of the referenced resource. It is assumed that
  * SkysailServerResources will always support GET requests, which are dealt with
  * by the abstract method @link {@link SkysailServerResource#getEntity()}.
+ * </p>
  * 
+ * <p>
  * Those methods are called from the framework, see {@link RequestHandler} and
  * the various {@link AbstractResourceFilter} implementations. The
  * RequestHandler provides a chain of filters (depending on the current request)
  * which will make sure that aspects like error management, logging, security
  * issues and the like are always dealt with in the same way.
- * 
+ * </p>
  */
 @Slf4j
 public abstract class SkysailServerResource<T> extends ServerResource {
@@ -135,14 +136,11 @@ public abstract class SkysailServerResource<T> extends ServerResource {
      */
     public Map<String, String> getMessages() {
         Application application = getApplication();
-        if (!(application instanceof TranslationProvider)) {
-            return Collections.emptyMap();
-        }
         Map<String, String> msgs = new HashMap<>();
         msgs.put("content.header",
                 "default msg from de.twenty11.skysail.server.core.restlet.SkysailServerResource.getMessages()");
         String key = getClass().getName() + ".message";
-        String translated = ((TranslationProvider) application).translate(key, key, this, true);
+        String translated = ((SkysailApplication) application).translate(key, key, this, true);
         msgs.put("content.header", translated);
         return msgs;
     }
@@ -160,9 +158,6 @@ public abstract class SkysailServerResource<T> extends ServerResource {
             return msgs;
         }
         Application application = getApplication();
-        if (!(application instanceof TranslationProvider)) {
-            return msgs;
-        }
         fields.stream().forEach(f -> {
 
             Class<? extends Object> entityClass = null;
@@ -183,7 +178,7 @@ public abstract class SkysailServerResource<T> extends ServerResource {
 
     private void addTranslation(Map<String, String> msgs, Application application, FormField f, String key) {
         String defaultMsg = MessagesUtils.getSimpleName(f);
-        String translation = ((TranslationProvider) application).translate(key, defaultMsg, this, false);
+        String translation = ((SkysailApplication) application).translate(key, defaultMsg, this, false);
         if (translation != null) {
             msgs.put(key, translation);
         } else {

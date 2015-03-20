@@ -51,7 +51,7 @@
 	</appender>
 	
 	<root>
-		<appender-ref ref="STDOUT" />
+		<!-- <appender-ref ref="STDOUT" /> -->
 		<appender-ref ref="INFO_FILE" />
 		<appender-ref ref="DEBUG_FILE" />
 		<appender-ref ref="WARN_FILE" />

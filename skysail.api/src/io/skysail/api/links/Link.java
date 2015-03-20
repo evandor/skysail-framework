@@ -51,13 +51,13 @@ public class Link {
     /** the links role: it could be used for navigation, documentation, ... */
     private LinkRole role = LinkRole.DEFAULT;
 
-    /** to be done */
+    /** to be done. */
     private Predicate<String[]> rolesPredicate;
 
-    /** to be done */
+    /** to be done. */
     private Map<MediaType, String> images = new HashMap<>();
 
-    /** TODO combine with Role */
+    /** TODO combine with Role. */
     private boolean showInHtml = true;
 
     public static class Builder {
@@ -99,6 +99,10 @@ public class Link {
             return this;
         }
 
+        /**
+         * sets the http methods applicable.
+         * 
+         */
         public Builder verbs(Method... verbs) {
             this.verbs = new HashSet<Method>();
             this.verbs.addAll(Arrays.asList(verbs));
@@ -127,6 +131,9 @@ public class Link {
         this.role = linkBuilder.role;
     }
 
+    /**
+     * creates a Link from its string representation.
+     */
     public static Link valueOf(String linkheaderString) {
         if (linkheaderString == null) {
             return null;
@@ -176,6 +183,9 @@ public class Link {
         return needsAuthentication;
     }
 
+    /**
+     * toString conversion with path.
+     */
     public String toString(Request request, String path) {
         StringBuilder sb = new StringBuilder().append("<").append(path + getUri()).append(">");
         if (getRel() != null) {
@@ -206,6 +216,9 @@ public class Link {
         return this;
     }
 
+    /**
+     * show in html or not.
+     */
     public boolean isShowAsButtonInHtml() {
         if (!showInHtml) {
             return false;
@@ -225,6 +238,9 @@ public class Link {
         this.uri = this.uri + string;
     }
 
+    /**
+     * substitute placeholders in URIs.
+     */
     public Link substitute(String key, String value) {
         String pattern = new StringBuilder("{").append(key).append("}").toString();
         if (uri.contains(pattern)) {

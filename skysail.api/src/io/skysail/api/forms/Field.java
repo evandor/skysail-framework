@@ -20,30 +20,27 @@ public @interface Field {
     /**
      * selection provider.
      * 
-     * @return a selection provider for choices
      */
     Class<? extends SelectionProvider> selectionProvider() default IgnoreSelectionProvider.class;
 
     /**
-     * @return which tags to apply this to
+     * tags.
      */
     String[] tags() default { "all" };
 
-    // http://www.w3.org/TR/REC-html40/interact/forms.html#h-17.4
     /**
-     * @return field type
+     * http://www.w3.org/TR/REC-html40/interact/forms.html#h-17.4
      */
     InputType type() default InputType.TEXT;
 
     /**
-     * @return field name
+     * field name.
      */
     String name() default "";
 
     /**
-     * Define the poliy for HTML strings
+     * Define the poliy for HTML strings.
      * 
-     * @return the policy
      */
     HtmlPolicy htmlPolicy() default HtmlPolicy.NO_HTML;
 
@@ -51,14 +48,12 @@ public @interface Field {
      * enrypt the field using the passphrase provided by a parameter with this
      * name.
      *
-     * @return passphrase
      */
     String encryptWith() default "";
 
     /**
      * Defines the way this entity attribute should be displayed in a list view.
      * 
-     * @return show or hide
      */
     ListView[] listView() default ListView.SHOW;
 }

@@ -1,11 +1,12 @@
 Bundle-Version: 0.1.0.${tstamp}
 Service-Component: *
 -buildpath:  \
+	skysail.api;version=latest,\
+	skysail.api.documentation;version=latest,\
 	skysail.server;version=latest,\
 	biz.aQute.bnd.annotation,\
 	javax.validation.api;version=1.1,\
 	org.restlet;version=${restlet.version},\
-	skysail.api;version=latest,\
 	slf4j.api;version=1.7.7,\
 	osgi.core;version=5.0,\
 	osgi.cmpn;version=5.0,\

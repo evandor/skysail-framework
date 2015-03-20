@@ -130,8 +130,8 @@ import de.twenty11.skysail.server.utils.ReflectionUtils;
  */
 // @lombok.EqualsAndHashCode(callSuper=false)
 @Slf4j
-public abstract class SkysailApplication extends Application implements ApplicationProvider, TranslationProvider,
-        ResourceBundleProvider, Comparable<ApplicationProvider> {
+public abstract class SkysailApplication extends Application implements ApplicationProvider, ResourceBundleProvider,
+        Comparable<ApplicationProvider> {
 
     /** slf4j based logger implementation. */
     private static Logger logger = LoggerFactory.getLogger(SkysailApplication.class);
@@ -293,7 +293,7 @@ public abstract class SkysailApplication extends Application implements Applicat
         setOutboundRoot((Restlet) null);
     }
 
-    @Override
+    // @Override
     public String translate(String message, String defaultMsg, Resource resource, boolean applyMarkdown,
             Object... substitutions) {
 

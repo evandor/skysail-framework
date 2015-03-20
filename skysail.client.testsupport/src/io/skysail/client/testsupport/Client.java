@@ -1,6 +1,7 @@
 package io.skysail.client.testsupport;
 
 import org.restlet.Response;
+import org.restlet.data.Form;
 import org.restlet.data.MediaType;
 import org.restlet.representation.Representation;
 import org.restlet.resource.ClientResource;
@@ -12,9 +13,8 @@ public class Client {
     private String url;
     private ClientResource cr;
 
-    public Client(String baseUrl, String credentials) {
+    public Client(String baseUrl) {
         this.baseUrl = baseUrl;
-        this.credentials = credentials;
     }
 
     public Client setUrl(String url) {
@@ -36,6 +36,19 @@ public class Client {
 
     public Response getResponse() {
         return cr.getResponse();
+    }
+
+    public Client loginAs(String username, String password) {
+        cr = new ClientResource(baseUrl + "/_logout?targetUri=/");
+        cr.get();
+        cr = new ClientResource(baseUrl + "/_login");
+        cr.setFollowingRedirects(true);
+        Form form = new Form();
+        form.add("username", username);
+        form.add("password", password);
+        cr.post(form, MediaType.TEXT_HTML);
+        credentials = cr.getResponse().getCookieSettings().getFirstValue("Credentials");
+        return this;
     }
 
 }

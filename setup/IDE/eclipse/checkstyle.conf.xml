@@ -6,7 +6,8 @@
 -->
 <!--
     Checkstyle-Configuration: skysail-framework
-    Description: none
+    Description: 
+Checkstyle configurartion that checks the Google coding conventions (https://google-styleguide.googlecode.com/svn-history/r130/trunk/javaguide.html), adapted for skysail-framework.
 -->
 <module name="Checker">
   <property name="severity" value="warning"/>
@@ -24,9 +25,11 @@
       <property name="allowNonPrintableEscapes" value="true"/>
     </module>
     <module name="LineLength">
+      <property name="severity" value="ignore"/>
       <property name="ignorePattern" value="^package.*|^import.*|a href|href|http://|https://|ftp://"/>
       <property name="max" value="120"/>
       <property name="tabWidth" value="4"/>
+      <metadata name="net.sf.eclipsecs.core.lastEnabledSeverity" value="inherit"/>
     </module>
     <module name="AvoidStarImport"/>
     <module name="OneTopLevelClass"/>
@@ -81,7 +84,9 @@
       <message key="name.invalidPattern" value="Package name ''{0}'' must match pattern ''{1}''."/>
     </module>
     <module name="TypeName">
+      <property name="severity" value="ignore"/>
       <message key="name.invalidPattern" value="Type name ''{0}'' must match pattern ''{1}''."/>
+      <metadata name="net.sf.eclipsecs.core.lastEnabledSeverity" value="inherit"/>
     </module>
     <module name="MemberName">
       <property name="format" value="^[a-z][a-z0-9][a-zA-Z0-9]*$"/>
@@ -107,10 +112,12 @@
     </module>
     <module name="NoFinalizer"/>
     <module name="GenericWhitespace">
+      <property name="severity" value="ignore"/>
       <message key="ws.notPreceded" value="GenericWhitespace ''{0}'' is not preceded with whitespace."/>
       <message key="ws.followed" value="GenericWhitespace ''{0}'' is followed by whitespace."/>
       <message key="ws.preceded" value="GenericWhitespace ''{0}'' is preceded with whitespace."/>
       <message key="ws.illegalFollow" value="GenericWhitespace ''{0}'' should followed by whitespace."/>
+      <metadata name="net.sf.eclipsecs.core.lastEnabledSeverity" value="inherit"/>
     </module>
     <module name="Indentation">
       <property name="severity" value="ignore"/>
@@ -120,10 +127,8 @@
       <metadata name="net.sf.eclipsecs.core.lastEnabledSeverity" value="inherit"/>
     </module>
     <module name="AbbreviationAsWordInName">
-      <property name="severity" value="ignore"/>
       <property name="allowedAbbreviationLength" value="1"/>
       <property name="ignoreFinal" value="false"/>
-      <metadata name="net.sf.eclipsecs.core.lastEnabledSeverity" value="inherit"/>
     </module>
     <module name="OverloadMethodsDeclarationOrder"/>
     <module name="VariableDeclarationUsageDistance"/>

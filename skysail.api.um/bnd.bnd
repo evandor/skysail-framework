@@ -51,12 +51,10 @@ Service-Component:  \
 	org.apache.felix.gogo.shell;version='[0.10.0,0.10.1)',\
 	org.apache.felix.log;version='[1.0.1,1.0.2)',\
 	org.apache.felix.scr;version='[1.8.2,1.8.3)',\
-	org.restlet;version='[2.1.7,2.1.8)',\
+	org.restlet;version='[2.3.1,2.3.2)',\
 	osgi.enterprise;version='[4.2.0,4.2.1)',\
 	osgi.residential;version='[4.3.0,4.3.1)',\
 	skysail.api.um;version=latest,\
 	slf4j.api;version='[1.7.7,1.7.8)'
-Private-Package:  \
-	io.skysail.api.um.jsonfiles
 Export-Package:  \
 	io.skysail.api.um

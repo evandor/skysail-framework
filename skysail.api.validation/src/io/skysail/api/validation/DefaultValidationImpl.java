@@ -17,7 +17,6 @@ public class DefaultValidationImpl implements ValidatorService {
         GenericBootstrap validationProvider = Validation.byDefaultProvider();
         javax.validation.Configuration<?> config = validationProvider.providerResolver(new OSGiServiceDiscoverer())
                 .configure();
-        // config.messageInterpolator(arg0)
         ValidatorFactory factory = config.buildValidatorFactory();
         return factory.getValidator();
     }

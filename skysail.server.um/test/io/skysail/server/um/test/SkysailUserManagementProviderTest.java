@@ -15,12 +15,12 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import de.twenty11.skysail.server.core.db.DbService;
+import de.twenty11.skysail.server.core.db.DbService2;
 
 @RunWith(MockitoJUnitRunner.class)
 public class SkysailUserManagementProviderTest {
     @Mock
-    private DbService dbService;
+    private DbService2 dbService;
     @InjectMocks
     private SkysailUserManagementProvider skysailUserManagementProvider;
 

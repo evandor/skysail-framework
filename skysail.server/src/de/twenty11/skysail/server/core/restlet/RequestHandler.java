@@ -103,8 +103,6 @@ public class RequestHandler<T> {
                 .calling(new AddRequestIdToResourceFilter<ListServerResource<T>, List<T>>())
                 .calling(new DataExtractingFilter<ListServerResource<T>, List<T>>())
                 .calling(new AddLinkheadersFilter<ListServerResource<T>, List<T>>())
-                // .calling(new AddPaginationFilter<ListServerResource<T>,
-                // List<T>>())
                 .calling(new CheckFavoritesFilter<ListServerResource<T>, List<T>>())
                 .calling(new SetExecutionTimeInResponseFilter<ListServerResource<T>, List<T>>())
                 .calling(new RedirectFilter<ListServerResource<T>, List<T>>());

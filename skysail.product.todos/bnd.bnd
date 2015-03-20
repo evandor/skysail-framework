@@ -3,14 +3,15 @@ Bundle-Name: SKYSAIL :: product :: todos
 Private-Package:  \
 	io.skysail.product.todos
 -buildpath:  \
-	skysail.server.um.simple;version=latest,\
+	skysail.server.app.todos;version=latest,\
+	skysail.server.converter;version=latest,\
+	skysail.server.documentation;version=latest,\
+	skysail.server.db;version=latest,\
+	skysail.server.http;version=latest,\
+	skysail.server.plugins;version=latest,\
 	skysail.server.static;version=latest,\
 	skysail.server.text;version=latest,\
 	skysail.server.text.markdown;version=latest,\
-	skysail.server.http;version=latest,\
-	skysail.server.plugins;version=latest,\
-	skysail.server.db;version=latest,\
-	skysail.server.documentation;version=latest,\
-	skysail.server.converter;version=latest,\
-	skysail.server.app.todos;version=latest,\
+	skysail.server.text.store.bundleresource;version=latest,\
+	skysail.server.um.simple;version=latest,\
 	org.codehaus.jettison.jettison;version=1.3

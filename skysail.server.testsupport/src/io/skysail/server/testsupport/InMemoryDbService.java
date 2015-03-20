@@ -101,4 +101,9 @@ public class InMemoryDbService implements DbService2 {
     public void createProperty(String simpleName, String string, OType date) {
     }
 
+    @Override
+    public long getCount(Class<?> cls, String id) {
+        return 0;
+    }
+
 }

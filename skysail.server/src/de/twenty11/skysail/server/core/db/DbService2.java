@@ -48,4 +48,6 @@ public interface DbService2 {
 
     void createProperty(String simpleName, String string, OType date);
 
+    long getCount(Class<?> cls, String id);
+
 }

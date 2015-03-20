@@ -2,9 +2,7 @@ package io.skysail.server.app.todos.domain.resources;
 
 import io.skysail.server.app.todos.domain.Todo;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import aQute.bnd.annotation.component.Activate;
 import aQute.bnd.annotation.component.Component;
@@ -58,12 +56,12 @@ public class TodosRepository implements DbRepository {
     // return null;// dbService.findAll(sql, Todo.class, params);
     // }
 
-    public List<String> getTodosAsJson(String username) {
-        String sql = "SELECT from Todo WHERE owner= :username";
-        Map<String, Object> params = new HashMap<String, Object>();
-        params.put("username", username);
-        return null;// dbService.findAndReturnJson(sql, Todo.class, params);
-    }
+    // public List<String> getTodosAsJson(String username) {
+    // String sql = "SELECT from Todo WHERE owner= :username";
+    // Map<String, Object> params = new HashMap<String, Object>();
+    // params.put("username", username);
+    // return null;// dbService.findAndReturnJson(sql, Todo.class, params);
+    // }
 
     public Todo getById(String id) {
         return dbService.findObjectById(Todo.class, id);
@@ -75,6 +73,10 @@ public class TodosRepository implements DbRepository {
 
     public void delete(String id) {
         dbService.delete(Todo.class, id);
+    }
+
+    public long getTodosCount(String username) {
+        return dbService.getCount(Todo.class, username);
     }
 
 }

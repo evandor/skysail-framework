@@ -127,6 +127,14 @@ public class OrientGraphDbService extends AbstractOrientDbService implements DbS
         return detachedEntities;
     }
 
+    @Override
+    public long getCount(Class<?> cls, String id) {
+        OObjectDatabaseTx objectDb = getObjectDb();
+        List<ODocument> query = objectDb.query(new OSQLSynchQuery<ODocument>("select COUNT(*) as count from "
+                + cls.getSimpleName()));
+        return query.get(0).field("count");
+    }
+
     // @Override
     public <T> List<T> findAll(Class<T> entityClass, Class<?>... linkedClasses) {
         return null;

@@ -2,6 +2,8 @@ package de.twenty11.skysail.server.core.restlet.filter;
 
 import io.skysail.api.favorites.Favorite;
 import io.skysail.api.favorites.FavoritesService;
+import io.skysail.api.links.Link;
+import io.skysail.api.links.LinkRole;
 
 import java.util.List;
 
@@ -9,7 +11,6 @@ import org.apache.shiro.SecurityUtils;
 import org.restlet.Application;
 import org.restlet.Request;
 
-import de.twenty11.skysail.api.responses.Linkheader;
 import de.twenty11.skysail.server.Constants;
 import de.twenty11.skysail.server.app.SkysailApplication;
 import de.twenty11.skysail.server.core.restlet.ResponseWrapper;
@@ -81,7 +82,8 @@ public class CheckFavoritesFilter<R extends SkysailServerResource<T>, T> extends
         favorites.stream().forEach(
                 fav -> {
                     resource.getLinkheader().add(
-                            new Linkheader.Builder(fav.getFavoriteLink()).title(fav.getFavoriteName()).build());
+                            new Link.Builder(fav.getFavoriteLink()).title(fav.getFavoriteName())
+                                    .role(LinkRole.APPLICATION_NAVIGATION).build());
                 });
     }
 

@@ -1,6 +1,6 @@
 package io.skysail.server.documentation.test;
 
-import de.twenty11.skysail.api.responses.SkysailResponse;
+import io.skysail.api.responses.SkysailResponse;
 import de.twenty11.skysail.server.core.restlet.PostEntityServerResource;
 
 public class TestPostEntityResource extends PostEntityServerResource<String> {

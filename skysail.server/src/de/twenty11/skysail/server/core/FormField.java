@@ -1,5 +1,13 @@
 package de.twenty11.skysail.server.core;
 
+import io.skysail.api.forms.IgnoreSelectionProvider;
+import io.skysail.api.forms.InputType;
+import io.skysail.api.forms.Reference;
+import io.skysail.api.forms.SelectionProvider;
+import io.skysail.api.responses.ConstraintViolationDetails;
+import io.skysail.api.responses.ConstraintViolationsResponse;
+import io.skysail.api.responses.SkysailResponse;
+
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.Arrays;
@@ -21,13 +29,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.orientechnologies.orient.core.record.impl.ODocument;
 import com.orientechnologies.orient.object.enhancement.OObjectProxyMethodHandler;
 
-import de.twenty11.skysail.api.forms.IgnoreSelectionProvider;
-import de.twenty11.skysail.api.forms.InputType;
-import de.twenty11.skysail.api.forms.Reference;
-import de.twenty11.skysail.api.forms.SelectionProvider;
-import de.twenty11.skysail.api.responses.ConstraintViolationDetails;
-import de.twenty11.skysail.api.responses.ConstraintViolationsResponse;
-import de.twenty11.skysail.api.responses.SkysailResponse;
 import de.twenty11.skysail.server.beans.DynamicEntity;
 import de.twenty11.skysail.server.core.restlet.MessagesUtils;
 import de.twenty11.skysail.server.core.restlet.SkysailServerResource;
@@ -58,7 +59,7 @@ public class FormField {
 
     private InputType inputType;
     private Reference referenceAnnotation;
-    private de.twenty11.skysail.api.forms.Field formFieldAnnotation;
+    private io.skysail.api.forms.Field formFieldAnnotation;
 
     private SkysailServerResource<?> resource;
 
@@ -67,7 +68,7 @@ public class FormField {
         this.name = fieldAnnotation.getName();
         inputType = getFromFieldAnnotation(fieldAnnotation);
         referenceAnnotation = fieldAnnotation.getAnnotation(Reference.class);
-        formFieldAnnotation = fieldAnnotation.getAnnotation(de.twenty11.skysail.api.forms.Field.class);
+        formFieldAnnotation = fieldAnnotation.getAnnotation(io.skysail.api.forms.Field.class);
         this.source = source;
         this.entity = entity;
 
@@ -238,8 +239,8 @@ public class FormField {
     }
 
     private InputType getFromFieldAnnotation(Field fieldAnnotation) {
-        de.twenty11.skysail.api.forms.Field annotation = fieldAnnotation
-                .getAnnotation(de.twenty11.skysail.api.forms.Field.class);
+        io.skysail.api.forms.Field annotation = fieldAnnotation
+                .getAnnotation(io.skysail.api.forms.Field.class);
         return annotation != null ? annotation.type() : null;
     }
 

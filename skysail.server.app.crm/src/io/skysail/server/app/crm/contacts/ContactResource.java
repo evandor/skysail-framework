@@ -1,11 +1,12 @@
 package io.skysail.server.app.crm.contacts;
 
+import io.skysail.api.links.Link;
+import io.skysail.api.responses.SkysailResponse;
+
 import java.util.List;
 
 import org.restlet.resource.ResourceException;
 
-import de.twenty11.skysail.api.responses.Linkheader;
-import de.twenty11.skysail.api.responses.SkysailResponse;
 import de.twenty11.skysail.server.core.restlet.EntityServerResource;
 
 public class ContactResource extends EntityServerResource<Contact> {
@@ -34,7 +35,7 @@ public class ContactResource extends EntityServerResource<Contact> {
     }
 
     @Override
-    public List<Linkheader> getLinkheader() {
+    public List<Link> getLinkheader() {
         return super.getLinkheader(PutContactResource.class);
     }
 

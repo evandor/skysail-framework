@@ -2,6 +2,8 @@ package de.twenty11.skysail.server.app;
 
 import io.skysail.api.documentation.DocumentationProvider;
 import io.skysail.api.favorites.FavoritesService;
+import io.skysail.api.forms.Field;
+import io.skysail.api.forms.HtmlPolicy;
 import io.skysail.api.text.Translation;
 import io.skysail.api.text.TranslationRenderService;
 import io.skysail.api.um.AuthenticationService;
@@ -57,8 +59,6 @@ import aQute.bnd.annotation.component.Deactivate;
 
 import com.google.common.base.Predicate;
 
-import de.twenty11.skysail.api.forms.Field;
-import de.twenty11.skysail.api.forms.HtmlPolicy;
 import de.twenty11.skysail.api.hooks.EntityChangedHookService;
 import de.twenty11.skysail.server.SkysailComponent;
 import de.twenty11.skysail.server.core.osgi.internal.filter.Blocker;

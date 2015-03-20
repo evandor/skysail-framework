@@ -14,5 +14,4 @@ tasks.build.dependsOn(':skysail.server.static:build')
 //tasks.build.dependsOn(':skysail.server.app.tutorial.model2rest:build')
 
 //tasks.build.dependsOn(':skysail.server.ext.browser:build')
-//tasks.build.dependsOn(':skysail.server.ext.converter.st:build')
 //tasks.build.dependsOn(':skysail.server.ext.i18n:build')

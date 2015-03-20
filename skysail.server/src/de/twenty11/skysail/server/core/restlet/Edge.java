@@ -1,14 +1,14 @@
 package de.twenty11.skysail.server.core.restlet;
 
-import de.twenty11.skysail.api.responses.Linkheader;
+import io.skysail.api.links.Link;
 
 public class Edge {
 
     //private Node from;
     private Node to;
-    private Linkheader linkheader;
+    private Link linkheader;
 
-    public Edge(Node node, Linkheader linkheader) {
+    public Edge(Node node, Link linkheader) {
       //  this.from = node;
         this.linkheader = linkheader;
     }
@@ -17,7 +17,7 @@ public class Edge {
 //        return from;
 //    }
     
-    public Linkheader getLinkheader() {
+    public Link getLinkheader() {
         return linkheader;
     }
 

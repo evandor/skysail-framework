@@ -1,11 +1,11 @@
 package io.skysail.server.app.plugins.features;
 
+import io.skysail.api.links.Link;
 import io.skysail.server.app.plugins.PluginApplication;
 import io.skysail.server.app.plugins.PluginRootResource;
 
 import java.util.List;
 
-import de.twenty11.skysail.api.responses.Linkheader;
 import de.twenty11.skysail.server.core.restlet.ListServerResource;
 import de.twenty11.skysail.server.core.restlet.ResourceContextId;
 
@@ -25,7 +25,7 @@ public class FeaturesResource extends ListServerResource<Feature> {
     // }
 
     @Override
-    public List<Linkheader> getLinkheader() {
+    public List<Link> getLinkheader() {
         return super.getLinkheader(PluginRootResource.class);
     }
 

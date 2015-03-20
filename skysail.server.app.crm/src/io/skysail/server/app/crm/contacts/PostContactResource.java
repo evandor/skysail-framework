@@ -9,7 +9,7 @@ import org.apache.shiro.SecurityUtils;
 import org.restlet.data.Form;
 import org.restlet.data.Parameter;
 
-import de.twenty11.skysail.api.responses.SkysailResponse;
+import io.skysail.api.responses.SkysailResponse;
 import de.twenty11.skysail.server.core.restlet.PostEntityServerResource;
 import de.twenty11.skysail.server.core.restlet.ResourceContextId;
 

@@ -23,7 +23,7 @@ public class LinkNode {
             Series<Header> headers = (Series<Header>) responseMap.get("org.restlet.http.headers");
             String linkheaders = headers.getFirstValue("Link");
             text = linkheaders;
-            // Linkheader.valueOf(linkheader)
+            // Link.valueOf(linkheader)
         } else {
             text = head.toString();
         }

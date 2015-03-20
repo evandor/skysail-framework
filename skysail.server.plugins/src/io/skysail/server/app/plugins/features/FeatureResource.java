@@ -1,20 +1,21 @@
 package io.skysail.server.app.plugins.features;
 
+import io.skysail.api.links.Link;
+import io.skysail.api.links.LinkRelation;
+import io.skysail.api.responses.SkysailResponse;
+
 import java.util.Arrays;
 import java.util.List;
 
-import de.twenty11.skysail.api.responses.LinkHeaderRelation;
-import de.twenty11.skysail.api.responses.Linkheader;
-import de.twenty11.skysail.api.responses.SkysailResponse;
 import de.twenty11.skysail.server.core.restlet.EntityServerResource;
 
 public class FeatureResource extends EntityServerResource<Feature> {
 
     @Override
-    public List<Linkheader> getLinkheader() {
+    public List<Link> getLinkheader() {
         // return super.getLinkheader(PostInstallationResource.class);
-        return Arrays.asList(new Linkheader.Builder("123/installations/").relation(LinkHeaderRelation.NEXT)
-                .title("install").build());
+        return Arrays.asList(new Link.Builder("123/installations/").relation(LinkRelation.NEXT).title("install")
+                .build());
     }
 
     @Override

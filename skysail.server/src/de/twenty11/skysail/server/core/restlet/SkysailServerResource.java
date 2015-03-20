@@ -1,5 +1,8 @@
 package de.twenty11.skysail.server.core.restlet;
 
+import io.skysail.api.links.Link;
+import io.skysail.api.links.LinkRelation;
+
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.ParameterizedType;
@@ -32,8 +35,6 @@ import org.restlet.security.Role;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import de.twenty11.skysail.api.responses.LinkHeaderRelation;
-import de.twenty11.skysail.api.responses.Linkheader;
 import de.twenty11.skysail.server.app.SkysailApplication;
 import de.twenty11.skysail.server.app.TranslationProvider;
 import de.twenty11.skysail.server.core.FormField;
@@ -92,6 +93,8 @@ public abstract class SkysailServerResource<T> extends ServerResource {
         }
     });
 
+    private List<Link> linkheader;
+
     public SkysailServerResource() {
         DateTimeConverter dateConverter = new DateConverter(null);
 
@@ -123,7 +126,7 @@ public abstract class SkysailServerResource<T> extends ServerResource {
      * @return the type of relation this resource represents, e.g. LIST, ITEM,
      *         ...
      */
-    public abstract LinkHeaderRelation getLinkRelation();
+    public abstract LinkRelation getLinkRelation();
 
     /**
      * get Messages.
@@ -226,21 +229,25 @@ public abstract class SkysailServerResource<T> extends ServerResource {
     }
 
     /**
-     * get Linkheader.
+     * get Link.
      * 
      * @param classes
      *            the classes
      * @return linkheader the linkheader
      */
     @SafeVarargs
-    public final List<Linkheader> getLinkheader(Class<? extends SkysailServerResource<?>>... classes) {
+    public final List<Link> getLinkheader(Class<? extends SkysailServerResource<?>>... classes) {
+        if (linkheader != null) {
+            return linkheader;
+        }
         SkysailApplication app = getApplication();
-        List<Linkheader> linkheader = Arrays.asList(classes).stream() //
+        List<Link> linkheader = Arrays.asList(classes).stream() //
                 .map(cls -> ServerLink.fromResource(app, cls))//
                 .filter(lh -> {
                     return lh != null;
                 }).collect(Collectors.toList());
         linkheader.forEach(getPathSubstitutions());
+        this.linkheader = linkheader;
         return linkheader;
     }
 
@@ -250,7 +257,7 @@ public abstract class SkysailServerResource<T> extends ServerResource {
      *
      * @return consumer for pathSubs
      */
-    public Consumer<? super Linkheader> getPathSubstitutions() {
+    public Consumer<? super Link> getPathSubstitutions() {
         return l -> {
         };
     }
@@ -272,8 +279,11 @@ public abstract class SkysailServerResource<T> extends ServerResource {
      *
      * @return result
      */
-    public List<Linkheader> getLinkheader() {
-        return new ArrayList<Linkheader>();
+    public List<Link> getLinkheader() {
+        if (linkheader != null) {
+            return linkheader;
+        }
+        return new ArrayList<Link>();
     }
 
     /**
@@ -282,12 +292,12 @@ public abstract class SkysailServerResource<T> extends ServerResource {
      * 
      * @return result
      */
-    public List<Linkheader> getLinkheaderAuthorized() {
-        List<Linkheader> allLinks = getLinkheader();
+    public List<Link> getLinkheaderAuthorized() {
+        List<Link> allLinks = getLinkheader();
         return allLinks.stream().filter(link -> isAuthorized(link)).collect(Collectors.toList());
     }
 
-    private boolean isAuthorized(@NonNull Linkheader link) {
+    private boolean isAuthorized(@NonNull Link link) {
         boolean authenticated = SecurityUtils.getSubject().isAuthenticated();
         List<Role> clientRoles = getRequest().getClientInfo().getRoles();
         if (!link.getNeedsAuthentication()) {
@@ -328,7 +338,7 @@ public abstract class SkysailServerResource<T> extends ServerResource {
 
     public String redirectTo(Class<? extends SkysailServerResource<?>> cls) {
         SkysailApplication app = getApplication();
-        Linkheader linkheader = ServerLink.fromResource(app, cls);
+        Link linkheader = ServerLink.fromResource(app, cls);
         if (linkheader == null) {
             return null;
         }

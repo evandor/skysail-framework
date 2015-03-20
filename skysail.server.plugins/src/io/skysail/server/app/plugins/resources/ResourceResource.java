@@ -1,13 +1,13 @@
 package io.skysail.server.app.plugins.resources;
 
+import io.skysail.api.links.Link;
+import io.skysail.api.responses.SkysailResponse;
 import io.skysail.server.app.plugins.PluginApplication;
 
 import java.util.List;
 
 import org.restlet.resource.ResourceException;
 
-import de.twenty11.skysail.api.responses.Linkheader;
-import de.twenty11.skysail.api.responses.SkysailResponse;
 import de.twenty11.skysail.server.core.restlet.EntityServerResource;
 import de.twenty11.skysail.server.core.restlet.ResourceContextId;
 
@@ -59,7 +59,7 @@ public class ResourceResource extends EntityServerResource<Resource> {
     }
 
     @Override
-    public List<Linkheader> getLinkheader() {
+    public List<Link> getLinkheader() {
         return super.getLinkheader(ResourceResource.class);
     }
 

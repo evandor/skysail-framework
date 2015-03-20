@@ -2,6 +2,7 @@ package io.skysail.server.converter.wrapper;
 
 import io.skysail.api.favorites.Favorite;
 import io.skysail.api.favorites.FavoritesService;
+import io.skysail.api.links.Link;
 import io.skysail.server.converter.Breadcrumb;
 
 import java.io.IOException;
@@ -29,7 +30,6 @@ import org.restlet.routing.Route;
 import org.restlet.util.RouteList;
 import org.restlet.util.Series;
 
-import de.twenty11.skysail.api.responses.Linkheader;
 import de.twenty11.skysail.server.app.SkysailApplication;
 import de.twenty11.skysail.server.core.restlet.ApplicationContextId;
 import de.twenty11.skysail.server.core.restlet.PostEntityServerResource;
@@ -55,7 +55,7 @@ public class STResourceWrapper {
         return new STApplicationWrapper(resource);
     }
 
-    public List<Linkheader> getLinkheader() throws Exception {
+    public List<Link> getLinkheader() throws Exception {
         return resource.getLinkheaderAuthorized();
     }
 

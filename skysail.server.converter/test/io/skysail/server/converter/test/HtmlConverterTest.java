@@ -104,28 +104,4 @@ public class HtmlConverterTest {
         assertThat(score, is(-1.0F));
     }
 
-    @Test
-    @Ignore
-    public void testName() throws Exception {
-        EntityServerResource<?> resource = Mockito.mock(EntityServerResource.class);
-        // Request request = Mockito.mock(Request.class);
-        // Series<Cookie> cookies = new CookieSeries();
-        // Mockito.when(request.getCookies()).thenReturn(cookies);
-        // Mockito.when(resource.getRequest()).thenReturn(request);
-        // SkysailApplication application =
-        // Mockito.mock(SkysailApplication.class);
-        // Bundle bundle = Mockito.mock(Bundle.class);
-        // Mockito.when(bundle.getSymbolicName()).thenReturn("skysail.server.ext.converter.st");
-        // BundleContext bundleContext = Mockito.mock(BundleContext.class);
-        // Bundle[] bundles = new Bundle[] { bundle };
-        // Mockito.when(bundleContext.getBundles()).thenReturn(bundles);
-        // Mockito.when(bundle.getBundleContext()).thenReturn(bundleContext);
-        // Mockito.when(application.getBundle()).thenReturn(bundle);
-        // Mockito.when(resource.getApplication()).thenReturn(application);
-        // Variant target = new VariantInfo(MediaType.TEXT_HTML);
-        // Representation representation =
-        // htmlConverter.toRepresentation("originalSource", target, resource);
-        // System.out.println(representation);
-    }
-
 }

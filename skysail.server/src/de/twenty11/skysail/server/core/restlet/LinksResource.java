@@ -18,8 +18,8 @@
 //import org.slf4j.Logger;
 //import org.slf4j.LoggerFactory;
 //
-//import de.twenty11.skysail.api.responses.Linkheader;
-//import de.twenty11.skysail.api.responses.SkysailResponse;
+//import io.skysail.api.responses.Linkheader;
+//import io.skysail.api.responses.SkysailResponse;
 //
 //public class LinksResource extends EntityServerResource<Node> {
 //
@@ -79,7 +79,7 @@
 //        if (edge.getTo() != null) {
 //            return null;
 //        }
-//        Linkheader link = edge.getLinkheader();
+//        Link link = edge.getLinkheader();
 //        if (link.getVerbs().contains(Method.GET)) {
 //            final Node node = new Node(link.getUri());
 //            if (nodes.contains(node)) {
@@ -106,7 +106,7 @@
 //        if (linkheaders == null) {
 //            return Collections.emptyList();
 //        }
-//        return Arrays.asList(linkheaders.split(",")).stream().map(link -> new Edge(node, Linkheader.valueOf(link)))
+//        return Arrays.asList(linkheaders.split(",")).stream().map(link -> new Edge(node, Link.valueOf(link)))
 //                .collect(Collectors.toList());
 //    }
 //

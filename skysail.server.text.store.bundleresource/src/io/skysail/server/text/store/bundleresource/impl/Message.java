@@ -1,6 +1,6 @@
 package io.skysail.server.text.store.bundleresource.impl;
 
-import de.twenty11.skysail.api.forms.Field;
+import io.skysail.api.forms.Field;
 
 public class Message {
 

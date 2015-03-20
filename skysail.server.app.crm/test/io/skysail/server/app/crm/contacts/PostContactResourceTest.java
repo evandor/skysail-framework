@@ -3,8 +3,7 @@ package io.skysail.server.app.crm.contacts;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.nullValue;
 import static org.junit.Assert.assertThat;
-import io.skysail.server.app.crm.contacts.Contact;
-import io.skysail.server.app.crm.contacts.PostContactResource;
+import io.skysail.api.responses.ConstraintViolationsResponse;
 import io.skysail.server.app.crm.test.CrmAppTest;
 
 import org.junit.Before;
@@ -12,8 +11,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.runners.MockitoJUnitRunner;
-
-import de.twenty11.skysail.api.responses.ConstraintViolationsResponse;
 
 @RunWith(MockitoJUnitRunner.class)
 public class PostContactResourceTest extends CrmAppTest {

@@ -7,7 +7,7 @@
 //import org.restlet.resource.Resource;
 //import org.stringtemplate.v4.AttributeRenderer;
 //
-//import de.twenty11.skysail.api.responses.ConstraintViolationsResponse;
+//import io.skysail.api.responses.ConstraintViolationsResponse;
 //import de.twenty11.skysail.server.core.FormField;
 //
 //public class FormFieldRenderer implements AttributeRenderer {
@@ -24,8 +24,8 @@
 //    public String toString(Object o, String formatString, Locale locale) {
 //        FormField formField = (FormField) o;
 //        Field field = formField.getFieldAnnotation();
-//        de.twenty11.skysail.api.forms.Field fieldAnnotation = field
-//                .getAnnotation(de.twenty11.skysail.api.forms.Field.class);
+//        io.skysail.api.forms.Field fieldAnnotation = field
+//                .getAnnotation(io.skysail.api.forms.Field.class);
 //
 //        if ("javascript".equals(formatString)) {
 //            return javascriptHtml(formField, field);

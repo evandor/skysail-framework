@@ -1,5 +1,9 @@
 package de.twenty11.skysail.server.um.domain;
 
+import io.skysail.api.forms.Field;
+import io.skysail.api.forms.HtmlPolicy;
+import io.skysail.api.forms.InputType;
+
 import java.util.Date;
 
 import javax.persistence.EnumType;
@@ -14,9 +18,6 @@ import javax.validation.constraints.Size;
 
 import lombok.Getter;
 import lombok.Setter;
-import de.twenty11.skysail.api.forms.Field;
-import de.twenty11.skysail.api.forms.HtmlPolicy;
-import de.twenty11.skysail.api.forms.InputType;
 
 @PasswordsMatch
 @Getter

@@ -1,5 +1,7 @@
 package io.skysail.server.app.designer.application.resources;
 
+import io.skysail.api.links.Link;
+import io.skysail.api.responses.SkysailResponse;
 import io.skysail.server.app.designer.DesignerApplication;
 import io.skysail.server.app.designer.application.Application;
 import io.skysail.server.app.designer.entities.resources.PostEntityResource;
@@ -9,8 +11,6 @@ import java.util.function.Consumer;
 
 import org.restlet.resource.ResourceException;
 
-import de.twenty11.skysail.api.responses.Linkheader;
-import de.twenty11.skysail.api.responses.SkysailResponse;
 import de.twenty11.skysail.server.core.restlet.EntityServerResource;
 import de.twenty11.skysail.server.core.restlet.ResourceContextId;
 import de.twenty11.skysail.server.core.restlet.SkysailServerResource;
@@ -47,12 +47,12 @@ public class ApplicationResource extends EntityServerResource<Application> {
     }
 
     @Override
-    public List<Linkheader> getLinkheader() {
+    public List<Link> getLinkheader() {
         return super.getLinkheader(PutApplicationResource.class, ApplicationResource.class, PostEntityResource.class);
     }
 
     @Override
-    public Consumer<? super Linkheader> getPathSubstitutions() {
+    public Consumer<? super Link> getPathSubstitutions() {
         return l -> {
             if (id != null) {
                 l.substitute("id", id);

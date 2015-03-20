@@ -1,5 +1,7 @@
 package de.twenty11.skysail.server.app.sourceconverter;
 
+import io.skysail.api.responses.FormResponse;
+
 import java.lang.reflect.Field;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -10,7 +12,6 @@ import org.apache.commons.beanutils.DynaProperty;
 import org.restlet.data.MediaType;
 
 import aQute.bnd.annotation.component.Component;
-import de.twenty11.skysail.api.responses.FormResponse;
 import de.twenty11.skysail.server.app.AbstractSourceConverter;
 import de.twenty11.skysail.server.beans.DynamicBean;
 import de.twenty11.skysail.server.core.restlet.SkysailServerResource;

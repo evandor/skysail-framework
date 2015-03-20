@@ -57,7 +57,7 @@
     <end type="SOURCE" refId="2"/>    
     <end type="TARGET" refId="4"/>  
   </message>  
-  <message id="6" operation="post(org.restlet.data.Form):de.twenty11.skysail.api.responses.SkysailResponse&lt;?&gt;">    
+  <message id="6" operation="post(org.restlet.data.Form):io.skysail.api.responses.SkysailResponse&lt;?&gt;">    
     <end type="SOURCE" refId="5"/>    
     <end type="TARGET" refId="7"/>  
   </message>  
@@ -79,7 +79,7 @@
     <end type="SOURCE" refId="7"/>    
     <end type="TARGET" refId="15"/>  
   </message>  
-  <message id="16" operation="getSkysailResponse():de.twenty11.skysail.api.responses.SkysailResponse&lt;T&gt;">    
+  <message id="16" operation="getSkysailResponse():io.skysail.api.responses.SkysailResponse&lt;T&gt;">    
     <end type="SOURCE" refId="7"/>    
     <end type="TARGET" refId="17"/>  
   </message>

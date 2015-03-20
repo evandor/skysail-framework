@@ -20,14 +20,12 @@ Bundle-License: http://www.apache.org/licenses/LICENSE-2.0.txt
 	org.codehaus.jettison.jettison;version=1.3
 Bundle-ActivationPolicy: lazy
 Export-Package:  \
-	de.twenty11.skysail.api.responses,\
-	de.twenty11.skysail.api.forms,\
+	io.skysail.api.responses,\
+	io.skysail.api.forms,\
 	de.twenty11.skysail.api.services,\
-	de.twenty11.skysail.api.structures.graph,\
-	de.twenty11.skysail.api.favorites,\
 	de.twenty11.skysail.api.services.logentry,\
 	de.twenty11.skysail.api.hooks,\
-	de.twenty11.skysail.api.domain
+	de.twenty11.skysail.api.domain,\
+	io.skysail.api.links
 Service-Component: *
-Private-Package:  \
-	de.twenty11.skysail.api.health
+

@@ -1,5 +1,6 @@
 package io.skysail.server.app.designer.application;
 
+import io.skysail.api.forms.Field;
 import io.skysail.server.app.designer.entities.Entity;
 
 import java.util.ArrayList;
@@ -12,7 +13,6 @@ import javax.validation.constraints.Size;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import de.twenty11.skysail.api.forms.Field;
 
 @NoArgsConstructor
 @Getter

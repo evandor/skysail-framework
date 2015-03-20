@@ -39,7 +39,6 @@
 	osgi.identity;filter:='(&(osgi.identity=skysail.api)(version>=3.0))',\
 	osgi.identity;filter:='(&(osgi.identity=skysail.server)(version>=5.1.2))',\
 	osgi.identity;filter:='(&(osgi.identity=skysail.server.um.simple)(version>=0.1))',\
-	osgi.identity;filter:='(&(osgi.identity=skysail.server.ext.converter.st)(version>=1.0.5))',\
 	osgi.identity;filter:='(&(osgi.identity=skysail.server.http)(version>=1.0.15))',\
 	osgi.identity;filter:='(&(osgi.identity=etm.core)(version>=1.2.3.1))',\
 	osgi.identity;filter:='(&(osgi.identity=jackson-mapper-asl)(version>=1.9.8))',\
@@ -107,7 +106,6 @@
 	skysail.api.um;version=latest,\
 	skysail.api.validation;version=latest,\
 	skysail.server;version=latest,\
-	skysail.server.ext.converter.st;version=latest,\
 	skysail.server.http;version=latest,\
 	skysail.server.um.simple;version=latest,\
 	slf4j.api;version='[1.7.7,1.7.8)'

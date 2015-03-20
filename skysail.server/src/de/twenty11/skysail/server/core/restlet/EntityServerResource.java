@@ -1,6 +1,9 @@
 package de.twenty11.skysail.server.core.restlet;
 
 import io.skysail.api.documentation.API;
+import io.skysail.api.links.LinkRelation;
+import io.skysail.api.responses.FormResponse;
+import io.skysail.api.responses.SkysailResponse;
 
 import java.text.ParseException;
 import java.util.List;
@@ -23,9 +26,6 @@ import org.restlet.resource.ResourceException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import de.twenty11.skysail.api.responses.FormResponse;
-import de.twenty11.skysail.api.responses.LinkHeaderRelation;
-import de.twenty11.skysail.api.responses.SkysailResponse;
 import de.twenty11.skysail.server.core.restlet.filter.AbstractResourceFilter;
 import etm.core.monitor.EtmPoint;
 
@@ -131,8 +131,8 @@ public abstract class EntityServerResource<T> extends SkysailServerResource<T> {
     }
 
     @Override
-    public LinkHeaderRelation getLinkRelation() {
-        return LinkHeaderRelation.ITEM;
+    public LinkRelation getLinkRelation() {
+        return LinkRelation.ITEM;
     }
 
     /**

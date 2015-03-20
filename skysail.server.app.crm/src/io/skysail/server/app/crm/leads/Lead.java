@@ -6,8 +6,8 @@ import io.skysail.server.app.crm.SalutationSelectionProvider;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-import de.twenty11.skysail.api.forms.Field;
-import de.twenty11.skysail.api.forms.InputType;
+import io.skysail.api.forms.Field;
+import io.skysail.api.forms.InputType;
 
 public class Lead {
 

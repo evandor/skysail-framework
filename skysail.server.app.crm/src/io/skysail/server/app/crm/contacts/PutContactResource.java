@@ -5,7 +5,7 @@ import io.skysail.server.app.crm.CrmApplication;
 import org.codehaus.jettison.json.JSONObject;
 import org.restlet.resource.ResourceException;
 
-import de.twenty11.skysail.api.responses.SkysailResponse;
+import io.skysail.api.responses.SkysailResponse;
 import de.twenty11.skysail.server.core.restlet.PutEntityServerResource;
 
 public class PutContactResource extends PutEntityServerResource<Contact> {

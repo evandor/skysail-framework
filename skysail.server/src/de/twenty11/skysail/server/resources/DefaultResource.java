@@ -1,5 +1,8 @@
 package de.twenty11.skysail.server.resources;
 
+import io.skysail.api.links.Link;
+import io.skysail.api.links.LinkRelation;
+
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -10,8 +13,6 @@ import org.slf4j.LoggerFactory;
 
 import com.google.common.base.Predicate;
 
-import de.twenty11.skysail.api.responses.LinkHeaderRelation;
-import de.twenty11.skysail.api.responses.Linkheader;
 import de.twenty11.skysail.server.app.SkysailRootApplication;
 import de.twenty11.skysail.server.core.restlet.ListServerResource;
 import de.twenty11.skysail.server.services.MenuItem;
@@ -35,27 +36,27 @@ public class DefaultResource extends ListServerResource<String> {
     // }
 
     @Override
-    public List<Linkheader> getLinkheader() {
+    public List<Link> getLinkheader() {
         SkysailRootApplication defaultApp = (SkysailRootApplication) getApplication();
         Set<MenuItem> menuItems = defaultApp.getMenuItems();
-        List<Linkheader> linkheaders = menuItems.stream().map(mi -> createLinkheaderForApp(mi))
+        List<Link> linkheaders = menuItems.stream().map(mi -> createLinkheaderForApp(mi))
                 .sorted((l1, l2) -> l1.getTitle().compareTo(l2.getTitle())).collect(Collectors.toList());
         if (SecurityUtils.getSubject().isAuthenticated()) {
-            linkheaders.add(new Linkheader.Builder(SkysailRootApplication.LOGOUT_PATH + "?targetUri=/")
-                    .relation(LinkHeaderRelation.CREATE_FORM).title("Logout").build());
+            linkheaders.add(new Link.Builder(SkysailRootApplication.LOGOUT_PATH + "?targetUri=/")
+                    .relation(LinkRelation.CREATE_FORM).title("Logout").build());
         } else {
-            linkheaders.add(new Linkheader.Builder(SkysailRootApplication.LOGIN_PATH)
-                    .relation(LinkHeaderRelation.CREATE_FORM).title("Login form").authenticationNeeded(false).build());
+            linkheaders.add(new Link.Builder(SkysailRootApplication.LOGIN_PATH)
+                    .relation(LinkRelation.CREATE_FORM).title("Login form").authenticationNeeded(false).build());
         }
-        linkheaders.add(new Linkheader.Builder("/usermanagement/registrations/")
-                .relation(LinkHeaderRelation.CREATE_FORM).title("Register new User").authenticationNeeded(false)
+        linkheaders.add(new Link.Builder("/usermanagement/registrations/")
+                .relation(LinkRelation.CREATE_FORM).title("Register new User").authenticationNeeded(false)
                 .build());
         return linkheaders;
     }
 
-    private Linkheader createLinkheaderForApp(MenuItem mi) {
+    private Link createLinkheaderForApp(MenuItem mi) {
         Predicate<String[]> securedBy = null;
-        return new Linkheader.Builder(mi.getLink()).relation(LinkHeaderRelation.ITEM).title(mi.getName())
+        return new Link.Builder(mi.getLink()).relation(LinkRelation.ITEM).title(mi.getName())
                 .authenticationNeeded(true).needsRoles(securedBy).build().setShowInHtml(false);
     }
 

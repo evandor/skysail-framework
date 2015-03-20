@@ -6,7 +6,7 @@ import java.util.Set;
 
 import org.restlet.data.Form;
 
-import de.twenty11.skysail.api.responses.SkysailResponse;
+import io.skysail.api.responses.SkysailResponse;
 import de.twenty11.skysail.server.beans.EntityDynaProperty;
 import de.twenty11.skysail.server.core.restlet.PostEntityServerResource;
 

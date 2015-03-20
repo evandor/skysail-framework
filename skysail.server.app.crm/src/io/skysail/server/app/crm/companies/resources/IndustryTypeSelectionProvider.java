@@ -6,7 +6,7 @@ import java.util.Map;
 
 import org.restlet.resource.Resource;
 
-import de.twenty11.skysail.api.forms.SelectionProvider;
+import io.skysail.api.forms.SelectionProvider;
 
 public class IndustryTypeSelectionProvider implements SelectionProvider {
 

@@ -1,8 +1,8 @@
 package io.skysail.server.app.designer.fields;
 
+import io.skysail.api.forms.Field;
 import lombok.Getter;
 import lombok.Setter;
-import de.twenty11.skysail.api.forms.Field;
 
 @Getter
 @Setter

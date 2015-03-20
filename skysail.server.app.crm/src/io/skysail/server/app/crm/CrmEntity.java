@@ -9,9 +9,9 @@ import javax.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import de.twenty11.skysail.api.forms.Field;
-import de.twenty11.skysail.api.forms.InputType;
-import de.twenty11.skysail.api.forms.ListView;
+import io.skysail.api.forms.Field;
+import io.skysail.api.forms.InputType;
+import io.skysail.api.forms.ListView;
 
 @Getter
 @Setter

@@ -1,10 +1,9 @@
 package de.twenty11.skysail.server.beans;
 
+import io.skysail.api.forms.Field;
 import lombok.Getter;
 
 import org.apache.commons.beanutils.DynaProperty;
-
-import de.twenty11.skysail.api.forms.Field;
 
 public class EntityDynaProperty extends DynaProperty implements Comparable<EntityDynaProperty> {
 

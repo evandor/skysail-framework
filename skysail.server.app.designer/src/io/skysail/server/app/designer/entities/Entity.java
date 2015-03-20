@@ -12,7 +12,7 @@ import lombok.Setter;
 @Setter
 public class Entity {
 
-    @de.twenty11.skysail.api.forms.Field
+    @io.skysail.api.forms.Field
     private String name;
 
     private List<EntityField> fields;

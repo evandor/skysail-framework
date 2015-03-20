@@ -1,5 +1,8 @@
 package de.twenty11.skysail.server.core.restlet.filter;
 
+import io.skysail.api.forms.AllowedAttribute;
+import io.skysail.api.forms.HtmlPolicy;
+
 import java.lang.reflect.Field;
 import java.util.List;
 
@@ -14,8 +17,6 @@ import org.restlet.Response;
 import org.restlet.data.Form;
 import org.restlet.data.Parameter;
 
-import de.twenty11.skysail.api.forms.AllowedAttribute;
-import de.twenty11.skysail.api.forms.HtmlPolicy;
 import de.twenty11.skysail.server.app.SkysailApplication;
 import de.twenty11.skysail.server.core.restlet.EntityServerResource;
 import de.twenty11.skysail.server.core.restlet.ResponseWrapper;
@@ -63,8 +64,8 @@ public class CheckInvalidInputFilter<R extends SkysailServerResource<T>, T> exte
                 List<Field> fields = ReflectionUtils.getInheritedFields(entity.getClass());
 
                 for (Field field : fields) {
-                    de.twenty11.skysail.api.forms.Field formField = field
-                            .getAnnotation(de.twenty11.skysail.api.forms.Field.class);
+                    io.skysail.api.forms.Field formField = field
+                            .getAnnotation(io.skysail.api.forms.Field.class);
                     if (formField == null) {
                         continue;
                     }

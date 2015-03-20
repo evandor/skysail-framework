@@ -1,5 +1,6 @@
 package io.skysail.server.app.todos.domain.resources;
 
+import io.skysail.api.responses.SkysailResponse;
 import io.skysail.server.app.todos.TodoApplication;
 import io.skysail.server.app.todos.domain.Todo;
 
@@ -8,7 +9,6 @@ import java.util.Date;
 import org.codehaus.jettison.json.JSONObject;
 import org.restlet.resource.ResourceException;
 
-import de.twenty11.skysail.api.responses.SkysailResponse;
 import de.twenty11.skysail.server.core.restlet.PutEntityServerResource;
 
 public class PutTodoResource extends PutEntityServerResource<Todo> {

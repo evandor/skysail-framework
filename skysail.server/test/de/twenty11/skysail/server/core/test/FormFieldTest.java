@@ -2,17 +2,17 @@ package de.twenty11.skysail.server.core.test;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
+import io.skysail.api.forms.Reference;
 
 import java.lang.reflect.Field;
 
 import org.junit.Test;
 
-import de.twenty11.skysail.api.forms.Reference;
 import de.twenty11.skysail.server.core.FormField;
 
 public class FormFieldTest {
 
-    @de.twenty11.skysail.api.forms.Field(selectionProvider = DummySelectionProvider.class)
+    @io.skysail.api.forms.Field(selectionProvider = DummySelectionProvider.class)
     public String testField;
 
     @Reference(selectionProvider = DummySelectionProvider.class, cls = String.class)

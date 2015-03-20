@@ -3,6 +3,7 @@ package de.twenty11.skysail.server.core.restlet.test;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
+import io.skysail.api.links.LinkRelation;
 
 import org.junit.Before;
 import org.junit.Ignore;
@@ -10,7 +11,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import de.twenty11.skysail.api.responses.LinkHeaderRelation;
 import de.twenty11.skysail.server.core.restlet.SkysailServerResource;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -21,8 +21,8 @@ public class SkysailServerResourceTest {
     private class TestSkysailServerResource extends SkysailServerResource<String> {
 
         @Override
-        public LinkHeaderRelation getLinkRelation() {
-            return LinkHeaderRelation.ABOUT;
+        public LinkRelation getLinkRelation() {
+            return LinkRelation.ABOUT;
         }
 
         @Override
@@ -45,7 +45,7 @@ public class SkysailServerResourceTest {
 
     @Test
     public void returns_resources_linkRelation() throws Exception {
-        assertThat(serverResource.getLinkRelation(), is(equalTo(LinkHeaderRelation.ABOUT)));
+        assertThat(serverResource.getLinkRelation(), is(equalTo(LinkRelation.ABOUT)));
     }
 
     @Test

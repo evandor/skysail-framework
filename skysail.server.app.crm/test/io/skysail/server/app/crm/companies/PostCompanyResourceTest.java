@@ -4,7 +4,7 @@ import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.nullValue;
 import static org.junit.Assert.assertThat;
-import io.skysail.server.app.crm.companies.Company;
+import io.skysail.api.responses.ConstraintViolationsResponse;
 import io.skysail.server.app.crm.companies.resources.PostCompanyResource;
 import io.skysail.server.app.crm.test.CrmAppTest;
 
@@ -13,8 +13,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.runners.MockitoJUnitRunner;
-
-import de.twenty11.skysail.api.responses.ConstraintViolationsResponse;
 
 @RunWith(MockitoJUnitRunner.class)
 public class PostCompanyResourceTest extends CrmAppTest {

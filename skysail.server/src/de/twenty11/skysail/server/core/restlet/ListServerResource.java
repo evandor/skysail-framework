@@ -1,6 +1,8 @@
 package de.twenty11.skysail.server.core.restlet;
 
 import io.skysail.api.documentation.API;
+import io.skysail.api.links.LinkRelation;
+import io.skysail.api.responses.SkysailResponse;
 
 import java.util.List;
 
@@ -16,8 +18,6 @@ import org.restlet.resource.Options;
 import org.restlet.resource.ServerResource;
 import org.restlet.util.Series;
 
-import de.twenty11.skysail.api.responses.LinkHeaderRelation;
-import de.twenty11.skysail.api.responses.SkysailResponse;
 import etm.core.monitor.EtmPoint;
 
 /**
@@ -55,7 +55,7 @@ import etm.core.monitor.EtmPoint;
  *    }
  *     
  *    {@literal @}Override
- *    public List<Linkheader> getLinkheader() {
+ *    public List<Link> getLinkheader() {
  *       return super.getLinkheader(PostCompanyResource.class);
  *    } 
  * </code>
@@ -143,8 +143,8 @@ public abstract class ListServerResource<T> extends SkysailServerResource<List<T
     }
 
     @Override
-    public LinkHeaderRelation getLinkRelation() {
-        return LinkHeaderRelation.COLLECTION;
+    public LinkRelation getLinkRelation() {
+        return LinkRelation.COLLECTION;
     }
 
     private final List<T> listEntities() {

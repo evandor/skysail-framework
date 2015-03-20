@@ -13,14 +13,14 @@
  */
 package de.twenty11.skysail.server.um.domain;
 
+import io.skysail.api.forms.Field;
+import io.skysail.api.forms.InputType;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
-
-import de.twenty11.skysail.api.forms.Field;
-import de.twenty11.skysail.api.forms.InputType;
 
 //@NamedQuery(name = "findByName", query = "SELECT c FROM SkysailUser c WHERE c.username = :username")
 public class SkysailUser {

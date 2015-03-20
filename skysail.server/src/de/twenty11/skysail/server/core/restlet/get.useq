@@ -28,7 +28,7 @@
     <end type="SOURCE" refId="2"/>    
     <end type="TARGET" refId="4"/>  
   </message>  
-  <message id="6" operation="addEntity(T):de.twenty11.skysail.api.responses.SkysailResponse&lt;?&gt;">    
+  <message id="6" operation="addEntity(T):io.skysail.api.responses.SkysailResponse&lt;?&gt;">    
     <end type="SOURCE" refId="5"/>    
     <end type="TARGET" refId="7"/>  
   </message>

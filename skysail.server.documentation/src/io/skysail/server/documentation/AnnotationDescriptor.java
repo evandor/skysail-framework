@@ -12,7 +12,7 @@ public class AnnotationDescriptor {
     public AnnotationDescriptor(Annotation annotation) {
         name = annotation.annotationType().getName(); // e.g.
                                                       // javax.persistence.Id,
-                                                      // de.twenty11.skysail.api.forms.Field
+                                                      // io.skysail.api.forms.Field
         annotation.annotationType();
     }
 

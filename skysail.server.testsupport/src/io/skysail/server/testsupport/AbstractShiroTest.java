@@ -3,6 +3,7 @@ package io.skysail.server.testsupport;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.Matchers.containsString;
 import static org.junit.Assert.assertThat;
+import io.skysail.api.responses.ConstraintViolationsResponse;
 import io.skysail.api.validation.ValidatorService;
 
 import java.util.concurrent.ConcurrentHashMap;
@@ -24,8 +25,6 @@ import org.restlet.Response;
 import org.restlet.data.ClientInfo;
 import org.restlet.data.Form;
 import org.restlet.data.Reference;
-
-import de.twenty11.skysail.api.responses.ConstraintViolationsResponse;
 
 public class AbstractShiroTest {
     private static ThreadState subjectThreadState;

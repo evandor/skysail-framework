@@ -1,10 +1,11 @@
 package de.twenty11.skysail.server.domain;
 
+import io.skysail.api.forms.Field;
+import io.skysail.api.forms.InputType;
+
 import javax.validation.constraints.Size;
 
-import de.twenty11.skysail.api.forms.Field;
-//import de.twenty11.skysail.api.forms.Form;
-import de.twenty11.skysail.api.forms.InputType;
+//import io.skysail.api.forms.Form;
 
 //@Form(name = "credentials")
 public class Credentials {

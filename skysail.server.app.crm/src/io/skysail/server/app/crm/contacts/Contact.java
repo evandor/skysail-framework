@@ -14,9 +14,9 @@ import javax.validation.constraints.Size;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import de.twenty11.skysail.api.forms.Field;
-import de.twenty11.skysail.api.forms.InputType;
-import de.twenty11.skysail.api.forms.Reference;
+import io.skysail.api.forms.Field;
+import io.skysail.api.forms.InputType;
+import io.skysail.api.forms.Reference;
 
 @NoArgsConstructor
 @Getter

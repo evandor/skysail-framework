@@ -1,8 +1,9 @@
 package de.twenty11.skysail.server.app;
 
+import io.skysail.api.responses.SkysailResponse;
+
 import org.restlet.resource.ResourceException;
 
-import de.twenty11.skysail.api.responses.SkysailResponse;
 import de.twenty11.skysail.server.core.restlet.EntityServerResource;
 
 public class IFrameResource extends EntityServerResource<String> {

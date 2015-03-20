@@ -13,6 +13,8 @@
  */
 package de.twenty11.skysail.server.um.domain;
 
+import io.skysail.api.forms.Field;
+
 import java.io.Serializable;
 
 import javax.persistence.Entity;
@@ -20,8 +22,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
-
-import de.twenty11.skysail.api.forms.Field;
 
 @Entity
 @Table(name = "um_groups")

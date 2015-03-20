@@ -58,6 +58,7 @@ public class PreferencesFavoritesService implements FavoritesService {
             favoriteNode.put(FAVORITE_TOOLTIP,
                     favorite.getFavoriteTooltip() == null ? "" : favorite.getFavoriteTooltip());
             favoriteNode.put(FAVORITE_IMG, favorite.getFavoriteImg() == null ? "" : favorite.getFavoriteImg());
+            // preferencesService.flush();
             return true;
         } catch (BackingStoreException e) {
             log.error(e.getMessage(), e);

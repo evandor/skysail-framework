@@ -1,8 +1,8 @@
 package de.twenty11.skysail.server.um.domain;
 
-import javax.validation.constraints.Size;
+import io.skysail.api.forms.Field;
 
-import de.twenty11.skysail.api.forms.Field;
+import javax.validation.constraints.Size;
 
 public class PasswordDetails {
 

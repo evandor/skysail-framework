@@ -1,5 +1,9 @@
 package io.skysail.server.app.todos.domain;
 
+import io.skysail.api.forms.Field;
+import io.skysail.api.forms.InputType;
+import io.skysail.api.forms.ListView;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -12,10 +16,6 @@ import lombok.Setter;
 import lombok.ToString;
 
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-
-import de.twenty11.skysail.api.forms.Field;
-import de.twenty11.skysail.api.forms.InputType;
-import de.twenty11.skysail.api.forms.ListView;
 
 @Getter
 @Setter

@@ -5,7 +5,7 @@
 //import org.slf4j.Logger;
 //import org.slf4j.LoggerFactory;
 //
-//import de.twenty11.skysail.api.responses.LinkHeaderRelation;
+//import io.skysail.api.responses.LinkHeaderRelation;
 //import de.twenty11.skysail.api.structures.graph.Graph;
 //import de.twenty11.skysail.server.app.SkysailApplication;
 //import de.twenty11.skysail.server.core.restlet.filter.AbstractResourceFilter;
@@ -17,8 +17,8 @@
 //    public abstract Graph getEntity();
 //
 //    @Override
-//    public LinkHeaderRelation getLinkRelation() {
-//        return LinkHeaderRelation.ALTERNATE;
+//    public LinkRelation getLinkRelation() {
+//        return LinkRelation.ALTERNATE;
 //    }
 //
 //    /**

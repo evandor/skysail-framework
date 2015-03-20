@@ -1,8 +1,9 @@
 package io.skysail.server.documentation.test;
 
+import io.skysail.api.responses.SkysailResponse;
+
 import org.codehaus.jettison.json.JSONObject;
 
-import de.twenty11.skysail.api.responses.SkysailResponse;
 import de.twenty11.skysail.server.core.restlet.PutEntityServerResource;
 
 public class TestPutEntityResource extends PutEntityServerResource<String> {

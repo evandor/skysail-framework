@@ -1,9 +1,9 @@
 package de.twenty11.skysail.server.core.restlet;
 
+import io.skysail.api.responses.ConstraintViolationsResponse;
+
 import org.codehaus.jettison.json.JSONObject;
 import org.restlet.Response;
-
-import de.twenty11.skysail.api.responses.ConstraintViolationsResponse;
 
 public class ResponseWrapper<T> {
 

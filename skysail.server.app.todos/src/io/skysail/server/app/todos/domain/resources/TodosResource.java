@@ -1,5 +1,6 @@
 package io.skysail.server.app.todos.domain.resources;
 
+import io.skysail.api.links.Link;
 import io.skysail.server.app.todos.TodoApplication;
 import io.skysail.server.app.todos.domain.Todo;
 
@@ -9,7 +10,6 @@ import java.util.function.Consumer;
 import org.apache.shiro.SecurityUtils;
 import org.restlet.resource.ResourceException;
 
-import de.twenty11.skysail.api.responses.Linkheader;
 import de.twenty11.skysail.server.core.restlet.ListServerResource;
 import de.twenty11.skysail.server.core.restlet.ResourceContextId;
 
@@ -36,12 +36,12 @@ public class TodosResource extends ListServerResource<Todo> {
     }
 
     @Override
-    public List<Linkheader> getLinkheader() {
+    public List<Link> getLinkheader() {
         return super.getLinkheader(PostTodoResource.class);
     }
 
     @Override
-    public Consumer<? super Linkheader> getPathSubstitutions() {
+    public Consumer<? super Link> getPathSubstitutions() {
         return l -> {
             l.substitute("id", id);
         };

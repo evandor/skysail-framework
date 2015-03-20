@@ -1,12 +1,12 @@
 package io.skysail.server.app.crm.companies.resources;
 
+import io.skysail.api.responses.SkysailResponse;
 import io.skysail.server.app.crm.CrmApplication;
 import io.skysail.server.app.crm.companies.Company;
 
 import org.apache.shiro.SecurityUtils;
 import org.restlet.resource.ResourceException;
 
-import de.twenty11.skysail.api.responses.SkysailResponse;
 import de.twenty11.skysail.server.core.restlet.PutEntityServerResource;
 
 public class PutCompanyResource extends PutEntityServerResource<Company> {

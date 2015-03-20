@@ -1,5 +1,6 @@
 package de.twenty11.skysail.server.core.restlet.filter;
 
+import io.skysail.api.responses.ConstraintViolationsResponse;
 import io.skysail.api.validation.ValidatorService;
 
 import java.util.HashSet;
@@ -13,7 +14,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.restlet.Response;
 import org.restlet.data.Status;
 
-import de.twenty11.skysail.api.responses.ConstraintViolationsResponse;
 import de.twenty11.skysail.server.app.SkysailApplication;
 import de.twenty11.skysail.server.core.restlet.ResponseWrapper;
 import de.twenty11.skysail.server.core.restlet.SkysailServerResource;

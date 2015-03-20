@@ -1,6 +1,10 @@
 package de.twenty11.skysail.server.core.restlet;
 
 import io.skysail.api.documentation.API;
+import io.skysail.api.links.Link;
+import io.skysail.api.links.LinkRelation;
+import io.skysail.api.responses.FormResponse;
+import io.skysail.api.responses.SkysailResponse;
 
 import java.util.Arrays;
 import java.util.List;
@@ -20,10 +24,6 @@ import org.restlet.resource.ResourceException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import de.twenty11.skysail.api.responses.FormResponse;
-import de.twenty11.skysail.api.responses.LinkHeaderRelation;
-import de.twenty11.skysail.api.responses.Linkheader;
-import de.twenty11.skysail.api.responses.SkysailResponse;
 import de.twenty11.skysail.server.core.restlet.filter.AbstractResourceFilter;
 import etm.core.monitor.EtmPoint;
 
@@ -190,8 +190,8 @@ public abstract class PutEntityServerResource<T> extends SkysailServerResource<T
     }
 
     @Override
-    public LinkHeaderRelation getLinkRelation() {
-        return LinkHeaderRelation.CREATE_FORM;
+    public LinkRelation getLinkRelation() {
+        return LinkRelation.CREATE_FORM;
     }
 
     protected Set<ConstraintViolation<T>> validate(@SuppressWarnings("unused") T entity) {
@@ -199,8 +199,8 @@ public abstract class PutEntityServerResource<T> extends SkysailServerResource<T
     }
 
     @Override
-    public List<Linkheader> getLinkheader() {
-        return Arrays.asList(new Linkheader.Builder(".").relation(LinkHeaderRelation.NEXT).title("form target")
+    public List<Link> getLinkheader() {
+        return Arrays.asList(new Link.Builder(".").relation(LinkRelation.NEXT).title("form target")
                 .verbs(Method.POST).build());
     }
 

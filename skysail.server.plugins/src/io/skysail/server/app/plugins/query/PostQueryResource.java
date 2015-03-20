@@ -1,11 +1,11 @@
 package io.skysail.server.app.plugins.query;
 
+import io.skysail.api.responses.SkysailResponse;
 import io.skysail.server.app.plugins.PluginApplication;
 
 import org.restlet.data.Form;
 import org.restlet.resource.ResourceException;
 
-import de.twenty11.skysail.api.responses.SkysailResponse;
 import de.twenty11.skysail.server.core.restlet.PostEntityServerResource;
 import de.twenty11.skysail.server.core.restlet.ResourceContextId;
 

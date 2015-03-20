@@ -1,6 +1,6 @@
 package de.twenty11.skysail.server.resources;
 
-import de.twenty11.skysail.api.responses.SkysailResponse;
+import io.skysail.api.responses.SkysailResponse;
 import de.twenty11.skysail.server.app.SkysailRootApplication;
 import de.twenty11.skysail.server.core.restlet.EntityServerResource;
 

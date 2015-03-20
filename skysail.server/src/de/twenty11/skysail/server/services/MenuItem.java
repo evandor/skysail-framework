@@ -1,12 +1,13 @@
 package de.twenty11.skysail.server.services;
 
+import io.skysail.api.links.Link;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 import com.google.common.base.Predicate;
 
-import de.twenty11.skysail.api.responses.Linkheader;
 import de.twenty11.skysail.server.app.SkysailApplication;
 import de.twenty11.skysail.server.core.restlet.ApplicationContextId;
 import de.twenty11.skysail.server.core.restlet.ServerLink;
@@ -47,7 +48,7 @@ public class MenuItem {
 
     public MenuItem(SkysailApplication app, Class<? extends SkysailServerResource<?>> skysailServerResourceClass) {
     	applicationImage  = app.getFromContext(ApplicationContextId.IMG);
-        Linkheader linkheader = ServerLink.fromResource(app, skysailServerResourceClass);
+        Link linkheader = ServerLink.fromResource(app, skysailServerResourceClass);
         if (linkheader == null) {
             // throw new IllegalStateException();
             this.name = app.getName();

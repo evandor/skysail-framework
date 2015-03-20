@@ -3,9 +3,6 @@ package io.skysail.server.documentation;
 import io.skysail.api.documentation.API;
 
 import java.lang.annotation.Annotation;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -17,8 +14,6 @@ import org.restlet.resource.Post;
 import org.restlet.resource.Put;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-
-import de.twenty11.skysail.api.responses.Link;
 
 @EqualsAndHashCode(of = { "method", "path" })
 @Getter
@@ -46,27 +41,27 @@ public class SupportedMethod implements Comparable<SupportedMethod> {
         this.path = path;
     }
 
-    public List<Link> getGet() {
-        if (!(annotation instanceof Get)) {
-            return Collections.emptyList();
-        }
-        return getLinks((Get) annotation);
-    }
+    // public List<Link> getGet() {
+    // if (!(annotation instanceof Get)) {
+    // return Collections.emptyList();
+    // }
+    // return getLinks((Get) annotation);
+    // }
 
-    public List<Link> getPostResponseTypes() {
-        // if (!(annotation instanceof Post)) {
-        return Collections.emptyList();
-        // }
-        // List<Link> result = new ArrayList<Link>();
-        // String[] types = ((Post) annotation).value().split(":");
-        // if (types.length == 2) {
-        // String[] split = types[1].split("\\|");
-        // for (String type : split) {
-        // // result.add(new Link(path + "?media=" + type, type));
-        // }
-        // }
-        // return result;
-    }
+    // public List<Link> getPostResponseTypes() {
+    // // if (!(annotation instanceof Post)) {
+    // return Collections.emptyList();
+    // // }
+    // // List<Link> result = new ArrayList<Link>();
+    // // String[] types = ((Post) annotation).value().split(":");
+    // // if (types.length == 2) {
+    // // String[] split = types[1].split("\\|");
+    // // for (String type : split) {
+    // // // result.add(new Link(path + "?media=" + type, type));
+    // // }
+    // // }
+    // // return result;
+    // }
 
     // public List<Link> getPostRequestTypes() {
     // if (annotation == null) {
@@ -123,13 +118,13 @@ public class SupportedMethod implements Comparable<SupportedMethod> {
         return annotation.toString().compareTo(other.annotation.toString());
     }
 
-    private List<Link> getLinks(Get annotation2) {
-        List<Link> result = new ArrayList<Link>();
-        // String[] types = ((Get) annotation).value().split("\\|");
-        // for (String type : types) {
-        // // result.add(new Link(path + "?media=" + type, type));
-        // }
-        return result;
-
-    }
+    // private List<Link> getLinks(Get annotation2) {
+    // List<Link> result = new ArrayList<Link>();
+    // // String[] types = ((Get) annotation).value().split("\\|");
+    // // for (String type : types) {
+    // // // result.add(new Link(path + "?media=" + type, type));
+    // // }
+    // return result;
+    //
+    // }
 }

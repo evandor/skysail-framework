@@ -1,5 +1,7 @@
 package de.twenty11.skysail.server.app;
 
+import io.skysail.api.responses.SkysailResponse;
+
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
@@ -11,7 +13,6 @@ import org.restlet.resource.ResourceException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import de.twenty11.skysail.api.responses.SkysailResponse;
 import de.twenty11.skysail.server.core.restlet.EntityServerResource;
 
 public class LargeTestsFileResource extends EntityServerResource<String> {

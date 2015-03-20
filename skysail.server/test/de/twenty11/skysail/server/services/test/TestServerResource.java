@@ -1,6 +1,6 @@
 package de.twenty11.skysail.server.services.test;
 
-import de.twenty11.skysail.api.responses.LinkHeaderRelation;
+import io.skysail.api.links.LinkRelation;
 import de.twenty11.skysail.server.core.restlet.SkysailServerResource;
 
 public class TestServerResource extends SkysailServerResource<String> {
@@ -10,8 +10,8 @@ public class TestServerResource extends SkysailServerResource<String> {
     }
 
     @Override
-    public LinkHeaderRelation getLinkRelation() {
-        return LinkHeaderRelation.ITEM;
+    public LinkRelation getLinkRelation() {
+        return LinkRelation.ITEM;
     }
 
     @Override

@@ -1,5 +1,7 @@
 package de.twenty11.skysail.server.app.sourceconverter;
 
+import io.skysail.api.forms.ListView;
+
 import java.io.IOException;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
@@ -26,7 +28,6 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 
-import de.twenty11.skysail.api.forms.ListView;
 import de.twenty11.skysail.server.app.AbstractSourceConverter;
 import de.twenty11.skysail.server.core.restlet.SkysailServerResource;
 
@@ -110,8 +111,8 @@ public class ListSourceHtmlConverter extends AbstractSourceConverter implements 
     }
 
     private Object check(Field f, Map<String, Object> result, SkysailServerResource<?> resource) {
-        de.twenty11.skysail.api.forms.Field fieldAnnotation = f
-                .getAnnotation(de.twenty11.skysail.api.forms.Field.class);
+        io.skysail.api.forms.Field fieldAnnotation = f
+                .getAnnotation(io.skysail.api.forms.Field.class);
         if (fieldAnnotation == null) {
             return null;
         }

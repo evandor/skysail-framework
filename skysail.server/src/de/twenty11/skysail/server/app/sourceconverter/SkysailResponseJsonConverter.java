@@ -1,5 +1,7 @@
 package de.twenty11.skysail.server.app.sourceconverter;
 
+import io.skysail.api.responses.SkysailResponse;
+
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.List;
@@ -8,7 +10,6 @@ import java.util.Optional;
 import org.restlet.data.MediaType;
 
 import aQute.bnd.annotation.component.Component;
-import de.twenty11.skysail.api.responses.SkysailResponse;
 import de.twenty11.skysail.server.app.AbstractSourceConverter;
 import de.twenty11.skysail.server.core.restlet.SkysailServerResource;
 

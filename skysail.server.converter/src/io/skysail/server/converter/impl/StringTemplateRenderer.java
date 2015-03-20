@@ -1,6 +1,12 @@
 package io.skysail.server.converter.impl;
 
 import io.skysail.api.favorites.FavoritesService;
+import io.skysail.api.forms.ListView;
+import io.skysail.api.forms.Reference;
+import io.skysail.api.links.Link;
+import io.skysail.api.links.LinkRelation;
+import io.skysail.api.links.LinkRole;
+import io.skysail.api.responses.SkysailResponse;
 import io.skysail.server.converter.HtmlConverter;
 import io.skysail.server.converter.Notification;
 import io.skysail.server.converter.stringtemplate.STGroupBundleDir;
@@ -32,12 +38,6 @@ import org.restlet.representation.Variant;
 import org.restlet.resource.Resource;
 import org.stringtemplate.v4.ST;
 
-import de.twenty11.skysail.api.forms.ListView;
-import de.twenty11.skysail.api.forms.Reference;
-import de.twenty11.skysail.api.responses.LinkHeaderRelation;
-import de.twenty11.skysail.api.responses.Linkheader;
-import de.twenty11.skysail.api.responses.LinkheaderRole;
-import de.twenty11.skysail.api.responses.SkysailResponse;
 import de.twenty11.skysail.server.app.SkysailApplication;
 import de.twenty11.skysail.server.app.SourceWrapper;
 import de.twenty11.skysail.server.beans.DynamicEntity;
@@ -119,7 +119,7 @@ public class StringTemplateRenderer {
         Class<? extends EntityServerResource<?>> entityResourceClass = listServerResource.getAssociatedEntityResource();
         if (entityResourceClass != null && sourceWrapper.getConvertedSource() instanceof List) {
             EntityServerResource<?> esr = ResourceUtils.createEntityServerResource(entityResourceClass, resource);
-            List<Linkheader> linkheader = esr.getLinkheaderAuthorized();
+            List<Link> linkheader = esr.getLinkheaderAuthorized();
 
             List<?> sourceAsList = (List<?>) sourceWrapper.getConvertedSource();
             for (Object object : sourceAsList) {
@@ -130,7 +130,7 @@ public class StringTemplateRenderer {
 
                 String id = guessId(object);
                 linkheader.stream().filter(lh -> {
-                    return lh.getRole().equals(LinkheaderRole.DEFAULT);
+                    return lh.getRole().equals(LinkRole.DEFAULT);
                 }).forEach(link -> addLinkHeader(link, esr, id, listServerResource, sb));
                 ((Map<String, Object>) object).put("_links", sb.toString());
             }
@@ -255,7 +255,7 @@ public class StringTemplateRenderer {
         }
     }
 
-    private void addLinkHeader(Linkheader link, Resource entityResource, String id, ListServerResource<?> resource,
+    private void addLinkHeader(Link link, Resource entityResource, String id, ListServerResource<?> resource,
             StringBuilder sb) {
         String path = link.getUri();
         String href = StringParserUtils.substitutePlaceholders(path, entityResource);
@@ -270,7 +270,7 @@ public class StringTemplateRenderer {
                 .append("</a>&nbsp;");
 
         resource.getLinkheader().add(
-                new Linkheader.Builder(href).relation(LinkHeaderRelation.ITEM)
+                new Link.Builder(href).relation(LinkRelation.ITEM)
                         .title("item " + id == null ? "unknown" : id).build());
 
     }
@@ -293,8 +293,8 @@ public class StringTemplateRenderer {
 
     private boolean test(SkysailServerResource<?> resource, Field field) {
         List<String> fieldNames = resource.getFields();
-        de.twenty11.skysail.api.forms.Field fieldAnnotation = field
-                .getAnnotation(de.twenty11.skysail.api.forms.Field.class);
+        io.skysail.api.forms.Field fieldAnnotation = field
+                .getAnnotation(io.skysail.api.forms.Field.class);
         boolean isValidFieldAnnotation = (fieldAnnotation != null
                 && (!(fieldAnnotation.listView().equals(ListView.HIDE))) && fieldNames.contains(field.getName()));
         if (isValidFieldAnnotation) {

@@ -1,13 +1,14 @@
 package de.twenty11.skysail.server.app.profile;
 
+import io.skysail.api.forms.Field;
+import io.skysail.api.forms.HtmlPolicy;
+import io.skysail.api.forms.InputType;
+
 import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import lombok.Data;
-import de.twenty11.skysail.api.forms.Field;
-import de.twenty11.skysail.api.forms.HtmlPolicy;
-import de.twenty11.skysail.api.forms.InputType;
 
 /**
  * TODO: make sure to (programmatically) apply the same password validation rules like in skysailUser and registrations

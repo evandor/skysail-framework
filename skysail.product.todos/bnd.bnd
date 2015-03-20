@@ -4,6 +4,7 @@ Private-Package:  \
 	io.skysail.product.todos
 -buildpath:  \
 	skysail.server.um.simple;version=latest,\
+	skysail.server.static;version=latest,\
 	skysail.server.text;version=latest,\
 	skysail.server.text.markdown;version=latest,\
 	skysail.server.http;version=latest,\

@@ -148,12 +148,12 @@ public class SkysailRootApplication extends SkysailApplication implements Applic
         menuProviders.remove(provider);
     }
 
-    @Reference(dynamic = true, optional = false, multiple = false)
+    @Reference(dynamic = true, optional = true, multiple = false)
     public void setUserManager(UserManager userManager) {
         this.userManager = userManager;
     }
 
-    public void unsetUserManager(@SuppressWarnings("unused") UserManager userManager) {
+    public void unsetUserManager(UserManager userManager) {
         this.userManager = null;
     }
 

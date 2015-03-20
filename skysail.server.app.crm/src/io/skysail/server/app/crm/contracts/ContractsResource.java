@@ -55,29 +55,6 @@ public class ContractsResource extends ListServerResource<Contract> {
         return app.getRepository().findAll(Contract.class);
     }
 
-    // @Override
-    // protected List<String> getDataAsJson() {
-    // Object principal = SecurityUtils.getSubject().getPrincipal();
-    // // return
-    // //
-    // ContactsRepository.getInstance().getContactsAsJson(principal.toString());
-    //
-    // int linesPerPage = 5;
-    // String username = SecurityUtils.getSubject().getPrincipal().toString();
-    //
-    // // Series<Header> headers = HeadersUtils.getHeaders(getResponse());
-    // // long clipCount =
-    // // ContactsRepository.getInstance().getContactsCount(username);
-    // // headers.add(new Header(HeadersUtils.PAGINATION_PAGES, Long.toString(1
-    // // + Math.floorDiv(clipCount, linesPerPage))));
-    // // headers.add(new Header(HeadersUtils.PAGINATION_PAGE,
-    // // Integer.toString(page)));
-    // // headers.add(new Header(HeadersUtils.PAGINATION_HITS,
-    // // Long.toString(clipCount)));
-    // return CrmRepository.getInstance().getContracts(page, username,
-    // linesPerPage, linesPerPage);
-    // }
-
     @Override
     public List<Link> getLinkheader() {
         return super.getLinkheader(PostContractResource.class);

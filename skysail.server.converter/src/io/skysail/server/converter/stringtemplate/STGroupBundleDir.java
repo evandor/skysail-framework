@@ -122,7 +122,7 @@ public class STGroupBundleDir extends STGroupDir {
             log.debug("found resource in {}: {}", bundleName, f.toString());
             usedTemplates.add(bundleName + ": " + f.toString());
         } catch (IOException ioe) {
-            log.debug("resource does not exist in {}: {}", bundleName, f.toString());
+            log.trace("resource does not exist in {}: {}", bundleName, f.toString());
             return null;
         }
         return loadTemplateFile(prefix, fileName, fs);

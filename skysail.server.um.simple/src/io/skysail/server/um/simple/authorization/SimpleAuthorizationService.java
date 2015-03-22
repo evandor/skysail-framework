@@ -30,11 +30,11 @@ public class SimpleAuthorizationService implements AuthorizationService, Enroler
     }
 
     @Override
-    public Set<Role> getRolesFor(String username) {
-        SimpleUser user = userManagementProvider.getByUsername(username);
+    public Set<Role> getRolesFor(String principal) {
+        SimpleUser user = userManagementProvider.getByPrincipal(principal);
         Set<String> roles = user.getRoles();
         if (roles == null) {
-            log.warn("User '" + username + "' could not be found in the Repository");
+            log.warn("User '" + principal + "' could not be found in the Repository");
             return Collections.emptySet();
         }
         return roles.stream().map(r -> getOrCreateRole(r)).collect(Collectors.toSet());

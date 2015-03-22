@@ -22,7 +22,8 @@ public class SkysailHashedCredentialsMatcherTest {
     @Before
     public void setUp() throws Exception {
         matcher = new SkysailHashedCredentialsMatcher();
-        SkysailUser user = new SkysailUser("username", "$2a$12$52R8v2QH3vQRz8NcdtOm5.HhE5tFPZ0T/.MpfUa9rBzOugK.btAHS");
+        SkysailUser user = new SkysailUser("username", "$2a$12$52R8v2QH3vQRz8NcdtOm5.HhE5tFPZ0T/.MpfUa9rBzOugK.btAHS",
+                "#1");
         info = new SkysailAuthenticationInfo(user);
     }
 

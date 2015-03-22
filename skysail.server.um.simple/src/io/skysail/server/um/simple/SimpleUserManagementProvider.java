@@ -104,6 +104,10 @@ public class SimpleUserManagementProvider implements UserManagementProvider {
         return userManagerRepo.getByUsername(username);
     }
 
+    public SimpleUser getByPrincipal(String username) {
+        return userManagerRepo.getByPrincipal(username);
+    }
+
     private void createDefautConfiguration() {
         log.warn("creating default configuration for usermanagement as no configuration was provided!");
         try {

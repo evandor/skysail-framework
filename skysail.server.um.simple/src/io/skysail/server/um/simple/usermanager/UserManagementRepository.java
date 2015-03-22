@@ -4,6 +4,7 @@ import io.skysail.server.um.simple.authorization.SimpleUser;
 
 import java.util.Arrays;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
@@ -27,14 +28,21 @@ public class UserManagementRepository {
             log.warn("no users are defined");
             return;
         }
-        createUsernamesAndPasswords(usersDefinition, config);
+        createUsers(usersDefinition, config);
+    }
+
+    public SimpleUser getByPrincipal(String principal) {
+        return users.get(principal);
     }
 
     public SimpleUser getByUsername(String username) {
-        return users.get(username);
+        Optional<SimpleUser> optionalUser = users.values().stream().filter(u -> {
+            return u.getUsername().equals(username);
+        }).findFirst();
+        return optionalUser.orElse(null);
     }
 
-    private void createUsernamesAndPasswords(String usersDefinition, Map<String, String> config) {
+    private void createUsers(String usersDefinition, Map<String, String> config) {
 
         Arrays.stream(usersDefinition.split(",")).map(u -> {
             return u.trim();
@@ -47,7 +55,7 @@ public class UserManagementRepository {
             SimpleUser simpleUser = null;
             if (password != null && id != null) {
                 simpleUser = new SimpleUser(id, username, password);
-                users.put(username, simpleUser);
+                users.put(id, simpleUser);
             }
             ;
             String rolesDefinition = config.get(username + ".roles");

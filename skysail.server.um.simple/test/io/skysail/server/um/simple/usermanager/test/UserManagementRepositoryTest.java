@@ -23,7 +23,7 @@ public class UserManagementRepositoryTest {
     @Test
     public void empty_config_yields_empty_usernamesAndPasswords() {
         UserManagementRepository repository = new UserManagementRepository(new HashMap<String, String>());
-        assertThat(repository.getByUsername("username"), is(nullValue()));
+        assertThat(repository.getByPrincipal("username"), is(nullValue()));
     }
 
     @Test
@@ -33,8 +33,8 @@ public class UserManagementRepositoryTest {
         config.put("admin.id", "#1");
         config.put("user.id", "#2");
         UserManagementRepository repository = new UserManagementRepository(config);
-        assertThat(repository.getByUsername("admin").getUsername(), is(equalTo("admin")));
-        assertThat(repository.getByUsername("admin").getPassword(), is(equalTo("pwd")));
+        assertThat(repository.getByPrincipal("#1").getUsername(), is(equalTo("admin")));
+        assertThat(repository.getByPrincipal("#1").getPassword(), is(equalTo("pwd")));
     }
 
     @Test
@@ -45,6 +45,6 @@ public class UserManagementRepositoryTest {
         config.put("user.id", "#2");
         config.put("admin.roles", "role1, role2");
         UserManagementRepository repository = new UserManagementRepository(config);
-        assertThat(repository.getByUsername("admin").getRoles().size(), is(2));
+        assertThat(repository.getByPrincipal("#1").getRoles().size(), is(2));
     }
 }

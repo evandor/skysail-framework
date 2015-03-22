@@ -30,13 +30,13 @@ public class SimpleDelegatingVerifier extends SecretVerifier {
             log.info("login event for user '{}' successful", identifier);
             return RESULT_VALID;
         } catch (UnknownAccountException uae) {
-            log.info("UnknownAccountException '{}' when login in {}", uae.getMessage(), identifier);
+            log.info("UnknownAccountException '" + uae.getMessage() + "' when login in " + identifier, uae);
         } catch (IncorrectCredentialsException ice) {
-            log.info("IncorrectCredentialsException '{}' when login in {}", ice.getMessage(), identifier);
+            log.info("IncorrectCredentialsException '" + ice.getMessage() + "' when login in " + identifier, ice);
         } catch (LockedAccountException lae) {
-            log.info("LockedAccountException '{}' when login in {}", lae.getMessage(), identifier);
+            log.info("LockedAccountException '" + lae.getMessage() + "' when login in " + identifier, lae);
         } catch (AuthenticationException ae) {
-            log.error("AuthenticationException '{}' when login in {}", ae.getMessage(), identifier);
+            log.error("AuthenticationException '" + ae.getMessage() + "' when login in " + identifier, ae);
         }
         return RESULT_INVALID;
     }

@@ -25,101 +25,102 @@ import javax.persistence.ManyToMany;
 //@NamedQuery(name = "findByName", query = "SELECT c FROM SkysailUser c WHERE c.username = :username")
 public class SkysailUser {
 
-	/**
-	 * this username is reserved; altering any data should be prevented by the
-	 * system.
-	 */
-	public static final String SYSTEM_USER = "system";
-	
-	@Id
-	private Object rid;
+    /**
+     * this username is reserved; altering any data should be prevented by the
+     * system.
+     */
+    public static final String SYSTEM_USER = "system";
 
-	@Field
-	// @Size(min = 3, message = "username must have at least three characters")
-	private String username;
+    @Id
+    private Object rid;
 
-	@Field(type = InputType.PASSWORD)
-	// @Size(min = 6, message = "password must have at least six characters")
-	private String password;
+    @Field
+    // @Size(min = 3, message = "username must have at least three characters")
+    private String username;
 
-	private String salt;
+    @Field(type = InputType.PASSWORD)
+    // @Size(min = 6, message = "password must have at least six characters")
+    private String password;
 
-	// @ManyToMany(fetch = FetchType.EAGER)
-	// @ManyToMany (cascade = { CascadeType.ALL })
-	// @JoinTable(name = "um_users_um_roles", joinColumns = { @JoinColumn(name =
-	// "SkysailUser_ID", referencedColumnName = "ID") }, inverseJoinColumns = {
-	// @JoinColumn(name = "roles_ID", referencedColumnName = "ID") })
-	private List<SkysailRole> roles = new ArrayList<SkysailRole>();
-	// private Map<String, SkysailRole> roles = new HashMap<String,
-	// SkysailRole>();
+    private String salt;
 
-	@ManyToMany
-	// @JoinTable(name = "um_users_um_groups", joinColumns = { @JoinColumn(name
-	// = "SkysailUser_ID", referencedColumnName = "ID") }, inverseJoinColumns =
-	// { @JoinColumn(name = "groups_ID", referencedColumnName = "ID") })
-	private List<SkysailGroup> groups = new ArrayList<SkysailGroup>();
+    // @ManyToMany(fetch = FetchType.EAGER)
+    // @ManyToMany (cascade = { CascadeType.ALL })
+    // @JoinTable(name = "um_users_um_roles", joinColumns = { @JoinColumn(name =
+    // "SkysailUser_ID", referencedColumnName = "ID") }, inverseJoinColumns = {
+    // @JoinColumn(name = "roles_ID", referencedColumnName = "ID") })
+    private List<SkysailRole> roles = new ArrayList<SkysailRole>();
+    // private Map<String, SkysailRole> roles = new HashMap<String,
+    // SkysailRole>();
 
-	public SkysailUser() {
-		// roles.add(new SkysailRole("test"));
-	}
+    @ManyToMany
+    // @JoinTable(name = "um_users_um_groups", joinColumns = { @JoinColumn(name
+    // = "SkysailUser_ID", referencedColumnName = "ID") }, inverseJoinColumns =
+    // { @JoinColumn(name = "groups_ID", referencedColumnName = "ID") })
+    private List<SkysailGroup> groups = new ArrayList<SkysailGroup>();
 
-	public SkysailUser(String username, String password) {
-		this.username = username;
-		this.password = password;
-	}
+    public SkysailUser() {
+        // roles.add(new SkysailRole("test"));
+    }
 
-	public String getUsername() {
-		return username;
-	}
+    public SkysailUser(String username, String password, String id) {
+        this.username = username;
+        this.password = password;
+        this.rid = id;
+    }
 
-	public void setUsername(String username) {
-		this.username = username;
-	}
+    public String getUsername() {
+        return username;
+    }
 
-	public String getPassword() {
-		return password;
-	}
+    public void setUsername(String username) {
+        this.username = username;
+    }
 
-	public void setPassword(String password) {
-		this.password = password;
-	}
+    public String getPassword() {
+        return password;
+    }
 
-	public List<SkysailRole> getRoles() {
-		roles = new ArrayList<SkysailRole>();
-		roles.add(new SkysailRole("admin"));
-		return roles;// roles.values().stream().collect(Collectors.toList());
-	}
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
-	public void setRoles(List<SkysailRole> roles) {
-		this.roles = roles;
-	}
+    public List<SkysailRole> getRoles() {
+        roles = new ArrayList<SkysailRole>();
+        roles.add(new SkysailRole("admin"));
+        return roles;// roles.values().stream().collect(Collectors.toList());
+    }
 
-	public List<SkysailGroup> getGroups() {
-		return groups;
-	}
+    public void setRoles(List<SkysailRole> roles) {
+        this.roles = roles;
+    }
 
-	public void setGroups(List<SkysailGroup> groups) {
-		this.groups = groups;
-	}
+    public List<SkysailGroup> getGroups() {
+        return groups;
+    }
 
-	@Override
-	public String toString() {
-		return username + "[" + roles.toString() + "]";
-	}
+    public void setGroups(List<SkysailGroup> groups) {
+        this.groups = groups;
+    }
 
-	public void setSalt(String salt) {
-		this.salt = salt;
-	}
+    @Override
+    public String toString() {
+        return username + "[" + roles.toString() + "]";
+    }
 
-	public String getSalt() {
-		return salt;
-	}
+    public void setSalt(String salt) {
+        this.salt = salt;
+    }
 
-	public Object getRid() {
+    public String getSalt() {
+        return salt;
+    }
+
+    public Object getRid() {
         return rid;
     }
-	
-	public void setRid(Object rid) {
+
+    public void setRid(Object rid) {
         this.rid = rid;
     }
 }

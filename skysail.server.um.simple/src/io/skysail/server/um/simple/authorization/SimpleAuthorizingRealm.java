@@ -45,9 +45,13 @@ public class SimpleAuthorizingRealm extends AuthorizingRealm {
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
         UsernamePasswordToken upToken = (UsernamePasswordToken) token;
-        SkysailUser user = getUser(upToken.getUsername());
-
+        String username = upToken.getUsername();
+        if (username == null) {
+            throw new IllegalArgumentException("Null usernames are not allowed by this realm.");
+        }
+        SkysailUser user = getUser(username);
         if (user != null) {
+
             // TODO
             // if (user.isLocked()) {
             // throw new LockedAccountException("Account [" + account +
@@ -81,7 +85,7 @@ public class SimpleAuthorizingRealm extends AuthorizingRealm {
         if (simpleUser == null) {
             return null;
         }
-        return new SkysailUser(simpleUser.getUsername(), simpleUser.getPassword());
+        return new SkysailUser(simpleUser.getUsername(), simpleUser.getPassword(), simpleUser.getId());
     }
 
     @Override

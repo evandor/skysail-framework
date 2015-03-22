@@ -7,6 +7,7 @@ import io.skysail.server.app.todos.domain.Todo;
 import java.util.Date;
 
 import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.subject.Subject;
 
 import de.twenty11.skysail.server.core.restlet.PostEntityServerResource;
 import de.twenty11.skysail.server.core.restlet.ResourceContextId;
@@ -32,7 +33,9 @@ public class PostTodoResource extends PostEntityServerResource<Todo> {
     @Override
     public SkysailResponse<?> addEntity(Todo entity) {
         entity.setCreated(new Date());
-        entity.setOwner(SecurityUtils.getSubject().getPrincipal().toString());
+        Subject subject = SecurityUtils.getSubject();
+        subject.getPrincipals().getPrimaryPrincipal();
+        entity.setOwner(subject.getPrincipal().toString());
         app.getRepository().add(entity);
         return new SkysailResponse<String>();
     }

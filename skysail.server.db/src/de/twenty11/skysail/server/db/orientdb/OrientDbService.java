@@ -333,7 +333,8 @@ public class OrientDbService extends AbstractOrientDbService implements DbServic
             persist(new DbVersion(1l, "initial"));
             SkysailRole adminRole = new SkysailRole("admin");
             persist(adminRole);
-            SkysailUser admin = new SkysailUser("admin", "$2a$12$52R8v2QH3vQRz8NcdtOm5.HhE5tFPZ0T/.MpfUa9rBzOugK.btAHS");
+            SkysailUser admin = new SkysailUser("admin",
+                    "$2a$12$52R8v2QH3vQRz8NcdtOm5.HhE5tFPZ0T/.MpfUa9rBzOugK.btAHS", "#1");
             admin.setRoles(Arrays.asList(adminRole));
             persist(admin);
         }

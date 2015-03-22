@@ -63,24 +63,23 @@ public class PutResourceTest {
         response = new Response(request);
 
         Reference resourceRef = Mockito.mock(Reference.class);
-        
+
         Reference targetRef = Mockito.mock(Reference.class);
         Reference baseRef = Mockito.mock(Reference.class); // http://localhost:2016/root/_profile/password/
         Mockito.when(resourceRef.getBaseRef()).thenReturn(baseRef);
         Mockito.when(baseRef.getTargetRef()).thenReturn(targetRef);
 
-        
         Mockito.when(request.getResourceRef()).thenReturn(resourceRef);
-        
+
         clientInfo = new ClientInfo();
         Mockito.when(request.getClientInfo()).thenReturn(clientInfo);
 
         form = new Form();
-        
+
         userManager = Mockito.mock(UserManager.class);
-        adminUser = new SkysailUser("admin", ADMIN_DEFAUTL_PASSWORD);
+        adminUser = new SkysailUser("admin", ADMIN_DEFAUTL_PASSWORD, "#1");
         Mockito.when(userManager.findByUsername("admin")).thenReturn(adminUser);
-        
+
         query = new Form();
 
         subjectUnderTest = Mockito.mock(Subject.class);
@@ -92,7 +91,7 @@ public class PutResourceTest {
     public void tearDownSubject() {
         clearSubject();
     }
-    
+
     @AfterClass
     public static void tearDownShiro() {
         doClearSubject();

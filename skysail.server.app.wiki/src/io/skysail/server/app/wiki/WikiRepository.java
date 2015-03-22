@@ -28,7 +28,7 @@ public class WikiRepository implements DbRepository {
     }
 
     public <T> List<T> findAll(Class<T> cls) {
-        return dbService.findObjects(cls, "username");
+        return dbService.findObjects("select from " + cls.getSimpleName());
     }
 
     public static Object add(Object entity, String... edges) {

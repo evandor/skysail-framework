@@ -52,11 +52,12 @@ public class InMemoryDbService implements DbService2 {
         return newId;
     }
 
-    @Override
-    public List<String> getAll(Class<?> cls, String username) {
-        Map<String, Object> map = db.get(cls.getSimpleName());
-        return map.values().stream().map(o -> o.toString()).collect(Collectors.toList());
-    }
+    // @Override
+    // public List<String> getAll(Class<?> cls, String username) {
+    // Map<String, Object> map = db.get(cls.getSimpleName());
+    // return map.values().stream().map(o ->
+    // o.toString()).collect(Collectors.toList());
+    // }
 
     @SuppressWarnings("unchecked")
     @Override
@@ -66,8 +67,13 @@ public class InMemoryDbService implements DbService2 {
     }
 
     @Override
-    public <T> List<T> findObjects(Class<?> cls, String username) {
-        Map<String, Object> map = db.get(cls.getSimpleName());
+    public <T> List<T> findObjects(String sql) {
+        return findObjects(sql, new HashMap<>());
+    }
+
+    @Override
+    public <T> List<T> findObjects(String sql, Map<String, Object> params) {
+        Map<String, Object> map = db.get(sql.replace("select from ", ""));
         return map.values().stream().map(o -> {
             return (T) o;
         }).collect(Collectors.toList());
@@ -102,7 +108,7 @@ public class InMemoryDbService implements DbService2 {
     }
 
     @Override
-    public long getCount(Class<?> cls, String id) {
+    public long getCount(String sql, Map<String, Object> params) {
         return 0;
     }
 

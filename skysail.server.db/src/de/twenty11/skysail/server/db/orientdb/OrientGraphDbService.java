@@ -4,9 +4,9 @@ import io.skysail.server.db.DbConfigurationProvider;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
-import java.util.stream.Collectors;
+import java.util.Map;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -31,6 +31,7 @@ import com.orientechnologies.orient.object.db.OObjectDatabaseTx;
 import com.orientechnologies.orient.object.metadata.schema.OSchemaProxyObject;
 import com.tinkerpop.blueprints.impls.orient.OrientGraph;
 import com.tinkerpop.blueprints.impls.orient.OrientGraphFactory;
+import com.tinkerpop.blueprints.impls.orient.OrientGraphNoTx;
 
 import de.twenty11.skysail.server.beans.DynamicEntity;
 import de.twenty11.skysail.server.core.db.DbService2;
@@ -91,20 +92,38 @@ public class OrientGraphDbService extends AbstractOrientDbService implements DbS
         new Updater(getObjectDb()).update(entity);
     }
 
+    // @Override
+    // public List<String> getAll(Class<?> cls, String username) {
+    // OrientGraph db = getDb();
+    // try {
+    // List<ODocument> result = db.getRawGraph().query(
+    // new OSQLSynchQuery<ODocument>("select from " + cls.getSimpleName()));
+    // return result.stream().map(doc -> {
+    // return doc.toJSON();
+    // }).collect(Collectors.toList());
+    // } catch (Exception e) {
+    // return Collections.emptyList();
+    // } finally {
+    // db.shutdown();
+    // }
+    // }
+
     @Override
-    public List<String> getAll(Class<?> cls, String username) {
-        OrientGraph db = getDb();
-        try {
-            List<ODocument> result = db.getRawGraph().query(
-                    new OSQLSynchQuery<ODocument>("select from " + cls.getSimpleName()));
-            return result.stream().map(doc -> {
-                return doc.toJSON();
-            }).collect(Collectors.toList());
-        } catch (Exception e) {
-            return Collections.emptyList();
-        } finally {
-            db.shutdown();
+    public <T> List<T> findObjects(String sql) {
+        return findObjects(sql, new HashMap<>());
+    }
+
+    @Override
+    public <T> List<T> findObjects(String sql, Map<String, Object> params) {
+        OObjectDatabaseTx objectDb = getObjectDb();
+        List<T> query = objectDb.query(new OSQLSynchQuery<ODocument>(sql), params);
+
+        List<T> detachedEntities = new ArrayList<>();
+        for (T t : query) {
+            T newOne = objectDb.detachAll(t, true);
+            detachedEntities.add(newOne);
         }
+        return detachedEntities;
     }
 
     @Override
@@ -115,23 +134,9 @@ public class OrientGraphDbService extends AbstractOrientDbService implements DbS
     }
 
     @Override
-    public <T> List<T> findObjects(Class<?> cls, String username) {
+    public long getCount(String sql, Map<String, Object> params) {
         OObjectDatabaseTx objectDb = getObjectDb();
-        objectDb.getEntityManager().registerEntityClass(cls);
-        List<T> query = objectDb.query(new OSQLSynchQuery<ODocument>("select from " + cls.getSimpleName()));
-        List<T> detachedEntities = new ArrayList<>();
-        for (T t : query) {
-            T newOne = objectDb.detachAll(t, true);
-            detachedEntities.add(newOne);
-        }
-        return detachedEntities;
-    }
-
-    @Override
-    public long getCount(Class<?> cls, String id) {
-        OObjectDatabaseTx objectDb = getObjectDb();
-        List<ODocument> query = objectDb.query(new OSQLSynchQuery<ODocument>("select COUNT(*) as count from "
-                + cls.getSimpleName()));
+        List<ODocument> query = objectDb.query(new OSQLSynchQuery<ODocument>(sql), params);
         return query.get(0).field("count");
     }
 
@@ -158,8 +163,6 @@ public class OrientGraphDbService extends AbstractOrientDbService implements DbS
             createDbIfNeeded();
             OObjectDatabaseTx db = OObjectDatabasePool.global().acquire(getDbUrl(), getDbUsername(), getDbPassword());
             db.setLazyLoading(false);
-            // registerDefaultClasses();
-            initDbIfNeeded();
             started = true;
             if (getDbUrl().startsWith("memory:")) {
                 // remark: this might be called without an eventhandler already
@@ -183,19 +186,31 @@ public class OrientGraphDbService extends AbstractOrientDbService implements DbS
     }
 
     private void createDbIfNeeded() {
-        if (getDbUrl().startsWith("remote")) {
+        String dbUrl = getDbUrl();
+        if (dbUrl.startsWith("remote")) {
             Orient.instance().registerEngine(new OEngineRemote());
         }
-        OObjectDatabaseTx db = new OObjectDatabaseTx(getDbUrl());
-        if (getDbUrl().startsWith("memory:") || getDbUrl().startsWith("plocal")) {
-            if (!db.exists()) {
-                db.create();
-                // importInitialData();
+        if (dbUrl.startsWith("memory:") || dbUrl.startsWith("plocal")) {
+            final OrientGraphFactory factory = new OrientGraphFactory(dbUrl, getDbUsername(), getDbPassword());
+            try {
+                OrientGraphNoTx g = factory.getNoTx();
+            } finally {
+                // this also closes the OrientGraph instances created by the
+                // factory
+                // Note that OrientGraphFactory does not implement Closeable
+                factory.close();
             }
+            // OObjectDatabaseTx db = new OObjectDatabaseTx(dbUrl);
+            // // OrientGraph db = new OrientGraph(dbUrl);
+            // if (!db.exists()) {
+            // log.info("creating new database with dbUrl '{}'", dbUrl);
+            // db.create();
+            //
+            // // graphDb.create();
+            // // OrientGraph db = new OrientGraph(graphDb);
+            //
+            // }
         }
-    }
-
-    private void initDbIfNeeded() {
     }
 
     protected void registerShutdownHook() {

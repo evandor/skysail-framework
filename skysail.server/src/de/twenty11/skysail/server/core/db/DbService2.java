@@ -1,6 +1,7 @@
 package de.twenty11.skysail.server.core.db;
 
 import java.util.List;
+import java.util.Map;
 
 import aQute.bnd.annotation.ProviderType;
 
@@ -30,9 +31,11 @@ public interface DbService2 {
      */
     <T> T findObjectById(Class<?> cls, String id);
 
-    List<String> getAll(Class<?> cls, String username);
+    // List<String> getAll(Class<?> cls, String username);
 
-    <T> List<T> findObjects(Class<?> cls, String username);
+    <T> List<T> findObjects(String sql);
+
+    <T> List<T> findObjects(String sql, Map<String, Object> params);
 
     <T> void update(Object id, T entity);
 
@@ -48,6 +51,6 @@ public interface DbService2 {
 
     void createProperty(String simpleName, String string, OType date);
 
-    long getCount(Class<?> cls, String id);
+    long getCount(String sql, Map<String, Object> params);
 
 }

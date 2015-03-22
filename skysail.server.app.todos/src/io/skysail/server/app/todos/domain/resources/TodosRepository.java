@@ -2,7 +2,11 @@ package io.skysail.server.app.todos.domain.resources;
 
 import io.skysail.server.app.todos.domain.Todo;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import org.apache.shiro.SecurityUtils;
 
 import aQute.bnd.annotation.component.Activate;
 import aQute.bnd.annotation.component.Component;
@@ -18,6 +22,7 @@ public class TodosRepository implements DbRepository {
     @Activate
     public void activate() {
         dbService.setupVertices(Todo.class.getSimpleName());
+        dbService.register(Todo.class);
     }
 
     @Reference
@@ -30,7 +35,11 @@ public class TodosRepository implements DbRepository {
     }
 
     public <T> List<T> findAll(Class<T> cls) {
-        return dbService.findObjects(cls, "username");
+        String username = SecurityUtils.getSubject().getPrincipal().toString();
+        String sql = "SELECT from Todo WHERE owner= :username";
+        Map<String, Object> params = new HashMap<String, Object>();
+        params.put("username", username);
+        return dbService.findObjects(sql, params);
     }
 
     public static Object add(Object entity, String... edges) {
@@ -49,26 +58,8 @@ public class TodosRepository implements DbRepository {
         return dbService.persist(entity);
     }
 
-    // public List<Todo> getTodos(String username) {
-    // String sql = "SELECT from Todo WHERE owner= :username";
-    // Map<String, Object> params = new HashMap<String, Object>();
-    // params.put("username", username);
-    // return null;// dbService.findAll(sql, Todo.class, params);
-    // }
-
-    // public List<String> getTodosAsJson(String username) {
-    // String sql = "SELECT from Todo WHERE owner= :username";
-    // Map<String, Object> params = new HashMap<String, Object>();
-    // params.put("username", username);
-    // return null;// dbService.findAndReturnJson(sql, Todo.class, params);
-    // }
-
     public Todo getById(String id) {
         return dbService.findObjectById(Todo.class, id);
-    }
-
-    public String getJsonById(String id) {
-        return null;// dbService.findAndReturnJson(id, Todo.class);
     }
 
     public void delete(String id) {
@@ -76,7 +67,9 @@ public class TodosRepository implements DbRepository {
     }
 
     public long getTodosCount(String username) {
-        return dbService.getCount(Todo.class, username);
+        String sql = "select COUNT(*) as count from " + Todo.class.getSimpleName() + " WHERE owner = :uername";
+        Map<String, Object> params = new HashMap<String, Object>();
+        params.put("username", username);
+        return dbService.getCount(sql, params);
     }
-
 }

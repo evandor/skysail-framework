@@ -9,39 +9,19 @@ import java.util.Map;
 
 import org.junit.Before;
 import org.junit.Ignore;
-import org.junit.Rule;
 import org.junit.Test;
-import org.junit.rules.ExpectedException;
-import org.osgi.framework.Bundle;
-import org.osgi.framework.FrameworkUtil;
 import org.osgi.framework.ServiceReference;
 import org.restlet.data.Form;
 import org.restlet.data.MediaType;
 import org.restlet.representation.Representation;
 import org.restlet.resource.ServerResource;
 
-public class TodosIntegrationTests {
-
-    private static final String HOST = "http://localhost";
-    private static final String PORT = "2015";
-    private static String credentials;
-
-    private Bundle thisBundle = FrameworkUtil.getBundle(this.getClass());
-    private Form form;
-
-    @Rule
-    public ExpectedException thrown = ExpectedException.none();
-
-    private Client client;
+public class TodosIntegrationTests extends IntegrationTests {
 
     @Before
     public void setUp() throws Exception {
-        client = new Client(getBaseUrl()).loginAs("admin", "syksail");
+        client = new Client(getBaseUrl()).loginAs("admin", "skysail");
         form = new Form();
-    }
-
-    private String getBaseUrl() {
-        return HOST + (PORT != null ? ":" + PORT : "");
     }
 
     @Test
@@ -109,6 +89,7 @@ public class TodosIntegrationTests {
         form.add("title", "mytitle");
         client.setUrl("/Todos/Todos/").post(form, MediaType.TEXT_HTML);
         assertTrue(client.getResponse().getStatus().getCode() == 200);
+
     }
 
 }

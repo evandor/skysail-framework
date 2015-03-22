@@ -3,6 +3,7 @@ package de.twenty11.skysail.server.app;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 import java.util.function.Consumer;
 
@@ -115,10 +116,10 @@ public class ApplicationList implements ApplicationListProvider {
         apps.stream().forEach(app -> app.setEventAdmin(null));
         apps.stream().forEach(app -> app.setRequestResponseMonitor(null));
         apps.stream().forEach(app -> app.setMetricsService(null));
-        apps.stream().forEach(app -> app.setValidatorService(services.getValidatorService()));
-        apps.stream().forEach(app -> app.setDocumentationProvider(services.getDocumentationProvider()));
-        apps.stream().forEach(app -> app.setTranslationRenderServices(Collections.emptyList()));
-        apps.stream().forEach(app -> app.setFilters(Collections.emptySet()));
+        apps.stream().forEach(app -> app.setValidatorService(null));
+        apps.stream().forEach(app -> app.setDocumentationProvider(null));
+        apps.stream().forEach(app -> app.setTranslationRenderServices(new ArrayList<>()));
+        apps.stream().forEach(app -> app.setFilters(new HashSet<>()));
     }
 
     @Override

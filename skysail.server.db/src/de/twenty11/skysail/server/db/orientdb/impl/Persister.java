@@ -77,7 +77,7 @@ public class Persister {
         } catch (Exception e) {
             db.rollback();
             log.error("Exception in Database, rolled back transaction", e);
-            return null;
+            throw e;
         } finally {
             db.shutdown();
         }

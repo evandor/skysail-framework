@@ -14,6 +14,8 @@ import java.util.Set;
 
 import javax.validation.ConstraintViolation;
 
+import lombok.extern.slf4j.Slf4j;
+
 import org.apache.shiro.SecurityUtils;
 import org.restlet.data.ClientInfo;
 import org.restlet.data.Form;
@@ -22,8 +24,6 @@ import org.restlet.data.Status;
 import org.restlet.resource.Get;
 import org.restlet.resource.Post;
 import org.restlet.resource.ResourceException;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import de.twenty11.skysail.server.core.restlet.filter.AbstractResourceFilter;
 import de.twenty11.skysail.server.core.restlet.filter.CheckBusinessViolationsFilter;
@@ -78,10 +78,11 @@ import etm.core.monitor.EtmPoint;
  * 
  * @param <T>
  */
+@Slf4j
 public abstract class PostEntityServerResource<T> extends SkysailServerResource<T> {
 
-    /** slf4j based logger implementation. */
-    private static final Logger logger = LoggerFactory.getLogger(PostEntityServerResource.class);
+    /** the value of the submit button */
+    protected String submitValue;
 
     /**
      * If you have a route defined as "/repository/{key}", you can get the key
@@ -139,13 +140,14 @@ public abstract class PostEntityServerResource<T> extends SkysailServerResource<
      * @return the resource of type T
      */
     public T getData(Form form) {
+        submitValue = form.getFirstValue("submit");
         return populate(createEntityTemplate(), form);
     };
 
     @Get("htmlform|html")
     @API(desc = "create an html form to post a new entity")
     public SkysailResponse<T> createForm() {
-        logger.info("Request entry point: {} @Get('htmlform|html')", this.getClass().getSimpleName());
+        log.info("Request entry point: {} @Get('htmlform|html')", this.getClass().getSimpleName());
         return new FormResponse<T>(createEntityTemplate(), ".");
     }
 
@@ -153,7 +155,7 @@ public abstract class PostEntityServerResource<T> extends SkysailServerResource<
     @API(desc = "as Json")
     public T getJson() {
         EtmPoint point = etmMonitor.createPoint("PostEntityServerResource:getJson");
-        logger.info("Request entry point: {} @Get('json')", this.getClass().getSimpleName());
+        log.info("Request entry point: {} @Get('json')", this.getClass().getSimpleName());
         RequestHandler<T> requestHandler = new RequestHandler<T>(getApplication());
         AbstractResourceFilter<PostEntityServerResource<T>, T> handler = requestHandler.newInstance(Method.GET);
         T entity = handler.handle(this, getResponse()).getEntity();
@@ -170,11 +172,11 @@ public abstract class PostEntityServerResource<T> extends SkysailServerResource<
     @API(desc = "generic POST for JSON")
     public Object post(T entity) {
         EtmPoint point = etmMonitor.createPoint("PostEnityServerResource:post");
-        logger.info("Request entry point: {} @Post('json')", this.getClass().getSimpleName());
+        log.info("Request entry point: {} @Post('json')", this.getClass().getSimpleName());
         if (entity != null) {
             getRequest().getAttributes().put(SKYSAIL_SERVER_RESTLET_ENTITY, entity);
         } else {
-            logger.warn("provided entity was null!");
+            log.warn("provided entity was null!");
         }
 
         Object post = post((Form) null);
@@ -201,10 +203,10 @@ public abstract class PostEntityServerResource<T> extends SkysailServerResource<
     }
 
     private ResponseWrapper<T> doPost(Form form) {
-        logger.info("Request entry point: {} @Post('x-www-form-urlencoded:html|json|xml')", this.getClass()
+        log.info("Request entry point: {} @Post('x-www-form-urlencoded:html|json|xml')", this.getClass()
                 .getSimpleName());
         ClientInfo ci = getRequest().getClientInfo();
-        logger.info("calling post(Form), media types '{}'", ci != null ? ci.getAcceptedMediaTypes() : "test");
+        log.info("calling post(Form), media types '{}'", ci != null ? ci.getAcceptedMediaTypes() : "test");
         if (form != null) {
             getRequest().getAttributes().put(SKYSAIL_SERVER_RESTLET_FORM, form);
         }
@@ -226,8 +228,8 @@ public abstract class PostEntityServerResource<T> extends SkysailServerResource<
 
     @Override
     public List<Link> getLinkheader() {
-        return Arrays.asList(new Link.Builder(".").relation(LinkRelation.NEXT).title("form target")
-                .verbs(Method.POST).build());
+        return Arrays.asList(new Link.Builder(".").relation(LinkRelation.NEXT).title("form target").verbs(Method.POST)
+                .build());
     }
 
     /**
@@ -245,7 +247,7 @@ public abstract class PostEntityServerResource<T> extends SkysailServerResource<
      */
     protected void index(T entity, SearchService searchService, String link, String id) {
         if (searchService == null) {
-            logger.warn("no search service available - document will not be indexed");
+            log.warn("no search service available - document will not be indexed");
             return;
         }
         try {
@@ -259,7 +261,7 @@ public abstract class PostEntityServerResource<T> extends SkysailServerResource<
             getMap.put("_link", link);
             searchService.addDocument(getMap);
         } catch (IOException e) {
-            logger.error("error indexing document", e);
+            log.error("error indexing document", e);
         }
 
     }

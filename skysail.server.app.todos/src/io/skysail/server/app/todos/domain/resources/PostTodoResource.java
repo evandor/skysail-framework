@@ -7,7 +7,6 @@ import io.skysail.server.app.todos.domain.Todo;
 import java.util.Date;
 
 import org.apache.shiro.SecurityUtils;
-import org.restlet.resource.ResourceException;
 
 import de.twenty11.skysail.server.core.restlet.PostEntityServerResource;
 import de.twenty11.skysail.server.core.restlet.ResourceContextId;
@@ -21,8 +20,7 @@ public class PostTodoResource extends PostEntityServerResource<Todo> {
     }
 
     @Override
-    protected void doInit() throws ResourceException {
-        app = (TodoApplication) getApplication();
+    protected void doInit() {
         app = (TodoApplication) getApplication();
     }
 
@@ -41,6 +39,9 @@ public class PostTodoResource extends PostEntityServerResource<Todo> {
 
     @Override
     public String redirectTo() {
+        if ("submitAndNew".equals(submitValue)) {
+            return super.redirectTo(PostTodoResource.class);
+        }
         return super.redirectTo(TodosResource.class);
     }
 }

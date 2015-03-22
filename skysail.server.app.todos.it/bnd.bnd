@@ -5,7 +5,7 @@ Private-Package:  \
 	io.skysail.server.documentation.test
 
 Test-Cases: \
-	io.skysail.server.documentation.test.TodosIntegrationTests
+	io.skysail.server.documentation.test.TodosIntegrationTests,io.skysail.server.documentation.test.AccessTests
 
 -buildpath:  \
 	skysail.api.validation;version=latest,\

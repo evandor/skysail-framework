@@ -17,6 +17,11 @@ public class Client {
         this.baseUrl = baseUrl;
     }
 
+    public Client(String baseUrl, String credentials) {
+        this.baseUrl = baseUrl;
+        this.credentials = credentials;
+    }
+
     public Client setUrl(String url) {
         this.url = url;
         return this;
@@ -39,14 +44,20 @@ public class Client {
     }
 
     public Client loginAs(String username, String password) {
-        cr = new ClientResource(baseUrl + "/_logout?targetUri=/");
+        ClientResource cr = new ClientResource(baseUrl + "/_logout?targetUri=/");
         cr.get();
         cr = new ClientResource(baseUrl + "/_login");
         cr.setFollowingRedirects(true);
         Form form = new Form();
         form.add("username", username);
         form.add("password", password);
-        cr.post(form, MediaType.TEXT_HTML);
+        Representation post = cr.post(form, MediaType.TEXT_HTML);
+        // try {
+        // System.out.println(post.getText());
+        // } catch (IOException e) {
+        // // TODO Auto-generated catch block
+        // e.printStackTrace();
+        // }
         credentials = cr.getResponse().getCookieSettings().getFirstValue("Credentials");
         return this;
     }

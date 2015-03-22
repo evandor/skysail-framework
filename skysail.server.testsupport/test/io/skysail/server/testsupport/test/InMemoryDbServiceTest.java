@@ -22,7 +22,7 @@ public class InMemoryDbServiceTest {
     @Test
     public void can_handle_single_entity() {
         dbService.persist(new String("a string"));
-        List<Object> findObjects = dbService.findObjects(String.class, "username");
+        List<Object> findObjects = dbService.findObjects(String.class.getSimpleName());
         assertThat(findObjects.size(), is(1));
         assertThat(((String) findObjects.get(0)), is(equalTo("a string")));
     }
@@ -33,7 +33,7 @@ public class InMemoryDbServiceTest {
 
         dbService.update(id, new Integer(9));
 
-        List<Object> findObjects = dbService.findObjects(Integer.class, "username");
+        List<Object> findObjects = dbService.findObjects(Integer.class.getSimpleName());
         assertThat(findObjects.size(), is(1));
         assertThat(((Integer) findObjects.get(0)), is(equalTo(9)));
     }
@@ -42,7 +42,7 @@ public class InMemoryDbServiceTest {
     public void can_handle_two_entites_of_same_type() {
         dbService.persist(new String("7"));
         dbService.persist(new String("8"));
-        List<Object> findObjects = dbService.findObjects(String.class, "username");
+        List<Object> findObjects = dbService.findObjects(String.class.getSimpleName());
         assertThat(findObjects.size(), is(2));
         assertThat(((String) findObjects.get(0)), is(equalTo("7")));
         assertThat(((String) findObjects.get(1)), is(equalTo("8")));
@@ -52,7 +52,7 @@ public class InMemoryDbServiceTest {
     public void can_handle_two_entites_of_different_type() {
         dbService.persist(new String("7"));
         dbService.persist(new Integer(8));
-        List<Object> findObjects = dbService.findObjects(String.class, "username");
+        List<Object> findObjects = dbService.findObjects(String.class.getSimpleName());
         assertThat(findObjects.size(), is(1));
         assertThat(((String) findObjects.get(0)), is(equalTo("7")));
     }

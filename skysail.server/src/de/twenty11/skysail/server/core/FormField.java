@@ -149,6 +149,10 @@ public class FormField {
         return MessagesUtils.getBaseKey(cls != null ? cls : getEntity().getClass(), this) + ".placeholder";
     }
 
+    public String getTitleKey() {
+        return MessagesUtils.getBaseKey(cls != null ? cls : getEntity().getClass(), this) + ".title";
+    }
+
     public boolean isDateType() {
         return checkTypeFor(Date.class);
     }
@@ -239,8 +243,7 @@ public class FormField {
     }
 
     private InputType getFromFieldAnnotation(Field fieldAnnotation) {
-        io.skysail.api.forms.Field annotation = fieldAnnotation
-                .getAnnotation(io.skysail.api.forms.Field.class);
+        io.skysail.api.forms.Field annotation = fieldAnnotation.getAnnotation(io.skysail.api.forms.Field.class);
         return annotation != null ? annotation.type() : null;
     }
 

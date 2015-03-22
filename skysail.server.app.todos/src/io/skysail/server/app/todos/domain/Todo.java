@@ -45,7 +45,7 @@ public class Todo implements Serializable {
     @Field(type = InputType.READONLY)
     private Date modified;
 
-    @Field(type = InputType.READONLY, listView = ListView.HIDE)
+    @Field(type = InputType.READONLY, listView = { ListView.HIDE })
     private String owner;
 
     // start date, due date, Priority (high, medium, low),

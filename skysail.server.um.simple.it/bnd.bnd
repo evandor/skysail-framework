@@ -1,0 +1,142 @@
+Bundle-Name: SKYSAIL :: server :: um :: simple :: integrationtests
+Bundle-Version: 0.1.0.${tstamp}
+
+Test-Cases: \
+	io.skysail.server.um.simple.it.LoginTests
+
+-buildpath:  \
+	skysail.api.validation;version=latest,\
+	osgi.core;version=5.0,\
+	com.springsource.org.junit;version=4.11,\
+	skysail.api.documentation;version=latest,\
+	org.restlet;version=${restlet.version},\
+	skysail.server.um.internal;version=0.0,\
+	de.twentyeleven.skysail.org.json-osgi;version=latest,\
+	org.codehaus.jettison.jettison;version=1.3,\
+	org.apache.felix.configadmin;version=1.8,\
+	skysail.server.db;version=latest,\
+	lombok;version=1.12,\
+	skysail.client.testsupport;version=latest
+	
+-runfw: org.apache.felix.framework;version='[4,5)'
+-runee: JavaSE-1.8
+-runsystemcapabilities: ${native_capability}
+
+-runvm: -ea
+#,-XX:+UnlockCommercialFeatures,-XX:+FlightRecorder,-XX:StartFlightRecording="duration=120m,filename=flightrecorder.jfr"
+
+-runrepos:  \
+	Workspace,\
+	Release,\
+	Local,\
+	Skysail Repository,\
+	Bndtools Hub
+	
+-runsystempackages: sun.reflect, sun.misc, com.sun.net.httpserver, javax.imageio.spi, javax.crypto, javax.crypto.spec, javax.script, javax.net,\
+    javax.net.ssl,javax.sql,javax.security.auth.x500,org.ietf.jgss,javax.naming,javax.naming.directory,javax.naming.ldap,\
+    javax.xml.bind,javax.xml.bind.annotation,javax.xml.bind.annotation.adapters,javax.activation,javax.security.auth.callback,\
+    javax.naming.spi,javax.management,javax.management.openmbean,javax.swing.tree,javax.transaction,javax.transaction.xa,\
+    javax.xml.transform.stax,javafx.application,javafx.scene,javafx.scene.control,javafx.scene.layout,javafx.stage,\
+    javafx.beans.property,javafx.collections,javafx.beans.value,javafx.concurrent,javafx.event,javafx.geometry,\
+    javafx.scene.image,javafx.scene.web,javafx.util,netscape.javascript,javafx.scene.paint
+
+
+-resolve.effective: active;skip:="osgi.service"
+#-XX:+UnlockCommercialFeatures -XX:+FlightRecorder -XX:StartFlightRecording=duration=120m,filename=recording1.jfr
+-runproperties: felix.fileinstall.dir=config/test,\
+    felix.fileinstall.filter=.*\\.jar|.*\\.cfg,\
+    felix.fileinstall.noInitialDelay=true,\
+    felix.fileinstall.poll=1000,\
+    org.apache.felix.log.storeDebug=true,\
+    felix.fileinstall.log.level=4,\
+    org.apache.felix.log.storeDebug=true,\
+    https.proxyHost=192.168.11.140,\
+    https.proxyPort=8080,\
+    logback.configurationFile=config/test/logback.xml,\
+    obr.repository.url=https://raw.githubusercontent.com/evandor/skysail-repository/master/index.xml https://raw.githubusercontent.com/evandor/skysail/master/cnf/releaserepo/index.xml http://felix.apache.org/obr/releases.xml
+#    gosh.args=--nointeractive
+
+
+#  gosh.args=--nointeractive : otherwise I get a "gosh: stopping framework" message when running the integration tests...
+#-runproperties: \
+#    gosh.args=--nointeractive	
+
+-runbundles:  \
+	ch.qos.logback.classic;version='[1.1.2,1.1.3)',\
+	ch.qos.logback.core;version='[1.1.2,1.1.3)',\
+	classmate;version='[1.0.0,1.0.1)',\
+	com.fasterxml.jackson.core.jackson-annotations;version='[2.5,2.6)',\
+	com.fasterxml.jackson.core.jackson-core;version='[2.5,2.6)',\
+	com.fasterxml.jackson.core.jackson-databind;version='[2.5,2.6)',\
+	com.fasterxml.jackson.dataformat.jackson-dataformat-xml;version='[2.5,2.6)',\
+	com.fasterxml.jackson.dataformat.jackson-dataformat-smile;version='[2.5,2.6)',\
+	com.fasterxml.jackson.dataformat.jackson-dataformat-yaml;version='[2.5,2.6)',\
+	com.fasterxml.jackson.dataformat.jackson-dataformat-csv;version='[2.5,2.6)',\
+	com.google.guava;version='[16.0,16.1)',\
+	com.googlecode.concurrentlinkedhashmap.lru;version='[1.4.0,1.4.1)',\
+	com.orientechnologies.orientdb-client;version='[2.0,2.1)',\
+	com.orientechnologies.orientdb-core;version='[2.0,2.1)',\
+	com.orientechnologies.orientdb-enterprise;version='[2.0,2.1)',\
+	com.orientechnologies.orientdb-object;version='[2.0,2.1)',\
+	com.springsource.org.junit;version='[4.11.0,4.11.1)',\
+	com.sun.el;version='[2.2.0,2.2.1)',\
+	de.twenty11.owasp-java-html-sanitizer;version='[239.0.0,239.0.1)',\
+	de.twentyeleven.skysail.org.json-osgi;version=latest,\
+	etm.core;version='[1.2.3,1.2.4)',\
+	javassist;version='[3.18.1,3.18.2)',\
+	javax.el-api;version='[3.0.0,3.0.1)',\
+	javax.persistence;version='[2.1.0,2.1.1)',\
+	javax.servlet;version='[3.0.0,3.0.1)',\
+	javax.validation.api;version='[1.1.0,1.1.1)',\
+	org.apache.commons.beanutils;version='[1.9.2,1.9.3)',\
+	org.apache.commons.collections;version='[3.2.1,3.2.2)',\
+	org.apache.commons.lang;version='[2.6.0,2.6.1)',\
+	org.apache.commons.lang3;version='[3.3.0,3.4)',\
+	org.apache.commons.logging;version='[1.1.3,1.1.4)',\
+	org.apache.felix.configadmin;version='[1.8.0,1.8.1)',\
+	org.apache.felix.fileinstall;version='[3.4.0,3.4.1)',\
+	org.apache.felix.gogo.command;version='[0.14.0,0.14.1)',\
+	org.apache.felix.gogo.runtime;version='[0.12.1,0.12.2)',\
+	org.apache.felix.gogo.shell;version='[0.10.0,0.10.1)',\
+	org.apache.felix.log;version='[1.0.1,1.0.2)',\
+	org.apache.felix.scr;version='[1.8.2,1.8.3)',\
+	org.apache.felix.bundlerepository;version=latest,\
+	org.apache.shiro.core;version='[1.2.2,1.2.3)',\
+	org.apache.shiro.web;version='[1.2.2,1.2.3)',\
+	org.hibernate.validator;version='[5.1.2,5.1.3)',\
+	org.jboss.logging.jboss-logging;version='[3.1.4,3.1.5)',\
+	org.restlet;version='[2.3,2.4)',\
+	org.restlet.ext.jackson;version='[2.3,2.4)',\
+	org.restlet.ext.json;version='[2.3,2.4)',\
+	org.restlet.ext.slf4j;version='[2.3,2.4)',\
+	org.restlet.ext.crypto;version='[2.3,2.4)',\
+	org.xerial.snappy.snappy-java;version='[1.1.1,1.1.2)',\
+	osgi.cmpn;version='[5.0.0,5.0.1)',\
+	osgi.enterprise;version='[4.2.0,4.2.1)',\
+	skysail.api;version=latest,\
+	skysail.api.um;version=latest,\
+	skysail.api.text;version=latest,\
+	skysail.api.documentation;version=latest,\
+	skysail.api.validation;version=latest,\
+	skysail.api.features;version=latest,\
+	skysail.api.favorites;version=latest,\
+	skysail.client.testsupport;version=latest,\
+	skysail.server;version=latest,\
+	skysail.server.converter;version=latest,\
+	skysail.server.db;version=latest,\
+	skysail.server.documentation;version=latest,\
+	skysail.server.http;version=latest,\
+	skysail.server.plugins;version=latest,\
+	skysail.server.static;version=latest,\
+	skysail.server.text;version=latest,\
+	skysail.server.text.markdown;version=latest,\
+	skysail.server.um.simple;version=latest,\
+	slf4j.api;version='[1.7.7,1.7.8)',\
+	de.twentyeleven.skysail.org.antlr.stringtemplate-osgi;version=4.0.8,\
+	org.jruby.jruby;version=1.7.19,\
+	com.beust.jcommander;version=1.47.0,\
+	stax2-api;version=3.1.4,\
+	com.fasterxml.jackson.module.jackson-module-jaxb-annotations;version=2.5.1,\
+	org.codehaus.jettison.jettison;version=1.3.7
+Private-Package:  \
+	io.skysail.server.um.simple.it

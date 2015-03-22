@@ -35,8 +35,6 @@ public class SimpleAuthenticationService implements AuthenticationService {
         validateUser(user);
         updateConfigFile(user, newPassword);
         clearCache(user.getUsername());
-        // currentUser.setPassword(bCryptHash);
-        // app.getUserManager().update(currentUser);
         SecurityUtils.getSecurityManager().logout(SecurityUtils.getSubject());
         // app.clearCache(username);
     }

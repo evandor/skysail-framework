@@ -28,11 +28,13 @@ import aQute.bnd.annotation.component.Deactivate;
 import aQute.bnd.annotation.component.Reference;
 
 /**
- * A UserManagerProvider based on a configuration file containing information
- * about existing users, their ids, passwords and roles.
+ * A UserManagerProvider based on a configuration file (containing information
+ * about existing users, their ids, passwords and roles).
  * 
+ * <p>
  * Delegates to various services and creates a default configuration if no other
  * configuration is provided.
+ * </p>
  *
  */
 @Component(immediate = true, configurationPolicy = ConfigurationPolicy.optional)

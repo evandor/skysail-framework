@@ -16,6 +16,7 @@ import io.skysail.server.converter.wrapper.STResourceWrapper;
 import io.skysail.server.converter.wrapper.STServicesWrapper;
 import io.skysail.server.converter.wrapper.STSourceWrapper;
 import io.skysail.server.converter.wrapper.STTargetWrapper;
+import io.skysail.server.converter.wrapper.STUserWrapper;
 
 import java.lang.reflect.Field;
 import java.net.URL;
@@ -190,7 +191,7 @@ public class StringTemplateRenderer {
     private void addSubstitutions(Object source, SkysailServerResource<?> resource, ST decl, Variant target,
             Set<MenuItemProvider> menuProviders) {
 
-        decl.add("user", SecurityUtils.getSubject());
+        decl.add("user", new STUserWrapper(SecurityUtils.getSubject()));
         decl.add("target", new STTargetWrapper(target));
         decl.add("converter", this);
         decl.add("services", new STServicesWrapper(menuProviders, null, resource));
@@ -269,9 +270,9 @@ public class StringTemplateRenderer {
         sb.append("<a class='btn btn-mini' href='").append(href).append("'>").append(link.getTitle())
                 .append("</a>&nbsp;");
 
-        resource.getLinkheader().add(
-                new Link.Builder(href).relation(LinkRelation.ITEM)
-                        .title("item " + id == null ? "unknown" : id).build());
+        resource.getLinkheader()
+                .add(new Link.Builder(href).relation(LinkRelation.ITEM).title("item " + id == null ? "unknown" : id)
+                        .build());
 
     }
 
@@ -293,8 +294,7 @@ public class StringTemplateRenderer {
 
     private boolean test(SkysailServerResource<?> resource, Field field) {
         List<String> fieldNames = resource.getFields();
-        io.skysail.api.forms.Field fieldAnnotation = field
-                .getAnnotation(io.skysail.api.forms.Field.class);
+        io.skysail.api.forms.Field fieldAnnotation = field.getAnnotation(io.skysail.api.forms.Field.class);
         boolean isValidFieldAnnotation = (fieldAnnotation != null
                 && (!(fieldAnnotation.listView().equals(ListView.HIDE))) && fieldNames.contains(field.getName()));
         if (isValidFieldAnnotation) {

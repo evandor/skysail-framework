@@ -16,14 +16,17 @@ import de.twenty11.skysail.server.app.SkysailRootApplication;
  * Overwriting the restlet cookie authenticator to provide a more specific
  * implementation.
  * 
+ * <p>
  * Optional is set to true to allow anonymous access, the credentials cookie
  * path is set to "/" and a verifier is set.
+ * </p>
  *
  */
 public class SkysailCookieAuthenticator extends CookieAuthenticator {
 
     public SkysailCookieAuthenticator(Context context, String realm, byte[] encryptSecretKey) {
         super(context, realm, encryptSecretKey);
+
         setIdentifierFormName("username");
         setSecretFormName("password");
         setLoginFormPath(SkysailRootApplication.LOGIN_PATH);

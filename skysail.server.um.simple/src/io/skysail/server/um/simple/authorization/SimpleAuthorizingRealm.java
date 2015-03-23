@@ -1,6 +1,6 @@
 package io.skysail.server.um.simple.authorization;
 
-import io.skysail.server.um.simple.SimpleUserManagementProvider;
+import io.skysail.server.um.simple.FileBasedUserManagementProvider;
 import io.skysail.server.um.simple.authentication.SkysailAuthenticationInfo;
 import io.skysail.server.um.simple.authentication.SkysailHashedCredentialsMatcher;
 
@@ -21,7 +21,7 @@ import de.twenty11.skysail.server.um.domain.SkysailUser;
 
 public class SimpleAuthorizingRealm extends AuthorizingRealm {
 
-    private SimpleUserManagementProvider simpleUserManagementProvider;
+    private FileBasedUserManagementProvider simpleUserManagementProvider;
 
     @Override
     public String getName() {
@@ -29,7 +29,7 @@ public class SimpleAuthorizingRealm extends AuthorizingRealm {
     }
 
     public SimpleAuthorizingRealm(SkysailHashedCredentialsMatcher hashedCredetialsMatcher,
-            SimpleUserManagementProvider simpleUserManagementProvider) {
+            FileBasedUserManagementProvider simpleUserManagementProvider) {
 
         MemoryConstrainedCacheManager memoryConstrainedCacheManager = new MemoryConstrainedCacheManager();
 

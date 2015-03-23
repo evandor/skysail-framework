@@ -1,7 +1,8 @@
 package io.skysail.server.um.simple.authorization;
 
 import io.skysail.api.um.AuthorizationService;
-import io.skysail.server.um.simple.SimpleUserManagementProvider;
+import io.skysail.api.um.RestletRolesProvider;
+import io.skysail.server.um.simple.FileBasedUserManagementProvider;
 import io.skysail.server.um.simple.authentication.SkysailHashedCredentialsMatcher;
 
 import java.util.Collections;
@@ -21,9 +22,9 @@ import org.restlet.security.Role;
 public class SimpleAuthorizationService implements AuthorizationService, Enroler {
 
     private SimpleAuthorizingRealm authorizingRealm;
-    private SimpleUserManagementProvider userManagementProvider;
+    private FileBasedUserManagementProvider userManagementProvider;
 
-    public SimpleAuthorizationService(SimpleUserManagementProvider simpleUserManagementProvider) {
+    public SimpleAuthorizationService(FileBasedUserManagementProvider simpleUserManagementProvider) {
         this.userManagementProvider = simpleUserManagementProvider;
         authorizingRealm = new SimpleAuthorizingRealm(new SkysailHashedCredentialsMatcher(),
                 simpleUserManagementProvider);

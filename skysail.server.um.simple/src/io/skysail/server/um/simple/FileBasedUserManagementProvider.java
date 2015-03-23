@@ -1,20 +1,19 @@
 package io.skysail.server.um.simple;
 
-import io.skysail.api.um.AuthenticationService;
-import io.skysail.api.um.AuthorizationService;
+import io.skysail.api.um.RestletRolesProvider;
 import io.skysail.api.um.UserManagementProvider;
 import io.skysail.server.um.simple.authentication.SimpleAuthenticationService;
-import io.skysail.server.um.simple.authorization.RestletRolesProvider;
 import io.skysail.server.um.simple.authorization.SimpleAuthorizationService;
 import io.skysail.server.um.simple.authorization.SimpleUser;
-import io.skysail.server.um.simple.usermanager.UserManagementRepository;
-import io.skysail.server.um.simple.web.impl.SimpleWebSecurityManager;
+import io.skysail.server.um.simple.repository.UserManagementRepository;
+import io.skysail.server.um.simple.web.impl.SkysailWebSecurityManager;
 
 import java.io.IOException;
 import java.util.Dictionary;
 import java.util.Hashtable;
 import java.util.Map;
 
+import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 
 import org.apache.shiro.SecurityUtils;
@@ -39,12 +38,18 @@ import aQute.bnd.annotation.component.Reference;
  */
 @Component(immediate = true, configurationPolicy = ConfigurationPolicy.optional)
 @Slf4j
-public class SimpleUserManagementProvider implements UserManagementProvider {
+public class FileBasedUserManagementProvider implements UserManagementProvider {
 
+    @Getter
     private volatile SimpleAuthenticationService authenticationService;
+
+    @Getter
     private volatile SimpleAuthorizationService authorizationService;
-    private volatile UserManagementRepository userManagerRepo;
+
+    @Getter
     private volatile RestletRolesProvider restletRolesProvider;
+
+    private volatile UserManagementRepository userManagerRepo;
     private volatile ConfigurationAdmin configurationAdmin;
 
     @Activate
@@ -56,7 +61,7 @@ public class SimpleUserManagementProvider implements UserManagementProvider {
         userManagerRepo = new UserManagementRepository(config);
         authenticationService = new SimpleAuthenticationService();
         authorizationService = new SimpleAuthorizationService(this);
-        SecurityUtils.setSecurityManager(new SimpleWebSecurityManager(authorizationService.getRealm()));
+        SecurityUtils.setSecurityManager(new SkysailWebSecurityManager(authorizationService.getRealm()));
     }
 
     @Deactivate
@@ -67,7 +72,6 @@ public class SimpleUserManagementProvider implements UserManagementProvider {
     }
 
     // --- ConfigurationAdmin ------------------------------------------------
-
     @Reference(dynamic = true, optional = false, multiple = false)
     public void setConfigurationAdmin(ConfigurationAdmin configurationAdmin) {
         this.configurationAdmin = configurationAdmin;
@@ -78,7 +82,6 @@ public class SimpleUserManagementProvider implements UserManagementProvider {
     }
 
     // --- RestletRolesProvider -----------------------------------------------
-
     @Reference(dynamic = true, optional = false, multiple = false)
     public void setRestletRolesProvider(RestletRolesProvider restletRolesProvider) {
         this.restletRolesProvider = restletRolesProvider;
@@ -86,20 +89,6 @@ public class SimpleUserManagementProvider implements UserManagementProvider {
 
     public void unsetRestletRolesProvider(RestletRolesProvider restletRolesProvider) {
         this.restletRolesProvider = null;
-    }
-
-    public RestletRolesProvider getRestletRolesProvider() {
-        return restletRolesProvider;
-    }
-
-    @Override
-    public AuthenticationService getAuthenticationService() {
-        return authenticationService;
-    }
-
-    @Override
-    public AuthorizationService getAuthorizationService() {
-        return authorizationService;
     }
 
     public SimpleUser getByUsername(String username) {
@@ -118,12 +107,15 @@ public class SimpleUserManagementProvider implements UserManagementProvider {
             if (props == null) {
                 props = new Hashtable<String, Object>();
             }
-            props.put("users", "admin,user,sysadmin");
+            props.put("users", "admin,user");
             props.put("service.pid", this.getClass().getName());
 
             props.put("admin.password", "$2a$12$52R8v2QH3vQRz8NcdtOm5.HhE5tFPZ0T/.MpfUa9rBzOugK.btAHS");
             props.put("admin.roles", "admin");
             props.put("admin.id", "#1");
+
+            props.put("user.password", "$2a$12$52R8v2QH3vQRz8NcdtOm5.HhE5tFPZ0T/.MpfUa9rBzOugK.btAHS");
+            props.put("user.id", "#2");
 
             config.update(props);
         } catch (IOException e) {

@@ -1,4 +1,4 @@
-package io.skysail.server.um.simple.authorization;
+package io.skysail.api.um;
 
 import java.util.List;
 

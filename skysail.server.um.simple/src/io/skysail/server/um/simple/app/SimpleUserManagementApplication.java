@@ -1,6 +1,6 @@
 package io.skysail.server.um.simple.app;
 
-import io.skysail.server.um.simple.authorization.RestletRolesProvider;
+import io.skysail.api.um.RestletRolesProvider;
 import aQute.bnd.annotation.component.Component;
 import de.twenty11.skysail.server.app.SkysailApplication;
 

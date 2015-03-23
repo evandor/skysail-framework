@@ -1,10 +1,10 @@
-package io.skysail.server.um.simple.usermanager.test;
+package io.skysail.server.um.simple.repository.test;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.nullValue;
 import static org.junit.Assert.assertThat;
-import io.skysail.server.um.simple.usermanager.UserManagementRepository;
+import io.skysail.server.um.simple.repository.UserManagementRepository;
 
 import java.util.HashMap;
 

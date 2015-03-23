@@ -1,4 +1,4 @@
-package io.skysail.server.um.simple.usermanager;
+package io.skysail.server.um.simple.repository;
 
 import io.skysail.server.um.simple.authorization.SimpleUser;
 
@@ -50,7 +50,7 @@ public class UserManagementRepository {
             String password = config.get(username + ".password");
             String id = config.get(username + ".id");
             if (id == null) {
-                throw new IllegalStateException("could not find ID for user " + username);
+                throw new IllegalStateException("could not find ID for user '" + username + "'");
             }
             SimpleUser simpleUser = null;
             if (password != null && id != null) {

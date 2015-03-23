@@ -6,7 +6,7 @@ import static org.hamcrest.CoreMatchers.nullValue;
 import static org.junit.Assert.assertThat;
 import io.skysail.api.um.AuthenticationService;
 import io.skysail.api.um.AuthorizationService;
-import io.skysail.server.um.simple.SimpleUserManagementProvider;
+import io.skysail.server.um.simple.FileBasedUserManagementProvider;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -16,13 +16,13 @@ import org.junit.Ignore;
 import org.junit.Test;
 
 @Ignore
-public class SimpleUserManagementProviderTest {
+public class FileBasedUserManagementProviderTest {
 
-    private SimpleUserManagementProvider provider;
+    private FileBasedUserManagementProvider provider;
 
     @Before
     public void setUp() throws Exception {
-        provider = new SimpleUserManagementProvider();
+        provider = new FileBasedUserManagementProvider();
         Map<String, String> config = new HashMap<>();
         config.put("users", "admin");
         config.put("admin.id", "#1");

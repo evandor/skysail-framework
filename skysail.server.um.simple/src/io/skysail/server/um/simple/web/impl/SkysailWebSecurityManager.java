@@ -14,16 +14,16 @@ import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.restlet.Request;
 import org.restlet.Response;
 
-public class SimpleWebSecurityManager extends DefaultWebSecurityManager {
+public class SkysailWebSecurityManager extends DefaultWebSecurityManager {
 
-    public SimpleWebSecurityManager() {
+    public SkysailWebSecurityManager() {
         super();
         setSubjectFactory(new SkysailWebSubjectFactory());
         setSessionManager(new SkysailWebSessionManager());
         setCacheManager(new MemoryConstrainedCacheManager());
     }
 
-    public SimpleWebSecurityManager(Realm singleRealm) {
+    public SkysailWebSecurityManager(Realm singleRealm) {
         this();
         setRealm(singleRealm);
     }

@@ -2,7 +2,7 @@ package io.skysail.server.um.simple.authentication;
 
 import io.skysail.api.um.AuthenticationService;
 import io.skysail.api.um.User;
-import io.skysail.server.um.simple.SimpleUserManagementProvider;
+import io.skysail.server.um.simple.FileBasedUserManagementProvider;
 
 import java.io.File;
 import java.io.FileReader;
@@ -42,7 +42,7 @@ public class SimpleAuthenticationService implements AuthenticationService {
     private void updateConfigFile(User user, String newPassword) {
         String bCryptHash = PasswordUtils.createBCryptHash(newPassword);
         String fileInstallDir = System.getProperty("felix.fileinstall.dir");
-        String configFileName = fileInstallDir + java.io.File.separator + SimpleUserManagementProvider.class.getName()
+        String configFileName = fileInstallDir + java.io.File.separator + FileBasedUserManagementProvider.class.getName()
                 + ".cfg";
         Properties properties = new Properties();
 

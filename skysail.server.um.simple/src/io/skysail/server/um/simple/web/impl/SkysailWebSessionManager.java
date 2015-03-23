@@ -23,10 +23,6 @@ public class SkysailWebSessionManager extends DefaultSessionManager implements W
 
     private static Logger logger = LoggerFactory.getLogger(SkysailWebSessionManager.class);
 
-    public SkysailWebSessionManager() {
-        logger.info("creating new SkysailWebSessionManager");
-    }
-
     @Override
     public boolean isServletContainerSessions() {
         return false;

@@ -36,7 +36,7 @@ import aQute.bnd.annotation.component.Reference;
  * </p>
  *
  */
-@Component(immediate = true, configurationPolicy = ConfigurationPolicy.optional)
+@Component(immediate = true, configurationPolicy = ConfigurationPolicy.require)
 @Slf4j
 public class FileBasedUserManagementProvider implements UserManagementProvider {
 
@@ -54,6 +54,7 @@ public class FileBasedUserManagementProvider implements UserManagementProvider {
 
     @Activate
     public void activate(Map<String, String> config) {
+
         if (config.get("users") == null) {
             createDefautConfiguration();
             return;
@@ -100,7 +101,7 @@ public class FileBasedUserManagementProvider implements UserManagementProvider {
     }
 
     private void createDefautConfiguration() {
-        log.warn("creating default configuration for usermanagement as no configuration was provided!");
+        log.warn("creating default configuration for usermanagement as no configuration was provided (yet)!");
         try {
             Configuration config = configurationAdmin.getConfiguration(this.getClass().getName());
             Dictionary<String, Object> props = config.getProperties();

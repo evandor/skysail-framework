@@ -42,7 +42,6 @@ public class SkysailHashedCredentialsMatcher extends SimpleCredentialsMatcher {
                     cache.put(match.getHashedPassword(), LocalDateTime.now());
                     return true;
                 }
-                return false;
             }
         }
         return valiateAndCacheIfOk(info, userProvidedPassword, null);

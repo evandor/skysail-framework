@@ -22,7 +22,6 @@ import java.util.List;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
-//@NamedQuery(name = "findByName", query = "SELECT c FROM SkysailUser c WHERE c.username = :username")
 public class SkysailUser {
 
     /**
@@ -35,28 +34,16 @@ public class SkysailUser {
     private Object rid;
 
     @Field
-    // @Size(min = 3, message = "username must have at least three characters")
     private String username;
 
     @Field(type = InputType.PASSWORD)
-    // @Size(min = 6, message = "password must have at least six characters")
     private String password;
 
     private String salt;
 
-    // @ManyToMany(fetch = FetchType.EAGER)
-    // @ManyToMany (cascade = { CascadeType.ALL })
-    // @JoinTable(name = "um_users_um_roles", joinColumns = { @JoinColumn(name =
-    // "SkysailUser_ID", referencedColumnName = "ID") }, inverseJoinColumns = {
-    // @JoinColumn(name = "roles_ID", referencedColumnName = "ID") })
     private List<SkysailRole> roles = new ArrayList<SkysailRole>();
-    // private Map<String, SkysailRole> roles = new HashMap<String,
-    // SkysailRole>();
 
     @ManyToMany
-    // @JoinTable(name = "um_users_um_groups", joinColumns = { @JoinColumn(name
-    // = "SkysailUser_ID", referencedColumnName = "ID") }, inverseJoinColumns =
-    // { @JoinColumn(name = "groups_ID", referencedColumnName = "ID") })
     private List<SkysailGroup> groups = new ArrayList<SkysailGroup>();
 
     public SkysailUser() {
@@ -86,9 +73,7 @@ public class SkysailUser {
     }
 
     public List<SkysailRole> getRoles() {
-        roles = new ArrayList<SkysailRole>();
-        roles.add(new SkysailRole("admin"));
-        return roles;// roles.values().stream().collect(Collectors.toList());
+        return roles;
     }
 
     public void setRoles(List<SkysailRole> roles) {

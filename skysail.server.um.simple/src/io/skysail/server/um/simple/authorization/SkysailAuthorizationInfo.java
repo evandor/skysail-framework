@@ -18,10 +18,8 @@ public class SkysailAuthorizationInfo implements AuthorizationInfo {
 
     public SkysailAuthorizationInfo(SkysailUser user) {
         authInfo = new SimpleAuthorizationInfo();
-        // authInfo.setRoles(user.getRoles().stream().map(role ->
-        // role.getName()).collect(Collectors.toSet()));
         Set<String> roles = new HashSet<String>();
-        roles.add("admin");
+        user.getRoles().stream().forEach(r -> roles.add(r.getName()));
         authInfo.setRoles(roles);
     }
 

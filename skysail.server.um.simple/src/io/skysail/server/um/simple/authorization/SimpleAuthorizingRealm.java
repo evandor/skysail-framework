@@ -5,6 +5,7 @@ import io.skysail.server.um.simple.authentication.SkysailAuthenticationInfo;
 import io.skysail.server.um.simple.authentication.SkysailHashedCredentialsMatcher;
 
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.stream.Collectors;
 
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
@@ -17,6 +18,7 @@ import org.apache.shiro.cache.MemoryConstrainedCacheManager;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 
+import de.twenty11.skysail.server.um.domain.SkysailRole;
 import de.twenty11.skysail.server.um.domain.SkysailUser;
 
 public class SimpleAuthorizingRealm extends AuthorizingRealm {
@@ -71,7 +73,7 @@ public class SimpleAuthorizingRealm extends AuthorizingRealm {
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
         String username = getUsername(principals);
-        SkysailUser user = getUser(username);
+        SkysailUser user = getUserByPrincipal(username);
 
         return new SkysailAuthorizationInfo(user);
     }
@@ -81,11 +83,24 @@ public class SimpleAuthorizingRealm extends AuthorizingRealm {
     }
 
     private SkysailUser getUser(String username) {
-        SimpleUser simpleUser = simpleUserManagementProvider.getByUsername(username);
+        return createUser(simpleUserManagementProvider.getByUsername(username));
+    }
+
+    private SkysailUser getUserByPrincipal(String principal) {
+        return createUser(simpleUserManagementProvider.getByPrincipal(principal));
+    }
+
+    private SkysailUser createUser(SimpleUser simpleUser) {
         if (simpleUser == null) {
             return null;
         }
-        return new SkysailUser(simpleUser.getUsername(), simpleUser.getPassword(), simpleUser.getId());
+
+        SkysailUser skysailUser = new SkysailUser(simpleUser.getUsername(), simpleUser.getPassword(),
+                simpleUser.getId());
+        skysailUser.setRoles(simpleUser.getRoles().stream().map(r -> {
+            return new SkysailRole(r);
+        }).collect(Collectors.toList()));
+        return skysailUser;
     }
 
     @Override

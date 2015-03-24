@@ -17,5 +17,9 @@ public class STUserWrapper {
     public Object getUsername() {
         return subject.getPrincipals().asList().get(1);
     }
+    
+    public boolean isDeveloper() {
+        return subject.hasRole("developer");
+    }
 
 }

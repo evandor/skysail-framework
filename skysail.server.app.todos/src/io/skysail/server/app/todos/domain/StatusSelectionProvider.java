@@ -14,9 +14,14 @@ public class StatusSelectionProvider implements SelectionProvider {
         return new StatusSelectionProvider();
     }
 
+    private Resource resource;
+
     @Override
     public Map<String, String> getSelections() {
         Map<String, String> result = new HashMap<>();
+        
+        
+        
         Arrays.stream(Status.values()).forEach(v -> result.put(v.name(), v.name()));
         return result;
     }
@@ -27,6 +32,7 @@ public class StatusSelectionProvider implements SelectionProvider {
 
     @Override
     public void setResource(Resource resource) {
+        this.resource = resource;
     }
 
 }

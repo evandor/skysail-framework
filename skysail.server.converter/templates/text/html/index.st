@@ -74,7 +74,7 @@ index(user, messages, source, converter, services, resource, fields, target) ::=
             $dropdownFrontendsNav(services)$
             $dropdownApplicationsNav(services)$
             $dropdownAdminNav(services)$
-            $if(user.principal)$
+            $if(user.developer)$
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">View (advanced) <span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu">

@@ -1,0 +1,97 @@
+<!doctype html>
+<html ng-app="notesProduct" style="height:100%">
+<head>
+    <meta charset="utf-8">
+
+    <title>Clipboard powered by skysail (&alpha;)</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    
+    <link type="text/css" href="css/jquery-ui.css" rel="stylesheet" />
+    <link href="/../static/css/bootstrap.css" rel="stylesheet">
+    <link href="/../static/css/bootstrap-responsive.css" rel="stylesheet">
+    <link href="css/style_angularjs.css" rel="stylesheet">
+    <link href="css/twitter-bootstrap/bootstrap-combined.min.css" rel="stylesheet">
+    
+    <script src="js/angular.min.js"></script>
+    <script src="js/angular-route.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/ui-bootstrap-tpls-0.6.0.js"></script>
+</head>
+
+<body style="background-color: #eee; padding-bottom:20px; height:90%" ng-controller="AppCtrl" ng-cloak>
+
+    <!-- top navigation -->
+    <div class="navbar" style="margin-bottom: 10px;">
+        <div class="navbar-inner">
+            <a class="brand" href="javascript:window.location.reload(true)" ng-model="version"><b>Todos</b> powered by skysail</a>
+            
+            <div style="float:right; margin: 2px">
+              <form class="navbar-form navbar-right" role="form" action="/_login?targetUri=clipboardclient/" method="POST" ng-hide="loggedIn">
+                  <input type="text" name="username" placeholder="Email" class="form-control">
+                  <input type="password" name="password" placeholder="Password" class="form-control">
+                <button type="submit" class="btn btn-success">Sign in</button>
+              </form>
+              <a ng-click="logout()" ng-show="loggedIn" href="#"><span class="btn btn-primary"> logout </span></a>
+            </div>
+            
+            <ul class="nav" style="float:right; margin: 2px;">
+                <li></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- main content -->
+    <div class="container-fluid" style="padding-left:10px; padding-right:30px; height:100%">
+        <div class="row-fluid" style="border: 1px solid #aaa; background-color: white; padding: 10px; margin-top:3px; border-radius:5px; height:80%">
+            <div class="span2" style="background-color: white;" ng-show="loggedIn">
+                <div id="notes" style="border-right: 1px dotted lightgrey;">
+                    <div class="nav-header" style="padding-left: 1px;">{{userform.user}}'s Notes</div>
+                    <div ng-repeat="note in notes | orderBy:'title':false">
+                        <i class="icon-list-alt" id="{{note.id}}" x-drag-me title="{{note.id}}"></i>&nbsp;
+                        <a title="{{note.content}}" ng-click="setCurrentNote(note)" style="cursor: pointer">{{note.content | truncate:20}}</a>
+                    </div>
+                </div>
+            </div>
+            <div class="span8" style="background-color: white">
+                <div id="selectedNote" ng-show="loggedIn">
+
+                    <form name="form" class="form-vertical" ng-submit="updateNote()" ng-keypress="setDirty()">
+                        <div class="control-group">
+                            <label class="nav-header" style="padding-left: 1px;" for="content">Clip</label>
+                            <div class="controls">
+                                <textarea name="content" rows=12 ng-model="currentNote.content" style="width:100%;"></textarea>
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <input class="btn btn-primary" ng-click="updateNote()" ng-show="showUpdateButton()" value="save" style="float:right; margin: 2px;">&nbsp;<span id="actionMessage" style="color:green;"></span>
+                            <input class="btn btn-primary" ng-click="addNote()"    ng-show="isNewNote" value="save" style="float:right; margin: 2px;">
+                            <span id="actionMessage" style="color:green;"></span>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="span2" style="background-color: white">
+            ...
+            </div>
+        </div>
+    </div>
+
+    <div id="footer">
+      <div class="container">
+        <p class="text-muted" style="text-align: center;">&copy; 2015. <a href='#'>About</a> | <a href='/'>Backend</a> | <a href='#'>Terms</a> | <a href='http://wiki.twentyeleven.de'>Help</a> | <a href='http://jira.twentyeleven.de'>Feedback</a></p>
+      </div>
+    </div>
+
+    
+    <script src="/../static/js/jquery-1.9.1.js"></script>
+    <script src="/../static/js/jquery.cookie.js"></script>
+    <script src="/../static/js/bootstrap.js"></script>
+    <script src="/../static/js/jquery-ui-1.9.2.js"></script>
+    <script src="/../static/js/jquery.form.js"></script>
+
+</body>
+</html>

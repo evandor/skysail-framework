@@ -1,0 +1,18 @@
+	body {
+		padding-top: 60px;
+	}
+	
+	#editor { 
+        position: absolute;
+        top: 170px;
+        right: 20px;
+        bottom: 5px;
+        left: 250px;
+    }
+    
+    .navbar-inverse .navbar-inner {
+        background-color: #000066;
+        background-image: linear-gradient(to bottom, #000066, #111111);
+        background-repeat: repeat-x;
+        border-color: #252525;
+    }

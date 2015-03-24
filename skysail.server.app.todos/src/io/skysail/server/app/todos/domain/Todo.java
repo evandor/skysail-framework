@@ -3,6 +3,7 @@ package io.skysail.server.app.todos.domain;
 import io.skysail.api.forms.Field;
 import io.skysail.api.forms.InputType;
 import io.skysail.api.forms.ListView;
+import io.skysail.api.forms.PostView;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -44,6 +45,9 @@ public class Todo implements Serializable {
 
     @Field(type = InputType.READONLY)
     private Date modified;
+
+    @Field(selectionProvider = StatusSelectionProvider.class, postView = { PostView.HIDE })
+    private Status status;
 
     @Field(type = InputType.READONLY, listView = { ListView.HIDE })
     private String owner;

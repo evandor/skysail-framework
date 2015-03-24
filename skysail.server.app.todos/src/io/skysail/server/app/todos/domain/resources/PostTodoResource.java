@@ -2,6 +2,7 @@ package io.skysail.server.app.todos.domain.resources;
 
 import io.skysail.api.responses.SkysailResponse;
 import io.skysail.server.app.todos.TodoApplication;
+import io.skysail.server.app.todos.domain.Status;
 import io.skysail.server.app.todos.domain.Todo;
 
 import java.util.Date;
@@ -36,6 +37,7 @@ public class PostTodoResource extends PostEntityServerResource<Todo> {
         Subject subject = SecurityUtils.getSubject();
         subject.getPrincipals().getPrimaryPrincipal();
         entity.setOwner(subject.getPrincipal().toString());
+        entity.setStatus(Status.NEW);
         app.getRepository().add(entity);
         return new SkysailResponse<String>();
     }

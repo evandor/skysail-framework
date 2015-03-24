@@ -1,0 +1,14 @@
+Bundle-Version: 0.1.0.${tstamp}
+Bundle-Name: SKYSAIL :: clients :: todos :: angularjs
+
+Include-Resource: webapp
+-buildpath:  \
+	skysail.api;version=latest,\
+	skysail.server;version=latest,\
+	slf4j.api;version=1.7.7,\
+	osgi.core;version=4.3,\
+	org.restlet;version=${restlet.version},\
+	biz.aQute.bnd.annotation;version=1.52
+Service-Component: *
+Private-Package: \
+	io.skysail.client.todos.angularjs

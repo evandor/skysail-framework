@@ -76,6 +76,7 @@ public class StringTemplateRenderer {
         STGroupBundleDir stGroup = createSringTemplateGroup(resource, target.getMediaType().getName());
         ST index = getStringTemplateIndex(resource, stGroup);
 
+        // too late here: want to have this on other representations (like json and the linkheader) too
         addAssociatedLinks(resource, sourceWrapper);
         addSubstitutions(sourceWrapper.getConvertedSource(), resource, index, target, menuProviders);
         checkForInspection(resource, index);
@@ -273,7 +274,7 @@ public class StringTemplateRenderer {
                 .append("</a>&nbsp;");
 
         resource.getLinkheader()
-                .add(new Link.Builder(href).relation(LinkRelation.ITEM).title("item " + id == null ? "unknown" : id)
+                .add(new Link.Builder(href).relation(LinkRelation.ITEM).title("item " + id == null ? "unknown" : id).role(LinkRole.LIST_VIEW)
                         .build());
 
     }

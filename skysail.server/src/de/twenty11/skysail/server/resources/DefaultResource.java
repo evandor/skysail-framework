@@ -43,7 +43,7 @@ public class DefaultResource extends ListServerResource<String> {
     private Link createLinkheaderForApp(MenuItem mi) {
         Predicate<String[]> securedBy = null;
         return new Link.Builder(mi.getLink()).relation(LinkRelation.ITEM).title(mi.getName())
-                .authenticationNeeded(true).needsRoles(securedBy).build().setShowInHtml(false);
+                .authenticationNeeded(true).needsRoles(securedBy).build();
     }
 
     @Override

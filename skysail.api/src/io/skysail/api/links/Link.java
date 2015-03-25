@@ -57,9 +57,6 @@ public class Link {
     /** to be done. */
     private Map<MediaType, String> images = new HashMap<>();
 
-    /** TODO combine with Role. */
-    private boolean showInHtml = true;
-
     public static class Builder {
 
         private String uri;
@@ -211,16 +208,11 @@ public class Link {
         return images.get(mediaType);
     }
 
-    public Link setShowInHtml(boolean showInHtml) {
-        this.showInHtml = showInHtml;
-        return this;
-    }
-
     /**
      * show in html or not.
      */
     public boolean isShowAsButtonInHtml() {
-        if (!showInHtml) {
+        if (role.equals(LinkRole.LIST_VIEW)) {
             return false;
         }
         return getVerbs().contains(Method.GET);

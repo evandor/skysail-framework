@@ -16,6 +16,7 @@ import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
 import lombok.NonNull;
+import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
 
 import org.apache.commons.beanutils.BeanUtils;
@@ -63,6 +64,7 @@ import etm.core.monitor.EtmMonitor;
  * </p>
  */
 @Slf4j
+@ToString(exclude = {"beanUtilsBean"})
 public abstract class SkysailServerResource<T> extends ServerResource {
 
     public static final String ATTRIBUTES_INTERNAL_REQUEST_ID = "de.twenty11.skysail.server.restlet.SkysailServerResource.requestId";

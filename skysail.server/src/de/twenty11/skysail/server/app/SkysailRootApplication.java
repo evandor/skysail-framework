@@ -87,7 +87,7 @@ public class SkysailRootApplication extends SkysailApplication implements Applic
         router.attach(new RouteBuilder(PROFILE_PATH + "/password/", PutPasswordResource.class));
         router.attach(new RouteBuilder(LARGETESTS_PATH, LargeTestsResource.class));
         router.attach(new RouteBuilder(LARGETESTS_PATH + "/{id}", LargeTestsFileResource.class));
-        router.attach(new RouteBuilder(WELCOME_PATH, WelcomeResource.class));
+        router.attach(new RouteBuilder(WELCOME_PATH, WelcomeResource.class).noAuthenticationNeeded()); // need for tests... why?
         router.attach(new RouteBuilder("/_iframe", IFrameResource.class));
     }
 

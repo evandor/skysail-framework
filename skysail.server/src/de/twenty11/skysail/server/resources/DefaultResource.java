@@ -8,8 +8,6 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.apache.shiro.SecurityUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import com.google.common.base.Predicate;
 
@@ -23,18 +21,6 @@ import de.twenty11.skysail.server.services.MenuItem;
  */
 public class DefaultResource extends ListServerResource<String> {
 
-    private static Logger logger = LoggerFactory.getLogger(DefaultResource.class);
-
-    public DefaultResource() {
-        super(null);
-        logger.debug("instanciation of DefaultResource");
-    }
-
-    // @Override
-    // public List<String> getData() {
-    // return Collections.emptyList();
-    // }
-
     @Override
     public List<Link> getLinkheader() {
         SkysailRootApplication defaultApp = (SkysailRootApplication) getApplication();
@@ -42,15 +28,15 @@ public class DefaultResource extends ListServerResource<String> {
         List<Link> linkheaders = menuItems.stream().map(mi -> createLinkheaderForApp(mi))
                 .sorted((l1, l2) -> l1.getTitle().compareTo(l2.getTitle())).collect(Collectors.toList());
         if (SecurityUtils.getSubject().isAuthenticated()) {
-            linkheaders.add(new Link.Builder(SkysailRootApplication.LOGOUT_PATH + "?targetUri=/")
-                    .relation(LinkRelation.CREATE_FORM).title("Logout").build());
+//            linkheaders.add(new Link.Builder(SkysailRootApplication.LOGOUT_PATH + "?targetUri=/")
+//                    .relation(LinkRelation.CREATE_FORM).title("Logout").build());
         } else {
             linkheaders.add(new Link.Builder(SkysailRootApplication.LOGIN_PATH)
                     .relation(LinkRelation.CREATE_FORM).title("Login form").authenticationNeeded(false).build());
         }
-        linkheaders.add(new Link.Builder("/usermanagement/registrations/")
-                .relation(LinkRelation.CREATE_FORM).title("Register new User").authenticationNeeded(false)
-                .build());
+//        linkheaders.add(new Link.Builder("/usermanagement/registrations/")
+//                .relation(LinkRelation.CREATE_FORM).title("Register new User").authenticationNeeded(false)
+//                .build());
         return linkheaders;
     }
 

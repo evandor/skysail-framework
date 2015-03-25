@@ -25,6 +25,7 @@ import de.twenty11.skysail.server.resources.DefaultResource;
 import de.twenty11.skysail.server.resources.LoginResource;
 import de.twenty11.skysail.server.resources.NameResource;
 import de.twenty11.skysail.server.resources.VersionResource;
+import de.twenty11.skysail.server.resources.WelcomeResource;
 import de.twenty11.skysail.server.services.MenuItem;
 import de.twenty11.skysail.server.services.MenuItemProvider;
 import de.twenty11.skysail.server.services.ResourceBundleProvider;
@@ -44,6 +45,8 @@ public class SkysailRootApplication extends SkysailApplication implements Applic
     public static final String ABOUT_PATH = "/_about";
     public static final String LARGETESTS_PATH = "/_largetests";
     public static final String WEBCONSOLE_PATH = "/webconsole";
+    public static final String WELCOME_PATH = "/welcome";
+
     private volatile Set<SkysailApplication> applications = new TreeSet<>();
 
     private volatile Set<MenuItemProvider> menuProviders = new HashSet<>();
@@ -84,6 +87,7 @@ public class SkysailRootApplication extends SkysailApplication implements Applic
         router.attach(new RouteBuilder(PROFILE_PATH + "/password/", PutPasswordResource.class));
         router.attach(new RouteBuilder(LARGETESTS_PATH, LargeTestsResource.class));
         router.attach(new RouteBuilder(LARGETESTS_PATH + "/{id}", LargeTestsFileResource.class));
+        router.attach(new RouteBuilder(WELCOME_PATH, WelcomeResource.class));
         router.attach(new RouteBuilder("/_iframe", IFrameResource.class));
     }
 

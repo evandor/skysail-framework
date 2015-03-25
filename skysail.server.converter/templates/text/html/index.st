@@ -106,7 +106,7 @@ index(user, messages, source, converter, services, resource, fields, target) ::=
 			</form>
   		  </div>
           $endif$
-          
+          $if(user.principal)$
           <ul class="nav navbar-nav navbar-right">
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">$user.username$ <span class="caret"></span></a>
@@ -116,6 +116,7 @@ index(user, messages, source, converter, services, resource, fields, target) ::=
               </ul>
             </li>
           </ul>
+          $endif$
         </div><!--/.nav-collapse -->
       </div>
     </div>

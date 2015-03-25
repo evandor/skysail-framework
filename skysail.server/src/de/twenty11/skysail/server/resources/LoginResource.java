@@ -44,5 +44,14 @@ public class LoginResource extends PostEntityServerResource<Credentials> {
     public SkysailResponse<?> addEntity(Credentials entity) {
         return null;
     }
+    
+//    @Override
+//    public String redirectTo() {
+//        boolean authenticated = SecurityUtils.getSubject().isAuthenticated();
+//        if (authenticated) {
+//            return super.redirectTo(WelcomeResource.class);
+//        }
+//        return super.redirectTo(LoginResource.class);
+//    }
 
 }

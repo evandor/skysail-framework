@@ -4,7 +4,6 @@ import io.skysail.api.um.RestletRolesProvider;
 import io.skysail.api.um.UserManagementProvider;
 import io.skysail.server.um.simple.authentication.SimpleAuthenticationService;
 import io.skysail.server.um.simple.authorization.SimpleAuthorizationService;
-import io.skysail.server.um.simple.authorization.SimpleUser;
 import io.skysail.server.um.simple.repository.UserManagementRepository;
 import io.skysail.server.um.simple.web.impl.SkysailWebSecurityManager;
 
@@ -25,6 +24,7 @@ import aQute.bnd.annotation.component.Component;
 import aQute.bnd.annotation.component.ConfigurationPolicy;
 import aQute.bnd.annotation.component.Deactivate;
 import aQute.bnd.annotation.component.Reference;
+import de.twenty11.skysail.server.um.domain.SkysailUser;
 
 /**
  * A UserManagerProvider based on a configuration file (containing information
@@ -92,11 +92,11 @@ public class FileBasedUserManagementProvider implements UserManagementProvider {
         this.restletRolesProvider = null;
     }
 
-    public SimpleUser getByUsername(String username) {
+    public SkysailUser getByUsername(String username) {
         return userManagerRepo.getByUsername(username);
     }
 
-    public SimpleUser getByPrincipal(String username) {
+    public SkysailUser getByPrincipal(String username) {
         return userManagerRepo.getByPrincipal(username);
     }
 

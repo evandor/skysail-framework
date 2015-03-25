@@ -18,6 +18,9 @@ import org.restlet.data.ClientInfo;
 import org.restlet.security.Enroler;
 import org.restlet.security.Role;
 
+import de.twenty11.skysail.server.um.domain.SkysailRole;
+import de.twenty11.skysail.server.um.domain.SkysailUser;
+
 @Slf4j
 public class SimpleAuthorizationService implements AuthorizationService, Enroler {
 
@@ -32,8 +35,8 @@ public class SimpleAuthorizationService implements AuthorizationService, Enroler
 
     @Override
     public Set<Role> getRolesFor(String principal) {
-        SimpleUser user = userManagementProvider.getByPrincipal(principal);
-        Set<String> roles = user.getRoles();
+        SkysailUser user = userManagementProvider.getByPrincipal(principal);
+        Set<SkysailRole> roles = user.getRoles();
         if (roles == null) {
             log.warn("User '" + principal + "' could not be found in the Repository");
             return Collections.emptySet();
@@ -74,13 +77,13 @@ public class SimpleAuthorizationService implements AuthorizationService, Enroler
         return authorizingRealm;
     }
 
-    private Role getOrCreateRole(String r) {
+    private Role getOrCreateRole(SkysailRole r) {
         RestletRolesProvider restletRolesProvider = userManagementProvider.getRestletRolesProvider();
-        Role role = restletRolesProvider.getRole(r);
+        Role role = restletRolesProvider.getRole(r.getName());
         if (role != null) {
             return role;
         }
-        Role newRole = new Role(r);
+        Role newRole = new Role(r.getName());
         restletRolesProvider.getRoles().add(newRole);
         return newRole;
     }

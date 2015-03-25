@@ -4,6 +4,7 @@ import io.skysail.server.db.DbConfigurationProvider;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Spliterator;
@@ -335,7 +336,7 @@ public class OrientDbService extends AbstractOrientDbService implements DbServic
             persist(adminRole);
             SkysailUser admin = new SkysailUser("admin",
                     "$2a$12$52R8v2QH3vQRz8NcdtOm5.HhE5tFPZ0T/.MpfUa9rBzOugK.btAHS", "#1");
-            admin.setRoles(Arrays.asList(adminRole));
+            admin.setRoles(new HashSet(Arrays.asList(adminRole)));
             persist(admin);
         }
     }

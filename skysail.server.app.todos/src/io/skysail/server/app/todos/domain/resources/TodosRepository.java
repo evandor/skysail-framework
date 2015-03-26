@@ -1,6 +1,7 @@
 package io.skysail.server.app.todos.domain.resources;
 
 import io.skysail.server.app.todos.domain.Todo;
+import io.skysail.server.app.todos.lists.TodoList;
 
 import java.util.HashMap;
 import java.util.List;
@@ -21,8 +22,8 @@ public class TodosRepository implements DbRepository {
 
     @Activate
     public void activate() {
-        dbService.setupVertices(Todo.class.getSimpleName());
-        dbService.register(Todo.class);
+        dbService.setupVertices(Todo.class.getSimpleName(),TodoList.class.getSimpleName());
+        dbService.register(Todo.class,TodoList.class);
     }
 
     @Reference
@@ -34,9 +35,9 @@ public class TodosRepository implements DbRepository {
         TodosRepository.dbService = null;
     }
 
-    public <T> List<T> findAll(Class<T> cls) {
+    public <T> List<T> findAll(Class<T> cls, String sorting) {
         String username = SecurityUtils.getSubject().getPrincipal().toString();
-        String sql = "SELECT from Todo WHERE owner= :username ORDER BY rank ASC";
+        String sql = "SELECT from "+cls.getSimpleName()+" WHERE owner= :username " + sorting;
         Map<String, Object> params = new HashMap<String, Object>();
         params.put("username", username);
         return dbService.findObjects(sql, params);
@@ -66,10 +67,6 @@ public class TodosRepository implements DbRepository {
         params.put("username", entity.getOwner());
         params.put("referenceRank", entity.getRank());
         dbService.executeUpdate(sql, params);
-    }
-
-    public Todo getById(String id) {
-        return dbService.findObjectById(Todo.class, id);
     }
 
     public void delete(String id) {

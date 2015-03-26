@@ -5,8 +5,10 @@ import io.skysail.server.app.todos.domain.resources.PutTodoResource;
 import io.skysail.server.app.todos.domain.resources.TodoResource;
 import io.skysail.server.app.todos.domain.resources.TodosRepository;
 import io.skysail.server.app.todos.domain.resources.TodosResource;
+import io.skysail.server.app.todos.lists.ListResource;
 import io.skysail.server.app.todos.lists.ListsResource;
 import io.skysail.server.app.todos.lists.PostListResource;
+import io.skysail.server.app.todos.lists.PutListResource;
 
 import java.util.Arrays;
 import java.util.List;
@@ -23,6 +25,8 @@ import de.twenty11.skysail.server.services.MenuItemProvider;
 
 @Component(immediate = true)
 public class TodoApplication extends SkysailApplication implements ApplicationProvider, MenuItemProvider {
+
+    public static final String LIST_ID = "lid";
 
     private static final String APP_NAME = "Todos";
     private TodosRepository todosRepo;
@@ -48,14 +52,16 @@ public class TodoApplication extends SkysailApplication implements ApplicationPr
     @Override
     protected void attach() {
         super.attach();
-        // Application root resource
-        router.attach(new RouteBuilder("", TodosResource.class));
-        router.attach(new RouteBuilder("/Todos/", PostTodoResource.class));
-        router.attach(new RouteBuilder("/Todos", TodosResource.class));
-        router.attach(new RouteBuilder("/Todos/{id}", TodoResource.class));
-        router.attach(new RouteBuilder("/Todos/{id}/", PutTodoResource.class));
-        router.attach(new RouteBuilder("/List", ListsResource.class));
-        router.attach(new RouteBuilder("/List/", PostListResource.class));
+        router.attach(new RouteBuilder("", ListsResource.class));
+        router.attach(new RouteBuilder("/Lists", ListsResource.class));
+        router.attach(new RouteBuilder("/Lists/", PostListResource.class));
+        router.attach(new RouteBuilder("/Lists/{"+LIST_ID+"}", ListResource.class));
+        router.attach(new RouteBuilder("/Lists/{"+LIST_ID+"}/", PutListResource.class));
+
+        router.attach(new RouteBuilder("/Lists/{"+LIST_ID+"}/Todos/", PostTodoResource.class));
+        router.attach(new RouteBuilder("/Lists/{"+LIST_ID+"}/Todos", TodosResource.class));
+        router.attach(new RouteBuilder("/Lists/{"+LIST_ID+"}/Todos/{id}", TodoResource.class));
+        router.attach(new RouteBuilder("/Lists/{"+LIST_ID+"}/Todos/{id}/", PutTodoResource.class));
     }
 
     public List<MenuItem> getMenuEntries() {

@@ -3,6 +3,10 @@ package io.skysail.server.app.todos.lists;
 import io.skysail.api.responses.SkysailResponse;
 import io.skysail.server.app.todos.TodoApplication;
 
+import java.util.Date;
+
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.subject.Subject;
 import org.restlet.resource.ResourceException;
 
 import de.twenty11.skysail.server.core.restlet.PostEntityServerResource;
@@ -28,6 +32,10 @@ public class PostListResource extends PostEntityServerResource<TodoList> {
 
     @Override
     public SkysailResponse<?> addEntity(TodoList entity) {
+        entity.setCreated(new Date());
+        Subject subject = SecurityUtils.getSubject();
+        subject.getPrincipals().getPrimaryPrincipal();
+        entity.setOwner(subject.getPrincipal().toString());
         app.getRepository().add(entity);
         return new SkysailResponse<>();
     }

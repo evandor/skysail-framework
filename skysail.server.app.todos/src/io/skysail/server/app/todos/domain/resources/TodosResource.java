@@ -45,7 +45,7 @@ public class TodosResource extends ListServerResource<Todo> {
         headers.add(new Header(HeadersUtils.PAGINATION_PAGE, Integer.toString(page)));
         headers.add(new Header(HeadersUtils.PAGINATION_HITS, Long.toString(clipCount)));
 
-        return app.getRepository().findAll(Todo.class);
+        return app.getRepository().findAll(Todo.class, "ORDER BY rank ASC");
     }
 
     @Override

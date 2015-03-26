@@ -24,7 +24,7 @@ public class PutTodoResource extends PutEntityServerResource<Todo> {
 
     @Override
     public Todo getEntity() {
-        return app.getRepository().getById(id);
+        return app.getRepository().getById(Todo.class, id);
     }
 
     @Override

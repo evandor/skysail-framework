@@ -1,7 +1,7 @@
 package io.skysail.server.app.todos;
 
 import io.skysail.api.links.Link;
-import io.skysail.server.app.todos.domain.resources.TodosResource;
+import io.skysail.server.app.todos.lists.ListsResource;
 
 import java.util.List;
 
@@ -12,7 +12,7 @@ public class RootResource extends ListServerResource<String> {
 
     @Override
     public List<Link> getLinkheader() {
-        return super.getLinkheader(TodosResource.class);
+        return super.getLinkheader(ListsResource.class);
     }
 
     @Override

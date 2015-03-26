@@ -4,6 +4,7 @@ import io.skysail.api.forms.Field;
 import io.skysail.api.forms.InputType;
 import io.skysail.api.forms.ListView;
 import io.skysail.api.forms.PostView;
+import io.skysail.api.forms.Reference;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -28,6 +29,9 @@ public class Todo implements Serializable {
 
     @Id
     private String id;
+    
+    @Reference(cls = Todo.class)
+    private String list;
 
     @Field(listView = { ListView.TRUNCATE, ListView.LINK })
     @NotNull

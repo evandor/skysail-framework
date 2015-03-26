@@ -13,7 +13,6 @@ import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.cache.Cache;
 import org.apache.shiro.cache.MapCache;
-import org.apache.shiro.cache.MemoryConstrainedCacheManager;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 
@@ -31,10 +30,10 @@ public class SimpleAuthorizingRealm extends AuthorizingRealm {
     public SimpleAuthorizingRealm(SkysailHashedCredentialsMatcher hashedCredetialsMatcher,
             FileBasedUserManagementProvider simpleUserManagementProvider) {
 
-        MemoryConstrainedCacheManager memoryConstrainedCacheManager = new MemoryConstrainedCacheManager();
+        
 
         this.simpleUserManagementProvider = simpleUserManagementProvider;
-        hashedCredetialsMatcher.setCacheManager(memoryConstrainedCacheManager);
+        //.setCacheManager(memoryConstrainedCacheManager);
         setCredentialsMatcher(hashedCredetialsMatcher);
         setAuthenticationCachingEnabled(true);
         Cache<Object, AuthenticationInfo> authenticationCache = new MapCache<>("credentialsCache",

@@ -3,6 +3,7 @@ Bundle-Name: SKYSAIL :: product :: todos
 Private-Package:  \
 	io.skysail.product.todos
 -buildpath:  \
+	skysail.client.todos.angularjs,\
 	skysail.server.app.todos;version=latest,\
 	skysail.server.converter;version=latest,\
 	skysail.server.documentation;version=latest,\

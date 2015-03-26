@@ -16,6 +16,8 @@ import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 
 import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.cache.CacheManager;
+import org.apache.shiro.cache.MemoryConstrainedCacheManager;
 import org.osgi.service.cm.Configuration;
 import org.osgi.service.cm.ConfigurationAdmin;
 
@@ -52,6 +54,8 @@ public class FileBasedUserManagementProvider implements UserManagementProvider {
     private volatile UserManagementRepository userManagerRepo;
     private volatile ConfigurationAdmin configurationAdmin;
 
+    private CacheManager cacheManager;
+
     @Activate
     public void activate(Map<String, String> config) {
 
@@ -59,8 +63,9 @@ public class FileBasedUserManagementProvider implements UserManagementProvider {
             createDefautConfiguration();
             return;
         }
+        cacheManager = new MemoryConstrainedCacheManager();
         userManagerRepo = new UserManagementRepository(config);
-        authenticationService = new SimpleAuthenticationService();
+        authenticationService = new SimpleAuthenticationService(this);
         authorizationService = new SimpleAuthorizationService(this);
         SecurityUtils.setSecurityManager(new SkysailWebSecurityManager(authorizationService.getRealm()));
     }
@@ -70,6 +75,7 @@ public class FileBasedUserManagementProvider implements UserManagementProvider {
         authenticationService = null;
         authorizationService = null;
         SecurityUtils.setSecurityManager(null);
+        cacheManager = null;
     }
 
     // --- ConfigurationAdmin ------------------------------------------------
@@ -123,6 +129,10 @@ public class FileBasedUserManagementProvider implements UserManagementProvider {
             log.error(e.getMessage(), e);
         }
 
+    }
+
+    public CacheManager getCacheManager() {
+        return cacheManager;
     }
 
 }

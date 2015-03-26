@@ -29,7 +29,10 @@ public class SimpleAuthorizationService implements AuthorizationService, Enroler
 
     public SimpleAuthorizationService(FileBasedUserManagementProvider simpleUserManagementProvider) {
         this.userManagementProvider = simpleUserManagementProvider;
-        authorizingRealm = new SimpleAuthorizingRealm(new SkysailHashedCredentialsMatcher(),
+        SkysailHashedCredentialsMatcher hashedCredetialsMatcher = new SkysailHashedCredentialsMatcher();
+        
+        hashedCredetialsMatcher.setCacheManager(simpleUserManagementProvider.getCacheManager());
+        authorizingRealm = new SimpleAuthorizingRealm(hashedCredetialsMatcher,
                 simpleUserManagementProvider);
     }
 

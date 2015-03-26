@@ -5,6 +5,8 @@ import io.skysail.server.app.todos.domain.resources.PutTodoResource;
 import io.skysail.server.app.todos.domain.resources.TodoResource;
 import io.skysail.server.app.todos.domain.resources.TodosRepository;
 import io.skysail.server.app.todos.domain.resources.TodosResource;
+import io.skysail.server.app.todos.lists.ListsResource;
+import io.skysail.server.app.todos.lists.PostListResource;
 
 import java.util.Arrays;
 import java.util.List;
@@ -52,6 +54,8 @@ public class TodoApplication extends SkysailApplication implements ApplicationPr
         router.attach(new RouteBuilder("/Todos", TodosResource.class));
         router.attach(new RouteBuilder("/Todos/{id}", TodoResource.class));
         router.attach(new RouteBuilder("/Todos/{id}/", PutTodoResource.class));
+        router.attach(new RouteBuilder("/List", ListsResource.class));
+        router.attach(new RouteBuilder("/List/", PostListResource.class));
     }
 
     public List<MenuItem> getMenuEntries() {

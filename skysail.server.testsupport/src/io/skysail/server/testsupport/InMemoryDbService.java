@@ -112,4 +112,8 @@ public class InMemoryDbService implements DbService2 {
         return 0;
     }
 
+    @Override
+    public void executeUpdate(String sql, Map<String, Object> params) {
+    }
+
 }

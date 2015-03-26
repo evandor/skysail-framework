@@ -25,6 +25,7 @@ import com.orientechnologies.orient.core.id.ORecordId;
 import com.orientechnologies.orient.core.metadata.schema.OClass;
 import com.orientechnologies.orient.core.metadata.schema.OType;
 import com.orientechnologies.orient.core.record.impl.ODocument;
+import com.orientechnologies.orient.core.sql.OCommandSQL;
 import com.orientechnologies.orient.core.sql.query.OSQLSynchQuery;
 import com.orientechnologies.orient.object.db.OObjectDatabasePool;
 import com.orientechnologies.orient.object.db.OObjectDatabaseTx;
@@ -139,6 +140,13 @@ public class OrientGraphDbService extends AbstractOrientDbService implements DbS
         List<ODocument> query = objectDb.query(new OSQLSynchQuery<ODocument>(sql), params);
         return query.get(0).field("count");
     }
+    
+    @Override
+    public void executeUpdate(String sql, Map<String, Object> params) {
+        OObjectDatabaseTx objectDb = getObjectDb();
+        objectDb.command(new OCommandSQL(sql)).execute(params);
+    }
+
 
     // @Override
     public <T> List<T> findAll(Class<T> entityClass, Class<?>... linkedClasses) {
@@ -271,5 +279,6 @@ public class OrientGraphDbService extends AbstractOrientDbService implements DbS
             cls.createProperty(iPropertyName, type);
         }
     }
+
 
 }

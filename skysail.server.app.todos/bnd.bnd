@@ -47,5 +47,6 @@ Import-Package: org.osgi.framework,\
 Private-Package:  \
 	io.skysail.server.app.todos,\
 	io.skysail.server.app.todos.domain,\
-	io.skysail.server.app.todos.domain.resources
+	io.skysail.server.app.todos.domain.resources,\
+	io.skysail.server.app.todos.lists
 Bundle-Description: a todo application for skysail (used as demo as well) 

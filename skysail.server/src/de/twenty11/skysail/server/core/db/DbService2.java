@@ -53,4 +53,6 @@ public interface DbService2 {
 
     long getCount(String sql, Map<String, Object> params);
 
+    void executeUpdate(String sql, Map<String, Object> params);
+
 }

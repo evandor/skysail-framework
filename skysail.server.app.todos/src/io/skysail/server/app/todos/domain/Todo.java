@@ -46,13 +46,16 @@ public class Todo implements Serializable {
     @Field(type = InputType.READONLY)
     private Date modified;
 
+    @Field
+    private Integer rank;
+
     @Field(selectionProvider = StatusSelectionProvider.class, postView = { PostView.HIDE })
     private Status status;
 
     @Field(type = InputType.READONLY, listView = { ListView.HIDE })
     private String owner;
 
-    // start date, due date, Priority (high, medium, low),
+    // start date, 
     // status: not started, in progress, completed. Pending inßut, deferred
     // assigned to,
     // related to: accont, ...

@@ -36,7 +36,7 @@ public class TodosRepository implements DbRepository {
 
     public <T> List<T> findAll(Class<T> cls) {
         String username = SecurityUtils.getSubject().getPrincipal().toString();
-        String sql = "SELECT from Todo WHERE owner= :username";
+        String sql = "SELECT from Todo WHERE owner= :username ORDER BY rank ASC";
         Map<String, Object> params = new HashMap<String, Object>();
         params.put("username", username);
         return dbService.findObjects(sql, params);
@@ -55,7 +55,17 @@ public class TodosRepository implements DbRepository {
     }
 
     public Object add(Todo entity) {
-        return dbService.persist(entity);
+         Object result = dbService.persist(entity);
+         increaseOtherTodosRank(entity);
+         return result;
+    }
+
+    private void increaseOtherTodosRank(Todo entity) {
+        String sql = "update " + Todo.class.getSimpleName() + " INCREMENT rank = 1 WHERE owner = :username AND rank >= :referenceRank";
+        Map<String, Object> params = new HashMap<String, Object>();
+        params.put("username", entity.getOwner());
+        params.put("referenceRank", entity.getRank());
+        dbService.executeUpdate(sql, params);
     }
 
     public Todo getById(String id) {
@@ -67,7 +77,7 @@ public class TodosRepository implements DbRepository {
     }
 
     public long getTodosCount(String username) {
-        String sql = "select COUNT(*) as count from " + Todo.class.getSimpleName() + " WHERE owner = :uername";
+        String sql = "select COUNT(*) as count from " + Todo.class.getSimpleName() + " WHERE owner = :username";
         Map<String, Object> params = new HashMap<String, Object>();
         params.put("username", username);
         return dbService.getCount(sql, params);

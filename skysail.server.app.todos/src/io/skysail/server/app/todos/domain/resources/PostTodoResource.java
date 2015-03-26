@@ -38,6 +38,7 @@ public class PostTodoResource extends PostEntityServerResource<Todo> {
         subject.getPrincipals().getPrimaryPrincipal();
         entity.setOwner(subject.getPrincipal().toString());
         entity.setStatus(Status.NEW);
+        entity.setRank(1);
         app.getRepository().add(entity);
         return new SkysailResponse<String>();
     }

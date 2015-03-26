@@ -3,6 +3,7 @@ package io.skysail.server.app.todos.domain.resources;
 import io.skysail.api.links.Link;
 import io.skysail.server.app.todos.TodoApplication;
 import io.skysail.server.app.todos.domain.Todo;
+import io.skysail.server.app.todos.lists.PostListResource;
 
 import java.util.List;
 import java.util.function.Consumer;
@@ -49,7 +50,7 @@ public class TodosResource extends ListServerResource<Todo> {
 
     @Override
     public List<Link> getLinkheader() {
-        return super.getLinkheader(PostTodoResource.class);
+        return super.getLinkheader(PostTodoResource.class, PostListResource.class);
     }
 
     @Override

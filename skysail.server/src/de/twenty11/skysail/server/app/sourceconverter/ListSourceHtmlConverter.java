@@ -127,7 +127,8 @@ public class ListSourceHtmlConverter extends AbstractSourceConverter implements 
         }
         if (Arrays.asList(fieldAnnotation.listView()).contains(ListView.LINK)) {
             Reference originalRef = resource.getRequest().getOriginalRef();
-            newValue = "<a href='" + originalRef.toString() + "/" + ((String) result.get("id")).replace("#", "")
+            Object id = result.get("id") != null ? result.get("id") : "wo";
+            newValue = "<a href='" + originalRef.toString() + "/" + ((String) id).replace("#", "")
                     + "/'>" + newValue + "</a>";
         }
         if (newValue != null) {

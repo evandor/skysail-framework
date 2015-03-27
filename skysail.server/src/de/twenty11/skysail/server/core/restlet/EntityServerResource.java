@@ -103,7 +103,9 @@ public abstract class EntityServerResource<T> extends SkysailServerResource<T> {
         // this empty implementation provides the comment to subclasses only.
     };
 
-    public abstract String getId();
+    public String getId() {
+        return null;
+    }
 
     /**
      * will be called in case of a DELETE request. Override in subclasses if

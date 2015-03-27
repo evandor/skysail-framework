@@ -15,7 +15,6 @@ import org.osgi.service.prefs.BackingStoreException;
 import org.osgi.service.prefs.Preferences;
 import org.osgi.service.prefs.PreferencesService;
 
-import aQute.bnd.annotation.component.Activate;
 import aQute.bnd.annotation.component.Component;
 import aQute.bnd.annotation.component.Reference;
 
@@ -31,11 +30,6 @@ public class PreferencesFavoritesService implements FavoritesService {
     public static final String FAVORITE_TOOLTIP = "tooltip";
 
     private PreferencesService preferencesService;
-
-    @Activate
-    public void activate() {
-        System.out.println("***init***");
-    }
 
     @Override
     public synchronized boolean add(Favorite favorite) {

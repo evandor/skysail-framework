@@ -27,8 +27,10 @@ import de.twenty11.skysail.server.services.MenuItemProvider;
 public class TodoApplication extends SkysailApplication implements ApplicationProvider, MenuItemProvider {
 
     public static final String LIST_ID = "lid";
+    public static final String TODO_ID = "id";
 
     private static final String APP_NAME = "Todos";
+
     private TodosRepository todosRepo;
 
     public TodoApplication() {
@@ -60,8 +62,8 @@ public class TodoApplication extends SkysailApplication implements ApplicationPr
 
         router.attach(new RouteBuilder("/Lists/{"+LIST_ID+"}/Todos/", PostTodoResource.class));
         router.attach(new RouteBuilder("/Lists/{"+LIST_ID+"}/Todos", TodosResource.class));
-        router.attach(new RouteBuilder("/Lists/{"+LIST_ID+"}/Todos/{id}", TodoResource.class));
-        router.attach(new RouteBuilder("/Lists/{"+LIST_ID+"}/Todos/{id}/", PutTodoResource.class));
+        router.attach(new RouteBuilder("/Lists/{"+LIST_ID+"}/Todos/{"+TODO_ID+"}", TodoResource.class));
+        router.attach(new RouteBuilder("/Lists/{"+LIST_ID+"}/Todos/{"+TODO_ID+"}/", PutTodoResource.class));
     }
 
     public List<MenuItem> getMenuEntries() {

@@ -71,8 +71,15 @@ import etm.core.monitor.EtmPoint;
 public abstract class PutEntityServerResource<T> extends SkysailServerResource<T> {
 
     private static final Logger logger = LoggerFactory.getLogger(PutEntityServerResource.class);
+    private String identifierName;
+    private String identifier;
 
     public PutEntityServerResource() {
+        this("id");
+    }
+
+    public PutEntityServerResource(String identifierName) {
+        this.identifierName = identifierName;
         addToContext(ResourceContextId.LINK_TITLE, "update");
     }
 
@@ -88,7 +95,7 @@ public abstract class PutEntityServerResource<T> extends SkysailServerResource<T
      */
     @Override
     protected void doInit() throws ResourceException {
-        // empty
+        identifier = getAttribute(identifierName);
     }
 
     /**
@@ -132,7 +139,7 @@ public abstract class PutEntityServerResource<T> extends SkysailServerResource<T
     public SkysailResponse<T> createForm(Variant variant) {
         logger.info("Request entry point: {} @Get('htmlform|html') createForm with variant {}",
                 PutEntityServerResource.class.getSimpleName(), variant);
-        return new FormResponse<T>(getEntity(), getAttribute("id"), ".", redirectBackTo());
+        return new FormResponse<T>(getEntity(), identifier, ".", redirectBackTo());
     }
 
     protected String redirectBackTo() {

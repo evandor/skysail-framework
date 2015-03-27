@@ -13,30 +13,25 @@ import de.twenty11.skysail.server.core.restlet.EntityServerResource;
 
 public class ListResource extends EntityServerResource<TodoList> {
 
-    private String id;
+    private String listId;
     private TodoApplication app;
 
     @Override
     protected void doInit() throws ResourceException {
-        id = getAttribute(TodoApplication.LIST_ID);
+        listId = getAttribute(TodoApplication.LIST_ID);
         app = (TodoApplication)getApplication();
     }
     
     @Override
-    public String getId() {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
     public SkysailResponse<?> eraseEntity() {
-        // TODO Auto-generated method stub
+        // TODO cascade todos (?)
+        app.getRepository().delete(listId);
         return null;
     }
 
     @Override
     public TodoList getEntity() {
-        return app.getRepository().getById(TodoList.class, id);
+        return app.getRepository().getById(TodoList.class, listId);
     }
     
     @Override

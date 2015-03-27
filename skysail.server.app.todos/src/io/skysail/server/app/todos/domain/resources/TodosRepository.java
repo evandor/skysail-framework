@@ -35,9 +35,20 @@ public class TodosRepository implements DbRepository {
         TodosRepository.dbService = null;
     }
 
-    public <T> List<T> findAll(Class<T> cls, String sorting) {
+    public <T> List<T> findAll(Class<T> cls, String listId, String sorting) {
         String username = SecurityUtils.getSubject().getPrincipal().toString();
-        String sql = "SELECT from "+cls.getSimpleName()+" WHERE owner= :username " + sorting;
+        
+        String sql = "SELECT from "+cls.getSimpleName()+" WHERE " + getWhereStatement(listId)+ " " + sorting;
+        Map<String, Object> params = new HashMap<String, Object>();
+        params.put("username", username);
+        params.put("list", listId);
+        return dbService.findObjects(sql, params);
+    }
+    
+
+    public List<TodoList> findAllLists() {
+        String username = SecurityUtils.getSubject().getPrincipal().toString();
+        String sql = "SELECT from "+TodoList.class.getSimpleName()+" WHERE owner= :username ORDER BY name ";
         Map<String, Object> params = new HashMap<String, Object>();
         params.put("username", username);
         return dbService.findObjects(sql, params);
@@ -51,8 +62,8 @@ public class TodosRepository implements DbRepository {
         return dbService.findObjectById(cls, id);
     }
 
-    public void update(Todo entity) {
-        dbService.update(entity.getId(), entity);
+    public void update(String id, Object entity) {
+        dbService.update(id, entity);
     }
 
     public Object add(Todo entity) {
@@ -69,14 +80,23 @@ public class TodosRepository implements DbRepository {
         dbService.executeUpdate(sql, params);
     }
 
-    public void delete(String id) {
-        dbService.delete(Todo.class, id);
+    public void delete(Class<?> cls, String id) {
+        dbService.delete(cls, id);
     }
 
-    public long getTodosCount(String username) {
-        String sql = "select COUNT(*) as count from " + Todo.class.getSimpleName() + " WHERE owner = :username";
+    public long getTodosCount(String username,String listId) {
+        String sql = "select COUNT(*) as count from " + Todo.class.getSimpleName() + " WHERE " + getWhereStatement(listId);
         Map<String, Object> params = new HashMap<String, Object>();
         params.put("username", username);
+        params.put("list", listId);
         return dbService.getCount(sql, params);
     }
+
+    private String getWhereStatement(String listId) {
+        if ("null".equals(listId)) {
+            return "owner= :username AND list IS NULL";
+        }
+        return "owner= :username AND list= :list";
+    }
+  
 }

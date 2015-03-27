@@ -39,5 +39,10 @@ public class PostListResource extends PostEntityServerResource<TodoList> {
         app.getRepository().add(entity);
         return new SkysailResponse<>();
     }
+    
+    @Override
+    public String redirectTo() {
+        return super.redirectTo(ListsResource.class);
+    }
 
 }

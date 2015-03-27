@@ -82,7 +82,14 @@ public class FormField {
                 ODocument doc = handler.getDoc();
                 objectMap = mapper.readValue(doc.toJSON(), new TypeReference<Map<String, Object>>() {
                 });
-                value = (String) objectMap.get(fieldAnnotation.getName());
+                Object val = objectMap.get(fieldAnnotation.getName());
+                if (val == null) {
+                    value = "---";
+                } else if (val instanceof String) {
+                    value = (String) val;
+                } else {
+                    value = val.toString();
+                }
                 type = fieldAnnotation.getType();
                 // if (type.equals(SkysailUser.class) && userManager != null &&
                 // value != null) {

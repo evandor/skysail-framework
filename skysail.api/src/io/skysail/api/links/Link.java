@@ -240,7 +240,7 @@ public class Link {
             uri = uri.replace(pattern, value == null ? "" : value);
             log.info("uri substitution: '{}' -> '{}'", uriBefore, uri);
         } else {
-            log.warn("could not find pattern {} und linkheader uri {}", pattern, uri);
+            log.warn("could not find pattern {} in link uri {}", pattern, uri);
         }
         return this;
     }

@@ -26,4 +26,10 @@ public @interface Reference {
      */
     Class<? extends SelectionProvider> selectionProvider() default IgnoreSelectionProvider.class;
 
+    /**
+     * Defines the way this entity attribute should be displayed in the post
+     * view.
+     * 
+     */
+    PostView[] postView() default PostView.SHOW;
 }

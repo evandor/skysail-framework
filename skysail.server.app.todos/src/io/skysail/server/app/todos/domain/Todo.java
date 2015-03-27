@@ -30,7 +30,7 @@ public class Todo implements Serializable {
     @Id
     private String id;
     
-    @Reference(cls = Todo.class)
+    @Reference(cls = Todo.class, postView = {PostView.HIDE})
     private String list;
 
     @Field(listView = { ListView.TRUNCATE, ListView.LINK })
@@ -50,7 +50,7 @@ public class Todo implements Serializable {
     @Field(type = InputType.READONLY)
     private Date modified;
 
-    @Field
+    @Field(type = InputType.READONLY)
     private Integer rank;
 
     @Field(selectionProvider = StatusSelectionProvider.class, postView = { PostView.HIDE })
@@ -60,7 +60,7 @@ public class Todo implements Serializable {
     private String owner;
 
     // start date, 
-    // status: not started, in progress, completed. Pending inßut, deferred
+    // status: 
     // assigned to,
     // related to: accont, ...
 }

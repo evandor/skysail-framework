@@ -303,6 +303,9 @@ public class StringTemplateRenderer {
         }
 
         Reference referenceAnnotation = field.getAnnotation(Reference.class);
+        if (referenceAnnotation != null && (Arrays.asList(referenceAnnotation.postView()).contains(PostView.HIDE))) {
+            return false;
+        }
         return (referenceAnnotation != null);
     }
 

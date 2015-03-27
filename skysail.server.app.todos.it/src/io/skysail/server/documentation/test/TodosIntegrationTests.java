@@ -42,6 +42,7 @@ public class TodosIntegrationTests extends IntegrationTests {
     }
 
     @Test
+    @Ignore
     public void get_html_on_TodosResource_returns_200() throws Exception {
         Representation representation = client.setUrl("/Todos/Todos").get(MediaType.TEXT_HTML);
         assertTrue(representation.getMediaType().getName().equals("text/html"));
@@ -61,6 +62,7 @@ public class TodosIntegrationTests extends IntegrationTests {
     }
 
     @Test
+    @Ignore
     public void get_json_on_TodosResource_returns_200() throws Exception {
         Representation representation = client.setUrl("/Todos/Todos").get(MediaType.APPLICATION_JSON);
         assertTrue(client.getResponse().getStatus().getCode() == 200);
@@ -71,6 +73,7 @@ public class TodosIntegrationTests extends IntegrationTests {
     }
 
     @Test
+    @Ignore
     public void post_html_with_missing_title_returns_badRequest() {
         form.add("title", "");
         thrown.expectMessage("Bad Request");
@@ -78,6 +81,7 @@ public class TodosIntegrationTests extends IntegrationTests {
     }
 
     @Test
+    @Ignore
     public void post_json_with_missing_title_returns_badRequest() {
         thrown.expectMessage("Bad Request");
         form.add("title", "");
@@ -85,6 +89,7 @@ public class TodosIntegrationTests extends IntegrationTests {
     }
 
     @Test
+    @Ignore
     public void post_html_on_TodosResource_returns_200() {
         form.add("title", "mytitle");
         client.setUrl("/Todos/Todos/").post(form, MediaType.TEXT_HTML);

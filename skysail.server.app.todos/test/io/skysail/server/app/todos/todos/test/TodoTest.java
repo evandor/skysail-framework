@@ -1,4 +1,4 @@
-package io.skysail.server.app.todos.domain.test;
+package io.skysail.server.app.todos.todos.test;
 
 import org.junit.Before;
 

@@ -7,7 +7,6 @@ import java.util.List;
 
 import de.twenty11.skysail.server.core.restlet.ListServerResource;
 
-@javax.annotation.Generated(value = "de.twenty11.skysail.server.ext.apt.GenerateRootResourceProcessor")
 public class RootResource extends ListServerResource<String> {
 
     @Override
@@ -17,7 +16,6 @@ public class RootResource extends ListServerResource<String> {
 
     @Override
     public List<String> getEntity() {
-        // TODO Auto-generated method stub
         return null;
     }
 

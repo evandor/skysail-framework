@@ -1,11 +1,11 @@
-package io.skysail.server.app.todos.domain.test;
+package io.skysail.server.app.todos.todos.test;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 import io.skysail.api.validation.DefaultValidationImpl;
 import io.skysail.server.app.todos.TodoApplication;
-import io.skysail.server.app.todos.domain.resources.TodosRepository;
+import io.skysail.server.app.todos.todos.resources.TodosRepository;
 import io.skysail.server.testsupport.AbstractShiroTest;
 import io.skysail.server.testsupport.InMemoryDbService;
 

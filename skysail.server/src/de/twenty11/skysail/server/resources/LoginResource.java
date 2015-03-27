@@ -50,7 +50,7 @@ public class LoginResource extends PostEntityServerResource<Credentials> {
     public String redirectTo() {
         boolean authenticated = SecurityUtils.getSubject().isAuthenticated();
         if (authenticated) {
-            return super.redirectTo(WelcomeResource.class);
+            return super.redirectTo(DefaultResource.class);
         }
         return super.redirectTo(LoginResource.class);
     }

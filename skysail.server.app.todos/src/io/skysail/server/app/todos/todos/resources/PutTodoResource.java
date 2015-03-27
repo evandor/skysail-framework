@@ -1,8 +1,8 @@
-package io.skysail.server.app.todos.domain.resources;
+package io.skysail.server.app.todos.todos.resources;
 
 import io.skysail.api.responses.SkysailResponse;
 import io.skysail.server.app.todos.TodoApplication;
-import io.skysail.server.app.todos.domain.Todo;
+import io.skysail.server.app.todos.todos.Todo;
 
 import java.util.Date;
 

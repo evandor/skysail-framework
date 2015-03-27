@@ -1,10 +1,10 @@
-package io.skysail.server.app.todos.domain.resources;
+package io.skysail.server.app.todos.todos.resources;
 
 import io.skysail.api.links.Link;
 import io.skysail.api.responses.SkysailResponse;
 import io.skysail.server.app.todos.TodoApplication;
-import io.skysail.server.app.todos.domain.Status;
-import io.skysail.server.app.todos.domain.Todo;
+import io.skysail.server.app.todos.todos.Status;
+import io.skysail.server.app.todos.todos.Todo;
 
 import java.util.Date;
 import java.util.function.Consumer;

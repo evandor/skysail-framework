@@ -45,8 +45,10 @@ Import-Package: org.osgi.framework,\
 	javassist.util.proxy,\
 	*
 Private-Package:  \
-	io.skysail.server.app.todos,\
-	io.skysail.server.app.todos.domain,\
-	io.skysail.server.app.todos.domain.resources,\
-	io.skysail.server.app.todos.lists
+	io.skysail.server.app.todos.todos,\
+	io.skysail.server.app.todos.todos.resources,\
+	io.skysail.server.app.todos.lists,\
+	io.skysail.server.app.todos.todos
 Bundle-Description: a todo application for skysail (used as demo as well) 
+Export-Package:  \
+	io.skysail.server.app.todos

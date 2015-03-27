@@ -1,13 +1,13 @@
-package io.skysail.server.app.todos.domain.resources.test;
+package io.skysail.server.app.todos.todos.resources.test;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.nullValue;
 import static org.junit.Assert.assertThat;
 import io.skysail.api.responses.ConstraintViolationsResponse;
-import io.skysail.server.app.todos.domain.Todo;
-import io.skysail.server.app.todos.domain.resources.PostTodoResource;
-import io.skysail.server.app.todos.domain.test.TodoAppTest;
+import io.skysail.server.app.todos.todos.Todo;
+import io.skysail.server.app.todos.todos.resources.PostTodoResource;
+import io.skysail.server.app.todos.todos.test.TodoAppTest;
 
 import org.junit.Before;
 import org.junit.BeforeClass;

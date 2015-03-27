@@ -19,7 +19,9 @@ Test-Cases: \
 	org.apache.felix.configadmin;version=1.8,\
 	skysail.server.db;version=latest,\
 	lombok;version=1.12,\
-	skysail.client.testsupport;version=latest
+	skysail.client.testsupport;version=latest,\
+	skysail.server.app.todos;version=latest,\
+	skysail.api;version=latest
 	
 	
 -runfw: org.apache.felix.framework;version='[4,5)'
@@ -57,8 +59,8 @@ Test-Cases: \
     https.proxyHost=192.168.11.140,\
     https.proxyPort=8080,\
     logback.configurationFile=config/test/logback.xml,\
-    obr.repository.url=https://raw.githubusercontent.com/evandor/skysail-repository/master/index.xml https://raw.githubusercontent.com/evandor/skysail/master/cnf/releaserepo/index.xml http://felix.apache.org/obr/releases.xml,\
-    gosh.args=--nointeractive
+    obr.repository.url=https://raw.githubusercontent.com/evandor/skysail-repository/master/index.xml https://raw.githubusercontent.com/evandor/skysail/master/cnf/releaserepo/index.xml http://felix.apache.org/obr/releases.xml
+#    gosh.args=--nointeractive
 
 
 #  gosh.args=--nointeractive : otherwise I get a "gosh: stopping framework" message when running the integration tests...

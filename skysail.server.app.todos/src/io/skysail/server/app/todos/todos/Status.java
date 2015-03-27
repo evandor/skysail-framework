@@ -1,4 +1,4 @@
-package io.skysail.server.app.todos.domain;
+package io.skysail.server.app.todos.todos;
 
 public enum Status {
 

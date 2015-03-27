@@ -1,9 +1,9 @@
-package io.skysail.server.app.todos.domain.resources;
+package io.skysail.server.app.todos.todos.resources;
 
 import io.skysail.api.links.Link;
 import io.skysail.api.responses.SkysailResponse;
 import io.skysail.server.app.todos.TodoApplication;
-import io.skysail.server.app.todos.domain.Todo;
+import io.skysail.server.app.todos.todos.Todo;
 
 import java.util.List;
 
@@ -34,7 +34,7 @@ public class TodoResource extends EntityServerResource<Todo> {
 
     @Override
     public SkysailResponse<?> eraseEntity() {
-        app.getRepository().delete(id);
+        app.getRepository().delete(Todo.class, id);
         return new SkysailResponse<String>();
     }
 

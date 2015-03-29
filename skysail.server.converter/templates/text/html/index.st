@@ -7,6 +7,7 @@ index(user, messages, source, converter, services, resource, fields, target) ::=
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
+    $resource.metaRefresh$
 <!--    <link rel="icon" href="../../favicon.ico">-->
 
     <title>$messages.("productName")$</title>

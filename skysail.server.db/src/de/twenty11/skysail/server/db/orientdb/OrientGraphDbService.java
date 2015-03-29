@@ -54,7 +54,6 @@ public class OrientGraphDbService extends AbstractOrientDbService implements DbS
         // make sure to create a graphDb object first
         // http://comments.gmane.org/gmane.comp.db.orientdb.user/8588
         // OrientGraph tx = graphDbFactory.getTx();
-        // System.out.println(tx);
     }
 
     @Deactivate

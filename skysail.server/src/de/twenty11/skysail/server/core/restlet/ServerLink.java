@@ -48,7 +48,8 @@ public class ServerLink extends Link {
         Predicate<String[]> rolesPredicate = routeBuilder.getRolesForAuthorization();
         Link linkheader = new Link.Builder(path).relation(defaultLinkRelation).title(title == null ? "unknown" : title)
                 .authenticationNeeded(needsAuthentication).needsRoles(rolesPredicate).build();
-        linkheader.setImage(MediaType.TEXT_HTML, glyph);System.out.println(linkheader);
+        //System.out.println(linkheader); TODO this line gets accessed quite often, ... check!
+        linkheader.setImage(MediaType.TEXT_HTML, glyph);
         if (pathSubstitutions != null) {
             //pathSubstitutions.accept(linkheader);
         }

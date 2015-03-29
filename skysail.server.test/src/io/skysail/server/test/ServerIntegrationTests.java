@@ -100,7 +100,6 @@ public class ServerIntegrationTests {
     private boolean implementsType(ServiceReference sr, Class<?> cls) {
         String[] implementsTypes = (String[]) sr.getProperty("objectClass");
         return Arrays.stream(implementsTypes).filter(type -> {
-            System.out.println(type + "/" + cls.getName());
             return type.equals(cls.getName());
         }).findFirst().isPresent();
     }

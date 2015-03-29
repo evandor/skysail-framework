@@ -7,22 +7,14 @@ import io.skysail.client.testsupport.Client;
 import java.util.Collection;
 import java.util.Map;
 
-import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.osgi.framework.ServiceReference;
 import org.restlet.data.Form;
 import org.restlet.data.MediaType;
-import org.restlet.representation.Representation;
 import org.restlet.resource.ServerResource;
 
 public class TodosIntegrationTests extends IntegrationTests {
-
-    @Before
-    public void setUp() throws Exception {
-        client = new Client(getBaseUrl()).loginAs("admin", "skysail");
-        form = new Form();
-    }
 
     @Test
     public void documentationProvider_is_available() throws Exception {
@@ -42,32 +34,21 @@ public class TodosIntegrationTests extends IntegrationTests {
     }
 
     @Test
-    @Ignore
-    public void get_html_on_TodosResource_returns_200() throws Exception {
-        Representation representation = client.setUrl("/Todos/Todos").get(MediaType.TEXT_HTML);
-        assertTrue(representation.getMediaType().getName().equals("text/html"));
+    public void get_html_on_ListsResource_returns_200() throws Exception {
+        Client client = new Client(getBaseUrl(), MediaType.TEXT_HTML);
+        getTodoListsFor(client, "admin");
+        assertTrue(client.getCurrentRepresentation().getMediaType().getName().equals("text/html"));
         assertTrue(client.getResponse().getStatus().getCode() == 200);
     }
 
     @Test
-    @Ignore
-    public void perfTest() throws Exception {
-        form.add("title", "mytitle");
-        for (int i = 0; i < 1; i++) {
-            client.setUrl("/TodoGen/Todos/").post(form, MediaType.TEXT_HTML);
-        }
-        for (int i = 0; i < 1; i++) {
-            client.setUrl("/TodoGen/Todos").get(MediaType.TEXT_HTML);
-        }
-    }
-
-    @Test
-    @Ignore
     public void get_json_on_TodosResource_returns_200() throws Exception {
-        Representation representation = client.setUrl("/Todos/Todos").get(MediaType.APPLICATION_JSON);
+        Client client = new Client(getBaseUrl(), MediaType.APPLICATION_JSON);
+        getTodoListsFor(client, "admin");
+
+        assertTrue(client.getCurrentRepresentation().getMediaType().getName().equals("application/json"));
         assertTrue(client.getResponse().getStatus().getCode() == 200);
-        assertTrue(representation.getMediaType().getName().equals("application/json"));
-        String text = representation.getText();
+        String text = client.getCurrentRepresentation().getText();
         assertTrue(text.startsWith("["));
         assertTrue(text.endsWith("]"));
     }
@@ -75,26 +56,44 @@ public class TodosIntegrationTests extends IntegrationTests {
     @Test
     @Ignore
     public void post_html_with_missing_title_returns_badRequest() {
+        Form form = new Form();
         form.add("title", "");
         thrown.expectMessage("Bad Request");
-        client.setUrl("/Todos/Todos/").post(form, MediaType.TEXT_HTML);
+        //client.setUrl("/Todos/Todos/").post(form);
     }
 
     @Test
     @Ignore
     public void post_json_with_missing_title_returns_badRequest() {
+        Client client = new Client(getBaseUrl(), MediaType.APPLICATION_JSON);
+
         thrown.expectMessage("Bad Request");
+        Form form = new Form();
         form.add("title", "");
-        client.setUrl("/Todos/Todos/").post(form, MediaType.APPLICATION_JSON);
+        client.setUrl("/Todos/Todos/").post(form);
     }
 
     @Test
     @Ignore
     public void post_html_on_TodosResource_returns_200() {
+        Form form = new Form();
         form.add("title", "mytitle");
-        client.setUrl("/Todos/Todos/").post(form, MediaType.TEXT_HTML);
-        assertTrue(client.getResponse().getStatus().getCode() == 200);
+        //client.setUrl("/Todos/Todos/").post(form);
+        //assertTrue(client.getResponse().getStatus().getCode() == 200);
 
+    }
+
+    @Test
+    @Ignore
+    public void perfTest() throws Exception {
+        Form form = new Form();
+        form.add("title", "mytitle");
+        for (int i = 0; i < 1; i++) {
+            //client.setUrl("/TodoGen/Todos/").post(form);
+        }
+        for (int i = 0; i < 1; i++) {
+            //client.setUrl("/TodoGen/Todos").get();
+        }
     }
 
 }

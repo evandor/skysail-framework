@@ -87,11 +87,11 @@ public abstract class PostEntityServerResource<T> extends SkysailServerResource<
     /**
      * If you have a route defined as "/repository/{key}", you can get the key
      * like this: key = (String) getRequest().getAttributes().get("key");
-     * 
-     * To get hold on any parameters passed, consider using this pattern:
-     * 
-     * Form form = new Form(getRequest().getEntity()); action =
-     * form.getFirstValue("action");
+     *
+     * <p>To get hold on any parameters passed, consider using this pattern:</p>
+     *
+     * <p>Form form = new Form(getRequest().getEntity()); action =
+     * form.getFirstValue("action");</p>
      * 
      */
     @Override
@@ -231,7 +231,7 @@ public abstract class PostEntityServerResource<T> extends SkysailServerResource<
         return Arrays.asList(new Link.Builder(".").relation(LinkRelation.NEXT).title("form target").verbs(Method.POST)
                 .build());
     }
-
+    
     /**
      * String id = entity.getRid().toString().replace("#",""); String link =
      * ServerLink.fromResource(app, ClipResource.class).getUri();

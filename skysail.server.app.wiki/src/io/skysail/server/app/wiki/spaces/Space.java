@@ -25,7 +25,6 @@ public class Space extends DynamicEntity {
         SortedSet<EntityDynaProperty> properties = new TreeSet<>();
 
         Application designerApplication = repo.getById(Application.class, "25:1");
-        // System.out.println(designerApplication.getEntities().get(0).getName());
         List<Entity> entities = designerApplication.getEntities();
 
         // streams dont't seem to work here ?!?! (with orientdb objects)
@@ -39,21 +38,9 @@ public class Space extends DynamicEntity {
             }
         }
 
-        // System.out.println(entities.size());
-        // Optional<Entity> entity = entities.stream().filter(e -> {
-        // return namePredecate(e);
-        // }).findFirst();
-        // if (entity.isPresent()) {
-        // }
-
         return properties;
     }
-
-    private static boolean namePredecate(Entity e) {
-        System.out.println(e);
-        return "Space".equals(e.getName());
-    }
-
+    
     public static void inject(DesignerRepository designerRepo) {
         repo = designerRepo;
     }

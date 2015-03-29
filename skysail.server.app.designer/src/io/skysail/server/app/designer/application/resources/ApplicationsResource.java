@@ -26,7 +26,6 @@ public class ApplicationsResource extends ListServerResource<Application> {
     @Override
     public List<Application> getEntity() {
         List<Application> all = app.getRepository().findAll(Application.class);
-        // all.stream().forEach(a -> System.out.println(a.getEntities()));
         return all;
     }
 

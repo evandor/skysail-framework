@@ -240,6 +240,14 @@ public class STResourceWrapper {
         return sb.toString();
     }
 
+    public String getMetaRefresh() {
+        String target = resource.getMetaRefreshTarget();
+        if (target == null) {
+            return "";
+        }
+        return "<meta http-equiv=\"Refresh\" content=\"0; url="+target+"\" />";
+    }
+
     private List<String> getCleanedSegments(Reference reference) {
         List<String> segments = reference.getSegments();
         List<String> results = new ArrayList<String>();

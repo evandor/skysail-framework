@@ -5,45 +5,32 @@ import io.skysail.api.links.LinkRelation;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.function.Predicate;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
+
+import lombok.Getter;
+import lombok.extern.slf4j.Slf4j;
 
 import org.restlet.Response;
 import org.restlet.data.Form;
 import org.restlet.data.Header;
 import org.restlet.data.MediaType;
+import org.restlet.data.Reference;
 import org.restlet.representation.Representation;
 import org.restlet.resource.ClientResource;
 import org.restlet.util.Series;
 
+@Slf4j
 public class Client {
 
     private String baseUrl;
     private String credentials;
     private String url;
     private ClientResource cr;
+    @Getter
+    private Representation currentRepresentation;
+    private MediaType mediaType = MediaType.TEXT_HTML;
     
-    private class LinkRelationPredicate<Link> implements Predicate {
-
-        private String info;
-
-        public LinkRelationPredicate(String info) {
-            this.info = info;
-        }
-        
-        @Override
-        public boolean test(Object l) {
-            return false;// l.getRel().equals(linkRelation);
-        }
-        
-        @Override
-        public String toString() {
-            return super.toString();
-        }
-        
-    }
-
     public Client(String baseUrl) {
         this.baseUrl = baseUrl;
     }
@@ -53,19 +40,25 @@ public class Client {
         this.credentials = credentials;
     }
 
+    public Client(String baseUrl, MediaType mediaType) {
+        this.baseUrl = baseUrl;
+        this.mediaType = mediaType;
+    }
+
     public Client setUrl(String url) {
         this.url = url;
         return this;
     }
 
-    public Representation get(MediaType mediaType) {
+    public Representation get() {
         cr = new ClientResource(baseUrl + url);
         cr.getCookies().add("Credentials", credentials);
         return cr.get(mediaType);
     }
 
-    public Representation post(Object entity, MediaType mediaType) {
+    public Representation post(Object entity) {
         cr = new ClientResource(url);
+        cr.setFollowingRedirects(false);
         cr.getCookies().add("Credentials", credentials);
         return cr.post(entity, mediaType);
     }
@@ -91,21 +84,14 @@ public class Client {
     }
 
     public Client followLinkTitle(String linkTitle) {
-        Predicate<? super Link> predicate = l -> {
-            return l.getTitle().equals(linkTitle);
-        };
-        return follow(predicate);
+        return follow(new LinkTitlePredicate(linkTitle, cr.getResponse().getHeaders()));
     }
 
     public Client followLinkRelation(LinkRelation linkRelation) {
-        Predicate<? super Link> predicate = l -> {
-            return l.getRel().equals(linkRelation);
-        };
-        
-        return follow(new LinkRelationPredicate("hi"));
+        return follow(new LinkRelationPredicate(linkRelation, cr.getResponse().getHeaders()));
     }
 
-    private Client follow(Predicate<? super Link> predicate) {
+    private Client follow(LinkPredicate predicate) {
         Series<Header> headers = cr.getResponse().getHeaders();
         String linkheader = headers.getFirstValue("Link");
         List<Link> links = Arrays.stream(linkheader.split(",")).map(l -> Link.valueOf(l)).collect(Collectors.toList());
@@ -118,6 +104,14 @@ public class Client {
         };
         Link theLink = links.stream().filter(predicate).findFirst().orElseThrow(exception);
         url = baseUrl + theLink.getUri();
+        log.info("url set to '{}'", url);
+        cr = new ClientResource(url);
+        cr.getCookies().add("Credentials", credentials);
+        currentRepresentation = cr.get(mediaType);
         return this;
+    }
+
+    public Reference getLocation() {
+        return cr.getLocationRef();
     }
 }

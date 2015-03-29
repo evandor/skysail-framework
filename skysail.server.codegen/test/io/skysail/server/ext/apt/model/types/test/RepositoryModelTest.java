@@ -20,11 +20,8 @@ public class RepositoryModelTest extends ModelTestBase {
         EntityGraph graph = Mockito.mock(EntityGraph.class);
         JavaModel rootResourceModel = new RepositoryModel(entity, graph);
 
-        System.out.println(rootResourceModel.toString());
         assertThat(rootResourceModel.toString(), containsString("package io.skysail.server.test.crm;"));
         assertThat(rootResourceModel.toString(), containsString("public class ContactsRepository"));
-        // assertThat(rootResourceModel.toString(),
-        // containsString("public class RootResource extends ListServerResource<String>"));
     }
 
 }

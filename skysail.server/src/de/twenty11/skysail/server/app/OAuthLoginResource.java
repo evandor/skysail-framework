@@ -26,7 +26,6 @@ public class OAuthLoginResource extends EntityServerResource<String> {
         // new JsonRepresentation(jo), MediaType.APPLICATION_JSON);
         // try {
         // String text = post.getText();
-        // System.out.println(text);
         // } catch (IOException e) {
         // // TODO Auto-generated catch block
         // e.printStackTrace();

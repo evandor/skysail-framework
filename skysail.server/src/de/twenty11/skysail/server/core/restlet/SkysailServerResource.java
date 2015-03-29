@@ -15,7 +15,9 @@ import java.util.Map;
 import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
+import lombok.Getter;
 import lombok.NonNull;
+import lombok.Setter;
 import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
 
@@ -97,6 +99,10 @@ public abstract class SkysailServerResource<T> extends ServerResource {
     });
 
     private List<Link> linkheader;
+
+    @Getter
+    @Setter
+    private String metaRefreshTarget;
 
     public SkysailServerResource() {
         DateTimeConverter dateConverter = new DateConverter(null);
@@ -362,10 +368,6 @@ public abstract class SkysailServerResource<T> extends ServerResource {
         try {
 
             beanUtilsBean.populate(bean, form.getValuesMap());
-
-            // BeanUtils.populate(bean, form.getValuesMap());
-            // System.out.println(BeanUtils.describe(bean));
-            // callGettersIfOrientDbBean(bean);
             return bean;
         } catch (Exception e) {
             log.error("Error populating bean {} from form {}", bean, form.getValuesMap(), e);

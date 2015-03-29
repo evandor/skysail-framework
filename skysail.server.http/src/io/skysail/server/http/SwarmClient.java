@@ -45,7 +45,6 @@ public class SwarmClient implements ManagedService {
                 try {
                     Thread.sleep(60 * 10000);
                 } catch (Exception e) {
-                    System.out.println("Thread interrupted " + e.getMessage());
                 }
             }
         }
@@ -60,7 +59,6 @@ public class SwarmClient implements ManagedService {
             try {
                 ClientResource cr = new ClientResource(url);
                 Representation representation = cr.post("");
-                System.out.println(representation.getText());
             } catch (Exception e) {
                 log.warn("heartbeat problem: {}", e.getMessage());
             }

@@ -2,6 +2,7 @@ package io.skysail.server.app.todos.lists;
 
 import io.skysail.api.responses.SkysailResponse;
 import io.skysail.server.app.todos.TodoApplication;
+import io.skysail.server.app.todos.TodoList;
 
 import java.util.Date;
 
@@ -36,7 +37,8 @@ public class PostListResource extends PostEntityServerResource<TodoList> {
         Subject subject = SecurityUtils.getSubject();
         subject.getPrincipals().getPrimaryPrincipal();
         entity.setOwner(subject.getPrincipal().toString());
-        app.getRepository().add(entity);
+        String id = (String)app.getRepository().add(entity);
+        entity.setId(id);
         return new SkysailResponse<>();
     }
     

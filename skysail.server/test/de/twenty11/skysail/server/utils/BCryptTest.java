@@ -80,16 +80,13 @@ public class BCryptTest {
      */
     @Test
     public void testHashpw() {
-        System.out.print("BCrypt.hashpw(): ");
         for (int i = 0; i < test_vectors.length; i++) {
             String plain = test_vectors[i][0];
             String salt = test_vectors[i][1];
             String expected = test_vectors[i][2];
             String hashed = BCrypt.hashpw(plain, salt);
             assertEquals(hashed, expected);
-            System.out.print(".");
         }
-        System.out.println("");
     }
 
     /**
@@ -97,19 +94,15 @@ public class BCryptTest {
      */
     @Test
     public void testGensaltInt() {
-        System.out.print("BCrypt.gensalt(log_rounds):");
         for (int i = 4; i <= 12; i++) {
-            System.out.print(" " + Integer.toString(i) + ":");
             for (int j = 0; j < test_vectors.length; j += 4) {
                 String plain = test_vectors[j][0];
                 String salt = BCrypt.gensalt(i);
                 String hashed1 = BCrypt.hashpw(plain, salt);
                 String hashed2 = BCrypt.hashpw(plain, hashed1);
                 assertEquals(hashed1, hashed2);
-                System.out.print(".");
             }
         }
-        System.out.println("");
     }
 
     /**
@@ -117,16 +110,13 @@ public class BCryptTest {
      */
     @Test
     public void testGensalt() {
-        System.out.print("BCrypt.gensalt(): ");
         for (int i = 0; i < test_vectors.length; i += 4) {
             String plain = test_vectors[i][0];
             String salt = BCrypt.gensalt();
             String hashed1 = BCrypt.hashpw(plain, salt);
             String hashed2 = BCrypt.hashpw(plain, hashed1);
             assertEquals(hashed1, hashed2);
-            System.out.print(".");
         }
-        System.out.println("");
     }
 
     /**
@@ -135,14 +125,11 @@ public class BCryptTest {
      */
     @Test
     public void testCheckpw_success() {
-        System.out.print("BCrypt.checkpw w/ good passwords: ");
         for (int i = 0; i < test_vectors.length; i++) {
             String plain = test_vectors[i][0];
             String expected = test_vectors[i][2];
             assertTrue(BCrypt.checkpw(plain, expected));
-            System.out.print(".");
         }
-        System.out.println("");
     }
 
     /**
@@ -151,15 +138,12 @@ public class BCryptTest {
      */
     @Test
     public void testCheckpw_failure() {
-        System.out.print("BCrypt.checkpw w/ bad passwords: ");
         for (int i = 0; i < test_vectors.length; i++) {
             int broken_index = (i + 4) % test_vectors.length;
             String plain = test_vectors[i][0];
             String expected = test_vectors[broken_index][2];
             assertFalse(BCrypt.checkpw(plain, expected));
-            System.out.print(".");
         }
-        System.out.println("");
     }
 
     /**
@@ -173,7 +157,6 @@ public class BCryptTest {
     @Test
     public void testName() throws Exception {
         String hash = BCrypt.hashpw("skysail", BCrypt.gensalt(12));
-        System.out.println(hash);
         assertTrue(BCrypt.checkpw("skysail", hash));
     }
 }

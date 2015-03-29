@@ -1,6 +1,6 @@
 package io.skysail.server.app.todos.todos.resources;
 
-import io.skysail.server.app.todos.lists.TodoList;
+import io.skysail.server.app.todos.TodoList;
 import io.skysail.server.app.todos.todos.Todo;
 
 import java.util.HashMap;

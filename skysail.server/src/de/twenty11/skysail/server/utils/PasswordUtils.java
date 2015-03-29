@@ -43,7 +43,6 @@ public class PasswordUtils {
         byte[] salt = fromHex(storedHashAndSalt.getSalt());
         byte[] hash = fromHex(storedHashAndSalt.getHashedPassword());
 
-        // System.out.println("Validate: " + hash.length / 4 * 32);
         PBEKeySpec spec = new PBEKeySpec(userProvidedPassword.toCharArray(), salt, ITERATIONS, KEY_SIZE);
 
         SecretKeyFactory skf = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA1");
@@ -65,16 +64,12 @@ public class PasswordUtils {
 
     private static HashedPasswordAndSalt generateSecret(char[] chars, byte[] salt) throws NoSuchAlgorithmException,
             InvalidKeySpecException {
-        // System.out.println("In Salt: " + new String(salt));
-        // System.out.println("In pw:   " + new String(chars));
-        // System.out.println("In size: " + SALT_SIZE * 32);
         PBEKeySpec spec = new PBEKeySpec(chars, salt, ITERATIONS, KEY_SIZE);
 
         SecretKeyFactory skf = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA1");
         byte[] hash = skf.generateSecret(spec).getEncoded();
 
         HashedPasswordAndSalt pah = HashedPasswordAndSalt.direct(toHex(hash), toHex(salt));
-        // System.out.println(pah);
         return pah;
     }
 

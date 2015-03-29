@@ -20,6 +20,9 @@ import de.twenty11.skysail.server.services.MenuItem;
  * 
  */
 public class DefaultResource extends ListServerResource<String> {
+    
+    public DefaultResource() {
+    }
 
     @Override
     public List<Link> getLinkheader() {

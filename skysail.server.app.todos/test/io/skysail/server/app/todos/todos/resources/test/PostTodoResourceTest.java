@@ -10,7 +10,6 @@ import io.skysail.server.app.todos.todos.resources.PostTodoResource;
 import io.skysail.server.app.todos.todos.test.TodoAppTest;
 
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -22,11 +21,6 @@ public class PostTodoResourceTest extends TodoAppTest {
 
     @InjectMocks
     private PostTodoResource resource;
-
-    @BeforeClass
-    public static void init() {
-        System.out.println("hier5");
-    }
 
     @Before
     public void setUp() throws Exception {

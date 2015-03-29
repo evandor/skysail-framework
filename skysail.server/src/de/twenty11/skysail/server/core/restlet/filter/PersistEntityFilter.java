@@ -1,7 +1,5 @@
 package de.twenty11.skysail.server.core.restlet.filter;
 
-import io.skysail.api.responses.SkysailResponse;
-
 import org.restlet.Response;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,10 +23,10 @@ public class PersistEntityFilter<R extends SkysailServerResource<T>, T> extends 
         logger.debug("entering {}#doHandle", this.getClass().getSimpleName());
         Response response = responseWrapper.getResponse();
         T entity = responseWrapper.getEntity();
-        SkysailResponse<T> result = (SkysailResponse<T>) ((PostEntityServerResource<T>) resource).addEntity(entity);
+        ((PostEntityServerResource<T>) resource).addEntity(entity);
         // TODO filter of its own?
         if (entity instanceof Identifiable) {
-            String id = ((Identifiable) entity).getId();
+            String id = ((Identifiable) entity).getId().replace("#","");
             response.setLocationRef(response.getRequest().getResourceRef().addSegment(id));
         }
         super.doHandle(resource, responseWrapper);

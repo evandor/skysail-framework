@@ -15,7 +15,6 @@ public class RootResourceModelTest extends ModelTestBase {
 	public void testToString() {
         RootResourceModel rootResourceModel = new RootResourceModel(element);
 
-		System.out.println(rootResourceModel.toString());
 		assertThat(rootResourceModel.toString(), containsString("package io.skysail.server.test.crm;"));
 		assertThat(rootResourceModel.toString(),
 		        containsString("import de.twenty11.skysail.server.core.restlet.ListServerResource;"));

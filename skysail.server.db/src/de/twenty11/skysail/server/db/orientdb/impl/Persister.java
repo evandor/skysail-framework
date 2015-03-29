@@ -9,6 +9,7 @@ import lombok.extern.slf4j.Slf4j;
 
 import org.apache.commons.beanutils.BeanUtils;
 
+import com.orientechnologies.orient.core.id.ORecordId;
 import com.tinkerpop.blueprints.Vertex;
 import com.tinkerpop.blueprints.impls.orient.OrientGraph;
 import com.tinkerpop.blueprints.impls.orient.OrientVertex;
@@ -44,7 +45,8 @@ public class Persister {
                     }
                 }
             });
-            return vertex.getId();
+            ORecordId id = (ORecordId) vertex.getId();
+            return id.toString();
         } catch (Exception e) {
             log.error(e.getMessage(), e);
             return null;

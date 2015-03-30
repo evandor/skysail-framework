@@ -45,7 +45,9 @@ public class SkysailRouter extends Router {
 			attachForNoAuthenticationNeeded(routeBuilder);
 			return;
 		}
-		attach(routeBuilder.getPathTemplate(), createIsAuthenticatedAuthorizer(routeBuilder));
+		Authorizer isAuthenticatedAuthorizer = createIsAuthenticatedAuthorizer(routeBuilder);
+		log.info("routing path '{}' -> '{}' -> '{}'", routeBuilder.getPathTemplate(), "RolesPredicateAuthorizer", routeBuilder.getTargetClass().getName());
+		attach(routeBuilder.getPathTemplate(), isAuthenticatedAuthorizer);
 	}
 
 	public void detachAll() {
@@ -124,13 +126,11 @@ public class SkysailRouter extends Router {
 		authorizer.setNext(routeBuilder.getTargetClass());
 		Authorizer isAuthenticatedAuthorizer = new AuthenticatedAuthorizer();
 		isAuthenticatedAuthorizer.setNext(authorizer);
-		log.info("routing path '{}' -> '{}'", routeBuilder.getPathTemplate(), isAuthenticatedAuthorizer);
 		return isAuthenticatedAuthorizer;
 	}
 
 	private void attachForNoAuthenticationNeeded(RouteBuilder routeBuilder) {
-		log.info("routing path '{}' -> Restlet '{}'", routeBuilder.getPathTemplate(), routeBuilder.getTargetClass()
-		        .getClass().getSimpleName());
+		log.info("routing path '{}' -> '{}'", routeBuilder.getPathTemplate(), routeBuilder.getTargetClass().getName());
 		attach(routeBuilder.getPathTemplate(), routeBuilder.getTargetClass());
 	}
 

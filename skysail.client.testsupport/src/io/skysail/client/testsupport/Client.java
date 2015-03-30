@@ -23,6 +23,8 @@ import org.restlet.util.Series;
 @Slf4j
 public class Client {
 
+	public static final String TESTTAG = " > TEST: ";
+	
     private String baseUrl;
     private String credentials;
     private String url;
@@ -46,17 +48,26 @@ public class Client {
     }
 
     public Client setUrl(String url) {
+    	log.info("{}setting browser client url to '{}'", TESTTAG, url);
         this.url = url;
         return this;
     }
 
     public Representation get() {
-        cr = new ClientResource(baseUrl + url);
+    	String currentUrl = baseUrl + url;
+    	log.info("{}issuing GET on '{}', providing credentials {}", TESTTAG, currentUrl, credentials);
+		cr = new ClientResource(currentUrl);
         cr.getCookies().add("Credentials", credentials);
         return cr.get(mediaType);
     }
+    
+    public void gotoRoot() {
+    	url = "/";
+    	get();
+	}
 
     public Representation post(Object entity) {
+    	log.info("{}issuing POST on '{}', providing credentials {}", TESTTAG, url, credentials);
         cr = new ClientResource(url);
         cr.setFollowingRedirects(false);
         cr.getCookies().add("Credentials", credentials);
@@ -114,4 +125,6 @@ public class Client {
     public Reference getLocation() {
         return cr.getLocationRef();
     }
+
+	
 }

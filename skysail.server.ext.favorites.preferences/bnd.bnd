@@ -2,7 +2,7 @@ Bundle-Version: 0.1.0.${tstamp}
 Bundle-Name: SKYSAIL: server :: ext :: favorites :: preferences
 Bundle-Description: favorites implementation using the osgi preference service
 -buildpath:  \
-	lombok;version=1.12,\
+	lombok;version=1.16,\
 	slf4j.api;version=1.7,\
 	biz.aQute.bnd.annotation;version=2.4,\
 	skysail.api;version=latest,\

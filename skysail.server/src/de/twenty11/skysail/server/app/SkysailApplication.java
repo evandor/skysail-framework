@@ -246,7 +246,7 @@ public abstract class SkysailApplication extends Application implements Applicat
      */
     public SkysailApplication(String home) {
         this();
-        logger.info("Instanciating new Skysail Application '{}'", this.getClass().getSimpleName());
+        logger.debug("Instanciating new Skysail Application '{}'", this.getClass().getSimpleName());
         this.home = home;
         setName(home);
     }
@@ -259,7 +259,7 @@ public abstract class SkysailApplication extends Application implements Applicat
      */
     @Activate
     protected void activate(ComponentContext componentContext) throws ConfigurationException {
-        logger.info("Activating Application {}", this.getClass().getName());
+        logger.debug("Activating Application {}", this.getClass().getName());
         this.componentContext = componentContext;
     }
 

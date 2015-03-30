@@ -17,4 +17,4 @@ Export-Package:  \
 	skysail.server;version=latest,\
 	skysail.api;version=latest,\
 	com.orientechnologies.orientdb-core;version=2.0,\
-	lombok;version=1.12
+	lombok;version=1.16

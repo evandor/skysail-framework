@@ -1,4 +1,4 @@
-package io.skysail.server.documentation.test;
+package io.skysail.server.app.todos.test;
 
 import io.skysail.api.links.LinkRelation;
 import io.skysail.client.testsupport.Client;

@@ -6,8 +6,6 @@ import io.skysail.server.app.todos.TodoList;
 
 import java.util.List;
 
-import org.restlet.resource.ResourceException;
-
 import de.twenty11.skysail.server.core.restlet.ListServerResource;
 
 public class ListsResource extends ListServerResource<TodoList> {
@@ -19,7 +17,7 @@ public class ListsResource extends ListServerResource<TodoList> {
     }
 
     @Override
-    protected void doInit() throws ResourceException {
+    protected void doInit() {
         app = (TodoApplication) getApplication();
     }
 

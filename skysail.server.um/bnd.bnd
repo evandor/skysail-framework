@@ -7,7 +7,7 @@ Bundle-Description: Default Usermanagement Implementation
 	org.apache.shiro.core;version=1.2,\
 	org.restlet;version=2.1,\
 	slf4j.api;version=1.7,\
-	lombok;version=1.12,\
+	lombok;version=1.16,\
 	skysail.server;version=latest,\
 	org.apache.shiro.web;version=1.2,\
 	javax.servlet;version=3.0,\

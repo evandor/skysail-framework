@@ -76,7 +76,7 @@ public abstract class AbstractResourceFilter<R extends SkysailServerResource<T>,
     protected FilterResult doHandle(R resource, ResponseWrapper<T> responseWrapper) {
         AbstractResourceFilter<R, T> next = getNext();
         if (next != null) {
-            logger.info("next filter in chain: {}", next.getClass().getSimpleName());
+            logger.debug("next filter in chain: {}", next.getClass().getSimpleName());
             next.handle(resource, responseWrapper);
         }
         return FilterResult.CONTINUE;

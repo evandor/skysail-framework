@@ -19,7 +19,7 @@ Include-Resource: resources, templates=src;recursive:=true;filter:=*.st|*.stg
 	com.google.guava;version=${guava.version},\
 	osgi.cmpn;version=5.0,\
 	org.apache.commons.lang;version=2.6,\
-	lombok;version=1.12,\
+	lombok;version=1.16,\
 	javax.validation.api;version=1.1,\
 	skysail.server.testsupport;version=latest,\
 	com.fasterxml.jackson.core.jackson-annotations;version=2.4,\

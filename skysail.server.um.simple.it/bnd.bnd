@@ -15,7 +15,7 @@ Test-Cases: \
 	org.codehaus.jettison.jettison;version=1.3,\
 	org.apache.felix.configadmin;version=1.8,\
 	skysail.server.db;version=latest,\
-	lombok;version=1.12,\
+	lombok;version=1.16,\
 	skysail.client.testsupport;version=latest
 	
 -runfw: org.apache.felix.framework;version='[4,5)'

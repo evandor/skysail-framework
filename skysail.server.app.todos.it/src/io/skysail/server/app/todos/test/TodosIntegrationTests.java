@@ -1,4 +1,4 @@
-package io.skysail.server.documentation.test;
+package io.skysail.server.app.todos.test;
 
 import static org.junit.Assert.assertTrue;
 import io.skysail.api.documentation.DocumentationProvider;

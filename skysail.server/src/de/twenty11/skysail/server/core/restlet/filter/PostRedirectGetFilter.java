@@ -23,7 +23,7 @@ public class PostRedirectGetFilter<R extends PostEntityServerResource<T>, T> ext
             // So, we set a refreh header here instead of creating a 303 redirect response.
             // TODO do this in PutEntityResource as well.
             //response.getHeaders().add("Refresh", "http://www.heise.de");
-            resource.setMetaRefreshTarget("http://www.heise.de");
+            resource.setMetaRefreshTarget(redirectTo);
         }
     }
 }

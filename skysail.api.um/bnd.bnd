@@ -11,7 +11,7 @@ Bundle-Description: an incubator bundle for the skysail usermanagement API  (whi
 	classmate;version=1.0,\
 	osgi.core;version=5.0,\
 	org.restlet;version=${restlet.version},\
-	lombok;version=1.12,\
+	lombok;version=1.16,\
 	org.mockito.mockito-all;version=1.9,\
 	skysail.api;version=latest
 

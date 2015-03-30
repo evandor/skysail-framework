@@ -1,4 +1,4 @@
-package io.skysail.server.documentation.test;
+package io.skysail.server.app.todos.test;
 
 import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.CoreMatchers.not;

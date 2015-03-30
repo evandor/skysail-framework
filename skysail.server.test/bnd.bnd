@@ -24,7 +24,7 @@ Bundle-Version: 1.0.4.${tstamp}
 	skysail.server;version=latest,\
 	skysail.api.validation;version=0,\
 	skysail.api.features;version=0,\
-	lombok;version=1.12,\
+	lombok;version=1.16,\
 	slf4j.api;version=1.7
 
 Private-Package:  \

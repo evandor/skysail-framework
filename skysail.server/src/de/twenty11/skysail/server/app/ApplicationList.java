@@ -50,9 +50,7 @@ public class ApplicationList implements ApplicationListProvider {
     @Reference(multiple = true, optional = true, dynamic = true)
     public synchronized void addApplicationProvider(ApplicationProvider provider) {
         SkysailApplication application = getApplication(provider);
-        logger.info("======================================================");
-        logger.info("Adding application '{}'", application.getName());
-        logger.info("======================================================");
+        logger.info("(+) Adding application '{}'", application.getName());
 
         application.setStatusService(new SkysailStatusService());
         applications.add(application);
@@ -62,9 +60,7 @@ public class ApplicationList implements ApplicationListProvider {
 
     public synchronized void removeApplicationProvider(ApplicationProvider provider) {
         SkysailApplication application = getApplication(provider);
-        logger.info("======================================================");
-        logger.info("Removing application '{}'", application.getName());
-        logger.info("======================================================");
+        logger.info("(-) Removing application '{}'", application.getName());
         detachFromComponent(application);
         // unassignServices(application);
         applications.remove(application);

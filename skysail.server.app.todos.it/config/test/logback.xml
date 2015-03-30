@@ -21,7 +21,7 @@
 		<file>logs/warn.log</file>
 		<append>false</append>
 		<encoder>
-			<pattern>%-5level %logger{55} - %msg%n
+			<pattern>%-5level [%-45logger{40}] - %msg%n
 			</pattern>
 		</encoder>
 	</appender>
@@ -33,7 +33,7 @@
 		<file>logs/info.log</file>
 		<append>false</append>
 		<encoder>
-			<pattern>%-5level %logger{55} - %msg%n
+			<pattern>%-5level [%-45logger{40}] - %msg%n
 			</pattern>
 		</encoder>
 	</appender>
@@ -45,7 +45,7 @@
 		<file>logs/debug.log</file>
 		<append>false</append>
 		<encoder>
-			<pattern>%date{ISO8601} %-5level %logger{55} - %msg%n
+			<pattern>%date{ISO8601} %-5level [%-45logger{40}] - %msg%n
 			</pattern>
 		</encoder>
 	</appender>

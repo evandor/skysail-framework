@@ -37,9 +37,6 @@ public class RouteBuilder {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(pathTemplate).append(" -> ").append(targetClass);
-        // for (SkysailRoleAuthorizer authorizer : rolesAuthorizers) {
-        // sb.append(" ").append(authorizer);
-        // }
         sb.append(")");
         return sb.toString();
     }

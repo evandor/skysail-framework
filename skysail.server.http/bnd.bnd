@@ -16,6 +16,6 @@ Bundle-Description: provides a http server
 	com.springsource.org.junit;version=4.11,\
 	org.mockito.mockito-all;version=1.9,\
 	org.restlet.ext.slf4j;version=2.1,\
-	lombok;version=1.12
+	lombok;version=1.16
 Private-Package:  \
 	io.skysail.server.http

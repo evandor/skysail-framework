@@ -5,6 +5,6 @@ Export-Package:  \
 	io.skysail.api.favorites
 -buildpath:  \
 	biz.aQute.bnd.annotation;version=2.4,\
-	lombok;version=1.12,\
+	lombok;version=1.16,\
 	com.springsource.org.junit;version=4.11,\
 	de.twentyeleven.skysail.org.hamcrest.hamcrest-all-osgi;version=1.3

@@ -2,10 +2,10 @@ Bundle-Name: SKYSAIL :: server :: app :: todos :: integrationtests
 Bundle-Version: 0.1.0.${tstamp}
 
 Private-Package:  \
-	io.skysail.server.documentation.test
+	io.skysail.server.app.todos.test
 
 Test-Cases: \
-	io.skysail.server.documentation.test.*
+	io.skysail.server.app.todos.test.*
 
 -buildpath:  \
 	skysail.api.validation;version=latest,\
@@ -18,10 +18,11 @@ Test-Cases: \
 	org.codehaus.jettison.jettison;version=1.3,\
 	org.apache.felix.configadmin;version=1.8,\
 	skysail.server.db;version=latest,\
-	lombok;version=1.12,\
+	lombok;version=1.16,\
 	skysail.client.testsupport;version=latest,\
 	skysail.server.app.todos;version=latest,\
-	skysail.api;version=latest
+	skysail.api;version=latest,\
+	slf4j.api;version=1.7
 	
 	
 -runfw: org.apache.felix.framework;version='[4,5)'
@@ -101,6 +102,7 @@ Test-Cases: \
 	org.apache.commons.logging;version='[1.1.3,1.1.4)',\
 	org.apache.felix.configadmin;version='[1.8.0,1.8.1)',\
 	org.apache.felix.fileinstall;version='[3.4.0,3.4.1)',\
+	org.apache.felix.eventadmin;version=1.3.2,\
 	org.apache.felix.gogo.command;version='[0.14.0,0.14.1)',\
 	org.apache.felix.gogo.runtime;version='[0.12.1,0.12.2)',\
 	org.apache.felix.gogo.shell;version='[0.10.0,0.10.1)',\

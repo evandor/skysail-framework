@@ -8,7 +8,7 @@ Bundle-Description: TranslationStore based on DB repository
 	biz.aQute.bnd.annotation;version=2.4,\
 	skysail.api.text;version=latest,\
 	org.restlet;version=${restlet.version},\
-	lombok;version=1.12,\
+	lombok;version=1.16,\
 	skysail.server;version=latest
 Private-Package:  \
 	io.skysail.server.text.store.db,\

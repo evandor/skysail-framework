@@ -20,13 +20,11 @@ public class FeatureResource extends EntityServerResource<Feature> {
 
     @Override
     public SkysailResponse<?> eraseEntity() {
-        // TODO Auto-generated method stub
         return null;
     }
 
     @Override
     public String getId() {
-        // TODO Auto-generated method stub
         return null;
     }
 

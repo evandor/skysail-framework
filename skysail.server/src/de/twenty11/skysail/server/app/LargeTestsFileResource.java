@@ -41,10 +41,6 @@ public class LargeTestsFileResource extends EntityServerResource<String> {
         return null;
     }
 
-    @Override
-    public String getId() {
-        // TODO Auto-generated method stub
-        return null;
-    }
+    
 
 }

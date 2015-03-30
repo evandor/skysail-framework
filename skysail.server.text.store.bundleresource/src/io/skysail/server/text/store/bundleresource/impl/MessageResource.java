@@ -19,10 +19,6 @@ public class MessageResource extends EntityServerResource<Message> {
         msgKey = getAttribute("key");
     }
 
-    // @Override
-    // public Message getData() {
-    // return app.getMessage(msgKey);
-    // }
 
     // for stringtemplate
     public boolean isMessageResource() {
@@ -31,13 +27,11 @@ public class MessageResource extends EntityServerResource<Message> {
 
     @Override
     public SkysailResponse<?> eraseEntity() {
-        // TODO Auto-generated method stub
         return null;
     }
 
     @Override
     public String getId() {
-        // TODO Auto-generated method stub
         return null;
     }
 

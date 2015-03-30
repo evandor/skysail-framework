@@ -47,7 +47,6 @@ Import-Package: org.osgi.framework,\
 	javassist.util.proxy,\
 	*
 Private-Package:  \
-	io.skysail.server.app.designer,\
 	io.skysail.server.app.designer.application.resources,\
 	io.skysail.server.app.designer.entities.resources,\
 	io.skysail.server.app.designer.fields.resources
@@ -55,4 +54,5 @@ Export-Package:  \
 	io.skysail.server.app.designer.repo,\
 	io.skysail.server.app.designer.application,\
 	io.skysail.server.app.designer.entities,\
-	io.skysail.server.app.designer.fields
+	io.skysail.server.app.designer.fields,\
+	io.skysail.server.app.designer

@@ -12,7 +12,6 @@ public class ResourcesResource extends ListServerResource<Resource> {
 
     @Override
     public List<Resource> getEntity() {
-        // TODO Auto-generated method stub
         return null;
     }
 

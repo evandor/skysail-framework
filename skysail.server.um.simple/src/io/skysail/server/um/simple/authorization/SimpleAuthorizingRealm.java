@@ -51,7 +51,7 @@ public class SimpleAuthorizingRealm extends AuthorizingRealm {
         SkysailUser user = getUser(username);
         if (user != null) {
 
-            // TODO
+            // TODO lock account, credentials expired ...
             // if (user.isLocked()) {
             // throw new LockedAccountException("Account [" + account +
             // "] is locked.");

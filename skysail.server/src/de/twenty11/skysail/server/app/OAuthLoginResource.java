@@ -24,24 +24,18 @@ public class OAuthLoginResource extends EntityServerResource<String> {
         // Representation post = new
         // ClientResource("https://github.com/login/oauth/access_token").post(
         // new JsonRepresentation(jo), MediaType.APPLICATION_JSON);
-        // try {
         // String text = post.getText();
-        // } catch (IOException e) {
-        // // TODO Auto-generated catch block
-        // e.printStackTrace();
         // }
         return null;
     }
 
     @Override
     public String getId() {
-        // TODO Auto-generated method stub
         return null;
     }
 
     @Override
     public SkysailResponse<?> eraseEntity() {
-        // TODO Auto-generated method stub
         return null;
     }
 

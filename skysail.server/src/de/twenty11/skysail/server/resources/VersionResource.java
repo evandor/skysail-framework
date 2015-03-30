@@ -49,13 +49,11 @@ public class VersionResource extends EntityServerResource<Map<String, String>> {
 
     @Override
     public SkysailResponse<?> eraseEntity() {
-        // TODO Auto-generated method stub
         return null;
     }
 
     @Override
     public String getId() {
-        // TODO Auto-generated method stub
         return null;
     }
 }

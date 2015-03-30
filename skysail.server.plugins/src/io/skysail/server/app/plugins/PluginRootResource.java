@@ -17,11 +17,6 @@ public class PluginRootResource extends ListServerResource<String> {
         addToContext(ResourceContextId.LINK_TITLE, "Plugins Management");
     }
 
-    // @Override
-    // public List<String> getData() {
-    // return Collections.emptyList();
-    // }
-
     @Override
     public List<Link> getLinkheader() {
         return super.getLinkheader(FeaturesResource.class, RepositoriesResource.class, PostResolverResource.class,
@@ -30,7 +25,6 @@ public class PluginRootResource extends ListServerResource<String> {
 
     @Override
     public List<String> getEntity() {
-        // TODO Auto-generated method stub
         return null;
     }
 

@@ -40,7 +40,7 @@ public class SkysailAuthorizingRealm extends AuthorizingRealm {
         SkysailUser user = getUser(upToken.getUsername());
 
         if (user != null) {
-            // TODO
+            // TODO lock account, ...
             // if (user.isLocked()) {
             // throw new LockedAccountException("Account [" + account +
             // "] is locked.");

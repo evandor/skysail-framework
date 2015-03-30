@@ -8,7 +8,6 @@ public class ObrRepository {
     private String uri;
 
     public ObrRepository() {
-        // TODO Auto-generated constructor stub
     }
 
     public ObrRepository(Repository repository) {

@@ -20,7 +20,6 @@ import de.twenty11.skysail.server.app.profile.PutPasswordResource;
 import de.twenty11.skysail.server.core.restlet.RouteBuilder;
 import de.twenty11.skysail.server.help.HelpEntry;
 import de.twenty11.skysail.server.help.HelpTour;
-import de.twenty11.skysail.server.resources.AboutResource;
 import de.twenty11.skysail.server.resources.DefaultResource;
 import de.twenty11.skysail.server.resources.LoginResource;
 import de.twenty11.skysail.server.resources.NameResource;
@@ -82,7 +81,6 @@ public class SkysailRootApplication extends SkysailApplication implements Applic
         router.attach(new RouteBuilder(LOGIN_PATH + "/{provider}", OAuthLoginResource.class).noAuthenticationNeeded());
         router.attach(new RouteBuilder(VERSION_PATH, VersionResource.class));
         router.attach(new RouteBuilder(NAME_PATH, NameResource.class));
-        router.attach(new RouteBuilder(ABOUT_PATH, AboutResource.class).noAuthenticationNeeded());
         router.attach(new RouteBuilder(PROFILE_PATH, ProfileResource.class));
         router.attach(new RouteBuilder(PROFILE_PATH + "/password/", PutPasswordResource.class));
         router.attach(new RouteBuilder(LARGETESTS_PATH, LargeTestsResource.class));

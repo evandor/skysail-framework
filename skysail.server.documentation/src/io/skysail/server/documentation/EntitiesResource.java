@@ -33,7 +33,6 @@ public class EntitiesResource extends ListServerResource<EntityDescriptor> {
 
     @Override
     public List<EntityDescriptor> getEntity() {
-        // TODO Auto-generated method stub
         return null;
     }
 

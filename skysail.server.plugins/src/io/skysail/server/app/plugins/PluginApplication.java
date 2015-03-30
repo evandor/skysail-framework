@@ -116,8 +116,7 @@ public class PluginApplication extends SkysailApplication implements Application
         MenuItem menuItem = new MenuItem(feature.getName(), feature.getLandingPage());
         menuItem.setCategory(MenuItem.Category.APPLICATION_MAIN_MENU);
         menuItem.setOpenInNewWindow(feature.isOpenInNewWindow());
-        // TODO !!!
-        // menuItems.add(menuItem);
+        // TODO menuItems.add
     }
 
     private synchronized Bundle install(String location) throws BundleException {

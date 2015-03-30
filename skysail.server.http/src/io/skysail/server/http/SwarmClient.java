@@ -66,7 +66,7 @@ public class SwarmClient implements ManagedService {
 
         @Override
         public void interrupt() {
-            // TODO
+            
         }
     }
 

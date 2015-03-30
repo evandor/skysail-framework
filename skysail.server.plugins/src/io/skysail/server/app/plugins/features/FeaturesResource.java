@@ -19,11 +19,6 @@ public class FeaturesResource extends ListServerResource<Feature> {
         addToContext(ResourceContextId.LINK_TITLE, "Features");
     }
 
-    // @Override
-    // public List<Feature> getData() {
-    // return app.getFeaturesRepository().getFeatures();
-    // }
-
     @Override
     public List<Link> getLinkheader() {
         return super.getLinkheader(PluginRootResource.class);
@@ -31,7 +26,6 @@ public class FeaturesResource extends ListServerResource<Feature> {
 
     @Override
     public List<Feature> getEntity() {
-        // TODO Auto-generated method stub
         return null;
     }
 

@@ -19,13 +19,8 @@ public class RepositoriesResource extends ListServerResource<ObrRepository> {
 
     @Override
     public List<ObrRepository> getEntity() {
-        // TODO Auto-generated method stub
         return null;
     }
 
-    // @Override
-    // public List<ObrRepository> getData() {
-    // return app.getReposList();
-    // }
 
 }

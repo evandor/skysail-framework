@@ -13,14 +13,17 @@ import javax.validation.constraints.Size;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 @NoArgsConstructor
 @Getter
 @Setter
+@ToString(of = { "id", "name" })
+//@JsonPropertyOrder({ "title", "desc" })
 public class Application {
 
     @Id
-    private Object id;
+    private String id;
 
     @Field
     @NotNull
@@ -30,10 +33,15 @@ public class Application {
     // @Reference(cls = Entity.class)
     private List<Entity> entities;
 
+    public Application(String name) {
+        this.name = name;
+    }
+
     public List<Entity> getEntities() {
         if (entities == null) {
             entities = new ArrayList<>();
         }
         return entities;
     }
+
 }

@@ -24,7 +24,6 @@ public class Feature {
     }
 
 	public Feature() {
-	    // TODO Auto-generated constructor stub
     }
 
 	public String getName() {

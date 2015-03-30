@@ -1,10 +1,10 @@
 package io.skysail.server.app.todos.test;
 
-import lombok.extern.slf4j.Slf4j;
 import io.skysail.api.links.LinkRelation;
 import io.skysail.client.testsupport.Client;
 import io.skysail.server.app.todos.TodoApplication;
 import io.skysail.server.app.todos.TodoList;
+import lombok.extern.slf4j.Slf4j;
 
 import org.restlet.data.Form;
 import org.restlet.data.MediaType;
@@ -34,6 +34,12 @@ public class Browser {
         return client.getCurrentRepresentation();
     }
 
+    public Representation getTodoList(String id) {
+        log.info("{}retrieving TodoList #{}", Client.TESTTAG, id);
+        getTodoList(client, id);
+        return client.getCurrentRepresentation();
+    }
+
     protected Reference createTodoList(TodoList todoList) {
         navigateToPostTodoListAs(client);
         client.post(createForm(todoList));
@@ -48,6 +54,11 @@ public class Browser {
 
     private void getTodoLists(Client client) {
     	client.gotoRoot();
+        client.followLinkTitle(TodoApplication.APP_NAME);
+    }
+    
+    private void getTodoList(Client client, String id) {
+        client.gotoRoot();
         client.followLinkTitle(TodoApplication.APP_NAME);
     }
 

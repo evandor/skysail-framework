@@ -24,6 +24,7 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.stream.Collectors;
 
 import lombok.extern.slf4j.Slf4j;
@@ -160,37 +161,19 @@ public abstract class SkysailApplication extends Application implements Applicat
     /** the restlet router. */
     protected volatile SkysailRouter router;
 
-    // TODO concurrency
-    private ComponentContext componentContext;
-
-    // TODO concurrency
-    private BundleContext bundleContext;
-
+    private volatile ComponentContext componentContext;
+    private volatile BundleContext bundleContext;
     private volatile AuthenticationService authenticationService;
-
-    // TODO concurrency
-    private HtmlPolicyBuilder noHtmlPolicyBuilder = new HtmlPolicyBuilder();
-
+    private volatile HtmlPolicyBuilder noHtmlPolicyBuilder = new HtmlPolicyBuilder();
     private volatile AuthorizationService authorizationService;
-
     private volatile EventAdmin eventAdmin;
-
-    // TODO concurrency
     private String home;
-
     private volatile List<EntityChangedHookService> entityChangedHookServices;
-
-    // TODO concurrencyo
-    private List<String> parametersToHandle = new ArrayList<String>();
-
-    private Map<String, String> parameterMap = new ConcurrentHashMap<String, String>();
-
-    // TODO concurrency
-    private List<String> securedByAllRoles = new ArrayList<String>();
-
+    private volatile List<String> parametersToHandle = new CopyOnWriteArrayList<String>();
+    private volatile Map<String, String> parameterMap = new ConcurrentHashMap<String, String>();
+    private volatile List<String> securedByAllRoles = new CopyOnWriteArrayList<String>();
     private volatile RequestResponseMonitor requestResponseMonitor;
     private volatile EncryptorService encryptorService;
-    // private volatile TranslationService translationService;
     private volatile FavoritesService favoritesService;
     private volatile ConfigurationAdmin configurationAdmin;
     private volatile MetricsService metricsService;
@@ -374,7 +357,6 @@ public abstract class SkysailApplication extends Application implements Applicat
 
             @Override
             public int verify(String identifier, char[] secret) {
-                // TODO Auto-generated method stub
                 return 0;
             }
 

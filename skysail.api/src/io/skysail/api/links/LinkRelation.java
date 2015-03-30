@@ -81,7 +81,6 @@ public enum LinkRelation {
 
     private LinkRelation(String name, String desc) {
         this.identifier = name;
-        // TODO Auto-generated constructor stub
         this.desc = desc;
     }
     

@@ -2,12 +2,14 @@ package de.twenty11.skysail.server.core.restlet;
 
 import io.skysail.api.links.Link;
 import io.skysail.api.links.LinkRelation;
+import io.skysail.api.links.LinkRole;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.ParameterizedType;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -32,6 +34,7 @@ import org.codehaus.jettison.json.JSONObject;
 import org.restlet.Application;
 import org.restlet.data.Form;
 import org.restlet.data.Reference;
+import org.restlet.resource.Resource;
 import org.restlet.resource.ServerResource;
 import org.restlet.security.Role;
 
@@ -40,6 +43,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import de.twenty11.skysail.server.app.SkysailApplication;
 import de.twenty11.skysail.server.core.FormField;
 import de.twenty11.skysail.server.core.restlet.filter.AbstractResourceFilter;
+import de.twenty11.skysail.server.core.restlet.utils.StringParserUtils;
+import de.twenty11.skysail.server.utils.ResourceUtils;
 import etm.core.configuration.EtmManager;
 import etm.core.monitor.EtmMonitor;
 
@@ -66,7 +71,7 @@ import etm.core.monitor.EtmMonitor;
  * </p>
  */
 @Slf4j
-@ToString(exclude = {"beanUtilsBean"})
+@ToString(exclude = { "beanUtilsBean" })
 public abstract class SkysailServerResource<T> extends ServerResource {
 
     public static final String ATTRIBUTES_INTERNAL_REQUEST_ID = "de.twenty11.skysail.server.restlet.SkysailServerResource.requestId";
@@ -249,9 +254,77 @@ public abstract class SkysailServerResource<T> extends ServerResource {
                 .filter(lh -> {
                     return lh != null;
                 }).collect(Collectors.toList());
+
+        linkheader.addAll(getAssociatedLinks());
+
         linkheader.forEach(getPathSubstitutions());
         this.linkheader = linkheader;
         return linkheader;
+    }
+
+    private List<? extends Link> getAssociatedLinks() {
+        if (!(this instanceof ListServerResource)) {
+            return Collections.emptyList() ;
+        }
+        ListServerResource<?> listServerResource = (ListServerResource<?>) this;
+        Class<? extends EntityServerResource<?>> entityResourceClass = listServerResource.getAssociatedEntityResource();
+        T entity = getEntity();
+        if (entityResourceClass != null && entity instanceof List) {
+            EntityServerResource<?> esr = ResourceUtils.createEntityServerResource(entityResourceClass, this);
+           // List<Link> linkheader = esr.getLinkheaderAuthorized();
+            // TODO !!!
+            //List<?> sourceAsList = (List<?>) sourceWrapper.getConvertedSource();
+            for (Object object : (List<?>)entity) {
+                if (!(object instanceof Map)) {
+                    continue;
+                }
+                StringBuilder sb = new StringBuilder();
+
+                String id = guessId(object);
+                linkheader.stream().filter(lh -> {
+                    return lh.getRole().equals(LinkRole.DEFAULT);
+                }).forEach(link -> addLinkHeader(link, esr, id, listServerResource, sb));
+                //((Map<String, Object>) object).put("_links", sb.toString());
+            }
+            System.out.println(linkheader);
+        }
+        return Collections.emptyList();
+
+    }
+    
+    private String guessId(Object object) {
+        if (!(object instanceof Map))
+            return "";
+        Map<String, String> entity = ((Map<String, String>) object);
+
+        if (entity.get("id") != null) {
+            Object value = entity.get("id");
+            return value.toString().replace("#", "");
+        } else if (entity.get("@rid") != null) {
+            return (entity.get("@rid").replace("#", ""));
+        } else {
+            return "";
+        }
+    }
+    
+    private void addLinkHeader(Link link, Resource entityResource, String id, ListServerResource<?> resource,
+            StringBuilder sb) {
+        String path = link.getUri();
+        String href = StringParserUtils.substitutePlaceholders(path, entityResource);
+
+        // hmmm... last resort
+        if (id != null && href.contains("{") && href.contains("}")) {
+            // path = path.replace("{id}", id);
+            href = href.replaceFirst(StringParserUtils.placeholderPattern.toString(), id);
+        }
+
+        sb.append("<a class='btn btn-mini' href='").append(href).append("'>").append(link.getTitle())
+                .append("</a>&nbsp;");
+
+        resource.getLinkheader()
+                .add(new Link.Builder(href).relation(LinkRelation.ITEM).title("item " + id == null ? "unknown" : id).role(LinkRole.LIST_VIEW)
+                        .build());
+
     }
 
     /**

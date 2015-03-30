@@ -8,7 +8,6 @@ public class TopicsResource extends ListServerResource<Topic> {
 
     @Override
     public List<Topic> getEntity() {
-        // TODO Auto-generated method stub
         return null;
     }
 

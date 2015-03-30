@@ -28,7 +28,8 @@ import de.twenty11.skysail.server.services.MenuItemProvider;
 @Component(immediate = true)
 public class DesignerApplication extends SkysailApplication implements MenuItemProvider, ApplicationProvider {
 
-    private static final String APP_NAME = "appDesigner";
+    public static final String APP_NAME = "AppDesigner";
+    
     private DesignerRepository repo;
 
     public DesignerApplication() {

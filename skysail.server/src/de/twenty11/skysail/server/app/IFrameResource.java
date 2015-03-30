@@ -11,7 +11,6 @@ public class IFrameResource extends EntityServerResource<String> {
     private String url;
 
     public IFrameResource() {
-        // TODO Auto-generated constructor stub
     }
 
     @Override

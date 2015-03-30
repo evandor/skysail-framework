@@ -87,9 +87,4 @@ public class CheckFavoritesFilter<R extends SkysailServerResource<T>, T> extends
                 });
     }
 
-    private void getFavoritesService() {
-        // TODO Auto-generated method stub
-
-    }
-
 }

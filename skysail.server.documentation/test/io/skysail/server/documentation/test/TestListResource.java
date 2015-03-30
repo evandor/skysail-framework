@@ -12,14 +12,8 @@ public class TestListResource extends ListServerResource<String> {
 
     @Override
     public List<String> getEntity() {
-        // TODO Auto-generated method stub
         return null;
     }
 
-    // @Override
-    // @API(desc = "description of getData method")
-    // public List<String> getData() {
-    // return Arrays.asList("hi");
-    // }
 
 }

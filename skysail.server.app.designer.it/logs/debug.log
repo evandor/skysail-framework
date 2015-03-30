@@ -1,0 +1,784 @@
+2015-03-30 16:34:59,619 DEBUG [d.t.s.server.app.SkysailApplication          ] - Instanciating new Skysail Application 'SkysailRootApplication'
+2015-03-30 16:34:59,623 INFO  [d.t.skysail.server.app.ApplicationList       ] - (+) Adding application 'root'
+2015-03-30 16:34:59,725 INFO  [d.t.s.s.c.restlet.SkysailConverterHelper     ] - initializing new converter 'ServerSentEventsConverter' with typesMatch '{text/event-stream=1.0}'
+2015-03-30 16:34:59,729 INFO  [io.skysail.server.db.DbConfigurations        ] - activating DbConfigurations with config DbConfig(name=skysailgraph, driver=, url=memory:todos, username=admin)
+2015-03-30 16:34:59,731 INFO  [i.s.s.f.repositories.FeaturesRepository      ] - activating FeaturesRepository with config {service.pid=io.skysail.server.features.repositories.FeaturesRepository, de.twenty11.skysail.server.core.restlet.SecurityFeatures.ALLOW_ORIGIN_FEATURE=true, component.name=io.skysail.server.features.repositories.FeaturesRepository, felix.fileinstall.filename=file:/C:/git/skysail-framework/skysail.server.app.designer.it/config/test/io.skysail.server.features.repositories.FeaturesRepository.cfg, component.id=12}
+2015-03-30 16:34:59,752 DEBUG [d.t.s.server.app.SkysailApplication          ] - Instanciating new Skysail Application 'WebappApplication'
+2015-03-30 16:34:59,754 DEBUG [d.t.s.server.app.SkysailApplication          ] - Activating Application io.skysail.server.converter.WebappApplication
+2015-03-30 16:34:59,754 INFO  [d.t.skysail.server.app.ApplicationList       ] - (+) Adding application 'webapp'
+2015-03-30 16:34:59,756 DEBUG [d.t.s.s.c.o.i.l.SkysailServerBundleListener  ] - could not send bundleStartedMessage for skysail.server.converter
+2015-03-30 16:34:59,761 DEBUG [d.t.s.s.c.o.i.l.SkysailServerBundleListener  ] - could not send bundleStartedMessage for skysail.server.app.designer
+2015-03-30 16:35:00,701 DEBUG [d.t.s.s.db.orientdb.OrientGraphDbService     ] - activating de.twenty11.skysail.server.db.orientdb.OrientGraphDbService
+2015-03-30 16:35:00,718 DEBUG [d.t.s.s.c.o.i.l.SkysailServerBundleListener  ] - could not send bundleStartedMessage for skysail.api
+2015-03-30 16:35:00,736 DEBUG [d.t.s.server.app.SkysailApplication          ] - Instanciating new Skysail Application 'DesignerApplication'
+2015-03-30 16:35:00,736 DEBUG [d.t.s.server.app.SkysailApplication          ] - Activating Application io.skysail.server.app.designer.DesignerApplication
+2015-03-30 16:35:00,737 INFO  [d.t.skysail.server.app.ApplicationList       ] - (+) Adding application 'AppDesigner'
+2015-03-30 16:35:00,745 DEBUG [d.t.s.s.c.o.i.l.SkysailServerBundleListener  ] - could not send bundleStartedMessage for skysail.server.db
+2015-03-30 16:35:00,746 DEBUG [d.t.s.s.c.o.i.l.SkysailServerBundleListener  ] - could not send bundleStartedMessage for skysail.server.documentation
+2015-03-30 16:35:00,762 INFO  [io.skysail.server.http.HttpServer            ] - Activating io.skysail.server.http.HttpServer
+2015-03-30 16:35:00,771 INFO  [d.t.skysail.server.SkysailComponent          ] - Creating Restlet Component: de.twenty11.skysail.server.SkysailComponent
+2015-03-30 16:35:00,774 INFO  [io.skysail.server.http.HttpServer            ] - configuration was provided
+2015-03-30 16:35:00,774 INFO  [io.skysail.server.http.HttpServer            ] - 
+2015-03-30 16:35:00,774 INFO  [io.skysail.server.http.HttpServer            ] - ====================================
+2015-03-30 16:35:00,774 INFO  [io.skysail.server.http.HttpServer            ] - Starting skysail server on port 2015
+2015-03-30 16:35:00,775 INFO  [io.skysail.server.http.HttpServer            ] - ====================================
+2015-03-30 16:35:00,775 INFO  [io.skysail.server.http.HttpServer            ] - 
+2015-03-30 16:35:00,776 DEBUG [d.t.s.s.c.o.i.l.SkysailServerBundleListener  ] - could not send bundleStartedMessage for skysail.server.http
+2015-03-30 16:35:00,781 DEBUG [d.t.s.server.app.SkysailApplication          ] - Instanciating new Skysail Application 'PluginApplication'
+2015-03-30 16:35:00,781 DEBUG [d.t.s.server.app.SkysailApplication          ] - Activating Application io.skysail.server.app.plugins.PluginApplication
+2015-03-30 16:35:00,781 INFO  [d.t.skysail.server.app.ApplicationList       ] - (+) Adding application 'plugins'
+2015-03-30 16:35:00,783 DEBUG [d.t.s.s.c.o.i.l.SkysailServerBundleListener  ] - could not send bundleStartedMessage for skysail.server.plugins
+2015-03-30 16:35:00,796 INFO  [org.restlet                                  ] - Starting the internal [HTTP/1.1] server on port 2015
+2015-03-30 16:35:00,802 DEBUG [d.t.s.server.app.SkysailApplication          ] - Instanciating new Skysail Application 'WebappApplication'
+2015-03-30 16:35:00,803 DEBUG [d.t.s.server.app.SkysailApplication          ] - Activating Application de.twenty11.skysail.server.webapp.internal.WebappApplication
+2015-03-30 16:35:00,803 INFO  [d.t.skysail.server.app.ApplicationList       ] - (+) Adding application 'static'
+2015-03-30 16:35:00,804 DEBUG [d.t.s.s.c.o.i.l.SkysailServerBundleListener  ] - could not send bundleStartedMessage for skysail.server.static
+2015-03-30 16:35:00,807 DEBUG [d.t.s.s.c.o.i.l.SkysailServerBundleListener  ] - could not send bundleStartedMessage for skysail.server.text
+2015-03-30 16:35:00,821 DEBUG [d.t.s.s.c.o.i.l.SkysailServerBundleListener  ] - could not send bundleStartedMessage for skysail.server.text.markdown
+2015-03-30 16:35:00,831 DEBUG [d.t.s.server.app.SkysailApplication          ] - Activating Application io.skysail.server.um.simple.app.SimpleUserManagementApplication
+2015-03-30 16:35:00,869 DEBUG [i.s.s.u.s.a.SkysailHashedCredentialsMatcher  ] - cacheManager set in io.skysail.server.um.simple.authentication.SkysailHashedCredentialsMatcher
+2015-03-30 16:35:00,895 DEBUG [org.apache.shiro.realm.AuthorizingRealm      ] - No authorizationCache instance set.  Checking for a cacheManager...
+2015-03-30 16:35:00,895 DEBUG [org.apache.shiro.realm.AuthorizingRealm      ] - CacheManager [MemoryConstrainedCacheManager with 0 cache(s)): []] has been configured.  Building authorization cache named [io.skysail.server.um.simple.authorization.SimpleAuthorizingRealm.authorizationCache]
+2015-03-30 16:35:00,927 DEBUG [d.t.s.server.app.SkysailApplication          ] - setting hookfilters to application 'root'
+2015-03-30 16:35:00,927 DEBUG [d.t.s.server.app.SkysailApplication          ] - setting hookfilters to application 'webapp'
+2015-03-30 16:35:00,927 DEBUG [d.t.s.server.app.SkysailApplication          ] - setting hookfilters to application 'AppDesigner'
+2015-03-30 16:35:00,927 DEBUG [d.t.s.server.app.SkysailApplication          ] - setting hookfilters to application 'plugins'
+2015-03-30 16:35:00,927 DEBUG [d.t.s.server.app.SkysailApplication          ] - setting hookfilters to application 'static'
+2015-03-30 16:35:00,982 DEBUG [d.t.s.s.c.o.i.l.SkysailServerBundleListener  ] - could not send bundleStartedMessage for skysail.server.um.simple
+2015-03-30 16:35:00,983 DEBUG [d.t.s.s.c.o.i.l.SkysailServerBundleListener  ] - could not send bundleStartedMessage for slf4j.api
+2015-03-30 16:35:00,983 DEBUG [d.t.s.s.c.o.i.l.SkysailServerBundleListener  ] - could not send bundleStartedMessage for de.twentyeleven.skysail.org.antlr.stringtemplate-osgi
+2015-03-30 16:35:00,984 DEBUG [d.t.s.s.c.o.i.l.SkysailServerBundleListener  ] - could not send bundleStartedMessage for org.jruby.jruby
+2015-03-30 16:35:00,985 DEBUG [d.t.s.s.c.o.i.l.SkysailServerBundleListener  ] - could not send bundleStartedMessage for com.beust.jcommander
+2015-03-30 16:35:00,985 DEBUG [d.t.s.s.c.o.i.l.SkysailServerBundleListener  ] - could not send bundleStartedMessage for stax2-api
+2015-03-30 16:35:00,986 DEBUG [d.t.s.s.c.o.i.l.SkysailServerBundleListener  ] - could not send bundleStartedMessage for com.fasterxml.jackson.module.jackson-module-jaxb-annotations
+2015-03-30 16:35:00,987 DEBUG [d.t.s.s.c.o.i.l.SkysailServerBundleListener  ] - could not send bundleStartedMessage for org.codehaus.jettison.jettison
+2015-03-30 16:35:00,988 DEBUG [d.t.s.s.c.o.i.l.SkysailServerBundleListener  ] - could not send bundleStartedMessage for skysail.server.app.designer.it
+2015-03-30 16:35:01,031 INFO  [i.s.s.a.d.i.ApplicationsCrudIntegrationTests ] - 
+2015-03-30 16:35:01,031 INFO  [i.s.s.a.d.i.ApplicationsCrudIntegrationTests ] - --------------------------------------------
+2015-03-30 16:35:01,031 INFO  [i.s.s.a.d.i.ApplicationsCrudIntegrationTests ] -  > TEST: running test 'creating_application_persists_new_application'
+2015-03-30 16:35:01,032 INFO  [i.s.s.a.d.i.ApplicationsCrudIntegrationTests ] - --------------------------------------------
+2015-03-30 16:35:01,032 INFO  [i.s.s.a.d.i.ApplicationsCrudIntegrationTests ] - 
+2015-03-30 16:35:01,032 INFO  [i.skysail.server.app.designer.it.Browser     ] -  > TEST: creating new browser client with url 'http://localhost:2015' and mediaType 'text/html'
+2015-03-30 16:35:01,034 INFO  [i.skysail.server.app.designer.it.Browser     ] -  > TEST: logging in as user 'admin'
+2015-03-30 16:35:01,043 INFO  [org.restlet                                  ] - Starting the internal HTTP client
+2015-03-30 16:35:01,067 INFO  [o.r.S.SkysailRootApplication                 ] - Starting de.twenty11.skysail.server.app.SkysailRootApplication application
+2015-03-30 16:35:01,071 INFO  [d.t.s.server.app.SkysailApplication          ] - creating new Router in de.twenty11.skysail.server.app.SkysailRootApplication
+2015-03-30 16:35:01,072 INFO  [d.t.s.server.app.SkysailApplication          ] - adding extensions to metadata service
+2015-03-30 16:35:01,072 INFO  [d.t.s.server.app.SkysailApplication          ] - adding protocols
+2015-03-30 16:35:01,073 DEBUG [d.t.s.server.app.SkysailApplication          ] - attaching application-specific routes
+2015-03-30 16:35:01,074 INFO  [d.t.s.server.core.restlet.SkysailRouter      ] - routing path '/' -> 'de.twenty11.skysail.server.resources.DefaultResource'
+2015-03-30 16:35:01,074 WARN  [d.t.s.server.core.restlet.SkysailRouter      ] - please use a RouteBuilder to attach this resource: class de.twenty11.skysail.server.resources.DefaultResource
+2015-03-30 16:35:01,075 INFO  [d.t.s.server.core.restlet.SkysailRouter      ] - routing path '/_login' -> 'de.twenty11.skysail.server.resources.LoginResource'
+2015-03-30 16:35:01,075 WARN  [d.t.s.server.core.restlet.SkysailRouter      ] - please use a RouteBuilder to attach this resource: class de.twenty11.skysail.server.resources.LoginResource
+2015-03-30 16:35:01,076 INFO  [d.t.s.server.core.restlet.SkysailRouter      ] - routing path '/_login/{provider}' -> 'de.twenty11.skysail.server.app.OAuthLoginResource'
+2015-03-30 16:35:01,076 WARN  [d.t.s.server.core.restlet.SkysailRouter      ] - please use a RouteBuilder to attach this resource: class de.twenty11.skysail.server.app.OAuthLoginResource
+2015-03-30 16:35:01,077 INFO  [d.t.s.server.core.restlet.SkysailRouter      ] - routing path '/_version' -> 'RolesPredicateAuthorizer' -> 'de.twenty11.skysail.server.resources.VersionResource'
+2015-03-30 16:35:01,078 INFO  [d.t.s.server.core.restlet.SkysailRouter      ] - routing path '/_name' -> 'RolesPredicateAuthorizer' -> 'de.twenty11.skysail.server.resources.NameResource'
+2015-03-30 16:35:01,078 INFO  [d.t.s.server.core.restlet.SkysailRouter      ] - routing path '/_about' -> 'de.twenty11.skysail.server.resources.AboutResource'
+2015-03-30 16:35:01,078 WARN  [d.t.s.server.core.restlet.SkysailRouter      ] - please use a RouteBuilder to attach this resource: class de.twenty11.skysail.server.resources.AboutResource
+2015-03-30 16:35:01,078 INFO  [d.t.s.server.core.restlet.SkysailRouter      ] - routing path '/_profile' -> 'RolesPredicateAuthorizer' -> 'de.twenty11.skysail.server.app.profile.ProfileResource'
+2015-03-30 16:35:01,079 INFO  [d.t.s.server.core.restlet.SkysailRouter      ] - routing path '/_profile/password/' -> 'RolesPredicateAuthorizer' -> 'de.twenty11.skysail.server.app.profile.PutPasswordResource'
+2015-03-30 16:35:01,079 INFO  [d.t.s.server.core.restlet.SkysailRouter      ] - routing path '/_largetests' -> 'RolesPredicateAuthorizer' -> 'de.twenty11.skysail.server.app.LargeTestsResource'
+2015-03-30 16:35:01,080 INFO  [d.t.s.server.core.restlet.SkysailRouter      ] - routing path '/_largetests/{id}' -> 'RolesPredicateAuthorizer' -> 'de.twenty11.skysail.server.app.LargeTestsFileResource'
+2015-03-30 16:35:01,080 INFO  [d.t.s.server.core.restlet.SkysailRouter      ] - routing path '/welcome' -> 'de.twenty11.skysail.server.resources.WelcomeResource'
+2015-03-30 16:35:01,080 WARN  [d.t.s.server.core.restlet.SkysailRouter      ] - please use a RouteBuilder to attach this resource: class de.twenty11.skysail.server.resources.WelcomeResource
+2015-03-30 16:35:01,080 INFO  [d.t.s.server.core.restlet.SkysailRouter      ] - routing path '/_iframe' -> 'RolesPredicateAuthorizer' -> 'de.twenty11.skysail.server.app.IFrameResource'
+2015-03-30 16:35:01,080 DEBUG [d.t.s.server.app.SkysailApplication          ] - creating blocker...
+2015-03-30 16:35:01,081 DEBUG [d.t.s.server.app.SkysailApplication          ] - creating tracer...
+2015-03-30 16:35:01,081 DEBUG [d.t.s.server.app.SkysailApplication          ] - creating original request filter...
+2015-03-30 16:35:01,081 DEBUG [d.t.s.server.app.SkysailApplication          ] - determining authentication service...
+2015-03-30 16:35:01,081 DEBUG [d.t.s.server.app.SkysailApplication          ] - setting authenticationGuard from authentication service
+2015-03-30 16:35:01,084 INFO  [o.r.S.SkysailRootApplication                 ] - Starting io.skysail.server.converter.WebappApplication application
+2015-03-30 16:35:01,086 INFO  [o.r.S.SkysailRootApplication                 ] - Starting io.skysail.server.app.designer.DesignerApplication application
+2015-03-30 16:35:01,087 INFO  [d.t.s.server.app.SkysailApplication          ] - creating new Router in io.skysail.server.app.designer.DesignerApplication
+2015-03-30 16:35:01,087 INFO  [d.t.s.server.app.SkysailApplication          ] - adding extensions to metadata service
+2015-03-30 16:35:01,087 INFO  [d.t.s.server.app.SkysailApplication          ] - adding protocols
+2015-03-30 16:35:01,087 DEBUG [d.t.s.server.app.SkysailApplication          ] - attaching application-specific routes
+2015-03-30 16:35:01,087 INFO  [d.t.s.server.core.restlet.SkysailRouter      ] - routing path '' -> 'RolesPredicateAuthorizer' -> 'io.skysail.server.app.designer.application.resources.ApplicationsResource'
+2015-03-30 16:35:01,088 INFO  [d.t.s.server.core.restlet.SkysailRouter      ] - routing path '/application/' -> 'RolesPredicateAuthorizer' -> 'io.skysail.server.app.designer.application.resources.PostApplicationResource'
+2015-03-30 16:35:01,088 INFO  [d.t.s.server.core.restlet.SkysailRouter      ] - routing path '/applications' -> 'RolesPredicateAuthorizer' -> 'io.skysail.server.app.designer.application.resources.ApplicationsResource'
+2015-03-30 16:35:01,088 INFO  [d.t.s.server.core.restlet.SkysailRouter      ] - routing path '/applications/{id}' -> 'RolesPredicateAuthorizer' -> 'io.skysail.server.app.designer.application.resources.ApplicationResource'
+2015-03-30 16:35:01,089 INFO  [d.t.s.server.core.restlet.SkysailRouter      ] - routing path '/applications/{id}/' -> 'RolesPredicateAuthorizer' -> 'io.skysail.server.app.designer.application.resources.PutApplicationResource'
+2015-03-30 16:35:01,089 INFO  [d.t.s.server.core.restlet.SkysailRouter      ] - routing path '/applications/{id}/entities' -> 'RolesPredicateAuthorizer' -> 'io.skysail.server.app.designer.entities.resources.EntitiesResource'
+2015-03-30 16:35:01,089 INFO  [d.t.s.server.core.restlet.SkysailRouter      ] - routing path '/applications/{id}/entities/' -> 'RolesPredicateAuthorizer' -> 'io.skysail.server.app.designer.entities.resources.PostEntityResource'
+2015-03-30 16:35:01,090 INFO  [d.t.s.server.core.restlet.SkysailRouter      ] - routing path '/applications/{id}/entities/{entityName}/fields' -> 'RolesPredicateAuthorizer' -> 'io.skysail.server.app.designer.fields.resources.FieldsResource'
+2015-03-30 16:35:01,090 INFO  [d.t.s.server.core.restlet.SkysailRouter      ] - routing path '/applications/{id}/entities/{entityName}/fields/' -> 'RolesPredicateAuthorizer' -> 'io.skysail.server.app.designer.fields.resources.PostFieldResource'
+2015-03-30 16:35:01,090 DEBUG [d.t.s.server.app.SkysailApplication          ] - creating blocker...
+2015-03-30 16:35:01,090 DEBUG [d.t.s.server.app.SkysailApplication          ] - creating tracer...
+2015-03-30 16:35:01,090 DEBUG [d.t.s.server.app.SkysailApplication          ] - creating original request filter...
+2015-03-30 16:35:01,090 DEBUG [d.t.s.server.app.SkysailApplication          ] - determining authentication service...
+2015-03-30 16:35:01,090 DEBUG [d.t.s.server.app.SkysailApplication          ] - setting authenticationGuard from authentication service
+2015-03-30 16:35:01,090 INFO  [o.r.S.SkysailRootApplication                 ] - Starting io.skysail.server.app.plugins.PluginApplication application
+2015-03-30 16:35:01,091 INFO  [d.t.s.server.app.SkysailApplication          ] - creating new Router in io.skysail.server.app.plugins.PluginApplication
+2015-03-30 16:35:01,091 INFO  [d.t.s.server.app.SkysailApplication          ] - adding extensions to metadata service
+2015-03-30 16:35:01,091 INFO  [d.t.s.server.app.SkysailApplication          ] - adding protocols
+2015-03-30 16:35:01,091 DEBUG [d.t.s.server.app.SkysailApplication          ] - attaching application-specific routes
+2015-03-30 16:35:01,093 INFO  [d.t.s.server.core.restlet.SkysailRouter      ] - routing path '/docs/api' -> 'RolesPredicateAuthorizer' -> 'io.skysail.server.documentation.ApiResource'
+2015-03-30 16:35:01,093 INFO  [d.t.s.server.core.restlet.SkysailRouter      ] - routing path '/docs/entities/{name}' -> 'RolesPredicateAuthorizer' -> 'io.skysail.server.documentation.EntitiesResource'
+2015-03-30 16:35:01,093 INFO  [d.t.s.server.core.restlet.SkysailRouter      ] - routing path '/docs/entities' -> 'RolesPredicateAuthorizer' -> 'io.skysail.server.documentation.EntitiesResource'
+2015-03-30 16:35:01,095 INFO  [d.t.s.server.core.restlet.SkysailRouter      ] - routing path '' -> 'RolesPredicateAuthorizer' -> 'io.skysail.server.app.plugins.PluginRootResource'
+2015-03-30 16:35:01,095 INFO  [d.t.s.server.core.restlet.SkysailRouter      ] - routing path '/' -> 'RolesPredicateAuthorizer' -> 'io.skysail.server.app.plugins.PluginRootResource'
+2015-03-30 16:35:01,096 INFO  [d.t.s.server.core.restlet.SkysailRouter      ] - routing path '/features/' -> 'RolesPredicateAuthorizer' -> 'io.skysail.server.app.plugins.features.FeaturesResource'
+2015-03-30 16:35:01,096 INFO  [d.t.s.server.core.restlet.SkysailRouter      ] - routing path '/features/{id}/installations/' -> 'RolesPredicateAuthorizer' -> 'io.skysail.server.app.plugins.installations.PostInstallationResource'
+2015-03-30 16:35:01,096 INFO  [d.t.s.server.core.restlet.SkysailRouter      ] - routing path '/obr/repos/' -> 'RolesPredicateAuthorizer' -> 'io.skysail.server.app.plugins.obr.RepositoriesResource'
+2015-03-30 16:35:01,097 INFO  [d.t.s.server.core.restlet.SkysailRouter      ] - routing path '/obr/repos/{id}' -> 'RolesPredicateAuthorizer' -> 'io.skysail.server.app.plugins.obr.RepositoryResource'
+2015-03-30 16:35:01,097 INFO  [d.t.s.server.core.restlet.SkysailRouter      ] - routing path '/obr/resolver/' -> 'RolesPredicateAuthorizer' -> 'io.skysail.server.app.plugins.obr.PostResolverResource'
+2015-03-30 16:35:01,097 INFO  [d.t.s.server.core.restlet.SkysailRouter      ] - routing path '/query/' -> 'RolesPredicateAuthorizer' -> 'io.skysail.server.app.plugins.query.PostQueryResource'
+2015-03-30 16:35:01,097 INFO  [d.t.s.server.core.restlet.SkysailRouter      ] - routing path '/resources' -> 'RolesPredicateAuthorizer' -> 'io.skysail.server.app.plugins.resources.ResourcesResource'
+2015-03-30 16:35:01,098 INFO  [d.t.s.server.core.restlet.SkysailRouter      ] - routing path '/resources/{id}' -> 'RolesPredicateAuthorizer' -> 'io.skysail.server.app.plugins.resources.ResourceResource'
+2015-03-30 16:35:01,098 DEBUG [d.t.s.server.app.SkysailApplication          ] - creating blocker...
+2015-03-30 16:35:01,098 DEBUG [d.t.s.server.app.SkysailApplication          ] - creating tracer...
+2015-03-30 16:35:01,098 DEBUG [d.t.s.server.app.SkysailApplication          ] - creating original request filter...
+2015-03-30 16:35:01,098 DEBUG [d.t.s.server.app.SkysailApplication          ] - determining authentication service...
+2015-03-30 16:35:01,098 DEBUG [d.t.s.server.app.SkysailApplication          ] - setting authenticationGuard from authentication service
+2015-03-30 16:35:01,098 INFO  [o.r.S.SkysailRootApplication                 ] - Starting de.twenty11.skysail.server.webapp.internal.WebappApplication application
+2015-03-30 16:35:01,101 DEBUG [LogService                                   ] - Processing request to: "http://localhost:2015/_logout?targetUri=/"
+2015-03-30 16:35:01,112 DEBUG [o.a.s.web.mgt.CookieRememberMeManager        ] - SubjectContext argument is not an HTTP-aware instance.  This is required to obtain a servlet request and response in order to retrieve the rememberMe cookie. Returning immediately and ignoring rememberMe operation.
+2015-03-30 16:35:01,115 INFO  [LogService                                   ] - 2015-03-30	16:35:01	127.0.0.1	-	-	2015	GET	/_logout	targetUri=/	303	0	0	15	http://localhost:2015	Restlet-Framework/2.3.1	-
+2015-03-30 16:35:01,123 DEBUG [LogService                                   ] - Processing request to: "http://localhost:2015/"
+2015-03-30 16:35:01,124 DEBUG [o.r.S.SkysailRootApplication                 ] - Authentication failed. No credentials provided.
+2015-03-30 16:35:01,124 DEBUG [o.r.S.SkysailRootApplication                 ] - Selected route: "/" -> Finder for DefaultResource
+2015-03-30 16:35:01,124 DEBUG [o.r.S.SkysailRootApplication                 ] - New base URI: "http://localhost:2015/". No remaining part to match
+2015-03-30 16:35:01,181 DEBUG [o.r.S.SkysailRootApplication                 ] - Score of annotation "MethodAnnotationInfo [javaMethod: public final java.util.List de.twenty11.skysail.server.core.restlet.ListServerResource.getEntities(org.restlet.representation.Variant), javaClass: class de.twenty11.skysail.server.resources.DefaultResource, restletMethod: GET, input: html|json|yaml|xml, value: html|json|yaml|xml, output: html|json|yaml|xml, query: null]"= 0.5
+2015-03-30 16:35:01,181 DEBUG [o.r.S.SkysailRootApplication                 ] - Total score of variant "[text/html]"= 0.041791666
+2015-03-30 16:35:01,181 DEBUG [o.r.S.SkysailRootApplication                 ] - Score of annotation "MethodAnnotationInfo [javaMethod: public final java.util.List de.twenty11.skysail.server.core.restlet.ListServerResource.getEntities(org.restlet.representation.Variant), javaClass: class de.twenty11.skysail.server.resources.DefaultResource, restletMethod: GET, input: html|json|yaml|xml, value: html|json|yaml|xml, output: html|json|yaml|xml, query: null]"= 0.5
+2015-03-30 16:35:01,181 DEBUG [o.r.S.SkysailRootApplication                 ] - Total score of variant "[application/json]"= 0.04191667
+2015-03-30 16:35:01,181 DEBUG [o.r.S.SkysailRootApplication                 ] - Score of annotation "MethodAnnotationInfo [javaMethod: public final java.util.List de.twenty11.skysail.server.core.restlet.ListServerResource.getEntities(org.restlet.representation.Variant), javaClass: class de.twenty11.skysail.server.resources.DefaultResource, restletMethod: GET, input: html|json|yaml|xml, value: html|json|yaml|xml, output: html|json|yaml|xml, query: null]"= 0.5
+2015-03-30 16:35:01,181 DEBUG [o.r.S.SkysailRootApplication                 ] - Total score of variant "[application/x-yaml]"= 0.04191667
+2015-03-30 16:35:01,181 DEBUG [o.r.S.SkysailRootApplication                 ] - Score of annotation "MethodAnnotationInfo [javaMethod: public final java.util.List de.twenty11.skysail.server.core.restlet.ListServerResource.getEntities(org.restlet.representation.Variant), javaClass: class de.twenty11.skysail.server.resources.DefaultResource, restletMethod: GET, input: html|json|yaml|xml, value: html|json|yaml|xml, output: html|json|yaml|xml, query: null]"= 0.5
+2015-03-30 16:35:01,181 DEBUG [o.r.S.SkysailRootApplication                 ] - Total score of variant "[text/x-yaml]"= 0.041791666
+2015-03-30 16:35:01,181 DEBUG [o.r.S.SkysailRootApplication                 ] - Score of annotation "MethodAnnotationInfo [javaMethod: public final java.util.List de.twenty11.skysail.server.core.restlet.ListServerResource.getEntities(org.restlet.representation.Variant), javaClass: class de.twenty11.skysail.server.resources.DefaultResource, restletMethod: GET, input: html|json|yaml|xml, value: html|json|yaml|xml, output: html|json|yaml|xml, query: null]"= 0.5
+2015-03-30 16:35:01,181 DEBUG [o.r.S.SkysailRootApplication                 ] - Total score of variant "[text/xml]"= 0.041791666
+2015-03-30 16:35:01,182 DEBUG [o.r.S.SkysailRootApplication                 ] - Score of annotation "MethodAnnotationInfo [javaMethod: public final java.util.List de.twenty11.skysail.server.core.restlet.ListServerResource.getEntities(org.restlet.representation.Variant), javaClass: class de.twenty11.skysail.server.resources.DefaultResource, restletMethod: GET, input: html|json|yaml|xml, value: html|json|yaml|xml, output: html|json|yaml|xml, query: null]"= 0.5
+2015-03-30 16:35:01,182 DEBUG [o.r.S.SkysailRootApplication                 ] - Total score of variant "[application/xml]"= 0.04191667
+2015-03-30 16:35:01,183 INFO  [d.t.s.s.core.restlet.ListServerResource      ] - Request entry point: DefaultResource @Get('html|csv|treeform') with variant [application/json]
+2015-03-30 16:35:01,185 DEBUG [d.t.s.s.c.r.f.ExceptionCatchingFilter        ] - entering ExceptionCatchingFilter#doHandle
+2015-03-30 16:35:01,185 DEBUG [d.t.s.s.c.r.f.AbstractResourceFilter         ] - next filter in chain: AddApiVersionHeader
+2015-03-30 16:35:01,185 DEBUG [d.t.s.s.c.r.f.AbstractResourceFilter         ] - next filter in chain: GetRequestPreFilterHook
+2015-03-30 16:35:01,185 DEBUG [d.t.s.s.c.r.f.AbstractResourceFilter         ] - next filter in chain: AddRequestIdToResourceFilter
+2015-03-30 16:35:01,186 DEBUG [d.t.s.s.c.r.f.AbstractResourceFilter         ] - next filter in chain: DataExtractingFilter
+2015-03-30 16:35:01,186 DEBUG [d.t.s.s.c.r.filter.DataExtractingFilter      ] - entering DataExtractingFilter#doHandle
+2015-03-30 16:35:01,186 DEBUG [d.t.s.s.c.r.f.AbstractResourceFilter         ] - next filter in chain: AddLinkheadersFilter
+2015-03-30 16:35:01,186 DEBUG [d.t.s.s.c.r.f.AbstractResourceFilter         ] - next filter in chain: CheckFavoritesFilter
+2015-03-30 16:35:01,186 DEBUG [d.t.s.s.c.r.f.AbstractResourceFilter         ] - next filter in chain: SetExecutionTimeInResponseFilter
+2015-03-30 16:35:01,186 DEBUG [d.t.s.s.c.r.f.AbstractResourceFilter         ] - next filter in chain: RedirectFilter
+2015-03-30 16:35:01,202 DEBUG [o.r.S.SkysailRootApplication                 ] - Converter selected for EmptyList: JacksonConverter
+2015-03-30 16:35:01,207 INFO  [LogService                                   ] - 2015-03-30	16:35:01	127.0.0.1	-	-	2015	GET	/	-	200	-	0	83	http://localhost:2015	Restlet-Framework/2.3.1	-
+2015-03-30 16:35:01,222 DEBUG [org.restlet                                  ] - The length of the message body is unknown. The entity must be handled carefully and consumed entirely in order to surely release the connection.
+2015-03-30 16:35:01,223 DEBUG [org.restlet                                  ] - Converter selected for Form: DefaultConverter
+2015-03-30 16:35:01,223 DEBUG [org.restlet                                  ] - Total score of variant "[application/x-www-form-urlencoded]"= 5.0E-4
+2015-03-30 16:35:01,224 INFO  [org.restlet                                  ] - Starting the internal HTTP client
+2015-03-30 16:35:01,226 DEBUG [LogService                                   ] - Processing request to: "http://localhost:2015/_login"
+2015-03-30 16:35:01,228 DEBUG [o.a.s.web.mgt.CookieRememberMeManager        ] - SubjectContext argument is not an HTTP-aware instance.  This is required to obtain a servlet request and response in order to retrieve the rememberMe cookie. Returning immediately and ignoring rememberMe operation.
+2015-03-30 16:35:01,228 INFO  [i.s.s.u.s.a.SimpleDelegatingVerifier         ] - login event for user 'admin'
+2015-03-30 16:35:01,231 DEBUG [o.apache.shiro.realm.AuthenticatingRealm     ] - Looked up AuthenticationInfo [io.skysail.server.um.simple.authentication.SkysailAuthenticationInfo@370d07d4] from doGetAuthenticationInfo
+2015-03-30 16:35:01,232 INFO  [i.s.s.u.s.a.SkysailHashedCredentialsMatcher  ] - checking cache for entry $2a$12$mBXqefcONxAauLZc6EDJhO8g7oLM1jhEBQCspfyEHr57Xz9b6oiDO
+2015-03-30 16:35:01,562 INFO  [i.s.s.u.s.a.SkysailHashedCredentialsMatcher  ] - added entry $2a$12$mBXqefcONxAauLZc6EDJhO8g7oLM1jhEBQCspfyEHr57Xz9b6oiDO to credentials hash cache with current timestamp, size now is 1
+2015-03-30 16:35:01,562 DEBUG [o.a.shiro.authc.AbstractAuthenticator        ] - Authentication successful for token [org.apache.shiro.authc.UsernamePasswordToken - admin, rememberMe=false].  Returned account [io.skysail.server.um.simple.authentication.SkysailAuthenticationInfo@370d07d4]
+2015-03-30 16:35:01,563 DEBUG [o.a.s.s.support.DefaultSubjectContext        ] - No SecurityManager available in subject context map.  Falling back to SecurityUtils.getSecurityManager() lookup.
+2015-03-30 16:35:01,563 DEBUG [o.a.s.s.support.DefaultSubjectContext        ] - No SecurityManager available in subject context map.  Falling back to SecurityUtils.getSecurityManager() lookup.
+2015-03-30 16:35:01,563 DEBUG [o.a.shiro.mgt.AbstractRememberMeManager      ] - AuthenticationToken did not indicate RememberMe is requested.  RememberMe functionality will not be executed for corresponding account.
+2015-03-30 16:35:01,563 INFO  [i.s.s.u.s.a.SimpleDelegatingVerifier         ] - login event for user 'admin' successful
+2015-03-30 16:35:01,564 DEBUG [o.r.S.SkysailRootApplication                 ] - Authentication succeeded. Valid credentials provided for identifier: admin.
+2015-03-30 16:35:01,767 INFO  [org.restlet                                  ] - Stopping the internal HTTP client
+2015-03-30 16:35:01,785 DEBUG [o.r.S.SkysailRootApplication                 ] - The authentication succeeded for the identifer "admin" using the HTTP_Cookie scheme.
+2015-03-30 16:35:01,786 DEBUG [o.r.S.SkysailRootApplication                 ] - Selected route: "/_login" -> Finder for LoginResource
+2015-03-30 16:35:01,786 DEBUG [o.r.S.SkysailRootApplication                 ] - New base URI: "http://localhost:2015/_login". No remaining part to match
+2015-03-30 16:35:01,788 DEBUG [o.r.S.SkysailRootApplication                 ] - Score of annotation "MethodAnnotationInfo [javaMethod: public java.lang.Object de.twenty11.skysail.server.core.restlet.PostEntityServerResource.post(org.restlet.data.Form), javaClass: class de.twenty11.skysail.server.resources.LoginResource, restletMethod: POST, input: x-www-form-urlencoded, value: x-www-form-urlencoded:html, output: html, query: null]"= 0.5
+2015-03-30 16:35:01,788 DEBUG [o.r.S.SkysailRootApplication                 ] - Total score of variant "[text/html]"= 0.16666667
+2015-03-30 16:35:01,788 DEBUG [o.r.S.SkysailRootApplication                 ] - Score of annotation "MethodAnnotationInfo [javaMethod: public java.lang.Object de.twenty11.skysail.server.core.restlet.PostEntityServerResource.post(java.lang.Object), javaClass: class de.twenty11.skysail.server.resources.LoginResource, restletMethod: POST, input: json, value: json, output: json, query: null]"= 0.5
+2015-03-30 16:35:01,788 DEBUG [o.r.S.SkysailRootApplication                 ] - Total score of variant "[application/json]"= 0.04191667
+2015-03-30 16:35:01,789 INFO  [d.t.s.s.c.r.PostEntityServerResource         ] - Request entry point: LoginResource @Post('x-www-form-urlencoded:html|json|xml')
+2015-03-30 16:35:01,789 INFO  [d.t.s.s.c.r.PostEntityServerResource         ] - calling post(Form), media types '[text/html:1.0]'
+2015-03-30 16:35:01,836 DEBUG [d.t.s.s.c.r.f.ExceptionCatchingFilter        ] - entering ExceptionCatchingFilter#doHandle
+2015-03-30 16:35:01,836 DEBUG [d.t.s.s.c.r.f.AbstractResourceFilter         ] - next filter in chain: AddRequestIdToResourceFilter
+2015-03-30 16:35:01,836 DEBUG [d.t.s.s.c.r.f.AbstractResourceFilter         ] - next filter in chain: CheckInvalidInputFilter
+2015-03-30 16:35:01,836 DEBUG [d.t.s.s.c.r.f.CheckInvalidInputFilter        ] - entering CheckInvalidInputFilter#doHandle
+2015-03-30 16:35:01,836 DEBUG [d.t.s.s.c.r.f.AbstractResourceFilter         ] - next filter in chain: FormDataExtractingFilter
+2015-03-30 16:35:01,836 DEBUG [d.t.s.s.c.r.f.FormDataExtractingFilter       ] - entering FormDataExtractingFilter#doHandle
+2015-03-30 16:35:01,836 DEBUG [d.t.s.s.c.r.f.AbstractResourceFilter         ] - next filter in chain: CheckBusinessViolationsFilter
+2015-03-30 16:35:01,836 DEBUG [d.t.s.s.c.r.f.CheckBusinessViolationsFilter  ] - entering CheckBusinessViolationsFilter#doHandle
+2015-03-30 16:35:01,868 DEBUG [d.t.s.s.c.r.f.AbstractResourceFilter         ] - next filter in chain: OptionalEncryptionFilter
+2015-03-30 16:35:01,868 DEBUG [d.t.s.s.c.r.f.AbstractResourceFilter         ] - next filter in chain: PersistEntityFilter
+2015-03-30 16:35:01,869 DEBUG [d.t.s.s.c.r.filter.PersistEntityFilter       ] - entering PersistEntityFilter#doHandle
+2015-03-30 16:35:01,869 DEBUG [d.t.s.s.c.r.f.AbstractResourceFilter         ] - next filter in chain: EntityWasAddedFilter
+2015-03-30 16:35:01,869 DEBUG [d.t.s.s.c.r.filter.EntityWasAddedFilter      ] - entering EntityWasAddedFilter#doHandle
+2015-03-30 16:35:01,869 DEBUG [d.t.s.s.c.r.f.AbstractResourceFilter         ] - next filter in chain: AddLinkheadersFilter
+2015-03-30 16:35:01,869 DEBUG [d.t.s.s.c.r.f.AbstractResourceFilter         ] - next filter in chain: PostRedirectGetFilter
+2015-03-30 16:35:01,870 INFO  [i.skysail.server.converter.HtmlConverter     ] - converter 'HtmlConverter' matched '{text/html=0.95, treeform/*=1.0}' with threshold 0.95
+2015-03-30 16:35:01,870 DEBUG [o.r.S.SkysailRootApplication                 ] - Converter selected for Credentials: HtmlConverter
+2015-03-30 16:35:01,874 INFO  [d.t.skysail.server.app.SourceWrapper         ] - using converter 'NoopConverter' for Credentials-Source: de.twenty11.skysail.server.domain.Credentials@6152bd66
+2015-03-30 16:35:01,875 INFO  [i.s.s.c.impl.StringTemplateRenderer          ] - reading templates from resource path '/templates/text/html'
+2015-03-30 16:35:01,884 DEBUG [i.s.s.c.stringtemplate.STGroupBundleDir      ] - found resource in skysail.server.converter [0.1.0.201503301411]: bundle://62.0:1/templates/text/html/index.st
+2015-03-30 16:35:01,939 DEBUG [i.s.s.c.stringtemplate.STGroupBundleDir      ] - found resource in skysail.server.converter [0.1.0.201503301411]: bundle://62.0:1/templates/text/html/select2JsHead.stg
+2015-03-30 16:35:01,941 DEBUG [i.s.s.c.stringtemplate.STGroupBundleDir      ] - found resource in skysail.server.converter [0.1.0.201503301411]: bundle://62.0:1/templates/text/html/endOfHeaderJS.stg
+2015-03-30 16:35:01,943 DEBUG [i.s.s.c.stringtemplate.STGroupBundleDir      ] - found resource in skysail.server.converter [0.1.0.201503301411]: bundle://62.0:1/templates/text/html/dropdownFrontendsNav.stg
+2015-03-30 16:35:01,949 DEBUG [i.s.s.c.stringtemplate.STGroupBundleDir      ] - found resource in skysail.server.converter [0.1.0.201503301411]: bundle://62.0:1/templates/text/html/dropdownApplicationsNav.stg
+2015-03-30 16:35:01,954 DEBUG [i.s.s.c.stringtemplate.STGroupBundleDir      ] - found resource in skysail.server.converter [0.1.0.201503301411]: bundle://62.0:1/templates/text/html/dropdownAdminNav.stg
+2015-03-30 16:35:01,966 DEBUG [i.s.s.c.stringtemplate.STGroupBundleDir      ] - found resource in skysail.server.converter [0.1.0.201503301411]: bundle://62.0:1/templates/text/html/breadcrumb.stg
+2015-03-30 16:35:01,973 DEBUG [i.s.s.c.stringtemplate.STGroupBundleDir      ] - found resource in skysail.server.converter [0.1.0.201503301411]: bundle://62.0:1/templates/text/html/appNavTitle.stg
+2015-03-30 16:35:01,974 DEBUG [i.s.s.c.stringtemplate.STGroupBundleDir      ] - found resource in skysail.server.converter [0.1.0.201503301411]: bundle://62.0:1/templates/text/html/menuNav.stg
+2015-03-30 16:35:01,978 DEBUG [i.s.s.c.stringtemplate.STGroupBundleDir      ] - found resource in skysail.server.converter [0.1.0.201503301411]: bundle://62.0:1/templates/text/html/mainContent.stg
+2015-03-30 16:35:01,981 DEBUG [i.s.s.c.stringtemplate.STGroupBundleDir      ] - found resource in skysail.server.converter [0.1.0.201503301411]: bundle://62.0:1/templates/text/html/appNav.stg
+2015-03-30 16:35:01,985 DEBUG [i.s.s.c.stringtemplate.STGroupBundleDir      ] - found resource in skysail.server.converter [0.1.0.201503301411]: bundle://62.0:1/templates/text/html/contentHeader.st
+2015-03-30 16:35:01,987 DEBUG [i.s.s.c.stringtemplate.STGroupBundleDir      ] - found resource in skysail.server.converter [0.1.0.201503301411]: bundle://62.0:1/templates/text/html/renderEntity.stg
+2015-03-30 16:35:01,990 DEBUG [i.s.s.c.stringtemplate.STGroupBundleDir      ] - found resource in skysail.server.converter [0.1.0.201503301411]: bundle://62.0:1/templates/text/html/notifications.stg
+2015-03-30 16:35:01,994 DEBUG [i.s.s.c.stringtemplate.STGroupBundleDir      ] - found resource in skysail.server.converter [0.1.0.201503301411]: bundle://62.0:1/templates/text/html/select2JsEndOfBody.stg
+2015-03-30 16:35:01,997 INFO  [LogService                                   ] - 2015-03-30	16:35:01	127.0.0.1	admin	-	2015	POST	/_login	-	201	7355	31	771	http://localhost:2015	Restlet-Framework/2.3.1	-
+2015-03-30 16:35:02,000 INFO  [org.restlet                                  ] - Starting the internal HTTP client
+2015-03-30 16:35:02,003 DEBUG [LogService                                   ] - Processing request to: "http://localhost:2015/"
+2015-03-30 16:35:02,005 DEBUG [o.a.s.web.mgt.CookieRememberMeManager        ] - SubjectContext argument is not an HTTP-aware instance.  This is required to obtain a servlet request and response in order to retrieve the rememberMe cookie. Returning immediately and ignoring rememberMe operation.
+2015-03-30 16:35:02,006 INFO  [i.s.s.u.s.a.SimpleDelegatingVerifier         ] - login event for user 'admin'
+2015-03-30 16:35:02,006 DEBUG [o.apache.shiro.realm.AuthenticatingRealm     ] - Using cached authentication info [io.skysail.server.um.simple.authentication.SkysailAuthenticationInfo@370d07d4] to perform credentials matching.
+2015-03-30 16:35:02,006 INFO  [i.s.s.u.s.a.SkysailHashedCredentialsMatcher  ] - checking cache for entry $2a$12$mBXqefcONxAauLZc6EDJhO8g7oLM1jhEBQCspfyEHr57Xz9b6oiDO
+2015-03-30 16:35:02,008 INFO  [i.s.s.u.s.a.SkysailHashedCredentialsMatcher  ] - found entry in credentials hash cache, updating timestamp
+2015-03-30 16:35:02,008 DEBUG [o.a.shiro.authc.AbstractAuthenticator        ] - Authentication successful for token [org.apache.shiro.authc.UsernamePasswordToken - admin, rememberMe=false].  Returned account [io.skysail.server.um.simple.authentication.SkysailAuthenticationInfo@370d07d4]
+2015-03-30 16:35:02,008 DEBUG [o.a.s.s.support.DefaultSubjectContext        ] - No SecurityManager available in subject context map.  Falling back to SecurityUtils.getSecurityManager() lookup.
+2015-03-30 16:35:02,008 DEBUG [o.a.s.s.support.DefaultSubjectContext        ] - No SecurityManager available in subject context map.  Falling back to SecurityUtils.getSecurityManager() lookup.
+2015-03-30 16:35:02,008 DEBUG [o.a.shiro.mgt.AbstractRememberMeManager      ] - AuthenticationToken did not indicate RememberMe is requested.  RememberMe functionality will not be executed for corresponding account.
+2015-03-30 16:35:02,008 INFO  [i.s.s.u.s.a.SimpleDelegatingVerifier         ] - login event for user 'admin' successful
+2015-03-30 16:35:02,008 DEBUG [o.r.S.SkysailRootApplication                 ] - Authentication succeeded. Valid credentials provided for identifier: admin.
+2015-03-30 16:35:02,008 DEBUG [o.r.S.SkysailRootApplication                 ] - The authentication succeeded for the identifer "admin" using the HTTP_Cookie scheme.
+2015-03-30 16:35:02,008 DEBUG [o.r.S.SkysailRootApplication                 ] - Selected route: "/" -> Finder for DefaultResource
+2015-03-30 16:35:02,008 DEBUG [o.r.S.SkysailRootApplication                 ] - New base URI: "http://localhost:2015/". No remaining part to match
+2015-03-30 16:35:02,009 DEBUG [o.r.S.SkysailRootApplication                 ] - Score of annotation "MethodAnnotationInfo [javaMethod: public final java.util.List de.twenty11.skysail.server.core.restlet.ListServerResource.getEntities(org.restlet.representation.Variant), javaClass: class de.twenty11.skysail.server.resources.DefaultResource, restletMethod: GET, input: html|json|yaml|xml, value: html|json|yaml|xml, output: html|json|yaml|xml, query: null]"= 0.5
+2015-03-30 16:35:02,009 DEBUG [o.r.S.SkysailRootApplication                 ] - Total score of variant "[text/html]"= 0.16666667
+2015-03-30 16:35:02,009 DEBUG [o.r.S.SkysailRootApplication                 ] - Score of annotation "MethodAnnotationInfo [javaMethod: public final java.util.List de.twenty11.skysail.server.core.restlet.ListServerResource.getEntities(org.restlet.representation.Variant), javaClass: class de.twenty11.skysail.server.resources.DefaultResource, restletMethod: GET, input: html|json|yaml|xml, value: html|json|yaml|xml, output: html|json|yaml|xml, query: null]"= 0.5
+2015-03-30 16:35:02,009 DEBUG [o.r.S.SkysailRootApplication                 ] - Total score of variant "[application/json]"= 0.04191667
+2015-03-30 16:35:02,009 DEBUG [o.r.S.SkysailRootApplication                 ] - Score of annotation "MethodAnnotationInfo [javaMethod: public final java.util.List de.twenty11.skysail.server.core.restlet.ListServerResource.getEntities(org.restlet.representation.Variant), javaClass: class de.twenty11.skysail.server.resources.DefaultResource, restletMethod: GET, input: html|json|yaml|xml, value: html|json|yaml|xml, output: html|json|yaml|xml, query: null]"= 0.5
+2015-03-30 16:35:02,009 DEBUG [o.r.S.SkysailRootApplication                 ] - Total score of variant "[application/x-yaml]"= 0.04191667
+2015-03-30 16:35:02,009 DEBUG [o.r.S.SkysailRootApplication                 ] - Score of annotation "MethodAnnotationInfo [javaMethod: public final java.util.List de.twenty11.skysail.server.core.restlet.ListServerResource.getEntities(org.restlet.representation.Variant), javaClass: class de.twenty11.skysail.server.resources.DefaultResource, restletMethod: GET, input: html|json|yaml|xml, value: html|json|yaml|xml, output: html|json|yaml|xml, query: null]"= 0.5
+2015-03-30 16:35:02,009 DEBUG [o.r.S.SkysailRootApplication                 ] - Total score of variant "[text/x-yaml]"= 0.042416666
+2015-03-30 16:35:02,009 DEBUG [o.r.S.SkysailRootApplication                 ] - Score of annotation "MethodAnnotationInfo [javaMethod: public final java.util.List de.twenty11.skysail.server.core.restlet.ListServerResource.getEntities(org.restlet.representation.Variant), javaClass: class de.twenty11.skysail.server.resources.DefaultResource, restletMethod: GET, input: html|json|yaml|xml, value: html|json|yaml|xml, output: html|json|yaml|xml, query: null]"= 0.5
+2015-03-30 16:35:02,009 DEBUG [o.r.S.SkysailRootApplication                 ] - Total score of variant "[text/xml]"= 0.042416666
+2015-03-30 16:35:02,009 DEBUG [o.r.S.SkysailRootApplication                 ] - Score of annotation "MethodAnnotationInfo [javaMethod: public final java.util.List de.twenty11.skysail.server.core.restlet.ListServerResource.getEntities(org.restlet.representation.Variant), javaClass: class de.twenty11.skysail.server.resources.DefaultResource, restletMethod: GET, input: html|json|yaml|xml, value: html|json|yaml|xml, output: html|json|yaml|xml, query: null]"= 0.5
+2015-03-30 16:35:02,009 DEBUG [o.r.S.SkysailRootApplication                 ] - Total score of variant "[application/xml]"= 0.04191667
+2015-03-30 16:35:02,009 INFO  [d.t.s.s.core.restlet.ListServerResource      ] - Request entry point: DefaultResource @Get('html|csv|treeform') with variant [text/html]
+2015-03-30 16:35:02,009 DEBUG [d.t.s.s.c.r.f.ExceptionCatchingFilter        ] - entering ExceptionCatchingFilter#doHandle
+2015-03-30 16:35:02,010 DEBUG [d.t.s.s.c.r.f.AbstractResourceFilter         ] - next filter in chain: AddApiVersionHeader
+2015-03-30 16:35:02,010 DEBUG [d.t.s.s.c.r.f.AbstractResourceFilter         ] - next filter in chain: GetRequestPreFilterHook
+2015-03-30 16:35:02,010 DEBUG [d.t.s.s.c.r.f.AbstractResourceFilter         ] - next filter in chain: AddRequestIdToResourceFilter
+2015-03-30 16:35:02,010 DEBUG [d.t.s.s.c.r.f.AbstractResourceFilter         ] - next filter in chain: DataExtractingFilter
+2015-03-30 16:35:02,010 DEBUG [d.t.s.s.c.r.filter.DataExtractingFilter      ] - entering DataExtractingFilter#doHandle
+2015-03-30 16:35:02,010 DEBUG [d.t.s.s.c.r.f.AbstractResourceFilter         ] - next filter in chain: AddLinkheadersFilter
+2015-03-30 16:35:02,010 DEBUG [d.t.s.s.c.r.f.AbstractResourceFilter         ] - next filter in chain: CheckFavoritesFilter
+2015-03-30 16:35:02,010 DEBUG [d.t.s.s.c.r.f.AbstractResourceFilter         ] - next filter in chain: SetExecutionTimeInResponseFilter
+2015-03-30 16:35:02,010 DEBUG [d.t.s.s.c.r.f.AbstractResourceFilter         ] - next filter in chain: RedirectFilter
+2015-03-30 16:35:02,010 INFO  [i.skysail.server.converter.HtmlConverter     ] - converter 'HtmlConverter' matched '{text/html=0.95, treeform/*=1.0}' with threshold 0.95
+2015-03-30 16:35:02,010 DEBUG [o.r.S.SkysailRootApplication                 ] - Converter selected for EmptyList: HtmlConverter
+2015-03-30 16:35:02,010 INFO  [d.t.skysail.server.app.SourceWrapper         ] - using converter 'ListSourceHtmlConverter' for EmptyList-Source: []
+2015-03-30 16:35:02,012 INFO  [i.s.s.c.impl.StringTemplateRenderer          ] - reading templates from resource path '/templates/text/html'
+2015-03-30 16:35:02,013 DEBUG [i.s.s.c.stringtemplate.STGroupBundleDir      ] - found resource in skysail.server.converter [0.1.0.201503301411]: bundle://62.0:1/templates/text/html/index.st
+2015-03-30 16:35:02,026 DEBUG [i.s.s.c.stringtemplate.STGroupBundleDir      ] - found resource in skysail.server.converter [0.1.0.201503301411]: bundle://62.0:1/templates/text/html/select2JsHead.stg
+2015-03-30 16:35:02,028 DEBUG [i.s.s.c.stringtemplate.STGroupBundleDir      ] - found resource in skysail.server.converter [0.1.0.201503301411]: bundle://62.0:1/templates/text/html/endOfHeaderJS.stg
+2015-03-30 16:35:02,031 DEBUG [i.s.s.c.stringtemplate.STGroupBundleDir      ] - found resource in skysail.server.converter [0.1.0.201503301411]: bundle://62.0:1/templates/text/html/dropdownFrontendsNav.stg
+2015-03-30 16:35:02,036 DEBUG [i.s.s.c.stringtemplate.STGroupBundleDir      ] - found resource in skysail.server.converter [0.1.0.201503301411]: bundle://62.0:1/templates/text/html/dropdownApplicationsNav.stg
+2015-03-30 16:35:02,041 DEBUG [i.s.s.c.stringtemplate.STGroupBundleDir      ] - found resource in skysail.server.converter [0.1.0.201503301411]: bundle://62.0:1/templates/text/html/dropdownAdminNav.stg
+2015-03-30 16:35:02,050 DEBUG [i.s.s.c.stringtemplate.STGroupBundleDir      ] - found resource in skysail.server.converter [0.1.0.201503301411]: bundle://62.0:1/templates/text/html/breadcrumb.stg
+2015-03-30 16:35:02,054 DEBUG [i.s.s.c.stringtemplate.STGroupBundleDir      ] - found resource in skysail.server.converter [0.1.0.201503301411]: bundle://62.0:1/templates/text/html/appNavTitle.stg
+2015-03-30 16:35:02,056 DEBUG [i.s.s.c.stringtemplate.STGroupBundleDir      ] - found resource in skysail.server.converter [0.1.0.201503301411]: bundle://62.0:1/templates/text/html/menuNav.stg
+2015-03-30 16:35:02,060 DEBUG [i.s.s.c.stringtemplate.STGroupBundleDir      ] - found resource in skysail.server.converter [0.1.0.201503301411]: bundle://62.0:1/templates/text/html/mainContent.stg
+2015-03-30 16:35:02,063 DEBUG [i.s.s.c.stringtemplate.STGroupBundleDir      ] - found resource in skysail.server.converter [0.1.0.201503301411]: bundle://62.0:1/templates/text/html/appNav.stg
+2015-03-30 16:35:02,068 DEBUG [i.s.s.c.stringtemplate.STGroupBundleDir      ] - found resource in skysail.server.converter [0.1.0.201503301411]: bundle://62.0:1/templates/text/html/contentHeader.st
+2015-03-30 16:35:02,071 DEBUG [i.s.s.c.stringtemplate.STGroupBundleDir      ] - found resource in skysail.server.converter [0.1.0.201503301411]: bundle://62.0:1/templates/text/html/renderTable.stg
+2015-03-30 16:35:02,077 DEBUG [i.s.s.c.stringtemplate.STGroupBundleDir      ] - found resource in skysail.server.converter [0.1.0.201503301411]: bundle://62.0:1/templates/text/html/notifications.stg
+2015-03-30 16:35:02,081 DEBUG [i.s.s.c.stringtemplate.STGroupBundleDir      ] - found resource in skysail.server.converter [0.1.0.201503301411]: bundle://62.0:1/templates/text/html/select2JsEndOfBody.stg
+2015-03-30 16:35:02,083 INFO  [LogService                                   ] - 2015-03-30	16:35:02	127.0.0.1	admin	-	2015	GET	/	-	200	7662	0	79	http://localhost:2015	Restlet-Framework/2.3.1	-
+2015-03-30 16:35:02,085 INFO  [io.skysail.client.testsupport.Client         ] -  > TEST: issuing GET on 'http://localhost:2015/', providing credentials fQdjx9XeOrAozI33M/5fKIgYUkXdY+cZ3Grd5q1E7bCOtW6fnmWqIbaChPIEV7eX
+2015-03-30 16:35:02,085 INFO  [org.restlet                                  ] - Starting the internal HTTP client
+2015-03-30 16:35:02,089 DEBUG [LogService                                   ] - Processing request to: "http://localhost:2015/"
+2015-03-30 16:35:02,090 DEBUG [o.a.s.web.mgt.CookieRememberMeManager        ] - SubjectContext argument is not an HTTP-aware instance.  This is required to obtain a servlet request and response in order to retrieve the rememberMe cookie. Returning immediately and ignoring rememberMe operation.
+2015-03-30 16:35:02,090 INFO  [i.s.s.u.s.a.SimpleDelegatingVerifier         ] - login event for user 'admin'
+2015-03-30 16:35:02,090 DEBUG [o.apache.shiro.realm.AuthenticatingRealm     ] - Using cached authentication info [io.skysail.server.um.simple.authentication.SkysailAuthenticationInfo@370d07d4] to perform credentials matching.
+2015-03-30 16:35:02,090 INFO  [i.s.s.u.s.a.SkysailHashedCredentialsMatcher  ] - checking cache for entry $2a$12$mBXqefcONxAauLZc6EDJhO8g7oLM1jhEBQCspfyEHr57Xz9b6oiDO
+2015-03-30 16:35:02,090 INFO  [i.s.s.u.s.a.SkysailHashedCredentialsMatcher  ] - found entry in credentials hash cache, updating timestamp
+2015-03-30 16:35:02,090 DEBUG [o.a.shiro.authc.AbstractAuthenticator        ] - Authentication successful for token [org.apache.shiro.authc.UsernamePasswordToken - admin, rememberMe=false].  Returned account [io.skysail.server.um.simple.authentication.SkysailAuthenticationInfo@370d07d4]
+2015-03-30 16:35:02,090 DEBUG [o.a.s.s.support.DefaultSubjectContext        ] - No SecurityManager available in subject context map.  Falling back to SecurityUtils.getSecurityManager() lookup.
+2015-03-30 16:35:02,090 DEBUG [o.a.s.s.support.DefaultSubjectContext        ] - No SecurityManager available in subject context map.  Falling back to SecurityUtils.getSecurityManager() lookup.
+2015-03-30 16:35:02,090 DEBUG [o.a.shiro.mgt.AbstractRememberMeManager      ] - AuthenticationToken did not indicate RememberMe is requested.  RememberMe functionality will not be executed for corresponding account.
+2015-03-30 16:35:02,090 INFO  [i.s.s.u.s.a.SimpleDelegatingVerifier         ] - login event for user 'admin' successful
+2015-03-30 16:35:02,090 DEBUG [o.r.S.SkysailRootApplication                 ] - Authentication succeeded. Valid credentials provided for identifier: admin.
+2015-03-30 16:35:02,090 DEBUG [o.r.S.SkysailRootApplication                 ] - The authentication succeeded for the identifer "admin" using the HTTP_Cookie scheme.
+2015-03-30 16:35:02,091 DEBUG [o.r.S.SkysailRootApplication                 ] - Selected route: "/" -> Finder for DefaultResource
+2015-03-30 16:35:02,091 DEBUG [o.r.S.SkysailRootApplication                 ] - New base URI: "http://localhost:2015/". No remaining part to match
+2015-03-30 16:35:02,091 DEBUG [o.r.S.SkysailRootApplication                 ] - Score of annotation "MethodAnnotationInfo [javaMethod: public final java.util.List de.twenty11.skysail.server.core.restlet.ListServerResource.getEntities(org.restlet.representation.Variant), javaClass: class de.twenty11.skysail.server.resources.DefaultResource, restletMethod: GET, input: html|json|yaml|xml, value: html|json|yaml|xml, output: html|json|yaml|xml, query: null]"= 0.5
+2015-03-30 16:35:02,091 DEBUG [o.r.S.SkysailRootApplication                 ] - Total score of variant "[text/html]"= 0.16666667
+2015-03-30 16:35:02,091 DEBUG [o.r.S.SkysailRootApplication                 ] - Score of annotation "MethodAnnotationInfo [javaMethod: public final java.util.List de.twenty11.skysail.server.core.restlet.ListServerResource.getEntities(org.restlet.representation.Variant), javaClass: class de.twenty11.skysail.server.resources.DefaultResource, restletMethod: GET, input: html|json|yaml|xml, value: html|json|yaml|xml, output: html|json|yaml|xml, query: null]"= 0.5
+2015-03-30 16:35:02,092 DEBUG [o.r.S.SkysailRootApplication                 ] - Total score of variant "[application/json]"= 0.04191667
+2015-03-30 16:35:02,092 DEBUG [o.r.S.SkysailRootApplication                 ] - Score of annotation "MethodAnnotationInfo [javaMethod: public final java.util.List de.twenty11.skysail.server.core.restlet.ListServerResource.getEntities(org.restlet.representation.Variant), javaClass: class de.twenty11.skysail.server.resources.DefaultResource, restletMethod: GET, input: html|json|yaml|xml, value: html|json|yaml|xml, output: html|json|yaml|xml, query: null]"= 0.5
+2015-03-30 16:35:02,092 DEBUG [o.r.S.SkysailRootApplication                 ] - Total score of variant "[application/x-yaml]"= 0.04191667
+2015-03-30 16:35:02,092 DEBUG [o.r.S.SkysailRootApplication                 ] - Score of annotation "MethodAnnotationInfo [javaMethod: public final java.util.List de.twenty11.skysail.server.core.restlet.ListServerResource.getEntities(org.restlet.representation.Variant), javaClass: class de.twenty11.skysail.server.resources.DefaultResource, restletMethod: GET, input: html|json|yaml|xml, value: html|json|yaml|xml, output: html|json|yaml|xml, query: null]"= 0.5
+2015-03-30 16:35:02,092 DEBUG [o.r.S.SkysailRootApplication                 ] - Total score of variant "[text/x-yaml]"= 0.042416666
+2015-03-30 16:35:02,092 DEBUG [o.r.S.SkysailRootApplication                 ] - Score of annotation "MethodAnnotationInfo [javaMethod: public final java.util.List de.twenty11.skysail.server.core.restlet.ListServerResource.getEntities(org.restlet.representation.Variant), javaClass: class de.twenty11.skysail.server.resources.DefaultResource, restletMethod: GET, input: html|json|yaml|xml, value: html|json|yaml|xml, output: html|json|yaml|xml, query: null]"= 0.5
+2015-03-30 16:35:02,092 DEBUG [o.r.S.SkysailRootApplication                 ] - Total score of variant "[text/xml]"= 0.042416666
+2015-03-30 16:35:02,092 DEBUG [o.r.S.SkysailRootApplication                 ] - Score of annotation "MethodAnnotationInfo [javaMethod: public final java.util.List de.twenty11.skysail.server.core.restlet.ListServerResource.getEntities(org.restlet.representation.Variant), javaClass: class de.twenty11.skysail.server.resources.DefaultResource, restletMethod: GET, input: html|json|yaml|xml, value: html|json|yaml|xml, output: html|json|yaml|xml, query: null]"= 0.5
+2015-03-30 16:35:02,092 DEBUG [o.r.S.SkysailRootApplication                 ] - Total score of variant "[application/xml]"= 0.04191667
+2015-03-30 16:35:02,092 INFO  [d.t.s.s.core.restlet.ListServerResource      ] - Request entry point: DefaultResource @Get('html|csv|treeform') with variant [text/html]
+2015-03-30 16:35:02,092 DEBUG [d.t.s.s.c.r.f.ExceptionCatchingFilter        ] - entering ExceptionCatchingFilter#doHandle
+2015-03-30 16:35:02,092 DEBUG [d.t.s.s.c.r.f.AbstractResourceFilter         ] - next filter in chain: AddApiVersionHeader
+2015-03-30 16:35:02,092 DEBUG [d.t.s.s.c.r.f.AbstractResourceFilter         ] - next filter in chain: GetRequestPreFilterHook
+2015-03-30 16:35:02,092 DEBUG [d.t.s.s.c.r.f.AbstractResourceFilter         ] - next filter in chain: AddRequestIdToResourceFilter
+2015-03-30 16:35:02,092 DEBUG [d.t.s.s.c.r.f.AbstractResourceFilter         ] - next filter in chain: DataExtractingFilter
+2015-03-30 16:35:02,092 DEBUG [d.t.s.s.c.r.filter.DataExtractingFilter      ] - entering DataExtractingFilter#doHandle
+2015-03-30 16:35:02,092 DEBUG [d.t.s.s.c.r.f.AbstractResourceFilter         ] - next filter in chain: AddLinkheadersFilter
+2015-03-30 16:35:02,092 DEBUG [d.t.s.s.c.r.f.AbstractResourceFilter         ] - next filter in chain: CheckFavoritesFilter
+2015-03-30 16:35:02,092 DEBUG [d.t.s.s.c.r.f.AbstractResourceFilter         ] - next filter in chain: SetExecutionTimeInResponseFilter
+2015-03-30 16:35:02,092 DEBUG [d.t.s.s.c.r.f.AbstractResourceFilter         ] - next filter in chain: RedirectFilter
+2015-03-30 16:35:02,093 INFO  [i.skysail.server.converter.HtmlConverter     ] - converter 'HtmlConverter' matched '{text/html=0.95, treeform/*=1.0}' with threshold 0.95
+2015-03-30 16:35:02,094 DEBUG [o.r.S.SkysailRootApplication                 ] - Converter selected for EmptyList: HtmlConverter
+2015-03-30 16:35:02,094 INFO  [d.t.skysail.server.app.SourceWrapper         ] - using converter 'ListSourceHtmlConverter' for EmptyList-Source: []
+2015-03-30 16:35:02,094 INFO  [i.s.s.c.impl.StringTemplateRenderer          ] - reading templates from resource path '/templates/text/html'
+2015-03-30 16:35:02,095 DEBUG [i.s.s.c.stringtemplate.STGroupBundleDir      ] - found resource in skysail.server.converter [0.1.0.201503301411]: bundle://62.0:1/templates/text/html/index.st
+2015-03-30 16:35:02,103 DEBUG [i.s.s.c.stringtemplate.STGroupBundleDir      ] - found resource in skysail.server.converter [0.1.0.201503301411]: bundle://62.0:1/templates/text/html/select2JsHead.stg
+2015-03-30 16:35:02,106 DEBUG [i.s.s.c.stringtemplate.STGroupBundleDir      ] - found resource in skysail.server.converter [0.1.0.201503301411]: bundle://62.0:1/templates/text/html/endOfHeaderJS.stg
+2015-03-30 16:35:02,108 DEBUG [i.s.s.c.stringtemplate.STGroupBundleDir      ] - found resource in skysail.server.converter [0.1.0.201503301411]: bundle://62.0:1/templates/text/html/dropdownFrontendsNav.stg
+2015-03-30 16:35:02,113 DEBUG [i.s.s.c.stringtemplate.STGroupBundleDir      ] - found resource in skysail.server.converter [0.1.0.201503301411]: bundle://62.0:1/templates/text/html/dropdownApplicationsNav.stg
+2015-03-30 16:35:02,117 DEBUG [i.s.s.c.stringtemplate.STGroupBundleDir      ] - found resource in skysail.server.converter [0.1.0.201503301411]: bundle://62.0:1/templates/text/html/dropdownAdminNav.stg
+2015-03-30 16:35:02,125 DEBUG [i.s.s.c.stringtemplate.STGroupBundleDir      ] - found resource in skysail.server.converter [0.1.0.201503301411]: bundle://62.0:1/templates/text/html/breadcrumb.stg
+2015-03-30 16:35:02,128 DEBUG [i.s.s.c.stringtemplate.STGroupBundleDir      ] - found resource in skysail.server.converter [0.1.0.201503301411]: bundle://62.0:1/templates/text/html/appNavTitle.stg
+2015-03-30 16:35:02,130 DEBUG [i.s.s.c.stringtemplate.STGroupBundleDir      ] - found resource in skysail.server.converter [0.1.0.201503301411]: bundle://62.0:1/templates/text/html/menuNav.stg
+2015-03-30 16:35:02,133 DEBUG [i.s.s.c.stringtemplate.STGroupBundleDir      ] - found resource in skysail.server.converter [0.1.0.201503301411]: bundle://62.0:1/templates/text/html/mainContent.stg
+2015-03-30 16:35:02,136 DEBUG [i.s.s.c.stringtemplate.STGroupBundleDir      ] - found resource in skysail.server.converter [0.1.0.201503301411]: bundle://62.0:1/templates/text/html/appNav.stg
+2015-03-30 16:35:02,141 DEBUG [i.s.s.c.stringtemplate.STGroupBundleDir      ] - found resource in skysail.server.converter [0.1.0.201503301411]: bundle://62.0:1/templates/text/html/contentHeader.st
+2015-03-30 16:35:02,143 DEBUG [i.s.s.c.stringtemplate.STGroupBundleDir      ] - found resource in skysail.server.converter [0.1.0.201503301411]: bundle://62.0:1/templates/text/html/renderTable.stg
+2015-03-30 16:35:02,147 DEBUG [i.s.s.c.stringtemplate.STGroupBundleDir      ] - found resource in skysail.server.converter [0.1.0.201503301411]: bundle://62.0:1/templates/text/html/notifications.stg
+2015-03-30 16:35:02,150 DEBUG [i.s.s.c.stringtemplate.STGroupBundleDir      ] - found resource in skysail.server.converter [0.1.0.201503301411]: bundle://62.0:1/templates/text/html/select2JsEndOfBody.stg
+2015-03-30 16:35:02,152 INFO  [LogService                                   ] - 2015-03-30	16:35:02	127.0.0.1	admin	-	2015	GET	/	-	200	7589	0	64	http://localhost:2015	Restlet-Framework/2.3.1	-
+2015-03-30 16:35:02,155 INFO  [io.skysail.client.testsupport.Client         ] - url set to 'http://localhost:2015/AppDesigner'
+2015-03-30 16:35:02,156 INFO  [org.restlet                                  ] - Starting the internal HTTP client
+2015-03-30 16:35:02,158 DEBUG [LogService                                   ] - Processing request to: "http://localhost:2015/AppDesigner"
+2015-03-30 16:35:02,159 DEBUG [o.a.s.web.mgt.CookieRememberMeManager        ] - SubjectContext argument is not an HTTP-aware instance.  This is required to obtain a servlet request and response in order to retrieve the rememberMe cookie. Returning immediately and ignoring rememberMe operation.
+2015-03-30 16:35:02,159 INFO  [i.s.s.u.s.a.SimpleDelegatingVerifier         ] - login event for user 'admin'
+2015-03-30 16:35:02,159 DEBUG [o.apache.shiro.realm.AuthenticatingRealm     ] - Using cached authentication info [io.skysail.server.um.simple.authentication.SkysailAuthenticationInfo@370d07d4] to perform credentials matching.
+2015-03-30 16:35:02,159 INFO  [i.s.s.u.s.a.SkysailHashedCredentialsMatcher  ] - checking cache for entry $2a$12$mBXqefcONxAauLZc6EDJhO8g7oLM1jhEBQCspfyEHr57Xz9b6oiDO
+2015-03-30 16:35:02,160 INFO  [i.s.s.u.s.a.SkysailHashedCredentialsMatcher  ] - found entry in credentials hash cache, updating timestamp
+2015-03-30 16:35:02,160 DEBUG [o.a.shiro.authc.AbstractAuthenticator        ] - Authentication successful for token [org.apache.shiro.authc.UsernamePasswordToken - admin, rememberMe=false].  Returned account [io.skysail.server.um.simple.authentication.SkysailAuthenticationInfo@370d07d4]
+2015-03-30 16:35:02,160 DEBUG [o.a.s.s.support.DefaultSubjectContext        ] - No SecurityManager available in subject context map.  Falling back to SecurityUtils.getSecurityManager() lookup.
+2015-03-30 16:35:02,160 DEBUG [o.a.s.s.support.DefaultSubjectContext        ] - No SecurityManager available in subject context map.  Falling back to SecurityUtils.getSecurityManager() lookup.
+2015-03-30 16:35:02,160 DEBUG [o.a.shiro.mgt.AbstractRememberMeManager      ] - AuthenticationToken did not indicate RememberMe is requested.  RememberMe functionality will not be executed for corresponding account.
+2015-03-30 16:35:02,160 INFO  [i.s.s.u.s.a.SimpleDelegatingVerifier         ] - login event for user 'admin' successful
+2015-03-30 16:35:02,160 DEBUG [o.r.S.SkysailRootApplication                 ] - Authentication succeeded. Valid credentials provided for identifier: admin.
+2015-03-30 16:35:02,160 DEBUG [o.r.S.SkysailRootApplication                 ] - The authentication succeeded for the identifer "admin" using the HTTP_Cookie scheme.
+2015-03-30 16:35:02,160 DEBUG [o.r.S.SkysailRootApplication                 ] - Selected route: "" -> de.twenty11.skysail.server.security.AuthenticatedAuthorizer@717175d1
+2015-03-30 16:35:02,162 DEBUG [o.r.S.SkysailRootApplication                 ] - Score of annotation "MethodAnnotationInfo [javaMethod: public final java.util.List de.twenty11.skysail.server.core.restlet.ListServerResource.getEntities(org.restlet.representation.Variant), javaClass: class io.skysail.server.app.designer.application.resources.ApplicationsResource, restletMethod: GET, input: html|json|yaml|xml, value: html|json|yaml|xml, output: html|json|yaml|xml, query: null]"= 0.5
+2015-03-30 16:35:02,162 DEBUG [o.r.S.SkysailRootApplication                 ] - Total score of variant "[text/html]"= 0.16666667
+2015-03-30 16:35:02,162 DEBUG [o.r.S.SkysailRootApplication                 ] - Score of annotation "MethodAnnotationInfo [javaMethod: public final java.util.List de.twenty11.skysail.server.core.restlet.ListServerResource.getEntities(org.restlet.representation.Variant), javaClass: class io.skysail.server.app.designer.application.resources.ApplicationsResource, restletMethod: GET, input: html|json|yaml|xml, value: html|json|yaml|xml, output: html|json|yaml|xml, query: null]"= 0.5
+2015-03-30 16:35:02,162 DEBUG [o.r.S.SkysailRootApplication                 ] - Total score of variant "[application/json]"= 0.04191667
+2015-03-30 16:35:02,162 DEBUG [o.r.S.SkysailRootApplication                 ] - Score of annotation "MethodAnnotationInfo [javaMethod: public final java.util.List de.twenty11.skysail.server.core.restlet.ListServerResource.getEntities(org.restlet.representation.Variant), javaClass: class io.skysail.server.app.designer.application.resources.ApplicationsResource, restletMethod: GET, input: html|json|yaml|xml, value: html|json|yaml|xml, output: html|json|yaml|xml, query: null]"= 0.5
+2015-03-30 16:35:02,162 DEBUG [o.r.S.SkysailRootApplication                 ] - Total score of variant "[application/x-yaml]"= 0.04191667
+2015-03-30 16:35:02,162 DEBUG [o.r.S.SkysailRootApplication                 ] - Score of annotation "MethodAnnotationInfo [javaMethod: public final java.util.List de.twenty11.skysail.server.core.restlet.ListServerResource.getEntities(org.restlet.representation.Variant), javaClass: class io.skysail.server.app.designer.application.resources.ApplicationsResource, restletMethod: GET, input: html|json|yaml|xml, value: html|json|yaml|xml, output: html|json|yaml|xml, query: null]"= 0.5
+2015-03-30 16:35:02,162 DEBUG [o.r.S.SkysailRootApplication                 ] - Total score of variant "[text/x-yaml]"= 0.042416666
+2015-03-30 16:35:02,162 DEBUG [o.r.S.SkysailRootApplication                 ] - Score of annotation "MethodAnnotationInfo [javaMethod: public final java.util.List de.twenty11.skysail.server.core.restlet.ListServerResource.getEntities(org.restlet.representation.Variant), javaClass: class io.skysail.server.app.designer.application.resources.ApplicationsResource, restletMethod: GET, input: html|json|yaml|xml, value: html|json|yaml|xml, output: html|json|yaml|xml, query: null]"= 0.5
+2015-03-30 16:35:02,162 DEBUG [o.r.S.SkysailRootApplication                 ] - Total score of variant "[text/xml]"= 0.042416666
+2015-03-30 16:35:02,162 DEBUG [o.r.S.SkysailRootApplication                 ] - Score of annotation "MethodAnnotationInfo [javaMethod: public final java.util.List de.twenty11.skysail.server.core.restlet.ListServerResource.getEntities(org.restlet.representation.Variant), javaClass: class io.skysail.server.app.designer.application.resources.ApplicationsResource, restletMethod: GET, input: html|json|yaml|xml, value: html|json|yaml|xml, output: html|json|yaml|xml, query: null]"= 0.5
+2015-03-30 16:35:02,162 DEBUG [o.r.S.SkysailRootApplication                 ] - Total score of variant "[application/xml]"= 0.04191667
+2015-03-30 16:35:02,162 INFO  [d.t.s.s.core.restlet.ListServerResource      ] - Request entry point: ApplicationsResource @Get('html|csv|treeform') with variant [text/html]
+2015-03-30 16:35:02,162 DEBUG [d.t.s.s.c.r.f.ExceptionCatchingFilter        ] - entering ExceptionCatchingFilter#doHandle
+2015-03-30 16:35:02,162 DEBUG [d.t.s.s.c.r.f.AbstractResourceFilter         ] - next filter in chain: AddApiVersionHeader
+2015-03-30 16:35:02,162 DEBUG [d.t.s.s.c.r.f.AbstractResourceFilter         ] - next filter in chain: GetRequestPreFilterHook
+2015-03-30 16:35:02,162 DEBUG [d.t.s.s.c.r.f.AbstractResourceFilter         ] - next filter in chain: AddRequestIdToResourceFilter
+2015-03-30 16:35:02,163 DEBUG [d.t.s.s.c.r.f.AbstractResourceFilter         ] - next filter in chain: DataExtractingFilter
+2015-03-30 16:35:02,163 DEBUG [d.t.s.s.c.r.filter.DataExtractingFilter      ] - entering DataExtractingFilter#doHandle
+2015-03-30 16:35:02,166 DEBUG [d.t.s.s.c.r.f.AbstractResourceFilter         ] - next filter in chain: AddLinkheadersFilter
+2015-03-30 16:35:02,166 DEBUG [d.t.s.s.c.r.f.AbstractResourceFilter         ] - next filter in chain: CheckFavoritesFilter
+2015-03-30 16:35:02,166 DEBUG [d.t.s.s.c.r.f.AbstractResourceFilter         ] - next filter in chain: SetExecutionTimeInResponseFilter
+2015-03-30 16:35:02,166 DEBUG [d.t.s.s.c.r.f.AbstractResourceFilter         ] - next filter in chain: RedirectFilter
+2015-03-30 16:35:02,167 INFO  [i.skysail.server.converter.HtmlConverter     ] - converter 'HtmlConverter' matched '{text/html=0.95, treeform/*=1.0}' with threshold 0.95
+2015-03-30 16:35:02,168 DEBUG [o.r.S.SkysailRootApplication                 ] - Converter selected for ArrayList: HtmlConverter
+2015-03-30 16:35:02,168 INFO  [d.t.skysail.server.app.SourceWrapper         ] - using converter 'ListSourceHtmlConverter' for ArrayList-Source: []
+2015-03-30 16:35:02,168 INFO  [i.s.s.c.impl.StringTemplateRenderer          ] - reading templates from resource path '/templates/text/html'
+2015-03-30 16:35:02,170 DEBUG [i.s.s.c.stringtemplate.STGroupBundleDir      ] - found resource in skysail.server.converter [0.1.0.201503301411]: bundle://62.0:1/templates/text/html/index.st
+2015-03-30 16:35:02,183 DEBUG [i.s.s.c.stringtemplate.STGroupBundleDir      ] - found resource in skysail.server.converter [0.1.0.201503301411]: bundle://62.0:1/templates/text/html/select2JsHead.stg
+2015-03-30 16:35:02,186 DEBUG [i.s.s.c.stringtemplate.STGroupBundleDir      ] - found resource in skysail.server.converter [0.1.0.201503301411]: bundle://62.0:1/templates/text/html/endOfHeaderJS.stg
+2015-03-30 16:35:02,188 DEBUG [i.s.s.c.stringtemplate.STGroupBundleDir      ] - found resource in skysail.server.converter [0.1.0.201503301411]: bundle://62.0:1/templates/text/html/dropdownFrontendsNav.stg
+2015-03-30 16:35:02,190 DEBUG [i.s.s.c.stringtemplate.STGroupBundleDir      ] - found resource in skysail.server.converter [0.1.0.201503301411]: bundle://62.0:1/templates/text/html/dropdownApplicationsNav.stg
+2015-03-30 16:35:02,194 DEBUG [i.s.s.c.stringtemplate.STGroupBundleDir      ] - found resource in skysail.server.converter [0.1.0.201503301411]: bundle://62.0:1/templates/text/html/dropdownAdminNav.stg
+2015-03-30 16:35:02,202 DEBUG [i.s.s.c.stringtemplate.STGroupBundleDir      ] - found resource in skysail.server.converter [0.1.0.201503301411]: bundle://62.0:1/templates/text/html/breadcrumb.stg
+2015-03-30 16:35:02,205 DEBUG [i.s.s.c.stringtemplate.STGroupBundleDir      ] - found resource in skysail.server.converter [0.1.0.201503301411]: bundle://62.0:1/templates/text/html/appNavTitle.stg
+2015-03-30 16:35:02,207 DEBUG [i.s.s.c.stringtemplate.STGroupBundleDir      ] - found resource in skysail.server.converter [0.1.0.201503301411]: bundle://62.0:1/templates/text/html/menuNav.stg
+2015-03-30 16:35:02,209 DEBUG [i.s.s.c.stringtemplate.STGroupBundleDir      ] - found resource in skysail.server.converter [0.1.0.201503301411]: bundle://62.0:1/templates/text/html/mainContent.stg
+2015-03-30 16:35:02,212 DEBUG [i.s.s.c.stringtemplate.STGroupBundleDir      ] - found resource in skysail.server.converter [0.1.0.201503301411]: bundle://62.0:1/templates/text/html/appNav.stg
+2015-03-30 16:35:02,214 DEBUG [i.s.s.c.stringtemplate.STGroupBundleDir      ] - found resource in skysail.server.converter [0.1.0.201503301411]: bundle://62.0:1/templates/text/html/contentHeader.st
+2015-03-30 16:35:02,216 DEBUG [i.s.s.c.stringtemplate.STGroupBundleDir      ] - found resource in skysail.server.converter [0.1.0.201503301411]: bundle://62.0:1/templates/text/html/renderTable.stg
+2015-03-30 16:35:02,219 DEBUG [i.s.s.c.stringtemplate.STGroupBundleDir      ] - found resource in skysail.server.converter [0.1.0.201503301411]: bundle://62.0:1/templates/text/html/notifications.stg
+2015-03-30 16:35:02,222 DEBUG [i.s.s.c.stringtemplate.STGroupBundleDir      ] - found resource in skysail.server.converter [0.1.0.201503301411]: bundle://62.0:1/templates/text/html/select2JsEndOfBody.stg
+2015-03-30 16:35:02,224 INFO  [LogService                                   ] - 2015-03-30	16:35:02	127.0.0.1	admin	-	2015	GET	/AppDesigner	-	200	7714	0	66	http://localhost:2015	Restlet-Framework/2.3.1	-
+2015-03-30 16:35:02,234 INFO  [io.skysail.client.testsupport.Client         ] - url set to 'http://localhost:2015/AppDesigner/application/'
+2015-03-30 16:35:02,234 INFO  [org.restlet                                  ] - Starting the internal HTTP client
+2015-03-30 16:35:02,239 DEBUG [LogService                                   ] - Processing request to: "http://localhost:2015/AppDesigner/application/"
+2015-03-30 16:35:02,241 DEBUG [o.a.s.web.mgt.CookieRememberMeManager        ] - SubjectContext argument is not an HTTP-aware instance.  This is required to obtain a servlet request and response in order to retrieve the rememberMe cookie. Returning immediately and ignoring rememberMe operation.
+2015-03-30 16:35:02,241 INFO  [i.s.s.u.s.a.SimpleDelegatingVerifier         ] - login event for user 'admin'
+2015-03-30 16:35:02,241 DEBUG [o.apache.shiro.realm.AuthenticatingRealm     ] - Using cached authentication info [io.skysail.server.um.simple.authentication.SkysailAuthenticationInfo@370d07d4] to perform credentials matching.
+2015-03-30 16:35:02,242 INFO  [i.s.s.u.s.a.SkysailHashedCredentialsMatcher  ] - checking cache for entry $2a$12$mBXqefcONxAauLZc6EDJhO8g7oLM1jhEBQCspfyEHr57Xz9b6oiDO
+2015-03-30 16:35:02,242 INFO  [i.s.s.u.s.a.SkysailHashedCredentialsMatcher  ] - found entry in credentials hash cache, updating timestamp
+2015-03-30 16:35:02,242 DEBUG [o.a.shiro.authc.AbstractAuthenticator        ] - Authentication successful for token [org.apache.shiro.authc.UsernamePasswordToken - admin, rememberMe=false].  Returned account [io.skysail.server.um.simple.authentication.SkysailAuthenticationInfo@370d07d4]
+2015-03-30 16:35:02,242 DEBUG [o.a.s.s.support.DefaultSubjectContext        ] - No SecurityManager available in subject context map.  Falling back to SecurityUtils.getSecurityManager() lookup.
+2015-03-30 16:35:02,242 DEBUG [o.a.s.s.support.DefaultSubjectContext        ] - No SecurityManager available in subject context map.  Falling back to SecurityUtils.getSecurityManager() lookup.
+2015-03-30 16:35:02,242 DEBUG [o.a.shiro.mgt.AbstractRememberMeManager      ] - AuthenticationToken did not indicate RememberMe is requested.  RememberMe functionality will not be executed for corresponding account.
+2015-03-30 16:35:02,242 INFO  [i.s.s.u.s.a.SimpleDelegatingVerifier         ] - login event for user 'admin' successful
+2015-03-30 16:35:02,242 DEBUG [o.r.S.SkysailRootApplication                 ] - Authentication succeeded. Valid credentials provided for identifier: admin.
+2015-03-30 16:35:02,242 DEBUG [o.r.S.SkysailRootApplication                 ] - The authentication succeeded for the identifer "admin" using the HTTP_Cookie scheme.
+2015-03-30 16:35:02,242 DEBUG [o.r.S.SkysailRootApplication                 ] - Selected route: "/application/" -> de.twenty11.skysail.server.security.AuthenticatedAuthorizer@40e41524
+2015-03-30 16:35:02,242 DEBUG [o.r.S.SkysailRootApplication                 ] - New base URI: "http://localhost:2015/AppDesigner/application/". No remaining part to match
+2015-03-30 16:35:02,244 DEBUG [o.r.S.SkysailRootApplication                 ] - Score of annotation "MethodAnnotationInfo [javaMethod: public io.skysail.api.responses.SkysailResponse de.twenty11.skysail.server.core.restlet.PostEntityServerResource.createForm(), javaClass: class io.skysail.server.app.designer.application.resources.PostApplicationResource, restletMethod: GET, input: htmlform|html, value: htmlform|html, output: htmlform|html, query: null]"= 0.5
+2015-03-30 16:35:02,244 DEBUG [o.r.S.SkysailRootApplication                 ] - Total score of variant "[htmlform/*]"= 0.041791666
+2015-03-30 16:35:02,244 DEBUG [o.r.S.SkysailRootApplication                 ] - Score of annotation "MethodAnnotationInfo [javaMethod: public io.skysail.api.responses.SkysailResponse de.twenty11.skysail.server.core.restlet.PostEntityServerResource.createForm(), javaClass: class io.skysail.server.app.designer.application.resources.PostApplicationResource, restletMethod: GET, input: htmlform|html, value: htmlform|html, output: htmlform|html, query: null]"= 0.5
+2015-03-30 16:35:02,244 DEBUG [o.r.S.SkysailRootApplication                 ] - Total score of variant "[text/html]"= 0.16666667
+2015-03-30 16:35:02,244 DEBUG [o.r.S.SkysailRootApplication                 ] - Score of annotation "MethodAnnotationInfo [javaMethod: public java.lang.Object de.twenty11.skysail.server.core.restlet.PostEntityServerResource.getJson(), javaClass: class io.skysail.server.app.designer.application.resources.PostApplicationResource, restletMethod: GET, input: json, value: json, output: json, query: null]"= 0.5
+2015-03-30 16:35:02,244 DEBUG [o.r.S.SkysailRootApplication                 ] - Total score of variant "[application/json]"= 0.04191667
+2015-03-30 16:35:02,244 INFO  [d.t.s.s.c.r.PostEntityServerResource         ] - Request entry point: PostApplicationResource @Get('htmlform|html')
+2015-03-30 16:35:02,245 INFO  [i.skysail.server.converter.HtmlConverter     ] - converter 'HtmlConverter' matched '{text/html=0.95, treeform/*=1.0}' with threshold 0.95
+2015-03-30 16:35:02,245 DEBUG [o.r.S.SkysailRootApplication                 ] - Converter selected for FormResponse: HtmlConverter
+2015-03-30 16:35:02,245 INFO  [d.t.skysail.server.app.SourceWrapper         ] - using converter 'NoopConverter' for FormResponse-Source: FormResponse: 
+2015-03-30 16:35:02,245 INFO  [i.s.s.c.impl.StringTemplateRenderer          ] - reading templates from resource path '/templates/text/html'
+2015-03-30 16:35:02,247 DEBUG [i.s.s.c.stringtemplate.STGroupBundleDir      ] - found resource in skysail.server.converter [0.1.0.201503301411]: bundle://62.0:1/templates/text/html/index.st
+2015-03-30 16:35:02,254 DEBUG [i.s.s.c.stringtemplate.STGroupBundleDir      ] - found resource in skysail.server.converter [0.1.0.201503301411]: bundle://62.0:1/templates/text/html/select2JsHead.stg
+2015-03-30 16:35:02,257 DEBUG [i.s.s.c.stringtemplate.STGroupBundleDir      ] - found resource in skysail.server.converter [0.1.0.201503301411]: bundle://62.0:1/templates/text/html/endOfHeaderJS.stg
+2015-03-30 16:35:02,258 DEBUG [i.s.s.c.stringtemplate.STGroupBundleDir      ] - found resource in skysail.server.converter [0.1.0.201503301411]: bundle://62.0:1/templates/text/html/dropdownFrontendsNav.stg
+2015-03-30 16:35:02,260 DEBUG [i.s.s.c.stringtemplate.STGroupBundleDir      ] - found resource in skysail.server.converter [0.1.0.201503301411]: bundle://62.0:1/templates/text/html/dropdownApplicationsNav.stg
+2015-03-30 16:35:02,263 DEBUG [i.s.s.c.stringtemplate.STGroupBundleDir      ] - found resource in skysail.server.converter [0.1.0.201503301411]: bundle://62.0:1/templates/text/html/dropdownAdminNav.stg
+2015-03-30 16:35:02,269 DEBUG [i.s.s.c.stringtemplate.STGroupBundleDir      ] - found resource in skysail.server.converter [0.1.0.201503301411]: bundle://62.0:1/templates/text/html/breadcrumb.stg
+2015-03-30 16:35:02,273 DEBUG [i.s.s.c.stringtemplate.STGroupBundleDir      ] - found resource in skysail.server.converter [0.1.0.201503301411]: bundle://62.0:1/templates/text/html/appNavTitle.stg
+2015-03-30 16:35:02,274 DEBUG [i.s.s.c.stringtemplate.STGroupBundleDir      ] - found resource in skysail.server.converter [0.1.0.201503301411]: bundle://62.0:1/templates/text/html/menuNav.stg
+2015-03-30 16:35:02,277 DEBUG [i.s.s.c.stringtemplate.STGroupBundleDir      ] - found resource in skysail.server.converter [0.1.0.201503301411]: bundle://62.0:1/templates/text/html/mainContent.stg
+2015-03-30 16:35:02,279 DEBUG [i.s.s.c.stringtemplate.STGroupBundleDir      ] - found resource in skysail.server.converter [0.1.0.201503301411]: bundle://62.0:1/templates/text/html/appNav.stg
+2015-03-30 16:35:02,281 DEBUG [i.s.s.c.stringtemplate.STGroupBundleDir      ] - found resource in skysail.server.converter [0.1.0.201503301411]: bundle://62.0:1/templates/text/html/contentHeader.st
+2015-03-30 16:35:02,283 DEBUG [i.s.s.c.stringtemplate.STGroupBundleDir      ] - found resource in skysail.server.app.designer [0.1.0.201503301423]: bundle://63.0:1/templates/showForm.stg
+2015-03-30 16:35:02,283 DEBUG [i.s.s.c.stringtemplate.STGroupBundleDir      ] - found resource in skysail.server.converter [0.1.0.201503301411]: bundle://62.0:1/templates/text/html/showForm.stg
+2015-03-30 16:35:02,299 DEBUG [i.s.s.c.stringtemplate.STGroupBundleDir      ] - found resource in skysail.server.converter [0.1.0.201503301411]: bundle://62.0:1/templates/text/html/renderEntityInfo.stg
+2015-03-30 16:35:02,302 DEBUG [i.s.s.c.stringtemplate.STGroupBundleDir      ] - found resource in skysail.server.converter [0.1.0.201503301411]: bundle://62.0:1/templates/text/html/notifications.stg
+2015-03-30 16:35:02,304 DEBUG [i.s.s.c.stringtemplate.STGroupBundleDir      ] - found resource in skysail.server.converter [0.1.0.201503301411]: bundle://62.0:1/templates/text/html/select2JsEndOfBody.stg
+2015-03-30 16:35:02,305 INFO  [LogService                                   ] - 2015-03-30	16:35:02	127.0.0.1	admin	-	2015	GET	/application	-	200	8509	0	66	http://localhost:2015	Restlet-Framework/2.3.1	-
+2015-03-30 16:35:02,307 INFO  [io.skysail.client.testsupport.Client         ] -  > TEST: issuing POST on 'http://localhost:2015/AppDesigner/application/', providing credentials fQdjx9XeOrAozI33M/5fKIgYUkXdY+cZ3Grd5q1E7bCOtW6fnmWqIbaChPIEV7eX
+2015-03-30 16:35:02,307 DEBUG [org.restlet                                  ] - Converter selected for Form: DefaultConverter
+2015-03-30 16:35:02,307 DEBUG [org.restlet                                  ] - Total score of variant "[application/x-www-form-urlencoded]"= 5.0E-4
+2015-03-30 16:35:02,307 INFO  [org.restlet                                  ] - Starting the internal HTTP client
+2015-03-30 16:35:02,309 DEBUG [LogService                                   ] - Processing request to: "http://localhost:2015/AppDesigner/application/"
+2015-03-30 16:35:02,310 DEBUG [o.a.s.web.mgt.CookieRememberMeManager        ] - SubjectContext argument is not an HTTP-aware instance.  This is required to obtain a servlet request and response in order to retrieve the rememberMe cookie. Returning immediately and ignoring rememberMe operation.
+2015-03-30 16:35:02,310 INFO  [i.s.s.u.s.a.SimpleDelegatingVerifier         ] - login event for user 'admin'
+2015-03-30 16:35:02,310 DEBUG [o.apache.shiro.realm.AuthenticatingRealm     ] - Using cached authentication info [io.skysail.server.um.simple.authentication.SkysailAuthenticationInfo@370d07d4] to perform credentials matching.
+2015-03-30 16:35:02,310 INFO  [i.s.s.u.s.a.SkysailHashedCredentialsMatcher  ] - checking cache for entry $2a$12$mBXqefcONxAauLZc6EDJhO8g7oLM1jhEBQCspfyEHr57Xz9b6oiDO
+2015-03-30 16:35:02,310 INFO  [i.s.s.u.s.a.SkysailHashedCredentialsMatcher  ] - found entry in credentials hash cache, updating timestamp
+2015-03-30 16:35:02,311 DEBUG [o.a.shiro.authc.AbstractAuthenticator        ] - Authentication successful for token [org.apache.shiro.authc.UsernamePasswordToken - admin, rememberMe=false].  Returned account [io.skysail.server.um.simple.authentication.SkysailAuthenticationInfo@370d07d4]
+2015-03-30 16:35:02,311 DEBUG [o.a.s.s.support.DefaultSubjectContext        ] - No SecurityManager available in subject context map.  Falling back to SecurityUtils.getSecurityManager() lookup.
+2015-03-30 16:35:02,311 DEBUG [o.a.s.s.support.DefaultSubjectContext        ] - No SecurityManager available in subject context map.  Falling back to SecurityUtils.getSecurityManager() lookup.
+2015-03-30 16:35:02,311 DEBUG [o.a.shiro.mgt.AbstractRememberMeManager      ] - AuthenticationToken did not indicate RememberMe is requested.  RememberMe functionality will not be executed for corresponding account.
+2015-03-30 16:35:02,311 INFO  [i.s.s.u.s.a.SimpleDelegatingVerifier         ] - login event for user 'admin' successful
+2015-03-30 16:35:02,311 DEBUG [o.r.S.SkysailRootApplication                 ] - Authentication succeeded. Valid credentials provided for identifier: admin.
+2015-03-30 16:35:02,311 DEBUG [o.r.S.SkysailRootApplication                 ] - The authentication succeeded for the identifer "admin" using the HTTP_Cookie scheme.
+2015-03-30 16:35:02,311 DEBUG [o.r.S.SkysailRootApplication                 ] - Selected route: "/application/" -> de.twenty11.skysail.server.security.AuthenticatedAuthorizer@40e41524
+2015-03-30 16:35:02,311 DEBUG [o.r.S.SkysailRootApplication                 ] - New base URI: "http://localhost:2015/AppDesigner/application/". No remaining part to match
+2015-03-30 16:35:02,315 DEBUG [o.r.S.SkysailRootApplication                 ] - Score of annotation "MethodAnnotationInfo [javaMethod: public java.lang.Object de.twenty11.skysail.server.core.restlet.PostEntityServerResource.post(org.restlet.data.Form), javaClass: class io.skysail.server.app.designer.application.resources.PostApplicationResource, restletMethod: POST, input: x-www-form-urlencoded, value: x-www-form-urlencoded:html, output: html, query: null]"= 0.5
+2015-03-30 16:35:02,315 DEBUG [o.r.S.SkysailRootApplication                 ] - Total score of variant "[text/html]"= 0.16666667
+2015-03-30 16:35:02,316 DEBUG [o.r.S.SkysailRootApplication                 ] - The following converter was selected for the [application/x-www-form-urlencoded,UTF-8] representation: org.restlet.engine.converter.DefaultConverter@5d00c470
+2015-03-30 16:35:02,316 INFO  [d.t.s.s.c.r.PostEntityServerResource         ] - Request entry point: PostApplicationResource @Post('x-www-form-urlencoded:html|json|xml')
+2015-03-30 16:35:02,316 INFO  [d.t.s.s.c.r.PostEntityServerResource         ] - calling post(Form), media types '[text/html:1.0]'
+2015-03-30 16:35:02,318 DEBUG [d.t.s.s.c.r.f.ExceptionCatchingFilter        ] - entering ExceptionCatchingFilter#doHandle
+2015-03-30 16:35:02,318 DEBUG [d.t.s.s.c.r.f.AbstractResourceFilter         ] - next filter in chain: AddRequestIdToResourceFilter
+2015-03-30 16:35:02,318 DEBUG [d.t.s.s.c.r.f.AbstractResourceFilter         ] - next filter in chain: CheckInvalidInputFilter
+2015-03-30 16:35:02,318 DEBUG [d.t.s.s.c.r.f.CheckInvalidInputFilter        ] - entering CheckInvalidInputFilter#doHandle
+2015-03-30 16:35:02,339 DEBUG [d.t.s.s.c.r.f.AbstractResourceFilter         ] - next filter in chain: FormDataExtractingFilter
+2015-03-30 16:35:02,339 DEBUG [d.t.s.s.c.r.f.FormDataExtractingFilter       ] - entering FormDataExtractingFilter#doHandle
+2015-03-30 16:35:02,344 DEBUG [d.t.s.s.c.r.f.AbstractResourceFilter         ] - next filter in chain: CheckBusinessViolationsFilter
+2015-03-30 16:35:02,344 DEBUG [d.t.s.s.c.r.f.CheckBusinessViolationsFilter  ] - entering CheckBusinessViolationsFilter#doHandle
+2015-03-30 16:35:02,349 DEBUG [d.t.s.s.c.r.f.AbstractResourceFilter         ] - next filter in chain: OptionalEncryptionFilter
+2015-03-30 16:35:02,349 DEBUG [d.t.s.s.c.r.f.AbstractResourceFilter         ] - next filter in chain: PersistEntityFilter
+2015-03-30 16:35:02,349 DEBUG [d.t.s.s.c.r.filter.PersistEntityFilter       ] - entering PersistEntityFilter#doHandle
+2015-03-30 16:35:02,359 INFO  [d.t.s.server.db.orientdb.impl.Persister      ] - setting name=app1 [class java.lang.String]
+2015-03-30 16:35:02,362 DEBUG [d.t.s.s.c.r.f.AbstractResourceFilter         ] - next filter in chain: EntityWasAddedFilter
+2015-03-30 16:35:02,362 DEBUG [d.t.s.s.c.r.filter.EntityWasAddedFilter      ] - entering EntityWasAddedFilter#doHandle
+2015-03-30 16:35:02,364 DEBUG [d.t.s.s.c.r.f.AbstractResourceFilter         ] - next filter in chain: AddLinkheadersFilter
+2015-03-30 16:35:02,364 DEBUG [d.t.s.s.c.r.f.AbstractResourceFilter         ] - next filter in chain: PostRedirectGetFilter
+2015-03-30 16:35:02,365 INFO  [i.skysail.server.converter.HtmlConverter     ] - converter 'HtmlConverter' matched '{text/html=0.95, treeform/*=1.0}' with threshold 0.95
+2015-03-30 16:35:02,365 DEBUG [o.r.S.SkysailRootApplication                 ] - Converter selected for Application: HtmlConverter
+2015-03-30 16:35:02,365 INFO  [d.t.skysail.server.app.SourceWrapper         ] - using converter 'NoopConverter' for Application-Source: Application(id=null, name=app1)
+2015-03-30 16:35:02,365 INFO  [i.s.s.c.impl.StringTemplateRenderer          ] - reading templates from resource path '/templates/text/html'
+2015-03-30 16:35:02,367 DEBUG [i.s.s.c.stringtemplate.STGroupBundleDir      ] - found resource in skysail.server.converter [0.1.0.201503301411]: bundle://62.0:1/templates/text/html/index.st
+2015-03-30 16:35:02,372 DEBUG [i.s.s.c.stringtemplate.STGroupBundleDir      ] - found resource in skysail.server.converter [0.1.0.201503301411]: bundle://62.0:1/templates/text/html/select2JsHead.stg
+2015-03-30 16:35:02,374 DEBUG [i.s.s.c.stringtemplate.STGroupBundleDir      ] - found resource in skysail.server.converter [0.1.0.201503301411]: bundle://62.0:1/templates/text/html/endOfHeaderJS.stg
+2015-03-30 16:35:02,375 DEBUG [i.s.s.c.stringtemplate.STGroupBundleDir      ] - found resource in skysail.server.converter [0.1.0.201503301411]: bundle://62.0:1/templates/text/html/dropdownFrontendsNav.stg
+2015-03-30 16:35:02,377 DEBUG [i.s.s.c.stringtemplate.STGroupBundleDir      ] - found resource in skysail.server.converter [0.1.0.201503301411]: bundle://62.0:1/templates/text/html/dropdownApplicationsNav.stg
+2015-03-30 16:35:02,380 DEBUG [i.s.s.c.stringtemplate.STGroupBundleDir      ] - found resource in skysail.server.converter [0.1.0.201503301411]: bundle://62.0:1/templates/text/html/dropdownAdminNav.stg
+2015-03-30 16:35:02,386 DEBUG [i.s.s.c.stringtemplate.STGroupBundleDir      ] - found resource in skysail.server.converter [0.1.0.201503301411]: bundle://62.0:1/templates/text/html/breadcrumb.stg
+2015-03-30 16:35:02,388 DEBUG [i.s.s.c.stringtemplate.STGroupBundleDir      ] - found resource in skysail.server.converter [0.1.0.201503301411]: bundle://62.0:1/templates/text/html/appNavTitle.stg
+2015-03-30 16:35:02,390 DEBUG [i.s.s.c.stringtemplate.STGroupBundleDir      ] - found resource in skysail.server.converter [0.1.0.201503301411]: bundle://62.0:1/templates/text/html/menuNav.stg
+2015-03-30 16:35:02,392 DEBUG [i.s.s.c.stringtemplate.STGroupBundleDir      ] - found resource in skysail.server.converter [0.1.0.201503301411]: bundle://62.0:1/templates/text/html/mainContent.stg
+2015-03-30 16:35:02,394 DEBUG [i.s.s.c.stringtemplate.STGroupBundleDir      ] - found resource in skysail.server.converter [0.1.0.201503301411]: bundle://62.0:1/templates/text/html/appNav.stg
+2015-03-30 16:35:02,397 DEBUG [i.s.s.c.stringtemplate.STGroupBundleDir      ] - found resource in skysail.server.converter [0.1.0.201503301411]: bundle://62.0:1/templates/text/html/contentHeader.st
+2015-03-30 16:35:02,398 DEBUG [i.s.s.c.stringtemplate.STGroupBundleDir      ] - found resource in skysail.server.converter [0.1.0.201503301411]: bundle://62.0:1/templates/text/html/renderEntity.stg
+2015-03-30 16:35:02,400 DEBUG [i.s.s.c.stringtemplate.STGroupBundleDir      ] - found resource in skysail.server.converter [0.1.0.201503301411]: bundle://62.0:1/templates/text/html/notifications.stg
+2015-03-30 16:35:02,402 DEBUG [i.s.s.c.stringtemplate.STGroupBundleDir      ] - found resource in skysail.server.converter [0.1.0.201503301411]: bundle://62.0:1/templates/text/html/select2JsEndOfBody.stg
+2015-03-30 16:35:02,404 INFO  [LogService                                   ] - 2015-03-30	16:35:02	127.0.0.1	admin	-	2015	POST	/application	-	201	7444	9	95	http://localhost:2015	Restlet-Framework/2.3.1	-
+2015-03-30 16:35:02,405 INFO  [i.skysail.server.app.designer.it.Browser     ] -  > TEST: logging in as user 'admin'
+2015-03-30 16:35:02,406 INFO  [org.restlet                                  ] - Starting the internal HTTP client
+2015-03-30 16:35:02,409 DEBUG [LogService                                   ] - Processing request to: "http://localhost:2015/_logout?targetUri=/"
+2015-03-30 16:35:02,409 DEBUG [o.a.s.web.mgt.CookieRememberMeManager        ] - SubjectContext argument is not an HTTP-aware instance.  This is required to obtain a servlet request and response in order to retrieve the rememberMe cookie. Returning immediately and ignoring rememberMe operation.
+2015-03-30 16:35:02,410 INFO  [LogService                                   ] - 2015-03-30	16:35:02	127.0.0.1	-	-	2015	GET	/_logout	targetUri=/	303	0	0	1	http://localhost:2015	Restlet-Framework/2.3.1	-
+2015-03-30 16:35:02,414 DEBUG [LogService                                   ] - Processing request to: "http://localhost:2015/"
+2015-03-30 16:35:02,415 DEBUG [o.r.S.SkysailRootApplication                 ] - Authentication failed. No credentials provided.
+2015-03-30 16:35:02,415 DEBUG [o.r.S.SkysailRootApplication                 ] - Selected route: "/" -> Finder for DefaultResource
+2015-03-30 16:35:02,415 DEBUG [o.r.S.SkysailRootApplication                 ] - New base URI: "http://localhost:2015/". No remaining part to match
+2015-03-30 16:35:02,416 DEBUG [o.r.S.SkysailRootApplication                 ] - Score of annotation "MethodAnnotationInfo [javaMethod: public final java.util.List de.twenty11.skysail.server.core.restlet.ListServerResource.getEntities(org.restlet.representation.Variant), javaClass: class de.twenty11.skysail.server.resources.DefaultResource, restletMethod: GET, input: html|json|yaml|xml, value: html|json|yaml|xml, output: html|json|yaml|xml, query: null]"= 0.5
+2015-03-30 16:35:02,416 DEBUG [o.r.S.SkysailRootApplication                 ] - Total score of variant "[text/html]"= 0.041791666
+2015-03-30 16:35:02,416 DEBUG [o.r.S.SkysailRootApplication                 ] - Score of annotation "MethodAnnotationInfo [javaMethod: public final java.util.List de.twenty11.skysail.server.core.restlet.ListServerResource.getEntities(org.restlet.representation.Variant), javaClass: class de.twenty11.skysail.server.resources.DefaultResource, restletMethod: GET, input: html|json|yaml|xml, value: html|json|yaml|xml, output: html|json|yaml|xml, query: null]"= 0.5
+2015-03-30 16:35:02,416 DEBUG [o.r.S.SkysailRootApplication                 ] - Total score of variant "[application/json]"= 0.04191667
+2015-03-30 16:35:02,416 DEBUG [o.r.S.SkysailRootApplication                 ] - Score of annotation "MethodAnnotationInfo [javaMethod: public final java.util.List de.twenty11.skysail.server.core.restlet.ListServerResource.getEntities(org.restlet.representation.Variant), javaClass: class de.twenty11.skysail.server.resources.DefaultResource, restletMethod: GET, input: html|json|yaml|xml, value: html|json|yaml|xml, output: html|json|yaml|xml, query: null]"= 0.5
+2015-03-30 16:35:02,416 DEBUG [o.r.S.SkysailRootApplication                 ] - Total score of variant "[application/x-yaml]"= 0.04191667
+2015-03-30 16:35:02,416 DEBUG [o.r.S.SkysailRootApplication                 ] - Score of annotation "MethodAnnotationInfo [javaMethod: public final java.util.List de.twenty11.skysail.server.core.restlet.ListServerResource.getEntities(org.restlet.representation.Variant), javaClass: class de.twenty11.skysail.server.resources.DefaultResource, restletMethod: GET, input: html|json|yaml|xml, value: html|json|yaml|xml, output: html|json|yaml|xml, query: null]"= 0.5
+2015-03-30 16:35:02,416 DEBUG [o.r.S.SkysailRootApplication                 ] - Total score of variant "[text/x-yaml]"= 0.041791666
+2015-03-30 16:35:02,416 DEBUG [o.r.S.SkysailRootApplication                 ] - Score of annotation "MethodAnnotationInfo [javaMethod: public final java.util.List de.twenty11.skysail.server.core.restlet.ListServerResource.getEntities(org.restlet.representation.Variant), javaClass: class de.twenty11.skysail.server.resources.DefaultResource, restletMethod: GET, input: html|json|yaml|xml, value: html|json|yaml|xml, output: html|json|yaml|xml, query: null]"= 0.5
+2015-03-30 16:35:02,416 DEBUG [o.r.S.SkysailRootApplication                 ] - Total score of variant "[text/xml]"= 0.041791666
+2015-03-30 16:35:02,416 DEBUG [o.r.S.SkysailRootApplication                 ] - Score of annotation "MethodAnnotationInfo [javaMethod: public final java.util.List de.twenty11.skysail.server.core.restlet.ListServerResource.getEntities(org.restlet.representation.Variant), javaClass: class de.twenty11.skysail.server.resources.DefaultResource, restletMethod: GET, input: html|json|yaml|xml, value: html|json|yaml|xml, output: html|json|yaml|xml, query: null]"= 0.5
+2015-03-30 16:35:02,416 DEBUG [o.r.S.SkysailRootApplication                 ] - Total score of variant "[application/xml]"= 0.04191667
+2015-03-30 16:35:02,416 INFO  [d.t.s.s.core.restlet.ListServerResource      ] - Request entry point: DefaultResource @Get('html|csv|treeform') with variant [application/json]
+2015-03-30 16:35:02,416 DEBUG [d.t.s.s.c.r.f.ExceptionCatchingFilter        ] - entering ExceptionCatchingFilter#doHandle
+2015-03-30 16:35:02,416 DEBUG [d.t.s.s.c.r.f.AbstractResourceFilter         ] - next filter in chain: AddApiVersionHeader
+2015-03-30 16:35:02,416 DEBUG [d.t.s.s.c.r.f.AbstractResourceFilter         ] - next filter in chain: GetRequestPreFilterHook
+2015-03-30 16:35:02,416 DEBUG [d.t.s.s.c.r.f.AbstractResourceFilter         ] - next filter in chain: AddRequestIdToResourceFilter
+2015-03-30 16:35:02,416 DEBUG [d.t.s.s.c.r.f.AbstractResourceFilter         ] - next filter in chain: DataExtractingFilter
+2015-03-30 16:35:02,416 DEBUG [d.t.s.s.c.r.filter.DataExtractingFilter      ] - entering DataExtractingFilter#doHandle
+2015-03-30 16:35:02,416 DEBUG [d.t.s.s.c.r.f.AbstractResourceFilter         ] - next filter in chain: AddLinkheadersFilter
+2015-03-30 16:35:02,416 DEBUG [d.t.s.s.c.r.f.AbstractResourceFilter         ] - next filter in chain: CheckFavoritesFilter
+2015-03-30 16:35:02,416 DEBUG [d.t.s.s.c.r.f.AbstractResourceFilter         ] - next filter in chain: SetExecutionTimeInResponseFilter
+2015-03-30 16:35:02,416 DEBUG [d.t.s.s.c.r.f.AbstractResourceFilter         ] - next filter in chain: RedirectFilter
+2015-03-30 16:35:02,417 DEBUG [o.r.S.SkysailRootApplication                 ] - Converter selected for EmptyList: JacksonConverter
+2015-03-30 16:35:02,417 INFO  [LogService                                   ] - 2015-03-30	16:35:02	127.0.0.1	-	-	2015	GET	/	-	200	-	0	3	http://localhost:2015	Restlet-Framework/2.3.1	-
+2015-03-30 16:35:02,419 DEBUG [org.restlet                                  ] - The length of the message body is unknown. The entity must be handled carefully and consumed entirely in order to surely release the connection.
+2015-03-30 16:35:02,419 DEBUG [org.restlet                                  ] - Converter selected for Form: DefaultConverter
+2015-03-30 16:35:02,419 DEBUG [org.restlet                                  ] - Total score of variant "[application/x-www-form-urlencoded]"= 5.0E-4
+2015-03-30 16:35:02,419 INFO  [org.restlet                                  ] - Starting the internal HTTP client
+2015-03-30 16:35:02,421 DEBUG [LogService                                   ] - Processing request to: "http://localhost:2015/_login"
+2015-03-30 16:35:02,422 DEBUG [o.a.s.web.mgt.CookieRememberMeManager        ] - SubjectContext argument is not an HTTP-aware instance.  This is required to obtain a servlet request and response in order to retrieve the rememberMe cookie. Returning immediately and ignoring rememberMe operation.
+2015-03-30 16:35:02,422 INFO  [i.s.s.u.s.a.SimpleDelegatingVerifier         ] - login event for user 'admin'
+2015-03-30 16:35:02,422 DEBUG [o.apache.shiro.realm.AuthenticatingRealm     ] - Using cached authentication info [io.skysail.server.um.simple.authentication.SkysailAuthenticationInfo@370d07d4] to perform credentials matching.
+2015-03-30 16:35:02,422 INFO  [i.s.s.u.s.a.SkysailHashedCredentialsMatcher  ] - checking cache for entry $2a$12$mBXqefcONxAauLZc6EDJhO8g7oLM1jhEBQCspfyEHr57Xz9b6oiDO
+2015-03-30 16:35:02,735 INFO  [i.s.s.u.s.a.SkysailHashedCredentialsMatcher  ] - added entry $2a$12$mBXqefcONxAauLZc6EDJhO8g7oLM1jhEBQCspfyEHr57Xz9b6oiDO to credentials hash cache with current timestamp, size now is 1
+2015-03-30 16:35:02,735 DEBUG [o.a.shiro.authc.AbstractAuthenticator        ] - Authentication successful for token [org.apache.shiro.authc.UsernamePasswordToken - admin, rememberMe=false].  Returned account [io.skysail.server.um.simple.authentication.SkysailAuthenticationInfo@370d07d4]
+2015-03-30 16:35:02,735 DEBUG [o.a.s.s.support.DefaultSubjectContext        ] - No SecurityManager available in subject context map.  Falling back to SecurityUtils.getSecurityManager() lookup.
+2015-03-30 16:35:02,735 DEBUG [o.a.s.s.support.DefaultSubjectContext        ] - No SecurityManager available in subject context map.  Falling back to SecurityUtils.getSecurityManager() lookup.
+2015-03-30 16:35:02,735 DEBUG [o.a.shiro.mgt.AbstractRememberMeManager      ] - AuthenticationToken did not indicate RememberMe is requested.  RememberMe functionality will not be executed for corresponding account.
+2015-03-30 16:35:02,735 INFO  [i.s.s.u.s.a.SimpleDelegatingVerifier         ] - login event for user 'admin' successful
+2015-03-30 16:35:02,735 DEBUG [o.r.S.SkysailRootApplication                 ] - Authentication succeeded. Valid credentials provided for identifier: admin.
+2015-03-30 16:35:02,735 DEBUG [o.r.S.SkysailRootApplication                 ] - The authentication succeeded for the identifer "admin" using the HTTP_Cookie scheme.
+2015-03-30 16:35:02,736 DEBUG [o.r.S.SkysailRootApplication                 ] - Selected route: "/_login" -> Finder for LoginResource
+2015-03-30 16:35:02,736 DEBUG [o.r.S.SkysailRootApplication                 ] - New base URI: "http://localhost:2015/_login". No remaining part to match
+2015-03-30 16:35:02,736 DEBUG [o.r.S.SkysailRootApplication                 ] - Score of annotation "MethodAnnotationInfo [javaMethod: public java.lang.Object de.twenty11.skysail.server.core.restlet.PostEntityServerResource.post(org.restlet.data.Form), javaClass: class de.twenty11.skysail.server.resources.LoginResource, restletMethod: POST, input: x-www-form-urlencoded, value: x-www-form-urlencoded:html, output: html, query: null]"= 0.5
+2015-03-30 16:35:02,736 DEBUG [o.r.S.SkysailRootApplication                 ] - Total score of variant "[text/html]"= 0.16666667
+2015-03-30 16:35:02,736 DEBUG [o.r.S.SkysailRootApplication                 ] - Score of annotation "MethodAnnotationInfo [javaMethod: public java.lang.Object de.twenty11.skysail.server.core.restlet.PostEntityServerResource.post(java.lang.Object), javaClass: class de.twenty11.skysail.server.resources.LoginResource, restletMethod: POST, input: json, value: json, output: json, query: null]"= 0.5
+2015-03-30 16:35:02,736 DEBUG [o.r.S.SkysailRootApplication                 ] - Total score of variant "[application/json]"= 0.04191667
+2015-03-30 16:35:02,736 INFO  [d.t.s.s.c.r.PostEntityServerResource         ] - Request entry point: LoginResource @Post('x-www-form-urlencoded:html|json|xml')
+2015-03-30 16:35:02,736 INFO  [d.t.s.s.c.r.PostEntityServerResource         ] - calling post(Form), media types '[text/html:1.0]'
+2015-03-30 16:35:02,738 DEBUG [d.t.s.s.c.r.f.ExceptionCatchingFilter        ] - entering ExceptionCatchingFilter#doHandle
+2015-03-30 16:35:02,738 DEBUG [d.t.s.s.c.r.f.AbstractResourceFilter         ] - next filter in chain: AddRequestIdToResourceFilter
+2015-03-30 16:35:02,738 DEBUG [d.t.s.s.c.r.f.AbstractResourceFilter         ] - next filter in chain: CheckInvalidInputFilter
+2015-03-30 16:35:02,738 DEBUG [d.t.s.s.c.r.f.CheckInvalidInputFilter        ] - entering CheckInvalidInputFilter#doHandle
+2015-03-30 16:35:02,738 DEBUG [d.t.s.s.c.r.f.AbstractResourceFilter         ] - next filter in chain: FormDataExtractingFilter
+2015-03-30 16:35:02,738 DEBUG [d.t.s.s.c.r.f.FormDataExtractingFilter       ] - entering FormDataExtractingFilter#doHandle
+2015-03-30 16:35:02,738 DEBUG [d.t.s.s.c.r.f.AbstractResourceFilter         ] - next filter in chain: CheckBusinessViolationsFilter
+2015-03-30 16:35:02,738 DEBUG [d.t.s.s.c.r.f.CheckBusinessViolationsFilter  ] - entering CheckBusinessViolationsFilter#doHandle
+2015-03-30 16:35:02,741 DEBUG [d.t.s.s.c.r.f.AbstractResourceFilter         ] - next filter in chain: OptionalEncryptionFilter
+2015-03-30 16:35:02,741 DEBUG [d.t.s.s.c.r.f.AbstractResourceFilter         ] - next filter in chain: PersistEntityFilter
+2015-03-30 16:35:02,741 DEBUG [d.t.s.s.c.r.filter.PersistEntityFilter       ] - entering PersistEntityFilter#doHandle
+2015-03-30 16:35:02,741 DEBUG [d.t.s.s.c.r.f.AbstractResourceFilter         ] - next filter in chain: EntityWasAddedFilter
+2015-03-30 16:35:02,742 DEBUG [d.t.s.s.c.r.filter.EntityWasAddedFilter      ] - entering EntityWasAddedFilter#doHandle
+2015-03-30 16:35:02,742 DEBUG [d.t.s.s.c.r.f.AbstractResourceFilter         ] - next filter in chain: AddLinkheadersFilter
+2015-03-30 16:35:02,742 DEBUG [d.t.s.s.c.r.f.AbstractResourceFilter         ] - next filter in chain: PostRedirectGetFilter
+2015-03-30 16:35:02,743 INFO  [i.skysail.server.converter.HtmlConverter     ] - converter 'HtmlConverter' matched '{text/html=0.95, treeform/*=1.0}' with threshold 0.95
+2015-03-30 16:35:02,743 DEBUG [o.r.S.SkysailRootApplication                 ] - Converter selected for Credentials: HtmlConverter
+2015-03-30 16:35:02,743 INFO  [d.t.skysail.server.app.SourceWrapper         ] - using converter 'NoopConverter' for Credentials-Source: de.twenty11.skysail.server.domain.Credentials@4fa8883a
+2015-03-30 16:35:02,743 INFO  [i.s.s.c.impl.StringTemplateRenderer          ] - reading templates from resource path '/templates/text/html'
+2015-03-30 16:35:02,744 DEBUG [i.s.s.c.stringtemplate.STGroupBundleDir      ] - found resource in skysail.server.converter [0.1.0.201503301411]: bundle://62.0:1/templates/text/html/index.st
+2015-03-30 16:35:02,748 DEBUG [i.s.s.c.stringtemplate.STGroupBundleDir      ] - found resource in skysail.server.converter [0.1.0.201503301411]: bundle://62.0:1/templates/text/html/select2JsHead.stg
+2015-03-30 16:35:02,750 DEBUG [i.s.s.c.stringtemplate.STGroupBundleDir      ] - found resource in skysail.server.converter [0.1.0.201503301411]: bundle://62.0:1/templates/text/html/endOfHeaderJS.stg
+2015-03-30 16:35:02,751 DEBUG [i.s.s.c.stringtemplate.STGroupBundleDir      ] - found resource in skysail.server.converter [0.1.0.201503301411]: bundle://62.0:1/templates/text/html/dropdownFrontendsNav.stg
+2015-03-30 16:35:02,753 DEBUG [i.s.s.c.stringtemplate.STGroupBundleDir      ] - found resource in skysail.server.converter [0.1.0.201503301411]: bundle://62.0:1/templates/text/html/dropdownApplicationsNav.stg
+2015-03-30 16:35:02,756 DEBUG [i.s.s.c.stringtemplate.STGroupBundleDir      ] - found resource in skysail.server.converter [0.1.0.201503301411]: bundle://62.0:1/templates/text/html/dropdownAdminNav.stg
+2015-03-30 16:35:02,762 DEBUG [i.s.s.c.stringtemplate.STGroupBundleDir      ] - found resource in skysail.server.converter [0.1.0.201503301411]: bundle://62.0:1/templates/text/html/breadcrumb.stg
+2015-03-30 16:35:02,765 DEBUG [i.s.s.c.stringtemplate.STGroupBundleDir      ] - found resource in skysail.server.converter [0.1.0.201503301411]: bundle://62.0:1/templates/text/html/appNavTitle.stg
+2015-03-30 16:35:02,766 DEBUG [i.s.s.c.stringtemplate.STGroupBundleDir      ] - found resource in skysail.server.converter [0.1.0.201503301411]: bundle://62.0:1/templates/text/html/menuNav.stg
+2015-03-30 16:35:02,767 DEBUG [i.s.s.c.stringtemplate.STGroupBundleDir      ] - found resource in skysail.server.converter [0.1.0.201503301411]: bundle://62.0:1/templates/text/html/mainContent.stg
+2015-03-30 16:35:02,768 DEBUG [i.s.s.c.stringtemplate.STGroupBundleDir      ] - found resource in skysail.server.converter [0.1.0.201503301411]: bundle://62.0:1/templates/text/html/appNav.stg
+2015-03-30 16:35:02,770 DEBUG [i.s.s.c.stringtemplate.STGroupBundleDir      ] - found resource in skysail.server.converter [0.1.0.201503301411]: bundle://62.0:1/templates/text/html/contentHeader.st
+2015-03-30 16:35:02,771 DEBUG [i.s.s.c.stringtemplate.STGroupBundleDir      ] - found resource in skysail.server.converter [0.1.0.201503301411]: bundle://62.0:1/templates/text/html/renderEntity.stg
+2015-03-30 16:35:02,773 DEBUG [i.s.s.c.stringtemplate.STGroupBundleDir      ] - found resource in skysail.server.converter [0.1.0.201503301411]: bundle://62.0:1/templates/text/html/notifications.stg
+2015-03-30 16:35:02,775 DEBUG [i.s.s.c.stringtemplate.STGroupBundleDir      ] - found resource in skysail.server.converter [0.1.0.201503301411]: bundle://62.0:1/templates/text/html/select2JsEndOfBody.stg
+2015-03-30 16:35:02,776 INFO  [LogService                                   ] - 2015-03-30	16:35:02	127.0.0.1	admin	-	2015	POST	/_login	-	201	7355	31	355	http://localhost:2015	Restlet-Framework/2.3.1	-
+2015-03-30 16:35:02,778 INFO  [org.restlet                                  ] - Starting the internal HTTP client
+2015-03-30 16:35:02,780 DEBUG [LogService                                   ] - Processing request to: "http://localhost:2015/"
+2015-03-30 16:35:02,781 DEBUG [o.a.s.web.mgt.CookieRememberMeManager        ] - SubjectContext argument is not an HTTP-aware instance.  This is required to obtain a servlet request and response in order to retrieve the rememberMe cookie. Returning immediately and ignoring rememberMe operation.
+2015-03-30 16:35:02,781 INFO  [i.s.s.u.s.a.SimpleDelegatingVerifier         ] - login event for user 'admin'
+2015-03-30 16:35:02,781 DEBUG [o.apache.shiro.realm.AuthenticatingRealm     ] - Using cached authentication info [io.skysail.server.um.simple.authentication.SkysailAuthenticationInfo@370d07d4] to perform credentials matching.
+2015-03-30 16:35:02,781 INFO  [i.s.s.u.s.a.SkysailHashedCredentialsMatcher  ] - checking cache for entry $2a$12$mBXqefcONxAauLZc6EDJhO8g7oLM1jhEBQCspfyEHr57Xz9b6oiDO
+2015-03-30 16:35:02,781 INFO  [i.s.s.u.s.a.SkysailHashedCredentialsMatcher  ] - found entry in credentials hash cache, updating timestamp
+2015-03-30 16:35:02,781 DEBUG [o.a.shiro.authc.AbstractAuthenticator        ] - Authentication successful for token [org.apache.shiro.authc.UsernamePasswordToken - admin, rememberMe=false].  Returned account [io.skysail.server.um.simple.authentication.SkysailAuthenticationInfo@370d07d4]
+2015-03-30 16:35:02,781 DEBUG [o.a.s.s.support.DefaultSubjectContext        ] - No SecurityManager available in subject context map.  Falling back to SecurityUtils.getSecurityManager() lookup.
+2015-03-30 16:35:02,781 DEBUG [o.a.s.s.support.DefaultSubjectContext        ] - No SecurityManager available in subject context map.  Falling back to SecurityUtils.getSecurityManager() lookup.
+2015-03-30 16:35:02,781 DEBUG [o.a.shiro.mgt.AbstractRememberMeManager      ] - AuthenticationToken did not indicate RememberMe is requested.  RememberMe functionality will not be executed for corresponding account.
+2015-03-30 16:35:02,781 INFO  [i.s.s.u.s.a.SimpleDelegatingVerifier         ] - login event for user 'admin' successful
+2015-03-30 16:35:02,781 DEBUG [o.r.S.SkysailRootApplication                 ] - Authentication succeeded. Valid credentials provided for identifier: admin.
+2015-03-30 16:35:02,781 DEBUG [o.r.S.SkysailRootApplication                 ] - The authentication succeeded for the identifer "admin" using the HTTP_Cookie scheme.
+2015-03-30 16:35:02,781 DEBUG [o.r.S.SkysailRootApplication                 ] - Selected route: "/" -> Finder for DefaultResource
+2015-03-30 16:35:02,781 DEBUG [o.r.S.SkysailRootApplication                 ] - New base URI: "http://localhost:2015/". No remaining part to match
+2015-03-30 16:35:02,782 DEBUG [o.r.S.SkysailRootApplication                 ] - Score of annotation "MethodAnnotationInfo [javaMethod: public final java.util.List de.twenty11.skysail.server.core.restlet.ListServerResource.getEntities(org.restlet.representation.Variant), javaClass: class de.twenty11.skysail.server.resources.DefaultResource, restletMethod: GET, input: html|json|yaml|xml, value: html|json|yaml|xml, output: html|json|yaml|xml, query: null]"= 0.5
+2015-03-30 16:35:02,782 DEBUG [o.r.S.SkysailRootApplication                 ] - Total score of variant "[text/html]"= 0.16666667
+2015-03-30 16:35:02,782 DEBUG [o.r.S.SkysailRootApplication                 ] - Score of annotation "MethodAnnotationInfo [javaMethod: public final java.util.List de.twenty11.skysail.server.core.restlet.ListServerResource.getEntities(org.restlet.representation.Variant), javaClass: class de.twenty11.skysail.server.resources.DefaultResource, restletMethod: GET, input: html|json|yaml|xml, value: html|json|yaml|xml, output: html|json|yaml|xml, query: null]"= 0.5
+2015-03-30 16:35:02,782 DEBUG [o.r.S.SkysailRootApplication                 ] - Total score of variant "[application/json]"= 0.04191667
+2015-03-30 16:35:02,782 DEBUG [o.r.S.SkysailRootApplication                 ] - Score of annotation "MethodAnnotationInfo [javaMethod: public final java.util.List de.twenty11.skysail.server.core.restlet.ListServerResource.getEntities(org.restlet.representation.Variant), javaClass: class de.twenty11.skysail.server.resources.DefaultResource, restletMethod: GET, input: html|json|yaml|xml, value: html|json|yaml|xml, output: html|json|yaml|xml, query: null]"= 0.5
+2015-03-30 16:35:02,782 DEBUG [o.r.S.SkysailRootApplication                 ] - Total score of variant "[application/x-yaml]"= 0.04191667
+2015-03-30 16:35:02,782 DEBUG [o.r.S.SkysailRootApplication                 ] - Score of annotation "MethodAnnotationInfo [javaMethod: public final java.util.List de.twenty11.skysail.server.core.restlet.ListServerResource.getEntities(org.restlet.representation.Variant), javaClass: class de.twenty11.skysail.server.resources.DefaultResource, restletMethod: GET, input: html|json|yaml|xml, value: html|json|yaml|xml, output: html|json|yaml|xml, query: null]"= 0.5
+2015-03-30 16:35:02,782 DEBUG [o.r.S.SkysailRootApplication                 ] - Total score of variant "[text/x-yaml]"= 0.042416666
+2015-03-30 16:35:02,782 DEBUG [o.r.S.SkysailRootApplication                 ] - Score of annotation "MethodAnnotationInfo [javaMethod: public final java.util.List de.twenty11.skysail.server.core.restlet.ListServerResource.getEntities(org.restlet.representation.Variant), javaClass: class de.twenty11.skysail.server.resources.DefaultResource, restletMethod: GET, input: html|json|yaml|xml, value: html|json|yaml|xml, output: html|json|yaml|xml, query: null]"= 0.5
+2015-03-30 16:35:02,782 DEBUG [o.r.S.SkysailRootApplication                 ] - Total score of variant "[text/xml]"= 0.042416666
+2015-03-30 16:35:02,783 DEBUG [o.r.S.SkysailRootApplication                 ] - Score of annotation "MethodAnnotationInfo [javaMethod: public final java.util.List de.twenty11.skysail.server.core.restlet.ListServerResource.getEntities(org.restlet.representation.Variant), javaClass: class de.twenty11.skysail.server.resources.DefaultResource, restletMethod: GET, input: html|json|yaml|xml, value: html|json|yaml|xml, output: html|json|yaml|xml, query: null]"= 0.5
+2015-03-30 16:35:02,783 DEBUG [o.r.S.SkysailRootApplication                 ] - Total score of variant "[application/xml]"= 0.04191667
+2015-03-30 16:35:02,783 INFO  [d.t.s.s.core.restlet.ListServerResource      ] - Request entry point: DefaultResource @Get('html|csv|treeform') with variant [text/html]
+2015-03-30 16:35:02,783 DEBUG [d.t.s.s.c.r.f.ExceptionCatchingFilter        ] - entering ExceptionCatchingFilter#doHandle
+2015-03-30 16:35:02,783 DEBUG [d.t.s.s.c.r.f.AbstractResourceFilter         ] - next filter in chain: AddApiVersionHeader
+2015-03-30 16:35:02,783 DEBUG [d.t.s.s.c.r.f.AbstractResourceFilter         ] - next filter in chain: GetRequestPreFilterHook
+2015-03-30 16:35:02,783 DEBUG [d.t.s.s.c.r.f.AbstractResourceFilter         ] - next filter in chain: AddRequestIdToResourceFilter
+2015-03-30 16:35:02,783 DEBUG [d.t.s.s.c.r.f.AbstractResourceFilter         ] - next filter in chain: DataExtractingFilter
+2015-03-30 16:35:02,783 DEBUG [d.t.s.s.c.r.filter.DataExtractingFilter      ] - entering DataExtractingFilter#doHandle
+2015-03-30 16:35:02,783 DEBUG [d.t.s.s.c.r.f.AbstractResourceFilter         ] - next filter in chain: AddLinkheadersFilter
+2015-03-30 16:35:02,783 DEBUG [d.t.s.s.c.r.f.AbstractResourceFilter         ] - next filter in chain: CheckFavoritesFilter
+2015-03-30 16:35:02,783 DEBUG [d.t.s.s.c.r.f.AbstractResourceFilter         ] - next filter in chain: SetExecutionTimeInResponseFilter
+2015-03-30 16:35:02,783 DEBUG [d.t.s.s.c.r.f.AbstractResourceFilter         ] - next filter in chain: RedirectFilter
+2015-03-30 16:35:02,784 INFO  [i.skysail.server.converter.HtmlConverter     ] - converter 'HtmlConverter' matched '{text/html=0.95, treeform/*=1.0}' with threshold 0.95
+2015-03-30 16:35:02,784 DEBUG [o.r.S.SkysailRootApplication                 ] - Converter selected for EmptyList: HtmlConverter
+2015-03-30 16:35:02,784 INFO  [d.t.skysail.server.app.SourceWrapper         ] - using converter 'ListSourceHtmlConverter' for EmptyList-Source: []
+2015-03-30 16:35:02,784 INFO  [i.s.s.c.impl.StringTemplateRenderer          ] - reading templates from resource path '/templates/text/html'
+2015-03-30 16:35:02,786 DEBUG [i.s.s.c.stringtemplate.STGroupBundleDir      ] - found resource in skysail.server.converter [0.1.0.201503301411]: bundle://62.0:1/templates/text/html/index.st
+2015-03-30 16:35:02,790 DEBUG [i.s.s.c.stringtemplate.STGroupBundleDir      ] - found resource in skysail.server.converter [0.1.0.201503301411]: bundle://62.0:1/templates/text/html/select2JsHead.stg
+2015-03-30 16:35:02,792 DEBUG [i.s.s.c.stringtemplate.STGroupBundleDir      ] - found resource in skysail.server.converter [0.1.0.201503301411]: bundle://62.0:1/templates/text/html/endOfHeaderJS.stg
+2015-03-30 16:35:02,794 DEBUG [i.s.s.c.stringtemplate.STGroupBundleDir      ] - found resource in skysail.server.converter [0.1.0.201503301411]: bundle://62.0:1/templates/text/html/dropdownFrontendsNav.stg
+2015-03-30 16:35:02,795 DEBUG [i.s.s.c.stringtemplate.STGroupBundleDir      ] - found resource in skysail.server.converter [0.1.0.201503301411]: bundle://62.0:1/templates/text/html/dropdownApplicationsNav.stg
+2015-03-30 16:35:02,799 DEBUG [i.s.s.c.stringtemplate.STGroupBundleDir      ] - found resource in skysail.server.converter [0.1.0.201503301411]: bundle://62.0:1/templates/text/html/dropdownAdminNav.stg
+2015-03-30 16:35:02,806 DEBUG [i.s.s.c.stringtemplate.STGroupBundleDir      ] - found resource in skysail.server.converter [0.1.0.201503301411]: bundle://62.0:1/templates/text/html/breadcrumb.stg
+2015-03-30 16:35:02,809 DEBUG [i.s.s.c.stringtemplate.STGroupBundleDir      ] - found resource in skysail.server.converter [0.1.0.201503301411]: bundle://62.0:1/templates/text/html/appNavTitle.stg
+2015-03-30 16:35:02,810 DEBUG [i.s.s.c.stringtemplate.STGroupBundleDir      ] - found resource in skysail.server.converter [0.1.0.201503301411]: bundle://62.0:1/templates/text/html/menuNav.stg
+2015-03-30 16:35:02,813 DEBUG [i.s.s.c.stringtemplate.STGroupBundleDir      ] - found resource in skysail.server.converter [0.1.0.201503301411]: bundle://62.0:1/templates/text/html/mainContent.stg
+2015-03-30 16:35:02,814 DEBUG [i.s.s.c.stringtemplate.STGroupBundleDir      ] - found resource in skysail.server.converter [0.1.0.201503301411]: bundle://62.0:1/templates/text/html/appNav.stg
+2015-03-30 16:35:02,818 DEBUG [i.s.s.c.stringtemplate.STGroupBundleDir      ] - found resource in skysail.server.converter [0.1.0.201503301411]: bundle://62.0:1/templates/text/html/contentHeader.st
+2015-03-30 16:35:02,819 DEBUG [i.s.s.c.stringtemplate.STGroupBundleDir      ] - found resource in skysail.server.converter [0.1.0.201503301411]: bundle://62.0:1/templates/text/html/renderTable.stg
+2015-03-30 16:35:02,822 DEBUG [i.s.s.c.stringtemplate.STGroupBundleDir      ] - found resource in skysail.server.converter [0.1.0.201503301411]: bundle://62.0:1/templates/text/html/notifications.stg
+2015-03-30 16:35:02,824 DEBUG [i.s.s.c.stringtemplate.STGroupBundleDir      ] - found resource in skysail.server.converter [0.1.0.201503301411]: bundle://62.0:1/templates/text/html/select2JsEndOfBody.stg
+2015-03-30 16:35:02,826 INFO  [LogService                                   ] - 2015-03-30	16:35:02	127.0.0.1	admin	-	2015	GET	/	-	200	7733	0	45	http://localhost:2015	Restlet-Framework/2.3.1	-
+2015-03-30 16:35:02,827 INFO  [i.skysail.server.app.designer.it.Browser     ] -  > TEST: retrieving TodoLists
+2015-03-30 16:35:02,828 INFO  [io.skysail.client.testsupport.Client         ] -  > TEST: issuing GET on 'http://localhost:2015/', providing credentials EiAJvnJQK59QRqjOq05VBYgYUkXdY+cZ3Grd5q1E7bCOtW6fnmWqIbaChPIEV7eX
+2015-03-30 16:35:02,828 INFO  [org.restlet                                  ] - Starting the internal HTTP client
+2015-03-30 16:35:02,829 DEBUG [LogService                                   ] - Processing request to: "http://localhost:2015/"
+2015-03-30 16:35:02,830 DEBUG [o.a.s.web.mgt.CookieRememberMeManager        ] - SubjectContext argument is not an HTTP-aware instance.  This is required to obtain a servlet request and response in order to retrieve the rememberMe cookie. Returning immediately and ignoring rememberMe operation.
+2015-03-30 16:35:02,830 INFO  [i.s.s.u.s.a.SimpleDelegatingVerifier         ] - login event for user 'admin'
+2015-03-30 16:35:02,830 DEBUG [o.apache.shiro.realm.AuthenticatingRealm     ] - Using cached authentication info [io.skysail.server.um.simple.authentication.SkysailAuthenticationInfo@370d07d4] to perform credentials matching.
+2015-03-30 16:35:02,830 INFO  [i.s.s.u.s.a.SkysailHashedCredentialsMatcher  ] - checking cache for entry $2a$12$mBXqefcONxAauLZc6EDJhO8g7oLM1jhEBQCspfyEHr57Xz9b6oiDO
+2015-03-30 16:35:02,830 INFO  [i.s.s.u.s.a.SkysailHashedCredentialsMatcher  ] - found entry in credentials hash cache, updating timestamp
+2015-03-30 16:35:02,830 DEBUG [o.a.shiro.authc.AbstractAuthenticator        ] - Authentication successful for token [org.apache.shiro.authc.UsernamePasswordToken - admin, rememberMe=false].  Returned account [io.skysail.server.um.simple.authentication.SkysailAuthenticationInfo@370d07d4]
+2015-03-30 16:35:02,830 DEBUG [o.a.s.s.support.DefaultSubjectContext        ] - No SecurityManager available in subject context map.  Falling back to SecurityUtils.getSecurityManager() lookup.
+2015-03-30 16:35:02,830 DEBUG [o.a.s.s.support.DefaultSubjectContext        ] - No SecurityManager available in subject context map.  Falling back to SecurityUtils.getSecurityManager() lookup.
+2015-03-30 16:35:02,830 DEBUG [o.a.shiro.mgt.AbstractRememberMeManager      ] - AuthenticationToken did not indicate RememberMe is requested.  RememberMe functionality will not be executed for corresponding account.
+2015-03-30 16:35:02,830 INFO  [i.s.s.u.s.a.SimpleDelegatingVerifier         ] - login event for user 'admin' successful
+2015-03-30 16:35:02,830 DEBUG [o.r.S.SkysailRootApplication                 ] - Authentication succeeded. Valid credentials provided for identifier: admin.
+2015-03-30 16:35:02,831 DEBUG [o.r.S.SkysailRootApplication                 ] - The authentication succeeded for the identifer "admin" using the HTTP_Cookie scheme.
+2015-03-30 16:35:02,831 DEBUG [o.r.S.SkysailRootApplication                 ] - Selected route: "/" -> Finder for DefaultResource
+2015-03-30 16:35:02,831 DEBUG [o.r.S.SkysailRootApplication                 ] - New base URI: "http://localhost:2015/". No remaining part to match
+2015-03-30 16:35:02,831 DEBUG [o.r.S.SkysailRootApplication                 ] - Score of annotation "MethodAnnotationInfo [javaMethod: public final java.util.List de.twenty11.skysail.server.core.restlet.ListServerResource.getEntities(org.restlet.representation.Variant), javaClass: class de.twenty11.skysail.server.resources.DefaultResource, restletMethod: GET, input: html|json|yaml|xml, value: html|json|yaml|xml, output: html|json|yaml|xml, query: null]"= 0.5
+2015-03-30 16:35:02,831 DEBUG [o.r.S.SkysailRootApplication                 ] - Total score of variant "[text/html]"= 0.16666667
+2015-03-30 16:35:02,832 DEBUG [o.r.S.SkysailRootApplication                 ] - Score of annotation "MethodAnnotationInfo [javaMethod: public final java.util.List de.twenty11.skysail.server.core.restlet.ListServerResource.getEntities(org.restlet.representation.Variant), javaClass: class de.twenty11.skysail.server.resources.DefaultResource, restletMethod: GET, input: html|json|yaml|xml, value: html|json|yaml|xml, output: html|json|yaml|xml, query: null]"= 0.5
+2015-03-30 16:35:02,832 DEBUG [o.r.S.SkysailRootApplication                 ] - Total score of variant "[application/json]"= 0.04191667
+2015-03-30 16:35:02,832 DEBUG [o.r.S.SkysailRootApplication                 ] - Score of annotation "MethodAnnotationInfo [javaMethod: public final java.util.List de.twenty11.skysail.server.core.restlet.ListServerResource.getEntities(org.restlet.representation.Variant), javaClass: class de.twenty11.skysail.server.resources.DefaultResource, restletMethod: GET, input: html|json|yaml|xml, value: html|json|yaml|xml, output: html|json|yaml|xml, query: null]"= 0.5
+2015-03-30 16:35:02,832 DEBUG [o.r.S.SkysailRootApplication                 ] - Total score of variant "[application/x-yaml]"= 0.04191667
+2015-03-30 16:35:02,832 DEBUG [o.r.S.SkysailRootApplication                 ] - Score of annotation "MethodAnnotationInfo [javaMethod: public final java.util.List de.twenty11.skysail.server.core.restlet.ListServerResource.getEntities(org.restlet.representation.Variant), javaClass: class de.twenty11.skysail.server.resources.DefaultResource, restletMethod: GET, input: html|json|yaml|xml, value: html|json|yaml|xml, output: html|json|yaml|xml, query: null]"= 0.5
+2015-03-30 16:35:02,832 DEBUG [o.r.S.SkysailRootApplication                 ] - Total score of variant "[text/x-yaml]"= 0.042416666
+2015-03-30 16:35:02,832 DEBUG [o.r.S.SkysailRootApplication                 ] - Score of annotation "MethodAnnotationInfo [javaMethod: public final java.util.List de.twenty11.skysail.server.core.restlet.ListServerResource.getEntities(org.restlet.representation.Variant), javaClass: class de.twenty11.skysail.server.resources.DefaultResource, restletMethod: GET, input: html|json|yaml|xml, value: html|json|yaml|xml, output: html|json|yaml|xml, query: null]"= 0.5
+2015-03-30 16:35:02,832 DEBUG [o.r.S.SkysailRootApplication                 ] - Total score of variant "[text/xml]"= 0.042416666
+2015-03-30 16:35:02,832 DEBUG [o.r.S.SkysailRootApplication                 ] - Score of annotation "MethodAnnotationInfo [javaMethod: public final java.util.List de.twenty11.skysail.server.core.restlet.ListServerResource.getEntities(org.restlet.representation.Variant), javaClass: class de.twenty11.skysail.server.resources.DefaultResource, restletMethod: GET, input: html|json|yaml|xml, value: html|json|yaml|xml, output: html|json|yaml|xml, query: null]"= 0.5
+2015-03-30 16:35:02,832 DEBUG [o.r.S.SkysailRootApplication                 ] - Total score of variant "[application/xml]"= 0.04191667
+2015-03-30 16:35:02,832 INFO  [d.t.s.s.core.restlet.ListServerResource      ] - Request entry point: DefaultResource @Get('html|csv|treeform') with variant [text/html]
+2015-03-30 16:35:02,832 DEBUG [d.t.s.s.c.r.f.ExceptionCatchingFilter        ] - entering ExceptionCatchingFilter#doHandle
+2015-03-30 16:35:02,832 DEBUG [d.t.s.s.c.r.f.AbstractResourceFilter         ] - next filter in chain: AddApiVersionHeader
+2015-03-30 16:35:02,832 DEBUG [d.t.s.s.c.r.f.AbstractResourceFilter         ] - next filter in chain: GetRequestPreFilterHook
+2015-03-30 16:35:02,832 DEBUG [d.t.s.s.c.r.f.AbstractResourceFilter         ] - next filter in chain: AddRequestIdToResourceFilter
+2015-03-30 16:35:02,832 DEBUG [d.t.s.s.c.r.f.AbstractResourceFilter         ] - next filter in chain: DataExtractingFilter
+2015-03-30 16:35:02,832 DEBUG [d.t.s.s.c.r.filter.DataExtractingFilter      ] - entering DataExtractingFilter#doHandle
+2015-03-30 16:35:02,832 DEBUG [d.t.s.s.c.r.f.AbstractResourceFilter         ] - next filter in chain: AddLinkheadersFilter
+2015-03-30 16:35:02,832 DEBUG [d.t.s.s.c.r.f.AbstractResourceFilter         ] - next filter in chain: CheckFavoritesFilter
+2015-03-30 16:35:02,832 DEBUG [d.t.s.s.c.r.f.AbstractResourceFilter         ] - next filter in chain: SetExecutionTimeInResponseFilter
+2015-03-30 16:35:02,832 DEBUG [d.t.s.s.c.r.f.AbstractResourceFilter         ] - next filter in chain: RedirectFilter
+2015-03-30 16:35:02,833 INFO  [i.skysail.server.converter.HtmlConverter     ] - converter 'HtmlConverter' matched '{text/html=0.95, treeform/*=1.0}' with threshold 0.95
+2015-03-30 16:35:02,833 DEBUG [o.r.S.SkysailRootApplication                 ] - Converter selected for EmptyList: HtmlConverter
+2015-03-30 16:35:02,833 INFO  [d.t.skysail.server.app.SourceWrapper         ] - using converter 'ListSourceHtmlConverter' for EmptyList-Source: []
+2015-03-30 16:35:02,833 INFO  [i.s.s.c.impl.StringTemplateRenderer          ] - reading templates from resource path '/templates/text/html'
+2015-03-30 16:35:02,834 DEBUG [i.s.s.c.stringtemplate.STGroupBundleDir      ] - found resource in skysail.server.converter [0.1.0.201503301411]: bundle://62.0:1/templates/text/html/index.st
+2015-03-30 16:35:02,838 DEBUG [i.s.s.c.stringtemplate.STGroupBundleDir      ] - found resource in skysail.server.converter [0.1.0.201503301411]: bundle://62.0:1/templates/text/html/select2JsHead.stg
+2015-03-30 16:35:02,839 DEBUG [i.s.s.c.stringtemplate.STGroupBundleDir      ] - found resource in skysail.server.converter [0.1.0.201503301411]: bundle://62.0:1/templates/text/html/endOfHeaderJS.stg
+2015-03-30 16:35:02,840 DEBUG [i.s.s.c.stringtemplate.STGroupBundleDir      ] - found resource in skysail.server.converter [0.1.0.201503301411]: bundle://62.0:1/templates/text/html/dropdownFrontendsNav.stg
+2015-03-30 16:35:02,841 DEBUG [i.s.s.c.stringtemplate.STGroupBundleDir      ] - found resource in skysail.server.converter [0.1.0.201503301411]: bundle://62.0:1/templates/text/html/dropdownApplicationsNav.stg
+2015-03-30 16:35:02,844 DEBUG [i.s.s.c.stringtemplate.STGroupBundleDir      ] - found resource in skysail.server.converter [0.1.0.201503301411]: bundle://62.0:1/templates/text/html/dropdownAdminNav.stg
+2015-03-30 16:35:02,849 DEBUG [i.s.s.c.stringtemplate.STGroupBundleDir      ] - found resource in skysail.server.converter [0.1.0.201503301411]: bundle://62.0:1/templates/text/html/breadcrumb.stg
+2015-03-30 16:35:02,851 DEBUG [i.s.s.c.stringtemplate.STGroupBundleDir      ] - found resource in skysail.server.converter [0.1.0.201503301411]: bundle://62.0:1/templates/text/html/appNavTitle.stg
+2015-03-30 16:35:02,853 DEBUG [i.s.s.c.stringtemplate.STGroupBundleDir      ] - found resource in skysail.server.converter [0.1.0.201503301411]: bundle://62.0:1/templates/text/html/menuNav.stg
+2015-03-30 16:35:02,856 DEBUG [i.s.s.c.stringtemplate.STGroupBundleDir      ] - found resource in skysail.server.converter [0.1.0.201503301411]: bundle://62.0:1/templates/text/html/mainContent.stg
+2015-03-30 16:35:02,857 DEBUG [i.s.s.c.stringtemplate.STGroupBundleDir      ] - found resource in skysail.server.converter [0.1.0.201503301411]: bundle://62.0:1/templates/text/html/appNav.stg
+2015-03-30 16:35:02,860 DEBUG [i.s.s.c.stringtemplate.STGroupBundleDir      ] - found resource in skysail.server.converter [0.1.0.201503301411]: bundle://62.0:1/templates/text/html/contentHeader.st
+2015-03-30 16:35:02,861 DEBUG [i.s.s.c.stringtemplate.STGroupBundleDir      ] - found resource in skysail.server.converter [0.1.0.201503301411]: bundle://62.0:1/templates/text/html/renderTable.stg
+2015-03-30 16:35:02,863 DEBUG [i.s.s.c.stringtemplate.STGroupBundleDir      ] - found resource in skysail.server.converter [0.1.0.201503301411]: bundle://62.0:1/templates/text/html/notifications.stg
+2015-03-30 16:35:02,864 DEBUG [i.s.s.c.stringtemplate.STGroupBundleDir      ] - found resource in skysail.server.converter [0.1.0.201503301411]: bundle://62.0:1/templates/text/html/select2JsEndOfBody.stg
+2015-03-30 16:35:02,865 INFO  [LogService                                   ] - 2015-03-30	16:35:02	127.0.0.1	admin	-	2015	GET	/	-	200	7589	0	36	http://localhost:2015	Restlet-Framework/2.3.1	-
+2015-03-30 16:35:02,866 INFO  [io.skysail.client.testsupport.Client         ] - url set to 'http://localhost:2015/AppDesigner'
+2015-03-30 16:35:02,866 INFO  [org.restlet                                  ] - Starting the internal HTTP client
+2015-03-30 16:35:02,868 DEBUG [LogService                                   ] - Processing request to: "http://localhost:2015/AppDesigner"
+2015-03-30 16:35:02,869 DEBUG [o.a.s.web.mgt.CookieRememberMeManager        ] - SubjectContext argument is not an HTTP-aware instance.  This is required to obtain a servlet request and response in order to retrieve the rememberMe cookie. Returning immediately and ignoring rememberMe operation.
+2015-03-30 16:35:02,869 INFO  [i.s.s.u.s.a.SimpleDelegatingVerifier         ] - login event for user 'admin'
+2015-03-30 16:35:02,869 DEBUG [o.apache.shiro.realm.AuthenticatingRealm     ] - Using cached authentication info [io.skysail.server.um.simple.authentication.SkysailAuthenticationInfo@370d07d4] to perform credentials matching.
+2015-03-30 16:35:02,869 INFO  [i.s.s.u.s.a.SkysailHashedCredentialsMatcher  ] - checking cache for entry $2a$12$mBXqefcONxAauLZc6EDJhO8g7oLM1jhEBQCspfyEHr57Xz9b6oiDO
+2015-03-30 16:35:02,870 INFO  [i.s.s.u.s.a.SkysailHashedCredentialsMatcher  ] - found entry in credentials hash cache, updating timestamp
+2015-03-30 16:35:02,870 DEBUG [o.a.shiro.authc.AbstractAuthenticator        ] - Authentication successful for token [org.apache.shiro.authc.UsernamePasswordToken - admin, rememberMe=false].  Returned account [io.skysail.server.um.simple.authentication.SkysailAuthenticationInfo@370d07d4]
+2015-03-30 16:35:02,870 DEBUG [o.a.s.s.support.DefaultSubjectContext        ] - No SecurityManager available in subject context map.  Falling back to SecurityUtils.getSecurityManager() lookup.
+2015-03-30 16:35:02,870 DEBUG [o.a.s.s.support.DefaultSubjectContext        ] - No SecurityManager available in subject context map.  Falling back to SecurityUtils.getSecurityManager() lookup.
+2015-03-30 16:35:02,870 DEBUG [o.a.shiro.mgt.AbstractRememberMeManager      ] - AuthenticationToken did not indicate RememberMe is requested.  RememberMe functionality will not be executed for corresponding account.
+2015-03-30 16:35:02,870 INFO  [i.s.s.u.s.a.SimpleDelegatingVerifier         ] - login event for user 'admin' successful
+2015-03-30 16:35:02,870 DEBUG [o.r.S.SkysailRootApplication                 ] - Authentication succeeded. Valid credentials provided for identifier: admin.
+2015-03-30 16:35:02,870 DEBUG [o.r.S.SkysailRootApplication                 ] - The authentication succeeded for the identifer "admin" using the HTTP_Cookie scheme.
+2015-03-30 16:35:02,870 DEBUG [o.r.S.SkysailRootApplication                 ] - Selected route: "" -> de.twenty11.skysail.server.security.AuthenticatedAuthorizer@717175d1
+2015-03-30 16:35:02,871 DEBUG [o.r.S.SkysailRootApplication                 ] - Score of annotation "MethodAnnotationInfo [javaMethod: public final java.util.List de.twenty11.skysail.server.core.restlet.ListServerResource.getEntities(org.restlet.representation.Variant), javaClass: class io.skysail.server.app.designer.application.resources.ApplicationsResource, restletMethod: GET, input: html|json|yaml|xml, value: html|json|yaml|xml, output: html|json|yaml|xml, query: null]"= 0.5
+2015-03-30 16:35:02,871 DEBUG [o.r.S.SkysailRootApplication                 ] - Total score of variant "[text/html]"= 0.16666667
+2015-03-30 16:35:02,871 DEBUG [o.r.S.SkysailRootApplication                 ] - Score of annotation "MethodAnnotationInfo [javaMethod: public final java.util.List de.twenty11.skysail.server.core.restlet.ListServerResource.getEntities(org.restlet.representation.Variant), javaClass: class io.skysail.server.app.designer.application.resources.ApplicationsResource, restletMethod: GET, input: html|json|yaml|xml, value: html|json|yaml|xml, output: html|json|yaml|xml, query: null]"= 0.5
+2015-03-30 16:35:02,871 DEBUG [o.r.S.SkysailRootApplication                 ] - Total score of variant "[application/json]"= 0.04191667
+2015-03-30 16:35:02,871 DEBUG [o.r.S.SkysailRootApplication                 ] - Score of annotation "MethodAnnotationInfo [javaMethod: public final java.util.List de.twenty11.skysail.server.core.restlet.ListServerResource.getEntities(org.restlet.representation.Variant), javaClass: class io.skysail.server.app.designer.application.resources.ApplicationsResource, restletMethod: GET, input: html|json|yaml|xml, value: html|json|yaml|xml, output: html|json|yaml|xml, query: null]"= 0.5
+2015-03-30 16:35:02,871 DEBUG [o.r.S.SkysailRootApplication                 ] - Total score of variant "[application/x-yaml]"= 0.04191667
+2015-03-30 16:35:02,871 DEBUG [o.r.S.SkysailRootApplication                 ] - Score of annotation "MethodAnnotationInfo [javaMethod: public final java.util.List de.twenty11.skysail.server.core.restlet.ListServerResource.getEntities(org.restlet.representation.Variant), javaClass: class io.skysail.server.app.designer.application.resources.ApplicationsResource, restletMethod: GET, input: html|json|yaml|xml, value: html|json|yaml|xml, output: html|json|yaml|xml, query: null]"= 0.5
+2015-03-30 16:35:02,871 DEBUG [o.r.S.SkysailRootApplication                 ] - Total score of variant "[text/x-yaml]"= 0.042416666
+2015-03-30 16:35:02,871 DEBUG [o.r.S.SkysailRootApplication                 ] - Score of annotation "MethodAnnotationInfo [javaMethod: public final java.util.List de.twenty11.skysail.server.core.restlet.ListServerResource.getEntities(org.restlet.representation.Variant), javaClass: class io.skysail.server.app.designer.application.resources.ApplicationsResource, restletMethod: GET, input: html|json|yaml|xml, value: html|json|yaml|xml, output: html|json|yaml|xml, query: null]"= 0.5
+2015-03-30 16:35:02,871 DEBUG [o.r.S.SkysailRootApplication                 ] - Total score of variant "[text/xml]"= 0.042416666
+2015-03-30 16:35:02,871 DEBUG [o.r.S.SkysailRootApplication                 ] - Score of annotation "MethodAnnotationInfo [javaMethod: public final java.util.List de.twenty11.skysail.server.core.restlet.ListServerResource.getEntities(org.restlet.representation.Variant), javaClass: class io.skysail.server.app.designer.application.resources.ApplicationsResource, restletMethod: GET, input: html|json|yaml|xml, value: html|json|yaml|xml, output: html|json|yaml|xml, query: null]"= 0.5
+2015-03-30 16:35:02,871 DEBUG [o.r.S.SkysailRootApplication                 ] - Total score of variant "[application/xml]"= 0.04191667
+2015-03-30 16:35:02,871 INFO  [d.t.s.s.core.restlet.ListServerResource      ] - Request entry point: ApplicationsResource @Get('html|csv|treeform') with variant [text/html]
+2015-03-30 16:35:02,871 DEBUG [d.t.s.s.c.r.f.ExceptionCatchingFilter        ] - entering ExceptionCatchingFilter#doHandle
+2015-03-30 16:35:02,871 DEBUG [d.t.s.s.c.r.f.AbstractResourceFilter         ] - next filter in chain: AddApiVersionHeader
+2015-03-30 16:35:02,871 DEBUG [d.t.s.s.c.r.f.AbstractResourceFilter         ] - next filter in chain: GetRequestPreFilterHook
+2015-03-30 16:35:02,871 DEBUG [d.t.s.s.c.r.f.AbstractResourceFilter         ] - next filter in chain: AddRequestIdToResourceFilter
+2015-03-30 16:35:02,871 DEBUG [d.t.s.s.c.r.f.AbstractResourceFilter         ] - next filter in chain: DataExtractingFilter
+2015-03-30 16:35:02,872 DEBUG [d.t.s.s.c.r.filter.DataExtractingFilter      ] - entering DataExtractingFilter#doHandle
+2015-03-30 16:35:02,905 DEBUG [d.t.s.s.c.r.f.AbstractResourceFilter         ] - next filter in chain: AddLinkheadersFilter
+2015-03-30 16:35:02,906 DEBUG [d.t.s.s.c.r.f.AbstractResourceFilter         ] - next filter in chain: CheckFavoritesFilter
+2015-03-30 16:35:02,906 DEBUG [d.t.s.s.c.r.f.AbstractResourceFilter         ] - next filter in chain: SetExecutionTimeInResponseFilter
+2015-03-30 16:35:02,906 DEBUG [d.t.s.s.c.r.f.AbstractResourceFilter         ] - next filter in chain: RedirectFilter
+2015-03-30 16:35:02,906 INFO  [i.skysail.server.converter.HtmlConverter     ] - converter 'HtmlConverter' matched '{text/html=0.95, treeform/*=1.0}' with threshold 0.95
+2015-03-30 16:35:02,906 DEBUG [o.r.S.SkysailRootApplication                 ] - Converter selected for ArrayList: HtmlConverter
+2015-03-30 16:35:02,906 INFO  [d.t.skysail.server.app.SourceWrapper         ] - using converter 'ListSourceHtmlConverter' for ArrayList-Source: [Application(id=#12:0, name=app1)]
+2015-03-30 16:35:02,949 INFO  [i.s.s.c.impl.StringTemplateRenderer          ] - reading templates from resource path '/templates/text/html'
+2015-03-30 16:35:02,950 DEBUG [i.s.s.c.stringtemplate.STGroupBundleDir      ] - found resource in skysail.server.converter [0.1.0.201503301411]: bundle://62.0:1/templates/text/html/index.st
+2015-03-30 16:35:02,958 DEBUG [i.s.s.c.stringtemplate.STGroupBundleDir      ] - found resource in skysail.server.converter [0.1.0.201503301411]: bundle://62.0:1/templates/text/html/select2JsHead.stg
+2015-03-30 16:35:02,960 DEBUG [i.s.s.c.stringtemplate.STGroupBundleDir      ] - found resource in skysail.server.converter [0.1.0.201503301411]: bundle://62.0:1/templates/text/html/endOfHeaderJS.stg
+2015-03-30 16:35:02,961 DEBUG [i.s.s.c.stringtemplate.STGroupBundleDir      ] - found resource in skysail.server.converter [0.1.0.201503301411]: bundle://62.0:1/templates/text/html/dropdownFrontendsNav.stg
+2015-03-30 16:35:02,963 DEBUG [i.s.s.c.stringtemplate.STGroupBundleDir      ] - found resource in skysail.server.converter [0.1.0.201503301411]: bundle://62.0:1/templates/text/html/dropdownApplicationsNav.stg
+2015-03-30 16:35:02,966 DEBUG [i.s.s.c.stringtemplate.STGroupBundleDir      ] - found resource in skysail.server.converter [0.1.0.201503301411]: bundle://62.0:1/templates/text/html/dropdownAdminNav.stg
+2015-03-30 16:35:02,973 DEBUG [i.s.s.c.stringtemplate.STGroupBundleDir      ] - found resource in skysail.server.converter [0.1.0.201503301411]: bundle://62.0:1/templates/text/html/breadcrumb.stg
+2015-03-30 16:35:02,977 DEBUG [i.s.s.c.stringtemplate.STGroupBundleDir      ] - found resource in skysail.server.converter [0.1.0.201503301411]: bundle://62.0:1/templates/text/html/appNavTitle.stg
+2015-03-30 16:35:02,978 DEBUG [i.s.s.c.stringtemplate.STGroupBundleDir      ] - found resource in skysail.server.converter [0.1.0.201503301411]: bundle://62.0:1/templates/text/html/menuNav.stg
+2015-03-30 16:35:02,982 DEBUG [i.s.s.c.stringtemplate.STGroupBundleDir      ] - found resource in skysail.server.converter [0.1.0.201503301411]: bundle://62.0:1/templates/text/html/mainContent.stg
+2015-03-30 16:35:02,983 DEBUG [i.s.s.c.stringtemplate.STGroupBundleDir      ] - found resource in skysail.server.converter [0.1.0.201503301411]: bundle://62.0:1/templates/text/html/appNav.stg
+2015-03-30 16:35:02,987 DEBUG [i.s.s.c.stringtemplate.STGroupBundleDir      ] - found resource in skysail.server.converter [0.1.0.201503301411]: bundle://62.0:1/templates/text/html/contentHeader.st
+2015-03-30 16:35:02,989 DEBUG [i.s.s.c.stringtemplate.STGroupBundleDir      ] - found resource in skysail.server.converter [0.1.0.201503301411]: bundle://62.0:1/templates/text/html/renderTable.stg
+2015-03-30 16:35:02,992 DEBUG [i.s.s.c.stringtemplate.STGroupBundleDir      ] - found resource in skysail.server.converter [0.1.0.201503301411]: bundle://62.0:1/templates/text/html/notifications.stg
+2015-03-30 16:35:02,994 DEBUG [i.s.s.c.stringtemplate.STGroupBundleDir      ] - found resource in skysail.server.converter [0.1.0.201503301411]: bundle://62.0:1/templates/text/html/select2JsEndOfBody.stg
+2015-03-30 16:35:02,996 INFO  [LogService                                   ] - 2015-03-30	16:35:02	127.0.0.1	admin	-	2015	GET	/AppDesigner	-	200	8015	0	128	http://localhost:2015	Restlet-Framework/2.3.1	-

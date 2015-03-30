@@ -99,7 +99,6 @@ public class InMemoryDbService implements DbService2 {
 
     @Override
     public void delete(Class<?> cls, String id) {
-        // TODO Auto-generated method stub
 
     }
 

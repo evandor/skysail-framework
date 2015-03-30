@@ -14,12 +14,8 @@ public class MessagesResource extends ListServerResource<BundleMessages> {
 
     @Override
     public List<BundleMessages> getEntity() {
-        // TODO Auto-generated method stub
         return null;
     }
 
-    // @Override
-    // public List<BundleMessages> getData() {
-    // return app.getBundleMessages(new Locale("en"));
-    // }
+    
 }

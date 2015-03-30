@@ -24,7 +24,6 @@ public class PasswordDetails {
 	}
 
 	public PasswordDetails() {
-		// TODO Auto-generated constructor stub
 	}
 
 	public String getOldPassword() {

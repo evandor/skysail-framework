@@ -8,6 +8,7 @@ import io.skysail.server.app.todos.todos.resources.TodosResource;
 
 import java.util.List;
 
+import org.restlet.data.Reference;
 import org.restlet.resource.ResourceException;
 
 import de.twenty11.skysail.server.core.restlet.EntityServerResource;
@@ -19,7 +20,7 @@ public class ListResource extends EntityServerResource<TodoList> {
 
     @Override
     protected void doInit() throws ResourceException {
-        listId = getAttribute(TodoApplication.LIST_ID);
+        listId = Reference.decode(getAttribute(TodoApplication.LIST_ID));
         app = (TodoApplication)getApplication();
     }
     

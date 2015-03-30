@@ -2,12 +2,11 @@ package io.skysail.server.app.todos.test;
 
 import static org.hamcrest.CoreMatchers.containsString;
 import static org.junit.Assert.assertThat;
-import lombok.extern.slf4j.Slf4j;
 import io.skysail.client.testsupport.Client;
 import io.skysail.server.app.todos.TodoList;
+import lombok.extern.slf4j.Slf4j;
 
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TestRule;

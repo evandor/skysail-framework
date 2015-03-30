@@ -9,7 +9,6 @@ import lombok.extern.slf4j.Slf4j;
 
 import org.apache.commons.beanutils.BeanUtils;
 
-import com.orientechnologies.orient.core.id.ORecordId;
 import com.tinkerpop.blueprints.Vertex;
 import com.tinkerpop.blueprints.impls.orient.OrientGraph;
 import com.tinkerpop.blueprints.impls.orient.OrientVertex;
@@ -45,8 +44,7 @@ public class Persister {
                     }
                 }
             });
-            ORecordId id = (ORecordId) vertex.getId();
-            return id.toString();
+            return vertex;
         } catch (Exception e) {
             log.error(e.getMessage(), e);
             return null;
@@ -73,9 +71,9 @@ public class Persister {
      */
     protected <T> Object runInTransaction(Object entity) {
         try {
-            Object result = execute(entity);
+            Vertex result = (Vertex)execute(entity);
             db.commit();
-            return result;
+            return result.getId();
         } catch (Exception e) {
             db.rollback();
             log.error("Exception in Database, rolled back transaction", e);

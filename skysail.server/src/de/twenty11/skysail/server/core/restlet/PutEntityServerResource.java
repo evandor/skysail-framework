@@ -21,8 +21,6 @@ import org.restlet.representation.Variant;
 import org.restlet.resource.Get;
 import org.restlet.resource.Put;
 import org.restlet.resource.ResourceException;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import de.twenty11.skysail.server.core.restlet.filter.AbstractResourceFilter;
 import etm.core.monitor.EtmPoint;
@@ -49,6 +47,7 @@ import etm.core.monitor.EtmPoint;
  *     ...
  *     
  *     protected void doInit() throws ResourceException {
+ *       super.doInit();
  *       id = getAttribute("id");
  *       app = (MyApplication) getApplication();
  *     }
@@ -70,7 +69,6 @@ import etm.core.monitor.EtmPoint;
 @Slf4j
 public abstract class PutEntityServerResource<T> extends SkysailServerResource<T> {
 
-    private static final Logger logger = LoggerFactory.getLogger(PutEntityServerResource.class);
     private String identifierName;
     private String identifier;
 
@@ -87,10 +85,10 @@ public abstract class PutEntityServerResource<T> extends SkysailServerResource<T
      * If you have a route defined as "/repository/{key}", you can get the key
      * like this: key = (String) getRequest().getAttributes().get("key");
      * 
-     * To get hold on any parameters passed, consider using this pattern:
-     * 
-     * Form form = new Form(getRequest().getEntity()); action =
-     * form.getFirstValue("action");
+     * <p>To get hold on any parameters passed, consider using this pattern:</p>
+     *
+     * <p>Form form = new Form(getRequest().getEntity()); action =
+     * form.getFirstValue("action");</p>
      * 
      */
     @Override
@@ -137,29 +135,34 @@ public abstract class PutEntityServerResource<T> extends SkysailServerResource<T
     @Get("htmlform|html")
     @API(desc = "create an html form with the current entity to be updated")
     public SkysailResponse<T> createForm(Variant variant) {
-        logger.info("Request entry point: {} @Get('htmlform|html') createForm with variant {}",
+        EtmPoint point = etmMonitor.createPoint("PutEntityServerResource:createForm");
+        log.info("Request entry point: {} @Get('htmlform|html') createForm with variant {}",
                 PutEntityServerResource.class.getSimpleName(), variant);
-        return new FormResponse<T>(getEntity(), identifier, ".", redirectBackTo());
+        
+        RequestHandler<T> requestHandler = new RequestHandler<T>(getApplication());
+        AbstractResourceFilter<PutEntityServerResource<T>, T> chain = requestHandler.createForFormResponse();
+        ResponseWrapper<T> wrapper = chain.handle(this, getResponse());
+        
+        point.collect();
+        return new FormResponse<T>(wrapper.getEntity(), identifier, ".", redirectBackTo());
     }
 
     protected String redirectBackTo() {
         return null;
     }
 
-    /**
-     * getJson.
-     * 
-     * @return json
-     */
-    @Get("json")
-    @API(desc = "no implementation")
-    public T getJson() {
-        logger.info("Request entry point: {} @Get('json')", this.getClass().getSimpleName());
-        RequestHandler<T> requestHandler = new RequestHandler<T>(getApplication());
-        // AbstractResourceFilter<PutEntityServerResource<T>, T> handler =
-        // requestHandler.newInstance(Method.GET);
-        return null;// handler.handle(this, getResponse()).getEntity();
-    }
+//    /**
+//     * getJson.
+//     * 
+//     * @return json
+//     */
+//    @Get("json")
+//    @API(desc = "no implementation")
+//    public T getJson() {
+//        logger.info("Request entry point: {} @Get('json')", this.getClass().getSimpleName());
+//        RequestHandler<T> requestHandler = new RequestHandler<T>(getApplication());
+//        return null;
+//    }
 
     /**
      * put.
@@ -171,7 +174,7 @@ public abstract class PutEntityServerResource<T> extends SkysailServerResource<T
     @API(desc = "generic PUT for JSON")
     public Object putEntity(T entity) {
         EtmPoint point = etmMonitor.createPoint("PutEntityServerResource:putEntity");
-        logger.info("Request entry point: {} @Put('json')", this.getClass().getSimpleName());
+        log.info("Request entry point: {} @Put('json')", this.getClass().getSimpleName());
         getRequest().getAttributes().put(SKYSAIL_SERVER_RESTLET_ENTITY, entity);
         Object put = put((Form) null);
         point.collect();
@@ -182,7 +185,7 @@ public abstract class PutEntityServerResource<T> extends SkysailServerResource<T
     @API(desc = "generic PUT for x-www-form-urlencoded")
     public Object put(Form form) {
         EtmPoint point = etmMonitor.createPoint("PutEntityServerResource:put");
-        logger.info("Request entry point: {} @Put('x-www-form-urlencoded:html|json')", this.getClass().getSimpleName());
+        log.info("Request entry point: {} @Put('x-www-form-urlencoded:html|json')", this.getClass().getSimpleName());
         if (form != null) {
             getRequest().getAttributes().put(SKYSAIL_SERVER_RESTLET_FORM, form);
         }
@@ -201,14 +204,15 @@ public abstract class PutEntityServerResource<T> extends SkysailServerResource<T
         return LinkRelation.CREATE_FORM;
     }
 
-    protected Set<ConstraintViolation<T>> validate(@SuppressWarnings("unused") T entity) {
+    protected Set<ConstraintViolation<T>> validate(T entity) {
         throw new UnsupportedOperationException();
     }
 
     @Override
     public List<Link> getLinkheader() {
-        return Arrays.asList(new Link.Builder(".").relation(LinkRelation.NEXT).title("form target")
-                .verbs(Method.POST).build());
+        return Arrays.asList(//
+                new Link.Builder(".").relation(LinkRelation.NEXT).title("form target").verbs(Method.POST).build(),//
+                new Link.Builder(".").title("delete").verbs(Method.DELETE).build());
     }
 
 }

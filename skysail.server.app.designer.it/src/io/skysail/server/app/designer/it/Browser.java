@@ -18,8 +18,12 @@ public class Browser {
     private Client client;
     
     public Browser(String url) {
-    	log.info("{}creating new browser client with url '{}' and mediaType '{}'", Client.TESTTAG, url, MediaType.TEXT_HTML);
-        client = new Client(url, MediaType.TEXT_HTML);
+        this(url, MediaType.TEXT_HTML);
+    }
+    
+    public Browser(String url, MediaType mediaType) {
+        log.info("{}creating new browser client with url '{}' and mediaType '{}'", Client.TESTTAG, url, MediaType.TEXT_HTML);
+        client = new Client(url, mediaType);
     }
     
     public Browser asUser(String username) {
@@ -74,8 +78,7 @@ public class Browser {
     }
 
     public void deleteApplication(String id) {
-        client.gotoRoot();
-        client.followLinkTitle(DesignerApplication.APP_NAME);
+        client.gotoRoot().followLinkTitle(DesignerApplication.APP_NAME).followLinkTitle("update");
         
     }
 

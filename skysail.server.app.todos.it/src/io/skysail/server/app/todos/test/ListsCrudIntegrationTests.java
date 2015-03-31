@@ -1,6 +1,7 @@
 package io.skysail.server.app.todos.test;
 
 import static org.hamcrest.CoreMatchers.containsString;
+import static org.hamcrest.CoreMatchers.not;
 import static org.junit.Assert.assertThat;
 import io.skysail.client.testsupport.Client;
 import io.skysail.server.app.todos.TodoList;
@@ -13,6 +14,7 @@ import org.junit.rules.TestRule;
 import org.junit.rules.TestWatcher;
 import org.junit.runner.Description;
 import org.restlet.data.Reference;
+import org.restlet.representation.Representation;
 
 /**
  * Integration tests for creating, reading, updating, and deleting TodoLists.
@@ -44,6 +46,15 @@ public class ListsCrudIntegrationTests extends IntegrationTests {
         browser.asUser("admin").createTodoList(new TodoList("crudlist1"));
         String html = browser.asUser("admin").getTodoLists().getText();
         assertThat(html, containsString("crudlist1"));
+    }
+    
+    @Test
+    public void new_todolist_can_be_deleted_by_owner() throws Exception {
+        Reference location = browser.asUser("admin").createTodoList(new TodoList("crudlist2"));
+        String id = location.getLastSegment();
+        browser.asUser("admin").deleteTodoList(id);
+        Representation html = browser.asUser("admin").getTodoLists();
+        assertThat(html.getText(), not(containsString("crudlist2")));
     }
 
     @Test

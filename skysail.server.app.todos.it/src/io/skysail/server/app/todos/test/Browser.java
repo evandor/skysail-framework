@@ -16,20 +16,25 @@ import org.restlet.representation.Representation;
 public class Browser {
 
     private Client client;
-    
+
     public Browser(String url) {
-    	log.info("{}creating new browser client with url '{}' and mediaType '{}'", Client.TESTTAG, url, MediaType.TEXT_HTML);
+        log.info("{}creating new browser client with url '{}' and mediaType '{}'", Client.TESTTAG, url,
+                MediaType.TEXT_HTML);
         client = new Client(url, MediaType.TEXT_HTML);
     }
-    
+
     public Browser asUser(String username) {
-    	log.info("{}logging in as user '{}'", Client.TESTTAG, username);
-		client.loginAs(username, "skysail");
-		return this;
-	}
-    
+        log.info("{}logging in as user '{}'", Client.TESTTAG, username);
+        client.loginAs(username, "skysail");
+        return this;
+    }
+
+    public Status getStatus() {
+        return client.getResponse().getStatus();
+    }
+
     public Representation getTodoLists() {
-    	log.info("{}retrieving TodoLists", Client.TESTTAG);
+        log.info("{}retrieving TodoLists", Client.TESTTAG);
         getTodoLists(client);
         return client.getCurrentRepresentation();
     }
@@ -38,6 +43,12 @@ public class Browser {
         log.info("{}retrieving TodoList #{}", Client.TESTTAG, id);
         getTodoList(client, id);
         return client.getCurrentRepresentation();
+    }
+
+    public void deleteTodoList(String id) {
+        log.info("{}deleting TodoList #{}", Client.TESTTAG, id);
+        deleteTodoList(client, id);
+        // return client.getCurrentRepresentation();
     }
 
     protected Reference createTodoList(TodoList todoList) {
@@ -53,27 +64,25 @@ public class Browser {
     }
 
     private void getTodoLists(Client client) {
-    	client.gotoRoot();
+        client.gotoRoot();
         client.followLinkTitle(TodoApplication.APP_NAME);
     }
-    
+
     private void getTodoList(Client client, String id) {
         client.gotoRoot();
         client.followLinkTitle(TodoApplication.APP_NAME);
     }
 
     private void navigateToPostTodoListAs(Client client) {
-    	client.gotoRoot();
-        client.followLinkTitle(TodoApplication.APP_NAME)
-                .followLinkRelation(LinkRelation.CREATE_FORM);
+        client.gotoRoot();
+        client.followLinkTitle(TodoApplication.APP_NAME).followLinkRelation(LinkRelation.CREATE_FORM);
     }
 
+    private void deleteTodoList(Client client, String id) {
+        client.gotoRoot() //
+            .followLinkTitle(TodoApplication.APP_NAME)//
+            .followLinkTitle("update");
 
-    public Status getStatus() {
-        return client.getResponse().getStatus();
     }
-
-
-	
 
 }

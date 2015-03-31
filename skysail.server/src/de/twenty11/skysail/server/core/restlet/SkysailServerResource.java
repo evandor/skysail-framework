@@ -151,6 +151,14 @@ public abstract class SkysailServerResource<T> extends ServerResource {
         return entityType.getName();
     }
 
+    public String getAttribute(String name) {
+        String attribute = super.getAttribute(name);
+        if (attribute != null) {
+            return Reference.decode(attribute);
+        }
+        return null;
+    }
+    
     /**
      * @return the type of relation this resource represents, e.g. LIST, ITEM,
      *         ...
@@ -303,7 +311,7 @@ public abstract class SkysailServerResource<T> extends ServerResource {
             href = href.replaceFirst(StringParserUtils.placeholderPattern.toString(), id);
         }
 
-        result.add(new Link.Builder(href).relation(LinkRelation.ITEM).title("item " + id == null ? "unknown" : id)
+        result.add(new Link.Builder(href).relation(LinkRelation.ITEM).title(link.getTitle())
                 .role(LinkRole.LIST_VIEW).refId(id).build());
 
     }

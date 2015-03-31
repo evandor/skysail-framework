@@ -139,13 +139,12 @@ public class OrientGraphDbService extends AbstractOrientDbService implements DbS
         List<ODocument> query = objectDb.query(new OSQLSynchQuery<ODocument>(sql), params);
         return query.get(0).field("count");
     }
-    
+
     @Override
     public void executeUpdate(String sql, Map<String, Object> params) {
         OObjectDatabaseTx objectDb = getObjectDb();
         objectDb.command(new OCommandSQL(sql)).execute(params);
     }
-
 
     // @Override
     public <T> List<T> findAll(Class<T> entityClass, Class<?>... linkedClasses) {
@@ -231,13 +230,16 @@ public class OrientGraphDbService extends AbstractOrientDbService implements DbS
     @Override
     public void setupVertices(String... vertices) {
         OObjectDatabaseTx objectDb = getObjectDb();
-        Arrays.stream(vertices).forEach(v -> {
-            if (objectDb.getMetadata().getSchema().getClass(v) == null) {
-                OClass vertexClass = objectDb.getMetadata().getSchema().getClass("V");
-                objectDb.getMetadata().getSchema().createClass(v).setSuperClass(vertexClass);
-            }
-
-        });
+        try {
+            Arrays.stream(vertices).forEach(v -> {
+                if (objectDb.getMetadata().getSchema().getClass(v) == null) {
+                    OClass vertexClass = objectDb.getMetadata().getSchema().getClass("V");
+                    objectDb.getMetadata().getSchema().createClass(v).setSuperClass(vertexClass);
+                }
+            });
+        } catch (Exception e) {
+            log.error(e.getMessage(), e);
+        }
     }
 
     @Override
@@ -278,6 +280,5 @@ public class OrientGraphDbService extends AbstractOrientDbService implements DbS
             cls.createProperty(iPropertyName, type);
         }
     }
-
 
 }

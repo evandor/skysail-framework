@@ -68,6 +68,15 @@ public class RequestHandler<T> {
 
         throw new RuntimeException("Method " + method + " is not yet supported");
     }
+    
+    public  AbstractResourceFilter<PutEntityServerResource<T>, T> createForFormResponse() {
+        return new ExceptionCatchingFilter<PutEntityServerResource<T>, T>()
+                .calling(new AddApiVersionHeader<PutEntityServerResource<T>, T>())
+                .calling(new GetRequestPreFilterHook<PutEntityServerResource<T>, T>(application))
+                .calling(new AddRequestIdToResourceFilter<PutEntityServerResource<T>, T>())
+                .calling(new DataExtractingFilter<PutEntityServerResource<T>, T>())
+                .calling(new AddLinkheadersFilter<PutEntityServerResource<T>, T>());
+    }
 
     /**
      * for now, always return new objects

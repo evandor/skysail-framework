@@ -174,6 +174,9 @@ public class Link {
         case "title":
             builder.title(keyValue[1].replace("\"", ""));
             break;
+        case "refId":
+            builder.refId(keyValue[1].replace("\"", ""));
+            break;
         case "verbs":
             builder.verbs(parseVerbs(keyValue[1].replace("\"", "")));
             break;
@@ -202,6 +205,9 @@ public class Link {
         }
         if (getTitle() != null) {
             sb.append("; title=\"").append(getTitle()).append("\"");
+        }
+        if (getRefId() != null) {
+            sb.append("; refId=\"").append(getRefId()).append("\"");
         }
         sb.append("; verbs=\"")
                 .append(getVerbs().stream().map(verb -> verb.getName()).collect(Collectors.joining(","))).append("\"");

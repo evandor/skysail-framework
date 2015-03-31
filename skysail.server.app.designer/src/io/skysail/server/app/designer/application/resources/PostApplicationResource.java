@@ -29,7 +29,8 @@ public class PostApplicationResource extends PostEntityServerResource<Applicatio
 
     @Override
     public SkysailResponse<?> addEntity(Application entity) {
-        app.getRepository().add(entity);
+        String id = app.getRepository().add(entity).toString();
+        entity.setId(id);
         return new SkysailResponse<String>();
     }
 

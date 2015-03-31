@@ -61,9 +61,10 @@ public class Client {
         return cr.get(mediaType);
     }
     
-    public void gotoRoot() {
+    public Client gotoRoot() {
     	url = "/";
     	get();
+    	return this;
 	}
 
     public Representation post(Object entity) {

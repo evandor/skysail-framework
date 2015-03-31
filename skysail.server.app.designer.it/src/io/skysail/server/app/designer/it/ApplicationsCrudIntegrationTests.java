@@ -14,6 +14,7 @@ import org.junit.rules.TestRule;
 import org.junit.rules.TestWatcher;
 import org.junit.runner.Description;
 import org.restlet.data.Reference;
+import org.restlet.representation.Representation;
 
 /**
  * Integration tests for creating, reading, updating, and deleting TodoLists.
@@ -43,8 +44,8 @@ public class ApplicationsCrudIntegrationTests extends IntegrationTests {
     @Test
     public void creating_application_persists_new_application() throws Exception {
         browser.asUser("admin").createApplication(new Application("app1"));
-        String html = browser.asUser("admin").getApplications().getText();
-        assertThat(html, containsString("app1"));
+        Representation html = browser.asUser("admin").getApplications();
+        assertThat(html.getText(), containsString("app1"));
     }
     
     @Test
@@ -52,8 +53,8 @@ public class ApplicationsCrudIntegrationTests extends IntegrationTests {
         Reference location = browser.asUser("admin").createApplication(new Application("app2"));
         String id = location.getLastSegment();
         browser.asUser("admin").deleteApplication(id);
-        String html = browser.asUser("admin").getApplications().getText();
-        assertThat(html, not(containsString("app1")));
+        Representation html = browser.asUser("admin").getApplications();
+        assertThat(html.getText(), not(containsString("app2")));
     }
 
 }

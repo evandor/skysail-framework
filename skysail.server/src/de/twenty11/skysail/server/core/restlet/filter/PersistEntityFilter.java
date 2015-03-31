@@ -26,8 +26,10 @@ public class PersistEntityFilter<R extends SkysailServerResource<T>, T> extends 
         ((PostEntityServerResource<T>) resource).addEntity(entity);
         // TODO filter of its own?
         if (entity instanceof Identifiable) {
-            String id = ((Identifiable) entity).getId().replace("#","");
-            response.setLocationRef(response.getRequest().getResourceRef().addSegment(id));
+            String id = ((Identifiable) entity).getId();
+            if (id != null) {
+                response.setLocationRef(response.getRequest().getResourceRef().addSegment(id.replace("#","")));
+            }
         }
         super.doHandle(resource, responseWrapper);
         return FilterResult.CONTINUE;

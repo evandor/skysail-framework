@@ -5,8 +5,6 @@ import io.skysail.api.forms.ListView;
 import io.skysail.api.forms.PostView;
 import io.skysail.api.forms.Reference;
 import io.skysail.api.links.Link;
-import io.skysail.api.links.LinkRelation;
-import io.skysail.api.links.LinkRole;
 import io.skysail.api.responses.SkysailResponse;
 import io.skysail.server.converter.HtmlConverter;
 import io.skysail.server.converter.Notification;
@@ -76,7 +74,6 @@ public class StringTemplateRenderer {
         STGroupBundleDir stGroup = createSringTemplateGroup(resource, target.getMediaType().getName());
         ST index = getStringTemplateIndex(resource, stGroup);
 
-        // TODO too late here: want to have this on other representations (like json and the linkheader) too
         addAssociatedLinks(resource, sourceWrapper);
         addSubstitutions(sourceWrapper.getConvertedSource(), resource, index, target, menuProviders);
         checkForInspection(resource, index);
@@ -120,10 +117,10 @@ public class StringTemplateRenderer {
             return;
         }
         ListServerResource<?> listServerResource = (ListServerResource<?>) resource;
+        List<Link> links = listServerResource.getLinkheader();
         Class<? extends EntityServerResource<?>> entityResourceClass = listServerResource.getAssociatedEntityResource();
         if (entityResourceClass != null && sourceWrapper.getConvertedSource() instanceof List) {
             EntityServerResource<?> esr = ResourceUtils.createEntityServerResource(entityResourceClass, resource);
-            List<Link> linkheader = esr.getLinkheaderAuthorized();
 
             List<?> sourceAsList = (List<?>) sourceWrapper.getConvertedSource();
             for (Object object : sourceAsList) {
@@ -133,9 +130,11 @@ public class StringTemplateRenderer {
                 StringBuilder sb = new StringBuilder();
 
                 String id = guessId(object);
-                linkheader.stream().filter(lh -> {
-                    return lh.getRole().equals(LinkRole.DEFAULT);
-                }).forEach(link -> addLinkHeader(link, esr, id, listServerResource, sb));
+                if (id == null) {
+                    continue;
+                }
+                links.stream().filter(l -> id.equals(l.getRefId()))
+                        .forEach(link -> addLinkHeader(link, esr, id, sb));
                 ((Map<String, Object>) object).put("_links", sb.toString());
             }
         }
@@ -259,7 +258,7 @@ public class StringTemplateRenderer {
         }
     }
 
-    private void addLinkHeader(Link link, Resource entityResource, String id, ListServerResource<?> resource,
+    private void addLinkHeader(Link link, Resource entityResource, String id,
             StringBuilder sb) {
         String path = link.getUri();
         String href = StringParserUtils.substitutePlaceholders(path, entityResource);
@@ -272,10 +271,6 @@ public class StringTemplateRenderer {
 
         sb.append("<a class='btn btn-mini' href='").append(href).append("'>").append(link.getTitle())
                 .append("</a>&nbsp;");
-
-        resource.getLinkheader()
-                .add(new Link.Builder(href).relation(LinkRelation.ITEM).title("item " + id == null ? "unknown" : id).role(LinkRole.LIST_VIEW)
-                        .build());
 
     }
 

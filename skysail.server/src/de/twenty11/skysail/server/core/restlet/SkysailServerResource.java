@@ -30,7 +30,6 @@ import org.apache.commons.beanutils.ConvertUtilsBean;
 import org.apache.commons.beanutils.converters.DateConverter;
 import org.apache.commons.beanutils.converters.DateTimeConverter;
 import org.apache.shiro.SecurityUtils;
-import org.codehaus.jettison.json.JSONObject;
 import org.restlet.Application;
 import org.restlet.data.Form;
 import org.restlet.data.Reference;
@@ -40,6 +39,7 @@ import org.restlet.security.Role;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import de.twenty11.skysail.api.domain.Identifiable;
 import de.twenty11.skysail.server.app.SkysailApplication;
 import de.twenty11.skysail.server.core.FormField;
 import de.twenty11.skysail.server.core.restlet.filter.AbstractResourceFilter;
@@ -59,7 +59,7 @@ import etm.core.monitor.EtmMonitor;
  * SkysailServerResource#eraseEntity() if they support adding, updating and/or
  * deletion of the referenced resource. It is assumed that
  * SkysailServerResources will always support GET requests, which are dealt with
- * by the abstract method @link {@link SkysailServerResource#getEntity()}.
+ * by the abstract method @link {@link SkysailServerResource#setEntity()}.
  * </p>
  * 
  * <p>
@@ -81,8 +81,12 @@ public abstract class SkysailServerResource<T> extends ServerResource {
 
     protected static final EtmMonitor etmMonitor = EtmManager.getEtmMonitor();
 
-    /** the payload. */
-    private T skysailData;
+    /**
+     * the payload, set once it was retrieved from #getEntity()
+     */
+    @Setter
+    @Getter
+    private T currentEntity;
 
     private String desc;
 
@@ -132,8 +136,19 @@ public abstract class SkysailServerResource<T> extends ServerResource {
      */
     public abstract T getEntity();
 
-    public JSONObject getAsJson() {
-        return new JSONObject();
+    // TODO rename
+    /**
+     * xxx.
+     * 
+     * @return entity type as string
+     */
+    public String getEntityType() {
+        Class<?> entityType = (Class<?>) ((ParameterizedType) getClass().getGenericSuperclass())
+                .getActualTypeArguments()[0];
+        if (this instanceof ListServerResource) {
+            return "List of " + entityType.getName();
+        }
+        return entityType.getName();
     }
 
     /**
@@ -199,21 +214,6 @@ public abstract class SkysailServerResource<T> extends ServerResource {
         }
     }
 
-    // TODO rename
-    /**
-     * xxx.
-     * 
-     * @return entity type as string
-     */
-    public String getEntityType() {
-        Class<?> entityType = (Class<?>) ((ParameterizedType) getClass().getGenericSuperclass())
-                .getActualTypeArguments()[0];
-        if (this instanceof ListServerResource) {
-            return "List of " + entityType.getName();
-        }
-        return entityType.getName();
-    }
-
     public Class<?> getParameterType() {
         return (Class<?>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];
     }
@@ -264,51 +264,36 @@ public abstract class SkysailServerResource<T> extends ServerResource {
 
     private List<? extends Link> getAssociatedLinks() {
         if (!(this instanceof ListServerResource)) {
-            return Collections.emptyList() ;
+            return Collections.emptyList();
         }
         ListServerResource<?> listServerResource = (ListServerResource<?>) this;
         Class<? extends EntityServerResource<?>> entityResourceClass = listServerResource.getAssociatedEntityResource();
-        T entity = getEntity();
+        T entity = getCurrentEntity();
+        List<Link> result = new ArrayList<>();
+
         if (entityResourceClass != null && entity instanceof List) {
             EntityServerResource<?> esr = ResourceUtils.createEntityServerResource(entityResourceClass, this);
-           // List<Link> linkheader = esr.getLinkheaderAuthorized();
-            // TODO !!!
-            //List<?> sourceAsList = (List<?>) sourceWrapper.getConvertedSource();
-            for (Object object : (List<?>)entity) {
-                if (!(object instanceof Map)) {
-                    continue;
-                }
-                StringBuilder sb = new StringBuilder();
-
+            List<Link> entityLinks = esr.getLinkheaderAuthorized();
+            for (Object object : (List<?>) entity) {
                 String id = guessId(object);
-                linkheader.stream().filter(lh -> {
+                entityLinks.stream().filter(lh -> {
                     return lh.getRole().equals(LinkRole.DEFAULT);
-                }).forEach(link -> addLinkHeader(link, esr, id, listServerResource, sb));
-                //((Map<String, Object>) object).put("_links", sb.toString());
+                }).forEach(link -> addLinkHeader(link, esr, id, listServerResource, result));
             }
-            System.out.println(linkheader);
         }
-        return Collections.emptyList();
+        return result;
 
     }
-    
+
     private String guessId(Object object) {
-        if (!(object instanceof Map))
-            return "";
-        Map<String, String> entity = ((Map<String, String>) object);
-
-        if (entity.get("id") != null) {
-            Object value = entity.get("id");
-            return value.toString().replace("#", "");
-        } else if (entity.get("@rid") != null) {
-            return (entity.get("@rid").replace("#", ""));
-        } else {
-            return "";
+        if (object instanceof Identifiable) {
+            return ((Identifiable) object).getId().replace("#", "");
         }
+        return "";
     }
-    
+
     private void addLinkHeader(Link link, Resource entityResource, String id, ListServerResource<?> resource,
-            StringBuilder sb) {
+            List<Link> result) {
         String path = link.getUri();
         String href = StringParserUtils.substitutePlaceholders(path, entityResource);
 
@@ -318,12 +303,8 @@ public abstract class SkysailServerResource<T> extends ServerResource {
             href = href.replaceFirst(StringParserUtils.placeholderPattern.toString(), id);
         }
 
-        sb.append("<a class='btn btn-mini' href='").append(href).append("'>").append(link.getTitle())
-                .append("</a>&nbsp;");
-
-        resource.getLinkheader()
-                .add(new Link.Builder(href).relation(LinkRelation.ITEM).title("item " + id == null ? "unknown" : id).role(LinkRole.LIST_VIEW)
-                        .build());
+        result.add(new Link.Builder(href).relation(LinkRelation.ITEM).title("item " + id == null ? "unknown" : id)
+                .role(LinkRole.LIST_VIEW).refId(id).build());
 
     }
 
@@ -390,14 +371,6 @@ public abstract class SkysailServerResource<T> extends ServerResource {
             }
         }
         return false;
-    }
-
-    public T getSkysailData() {
-        return skysailData;
-    }
-
-    public void setSkysailData(T skysailData) {
-        this.skysailData = skysailData;
     }
 
     public void setDescription(String desc) {

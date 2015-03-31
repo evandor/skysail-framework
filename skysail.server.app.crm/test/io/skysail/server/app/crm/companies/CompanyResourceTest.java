@@ -4,7 +4,6 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 import io.skysail.api.validation.DefaultValidationImpl;
 import io.skysail.server.app.crm.CrmRepository;
-import io.skysail.server.app.crm.companies.Company;
 import io.skysail.server.app.crm.companies.resources.CompanyResource;
 import io.skysail.server.app.crm.test.CrmAppTest;
 

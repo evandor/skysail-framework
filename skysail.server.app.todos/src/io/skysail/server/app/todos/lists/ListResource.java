@@ -20,10 +20,13 @@ public class ListResource extends EntityServerResource<TodoList> {
 
     @Override
     protected void doInit() throws ResourceException {
-        listId = Reference.decode(getAttribute(TodoApplication.LIST_ID));
-        app = (TodoApplication)getApplication();
+        String attribute = getAttribute(TodoApplication.LIST_ID);
+        if (attribute != null) { // TODO create getAttribute and decode right away in superclass
+            listId = Reference.decode(attribute);
+        }
+        app = (TodoApplication) getApplication();
     }
-    
+
     @Override
     public SkysailResponse<?> eraseEntity() {
         // TODO cascade todos (?)
@@ -35,10 +38,10 @@ public class ListResource extends EntityServerResource<TodoList> {
     public TodoList getEntity() {
         return app.getRepository().getById(TodoList.class, listId);
     }
-    
+
     @Override
     public List<Link> getLinkheader() {
-        return super.getLinkheader(ListResource.class,TodosResource.class,PutListResource.class);
+        return super.getLinkheader(ListResource.class, TodosResource.class, PutListResource.class);
     }
 
 }

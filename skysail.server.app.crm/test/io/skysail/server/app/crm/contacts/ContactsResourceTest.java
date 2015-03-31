@@ -3,8 +3,6 @@ package io.skysail.server.app.crm.contacts;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 import io.skysail.api.validation.DefaultValidationImpl;
-import io.skysail.server.app.crm.contacts.Contact;
-import io.skysail.server.app.crm.contacts.ContactsResource;
 import io.skysail.server.app.crm.test.CrmAppTest;
 
 import java.util.List;

@@ -109,7 +109,7 @@ public abstract class ListServerResource<T> extends SkysailServerResource<List<T
     @API(desc = "lists the entities according to the media type provided")
     public final List<T> getEntities(Variant variant) {
         EtmPoint point = etmMonitor.createPoint("ListServerResource:getEntities");
-        log.info("Request entry point: {} @Get('html|csv|treeform') with variant {}", this.getClass().getSimpleName(),
+        log.info("Request entry point: {} @Get('html|json|yaml|xml') with variant {}", this.getClass().getSimpleName(),
                 variant);
         List<T> response = listEntities();
         point.collect();

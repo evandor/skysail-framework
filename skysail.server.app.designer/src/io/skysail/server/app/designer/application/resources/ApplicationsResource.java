@@ -25,8 +25,7 @@ public class ApplicationsResource extends ListServerResource<Application> {
 
     @Override
     public List<Application> getEntity() {
-        List<Application> all = app.getRepository().findAll(Application.class);
-        return all;
+        return app.getRepository().findAll(Application.class);
     }
 
     @Override

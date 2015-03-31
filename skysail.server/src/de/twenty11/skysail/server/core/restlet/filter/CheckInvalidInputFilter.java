@@ -64,8 +64,7 @@ public class CheckInvalidInputFilter<R extends SkysailServerResource<T>, T> exte
                 List<Field> fields = ReflectionUtils.getInheritedFields(entity.getClass());
 
                 for (Field field : fields) {
-                    io.skysail.api.forms.Field formField = field
-                            .getAnnotation(io.skysail.api.forms.Field.class);
+                    io.skysail.api.forms.Field formField = field.getAnnotation(io.skysail.api.forms.Field.class);
                     if (formField == null) {
                         continue;
                     }
@@ -149,8 +148,10 @@ public class CheckInvalidInputFilter<R extends SkysailServerResource<T>, T> exte
         HtmlPolicyBuilder htmlPolicyBuilder = noHtmlPolicyBuilder;
 
         if (application != null && resource instanceof EntityServerResource) {
-            htmlPolicyBuilder = application.getHtmlPolicy(((EntityServerResource<T>) resource).getEntity().getClass(),
-                    parameter.getName());
+            Class<? extends Object> cls = ((EntityServerResource<T>) resource).getEntity().getClass();
+            cls = resource.getParameterType();
+            throw new IllegalAccessError();
+            //htmlPolicyBuilder = application.getHtmlPolicy(cls, parameter.getName());
         }
         return htmlPolicyBuilder;
     }

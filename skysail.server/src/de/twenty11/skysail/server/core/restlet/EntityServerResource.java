@@ -14,7 +14,6 @@ import javax.validation.ConstraintValidatorFactory;
 import javax.validation.ConstraintViolation;
 import javax.validation.Validator;
 
-import org.restlet.Response;
 import org.restlet.data.ClientInfo;
 import org.restlet.data.Form;
 import org.restlet.data.MediaType;
@@ -137,18 +136,18 @@ public abstract class EntityServerResource<T> extends SkysailServerResource<T> {
         return LinkRelation.ITEM;
     }
 
-    /**
-     * @return the entity as json string
-     */
-    @Get("json")
-    @API(desc = "retrieves the entity defined by the url as JSON")
-    public String getJson() {
-        EtmPoint point = etmMonitor.createPoint("EntityServerResource:getJson");
-        logger.info("Request entry point: {} @Get('json')", this.getClass().getSimpleName());
-        logger.info(scoringInfo(getRequest().getClientInfo()));
-        point.collect();
-        return getEntityAsJson();
-    }
+//    /**
+//     * @return the entity as json string
+//     */
+//    @Get("json")
+//    @API(desc = "retrieves the entity defined by the url as JSON")
+//    public String getJson() {
+//        EtmPoint point = etmMonitor.createPoint("EntityServerResource:getJson");
+//        logger.info("Request entry point: {} @Get('json')", this.getClass().getSimpleName());
+//        logger.info(scoringInfo(getRequest().getClientInfo()));
+//        point.collect();
+//        return getEntityAsJson();
+//    }
 
     // input: html|json|..., output: html|json|...
     /**
@@ -202,44 +201,6 @@ public abstract class EntityServerResource<T> extends SkysailServerResource<T> {
         RequestHandler<T> requestHandler = new RequestHandler<T>(getApplication());
         AbstractResourceFilter<EntityServerResource<T>, T> chain = requestHandler.createForEntity(Method.GET);
         ResponseWrapper<T> wrapper = chain.handle(this, getResponse());
-        return wrapper.getEntity();
-    }
-
-    /**
-     * We have cases where we can retrieve JSON representations "early", for
-     * example when using a noSQL database. In this case, we don't want to
-     * create objects of type T and then let them converted back to JSON by the
-     * JacksonConverter.
-     *
-     * @return entity as json
-     */
-    protected String getEntityAsJson() {
-        RequestHandler<String> requestHandler = new RequestHandler<String>(getApplication());
-        AbstractResourceFilter<EntityServerResource<String>, String> chain = requestHandler.createForEntity(Method.GET);
-        EntityServerResource<String> resource = new EntityServerResource<String>() {
-
-            @Override
-            public String getEntity() {
-                return EntityServerResource.this.getAsJson().toString();
-            }
-
-            @Override
-            public String getId() {
-                return EntityServerResource.this.getId();
-            }
-
-            @Override
-            public SkysailResponse<?> eraseEntity() {
-                throw new IllegalAccessError("this method is not supposed to be called in this context");
-            }
-
-            @Override
-            public Response getResponse() {
-                return EntityServerResource.this.getResponse();
-            }
-
-        };
-        ResponseWrapper<String> wrapper = chain.handle(resource, getResponse());
         return wrapper.getEntity();
     }
 

@@ -58,8 +58,10 @@ public class OptionalEncryptionFilter<R extends SkysailServerResource<T>, T> ext
             String originalValue = parameter.getValue();
 
             if (application != null && resource instanceof EntityServerResource) {
-                String encryptionParameter = application.getEncryptionParameter(((EntityServerResource<T>) resource)
-                        .getEntity().getClass(), parameter.getName());
+                Class<? extends Object> cls = ((EntityServerResource<T>) resource)
+                        .getEntity().getClass();
+                cls = resource.getParameterType();
+                String encryptionParameter = application.getEncryptionParameter(cls, parameter.getName());
                 if (encryptionParameter != null && encryptionParameter.trim().length() > 0) {
                     String password = form.getFirstValue(encryptionParameter);
                     if (password != null && password.trim().length() > 0) {
@@ -70,22 +72,5 @@ public class OptionalEncryptionFilter<R extends SkysailServerResource<T>, T> ext
         }
     }
 
-    // @SuppressWarnings("unchecked")
-    // private T getDataFromRequest(Request request, R resource) throws
-    // ParseException {
-    // Object entityAsObject =
-    // request.getAttributes().get(EntityServerResource.SKYSAIL_SERVER_RESTLET_ENTITY);
-    // if (entityAsObject != null) {
-    // return (T) entityAsObject;
-    // }
-    // Form form = (Form)
-    // request.getAttributes().get(EntityServerResource.SKYSAIL_SERVER_RESTLET_FORM);
-    // // if (resource instanceof EntityServerResource) { // git sync
-    // // return (T) ((EntityServerResource<T>) resource).getData(form);
-    // // }
-    // if (resource instanceof PostEntityServerResource) { // git sync
-    // return (T) ((PostEntityServerResource<T>) resource).getData(form);
-    // }
-    // return null;
-    // }
+   
 }

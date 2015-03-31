@@ -17,12 +17,8 @@ public class DataExtractingFilter<R extends SkysailServerResource<T>, T> extends
         if (data == null && resource instanceof ListServerResource<?>) {
             data = (T) Collections.emptyList();
         }
-        // if (data != null) {
         responseWrapper.setEntity(data);
-        // } else {
-        // JSONObject asJson = resource.getAsJson();
-        // responseWrapper.setJson(asJson);
-        // }
+        resource.setCurrentEntity(data);
         super.doHandle(resource, responseWrapper);
         return FilterResult.CONTINUE;
     }

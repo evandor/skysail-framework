@@ -6,7 +6,6 @@ import static org.junit.Assert.assertThat;
 import io.skysail.api.links.LinkRelation;
 
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.runners.MockitoJUnitRunner;
@@ -35,12 +34,6 @@ public class SkysailServerResourceTest {
     @Before
     public void setUp() throws Exception {
         serverResource = new TestSkysailServerResource();
-    }
-
-    @Test
-    @Ignore
-    public void returns_resources_data() throws Exception {
-        assertThat(serverResource.getEntity(), is(equalTo(TestSkysailServerResource.class.getSimpleName())));
     }
 
     @Test

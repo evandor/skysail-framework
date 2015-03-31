@@ -57,6 +57,11 @@ public class Link {
     /** to be done. */
     private Map<MediaType, String> images = new HashMap<>();
 
+    /** a refId can be used to group links which belong together, 
+     * for example, as they reference the same entity
+     */
+    private String refId;
+
     public static class Builder {
 
         private String uri;
@@ -66,6 +71,7 @@ public class Link {
         private boolean authenticationNeeded = true;
         private Predicate<String[]> needsRoles;
         private LinkRole role = LinkRole.DEFAULT;
+        private String refId;
 
         public Builder(@NonNull String uri) {
             this.uri = uri.trim();
@@ -110,6 +116,11 @@ public class Link {
             this.needsRoles = needsRoles;
             return this;
         }
+        
+        public Builder refId(@NonNull String refId) {
+            this.refId = refId;
+            return this;
+        }
     }
 
     protected Link(Builder linkBuilder) {
@@ -126,6 +137,7 @@ public class Link {
             needsAuthentication = true;
         }
         this.role = linkBuilder.role;
+        this.refId = linkBuilder.refId;
     }
 
     /**

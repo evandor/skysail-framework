@@ -14,13 +14,14 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import de.twenty11.skysail.api.domain.Identifiable;
 
 @NoArgsConstructor
 @Getter
 @Setter
 @ToString(of = { "id", "name" })
 //@JsonPropertyOrder({ "title", "desc" })
-public class Application {
+public class Application implements Identifiable {
 
     @Id
     private String id;

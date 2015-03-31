@@ -1,7 +1,7 @@
 INFO  [d.t.skysail.server.app.ApplicationList       ] - (+) Adding application 'root'
 INFO  [d.t.s.s.c.restlet.SkysailConverterHelper     ] - initializing new converter 'ServerSentEventsConverter' with typesMatch '{text/event-stream=1.0}'
 INFO  [io.skysail.server.db.DbConfigurations        ] - activating DbConfigurations with config DbConfig(name=skysailgraph, driver=, url=memory:todos, username=admin)
-INFO  [i.s.s.f.repositories.FeaturesRepository      ] - activating FeaturesRepository with config {service.pid=io.skysail.server.features.repositories.FeaturesRepository, de.twenty11.skysail.server.core.restlet.SecurityFeatures.ALLOW_ORIGIN_FEATURE=true, component.name=io.skysail.server.features.repositories.FeaturesRepository, felix.fileinstall.filename=file:/C:/git/skysail-framework/skysail.server.app.designer.it/config/test/io.skysail.server.features.repositories.FeaturesRepository.cfg, component.id=12}
+INFO  [i.s.s.f.repositories.FeaturesRepository      ] - activating FeaturesRepository with config {service.pid=io.skysail.server.features.repositories.FeaturesRepository, de.twenty11.skysail.server.core.restlet.SecurityFeatures.ALLOW_ORIGIN_FEATURE=true, component.name=io.skysail.server.features.repositories.FeaturesRepository, felix.fileinstall.filename=file:/Users/carsten/git/skysail-framework/skysail.server.app.designer.it/config/test/io.skysail.server.features.repositories.FeaturesRepository.cfg, component.id=12}
 INFO  [d.t.skysail.server.app.ApplicationList       ] - (+) Adding application 'webapp'
 INFO  [d.t.skysail.server.app.ApplicationList       ] - (+) Adding application 'AppDesigner'
 INFO  [io.skysail.server.http.HttpServer            ] - Activating io.skysail.server.http.HttpServer
@@ -12,12 +12,12 @@ INFO  [io.skysail.server.http.HttpServer            ] - ========================
 INFO  [io.skysail.server.http.HttpServer            ] - Starting skysail server on port 2015
 INFO  [io.skysail.server.http.HttpServer            ] - ====================================
 INFO  [io.skysail.server.http.HttpServer            ] - 
-INFO  [d.t.skysail.server.app.ApplicationList       ] - (+) Adding application 'plugins'
 INFO  [org.restlet                                  ] - Starting the internal [HTTP/1.1] server on port 2015
+INFO  [d.t.skysail.server.app.ApplicationList       ] - (+) Adding application 'plugins'
 INFO  [d.t.skysail.server.app.ApplicationList       ] - (+) Adding application 'static'
 INFO  [i.s.s.a.d.i.ApplicationsCrudIntegrationTests ] - 
 INFO  [i.s.s.a.d.i.ApplicationsCrudIntegrationTests ] - --------------------------------------------
-INFO  [i.s.s.a.d.i.ApplicationsCrudIntegrationTests ] -  > TEST: running test 'creating_application_persists_new_application'
+INFO  [i.s.s.a.d.i.ApplicationsCrudIntegrationTests ] -  > TEST: running test 'new_application_can_be_deleted_by_owner'
 INFO  [i.s.s.a.d.i.ApplicationsCrudIntegrationTests ] - --------------------------------------------
 INFO  [i.s.s.a.d.i.ApplicationsCrudIntegrationTests ] - 
 INFO  [i.skysail.server.app.designer.it.Browser     ] -  > TEST: creating new browser client with url 'http://localhost:2015' and mediaType 'text/html'
@@ -35,8 +35,6 @@ INFO  [d.t.s.server.core.restlet.SkysailRouter      ] - routing path '/_login/{p
 WARN  [d.t.s.server.core.restlet.SkysailRouter      ] - please use a RouteBuilder to attach this resource: class de.twenty11.skysail.server.app.OAuthLoginResource
 INFO  [d.t.s.server.core.restlet.SkysailRouter      ] - routing path '/_version' -> 'RolesPredicateAuthorizer' -> 'de.twenty11.skysail.server.resources.VersionResource'
 INFO  [d.t.s.server.core.restlet.SkysailRouter      ] - routing path '/_name' -> 'RolesPredicateAuthorizer' -> 'de.twenty11.skysail.server.resources.NameResource'
-INFO  [d.t.s.server.core.restlet.SkysailRouter      ] - routing path '/_about' -> 'de.twenty11.skysail.server.resources.AboutResource'
-WARN  [d.t.s.server.core.restlet.SkysailRouter      ] - please use a RouteBuilder to attach this resource: class de.twenty11.skysail.server.resources.AboutResource
 INFO  [d.t.s.server.core.restlet.SkysailRouter      ] - routing path '/_profile' -> 'RolesPredicateAuthorizer' -> 'de.twenty11.skysail.server.app.profile.ProfileResource'
 INFO  [d.t.s.server.core.restlet.SkysailRouter      ] - routing path '/_profile/password/' -> 'RolesPredicateAuthorizer' -> 'de.twenty11.skysail.server.app.profile.PutPasswordResource'
 INFO  [d.t.s.server.core.restlet.SkysailRouter      ] - routing path '/_largetests' -> 'RolesPredicateAuthorizer' -> 'de.twenty11.skysail.server.app.LargeTestsResource'
@@ -76,9 +74,9 @@ INFO  [d.t.s.server.core.restlet.SkysailRouter      ] - routing path '/query/' -
 INFO  [d.t.s.server.core.restlet.SkysailRouter      ] - routing path '/resources' -> 'RolesPredicateAuthorizer' -> 'io.skysail.server.app.plugins.resources.ResourcesResource'
 INFO  [d.t.s.server.core.restlet.SkysailRouter      ] - routing path '/resources/{id}' -> 'RolesPredicateAuthorizer' -> 'io.skysail.server.app.plugins.resources.ResourceResource'
 INFO  [o.r.S.SkysailRootApplication                 ] - Starting de.twenty11.skysail.server.webapp.internal.WebappApplication application
-INFO  [LogService                                   ] - 2015-03-30	16:35:01	127.0.0.1	-	-	2015	GET	/_logout	targetUri=/	303	0	0	15	http://localhost:2015	Restlet-Framework/2.3.1	-
+INFO  [LogService                                   ] - 2015-03-30	18:20:09	127.0.0.1	-	-	2015	GET	/_logout	targetUri=/	303	0	0	19	http://localhost:2015	Restlet-Framework/2.3.1	-
 INFO  [d.t.s.s.core.restlet.ListServerResource      ] - Request entry point: DefaultResource @Get('html|csv|treeform') with variant [application/json]
-INFO  [LogService                                   ] - 2015-03-30	16:35:01	127.0.0.1	-	-	2015	GET	/	-	200	-	0	83	http://localhost:2015	Restlet-Framework/2.3.1	-
+INFO  [LogService                                   ] - 2015-03-30	18:20:09	127.0.0.1	-	-	2015	GET	/	-	200	-	0	125	http://localhost:2015	Restlet-Framework/2.3.1	-
 INFO  [org.restlet                                  ] - Starting the internal HTTP client
 INFO  [i.s.s.u.s.a.SimpleDelegatingVerifier         ] - login event for user 'admin'
 INFO  [i.s.s.u.s.a.SkysailHashedCredentialsMatcher  ] - checking cache for entry $2a$12$mBXqefcONxAauLZc6EDJhO8g7oLM1jhEBQCspfyEHr57Xz9b6oiDO
@@ -88,9 +86,9 @@ INFO  [org.restlet                                  ] - Stopping the internal HT
 INFO  [d.t.s.s.c.r.PostEntityServerResource         ] - Request entry point: LoginResource @Post('x-www-form-urlencoded:html|json|xml')
 INFO  [d.t.s.s.c.r.PostEntityServerResource         ] - calling post(Form), media types '[text/html:1.0]'
 INFO  [i.skysail.server.converter.HtmlConverter     ] - converter 'HtmlConverter' matched '{text/html=0.95, treeform/*=1.0}' with threshold 0.95
-INFO  [d.t.skysail.server.app.SourceWrapper         ] - using converter 'NoopConverter' for Credentials-Source: de.twenty11.skysail.server.domain.Credentials@6152bd66
+INFO  [d.t.skysail.server.app.SourceWrapper         ] - using converter 'NoopConverter' for Credentials-Source: de.twenty11.skysail.server.domain.Credentials@45846dff
 INFO  [i.s.s.c.impl.StringTemplateRenderer          ] - reading templates from resource path '/templates/text/html'
-INFO  [LogService                                   ] - 2015-03-30	16:35:01	127.0.0.1	admin	-	2015	POST	/_login	-	201	7355	31	771	http://localhost:2015	Restlet-Framework/2.3.1	-
+INFO  [LogService                                   ] - 2015-03-30	18:20:11	127.0.0.1	admin	-	2015	POST	/_login	-	201	7145	31	1286	http://localhost:2015	Restlet-Framework/2.3.1	-
 INFO  [org.restlet                                  ] - Starting the internal HTTP client
 INFO  [i.s.s.u.s.a.SimpleDelegatingVerifier         ] - login event for user 'admin'
 INFO  [i.s.s.u.s.a.SkysailHashedCredentialsMatcher  ] - checking cache for entry $2a$12$mBXqefcONxAauLZc6EDJhO8g7oLM1jhEBQCspfyEHr57Xz9b6oiDO
@@ -100,8 +98,8 @@ INFO  [d.t.s.s.core.restlet.ListServerResource      ] - Request entry point: Def
 INFO  [i.skysail.server.converter.HtmlConverter     ] - converter 'HtmlConverter' matched '{text/html=0.95, treeform/*=1.0}' with threshold 0.95
 INFO  [d.t.skysail.server.app.SourceWrapper         ] - using converter 'ListSourceHtmlConverter' for EmptyList-Source: []
 INFO  [i.s.s.c.impl.StringTemplateRenderer          ] - reading templates from resource path '/templates/text/html'
-INFO  [LogService                                   ] - 2015-03-30	16:35:02	127.0.0.1	admin	-	2015	GET	/	-	200	7662	0	79	http://localhost:2015	Restlet-Framework/2.3.1	-
-INFO  [io.skysail.client.testsupport.Client         ] -  > TEST: issuing GET on 'http://localhost:2015/', providing credentials fQdjx9XeOrAozI33M/5fKIgYUkXdY+cZ3Grd5q1E7bCOtW6fnmWqIbaChPIEV7eX
+INFO  [LogService                                   ] - 2015-03-30	18:20:11	127.0.0.1	admin	-	2015	GET	/	-	200	7445	0	142	http://localhost:2015	Restlet-Framework/2.3.1	-
+INFO  [io.skysail.client.testsupport.Client         ] -  > TEST: issuing GET on 'http://localhost:2015/', providing credentials VEC3hAFaH6dABQdaOQe/LIgYUkXdY+cZ3Grd5q1E7bCOtW6fnmWqIbaChPIEV7eX
 INFO  [org.restlet                                  ] - Starting the internal HTTP client
 INFO  [i.s.s.u.s.a.SimpleDelegatingVerifier         ] - login event for user 'admin'
 INFO  [i.s.s.u.s.a.SkysailHashedCredentialsMatcher  ] - checking cache for entry $2a$12$mBXqefcONxAauLZc6EDJhO8g7oLM1jhEBQCspfyEHr57Xz9b6oiDO
@@ -111,9 +109,15 @@ INFO  [d.t.s.s.core.restlet.ListServerResource      ] - Request entry point: Def
 INFO  [i.skysail.server.converter.HtmlConverter     ] - converter 'HtmlConverter' matched '{text/html=0.95, treeform/*=1.0}' with threshold 0.95
 INFO  [d.t.skysail.server.app.SourceWrapper         ] - using converter 'ListSourceHtmlConverter' for EmptyList-Source: []
 INFO  [i.s.s.c.impl.StringTemplateRenderer          ] - reading templates from resource path '/templates/text/html'
-INFO  [LogService                                   ] - 2015-03-30	16:35:02	127.0.0.1	admin	-	2015	GET	/	-	200	7589	0	64	http://localhost:2015	Restlet-Framework/2.3.1	-
+INFO  [LogService                                   ] - 2015-03-30	18:20:11	127.0.0.1	admin	-	2015	GET	/	-	200	7373	0	131	http://localhost:2015	Restlet-Framework/2.3.1	-
 INFO  [io.skysail.client.testsupport.Client         ] - url set to 'http://localhost:2015/AppDesigner'
 INFO  [org.restlet                                  ] - Starting the internal HTTP client
+INFO  [i.s.s.u.s.a.SimpleDelegatingVerifier         ] - login event for user 'admin'
+INFO  [i.s.s.u.s.a.SkysailHashedCredentialsMatcher  ] - checking cache for entry $2a$12$mBXqefcONxAauLZc6EDJhO8g7oLM1jhEBQCspfyEHr57Xz9b6oiDO
+INFO  [i.s.s.u.s.a.SkysailHashedCredentialsMatcher  ] - found entry in credentials hash cache, updating timestamp
+INFO  [i.s.s.u.s.a.SimpleDelegatingVerifier         ] - login event for user 'admin' successful
+INFO  [d.t.s.s.core.restlet.ListServerResource      ] - Request entry point: ApplicationsResource @Get('html|csv|treeform') with variant [text/html]
+INFO  [org.restlet                                  ] - A recoverable error was detected (1001), attempting again in 2000 ms.
 INFO  [i.s.s.u.s.a.SimpleDelegatingVerifier         ] - login event for user 'admin'
 INFO  [i.s.s.u.s.a.SkysailHashedCredentialsMatcher  ] - checking cache for entry $2a$12$mBXqefcONxAauLZc6EDJhO8g7oLM1jhEBQCspfyEHr57Xz9b6oiDO
 INFO  [i.s.s.u.s.a.SkysailHashedCredentialsMatcher  ] - found entry in credentials hash cache, updating timestamp
@@ -122,7 +126,43 @@ INFO  [d.t.s.s.core.restlet.ListServerResource      ] - Request entry point: App
 INFO  [i.skysail.server.converter.HtmlConverter     ] - converter 'HtmlConverter' matched '{text/html=0.95, treeform/*=1.0}' with threshold 0.95
 INFO  [d.t.skysail.server.app.SourceWrapper         ] - using converter 'ListSourceHtmlConverter' for ArrayList-Source: []
 INFO  [i.s.s.c.impl.StringTemplateRenderer          ] - reading templates from resource path '/templates/text/html'
-INFO  [LogService                                   ] - 2015-03-30	16:35:02	127.0.0.1	admin	-	2015	GET	/AppDesigner	-	200	7714	0	66	http://localhost:2015	Restlet-Framework/2.3.1	-
+INFO  [LogService                                   ] - 2015-03-30	18:21:17	127.0.0.1	admin	-	2015	GET	/AppDesigner	-	200	7498	0	66390	http://localhost:2015	Restlet-Framework/2.3.1	-
+INFO  [org.restlet                                  ] - The connection was broken. It was probably closed by the client.
+java.io.IOException: Broken pipe
+	at sun.nio.ch.FileDispatcherImpl.write0(Native Method) ~[na:1.8.0_20]
+	at sun.nio.ch.SocketDispatcher.write(SocketDispatcher.java:47) ~[na:1.8.0_20]
+	at sun.nio.ch.IOUtil.writeFromNativeBuffer(IOUtil.java:93) ~[na:1.8.0_20]
+	at sun.nio.ch.IOUtil.write(IOUtil.java:65) ~[na:1.8.0_20]
+	at sun.nio.ch.SocketChannelImpl.write(SocketChannelImpl.java:470) ~[na:1.8.0_20]
+	at sun.net.httpserver.Request$WriteStream.write(Request.java:391) ~[na:1.8.0_20]
+	at sun.net.httpserver.FixedLengthOutputStream.write(FixedLengthOutputStream.java:78) ~[na:1.8.0_20]
+	at sun.net.httpserver.PlaceholderOutputStream.write(ExchangeImpl.java:444) ~[na:1.8.0_20]
+	at sun.nio.cs.StreamEncoder.writeBytes(StreamEncoder.java:221) ~[na:1.8.0_20]
+	at sun.nio.cs.StreamEncoder.implFlushBuffer(StreamEncoder.java:291) ~[na:1.8.0_20]
+	at sun.nio.cs.StreamEncoder.implFlush(StreamEncoder.java:295) ~[na:1.8.0_20]
+	at sun.nio.cs.StreamEncoder.flush(StreamEncoder.java:141) ~[na:1.8.0_20]
+	at java.io.OutputStreamWriter.flush(OutputStreamWriter.java:229) ~[na:1.8.0_20]
+	at org.restlet.representation.StringRepresentation.write(StringRepresentation.java:229) ~[org.restlet.jar:na]
+	at org.restlet.representation.CharacterRepresentation.write(CharacterRepresentation.java:67) ~[org.restlet.jar:na]
+	at org.restlet.engine.application.EncodeRepresentation.write(EncodeRepresentation.java:295) ~[org.restlet.jar:na]
+	at org.restlet.engine.adapter.ServerCall.writeResponseBody(ServerCall.java:510) ~[org.restlet.jar:na]
+	at org.restlet.engine.adapter.ServerCall.sendResponse(ServerCall.java:454) ~[org.restlet.jar:na]
+	at org.restlet.engine.adapter.ServerAdapter.commit(ServerAdapter.java:187) ~[org.restlet.jar:na]
+	at org.restlet.engine.adapter.HttpServerHelper.handle(HttpServerHelper.java:144) [org.restlet.jar:na]
+	at org.restlet.engine.connector.HttpServerHelper$1.handle(HttpServerHelper.java:64) [org.restlet.jar:na]
+	at com.sun.net.httpserver.Filter$Chain.doFilter(Filter.java:79) [na:1.8.0_20]
+	at sun.net.httpserver.AuthFilter.doFilter(AuthFilter.java:83) [na:1.8.0_20]
+	at com.sun.net.httpserver.Filter$Chain.doFilter(Filter.java:82) [na:1.8.0_20]
+	at sun.net.httpserver.ServerImpl$Exchange$LinkHandler.handle(ServerImpl.java:675) [na:1.8.0_20]
+	at com.sun.net.httpserver.Filter$Chain.doFilter(Filter.java:79) [na:1.8.0_20]
+	at sun.net.httpserver.ServerImpl$Exchange.run(ServerImpl.java:647) [na:1.8.0_20]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142) [na:1.8.0_20]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617) [na:1.8.0_20]
+	at java.lang.Thread.run(Thread.java:745) [na:1.8.0_20]
+INFO  [i.skysail.server.converter.HtmlConverter     ] - converter 'HtmlConverter' matched '{text/html=0.95, treeform/*=1.0}' with threshold 0.95
+INFO  [d.t.skysail.server.app.SourceWrapper         ] - using converter 'ListSourceHtmlConverter' for ArrayList-Source: []
+INFO  [i.s.s.c.impl.StringTemplateRenderer          ] - reading templates from resource path '/templates/text/html'
+INFO  [LogService                                   ] - 2015-03-30	18:21:22	127.0.0.1	admin	-	2015	GET	/AppDesigner	-	200	7498	0	9394	http://localhost:2015	Restlet-Framework/2.3.1	-
 INFO  [io.skysail.client.testsupport.Client         ] - url set to 'http://localhost:2015/AppDesigner/application/'
 INFO  [org.restlet                                  ] - Starting the internal HTTP client
 INFO  [i.s.s.u.s.a.SimpleDelegatingVerifier         ] - login event for user 'admin'
@@ -133,8 +173,8 @@ INFO  [d.t.s.s.c.r.PostEntityServerResource         ] - Request entry point: Pos
 INFO  [i.skysail.server.converter.HtmlConverter     ] - converter 'HtmlConverter' matched '{text/html=0.95, treeform/*=1.0}' with threshold 0.95
 INFO  [d.t.skysail.server.app.SourceWrapper         ] - using converter 'NoopConverter' for FormResponse-Source: FormResponse: 
 INFO  [i.s.s.c.impl.StringTemplateRenderer          ] - reading templates from resource path '/templates/text/html'
-INFO  [LogService                                   ] - 2015-03-30	16:35:02	127.0.0.1	admin	-	2015	GET	/application	-	200	8509	0	66	http://localhost:2015	Restlet-Framework/2.3.1	-
-INFO  [io.skysail.client.testsupport.Client         ] -  > TEST: issuing POST on 'http://localhost:2015/AppDesigner/application/', providing credentials fQdjx9XeOrAozI33M/5fKIgYUkXdY+cZ3Grd5q1E7bCOtW6fnmWqIbaChPIEV7eX
+INFO  [LogService                                   ] - 2015-03-30	18:21:22	127.0.0.1	admin	-	2015	GET	/application	-	200	8281	0	170	http://localhost:2015	Restlet-Framework/2.3.1	-
+INFO  [io.skysail.client.testsupport.Client         ] -  > TEST: issuing POST on 'http://localhost:2015/AppDesigner/application/', providing credentials VEC3hAFaH6dABQdaOQe/LIgYUkXdY+cZ3Grd5q1E7bCOtW6fnmWqIbaChPIEV7eX
 INFO  [org.restlet                                  ] - Starting the internal HTTP client
 INFO  [i.s.s.u.s.a.SimpleDelegatingVerifier         ] - login event for user 'admin'
 INFO  [i.s.s.u.s.a.SkysailHashedCredentialsMatcher  ] - checking cache for entry $2a$12$mBXqefcONxAauLZc6EDJhO8g7oLM1jhEBQCspfyEHr57Xz9b6oiDO
@@ -142,57 +182,12 @@ INFO  [i.s.s.u.s.a.SkysailHashedCredentialsMatcher  ] - found entry in credentia
 INFO  [i.s.s.u.s.a.SimpleDelegatingVerifier         ] - login event for user 'admin' successful
 INFO  [d.t.s.s.c.r.PostEntityServerResource         ] - Request entry point: PostApplicationResource @Post('x-www-form-urlencoded:html|json|xml')
 INFO  [d.t.s.s.c.r.PostEntityServerResource         ] - calling post(Form), media types '[text/html:1.0]'
-INFO  [d.t.s.server.db.orientdb.impl.Persister      ] - setting name=app1 [class java.lang.String]
+INFO  [d.t.s.server.db.orientdb.impl.Persister      ] - setting name=app2 [class java.lang.String]
 INFO  [i.skysail.server.converter.HtmlConverter     ] - converter 'HtmlConverter' matched '{text/html=0.95, treeform/*=1.0}' with threshold 0.95
-INFO  [d.t.skysail.server.app.SourceWrapper         ] - using converter 'NoopConverter' for Application-Source: Application(id=null, name=app1)
+INFO  [d.t.skysail.server.app.SourceWrapper         ] - using converter 'NoopConverter' for Application-Source: Application(id=null, name=app2)
 INFO  [i.s.s.c.impl.StringTemplateRenderer          ] - reading templates from resource path '/templates/text/html'
-INFO  [LogService                                   ] - 2015-03-30	16:35:02	127.0.0.1	admin	-	2015	POST	/application	-	201	7444	9	95	http://localhost:2015	Restlet-Framework/2.3.1	-
-INFO  [i.skysail.server.app.designer.it.Browser     ] -  > TEST: logging in as user 'admin'
-INFO  [org.restlet                                  ] - Starting the internal HTTP client
-INFO  [LogService                                   ] - 2015-03-30	16:35:02	127.0.0.1	-	-	2015	GET	/_logout	targetUri=/	303	0	0	1	http://localhost:2015	Restlet-Framework/2.3.1	-
-INFO  [d.t.s.s.core.restlet.ListServerResource      ] - Request entry point: DefaultResource @Get('html|csv|treeform') with variant [application/json]
-INFO  [LogService                                   ] - 2015-03-30	16:35:02	127.0.0.1	-	-	2015	GET	/	-	200	-	0	3	http://localhost:2015	Restlet-Framework/2.3.1	-
-INFO  [org.restlet                                  ] - Starting the internal HTTP client
-INFO  [i.s.s.u.s.a.SimpleDelegatingVerifier         ] - login event for user 'admin'
-INFO  [i.s.s.u.s.a.SkysailHashedCredentialsMatcher  ] - checking cache for entry $2a$12$mBXqefcONxAauLZc6EDJhO8g7oLM1jhEBQCspfyEHr57Xz9b6oiDO
-INFO  [i.s.s.u.s.a.SkysailHashedCredentialsMatcher  ] - added entry $2a$12$mBXqefcONxAauLZc6EDJhO8g7oLM1jhEBQCspfyEHr57Xz9b6oiDO to credentials hash cache with current timestamp, size now is 1
-INFO  [i.s.s.u.s.a.SimpleDelegatingVerifier         ] - login event for user 'admin' successful
-INFO  [d.t.s.s.c.r.PostEntityServerResource         ] - Request entry point: LoginResource @Post('x-www-form-urlencoded:html|json|xml')
-INFO  [d.t.s.s.c.r.PostEntityServerResource         ] - calling post(Form), media types '[text/html:1.0]'
-INFO  [i.skysail.server.converter.HtmlConverter     ] - converter 'HtmlConverter' matched '{text/html=0.95, treeform/*=1.0}' with threshold 0.95
-INFO  [d.t.skysail.server.app.SourceWrapper         ] - using converter 'NoopConverter' for Credentials-Source: de.twenty11.skysail.server.domain.Credentials@4fa8883a
-INFO  [i.s.s.c.impl.StringTemplateRenderer          ] - reading templates from resource path '/templates/text/html'
-INFO  [LogService                                   ] - 2015-03-30	16:35:02	127.0.0.1	admin	-	2015	POST	/_login	-	201	7355	31	355	http://localhost:2015	Restlet-Framework/2.3.1	-
-INFO  [org.restlet                                  ] - Starting the internal HTTP client
-INFO  [i.s.s.u.s.a.SimpleDelegatingVerifier         ] - login event for user 'admin'
-INFO  [i.s.s.u.s.a.SkysailHashedCredentialsMatcher  ] - checking cache for entry $2a$12$mBXqefcONxAauLZc6EDJhO8g7oLM1jhEBQCspfyEHr57Xz9b6oiDO
-INFO  [i.s.s.u.s.a.SkysailHashedCredentialsMatcher  ] - found entry in credentials hash cache, updating timestamp
-INFO  [i.s.s.u.s.a.SimpleDelegatingVerifier         ] - login event for user 'admin' successful
-INFO  [d.t.s.s.core.restlet.ListServerResource      ] - Request entry point: DefaultResource @Get('html|csv|treeform') with variant [text/html]
-INFO  [i.skysail.server.converter.HtmlConverter     ] - converter 'HtmlConverter' matched '{text/html=0.95, treeform/*=1.0}' with threshold 0.95
-INFO  [d.t.skysail.server.app.SourceWrapper         ] - using converter 'ListSourceHtmlConverter' for EmptyList-Source: []
-INFO  [i.s.s.c.impl.StringTemplateRenderer          ] - reading templates from resource path '/templates/text/html'
-INFO  [LogService                                   ] - 2015-03-30	16:35:02	127.0.0.1	admin	-	2015	GET	/	-	200	7733	0	45	http://localhost:2015	Restlet-Framework/2.3.1	-
-INFO  [i.skysail.server.app.designer.it.Browser     ] -  > TEST: retrieving TodoLists
-INFO  [io.skysail.client.testsupport.Client         ] -  > TEST: issuing GET on 'http://localhost:2015/', providing credentials EiAJvnJQK59QRqjOq05VBYgYUkXdY+cZ3Grd5q1E7bCOtW6fnmWqIbaChPIEV7eX
-INFO  [org.restlet                                  ] - Starting the internal HTTP client
-INFO  [i.s.s.u.s.a.SimpleDelegatingVerifier         ] - login event for user 'admin'
-INFO  [i.s.s.u.s.a.SkysailHashedCredentialsMatcher  ] - checking cache for entry $2a$12$mBXqefcONxAauLZc6EDJhO8g7oLM1jhEBQCspfyEHr57Xz9b6oiDO
-INFO  [i.s.s.u.s.a.SkysailHashedCredentialsMatcher  ] - found entry in credentials hash cache, updating timestamp
-INFO  [i.s.s.u.s.a.SimpleDelegatingVerifier         ] - login event for user 'admin' successful
-INFO  [d.t.s.s.core.restlet.ListServerResource      ] - Request entry point: DefaultResource @Get('html|csv|treeform') with variant [text/html]
-INFO  [i.skysail.server.converter.HtmlConverter     ] - converter 'HtmlConverter' matched '{text/html=0.95, treeform/*=1.0}' with threshold 0.95
-INFO  [d.t.skysail.server.app.SourceWrapper         ] - using converter 'ListSourceHtmlConverter' for EmptyList-Source: []
-INFO  [i.s.s.c.impl.StringTemplateRenderer          ] - reading templates from resource path '/templates/text/html'
-INFO  [LogService                                   ] - 2015-03-30	16:35:02	127.0.0.1	admin	-	2015	GET	/	-	200	7589	0	36	http://localhost:2015	Restlet-Framework/2.3.1	-
-INFO  [io.skysail.client.testsupport.Client         ] - url set to 'http://localhost:2015/AppDesigner'
-INFO  [org.restlet                                  ] - Starting the internal HTTP client
-INFO  [i.s.s.u.s.a.SimpleDelegatingVerifier         ] - login event for user 'admin'
-INFO  [i.s.s.u.s.a.SkysailHashedCredentialsMatcher  ] - checking cache for entry $2a$12$mBXqefcONxAauLZc6EDJhO8g7oLM1jhEBQCspfyEHr57Xz9b6oiDO
-INFO  [i.s.s.u.s.a.SkysailHashedCredentialsMatcher  ] - found entry in credentials hash cache, updating timestamp
-INFO  [i.s.s.u.s.a.SimpleDelegatingVerifier         ] - login event for user 'admin' successful
-INFO  [d.t.s.s.core.restlet.ListServerResource      ] - Request entry point: ApplicationsResource @Get('html|csv|treeform') with variant [text/html]
-INFO  [i.skysail.server.converter.HtmlConverter     ] - converter 'HtmlConverter' matched '{text/html=0.95, treeform/*=1.0}' with threshold 0.95
-INFO  [d.t.skysail.server.app.SourceWrapper         ] - using converter 'ListSourceHtmlConverter' for ArrayList-Source: [Application(id=#12:0, name=app1)]
-INFO  [i.s.s.c.impl.StringTemplateRenderer          ] - reading templates from resource path '/templates/text/html'
-INFO  [LogService                                   ] - 2015-03-30	16:35:02	127.0.0.1	admin	-	2015	GET	/AppDesigner	-	200	8015	0	128	http://localhost:2015	Restlet-Framework/2.3.1	-
+INFO  [org.restlet                                  ] - Stopping the internal HTTP client
+INFO  [org.restlet                                  ] - Stopping the internal HTTP client
+INFO  [org.restlet                                  ] - Stopping the internal HTTP client
+INFO  [org.restlet                                  ] - Stopping the internal HTTP client
+INFO  [LogService                                   ] - 2015-03-30	18:21:23	127.0.0.1	admin	-	2015	POST	/application	-	201	7234	9	204	http://localhost:2015	Restlet-Framework/2.3.1	-

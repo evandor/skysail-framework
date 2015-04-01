@@ -6,7 +6,7 @@ import io.skysail.api.links.LinkRelation;
 import io.skysail.api.responses.FormResponse;
 import io.skysail.api.responses.SkysailResponse;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -22,6 +22,7 @@ import org.restlet.resource.Get;
 import org.restlet.resource.Put;
 import org.restlet.resource.ResourceException;
 
+import de.twenty11.skysail.api.domain.Identifiable;
 import de.twenty11.skysail.server.core.restlet.filter.AbstractResourceFilter;
 import etm.core.monitor.EtmPoint;
 
@@ -85,10 +86,14 @@ public abstract class PutEntityServerResource<T> extends SkysailServerResource<T
      * If you have a route defined as "/repository/{key}", you can get the key
      * like this: key = (String) getRequest().getAttributes().get("key");
      * 
-     * <p>To get hold on any parameters passed, consider using this pattern:</p>
+     * <p>
+     * To get hold on any parameters passed, consider using this pattern:
+     * </p>
      *
-     * <p>Form form = new Form(getRequest().getEntity()); action =
-     * form.getFirstValue("action");</p>
+     * <p>
+     * Form form = new Form(getRequest().getEntity()); action =
+     * form.getFirstValue("action");
+     * </p>
      * 
      */
     @Override
@@ -138,11 +143,11 @@ public abstract class PutEntityServerResource<T> extends SkysailServerResource<T
         EtmPoint point = etmMonitor.createPoint("PutEntityServerResource:createForm");
         log.info("Request entry point: {} @Get('htmlform|html') createForm with variant {}",
                 PutEntityServerResource.class.getSimpleName(), variant);
-        
+
         RequestHandler<T> requestHandler = new RequestHandler<T>(getApplication());
         AbstractResourceFilter<PutEntityServerResource<T>, T> chain = requestHandler.createForFormResponse();
         ResponseWrapper<T> wrapper = chain.handle(this, getResponse());
-        
+
         point.collect();
         return new FormResponse<T>(wrapper.getEntity(), identifier, ".", redirectBackTo());
     }
@@ -151,18 +156,20 @@ public abstract class PutEntityServerResource<T> extends SkysailServerResource<T
         return null;
     }
 
-//    /**
-//     * getJson.
-//     * 
-//     * @return json
-//     */
-//    @Get("json")
-//    @API(desc = "no implementation")
-//    public T getJson() {
-//        logger.info("Request entry point: {} @Get('json')", this.getClass().getSimpleName());
-//        RequestHandler<T> requestHandler = new RequestHandler<T>(getApplication());
-//        return null;
-//    }
+    // /**
+    // * getJson.
+    // *
+    // * @return json
+    // */
+    // @Get("json")
+    // @API(desc = "no implementation")
+    // public T getJson() {
+    // logger.info("Request entry point: {} @Get('json')",
+    // this.getClass().getSimpleName());
+    // RequestHandler<T> requestHandler = new
+    // RequestHandler<T>(getApplication());
+    // return null;
+    // }
 
     /**
      * put.
@@ -210,9 +217,21 @@ public abstract class PutEntityServerResource<T> extends SkysailServerResource<T
 
     @Override
     public List<Link> getLinkheader() {
-        return Arrays.asList(//
-                new Link.Builder(".").relation(LinkRelation.NEXT).title("form target").verbs(Method.POST).build(),//
-                new Link.Builder(".").title("delete").verbs(Method.DELETE).build());
-    }
+        
+        String ref = getReference().toString();
+        String parentRef = getReference().getParentRef().toString();
+        
+        List<Link> result = new ArrayList<>();
+        result.add(new Link.Builder(ref).relation(LinkRelation.NEXT).title("form target").verbs(Method.POST).build());
 
+        T entity = this.getCurrentEntity();
+        if (entity instanceof Identifiable) {
+            String id = ((Identifiable)entity).getId().replace("#","");
+            
+            result.add(new Link.Builder(parentRef + id).title("delete").verbs(Method.DELETE).build());
+        }
+
+        return result;
+
+    }
 }

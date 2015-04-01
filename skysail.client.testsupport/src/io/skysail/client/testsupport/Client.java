@@ -3,9 +3,10 @@ package io.skysail.client.testsupport;
 import io.skysail.api.links.Link;
 import io.skysail.api.links.LinkRelation;
 
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.Arrays;
 import java.util.List;
-import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
 import lombok.Getter;
@@ -15,6 +16,7 @@ import org.restlet.Response;
 import org.restlet.data.Form;
 import org.restlet.data.Header;
 import org.restlet.data.MediaType;
+import org.restlet.data.Method;
 import org.restlet.data.Reference;
 import org.restlet.representation.Representation;
 import org.restlet.resource.ClientResource;
@@ -23,8 +25,8 @@ import org.restlet.util.Series;
 @Slf4j
 public class Client {
 
-	public static final String TESTTAG = " > TEST: ";
-	
+    public static final String TESTTAG = " > TEST: ";
+
     private String baseUrl;
     private String credentials;
     private String url;
@@ -32,7 +34,7 @@ public class Client {
     @Getter
     private Representation currentRepresentation;
     private MediaType mediaType = MediaType.TEXT_HTML;
-    
+
     public Client(String baseUrl) {
         this.baseUrl = baseUrl;
     }
@@ -48,27 +50,27 @@ public class Client {
     }
 
     public Client setUrl(String url) {
-    	log.info("{}setting browser client url to '{}'", TESTTAG, url);
+        log.info("{}setting browser client url to '{}'", TESTTAG, url);
         this.url = url;
         return this;
     }
 
     public Representation get() {
-    	String currentUrl = baseUrl + url;
-    	log.info("{}issuing GET on '{}', providing credentials {}", TESTTAG, currentUrl, credentials);
-		cr = new ClientResource(currentUrl);
+        String currentUrl = baseUrl + url;
+        log.info("{}issuing GET on '{}', providing credentials {}", TESTTAG, currentUrl, credentials);
+        cr = new ClientResource(currentUrl);
         cr.getCookies().add("Credentials", credentials);
         return cr.get(mediaType);
     }
-    
+
     public Client gotoRoot() {
-    	url = "/";
-    	get();
-    	return this;
-	}
+        url = "/";
+        get();
+        return this;
+    }
 
     public Representation post(Object entity) {
-    	log.info("{}issuing POST on '{}', providing credentials {}", TESTTAG, url, credentials);
+        log.info("{}issuing POST on '{}', providing credentials {}", TESTTAG, url, credentials);
         cr = new ClientResource(url);
         cr.setFollowingRedirects(false);
         cr.getCookies().add("Credentials", credentials);
@@ -99,33 +101,72 @@ public class Client {
         return follow(new LinkTitlePredicate(linkTitle, cr.getResponse().getHeaders()));
     }
 
+    public Client followLinkTitleAndRefId(String linkTitle, String refId) {
+        Link example = new Link.Builder("").title(linkTitle).refId(refId).build();
+        return follow(new LinkByExamplePredicate(example, cr.getResponse().getHeaders()));
+    }
+
     public Client followLinkRelation(LinkRelation linkRelation) {
         return follow(new LinkRelationPredicate(linkRelation, cr.getResponse().getHeaders()));
     }
 
-    private Client follow(LinkPredicate predicate) {
+    public Client followLink(Method method) {
+        return follow(new LinkMethodPredicate(method, cr.getResponse().getHeaders()), method);
+    }
+
+    private Client follow(LinkPredicate predicate, Method method) {
         Series<Header> headers = cr.getResponse().getHeaders();
         String linkheader = headers.getFirstValue("Link");
         List<Link> links = Arrays.stream(linkheader.split(",")).map(l -> Link.valueOf(l)).collect(Collectors.toList());
-        Supplier<RuntimeException> exception = new Supplier<RuntimeException>() {
+        Link theLink = getTheOnlyLink(predicate, links);
 
-            @Override
-            public RuntimeException get() {
-                return new IllegalStateException("could not follow " + predicate.toString());
-            }
-        };
-        Link theLink = links.stream().filter(predicate).findFirst().orElseThrow(exception);
-        url = baseUrl + theLink.getUri();
-        log.info("url set to '{}'", url);
+        boolean isAbsolute = false;
+        try {
+            URI url2 = new URI(theLink.getUri());
+            isAbsolute = url2.isAbsolute();
+        } catch (URISyntaxException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        
+        url =  isAbsolute ? theLink.getUri() : baseUrl + theLink.getUri();
+        log.info("{}url set to '{}'", TESTTAG, url);
         cr = new ClientResource(url);
         cr.getCookies().add("Credentials", credentials);
-        currentRepresentation = cr.get(mediaType);
+
+        if (method != null) {
+            if (!(theLink.getVerbs().contains(method))) {
+                throw new IllegalStateException("method " + method + " not eligible for link " + theLink);
+            }
+            if (Method.DELETE.equals(method)) {
+                currentRepresentation = cr.delete(mediaType);
+            } else {
+                throw new UnsupportedOperationException();
+            }
+        } else {
+            currentRepresentation = cr.get(mediaType);
+        }
         return this;
+    }
+
+    private Client follow(LinkPredicate predicate) {
+        return follow(predicate, null);
+    }
+
+    private Link getTheOnlyLink(LinkPredicate predicate, List<Link> links) {
+        List<Link> filteredLinks = links.stream().filter(predicate).collect(Collectors.toList());
+        if (filteredLinks.size() == 0) {
+            throw new IllegalStateException("could not find link for predicate " + predicate);
+        }
+        if (filteredLinks.size() > 1) {
+            throw new IllegalStateException("too many candidates found for predicate " + predicate);
+        }
+        Link theLink = filteredLinks.get(0);
+        return theLink;
     }
 
     public Reference getLocation() {
         return cr.getLocationRef();
     }
 
-	
 }

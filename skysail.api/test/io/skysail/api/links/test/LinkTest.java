@@ -80,6 +80,12 @@ public class LinkTest {
     }
     
     @Test
+    public void testName() {
+        Link link = new Link.Builder("uri").refId("refid").build();
+        assertThat(link.toString(null, "path"),is (equalTo("<pathuri>; rel=\"item\"; title=\"item\"; refId=\"refid\"; verbs=\"GET\"")));
+    }
+    
+    @Test
     public void a_linkheaders_relation_can_be_changed_after_build() {
         Link linkheader = new Link.Builder("uri").relation(LinkRelation.CREATE_FORM).build();
         linkheader.setRelation(LinkRelation.SELF);

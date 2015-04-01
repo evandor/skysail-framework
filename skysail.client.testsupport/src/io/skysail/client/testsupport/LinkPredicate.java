@@ -23,6 +23,6 @@ public abstract class LinkPredicate implements Predicate<Link> {
 
     @Override
     public String toString() {
-        return link.replace(",", "\\n");
+        return link.replace(",", "\n");
     }
 }

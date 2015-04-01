@@ -13,6 +13,7 @@ import org.junit.Test;
 import org.junit.rules.TestRule;
 import org.junit.rules.TestWatcher;
 import org.junit.runner.Description;
+import org.restlet.data.MediaType;
 import org.restlet.data.Reference;
 import org.restlet.representation.Representation;
 
@@ -38,7 +39,7 @@ public class ListsCrudIntegrationTests extends IntegrationTests {
     
     @Before
     public void setUp() {
-        browser = new Browser(getBaseUrl());
+        browser = new Browser(getBaseUrl(), MediaType.APPLICATION_JSON);
     }
 
     @Test
@@ -51,7 +52,7 @@ public class ListsCrudIntegrationTests extends IntegrationTests {
     @Test
     public void new_todolist_can_be_deleted_by_owner() throws Exception {
         Reference location = browser.asUser("admin").createTodoList(new TodoList("crudlist2"));
-        String id = location.getLastSegment();
+        String id = location.getLastSegment(true);
         browser.asUser("admin").deleteTodoList(id);
         Representation html = browser.asUser("admin").getTodoLists();
         assertThat(html.getText(), not(containsString("crudlist2")));
@@ -59,10 +60,16 @@ public class ListsCrudIntegrationTests extends IntegrationTests {
 
     @Test
     public void altering_todolist_updates_existing_todolist() throws Exception {
-        Reference location = browser.asUser("admin").createTodoList(new TodoList("crudlist2"));
-        String id = location.getLastSegment();
+        TodoList theTodoList = new TodoList("crudlist3");
+        Reference location = browser.asUser("admin").createTodoList(theTodoList);
+        String id = location.getLastSegment(true);
         String html = browser.asUser("admin").getTodoList(id).getText();
-        //assertThat(html, containsString("crudlist2!"));
+        assertThat(html, containsString("crudlist3"));
+        
+        theTodoList.setId(id);
+        theTodoList.setName("crudlist3!");
+        //browser.asUser("admin").updateTodoList(theTodoList);
+        
     }
 
 }

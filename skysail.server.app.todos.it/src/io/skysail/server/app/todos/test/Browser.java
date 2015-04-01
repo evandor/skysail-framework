@@ -8,6 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 
 import org.restlet.data.Form;
 import org.restlet.data.MediaType;
+import org.restlet.data.Method;
 import org.restlet.data.Reference;
 import org.restlet.data.Status;
 import org.restlet.representation.Representation;
@@ -16,11 +17,18 @@ import org.restlet.representation.Representation;
 public class Browser {
 
     private Client client;
+    
+    private MediaType mediaType;
 
     public Browser(String url) {
+        this(url, MediaType.TEXT_HTML);
+    }
+    
+    public Browser(String url, MediaType mediaType) {
         log.info("{}creating new browser client with url '{}' and mediaType '{}'", Client.TESTTAG, url,
                 MediaType.TEXT_HTML);
-        client = new Client(url, MediaType.TEXT_HTML);
+        this.mediaType = mediaType;
+        client = new Client(url, mediaType);
     }
 
     public Browser asUser(String username) {
@@ -69,19 +77,21 @@ public class Browser {
     }
 
     private void getTodoList(Client client, String id) {
-        client.gotoRoot();
-        client.followLinkTitle(TodoApplication.APP_NAME);
+        client.gotoRoot()
+            .followLinkTitle(TodoApplication.APP_NAME);
     }
 
     private void navigateToPostTodoListAs(Client client) {
-        client.gotoRoot();
-        client.followLinkTitle(TodoApplication.APP_NAME).followLinkRelation(LinkRelation.CREATE_FORM);
+        client.gotoRoot()
+             .followLinkTitle(TodoApplication.APP_NAME)
+             .followLinkRelation(LinkRelation.CREATE_FORM);
     }
 
     private void deleteTodoList(Client client, String id) {
         client.gotoRoot() //
             .followLinkTitle(TodoApplication.APP_NAME)//
-            .followLinkTitle("update");
+            .followLinkTitleAndRefId("update", id)
+            .followLink(Method.DELETE);
 
     }
 

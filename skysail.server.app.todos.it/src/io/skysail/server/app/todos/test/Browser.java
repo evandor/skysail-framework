@@ -59,6 +59,15 @@ public class Browser {
         // return client.getCurrentRepresentation();
     }
 
+    public void updateTodoList(TodoList theTodoList) {
+        log.info("{}updating TodoList #{}", Client.TESTTAG, theTodoList.getId());
+        updateTodoList(client, theTodoList.getId());
+    }
+
+
+    private void updateTodoList(Client client2, String id) {
+    }
+
     protected Reference createTodoList(TodoList todoList) {
         navigateToPostTodoListAs(client);
         client.post(createForm(todoList));

@@ -115,4 +115,10 @@ public class InMemoryDbService implements DbService2 {
     public void executeUpdate(String sql, Map<String, Object> params) {
     }
 
+    @Override
+    public void createUniqueIndex(Class<?> cls, String... columnNames) {
+        // TODO Auto-generated method stub
+        
+    }
+
 }

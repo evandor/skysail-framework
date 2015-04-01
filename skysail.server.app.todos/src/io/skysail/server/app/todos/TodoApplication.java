@@ -4,10 +4,10 @@ import io.skysail.server.app.todos.lists.ListResource;
 import io.skysail.server.app.todos.lists.ListsResource;
 import io.skysail.server.app.todos.lists.PostListResource;
 import io.skysail.server.app.todos.lists.PutListResource;
+import io.skysail.server.app.todos.repo.TodosRepository;
 import io.skysail.server.app.todos.todos.resources.PostTodoResource;
 import io.skysail.server.app.todos.todos.resources.PutTodoResource;
 import io.skysail.server.app.todos.todos.resources.TodoResource;
-import io.skysail.server.app.todos.todos.resources.TodosRepository;
 import io.skysail.server.app.todos.todos.resources.TodosResource;
 
 import java.util.Arrays;

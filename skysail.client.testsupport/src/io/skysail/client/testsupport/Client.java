@@ -23,7 +23,7 @@ import org.restlet.resource.ClientResource;
 import org.restlet.util.Series;
 
 @Slf4j
-public class Client {
+public class Client<T> {
 
     public static final String TESTTAG = " > TEST: ";
 
@@ -106,15 +106,15 @@ public class Client {
         return follow(new LinkByExamplePredicate(example, cr.getResponse().getHeaders()));
     }
 
-    public Client followLinkRelation(LinkRelation linkRelation) {
+    public Client<?> followLinkRelation(LinkRelation linkRelation) {
         return follow(new LinkRelationPredicate(linkRelation, cr.getResponse().getHeaders()));
     }
 
-    public Client followLink(Method method) {
-        return follow(new LinkMethodPredicate(method, cr.getResponse().getHeaders()), method);
+    public Client<?> followLink(Method method, T entity) {
+        return follow(new LinkMethodPredicate(method, cr.getResponse().getHeaders()), method, entity);
     }
 
-    private Client follow(LinkPredicate predicate, Method method) {
+    private Client<?> follow(LinkPredicate predicate, Method method, T entity) {
         Series<Header> headers = cr.getResponse().getHeaders();
         String linkheader = headers.getFirstValue("Link");
         List<Link> links = Arrays.stream(linkheader.split(",")).map(l -> Link.valueOf(l)).collect(Collectors.toList());
@@ -140,6 +140,10 @@ public class Client {
             }
             if (Method.DELETE.equals(method)) {
                 currentRepresentation = cr.delete(mediaType);
+            } else if (Method.POST.equals(method)) {
+                currentRepresentation = cr.post(entity, mediaType);
+            } else if (Method.PUT.equals(method)) {
+                currentRepresentation = cr.put(entity, mediaType);    
             } else {
                 throw new UnsupportedOperationException();
             }
@@ -150,7 +154,7 @@ public class Client {
     }
 
     private Client follow(LinkPredicate predicate) {
-        return follow(predicate, null);
+        return follow(predicate, null, null);
     }
 
     private Link getTheOnlyLink(LinkPredicate predicate, List<Link> links) {

@@ -7,6 +7,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -23,6 +24,7 @@ import com.orientechnologies.orient.core.db.ODatabaseRecordThreadLocal;
 import com.orientechnologies.orient.core.db.document.ODatabaseDocumentTx;
 import com.orientechnologies.orient.core.id.ORecordId;
 import com.orientechnologies.orient.core.metadata.schema.OClass;
+import com.orientechnologies.orient.core.metadata.schema.OClass.INDEX_TYPE;
 import com.orientechnologies.orient.core.metadata.schema.OType;
 import com.orientechnologies.orient.core.record.impl.ODocument;
 import com.orientechnologies.orient.core.sql.OCommandSQL;
@@ -252,6 +254,38 @@ public class OrientGraphDbService extends AbstractOrientDbService implements DbS
         } finally {
             db.close();
         }
+    }
+
+    @Override
+    public void createUniqueIndex(Class<?> cls, String... fieldnames) {
+        OObjectDatabaseTx db = getObjectDb();
+        OClass oClass = db.getMetadata().getSchema().getClass(cls);
+        Set<String> properties = oClass.propertiesMap().keySet();
+//        boolean propertyMissing = Arrays.asList(fieldnames).stream().filter(field -> {
+//            if (!(properties.contains(field))) {
+//                log.error("cannot create index on non-existing property '" + field +"'");
+//                return true;
+//            }
+//            return false;
+//        }).findFirst().isPresent();
+//
+//        if (!propertyMissing) {
+//            oClass.createIndex("compositeUniqueIndex", INDEX_TYPE.UNIQUE, fieldnames);
+//        }
+
+        String indexName = "compositeUniqueIndexNameAndOwner";
+        boolean indexExists = oClass.getIndexes().stream().filter(i -> {
+            return i.getName().equals(indexName);
+        }).findFirst().isPresent();
+        if (indexExists) {
+            return;
+        }
+        Arrays.stream(fieldnames).forEach(field -> {
+            // TODO need to get types reflectively
+            createProperty(cls.getSimpleName(), field, OType.STRING);
+        });
+        oClass.createIndex(indexName, INDEX_TYPE.UNIQUE, fieldnames);
+        
     }
 
     private OrientGraph getDb() {

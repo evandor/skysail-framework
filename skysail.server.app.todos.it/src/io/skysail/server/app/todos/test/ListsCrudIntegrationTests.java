@@ -3,16 +3,10 @@ package io.skysail.server.app.todos.test;
 import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.CoreMatchers.not;
 import static org.junit.Assert.assertThat;
-import io.skysail.client.testsupport.Client;
 import io.skysail.server.app.todos.TodoList;
-import lombok.extern.slf4j.Slf4j;
 
 import org.junit.Before;
-import org.junit.Rule;
 import org.junit.Test;
-import org.junit.rules.TestRule;
-import org.junit.rules.TestWatcher;
-import org.junit.runner.Description;
 import org.restlet.data.MediaType;
 import org.restlet.data.Reference;
 import org.restlet.representation.Representation;
@@ -21,21 +15,7 @@ import org.restlet.representation.Representation;
  * Integration tests for creating, reading, updating, and deleting TodoLists.
  *
  */
-@Slf4j
 public class ListsCrudIntegrationTests extends IntegrationTests {
-
-    private Browser browser;
-
-    @Rule
-    public TestRule watcher = new TestWatcher() {
-       protected void starting(Description description) {
-    	   log.info("");
-    	   log.info("--------------------------------------------");
-    	   log.info("{}running test '{}'", Client.TESTTAG, description.getMethodName());
-    	   log.info("--------------------------------------------");
-    	   log.info("");
-       }
-    };
     
     @Before
     public void setUp() {
@@ -68,8 +48,7 @@ public class ListsCrudIntegrationTests extends IntegrationTests {
         
         theTodoList.setId(id);
         theTodoList.setName("crudlist3!");
-        //browser.asUser("admin").updateTodoList(theTodoList);
-        
+        browser.asUser("admin").updateTodoList(theTodoList);
     }
 
 }

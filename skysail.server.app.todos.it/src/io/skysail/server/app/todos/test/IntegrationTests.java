@@ -3,14 +3,19 @@ package io.skysail.server.app.todos.test;
 import io.skysail.api.links.LinkRelation;
 import io.skysail.client.testsupport.Client;
 import io.skysail.server.app.todos.TodoApplication;
+import lombok.extern.slf4j.Slf4j;
 
 import org.junit.Rule;
 import org.junit.rules.ExpectedException;
+import org.junit.rules.TestRule;
+import org.junit.rules.TestWatcher;
+import org.junit.runner.Description;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.FrameworkUtil;
 import org.restlet.data.Form;
 import org.restlet.representation.Representation;
 
+@Slf4j
 public class IntegrationTests {
 
     private static final String HOST = "http://localhost";
@@ -20,6 +25,19 @@ public class IntegrationTests {
 
     @Rule
     public ExpectedException thrown = ExpectedException.none();
+    
+    protected Browser browser;
+
+    @Rule
+    public TestRule watcher = new TestWatcher() {
+       protected void starting(Description description) {
+           log.info("");
+           log.info("--------------------------------------------");
+           log.info("{}running test '{}'", Client.TESTTAG, description.getMethodName());
+           log.info("--------------------------------------------");
+           log.info("");
+       }
+    };
 
     protected String getBaseUrl() {
         return HOST + (PORT != null ? ":" + PORT : "");

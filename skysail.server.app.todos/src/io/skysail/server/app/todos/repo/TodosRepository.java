@@ -1,4 +1,4 @@
-package io.skysail.server.app.todos.todos.resources;
+package io.skysail.server.app.todos.repo;
 
 import io.skysail.server.app.todos.TodoList;
 import io.skysail.server.app.todos.todos.Todo;
@@ -24,6 +24,7 @@ public class TodosRepository implements DbRepository {
     public void activate() {
         dbService.setupVertices(Todo.class.getSimpleName(),TodoList.class.getSimpleName());
         dbService.register(Todo.class,TodoList.class);
+        dbService.createUniqueIndex(TodoList.class, "name", "owner");
     }
 
     @Reference

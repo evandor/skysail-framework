@@ -55,4 +55,6 @@ public interface DbService2 {
 
     void executeUpdate(String sql, Map<String, Object> params);
 
+    void createUniqueIndex(Class<?> cls, String... columnNames);
+    
 }

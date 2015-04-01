@@ -61,11 +61,7 @@ public class Browser {
 
     public void updateTodoList(TodoList theTodoList) {
         log.info("{}updating TodoList #{}", Client.TESTTAG, theTodoList.getId());
-        updateTodoList(client, theTodoList.getId());
-    }
-
-
-    private void updateTodoList(Client client2, String id) {
+        updateTodoList(client, theTodoList);
     }
 
     protected Reference createTodoList(TodoList todoList) {
@@ -100,8 +96,15 @@ public class Browser {
         client.gotoRoot() //
             .followLinkTitle(TodoApplication.APP_NAME)//
             .followLinkTitleAndRefId("update", id)
-            .followLink(Method.DELETE);
-
+            .followLink(Method.DELETE, null);
     }
+    
+    private void updateTodoList(Client client, TodoList theTodoList) {
+        client.gotoRoot() //
+            .followLinkTitle(TodoApplication.APP_NAME)//
+            .followLinkTitleAndRefId("update", theTodoList.getId())
+            .followLink(Method.PUT, theTodoList);
+    }
+
 
 }

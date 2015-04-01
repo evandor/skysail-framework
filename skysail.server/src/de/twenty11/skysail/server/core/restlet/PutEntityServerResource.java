@@ -222,7 +222,7 @@ public abstract class PutEntityServerResource<T> extends SkysailServerResource<T
         String parentRef = getReference().getParentRef().toString();
         
         List<Link> result = new ArrayList<>();
-        result.add(new Link.Builder(ref).relation(LinkRelation.NEXT).title("form target").verbs(Method.POST).build());
+        result.add(new Link.Builder(ref).relation(LinkRelation.NEXT).title("form target").verbs(Method.PUT).build());
 
         T entity = this.getCurrentEntity();
         if (entity instanceof Identifiable) {

@@ -6,7 +6,6 @@ import io.skysail.server.app.todos.todos.Todo;
 
 import java.util.Date;
 
-import org.codehaus.jettison.json.JSONObject;
 import org.restlet.resource.ResourceException;
 
 import de.twenty11.skysail.server.core.restlet.PutEntityServerResource;
@@ -27,11 +26,6 @@ public class PutTodoResource extends PutEntityServerResource<Todo> {
     @Override
     public Todo getEntity() {
         return app.getRepository().getById(Todo.class, todoId);
-    }
-
-    @Override
-    public JSONObject getEntityAsJsonObject() {
-        return null;// TodosRepository.getInstance().getById(listId);
     }
 
     @Override

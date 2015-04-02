@@ -2,7 +2,6 @@ package io.skysail.server.text.store.bundleresource.impl;
 
 import io.skysail.api.responses.SkysailResponse;
 
-import org.codehaus.jettison.json.JSONObject;
 import org.restlet.data.Form;
 import org.restlet.data.Reference;
 import org.restlet.resource.ResourceException;
@@ -21,11 +20,6 @@ public class PutMessageResource extends PutEntityServerResource<Message> {
     @Override
     protected void doInit() throws ResourceException {
         msgKey = getAttribute("key");
-    }
-
-    @Override
-    public JSONObject getEntityAsJsonObject() {
-        return null;// app.getMessage(msgKey);
     }
 
     // @Override

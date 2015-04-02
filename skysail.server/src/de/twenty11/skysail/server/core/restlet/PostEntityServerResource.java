@@ -55,7 +55,7 @@ import etm.core.monitor.EtmPoint;
  *     private MyApplication app;
  *     private String myEntityId;
  * 
- *     public MyEntityResource() {
+ *     public void doInit() {
  *        app = (MyApplication) getApplication();
  *     }
  *     

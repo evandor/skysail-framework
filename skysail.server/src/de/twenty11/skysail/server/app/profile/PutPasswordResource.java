@@ -4,7 +4,6 @@ import io.skysail.api.responses.SkysailResponse;
 import io.skysail.api.um.User;
 
 import org.apache.shiro.SecurityUtils;
-import org.codehaus.jettison.json.JSONObject;
 import org.restlet.resource.ResourceException;
 
 import de.twenty11.skysail.server.app.SkysailRootApplication;
@@ -25,11 +24,6 @@ public class PutPasswordResource extends PutEntityServerResource<ChangePasswordE
     }
 
     @Override
-    public JSONObject getEntityAsJsonObject() {
-        return null;// new ChangePasswordEntity();
-    }
-
-    @Override
     public SkysailResponse<?> updateEntity(ChangePasswordEntity entity) {
         String username = (String) SecurityUtils.getSubject().getPrincipal();
         User user = new User(username, entity.getOld());
@@ -47,7 +41,7 @@ public class PutPasswordResource extends PutEntityServerResource<ChangePasswordE
 
     @Override
     public ChangePasswordEntity getEntity() {
-        return null;
+        return new ChangePasswordEntity();
     }
 
 }

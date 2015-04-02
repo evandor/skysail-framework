@@ -107,7 +107,7 @@ import de.twenty11.skysail.server.utils.ReflectionUtils;
  *     }
  *     
  *     public List&lt;MenuItem&gt; getMenuEntries() {
- *         MenuItem appMenu = new MenuItem("&lt;Name&gt;", "/&lt;path&gt;");
+ *         MenuItem appMenu = new MenuItem(APP_NAME, "/" + APP_NAME);
  *         appMenu.setCategory(MenuItem.Category.APPLICATION_MAIN_MENU);
  *         return Arrays.asList(appMenu);
  *     }

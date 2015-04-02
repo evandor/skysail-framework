@@ -102,21 +102,6 @@ public abstract class PutEntityServerResource<T> extends SkysailServerResource<T
     }
 
     /**
-     * The concrete resource should provide a template (a potentially non-valid
-     * instance of type T) which will be passed to the client to indicate the
-     * structure the server expects, e.g. if the client asks for a json
-     * representation of a user resource, this method could return a new User()
-     * object which will be serialized as json (with all fields null), so that
-     * the client knows about the attributes and could provide a generic input
-     * form.
-     * 
-     * @return a template instance of type T
-     */
-    public JSONObject getEntityAsJsonObject() {
-        return null;
-    }
-
-    /**
      * will be called in case of a PUT request.
      */
     public abstract SkysailResponse<?> updateEntity(T entity);
@@ -147,7 +132,7 @@ public abstract class PutEntityServerResource<T> extends SkysailServerResource<T
         RequestHandler<T> requestHandler = new RequestHandler<T>(getApplication());
         AbstractResourceFilter<PutEntityServerResource<T>, T> chain = requestHandler.createForFormResponse();
         ResponseWrapper<T> wrapper = chain.handle(this, getResponse());
-
+        
         point.collect();
         return new FormResponse<T>(wrapper.getEntity(), identifier, ".", redirectBackTo());
     }

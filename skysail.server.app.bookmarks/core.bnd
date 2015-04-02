@@ -1,0 +1,18 @@
+Bundle-Version: 0.1.0.${tstamp}
+
+Service-Component:  \
+	*
+
+Bundle-Name: SKYSAIL :: server :: app :: bookmarks
+
+Export-Package:  \
+	io.skysail.server.app.bookmarks
+	
+Private-Package:  \
+	io.skysail.server.app.bookmarks.app,\
+	io.skysail.server.app.bookmarks.repo,\
+	io.skysail.server.app.bookmarks.resources
+	
+Import-Package: org.osgi.framework,\
+	javassist.util.proxy,\
+	*

@@ -9,6 +9,7 @@ import io.skysail.server.app.crm.companies.resources.PutCompanyResource;
 import io.skysail.server.app.crm.test.CrmAppTest;
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -26,6 +27,7 @@ public class PutCompanyResourceTest extends CrmAppTest {
     }
 
     @Test
+    @Ignore
     public void test() {
         Company myCompany = new Company("admin");
         myCompany.setName("thename");

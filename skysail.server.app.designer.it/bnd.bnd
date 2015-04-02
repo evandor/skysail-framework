@@ -1,8 +1,7 @@
 Bundle-Name: SKYSAIL :: server :: app :: designer :: integrationtests
 Bundle-Version: 0.1.0.${tstamp}
 
-Test-Cases: \
-	io.skysail.server.app.designer.it.*
+Test-Cases: io.skysail.server.app.designer.it.ApplicationsCrudIntegrationTests
 
 -buildpath:  \
 	osgi.core;version=5.0,\

@@ -10,8 +10,14 @@ INFO  [io.skysail.server.http.HttpServer            ] - configuration was provid
 INFO  [io.skysail.server.http.HttpServer            ] - 
 INFO  [io.skysail.server.http.HttpServer            ] - ====================================
 INFO  [io.skysail.server.http.HttpServer            ] - Starting skysail server on port 2015
+INFO  [d.t.skysail.server.app.ApplicationList       ] - (+) Adding application 'plugins'
 INFO  [io.skysail.server.http.HttpServer            ] - ====================================
 INFO  [io.skysail.server.http.HttpServer            ] - 
-INFO  [d.t.skysail.server.app.ApplicationList       ] - (+) Adding application 'plugins'
-INFO  [org.restlet                                  ] - Starting the internal [HTTP/1.1] server on port 2015
 INFO  [d.t.skysail.server.app.ApplicationList       ] - (+) Adding application 'static'
+INFO  [org.restlet                                  ] - Starting the internal [HTTP/1.1] server on port 2015
+INFO  [i.s.s.a.d.i.ApplicationsCrudIntegrationTests ] - 
+INFO  [i.s.s.a.d.i.ApplicationsCrudIntegrationTests ] - --------------------------------------------
+INFO  [i.s.s.a.d.i.ApplicationsCrudIntegrationTests ] -  > TEST: running test 'testName'
+INFO  [i.s.s.a.d.i.ApplicationsCrudIntegrationTests ] - --------------------------------------------
+INFO  [i.s.s.a.d.i.ApplicationsCrudIntegrationTests ] - 
+INFO  [i.skysail.server.app.designer.it.Browser     ] -  > TEST: creating new browser client with url 'http://localhost:2015' and mediaType 'text/html'

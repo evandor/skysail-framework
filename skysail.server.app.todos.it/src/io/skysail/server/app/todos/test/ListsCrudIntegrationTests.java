@@ -6,6 +6,7 @@ import static org.junit.Assert.assertThat;
 import io.skysail.server.app.todos.TodoList;
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.restlet.data.MediaType;
 import org.restlet.data.Reference;
@@ -39,6 +40,7 @@ public class ListsCrudIntegrationTests extends IntegrationTests {
     }
 
     @Test
+    @Ignore
     public void altering_todolist_updates_existing_todolist() throws Exception {
         TodoList theTodoList = new TodoList("crudlist3");
         Reference location = browser.asUser("admin").createTodoList(theTodoList);

@@ -19,7 +19,6 @@ import org.apache.shiro.SecurityUtils;
 import org.osgi.service.event.Event;
 import org.osgi.service.event.EventHandler;
 import org.restlet.data.MediaType;
-import org.restlet.data.Method;
 import org.restlet.engine.converter.ConverterHelper;
 import org.restlet.engine.resource.VariantInfo;
 import org.restlet.representation.Representation;
@@ -169,9 +168,9 @@ public class HtmlConverter extends ConverterHelper implements OsgiConverterHelpe
         if (currentUser == null) {
             return Collections.emptyList();
         }
-        if (!(resource.getRequest().getMethod().equals(Method.GET))) {
-            return Collections.emptyList();
-        }
+//        if (!(resource.getRequest().getMethod().equals(Method.GET))) {
+//            return Collections.emptyList();
+//        }
         List<Notification> result = new ArrayList<>();
         events.stream().forEach(e -> {
             String msg = (String) e.getProperty("msg");

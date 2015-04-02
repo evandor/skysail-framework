@@ -70,7 +70,7 @@ public class RequestHandler<T> {
     }
     
     public  AbstractResourceFilter<PutEntityServerResource<T>, T> createForFormResponse() {
-        return new ExceptionCatchingFilter<PutEntityServerResource<T>, T>()
+        return new ExceptionCatchingFilter<PutEntityServerResource<T>, T>(application)
                 .calling(new AddApiVersionHeader<PutEntityServerResource<T>, T>())
                 .calling(new GetRequestPreFilterHook<PutEntityServerResource<T>, T>(application))
                 .calling(new AddRequestIdToResourceFilter<PutEntityServerResource<T>, T>())
@@ -97,7 +97,7 @@ public class RequestHandler<T> {
 
     // @formatter:off
     private AbstractResourceFilter<ListServerResource<T>, List<T>> chainForListPost() {
-        return new ExceptionCatchingFilter<ListServerResource<T>, List<T>>()
+        return new ExceptionCatchingFilter<ListServerResource<T>, List<T>>(application)
                 .calling(new AddRequestIdToResourceFilter<ListServerResource<T>, List<T>>())
                 .calling(new CheckInvalidInputFilter<ListServerResource<T>, List<T>>())
                 .calling(new FormDataExtractingFilter<ListServerResource<T>, List<T>>())
@@ -106,7 +106,7 @@ public class RequestHandler<T> {
     }
 
     private AbstractResourceFilter<ListServerResource<T>, List<T>> chainForListGet() {
-        return new ExceptionCatchingFilter<ListServerResource<T>, List<T>>()
+        return new ExceptionCatchingFilter<ListServerResource<T>, List<T>>(application)
                 .calling(new AddApiVersionHeader<ListServerResource<T>, List<T>>())
                 .calling(new GetRequestPreFilterHook<ListServerResource<T>, List<T>>(application))
                 .calling(new AddRequestIdToResourceFilter<ListServerResource<T>, List<T>>())
@@ -118,7 +118,7 @@ public class RequestHandler<T> {
     }
 
     private AbstractResourceFilter<EntityServerResource<T>, T> chainForEntityGet() {
-        return new ExceptionCatchingFilter<EntityServerResource<T>, T>()
+        return new ExceptionCatchingFilter<EntityServerResource<T>, T>(application)
                 .calling(new AddApiVersionHeader<EntityServerResource<T>, T>())
                 .calling(new GetRequestPreFilterHook<EntityServerResource<T>, T>(application))
                 .calling(new AddRequestIdToResourceFilter<EntityServerResource<T>, T>())
@@ -127,21 +127,20 @@ public class RequestHandler<T> {
     }
 
     private AbstractResourceFilter<PostEntityServerResource<T>, T> chainForEntityPost() {
-        return new ExceptionCatchingFilter<PostEntityServerResource<T>, T>()
+        return new ExceptionCatchingFilter<PostEntityServerResource<T>, T>(application)
                 .calling(new AddRequestIdToResourceFilter<PostEntityServerResource<T>, T>())
                 .calling(new CheckInvalidInputFilter<PostEntityServerResource<T>, T>(application))
                 .calling(new FormDataExtractingFilter<PostEntityServerResource<T>, T>())
                 .calling(new CheckBusinessViolationsFilter<PostEntityServerResource<T>, T>(application))
                 .calling(new OptionalEncryptionFilter<PostEntityServerResource<T>, T>(application))
                 .calling(new PersistEntityFilter<PostEntityServerResource<T>, T>(application))
-                // .calling(new LocationHeader)
                 .calling(new EntityWasAddedFilter<PostEntityServerResource<T>, T>(application))
                 .calling(new AddLinkheadersFilter<PostEntityServerResource<T>, T>())
                 .calling(new PostRedirectGetFilter<PostEntityServerResource<T>, T>());
     }
 
     private AbstractResourceFilter<PutEntityServerResource<T>, T> chainForEntityPut() {
-        return new ExceptionCatchingFilter<PutEntityServerResource<T>, T>()
+        return new ExceptionCatchingFilter<PutEntityServerResource<T>, T>(application)
                 .calling(new AddRequestIdToResourceFilter<PutEntityServerResource<T>, T>())
                 .calling(new CheckInvalidInputFilter<PutEntityServerResource<T>, T>(application))
                 .calling(new FormDataExtractingFilter<PutEntityServerResource<T>, T>())
@@ -155,7 +154,7 @@ public class RequestHandler<T> {
     }
 
     private AbstractResourceFilter<EntityServerResource<T>, T> chainForEntityDelete() {
-        return new ExceptionCatchingFilter<EntityServerResource<T>, T>()
+        return new ExceptionCatchingFilter<EntityServerResource<T>, T>(application)
                 .calling(new AddRequestIdToResourceFilter<EntityServerResource<T>, T>())
                 .calling(new DeleteEntityFilter<EntityServerResource<T>, T>())
                 .calling(new EntityWasDeletedFilter<EntityServerResource<T>, T>(application))
@@ -164,7 +163,7 @@ public class RequestHandler<T> {
 
     public AbstractResourceFilter<PostEntityServerResource<T>, T> newInstance(Method method) {
         if (method.equals(Method.GET)) {
-            return new ExceptionCatchingFilter<PostEntityServerResource<T>, T>().calling(
+            return new ExceptionCatchingFilter<PostEntityServerResource<T>, T>(application).calling(
                     new DataExtractingFilter<PostEntityServerResource<T>, T>()).calling(
                     new AddLinkheadersFilter<PostEntityServerResource<T>, T>());
         }

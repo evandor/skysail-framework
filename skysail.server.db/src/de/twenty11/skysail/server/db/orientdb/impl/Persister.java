@@ -76,7 +76,6 @@ public class Persister {
             return result.getId();
         } catch (Exception e) {
             db.rollback();
-            log.error("Exception in Database, rolled back transaction", e);
             throw e;
         } finally {
             db.shutdown();

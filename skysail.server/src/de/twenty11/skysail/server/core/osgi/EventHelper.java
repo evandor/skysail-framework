@@ -92,6 +92,13 @@ public class EventHelper {
         return this;
     }
 
+    public EventHelper error(String msg) {
+        this.msg = msg;
+        this.topic += "/error";
+        this.type = "error";
+        return this;
+    }
+
     public void fire() {
         if (eventAdmin == null) {
             log.warn("eventAdmin is null, cannot fire Event");

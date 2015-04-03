@@ -5,6 +5,7 @@ Private-Package:  \
 -buildpath:  \
 	skysail.client.todos.angularjs,\
 	skysail.server.app.todos;version=latest,\
+	skysail.server.app.bookmarks;version=latest,\
 	skysail.server.converter;version=latest,\
 	skysail.server.documentation;version=latest,\
 	skysail.server.db;version=latest,\

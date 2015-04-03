@@ -30,7 +30,8 @@ public class PostBookmarkResource extends PostEntityServerResource<Bookmark> {
         entity.setCreated(new Date());
         Subject subject = SecurityUtils.getSubject();
         entity.setOwner(subject.getPrincipal().toString());
-        app.getRepository().add(entity);
+        String id = app.getRepository().add(entity).toString();
+        entity.setId(id);
         return new SkysailResponse<String>();
     }
 

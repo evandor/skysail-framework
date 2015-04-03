@@ -1,6 +1,5 @@
 package de.twenty11.skysail.server.core.restlet.filter;
 
-import org.codehaus.jettison.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -17,9 +16,6 @@ public class UpdateEntityFilter<R extends PutEntityServerResource<T>, T> extends
         T entity = responseWrapper.getEntity();
         if (entity != null) {
             resource.updateEntity(entity);
-        } else {
-            JSONObject data = responseWrapper.getData();
-            resource.updateEntity(data);
         }
         super.doHandle(resource, responseWrapper);
         return FilterResult.CONTINUE;

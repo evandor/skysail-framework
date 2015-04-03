@@ -14,7 +14,6 @@ import javax.validation.ConstraintViolation;
 
 import lombok.extern.slf4j.Slf4j;
 
-import org.codehaus.jettison.json.JSONObject;
 import org.restlet.data.Form;
 import org.restlet.data.Method;
 import org.restlet.representation.Variant;
@@ -105,10 +104,6 @@ public abstract class PutEntityServerResource<T> extends SkysailServerResource<T
      * will be called in case of a PUT request.
      */
     public abstract SkysailResponse<?> updateEntity(T entity);
-
-    public SkysailResponse<?> updateEntity(JSONObject json) {
-        return null;
-    }
 
     /**
      * This method will be called by the skysail framework to create the actual

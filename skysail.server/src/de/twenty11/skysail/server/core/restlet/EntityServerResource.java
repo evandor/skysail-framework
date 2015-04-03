@@ -48,17 +48,18 @@ import etm.core.monitor.EtmPoint;
  *     private MyApplication app;
  *     private String myEntityId;
  * 
- *     // if you have "router.attach(new RouteBuilder("/myentity/{id}", ...)" in your SkysailAppliation
- *     protected void doInit() throws ResourceException {
+ *     protected void doInit() {
  *         myEntityId = getAttribute("id");
  *         app = (MyApplication) getApplication();
  *     }
  * 
- * 
- *     public MyEntity getData() {
- *         return app.getMyEntityRepository().getById(myEntityId);
+ *     public MyEntity getEntity() {
+ *         return app.getyRepository().getById(MyEntity.class, myEntityId);
  *     }
  * 
+ *     public List&lt;Link&gt; getLinkheader() {
+ *          return super.getLinkheader(PutMyEntityResource.class);
+ *     }
  * 
  * }
  * </code>
@@ -71,17 +72,9 @@ public abstract class EntityServerResource<T> extends SkysailServerResource<T> {
 
     private static final Logger logger = LoggerFactory.getLogger(EntityServerResource.class);
 
-    // private Class<? extends ListServerResource<?>> associatedResource;
-
     public EntityServerResource() {
         addToContext(ResourceContextId.LINK_TITLE, "show");
     }
-
-    // public EntityServerResource(Class<? extends ListServerResource<?>>
-    // associatedResource) {
-    // this();
-    // this.associatedResource = associatedResource;
-    // }
 
     /**
      * If you have a route defined as "/somepath/{key}/whatever", you can get

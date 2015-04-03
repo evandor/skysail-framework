@@ -1,0 +1,6 @@
+WARN  [d.t.s.server.core.restlet.SkysailRouter      ] - please use a RouteBuilder to attach this resource: class de.twenty11.skysail.server.resources.DefaultResource
+WARN  [d.t.s.server.core.restlet.SkysailRouter      ] - please use a RouteBuilder to attach this resource: class de.twenty11.skysail.server.resources.LoginResource
+WARN  [d.t.s.server.core.restlet.SkysailRouter      ] - please use a RouteBuilder to attach this resource: class de.twenty11.skysail.server.app.OAuthLoginResource
+WARN  [d.t.s.server.core.restlet.SkysailRouter      ] - please use a RouteBuilder to attach this resource: class de.twenty11.skysail.server.resources.WelcomeResource
+WARN  [d.t.skysail.server.core.osgi.EventHelper     ] - Exception caught when trying to post event with topic 'request/Bookmarks/bookmarks/12:0/GET'
+WARN  [d.t.skysail.server.core.osgi.EventHelper     ] - Exception caught when trying to post event with topic 'request/Bookmarks/bookmarks/12:0/DELETE'

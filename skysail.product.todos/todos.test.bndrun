@@ -106,6 +106,7 @@
 	skysail.product.todos;version=latest,\
 	skysail.server;version=latest,\
 	skysail.server.converter;version=latest,\
+	skysail.server.app.bookmarks;version=latest,\
 	skysail.server.app.todos;version=latest,\
 	skysail.server.app.crm;version=latest,\
 	skysail.server.app.designer;version=latest,\

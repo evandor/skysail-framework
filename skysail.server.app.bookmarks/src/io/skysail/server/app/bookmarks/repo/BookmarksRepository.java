@@ -57,15 +57,15 @@ public class BookmarksRepository implements DbRepository {
         return dbService.persist(entity, edges);
     }
 
-    //
-//    public <T> T getById(Class<?> cls, String id) {
-//        return dbService.findObjectById(cls, id);
-//    }
-//
-//    public void update(String id, Object entity) {
-//        dbService.update(id, entity);
-//    }
-//
+    
+    public <T> T getById(Class<?> cls, String id) {
+        return dbService.findObjectById(cls, id);
+    }
+
+    public void update(String id, Object entity) {
+        dbService.update(id, entity);
+    }
+
 //    public Object add(Todo entity) {
 //         Object result = dbService.persist(entity);
 //         increaseOtherTodosRank(entity);
@@ -80,9 +80,9 @@ public class BookmarksRepository implements DbRepository {
 //        dbService.executeUpdate(sql, params);
 //    }
 //
-//    public void delete(Class<?> cls, String id) {
-//        dbService.delete(cls, id);
-//    }
+    public void delete(Class<?> cls, String id) {
+        dbService.delete(cls, id);
+    }
 //
 //    public long getTodosCount(String username,String listId) {
 //        String sql = "select COUNT(*) as count from " + Todo.class.getSimpleName() + " WHERE " + getWhereStatement(listId);

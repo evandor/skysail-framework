@@ -1,8 +1,10 @@
 package io.skysail.server.app.bookmarks;
 
 import io.skysail.server.app.bookmarks.repo.BookmarksRepository;
+import io.skysail.server.app.bookmarks.resources.BookmarkResource;
 import io.skysail.server.app.bookmarks.resources.BookmarksResource;
 import io.skysail.server.app.bookmarks.resources.PostBookmarkResource;
+import io.skysail.server.app.bookmarks.resources.PutBookmarkResource;
 
 import java.util.Arrays;
 import java.util.List;
@@ -32,9 +34,8 @@ public class BookmarksApplication extends SkysailApplication implements Applicat
         router.attach(new RouteBuilder("/", BookmarksResource.class));
         router.attach(new RouteBuilder("/bookmarks", BookmarksResource.class));
         router.attach(new RouteBuilder("/bookmarks/", PostBookmarkResource.class));
-        // router.attach(new RouteBuilder("/clips/{id}", ClipResource.class));
-        // router.attach(new RouteBuilder("/clips/{id}/",
-        // PutClipResource.class));
+        router.attach(new RouteBuilder("/bookmarks/{id}", BookmarkResource.class));
+        router.attach(new RouteBuilder("/bookmarks/{id}/", PutBookmarkResource.class));
     }
 
     @Reference(dynamic = true, multiple = false, optional = false, target = "(name=BookmarksRepository)")

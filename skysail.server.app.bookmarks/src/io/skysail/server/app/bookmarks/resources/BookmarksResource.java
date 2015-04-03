@@ -11,6 +11,10 @@ import de.twenty11.skysail.server.core.restlet.ListServerResource;
 public class BookmarksResource extends ListServerResource<Bookmark> {
 
     private BookmarksApplication app;
+    
+    public BookmarksResource() {
+        super(BookmarkResource.class);
+    }
 
     @Override
     protected void doInit() {

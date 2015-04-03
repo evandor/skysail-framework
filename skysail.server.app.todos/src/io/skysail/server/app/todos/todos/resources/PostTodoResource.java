@@ -3,8 +3,8 @@ package io.skysail.server.app.todos.todos.resources;
 import io.skysail.api.links.Link;
 import io.skysail.api.responses.SkysailResponse;
 import io.skysail.server.app.todos.TodoApplication;
-import io.skysail.server.app.todos.todos.Status;
 import io.skysail.server.app.todos.todos.Todo;
+import io.skysail.server.app.todos.todos.status.Status;
 
 import java.util.Date;
 import java.util.function.Consumer;

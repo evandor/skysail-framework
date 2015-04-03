@@ -3,7 +3,9 @@ package io.skysail.server.app.todos.test;
 import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.CoreMatchers.not;
 import static org.junit.Assert.assertThat;
+import io.skysail.client.testsupport.IntegrationTests;
 import io.skysail.server.app.todos.TodoList;
+import io.skysail.server.app.todos.todos.Todo;
 
 import org.junit.Before;
 import org.junit.Ignore;
@@ -16,11 +18,11 @@ import org.restlet.representation.Representation;
  * Integration tests for creating, reading, updating, and deleting TodoLists.
  *
  */
-public class ListsCrudIntegrationTests extends IntegrationTests {
+public class ListsCrudIntegrationTests extends IntegrationTests<TodosBrowser, Todo> {
     
     @Before
     public void setUp() {
-        browser = new Browser(getBaseUrl(), MediaType.APPLICATION_JSON);
+        browser = new TodosBrowser(MediaType.APPLICATION_JSON);
     }
 
     @Test

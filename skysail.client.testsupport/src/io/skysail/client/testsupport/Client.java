@@ -49,7 +49,7 @@ public class Client<T> {
         this.mediaType = mediaType;
     }
 
-    public Client setUrl(String url) {
+    public Client<?> setUrl(String url) {
         log.info("{}setting browser client url to '{}'", TESTTAG, url);
         this.url = url;
         return this;
@@ -63,7 +63,7 @@ public class Client<T> {
         return cr.get(mediaType);
     }
 
-    public Client gotoRoot() {
+    public Client<?> gotoRoot() {
         url = "/";
         get();
         return this;
@@ -81,7 +81,7 @@ public class Client<T> {
         return cr.getResponse();
     }
 
-    public Client loginAs(String username, String password) {
+    public Client<?> loginAs(String username, String password) {
         cr = new ClientResource(baseUrl + "/_logout?targetUri=/");
         cr.get();
         cr = new ClientResource(baseUrl + "/_login");
@@ -97,17 +97,21 @@ public class Client<T> {
         return this;
     }
 
-    public Client followLinkTitle(String linkTitle) {
+    public Client<?> followLinkTitle(String linkTitle) {
         return follow(new LinkTitlePredicate(linkTitle, cr.getResponse().getHeaders()));
     }
 
-    public Client followLinkTitleAndRefId(String linkTitle, String refId) {
+    public Client<?> followLinkTitleAndRefId(String linkTitle, String refId) {
         Link example = new Link.Builder("").title(linkTitle).refId(refId).build();
         return follow(new LinkByExamplePredicate(example, cr.getResponse().getHeaders()));
     }
 
     public Client<?> followLinkRelation(LinkRelation linkRelation) {
         return follow(new LinkRelationPredicate(linkRelation, cr.getResponse().getHeaders()));
+    }
+
+    public Client<?> followLink(Method method) {
+        return followLink(method, null);
     }
 
     public Client<?> followLink(Method method, T entity) {
@@ -153,7 +157,7 @@ public class Client<T> {
         return this;
     }
 
-    private Client follow(LinkPredicate predicate) {
+    private Client<?> follow(LinkPredicate predicate) {
         return follow(predicate, null, null);
     }
 

@@ -1,4 +1,4 @@
-package io.skysail.server.app.todos.todos;
+package io.skysail.server.app.todos.todos.status;
 
 import io.skysail.api.forms.SelectionProvider;
 

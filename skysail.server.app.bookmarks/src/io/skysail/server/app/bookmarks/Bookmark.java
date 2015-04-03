@@ -48,8 +48,9 @@ public class Bookmark implements Identifiable {
     @Field(type = InputType.READONLY, listView = { ListView.HIDE })
     private String owner;
 
-    public Bookmark(String url) throws MalformedURLException {
+    public Bookmark(String url, String name) throws MalformedURLException {
         this.url = new URL(url);
+        this.name = name;
     }
 
 

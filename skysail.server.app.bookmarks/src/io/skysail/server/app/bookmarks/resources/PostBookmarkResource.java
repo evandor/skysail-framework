@@ -2,7 +2,7 @@ package io.skysail.server.app.bookmarks.resources;
 
 import io.skysail.api.responses.SkysailResponse;
 import io.skysail.server.app.bookmarks.Bookmark;
-import io.skysail.server.app.bookmarks.app.BookmarksApplication;
+import io.skysail.server.app.bookmarks.BookmarksApplication;
 
 import java.util.Date;
 

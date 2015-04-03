@@ -1,4 +1,4 @@
-package io.skysail.server.app.bookmarks.app;
+package io.skysail.server.app.bookmarks;
 
 import io.skysail.server.app.bookmarks.repo.BookmarksRepository;
 import io.skysail.server.app.bookmarks.resources.BookmarksResource;

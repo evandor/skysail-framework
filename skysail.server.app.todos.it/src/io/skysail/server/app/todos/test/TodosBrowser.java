@@ -1,44 +1,24 @@
 package io.skysail.server.app.todos.test;
 
 import io.skysail.api.links.LinkRelation;
+import io.skysail.client.testsupport.Browser;
 import io.skysail.client.testsupport.Client;
 import io.skysail.server.app.todos.TodoApplication;
 import io.skysail.server.app.todos.TodoList;
+import io.skysail.server.app.todos.todos.Todo;
 import lombok.extern.slf4j.Slf4j;
 
 import org.restlet.data.Form;
 import org.restlet.data.MediaType;
 import org.restlet.data.Method;
 import org.restlet.data.Reference;
-import org.restlet.data.Status;
 import org.restlet.representation.Representation;
 
 @Slf4j
-public class Browser {
+public class TodosBrowser extends Browser<TodosBrowser, Todo> {
 
-    private Client client;
-    
-    private MediaType mediaType;
-
-    public Browser(String url) {
-        this(url, MediaType.TEXT_HTML);
-    }
-    
-    public Browser(String url, MediaType mediaType) {
-        log.info("{}creating new browser client with url '{}' and mediaType '{}'", Client.TESTTAG, url,
-                MediaType.TEXT_HTML);
-        this.mediaType = mediaType;
-        client = new Client(url, mediaType);
-    }
-
-    public Browser asUser(String username) {
-        log.info("{}logging in as user '{}'", Client.TESTTAG, username);
-        client.loginAs(username, "skysail");
-        return this;
-    }
-
-    public Status getStatus() {
-        return client.getResponse().getStatus();
+    public TodosBrowser(MediaType mediaType) {
+        super(mediaType);
     }
 
     public Representation getTodoLists() {

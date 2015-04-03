@@ -5,6 +5,8 @@ import io.skysail.api.forms.InputType;
 import io.skysail.api.forms.ListView;
 import io.skysail.api.forms.PostView;
 import io.skysail.api.forms.Reference;
+import io.skysail.server.app.todos.todos.status.Status;
+import io.skysail.server.app.todos.todos.status.StatusSelectionProvider;
 
 import java.io.Serializable;
 import java.util.Date;

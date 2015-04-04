@@ -13,8 +13,8 @@ INFO  [io.skysail.server.http.HttpServer            ] - Starting skysail server 
 INFO  [io.skysail.server.http.HttpServer            ] - ====================================
 INFO  [io.skysail.server.http.HttpServer            ] - 
 INFO  [d.t.skysail.server.app.ApplicationList       ] - (+) Adding application 'plugins'
-INFO  [d.t.skysail.server.app.ApplicationList       ] - (+) Adding application 'static'
 INFO  [org.restlet                                  ] - Starting the internal [HTTP/1.1] server on port 2015
+INFO  [d.t.skysail.server.app.ApplicationList       ] - (+) Adding application 'static'
 INFO  [i.s.s.a.d.i.ApplicationsCrudIntegrationTests ] - 
 INFO  [i.s.s.a.d.i.ApplicationsCrudIntegrationTests ] - --------------------------------------------
 INFO  [i.s.s.a.d.i.ApplicationsCrudIntegrationTests ] -  > TEST: running test 'testName'

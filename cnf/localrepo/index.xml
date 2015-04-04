@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<repository increment="1427636891448" name="Local" xmlns="http://www.osgi.org/xmlns/repository/v1.0.0">
+<repository increment="1428055997846" name="Local" xmlns="http://www.osgi.org/xmlns/repository/v1.0.0">
   <resource>
     <capability namespace="osgi.identity">
       <attribute name="osgi.identity" value="com.beust.jcommander"/>
@@ -4121,6 +4121,97 @@
     <requirement namespace="osgi.wiring.package">
       <directive name="filter" value="(osgi.wiring.package=sun.nio.cs)"/>
       <directive name="resolution" value="optional"/>
+    </requirement>
+  </resource>
+  <resource>
+    <capability namespace="osgi.identity">
+      <attribute name="osgi.identity" value="org.jsoup"/>
+      <attribute name="type" value="osgi.bundle"/>
+      <attribute name="version" type="Version" value="1.8.1"/>
+    </capability>
+    <capability namespace="osgi.content">
+      <attribute name="osgi.content" value="974de5e63ab0c23b5278e1202b89a6e80e6048337dba768cefea9d7d4b0c688f"/>
+      <attribute name="url" value="org.jsoup/org.jsoup-1.8.1.jar"/>
+      <attribute name="size" type="Long" value="300845"/>
+      <attribute name="mime" value="application/vnd.osgi.bundle"/>
+    </capability>
+    <capability namespace="osgi.wiring.bundle">
+      <attribute name="osgi.wiring.bundle" value="org.jsoup"/>
+      <attribute name="bundle-version" type="Version" value="1.8.1"/>
+    </capability>
+    <capability namespace="osgi.wiring.host">
+      <attribute name="osgi.wiring.host" value="org.jsoup"/>
+      <attribute name="bundle-version" type="Version" value="1.8.1"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.jsoup"/>
+      <attribute name="version" type="Version" value="1.8.1"/>
+      <attribute name="bundle-symbolic-name" value="org.jsoup"/>
+      <attribute name="bundle-version" type="Version" value="1.8.1"/>
+      <directive name="uses" value="org.jsoup.parser,org.jsoup.nodes,org.jsoup.helper,org.jsoup.safety"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.jsoup.examples"/>
+      <attribute name="version" type="Version" value="1.8.1"/>
+      <attribute name="bundle-symbolic-name" value="org.jsoup"/>
+      <attribute name="bundle-version" type="Version" value="1.8.1"/>
+      <directive name="uses" value="org.jsoup.select,org.jsoup.nodes,org.jsoup.helper,org.jsoup"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.jsoup.helper"/>
+      <attribute name="version" type="Version" value="1.8.1"/>
+      <attribute name="bundle-symbolic-name" value="org.jsoup"/>
+      <attribute name="bundle-version" type="Version" value="1.8.1"/>
+      <directive name="uses" value="org.jsoup.parser,org.jsoup.select,org.jsoup.nodes,org.jsoup"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.jsoup.nodes"/>
+      <attribute name="version" type="Version" value="1.8.1"/>
+      <attribute name="bundle-symbolic-name" value="org.jsoup"/>
+      <attribute name="bundle-version" type="Version" value="1.8.1"/>
+      <directive name="uses" value="org.jsoup.helper,org.jsoup.parser,org.jsoup.select,org.jsoup"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.jsoup.parser"/>
+      <attribute name="version" type="Version" value="1.8.1"/>
+      <attribute name="bundle-symbolic-name" value="org.jsoup"/>
+      <attribute name="bundle-version" type="Version" value="1.8.1"/>
+      <directive name="uses" value="org.jsoup.helper,org.jsoup.select,org.jsoup.nodes"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.jsoup.safety"/>
+      <attribute name="version" type="Version" value="1.8.1"/>
+      <attribute name="bundle-symbolic-name" value="org.jsoup"/>
+      <attribute name="bundle-version" type="Version" value="1.8.1"/>
+      <directive name="uses" value="org.jsoup.nodes,org.jsoup.select,org.jsoup.parser,org.jsoup.helper"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.jsoup.select"/>
+      <attribute name="version" type="Version" value="1.8.1"/>
+      <attribute name="bundle-symbolic-name" value="org.jsoup"/>
+      <attribute name="bundle-version" type="Version" value="1.8.1"/>
+      <directive name="uses" value="org.jsoup.nodes,org.jsoup.helper,org.jsoup.parser"/>
+    </capability>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(&amp;(osgi.wiring.package=org.jsoup)(version&gt;=1.8.0))"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(&amp;(osgi.wiring.package=org.jsoup.examples)(version&gt;=1.8.0))"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(&amp;(osgi.wiring.package=org.jsoup.helper)(version&gt;=1.8.0))"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(&amp;(osgi.wiring.package=org.jsoup.nodes)(version&gt;=1.8.0))"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(&amp;(osgi.wiring.package=org.jsoup.parser)(version&gt;=1.8.0))"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(&amp;(osgi.wiring.package=org.jsoup.safety)(version&gt;=1.8.0))"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(&amp;(osgi.wiring.package=org.jsoup.select)(version&gt;=1.8.0))"/>
     </requirement>
   </resource>
   <resource>

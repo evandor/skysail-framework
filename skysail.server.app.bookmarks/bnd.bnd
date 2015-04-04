@@ -5,8 +5,12 @@ Service-Component:  \
 
 Bundle-Name: SKYSAIL :: server :: app :: bookmarks
 
+
 Export-Package:  \
 	io.skysail.server.app.bookmarks
+
+Include-Resource: resources
+#, templates=src;recursive:=true;filter:=*.st|*.stg
 	
 Private-Package:  \
 	io.skysail.server.app.bookmarks.app,\
@@ -33,7 +37,9 @@ Import-Package: org.osgi.framework,\
 	org.apache.shiro.core;version=1.2,\
 	javax.persistence;version=2.1,\
 	javassist;version=3.18,\
-	skysail.api;version=latest
+	skysail.api;version=latest,\
+	org.jsoup;version=1.8,\
+	org.apache.commons.lang3;version=3.3
 	
 -runfw: org.apache.felix.framework;version='[4,5)'
 -runee: JavaSE-1.8
@@ -147,4 +153,5 @@ Import-Package: org.osgi.framework,\
 	com.beust.jcommander;version=1.47.0,\
 	stax2-api;version=3.1.4,\
 	com.fasterxml.jackson.module.jackson-module-jaxb-annotations;version=2.5.1,\
-	org.codehaus.jettison.jettison;version=1.3.7
+	org.codehaus.jettison.jettison;version=1.3.7,\
+	org.jsoup;version=1.8.1

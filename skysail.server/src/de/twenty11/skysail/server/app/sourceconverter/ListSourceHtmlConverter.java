@@ -1,10 +1,12 @@
 package de.twenty11.skysail.server.app.sourceconverter;
 
 import io.skysail.api.forms.ListView;
+import io.skysail.api.forms.Prefix;
 
 import java.io.IOException;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
+import java.net.URL;
 import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -111,8 +113,7 @@ public class ListSourceHtmlConverter extends AbstractSourceConverter implements 
     }
 
     private Object check(Field f, Map<String, Object> result, SkysailServerResource<?> resource) {
-        io.skysail.api.forms.Field fieldAnnotation = f
-                .getAnnotation(io.skysail.api.forms.Field.class);
+        io.skysail.api.forms.Field fieldAnnotation = f.getAnnotation(io.skysail.api.forms.Field.class);
         if (fieldAnnotation == null) {
             return null;
         }
@@ -126,11 +127,22 @@ public class ListSourceHtmlConverter extends AbstractSourceConverter implements 
             }
         }
         if (Arrays.asList(fieldAnnotation.listView()).contains(ListView.LINK)) {
-            Reference originalRef = resource.getRequest().getOriginalRef();
-            Object id = result.get("id") != null ? result.get("id") : "wo";
-            newValue = "<a href='" + originalRef.toString() + "/" + ((String) id).replace("#", "")
-                    + "/'>" + newValue + "</a>";
+            if (URL.class.equals(f.getType())) {
+                newValue = "<a href='" + result.get(f.getName()).toString() +"' target=\"_blank\">"
+                        + newValue + "</a>";
+            } else {
+                Reference originalRef = resource.getRequest().getOriginalRef();
+                Object id = result.get("id") != null ? result.get("id") : "wo";
+                newValue = "<a href='" + originalRef.toString() + "/" + ((String) id).replace("#", "") + "/'>"
+                        + newValue + "</a>";
+            }
         }
+        Prefix prefix = f.getAnnotation(Prefix.class);
+        if (newValue != null && prefix != null) {
+
+            newValue = result.get(prefix.methodName()) + "&nbsp;" + newValue;
+        }
+
         if (newValue != null) {
             result.put(f.getName(), newValue);
         }

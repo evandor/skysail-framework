@@ -11,7 +11,7 @@ import org.osgi.framework.Bundle;
 import org.osgi.framework.FrameworkUtil;
 
 @Slf4j
-public class IntegrationTests<T extends Browser<?,?>, U> {
+public class IntegrationTests<T extends ApplicationBrowser<?,?>, U> {
 
     protected T browser;
 
@@ -26,7 +26,7 @@ public class IntegrationTests<T extends Browser<?,?>, U> {
         protected void starting(Description description) {
             log.info("");
             log.info("--------------------------------------------");
-            log.info("{}running test '{}'", Client.TESTTAG, description.getMethodName());
+            log.info("{}running test '{}'", ApplicationClient.TESTTAG, description.getMethodName());
             log.info("--------------------------------------------");
             log.info("");
         }

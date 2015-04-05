@@ -3,7 +3,7 @@
 //import static org.hamcrest.CoreMatchers.containsString;
 //import static org.hamcrest.CoreMatchers.not;
 //import static org.junit.Assert.assertThat;
-//import io.skysail.client.testsupport.Client;
+//import io.skysail.client.testsupport.ApplicationClient;
 //import io.skysail.client.testsupport.IntegrationTests;
 //
 //import java.io.IOException;
@@ -16,7 +16,7 @@
 //
 //    @Test
 //    public void demoUser_doesnot_see_admins_todolists_inHtml() throws IOException {
-//        Client client = new Client(getBaseUrl(), MediaType.TEXT_HTML);
+//        ApplicationClient client = new ApplicationClient(getBaseUrl(), MediaType.TEXT_HTML);
 //
 //        Form form = new Form();
 //        form.add("name", "adminstodolist");
@@ -30,7 +30,7 @@
 //
 //    @Test
 //    public void demoUser_doesnot_see_admins_todolists_inJson() throws IOException {
-//        Client client = new Client(getBaseUrl(), MediaType.APPLICATION_JSON);
+//        ApplicationClient client = new ApplicationClient(getBaseUrl(), MediaType.APPLICATION_JSON);
 //
 //        Form form = new Form();
 //        form.add("name", "adminstodolist");

@@ -3,7 +3,7 @@ package io.skysail.server.app.designer.it;
 import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.CoreMatchers.not;
 import static org.junit.Assert.assertThat;
-import io.skysail.client.testsupport.Client;
+import io.skysail.client.testsupport.ApplicationClient;
 import io.skysail.server.app.designer.application.Application;
 import lombok.extern.slf4j.Slf4j;
 
@@ -32,7 +32,7 @@ public class ApplicationsCrudIntegrationTests extends IntegrationTests {
     protected void starting(Description description) {
     	   log.info("");
     	   log.info("--------------------------------------------");
-    	   log.info("{}running test '{}'", Client.TESTTAG, description.getMethodName());
+    	   log.info("{}running test '{}'", ApplicationClient.TESTTAG, description.getMethodName());
     	   log.info("--------------------------------------------");
     	   log.info("");
        }

@@ -7,50 +7,55 @@ import org.restlet.data.Method;
 import org.restlet.data.Status;
 
 @Slf4j
-public class Browser<T extends Browser<?, U>, U> {
+public class ApplicationBrowser<T extends ApplicationBrowser<?, U>, U> {
 
     protected static final String HOST = "http://localhost";
-    protected static final String PORT = "2015";
+    protected static final String PORT = "2014";
 
     protected MediaType mediaType;
-    protected Client<U> client;
-    private String appName;
+    protected ApplicationClient<U> client;
 
-    public Browser(String url) {
+    private String defaultUser = null;
+
+    public ApplicationBrowser(String url) {
         this(url, MediaType.TEXT_HTML);
     }
 
-    public Browser(String appName, MediaType mediaType) {
-        this.appName = appName;
+    public ApplicationBrowser(String appName, MediaType mediaType) {
         this.mediaType = mediaType;
         String url = getBaseUrl();
-        log.info("{}creating new browser client with url '{}' for Application '{}' and mediaType '{}'", Client.TESTTAG,
+        log.info("{}creating new browser client with url '{}' for Application '{}' and mediaType '{}'", ApplicationClient.TESTTAG,
                 url, appName, MediaType.TEXT_HTML);
-        client = new Client<U>(url, mediaType);
-    }
-
-    public Browser(MediaType mediaType) {
-        this(getBaseUrl(), mediaType);
+        client = new ApplicationClient<U>(url, appName, mediaType);
     }
 
     protected static String getBaseUrl() {
         return HOST + (PORT != null ? ":" + PORT : "");
     }
 
+    protected void login() {
+        log.info("{}logging in as user '{}'", ApplicationClient.TESTTAG, defaultUser);
+        client.loginAs(defaultUser, "skysail");
+    }
+    
     @SuppressWarnings("unchecked")
     public T asUser(String username) {
-        log.info("{}logging in as user '{}'", Client.TESTTAG, username);
-        client.loginAs(username, "skysail");
+        this.defaultUser = username;
+        login();
         return (T) this;
     }
 
+    public void setUser(String defaultUser) {
+        this.defaultUser = defaultUser;
+    }
+
+    
     public Status getStatus() {
         return client.getResponse().getStatus();
     }
     
     protected void findAndDelete(String id) {
-        client.gotoRoot()
-            .followLinkTitle(appName)
+        client.gotoAppRoot()
             .followLinkTitleAndRefId("update", id)
             .followLink(Method.DELETE);
     }

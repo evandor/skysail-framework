@@ -43,7 +43,8 @@ public class PostTodoResource extends PostEntityServerResource<Todo> {
         entity.setStatus(Status.NEW);
         entity.setRank(1);
         entity.setList(listId);
-        app.getRepository().add(entity);
+        String id = app.getRepository().add(entity).toString();
+        entity.setId(id);
         return new SkysailResponse<String>();
     }
 

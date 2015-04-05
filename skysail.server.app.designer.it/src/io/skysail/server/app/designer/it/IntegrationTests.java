@@ -19,17 +19,17 @@ public class IntegrationTests {
         return HOST + (PORT != null ? ":" + PORT : "");
     }
 
-//    protected Representation createTodoListAs(Client client, String username, Form form) {
+//    protected Representation createTodoListAs(ApplicationClient client, String username, Form form) {
 //        navigateToPostTodoListAs(client, "admin");
 //        return client.post(form);
 //    }
 
-//    private void navigateToPostTodoListAs(Client client, String username) {
+//    private void navigateToPostTodoListAs(ApplicationClient client, String username) {
 //        client.loginAs(username, "skysail").followLinkTitle(TodoApplication.APP_NAME)
 //                .followLinkRelation(LinkRelation.CREATE_FORM);
 //    }
 //
-//    protected void getTodoListsFor(Client client, String username) {
+//    protected void getTodoListsFor(ApplicationClient client, String username) {
 //        client.loginAs(username, "skysail").followLinkTitle(TodoApplication.APP_NAME);
 //    }
 }

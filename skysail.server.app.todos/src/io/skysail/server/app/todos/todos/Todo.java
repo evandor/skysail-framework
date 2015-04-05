@@ -16,16 +16,20 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
+import de.twenty11.skysail.api.domain.Identifiable;
+
 @Getter
 @Setter
 @ToString(of = { "title" })
 @JsonPropertyOrder({ "title", "desc" })
-public class Todo implements Serializable {
+@NoArgsConstructor
+public class Todo implements Serializable, Identifiable {
 
     private static final long serialVersionUID = -6320289870876900108L;
 
@@ -65,4 +69,8 @@ public class Todo implements Serializable {
     // status: 
     // assigned to,
     // related to: accont, ...
+    
+    public Todo(String title) {
+        this.title = title;
+    }
 }

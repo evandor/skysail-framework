@@ -1,6 +1,6 @@
 package io.skysail.server.um.simple.it;
 
-import io.skysail.client.testsupport.Client;
+import io.skysail.client.testsupport.ApplicationClient;
 
 import org.junit.Rule;
 import org.junit.rules.ExpectedException;
@@ -19,7 +19,7 @@ public class IntegrationTests {
     @Rule
     public ExpectedException thrown = ExpectedException.none();
 
-    protected Client client;
+    protected ApplicationClient client;
 
     protected String getBaseUrl() {
         return HOST + (PORT != null ? ":" + PORT : "");

@@ -9,11 +9,11 @@ INFO  [d.t.skysail.server.SkysailComponent          ] - Creating Restlet Compone
 INFO  [io.skysail.server.http.HttpServer            ] - configuration was provided
 INFO  [io.skysail.server.http.HttpServer            ] - 
 INFO  [io.skysail.server.http.HttpServer            ] - ====================================
-INFO  [io.skysail.server.http.HttpServer            ] - Starting skysail server on port 2015
+INFO  [io.skysail.server.http.HttpServer            ] - Starting skysail server on port 2014
 INFO  [io.skysail.server.http.HttpServer            ] - ====================================
 INFO  [io.skysail.server.http.HttpServer            ] - 
+INFO  [org.restlet                                  ] - Starting the internal [HTTP/1.1] server on port 2014
 INFO  [d.t.skysail.server.app.ApplicationList       ] - (+) Adding application 'plugins'
-INFO  [org.restlet                                  ] - Starting the internal [HTTP/1.1] server on port 2015
 INFO  [d.t.skysail.server.app.ApplicationList       ] - (+) Adding application 'static'
 INFO  [i.s.s.a.d.i.ApplicationsCrudIntegrationTests ] - 
 INFO  [i.s.s.a.d.i.ApplicationsCrudIntegrationTests ] - --------------------------------------------

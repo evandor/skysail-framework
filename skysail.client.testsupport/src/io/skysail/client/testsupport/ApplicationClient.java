@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import lombok.Getter;
+import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
 
 import org.restlet.Response;
@@ -23,7 +24,7 @@ import org.restlet.resource.ClientResource;
 import org.restlet.util.Series;
 
 @Slf4j
-public class Client<T> {
+public class ApplicationClient<T> {
 
     public static final String TESTTAG = " > TEST: ";
 
@@ -34,22 +35,15 @@ public class Client<T> {
     @Getter
     private Representation currentRepresentation;
     private MediaType mediaType = MediaType.TEXT_HTML;
+    private String appName;
 
-    public Client(String baseUrl) {
+    public ApplicationClient(@NonNull String baseUrl, @NonNull String appName, @NonNull MediaType mediaType) {
         this.baseUrl = baseUrl;
-    }
-
-    public Client(String baseUrl, String credentials) {
-        this.baseUrl = baseUrl;
-        this.credentials = credentials;
-    }
-
-    public Client(String baseUrl, MediaType mediaType) {
-        this.baseUrl = baseUrl;
+        this.appName = appName;
         this.mediaType = mediaType;
     }
 
-    public Client<?> setUrl(String url) {
+    public ApplicationClient<?> setUrl(String url) {
         log.info("{}setting browser client url to '{}'", TESTTAG, url);
         this.url = url;
         return this;
@@ -63,11 +57,17 @@ public class Client<T> {
         return cr.get(mediaType);
     }
 
-    public Client<?> gotoRoot() {
+    public ApplicationClient<?> gotoRoot() {
         url = "/";
         get();
         return this;
     }
+    
+    public ApplicationClient<?> gotoAppRoot() {
+        gotoRoot().followLinkTitle(appName);
+        return this;
+    }
+
 
     public Representation post(Object entity) {
         log.info("{}issuing POST on '{}', providing credentials {}", TESTTAG, url, credentials);
@@ -81,7 +81,7 @@ public class Client<T> {
         return cr.getResponse();
     }
 
-    public Client<?> loginAs(String username, String password) {
+    public ApplicationClient<?> loginAs(@NonNull String username, @NonNull String password) {
         cr = new ClientResource(baseUrl + "/_logout?targetUri=/");
         cr.get();
         cr = new ClientResource(baseUrl + "/_login");
@@ -97,28 +97,28 @@ public class Client<T> {
         return this;
     }
 
-    public Client<?> followLinkTitle(String linkTitle) {
+    public ApplicationClient<?> followLinkTitle(String linkTitle) {
         return follow(new LinkTitlePredicate(linkTitle, cr.getResponse().getHeaders()));
     }
 
-    public Client<?> followLinkTitleAndRefId(String linkTitle, String refId) {
+    public ApplicationClient<?> followLinkTitleAndRefId(String linkTitle, String refId) {
         Link example = new Link.Builder("").title(linkTitle).refId(refId).build();
         return follow(new LinkByExamplePredicate(example, cr.getResponse().getHeaders()));
     }
 
-    public Client<?> followLinkRelation(LinkRelation linkRelation) {
+    public ApplicationClient<?> followLinkRelation(LinkRelation linkRelation) {
         return follow(new LinkRelationPredicate(linkRelation, cr.getResponse().getHeaders()));
     }
 
-    public Client<?> followLink(Method method) {
+    public ApplicationClient<?> followLink(Method method) {
         return followLink(method, null);
     }
 
-    public Client<?> followLink(Method method, T entity) {
+    public ApplicationClient<?> followLink(Method method, T entity) {
         return follow(new LinkMethodPredicate(method, cr.getResponse().getHeaders()), method, entity);
     }
 
-    private Client<?> follow(LinkPredicate predicate, Method method, T entity) {
+    private ApplicationClient<?> follow(LinkPredicate predicate, Method method, T entity) {
         Series<Header> headers = cr.getResponse().getHeaders();
         String linkheader = headers.getFirstValue("Link");
         List<Link> links = Arrays.stream(linkheader.split(",")).map(l -> Link.valueOf(l)).collect(Collectors.toList());
@@ -157,7 +157,7 @@ public class Client<T> {
         return this;
     }
 
-    private Client<?> follow(LinkPredicate predicate) {
+    private ApplicationClient<?> follow(LinkPredicate predicate) {
         return follow(predicate, null, null);
     }
 
@@ -176,5 +176,7 @@ public class Client<T> {
     public Reference getLocation() {
         return cr.getLocationRef();
     }
+
+    
 
 }

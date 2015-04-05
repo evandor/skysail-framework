@@ -40,4 +40,8 @@ public class ListResource extends EntityServerResource<TodoList> {
         return super.getLinkheader(ListResource.class, TodosResource.class, PutListResource.class);
     }
 
+    @Override
+    public String redirectTo() {
+        return super.redirectTo(ListsResource.class);
+    }
 }

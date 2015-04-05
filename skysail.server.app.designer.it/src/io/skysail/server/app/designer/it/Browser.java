@@ -1,7 +1,7 @@
 package io.skysail.server.app.designer.it;
 
 import io.skysail.api.links.LinkRelation;
-import io.skysail.client.testsupport.Client;
+import io.skysail.client.testsupport.ApplicationClient;
 import io.skysail.server.app.designer.DesignerApplication;
 import io.skysail.server.app.designer.application.Application;
 import lombok.extern.slf4j.Slf4j;
@@ -15,31 +15,31 @@ import org.restlet.representation.Representation;
 @Slf4j
 public class Browser {
 
-    private Client client;
+    private ApplicationClient client;
     
     public Browser(String url) {
         this(url, MediaType.TEXT_HTML);
     }
     
     public Browser(String url, MediaType mediaType) {
-        log.info("{}creating new browser client with url '{}' and mediaType '{}'", Client.TESTTAG, url, MediaType.TEXT_HTML);
-        client = new Client(url, mediaType);
+        log.info("{}creating new browser client with url '{}' and mediaType '{}'", ApplicationClient.TESTTAG, url, MediaType.TEXT_HTML);
+        client = new ApplicationClient(url, DesignerApplication.APP_NAME, mediaType);
     }
     
     public Browser asUser(String username) {
-    	log.info("{}logging in as user '{}'", Client.TESTTAG, username);
+    	log.info("{}logging in as user '{}'", ApplicationClient.TESTTAG, username);
 		client.loginAs(username, "skysail");
 		return this;
 	}
     
     public Representation getApplications() {
-    	log.info("{}retrieving TodoLists", Client.TESTTAG);
+    	log.info("{}retrieving TodoLists", ApplicationClient.TESTTAG);
         getApplications(client);
         return client.getCurrentRepresentation();
     }
 //
 //    public Representation getTodoList(String id) {
-//        log.info("{}retrieving TodoList #{}", Client.TESTTAG, id);
+//        log.info("{}retrieving TodoList #{}", ApplicationClient.TESTTAG, id);
 //        getTodoList(client, id);
 //        return client.getCurrentRepresentation();
 //    }
@@ -56,17 +56,17 @@ public class Browser {
         return form;
     }
 
-    private void getApplications(Client client) {
+    private void getApplications(ApplicationClient client) {
     	client.gotoRoot();
         client.followLinkTitle(DesignerApplication.APP_NAME);
     }
 //    
-//    private void getTodoList(Client client, String id) {
+//    private void getTodoList(ApplicationClient client, String id) {
 //        client.gotoRoot();
 //        client.followLinkTitle(TodoApplication.APP_NAME);
 //    }
 //
-    private void navigateToPostApplicationAs(Client client) {
+    private void navigateToPostApplicationAs(ApplicationClient client) {
     	client.gotoRoot();
         client.followLinkTitle(DesignerApplication.APP_NAME)
                 .followLinkRelation(LinkRelation.CREATE_FORM);

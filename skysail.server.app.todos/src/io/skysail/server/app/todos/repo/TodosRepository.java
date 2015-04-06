@@ -2,6 +2,8 @@ package io.skysail.server.app.todos.repo;
 
 import io.skysail.server.app.todos.TodoList;
 import io.skysail.server.app.todos.todos.Todo;
+import io.skysail.server.db.DbRepository;
+import io.skysail.server.db.DbService2;
 
 import java.util.HashMap;
 import java.util.List;
@@ -12,8 +14,6 @@ import org.apache.shiro.SecurityUtils;
 import aQute.bnd.annotation.component.Activate;
 import aQute.bnd.annotation.component.Component;
 import aQute.bnd.annotation.component.Reference;
-import de.twenty11.skysail.server.core.db.DbRepository;
-import de.twenty11.skysail.server.core.db.DbService2;
 
 @Component(immediate = true, properties = "name=TodosRepository")
 public class TodosRepository implements DbRepository {

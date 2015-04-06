@@ -6,6 +6,7 @@ import static org.junit.Assert.assertThat;
 import io.skysail.api.validation.DefaultValidationImpl;
 import io.skysail.server.app.todos.TodoApplication;
 import io.skysail.server.app.todos.repo.TodosRepository;
+import io.skysail.server.db.DbService2;
 import io.skysail.server.testsupport.AbstractShiroTest;
 import io.skysail.server.testsupport.InMemoryDbService;
 
@@ -17,8 +18,6 @@ import org.junit.rules.ExpectedException;
 import org.mockito.Mockito;
 import org.mockito.Spy;
 import org.restlet.data.Form;
-
-import de.twenty11.skysail.server.core.db.DbService2;
 
 public class TodoAppTest extends AbstractShiroTest {
 

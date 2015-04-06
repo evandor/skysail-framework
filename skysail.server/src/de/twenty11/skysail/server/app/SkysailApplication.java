@@ -62,7 +62,6 @@ import com.google.common.base.Predicate;
 
 import de.twenty11.skysail.api.hooks.EntityChangedHookService;
 import de.twenty11.skysail.server.SkysailComponent;
-import de.twenty11.skysail.server.core.osgi.internal.filter.Blocker;
 import de.twenty11.skysail.server.core.restlet.ApplicationContextId;
 import de.twenty11.skysail.server.core.restlet.RouteBuilder;
 import de.twenty11.skysail.server.core.restlet.SkysailRouter;
@@ -348,6 +347,7 @@ public abstract class SkysailApplication extends Application implements Applicat
         // getConnectorService().getClientProtocols().add(Protocol.HTTPS);
         getConnectorService().getClientProtocols().add(Protocol.FILE);
         getConnectorService().getClientProtocols().add(Protocol.CLAP);
+      //  getConnectorService().getClientProtocols().add(Protocol.RIAP);
 
         // here or somewhere else? ServiceList?
         // enrolerService.setAuthorizationService(authorizationService);
@@ -369,14 +369,14 @@ public abstract class SkysailApplication extends Application implements Applicat
         attach();
 
         logger.debug("creating blocker...");
-        Blocker blocker = new Blocker(getContext());
+        //Blocker blocker = new Blocker(getContext());
 
         logger.debug("creating tracer...");
         Tracer tracer = new Tracer(getContext(), getEventAdmin(), getRequestResponseMonitor());
 
         logger.debug("creating original request filter...");
         OriginalRequestFilter originalRequestFilter = new OriginalRequestFilter(getContext());
-        blocker.setNext(originalRequestFilter);
+        //blocker.setNext(originalRequestFilter);
         originalRequestFilter.setNext(router);
 
         logger.debug("determining authentication service...");
@@ -403,10 +403,10 @@ public abstract class SkysailApplication extends Application implements Applicat
         // tracer -> linker -> authenticationGuard (-> authorizationGuard) ->
         // blocker -> originalRequest -> router
         if (authorizationGuard != null) {
-            authorizationGuard.setNext(blocker);
+            authorizationGuard.setNext(originalRequestFilter);
             authenticationGuard.setNext(authorizationGuard);
         } else {
-            authenticationGuard.setNext(blocker);
+            authenticationGuard.setNext(originalRequestFilter);
         }
         // Linker linker = new Linker(getContext());
         // linker.setNext(authenticationGuard);

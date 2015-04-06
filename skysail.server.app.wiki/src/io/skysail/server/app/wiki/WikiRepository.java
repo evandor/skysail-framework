@@ -1,12 +1,13 @@
 package io.skysail.server.app.wiki;
 
+import io.skysail.server.db.DbRepository;
+import io.skysail.server.db.DbService2;
+
 import java.util.List;
 
 import aQute.bnd.annotation.component.Activate;
 import aQute.bnd.annotation.component.Component;
 import aQute.bnd.annotation.component.Reference;
-import de.twenty11.skysail.server.core.db.DbRepository;
-import de.twenty11.skysail.server.core.db.DbService2;
 
 @Component(immediate = true, properties = "name=wikiRepository")
 public class WikiRepository implements DbRepository {

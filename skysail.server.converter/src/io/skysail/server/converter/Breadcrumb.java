@@ -1,26 +1,22 @@
 package io.skysail.server.converter;
 
-import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.ToString;
 
-@AllArgsConstructor
-public final class Breadcrumb {
+@Builder
+@ToString
+public class Breadcrumb {
 
-    private final String href;
-    private final String cssClass;
-    private final String value;
-    private final Boolean favorite;
+    @Getter
+    private String href;
+    @Getter
+    private String cssClass;
+    @Getter
+    private String value;
 
-    public String getHref() {
-        return href;
-    }
+    private Boolean favorite;
 
-    public String getCssClass() {
-        return cssClass;
-    }
-
-    public String getValue() {
-        return value;
-    }
 
     public boolean isFavoriteEmpty() {
         return favorite != null && !favorite;
@@ -30,10 +26,4 @@ public final class Breadcrumb {
         return favorite != null && favorite;
     }
 
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder(value);
-        sb.append(" (").append(href).append(")");
-        return sb.toString();
-    }
 }

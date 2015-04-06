@@ -5,6 +5,7 @@ import io.skysail.server.app.bookmarks.resources.BookmarkResource;
 import io.skysail.server.app.bookmarks.resources.BookmarksResource;
 import io.skysail.server.app.bookmarks.resources.PostBookmarkResource;
 import io.skysail.server.app.bookmarks.resources.PutBookmarkResource;
+import io.skysail.server.db.DbRepository;
 
 import java.util.Arrays;
 import java.util.List;
@@ -13,7 +14,6 @@ import aQute.bnd.annotation.component.Component;
 import aQute.bnd.annotation.component.Reference;
 import de.twenty11.skysail.server.app.ApplicationProvider;
 import de.twenty11.skysail.server.app.SkysailApplication;
-import de.twenty11.skysail.server.core.db.DbRepository;
 import de.twenty11.skysail.server.core.restlet.RouteBuilder;
 import de.twenty11.skysail.server.services.MenuItem;
 import de.twenty11.skysail.server.services.MenuItemProvider;

@@ -33,6 +33,8 @@ public class AbstractShiroTest {
     protected Form form;
     protected Response response;
     protected Request request;
+    protected Subject subjectUnderTest;
+
 
     /**
      * Allows subclasses to set the currently executing {@link Subject}

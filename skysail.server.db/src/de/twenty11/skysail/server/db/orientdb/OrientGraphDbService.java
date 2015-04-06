@@ -1,6 +1,7 @@
 package de.twenty11.skysail.server.db.orientdb;
 
 import io.skysail.server.db.DbConfigurationProvider;
+import io.skysail.server.db.DbService2;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -37,7 +38,6 @@ import com.tinkerpop.blueprints.impls.orient.OrientGraphFactory;
 import com.tinkerpop.blueprints.impls.orient.OrientGraphNoTx;
 
 import de.twenty11.skysail.server.beans.DynamicEntity;
-import de.twenty11.skysail.server.core.db.DbService2;
 import de.twenty11.skysail.server.core.osgi.EventHelper;
 import de.twenty11.skysail.server.db.orientdb.impl.Persister;
 import de.twenty11.skysail.server.db.orientdb.impl.Updater;

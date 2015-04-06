@@ -2,6 +2,8 @@ package io.skysail.server.app.crm;
 
 import io.skysail.server.app.crm.companies.Company;
 import io.skysail.server.app.crm.emails.EmailRelation;
+import io.skysail.server.db.DbRepository;
+import io.skysail.server.db.DbService2;
 
 import java.util.List;
 
@@ -9,8 +11,6 @@ import aQute.bnd.annotation.component.Activate;
 import aQute.bnd.annotation.component.Component;
 import aQute.bnd.annotation.component.Reference;
 import de.twenty11.skysail.server.beans.DynamicEntity;
-import de.twenty11.skysail.server.core.db.DbRepository;
-import de.twenty11.skysail.server.core.db.DbService2;
 
 @Component(immediate = true, properties = "name=CrmRepository")
 public class CrmRepository implements DbRepository {

@@ -11,7 +11,7 @@ import io.skysail.server.converter.Notification;
 import io.skysail.server.converter.stringtemplate.STGroupBundleDir;
 import io.skysail.server.converter.wrapper.STFieldsWrapper;
 import io.skysail.server.converter.wrapper.STListSourceWrapper;
-import io.skysail.server.converter.wrapper.STResourceWrapper;
+import io.skysail.server.converter.wrapper.StResourceWrapper;
 import io.skysail.server.converter.wrapper.STServicesWrapper;
 import io.skysail.server.converter.wrapper.STSourceWrapper;
 import io.skysail.server.converter.wrapper.STTargetWrapper;
@@ -197,7 +197,7 @@ public class StringTemplateRenderer {
         decl.add("target", new STTargetWrapper(target));
         decl.add("converter", this);
         decl.add("services", new STServicesWrapper(menuProviders, null, resource));
-        decl.add("resource", new STResourceWrapper(source, resource, favoritesService));
+        decl.add("resource", new StResourceWrapper(source, resource, favoritesService));
 
         List<FormField> fields = null;
 

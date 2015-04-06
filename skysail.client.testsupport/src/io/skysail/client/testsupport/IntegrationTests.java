@@ -1,5 +1,7 @@
 package io.skysail.client.testsupport;
 
+import java.security.SecureRandom;
+
 import lombok.extern.slf4j.Slf4j;
 
 import org.junit.Rule;
@@ -16,6 +18,8 @@ public class IntegrationTests<T extends ApplicationBrowser<?,?>, U> {
     protected T browser;
 
     protected Bundle thisBundle = FrameworkUtil.getBundle(this.getClass());
+    
+    protected SecureRandom random = new SecureRandom();
 
     @Rule
     public ExpectedException thrown = ExpectedException.none();

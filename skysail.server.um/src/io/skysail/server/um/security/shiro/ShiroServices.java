@@ -2,6 +2,7 @@ package io.skysail.server.um.security.shiro;
 
 import io.skysail.api.um.AuthenticationService;
 import io.skysail.api.um.User;
+import io.skysail.server.db.DbService2;
 import io.skysail.server.um.security.shiro.mgt.SkysailWebSecurityManager;
 import io.skysail.server.um.security.shiro.restlet.ShiroDelegationAuthenticator;
 
@@ -16,8 +17,6 @@ import org.apache.shiro.subject.SimplePrincipalMap;
 import org.restlet.Context;
 import org.restlet.security.Authenticator;
 
-import de.twenty11.skysail.server.core.db.DbService;
-
 /**
  * Default AuthenticationService Implementation shipped with skysail
  * 
@@ -30,9 +29,9 @@ public class ShiroServices implements AuthenticationService {
     private volatile SkysailAuthorizingRealm authorizingRealm;
 
     @Getter
-    private DbService dbService;
+    private DbService2 dbService;
 
-    public ShiroServices(DbService dbService) {
+    public ShiroServices(DbService2 dbService) {
         this.dbService = dbService;
         log.info("creating new SkysailAuthorizingRealm...");
         authorizingRealm = new SkysailAuthorizingRealm(new SkysailHashedCredentialsMatcher(), this);

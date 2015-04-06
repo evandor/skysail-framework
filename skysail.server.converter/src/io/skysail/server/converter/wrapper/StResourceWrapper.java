@@ -1,12 +1,10 @@
 package io.skysail.server.converter.wrapper;
 
-import io.skysail.api.favorites.Favorite;
 import io.skysail.api.favorites.FavoritesService;
 import io.skysail.api.links.Link;
 import io.skysail.server.converter.Breadcrumb;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -14,24 +12,16 @@ import java.util.Set;
 
 import lombok.extern.slf4j.Slf4j;
 
-import org.apache.commons.lang.StringUtils;
-import org.apache.shiro.SecurityUtils;
-import org.restlet.Request;
 import org.restlet.data.Header;
 import org.restlet.data.MediaType;
-import org.restlet.data.Reference;
 import org.restlet.data.Status;
 import org.restlet.engine.Engine;
 import org.restlet.engine.converter.ConverterHelper;
 import org.restlet.engine.resource.VariantInfo;
 import org.restlet.representation.Variant;
 import org.restlet.resource.ServerResource;
-import org.restlet.routing.Route;
-import org.restlet.util.RouteList;
 import org.restlet.util.Series;
 
-import de.twenty11.skysail.server.app.SkysailApplication;
-import de.twenty11.skysail.server.core.restlet.ApplicationContextId;
 import de.twenty11.skysail.server.core.restlet.PostEntityServerResource;
 import de.twenty11.skysail.server.core.restlet.PutEntityServerResource;
 import de.twenty11.skysail.server.core.restlet.ResourceContextId;
@@ -39,13 +29,13 @@ import de.twenty11.skysail.server.core.restlet.SkysailServerResource;
 import de.twenty11.skysail.server.utils.HeadersUtils;
 
 @Slf4j
-public class STResourceWrapper {
+public class StResourceWrapper {
 
     private SkysailServerResource<?> resource;
     private Object source;
     private FavoritesService favoritesService;
 
-    public STResourceWrapper(Object source, SkysailServerResource<?> resource, FavoritesService favoritesService) {
+    public StResourceWrapper(Object source, SkysailServerResource<?> resource, FavoritesService favoritesService) {
         this.source = source;
         this.resource = resource;
         this.favoritesService = favoritesService;
@@ -60,55 +50,7 @@ public class STResourceWrapper {
     }
 
     public List<Breadcrumb> getBreadcrumbs() {
-
-        List<Breadcrumb> breadcrumbs = new ArrayList<Breadcrumb>();
-        breadcrumbs.add(new Breadcrumb("/", null, "<span class='glyphicon glyphicon-home'></span>", null));
-
-        Reference reference = resource.getReference();
-        SkysailApplication application = resource.getApplication();
-        String img = application.getFromContext(ApplicationContextId.IMG);
-        String imgHtml = img != null ? "<img src='" + img + "'>" : "";
-        RouteList routes = application.getRoutes();
-
-        List<String> segments = getCleanedSegments(reference);
-
-        String path = "";
-        Route match = null;
-        if (segments != null && segments.size() > 0) {
-            String text = imgHtml + " " + resource.getApplication().getName();
-            breadcrumbs.add(new Breadcrumb("/" + resource.getApplication().getName(), null, text,
-                    getFavoriteIndicator()));
-        }
-        for (int i = 1; i < segments.size(); i++) {
-            path = path + "/" + segments.get(i);
-
-            Request request = resource.getRequest();
-            request.setResourceRef(new Reference(path));
-            Route best = routes.getBest(request, resource.getResponse(), 0.5f);
-            if (best != match) {
-                match = best;
-                if (i < segments.size() - 1) {
-                    breadcrumbs.add(new Breadcrumb("/" + resource.getApplication().getName() + path, null, limit(
-                            segments.get(i), 12), false));
-                } else {
-                    Boolean favoriteIndicator = getFavoriteIndicator();
-                    breadcrumbs.add(new Breadcrumb(null, null, segments.get(i), favoriteIndicator));
-                }
-            }
-        }
-        return breadcrumbs;
-    }
-
-    private synchronized Boolean getFavoriteIndicator() {
-        if (favoritesService == null) {
-            return null;
-        }
-        String username = SecurityUtils.getSubject().getPrincipal().toString();
-        List<Favorite> list = favoritesService.get(username);
-        String link = resource.getRequest().getResourceRef().toString(false, false);
-        return list.stream().filter(l -> {
-            return l.getFavoriteLink().equals(link);
-        }).findFirst().isPresent();
+        return new Breadcrumbs(favoritesService).create(resource);
     }
 
     public String getClassname() {
@@ -248,25 +190,5 @@ public class STResourceWrapper {
         return "<meta http-equiv=\"Refresh\" content=\"0; url="+target+"\" />";
     }
 
-    private List<String> getCleanedSegments(Reference reference) {
-        List<String> segments = reference.getSegments();
-        List<String> results = new ArrayList<String>();
-        for (String segment : segments) {
-            if (!StringUtils.isBlank(segment)) {
-                results.add(segment);
-            }
-        }
-        return results;
-    }
-
-    private String limit(String value, int lengthLimit) {
-        if (value == null) {
-            return "";
-        }
-        if (value.length() <= lengthLimit) {
-            return value;
-        }
-        return value.substring(0, lengthLimit - 3).concat("...");
-    }
 
 }

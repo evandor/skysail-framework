@@ -7,11 +7,12 @@ import io.skysail.client.testsupport.IntegrationTests;
 import io.skysail.server.app.todos.TodoList;
 import io.skysail.server.app.todos.todos.Todo;
 
+import java.math.BigInteger;
+
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.restlet.data.MediaType;
-import org.restlet.representation.Representation;
 
 /**
  * Integration tests for creating, reading, updating, and deleting TodoLists.
@@ -27,30 +28,34 @@ public class ListsCrudIntegrationTests extends IntegrationTests<TodosBrowser, To
 
     @Test
     public void creating_todolist_persists_new_todolist() throws Exception {
-        browser.createTodoList(new TodoList("crudlist1"));
+        TodoList todoList = createTodoList();
+        browser.createTodoList(todoList);
         String html = browser.getTodoLists().getText();
-        assertThat(html, containsString("crudlist1"));
+        assertThat(html, containsString(todoList.getName()));
     }
     
     @Test
     public void new_todolist_can_be_deleted_by_owner() throws Exception {
-        String id = browser.createTodoList(new TodoList("crudlist2"));
+        TodoList todoList = createTodoList();
+        String id = browser.createTodoList(todoList);
         browser.deleteTodoList(id);
-        Representation html = browser.getTodoLists();
-        assertThat(html.getText(), not(containsString("crudlist2")));
+        assertThat(browser.getTodoLists().getText(), not(containsString(todoList.getName())));
     }
 
     @Test
     @Ignore
     public void altering_todolist_updates_existing_todolist() throws Exception {
-        TodoList theTodoList = new TodoList("crudlist3");
+        TodoList theTodoList = createTodoList();
         String id = browser.createTodoList(theTodoList);
-        String html = browser.getTodoList(id).getText();
-        assertThat(html, containsString("crudlist3"));
+        assertThat(browser.getTodoList(id).getText(), containsString(theTodoList.getName()));
         
         theTodoList.setId(id);
         theTodoList.setName("crudlist3!");
         browser.updateTodoList(theTodoList);
     }
 
+    private TodoList createTodoList() {
+        return new TodoList(new BigInteger(130, random).toString(32));
+    }
 }
+

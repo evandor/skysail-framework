@@ -10,6 +10,7 @@ import io.skysail.server.app.crm.contacts.PostContactResource;
 import io.skysail.server.app.crm.contacts.PutContactResource;
 import io.skysail.server.app.crm.contracts.ContractsResource;
 import io.skysail.server.app.crm.contracts.PostContractResource;
+import io.skysail.server.db.DbRepository;
 
 import java.util.Arrays;
 import java.util.List;
@@ -18,7 +19,6 @@ import aQute.bnd.annotation.component.Component;
 import aQute.bnd.annotation.component.Reference;
 import de.twenty11.skysail.server.app.ApplicationProvider;
 import de.twenty11.skysail.server.app.SkysailApplication;
-import de.twenty11.skysail.server.core.db.DbRepository;
 import de.twenty11.skysail.server.core.restlet.ApplicationContextId;
 import de.twenty11.skysail.server.core.restlet.RouteBuilder;
 import de.twenty11.skysail.server.services.MenuItem;

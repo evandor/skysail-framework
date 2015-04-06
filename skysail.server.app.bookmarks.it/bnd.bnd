@@ -59,8 +59,8 @@ Private-Package:  \
     felix.fileinstall.log.level=4,\
     org.apache.felix.log.storeDebug=true,\
     logback.configurationFile=config/test/logback.xml,\
-    obr.repository.url=https://raw.githubusercontent.com/evandor/skysail-repository/master/index.xml https://raw.githubusercontent.com/evandor/skysail/master/cnf/releaserepo/index.xml http://felix.apache.org/obr/releases.xml
-#    gosh.args=--nointeractive
+    obr.repository.url=https://raw.githubusercontent.com/evandor/skysail-repository/master/index.xml https://raw.githubusercontent.com/evandor/skysail/master/cnf/releaserepo/index.xml http://felix.apache.org/obr/releases.xml,\
+    gosh.args=--nointeractive
 
 -runbundles:  \
 	ch.qos.logback.classic;version='[1.1.2,1.1.3)',\

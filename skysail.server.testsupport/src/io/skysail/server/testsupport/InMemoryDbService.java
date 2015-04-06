@@ -1,5 +1,7 @@
 package io.skysail.server.testsupport;
 
+import io.skysail.server.db.DbService2;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -7,8 +9,6 @@ import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
 import com.orientechnologies.orient.core.metadata.schema.OType;
-
-import de.twenty11.skysail.server.core.db.DbService2;
 
 /**
  * An DbService2 implementation to be used in tests.

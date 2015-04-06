@@ -73,7 +73,7 @@ public class SkysailAuthorizingRealm extends AuthorizingRealm {
         String sql = "SELECT from SkysailUser WHERE username = :username";
         Map<String, Object> params = new HashMap<String, Object>();
         params.put("username", username);
-        return shiroServices.getDbService().findOne(sql, SkysailUser.class, params);
+        return null;// shiroServices.getDbService().findOne(sql, SkysailUser.class, params);
     }
 
     @Override

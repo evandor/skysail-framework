@@ -18,7 +18,6 @@ import org.mockito.Mockito;
 public class SimpleDelegatingVerifierTest extends AbstractShiroTest {
 
     private SimpleDelegatingVerifier verifier;
-    private Subject subjectUnderTest;
 
     @Before
     public void setUp() {

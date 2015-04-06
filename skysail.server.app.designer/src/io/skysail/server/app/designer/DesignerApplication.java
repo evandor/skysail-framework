@@ -11,6 +11,7 @@ import io.skysail.server.app.designer.entities.resources.PostEntityResource;
 import io.skysail.server.app.designer.fields.resources.FieldsResource;
 import io.skysail.server.app.designer.fields.resources.PostFieldResource;
 import io.skysail.server.app.designer.repo.DesignerRepository;
+import io.skysail.server.db.DbRepository;
 
 import java.util.Arrays;
 import java.util.List;
@@ -19,7 +20,6 @@ import aQute.bnd.annotation.component.Component;
 import aQute.bnd.annotation.component.Reference;
 import de.twenty11.skysail.server.app.ApplicationProvider;
 import de.twenty11.skysail.server.app.SkysailApplication;
-import de.twenty11.skysail.server.core.db.DbRepository;
 import de.twenty11.skysail.server.core.restlet.ApplicationContextId;
 import de.twenty11.skysail.server.core.restlet.RouteBuilder;
 import de.twenty11.skysail.server.services.MenuItem;

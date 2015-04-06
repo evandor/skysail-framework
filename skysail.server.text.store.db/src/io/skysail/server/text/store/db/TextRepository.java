@@ -1,5 +1,6 @@
 package io.skysail.server.text.store.db;
 
+import io.skysail.server.db.DbService2;
 import io.skysail.server.text.store.db.text.Text;
 
 import java.util.List;
@@ -8,14 +9,13 @@ import aQute.bnd.annotation.component.Activate;
 import aQute.bnd.annotation.component.Component;
 import aQute.bnd.annotation.component.Deactivate;
 import aQute.bnd.annotation.component.Reference;
-import de.twenty11.skysail.server.core.db.DbService;
 
 @Component
 public class TextRepository {
 
     private static TextRepository instance;
 
-    private DbService dbService;
+    private DbService2 dbService;
 
     public static TextRepository getInstance() {
         // for tests
@@ -36,32 +36,32 @@ public class TextRepository {
     }
 
     @Reference
-    public void setDbService(DbService dbService) {
+    public void setDbService(DbService2 dbService) {
         this.dbService = dbService;
     }
 
-    public void unsetDbService(DbService dbService) {
+    public void unsetDbService(DbService2 dbService) {
         this.dbService = null;
     }
 
     public Text add(Text entity) {
-        return dbService.persist(entity);
+        return null;//dbService.persist(entity);
     }
 
     public List<Text> getContacts() {
-        return dbService.findAll(Text.class);
+        return null;//dbService.findAll(Text.class);
     }
 
     public Text getById(String id) {
-        return dbService.find(id);
+        return null;//dbService.find(id);
     }
 
     public void update(Text entity) {
-        dbService.update(entity);
+        //dbService.update(entity);
     }
 
     public void delete(String id) {
-        dbService.delete(id);
+       //.delete(id);
     }
 
 }

@@ -1,4 +1,4 @@
-package de.twenty11.skysail.server.core.db;
+package io.skysail.server.db;
 
 import java.util.List;
 import java.util.Map;
@@ -56,5 +56,6 @@ public interface DbService2 {
     void executeUpdate(String sql, Map<String, Object> params);
 
     void createUniqueIndex(Class<?> cls, String... columnNames);
+
     
 }

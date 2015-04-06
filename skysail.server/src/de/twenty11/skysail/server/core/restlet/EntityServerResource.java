@@ -21,7 +21,6 @@ import org.restlet.data.Method;
 import org.restlet.data.Preference;
 import org.restlet.resource.Delete;
 import org.restlet.resource.Get;
-import org.restlet.resource.ResourceException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -91,7 +90,7 @@ public abstract class EntityServerResource<T> extends SkysailServerResource<T> {
      *
      */
     @Override
-    protected void doInit() throws ResourceException {
+    protected void doInit() {
         // this empty implementation provides the comment to subclasses only.
     };
 

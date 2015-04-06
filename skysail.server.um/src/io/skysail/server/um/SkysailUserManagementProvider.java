@@ -3,6 +3,7 @@ package io.skysail.server.um;
 import io.skysail.api.um.AuthenticationService;
 import io.skysail.api.um.AuthorizationService;
 import io.skysail.api.um.UserManagementProvider;
+import io.skysail.server.db.DbService2;
 import io.skysail.server.um.security.shiro.DefaultAuthorizationService;
 import io.skysail.server.um.security.shiro.ShiroServices;
 import io.skysail.server.um.security.shiro.UserRepository;
@@ -14,7 +15,6 @@ import aQute.bnd.annotation.component.Activate;
 import aQute.bnd.annotation.component.Component;
 import aQute.bnd.annotation.component.Deactivate;
 import aQute.bnd.annotation.component.Reference;
-import de.twenty11.skysail.server.core.db.DbService;
 import de.twenty11.skysail.server.services.UserManager;
 import de.twenty11.skysail.server.um.domain.SkysailGroup;
 import de.twenty11.skysail.server.um.domain.SkysailUser;
@@ -23,7 +23,7 @@ import de.twenty11.skysail.server.um.domain.SkysailUser;
 public class SkysailUserManagementProvider implements UserManagementProvider, UserManager {
 
     private ShiroServices authenticationService;
-    private DbService dbService;
+    private DbService2 dbService;
     private DefaultAuthorizationService authorizationService;
     private UserRepository userRepository;
 
@@ -40,11 +40,11 @@ public class SkysailUserManagementProvider implements UserManagementProvider, Us
     }
 
     @Reference(dynamic = true, optional = false, multiple = false)
-    public void setDbService(DbService dbService) {
+    public void setDbService(DbService2 dbService) {
         this.dbService = dbService;
     }
 
-    public void unsetDbService(DbService dbService) {
+    public void unsetDbService(DbService2 dbService) {
         this.dbService = null;
     }
 

@@ -1,5 +1,7 @@
 package io.skysail.server.app.todos.lists;
 
+import io.skysail.server.db.DbService2;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -11,7 +13,6 @@ import org.apache.shiro.SecurityUtils;
 
 import aQute.bnd.annotation.component.Component;
 import aQute.bnd.annotation.component.Reference;
-import de.twenty11.skysail.server.core.db.DbService2;
 
 @Component(immediate = true)
 public class UniquePerOwnerValidator implements ConstraintValidator<UniquePerOwner, String> {

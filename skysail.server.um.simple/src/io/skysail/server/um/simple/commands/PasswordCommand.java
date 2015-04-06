@@ -1,9 +1,10 @@
 package io.skysail.server.um.simple.commands;
 
+import io.skysail.server.utils.PasswordUtils;
+
 import org.apache.felix.service.command.CommandProcessor;
 
 import aQute.bnd.annotation.component.Component;
-import de.twenty11.skysail.server.utils.PasswordUtils;
 
 @Component(properties = {
         /* Felix GoGo Shell Commands */

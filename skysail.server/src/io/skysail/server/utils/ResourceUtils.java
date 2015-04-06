@@ -1,4 +1,4 @@
-package de.twenty11.skysail.server.utils;
+package io.skysail.server.utils;
 
 import io.skysail.server.restlet.resources.EntityServerResource;
 import lombok.extern.slf4j.Slf4j;

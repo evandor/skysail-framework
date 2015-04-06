@@ -1,12 +1,11 @@
-package de.twenty11.skysail.server.utils.test;
+package io.skysail.server.utils;
 
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
+import io.skysail.server.utils.HashedPasswordAndSalt;
 
 import org.junit.Test;
-
-import de.twenty11.skysail.server.utils.HashedPasswordAndSalt;
 
 public class HashedPasswordAndSaltTest {
 

@@ -3,6 +3,7 @@ package io.skysail.server.um.simple.authentication;
 import io.skysail.api.um.AuthenticationService;
 import io.skysail.api.um.User;
 import io.skysail.server.um.simple.FileBasedUserManagementProvider;
+import io.skysail.server.utils.PasswordUtils;
 
 import java.io.File;
 import java.io.FileReader;
@@ -18,8 +19,6 @@ import org.apache.shiro.cache.CacheManager;
 import org.apache.shiro.subject.Subject;
 import org.restlet.Context;
 import org.restlet.security.Authenticator;
-
-import de.twenty11.skysail.server.utils.PasswordUtils;
 
 @Slf4j
 public class SimpleAuthenticationService implements AuthenticationService {

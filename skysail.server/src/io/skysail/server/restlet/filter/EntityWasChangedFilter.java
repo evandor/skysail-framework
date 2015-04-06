@@ -1,5 +1,6 @@
 package io.skysail.server.restlet.filter;
 
+import io.skysail.server.app.SkysailApplication;
 import io.skysail.server.restlet.resources.SkysailServerResource;
 
 import java.util.List;
@@ -11,7 +12,6 @@ import org.slf4j.LoggerFactory;
 
 import de.twenty11.skysail.api.domain.Identifiable;
 import de.twenty11.skysail.api.hooks.EntityChangedHookService;
-import de.twenty11.skysail.server.app.SkysailApplication;
 import de.twenty11.skysail.server.core.osgi.EventHelper;
 import de.twenty11.skysail.server.core.restlet.ResponseWrapper;
 

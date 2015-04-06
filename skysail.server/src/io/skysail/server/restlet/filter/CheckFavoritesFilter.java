@@ -4,6 +4,7 @@ import io.skysail.api.favorites.Favorite;
 import io.skysail.api.favorites.FavoritesService;
 import io.skysail.api.links.Link;
 import io.skysail.api.links.LinkRole;
+import io.skysail.server.app.SkysailApplication;
 import io.skysail.server.restlet.resources.SkysailServerResource;
 
 import java.util.List;
@@ -13,7 +14,6 @@ import org.restlet.Application;
 import org.restlet.Request;
 
 import de.twenty11.skysail.server.Constants;
-import de.twenty11.skysail.server.app.SkysailApplication;
 import de.twenty11.skysail.server.core.restlet.ResponseWrapper;
 import de.twenty11.skysail.server.core.restlet.utils.CookiesUtils;
 

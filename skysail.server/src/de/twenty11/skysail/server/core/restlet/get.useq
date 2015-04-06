@@ -9,25 +9,10 @@
     </execution>    
     <execution id="4">      
       <position height="21" width="0" x="0" y="126"/>    
-    </execution>    
-    <execution id="5">      
-      <position height="63" width="0" x="0" y="191"/>    
-    </execution>  
-  </object>  
-  <object id="8" language="java" name="de.twenty11.skysail.server.core.restlet.SkysailServerResource" 
-    project="skysail.server" file="/skysail.server/src/io/skysail/server/restlet/resources/SkysailServerResource.java" 
-    binary="false" label="skysailServerResource" type="class" autoSize="true">    
-    <position height="0" width="0" x="0" y="0"/>    
-    <execution id="7">      
-      <position height="21" width="0" x="0" y="212"/>    
     </execution>  
   </object>  
   <message id="3">    
     <end type="SOURCE" refId="2"/>    
     <end type="TARGET" refId="4"/>  
-  </message>  
-  <message id="6">    
-    <end type="SOURCE" refId="5"/>    
-    <end type="TARGET" refId="7"/>  
   </message>
 </sequence-diagram>

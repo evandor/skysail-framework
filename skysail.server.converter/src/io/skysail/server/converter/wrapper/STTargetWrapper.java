@@ -1,8 +1,8 @@
 package io.skysail.server.converter.wrapper;
 
-import org.restlet.representation.Variant;
+import io.skysail.server.app.SkysailApplication;
 
-import de.twenty11.skysail.server.app.SkysailApplication;
+import org.restlet.representation.Variant;
 
 public class STTargetWrapper {
 

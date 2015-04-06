@@ -1,5 +1,9 @@
 package io.skysail.client.todos.angularjs;
 
+import io.skysail.server.app.SkysailApplication;
+import io.skysail.server.utils.ClassLoaderDirectory;
+import io.skysail.server.utils.CompositeClassLoader;
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -9,12 +13,9 @@ import org.restlet.routing.Router;
 
 import aQute.bnd.annotation.component.Component;
 import de.twenty11.skysail.server.app.ApplicationProvider;
-import de.twenty11.skysail.server.app.SkysailApplication;
 import de.twenty11.skysail.server.core.restlet.ApplicationContextId;
 import de.twenty11.skysail.server.services.MenuItem;
 import de.twenty11.skysail.server.services.MenuItemProvider;
-import de.twenty11.skysail.server.utils.ClassLoaderDirectory;
-import de.twenty11.skysail.server.utils.CompositeClassLoader;
 
 @Component
 public class ClipboardClient extends SkysailApplication implements ApplicationProvider, MenuItemProvider {

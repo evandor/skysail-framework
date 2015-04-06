@@ -2,6 +2,7 @@ package io.skysail.server.restlet.filter;
 
 import io.skysail.api.links.Link;
 import io.skysail.server.restlet.resources.SkysailServerResource;
+import io.skysail.server.utils.HeadersUtils;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -11,7 +12,6 @@ import org.restlet.data.Header;
 import org.restlet.util.Series;
 
 import de.twenty11.skysail.server.core.restlet.ResponseWrapper;
-import de.twenty11.skysail.server.utils.HeadersUtils;
 
 public class AddLinkheadersFilter<R extends SkysailServerResource<T>, T> extends
         ResponseHeadersManipulatingFilter<R, T> {

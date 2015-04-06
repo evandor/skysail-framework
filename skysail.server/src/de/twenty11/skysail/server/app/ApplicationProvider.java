@@ -1,5 +1,6 @@
 package de.twenty11.skysail.server.app;
 
+import io.skysail.server.app.SkysailApplication;
 import io.skysail.server.restlet.resources.SkysailServerResource;
 
 import java.util.List;

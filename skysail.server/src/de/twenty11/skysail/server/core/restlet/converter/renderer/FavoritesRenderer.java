@@ -1,6 +1,7 @@
 package de.twenty11.skysail.server.core.restlet.converter.renderer;
 
 import io.skysail.api.favorites.FavoritesService;
+import io.skysail.server.app.SkysailApplication;
 import io.skysail.server.restlet.resources.SkysailServerResource;
 
 import java.util.List;
@@ -11,8 +12,6 @@ import org.restlet.Application;
 import org.restlet.Request;
 import org.restlet.data.Method;
 import org.restlet.resource.Resource;
-
-import de.twenty11.skysail.server.app.SkysailApplication;
 
 public class FavoritesRenderer {
 

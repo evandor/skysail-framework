@@ -1,12 +1,11 @@
 package io.skysail.server.restlet.filter;
 
+import io.skysail.server.app.SkysailApplication;
 import io.skysail.server.restlet.resources.SkysailServerResource;
 
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 import java.util.Set;
-
-import de.twenty11.skysail.server.app.SkysailApplication;
 
 /**
  * Idea: let custom GET requests add custom pre-Filters. For now: fixed metrics

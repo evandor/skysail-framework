@@ -1,5 +1,7 @@
 package de.twenty11.skysail.server.app;
 
+import io.skysail.server.app.SkysailApplication;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;

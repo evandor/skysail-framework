@@ -1,6 +1,6 @@
 package io.skysail.server.documentation.test;
 
-import de.twenty11.skysail.server.app.SkysailApplication;
+import io.skysail.server.app.SkysailApplication;
 import de.twenty11.skysail.server.core.restlet.RouteBuilder;
 
 public class TestApplication extends SkysailApplication {

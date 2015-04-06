@@ -1,5 +1,6 @@
 package io.skysail.server.restlet.filter;
 
+import io.skysail.server.app.SkysailApplication;
 import io.skysail.server.restlet.resources.SkysailServerResource;
 import lombok.extern.slf4j.Slf4j;
 
@@ -7,7 +8,6 @@ import org.restlet.Response;
 import org.restlet.data.Status;
 import org.restlet.resource.ResourceException;
 
-import de.twenty11.skysail.server.app.SkysailApplication;
 import de.twenty11.skysail.server.core.osgi.EventHelper;
 import de.twenty11.skysail.server.core.restlet.ResponseWrapper;
 

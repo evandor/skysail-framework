@@ -1,6 +1,7 @@
 package io.skysail.server.text.store.bundleresource.impl;
 
 import io.skysail.api.text.TranslationStore;
+import io.skysail.server.utils.HeadersUtils;
 
 import java.util.Collections;
 import java.util.List;
@@ -15,7 +16,6 @@ import org.restlet.Request;
 import org.restlet.util.Series;
 
 import aQute.bnd.annotation.component.Component;
-import de.twenty11.skysail.server.utils.HeadersUtils;
 
 @Component(immediate = true, properties = { org.osgi.framework.Constants.SERVICE_RANKING + "=100" })
 @Slf4j

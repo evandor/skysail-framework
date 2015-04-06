@@ -1,5 +1,6 @@
 package io.skysail.server.documentation;
 
+import io.skysail.server.app.SkysailApplication;
 import io.skysail.server.restlet.resources.ListServerResource;
 
 import java.util.ArrayList;
@@ -9,7 +10,6 @@ import java.util.Map;
 
 import org.restlet.resource.ResourceException;
 
-import de.twenty11.skysail.server.app.SkysailApplication;
 import de.twenty11.skysail.server.core.restlet.RouteBuilder;
 
 public class ApiResource extends ListServerResource<ResourceApi> {

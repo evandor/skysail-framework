@@ -1,5 +1,6 @@
 package io.skysail.server.app.designer;
 
+import io.skysail.server.app.SkysailApplication;
 import io.skysail.server.app.designer.application.Application;
 import io.skysail.server.app.designer.application.resources.ApplicationResource;
 import io.skysail.server.app.designer.application.resources.ApplicationsResource;
@@ -19,7 +20,6 @@ import java.util.List;
 import aQute.bnd.annotation.component.Component;
 import aQute.bnd.annotation.component.Reference;
 import de.twenty11.skysail.server.app.ApplicationProvider;
-import de.twenty11.skysail.server.app.SkysailApplication;
 import de.twenty11.skysail.server.core.restlet.ApplicationContextId;
 import de.twenty11.skysail.server.core.restlet.RouteBuilder;
 import de.twenty11.skysail.server.services.MenuItem;

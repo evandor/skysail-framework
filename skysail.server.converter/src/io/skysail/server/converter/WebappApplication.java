@@ -17,15 +17,16 @@
 
 package io.skysail.server.converter;
 
+import io.skysail.server.app.SkysailApplication;
+import io.skysail.server.utils.ClassLoaderDirectory;
+import io.skysail.server.utils.CompositeClassLoader;
+
 import org.restlet.Restlet;
 import org.restlet.data.LocalReference;
 import org.restlet.routing.Router;
 
 import aQute.bnd.annotation.component.Component;
 import de.twenty11.skysail.server.app.ApplicationProvider;
-import de.twenty11.skysail.server.app.SkysailApplication;
-import de.twenty11.skysail.server.utils.ClassLoaderDirectory;
-import de.twenty11.skysail.server.utils.CompositeClassLoader;
 
 @Component
 public class WebappApplication extends SkysailApplication implements ApplicationProvider {

@@ -1,5 +1,6 @@
 package io.skysail.server.restlet;
 
+import io.skysail.server.app.SkysailApplication;
 import io.skysail.server.restlet.filter.AbstractResourceFilter;
 import io.skysail.server.restlet.filter.AddApiVersionHeaderFilter;
 import io.skysail.server.restlet.filter.AddLinkheadersFilter;
@@ -30,8 +31,6 @@ import io.skysail.server.restlet.resources.PutEntityServerResource;
 import java.util.List;
 
 import org.restlet.data.Method;
-
-import de.twenty11.skysail.server.app.SkysailApplication;
 
 public class RequestHandler<T> {
 

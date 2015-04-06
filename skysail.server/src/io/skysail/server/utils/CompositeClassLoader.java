@@ -1,4 +1,4 @@
-package de.twenty11.skysail.server.utils;
+package io.skysail.server.utils;
 
 import java.net.URL;
 import java.util.Vector;

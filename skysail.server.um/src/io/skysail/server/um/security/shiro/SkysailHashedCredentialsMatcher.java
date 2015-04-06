@@ -1,5 +1,7 @@
 package io.skysail.server.um.security.shiro;
 
+import io.skysail.server.utils.HashedPasswordAndSalt;
+import io.skysail.server.utils.PasswordUtils;
 import lombok.extern.slf4j.Slf4j;
 
 import org.apache.shiro.authc.AuthenticationInfo;
@@ -7,9 +9,6 @@ import org.apache.shiro.authc.AuthenticationToken;
 import org.apache.shiro.authc.SaltedAuthenticationInfo;
 import org.apache.shiro.authc.credential.SimpleCredentialsMatcher;
 import org.apache.shiro.util.SimpleByteSource;
-
-import de.twenty11.skysail.server.utils.HashedPasswordAndSalt;
-import de.twenty11.skysail.server.utils.PasswordUtils;
 
 @Slf4j
 public class SkysailHashedCredentialsMatcher extends SimpleCredentialsMatcher {

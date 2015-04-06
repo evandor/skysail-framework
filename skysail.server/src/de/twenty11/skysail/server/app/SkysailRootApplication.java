@@ -1,5 +1,7 @@
 package de.twenty11.skysail.server.app;
 
+import io.skysail.server.app.SkysailApplication;
+
 import java.util.Dictionary;
 import java.util.HashSet;
 import java.util.Set;

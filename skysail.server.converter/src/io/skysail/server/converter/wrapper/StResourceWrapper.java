@@ -6,6 +6,7 @@ import io.skysail.server.converter.Breadcrumb;
 import io.skysail.server.restlet.resources.PostEntityServerResource;
 import io.skysail.server.restlet.resources.PutEntityServerResource;
 import io.skysail.server.restlet.resources.SkysailServerResource;
+import io.skysail.server.utils.HeadersUtils;
 
 import java.io.IOException;
 import java.util.Collections;
@@ -26,7 +27,6 @@ import org.restlet.resource.ServerResource;
 import org.restlet.util.Series;
 
 import de.twenty11.skysail.server.core.restlet.ResourceContextId;
-import de.twenty11.skysail.server.utils.HeadersUtils;
 
 @Slf4j
 public class StResourceWrapper {

@@ -2,6 +2,7 @@ package io.skysail.server.documentation;
 
 import io.skysail.api.documentation.API;
 import io.skysail.server.restlet.resources.SkysailServerResource;
+import io.skysail.server.utils.ReflectionUtils;
 
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
@@ -21,7 +22,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import de.twenty11.skysail.server.core.restlet.RouteBuilder;
-import de.twenty11.skysail.server.utils.ReflectionUtils;
 
 /**
  * A resourceApi connects a path with a target {@link ServerResource} and

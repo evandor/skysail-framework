@@ -4,6 +4,7 @@ import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 import io.skysail.api.favorites.FavoritesService;
+import io.skysail.server.app.SkysailApplication;
 import io.skysail.server.converter.Breadcrumb;
 import io.skysail.server.converter.wrapper.Breadcrumbs;
 import io.skysail.server.restlet.resources.SkysailServerResource;
@@ -18,8 +19,6 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
 import org.restlet.data.Reference;
-
-import de.twenty11.skysail.server.app.SkysailApplication;
 
 public class BreadcrumbsTest extends AbstractShiroTest {
 

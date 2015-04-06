@@ -1,4 +1,4 @@
-package de.twenty11.skysail.server.app;
+package io.skysail.server.app;
 
 import io.skysail.api.documentation.DocumentationProvider;
 import io.skysail.api.favorites.FavoritesService;
@@ -13,6 +13,7 @@ import io.skysail.server.restlet.filter.HookFilter;
 import io.skysail.server.restlet.filter.OriginalRequestFilter;
 import io.skysail.server.restlet.filter.TracerFilter;
 import io.skysail.server.restlet.resources.SkysailServerResource;
+import io.skysail.server.utils.ReflectionUtils;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -66,6 +67,9 @@ import com.google.common.base.Predicate;
 
 import de.twenty11.skysail.api.hooks.EntityChangedHookService;
 import de.twenty11.skysail.server.SkysailComponent;
+import de.twenty11.skysail.server.app.ApplicationProvider;
+import de.twenty11.skysail.server.app.ServiceListProvider;
+import de.twenty11.skysail.server.app.TranslationRenderServiceHolder;
 import de.twenty11.skysail.server.core.restlet.ApplicationContextId;
 import de.twenty11.skysail.server.core.restlet.RouteBuilder;
 import de.twenty11.skysail.server.core.restlet.SkysailRouter;
@@ -75,7 +79,6 @@ import de.twenty11.skysail.server.security.RolePredicate;
 import de.twenty11.skysail.server.security.SkysailRolesAuthorizer;
 import de.twenty11.skysail.server.services.EncryptorService;
 import de.twenty11.skysail.server.services.ResourceBundleProvider;
-import de.twenty11.skysail.server.utils.ReflectionUtils;
 
 /**
  * A skysail application is the entry point to provide additional functionality

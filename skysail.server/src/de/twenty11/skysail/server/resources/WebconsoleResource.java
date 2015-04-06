@@ -1,5 +1,8 @@
 package de.twenty11.skysail.server.resources;
 
+import io.skysail.server.app.SkysailApplication;
+import io.skysail.server.utils.IOUtils;
+
 import java.io.IOException;
 import java.io.InputStream;
 
@@ -9,8 +12,6 @@ import org.restlet.resource.Get;
 import org.restlet.resource.ServerResource;
 
 import de.twenty11.skysail.server.Constants;
-import de.twenty11.skysail.server.app.SkysailApplication;
-import de.twenty11.skysail.server.utils.IOUtils;
 
 public class WebconsoleResource extends ServerResource {
 

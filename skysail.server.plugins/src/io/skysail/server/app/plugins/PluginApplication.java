@@ -1,5 +1,6 @@
 package io.skysail.server.app.plugins;
 
+import io.skysail.server.app.SkysailApplication;
 import io.skysail.server.app.plugins.features.Feature;
 import io.skysail.server.app.plugins.features.FeaturesRepository;
 import io.skysail.server.app.plugins.features.FeaturesResource;
@@ -28,7 +29,6 @@ import org.osgi.framework.InvalidSyntaxException;
 
 import aQute.bnd.annotation.component.Reference;
 import de.twenty11.skysail.server.app.ApplicationProvider;
-import de.twenty11.skysail.server.app.SkysailApplication;
 import de.twenty11.skysail.server.core.restlet.ApplicationContextId;
 import de.twenty11.skysail.server.core.restlet.RouteBuilder;
 import de.twenty11.skysail.server.services.MenuItem;

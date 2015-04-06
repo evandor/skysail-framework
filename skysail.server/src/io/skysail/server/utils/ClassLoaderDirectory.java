@@ -1,4 +1,4 @@
-package de.twenty11.skysail.server.utils;
+package io.skysail.server.utils;
 
 import org.restlet.Context;
 import org.restlet.Request;

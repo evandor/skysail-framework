@@ -1,5 +1,7 @@
 package de.twenty11.skysail.server.core.restlet.converter;
 
+import io.skysail.server.app.SkysailApplication;
+
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -15,7 +17,6 @@ import org.restlet.representation.Variant;
 import org.restlet.resource.Resource;
 
 import aQute.bnd.annotation.component.Component;
-import de.twenty11.skysail.server.app.SkysailApplication;
 import de.twenty11.skysail.server.core.restlet.SkysailConverterHelper;
 
 @Component(immediate = true)

@@ -1,5 +1,8 @@
 package io.skysail.server.um.simple.authentication;
 
+import io.skysail.server.utils.HashedPasswordAndSalt;
+import io.skysail.server.utils.PasswordUtils;
+
 import java.time.Duration;
 import java.time.LocalDateTime;
 
@@ -10,9 +13,6 @@ import org.apache.shiro.authc.AuthenticationToken;
 import org.apache.shiro.authc.credential.SimpleCredentialsMatcher;
 import org.apache.shiro.cache.Cache;
 import org.apache.shiro.cache.CacheManager;
-
-import de.twenty11.skysail.server.utils.HashedPasswordAndSalt;
-import de.twenty11.skysail.server.utils.PasswordUtils;
 
 /**
  * A CredentialsMatcher delegating to the PasswordUtils, and adding caching of

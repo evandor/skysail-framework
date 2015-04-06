@@ -1,6 +1,7 @@
 package io.skysail.server.text.impl;
 
 import io.skysail.api.text.TranslationStore;
+import io.skysail.server.utils.HeadersUtils;
 
 import java.util.Collections;
 import java.util.List;
@@ -13,8 +14,6 @@ import lombok.extern.slf4j.Slf4j;
 
 import org.restlet.Request;
 import org.restlet.util.Series;
-
-import de.twenty11.skysail.server.utils.HeadersUtils;
 
 // moved to skysail.server.text.store.resourcebundle
 //@Component(immediate = true, properties = { org.osgi.framework.Constants.SERVICE_RANKING + "=100" })

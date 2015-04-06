@@ -3,6 +3,7 @@ package de.twenty11.skysail.server.utils;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+import io.skysail.server.utils.BCrypt;
 
 import org.junit.Ignore;
 import org.junit.Test;

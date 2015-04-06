@@ -1,12 +1,11 @@
 package io.skysail.server.documentation;
 
+import io.skysail.server.app.SkysailApplication;
 import io.skysail.server.restlet.resources.ListServerResource;
 
 import java.util.List;
 
 import org.restlet.resource.ResourceException;
-
-import de.twenty11.skysail.server.app.SkysailApplication;
 
 public class EntitiesResource extends ListServerResource<EntityDescriptor> {
 

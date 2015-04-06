@@ -1,14 +1,12 @@
-package de.twenty11.skysail.server.utils;
+package io.skysail.server.utils;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 public class IOUtils {
-
-    private static Logger logger = LoggerFactory.getLogger(IOUtils.class);
 
     public static String convertStreamToString(java.io.InputStream is) {
         if (is == null) {
@@ -25,7 +23,7 @@ public class IOUtils {
         for (String line : securityDefinitions.split("\\n")) {
             String[] assignment = line.split("=");
             if (assignment.length != 2) {
-                logger.error("cannot deal with line '{}' in security.ini", line);
+                log.error("cannot deal with line '{}' in security.ini", line);
             }
             String path = assignment[0].trim();
             String filters = assignment[1].trim();

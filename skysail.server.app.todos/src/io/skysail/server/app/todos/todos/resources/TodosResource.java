@@ -4,6 +4,7 @@ import io.skysail.api.links.Link;
 import io.skysail.server.app.todos.TodoApplication;
 import io.skysail.server.app.todos.todos.Todo;
 import io.skysail.server.restlet.resources.ListServerResource;
+import io.skysail.server.utils.HeadersUtils;
 
 import java.util.List;
 import java.util.function.Consumer;
@@ -14,7 +15,6 @@ import org.restlet.resource.ResourceException;
 import org.restlet.util.Series;
 
 import de.twenty11.skysail.server.core.restlet.ResourceContextId;
-import de.twenty11.skysail.server.utils.HeadersUtils;
 
 public class TodosResource extends ListServerResource<Todo> {
 

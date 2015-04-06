@@ -1,6 +1,7 @@
 package de.twenty11.skysail.server.services;
 
 import io.skysail.api.links.Link;
+import io.skysail.server.app.SkysailApplication;
 import io.skysail.server.restlet.resources.SkysailServerResource;
 
 import java.util.ArrayList;
@@ -9,7 +10,6 @@ import java.util.List;
 
 import com.google.common.base.Predicate;
 
-import de.twenty11.skysail.server.app.SkysailApplication;
 import de.twenty11.skysail.server.core.restlet.ApplicationContextId;
 import de.twenty11.skysail.server.core.restlet.ServerLink;
 

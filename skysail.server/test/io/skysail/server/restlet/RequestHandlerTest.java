@@ -1,5 +1,6 @@
 package io.skysail.server.restlet;
 
+import io.skysail.server.app.SkysailApplication;
 import io.skysail.server.restlet.RequestHandler;
 import io.skysail.server.restlet.filter.AbstractResourceFilter;
 import io.skysail.server.restlet.resources.EntityServerResource;
@@ -10,8 +11,6 @@ import org.mockito.Mockito;
 import org.restlet.Request;
 import org.restlet.Response;
 import org.restlet.data.Method;
-
-import de.twenty11.skysail.server.app.SkysailApplication;
 
 public class RequestHandlerTest {
 

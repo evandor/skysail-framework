@@ -1,6 +1,7 @@
 package io.skysail.server.text.store.bundleresource.impl;
 
 import io.skysail.api.text.Translation;
+import io.skysail.server.app.SkysailApplication;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -23,7 +24,6 @@ import org.osgi.framework.wiring.BundleWiring;
 
 import aQute.bnd.annotation.component.Component;
 import de.twenty11.skysail.server.app.ApplicationProvider;
-import de.twenty11.skysail.server.app.SkysailApplication;
 import de.twenty11.skysail.server.core.restlet.ApplicationContextId;
 import de.twenty11.skysail.server.core.restlet.RouteBuilder;
 import de.twenty11.skysail.server.services.MenuItem;

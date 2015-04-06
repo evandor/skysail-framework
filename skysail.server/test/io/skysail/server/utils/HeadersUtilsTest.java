@@ -1,16 +1,15 @@
-package de.twenty11.skysail.server.utils.test;
+package io.skysail.server.utils;
 
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
+import io.skysail.server.utils.HeadersUtils;
 
 import java.util.List;
 
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-
-import de.twenty11.skysail.server.utils.HeadersUtils;
 
 public class HeadersUtilsTest {
 

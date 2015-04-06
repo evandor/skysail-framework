@@ -1,61 +1,61 @@
-2015-04-06 09:47:53,190 DEBUG [io.skysail.server.app.SkysailApplication     ] - Instanciating new Skysail Application 'SkysailRootApplication'
-2015-04-06 09:47:53,353 INFO  [d.t.s.s.c.restlet.SkysailConverterHelper     ] - initializing new converter 'ServerSentEventsConverter' with typesMatch '{text/event-stream=1.0}'
-2015-04-06 09:47:53,364 INFO  [io.skysail.server.app.ApplicationList        ] - (+) Adding application 'root'
-2015-04-06 09:47:53,372 INFO  [io.skysail.server.db.DbConfigurations        ] - activating DbConfigurations with config DbConfig(name=skysailgraph, driver=, url=memory:designer, username=admin)
-2015-04-06 09:47:53,378 INFO  [i.s.s.f.repositories.FeaturesRepository      ] - activating FeaturesRepository with config {service.pid=io.skysail.server.features.repositories.FeaturesRepository, de.twenty11.skysail.server.core.restlet.SecurityFeatures.ALLOW_ORIGIN_FEATURE=true, component.name=io.skysail.server.features.repositories.FeaturesRepository, felix.fileinstall.filename=file:/Users/carsten/git/skysail-framework/skysail.server.app.designer.it/config/test/io.skysail.server.features.repositories.FeaturesRepository.cfg, component.id=12}
-2015-04-06 09:47:53,415 DEBUG [io.skysail.server.app.SkysailApplication     ] - Instanciating new Skysail Application 'WebappApplication'
-2015-04-06 09:47:53,428 DEBUG [io.skysail.server.app.SkysailApplication     ] - Activating Application io.skysail.server.converter.WebappApplication
-2015-04-06 09:47:53,429 INFO  [io.skysail.server.app.ApplicationList        ] - (+) Adding application 'webapp'
-2015-04-06 09:47:53,433 DEBUG [d.t.s.s.c.o.i.l.SkysailServerBundleListener  ] - could not send bundleStartedMessage for skysail.server.converter
-2015-04-06 09:47:53,441 DEBUG [d.t.s.s.c.o.i.l.SkysailServerBundleListener  ] - could not send bundleStartedMessage for skysail.server.app.designer
-2015-04-06 09:47:53,484 DEBUG [d.t.s.s.c.o.i.l.SkysailServerBundleListener  ] - could not send bundleStartedMessage for skysail.api
-2015-04-06 09:47:54,988 DEBUG [d.t.s.s.db.orientdb.OrientGraphDbService     ] - activating de.twenty11.skysail.server.db.orientdb.OrientGraphDbService
-2015-04-06 09:47:55,034 DEBUG [io.skysail.server.app.SkysailApplication     ] - Instanciating new Skysail Application 'DesignerApplication'
-2015-04-06 09:47:55,035 DEBUG [io.skysail.server.app.SkysailApplication     ] - Activating Application io.skysail.server.app.designer.DesignerApplication
-2015-04-06 09:47:55,035 INFO  [io.skysail.server.app.ApplicationList        ] - (+) Adding application 'AppDesigner'
-2015-04-06 09:47:55,042 DEBUG [d.t.s.s.c.o.i.l.SkysailServerBundleListener  ] - could not send bundleStartedMessage for skysail.server.db
-2015-04-06 09:47:55,056 DEBUG [d.t.s.s.c.o.i.l.SkysailServerBundleListener  ] - could not send bundleStartedMessage for skysail.server.documentation
-2015-04-06 09:47:55,068 INFO  [io.skysail.server.http.HttpServer            ] - Activating io.skysail.server.http.HttpServer
-2015-04-06 09:47:55,079 INFO  [d.t.skysail.server.SkysailComponent          ] - Creating Restlet Component: de.twenty11.skysail.server.SkysailComponent
-2015-04-06 09:47:55,081 INFO  [io.skysail.server.http.HttpServer            ] - configuration was provided
-2015-04-06 09:47:55,081 INFO  [io.skysail.server.http.HttpServer            ] - 
-2015-04-06 09:47:55,081 INFO  [io.skysail.server.http.HttpServer            ] - ====================================
-2015-04-06 09:47:55,081 INFO  [io.skysail.server.http.HttpServer            ] - Starting skysail server on port 2014
-2015-04-06 09:47:55,081 INFO  [io.skysail.server.http.HttpServer            ] - ====================================
-2015-04-06 09:47:55,081 INFO  [io.skysail.server.http.HttpServer            ] - 
-2015-04-06 09:47:55,085 DEBUG [d.t.s.s.c.o.i.l.SkysailServerBundleListener  ] - could not send bundleStartedMessage for skysail.server.http
-2015-04-06 09:47:55,092 DEBUG [io.skysail.server.app.SkysailApplication     ] - Instanciating new Skysail Application 'PluginApplication'
-2015-04-06 09:47:55,092 DEBUG [io.skysail.server.app.SkysailApplication     ] - Activating Application io.skysail.server.app.plugins.PluginApplication
-2015-04-06 09:47:55,092 INFO  [io.skysail.server.app.ApplicationList        ] - (+) Adding application 'plugins'
-2015-04-06 09:47:55,094 DEBUG [d.t.s.s.c.o.i.l.SkysailServerBundleListener  ] - could not send bundleStartedMessage for skysail.server.plugins
-2015-04-06 09:47:55,102 DEBUG [io.skysail.server.app.SkysailApplication     ] - Instanciating new Skysail Application 'WebappApplication'
-2015-04-06 09:47:55,102 DEBUG [io.skysail.server.app.SkysailApplication     ] - Activating Application de.twenty11.skysail.server.webapp.internal.WebappApplication
-2015-04-06 09:47:55,103 INFO  [io.skysail.server.app.ApplicationList        ] - (+) Adding application 'static'
-2015-04-06 09:47:55,104 DEBUG [d.t.s.s.c.o.i.l.SkysailServerBundleListener  ] - could not send bundleStartedMessage for skysail.server.static
-2015-04-06 09:47:55,105 DEBUG [d.t.s.s.c.o.i.l.SkysailServerBundleListener  ] - could not send bundleStartedMessage for skysail.server.text
-2015-04-06 09:47:55,105 INFO  [org.restlet                                  ] - Starting the internal [HTTP/1.1] server on port 2014
-2015-04-06 09:47:55,114 DEBUG [d.t.s.s.c.o.i.l.SkysailServerBundleListener  ] - could not send bundleStartedMessage for skysail.server.text.markdown
-2015-04-06 09:47:55,127 DEBUG [io.skysail.server.app.SkysailApplication     ] - Activating Application io.skysail.server.um.simple.app.SimpleUserManagementApplication
-2015-04-06 09:47:55,209 DEBUG [i.s.s.u.s.a.SkysailHashedCredentialsMatcher  ] - cacheManager set in io.skysail.server.um.simple.authentication.SkysailHashedCredentialsMatcher
-2015-04-06 09:47:55,238 DEBUG [org.apache.shiro.realm.AuthorizingRealm      ] - No authorizationCache instance set.  Checking for a cacheManager...
-2015-04-06 09:47:55,238 DEBUG [org.apache.shiro.realm.AuthorizingRealm      ] - CacheManager [MemoryConstrainedCacheManager with 0 cache(s)): []] has been configured.  Building authorization cache named [io.skysail.server.um.simple.authorization.SimpleAuthorizingRealm.authorizationCache]
-2015-04-06 09:47:55,250 DEBUG [io.skysail.server.app.SkysailApplication     ] - setting hookfilters to application 'root'
-2015-04-06 09:47:55,250 DEBUG [io.skysail.server.app.SkysailApplication     ] - setting hookfilters to application 'webapp'
-2015-04-06 09:47:55,250 DEBUG [io.skysail.server.app.SkysailApplication     ] - setting hookfilters to application 'AppDesigner'
-2015-04-06 09:47:55,251 DEBUG [io.skysail.server.app.SkysailApplication     ] - setting hookfilters to application 'plugins'
-2015-04-06 09:47:55,251 DEBUG [io.skysail.server.app.SkysailApplication     ] - setting hookfilters to application 'static'
-2015-04-06 09:47:55,258 DEBUG [d.t.s.s.c.o.i.l.SkysailServerBundleListener  ] - could not send bundleStartedMessage for skysail.server.um.simple
-2015-04-06 09:47:55,267 DEBUG [d.t.s.s.c.o.i.l.SkysailServerBundleListener  ] - could not send bundleStartedMessage for slf4j.api
-2015-04-06 09:47:55,268 DEBUG [d.t.s.s.c.o.i.l.SkysailServerBundleListener  ] - could not send bundleStartedMessage for de.twentyeleven.skysail.org.antlr.stringtemplate-osgi
-2015-04-06 09:47:55,269 DEBUG [d.t.s.s.c.o.i.l.SkysailServerBundleListener  ] - could not send bundleStartedMessage for org.jruby.jruby
-2015-04-06 09:47:55,270 DEBUG [d.t.s.s.c.o.i.l.SkysailServerBundleListener  ] - could not send bundleStartedMessage for com.beust.jcommander
-2015-04-06 09:47:55,271 DEBUG [d.t.s.s.c.o.i.l.SkysailServerBundleListener  ] - could not send bundleStartedMessage for stax2-api
-2015-04-06 09:47:55,272 DEBUG [d.t.s.s.c.o.i.l.SkysailServerBundleListener  ] - could not send bundleStartedMessage for com.fasterxml.jackson.module.jackson-module-jaxb-annotations
-2015-04-06 09:47:55,280 DEBUG [d.t.s.s.c.o.i.l.SkysailServerBundleListener  ] - could not send bundleStartedMessage for org.codehaus.jettison.jettison
-2015-04-06 09:47:55,281 DEBUG [d.t.s.s.c.o.i.l.SkysailServerBundleListener  ] - could not send bundleStartedMessage for skysail.server.app.designer.it
-2015-04-06 09:47:55,355 INFO  [i.s.s.a.d.i.ApplicationsCrudIntegrationTests ] - 
-2015-04-06 09:47:55,356 INFO  [i.s.s.a.d.i.ApplicationsCrudIntegrationTests ] - --------------------------------------------
-2015-04-06 09:47:55,356 INFO  [i.s.s.a.d.i.ApplicationsCrudIntegrationTests ] -  > TEST: running test 'testName'
-2015-04-06 09:47:55,356 INFO  [i.s.s.a.d.i.ApplicationsCrudIntegrationTests ] - --------------------------------------------
-2015-04-06 09:47:55,356 INFO  [i.s.s.a.d.i.ApplicationsCrudIntegrationTests ] - 
-2015-04-06 09:47:55,357 INFO  [i.skysail.server.app.designer.it.Browser     ] -  > TEST: creating new browser client with url 'http://localhost:2015' and mediaType 'text/html'
+2015-04-06 10:30:18,990 DEBUG [io.skysail.server.app.SkysailApplication     ] - Instanciating new Skysail Application 'SkysailRootApplication'
+2015-04-06 10:30:19,227 INFO  [d.t.s.s.c.restlet.SkysailConverterHelper     ] - initializing new converter 'ServerSentEventsConverter' with typesMatch '{text/event-stream=1.0}'
+2015-04-06 10:30:19,239 INFO  [io.skysail.server.app.ApplicationList        ] - (+) Adding application 'root'
+2015-04-06 10:30:19,250 INFO  [io.skysail.server.db.DbConfigurations        ] - activating DbConfigurations with config DbConfig(name=skysailgraph, driver=, url=memory:designer, username=admin)
+2015-04-06 10:30:19,264 INFO  [i.s.s.f.repositories.FeaturesRepository      ] - activating FeaturesRepository with config {service.pid=io.skysail.server.features.repositories.FeaturesRepository, de.twenty11.skysail.server.core.restlet.SecurityFeatures.ALLOW_ORIGIN_FEATURE=true, component.name=io.skysail.server.features.repositories.FeaturesRepository, felix.fileinstall.filename=file:/Users/carsten/git/skysail-framework/skysail.server.app.designer.it/config/test/io.skysail.server.features.repositories.FeaturesRepository.cfg, component.id=12}
+2015-04-06 10:30:19,299 DEBUG [io.skysail.server.app.SkysailApplication     ] - Instanciating new Skysail Application 'WebappApplication'
+2015-04-06 10:30:19,302 DEBUG [io.skysail.server.app.SkysailApplication     ] - Activating Application io.skysail.server.converter.WebappApplication
+2015-04-06 10:30:19,303 INFO  [io.skysail.server.app.ApplicationList        ] - (+) Adding application 'webapp'
+2015-04-06 10:30:19,306 DEBUG [d.t.s.s.c.o.i.l.SkysailServerBundleListener  ] - could not send bundleStartedMessage for skysail.server.converter
+2015-04-06 10:30:19,312 DEBUG [d.t.s.s.c.o.i.l.SkysailServerBundleListener  ] - could not send bundleStartedMessage for skysail.server.app.designer
+2015-04-06 10:30:19,354 DEBUG [d.t.s.s.c.o.i.l.SkysailServerBundleListener  ] - could not send bundleStartedMessage for skysail.api
+2015-04-06 10:30:20,880 DEBUG [d.t.s.s.db.orientdb.OrientGraphDbService     ] - activating de.twenty11.skysail.server.db.orientdb.OrientGraphDbService
+2015-04-06 10:30:20,946 DEBUG [io.skysail.server.app.SkysailApplication     ] - Instanciating new Skysail Application 'DesignerApplication'
+2015-04-06 10:30:20,946 DEBUG [io.skysail.server.app.SkysailApplication     ] - Activating Application io.skysail.server.app.designer.DesignerApplication
+2015-04-06 10:30:20,946 INFO  [io.skysail.server.app.ApplicationList        ] - (+) Adding application 'AppDesigner'
+2015-04-06 10:30:20,954 DEBUG [d.t.s.s.c.o.i.l.SkysailServerBundleListener  ] - could not send bundleStartedMessage for skysail.server.db
+2015-04-06 10:30:20,967 DEBUG [d.t.s.s.c.o.i.l.SkysailServerBundleListener  ] - could not send bundleStartedMessage for skysail.server.documentation
+2015-04-06 10:30:20,980 INFO  [io.skysail.server.http.HttpServer            ] - Activating io.skysail.server.http.HttpServer
+2015-04-06 10:30:20,996 INFO  [d.t.skysail.server.SkysailComponent          ] - Creating Restlet Component: de.twenty11.skysail.server.SkysailComponent
+2015-04-06 10:30:21,000 INFO  [io.skysail.server.http.HttpServer            ] - configuration was provided
+2015-04-06 10:30:21,000 INFO  [io.skysail.server.http.HttpServer            ] - 
+2015-04-06 10:30:21,000 INFO  [io.skysail.server.http.HttpServer            ] - ====================================
+2015-04-06 10:30:21,000 INFO  [io.skysail.server.http.HttpServer            ] - Starting skysail server on port 2014
+2015-04-06 10:30:21,000 INFO  [io.skysail.server.http.HttpServer            ] - ====================================
+2015-04-06 10:30:21,000 INFO  [io.skysail.server.http.HttpServer            ] - 
+2015-04-06 10:30:21,003 DEBUG [d.t.s.s.c.o.i.l.SkysailServerBundleListener  ] - could not send bundleStartedMessage for skysail.server.http
+2015-04-06 10:30:21,009 DEBUG [io.skysail.server.app.SkysailApplication     ] - Instanciating new Skysail Application 'PluginApplication'
+2015-04-06 10:30:21,009 DEBUG [io.skysail.server.app.SkysailApplication     ] - Activating Application io.skysail.server.app.plugins.PluginApplication
+2015-04-06 10:30:21,010 INFO  [io.skysail.server.app.ApplicationList        ] - (+) Adding application 'plugins'
+2015-04-06 10:30:21,011 DEBUG [d.t.s.s.c.o.i.l.SkysailServerBundleListener  ] - could not send bundleStartedMessage for skysail.server.plugins
+2015-04-06 10:30:21,021 DEBUG [io.skysail.server.app.SkysailApplication     ] - Instanciating new Skysail Application 'WebappApplication'
+2015-04-06 10:30:21,021 DEBUG [io.skysail.server.app.SkysailApplication     ] - Activating Application de.twenty11.skysail.server.webapp.internal.WebappApplication
+2015-04-06 10:30:21,021 INFO  [io.skysail.server.app.ApplicationList        ] - (+) Adding application 'static'
+2015-04-06 10:30:21,024 INFO  [org.restlet                                  ] - Starting the internal [HTTP/1.1] server on port 2014
+2015-04-06 10:30:21,025 DEBUG [d.t.s.s.c.o.i.l.SkysailServerBundleListener  ] - could not send bundleStartedMessage for skysail.server.static
+2015-04-06 10:30:21,026 DEBUG [d.t.s.s.c.o.i.l.SkysailServerBundleListener  ] - could not send bundleStartedMessage for skysail.server.text
+2015-04-06 10:30:21,037 DEBUG [d.t.s.s.c.o.i.l.SkysailServerBundleListener  ] - could not send bundleStartedMessage for skysail.server.text.markdown
+2015-04-06 10:30:21,052 DEBUG [io.skysail.server.app.SkysailApplication     ] - Activating Application io.skysail.server.um.simple.app.SimpleUserManagementApplication
+2015-04-06 10:30:21,066 DEBUG [i.s.s.u.s.a.SkysailHashedCredentialsMatcher  ] - cacheManager set in io.skysail.server.um.simple.authentication.SkysailHashedCredentialsMatcher
+2015-04-06 10:30:21,096 DEBUG [org.apache.shiro.realm.AuthorizingRealm      ] - No authorizationCache instance set.  Checking for a cacheManager...
+2015-04-06 10:30:21,096 DEBUG [org.apache.shiro.realm.AuthorizingRealm      ] - CacheManager [MemoryConstrainedCacheManager with 0 cache(s)): []] has been configured.  Building authorization cache named [io.skysail.server.um.simple.authorization.SimpleAuthorizingRealm.authorizationCache]
+2015-04-06 10:30:21,108 DEBUG [io.skysail.server.app.SkysailApplication     ] - setting hookfilters to application 'root'
+2015-04-06 10:30:21,108 DEBUG [io.skysail.server.app.SkysailApplication     ] - setting hookfilters to application 'webapp'
+2015-04-06 10:30:21,108 DEBUG [io.skysail.server.app.SkysailApplication     ] - setting hookfilters to application 'AppDesigner'
+2015-04-06 10:30:21,108 DEBUG [io.skysail.server.app.SkysailApplication     ] - setting hookfilters to application 'plugins'
+2015-04-06 10:30:21,108 DEBUG [io.skysail.server.app.SkysailApplication     ] - setting hookfilters to application 'static'
+2015-04-06 10:30:21,116 DEBUG [d.t.s.s.c.o.i.l.SkysailServerBundleListener  ] - could not send bundleStartedMessage for skysail.server.um.simple
+2015-04-06 10:30:21,117 DEBUG [d.t.s.s.c.o.i.l.SkysailServerBundleListener  ] - could not send bundleStartedMessage for slf4j.api
+2015-04-06 10:30:21,118 DEBUG [d.t.s.s.c.o.i.l.SkysailServerBundleListener  ] - could not send bundleStartedMessage for de.twentyeleven.skysail.org.antlr.stringtemplate-osgi
+2015-04-06 10:30:21,120 DEBUG [d.t.s.s.c.o.i.l.SkysailServerBundleListener  ] - could not send bundleStartedMessage for org.jruby.jruby
+2015-04-06 10:30:21,120 DEBUG [d.t.s.s.c.o.i.l.SkysailServerBundleListener  ] - could not send bundleStartedMessage for com.beust.jcommander
+2015-04-06 10:30:21,121 DEBUG [d.t.s.s.c.o.i.l.SkysailServerBundleListener  ] - could not send bundleStartedMessage for stax2-api
+2015-04-06 10:30:21,122 DEBUG [d.t.s.s.c.o.i.l.SkysailServerBundleListener  ] - could not send bundleStartedMessage for com.fasterxml.jackson.module.jackson-module-jaxb-annotations
+2015-04-06 10:30:21,124 DEBUG [d.t.s.s.c.o.i.l.SkysailServerBundleListener  ] - could not send bundleStartedMessage for org.codehaus.jettison.jettison
+2015-04-06 10:30:21,125 DEBUG [d.t.s.s.c.o.i.l.SkysailServerBundleListener  ] - could not send bundleStartedMessage for skysail.server.app.designer.it
+2015-04-06 10:30:21,181 INFO  [i.s.s.a.d.i.ApplicationsCrudIntegrationTests ] - 
+2015-04-06 10:30:21,181 INFO  [i.s.s.a.d.i.ApplicationsCrudIntegrationTests ] - --------------------------------------------
+2015-04-06 10:30:21,181 INFO  [i.s.s.a.d.i.ApplicationsCrudIntegrationTests ] -  > TEST: running test 'testName'
+2015-04-06 10:30:21,181 INFO  [i.s.s.a.d.i.ApplicationsCrudIntegrationTests ] - --------------------------------------------
+2015-04-06 10:30:21,181 INFO  [i.s.s.a.d.i.ApplicationsCrudIntegrationTests ] - 
+2015-04-06 10:30:21,182 INFO  [i.skysail.server.app.designer.it.Browser     ] -  > TEST: creating new browser client with url 'http://localhost:2015' and mediaType 'text/html'

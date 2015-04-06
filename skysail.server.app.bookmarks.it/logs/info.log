@@ -12,8 +12,8 @@ INFO  [io.skysail.server.http.HttpServer            ] - ========================
 INFO  [io.skysail.server.http.HttpServer            ] - Starting skysail server on port 2014
 INFO  [io.skysail.server.http.HttpServer            ] - ====================================
 INFO  [io.skysail.server.http.HttpServer            ] - 
-INFO  [org.restlet                                  ] - Starting the internal [HTTP/1.1] server on port 2014
 INFO  [io.skysail.server.app.ApplicationList        ] - (+) Adding application 'plugins'
+INFO  [org.restlet                                  ] - Starting the internal [HTTP/1.1] server on port 2014
 INFO  [io.skysail.server.app.ApplicationList        ] - (+) Adding application 'static'
 INFO  [i.s.client.testsupport.IntegrationTests      ] - 
 INFO  [i.s.client.testsupport.IntegrationTests      ] - --------------------------------------------
@@ -71,9 +71,9 @@ INFO  [d.t.s.server.core.restlet.SkysailRouter      ] - routing path '/query/' -
 INFO  [d.t.s.server.core.restlet.SkysailRouter      ] - routing path '/resources' -> 'RolesPredicateAuthorizer' -> 'io.skysail.server.app.plugins.resources.ResourcesResource'
 INFO  [d.t.s.server.core.restlet.SkysailRouter      ] - routing path '/resources/{id}' -> 'RolesPredicateAuthorizer' -> 'io.skysail.server.app.plugins.resources.ResourceResource'
 INFO  [o.r.S.SkysailRootApplication                 ] - Starting de.twenty11.skysail.server.webapp.internal.WebappApplication application
-INFO  [LogService                                   ] - 2015-04-06	09:47:35	127.0.0.1	-	-	2014	GET	/_logout	targetUri=/	303	0	0	44	http://localhost:2014	Restlet-Framework/2.3.1	-
+INFO  [LogService                                   ] - 2015-04-06	10:29:58	127.0.0.1	-	-	2014	GET	/_logout	targetUri=/	303	0	0	34	http://localhost:2014	Restlet-Framework/2.3.1	-
 INFO  [i.s.s.r.resources.ListServerResource         ] - Request entry point: DefaultResource @Get('html|json|yaml|xml') with variant [application/json]
-INFO  [LogService                                   ] - 2015-04-06	09:47:35	127.0.0.1	-	-	2014	GET	/	-	200	-	0	197	http://localhost:2014	Restlet-Framework/2.3.1	-
+INFO  [LogService                                   ] - 2015-04-06	10:29:58	127.0.0.1	-	-	2014	GET	/	-	200	-	0	151	http://localhost:2014	Restlet-Framework/2.3.1	-
 INFO  [org.restlet                                  ] - Starting the internal HTTP client
 INFO  [i.s.s.u.s.a.SimpleDelegatingVerifier         ] - login event for user 'admin'
 INFO  [i.s.s.u.s.a.SkysailHashedCredentialsMatcher  ] - checking cache for entry $2a$12$mBXqefcONxAauLZc6EDJhO8g7oLM1jhEBQCspfyEHr57Xz9b6oiDO
@@ -82,9 +82,9 @@ INFO  [i.s.s.u.s.a.SimpleDelegatingVerifier         ] - login event for user 'ad
 INFO  [i.s.s.r.r.PostEntityServerResource           ] - Request entry point: LoginResource @Post('x-www-form-urlencoded:html|json|xml')
 INFO  [i.s.s.r.r.PostEntityServerResource           ] - calling post(Form), media types '[text/html:1.0]'
 INFO  [i.skysail.server.converter.HtmlConverter     ] - converter 'HtmlConverter' matched '{text/html=0.95, treeform/*=1.0}' with threshold 0.95
-INFO  [d.t.skysail.server.app.SourceWrapper         ] - using converter 'NoopConverter' for Credentials-Source: de.twenty11.skysail.server.domain.Credentials@b9b106e
+INFO  [d.t.skysail.server.app.SourceWrapper         ] - using converter 'NoopConverter' for Credentials-Source: de.twenty11.skysail.server.domain.Credentials@430357a8
 INFO  [i.s.s.c.impl.StringTemplateRenderer          ] - reading templates from resource path '/templates/text/html'
-INFO  [LogService                                   ] - 2015-04-06	09:47:37	127.0.0.1	admin	-	2014	POST	/_login	-	201	6983	31	1223	http://localhost:2014	Restlet-Framework/2.3.1	-
+INFO  [LogService                                   ] - 2015-04-06	10:29:59	127.0.0.1	admin	-	2014	POST	/_login	-	201	6983	31	1190	http://localhost:2014	Restlet-Framework/2.3.1	-
 INFO  [org.restlet                                  ] - Starting the internal HTTP client
 INFO  [i.s.s.u.s.a.SimpleDelegatingVerifier         ] - login event for user 'admin'
 INFO  [i.s.s.u.s.a.SkysailHashedCredentialsMatcher  ] - checking cache for entry $2a$12$mBXqefcONxAauLZc6EDJhO8g7oLM1jhEBQCspfyEHr57Xz9b6oiDO
@@ -94,15 +94,16 @@ INFO  [i.s.s.r.resources.ListServerResource         ] - Request entry point: Def
 INFO  [i.skysail.server.converter.HtmlConverter     ] - converter 'HtmlConverter' matched '{text/html=0.95, treeform/*=1.0}' with threshold 0.95
 INFO  [d.t.skysail.server.app.SourceWrapper         ] - using converter 'ListSourceHtmlConverter' for EmptyList-Source: []
 INFO  [i.s.s.c.impl.StringTemplateRenderer          ] - reading templates from resource path '/templates/text/html'
-INFO  [LogService                                   ] - 2015-04-06	09:47:37	127.0.0.1	admin	-	2014	GET	/	-	200	7216	0	114	http://localhost:2014	Restlet-Framework/2.3.1	-
-INFO  [i.s.client.testsupport.ApplicationClient     ] -  > TEST: issuing GET on 'http://localhost:2014/', providing credentials SIBNaL711eVq1ebdJ3dtLogYUkXdY+cZ3Grd5q1E7bCOtW6fnmWqIbaChPIEV7eX
+INFO  [org.restlet                                  ] - Stopping the internal HTTP client
+INFO  [LogService                                   ] - 2015-04-06	10:30:00	127.0.0.1	admin	-	2014	GET	/	-	200	7216	0	133	http://localhost:2014	Restlet-Framework/2.3.1	-
+INFO  [i.s.client.testsupport.ApplicationClient     ] -  > TEST: issuing GET on 'http://localhost:2014/', providing credentials +PX0m5foq4+nec7kL9xoIYgYUkXdY+cZ3Grd5q1E7bCOtW6fnmWqIbaChPIEV7eX
 INFO  [org.restlet                                  ] - Starting the internal HTTP client
 INFO  [i.s.s.u.s.a.SimpleDelegatingVerifier         ] - login event for user 'admin'
 INFO  [i.s.s.u.s.a.SkysailHashedCredentialsMatcher  ] - checking cache for entry $2a$12$mBXqefcONxAauLZc6EDJhO8g7oLM1jhEBQCspfyEHr57Xz9b6oiDO
 INFO  [i.s.s.u.s.a.SkysailHashedCredentialsMatcher  ] - found entry in credentials hash cache, updating timestamp
 INFO  [i.s.s.u.s.a.SimpleDelegatingVerifier         ] - login event for user 'admin' successful
 INFO  [i.s.s.r.resources.ListServerResource         ] - Request entry point: DefaultResource @Get('html|json|yaml|xml') with variant [application/json]
-INFO  [LogService                                   ] - 2015-04-06	09:47:37	127.0.0.1	admin	-	2014	GET	/	-	200	-	0	7	http://localhost:2014	Restlet-Framework/2.3.1	-
+INFO  [LogService                                   ] - 2015-04-06	10:30:00	127.0.0.1	admin	-	2014	GET	/	-	200	-	0	7	http://localhost:2014	Restlet-Framework/2.3.1	-
 INFO  [i.s.client.testsupport.ApplicationClient     ] -  > TEST: url set to 'http://localhost:2014/Bookmarks'
 INFO  [org.restlet                                  ] - Starting the internal HTTP client
 INFO  [i.s.s.u.s.a.SimpleDelegatingVerifier         ] - login event for user 'admin'
@@ -110,20 +111,16 @@ INFO  [i.s.s.u.s.a.SkysailHashedCredentialsMatcher  ] - checking cache for entry
 INFO  [i.s.s.u.s.a.SkysailHashedCredentialsMatcher  ] - found entry in credentials hash cache, updating timestamp
 INFO  [i.s.s.u.s.a.SimpleDelegatingVerifier         ] - login event for user 'admin' successful
 INFO  [i.s.s.r.resources.ListServerResource         ] - Request entry point: BookmarksResource @Get('html|json|yaml|xml') with variant [application/json]
-INFO  [LogService                                   ] - 2015-04-06	09:47:37	127.0.0.1	admin	-	2014	GET	/Bookmarks	-	200	-	0	28	http://localhost:2014	Restlet-Framework/2.3.1	-
+INFO  [LogService                                   ] - 2015-04-06	10:30:00	127.0.0.1	admin	-	2014	GET	/Bookmarks	-	200	-	0	26	http://localhost:2014	Restlet-Framework/2.3.1	-
 INFO  [i.s.client.testsupport.ApplicationClient     ] -  > TEST: url set to 'http://localhost:2014/Bookmarks/bookmarks/'
 INFO  [org.restlet                                  ] - Starting the internal HTTP client
 INFO  [i.s.s.u.s.a.SimpleDelegatingVerifier         ] - login event for user 'admin'
 INFO  [i.s.s.u.s.a.SkysailHashedCredentialsMatcher  ] - checking cache for entry $2a$12$mBXqefcONxAauLZc6EDJhO8g7oLM1jhEBQCspfyEHr57Xz9b6oiDO
 INFO  [i.s.s.u.s.a.SkysailHashedCredentialsMatcher  ] - found entry in credentials hash cache, updating timestamp
-INFO  [org.restlet                                  ] - Stopping the internal HTTP client
-INFO  [org.restlet                                  ] - Stopping the internal HTTP client
 INFO  [i.s.s.u.s.a.SimpleDelegatingVerifier         ] - login event for user 'admin' successful
-INFO  [org.restlet                                  ] - Stopping the internal HTTP client
-INFO  [org.restlet                                  ] - Stopping the internal HTTP client
 INFO  [i.s.s.r.r.PostEntityServerResource           ] - Request entry point: PostBookmarkResource @Get('json')
-INFO  [LogService                                   ] - 2015-04-06	09:47:37	127.0.0.1	admin	-	2014	GET	/Bookmarks/bookmarks/	-	200	-	0	46	http://localhost:2014	Restlet-Framework/2.3.1	-
-INFO  [i.s.client.testsupport.ApplicationClient     ] -  > TEST: issuing POST on 'http://localhost:2014/Bookmarks/bookmarks/', providing credentials SIBNaL711eVq1ebdJ3dtLogYUkXdY+cZ3Grd5q1E7bCOtW6fnmWqIbaChPIEV7eX
+INFO  [LogService                                   ] - 2015-04-06	10:30:00	127.0.0.1	admin	-	2014	GET	/Bookmarks/bookmarks/	-	200	-	0	22	http://localhost:2014	Restlet-Framework/2.3.1	-
+INFO  [i.s.client.testsupport.ApplicationClient     ] -  > TEST: issuing POST on 'http://localhost:2014/Bookmarks/bookmarks/', providing credentials +PX0m5foq4+nec7kL9xoIYgYUkXdY+cZ3Grd5q1E7bCOtW6fnmWqIbaChPIEV7eX
 INFO  [org.restlet                                  ] - Starting the internal HTTP client
 INFO  [i.s.s.u.s.a.SimpleDelegatingVerifier         ] - login event for user 'admin'
 INFO  [i.s.s.u.s.a.SkysailHashedCredentialsMatcher  ] - checking cache for entry $2a$12$mBXqefcONxAauLZc6EDJhO8g7oLM1jhEBQCspfyEHr57Xz9b6oiDO
@@ -133,19 +130,19 @@ INFO  [i.s.s.r.r.PostEntityServerResource           ] - Request entry point: Pos
 INFO  [i.s.s.r.r.PostEntityServerResource           ] - calling post(Form), media types '[application/json:1.0]'
 WARN  [i.s.s.a.b.resources.PostBookmarkResource     ] - Connection refused
 INFO  [d.t.s.server.db.orientdb.impl.Persister      ] - setting owner=#1 [class java.lang.String]
-INFO  [d.t.s.server.db.orientdb.impl.Persister      ] - setting created=Mon Apr 06 09:47:37 CEST 2015 [class java.util.Date]
+INFO  [d.t.s.server.db.orientdb.impl.Persister      ] - setting created=Mon Apr 06 10:30:00 CEST 2015 [class java.util.Date]
 INFO  [d.t.s.server.db.orientdb.impl.Persister      ] - setting urlPrefix= [class java.lang.String]
 INFO  [d.t.s.server.db.orientdb.impl.Persister      ] - setting name=home [class java.lang.String]
 INFO  [d.t.s.server.db.orientdb.impl.Persister      ] - setting url=http://localhost:2015 [class java.net.URL]
 INFO  [i.skysail.server.converter.HtmlConverter     ] - converter 'HtmlConverter' matched '{text/html=0.95, treeform/*=1.0}' with threshold 0.95
 INFO  [d.t.skysail.server.app.SourceWrapper         ] - using converter 'NoopConverter' for Bookmark-Source: Bookmark(id=#12:0, url=http://localhost:2015, name=home)
 INFO  [i.s.s.c.impl.StringTemplateRenderer          ] - reading templates from resource path '/templates/text/html'
-INFO  [LogService                                   ] - 2015-04-06	09:47:37	127.0.0.1	admin	-	2014	POST	/Bookmarks/bookmarks/12%3A0	-	201	7006	43	180	http://localhost:2014	Restlet-Framework/2.3.1	-
+INFO  [LogService                                   ] - 2015-04-06	10:30:00	127.0.0.1	admin	-	2014	POST	/Bookmarks/bookmarks/12%3A0	-	201	7006	43	209	http://localhost:2014	Restlet-Framework/2.3.1	-
 INFO  [i.s.c.testsupport.ApplicationBrowser         ] -  > TEST: logging in as user 'admin'
 INFO  [org.restlet                                  ] - Starting the internal HTTP client
-INFO  [LogService                                   ] - 2015-04-06	09:47:37	127.0.0.1	-	-	2014	GET	/_logout	targetUri=/	303	0	0	1	http://localhost:2014	Restlet-Framework/2.3.1	-
+INFO  [LogService                                   ] - 2015-04-06	10:30:00	127.0.0.1	-	-	2014	GET	/_logout	targetUri=/	303	0	0	0	http://localhost:2014	Restlet-Framework/2.3.1	-
 INFO  [i.s.s.r.resources.ListServerResource         ] - Request entry point: DefaultResource @Get('html|json|yaml|xml') with variant [application/json]
-INFO  [LogService                                   ] - 2015-04-06	09:47:37	127.0.0.1	-	-	2014	GET	/	-	200	-	0	14	http://localhost:2014	Restlet-Framework/2.3.1	-
+INFO  [LogService                                   ] - 2015-04-06	10:30:00	127.0.0.1	-	-	2014	GET	/	-	200	-	0	11	http://localhost:2014	Restlet-Framework/2.3.1	-
 INFO  [org.restlet                                  ] - Starting the internal HTTP client
 INFO  [i.s.s.u.s.a.SimpleDelegatingVerifier         ] - login event for user 'admin'
 INFO  [i.s.s.u.s.a.SkysailHashedCredentialsMatcher  ] - checking cache for entry $2a$12$mBXqefcONxAauLZc6EDJhO8g7oLM1jhEBQCspfyEHr57Xz9b6oiDO
@@ -154,9 +151,9 @@ INFO  [i.s.s.u.s.a.SimpleDelegatingVerifier         ] - login event for user 'ad
 INFO  [i.s.s.r.r.PostEntityServerResource           ] - Request entry point: LoginResource @Post('x-www-form-urlencoded:html|json|xml')
 INFO  [i.s.s.r.r.PostEntityServerResource           ] - calling post(Form), media types '[text/html:1.0]'
 INFO  [i.skysail.server.converter.HtmlConverter     ] - converter 'HtmlConverter' matched '{text/html=0.95, treeform/*=1.0}' with threshold 0.95
-INFO  [d.t.skysail.server.app.SourceWrapper         ] - using converter 'NoopConverter' for Credentials-Source: de.twenty11.skysail.server.domain.Credentials@6dcc2a9c
+INFO  [d.t.skysail.server.app.SourceWrapper         ] - using converter 'NoopConverter' for Credentials-Source: de.twenty11.skysail.server.domain.Credentials@7df68c0c
 INFO  [i.s.s.c.impl.StringTemplateRenderer          ] - reading templates from resource path '/templates/text/html'
-INFO  [LogService                                   ] - 2015-04-06	09:47:38	127.0.0.1	admin	-	2014	POST	/_login	-	201	6983	31	565	http://localhost:2014	Restlet-Framework/2.3.1	-
+INFO  [LogService                                   ] - 2015-04-06	10:30:00	127.0.0.1	admin	-	2014	POST	/_login	-	201	6983	31	563	http://localhost:2014	Restlet-Framework/2.3.1	-
 INFO  [org.restlet                                  ] - Starting the internal HTTP client
 INFO  [i.s.s.u.s.a.SimpleDelegatingVerifier         ] - login event for user 'admin'
 INFO  [i.s.s.u.s.a.SkysailHashedCredentialsMatcher  ] - checking cache for entry $2a$12$mBXqefcONxAauLZc6EDJhO8g7oLM1jhEBQCspfyEHr57Xz9b6oiDO
@@ -166,16 +163,16 @@ INFO  [i.s.s.r.resources.ListServerResource         ] - Request entry point: Def
 INFO  [i.skysail.server.converter.HtmlConverter     ] - converter 'HtmlConverter' matched '{text/html=0.95, treeform/*=1.0}' with threshold 0.95
 INFO  [d.t.skysail.server.app.SourceWrapper         ] - using converter 'ListSourceHtmlConverter' for EmptyList-Source: []
 INFO  [i.s.s.c.impl.StringTemplateRenderer          ] - reading templates from resource path '/templates/text/html'
-INFO  [LogService                                   ] - 2015-04-06	09:47:38	127.0.0.1	admin	-	2014	GET	/	-	200	7216	0	104	http://localhost:2014	Restlet-Framework/2.3.1	-
+INFO  [LogService                                   ] - 2015-04-06	10:30:01	127.0.0.1	admin	-	2014	GET	/	-	200	7216	0	81	http://localhost:2014	Restlet-Framework/2.3.1	-
 INFO  [i.s.s.app.bookmarks.it.BookmarksBrowser      ] -  > TEST: deleting Bookmark #12:0
-INFO  [i.s.client.testsupport.ApplicationClient     ] -  > TEST: issuing GET on 'http://localhost:2014/', providing credentials R+bb5gZchPPBFxqeqXalLogYUkXdY+cZ3Grd5q1E7bCOtW6fnmWqIbaChPIEV7eX
+INFO  [i.s.client.testsupport.ApplicationClient     ] -  > TEST: issuing GET on 'http://localhost:2014/', providing credentials JIVLmehQWDLRjrJOtRig4YgYUkXdY+cZ3Grd5q1E7bCOtW6fnmWqIbaChPIEV7eX
 INFO  [org.restlet                                  ] - Starting the internal HTTP client
 INFO  [i.s.s.u.s.a.SimpleDelegatingVerifier         ] - login event for user 'admin'
 INFO  [i.s.s.u.s.a.SkysailHashedCredentialsMatcher  ] - checking cache for entry $2a$12$mBXqefcONxAauLZc6EDJhO8g7oLM1jhEBQCspfyEHr57Xz9b6oiDO
 INFO  [i.s.s.u.s.a.SkysailHashedCredentialsMatcher  ] - found entry in credentials hash cache, updating timestamp
 INFO  [i.s.s.u.s.a.SimpleDelegatingVerifier         ] - login event for user 'admin' successful
 INFO  [i.s.s.r.resources.ListServerResource         ] - Request entry point: DefaultResource @Get('html|json|yaml|xml') with variant [application/json]
-INFO  [LogService                                   ] - 2015-04-06	09:47:38	127.0.0.1	admin	-	2014	GET	/	-	200	-	0	6	http://localhost:2014	Restlet-Framework/2.3.1	-
+INFO  [LogService                                   ] - 2015-04-06	10:30:01	127.0.0.1	admin	-	2014	GET	/	-	200	-	0	7	http://localhost:2014	Restlet-Framework/2.3.1	-
 INFO  [i.s.client.testsupport.ApplicationClient     ] -  > TEST: url set to 'http://localhost:2014/Bookmarks'
 INFO  [org.restlet                                  ] - Starting the internal HTTP client
 INFO  [i.s.s.u.s.a.SimpleDelegatingVerifier         ] - login event for user 'admin'
@@ -183,7 +180,16 @@ INFO  [i.s.s.u.s.a.SkysailHashedCredentialsMatcher  ] - checking cache for entry
 INFO  [i.s.s.u.s.a.SkysailHashedCredentialsMatcher  ] - found entry in credentials hash cache, updating timestamp
 INFO  [i.s.s.u.s.a.SimpleDelegatingVerifier         ] - login event for user 'admin' successful
 INFO  [i.s.s.r.resources.ListServerResource         ] - Request entry point: BookmarksResource @Get('html|json|yaml|xml') with variant [application/json]
-INFO  [LogService                                   ] - 2015-04-06	09:47:38	127.0.0.1	admin	-	2014	GET	/Bookmarks	-	200	-	0	80	http://localhost:2014	Restlet-Framework/2.3.1	-
+INFO  [org.restlet                                  ] - Stopping the internal HTTP client
+INFO  [org.restlet                                  ] - Stopping the internal HTTP client
+INFO  [org.restlet                                  ] - Stopping the internal HTTP client
+INFO  [org.restlet                                  ] - Stopping the internal HTTP client
+INFO  [org.restlet                                  ] - Stopping the internal HTTP client
+INFO  [org.restlet                                  ] - Stopping the internal HTTP client
+INFO  [org.restlet                                  ] - Stopping the internal HTTP client
+INFO  [org.restlet                                  ] - Stopping the internal HTTP client
+INFO  [org.restlet                                  ] - Stopping the internal HTTP client
+INFO  [LogService                                   ] - 2015-04-06	10:30:01	127.0.0.1	admin	-	2014	GET	/Bookmarks	-	200	-	0	103	http://localhost:2014	Restlet-Framework/2.3.1	-
 INFO  [i.s.client.testsupport.ApplicationClient     ] -  > TEST: url set to 'http://localhost:2014/Bookmarks/bookmarks/12:0/'
 INFO  [org.restlet                                  ] - Starting the internal HTTP client
 WARN  [d.t.skysail.server.core.osgi.EventHelper     ] - Exception caught when trying to post event with topic 'request/Bookmarks/bookmarks/12:0/GET'
@@ -192,7 +198,7 @@ INFO  [i.s.s.u.s.a.SkysailHashedCredentialsMatcher  ] - checking cache for entry
 INFO  [i.s.s.u.s.a.SkysailHashedCredentialsMatcher  ] - found entry in credentials hash cache, updating timestamp
 INFO  [i.s.s.u.s.a.SimpleDelegatingVerifier         ] - login event for user 'admin' successful
 INFO  [i.s.s.r.r.PutEntityServerResource            ] - Request entry point: PutEntityServerResource @Get('htmlform|html') createForm with variant [htmlform/*]
-INFO  [LogService                                   ] - 2015-04-06	09:47:38	127.0.0.1	admin	-	2014	GET	/Bookmarks/bookmarks/12:0/	-	204	0	0	15	http://localhost:2014	Restlet-Framework/2.3.1	-
+INFO  [LogService                                   ] - 2015-04-06	10:30:01	127.0.0.1	admin	-	2014	GET	/Bookmarks/bookmarks/12:0/	-	204	0	0	11	http://localhost:2014	Restlet-Framework/2.3.1	-
 INFO  [i.s.client.testsupport.ApplicationClient     ] -  > TEST: url set to 'http://localhost:2014/Bookmarks/bookmarks/12:0'
 INFO  [org.restlet                                  ] - Starting the internal HTTP client
 WARN  [d.t.skysail.server.core.osgi.EventHelper     ] - Exception caught when trying to post event with topic 'request/Bookmarks/bookmarks/12:0/DELETE'
@@ -201,18 +207,18 @@ INFO  [i.s.s.u.s.a.SkysailHashedCredentialsMatcher  ] - checking cache for entry
 INFO  [i.s.s.u.s.a.SkysailHashedCredentialsMatcher  ] - found entry in credentials hash cache, updating timestamp
 INFO  [i.s.s.u.s.a.SimpleDelegatingVerifier         ] - login event for user 'admin' successful
 INFO  [i.s.s.r.resources.EntityServerResource       ] - Request entry point: BookmarkResource @Delete('x-www-form-urlencoded:html|html|json')
-INFO  [LogService                                   ] - 2015-04-06	09:47:38	127.0.0.1	admin	-	2014	DELETE	/Bookmarks/bookmarks/12:0	-	303	0	0	12	http://localhost:2014	Restlet-Framework/2.3.1	-
+INFO  [LogService                                   ] - 2015-04-06	10:30:01	127.0.0.1	admin	-	2014	DELETE	/Bookmarks/bookmarks/12:0	-	303	0	0	16	http://localhost:2014	Restlet-Framework/2.3.1	-
 INFO  [i.s.s.u.s.a.SimpleDelegatingVerifier         ] - login event for user 'admin'
 INFO  [i.s.s.u.s.a.SkysailHashedCredentialsMatcher  ] - checking cache for entry $2a$12$mBXqefcONxAauLZc6EDJhO8g7oLM1jhEBQCspfyEHr57Xz9b6oiDO
 INFO  [i.s.s.u.s.a.SkysailHashedCredentialsMatcher  ] - found entry in credentials hash cache, updating timestamp
 INFO  [i.s.s.u.s.a.SimpleDelegatingVerifier         ] - login event for user 'admin' successful
 INFO  [i.s.s.r.resources.ListServerResource         ] - Request entry point: BookmarksResource @Get('html|json|yaml|xml') with variant [application/json]
-INFO  [LogService                                   ] - 2015-04-06	09:47:38	127.0.0.1	admin	-	2014	GET	/Bookmarks	-	200	-	0	6	http://localhost:2014	Restlet-Framework/2.3.1	-
+INFO  [LogService                                   ] - 2015-04-06	10:30:01	127.0.0.1	admin	-	2014	GET	/Bookmarks	-	200	-	0	9	http://localhost:2014	Restlet-Framework/2.3.1	-
 INFO  [i.s.c.testsupport.ApplicationBrowser         ] -  > TEST: logging in as user 'admin'
 INFO  [org.restlet                                  ] - Starting the internal HTTP client
-INFO  [LogService                                   ] - 2015-04-06	09:47:38	127.0.0.1	-	-	2014	GET	/_logout	targetUri=/	303	0	0	1	http://localhost:2014	Restlet-Framework/2.3.1	-
+INFO  [LogService                                   ] - 2015-04-06	10:30:01	127.0.0.1	-	-	2014	GET	/_logout	targetUri=/	303	0	0	1	http://localhost:2014	Restlet-Framework/2.3.1	-
 INFO  [i.s.s.r.resources.ListServerResource         ] - Request entry point: DefaultResource @Get('html|json|yaml|xml') with variant [application/json]
-INFO  [LogService                                   ] - 2015-04-06	09:47:38	127.0.0.1	-	-	2014	GET	/	-	200	-	0	9	http://localhost:2014	Restlet-Framework/2.3.1	-
+INFO  [LogService                                   ] - 2015-04-06	10:30:01	127.0.0.1	-	-	2014	GET	/	-	200	-	0	3	http://localhost:2014	Restlet-Framework/2.3.1	-
 INFO  [org.restlet                                  ] - Starting the internal HTTP client
 INFO  [i.s.s.u.s.a.SimpleDelegatingVerifier         ] - login event for user 'admin'
 INFO  [i.s.s.u.s.a.SkysailHashedCredentialsMatcher  ] - checking cache for entry $2a$12$mBXqefcONxAauLZc6EDJhO8g7oLM1jhEBQCspfyEHr57Xz9b6oiDO
@@ -221,9 +227,9 @@ INFO  [i.s.s.u.s.a.SimpleDelegatingVerifier         ] - login event for user 'ad
 INFO  [i.s.s.r.r.PostEntityServerResource           ] - Request entry point: LoginResource @Post('x-www-form-urlencoded:html|json|xml')
 INFO  [i.s.s.r.r.PostEntityServerResource           ] - calling post(Form), media types '[text/html:1.0]'
 INFO  [i.skysail.server.converter.HtmlConverter     ] - converter 'HtmlConverter' matched '{text/html=0.95, treeform/*=1.0}' with threshold 0.95
-INFO  [d.t.skysail.server.app.SourceWrapper         ] - using converter 'NoopConverter' for Credentials-Source: de.twenty11.skysail.server.domain.Credentials@33643428
+INFO  [d.t.skysail.server.app.SourceWrapper         ] - using converter 'NoopConverter' for Credentials-Source: de.twenty11.skysail.server.domain.Credentials@41022734
 INFO  [i.s.s.c.impl.StringTemplateRenderer          ] - reading templates from resource path '/templates/text/html'
-INFO  [LogService                                   ] - 2015-04-06	09:47:39	127.0.0.1	admin	-	2014	POST	/_login	-	201	7049	31	535	http://localhost:2014	Restlet-Framework/2.3.1	-
+INFO  [LogService                                   ] - 2015-04-06	10:30:02	127.0.0.1	admin	-	2014	POST	/_login	-	201	7049	31	816	http://localhost:2014	Restlet-Framework/2.3.1	-
 INFO  [org.restlet                                  ] - Starting the internal HTTP client
 INFO  [i.s.s.u.s.a.SimpleDelegatingVerifier         ] - login event for user 'admin'
 INFO  [i.s.s.u.s.a.SkysailHashedCredentialsMatcher  ] - checking cache for entry $2a$12$mBXqefcONxAauLZc6EDJhO8g7oLM1jhEBQCspfyEHr57Xz9b6oiDO
@@ -233,27 +239,16 @@ INFO  [i.s.s.r.resources.ListServerResource         ] - Request entry point: Def
 INFO  [i.skysail.server.converter.HtmlConverter     ] - converter 'HtmlConverter' matched '{text/html=0.95, treeform/*=1.0}' with threshold 0.95
 INFO  [d.t.skysail.server.app.SourceWrapper         ] - using converter 'ListSourceHtmlConverter' for EmptyList-Source: []
 INFO  [i.s.s.c.impl.StringTemplateRenderer          ] - reading templates from resource path '/templates/text/html'
-INFO  [org.restlet                                  ] - Stopping the internal HTTP client
-INFO  [org.restlet                                  ] - Stopping the internal HTTP client
-INFO  [org.restlet                                  ] - Stopping the internal HTTP client
-INFO  [org.restlet                                  ] - Stopping the internal HTTP client
-INFO  [org.restlet                                  ] - Stopping the internal HTTP client
-INFO  [org.restlet                                  ] - Stopping the internal HTTP client
-INFO  [org.restlet                                  ] - Stopping the internal HTTP client
-INFO  [org.restlet                                  ] - Stopping the internal HTTP client
-INFO  [org.restlet                                  ] - Stopping the internal HTTP client
-INFO  [org.restlet                                  ] - Stopping the internal HTTP client
-INFO  [org.restlet                                  ] - Stopping the internal HTTP client
-INFO  [LogService                                   ] - 2015-04-06	09:47:39	127.0.0.1	admin	-	2014	GET	/	-	200	7216	0	88	http://localhost:2014	Restlet-Framework/2.3.1	-
+INFO  [LogService                                   ] - 2015-04-06	10:30:02	127.0.0.1	admin	-	2014	GET	/	-	200	7216	0	55	http://localhost:2014	Restlet-Framework/2.3.1	-
 INFO  [i.s.s.app.bookmarks.it.BookmarksBrowser      ] -  > TEST: retrieving TodoLists
-INFO  [i.s.client.testsupport.ApplicationClient     ] -  > TEST: issuing GET on 'http://localhost:2014/', providing credentials KvXYamGYqUURliywczxdSogYUkXdY+cZ3Grd5q1E7bCOtW6fnmWqIbaChPIEV7eX
+INFO  [i.s.client.testsupport.ApplicationClient     ] -  > TEST: issuing GET on 'http://localhost:2014/', providing credentials 7e8Gr4Tjhxrv3O6Orym/z4gYUkXdY+cZ3Grd5q1E7bCOtW6fnmWqIbaChPIEV7eX
 INFO  [org.restlet                                  ] - Starting the internal HTTP client
 INFO  [i.s.s.u.s.a.SimpleDelegatingVerifier         ] - login event for user 'admin'
 INFO  [i.s.s.u.s.a.SkysailHashedCredentialsMatcher  ] - checking cache for entry $2a$12$mBXqefcONxAauLZc6EDJhO8g7oLM1jhEBQCspfyEHr57Xz9b6oiDO
 INFO  [i.s.s.u.s.a.SkysailHashedCredentialsMatcher  ] - found entry in credentials hash cache, updating timestamp
 INFO  [i.s.s.u.s.a.SimpleDelegatingVerifier         ] - login event for user 'admin' successful
 INFO  [i.s.s.r.resources.ListServerResource         ] - Request entry point: DefaultResource @Get('html|json|yaml|xml') with variant [application/json]
-INFO  [LogService                                   ] - 2015-04-06	09:47:39	127.0.0.1	admin	-	2014	GET	/	-	200	-	0	5	http://localhost:2014	Restlet-Framework/2.3.1	-
+INFO  [LogService                                   ] - 2015-04-06	10:30:02	127.0.0.1	admin	-	2014	GET	/	-	200	-	0	5	http://localhost:2014	Restlet-Framework/2.3.1	-
 INFO  [i.s.client.testsupport.ApplicationClient     ] -  > TEST: url set to 'http://localhost:2014/Bookmarks'
 INFO  [org.restlet                                  ] - Starting the internal HTTP client
 INFO  [i.s.s.u.s.a.SimpleDelegatingVerifier         ] - login event for user 'admin'
@@ -261,7 +256,7 @@ INFO  [i.s.s.u.s.a.SkysailHashedCredentialsMatcher  ] - checking cache for entry
 INFO  [i.s.s.u.s.a.SkysailHashedCredentialsMatcher  ] - found entry in credentials hash cache, updating timestamp
 INFO  [i.s.s.u.s.a.SimpleDelegatingVerifier         ] - login event for user 'admin' successful
 INFO  [i.s.s.r.resources.ListServerResource         ] - Request entry point: BookmarksResource @Get('html|json|yaml|xml') with variant [application/json]
-INFO  [LogService                                   ] - 2015-04-06	09:47:39	127.0.0.1	admin	-	2014	GET	/Bookmarks	-	200	-	0	7	http://localhost:2014	Restlet-Framework/2.3.1	-
+INFO  [LogService                                   ] - 2015-04-06	10:30:02	127.0.0.1	admin	-	2014	GET	/Bookmarks	-	200	-	0	6	http://localhost:2014	Restlet-Framework/2.3.1	-
 INFO  [i.s.client.testsupport.IntegrationTests      ] - 
 INFO  [i.s.client.testsupport.IntegrationTests      ] - --------------------------------------------
 INFO  [i.s.client.testsupport.IntegrationTests      ] -  > TEST: running test 'creating_bookmarks_persists_it'
@@ -270,9 +265,9 @@ INFO  [i.s.client.testsupport.IntegrationTests      ] -
 INFO  [i.s.c.testsupport.ApplicationBrowser         ] -  > TEST: creating new browser client with url 'http://localhost:2014' for Application 'Bookmarks' and mediaType 'text/html'
 INFO  [i.s.c.testsupport.ApplicationBrowser         ] -  > TEST: logging in as user 'admin'
 INFO  [org.restlet                                  ] - Starting the internal HTTP client
-INFO  [LogService                                   ] - 2015-04-06	09:47:39	127.0.0.1	-	-	2014	GET	/_logout	targetUri=/	303	0	0	1	http://localhost:2014	Restlet-Framework/2.3.1	-
+INFO  [LogService                                   ] - 2015-04-06	10:30:02	127.0.0.1	-	-	2014	GET	/_logout	targetUri=/	303	0	0	1	http://localhost:2014	Restlet-Framework/2.3.1	-
 INFO  [i.s.s.r.resources.ListServerResource         ] - Request entry point: DefaultResource @Get('html|json|yaml|xml') with variant [application/json]
-INFO  [LogService                                   ] - 2015-04-06	09:47:39	127.0.0.1	-	-	2014	GET	/	-	200	-	0	5	http://localhost:2014	Restlet-Framework/2.3.1	-
+INFO  [LogService                                   ] - 2015-04-06	10:30:02	127.0.0.1	-	-	2014	GET	/	-	200	-	0	4	http://localhost:2014	Restlet-Framework/2.3.1	-
 INFO  [org.restlet                                  ] - Starting the internal HTTP client
 INFO  [i.s.s.u.s.a.SimpleDelegatingVerifier         ] - login event for user 'admin'
 INFO  [i.s.s.u.s.a.SkysailHashedCredentialsMatcher  ] - checking cache for entry $2a$12$mBXqefcONxAauLZc6EDJhO8g7oLM1jhEBQCspfyEHr57Xz9b6oiDO
@@ -281,9 +276,9 @@ INFO  [i.s.s.u.s.a.SimpleDelegatingVerifier         ] - login event for user 'ad
 INFO  [i.s.s.r.r.PostEntityServerResource           ] - Request entry point: LoginResource @Post('x-www-form-urlencoded:html|json|xml')
 INFO  [i.s.s.r.r.PostEntityServerResource           ] - calling post(Form), media types '[text/html:1.0]'
 INFO  [i.skysail.server.converter.HtmlConverter     ] - converter 'HtmlConverter' matched '{text/html=0.95, treeform/*=1.0}' with threshold 0.95
-INFO  [d.t.skysail.server.app.SourceWrapper         ] - using converter 'NoopConverter' for Credentials-Source: de.twenty11.skysail.server.domain.Credentials@4e558f09
+INFO  [d.t.skysail.server.app.SourceWrapper         ] - using converter 'NoopConverter' for Credentials-Source: de.twenty11.skysail.server.domain.Credentials@6cf46aa0
 INFO  [i.s.s.c.impl.StringTemplateRenderer          ] - reading templates from resource path '/templates/text/html'
-INFO  [LogService                                   ] - 2015-04-06	09:47:39	127.0.0.1	admin	-	2014	POST	/_login	-	201	6983	31	562	http://localhost:2014	Restlet-Framework/2.3.1	-
+INFO  [LogService                                   ] - 2015-04-06	10:30:02	127.0.0.1	admin	-	2014	POST	/_login	-	201	6983	31	521	http://localhost:2014	Restlet-Framework/2.3.1	-
 INFO  [org.restlet                                  ] - Starting the internal HTTP client
 INFO  [i.s.s.u.s.a.SimpleDelegatingVerifier         ] - login event for user 'admin'
 INFO  [i.s.s.u.s.a.SkysailHashedCredentialsMatcher  ] - checking cache for entry $2a$12$mBXqefcONxAauLZc6EDJhO8g7oLM1jhEBQCspfyEHr57Xz9b6oiDO
@@ -293,15 +288,25 @@ INFO  [i.s.s.r.resources.ListServerResource         ] - Request entry point: Def
 INFO  [i.skysail.server.converter.HtmlConverter     ] - converter 'HtmlConverter' matched '{text/html=0.95, treeform/*=1.0}' with threshold 0.95
 INFO  [d.t.skysail.server.app.SourceWrapper         ] - using converter 'ListSourceHtmlConverter' for EmptyList-Source: []
 INFO  [i.s.s.c.impl.StringTemplateRenderer          ] - reading templates from resource path '/templates/text/html'
-INFO  [LogService                                   ] - 2015-04-06	09:47:39	127.0.0.1	admin	-	2014	GET	/	-	200	7216	0	57	http://localhost:2014	Restlet-Framework/2.3.1	-
-INFO  [i.s.client.testsupport.ApplicationClient     ] -  > TEST: issuing GET on 'http://localhost:2014/', providing credentials jMVOQAKluNE7T/CXmqkhz4gYUkXdY+cZ3Grd5q1E7bCOtW6fnmWqIbaChPIEV7eX
+INFO  [LogService                                   ] - 2015-04-06	10:30:02	127.0.0.1	admin	-	2014	GET	/	-	200	7216	0	52	http://localhost:2014	Restlet-Framework/2.3.1	-
+INFO  [i.s.client.testsupport.ApplicationClient     ] -  > TEST: issuing GET on 'http://localhost:2014/', providing credentials 0kTvnEM8QpLLc0U2B12beIgYUkXdY+cZ3Grd5q1E7bCOtW6fnmWqIbaChPIEV7eX
 INFO  [org.restlet                                  ] - Starting the internal HTTP client
 INFO  [i.s.s.u.s.a.SimpleDelegatingVerifier         ] - login event for user 'admin'
 INFO  [i.s.s.u.s.a.SkysailHashedCredentialsMatcher  ] - checking cache for entry $2a$12$mBXqefcONxAauLZc6EDJhO8g7oLM1jhEBQCspfyEHr57Xz9b6oiDO
 INFO  [i.s.s.u.s.a.SkysailHashedCredentialsMatcher  ] - found entry in credentials hash cache, updating timestamp
 INFO  [i.s.s.u.s.a.SimpleDelegatingVerifier         ] - login event for user 'admin' successful
+INFO  [org.restlet                                  ] - Stopping the internal HTTP client
+INFO  [org.restlet                                  ] - Stopping the internal HTTP client
+INFO  [org.restlet                                  ] - Stopping the internal HTTP client
+INFO  [org.restlet                                  ] - Stopping the internal HTTP client
+INFO  [org.restlet                                  ] - Stopping the internal HTTP client
+INFO  [org.restlet                                  ] - Stopping the internal HTTP client
+INFO  [org.restlet                                  ] - Stopping the internal HTTP client
+INFO  [org.restlet                                  ] - Stopping the internal HTTP client
+INFO  [org.restlet                                  ] - Stopping the internal HTTP client
+INFO  [org.restlet                                  ] - Stopping the internal HTTP client
 INFO  [i.s.s.r.resources.ListServerResource         ] - Request entry point: DefaultResource @Get('html|json|yaml|xml') with variant [application/json]
-INFO  [LogService                                   ] - 2015-04-06	09:47:39	127.0.0.1	admin	-	2014	GET	/	-	200	-	0	8	http://localhost:2014	Restlet-Framework/2.3.1	-
+INFO  [LogService                                   ] - 2015-04-06	10:30:02	127.0.0.1	admin	-	2014	GET	/	-	200	-	0	20	http://localhost:2014	Restlet-Framework/2.3.1	-
 INFO  [i.s.client.testsupport.ApplicationClient     ] -  > TEST: url set to 'http://localhost:2014/Bookmarks'
 INFO  [org.restlet                                  ] - Starting the internal HTTP client
 INFO  [i.s.s.u.s.a.SimpleDelegatingVerifier         ] - login event for user 'admin'
@@ -309,7 +314,7 @@ INFO  [i.s.s.u.s.a.SkysailHashedCredentialsMatcher  ] - checking cache for entry
 INFO  [i.s.s.u.s.a.SkysailHashedCredentialsMatcher  ] - found entry in credentials hash cache, updating timestamp
 INFO  [i.s.s.u.s.a.SimpleDelegatingVerifier         ] - login event for user 'admin' successful
 INFO  [i.s.s.r.resources.ListServerResource         ] - Request entry point: BookmarksResource @Get('html|json|yaml|xml') with variant [application/json]
-INFO  [LogService                                   ] - 2015-04-06	09:47:39	127.0.0.1	admin	-	2014	GET	/Bookmarks	-	200	-	0	6	http://localhost:2014	Restlet-Framework/2.3.1	-
+INFO  [LogService                                   ] - 2015-04-06	10:30:02	127.0.0.1	admin	-	2014	GET	/Bookmarks	-	200	-	0	8	http://localhost:2014	Restlet-Framework/2.3.1	-
 INFO  [i.s.client.testsupport.ApplicationClient     ] -  > TEST: url set to 'http://localhost:2014/Bookmarks/bookmarks/'
 INFO  [org.restlet                                  ] - Starting the internal HTTP client
 INFO  [i.s.s.u.s.a.SimpleDelegatingVerifier         ] - login event for user 'admin'
@@ -317,8 +322,8 @@ INFO  [i.s.s.u.s.a.SkysailHashedCredentialsMatcher  ] - checking cache for entry
 INFO  [i.s.s.u.s.a.SkysailHashedCredentialsMatcher  ] - found entry in credentials hash cache, updating timestamp
 INFO  [i.s.s.u.s.a.SimpleDelegatingVerifier         ] - login event for user 'admin' successful
 INFO  [i.s.s.r.r.PostEntityServerResource           ] - Request entry point: PostBookmarkResource @Get('json')
-INFO  [LogService                                   ] - 2015-04-06	09:47:39	127.0.0.1	admin	-	2014	GET	/Bookmarks/bookmarks/	-	200	-	0	4	http://localhost:2014	Restlet-Framework/2.3.1	-
-INFO  [i.s.client.testsupport.ApplicationClient     ] -  > TEST: issuing POST on 'http://localhost:2014/Bookmarks/bookmarks/', providing credentials jMVOQAKluNE7T/CXmqkhz4gYUkXdY+cZ3Grd5q1E7bCOtW6fnmWqIbaChPIEV7eX
+INFO  [LogService                                   ] - 2015-04-06	10:30:02	127.0.0.1	admin	-	2014	GET	/Bookmarks/bookmarks/	-	200	-	0	4	http://localhost:2014	Restlet-Framework/2.3.1	-
+INFO  [i.s.client.testsupport.ApplicationClient     ] -  > TEST: issuing POST on 'http://localhost:2014/Bookmarks/bookmarks/', providing credentials 0kTvnEM8QpLLc0U2B12beIgYUkXdY+cZ3Grd5q1E7bCOtW6fnmWqIbaChPIEV7eX
 INFO  [org.restlet                                  ] - Starting the internal HTTP client
 INFO  [i.s.s.u.s.a.SimpleDelegatingVerifier         ] - login event for user 'admin'
 INFO  [i.s.s.u.s.a.SkysailHashedCredentialsMatcher  ] - checking cache for entry $2a$12$mBXqefcONxAauLZc6EDJhO8g7oLM1jhEBQCspfyEHr57Xz9b6oiDO
@@ -328,7 +333,7 @@ INFO  [i.s.s.r.r.PostEntityServerResource           ] - Request entry point: Pos
 INFO  [i.s.s.r.r.PostEntityServerResource           ] - calling post(Form), media types '[application/json:1.0]'
 INFO  [d.t.s.server.db.orientdb.impl.Persister      ] - setting owner=#1 [class java.lang.String]
 INFO  [d.t.s.server.db.orientdb.impl.Persister      ] - setting favicon=/favicon.ico [class java.lang.String]
-INFO  [d.t.s.server.db.orientdb.impl.Persister      ] - setting created=Mon Apr 06 09:47:40 CEST 2015 [class java.util.Date]
+INFO  [d.t.s.server.db.orientdb.impl.Persister      ] - setting created=Mon Apr 06 10:30:03 CEST 2015 [class java.util.Date]
 INFO  [d.t.s.server.db.orientdb.impl.Persister      ] - setting urlPrefix=<img src='http://www.heise.de//favicon.ico'> [class java.lang.String]
 INFO  [d.t.s.server.db.orientdb.impl.Persister      ] - setting name=heise [class java.lang.String]
 INFO  [d.t.s.server.db.orientdb.impl.Persister      ] - setting metaDescription=News und Foren zu Computer, IT, Wissenschaft, Medien und Politik. Preisvergleich von Hardware und Software sowie Downloads bei Heise Medien. [class java.lang.String]
@@ -336,12 +341,12 @@ INFO  [d.t.s.server.db.orientdb.impl.Persister      ] - setting url=http://www.h
 INFO  [i.skysail.server.converter.HtmlConverter     ] - converter 'HtmlConverter' matched '{text/html=0.95, treeform/*=1.0}' with threshold 0.95
 INFO  [d.t.skysail.server.app.SourceWrapper         ] - using converter 'NoopConverter' for Bookmark-Source: Bookmark(id=#12:1, url=http://www.heise.de, name=heise)
 INFO  [i.s.s.c.impl.StringTemplateRenderer          ] - reading templates from resource path '/templates/text/html'
-INFO  [LogService                                   ] - 2015-04-06	09:47:40	127.0.0.1	admin	-	2014	POST	/Bookmarks/bookmarks/12%3A1	-	201	7006	40	340	http://localhost:2014	Restlet-Framework/2.3.1	-
+INFO  [LogService                                   ] - 2015-04-06	10:30:03	127.0.0.1	admin	-	2014	POST	/Bookmarks/bookmarks/12%3A1	-	201	7006	40	372	http://localhost:2014	Restlet-Framework/2.3.1	-
 INFO  [i.s.c.testsupport.ApplicationBrowser         ] -  > TEST: logging in as user 'admin'
 INFO  [org.restlet                                  ] - Starting the internal HTTP client
-INFO  [LogService                                   ] - 2015-04-06	09:47:40	127.0.0.1	-	-	2014	GET	/_logout	targetUri=/	303	0	0	1	http://localhost:2014	Restlet-Framework/2.3.1	-
+INFO  [LogService                                   ] - 2015-04-06	10:30:03	127.0.0.1	-	-	2014	GET	/_logout	targetUri=/	303	0	0	1	http://localhost:2014	Restlet-Framework/2.3.1	-
 INFO  [i.s.s.r.resources.ListServerResource         ] - Request entry point: DefaultResource @Get('html|json|yaml|xml') with variant [application/json]
-INFO  [LogService                                   ] - 2015-04-06	09:47:40	127.0.0.1	-	-	2014	GET	/	-	200	-	0	3	http://localhost:2014	Restlet-Framework/2.3.1	-
+INFO  [LogService                                   ] - 2015-04-06	10:30:03	127.0.0.1	-	-	2014	GET	/	-	200	-	0	3	http://localhost:2014	Restlet-Framework/2.3.1	-
 INFO  [org.restlet                                  ] - Starting the internal HTTP client
 INFO  [i.s.s.u.s.a.SimpleDelegatingVerifier         ] - login event for user 'admin'
 INFO  [i.s.s.u.s.a.SkysailHashedCredentialsMatcher  ] - checking cache for entry $2a$12$mBXqefcONxAauLZc6EDJhO8g7oLM1jhEBQCspfyEHr57Xz9b6oiDO
@@ -350,19 +355,9 @@ INFO  [i.s.s.u.s.a.SimpleDelegatingVerifier         ] - login event for user 'ad
 INFO  [i.s.s.r.r.PostEntityServerResource           ] - Request entry point: LoginResource @Post('x-www-form-urlencoded:html|json|xml')
 INFO  [i.s.s.r.r.PostEntityServerResource           ] - calling post(Form), media types '[text/html:1.0]'
 INFO  [i.skysail.server.converter.HtmlConverter     ] - converter 'HtmlConverter' matched '{text/html=0.95, treeform/*=1.0}' with threshold 0.95
-INFO  [d.t.skysail.server.app.SourceWrapper         ] - using converter 'NoopConverter' for Credentials-Source: de.twenty11.skysail.server.domain.Credentials@b3c3f38
+INFO  [d.t.skysail.server.app.SourceWrapper         ] - using converter 'NoopConverter' for Credentials-Source: de.twenty11.skysail.server.domain.Credentials@29f2d5d9
 INFO  [i.s.s.c.impl.StringTemplateRenderer          ] - reading templates from resource path '/templates/text/html'
-INFO  [org.restlet                                  ] - Stopping the internal HTTP client
-INFO  [org.restlet                                  ] - Stopping the internal HTTP client
-INFO  [org.restlet                                  ] - Stopping the internal HTTP client
-INFO  [org.restlet                                  ] - Stopping the internal HTTP client
-INFO  [org.restlet                                  ] - Stopping the internal HTTP client
-INFO  [org.restlet                                  ] - Stopping the internal HTTP client
-INFO  [org.restlet                                  ] - Stopping the internal HTTP client
-INFO  [org.restlet                                  ] - Stopping the internal HTTP client
-INFO  [org.restlet                                  ] - Stopping the internal HTTP client
-INFO  [org.restlet                                  ] - Stopping the internal HTTP client
-INFO  [LogService                                   ] - 2015-04-06	09:47:40	127.0.0.1	admin	-	2014	POST	/_login	-	201	6983	31	521	http://localhost:2014	Restlet-Framework/2.3.1	-
+INFO  [LogService                                   ] - 2015-04-06	10:30:03	127.0.0.1	admin	-	2014	POST	/_login	-	201	6983	31	486	http://localhost:2014	Restlet-Framework/2.3.1	-
 INFO  [org.restlet                                  ] - Starting the internal HTTP client
 INFO  [i.s.s.u.s.a.SimpleDelegatingVerifier         ] - login event for user 'admin'
 INFO  [i.s.s.u.s.a.SkysailHashedCredentialsMatcher  ] - checking cache for entry $2a$12$mBXqefcONxAauLZc6EDJhO8g7oLM1jhEBQCspfyEHr57Xz9b6oiDO
@@ -372,16 +367,16 @@ INFO  [i.s.s.r.resources.ListServerResource         ] - Request entry point: Def
 INFO  [i.skysail.server.converter.HtmlConverter     ] - converter 'HtmlConverter' matched '{text/html=0.95, treeform/*=1.0}' with threshold 0.95
 INFO  [d.t.skysail.server.app.SourceWrapper         ] - using converter 'ListSourceHtmlConverter' for EmptyList-Source: []
 INFO  [i.s.s.c.impl.StringTemplateRenderer          ] - reading templates from resource path '/templates/text/html'
-INFO  [LogService                                   ] - 2015-04-06	09:47:40	127.0.0.1	admin	-	2014	GET	/	-	200	7216	0	57	http://localhost:2014	Restlet-Framework/2.3.1	-
+INFO  [LogService                                   ] - 2015-04-06	10:30:03	127.0.0.1	admin	-	2014	GET	/	-	200	7216	0	52	http://localhost:2014	Restlet-Framework/2.3.1	-
 INFO  [i.s.s.app.bookmarks.it.BookmarksBrowser      ] -  > TEST: retrieving TodoLists
-INFO  [i.s.client.testsupport.ApplicationClient     ] -  > TEST: issuing GET on 'http://localhost:2014/', providing credentials kigXa3tw1t8WnbMw93ezXIgYUkXdY+cZ3Grd5q1E7bCOtW6fnmWqIbaChPIEV7eX
+INFO  [i.s.client.testsupport.ApplicationClient     ] -  > TEST: issuing GET on 'http://localhost:2014/', providing credentials an666qIoVsm7tckTLvHK8ogYUkXdY+cZ3Grd5q1E7bCOtW6fnmWqIbaChPIEV7eX
 INFO  [org.restlet                                  ] - Starting the internal HTTP client
 INFO  [i.s.s.u.s.a.SimpleDelegatingVerifier         ] - login event for user 'admin'
 INFO  [i.s.s.u.s.a.SkysailHashedCredentialsMatcher  ] - checking cache for entry $2a$12$mBXqefcONxAauLZc6EDJhO8g7oLM1jhEBQCspfyEHr57Xz9b6oiDO
 INFO  [i.s.s.u.s.a.SkysailHashedCredentialsMatcher  ] - found entry in credentials hash cache, updating timestamp
 INFO  [i.s.s.u.s.a.SimpleDelegatingVerifier         ] - login event for user 'admin' successful
 INFO  [i.s.s.r.resources.ListServerResource         ] - Request entry point: DefaultResource @Get('html|json|yaml|xml') with variant [application/json]
-INFO  [LogService                                   ] - 2015-04-06	09:47:40	127.0.0.1	admin	-	2014	GET	/	-	200	-	0	5	http://localhost:2014	Restlet-Framework/2.3.1	-
+INFO  [LogService                                   ] - 2015-04-06	10:30:03	127.0.0.1	admin	-	2014	GET	/	-	200	-	0	18	http://localhost:2014	Restlet-Framework/2.3.1	-
 INFO  [i.s.client.testsupport.ApplicationClient     ] -  > TEST: url set to 'http://localhost:2014/Bookmarks'
 INFO  [org.restlet                                  ] - Starting the internal HTTP client
 INFO  [i.s.s.u.s.a.SimpleDelegatingVerifier         ] - login event for user 'admin'
@@ -389,4 +384,4 @@ INFO  [i.s.s.u.s.a.SkysailHashedCredentialsMatcher  ] - checking cache for entry
 INFO  [i.s.s.u.s.a.SkysailHashedCredentialsMatcher  ] - found entry in credentials hash cache, updating timestamp
 INFO  [i.s.s.u.s.a.SimpleDelegatingVerifier         ] - login event for user 'admin' successful
 INFO  [i.s.s.r.resources.ListServerResource         ] - Request entry point: BookmarksResource @Get('html|json|yaml|xml') with variant [application/json]
-INFO  [LogService                                   ] - 2015-04-06	09:47:40	127.0.0.1	admin	-	2014	GET	/Bookmarks	-	200	-	0	28	http://localhost:2014	Restlet-Framework/2.3.1	-
+INFO  [LogService                                   ] - 2015-04-06	10:30:03	127.0.0.1	admin	-	2014	GET	/Bookmarks	-	200	-	0	7	http://localhost:2014	Restlet-Framework/2.3.1	-

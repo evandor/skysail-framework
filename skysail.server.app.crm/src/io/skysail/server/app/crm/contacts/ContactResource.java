@@ -2,12 +2,11 @@ package io.skysail.server.app.crm.contacts;
 
 import io.skysail.api.links.Link;
 import io.skysail.api.responses.SkysailResponse;
+import io.skysail.server.restlet.resources.EntityServerResource;
 
 import java.util.List;
 
 import org.restlet.resource.ResourceException;
-
-import de.twenty11.skysail.server.core.restlet.EntityServerResource;
 
 public class ContactResource extends EntityServerResource<Contact> {
 

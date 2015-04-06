@@ -5,10 +5,10 @@ import io.skysail.server.app.plugins.features.FeaturesResource;
 import io.skysail.server.app.plugins.obr.PostResolverResource;
 import io.skysail.server.app.plugins.obr.RepositoriesResource;
 import io.skysail.server.app.plugins.resources.ResourcesResource;
+import io.skysail.server.restlet.resources.ListServerResource;
 
 import java.util.List;
 
-import de.twenty11.skysail.server.core.restlet.ListServerResource;
 import de.twenty11.skysail.server.core.restlet.ResourceContextId;
 
 public class PluginRootResource extends ListServerResource<String> {

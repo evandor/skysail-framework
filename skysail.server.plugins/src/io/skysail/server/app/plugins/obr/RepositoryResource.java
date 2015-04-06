@@ -2,10 +2,9 @@ package io.skysail.server.app.plugins.obr;
 
 import io.skysail.api.responses.SkysailResponse;
 import io.skysail.server.app.plugins.PluginApplication;
+import io.skysail.server.restlet.resources.EntityServerResource;
 
 import org.restlet.resource.ResourceException;
-
-import de.twenty11.skysail.server.core.restlet.EntityServerResource;
 
 public class RepositoryResource extends EntityServerResource<ObrRepository> {
 

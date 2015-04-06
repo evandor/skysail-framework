@@ -3,6 +3,7 @@ package io.skysail.server.app.bookmarks.resources;
 import io.skysail.api.responses.SkysailResponse;
 import io.skysail.server.app.bookmarks.Bookmark;
 import io.skysail.server.app.bookmarks.BookmarksApplication;
+import io.skysail.server.restlet.resources.PostEntityServerResource;
 
 import java.io.IOException;
 import java.util.Date;
@@ -16,8 +17,6 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
-
-import de.twenty11.skysail.server.core.restlet.PostEntityServerResource;
 
 @Slf4j
 public class PostBookmarkResource extends PostEntityServerResource<Bookmark> {

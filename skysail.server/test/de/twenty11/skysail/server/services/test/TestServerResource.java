@@ -1,7 +1,7 @@
 package de.twenty11.skysail.server.services.test;
 
 import io.skysail.api.links.LinkRelation;
-import de.twenty11.skysail.server.core.restlet.SkysailServerResource;
+import io.skysail.server.restlet.resources.SkysailServerResource;
 
 public class TestServerResource extends SkysailServerResource<String> {
 

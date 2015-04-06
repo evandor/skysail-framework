@@ -7,6 +7,8 @@ import io.skysail.api.um.AuthenticationService;
 import io.skysail.api.um.AuthorizationService;
 import io.skysail.api.um.UserManagementProvider;
 import io.skysail.api.validation.ValidatorService;
+import io.skysail.server.restlet.filter.HookFilter;
+import io.skysail.server.restlet.resources.SkysailServerResource;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -26,12 +28,9 @@ import aQute.bnd.annotation.component.Component;
 import aQute.bnd.annotation.component.Reference;
 import de.twenty11.skysail.api.hooks.EntityChangedHookService;
 import de.twenty11.skysail.server.SkysailComponent;
-import de.twenty11.skysail.server.core.restlet.SkysailServerResource;
-import de.twenty11.skysail.server.core.restlet.filter.HookFilter;
 import de.twenty11.skysail.server.metrics.MetricsService;
 import de.twenty11.skysail.server.metrics.MetricsServiceProvider;
 import de.twenty11.skysail.server.services.EncryptorService;
-import de.twenty11.skysail.server.services.RequestResponseMonitor;
 
 /**
  * manages the list of default services which will be injected into all
@@ -65,7 +64,6 @@ public class ServiceList implements ServiceListProvider {
     private volatile EncryptorService encryptorService;
     private volatile List<EntityChangedHookService> entityChangedHookServices = new ArrayList<EntityChangedHookService>();
     private volatile EventAdmin eventAdmin;
-    private volatile RequestResponseMonitor requestResponseMonitor;
     private volatile ConfigurationAdmin configurationAdmin;
     private volatile SkysailComponent skysailComponent;
     private volatile MetricsService metricsService;
@@ -280,25 +278,6 @@ public class ServiceList implements ServiceListProvider {
     @Override
     public EventAdmin getEventAdmin() {
         return eventAdmin;
-    }
-
-    /** === RequestResponseMonitor Service ============================== */
-
-    @Reference(optional = true, dynamic = true, multiple = false)
-    public synchronized void setRequestResponseMonitorService(RequestResponseMonitor service) {
-        this.requestResponseMonitor = service;
-        getSkysailApps().forEach(app -> app.setRequestResponseMonitor(service));
-    }
-
-    public synchronized void unsetRequestResponseMonitorService(
-            @SuppressWarnings("unused") RequestResponseMonitor service) {
-        this.requestResponseMonitor = null;
-        getSkysailApps().forEach(a -> a.setRequestResponseMonitor(null));
-    }
-
-    @Override
-    public RequestResponseMonitor getRequestResponseMonitor() {
-        return requestResponseMonitor;
     }
 
     /** === ConfigAdmin Service ============================== */

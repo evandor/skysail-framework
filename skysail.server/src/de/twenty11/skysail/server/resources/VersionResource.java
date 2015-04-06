@@ -1,6 +1,7 @@
 package de.twenty11.skysail.server.resources;
 
 import io.skysail.api.responses.SkysailResponse;
+import io.skysail.server.restlet.resources.EntityServerResource;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -9,7 +10,6 @@ import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleContext;
 
 import de.twenty11.skysail.server.app.SkysailRootApplication;
-import de.twenty11.skysail.server.core.restlet.EntityServerResource;
 
 public class VersionResource extends EntityServerResource<Map<String, String>> {
 

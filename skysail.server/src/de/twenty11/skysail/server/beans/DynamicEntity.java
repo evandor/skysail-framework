@@ -10,8 +10,6 @@ import org.apache.commons.beanutils.DynaBean;
 @Slf4j
 public class DynamicEntity implements DynamicBean {
 
-    // private EntityDynaClass dynaClass;
-
     private DynaBean instance;
 
     private String beanName;
@@ -19,17 +17,6 @@ public class DynamicEntity implements DynamicBean {
     public DynamicEntity(String beanName) {
         this.beanName = beanName;
     }
-
-    // @Deprecated
-    // public DynamicEntity(String beanName, Set<EntityDynaProperty> properties)
-    // {
-    // // dynaClass = new EntityDynaClass(beanName, properties);
-    // // try {
-    // // instance = dynaClass.newInstance();
-    // // } catch (Exception e) {
-    // // log.error(e.getMessage(), e);
-    // // }
-    // }
 
     @Override
     public synchronized DynaBean getInstance() {

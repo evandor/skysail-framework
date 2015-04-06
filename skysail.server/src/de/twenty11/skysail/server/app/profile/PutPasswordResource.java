@@ -2,12 +2,12 @@ package de.twenty11.skysail.server.app.profile;
 
 import io.skysail.api.responses.SkysailResponse;
 import io.skysail.api.um.User;
+import io.skysail.server.restlet.resources.PutEntityServerResource;
 
 import org.apache.shiro.SecurityUtils;
 import org.restlet.resource.ResourceException;
 
 import de.twenty11.skysail.server.app.SkysailRootApplication;
-import de.twenty11.skysail.server.core.restlet.PutEntityServerResource;
 import de.twenty11.skysail.server.core.restlet.ResourceContextId;
 
 public class PutPasswordResource extends PutEntityServerResource<ChangePasswordEntity> {

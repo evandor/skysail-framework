@@ -1,10 +1,9 @@
 package de.twenty11.skysail.server.utils;
 
+import io.skysail.server.restlet.resources.EntityServerResource;
 import lombok.extern.slf4j.Slf4j;
 
 import org.restlet.resource.Resource;
-
-import de.twenty11.skysail.server.core.restlet.EntityServerResource;
 
 @Slf4j
 public class ResourceUtils {

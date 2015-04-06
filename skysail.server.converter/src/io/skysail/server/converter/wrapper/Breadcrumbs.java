@@ -3,6 +3,7 @@ package io.skysail.server.converter.wrapper;
 import io.skysail.api.favorites.Favorite;
 import io.skysail.api.favorites.FavoritesService;
 import io.skysail.server.converter.Breadcrumb;
+import io.skysail.server.restlet.resources.SkysailServerResource;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,7 +21,6 @@ import org.restlet.routing.Route;
 import org.restlet.util.RouteList;
 
 import de.twenty11.skysail.server.core.restlet.ApplicationContextId;
-import de.twenty11.skysail.server.core.restlet.SkysailServerResource;
 
 @RequiredArgsConstructor
 public class Breadcrumbs {

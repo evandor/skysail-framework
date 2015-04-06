@@ -5,15 +5,15 @@ import io.skysail.api.responses.SkysailResponse;
 import io.skysail.server.app.designer.DesignerApplication;
 import io.skysail.server.app.designer.application.Application;
 import io.skysail.server.app.designer.entities.resources.PostEntityResource;
+import io.skysail.server.restlet.resources.EntityServerResource;
+import io.skysail.server.restlet.resources.SkysailServerResource;
 
 import java.util.List;
 import java.util.function.Consumer;
 
 import org.restlet.resource.ResourceException;
 
-import de.twenty11.skysail.server.core.restlet.EntityServerResource;
 import de.twenty11.skysail.server.core.restlet.ResourceContextId;
-import de.twenty11.skysail.server.core.restlet.SkysailServerResource;
 
 public class ApplicationResource extends EntityServerResource<Application> {
 

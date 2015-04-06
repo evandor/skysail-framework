@@ -21,7 +21,6 @@ public class SkysailComponent extends Component {
         getClients().add(Protocol.FILE);
 
         // setStatusService(new SkysailStatusService());
-        // @NonNull Object ref = null;
         Engine.getInstance().setLoggerFacade(new Slf4jLoggerFacade());
         // Engine.setRestletLogLevel(Level.FINEST);
         // Engine.setLogLevel(Level.FINEST);

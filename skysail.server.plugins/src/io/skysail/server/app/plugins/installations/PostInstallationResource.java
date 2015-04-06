@@ -3,13 +3,12 @@ package io.skysail.server.app.plugins.installations;
 import io.skysail.api.responses.SkysailResponse;
 import io.skysail.server.app.plugins.PluginApplication;
 import io.skysail.server.app.plugins.features.Feature;
+import io.skysail.server.restlet.resources.PostEntityServerResource;
 
 import java.util.Optional;
 
 import org.restlet.data.Form;
 import org.restlet.resource.ResourceException;
-
-import de.twenty11.skysail.server.core.restlet.PostEntityServerResource;
 
 public class PostInstallationResource extends PostEntityServerResource<Installation> {
 

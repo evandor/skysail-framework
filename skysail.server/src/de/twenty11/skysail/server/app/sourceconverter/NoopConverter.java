@@ -1,10 +1,11 @@
 package de.twenty11.skysail.server.app.sourceconverter;
 
+import io.skysail.server.restlet.resources.SkysailServerResource;
+
 import java.lang.reflect.Field;
 import java.util.List;
 
 import de.twenty11.skysail.server.app.AbstractSourceConverter;
-import de.twenty11.skysail.server.core.restlet.SkysailServerResource;
 
 public class NoopConverter extends AbstractSourceConverter implements SourceConverter {
 

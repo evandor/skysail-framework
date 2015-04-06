@@ -2,6 +2,7 @@ package de.twenty11.skysail.server.core.restlet;
 
 import io.skysail.api.links.Link;
 import io.skysail.api.links.LinkRelation;
+import io.skysail.server.restlet.resources.SkysailServerResource;
 
 import java.util.function.Consumer;
 

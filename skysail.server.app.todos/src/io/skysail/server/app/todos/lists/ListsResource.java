@@ -3,10 +3,9 @@ package io.skysail.server.app.todos.lists;
 import io.skysail.api.links.Link;
 import io.skysail.server.app.todos.TodoApplication;
 import io.skysail.server.app.todos.TodoList;
+import io.skysail.server.restlet.resources.ListServerResource;
 
 import java.util.List;
-
-import de.twenty11.skysail.server.core.restlet.ListServerResource;
 
 public class ListsResource extends ListServerResource<TodoList> {
 

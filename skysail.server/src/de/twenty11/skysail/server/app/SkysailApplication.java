@@ -9,6 +9,10 @@ import io.skysail.api.text.TranslationRenderService;
 import io.skysail.api.um.AuthenticationService;
 import io.skysail.api.um.AuthorizationService;
 import io.skysail.api.validation.ValidatorService;
+import io.skysail.server.restlet.filter.HookFilter;
+import io.skysail.server.restlet.filter.OriginalRequestFilter;
+import io.skysail.server.restlet.filter.TracerFilter;
+import io.skysail.server.restlet.resources.SkysailServerResource;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -65,16 +69,11 @@ import de.twenty11.skysail.server.SkysailComponent;
 import de.twenty11.skysail.server.core.restlet.ApplicationContextId;
 import de.twenty11.skysail.server.core.restlet.RouteBuilder;
 import de.twenty11.skysail.server.core.restlet.SkysailRouter;
-import de.twenty11.skysail.server.core.restlet.SkysailServerResource;
-import de.twenty11.skysail.server.core.restlet.filter.HookFilter;
-import de.twenty11.skysail.server.core.restlet.filter.OriginalRequestFilter;
-import de.twenty11.skysail.server.core.restlet.filter.Tracer;
 import de.twenty11.skysail.server.help.HelpTour;
 import de.twenty11.skysail.server.metrics.MetricsService;
 import de.twenty11.skysail.server.security.RolePredicate;
 import de.twenty11.skysail.server.security.SkysailRolesAuthorizer;
 import de.twenty11.skysail.server.services.EncryptorService;
-import de.twenty11.skysail.server.services.RequestResponseMonitor;
 import de.twenty11.skysail.server.services.ResourceBundleProvider;
 import de.twenty11.skysail.server.utils.ReflectionUtils;
 
@@ -171,7 +170,6 @@ public abstract class SkysailApplication extends Application implements Applicat
     private volatile List<String> parametersToHandle = new CopyOnWriteArrayList<String>();
     private volatile Map<String, String> parameterMap = new ConcurrentHashMap<String, String>();
     private volatile List<String> securedByAllRoles = new CopyOnWriteArrayList<String>();
-    private volatile RequestResponseMonitor requestResponseMonitor;
     private volatile EncryptorService encryptorService;
     private volatile FavoritesService favoritesService;
     private volatile ConfigurationAdmin configurationAdmin;
@@ -368,11 +366,8 @@ public abstract class SkysailApplication extends Application implements Applicat
 
         attach();
 
-        logger.debug("creating blocker...");
-        //Blocker blocker = new Blocker(getContext());
-
         logger.debug("creating tracer...");
-        Tracer tracer = new Tracer(getContext(), getEventAdmin(), getRequestResponseMonitor());
+        TracerFilter tracer = new TracerFilter(getContext(), getEventAdmin());
 
         logger.debug("creating original request filter...");
         OriginalRequestFilter originalRequestFilter = new OriginalRequestFilter(getContext());
@@ -401,15 +396,13 @@ public abstract class SkysailApplication extends Application implements Applicat
             authorizationGuard = new SkysailRolesAuthorizer(securedByAllRoles);
         }
         // tracer -> linker -> authenticationGuard (-> authorizationGuard) ->
-        // blocker -> originalRequest -> router
+        // originalRequest -> router
         if (authorizationGuard != null) {
             authorizationGuard.setNext(originalRequestFilter);
             authenticationGuard.setNext(authorizationGuard);
         } else {
             authenticationGuard.setNext(originalRequestFilter);
         }
-        // Linker linker = new Linker(getContext());
-        // linker.setNext(authenticationGuard);
         tracer.setNext(authenticationGuard);
         return tracer;
     }
@@ -543,10 +536,6 @@ public abstract class SkysailApplication extends Application implements Applicat
         return eventAdmin;
     }
 
-    public RequestResponseMonitor getRequestResponseMonitor() {
-        return requestResponseMonitor;
-    }
-
     public void setEntityChangedHookServices(List<EntityChangedHookService> entityChangedHookServices) {
         this.entityChangedHookServices = entityChangedHookServices;
     }
@@ -656,15 +645,6 @@ public abstract class SkysailApplication extends Application implements Applicat
 
     public HelpTour getHelpTour() {
         return null;
-    }
-
-    public void setRequestResponseMonitor(RequestResponseMonitor requestResponseMonitor) {
-        this.requestResponseMonitor = requestResponseMonitor;
-
-    }
-
-    public void unsetRequestResponseMonitor() {
-        this.requestResponseMonitor = null;
     }
 
     public void setEncryptorService(EncryptorService encryptorService) {

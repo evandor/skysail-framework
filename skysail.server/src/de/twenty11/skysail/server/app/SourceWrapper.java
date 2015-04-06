@@ -1,5 +1,7 @@
 package de.twenty11.skysail.server.app;
 
+import io.skysail.server.restlet.resources.SkysailServerResource;
+
 import java.lang.reflect.Field;
 import java.util.List;
 
@@ -9,7 +11,6 @@ import org.slf4j.LoggerFactory;
 
 import de.twenty11.skysail.server.app.sourceconverter.ConverterFactory;
 import de.twenty11.skysail.server.app.sourceconverter.SourceConverter;
-import de.twenty11.skysail.server.core.restlet.SkysailServerResource;
 import de.twenty11.skysail.server.utils.ReflectionUtils;
 
 /**

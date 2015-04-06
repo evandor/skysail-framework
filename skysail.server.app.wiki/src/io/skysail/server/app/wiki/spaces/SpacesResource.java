@@ -1,10 +1,9 @@
 package io.skysail.server.app.wiki.spaces;
 
 import io.skysail.server.app.wiki.WikiApplication;
+import io.skysail.server.restlet.resources.ListServerResource;
 
 import java.util.List;
-
-import de.twenty11.skysail.server.core.restlet.ListServerResource;
 
 public class SpacesResource extends ListServerResource<Space> {
 

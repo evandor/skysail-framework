@@ -1,7 +1,7 @@
 package de.twenty11.skysail.server.resources;
 
 import io.skysail.api.responses.SkysailResponse;
-import de.twenty11.skysail.server.core.restlet.EntityServerResource;
+import io.skysail.server.restlet.resources.EntityServerResource;
 
 public class WelcomeResource extends EntityServerResource<String> {
 

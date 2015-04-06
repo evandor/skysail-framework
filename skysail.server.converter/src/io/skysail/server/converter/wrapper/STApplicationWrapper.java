@@ -1,5 +1,7 @@
 package io.skysail.server.converter.wrapper;
 
+import io.skysail.server.restlet.resources.SkysailServerResource;
+
 import java.util.stream.Collectors;
 
 import org.restlet.Restlet;
@@ -9,7 +11,6 @@ import org.restlet.routing.TemplateRoute;
 import org.restlet.util.RouteList;
 
 import de.twenty11.skysail.server.app.SkysailApplication;
-import de.twenty11.skysail.server.core.restlet.SkysailServerResource;
 import de.twenty11.skysail.server.security.AuthenticatedAuthorizer;
 
 public class STApplicationWrapper {

@@ -1,8 +1,8 @@
 package io.skysail.server.text.store.bundleresource.impl;
 
-import java.util.List;
+import io.skysail.server.restlet.resources.ListServerResource;
 
-import de.twenty11.skysail.server.core.restlet.ListServerResource;
+import java.util.List;
 
 public class MessagesResource extends ListServerResource<BundleMessages> {
 

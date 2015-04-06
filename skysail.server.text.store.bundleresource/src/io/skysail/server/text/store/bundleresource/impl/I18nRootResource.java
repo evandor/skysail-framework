@@ -1,10 +1,9 @@
 package io.skysail.server.text.store.bundleresource.impl;
 
 import io.skysail.api.links.Link;
+import io.skysail.server.restlet.resources.ListServerResource;
 
 import java.util.List;
-
-import de.twenty11.skysail.server.core.restlet.ListServerResource;
 
 public class I18nRootResource extends ListServerResource<String> {
 

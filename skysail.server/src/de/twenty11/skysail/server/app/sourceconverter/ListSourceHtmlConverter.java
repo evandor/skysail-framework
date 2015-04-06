@@ -2,6 +2,7 @@ package de.twenty11.skysail.server.app.sourceconverter;
 
 import io.skysail.api.forms.ListView;
 import io.skysail.api.forms.Prefix;
+import io.skysail.server.restlet.resources.SkysailServerResource;
 
 import java.io.IOException;
 import java.lang.reflect.Field;
@@ -31,7 +32,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 
 import de.twenty11.skysail.server.app.AbstractSourceConverter;
-import de.twenty11.skysail.server.core.restlet.SkysailServerResource;
 
 @Component
 @Slf4j

@@ -7,6 +7,7 @@ import io.skysail.api.forms.SelectionProvider;
 import io.skysail.api.responses.ConstraintViolationDetails;
 import io.skysail.api.responses.ConstraintViolationsResponse;
 import io.skysail.api.responses.SkysailResponse;
+import io.skysail.server.restlet.resources.SkysailServerResource;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
@@ -31,7 +32,6 @@ import com.orientechnologies.orient.object.enhancement.OObjectProxyMethodHandler
 
 import de.twenty11.skysail.server.beans.DynamicEntity;
 import de.twenty11.skysail.server.core.restlet.MessagesUtils;
-import de.twenty11.skysail.server.core.restlet.SkysailServerResource;
 import de.twenty11.skysail.server.um.domain.SkysailUser;
 
 /**

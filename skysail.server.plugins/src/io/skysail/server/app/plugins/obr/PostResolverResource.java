@@ -2,13 +2,12 @@ package io.skysail.server.app.plugins.obr;
 
 import io.skysail.api.responses.SkysailResponse;
 import io.skysail.server.app.plugins.PluginApplication;
+import io.skysail.server.restlet.resources.PostEntityServerResource;
 
 import org.apache.commons.lang.StringEscapeUtils;
 import org.apache.felix.bundlerepository.Reason;
 import org.apache.felix.bundlerepository.Resolver;
 import org.restlet.data.Form;
-
-import de.twenty11.skysail.server.core.restlet.PostEntityServerResource;
 
 public class PostResolverResource extends PostEntityServerResource<ObrResource> {
 

@@ -2,6 +2,7 @@ package io.skysail.server.app.crm.contracts;
 
 import io.skysail.api.links.Link;
 import io.skysail.server.app.crm.CrmApplication;
+import io.skysail.server.restlet.resources.ListServerResource;
 
 import java.util.List;
 import java.util.function.Consumer;
@@ -9,7 +10,6 @@ import java.util.function.Consumer;
 import org.apache.shiro.SecurityUtils;
 import org.restlet.resource.ResourceException;
 
-import de.twenty11.skysail.server.core.restlet.ListServerResource;
 import de.twenty11.skysail.server.core.restlet.ResourceContextId;
 
 public class ContractsResource extends ListServerResource<Contract> {

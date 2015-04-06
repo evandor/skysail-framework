@@ -4,11 +4,10 @@ import io.skysail.server.app.designer.DesignerApplication;
 import io.skysail.server.app.designer.application.Application;
 import io.skysail.server.app.designer.entities.Entity;
 import io.skysail.server.app.designer.fields.EntityField;
+import io.skysail.server.restlet.resources.ListServerResource;
 
 import java.util.Collections;
 import java.util.List;
-
-import de.twenty11.skysail.server.core.restlet.ListServerResource;
 
 public class FieldsResource extends ListServerResource<EntityField> {
 

@@ -2,10 +2,9 @@ package io.skysail.server.app.crm.contacts;
 
 import io.skysail.api.responses.SkysailResponse;
 import io.skysail.server.app.crm.CrmApplication;
+import io.skysail.server.restlet.resources.PutEntityServerResource;
 
 import org.restlet.resource.ResourceException;
-
-import de.twenty11.skysail.server.core.restlet.PutEntityServerResource;
 
 public class PutContactResource extends PutEntityServerResource<Contact> {
 

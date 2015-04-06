@@ -2,10 +2,9 @@ package io.skysail.server.app.designer;
 
 import io.skysail.api.links.Link;
 import io.skysail.server.app.designer.application.resources.ApplicationsResource;
+import io.skysail.server.restlet.resources.ListServerResource;
 
 import java.util.List;
-
-import de.twenty11.skysail.server.core.restlet.ListServerResource;
 
 public class RootResource extends ListServerResource<String> {
 

@@ -5,6 +5,7 @@ import io.skysail.api.responses.SkysailResponse;
 import io.skysail.server.app.todos.TodoApplication;
 import io.skysail.server.app.todos.todos.Todo;
 import io.skysail.server.app.todos.todos.status.Status;
+import io.skysail.server.restlet.resources.PostEntityServerResource;
 
 import java.util.Date;
 import java.util.function.Consumer;
@@ -12,7 +13,6 @@ import java.util.function.Consumer;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
 
-import de.twenty11.skysail.server.core.restlet.PostEntityServerResource;
 import de.twenty11.skysail.server.core.restlet.ResourceContextId;
 
 public class PostTodoResource extends PostEntityServerResource<Todo> {

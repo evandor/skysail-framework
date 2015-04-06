@@ -1,6 +1,7 @@
 package io.skysail.server.app.crm.contracts;
 
 import io.skysail.server.app.crm.CrmRepository;
+import io.skysail.server.restlet.resources.PostEntityServerResource;
 
 import java.util.Set;
 
@@ -8,7 +9,6 @@ import org.restlet.data.Form;
 
 import io.skysail.api.responses.SkysailResponse;
 import de.twenty11.skysail.server.beans.EntityDynaProperty;
-import de.twenty11.skysail.server.core.restlet.PostEntityServerResource;
 
 public class PostContractResource extends PostEntityServerResource<Contract> {
 

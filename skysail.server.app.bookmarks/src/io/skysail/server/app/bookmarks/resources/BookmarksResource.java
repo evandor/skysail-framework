@@ -3,10 +3,9 @@ package io.skysail.server.app.bookmarks.resources;
 import io.skysail.api.links.Link;
 import io.skysail.server.app.bookmarks.Bookmark;
 import io.skysail.server.app.bookmarks.BookmarksApplication;
+import io.skysail.server.restlet.resources.ListServerResource;
 
 import java.util.List;
-
-import de.twenty11.skysail.server.core.restlet.ListServerResource;
 
 public class BookmarksResource extends ListServerResource<Bookmark> {
 

@@ -2,6 +2,7 @@ package io.skysail.server.converter;
 
 import io.skysail.api.favorites.FavoritesService;
 import io.skysail.server.converter.impl.StringTemplateRenderer;
+import io.skysail.server.restlet.resources.SkysailServerResource;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -30,7 +31,6 @@ import aQute.bnd.annotation.component.Component;
 import aQute.bnd.annotation.component.Reference;
 import de.twenty11.skysail.server.app.SkysailApplication;
 import de.twenty11.skysail.server.core.osgi.EventHelper;
-import de.twenty11.skysail.server.core.restlet.SkysailServerResource;
 import de.twenty11.skysail.server.services.MenuItemProvider;
 import de.twenty11.skysail.server.services.OsgiConverterHelper;
 import etm.core.configuration.EtmManager;

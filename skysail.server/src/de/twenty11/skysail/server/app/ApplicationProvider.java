@@ -1,9 +1,10 @@
 package de.twenty11.skysail.server.app;
 
+import io.skysail.server.restlet.resources.SkysailServerResource;
+
 import java.util.List;
 
 import aQute.bnd.annotation.ConsumerType;
-import de.twenty11.skysail.server.core.restlet.SkysailServerResource;
 
 @ConsumerType
 public interface ApplicationProvider extends Comparable<ApplicationProvider> {

@@ -10,6 +10,10 @@ import io.skysail.server.documentation.EntityDescriptor;
 import io.skysail.server.documentation.ResourceApi;
 import io.skysail.server.documentation.SkysailDocumentationProvider;
 import io.skysail.server.documentation.SupportedMethod;
+import io.skysail.server.restlet.resources.EntityServerResource;
+import io.skysail.server.restlet.resources.ListServerResource;
+import io.skysail.server.restlet.resources.PostEntityServerResource;
+import io.skysail.server.restlet.resources.PutEntityServerResource;
 import io.skysail.server.testsupport.ListServerResourceTestBase;
 
 import java.util.List;
@@ -24,11 +28,6 @@ import org.mockito.runners.MockitoJUnitRunner;
 import org.restlet.Context;
 import org.restlet.data.Method;
 import org.restlet.resource.ServerResource;
-
-import de.twenty11.skysail.server.core.restlet.EntityServerResource;
-import de.twenty11.skysail.server.core.restlet.ListServerResource;
-import de.twenty11.skysail.server.core.restlet.PostEntityServerResource;
-import de.twenty11.skysail.server.core.restlet.PutEntityServerResource;
 
 @RunWith(MockitoJUnitRunner.class)
 @Ignore

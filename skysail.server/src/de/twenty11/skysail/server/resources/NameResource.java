@@ -1,8 +1,8 @@
 package de.twenty11.skysail.server.resources;
 
 import io.skysail.api.responses.SkysailResponse;
+import io.skysail.server.restlet.resources.EntityServerResource;
 import de.twenty11.skysail.server.app.SkysailRootApplication;
-import de.twenty11.skysail.server.core.restlet.EntityServerResource;
 
 public class NameResource extends EntityServerResource<String> {
 

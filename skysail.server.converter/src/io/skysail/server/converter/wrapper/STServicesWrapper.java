@@ -1,5 +1,7 @@
 package io.skysail.server.converter.wrapper;
 
+import io.skysail.server.restlet.resources.SkysailServerResource;
+
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -7,7 +9,6 @@ import java.util.stream.Collectors;
 import org.apache.shiro.SecurityUtils;
 import org.restlet.security.Role;
 
-import de.twenty11.skysail.server.core.restlet.SkysailServerResource;
 import de.twenty11.skysail.server.services.MenuItem;
 import de.twenty11.skysail.server.services.MenuItem.Category;
 import de.twenty11.skysail.server.services.MenuItemProvider;

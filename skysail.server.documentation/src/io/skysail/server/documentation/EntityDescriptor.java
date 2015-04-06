@@ -1,11 +1,11 @@
 package io.skysail.server.documentation;
 
+import io.skysail.server.restlet.resources.ListServerResource;
+
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
-
-import de.twenty11.skysail.server.core.restlet.ListServerResource;
 
 public class EntityDescriptor {
 

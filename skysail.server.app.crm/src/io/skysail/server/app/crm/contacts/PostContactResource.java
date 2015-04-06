@@ -1,6 +1,7 @@
 package io.skysail.server.app.crm.contacts;
 
 import io.skysail.server.app.crm.CrmRepository;
+import io.skysail.server.restlet.resources.PostEntityServerResource;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,7 +11,6 @@ import org.restlet.data.Form;
 import org.restlet.data.Parameter;
 
 import io.skysail.api.responses.SkysailResponse;
-import de.twenty11.skysail.server.core.restlet.PostEntityServerResource;
 import de.twenty11.skysail.server.core.restlet.ResourceContextId;
 
 public class PostContactResource extends PostEntityServerResource<Contact> {

@@ -1,7 +1,7 @@
 package io.skysail.server.documentation.test;
 
 import io.skysail.api.responses.SkysailResponse;
-import de.twenty11.skysail.server.core.restlet.PutEntityServerResource;
+import io.skysail.server.restlet.resources.PutEntityServerResource;
 
 public class TestPutEntityResource extends PutEntityServerResource<String> {
 

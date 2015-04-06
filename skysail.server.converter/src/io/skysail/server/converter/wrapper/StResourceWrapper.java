@@ -3,6 +3,9 @@ package io.skysail.server.converter.wrapper;
 import io.skysail.api.favorites.FavoritesService;
 import io.skysail.api.links.Link;
 import io.skysail.server.converter.Breadcrumb;
+import io.skysail.server.restlet.resources.PostEntityServerResource;
+import io.skysail.server.restlet.resources.PutEntityServerResource;
+import io.skysail.server.restlet.resources.SkysailServerResource;
 
 import java.io.IOException;
 import java.util.Collections;
@@ -22,10 +25,7 @@ import org.restlet.representation.Variant;
 import org.restlet.resource.ServerResource;
 import org.restlet.util.Series;
 
-import de.twenty11.skysail.server.core.restlet.PostEntityServerResource;
-import de.twenty11.skysail.server.core.restlet.PutEntityServerResource;
 import de.twenty11.skysail.server.core.restlet.ResourceContextId;
-import de.twenty11.skysail.server.core.restlet.SkysailServerResource;
 import de.twenty11.skysail.server.utils.HeadersUtils;
 
 @Slf4j

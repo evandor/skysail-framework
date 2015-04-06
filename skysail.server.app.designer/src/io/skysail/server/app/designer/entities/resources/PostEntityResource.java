@@ -4,10 +4,10 @@ import io.skysail.api.responses.SkysailResponse;
 import io.skysail.server.app.designer.DesignerApplication;
 import io.skysail.server.app.designer.application.Application;
 import io.skysail.server.app.designer.entities.Entity;
+import io.skysail.server.restlet.resources.PostEntityServerResource;
 
 import org.restlet.resource.ResourceException;
 
-import de.twenty11.skysail.server.core.restlet.PostEntityServerResource;
 import de.twenty11.skysail.server.core.restlet.ResourceContextId;
 
 public class PostEntityResource extends PostEntityServerResource<Entity> {

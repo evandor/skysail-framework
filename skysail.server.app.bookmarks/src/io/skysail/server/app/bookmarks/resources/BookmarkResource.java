@@ -4,10 +4,9 @@ import io.skysail.api.links.Link;
 import io.skysail.api.responses.SkysailResponse;
 import io.skysail.server.app.bookmarks.Bookmark;
 import io.skysail.server.app.bookmarks.BookmarksApplication;
+import io.skysail.server.restlet.resources.EntityServerResource;
 
 import java.util.List;
-
-import de.twenty11.skysail.server.core.restlet.EntityServerResource;
 
 public class BookmarkResource extends EntityServerResource<Bookmark> {
 

@@ -1,6 +1,7 @@
 package de.twenty11.skysail.server.app.sourceconverter;
 
 import io.skysail.api.responses.SkysailResponse;
+import io.skysail.server.restlet.resources.SkysailServerResource;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
@@ -11,7 +12,6 @@ import org.restlet.data.MediaType;
 
 import aQute.bnd.annotation.component.Component;
 import de.twenty11.skysail.server.app.AbstractSourceConverter;
-import de.twenty11.skysail.server.core.restlet.SkysailServerResource;
 
 @Component
 public class SkysailResponseJsonConverter extends AbstractSourceConverter implements SourceConverter {

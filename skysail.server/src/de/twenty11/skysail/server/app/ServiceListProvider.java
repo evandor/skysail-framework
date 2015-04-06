@@ -5,6 +5,7 @@ import io.skysail.api.favorites.FavoritesService;
 import io.skysail.api.um.AuthenticationService;
 import io.skysail.api.um.AuthorizationService;
 import io.skysail.api.validation.ValidatorService;
+import io.skysail.server.restlet.filter.HookFilter;
 
 import java.util.List;
 import java.util.Set;
@@ -15,10 +16,8 @@ import org.osgi.service.event.EventAdmin;
 import aQute.bnd.annotation.ProviderType;
 import de.twenty11.skysail.api.hooks.EntityChangedHookService;
 import de.twenty11.skysail.server.SkysailComponent;
-import de.twenty11.skysail.server.core.restlet.filter.HookFilter;
 import de.twenty11.skysail.server.metrics.MetricsService;
 import de.twenty11.skysail.server.services.EncryptorService;
-import de.twenty11.skysail.server.services.RequestResponseMonitor;
 
 @ProviderType
 public interface ServiceListProvider {
@@ -36,8 +35,6 @@ public interface ServiceListProvider {
     List<EntityChangedHookService> getEntityChangedHookService();
 
     EventAdmin getEventAdmin();
-
-    RequestResponseMonitor getRequestResponseMonitor();
 
     ConfigurationAdmin getConfigurationAdmin();
 

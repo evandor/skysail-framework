@@ -3,11 +3,10 @@ package io.skysail.server.app.plugins.features;
 import io.skysail.api.links.Link;
 import io.skysail.api.links.LinkRelation;
 import io.skysail.api.responses.SkysailResponse;
+import io.skysail.server.restlet.resources.EntityServerResource;
 
 import java.util.Arrays;
 import java.util.List;
-
-import de.twenty11.skysail.server.core.restlet.EntityServerResource;
 
 public class FeatureResource extends EntityServerResource<Feature> {
 

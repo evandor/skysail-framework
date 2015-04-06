@@ -4,6 +4,7 @@ import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 import io.skysail.server.converter.HtmlConverter;
+import io.skysail.server.restlet.resources.EntityServerResource;
 
 import java.util.Arrays;
 import java.util.List;
@@ -20,7 +21,6 @@ import org.restlet.representation.Representation;
 import org.restlet.representation.Variant;
 import org.restlet.resource.Resource;
 
-import de.twenty11.skysail.server.core.restlet.EntityServerResource;
 import de.twenty11.skysail.server.services.MenuItem;
 import de.twenty11.skysail.server.services.MenuItemProvider;
 

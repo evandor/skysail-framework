@@ -5,10 +5,9 @@ import io.skysail.api.responses.SkysailResponse;
 import io.skysail.server.app.todos.TodoApplication;
 import io.skysail.server.app.todos.TodoList;
 import io.skysail.server.app.todos.todos.resources.TodosResource;
+import io.skysail.server.restlet.resources.EntityServerResource;
 
 import java.util.List;
-
-import de.twenty11.skysail.server.core.restlet.EntityServerResource;
 
 public class ListResource extends EntityServerResource<TodoList> {
 

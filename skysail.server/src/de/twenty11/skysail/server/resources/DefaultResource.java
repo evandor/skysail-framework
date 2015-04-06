@@ -2,6 +2,7 @@ package de.twenty11.skysail.server.resources;
 
 import io.skysail.api.links.Link;
 import io.skysail.api.links.LinkRelation;
+import io.skysail.server.restlet.resources.ListServerResource;
 
 import java.util.List;
 import java.util.Set;
@@ -12,7 +13,6 @@ import org.apache.shiro.SecurityUtils;
 import com.google.common.base.Predicate;
 
 import de.twenty11.skysail.server.app.SkysailRootApplication;
-import de.twenty11.skysail.server.core.restlet.ListServerResource;
 import de.twenty11.skysail.server.services.MenuItem;
 
 /**

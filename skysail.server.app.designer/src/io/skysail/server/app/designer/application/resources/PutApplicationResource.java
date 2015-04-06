@@ -3,8 +3,8 @@ package io.skysail.server.app.designer.application.resources;
 import io.skysail.api.responses.SkysailResponse;
 import io.skysail.server.app.designer.DesignerApplication;
 import io.skysail.server.app.designer.application.Application;
-import de.twenty11.skysail.server.core.restlet.PutEntityServerResource;
-import de.twenty11.skysail.server.core.restlet.SkysailServerResource;
+import io.skysail.server.restlet.resources.PutEntityServerResource;
+import io.skysail.server.restlet.resources.SkysailServerResource;
 
 public class PutApplicationResource extends PutEntityServerResource<Application> {
 

@@ -1,5 +1,7 @@
 package de.twenty11.skysail.server.core.restlet;
 
+import io.skysail.server.restlet.resources.SkysailServerResource;
+
 import org.restlet.Response;
 import org.restlet.resource.Resource;
 

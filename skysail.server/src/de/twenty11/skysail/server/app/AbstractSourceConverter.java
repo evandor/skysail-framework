@@ -1,5 +1,7 @@
 package de.twenty11.skysail.server.app;
 
+import io.skysail.server.restlet.resources.SkysailServerResource;
+
 import java.lang.reflect.Method;
 import java.util.Arrays;
 import java.util.Comparator;
@@ -17,8 +19,6 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.orientechnologies.orient.core.record.impl.ODocument;
 import com.orientechnologies.orient.object.enhancement.OObjectProxyMethodHandler;
-
-import de.twenty11.skysail.server.core.restlet.SkysailServerResource;
 
 public abstract class AbstractSourceConverter {
 

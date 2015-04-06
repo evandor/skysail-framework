@@ -6,6 +6,7 @@ import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.junit.Assert.assertThat;
 import io.skysail.api.features.FeatureState;
 import io.skysail.api.features.FeatureStateRepository;
+import io.skysail.server.app.ApplicationList;
 import io.skysail.server.db.DbConfig;
 import io.skysail.server.db.DbConfigurationProvider;
 import io.skysail.server.db.DbConfigurations;
@@ -24,7 +25,6 @@ import org.osgi.framework.FrameworkUtil;
 import org.osgi.framework.ServiceReference;
 import org.osgi.service.cm.ConfigurationAdmin;
 
-import de.twenty11.skysail.server.app.ApplicationList;
 import de.twenty11.skysail.server.app.ApplicationListProvider;
 import de.twenty11.skysail.server.core.restlet.SecurityFeatures;
 

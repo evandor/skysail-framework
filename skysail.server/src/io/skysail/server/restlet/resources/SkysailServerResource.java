@@ -1,5 +1,6 @@
 package io.skysail.server.restlet.resources;
 
+import io.skysail.api.domain.Identifiable;
 import io.skysail.api.links.Link;
 import io.skysail.api.links.LinkRelation;
 import io.skysail.api.links.LinkRole;
@@ -43,7 +44,6 @@ import org.restlet.security.Role;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import de.twenty11.skysail.api.domain.Identifiable;
 import de.twenty11.skysail.server.core.FormField;
 import de.twenty11.skysail.server.core.restlet.MessagesUtils;
 import de.twenty11.skysail.server.core.restlet.ResourceContextId;

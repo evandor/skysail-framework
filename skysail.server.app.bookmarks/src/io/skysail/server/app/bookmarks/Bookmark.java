@@ -1,5 +1,6 @@
 package io.skysail.server.app.bookmarks;
 
+import io.skysail.api.domain.Identifiable;
 import io.skysail.api.forms.Field;
 import io.skysail.api.forms.InputType;
 import io.skysail.api.forms.ListView;
@@ -19,8 +20,6 @@ import lombok.Setter;
 import lombok.ToString;
 
 import org.apache.commons.lang3.StringUtils;
-
-import de.twenty11.skysail.api.domain.Identifiable;
 
 @Getter
 @Setter

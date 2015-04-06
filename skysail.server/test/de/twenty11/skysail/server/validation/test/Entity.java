@@ -1,10 +1,10 @@
 package de.twenty11.skysail.server.validation.test;
 
+import io.skysail.api.domain.Identifiable;
+
 import java.io.Serializable;
 
 import org.junit.Ignore;
-
-import de.twenty11.skysail.api.domain.Identifiable;
 
 @Ignore
 public class Entity implements Identifiable, Serializable {

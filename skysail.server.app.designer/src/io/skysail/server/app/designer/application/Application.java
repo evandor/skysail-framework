@@ -1,5 +1,6 @@
 package io.skysail.server.app.designer.application;
 
+import io.skysail.api.domain.Identifiable;
 import io.skysail.api.forms.Field;
 import io.skysail.server.app.designer.entities.Entity;
 
@@ -14,7 +15,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
-import de.twenty11.skysail.api.domain.Identifiable;
 
 @NoArgsConstructor
 @Getter

@@ -1,4 +1,4 @@
-package de.twenty11.skysail.server.app;
+package io.skysail.server.app;
 
 import io.skysail.api.documentation.DocumentationProvider;
 import io.skysail.api.favorites.FavoritesService;
@@ -7,7 +7,6 @@ import io.skysail.api.um.AuthenticationService;
 import io.skysail.api.um.AuthorizationService;
 import io.skysail.api.um.UserManagementProvider;
 import io.skysail.api.validation.ValidatorService;
-import io.skysail.server.app.SkysailApplication;
 import io.skysail.server.restlet.filter.HookFilter;
 import io.skysail.server.restlet.resources.SkysailServerResource;
 
@@ -27,8 +26,11 @@ import org.restlet.Context;
 
 import aQute.bnd.annotation.component.Component;
 import aQute.bnd.annotation.component.Reference;
-import de.twenty11.skysail.api.hooks.EntityChangedHookService;
 import de.twenty11.skysail.server.SkysailComponent;
+import de.twenty11.skysail.server.app.ApplicationListProvider;
+import de.twenty11.skysail.server.app.ServiceListProvider;
+import de.twenty11.skysail.server.app.SkysailComponentProvider;
+import de.twenty11.skysail.server.app.TranslationRenderServiceHolder;
 import de.twenty11.skysail.server.metrics.MetricsService;
 import de.twenty11.skysail.server.metrics.MetricsServiceProvider;
 import de.twenty11.skysail.server.services.EncryptorService;
@@ -38,21 +40,18 @@ import de.twenty11.skysail.server.services.EncryptorService;
  * (currently available) skysail applications (by calling the
  * applicationsListProvider).
  * 
- * This class connected with the {@link ApplicationList}, which keeps track of
+ * <p>This class connected with the {@link ApplicationList}, which keeps track of
  * all currently available skysail applications and injects the services once a
- * new application becomes available.
+ * new application becomes available.</p>
  * 
- * Non of the references should be defined as mandatory, as, otherwise, the
+ * <p>Non of the references should be defined as mandatory, as, otherwise, the
  * whole ServiceList will not be available. Clients themselves have to decide
- * how to deal with the absence of services.
+ * how to deal with the absence of services.</p>
  *
  */
 @Component(immediate = true)
 @Slf4j
 public class ServiceList implements ServiceListProvider {
-
-    // private static final Logger logger =
-    // LoggerFactory.getLogger(ServiceList.class);
 
     private volatile ApplicationListProvider applicationListProvider;
     private volatile AuthorizationService authorizationService;
@@ -63,7 +62,6 @@ public class ServiceList implements ServiceListProvider {
     private volatile List<TranslationRenderServiceHolder> translationRenderServices = new ArrayList<>();
 
     private volatile EncryptorService encryptorService;
-    private volatile List<EntityChangedHookService> entityChangedHookServices = new ArrayList<EntityChangedHookService>();
     private volatile EventAdmin eventAdmin;
     private volatile ConfigurationAdmin configurationAdmin;
     private volatile SkysailComponent skysailComponent;
@@ -247,21 +245,7 @@ public class ServiceList implements ServiceListProvider {
 
     /** === EntityChangedHookService Service ============================== */
 
-    @Reference(optional = true, dynamic = true, multiple = false)
-    public synchronized void addEntityChangedHookService(EntityChangedHookService service) {
-        entityChangedHookServices.add(service);
-        getSkysailApps().forEach(app -> app.setEntityChangedHookServices(entityChangedHookServices));
-    }
-
-    public synchronized void removeEntityChangedHookService(EntityChangedHookService service) {
-        entityChangedHookServices.remove(service);
-        getSkysailApps().forEach(a -> a.setEntityChangedHookServices(entityChangedHookServices));
-    }
-
-    @Override
-    public List<EntityChangedHookService> getEntityChangedHookService() {
-        return entityChangedHookServices;
-    }
+    // removed, there was no use case yet
 
     /** === EventAdmin Service ============================== */
 

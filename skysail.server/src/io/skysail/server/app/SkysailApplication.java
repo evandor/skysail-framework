@@ -65,7 +65,6 @@ import aQute.bnd.annotation.component.Deactivate;
 
 import com.google.common.base.Predicate;
 
-import de.twenty11.skysail.api.hooks.EntityChangedHookService;
 import de.twenty11.skysail.server.SkysailComponent;
 import de.twenty11.skysail.server.app.ApplicationProvider;
 import de.twenty11.skysail.server.app.ServiceListProvider;
@@ -169,7 +168,6 @@ public abstract class SkysailApplication extends Application implements Applicat
     private volatile AuthorizationService authorizationService;
     private volatile EventAdmin eventAdmin;
     private String home;
-    private volatile List<EntityChangedHookService> entityChangedHookServices;
     private volatile List<String> parametersToHandle = new CopyOnWriteArrayList<String>();
     private volatile Map<String, String> parameterMap = new ConcurrentHashMap<String, String>();
     private volatile List<String> securedByAllRoles = new CopyOnWriteArrayList<String>();
@@ -537,14 +535,6 @@ public abstract class SkysailApplication extends Application implements Applicat
 
     public EventAdmin getEventAdmin() {
         return eventAdmin;
-    }
-
-    public void setEntityChangedHookServices(List<EntityChangedHookService> entityChangedHookServices) {
-        this.entityChangedHookServices = entityChangedHookServices;
-    }
-
-    public List<EntityChangedHookService> getEntityChangedHookServices() {
-        return entityChangedHookServices;
     }
 
     public void setAuthenticationService(AuthenticationService authService) {

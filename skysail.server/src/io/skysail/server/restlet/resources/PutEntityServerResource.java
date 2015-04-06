@@ -1,6 +1,7 @@
 package io.skysail.server.restlet.resources;
 
 import io.skysail.api.documentation.API;
+import io.skysail.api.domain.Identifiable;
 import io.skysail.api.links.Link;
 import io.skysail.api.links.LinkRelation;
 import io.skysail.api.responses.FormResponse;
@@ -23,7 +24,6 @@ import org.restlet.resource.Get;
 import org.restlet.resource.Put;
 import org.restlet.resource.ResourceException;
 
-import de.twenty11.skysail.api.domain.Identifiable;
 import de.twenty11.skysail.server.core.restlet.ResourceContextId;
 import de.twenty11.skysail.server.core.restlet.ResponseWrapper;
 import etm.core.monitor.EtmPoint;

@@ -26,6 +26,7 @@ Export-Package:  \
 	de.twenty11.skysail.api.services.logentry,\
 	de.twenty11.skysail.api.hooks,\
 	de.twenty11.skysail.api.domain,\
-	io.skysail.api.links
+	io.skysail.api.links,\
+	io.skysail.api.domain
 Service-Component: *
 

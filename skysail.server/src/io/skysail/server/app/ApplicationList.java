@@ -1,6 +1,4 @@
-package de.twenty11.skysail.server.app;
-
-import io.skysail.server.app.SkysailApplication;
+package io.skysail.server.app;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -20,6 +18,10 @@ import aQute.bnd.annotation.component.Component;
 import aQute.bnd.annotation.component.Reference;
 import de.twenty11.skysail.server.SkysailComponent;
 import de.twenty11.skysail.server.SkysailStatusService;
+import de.twenty11.skysail.server.app.ApplicationListProvider;
+import de.twenty11.skysail.server.app.ApplicationProvider;
+import de.twenty11.skysail.server.app.ServiceListProvider;
+import de.twenty11.skysail.server.app.SkysailRootApplication;
 
 /**
  * This class keeps track of all available skysail applications and injects the
@@ -44,8 +46,6 @@ public class ApplicationList implements ApplicationListProvider {
     private volatile List<SkysailApplication> applications = new ArrayList<>();
     private volatile ServiceListProvider services;
     private SkysailRootApplication rootApplication;
-    // private final Map<String, Role> allRoles = new ConcurrentHashMap<String,
-    // Role>();
     private Server riapServer = new Server(Protocol.RIAP);
     private SkysailComponent skysailComponent;
 
@@ -95,7 +95,6 @@ public class ApplicationList implements ApplicationListProvider {
         assignService(apps, app -> app.setFavoritesService(services.getFavoritesService()));
         // assignService(apps, app ->
         // app.setTranslationService(services.getTranslationService()));
-        assignService(apps, app -> app.setEntityChangedHookServices(services.getEntityChangedHookService()));
         assignService(apps, app -> app.setEventAdmin(services.getEventAdmin()));
         assignService(apps, app -> app.setMetricsService(services.getMetricsService()));
         assignService(apps, app -> app.setValidatorService(services.getValidatorService()));
@@ -109,7 +108,6 @@ public class ApplicationList implements ApplicationListProvider {
         apps.stream().forEach(app -> app.setAuthorizationService(null));
         apps.stream().forEach(app -> app.setFavoritesService(null));
         // apps.stream().forEach(app -> app.setTranslationService(null));
-        apps.stream().forEach(app -> app.setEntityChangedHookServices(null));
         apps.stream().forEach(app -> app.setEventAdmin(null));
         apps.stream().forEach(app -> app.setMetricsService(null));
         apps.stream().forEach(app -> app.setValidatorService(null));
@@ -154,11 +152,6 @@ public class ApplicationList implements ApplicationListProvider {
             skysailComponent.getDefaultHost().attach("/" + skysailApplication.getName(), application);
             skysailComponent.getInternalRouter().attach("/" + skysailApplication.getName(), application);
         }
-
-        // List<Role> roles = application.getRoles();
-        // for (Role role : roles) {
-        // allRoles.put(application.getName() + "." + role.getName(), role);
-        // }
 
         if (rootApplication != null) {
             skysailComponent.getDefaultHost().attachDefault(rootApplication);

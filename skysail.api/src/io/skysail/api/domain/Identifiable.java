@@ -1,4 +1,4 @@
-package de.twenty11.skysail.api.domain;
+package io.skysail.api.domain;
 
 /**
  * used as common interface for (persistable) entities (with a single

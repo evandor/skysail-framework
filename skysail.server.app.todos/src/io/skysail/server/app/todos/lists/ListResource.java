@@ -9,11 +9,18 @@ import io.skysail.server.restlet.resources.EntityServerResource;
 
 import java.util.List;
 
+import de.twenty11.skysail.server.core.restlet.ResourceContextId;
+
 public class ListResource extends EntityServerResource<TodoList> {
 
     private String listId;
     private TodoApplication app;
 
+    public ListResource() {
+        addToContext(ResourceContextId.LINK_TITLE, "details");
+        addToContext(ResourceContextId.LINK_GLYPH, "plus");
+    }
+    
     @Override
     protected void doInit() {
         listId = getAttribute(TodoApplication.LIST_ID);

@@ -19,15 +19,20 @@ import org.restlet.representation.Representation;
  */
 public class TodosCrudIntegrationTests extends IntegrationTests<TodosBrowser, Todo> {
     
+    private TodoListBrowser listBrowser;
+
     @Before
     public void setUp() {
         browser = new TodosBrowser(MediaType.APPLICATION_JSON);
         browser.setUser("admin");
+        
+        listBrowser = new TodoListBrowser(MediaType.APPLICATION_JSON);
+        listBrowser.setUser("admin");
     }
 
     @Test
     public void creating_todo_in_new_list_persists_them() throws Exception {
-        String id = browser.createTodoList(new TodoList("list1"));
+        String id = listBrowser.createTodoList(new TodoList("list1"));
         browser.createTodo(id, new Todo("todo1"));
         Representation todosForList = browser.getTodosForList(id);
         assertThat(todosForList.getText(), containsString("todo1"));
@@ -37,8 +42,8 @@ public class TodosCrudIntegrationTests extends IntegrationTests<TodosBrowser, To
     @Ignore
     public void new_todolist_can_be_deleted_by_owner() throws Exception {
         String id = browser.createTodoList(new TodoList("crudlist2"));
-        browser.deleteTodoList(id);
-        Representation html = browser.getTodoLists();
+        listBrowser.deleteTodoList(id);
+        Representation html = listBrowser.getTodoLists();
         assertThat(html.getText(), not(containsString("crudlist2")));
     }
 

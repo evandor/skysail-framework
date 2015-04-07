@@ -1,7 +1,7 @@
 Bundle-Version: 0.1.0.${tstamp}
 Service-Component: *
 -buildpath:  \
-	skysail.api;version=latest,\
+	skysail.api;version=${skysail.api.version},\
 	skysail.api.documentation;version=latest,\
 	skysail.server;version=latest,\
 	biz.aQute.bnd.annotation,\

@@ -1,7 +1,7 @@
 Bundle-Version: 1.0.0.${tstamp}
 -buildpath:  \
 	osgi.core;version=4.3,\
-	skysail.api;version=latest,\
+	skysail.api;version=${skysail.api.version},\
 	skysail.server;version=latest,\
 	biz.aQute.bnd.annotation;version=1.52,\
 	org.restlet;version=${restlet.version},\

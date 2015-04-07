@@ -62,7 +62,7 @@ Service-Component: *
 	osgi.core;version=5.0,\
 	osgi.cmpn;version=5.0,\
 	osgi.enterprise;version=5.0,\
-	skysail.api;version=latest,\
+	skysail.api;version=${skysail.api.version},\
 	skysail.api.validation;version=latest,\
 	skysail.api.documentation;version=latest,\
 	skysail.api.favorites;version=latest,\

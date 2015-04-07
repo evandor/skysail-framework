@@ -13,7 +13,7 @@ Bundle-Description: an incubator bundle for the skysail usermanagement API  (whi
 	org.restlet;version=${restlet.version},\
 	lombok;version=1.16,\
 	org.mockito.mockito-all;version=1.9,\
-	skysail.api;version=latest
+	skysail.api;version=${skysail.api.version}
 
 Service-Component:  \
 	*

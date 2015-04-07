@@ -120,11 +120,11 @@ public abstract class PutEntityServerResource<T> extends SkysailServerResource<T
         return populate(getEntity(), form);
     }
 
-    @Get("htmlform|html")
+    @Get("htmlform|html|json")
     @API(desc = "create an html form with the current entity to be updated")
     public SkysailResponse<T> createForm(Variant variant) {
         EtmPoint point = etmMonitor.createPoint("PutEntityServerResource:createForm");
-        log.info("Request entry point: {} @Get('htmlform|html') createForm with variant {}",
+        log.info("Request entry point: {} @Get('htmlform|html|json') createForm with variant {}",
                 PutEntityServerResource.class.getSimpleName(), variant);
 
         RequestHandler<T> requestHandler = new RequestHandler<T>(getApplication());

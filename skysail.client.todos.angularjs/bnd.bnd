@@ -3,7 +3,7 @@ Bundle-Name: SKYSAIL :: clients :: todos :: angularjs
 
 Include-Resource: webapp
 -buildpath:  \
-	skysail.api;version=latest,\
+	skysail.api;version=${skysail.api.version},\
 	skysail.server;version=latest,\
 	slf4j.api;version=1.7.7,\
 	osgi.core;version=4.3,\

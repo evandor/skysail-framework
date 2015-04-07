@@ -19,6 +19,14 @@ public class BookmarksBrowser extends ApplicationBrowser<BookmarksBrowser, Bookm
         super(BookmarksApplication.APP_NAME, mediaType);
     }
 
+    @Override
+    protected Form createForm(Bookmark bookmark) {
+        Form form = new Form();
+        form.add("url", bookmark.getUrl().toExternalForm());
+        form.add("name", bookmark.getName());
+        return form;
+    }
+
     public Reference createBookmark(Bookmark bookmark) {
         navigateToPostBookmarkList(client);
         client.post(createForm(bookmark));
@@ -36,25 +44,13 @@ public class BookmarksBrowser extends ApplicationBrowser<BookmarksBrowser, Bookm
         findAndDelete(id);
     }
 
-   
-
     private void getBookmarks(ApplicationClient<?> client) {
         client.gotoRoot();
         client.followLinkTitle(BookmarksApplication.APP_NAME);
     }
 
     private void navigateToPostBookmarkList(ApplicationClient<?> client) {
-        client.gotoRoot()
-            .followLinkTitle(BookmarksApplication.APP_NAME)
-            .followLinkRelation(LinkRelation.CREATE_FORM);
+        client.gotoRoot().followLinkTitle(BookmarksApplication.APP_NAME).followLinkRelation(LinkRelation.CREATE_FORM);
     }
-    
-    private Form createForm(Bookmark bookmark) {
-        Form form = new Form();
-        form.add("url", bookmark.getUrl().toExternalForm());
-        form.add("name", bookmark.getName());
-        return form;
-    }
-    
 
 }

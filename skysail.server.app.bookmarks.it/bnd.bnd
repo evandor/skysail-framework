@@ -25,7 +25,7 @@ Private-Package:  \
 	org.apache.shiro.core;version=1.2,\
 	javax.persistence;version=2.1,\
 	javassist;version=3.18,\
-	skysail.api;version=latest,\
+	skysail.api;version=${skysail.api.version},\
 	skysail.server.app.bookmarks;version=latest
 	
 -runfw: org.apache.felix.framework;version='[4,5)'
@@ -115,7 +115,7 @@ Private-Package:  \
 	org.xerial.snappy.snappy-java;version='[1.1.1,1.1.2)',\
 	osgi.cmpn;version='[5.0.0,5.0.1)',\
 	osgi.enterprise;version='[4.2.0,4.2.1)',\
-	skysail.api;version=latest,\
+	skysail.api;version=${skysail.api.version},\
 	skysail.api.um;version=latest,\
 	skysail.api.text;version=latest,\
 	skysail.api.documentation;version=latest,\

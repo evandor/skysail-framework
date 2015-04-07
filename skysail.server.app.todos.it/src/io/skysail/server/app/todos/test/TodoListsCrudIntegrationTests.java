@@ -5,7 +5,6 @@ import static org.hamcrest.CoreMatchers.not;
 import static org.junit.Assert.assertThat;
 import io.skysail.client.testsupport.IntegrationTests;
 import io.skysail.server.app.todos.TodoList;
-import io.skysail.server.app.todos.todos.Todo;
 
 import java.math.BigInteger;
 
@@ -18,17 +17,19 @@ import org.restlet.data.MediaType;
  * Integration tests for creating, reading, updating, and deleting TodoLists.
  *
  */
-public class ListsCrudIntegrationTests extends IntegrationTests<TodosBrowser, Todo> {
+public class TodoListsCrudIntegrationTests extends IntegrationTests<TodoListBrowser, TodoList> {
     
+    private TodoList todoList;
+
     @Before
     public void setUp() {
-        browser = new TodosBrowser(MediaType.APPLICATION_JSON);
+        browser = new TodoListBrowser(MediaType.APPLICATION_JSON);
         browser.setUser("admin");
+        todoList = createTodoList();
     }
 
     @Test
     public void creating_todolist_persists_new_todolist() throws Exception {
-        TodoList todoList = createTodoList();
         browser.createTodoList(todoList);
         String html = browser.getTodoLists().getText();
         assertThat(html, containsString(todoList.getName()));
@@ -36,7 +37,6 @@ public class ListsCrudIntegrationTests extends IntegrationTests<TodosBrowser, To
     
     @Test
     public void new_todolist_can_be_deleted_by_owner() throws Exception {
-        TodoList todoList = createTodoList();
         String id = browser.createTodoList(todoList);
         browser.deleteTodoList(id);
         assertThat(browser.getTodoLists().getText(), not(containsString(todoList.getName())));
@@ -45,13 +45,13 @@ public class ListsCrudIntegrationTests extends IntegrationTests<TodosBrowser, To
     @Test
     @Ignore
     public void altering_todolist_updates_existing_todolist() throws Exception {
-        TodoList theTodoList = createTodoList();
-        String id = browser.createTodoList(theTodoList);
-        assertThat(browser.getTodoList(id).getText(), containsString(theTodoList.getName()));
+        String id = browser.createTodoList(todoList);
+        assertThat(browser.getTodoList(id).getText(), containsString(todoList.getName()));
         
-        theTodoList.setId(id);
-        theTodoList.setName("crudlist3!");
-        browser.updateTodoList(theTodoList);
+        todoList.setId(id);
+        //todoList.setName("crudlist3!");
+        todoList.setDesc("description changed");
+        browser.updateTodoList(todoList);
     }
 
     private TodoList createTodoList() {

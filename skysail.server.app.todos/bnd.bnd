@@ -8,7 +8,7 @@ Service-Component: *
 Include-Resource: resources, templates=src;recursive:=true;filter:=*.st|*.stg
 -buildpath:  \
 	biz.aQute.bnd.annotation,\
-	skysail.api;version=latest,\
+	skysail.api;version=${skysail.api.version},\
 	skysail.api.documentation;version=latest,\
 	skysail.api.favorites;version=latest,\
 	skysail.api.text;version=latest,\

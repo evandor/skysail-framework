@@ -12,11 +12,11 @@ import io.skysail.server.converter.Notification;
 import io.skysail.server.converter.stringtemplate.STGroupBundleDir;
 import io.skysail.server.converter.wrapper.STFieldsWrapper;
 import io.skysail.server.converter.wrapper.STListSourceWrapper;
-import io.skysail.server.converter.wrapper.StResourceWrapper;
 import io.skysail.server.converter.wrapper.STServicesWrapper;
 import io.skysail.server.converter.wrapper.STSourceWrapper;
 import io.skysail.server.converter.wrapper.STTargetWrapper;
 import io.skysail.server.converter.wrapper.STUserWrapper;
+import io.skysail.server.converter.wrapper.StResourceWrapper;
 import io.skysail.server.restlet.resources.EntityServerResource;
 import io.skysail.server.restlet.resources.ListServerResource;
 import io.skysail.server.restlet.resources.PostEntityServerResource;
@@ -269,8 +269,8 @@ public class StringTemplateRenderer {
             href = href.replaceFirst(StringParserUtils.placeholderPattern.toString(), id);
         }
 
-        sb.append("<a class='btn btn-mini' href='").append(href).append("'>").append(link.getTitle())
-                .append("</a>&nbsp;");
+        sb.append("<a href='").append(href).append("'>").append(link.getTitle())
+                .append("</a>&nbsp;-&nbsp;");
 
     }
 

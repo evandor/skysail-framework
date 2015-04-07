@@ -3,7 +3,7 @@ Service-Component: *
 Bundle-Name: SKYSAIL :: server :: http
 Bundle-Description: provides a http server
 -buildpath:  \
-	skysail.api;version=latest,\
+	skysail.api;version=${skysail.api.version},\
 	skysail.server;version=latest,\
 	osgi.core;version=5.0,\
 	osgi.cmpn;version=5.0,\

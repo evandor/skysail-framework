@@ -43,7 +43,7 @@ public class ApplicationClient<T> {
         this.mediaType = mediaType;
     }
 
-    public ApplicationClient<?> setUrl(String url) {
+    public ApplicationClient<T> setUrl(String url) {
         log.info("{}setting browser client url to '{}'", TESTTAG, url);
         this.url = url;
         return this;
@@ -57,13 +57,13 @@ public class ApplicationClient<T> {
         return cr.get(mediaType);
     }
 
-    public ApplicationClient<?> gotoRoot() {
+    public ApplicationClient<T> gotoRoot() {
         url = "/";
         get();
         return this;
     }
     
-    public ApplicationClient<?> gotoAppRoot() {
+    public ApplicationClient<T> gotoAppRoot() {
         gotoRoot().followLinkTitle(appName);
         return this;
     }
@@ -81,7 +81,7 @@ public class ApplicationClient<T> {
         return cr.getResponse();
     }
 
-    public ApplicationClient<?> loginAs(@NonNull String username, @NonNull String password) {
+    public ApplicationClient<T> loginAs(@NonNull String username, @NonNull String password) {
         cr = new ClientResource(baseUrl + "/_logout?targetUri=/");
         cr.get();
         cr = new ClientResource(baseUrl + "/_login");
@@ -97,28 +97,28 @@ public class ApplicationClient<T> {
         return this;
     }
 
-    public ApplicationClient<?> followLinkTitle(String linkTitle) {
+    public ApplicationClient<T> followLinkTitle(String linkTitle) {
         return follow(new LinkTitlePredicate(linkTitle, cr.getResponse().getHeaders()));
     }
 
-    public ApplicationClient<?> followLinkTitleAndRefId(String linkTitle, String refId) {
+    public ApplicationClient<T> followLinkTitleAndRefId(String linkTitle, String refId) {
         Link example = new Link.Builder("").title(linkTitle).refId(refId).build();
         return follow(new LinkByExamplePredicate(example, cr.getResponse().getHeaders()));
     }
 
-    public ApplicationClient<?> followLinkRelation(LinkRelation linkRelation) {
+    public ApplicationClient<T> followLinkRelation(LinkRelation linkRelation) {
         return follow(new LinkRelationPredicate(linkRelation, cr.getResponse().getHeaders()));
     }
 
-    public ApplicationClient<?> followLink(Method method) {
+    public ApplicationClient<T> followLink(Method method) {
         return followLink(method, null);
     }
 
-    public ApplicationClient<?> followLink(Method method, T entity) {
+    public ApplicationClient<T> followLink(Method method, T entity) {
         return follow(new LinkMethodPredicate(method, cr.getResponse().getHeaders()), method, entity);
     }
 
-    private ApplicationClient<?> follow(LinkPredicate predicate, Method method, T entity) {
+    private ApplicationClient<T> follow(LinkPredicate predicate, Method method, T entity) {
         Series<Header> headers = cr.getResponse().getHeaders();
         String linkheader = headers.getFirstValue("Link");
         List<Link> links = Arrays.stream(linkheader.split(",")).map(l -> Link.valueOf(l)).collect(Collectors.toList());
@@ -157,7 +157,7 @@ public class ApplicationClient<T> {
         return this;
     }
 
-    private ApplicationClient<?> follow(LinkPredicate predicate) {
+    private ApplicationClient<T> follow(LinkPredicate predicate) {
         return follow(predicate, null, null);
     }
 

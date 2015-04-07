@@ -101,7 +101,7 @@
 	org.xerial.snappy.snappy-java;version='[1.1.1,1.1.2)',\
 	osgi.cmpn;version='[5.0.0,5.0.1)',\
 	osgi.enterprise;version='[4.2.0,4.2.1)',\
-	skysail.api;version=latest,\
+	skysail.api;version=${skysail.api.version},\
 	skysail.api.documentation;version=latest,\
 	skysail.api.um;version=latest,\
 	skysail.api.validation;version=latest,\

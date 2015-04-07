@@ -2,12 +2,13 @@ package io.skysail.client.testsupport;
 
 import lombok.extern.slf4j.Slf4j;
 
+import org.restlet.data.Form;
 import org.restlet.data.MediaType;
 import org.restlet.data.Method;
 import org.restlet.data.Status;
 
 @Slf4j
-public class ApplicationBrowser<T extends ApplicationBrowser<?, U>, U> {
+public abstract class ApplicationBrowser<T extends ApplicationBrowser<?, U>, U> {
 
     protected static final String HOST = "http://localhost";
     protected static final String PORT = "2014";
@@ -28,6 +29,8 @@ public class ApplicationBrowser<T extends ApplicationBrowser<?, U>, U> {
                 url, appName, MediaType.TEXT_HTML);
         client = new ApplicationClient<U>(url, appName, mediaType);
     }
+
+    abstract protected Form createForm(U entity);
 
     protected static String getBaseUrl() {
         return HOST + (PORT != null ? ":" + PORT : "");
@@ -59,5 +62,6 @@ public class ApplicationBrowser<T extends ApplicationBrowser<?, U>, U> {
             .followLinkTitleAndRefId("update", id)
             .followLink(Method.DELETE);
     }
+
 
 }

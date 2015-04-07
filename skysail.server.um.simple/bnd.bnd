@@ -13,7 +13,7 @@ Bundle-Version: 0.1.1.${tstamp}
 	org.mockito.mockito-all;version=1.10,\
 	org.apache.felix.configadmin;version=1.8,\
 	skysail.server.testsupport;version=latest,\
-	skysail.api;version=latest,\
+	skysail.api;version=${skysail.api.version},\
 	org.apache.felix.gogo.runtime;version=0.12
 Private-Package:  \
 	io.skysail.server.um.simple.app,\

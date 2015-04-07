@@ -38,14 +38,6 @@ public class WikiApplication extends SkysailApplication implements MenuItemProvi
         router.attach(new RouteBuilder("/spaces", SpacesResource.class));
         router.attach(new RouteBuilder("/spaces/", PostSpaceResource.class));
 
-        // router.attach(new RouteBuilder("/application/",
-        // PostEntityResource.class));
-        // router.attach(new RouteBuilder("/applications",
-        // EntitiesResource.class));
-        // router.attach(new RouteBuilder("/applications/{id}",
-        // ContactResource.class));
-        // router.attach(new RouteBuilder("/applications/{id}/",
-        // PutContactResource.class));
     }
 
     @Reference(dynamic = true, multiple = true, optional = false)

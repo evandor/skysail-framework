@@ -56,7 +56,7 @@ import etm.core.monitor.EtmPoint;
  *     }
  * 
  *     public MyEntity getEntity() {
- *         return app.getyRepository().getById(MyEntity.class, myEntityId);
+ *         return app.getRepository().getById(MyEntity.class, myEntityId);
  *     }
  * 
  *     public List&lt;Link&gt; getLinkheader() {

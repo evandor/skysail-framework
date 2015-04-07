@@ -15,7 +15,7 @@ public class PostFieldResource extends PostEntityServerResource<EntityField> {
 
     private DesignerApplication app;
     private String id;
-    private String entityName;
+    private String entityId;
 
     public PostFieldResource() {
         addToContext(ResourceContextId.LINK_TITLE, "create new EntityField");
@@ -25,7 +25,7 @@ public class PostFieldResource extends PostEntityServerResource<EntityField> {
     protected void doInit() throws ResourceException {
         app = (DesignerApplication) getApplication();
         id = getAttribute("id");
-        entityName = getAttribute("entityName");
+        entityId = getAttribute(DesignerApplication.ENTITY_ID);
     }
 
     @Override
@@ -36,7 +36,7 @@ public class PostFieldResource extends PostEntityServerResource<EntityField> {
     @Override
     public SkysailResponse<?> addEntity(EntityField field) {
         Application application = app.getApplication(id);
-        Entity entity = app.getEntity(application, entityName);
+        Entity entity = app.getEntity(application, entityId);
         entity.getFields().add(field);
         app.getRepository().update(application);
         return new SkysailResponse<String>();

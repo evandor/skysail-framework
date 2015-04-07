@@ -13,19 +13,19 @@ public class FieldsResource extends ListServerResource<EntityField> {
 
     private DesignerApplication app;
     private String id;
-    private String entityName;
+    private String entityId;
 
     @Override
     protected void doInit() {
         app = (DesignerApplication) getApplication();
         id = getAttribute("id");
-        entityName = getAttribute("entityName");
+        entityId = getAttribute(DesignerApplication.ENTITY_ID);
     }
 
     @Override
     public List<EntityField> getEntity() {
         Application application = app.getApplication(id);
-        Entity entity = app.getEntity(application, entityName);
+        Entity entity = app.getEntity(application, entityId);
         if (entity != null) {
             return entity.getFields();
         }

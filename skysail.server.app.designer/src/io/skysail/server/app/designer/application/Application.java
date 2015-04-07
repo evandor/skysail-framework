@@ -31,7 +31,7 @@ public class Application implements Identifiable {
     @Size(min = 1)
     private String name;
 
-    // @Reference(cls = Entity.class)
+    //@Reference(cls = Entity.class)
     private List<Entity> entities;
 
     public Application(String name) {

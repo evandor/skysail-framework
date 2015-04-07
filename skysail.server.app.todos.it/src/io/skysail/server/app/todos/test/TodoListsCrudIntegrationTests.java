@@ -9,7 +9,6 @@ import io.skysail.server.app.todos.TodoList;
 import java.math.BigInteger;
 
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.restlet.data.MediaType;
 
@@ -43,7 +42,6 @@ public class TodoListsCrudIntegrationTests extends IntegrationTests<TodoListBrow
     }
 
     @Test
-    @Ignore
     public void altering_todolist_updates_existing_todolist() throws Exception {
         String id = browser.createTodoList(todoList);
         assertThat(browser.getTodoList(id).getText(), containsString(todoList.getName()));

@@ -17,7 +17,7 @@ public class EntitiesResource extends ListServerResource<Entity> {
     private String id;
 
     public EntitiesResource() {
-        // super(FieldsResource.class);
+        super(EntityResource.class);
         addToContext(ResourceContextId.LINK_TITLE, "list Entities");
     }
 

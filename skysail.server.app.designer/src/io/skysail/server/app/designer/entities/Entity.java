@@ -1,16 +1,26 @@
 package io.skysail.server.app.designer.entities;
 
+import io.skysail.api.domain.Identifiable;
 import io.skysail.server.app.designer.fields.EntityField;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import lombok.Getter;
-import lombok.Setter;
+import javax.persistence.Id;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+
+@NoArgsConstructor
 @Getter
 @Setter
-public class Entity {
+@ToString(of = { "id", "name" })
+public class Entity implements Identifiable {
+    
+    @Id
+    private String id;
 
     @io.skysail.api.forms.Field
     private String name;

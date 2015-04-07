@@ -134,7 +134,6 @@ public class ApplicationClient<T> {
         }
         
         url =  isAbsolute ? theLink.getUri() : baseUrl + theLink.getUri();
-        log.info("{}url set to '{}'", TESTTAG, url);
         cr = new ClientResource(url);
         cr.getCookies().add("Credentials", credentials);
 
@@ -143,10 +142,13 @@ public class ApplicationClient<T> {
                 throw new IllegalStateException("method " + method + " not eligible for link " + theLink);
             }
             if (Method.DELETE.equals(method)) {
+                log.info("{}issuing DELETE on '{}', providing credentials {}", TESTTAG, url, credentials);
                 currentRepresentation = cr.delete(mediaType);
             } else if (Method.POST.equals(method)) {
+                log.info("{}issuing POST on '{}' with entity '{}', providing credentials {}", TESTTAG, url, entity, credentials);
                 currentRepresentation = cr.post(entity, mediaType);
             } else if (Method.PUT.equals(method)) {
+                log.info("{}issuing PUT on '{}' with entity '{}', providing credentials {}", TESTTAG, url, entity, credentials);
                 currentRepresentation = cr.put(entity, mediaType);    
             } else {
                 throw new UnsupportedOperationException();

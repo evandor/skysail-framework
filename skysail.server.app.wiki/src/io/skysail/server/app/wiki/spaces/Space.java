@@ -24,7 +24,7 @@ public class Space extends DynamicEntity {
     public Set<EntityDynaProperty> getProperties() {
         SortedSet<EntityDynaProperty> properties = new TreeSet<>();
 
-        Application designerApplication = repo.getById(Application.class, "25:1");
+        Application designerApplication = repo.getById(Application.class, "12:10");
         List<Entity> entities = designerApplication.getEntities();
 
         // streams dont't seem to work here ?!?! (with orientdb objects)

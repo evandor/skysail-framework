@@ -25,13 +25,14 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 @ToString(of = { "id", "name" })
 @NoArgsConstructor
 @JsonPropertyOrder({ "title", "desc" })
+@UniquePerOwner
 public class TodoList implements Serializable, Identifiable {
+
+    private static final long serialVersionUID = -3188923584006747102L;
 
     public TodoList(String name) {
         this.name = name;
     }
-
-    private static final long serialVersionUID = -3188923584006747102L;
 
     @Id
     private String id;
@@ -39,7 +40,6 @@ public class TodoList implements Serializable, Identifiable {
     @Field(listView = { ListView.TRUNCATE, ListView.LINK })
     @NotNull
     @Size(min = 2)
-    @UniquePerOwner
     private String name;
 
     @Field(type = InputType.TEXTAREA, listView = { ListView.TRUNCATE })

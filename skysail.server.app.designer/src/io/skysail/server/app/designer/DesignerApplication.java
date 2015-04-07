@@ -8,7 +8,9 @@ import io.skysail.server.app.designer.application.resources.PostApplicationResou
 import io.skysail.server.app.designer.application.resources.PutApplicationResource;
 import io.skysail.server.app.designer.entities.Entity;
 import io.skysail.server.app.designer.entities.resources.EntitiesResource;
+import io.skysail.server.app.designer.entities.resources.EntityResource;
 import io.skysail.server.app.designer.entities.resources.PostEntityResource;
+import io.skysail.server.app.designer.entities.resources.PutEntityResource;
 import io.skysail.server.app.designer.fields.resources.FieldsResource;
 import io.skysail.server.app.designer.fields.resources.PostFieldResource;
 import io.skysail.server.app.designer.repo.DesignerRepository;
@@ -29,6 +31,8 @@ import de.twenty11.skysail.server.services.MenuItemProvider;
 public class DesignerApplication extends SkysailApplication implements MenuItemProvider, ApplicationProvider {
 
     public static final String APP_NAME = "AppDesigner";
+
+    public static final String ENTITY_ID = "entityId";
     
     private DesignerRepository repo;
 
@@ -46,11 +50,14 @@ public class DesignerApplication extends SkysailApplication implements MenuItemP
         router.attach(new RouteBuilder("/applications", ApplicationsResource.class));
         router.attach(new RouteBuilder("/applications/{id}", ApplicationResource.class));
         router.attach(new RouteBuilder("/applications/{id}/", PutApplicationResource.class));
+
         router.attach(new RouteBuilder("/applications/{id}/entities", EntitiesResource.class));
         router.attach(new RouteBuilder("/applications/{id}/entities/", PostEntityResource.class));
+        router.attach(new RouteBuilder("/applications/{id}/entities/{"+ENTITY_ID+"}", EntityResource.class));
+        router.attach(new RouteBuilder("/applications/{id}/entities/{"+ENTITY_ID+"}/", PutEntityResource.class));
 
-        router.attach(new RouteBuilder("/applications/{id}/entities/{entityName}/fields", FieldsResource.class));
-        router.attach(new RouteBuilder("/applications/{id}/entities/{entityName}/fields/", PostFieldResource.class));
+        router.attach(new RouteBuilder("/applications/{id}/entities/{"+ENTITY_ID+"}/fields", FieldsResource.class));
+        router.attach(new RouteBuilder("/applications/{id}/entities/{"+ENTITY_ID+"}/fields/", PostFieldResource.class));
 
     }
 
@@ -73,9 +80,9 @@ public class DesignerApplication extends SkysailApplication implements MenuItemP
         return Arrays.asList(appMenu);
     }
 
-    public Entity getEntity(Application application, String entityName) {
+    public Entity getEntity(Application application, String entityId) {
         for (Entity entity : application.getEntities()) {
-            if (entity.getName().equals(entityName)) {
+            if (entity.getId().replace("#","").equals(entityId)) {
                 return entity;
             }
         }

@@ -15,7 +15,7 @@ public class PostPageResource extends PostEntityServerResource<Page> {
     private WikiApplication app;
     
     public PostPageResource() {
-        addToContext(ResourceContextId.LINK_TITLE, "create new Space");
+        addToContext(ResourceContextId.LINK_TITLE, "create new Page");
     }
 
     @Override

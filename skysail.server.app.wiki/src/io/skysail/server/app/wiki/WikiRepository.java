@@ -5,6 +5,7 @@ import io.skysail.server.db.DbRepository;
 import io.skysail.server.db.DbService2;
 
 import java.util.List;
+import java.util.Map;
 
 import aQute.bnd.annotation.component.Activate;
 import aQute.bnd.annotation.component.Component;
@@ -18,6 +19,7 @@ public class WikiRepository implements DbRepository {
     @Activate
     public void activate() {
         dbService.setupVertices(Space.class.getSimpleName());
+        dbService.register(Space.class);
     }
 
     @Reference
@@ -29,8 +31,8 @@ public class WikiRepository implements DbRepository {
         WikiRepository.dbService = null;
     }
 
-    public <T> List<T> findAll(Class<T> cls) {
-        return dbService.findObjects("select from " + cls.getSimpleName());
+    public List<Map<String,Object>> findAll(Class<?> cls) {
+        return dbService.findDocuments("select from " + cls.getSimpleName());
     }
 
     public static Object add(Object entity, String... edges) {

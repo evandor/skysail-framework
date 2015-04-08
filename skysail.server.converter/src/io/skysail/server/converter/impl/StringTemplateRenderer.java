@@ -47,6 +47,7 @@ import org.stringtemplate.v4.ST;
 
 import de.twenty11.skysail.server.app.SourceWrapper;
 import de.twenty11.skysail.server.beans.DynamicEntity;
+import de.twenty11.skysail.server.beans.EntityDynaProperty;
 import de.twenty11.skysail.server.core.FormField;
 import de.twenty11.skysail.server.core.restlet.utils.CookiesUtils;
 import de.twenty11.skysail.server.core.restlet.utils.StringParserUtils;
@@ -133,8 +134,7 @@ public class StringTemplateRenderer {
                 if (id == null) {
                     continue;
                 }
-                links.stream().filter(l -> id.equals(l.getRefId()))
-                        .forEach(link -> addLinkHeader(link, esr, id, sb));
+                links.stream().filter(l -> id.equals(l.getRefId())).forEach(link -> addLinkHeader(link, esr, id, sb));
                 ((Map<String, Object>) object).put("_links", sb.toString());
             }
         }
@@ -205,15 +205,31 @@ public class StringTemplateRenderer {
             decl.add("source", new STListSourceWrapper((List<Object>) source));
             Object entity;
             try {
-                entity = resource.getParameterType().newInstance();
-                fields = ReflectionUtils.getInheritedFields(resource.getParameterType()).stream()
-                        .filter(f -> test(resource, f)).sorted((f1, f2) -> sort(resource, f1, f2))
-                        .map(f -> new FormField(f, resource, source, entity))//
-                        .collect(Collectors.toList());
-
+                Class<?> parameterType = resource.getParameterType();
+                if (parameterType.equals(Map.class)) {
+                    List<Map<String, Object>> currentEntity = (List<Map<String, Object>>) resource.getCurrentEntity();
+                    if (currentEntity.size() > 0) {
+                        fields = currentEntity.get(0).keySet().stream().map(key -> {
+                            return new FormField(key, currentEntity.get(0).get(key));
+                        }).collect(Collectors.toList());
+                    }
+                } else {
+                    entity = parameterType.newInstance();
+                    if (entity instanceof DynamicEntity) {
+                        Set<EntityDynaProperty> properties = ((DynamicEntity) entity).getProperties();
+                        fields = properties.stream().map(p -> {
+                            return new FormField((DynamicEntity) entity, p, resource);
+                        }).collect(Collectors.toList());
+                    } else {
+                        fields = ReflectionUtils.getInheritedFields(resource.getParameterType()).stream()
+                                .filter(f -> test(resource, f)).sorted((f1, f2) -> sort(resource, f1, f2))
+                                .map(f -> new FormField(f, resource, source, entity))//
+                                .collect(Collectors.toList());
+                    }
+                }
                 decl.add("fields", new STFieldsWrapper(fields));
             } catch (InstantiationException | IllegalAccessException e) {
-                e.printStackTrace();
+                log.error(e.getMessage(), e);
             }
         } else {
             decl.add("source", new STSourceWrapper(source));
@@ -258,8 +274,7 @@ public class StringTemplateRenderer {
         }
     }
 
-    private void addLinkHeader(Link link, Resource entityResource, String id,
-            StringBuilder sb) {
+    private void addLinkHeader(Link link, Resource entityResource, String id, StringBuilder sb) {
         String path = link.getUri();
         String href = StringParserUtils.substitutePlaceholders(path, entityResource);
 
@@ -269,8 +284,7 @@ public class StringTemplateRenderer {
             href = href.replaceFirst(StringParserUtils.placeholderPattern.toString(), id);
         }
 
-        sb.append("<a href='").append(href).append("'>").append(link.getTitle())
-                .append("</a>&nbsp;-&nbsp;");
+        sb.append("<a href='").append(href).append("'>").append(link.getTitle()).append("</a>&nbsp;-&nbsp;");
 
     }
 

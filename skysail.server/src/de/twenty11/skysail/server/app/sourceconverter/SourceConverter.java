@@ -7,6 +7,10 @@ import java.util.List;
 
 import org.restlet.representation.Variant;
 
+/**
+ * 
+ *
+ */
 public interface SourceConverter {
 
     void init(Object source, Variant target);

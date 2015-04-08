@@ -34,8 +34,11 @@ public interface DbService2 {
     // List<String> getAll(Class<?> cls, String username);
 
     <T> List<T> findObjects(String sql);
+    List<Map<String,Object>> findDocuments(String sql);
 
-    <T> List<T> findObjects(String sql, Map<String, Object> params);
+    <T> List findObjects(String sql, Map<String, Object> params);
+    List<Map<String,Object>> findDocuments(String sql, Map<String, Object> params);
+
 
     <T> void update(Object id, T entity);
 
@@ -56,6 +59,7 @@ public interface DbService2 {
     void executeUpdate(String sql, Map<String, Object> params);
 
     void createUniqueIndex(Class<?> cls, String... columnNames);
+
 
     
 }

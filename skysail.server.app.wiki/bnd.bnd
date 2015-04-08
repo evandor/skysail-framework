@@ -51,4 +51,5 @@ Import-Package: org.osgi.framework,\
 Private-Package:  \
 	io.skysail.server.app.wiki,\
 	io.skysail.server.app.wiki.application,\
-	io.skysail.server.app.wiki.spaces
+	io.skysail.server.app.wiki.spaces,\
+	io.skysail.server.app.wiki.pages

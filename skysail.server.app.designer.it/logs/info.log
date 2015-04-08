@@ -1,7 +1,7 @@
 INFO  [d.t.s.s.c.restlet.SkysailConverterHelper     ] - initializing new converter 'ServerSentEventsConverter' with typesMatch '{text/event-stream=1.0}'
 INFO  [io.skysail.server.app.ApplicationList        ] - (+) Adding application 'root'
 INFO  [io.skysail.server.db.DbConfigurations        ] - activating DbConfigurations with config DbConfig(name=skysailgraph, driver=, url=memory:designer, username=admin)
-INFO  [i.s.s.f.repositories.FeaturesRepository      ] - activating FeaturesRepository with config {service.pid=io.skysail.server.features.repositories.FeaturesRepository, de.twenty11.skysail.server.core.restlet.SecurityFeatures.ALLOW_ORIGIN_FEATURE=true, component.name=io.skysail.server.features.repositories.FeaturesRepository, felix.fileinstall.filename=file:/C:/git/skysail-framework/skysail.server.app.designer.it/config/test/io.skysail.server.features.repositories.FeaturesRepository.cfg, component.id=12}
+INFO  [i.s.s.f.repositories.FeaturesRepository      ] - activating FeaturesRepository with config {service.pid=io.skysail.server.features.repositories.FeaturesRepository, de.twenty11.skysail.server.core.restlet.SecurityFeatures.ALLOW_ORIGIN_FEATURE=true, component.name=io.skysail.server.features.repositories.FeaturesRepository, felix.fileinstall.filename=file:/Users/carsten/git/skysail-framework/skysail.server.app.designer.it/config/test/io.skysail.server.features.repositories.FeaturesRepository.cfg, component.id=12}
 INFO  [io.skysail.server.app.ApplicationList        ] - (+) Adding application 'webapp'
 INFO  [io.skysail.server.app.ApplicationList        ] - (+) Adding application 'AppDesigner'
 INFO  [io.skysail.server.http.HttpServer            ] - Activating io.skysail.server.http.HttpServer
@@ -13,11 +13,15 @@ INFO  [io.skysail.server.http.HttpServer            ] - Starting skysail server 
 INFO  [io.skysail.server.http.HttpServer            ] - ====================================
 INFO  [io.skysail.server.http.HttpServer            ] - 
 INFO  [io.skysail.server.app.ApplicationList        ] - (+) Adding application 'plugins'
-INFO  [io.skysail.server.app.ApplicationList        ] - (+) Adding application 'static'
 INFO  [org.restlet                                  ] - Starting the internal [HTTP/1.1] server on port 2014
+INFO  [io.skysail.server.app.ApplicationList        ] - (+) Adding application 'static'
 INFO  [i.s.s.a.d.i.ApplicationsCrudIntegrationTests ] - 
 INFO  [i.s.s.a.d.i.ApplicationsCrudIntegrationTests ] - --------------------------------------------
-INFO  [i.s.s.a.d.i.ApplicationsCrudIntegrationTests ] -  > TEST: running test 'testName'
+INFO  [i.s.s.a.d.i.ApplicationsCrudIntegrationTests ] -  > TEST: 
+
+running test 'testName'
 INFO  [i.s.s.a.d.i.ApplicationsCrudIntegrationTests ] - --------------------------------------------
 INFO  [i.s.s.a.d.i.ApplicationsCrudIntegrationTests ] - 
-INFO  [i.skysail.server.app.designer.it.Browser     ] -  > TEST: creating new browser client with url 'http://localhost:2015' and mediaType 'text/html'
+INFO  [i.skysail.server.app.designer.it.Browser     ] -  > TEST: 
+
+creating new browser client with url 'http://localhost:2015' and mediaType 'text/html'

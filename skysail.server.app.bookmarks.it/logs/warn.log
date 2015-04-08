@@ -2,10 +2,10 @@ WARN  [d.t.s.server.core.restlet.SkysailRouter      ] - please use a RouteBuilde
 WARN  [d.t.s.server.core.restlet.SkysailRouter      ] - please use a RouteBuilder to attach this resource: class de.twenty11.skysail.server.resources.LoginResource
 WARN  [d.t.s.server.core.restlet.SkysailRouter      ] - please use a RouteBuilder to attach this resource: class de.twenty11.skysail.server.app.OAuthLoginResource
 WARN  [d.t.s.server.core.restlet.SkysailRouter      ] - please use a RouteBuilder to attach this resource: class de.twenty11.skysail.server.resources.WelcomeResource
-WARN  [i.s.s.a.b.resources.PostBookmarkResource     ] - Connection refused: connect
+WARN  [i.s.s.a.b.resources.PostBookmarkResource     ] - Connection refused
 WARN  [d.t.skysail.server.core.osgi.EventHelper     ] - Exception caught when trying to post event with topic 'request/Bookmarks/bookmarks/12:0/GET'
 ERROR [org.restlet                                  ] - An exception occured writing the response entity
-com.fasterxml.jackson.databind.JsonMappingException: Direct self-reference leading to cycle (through reference chain: io.skysail.api.responses.FormResponse["entity"]->io.skysail.server.app.bookmarks.Bookmark_$$_jvst590_0["handler"]->com.orientechnologies.orient.object.enhancement.OObjectProxyMethodHandler["doc"]->com.orientechnologies.orient.core.record.impl.ODocument["schemaClass"]->com.orientechnologies.orient.core.metadata.schema.OClassImpl["document"]->com.orientechnologies.orient.core.record.impl.ODocument["owner"]->com.orientechnologies.orient.core.db.record.OTrackedSet[0]->com.orientechnologies.orient.core.record.impl.ODocument["owner"]->com.orientechnologies.orient.core.record.impl.ODocument["identity"]->com.orientechnologies.orient.core.id.ORecordId["identity"])
+com.fasterxml.jackson.databind.JsonMappingException: Direct self-reference leading to cycle (through reference chain: io.skysail.api.responses.FormResponse["entity"]->io.skysail.server.app.bookmarks.Bookmark_$$_jvstf85_0["handler"]->com.orientechnologies.orient.object.enhancement.OObjectProxyMethodHandler["doc"]->com.orientechnologies.orient.core.record.impl.ODocument["schemaClass"]->com.orientechnologies.orient.core.metadata.schema.OClassImpl["document"]->com.orientechnologies.orient.core.record.impl.ODocument["owner"]->com.orientechnologies.orient.core.db.record.OTrackedSet[0]->com.orientechnologies.orient.core.record.impl.ODocument["owner"]->com.orientechnologies.orient.core.record.impl.ODocument["identity"]->com.orientechnologies.orient.core.id.ORecordId["identity"])
 	at com.fasterxml.jackson.databind.ser.BeanPropertyWriter._handleSelfReference(BeanPropertyWriter.java:781) ~[na:na]
 	at com.fasterxml.jackson.databind.ser.BeanPropertyWriter.serializeAsField(BeanPropertyWriter.java:569) ~[na:na]
 	at com.fasterxml.jackson.databind.ser.std.BeanSerializerBase.serializeFields(BeanSerializerBase.java:663) ~[na:na]
@@ -56,72 +56,22 @@ com.fasterxml.jackson.databind.JsonMappingException: Direct self-reference leadi
 	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142) [na:1.8.0]
 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617) [na:1.8.0]
 	at java.lang.Thread.run(Thread.java:744) [na:1.8.0]
+WARN  [org.restlet                                  ] - Unable to send error response
+java.io.IOException: headers already sent
+	at sun.net.httpserver.ExchangeImpl.sendResponseHeaders(ExchangeImpl.java:204) ~[na:1.8.0]
+	at sun.net.httpserver.HttpExchangeImpl.sendResponseHeaders(HttpExchangeImpl.java:86) ~[na:1.8.0]
+	at org.restlet.engine.connector.HttpExchangeCall.writeResponseHead(HttpExchangeCall.java:161) ~[org.restlet.jar:na]
+	at org.restlet.engine.adapter.ServerCall.sendResponse(ServerCall.java:450) ~[org.restlet.jar:na]
+	at org.restlet.engine.adapter.ServerAdapter.commit(ServerAdapter.java:205) ~[org.restlet.jar:na]
+	at org.restlet.engine.adapter.HttpServerHelper.handle(HttpServerHelper.java:144) [org.restlet.jar:na]
+	at org.restlet.engine.connector.HttpServerHelper$1.handle(HttpServerHelper.java:64) [org.restlet.jar:na]
+	at com.sun.net.httpserver.Filter$Chain.doFilter(Filter.java:79) [na:1.8.0]
+	at sun.net.httpserver.AuthFilter.doFilter(AuthFilter.java:83) [na:1.8.0]
+	at com.sun.net.httpserver.Filter$Chain.doFilter(Filter.java:82) [na:1.8.0]
+	at sun.net.httpserver.ServerImpl$Exchange$LinkHandler.handle(ServerImpl.java:675) [na:1.8.0]
+	at com.sun.net.httpserver.Filter$Chain.doFilter(Filter.java:79) [na:1.8.0]
+	at sun.net.httpserver.ServerImpl$Exchange.run(ServerImpl.java:647) [na:1.8.0]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142) [na:1.8.0]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617) [na:1.8.0]
+	at java.lang.Thread.run(Thread.java:744) [na:1.8.0]
 WARN  [d.t.skysail.server.core.osgi.EventHelper     ] - Exception caught when trying to post event with topic 'request/Bookmarks/bookmarks/12:0/DELETE'
-WARN  [org.restlet                                  ] - Unable to send error response
-java.io.IOException: headers already sent
-	at sun.net.httpserver.ExchangeImpl.sendResponseHeaders(ExchangeImpl.java:204) ~[na:1.8.0]
-	at sun.net.httpserver.HttpExchangeImpl.sendResponseHeaders(HttpExchangeImpl.java:86) ~[na:1.8.0]
-	at org.restlet.engine.connector.HttpExchangeCall.writeResponseHead(HttpExchangeCall.java:161) ~[org.restlet.jar:na]
-	at org.restlet.engine.adapter.ServerCall.sendResponse(ServerCall.java:450) ~[org.restlet.jar:na]
-	at org.restlet.engine.adapter.ServerAdapter.commit(ServerAdapter.java:205) ~[org.restlet.jar:na]
-	at org.restlet.engine.adapter.HttpServerHelper.handle(HttpServerHelper.java:144) [org.restlet.jar:na]
-	at org.restlet.engine.connector.HttpServerHelper$1.handle(HttpServerHelper.java:64) [org.restlet.jar:na]
-	at com.sun.net.httpserver.Filter$Chain.doFilter(Filter.java:79) [na:1.8.0]
-	at sun.net.httpserver.AuthFilter.doFilter(AuthFilter.java:83) [na:1.8.0]
-	at com.sun.net.httpserver.Filter$Chain.doFilter(Filter.java:82) [na:1.8.0]
-	at sun.net.httpserver.ServerImpl$Exchange$LinkHandler.handle(ServerImpl.java:675) [na:1.8.0]
-	at com.sun.net.httpserver.Filter$Chain.doFilter(Filter.java:79) [na:1.8.0]
-	at sun.net.httpserver.ServerImpl$Exchange.run(ServerImpl.java:647) [na:1.8.0]
-	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142) [na:1.8.0]
-	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617) [na:1.8.0]
-	at java.lang.Thread.run(Thread.java:744) [na:1.8.0]
-WARN  [i.s.s.a.b.resources.PostBookmarkResource     ] - www.heise.de
-ERROR [org.restlet                                  ] - An exception occured writing the response entity
-java.io.IOException: Eine bestehende Verbindung wurde softwaregesteuert
-durch den Hostcomputer abgebrochen
-	at sun.nio.ch.SocketDispatcher.write0(Native Method) ~[na:1.8.0]
-	at sun.nio.ch.SocketDispatcher.write(SocketDispatcher.java:51) ~[na:1.8.0]
-	at sun.nio.ch.IOUtil.writeFromNativeBuffer(IOUtil.java:93) ~[na:1.8.0]
-	at sun.nio.ch.IOUtil.write(IOUtil.java:65) ~[na:1.8.0]
-	at sun.nio.ch.SocketChannelImpl.write(SocketChannelImpl.java:466) ~[na:1.8.0]
-	at sun.net.httpserver.Request$WriteStream.write(Request.java:391) ~[na:1.8.0]
-	at sun.net.httpserver.ChunkedOutputStream.writeChunk(ChunkedOutputStream.java:125) ~[na:1.8.0]
-	at sun.net.httpserver.ChunkedOutputStream.flush(ChunkedOutputStream.java:159) ~[na:1.8.0]
-	at sun.net.httpserver.PlaceholderOutputStream.flush(ExchangeImpl.java:449) ~[na:1.8.0]
-	at com.fasterxml.jackson.core.json.UTF8JsonGenerator.close(UTF8JsonGenerator.java:1083) ~[na:na]
-	at com.fasterxml.jackson.databind.ObjectWriter._configAndWriteValue(ObjectWriter.java:1055) ~[na:na]
-	at com.fasterxml.jackson.databind.ObjectWriter.writeValue(ObjectWriter.java:889) ~[na:na]
-	at org.restlet.ext.jackson.JacksonRepresentation.write(JacksonRepresentation.java:464) ~[na:na]
-	at org.restlet.engine.application.EncodeRepresentation.write(EncodeRepresentation.java:295) ~[org.restlet.jar:na]
-	at org.restlet.engine.adapter.ServerCall.writeResponseBody(ServerCall.java:510) ~[org.restlet.jar:na]
-	at org.restlet.engine.adapter.ServerCall.sendResponse(ServerCall.java:454) ~[org.restlet.jar:na]
-	at org.restlet.engine.adapter.ServerAdapter.commit(ServerAdapter.java:187) ~[org.restlet.jar:na]
-	at org.restlet.engine.adapter.HttpServerHelper.handle(HttpServerHelper.java:144) [org.restlet.jar:na]
-	at org.restlet.engine.connector.HttpServerHelper$1.handle(HttpServerHelper.java:64) [org.restlet.jar:na]
-	at com.sun.net.httpserver.Filter$Chain.doFilter(Filter.java:79) [na:1.8.0]
-	at sun.net.httpserver.AuthFilter.doFilter(AuthFilter.java:83) [na:1.8.0]
-	at com.sun.net.httpserver.Filter$Chain.doFilter(Filter.java:82) [na:1.8.0]
-	at sun.net.httpserver.ServerImpl$Exchange$LinkHandler.handle(ServerImpl.java:675) [na:1.8.0]
-	at com.sun.net.httpserver.Filter$Chain.doFilter(Filter.java:79) [na:1.8.0]
-	at sun.net.httpserver.ServerImpl$Exchange.run(ServerImpl.java:647) [na:1.8.0]
-	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142) [na:1.8.0]
-	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617) [na:1.8.0]
-	at java.lang.Thread.run(Thread.java:744) [na:1.8.0]
-WARN  [org.restlet                                  ] - Unable to send error response
-java.io.IOException: headers already sent
-	at sun.net.httpserver.ExchangeImpl.sendResponseHeaders(ExchangeImpl.java:204) ~[na:1.8.0]
-	at sun.net.httpserver.HttpExchangeImpl.sendResponseHeaders(HttpExchangeImpl.java:86) ~[na:1.8.0]
-	at org.restlet.engine.connector.HttpExchangeCall.writeResponseHead(HttpExchangeCall.java:161) ~[org.restlet.jar:na]
-	at org.restlet.engine.adapter.ServerCall.sendResponse(ServerCall.java:450) ~[org.restlet.jar:na]
-	at org.restlet.engine.adapter.ServerAdapter.commit(ServerAdapter.java:205) ~[org.restlet.jar:na]
-	at org.restlet.engine.adapter.HttpServerHelper.handle(HttpServerHelper.java:144) [org.restlet.jar:na]
-	at org.restlet.engine.connector.HttpServerHelper$1.handle(HttpServerHelper.java:64) [org.restlet.jar:na]
-	at com.sun.net.httpserver.Filter$Chain.doFilter(Filter.java:79) [na:1.8.0]
-	at sun.net.httpserver.AuthFilter.doFilter(AuthFilter.java:83) [na:1.8.0]
-	at com.sun.net.httpserver.Filter$Chain.doFilter(Filter.java:82) [na:1.8.0]
-	at sun.net.httpserver.ServerImpl$Exchange$LinkHandler.handle(ServerImpl.java:675) [na:1.8.0]
-	at com.sun.net.httpserver.Filter$Chain.doFilter(Filter.java:79) [na:1.8.0]
-	at sun.net.httpserver.ServerImpl$Exchange.run(ServerImpl.java:647) [na:1.8.0]
-	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142) [na:1.8.0]
-	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617) [na:1.8.0]
-	at java.lang.Thread.run(Thread.java:744) [na:1.8.0]

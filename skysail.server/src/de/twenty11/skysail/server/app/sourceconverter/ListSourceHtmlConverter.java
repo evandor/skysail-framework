@@ -70,6 +70,10 @@ public class ListSourceHtmlConverter extends AbstractSourceConverter implements 
                 result.add(object);
                 continue;
             }
+            if (object instanceof Map) {
+                result.add(object);
+                continue;
+            }
             if (!object.getClass().getName().contains("$$")) {
                 @SuppressWarnings("unchecked")
                 Map<String, Object> props = mapper.convertValue(object, Map.class);

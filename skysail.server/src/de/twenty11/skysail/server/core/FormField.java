@@ -129,6 +129,11 @@ public class FormField {
         this.cls = dynamicBean.getClass();
     }
 
+    public FormField(String key, Object object) {
+        this.name = key;
+        this.value = object.toString();
+    }
+
     public Object getEntity() {
         if (source instanceof SkysailResponse) {
             return ((SkysailResponse<?>) source).getEntity();

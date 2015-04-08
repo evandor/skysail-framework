@@ -3,6 +3,7 @@ package de.twenty11.skysail.server.beans;
 import java.util.Collections;
 import java.util.Set;
 
+import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 
 import org.apache.commons.beanutils.DynaBean;
@@ -12,6 +13,7 @@ public class DynamicEntity implements DynamicBean {
 
     private DynaBean instance;
 
+    @Getter
     private String beanName;
 
     public DynamicEntity(String beanName) {

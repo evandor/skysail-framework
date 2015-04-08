@@ -12,6 +12,7 @@ import java.util.Set;
 
 import lombok.extern.slf4j.Slf4j;
 
+import org.apache.commons.beanutils.DynaBean;
 import org.osgi.service.component.ComponentContext;
 
 import aQute.bnd.annotation.component.Activate;
@@ -38,6 +39,7 @@ import com.tinkerpop.blueprints.impls.orient.OrientGraphFactory;
 import com.tinkerpop.blueprints.impls.orient.OrientGraphNoTx;
 
 import de.twenty11.skysail.server.beans.DynamicEntity;
+import de.twenty11.skysail.server.beans.EntityDynaProperty;
 import de.twenty11.skysail.server.core.osgi.EventHelper;
 import de.twenty11.skysail.server.db.orientdb.impl.Persister;
 import de.twenty11.skysail.server.db.orientdb.impl.Updater;
@@ -94,25 +96,15 @@ public class OrientGraphDbService extends AbstractOrientDbService implements DbS
         new Updater(getObjectDb()).update(entity);
     }
 
-    // @Override
-    // public List<String> getAll(Class<?> cls, String username) {
-    // OrientGraph db = getDb();
-    // try {
-    // List<ODocument> result = db.getRawGraph().query(
-    // new OSQLSynchQuery<ODocument>("select from " + cls.getSimpleName()));
-    // return result.stream().map(doc -> {
-    // return doc.toJSON();
-    // }).collect(Collectors.toList());
-    // } catch (Exception e) {
-    // return Collections.emptyList();
-    // } finally {
-    // db.shutdown();
-    // }
-    // }
-
+  
     @Override
     public <T> List<T> findObjects(String sql) {
         return findObjects(sql, new HashMap<>());
+    }
+
+    @Override
+    public List<Map<String,Object>> findDocuments(String sql) {
+        return findDocuments(sql, new HashMap<>());
     }
 
     @Override
@@ -122,10 +114,34 @@ public class OrientGraphDbService extends AbstractOrientDbService implements DbS
 
         List<T> detachedEntities = new ArrayList<>();
         for (T t : query) {
-            T newOne = objectDb.detachAll(t, true);
+            T newOne;
+            if (t instanceof DynamicEntity) {
+                DynamicEntity de = (DynamicEntity)t;
+                DynaBean instance = de.getInstance();
+                Set<EntityDynaProperty> properties = de.getProperties();
+                for (EntityDynaProperty entityDynaProperty : properties) {
+                    instance.set(entityDynaProperty.getName(), "Hi");
+                }
+                newOne = (T)de;
+                
+            } else {
+                newOne = objectDb.detachAll(t, true);
+            }
             detachedEntities.add(newOne);
         }
         return detachedEntities;
+    }
+
+    @Override
+    public List<Map<String,Object>> findDocuments(String sql, Map<String, Object> params) {
+        ODatabaseDocumentTx objectDb = getDocumentDb();
+        List<ODocument> query = objectDb.query(new OSQLSynchQuery<ODocument>(sql), params);
+
+        List<Map<String,Object>> result = new ArrayList<>();
+        for (ODocument t : query) {
+            result.add(t.toMap());
+        }
+        return result;
     }
 
     @Override

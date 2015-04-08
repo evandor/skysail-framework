@@ -1,4 +1,4 @@
-package io.skysail.server.app.wiki.spaces;
+package io.skysail.server.app.wiki.pages;
 
 import io.skysail.server.app.wiki.WikiApplication;
 import io.skysail.server.restlet.resources.ListServerResource;
@@ -6,7 +6,7 @@ import io.skysail.server.restlet.resources.ListServerResource;
 import java.util.List;
 import java.util.Map;
 
-public class SpacesResource extends ListServerResource<Map<String,Object>> {
+public class PagesResource extends ListServerResource<Map<String,Object>> {
 
     private WikiApplication app;
 
@@ -17,6 +17,6 @@ public class SpacesResource extends ListServerResource<Map<String,Object>> {
 
     @Override
     public List<Map<String,Object>> getEntity() {
-         return app.getRepository().findAll(Space.class);
+         return app.getRepository().findAll(Page.class);
     }
 }

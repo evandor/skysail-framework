@@ -121,4 +121,14 @@ public class InMemoryDbService implements DbService2 {
         
     }
 
+    @Override
+    public List<Map<String,Object>> findDocuments(String sql) {
+        return null;
+    }
+
+    @Override
+    public List<Map<String,Object>> findDocuments(String sql, Map<String, Object> params) {
+        return null;
+    }
+
 }

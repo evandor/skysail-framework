@@ -165,13 +165,14 @@ public class StringTemplateRenderer {
     private String guessId(Object object) {
         if (!(object instanceof Map))
             return "";
-        Map<String, String> entity = ((Map<String, String>) object);
+        Map<String, Object> entity = ((Map<String, Object>) object);
 
         if (entity.get("id") != null) {
             Object value = entity.get("id");
             return value.toString().replace("#", "");
         } else if (entity.get("@rid") != null) {
-            return (entity.get("@rid").replace("#", ""));
+            String str = entity.get("@rid").toString();
+            return (str.replace("#", ""));
         } else {
             return "";
         }

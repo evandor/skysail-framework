@@ -2,8 +2,11 @@ package io.skysail.server.app.wiki;
 
 import io.skysail.server.app.SkysailApplication;
 import io.skysail.server.app.designer.repo.DesignerRepository;
+import io.skysail.server.app.wiki.pages.Page;
+import io.skysail.server.app.wiki.pages.PageResource;
 import io.skysail.server.app.wiki.pages.PagesResource;
 import io.skysail.server.app.wiki.pages.PostPageResource;
+import io.skysail.server.app.wiki.pages.PutPageResource;
 import io.skysail.server.app.wiki.spaces.PostSpaceResource;
 import io.skysail.server.app.wiki.spaces.Space;
 import io.skysail.server.app.wiki.spaces.SpacesResource;
@@ -42,6 +45,8 @@ public class WikiApplication extends SkysailApplication implements MenuItemProvi
 
         router.attach(new RouteBuilder("/pages", PagesResource.class));
         router.attach(new RouteBuilder("/pages/", PostPageResource.class));
+        router.attach(new RouteBuilder("/pages/{id}", PageResource.class));
+        router.attach(new RouteBuilder("/pages/{id}/", PutPageResource.class));
 
     }
 
@@ -50,12 +55,14 @@ public class WikiApplication extends SkysailApplication implements MenuItemProvi
         if (repo instanceof DesignerRepository) {
             this.designerRepo = (DesignerRepository) repo;
             Space.inject(designerRepo);
+            Page.inject(designerRepo);
         }
     }
 
     public void unsetDesignerRepository(DbRepository repo) {
         this.designerRepo = null;
         Space.inject(null);
+        Page.inject(null);
     }
 
     @Reference(dynamic = true, multiple = false, optional = false, target = "(name=wikiRepository)")

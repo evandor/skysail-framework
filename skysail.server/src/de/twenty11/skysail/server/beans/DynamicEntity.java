@@ -3,7 +3,6 @@ package de.twenty11.skysail.server.beans;
 import java.util.Collections;
 import java.util.Set;
 
-import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 
 import org.apache.commons.beanutils.DynaBean;
@@ -13,18 +12,16 @@ public class DynamicEntity implements DynamicBean {
 
     private DynaBean instance;
 
-    @Getter
-    private String beanName;
-
-    public DynamicEntity(String beanName) {
-        this.beanName = beanName;
+    @Override
+    public String getBeanName() {
+        return this.getClass().getSimpleName();
     }
 
     @Override
     public synchronized DynaBean getInstance() {
         if (instance == null) {
             try {
-                instance = new EntityDynaClass(beanName, getProperties()).newInstance();
+                instance = new EntityDynaClass(getBeanName(), getProperties()).newInstance();
             } catch (Exception e) {
                 log.error(e.getMessage(), e);
             }
@@ -39,5 +36,5 @@ public class DynamicEntity implements DynamicBean {
     public Set<EntityDynaProperty> getProperties() {
         return Collections.emptySet();
     }
-
+   
 }

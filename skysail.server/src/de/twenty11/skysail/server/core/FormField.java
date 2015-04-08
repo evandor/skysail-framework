@@ -131,7 +131,7 @@ public class FormField {
 
     public FormField(String key, Object object) {
         this.name = key;
-        this.value = object.toString();
+        this.value = object != null ? object.toString() : "";
     }
 
     public Object getEntity() {

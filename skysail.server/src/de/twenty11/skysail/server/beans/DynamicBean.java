@@ -10,5 +10,7 @@ import org.apache.commons.beanutils.DynaBean;
 public interface DynamicBean {
 
     DynaBean getInstance();
+    
+    String getBeanName();
 
 }

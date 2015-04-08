@@ -306,7 +306,13 @@ public abstract class SkysailServerResource<T> extends ServerResource {
         if (object instanceof Identifiable) {
             return ((Identifiable) object).getId().replace("#", "");
         }
-        return "";
+        if (object instanceof Map) {
+            Map<String,Object> map = (Map)object;
+            if (map.get("@rid") != null) {
+                return map.get("@rid").toString().replace("#",  "");
+            }
+        }
+        return "NO_ID";
     }
 
     private void addLinkHeader(Link link, Resource entityResource, String id, ListServerResource<?> resource,

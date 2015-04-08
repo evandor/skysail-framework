@@ -43,5 +43,6 @@ public class WikiRepository implements DbRepository {
         return dbService.findObjectById(cls, id);
     }
 
+   
 
 }

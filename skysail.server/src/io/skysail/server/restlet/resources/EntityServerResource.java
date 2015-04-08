@@ -62,6 +62,10 @@ import etm.core.monitor.EtmPoint;
  *     public List&lt;Link&gt; getLinkheader() {
  *          return super.getLinkheader(PutMyEntityResource.class);
  *     }
+ *     
+ *     public SkysailResponse<?> eraseEntity() {
+ *         return null;
+ *     }
  * 
  * }
  * </code>

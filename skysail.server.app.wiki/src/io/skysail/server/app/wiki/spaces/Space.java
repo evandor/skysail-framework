@@ -12,12 +12,8 @@ public class Space extends DynamicEntity {
 
     private static DesignerRepository repo;
 
-    public Space() {
-        super(Space.class.getSimpleName());
-    }
-
     public Set<EntityDynaProperty> getProperties() {
-        return DesignerApplication.getProperties(repo, getBeanName(), "12:2");
+        return DesignerApplication.getProperties(repo, getBeanName(), "12:10");
     }
     
     public static void inject(DesignerRepository designerRepo) {

@@ -49,7 +49,11 @@ Import-Package: org.osgi.framework,\
 	org.apache.commons.beanutils,\
 	*
 Private-Package:  \
-	io.skysail.server.app.wiki,\
 	io.skysail.server.app.wiki.application,\
+	io.skysail.server.app.wiki.pages.resources,\
+	io.skysail.server.app.wiki.spaces.resources,\
+	io.skysail.server.app.wiki.repository
+Export-Package:  \
+	io.skysail.server.app.wiki.pages,\
 	io.skysail.server.app.wiki.spaces,\
-	io.skysail.server.app.wiki.pages
+	io.skysail.server.app.wiki

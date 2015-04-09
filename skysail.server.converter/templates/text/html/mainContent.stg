@@ -16,7 +16,7 @@ $contentHeader(converter, messages)$
         $showForm(resource, source, fields, messages)$ 
       $elseif(source.list)$
         <!-- renderTable -->
-        $renderTable(resource, source, fields)$
+        $renderTable(resource, source, fields, messages)$
       $else$
         <!-- render single entity -->
         $renderEntity(user, resource, source, fields)$

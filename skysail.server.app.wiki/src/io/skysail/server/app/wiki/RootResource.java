@@ -1,10 +1,10 @@
 package io.skysail.server.app.wiki;
 
 import io.skysail.api.links.Link;
-import io.skysail.server.app.wiki.pages.PagesResource;
-import io.skysail.server.app.wiki.pages.PostPageResource;
-import io.skysail.server.app.wiki.spaces.PostSpaceResource;
-import io.skysail.server.app.wiki.spaces.SpacesResource;
+import io.skysail.server.app.wiki.pages.resources.PagesResource;
+import io.skysail.server.app.wiki.pages.resources.PostPageResource;
+import io.skysail.server.app.wiki.spaces.resources.PostSpaceResource;
+import io.skysail.server.app.wiki.spaces.resources.SpacesResource;
 import io.skysail.server.restlet.resources.ListServerResource;
 
 import java.util.List;

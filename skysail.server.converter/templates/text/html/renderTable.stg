@@ -1,4 +1,4 @@
-renderTable(resource, source, fields) ::= <<
+renderTable(resource, source, fields, messages) ::= <<
 
   $resource.pagination$
   
@@ -13,5 +13,9 @@ renderRow(fields, row,i) ::= <<
 >>
 
 renderHeader(fields) ::= <<
-  $fields: { field | <th>$field.name$</th>}$
+  $fields: { field | <th>$helpmessage(messages, field.nameKey)$</th>}$
+>>
+
+helpmessage(messages, identifier) ::= <<
+    $messages.(identifier)$
 >>

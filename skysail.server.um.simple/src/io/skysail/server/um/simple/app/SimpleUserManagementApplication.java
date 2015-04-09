@@ -2,9 +2,77 @@ package io.skysail.server.um.simple.app;
 
 import io.skysail.api.um.RestletRolesProvider;
 import io.skysail.server.app.SkysailApplication;
+import io.skysail.server.um.simple.app.users.resources.CurrentUserResource;
+
+import java.util.Arrays;
+import java.util.List;
+
+import lombok.extern.slf4j.Slf4j;
 import aQute.bnd.annotation.component.Component;
+import de.twenty11.skysail.server.app.ApplicationProvider;
+import de.twenty11.skysail.server.core.restlet.ApplicationContextId;
+import de.twenty11.skysail.server.core.restlet.RouteBuilder;
+import de.twenty11.skysail.server.services.MenuItem;
+import de.twenty11.skysail.server.services.MenuItemProvider;
 
 @Component(immediate = true)
-public class SimpleUserManagementApplication extends SkysailApplication implements RestletRolesProvider {
-    // providing restlet roles.
+@Slf4j
+public class SimpleUserManagementApplication extends SkysailApplication implements RestletRolesProvider, ApplicationProvider, MenuItemProvider {
+   
+    private static final String APP_NAME = "usermanagement";
+
+    public SimpleUserManagementApplication() {
+        super(APP_NAME);
+        log.info("instanciating new UserManagementApplication #" + this.hashCode());
+        setDescription("Central User Configuration Application");
+        addToAppContext(ApplicationContextId.IMG, "/static/img/silk/user.png");
+    }
+    
+    @Override
+    protected void attach() {
+        log.info("attaching routes to UserManagementApplication #" + this.hashCode());
+
+        router.setAuthorizationDefaults(anyOf("usermanagement.user", "admin"));
+
+//        router.attach(new RouteBuilder("",  UsersResource.class).authorizeWith(anyOf("admin")));
+//        router.attach(new RouteBuilder("/",  UsersResource.class).authorizeWith(anyOf("admin")));
+//        router.attach(new RouteBuilder("/about",  UserManagementAboutResource.class));
+//        router.attach(new RouteBuilder("/api", ApiResource.class));
+//        router.attach(new RouteBuilder("/entities", EntitiesResource.class));
+//        router.attach(new RouteBuilder("/entities/{name}", EntitiesResource.class));
+//
+//        router.attach(new RouteBuilder("/roles", RolesResource.class));
+        
+        router.attach(new RouteBuilder("/currentUser", CurrentUserResource.class).noAuthenticationNeeded());
+        
+//        router.attach(new RouteBuilder("/users", UsersResource.class).authorizeWith(anyOf("admin")));
+//        router.attach(new RouteBuilder("/users/", PostUserResource.class).authorizeWith(anyOf("admin")));
+//        router.attach(new RouteBuilder("/users/{username}", UserResource.class));
+//        router.attach(new RouteBuilder("/users/{id}/", PutUserResource.class));
+//        router.attach(new RouteBuilder("/users/{username}/groups", UserGroupsResource.class));
+//        router.attach(new RouteBuilder("/users/{username}/password/", UserPasswordResource.class));
+//        
+//        router.attach(new RouteBuilder("/groups", GroupsResource.class));
+//        router.attach(new RouteBuilder("/groups/", GroupResource.class));
+//        router.attach(new RouteBuilder("/groups/{group}", GroupResource.class));
+//
+//        router.attach(new RouteBuilder("/registrations", RegistrationsResource.class));
+//        router.attach(new RouteBuilder("/registrations/", PostRegistrationResource.class).noAuthenticationNeeded());
+//        router.attach(new RouteBuilder("/registrationsAdmin/{id}", RegistrationResource.class));
+//        router.attach(new RouteBuilder("/registrationsAdmin/{id}/", PutRegistrationResource.class));
+//
+//        router.attach(new RouteBuilder("/registrations/{registrationId}", new ConfirmationRedirector(getContext()))
+//                .noAuthenticationNeeded());
+//        router.attach(new RouteBuilder("/registrations/{registrationId}/confirmation/", PostConfirmationResource.class)
+//                .noAuthenticationNeeded());
+
+    }
+    
+    public List<MenuItem> getMenuEntries() {
+        MenuItem menuItem = new MenuItem("Usermanagement", "/usermanagement");
+        //MenuItem menuItem = new MenuItem(this, UsersResource.class);
+        menuItem.setCategory(MenuItem.Category.ADMIN_MENU);
+        return Arrays.asList(menuItem);
+    }
+
 }

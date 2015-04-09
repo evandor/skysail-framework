@@ -1,6 +1,7 @@
-package io.skysail.server.app.wiki.spaces;
+package io.skysail.server.app.wiki.spaces.resources;
 
 import io.skysail.server.app.wiki.WikiApplication;
+import io.skysail.server.app.wiki.spaces.Space;
 import io.skysail.server.restlet.resources.ListServerResource;
 
 import java.util.List;

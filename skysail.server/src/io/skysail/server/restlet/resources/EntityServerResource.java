@@ -135,28 +135,15 @@ public abstract class EntityServerResource<T> extends SkysailServerResource<T> {
         return LinkRelation.ITEM;
     }
 
-//    /**
-//     * @return the entity as json string
-//     */
-//    @Get("json")
-//    @API(desc = "retrieves the entity defined by the url as JSON")
-//    public String getJson() {
-//        EtmPoint point = etmMonitor.createPoint("EntityServerResource:getJson");
-//        logger.info("Request entry point: {} @Get('json')", this.getClass().getSimpleName());
-//        logger.info(scoringInfo(getRequest().getClientInfo()));
-//        point.collect();
-//        return getEntityAsJson();
-//    }
-
     // input: html|json|..., output: html|json|...
     /**
      * @return the reponse
      */
-    @Get("html|eventstream|treeform|txt|csv|yaml")
+    @Get("html|json|eventstream|treeform|txt|csv|yaml")
     @API(desc = "retrieves the entity defined by the url")
     public SkysailResponse<T> getEntity2() {
         EtmPoint point = etmMonitor.createPoint("EntityServerResource:getEntity");
-        logger.info("Request entry point: {} @Get('html|eventstream|treeform|txt')", this.getClass().getSimpleName());
+        logger.info("Request entry point: {} @Get('html|json|eventstream|treeform|txt')", this.getClass().getSimpleName());
         logger.info(scoringInfo(getRequest().getClientInfo()));
         T entity = getEntity("dummy");
         point.collect();

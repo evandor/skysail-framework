@@ -1,9 +1,9 @@
 <!doctype html>
-<html ng-app="notesProduct" style="height:100%">
+<html ng-app="todosProduct" style="height:100%">
 <head>
     <meta charset="utf-8">
 
-    <title>Clipboard powered by skysail (&alpha;)</title>
+    <title>Todos powered by skysail (&alpha;)</title>
     
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
@@ -27,10 +27,10 @@
     <!-- top navigation -->
     <div class="navbar" style="margin-bottom: 10px;">
         <div class="navbar-inner">
-            <a class="brand" href="javascript:window.location.reload(true)" ng-model="version"><b>Todos</b> powered by skysail</a>
+            <a class="brand" href="javascript:window.location.reload(true)" ng-model="version">skysail <b>Todos</b></a>
             
             <div style="float:right; margin: 2px">
-              <form class="navbar-form navbar-right" role="form" action="/_login?targetUri=clipboardclient/" method="POST" ng-hide="loggedIn">
+              <form class="navbar-form navbar-right" role="form" action="/_login?targetUri=Todos/" method="POST" ng-hide="loggedIn">
                   <input type="text" name="username" placeholder="Email" class="form-control">
                   <input type="password" name="password" placeholder="Password" class="form-control">
                 <button type="submit" class="btn btn-success">Sign in</button>
@@ -49,10 +49,17 @@
         <div class="row-fluid" style="border: 1px solid #aaa; background-color: white; padding: 10px; margin-top:3px; border-radius:5px; height:80%">
             <div class="span2" style="background-color: white;" ng-show="loggedIn">
                 <div id="notes" style="border-right: 1px dotted lightgrey;">
-                    <div class="nav-header" style="padding-left: 1px;">{{userform.user}}'s Notes</div>
-                    <div ng-repeat="note in notes | orderBy:'title':false">
+                    <div class="nav-header" style="padding-left: 1px;">{{userform.user}}'s Lists</div>
+                    <div ng-repeat="list in lists | orderBy:'title':false">
+                        <i class="icon-list-alt" id="{{list.id}}" x-drag-me title="{{list.id}}"></i>&nbsp;
+                        <a title="{{list.name}}" ng-click="setCurrentList(list)" style="cursor: pointer">{{list.name | truncate:20}}</a>
+                    </div>
+                </div>
+                <div id="notes" style="border-right: 1px dotted lightgrey;">
+                    <div class="nav-header" style="padding-left: 1px;">Lists Notes</div>
+                    <div ng-repeat="note in todos | orderBy:'title':false">
                         <i class="icon-list-alt" id="{{note.id}}" x-drag-me title="{{note.id}}"></i>&nbsp;
-                        <a title="{{note.content}}" ng-click="setCurrentNote(note)" style="cursor: pointer">{{note.content | truncate:20}}</a>
+                        <a title="{{note.name}}" ng-click="setCurrentNote(note)" style="cursor: pointer">{{note.name | truncate:20}}</a>
                     </div>
                 </div>
             </div>
@@ -86,7 +93,6 @@
       </div>
     </div>
 
-    
     <script src="/../static/js/jquery-1.9.1.js"></script>
     <script src="/../static/js/jquery.cookie.js"></script>
     <script src="/../static/js/bootstrap.js"></script>

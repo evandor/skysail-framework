@@ -1,5 +1,6 @@
-package io.skysail.server.app.wiki;
+package io.skysail.server.app.wiki.repository;
 
+import io.skysail.server.app.wiki.pages.Page;
 import io.skysail.server.app.wiki.spaces.Space;
 import io.skysail.server.db.DbRepository;
 import io.skysail.server.db.DbService2;
@@ -20,6 +21,8 @@ public class WikiRepository implements DbRepository {
     public void activate() {
         dbService.setupVertices(Space.class.getSimpleName());
         dbService.register(Space.class);
+        dbService.setupVertices(Page.class.getSimpleName());
+        dbService.register(Page.class);
     }
 
     @Reference
@@ -39,8 +42,8 @@ public class WikiRepository implements DbRepository {
         return dbService.persist(entity, edges);
     }
 
-    public <T> T getById(Class<?> cls, String id) {
-        return dbService.findObjectById(cls, id);
+    public Map<String,Object> getById(Class<?> cls, String id) {
+        return dbService.findDocumentById(cls, id);
     }
 
    

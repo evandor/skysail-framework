@@ -131,4 +131,9 @@ public class InMemoryDbService implements DbService2 {
         return null;
     }
 
+    @Override
+    public Map<String, Object> findDocumentById(Class<?> cls, String id) {
+        return null;
+    }
+
 }

@@ -1,7 +1,8 @@
-package io.skysail.server.app.wiki.pages;
+package io.skysail.server.app.wiki.pages.resources;
 
 import io.skysail.api.links.Link;
 import io.skysail.server.app.wiki.WikiApplication;
+import io.skysail.server.app.wiki.pages.Page;
 import io.skysail.server.restlet.resources.ListServerResource;
 
 import java.util.List;

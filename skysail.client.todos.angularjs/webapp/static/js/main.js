@@ -1,7 +1,7 @@
-var notesProduct = angular.module('notesProduct', ['ui.bootstrap','ngRoute','filters']);
+var todosProduct = angular.module('todosProduct', ['ui.bootstrap','ngRoute','filters']);
 
 
-notesProduct.controller('AppCtrl', function($scope, $rootScope, $http, $route, $modal, $log) {
+todosProduct.controller('AppCtrl', function($scope, $rootScope, $http, $route, $modal, $log) {
 
 	var defaultGetHeadersConfig = {
          	headers: {'Accept': 'application/json'} 
@@ -10,6 +10,7 @@ notesProduct.controller('AppCtrl', function($scope, $rootScope, $http, $route, $
     $scope.currentUser = null;
     $rootScope.loggedIn = false;
 	$scope.currentNote;
+	$scope.currentList;
 	$scope.isNewNote = false;
 	$scope.isNoteUpdate = false;
 	$scope.parents;
@@ -28,9 +29,9 @@ notesProduct.controller('AppCtrl', function($scope, $rootScope, $http, $route, $
     
     $http.get('/usermanagement/currentUser',defaultGetHeadersConfig)
     	.success(function(json) {
-    		if (json.username) {
-    			$scope.currentUser = json.username;
-				$scope.userform.user = json.username;
+    		if (json.entity.username) {
+    			$scope.currentUser = json.entity.username;
+				$scope.userform.user = json.entity.username;
 				$rootScope.loggedIn = true;
     		}
     	 })
@@ -44,6 +45,7 @@ notesProduct.controller('AppCtrl', function($scope, $rootScope, $http, $route, $
     	    	$scope.currentUser = null;
     	    	$rootScope.loggedIn = false;
     	    	$scope.currentNote = null;
+    	    	$scope.currentList = null;
     	    	window.location.reload();
     		})
     		.error(function(data,status,headers,config){
@@ -66,14 +68,24 @@ notesProduct.controller('AppCtrl', function($scope, $rootScope, $http, $route, $
 		return $scope.isNoteUpdate;
 	}
 
-	/* === Clips management =========================================== */
+	/* === List management =========================================== */
 
-	$scope.getNotes = function() {
-	    link = '../clipboard/clips';
+	$scope.getTodoLists = function() {
+	    link = '../Todos/Lists';
 		$http.get(link).success(function(json) {
-			$scope.notes = json;
+			$scope.lists = json;
 		});
 	}
+
+	/* === Todo management =========================================== */
+
+	$scope.getTodos = function() {
+	    link = '../Todos/Lists/22:3/Todos';
+		$http.get(link).success(function(json) {
+			$scope.todos = json;
+		});
+	}
+
 	
 	$scope.getNote = function(noteId) {
 		link = '../clipboard/clips/' + noteId;
@@ -87,12 +99,17 @@ notesProduct.controller('AppCtrl', function($scope, $rootScope, $http, $route, $
 		});
 	}
 	
-	$scope.getNotes()
+	$scope.getTodoLists()
 	
 	$scope.setCurrentNote = function(note) {
 		$scope.currentNote = note;
 	};
-	
+
+	$scope.setCurrentList = function(list) {
+		$scope.currentList = list;
+		$scope.getTodos()
+	};
+
     $scope.newNote = function() {
     	var parentId = null;
     	var newNote = {
@@ -119,7 +136,7 @@ notesProduct.controller('AppCtrl', function($scope, $rootScope, $http, $route, $
 		 			alert("Sorry, there was a problem on the server!")
 		 		} else {
 		 			$scope.isNewNote = false;
-		 			$scope.getNotes()
+		 			$scope.getTodoLists()
 		 			$scope.getNote(data.data.id)
 		 		}
 		 	}).
@@ -159,7 +176,7 @@ notesProduct.controller('AppCtrl', function($scope, $rootScope, $http, $route, $
 		 			alert("Sorry, there was a problem on the server!")
 		 		} else {
 		 	    	$scope.currentNote = null;
-		 			$scope.getNotes()
+		 			$scope.getTodoLists()
 		 		}
 		 	}).
 		 	error(function(data,status,headers,config){
@@ -209,7 +226,7 @@ notesProduct.controller('AppCtrl', function($scope, $rootScope, $http, $route, $
 					 			alert("error happened: " + data.message);
 					 		} else {
 					 			addFadingMessage("moved...", "#actionMessage");
-					 			$scope.getNotes();
+					 			$scope.getTodoLists();
 					 		}
 					 	}).
 					 	error(function(data,status,headers,config){

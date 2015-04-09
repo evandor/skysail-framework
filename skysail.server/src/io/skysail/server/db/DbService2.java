@@ -30,6 +30,9 @@ public interface DbService2 {
      * @return
      */
     <T> T findObjectById(Class<?> cls, String id);
+    
+    Map<String, Object> findDocumentById(Class<?> cls, String id);
+
 
     // List<String> getAll(Class<?> cls, String username);
 
@@ -59,7 +62,6 @@ public interface DbService2 {
     void executeUpdate(String sql, Map<String, Object> params);
 
     void createUniqueIndex(Class<?> cls, String... columnNames);
-
 
     
 }

@@ -1,8 +1,9 @@
-package io.skysail.server.app.wiki.pages;
+package io.skysail.server.app.wiki.pages.resources;
 
 import io.skysail.api.responses.SkysailResponse;
 import io.skysail.server.app.wiki.PostDynamicEntityServerResource;
 import io.skysail.server.app.wiki.WikiApplication;
+import io.skysail.server.app.wiki.pages.Page;
 import de.twenty11.skysail.server.core.restlet.ResourceContextId;
 
 public class PostPageResource extends PostDynamicEntityServerResource<Page> {

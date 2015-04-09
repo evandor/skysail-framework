@@ -3,13 +3,14 @@ package io.skysail.server.app.wiki;
 import io.skysail.server.app.SkysailApplication;
 import io.skysail.server.app.designer.repo.DesignerRepository;
 import io.skysail.server.app.wiki.pages.Page;
-import io.skysail.server.app.wiki.pages.PageResource;
-import io.skysail.server.app.wiki.pages.PagesResource;
-import io.skysail.server.app.wiki.pages.PostPageResource;
-import io.skysail.server.app.wiki.pages.PutPageResource;
-import io.skysail.server.app.wiki.spaces.PostSpaceResource;
+import io.skysail.server.app.wiki.pages.resources.PageResource;
+import io.skysail.server.app.wiki.pages.resources.PagesResource;
+import io.skysail.server.app.wiki.pages.resources.PostPageResource;
+import io.skysail.server.app.wiki.pages.resources.PutPageResource;
+import io.skysail.server.app.wiki.repository.WikiRepository;
 import io.skysail.server.app.wiki.spaces.Space;
-import io.skysail.server.app.wiki.spaces.SpacesResource;
+import io.skysail.server.app.wiki.spaces.resources.PostSpaceResource;
+import io.skysail.server.app.wiki.spaces.resources.SpacesResource;
 import io.skysail.server.db.DbRepository;
 
 import java.util.Arrays;
@@ -26,7 +27,8 @@ import de.twenty11.skysail.server.services.MenuItemProvider;
 @Component(immediate = true)
 public class WikiApplication extends SkysailApplication implements MenuItemProvider, ApplicationProvider {
 
-    private static final String APP_NAME = "Wiki";
+    public static final String APP_NAME = "Wiki";
+    
     private DesignerRepository designerRepo;
     private WikiRepository wikiRepo;
 

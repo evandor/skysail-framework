@@ -152,6 +152,19 @@ public class OrientGraphDbService extends AbstractOrientDbService implements DbS
     }
 
     @Override
+    public Map<String, Object> findDocumentById(Class<?> cls, String id) {
+        ODatabaseDocumentTx db = getDocumentDb();
+        Map<String, Object> params = new HashMap<>();
+        params.put("rid", id);
+        List<ODocument> query = db.query(new OSQLSynchQuery<ODocument>("SELECT * FROM " + cls.getSimpleName() + " WHERE @rid= :rid"), params);
+        if (query != null) {
+            return query.get(0).toMap();
+        }
+        return new HashMap<String,Object>();
+    }
+
+    
+    @Override
     public long getCount(String sql, Map<String, Object> params) {
         OObjectDatabaseTx objectDb = getObjectDb();
         List<ODocument> query = objectDb.query(new OSQLSynchQuery<ODocument>(sql), params);

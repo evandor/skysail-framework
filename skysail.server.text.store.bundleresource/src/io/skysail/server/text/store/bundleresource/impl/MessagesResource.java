@@ -2,6 +2,7 @@ package io.skysail.server.text.store.bundleresource.impl;
 
 import io.skysail.server.restlet.resources.ListServerResource;
 
+import java.util.Collections;
 import java.util.List;
 
 public class MessagesResource extends ListServerResource<BundleMessages> {
@@ -14,7 +15,7 @@ public class MessagesResource extends ListServerResource<BundleMessages> {
 
     @Override
     public List<BundleMessages> getEntity() {
-        return null;
+        return Collections.emptyList();
     }
 
     

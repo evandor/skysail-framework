@@ -13,7 +13,7 @@ public class Page extends DynamicEntity {
     private static DesignerRepository repo;
 
     public Set<EntityDynaProperty> getProperties() {
-        return DesignerApplication.getProperties(repo, getBeanName(), "12:10");
+        return DesignerApplication.getProperties(repo, getBeanName(), "12:2");
     }
     
     public static void inject(DesignerRepository designerRepo) {

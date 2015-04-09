@@ -18,13 +18,15 @@ import de.twenty11.skysail.server.services.MenuItem;
 import de.twenty11.skysail.server.services.MenuItemProvider;
 
 @Component
-public class ClipboardClient extends SkysailApplication implements ApplicationProvider, MenuItemProvider {
+public class TodosClient extends SkysailApplication implements ApplicationProvider, MenuItemProvider {
 
+    private static final String APP_NAME = "TodosClient";
+    
     private DefaultRedirector defaultRedirector;
 
-    public ClipboardClient() {
-        super("clipboardclient/");
-        setName("clipboardclient");
+    public TodosClient() {
+        super(APP_NAME + "/");
+        setName(APP_NAME);
         defaultRedirector = new DefaultRedirector(getContext(), "index.html");
         addToAppContext(ApplicationContextId.IMG, "/static/img/silk/note.png");
     }
@@ -50,7 +52,7 @@ public class ClipboardClient extends SkysailApplication implements ApplicationPr
 
     @Override
     public List<MenuItem> getMenuEntries() {
-        MenuItem appMenu = new MenuItem("Clipboard Client", "/clipboardclient/", this);
+        MenuItem appMenu = new MenuItem("Todos Client", "/"+APP_NAME+"/", this);
         appMenu.setCategory(MenuItem.Category.FRONTENDS_MAIN_MENU);
         return Arrays.asList(appMenu);
     }

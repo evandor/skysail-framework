@@ -48,7 +48,7 @@ public class PutMessageResource extends PutEntityServerResource<Message> {
 
     @Override
     public Message getEntity() {
-        return null;
+        return app.getMessage(msgKey);
     }
 
 }

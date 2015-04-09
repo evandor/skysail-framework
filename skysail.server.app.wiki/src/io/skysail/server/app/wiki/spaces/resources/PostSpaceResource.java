@@ -1,8 +1,9 @@
-package io.skysail.server.app.wiki.spaces;
+package io.skysail.server.app.wiki.spaces.resources;
 
 import io.skysail.api.responses.SkysailResponse;
 import io.skysail.server.app.wiki.PostDynamicEntityServerResource;
 import io.skysail.server.app.wiki.WikiApplication;
+import io.skysail.server.app.wiki.spaces.Space;
 import de.twenty11.skysail.server.core.restlet.ResourceContextId;
 
 public class PostSpaceResource extends PostDynamicEntityServerResource<Space> {

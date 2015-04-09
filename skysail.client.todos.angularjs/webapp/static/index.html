@@ -51,15 +51,18 @@
                 <div id="notes" style="border-right: 1px dotted lightgrey;">
                     <div class="nav-header" style="padding-left: 1px;">{{userform.user}}'s Lists</div>
                     <div ng-repeat="list in lists | orderBy:'title':false">
-                        <i class="icon-list-alt" id="{{list.id}}" x-drag-me title="{{list.id}}"></i>&nbsp;
-                        <a title="{{list.name}}" ng-click="setCurrentList(list)" style="cursor: pointer">{{list.name | truncate:20}}</a>
+                        <i class="icon-folder-open" id="{{list.id}}" x-drag-me title="{{list.id}}" ng-show="list.id==currentList.id"></i>
+                        <i class="icon-folder-close" id="{{list.id}}" x-drag-me title="{{list.id}}" ng-hide="list.id==currentList.id"></i>
+                        &nbsp;
+                        <span ng-show="list.id==currentList.id">{{list.name | truncate:20}}</span>
+                        <a title="{{list.name}}" ng-click="setCurrentList(list)" style="cursor: pointer" ng-hide="list.id==currentList.id">{{list.name | truncate:20}}</a>
                     </div>
                 </div>
                 <div id="notes" style="border-right: 1px dotted lightgrey;">
                     <div class="nav-header" style="padding-left: 1px;">Lists Notes</div>
-                    <div ng-repeat="note in todos | orderBy:'title':false">
-                        <i class="icon-list-alt" id="{{note.id}}" x-drag-me title="{{note.id}}"></i>&nbsp;
-                        <a title="{{note.name}}" ng-click="setCurrentNote(note)" style="cursor: pointer">{{note.name | truncate:20}}</a>
+                    <div ng-repeat="todo in todos | orderBy:'title':false">
+                        <i class="icon-list-alt" id="{{todo.id}}" x-drag-me title="{{todo.id}}"></i>&nbsp;
+                        <a title="{{todo.title}}" ng-click="setCurrentTodo(todo)" style="cursor: pointer">{{todo.title | truncate:20}}</a>
                     </div>
                 </div>
             </div>
@@ -68,9 +71,16 @@
 
                     <form name="form" class="form-vertical" ng-submit="updateNote()" ng-keypress="setDirty()">
                         <div class="control-group">
-                            <label class="nav-header" style="padding-left: 1px;" for="content">Clip</label>
+                            <label class="nav-header" style="padding-left: 1px;" for="content">Todo</label>
                             <div class="controls">
-                                <textarea name="content" rows=12 ng-model="currentNote.content" style="width:100%;"></textarea>
+                                <input type="text" name="title" ng-model="currentTodo.title" style="width:100%">
+                                <textarea name="desc" rows=4 ng-model="currentTodo.desc" style="width:100%;"></textarea>
+                               
+                                <div id="radio">
+<input type="radio" id="radio1" name="radio"><label for="radio1">Choice 1</label>
+<input type="radio" id="radio2" name="radio" checked="checked"><label for="radio2">Choice 2</label>
+<input type="radio" id="radio3" name="radio"><label for="radio3">Choice 3</label>
+</div>
                             </div>
                         </div>
                         <div class="control-group">
@@ -99,5 +109,8 @@
     <script src="/../static/js/jquery-ui-1.9.2.js"></script>
     <script src="/../static/js/jquery.form.js"></script>
 
+<script>
+$( "#radio" ).buttonset();
+</script>
 </body>
 </html>

@@ -9,7 +9,7 @@ todosProduct.controller('AppCtrl', function($scope, $rootScope, $http, $route, $
 	
     $scope.currentUser = null;
     $rootScope.loggedIn = false;
-	$scope.currentNote;
+	$scope.currentTodo;
 	$scope.currentList;
 	$scope.isNewNote = false;
 	$scope.isNoteUpdate = false;
@@ -44,7 +44,7 @@ todosProduct.controller('AppCtrl', function($scope, $rootScope, $http, $route, $
     		.success(function() {
     	    	$scope.currentUser = null;
     	    	$rootScope.loggedIn = false;
-    	    	$scope.currentNote = null;
+    	    	$scope.currentTodo = null;
     	    	$scope.currentList = null;
     	    	window.location.reload();
     		})
@@ -54,7 +54,7 @@ todosProduct.controller('AppCtrl', function($scope, $rootScope, $http, $route, $
     };
     
 	$scope.showDeleteButton = function () {
-		return ($scope.currentNote != null) && !$scope.isNewNote;
+		return ($scope.currentTodo != null) && !$scope.isNewNote;
 	}
 	
 	$scope.setDirty = function () {
@@ -80,7 +80,8 @@ todosProduct.controller('AppCtrl', function($scope, $rootScope, $http, $route, $
 	/* === Todo management =========================================== */
 
 	$scope.getTodos = function() {
-	    link = '../Todos/Lists/22:3/Todos';
+		listId = $scope.currentList.id.replace("#","");
+	    link = '../Todos/Lists/'+listId+'/Todos';
 		$http.get(link).success(function(json) {
 			$scope.todos = json;
 		});
@@ -92,7 +93,7 @@ todosProduct.controller('AppCtrl', function($scope, $rootScope, $http, $route, $
 		$http.get(link).success(function(json) {
 			if (json.success) {
 				alert(json);
-				$scope.currentNote = json;
+				$scope.currentTodo = json;
 			} else {
 				alert ("Sorry, there was an error on the server: " + data.message);
 			}
@@ -101,8 +102,8 @@ todosProduct.controller('AppCtrl', function($scope, $rootScope, $http, $route, $
 	
 	$scope.getTodoLists()
 	
-	$scope.setCurrentNote = function(note) {
-		$scope.currentNote = note;
+	$scope.setCurrentTodo = function(todo) {
+		$scope.currentTodo = todo;
 	};
 
 	$scope.setCurrentList = function(list) {
@@ -118,14 +119,14 @@ todosProduct.controller('AppCtrl', function($scope, $rootScope, $http, $route, $
     	        content: '',
     	        parent: parentId
     	    };
-    	$scope.currentNote = newNote;
+    	$scope.currentTodo = newNote;
     	$scope.isNewNote = true;
 	};
 	
 	$scope.addNote = function() {
 		 var content = getContentFromEditor();
 		 
-		 var data = "title="+$scope.currentNote.title+"&content="+content+"&parent="+$scope.currentNote.parent;
+		 var data = "title="+$scope.currentTodo.title+"&content="+content+"&parent="+$scope.currentTodo.parent;
 		 var config = {
          	headers: {'Content-Type': 'application/x-www-form-urlencoded'} 
          }
@@ -147,8 +148,8 @@ todosProduct.controller('AppCtrl', function($scope, $rootScope, $http, $route, $
 	};
 
     $scope.updateNote = function() {
-		 var noteLink = '../clipboard/clips/' + $scope.currentNote["@rid"].replace("#","") + "/";
-		 var content = $scope.currentNote.content;
+		 var noteLink = '../clipboard/clips/' + $scope.currentTodo["@rid"].replace("#","") + "/";
+		 var content = $scope.currentTodo.content;
 
 		 var data = "{\"content\": \""+content+"\"}";
 		 
@@ -166,16 +167,16 @@ todosProduct.controller('AppCtrl', function($scope, $rootScope, $http, $route, $
     };
 	 
 	$scope.deleteNote = function() {
-		if ($scope.currentNote === undefined) {
+		if ($scope.currentTodo === undefined) {
 			return;
 		}
-		var path = '../notes/notes/' + $scope.currentNote.id;
+		var path = '../notes/notes/' + $scope.currentTodo.id;
 		$http.delete(path).
 		 	success(function(data,status,headers,config) {
 		 		if (!data.success) {
 		 			alert("Sorry, there was a problem on the server!")
 		 		} else {
-		 	    	$scope.currentNote = null;
+		 	    	$scope.currentTodo = null;
 		 			$scope.getTodoLists()
 		 		}
 		 	}).

@@ -143,9 +143,12 @@ public class ListSourceHtmlConverter extends AbstractSourceConverter implements 
         }
         Prefix prefix = f.getAnnotation(Prefix.class);
         if (newValue != null && prefix != null) {
-
             newValue = result.get(prefix.methodName()) + "&nbsp;" + newValue;
         }
+//        Postfix postfix = f.getAnnotation(Prefix.class);
+//        if (newValue != null && prefix != null) {
+//            newValue = result.get(prefix.methodName()) + "&nbsp;" + newValue;
+//        }
 
         if (newValue != null) {
             result.put(f.getName(), newValue);

@@ -22,8 +22,8 @@ public class TodosRepository implements DbRepository {
 
     @Activate
     public void activate() {
-        dbService.setupVertices(Todo.class.getSimpleName(),TodoList.class.getSimpleName());
-        dbService.register(Todo.class,TodoList.class);
+        dbService.setupVertices(Todo.class.getSimpleName(), TodoList.class.getSimpleName());
+        dbService.register(Todo.class, TodoList.class);
         dbService.createUniqueIndex(TodoList.class, "name", "owner");
     }
 
@@ -38,21 +38,31 @@ public class TodosRepository implements DbRepository {
 
     public <T> List<T> findAll(Class<T> cls, String listId, String sorting) {
         String username = SecurityUtils.getSubject().getPrincipal().toString();
-        
-        String sql = "SELECT from "+cls.getSimpleName()+" WHERE " + getWhereStatement(listId)+ " " + sorting;
+
+        String sql = "SELECT from " + cls.getSimpleName() + " WHERE " + getWhereStatement(listId) + " " + sorting;
         Map<String, Object> params = new HashMap<String, Object>();
         params.put("username", username);
         params.put("list", listId);
         return dbService.findObjects(sql, params);
     }
-    
 
     public List<TodoList> findAllLists() {
+        // TODO do this in one statement
         String username = SecurityUtils.getSubject().getPrincipal().toString();
-        String sql = "SELECT from "+TodoList.class.getSimpleName()+" WHERE owner= :username ORDER BY name ";
+        String sql = "SELECT from " + TodoList.class.getSimpleName() + " WHERE owner= :username ORDER BY name ";
         Map<String, Object> params = new HashMap<String, Object>();
         params.put("username", username);
-        return dbService.findObjects(sql, params);
+        List<TodoList> lists = dbService.findObjects(sql, params);
+        for (TodoList list : lists) {
+            sql = "SELECT COUNT(*) as count from " + Todo.class.getSimpleName()
+                    + " WHERE owner= :username AND list= :listId";
+            params = new HashMap<String, Object>();
+            params.put("username", username);
+            params.put("listId", list.getId().replace("#",""));
+            long cnt = dbService.getCount(sql, params);
+            list.setTodosCount(cnt);
+        }
+        return lists;
     }
 
     public static Object add(Object entity, String... edges) {
@@ -68,13 +78,14 @@ public class TodosRepository implements DbRepository {
     }
 
     public Object add(Todo entity) {
-         Object result = dbService.persist(entity);
-         increaseOtherTodosRank(entity);
-         return result;
+        Object result = dbService.persist(entity);
+        increaseOtherTodosRank(entity);
+        return result;
     }
 
     private void increaseOtherTodosRank(Todo entity) {
-        String sql = "update " + Todo.class.getSimpleName() + " INCREMENT rank = 1 WHERE owner = :username AND rank >= :referenceRank";
+        String sql = "update " + Todo.class.getSimpleName()
+                + " INCREMENT rank = 1 WHERE owner = :username AND rank >= :referenceRank";
         Map<String, Object> params = new HashMap<String, Object>();
         params.put("username", entity.getOwner());
         params.put("referenceRank", entity.getRank());
@@ -85,8 +96,9 @@ public class TodosRepository implements DbRepository {
         dbService.delete(cls, id);
     }
 
-    public long getTodosCount(String username,String listId) {
-        String sql = "select COUNT(*) as count from " + Todo.class.getSimpleName() + " WHERE " + getWhereStatement(listId);
+    public long getTodosCount(String username, String listId) {
+        String sql = "select COUNT(*) as count from " + Todo.class.getSimpleName() + " WHERE "
+                + getWhereStatement(listId);
         Map<String, Object> params = new HashMap<String, Object>();
         params.put("username", username);
         params.put("list", listId);
@@ -99,5 +111,5 @@ public class TodosRepository implements DbRepository {
         }
         return "owner= :username AND list= :list";
     }
-  
+
 }

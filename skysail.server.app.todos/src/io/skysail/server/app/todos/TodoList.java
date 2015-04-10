@@ -4,6 +4,7 @@ import io.skysail.api.domain.Identifiable;
 import io.skysail.api.forms.Field;
 import io.skysail.api.forms.InputType;
 import io.skysail.api.forms.ListView;
+import io.skysail.api.forms.Prefix;
 import io.skysail.server.app.todos.lists.UniquePerOwner;
 
 import java.io.Serializable;
@@ -40,11 +41,15 @@ public class TodoList implements Serializable, Identifiable {
     @Field(listView = { ListView.TRUNCATE, ListView.LINK })
     @NotNull
     @Size(min = 2)
+    @Prefix(methodName = "todosCount")
     private String name;
 
     @Field(type = InputType.TEXTAREA, listView = { ListView.TRUNCATE })
     private String desc;
 
+    @Field
+    private Long todosCount;
+    
     @Field(type = InputType.READONLY)
     private Date created;
 
@@ -54,4 +59,7 @@ public class TodoList implements Serializable, Identifiable {
     @Field(type = InputType.READONLY, listView = { ListView.HIDE })
     private String owner;
 
+    public long todosCount() {
+        return todosCount;
+    }
 }

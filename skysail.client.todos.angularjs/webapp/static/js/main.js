@@ -191,13 +191,13 @@ todosProduct.controller('AppCtrl', function($scope, $rootScope, $http, $route, $
 		 var link = '../Todos/Lists/' + $scope.currentList.id.replace("#","") + "/";
 		 var desc = $scope.currentList.desc;
 
-		 var data = "{\"name\": \""+$scope.currentList.name+"\”, \"desc\": \""+desc+"\"}";
+		 var data = "{\"id\":\""+$scope.currentList.id+"\", \"name\": \""+$scope.currentList.name+"\", \"desc\": \""+desc+"\"}";
 		 
 		 var config = {
         	headers: {'Content-Type': 'application/json'} 
         }
 
-		 $http.put(link, data,config).
+		 $http.patch(link, data,config).
 		 	success(function(data,status,headers,config) {
 	 			addFadingMessage("saved...", "#actionMessage");
 		 	}).
@@ -282,22 +282,3 @@ todosProduct.controller('AppCtrl', function($scope, $rootScope, $http, $route, $
 
 });
 
-angular.module('filters', []).
-    
-    filter('truncate', function () {
-        return function (text, length, end) {
-            if (isNaN(length))
-                length = 10;
-
-            if (end === undefined)
-                end = "...";
-
-            if (text.length <= length || text.length - end.length <= length) {
-                return text;
-            }
-            else {
-                return String(text).substring(0, length-end.length) + end;
-            }
-
-    };
-});

@@ -3,20 +3,13 @@ WARN  [d.t.s.server.core.restlet.SkysailRouter      ] - please use a RouteBuilde
 WARN  [d.t.s.server.core.restlet.SkysailRouter      ] - please use a RouteBuilder to attach this resource: class de.twenty11.skysail.server.app.OAuthLoginResource
 WARN  [d.t.s.server.core.restlet.SkysailRouter      ] - please use a RouteBuilder to attach this resource: class de.twenty11.skysail.server.resources.WelcomeResource
 WARN  [d.t.s.server.core.restlet.SkysailRouter      ] - please use a RouteBuilder to attach this resource: class io.skysail.server.um.simple.app.users.resources.CurrentUserResource
-WARN  [i.s.s.a.b.resources.PostBookmarkResource     ] - Connection refused
+WARN  [i.s.s.a.b.resources.PostBookmarkResource     ] - Connection refused: connect
 WARN  [d.t.skysail.server.core.osgi.EventHelper     ] - Exception caught when trying to post event with topic 'request/Bookmarks/bookmarks/12:0/GET'
 WARN  [d.t.skysail.server.core.osgi.EventHelper     ] - Exception caught when trying to post event with topic 'request/Bookmarks/bookmarks/12:0/DELETE'
 ERROR [org.restlet                                  ] - An exception occured writing the response entity
-com.fasterxml.jackson.databind.JsonMappingException: com.orientechnologies.orient.core.storage.impl.memory.ODirectMemoryStorage cannot be cast to com.orientechnologies.orient.core.storage.impl.local.paginated.OLocalPaginatedStorage (through reference chain: io.skysail.api.responses.FormResponse["entity"]->io.skysail.server.app.bookmarks.Bookmark_$$_jvst262_0["handler"]->com.orientechnologies.orient.object.enhancement.OObjectProxyMethodHandler["doc"]->com.orientechnologies.orient.core.record.impl.ODocument["schemaClass"]->com.orientechnologies.orient.core.metadata.schema.OClassImpl["document"]->com.orientechnologies.orient.core.record.impl.ODocument["owner"]->com.orientechnologies.orient.core.db.record.OTrackedSet[0]->com.orientechnologies.orient.core.record.impl.ODocument["owner"]->com.orientechnologies.orient.core.record.impl.ODocument["databaseIfDefined"]->com.orientechnologies.orient.core.db.document.ODatabaseDocumentTx["storage"]->com.orientechnologies.orient.core.storage.impl.memory.ODirectMemoryStorage["configuration"]->com.orientechnologies.orient.core.storage.impl.local.paginated.OStorageMemoryConfiguration["directory"])
-	at com.fasterxml.jackson.databind.JsonMappingException.wrapWithPath(JsonMappingException.java:210) ~[na:na]
-	at com.fasterxml.jackson.databind.JsonMappingException.wrapWithPath(JsonMappingException.java:177) ~[na:na]
-	at com.fasterxml.jackson.databind.ser.std.StdSerializer.wrapAndThrow(StdSerializer.java:190) ~[na:na]
-	at com.fasterxml.jackson.databind.ser.std.BeanSerializerBase.serializeFields(BeanSerializerBase.java:671) ~[na:na]
-	at com.fasterxml.jackson.databind.ser.BeanSerializer.serialize(BeanSerializer.java:156) ~[na:na]
-	at com.fasterxml.jackson.databind.ser.BeanPropertyWriter.serializeAsField(BeanPropertyWriter.java:575) ~[na:na]
-	at com.fasterxml.jackson.databind.ser.std.BeanSerializerBase.serializeFields(BeanSerializerBase.java:663) ~[na:na]
-	at com.fasterxml.jackson.databind.ser.BeanSerializer.serialize(BeanSerializer.java:156) ~[na:na]
-	at com.fasterxml.jackson.databind.ser.BeanPropertyWriter.serializeAsField(BeanPropertyWriter.java:575) ~[na:na]
+com.fasterxml.jackson.databind.JsonMappingException: Direct self-reference leading to cycle (through reference chain: io.skysail.api.responses.FormResponse["entity"]->io.skysail.server.app.bookmarks.Bookmark_$$_jvste06_0["handler"]->com.orientechnologies.orient.object.enhancement.OObjectProxyMethodHandler["doc"]->com.orientechnologies.orient.core.record.impl.ODocument["schemaClass"]->com.orientechnologies.orient.core.metadata.schema.OClassImpl["document"]->com.orientechnologies.orient.core.record.impl.ODocument["owner"]->com.orientechnologies.orient.core.db.record.OTrackedSet[0]->com.orientechnologies.orient.core.record.impl.ODocument["owner"]->com.orientechnologies.orient.core.record.impl.ODocument["identity"]->com.orientechnologies.orient.core.id.ORecordId["identity"])
+	at com.fasterxml.jackson.databind.ser.BeanPropertyWriter._handleSelfReference(BeanPropertyWriter.java:781) ~[na:na]
+	at com.fasterxml.jackson.databind.ser.BeanPropertyWriter.serializeAsField(BeanPropertyWriter.java:569) ~[na:na]
 	at com.fasterxml.jackson.databind.ser.std.BeanSerializerBase.serializeFields(BeanSerializerBase.java:663) ~[na:na]
 	at com.fasterxml.jackson.databind.ser.BeanSerializer.serialize(BeanSerializer.java:156) ~[na:na]
 	at com.fasterxml.jackson.databind.ser.BeanPropertyWriter.serializeAsField(BeanPropertyWriter.java:575) ~[na:na]
@@ -65,15 +58,6 @@ com.fasterxml.jackson.databind.JsonMappingException: com.orientechnologies.orien
 	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142) [na:1.8.0]
 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617) [na:1.8.0]
 	at java.lang.Thread.run(Thread.java:744) [na:1.8.0]
-Caused by: java.lang.ClassCastException: com.orientechnologies.orient.core.storage.impl.memory.ODirectMemoryStorage cannot be cast to com.orientechnologies.orient.core.storage.impl.local.paginated.OLocalPaginatedStorage
-	at com.orientechnologies.orient.core.config.OStorageConfiguration.getDirectory(OStorageConfiguration.java:146) ~[na:na]
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:1.8.0]
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:1.8.0]
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:1.8.0]
-	at java.lang.reflect.Method.invoke(Method.java:483) ~[na:1.8.0]
-	at com.fasterxml.jackson.databind.ser.BeanPropertyWriter.serializeAsField(BeanPropertyWriter.java:536) ~[na:na]
-	at com.fasterxml.jackson.databind.ser.std.BeanSerializerBase.serializeFields(BeanSerializerBase.java:663) ~[na:na]
-	... 53 common frames omitted
 WARN  [org.restlet                                  ] - Unable to send error response
 java.io.IOException: headers already sent
 	at sun.net.httpserver.ExchangeImpl.sendResponseHeaders(ExchangeImpl.java:204) ~[na:1.8.0]
@@ -92,3 +76,4 @@ java.io.IOException: headers already sent
 	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142) [na:1.8.0]
 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617) [na:1.8.0]
 	at java.lang.Thread.run(Thread.java:744) [na:1.8.0]
+WARN  [i.s.s.a.b.resources.PostBookmarkResource     ] - www.heise.de

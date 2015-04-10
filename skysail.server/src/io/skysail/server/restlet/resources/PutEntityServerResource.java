@@ -21,6 +21,7 @@ import org.restlet.data.Form;
 import org.restlet.data.Method;
 import org.restlet.representation.Variant;
 import org.restlet.resource.Get;
+import org.restlet.resource.Patch;
 import org.restlet.resource.Put;
 import org.restlet.resource.ResourceException;
 
@@ -139,12 +140,6 @@ public abstract class PutEntityServerResource<T> extends SkysailServerResource<T
         return null;
     }
 
-    /**
-     * put.
-     * 
-     * @param entity
-     * @return object
-     */
     @Put("json")
     @API(desc = "generic PUT for JSON")
     public Object putEntity(T entity) {
@@ -154,6 +149,17 @@ public abstract class PutEntityServerResource<T> extends SkysailServerResource<T
         Object put = put((Form) null);
         point.collect();
         return put;
+    }
+
+    @Patch("json")
+    @API(desc = "generic Patch for JSON")
+    public Object patchEntity(T entity) {
+        EtmPoint point = etmMonitor.createPoint("PutEntityServerResource:patchEntity");
+        log.info("Request entry point: {} @Patch('json')", this.getClass().getSimpleName());
+        getRequest().getAttributes().put(SKYSAIL_SERVER_RESTLET_ENTITY, entity);
+        Object patch = put((Form) null);
+        point.collect();
+        return patch;
     }
 
     @Put("x-www-form-urlencoded:html|json")

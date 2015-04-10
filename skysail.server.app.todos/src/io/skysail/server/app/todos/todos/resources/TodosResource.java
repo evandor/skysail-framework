@@ -2,11 +2,14 @@ package io.skysail.server.app.todos.todos.resources;
 
 import io.skysail.api.links.Link;
 import io.skysail.server.app.todos.TodoApplication;
+import io.skysail.server.app.todos.TodoList;
 import io.skysail.server.app.todos.todos.Todo;
 import io.skysail.server.restlet.resources.ListServerResource;
 import io.skysail.server.utils.HeadersUtils;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.function.Consumer;
 
 import org.apache.shiro.SecurityUtils;
@@ -31,6 +34,10 @@ public class TodosResource extends ListServerResource<Todo> {
     protected void doInit() throws ResourceException {
         listId = getAttribute(TodoApplication.LIST_ID);
         app = (TodoApplication) getApplication();
+        TodoList list = app.getRepository().getById(TodoList.class, listId);
+        Map<String,String> substitutions = new HashMap<>();
+        substitutions.put("/Lists/" + listId, list.getName());
+        getContext().getAttributes().put(ResourceContextId.PATH_SUBSTITUTION.name(), substitutions);
     }
 
     @Override

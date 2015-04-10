@@ -13,7 +13,14 @@ todosProduct.controller('AppCtrl', function($scope, $rootScope, $http, $route, $
 	$scope.currentList;
 	$scope.isNewNote = false;
 	$scope.isNoteUpdate = false;
+	
+	$scope.isNewList = false;
+	$scope.isListUpdate = false;
+	
 	$scope.parents;
+	$scope.mode="init";
+	
+	$scope.dirty = false;
 
 	$scope.userform = {
 	        user: '',
@@ -68,6 +75,13 @@ todosProduct.controller('AppCtrl', function($scope, $rootScope, $http, $route, $
 		return $scope.isNoteUpdate;
 	}
 
+	$scope.showListUpdateButton = function () {
+		if ($scope.isNewList) {
+			return false;
+		}
+		return $scope.isListUpdate;
+	}
+
 	/* === List management =========================================== */
 
 	$scope.getTodoLists = function() {
@@ -104,47 +118,54 @@ todosProduct.controller('AppCtrl', function($scope, $rootScope, $http, $route, $
 	
 	$scope.setCurrentTodo = function(todo) {
 		$scope.currentTodo = todo;
+		$scope.mode="todo"
 	};
 
 	$scope.setCurrentList = function(list) {
 		$scope.currentList = list;
+		$scope.mode="setList"
 		$scope.getTodos()
 	};
 
-    $scope.newNote = function() {
-    	var parentId = null;
-    	var newNote = {
+    $scope.newTodoList = function() {
+    	var newList = {
     			id: null,
-    	        title: 'new',
-    	        content: '',
-    	        parent: parentId
+    	        name: 'new',
+    	        content: ''
     	    };
-    	$scope.currentTodo = newNote;
+    	$scope.currentList = newList;
     	$scope.isNewNote = true;
+    	$scope.mode="list";
 	};
 	
-	$scope.addNote = function() {
-		 var content = getContentFromEditor();
+	$scope.addTodoList = function() {
+		 var content = $scope.currentList.desc;//getContentFromEditor();
 		 
-		 var data = "title="+$scope.currentTodo.title+"&content="+content+"&parent="+$scope.currentTodo.parent;
+		 var data = "name="+$scope.currentList.name+"&content="+content;
 		 var config = {
          	headers: {'Content-Type': 'application/x-www-form-urlencoded'} 
          }
 		 
-		 $http.post('../notes/notes/', data, config).
+		 $http.post('../Todos/Lists/', data, config).
 		 	success(function(data,status,headers,config) {
-		 		if (!data.success) {
+		 		if (status != 201) {
 		 			alert("Sorry, there was a problem on the server!")
 		 		} else {
-		 			$scope.isNewNote = false;
+		 			$scope.mode="empty";
+		 			//$scope.isNewNote = false;
 		 			$scope.getTodoLists()
-		 			$scope.getNote(data.data.id)
+		 			//$scope.getNote(data.data.id)
 		 		}
 		 	}).
 		 	error(function(status,headers,config){
 		 		alert(status);
 		 		alert(data);
 		 	});
+	};
+	
+	$scope.editTodoList = function() {
+    	$scope.mode="list";
+    	$scope.isListUpdate=true;
 	};
 
     $scope.updateNote = function() {

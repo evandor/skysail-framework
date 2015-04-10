@@ -7,6 +7,8 @@ import io.skysail.server.restlet.resources.SkysailServerResource;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 
 import javax.validation.constraints.NotNull;
 
@@ -21,6 +23,7 @@ import org.restlet.routing.Route;
 import org.restlet.util.RouteList;
 
 import de.twenty11.skysail.server.core.restlet.ApplicationContextId;
+import de.twenty11.skysail.server.core.restlet.ResourceContextId;
 
 @RequiredArgsConstructor
 public class Breadcrumbs {
@@ -68,41 +71,25 @@ public class Breadcrumbs {
         RouteList routes = resource.getApplication().getRoutes();
         Route best = routes.getBest(request, resource.getResponse(), 0.5f);
         if (best != match) {
-
-//            Router router = best.getRouter();
-//            if (router instanceof SkysailRouter && best instanceof TemplateRoute) {
-//                SkysailRouter skysailRouter = (SkysailRouter) router;
-//                Optional<RouteBuilder> routeBuilder = skysailRouter.getRoutesMap().keySet().stream().filter(key -> {
-//                    return key.equals(((TemplateRoute) best).getTemplate().getPattern());
-//                }).findFirst().map(key -> skysailRouter.getRoutesMap().get(key));
-//                if (routeBuilder.isPresent()) {
-//                    Class<? extends ServerResource> res = routeBuilder.get().getTargetClass();
-//                    if (EntityServerResource.class.isAssignableFrom(res)) {
-//                        try {
-//                            String resourceUri = "riap://component/Todos"
-//                                    + routeBuilder.get().getPathTemplate().toString()
-//                                            .replace("{lid}", segments.get(i).toString());
-//                            Request r = new Request(Method.GET, resourceUri);
-//                            r.setProtocol(Protocol.RIAP);
-//                            Response response = resource.getContext().getClientDispatcher().handle(r);
-//                            Representation repr = response.getEntity();
-//
-//                            System.out.println(repr.getText());
-//                        } catch (Exception e) {
-//                            // TODO Auto-generated catch block
-//                            e.printStackTrace();
-//                        }
-//                    }
-//                }
-//            }
-
             match = best;
+            String value = segments.get(i);
+            Object substitutions = resource.getContext().getAttributes().get(ResourceContextId.PATH_SUBSTITUTION.name());
+            if (substitutions instanceof Map) {
+                Map<String,?> substitutionsMap = (Map<String,?>)substitutions;
+                Optional<String> replacementKey = substitutionsMap.keySet().stream().filter(key -> {
+                    return path.contains(key);
+                }).findFirst();
+                if (replacementKey.isPresent()) {
+                    value = substitutionsMap.get(replacementKey.get()).toString();
+                    ((Map) substitutions).remove(replacementKey.get());
+                }
+            }
             if (i < segments.size() - 1) {
                 breadcrumbs.add(Breadcrumb.builder().href("/" + resource.getApplication().getName() + path)
-                        .value(limit(segments.get(i), 12)).build());
+                        .value(limit(value, 22)).build());
             } else {
                 Boolean favoriteIndicator = getFavoriteIndicator(resource);
-                breadcrumbs.add(Breadcrumb.builder().value(segments.get(i)).favorite(favoriteIndicator).build());
+                breadcrumbs.add(Breadcrumb.builder().value(value).favorite(favoriteIndicator).build());
             }
         }
         return match;

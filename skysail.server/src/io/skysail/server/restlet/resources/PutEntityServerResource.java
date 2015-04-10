@@ -139,21 +139,6 @@ public abstract class PutEntityServerResource<T> extends SkysailServerResource<T
         return null;
     }
 
-    // /**
-    // * getJson.
-    // *
-    // * @return json
-    // */
-    // @Get("json")
-    // @API(desc = "no implementation")
-    // public T getJson() {
-    // logger.info("Request entry point: {} @Get('json')",
-    // this.getClass().getSimpleName());
-    // RequestHandler<T> requestHandler = new
-    // RequestHandler<T>(getApplication());
-    // return null;
-    // }
-
     /**
      * put.
      * 

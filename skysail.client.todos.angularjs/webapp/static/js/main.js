@@ -186,7 +186,26 @@ todosProduct.controller('AppCtrl', function($scope, $rootScope, $http, $route, $
 		 		alert("Failure on server! Code '"+status+"'");
 		 	});
     };
-	 
+
+    $scope.updateList = function() {
+		 var link = '../Todos/Lists/' + $scope.currentList.id.replace("#","") + "/";
+		 var desc = $scope.currentList.desc;
+
+		 var data = "{\"name\": \""+$scope.currentList.name+"\”, \"desc\": \""+desc+"\"}";
+		 
+		 var config = {
+        	headers: {'Content-Type': 'application/json'} 
+        }
+
+		 $http.put(link, data,config).
+		 	success(function(data,status,headers,config) {
+	 			addFadingMessage("saved...", "#actionMessage");
+		 	}).
+		 	error(function(data,status,headers,config){
+		 		alert("Failure on server! Code '"+status+"'");
+		 	});
+   };
+
 	$scope.deleteNote = function() {
 		if ($scope.currentTodo === undefined) {
 			return;

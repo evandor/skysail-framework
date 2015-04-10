@@ -101,7 +101,7 @@
                 </div>
                 
                 <div id="selectedTodoList" ng-show="loggedIn && mode=='list'">
-                    <form name="form" class="form-vertical" ng-submit="updateNote()" ng-keypress="setDirty()">
+                    <form name="form" class="form-vertical" ng-submit="updateList" ng-keypress="setDirty()">
                         <div class="control-group">
                             <label class="nav-header" style="padding-left: 1px;" for="content">new Todo-List</label>
                             <div class="controls">
@@ -110,7 +110,7 @@
                             </div>
                         </div>
                         <div class="control-group">
-                            <input class="btn btn-primary" ng-click="updateNote()"  ng-show="showListUpdateButton()" value="update" style="float:right; margin: 2px;">&nbsp;<span id="actionMessage" style="color:green;"></span>
+                            <input class="btn btn-primary" ng-click="updateList()"  ng-show="showListUpdateButton()" value="update" style="float:right; margin: 2px;">&nbsp;<span id="actionMessage" style="color:green;"></span>
                             <input class="btn btn-primary" ng-click="addTodoList()" ng-show="isNewList" value="save" style="float:right; margin: 2px;">
                             <span id="actionMessage" style="color:green;"></span>
                         </div>

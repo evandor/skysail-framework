@@ -1,0 +1,14 @@
+<form name="form" class="form-vertical" ng-submit="updateList" ng-keypress="setDirty()">
+  <div class="control-group">
+    <label class="nav-header" style="padding-left: 1px;" for="content">create a new Todo in List
+      '{{currentList.name}}'</label>
+    <div class="controls">
+      <input type="text" ng-model="currentTodo.title" style="width: 100%">
+      <textarea rows=4 ng-model="currentTodo.desc" style="width: 100%;"></textarea>
+    </div>
+  </div>
+  <div class="control-group">
+    <input class="btn btn-primary" ng-click="addTodo()" value="save" style="float: right; margin: 2px;"> <span
+      id="actionMessage" style="color: green;"></span>
+  </div>
+</form>

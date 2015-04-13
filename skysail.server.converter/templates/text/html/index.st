@@ -127,8 +127,11 @@ index(user, messages, source, converter, services, resource, fields, target) ::=
     <div class="container-fluid">
     
       <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-10">
             $breadcrumb(resource)$
+        </div>
+        <div class="col-md-2">
+            $representations(resource)$
         </div>
       </div>
 

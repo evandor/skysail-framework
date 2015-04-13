@@ -1,0 +1,16 @@
+<form name="form" class="form-vertical" ng-submit="updateList" ng-keypress="setDirty()">
+  <div class="control-group">
+    <label class="nav-header" style="padding-left: 1px;" for="content">new Todo-List</label>
+    <div class="controls">
+      <input type="hidden" name="id" ng-model="currentList.id"> <input type="text" name="name"
+        ng-model="currentList.name" style="width: 100%">
+      <textarea name="desc" rows=4 ng-model="currentList.desc" style="width: 100%;"></textarea>
+    </div>
+  </div>
+  <div class="control-group">
+    <input class="btn btn-primary" ng-click="updateList()" ng-show="showListUpdateButton()" value="update"
+      style="float: right; margin: 2px;"> &nbsp; <span id="actionMessage" style="color: green;"></span> <input
+      class="btn btn-primary" ng-click="addTodoList()" ng-show="isNewList" value="save"
+      style="float: right; margin: 2px;"> <span id="actionMessage" style="color: green;"></span>
+  </div>
+</form>

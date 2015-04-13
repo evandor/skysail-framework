@@ -65,9 +65,8 @@ public class Todo implements Serializable, Identifiable {
     private String owner;
 
     // start date, 
-    // status: 
     // assigned to,
-    // related to: accont, ...
+    // related to: account, ...
     
     public Todo(String title) {
         this.title = title;

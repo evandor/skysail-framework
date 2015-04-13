@@ -1,156 +1,119 @@
 <!doctype html>
-<html ng-app="todosProduct" style="height:100%">
+<html ng-app="todosProduct" style="height: 100%">
 <head>
-    <meta charset="utf-8">
+  <meta charset="utf-8">
 
-    <title>Todos powered by skysail (&alpha;)</title>
-    
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    
-    <link type="text/css" href="css/jquery-ui.css" rel="stylesheet" />
-    <link href="/../static/css/bootstrap.css" rel="stylesheet">
-    <link href="/../static/css/bootstrap-responsive.css" rel="stylesheet">
-    <link href="css/style_angularjs.css" rel="stylesheet">
-    <link href="css/twitter-bootstrap/bootstrap-combined.min.css" rel="stylesheet">
-    
-    <!-- <script src="js/angular.min.js"></script>
-    <script src="js/angular-route.js"></script>-->
-	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
-	<script src="https://code.angularjs.org/1.3.15/angular-route.min.js"></script>
+  <title>Todos powered by skysail (&alpha;)</title>
 
-    <script src="js/utils.js"></script>
-    <script src="js/filters.js"></script>
-    <script src="js/main.js"></script>
-    <script src="js/ui-bootstrap-tpls-0.6.0.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <link type="text/css" href="css/jquery-ui.css" rel="stylesheet" />
+  <link href="/../static/css/bootstrap.css" rel="stylesheet">
+  <link href="/../static/css/bootstrap-responsive.css" rel="stylesheet">
+  <link href="css/style_angularjs.css" rel="stylesheet">
+  <link href="css/twitter-bootstrap/bootstrap-combined.min.css" rel="stylesheet">
+
+  <script src="js/angular-1.3.15/angular.min.js"></script>
+  <script src="js/angular-1.3.15/angular-route.js"></script>
+
+  <script src="js/app.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/directives/todolist.js"></script>
+  <script src="js/directives/todos.js"></script>
+  <script src="js/filters/filters.js"></script>
+  <script src="js/controllers/main.js"></script>
+  <script src="js/controllers/newTodo.js"></script>
+  <script src="js/ui-bootstrap-tpls-0.6.0.js"></script>
 </head>
 
-<body style="background-color: #eee; padding-bottom:20px; height:90%" ng-controller="AppCtrl" ng-cloak>
+<body style="background-color: #eee; padding-bottom: 20px; height: 90%" ng-controller="AppCtrl" ng-cloak>
 
-    <!-- top navigation -->
-    <div class="navbar" style="margin-bottom: 10px;">
-        <div class="navbar-inner">
-            <a class="brand" href="javascript:window.location.reload(true)" ng-model="version">skysail <b>Todos</b></a>
-            
-            <div style="float:right; margin: 2px">
-              <form class="navbar-form navbar-right" role="form" action="/_login?targetUri=Todos/" method="POST" ng-hide="loggedIn">
-                  <input type="text" name="username" placeholder="Email" class="form-control">
-                  <input type="password" name="password" placeholder="Password" class="form-control">
-                <button type="submit" class="btn btn-success">Sign in</button>
-              </form>
-              <a ng-click="logout()" ng-show="loggedIn" href="#"><span class="btn btn-primary"> logout </span></a>
-            </div>
-            
-            <ul class="nav" style="float:right; margin: 2px;">
-                <li></li>
-            </ul>
-        </div>
+  <!-- top navigation and authentication -->
+  <div class="navbar" style="margin-bottom: 10px;">
+    <div class="navbar-inner">
+      <a class="brand" href="javascript:window.location.reload(true)"
+        ng-model="version">skysail <b>Todos</b></a> <span
+        id="actionMessage" style="padding: 10px 20px 10px;"></span>
+
+      <div style="float: right; margin: 2px">
+        <form class="navbar-form navbar-right" role="form"
+          action="/_login?targetUri=Todos/" method="POST"
+          ng-hide="loggedIn">
+          <input type="text" name="username" placeholder="Email"
+            class="form-control"> <input type="password"
+            name="password" placeholder="Password" class="form-control">
+          <button type="submit" class="btn btn-success">Sign in</button>
+        </form>
+        <a ng-click="logout()" ng-show="loggedIn" href="#"><span
+          class="btn btn-primary"> logout </span></a>
+      </div>
+
+      <ul class="nav" style="float: right; margin: 2px;">
+        <li></li>
+      </ul>
     </div>
+  </div>
 
-    <!-- main content -->
-    <div class="container-fluid" style="padding-left:10px; padding-right:30px; height:100%">
-        <div class="row-fluid" style="border: 1px solid #aaa; background-color: white; padding: 10px; margin-top:3px; border-radius:5px; height:80%">
-        
-        
-        	<!-- Lists and Todos Navigation -->
-        	
-            <div class="span2" style="background-color: white;" ng-show="loggedIn">
-                <div id="notes" style="border-right: 1px dotted lightgrey;">
-                    <div class="nav-header" style="padding-left: 1px;">{{userform.user}}'s Lists <a style="cursor: pointer" ng-click='newTodoList()' ng-hide="mode=='list'">+</a></div>
-                    <div ng-repeat="list in lists | orderBy:'title':false">
-                        <i class="icon-folder-open" id="{{list.id}}" x-drag-me title="{{list.id}}" ng-show="list.id==currentList.id"></i>
-                        <i class="icon-folder-close" id="{{list.id}}" x-drag-me title="{{list.id}}" ng-hide="list.id==currentList.id"></i>
-                        &nbsp;
-                        <span ng-show="list.id==currentList.id">{{list.name | truncate:20}} <a ng-click="editTodoList(list)" style="cursor: pointer" >(edit)</a></span>
-                        <a title="{{list.name}}" ng-click="setCurrentList(list)" style="cursor: pointer" ng-hide="list.id==currentList.id">{{list.name | truncate:20}}</a>
-                    </div>
-                    <!-- <div class="list-group">
-					  <div><a href="#" class="list-group-item active">justo odio</a></div>
-					  <div><a href="#" class="list-group-item">jac facilisis in</a>&nbsp;<span class="badge">14</span></div>
-					  <div><a href="#" class="list-group-item">jleo risus</a>&nbsp;<span class="badge">14</span></div>
-					  <div><a href="#" class="list-group-item">jac consectetur ac</a></div>
-					  <div><a href="#" class="list-group-item">j at eros</a></div>
-					</div> -->
-                </div>
-                <div id="notes" style="border-right: 1px dotted lightgrey;">
-                    <div class="nav-header" style="padding-left: 1px;">Lists Notes</div>
-                    <div ng-repeat="todo in todos | orderBy:'title':false">
-                        <i class="icon-list-alt" id="{{todo.id}}" x-drag-me title="{{todo.id}}"></i>&nbsp;
-                        <a title="{{todo.title}}" ng-click="setCurrentTodo(todo)" style="cursor: pointer">{{todo.title | truncate:20}}</a>
-                    </div>
-                </div>
-            </div>
-            
-            
-            <div class="span8" style="background-color: white">
+  <div class="container-fluid" style="padding-left: 10px; padding-right: 30px; height: 100%">
+    <div class="row-fluid" style="border: 1px solid #aaa; background-color: white; padding: 10px; margin-top: 3px; border-radius: 5px; height: 80%">
 
-                <div id="selectedNote" ng-show="loggedIn && mode=='todo'">
-                    <form name="form" class="form-vertical" ng-submit="updateNote()" ng-keypress="setDirty()">
-                        <div class="control-group">
-                            <label class="nav-header" style="padding-left: 1px;" for="content">Todo</label>
-                            <div class="controls">
-                                <input type="text" name="title" ng-model="currentTodo.title" style="width:100%">
-                                <textarea name="desc" rows=4 ng-model="currentTodo.desc" style="width:100%;"></textarea>
-                               
-                                <!-- <div id="radio">
-									<input type="radio" id="radio1" name="radio"><label for="radio1">Choice 1</label>
-									<input type="radio" id="radio2" name="radio" checked="checked"><label for="radio2">Choice 2</label>
-									<input type="radio" id="radio3" name="radio"><label for="radio3">Choice 3</label>
-							    </div>-->
-                                <div>Due: <input type="text" name="due" ng-model="currentTodo.due" style="width:100%"></div>
-                                <div>Created: {{currentTodo.created}}</div>
-                                <div>Modified: {{currentTodo.modified}}</div>
-                            </div>
-                        </div>
-                        <div class="control-group">
-                            <input class="btn btn-primary" ng-click="updateNote()" ng-show="showUpdateButton()" value="save" style="float:right; margin: 2px;">&nbsp;<span id="actionMessage" style="color:green;"></span>
-                            <input class="btn btn-primary" ng-click="addNote()"    ng-show="isNewNote" value="save" style="float:right; margin: 2px;">
-                            <span id="actionMessage" style="color:green;"></span>
-                        </div>
-                    </form>
-                </div>
-                
-                <div id="selectedTodoList" ng-show="loggedIn && mode=='list'">
-                    <form name="form" class="form-vertical" ng-submit="updateList" ng-keypress="setDirty()">
-                        <div class="control-group">
-                            <label class="nav-header" style="padding-left: 1px;" for="content">new Todo-List</label>
-                            <div class="controls">
-                                <input type="hidden" name="id" ng-model="currentList.id">
-                                <input type="text" name="name" ng-model="currentList.name" style="width:100%">
-                                <textarea name="desc" rows=4 ng-model="currentList.desc" style="width:100%;"></textarea>
-                            </div>
-                        </div>
-                        <div class="control-group">
-                            <input class="btn btn-primary" ng-click="updateList()"  ng-show="showListUpdateButton()" value="update" style="float:right; margin: 2px;">&nbsp;<span id="actionMessage" style="color:green;"></span>
-                            <input class="btn btn-primary" ng-click="addTodoList()" ng-show="isNewList" value="save" style="float:right; margin: 2px;">
-                            <span id="actionMessage" style="color:green;"></span>
-                        </div>
-                    </form>
-                </div>
-
-            </div>
-            <div class="span2" style="background-color: white">
-            mode={{mode}}<br>
-            dirty={{dirty}}<br>
-            </div>
+      <!-- Left Navigation (Lists and Todos) -->
+      <div class="span2" style="background-color: white;" ng-show="loggedIn">
+        <div id="notes" style="border-right: 1px dotted lightgrey;">
+          <div class="nav-header" style="padding-left: 1px;">{{userform.user}}'s Lists <a style="cursor: pointer" ng-click='newTodoList()' ng-hide="mode=='list'">+</a></div>
+          <div>
+            <todolist ng-repeat="list in lists | orderBy:'title':false"></todolist>
+          </div>
         </div>
-    </div>
+        <div id="notes" style="border-right: 1px dotted lightgrey;">
+          <div class="nav-header" style="padding-left: 1px;">
+            Lists Notes <a style="cursor: pointer" ng-click='newTodo()' ng-hide="currentList==null || mode=='newTodo'">+</a>
+          </div>
+          <div>
+            <todos ng-repeat="todo in todos | orderBy:'title':false"></todos>
+          </div>
+        </div>
+      </div>
 
-    <div id="footer">
-      <div class="container">
-        <p class="text-muted" style="text-align: center;">&copy; 2015. <a href='#'>About</a> | <a href='/'>Backend</a> | <a href='#'>Terms</a> | <a href='http://wiki.twentyeleven.de'>Help</a> | <a href='http://jira.twentyeleven.de'>Feedback</a></p>
+      <div class="span8" style="background-color: white">
+        <todo id="selectedNote"                             ng-show="loggedIn && mode=='todo'"></todo>
+        <newlist id="selectedTodoList"                      ng-show="loggedIn && mode=='list'"></newlist>
+        <newtodo ng-controller="NewTodoCtrl as newTodoCtrl" ng-show="loggedIn && mode=='newTodo'"></newtodo>
+      </div>
+
+      <div class="span2" style="background-color: white">
+        mode={{mode}}<br> 
+        dirty={{dirty}}<br>
+        currentList={{currentList.id}}
       </div>
     </div>
+  </div>
 
-    <script src="/../static/js/jquery-1.9.1.js"></script>
-    <script src="/../static/js/jquery.cookie.js"></script>
-    <script src="/../static/js/bootstrap.js"></script>
-    <script src="/../static/js/jquery-ui-1.9.2.js"></script>
-    <script src="/../static/js/jquery.form.js"></script>
+  <div id="footer">
+    <div class="container">
+      <p class="text-muted" style="text-align: center;">
+        &copy; 2015. <a href='#'>About</a> | <a href='/'>Backend</a> | <a href='#'>Terms</a> | <a href='http://wiki.twentyeleven.de'>Help</a> | <a href='http://jira.twentyeleven.de'>Feedback</a>
+      </p>
+    </div>
+  </div>
 
-<script>
-$( "#radio" ).buttonset();
-</script>
+  <script src="/../static/js/jquery-1.9.1.js"></script>
+  <script src="/../static/js/jquery.cookie.js"></script>
+  <script src="/../static/js/bootstrap.js"></script>
+  <script src="/../static/js/jquery-ui-1.9.2.js"></script>
+  <script src="/../static/js/jquery.form.js"></script>
+
+  <script>
+			$("#radio").buttonset();
+		</script>
+    
+    
+    <!-- <div id="radio">
+                  <input type="radio" id="radio1" name="radio"><label for="radio1">Choice 1</label>
+                  <input type="radio" id="radio2" name="radio" checked="checked"><label for="radio2">Choice 2</label>
+                  <input type="radio" id="radio3" name="radio"><label for="radio3">Choice 3</label>
+                  </div>-->
 </body>
 </html>

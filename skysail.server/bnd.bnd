@@ -48,7 +48,6 @@ Private-Package:  \
 	de.twenty11.skysail.server.app.profile,\
 	de.twenty11.skysail.server.core.restlet.converter.renderer,\
 	de.twenty11.skysail.server.core.restlet.converter.internal,\
-	de.twenty11.skysail.server.core.osgi.internal,\
 	de.twenty11.skysail.server.core.osgi.internal.listener,\
 	de.twenty11.skysail.server.core.restlet.converter,\
 	de.twenty11.skysail.server.app.sourceconverter,\

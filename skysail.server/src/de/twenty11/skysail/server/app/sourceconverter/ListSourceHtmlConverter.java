@@ -126,7 +126,7 @@ public class ListSourceHtmlConverter extends AbstractSourceConverter implements 
             if (f.getName() instanceof String) {
                 String oldValue = newValue = (String) result.get(f.getName());
                 if (oldValue != null && oldValue.length() > MAX_LENGTH_FOR_TRUNCATED_FIELDS) {
-                    newValue = oldValue.substring(0, MAX_LENGTH_FOR_TRUNCATED_FIELDS - 3) + "...";
+                    newValue = "<span title='"+oldValue+"'>"+oldValue.substring(0, MAX_LENGTH_FOR_TRUNCATED_FIELDS - 3) + "...</span>";
                 }
             }
         }

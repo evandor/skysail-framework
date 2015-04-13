@@ -75,16 +75,6 @@ debug(resource, source, target, messages) ::= <<
                   </div>
                 </div>
                 <div class="panel panel-default">
-                  <div class="panel-heading" role="tab" id="headingAltRepresentations">
-                    <h4 class="panel-title">
-                      <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseAltRepresentations" aria-expanded="false" aria-controls="collapseAltRepresentations">Alternative Representations</a>
-                    </h4>
-                  </div>
-                  <div id="collapseAltRepresentations" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingAltRepresentations">
-                    <div class="panel-body">$altRepresentations(resource)$</div>
-                  </div>
-                </div>
-                <div class="panel panel-default">
                   <div class="panel-heading" role="tab" id="headingTemplates">
                     <h4 class="panel-title">
                       <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTemplates" aria-expanded="false" aria-controls="collapseTemplates">Templates</a>
@@ -113,10 +103,4 @@ debug(resource, source, target, messages) ::= <<
     </div>
     <div class="col-md-1">
   </div>
->>
-
-altRepresentations(resource) ::= <<
-  <ul>
-    $resource.supportedMediaTypes: { mediaType | <li><a href='?media=$mediaType$'>$mediaType$</a></li>}$
-  </ul>
 >>

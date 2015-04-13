@@ -47,7 +47,7 @@ public class TodoList implements Serializable, Identifiable {
     @Field(type = InputType.TEXTAREA, listView = { ListView.TRUNCATE })
     private String desc;
 
-    @Field
+    @Field(type=InputType.READONLY, listView = { ListView.HIDE})
     private Long todosCount;
     
     @Field(type = InputType.READONLY)

@@ -3,27 +3,21 @@ package io.skysail.server.converter.wrapper;
 import io.skysail.api.favorites.FavoritesService;
 import io.skysail.api.links.Link;
 import io.skysail.server.converter.Breadcrumb;
+import io.skysail.server.converter.RepresentationLink;
 import io.skysail.server.restlet.resources.PostEntityServerResource;
 import io.skysail.server.restlet.resources.PutEntityServerResource;
 import io.skysail.server.restlet.resources.SkysailServerResource;
 import io.skysail.server.utils.HeadersUtils;
+import io.skysail.server.utils.ResourceUtils;
 
-import java.io.IOException;
-import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import lombok.extern.slf4j.Slf4j;
 
 import org.restlet.data.Header;
-import org.restlet.data.MediaType;
 import org.restlet.data.Status;
-import org.restlet.engine.Engine;
-import org.restlet.engine.converter.ConverterHelper;
-import org.restlet.engine.resource.VariantInfo;
-import org.restlet.representation.Variant;
-import org.restlet.resource.ServerResource;
 import org.restlet.util.Series;
 
 import de.twenty11.skysail.server.core.restlet.ResourceContextId;
@@ -51,6 +45,13 @@ public class StResourceWrapper {
 
     public List<Breadcrumb> getBreadcrumbs() {
         return new Breadcrumbs(favoritesService).create(resource);
+    }
+
+    public List<RepresentationLink> getRepresentations() {
+        Set<String> supportedMediaTypes = ResourceUtils.getSupportedMediaTypes(resource, resource.getCurrentEntity());
+        return supportedMediaTypes.stream().map(mediaType -> {
+            return new RepresentationLink(mediaType);
+        }).collect(Collectors.toList());
     }
 
     public String getClassname() {
@@ -112,35 +113,7 @@ public class StResourceWrapper {
     }
 
     public Set<String> getSupportedMediaTypes() {
-        List<Variant> supportedVariants = Collections.emptyList();
-        Set<MediaType> supportedMediaTypes = new HashSet<>();
-        if (resource instanceof ServerResource) {
-            supportedVariants = ((ServerResource) resource).getVariants();
-            for (Variant variant : supportedVariants) {
-                supportedMediaTypes.add(variant.getMediaType());
-            }
-        }
-
-        Set<String> mediaTypes = new HashSet<String>();
-        List<ConverterHelper> registeredConverters = Engine.getInstance().getRegisteredConverters();
-        for (ConverterHelper ch : registeredConverters) {
-            List<VariantInfo> variants;
-            try {
-                variants = ch.getVariants(source.getClass());
-                if (variants == null) {
-                    continue;
-                }
-                for (VariantInfo variantInfo : variants) {
-                    if (supportedMediaTypes.contains(variantInfo.getMediaType())) {
-                        String subType = variantInfo.getMediaType().getSubType();
-                        mediaTypes.add(subType.equals("*") ? variantInfo.getMediaType().getName() : subType);
-                    }
-                }
-            } catch (IOException e) {
-                log.error(e.getMessage(), e);
-            }
-        }
-        return mediaTypes;
+        return ResourceUtils.getSupportedMediaTypes(resource, source);
     }
 
     public String getAppNavTitle() {
@@ -187,8 +160,7 @@ public class StResourceWrapper {
         if (target == null) {
             return "";
         }
-        return "<meta http-equiv=\"Refresh\" content=\"0; url="+target+"\" />";
+        return "<meta http-equiv=\"Refresh\" content=\"0; url=" + target + "\" />";
     }
-
 
 }

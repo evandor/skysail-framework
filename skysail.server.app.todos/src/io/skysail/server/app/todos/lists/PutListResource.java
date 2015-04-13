@@ -27,8 +27,11 @@ public class PutListResource extends PutEntityServerResource<TodoList> {
     
     @Override
     public SkysailResponse<?> updateEntity(TodoList entity) {
-        entity.setModified(new Date());
-        app.getRepository().update(listId, entity);
+        TodoList original = getEntity();
+        original.setName(entity.getName());
+        original.setDesc(entity.getDesc());
+        original.setModified(new Date());
+        app.getRepository().update(listId, original);
         return new SkysailResponse<>();
     }
 

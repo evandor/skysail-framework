@@ -1,0 +1,22 @@
+<form name="form" class="form-vertical" ng-submit="updateNote()" ng-keypress="setDirty()">
+  <div class="control-group">
+    <label class="nav-header" style="padding-left: 1px;" for="content">Todo</label>
+    <div class="controls">
+      <input type="text" name="title" ng-model="currentTodo.title" style="width: 100%">
+      <textarea name="desc" rows=4 ng-model="currentTodo.desc" style="width: 100%;"></textarea>
+
+
+      <div>
+        Due: <input type="text" name="due" ng-model="currentTodo.due" style="width: 100%">
+      </div>
+      <div>Created: {{currentTodo.created}}</div>
+      <div>Modified: {{currentTodo.modified}}</div>
+    </div>
+  </div>
+  <div class="control-group">
+    <input class="btn btn-primary" ng-click="updateNote()" ng-show="showUpdateButton()" value="save"
+      style="float: right; margin: 2px;">&nbsp;<span id="actionMessage" style="color: green;"></span> <input
+      class="btn btn-primary" ng-click="addNote()" ng-show="isNewNote" value="save" style="float: right; margin: 2px;">
+    <span id="actionMessage" style="color: green;"></span>
+  </div>
+</form>

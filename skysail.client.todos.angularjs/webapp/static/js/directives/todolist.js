@@ -1,6 +1,6 @@
-todosProduct.directive('todolist', function() {
+todosProduct.directive('lists', function() {
     return {
-        templateUrl: 'views/todolist.html'
+        templateUrl: 'views/lists.html'
     }
 });
 

@@ -2,6 +2,6 @@
 	<i class="icon-folder-open" id="{{list.id}}" x-drag-me title="{{list.id}}" ng-show="list.id==currentList.id"></i>
     <i class="icon-folder-close" id="{{list.id}}" x-drag-me title="{{list.id}}" ng-hide="list.id==currentList.id"></i>
     &nbsp;
-    <span ng-show="list.id==currentList.id">{{list.name | truncate:20}} ({{list.todosCount}}) <a ng-click="editTodoList(list)" style="cursor: pointer" >(edit)</a></span>
+    <span ng-show="list.id==currentList.id">{{list.name | truncate:20}} ({{list.todosCount}}) <a ng-click="editTodoList(list)" style="cursor: pointer" >&nbsp;<i class="icon-edit"></i></a>&nbsp;<a ng-click="deleteList(list)" ng-show="list.todosCount==0" style="cursor: pointer" >&nbsp;<i class="icon-remove-circle"></i></a></span>
     <a title="{{list.name}}" ng-click="setCurrentList(list)" style="cursor: pointer" ng-hide="list.id==currentList.id">{{list.name | truncate:20}} ({{list.todosCount}})</a>
     <br>                    

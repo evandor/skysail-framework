@@ -13,11 +13,10 @@ todosProduct.controller('NewTodoCtrl', function($scope,$http) {
 		 	success(function(data,status,headers,config) {
 		 		if (status != 201) {
 		 			alert("Sorry, there was a problem on the server!")
-		 		} else {
-		 			$scope.mode="empty";
 		 		}
-	 			$scope.getTodoLists()
+	 			$scope.getTodoLists();
 	 			$scope.getTodos();
+	 			$scope.mode="init";
 		 	}).
 		 	error(function(data, status, headers, config){
 	 			addFadingMessage(headers('X-status-reason'), "#actionMessage");

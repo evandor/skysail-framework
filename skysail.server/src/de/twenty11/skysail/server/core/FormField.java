@@ -63,6 +63,8 @@ public class FormField {
 
     private SkysailServerResource<?> resource;
 
+    private Map<String, String> selectionOptions;
+
     public FormField(Field fieldAnnotation, SkysailServerResource<?> resource, Object source, Object entity) {
         this.resource = resource;
         this.name = fieldAnnotation.getName();
@@ -210,6 +212,9 @@ public class FormField {
         if (!isSelectionProvider()) {
             throw new IllegalAccessError("not a selection provider");
         }
+        if (selectionOptions != null) {
+            return selectionOptions;
+        }
         Class<? extends SelectionProvider> selectionProvider = null;
         if (formFieldAnnotation != null) {
             selectionProvider = formFieldAnnotation.selectionProvider();
@@ -227,8 +232,9 @@ public class FormField {
             selection = (SelectionProvider) method.invoke(selectionProvider, new Object[] {});
 
             method = selectionProvider.getMethod("setResource", Resource.class);
-            method.invoke(selectionProvider.newInstance(), resource);
-            return selection.getSelections();
+            method.invoke(selection, resource);
+            selectionOptions = selection.getSelections();
+            return selectionOptions;
         } catch (Exception e) {
             log.error(e.getMessage(), e);
         }

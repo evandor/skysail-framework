@@ -9,6 +9,8 @@ import io.skysail.server.restlet.resources.EntityServerResource;
 
 import java.util.List;
 
+import org.restlet.data.Status;
+
 import de.twenty11.skysail.server.core.restlet.ResourceContextId;
 
 public class ListResource extends EntityServerResource<TodoList> {
@@ -29,9 +31,14 @@ public class ListResource extends EntityServerResource<TodoList> {
 
     @Override
     public SkysailResponse<?> eraseEntity() {
-        // TODO cascade todos (?)
+        TodoList todoList = app.getRepository().getById(TodoList.class, listId);
+        if (todoList.getTodosCount() > 0) {
+            // TODO revisit: make a business violation from that
+            getResponse().setStatus(Status.CLIENT_ERROR_BAD_REQUEST, new IllegalStateException(), "cannot delete list as it is not empty");
+            return new SkysailResponse<String>();
+        }
         app.getRepository().delete(TodoList.class, listId);
-        return null;
+        return new SkysailResponse<String>();
     }
 
     @Override

@@ -31,7 +31,7 @@ todosProduct.controller('AppCtrl', function($scope, $rootScope, $http, $route, $
 		$scope.showUpdateButton()
 	});
 	    
-    /* === Name  ============================================ */
+    /* === Name ============================================ */
     
     $http.get('/usermanagement/currentUser',defaultGetHeadersConfig)
     	.success(function(json) {
@@ -73,6 +73,26 @@ todosProduct.controller('AppCtrl', function($scope, $rootScope, $http, $route, $
 		}
 		return $scope.isNoteUpdate;
 	}
+	
+	$scope.showTodo = function() {
+		return $rootScope.loggedIn && $scope.mode=='todo';
+	}
+	
+	$scope.showNewList = function() {
+		return $rootScope.loggedIn && $scope.mode=='list';
+	}
+	
+	$scope.showNewTodo = function() {
+		return $rootScope.loggedIn && $scope.mode=='newTodo';
+	}
+	
+	$scope.showAddListSign = function () {
+		return $scope.mode!='list' && $scope.mode!='newTodo';
+	}
+
+	$scope.showAddTodoSign = function () {
+		return $scope.currentList != null && $scope.mode!='list' && $scope.mode!='newTodo';
+	}
 
 	/* === List management =========================================== */
 
@@ -109,15 +129,23 @@ todosProduct.controller('AppCtrl', function($scope, $rootScope, $http, $route, $
 	
 	$scope.addTodoList = function() {
 		 var data = JSON.stringify($scope.currentList);
+		 var newId = null;
 		 
 		 $http.post('../Todos/Lists/', data, defaultGetHeadersConfig).
 		 	success(function(data,status,headers,config) {
 		 		if (status != 201) {
 		 			alert("Sorry, there was a problem on the server!")
 		 		} else {
+		 			var segments = headers('Location').split("/");
+		 			newId = "#" + segments[segments.length-1].replace("%3A",":");
 		 			$scope.mode="empty";
+		 			$scope.getTodoLists();
+		 	    	$scope.currentList = {
+		 	    			id: newId,
+		 	    	        name: data.name,
+		 	    	        desc: data.desc
+		 	    	    };
 		 		}
-	 			$scope.getTodoLists()
 		 	}).
 		 	error(function(data, status, headers, config){
 	 			addFadingMessage(headers('X-status-reason'), "#actionMessage");
@@ -127,6 +155,22 @@ todosProduct.controller('AppCtrl', function($scope, $rootScope, $http, $route, $
 	$scope.editTodoList = function() {
     	$scope.mode="list";
     	$scope.isListUpdate=true;
+	};
+	
+	$scope.deleteList = function(list) {
+		if (list === undefined) {
+			return;
+		}
+		var path = '../Todos/Lists/' + list.id.replace("#","");
+		$http.delete(path).
+		 	success(function(data,status,headers,config) {
+	 	    	$scope.currentList = null;
+	 			$scope.getTodoLists();
+	 			// $scope.getTodos();
+		 	}).
+		 	error(function(data,status,headers,config){
+		 		alert("Error (" + status + ") on Server.")
+		 	});
 	};
 
 
@@ -234,33 +278,35 @@ todosProduct.controller('AppCtrl', function($scope, $rootScope, $http, $route, $
 	$scope.dropped = function(dragEl, dropEl) {
 		var droppedTo = angular.element(dropEl);
 		var dragged = angular.element(dragEl);
-		//alert("drag to: folder #" + draggedToFolder[0].id);
-		//alert("drop note #: " + droppedNote[0].id);
+		// alert("drag to: folder #" + draggedToFolder[0].id);
+		// alert("drop note #: " + droppedNote[0].id);
 	
-		//clear the previously applied color, if it exists
+		// clear the previously applied color, if it exists
 		var bgClass = droppedTo.attr('data-color');
 		if (bgClass) {
 			droppedNote.removeClass(bgClass);
 		}
 
-		//add the dragged color
+		// add the dragged color
 		bgClass = dragged.attr("data-color");
 		droppedTo.addClass(bgClass);
 		droppedTo.attr('data-color', bgClass);
 
-		//if element has been dragged from the grid, clear dragged color
+		// if element has been dragged from the grid, clear dragged color
 		if (dragged.attr("x-lvl-drop-target")) {
 			dragged.removeClass(bgClass);
 		}
 		
 		var noteLink = '../notes/notes/' + dragged[0].id;
-		//alert(noteLink)
+		// alert(noteLink)
 		
 		$http.get(noteLink)
 			.success(
 				function(json) { 
-					//var data = "{ \"title\": \""+json.data.title+"\", \"content\": \""+json.data.content+"\", \"parent\":\""+droppedTo[0].id+"\"}";
-					//alert(data);
+					// var data = "{ \"title\": \""+json.data.title+"\",
+					// \"content\": \""+json.data.content+"\",
+					// \"parent\":\""+droppedTo[0].id+"\"}";
+					// alert(data);
 					var data = "title="+json.data.title+"&content="+json.data.content+"&parent="+droppedTo[0].id;
 	                var config = {
 	                 	headers: {'Content-Type': 'application/x-www-form-urlencoded'} 

@@ -54,15 +54,21 @@ public class TodosRepository implements DbRepository {
         params.put("username", username);
         List<TodoList> lists = dbService.findObjects(sql, params);
         for (TodoList list : lists) {
-            sql = "SELECT COUNT(*) as count from " + Todo.class.getSimpleName()
-                    + " WHERE owner= :username AND list= :listId";
-            params = new HashMap<String, Object>();
-            params.put("username", username);
-            params.put("listId", list.getId().replace("#",""));
-            long cnt = dbService.getCount(sql, params);
-            list.setTodosCount(cnt);
+            addCount(username, list);
         }
         return lists;
+    }
+
+    private void addCount(String username, TodoList list) {
+        String sql;
+        Map<String, Object> params;
+        sql = "SELECT COUNT(*) as count from " + Todo.class.getSimpleName()
+                + " WHERE owner= :username AND list= :listId";
+        params = new HashMap<String, Object>();
+        params.put("username", username);
+        params.put("listId", list.getId().replace("#",""));
+        long cnt = dbService.getCount(sql, params);
+        list.setTodosCount(cnt);
     }
 
     public static Object add(Object entity, String... edges) {
@@ -70,7 +76,11 @@ public class TodosRepository implements DbRepository {
     }
 
     public <T> T getById(Class<?> cls, String id) {
-        return dbService.findObjectById(cls, id);
+        T list = dbService.findObjectById(cls, id);
+        if (cls.equals(TodoList.class)) {
+            addCount(((TodoList)list).getOwner(),(TodoList)list);
+        }
+        return list;
     }
 
     public void update(String id, Object entity) {

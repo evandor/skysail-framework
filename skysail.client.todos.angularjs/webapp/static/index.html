@@ -62,14 +62,14 @@
       <!-- Left Navigation (Lists and Todos) -->
       <div class="span2" style="background-color: white;" ng-show="loggedIn">
         <div id="notes" style="border-right: 1px dotted lightgrey;">
-          <div class="nav-header" style="padding-left: 1px;">{{userform.user}}'s Lists <a style="cursor: pointer" ng-click='newTodoList()' ng-hide="mode=='list'">+</a></div>
+          <div class="nav-header" style="padding-left: 1px;">{{userform.user}}'s Lists <a style="cursor: pointer" ng-click='newTodoList()' ng-show="showAddListSign()">+</a></div>
           <div>
-            <todolist ng-repeat="list in lists | orderBy:'title':false"></todolist>
+            <lists ng-repeat="list in lists | orderBy:'title':false"></lists>
           </div>
         </div>
         <div id="notes" style="border-right: 1px dotted lightgrey;">
           <div class="nav-header" style="padding-left: 1px;">
-            Lists Notes <a style="cursor: pointer" ng-click='newTodo()' ng-hide="currentList==null || mode=='newTodo'">+</a>
+            {{currentList.name}} <a style="cursor: pointer" ng-click='newTodo()' ng-show="showAddTodoSign()">+</a>
           </div>
           <div>
             <todos ng-repeat="todo in todos | orderBy:'title':false"></todos>
@@ -78,15 +78,17 @@
       </div>
 
       <div class="span8" style="background-color: white">
-        <todo id="selectedNote"                             ng-show="loggedIn && mode=='todo'"></todo>
-        <newlist id="selectedTodoList"                      ng-show="loggedIn && mode=='list'"></newlist>
-        <newtodo ng-controller="NewTodoCtrl as newTodoCtrl" ng-show="loggedIn && mode=='newTodo'"></newtodo>
+        <!-- main content is one of the following: -->
+        <todo    ng-show="showTodo()" id="selectedNote"></todo>
+        <newlist ng-show="showNewList()" id="selectedTodoList"  ></newlist>
+        <newtodo ng-show="showNewTodo()" ng-controller="NewTodoCtrl as newTodoCtrl"></newtodo>
       </div>
 
       <div class="span2" style="background-color: white">
         mode={{mode}}<br> 
         dirty={{dirty}}<br>
-        currentList={{currentList.id}}
+        currentList={{currentList.id}}<br>
+        currentTodo={{currentTodo.id}}
       </div>
     </div>
   </div>

@@ -22,12 +22,7 @@ public class ListsResource extends ListServerResource<TodoList> {
 
     @Override
     public List<TodoList> getEntity() {
-        List<TodoList> lists = app.getRepository().findAllLists();
-        TodoList rest = new TodoList();
-        rest.setName("uncategorized");
-        rest.setId("null");
-        lists.add(rest);
-        return lists;
+        return app.getRepository().findAllLists();
     }
 
     @Override

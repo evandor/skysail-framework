@@ -1,10 +1,14 @@
 package io.skysail.server.app.todos.todos.status;
 
 import io.skysail.api.forms.SelectionProvider;
+import io.skysail.server.app.todos.todos.Todo;
+import io.skysail.server.restlet.resources.SkysailServerResource;
 
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import org.restlet.resource.Resource;
 
@@ -19,10 +23,14 @@ public class StatusSelectionProvider implements SelectionProvider {
     @Override
     public Map<String, String> getSelections() {
         Map<String, String> result = new HashMap<>();
-        
-        
-        
-        Arrays.stream(Status.values()).forEach(v -> result.put(v.name(), v.name()));
+        List<Status> statuses = Arrays.stream(Status.values()).collect(Collectors.toList());
+        Status status;
+        if (resource != null && resource instanceof SkysailServerResource) {
+            Todo currentEntity = ((SkysailServerResource<Todo>) resource).getCurrentEntity();
+            status = currentEntity.getStatus();
+            statuses = status.getNexts().stream().map(str -> Status.valueOf(str)).collect(Collectors.toList());
+        }
+        statuses.stream().forEach(v -> result.put(v.name(), v.name()));
         return result;
     }
 

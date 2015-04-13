@@ -50,26 +50,11 @@ public class CheckBusinessViolationsFilter<R extends SkysailServerResource<T>, T
             log.info("found {} business validation violation(s): {}", violations.size(), violations.toString());
             responseWrapper.setConstraintViolationResponse(new ConstraintViolationsResponse<T>(response.getRequest()
                     .getOriginalRef(), responseWrapper.getEntity(), violations));
-            T skysailResponse = responseWrapper.getEntity();
-            // skysailResponse.setData(resource.adaptOnError(Status.CLIENT_ERROR_BAD_REQUEST,
-            // entity));
             responseWrapper.setEntity(entity);
             response.setStatus(Status.CLIENT_ERROR_BAD_REQUEST);
             response.getHeaders().add("X-Status-Reason", "Validation failed");
 
             return FilterResult.STOP;
-            // ObjectMapper mapper = new ObjectMapper();
-            // String validationResultJson;
-            // try {
-            // validationResultJson =
-            // mapper.writeValueAsString(ValidationError.fromViolations(violations));
-            // response.setEntity(validationResultJson,
-            // MediaType.APPLICATION_JSON);
-            // } catch (JsonProcessingException e) {
-            // response.setEntity(new StringRepresentation(e.getMessage()));
-            // }
-            // throw new ResourceException(Status.CLIENT_ERROR_BAD_REQUEST,
-            // "Business violations");
         }
         super.doHandle(resource, responseWrapper);
         return FilterResult.CONTINUE;

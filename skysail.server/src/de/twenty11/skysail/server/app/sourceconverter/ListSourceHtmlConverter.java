@@ -1,7 +1,8 @@
 package de.twenty11.skysail.server.app.sourceconverter;
 
-import io.skysail.api.forms.ListView;
+import io.skysail.api.forms.Postfix;
 import io.skysail.api.forms.Prefix;
+import io.skysail.server.forms.ListView;
 import io.skysail.server.restlet.resources.SkysailServerResource;
 
 import java.io.IOException;
@@ -10,7 +11,6 @@ import java.lang.reflect.Method;
 import java.net.URL;
 import java.text.DateFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
@@ -117,20 +117,20 @@ public class ListSourceHtmlConverter extends AbstractSourceConverter implements 
     }
 
     private Object check(Field f, Map<String, Object> result, SkysailServerResource<?> resource) {
-        io.skysail.api.forms.Field fieldAnnotation = f.getAnnotation(io.skysail.api.forms.Field.class);
-        if (fieldAnnotation == null) {
+        ListView listViewAnnotation = f.getAnnotation(io.skysail.server.forms.ListView.class);
+        if (listViewAnnotation == null) {
             return null;
         }
         String newValue = null;
-        if (Arrays.asList(fieldAnnotation.listView()).contains(ListView.TRUNCATE)) {
+        if (listViewAnnotation.truncate() > 3) {
             if (f.getName() instanceof String) {
                 String oldValue = newValue = (String) result.get(f.getName());
-                if (oldValue != null && oldValue.length() > MAX_LENGTH_FOR_TRUNCATED_FIELDS) {
-                    newValue = "<span title='"+oldValue+"'>"+oldValue.substring(0, MAX_LENGTH_FOR_TRUNCATED_FIELDS - 3) + "...</span>";
+                if (oldValue != null && oldValue.length() > listViewAnnotation.truncate()) {
+                    newValue = "<span title='"+oldValue+"'>"+oldValue.substring(0, listViewAnnotation.truncate() - 3) + "...</span>";
                 }
             }
         }
-        if (Arrays.asList(fieldAnnotation.listView()).contains(ListView.LINK)) {
+        //if (listViewAnnotation.link().equals(ListView.DEFAULT)) {
             if (URL.class.equals(f.getType())) {
                 newValue = "<a href='" + result.get(f.getName()).toString() +"' target=\"_blank\">"
                         + newValue + "</a>";
@@ -140,15 +140,15 @@ public class ListSourceHtmlConverter extends AbstractSourceConverter implements 
                 newValue = "<a href='" + originalRef.toString() + "/" + ((String) id).replace("#", "") + "/'>"
                         + newValue + "</a>";
             }
-        }
+        //}
         Prefix prefix = f.getAnnotation(Prefix.class);
         if (newValue != null && prefix != null) {
             newValue = result.get(prefix.methodName()) + "&nbsp;" + newValue;
         }
-//        Postfix postfix = f.getAnnotation(Prefix.class);
-//        if (newValue != null && prefix != null) {
-//            newValue = result.get(prefix.methodName()) + "&nbsp;" + newValue;
-//        }
+        Postfix postfix = f.getAnnotation(Postfix.class);
+        if (newValue != null && postfix != null) {
+            newValue = newValue + "&nbsp;" + result.get(postfix.methodName());
+        }
 
         if (newValue != null) {
             result.put(f.getName(), newValue);

@@ -4,8 +4,8 @@ linkheader(list) ::= <<
   </ul>
 >>
 
-handleSingleLinkheader(linkheader,i) ::= <<
+handleSingleLinkheader(link,i) ::= <<
 
-    <li>$i$. <a href='$linkheader.uri$'>$linkheader.title$</a> $linkheader.rel$</li>
+    <li>$i$. <a href='$link.uri$'>$link.title$</a> $link.rel$ $if(link.refId)$ [Ref#: $link.refId$]$endif$</li>
     
 >>

@@ -1,9 +1,6 @@
 package io.skysail.server.converter.impl;
 
 import io.skysail.api.favorites.FavoritesService;
-import io.skysail.api.forms.ListView;
-import io.skysail.api.forms.PostView;
-import io.skysail.api.forms.Reference;
 import io.skysail.api.links.Link;
 import io.skysail.api.responses.SkysailResponse;
 import io.skysail.server.app.SkysailApplication;
@@ -17,6 +14,7 @@ import io.skysail.server.converter.wrapper.STSourceWrapper;
 import io.skysail.server.converter.wrapper.STTargetWrapper;
 import io.skysail.server.converter.wrapper.STUserWrapper;
 import io.skysail.server.converter.wrapper.StResourceWrapper;
+import io.skysail.server.forms.ListView;
 import io.skysail.server.restlet.resources.EntityServerResource;
 import io.skysail.server.restlet.resources.ListServerResource;
 import io.skysail.server.restlet.resources.PostEntityServerResource;
@@ -312,11 +310,11 @@ public class StringTemplateRenderer {
             return true;
         }
 
-        Reference referenceAnnotation = field.getAnnotation(Reference.class);
-        if (referenceAnnotation != null && (Arrays.asList(referenceAnnotation.postView()).contains(PostView.HIDE))) {
+       // Reference referenceAnnotation = field.getAnnotation(Reference.class);
+       // if (referenceAnnotation != null && (Arrays.asList(referenceAnnotation.postView()).contains(PostView.HIDE))) {
             return false;
-        }
-        return (referenceAnnotation != null);
+//        }
+//        return (referenceAnnotation != null);
     }
 
     private boolean isValidFieldAnnotation(SkysailServerResource<?> resource, Field field, List<String> fieldNames,
@@ -328,9 +326,12 @@ public class StringTemplateRenderer {
             return false;
         }
         if (resource instanceof PostEntityServerResource<?>) {
-            return (!(Arrays.asList(fieldAnnotation.postView()).contains(PostView.HIDE)));
+            // TODO
+            return true;//(!(Arrays.asList(fieldAnnotation.postView()).contains(PostView.HIDE)));
         }
-        return (!(Arrays.asList(fieldAnnotation.listView()).contains(ListView.HIDE)));
+        ListView listViewAnnotation = field.getAnnotation(ListView.class);
+        return !listViewAnnotation.hide();
+        //return (!(Arrays.asList(fieldAnnotation.listView()).contains(ListViewEnum.HIDE)));
     }
 
     public void setMenuProviders(Set<MenuItemProvider> menuProviders) {

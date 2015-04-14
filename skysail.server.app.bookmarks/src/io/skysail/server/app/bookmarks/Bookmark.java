@@ -3,8 +3,9 @@ package io.skysail.server.app.bookmarks;
 import io.skysail.api.domain.Identifiable;
 import io.skysail.api.forms.Field;
 import io.skysail.api.forms.InputType;
-import io.skysail.api.forms.ListView;
 import io.skysail.api.forms.Prefix;
+import io.skysail.server.app.bookmarks.resources.BookmarkResource;
+import io.skysail.server.forms.ListView;
 
 import java.net.MalformedURLException;
 import java.net.URI;
@@ -30,17 +31,17 @@ public class Bookmark implements Identifiable {
     @Id
     private String id;
 
-    @Field(type = InputType.URL, listView = { ListView.TRUNCATE, ListView.LINK })
+    @Field(type = InputType.URL)//, listView = { ListViewEnum.TRUNCATE, ListViewEnum.LINK })
+    @ListView(truncate = 10, link = BookmarkResource.class)
     @Prefix(methodName = "urlPrefix")
     private URL url;
 
-    @Field(listView = { ListView.TRUNCATE, ListView.LINK })
-//    @NotNull
-//    @Size(min = 2)
-   // @UniquePerOwner
+    @Field
+    @ListView(truncate = 10, link = BookmarkResource.class)
     private String name;
 
-    @Field(type = InputType.TEXTAREA, listView = { ListView.TRUNCATE })
+    @Field(type = InputType.TEXTAREA)
+    @ListView(truncate = 10)
     private String desc;
 
     @Field(type = InputType.READONLY)
@@ -49,13 +50,15 @@ public class Bookmark implements Identifiable {
     @Field(type = InputType.READONLY)
     private Date modified;
 
-    @Field(type = InputType.READONLY, listView = { ListView.HIDE })
+    @Field(type = InputType.READONLY)
+    @ListView(hide=true)
     private String owner;
 
     @Field(type = InputType.READONLY)
     private String favicon;
     
-    @Field(type = InputType.READONLY, listView = ListView.HIDE)
+    @Field(type = InputType.READONLY)
+    @ListView(hide=true)
     private String metaDescription;
     
     public Bookmark(String url, String name) throws MalformedURLException {

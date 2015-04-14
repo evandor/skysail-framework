@@ -53,7 +53,7 @@ javac.target:          1.8
 copyright:              Copyright (c) twentyeleven.de (2011, ${tstamp;yyyy}). All Rights Reserved.
 copyright.html:         Copyright &copy; twentyeleven.de (2011, ${tstamp;yyyy}). All Rights Reserved.
 
-skysail.api.version                    '[4.0.0,4.0.1)'
+skysail.api.version                    '[5.0.0,5.0.1)'
 restlet.version                        2.3.1
 guava.version                          16.0
 org.apache.felix.scr.version           1.8.2

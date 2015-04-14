@@ -1,5 +1,8 @@
 package io.skysail.server.app.crm;
 
+import io.skysail.api.forms.Field;
+import io.skysail.api.forms.InputType;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -9,9 +12,6 @@ import javax.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import io.skysail.api.forms.Field;
-import io.skysail.api.forms.InputType;
-import io.skysail.api.forms.ListView;
 
 @Getter
 @Setter
@@ -31,7 +31,7 @@ public class CrmEntity implements Serializable {
         this.created = new Date();
     }
 
-    @Field(type = InputType.READONLY, listView = ListView.HIDE)
+    @Field(type = InputType.READONLY)
     protected String creator;
 
     @NotNull
@@ -41,16 +41,16 @@ public class CrmEntity implements Serializable {
         return creator;
     }
 
-    @Field(type = InputType.READONLY, listView = ListView.HIDE)
+    @Field(type = InputType.READONLY)
     protected Date created;
     //
     // @Field(type = InputType.READONLY)
     // protected Date changed;
 
-    @Field(type = InputType.READONLY, listView = ListView.HIDE)
+    @Field(type = InputType.READONLY)
     protected String changedBy;
 
-    @Field(type = InputType.READONLY, listView = ListView.HIDE)
+    @Field(type = InputType.READONLY)
     protected String owner;
 
 }

@@ -12,8 +12,7 @@ import java.util.Optional;
 
 import javax.validation.constraints.NotNull;
 
-import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 import org.apache.commons.lang.StringUtils;
 import org.apache.shiro.SecurityUtils;
@@ -25,11 +24,17 @@ import org.restlet.util.RouteList;
 import de.twenty11.skysail.server.core.restlet.ApplicationContextId;
 import de.twenty11.skysail.server.core.restlet.ResourceContextId;
 
-@RequiredArgsConstructor
+@Slf4j
 public class Breadcrumbs {
 
-    @NonNull
     private FavoritesService favoritesService;
+    
+    public Breadcrumbs(FavoritesService favoritesService) {
+        if (favoritesService == null) {
+            log.info("favoritesService was null when creating breadcrumbs");
+        }
+        this.favoritesService = favoritesService;
+    }
 
     public List<Breadcrumb> create(@NotNull SkysailServerResource<?> resource) {
         List<Breadcrumb> result = new ArrayList<Breadcrumb>();

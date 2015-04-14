@@ -51,16 +51,4 @@ public @interface Field {
      */
     String encryptWith() default "";
 
-    /**
-     * Defines the way this entity attribute should be displayed in a list view.
-     * 
-     */
-    ListView[] listView() default ListView.SHOW;
-
-    /**
-     * Defines the way this entity attribute should be displayed in the post
-     * view.
-     * 
-     */
-    PostView[] postView() default PostView.SHOW;
 }

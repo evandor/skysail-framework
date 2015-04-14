@@ -3,11 +3,11 @@ package io.skysail.server.app.todos.todos;
 import io.skysail.api.domain.Identifiable;
 import io.skysail.api.forms.Field;
 import io.skysail.api.forms.InputType;
-import io.skysail.api.forms.ListView;
-import io.skysail.api.forms.PostView;
 import io.skysail.api.forms.Reference;
+import io.skysail.server.app.todos.todos.resources.TodoResource;
 import io.skysail.server.app.todos.todos.status.Status;
 import io.skysail.server.app.todos.todos.status.StatusSelectionProvider;
+import io.skysail.server.forms.ListView;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -35,15 +35,17 @@ public class Todo implements Serializable, Identifiable {
     @Id
     private String id;
     
-    @Reference(cls = Todo.class, postView = {PostView.HIDE})
+    @Reference(cls = Todo.class)//, postView = {PostView.HIDE})
     private String list;
 
-    @Field(listView = { ListView.TRUNCATE, ListView.LINK })
+    @Field
+    @ListView(truncate = 10, link = TodoResource.class)
     @NotNull
     @Size(min = 2)
     private String title;
 
-    @Field(type = InputType.TEXTAREA, listView = { ListView.TRUNCATE })
+    @Field(type = InputType.TEXTAREA)
+    @ListView(truncate = 10)
     private String desc;
 
     @Field(type = InputType.DATE)
@@ -58,10 +60,11 @@ public class Todo implements Serializable, Identifiable {
     @Field(type = InputType.READONLY)
     private Integer rank;
 
-    @Field(selectionProvider = StatusSelectionProvider.class, postView = { PostView.HIDE })
+    @Field(selectionProvider = StatusSelectionProvider.class) //, postView = { PostView.HIDE })
     private Status status;
 
-    @Field(type = InputType.READONLY, listView = { ListView.HIDE })
+    @Field(type = InputType.READONLY)
+    @ListView(hide=true)
     private String owner;
 
     // start date, 

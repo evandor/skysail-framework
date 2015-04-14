@@ -3,9 +3,10 @@ package io.skysail.server.app.todos;
 import io.skysail.api.domain.Identifiable;
 import io.skysail.api.forms.Field;
 import io.skysail.api.forms.InputType;
-import io.skysail.api.forms.ListView;
-import io.skysail.api.forms.Prefix;
+import io.skysail.api.forms.Postfix;
 import io.skysail.server.app.todos.lists.UniquePerOwner;
+import io.skysail.server.app.todos.todos.resources.TodosResource;
+import io.skysail.server.forms.ListView;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -38,16 +39,19 @@ public class TodoList implements Serializable, Identifiable {
     @Id
     private String id;
 
-    @Field(listView = { ListView.TRUNCATE, ListView.LINK })
+    //@Field(listView = { ListViewEnum.TRUNCATE, ListViewEnum.LINK })
+    @Field
     @NotNull
     @Size(min = 2)
-    @Prefix(methodName = "todosCount")
+    @Postfix(methodName = "todosCount")
+    @ListView(link = TodosResource.class, truncate = 10)
     private String name;
 
-    @Field(type = InputType.TEXTAREA, listView = { ListView.TRUNCATE })
+    @Field(type = InputType.TEXTAREA)//, listView = { ListViewEnum.TRUNCATE })
     private String desc;
 
-    @Field(type=InputType.READONLY, listView = { ListView.HIDE})
+    @Field(type=InputType.READONLY)//, listView = { ListViewEnum.HIDE})
+    @ListView(hide = true)
     private Long todosCount;
     
     @Field(type = InputType.READONLY)
@@ -56,7 +60,8 @@ public class TodoList implements Serializable, Identifiable {
     @Field(type = InputType.READONLY)
     private Date modified;
 
-    @Field(type = InputType.READONLY, listView = { ListView.HIDE })
+    @Field(type = InputType.READONLY)//, listView = { ListViewEnum.HIDE })
+    @ListView(hide = true)
     private String owner;
 
     public long todosCount() {

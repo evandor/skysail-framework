@@ -1,10 +1,13 @@
 package io.skysail.server.app.crm.companies;
 
+import io.skysail.api.forms.Field;
+import io.skysail.api.forms.InputType;
 import io.skysail.server.app.crm.CrmEntity;
 import io.skysail.server.app.crm.companies.resources.CompanyType;
 import io.skysail.server.app.crm.companies.resources.CompanyTypeSelectionProvider;
 import io.skysail.server.app.crm.companies.resources.IndustryType;
 import io.skysail.server.app.crm.companies.resources.IndustryTypeSelectionProvider;
+import io.skysail.server.forms.ListView;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -12,9 +15,6 @@ import javax.validation.constraints.Size;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import io.skysail.api.forms.Field;
-import io.skysail.api.forms.InputType;
-import io.skysail.api.forms.ListView;
 
 @NoArgsConstructor
 @Getter
@@ -36,7 +36,8 @@ public class Company extends CrmEntity {
     @Field(selectionProvider = CompanyTypeSelectionProvider.class)
     private CompanyType type;
 
-    @Field(selectionProvider = IndustryTypeSelectionProvider.class, listView = ListView.HIDE)
+    @Field(selectionProvider = IndustryTypeSelectionProvider.class)
+    @ListView(hide=true)
     private IndustryType industry;
 
     // private assignedTo, teams, campaign, memberof, SIC Code, Ticker Symbol,

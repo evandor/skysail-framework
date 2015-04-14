@@ -33,7 +33,7 @@ Include-Resource: resources, templates=src;recursive:=true;filter:=*.st|*.stg
 	skysail.api.um;version=latest,\
 	skysail.api.favorites;version=latest,\
 	skysail.api.text;version=latest,\
-	skysail.api.documentation;version=latest,\
+	skysail.api.documentation;version=${skysail.api.documentation.version},\
 	org.apache.commons.beanutils;version=1.9,\
 	org.hibernate.validator;version=5.1,\
 	org.jboss.logging.jboss-logging;version=3.1,\

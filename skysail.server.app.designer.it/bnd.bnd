@@ -7,7 +7,7 @@ Test-Cases: io.skysail.server.app.designer.it.ApplicationsCrudIntegrationTests
 	osgi.core;version=5.0,\
 	skysail.api;version=${skysail.api.version},\
 	skysail.api.validation;version=latest,\
-	skysail.api.documentation;version=latest,\
+	skysail.api.documentation;version=${skysail.api.documentation.version},\
 	skysail.client.testsupport;version=latest,\
 	skysail.server.app.designer;version=latest,\
 	skysail.server.um.internal;version=0.0,\
@@ -120,7 +120,7 @@ Test-Cases: io.skysail.server.app.designer.it.ApplicationsCrudIntegrationTests
 	skysail.api;version=${skysail.api.version},\
 	skysail.api.um;version=latest,\
 	skysail.api.text;version=latest,\
-	skysail.api.documentation;version=latest,\
+	skysail.api.documentation;version=${skysail.api.documentation.version},\
 	skysail.api.validation;version=latest,\
 	skysail.api.features;version=latest,\
 	skysail.api.favorites;version=latest,\

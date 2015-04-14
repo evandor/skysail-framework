@@ -6,7 +6,7 @@ Include-Resource: resources, templates=src;recursive:=true;filter:=*.st|*.stg
 	org.restlet;version=${restlet.version},\
 	skysail.api;version=${skysail.api.version},\
 	skysail.api.validation;version=latest,\
-	skysail.api.documentation;version=latest,\
+	skysail.api.documentation;version=${skysail.api.documentation.version},\
 	skysail.server;version=latest,\
 	slf4j.api;version=1.7,\
 	etm.core;version=1.2,\

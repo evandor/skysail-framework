@@ -10,7 +10,7 @@ Test-Cases: io.skysail.server.app.todos.test.TodoListsCrudIntegrationTests
 	skysail.api.validation;version=latest,\
 	osgi.core;version=5.0,\
 	com.springsource.org.junit;version=4.11,\
-	skysail.api.documentation;version=latest,\
+	skysail.api.documentation;version=${skysail.api.documentation.version},\
 	org.restlet;version=${restlet.version},\
 	skysail.server.um.internal;version=0.0,\
 	de.twentyeleven.skysail.org.json-osgi;version=latest,\
@@ -123,7 +123,7 @@ Test-Cases: io.skysail.server.app.todos.test.TodoListsCrudIntegrationTests
 	skysail.api;version=${skysail.api.version},\
 	skysail.api.um;version=latest,\
 	skysail.api.text;version=latest,\
-	skysail.api.documentation;version=latest,\
+	skysail.api.documentation;version=${skysail.api.documentation.version},\
 	skysail.api.validation;version=latest,\
 	skysail.api.features;version=latest,\
 	skysail.api.favorites;version=latest,\

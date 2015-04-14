@@ -1,4 +1,4 @@
-Bundle-Version: 0.2.1.${tstamp}
+Bundle-Version: 0.2.2.${tstamp}
 Bundle-Name: SKYSAIL :: api :: documentation
 Bundle-Description: an incubator bundle for the skysail documentation API  (which will be moved \
 	to skysail.api once stable)

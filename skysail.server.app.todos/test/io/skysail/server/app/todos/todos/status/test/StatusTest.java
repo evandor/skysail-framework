@@ -33,21 +33,21 @@ public class StatusTest {
     @Test
     public void testNextsOfPlannedStatus() {
         Status newStatus = Status.PLANNED;
-        assertThat(newStatus.getNexts().size(), is(1));
+        assertThat(newStatus.getNexts().size(), is(2));
         checkFollowUpStatuses(newStatus.getNexts());
     }
     
     @Test
     public void testNextsOfPostponedStatus() {
         Status newStatus = Status.POSTPONED;
-        assertThat(newStatus.getNexts().size(), is(1));
+        assertThat(newStatus.getNexts().size(), is(3));
         checkFollowUpStatuses(newStatus.getNexts());
     }
 
     @Test
     public void testNextsOfClosedStatus() {
         Status newStatus = Status.CLOSED;
-        assertThat(newStatus.getNexts().size(), is(0));
+        assertThat(newStatus.getNexts().size(), is(1));
         checkFollowUpStatuses(newStatus.getNexts());
     }
 

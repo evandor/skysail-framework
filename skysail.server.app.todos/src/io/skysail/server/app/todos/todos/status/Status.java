@@ -10,7 +10,12 @@ import lombok.Getter;
 public enum Status {
 
     
-    NEW("NEW", "PLANNED","WIP","POSTPONED"), PLANNED("WIP"), WIP("POSTPONED"), POSTPONED("CLOSED"), CLOSED(), FINISHED();
+    NEW("NEW", "PLANNED","WIP","POSTPONED"), 
+    PLANNED("WIP","CLOSED"), 
+    WIP("POSTPONED"), 
+    POSTPONED("PLANNED", "WIP", "CLOSED"), 
+    CLOSED("FINISHED"), 
+    FINISHED();
     
     private List<String> nexts = new ArrayList<>();
    

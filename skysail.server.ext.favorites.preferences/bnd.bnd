@@ -1,5 +1,5 @@
 Bundle-Version: 0.1.0.${tstamp}
-Bundle-Name: SKYSAIL: server :: ext :: favorites :: preferences
+Bundle-Name: SKYSAIL :: server :: ext :: favorites :: preferences
 Bundle-Description: favorites implementation using the osgi preference service
 -buildpath:  \
 	lombok;version=1.16,\

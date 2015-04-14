@@ -414,6 +414,7 @@ public abstract class SkysailServerResource<T> extends ServerResource {
         if (linkheader == null) {
             return null;
         }
+        getPathSubstitutions().accept(linkheader);
         return linkheader.getUri();
     }
 

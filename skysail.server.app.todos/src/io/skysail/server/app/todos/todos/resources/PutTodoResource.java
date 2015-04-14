@@ -17,6 +17,7 @@ public class PutTodoResource extends PutEntityServerResource<Todo> {
 
     @Override
     protected void doInit() throws ResourceException {
+        super.doInit();
         listId = getAttribute(TodoApplication.LIST_ID);
         todoId = getAttribute(TodoApplication.TODO_ID);
         app = (TodoApplication) getApplication();

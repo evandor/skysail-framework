@@ -32,7 +32,7 @@ public class BookmarksCrudIntegrationTests extends IntegrationTests<BookmarksBro
     
     @Test
     public void new_bookmark_can_be_deleted_by_owner() throws Exception {
-        Reference location = browser.asUser("admin").createBookmark(new Bookmark("http://localhost:2015","home"));
+        Reference location = browser.asUser("admin").createBookmark(new Bookmark("http://localhost:2014","home"));
         String id = location.getLastSegment(true);
         browser.asUser("admin").deleteBookmark(id);
         Representation html = browser.asUser("admin").getBookmarks();

@@ -39,7 +39,7 @@
 
       <div style="float: right; margin: 2px">
         <form class="navbar-form navbar-right" role="form"
-          action="/_login?targetUri=Todos/" method="POST"
+          action="/_login?targetUri=TodosClient/" method="POST"
           ng-hide="loggedIn">
           <input type="text" name="username" placeholder="Email"
             class="form-control"> <input type="password"
@@ -57,7 +57,7 @@
   </div>
 
   <div class="container-fluid" style="padding-left: 10px; padding-right: 30px; height: 100%">
-    <div class="row-fluid" style="border: 1px solid #aaa; background-color: white; padding: 10px; margin-top: 3px; border-radius: 5px; height: 80%">
+    <div class="row-fluid" style="border: 1px solid #aaa; background-color: white; padding: 10px; margin-top: 3px; border-radius: 5px; min-height: 700px;">
 
       <!-- Left Navigation (Lists and Todos) -->
       <div class="span2" style="background-color: white;" ng-show="loggedIn">
@@ -84,13 +84,7 @@
         <newtodo ng-show="showNewTodo()" ng-controller="NewTodoCtrl as newTodoCtrl"></newtodo>
       </div>
 
-      <div class="span2" style="background-color: white">
-        mode={{mode}}<br> 
-        dirty={{dirty}}<br>
-        currentList={{currentList.id}}<br>
-        currentTodo={{currentTodo.id}}
-        
-        
+      <div class="span2" style="background-color: white;text-align:right">
         <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
         <!-- todos.prod.skysail.io -->
         <ins class="adsbygoogle"
@@ -100,8 +94,6 @@
         <script>
         (adsbygoogle = window.adsbygoogle || []).push({});
         </script>
-        
-        
       </div>
     </div>
   </div>
@@ -130,5 +122,11 @@
                   <input type="radio" id="radio2" name="radio" checked="checked"><label for="radio2">Choice 2</label>
                   <input type="radio" id="radio3" name="radio"><label for="radio3">Choice 3</label>
                   </div>-->
+                  
+<!--         mode={{mode}}<br> 
+        dirty={{dirty}}<br>
+        currentList={{currentList.id}}<br>
+        currentTodo={{currentTodo.id}}-->
+                  
 </body>
 </html>

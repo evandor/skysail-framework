@@ -11,7 +11,7 @@ import org.restlet.data.Form;
 public class IntegrationTests {
 
     private static final String HOST = "http://localhost";
-    private static final String PORT = "2015";
+    private static final String PORT = "2014";
 
     protected Bundle thisBundle = FrameworkUtil.getBundle(this.getClass());
     protected Form form;

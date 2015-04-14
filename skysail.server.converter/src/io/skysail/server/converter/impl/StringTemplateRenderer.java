@@ -330,7 +330,10 @@ public class StringTemplateRenderer {
             return true;//(!(Arrays.asList(fieldAnnotation.postView()).contains(PostView.HIDE)));
         }
         ListView listViewAnnotation = field.getAnnotation(ListView.class);
-        return !listViewAnnotation.hide();
+        if (listViewAnnotation == null) {
+            return true;
+        }
+        return  !listViewAnnotation.hide();
         //return (!(Arrays.asList(fieldAnnotation.listView()).contains(ListViewEnum.HIDE)));
     }
 

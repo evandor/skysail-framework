@@ -39,12 +39,11 @@ public class TodoList implements Serializable, Identifiable {
     @Id
     private String id;
 
-    //@Field(listView = { ListViewEnum.TRUNCATE, ListViewEnum.LINK })
     @Field
     @NotNull
     @Size(min = 2)
     @Postfix(methodName = "todosCount")
-    @ListView(link = TodosResource.class, truncate = 10)
+    @ListView(link = TodosResource.class, truncate = 20)
     private String name;
 
     @Field(type = InputType.TEXTAREA)//, listView = { ListViewEnum.TRUNCATE })

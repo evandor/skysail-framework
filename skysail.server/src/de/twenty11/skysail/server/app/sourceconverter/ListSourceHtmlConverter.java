@@ -2,6 +2,7 @@ package de.twenty11.skysail.server.app.sourceconverter;
 
 import io.skysail.api.forms.Postfix;
 import io.skysail.api.forms.Prefix;
+import io.skysail.api.links.Link;
 import io.skysail.server.forms.ListView;
 import io.skysail.server.restlet.resources.SkysailServerResource;
 
@@ -23,7 +24,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.restlet.data.Language;
 import org.restlet.data.MediaType;
 import org.restlet.data.Preference;
-import org.restlet.data.Reference;
 
 import aQute.bnd.annotation.component.Component;
 
@@ -37,7 +37,6 @@ import de.twenty11.skysail.server.app.AbstractSourceConverter;
 @Slf4j
 public class ListSourceHtmlConverter extends AbstractSourceConverter implements SourceConverter {
 
-    private static final int MAX_LENGTH_FOR_TRUNCATED_FIELDS = 20;
     private ObjectMapper mapper = new ObjectMapper();
 
     public ListSourceHtmlConverter() {
@@ -126,21 +125,28 @@ public class ListSourceHtmlConverter extends AbstractSourceConverter implements 
             if (f.getName() instanceof String) {
                 String oldValue = newValue = (String) result.get(f.getName());
                 if (oldValue != null && oldValue.length() > listViewAnnotation.truncate()) {
-                    newValue = "<span title='"+oldValue+"'>"+oldValue.substring(0, listViewAnnotation.truncate() - 3) + "...</span>";
+                    newValue = "<span title='" + oldValue + "'>"
+                            + oldValue.substring(0, listViewAnnotation.truncate() - 3) + "...</span>";
                 }
             }
         }
-        //if (listViewAnnotation.link().equals(ListView.DEFAULT)) {
-            if (URL.class.equals(f.getType())) {
-                newValue = "<a href='" + result.get(f.getName()).toString() +"' target=\"_blank\">"
-                        + newValue + "</a>";
-            } else {
-                Reference originalRef = resource.getRequest().getOriginalRef();
-                Object id = result.get("id") != null ? result.get("id") : "wo";
-                newValue = "<a href='" + originalRef.toString() + "/" + ((String) id).replace("#", "") + "/'>"
-                        + newValue + "</a>";
+        if (URL.class.equals(f.getType())) {
+            newValue = "<a href='" + result.get(f.getName()).toString() + "' target=\"_blank\">" + newValue + "</a>";
+        } else {
+            Class<? extends SkysailServerResource<?>> linkedResource = listViewAnnotation.link();
+            if (linkedResource != null) {
+                List<Link> links = resource.getLinkheader();
+                String id = result.get("id") != null ? result.get("id").toString().replace("#", "") : null;
+                if (links != null && id != null) {
+                    Optional<Link> findFirst = links.stream().filter(l -> {
+                        return id.equals(l.getRefId());
+                    }).findFirst();
+                    if (findFirst.isPresent()) {
+                        newValue = "<a href='" + findFirst.get().getUri() + "/'>" + newValue + "</a>";
+                    }
+                }
             }
-        //}
+        }
         Prefix prefix = f.getAnnotation(Prefix.class);
         if (newValue != null && prefix != null) {
             newValue = result.get(prefix.methodName()) + "&nbsp;" + newValue;

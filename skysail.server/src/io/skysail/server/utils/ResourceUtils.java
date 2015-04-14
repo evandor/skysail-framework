@@ -1,6 +1,7 @@
 package io.skysail.server.utils;
 
 import io.skysail.server.restlet.resources.EntityServerResource;
+import io.skysail.server.restlet.resources.SkysailServerResource;
 
 import java.io.IOException;
 import java.util.Collections;
@@ -35,6 +36,19 @@ public class ResourceUtils {
         return null;
     }
 
+    public static SkysailServerResource<?> createSkysailServerResource(Class<? extends SkysailServerResource<?>> resourceClass,
+            SkysailServerResource<?> resource) {
+        SkysailServerResource<?> newInstance;
+        try {
+            newInstance = resourceClass.newInstance();
+            newInstance.init(resource.getContext(), resource.getRequest(), resource.getResponse());
+            newInstance.release();
+            return newInstance;
+        } catch (InstantiationException | IllegalAccessException e) {
+            log.error(e.getMessage(), e);
+        }
+        return null;
+    }
     public static Set<String> getSupportedMediaTypes(Resource resource, Object entity) {
         List<Variant> supportedVariants = Collections.emptyList();
         Set<MediaType> supportedMediaTypes = new HashSet<>();
@@ -66,5 +80,7 @@ public class ResourceUtils {
         }
         return mediaTypes;
     }
+
+  
 
 }

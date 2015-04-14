@@ -159,8 +159,12 @@ public class ApplicationList implements ApplicationListProvider {
     }
 
     private void detachFromComponent(SkysailApplication application) {
-        skysailComponent.getDefaultHost().detach(application);
-        skysailComponent.getInternalRouter().detach(application);
+        if (skysailComponent.getDefaultHost() != null) {
+            skysailComponent.getDefaultHost().detach(application);
+        }
+        if (skysailComponent.getInternalRouter() != null) {
+            skysailComponent.getInternalRouter().detach(application);
+        }
     }
 
     public void detach(Application app, SkysailComponent restletComponent) {

@@ -26,28 +26,28 @@ public class StatusTest {
     @Test
     public void testNextsOfWipStatus() {
         Status newStatus = Status.WIP;
-        assertThat(newStatus.getNexts().size(), is(1));
+        assertThat(newStatus.getNexts().size(), is(2));
         checkFollowUpStatuses(newStatus.getNexts());
     }
 
     @Test
     public void testNextsOfPlannedStatus() {
         Status newStatus = Status.PLANNED;
-        assertThat(newStatus.getNexts().size(), is(2));
+        assertThat(newStatus.getNexts().size(), is(3));
         checkFollowUpStatuses(newStatus.getNexts());
     }
     
     @Test
     public void testNextsOfPostponedStatus() {
         Status newStatus = Status.POSTPONED;
-        assertThat(newStatus.getNexts().size(), is(3));
+        assertThat(newStatus.getNexts().size(), is(4));
         checkFollowUpStatuses(newStatus.getNexts());
     }
 
     @Test
     public void testNextsOfClosedStatus() {
         Status newStatus = Status.CLOSED;
-        assertThat(newStatus.getNexts().size(), is(1));
+        assertThat(newStatus.getNexts().size(), is(2));
         checkFollowUpStatuses(newStatus.getNexts());
     }
 

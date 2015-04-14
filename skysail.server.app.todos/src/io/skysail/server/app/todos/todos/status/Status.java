@@ -11,10 +11,10 @@ public enum Status {
 
     
     NEW("NEW", "PLANNED","WIP","POSTPONED"), 
-    PLANNED("WIP","CLOSED"), 
-    WIP("POSTPONED"), 
-    POSTPONED("PLANNED", "WIP", "CLOSED"), 
-    CLOSED("FINISHED"), 
+    PLANNED("PLANNED", "WIP","CLOSED"), 
+    WIP("WIP", "POSTPONED"), 
+    POSTPONED("POSTPONED", "PLANNED", "WIP", "CLOSED"), 
+    CLOSED("CLOSED", "FINISHED"), 
     FINISHED();
     
     private List<String> nexts = new ArrayList<>();

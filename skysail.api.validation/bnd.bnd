@@ -13,7 +13,6 @@ Bundle-Description: an incubator bundle for the skysail validation API  (which w
 Export-Package:  \
 	io.skysail.api.validation
 Private-Package:  \
-	io.skysail.api.validation.hibernate,\
-	io.skysail.api.validation.hibernate.it
+	io.skysail.api.validation.hibernate
 Service-Component:  \
 	*

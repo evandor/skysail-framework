@@ -1,7 +1,7 @@
 package io.skysail.api.domain;
 
 /**
- * used as common interface for (persistable) entities (with a single
+ * used as common interface for (potentially persistable) entities (with a single
  * identity field called "id").
  * 
  */

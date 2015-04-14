@@ -3,6 +3,7 @@ Bundle-Name: SKYSAIL :: api :: um
 Bundle-Description: an incubator bundle for the skysail usermanagement API  (which will be moved \
 	to skysail.api once stable) together with default implementations
 -buildpath:  \
+	skysail.api;version=${skysail.api.version},\
 	biz.aQute.bnd.annotation;version=2.4,\
 	javax.validation.api;version=1.1,\
 	org.hibernate.validator;version=5.0,\
@@ -12,13 +13,10 @@ Bundle-Description: an incubator bundle for the skysail usermanagement API  (whi
 	osgi.core;version=5.0,\
 	org.restlet;version=${restlet.version},\
 	lombok;version=1.16,\
-	org.mockito.mockito-all;version=1.9,\
-	skysail.api;version=${skysail.api.version}
+	org.mockito.mockito-all;version=1.9
 
 Service-Component:  \
 	*
-#Test-Cases:  \
-#	io.skysail.api.validation.hibernate.it.ValidationIntegrationTests
 	
 -runfw: org.apache.felix.framework;version='[4,5)'
 -runee: JavaSE-1.8

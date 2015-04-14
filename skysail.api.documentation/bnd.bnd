@@ -13,11 +13,10 @@ Bundle-Description: an incubator bundle for the skysail documentation API  (whic
 	org.restlet;version=${restlet.version}
 Export-Package:  \
 	io.skysail.api.documentation
+
 Service-Component:  \
 	*
-#Test-Cases:  \
-#	io.skysail.api.validation.hibernate.it.ValidationIntegrationTests
-	
+		
 -runfw: org.apache.felix.framework;version='[4,5)'
 -runee: JavaSE-1.8
 -runsystemcapabilities: ${native_capability}
@@ -44,7 +43,6 @@ Service-Component:  \
 	ch.qos.logback.classic;version='[1.1.2,1.1.3)',\
 	ch.qos.logback.core;version='[1.1.2,1.1.3)',\
 	classmate;version='[1.0.0,1.0.1)',\
-	com.springsource.org.junit;version='[4.11.0,4.11.1)',\
 	javax.el-api;version='[3.0.0,3.0.1)',\
 	javax.validation.api;version='[1.1.0,1.1.1)',\
 	org.apache.felix.configadmin;version='[1.8.0,1.8.1)',\

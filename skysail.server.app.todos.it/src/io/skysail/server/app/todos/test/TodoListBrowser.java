@@ -16,7 +16,7 @@ import org.restlet.representation.Representation;
 public class TodoListBrowser extends ApplicationBrowser<TodoListBrowser, TodoList> {
 
     public TodoListBrowser(MediaType mediaType) {
-        super(TodoApplication.APP_NAME, mediaType);
+        super(TodoApplication.APP_NAME, mediaType, "2014");
     }
 
     protected String createTodoList(TodoList todoList) {

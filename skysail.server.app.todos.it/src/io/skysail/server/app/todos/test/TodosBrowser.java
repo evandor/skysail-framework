@@ -16,7 +16,7 @@ import org.restlet.representation.Representation;
 public class TodosBrowser extends ApplicationBrowser<TodosBrowser, Todo> {
 
     public TodosBrowser(MediaType mediaType) {
-        super(TodoApplication.APP_NAME, mediaType);
+        super(TodoApplication.APP_NAME, mediaType, "2014");
     }
 
     protected Form createForm(Todo todo) {

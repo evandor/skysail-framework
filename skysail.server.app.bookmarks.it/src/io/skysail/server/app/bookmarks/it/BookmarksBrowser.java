@@ -15,8 +15,8 @@ import org.restlet.representation.Representation;
 @Slf4j
 public class BookmarksBrowser extends ApplicationBrowser<BookmarksBrowser, Bookmark> {
 
-    public BookmarksBrowser(MediaType mediaType) {
-        super(BookmarksApplication.APP_NAME, mediaType);
+    public BookmarksBrowser(MediaType mediaType, String port) {
+        super(BookmarksApplication.APP_NAME, mediaType, port);
     }
 
     @Override

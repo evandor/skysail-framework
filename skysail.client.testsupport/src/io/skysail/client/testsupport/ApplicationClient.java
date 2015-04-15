@@ -26,7 +26,7 @@ import org.restlet.util.Series;
 @Slf4j
 public class ApplicationClient<T> {
 
-    public static final String TESTTAG = " > TEST: \n\n";
+    public static final String TESTTAG = " > TEST: ";
 
     private String baseUrl;
     private String credentials;

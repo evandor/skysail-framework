@@ -1,6 +1,7 @@
 package io.skysail.server.http;
 
 import java.io.IOException;
+import java.net.ServerSocket;
 import java.util.Dictionary;
 import java.util.Hashtable;
 import java.util.List;
@@ -37,7 +38,7 @@ import de.twenty11.skysail.server.services.RestletServicesProvider;
 @Component(immediate = true, configurationPolicy = ConfigurationPolicy.optional, properties = { "event.topics=de/twenty11/skysail/server/configuration/UPDATED" })
 @Slf4j
 public class HttpServer extends ServerResource implements RestletServicesProvider, SkysailComponentProvider,
-        ManagedService {
+        ManagedService, PortProvider {
 
     private static final String DEFAULT_PORT = "2015";
 
@@ -53,6 +54,8 @@ public class HttpServer extends ServerResource implements RestletServicesProvide
     private volatile boolean configurationProvided = false;
 
     private Thread loggerThread;
+
+    private String runningOnPort;
 
     public HttpServer() {
         Engine.setRestletLogLevel(Level.ALL);
@@ -141,11 +144,37 @@ public class HttpServer extends ServerResource implements RestletServicesProvide
         if (properties != null) {
             log.info("configuration was provided");
             configurationProvided = true;
-            String port = (String) properties.get("port");
-            if (!serverActive && port != null) {
-                startHttpServer(port);
+            runningOnPort = (String) properties.get("port");
+            if (!serverActive && runningOnPort != null) {
+                if (runningOnPort.equals("0")) {
+                    runningOnPort = findAvailablePort();
+                }
+                startHttpServer(runningOnPort);
             }
         }
+    }
+
+    @Override
+    public String getPort() {
+        return runningOnPort;
+    }
+    
+    private String findAvailablePort() {
+        ServerSocket socket = null;
+        try {
+            socket = new ServerSocket(0);
+            return Integer.valueOf(socket.getLocalPort()).toString();
+        } catch (IOException e) {
+            log.error(e.getMessage(), e);
+        } finally {
+            if (socket != null) {
+                try {
+                    socket.close();
+                } catch (IOException e) {
+                }
+            }
+        }
+        return null;
     }
 
     @Override

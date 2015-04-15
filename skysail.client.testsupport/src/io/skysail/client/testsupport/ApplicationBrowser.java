@@ -19,12 +19,12 @@ public abstract class ApplicationBrowser<T extends ApplicationBrowser<?, U>, U> 
     private Integer port = 2014;
 
     public ApplicationBrowser(String url) {
-        this(url, MediaType.TEXT_HTML);
+        this(url, MediaType.TEXT_HTML, "2014");
     }
 
-    public ApplicationBrowser(String appName, MediaType mediaType) {
+    public ApplicationBrowser(String appName, MediaType mediaType, String port) {
         this.mediaType = mediaType;
-        String url = getBaseUrl();
+        String url = HOST + ":" + port;
         log.info("{}creating new browser client with url '{}' for Application '{}' and mediaType '{}'", ApplicationClient.TESTTAG,
                 url, appName, MediaType.TEXT_HTML);
         client = new ApplicationClient<U>(url, appName, mediaType);
@@ -32,8 +32,8 @@ public abstract class ApplicationBrowser<T extends ApplicationBrowser<?, U>, U> 
 
     abstract protected Form createForm(U entity);
     
-    public void setPort(Integer port) {
-        this.port = port;
+    public void setPort(String port) {
+        this.port = Integer.parseInt(port);
     }
 
     protected String getBaseUrl() {

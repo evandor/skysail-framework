@@ -93,7 +93,7 @@
 	skysail.api.text;version=latest,\
 	skysail.api.validation;version=latest,\
 	skysail.api.features;version=latest,\
-	skysail.api.favorites;version=latest,\
+	skysail.api.favorites;version=${skysail.api.favorites.version},\
 	skysail.server;version=latest,\
 	skysail.server.converter;version=latest,\
 	skysail.server.app.intro;version=latest,\

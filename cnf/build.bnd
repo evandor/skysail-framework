@@ -55,6 +55,7 @@ copyright.html:         Copyright &copy; twentyeleven.de (2011, ${tstamp;yyyy}).
 
 skysail.api.version                    '[5.0.0,5.0.1)'
 skysail.api.documentation.version      '[0.2,0.3)'
+skysail.api.favorites.version          '[0.1,0.2)'
 restlet.version                        2.3.1
 guava.version                          16.0
 org.apache.felix.scr.version           1.8.2

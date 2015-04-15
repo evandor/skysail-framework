@@ -18,4 +18,6 @@ Bundle-Description: provides the skysail http server
 	org.restlet.ext.slf4j;version=2.1,\
 	lombok;version=1.16
 Private-Package:  \
+	io.skysail.server.http.impl
+Export-Package:  \
 	io.skysail.server.http

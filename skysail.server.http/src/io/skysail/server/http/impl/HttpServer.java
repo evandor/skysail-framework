@@ -1,6 +1,7 @@
-package io.skysail.server.http;
+package io.skysail.server.http.impl;
 
 import java.io.IOException;
+import java.net.ServerSocket;
 import java.util.Dictionary;
 import java.util.Hashtable;
 import java.util.List;
@@ -54,6 +55,8 @@ public class HttpServer extends ServerResource implements RestletServicesProvide
 
     private Thread loggerThread;
 
+    private Integer port;
+
     public HttpServer() {
         Engine.setRestletLogLevel(Level.ALL);
     }
@@ -95,6 +98,12 @@ public class HttpServer extends ServerResource implements RestletServicesProvide
 
         this.componentContext = null;
     }
+    
+    //@Override
+    public Integer getPort() {
+        return port;
+    }
+
 
     // --- ConfigurationAdmin ------------------------------------------------
 
@@ -139,12 +148,31 @@ public class HttpServer extends ServerResource implements RestletServicesProvide
     public void updated(Dictionary<String, ?> properties) {
         HttpServer.properties = properties;
         if (properties != null) {
-            log.info("configuration was provided");
+            log.info("http server configuration was provided");
             configurationProvided = true;
             String port = (String) properties.get("port");
             if (!serverActive && port != null) {
-                startHttpServer(port);
+                if (port.equals("0")) {
+                    try {
+                        log.info("finding random open port as the configuration was set to port=0");
+                        Integer randomPort = findRandomOpenPortOnAllLocalInterfaces();
+                        this.port = randomPort;
+                        startHttpServer(randomPort.toString());
+                    } catch (IOException e) {
+                        log.error(e.getMessage(),e);
+                    }
+                } else {
+                    this.port = Integer.valueOf(port);
+                    startHttpServer(port);
+                }
             }
+        }
+    }
+
+    private Integer findRandomOpenPortOnAllLocalInterfaces() throws IOException {
+        try (ServerSocket socket = new ServerSocket(0);) {
+            return socket.getLocalPort();
+
         }
     }
 
@@ -218,4 +246,5 @@ public class HttpServer extends ServerResource implements RestletServicesProvide
 
     }
 
+    
 }

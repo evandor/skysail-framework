@@ -11,12 +11,12 @@ import org.restlet.data.Status;
 public abstract class ApplicationBrowser<T extends ApplicationBrowser<?, U>, U> {
 
     protected static final String HOST = "http://localhost";
-    protected static final String PORT = "2014";
 
     protected MediaType mediaType;
     protected ApplicationClient<U> client;
 
     private String defaultUser = null;
+    private Integer port = 2014;
 
     public ApplicationBrowser(String url) {
         this(url, MediaType.TEXT_HTML);
@@ -31,9 +31,13 @@ public abstract class ApplicationBrowser<T extends ApplicationBrowser<?, U>, U> 
     }
 
     abstract protected Form createForm(U entity);
+    
+    public void setPort(Integer port) {
+        this.port = port;
+    }
 
-    protected static String getBaseUrl() {
-        return HOST + (PORT != null ? ":" + PORT : "");
+    protected String getBaseUrl() {
+        return HOST + (port != null ? ":" + port : "");
     }
 
     protected void login() {

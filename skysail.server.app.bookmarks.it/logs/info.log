@@ -1,0 +1,58 @@
+INFO  [d.t.s.s.c.restlet.SkysailConverterHelper     ] - initializing new converter 'ServerSentEventsConverter' with typesMatch '{text/event-stream=1.0}'
+INFO  [io.skysail.server.app.ApplicationList        ] - (+) Adding application 'root'
+INFO  [io.skysail.server.db.DbConfigurations        ] - activating DbConfigurations with config DbConfig(name=skysailgraph, driver=, url=memory:bookmarks, username=admin)
+INFO  [i.s.s.f.repositories.FeaturesRepository      ] - activating FeaturesRepository with config {service.pid=io.skysail.server.features.repositories.FeaturesRepository, de.twenty11.skysail.server.core.restlet.SecurityFeatures.ALLOW_ORIGIN_FEATURE=true, component.name=io.skysail.server.features.repositories.FeaturesRepository, felix.fileinstall.filename=file:/Users/carsten/git/skysail-framework/skysail.server.app.bookmarks.it/config/test/io.skysail.server.features.repositories.FeaturesRepository.cfg, component.id=12}
+INFO  [io.skysail.server.app.ApplicationList        ] - (+) Adding application 'webapp'
+INFO  [io.skysail.server.app.ApplicationList        ] - (+) Adding application 'Bookmarks'
+INFO  [io.skysail.server.http.impl.HttpServer       ] - Activating io.skysail.server.http.impl.HttpServer
+INFO  [d.t.skysail.server.SkysailComponent          ] - Creating Restlet Component: de.twenty11.skysail.server.SkysailComponent
+INFO  [io.skysail.server.app.ApplicationList        ] - (+) Adding application 'plugins'
+INFO  [io.skysail.server.app.ApplicationList        ] - (+) Adding application 'static'
+INFO  [i.s.s.u.s.a.SimpleUserManagementApplication  ] - instanciating new UserManagementApplication #1630413241
+INFO  [io.skysail.server.app.ApplicationList        ] - (+) Adding application 'usermanagement'
+INFO  [i.s.client.testsupport.IntegrationTests      ] - 
+INFO  [i.s.client.testsupport.IntegrationTests      ] - --------------------------------------------
+INFO  [i.s.client.testsupport.IntegrationTests      ] -  > TEST: 
+
+running test 'new_bookmark_can_be_deleted_by_owner'
+INFO  [i.s.client.testsupport.IntegrationTests      ] - --------------------------------------------
+INFO  [i.s.client.testsupport.IntegrationTests      ] - 
+INFO  [i.s.c.testsupport.ApplicationBrowser         ] -  > TEST: 
+
+creating new browser client with url 'http://localhost' for Application 'Bookmarks' and mediaType 'text/html'
+INFO  [i.s.s.a.b.i.BookmarksCrudIntegrationTests    ] - setting up test case...
+INFO  [i.s.s.a.b.i.BookmarksCrudIntegrationTests    ] - setting test port to null
+INFO  [i.s.c.testsupport.ApplicationBrowser         ] -  > TEST: 
+
+logging in as user 'admin'
+INFO  [org.restlet                                  ] - Starting the internal HTTP client
+INFO  [org.restlet                                  ] - A recoverable error was detected (1000), attempting again in 2000 ms.
+INFO  [org.restlet                                  ] - A recoverable error was detected (1000), attempting again in 2000 ms.
+INFO  [i.s.client.testsupport.IntegrationTests      ] - 
+INFO  [i.s.client.testsupport.IntegrationTests      ] - --------------------------------------------
+INFO  [i.s.client.testsupport.IntegrationTests      ] -  > TEST: 
+
+running test 'creating_bookmarks_persists_it'
+INFO  [i.s.client.testsupport.IntegrationTests      ] - --------------------------------------------
+INFO  [i.s.client.testsupport.IntegrationTests      ] - 
+INFO  [i.s.c.testsupport.ApplicationBrowser         ] -  > TEST: 
+
+creating new browser client with url 'http://localhost' for Application 'Bookmarks' and mediaType 'text/html'
+INFO  [i.s.s.a.b.i.BookmarksCrudIntegrationTests    ] - setting up test case...
+INFO  [i.s.s.a.b.i.BookmarksCrudIntegrationTests    ] - setting test port to null
+INFO  [i.s.c.testsupport.ApplicationBrowser         ] -  > TEST: 
+
+logging in as user 'admin'
+INFO  [org.restlet                                  ] - Starting the internal HTTP client
+INFO  [org.restlet                                  ] - A recoverable error was detected (1000), attempting again in 2000 ms.
+INFO  [io.skysail.server.http.impl.HttpServer       ] - creating default configuration after waiting for 5000ms for provided configuration
+INFO  [io.skysail.server.http.impl.HttpServer       ] - Deactivating io.skysail.server.http.impl.HttpServer
+INFO  [io.skysail.server.http.impl.HttpServer       ] - Activating io.skysail.server.http.impl.HttpServer
+INFO  [io.skysail.server.http.impl.HttpServer       ] - configuration was provided
+INFO  [io.skysail.server.http.impl.HttpServer       ] - 
+INFO  [io.skysail.server.http.impl.HttpServer       ] - ====================================
+INFO  [io.skysail.server.http.impl.HttpServer       ] - Starting skysail server on port 2015
+INFO  [io.skysail.server.http.impl.HttpServer       ] - ====================================
+INFO  [io.skysail.server.http.impl.HttpServer       ] - 
+INFO  [org.restlet                                  ] - Starting the internal [HTTP/1.1] server on port 2015
+INFO  [org.restlet                                  ] - A recoverable error was detected (1000), attempting again in 2000 ms.

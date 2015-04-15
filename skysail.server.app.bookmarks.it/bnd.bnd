@@ -26,7 +26,8 @@ Private-Package:  \
 	javax.persistence;version=2.1,\
 	javassist;version=3.18,\
 	skysail.api;version=${skysail.api.version},\
-	skysail.server.app.bookmarks;version=latest
+	skysail.server.app.bookmarks;version=latest,\
+	skysail.server.http;version=latest
 	
 -runfw: org.apache.felix.framework;version='[4,5)'
 -runee: JavaSE-1.8
@@ -121,7 +122,7 @@ Private-Package:  \
 	skysail.api.documentation;version=${skysail.api.documentation.version},\
 	skysail.api.validation;version=latest,\
 	skysail.api.features;version=latest,\
-	skysail.api.favorites;version=latest,\
+	skysail.api.favorites;version=${skysail.api.favorites.version},\
 	skysail.client.testsupport;version=latest,\
 	skysail.server;version=latest,\
 	skysail.server.app.bookmarks;version=latest,\

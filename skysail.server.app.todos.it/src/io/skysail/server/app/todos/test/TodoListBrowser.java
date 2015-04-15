@@ -15,8 +15,8 @@ import org.restlet.representation.Representation;
 @Slf4j
 public class TodoListBrowser extends ApplicationBrowser<TodoListBrowser, TodoList> {
 
-    public TodoListBrowser(MediaType mediaType) {
-        super(TodoApplication.APP_NAME, mediaType, "2014");
+    public TodoListBrowser(MediaType mediaType, String port) {
+        super(TodoApplication.APP_NAME, mediaType, port);
     }
 
     protected String createTodoList(TodoList todoList) {

@@ -5,12 +5,10 @@ import static org.hamcrest.CoreMatchers.not;
 import static org.junit.Assert.assertThat;
 import io.skysail.client.testsupport.IntegrationTests;
 import io.skysail.server.app.bookmarks.Bookmark;
-import io.skysail.server.http.PortProvider;
 import lombok.extern.slf4j.Slf4j;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.osgi.framework.ServiceReference;
 import org.restlet.data.MediaType;
 import org.restlet.data.Reference;
 import org.restlet.representation.Representation;
@@ -24,11 +22,7 @@ public class BookmarksCrudIntegrationTests extends IntegrationTests<BookmarksBro
     
     @Before
     public void setUp() {
-        log.info("setting up test case...");
-        ServiceReference<PortProvider> serviceReference = this.thisBundle.getBundleContext().getServiceReference(PortProvider.class);
-        PortProvider service = thisBundle.getBundleContext().getService(serviceReference);
-        log.info("setting test port to {}", service.getPort());
-        browser = new BookmarksBrowser(MediaType.APPLICATION_JSON,service.getPort());
+        browser = new BookmarksBrowser(MediaType.APPLICATION_JSON,determinePort());
     }
 
     @Test

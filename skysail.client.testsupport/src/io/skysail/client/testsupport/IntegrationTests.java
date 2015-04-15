@@ -1,5 +1,7 @@
 package io.skysail.client.testsupport;
 
+import io.skysail.server.http.PortProvider;
+
 import java.security.SecureRandom;
 
 import lombok.extern.slf4j.Slf4j;
@@ -11,6 +13,7 @@ import org.junit.rules.TestWatcher;
 import org.junit.runner.Description;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.FrameworkUtil;
+import org.osgi.framework.ServiceReference;
 
 @Slf4j
 public class IntegrationTests<T extends ApplicationBrowser<?,?>, U> {
@@ -35,6 +38,14 @@ public class IntegrationTests<T extends ApplicationBrowser<?,?>, U> {
             log.info("");
         }
     };
+    
+    protected String determinePort() {
+        log.info("setting up test case...");
+        ServiceReference<PortProvider> serviceReference = this.thisBundle.getBundleContext().getServiceReference(PortProvider.class);
+        PortProvider service = thisBundle.getBundleContext().getService(serviceReference);
+        log.info("setting test port to {}", service.getPort());
+        return service.getPort();
+    }
 
    
 

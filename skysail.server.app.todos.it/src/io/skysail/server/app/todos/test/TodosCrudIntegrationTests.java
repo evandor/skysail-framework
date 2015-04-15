@@ -26,7 +26,7 @@ public class TodosCrudIntegrationTests extends IntegrationTests<TodosBrowser, To
         browser = new TodosBrowser(MediaType.APPLICATION_JSON);
         browser.setUser("admin");
         
-        listBrowser = new TodoListBrowser(MediaType.APPLICATION_JSON);
+        listBrowser = new TodoListBrowser(MediaType.APPLICATION_JSON,determinePort());
         listBrowser.setUser("admin");
     }
 

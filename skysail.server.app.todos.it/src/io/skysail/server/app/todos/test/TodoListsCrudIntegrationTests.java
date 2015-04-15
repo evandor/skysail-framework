@@ -22,7 +22,7 @@ public class TodoListsCrudIntegrationTests extends IntegrationTests<TodoListBrow
 
     @Before
     public void setUp() {
-        browser = new TodoListBrowser(MediaType.APPLICATION_JSON);
+        browser = new TodoListBrowser(MediaType.APPLICATION_JSON, determinePort());
         browser.setUser("admin");
         todoList = createTodoList();
     }

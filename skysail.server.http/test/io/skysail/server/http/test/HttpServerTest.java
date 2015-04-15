@@ -1,6 +1,6 @@
-package io.skysail.server.http.impl;
+package io.skysail.server.http.test;
 
-import io.skysail.server.http.impl.HttpServer;
+import io.skysail.server.http.HttpServer;
 
 import org.junit.Before;
 import org.junit.BeforeClass;

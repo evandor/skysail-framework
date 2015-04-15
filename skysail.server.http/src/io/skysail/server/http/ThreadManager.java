@@ -1,4 +1,4 @@
-package io.skysail.server.http.impl;
+package io.skysail.server.http;
 
 import java.util.ArrayList;
 import java.util.Collections;

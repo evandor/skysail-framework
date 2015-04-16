@@ -1,4 +1,4 @@
-package io.skysail.server.app.todos.test;
+package io.skysail.server.app.todos.test.browser;
 
 import io.skysail.api.links.LinkRelation;
 import io.skysail.client.testsupport.ApplicationBrowser;
@@ -25,20 +25,20 @@ public class TodosBrowser extends ApplicationBrowser<TodosBrowser, Todo> {
         return form;
     }
 
-    protected void createTodo(String listId, Todo todo) {
+    public void createTodo(String listId, Todo todo) {
         log.info("{}creating new Todo {} in List {}", ApplicationClient.TESTTAG, todo, listId);
         login();
         createTodo(client, listId, todo);
     }
 
-    protected Representation getTodosForList(String id) {
+    public Representation getTodosForList(String id) {
         log.info("{}getting todos for List #{}", ApplicationClient.TESTTAG, id);
         login();
         getTodosForList(client, id);
         return client.getCurrentRepresentation();
     }
 
-    protected String createTodoList(TodoList todoList) {
+    public String createTodoList(TodoList todoList) {
         log.info("{}creating todoList {}", ApplicationClient.TESTTAG, todoList);
         login();
         navigateToPostTodoListAs(client);

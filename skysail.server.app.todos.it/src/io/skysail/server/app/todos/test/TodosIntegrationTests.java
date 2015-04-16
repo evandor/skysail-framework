@@ -6,6 +6,7 @@ import io.skysail.api.links.LinkRelation;
 import io.skysail.client.testsupport.ApplicationClient;
 import io.skysail.client.testsupport.IntegrationTests;
 import io.skysail.server.app.todos.TodoApplication;
+import io.skysail.server.app.todos.test.browser.TodosBrowser;
 import io.skysail.server.app.todos.todos.Todo;
 
 import java.util.Collection;

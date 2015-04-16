@@ -2,7 +2,8 @@ Bundle-Name: SKYSAIL :: server :: app :: todos :: integrationtests
 Bundle-Version: 0.1.0.${tstamp}
 
 Private-Package:  \
-	io.skysail.server.app.todos.test
+	io.skysail.server.app.todos.test,\
+	io.skysail.server.app.todos.test.browser
 
 Test-Cases: io.skysail.server.app.todos.test.TodoListsCrudIntegrationTests
 

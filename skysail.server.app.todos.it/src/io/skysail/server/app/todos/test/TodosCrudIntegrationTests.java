@@ -5,6 +5,8 @@ import static org.hamcrest.CoreMatchers.not;
 import static org.junit.Assert.assertThat;
 import io.skysail.client.testsupport.IntegrationTests;
 import io.skysail.server.app.todos.TodoList;
+import io.skysail.server.app.todos.test.browser.TodoListBrowser;
+import io.skysail.server.app.todos.test.browser.TodosBrowser;
 import io.skysail.server.app.todos.todos.Todo;
 
 import org.junit.Before;

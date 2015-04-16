@@ -1,4 +1,4 @@
-package io.skysail.server.app.todos.test;
+package io.skysail.server.app.todos.test.browser;
 
 import io.skysail.api.links.LinkRelation;
 import io.skysail.client.testsupport.ApplicationBrowser;
@@ -19,7 +19,7 @@ public class TodoListBrowser extends ApplicationBrowser<TodoListBrowser, TodoLis
         super(TodoApplication.APP_NAME, mediaType, port);
     }
 
-    protected String createTodoList(TodoList todoList) {
+    public String createTodoList(TodoList todoList) {
         log.info("{}creating todoList {}", ApplicationClient.TESTTAG, todoList);
         login();
         navigateToPostTodoListAs(client);
@@ -27,33 +27,39 @@ public class TodoListBrowser extends ApplicationBrowser<TodoListBrowser, TodoLis
         return client.getLocation().getLastSegment(true);
     }
 
-    protected Representation getTodoLists() {
+    public Representation getTodoLists() {
         log.info("{}retrieving TodoLists", ApplicationClient.TESTTAG);
         login();
         getTodoLists(client);
         return client.getCurrentRepresentation();
     }
 
-    protected void deleteTodoList(String id) {
+    public void deleteTodoList(String id) {
         log.info("{}deleting TodoList #{}", ApplicationClient.TESTTAG, id);
         login();
         deleteTodoList(client, id);
-        // return client.getCurrentRepresentation();
     }
 
-    protected Representation getTodoList(String id) {
+    public Representation getTodoList(String id) {
         log.info("{}retrieving TodoList #{}", ApplicationClient.TESTTAG, id);
         login();
         getTodoList(client, id);
         return client.getCurrentRepresentation();
     }
 
-    protected void updateTodoList(TodoList theTodoList) {
+    public void updateTodoList(TodoList theTodoList) {
         log.info("{}updating TodoList #{}", ApplicationClient.TESTTAG, theTodoList.getId());
         login();
         updateTodoList(client, theTodoList);
     }
 
+    @Override
+    protected Form createForm(TodoList todoList) {
+        Form form = new Form();
+        form.add("name", todoList.getName());
+        return form;
+    }
+    
     private void getTodoLists(ApplicationClient<TodoList> client) {
         client.gotoRoot();
         client.followLinkTitle(TodoApplication.APP_NAME);
@@ -77,13 +83,6 @@ public class TodoListBrowser extends ApplicationBrowser<TodoListBrowser, TodoLis
 
     private void navigateToPostTodoListAs(ApplicationClient<TodoList> client) {
         client.gotoAppRoot().followLinkRelation(LinkRelation.CREATE_FORM);
-    }
-
-    @Override
-    protected Form createForm(TodoList todoList) {
-        Form form = new Form();
-        form.add("name", todoList.getName());
-        return form;
     }
 
 }

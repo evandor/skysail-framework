@@ -159,6 +159,9 @@ public class ApplicationList implements ApplicationListProvider {
     }
 
     private void detachFromComponent(SkysailApplication application) {
+        if (skysailComponent == null) {
+            return;
+        }
         if (skysailComponent.getDefaultHost() != null) {
             skysailComponent.getDefaultHost().detach(application);
         }

@@ -2,10 +2,20 @@ Bundle-Version: 0.1.0.${tstamp}
 Service-Component:  \
 	*
 Bundle-Name: SKYSAIL :: server :: performance :: etm
+Include-Resource: resources, templates=src;recursive:=true;filter:=*.st|*.stg
 Bundle-Description: Performance monitoring based on etm library
 -buildpath:  \
+	skysail.api;version=${skysail.api.version},\
 	skysail.server;version=latest,\
 	etm.core;version=1.2,\
-	biz.aQute.bnd.annotation;version=2.4
+	etm.contrib;version=1.2,\
+	biz.aQute.bnd.annotation;version=2.4,\
+	org.restlet;version=2.3,\
+	lombok;version=1.16,\
+	slf4j.api;version=1.7,\
+	javax.validation.api;version=1.1,\
+	org.apache.commons.beanutils;version=1.9
 Export-Package:  \
 	io.skysail.server.performance.etm
+Private-Package:  \
+	io.skysail.server.performance.etm.impl

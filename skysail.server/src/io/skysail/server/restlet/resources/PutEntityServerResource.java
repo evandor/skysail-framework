@@ -8,6 +8,7 @@ import io.skysail.api.responses.FormResponse;
 import io.skysail.api.responses.SkysailResponse;
 import io.skysail.server.restlet.RequestHandler;
 import io.skysail.server.restlet.filter.AbstractResourceFilter;
+import io.skysail.server.services.PerformanceTimer;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,7 +28,6 @@ import org.restlet.resource.ResourceException;
 
 import de.twenty11.skysail.server.core.restlet.ResourceContextId;
 import de.twenty11.skysail.server.core.restlet.ResponseWrapper;
-import etm.core.monitor.EtmPoint;
 
 /**
  * An abstract resource template dealing with PUT requests (see
@@ -124,7 +124,7 @@ public abstract class PutEntityServerResource<T> extends SkysailServerResource<T
     @Get("htmlform|html|json")
     @API(desc = "create an html form with the current entity to be updated")
     public SkysailResponse<T> createForm(Variant variant) {
-        EtmPoint point = etmMonitor.createPoint("PutEntityServerResource:createForm");
+        Set<PerformanceTimer> perfTimer = getApplication().startPerformanceMonitoring("PutEntityServerResource:createForm");
         log.info("Request entry point: {} @Get('htmlform|html|json') createForm with variant {}",
                 PutEntityServerResource.class.getSimpleName(), variant);
 
@@ -132,7 +132,7 @@ public abstract class PutEntityServerResource<T> extends SkysailServerResource<T
         AbstractResourceFilter<PutEntityServerResource<T>, T> chain = requestHandler.createForFormResponse();
         ResponseWrapper<T> wrapper = chain.handle(this, getResponse());
         
-        point.collect();
+        getApplication().stopPerformanceMonitoring(perfTimer);
         return new FormResponse<T>(wrapper.getEntity(), identifier, ".", redirectBackTo());
     }
 
@@ -143,29 +143,29 @@ public abstract class PutEntityServerResource<T> extends SkysailServerResource<T
     @Put("json")
     @API(desc = "generic PUT for JSON")
     public Object putEntity(T entity) {
-        EtmPoint point = etmMonitor.createPoint("PutEntityServerResource:putEntity");
+        Set<PerformanceTimer> perfTimer = getApplication().startPerformanceMonitoring("PutEntityServerResource:putEntity");
         log.info("Request entry point: {} @Put('json')", this.getClass().getSimpleName());
         getRequest().getAttributes().put(SKYSAIL_SERVER_RESTLET_ENTITY, entity);
         Object put = put((Form) null);
-        point.collect();
+        getApplication().stopPerformanceMonitoring(perfTimer);
         return put;
     }
 
     @Patch("json")
     @API(desc = "generic Patch for JSON")
     public Object patchEntity(T entity) {
-        EtmPoint point = etmMonitor.createPoint("PutEntityServerResource:patchEntity");
+        Set<PerformanceTimer> perfTimer = getApplication().startPerformanceMonitoring("PutEntityServerResource:patchEntity");
         log.info("Request entry point: {} @Patch('json')", this.getClass().getSimpleName());
         getRequest().getAttributes().put(SKYSAIL_SERVER_RESTLET_ENTITY, entity);
         Object patch = put((Form) null);
-        point.collect();
+        getApplication().stopPerformanceMonitoring(perfTimer);
         return patch;
     }
 
     @Put("x-www-form-urlencoded:html|json")
     @API(desc = "generic PUT for x-www-form-urlencoded")
     public Object put(Form form) {
-        EtmPoint point = etmMonitor.createPoint("PutEntityServerResource:put");
+        Set<PerformanceTimer> perfTimer = getApplication().startPerformanceMonitoring("PutEntityServerResource:put");
         log.info("Request entry point: {} @Put('x-www-form-urlencoded:html|json')", this.getClass().getSimpleName());
         if (form != null) {
             getRequest().getAttributes().put(SKYSAIL_SERVER_RESTLET_FORM, form);
@@ -173,7 +173,7 @@ public abstract class PutEntityServerResource<T> extends SkysailServerResource<T
         RequestHandler<T> requestHandler = new RequestHandler<T>(getApplication());
         AbstractResourceFilter<PutEntityServerResource<T>, T> handler = requestHandler.createForPut();
         ResponseWrapper<T> handledRequest = handler.handle(this, getResponse());
-        point.collect();
+        getApplication().stopPerformanceMonitoring(perfTimer);
         if (handledRequest.getConstraintViolationsResponse() != null) {
             return handledRequest.getConstraintViolationsResponse();
         }

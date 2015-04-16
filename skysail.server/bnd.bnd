@@ -4,6 +4,7 @@ X-Api-Version: 1
 Export-Package:  \
 	de.twenty11.skysail.server.metrics,\
 	io.skysail.server.db,\
+	io.skysail.server.services,\
 	io.skysail.server.forms,\
 	de.twenty11.skysail.server.help,\
 	io.skysail.server.utils,\
@@ -97,7 +98,6 @@ Service-Component: *
 	com.orientechnologies.orientdb-object;version=2.0,\
 	com.orientechnologies.orientdb-core;version=2.0,\
 	org.apache.commons.beanutils;version=1.9,\
-	etm.core;version=1.2,\
 	lombok;version=1.16,\
 	org.apache.commons.logging;version=1.1,\
 	javassist;version=3.18,\

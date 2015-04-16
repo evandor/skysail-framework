@@ -4,8 +4,10 @@ import io.skysail.api.documentation.API;
 import io.skysail.api.links.LinkRelation;
 import io.skysail.api.responses.SkysailResponse;
 import io.skysail.server.restlet.RequestHandler;
+import io.skysail.server.services.PerformanceTimer;
 
 import java.util.List;
+import java.util.Set;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -21,7 +23,6 @@ import org.restlet.util.Series;
 
 import de.twenty11.skysail.server.core.restlet.ResourceContextId;
 import de.twenty11.skysail.server.core.restlet.ResponseWrapper;
-import etm.core.monitor.EtmPoint;
 
 /**
  * A ListServerResource implementation takes care of a List of Entities.
@@ -111,11 +112,11 @@ public abstract class ListServerResource<T> extends SkysailServerResource<List<T
     // treeform, csv:broken
     @API(desc = "lists the entities according to the media type provided")
     public final List<T> getEntities(Variant variant) {
-        EtmPoint point = etmMonitor.createPoint("ListServerResource:getEntities");
+        Set<PerformanceTimer> perfTimer = getApplication().startPerformanceMonitoring("ListServerResource:getEntities");
         log.info("Request entry point: {} @Get('html|json|yaml|xml') with variant {}", this.getClass().getSimpleName(),
                 variant);
         List<T> response = listEntities();
-        point.collect();
+        getApplication().stopPerformanceMonitoring(perfTimer);
         return response;
 
         // if (SecurityFeatures.ALLOW_ORIGIN_FEATURE.isActive()) {
@@ -133,7 +134,7 @@ public abstract class ListServerResource<T> extends SkysailServerResource<List<T
      */
     @Options
     public final void doOptions(Representation entity) {
-        EtmPoint point = etmMonitor.createPoint("ListServerResource:doOptions");
+        Set<PerformanceTimer> perfTimer = getApplication().startPerformanceMonitoring("ListServerResource:doOptions");
         Series<Header> responseHeaders = getResponse().getHeaders();
         // if (SecurityFeatures.ALLOW_ORIGIN_FEATURE.isActive()) {
         responseHeaders.add("Access-Control-Allow-Origin", "*");
@@ -142,7 +143,7 @@ public abstract class ListServerResource<T> extends SkysailServerResource<List<T
         responseHeaders.add("Access-Control-Allow-Credentials", "false");
         responseHeaders.add("Access-Control-Max-Age", "60");
         // }
-        point.collect();
+        getApplication().stopPerformanceMonitoring(perfTimer);;
     }
 
     @Override

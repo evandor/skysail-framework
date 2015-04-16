@@ -1,0 +1,11 @@
+Bundle-Version: 0.1.0.${tstamp}
+Service-Component:  \
+	*
+Bundle-Name: SKYSAIL :: server :: performance :: etm
+Bundle-Description: Performance monitoring based on etm library
+-buildpath:  \
+	skysail.server;version=latest,\
+	etm.core;version=1.2,\
+	biz.aQute.bnd.annotation;version=2.4
+Export-Package:  \
+	io.skysail.server.performance.etm

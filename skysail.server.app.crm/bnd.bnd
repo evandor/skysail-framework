@@ -20,7 +20,6 @@ Include-Resource: resources, templates=src;recursive:=true;filter:=*.st|*.stg
 	de.twentyeleven.skysail.org.antlr.stringtemplate-osgi;version=4.0,\
 	lombok;version=1.16.2,\
 	com.sun.mail.javax.mail;version=1.5,\
-	etm.core;version=1.2,\
 	org.apache.shiro.core;version=1.2,\
 	com.fasterxml.jackson.core.jackson-annotations;version=2.4,\
 	com.orientechnologies.orientdb-core;version=2.0,\

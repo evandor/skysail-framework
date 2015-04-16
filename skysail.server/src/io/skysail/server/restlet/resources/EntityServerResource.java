@@ -6,6 +6,7 @@ import io.skysail.api.responses.FormResponse;
 import io.skysail.api.responses.SkysailResponse;
 import io.skysail.server.restlet.RequestHandler;
 import io.skysail.server.restlet.filter.AbstractResourceFilter;
+import io.skysail.server.services.PerformanceTimer;
 
 import java.text.ParseException;
 import java.util.List;
@@ -28,7 +29,6 @@ import org.slf4j.LoggerFactory;
 
 import de.twenty11.skysail.server.core.restlet.ResourceContextId;
 import de.twenty11.skysail.server.core.restlet.ResponseWrapper;
-import etm.core.monitor.EtmPoint;
 
 /**
  * Abstract base class for skysail server-side resources representing a single
@@ -142,11 +142,11 @@ public abstract class EntityServerResource<T> extends SkysailServerResource<T> {
     @Get("html|json|eventstream|treeform|txt|csv|yaml")
     @API(desc = "retrieves the entity defined by the url")
     public SkysailResponse<T> getEntity2() {
-        EtmPoint point = etmMonitor.createPoint("EntityServerResource:getEntity");
+        Set<PerformanceTimer> perfTimer = getApplication().startPerformanceMonitoring("EntityServerResource:getEntity");
         logger.info("Request entry point: {} @Get('html|json|eventstream|treeform|txt')", this.getClass().getSimpleName());
         logger.info(scoringInfo(getRequest().getClientInfo()));
         T entity = getEntity("dummy");
-        point.collect();
+        getApplication().stopPerformanceMonitoring(perfTimer);
         return new SkysailResponse<T>(entity);
     }
 
@@ -165,14 +165,14 @@ public abstract class EntityServerResource<T> extends SkysailServerResource<T> {
     @Delete("x-www-form-urlencoded:html|html|json")
     @API(desc = "deletes the entity defined in the url")
     public T deleteEntity() {
-        EtmPoint point = etmMonitor.createPoint("EntityServerResource:deleteEntity");
+        Set<PerformanceTimer> perfTimer = getApplication().startPerformanceMonitoring("EntityServerResource:deleteEntity");
         logger.info("Request entry point: {} @Delete('x-www-form-urlencoded:html|html|json')", this.getClass()
                 .getSimpleName());
 
         RequestHandler<T> requestHandler = new RequestHandler<T>(getApplication());
         AbstractResourceFilter<EntityServerResource<T>, T> handler = requestHandler.createForEntity(Method.DELETE);
         T entity = handler.handle(this, getResponse()).getEntity();
-        point.collect();
+        getApplication().stopPerformanceMonitoring(perfTimer);
         return entity;
     }
 

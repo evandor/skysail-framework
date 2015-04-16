@@ -17,7 +17,6 @@ Bundle-Version: 0.1.1.${tstamp}
 	org.apache.felix.gogo.runtime;version=0.12,\
 	com.google.guava;version=16.0,\
 	javax.validation.api;version=1.1,\
-	etm.core;version=1.2,\
 	org.apache.commons.beanutils;version=1.9
 Private-Package:  \
 	io.skysail.server.um.simple.app,\

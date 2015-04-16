@@ -9,6 +9,7 @@ import io.skysail.server.restlet.RequestHandler;
 import io.skysail.server.restlet.filter.AbstractResourceFilter;
 import io.skysail.server.restlet.filter.CheckBusinessViolationsFilter;
 import io.skysail.server.restlet.filter.FormDataExtractingFilter;
+import io.skysail.server.services.PerformanceTimer;
 
 import java.io.IOException;
 import java.util.Arrays;
@@ -32,7 +33,6 @@ import org.restlet.resource.ResourceException;
 import de.twenty11.skysail.server.core.restlet.ResourceContextId;
 import de.twenty11.skysail.server.core.restlet.ResponseWrapper;
 import de.twenty11.skysail.server.services.SearchService;
-import etm.core.monitor.EtmPoint;
 
 /**
  * An abstract resource template dealing with POST requests (see
@@ -157,12 +157,12 @@ public abstract class PostEntityServerResource<T> extends SkysailServerResource<
     @Get("json")
     @API(desc = "as Json")
     public T getJson() {
-        EtmPoint point = etmMonitor.createPoint("PostEntityServerResource:getJson");
+        Set<PerformanceTimer> perfTimer = getApplication().startPerformanceMonitoring("PostEntityServerResource:getJson");
         log.info("Request entry point: {} @Get('json')", this.getClass().getSimpleName());
         RequestHandler<T> requestHandler = new RequestHandler<T>(getApplication());
         AbstractResourceFilter<PostEntityServerResource<T>, T> handler = requestHandler.newInstance(Method.GET);
         T entity = handler.handle(this, getResponse()).getEntity();
-        point.collect();
+        getApplication().stopPerformanceMonitoring(perfTimer);
         return entity;
     }
 
@@ -174,7 +174,7 @@ public abstract class PostEntityServerResource<T> extends SkysailServerResource<
     @Post("json")
     @API(desc = "generic POST for JSON")
     public Object post(T entity) {
-        EtmPoint point = etmMonitor.createPoint("PostEnityServerResource:post");
+        Set<PerformanceTimer> perfTimer = getApplication().startPerformanceMonitoring("PostEntityServerResource:post");
         log.info("Request entry point: {} @Post('json')", this.getClass().getSimpleName());
         if (entity != null) {
             getRequest().getAttributes().put(SKYSAIL_SERVER_RESTLET_ENTITY, entity);
@@ -183,7 +183,7 @@ public abstract class PostEntityServerResource<T> extends SkysailServerResource<
         }
 
         Object post = post((Form) null);
-        point.collect();
+        getApplication().stopPerformanceMonitoring(perfTimer);
         return post;
     }
 
@@ -196,9 +196,9 @@ public abstract class PostEntityServerResource<T> extends SkysailServerResource<
     @Post("x-www-form-urlencoded:html")
     @API(desc = "generic POST for x-www-form-urlencoded")
     public Object post(Form form) {
-        EtmPoint point = etmMonitor.createPoint("PostEntityServerResource:postForm");
+        Set<PerformanceTimer> perfTimer = getApplication().startPerformanceMonitoring("PostEntityServerResource:postForm");
         ResponseWrapper<T> handledRequest = doPost(form);
-        point.collect();
+        getApplication().stopPerformanceMonitoring(perfTimer);
         if (handledRequest.getConstraintViolationsResponse() != null) {
             return handledRequest.getConstraintViolationsResponse();
         }

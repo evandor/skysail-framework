@@ -9,6 +9,7 @@ import io.skysail.api.um.UserManagementProvider;
 import io.skysail.api.validation.ValidatorService;
 import io.skysail.server.restlet.filter.HookFilter;
 import io.skysail.server.restlet.resources.SkysailServerResource;
+import io.skysail.server.services.PerformanceMonitor;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -70,6 +71,7 @@ public class ServiceList implements ServiceListProvider {
     private volatile ValidatorService validatorService;
     private volatile DocumentationProvider documentationProvider;
     private volatile UserManagementProvider userManagementProvider;
+    private volatile Set<PerformanceMonitor> performanceMonitors = Collections.synchronizedSet(new HashSet<>());
 
     /** === UserManagementProvider Service ============================== */
 
@@ -317,6 +319,24 @@ public class ServiceList implements ServiceListProvider {
     @Override
     public Set<HookFilter> getHookFilters() {
         return hookFilters;
+    }
+
+    /** === Performance Monitor Service ============================== */
+
+    @Reference(optional = true, dynamic = true, multiple = true)
+    public synchronized <R extends SkysailServerResource<T>, T> void addPerformanceMonitor(PerformanceMonitor monitor) {
+        performanceMonitors.add(monitor);
+        getSkysailApps().forEach(app -> app.addMonitor(monitor));
+    }
+
+    public synchronized <R extends SkysailServerResource<T>, T> void removePerformanceMonitor(PerformanceMonitor monitor) {
+        performanceMonitors.remove(monitor);
+        getSkysailApps().forEach(app -> app.removeMonitor(monitor));
+    }
+
+    @Override
+    public Set<PerformanceMonitor> getPerformanceMonitors() {
+        return performanceMonitors;
     }
 
     /** === Validation Provider ============================== */

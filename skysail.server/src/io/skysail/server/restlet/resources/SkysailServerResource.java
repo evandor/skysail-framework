@@ -50,8 +50,6 @@ import de.twenty11.skysail.server.core.restlet.MessagesUtils;
 import de.twenty11.skysail.server.core.restlet.ResourceContextId;
 import de.twenty11.skysail.server.core.restlet.ServerLink;
 import de.twenty11.skysail.server.core.restlet.utils.StringParserUtils;
-import etm.core.configuration.EtmManager;
-import etm.core.monitor.EtmMonitor;
 
 /**
  * Abstract base class for all skysail resources, parameterized with T, the type
@@ -83,8 +81,6 @@ public abstract class SkysailServerResource<T> extends ServerResource {
 
     public static final String SKYSAIL_SERVER_RESTLET_FORM = "de.twenty11.skysail.server.core.restlet.form";
     public static final String SKYSAIL_SERVER_RESTLET_ENTITY = "de.twenty11.skysail.server.core.restlet.entity";
-
-    protected static final EtmMonitor etmMonitor = EtmManager.getEtmMonitor();
 
     /**
      * the payload, set once it was retrieved from #getEntity()

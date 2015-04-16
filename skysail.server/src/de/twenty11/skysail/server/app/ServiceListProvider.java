@@ -6,6 +6,7 @@ import io.skysail.api.um.AuthenticationService;
 import io.skysail.api.um.AuthorizationService;
 import io.skysail.api.validation.ValidatorService;
 import io.skysail.server.restlet.filter.HookFilter;
+import io.skysail.server.services.PerformanceMonitor;
 
 import java.util.List;
 import java.util.Set;
@@ -46,5 +47,7 @@ public interface ServiceListProvider {
     DocumentationProvider getDocumentationProvider();
 
     List<TranslationRenderServiceHolder> getTranslationRenderServices();
+
+    Set<PerformanceMonitor> getPerformanceMonitors();
 
 }

@@ -13,6 +13,8 @@ import io.skysail.server.restlet.filter.HookFilter;
 import io.skysail.server.restlet.filter.OriginalRequestFilter;
 import io.skysail.server.restlet.filter.TracerFilter;
 import io.skysail.server.restlet.resources.SkysailServerResource;
+import io.skysail.server.services.PerformanceMonitor;
+import io.skysail.server.services.PerformanceTimer;
 import io.skysail.server.utils.ReflectionUtils;
 
 import java.util.ArrayList;
@@ -176,6 +178,7 @@ public abstract class SkysailApplication extends Application implements Applicat
     private volatile ConfigurationAdmin configurationAdmin;
     private volatile MetricsService metricsService;
     private volatile Set<HookFilter> filters = Collections.synchronizedSet(new HashSet<>());
+    private volatile Set<PerformanceMonitor> performanceMonitors = Collections.synchronizedSet(new HashSet<>());
     private volatile ValidatorService validatorService;
     private volatile DocumentationProvider documentationProvider;
 
@@ -346,7 +349,7 @@ public abstract class SkysailApplication extends Application implements Applicat
         // getConnectorService().getClientProtocols().add(Protocol.HTTPS);
         getConnectorService().getClientProtocols().add(Protocol.FILE);
         getConnectorService().getClientProtocols().add(Protocol.CLAP);
-      //  getConnectorService().getClientProtocols().add(Protocol.RIAP);
+        // getConnectorService().getClientProtocols().add(Protocol.RIAP);
 
         // here or somewhere else? ServiceList?
         // enrolerService.setAuthorizationService(authorizationService);
@@ -372,7 +375,7 @@ public abstract class SkysailApplication extends Application implements Applicat
 
         logger.debug("creating original request filter...");
         OriginalRequestFilter originalRequestFilter = new OriginalRequestFilter(getContext());
-        //blocker.setNext(originalRequestFilter);
+        // blocker.setNext(originalRequestFilter);
         originalRequestFilter.setNext(router);
 
         logger.debug("determining authentication service...");
@@ -758,6 +761,20 @@ public abstract class SkysailApplication extends Application implements Applicat
         return filters;
     }
 
+    public synchronized void addMonitor(PerformanceMonitor monitor) {
+        logger.info("adding performanceMonitor to application '{}'", getName());
+        performanceMonitors.add(monitor);
+    }
+
+    public <R extends SkysailServerResource<T>, T> void removeMonitor(PerformanceMonitor monitor) {
+        logger.info("removing performanceMonitor from application '{}'", getName());
+        performanceMonitors.remove(monitor);
+    }
+
+    public Set<PerformanceMonitor> getPerformanceMonitors() {
+        return Collections.unmodifiableSet(performanceMonitors);
+    }
+
     protected void addToAppContext(ApplicationContextId id, String value) {
         stringContextMap.put(id, value);
     }
@@ -790,6 +807,16 @@ public abstract class SkysailApplication extends Application implements Applicat
 
     public void unsetDocumentationProvider() {
         this.documentationProvider = null;
+    }
+
+    public Set<PerformanceTimer> startPerformanceMonitoring(String identifier) {
+        return this.performanceMonitors.stream().map(monitor -> {
+            return monitor.start(identifier);
+        }).collect(Collectors.toSet());
+    }
+
+    public void stopPerformanceMonitoring(Set<PerformanceTimer> perfTimer) {
+        perfTimer.stream().forEach(timer -> timer.stop());
     }
 
 }

@@ -14,7 +14,6 @@ Include-Resource: resources, templates=src;recursive:=true;filter:=*.st|*.stg
 	osgi.core;version=5.0,\
 	org.apache.commons.lang;version=2.6,\
 	javax.validation.api;version=1.1,\
-	etm.core;version=1.2,\
 	org.apache.commons.configuration;version=1.10,\
 	skysail.api;version=${skysail.api.version},\
 	org.codehaus.jettison.jettison;version=1.3,\

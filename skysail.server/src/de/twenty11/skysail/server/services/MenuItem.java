@@ -48,20 +48,17 @@ public class MenuItem {
 
     public MenuItem(SkysailApplication app, Class<? extends SkysailServerResource<?>> skysailServerResourceClass) {
     	applicationImage  = app.getFromContext(ApplicationContextId.IMG);
-        Link linkheader = ServerLink.fromResource(app, skysailServerResourceClass);
-        if (linkheader == null) {
-            // throw new IllegalStateException();
+        Link link = ServerLink.fromResource(app, skysailServerResourceClass);
+        if (link == null) {
             this.name = app.getName();
             this.link = app.getName();
             needsAuthentication = true;
-            // securedByRole = linkheader.getSecuredByRole();
-            // needsAuthentication = linkheader.getNeedsAuthentication();
             return;
         }
-        this.name = linkheader.getTitle();
-        this.link = linkheader.getUri();
-        securedByRole = linkheader.getRolesPredicate();
-        needsAuthentication = linkheader.getNeedsAuthentication();
+        this.name = link.getTitle();
+        this.link = link.getUri();
+        securedByRole = link.getRolesPredicate();
+        needsAuthentication = link.getNeedsAuthentication();
     }
 
     public MenuItem(String string, String name2, SkysailApplication app) {

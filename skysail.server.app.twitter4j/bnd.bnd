@@ -1,0 +1,25 @@
+Bundle-Version: 0.1.0.${tstamp}
+Bundle-ClassPath: .,lib/twitter4j-core-4.0.3.jar
+-buildpath:  \
+	lib/twitter4j-core-4.0.3.jar;version=file,\
+	skysail.server;version=latest,\
+	com.springsource.org.junit;version=4.11,\
+	biz.aQute.bnd.annotation;version=2.4,\
+	org.restlet;version=2.3,\
+	javax.validation.api;version=1.1,\
+	slf4j.api;version=1.7,\
+	org.apache.commons.beanutils;version=1.9,\
+	lombok;version=1.16,\
+	osgi.cmpn;version=5.0,\
+	osgi.core;version=5.0
+Service-Component:  \
+	*
+Bundle-Name: SKYSAIL :: server :: app :: twitter4j
+Include-Resource: lib=lib
+#,resources, templates=src;recursive:=true;filter:=*.st|*.stg
+Private-Package:  \
+	io.skysail.server.app.twitter4j,\
+	io.skysail.server.app.twitter4j.resources
+Import-Package:  \
+	!org.apache.log4j,\
+	*

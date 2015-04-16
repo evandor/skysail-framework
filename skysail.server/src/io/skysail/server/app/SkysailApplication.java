@@ -737,12 +737,12 @@ public abstract class SkysailApplication extends Application implements Applicat
     }
 
     public synchronized <R extends SkysailServerResource<T>, T> void addFilter(HookFilter<R, T> filter) {
-        logger.info("adding hookfilters to application '{}'", getName());
+        logger.debug("adding hookfilters to application '{}'", getName());
         filters.add(filter);
     }
 
     public <R extends SkysailServerResource<T>, T> void removeFilter(HookFilter<R, T> filter) {
-        logger.info("removing filter from application '{}'", getName());
+        logger.debug("removing filter from application '{}'", getName());
         filters.remove(filter);
     }
 
@@ -762,12 +762,12 @@ public abstract class SkysailApplication extends Application implements Applicat
     }
 
     public synchronized void addMonitor(PerformanceMonitor monitor) {
-        logger.info("adding performanceMonitor to application '{}'", getName());
+        logger.debug("adding performanceMonitor to application '{}'", getName());
         performanceMonitors.add(monitor);
     }
 
     public <R extends SkysailServerResource<T>, T> void removeMonitor(PerformanceMonitor monitor) {
-        logger.info("removing performanceMonitor from application '{}'", getName());
+        logger.debug("removing performanceMonitor from application '{}'", getName());
         performanceMonitors.remove(monitor);
     }
 

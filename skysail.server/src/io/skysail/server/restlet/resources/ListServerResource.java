@@ -112,7 +112,7 @@ public abstract class ListServerResource<T> extends SkysailServerResource<List<T
     // treeform, csv:broken
     @API(desc = "lists the entities according to the media type provided")
     public final List<T> getEntities(Variant variant) {
-        Set<PerformanceTimer> perfTimer = getApplication().startPerformanceMonitoring("ListServerResource:getEntities");
+        Set<PerformanceTimer> perfTimer = getApplication().startPerformanceMonitoring(this.getClass().getSimpleName() + ":getEntities");
         log.info("Request entry point: {} @Get('html|json|yaml|xml') with variant {}", this.getClass().getSimpleName(),
                 variant);
         List<T> response = listEntities();
@@ -134,7 +134,7 @@ public abstract class ListServerResource<T> extends SkysailServerResource<List<T
      */
     @Options
     public final void doOptions(Representation entity) {
-        Set<PerformanceTimer> perfTimer = getApplication().startPerformanceMonitoring("ListServerResource:doOptions");
+        Set<PerformanceTimer> perfTimer = getApplication().startPerformanceMonitoring(this.getClass().getSimpleName() + ":doOptions");
         Series<Header> responseHeaders = getResponse().getHeaders();
         // if (SecurityFeatures.ALLOW_ORIGIN_FEATURE.isActive()) {
         responseHeaders.add("Access-Control-Allow-Origin", "*");

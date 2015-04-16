@@ -233,6 +233,9 @@ public class Link {
         if (role.equals(LinkRole.LIST_VIEW)) {
             return false;
         }
+        if (role.equals(LinkRole.MENU_ITEM)) {
+            return false;
+        }
         return getVerbs().contains(Method.GET);
     }
 

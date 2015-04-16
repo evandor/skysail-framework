@@ -2,6 +2,7 @@ package de.twenty11.skysail.server.resources;
 
 import io.skysail.api.links.Link;
 import io.skysail.api.links.LinkRelation;
+import io.skysail.api.links.LinkRole;
 import io.skysail.server.restlet.resources.ListServerResource;
 
 import java.util.List;
@@ -45,7 +46,7 @@ public class DefaultResource extends ListServerResource<String> {
 
     private Link createLinkheaderForApp(MenuItem mi) {
         Predicate<String[]> securedBy = null;
-        return new Link.Builder(mi.getLink()).relation(LinkRelation.ITEM).title(mi.getName())
+        return new Link.Builder(mi.getLink()).relation(LinkRelation.ITEM).title(mi.getName()).role(LinkRole.MENU_ITEM)
                 .authenticationNeeded(true).needsRoles(securedBy).build();
     }
 

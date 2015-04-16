@@ -142,7 +142,7 @@ public abstract class EntityServerResource<T> extends SkysailServerResource<T> {
     @Get("html|json|eventstream|treeform|txt|csv|yaml")
     @API(desc = "retrieves the entity defined by the url")
     public SkysailResponse<T> getEntity2() {
-        Set<PerformanceTimer> perfTimer = getApplication().startPerformanceMonitoring("EntityServerResource:getEntity");
+        Set<PerformanceTimer> perfTimer = getApplication().startPerformanceMonitoring(this.getClass().getSimpleName() + ":getEntity");
         logger.info("Request entry point: {} @Get('html|json|eventstream|treeform|txt')", this.getClass().getSimpleName());
         logger.info(scoringInfo(getRequest().getClientInfo()));
         T entity = getEntity("dummy");
@@ -165,7 +165,7 @@ public abstract class EntityServerResource<T> extends SkysailServerResource<T> {
     @Delete("x-www-form-urlencoded:html|html|json")
     @API(desc = "deletes the entity defined in the url")
     public T deleteEntity() {
-        Set<PerformanceTimer> perfTimer = getApplication().startPerformanceMonitoring("EntityServerResource:deleteEntity");
+        Set<PerformanceTimer> perfTimer = getApplication().startPerformanceMonitoring(this.getClass().getSimpleName() + ":deleteEntity");
         logger.info("Request entry point: {} @Delete('x-www-form-urlencoded:html|html|json')", this.getClass()
                 .getSimpleName());
 

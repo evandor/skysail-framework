@@ -19,7 +19,7 @@ public class EventHandler {
         EventHandler.eventAdmin = eventAdmin;
     }
 
-    public void unsetEventAdmin(@SuppressWarnings("unused") EventAdmin eventAdmin) {
+    public void unsetEventAdmin(EventAdmin eventAdmin) {
         EventHandler.eventAdmin = null;
     }
     

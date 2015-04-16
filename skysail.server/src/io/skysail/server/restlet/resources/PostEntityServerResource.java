@@ -157,7 +157,7 @@ public abstract class PostEntityServerResource<T> extends SkysailServerResource<
     @Get("json")
     @API(desc = "as Json")
     public T getJson() {
-        Set<PerformanceTimer> perfTimer = getApplication().startPerformanceMonitoring("PostEntityServerResource:getJson");
+        Set<PerformanceTimer> perfTimer = getApplication().startPerformanceMonitoring(this.getClass().getSimpleName() + ":getJson");
         log.info("Request entry point: {} @Get('json')", this.getClass().getSimpleName());
         RequestHandler<T> requestHandler = new RequestHandler<T>(getApplication());
         AbstractResourceFilter<PostEntityServerResource<T>, T> handler = requestHandler.newInstance(Method.GET);
@@ -174,7 +174,7 @@ public abstract class PostEntityServerResource<T> extends SkysailServerResource<
     @Post("json")
     @API(desc = "generic POST for JSON")
     public Object post(T entity) {
-        Set<PerformanceTimer> perfTimer = getApplication().startPerformanceMonitoring("PostEntityServerResource:post");
+        Set<PerformanceTimer> perfTimer = getApplication().startPerformanceMonitoring(this.getClass().getSimpleName() + ":post");
         log.info("Request entry point: {} @Post('json')", this.getClass().getSimpleName());
         if (entity != null) {
             getRequest().getAttributes().put(SKYSAIL_SERVER_RESTLET_ENTITY, entity);
@@ -196,7 +196,7 @@ public abstract class PostEntityServerResource<T> extends SkysailServerResource<
     @Post("x-www-form-urlencoded:html")
     @API(desc = "generic POST for x-www-form-urlencoded")
     public Object post(Form form) {
-        Set<PerformanceTimer> perfTimer = getApplication().startPerformanceMonitoring("PostEntityServerResource:postForm");
+        Set<PerformanceTimer> perfTimer = getApplication().startPerformanceMonitoring(this.getClass().getSimpleName() + ":postForm");
         ResponseWrapper<T> handledRequest = doPost(form);
         getApplication().stopPerformanceMonitoring(perfTimer);
         if (handledRequest.getConstraintViolationsResponse() != null) {

@@ -124,7 +124,7 @@ public abstract class PutEntityServerResource<T> extends SkysailServerResource<T
     @Get("htmlform|html|json")
     @API(desc = "create an html form with the current entity to be updated")
     public SkysailResponse<T> createForm(Variant variant) {
-        Set<PerformanceTimer> perfTimer = getApplication().startPerformanceMonitoring("PutEntityServerResource:createForm");
+        Set<PerformanceTimer> perfTimer = getApplication().startPerformanceMonitoring(this.getClass().getSimpleName() + ":createForm");
         log.info("Request entry point: {} @Get('htmlform|html|json') createForm with variant {}",
                 PutEntityServerResource.class.getSimpleName(), variant);
 
@@ -143,7 +143,7 @@ public abstract class PutEntityServerResource<T> extends SkysailServerResource<T
     @Put("json")
     @API(desc = "generic PUT for JSON")
     public Object putEntity(T entity) {
-        Set<PerformanceTimer> perfTimer = getApplication().startPerformanceMonitoring("PutEntityServerResource:putEntity");
+        Set<PerformanceTimer> perfTimer = getApplication().startPerformanceMonitoring(this.getClass().getSimpleName() + ":putEntity");
         log.info("Request entry point: {} @Put('json')", this.getClass().getSimpleName());
         getRequest().getAttributes().put(SKYSAIL_SERVER_RESTLET_ENTITY, entity);
         Object put = put((Form) null);
@@ -154,7 +154,7 @@ public abstract class PutEntityServerResource<T> extends SkysailServerResource<T
     @Patch("json")
     @API(desc = "generic Patch for JSON")
     public Object patchEntity(T entity) {
-        Set<PerformanceTimer> perfTimer = getApplication().startPerformanceMonitoring("PutEntityServerResource:patchEntity");
+        Set<PerformanceTimer> perfTimer = getApplication().startPerformanceMonitoring(this.getClass().getSimpleName() + ":patchEntity");
         log.info("Request entry point: {} @Patch('json')", this.getClass().getSimpleName());
         getRequest().getAttributes().put(SKYSAIL_SERVER_RESTLET_ENTITY, entity);
         Object patch = put((Form) null);
@@ -165,7 +165,7 @@ public abstract class PutEntityServerResource<T> extends SkysailServerResource<T
     @Put("x-www-form-urlencoded:html|json")
     @API(desc = "generic PUT for x-www-form-urlencoded")
     public Object put(Form form) {
-        Set<PerformanceTimer> perfTimer = getApplication().startPerformanceMonitoring("PutEntityServerResource:put");
+        Set<PerformanceTimer> perfTimer = getApplication().startPerformanceMonitoring(this.getClass().getSimpleName() + ":put");
         log.info("Request entry point: {} @Put('x-www-form-urlencoded:html|json')", this.getClass().getSimpleName());
         if (form != null) {
             getRequest().getAttributes().put(SKYSAIL_SERVER_RESTLET_FORM, form);

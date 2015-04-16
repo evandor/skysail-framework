@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<repository increment="1428670712672" name="skysail.server.app.intro" xmlns="http://www.osgi.org/xmlns/repository/v1.0.0">
+  <resource>
+    <capability namespace="osgi.identity">
+      <attribute name="osgi.identity" value="skysail.server.app.intro"/>
+      <attribute name="type" value="osgi.bundle"/>
+      <attribute name="version" type="Version" value="0.1.0.201504101258"/>
+    </capability>
+    <capability namespace="osgi.content">
+      <attribute name="osgi.content" value="9d4ae6bff8a05ac780ac8bda20f7a5bd4d03a7c334124005bc7e504019f24ff0"/>
+      <attribute name="url" value="generated/skysail.server.app.intro.jar"/>
+      <attribute name="size" type="Long" value="8740"/>
+      <attribute name="mime" value="application/vnd.osgi.bundle"/>
+    </capability>
+    <capability namespace="osgi.wiring.bundle">
+      <attribute name="osgi.wiring.bundle" value="skysail.server.app.intro"/>
+      <attribute name="bundle-version" type="Version" value="0.1.0.201504101258"/>
+    </capability>
+    <capability namespace="osgi.wiring.host">
+      <attribute name="osgi.wiring.host" value="skysail.server.app.intro"/>
+      <attribute name="bundle-version" type="Version" value="0.1.0.201504101258"/>
+    </capability>
+    <capability namespace="osgi.service">
+      <attribute name="objectClass" type="List&lt;String&gt;" value="de.twenty11.skysail.server.app.ApplicationProvider,de.twenty11.skysail.server.services.MenuItemProvider"/>
+      <directive name="uses" value="de.twenty11.skysail.server.app,de.twenty11.skysail.server.services"/>
+    </capability>
+    <capability namespace="bndtools.workspace">
+      <attribute name="bndtools.workspace" value="file:/C:/workspaces/ssf"/>
+      <attribute name="project.path" value="/skysail.server.app.intro"/>
+    </capability>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(&amp;(osgi.wiring.package=de.twenty11.skysail.server.app)(version&gt;=11.0.0)(!(version&gt;=12.0.0)))"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(&amp;(osgi.wiring.package=de.twenty11.skysail.server.core.restlet)(version&gt;=17.0.0)(!(version&gt;=18.0.0)))"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(&amp;(osgi.wiring.package=de.twenty11.skysail.server.services)(version&gt;=7.0.0)(!(version&gt;=7.1.0)))"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=io.skysail.server.app)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(&amp;(osgi.wiring.package=io.skysail.server.restlet.resources)(version&gt;=1.0.0)(!(version&gt;=2.0.0)))"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.osgi.framework)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=javassist.util.proxy)"/>
+    </requirement>
+    <requirement namespace="osgi.ee">
+      <directive name="filter" value="(&amp;(osgi.ee=JavaSE)(version=1.8))"/>
+    </requirement>
+    <requirement namespace="osgi.extender">
+      <directive name="filter" value="(&amp;(osgi.extender=osgi.ds)(version&gt;=1.0.0)(!(version&gt;=2.0.0)))"/>
+      <directive name="effective" value="active"/>
+    </requirement>
+  </resource>
+</repository>

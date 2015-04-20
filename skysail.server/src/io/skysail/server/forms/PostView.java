@@ -11,6 +11,6 @@ import java.lang.annotation.Target;
 @Documented
 public @interface PostView {
 
-    Visibility hide() default Visibility.HIDE;
+    Visibility visibility() default Visibility.HIDE;
 
 }

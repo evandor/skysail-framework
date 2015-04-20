@@ -9,6 +9,7 @@ import io.skysail.server.app.todos.todos.status.Status;
 import io.skysail.server.app.todos.todos.status.StatusSelectionProvider;
 import io.skysail.server.forms.ListView;
 import io.skysail.server.forms.PostView;
+import io.skysail.server.forms.Visibility;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -38,7 +39,8 @@ public class Todo implements Serializable, Identifiable {
     @Id
     private String id;
     
-    @Reference(cls = Todo.class)//, postView = {PostView.HIDE})
+    @Reference(cls = Todo.class)
+    @PostView(visibility = Visibility.SHOW_IF_NULL)
     private String list;
 
     @Field
@@ -64,7 +66,7 @@ public class Todo implements Serializable, Identifiable {
     private Integer rank;
 
     @Field(selectionProvider = StatusSelectionProvider.class)
-    @PostView(hide = true)
+    @PostView(visibility = Visibility.HIDE)
     private Status status;
 
     @Field(type = InputType.READONLY)

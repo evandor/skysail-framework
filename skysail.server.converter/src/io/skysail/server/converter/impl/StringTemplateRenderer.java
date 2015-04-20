@@ -1,6 +1,7 @@
 package io.skysail.server.converter.impl;
 
 import io.skysail.api.favorites.FavoritesService;
+import io.skysail.api.forms.Reference;
 import io.skysail.api.links.Link;
 import io.skysail.api.responses.SkysailResponse;
 import io.skysail.server.app.SkysailApplication;
@@ -16,6 +17,7 @@ import io.skysail.server.converter.wrapper.STUserWrapper;
 import io.skysail.server.converter.wrapper.StResourceWrapper;
 import io.skysail.server.forms.ListView;
 import io.skysail.server.forms.PostView;
+import io.skysail.server.forms.Visibility;
 import io.skysail.server.restlet.resources.EntityServerResource;
 import io.skysail.server.restlet.resources.ListServerResource;
 import io.skysail.server.restlet.resources.PostEntityServerResource;
@@ -311,21 +313,23 @@ public class StringTemplateRenderer {
 
     private boolean test(SkysailServerResource<?> resource, Field field) {
         List<String> fieldNames = resource.getFields();
-        io.skysail.api.forms.Field fieldAnnotation = field.getAnnotation(io.skysail.api.forms.Field.class);
-        if (isValidFieldAnnotation(resource, field, fieldNames, fieldAnnotation)) {
+        if (isValidFieldAnnotation(resource, field, fieldNames)) {
             return true;
         }
 
-        PostView postViewAnnotation = field.getAnnotation(PostView.class);
-        if (postViewAnnotation != null && !(postViewAnnotation.hide())) {
-            return true;
-        }
+//        PostView postViewAnnotation = field.getAnnotation(PostView.class);
+//        if (postViewAnnotation != null) {
+//            if (!(Visibility.SHOW.equals(postViewAnnotation.visibility()))) {
+//                return true;
+//            }
+//        }
         return false;
     }
 
-    private boolean isValidFieldAnnotation(SkysailServerResource<?> resource, Field field, List<String> fieldNames,
-            io.skysail.api.forms.Field fieldAnnotation) {
-        if (fieldAnnotation == null) {
+    private boolean isValidFieldAnnotation(SkysailServerResource<?> resource, Field field, List<String> fieldNames) {
+        io.skysail.api.forms.Field fieldAnnotation = field.getAnnotation(io.skysail.api.forms.Field.class);
+        Reference referenceAnnotation = field.getAnnotation(Reference.class);
+        if (fieldAnnotation == null && referenceAnnotation == null) {
             return false;
         }
         if (!(fieldNames.contains(field.getName()))) {
@@ -333,8 +337,16 @@ public class StringTemplateRenderer {
         }
         if (resource instanceof PostEntityServerResource<?>) {
             PostView postViewAnnotation = field.getAnnotation(PostView.class);
-            if (postViewAnnotation != null && postViewAnnotation.hide()) {
-                return false;
+            if (postViewAnnotation != null) {
+                if (Visibility.HIDE.equals((postViewAnnotation.visibility()))) {
+                    return false;
+                }
+                if (Visibility.SHOW.equals(postViewAnnotation.visibility())) {
+                    return true;
+                }
+                if (Visibility.SHOW_IF_NULL.equals(postViewAnnotation.visibility())) {
+                    
+                }
             }
         }
         ListView listViewAnnotation = field.getAnnotation(ListView.class);

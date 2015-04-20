@@ -325,7 +325,6 @@ public abstract class SkysailServerResource<T> extends ServerResource {
 
         // hmmm... last resort
         if (id != null && href.contains("{") && href.contains("}")) {
-            // path = path.replace("{id}", id);
             href = href.replaceFirst(StringParserUtils.placeholderPattern.toString(), id);
         }
         
@@ -335,13 +334,6 @@ public abstract class SkysailServerResource<T> extends ServerResource {
         link.setRefId(id);
         
         result.add(link);
-        //System.out.println(link);
-
-//        Link newlin = new Link.Builder(href).relation(LinkRelation.ITEM).title(link.getTitle())
-//                .role(LinkRole.LIST_VIEW).refId(id).build();
-//        System.out.println(newlin);
-//        result.add(newlin);
-
     }
 
     /**

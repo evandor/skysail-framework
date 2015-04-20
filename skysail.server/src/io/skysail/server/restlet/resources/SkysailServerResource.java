@@ -327,13 +327,9 @@ public abstract class SkysailServerResource<T> extends ServerResource {
         if (id != null && href.contains("{") && href.contains("}")) {
             href = href.replaceFirst(StringParserUtils.placeholderPattern.toString(), id);
         }
-        
-       // linkTemplate;
-        linkTemplate.setRole(LinkRole.LIST_VIEW);
-        linkTemplate.setRelation(LinkRelation.ITEM);
-        linkTemplate.setRefId(id);
-        
+                
         Link newLink = new Link.Builder(linkTemplate)//.uri()
+            .uri(href)
             .role(LinkRole.LIST_VIEW)
             .relation(LinkRelation.ITEM)
             .refId(id).build();

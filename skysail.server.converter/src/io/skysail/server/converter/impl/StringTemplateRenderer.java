@@ -345,7 +345,9 @@ public class StringTemplateRenderer {
                     return true;
                 }
                 if (Visibility.SHOW_IF_NULL.equals(postViewAnnotation.visibility())) {
-                    
+                    if (resource.getRequest().toString().contains("/" + field.getName() + ":null/")) {
+                        return true;
+                    }
                 }
             }
         }

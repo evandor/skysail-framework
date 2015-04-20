@@ -4,6 +4,7 @@ import io.skysail.api.domain.Identifiable;
 import io.skysail.api.forms.Field;
 import io.skysail.api.forms.InputType;
 import io.skysail.api.forms.Reference;
+import io.skysail.server.app.todos.todos.resources.ListSelectionProvider;
 import io.skysail.server.app.todos.todos.resources.TodoResource;
 import io.skysail.server.app.todos.todos.status.Status;
 import io.skysail.server.app.todos.todos.status.StatusSelectionProvider;
@@ -39,8 +40,10 @@ public class Todo implements Serializable, Identifiable {
     @Id
     private String id;
     
-    @Reference(cls = Todo.class)
+    //    @Field(selectionProvider = ListSelectionProvider.class)
+    @Reference(cls = Todo.class, selectionProvider = ListSelectionProvider.class)
     @PostView(visibility = Visibility.SHOW_IF_NULL)
+    @ListView(hide = true)
     private String list;
 
     @Field

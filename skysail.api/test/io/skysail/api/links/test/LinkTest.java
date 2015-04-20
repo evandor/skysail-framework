@@ -46,7 +46,8 @@ public class LinkTest {
     @Test
     public void builder_rejects_link_with_null_uri() throws Exception {
         thrown.expect(NullPointerException.class);
-        new Link.Builder(null).build();
+        String nullString = null;
+        new Link.Builder(nullString).build();
     }
 
     @Test

@@ -85,6 +85,9 @@ public class Todo implements Serializable, Identifiable {
     }
     
     public Todo(Form query) {
+        if (query == null) {
+            return;
+        }
         this.title = query.getFirstValue("title");
         this.desc = query.getFirstValue("desc");
     }

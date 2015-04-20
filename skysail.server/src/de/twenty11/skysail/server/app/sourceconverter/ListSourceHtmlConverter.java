@@ -37,7 +37,7 @@ import de.twenty11.skysail.server.app.AbstractSourceConverter;
 @Slf4j
 public class ListSourceHtmlConverter extends AbstractSourceConverter implements SourceConverter {
 
-    private ObjectMapper mapper = new ObjectMapper();
+    private volatile ObjectMapper mapper = new ObjectMapper();
 
     public ListSourceHtmlConverter() {
         mapper.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false);

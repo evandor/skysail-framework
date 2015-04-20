@@ -22,7 +22,7 @@ public class TodosClient extends SkysailApplication implements ApplicationProvid
 
     private static final String APP_NAME = "TodosClient";
     
-    private DefaultRedirector defaultRedirector;
+    private volatile DefaultRedirector defaultRedirector;
 
     public TodosClient() {
         super(APP_NAME + "/");

@@ -1,6 +1,5 @@
 package io.skysail.server.app.todos.test.browser;
 
-import io.skysail.api.links.LinkRelation;
 import io.skysail.client.testsupport.ApplicationBrowser;
 import io.skysail.client.testsupport.ApplicationClient;
 import io.skysail.server.app.todos.TodoApplication;
@@ -82,7 +81,8 @@ public class TodoListBrowser extends ApplicationBrowser<TodoListBrowser, TodoLis
     }
 
     private void navigateToPostTodoListAs(ApplicationClient<TodoList> client) {
-        client.gotoAppRoot().followLinkRelation(LinkRelation.CREATE_FORM);
+        //client.gotoAppRoot().followLinkRelation(LinkRelation.CREATE_FORM);
+        client.gotoAppRoot().followLinkTitle("create new List");
     }
 
 }

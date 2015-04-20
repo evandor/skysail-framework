@@ -317,9 +317,9 @@ public abstract class SkysailServerResource<T> extends ServerResource {
         return "NO_ID";
     }
 
-    private void addLink(Link link, Resource entityResource, String id, ListServerResource<?> resource,
+    private void addLink(Link linkTemplate, Resource entityResource, String id, ListServerResource<?> resource,
             List<Link> result) {
-        String path = link.getUri();
+        String path = linkTemplate.getUri();
         // does this ever work?
         String href = StringParserUtils.substitutePlaceholders(path, entityResource);
 
@@ -328,12 +328,17 @@ public abstract class SkysailServerResource<T> extends ServerResource {
             href = href.replaceFirst(StringParserUtils.placeholderPattern.toString(), id);
         }
         
-        link.substituePlaceholders(entityResource, id);
-        link.setRole(LinkRole.LIST_VIEW);
-        link.setRelation(LinkRelation.ITEM);
-        link.setRefId(id);
+       // linkTemplate;
+        linkTemplate.setRole(LinkRole.LIST_VIEW);
+        linkTemplate.setRelation(LinkRelation.ITEM);
+        linkTemplate.setRefId(id);
         
-        result.add(link);
+        Link newLink = new Link.Builder(linkTemplate)//.uri()
+            .role(LinkRole.LIST_VIEW)
+            .relation(LinkRelation.ITEM)
+            .refId(id).build();
+        //substituePlaceholders(entityResource, id).build()
+        result.add(newLink);
     }
 
     /**

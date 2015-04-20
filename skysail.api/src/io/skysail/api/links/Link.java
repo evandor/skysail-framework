@@ -78,11 +78,28 @@ public class Link {
         private String refId;
         private Map<MediaType, String> images = new HashMap<>();
 
+        public Builder(@NonNull Link linkTemplate) {
+            this.uri = linkTemplate.getUri();
+            this.title  = linkTemplate.getTitle();
+            this.rel  = linkTemplate.getRel();
+            this.verbs  = linkTemplate.getVerbs();
+            this.authenticationNeeded  = linkTemplate.getNeedsAuthentication();
+            this.needsRoles = linkTemplate.getRolesPredicate();
+            this.role  = linkTemplate.getRole();
+            this.refId = linkTemplate.getRefId();
+            this.images  = linkTemplate.getImages();
+        }
+        
         public Builder(@NonNull String uri) {
             this.uri = uri.trim();
             verbs.add(Method.GET);
         }
 
+        public Builder uri(@NonNull String uri) {
+            this.uri = uri;
+            return this;
+        }
+        
         public Link build() {
             return new Link(this);
         }

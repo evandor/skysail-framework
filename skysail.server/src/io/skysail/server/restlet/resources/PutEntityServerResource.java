@@ -83,6 +83,7 @@ public abstract class PutEntityServerResource<T> extends SkysailServerResource<T
     public PutEntityServerResource(String identifierName) {
         this.identifierName = identifierName;
         addToContext(ResourceContextId.LINK_TITLE, "update");
+        addToContext(ResourceContextId.LINK_GLYPH, "edit");
     }
 
     /**
@@ -190,7 +191,7 @@ public abstract class PutEntityServerResource<T> extends SkysailServerResource<T
     }
 
     @Override
-    public List<Link> getLinkheader() {
+    public List<Link> getLinks() {
         
         String ref = getReference().toString();
         String parentRef = getReference().getParentRef().toString();

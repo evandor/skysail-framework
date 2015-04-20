@@ -138,7 +138,7 @@ index(user, messages, source, converter, services, resource, fields, target) ::=
       <div class="row">
         <div class="col-md-1">$appNavTitle(resource)$</div>
         <div class="col-md-10">
-            $menuNav(resource.linkheader)$
+            $menuNav(resource.links)$
         </div>
         <div class="col-md-1">&nbsp;</div>
       </div>

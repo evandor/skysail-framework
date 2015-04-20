@@ -20,7 +20,7 @@ public class PagesResource extends ListServerResource<Map<String,Object>> {
     }
     
     @Override
-    public List<Link> getLinkheader() {
-        return super.getLinkheader(PostPageResource.class);
+    public List<Link> getLinks() {
+        return super.getLinks(PostPageResource.class);
     }
 }

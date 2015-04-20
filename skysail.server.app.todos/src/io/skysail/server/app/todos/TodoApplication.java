@@ -7,6 +7,7 @@ import io.skysail.server.app.todos.lists.PostListResource;
 import io.skysail.server.app.todos.lists.PutListResource;
 import io.skysail.server.app.todos.repo.TodosRepository;
 import io.skysail.server.app.todos.todos.resources.PostTodoResource;
+import io.skysail.server.app.todos.todos.resources.PostTodoWoListResource;
 import io.skysail.server.app.todos.todos.resources.PutTodoResource;
 import io.skysail.server.app.todos.todos.resources.TodoResource;
 import io.skysail.server.app.todos.todos.resources.TodosResource;
@@ -59,6 +60,8 @@ public class TodoApplication extends SkysailApplication implements ApplicationPr
         router.attach(new RouteBuilder("/Lists/{"+LIST_ID+"}", ListResource.class));
         router.attach(new RouteBuilder("/Lists/{"+LIST_ID+"}/", PutListResource.class));
 
+        router.attach(new RouteBuilder("/Lists/null/Todos/", PostTodoWoListResource.class));
+        
         router.attach(new RouteBuilder("/Lists/{"+LIST_ID+"}/Todos/", PostTodoResource.class));
         router.attach(new RouteBuilder("/Lists/{"+LIST_ID+"}/Todos", TodosResource.class));
         router.attach(new RouteBuilder("/Lists/{"+LIST_ID+"}/Todos/{"+TODO_ID+"}", TodoResource.class));

@@ -8,6 +8,7 @@ import io.skysail.server.app.todos.todos.resources.TodosResource;
 import io.skysail.server.restlet.resources.EntityServerResource;
 
 import java.util.List;
+import java.util.function.Consumer;
 
 import org.restlet.data.Status;
 
@@ -20,9 +21,9 @@ public class ListResource extends EntityServerResource<TodoList> {
 
     public ListResource() {
         addToContext(ResourceContextId.LINK_TITLE, "details");
-        addToContext(ResourceContextId.LINK_GLYPH, "plus");
+        addToContext(ResourceContextId.LINK_GLYPH, "search");
     }
-    
+
     @Override
     protected void doInit() {
         listId = getAttribute(TodoApplication.LIST_ID);
@@ -34,7 +35,8 @@ public class ListResource extends EntityServerResource<TodoList> {
         TodoList todoList = app.getRepository().getById(TodoList.class, listId);
         if (todoList.getTodosCount() > 0) {
             // TODO revisit: make a business violation from that
-            getResponse().setStatus(Status.CLIENT_ERROR_BAD_REQUEST, new IllegalStateException(), "cannot delete list as it is not empty");
+            getResponse().setStatus(Status.CLIENT_ERROR_BAD_REQUEST, new IllegalStateException(),
+                    "cannot delete list as it is not empty");
             return new SkysailResponse<String>();
         }
         app.getRepository().delete(TodoList.class, listId);
@@ -47,12 +49,19 @@ public class ListResource extends EntityServerResource<TodoList> {
     }
 
     @Override
-    public List<Link> getLinkheader() {
-        return super.getLinkheader(ListResource.class, TodosResource.class, PutListResource.class);
+    public List<Link> getLinks() {
+        return super.getLinks(ListResource.class, TodosResource.class, PutListResource.class);
     }
 
     @Override
     public String redirectTo() {
         return super.redirectTo(ListsResource.class);
+    }
+
+    @Override
+    public Consumer<? super Link> getPathSubstitutions() {
+        return l -> {
+            l.substitute("lid", listId);
+        };
     }
 }

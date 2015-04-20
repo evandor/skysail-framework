@@ -31,7 +31,7 @@ debug(resource, source, target, messages) ::= <<
                     </h4>
                   </div>
                   <div id="collapseLinks" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingLinks">
-                    <div class="panel-body">$linkheader(resource.linkheader)$</div>
+                    <div class="panel-body">$linkheader(resource.links)$</div>
                   </div>
                 </div>
                 <div class="panel panel-default">

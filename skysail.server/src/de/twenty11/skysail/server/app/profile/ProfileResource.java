@@ -28,8 +28,8 @@ public class ProfileResource extends EntityServerResource<Profile> {
     }
 	
 	@Override
-	public List<Link> getLinkheader() {
-	    return super.getLinkheader(PutPasswordResource.class);
+	public List<Link> getLinks() {
+	    return super.getLinks(PutPasswordResource.class);
 	}
 
 }

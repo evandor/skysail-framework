@@ -15,6 +15,7 @@ import io.skysail.server.converter.wrapper.STTargetWrapper;
 import io.skysail.server.converter.wrapper.STUserWrapper;
 import io.skysail.server.converter.wrapper.StResourceWrapper;
 import io.skysail.server.forms.ListView;
+import io.skysail.server.forms.PostView;
 import io.skysail.server.restlet.resources.EntityServerResource;
 import io.skysail.server.restlet.resources.ListServerResource;
 import io.skysail.server.restlet.resources.PostEntityServerResource;
@@ -48,7 +49,6 @@ import de.twenty11.skysail.server.beans.DynamicEntity;
 import de.twenty11.skysail.server.beans.EntityDynaProperty;
 import de.twenty11.skysail.server.core.FormField;
 import de.twenty11.skysail.server.core.restlet.utils.CookiesUtils;
-import de.twenty11.skysail.server.core.restlet.utils.StringParserUtils;
 import de.twenty11.skysail.server.services.MenuItemProvider;
 
 @Slf4j
@@ -116,7 +116,7 @@ public class StringTemplateRenderer {
             return;
         }
         ListServerResource<?> listServerResource = (ListServerResource<?>) resource;
-        List<Link> links = listServerResource.getLinkheader();
+        List<Link> links = listServerResource.getLinks();
         Class<? extends EntityServerResource<?>> entityResourceClass = listServerResource.getAssociatedEntityResource();
         if (entityResourceClass != null && sourceWrapper.getConvertedSource() instanceof List) {
             EntityServerResource<?> esr = ResourceUtils.createEntityServerResource(entityResourceClass, resource);
@@ -126,14 +126,34 @@ public class StringTemplateRenderer {
                 if (!(object instanceof Map)) {
                     continue;
                 }
-                StringBuilder sb = new StringBuilder();
-
                 String id = guessId(object);
                 if (id == null) {
                     continue;
                 }
-                links.stream().filter(l -> id.equals(l.getRefId())).forEach(link -> addLinkHeader(link, esr, id, sb));
-                ((Map<String, Object>) object).put("_links", sb.toString());
+
+                String linkshtml = links
+                        .stream()
+                        .filter(l -> id.equals(l.getRefId()))
+                        .map(link -> {
+                            StringBuilder sb = new StringBuilder();
+
+                            if (link.getImage(MediaType.TEXT_HTML) != null) {
+                                sb.append("<a href='")
+                                        .append(link.getUri())
+                                        .append("' title='")
+                                        .append(link.getTitle())
+                                        .append("'>")
+                                        .append("<span class='glyphicon glyphicon-"
+                                                + link.getImage(MediaType.TEXT_HTML) + "' aria-hidden='true'></span>")
+                                        .append("</a>");
+                            } else {
+                                sb.append("<a href='").append(link.getUri()).append("'>").append(link.getTitle())
+                                        .append("</a>");
+                            }
+                            return sb.toString();
+                        }).collect(Collectors.joining("&nbsp;&nbsp;"));
+
+                ((Map<String, Object>) object).put("_links", linkshtml);
             }
         }
     }
@@ -273,20 +293,6 @@ public class StringTemplateRenderer {
         }
     }
 
-    private void addLinkHeader(Link link, Resource entityResource, String id, StringBuilder sb) {
-        String path = link.getUri();
-        String href = StringParserUtils.substitutePlaceholders(path, entityResource);
-
-        // hmmm... last resort
-        if (id != null && href.contains("{") && href.contains("}")) {
-            // path = path.replace("{id}", id);
-            href = href.replaceFirst(StringParserUtils.placeholderPattern.toString(), id);
-        }
-
-        sb.append("<a href='").append(href).append("'>").append(link.getTitle()).append("</a>&nbsp;-&nbsp;");
-
-    }
-
     private int sort(SkysailServerResource<?> resource, Field f1, Field f2) {
         List<String> fieldNames = resource.getFields();
         return fieldNames.indexOf(f1.getName()) - fieldNames.indexOf(f2.getName());
@@ -310,11 +316,11 @@ public class StringTemplateRenderer {
             return true;
         }
 
-       // Reference referenceAnnotation = field.getAnnotation(Reference.class);
-       // if (referenceAnnotation != null && (Arrays.asList(referenceAnnotation.postView()).contains(PostView.HIDE))) {
-            return false;
-//        }
-//        return (referenceAnnotation != null);
+        PostView postViewAnnotation = field.getAnnotation(PostView.class);
+        if (postViewAnnotation != null && !(postViewAnnotation.hide())) {
+            return true;
+        }
+        return false;
     }
 
     private boolean isValidFieldAnnotation(SkysailServerResource<?> resource, Field field, List<String> fieldNames,
@@ -326,15 +332,18 @@ public class StringTemplateRenderer {
             return false;
         }
         if (resource instanceof PostEntityServerResource<?>) {
-            // TODO
-            return true;//(!(Arrays.asList(fieldAnnotation.postView()).contains(PostView.HIDE)));
+            PostView postViewAnnotation = field.getAnnotation(PostView.class);
+            if (postViewAnnotation != null && postViewAnnotation.hide()) {
+                return false;
+            }
         }
         ListView listViewAnnotation = field.getAnnotation(ListView.class);
         if (listViewAnnotation == null) {
             return true;
         }
-        return  !listViewAnnotation.hide();
-        //return (!(Arrays.asList(fieldAnnotation.listView()).contains(ListViewEnum.HIDE)));
+        return !listViewAnnotation.hide();
+        // return
+        // (!(Arrays.asList(fieldAnnotation.listView()).contains(ListViewEnum.HIDE)));
     }
 
     public void setMenuProviders(Set<MenuItemProvider> menuProviders) {

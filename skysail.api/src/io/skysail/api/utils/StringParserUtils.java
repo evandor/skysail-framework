@@ -1,4 +1,4 @@
-package de.twenty11.skysail.server.core.restlet.utils;
+package io.skysail.api.utils;
 
 import java.util.concurrent.ConcurrentMap;
 import java.util.regex.Matcher;
@@ -21,7 +21,8 @@ public class StringParserUtils {
                 continue;
             }
             String group = matcher.group();
-            String replacement = (String) attributes.get(group.replace("}", "").replace("{", ""));
+            String identifier = group.replace("}", "").replace("{", "");
+            String replacement = (String) attributes.get(identifier);
             uri = uri.replace(group, replacement != null ? replacement : group);
         }
         return uri;

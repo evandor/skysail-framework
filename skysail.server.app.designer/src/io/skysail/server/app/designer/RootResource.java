@@ -9,8 +9,8 @@ import java.util.List;
 public class RootResource extends ListServerResource<String> {
 
     @Override
-    public List<Link> getLinkheader() {
-        return super.getLinkheader(ApplicationsResource.class);
+    public List<Link> getLinks() {
+        return super.getLinks(ApplicationsResource.class);
     }
 
     @Override

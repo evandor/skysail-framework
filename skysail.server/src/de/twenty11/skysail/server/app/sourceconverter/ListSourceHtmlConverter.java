@@ -135,7 +135,7 @@ public class ListSourceHtmlConverter extends AbstractSourceConverter implements 
         } else {
             Class<? extends SkysailServerResource<?>> linkedResource = listViewAnnotation.link();
             if (linkedResource != null) {
-                List<Link> links = resource.getLinkheader();
+                List<Link> links = resource.getLinks();
                 String id = result.get("id") != null ? result.get("id").toString().replace("#", "") : null;
                 if (links != null && id != null) {
                     Optional<Link> findFirst = links.stream().filter(l -> {

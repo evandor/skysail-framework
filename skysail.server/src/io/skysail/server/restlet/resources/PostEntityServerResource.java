@@ -230,7 +230,7 @@ public abstract class PostEntityServerResource<T> extends SkysailServerResource<
     }
 
     @Override
-    public List<Link> getLinkheader() {
+    public List<Link> getLinks() {
         return Arrays.asList(new Link.Builder(".").relation(LinkRelation.NEXT).title("form target").verbs(Method.POST)
                 .build());
     }

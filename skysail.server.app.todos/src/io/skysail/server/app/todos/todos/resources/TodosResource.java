@@ -28,6 +28,7 @@ public class TodosResource extends ListServerResource<Todo> {
     public TodosResource() {
         super(TodoResource.class);
         addToContext(ResourceContextId.LINK_TITLE, "List of Todos");
+        addToContext(ResourceContextId.LINK_GLYPH, "th-list");
     }
 
     @Override
@@ -55,8 +56,8 @@ public class TodosResource extends ListServerResource<Todo> {
     }
 
     @Override
-    public List<Link> getLinkheader() {
-        return super.getLinkheader(PostTodoResource.class);
+    public List<Link> getLinks() {
+        return super.getLinks(PostTodoResource.class);
     }
 
     @Override

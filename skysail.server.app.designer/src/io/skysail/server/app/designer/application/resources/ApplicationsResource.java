@@ -29,8 +29,8 @@ public class ApplicationsResource extends ListServerResource<Application> {
     }
 
     @Override
-    public List<Link> getLinkheader() {
-        return super.getLinkheader(PostApplicationResource.class);
+    public List<Link> getLinks() {
+        return super.getLinks(PostApplicationResource.class);
     }
 
 }

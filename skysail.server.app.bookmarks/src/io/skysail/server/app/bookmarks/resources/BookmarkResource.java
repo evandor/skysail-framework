@@ -30,8 +30,8 @@ public class BookmarkResource extends EntityServerResource<Bookmark> {
     }
     
     @Override
-    public List<Link> getLinkheader() {
-        return super.getLinkheader(PutBookmarkResource.class);
+    public List<Link> getLinks() {
+        return super.getLinks(PutBookmarkResource.class);
     }
     
     @Override

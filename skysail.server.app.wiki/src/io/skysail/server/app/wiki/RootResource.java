@@ -12,8 +12,8 @@ import java.util.List;
 public class RootResource extends ListServerResource<String> {
 
     @Override
-    public List<Link> getLinkheader() {
-        return super.getLinkheader(PostSpaceResource.class, SpacesResource.class, PostPageResource.class, PagesResource.class);
+    public List<Link> getLinks() {
+        return super.getLinks(PostSpaceResource.class, SpacesResource.class, PostPageResource.class, PagesResource.class);
     }
 
     @Override

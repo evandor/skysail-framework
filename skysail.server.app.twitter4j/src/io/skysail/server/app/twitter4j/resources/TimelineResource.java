@@ -7,43 +7,38 @@ import io.skysail.server.restlet.resources.ListServerResource;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.restlet.resource.ResourceException;
-
+import lombok.extern.slf4j.Slf4j;
 import twitter4j.Status;
 import twitter4j.Twitter;
 import twitter4j.TwitterException;
 
+@Slf4j
 public class TimelineResource extends ListServerResource<Tweet>{
-
-    private TwitterApplication app;
-
-    @Override
-    protected void doInit() throws ResourceException {
-        app = (TwitterApplication) getApplication();
-    }
     
+    public TimelineResource() {
+        super(TimelineEntityResource.class);
+    }
+
     @Override
     public List<Tweet> getEntity() {
         List<Tweet> tweets = new ArrayList<>();
-        Twitter twitter = app.getTwitterInstance();
-        List<Status> statuses;
+        Twitter twitter = ((TwitterApplication) getApplication()).getTwitterInstance();
+        List<Status> statuses = new ArrayList<>();
         try {
             statuses = twitter.getHomeTimeline();
-            //System.out.println("Showing home timeline.");
             for (Status status : statuses) {
-                //System.out.println(status.getUser().getName() + ":" + status.getText());
                 tweets.add(new Tweet(status));
             }
         } catch (TwitterException e) {
-            e.printStackTrace();
+            log.error(e.getMessage(), e);
         }
        
         return tweets;
     }
     
     @Override
-    public List<Link> getLinkheader() {
-        return super.getLinkheader(SearchRequestResource.class);
+    public List<Link> getLinks() {
+        return super.getLinks(SearchRequestResource.class);
     }
 
 }

@@ -34,8 +34,8 @@ public class ContactResource extends EntityServerResource<Contact> {
     }
 
     @Override
-    public List<Link> getLinkheader() {
-        return super.getLinkheader(PutContactResource.class);
+    public List<Link> getLinks() {
+        return super.getLinks(PutContactResource.class);
     }
 
     @Override

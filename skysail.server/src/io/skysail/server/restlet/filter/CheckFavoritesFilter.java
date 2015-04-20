@@ -81,7 +81,7 @@ public class CheckFavoritesFilter<R extends SkysailServerResource<T>, T> extends
     private void addFavoritesAsLinks(R resource, List<Favorite> favorites) {
         favorites.stream().forEach(
                 fav -> {
-                    resource.getLinkheader().add(
+                    resource.getLinks().add(
                             new Link.Builder(fav.getFavoriteLink()).title(fav.getFavoriteName())
                                     .role(LinkRole.APPLICATION_NAVIGATION).build());
                 });

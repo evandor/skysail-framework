@@ -11,7 +11,7 @@ import java.util.List;
 public class FeatureResource extends EntityServerResource<Feature> {
 
     @Override
-    public List<Link> getLinkheader() {
+    public List<Link> getLinks() {
         // return super.getLinkheader(PostInstallationResource.class);
         return Arrays.asList(new Link.Builder("123/installations/").relation(LinkRelation.NEXT).title("install")
                 .build());

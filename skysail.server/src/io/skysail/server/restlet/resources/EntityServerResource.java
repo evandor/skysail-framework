@@ -59,7 +59,7 @@ import de.twenty11.skysail.server.core.restlet.ResponseWrapper;
  *         return app.getRepository().getById(MyEntity.class, myEntityId);
  *     }
  * 
- *     public List&lt;Link&gt; getLinkheader() {
+ *     public List&lt;Link&gt; getLinks() {
  *          return super.getLinkheader(PutMyEntityResource.class);
  *     }
  *     

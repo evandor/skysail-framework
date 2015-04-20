@@ -26,7 +26,7 @@ public class DefaultResource extends ListServerResource<String> {
     }
 
     @Override
-    public List<Link> getLinkheader() {
+    public List<Link> getLinks() {
         SkysailRootApplication defaultApp = (SkysailRootApplication) getApplication();
         Set<MenuItem> menuItems = defaultApp.getMenuItems();
         List<Link> linkheaders = menuItems.stream().map(mi -> createLinkheaderForApp(mi))

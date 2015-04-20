@@ -38,8 +38,8 @@ public class CompanyResource extends EntityServerResource<Company> {
     }
 
     @Override
-    public List<Link> getLinkheader() {
-        return super.getLinkheader(PutCompanyResource.class);
+    public List<Link> getLinks() {
+        return super.getLinks(PutCompanyResource.class);
     }
 
 }

@@ -26,8 +26,8 @@ public class BookmarksResource extends ListServerResource<Bookmark> {
     }
      
     @Override
-    public List<Link> getLinkheader() {
-       return super.getLinkheader(PostBookmarkResource.class);
+    public List<Link> getLinks() {
+       return super.getLinks(PostBookmarkResource.class);
     } 
  
 }

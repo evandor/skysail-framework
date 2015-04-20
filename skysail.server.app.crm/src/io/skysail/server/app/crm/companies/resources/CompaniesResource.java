@@ -34,8 +34,8 @@ public class CompaniesResource extends ListServerResource<Company> {
     }
 
     @Override
-    public List<Link> getLinkheader() {
-        return super.getLinkheader(PostCompanyResource.class);
+    public List<Link> getLinks() {
+        return super.getLinks(PostCompanyResource.class);
     }
 
 }

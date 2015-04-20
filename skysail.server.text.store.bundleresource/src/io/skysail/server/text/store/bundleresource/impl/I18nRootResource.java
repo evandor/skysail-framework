@@ -8,8 +8,8 @@ import java.util.List;
 public class I18nRootResource extends ListServerResource<String> {
 
     @Override
-    public List<Link> getLinkheader() {
-        return super.getLinkheader(MessagesResource.class);
+    public List<Link> getLinks() {
+        return super.getLinks(MessagesResource.class);
     }
 
     @Override

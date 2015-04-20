@@ -1,5 +1,5 @@
 appNav(resource) ::= <<
-    $resource.linkheader:{ element | $applinkAsButton(element,i)$}$
+    $resource.links:{ element | $applinkAsButton(element,i)$}$
 >>
 
 applinkAsButton(linkheader,i) ::= <<

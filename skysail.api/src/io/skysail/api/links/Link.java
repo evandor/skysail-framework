@@ -1,5 +1,7 @@
 package io.skysail.api.links;
 
+import io.skysail.api.utils.StringParserUtils;
+
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -15,6 +17,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.restlet.Request;
 import org.restlet.data.MediaType;
 import org.restlet.data.Method;
+import org.restlet.resource.Resource;
 
 import com.google.common.base.Predicate;
 
@@ -57,8 +60,9 @@ public class Link {
     /** to be done. */
     private Map<MediaType, String> images = new HashMap<>();
 
-    /** a refId can be used to group links which belong together, 
-     * for example, as they reference the same entity
+    /**
+     * a refId can be used to group links which belong together, for example, as
+     * they reference the same entity
      */
     private String refId;
 
@@ -72,6 +76,7 @@ public class Link {
         private Predicate<String[]> needsRoles;
         private LinkRole role = LinkRole.DEFAULT;
         private String refId;
+        private Map<MediaType, String> images = new HashMap<>();
 
         public Builder(@NonNull String uri) {
             this.uri = uri.trim();
@@ -116,9 +121,14 @@ public class Link {
             this.needsRoles = needsRoles;
             return this;
         }
-        
+
         public Builder refId(@NonNull String refId) {
             this.refId = refId;
+            return this;
+        }
+
+        public Builder image(MediaType mediaType, String img) {
+            images.put(mediaType, img);
             return this;
         }
     }
@@ -138,6 +148,7 @@ public class Link {
         }
         this.role = linkBuilder.role;
         this.refId = linkBuilder.refId;
+        this.images = linkBuilder.images;
     }
 
     /**
@@ -214,10 +225,6 @@ public class Link {
         return sb.toString();
     }
 
-    public void setImage(MediaType mediaType, String img) {
-        images.put(mediaType, img);
-    }
-
     public String getImage() {
         return images.get(MediaType.TEXT_HTML);
     }
@@ -255,6 +262,10 @@ public class Link {
      * substitute placeholders in URIs.
      */
     public Link substitute(String key, String value) {
+        if (value == null) {
+            return this;
+        }
+
         String pattern = new StringBuilder("{").append(key).append("}").toString();
         if (uri.contains(pattern)) {
             String uriBefore = uri;
@@ -274,6 +285,18 @@ public class Link {
     public Link setRelation(LinkRelation relation) {
         this.rel = relation;
         return this;
+    }
+
+    public Link setRefId(String id) {
+        this.refId = id;
+        return this;
+    }
+
+    public void substituePlaceholders(Resource entityResource, String id) {
+        uri = StringParserUtils.substitutePlaceholders(getUri(), entityResource);
+        if (id != null && uri.contains("{") && uri.contains("}")) {
+            uri = uri.replaceFirst(StringParserUtils.placeholderPattern.toString(), id);
+        }
     }
 
 }

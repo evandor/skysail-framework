@@ -1,9 +1,5 @@
 package de.twenty11.skysail.server.services.test;
 
-import static org.hamcrest.Matchers.equalTo;
-import static org.hamcrest.Matchers.is;
-import static org.hamcrest.Matchers.nullValue;
-import static org.junit.Assert.assertThat;
 import io.skysail.server.app.SkysailApplication;
 
 import java.util.ArrayList;
@@ -11,12 +7,9 @@ import java.util.List;
 
 import org.junit.Before;
 import org.junit.BeforeClass;
-import org.junit.Test;
 import org.mockito.Mockito;
 
 import de.twenty11.skysail.server.core.restlet.RouteBuilder;
-import de.twenty11.skysail.server.services.MenuItem;
-import de.twenty11.skysail.server.services.MenuItem.Category;
 
 public class MenuItemTest {
 
@@ -40,48 +33,48 @@ public class MenuItemTest {
     }
     
     
-    @Test
-    public void sets_linkpath_to_nameOfApp_plus_configured_pathFromRoute() throws Exception {
-        Mockito.when(app.getRouteBuilders(TestServerResource.class)).thenReturn(routeBuilders);
-        MenuItem item = new MenuItem(app, TestServerResource.class);
-        assertThat(item.getLink(), is(equalTo("/testapp/path")));   
-    }
+//    @Test
+//    public void sets_linkpath_to_nameOfApp_plus_configured_pathFromRoute() throws Exception {
+//        Mockito.when(app.getRouteBuilders(TestServerResource.class)).thenReturn(routeBuilders);
+//        MenuItem item = new MenuItem(app, TestServerResource.class);
+//        assertThat(item.getLink(), is(equalTo("/testapp/path")));   
+//    }
+//    
+//    @Test
+//    public void sets_name_to_defaultRelation_if_title_is_not_given() throws Exception {
+//        Mockito.when(app.getRouteBuilders(TestServerResource.class)).thenReturn(routeBuilders);
+//        MenuItem item = new MenuItem(app, TestServerResource.class);
+//        assertThat(item.getName(), is("unknown"));
+//    }
     
-    @Test
-    public void sets_name_to_defaultRelation_if_title_is_not_given() throws Exception {
-        Mockito.when(app.getRouteBuilders(TestServerResource.class)).thenReturn(routeBuilders);
-        MenuItem item = new MenuItem(app, TestServerResource.class);
-        assertThat(item.getName(), is("unknown"));
-    }
+//    @Test
+//    public void sets_securedByRole_to_null_by_default() throws Exception {
+//        Mockito.when(app.getRouteBuilders(TestServerResource.class)).thenReturn(routeBuilders);
+//        MenuItem item = new MenuItem(app, TestServerResource.class);
+//        assertThat(item.getSecuredByRole(), is(nullValue()));
+//    }
+//    
+//    @Test
+//    public void sets_category_to_ADMIN_by_default() throws Exception {
+//        Mockito.when(app.getRouteBuilders(TestServerResource.class)).thenReturn(routeBuilders);
+//        MenuItem item = new MenuItem(app, TestServerResource.class);
+//        assertThat(item.getCategory(), is(equalTo(Category.ADMIN_MENU)));
+//    }
     
-    @Test
-    public void sets_securedByRole_to_null_by_default() throws Exception {
-        Mockito.when(app.getRouteBuilders(TestServerResource.class)).thenReturn(routeBuilders);
-        MenuItem item = new MenuItem(app, TestServerResource.class);
-        assertThat(item.getSecuredByRole(), is(nullValue()));
-    }
-    
-    @Test
-    public void sets_category_to_ADMIN_by_default() throws Exception {
-        Mockito.when(app.getRouteBuilders(TestServerResource.class)).thenReturn(routeBuilders);
-        MenuItem item = new MenuItem(app, TestServerResource.class);
-        assertThat(item.getCategory(), is(equalTo(Category.ADMIN_MENU)));
-    }
-    
-    @Test
-    public void sets_authenticationNeed_to_true_by_default_for_all_constructors() throws Exception {
-        Mockito.when(app.getRouteBuilders(TestServerResource.class)).thenReturn(routeBuilders);
-
-        MenuItem item = new MenuItem(app, TestServerResource.class);
-        assertThat(item.getNeedsAuthentication(), is(true));
-
-        item = new MenuItem("name", "link");
-        assertThat(item.getNeedsAuthentication(), is(true));
-
-        item = new MenuItem(null, "name", "link");
-        assertThat(item.getNeedsAuthentication(), is(true));
-        
-        item = new MenuItem("name", "link", app);
-        assertThat(item.getNeedsAuthentication(), is(true));
-    }
+//    @Test
+//    public void sets_authenticationNeed_to_true_by_default_for_all_constructors() throws Exception {
+//        Mockito.when(app.getRouteBuilders(TestServerResource.class)).thenReturn(routeBuilders);
+//
+//        MenuItem item = new MenuItem(app, TestServerResource.class);
+//        assertThat(item.getNeedsAuthentication(), is(true));
+//
+//        item = new MenuItem("name", "link");
+//        assertThat(item.getNeedsAuthentication(), is(true));
+//
+//        item = new MenuItem(null, "name", "link");
+//        assertThat(item.getNeedsAuthentication(), is(true));
+//        
+//        item = new MenuItem("name", "link", app);
+//        assertThat(item.getNeedsAuthentication(), is(true));
+//    }
 }

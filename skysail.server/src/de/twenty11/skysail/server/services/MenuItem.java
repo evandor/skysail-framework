@@ -1,8 +1,6 @@
 package de.twenty11.skysail.server.services;
 
-import io.skysail.api.links.Link;
 import io.skysail.server.app.SkysailApplication;
-import io.skysail.server.restlet.resources.SkysailServerResource;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -11,7 +9,6 @@ import java.util.List;
 import com.google.common.base.Predicate;
 
 import de.twenty11.skysail.server.core.restlet.ApplicationContextId;
-import de.twenty11.skysail.server.core.restlet.ServerLink;
 
 public class MenuItem {
 
@@ -46,20 +43,20 @@ public class MenuItem {
         this(null, name, link);
     }
 
-    public MenuItem(SkysailApplication app, Class<? extends SkysailServerResource<?>> skysailServerResourceClass) {
-    	applicationImage  = app.getFromContext(ApplicationContextId.IMG);
-        Link link = ServerLink.fromResource(app, skysailServerResourceClass);
-        if (link == null) {
-            this.name = app.getName();
-            this.link = app.getName();
-            needsAuthentication = true;
-            return;
-        }
-        this.name = link.getTitle();
-        this.link = link.getUri();
-        securedByRole = link.getRolesPredicate();
-        needsAuthentication = link.getNeedsAuthentication();
-    }
+//    public MenuItem(SkysailApplication app, Class<? extends SkysailServerResource<?>> skysailServerResourceClass) {
+//    	applicationImage  = app.getFromContext(ApplicationContextId.IMG);
+//        Link link = LinkUtils.fromResource(app, skysailServerResourceClass);
+//        if (link == null) {
+//            this.name = app.getName();
+//            this.link = app.getName();
+//            needsAuthentication = true;
+//            return;
+//        }
+//        this.name = link.getTitle();
+//        this.link = link.getUri();
+//        securedByRole = link.getRolesPredicate();
+//        needsAuthentication = link.getNeedsAuthentication();
+//    }
 
     public MenuItem(String string, String name2, SkysailApplication app) {
     	this(string,name2);

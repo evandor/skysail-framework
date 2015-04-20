@@ -34,8 +34,8 @@ public class EntitiesResource extends ListServerResource<Entity> {
     }
 
     @Override
-    public List<Link> getLinkheader() {
-        return super.getLinkheader(PostEntityResource.class);
+    public List<Link> getLinks() {
+        return super.getLinks(PostEntityResource.class);
     }
 
     @Override

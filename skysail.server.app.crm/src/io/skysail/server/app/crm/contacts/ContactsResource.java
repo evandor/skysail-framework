@@ -86,8 +86,8 @@ public class ContactsResource extends ListServerResource<Contact> {
     // }
 
     @Override
-    public List<Link> getLinkheader() {
-        return super.getLinkheader(PostContactResource.class);
+    public List<Link> getLinks() {
+        return super.getLinks(PostContactResource.class);
     }
 
     @Override

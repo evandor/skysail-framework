@@ -59,7 +59,7 @@ import de.twenty11.skysail.server.core.restlet.ResponseWrapper;
  *    }
  *     
  *    {@literal @}Override
- *    public List<Link> getLinkheader() {
+ *    public List<Link> getLinks() {
  *       return super.getLinkheader(PostCompanyResource.class);
  *    } 
  * </code>

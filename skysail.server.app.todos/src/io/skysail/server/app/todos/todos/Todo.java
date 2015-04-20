@@ -8,6 +8,7 @@ import io.skysail.server.app.todos.todos.resources.TodoResource;
 import io.skysail.server.app.todos.todos.status.Status;
 import io.skysail.server.app.todos.todos.status.StatusSelectionProvider;
 import io.skysail.server.forms.ListView;
+import io.skysail.server.forms.PostView;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -20,6 +21,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+
+import org.restlet.data.Form;
 
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
@@ -60,7 +63,8 @@ public class Todo implements Serializable, Identifiable {
     @Field(type = InputType.READONLY)
     private Integer rank;
 
-    @Field(selectionProvider = StatusSelectionProvider.class) //, postView = { PostView.HIDE })
+    @Field(selectionProvider = StatusSelectionProvider.class)
+    @PostView(hide = true)
     private Status status;
 
     @Field(type = InputType.READONLY)
@@ -74,4 +78,10 @@ public class Todo implements Serializable, Identifiable {
     public Todo(String title) {
         this.title = title;
     }
+    
+    public Todo(Form query) {
+        this.title = query.getFirstValue("title");
+        this.desc = query.getFirstValue("desc");
+    }
+
 }

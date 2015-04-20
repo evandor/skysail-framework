@@ -61,7 +61,7 @@
     <end type="SOURCE" refId="5"/>    
     <end type="TARGET" refId="7"/>  
   </message>  
-  <message id="8" operation="RequestHandler(de.twenty11.skysail.server.app.SkysailApplication)" x="126" y="276">    
+  <message id="8" x="126" y="276">    
     <end type="SOURCE" refId="7"/>    
     <end type="TARGET" refId="9"/>  
   </message>  

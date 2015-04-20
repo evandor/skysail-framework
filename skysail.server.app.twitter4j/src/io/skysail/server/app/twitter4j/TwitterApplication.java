@@ -2,7 +2,9 @@ package io.skysail.server.app.twitter4j;
 
 import io.skysail.server.app.SkysailApplication;
 import io.skysail.server.app.twitter4j.resources.SearchRequestResource;
+import io.skysail.server.app.twitter4j.resources.TimelineEntityResource;
 import io.skysail.server.app.twitter4j.resources.TimelineResource;
+import io.skysail.server.app.twitter4j.resources.Tweet2TodoResource;
 
 import java.util.Arrays;
 import java.util.List;
@@ -50,6 +52,8 @@ public class TwitterApplication extends SkysailApplication implements Applicatio
     protected void attach() {
         super.attach();
         router.attach(new RouteBuilder("", TimelineResource.class));
+        router.attach(new RouteBuilder("/tweet", TimelineEntityResource.class));
+        router.attach(new RouteBuilder("/tweets/{id}", Tweet2TodoResource.class));
         router.attach(new RouteBuilder("/searchrequest", SearchRequestResource.class));
     }
 

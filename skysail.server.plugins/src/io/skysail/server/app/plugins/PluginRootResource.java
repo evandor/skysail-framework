@@ -18,8 +18,8 @@ public class PluginRootResource extends ListServerResource<String> {
     }
 
     @Override
-    public List<Link> getLinkheader() {
-        return super.getLinkheader(FeaturesResource.class, RepositoriesResource.class, PostResolverResource.class,
+    public List<Link> getLinks() {
+        return super.getLinks(FeaturesResource.class, RepositoriesResource.class, PostResolverResource.class,
                 ResourcesResource.class);
     }
 

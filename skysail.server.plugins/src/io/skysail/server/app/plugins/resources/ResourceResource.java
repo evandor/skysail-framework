@@ -59,8 +59,8 @@ public class ResourceResource extends EntityServerResource<Resource> {
     }
 
     @Override
-    public List<Link> getLinkheader() {
-        return super.getLinkheader(ResourceResource.class);
+    public List<Link> getLinks() {
+        return super.getLinks(ResourceResource.class);
     }
 
     @Override

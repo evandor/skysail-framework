@@ -40,6 +40,8 @@ public class PluginApplication extends SkysailApplication implements Application
 
     private static final String PLUGINS = "plugins";
 
+    private static final String APP_NAME = "plugins";
+
     private FeaturesRepository featuresRepository;
 
     private RepositoryAdmin repositoryAdmin;
@@ -72,7 +74,9 @@ public class PluginApplication extends SkysailApplication implements Application
 
     @Override
     public List<MenuItem> getMenuEntries() {
-        MenuItem menuItem = new MenuItem(getApplication(), PluginRootResource.class);
+        //MenuItem menuItem = new MenuItem(getApplication(), PluginRootResource.class);
+        MenuItem menuItem = new MenuItem(APP_NAME, "/" + APP_NAME, this);
+
         menuItem.setCategory(MenuItem.Category.ADMIN_MENU);
         return Arrays.asList(menuItem);
     }

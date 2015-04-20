@@ -39,8 +39,8 @@ public class StResourceWrapper {
         return new STApplicationWrapper(resource);
     }
 
-    public List<Link> getLinkheader() throws Exception {
-        return resource.getLinkheaderAuthorized();
+    public List<Link> getLinks() throws Exception {
+        return resource.getAuthorizedLinks();
     }
 
     public List<Breadcrumb> getBreadcrumbs() {

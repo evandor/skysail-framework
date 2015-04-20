@@ -5,7 +5,6 @@ import io.skysail.api.responses.SkysailResponse;
 import io.skysail.server.app.todos.TodoApplication;
 import io.skysail.server.app.todos.todos.Todo;
 import io.skysail.server.app.todos.todos.status.Status;
-import io.skysail.server.restlet.resources.PostEntityServerResource;
 
 import java.util.Date;
 import java.util.function.Consumer;
@@ -15,12 +14,12 @@ import org.apache.shiro.subject.Subject;
 
 import de.twenty11.skysail.server.core.restlet.ResourceContextId;
 
-public class PostTodoResource extends PostEntityServerResource<Todo> {
+public class PostTodoWoListResource extends PostTodoResource {
 
     private TodoApplication app;
     private String listId;
 
-    public PostTodoResource() {
+    public PostTodoWoListResource() {
         addToContext(ResourceContextId.LINK_TITLE, "Create new Todo");
     }
 
@@ -51,7 +50,7 @@ public class PostTodoResource extends PostEntityServerResource<Todo> {
     @Override
     public String redirectTo() {
         if ("submitAndNew".equals(submitValue)) {
-            return super.redirectTo(PostTodoResource.class);
+            return super.redirectTo(PostTodoWoListResource.class);
         }
         return super.redirectTo(TodosResource.class);
     }

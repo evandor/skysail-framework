@@ -56,8 +56,8 @@ public class ContractsResource extends ListServerResource<Contract> {
     }
 
     @Override
-    public List<Link> getLinkheader() {
-        return super.getLinkheader(PostContractResource.class);
+    public List<Link> getLinks() {
+        return super.getLinks(PostContractResource.class);
     }
 
     @Override

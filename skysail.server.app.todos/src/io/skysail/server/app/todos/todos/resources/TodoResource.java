@@ -41,8 +41,8 @@ public class TodoResource extends EntityServerResource<Todo> {
     }
 
     @Override
-    public List<Link> getLinkheader() {
-        return super.getLinkheader(PutTodoResource.class);
+    public List<Link> getLinks() {
+        return super.getLinks(PutTodoResource.class);
     }
 
     @Override

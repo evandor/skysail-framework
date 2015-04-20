@@ -20,8 +20,8 @@ public class FeaturesResource extends ListServerResource<Feature> {
     }
 
     @Override
-    public List<Link> getLinkheader() {
-        return super.getLinkheader(PluginRootResource.class);
+    public List<Link> getLinks() {
+        return super.getLinks(PluginRootResource.class);
     }
 
     @Override

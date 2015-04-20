@@ -23,8 +23,8 @@ public class PageResource extends EntityServerResource<Map<String,Object>> {
         return app.getRepository().getById(Page.class, myEntityId);
     }
 
-    public List<Link> getLinkheader() {
-         return super.getLinkheader(PutPageResource.class);
+    public List<Link> getLinks() {
+         return super.getLinks(PutPageResource.class);
     }
 
     @Override

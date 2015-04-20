@@ -53,7 +53,7 @@ javac.target:          1.8
 copyright:              Copyright (c) twentyeleven.de (2011, ${tstamp;yyyy}). All Rights Reserved.
 copyright.html:         Copyright &copy; twentyeleven.de (2011, ${tstamp;yyyy}). All Rights Reserved.
 
-skysail.api.version                    '[5.1,5.2)'
+skysail.api.version                    '[6.0,6.1)'
 skysail.api.documentation.version      '[0.2,0.3)'
 skysail.api.favorites.version          '[0.1,0.2)'
 restlet.version                        2.3.1

@@ -1,9 +1,10 @@
-package de.twenty11.skysail.server.core.restlet.utils;
+package io.skysail.api.utils.test;
 
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.nullValue;
 import static org.junit.Assert.assertThat;
+import io.skysail.api.utils.StringParserUtils;
 
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
@@ -14,8 +15,6 @@ import org.junit.Test;
 import org.mockito.Mockito;
 import org.restlet.Request;
 import org.restlet.resource.Resource;
-
-import de.twenty11.skysail.server.core.restlet.utils.StringParserUtils;
 
 public class StringParserUtilsTest {
 

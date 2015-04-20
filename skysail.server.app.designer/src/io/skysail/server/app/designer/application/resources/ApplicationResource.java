@@ -51,8 +51,8 @@ public class ApplicationResource extends EntityServerResource<Application> {
     }
 
     @Override
-    public List<Link> getLinkheader() {
-        return super.getLinkheader(PutApplicationResource.class, ApplicationResource.class, PostEntityResource.class,
+    public List<Link> getLinks() {
+        return super.getLinks(PutApplicationResource.class, ApplicationResource.class, PostEntityResource.class,
                 EntitiesResource.class);
     }
 

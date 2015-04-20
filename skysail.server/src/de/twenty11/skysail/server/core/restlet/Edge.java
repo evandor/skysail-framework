@@ -17,7 +17,7 @@ public class Edge {
 //        return from;
 //    }
     
-    public Link getLinkheader() {
+    public Link getLinks() {
         return linkheader;
     }
 

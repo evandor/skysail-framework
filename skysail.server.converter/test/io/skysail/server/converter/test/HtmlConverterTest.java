@@ -76,7 +76,7 @@ public class HtmlConverterTest {
     public void returns_variants() throws Exception {
         Class<?> source = String.class;
         List<VariantInfo> variants = htmlConverter.getVariants(source);
-        assertThat(variants.size(), is(1));
+        assertThat(variants.size(), is(2));
         assertThat(variants.get(0).getMediaType().getName(), is(equalTo("treeform/*")));
     }
 

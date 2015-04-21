@@ -85,7 +85,7 @@ public class Breadcrumbs {
                     return path.contains(key);
                 }).findFirst();
                 if (replacementKey.isPresent()) {
-                    value = substitutionsMap.get(replacementKey.get()).toString();
+                    value = "<i>"+substitutionsMap.get(replacementKey.get()).toString()+"</i>";
                     ((Map) substitutions).remove(replacementKey.get());
                 }
             }

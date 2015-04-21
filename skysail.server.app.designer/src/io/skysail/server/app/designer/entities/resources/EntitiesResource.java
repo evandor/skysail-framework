@@ -6,7 +6,9 @@ import io.skysail.server.app.designer.application.Application;
 import io.skysail.server.app.designer.entities.Entity;
 import io.skysail.server.restlet.resources.ListServerResource;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.function.Consumer;
 
 import de.twenty11.skysail.server.core.restlet.ResourceContextId;
@@ -25,6 +27,10 @@ public class EntitiesResource extends ListServerResource<Entity> {
     protected void doInit() {
         app = (DesignerApplication) getApplication();
         id = getAttribute("id");
+        Application application = app.getRepository().getById(Application.class, id);
+        Map<String, String> substitutions = new HashMap<>();
+        substitutions.put("/applications/" + id, application.getName());
+        getContext().getAttributes().put(ResourceContextId.PATH_SUBSTITUTION.name(), substitutions);
     }
 
     @Override

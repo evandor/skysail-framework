@@ -87,12 +87,13 @@ public class StringTemplateRenderer {
         Bundle appBundle = currentApplication.getBundle();
         String resourcePath = ("/templates/" + mediaType).replace("/*", "");
         log.info("reading templates from resource path '{}'", resourcePath);
-        URL templatesResource = appBundle.getResource("/templates");// resourcePath);
+        URL templatesResource = appBundle.getResource("/templates");
         if (templatesResource != null) {
             STGroupBundleDir stGroup = new STGroupBundleDir(appBundle, resource, "/templates");
             importTemplate("skysail.server.converter", resource, appBundle, resourcePath, stGroup);
             importTemplate("skysail.server.documentation", resource, appBundle, resourcePath, stGroup);
             return stGroup;
+
         } else {
             Optional<Bundle> thisBundle = findBundle(appBundle, "skysail.server.converter");
             return new STGroupBundleDir(thisBundle.get(), resource, resourcePath);
@@ -317,12 +318,12 @@ public class StringTemplateRenderer {
             return true;
         }
 
-//        PostView postViewAnnotation = field.getAnnotation(PostView.class);
-//        if (postViewAnnotation != null) {
-//            if (!(Visibility.SHOW.equals(postViewAnnotation.visibility()))) {
-//                return true;
-//            }
-//        }
+        // PostView postViewAnnotation = field.getAnnotation(PostView.class);
+        // if (postViewAnnotation != null) {
+        // if (!(Visibility.SHOW.equals(postViewAnnotation.visibility()))) {
+        // return true;
+        // }
+        // }
         return false;
     }
 

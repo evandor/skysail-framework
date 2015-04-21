@@ -18,7 +18,9 @@ public class AddApiVersionHeaderFilter<R extends SkysailServerResource<T>, T> ex
             return;
         }
         Bundle servingBundle = FrameworkUtil.getBundle(resource.getClass());
-        String version = servingBundle.getHeaders().get("X-Api-Version");
-        HeadersUtils.addToHeaders(response, "X-Api-Version", version == null ? "unknown" : version);
+        if (servingBundle != null) {
+            String version = servingBundle.getHeaders().get("X-Api-Version");
+            HeadersUtils.addToHeaders(response, "X-Api-Version", version == null ? "unknown" : version);
+        }
     }
 }

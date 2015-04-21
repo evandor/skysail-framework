@@ -22,10 +22,13 @@ public class PutEntityResource extends PutEntityServerResource<Entity> {
     }
 
     public Entity getEntity() {
-        // TODO same as in EntityResource
         Application application = app.getRepository().getById(Application.class, appId);
+        System.out.println(application.getEntities());
         Optional<Entity> optionalEntity = application.getEntities().stream().filter(e -> {
-            return e.getName().equals(entityId);
+            if (e == null || e.getId() == null) {
+                return false;
+            }
+            return e.getId().replace("#", "").equals(entityId);
         }).findFirst();
         return optionalEntity.orElse(null);
     }

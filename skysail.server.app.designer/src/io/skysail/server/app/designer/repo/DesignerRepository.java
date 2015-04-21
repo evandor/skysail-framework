@@ -35,6 +35,10 @@ public class DesignerRepository implements DbRepository {
     public <T> List<T> findAll(Class<T> cls) {
         return dbService.findObjects("select from " + cls.getSimpleName());
     }
+    
+    public <T> List<T> findAll(String sql) {
+        return dbService.findObjects(sql);
+    }
 
     public static Object add(Object entity, String... edges) {
         return dbService.persist(entity, edges);

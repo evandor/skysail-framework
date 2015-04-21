@@ -157,6 +157,7 @@ public abstract class SkysailApplication extends Application implements Applicat
     public static final MediaType SKYSAIL_TREE_FORM = MediaType
             .register("treeform", "Html Form as tree representation");
     public static final MediaType SKYSAIL_SHTML_MEDIATYPE = MediaType.register("shtml", "Server Side Include");
+    public static final MediaType SKYSAIL_MAILTO_MEDIATYPE = MediaType.register("mailto", "href mailto target");
 
     protected ServiceListProvider serviceListProvider;
 
@@ -341,6 +342,7 @@ public abstract class SkysailApplication extends Application implements Applicat
         getMetadataService().addExtension("eventstream", SKYSAIL_SERVER_SENT_EVENTS);
         getMetadataService().addExtension("treeform", SKYSAIL_TREE_FORM);
         getMetadataService().addExtension("graph", SKYSAIL_GRAPH);
+        getMetadataService().addExtension("mailto", SKYSAIL_MAILTO_MEDIATYPE);
 
         // see
         // http://nexnet.wordpress.com/2010/09/29/clap-protocol-in-restlet-and-osgi/

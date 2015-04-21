@@ -50,7 +50,7 @@ public class StResourceWrapper {
     public List<RepresentationLink> getRepresentations() {
         Set<String> supportedMediaTypes = ResourceUtils.getSupportedMediaTypes(resource, resource.getCurrentEntity());
         return supportedMediaTypes.stream().map(mediaType -> {
-            return new RepresentationLink(mediaType);
+            return new RepresentationLink(mediaType, resource.getCurrentEntity());
         }).collect(Collectors.toList());
     }
 

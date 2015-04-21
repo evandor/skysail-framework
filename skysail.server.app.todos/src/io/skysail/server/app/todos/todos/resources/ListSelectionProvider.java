@@ -1,9 +1,13 @@
 package io.skysail.server.app.todos.todos.resources;
 
 import io.skysail.api.forms.SelectionProvider;
+import io.skysail.server.app.todos.TodoApplication;
+import io.skysail.server.app.todos.TodoList;
+import io.skysail.server.restlet.resources.SkysailServerResource;
 
-import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import org.restlet.resource.Resource;
 
@@ -17,17 +21,10 @@ public class ListSelectionProvider implements SelectionProvider {
 
     @Override
     public Map<String, String> getSelections() {
-        Map<String, String> result = new HashMap<>();
-        result.put("hi", "hi");
-//        List<Status> statuses = Arrays.stream(Status.values()).collect(Collectors.toList());
-//        Status status;
-//        if (resource != null && resource instanceof SkysailServerResource) {
-//            Todo currentEntity = ((SkysailServerResource<Todo>) resource).getCurrentEntity();
-//            status = currentEntity.getStatus();
-//            statuses = status.getNexts().stream().map(str -> Status.valueOf(str)).collect(Collectors.toList());
-//        }
-//        statuses.stream().forEach(v -> result.put(v.name(), v.name()));
-        return result;
+        SkysailServerResource<?> ssr = (SkysailServerResource<?>) resource;
+        TodoApplication app = (TodoApplication) ssr.getApplication();
+        List<TodoList> allLists = app.getRepository().findAllLists();
+        return allLists.stream().collect(Collectors.toMap(TodoList::getId, TodoList::getName));
     }
 
     @Override

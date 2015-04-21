@@ -36,7 +36,7 @@ public class Tweet2TodoResource extends EntityServerResource<Tweet> {
             Tweet tweet = new Tweet(status);
             String title = Reference.encode("Todo from Tweet");
             String desc = Reference.encode(tweet.getText());
-            String uri = "/Todos/Lists/22:52/Todos/?title="+title+"&desc=" + desc;
+            String uri = "/Todos/Lists/list:null/Todos/?title="+title+"&desc=" + desc;
             getResponse().redirectSeeOther(uri);
             return tweet;
         } catch (NumberFormatException | TwitterException e) {

@@ -1,0 +1,14 @@
+Bundle-Version: 0.0.12.${tstamp}
+Bundle-Name: SKYSAIL :: server :: ext :: mailer
+Service-Component:  \
+	*
+-buildpath: \
+	osgi.core;version=5.0,\
+	osgi.cmpn;version=5.0,\
+	skysail.server;version=latest,\
+	biz.aQute.bnd.annotation;version=2.3,\
+	com.sun.mail.javax.mail;version=1.5,\
+	slf4j.api;version=1.7.7,\
+	lombok;version=1.12
+Private-Package:  \
+	de.twenty11.skysail.server.ext.mailer

@@ -19,6 +19,10 @@ import io.skysail.server.app.designer.repo.DesignerRepository;
 import io.skysail.server.db.DbRepository;
 import io.skysail.server.restlet.resources.ListServerResource;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -69,17 +73,9 @@ public class DesignerApplication extends SkysailApplication implements MenuItemP
         router.attach(new RouteBuilder("/applications/{id}/entities/{" + ENTITY_ID + "}/fields/",
                 PostFieldResource.class));
         
-//        URL url = getBundle().getResource("code/ListServerResource.codegen");
-//        BufferedReader br;
-//        try {
-//            br = new BufferedReader(new InputStreamReader(url.openConnection().getInputStream()));
-//            while(br.ready()){
-//                System.out.println(br.readLine());
-//            }
-//            br.close();
-//        } catch (IOException e2) {
-//            e2.printStackTrace();
-//        }
+        String listServerResourceTemplate = readCodeGenFile("code/ListServerResource.codegen");
+        String postResourceTemplate = readCodeGenFile("code/PostResource.codegen");
+        String entityTemplate = readCodeGenFile("code/Entity.codegen");
 
         List<Application> apps = getRepository().findAll(Application.class);
         apps.stream().forEach( a -> { 
@@ -89,27 +85,37 @@ public class DesignerApplication extends SkysailApplication implements MenuItemP
                 String entityName = e.getName();
                 String className = entityName.substring(0,1).toUpperCase().concat(entityName.substring(1)).concat("sResource");
                 String path = "/preview/" + a.getName();// + "/"  + entityName;
-    
-                StringBuffer sourceCode = new StringBuffer();
-                sourceCode.append("package io.skysail.server.app.designer.codegen;\n");
-                sourceCode.append("\n");
-                sourceCode.append("import io.skysail.server.restlet.resources.ListServerResource;\n");
-                sourceCode.append("import io.skysail.server.app.designer.DesignerApplication;\n");
-                sourceCode.append("\n");
-                sourceCode.append("import java.util.List;\n");
-                sourceCode.append("import java.util.Map;\n");
-                sourceCode.append("\n");
-                sourceCode.append("public class "+className+" extends ListServerResource<Map<String,Object>> {\n");
-                sourceCode.append("   public List<Map<String,Object>> getEntity() {\n");
-                sourceCode.append("       return ((DesignerApplication) getApplication()).getRepository().findAll(\"select from dynamic."+a.getName()+"."+entityName+"\");\n");
-                sourceCode.append("   }\n");
-                sourceCode.append("   public List<Link> getLinks() {\n");
-                sourceCode.append("       return super.getLinks(PostSpaceResource.class);\n");
-                sourceCode.append("   }\n");
-                sourceCode.append("}");
-    
+
+                String entityCode = entityTemplate;
+                entityCode = entityCode.replace("$classname$", entityName);
+               // entityCode = entityCode.replace("$entityname$", entityName);
+
                 try {
-                    Class<?> compiledClass = InMemoryJavaCompiler.compile(getBundleContext(), "io.skysail.server.app.designer.codegen." + className, sourceCode.toString());
+                    Class<?> compiledClass = InMemoryJavaCompiler.compile(getBundleContext(), "io.skysail.server.app.designer.codegen." + entityName, entityCode);
+                    //Class<? extends ListServerResource<?>> helloClass = (Class<? extends ListServerResource<?>>) compiledClass;
+                    //router.attach(new RouteBuilder(path, helloClass));
+                } catch (Exception e1) {
+                   log.error(e1.getMessage(),e1);
+                }
+
+                String postResourceCode = postResourceTemplate;
+                postResourceCode = postResourceCode.replace("$classname$", className);
+                postResourceCode = postResourceCode.replace("$entityname$", entityName);
+
+                try {
+                    Class<?> compiledClass = InMemoryJavaCompiler.compile(getBundleContext(), "io.skysail.server.app.designer.codegen." + className, postResourceCode);
+                    Class<? extends ListServerResource<?>> helloClass = (Class<? extends ListServerResource<?>>) compiledClass;
+                    router.attach(new RouteBuilder(path, helloClass));
+                } catch (Exception e1) {
+                   log.error(e1.getMessage(),e1);
+                }
+
+                String listServerResourceCode = listServerResourceTemplate;
+                listServerResourceCode = listServerResourceCode.replace("$classname$", className);
+                listServerResourceCode = listServerResourceCode.replace("$tablename$", "dynamic."+a.getName()+"."+entityName);
+                
+                try {
+                    Class<?> compiledClass = InMemoryJavaCompiler.compile(getBundleContext(), "io.skysail.server.app.designer.codegen." + className, listServerResourceCode);
                     Class<? extends ListServerResource<?>> helloClass = (Class<? extends ListServerResource<?>>) compiledClass;
                     router.attach(new RouteBuilder(path, helloClass));
                 } catch (Exception e1) {
@@ -119,6 +125,22 @@ public class DesignerApplication extends SkysailApplication implements MenuItemP
         });
         
 
+    }
+
+    private String readCodeGenFile(String path) {
+        URL url = getBundle().getResource(path);
+        BufferedReader br;
+        StringBuilder sb = new StringBuilder();
+        try {
+            br = new BufferedReader(new InputStreamReader(url.openConnection().getInputStream()));
+            while(br.ready()){
+                sb.append(br.readLine()).append("\n");
+            }
+            br.close();
+        } catch (IOException e2) {
+            log.error(e2.getMessage(), e2);
+        }
+        return sb.toString();
     }
 
     @Reference(dynamic = true, multiple = false, optional = false, target = "(name=DesignerRepository)")

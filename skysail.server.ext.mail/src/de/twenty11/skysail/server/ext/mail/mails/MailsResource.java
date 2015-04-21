@@ -32,7 +32,7 @@ public class MailsResource extends ListServerResource<Mail> {
     protected void doInit() throws ResourceException {
         super.doInit();
         String accountId = (String) getRequest().getAttributes().get("id");
-        account = app.getAccountRepository().getById(accountId);
+        account = null;//app.getAccountsRepository().getById(accountId);
         folderId = (String) getRequest().getAttributes().get("folderId");
     }
 

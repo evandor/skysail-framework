@@ -2,13 +2,28 @@ package de.twenty11.skysail.server.ext.mail.accounts;
 
 import io.skysail.api.domain.Identifiable;
 import io.skysail.api.forms.Field;
+import io.skysail.api.forms.InputType;
+import io.skysail.server.forms.ListView;
 
 import java.io.Serializable;
 
-public class Account implements Identifiable, Serializable {
+import javax.persistence.Id;
 
-    private static final long serialVersionUID = 3277770588774698115L;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
+@Getter
+@Setter
+@ToString(of = { "title" })
+//@JsonPropertyOrder({ "title", "desc" })
+@NoArgsConstructor
+public class Account implements Serializable, Identifiable {
+
+    private static final long serialVersionUID = -5632636376979025266L;
+
+    @Id
     private String id;
 
     @Field
@@ -19,44 +34,15 @@ public class Account implements Identifiable, Serializable {
 
     @Field
     private String pass;
+    
+    @Field(type = InputType.READONLY)
+    @ListView(hide=true)
+    private String owner;
 
     public Account(String host, String user, String pass) {
         this.host = host;
         this.user = user;
         this.pass = pass;
     }
-
-    public Account() {
-    }
-
-    @Override
-    public String getId() {
-        return id;
-    }
-
-    @Override
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getHost() {
-        return host;
-    }
-
-    public String getUser() {
-        return user;
-    }
-
-    public String getPass() {
-        return pass;
-    }
-
-//    @Override
-//    public List<Linkheader> getLinkheader() {
-//        List<Linkheader> links = new ArrayList<>();
-//        links.add(new Linkheader.Builder("mail/accounts/" + getId() + "/folders").relation(LinkHeaderRelation.COLLECTION).title("folders").build());
-//
-//        return links;
-//    }
 
 }

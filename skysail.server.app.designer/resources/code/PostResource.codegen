@@ -1,0 +1,23 @@
+package io.skysail.server.app.designer.codegen;
+
+import io.skysail.api.responses.SkysailResponse;
+import de.twenty11.skysail.server.core.restlet.ResourceContextId;
+import io.skysail.server.app.designer.PostDynamicEntityServerResource;
+
+public class $classname$ extends PostDynamicEntityServerResource<$entityname$> {
+
+    public $classname$() {
+        addToContext(ResourceContextId.LINK_TITLE, "create new $entityname$");
+    }
+
+    @Override
+    public Space createEntityTemplate() {
+        return new $entityname$();
+    }
+
+    public SkysailResponse<?> addEntity($entityname$ entity) {
+        //((WikiApplication) getApplication()).getRepository().add(entity);
+        return new SkysailResponse<String>();
+    }
+
+}

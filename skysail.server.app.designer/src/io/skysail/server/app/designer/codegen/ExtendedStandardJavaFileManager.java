@@ -7,9 +7,6 @@ import javax.tools.ForwardingJavaFileManager;
 import javax.tools.JavaFileManager;
 import javax.tools.JavaFileObject;
 
-/**
- * Created by trung on 5/3/15.
- */
 public class ExtendedStandardJavaFileManager extends ForwardingJavaFileManager<JavaFileManager> {
     private CompiledCode compiledCode;
     private DynamicClassLoader cl;

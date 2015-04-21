@@ -1,8 +1,11 @@
 package de.twenty11.skysail.server.ext.mail;
 
+import io.skysail.api.links.Link;
 import io.skysail.server.restlet.resources.ListServerResource;
 
 import java.util.List;
+
+import de.twenty11.skysail.server.ext.mail.accounts.impl.AccountsResource;
 
 public class MailRootResource extends ListServerResource<String> {
 
@@ -15,11 +18,9 @@ public class MailRootResource extends ListServerResource<String> {
         return null;
     }
 
-//    @Override
-//    public List<Link> getLinks() {
-//        List<Link> links = super.getLinks();
-//        links.add(new RelativeLink(getContext(), "mail/accounts", "accounts"));
-//        return links;
-//    }
+    @Override
+    public List<Link> getLinks() {
+        return super.getLinks(AccountsResource.class);
+    }
 
 }

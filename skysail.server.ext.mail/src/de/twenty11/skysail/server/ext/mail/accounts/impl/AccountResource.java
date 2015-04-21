@@ -30,7 +30,7 @@ public class AccountResource extends EntityServerResource<Account> {
     }
 
     public SkysailResponse<?> addEntity(Account entity) {
-        app.getAccountRepository().add(entity);
+      //  app.getAccountsRepository().add(entity);
         return new SkysailResponse<Account>();
     }
 
@@ -48,7 +48,7 @@ public class AccountResource extends EntityServerResource<Account> {
 
     @Override
     public Account getEntity() {
-        return app.getAccountRepository().getById(accountId);
+        return null;//app.getAccountsRepository().getById(accountId);
     }
 
 }

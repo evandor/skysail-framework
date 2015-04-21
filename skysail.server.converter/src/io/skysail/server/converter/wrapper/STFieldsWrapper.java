@@ -41,6 +41,9 @@ public class STFieldsWrapper implements List<FormField> {
 
     @Override
     public Iterator<FormField> iterator() {
+        if (fields == null) {
+            return null;
+        }
         return fields.iterator();
     }
 

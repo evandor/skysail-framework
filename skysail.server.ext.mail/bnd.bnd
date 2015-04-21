@@ -14,7 +14,9 @@ Bundle-Version: 1.0.5.${tstamp}
 	skysail.server;version=latest,\
 	org.apache.commons.lang,\
 	etm.core;version=1.2,\
-	org.apache.commons.beanutils;version=1.9
+	org.apache.commons.beanutils;version=1.9,\
+	org.apache.shiro.core;version=1.2,\
+	lombok;version=1.16
 Service-Component: *
 Private-Package: de.twenty11.skysail.server.ext.mail,\
 	de.twenty11.skysail.server.ext.mail.accounts.impl,\

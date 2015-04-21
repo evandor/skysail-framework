@@ -26,7 +26,7 @@ public class FoldersResource extends ListServerResource<MailFolder> {
         super.doInit();
         if (getRequest().getAttributes().get("id") != null) {
             String accountId = (String) getRequest().getAttributes().get("id");
-            account = app.getAccountRepository().getById(accountId);
+            account = null;//app.getAccountsRepository().getById(accountId);
         }
     }
 

@@ -7,9 +7,6 @@ import java.net.URI;
 
 import javax.tools.SimpleJavaFileObject;
 
-/**
- * Created by trung on 5/3/15.
- */
 public class CompiledCode extends SimpleJavaFileObject {
     private ByteArrayOutputStream baos = new ByteArrayOutputStream();
 

@@ -16,7 +16,8 @@ public class MenuItem {
         APPLICATION_MAIN_MENU, //
         ADMIN_MENU, //
         ADMIN_MAIN_MENU_INTERACTIVITY, // Section in Admin Main Menu
-        FRONTENDS_MAIN_MENU
+        FRONTENDS_MAIN_MENU,
+        DESIGNER_APP_MENU
     }
 
     private String name;

@@ -18,6 +18,7 @@ import io.skysail.server.app.designer.fields.resources.PostFieldResource;
 import io.skysail.server.app.designer.repo.DesignerRepository;
 import io.skysail.server.db.DbRepository;
 import io.skysail.server.restlet.resources.ListServerResource;
+import io.skysail.server.restlet.resources.PostEntityServerResource;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -82,59 +83,49 @@ public class DesignerApplication extends SkysailApplication implements MenuItemP
 
             a.getEntities().stream().forEach(e -> {
                 System.out.println(a);
-                
-                String entityName = e.getName();
-                String className = entityName.substring(0,1).toUpperCase().concat(entityName.substring(1)).concat("sResource");
+                String entityName = e.getName().substring(0,1).toUpperCase().concat(e.getName().substring(1));
+                System.out.println(" >>>> " + entityName);
                 String path = "/preview/" + a.getName();// + "/"  + entityName;
 
                 String entityCode = entityTemplate;
                 entityCode = entityCode.replace("$classname$", entityName);
 
-                compile(entityName, entityCode, "io.skysail.server.app.designer.codegen.");
+                try {
+                    Class<?> compiledClass = InMemoryJavaCompiler.compile(getBundleContext(), "io.skysail.server.app.designer.codegen." + entityName, entityCode);
+                } catch (Exception e1) {
+                   log.error(e1.getMessage(),e1);
+                }
 
                 String postResourceCode = postResourceTemplate;
+                String className = "Post" + entityName + "Resource";
                 postResourceCode = postResourceCode.replace("$classname$", className);
                 postResourceCode = postResourceCode.replace("$entityname$", entityName);
 
-                Class<?> compiledClass = compile("Post" + entityName + "Resource", postResourceCode, "io.skysail.server.app.designer.codegen.");
-                Class<? extends ListServerResource<?>> helloClass = (Class<? extends ListServerResource<?>>) compiledClass;
-                router.attach(new RouteBuilder(path, helloClass));
+                try {
+                    Class<?> compiledClass = InMemoryJavaCompiler.compile(getBundleContext(), "io.skysail.server.app.designer.codegen." + className, postResourceCode);
+                    Class<? extends PostEntityServerResource<?>> helloClass = (Class<? extends PostEntityServerResource<?>>) compiledClass;
+                    router.attach(new RouteBuilder(path + "/" + entityName + "s/", helloClass));
+                } catch (Exception e1) {
+                   log.error(e1.getMessage(),e1);
+                }
 
-//                try {
-//                    Class<?> compiledClass = InMemoryJavaCompiler.compile(getBundleContext(), "io.skysail.server.app.designer.codegen." + className, postResourceCode);
-//                    Class<? extends ListServerResource<?>> helloClass = (Class<? extends ListServerResource<?>>) compiledClass;
-//                    router.attach(new RouteBuilder(path, helloClass));
-//                } catch (Exception e1) {
-//                   log.error(e1.getMessage(),e1);
-//                }
-
-//                String listServerResourceCode = listServerResourceTemplate;
-//                listServerResourceCode = listServerResourceCode.replace("$classname$", className);
-//                listServerResourceCode = listServerResourceCode.replace("$tablename$", "dynamic."+a.getName()+"."+entityName);
-//                
-//                try {
-//                    Class<?> compiledClass = InMemoryJavaCompiler.compile(getBundleContext(), "io.skysail.server.app.designer.codegen." + className, listServerResourceCode);
-//                    Class<? extends ListServerResource<?>> helloClass = (Class<? extends ListServerResource<?>>) compiledClass;
-//                    router.attach(new RouteBuilder(path, helloClass));
-//                } catch (Exception e1) {
-//                   log.error(e1.getMessage(),e1);
-//                }
+                String listServerResourceCode = listServerResourceTemplate;
+                className = entityName + "sResource";
+                listServerResourceCode = listServerResourceCode.replace("$classname$", className);
+                listServerResourceCode = listServerResourceCode.replace("$entityname$", entityName);
+                listServerResourceCode = listServerResourceCode.replace("$tablename$", "dynamic."+a.getName()+"."+entityName);
+                
+                try {
+                    Class<?> compiledClass = InMemoryJavaCompiler.compile(getBundleContext(), "io.skysail.server.app.designer.codegen." + className, listServerResourceCode);
+                    Class<? extends ListServerResource<?>> helloClass = (Class<? extends ListServerResource<?>>) compiledClass;
+                    router.attach(new RouteBuilder(path + "/" + entityName + "s", helloClass));
+                } catch (Exception e1) {
+                   log.error(e1.getMessage(),e1);
+                }
             });
         });
         
 
-    }
-
-    private Class<?> compile(String className, String sourceCode, String packagePrefix) {
-        log.info("trying to compile new class '{}{}'", packagePrefix,className);
-        try {
-            return InMemoryJavaCompiler.compile(getBundleContext(), packagePrefix + className, sourceCode);
-        } catch (Exception e1) {
-           log.error(e1.getMessage(),e1);
-           log.info("Non-compiling Source Code was: ");
-           log.info(sourceCode);
-           return null;
-        }
     }
 
     private String readCodeGenFile(String path) {
@@ -176,7 +167,9 @@ public class DesignerApplication extends SkysailApplication implements MenuItemP
         List<Application> apps = getRepository().findAll(Application.class);
         apps.stream().forEach(a -> {
             MenuItem menu = new MenuItem(a.getName(), "/" + APP_NAME + "/preview/" + a.getName(), this);
-            menu.setCategory(MenuItem.Category.APPLICATION_MAIN_MENU);
+            menu.setCategory(MenuItem.Category.DESIGNER_APP_MENU);
+            //new MenuItem(menu, "add new application", "application?media=htmlform");
+            
             result.add(menu);
         });
         return result;

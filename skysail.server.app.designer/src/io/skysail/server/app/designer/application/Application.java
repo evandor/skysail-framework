@@ -30,7 +30,7 @@ public class Application implements Identifiable {
     @NotNull
     @Size(min = 1)
     private String name;
-
+    
     //@Reference(cls = Entity.class)
     private List<Entity> entities;
 

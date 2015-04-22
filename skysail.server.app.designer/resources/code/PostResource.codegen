@@ -11,7 +11,7 @@ public class $classname$ extends PostDynamicEntityServerResource<$entityname$> {
     }
 
     @Override
-    public Space createEntityTemplate() {
+    public $entityname$ createEntityTemplate() {
         return new $entityname$();
     }
 

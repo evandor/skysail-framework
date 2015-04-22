@@ -35,12 +35,20 @@ public class STServicesWrapper {
         return getMenuItems(MenuItem.Category.FRONTENDS_MAIN_MENU);
     }
 
+    public Set<MenuItem> getDesignerAppMenuItems() throws Exception {
+        return getMenuItems(MenuItem.Category.DESIGNER_APP_MENU);
+    }
+
     public Set<MenuItem> getAdminMenuItems() throws Exception {
         Set<MenuItem> menuItems = getMenuItems(MenuItem.Category.ADMIN_MENU);
         menuItems.addAll(getMenuItems(Category.ADMIN_MAIN_MENU_INTERACTIVITY));
         return menuItems;
     }
 
+    public Set<MenuItem> getDesignerAppItems() throws Exception {
+        return getMenuItems(MenuItem.Category.DESIGNER_APP_MENU);
+    } 
+    
     public SearchService getSearchService() {
         return searchService;
     }

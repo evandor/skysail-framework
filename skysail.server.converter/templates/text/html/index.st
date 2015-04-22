@@ -74,6 +74,7 @@ index(user, messages, source, converter, services, resource, fields, target) ::=
           <ul class="nav navbar-nav">
             $dropdownFrontendsNav(services)$
             $dropdownApplicationsNav(services)$
+            $dropdownDesignerNav(services)$
             $dropdownAdminNav(services)$
             $if(user.developer)$
             <li class="dropdown">

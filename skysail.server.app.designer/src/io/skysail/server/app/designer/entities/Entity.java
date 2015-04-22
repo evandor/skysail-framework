@@ -1,6 +1,7 @@
 package io.skysail.server.app.designer.entities;
 
 import io.skysail.api.domain.Identifiable;
+import io.skysail.api.forms.Field;
 import io.skysail.server.app.designer.fields.EntityField;
 
 import java.util.ArrayList;
@@ -22,8 +23,11 @@ public class Entity implements Identifiable {
     @Id
     private String id;
 
-    @io.skysail.api.forms.Field
+    @Field
     private String name;
+    
+    @Field
+    private boolean rootEntity;
 
     private List<EntityField> fields;
 

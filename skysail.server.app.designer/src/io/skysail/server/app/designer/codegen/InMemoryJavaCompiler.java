@@ -19,6 +19,7 @@ import javax.tools.DiagnosticListener;
 import javax.tools.JavaCompiler;
 import javax.tools.JavaFileObject;
 import javax.tools.ToolProvider;
+import javax.validation.ConstraintViolation;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -34,14 +35,16 @@ public class InMemoryJavaCompiler {
     static JavaCompiler javac = ToolProvider.getSystemJavaCompiler();
     
     static DynamicClassLoader dcl;
-    
+
+    private static List<SourceCode> sourceCodes = new ArrayList<>();
+
     static {
         CompositeClassLoader customCL = new CompositeClassLoader();
         customCL.addClassLoader(Thread.currentThread().getContextClassLoader());
         customCL.addClassLoader(ListServerResource.class.getClassLoader());
         customCL.addClassLoader(DesignerApplication.class.getClassLoader());
         customCL.addClassLoader(PostDynamicEntityServerResource.class.getClassLoader());
-
+        //customCL.addClassLoader(javax.validation.ConstraintViolation.class.getClassLoader());
         dcl = new DynamicClassLoader(customCL);   
     }
 
@@ -57,6 +60,7 @@ public class InMemoryJavaCompiler {
         getBundleLocationFor(ServerResource.class, bundleLocations, bundles);
         getBundleLocationFor(DesignerApplication.class, bundleLocations, bundles);
         getBundleLocationFor(PostDynamicEntityServerResource.class, bundleLocations, bundles);
+        getBundleLocationFor(ConstraintViolation.class, bundleLocations, bundles);
         
         String locs = bundleLocations.stream().map(l -> {
             // TODO make OS specific
@@ -67,14 +71,15 @@ public class InMemoryJavaCompiler {
 
         SourceCode sourceCode = new SourceCode(className, sourceCodeInText);
         CompiledCode compiledCode = new CompiledCode(className);
-        Iterable<? extends JavaFileObject> compilationUnits = Arrays.asList(sourceCode);
+        sourceCodes.add(sourceCode);
+        Iterable<? extends JavaFileObject> compilationUnits = sourceCodes;//Arrays.asList(sourceCodes);
 
         
         
         ExtendedStandardJavaFileManager fileManager = new ExtendedStandardJavaFileManager(javac.getStandardFileManager(
                 null, null, null), compiledCode, dcl);
         DiagnosticListener<? super JavaFileObject> diagnosticsListener = new DiagnosticCollector<>();
-        JavaCompiler.CompilationTask task = javac.getTask(null, fileManager, null, optionList, null, compilationUnits);
+        JavaCompiler.CompilationTask task = javac.getTask(null, fileManager, diagnosticsListener, optionList, null, compilationUnits);
         task.call();
         return dcl.loadClass(className);
     }

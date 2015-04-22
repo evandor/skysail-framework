@@ -82,49 +82,59 @@ public class DesignerApplication extends SkysailApplication implements MenuItemP
 
             a.getEntities().stream().forEach(e -> {
                 System.out.println(a);
+                
                 String entityName = e.getName();
                 String className = entityName.substring(0,1).toUpperCase().concat(entityName.substring(1)).concat("sResource");
                 String path = "/preview/" + a.getName();// + "/"  + entityName;
 
                 String entityCode = entityTemplate;
                 entityCode = entityCode.replace("$classname$", entityName);
-               // entityCode = entityCode.replace("$entityname$", entityName);
 
-                try {
-                    Class<?> compiledClass = InMemoryJavaCompiler.compile(getBundleContext(), "io.skysail.server.app.designer.codegen." + entityName, entityCode);
-                    //Class<? extends ListServerResource<?>> helloClass = (Class<? extends ListServerResource<?>>) compiledClass;
-                    //router.attach(new RouteBuilder(path, helloClass));
-                } catch (Exception e1) {
-                   log.error(e1.getMessage(),e1);
-                }
+                compile(entityName, entityCode, "io.skysail.server.app.designer.codegen.");
 
                 String postResourceCode = postResourceTemplate;
                 postResourceCode = postResourceCode.replace("$classname$", className);
                 postResourceCode = postResourceCode.replace("$entityname$", entityName);
 
-                try {
-                    Class<?> compiledClass = InMemoryJavaCompiler.compile(getBundleContext(), "io.skysail.server.app.designer.codegen." + className, postResourceCode);
-                    Class<? extends ListServerResource<?>> helloClass = (Class<? extends ListServerResource<?>>) compiledClass;
-                    router.attach(new RouteBuilder(path, helloClass));
-                } catch (Exception e1) {
-                   log.error(e1.getMessage(),e1);
-                }
+                Class<?> compiledClass = compile("Post" + entityName + "Resource", postResourceCode, "io.skysail.server.app.designer.codegen.");
+                Class<? extends ListServerResource<?>> helloClass = (Class<? extends ListServerResource<?>>) compiledClass;
+                router.attach(new RouteBuilder(path, helloClass));
 
-                String listServerResourceCode = listServerResourceTemplate;
-                listServerResourceCode = listServerResourceCode.replace("$classname$", className);
-                listServerResourceCode = listServerResourceCode.replace("$tablename$", "dynamic."+a.getName()+"."+entityName);
-                
-                try {
-                    Class<?> compiledClass = InMemoryJavaCompiler.compile(getBundleContext(), "io.skysail.server.app.designer.codegen." + className, listServerResourceCode);
-                    Class<? extends ListServerResource<?>> helloClass = (Class<? extends ListServerResource<?>>) compiledClass;
-                    router.attach(new RouteBuilder(path, helloClass));
-                } catch (Exception e1) {
-                   log.error(e1.getMessage(),e1);
-                }
+//                try {
+//                    Class<?> compiledClass = InMemoryJavaCompiler.compile(getBundleContext(), "io.skysail.server.app.designer.codegen." + className, postResourceCode);
+//                    Class<? extends ListServerResource<?>> helloClass = (Class<? extends ListServerResource<?>>) compiledClass;
+//                    router.attach(new RouteBuilder(path, helloClass));
+//                } catch (Exception e1) {
+//                   log.error(e1.getMessage(),e1);
+//                }
+
+//                String listServerResourceCode = listServerResourceTemplate;
+//                listServerResourceCode = listServerResourceCode.replace("$classname$", className);
+//                listServerResourceCode = listServerResourceCode.replace("$tablename$", "dynamic."+a.getName()+"."+entityName);
+//                
+//                try {
+//                    Class<?> compiledClass = InMemoryJavaCompiler.compile(getBundleContext(), "io.skysail.server.app.designer.codegen." + className, listServerResourceCode);
+//                    Class<? extends ListServerResource<?>> helloClass = (Class<? extends ListServerResource<?>>) compiledClass;
+//                    router.attach(new RouteBuilder(path, helloClass));
+//                } catch (Exception e1) {
+//                   log.error(e1.getMessage(),e1);
+//                }
             });
         });
         
 
+    }
+
+    private Class<?> compile(String className, String sourceCode, String packagePrefix) {
+        log.info("trying to compile new class '{}{}'", packagePrefix,className);
+        try {
+            return InMemoryJavaCompiler.compile(getBundleContext(), packagePrefix + className, sourceCode);
+        } catch (Exception e1) {
+           log.error(e1.getMessage(),e1);
+           log.info("Non-compiling Source Code was: ");
+           log.info(sourceCode);
+           return null;
+        }
     }
 
     private String readCodeGenFile(String path) {

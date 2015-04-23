@@ -1,1 +1,1 @@
-INFO  io.skysail.server.app.designer.codegen.Code - creating code for class className
+DEBUG io.skysail.server.app.designer.codegen.SourceCode - creating new SourceCode at string:///io/skysail/Classname.java

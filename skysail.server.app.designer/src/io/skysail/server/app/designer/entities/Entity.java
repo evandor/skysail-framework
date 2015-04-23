@@ -2,6 +2,7 @@ package io.skysail.server.app.designer.entities;
 
 import io.skysail.api.domain.Identifiable;
 import io.skysail.api.forms.Field;
+import io.skysail.api.forms.InputType;
 import io.skysail.server.app.designer.fields.EntityField;
 
 import java.util.ArrayList;
@@ -26,7 +27,7 @@ public class Entity implements Identifiable {
     @Field
     private String name;
     
-    @Field
+    @Field(type = InputType.CHECKBOX)
     private boolean rootEntity;
 
     private List<EntityField> fields;

@@ -10,21 +10,14 @@ import javax.tools.JavaFileManager;
 import javax.tools.JavaFileObject;
 import javax.tools.ToolProvider;
 
-public class ExtendedStandardJavaFileManager2 extends ForwardingJavaFileManager<JavaFileManager> {
+public class CompiledCodeTrackingJavaFileManager extends ForwardingJavaFileManager<JavaFileManager> {
 
     private static JavaCompiler javac = ToolProvider.getSystemJavaCompiler();
 
     private Map<String, CompiledCode> compiledCodes;
     private DynamicClassLoader cl;
 
-    /**
-     * Creates a new instance of ForwardingJavaFileManager.
-     *
-     * @param fileManager
-     *            delegate to this file manager
-     * @param cl
-     */
-    protected ExtendedStandardJavaFileManager2(Map<String, CompiledCode> compiledCodes) {
+    public CompiledCodeTrackingJavaFileManager(Map<String, CompiledCode> compiledCodes) {
         super(javac.getStandardFileManager(null, null, null));
         this.compiledCodes = compiledCodes;
     }

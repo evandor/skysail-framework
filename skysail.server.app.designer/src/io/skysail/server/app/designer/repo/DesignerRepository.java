@@ -52,6 +52,10 @@ public class DesignerRepository implements DbRepository {
         dbService.update(entity.getId(), entity);
     }
 
+    public void update(Entity entity) {
+        dbService.update(entity.getId(), entity);
+    }
+
     public void register(Class<?>... classes) {
         dbService.register(classes);
     }

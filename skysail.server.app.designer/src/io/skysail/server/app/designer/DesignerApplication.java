@@ -2,43 +2,29 @@ package io.skysail.server.app.designer;
 
 import io.skysail.server.app.SkysailApplication;
 import io.skysail.server.app.designer.application.Application;
-import io.skysail.server.app.designer.application.resources.ApplicationResource;
-import io.skysail.server.app.designer.application.resources.ApplicationsResource;
-import io.skysail.server.app.designer.application.resources.PostApplicationResource;
-import io.skysail.server.app.designer.application.resources.PutApplicationResource;
+import io.skysail.server.app.designer.application.resources.*;
 import io.skysail.server.app.designer.codegen.InMemoryJavaCompiler;
 import io.skysail.server.app.designer.entities.Entity;
-import io.skysail.server.app.designer.entities.resources.EntitiesResource;
-import io.skysail.server.app.designer.entities.resources.EntityResource;
-import io.skysail.server.app.designer.entities.resources.PostEntityResource;
-import io.skysail.server.app.designer.entities.resources.PutEntityResource;
+import io.skysail.server.app.designer.entities.resources.*;
 import io.skysail.server.app.designer.fields.EntityField;
-import io.skysail.server.app.designer.fields.resources.FieldsResource;
-import io.skysail.server.app.designer.fields.resources.PostFieldResource;
+import io.skysail.server.app.designer.fields.resources.*;
 import io.skysail.server.app.designer.repo.DesignerRepository;
 import io.skysail.server.db.DbRepository;
-import io.skysail.server.restlet.resources.ListServerResource;
-import io.skysail.server.restlet.resources.PostEntityServerResource;
+import io.skysail.server.restlet.resources.*;
+import io.skysail.server.utils.BundleUtils;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
-import java.util.SortedSet;
-import java.util.TreeSet;
+import java.lang.reflect.Method;
+import java.util.*;
 
 import lombok.extern.slf4j.Slf4j;
-import aQute.bnd.annotation.component.Component;
-import aQute.bnd.annotation.component.Reference;
+import aQute.bnd.annotation.component.*;
+
+import com.google.common.collect.Iterables;
+
 import de.twenty11.skysail.server.app.ApplicationProvider;
-import de.twenty11.skysail.server.beans.EntityDynaProperty;
-import de.twenty11.skysail.server.core.restlet.ApplicationContextId;
-import de.twenty11.skysail.server.core.restlet.RouteBuilder;
-import de.twenty11.skysail.server.services.MenuItem;
-import de.twenty11.skysail.server.services.MenuItemProvider;
+import de.twenty11.skysail.server.beans.*;
+import de.twenty11.skysail.server.core.restlet.*;
+import de.twenty11.skysail.server.services.*;
 
 @Component(immediate = true)
 @Slf4j
@@ -50,11 +36,14 @@ public class DesignerApplication extends SkysailApplication implements MenuItemP
 
     private DesignerRepository repo;
 
+    private Map<String, Class<? extends DynamicEntity>> entityClasses = new HashMap<>();
+
     public DesignerApplication() {
         super(APP_NAME);
         addToAppContext(ApplicationContextId.IMG, "/static/img/silk/paintbrush.png");
     }
 
+    @SuppressWarnings({ "unchecked" })
     @Override
     protected void attach() {
         // Application root resource
@@ -73,80 +62,141 @@ public class DesignerApplication extends SkysailApplication implements MenuItemP
         router.attach(new RouteBuilder("/applications/{id}/entities/{" + ENTITY_ID + "}/fields", FieldsResource.class));
         router.attach(new RouteBuilder("/applications/{id}/entities/{" + ENTITY_ID + "}/fields/",
                 PostFieldResource.class));
-        
-        String listServerResourceTemplate = readCodeGenFile("code/ListServerResource.codegen");
-        String postResourceTemplate = readCodeGenFile("code/PostResource.codegen");
-        String entityTemplate = readCodeGenFile("code/Entity.codegen");
+
+        String listServerResourceTemplate = BundleUtils.readResource(getBundle(), "code/ListServerResource.codegen");
+        String postResourceTemplate = BundleUtils.readResource(getBundle(), "code/PostResource.codegen");
+        String entityTemplate = BundleUtils.readResource(getBundle(), "code/Entity.codegen");
 
         List<Application> apps = getRepository().findAll(Application.class);
-        apps.stream().forEach( a -> { 
+        apps.stream()
+            .forEach(
+                a -> {
+                    a.getEntities()
+                    .stream()
+                    .forEach(
+                            e -> {
 
-            a.getEntities().stream().forEach(e -> {
-                System.out.println(a);
-                String entityName = e.getName().substring(0,1).toUpperCase().concat(e.getName().substring(1));
-                System.out.println(" >>>> " + entityName);
-                String path = "/preview/" + a.getName();// + "/"  + entityName;
+                                String entityName = Iterables.getLast(Arrays.asList(e.getName().split("\\.")));
 
-                String entityCode = entityTemplate;
-                entityCode = entityCode.replace("$classname$", entityName);
+                                String entityClassName = setupEntityForCompilation(entityTemplate, a.getId(), entityName);
+                                String postResourceClassName = setupPostResourceForCompilation(postResourceTemplate, entityName);
+                                String listResourceClassName = setupListResourceForCompilation(listServerResourceTemplate, a, entityName, entityClassName);
 
-                try {
-                    Class<?> compiledClass = InMemoryJavaCompiler.compile(getBundleContext(), "io.skysail.server.app.designer.codegen." + entityName, entityCode);
-                } catch (Exception e1) {
-                   log.error(e1.getMessage(),e1);
-                }
+                                compile();
 
-                String postResourceCode = postResourceTemplate;
-                String className = "Post" + entityName + "Resource";
-                postResourceCode = postResourceCode.replace("$classname$", className);
-                postResourceCode = postResourceCode.replace("$entityname$", entityName);
+                                String path = "/preview/" + a.getName();
 
-                try {
-                    Class<?> compiledClass = InMemoryJavaCompiler.compile(getBundleContext(), "io.skysail.server.app.designer.codegen." + className, postResourceCode);
-                    Class<? extends PostEntityServerResource<?>> helloClass = (Class<? extends PostEntityServerResource<?>>) compiledClass;
-                    router.attach(new RouteBuilder(path + "/" + entityName + "s/", helloClass));
-                } catch (Exception e1) {
-                   log.error(e1.getMessage(),e1);
-                }
+                                Class<? extends DynamicEntity> entityClass = (Class<? extends DynamicEntity>) getClass(entityClassName);
+                                entityClasses.put(entityClassName, entityClass);
+                                injectRepo(repo, entityClass);
 
-                String listServerResourceCode = listServerResourceTemplate;
-                className = entityName + "sResource";
-                listServerResourceCode = listServerResourceCode.replace("$classname$", className);
-                listServerResourceCode = listServerResourceCode.replace("$entityname$", entityName);
-                listServerResourceCode = listServerResourceCode.replace("$tablename$", "dynamic."+a.getName()+"."+entityName);
-                
-                try {
-                    Class<?> compiledClass = InMemoryJavaCompiler.compile(getBundleContext(), "io.skysail.server.app.designer.codegen." + className, listServerResourceCode);
-                    Class<? extends ListServerResource<?>> helloClass = (Class<? extends ListServerResource<?>>) compiledClass;
-                    router.attach(new RouteBuilder(path + "/" + entityName + "s", helloClass));
-                } catch (Exception e1) {
-                   log.error(e1.getMessage(),e1);
-                }
-            });
+                                Class<? extends PostEntityServerResource<?>> postResourceClass = (Class<? extends PostEntityServerResource<?>>) getClass(postResourceClassName);
+                                router.attach(new RouteBuilder(path + "/" + entityName + "s/",
+                                        postResourceClass));
+
+                                Class<? extends ListServerResource<?>> listResourceClass = (Class<? extends ListServerResource<?>>) getClass(listResourceClassName);
+                                router.attach(new RouteBuilder(path + "/" + entityName + "s",
+                                        listResourceClass));
+                                if (e.isRootEntity()) {
+                                    router.attach(new RouteBuilder(path, listResourceClass));
+                                }
+
+                            });
+                });
+    }
+
+    private String setupListResourceForCompilation(String listServerResourceTemplate, Application a, String entityName, String entityClassName) {
+        final String theClassName = entityName + "sResource";
+        @SuppressWarnings("serial")
+        String listServerResourceCode = substitute(listServerResourceTemplate, new HashMap<String, String>() {
+            {
+                put("$classname$", theClassName);
+                put("$entityname$", entityName);
+                put("$tablename$", entityClassName);//"dynamic." + a.getName() + "." + entityName);
+            }
         });
-        
+
+        String className = "io.skysail.server.app.designer.codegen." + theClassName;
+        collect(className, listServerResourceCode);
+        return className;
+    }
+
+    private String setupPostResourceForCompilation(String postResourceTemplate, String entityName) {
+        final String className2 = "Post" + entityName + "Resource";
+        @SuppressWarnings("serial")
+        String postResourceCode = substitute(postResourceTemplate, new HashMap<String, String>() {
+            {
+                put("$classname$", className2);
+                put("$entityname$", entityName);
+            }
+        });
+        String fullClassName = "io.skysail.server.app.designer.codegen." + className2;
+        collect(fullClassName, postResourceCode);
+        return fullClassName;
+    }
+
+    private String setupEntityForCompilation(String entityTemplate, String appId, String entityName) {
+        @SuppressWarnings("serial")
+        String entityCode = substitute(entityTemplate, new HashMap<String, String>() {
+            {
+                put("$classname$", entityName);
+                put("$applicationId$", appId);
+            }
+        });
+        String entityClassName = "io.skysail.server.app.designer.codegen." + entityName;
+        collect(entityClassName, entityCode);
+        return entityClassName;
+    }
+
+    private void collect(String className, String entityCode) {
+        try {
+            InMemoryJavaCompiler.collect(className, entityCode);
+        } catch (Exception e) {
+            log.error(e.getMessage(), e);
+        }
 
     }
 
-    private String readCodeGenFile(String path) {
-        URL url = getBundle().getResource(path);
-        BufferedReader br;
-        StringBuilder sb = new StringBuilder();
+    private void compile() {
         try {
-            br = new BufferedReader(new InputStreamReader(url.openConnection().getInputStream()));
-            while(br.ready()){
-                sb.append(br.readLine()).append("\n");
-            }
-            br.close();
-        } catch (IOException e2) {
-            log.error(e2.getMessage(), e2);
+            InMemoryJavaCompiler.compile(getBundleContext());
+        } catch (Exception e) {
+            log.error(e.getMessage(), e);
         }
-        return sb.toString();
+
+    }
+
+    private Class<?> getClass(String className) {
+        try {
+            return InMemoryJavaCompiler.getClass(className);
+        } catch (ClassNotFoundException e) {
+            log.error(e.getMessage(), e);
+            return null;
+        }
+    }
+
+    private String substitute(String template, Map<String, String> substitutionMap) {
+        for (String key : substitutionMap.keySet()) {
+            template = template.replace(key, substitutionMap.get(key));
+        }
+        return template;
     }
 
     @Reference(dynamic = true, multiple = false, optional = false, target = "(name=DesignerRepository)")
     public void setDesignerRepository(DbRepository repo) {
         this.repo = (DesignerRepository) repo;
+        entityClasses.keySet().stream().forEach(key -> {
+            injectRepo(repo, entityClasses.get(key));
+        });
+    }
+
+    private void injectRepo(DbRepository repo, Class<? extends DynamicEntity> entityClass) {
+        try {
+            Method injectMethod = entityClass.getMethod("inject", new Class[] { DesignerRepository.class });
+            injectMethod.invoke(entityClass, repo);
+        } catch (Exception e) {
+            log.error(e.getMessage(), e);
+        }
     }
 
     public void unsetDesignerRepository(DbRepository repo) {
@@ -158,21 +208,21 @@ public class DesignerApplication extends SkysailApplication implements MenuItemP
     }
 
     public List<MenuItem> getMenuEntries() {
+        List<MenuItem> result = new ArrayList<>();
         MenuItem appMenu = new MenuItem("AppDesigner", "/" + APP_NAME, this);
         appMenu.setCategory(MenuItem.Category.APPLICATION_MAIN_MENU);
-
-        List<MenuItem> result = new ArrayList<>();
         result.add(appMenu);
+        addDesignerAppMenuItems(result);
+        return result;
+    }
 
+    private void addDesignerAppMenuItems(List<MenuItem> result) {
         List<Application> apps = getRepository().findAll(Application.class);
         apps.stream().forEach(a -> {
             MenuItem menu = new MenuItem(a.getName(), "/" + APP_NAME + "/preview/" + a.getName(), this);
             menu.setCategory(MenuItem.Category.DESIGNER_APP_MENU);
-            //new MenuItem(menu, "add new application", "application?media=htmlform");
-            
             result.add(menu);
         });
-        return result;
     }
 
     public Entity getEntity(Application application, String entityId) {
@@ -192,7 +242,7 @@ public class DesignerApplication extends SkysailApplication implements MenuItemP
         // super.getProperties
         SortedSet<EntityDynaProperty> properties = new TreeSet<>();
 
-        Application designerApplication = repo.getById(Application.class, appIdentifier);
+        Application designerApplication = repo.getById(Application.class, appIdentifier.replace("#", ""));
         List<Entity> entities = designerApplication.getEntities();
 
         // streams dont't seem to work here ?!?! (with orientdb objects)

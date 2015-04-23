@@ -207,6 +207,13 @@ public class FormField {
         }
         return false;
     }
+    
+    public boolean isCheckbox() {
+        if (formFieldAnnotation != null) {
+            return InputType.CHECKBOX.equals(formFieldAnnotation.type());
+        }
+        return false;
+    }
 
     public Map<String, String> getSelectionProviderOptions() {
         if (!isSelectionProvider()) {

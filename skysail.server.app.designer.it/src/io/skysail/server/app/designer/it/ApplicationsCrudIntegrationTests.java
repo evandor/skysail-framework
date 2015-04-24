@@ -6,9 +6,11 @@ import io.skysail.client.testsupport.IntegrationTests;
 import io.skysail.server.app.designer.application.Application;
 import io.skysail.server.app.designer.it.browser.ApplicationsBrowser;
 
-import org.junit.*;
+import org.junit.Before;
+import org.junit.Test;
 import org.restlet.data.MediaType;
 import org.restlet.representation.Representation;
+import org.restlet.resource.ResourceException;
 
 /**
  * Integration tests for creating, reading, updating, and deleting Applications.
@@ -27,6 +29,13 @@ public class ApplicationsCrudIntegrationTests extends IntegrationTests<Applicati
         browser.createApplication(new Application("app1"));
         Representation applications = browser.getApplications();
         assertThat(applications.getText(), containsString("app1"));
+    }
+    
+    @Test
+    public void posting_new_application_with_name_containing_specialChar_yields_validation_violation() throws Exception {
+        thrown.expect(ResourceException.class);
+        thrown.expectMessage("Bad Request");
+        browser.createApplication(new Application("app1!"));
     }
 
 }

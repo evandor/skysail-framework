@@ -10,9 +10,18 @@ import javax.tools.JavaFileManager;
 import javax.tools.JavaFileObject;
 import javax.tools.ToolProvider;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 public class CompiledCodeTrackingJavaFileManager extends ForwardingJavaFileManager<JavaFileManager> {
 
     private static JavaCompiler javac = ToolProvider.getSystemJavaCompiler();
+    
+    static {
+        if (javac == null) {
+            log.error("running the app designer application requeres a JDK. It seems this installation is using a JRE");
+        }
+    }
 
     private Map<String, CompiledCode> compiledCodes;
     private DynamicClassLoader cl;

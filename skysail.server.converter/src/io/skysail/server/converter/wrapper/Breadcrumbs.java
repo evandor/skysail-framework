@@ -61,7 +61,8 @@ public class Breadcrumbs {
         String imgHtml = img != null ? "<img src='" + img + "'>" : "";
         String text = imgHtml + " " + resource.getApplication().getName();
         return Breadcrumb.builder().href("/" + resource.getApplication().getName()).value(text)
-                .favorite(getFavoriteIndicator(resource)).build();
+                //.favorite(getFavoriteIndicator(resource))
+                .build();
     }
 
     private Breadcrumb homeBreadcrumb() {

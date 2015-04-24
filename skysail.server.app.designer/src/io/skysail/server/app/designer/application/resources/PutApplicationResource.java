@@ -4,7 +4,6 @@ import io.skysail.api.responses.SkysailResponse;
 import io.skysail.server.app.designer.DesignerApplication;
 import io.skysail.server.app.designer.application.Application;
 import io.skysail.server.restlet.resources.PutEntityServerResource;
-import io.skysail.server.restlet.resources.SkysailServerResource;
 
 public class PutApplicationResource extends PutEntityServerResource<Application> {
 
@@ -27,7 +26,7 @@ public class PutApplicationResource extends PutEntityServerResource<Application>
     }
     
     @Override
-    public String redirectTo(Class<? extends SkysailServerResource<?>> cls) {
+    public String redirectTo() {
         return super.redirectTo(ApplicationsResource.class);
     }
 

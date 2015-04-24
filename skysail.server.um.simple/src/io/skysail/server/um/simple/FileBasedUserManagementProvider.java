@@ -38,7 +38,7 @@ import de.twenty11.skysail.server.um.domain.SkysailUser;
  * </p>
  *
  */
-@Component(immediate = true, configurationPolicy = ConfigurationPolicy.require)
+@Component(immediate = true, configurationPolicy = ConfigurationPolicy.optional)
 @Slf4j
 public class FileBasedUserManagementProvider implements UserManagementProvider {
 

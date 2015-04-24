@@ -1,64 +1,32 @@
 package io.skysail.server.app.designer.it;
 
-import static org.hamcrest.CoreMatchers.*;
+import static org.hamcrest.CoreMatchers.containsString;
 import static org.junit.Assert.assertThat;
-import io.skysail.client.testsupport.ApplicationClient;
+import io.skysail.client.testsupport.IntegrationTests;
 import io.skysail.server.app.designer.application.Application;
-import lombok.extern.slf4j.Slf4j;
+import io.skysail.server.app.designer.it.browser.ApplicationsBrowser;
 
 import org.junit.*;
-import org.junit.rules.*;
-import org.junit.runner.Description;
-import org.restlet.data.Reference;
+import org.restlet.data.MediaType;
 import org.restlet.representation.Representation;
 
 /**
- * Integration tests for creating, reading, updating, and deleting TodoLists.
+ * Integration tests for creating, reading, updating, and deleting Applications.
  *
  */
-@Slf4j
-public class ApplicationsCrudIntegrationTests extends IntegrationTests {
-
-    private Browser browser;
-
-    @Rule
-    public TestRule watcher = new TestWatcher() {
-        @Override
-        protected void starting(Description description) {
-            log.info("");
-            log.info("--------------------------------------------");
-            log.info("{}running test '{}'", ApplicationClient.TESTTAG, description.getMethodName());
-            log.info("--------------------------------------------");
-            log.info("");
-        }
-    };
+public class ApplicationsCrudIntegrationTests extends IntegrationTests<ApplicationsBrowser, Application> {
 
     @Before
     public void setUp() {
-        browser = new Browser(getBaseUrl());
+        browser = new ApplicationsBrowser(MediaType.APPLICATION_JSON, determinePort());
+        browser.setUser("admin");
     }
 
     @Test
-    public void testName() throws Exception {
-
-    }
-
-    @Test
-    @Ignore
-    public void creating_application_persists_new_application() throws Exception {
-        browser.asUser("admin").createApplication(new Application("app1"));
-        Representation html = browser.asUser("admin").getApplications();
-        assertThat(html.getText(), containsString("app1"));
-    }
-
-    @Test
-    @Ignore
-    public void new_application_can_be_deleted_by_owner() throws Exception {
-        Reference location = browser.asUser("admin").createApplication(new Application("app2"));
-        String id = location.getLastSegment();
-        browser.asUser("admin").deleteApplication(id);
-        Representation html = browser.asUser("admin").getApplications();
-        assertThat(html.getText(), not(containsString("app2")));
+    public void posting_new_application_with_name_persists_it() throws Exception {
+        browser.createApplication(new Application("app1"));
+        Representation applications = browser.getApplications();
+        assertThat(applications.getText(), containsString("app1"));
     }
 
 }

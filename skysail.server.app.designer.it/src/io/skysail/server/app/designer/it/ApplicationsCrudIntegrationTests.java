@@ -1,18 +1,13 @@
 package io.skysail.server.app.designer.it;
 
-import static org.hamcrest.CoreMatchers.containsString;
-import static org.hamcrest.CoreMatchers.not;
+import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.assertThat;
 import io.skysail.client.testsupport.ApplicationClient;
 import io.skysail.server.app.designer.application.Application;
 import lombok.extern.slf4j.Slf4j;
 
-import org.junit.Before;
-import org.junit.Ignore;
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.rules.TestRule;
-import org.junit.rules.TestWatcher;
+import org.junit.*;
+import org.junit.rules.*;
 import org.junit.runner.Description;
 import org.restlet.data.Reference;
 import org.restlet.representation.Representation;
@@ -28,16 +23,16 @@ public class ApplicationsCrudIntegrationTests extends IntegrationTests {
 
     @Rule
     public TestRule watcher = new TestWatcher() {
-       @Override
-    protected void starting(Description description) {
-    	   log.info("");
-    	   log.info("--------------------------------------------");
-    	   log.info("{}running test '{}'", ApplicationClient.TESTTAG, description.getMethodName());
-    	   log.info("--------------------------------------------");
-    	   log.info("");
-       }
+        @Override
+        protected void starting(Description description) {
+            log.info("");
+            log.info("--------------------------------------------");
+            log.info("{}running test '{}'", ApplicationClient.TESTTAG, description.getMethodName());
+            log.info("--------------------------------------------");
+            log.info("");
+        }
     };
-    
+
     @Before
     public void setUp() {
         browser = new Browser(getBaseUrl());
@@ -45,8 +40,9 @@ public class ApplicationsCrudIntegrationTests extends IntegrationTests {
 
     @Test
     public void testName() throws Exception {
-        
+
     }
+
     @Test
     @Ignore
     public void creating_application_persists_new_application() throws Exception {
@@ -54,7 +50,7 @@ public class ApplicationsCrudIntegrationTests extends IntegrationTests {
         Representation html = browser.asUser("admin").getApplications();
         assertThat(html.getText(), containsString("app1"));
     }
-    
+
     @Test
     @Ignore
     public void new_application_can_be_deleted_by_owner() throws Exception {

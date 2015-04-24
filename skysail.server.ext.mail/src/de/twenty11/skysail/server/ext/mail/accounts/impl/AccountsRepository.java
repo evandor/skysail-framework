@@ -1,17 +1,12 @@
 package de.twenty11.skysail.server.ext.mail.accounts.impl;
 
-import io.skysail.server.db.DbRepository;
-import io.skysail.server.db.DbService2;
+import io.skysail.server.db.*;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import org.apache.shiro.SecurityUtils;
 
-import aQute.bnd.annotation.component.Activate;
-import aQute.bnd.annotation.component.Component;
-import aQute.bnd.annotation.component.Reference;
+import aQute.bnd.annotation.component.*;
 import de.twenty11.skysail.server.ext.mail.accounts.Account;
 
 @Component(immediate = true, properties = "name=AccountsRepository")
@@ -21,7 +16,7 @@ public class AccountsRepository implements DbRepository {
 
     @Activate
     public void activate() {
-        dbService.setupVertices(Account.class.getSimpleName());
+        dbService.createWithSuperClass("V", Account.class.getSimpleName());
         dbService.register(Account.class);
        // dbService.createUniqueIndex(Account.class, "owner");
     }

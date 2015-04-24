@@ -1,18 +1,13 @@
 package io.skysail.server.app.bookmarks.repo;
 
 import io.skysail.server.app.bookmarks.Bookmark;
-import io.skysail.server.db.DbRepository;
-import io.skysail.server.db.DbService2;
+import io.skysail.server.db.*;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import org.apache.shiro.SecurityUtils;
 
-import aQute.bnd.annotation.component.Activate;
-import aQute.bnd.annotation.component.Component;
-import aQute.bnd.annotation.component.Reference;
+import aQute.bnd.annotation.component.*;
 
 @Component(immediate = true, properties = "name=BookmarksRepository")
 public class BookmarksRepository implements DbRepository {
@@ -21,7 +16,7 @@ public class BookmarksRepository implements DbRepository {
 
     @Activate
     public void activate() {
-        dbService.setupVertices(Bookmark.class.getSimpleName());
+        dbService.createWithSuperClass("V", Bookmark.class.getSimpleName());
         dbService.register(Bookmark.class);
         //dbService.createUniqueIndex(TodoList.class, "name", "owner");
     }

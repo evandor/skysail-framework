@@ -13,7 +13,9 @@ import io.skysail.server.db.DbRepository;
 import io.skysail.server.restlet.resources.*;
 import io.skysail.server.utils.BundleUtils;
 
+import java.io.IOException;
 import java.lang.reflect.Method;
+import java.nio.file.*;
 import java.util.*;
 
 import lombok.extern.slf4j.Slf4j;
@@ -75,11 +77,13 @@ public class DesignerApplication extends SkysailApplication implements MenuItemP
                     .stream()
                     .forEach(
                             e -> {
+                                StringBuilder sb = new StringBuilder("AppDesigner_");
+                                sb.append(a.getName()).append("_");
+                                sb.append(Iterables.getLast(Arrays.asList(e.getName().split("\\."))));
+                                String entityName = sb.toString(); // e.g. AppDesigner_Automobiles_Brand
 
-                                String entityName = Iterables.getLast(Arrays.asList(e.getName().split("\\.")));
-
-                                String entityClassName = setupEntityForCompilation(entityTemplate, a.getId(), entityName);
-                                String postResourceClassName = setupPostResourceForCompilation(postResourceTemplate, entityName);
+                                String entityClassName = setupEntityForCompilation(entityTemplate, a.getId(), entityName, e.getName()); // io.skysail.server.app.designer.codegen.AppDesigner_Automobiles_Brand
+                                String postResourceClassName = setupPostResourceForCompilation(postResourceTemplate, entityName); 
                                 String listResourceClassName = setupListResourceForCompilation(listServerResourceTemplate, a, entityName, entityClassName);
 
                                 compile();
@@ -89,6 +93,8 @@ public class DesignerApplication extends SkysailApplication implements MenuItemP
                                 Class<? extends DynamicEntity> entityClass = (Class<? extends DynamicEntity>) getClass(entityClassName);
                                 entityClasses.put(entityClassName, entityClass);
                                 injectRepo(repo, entityClass);
+                                getRepository().createWithSuperClass(DynamicEntity.class.getSimpleName(), entityName);
+                                getRepository().register(entityClass);
 
                                 Class<? extends PostEntityServerResource<?>> postResourceClass = (Class<? extends PostEntityServerResource<?>>) getClass(postResourceClassName);
                                 router.attach(new RouteBuilder(path + "/" + entityName + "s/",
@@ -112,7 +118,7 @@ public class DesignerApplication extends SkysailApplication implements MenuItemP
             {
                 put("$classname$", theClassName);
                 put("$entityname$", entityName);
-                put("$tablename$", entityClassName);//"dynamic." + a.getName() + "." + entityName);
+                //put("$tablename$", entityClassName);//"dynamic." + a.getName() + "." + entityName);
             }
         });
 
@@ -135,12 +141,13 @@ public class DesignerApplication extends SkysailApplication implements MenuItemP
         return fullClassName;
     }
 
-    private String setupEntityForCompilation(String entityTemplate, String appId, String entityName) {
+    private String setupEntityForCompilation(String entityTemplate, String appId, String entityName, String appEntityName) {
         @SuppressWarnings("serial")
         String entityCode = substitute(entityTemplate, new HashMap<String, String>() {
             {
                 put("$classname$", entityName);
                 put("$applicationId$", appId);
+                put("$appEntityName$", appEntityName);
             }
         });
         String entityClassName = "io.skysail.server.app.designer.codegen." + entityName;
@@ -153,6 +160,12 @@ public class DesignerApplication extends SkysailApplication implements MenuItemP
             InMemoryJavaCompiler.collect(className, entityCode);
         } catch (Exception e) {
             log.error(e.getMessage(), e);
+        }
+        String filename = "./generated/" + className + ".java";
+        try {
+            Files.write(Paths.get(filename), entityCode.getBytes());
+        } catch (IOException e) {
+            log.debug("could not write source code for compilation unit '{}' to '{}'", className, filename);
         }
 
     }

@@ -13,7 +13,7 @@ public class DynamicEntity implements DynamicBean {
 
     @Override
     public String getBeanName() {
-        return this.getClass().getName();
+        return this.getClass().getSimpleName();
     }
 
     @Override

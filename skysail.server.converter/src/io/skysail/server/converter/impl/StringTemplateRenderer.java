@@ -5,34 +5,16 @@ import io.skysail.api.forms.Reference;
 import io.skysail.api.links.Link;
 import io.skysail.api.responses.SkysailResponse;
 import io.skysail.server.app.SkysailApplication;
-import io.skysail.server.converter.HtmlConverter;
-import io.skysail.server.converter.Notification;
+import io.skysail.server.converter.*;
 import io.skysail.server.converter.stringtemplate.STGroupBundleDir;
-import io.skysail.server.converter.wrapper.STFieldsWrapper;
-import io.skysail.server.converter.wrapper.STListSourceWrapper;
-import io.skysail.server.converter.wrapper.STServicesWrapper;
-import io.skysail.server.converter.wrapper.STSourceWrapper;
-import io.skysail.server.converter.wrapper.STTargetWrapper;
-import io.skysail.server.converter.wrapper.STUserWrapper;
-import io.skysail.server.converter.wrapper.StResourceWrapper;
-import io.skysail.server.forms.ListView;
-import io.skysail.server.forms.PostView;
-import io.skysail.server.forms.Visibility;
-import io.skysail.server.restlet.resources.EntityServerResource;
-import io.skysail.server.restlet.resources.ListServerResource;
-import io.skysail.server.restlet.resources.PostEntityServerResource;
-import io.skysail.server.restlet.resources.SkysailServerResource;
-import io.skysail.server.utils.ReflectionUtils;
-import io.skysail.server.utils.ResourceUtils;
+import io.skysail.server.converter.wrapper.*;
+import io.skysail.server.forms.*;
+import io.skysail.server.restlet.resources.*;
+import io.skysail.server.utils.*;
 
 import java.lang.reflect.Field;
 import java.net.URL;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import lombok.extern.slf4j.Slf4j;
@@ -41,14 +23,12 @@ import org.apache.commons.beanutils.DynaProperty;
 import org.apache.shiro.SecurityUtils;
 import org.osgi.framework.Bundle;
 import org.restlet.data.MediaType;
-import org.restlet.representation.StringRepresentation;
-import org.restlet.representation.Variant;
+import org.restlet.representation.*;
 import org.restlet.resource.Resource;
 import org.stringtemplate.v4.ST;
 
 import de.twenty11.skysail.server.app.SourceWrapper;
-import de.twenty11.skysail.server.beans.DynamicEntity;
-import de.twenty11.skysail.server.beans.EntityDynaProperty;
+import de.twenty11.skysail.server.beans.*;
 import de.twenty11.skysail.server.core.FormField;
 import de.twenty11.skysail.server.core.restlet.utils.CookiesUtils;
 import de.twenty11.skysail.server.services.MenuItemProvider;
@@ -231,17 +211,19 @@ public class StringTemplateRenderer {
                 if (parameterType.equals(Map.class)) {
                     List<Map<String, Object>> currentEntity = (List<Map<String, Object>>) resource.getCurrentEntity();
                     if (currentEntity.size() > 0) {
-                        fields = currentEntity.get(0).keySet().stream().map(key -> {
-                            return new FormField(key, currentEntity.get(0).get(key));
-                        }).collect(Collectors.toList());
+                        if (currentEntity.get(0) instanceof DynamicEntity) {
+                            DynamicEntity dynEntity = (DynamicEntity)currentEntity.get(0);
+                            fields = createFieldsForDynamicEntity(resource, dynEntity);
+                        } else {
+                            fields = currentEntity.get(0).keySet().stream().map(key -> {
+                                return new FormField(key, currentEntity.get(0).get(key));
+                            }).collect(Collectors.toList());
+                        }
                     }
                 } else {
                     entity = parameterType.newInstance();
                     if (entity instanceof DynamicEntity) {
-                        Set<EntityDynaProperty> properties = ((DynamicEntity) entity).getProperties();
-                        fields = properties.stream().map(p -> {
-                            return new FormField((DynamicEntity) entity, p, resource);
-                        }).collect(Collectors.toList());
+                        fields = createFieldsForDynamicEntity(resource, entity);
                     } else {
                         fields = ReflectionUtils.getInheritedFields(resource.getParameterType()).stream()
                                 .filter(f -> test(resource, f)).sorted((f1, f2) -> sort(resource, f1, f2))
@@ -279,6 +261,15 @@ public class StringTemplateRenderer {
         Map<String, String> messages = resource.getMessages(fields);
         messages.put("productName", getProductName());
         decl.add("messages", messages);
+    }
+
+    private List<FormField> createFieldsForDynamicEntity(SkysailServerResource<?> resource, Object entity) {
+        List<FormField> fields;
+        Set<EntityDynaProperty> properties = ((DynamicEntity) entity).getProperties();
+        fields = properties.stream().map(p -> {
+            return new FormField((DynamicEntity) entity, p, resource);
+        }).collect(Collectors.toList());
+        return fields;
     }
 
     public List<Notification> getNotifications() {

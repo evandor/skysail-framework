@@ -1,7 +1,6 @@
 package io.skysail.server.db;
 
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import aQute.bnd.annotation.ProviderType;
 
@@ -49,7 +48,7 @@ public interface DbService2 {
      * creates a vertex class in the database if not existent yet for all
      * provided vertices names.
      */
-    void setupVertices(String... vertices);
+    void createWithSuperClass(String superClass, String... vertices);
 
     void register(Class<?>... classes);
 

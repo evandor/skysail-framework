@@ -2,18 +2,13 @@ package io.skysail.server.app.todos.repo;
 
 import io.skysail.server.app.todos.TodoList;
 import io.skysail.server.app.todos.todos.Todo;
-import io.skysail.server.db.DbRepository;
-import io.skysail.server.db.DbService2;
+import io.skysail.server.db.*;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import org.apache.shiro.SecurityUtils;
 
-import aQute.bnd.annotation.component.Activate;
-import aQute.bnd.annotation.component.Component;
-import aQute.bnd.annotation.component.Reference;
+import aQute.bnd.annotation.component.*;
 
 @Component(immediate = true, properties = "name=TodosRepository")
 public class TodosRepository implements DbRepository {
@@ -22,7 +17,7 @@ public class TodosRepository implements DbRepository {
 
     @Activate
     public void activate() {
-        dbService.setupVertices(Todo.class.getSimpleName(), TodoList.class.getSimpleName());
+        dbService.createWithSuperClass("V", Todo.class.getSimpleName(), TodoList.class.getSimpleName());
         dbService.register(Todo.class, TodoList.class);
         dbService.createUniqueIndex(TodoList.class, "name", "owner");
     }

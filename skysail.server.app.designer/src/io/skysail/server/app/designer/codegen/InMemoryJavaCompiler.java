@@ -73,12 +73,6 @@ public class InMemoryJavaCompiler {
             }).collect(Collectors.joining(File.pathSeparator));
         optionList.addAll(Arrays.asList("-classpath", locs));
 
-//        SourceCode sourceCode = new SourceCode(className, sourceCodeInText);
-//        CompiledCode compiledCode = new CompiledCode(className);
-//
-//        sourceCodes.add(sourceCode);
-//        fileManager.add(compiledCode);
-        
         log.info("trying to compile {}", sourceCodes);
 
         DiagnosticCollector<JavaFileObject> diagnostics = new DiagnosticCollector<JavaFileObject>();
@@ -86,7 +80,6 @@ public class InMemoryJavaCompiler {
                 .getTask(null, fileManager, diagnostics, optionList, null, sourceCodes);
         task.call();
         dumpErrorsIfExistent(diagnostics, "xxx");
-        //return dcl.loadClass(className);
     }
 
     private static void dumpErrorsIfExistent(DiagnosticCollector<JavaFileObject> diagnostics, String sourceCode) {

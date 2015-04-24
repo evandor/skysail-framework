@@ -7,13 +7,13 @@ import io.skysail.api.links.Link;
 import java.util.List;
 import java.util.Map;
                 
-public class $classname$ extends ListServerResource<Map<String,Object>> {
+public class AppDesigner_Automobiles_MarkesResource extends ListServerResource<Map<String,Object>> {
 
     public List<Map<String,Object>> getEntity() {
-        return ((DesignerApplication) getApplication()).getRepository().findAll("select from $entityname$");
+        return ((DesignerApplication) getApplication()).getRepository().findAll("select from AppDesigner_Automobiles_Marke");
     }
 
     public List<Link> getLinks() {
-       return super.getLinks(Post$entityname$Resource.class);
+       return super.getLinks(PostAppDesigner_Automobiles_MarkeResource.class);
     }
 }

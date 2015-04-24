@@ -8,12 +8,12 @@ import java.util.Set;
 import de.twenty11.skysail.server.beans.DynamicEntity;
 import de.twenty11.skysail.server.beans.EntityDynaProperty;
 
-public class $classname$ extends DynamicEntity {
+public class AppDesigner_Automobiles_Marke extends DynamicEntity {
 
     private static DesignerRepository repo;
 
     public Set<EntityDynaProperty> getProperties() {
-        return DesignerApplication.getProperties(repo, "$appEntityName$", "$applicationId$");
+        return DesignerApplication.getProperties(repo, getBeanName(), "#12:4");
     }
     
     public static void inject(DesignerRepository designerRepo) {

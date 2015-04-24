@@ -3,14 +3,11 @@ package io.skysail.server.app.designer.repo;
 import io.skysail.server.app.designer.application.Application;
 import io.skysail.server.app.designer.entities.Entity;
 import io.skysail.server.app.designer.fields.EntityField;
-import io.skysail.server.db.DbRepository;
-import io.skysail.server.db.DbService2;
+import io.skysail.server.db.*;
 
 import java.util.List;
 
-import aQute.bnd.annotation.component.Activate;
-import aQute.bnd.annotation.component.Component;
-import aQute.bnd.annotation.component.Reference;
+import aQute.bnd.annotation.component.*;
 
 @Component(immediate = true, properties = "name=DesignerRepository")
 public class DesignerRepository implements DbRepository {
@@ -19,7 +16,7 @@ public class DesignerRepository implements DbRepository {
 
     @Activate
     public void activate() {
-        dbService.setupVertices(Application.class.getSimpleName());
+        dbService.createWithSuperClass("V", Application.class.getSimpleName());
         dbService.register(Application.class, Entity.class, EntityField.class);
     }
 
@@ -62,6 +59,10 @@ public class DesignerRepository implements DbRepository {
 
     public void delete(Class<?> cls, String id) {
         dbService.delete(cls, id);
+    }
+
+    public void createWithSuperClass(String superClassName, String entityClassName) {
+        dbService.createWithSuperClass(superClassName, entityClassName);
     }
 
 }

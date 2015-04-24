@@ -2,15 +2,11 @@ package io.skysail.server.app.wiki.repository;
 
 import io.skysail.server.app.wiki.pages.Page;
 import io.skysail.server.app.wiki.spaces.Space;
-import io.skysail.server.db.DbRepository;
-import io.skysail.server.db.DbService2;
+import io.skysail.server.db.*;
 
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
-import aQute.bnd.annotation.component.Activate;
-import aQute.bnd.annotation.component.Component;
-import aQute.bnd.annotation.component.Reference;
+import aQute.bnd.annotation.component.*;
 
 @Component(immediate = true, properties = "name=wikiRepository")
 public class WikiRepository implements DbRepository {
@@ -19,9 +15,9 @@ public class WikiRepository implements DbRepository {
 
     @Activate
     public void activate() {
-        dbService.setupVertices(Space.class.getSimpleName());
+        dbService.createWithSuperClass("V", Space.class.getSimpleName());
         dbService.register(Space.class);
-        dbService.setupVertices(Page.class.getSimpleName());
+        dbService.createWithSuperClass("V", Page.class.getSimpleName());
         dbService.register(Page.class);
     }
 

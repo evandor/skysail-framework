@@ -2,9 +2,7 @@ package io.skysail.server.testsupport;
 
 import io.skysail.server.db.DbService2;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
@@ -80,7 +78,7 @@ public class InMemoryDbService implements DbService2 {
     }
 
     @Override
-    public void setupVertices(String... vertices) {
+    public void createWithSuperClass(String superClass, String... vertices) {
     }
 
     @Override
@@ -94,7 +92,7 @@ public class InMemoryDbService implements DbService2 {
     }
 
     @Override
-    public void register(Class<?>... classes) {
+    public void register(Class<?>... classNames) {
     }
 
     @Override

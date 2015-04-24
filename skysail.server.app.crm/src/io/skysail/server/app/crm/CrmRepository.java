@@ -2,14 +2,11 @@ package io.skysail.server.app.crm;
 
 import io.skysail.server.app.crm.companies.Company;
 import io.skysail.server.app.crm.emails.EmailRelation;
-import io.skysail.server.db.DbRepository;
-import io.skysail.server.db.DbService2;
+import io.skysail.server.db.*;
 
 import java.util.List;
 
-import aQute.bnd.annotation.component.Activate;
-import aQute.bnd.annotation.component.Component;
-import aQute.bnd.annotation.component.Reference;
+import aQute.bnd.annotation.component.*;
 import de.twenty11.skysail.server.beans.DynamicEntity;
 
 @Component(immediate = true, properties = "name=CrmRepository")
@@ -19,7 +16,7 @@ public class CrmRepository implements DbRepository {
 
     @Activate
     public void activate() {
-        dbService.setupVertices(CrmEntity.class.getSimpleName(), DynamicEntity.class.getSimpleName(),
+        dbService.createWithSuperClass("V", CrmEntity.class.getSimpleName(), DynamicEntity.class.getSimpleName(),
                 EmailRelation.class.getSimpleName());
         // dbService.createProperty(CrmEntity.class.getSimpleName(), "created",
         // OType.DATE);

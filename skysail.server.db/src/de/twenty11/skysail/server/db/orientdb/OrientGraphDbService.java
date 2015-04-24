@@ -1,48 +1,37 @@
 package de.twenty11.skysail.server.db.orientdb;
 
-import io.skysail.server.db.DbConfigurationProvider;
-import io.skysail.server.db.DbService2;
+import io.skysail.server.db.*;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.lang.reflect.Method;
+import java.util.*;
 
 import lombok.extern.slf4j.Slf4j;
 
 import org.apache.commons.beanutils.DynaBean;
 import org.osgi.service.component.ComponentContext;
 
-import aQute.bnd.annotation.component.Activate;
-import aQute.bnd.annotation.component.Component;
-import aQute.bnd.annotation.component.Deactivate;
-import aQute.bnd.annotation.component.Reference;
+import aQute.bnd.annotation.component.*;
 
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.orientechnologies.orient.client.remote.OEngineRemote;
 import com.orientechnologies.orient.core.Orient;
 import com.orientechnologies.orient.core.db.ODatabaseRecordThreadLocal;
 import com.orientechnologies.orient.core.db.document.ODatabaseDocumentTx;
 import com.orientechnologies.orient.core.id.ORecordId;
-import com.orientechnologies.orient.core.metadata.schema.OClass;
+import com.orientechnologies.orient.core.metadata.schema.*;
 import com.orientechnologies.orient.core.metadata.schema.OClass.INDEX_TYPE;
-import com.orientechnologies.orient.core.metadata.schema.OType;
 import com.orientechnologies.orient.core.record.impl.ODocument;
 import com.orientechnologies.orient.core.sql.OCommandSQL;
 import com.orientechnologies.orient.core.sql.query.OSQLSynchQuery;
-import com.orientechnologies.orient.object.db.OObjectDatabasePool;
-import com.orientechnologies.orient.object.db.OObjectDatabaseTx;
+import com.orientechnologies.orient.object.db.*;
+import com.orientechnologies.orient.object.enhancement.OObjectProxyMethodHandler;
 import com.orientechnologies.orient.object.metadata.schema.OSchemaProxyObject;
-import com.tinkerpop.blueprints.impls.orient.OrientGraph;
-import com.tinkerpop.blueprints.impls.orient.OrientGraphFactory;
-import com.tinkerpop.blueprints.impls.orient.OrientGraphNoTx;
+import com.tinkerpop.blueprints.impls.orient.*;
 
-import de.twenty11.skysail.server.beans.DynamicEntity;
-import de.twenty11.skysail.server.beans.EntityDynaProperty;
+import de.twenty11.skysail.server.beans.*;
 import de.twenty11.skysail.server.core.osgi.EventHelper;
-import de.twenty11.skysail.server.db.orientdb.impl.Persister;
-import de.twenty11.skysail.server.db.orientdb.impl.Updater;
+import de.twenty11.skysail.server.db.orientdb.impl.*;
 import de.twenty11.skysail.server.events.EventHandler;
 
 @Component(immediate = true)
@@ -50,6 +39,7 @@ import de.twenty11.skysail.server.events.EventHandler;
 public class OrientGraphDbService extends AbstractOrientDbService implements DbService2 {
 
     private OrientGraphFactory graphDbFactory;
+    private ObjectMapper mapper = new ObjectMapper();
 
     @Activate
     public void activate() {
@@ -96,14 +86,13 @@ public class OrientGraphDbService extends AbstractOrientDbService implements DbS
         new Updater(getObjectDb()).update(entity);
     }
 
-  
     @Override
     public <T> List<T> findObjects(String sql) {
         return findObjects(sql, new HashMap<>());
     }
 
     @Override
-    public List<Map<String,Object>> findDocuments(String sql) {
+    public List<Map<String, Object>> findDocuments(String sql) {
         return findDocuments(sql, new HashMap<>());
     }
 
@@ -116,14 +105,33 @@ public class OrientGraphDbService extends AbstractOrientDbService implements DbS
         for (T t : query) {
             T newOne;
             if (t instanceof DynamicEntity) {
-                DynamicEntity de = (DynamicEntity)t;
-                DynaBean instance = de.getInstance();
-                Set<EntityDynaProperty> properties = de.getProperties();
-                for (EntityDynaProperty entityDynaProperty : properties) {
-                    instance.set(entityDynaProperty.getName(), "Hi");
+
+                Method[] methods = t.getClass().getMethods();
+                Optional<Method> getHandlerMethod = Arrays.stream(methods)
+                        .filter(m -> m.getName().contains("getHandler")).findFirst();
+                DynamicEntity de = (DynamicEntity) t;
+                if (getHandlerMethod.isPresent()) {
+                    DynaBean instance = de.getInstance();
+                    Set<EntityDynaProperty> properties = de.getProperties();
+                    try {
+                        HashMap<String, Object> objectMap = new HashMap<String, Object>();
+                        OObjectProxyMethodHandler handler = (OObjectProxyMethodHandler) getHandlerMethod.get()
+                                .invoke(t);
+                        ODocument doc = handler.getDoc();
+                        objectMap = mapper.readValue(doc.toJSON(), new TypeReference<Map<String, Object>>() {
+                        });
+                        System.out.println(objectMap);
+                        for (EntityDynaProperty entityDynaProperty : properties) {
+                            Object val = objectMap.get(entityDynaProperty.getName());
+                            instance.set(entityDynaProperty.getName(), val != null ? val.toString() : "");
+                        }
+                    } catch (Exception e) {
+                        log.error(e.getMessage(), e);
+                    }
+
                 }
-                newOne = (T)de;
-                
+                newOne = (T) de;
+
             } else {
                 newOne = objectDb.detachAll(t, true);
             }
@@ -133,11 +141,11 @@ public class OrientGraphDbService extends AbstractOrientDbService implements DbS
     }
 
     @Override
-    public List<Map<String,Object>> findDocuments(String sql, Map<String, Object> params) {
+    public List<Map<String, Object>> findDocuments(String sql, Map<String, Object> params) {
         ODatabaseDocumentTx objectDb = getDocumentDb();
         List<ODocument> query = objectDb.query(new OSQLSynchQuery<ODocument>(sql), params);
 
-        List<Map<String,Object>> result = new ArrayList<>();
+        List<Map<String, Object>> result = new ArrayList<>();
         for (ODocument t : query) {
             result.add(t.toMap());
         }
@@ -156,14 +164,14 @@ public class OrientGraphDbService extends AbstractOrientDbService implements DbS
         ODatabaseDocumentTx db = getDocumentDb();
         Map<String, Object> params = new HashMap<>();
         params.put("rid", id);
-        List<ODocument> query = db.query(new OSQLSynchQuery<ODocument>("SELECT * FROM " + cls.getSimpleName() + " WHERE @rid= :rid"), params);
+        List<ODocument> query = db.query(new OSQLSynchQuery<ODocument>("SELECT * FROM " + cls.getSimpleName()
+                + " WHERE @rid= :rid"), params);
         if (query != null) {
             return query.get(0).toMap();
         }
-        return new HashMap<String,Object>();
+        return new HashMap<String, Object>();
     }
 
-    
     @Override
     public long getCount(String sql, Map<String, Object> params) {
         OObjectDatabaseTx objectDb = getObjectDb();
@@ -175,11 +183,6 @@ public class OrientGraphDbService extends AbstractOrientDbService implements DbS
     public void executeUpdate(String sql, Map<String, Object> params) {
         OObjectDatabaseTx objectDb = getObjectDb();
         objectDb.command(new OCommandSQL(sql)).execute(params);
-    }
-
-    // @Override
-    public <T> List<T> findAll(Class<T> entityClass, Class<?>... linkedClasses) {
-        return null;
     }
 
     @Override
@@ -259,12 +262,12 @@ public class OrientGraphDbService extends AbstractOrientDbService implements DbS
     }
 
     @Override
-    public void setupVertices(String... vertices) {
+    public void createWithSuperClass(String superClass, String... vertices) {
         OObjectDatabaseTx objectDb = getObjectDb();
         try {
             Arrays.stream(vertices).forEach(v -> {
                 if (objectDb.getMetadata().getSchema().getClass(v) == null) {
-                    OClass vertexClass = objectDb.getMetadata().getSchema().getClass("V");
+                    OClass vertexClass = objectDb.getMetadata().getSchema().getClass(superClass);
                     objectDb.getMetadata().getSchema().createClass(v).setSuperClass(vertexClass);
                 }
             });
@@ -278,6 +281,7 @@ public class OrientGraphDbService extends AbstractOrientDbService implements DbS
         OObjectDatabaseTx db = getObjectDb();
         try {
             Arrays.stream(entities).forEach(entity -> {
+                log.info("registering class '{}' @ orientDB", entity);
                 db.getEntityManager().registerEntityClass(entity);
             });
         } finally {
@@ -290,17 +294,20 @@ public class OrientGraphDbService extends AbstractOrientDbService implements DbS
         OObjectDatabaseTx db = getObjectDb();
         OClass oClass = db.getMetadata().getSchema().getClass(cls);
         Set<String> properties = oClass.propertiesMap().keySet();
-//        boolean propertyMissing = Arrays.asList(fieldnames).stream().filter(field -> {
-//            if (!(properties.contains(field))) {
-//                log.error("cannot create index on non-existing property '" + field +"'");
-//                return true;
-//            }
-//            return false;
-//        }).findFirst().isPresent();
-//
-//        if (!propertyMissing) {
-//            oClass.createIndex("compositeUniqueIndex", INDEX_TYPE.UNIQUE, fieldnames);
-//        }
+        // boolean propertyMissing =
+        // Arrays.asList(fieldnames).stream().filter(field -> {
+        // if (!(properties.contains(field))) {
+        // log.error("cannot create index on non-existing property '" + field
+        // +"'");
+        // return true;
+        // }
+        // return false;
+        // }).findFirst().isPresent();
+        //
+        // if (!propertyMissing) {
+        // oClass.createIndex("compositeUniqueIndex", INDEX_TYPE.UNIQUE,
+        // fieldnames);
+        // }
 
         String indexName = "compositeUniqueIndexNameAndOwner";
         boolean indexExists = oClass.getIndexes().stream().filter(i -> {
@@ -311,10 +318,10 @@ public class OrientGraphDbService extends AbstractOrientDbService implements DbS
         }
         Arrays.stream(fieldnames).forEach(field -> {
             // TODO need to get types reflectively
-            createProperty(cls.getSimpleName(), field, OType.STRING);
-        });
+                createProperty(cls.getSimpleName(), field, OType.STRING);
+            });
         oClass.createIndex(indexName, INDEX_TYPE.UNIQUE, fieldnames);
-        
+
     }
 
     private OrientGraph getDb() {

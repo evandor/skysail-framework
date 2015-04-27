@@ -118,7 +118,7 @@ public class FileBasedUserManagementProvider implements UserManagementProvider {
             props.put("service.pid", this.getClass().getName());
 
             props.put("admin.password", "$2a$12$52R8v2QH3vQRz8NcdtOm5.HhE5tFPZ0T/.MpfUa9rBzOugK.btAHS");
-            props.put("admin.roles", "admin");
+            props.put("admin.roles", "admin,developer");
             props.put("admin.id", "#1");
 
             props.put("user.password", "$2a$12$52R8v2QH3vQRz8NcdtOm5.HhE5tFPZ0T/.MpfUa9rBzOugK.btAHS");

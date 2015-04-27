@@ -8,7 +8,7 @@ import io.skysail.server.app.designer.PostDynamicEntityServerResource;
 public class $classname$ extends PostDynamicEntityServerResource<$entityname$> {
 
     public $classname$() {
-        addToContext(ResourceContextId.LINK_TITLE, "create new $entityname$");
+        addToContext(ResourceContextId.LINK_TITLE, "create new $entityShortName$");
     }
 
     @Override

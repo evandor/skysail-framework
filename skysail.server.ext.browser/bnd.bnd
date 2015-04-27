@@ -1,0 +1,7 @@
+Bundle-Version: 0.0.0.${tstamp}
+Private-Package:  \
+	io.skysail.server.ext.browser
+-buildpath:  \
+	biz.aQute.bnd.annotation;version=2.3
+Service-Component:  \
+	*

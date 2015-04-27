@@ -4,6 +4,7 @@ import io.skysail.api.text.Translation;
 import io.skysail.api.text.TranslationRenderService;
 import io.skysail.api.text.TranslationStore;
 import io.skysail.server.text.AbstractTranslationRenderService;
+import io.skysail.server.text.StoreAndTranslation;
 import io.skysail.server.text.TranslationStoreHolder;
 
 import java.util.Arrays;
@@ -57,6 +58,12 @@ public class AsciiDocRenderService extends AbstractTranslationRenderService impl
 
     public void removeStore(TranslationStore store) {
         stores.remove(new TranslationStoreHolder(store));
+    }
+
+    @Override
+    protected Translation createTranslation(StoreAndTranslation t) {
+        // TODO Auto-generated method stub
+        return null;
     }
 
 }

@@ -2,31 +2,54 @@ package io.skysail.server.app.designer;
 
 import io.skysail.server.app.SkysailApplication;
 import io.skysail.server.app.designer.application.Application;
-import io.skysail.server.app.designer.application.resources.*;
+import io.skysail.server.app.designer.application.resources.ApplicationResource;
+import io.skysail.server.app.designer.application.resources.ApplicationsResource;
+import io.skysail.server.app.designer.application.resources.PostApplicationResource;
+import io.skysail.server.app.designer.application.resources.PutApplicationResource;
 import io.skysail.server.app.designer.codegen.InMemoryJavaCompiler;
 import io.skysail.server.app.designer.entities.Entity;
-import io.skysail.server.app.designer.entities.resources.*;
+import io.skysail.server.app.designer.entities.resources.EntitiesResource;
+import io.skysail.server.app.designer.entities.resources.EntityResource;
+import io.skysail.server.app.designer.entities.resources.PostEntityResource;
+import io.skysail.server.app.designer.entities.resources.PutEntityResource;
 import io.skysail.server.app.designer.fields.EntityField;
-import io.skysail.server.app.designer.fields.resources.*;
+import io.skysail.server.app.designer.fields.resources.FieldResource;
+import io.skysail.server.app.designer.fields.resources.FieldsResource;
+import io.skysail.server.app.designer.fields.resources.PostFieldResource;
+import io.skysail.server.app.designer.fields.resources.PutFieldResource;
 import io.skysail.server.app.designer.repo.DesignerRepository;
 import io.skysail.server.db.DbRepository;
-import io.skysail.server.restlet.resources.*;
+import io.skysail.server.restlet.resources.ListServerResource;
+import io.skysail.server.restlet.resources.PostEntityServerResource;
 import io.skysail.server.utils.BundleUtils;
 
 import java.io.IOException;
 import java.lang.reflect.Method;
-import java.nio.file.*;
-import java.util.*;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+import java.util.Set;
+import java.util.SortedSet;
+import java.util.TreeSet;
 
 import lombok.extern.slf4j.Slf4j;
-import aQute.bnd.annotation.component.*;
+import aQute.bnd.annotation.component.Component;
+import aQute.bnd.annotation.component.Reference;
 
 import com.google.common.collect.Iterables;
 
 import de.twenty11.skysail.server.app.ApplicationProvider;
-import de.twenty11.skysail.server.beans.*;
-import de.twenty11.skysail.server.core.restlet.*;
-import de.twenty11.skysail.server.services.*;
+import de.twenty11.skysail.server.beans.DynamicEntity;
+import de.twenty11.skysail.server.beans.EntityDynaProperty;
+import de.twenty11.skysail.server.core.restlet.ApplicationContextId;
+import de.twenty11.skysail.server.core.restlet.RouteBuilder;
+import de.twenty11.skysail.server.services.MenuItem;
+import de.twenty11.skysail.server.services.MenuItemProvider;
 
 @Component(immediate = true)
 @Slf4j
@@ -84,7 +107,7 @@ public class DesignerApplication extends SkysailApplication implements MenuItemP
                                 String entityName = sb.toString(); // e.g. AppDesigner_Automobiles_Brand
 
                                 String entityClassName = setupEntityForCompilation(entityTemplate, a.getId(), entityName, e.getName()); // io.skysail.server.app.designer.codegen.AppDesigner_Automobiles_Brand
-                                String postResourceClassName = setupPostResourceForCompilation(postResourceTemplate, entityName); 
+                                String postResourceClassName = setupPostResourceForCompilation(postResourceTemplate, entityName, e.getName()); 
                                 String listResourceClassName = setupListResourceForCompilation(listServerResourceTemplate, a, entityName, entityClassName);
 
                                 compile();
@@ -128,13 +151,14 @@ public class DesignerApplication extends SkysailApplication implements MenuItemP
         return className;
     }
 
-    private String setupPostResourceForCompilation(String postResourceTemplate, String entityName) {
+    private String setupPostResourceForCompilation(String postResourceTemplate, String entityName, String entityShortName) {
         final String className2 = "Post" + entityName + "Resource";
         @SuppressWarnings("serial")
         String postResourceCode = substitute(postResourceTemplate, new HashMap<String, String>() {
             {
                 put("$classname$", className2);
                 put("$entityname$", entityName);
+                put("$entityShortName$", entityShortName);
             }
         });
         String fullClassName = "io.skysail.server.app.designer.codegen." + className2;

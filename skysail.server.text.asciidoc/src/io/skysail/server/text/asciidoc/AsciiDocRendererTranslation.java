@@ -8,7 +8,7 @@ import java.util.Optional;
 public class AsciiDocRendererTranslation extends Translation {
 
     public AsciiDocRendererTranslation(Optional<String> text) {
-        super(text, Integer.valueOf(AsciiDocRenderService.SERVICE_RANKING));
+        super(text, null, Integer.valueOf(AsciiDocRenderService.SERVICE_RANKING));
     }
 
     @Override

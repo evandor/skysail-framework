@@ -1,14 +1,12 @@
 package io.skysail.server.text.markdown;
 
-import io.skysail.api.text.Translation;
-import io.skysail.api.text.TranslationRenderService;
-
-import java.util.Optional;
+import io.skysail.api.text.*;
+import io.skysail.server.text.StoreAndTranslation;
 
 public class MarkdownTranslation extends Translation {
 
-    public MarkdownTranslation(Optional<String> text) {
-        super(text, Integer.valueOf(MarkdownTranslationRenderService.SERVICE_RANKING));
+    public MarkdownTranslation(StoreAndTranslation sat) {
+        super(sat.getTranslation(), sat.getStore(), Integer.valueOf(MarkdownTranslationRenderService.SERVICE_RANKING));
     }
 
     @Override

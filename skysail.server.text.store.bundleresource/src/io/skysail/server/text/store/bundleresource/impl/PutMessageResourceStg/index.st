@@ -89,6 +89,7 @@ index(user, messages, source, converter, services, resource, fields, target) ::=
             $endif$
         </div>
         <div class="row">
+        TranslationStore: <br>
         redirecting to '$source.entity.redirectBackTo$'
 		    <form role="form" action=".?method=PUT&_redirectTo=$source.entity.redirectBackTo$" method="POST">
 		        <div class="form-group">

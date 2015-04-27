@@ -1,6 +1,6 @@
 package de.twenty11.skysail.server.beans;
 
-import io.skysail.api.forms.Field;
+import io.skysail.api.forms.*;
 import lombok.Getter;
 
 import org.apache.commons.beanutils.DynaProperty;
@@ -12,12 +12,16 @@ public class EntityDynaProperty extends DynaProperty implements Comparable<Entit
     @Getter
     private Field field;
 
+    @Getter
+    private InputType inputType;
+
     public EntityDynaProperty(String name) {
         super(name);
     }
 
-    public EntityDynaProperty(String propertyName, Class<String> class1) {
-        super(propertyName, class1);
+    public EntityDynaProperty(String propertyName, InputType inputType, Class<?> cls) {
+        super(propertyName, cls);
+        this.inputType = inputType;
     }
 
     @Override

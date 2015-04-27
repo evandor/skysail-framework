@@ -1,35 +1,25 @@
 package de.twenty11.skysail.server.app.sourceconverter;
 
-import io.skysail.api.forms.Postfix;
-import io.skysail.api.forms.Prefix;
+import io.skysail.api.forms.*;
 import io.skysail.api.links.Link;
 import io.skysail.server.forms.ListView;
 import io.skysail.server.restlet.resources.SkysailServerResource;
+import io.skysail.server.utils.OrientDbUtils;
 
 import java.io.IOException;
 import java.lang.reflect.Field;
-import java.lang.reflect.Method;
 import java.net.URL;
 import java.text.DateFormat;
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Locale;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
 import lombok.extern.slf4j.Slf4j;
 
-import org.restlet.data.Language;
-import org.restlet.data.MediaType;
-import org.restlet.data.Preference;
+import org.restlet.data.*;
 
 import aQute.bnd.annotation.component.Component;
 
 import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.databind.*;
 
 import de.twenty11.skysail.server.app.AbstractSourceConverter;
 
@@ -80,10 +70,9 @@ public class ListSourceHtmlConverter extends AbstractSourceConverter implements 
                 result.add(props);
                 continue;
             }
-            Method[] methods = object.getClass().getMethods();
-            Optional<Method> getHandlerMethod = findHandlerMethod(methods);
-            if (getHandlerMethod.isPresent()) {
-                result.add(mapSource(object, getHandlerMethod, resource));
+            Map<String, Object> map = OrientDbUtils.toMap(object);
+            if (map != null) {
+                result.add(mapSource2(object, map, resource));
             }
         }
         return result;

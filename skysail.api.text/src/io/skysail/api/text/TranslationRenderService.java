@@ -5,7 +5,7 @@ import org.restlet.Request;
 /**
  * A Translation render service asks a TranslationStore for the translation
  * object for a given key and passes this to its render function to create the
- * translated value
+ * translated value or stores or updates a key/translation pair.
  *
  */
 public interface TranslationRenderService {
@@ -42,4 +42,6 @@ public interface TranslationRenderService {
      * @return
      */
     String render(Translation translation, Object... substitutions);
+    
+   // boolean persist(String key, String translation);
 }

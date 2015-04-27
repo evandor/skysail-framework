@@ -2,11 +2,10 @@ package de.twenty11.skysail.server.app.sourceconverter;
 
 import io.skysail.api.responses.SkysailResponse;
 import io.skysail.server.restlet.resources.SkysailServerResource;
+import io.skysail.server.utils.OrientDbUtils;
 
 import java.lang.reflect.Field;
-import java.lang.reflect.Method;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 import org.restlet.data.MediaType;
 
@@ -27,11 +26,15 @@ public class SkysailResponseJsonConverter extends AbstractSourceConverter implem
         if (object == null || !object.getClass().getName().contains("$$")) {
             return object;
         }
-        Method[] methods = object.getClass().getMethods();
-        Optional<Method> getHandlerMethod = findHandlerMethod(methods);
-        if (getHandlerMethod.isPresent()) {
-            return mapSource(object, getHandlerMethod, resource);
+        Map<String, Object> map = OrientDbUtils.toMap(object);
+        if (map != null) {
+            return mapSource2(object, map, resource);
         }
+//        Method[] methods = object.getClass().getMethods();
+//        Optional<Method> getHandlerMethod = findHandlerMethod(methods);
+//        if (getHandlerMethod.isPresent()) {
+//            return mapSource(object, getHandlerMethod, resource);
+//        }
         return getSource();
     }
 

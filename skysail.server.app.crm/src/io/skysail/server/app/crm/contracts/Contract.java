@@ -1,17 +1,17 @@
 package io.skysail.server.app.crm.contracts;
 
-import java.util.Set;
-import java.util.SortedSet;
-import java.util.TreeSet;
+import io.skysail.api.forms.InputType;
 
-import de.twenty11.skysail.server.beans.DynamicEntity;
-import de.twenty11.skysail.server.beans.EntityDynaProperty;
+import java.util.*;
+
+import de.twenty11.skysail.server.beans.*;
+
 
 public class Contract extends DynamicEntity {
 
     public Set<EntityDynaProperty> getProperties() {
         SortedSet<EntityDynaProperty> properties = new TreeSet<>();
-        properties.add(new EntityDynaProperty("name", String.class));
+        properties.add(new EntityDynaProperty("name", InputType.TEXT, String.class));
         return properties;
     }
 

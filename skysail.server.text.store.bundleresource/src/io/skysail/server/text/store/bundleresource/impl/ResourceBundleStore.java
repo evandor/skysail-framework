@@ -3,15 +3,15 @@ package io.skysail.server.text.store.bundleresource.impl;
 import io.skysail.api.text.TranslationStore;
 import io.skysail.server.utils.HeadersUtils;
 
-import java.util.Collections;
-import java.util.List;
-import java.util.Locale;
-import java.util.MissingResourceException;
-import java.util.Optional;
-import java.util.ResourceBundle;
+import java.nio.file.*;
+import java.util.*;
 
 import lombok.extern.slf4j.Slf4j;
 
+import org.apache.commons.configuration.*;
+import org.apache.commons.lang.StringUtils;
+import org.osgi.framework.*;
+import org.osgi.framework.wiring.BundleWiring;
 import org.restlet.Request;
 import org.restlet.util.Series;
 
@@ -21,6 +21,8 @@ import aQute.bnd.annotation.component.Component;
 @Slf4j
 // http://viralpatel.net/blogs/eclipse-resource-is-out-of-sync-with-the-filesystem/
 public class ResourceBundleStore implements TranslationStore {
+    
+    private static final int MIN_MATCH_LENGTH = 20;
 
     /**
      * get the ResourceBundle translation for the given key using the default
@@ -97,4 +99,99 @@ public class ResourceBundleStore implements TranslationStore {
         }
         return null;
     }
+
+    @Override
+    public boolean persist(String key, String message, Locale locale, BundleContext bundleContext) {
+        List<BundleMessages> messages = getBundleMessages(locale, bundleContext);
+        Optional<BundleMessages> bundleMessage = messages.stream().filter(bm -> {
+            return bm.getMessages().keySet().contains(key);
+        }).findFirst();
+        String updatePath;
+        if (bundleMessage.isPresent()) {
+            updatePath = update(key, message, bundleMessage.get());
+        } else {
+            updatePath = create(key, message, bundleContext);
+        }
+        return updatePath != null;
+    }
+    
+    private List<BundleMessages> getBundleMessages(Locale locale, BundleContext bundleContext) {
+        Bundle[] bundles = bundleContext.getBundles();
+        List<BundleMessages> result = new ArrayList<>();
+        Arrays.stream(bundles).forEach(b -> {
+            ClassLoader loader = b.adapt(BundleWiring.class).getClassLoader();
+            handleResourceBundle(loader, b, locale, result);
+        });
+        return result;
+    }
+    
+    private String create(String key, String message, BundleContext bundleConetxt) {
+        List<BundleMessages> messages = getBundleMessages(new Locale("en"), bundleConetxt);
+        int lastIndexOfUppercaseLetter = firstIndexOfUppercaseLetter(key);
+        if (lastIndexOfUppercaseLetter < MIN_MATCH_LENGTH) {
+            return null;
+        }
+        String match = findMatch(key);
+        if (StringUtils.isEmpty(match)) {
+            log.warn("could not create new translation, as there was not match for the key '{}'", key);
+            return null;
+        }
+        for (BundleMessages bundleMessages : messages) {
+            Map<String, String> msgs = bundleMessages.getMessages();
+            Optional<String> found = msgs.keySet().stream().filter(k -> {
+                return k.startsWith(match);
+            }).findFirst();
+            if (found.isPresent()) {
+                return update(key, message, bundleMessages);
+            }
+        }
+        return null;
+    }
+    
+    private String findMatch(String msgKey) {
+        int firstIndexOfUppercaseLetter = firstIndexOfUppercaseLetter(msgKey);
+        return msgKey.substring(0, firstIndexOfUppercaseLetter - 1);
+    }
+
+    private String update(String key, String message, BundleMessages bundleMessages) {
+        String propertyFileName = bundleMessages.getBaseBundleName();
+        Bundle bundle = bundleMessages.getBundle();
+        Path propertiesFile = Paths.get("..", bundle.getSymbolicName().replace(".core", ""), "resources",
+                propertyFileName + ".properties");
+
+        PropertiesConfiguration props;
+        try {
+            props = new PropertiesConfiguration(propertiesFile.toFile());
+            props.setProperty(key, message);
+            props.save();
+        } catch (ConfigurationException e) {
+            log.error(e.getMessage(), e);
+            return null;
+        }
+        return propertiesFile.toString();
+    }
+
+    private String escape(String msg) {
+        return msg.replace("{", "'{'").replace("}", "'}'").replace(", ", ",&nbsp;");
+    }
+    
+    private int firstIndexOfUppercaseLetter(String str) {
+        for (int i = 0; i < str.length() - 1; i++) {
+            if (Character.isUpperCase(str.charAt(i))) {
+                return i;
+            }
+        }
+        return -1;
+    }
+    
+    private void handleResourceBundle(ClassLoader loader, Bundle b, Locale locale, List<BundleMessages> result) {
+        try {
+            ResourceBundle resourceBundle = ResourceBundle.getBundle("translations/messages", locale, loader);
+            result.add(new BundleMessages(b, resourceBundle));
+        } catch (MissingResourceException mre) {
+            // ignore
+        }
+    }
+
+    
 }

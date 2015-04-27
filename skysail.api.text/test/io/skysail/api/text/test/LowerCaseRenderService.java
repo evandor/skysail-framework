@@ -1,8 +1,6 @@
 package io.skysail.api.text.test;
 
-import io.skysail.api.text.Translation;
-import io.skysail.api.text.TranslationRenderService;
-import io.skysail.api.text.TranslationStore;
+import io.skysail.api.text.*;
 
 import java.util.Optional;
 
@@ -13,7 +11,7 @@ public class LowerCaseRenderService implements TranslationRenderService {
     public class DefaultTranslation extends Translation {
 
         public DefaultTranslation(String text) {
-            super(Optional.ofNullable(text), 1000);
+            super(Optional.ofNullable(text), null, 1000);
         }
 
         @Override
@@ -44,5 +42,10 @@ public class LowerCaseRenderService implements TranslationRenderService {
     public Translation getTranslation(String key, ClassLoader cl, Request request) {
         return null;
     }
+
+//    @Override
+//    public boolean persist(String key, String translation) {
+//        return false;
+//    }
 
 }

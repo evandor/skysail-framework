@@ -6,8 +6,6 @@ import io.skysail.server.app.designer.application.Application;
 import io.skysail.server.app.designer.entities.Entity;
 import io.skysail.server.restlet.resources.PutEntityServerResource;
 
-import java.util.Optional;
-
 public class PutEntityResource extends PutEntityServerResource<Entity> {
 
     private DesignerApplication app;
@@ -23,14 +21,15 @@ public class PutEntityResource extends PutEntityServerResource<Entity> {
 
     public Entity getEntity() {
         Application application = app.getRepository().getById(Application.class, appId);
-        System.out.println(application.getEntities());
-        Optional<Entity> optionalEntity = application.getEntities().stream().filter(e -> {
-            if (e == null || e.getId() == null) {
-                return false;
-            }
-            return e.getId().replace("#", "").equals(entityId);
-        }).findFirst();
-        return optionalEntity.orElse(null);
+        return app.getEntity(application, entityId);
+//        System.out.println(application.getEntities());
+//        Optional<Entity> optionalEntity = application.getEntities().stream().filter(e -> {
+//            if (e == null || e.getId() == null) {
+//                return false;
+//            }
+//            return e.getId().replace("#", "").equals(entityId);
+//        }).findFirst();
+//        return optionalEntity.orElse(null);
     }
 
     public SkysailResponse<?> updateEntity(Entity entity) {

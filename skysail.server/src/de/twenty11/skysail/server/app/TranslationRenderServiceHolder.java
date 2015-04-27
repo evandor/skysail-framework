@@ -3,10 +3,9 @@ package de.twenty11.skysail.server.app;
 import io.skysail.api.text.TranslationRenderService;
 
 import java.lang.ref.WeakReference;
-import java.util.Map;
-import java.util.WeakHashMap;
+import java.util.*;
 
-import lombok.Getter;
+import lombok.*;
 import lombok.extern.slf4j.Slf4j;
 
 import org.apache.commons.lang.StringUtils;
@@ -19,14 +18,18 @@ import org.osgi.framework.Constants;
  */
 @Getter
 @Slf4j
+@EqualsAndHashCode(of = {"name"})
+@ToString(of = {"name"})
 public class TranslationRenderServiceHolder {
 
     private WeakReference<TranslationRenderService> service;
     private WeakHashMap<String, String> props;
+    private String name;
 
     public TranslationRenderServiceHolder(TranslationRenderService service, Map<String, String> props) {
         this.service = new WeakReference<TranslationRenderService>(service);
         this.props = new WeakHashMap<>(props);
+        this.name = service.getClass().getName();
     }
 
     public Integer getServiceRanking() {
@@ -40,11 +43,6 @@ public class TranslationRenderServiceHolder {
             log.error(e.getMessage(), e);
             return 0;
         }
-    }
-
-    @Override
-    public String toString() {
-        return new StringBuilder("ServiceHolder for ").append(service.get()).toString();
     }
 
 }

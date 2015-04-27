@@ -1,16 +1,13 @@
 package io.skysail.api.text.test;
 
-import static org.hamcrest.CoreMatchers.equalTo;
-import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.assertThat;
-import io.skysail.api.text.Translation;
-import io.skysail.api.text.TranslationStore;
+import io.skysail.api.text.*;
 
-import java.util.Locale;
-import java.util.Optional;
+import java.util.*;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.*;
+import org.osgi.framework.BundleContext;
 import org.restlet.Request;
 
 public class TranslationRenderServiceTest {
@@ -49,6 +46,11 @@ public class TranslationRenderServiceTest {
             @Override
             public Optional<String> get(String key, ClassLoader cl, Request request, Locale locale) {
                 return Optional.ofNullable(key);
+            }
+
+            @Override
+            public boolean persist(String key, String message, Locale locale, BundleContext bundleContext) {
+                return false;
             }
         };
         Translation translation = renderService.getTranslation("KEY", null, null, store);

@@ -1,12 +1,8 @@
 package io.skysail.server.text;
 
-import io.skysail.api.text.Translation;
-import io.skysail.api.text.TranslationRenderService;
-import io.skysail.api.text.TranslationStore;
+import io.skysail.api.text.*;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import org.restlet.Request;
@@ -15,11 +11,11 @@ public abstract class AbstractTranslationRenderService implements TranslationRen
 
     protected List<TranslationStoreHolder> stores = new ArrayList<>();
 
-    protected abstract Translation createTranslation(Optional<String> t);
+    protected abstract Translation createTranslation(StoreAndTranslation t);
 
     @Override
     public Translation getTranslation(String key, ClassLoader cl, Request request, TranslationStore store) {
-        return createTranslation(store.get(key, cl, request));
+        return createTranslation(new StoreAndTranslation(store, store.get(key, cl, request)));
     }
 
     /**
@@ -29,16 +25,16 @@ public abstract class AbstractTranslationRenderService implements TranslationRen
     @Override
     public Translation getTranslation(String key, ClassLoader cl, Request request) {
 
-        List<TranslationStoreHolder> sortedStores = stores.stream().sorted((t1, t2) -> {
-            return t1.getServiceRanking().compareTo(t2.getServiceRanking());
-        }).collect(Collectors.toList());
+        List<TranslationStoreHolder> sortedStores = getSortedTranslationStores();
 
         Optional<Translation> bestTranslation = sortedStores.stream().filter(store -> {
             return store.getStore().get() != null;
         }).map(store -> {
-            return store.getStore().get().get(key, cl, request);
-        }).map(translation -> {
-            return createTranslation(translation);
+            return new StoreAndTranslation(store.getStore().get(), store.getStore().get().get(key, cl, request));
+        }).filter( storeAndTranslation -> {
+            return storeAndTranslation.getTranslation().isPresent();
+        }).map(storeAndTranslation -> {
+            return createTranslation(storeAndTranslation);
         }).findFirst();
 
         if (bestTranslation.isPresent()) {
@@ -46,5 +42,12 @@ public abstract class AbstractTranslationRenderService implements TranslationRen
         }
         return null;
 
+    }
+
+    protected List<TranslationStoreHolder> getSortedTranslationStores() {
+        List<TranslationStoreHolder> sortedStores = stores.stream().sorted((t1, t2) -> {
+            return t1.getServiceRanking().compareTo(t2.getServiceRanking());
+        }).collect(Collectors.toList());
+        return sortedStores;
     }
 }

@@ -1,55 +1,33 @@
 package io.skysail.server.restlet.resources;
 
 import io.skysail.api.domain.Identifiable;
-import io.skysail.api.links.Link;
-import io.skysail.api.links.LinkRelation;
-import io.skysail.api.links.LinkRole;
+import io.skysail.api.links.*;
 import io.skysail.api.utils.StringParserUtils;
 import io.skysail.server.app.SkysailApplication;
 import io.skysail.server.restlet.RequestHandler;
 import io.skysail.server.restlet.filter.AbstractResourceFilter;
-import io.skysail.server.utils.LinkUtils;
-import io.skysail.server.utils.ResourceUtils;
+import io.skysail.server.utils.*;
 
-import java.lang.reflect.Field;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.ParameterizedType;
-import java.lang.reflect.Type;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.lang.reflect.*;
+import java.util.*;
 import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
-import lombok.Getter;
-import lombok.NonNull;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 import lombok.extern.slf4j.Slf4j;
 
-import org.apache.commons.beanutils.BeanUtils;
-import org.apache.commons.beanutils.BeanUtilsBean;
-import org.apache.commons.beanutils.ConvertUtils;
-import org.apache.commons.beanutils.ConvertUtilsBean;
-import org.apache.commons.beanutils.converters.DateConverter;
-import org.apache.commons.beanutils.converters.DateTimeConverter;
+import org.apache.commons.beanutils.*;
+import org.apache.commons.beanutils.converters.*;
 import org.apache.shiro.SecurityUtils;
 import org.restlet.Application;
-import org.restlet.data.Form;
-import org.restlet.data.Reference;
-import org.restlet.resource.Resource;
-import org.restlet.resource.ServerResource;
+import org.restlet.data.*;
+import org.restlet.resource.*;
 import org.restlet.security.Role;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import de.twenty11.skysail.server.core.FormField;
-import de.twenty11.skysail.server.core.restlet.MessagesUtils;
-import de.twenty11.skysail.server.core.restlet.ResourceContextId;
+import de.twenty11.skysail.server.core.restlet.*;
 
 /**
  * Abstract base class for all skysail resources, parameterized with T, the type
@@ -314,6 +292,13 @@ public abstract class SkysailServerResource<T> extends ServerResource {
                 return map.get("@rid").toString().replace("#",  "");
             }
         }
+        Map<String, Object> map = OrientDbUtils.toMap(object);
+        if (map != null) {
+            if (map.get("@rid") != null) {
+                return map.get("@rid").toString().replace("#",  "");
+            }
+        }
+        
         return "NO_ID";
     }
 

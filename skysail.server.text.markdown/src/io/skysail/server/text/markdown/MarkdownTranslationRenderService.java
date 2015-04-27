@@ -1,22 +1,17 @@
 package io.skysail.server.text.markdown;
 
-import io.skysail.api.text.Translation;
-import io.skysail.api.text.TranslationRenderService;
-import io.skysail.api.text.TranslationStore;
-import io.skysail.server.text.AbstractTranslationRenderService;
-import io.skysail.server.text.TranslationStoreHolder;
+import io.skysail.api.text.*;
+import io.skysail.server.text.*;
 
 import java.io.IOException;
 import java.util.Map;
-import java.util.Optional;
 
 import lombok.extern.slf4j.Slf4j;
 
 import org.apache.commons.lang3.StringEscapeUtils;
 import org.markdown4j.Markdown4jProcessor;
 
-import aQute.bnd.annotation.component.Component;
-import aQute.bnd.annotation.component.Reference;
+import aQute.bnd.annotation.component.*;
 
 @Component(immediate = true, properties = { "test=" + MarkdownTranslationRenderService.SERVICE_RANKING })
 @Slf4j
@@ -26,13 +21,16 @@ public class MarkdownTranslationRenderService extends AbstractTranslationRenderS
     public static final String SERVICE_RANKING = "100";
 
     @Override
-    protected Translation createTranslation(Optional<String> t) {
-        return new MarkdownTranslation(t);
+    protected Translation createTranslation(StoreAndTranslation sat) {
+        return new MarkdownTranslation(sat);
     }
 
     @Override
     // TODO handle substitutions
     public String render(Translation translation, Object... substitutions) {
+        if (translation == null) {
+            return null;
+        }
         try {
             String unformatted = StringEscapeUtils.unescapeHtml4(translation.getValue());
             if (unformatted == null) {
@@ -53,5 +51,12 @@ public class MarkdownTranslationRenderService extends AbstractTranslationRenderS
     public void removeStore(TranslationStore store) {
         stores.remove(new TranslationStoreHolder(store));
     }
+
+//    @Override
+//    public boolean persist(String key, String translation) {
+//        List<TranslationStoreHolder> sortedStores = getSortedTranslationStores();
+//        sortedStores.stream().forEach(store -> store.getStore().get().)
+//        return false;
+//    }
 
 }

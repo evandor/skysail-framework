@@ -3,20 +3,13 @@ package io.skysail.server.app;
 import io.skysail.api.documentation.DocumentationProvider;
 import io.skysail.api.favorites.FavoritesService;
 import io.skysail.api.text.TranslationRenderService;
-import io.skysail.api.um.AuthenticationService;
-import io.skysail.api.um.AuthorizationService;
-import io.skysail.api.um.UserManagementProvider;
+import io.skysail.api.um.*;
 import io.skysail.api.validation.ValidatorService;
 import io.skysail.server.restlet.filter.HookFilter;
 import io.skysail.server.restlet.resources.SkysailServerResource;
 import io.skysail.server.services.PerformanceMonitor;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Stream;
 
 import lombok.extern.slf4j.Slf4j;
@@ -25,15 +18,10 @@ import org.osgi.service.cm.ConfigurationAdmin;
 import org.osgi.service.event.EventAdmin;
 import org.restlet.Context;
 
-import aQute.bnd.annotation.component.Component;
-import aQute.bnd.annotation.component.Reference;
+import aQute.bnd.annotation.component.*;
 import de.twenty11.skysail.server.SkysailComponent;
-import de.twenty11.skysail.server.app.ApplicationListProvider;
-import de.twenty11.skysail.server.app.ServiceListProvider;
-import de.twenty11.skysail.server.app.SkysailComponentProvider;
-import de.twenty11.skysail.server.app.TranslationRenderServiceHolder;
-import de.twenty11.skysail.server.metrics.MetricsService;
-import de.twenty11.skysail.server.metrics.MetricsServiceProvider;
+import de.twenty11.skysail.server.app.*;
+import de.twenty11.skysail.server.metrics.*;
 import de.twenty11.skysail.server.services.EncryptorService;
 
 /**
@@ -218,7 +206,9 @@ public class ServiceList implements ServiceListProvider {
     }
 
     public synchronized void removeTranslationRenderService(TranslationRenderService service) {
-        this.translationRenderServices.remove(service);
+        TranslationRenderServiceHolder holder = new TranslationRenderServiceHolder(service,
+                new HashMap<String, String>());
+        this.translationRenderServices.remove(holder);
         getSkysailApps().forEach(a -> a.removeTranslationRenderService(service));
     }
 

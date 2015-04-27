@@ -53,6 +53,10 @@ public class DesignerRepository implements DbRepository {
         dbService.update(entity.getId(), entity);
     }
 
+    public void update(EntityField field) {
+        dbService.update(field.getId(), field);
+    }
+
     public void register(Class<?>... classes) {
         dbService.register(classes);
     }
@@ -64,5 +68,6 @@ public class DesignerRepository implements DbRepository {
     public void createWithSuperClass(String superClassName, String entityClassName) {
         dbService.createWithSuperClass(superClassName, entityClassName);
     }
+
 
 }

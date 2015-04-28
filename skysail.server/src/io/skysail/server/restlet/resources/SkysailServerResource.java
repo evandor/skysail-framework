@@ -1,33 +1,56 @@
 package io.skysail.server.restlet.resources;
 
 import io.skysail.api.domain.Identifiable;
-import io.skysail.api.links.*;
+import io.skysail.api.links.Link;
+import io.skysail.api.links.LinkRelation;
+import io.skysail.api.links.LinkRole;
 import io.skysail.api.utils.StringParserUtils;
 import io.skysail.server.app.SkysailApplication;
 import io.skysail.server.restlet.RequestHandler;
 import io.skysail.server.restlet.filter.AbstractResourceFilter;
-import io.skysail.server.utils.*;
+import io.skysail.server.utils.LinkUtils;
+import io.skysail.server.utils.OrientDbUtils;
+import io.skysail.server.utils.ResourceUtils;
 
-import java.lang.reflect.*;
-import java.util.*;
+import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.ParameterizedType;
+import java.lang.reflect.Type;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
-import lombok.*;
+import lombok.Getter;
+import lombok.NonNull;
+import lombok.Setter;
+import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
 
-import org.apache.commons.beanutils.*;
-import org.apache.commons.beanutils.converters.*;
+import org.apache.commons.beanutils.BeanUtils;
+import org.apache.commons.beanutils.BeanUtilsBean;
+import org.apache.commons.beanutils.ConvertUtils;
+import org.apache.commons.beanutils.ConvertUtilsBean;
+import org.apache.commons.beanutils.converters.DateConverter;
+import org.apache.commons.beanutils.converters.DateTimeConverter;
 import org.apache.shiro.SecurityUtils;
 import org.restlet.Application;
-import org.restlet.data.*;
-import org.restlet.resource.*;
+import org.restlet.data.Form;
+import org.restlet.data.Reference;
+import org.restlet.resource.Resource;
+import org.restlet.resource.ServerResource;
 import org.restlet.security.Role;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import de.twenty11.skysail.server.core.FormField;
-import de.twenty11.skysail.server.core.restlet.*;
+import de.twenty11.skysail.server.core.restlet.MessagesUtils;
+import de.twenty11.skysail.server.core.restlet.ResourceContextId;
 
 /**
  * Abstract base class for all skysail resources, parameterized with T, the type
@@ -264,18 +287,22 @@ public abstract class SkysailServerResource<T> extends ServerResource {
             return Collections.emptyList();
         }
         ListServerResource<?> listServerResource = (ListServerResource<?>) this;
-        Class<? extends EntityServerResource<?>> entityResourceClass = listServerResource.getAssociatedEntityResource();
+        List<Class<? extends EntityServerResource<?>>> entityResourceClasses = listServerResource.getAssociatedEntityResources();
+        //List<Class<? extends EntityServerResource<?>>> entityResourceClass = listServerResource.getAssociatedEntityResources();
         T entity = getCurrentEntity();
         List<Link> result = new ArrayList<>();
 
-        if (entityResourceClass != null && entity instanceof List) {
-            EntityServerResource<?> esr = ResourceUtils.createEntityServerResource(entityResourceClass, this);
-            List<Link> entityLinkTemplates = esr.getAuthorizedLinks();
-            for (Object object : (List<?>) entity) {
-                String id = guessId(object);
-                entityLinkTemplates.stream().filter(lh -> {
-                    return lh.getRole().equals(LinkRole.DEFAULT);
-                }).forEach(link -> addLink(link, esr, id, listServerResource, result));
+        if (entityResourceClasses != null && entity instanceof List) {
+            List<EntityServerResource<?>> esrs = ResourceUtils.createEntityServerResources(entityResourceClasses, this);
+            
+            for (EntityServerResource<?> esr : esrs) {
+                List<Link> entityLinkTemplates = esr.getAuthorizedLinks();
+                for (Object object : (List<?>) entity) {
+                    String id = guessId(object);
+                    entityLinkTemplates.stream().filter(lh -> {
+                        return lh.getRole().equals(LinkRole.DEFAULT);
+                    }).forEach(link -> addLink(link, esr, id, listServerResource, result));
+                }
             }
         }
         return result;
@@ -407,6 +434,10 @@ public abstract class SkysailServerResource<T> extends ServerResource {
 
     public void addToContext(ResourceContextId id, Map<String, String> map) {
         mapContextMap.put(id, map);
+    }
+    
+    public void removeFromContext(ResourceContextId id) {
+        stringContextMap.remove(id);
     }
 
     public String getFromContext(ResourceContextId id) {

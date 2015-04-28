@@ -10,6 +10,8 @@ import io.skysail.server.app.wiki.pages.resources.PutPageResource;
 import io.skysail.server.app.wiki.repository.WikiRepository;
 import io.skysail.server.app.wiki.spaces.Space;
 import io.skysail.server.app.wiki.spaces.resources.PostSpaceResource;
+import io.skysail.server.app.wiki.spaces.resources.PutSpaceResource;
+import io.skysail.server.app.wiki.spaces.resources.SpaceResource;
 import io.skysail.server.app.wiki.spaces.resources.SpacesResource;
 import io.skysail.server.db.DbRepository;
 
@@ -44,6 +46,8 @@ public class WikiApplication extends SkysailApplication implements MenuItemProvi
         router.attach(new RouteBuilder("/", RootResource.class));
         router.attach(new RouteBuilder("/spaces", SpacesResource.class));
         router.attach(new RouteBuilder("/spaces/", PostSpaceResource.class));
+        router.attach(new RouteBuilder("/spaces/{id}", SpaceResource.class));
+        router.attach(new RouteBuilder("/spaces/{id}/", PutSpaceResource.class));
 
         router.attach(new RouteBuilder("/pages", PagesResource.class));
         router.attach(new RouteBuilder("/pages/", PostPageResource.class));

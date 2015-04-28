@@ -42,11 +42,11 @@
   <class id="5" language="java" name="io.skysail.server.text.TranslationStoreHolder" project="skysail.server.text" 
     file="/skysail.server.text/src/io/skysail/server/text/TranslationStoreHolder.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="736" y="409"/>    
+    <position height="-1" width="-1" x="741" y="453"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+      <operations public="false" package="false" protected="false" private="false" static="true"/>    
     </display>  
   </class>  
   <class id="6" language="java" name="io.skysail.server.text.markdown.MarkdownTranslationRenderService" 
@@ -93,47 +93,37 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="10" language="java" name="io.skysail.server.text.impl.ResourceBundleStore" project="skysail.server.text" 
-    file="/skysail.server.text/src/io/skysail/server/text/impl/ResourceBundleStore.java" binary="false" 
-    corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1132" y="434"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
-      <operations public="true" package="false" protected="false" private="false" static="false"/>    
-    </display>  
-  </class>  
-  <realization id="11">    
-    <end type="SOURCE" refId="4"/>    
-    <end type="TARGET" refId="3"/>  
-  </realization>  
-  <generalization id="12">    
+  <generalization id="10">    
     <end type="SOURCE" refId="6"/>    
     <end type="TARGET" refId="4"/>  
   </generalization>  
-  <generalization id="13">    
-    <end type="SOURCE" refId="8"/>    
-    <end type="TARGET" refId="1"/>  
+  <generalization id="11">    
+    <end type="SOURCE" refId="9"/>    
+    <end type="TARGET" refId="4"/>  
   </generalization>  
-  <realization id="14">    
-    <end type="SOURCE" refId="10"/>    
-    <end type="TARGET" refId="2"/>  
-  </realization>  
-  <generalization id="15">    
+  <generalization id="12">    
     <end type="SOURCE" refId="7"/>    
     <end type="TARGET" refId="1"/>  
   </generalization>  
-  <association id="16">    
+  <realization id="13">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="3"/>  
+  </realization>  
+  <association id="14">    
     <end type="SOURCE" refId="4" navigable="false">      
-      <attribute id="17" name="stores"/>      
-      <multiplicity id="18" minimum="0" maximum="2147483647"/>    
+      <attribute id="15" name="stores">        
+        <position height="0" width="0" x="5" y="44"/>      
+      </attribute>      
+      <multiplicity id="16" minimum="0" maximum="2147483647">        
+        <position height="0" width="0" x="5" y="44"/>      
+      </multiplicity>    
     </end>    
     <end type="TARGET" refId="5" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <generalization id="19">    
-    <end type="SOURCE" refId="9"/>    
-    <end type="TARGET" refId="4"/>  
+  <generalization id="17">    
+    <end type="SOURCE" refId="8"/>    
+    <end type="TARGET" refId="1"/>  
   </generalization>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
     sort-features="false" accessors="true" visibility="true">    

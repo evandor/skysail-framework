@@ -11,6 +11,7 @@ import io.skysail.server.app.designer.entities.Entity;
 import io.skysail.server.app.designer.entities.resources.EntitiesResource;
 import io.skysail.server.app.designer.entities.resources.EntityResource;
 import io.skysail.server.app.designer.entities.resources.PostEntityResource;
+import io.skysail.server.app.designer.entities.resources.PostSubEntityResource;
 import io.skysail.server.app.designer.entities.resources.PutEntityResource;
 import io.skysail.server.app.designer.fields.EntityField;
 import io.skysail.server.app.designer.fields.resources.FieldResource;
@@ -36,6 +37,7 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.SortedSet;
 import java.util.TreeSet;
+import java.util.stream.Collectors;
 
 import lombok.extern.slf4j.Slf4j;
 import aQute.bnd.annotation.component.Component;
@@ -84,6 +86,8 @@ public class DesignerApplication extends SkysailApplication implements MenuItemP
         router.attach(new RouteBuilder("/applications/{id}/entities/{" + ENTITY_ID + "}", EntityResource.class));
         router.attach(new RouteBuilder("/applications/{id}/entities/{" + ENTITY_ID + "}/", PutEntityResource.class));
 
+        router.attach(new RouteBuilder("/applications/{id}/entities/{" + ENTITY_ID + "}/onetomany/", PostSubEntityResource.class));
+
         router.attach(new RouteBuilder("/applications/{id}/entities/{" + ENTITY_ID + "}/fields", FieldsResource.class));
         router.attach(new RouteBuilder("/applications/{id}/entities/{" + ENTITY_ID + "}/fields/", PostFieldResource.class));
         router.attach(new RouteBuilder("/applications/{id}/entities/{" + ENTITY_ID + "}/fields/{"+FIELD_ID+"}", FieldResource.class));
@@ -104,9 +108,9 @@ public class DesignerApplication extends SkysailApplication implements MenuItemP
                                 StringBuilder sb = new StringBuilder("AppDesigner_");
                                 sb.append(a.getName()).append("_");
                                 sb.append(Iterables.getLast(Arrays.asList(e.getName().split("\\."))));
-                                String entityName = sb.toString(); // e.g. AppDesigner_Automobiles_Brand
+                                String entityName = sb.toString();
 
-                                String entityClassName = setupEntityForCompilation(entityTemplate, a.getId(), entityName, e.getName()); // io.skysail.server.app.designer.codegen.AppDesigner_Automobiles_Brand
+                                String entityClassName = setupEntityForCompilation(entityTemplate, a.getId(), entityName, e.getName());
                                 String postResourceClassName = setupPostResourceForCompilation(postResourceTemplate, entityName, e.getName()); 
                                 String listResourceClassName = setupListResourceForCompilation(listServerResourceTemplate, a, entityName, entityClassName);
 
@@ -133,6 +137,18 @@ public class DesignerApplication extends SkysailApplication implements MenuItemP
 
                             });
                 });
+        
+        List<Entity> entities = apps.stream().map(a -> a.getEntities()).flatMap(e -> e.stream()).collect(Collectors.toList());
+        handleSubEntries(entities);
+    }
+
+    private void handleSubEntries(List<Entity> entities) {
+        entities.stream().map(e -> e.getSubEntities()).flatMap(sub -> sub.stream()).forEach(sub -> {
+            System.out.println(sub);
+            //String entityTemplate = BundleUtils.readResource(getBundle(), "code/SubEntity.codegen");
+           // String entityClassName = setupEntityForCompilation(entityTemplate, a.getId(), entityName, e.getName());
+            handleSubEntries(sub.getSubEntities());
+        });
     }
 
     private String setupListResourceForCompilation(String listServerResourceTemplate, Application a, String entityName, String entityClassName) {
@@ -289,6 +305,11 @@ public class DesignerApplication extends SkysailApplication implements MenuItemP
                 List<EntityField> fields = entity.getFields();
                 for (EntityField entityField : fields) {
                     properties.add(new EntityDynaProperty(entityField.getName(), entityField.getType(), String.class));
+                }
+                
+                List<Entity> subEntities = entity.getSubEntities();
+                for (Entity sub : subEntities) {
+                    properties.add(new EntityDynaProperty(sub.getName(), null, List.class));
                 }
                 break;
             }

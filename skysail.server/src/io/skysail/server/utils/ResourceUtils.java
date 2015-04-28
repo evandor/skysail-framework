@@ -4,6 +4,7 @@ import io.skysail.server.restlet.resources.EntityServerResource;
 import io.skysail.server.restlet.resources.SkysailServerResource;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -22,18 +23,22 @@ import org.restlet.resource.ServerResource;
 @Slf4j
 public class ResourceUtils {
 
-    public static EntityServerResource<?> createEntityServerResource(Class<? extends EntityServerResource<?>> entityServerResource,
+    public static List<EntityServerResource<?>> createEntityServerResources(List<Class<? extends EntityServerResource<?>>> entityServerResources,
             Resource resource) {
-        EntityServerResource<?> newInstance;
-        try {
-            newInstance = entityServerResource.newInstance();
-            newInstance.init(resource.getContext(), resource.getRequest(), resource.getResponse());
-            newInstance.release();
-            return newInstance;
-        } catch (InstantiationException | IllegalAccessException e) {
-            log.error(e.getMessage(), e);
+        
+        List<EntityServerResource<?>> result = new ArrayList<>();
+        for (Class<? extends EntityServerResource<?>> class1 : entityServerResources) {
+            EntityServerResource<?> newInstance;
+            try {
+                newInstance = class1.newInstance();
+                newInstance.init(resource.getContext(), resource.getRequest(), resource.getResponse());
+                newInstance.release();
+                result.add(newInstance);
+            } catch (InstantiationException | IllegalAccessException e) {
+                log.error(e.getMessage(), e);
+            }
         }
-        return null;
+        return result;
     }
 
     public static SkysailServerResource<?> createSkysailServerResource(Class<? extends SkysailServerResource<?>> resourceClass,

@@ -6,25 +6,33 @@ import io.skysail.server.app.designer.application.Application;
 import io.skysail.server.app.designer.entities.Entity;
 import io.skysail.server.restlet.resources.PostEntityServerResource;
 
+import java.util.Optional;
+
+import lombok.extern.slf4j.Slf4j;
+
 import org.restlet.resource.ResourceException;
 
 import de.twenty11.skysail.server.core.restlet.ResourceContextId;
 
-public class PostEntityResource extends PostEntityServerResource<Entity> {
+@Slf4j
+public class PostSubEntityResource extends PostEntityServerResource<Entity> {
 
     private DesignerApplication app;
     private String id;
+    private String entityId;
 
-    public PostEntityResource() {
-        addToContext(ResourceContextId.LINK_TITLE, "Create new Entity");
+    public PostSubEntityResource() {
+        addToContext(ResourceContextId.LINK_TITLE, "Create 1:n Relation");
+        removeFromContext(ResourceContextId.LINK_GLYPH);
     }
-
+    
     @Override
     protected void doInit() throws ResourceException {
         app = (DesignerApplication) getApplication();
         id = getAttribute("id");
+        entityId = getAttribute(DesignerApplication.ENTITY_ID);
     }
-
+    
     @Override
     public Entity createEntityTemplate() {
         return new Entity();
@@ -33,13 +41,14 @@ public class PostEntityResource extends PostEntityServerResource<Entity> {
     @Override
     public SkysailResponse<?> addEntity(Entity entity) {
         Application application = app.getRepository().getById(Application.class, id);
-        application.getEntities().add(entity);
-        app.getRepository().update(application);
+        Optional<Entity> parentEntity = app.getEntityFromApplication(application, entityId);
+        if(parentEntity.isPresent()) {
+            parentEntity.get().getSubEntities().add(entity);
+            app.getRepository().update(parentEntity.get());
+        } else {
+            log.warn("could not find entity with id '{}'", entity);
+        }
         return new SkysailResponse<String>();
     }
 
-    @Override
-    public String redirectTo() {
-        return super.redirectTo(EntitiesResource.class);
-    }
 }

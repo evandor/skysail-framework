@@ -23,14 +23,14 @@ public class SimpleUserManagementApplication extends SkysailApplication implemen
 
     public SimpleUserManagementApplication() {
         super(APP_NAME);
-        log.info("instanciating new UserManagementApplication #" + this.hashCode());
+        log.debug("instanciating new UserManagementApplication #" + this.hashCode());
         setDescription("Central User Configuration Application");
         addToAppContext(ApplicationContextId.IMG, "/static/img/silk/user.png");
     }
     
     @Override
     protected void attach() {
-        log.info("attaching routes to UserManagementApplication #" + this.hashCode());
+        log.debug("attaching routes to UserManagementApplication #" + this.hashCode());
 
         router.setAuthorizationDefaults(anyOf("usermanagement.user", "admin"));
 

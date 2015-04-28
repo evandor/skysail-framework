@@ -39,4 +39,13 @@ public class Entity implements Identifiable {
         return fields;
     }
 
+    private List<Entity> subEntities;
+    
+    public List<Entity> getSubEntities() {
+        if (subEntities == null) {
+            subEntities = new ArrayList<>();
+        }
+        return subEntities;
+    }
+
 }

@@ -21,4 +21,11 @@ public class $classname$ extends PostDynamicEntityServerResource<$entityname$> {
         return new SkysailResponse<String>();
     }
 
+    @Override
+    public String redirectTo() {
+	    if ("submitAndNew".equals(submitValue)) {
+            return super.redirectTo($classname$.class);
+        }
+        return super.redirectTo($entityname$sResource.class);
+    }
 }

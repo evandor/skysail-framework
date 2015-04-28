@@ -1,12 +1,16 @@
 package de.twenty11.skysail.server.beans;
 
-import java.util.*;
+import java.util.Collections;
+import java.util.Set;
 
 import lombok.extern.slf4j.Slf4j;
 
 import org.apache.commons.beanutils.DynaBean;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Slf4j
+@JsonIgnoreProperties("handler")
 public class DynamicEntity implements DynamicBean {
 
     private DynaBean instance;

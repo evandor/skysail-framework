@@ -6,6 +6,7 @@ import io.skysail.api.responses.SkysailResponse;
 import io.skysail.server.restlet.RequestHandler;
 import io.skysail.server.services.PerformanceTimer;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 
@@ -77,7 +78,7 @@ public abstract class ListServerResource<T> extends SkysailServerResource<List<T
 
     public static final String CONSTRAINT_VIOLATIONS = "constraintViolations";
 
-    private Class<? extends EntityServerResource<T>> associatedEntityServerResource;
+    private List<Class<? extends EntityServerResource<?>>> associatedEntityServerResources;
     private RequestHandler<T> requestHandler;
     private RequestHandler<String> stringRequestHandler;
 
@@ -97,9 +98,10 @@ public abstract class ListServerResource<T> extends SkysailServerResource<List<T
      * @param entityResourceClass
      *            the class
      */
-    public ListServerResource(Class<? extends EntityServerResource<T>> entityResourceClass) {
+    @SafeVarargs
+    public ListServerResource(Class<? extends EntityServerResource<?>>... entityResourceClass) {
         this();
-        this.associatedEntityServerResource = entityResourceClass;
+        this.associatedEntityServerResources = Arrays.asList(entityResourceClass);
     }
 
     /**
@@ -166,8 +168,8 @@ public abstract class ListServerResource<T> extends SkysailServerResource<List<T
         throw new UnsupportedOperationException();
     }
 
-    public Class<? extends EntityServerResource<T>> getAssociatedEntityResource() {
-        return associatedEntityServerResource;
+    public List<Class<? extends EntityServerResource<?>>> getAssociatedEntityResources() {
+        return associatedEntityServerResources;
     }
 
 }

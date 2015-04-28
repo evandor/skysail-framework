@@ -10,6 +10,10 @@ import java.util.Map;
 
 public class SpacesResource extends ListServerResource<Map<String,Object>> {
 
+    public SpacesResource() {
+        super(SpaceResource.class);
+    }
+    
     @Override
     public List<Map<String,Object>> getEntity() {
          return ((WikiApplication) getApplication()).getRepository().findAll(Space.class);

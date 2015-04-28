@@ -15,8 +15,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.beanutils.*;
 import org.restlet.resource.Resource;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-
 import de.twenty11.skysail.server.beans.*;
 import de.twenty11.skysail.server.core.restlet.MessagesUtils;
 import de.twenty11.skysail.server.um.domain.SkysailUser;
@@ -28,8 +26,6 @@ import de.twenty11.skysail.server.um.domain.SkysailUser;
  */
 @Slf4j
 public class FormField {
-
-    private final ObjectMapper mapper = new ObjectMapper();
 
     /** the fields name or identifier. */
     @Getter
@@ -73,35 +69,6 @@ public class FormField {
             }
             type = fieldAnnotation.getType();
 
-            // }
-            //
-            // Method[] methods = entity.getClass().getMethods();
-            // Optional<Method> getHandlerMethod =
-            // Arrays.stream(methods).filter(m ->
-            // m.getName().contains("getHandler"))
-            // .findFirst();
-            // if (getHandlerMethod.isPresent()) {
-            // try {
-            // HashMap<String, Object> objectMap = new HashMap<String,
-            // Object>();
-            // OObjectProxyMethodHandler handler = (OObjectProxyMethodHandler)
-            // getHandlerMethod.get().invoke(entity);
-            // ODocument doc = handler.getDoc();
-            // objectMap = mapper.readValue(doc.toJSON(), new
-            // TypeReference<Map<String, Object>>() {
-            // });
-            // Object val = objectMap.get(fieldAnnotation.getName());
-            // if (val == null) {
-            // value = "---";
-            // } else if (val instanceof String) {
-            // value = (String) val;
-            // } else {
-            // value = val.toString();
-            // }
-            // type = fieldAnnotation.getType();
-            // } catch (Exception e) {
-            // log.error(e.getMessage(), e);
-            // }
         } else {
             Method[] methods = entity.getClass().getMethods();
             String method = "get" + fieldAnnotation.getName().substring(0, 1).toUpperCase()
@@ -141,6 +108,7 @@ public class FormField {
     public FormField(String key, Object object) {
         this.name = key;
         this.value = object != null ? object.toString() : "";
+        this.inputType = InputType.TEXT;
     }
 
     public Object getEntity() {
@@ -163,6 +131,9 @@ public class FormField {
     }
 
     public String getNameKey() {
+        if (cls == null && getEntity() == null) {
+            return name;
+        }
         return MessagesUtils.getBaseKey(cls != null ? cls : getEntity().getClass(), this);
     }
 

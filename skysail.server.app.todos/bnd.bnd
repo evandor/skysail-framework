@@ -48,7 +48,8 @@ Private-Package:  \
 	io.skysail.server.app.todos.lists,\
 	io.skysail.server.app.todos.todos,\
 	io.skysail.server.app.todos.repo,\
-	io.skysail.server.app.todos.todos.status
+	io.skysail.server.app.todos.todos.status,\
+	io.skysail.server.app.todos.statuses
 Bundle-Description: a todo application for skysail (used as demo as well) 
 Export-Package:  \
 	io.skysail.server.app.todos,\

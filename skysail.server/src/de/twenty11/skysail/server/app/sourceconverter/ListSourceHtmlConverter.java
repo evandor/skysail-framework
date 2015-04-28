@@ -63,6 +63,10 @@ public class ListSourceHtmlConverter extends AbstractSourceConverter implements 
                 result.add(object);
                 continue;
             }
+            if (object.getClass().isEnum()) {
+                result.add(object.toString());
+                continue;
+            }
             if (!object.getClass().getName().contains("$$")) {
                 @SuppressWarnings("unchecked")
                 Map<String, Object> props = mapper.convertValue(object, Map.class);

@@ -220,6 +220,8 @@ public class StringTemplateRenderer {
                             }).collect(Collectors.toList());
                         }
                     }
+                } else if (parameterType.isEnum()) {
+                    fields = Arrays.asList(new FormField(parameterType.getSimpleName(), "hi"));
                 } else {
                     entity = parameterType.newInstance();
                     if (entity instanceof DynamicEntity) {

@@ -1,4 +1,4 @@
-todosProduct.controller('NewTodoCtrl', function($scope,$http) {
+todosProduct.controller('NewTodoCtrl', function($scope,$rootScope,$http) {
 	
 	var defaultGetHeadersConfig = {
          	headers: {'Accept': 'application/json'} 
@@ -16,7 +16,8 @@ todosProduct.controller('NewTodoCtrl', function($scope,$http) {
 		 		}
 	 			$scope.getTodoLists();
 	 			$scope.getTodos();
-	 			$scope.mode="init";
+	 			$rootScope.mode="init";
+	 			addFadingMessage("todo was updated", "#actionMessage");
 		 	}).
 		 	error(function(data, status, headers, config){
 	 			addFadingMessage(headers('X-status-reason'), "#actionMessage");

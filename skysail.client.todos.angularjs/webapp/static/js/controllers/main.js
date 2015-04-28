@@ -5,20 +5,18 @@ todosProduct.controller('AppCtrl', function($scope, $rootScope, $http, $route, $
 	var defaultGetHeadersConfig = {
          	headers: {'Accept': 'application/json'} 
     }
-	
-    $scope.currentUser = null;
+
     $rootScope.loggedIn = false;
+	$rootScope.mode="init";
+
+    $scope.currentUser = null;
 	$scope.currentTodo;
 	$scope.currentList;
 	$scope.isNewNote = false;
 	$scope.isNoteUpdate = false;
-	
 	$scope.isNewList = false;
 	$scope.isListUpdate = false;
-	
 	$scope.parents;
-	$scope.mode="init";
-	
 	$scope.dirty = false;
 
 	$scope.userform = {
@@ -31,7 +29,7 @@ todosProduct.controller('AppCtrl', function($scope, $rootScope, $http, $route, $
 		$scope.showUpdateButton()
 	});
 	    
-    /* === Name ============================================ */
+    /* === Current User ============================================ */
     
     $http.get('/usermanagement/currentUser',defaultGetHeadersConfig)
     	.success(function(json) {
@@ -44,7 +42,9 @@ todosProduct.controller('AppCtrl', function($scope, $rootScope, $http, $route, $
     	.error(function(data,status,headers,config){
         	alert(status)
         })
-    
+
+    /* === Login / Logout ============================================ */
+        
     $scope.logout = function () {
     	$http.get('/_logout')
     		.success(function() {
@@ -58,41 +58,6 @@ todosProduct.controller('AppCtrl', function($scope, $rootScope, $http, $route, $
     			alert(status)
     		});
     };
-    
-	$scope.showDeleteButton = function () {
-		return ($scope.currentTodo != null) && !$scope.isNewNote;
-	}
-	
-	$scope.setDirty = function () {
-		$scope.isNoteUpdate = true;
-	}
-	
-	$scope.showUpdateButton = function () {
-		if ($scope.isNewNote) {
-			return false;
-		}
-		return $scope.isNoteUpdate;
-	}
-	
-	$scope.showTodo = function() {
-		return $rootScope.loggedIn && $scope.mode=='todo';
-	}
-	
-	$scope.showNewList = function() {
-		return $rootScope.loggedIn && $scope.mode=='list';
-	}
-	
-	$scope.showNewTodo = function() {
-		return $rootScope.loggedIn && $scope.mode=='newTodo';
-	}
-	
-	$scope.showAddListSign = function () {
-		return $scope.mode!='list' && $scope.mode!='newTodo';
-	}
-
-	$scope.showAddTodoSign = function () {
-		return $scope.currentList != null && $scope.mode!='list' && $scope.mode!='newTodo';
-	}
 
 	/* === List management =========================================== */
 
@@ -103,16 +68,9 @@ todosProduct.controller('AppCtrl', function($scope, $rootScope, $http, $route, $
 		});
 	}
 	
-	$scope.showListUpdateButton = function () {
-		if ($scope.isNewList) {
-			return false;
-		}
-		return $scope.isListUpdate;
-	}
-	
 	$scope.setCurrentList = function(list) {
 		$scope.currentList = list;
-		$scope.mode="setList"
+		$rootScope.mode="setList"
 		$scope.getTodos()
 	};
 
@@ -124,7 +82,7 @@ todosProduct.controller('AppCtrl', function($scope, $rootScope, $http, $route, $
     	    };
     	$scope.currentList = newList;
     	$scope.isNewList = true;
-    	$scope.mode="list";
+    	$rootScope.mode="list";
 	};
 	
 	$scope.addTodoList = function() {
@@ -138,7 +96,7 @@ todosProduct.controller('AppCtrl', function($scope, $rootScope, $http, $route, $
 		 		} else {
 		 			var segments = headers('Location').split("/");
 		 			newId = "#" + segments[segments.length-1].replace("%3A",":");
-		 			$scope.mode="empty";
+		 			$rootScope.mode="empty";
 		 			$scope.getTodoLists();
 		 	    	$scope.currentList = {
 		 	    			id: newId,
@@ -153,7 +111,7 @@ todosProduct.controller('AppCtrl', function($scope, $rootScope, $http, $route, $
 	};
 
 	$scope.editTodoList = function() {
-    	$scope.mode="list";
+    	$rootScope.mode="list";
     	$scope.isListUpdate=true;
 	};
 	
@@ -172,70 +130,8 @@ todosProduct.controller('AppCtrl', function($scope, $rootScope, $http, $route, $
 		 		alert("Error (" + status + ") on Server.")
 		 	});
 	};
-
-
-	/* === Todo(s) management =========================================== */
-
-	 $scope.newTodo = function() {
-	    	var newTodo = {
-	    			id: null,
-	    	        title: 'new todo',
-	    	        desc: ''
-	    	    };
-	    	$scope.currentTodo = newTodo;
-	    	$scope.isNewTodo = true;
-	    	$scope.mode="newTodo";
-		};
-		
-	$scope.getTodos = function() {
-		listId = $scope.currentList.id.replace("#","");
-	    link = '../Todos/Lists/'+listId+'/Todos';
-		$http.get(link).success(function(json) {
-			$scope.todos = json;
-		});
-	}
-
 	
-	$scope.getNote = function(noteId) {
-		link = '../clipboard/clips/' + noteId;
-		$http.get(link).success(function(json) {
-			if (json.success) {
-				alert(json);
-				$scope.currentTodo = json;
-			} else {
-				alert ("Sorry, there was an error on the server: " + data.message);
-			}
-		});
-	}
-	
-	$scope.getTodoLists()
-	
-	$scope.setCurrentTodo = function(todo) {
-		$scope.currentTodo = todo;
-		$scope.mode="todo"
-	};
-
-	
-    $scope.updateNote = function() {
-		 var noteLink = '../clipboard/clips/' + $scope.currentTodo["@rid"].replace("#","") + "/";
-		 var content = $scope.currentTodo.content;
-
-		 var data = "{\"content\": \""+content+"\"}";
-		 
-		 var config = {
-         	headers: {'Content-Type': 'application/json'} 
-         }
-
-		 $http.put(noteLink, data,config).
-		 	success(function(data,status,headers,config) {
-	 			addFadingMessage("saved...", "#actionMessage");
-		 	}).
-		 	error(function(data,status,headers,config){
-		 		alert("Failure on server! Code '"+status+"'");
-		 	});
-    };
-
-    $scope.updateList = function() {
+	 $scope.updateList = function() {
 		 var link = '../Todos/Lists/' + $scope.currentList.id.replace("#","") + "/";
 		 var desc = $scope.currentList.desc;
 
@@ -253,6 +149,47 @@ todosProduct.controller('AppCtrl', function($scope, $rootScope, $http, $route, $
 		 		alert("Failure on server! Code '"+status+"'");
 		 	});
    };
+
+
+	/* === Todo management =========================================== */
+
+	 $scope.newTodo = function() {
+	    	var newTodo = {
+	    			id: null,
+	    	        title: 'new todo',
+	    	        desc: ''
+	    	    };
+	    	$scope.currentTodo = newTodo;
+	    	$scope.isNewTodo = true;
+	    	$rootScope.mode="newTodo";
+		};
+		
+	$scope.getTodos = function() {
+		listId = $scope.currentList.id.replace("#","");
+	    link = '../Todos/Lists/'+listId+'/Todos';
+		$http.get(link).success(function(json) {
+			$scope.todos = json;
+		});
+	}
+	
+//	$scope.getNote = function(noteId) {
+//		link = '../clipboard/clips/' + noteId;
+//		$http.get(link).success(function(json) {
+//			if (json.success) {
+//				alert(json);
+//				$scope.currentTodo = json;
+//			} else {
+//				alert ("Sorry, there was an error on the server: " + data.message);
+//			}
+//		});
+//	}
+	
+	$scope.getTodoLists()
+	
+	$scope.setCurrentTodo = function(todo) {
+		$scope.currentTodo = todo;
+		$rootScope.mode="todo"
+	};
 
 	$scope.deleteNote = function() {
 		if ($scope.currentTodo === undefined) {
@@ -272,64 +209,49 @@ todosProduct.controller('AppCtrl', function($scope, $rootScope, $http, $route, $
 		 		alert("Error (" + status + ") on Server.")
 		 	});
 	};
-
-	/* === Drag & Drop =========================================== */
 	
-	$scope.dropped = function(dragEl, dropEl) {
-		var droppedTo = angular.element(dropEl);
-		var dragged = angular.element(dragEl);
-		// alert("drag to: folder #" + draggedToFolder[0].id);
-		// alert("drop note #: " + droppedNote[0].id);
+	$scope.showDeleteButton = function () {
+		return ($scope.currentTodo != null) && !$scope.isNewNote;
+	}
 	
-		// clear the previously applied color, if it exists
-		var bgClass = droppedTo.attr('data-color');
-		if (bgClass) {
-			droppedNote.removeClass(bgClass);
+	$scope.setDirty = function () {
+		$scope.isNoteUpdate = true;
+	}
+	
+	$scope.showUpdateButton = function () {
+		if ($scope.isNewNote) {
+			return false;
 		}
-
-		// add the dragged color
-		bgClass = dragged.attr("data-color");
-		droppedTo.addClass(bgClass);
-		droppedTo.attr('data-color', bgClass);
-
-		// if element has been dragged from the grid, clear dragged color
-		if (dragged.attr("x-lvl-drop-target")) {
-			dragged.removeClass(bgClass);
-		}
-		
-		var noteLink = '../notes/notes/' + dragged[0].id;
-		// alert(noteLink)
-		
-		$http.get(noteLink)
-			.success(
-				function(json) { 
-					// var data = "{ \"title\": \""+json.data.title+"\",
-					// \"content\": \""+json.data.content+"\",
-					// \"parent\":\""+droppedTo[0].id+"\"}";
-					// alert(data);
-					var data = "title="+json.data.title+"&content="+json.data.content+"&parent="+droppedTo[0].id;
-	                var config = {
-	                 	headers: {'Content-Type': 'application/x-www-form-urlencoded'} 
-	                }
-					$http.put(noteLink, data, config).
-					 	success(function(data,status,headers,config) {
-					 		if (!data.success) {
-					 			alert("error happened: " + data.message);
-					 		} else {
-					 			addFadingMessage("moved...", "#actionMessage");
-					 			$scope.getTodoLists();
-					 		}
-					 	}).
-					 	error(function(data,status,headers,config){
-					 		alert("Failure on server! Code '"+status+"'");
-					 	});
-				})
-			.error(
-				function(status) { 
-					alert(status) 
-				});
+		return $scope.isNoteUpdate;
+	}
+	
+	$scope.showTodo = function() {
+		return $rootScope.loggedIn && $rootScope.mode=='todo';
+	}
+	
+	$scope.showNewList = function() {
+		return $rootScope.loggedIn && $rootScope.mode=='list';
+	}
+	
+	$scope.showNewTodo = function() {
+		return $rootScope.loggedIn && $rootScope.mode=='newTodo';
+	}
+	
+	$scope.showAddListSign = function () {
+		return $rootScope.mode!='list' && $rootScope.mode!='newTodo';
 	}
 
+	$scope.showAddTodoSign = function () {
+		return $scope.currentList != null && $rootScope.mode!='list' && $rootScope.mode!='newTodo';
+	}
+	
+	$scope.showListUpdateButton = function () {
+		if ($scope.isNewList) {
+			return false;
+		}
+		return $scope.isListUpdate;
+	}	
+	
 });
 
 

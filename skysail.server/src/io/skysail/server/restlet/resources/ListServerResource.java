@@ -88,13 +88,13 @@ public abstract class ListServerResource<T> extends SkysailServerResource<List<T
      * Constructor which associates this ListServerResource with a corresponding
      * EntityServerResource.
      * 
-     * @param entityResourceClass
+     * @param skysailServerResource
      *            the class
      */
     @SafeVarargs
-    public ListServerResource(Class<? extends SkysailServerResource<?>>... entityResourceClass) {
+    public ListServerResource(Class<? extends SkysailServerResource<?>>... skysailServerResource) {
         this();
-        this.associatedEntityServerResources = Arrays.asList(entityResourceClass);
+        this.associatedEntityServerResources = Arrays.asList(skysailServerResource);
     }
 
     /**

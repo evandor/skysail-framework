@@ -1,4 +1,4 @@
-package de.twenty11.skysail.server.app.sourceconverter;
+package io.skysail.server.restlet.sourceconverter;
 
 import java.util.ArrayList;
 import java.util.List;

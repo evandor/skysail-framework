@@ -1,6 +1,8 @@
-package de.twenty11.skysail.server.app;
+package io.skysail.server.restlet;
 
 import io.skysail.server.restlet.resources.SkysailServerResource;
+import io.skysail.server.restlet.sourceconverter.ConverterFactory;
+import io.skysail.server.restlet.sourceconverter.SourceConverter;
 import io.skysail.server.utils.ReflectionUtils;
 
 import java.lang.reflect.Field;
@@ -9,9 +11,6 @@ import java.util.List;
 import org.restlet.representation.Variant;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import de.twenty11.skysail.server.app.sourceconverter.ConverterFactory;
-import de.twenty11.skysail.server.app.sourceconverter.SourceConverter;
 
 /**
  * This class converts the provided "source" object according to the logic

@@ -41,4 +41,5 @@ Private-Package:  \
 	io.skysail.server.converter.wrapper,\
 	io.skysail.server.converter.renderer,\
 	io.skysail.server.converter.stringtemplate,\
-	io.skysail.server.converter.impl
+	io.skysail.server.converter.impl,\
+	io.skysail.server.converter.impl.factories

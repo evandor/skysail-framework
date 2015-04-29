@@ -57,8 +57,6 @@ public class HtmlConverter extends ConverterHelper implements OsgiConverterHelpe
     private List<Event> events = new CopyOnWriteArrayList<>();
     private volatile Set<MenuItemProvider> menuProviders = new HashSet<>();
 
-    private Resource resource;
-
     private volatile FavoritesService favoritesService;
 
     static {
@@ -138,8 +136,6 @@ public class HtmlConverter extends ConverterHelper implements OsgiConverterHelpe
     @Override
     public Representation toRepresentation(Object originalSource, Variant target, Resource resource) {
         EtmPoint point = etmMonitor.createPoint(this.getClass().getSimpleName() + ":toRepresentation");
-
-        this.resource = resource;
 
         StringTemplateRenderer stringTemplateRenderer = new StringTemplateRenderer(this);
         stringTemplateRenderer.setMenuProviders(menuProviders);

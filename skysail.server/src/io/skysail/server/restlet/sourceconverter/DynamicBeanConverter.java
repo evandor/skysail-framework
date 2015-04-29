@@ -1,4 +1,4 @@
-package de.twenty11.skysail.server.app.sourceconverter;
+package io.skysail.server.restlet.sourceconverter;
 
 import io.skysail.server.restlet.resources.SkysailServerResource;
 
@@ -21,12 +21,6 @@ public class DynamicBeanConverter extends AbstractSourceConverter implements Sou
 
     @Override
     public boolean isCompatible() {
-        // if (!(getSource() instanceof FormResponse)) {
-        // return false;
-        // }
-        // return ((FormResponse<?>) getSource()).getEntity() instanceof
-        // DynamicBean
-        // && getTarget().getMediaType().equals(MediaType.TEXT_HTML);
         return (getSource() instanceof List && ((List) getSource()).size() != 0 && ((List) getSource()).get(0) instanceof DynamicEntity);
     }
 

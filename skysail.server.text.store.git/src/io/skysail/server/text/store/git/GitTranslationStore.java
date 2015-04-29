@@ -2,8 +2,18 @@ package io.skysail.server.text.store.git;
 
 import io.skysail.api.text.TranslationStore;
 
-import java.io.*;
-import java.util.*;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Enumeration;
+import java.util.Locale;
+import java.util.Map;
+import java.util.Optional;
+import java.util.Properties;
+import java.util.TreeSet;
 import java.util.stream.Collectors;
 
 import lombok.extern.slf4j.Slf4j;
@@ -11,7 +21,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.osgi.framework.BundleContext;
 import org.restlet.Request;
 
-import aQute.bnd.annotation.component.*;
+import aQute.bnd.annotation.component.Activate;
+import aQute.bnd.annotation.component.Component;
 
 @Component(immediate = true, properties = { org.osgi.framework.Constants.SERVICE_RANKING + "=50" })
 @Slf4j

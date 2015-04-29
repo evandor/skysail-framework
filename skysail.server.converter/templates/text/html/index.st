@@ -91,9 +91,6 @@ index(user, messages, source, converter, services, resource, fields, target) ::=
               </ul>
             </li>
             $endif$
-            <!-- <li>
-				<a href="/webapp/impress.html">About...</a>
-			</li> -->
           </ul>
           
           $if(services.searchService)$

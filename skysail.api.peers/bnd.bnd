@@ -1,0 +1,21 @@
+Bundle-Version: 0.1.0.${tstamp}
+Bundle-Name: SKYSAIL :: api :: peers
+Bundle-Description: an incubator bundle for the skysail peers API  (which will be moved \
+	to skysail.api once stable) 
+-buildpath:  \
+	skysail.api;version=${skysail.api.version},\
+	biz.aQute.bnd.annotation;version=2.4,\
+	javax.validation.api;version=1.1,\
+	org.hibernate.validator;version=5.0,\
+	com.springsource.org.junit;version=4.11,\
+	org.jboss.logging.jboss-logging;version=3.1,\
+	classmate;version=1.0,\
+	osgi.core;version=5.0,\
+	org.restlet;version=${restlet.version},\
+	lombok;version=1.16,\
+	org.mockito.mockito-all;version=1.9
+
+Service-Component:  \
+	*
+Export-Package:  \
+	io.skysail.api.peers

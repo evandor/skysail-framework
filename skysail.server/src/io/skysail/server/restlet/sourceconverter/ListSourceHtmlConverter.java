@@ -1,4 +1,4 @@
-package de.twenty11.skysail.server.app.sourceconverter;
+package io.skysail.server.restlet.sourceconverter;
 
 import io.skysail.api.forms.*;
 import io.skysail.api.links.Link;

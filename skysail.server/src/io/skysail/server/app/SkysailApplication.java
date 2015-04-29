@@ -2,47 +2,83 @@ package io.skysail.server.app;
 
 import io.skysail.api.documentation.DocumentationProvider;
 import io.skysail.api.favorites.FavoritesService;
-import io.skysail.api.forms.*;
-import io.skysail.api.text.*;
-import io.skysail.api.um.*;
+import io.skysail.api.forms.Field;
+import io.skysail.api.forms.HtmlPolicy;
+import io.skysail.api.text.Translation;
+import io.skysail.api.text.TranslationRenderService;
+import io.skysail.api.um.AuthenticationService;
+import io.skysail.api.um.AuthorizationService;
 import io.skysail.api.validation.ValidatorService;
-import io.skysail.server.restlet.filter.*;
+import io.skysail.server.restlet.filter.HookFilter;
+import io.skysail.server.restlet.filter.OriginalRequestFilter;
+import io.skysail.server.restlet.filter.TracerFilter;
 import io.skysail.server.restlet.resources.SkysailServerResource;
-import io.skysail.server.services.*;
+import io.skysail.server.services.PerformanceMonitor;
+import io.skysail.server.services.PerformanceTimer;
 import io.skysail.server.utils.ReflectionUtils;
 
-import java.util.*;
-import java.util.concurrent.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Enumeration;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+import java.util.MissingResourceException;
+import java.util.Optional;
+import java.util.ResourceBundle;
+import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.stream.Collectors;
 
 import lombok.extern.slf4j.Slf4j;
 
 import org.apache.commons.lang.Validate;
-import org.osgi.framework.*;
-import org.osgi.service.cm.*;
+import org.osgi.framework.Bundle;
+import org.osgi.framework.BundleContext;
+import org.osgi.service.cm.ConfigurationException;
 import org.osgi.service.component.ComponentContext;
 import org.osgi.service.event.EventAdmin;
 import org.owasp.html.HtmlPolicyBuilder;
-import org.restlet.*;
-import org.restlet.data.*;
+import org.restlet.Application;
+import org.restlet.Request;
+import org.restlet.Response;
+import org.restlet.Restlet;
+import org.restlet.data.MediaType;
+import org.restlet.data.Protocol;
 import org.restlet.data.Reference;
-import org.restlet.resource.*;
+import org.restlet.resource.Resource;
+import org.restlet.resource.ServerResource;
 import org.restlet.routing.Filter;
-import org.restlet.security.*;
+import org.restlet.security.Authenticator;
+import org.restlet.security.Enroler;
+import org.restlet.security.Role;
+import org.restlet.security.SecretVerifier;
 import org.restlet.util.RouteList;
-import org.slf4j.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import aQute.bnd.annotation.component.*;
+import aQute.bnd.annotation.component.Activate;
+import aQute.bnd.annotation.component.Deactivate;
 
 import com.google.common.base.Predicate;
 
 import de.twenty11.skysail.server.SkysailComponent;
-import de.twenty11.skysail.server.app.*;
-import de.twenty11.skysail.server.core.restlet.*;
+import de.twenty11.skysail.server.app.ApplicationProvider;
+import de.twenty11.skysail.server.app.ServiceListProvider;
+import de.twenty11.skysail.server.app.TranslationRenderServiceHolder;
+import de.twenty11.skysail.server.core.restlet.ApplicationContextId;
+import de.twenty11.skysail.server.core.restlet.RouteBuilder;
+import de.twenty11.skysail.server.core.restlet.SkysailRouter;
 import de.twenty11.skysail.server.help.HelpTour;
 import de.twenty11.skysail.server.metrics.MetricsService;
-import de.twenty11.skysail.server.security.*;
-import de.twenty11.skysail.server.services.*;
+import de.twenty11.skysail.server.security.RolePredicate;
+import de.twenty11.skysail.server.security.SkysailRolesAuthorizer;
+import de.twenty11.skysail.server.services.EncryptorService;
+import de.twenty11.skysail.server.services.ResourceBundleProvider;
 
 /**
  * A skysail application is the entry point to provide additional functionality
@@ -94,7 +130,6 @@ import de.twenty11.skysail.server.services.*;
  * variables.
  * 
  */
-// @lombok.EqualsAndHashCode(callSuper=false)
 @Slf4j
 public abstract class SkysailApplication extends Application implements ApplicationProvider, ResourceBundleProvider,
         Comparable<ApplicationProvider> {
@@ -139,7 +174,6 @@ public abstract class SkysailApplication extends Application implements Applicat
     private volatile List<String> securedByAllRoles = new CopyOnWriteArrayList<String>();
     private volatile EncryptorService encryptorService;
     private volatile FavoritesService favoritesService;
-    private volatile ConfigurationAdmin configurationAdmin;
     private volatile MetricsService metricsService;
     private volatile Set<HookFilter> filters = Collections.synchronizedSet(new HashSet<>());
     private volatile Set<PerformanceMonitor> performanceMonitors = Collections.synchronizedSet(new HashSet<>());
@@ -467,10 +501,6 @@ public abstract class SkysailApplication extends Application implements Applicat
 
     public void unsetEventAdmin() {
         this.eventAdmin = null;
-    }
-
-    public void setConfigurationAdmin(ConfigurationAdmin service) {
-        this.configurationAdmin = service;
     }
 
     public void setComponentContext(ComponentContext componentContext) {

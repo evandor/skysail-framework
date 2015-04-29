@@ -1,14 +1,9 @@
 package io.skysail.server.utils;
 
-import io.skysail.server.restlet.resources.EntityServerResource;
 import io.skysail.server.restlet.resources.SkysailServerResource;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -17,18 +12,17 @@ import org.restlet.engine.Engine;
 import org.restlet.engine.converter.ConverterHelper;
 import org.restlet.engine.resource.VariantInfo;
 import org.restlet.representation.Variant;
-import org.restlet.resource.Resource;
-import org.restlet.resource.ServerResource;
+import org.restlet.resource.*;
 
 @Slf4j
 public class ResourceUtils {
 
-    public static List<EntityServerResource<?>> createEntityServerResources(List<Class<? extends EntityServerResource<?>>> entityServerResources,
+    public static List<SkysailServerResource<?>> createSkysailServerResources(List<Class<? extends SkysailServerResource<?>>> entityServerResources,
             Resource resource) {
         
-        List<EntityServerResource<?>> result = new ArrayList<>();
-        for (Class<? extends EntityServerResource<?>> class1 : entityServerResources) {
-            EntityServerResource<?> newInstance;
+        List<SkysailServerResource<?>> result = new ArrayList<>();
+        for (Class<? extends SkysailServerResource<?>> class1 : entityServerResources) {
+            SkysailServerResource<?> newInstance;
             try {
                 newInstance = class1.newInstance();
                 newInstance.init(resource.getContext(), resource.getRequest(), resource.getResponse());

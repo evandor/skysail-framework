@@ -6,24 +6,17 @@ import io.skysail.api.responses.SkysailResponse;
 import io.skysail.server.restlet.RequestHandler;
 import io.skysail.server.services.PerformanceTimer;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 import lombok.extern.slf4j.Slf4j;
 
 import org.restlet.Restlet;
-import org.restlet.data.Header;
-import org.restlet.data.Method;
-import org.restlet.representation.Representation;
-import org.restlet.representation.Variant;
-import org.restlet.resource.Get;
-import org.restlet.resource.Options;
-import org.restlet.resource.ServerResource;
+import org.restlet.data.*;
+import org.restlet.representation.*;
+import org.restlet.resource.*;
 import org.restlet.util.Series;
 
-import de.twenty11.skysail.server.core.restlet.ResourceContextId;
-import de.twenty11.skysail.server.core.restlet.ResponseWrapper;
+import de.twenty11.skysail.server.core.restlet.*;
 
 /**
  * A ListServerResource implementation takes care of a List of Entities.
@@ -78,7 +71,7 @@ public abstract class ListServerResource<T> extends SkysailServerResource<List<T
 
     public static final String CONSTRAINT_VIOLATIONS = "constraintViolations";
 
-    private List<Class<? extends EntityServerResource<?>>> associatedEntityServerResources;
+    private List<Class<? extends SkysailServerResource<?>>> associatedEntityServerResources;
     private RequestHandler<T> requestHandler;
     private RequestHandler<String> stringRequestHandler;
 
@@ -99,7 +92,7 @@ public abstract class ListServerResource<T> extends SkysailServerResource<List<T
      *            the class
      */
     @SafeVarargs
-    public ListServerResource(Class<? extends EntityServerResource<?>>... entityResourceClass) {
+    public ListServerResource(Class<? extends SkysailServerResource<?>>... entityResourceClass) {
         this();
         this.associatedEntityServerResources = Arrays.asList(entityResourceClass);
     }
@@ -168,7 +161,7 @@ public abstract class ListServerResource<T> extends SkysailServerResource<List<T
         throw new UnsupportedOperationException();
     }
 
-    public List<Class<? extends EntityServerResource<?>>> getAssociatedEntityResources() {
+    public List<Class<? extends SkysailServerResource<?>>> getAssociatedServerResources() {
         return associatedEntityServerResources;
     }
 

@@ -5,33 +5,16 @@ import io.skysail.api.forms.Reference;
 import io.skysail.api.links.Link;
 import io.skysail.api.responses.SkysailResponse;
 import io.skysail.server.app.SkysailApplication;
-import io.skysail.server.converter.HtmlConverter;
-import io.skysail.server.converter.Notification;
+import io.skysail.server.converter.*;
 import io.skysail.server.converter.stringtemplate.STGroupBundleDir;
-import io.skysail.server.converter.wrapper.STFieldsWrapper;
-import io.skysail.server.converter.wrapper.STListSourceWrapper;
-import io.skysail.server.converter.wrapper.STServicesWrapper;
-import io.skysail.server.converter.wrapper.STSourceWrapper;
-import io.skysail.server.converter.wrapper.STTargetWrapper;
-import io.skysail.server.converter.wrapper.STUserWrapper;
-import io.skysail.server.converter.wrapper.StResourceWrapper;
-import io.skysail.server.forms.ListView;
-import io.skysail.server.forms.PostView;
-import io.skysail.server.forms.Visibility;
-import io.skysail.server.restlet.resources.EntityServerResource;
-import io.skysail.server.restlet.resources.ListServerResource;
-import io.skysail.server.restlet.resources.PostEntityServerResource;
-import io.skysail.server.restlet.resources.SkysailServerResource;
+import io.skysail.server.converter.wrapper.*;
+import io.skysail.server.forms.*;
+import io.skysail.server.restlet.resources.*;
 import io.skysail.server.utils.ReflectionUtils;
 
 import java.lang.reflect.Field;
 import java.net.URL;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import lombok.extern.slf4j.Slf4j;
@@ -40,14 +23,12 @@ import org.apache.commons.beanutils.DynaProperty;
 import org.apache.shiro.SecurityUtils;
 import org.osgi.framework.Bundle;
 import org.restlet.data.MediaType;
-import org.restlet.representation.StringRepresentation;
-import org.restlet.representation.Variant;
+import org.restlet.representation.*;
 import org.restlet.resource.Resource;
 import org.stringtemplate.v4.ST;
 
 import de.twenty11.skysail.server.app.SourceWrapper;
-import de.twenty11.skysail.server.beans.DynamicEntity;
-import de.twenty11.skysail.server.beans.EntityDynaProperty;
+import de.twenty11.skysail.server.beans.*;
 import de.twenty11.skysail.server.core.FormField;
 import de.twenty11.skysail.server.core.restlet.utils.CookiesUtils;
 import de.twenty11.skysail.server.services.MenuItemProvider;
@@ -119,7 +100,7 @@ public class StringTemplateRenderer {
         }
         ListServerResource<?> listServerResource = (ListServerResource<?>) resource;
         List<Link> links = listServerResource.getLinks();
-        List<Class<? extends EntityServerResource<?>>> entityResourceClass = listServerResource.getAssociatedEntityResources();
+        List<Class<? extends SkysailServerResource<?>>> entityResourceClass = listServerResource.getAssociatedServerResources();
         if (entityResourceClass != null && sourceWrapper.getConvertedSource() instanceof List) {
            // EntityServerResource<?> esr = ResourceUtils.createEntityServerResource(entityResourceClass, resource);
 
@@ -270,6 +251,9 @@ public class StringTemplateRenderer {
                             .map(d -> {
                         return new FormField((DynamicEntity) entity, d, resource);
                     }).collect(Collectors.toList());
+                } else if (entity instanceof Map) {
+                    Map<?,?> map = (Map)entity;
+//                    entity.
                 } else {
                     fields = ReflectionUtils.getInheritedFields(entity.getClass()).stream()
                             .filter(f -> test(resource, f))

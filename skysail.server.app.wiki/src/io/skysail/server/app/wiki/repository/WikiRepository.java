@@ -42,6 +42,16 @@ public class WikiRepository implements DbRepository {
         return dbService.findDocumentById(cls, id);
     }
 
-   
+    public Object getObjectById(Class<?> cls, String id) {
+        return dbService.findObjectById(cls, id);
+    }
+
+    public void update(String id, Space space) {
+        dbService.update(id, space);
+    }
+
+    public void update(Map<String, Object> space) {
+        dbService.update(space);
+    }
 
 }

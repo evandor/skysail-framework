@@ -3,28 +3,18 @@ package io.skysail.server.app.wiki;
 import io.skysail.server.app.SkysailApplication;
 import io.skysail.server.app.designer.repo.DesignerRepository;
 import io.skysail.server.app.wiki.pages.Page;
-import io.skysail.server.app.wiki.pages.resources.PageResource;
-import io.skysail.server.app.wiki.pages.resources.PagesResource;
-import io.skysail.server.app.wiki.pages.resources.PostPageResource;
-import io.skysail.server.app.wiki.pages.resources.PutPageResource;
+import io.skysail.server.app.wiki.pages.resources.*;
 import io.skysail.server.app.wiki.repository.WikiRepository;
 import io.skysail.server.app.wiki.spaces.Space;
-import io.skysail.server.app.wiki.spaces.resources.PostSpaceResource;
-import io.skysail.server.app.wiki.spaces.resources.PutSpaceResource;
-import io.skysail.server.app.wiki.spaces.resources.SpaceResource;
-import io.skysail.server.app.wiki.spaces.resources.SpacesResource;
+import io.skysail.server.app.wiki.spaces.resources.*;
 import io.skysail.server.db.DbRepository;
 
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
-import aQute.bnd.annotation.component.Component;
-import aQute.bnd.annotation.component.Reference;
+import aQute.bnd.annotation.component.*;
 import de.twenty11.skysail.server.app.ApplicationProvider;
-import de.twenty11.skysail.server.core.restlet.ApplicationContextId;
-import de.twenty11.skysail.server.core.restlet.RouteBuilder;
-import de.twenty11.skysail.server.services.MenuItem;
-import de.twenty11.skysail.server.services.MenuItemProvider;
+import de.twenty11.skysail.server.core.restlet.*;
+import de.twenty11.skysail.server.services.*;
 
 @Component(immediate = true)
 public class WikiApplication extends SkysailApplication implements MenuItemProvider, ApplicationProvider {
@@ -49,10 +39,10 @@ public class WikiApplication extends SkysailApplication implements MenuItemProvi
         router.attach(new RouteBuilder("/spaces/{id}", SpaceResource.class));
         router.attach(new RouteBuilder("/spaces/{id}/", PutSpaceResource.class));
 
-        router.attach(new RouteBuilder("/pages", PagesResource.class));
-        router.attach(new RouteBuilder("/pages/", PostPageResource.class));
-        router.attach(new RouteBuilder("/pages/{id}", PageResource.class));
-        router.attach(new RouteBuilder("/pages/{id}/", PutPageResource.class));
+        router.attach(new RouteBuilder("/spaces/{id}/pages", PagesResource.class));
+        router.attach(new RouteBuilder("/spaces/{id}/pages/", PostPageResource.class));
+        router.attach(new RouteBuilder("/spaces/{id}/pages/{pageId}", PageResource.class));
+        router.attach(new RouteBuilder("/spaces/{id}/pages/{pageId}/", PutPageResource.class));
 
     }
 

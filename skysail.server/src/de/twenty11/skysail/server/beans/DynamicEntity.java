@@ -1,7 +1,6 @@
 package de.twenty11.skysail.server.beans;
 
-import java.util.Collections;
-import java.util.Set;
+import java.util.*;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -17,7 +16,12 @@ public class DynamicEntity implements DynamicBean {
 
     @Override
     public String getBeanName() {
-        return this.getClass().getSimpleName();
+         String simpleName = this.getClass().getSimpleName();
+         String[] split = simpleName.split("\\_\\$\\$\\_");
+        if (split.length > 1) {
+            return split[0];
+        }
+        return simpleName;
     }
 
     @Override

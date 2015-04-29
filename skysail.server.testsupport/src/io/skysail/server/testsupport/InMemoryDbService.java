@@ -134,4 +134,8 @@ public class InMemoryDbService implements DbService2 {
         return null;
     }
 
+    @Override
+    public void update(Map<String, Object> space) {
+    }
+
 }

@@ -6,8 +6,7 @@ import io.skysail.server.app.wiki.WikiApplication;
 import io.skysail.server.app.wiki.spaces.Space;
 import io.skysail.server.restlet.resources.EntityServerResource;
 
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class SpaceResource extends EntityServerResource<Map<String,Object>> {
 
@@ -30,7 +29,7 @@ public class SpaceResource extends EntityServerResource<Map<String,Object>> {
     
     @Override
     public List<Link> getLinks() {
-        return super.getLinks(PutSpaceResource.class);
+        return super.getLinks(SpaceResource.class, PutSpaceResource.class);
     }
 
 }

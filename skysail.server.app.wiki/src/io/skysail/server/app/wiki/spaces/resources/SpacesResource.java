@@ -2,16 +2,16 @@ package io.skysail.server.app.wiki.spaces.resources;
 
 import io.skysail.api.links.Link;
 import io.skysail.server.app.wiki.WikiApplication;
+import io.skysail.server.app.wiki.pages.resources.PostPageResource;
 import io.skysail.server.app.wiki.spaces.Space;
 import io.skysail.server.restlet.resources.ListServerResource;
 
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class SpacesResource extends ListServerResource<Map<String,Object>> {
 
     public SpacesResource() {
-        super(SpaceResource.class);
+        super(SpaceResource.class, PostPageResource.class);
     }
     
     @Override

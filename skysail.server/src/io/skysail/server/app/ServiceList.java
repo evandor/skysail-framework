@@ -4,13 +4,23 @@ import io.skysail.api.documentation.DocumentationProvider;
 import io.skysail.api.favorites.FavoritesService;
 import io.skysail.api.peers.PeersProvider;
 import io.skysail.api.text.TranslationRenderService;
-import io.skysail.api.um.*;
+import io.skysail.api.text.TranslationStore;
+import io.skysail.api.um.AuthenticationService;
+import io.skysail.api.um.AuthorizationService;
+import io.skysail.api.um.UserManagementProvider;
 import io.skysail.api.validation.ValidatorService;
 import io.skysail.server.restlet.filter.HookFilter;
 import io.skysail.server.restlet.resources.SkysailServerResource;
 import io.skysail.server.services.PerformanceMonitor;
+import io.skysail.server.text.TranslationStoreHolder;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 import java.util.stream.Stream;
 
 import lombok.extern.slf4j.Slf4j;
@@ -19,10 +29,15 @@ import org.osgi.service.cm.ConfigurationAdmin;
 import org.osgi.service.event.EventAdmin;
 import org.restlet.Context;
 
-import aQute.bnd.annotation.component.*;
+import aQute.bnd.annotation.component.Component;
+import aQute.bnd.annotation.component.Reference;
 import de.twenty11.skysail.server.SkysailComponent;
-import de.twenty11.skysail.server.app.*;
-import de.twenty11.skysail.server.metrics.*;
+import de.twenty11.skysail.server.app.ApplicationListProvider;
+import de.twenty11.skysail.server.app.ServiceListProvider;
+import de.twenty11.skysail.server.app.SkysailComponentProvider;
+import de.twenty11.skysail.server.app.TranslationRenderServiceHolder;
+import de.twenty11.skysail.server.metrics.MetricsService;
+import de.twenty11.skysail.server.metrics.MetricsServiceProvider;
 import de.twenty11.skysail.server.services.EncryptorService;
 
 /**
@@ -49,6 +64,7 @@ public class ServiceList implements ServiceListProvider {
     private volatile AuthenticationService authenticationService;
 
     private volatile List<TranslationRenderServiceHolder> translationRenderServices = new ArrayList<>();
+    private volatile List<TranslationStoreHolder> translationStores = new ArrayList<>();
 
     private volatile EncryptorService encryptorService;
     private volatile EventAdmin eventAdmin;
@@ -166,9 +182,8 @@ public class ServiceList implements ServiceListProvider {
     /** === TranslationRenderService ============================== */
 
     @Reference(optional = true, dynamic = true, multiple = true)
-    public synchronized void addTranslationRenderService(TranslationRenderService service) {
-        TranslationRenderServiceHolder holder = new TranslationRenderServiceHolder(service,
-                new HashMap<String, String>());
+    public synchronized void addTranslationRenderService(TranslationRenderService service, Map<String,String> props) {
+        TranslationRenderServiceHolder holder = new TranslationRenderServiceHolder(service,props);
         this.translationRenderServices.add(holder);
         getSkysailApps().forEach(app -> app.addTranslationRenderService(holder));
     }
@@ -177,7 +192,23 @@ public class ServiceList implements ServiceListProvider {
         TranslationRenderServiceHolder holder = new TranslationRenderServiceHolder(service,
                 new HashMap<String, String>());
         this.translationRenderServices.remove(holder);
-        getSkysailApps().forEach(a -> a.removeTranslationRenderService(service));
+        getSkysailApps().forEach(a -> a.removeTranslationRenderService(holder));
+    }
+    
+    /** === TranslationStoresService ============================== */
+
+    @Reference(optional = true, dynamic = true, multiple = true)
+    public synchronized void addTranslationStore(TranslationStore service, Map<String,String> props) {
+        TranslationStoreHolder holder = new TranslationStoreHolder(service,props);
+        this.translationStores.add(holder);
+        getSkysailApps().forEach(app -> app.addTranslationStore(holder));
+    }
+
+    public synchronized void removeTranslationStore(TranslationStore service) {
+        TranslationStoreHolder holder = new TranslationStoreHolder(service,
+                new HashMap<String, String>());
+        this.translationStores.remove(holder);
+        getSkysailApps().forEach(a -> a.removeTranslationStore(holder));
     }
 
     @Override

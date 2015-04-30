@@ -1,17 +1,18 @@
 package io.skysail.server.text.markdown;
 
-import io.skysail.api.text.*;
-import io.skysail.server.text.*;
+import io.skysail.api.text.Translation;
+import io.skysail.api.text.TranslationRenderService;
+import io.skysail.server.text.AbstractTranslationRenderService;
+import io.skysail.server.text.StoreAndTranslation;
 
 import java.io.IOException;
-import java.util.Map;
 
 import lombok.extern.slf4j.Slf4j;
 
 import org.apache.commons.lang3.StringEscapeUtils;
 import org.markdown4j.Markdown4jProcessor;
 
-import aQute.bnd.annotation.component.*;
+import aQute.bnd.annotation.component.Component;
 
 @Component(immediate = true, properties = { "test=" + MarkdownTranslationRenderService.SERVICE_RANKING })
 @Slf4j
@@ -43,13 +44,13 @@ public class MarkdownTranslationRenderService extends AbstractTranslationRenderS
         }
     }
 
-    @Reference(dynamic = true, optional = false, multiple = true)
-    public void addStore(TranslationStore store, Map<String, String> props) {
-        stores.add(new TranslationStoreHolder(store, props));
-    }
-
-    public void removeStore(TranslationStore store) {
-        stores.remove(new TranslationStoreHolder(store));
-    }
+//    @Reference(dynamic = true, optional = false, multiple = true)
+//    public void addStore(TranslationStore store, Map<String, String> props) {
+//        stores.add(new TranslationStoreHolder(store, props));
+//    }
+//
+//    public void removeStore(TranslationStore store) {
+//        stores.remove(new TranslationStoreHolder(store));
+//    }
 
 }

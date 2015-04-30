@@ -1,19 +1,31 @@
 package io.skysail.server.text.store.bundleresource.impl;
 
-import io.skysail.api.text.*;
+import io.skysail.api.text.Translation;
+import io.skysail.api.text.TranslationStore;
 import io.skysail.server.app.SkysailApplication;
 import io.skysail.server.text.TranslationStoreHolder;
 import io.skysail.server.utils.TranslationUtils;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Locale;
+import java.util.MissingResourceException;
+import java.util.Optional;
+import java.util.ResourceBundle;
 
 import org.osgi.framework.Bundle;
 import org.osgi.framework.wiring.BundleWiring;
 
-import aQute.bnd.annotation.component.*;
-import de.twenty11.skysail.server.app.*;
-import de.twenty11.skysail.server.core.restlet.*;
-import de.twenty11.skysail.server.services.*;
+import aQute.bnd.annotation.component.Component;
+import aQute.bnd.annotation.component.Reference;
+import de.twenty11.skysail.server.app.ApplicationProvider;
+import de.twenty11.skysail.server.app.TranslationRenderServiceHolder;
+import de.twenty11.skysail.server.core.restlet.ApplicationContextId;
+import de.twenty11.skysail.server.core.restlet.RouteBuilder;
+import de.twenty11.skysail.server.services.MenuItem;
+import de.twenty11.skysail.server.services.MenuItemProvider;
 
 @Component(immediate = true)
 public class I18nApplication extends SkysailApplication implements ApplicationProvider, MenuItemProvider {

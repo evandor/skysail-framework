@@ -1,15 +1,14 @@
 package io.skysail.server.text;
 
-import io.skysail.api.text.*;
-
-import java.util.*;
-import java.util.stream.Collectors;
+import io.skysail.api.text.Translation;
+import io.skysail.api.text.TranslationRenderService;
+import io.skysail.api.text.TranslationStore;
 
 import org.restlet.Request;
 
 public abstract class AbstractTranslationRenderService implements TranslationRenderService {
 
-    protected List<TranslationStoreHolder> stores = new ArrayList<>();
+  //  protected List<TranslationStoreHolder> stores = new ArrayList<>();
 
     protected abstract Translation createTranslation(StoreAndTranslation t);
 
@@ -25,29 +24,24 @@ public abstract class AbstractTranslationRenderService implements TranslationRen
     @Override
     public Translation getTranslation(String key, ClassLoader cl, Request request) {
 
-        List<TranslationStoreHolder> sortedStores = getSortedTranslationStores();
-
-        Optional<Translation> bestTranslation = sortedStores.stream().filter(store -> {
-            return store.getStore().get() != null;
-        }).map(store -> {
-            return new StoreAndTranslation(store.getStore().get(), store.getStore().get().get(key, cl, request));
-        }).filter( storeAndTranslation -> {
-            return storeAndTranslation.getTranslation().isPresent();
-        }).map(storeAndTranslation -> {
-            return createTranslation(storeAndTranslation);
-        }).findFirst();
-
-        if (bestTranslation.isPresent()) {
-            return bestTranslation.get();
-        }
+//        List<TranslationStoreHolder> sortedStores = getSortedTranslationStores();
+//
+//        Optional<Translation> bestTranslation = sortedStores.stream().filter(store -> {
+//            return store.getStore().get() != null;
+//        }).map(store -> {
+//            return new StoreAndTranslation(store.getStore().get(), store.getStore().get().get(key, cl, request));
+//        }).filter( storeAndTranslation -> {
+//            return storeAndTranslation.getTranslation().isPresent();
+//        }).map(storeAndTranslation -> {
+//            return createTranslation(storeAndTranslation);
+//        }).findFirst();
+//
+//        if (bestTranslation.isPresent()) {
+//            return bestTranslation.get();
+//        }
         return null;
 
     }
 
-    protected List<TranslationStoreHolder> getSortedTranslationStores() {
-        List<TranslationStoreHolder> sortedStores = stores.stream().sorted((t1, t2) -> {
-            return t1.getServiceRanking().compareTo(t2.getServiceRanking());
-        }).collect(Collectors.toList());
-        return sortedStores;
-    }
+    
 }

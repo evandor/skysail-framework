@@ -9,6 +9,12 @@ Include-Resource: resources, templates=src;recursive:=true;filter:=*.st|*.stg
 -buildpath:  \
 	biz.aQute.bnd.annotation,\
 	skysail.api;version=${skysail.api.version},\
+	skysail.api.validation;version=latest,\
+	skysail.api.um;version=latest,\
+	skysail.api.favorites;version=${skysail.api.favorites.version},\
+	skysail.api.text;version=latest,\
+	skysail.api.peers;version=latest,\
+	skysail.api.documentation;version=${skysail.api.documentation.version},\
 	skysail.server;version=latest,\
 	skysail.server.codegen;version=latest,\
 	slf4j.api;version=1.7.7,\
@@ -27,15 +33,10 @@ Include-Resource: resources, templates=src;recursive:=true;filter:=*.st|*.stg
 	org.mockito.mockito-all;version=1.10,\
 	skysail.server.testsupport;version=latest,\
 	de.twentyeleven.skysail.org.json-osgi;version=20080701.0,\
-	skysail.api.validation;version=latest,\
 	osgi.core;version=5.0,\
 	osgi.cmpn;version=5.0,\
 	de.twenty11.owasp-java-html-sanitizer;version=239.0,\
 	com.google.guava;version=${guava.version},\
-	skysail.api.um;version=latest,\
-	skysail.api.favorites;version=${skysail.api.favorites.version},\
-	skysail.api.text;version=latest,\
-	skysail.api.documentation;version=${skysail.api.documentation.version},\
 	org.apache.commons.beanutils;version=1.9,\
 	org.hibernate.validator;version=5.1,\
 	org.jboss.logging.jboss-logging;version=3.1,\

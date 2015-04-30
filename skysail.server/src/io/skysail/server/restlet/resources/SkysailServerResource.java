@@ -108,6 +108,10 @@ public abstract class SkysailServerResource<T> extends ServerResource {
      * @return entity of Type T (can be a list as well)
      */
     public abstract T getEntity();
+    
+    public T getEntity(String installation) {
+        return getEntity();
+    }
 
     public abstract LinkRelation getLinkRelation();
 
@@ -294,6 +298,9 @@ public abstract class SkysailServerResource<T> extends ServerResource {
             Map<String,Object> map = (Map)object;
             if (map.get("@rid") != null) {
                 return map.get("@rid").toString().replace("#",  "");
+            }
+            if (map.get("id") != null) {
+                return map.get("id").toString().replace("#",  "");
             }
         }
         Map<String, Object> map = OrientDbUtils.toMap(object);

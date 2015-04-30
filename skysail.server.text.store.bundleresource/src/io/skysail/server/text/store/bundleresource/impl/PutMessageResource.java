@@ -3,7 +3,6 @@ package io.skysail.server.text.store.bundleresource.impl;
 import io.skysail.api.responses.SkysailResponse;
 import io.skysail.server.restlet.resources.PutEntityServerResource;
 
-import org.restlet.data.Form;
 import org.restlet.data.Reference;
 import org.restlet.resource.ResourceException;
 
@@ -19,11 +18,6 @@ public class PutMessageResource extends PutEntityServerResource<Message> {
     @Override
     protected void doInit() throws ResourceException {
         msgKey = getAttribute("key");
-    }
-
-    // @Override
-    public Message getData2(Form form) {
-        return new Message(msgKey, form.getFirstValue("msg"));
     }
 
     @Override

@@ -67,6 +67,7 @@ Service-Component: *
 	skysail.api;version=${skysail.api.version},\
 	skysail.api.documentation;version=${skysail.api.documentation.version},\
 	skysail.api.favorites;version=${skysail.api.favorites.version},\
+	skysail.api.peers;version=latest,\
 	skysail.api.features;version=latest,\
 	skysail.api.text;version=latest,\
 	skysail.api.um;version=latest,\

@@ -52,11 +52,4 @@ public class MarkdownTranslationRenderService extends AbstractTranslationRenderS
         stores.remove(new TranslationStoreHolder(store));
     }
 
-//    @Override
-//    public boolean persist(String key, String translation) {
-//        List<TranslationStoreHolder> sortedStores = getSortedTranslationStores();
-//        sortedStores.stream().forEach(store -> store.getStore().get().)
-//        return false;
-//    }
-
 }

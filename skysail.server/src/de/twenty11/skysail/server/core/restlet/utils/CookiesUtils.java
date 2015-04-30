@@ -25,6 +25,10 @@ public class CookiesUtils {
     public static String getFavoritesFromCookie(Request request) {
         return returnCookieOrNull(request,Constants.COOKIE_NAME_FAVORITES);
     }
+    
+    public static String getInstallationFromCookie(Request request) {
+        return returnCookieOrNull(request,Constants.COOKIE_NAME_INSTALLATIONS);
+    }
 
     private static String returnCookieOrNull(Request request, String name) {
         Cookie templateCookie = request.getCookies().getFirst(name);

@@ -2,33 +2,22 @@ package io.skysail.server.restlet.resources;
 
 import io.skysail.api.documentation.API;
 import io.skysail.api.links.LinkRelation;
-import io.skysail.api.responses.FormResponse;
-import io.skysail.api.responses.SkysailResponse;
+import io.skysail.api.responses.*;
 import io.skysail.server.restlet.RequestHandler;
 import io.skysail.server.restlet.filter.AbstractResourceFilter;
 import io.skysail.server.services.PerformanceTimer;
 
 import java.text.ParseException;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
-import javax.validation.ConstraintValidatorFactory;
-import javax.validation.ConstraintViolation;
-import javax.validation.Validator;
+import javax.validation.*;
 
-import org.restlet.data.ClientInfo;
-import org.restlet.data.Form;
-import org.restlet.data.MediaType;
-import org.restlet.data.Method;
-import org.restlet.data.Preference;
-import org.restlet.resource.Delete;
-import org.restlet.resource.Get;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.restlet.data.*;
+import org.restlet.resource.*;
+import org.slf4j.*;
 
 import de.twenty11.skysail.server.core.restlet.ResourceContextId;
-import de.twenty11.skysail.server.core.restlet.ResponseWrapper;
 
 /**
  * Abstract base class for skysail server-side resources representing a single
@@ -183,12 +172,12 @@ public abstract class EntityServerResource<T> extends SkysailServerResource<T> {
         return sb.toString();
     }
 
-    protected T getEntity(String defaultMsg) {
-        RequestHandler<T> requestHandler = new RequestHandler<T>(getApplication());
-        AbstractResourceFilter<EntityServerResource<T>, T> chain = requestHandler.createForEntity(Method.GET);
-        ResponseWrapper<T> wrapper = chain.handle(this, getResponse());
-        return wrapper.getEntity();
-    }
+//    protected T getEntity(String defaultMsg) {
+//        RequestHandler<T> requestHandler = new RequestHandler<T>(getApplication());
+//        AbstractResourceFilter<EntityServerResource<T>, T> chain = requestHandler.createForEntity(Method.GET);
+//        ResponseWrapper<T> wrapper = chain.handle(this, getResponse());
+//        return wrapper.getEntity();
+//    }
 
     protected String getDataAsJson() {
         return "    ";

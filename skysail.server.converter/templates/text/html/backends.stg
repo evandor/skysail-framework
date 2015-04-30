@@ -1,0 +1,9 @@
+backends(user) ::= <<
+    <li class="dropdown-header">Backends:</li>
+    <li><a href='javascript:document.cookie="peer=;path=/";window.location.reload(true)'>Direct</a></li>
+    $peers(user)$
+>>
+
+peers(user) ::= <<
+  $user.peers: { peer |     <li><a href='javascript:document.cookie="peer=$peer$;path=/";window.location.reload(true)'>$peer$</a></li>}$
+>>

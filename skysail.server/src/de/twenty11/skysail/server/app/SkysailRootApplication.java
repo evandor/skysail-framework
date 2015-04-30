@@ -2,35 +2,19 @@ package de.twenty11.skysail.server.app;
 
 import io.skysail.server.app.SkysailApplication;
 
-import java.util.Dictionary;
-import java.util.HashSet;
-import java.util.Set;
-import java.util.TreeSet;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import org.apache.shiro.SecurityUtils;
-import org.osgi.service.cm.ConfigurationException;
-import org.osgi.service.cm.ManagedService;
+import org.osgi.service.cm.*;
 import org.osgi.service.component.ComponentContext;
 
-import aQute.bnd.annotation.component.Activate;
-import aQute.bnd.annotation.component.Component;
-import aQute.bnd.annotation.component.Deactivate;
-import aQute.bnd.annotation.component.Reference;
-import de.twenty11.skysail.server.app.profile.ProfileResource;
-import de.twenty11.skysail.server.app.profile.PutPasswordResource;
+import aQute.bnd.annotation.component.*;
+import de.twenty11.skysail.server.app.profile.*;
 import de.twenty11.skysail.server.core.restlet.RouteBuilder;
-import de.twenty11.skysail.server.help.HelpEntry;
-import de.twenty11.skysail.server.help.HelpTour;
-import de.twenty11.skysail.server.resources.DefaultResource;
-import de.twenty11.skysail.server.resources.LoginResource;
-import de.twenty11.skysail.server.resources.NameResource;
-import de.twenty11.skysail.server.resources.VersionResource;
-import de.twenty11.skysail.server.resources.WelcomeResource;
-import de.twenty11.skysail.server.services.MenuItem;
-import de.twenty11.skysail.server.services.MenuItemProvider;
-import de.twenty11.skysail.server.services.ResourceBundleProvider;
-import de.twenty11.skysail.server.services.UserManager;
+import de.twenty11.skysail.server.help.*;
+import de.twenty11.skysail.server.resources.*;
+import de.twenty11.skysail.server.services.*;
 
 @Component(immediate = true, properties = { "service.pid=landingpages" })
 public class SkysailRootApplication extends SkysailApplication implements ApplicationProvider, ResourceBundleProvider,
@@ -39,6 +23,8 @@ public class SkysailRootApplication extends SkysailApplication implements Applic
     public static final String ROOT_APPLICATION_NAME = "root";
 
     public static final String LOGIN_PATH = "/_login";
+    public static final String PEERS_LOGIN_PATH = "/_remotelogin";
+    
     public static final String LOGOUT_PATH = "/_logout";
     public static final String PROFILE_PATH = "/_profile";
     public static final String VERSION_PATH = "/_version";
@@ -89,6 +75,9 @@ public class SkysailRootApplication extends SkysailApplication implements Applic
         router.attach(new RouteBuilder(LARGETESTS_PATH + "/{id}", LargeTestsFileResource.class));
         router.attach(new RouteBuilder(WELCOME_PATH, WelcomeResource.class).noAuthenticationNeeded()); // need for tests... why?
         router.attach(new RouteBuilder("/_iframe", IFrameResource.class));
+        
+        router.attach(new RouteBuilder(PEERS_LOGIN_PATH, RemoteLoginResource.class).noAuthenticationNeeded());
+
     }
 
     public Set<SkysailApplication> getApplications() {

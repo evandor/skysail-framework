@@ -1,41 +1,29 @@
 package io.skysail.server.converter;
 
 import io.skysail.api.favorites.FavoritesService;
+import io.skysail.api.peers.PeersProvider;
 import io.skysail.server.app.SkysailApplication;
 import io.skysail.server.converter.impl.StringTemplateRenderer;
 import io.skysail.server.restlet.resources.SkysailServerResource;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 import lombok.extern.slf4j.Slf4j;
 
 import org.apache.shiro.SecurityUtils;
-import org.osgi.service.event.Event;
-import org.osgi.service.event.EventHandler;
+import org.osgi.service.event.*;
 import org.restlet.data.MediaType;
 import org.restlet.engine.converter.ConverterHelper;
 import org.restlet.engine.resource.VariantInfo;
-import org.restlet.representation.Representation;
-import org.restlet.representation.StringRepresentation;
-import org.restlet.representation.Variant;
+import org.restlet.representation.*;
 import org.restlet.resource.Resource;
 
-import aQute.bnd.annotation.component.Component;
-import aQute.bnd.annotation.component.Reference;
+import aQute.bnd.annotation.component.*;
 import de.twenty11.skysail.server.core.osgi.EventHelper;
-import de.twenty11.skysail.server.services.MenuItemProvider;
-import de.twenty11.skysail.server.services.OsgiConverterHelper;
+import de.twenty11.skysail.server.services.*;
 import etm.core.configuration.EtmManager;
-import etm.core.monitor.EtmMonitor;
-import etm.core.monitor.EtmPoint;
+import etm.core.monitor.*;
 
 /**
  * A component providing converting functionality via the StringTemplate
@@ -55,9 +43,10 @@ public class HtmlConverter extends ConverterHelper implements OsgiConverterHelpe
 
     private String templateNameFromCookie;
     private List<Event> events = new CopyOnWriteArrayList<>();
+   
     private volatile Set<MenuItemProvider> menuProviders = new HashSet<>();
-
     private volatile FavoritesService favoritesService;
+    private volatile PeersProvider peersProvider;
 
     static {
         mediaTypesMatch.put(MediaType.TEXT_HTML, 0.95F);
@@ -92,6 +81,17 @@ public class HtmlConverter extends ConverterHelper implements OsgiConverterHelpe
 
     public void unsetFavoritesService(FavoritesService service) {
         this.favoritesService = null;
+    }
+
+    // --- Peers Provider Service ------------------------------------------------
+
+    @Reference(multiple = false, optional = true, dynamic = true)
+    public void setPeersProvider(PeersProvider service) {
+        this.peersProvider = service;
+    }
+
+    public void unsetPeersProvider(PeersProvider service) {
+        this.peersProvider = null;
     }
 
     @Override
@@ -140,6 +140,7 @@ public class HtmlConverter extends ConverterHelper implements OsgiConverterHelpe
         StringTemplateRenderer stringTemplateRenderer = new StringTemplateRenderer(this);
         stringTemplateRenderer.setMenuProviders(menuProviders);
         stringTemplateRenderer.setFavoritesService(favoritesService);
+        stringTemplateRenderer.setPeersProvider(peersProvider);
         StringRepresentation rep = stringTemplateRenderer.createRepresenation(originalSource, target,
                 (SkysailServerResource<?>) resource);
 
@@ -165,9 +166,6 @@ public class HtmlConverter extends ConverterHelper implements OsgiConverterHelpe
         if (currentUser == null) {
             return Collections.emptyList();
         }
-//        if (!(resource.getRequest().getMethod().equals(Method.GET))) {
-//            return Collections.emptyList();
-//        }
         List<Notification> result = new ArrayList<>();
         events.stream().forEach(e -> {
             String msg = (String) e.getProperty("msg");

@@ -171,24 +171,13 @@ todosProduct.controller('AppCtrl', function($scope, $rootScope, $http, $route, $
 			$scope.todos = json;
 		});
 	}
-	
-//	$scope.getNote = function(noteId) {
-//		link = '../clipboard/clips/' + noteId;
-//		$http.get(link).success(function(json) {
-//			if (json.success) {
-//				alert(json);
-//				$scope.currentTodo = json;
-//			} else {
-//				alert ("Sorry, there was an error on the server: " + data.message);
-//			}
-//		});
-//	}
-	
+		
 	$scope.getTodoLists()
 	
 	$scope.setCurrentTodo = function(todo) {
 		$scope.currentTodo = todo;
-		$rootScope.mode="todo"
+		$rootScope.mode="todo";
+		$scope.getNextStatuses(todo.status);
 	};
 
 	$scope.deleteNote = function() {

@@ -2,14 +2,13 @@ package de.twenty11.skysail.server.app;
 
 import io.skysail.api.documentation.DocumentationProvider;
 import io.skysail.api.favorites.FavoritesService;
-import io.skysail.api.um.AuthenticationService;
-import io.skysail.api.um.AuthorizationService;
+import io.skysail.api.peers.PeersProvider;
+import io.skysail.api.um.*;
 import io.skysail.api.validation.ValidatorService;
 import io.skysail.server.restlet.filter.HookFilter;
 import io.skysail.server.services.PerformanceMonitor;
 
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 import org.osgi.service.cm.ConfigurationAdmin;
 import org.osgi.service.event.EventAdmin;
@@ -26,6 +25,8 @@ public interface ServiceListProvider {
 
     FavoritesService getFavoritesService();
 
+    PeersProvider getPeersProvider();
+    
     AuthenticationService getAuthenticationService();
 
     // TranslationService getTranslationService();

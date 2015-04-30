@@ -1,8 +1,9 @@
 package io.skysail.server.text.store.bundleresource.impl;
 
-import io.skysail.api.text.TranslationStore;
+import io.skysail.api.text.*;
 import io.skysail.server.app.SkysailApplication;
 import io.skysail.server.text.TranslationStoreHolder;
+import io.skysail.server.utils.TranslationUtils;
 
 import java.util.*;
 
@@ -10,7 +11,7 @@ import org.osgi.framework.Bundle;
 import org.osgi.framework.wiring.BundleWiring;
 
 import aQute.bnd.annotation.component.*;
-import de.twenty11.skysail.server.app.ApplicationProvider;
+import de.twenty11.skysail.server.app.*;
 import de.twenty11.skysail.server.core.restlet.*;
 import de.twenty11.skysail.server.services.*;
 
@@ -71,6 +72,12 @@ public class I18nApplication extends SkysailApplication implements ApplicationPr
     }
 
     public Message getMessage(String msgKey) {
+        List<TranslationRenderServiceHolder> translationRenderServices = getApplication().getTranslationRenderServices();
+        Optional<Translation> bestTranslation = TranslationUtils.getBestTranslation(translationRenderServices, null, msgKey);
+
+        
+        
+        
         List<BundleMessages> messages = getBundleMessages(new Locale("en"));
         Optional<BundleMessages> bundleMessage = messages.stream().filter(bm -> {
             return bm.getMessages().keySet().contains(msgKey);

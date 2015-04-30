@@ -108,10 +108,11 @@ index(user, messages, source, converter, services, resource, fields, target) ::=
           $if(user.principal)$
           <ul class="nav navbar-nav navbar-right">
             <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">$user.username$ <span class="caret"></span></a>
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">$user.username$ <font style="color:red">$user.backend$</font><span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu">
                 <li><a href='/_logout?targetUri=/'>Logout</a></li>
                 <li><a href='/_profile'>Profile</a></li>
+                $backends(user)$
               </ul>
             </li>
           </ul>

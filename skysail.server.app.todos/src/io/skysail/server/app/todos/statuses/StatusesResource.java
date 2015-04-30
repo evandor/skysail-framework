@@ -10,7 +10,6 @@ public class StatusesResource extends ListServerResource<Status> {
 
     @Override
     public List<Status> getEntity() {
-//        return Arrays.stream(Status.values()).map(Status::valueOf).collect(Collectors.toList());
         return Arrays.asList(Status.values());
     }
 

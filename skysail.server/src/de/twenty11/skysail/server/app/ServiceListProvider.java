@@ -7,8 +7,9 @@ import io.skysail.api.um.*;
 import io.skysail.api.validation.ValidatorService;
 import io.skysail.server.restlet.filter.HookFilter;
 import io.skysail.server.services.PerformanceMonitor;
+import io.skysail.server.text.TranslationStoreHolder;
 
-import java.util.*;
+import java.util.Set;
 
 import org.osgi.service.cm.ConfigurationAdmin;
 import org.osgi.service.event.EventAdmin;
@@ -47,7 +48,8 @@ public interface ServiceListProvider {
 
     DocumentationProvider getDocumentationProvider();
 
-    List<TranslationRenderServiceHolder> getTranslationRenderServices();
+    Set<TranslationRenderServiceHolder> getTranslationRenderServices();
+    Set<TranslationStoreHolder> getTranslationStores();
 
     Set<PerformanceMonitor> getPerformanceMonitors();
 

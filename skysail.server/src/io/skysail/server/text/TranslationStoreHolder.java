@@ -26,7 +26,7 @@ public class TranslationStoreHolder {
     }
 
     public TranslationStoreHolder(TranslationStore store, Map<String, String> props) {
-        this.store = new WeakReference<TranslationStore>(store);
+        this(store);
         this.props = new WeakHashMap<>(props);
     }
 

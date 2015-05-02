@@ -1,6 +1,5 @@
 package io.skysail.api.text;
 
-import org.restlet.Request;
 
 /**
  * A Translation render service asks a TranslationStore for the translation
@@ -14,18 +13,24 @@ public interface TranslationRenderService {
      * Get the best-fit translation (according to some internal algorithm) from
      * all translation stores using the provided classloader and request.
      */
-    Translation getTranslation(String key, ClassLoader cl, Request request);
+    //Translation getTranslation(String key, ClassLoader cl, Request request);
 
     /**
      * Get the translation for the given key using the provided classloader,
      * request and translation store.
      */
-    Translation getTranslation(String key, ClassLoader cl, Request request, TranslationStore store);
+    //Translation getTranslation(String key, ClassLoader cl, Request request, TranslationStore store);
 
     /**
      * Transform the provided translation using the implemented renderer and the
      * provided substitutions.
      */
     String render(Translation translation, Object... substitutions);
+
+    boolean applicable(String unformattedTranslation);
+
+    String adjustText(String unformatted);
+
+    String addRendererInfo();
     
 }

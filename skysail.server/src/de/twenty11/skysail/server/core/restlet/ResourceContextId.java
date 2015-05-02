@@ -6,6 +6,7 @@ public enum ResourceContextId {
                                   // linkheader section)
     LINK_TITLE, // the title a button pointing to this resource will have
     PATH_SUBSTITUTION, //
-    LINK_GLYPH;
+    LINK_GLYPH, 
+    RENDERER_HINT;
 
 }

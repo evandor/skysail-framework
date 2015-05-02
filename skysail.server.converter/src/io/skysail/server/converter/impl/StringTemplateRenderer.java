@@ -24,6 +24,7 @@ import org.restlet.resource.Resource;
 import org.stringtemplate.v4.ST;
 
 import de.twenty11.skysail.server.core.FormField;
+import de.twenty11.skysail.server.core.restlet.ResourceContextId;
 import de.twenty11.skysail.server.core.restlet.utils.CookiesUtils;
 import de.twenty11.skysail.server.services.MenuItemProvider;
 
@@ -76,17 +77,18 @@ public class StringTemplateRenderer {
     }
 
     private ST getStringTemplateIndex(Resource resource, STGroupBundleDir stGroup) {
+        if (resource.getContext().getAttributes().containsKey(ResourceContextId.RENDERER_HINT.name())) {
+            String root = (String)resource.getContext().getAttributes().get(ResourceContextId.RENDERER_HINT.name());
+            resource.getContext().getAttributes().remove(ResourceContextId.RENDERER_HINT.name());
+            return stGroup.getInstanceOf(root);
+        }
+
         String mainPage = CookiesUtils.getMainPageFromCookie(resource.getRequest());
-        ST index;
         if (mainPage != null && mainPage.length() > 0) {
-            index = stGroup.getInstanceOf(mainPage);
+            return stGroup.getInstanceOf(mainPage);
         } else {
-            index = stGroup.getInstanceOf("index");
+            return stGroup.getInstanceOf("index");
         }
-        if (index == null) {
-            throw new IllegalStateException("cannot get instance of stringtemplate 'index'");
-        }
-        return index;
     }
 
     private void addAssociatedLinks(Resource resource, SourceWrapper sourceWrapper) {
@@ -95,9 +97,12 @@ public class StringTemplateRenderer {
         }
         ListServerResource<?> listServerResource = (ListServerResource<?>) resource;
         List<Link> links = listServerResource.getLinks();
-        List<Class<? extends SkysailServerResource<?>>> entityResourceClass = listServerResource.getAssociatedServerResources();
+        List<Class<? extends SkysailServerResource<?>>> entityResourceClass = listServerResource
+                .getAssociatedServerResources();
         if (entityResourceClass != null && sourceWrapper.getConvertedSource() instanceof List) {
-           // EntityServerResource<?> esr = ResourceUtils.createEntityServerResource(entityResourceClass, resource);
+            // EntityServerResource<?> esr =
+            // ResourceUtils.createEntityServerResource(entityResourceClass,
+            // resource);
 
             List<?> sourceAsList = (List<?>) sourceWrapper.getConvertedSource();
             for (Object object : sourceAsList) {
@@ -191,7 +196,7 @@ public class StringTemplateRenderer {
             Set<MenuItemProvider> menuProviders) {
 
         String installationFromCookie = CookiesUtils.getInstallationFromCookie(resource.getRequest());
-        
+
         decl.add("user", new STUserWrapper(SecurityUtils.getSubject(), peersProvider, installationFromCookie));
         decl.add("target", new STTargetWrapper(target));
         decl.add("converter", this);
@@ -203,9 +208,9 @@ public class StringTemplateRenderer {
         } else {
             decl.add("source", new STSourceWrapper(source));
         }
-        
+
         List<FormField> fields = null;
-        
+
         FieldFactory fieldFactory = FieldsFactory.getFactory(source, resource);
         log.info("using factory '{}' for {}-Source: {}", new Object[] { fieldFactory.getClass().getSimpleName(),
                 source.getClass().getSimpleName(), source });
@@ -220,8 +225,6 @@ public class StringTemplateRenderer {
         messages.put("productName", getProductName());
         decl.add("messages", messages);
     }
-
-   
 
     public List<Notification> getNotifications() {
         return htmlConverter.getNotifications();
@@ -238,8 +241,6 @@ public class StringTemplateRenderer {
         }
     }
 
-   
-
     private String getProductName() {
         return "Skysail";
     }
@@ -250,10 +251,6 @@ public class StringTemplateRenderer {
                 .findFirst();
         return thisBundle;
     }
-
-   
-
-   
 
     public void setMenuProviders(Set<MenuItemProvider> menuProviders) {
         this.menuProviders = menuProviders;

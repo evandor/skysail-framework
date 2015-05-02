@@ -1,22 +1,22 @@
-index(user, messages, source, converter, services, resource, fields, target) ::= <<
+PlainTranslationRenderService(user, messages, source, converter, services, resource, fields, target) ::= <<
 <!DOCTYPE html>
 <html lang="en-gb" dir="ltr">
 
     <head>
         <meta charset="utf-8">
-	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-	    <meta name="viewport" content="width=device-width, initial-scale=1">
-	    <meta name="description" content="">
-	    <meta name="author" content="">
-	 <!--     <link rel="icon" href="../../favicon.ico">-->
-	
-	    <title>Skysail</title>
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="description" content="">
+      <meta name="author" content="">
+   <!--     <link rel="icon" href="../../favicon.ico">-->
+  
+      <title>Skysail</title>
 
         <!-- jQuery --> 
-		<script type="text/javascript" src="/webapp/js/jquery-1.11.1.js"></script>
-	    
-	    <link href="/webapp/css/bootstrap.min.css" rel="stylesheet">
-    	<link href="/webapp/css/bootstrap-theme.min.css" rel="stylesheet">
+    <script type="text/javascript" src="/webapp/js/jquery-1.11.1.js"></script>
+      
+      <link href="/webapp/css/bootstrap.min.css" rel="stylesheet">
+      <link href="/webapp/css/bootstrap-theme.min.css" rel="stylesheet">
     
         $endOfHeaderJS()$
     </head>
@@ -56,8 +56,8 @@ index(user, messages, source, converter, services, resource, fields, target) ::=
               </ul>
             </li>
             <li>
-				<a href="/webapp/impress.html">About...</a>
-			</li>
+        <a href="/webapp/impress.html">About...</a>
+      </li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <li><a href="#">$user.principal$</a></li>
@@ -69,7 +69,7 @@ index(user, messages, source, converter, services, resource, fields, target) ::=
     <br><br><br>
     
     <div class="container-fluid">
-      <div class="col-md-1">&nbsp;</div>	
+      <div class="col-md-1">&nbsp;</div>  
       <div class="col-md-10">
         <div class="row">
             $breadcrumb(resource)$
@@ -85,15 +85,16 @@ index(user, messages, source, converter, services, resource, fields, target) ::=
         </div>
         <div class="row">
         <b>TranslationStore</b>: $first(fields).entity.storeChooser$<br>
+        <b>TranslationRenderer</b>: Plain<br>
         <b>redirecting to</b> '$source.entity.redirectBackTo$'
-		    <form role="form" action=".?method=PUT&_redirectTo=$source.entity.redirectBackTo$" method="POST">
-		        <div class="form-group">
-		            <label for="exampleInputEmail1">Markdown [<a href='http://daringfireball.net/projects/markdown/syntax' target='_blank'">?</a>] for $first(fields).entity.msgKey$</label>
-		            <textarea data-uk-htmleditor="{maxsplitsize:600, markdown:true}" name="msg">$first(fields).entity.msg$</textarea>
-		        </div>
-		        <button type="submit" class="btn btn-default">Update</button>
-		    </form>
-	  </div>
+        <form role="form" action=".?method=PUT&_redirectTo=$source.entity.redirectBackTo$" method="POST">
+            <div class="form-group">
+                <label for="exampleInputEmail1">Markdown [<a href='http://daringfireball.net/projects/markdown/syntax' target='_blank'">?</a>] for $first(fields).entity.msgKey$</label>
+                <textarea data-uk-htmleditor="{maxsplitsize:600, markdown:true}" name="msg">$first(fields).entity.msg$</textarea>
+            </div>
+            <button type="submit" class="btn btn-default">Update</button>
+        </form>
+    </div>
       
       $if(converter.debug)$
         $debug(resource, source, target, messages)$

@@ -1,9 +1,9 @@
-renderTable(resource, source, fields, messages) ::= <<
+renderTable(resource, source, fields, converter, messages) ::= <<
 
   $resource.pagination$
   
   <table class="table table-striped">
-    <tr>$renderHeader(fields)$<th>Actions</th></tr>
+    <tr>$renderHeader(fields, converter)$<th>Actions</th></tr>
     $source:{ row | $renderRow(fields,row,i)$}$
   </table>
 >>
@@ -12,8 +12,12 @@ renderRow(fields, row,i) ::= <<
   <tr>$fields: { field | <td>$row.(field.name)$</td>}$<td>$row.("_links")$</td></tr>
 >>
 
-renderHeader(fields) ::= <<
-  $fields: { field | <th>$helpmessage(messages, field.nameKey)$</th>}$
+renderHeader(fields, converter) ::= <<
+  $if(converter.edit)$
+    $fields: { field | <th><a href='/i18n/messages/$field.nameKey$/'>$helpmessage(messages, field.nameKey)$</a></th>}$
+  $else$
+    $fields: { field | <th>$helpmessage(messages, field.nameKey)$</th>}$
+  $endif$
 >>
 
 helpmessage(messages, identifier) ::= <<

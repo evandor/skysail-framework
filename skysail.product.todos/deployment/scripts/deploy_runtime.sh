@@ -2,7 +2,7 @@
 
 export JAVA_HOME=/home/carsten/.hudson/tools/hudson.model.JDK/java_SDK_8u25/
 
-cd /home/carsten/.hudson/jobs/skysail.product.todos.export.export/workspace/skysail.product.todos/generated/distributions/executable
+cd /home/carsten/.hudson/jobs/skysail.product.todos.export.runtime/workspace/skysail.product.todos/generated/distributions/executable
 
 #echo "Creating ZIP Archive"
 cp todos.runtime.jar skysail.todos.runtime.jar

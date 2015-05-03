@@ -1,22 +1,19 @@
 package io.skysail.server.app.todos.test.browser;
 
 import io.skysail.api.links.LinkRelation;
-import io.skysail.client.testsupport.ApplicationBrowser;
-import io.skysail.client.testsupport.ApplicationClient;
-import io.skysail.server.app.todos.TodoApplication;
-import io.skysail.server.app.todos.TodoList;
+import io.skysail.client.testsupport.*;
+import io.skysail.server.app.todos.*;
 import io.skysail.server.app.todos.todos.Todo;
 import lombok.extern.slf4j.Slf4j;
 
-import org.restlet.data.Form;
-import org.restlet.data.MediaType;
+import org.restlet.data.*;
 import org.restlet.representation.Representation;
 
 @Slf4j
 public class TodosBrowser extends ApplicationBrowser<TodosBrowser, Todo> {
 
-    public TodosBrowser(MediaType mediaType) {
-        super(TodoApplication.APP_NAME, mediaType, "2014");
+    public TodosBrowser(MediaType mediaType, String port) {
+        super(TodoApplication.APP_NAME, mediaType, port);
     }
 
     protected Form createForm(Todo todo) {

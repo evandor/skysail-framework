@@ -4,6 +4,10 @@
 		<filter class="ch.qos.logback.classic.filter.ThresholdFilter">
 			<level>WARN</level>
 		</filter>
+		<filter class="com.myapp.ThresholdLoggerFilter">
+          <logger>org.springframework</logger>
+          <level>ERROR</level>
+        </filter>
 		<encoder>
 			<!--%d{mm:ss.SSS} [%thread]-->
 			<pattern>%date{ISO8601}  %-5level [%-45logger{40}] - %msg %n
@@ -47,10 +51,10 @@
 		</encoder>
 	</appender>
 	
-	<logger name="io.skysail.server.http.HttpServer" additivity="false" level="INFO">
+<!-- 	<logger name="io.skysail.server.http.HttpServer" additivity="false" level="INFO">
         <appender-ref ref="STDOUT"/>
     </logger>
-	
+	 -->
 	
 	<root>
 		<appender-ref ref="STDOUT" />

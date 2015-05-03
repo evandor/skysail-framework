@@ -2,38 +2,27 @@ package io.skysail.server.http;
 
 import java.io.IOException;
 import java.net.ServerSocket;
-import java.util.Dictionary;
-import java.util.Hashtable;
-import java.util.List;
+import java.util.*;
 import java.util.logging.Level;
 
 import javax.naming.ConfigurationException;
 
 import lombok.extern.slf4j.Slf4j;
 
-import org.osgi.service.cm.Configuration;
-import org.osgi.service.cm.ConfigurationAdmin;
-import org.osgi.service.cm.ManagedService;
-import org.osgi.service.component.ComponentContext;
-import org.osgi.service.component.ComponentException;
-import org.restlet.Context;
-import org.restlet.Server;
+import org.osgi.service.cm.*;
+import org.osgi.service.component.*;
+import org.restlet.*;
 import org.restlet.data.Protocol;
 import org.restlet.engine.Engine;
 import org.restlet.engine.converter.ConverterHelper;
 import org.restlet.resource.ServerResource;
 import org.restlet.service.ConverterService;
 
-import aQute.bnd.annotation.component.Activate;
+import aQute.bnd.annotation.component.*;
 import aQute.bnd.annotation.component.Component;
-import aQute.bnd.annotation.component.ConfigurationPolicy;
-import aQute.bnd.annotation.component.Deactivate;
-import aQute.bnd.annotation.component.Reference;
 import de.twenty11.skysail.server.SkysailComponent;
-import de.twenty11.skysail.server.app.SkysailComponentProvider;
-import de.twenty11.skysail.server.app.SkysailRootApplication;
-import de.twenty11.skysail.server.services.OsgiConverterHelper;
-import de.twenty11.skysail.server.services.RestletServicesProvider;
+import de.twenty11.skysail.server.app.*;
+import de.twenty11.skysail.server.services.*;
 
 @Component(immediate = true, configurationPolicy = ConfigurationPolicy.optional, properties = { "event.topics=de/twenty11/skysail/server/configuration/UPDATED" })
 @Slf4j
@@ -220,6 +209,7 @@ public class HttpServer extends ServerResource implements RestletServicesProvide
         log.info("");
         log.info("====================================");
         log.info("Starting skysail server on port {}", port);
+        System.out.println("Starting skysail server on port: " + port);
         log.info("====================================");
         log.info("");
 

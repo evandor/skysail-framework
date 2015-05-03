@@ -111,7 +111,6 @@
 	skysail.server.app.todos;version=latest,\
 	skysail.server.db;version=latest,\
 	skysail.server.documentation;version=latest,\
-	skysail.server.ext.browser;version=latest,\
 	skysail.server.ext.favorites.preferences;version=latest,\
 	skysail.server.http;version=latest,\
 	skysail.server.performance.etm;version=latest,\

@@ -47,6 +47,11 @@
 		</encoder>
 	</appender>
 	
+	<logger name="io.skysail.server.http.HttpServer" additivity="false" level="INFO">
+        <appender-ref ref="STDOUT"/>
+    </logger>
+	
+	
 	<root>
 		<appender-ref ref="STDOUT" />
 		<appender-ref ref="INFO_FILE" />

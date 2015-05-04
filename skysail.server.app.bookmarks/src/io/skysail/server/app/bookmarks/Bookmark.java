@@ -32,12 +32,12 @@ public class Bookmark implements Identifiable {
     private String id;
 
     @Field(type = InputType.URL)//, listView = { ListViewEnum.TRUNCATE, ListViewEnum.LINK })
-    @ListView(truncate = 10, link = BookmarkResource.class)
+    @ListView(truncate = 20, link = BookmarkResource.class)
     @Prefix(methodName = "urlPrefix")
     private URL url;
 
     @Field
-    @ListView(truncate = 10, link = BookmarkResource.class)
+    @ListView(truncate = 20, link = BookmarkResource.class)
     private String name;
 
     @Field(type = InputType.TEXTAREA)

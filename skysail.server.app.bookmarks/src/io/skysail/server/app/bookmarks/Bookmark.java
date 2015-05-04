@@ -55,6 +55,7 @@ public class Bookmark implements Identifiable {
     private String owner;
 
     @Field(type = InputType.READONLY)
+    @ListView(hide=true)
     private String favicon;
     
     @Field(type = InputType.READONLY)

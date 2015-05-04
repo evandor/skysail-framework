@@ -1,23 +1,22 @@
 package io.skysail.api.text;
 
-import java.util.Optional;
+import java.util.*;
 
 import lombok.*;
 
 @Getter
 @ToString(of = { "value" })
-public abstract class Translation {
+public class Translation {
 
     protected String value;
-    private Integer serviceRanking;
     private TranslationStore store;
+    private Set<String> stores = Collections.emptySet();
 
-    public Translation(Optional<String> text, TranslationStore store, Integer serviceRanking) {
-        this.serviceRanking = serviceRanking;
-        this.value = text.orElse(null);
+    public Translation(String text, @NonNull TranslationStore store, @NonNull Set<String> stores) {
+        this.value = text;//.orElse(null);
         this.store = store;
+        this.stores = stores;
     }
 
-    public abstract Class<? extends TranslationRenderService> getTranslatedBy();
 
 }

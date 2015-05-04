@@ -1,17 +1,13 @@
 package io.skysail.server.app.todos.test;
 
-import static org.hamcrest.CoreMatchers.containsString;
-import static org.hamcrest.CoreMatchers.not;
+import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.assertThat;
 import io.skysail.client.testsupport.IntegrationTests;
 import io.skysail.server.app.todos.TodoList;
-import io.skysail.server.app.todos.test.browser.TodoListBrowser;
-import io.skysail.server.app.todos.test.browser.TodosBrowser;
+import io.skysail.server.app.todos.test.browser.*;
 import io.skysail.server.app.todos.todos.Todo;
 
-import org.junit.Before;
-import org.junit.Ignore;
-import org.junit.Test;
+import org.junit.*;
 import org.restlet.data.MediaType;
 import org.restlet.representation.Representation;
 
@@ -25,7 +21,7 @@ public class TodosCrudIntegrationTests extends IntegrationTests<TodosBrowser, To
 
     @Before
     public void setUp() {
-        browser = new TodosBrowser(MediaType.APPLICATION_JSON);
+        browser = new TodosBrowser(MediaType.APPLICATION_JSON,determinePort());
         browser.setUser("admin");
         
         listBrowser = new TodoListBrowser(MediaType.APPLICATION_JSON,determinePort());

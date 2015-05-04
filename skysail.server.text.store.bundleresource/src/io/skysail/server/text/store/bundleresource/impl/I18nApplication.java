@@ -1,31 +1,21 @@
 package io.skysail.server.text.store.bundleresource.impl;
 
-import io.skysail.api.text.Translation;
-import io.skysail.api.text.TranslationStore;
+import io.skysail.api.text.*;
 import io.skysail.server.app.SkysailApplication;
+import io.skysail.server.restlet.resources.SkysailServerResource;
 import io.skysail.server.text.TranslationStoreHolder;
 import io.skysail.server.utils.TranslationUtils;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Locale;
-import java.util.MissingResourceException;
-import java.util.Optional;
-import java.util.ResourceBundle;
+import java.lang.ref.WeakReference;
+import java.util.*;
 
 import org.osgi.framework.Bundle;
 import org.osgi.framework.wiring.BundleWiring;
 
-import aQute.bnd.annotation.component.Component;
-import aQute.bnd.annotation.component.Reference;
-import de.twenty11.skysail.server.app.ApplicationProvider;
-import de.twenty11.skysail.server.app.TranslationRenderServiceHolder;
-import de.twenty11.skysail.server.core.restlet.ApplicationContextId;
-import de.twenty11.skysail.server.core.restlet.RouteBuilder;
-import de.twenty11.skysail.server.services.MenuItem;
-import de.twenty11.skysail.server.services.MenuItemProvider;
+import aQute.bnd.annotation.component.*;
+import de.twenty11.skysail.server.app.*;
+import de.twenty11.skysail.server.core.restlet.*;
+import de.twenty11.skysail.server.services.*;
 
 @Component(immediate = true)
 public class I18nApplication extends SkysailApplication implements ApplicationProvider, MenuItemProvider {
@@ -83,21 +73,31 @@ public class I18nApplication extends SkysailApplication implements ApplicationPr
         }
     }
 
-    public Message getMessage(String msgKey) {
-        List<TranslationRenderServiceHolder> translationRenderServices = getApplication().getTranslationRenderServices();
-        Optional<Translation> bestTranslation = TranslationUtils.getBestTranslation(translationRenderServices, null, msgKey);
-
-        
-        
-        
-        List<BundleMessages> messages = getBundleMessages(new Locale("en"));
-        Optional<BundleMessages> bundleMessage = messages.stream().filter(bm -> {
-            return bm.getMessages().keySet().contains(msgKey);
-        }).findFirst();
-        if (bundleMessage.isPresent()) {
-            return new Message(msgKey, bundleMessage.get().getMessages().get(msgKey));
+    /**
+     * get a message with the "best" translation (i.e. the first one returned), augmented with the
+     * information about which other translation stores are available.
+     * @param selectedStore 
+     */
+    public Message getMessage(String key, String selectedStore, SkysailServerResource<?> resource) {
+        Set<TranslationStoreHolder> translationStores = getTranslationStores();
+        Set<TranslationRenderServiceHolder> rendererServices = getTranslationRenderServices();
+        if (selectedStore != null) {
+            Translation translation = TranslationUtils.getTranslation(key, translationStores, selectedStore, resource);
+            if (translation != null) {
+                return new Message(key, translation, getPreferedRenderer(rendererServices, translation));
+            }
         }
-        return new Message(msgKey);
+        List<Translation> translations = TranslationUtils.getAllTranslations(translationStores, key, resource);
+        if (translations.size() == 0) {
+            return new Message(key, "");            
+        }
+        return new Message(key, translations.get(0), getPreferedRenderer(rendererServices, translations.get(0)));
+    }
+
+    private TranslationRenderService getPreferedRenderer(Set<TranslationRenderServiceHolder> rendererServices, Translation translation) {
+       return rendererServices.stream().filter(rs -> {
+            return rs.getService().get().applicable(translation.getValue());
+        }).map(TranslationRenderServiceHolder::getService).map(WeakReference::get).findFirst().orElse(null);
     }
 
     /**
@@ -112,7 +112,9 @@ public class I18nApplication extends SkysailApplication implements ApplicationPr
      */
     public void setMessage(Message message) {
         translationStoreHolders.stream().forEach(storeHolder -> {
-            storeHolder.getStore().get().persist(message.getMsgKey(), message.getMsg(), new Locale("en"), getBundleContext());
+            TranslationRenderService preferredRenderer = message.getPreferredRenderer();
+            String text = preferredRenderer != null ? preferredRenderer.addRendererInfo() + message.getMsg() : message.getMsg();
+            storeHolder.getStore().get().persist(message.getMsgKey(), text, new Locale("en"), getBundleContext());
         });
 
     }

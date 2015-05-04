@@ -12,10 +12,11 @@ import org.apache.commons.configuration.*;
 import org.apache.commons.lang.StringUtils;
 import org.osgi.framework.*;
 import org.osgi.framework.wiring.BundleWiring;
+import org.osgi.service.component.ComponentContext;
 import org.restlet.Request;
 import org.restlet.util.Series;
 
-import aQute.bnd.annotation.component.Component;
+import aQute.bnd.annotation.component.*;
 
 @Component(immediate = true, properties = { org.osgi.framework.Constants.SERVICE_RANKING + "=100" })
 @Slf4j
@@ -23,6 +24,17 @@ import aQute.bnd.annotation.component.Component;
 public class ResourceBundleStore implements TranslationStore {
     
     private static final int MIN_MATCH_LENGTH = 20;
+    private ComponentContext ctx;
+    
+    @Activate
+    private void activate(ComponentContext ctx) {
+        this.ctx = ctx;
+    }
+
+    @Deactivate
+    private void deactivate(ComponentContext ctx) {
+        this.ctx = null;
+    }
 
     /**
      * get the ResourceBundle translation for the given key using the default
@@ -56,7 +68,33 @@ public class ResourceBundleStore implements TranslationStore {
         }).filter(t -> {
             return t != null;
         }).findFirst();
+        
+        if (!translation.isPresent()) {
+            List<BundleMessages> messages = getBundleMessages(new Locale("en"));
+            Optional<BundleMessages> bundleMessage = messages.stream().filter(bm -> {
+                return bm.getMessages().keySet().contains(key);
+            }).findFirst();
+            if (bundleMessage.isPresent()) {
+                return Optional.of(bundleMessage.get().getMessages().get(key));
+            }
+        }
+        
+        
+        
         return translation;
+    }
+
+    private List<BundleMessages> getBundleMessages(Locale locale) {
+        if (ctx == null) {
+            return Collections.emptyList();
+        }
+        Bundle[] bundles = ctx.getBundleContext().getBundles();
+        List<BundleMessages> result = new ArrayList<>();
+        Arrays.stream(bundles).forEach(b -> {
+            ClassLoader loader = b.adapt(BundleWiring.class).getClassLoader();
+            handleResourceBundle(loader, b, locale, result);
+        });
+        return result;
     }
 
     private ResourceBundle getBundle(ClassLoader cl, String l) {

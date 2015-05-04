@@ -1,27 +1,17 @@
 package io.skysail.server.app;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.List;
+import java.util.*;
 import java.util.function.Consumer;
 
 import org.apache.commons.lang.Validate;
-import org.restlet.Application;
-import org.restlet.Server;
+import org.restlet.*;
 import org.restlet.data.Protocol;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.slf4j.*;
 
+import aQute.bnd.annotation.component.*;
 import aQute.bnd.annotation.component.Component;
-import aQute.bnd.annotation.component.Reference;
-import de.twenty11.skysail.server.SkysailComponent;
-import de.twenty11.skysail.server.SkysailStatusService;
-import de.twenty11.skysail.server.app.ApplicationListProvider;
-import de.twenty11.skysail.server.app.ApplicationProvider;
-import de.twenty11.skysail.server.app.ServiceListProvider;
-import de.twenty11.skysail.server.app.SkysailRootApplication;
+import de.twenty11.skysail.server.*;
+import de.twenty11.skysail.server.app.*;
 
 /**
  * This class keeps track of all available skysail applications and injects the
@@ -101,6 +91,7 @@ public class ApplicationList implements ApplicationListProvider {
         assignService(apps, app -> app.setDocumentationProvider(services.getDocumentationProvider()));
         assignService(apps, app -> app.setTranslationRenderServices(services.getTranslationRenderServices()));
         assignService(apps, app -> app.setFilters(services.getHookFilters()));
+        assignService(apps, app -> app.setTranslationStores(services.getTranslationStores()));
     }
 
     private synchronized void unsetServices(List<SkysailApplication> apps) {
@@ -112,8 +103,9 @@ public class ApplicationList implements ApplicationListProvider {
         apps.stream().forEach(app -> app.setMetricsService(null));
         apps.stream().forEach(app -> app.setValidatorService(null));
         apps.stream().forEach(app -> app.setDocumentationProvider(null));
-        apps.stream().forEach(app -> app.setTranslationRenderServices(new ArrayList<>()));
+        apps.stream().forEach(app -> app.setTranslationRenderServices(Collections.synchronizedSet(new HashSet<>())));
         apps.stream().forEach(app -> app.setFilters(new HashSet<>()));
+        apps.stream().forEach(app -> app.setTranslationStores(Collections.synchronizedSet(new HashSet<>())));
     }
 
     @Override

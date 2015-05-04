@@ -118,7 +118,6 @@
 	skysail.server.http;version=latest,\
 	skysail.server.plugins;version=latest,\
 	skysail.server.static;version=latest,\
-	skysail.server.text;version=latest,\
 	skysail.server.text.markdown;version=latest,\
 	skysail.server.text.store.bundleresource;version=latest,\
 	skysail.server.um.simple;version=latest,\

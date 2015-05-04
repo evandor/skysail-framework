@@ -7,11 +7,12 @@ cd /home/carsten/.hudson/jobs/skysail.product.todos.export.int/workspace/skysail
 #echo "Creating ZIP Archive"
 cp todos.int.jar skysail.todos.jar
 
-#zip -r skysail.todos.zip ../../../config/prod skysail.todos.jar
-zip -r skysail.todos.zip skysail.todos.jar
+zip -r skysail.todos.zip ../../../config/int skysail.todos.jar
+#zip -r skysail.todos.zip skysail.todos.jar
 
 echo "copying skysail.todos.zip to public site"
-#cp skysail.todos.zip /var/www/skysail/products/todos/skysail.todos.zip
+cp skysail.todos.zip /var/www/skysail/products/todos/skysail.todos.int.zip
+cp skysail.todos.jar /var/www/skysail/products/todos/skysail.todos.int.jar
 
 mkdir -p /home/carsten/skysail/products/todos/int/bin
 mkdir -p /home/carsten/skysail/products/todos/int/lib

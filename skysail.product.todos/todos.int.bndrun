@@ -33,9 +33,6 @@
     osgi.shell.telnet.port=6667,\
     obr.repository.url=https://raw.githubusercontent.com/evandor/skysail-repository/master/index.xml https://raw.githubusercontent.com/evandor/skysail/master/cnf/releaserepo/index.xml http://felix.apache.org/obr/releases.xml
 
-#    https.proxyHost=192.168.11.140,\
-#    https.proxyPort=8080,\
-
 
 # not used here, resolution takes too long...
 #-runrequires:  \
@@ -100,6 +97,7 @@
 	osgi.enterprise;version='[4.2.0,4.2.1)',\
 	skysail.api;version=${skysail.api.version},\
 	skysail.api.um;version=latest,\
+	skysail.api.peers;version=latest,\
 	skysail.api.text;version=latest,\
 	skysail.api.documentation;version=${skysail.api.documentation.version},\
 	skysail.api.validation;version=latest,\
@@ -121,11 +119,12 @@
 	skysail.server.ext.favorites.preferences;version=latest,\
 	skysail.server.http;version=latest,\
 	skysail.server.performance.etm;version=latest,\
+	skysail.server.peers.adminconfig;version=latest,\
 	skysail.server.plugins;version=latest,\
 	skysail.server.static;version=latest,\
-	skysail.server.text;version=latest,\
 	skysail.server.text.markdown;version=latest,\
 	skysail.server.text.store.bundleresource;version=latest,\
+	skysail.server.text.store.git;version=latest,\
 	skysail.server.um.simple;version=latest,\
 	slf4j.api;version='[1.7.7,1.7.8)',\
 	de.twentyeleven.skysail.org.antlr.stringtemplate-osgi;version=4.0.8,\

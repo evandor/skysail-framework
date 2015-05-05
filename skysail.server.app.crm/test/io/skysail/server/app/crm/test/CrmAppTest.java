@@ -8,7 +8,6 @@ import io.skysail.server.app.crm.CrmApplication;
 import io.skysail.server.app.crm.CrmRepository;
 import io.skysail.server.db.DbService2;
 import io.skysail.server.testsupport.AbstractShiroTest;
-import io.skysail.server.testsupport.InMemoryDbService;
 
 import java.util.Locale;
 
@@ -34,7 +33,7 @@ public class CrmAppTest extends AbstractShiroTest {
     public void setUp() throws Exception {
         super.setUp();
         crmRepository = new CrmRepository();
-        dbService = new InMemoryDbService();
+        dbService = null;//new InMemoryDbService();
         crmRepository.setDbService(dbService);
         app.setCrmRepository(crmRepository);
         Mockito.when(app.getValidatorService()).thenReturn(new DefaultValidationImpl());

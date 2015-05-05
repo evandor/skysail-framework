@@ -31,6 +31,12 @@ public class FieldsFactory {
 
     private static FieldFactory entityFactory(Object source) {
         Object entity = ((SkysailResponse<?>) source).getEntity();
+        
+//        if (entity.getClass().getName().contains("_$$_")) {
+//            Map<String, Object> entityMap = OrientDbUtils.toMap(entity);
+//            return new MapFieldFactory(entityMap);
+//        }
+        
         if (entity instanceof DynamicEntity) {
             return new DynamicEntityFieldFactory((DynamicEntity) entity);
         } else {

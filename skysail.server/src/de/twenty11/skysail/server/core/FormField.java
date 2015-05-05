@@ -1,21 +1,33 @@
 package de.twenty11.skysail.server.core;
 
-import io.skysail.api.forms.*;
-import io.skysail.api.responses.*;
+import io.skysail.api.forms.IgnoreSelectionProvider;
+import io.skysail.api.forms.InputType;
+import io.skysail.api.forms.Reference;
+import io.skysail.api.forms.SelectionProvider;
+import io.skysail.api.responses.ConstraintViolationDetails;
+import io.skysail.api.responses.ConstraintViolationsResponse;
+import io.skysail.api.responses.SkysailResponse;
 import io.skysail.server.restlet.resources.SkysailServerResource;
 import io.skysail.server.utils.OrientDbUtils;
 
-import java.lang.reflect.*;
 import java.lang.reflect.Field;
-import java.util.*;
+import java.lang.reflect.Method;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Date;
+import java.util.Map;
+import java.util.Optional;
+import java.util.Set;
 
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 
-import org.apache.commons.beanutils.*;
+import org.apache.commons.beanutils.DynaBean;
+import org.apache.commons.beanutils.DynaProperty;
 import org.restlet.resource.Resource;
 
-import de.twenty11.skysail.server.beans.*;
+import de.twenty11.skysail.server.beans.DynamicEntity;
+import de.twenty11.skysail.server.beans.EntityDynaProperty;
 import de.twenty11.skysail.server.core.restlet.MessagesUtils;
 import de.twenty11.skysail.server.um.domain.SkysailUser;
 

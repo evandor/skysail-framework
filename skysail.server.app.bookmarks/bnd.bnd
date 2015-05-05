@@ -38,7 +38,8 @@ Import-Package: org.osgi.framework,\
 	javassist;version=3.18,\
 	skysail.api;version=${skysail.api.version},\
 	org.jsoup;version=1.8,\
-	org.apache.commons.lang3;version=3.3
+	org.apache.commons.lang3;version=3.3,\
+	com.orientechnologies.orientdb-core;version=2.0
 	
 -runfw: org.apache.felix.framework;version='[4,5)'
 -runee: JavaSE-1.8

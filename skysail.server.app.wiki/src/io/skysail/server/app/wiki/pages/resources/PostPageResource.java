@@ -2,13 +2,17 @@ package io.skysail.server.app.wiki.pages.resources;
 
 import io.skysail.api.links.Link;
 import io.skysail.api.responses.SkysailResponse;
-import io.skysail.server.app.wiki.*;
+import io.skysail.server.app.wiki.PostDynamicEntityServerResource;
+import io.skysail.server.app.wiki.WikiApplication;
 import io.skysail.server.app.wiki.pages.Page;
 import io.skysail.server.app.wiki.spaces.Space;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.restlet.resource.ResourceException;
+
+import com.orientechnologies.orient.core.record.impl.ODocument;
 
 import de.twenty11.skysail.server.core.restlet.ResourceContextId;
 
@@ -32,25 +36,15 @@ public class PostPageResource extends PostDynamicEntityServerResource<Page> {
         return new Page();
     }
 
-    // TODO run in one transaction
     public SkysailResponse<?> addEntity(Page entity) {
-        Object pageId = app.getRepository().add(entity);
-        Map<String, Object> space = app.getRepository().getById(Space.class, id);
-        Set<String> pageSet = (Set<String>)space.get("Page");
-        if (pageSet == null) {
-            pageSet = new HashSet<String>();
+        ODocument space = app.getRepository().getById(Space.class, id);
+        List<ODocument> pages = space.field(Page.class.getSimpleName());
+        if (pages == null) {
+            pages = new ArrayList<ODocument>();
         }
-        pageSet.add(pageId.toString());
-        app.getRepository().update(space);
-        
-//        Space space = (Space)app.getRepository().getObjectById(Space.class, id);
-//        List<Page> pages = (List<Page>)space.getInstance().get("Page");
-//        if (pages == null) {
-//            pages = new ArrayList<Page>();
-//        }
-//        pages.add(entity);
-//        space.getInstance().set("Page", pages);
-//        app.getRepository().update(id, space);
+        pages.add(new ODocument(Page.class.getSimpleName()).field("title", entity.getInstance().get("title")));
+        space.field("Page", pages);
+        app.getRepository().updateDocument(space);
         return new SkysailResponse<String>();
     }
     

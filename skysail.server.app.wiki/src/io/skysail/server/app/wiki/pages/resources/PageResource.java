@@ -20,7 +20,7 @@ public class PageResource extends EntityServerResource<Map<String,Object>> {
     }
 
     public Map<String,Object> getEntity() {
-        return app.getRepository().getById(Page.class, myEntityId);
+        return app.getRepository().getById(Page.class, myEntityId).toMap();
     }
 
     public List<Link> getLinks() {

@@ -6,7 +6,8 @@ import io.skysail.server.app.wiki.WikiApplication;
 import io.skysail.server.app.wiki.pages.Page;
 import io.skysail.server.restlet.resources.PutEntityServerResource;
 
-import java.util.*;
+import java.util.List;
+import java.util.Map;
 import java.util.function.Consumer;
 
 public class PutPageResource extends PutEntityServerResource<Map<String, Object>> {
@@ -25,7 +26,7 @@ public class PutPageResource extends PutEntityServerResource<Map<String, Object>
 
     @Override
     public Map<String, Object> getEntity() {
-        return ((WikiApplication) getApplication()).getRepository().getById(Page.class, id);
+        return ((WikiApplication) getApplication()).getRepository().getById(Page.class, id).toMap();
     }
 
     @Override

@@ -40,7 +40,8 @@ Include-Resource: resources, templates=src;recursive:=true;filter:=*.st|*.stg
 	org.hibernate.validator;version=5.1,\
 	org.jboss.logging.jboss-logging;version=3.1,\
 	javax.el-api;version=3.0,\
-	classmate;version=1.0
+	classmate;version=1.0,\
+	com.orientechnologies.orientdb-core;version=2.0
 Import-Package: org.osgi.framework,\
 	javassist.util.proxy,\
 	*

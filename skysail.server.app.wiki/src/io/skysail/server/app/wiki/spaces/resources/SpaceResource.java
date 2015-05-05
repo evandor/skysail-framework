@@ -6,7 +6,8 @@ import io.skysail.server.app.wiki.WikiApplication;
 import io.skysail.server.app.wiki.spaces.Space;
 import io.skysail.server.restlet.resources.EntityServerResource;
 
-import java.util.*;
+import java.util.List;
+import java.util.Map;
 
 public class SpaceResource extends EntityServerResource<Map<String,Object>> {
 
@@ -24,7 +25,7 @@ public class SpaceResource extends EntityServerResource<Map<String,Object>> {
 
     @Override
     public Map<String,Object> getEntity() {
-         return ((WikiApplication) getApplication()).getRepository().getById(Space.class, id);
+         return ((WikiApplication) getApplication()).getRepository().getById(Space.class, id).toMap();
     }
     
     @Override

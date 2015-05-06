@@ -20,6 +20,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @Getter
@@ -28,6 +29,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 @NoArgsConstructor
 @JsonPropertyOrder({ "title", "desc" })
 @UniquePerOwner
+@JsonIgnoreProperties("handler")
 public class TodoList implements Serializable, Identifiable {
 
     private static final long serialVersionUID = -3188923584006747102L;

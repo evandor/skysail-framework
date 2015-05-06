@@ -6,24 +6,37 @@ import io.skysail.server.app.SkysailApplication;
 import io.skysail.server.converter.impl.StringTemplateRenderer;
 import io.skysail.server.restlet.resources.SkysailServerResource;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 import lombok.extern.slf4j.Slf4j;
 
 import org.apache.shiro.SecurityUtils;
-import org.osgi.service.event.*;
+import org.osgi.service.event.Event;
+import org.osgi.service.event.EventHandler;
 import org.restlet.data.MediaType;
 import org.restlet.engine.converter.ConverterHelper;
 import org.restlet.engine.resource.VariantInfo;
-import org.restlet.representation.*;
+import org.restlet.representation.Representation;
+import org.restlet.representation.StringRepresentation;
+import org.restlet.representation.Variant;
 import org.restlet.resource.Resource;
 
-import aQute.bnd.annotation.component.*;
+import aQute.bnd.annotation.component.Component;
+import aQute.bnd.annotation.component.Reference;
 import de.twenty11.skysail.server.core.osgi.EventHelper;
-import de.twenty11.skysail.server.services.*;
+import de.twenty11.skysail.server.services.MenuItemProvider;
+import de.twenty11.skysail.server.services.OsgiConverterHelper;
 import etm.core.configuration.EtmManager;
-import etm.core.monitor.*;
+import etm.core.monitor.EtmMonitor;
+import etm.core.monitor.EtmPoint;
 
 /**
  * A component providing converting functionality via the StringTemplate

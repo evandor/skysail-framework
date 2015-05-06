@@ -23,6 +23,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import de.twenty11.skysail.server.core.restlet.ResourceContextId;
+import de.twenty11.skysail.server.core.restlet.ResponseWrapper;
 
 /**
  * Abstract base class for skysail server-side resources representing a single
@@ -129,6 +130,20 @@ public abstract class EntityServerResource<T> extends SkysailServerResource<T> {
         return LinkRelation.ITEM;
     }
 
+    // input: html|json|..., output: html|json|...
+    /**
+     * @return the response
+     */
+    @Get("html|json|eventstream|treeform|txt|csv|yaml|mailto")
+    @API(desc = "retrieves the entity defined by the url")
+    public SkysailResponse<T> getEntity2() {
+        Set<PerformanceTimer> perfTimer = getApplication().startPerformanceMonitoring(this.getClass().getSimpleName() + ":getEntity");
+        logger.info("Request entry point: {} @Get('html|json|eventstream|treeform|txt')", this.getClass().getSimpleName());
+        T entity = getEntity3();
+        getApplication().stopPerformanceMonitoring(perfTimer);
+        return new SkysailResponse<T>(entity);
+    }
+    
     @Get("htmlform")
     @API(desc = "provides a form to delete the entity")
     public SkysailResponse<T> getDeleteForm() {
@@ -148,7 +163,14 @@ public abstract class EntityServerResource<T> extends SkysailServerResource<T> {
         getApplication().stopPerformanceMonitoring(perfTimer);
         return entity;
     }
-
+    
+    protected T getEntity3() {
+        RequestHandler<T> requestHandler = new RequestHandler<T>(getApplication());
+        AbstractResourceFilter<EntityServerResource<T>, T> chain = requestHandler.createForEntity(Method.GET);
+        ResponseWrapper<T> wrapper = chain.handle(this, getResponse());
+        return wrapper.getEntity();
+    }
+    
     protected String getDataAsJson() {
         return "    ";
     }

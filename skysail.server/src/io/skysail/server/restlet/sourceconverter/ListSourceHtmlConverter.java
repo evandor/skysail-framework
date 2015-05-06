@@ -1,6 +1,7 @@
 package io.skysail.server.restlet.sourceconverter;
 
-import io.skysail.api.forms.*;
+import io.skysail.api.forms.Postfix;
+import io.skysail.api.forms.Prefix;
 import io.skysail.api.links.Link;
 import io.skysail.server.forms.ListView;
 import io.skysail.server.restlet.resources.SkysailServerResource;
@@ -10,16 +11,25 @@ import java.io.IOException;
 import java.lang.reflect.Field;
 import java.net.URL;
 import java.text.DateFormat;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+import java.util.Optional;
 
 import lombok.extern.slf4j.Slf4j;
 
-import org.restlet.data.*;
+import org.restlet.data.Language;
+import org.restlet.data.MediaType;
+import org.restlet.data.Preference;
 
 import aQute.bnd.annotation.component.Component;
 
 import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.*;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 
 import de.twenty11.skysail.server.app.AbstractSourceConverter;
 
@@ -31,6 +41,7 @@ public class ListSourceHtmlConverter extends AbstractSourceConverter implements 
 
     public ListSourceHtmlConverter() {
         mapper.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false);
+       // mapper.configure(SerializationFeature.FAIL_ON_EMPTY_BEANS, false);
     }
 
     @Override

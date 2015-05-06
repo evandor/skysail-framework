@@ -1,19 +1,30 @@
 package io.skysail.server.app.todos;
 
-import io.skysail.api.peers.PeersProvider;
 import io.skysail.server.app.SkysailApplication;
-import io.skysail.server.app.todos.lists.*;
+import io.skysail.server.app.todos.lists.ListResource;
+import io.skysail.server.app.todos.lists.ListsResource;
+import io.skysail.server.app.todos.lists.PostListResource;
+import io.skysail.server.app.todos.lists.PutListResource;
 import io.skysail.server.app.todos.repo.TodosRepository;
-import io.skysail.server.app.todos.statuses.*;
-import io.skysail.server.app.todos.todos.resources.*;
+import io.skysail.server.app.todos.statuses.NextStatusesResource;
+import io.skysail.server.app.todos.statuses.StatusesResource;
+import io.skysail.server.app.todos.todos.resources.PostTodoResource;
+import io.skysail.server.app.todos.todos.resources.PostTodoWoListResource;
+import io.skysail.server.app.todos.todos.resources.PutTodoResource;
+import io.skysail.server.app.todos.todos.resources.TodoResource;
+import io.skysail.server.app.todos.todos.resources.TodosResource;
 import io.skysail.server.db.DbRepository;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.List;
 
-import aQute.bnd.annotation.component.*;
+import aQute.bnd.annotation.component.Component;
+import aQute.bnd.annotation.component.Reference;
 import de.twenty11.skysail.server.app.ApplicationProvider;
-import de.twenty11.skysail.server.core.restlet.*;
-import de.twenty11.skysail.server.services.*;
+import de.twenty11.skysail.server.core.restlet.ApplicationContextId;
+import de.twenty11.skysail.server.core.restlet.RouteBuilder;
+import de.twenty11.skysail.server.services.MenuItem;
+import de.twenty11.skysail.server.services.MenuItemProvider;
 
 @Component(immediate = true)
 public class TodoApplication extends SkysailApplication implements ApplicationProvider, MenuItemProvider {
@@ -62,18 +73,12 @@ public class TodoApplication extends SkysailApplication implements ApplicationPr
         router.attach(new RouteBuilder("/Lists/{"+LIST_ID+"}/Todos/{"+TODO_ID+"}", TodoResource.class));
         router.attach(new RouteBuilder("/Lists/{"+LIST_ID+"}/Todos/{"+TODO_ID+"}/", PutTodoResource.class));
         
-       // router.attach(new RouteBuilder("/remote/{url}/Lists", ListsClientResource.class));
     }
 
     public List<MenuItem> getMenuEntries() {
         MenuItem appMenu = new MenuItem(APP_NAME, "/" + APP_NAME, this);
         appMenu.setCategory(MenuItem.Category.APPLICATION_MAIN_MENU);
         return Arrays.asList(appMenu);
-    }
-
-    public String getRemotePath(String installation) {
-        PeersProvider peersProvider = getPeersProvider();
-        return peersProvider.getPath(installation);
     }
 
 }

@@ -2,20 +2,25 @@ package io.skysail.server.restlet.resources;
 
 import io.skysail.api.documentation.API;
 import io.skysail.api.links.LinkRelation;
-import io.skysail.api.responses.*;
+import io.skysail.api.responses.FormResponse;
+import io.skysail.api.responses.SkysailResponse;
 import io.skysail.server.restlet.RequestHandler;
 import io.skysail.server.restlet.filter.AbstractResourceFilter;
 import io.skysail.server.services.PerformanceTimer;
 
 import java.text.ParseException;
-import java.util.*;
-import java.util.stream.Collectors;
+import java.util.Set;
 
-import javax.validation.*;
+import javax.validation.ConstraintValidatorFactory;
+import javax.validation.ConstraintViolation;
+import javax.validation.Validator;
 
-import org.restlet.data.*;
-import org.restlet.resource.*;
-import org.slf4j.*;
+import org.restlet.data.Form;
+import org.restlet.data.Method;
+import org.restlet.resource.Delete;
+import org.restlet.resource.Get;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import de.twenty11.skysail.server.core.restlet.ResourceContextId;
 
@@ -124,33 +129,12 @@ public abstract class EntityServerResource<T> extends SkysailServerResource<T> {
         return LinkRelation.ITEM;
     }
 
-    // input: html|json|..., output: html|json|...
-    /**
-     * @return the response
-     */
-    @Get("html|json|eventstream|treeform|txt|csv|yaml|mailto")
-    @API(desc = "retrieves the entity defined by the url")
-    public SkysailResponse<T> getEntity2() {
-        Set<PerformanceTimer> perfTimer = getApplication().startPerformanceMonitoring(this.getClass().getSimpleName() + ":getEntity");
-        logger.info("Request entry point: {} @Get('html|json|eventstream|treeform|txt')", this.getClass().getSimpleName());
-        logger.info(scoringInfo(getRequest().getClientInfo()));
-        T entity = getEntity("dummy");
-        getApplication().stopPerformanceMonitoring(perfTimer);
-        return new SkysailResponse<T>(entity);
-    }
-
-    /**
-     * @return the response
-     */
     @Get("htmlform")
     @API(desc = "provides a form to delete the entity")
     public SkysailResponse<T> getDeleteForm() {
         return new FormResponse<T>(getEntity("dummy"), ".", "/");
     }
 
-    /**
-     * @return the entity
-     */
     @Delete("x-www-form-urlencoded:html|html|json")
     @API(desc = "deletes the entity defined in the url")
     public T deleteEntity() {
@@ -164,20 +148,6 @@ public abstract class EntityServerResource<T> extends SkysailServerResource<T> {
         getApplication().stopPerformanceMonitoring(perfTimer);
         return entity;
     }
-
-    private String scoringInfo(ClientInfo clientInfo) {
-        List<Preference<MediaType>> acceptedMediaTypes = clientInfo.getAcceptedMediaTypes();
-        StringBuilder sb = new StringBuilder("AcceptedMediaTypes: ");
-        sb.append(acceptedMediaTypes.stream().map(amt -> amt.toString()).collect(Collectors.joining(",")));
-        return sb.toString();
-    }
-
-//    protected T getEntity(String defaultMsg) {
-//        RequestHandler<T> requestHandler = new RequestHandler<T>(getApplication());
-//        AbstractResourceFilter<EntityServerResource<T>, T> chain = requestHandler.createForEntity(Method.GET);
-//        ResponseWrapper<T> wrapper = chain.handle(this, getResponse());
-//        return wrapper.getEntity();
-//    }
 
     protected String getDataAsJson() {
         return "    ";

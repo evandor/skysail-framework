@@ -30,12 +30,11 @@
     felix.fileinstall.log.level=4,\
     org.apache.felix.log.storeDebug=true,\
     logback.configurationFile=config/logback.xml,\
-    obr.repository.url=https://raw.githubusercontent.com/evandor/skysail-repository/master/index.xml https://raw.githubusercontent.com/evandor/skysail/master/cnf/releaserepo/index.xml http://felix.apache.org/obr/releases.xml
-    #,\
-    #http.proxyHost=192.168.11.140,\
-    #http.proxyPort=8080,\
-    #https.proxyHost=192.168.11.140,\
-    #https.proxyPort=8080
+    obr.repository.url=https://raw.githubusercontent.com/evandor/skysail-repository/master/index.xml https://raw.githubusercontent.com/evandor/skysail/master/cnf/releaserepo/index.xml http://felix.apache.org/obr/releases.xml,\
+    http.proxyHost=192.168.11.140,\
+    http.proxyPort=8080,\
+    https.proxyHost=192.168.11.140,\
+    https.proxyPort=8080
 
 
 # not used here, resolution takes too long...

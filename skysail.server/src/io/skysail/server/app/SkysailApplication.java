@@ -769,4 +769,9 @@ public abstract class SkysailApplication extends Application implements Applicat
         perfTimer.stream().forEach(timer -> timer.stop());
     }
 
+    public String getRemotePath(String installation, String subpath) {
+        PeersProvider peersProvider = getPeersProvider();
+        return peersProvider.getPath(installation) + subpath;
+    }
+
 }

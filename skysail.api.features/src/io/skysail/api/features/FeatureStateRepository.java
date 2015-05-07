@@ -5,7 +5,6 @@ import aQute.bnd.annotation.ProviderType;
 /**
  * Implementors retrieve or update the current featureState for a feature based
  * on some persistence scheme.
- *
  */
 @ProviderType
 public interface FeatureStateRepository {

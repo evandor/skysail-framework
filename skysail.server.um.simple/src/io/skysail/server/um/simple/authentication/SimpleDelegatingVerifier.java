@@ -3,11 +3,7 @@ package io.skysail.server.um.simple.authentication;
 import lombok.extern.slf4j.Slf4j;
 
 import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.authc.AuthenticationException;
-import org.apache.shiro.authc.IncorrectCredentialsException;
-import org.apache.shiro.authc.LockedAccountException;
-import org.apache.shiro.authc.UnknownAccountException;
-import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.authc.*;
 import org.apache.shiro.subject.Subject;
 import org.restlet.security.SecretVerifier;
 
@@ -30,9 +26,9 @@ public class SimpleDelegatingVerifier extends SecretVerifier {
             log.info("login event for user '{}' successful", identifier);
             return RESULT_VALID;
         } catch (UnknownAccountException uae) {
-            log.info("UnknownAccountException '" + uae.getMessage() + "' when login in " + identifier, uae);
+            log.debug("UnknownAccountException '" + uae.getMessage() + "' when login in " + identifier);
         } catch (IncorrectCredentialsException ice) {
-            log.info("IncorrectCredentialsException '" + ice.getMessage() + "' when login in " + identifier, ice);
+            log.debug("IncorrectCredentialsException '" + ice.getMessage() + "' when login in " + identifier);
         } catch (LockedAccountException lae) {
             log.info("LockedAccountException '" + lae.getMessage() + "' when login in " + identifier, lae);
         } catch (AuthenticationException ae) {

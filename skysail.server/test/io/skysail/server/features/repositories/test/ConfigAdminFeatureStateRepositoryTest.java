@@ -4,7 +4,7 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 import io.skysail.api.features.Feature;
 import io.skysail.api.features.FeatureState;
-import io.skysail.server.features.repositories.FeaturesRepository;
+import io.skysail.server.features.repositories.ConfigAdminFeatureStateRepository;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -13,15 +13,15 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
 
-public class FeaturesRepositoryTest {
+public class ConfigAdminFeatureStateRepositoryTest {
 
-    private FeaturesRepository featuresRepository;
+    private ConfigAdminFeatureStateRepository featuresRepository;
     private Map<String, String> configMap;
     private Feature feature;
 
     @Before
     public void setUp() {
-        featuresRepository = new FeaturesRepository();
+        featuresRepository = new ConfigAdminFeatureStateRepository();
         configMap = new HashMap<>();
         feature = Mockito.mock(Feature.class);
     }

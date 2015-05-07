@@ -1,18 +1,16 @@
 package io.skysail.server.um.simple.authentication;
 
-import io.skysail.server.utils.HashedPasswordAndSalt;
-import io.skysail.server.utils.PasswordUtils;
+import io.skysail.server.utils.*;
 
-import java.time.Duration;
-import java.time.LocalDateTime;
+import java.time.*;
 
 import lombok.extern.slf4j.Slf4j;
 
-import org.apache.shiro.authc.AuthenticationInfo;
-import org.apache.shiro.authc.AuthenticationToken;
+import org.apache.shiro.authc.*;
 import org.apache.shiro.authc.credential.SimpleCredentialsMatcher;
-import org.apache.shiro.cache.Cache;
-import org.apache.shiro.cache.CacheManager;
+import org.apache.shiro.cache.*;
+
+import de.twenty11.skysail.server.core.restlet.SecurityFeatures;
 
 /**
  * A CredentialsMatcher delegating to the PasswordUtils, and adding caching of
@@ -31,7 +29,7 @@ public class SkysailHashedCredentialsMatcher extends SimpleCredentialsMatcher {
     public boolean doCredentialsMatch(AuthenticationToken userProvidedToken, AuthenticationInfo info) {
         String userProvidedPassword = new String((char[]) userProvidedToken.getCredentials());
         HashedPasswordAndSalt match = HashedPasswordAndSalt.direct(new String((char[]) info.getCredentials()), null);
-        if (cacheManager != null) {
+        if (cacheManager != null && SecurityFeatures.USE_CREDENTIALS_CACHE_FEATURE.isActive()) {
             Cache<Object, Object> cache = cacheManager.getCache(CREDENTIALS_CACHE);
             log.info("checking cache for entry {}", match.getHashedPassword());
             Object object = cache.get(match.getHashedPassword());
@@ -71,7 +69,7 @@ public class SkysailHashedCredentialsMatcher extends SimpleCredentialsMatcher {
     }
 
     private void addToCache(String hash, boolean validated) {
-        if (validated && cacheManager != null) {
+        if (validated && cacheManager != null && SecurityFeatures.USE_CREDENTIALS_CACHE_FEATURE.isActive()) {
             Cache<Object, Object> cache = cacheManager.getCache(CREDENTIALS_CACHE);
             cache.put(hash, LocalDateTime.now());
             log.info("added entry {} to credentials hash cache with current timestamp, size now is {}", hash,

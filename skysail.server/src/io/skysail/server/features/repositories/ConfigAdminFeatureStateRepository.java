@@ -1,21 +1,23 @@
 package io.skysail.server.features.repositories;
 
-import io.skysail.api.features.Feature;
-import io.skysail.api.features.FeatureState;
-import io.skysail.api.features.FeatureStateRepository;
+import io.skysail.api.features.*;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 import lombok.extern.slf4j.Slf4j;
-import aQute.bnd.annotation.component.Activate;
-import aQute.bnd.annotation.component.Component;
-import aQute.bnd.annotation.component.ConfigurationPolicy;
-import aQute.bnd.annotation.component.Deactivate;
+import aQute.bnd.annotation.component.*;
 
+/**
+ * an implementation using the (file based) configuration provided by the
+ * OSGi configAdmin.
+ * 
+ * <p>As usual, the configuration resides in a file with the fully qualified
+ * name of this class, postfixed with ".cfg", in the config folder.
+ *
+ */
 @Component(immediate = true, configurationPolicy = ConfigurationPolicy.require)
 @Slf4j
-public class FeaturesRepository implements FeatureStateRepository {
+public class ConfigAdminFeatureStateRepository implements FeatureStateRepository {
 
     private Map<String, String> config;
 

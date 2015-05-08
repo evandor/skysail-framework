@@ -1,34 +1,37 @@
 package io.skysail.server.converter.impl.factories;
 
+import io.skysail.api.responses.SkysailResponse;
 import io.skysail.server.converter.impl.FieldFactory;
 import io.skysail.server.restlet.resources.SkysailServerResource;
 import io.skysail.server.utils.ReflectionUtils;
 
-import java.lang.reflect.Field;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import lombok.NonNull;
 import de.twenty11.skysail.server.core.FormField;
 
-public class DefaultEntityFieldFactory extends FieldFactory {
+public class SkysailResponseEntityFieldFactory extends FieldFactory {
 
-    private Object source;
+    private Class<? extends Object> cls;
+    private SkysailResponse<?> source;
 
-    public DefaultEntityFieldFactory(@NonNull Object source) {
+    public SkysailResponseEntityFieldFactory(@NonNull SkysailResponse<?> source, Class<? extends Object> cls) {
         this.source = source;
+        this.cls = cls;
     }
 
+    /**
+     * the class object which was provided in the constructor is scanned for its fields and
+     * for each of those which are valid in respect to the current resource (see the 
+     * "test" method) a new FormField is created. 
+     */
     @Override
     public List<FormField> determineFrom(SkysailServerResource<?> resource) throws Exception {
-        Class<?> cls = source.getClass();
-        List<Field> inheritedFields = ReflectionUtils.getInheritedFields(cls);
-        System.out.println(inheritedFields);
         return ReflectionUtils.getInheritedFields(cls).stream()
                 .filter(f -> test(resource, f))
-                .map(f -> new FormField(f, resource, source))
+                .map(f -> new FormField(f, resource, source, source.getEntity()))
                 .collect(Collectors.toList());
-       // return Collections.emptyList();
     }
 
 }

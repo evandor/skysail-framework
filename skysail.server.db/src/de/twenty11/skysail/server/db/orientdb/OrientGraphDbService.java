@@ -172,7 +172,9 @@ public class OrientGraphDbService extends AbstractOrientDbService implements DbS
     public <T> T findObjectById(Class<?> cls, String id) {
         OObjectDatabaseTx objectDb = getObjectDb();
         objectDb.getEntityManager().registerEntityClass(cls);
-        return objectDb.load(new ORecordId(id));
+         T load = objectDb.load(new ORecordId(id));
+         return objectDb.detachAll(load, true);
+         //return load;
     }
     
     @Override

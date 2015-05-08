@@ -25,8 +25,10 @@ public class ApplicationsCrudIntegrationTests extends IntegrationTests<Applicati
     }
 
     @Test
-    public void posting_new_application_with_name_persists_it() throws Exception {
-        browser.createApplication(new Application("app1"));
+    public void posting_new_application_with_name_and_path_persists_it() throws Exception {
+        Application application = new Application("app1");
+        application.setPath(".");
+        browser.createApplication(application);
         Representation applications = browser.getApplications();
         assertThat(applications.getText(), containsString("app1"));
     }

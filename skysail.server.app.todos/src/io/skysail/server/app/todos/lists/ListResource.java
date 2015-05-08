@@ -10,8 +10,6 @@ import io.skysail.server.restlet.resources.EntityServerResource;
 import java.util.List;
 import java.util.function.Consumer;
 
-import org.restlet.data.MediaType;
-import org.restlet.data.Reference;
 import org.restlet.data.Status;
 import org.restlet.resource.ClientResource;
 
@@ -59,7 +57,7 @@ public class ListResource extends EntityServerResource<TodoList> {
         String peersCredentialsName = "Credentials_" + installation;
         String peersCredentials = getRequest().getCookies().getFirstValue(peersCredentialsName);
 
-        String path = app.getRemotePath(installation, "/Todos/Lists/" + Reference.encode(listId));
+        String path = app.getRemotePath(installation, "/Todos/Lists/" + listId);
         //String uri = path + "/Todos/Lists";
         
         if (peersCredentials == null) {
@@ -68,7 +66,7 @@ public class ListResource extends EntityServerResource<TodoList> {
         } 
         ClientResource cr = new ClientResource(path);
         cr.getCookies().add("Credentials", peersCredentials);
-        cr.get(MediaType.APPLICATION_JSON);
+        //cr.get(MediaType.APPLICATION_JSON);
 
         return cr.get(TodoList.class);
     }

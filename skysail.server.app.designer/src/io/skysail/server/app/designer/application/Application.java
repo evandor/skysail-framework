@@ -35,6 +35,11 @@ public class Application implements Identifiable {
     @Pattern(regexp = "[a-zA-Z_]([a-zA-Z0-9_])*", message = "please choose a simpler Identifier. Some of the characters are not allowed.")
     private String name;
     
+//    @Field
+//    @Size(min = 1)
+//    @NotNull
+//    private String path;
+    
     @Field(type = InputType.READONLY)
     @ListView(hide = true)
     private String owner;

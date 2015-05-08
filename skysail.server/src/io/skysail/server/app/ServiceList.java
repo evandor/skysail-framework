@@ -19,6 +19,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
+import java.util.concurrent.atomic.AtomicReference;
 import java.util.stream.Stream;
 
 import lombok.Getter;
@@ -61,7 +62,9 @@ import de.twenty11.skysail.server.services.EncryptorService;
 @Slf4j
 public class ServiceList implements ServiceListProvider {
 
-    private volatile ApplicationListProvider applicationListProvider;
+    //http://stackoverflow.com/questions/30061032/best-way-to-handle-dynamic-osgi-service-dependencies
+    private AtomicReference<ApplicationListProvider> applicationListProvider = new AtomicReference<>();
+
     private volatile AuthorizationService authorizationService;
     private volatile FavoritesService favoritesService;
     private volatile AuthenticationService authenticationService;
@@ -118,11 +121,11 @@ public class ServiceList implements ServiceListProvider {
 
     @Reference(optional = true, dynamic = true, multiple = false)
     public synchronized void setApplicationListProvider(ApplicationListProvider applicationProvider) {
-        this.applicationListProvider = applicationProvider;
+        this.applicationListProvider.set(applicationProvider);
     }
 
     public void unsetApplicationListProvider(@SuppressWarnings("unused") ApplicationListProvider service) {
-        this.applicationListProvider = null;
+        this.applicationListProvider.set(null);
     }
 
     /** === ConfigAdmin Service ============================== */
@@ -135,13 +138,13 @@ public class ServiceList implements ServiceListProvider {
         }
         Context appContext = skysailComponent.getContext().createChildContext();
         getSkysailApps().forEach(app -> app.setContext(appContext));
-        applicationListProvider.attach(skysailComponent);
+        applicationListProvider.get().attach(skysailComponent);
     }
 
     public synchronized void unsetSkysailComponentProvider(@SuppressWarnings("unused") SkysailComponentProvider service) {
         this.skysailComponent = null;
         getSkysailApps().forEach(a -> a.setContext(null));
-        applicationListProvider.detach(skysailComponent);
+        applicationListProvider.get().detach(skysailComponent);
     }
 
     @Override
@@ -366,7 +369,7 @@ public class ServiceList implements ServiceListProvider {
     }
 
     private Stream<SkysailApplication> getSkysailApps() {
-        return applicationListProvider.getApplications().stream();
+        return applicationListProvider.get().getApplications().stream();
     }
 
 }

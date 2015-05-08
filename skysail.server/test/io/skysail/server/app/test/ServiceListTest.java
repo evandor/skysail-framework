@@ -2,14 +2,24 @@ package io.skysail.server.app.test;
 
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
-import io.skysail.api.text.*;
-import io.skysail.server.app.*;
+import io.skysail.api.text.Translation;
+import io.skysail.api.text.TranslationRenderService;
+import io.skysail.api.text.TranslationStore;
+import io.skysail.server.app.ServiceList;
+import io.skysail.server.app.SkysailApplication;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Locale;
+import java.util.Optional;
 
-import org.junit.*;
+import org.junit.Before;
+import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.*;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
 import org.osgi.framework.BundleContext;
 import org.restlet.Request;
@@ -21,7 +31,7 @@ public class ServiceListTest {
 
     @Mock
     private ApplicationListProvider applicationListProvider;
-    
+
     @InjectMocks
     private ServiceList serviceList;
 
@@ -36,6 +46,7 @@ public class ServiceListTest {
         List<SkysailApplication> applications = new ArrayList<>();
         application = new SkysailApplication() {};
         applications.add(application);
+        serviceList.setApplicationListProvider(applicationListProvider);
         Mockito.when(applicationListProvider.getApplications()).thenReturn(applications);
         translationStore = Mockito.mock(TranslationStore.class);
         renderService = Mockito.mock(TranslationRenderService.class);

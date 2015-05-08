@@ -5,7 +5,7 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.nullValue;
 import static org.junit.Assert.assertThat;
 import io.skysail.api.responses.SkysailResponse;
-import io.skysail.server.converter.impl.factories.DefaultEntityFieldFactory;
+import io.skysail.server.converter.impl.factories.SkysailResponseEntityFieldFactory;
 import io.skysail.server.restlet.resources.SkysailServerResource;
 
 import java.util.List;
@@ -15,9 +15,9 @@ import org.junit.Test;
 
 import de.twenty11.skysail.server.core.FormField;
 
-public class DefaultEntityFieldFactoryTest {
+public class SkysailResponseEntityFieldFactoryTest {
 
-    private DefaultEntityFieldFactory factory;
+    private SkysailResponseEntityFieldFactory factory;
 
     private SkysailServerResource<?> resource;
 
@@ -29,7 +29,7 @@ public class DefaultEntityFieldFactoryTest {
     @Test
     public void test() throws Exception {
         SkysailResponse<?> source = new SkysailResponse<String>("entity");
-        factory = new DefaultEntityFieldFactory(source, TestEntity.class);
+        factory = new SkysailResponseEntityFieldFactory(source, TestEntity.class);
         List<FormField> fields = factory.determineFrom(resource);
         assertThat(fields.size(), is(1));
         assertThat(fields.get(0).getName(), is(equalTo("title")));

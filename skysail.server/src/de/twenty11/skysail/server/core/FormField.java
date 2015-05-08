@@ -60,18 +60,17 @@ public class FormField {
 
     private Map<String, String> selectionOptions;
 
-    public FormField(Field fieldAnnotation, SkysailServerResource<?> resource, Object source, Object entity) {
+    public FormField(Field field, SkysailServerResource<?> resource, Object source) {
         this.resource = resource;
-        this.name = fieldAnnotation.getName();
-        inputType = getFromFieldAnnotation(fieldAnnotation);
-        referenceAnnotation = fieldAnnotation.getAnnotation(Reference.class);
-        formFieldAnnotation = fieldAnnotation.getAnnotation(io.skysail.api.forms.Field.class);
+        this.name = field.getName();
+        inputType = getFromFieldAnnotation(field);
+        referenceAnnotation = field.getAnnotation(Reference.class);
+        formFieldAnnotation = field.getAnnotation(io.skysail.api.forms.Field.class);
         this.source = source;
-        this.entity = entity;
-
-        Map<String, Object> entityMap = OrientDbUtils.toMap(entity);
+        
+        Map<String, Object> entityMap = OrientDbUtils.toMap(source);
         if (entityMap != null) {
-            Object val = entityMap.get(fieldAnnotation.getName());
+            Object val = entityMap.get(field.getName());
             if (val == null) {
                 value = "---";
             } else if (val instanceof String) {
@@ -79,12 +78,59 @@ public class FormField {
             } else {
                 value = val.toString();
             }
-            type = fieldAnnotation.getType();
+            type = field.getType();
+
+        } else {
+//            Method[] methods = entity.getClass().getMethods();
+//            String method = "get" + field.getName().substring(0, 1).toUpperCase()
+//                    + field.getName().substring(1);
+//            Arrays.stream(methods).filter(m -> m.getName().equals(method)).findFirst().ifPresent(m -> {
+//                try {
+//                    Object invocationResult = m.invoke(entity, new Object[] {});
+//                    if (invocationResult == null) {
+//                        value = "";
+//                    } else if (invocationResult instanceof String) {
+//                        value = (String) invocationResult;
+//                    } else if (invocationResult instanceof Date) {
+//                        this.type = Date.class;
+//                        value = invocationResult.toString();
+//                    } else {
+//                        value = invocationResult.toString();
+//                    }
+//                } catch (Exception e) {
+//                    log.error(e.getMessage(), e);
+//                }
+//            });
+        }
+
+    }
+   
+
+    public FormField(Field field, SkysailServerResource<?> resource, Object source, Object entity) {
+        this.resource = resource;
+        this.name = field.getName();
+        inputType = getFromFieldAnnotation(field);
+        referenceAnnotation = field.getAnnotation(Reference.class);
+        formFieldAnnotation = field.getAnnotation(io.skysail.api.forms.Field.class);
+        this.source = source;
+        this.entity = entity;
+
+        Map<String, Object> entityMap = OrientDbUtils.toMap(entity);
+        if (entityMap != null) {
+            Object val = entityMap.get(field.getName());
+            if (val == null) {
+                value = "---";
+            } else if (val instanceof String) {
+                value = (String) val;
+            } else {
+                value = val.toString();
+            }
+            type = field.getType();
 
         } else {
             Method[] methods = entity.getClass().getMethods();
-            String method = "get" + fieldAnnotation.getName().substring(0, 1).toUpperCase()
-                    + fieldAnnotation.getName().substring(1);
+            String method = "get" + field.getName().substring(0, 1).toUpperCase()
+                    + field.getName().substring(1);
             Arrays.stream(methods).filter(m -> m.getName().equals(method)).findFirst().ifPresent(m -> {
                 try {
                     Object invocationResult = m.invoke(entity, new Object[] {});

@@ -82,6 +82,7 @@ import de.twenty11.skysail.server.metrics.MetricsService;
 import de.twenty11.skysail.server.security.RolePredicate;
 import de.twenty11.skysail.server.security.SkysailRolesAuthorizer;
 import de.twenty11.skysail.server.services.EncryptorService;
+import de.twenty11.skysail.server.services.MenuItem;
 import de.twenty11.skysail.server.services.ResourceBundleProvider;
 
 /**
@@ -192,6 +193,8 @@ public abstract class SkysailApplication extends Application implements Applicat
     private volatile Set<TranslationStoreHolder> translationStores = Collections
             .newSetFromMap(new ConcurrentHashMap<TranslationStoreHolder, Boolean>());
     private volatile PeersProvider peersProvider;
+
+    private List<MenuItem> applicationMenu;
 
     public SkysailApplication() {
         getEncoderService().setEnabled(true);
@@ -812,6 +815,21 @@ public abstract class SkysailApplication extends Application implements Applicat
     public String getRemotePath(String installation, String subpath) {
         PeersProvider peersProvider = getPeersProvider();
         return peersProvider.getPath(installation) + subpath;
+    }
+
+    public List<MenuItem> getMenuEntriesWithCache() {
+        if (applicationMenu == null) {
+            applicationMenu = createMenuEntries();
+        }
+        return applicationMenu;
+    }
+
+    public List<MenuItem> createMenuEntries() {
+        return Collections.emptyList();
+    }
+    
+    public void invalidateMenuCache() {
+        applicationMenu = null;
     }
 
 }

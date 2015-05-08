@@ -7,6 +7,7 @@ import io.skysail.server.converter.impl.factories.DynamicEntityFieldFactory;
 import io.skysail.server.converter.impl.factories.ListEnumFieldFactory;
 import io.skysail.server.converter.impl.factories.ListMapFieldFactory;
 import io.skysail.server.converter.impl.factories.NoFieldFactory;
+import io.skysail.server.converter.impl.factories.SkysailResponseEntityFieldFactory;
 import io.skysail.server.restlet.resources.SkysailServerResource;
 
 import java.util.List;
@@ -26,21 +27,16 @@ public class FieldsFactory {
         if (source instanceof SkysailResponse) {
             return entityFactory(source);
         }
-        return new NoFieldFactory();
+        return new DefaultEntityFieldFactory(source);
     }
 
     private static FieldFactory entityFactory(Object source) {
         Object entity = ((SkysailResponse<?>) source).getEntity();
         
-//        if (entity.getClass().getName().contains("_$$_")) {
-//            Map<String, Object> entityMap = OrientDbUtils.toMap(entity);
-//            return new MapFieldFactory(entityMap);
-//        }
-        
         if (entity instanceof DynamicEntity) {
             return new DynamicEntityFieldFactory((DynamicEntity) entity);
         } else {
-            return new DefaultEntityFieldFactory((SkysailResponse<?>) source, entity.getClass());
+            return new SkysailResponseEntityFieldFactory((SkysailResponse<?>) source, entity.getClass());
         }
     }
 

@@ -136,12 +136,12 @@ public abstract class EntityServerResource<T> extends SkysailServerResource<T> {
      */
     @Get("html|json|eventstream|treeform|txt|csv|yaml|mailto")
     @API(desc = "retrieves the entity defined by the url")
-    public SkysailResponse<T> getEntity2() {
+    public T getEntity2() {
         Set<PerformanceTimer> perfTimer = getApplication().startPerformanceMonitoring(this.getClass().getSimpleName() + ":getEntity");
         logger.info("Request entry point: {} @Get('html|json|eventstream|treeform|txt')", this.getClass().getSimpleName());
         T entity = getEntity3();
         getApplication().stopPerformanceMonitoring(perfTimer);
-        return new SkysailResponse<T>(entity);
+        return entity;
     }
     
     @Get("htmlform")

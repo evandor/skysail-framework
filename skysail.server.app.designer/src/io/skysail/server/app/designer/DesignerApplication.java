@@ -2,32 +2,56 @@ package io.skysail.server.app.designer;
 
 import io.skysail.server.app.SkysailApplication;
 import io.skysail.server.app.designer.application.Application;
-import io.skysail.server.app.designer.application.resources.*;
+import io.skysail.server.app.designer.application.resources.ApplicationResource;
+import io.skysail.server.app.designer.application.resources.ApplicationsResource;
+import io.skysail.server.app.designer.application.resources.PostApplicationResource;
+import io.skysail.server.app.designer.application.resources.PutApplicationResource;
 import io.skysail.server.app.designer.codegen.InMemoryJavaCompiler;
 import io.skysail.server.app.designer.entities.Entity;
-import io.skysail.server.app.designer.entities.resources.*;
+import io.skysail.server.app.designer.entities.resources.EntitiesResource;
+import io.skysail.server.app.designer.entities.resources.EntityResource;
+import io.skysail.server.app.designer.entities.resources.PostEntityResource;
+import io.skysail.server.app.designer.entities.resources.PostSubEntityResource;
+import io.skysail.server.app.designer.entities.resources.PutEntityResource;
 import io.skysail.server.app.designer.fields.EntityField;
-import io.skysail.server.app.designer.fields.resources.*;
+import io.skysail.server.app.designer.fields.resources.FieldResource;
+import io.skysail.server.app.designer.fields.resources.FieldsResource;
+import io.skysail.server.app.designer.fields.resources.PostFieldResource;
+import io.skysail.server.app.designer.fields.resources.PutFieldResource;
 import io.skysail.server.app.designer.repo.DesignerRepository;
 import io.skysail.server.db.DbRepository;
-import io.skysail.server.restlet.resources.*;
+import io.skysail.server.restlet.resources.ListServerResource;
+import io.skysail.server.restlet.resources.PostEntityServerResource;
 import io.skysail.server.utils.BundleUtils;
 
 import java.io.IOException;
 import java.lang.reflect.Method;
-import java.nio.file.*;
-import java.util.*;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+import java.util.Set;
+import java.util.SortedSet;
+import java.util.TreeSet;
 import java.util.stream.Collectors;
 
 import lombok.extern.slf4j.Slf4j;
-import aQute.bnd.annotation.component.*;
+import aQute.bnd.annotation.component.Component;
+import aQute.bnd.annotation.component.Reference;
 
 import com.google.common.collect.Iterables;
 
 import de.twenty11.skysail.server.app.ApplicationProvider;
-import de.twenty11.skysail.server.beans.*;
-import de.twenty11.skysail.server.core.restlet.*;
-import de.twenty11.skysail.server.services.*;
+import de.twenty11.skysail.server.beans.DynamicEntity;
+import de.twenty11.skysail.server.beans.EntityDynaProperty;
+import de.twenty11.skysail.server.core.restlet.ApplicationContextId;
+import de.twenty11.skysail.server.core.restlet.RouteBuilder;
+import de.twenty11.skysail.server.services.MenuItem;
+import de.twenty11.skysail.server.services.MenuItemProvider;
 
 @Component(immediate = true)
 @Slf4j
@@ -238,21 +262,25 @@ public class DesignerApplication extends SkysailApplication implements MenuItemP
     }
 
     public List<MenuItem> getMenuEntries() {
-        List<MenuItem> result = new ArrayList<>();
+        return super.getMenuEntriesWithCache();
+    }
+    
+    public List<MenuItem> createMenuEntries() {
         MenuItem appMenu = new MenuItem("AppDesigner", "/" + APP_NAME, this);
         appMenu.setCategory(MenuItem.Category.APPLICATION_MAIN_MENU);
-        result.add(appMenu);
-        addDesignerAppMenuItems(result);
-        return result;
+        List<MenuItem> menuItems = new ArrayList<>();
+        menuItems.add(appMenu);
+        menuItems.addAll(addDesignerAppMenuItems());
+        return menuItems;
     }
 
-    private void addDesignerAppMenuItems(List<MenuItem> result) {
+    private List<MenuItem> addDesignerAppMenuItems() {
         List<Application> apps = getRepository().findAll(Application.class);
-        apps.stream().forEach(a -> {
+        return apps.stream().map(a -> {
             MenuItem menu = new MenuItem(a.getName(), "/" + APP_NAME + "/preview/" + a.getName(), this);
             menu.setCategory(MenuItem.Category.DESIGNER_APP_MENU);
-            result.add(menu);
-        });
+            return menu;
+        }).collect(Collectors.toList());
     }
 
     public Entity getEntity(Application application, String entityId) {
@@ -298,7 +326,8 @@ public class DesignerApplication extends SkysailApplication implements MenuItemP
         Application application = getRepository().getById(Application.class, appId);
         Optional<Entity> entityFromApplication = getEntityFromApplication(application, entityId);
         if (entityFromApplication.isPresent()) {
-            return entityFromApplication.get().getFields().stream().filter(f -> {
+            List<EntityField> fields = entityFromApplication.get().getFields();
+            return fields.stream().filter(f -> {
                 if (f == null || f.getId() == null) {
                     return false;
                 }
@@ -309,7 +338,6 @@ public class DesignerApplication extends SkysailApplication implements MenuItemP
     }
     
     public Optional<Entity> getEntityFromApplication(Application application, String entityId) {
-        System.out.println(application.getEntities());
         return application.getEntities().stream().filter(e -> {
             if (e == null || e.getId() == null) {
                 return false;

@@ -2,32 +2,23 @@ package io.skysail.server.restlet.resources;
 
 import io.skysail.api.documentation.API;
 import io.skysail.api.domain.Identifiable;
-import io.skysail.api.links.Link;
-import io.skysail.api.links.LinkRelation;
-import io.skysail.api.responses.FormResponse;
-import io.skysail.api.responses.SkysailResponse;
+import io.skysail.api.links.*;
+import io.skysail.api.responses.*;
 import io.skysail.server.restlet.RequestHandler;
 import io.skysail.server.restlet.filter.AbstractResourceFilter;
 import io.skysail.server.services.PerformanceTimer;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 import javax.validation.ConstraintViolation;
 
 import lombok.extern.slf4j.Slf4j;
 
-import org.restlet.data.Form;
-import org.restlet.data.Method;
+import org.restlet.data.*;
 import org.restlet.representation.Variant;
-import org.restlet.resource.Get;
-import org.restlet.resource.Patch;
-import org.restlet.resource.Put;
-import org.restlet.resource.ResourceException;
+import org.restlet.resource.*;
 
-import de.twenty11.skysail.server.core.restlet.ResourceContextId;
-import de.twenty11.skysail.server.core.restlet.ResponseWrapper;
+import de.twenty11.skysail.server.core.restlet.*;
 
 /**
  * An abstract resource template dealing with PUT requests (see
@@ -143,11 +134,11 @@ public abstract class PutEntityServerResource<T> extends SkysailServerResource<T
 
     @Put("json")
     @API(desc = "generic PUT for JSON")
-    public Object putEntity(T entity) {
+    public Object putEntity(T entity, Variant variant) {
         Set<PerformanceTimer> perfTimer = getApplication().startPerformanceMonitoring(this.getClass().getSimpleName() + ":putEntity");
         log.info("Request entry point: {} @Put('json')", this.getClass().getSimpleName());
         getRequest().getAttributes().put(SKYSAIL_SERVER_RESTLET_ENTITY, entity);
-        Object put = put((Form) null);
+        Object put = put((Form) null, variant);
         getApplication().stopPerformanceMonitoring(perfTimer);
         return put;
     }
@@ -158,19 +149,20 @@ public abstract class PutEntityServerResource<T> extends SkysailServerResource<T
         Set<PerformanceTimer> perfTimer = getApplication().startPerformanceMonitoring(this.getClass().getSimpleName() + ":patchEntity");
         log.info("Request entry point: {} @Patch('json')", this.getClass().getSimpleName());
         getRequest().getAttributes().put(SKYSAIL_SERVER_RESTLET_ENTITY, entity);
-        Object patch = put((Form) null);
+        Object patch = put((Form) null, null);
         getApplication().stopPerformanceMonitoring(perfTimer);
         return patch;
     }
 
     @Put("x-www-form-urlencoded:html|json")
     @API(desc = "generic PUT for x-www-form-urlencoded")
-    public Object put(Form form) {
+    public Object put(Form form, Variant variant) {
         Set<PerformanceTimer> perfTimer = getApplication().startPerformanceMonitoring(this.getClass().getSimpleName() + ":put");
         log.info("Request entry point: {} @Put('x-www-form-urlencoded:html|json')", this.getClass().getSimpleName());
         if (form != null) {
             getRequest().getAttributes().put(SKYSAIL_SERVER_RESTLET_FORM, form);
         }
+        getRequest().getAttributes().put(SKYSAIL_SERVER_RESTLET_VARIANT, variant);
         RequestHandler<T> requestHandler = new RequestHandler<T>(getApplication());
         AbstractResourceFilter<PutEntityServerResource<T>, T> handler = requestHandler.createForPut();
         ResponseWrapper<T> handledRequest = handler.handle(this, getResponse());

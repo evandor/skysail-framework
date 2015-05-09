@@ -2,21 +2,14 @@ package io.skysail.api.links;
 
 import io.skysail.api.utils.StringParserUtils;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
-import lombok.Getter;
-import lombok.NonNull;
-import lombok.ToString;
+import lombok.*;
 import lombok.extern.slf4j.Slf4j;
 
 import org.restlet.Request;
-import org.restlet.data.MediaType;
-import org.restlet.data.Method;
+import org.restlet.data.*;
 import org.restlet.resource.Resource;
 
 import com.google.common.base.Predicate;
@@ -66,6 +59,9 @@ public class Link {
      */
     private String refId;
 
+    
+    private Class<?> cls;
+
     public static class Builder {
 
         private String uri;
@@ -77,6 +73,7 @@ public class Link {
         private LinkRole role = LinkRole.DEFAULT;
         private String refId;
         private Map<MediaType, String> images = new HashMap<>();
+        private Class<?> cls;
 
         public Builder(@NonNull Link linkTemplate) {
             this.uri = linkTemplate.getUri();
@@ -88,6 +85,7 @@ public class Link {
             this.role  = linkTemplate.getRole();
             this.refId = linkTemplate.getRefId();
             this.images  = linkTemplate.getImages();
+            this.cls = linkTemplate.getCls();
         }
         
         public Builder(@NonNull String uri) {
@@ -111,6 +109,11 @@ public class Link {
 
         public Builder relation(@NonNull LinkRelation relation) {
             this.rel = relation;
+            return this;
+        }
+
+        public Builder definingClass(@NonNull Class<?> cls) {
+            this.cls = cls;
             return this;
         }
 
@@ -166,6 +169,7 @@ public class Link {
         this.role = linkBuilder.role;
         this.refId = linkBuilder.refId;
         this.images = linkBuilder.images;
+        this.cls = linkBuilder.cls;
     }
 
     /**

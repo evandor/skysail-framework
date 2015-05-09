@@ -1,24 +1,17 @@
 package io.skysail.client.testsupport;
 
-import io.skysail.api.links.Link;
-import io.skysail.api.links.LinkRelation;
+import io.skysail.api.links.*;
+import io.skysail.server.restlet.resources.SkysailServerResource;
 
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.util.Arrays;
-import java.util.List;
+import java.net.*;
+import java.util.*;
 import java.util.stream.Collectors;
 
-import lombok.Getter;
-import lombok.NonNull;
+import lombok.*;
 import lombok.extern.slf4j.Slf4j;
 
 import org.restlet.Response;
-import org.restlet.data.Form;
-import org.restlet.data.Header;
-import org.restlet.data.MediaType;
-import org.restlet.data.Method;
-import org.restlet.data.Reference;
+import org.restlet.data.*;
 import org.restlet.representation.Representation;
 import org.restlet.resource.ClientResource;
 import org.restlet.util.Series;
@@ -71,6 +64,7 @@ public class ApplicationClient<T> {
 
     public Representation post(Object entity) {
         log.info("{}issuing POST on '{}', providing credentials {}", TESTTAG, url, credentials);
+        url = (url.contains("?") ? url + "&" : url + "?") + SkysailServerResource.NO_REDIRECTS ;
         cr = new ClientResource(url);
         cr.setFollowingRedirects(false);
         cr.getCookies().add("Credentials", credentials);

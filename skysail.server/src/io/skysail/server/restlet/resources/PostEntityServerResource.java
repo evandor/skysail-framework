@@ -1,37 +1,26 @@
 package io.skysail.server.restlet.resources;
 
 import io.skysail.api.documentation.API;
-import io.skysail.api.links.Link;
-import io.skysail.api.links.LinkRelation;
-import io.skysail.api.responses.FormResponse;
-import io.skysail.api.responses.SkysailResponse;
+import io.skysail.api.links.*;
+import io.skysail.api.responses.*;
 import io.skysail.server.restlet.RequestHandler;
-import io.skysail.server.restlet.filter.AbstractResourceFilter;
-import io.skysail.server.restlet.filter.CheckBusinessViolationsFilter;
-import io.skysail.server.restlet.filter.FormDataExtractingFilter;
+import io.skysail.server.restlet.filter.*;
 import io.skysail.server.services.PerformanceTimer;
 
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 import javax.validation.ConstraintViolation;
 
 import lombok.extern.slf4j.Slf4j;
 
 import org.apache.shiro.SecurityUtils;
-import org.restlet.data.ClientInfo;
-import org.restlet.data.Form;
-import org.restlet.data.Method;
+import org.restlet.data.*;
 import org.restlet.data.Status;
-import org.restlet.resource.Get;
-import org.restlet.resource.Post;
-import org.restlet.resource.ResourceException;
+import org.restlet.representation.Variant;
+import org.restlet.resource.*;
 
-import de.twenty11.skysail.server.core.restlet.ResourceContextId;
-import de.twenty11.skysail.server.core.restlet.ResponseWrapper;
+import de.twenty11.skysail.server.core.restlet.*;
 import de.twenty11.skysail.server.services.SearchService;
 
 /**
@@ -182,7 +171,7 @@ public abstract class PostEntityServerResource<T> extends SkysailServerResource<
             log.warn("provided entity was null!");
         }
 
-        Object post = post((Form) null);
+        Object post = post((Form) null, null);
         getApplication().stopPerformanceMonitoring(perfTimer);
         return post;
     }
@@ -195,9 +184,9 @@ public abstract class PostEntityServerResource<T> extends SkysailServerResource<
      */
     @Post("x-www-form-urlencoded:html")
     @API(desc = "generic POST for x-www-form-urlencoded")
-    public Object post(Form form) {
+    public Object post(Form form, Variant variant) {
         Set<PerformanceTimer> perfTimer = getApplication().startPerformanceMonitoring(this.getClass().getSimpleName() + ":postForm");
-        ResponseWrapper<T> handledRequest = doPost(form);
+        ResponseWrapper<T> handledRequest = doPost(form, variant);
         getApplication().stopPerformanceMonitoring(perfTimer);
         if (handledRequest.getConstraintViolationsResponse() != null) {
             return handledRequest.getConstraintViolationsResponse();
@@ -205,7 +194,7 @@ public abstract class PostEntityServerResource<T> extends SkysailServerResource<
         return handledRequest.getEntity();
     }
 
-    private ResponseWrapper<T> doPost(Form form) {
+    private ResponseWrapper<T> doPost(Form form, Variant variant) {
         log.info("Request entry point: {} @Post('x-www-form-urlencoded:html|json|xml')", this.getClass()
                 .getSimpleName());
         ClientInfo ci = getRequest().getClientInfo();
@@ -213,6 +202,7 @@ public abstract class PostEntityServerResource<T> extends SkysailServerResource<
         if (form != null) {
             getRequest().getAttributes().put(SKYSAIL_SERVER_RESTLET_FORM, form);
         }
+        getRequest().getAttributes().put(SKYSAIL_SERVER_RESTLET_VARIANT, variant);
         RequestHandler<T> requestHandler = new RequestHandler<T>(getApplication());
         AbstractResourceFilter<PostEntityServerResource<T>, T> handler = requestHandler.createForPost();
         getResponse().setStatus(Status.SUCCESS_CREATED);

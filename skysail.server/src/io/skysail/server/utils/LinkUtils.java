@@ -1,7 +1,6 @@
 package io.skysail.server.utils;
 
-import io.skysail.api.links.Link;
-import io.skysail.api.links.LinkRelation;
+import io.skysail.api.links.*;
 import io.skysail.server.app.SkysailApplication;
 import io.skysail.server.restlet.resources.SkysailServerResource;
 
@@ -11,8 +10,7 @@ import lombok.extern.slf4j.Slf4j;
 
 import org.restlet.data.MediaType;
 
-import de.twenty11.skysail.server.core.restlet.ResourceContextId;
-import de.twenty11.skysail.server.core.restlet.RouteBuilder;
+import de.twenty11.skysail.server.core.restlet.*;
 
 @Slf4j
 public class LinkUtils {
@@ -40,6 +38,7 @@ public class LinkUtils {
         Optional<SkysailServerResource<?>> resource = createNewInstance(resourceClass);
 
         Link link = new Link.Builder(determineUri(app, routeBuilder))
+            .definingClass(resourceClass)
             .relation(resource.isPresent() ? resource.get().getLinkRelation() : LinkRelation.ALTERNATE)
             .title(resource.isPresent() ? resource.get().getFromContext(ResourceContextId.LINK_TITLE) : "unknown")
             .authenticationNeeded(routeBuilder.needsAuthentication())

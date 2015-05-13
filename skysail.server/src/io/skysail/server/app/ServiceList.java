@@ -3,22 +3,15 @@ package io.skysail.server.app;
 import io.skysail.api.documentation.DocumentationProvider;
 import io.skysail.api.favorites.FavoritesService;
 import io.skysail.api.peers.PeersProvider;
-import io.skysail.api.text.TranslationRenderService;
-import io.skysail.api.text.TranslationStore;
-import io.skysail.api.um.AuthenticationService;
-import io.skysail.api.um.AuthorizationService;
-import io.skysail.api.um.UserManagementProvider;
+import io.skysail.api.text.*;
+import io.skysail.api.um.*;
 import io.skysail.api.validation.ValidatorService;
 import io.skysail.server.restlet.filter.HookFilter;
 import io.skysail.server.restlet.resources.SkysailServerResource;
 import io.skysail.server.services.PerformanceMonitor;
 import io.skysail.server.text.TranslationStoreHolder;
 
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.stream.Stream;
 
@@ -29,15 +22,10 @@ import org.osgi.service.cm.ConfigurationAdmin;
 import org.osgi.service.event.EventAdmin;
 import org.restlet.Context;
 
-import aQute.bnd.annotation.component.Component;
-import aQute.bnd.annotation.component.Reference;
+import aQute.bnd.annotation.component.*;
 import de.twenty11.skysail.server.SkysailComponent;
-import de.twenty11.skysail.server.app.ApplicationListProvider;
-import de.twenty11.skysail.server.app.ServiceListProvider;
-import de.twenty11.skysail.server.app.SkysailComponentProvider;
-import de.twenty11.skysail.server.app.TranslationRenderServiceHolder;
-import de.twenty11.skysail.server.metrics.MetricsService;
-import de.twenty11.skysail.server.metrics.MetricsServiceProvider;
+import de.twenty11.skysail.server.app.*;
+import de.twenty11.skysail.server.metrics.*;
 import de.twenty11.skysail.server.services.EncryptorService;
 
 /**
@@ -79,7 +67,10 @@ public class ServiceList implements ServiceListProvider {
     private volatile EncryptorService encryptorService;
     private volatile EventAdmin eventAdmin;
     private volatile ConfigurationAdmin configurationAdmin;
-    private volatile SkysailComponent skysailComponent;
+    private volatile SkysailComponent skysailComponent2;
+    
+    private AtomicReference<SkysailComponentProvider> skysailComponentProviderRef;
+    
     private volatile MetricsService metricsService;
     private volatile Set<HookFilter> hookFilters = Collections.synchronizedSet(new HashSet<>());
     private volatile ValidatorService validatorService;
@@ -99,7 +90,7 @@ public class ServiceList implements ServiceListProvider {
         getSkysailApps().forEach(app -> app.setAuthorizationService(provider.getAuthorizationService()));
     }
 
-    public void unsetUserManagementProvider(@SuppressWarnings("unused") UserManagementProvider provider) {
+    public void unsetUserManagementProvider(UserManagementProvider provider) {
         this.userManagementProvider = null;
         getSkysailApps().forEach(app -> app.setAuthorizationService(null));
         getSkysailApps().forEach(app -> app.setAuthorizationService(null));
@@ -132,24 +123,25 @@ public class ServiceList implements ServiceListProvider {
 
     @Reference(optional = true, dynamic = true, multiple = false)
     public synchronized void setSkysailComponentProvider(SkysailComponentProvider service) {
-        this.skysailComponent = service.getSkysailComponent();
-        if (skysailComponent == null) {
+        skysailComponentProviderRef.set(service);
+        //this.skysailComponent = service.getSkysailComponent();
+        if (skysailComponentProviderRef.get() == null) {
             log.error("skysailComponent from Provider is null!!!");
         }
-        Context appContext = skysailComponent.getContext().createChildContext();
+        Context appContext = skysailComponentProviderRef.get().getSkysailComponent().getContext().createChildContext();
         getSkysailApps().forEach(app -> app.setContext(appContext));
-        applicationListProvider.get().attach(skysailComponent);
+        applicationListProvider.get().attach(skysailComponentProviderRef.get().getSkysailComponent());
     }
 
     public synchronized void unsetSkysailComponentProvider(@SuppressWarnings("unused") SkysailComponentProvider service) {
-        this.skysailComponent = null;
+        this.skysailComponentProviderRef.set(null);
         getSkysailApps().forEach(a -> a.setContext(null));
-        applicationListProvider.get().detach(skysailComponent);
+        applicationListProvider.get().detach(service.getSkysailComponent());
     }
 
     @Override
     public SkysailComponent getSkysailComponent() {
-        return skysailComponent;
+        return skysailComponentProviderRef.get().getSkysailComponent();
     }
 
     /** === Favorites Service ============================== */

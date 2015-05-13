@@ -1,7 +1,6 @@
 package io.skysail.server.app.todos.test;
 
-import static org.hamcrest.CoreMatchers.containsString;
-import static org.hamcrest.CoreMatchers.not;
+import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.assertThat;
 import io.skysail.client.testsupport.IntegrationTests;
 import io.skysail.server.app.todos.TodoList;
@@ -9,9 +8,7 @@ import io.skysail.server.app.todos.test.browser.TodoListBrowser;
 
 import java.math.BigInteger;
 
-import org.junit.Before;
-import org.junit.Ignore;
-import org.junit.Test;
+import org.junit.*;
 import org.restlet.data.MediaType;
 
 /**
@@ -29,14 +26,14 @@ public class TodoListsCrudIntegrationTests extends IntegrationTests<TodoListBrow
         todoList = createRandomTodoList();
     }
 
-    @Test
+    @Test  // create and read
     public void creating_new_todolist_will_persists_it() throws Exception {
         browser.createTodoList(todoList);
         String html = browser.getTodoLists().getText();
         assertThat(html, containsString(todoList.getName()));
     }
     
-    @Test
+    @Test // delete
     public void new_todolist_can_be_deleted_by_owner() throws Exception {
         String id = browser.createTodoList(todoList);
         browser.deleteTodoList(id);
@@ -52,7 +49,7 @@ public class TodoListsCrudIntegrationTests extends IntegrationTests<TodoListBrow
         assertThat(browser.getTodoLists().getText(), not(containsString(todoList.getName())));
     }
 
-    @Test
+    @Test // update
     public void altering_todolist_updates_existing_todolist() throws Exception {
         String id = browser.createTodoList(todoList);
         assertThat(browser.getTodoList(id).getText(), containsString(todoList.getName()));

@@ -1,27 +1,19 @@
 package de.twenty11.skysail.server.validation;
 
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.ConcurrentMap;
+import java.util.concurrent.*;
+import java.util.concurrent.atomic.AtomicReference;
 
-import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.UnavailableSecurityManagerException;
+import org.apache.shiro.*;
 import org.apache.shiro.subject.Subject;
 import org.apache.shiro.subject.support.SubjectThreadState;
-import org.apache.shiro.util.LifecycleUtils;
-import org.apache.shiro.util.ThreadState;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.Rule;
+import org.apache.shiro.util.*;
+import org.junit.*;
 import org.junit.rules.ExpectedException;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
-import org.restlet.Request;
-import org.restlet.Response;
-import org.restlet.data.ClientInfo;
-import org.restlet.data.Form;
-import org.restlet.data.Reference;
+import org.restlet.*;
+import org.restlet.data.*;
 
 import de.twenty11.skysail.server.services.UserManager;
 import de.twenty11.skysail.server.um.domain.SkysailUser;
@@ -48,11 +40,13 @@ public class PutResourceTest {
 
     protected Form query;
 
-    protected UserManager userManager;
+    private AtomicReference<UserManager> userManagerRef;
 
     protected Subject subjectUnderTest;
 
     protected SkysailUser adminUser;
+
+    protected UserManager userManager;
 
     @Before
     public void setUp() throws Exception {
@@ -77,6 +71,7 @@ public class PutResourceTest {
         form = new Form();
 
         userManager = Mockito.mock(UserManager.class);
+        userManagerRef.set(userManager);
         adminUser = new SkysailUser("admin", ADMIN_DEFAUTL_PASSWORD, "#1");
         Mockito.when(userManager.findByUsername("admin")).thenReturn(adminUser);
 

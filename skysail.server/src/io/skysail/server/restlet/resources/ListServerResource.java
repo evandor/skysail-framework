@@ -73,14 +73,12 @@ public abstract class ListServerResource<T> extends SkysailServerResource<List<T
 
     private List<Class<? extends SkysailServerResource<?>>> associatedEntityServerResources;
     private RequestHandler<T> requestHandler;
-    private RequestHandler<String> stringRequestHandler;
 
     /**
      * Default constructor without associatedEntityServerResource.
      */
     public ListServerResource() {
         requestHandler = new RequestHandler<T>(null);
-        stringRequestHandler = new RequestHandler<String>(null);
         addToContext(ResourceContextId.LINK_TITLE, "list");
     }
 
@@ -103,8 +101,7 @@ public abstract class ListServerResource<T> extends SkysailServerResource<List<T
      * 
      * @return the list of entities in html, csv or treeform format
      */
-    @Get("html|json|yaml|xml")
-    // treeform, csv:broken
+    @Get("html|json|yaml|xml")    // treeform, csv:broken
     @API(desc = "lists the entities according to the media type provided")
     public final List<T> getEntities(Variant variant) {
         Set<PerformanceTimer> perfTimer = getApplication().startPerformanceMonitoring(this.getClass().getSimpleName() + ":getEntities");

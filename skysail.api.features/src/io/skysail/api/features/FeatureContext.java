@@ -2,14 +2,12 @@ package io.skysail.api.features;
 
 import java.util.*;
 
-import lombok.extern.slf4j.Slf4j;
 import aQute.bnd.annotation.component.*;
 
-@Slf4j
 @Component(immediate = true)
 public class FeatureContext {
 
-    private static List<FeatureStateRepository> featureRepositories = new ArrayList<>();
+    private volatile static List<FeatureStateRepository> featureRepositories = new ArrayList<>();
 
     // for now: the one and only featureManager 
     private static FeatureManager manager;

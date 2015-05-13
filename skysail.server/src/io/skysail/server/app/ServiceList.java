@@ -69,7 +69,7 @@ public class ServiceList implements ServiceListProvider {
     private volatile ConfigurationAdmin configurationAdmin;
     private volatile SkysailComponent skysailComponent2;
     
-    private AtomicReference<SkysailComponentProvider> skysailComponentProviderRef;
+    private AtomicReference<SkysailComponentProvider> skysailComponentProviderRef = new AtomicReference<>();
     
     private volatile MetricsService metricsService;
     private volatile Set<HookFilter> hookFilters = Collections.synchronizedSet(new HashSet<>());

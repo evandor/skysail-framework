@@ -38,8 +38,6 @@ public class SkysailRootApplication extends SkysailApplication implements Applic
 
     private volatile Set<MenuItemProvider> menuProviders = new HashSet<>();
 
-    private UserManager userManager;
-
     private Dictionary<String, ?> properties;
 
     public SkysailRootApplication() {
@@ -139,19 +137,6 @@ public class SkysailRootApplication extends SkysailApplication implements Applic
 
     public void removeMenuProvider(MenuItemProvider provider) {
         menuProviders.remove(provider);
-    }
-
-    @Reference(dynamic = true, optional = true, multiple = false)
-    public void setUserManager(UserManager userManager) {
-        this.userManager = userManager;
-    }
-
-    public void unsetUserManager(UserManager userManager) {
-        this.userManager = null;
-    }
-
-    public UserManager getUserManager() {
-        return userManager;
     }
 
     public Set<MenuItem> getMenuItems() {

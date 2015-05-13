@@ -33,7 +33,6 @@ public class PutPasswordResourceTest extends PutResourceTest {
         Mockito.doReturn(validator).when(validatorService).getValidator();
         Mockito.doReturn(validatorService).when(skysailRootApplication).getValidatorService();
         Mockito.doReturn(query).when(resource).getQuery();
-        Mockito.when(skysailRootApplication.getUserManager()).thenReturn(userManager);
 
         resource.init(null, request, response);
     }

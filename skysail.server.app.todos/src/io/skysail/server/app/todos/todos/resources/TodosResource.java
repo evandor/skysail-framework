@@ -40,6 +40,7 @@ public class TodosResource extends ListServerResource<Todo> {
 
     @Override
     public List<Todo> getEntity() {
+        
         int linesPerPage = 10;
         String username = SecurityUtils.getSubject().getPrincipal().toString();
 

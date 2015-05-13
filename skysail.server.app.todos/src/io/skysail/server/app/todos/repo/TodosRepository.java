@@ -110,11 +110,20 @@ public class TodosRepository implements DbRepository {
         return dbService.getCount(sql, params);
     }
 
+    public long getListsCount(String username) {
+        String sql = "select COUNT(*) as count from " + TodoList.class.getSimpleName() + " WHERE owner= :username";
+        Map<String, Object> params = new HashMap<String, Object>();
+        params.put("username", username);
+        return dbService.getCount(sql, params);
+    }
+
+
     private String getWhereStatement(String listId) {
         if ("null".equals(listId)) {
             return "owner= :username AND list IS NULL";
         }
         return "owner= :username AND list= :list";
     }
+
 
 }

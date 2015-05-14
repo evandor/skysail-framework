@@ -5,10 +5,13 @@ import static org.junit.Assert.assertThat;
 import io.skysail.client.testsupport.IntegrationTests;
 import io.skysail.server.app.todos.TodoList;
 import io.skysail.server.app.todos.test.browser.TodoListBrowser;
+import io.skysail.server.restlet.resources.SkysailServerResource;
 
+import java.io.IOException;
 import java.math.BigInteger;
 
 import org.junit.*;
+import org.osgi.framework.BundleException;
 import org.restlet.data.MediaType;
 
 /**
@@ -28,9 +31,7 @@ public class TodoListsCrudIntegrationTests extends IntegrationTests<TodoListBrow
 
     @Test  // create and read
     public void creating_new_todolist_will_persists_it() throws Exception {
-        browser.createTodoList(todoList);
-        String html = browser.getTodoLists().getText();
-        assertThat(html, containsString(todoList.getName()));
+        createListAndCheckAssertions();
     }
     
     @Test // delete
@@ -60,6 +61,26 @@ public class TodoListsCrudIntegrationTests extends IntegrationTests<TodoListBrow
         
         String updatedText = browser.getTodoList(id).getText();
         assertThat(updatedText, containsString("description changed"));
+    }
+        
+    @Test
+    @Ignore
+    public void stopping_and_starting_the_TodosBundle_doesnt_break_list_creationg() throws IOException, BundleException {
+        stopAndStartBundle(TodoList.class);
+        createListAndCheckAssertions();
+    }
+
+    @Test
+    @Ignore // not working yet...
+    public void stopping_and_starting_the_ServerBundle_doesnt_break_list_creationg() throws IOException, BundleException {
+        stopAndStartBundle(SkysailServerResource.class);
+        createListAndCheckAssertions();
+    }
+
+    private void createListAndCheckAssertions() throws IOException {
+        browser.createTodoList(todoList);
+        String html = browser.getTodoLists().getText();
+        assertThat(html, containsString(todoList.getName()));
     }
 
     private TodoList createRandomTodoList() {

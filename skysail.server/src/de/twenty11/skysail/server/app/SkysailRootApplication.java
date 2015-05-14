@@ -3,6 +3,7 @@ package de.twenty11.skysail.server.app;
 import io.skysail.server.app.SkysailApplication;
 
 import java.util.*;
+import java.util.concurrent.atomic.AtomicReference;
 import java.util.stream.Collectors;
 
 import org.apache.shiro.SecurityUtils;
@@ -36,7 +37,7 @@ public class SkysailRootApplication extends SkysailApplication implements Applic
 
     private volatile Set<SkysailApplication> applications = new TreeSet<>();
 
-    private volatile Set<MenuItemProvider> menuProviders = new HashSet<>();
+    private Set<AtomicReference<MenuItemProvider>> menuProviders = new HashSet<>();
 
     private Dictionary<String, ?> properties;
 
@@ -129,10 +130,8 @@ public class SkysailRootApplication extends SkysailApplication implements Applic
 
     @Reference(multiple = true, optional = true, dynamic = true)
     public void addMenuProvider(MenuItemProvider provider) {
-        if (provider == null) { // || provider.getMenuEntries() == null) {
-            return;
-        }
-        menuProviders.add(provider);
+        AtomicReference<MenuItemProvider> providerRef = new AtomicReference<MenuItemProvider>(provider);
+        menuProviders.add(providerRef);
     }
 
     public void removeMenuProvider(MenuItemProvider provider) {
@@ -141,7 +140,7 @@ public class SkysailRootApplication extends SkysailApplication implements Applic
 
     public Set<MenuItem> getMenuItems() {
         return menuProviders.stream()//
-                .map(mp -> mp.getMenuEntries())//
+                .map(mp -> mp.get().getMenuEntries())//
                 .filter(l -> (l != null))//
                 .flatMap(mil -> mil.stream())//
                 .collect(Collectors.toSet());

@@ -1,1 +1,6 @@
-INFO  io.skysail.server.documentation.test.Browser - creating new browser client with url 'http://localhost:2015' and mediaType ''
+INFO  io.skysail.client.testsupport.IntegrationTests - 
+INFO  io.skysail.client.testsupport.IntegrationTests - --------------------------------------------
+INFO  io.skysail.client.testsupport.IntegrationTests -  > TEST: running test 'stopAndStartTodosBundle'
+INFO  io.skysail.client.testsupport.IntegrationTests - --------------------------------------------
+INFO  io.skysail.client.testsupport.IntegrationTests - 
+INFO  io.skysail.client.testsupport.IntegrationTests - setting up test case...

@@ -54,7 +54,7 @@ public class ServiceList implements ServiceListProvider {
     private AtomicReference<ApplicationListProvider> applicationListProvider = new AtomicReference<>();
 
     private volatile AuthorizationService authorizationService;
-    private volatile FavoritesService favoritesService;
+    private AtomicReference<FavoritesService> favoritesService = new AtomicReference<>();
     private volatile AuthenticationService authenticationService;
 
     @Getter
@@ -90,7 +90,7 @@ public class ServiceList implements ServiceListProvider {
         getSkysailApps().forEach(app -> app.setAuthorizationService(provider.getAuthorizationService()));
     }
 
-    public void unsetUserManagementProvider(UserManagementProvider provider) {
+    public synchronized void unsetUserManagementProvider(UserManagementProvider provider) {
         this.userManagementProvider = null;
         getSkysailApps().forEach(app -> app.setAuthorizationService(null));
         getSkysailApps().forEach(app -> app.setAuthorizationService(null));
@@ -115,8 +115,8 @@ public class ServiceList implements ServiceListProvider {
         this.applicationListProvider.set(applicationProvider);
     }
 
-    public void unsetApplicationListProvider(@SuppressWarnings("unused") ApplicationListProvider service) {
-        this.applicationListProvider.set(null);
+    public void unsetApplicationListProvider(ApplicationListProvider service) {
+        this.applicationListProvider.compareAndSet(service, null);
     }
 
     /** === ConfigAdmin Service ============================== */
@@ -124,7 +124,6 @@ public class ServiceList implements ServiceListProvider {
     @Reference(optional = true, dynamic = true, multiple = false)
     public synchronized void setSkysailComponentProvider(SkysailComponentProvider service) {
         skysailComponentProviderRef.set(service);
-        //this.skysailComponent = service.getSkysailComponent();
         if (skysailComponentProviderRef.get() == null) {
             log.error("skysailComponent from Provider is null!!!");
         }
@@ -133,8 +132,8 @@ public class ServiceList implements ServiceListProvider {
         applicationListProvider.get().attach(skysailComponentProviderRef.get().getSkysailComponent());
     }
 
-    public synchronized void unsetSkysailComponentProvider(@SuppressWarnings("unused") SkysailComponentProvider service) {
-        this.skysailComponentProviderRef.set(null);
+    public synchronized void unsetSkysailComponentProvider(SkysailComponentProvider service) {
+        this.skysailComponentProviderRef.compareAndSet(service, null);
         getSkysailApps().forEach(a -> a.setContext(null));
         applicationListProvider.get().detach(service.getSkysailComponent());
     }
@@ -148,17 +147,18 @@ public class ServiceList implements ServiceListProvider {
 
     @Reference(optional = true, dynamic = true, multiple = false)
     public synchronized void setFavoritesService(FavoritesService service) {
-        this.favoritesService = service;
+        this.favoritesService.set(service);
         getSkysailApps().forEach(app -> app.setFavoritesService(service));
     }
 
-    public synchronized void unsetFavoritesService(@SuppressWarnings("unused") FavoritesService service) {
+    public synchronized void unsetFavoritesService(FavoritesService service) {
+        this.favoritesService.compareAndSet(service, null);
         getSkysailApps().forEach(a -> a.setFavoritesService(null));
     }
 
     @Override
     public FavoritesService getFavoritesService() {
-        return favoritesService;
+        return favoritesService.get();
     }
 
     /** === PeersProvider Service ============================== */

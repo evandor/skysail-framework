@@ -1,6 +1,7 @@
 package io.skysail.server.app;
 
 import java.util.*;
+import java.util.concurrent.atomic.AtomicReference;
 import java.util.function.Consumer;
 
 import org.apache.commons.lang.Validate;
@@ -34,7 +35,7 @@ public class ApplicationList implements ApplicationListProvider {
     private static Logger logger = LoggerFactory.getLogger(ApplicationList.class);
 
     private volatile List<SkysailApplication> applications = new ArrayList<>();
-    private volatile ServiceListProvider services;
+    private AtomicReference<ServiceListProvider> serviceListProviderRef = new AtomicReference<>();
     private SkysailRootApplication rootApplication;
     private Server riapServer = new Server(Protocol.RIAP);
     private SkysailComponent skysailComponent;
@@ -62,12 +63,12 @@ public class ApplicationList implements ApplicationListProvider {
 
     @Reference(optional = true, multiple = false, dynamic = true)
     public void setServiceListProvider(ServiceListProvider serviceListProvider) {
-        this.services = serviceListProvider;
+        this.serviceListProviderRef.set(serviceListProvider);
         setServices(applications);
     }
 
     public void unsetServiceListProvider(ServiceListProvider serviceListProvider) {
-        this.services = null;
+        this.serviceListProviderRef.compareAndSet(serviceListProvider, null);
         unsetServices(applications);
     }
 
@@ -77,21 +78,17 @@ public class ApplicationList implements ApplicationListProvider {
     }
 
     private void setServices(List<SkysailApplication> apps) {
-        if (services == null) {
-            return;
-        }
-        assignService(apps, app -> app.setAuthenticationService(services.getAuthenticationService()));
-        assignService(apps, app -> app.setAuthorizationService(services.getAuthorizationService()));
-        assignService(apps, app -> app.setFavoritesService(services.getFavoritesService()));
-        // assignService(apps, app ->
-        // app.setTranslationService(services.getTranslationService()));
-        assignService(apps, app -> app.setEventAdmin(services.getEventAdmin()));
-        assignService(apps, app -> app.setMetricsService(services.getMetricsService()));
-        assignService(apps, app -> app.setValidatorService(services.getValidatorService()));
-        assignService(apps, app -> app.setDocumentationProvider(services.getDocumentationProvider()));
-        assignService(apps, app -> app.setTranslationRenderServices(services.getTranslationRenderServices()));
-        assignService(apps, app -> app.setFilters(services.getHookFilters()));
-        assignService(apps, app -> app.setTranslationStores(services.getTranslationStores()));
+        assignService(apps, app -> app.setAuthenticationService(serviceListProviderRef.get().getAuthenticationService()));
+        assignService(apps, app -> app.setAuthorizationService(serviceListProviderRef.get().getAuthorizationService()));
+        assignService(apps, app -> app.setFavoritesService(serviceListProviderRef.get().getFavoritesService()));
+        assignService(apps, app -> app.setEventAdmin(serviceListProviderRef.get().getEventAdmin()));
+        assignService(apps, app -> app.setMetricsService(serviceListProviderRef.get().getMetricsService()));
+        assignService(apps, app -> app.setValidatorService(serviceListProviderRef.get().getValidatorService()));
+        assignService(apps, app -> app.setDocumentationProvider(serviceListProviderRef.get().getDocumentationProvider()));
+        assignService(apps,
+                app -> app.setTranslationRenderServices(serviceListProviderRef.get().getTranslationRenderServices()));
+        assignService(apps, app -> app.setFilters(serviceListProviderRef.get().getHookFilters()));
+        assignService(apps, app -> app.setTranslationStores(serviceListProviderRef.get().getTranslationStores()));
     }
 
     private synchronized void unsetServices(List<SkysailApplication> apps) {

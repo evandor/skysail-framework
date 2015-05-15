@@ -56,7 +56,7 @@ public class SkysailServerBundleListener implements BundleListener {
     }
 
     public void unsetSocketIoBroadcasting(SocketIoBroadcasting socketIoBroadcasting) {
-        this.socketIoBroadcastingRef.set(null);
+        this.socketIoBroadcastingRef.compareAndSet(socketIoBroadcasting, null);
     }
 
     @Override

@@ -18,7 +18,7 @@ public class EventHandler {
     }
 
     public void unsetEventAdmin(EventAdmin eventAdmin) {
-        EventHandler.eventAdminRef.set(null);
+        EventHandler.eventAdminRef.compareAndSet(eventAdmin, null);
     }
     
     public static synchronized EventInvocationResult sendEvent(String topic, String msg, String type) {

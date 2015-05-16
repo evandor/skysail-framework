@@ -1,4 +1,4 @@
-Bundle-Version: 0.2.2.${tstamp}
+Bundle-Version: 0.2.3.${tstamp}
 Bundle-Name: SKYSAIL :: api :: documentation
 Bundle-Description: an incubator bundle for the skysail documentation API  (which will be moved \
 	to skysail.api once stable)
@@ -40,8 +40,8 @@ Service-Component:  \
 	osgi.identity;filter:='(osgi.identity=skysail.api.validation)'
 -resolve: auto
 -runbundles:  \
-	ch.qos.logback.classic;version='[1.1.2,1.1.3)',\
-	ch.qos.logback.core;version='[1.1.2,1.1.3)',\
+	ch.qos.logback.classic;version='[1.1.3,1.1.4)',\
+	ch.qos.logback.core;version='[1.1.3,1.1.4)',\
 	classmate;version='[1.0.0,1.0.1)',\
 	javax.el-api;version='[3.0.0,3.0.1)',\
 	javax.validation.api;version='[1.1.0,1.1.1)',\

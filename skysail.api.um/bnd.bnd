@@ -1,4 +1,4 @@
-Bundle-Version: 0.2.0.${tstamp}
+Bundle-Version: 0.2.1.${tstamp}
 Bundle-Name: SKYSAIL :: api :: um
 Bundle-Description: an incubator bundle for the skysail usermanagement API  (which will be moved \
 	to skysail.api once stable) together with default implementations
@@ -41,8 +41,8 @@ Service-Component:  \
 	osgi.identity;filter:='(osgi.identity=skysail.api.um)'
 -resolve: auto
 -runbundles:  \
-	ch.qos.logback.classic;version='[1.1.2,1.1.3)',\
-	ch.qos.logback.core;version='[1.1.2,1.1.3)',\
+	ch.qos.logback.classic;version='[1.1.3,1.1.4)',\
+	ch.qos.logback.core;version='[1.1.3,1.1.4)',\
 	org.apache.felix.configadmin;version='[1.8.0,1.8.1)',\
 	org.apache.felix.gogo.command;version='[0.14.0,0.14.1)',\
 	org.apache.felix.gogo.runtime;version='[0.12.1,0.12.2)',\

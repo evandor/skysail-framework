@@ -68,11 +68,11 @@ Service-Component: *
 	skysail.api;version=${skysail.api.version},\
 	skysail.api.documentation;version=${skysail.api.documentation.version},\
 	skysail.api.favorites;version=${skysail.api.favorites.version},\
-	skysail.api.peers;version=latest,\
-	skysail.api.features;version=latest,\
-	skysail.api.text;version=latest,\
-	skysail.api.um;version=latest,\
-	skysail.api.validation;version=latest,\
+	skysail.api.peers;version=${skysail.api.peers.version},\
+	skysail.api.features;version=${skysail.api.features.version},\
+	skysail.api.text;version=${skysail.api.text.version},\
+	skysail.api.um;version=${skysail.api.um.version},\
+	skysail.api.validation;version=${skysail.api.validation.version},\
 	de.twentyeleven.skysail.org.antlr.stringtemplate-osgi;version=4.0.8,\
 	de.twentyeleven.skysail.org.hamcrest.hamcrest-all-osgi,\
 	de.twenty11.owasp-java-html-sanitizer;version=239.0,\

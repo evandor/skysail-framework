@@ -20,7 +20,7 @@ public class EtmPerformanceMonitor  implements PerformanceMonitor {
     
     @Activate
     public void activate() {
-        log.info("starting etm performance monitor");
+        log.debug("starting etm performance monitor");
         BasicEtmConfigurator.configure();
         etmMonitor = EtmManager.getEtmMonitor();
         etmMonitor.start();
@@ -28,7 +28,7 @@ public class EtmPerformanceMonitor  implements PerformanceMonitor {
 
     @Deactivate
     public void deactivate() {
-        log.info("stopping etm performance monitor");
+        log.debug("stopping etm performance monitor");
         etmMonitor.stop();
         etmMonitor = null;
     }

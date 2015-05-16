@@ -1,0 +1,6 @@
+INFO  io.skysail.client.testsupport.IntegrationTests - 
+INFO  io.skysail.client.testsupport.IntegrationTests - --------------------------------------------
+INFO  io.skysail.client.testsupport.IntegrationTests -  > TEST: running test 'new_bookmark_can_be_deleted_by_owner'
+INFO  io.skysail.client.testsupport.IntegrationTests - --------------------------------------------
+INFO  io.skysail.client.testsupport.IntegrationTests - 
+INFO  io.skysail.client.testsupport.IntegrationTests - setting up test case...

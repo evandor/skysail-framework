@@ -1,19 +1,13 @@
 package de.twenty11.skysail.server.app.profile.test;
 
-import static org.hamcrest.Matchers.equalTo;
-import static org.hamcrest.Matchers.is;
-import static org.hamcrest.Matchers.not;
+import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.assertThat;
 import io.skysail.api.validation.ValidatorService;
 
 import javax.validation.Validator;
 
-import org.junit.Before;
-import org.junit.Ignore;
-import org.junit.Test;
-import org.mockito.Mock;
-import org.mockito.Mockito;
-import org.mockito.Spy;
+import org.junit.*;
+import org.mockito.*;
 
 import de.twenty11.skysail.server.app.SkysailRootApplication;
 import de.twenty11.skysail.server.app.profile.PutPasswordResource;
@@ -39,7 +33,6 @@ public class PutPasswordResourceTest extends PutResourceTest {
         Mockito.doReturn(validator).when(validatorService).getValidator();
         Mockito.doReturn(validatorService).when(skysailRootApplication).getValidatorService();
         Mockito.doReturn(query).when(resource).getQuery();
-        Mockito.when(skysailRootApplication.getUserManager()).thenReturn(userManager);
 
         resource.init(null, request, response);
     }
@@ -48,7 +41,7 @@ public class PutPasswordResourceTest extends PutResourceTest {
     public void rejects_updating_password_if_old_password_is_null() throws Exception {
         Mockito.when(subjectUnderTest.getPrincipal()).thenReturn("admin");
         setSubject(subjectUnderTest);
-        resource.put(form);
+        resource.put(form, null);
         assertThat(response.getStatus().getCode(), is(400));
     }
 
@@ -57,7 +50,7 @@ public class PutPasswordResourceTest extends PutResourceTest {
         Mockito.when(subjectUnderTest.getPrincipal()).thenReturn("admin");
         setSubject(subjectUnderTest);
         form.set("old", "oldPassword");
-        resource.put(form);
+        resource.put(form, null);
         assertThat(response.getStatus().getCode(), is(400));
     }
 
@@ -70,7 +63,7 @@ public class PutPasswordResourceTest extends PutResourceTest {
         form.set("password", "password");
         form.set("pwdRepeated", "pwdRepeated");
 
-        resource.put(form);
+        resource.put(form, null);
 
         assertThat(response.getStatus().getCode(), is(400));
     }
@@ -85,7 +78,7 @@ public class PutPasswordResourceTest extends PutResourceTest {
         form.set("password", "password");
         form.set("pwdRepeated", "password");
 
-        resource.put(form);
+        resource.put(form, null);
 
         assertThat(response.getStatus().getCode(), is(400));
     }
@@ -100,7 +93,7 @@ public class PutPasswordResourceTest extends PutResourceTest {
         form.set("password", "password");
         form.set("pwdRepeated", "password");
 
-        resource.put(form);
+        resource.put(form, null);
 
         Mockito.verify(userManager).update(adminUser);
 

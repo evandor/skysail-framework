@@ -1,29 +1,23 @@
 package io.skysail.server.text.markdown;
 
 import io.skysail.api.text.*;
-import io.skysail.server.text.*;
 
 import java.io.IOException;
-import java.util.Map;
 
 import lombok.extern.slf4j.Slf4j;
 
 import org.apache.commons.lang3.StringEscapeUtils;
 import org.markdown4j.Markdown4jProcessor;
 
-import aQute.bnd.annotation.component.*;
+import aQute.bnd.annotation.component.Component;
 
-@Component(immediate = true, properties = { "test=" + MarkdownTranslationRenderService.SERVICE_RANKING })
+@Component(immediate = true, properties = { org.osgi.framework.Constants.SERVICE_RANKING + "=" + MarkdownTranslationRenderService.SERVICE_RANKING})
 @Slf4j
-public class MarkdownTranslationRenderService extends AbstractTranslationRenderService implements
-        TranslationRenderService {
+public class MarkdownTranslationRenderService implements TranslationRenderService {
 
+    public static final String PREFIX_IDENTIFIER = "renderer:markdown ";
+    
     public static final String SERVICE_RANKING = "100";
-
-    @Override
-    protected Translation createTranslation(StoreAndTranslation sat) {
-        return new MarkdownTranslation(sat);
-    }
 
     @Override
     // TODO handle substitutions
@@ -36,27 +30,28 @@ public class MarkdownTranslationRenderService extends AbstractTranslationRenderS
             if (unformatted == null) {
                 return null;
             }
-            return new Markdown4jProcessor().process(unformatted);
+            return new Markdown4jProcessor().process(adjustText(unformatted));
         } catch (IOException e) {
             log.error(e.getMessage(), e);
             return translation.getValue();
         }
     }
 
-    @Reference(dynamic = true, optional = false, multiple = true)
-    public void addStore(TranslationStore store, Map<String, String> props) {
-        stores.add(new TranslationStoreHolder(store, props));
+    @Override
+    public String adjustText(String unformatted) {
+        return unformatted.trim().substring(PREFIX_IDENTIFIER.length());
     }
 
-    public void removeStore(TranslationStore store) {
-        stores.remove(new TranslationStoreHolder(store));
+    @Override
+    public boolean applicable(String unformattedTranslation) {
+        return (unformattedTranslation.trim().startsWith(PREFIX_IDENTIFIER));
     }
 
-//    @Override
-//    public boolean persist(String key, String translation) {
-//        List<TranslationStoreHolder> sortedStores = getSortedTranslationStores();
-//        sortedStores.stream().forEach(store -> store.getStore().get().)
-//        return false;
-//    }
+    @Override
+    public String addRendererInfo() {
+        return PREFIX_IDENTIFIER;
+    }
+
+   
 
 }

@@ -1,6 +1,7 @@
 package io.skysail.server.converter;
 
 import io.skysail.api.favorites.FavoritesService;
+import io.skysail.api.peers.PeersProvider;
 import io.skysail.server.app.SkysailApplication;
 import io.skysail.server.converter.impl.StringTemplateRenderer;
 import io.skysail.server.restlet.resources.SkysailServerResource;
@@ -55,11 +56,10 @@ public class HtmlConverter extends ConverterHelper implements OsgiConverterHelpe
 
     private String templateNameFromCookie;
     private List<Event> events = new CopyOnWriteArrayList<>();
+   
     private volatile Set<MenuItemProvider> menuProviders = new HashSet<>();
-
-    private Resource resource;
-
     private volatile FavoritesService favoritesService;
+    private volatile PeersProvider peersProvider;
 
     static {
         mediaTypesMatch.put(MediaType.TEXT_HTML, 0.95F);
@@ -94,6 +94,17 @@ public class HtmlConverter extends ConverterHelper implements OsgiConverterHelpe
 
     public void unsetFavoritesService(FavoritesService service) {
         this.favoritesService = null;
+    }
+
+    // --- Peers Provider Service ------------------------------------------------
+
+    @Reference(multiple = false, optional = true, dynamic = true)
+    public void setPeersProvider(PeersProvider service) {
+        this.peersProvider = service;
+    }
+
+    public void unsetPeersProvider(PeersProvider service) {
+        this.peersProvider = null;
     }
 
     @Override
@@ -139,11 +150,10 @@ public class HtmlConverter extends ConverterHelper implements OsgiConverterHelpe
     public Representation toRepresentation(Object originalSource, Variant target, Resource resource) {
         EtmPoint point = etmMonitor.createPoint(this.getClass().getSimpleName() + ":toRepresentation");
 
-        this.resource = resource;
-
         StringTemplateRenderer stringTemplateRenderer = new StringTemplateRenderer(this);
         stringTemplateRenderer.setMenuProviders(menuProviders);
         stringTemplateRenderer.setFavoritesService(favoritesService);
+        stringTemplateRenderer.setPeersProvider(peersProvider);
         StringRepresentation rep = stringTemplateRenderer.createRepresenation(originalSource, target,
                 (SkysailServerResource<?>) resource);
 
@@ -169,9 +179,6 @@ public class HtmlConverter extends ConverterHelper implements OsgiConverterHelpe
         if (currentUser == null) {
             return Collections.emptyList();
         }
-//        if (!(resource.getRequest().getMethod().equals(Method.GET))) {
-//            return Collections.emptyList();
-//        }
         List<Notification> result = new ArrayList<>();
         events.stream().forEach(e -> {
             String msg = (String) e.getProperty("msg");

@@ -29,11 +29,8 @@ public interface Feature {
     /**
      * Returns a textual representation of the feature. This method is
      * implicitly implemented as feature typically are enumerations.
-     *
-     * @return Name of the feature
+     * 
      */
     String name();
-
-    boolean isActive();
 
 }

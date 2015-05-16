@@ -1,28 +1,18 @@
 package io.skysail.server.app.todos.todos;
 
 import io.skysail.api.domain.Identifiable;
-import io.skysail.api.forms.Field;
-import io.skysail.api.forms.InputType;
-import io.skysail.api.forms.Reference;
-import io.skysail.server.app.todos.todos.resources.ListSelectionProvider;
-import io.skysail.server.app.todos.todos.resources.TodoResource;
-import io.skysail.server.app.todos.todos.status.Status;
-import io.skysail.server.app.todos.todos.status.StatusSelectionProvider;
-import io.skysail.server.forms.ListView;
-import io.skysail.server.forms.PostView;
-import io.skysail.server.forms.Visibility;
+import io.skysail.api.forms.*;
+import io.skysail.server.app.todos.todos.resources.*;
+import io.skysail.server.app.todos.todos.status.*;
+import io.skysail.server.forms.*;
 
 import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Id;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import org.restlet.data.Form;
 
@@ -46,7 +36,7 @@ public class Todo implements Serializable, Identifiable {
     private String list;
 
     @Field
-    @ListView(truncate = 20, link = TodoResource.class)
+    @ListView(truncate = 20, link = PutTodoResource.class)
     @NotNull
     @Size(min = 2)
     private String title;

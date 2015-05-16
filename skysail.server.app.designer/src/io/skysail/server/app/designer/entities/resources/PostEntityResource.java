@@ -33,7 +33,6 @@ public class PostEntityResource extends PostEntityServerResource<Entity> {
     @Override
     public SkysailResponse<?> addEntity(Entity entity) {
         Application application = app.getRepository().getById(Application.class, id);
-        // app.getRepository().register(Entity.class);
         application.getEntities().add(entity);
         app.getRepository().update(application);
         return new SkysailResponse<String>();

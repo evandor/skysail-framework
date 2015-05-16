@@ -1,27 +1,17 @@
 package io.skysail.server.app;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.List;
-import java.util.function.Consumer;
+import java.util.*;
+import java.util.concurrent.atomic.AtomicReference;
 
 import org.apache.commons.lang.Validate;
-import org.restlet.Application;
-import org.restlet.Server;
+import org.restlet.*;
 import org.restlet.data.Protocol;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.slf4j.*;
 
+import aQute.bnd.annotation.component.*;
 import aQute.bnd.annotation.component.Component;
-import aQute.bnd.annotation.component.Reference;
-import de.twenty11.skysail.server.SkysailComponent;
-import de.twenty11.skysail.server.SkysailStatusService;
-import de.twenty11.skysail.server.app.ApplicationListProvider;
-import de.twenty11.skysail.server.app.ApplicationProvider;
-import de.twenty11.skysail.server.app.ServiceListProvider;
-import de.twenty11.skysail.server.app.SkysailRootApplication;
+import de.twenty11.skysail.server.*;
+import de.twenty11.skysail.server.app.*;
 
 /**
  * This class keeps track of all available skysail applications and injects the
@@ -44,7 +34,7 @@ public class ApplicationList implements ApplicationListProvider {
     private static Logger logger = LoggerFactory.getLogger(ApplicationList.class);
 
     private volatile List<SkysailApplication> applications = new ArrayList<>();
-    private volatile ServiceListProvider services;
+    private AtomicReference<ServiceListProvider> serviceListProviderRef = new AtomicReference<>();
     private SkysailRootApplication rootApplication;
     private Server riapServer = new Server(Protocol.RIAP);
     private SkysailComponent skysailComponent;
@@ -56,7 +46,6 @@ public class ApplicationList implements ApplicationListProvider {
 
         application.setStatusService(new SkysailStatusService());
         applications.add(application);
-        setServices(Arrays.asList(application));
         attachToComponent(application);
     }
 
@@ -64,7 +53,6 @@ public class ApplicationList implements ApplicationListProvider {
         SkysailApplication application = getApplication(provider);
         logger.info("(-) Removing application '{}'", application.getName());
         detachFromComponent(application);
-        // unassignServices(application);
         applications.remove(application);
     }
 
@@ -72,48 +60,16 @@ public class ApplicationList implements ApplicationListProvider {
 
     @Reference(optional = true, multiple = false, dynamic = true)
     public void setServiceListProvider(ServiceListProvider serviceListProvider) {
-        this.services = serviceListProvider;
-        setServices(applications);
+        this.serviceListProviderRef.set(serviceListProvider);
     }
 
     public void unsetServiceListProvider(ServiceListProvider serviceListProvider) {
-        this.services = null;
-        unsetServices(applications);
+        this.serviceListProviderRef.compareAndSet(serviceListProvider, null);
     }
 
     @Override
     public List<SkysailApplication> getApplications() {
         return Collections.unmodifiableList(applications);
-    }
-
-    private void setServices(List<SkysailApplication> apps) {
-        if (services == null) {
-            return;
-        }
-        assignService(apps, app -> app.setAuthenticationService(services.getAuthenticationService()));
-        assignService(apps, app -> app.setAuthorizationService(services.getAuthorizationService()));
-        assignService(apps, app -> app.setFavoritesService(services.getFavoritesService()));
-        // assignService(apps, app ->
-        // app.setTranslationService(services.getTranslationService()));
-        assignService(apps, app -> app.setEventAdmin(services.getEventAdmin()));
-        assignService(apps, app -> app.setMetricsService(services.getMetricsService()));
-        assignService(apps, app -> app.setValidatorService(services.getValidatorService()));
-        assignService(apps, app -> app.setDocumentationProvider(services.getDocumentationProvider()));
-        assignService(apps, app -> app.setTranslationRenderServices(services.getTranslationRenderServices()));
-        assignService(apps, app -> app.setFilters(services.getHookFilters()));
-    }
-
-    private synchronized void unsetServices(List<SkysailApplication> apps) {
-        apps.stream().forEach(app -> app.setAuthenticationService(null));
-        apps.stream().forEach(app -> app.setAuthorizationService(null));
-        apps.stream().forEach(app -> app.setFavoritesService(null));
-        // apps.stream().forEach(app -> app.setTranslationService(null));
-        apps.stream().forEach(app -> app.setEventAdmin(null));
-        apps.stream().forEach(app -> app.setMetricsService(null));
-        apps.stream().forEach(app -> app.setValidatorService(null));
-        apps.stream().forEach(app -> app.setDocumentationProvider(null));
-        apps.stream().forEach(app -> app.setTranslationRenderServices(new ArrayList<>()));
-        apps.stream().forEach(app -> app.setFilters(new HashSet<>()));
     }
 
     @Override
@@ -188,10 +144,6 @@ public class ApplicationList implements ApplicationListProvider {
             restletComponent.getDefaultHost().detach(app);
             restletComponent.getInternalRouter().detach(app);
         }
-    }
-
-    private void assignService(List<SkysailApplication> applications, Consumer<? super SkysailApplication> consumer) {
-        applications.stream().forEach(consumer);
     }
 
     private SkysailApplication getApplication(ApplicationProvider provider) {

@@ -1,10 +1,12 @@
 package io.skysail.server.db;
 
-import java.util.*;
+import java.util.List;
+import java.util.Map;
 
 import aQute.bnd.annotation.ProviderType;
 
 import com.orientechnologies.orient.core.metadata.schema.OType;
+import com.orientechnologies.orient.core.record.impl.ODocument;
 
 @ProviderType
 public interface DbService2 {
@@ -30,10 +32,8 @@ public interface DbService2 {
      */
     <T> T findObjectById(Class<?> cls, String id);
     
-    Map<String, Object> findDocumentById(Class<?> cls, String id);
-
-
-    // List<String> getAll(Class<?> cls, String username);
+    ODocument findDocumentById(Class<?> cls, String id);
+    
 
     <T> List<T> findObjects(String sql);
     List<Map<String,Object>> findDocuments(String sql);
@@ -62,5 +62,8 @@ public interface DbService2 {
 
     void createUniqueIndex(Class<?> cls, String... columnNames);
 
+    void update(Map<String, Object> space);
+
+    void update(ODocument doc);
     
 }

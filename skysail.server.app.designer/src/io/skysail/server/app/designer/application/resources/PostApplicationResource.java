@@ -3,6 +3,7 @@ package io.skysail.server.app.designer.application.resources;
 import io.skysail.api.responses.SkysailResponse;
 import io.skysail.server.app.designer.DesignerApplication;
 import io.skysail.server.app.designer.application.Application;
+import io.skysail.server.app.designer.repo.DesignerRepository;
 import io.skysail.server.restlet.resources.PostEntityServerResource;
 
 import org.apache.shiro.SecurityUtils;
@@ -31,9 +32,10 @@ public class PostApplicationResource extends PostEntityServerResource<Applicatio
 
     @Override
     public SkysailResponse<?> addEntity(Application entity) {
+        app.invalidateMenuCache();
         Subject subject = SecurityUtils.getSubject();
         entity.setOwner(subject.getPrincipal().toString());
-        String id = app.getRepository().add(entity).toString();
+        String id = DesignerRepository.add(entity).toString();
         entity.setId(id);
         return new SkysailResponse<String>();
     }

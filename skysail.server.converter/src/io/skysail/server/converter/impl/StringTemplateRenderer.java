@@ -1,35 +1,43 @@
 package io.skysail.server.converter.impl;
 
 import io.skysail.api.favorites.FavoritesService;
-import io.skysail.api.forms.Reference;
 import io.skysail.api.links.Link;
-import io.skysail.api.responses.SkysailResponse;
+import io.skysail.api.peers.PeersProvider;
 import io.skysail.server.app.SkysailApplication;
-import io.skysail.server.converter.*;
+import io.skysail.server.converter.HtmlConverter;
+import io.skysail.server.converter.Notification;
 import io.skysail.server.converter.stringtemplate.STGroupBundleDir;
-import io.skysail.server.converter.wrapper.*;
-import io.skysail.server.forms.*;
-import io.skysail.server.restlet.resources.*;
-import io.skysail.server.utils.*;
+import io.skysail.server.converter.wrapper.STFieldsWrapper;
+import io.skysail.server.converter.wrapper.STListSourceWrapper;
+import io.skysail.server.converter.wrapper.STServicesWrapper;
+import io.skysail.server.converter.wrapper.STSourceWrapper;
+import io.skysail.server.converter.wrapper.STTargetWrapper;
+import io.skysail.server.converter.wrapper.STUserWrapper;
+import io.skysail.server.converter.wrapper.StResourceWrapper;
+import io.skysail.server.restlet.SourceWrapper;
+import io.skysail.server.restlet.resources.ListServerResource;
+import io.skysail.server.restlet.resources.SkysailServerResource;
 
-import java.lang.reflect.Field;
 import java.net.URL;
-import java.util.*;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import lombok.extern.slf4j.Slf4j;
 
-import org.apache.commons.beanutils.DynaProperty;
 import org.apache.shiro.SecurityUtils;
 import org.osgi.framework.Bundle;
 import org.restlet.data.MediaType;
-import org.restlet.representation.*;
+import org.restlet.representation.StringRepresentation;
+import org.restlet.representation.Variant;
 import org.restlet.resource.Resource;
 import org.stringtemplate.v4.ST;
 
-import de.twenty11.skysail.server.app.SourceWrapper;
-import de.twenty11.skysail.server.beans.*;
 import de.twenty11.skysail.server.core.FormField;
+import de.twenty11.skysail.server.core.restlet.ResourceContextId;
 import de.twenty11.skysail.server.core.restlet.utils.CookiesUtils;
 import de.twenty11.skysail.server.services.MenuItemProvider;
 
@@ -41,6 +49,7 @@ public class StringTemplateRenderer {
     private String templateFromCookie;
     private HtmlConverter htmlConverter;
     private FavoritesService favoritesService;
+    private PeersProvider peersProvider;
 
     public StringTemplateRenderer(HtmlConverter htmlConverter) {
         this.htmlConverter = htmlConverter;
@@ -81,17 +90,18 @@ public class StringTemplateRenderer {
     }
 
     private ST getStringTemplateIndex(Resource resource, STGroupBundleDir stGroup) {
+        if (resource.getContext().getAttributes().containsKey(ResourceContextId.RENDERER_HINT.name())) {
+            String root = (String) resource.getContext().getAttributes().get(ResourceContextId.RENDERER_HINT.name());
+            resource.getContext().getAttributes().remove(ResourceContextId.RENDERER_HINT.name());
+            return stGroup.getInstanceOf(root);
+        }
+
         String mainPage = CookiesUtils.getMainPageFromCookie(resource.getRequest());
-        ST index;
         if (mainPage != null && mainPage.length() > 0) {
-            index = stGroup.getInstanceOf(mainPage);
+            return stGroup.getInstanceOf(mainPage);
         } else {
-            index = stGroup.getInstanceOf("index");
+            return stGroup.getInstanceOf("index");
         }
-        if (index == null) {
-            throw new IllegalStateException("cannot get instance of stringtemplate 'index'");
-        }
-        return index;
     }
 
     private void addAssociatedLinks(Resource resource, SourceWrapper sourceWrapper) {
@@ -100,9 +110,12 @@ public class StringTemplateRenderer {
         }
         ListServerResource<?> listServerResource = (ListServerResource<?>) resource;
         List<Link> links = listServerResource.getLinks();
-        Class<? extends EntityServerResource<?>> entityResourceClass = listServerResource.getAssociatedEntityResource();
+        List<Class<? extends SkysailServerResource<?>>> entityResourceClass = listServerResource
+                .getAssociatedServerResources();
         if (entityResourceClass != null && sourceWrapper.getConvertedSource() instanceof List) {
-            EntityServerResource<?> esr = ResourceUtils.createEntityServerResource(entityResourceClass, resource);
+            // EntityServerResource<?> esr =
+            // ResourceUtils.createEntityServerResource(entityResourceClass,
+            // resource);
 
             List<?> sourceAsList = (List<?>) sourceWrapper.getConvertedSource();
             for (Object object : sourceAsList) {
@@ -195,81 +208,35 @@ public class StringTemplateRenderer {
     private void addSubstitutions(Object source, SkysailServerResource<?> resource, ST decl, Variant target,
             Set<MenuItemProvider> menuProviders) {
 
-        decl.add("user", new STUserWrapper(SecurityUtils.getSubject()));
+        String installationFromCookie = CookiesUtils.getInstallationFromCookie(resource.getRequest());
+
+        decl.add("user", new STUserWrapper(SecurityUtils.getSubject(), peersProvider, installationFromCookie));
         decl.add("target", new STTargetWrapper(target));
         decl.add("converter", this);
         decl.add("services", new STServicesWrapper(menuProviders, null, resource));
         decl.add("resource", new StResourceWrapper(source, resource, favoritesService));
 
-        List<FormField> fields = null;
-
         if (source instanceof List) {
             decl.add("source", new STListSourceWrapper((List<Object>) source));
-            Object entity;
-            try {
-                Class<?> parameterType = resource.getParameterType();
-                if (parameterType.equals(Map.class)) {
-                    List<Map<String, Object>> currentEntity = (List<Map<String, Object>>) resource.getCurrentEntity();
-                    if (currentEntity.size() > 0) {
-                        if (currentEntity.get(0) instanceof DynamicEntity) {
-                            DynamicEntity dynEntity = (DynamicEntity)currentEntity.get(0);
-                            fields = createFieldsForDynamicEntity(resource, dynEntity);
-                        } else {
-                            fields = currentEntity.get(0).keySet().stream().map(key -> {
-                                return new FormField(key, currentEntity.get(0).get(key));
-                            }).collect(Collectors.toList());
-                        }
-                    }
-                } else {
-                    entity = parameterType.newInstance();
-                    if (entity instanceof DynamicEntity) {
-                        fields = createFieldsForDynamicEntity(resource, entity);
-                    } else {
-                        fields = ReflectionUtils.getInheritedFields(resource.getParameterType()).stream()
-                                .filter(f -> test(resource, f)).sorted((f1, f2) -> sort(resource, f1, f2))
-                                .map(f -> new FormField(f, resource, source, entity))//
-                                .collect(Collectors.toList());
-                    }
-                }
-                decl.add("fields", new STFieldsWrapper(fields));
-            } catch (InstantiationException | IllegalAccessException e) {
-                log.error(e.getMessage(), e);
-            }
         } else {
             decl.add("source", new STSourceWrapper(source));
-            if (source != null && (source instanceof SkysailResponse)) {
-                Object entity = ((SkysailResponse<?>) source).getEntity();
-                if (entity instanceof DynamicEntity) {
-                    DynaProperty[] dynaProperties = ((DynamicEntity) entity).getInstance().getDynaClass()
-                            .getDynaProperties();
-                    fields = Arrays.stream(dynaProperties).map(d -> {
-                        return new FormField((DynamicEntity) entity, d, resource);
-                    }).collect(Collectors.toList());
-                } else {
-                    fields = ReflectionUtils.getInheritedFields(entity.getClass()).stream()
-                            .filter(f -> test(resource, f))
-                            .map(f -> new FormField(f, resource, source, ((SkysailResponse<?>) source).getEntity()))
-                            .collect(Collectors.toList());
-                }
-                decl.add("fields", new STFieldsWrapper(fields));
-            } else if (source != null && (source instanceof HashMap)) {
-
-            } else {
-
-            }
         }
+
+        List<FormField> fields = null;
+
+        FieldFactory fieldFactory = FieldsFactory.getFactory(source, resource);
+        log.info("using factory '{}' for {}-Source: {}", new Object[] { fieldFactory.getClass().getSimpleName(),
+                source.getClass().getSimpleName(), source });
+        try {
+            fields = fieldFactory.determineFrom(resource);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        decl.add("fields", new STFieldsWrapper(fields));
+
         Map<String, String> messages = resource.getMessages(fields);
         messages.put("productName", getProductName());
         decl.add("messages", messages);
-    }
-
-    private List<FormField> createFieldsForDynamicEntity(SkysailServerResource<?> resource, Object entity) {
-        List<FormField> fields;
-        Set<EntityDynaProperty> properties = ((DynamicEntity) entity).getProperties();
-        fields = properties.stream().map(p -> {
-            return new FormField((DynamicEntity) entity, p, resource);
-        }).collect(Collectors.toList());
-        return fields;
     }
 
     public List<Notification> getNotifications() {
@@ -287,11 +254,6 @@ public class StringTemplateRenderer {
         }
     }
 
-    private int sort(SkysailServerResource<?> resource, Field f1, Field f2) {
-        List<String> fieldNames = resource.getFields();
-        return fieldNames.indexOf(f1.getName()) - fieldNames.indexOf(f2.getName());
-    }
-
     private String getProductName() {
         return "Skysail";
     }
@@ -301,55 +263,6 @@ public class StringTemplateRenderer {
         Optional<Bundle> thisBundle = Arrays.stream(bundles).filter(b -> b.getSymbolicName().equals(bundleName))
                 .findFirst();
         return thisBundle;
-    }
-
-    private boolean test(SkysailServerResource<?> resource, Field field) {
-        List<String> fieldNames = resource.getFields();
-        if (isValidFieldAnnotation(resource, field, fieldNames)) {
-            return true;
-        }
-
-        // PostView postViewAnnotation = field.getAnnotation(PostView.class);
-        // if (postViewAnnotation != null) {
-        // if (!(Visibility.SHOW.equals(postViewAnnotation.visibility()))) {
-        // return true;
-        // }
-        // }
-        return false;
-    }
-
-    private boolean isValidFieldAnnotation(SkysailServerResource<?> resource, Field field, List<String> fieldNames) {
-        io.skysail.api.forms.Field fieldAnnotation = field.getAnnotation(io.skysail.api.forms.Field.class);
-        Reference referenceAnnotation = field.getAnnotation(Reference.class);
-        if (fieldAnnotation == null && referenceAnnotation == null) {
-            return false;
-        }
-        if (!(fieldNames.contains(field.getName()))) {
-            return false;
-        }
-        if (resource instanceof PostEntityServerResource<?>) {
-            PostView postViewAnnotation = field.getAnnotation(PostView.class);
-            if (postViewAnnotation != null) {
-                if (Visibility.HIDE.equals((postViewAnnotation.visibility()))) {
-                    return false;
-                }
-                if (Visibility.SHOW.equals(postViewAnnotation.visibility())) {
-                    return true;
-                }
-                if (Visibility.SHOW_IF_NULL.equals(postViewAnnotation.visibility())) {
-                    if (resource.getRequest().toString().contains("/" + field.getName() + ":null/")) {
-                        return true;
-                    }
-                }
-            }
-        }
-        ListView listViewAnnotation = field.getAnnotation(ListView.class);
-        if (listViewAnnotation == null) {
-            return true;
-        }
-        return !listViewAnnotation.hide();
-        // return
-        // (!(Arrays.asList(fieldAnnotation.listView()).contains(ListViewEnum.HIDE)));
     }
 
     public void setMenuProviders(Set<MenuItemProvider> menuProviders) {
@@ -367,6 +280,10 @@ public class StringTemplateRenderer {
 
     public void setFavoritesService(FavoritesService favoritesService) {
         this.favoritesService = favoritesService;
+    }
+
+    public void setPeersProvider(PeersProvider peersProvider) {
+        this.peersProvider = peersProvider;
     }
 
 }

@@ -121,6 +121,7 @@ Private-Package:  \
 	skysail.api.text;version=latest,\
 	skysail.api.documentation;version=${skysail.api.documentation.version},\
 	skysail.api.validation;version=latest,\
+	skysail.api.peers;version=latest,\
 	skysail.api.features;version=latest,\
 	skysail.api.favorites;version=${skysail.api.favorites.version},\
 	skysail.client.testsupport;version=latest,\
@@ -132,7 +133,6 @@ Private-Package:  \
 	skysail.server.http;version=latest,\
 	skysail.server.plugins;version=latest,\
 	skysail.server.static;version=latest,\
-	skysail.server.text;version=latest,\
 	skysail.server.text.markdown;version=latest,\
 	skysail.server.um.simple;version=latest,\
 	slf4j.api;version='[1.7.7,1.7.8)',\

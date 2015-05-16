@@ -1,23 +1,33 @@
 package de.twenty11.skysail.server.core;
 
-import io.skysail.api.forms.*;
-import io.skysail.api.responses.*;
+import io.skysail.api.forms.IgnoreSelectionProvider;
+import io.skysail.api.forms.InputType;
+import io.skysail.api.forms.Reference;
+import io.skysail.api.forms.SelectionProvider;
+import io.skysail.api.responses.ConstraintViolationDetails;
+import io.skysail.api.responses.ConstraintViolationsResponse;
+import io.skysail.api.responses.SkysailResponse;
 import io.skysail.server.restlet.resources.SkysailServerResource;
 import io.skysail.server.utils.OrientDbUtils;
 
-import java.lang.reflect.*;
 import java.lang.reflect.Field;
-import java.util.*;
+import java.lang.reflect.Method;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Date;
+import java.util.Map;
+import java.util.Optional;
+import java.util.Set;
 
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 
-import org.apache.commons.beanutils.*;
+import org.apache.commons.beanutils.DynaBean;
+import org.apache.commons.beanutils.DynaProperty;
 import org.restlet.resource.Resource;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-
-import de.twenty11.skysail.server.beans.*;
+import de.twenty11.skysail.server.beans.DynamicEntity;
+import de.twenty11.skysail.server.beans.EntityDynaProperty;
 import de.twenty11.skysail.server.core.restlet.MessagesUtils;
 import de.twenty11.skysail.server.um.domain.SkysailUser;
 
@@ -28,8 +38,6 @@ import de.twenty11.skysail.server.um.domain.SkysailUser;
  */
 @Slf4j
 public class FormField {
-
-    private final ObjectMapper mapper = new ObjectMapper();
 
     /** the fields name or identifier. */
     @Getter
@@ -52,18 +60,17 @@ public class FormField {
 
     private Map<String, String> selectionOptions;
 
-    public FormField(Field fieldAnnotation, SkysailServerResource<?> resource, Object source, Object entity) {
+    public FormField(Field field, SkysailServerResource<?> resource, Object source) {
         this.resource = resource;
-        this.name = fieldAnnotation.getName();
-        inputType = getFromFieldAnnotation(fieldAnnotation);
-        referenceAnnotation = fieldAnnotation.getAnnotation(Reference.class);
-        formFieldAnnotation = fieldAnnotation.getAnnotation(io.skysail.api.forms.Field.class);
+        this.name = field.getName();
+        inputType = getFromFieldAnnotation(field);
+        referenceAnnotation = field.getAnnotation(Reference.class);
+        formFieldAnnotation = field.getAnnotation(io.skysail.api.forms.Field.class);
         this.source = source;
-        this.entity = entity;
-
-        Map<String, Object> entityMap = OrientDbUtils.toMap(entity);
+        
+        Map<String, Object> entityMap = OrientDbUtils.toMap(source);
         if (entityMap != null) {
-            Object val = entityMap.get(fieldAnnotation.getName());
+            Object val = entityMap.get(field.getName());
             if (val == null) {
                 value = "---";
             } else if (val instanceof String) {
@@ -71,41 +78,59 @@ public class FormField {
             } else {
                 value = val.toString();
             }
-            type = fieldAnnotation.getType();
+            type = field.getType();
 
-            // }
-            //
-            // Method[] methods = entity.getClass().getMethods();
-            // Optional<Method> getHandlerMethod =
-            // Arrays.stream(methods).filter(m ->
-            // m.getName().contains("getHandler"))
-            // .findFirst();
-            // if (getHandlerMethod.isPresent()) {
-            // try {
-            // HashMap<String, Object> objectMap = new HashMap<String,
-            // Object>();
-            // OObjectProxyMethodHandler handler = (OObjectProxyMethodHandler)
-            // getHandlerMethod.get().invoke(entity);
-            // ODocument doc = handler.getDoc();
-            // objectMap = mapper.readValue(doc.toJSON(), new
-            // TypeReference<Map<String, Object>>() {
-            // });
-            // Object val = objectMap.get(fieldAnnotation.getName());
-            // if (val == null) {
-            // value = "---";
-            // } else if (val instanceof String) {
-            // value = (String) val;
-            // } else {
-            // value = val.toString();
-            // }
-            // type = fieldAnnotation.getType();
-            // } catch (Exception e) {
-            // log.error(e.getMessage(), e);
-            // }
+        } else {
+//            Method[] methods = entity.getClass().getMethods();
+//            String method = "get" + field.getName().substring(0, 1).toUpperCase()
+//                    + field.getName().substring(1);
+//            Arrays.stream(methods).filter(m -> m.getName().equals(method)).findFirst().ifPresent(m -> {
+//                try {
+//                    Object invocationResult = m.invoke(entity, new Object[] {});
+//                    if (invocationResult == null) {
+//                        value = "";
+//                    } else if (invocationResult instanceof String) {
+//                        value = (String) invocationResult;
+//                    } else if (invocationResult instanceof Date) {
+//                        this.type = Date.class;
+//                        value = invocationResult.toString();
+//                    } else {
+//                        value = invocationResult.toString();
+//                    }
+//                } catch (Exception e) {
+//                    log.error(e.getMessage(), e);
+//                }
+//            });
+        }
+
+    }
+   
+
+    public FormField(Field field, SkysailServerResource<?> resource, Object source, Object entity) {
+        this.resource = resource;
+        this.name = field.getName();
+        inputType = getFromFieldAnnotation(field);
+        referenceAnnotation = field.getAnnotation(Reference.class);
+        formFieldAnnotation = field.getAnnotation(io.skysail.api.forms.Field.class);
+        this.source = source;
+        this.entity = entity;
+
+        Map<String, Object> entityMap = OrientDbUtils.toMap(entity);
+        if (entityMap != null) {
+            Object val = entityMap.get(field.getName());
+            if (val == null) {
+                value = "---";
+            } else if (val instanceof String) {
+                value = (String) val;
+            } else {
+                value = val.toString();
+            }
+            type = field.getType();
+
         } else {
             Method[] methods = entity.getClass().getMethods();
-            String method = "get" + fieldAnnotation.getName().substring(0, 1).toUpperCase()
-                    + fieldAnnotation.getName().substring(1);
+            String method = "get" + field.getName().substring(0, 1).toUpperCase()
+                    + field.getName().substring(1);
             Arrays.stream(methods).filter(m -> m.getName().equals(method)).findFirst().ifPresent(m -> {
                 try {
                     Object invocationResult = m.invoke(entity, new Object[] {});
@@ -141,6 +166,7 @@ public class FormField {
     public FormField(String key, Object object) {
         this.name = key;
         this.value = object != null ? object.toString() : "";
+        this.inputType = InputType.TEXT;
     }
 
     public Object getEntity() {
@@ -163,6 +189,9 @@ public class FormField {
     }
 
     public String getNameKey() {
+        if (cls == null && getEntity() == null) {
+            return name;
+        }
         return MessagesUtils.getBaseKey(cls != null ? cls : getEntity().getClass(), this);
     }
 

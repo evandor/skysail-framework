@@ -20,6 +20,5 @@ todosProduct.controller('UpdateTodoCtrl', function($scope,$rootScope,$http) {
 	 			alert("calling PUT on link " + link + " failed...");
 		 	});
 	};
-
 	
 });

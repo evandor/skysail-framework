@@ -43,7 +43,7 @@ public class Tweet implements Identifiable {
         });
         MediaEntity[] mediaEntities = status.getMediaEntities();
         Arrays.stream(mediaEntities).forEach(me -> {
-            text = text.replace(me.getURL(), "<a href='"+me.getURL()+"'><img src='"+me.getMediaURL()+"' height='100px;'></a>");
+            text = text.replace(me.getURL(), "<br><a href='"+me.getURL()+"'><img src='"+me.getMediaURL()+"' height='100px;'></a>");
         });
         
         SymbolEntity[] symbolEntities = status.getSymbolEntities();

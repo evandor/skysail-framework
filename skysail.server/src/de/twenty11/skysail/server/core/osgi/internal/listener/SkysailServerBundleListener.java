@@ -17,17 +17,15 @@
 
 package de.twenty11.skysail.server.core.osgi.internal.listener;
 
+import java.util.concurrent.atomic.AtomicReference;
+
 import lombok.extern.slf4j.Slf4j;
 
-import org.osgi.framework.BundleEvent;
-import org.osgi.framework.BundleListener;
+import org.osgi.framework.*;
 import org.osgi.service.cm.ConfigurationException;
 import org.osgi.service.component.ComponentContext;
 
-import aQute.bnd.annotation.component.Activate;
-import aQute.bnd.annotation.component.Component;
-import aQute.bnd.annotation.component.Deactivate;
-import aQute.bnd.annotation.component.Reference;
+import aQute.bnd.annotation.component.*;
 import de.twenty11.skysail.server.services.SocketIoBroadcasting;
 
 /**
@@ -38,7 +36,7 @@ import de.twenty11.skysail.server.services.SocketIoBroadcasting;
 @Slf4j
 public class SkysailServerBundleListener implements BundleListener {
 
-    private SocketIoBroadcasting socketIoBroadcasting;
+    private AtomicReference<SocketIoBroadcasting> socketIoBroadcastingRef = new AtomicReference<>();
 
     @Activate
     protected void activate(ComponentContext componentContext) throws ConfigurationException {
@@ -54,11 +52,11 @@ public class SkysailServerBundleListener implements BundleListener {
 
     @Reference(dynamic = true, multiple = false, optional = true)
     public void setSocketIoBroadcasting(SocketIoBroadcasting socketIoBroadcasting) {
-        this.socketIoBroadcasting = socketIoBroadcasting;
+        this.socketIoBroadcastingRef.set(socketIoBroadcasting);
     }
 
     public void unsetSocketIoBroadcasting(SocketIoBroadcasting socketIoBroadcasting) {
-        this.socketIoBroadcasting = null;
+        this.socketIoBroadcastingRef.compareAndSet(socketIoBroadcasting, null);
     }
 
     @Override
@@ -72,20 +70,20 @@ public class SkysailServerBundleListener implements BundleListener {
 
     private synchronized void sendBundleStoppedMessage(BundleEvent event) {
         String symbolicName = event.getBundle().getSymbolicName();
-        if (socketIoBroadcasting == null) {
+        if (socketIoBroadcastingRef.get() == null) {
             log.debug("could not send bundleStoppedMessage for {}", symbolicName);
             return;
         }
-        socketIoBroadcasting.send("bundle " + symbolicName + " was stopped");
+        socketIoBroadcastingRef.get().send("bundle " + symbolicName + " was stopped");
     }
 
     private synchronized void sendBundleStartedMessage(BundleEvent event) {
         String symbolicName = event.getBundle().getSymbolicName();
-        if (socketIoBroadcasting == null) {
+        if (socketIoBroadcastingRef.get() == null) {
             log.debug("could not send bundleStartedMessage for {}", symbolicName);
             return;
         }
-        socketIoBroadcasting.send("bundle " + symbolicName + " was started");
+        socketIoBroadcastingRef.get().send("bundle " + symbolicName + " was started");
     }
 
 }

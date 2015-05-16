@@ -11,8 +11,8 @@ import de.twenty11.skysail.server.beans.DynamicEntity;
 public abstract class PostDynamicEntityServerResource<T extends DynamicEntity> extends PostEntityServerResource<T> {
 
     public T getData(Form form) {
-        T space = createEntityTemplate();
-        DynaBean bean = space.getInstance();
+        T entity = createEntityTemplate();
+        DynaBean bean = entity.getInstance();
         for (Parameter parameter : form) {
             String name = parameter.getName();
             if (bean.getDynaClass().getDynaProperty(name) != null ) {
@@ -20,7 +20,7 @@ public abstract class PostDynamicEntityServerResource<T extends DynamicEntity> e
             }
         }
         
-        return space;
+        return entity;
     }
 
 }

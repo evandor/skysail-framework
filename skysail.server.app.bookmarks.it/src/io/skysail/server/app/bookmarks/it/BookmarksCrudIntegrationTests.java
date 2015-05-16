@@ -1,16 +1,13 @@
 package io.skysail.server.app.bookmarks.it;
 
-import static org.hamcrest.CoreMatchers.containsString;
-import static org.hamcrest.CoreMatchers.not;
+import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.assertThat;
 import io.skysail.client.testsupport.IntegrationTests;
 import io.skysail.server.app.bookmarks.Bookmark;
 import lombok.extern.slf4j.Slf4j;
 
-import org.junit.Before;
-import org.junit.Test;
-import org.restlet.data.MediaType;
-import org.restlet.data.Reference;
+import org.junit.*;
+import org.restlet.data.*;
 import org.restlet.representation.Representation;
 
 /**
@@ -33,6 +30,7 @@ public class BookmarksCrudIntegrationTests extends IntegrationTests<BookmarksBro
     }
     
     @Test
+    @Ignore
     public void new_bookmark_can_be_deleted_by_owner() throws Exception {
         Reference location = browser.asUser("admin").createBookmark(new Bookmark("http://localhost:2014","home"));
         String id = location.getLastSegment(true);

@@ -11,9 +11,7 @@ import org.junit.rules.ExpectedException;
 import org.junit.rules.TestRule;
 import org.junit.rules.TestWatcher;
 import org.junit.runner.Description;
-import org.osgi.framework.Bundle;
-import org.osgi.framework.FrameworkUtil;
-import org.osgi.framework.ServiceReference;
+import org.osgi.framework.*;
 
 @Slf4j
 public class IntegrationTests<T extends ApplicationBrowser<?,?>, U> {
@@ -45,6 +43,12 @@ public class IntegrationTests<T extends ApplicationBrowser<?,?>, U> {
         PortProvider service = thisBundle.getBundleContext().getService(serviceReference);
         log.info("setting test port to {}", service.getPort());
         return service.getPort();
+    }
+
+    protected void stopAndStartBundle(Class<?> cls) throws BundleException {
+        Bundle bundle = FrameworkUtil.getBundle(cls);
+        bundle.stop();
+        bundle.start();
     }
 
    

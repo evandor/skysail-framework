@@ -81,16 +81,11 @@ index(user, messages, source, converter, services, resource, fields, target) ::=
             &nbsp;
         </div>
         <div class="row">
-            $if(converter.edit)$
-              <a href='/i18n/messages/$resource.classname$.message/'>edit</a>
               $contentHeader(messages)$
-            $else$
-              $contentHeader(messages)$
-            $endif$
         </div>
         <div class="row">
-        TranslationStore: <br>
-        redirecting to '$source.entity.redirectBackTo$'
+        <b>TranslationStore</b>: $first(fields).entity.storeChooser$<br>
+        <b>redirecting to</b> '$source.entity.redirectBackTo$'
 		    <form role="form" action=".?method=PUT&_redirectTo=$source.entity.redirectBackTo$" method="POST">
 		        <div class="form-group">
 		            <label for="exampleInputEmail1">Markdown [<a href='http://daringfireball.net/projects/markdown/syntax' target='_blank'">?</a>] for $first(fields).entity.msgKey$</label>

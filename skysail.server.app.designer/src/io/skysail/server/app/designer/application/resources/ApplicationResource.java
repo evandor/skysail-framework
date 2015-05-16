@@ -38,8 +38,9 @@ public class ApplicationResource extends EntityServerResource<Application> {
 
     @Override
     public SkysailResponse<?> eraseEntity() {
+        app.invalidateMenuCache();
         app.getRepository().delete(Application.class, id);
-        return null;
+        return new SkysailResponse<>();
     }
 
     @Override

@@ -11,6 +11,7 @@ import io.skysail.server.app.designer.entities.Entity;
 import io.skysail.server.app.designer.entities.resources.EntitiesResource;
 import io.skysail.server.app.designer.entities.resources.EntityResource;
 import io.skysail.server.app.designer.entities.resources.PostEntityResource;
+import io.skysail.server.app.designer.entities.resources.PostSubEntityResource;
 import io.skysail.server.app.designer.entities.resources.PutEntityResource;
 import io.skysail.server.app.designer.fields.EntityField;
 import io.skysail.server.app.designer.fields.resources.FieldResource;
@@ -36,6 +37,7 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.SortedSet;
 import java.util.TreeSet;
+import java.util.stream.Collectors;
 
 import lombok.extern.slf4j.Slf4j;
 import aQute.bnd.annotation.component.Component;
@@ -84,6 +86,8 @@ public class DesignerApplication extends SkysailApplication implements MenuItemP
         router.attach(new RouteBuilder("/applications/{id}/entities/{" + ENTITY_ID + "}", EntityResource.class));
         router.attach(new RouteBuilder("/applications/{id}/entities/{" + ENTITY_ID + "}/", PutEntityResource.class));
 
+        router.attach(new RouteBuilder("/applications/{id}/entities/{" + ENTITY_ID + "}/onetomany/", PostSubEntityResource.class));
+
         router.attach(new RouteBuilder("/applications/{id}/entities/{" + ENTITY_ID + "}/fields", FieldsResource.class));
         router.attach(new RouteBuilder("/applications/{id}/entities/{" + ENTITY_ID + "}/fields/", PostFieldResource.class));
         router.attach(new RouteBuilder("/applications/{id}/entities/{" + ENTITY_ID + "}/fields/{"+FIELD_ID+"}", FieldResource.class));
@@ -104,9 +108,9 @@ public class DesignerApplication extends SkysailApplication implements MenuItemP
                                 StringBuilder sb = new StringBuilder("AppDesigner_");
                                 sb.append(a.getName()).append("_");
                                 sb.append(Iterables.getLast(Arrays.asList(e.getName().split("\\."))));
-                                String entityName = sb.toString(); // e.g. AppDesigner_Automobiles_Brand
+                                String entityName = sb.toString();
 
-                                String entityClassName = setupEntityForCompilation(entityTemplate, a.getId(), entityName, e.getName()); // io.skysail.server.app.designer.codegen.AppDesigner_Automobiles_Brand
+                                String entityClassName = setupEntityForCompilation(entityTemplate, a.getId(), entityName, e.getName());
                                 String postResourceClassName = setupPostResourceForCompilation(postResourceTemplate, entityName, e.getName()); 
                                 String listResourceClassName = setupListResourceForCompilation(listServerResourceTemplate, a, entityName, entityClassName);
 
@@ -133,6 +137,18 @@ public class DesignerApplication extends SkysailApplication implements MenuItemP
 
                             });
                 });
+        
+        List<Entity> entities = apps.stream().map(a -> a.getEntities()).flatMap(e -> e.stream()).collect(Collectors.toList());
+        handleSubEntries(entities);
+    }
+
+    private void handleSubEntries(List<Entity> entities) {
+        entities.stream().map(e -> e.getSubEntities()).flatMap(sub -> sub.stream()).forEach(sub -> {
+            System.out.println(sub);
+            //String entityTemplate = BundleUtils.readResource(getBundle(), "code/SubEntity.codegen");
+           // String entityClassName = setupEntityForCompilation(entityTemplate, a.getId(), entityName, e.getName());
+            handleSubEntries(sub.getSubEntities());
+        });
     }
 
     private String setupListResourceForCompilation(String listServerResourceTemplate, Application a, String entityName, String entityClassName) {
@@ -246,21 +262,25 @@ public class DesignerApplication extends SkysailApplication implements MenuItemP
     }
 
     public List<MenuItem> getMenuEntries() {
-        List<MenuItem> result = new ArrayList<>();
+        return super.getMenuEntriesWithCache();
+    }
+    
+    public List<MenuItem> createMenuEntries() {
         MenuItem appMenu = new MenuItem("AppDesigner", "/" + APP_NAME, this);
         appMenu.setCategory(MenuItem.Category.APPLICATION_MAIN_MENU);
-        result.add(appMenu);
-        addDesignerAppMenuItems(result);
-        return result;
+        List<MenuItem> menuItems = new ArrayList<>();
+        menuItems.add(appMenu);
+        menuItems.addAll(addDesignerAppMenuItems());
+        return menuItems;
     }
 
-    private void addDesignerAppMenuItems(List<MenuItem> result) {
+    private List<MenuItem> addDesignerAppMenuItems() {
         List<Application> apps = getRepository().findAll(Application.class);
-        apps.stream().forEach(a -> {
+        return apps.stream().map(a -> {
             MenuItem menu = new MenuItem(a.getName(), "/" + APP_NAME + "/preview/" + a.getName(), this);
             menu.setCategory(MenuItem.Category.DESIGNER_APP_MENU);
-            result.add(menu);
-        });
+            return menu;
+        }).collect(Collectors.toList());
     }
 
     public Entity getEntity(Application application, String entityId) {
@@ -290,6 +310,11 @@ public class DesignerApplication extends SkysailApplication implements MenuItemP
                 for (EntityField entityField : fields) {
                     properties.add(new EntityDynaProperty(entityField.getName(), entityField.getType(), String.class));
                 }
+                
+                List<Entity> subEntities = entity.getSubEntities();
+                for (Entity sub : subEntities) {
+                    properties.add(new EntityDynaProperty(sub.getName(), null, List.class));
+                }
                 break;
             }
         }
@@ -301,7 +326,8 @@ public class DesignerApplication extends SkysailApplication implements MenuItemP
         Application application = getRepository().getById(Application.class, appId);
         Optional<Entity> entityFromApplication = getEntityFromApplication(application, entityId);
         if (entityFromApplication.isPresent()) {
-            return entityFromApplication.get().getFields().stream().filter(f -> {
+            List<EntityField> fields = entityFromApplication.get().getFields();
+            return fields.stream().filter(f -> {
                 if (f == null || f.getId() == null) {
                     return false;
                 }
@@ -312,7 +338,6 @@ public class DesignerApplication extends SkysailApplication implements MenuItemP
     }
     
     public Optional<Entity> getEntityFromApplication(Application application, String entityId) {
-        System.out.println(application.getEntities());
         return application.getEntities().stream().filter(e -> {
             if (e == null || e.getId() == null) {
                 return false;

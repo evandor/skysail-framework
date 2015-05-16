@@ -6,23 +6,17 @@ import io.skysail.api.responses.SkysailResponse;
 import io.skysail.server.restlet.RequestHandler;
 import io.skysail.server.services.PerformanceTimer;
 
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 import lombok.extern.slf4j.Slf4j;
 
 import org.restlet.Restlet;
-import org.restlet.data.Header;
-import org.restlet.data.Method;
-import org.restlet.representation.Representation;
-import org.restlet.representation.Variant;
-import org.restlet.resource.Get;
-import org.restlet.resource.Options;
-import org.restlet.resource.ServerResource;
+import org.restlet.data.*;
+import org.restlet.representation.*;
+import org.restlet.resource.*;
 import org.restlet.util.Series;
 
-import de.twenty11.skysail.server.core.restlet.ResourceContextId;
-import de.twenty11.skysail.server.core.restlet.ResponseWrapper;
+import de.twenty11.skysail.server.core.restlet.*;
 
 /**
  * A ListServerResource implementation takes care of a List of Entities.
@@ -77,16 +71,14 @@ public abstract class ListServerResource<T> extends SkysailServerResource<List<T
 
     public static final String CONSTRAINT_VIOLATIONS = "constraintViolations";
 
-    private Class<? extends EntityServerResource<T>> associatedEntityServerResource;
+    private List<Class<? extends SkysailServerResource<?>>> associatedEntityServerResources;
     private RequestHandler<T> requestHandler;
-    private RequestHandler<String> stringRequestHandler;
 
     /**
      * Default constructor without associatedEntityServerResource.
      */
     public ListServerResource() {
         requestHandler = new RequestHandler<T>(null);
-        stringRequestHandler = new RequestHandler<String>(null);
         addToContext(ResourceContextId.LINK_TITLE, "list");
     }
 
@@ -94,12 +86,13 @@ public abstract class ListServerResource<T> extends SkysailServerResource<List<T
      * Constructor which associates this ListServerResource with a corresponding
      * EntityServerResource.
      * 
-     * @param entityResourceClass
+     * @param skysailServerResource
      *            the class
      */
-    public ListServerResource(Class<? extends EntityServerResource<T>> entityResourceClass) {
+    @SafeVarargs
+    public ListServerResource(Class<? extends SkysailServerResource<?>>... skysailServerResource) {
         this();
-        this.associatedEntityServerResource = entityResourceClass;
+        this.associatedEntityServerResources = Arrays.asList(skysailServerResource);
     }
 
     /**
@@ -108,8 +101,7 @@ public abstract class ListServerResource<T> extends SkysailServerResource<List<T
      * 
      * @return the list of entities in html, csv or treeform format
      */
-    @Get("html|json|yaml|xml")
-    // treeform, csv:broken
+    @Get("html|json|yaml|xml")    // treeform, csv:broken
     @API(desc = "lists the entities according to the media type provided")
     public final List<T> getEntities(Variant variant) {
         Set<PerformanceTimer> perfTimer = getApplication().startPerformanceMonitoring(this.getClass().getSimpleName() + ":getEntities");
@@ -166,8 +158,8 @@ public abstract class ListServerResource<T> extends SkysailServerResource<List<T
         throw new UnsupportedOperationException();
     }
 
-    public Class<? extends EntityServerResource<T>> getAssociatedEntityResource() {
-        return associatedEntityServerResource;
+    public List<Class<? extends SkysailServerResource<?>>> getAssociatedServerResources() {
+        return associatedEntityServerResources;
     }
 
 }

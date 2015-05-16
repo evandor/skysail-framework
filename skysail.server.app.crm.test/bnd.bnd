@@ -110,10 +110,12 @@ Test-Cases: \
 	skysail.api.favorites;version=${skysail.api.favorites.version},\
 	skysail.api.features;version=latest,\
 	skysail.api.um;version=latest,\
+	skysail.api.peers;version=latest,\
 	skysail.api.text;version=latest,\
 	skysail.api.validation;version=latest,\
 	skysail.server;version=latest,\
 	skysail.server.documentation;version=latest,\
 	slf4j.api;version='[1.7.7,1.7.8)',\
 	org.codehaus.jettison.jettison;version=1.3.7,\
-	de.twentyeleven.skysail.org.json-osgi;version=20080701.0.0
+	de.twentyeleven.skysail.org.json-osgi;version=20080701.0.0,\
+	org.apache.commons.lang3;version=3.3.2

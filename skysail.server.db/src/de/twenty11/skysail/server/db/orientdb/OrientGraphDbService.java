@@ -1,16 +1,26 @@
 package de.twenty11.skysail.server.db.orientdb;
 
-import io.skysail.server.db.*;
+import io.skysail.server.db.DbConfigurationProvider;
+import io.skysail.server.db.DbService2;
 
 import java.lang.reflect.Method;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+import java.util.Set;
 
 import lombok.extern.slf4j.Slf4j;
 
 import org.apache.commons.beanutils.DynaBean;
 import org.osgi.service.component.ComponentContext;
 
-import aQute.bnd.annotation.component.*;
+import aQute.bnd.annotation.component.Activate;
+import aQute.bnd.annotation.component.Component;
+import aQute.bnd.annotation.component.Deactivate;
+import aQute.bnd.annotation.component.Reference;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -19,19 +29,25 @@ import com.orientechnologies.orient.core.Orient;
 import com.orientechnologies.orient.core.db.ODatabaseRecordThreadLocal;
 import com.orientechnologies.orient.core.db.document.ODatabaseDocumentTx;
 import com.orientechnologies.orient.core.id.ORecordId;
-import com.orientechnologies.orient.core.metadata.schema.*;
+import com.orientechnologies.orient.core.metadata.schema.OClass;
 import com.orientechnologies.orient.core.metadata.schema.OClass.INDEX_TYPE;
+import com.orientechnologies.orient.core.metadata.schema.OType;
 import com.orientechnologies.orient.core.record.impl.ODocument;
 import com.orientechnologies.orient.core.sql.OCommandSQL;
 import com.orientechnologies.orient.core.sql.query.OSQLSynchQuery;
-import com.orientechnologies.orient.object.db.*;
+import com.orientechnologies.orient.object.db.OObjectDatabasePool;
+import com.orientechnologies.orient.object.db.OObjectDatabaseTx;
 import com.orientechnologies.orient.object.enhancement.OObjectProxyMethodHandler;
 import com.orientechnologies.orient.object.metadata.schema.OSchemaProxyObject;
-import com.tinkerpop.blueprints.impls.orient.*;
+import com.tinkerpop.blueprints.impls.orient.OrientGraph;
+import com.tinkerpop.blueprints.impls.orient.OrientGraphFactory;
+import com.tinkerpop.blueprints.impls.orient.OrientGraphNoTx;
 
-import de.twenty11.skysail.server.beans.*;
+import de.twenty11.skysail.server.beans.DynamicEntity;
+import de.twenty11.skysail.server.beans.EntityDynaProperty;
 import de.twenty11.skysail.server.core.osgi.EventHelper;
-import de.twenty11.skysail.server.db.orientdb.impl.*;
+import de.twenty11.skysail.server.db.orientdb.impl.Persister;
+import de.twenty11.skysail.server.db.orientdb.impl.Updater;
 import de.twenty11.skysail.server.events.EventHandler;
 
 @Component(immediate = true)
@@ -156,20 +172,22 @@ public class OrientGraphDbService extends AbstractOrientDbService implements DbS
     public <T> T findObjectById(Class<?> cls, String id) {
         OObjectDatabaseTx objectDb = getObjectDb();
         objectDb.getEntityManager().registerEntityClass(cls);
-        return objectDb.load(new ORecordId(id));
+         T load = objectDb.load(new ORecordId(id));
+         return objectDb.detachAll(load, true);
+         //return load;
     }
-
+    
     @Override
-    public Map<String, Object> findDocumentById(Class<?> cls, String id) {
+    public ODocument findDocumentById(Class<?> cls, String id) {
         ODatabaseDocumentTx db = getDocumentDb();
         Map<String, Object> params = new HashMap<>();
         params.put("rid", id);
         List<ODocument> query = db.query(new OSQLSynchQuery<ODocument>("SELECT * FROM " + cls.getSimpleName()
                 + " WHERE @rid= :rid"), params);
         if (query != null) {
-            return query.get(0).toMap();
+            return query.get(0);
         }
-        return new HashMap<String, Object>();
+        return null;//new HashMap<String, Object>();
     }
 
     @Override
@@ -281,7 +299,7 @@ public class OrientGraphDbService extends AbstractOrientDbService implements DbS
         OObjectDatabaseTx db = getObjectDb();
         try {
             Arrays.stream(entities).forEach(entity -> {
-                log.info("registering class '{}' @ orientDB", entity);
+                log.debug("registering class '{}' @ orientDB", entity);
                 db.getEntityManager().registerEntityClass(entity);
             });
         } finally {
@@ -349,6 +367,23 @@ public class OrientGraphDbService extends AbstractOrientDbService implements DbS
         if (cls.getProperty(iPropertyName) == null) {
             cls.createProperty(iPropertyName, type);
         }
+    }
+
+    @Override
+    public void update(Map<String, Object> map) {
+        ODatabaseDocumentTx documentDb = getDocumentDb();
+        ODocument doc = new ODocument().fromMap(map);
+        documentDb.save(doc);
+        documentDb.commit();
+    }
+
+    @Override
+    public void update(ODocument doc) {
+        ODatabaseDocumentTx documentDb = getDocumentDb();
+        //ODocument doc = new ODocument().fromMap(map);
+        documentDb.save(doc);
+        documentDb.commit();
+        
     }
 
 }

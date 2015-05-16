@@ -1,13 +1,9 @@
 package io.skysail.server.utils;
 
-import io.skysail.server.restlet.resources.EntityServerResource;
 import io.skysail.server.restlet.resources.SkysailServerResource;
 
 import java.io.IOException;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -16,24 +12,27 @@ import org.restlet.engine.Engine;
 import org.restlet.engine.converter.ConverterHelper;
 import org.restlet.engine.resource.VariantInfo;
 import org.restlet.representation.Variant;
-import org.restlet.resource.Resource;
-import org.restlet.resource.ServerResource;
+import org.restlet.resource.*;
 
 @Slf4j
 public class ResourceUtils {
 
-    public static EntityServerResource<?> createEntityServerResource(Class<? extends EntityServerResource<?>> entityServerResource,
+    public static List<SkysailServerResource<?>> createSkysailServerResources(List<Class<? extends SkysailServerResource<?>>> entityServerResources,
             Resource resource) {
-        EntityServerResource<?> newInstance;
-        try {
-            newInstance = entityServerResource.newInstance();
-            newInstance.init(resource.getContext(), resource.getRequest(), resource.getResponse());
-            newInstance.release();
-            return newInstance;
-        } catch (InstantiationException | IllegalAccessException e) {
-            log.error(e.getMessage(), e);
+        
+        List<SkysailServerResource<?>> result = new ArrayList<>();
+        for (Class<? extends SkysailServerResource<?>> class1 : entityServerResources) {
+            SkysailServerResource<?> newInstance;
+            try {
+                newInstance = class1.newInstance();
+                newInstance.init(resource.getContext(), resource.getRequest(), resource.getResponse());
+                newInstance.release();
+                result.add(newInstance);
+            } catch (InstantiationException | IllegalAccessException e) {
+                log.error(e.getMessage(), e);
+            }
         }
-        return null;
+        return result;
     }
 
     public static SkysailServerResource<?> createSkysailServerResource(Class<? extends SkysailServerResource<?>> resourceClass,

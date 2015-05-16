@@ -12,7 +12,7 @@
   </class>  
   <interface id="2" language="java" name="io.skysail.api.text.TranslationStore" project="skysail.api.text" 
     file="/skysail.api.text/src/io/skysail/api/text/TranslationStore.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="843" y="718"/>    
+    <position height="-1" width="-1" x="736" y="270"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -21,16 +21,15 @@
   </interface>  
   <interface id="3" language="java" name="io.skysail.api.text.TranslationRenderService" project="skysail.api.text" 
     file="/skysail.api.text/src/io/skysail/api/text/TranslationRenderService.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="262" y="271"/>    
+    <position height="-1" width="-1" x="261" y="291"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </interface>  
-  <class id="4" language="java" name="io.skysail.server.text.AbstractTranslationRenderService" 
-    project="skysail.server.text" 
-    file="/skysail.server.text/src/io/skysail/server/text/AbstractTranslationRenderService.java" binary="false" 
+  <class id="4" language="java" name="io.skysail.server.text.AbstractTranslationRenderService" project="skysail.server" 
+    file="/skysail.server/src/io/skysail/server/text/AbstractTranslationRenderService.java" binary="false" 
     corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="262" y="455"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -39,102 +38,55 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="5" language="java" name="io.skysail.server.text.TranslationStoreHolder" project="skysail.server.text" 
-    file="/skysail.server.text/src/io/skysail/server/text/TranslationStoreHolder.java" binary="false" 
-    corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="736" y="409"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="6" language="java" name="io.skysail.server.text.markdown.MarkdownTranslationRenderService" 
+  <class id="5" language="java" name="io.skysail.server.text.markdown.MarkdownTranslationRenderService" 
     project="skysail.server.text.markdown" 
     file="/skysail.server.text.markdown/src/io/skysail/server/text/markdown/MarkdownTranslationRenderService.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="461" y="701"/>    
+    <position height="-1" width="-1" x="521" y="651"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="7" language="java" name="io.skysail.server.text.asciidoc.AsciiDocRendererTranslation" 
-    project="skysail.server.text.asciidoc" 
-    file="/skysail.server.text.asciidoc/src/io/skysail/server/text/asciidoc/AsciiDocRendererTranslation.java" 
+  <class id="6" language="java" name="io.skysail.server.text.store.git.GitTranslationStore" 
+    project="skysail.server.text.store.git" 
+    file="/skysail.server.text.store.git/src/io/skysail/server/text/store/git/GitTranslationStore.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1074" y="196"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="false" package="false" protected="false" private="false" static="true"/>    
+    </display>  
+  </class>  
+  <class id="7" language="java" name="io.skysail.server.text.store.bundleresource.impl.ResourceBundleStore" 
+    project="skysail.server.text.store.bundleresource" 
+    file="/skysail.server.text.store.bundleresource/src/io/skysail/server/text/store/bundleresource/impl/ResourceBundleStore.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="746" y="63"/>    
+    <position height="-1" width="-1" x="1074" y="357"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+      <operations public="false" package="false" protected="false" private="false" static="true"/>    
     </display>  
   </class>  
-  <class id="8" language="java" name="io.skysail.server.text.markdown.MarkdownTranslation" 
-    project="skysail.server.text.markdown" 
-    file="/skysail.server.text.markdown/src/io/skysail/server/text/markdown/MarkdownTranslation.java" binary="false" 
-    corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="744" y="202"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="9" language="java" name="io.skysail.server.text.asciidoc.AsciiDocRenderService" 
-    project="skysail.server.text.asciidoc" 
-    file="/skysail.server.text.asciidoc/src/io/skysail/server/text/asciidoc/AsciiDocRenderService.java" binary="false" 
-    corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="104" y="711"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="10" language="java" name="io.skysail.server.text.impl.ResourceBundleStore" project="skysail.server.text" 
-    file="/skysail.server.text/src/io/skysail/server/text/impl/ResourceBundleStore.java" binary="false" 
-    corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1132" y="434"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
-      <operations public="true" package="false" protected="false" private="false" static="false"/>    
-    </display>  
-  </class>  
-  <realization id="11">    
+  <generalization id="8">    
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="4"/>  
+  </generalization>  
+  <realization id="9">    
+    <end type="SOURCE" refId="7"/>    
+    <end type="TARGET" refId="2"/>  
+  </realization>  
+  <realization id="10">    
     <end type="SOURCE" refId="4"/>    
     <end type="TARGET" refId="3"/>  
   </realization>  
-  <generalization id="12">    
+  <realization id="11">    
     <end type="SOURCE" refId="6"/>    
-    <end type="TARGET" refId="4"/>  
-  </generalization>  
-  <generalization id="13">    
-    <end type="SOURCE" refId="8"/>    
-    <end type="TARGET" refId="1"/>  
-  </generalization>  
-  <realization id="14">    
-    <end type="SOURCE" refId="10"/>    
     <end type="TARGET" refId="2"/>  
   </realization>  
-  <generalization id="15">    
-    <end type="SOURCE" refId="7"/>    
-    <end type="TARGET" refId="1"/>  
-  </generalization>  
-  <association id="16">    
-    <end type="SOURCE" refId="4" navigable="false">      
-      <attribute id="17" name="stores"/>      
-      <multiplicity id="18" minimum="0" maximum="2147483647"/>    
-    </end>    
-    <end type="TARGET" refId="5" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <generalization id="19">    
-    <end type="SOURCE" refId="9"/>    
-    <end type="TARGET" refId="4"/>  
-  </generalization>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
     sort-features="false" accessors="true" visibility="true">    
     <attributes public="true" package="true" protected="true" private="true" static="true"/>    

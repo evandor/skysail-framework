@@ -53,6 +53,8 @@ public abstract class SkysailServerResource<T> extends ServerResource {
     public static final String ATTRIBUTES_INTERNAL_REQUEST_ID = "de.twenty11.skysail.server.restlet.SkysailServerResource.requestId";
     public static final String SKYSAIL_SERVER_RESTLET_FORM = "de.twenty11.skysail.server.core.restlet.form";
     public static final String SKYSAIL_SERVER_RESTLET_ENTITY = "de.twenty11.skysail.server.core.restlet.entity";
+    public static final String SKYSAIL_SERVER_RESTLET_VARIANT = "de.twenty11.skysail.server.core.restlet.variant";
+    public static final String NO_REDIRECTS = "noRedirects";
 
     @Setter
     @Getter
@@ -108,6 +110,10 @@ public abstract class SkysailServerResource<T> extends ServerResource {
      * @return entity of Type T (can be a list as well)
      */
     public abstract T getEntity();
+    
+    public T getEntity(String installation) {
+        return getEntity();
+    }
 
     public abstract LinkRelation getLinkRelation();
 
@@ -264,18 +270,22 @@ public abstract class SkysailServerResource<T> extends ServerResource {
             return Collections.emptyList();
         }
         ListServerResource<?> listServerResource = (ListServerResource<?>) this;
-        Class<? extends EntityServerResource<?>> entityResourceClass = listServerResource.getAssociatedEntityResource();
+        List<Class<? extends SkysailServerResource<?>>> entityResourceClasses = listServerResource.getAssociatedServerResources();
+        //List<Class<? extends EntityServerResource<?>>> entityResourceClass = listServerResource.getAssociatedEntityResources();
         T entity = getCurrentEntity();
         List<Link> result = new ArrayList<>();
 
-        if (entityResourceClass != null && entity instanceof List) {
-            EntityServerResource<?> esr = ResourceUtils.createEntityServerResource(entityResourceClass, this);
-            List<Link> entityLinkTemplates = esr.getAuthorizedLinks();
-            for (Object object : (List<?>) entity) {
-                String id = guessId(object);
-                entityLinkTemplates.stream().filter(lh -> {
-                    return lh.getRole().equals(LinkRole.DEFAULT);
-                }).forEach(link -> addLink(link, esr, id, listServerResource, result));
+        if (entityResourceClasses != null && entity instanceof List) {
+            List<SkysailServerResource<?>> esrs = ResourceUtils.createSkysailServerResources(entityResourceClasses, this);
+            
+            for (SkysailServerResource<?> esr : esrs) {
+                List<Link> entityLinkTemplates = esr.getAuthorizedLinks();
+                for (Object object : (List<?>) entity) {
+                    String id = guessId(object);
+                    entityLinkTemplates.stream().filter(lh -> {
+                        return lh.getRole().equals(LinkRole.DEFAULT);
+                    }).forEach(link -> addLink(link, esr, id, listServerResource, result));
+                }
             }
         }
         return result;
@@ -290,6 +300,9 @@ public abstract class SkysailServerResource<T> extends ServerResource {
             Map<String,Object> map = (Map)object;
             if (map.get("@rid") != null) {
                 return map.get("@rid").toString().replace("#",  "");
+            }
+            if (map.get("id") != null) {
+                return map.get("id").toString().replace("#",  "");
             }
         }
         Map<String, Object> map = OrientDbUtils.toMap(object);
@@ -407,6 +420,10 @@ public abstract class SkysailServerResource<T> extends ServerResource {
 
     public void addToContext(ResourceContextId id, Map<String, String> map) {
         mapContextMap.put(id, map);
+    }
+    
+    public void removeFromContext(ResourceContextId id) {
+        stringContextMap.remove(id);
     }
 
     public String getFromContext(ResourceContextId id) {

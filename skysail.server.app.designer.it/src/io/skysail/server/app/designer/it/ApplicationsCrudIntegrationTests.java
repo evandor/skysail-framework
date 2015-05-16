@@ -6,8 +6,7 @@ import io.skysail.client.testsupport.IntegrationTests;
 import io.skysail.server.app.designer.application.Application;
 import io.skysail.server.app.designer.it.browser.ApplicationsBrowser;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.*;
 import org.restlet.data.MediaType;
 import org.restlet.representation.Representation;
 import org.restlet.resource.ResourceException;
@@ -25,8 +24,10 @@ public class ApplicationsCrudIntegrationTests extends IntegrationTests<Applicati
     }
 
     @Test
-    public void posting_new_application_with_name_persists_it() throws Exception {
-        browser.createApplication(new Application("app1"));
+    public void posting_new_application_with_name_and_path_persists_it() throws Exception {
+        Application application = new Application("app1");
+       // application.setPath(".");
+        browser.createApplication(application);
         Representation applications = browser.getApplications();
         assertThat(applications.getText(), containsString("app1"));
     }

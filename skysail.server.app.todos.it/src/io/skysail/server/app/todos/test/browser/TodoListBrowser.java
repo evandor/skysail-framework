@@ -1,14 +1,10 @@
 package io.skysail.server.app.todos.test.browser;
 
-import io.skysail.client.testsupport.ApplicationBrowser;
-import io.skysail.client.testsupport.ApplicationClient;
-import io.skysail.server.app.todos.TodoApplication;
-import io.skysail.server.app.todos.TodoList;
+import io.skysail.client.testsupport.*;
+import io.skysail.server.app.todos.*;
 import lombok.extern.slf4j.Slf4j;
 
-import org.restlet.data.Form;
-import org.restlet.data.MediaType;
-import org.restlet.data.Method;
+import org.restlet.data.*;
 import org.restlet.representation.Representation;
 
 @Slf4j

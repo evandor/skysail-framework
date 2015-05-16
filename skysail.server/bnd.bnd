@@ -10,6 +10,7 @@ Export-Package:  \
 	io.skysail.server.utils,\
 	de.twenty11.skysail.server.core.osgi,\
 	io.skysail.server.restlet.resources,\
+	io.skysail.server.text,\
 	io.skysail.server.restlet.filter,\
 	de.twenty11.skysail.server.validation,\
 	io.skysail.server.app,\
@@ -53,7 +54,8 @@ Private-Package:  \
 	de.twenty11.skysail.server.core.osgi.internal.listener,\
 	de.twenty11.skysail.server.core.restlet.converter,\
 	de.twenty11.skysail.server.app.sourceconverter,\
-	io.skysail.server.features.strategy
+	io.skysail.server.features.strategy,\
+	io.skysail.server.restlet.sourceconverter
 ### markdown is moving to skysail.server.text.markdown, remove here when done
 Bundle-ClassPath: .,lib/jsr305.jar,lib/markdown4j-2.2.jar
 Service-Component: *
@@ -66,6 +68,7 @@ Service-Component: *
 	skysail.api;version=${skysail.api.version},\
 	skysail.api.documentation;version=${skysail.api.documentation.version},\
 	skysail.api.favorites;version=${skysail.api.favorites.version},\
+	skysail.api.peers;version=latest,\
 	skysail.api.features;version=latest,\
 	skysail.api.text;version=latest,\
 	skysail.api.um;version=latest,\
@@ -106,4 +109,5 @@ Service-Component: *
 	com.googlecode.json-simple;version=1.1,\
 	org.codehaus.jettison.jettison;version=1.3,\
 	com.fasterxml.jackson.dataformat.jackson-dataformat-csv;version=2.5,\
-	de.twentyeleven.skysail.org.json-osgi;version=20080701.0
+	de.twentyeleven.skysail.org.json-osgi;version=20080701.0,\
+	org.apache.commons.lang3;version=3.3

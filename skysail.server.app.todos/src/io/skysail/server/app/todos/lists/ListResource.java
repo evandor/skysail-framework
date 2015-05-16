@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.function.Consumer;
 
 import org.restlet.data.Status;
+import org.restlet.resource.ClientResource;
 
 import de.twenty11.skysail.server.core.restlet.ResourceContextId;
 
@@ -47,6 +48,29 @@ public class ListResource extends EntityServerResource<TodoList> {
     public TodoList getEntity() {
         return app.getRepository().getById(TodoList.class, listId);
     }
+    
+    @Override
+    public TodoList getEntity(String installation) {
+        if (installation == null || installation.trim().length() == 0) {
+            return getEntity();
+        }
+        String peersCredentialsName = "Credentials_" + installation;
+        String peersCredentials = getRequest().getCookies().getFirstValue(peersCredentialsName);
+
+        String path = app.getRemotePath(installation, "/Todos/Lists/" + listId);
+        //String uri = path + "/Todos/Lists";
+        
+        if (peersCredentials == null) {
+            getResponse().redirectSeeOther("/_remotelogin");
+            return null;
+        } 
+        ClientResource cr = new ClientResource(path);
+        cr.getCookies().add("Credentials", peersCredentials);
+        //cr.get(MediaType.APPLICATION_JSON);
+
+        return cr.get(TodoList.class);
+    }
+
 
     @Override
     public List<Link> getLinks() {

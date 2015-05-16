@@ -1,5 +1,5 @@
 Bundle-Name: SKYSAIL :: api :: features
-Bundle-Version: 0.1.0.${tstamp}
+Bundle-Version: 0.1.1.${tstamp}
 Bundle-Description: Features API to toggle functionality based on various strategies
 -buildpath:  \
 	lombok;version=1.16,\
@@ -11,3 +11,5 @@ Bundle-Description: Features API to toggle functionality based on various strate
 Export-Package:  \
 	io.skysail.api.features,\
 	io.skysail.api.features.annotations
+Service-Component:  \
+	*

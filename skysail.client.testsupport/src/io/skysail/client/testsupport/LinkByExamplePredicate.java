@@ -1,12 +1,10 @@
 package io.skysail.client.testsupport;
 
 import io.skysail.api.links.Link;
-import lombok.ToString;
 
 import org.restlet.data.Header;
 import org.restlet.util.Series;
 
-@ToString(callSuper = true)
 public class LinkByExamplePredicate extends LinkPredicate {
 
     private Link exampleLink;
@@ -20,12 +18,23 @@ public class LinkByExamplePredicate extends LinkPredicate {
     public boolean test(Link l) {
         String title = exampleLink.getTitle();
         if (title != null && (!(l.getTitle().equals(title)))) {
-                return false;
+            return false;
         }
         String refId = exampleLink.getRefId();
         if (refId != null && (!(l.getRefId().equals(refId)))) {
-                return false;
+            return false;
         }
         return true;
     }
+
+    @Override
+    public String toString() {
+        String superToString = super.toString();
+        StringBuilder sb = new StringBuilder("'LinkByExample' matching: ");
+        sb.append("title = '").append(exampleLink.getTitle()).append("', ");
+        sb.append("refId = '").append(exampleLink.getRefId()).append("'\n in list of links:");
+        sb.append(superToString);
+        return sb.toString();
+    } 
+    
 }

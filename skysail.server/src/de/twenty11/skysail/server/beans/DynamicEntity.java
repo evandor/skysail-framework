@@ -6,14 +6,22 @@ import lombok.extern.slf4j.Slf4j;
 
 import org.apache.commons.beanutils.DynaBean;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Slf4j
+@JsonIgnoreProperties("handler")
 public class DynamicEntity implements DynamicBean {
 
     private DynaBean instance;
 
     @Override
     public String getBeanName() {
-        return this.getClass().getSimpleName();
+         String simpleName = this.getClass().getSimpleName();
+         String[] split = simpleName.split("\\_\\$\\$\\_");
+        if (split.length > 1) {
+            return split[0];
+        }
+        return simpleName;
     }
 
     @Override

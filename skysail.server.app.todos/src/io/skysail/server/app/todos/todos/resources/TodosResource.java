@@ -1,15 +1,12 @@
 package io.skysail.server.app.todos.todos.resources;
 
 import io.skysail.api.links.Link;
-import io.skysail.server.app.todos.TodoApplication;
-import io.skysail.server.app.todos.TodoList;
+import io.skysail.server.app.todos.*;
 import io.skysail.server.app.todos.todos.Todo;
 import io.skysail.server.restlet.resources.ListServerResource;
 import io.skysail.server.utils.HeadersUtils;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.function.Consumer;
 
 import org.apache.shiro.SecurityUtils;
@@ -43,6 +40,7 @@ public class TodosResource extends ListServerResource<Todo> {
 
     @Override
     public List<Todo> getEntity() {
+        
         int linesPerPage = 10;
         String username = SecurityUtils.getSubject().getPrincipal().toString();
 

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<repository increment="1431761785892" name="skysail.api.peers" xmlns="http://www.osgi.org/xmlns/repository/v1.0.0">
+  <resource>
+    <capability namespace="osgi.identity">
+      <attribute name="osgi.identity" value="skysail.api.peers"/>
+      <attribute name="type" value="osgi.bundle"/>
+      <attribute name="version" type="Version" value="0.1.0.201505160727"/>
+    </capability>
+    <capability namespace="osgi.content">
+      <attribute name="osgi.content" value="165f5d842eb9d06004bc08904236ccb22dcfc8fb6b8375bc06665bba37586366"/>
+      <attribute name="url" value="generated/skysail.api.peers.jar"/>
+      <attribute name="size" type="Long" value="4805"/>
+      <attribute name="mime" value="application/vnd.osgi.bundle"/>
+    </capability>
+    <capability namespace="osgi.wiring.bundle">
+      <attribute name="osgi.wiring.bundle" value="skysail.api.peers"/>
+      <attribute name="bundle-version" type="Version" value="0.1.0.201505160727"/>
+    </capability>
+    <capability namespace="osgi.wiring.host">
+      <attribute name="osgi.wiring.host" value="skysail.api.peers"/>
+      <attribute name="bundle-version" type="Version" value="0.1.0.201505160727"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="io.skysail.api.peers"/>
+      <attribute name="version" type="Version" value="0.1.0"/>
+      <attribute name="bundle-symbolic-name" value="skysail.api.peers"/>
+      <attribute name="bundle-version" type="Version" value="0.1.0.201505160727"/>
+    </capability>
+    <capability namespace="bndtools.workspace">
+      <attribute name="bndtools.workspace" value="file:/Users/carsten/workspaces/ssf"/>
+      <attribute name="project.path" value="/skysail.api.peers"/>
+    </capability>
+    <requirement namespace="osgi.ee">
+      <directive name="filter" value="(&amp;(osgi.ee=JavaSE)(version=1.8))"/>
+    </requirement>
+  </resource>
+</repository>

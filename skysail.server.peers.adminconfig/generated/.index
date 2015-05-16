@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<repository increment="1431762178482" name="skysail.server.peers.adminconfig" xmlns="http://www.osgi.org/xmlns/repository/v1.0.0">
+  <resource>
+    <capability namespace="osgi.identity">
+      <attribute name="osgi.identity" value="skysail.server.peers.adminconfig"/>
+      <attribute name="type" value="osgi.bundle"/>
+      <attribute name="version" type="Version" value="0.1.0.201505160742"/>
+    </capability>
+    <capability namespace="osgi.content">
+      <attribute name="osgi.content" value="e497eaa4d2557b92240655f0034b3e7f34efb07f89a00ccdc84d43b6a96fb544"/>
+      <attribute name="url" value="generated/skysail.server.peers.adminconfig.jar"/>
+      <attribute name="size" type="Long" value="660"/>
+      <attribute name="mime" value="application/vnd.osgi.bundle"/>
+    </capability>
+    <capability namespace="osgi.wiring.bundle">
+      <attribute name="osgi.wiring.bundle" value="skysail.server.peers.adminconfig"/>
+      <attribute name="bundle-version" type="Version" value="0.1.0.201505160742"/>
+    </capability>
+    <capability namespace="osgi.wiring.host">
+      <attribute name="osgi.wiring.host" value="skysail.server.peers.adminconfig"/>
+      <attribute name="bundle-version" type="Version" value="0.1.0.201505160742"/>
+    </capability>
+    <capability namespace="bndtools.workspace">
+      <attribute name="bndtools.workspace" value="file:/Users/carsten/workspaces/ssf"/>
+      <attribute name="project.path" value="/skysail.server.peers.adminconfig"/>
+    </capability>
+  </resource>
+</repository>

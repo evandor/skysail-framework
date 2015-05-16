@@ -73,11 +73,12 @@ public class ServiceList implements ServiceListProvider {
     
     private volatile MetricsService metricsService;
     private volatile Set<HookFilter> hookFilters = Collections.synchronizedSet(new HashSet<>());
-    private volatile ValidatorService validatorService;
-    private volatile DocumentationProvider documentationProvider;
     private volatile UserManagementProvider userManagementProvider;
     private volatile Set<PerformanceMonitor> performanceMonitors = Collections.synchronizedSet(new HashSet<>());
-    private volatile PeersProvider peersProvider;
+
+    private AtomicReference<ValidatorService> validatorService = new AtomicReference<>();
+    private AtomicReference<DocumentationProvider> documentationProvider = new AtomicReference<>();
+    private AtomicReference<PeersProvider> peersProvider = new AtomicReference<>();
 
     /** === UserManagementProvider Service ============================== */
 
@@ -165,16 +166,17 @@ public class ServiceList implements ServiceListProvider {
 
     @Reference(optional = true, dynamic = true, multiple = false)
     public synchronized void setPeersProvider(PeersProvider service) {
-        this.peersProvider = service;
-        getSkysailApps().forEach(app -> app.setPeersProvider(service));
+        this.peersProvider.set(service);
+        //getSkysailApps().forEach(app -> app.setPeersProvider(service));
     }
 
     public synchronized void unsetPeersProvider(PeersProvider service) {
-        getSkysailApps().forEach(a -> a.setPeersProvider(null));
+        this.peersProvider.compareAndSet(service, null);
+        //getSkysailApps().forEach(a -> a.setPeersProvider(null));
     }
 
     @Override
-    public PeersProvider getPeersProvider() {
+    public AtomicReference<PeersProvider> getPeersProvider() {
         return peersProvider;
     }
 
@@ -184,14 +186,12 @@ public class ServiceList implements ServiceListProvider {
     public synchronized void addTranslationRenderService(TranslationRenderService service, Map<String, String> props) {
         TranslationRenderServiceHolder holder = new TranslationRenderServiceHolder(service, props);
         this.translationRenderServices.add(holder);
-        getSkysailApps().forEach(app -> app.addTranslationRenderService(holder));
     }
 
     public synchronized void removeTranslationRenderService(TranslationRenderService service) {
         TranslationRenderServiceHolder holder = new TranslationRenderServiceHolder(service,
                 new HashMap<String, String>());
         this.translationRenderServices.remove(holder);
-        getSkysailApps().forEach(a -> a.removeTranslationRenderService(holder));
     }
 
     /** === TranslationStoresService ============================== */
@@ -200,16 +200,11 @@ public class ServiceList implements ServiceListProvider {
     public synchronized void addTranslationStore(TranslationStore service, Map<String, String> props) {
         TranslationStoreHolder holder = new TranslationStoreHolder(service, props);
         this.translationStores.add(holder);
-        getSkysailApps().forEach(app -> {
-            //log.warn("adding {} to {}", service.getClass().getSimpleName(), app.getName());
-            app.addTranslationStore(holder);
-        });
     }
 
     public synchronized void removeTranslationStore(TranslationStore service) {
         TranslationStoreHolder holder = new TranslationStoreHolder(service, new HashMap<String, String>());
         this.translationStores.remove(holder);
-        getSkysailApps().forEach(a -> a.removeTranslationStore(holder));
     }
 
     /** === Encryptor Service ============================== */
@@ -328,17 +323,17 @@ public class ServiceList implements ServiceListProvider {
 
     @Reference(optional = true, dynamic = true, multiple = false)
     public synchronized void setValidatorService(ValidatorService service) {
-        this.validatorService = service;
-        getSkysailApps().forEach(app -> app.setValidatorService(service));
+        this.validatorService.set(service);
+//        getSkysailApps().forEach(app -> app.setValidatorService(service));
     }
 
     public synchronized void unsetValidatorService(ValidatorService service) {
-        this.validatorService = null;
-        getSkysailApps().forEach(a -> a.setValidatorService(null));
+        this.validatorService.compareAndSet(service, null);
+//        getSkysailApps().forEach(a -> a.setValidatorService(null));
     }
 
     @Override
-    public ValidatorService getValidatorService() {
+    public AtomicReference<ValidatorService> getValidatorService() {
         return validatorService;
     }
 
@@ -346,17 +341,15 @@ public class ServiceList implements ServiceListProvider {
 
     @Reference(optional = true, dynamic = true, multiple = false)
     public synchronized void setDocumentationProvider(DocumentationProvider service) {
-        this.documentationProvider = service;
-        getSkysailApps().forEach(app -> app.setDocumentationProvider(service));
+        this.documentationProvider.set(service);
     }
 
     public synchronized void unsetDocumentationProvider(DocumentationProvider service) {
-        this.documentationProvider = null;
-        getSkysailApps().forEach(a -> a.setDocumentationProvider(null));
+        this.documentationProvider.compareAndSet(service, null);
     }
 
     @Override
-    public DocumentationProvider getDocumentationProvider() {
+    public AtomicReference<DocumentationProvider> getDocumentationProvider() {
         return documentationProvider;
     }
 

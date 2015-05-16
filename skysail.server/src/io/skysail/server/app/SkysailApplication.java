@@ -2,88 +2,49 @@ package io.skysail.server.app;
 
 import io.skysail.api.documentation.DocumentationProvider;
 import io.skysail.api.favorites.FavoritesService;
-import io.skysail.api.forms.Field;
-import io.skysail.api.forms.HtmlPolicy;
+import io.skysail.api.forms.*;
 import io.skysail.api.peers.PeersProvider;
 import io.skysail.api.text.Translation;
-import io.skysail.api.um.AuthenticationService;
-import io.skysail.api.um.AuthorizationService;
+import io.skysail.api.um.*;
 import io.skysail.api.validation.ValidatorService;
-import io.skysail.server.restlet.filter.HookFilter;
-import io.skysail.server.restlet.filter.OriginalRequestFilter;
-import io.skysail.server.restlet.filter.TracerFilter;
+import io.skysail.server.restlet.filter.*;
 import io.skysail.server.restlet.resources.SkysailServerResource;
-import io.skysail.server.services.PerformanceMonitor;
-import io.skysail.server.services.PerformanceTimer;
+import io.skysail.server.services.*;
 import io.skysail.server.text.TranslationStoreHolder;
-import io.skysail.server.utils.ReflectionUtils;
-import io.skysail.server.utils.TranslationUtils;
+import io.skysail.server.utils.*;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Enumeration;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Locale;
-import java.util.Map;
-import java.util.MissingResourceException;
-import java.util.Optional;
-import java.util.ResourceBundle;
-import java.util.Set;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.*;
+import java.util.concurrent.*;
+import java.util.concurrent.atomic.AtomicReference;
 import java.util.stream.Collectors;
 
-import lombok.Getter;
-import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 
 import org.apache.commons.lang.Validate;
-import org.osgi.framework.Bundle;
-import org.osgi.framework.BundleContext;
+import org.osgi.framework.*;
 import org.osgi.service.cm.ConfigurationException;
 import org.osgi.service.component.ComponentContext;
 import org.osgi.service.event.EventAdmin;
 import org.owasp.html.HtmlPolicyBuilder;
-import org.restlet.Application;
-import org.restlet.Request;
-import org.restlet.Response;
-import org.restlet.Restlet;
-import org.restlet.data.MediaType;
-import org.restlet.data.Protocol;
+import org.restlet.*;
+import org.restlet.data.*;
 import org.restlet.data.Reference;
-import org.restlet.resource.Resource;
-import org.restlet.resource.ServerResource;
+import org.restlet.resource.*;
 import org.restlet.routing.Filter;
-import org.restlet.security.Authenticator;
-import org.restlet.security.Enroler;
-import org.restlet.security.Role;
-import org.restlet.security.SecretVerifier;
+import org.restlet.security.*;
 import org.restlet.util.RouteList;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.slf4j.*;
 
-import aQute.bnd.annotation.component.Activate;
-import aQute.bnd.annotation.component.Deactivate;
+import aQute.bnd.annotation.component.*;
 
 import com.google.common.base.Predicate;
 
-import de.twenty11.skysail.server.SkysailComponent;
-import de.twenty11.skysail.server.app.ApplicationProvider;
-import de.twenty11.skysail.server.app.ServiceListProvider;
-import de.twenty11.skysail.server.app.TranslationRenderServiceHolder;
-import de.twenty11.skysail.server.core.restlet.ApplicationContextId;
-import de.twenty11.skysail.server.core.restlet.RouteBuilder;
-import de.twenty11.skysail.server.core.restlet.SkysailRouter;
+import de.twenty11.skysail.server.app.*;
+import de.twenty11.skysail.server.core.restlet.*;
 import de.twenty11.skysail.server.help.HelpTour;
 import de.twenty11.skysail.server.metrics.MetricsService;
-import de.twenty11.skysail.server.security.RolePredicate;
-import de.twenty11.skysail.server.security.SkysailRolesAuthorizer;
-import de.twenty11.skysail.server.services.EncryptorService;
-import de.twenty11.skysail.server.services.MenuItem;
-import de.twenty11.skysail.server.services.ResourceBundleProvider;
+import de.twenty11.skysail.server.security.*;
+import de.twenty11.skysail.server.services.*;
 
 /**
  * A skysail application is the entry point to provide additional functionality
@@ -162,7 +123,7 @@ public abstract class SkysailApplication extends Application implements Applicat
     public static final MediaType SKYSAIL_SHTML_MEDIATYPE = MediaType.register("shtml", "Server Side Include");
     public static final MediaType SKYSAIL_MAILTO_MEDIATYPE = MediaType.register("mailto", "href mailto target");
 
-    protected ServiceListProvider serviceListProvider;
+    protected static AtomicReference<ServiceListProvider> serviceListProviderRef = new AtomicReference<>();
 
     /** the restlet router. */
     protected volatile SkysailRouter router;
@@ -182,17 +143,7 @@ public abstract class SkysailApplication extends Application implements Applicat
     private volatile MetricsService metricsService;
     private volatile Set<HookFilter> filters = Collections.synchronizedSet(new HashSet<>());
     private volatile Set<PerformanceMonitor> performanceMonitors = Collections.synchronizedSet(new HashSet<>());
-    private volatile ValidatorService validatorService;
-    private volatile DocumentationProvider documentationProvider;
-    @Getter
-    @Setter
-    private volatile Set<TranslationRenderServiceHolder> translationRenderServices = Collections
-            .newSetFromMap(new ConcurrentHashMap<TranslationRenderServiceHolder, Boolean>());
-    @Getter
-    @Setter
-    private volatile Set<TranslationStoreHolder> translationStores = Collections
-            .newSetFromMap(new ConcurrentHashMap<TranslationStoreHolder, Boolean>());
-    private volatile PeersProvider peersProvider;
+    //private volatile ValidatorService validatorService;
 
     private List<MenuItem> applicationMenu;
 
@@ -222,11 +173,12 @@ public abstract class SkysailApplication extends Application implements Applicat
      * </p>
      */
     protected void attach() {
-        if (getDocumentationProvider() == null) {
+        DocumentationProvider documentationProvider = serviceListProviderRef.get().getDocumentationProvider().get();
+        if (documentationProvider == null) {
             log.warn("not documentation provider available. No Selfdocumentation of APIs.");
             return;
         }
-        Map<String, Class<? extends ServerResource>> docuMap = getDocumentationProvider().getResourceMap();
+        Map<String, Class<? extends ServerResource>> docuMap = documentationProvider.getResourceMap();
         docuMap.keySet().stream().forEach(key -> {
             router.attach(new RouteBuilder(key, docuMap.get(key)));
         });
@@ -268,10 +220,10 @@ public abstract class SkysailApplication extends Application implements Applicat
         this.filters.clear();
         this.metricsService = null;
 
-        if (serviceListProvider != null) {
-            SkysailComponent skysailComponent = serviceListProvider.getSkysailComponent();
-            skysailComponent.getDefaultHost().detach(this.getClass());
-        }
+//        if (serviceListProvider != null) {
+//            SkysailComponent skysailComponent = serviceListProvider.getSkysailComponent();
+//            skysailComponent.getDefaultHost().detach(this.getClass());
+//        }
         if (router != null) {
             router.detachAll();
         }
@@ -285,15 +237,25 @@ public abstract class SkysailApplication extends Application implements Applicat
         setInboundRoot((Restlet) null);
         setOutboundRoot((Restlet) null);
     }
+    
+    protected void setServiceListProvider(ServiceListProvider service) {
+        SkysailApplication.serviceListProviderRef.set(service);
+    }
+
+    protected void unsetServiceListProvider(ServiceListProvider service) {
+        SkysailApplication.serviceListProviderRef.compareAndSet(service, null);
+    }
 
     // @Override
     public String translate(String key, String defaultMsg, Resource resource, Object... substitutions) {
 
+        Set<TranslationStoreHolder> translationStores = serviceListProviderRef.get().getTranslationStores();
         Optional<Translation> bestTranslationFromAStore = TranslationUtils.getBestTranslation(translationStores, key,
                 resource);
         if (!bestTranslationFromAStore.isPresent()) {
             return defaultMsg;
         }
+        Set<TranslationRenderServiceHolder> translationRenderServices = serviceListProviderRef.get().getTranslationRenderServices();
         return TranslationUtils.render(translationRenderServices, bestTranslationFromAStore.get());
     }
 
@@ -521,14 +483,14 @@ public abstract class SkysailApplication extends Application implements Applicat
         return favoritesService;
     }
 
-    public void setPeersProvider(PeersProvider service) {
-        logServiceWasSet("Peers", service);
-        this.peersProvider = service;
-    }
-
-    public PeersProvider getPeersProvider() {
-        return peersProvider;
-    }
+//    public void setPeersProvider(PeersProvider service) {
+//        logServiceWasSet("Peers", service);
+//        this.peersProvider = service;
+//    }
+//
+//    public PeersProvider getPeersProvider() {
+//        return peersProvider;
+//    }
 
     public EventAdmin getEventAdmin() {
         return eventAdmin;
@@ -649,22 +611,6 @@ public abstract class SkysailApplication extends Application implements Applicat
         this.encryptorService = null;
     }
 
-    public void addTranslationRenderService(TranslationRenderServiceHolder service) {
-        this.translationRenderServices.add(service);
-    }
-
-    public void removeTranslationRenderService(TranslationRenderServiceHolder holder) {
-        this.translationRenderServices.remove(holder);
-    }
-
-    public void addTranslationStore(TranslationStoreHolder service) {
-        this.translationStores.add(service);
-    }
-
-    public void removeTranslationStore(TranslationStoreHolder holder) {
-        this.translationStores.remove(holder);
-    }
-
     @Override
     public int compareTo(ApplicationProvider o) {
         return this.getApplication().getName().compareTo(o.getApplication().getName());
@@ -775,32 +721,11 @@ public abstract class SkysailApplication extends Application implements Applicat
     public String getFromContext(ApplicationContextId id) {
         return stringContextMap.get(id);
     }
-
-    public void setValidatorService(ValidatorService service) {
-        logServiceWasSet("Validator", service);
-        this.validatorService = service;
+    
+    public AtomicReference<ValidatorService> getValidatorService() {
+        return serviceListProviderRef.get().getValidatorService();
     }
 
-    public ValidatorService getValidatorService() {
-        return validatorService;
-    }
-
-    public void unsetValidatorService() {
-        this.validatorService = null;
-    }
-
-    public void setDocumentationProvider(DocumentationProvider service) {
-        logServiceWasSet("Documentation", service);
-        this.documentationProvider = service;
-    }
-
-    public DocumentationProvider getDocumentationProvider() {
-        return documentationProvider;
-    }
-
-    public void unsetDocumentationProvider() {
-        this.documentationProvider = null;
-    }
 
     public Set<PerformanceTimer> startPerformanceMonitoring(String identifier) {
         return this.performanceMonitors.stream().map(monitor -> {
@@ -813,7 +738,7 @@ public abstract class SkysailApplication extends Application implements Applicat
     }
 
     public String getRemotePath(String installation, String subpath) {
-        PeersProvider peersProvider = getPeersProvider();
+        PeersProvider peersProvider = serviceListProviderRef.get().getPeersProvider().get();
         return peersProvider.getPath(installation) + subpath;
     }
 

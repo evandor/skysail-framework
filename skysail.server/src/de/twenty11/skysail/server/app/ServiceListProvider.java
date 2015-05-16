@@ -10,6 +10,7 @@ import io.skysail.server.services.PerformanceMonitor;
 import io.skysail.server.text.TranslationStoreHolder;
 
 import java.util.Set;
+import java.util.concurrent.atomic.AtomicReference;
 
 import org.osgi.service.cm.ConfigurationAdmin;
 import org.osgi.service.event.EventAdmin;
@@ -26,7 +27,7 @@ public interface ServiceListProvider {
 
     FavoritesService getFavoritesService();
 
-    PeersProvider getPeersProvider();
+    AtomicReference<PeersProvider> getPeersProvider();
     
     AuthenticationService getAuthenticationService();
 
@@ -44,9 +45,9 @@ public interface ServiceListProvider {
 
     Set<HookFilter> getHookFilters();
 
-    ValidatorService getValidatorService();
+    AtomicReference<ValidatorService> getValidatorService();
 
-    DocumentationProvider getDocumentationProvider();
+    AtomicReference<DocumentationProvider> getDocumentationProvider();
 
     Set<TranslationRenderServiceHolder> getTranslationRenderServices();
     Set<TranslationStoreHolder> getTranslationStores();

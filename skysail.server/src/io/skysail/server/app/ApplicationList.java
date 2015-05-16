@@ -83,12 +83,10 @@ public class ApplicationList implements ApplicationListProvider {
         assignService(apps, app -> app.setFavoritesService(serviceListProviderRef.get().getFavoritesService()));
         assignService(apps, app -> app.setEventAdmin(serviceListProviderRef.get().getEventAdmin()));
         assignService(apps, app -> app.setMetricsService(serviceListProviderRef.get().getMetricsService()));
-        assignService(apps, app -> app.setValidatorService(serviceListProviderRef.get().getValidatorService()));
-        assignService(apps, app -> app.setDocumentationProvider(serviceListProviderRef.get().getDocumentationProvider()));
-        assignService(apps,
-                app -> app.setTranslationRenderServices(serviceListProviderRef.get().getTranslationRenderServices()));
+//        assignService(apps, app -> app.setValidatorService(serviceListProviderRef.get().getValidatorService()));
+//        assignService(apps, app -> app.setDocumentationProvider(serviceListProviderRef.get().getDocumentationProvider()));
         assignService(apps, app -> app.setFilters(serviceListProviderRef.get().getHookFilters()));
-        assignService(apps, app -> app.setTranslationStores(serviceListProviderRef.get().getTranslationStores()));
+        //assignService(apps, app -> app.setTranslationStores(serviceListProviderRef.get().getTranslationStores()));
     }
 
     private synchronized void unsetServices(List<SkysailApplication> apps) {
@@ -98,11 +96,10 @@ public class ApplicationList implements ApplicationListProvider {
         // apps.stream().forEach(app -> app.setTranslationService(null));
         apps.stream().forEach(app -> app.setEventAdmin(null));
         apps.stream().forEach(app -> app.setMetricsService(null));
-        apps.stream().forEach(app -> app.setValidatorService(null));
-        apps.stream().forEach(app -> app.setDocumentationProvider(null));
-        apps.stream().forEach(app -> app.setTranslationRenderServices(Collections.synchronizedSet(new HashSet<>())));
+//        apps.stream().forEach(app -> app.setValidatorService(null));
+//        apps.stream().forEach(app -> app.setDocumentationProvider(null));
         apps.stream().forEach(app -> app.setFilters(new HashSet<>()));
-        apps.stream().forEach(app -> app.setTranslationStores(Collections.synchronizedSet(new HashSet<>())));
+        //apps.stream().forEach(app -> app.setTranslationStores(Collections.synchronizedSet(new HashSet<>())));
     }
 
     @Override

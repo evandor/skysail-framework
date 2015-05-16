@@ -1,29 +1,17 @@
 package io.skysail.server.documentation.test;
 
-import static org.hamcrest.Matchers.containsString;
-import static org.hamcrest.Matchers.equalTo;
-import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.assertThat;
 import io.skysail.api.documentation.DocumentationProvider;
-import io.skysail.server.documentation.ApiResource;
-import io.skysail.server.documentation.EntityDescriptor;
-import io.skysail.server.documentation.ResourceApi;
-import io.skysail.server.documentation.SkysailDocumentationProvider;
-import io.skysail.server.documentation.SupportedMethod;
-import io.skysail.server.restlet.resources.EntityServerResource;
-import io.skysail.server.restlet.resources.ListServerResource;
-import io.skysail.server.restlet.resources.PostEntityServerResource;
-import io.skysail.server.restlet.resources.PutEntityServerResource;
+import io.skysail.server.documentation.*;
+import io.skysail.server.restlet.resources.*;
 import io.skysail.server.testsupport.ListServerResourceTestBase;
 
 import java.util.List;
 
-import org.junit.Before;
-import org.junit.Ignore;
-import org.junit.Test;
+import org.junit.*;
 import org.junit.runner.RunWith;
-import org.mockito.InjectMocks;
-import org.mockito.Spy;
+import org.mockito.*;
 import org.mockito.runners.MockitoJUnitRunner;
 import org.restlet.Context;
 import org.restlet.data.Method;
@@ -52,7 +40,7 @@ public class ApiResourceTest extends ListServerResourceTestBase {
         apis = resource.getEntities(null);
         DocumentationProvider documentationProvider = new SkysailDocumentationProvider();
 
-        application.setDocumentationProvider(documentationProvider);
+        //application.setDocumentationProvider(documentationProvider);
     }
 
     @Test

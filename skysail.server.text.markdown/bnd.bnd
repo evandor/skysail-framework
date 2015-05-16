@@ -1,5 +1,5 @@
 Bundle-Name: SKYSAIL :: server :: text :: markdown
-Bundle-Version: 0.1.0.${tstamp}
+Bundle-Version: 0.1.1.${tstamp}
 Bundle-Description: Markdown Renderer
 Bundle-ClassPath: .,lib/markdown4j-2.2.jar
 Include-Resource: lib=lib

@@ -2,24 +2,14 @@ package io.skysail.server.app.test;
 
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
-import io.skysail.api.text.Translation;
-import io.skysail.api.text.TranslationRenderService;
-import io.skysail.api.text.TranslationStore;
-import io.skysail.server.app.ServiceList;
-import io.skysail.server.app.SkysailApplication;
+import io.skysail.api.text.*;
+import io.skysail.server.app.*;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Locale;
-import java.util.Optional;
+import java.util.*;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.*;
 import org.junit.runner.RunWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.Mockito;
+import org.mockito.*;
 import org.mockito.runners.MockitoJUnitRunner;
 import org.osgi.framework.BundleContext;
 import org.restlet.Request;
@@ -58,7 +48,6 @@ public class ServiceListTest {
     public void adding_new_store_creates_holder_in_serviceList_and_application() {
         serviceList.addTranslationStore(translationStore, new HashMap<>());
         assertThat(serviceList.getTranslationStores().size(), is(1));
-        assertThat(application.getTranslationStores().size(), is(1));
     }
     
     @Test
@@ -66,7 +55,6 @@ public class ServiceListTest {
         serviceList.addTranslationStore(translationStore, new HashMap<>());
         serviceList.addTranslationStore(translationStore, new HashMap<>());
         assertThat(serviceList.getTranslationStores().size(), is(1));
-        assertThat(application.getTranslationStores().size(), is(1));
     }
     
     @Test
@@ -80,7 +68,6 @@ public class ServiceListTest {
             public Optional<String> get(String key) {return null;}
         }, new HashMap<>());
         assertThat(serviceList.getTranslationStores().size(), is(2));
-        assertThat(application.getTranslationStores().size(), is(2));
     }
     
     @Test
@@ -88,7 +75,6 @@ public class ServiceListTest {
         serviceList.addTranslationStore(translationStore, new HashMap<>());
         serviceList.removeTranslationStore(translationStore);
         assertThat(serviceList.getTranslationStores().size(), is(0));
-        assertThat(application.getTranslationStores().size(), is(0));
     }
     
     /** === Translation Render Services ================================== */
@@ -97,7 +83,6 @@ public class ServiceListTest {
     public void adding_new_renderService_creates_holder_in_serviceList_and_application() {
         serviceList.addTranslationRenderService(renderService, new HashMap<>());
         assertThat(serviceList.getTranslationRenderServices().size(), is(1));
-        assertThat(application.getTranslationRenderServices().size(), is(1));
     }
     
     @Test
@@ -105,7 +90,6 @@ public class ServiceListTest {
         serviceList.addTranslationRenderService(renderService, new HashMap<>());
         serviceList.addTranslationRenderService(renderService, new HashMap<>());
         assertThat(serviceList.getTranslationRenderServices().size(), is(1));
-        assertThat(application.getTranslationRenderServices().size(), is(1));
     }
     
     @Test
@@ -118,7 +102,6 @@ public class ServiceListTest {
             public String addRendererInfo() {return "";}
         }, new HashMap<>());
         assertThat(serviceList.getTranslationRenderServices().size(), is(2));
-        assertThat(application.getTranslationRenderServices().size(), is(2));
     }
     
     @Test
@@ -126,8 +109,6 @@ public class ServiceListTest {
         serviceList.addTranslationRenderService(renderService, new HashMap<>());
         serviceList.removeTranslationRenderService(renderService);
         assertThat(serviceList.getTranslationRenderServices().size(), is(0));
-        assertThat(application.getTranslationRenderServices().size(), is(0));
-
     }
 
 }

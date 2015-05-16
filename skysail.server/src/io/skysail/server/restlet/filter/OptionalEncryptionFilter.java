@@ -1,15 +1,13 @@
 package io.skysail.server.restlet.filter;
 
 import io.skysail.server.app.SkysailApplication;
-import io.skysail.server.restlet.resources.EntityServerResource;
-import io.skysail.server.restlet.resources.SkysailServerResource;
+import io.skysail.server.restlet.resources.*;
 
 import java.text.ParseException;
 
 import org.codehaus.jettison.json.JSONObject;
 import org.restlet.Response;
-import org.restlet.data.Form;
-import org.restlet.data.Parameter;
+import org.restlet.data.*;
 
 import de.twenty11.skysail.server.core.restlet.ResponseWrapper;
 import de.twenty11.skysail.server.services.EncryptorService;
@@ -24,7 +22,7 @@ public class OptionalEncryptionFilter<R extends SkysailServerResource<T>, T> ext
 
     @Override
     protected FilterResult doHandle(R resource, ResponseWrapper<T> responseWrapper) {
-        EncryptorService encryptorService = application.getEncryptorService();
+        EncryptorService encryptorService = application.getEncryptorService().get();
         if (encryptorService == null) {
             return super.doHandle(resource, responseWrapper);
         }

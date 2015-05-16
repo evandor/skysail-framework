@@ -10,13 +10,13 @@ import io.skysail.server.services.PerformanceMonitor;
 import io.skysail.server.text.TranslationStoreHolder;
 
 import java.util.Set;
+import java.util.concurrent.atomic.AtomicReference;
 
 import org.osgi.service.cm.ConfigurationAdmin;
 import org.osgi.service.event.EventAdmin;
 
 import aQute.bnd.annotation.ProviderType;
 import de.twenty11.skysail.server.SkysailComponent;
-import de.twenty11.skysail.server.metrics.MetricsService;
 import de.twenty11.skysail.server.services.EncryptorService;
 
 @ProviderType
@@ -26,27 +26,23 @@ public interface ServiceListProvider {
 
     FavoritesService getFavoritesService();
 
-    PeersProvider getPeersProvider();
+    AtomicReference<PeersProvider> getPeersProvider();
     
     AuthenticationService getAuthenticationService();
 
-    // TranslationService getTranslationService();
+    AtomicReference<EncryptorService> getEncryptorService();
 
-    EncryptorService getEncryptorService();
+    AtomicReference<EventAdmin> getEventAdmin();
 
-    EventAdmin getEventAdmin();
-
-    ConfigurationAdmin getConfigurationAdmin();
+    //AtomicReference<ConfigurationAdmin> getConfigurationAdmin();
 
     SkysailComponent getSkysailComponent();
 
-    MetricsService getMetricsService();
-
     Set<HookFilter> getHookFilters();
 
-    ValidatorService getValidatorService();
+    AtomicReference<ValidatorService> getValidatorService();
 
-    DocumentationProvider getDocumentationProvider();
+    AtomicReference<DocumentationProvider> getDocumentationProvider();
 
     Set<TranslationRenderServiceHolder> getTranslationRenderServices();
     Set<TranslationStoreHolder> getTranslationStores();

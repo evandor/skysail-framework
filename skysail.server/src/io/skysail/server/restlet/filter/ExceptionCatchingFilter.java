@@ -33,7 +33,7 @@ public class ExceptionCatchingFilter<R extends SkysailServerResource<T>, T> exte
             response.setStatus(Status.SERVER_ERROR_INTERNAL);
             // responseWrapper.setSkysailResponse(new
             // FailureResponse<T>(response, e));
-            new EventHelper(application.getEventAdmin())//
+            new EventHelper(application.getEventAdmin().get())//
                 .channel(EventHelper.GUI_MSG)//
                 .error(resource.getClass().getSimpleName() + ".saved.failure")//
                 .fire();

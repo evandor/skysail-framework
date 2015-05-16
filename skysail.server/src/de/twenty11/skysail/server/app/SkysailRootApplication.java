@@ -59,6 +59,15 @@ public class SkysailRootApplication extends SkysailApplication implements Applic
     protected synchronized void deactivate(ComponentContext componentContext) {
         setComponentContext(null);
     }
+    
+    @aQute.bnd.annotation.component.Reference(optional = true, dynamic = true, multiple = false)
+    public void setApplicationListProvider(ServiceListProvider service) {
+        super.setServiceListProvider(service);
+    }
+
+    public void unsetApplicationListProvider(ServiceListProvider service) {
+        super.unsetServiceListProvider(service);
+    }
 
     @Override
     protected void attach() {

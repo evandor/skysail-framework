@@ -2,7 +2,6 @@ package io.skysail.server.app;
 
 import java.util.*;
 import java.util.concurrent.atomic.AtomicReference;
-import java.util.function.Consumer;
 
 import org.apache.commons.lang.Validate;
 import org.restlet.*;
@@ -47,7 +46,6 @@ public class ApplicationList implements ApplicationListProvider {
 
         application.setStatusService(new SkysailStatusService());
         applications.add(application);
-        setServices(Arrays.asList(application));
         attachToComponent(application);
     }
 
@@ -55,7 +53,6 @@ public class ApplicationList implements ApplicationListProvider {
         SkysailApplication application = getApplication(provider);
         logger.info("(-) Removing application '{}'", application.getName());
         detachFromComponent(application);
-        // unassignServices(application);
         applications.remove(application);
     }
 
@@ -64,45 +61,15 @@ public class ApplicationList implements ApplicationListProvider {
     @Reference(optional = true, multiple = false, dynamic = true)
     public void setServiceListProvider(ServiceListProvider serviceListProvider) {
         this.serviceListProviderRef.set(serviceListProvider);
-        setServices(applications);
     }
 
     public void unsetServiceListProvider(ServiceListProvider serviceListProvider) {
         this.serviceListProviderRef.compareAndSet(serviceListProvider, null);
-        unsetServices(applications);
     }
 
     @Override
     public List<SkysailApplication> getApplications() {
         return Collections.unmodifiableList(applications);
-    }
-
-    private void setServices(List<SkysailApplication> apps) {
-        assignService(apps, app -> app.setAuthenticationService(serviceListProviderRef.get().getAuthenticationService()));
-        assignService(apps, app -> app.setAuthorizationService(serviceListProviderRef.get().getAuthorizationService()));
-        assignService(apps, app -> app.setFavoritesService(serviceListProviderRef.get().getFavoritesService()));
-        assignService(apps, app -> app.setEventAdmin(serviceListProviderRef.get().getEventAdmin()));
-        assignService(apps, app -> app.setMetricsService(serviceListProviderRef.get().getMetricsService()));
-        assignService(apps, app -> app.setValidatorService(serviceListProviderRef.get().getValidatorService()));
-        assignService(apps, app -> app.setDocumentationProvider(serviceListProviderRef.get().getDocumentationProvider()));
-        assignService(apps,
-                app -> app.setTranslationRenderServices(serviceListProviderRef.get().getTranslationRenderServices()));
-        assignService(apps, app -> app.setFilters(serviceListProviderRef.get().getHookFilters()));
-        assignService(apps, app -> app.setTranslationStores(serviceListProviderRef.get().getTranslationStores()));
-    }
-
-    private synchronized void unsetServices(List<SkysailApplication> apps) {
-        apps.stream().forEach(app -> app.setAuthenticationService(null));
-        apps.stream().forEach(app -> app.setAuthorizationService(null));
-        apps.stream().forEach(app -> app.setFavoritesService(null));
-        // apps.stream().forEach(app -> app.setTranslationService(null));
-        apps.stream().forEach(app -> app.setEventAdmin(null));
-        apps.stream().forEach(app -> app.setMetricsService(null));
-        apps.stream().forEach(app -> app.setValidatorService(null));
-        apps.stream().forEach(app -> app.setDocumentationProvider(null));
-        apps.stream().forEach(app -> app.setTranslationRenderServices(Collections.synchronizedSet(new HashSet<>())));
-        apps.stream().forEach(app -> app.setFilters(new HashSet<>()));
-        apps.stream().forEach(app -> app.setTranslationStores(Collections.synchronizedSet(new HashSet<>())));
     }
 
     @Override
@@ -177,10 +144,6 @@ public class ApplicationList implements ApplicationListProvider {
             restletComponent.getDefaultHost().detach(app);
             restletComponent.getInternalRouter().detach(app);
         }
-    }
-
-    private void assignService(List<SkysailApplication> applications, Consumer<? super SkysailApplication> consumer) {
-        applications.stream().forEach(consumer);
     }
 
     private SkysailApplication getApplication(ApplicationProvider provider) {

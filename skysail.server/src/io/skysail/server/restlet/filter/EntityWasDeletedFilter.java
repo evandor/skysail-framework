@@ -19,7 +19,7 @@ public class EntityWasDeletedFilter<R extends SkysailServerResource<T>, T> exten
     public FilterResult doHandle(R resource, ResponseWrapper<T> responseWrapper) {
         log.debug("entering {}#doHandle", this.getClass().getSimpleName());
 
-        new EventHelper(application.getEventAdmin())//
+        new EventHelper(application.getEventAdmin().get())//
                 .channel(EventHelper.GUI_MSG)//
                 .info(resource.getClass().getSimpleName() + ".deleted.success")//
                 .fire();

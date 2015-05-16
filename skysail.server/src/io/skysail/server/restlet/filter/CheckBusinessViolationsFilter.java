@@ -5,11 +5,9 @@ import io.skysail.api.validation.ValidatorService;
 import io.skysail.server.app.SkysailApplication;
 import io.skysail.server.restlet.resources.SkysailServerResource;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
-import javax.validation.ConstraintViolation;
-import javax.validation.Validator;
+import javax.validation.*;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -30,7 +28,7 @@ public class CheckBusinessViolationsFilter<R extends SkysailServerResource<T>, T
      * 
      */
     public CheckBusinessViolationsFilter(SkysailApplication application) {
-        ValidatorService validatorService = application.getValidatorService();
+        ValidatorService validatorService = application.getValidatorService().get();
         if (validatorService == null) {
             throw new IllegalStateException("no validatorService found");
         }

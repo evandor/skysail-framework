@@ -1,4 +1,4 @@
-Bundle-Version: 1.0.0.${tstamp}
+Bundle-Version: 1.0.1.${tstamp}
 -buildpath:  \
 	osgi.core;version=4.3,\
 	skysail.api;version=${skysail.api.version},\

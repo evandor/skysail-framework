@@ -1,68 +1,93 @@
-//package io.skysail.server.text.asciidoc;
-//
-//import io.skysail.api.text.Translation;
-//import io.skysail.api.text.TranslationRenderService;
-//import io.skysail.api.text.TranslationStore;
-//import io.skysail.server.text.AbstractTranslationRenderService;
-//import io.skysail.server.text.StoreAndTranslation;
-//import io.skysail.server.text.TranslationStoreHolder;
-//
-//import java.util.Arrays;
-//import java.util.HashMap;
-//import java.util.Map;
-//import java.util.Optional;
-//
-//import lombok.extern.slf4j.Slf4j;
-//
-//import org.asciidoctor.Asciidoctor;
-//
-//import aQute.bnd.annotation.component.Activate;
-//import aQute.bnd.annotation.component.Deactivate;
-//import aQute.bnd.annotation.component.Reference;
-//
-////@Component(immediate = true, properties = { "test=" + AsciiDocRenderService.SERVICE_RANKING })
-//@Slf4j
-//public class AsciiDocRenderService extends AbstractTranslationRenderService implements TranslationRenderService {
-//
-//    public static final String SERVICE_RANKING = "200";
-//
-//    private volatile Asciidoctor asciidoctor;
-//
-//    @Activate
-//    public void activate() {
-//        asciidoctor = org.asciidoctor.Asciidoctor.Factory.create(Arrays
-//                .asList("/Users/carsten/git/skysail-framework/skysail.server.text.asciidoc/resources"));
-//        // asciidoctor =
-//        // org.asciidoctor.Asciidoctor.Factory.create(ClassLoader.getSystemClassLoader());
-//    }
-//
-//    @Deactivate
-//    public void deactivate() {
-//        asciidoctor = null;
-//    }
-//
-//    protected Translation createTranslation(Optional<String> t) {
-//        return new AsciiDocRendererTranslation(t);
-//    }
-//
-//    @Override
-//    public String render(Translation translation, Object... substitutions) {
-//        return asciidoctor.convert(translation.getValue(), new HashMap<String, Object>());
-//    }
-//
-//    @Reference(dynamic = true, optional = false, multiple = true)
-//    public void addStore(TranslationStore store, Map<String, String> props) {
-//        stores.add(new TranslationStoreHolder(store, props));
-//    }
-//
-//    public void removeStore(TranslationStore store) {
-//        stores.remove(new TranslationStoreHolder(store));
-//    }
-//
-//    @Override
-//    protected Translation createTranslation(StoreAndTranslation t) {
-//        // TODO Auto-generated method stub
-//        return null;
-//    }
-//
-//}
+package io.skysail.server.text.asciidoc;
+
+import io.skysail.api.text.Translation;
+import io.skysail.api.text.TranslationRenderService;
+import io.skysail.server.utils.CompositeClassLoader;
+
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Optional;
+
+import org.asciidoctor.Asciidoctor;
+import org.jruby.RubyInstanceConfig;
+import org.jruby.javasupport.JavaEmbedUtils;
+import org.osgi.framework.Bundle;
+import org.osgi.framework.wiring.BundleWiring;
+import org.osgi.service.component.ComponentContext;
+
+import aQute.bnd.annotation.component.Activate;
+import aQute.bnd.annotation.component.Component;
+import aQute.bnd.annotation.component.Deactivate;
+
+@Component(immediate = true, properties = { org.osgi.framework.Constants.SERVICE_RANKING + "="
+        + AsciiDocRenderService.SERVICE_RANKING })
+public class AsciiDocRenderService implements TranslationRenderService {
+
+    public static final String SERVICE_RANKING = "200";
+    public static final String PREFIX_IDENTIFIER = "renderer:asciidoc ";
+
+    private volatile Asciidoctor asciidoctor;
+
+    @Activate
+    public void activate(ComponentContext ctx) {
+
+        Bundle[] allBundles = ctx.getBundleContext().getBundles();
+        Optional<Bundle> jrubyBundle = Arrays.stream(allBundles).filter(b -> {
+            return b.getSymbolicName().equals("org.jruby.jruby");
+        }).findFirst();
+        if (jrubyBundle.isPresent()) {
+            
+            ClassLoader loader = jrubyBundle.get().adapt(BundleWiring.class).getClassLoader();
+            ClassLoader originalLoader = Thread.currentThread().getContextClassLoader();
+            
+            CompositeClassLoader ccl = new CompositeClassLoader();
+            ccl.addClassLoader(loader);
+            ccl.addClassLoader(originalLoader);
+            ccl.addClassLoader(this.getClass().getClassLoader());
+            
+            RubyInstanceConfig config = new RubyInstanceConfig();
+            config.setLoader(ccl);//this.getClass().getClassLoader());
+
+            JavaEmbedUtils.initialize(Arrays.asList("META-INF/jruby.home/lib/ruby/2.0", "gems/asciidoctor-1.5.2/lib"),
+                    config);
+
+            try {
+                Thread.currentThread().setContextClassLoader(loader);
+                asciidoctor = org.asciidoctor.Asciidoctor.Factory.create(originalLoader);//this.getClass().getClassLoader());
+              } finally {
+                Thread.currentThread().setContextClassLoader(originalLoader);
+              }
+        }
+        // asciidoctor = org.asciidoctor.Asciidoctor.Factory.create(Arrays
+        // .asList("C:\\git\\skysail-framework\\skysail.server.text.asciidoc\\resources\\jruby"));
+        System.out.println(asciidoctor);
+        // asciidoctor =
+        // org.asciidoctor.Asciidoctor.Factory.create(ClassLoader.getSystemClassLoader());
+    }
+
+    @Deactivate
+    public void deactivate() {
+        asciidoctor = null;
+    }
+
+    @Override
+    public String render(Translation translation, Object... substitutions) {
+        return asciidoctor.convert(translation.getValue(), new HashMap<String, Object>());
+    }
+
+    @Override
+    public String adjustText(String unformatted) {
+        return unformatted.trim().substring(PREFIX_IDENTIFIER.length());
+    }
+
+    @Override
+    public boolean applicable(String unformattedTranslation) {
+        return (unformattedTranslation.trim().startsWith(PREFIX_IDENTIFIER));
+    }
+
+    @Override
+    public String addRendererInfo() {
+        return PREFIX_IDENTIFIER;
+    }
+
+}

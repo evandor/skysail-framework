@@ -125,6 +125,7 @@
 	skysail.server.peers.adminconfig;version=latest,\
 	skysail.server.plugins;version=latest,\
 	skysail.server.static;version=latest,\
+	skysail.server.text.asciidoc;version=latest,\
 	skysail.server.text.markdown;version=latest,\
 	skysail.server.text.store.bundleresource;version=latest,\
 	skysail.server.text.store.git;version=latest,\

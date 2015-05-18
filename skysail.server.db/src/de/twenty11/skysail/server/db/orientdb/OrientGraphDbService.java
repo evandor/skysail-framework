@@ -46,8 +46,7 @@ import com.tinkerpop.blueprints.impls.orient.OrientGraphNoTx;
 import de.twenty11.skysail.server.beans.DynamicEntity;
 import de.twenty11.skysail.server.beans.EntityDynaProperty;
 import de.twenty11.skysail.server.core.osgi.EventHelper;
-import de.twenty11.skysail.server.db.orientdb.impl.Persister;
-import de.twenty11.skysail.server.db.orientdb.impl.Updater;
+import de.twenty11.skysail.server.db.orientdb.impl.*;
 import de.twenty11.skysail.server.events.EventHandler;
 
 @Component(immediate = true)

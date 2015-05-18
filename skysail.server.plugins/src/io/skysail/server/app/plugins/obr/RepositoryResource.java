@@ -1,15 +1,20 @@
 package io.skysail.server.app.plugins.obr;
 
+import io.skysail.api.links.Link;
 import io.skysail.api.responses.SkysailResponse;
 import io.skysail.server.app.plugins.PluginApplication;
-import io.skysail.server.restlet.resources.EntityServerResource;
+import io.skysail.server.app.plugins.resources.ResourcesResource;
+import io.skysail.server.restlet.resources.ListServerResource;
+
+import java.util.List;
+import java.util.function.Consumer;
 
 import org.restlet.resource.ResourceException;
 
-public class RepositoryResource extends EntityServerResource<ObrRepository> {
+public class RepositoryResource extends ListServerResource<ObrResource> {
 
     private PluginApplication app;
-    private String name;
+    private String id;
 
     public RepositoryResource() {
         app = (PluginApplication) getApplication();
@@ -17,14 +22,8 @@ public class RepositoryResource extends EntityServerResource<ObrRepository> {
 
     @Override
     protected void doInit() throws ResourceException {
-        name = (String) getRequest().getAttributes().get("id");
+        id = (String) getRequest().getAttributes().get("id");
     }
-
-    // @Override
-    // public ObrRepository getData() {
-    // return app.getReposList().stream().filter(r ->
-    // r.getName().equals(name)).findFirst().orElse(null);
-    // }
 
     @Override
     public SkysailResponse<?> eraseEntity() {
@@ -32,13 +31,19 @@ public class RepositoryResource extends EntityServerResource<ObrRepository> {
     }
 
     @Override
-    public String getId() {
-        return null;
+    public List<ObrResource> getEntity() {
+         ObrRepository repository = app.getReposList().stream().filter(r -> r.getId().equals(id)).findFirst().orElse(null);
+         return repository.getResources();
     }
 
     @Override
-    public ObrRepository getEntity() {
-        return null;
+    public List<Link> getLinks() {
+        return super.getLinks(RepositoryResource.class, ResourcesResource.class);
+    }
+
+    @Override
+    public Consumer<? super Link> getPathSubstitutions() {
+        return l -> l.substitute("id", id);
     }
 
 }

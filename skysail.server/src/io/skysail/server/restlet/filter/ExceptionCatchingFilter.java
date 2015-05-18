@@ -4,6 +4,7 @@ import io.skysail.server.app.SkysailApplication;
 import io.skysail.server.restlet.resources.SkysailServerResource;
 import lombok.extern.slf4j.Slf4j;
 
+import org.osgi.service.event.EventAdmin;
 import org.restlet.Response;
 import org.restlet.data.Status;
 import org.restlet.resource.ResourceException;
@@ -19,7 +20,7 @@ public class ExceptionCatchingFilter<R extends SkysailServerResource<T>, T> exte
     public ExceptionCatchingFilter(SkysailApplication application) {
         this.application = application;
     }
-    
+
     @Override
     public FilterResult doHandle(R resource, ResponseWrapper<T> responseWrapper) {
         log.debug("entering {}#doHandle", this.getClass().getSimpleName());
@@ -31,12 +32,18 @@ public class ExceptionCatchingFilter<R extends SkysailServerResource<T>, T> exte
             log.error(e.getMessage(), e);
             Response response = responseWrapper.getResponse();
             response.setStatus(Status.SERVER_ERROR_INTERNAL);
-            // responseWrapper.setSkysailResponse(new
-            // FailureResponse<T>(response, e));
-            new EventHelper(application.getEventAdmin().get())//
-                .channel(EventHelper.GUI_MSG)//
-                .error(resource.getClass().getSimpleName() + ".saved.failure")//
-                .fire();
+            
+            if (application == null) {
+                return FilterResult.CONTINUE;
+            }
+
+            EventAdmin eventAdmin = application.getEventAdmin() != null ? application.getEventAdmin().get() : null;
+            if (eventAdmin != null) {
+                new EventHelper(eventAdmin)//
+                        .channel(EventHelper.GUI_MSG)//
+                        .error(resource.getClass().getSimpleName() + ".saved.failure")//
+                        .fire();
+            }
         }
         return FilterResult.CONTINUE;
     }

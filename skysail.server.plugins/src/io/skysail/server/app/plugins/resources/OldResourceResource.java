@@ -3,7 +3,6 @@ package io.skysail.server.app.plugins.resources;
 import io.skysail.api.links.Link;
 import io.skysail.api.responses.SkysailResponse;
 import io.skysail.server.app.plugins.PluginApplication;
-import io.skysail.server.app.plugins.obr.ObrResource;
 import io.skysail.server.restlet.resources.EntityServerResource;
 
 import java.util.List;
@@ -12,13 +11,13 @@ import org.restlet.resource.ResourceException;
 
 import de.twenty11.skysail.server.core.restlet.ResourceContextId;
 
-public class ResourceResource extends EntityServerResource<ObrResource> {
+public class OldResourceResource extends EntityServerResource<Resource> {
 
     private String symbolicName;
     private String version;
     private PluginApplication app;
 
-    public ResourceResource() {
+    public OldResourceResource() {
         addToContext(ResourceContextId.LINK_TITLE, "Details");
     }
 
@@ -34,6 +33,26 @@ public class ResourceResource extends EntityServerResource<ObrResource> {
         app = (PluginApplication) getApplication();
     }
 
+    // @Override
+    // public Resource getData() {
+    // // TODO user input! sanitized???
+    // String searchTerm = "(&(symbolicname=" + symbolicName + ")(version=" +
+    // version + "))";
+    // List<org.apache.felix.bundlerepository.Resource> discoverdResources =
+    // app.discoverResources(searchTerm);
+    // if (discoverdResources.size() != 1) {
+    // throw new
+    // IllegalStateException("expected exactly one bundle for this search");
+    // }
+    // return new Resource(discoverdResources.get(0),
+    // Arrays.asList(app.getBundleContext().getBundles()));
+    // }
+
+    @Override
+    public String getId() {
+        return "7";
+    }
+
     @Override
     public SkysailResponse<?> eraseEntity() {
         return null;
@@ -41,11 +60,11 @@ public class ResourceResource extends EntityServerResource<ObrResource> {
 
     @Override
     public List<Link> getLinks() {
-        return super.getLinks(ResourceResource.class);
+        return super.getLinks(OldResourceResource.class);
     }
 
     @Override
-    public ObrResource getEntity() {
+    public Resource getEntity() {
         return null;
     }
 }

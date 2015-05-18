@@ -1,5 +1,6 @@
 package io.skysail.server.app.plugins.obr;
 
+import io.skysail.api.links.Link;
 import io.skysail.server.app.plugins.PluginApplication;
 import io.skysail.server.restlet.resources.ListServerResource;
 
@@ -19,8 +20,12 @@ public class RepositoriesResource extends ListServerResource<ObrRepository> {
 
     @Override
     public List<ObrRepository> getEntity() {
-        return null;
+        return app.getReposList();
     }
-
-
+    
+    @Override
+    public List<Link> getLinks() {
+        return super.getLinks(RepositoriesResource.class);
+    }
+    
 }

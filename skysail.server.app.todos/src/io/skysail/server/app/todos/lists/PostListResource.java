@@ -1,8 +1,8 @@
 package io.skysail.server.app.todos.lists;
 
 import io.skysail.api.responses.SkysailResponse;
-import io.skysail.server.app.todos.TodoApplication;
-import io.skysail.server.app.todos.TodoList;
+import io.skysail.server.app.todos.*;
+import io.skysail.server.app.todos.repo.TodosRepository;
 import io.skysail.server.restlet.resources.PostEntityServerResource;
 
 import java.util.Date;
@@ -37,7 +37,7 @@ public class PostListResource extends PostEntityServerResource<TodoList> {
         Subject subject = SecurityUtils.getSubject();
         subject.getPrincipals().getPrimaryPrincipal();
         entity.setOwner(subject.getPrincipal().toString());
-        String id = app.getRepository().add(entity).toString();
+        String id = TodosRepository.add(entity).toString();
         entity.setId(id);
         return new SkysailResponse<>();
     }

@@ -1,50 +1,36 @@
 package io.skysail.server.app.plugins;
 
 import io.skysail.server.app.SkysailApplication;
-import io.skysail.server.app.plugins.features.Feature;
-import io.skysail.server.app.plugins.features.FeaturesRepository;
-import io.skysail.server.app.plugins.features.FeaturesResource;
+import io.skysail.server.app.plugins.features.*;
 import io.skysail.server.app.plugins.installations.PostInstallationResource;
-import io.skysail.server.app.plugins.obr.ObrRepository;
-import io.skysail.server.app.plugins.obr.PostResolverResource;
-import io.skysail.server.app.plugins.obr.RepositoriesResource;
-import io.skysail.server.app.plugins.obr.RepositoryResource;
+import io.skysail.server.app.plugins.obr.*;
 import io.skysail.server.app.plugins.query.PostQueryResource;
-import io.skysail.server.app.plugins.resources.ResourceResource;
-import io.skysail.server.app.plugins.resources.ResourcesResource;
+import io.skysail.server.app.plugins.resources.*;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
+import java.util.concurrent.atomic.AtomicReference;
 import java.util.stream.Collectors;
 
 import lombok.extern.slf4j.Slf4j;
 
-import org.apache.felix.bundlerepository.RepositoryAdmin;
+import org.apache.felix.bundlerepository.*;
 import org.apache.felix.bundlerepository.Resource;
-import org.osgi.framework.Bundle;
-import org.osgi.framework.BundleException;
-import org.osgi.framework.InvalidSyntaxException;
+import org.osgi.framework.*;
 
 import aQute.bnd.annotation.component.Reference;
 import de.twenty11.skysail.server.app.ApplicationProvider;
-import de.twenty11.skysail.server.core.restlet.ApplicationContextId;
-import de.twenty11.skysail.server.core.restlet.RouteBuilder;
-import de.twenty11.skysail.server.services.MenuItem;
-import de.twenty11.skysail.server.services.MenuItemProvider;
+import de.twenty11.skysail.server.core.restlet.*;
+import de.twenty11.skysail.server.services.*;
 
 @aQute.bnd.annotation.component.Component(immediate = true)
 @Slf4j
 public class PluginApplication extends SkysailApplication implements ApplicationProvider, MenuItemProvider {
 
     private static final String PLUGINS = "plugins";
-
     private static final String APP_NAME = "plugins";
 
     private FeaturesRepository featuresRepository;
-
-    private RepositoryAdmin repositoryAdmin;
+    private AtomicReference<RepositoryAdmin> repositoryAdmin = new AtomicReference<>();
 
     public PluginApplication() {
         super(PLUGINS);
@@ -61,33 +47,35 @@ public class PluginApplication extends SkysailApplication implements Application
         router.attach(new RouteBuilder("/", PluginRootResource.class).authorizeWith(anyOf("admin")));
         router.attach(new RouteBuilder("/features/", FeaturesResource.class));
         router.attach(new RouteBuilder("/features/{id}/installations/", PostInstallationResource.class));
-        router.attach(new RouteBuilder("/obr/repos/", RepositoriesResource.class));
-        router.attach(new RouteBuilder("/obr/repos/{id}", RepositoryResource.class));
-        router.attach(new RouteBuilder("/obr/resolver/", PostResolverResource.class));
+
+        router.attach(new RouteBuilder("/repos/", RepositoriesResource.class));
+        router.attach(new RouteBuilder("/repos/{id}", RepositoryResource.class));
+        router.attach(new RouteBuilder("/repos/{id}/resources", ResourcesResource.class));
+        router.attach(new RouteBuilder("/repos/{id}/resources/{resourceId}", ResourceResource.class));
+
+        router.attach(new RouteBuilder("/resolver/", PostResolverResource.class));
 
         router.attach(new RouteBuilder("/query/", PostQueryResource.class));
 
-        router.attach(new RouteBuilder("/resources", ResourcesResource.class));
-        router.attach(new RouteBuilder("/resources/{id}", ResourceResource.class));
+        router.attach(new RouteBuilder("/resources", OldResourcesResource.class));
+        router.attach(new RouteBuilder("/resources/{id}", OldResourceResource.class));
 
     }
 
     @Override
     public List<MenuItem> getMenuEntries() {
-        //MenuItem menuItem = new MenuItem(getApplication(), PluginRootResource.class);
         MenuItem menuItem = new MenuItem(APP_NAME, "/" + APP_NAME, this);
-
         menuItem.setCategory(MenuItem.Category.ADMIN_MENU);
         return Arrays.asList(menuItem);
     }
 
     @Reference(dynamic = true, multiple = false, optional = true)
     public void setRepositoryAdmin(RepositoryAdmin repositoryAdmin) {
-        this.repositoryAdmin = repositoryAdmin;
+        this.repositoryAdmin.set(repositoryAdmin);
     }
 
     public void unsetRepositoryAdmin(RepositoryAdmin repositoryAdmin) {
-        this.repositoryAdmin = null;
+        this.repositoryAdmin.compareAndSet(repositoryAdmin, null);
     }
 
     public synchronized FeaturesRepository getFeaturesRepository() {
@@ -135,17 +123,41 @@ public class PluginApplication extends SkysailApplication implements Application
         return installedBundle;
     }
 
-    public synchronized List<ObrRepository> getReposList() {
-        if (repositoryAdmin == null) {
+    public List<ObrRepository> getReposList() {
+        if (repositoryAdmin.get() == null) {
             return Collections.emptyList();
         }
-        return Arrays.stream(repositoryAdmin.listRepositories()).map(r -> new ObrRepository(r))
+        return Arrays.stream(repositoryAdmin.get().listRepositories()).map(r -> new ObrRepository(r))
                 .collect(Collectors.toList());
+    }
+
+    public List<ObrResource> getResources(String repoName) {
+        if (repositoryAdmin.get() == null) {
+            return Collections.emptyList();
+        }
+
+        Optional<ObrRepository> repository = Arrays.stream(repositoryAdmin.get().listRepositories()).filter(r -> {
+            return r.getName().equals(repoName);
+        }).findFirst().map(r -> new ObrRepository(r, true));
+        if (!repository.isPresent()) {
+            return Collections.emptyList();
+        }
+        return repository.get().getResources().stream().sorted((r1, r2) -> {
+            return sortResources(r1,r2);
+        }).collect(Collectors.toList());
+    }
+
+    private int sortResources(ObrResource r1, ObrResource r2) {
+        int bySymbolicName = r1.getSymbolicName().compareTo(r2.getSymbolicName());
+        if (bySymbolicName != 0) {
+            return bySymbolicName;
+        }
+        return r1.getVersion().compareTo(r2.getVersion());
     }
 
     public List<Resource> discoverResources(String searchFor) {
         try {
-            return Arrays.asList(repositoryAdmin.discoverResources(searchFor));
+            return Arrays.asList(repositoryAdmin.get().discoverResources(searchFor));
         } catch (InvalidSyntaxException e) {
             log.error(e.getMessage(), e);
         }

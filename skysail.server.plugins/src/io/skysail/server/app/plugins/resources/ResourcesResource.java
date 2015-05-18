@@ -1,35 +1,33 @@
 package io.skysail.server.app.plugins.resources;
 
+import io.skysail.server.app.plugins.PluginApplication;
+import io.skysail.server.app.plugins.obr.ObrResource;
 import io.skysail.server.restlet.resources.ListServerResource;
 
 import java.util.List;
 
-public class ResourcesResource extends ListServerResource<Resource> {
+import org.restlet.resource.ResourceException;
+
+import de.twenty11.skysail.server.core.restlet.ResourceContextId;
+
+public class ResourcesResource extends ListServerResource<ObrResource> {
+
+    private String id;
+    private PluginApplication app;
 
     public ResourcesResource() {
         super(ResourceResource.class);
+        addToContext(ResourceContextId.LINK_TITLE, "list Resources");
     }
 
     @Override
-    public List<Resource> getEntity() {
-        return null;
+    protected void doInit() throws ResourceException {
+        id = getAttribute("id");
+        app = (PluginApplication) getApplication();
     }
 
-    // @Override
-    // public List<Resource> getData() {
-    // PluginApplication app = (PluginApplication) getApplication();
-    // List<org.apache.felix.bundlerepository.Resource> resources = app
-    // .discoverResources("(|(presentationname=*)(symbolicname=*))");
-    // List<Bundle> installedBundles =
-    // Arrays.asList(app.getBundleContext().getBundles());
-    // return resources.stream().map(r -> {
-    // return new Resource(r, installedBundles);
-    // }).sorted((r1, r2) -> {
-    // int first = r1.getSymbolicName().compareTo(r2.getSymbolicName());
-    // if (first != 0) {
-    // return first;
-    // }
-    // return -r1.getVersion().compareTo(r2.getVersion());
-    // }).collect(Collectors.toList());
-    // }
+    @Override
+    public List<ObrResource> getEntity() {
+        return app.getResources(id);
+    }
 }

@@ -1,4 +1,4 @@
-package de.twenty11.skysail.server.db.orientdb;
+package de.twenty11.skysail.server.db.orientdb.impl;
 
 import java.util.Date;
 

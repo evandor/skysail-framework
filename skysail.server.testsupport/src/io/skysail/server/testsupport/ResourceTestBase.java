@@ -1,4 +1,4 @@
-package de.twenty11.skysail.server.validation;
+package io.skysail.server.testsupport;
 
 import java.util.concurrent.*;
 import java.util.concurrent.atomic.AtomicReference;
@@ -19,34 +19,35 @@ import de.twenty11.skysail.server.services.UserManager;
 import de.twenty11.skysail.server.um.domain.SkysailUser;
 
 @RunWith(MockitoJUnitRunner.class)
-public class PutResourceTest {
+public class ResourceTestBase {
 
     protected static final String ADMIN_DEFAUTL_PASSWORD = "$2a$12$52R8v2QH3vQRz8NcdtOm5.HhE5tFPZ0T/.MpfUa9rBzOugK.btAHS";
 
     @Rule
     public ExpectedException thrown = ExpectedException.none();
 
-    private static ThreadState subjectThreadState;
+    protected static ThreadState subjectThreadState;
+//    protected static OrientGraphFactory graphDbFactory;
 
     protected ConcurrentMap<String, Object> attributes;
-
     protected Request request;
-
     protected Response response;
-
     protected Form form;
-
     protected ClientInfo clientInfo;
-
     protected Form query;
-
-    private AtomicReference<UserManager> userManagerRef;
-
+    protected AtomicReference<UserManager> userManagerRef = new AtomicReference<>();
     protected Subject subjectUnderTest;
-
     protected SkysailUser adminUser;
-
     protected UserManager userManager;
+
+    protected static TestDb testDb;
+    
+    @BeforeClass
+    public static void initDb() {
+        //graphDbFactory = new OrientGraphFactory("memory:tests", "admin", "admin").setupPool(1, 10);
+        testDb = new TestDb();
+        testDb.activate();
+    }
 
     @Before
     public void setUp() throws Exception {
@@ -79,7 +80,6 @@ public class PutResourceTest {
 
         subjectUnderTest = Mockito.mock(Subject.class);
         Mockito.when(subjectUnderTest.isAuthenticated()).thenReturn(true);
-
     }
 
     @After
@@ -100,6 +100,7 @@ public class PutResourceTest {
             // mock Subject instances)
         }
         setSecurityManager(null);
+        //testDb.
     }
 
     /**

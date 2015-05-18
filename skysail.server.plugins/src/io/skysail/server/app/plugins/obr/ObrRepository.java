@@ -1,26 +1,51 @@
 package io.skysail.server.app.plugins.obr;
 
-import org.apache.felix.bundlerepository.Repository;
+import io.skysail.api.domain.Identifiable;
+import io.skysail.api.forms.Field;
 
-public class ObrRepository {
+import java.util.*;
+import java.util.stream.Collectors;
 
-    private String name;
+import lombok.Getter;
+
+import org.apache.felix.bundlerepository.*;
+
+@Getter
+public class ObrRepository implements Identifiable {
+
+    @Field
+    private String id;
+
+    @Field
     private String uri;
+
+    @Field
+    private long lastModified;
+
+    private List<ObrResource> resources;
 
     public ObrRepository() {
     }
 
     public ObrRepository(Repository repository) {
-        name = repository.getName();
+        this(repository, false);
+    }
+
+    public ObrRepository(Repository repository, boolean addResources) {
+        id = repository.getName();
         uri = repository.getURI().toString();
+        lastModified = repository.getLastModified();
+        if (addResources) {
+            resources = map(repository.getResources());
+        }
     }
 
-    public String getName() {
-        return name;
+    private List<ObrResource> map(Resource[] resources) {
+        return Arrays.stream(resources).map(r -> new ObrResource(r)).collect(Collectors.toList());
     }
 
-    public String getUri() {
-        return uri;
+    @Override
+    public void setId(String id) {
     }
 
 }

@@ -1,4 +1,4 @@
-Bundle-Version: 0.1.1.${tstamp}
+Bundle-Version: 0.2.0.${tstamp}
 Bundle-Name: SKYSAIL :: server :: testsupport
 Export-Package:  \
 	io.skysail.server.testsupport
@@ -15,6 +15,8 @@ Export-Package:  \
 	org.codehaus.jettison.jettison;version=1.3,\
 	org.apache.commons.beanutils;version=1.9,\
 	skysail.server;version=latest,\
+	skysail.server.db;version=latest,\
 	skysail.api;version=${skysail.api.version},\
 	com.orientechnologies.orientdb-core;version=2.0,\
+	com.orientechnologies.orientdb-graphdb;version=2.0,\
 	lombok;version=1.16

@@ -1,5 +1,8 @@
 package io.skysail.server.testsupport;
 
+import io.skysail.api.validation.*;
+import io.skysail.server.app.SkysailApplication;
+
 import java.util.concurrent.*;
 import java.util.concurrent.atomic.AtomicReference;
 
@@ -14,8 +17,9 @@ import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
 import org.restlet.*;
 import org.restlet.data.*;
+import org.restlet.resource.Resource;
 
-import de.twenty11.skysail.server.services.UserManager;
+import de.twenty11.skysail.server.services.*;
 import de.twenty11.skysail.server.um.domain.SkysailUser;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -27,7 +31,6 @@ public class ResourceTestBase {
     public ExpectedException thrown = ExpectedException.none();
 
     protected static ThreadState subjectThreadState;
-//    protected static OrientGraphFactory graphDbFactory;
 
     protected ConcurrentMap<String, Object> attributes;
     protected Request request;
@@ -40,17 +43,21 @@ public class ResourceTestBase {
     protected SkysailUser adminUser;
     protected UserManager userManager;
 
+    protected SkysailApplication application;
+
     protected static TestDb testDb;
-    
+
+    protected AtomicReference<ValidatorService> validatorServiceRef;
+    protected AtomicReference<EncryptorService> encryptorServiceRef;
+
     @BeforeClass
     public static void initDb() {
-        //graphDbFactory = new OrientGraphFactory("memory:tests", "admin", "admin").setupPool(1, 10);
         testDb = new TestDb();
+        testDb.startDb();
         testDb.activate();
     }
 
-    @Before
-    public void setUp() throws Exception {
+    public void setUp(SkysailApplication application, Resource resource) throws Exception {
         attributes = new ConcurrentHashMap<String, Object>();
         request = Mockito.mock(Request.class);
         Mockito.when(request.getAttributes()).thenReturn(attributes);
@@ -80,6 +87,23 @@ public class ResourceTestBase {
 
         subjectUnderTest = Mockito.mock(Subject.class);
         Mockito.when(subjectUnderTest.isAuthenticated()).thenReturn(true);
+
+        validatorServiceRef = new AtomicReference<>();
+        encryptorServiceRef = new AtomicReference<>();
+
+        ValidatorService validatorService = new DefaultValidationImpl();
+        validatorServiceRef.set(validatorService);
+
+        this.application = application;
+
+        Mockito.doReturn(validatorServiceRef).when(application).getValidatorService();
+        Mockito.doReturn(encryptorServiceRef).when(application).getEncryptorService();
+
+        Mockito.doReturn(application).when(resource).getApplication();
+        Mockito.doReturn(query).when(resource).getQuery();
+        
+        resource.init(null, request, response);
+        
     }
 
     @After
@@ -100,7 +124,7 @@ public class ResourceTestBase {
             // mock Subject instances)
         }
         setSecurityManager(null);
-        //testDb.
+        // testDb.
     }
 
     /**

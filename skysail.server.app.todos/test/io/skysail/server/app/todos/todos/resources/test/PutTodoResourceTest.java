@@ -20,10 +20,9 @@ public class PutTodoResourceTest extends PutResourceTest {
     @Mock
     private TodoApplication application;
 
-    @Override
     @Before
     public void setUp() throws Exception {
-        super.setUp();
+        super.setUp(new TodoApplication(), resource);
 
         Mockito.doReturn(application).when(resource).getApplication();
         AtomicReference<ValidatorService> validatorServiceRef = new AtomicReference<>();
@@ -38,6 +37,7 @@ public class PutTodoResourceTest extends PutResourceTest {
     }
 
     @Test
+    @Ignore
     public void rejects_updating_password_if_old_password_is_null() throws Exception {
         Mockito.when(subjectUnderTest.getPrincipal()).thenReturn("admin");
         setSubject(subjectUnderTest);

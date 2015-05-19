@@ -16,6 +16,7 @@ Include-Resource: resources, templates=src;recursive:=true;filter:=*.st|*.stg
 	skysail.api.um;version=latest,\
 	skysail.api.validation;version=latest,\
 	skysail.server;version=latest,\
+	skysail.server.db;version=latest,\
 	skysail.server.codegen;version=latest,\
 	skysail.server.testsupport;version=latest,\
 	slf4j.api;version=1.7.7,\
@@ -41,7 +42,13 @@ Include-Resource: resources, templates=src;recursive:=true;filter:=*.st|*.stg
 	org.jboss.logging.jboss-logging;version=3.1,\
 	javax.el-api;version=3.0,\
 	classmate;version=1.0,\
-	com.orientechnologies.orientdb-core;version=2.0
+	com.orientechnologies.orientdb-core;version=2.0,\
+	com.googlecode.concurrentlinkedhashmap.lru;version=1.4,\
+	com.fasterxml.jackson.core.jackson-core;version=2.4,\
+	com.fasterxml.jackson.core.jackson-databind;version=2.4,\
+	com.orientechnologies.orientdb-object;version=2.0,\
+	javassist;version=3.18,\
+	org.apache.commons.lang;version=2.6
 Import-Package: org.osgi.framework,\
 	javassist.util.proxy,\
 	*

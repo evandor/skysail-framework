@@ -19,11 +19,12 @@ public class EntityWasAddedFilter<R extends SkysailServerResource<T>, T> extends
     public FilterResult doHandle(R resource, ResponseWrapper<T> responseWrapper) {
         log.debug("entering {}#doHandle", this.getClass().getSimpleName());
 
-        new EventHelper(application.getEventAdmin().get())//
-                .channel(EventHelper.GUI_MSG)//
-                .info(resource.getClass().getSimpleName() + ".saved.success")//
-                .fire();
-
+        if (application.getEventAdmin() != null) {
+            new EventHelper(application.getEventAdmin().get())//
+                    .channel(EventHelper.GUI_MSG)//
+                    .info(resource.getClass().getSimpleName() + ".saved.success")//
+                    .fire();
+        }
         super.doHandle(resource, responseWrapper);
         return FilterResult.CONTINUE;
     }

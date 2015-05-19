@@ -24,9 +24,11 @@ import io.skysail.server.restlet.resources.ListServerResource;
 import io.skysail.server.restlet.resources.PostEntityServerResource;
 import io.skysail.server.utils.BundleUtils;
 
+import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Method;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -202,13 +204,19 @@ public class DesignerApplication extends SkysailApplication implements MenuItemP
         } catch (Exception e) {
             log.error(e.getMessage(), e);
         }
-        String filename = "./generated/" + className + ".java";
+        String filename = "../skysail.server.app.designer/src-gen/" + classNameToPath(className);
         try {
-            Files.write(Paths.get(filename), entityCode.getBytes());
+            Path path = Paths.get(filename);
+            new File(path.getParent().toString()).mkdirs();
+            Files.write(path, entityCode.getBytes());
         } catch (IOException e) {
             log.debug("could not write source code for compilation unit '{}' to '{}'", className, filename);
         }
 
+    }
+
+    private String classNameToPath(String className) {
+        return Arrays.stream(className.split("\\.")).collect(Collectors.joining("/")).concat(".java");
     }
 
     private void compile() {

@@ -4,12 +4,14 @@ import io.skysail.api.links.Link;
 import io.skysail.api.responses.SkysailResponse;
 import io.skysail.server.app.designer.DesignerApplication;
 import io.skysail.server.app.designer.application.Application;
+import io.skysail.server.app.designer.application.resources.ApplicationsResource;
 import io.skysail.server.app.designer.entities.Entity;
 import io.skysail.server.app.designer.fields.resources.FieldsResource;
 import io.skysail.server.app.designer.fields.resources.PostFieldResource;
 import io.skysail.server.restlet.resources.EntityServerResource;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class EntityResource extends EntityServerResource<Entity> {
 
@@ -29,12 +31,25 @@ public class EntityResource extends EntityServerResource<Entity> {
     }
 
     public List<Link> getLinks() {
-        return super.getLinks(PutEntityResource.class, EntityResource.class, PostFieldResource.class, FieldsResource.class, PostSubEntityResource.class);
+        return super.getLinks(PutEntityResource.class, EntityResource.class, PostFieldResource.class,
+                FieldsResource.class, PostSubEntityResource.class);
     }
 
     @Override
     public SkysailResponse<?> eraseEntity() {
-        return null;
+        // app.invalidateMenuCache();
+        Application application = app.getRepository().getById(Application.class, appId);
+        application.setEntities(application.getEntities().stream().filter(e -> {
+            return !e.getId().equals("#" + entityId);
+        }).collect(Collectors.toList()));
+        app.getRepository().update(application);
+        return new SkysailResponse<>();
+    }
+    
+    @Override
+    public String redirectTo() {
+        // TODO Auto-generated method stub
+        return super.redirectTo(ApplicationsResource.class);
     }
 
 }

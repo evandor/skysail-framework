@@ -2,11 +2,6 @@ package io.skysail.api.responses;
 
 import lombok.Getter;
 
-/**
- * Another type of Response is the FormResponse: You'd get it in case of an HTML
- * - Request whenever you want to add an entity or to display an existing one
- * which you'd want to change.
- */
 @Getter
 public class FormResponse<T> extends SkysailResponse<T> {
 

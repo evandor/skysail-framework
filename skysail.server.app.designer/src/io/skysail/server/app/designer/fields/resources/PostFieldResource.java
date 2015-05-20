@@ -2,7 +2,6 @@ package io.skysail.server.app.designer.fields.resources;
 
 import io.skysail.api.responses.SkysailResponse;
 import io.skysail.server.app.designer.DesignerApplication;
-import io.skysail.server.app.designer.application.Application;
 import io.skysail.server.app.designer.entities.Entity;
 import io.skysail.server.app.designer.fields.EntityField;
 import io.skysail.server.restlet.resources.PostEntityServerResource;
@@ -35,10 +34,9 @@ public class PostFieldResource extends PostEntityServerResource<EntityField> {
 
     @Override
     public SkysailResponse<?> addEntity(EntityField field) {
-        Application application = app.getApplication(id);
-        Entity entity = app.getEntity(application, entityId);
+        Entity entity = app.getRepository().getById(Entity.class, entityId);
         entity.getFields().add(field);
-        app.getRepository().update(application);
+        app.getRepository().update(entity);
         return new SkysailResponse<String>();
     }
 

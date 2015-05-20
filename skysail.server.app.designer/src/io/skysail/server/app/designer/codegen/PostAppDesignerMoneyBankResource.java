@@ -10,12 +10,12 @@ import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
 import org.restlet.resource.ResourceException;
 
-public class $classname$ extends PostEntityServerResource<$entityname$> {
+public class PostAppDesignerMoneyBankResource extends PostEntityServerResource<AppDesignerMoneyBank> {
 
 	private DesignerApplication app;
 
-    public $classname$() {
-        addToContext(ResourceContextId.LINK_TITLE, "Create new $entityname$");
+    public PostAppDesignerMoneyBankResource() {
+        addToContext(ResourceContextId.LINK_TITLE, "Create new AppDesignerMoneyBank");
     }
 
     @Override
@@ -24,12 +24,12 @@ public class $classname$ extends PostEntityServerResource<$entityname$> {
     }
 
 	@Override
-    public $entityname$ createEntityTemplate() {
-        return new $entityname$();
+    public AppDesignerMoneyBank createEntityTemplate() {
+        return new AppDesignerMoneyBank();
     }
 
     @Override
-    public SkysailResponse<?> addEntity($entityname$ entity) {
+    public SkysailResponse<?> addEntity(AppDesignerMoneyBank entity) {
         Subject subject = SecurityUtils.getSubject();
         //entity.setOwner(subject.getPrincipal().toString());
         String id = DesignerRepository.add(entity).toString();

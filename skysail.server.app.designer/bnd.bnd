@@ -1,3 +1,7 @@
+### bnd allows only two src-Folders; we will use src-gen instead of test to place the generated code into
+#testsrc: src-gen
+#testbin: bin
+
 Bundle-Version: 0.1.0.${tstamp}
 Bundle-Name: SKYSAIL :: server :: app :: designer
 Bundle-Description: an application designer application for skysail (used as demo as well) 
@@ -41,7 +45,8 @@ Include-Resource: resources, templates=src;recursive:=true;filter:=*.st|*.stg
 	org.apache.commons.logging;version=1.1,\
 	org.apache.commons.lang3;version=3.3,\
 	org.apache.commons.lang;version=2.6,\
-	org.apache.commons.collections;version=3.2
+	org.apache.commons.collections;version=3.2,\
+	com.googlecode.concurrentlinkedhashmap.lru;version=1.4
 Import-Package: org.osgi.framework,\
 	javassist.util.proxy,\
 	*

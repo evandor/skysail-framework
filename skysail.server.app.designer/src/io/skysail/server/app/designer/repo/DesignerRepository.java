@@ -19,7 +19,7 @@ public class DesignerRepository implements DbRepository {
 
     @Activate
     public void activate() {
-        dbService.createWithSuperClass("V", Application.class.getSimpleName());
+        dbService.createWithSuperClass("V", Application.class.getSimpleName(), Entity.class.getSimpleName(), EntityField.class.getSimpleName());
         dbService.register(Application.class, Entity.class, EntityField.class);
     }
 

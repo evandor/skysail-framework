@@ -68,7 +68,7 @@ public class PostListResourceTest extends PostResourceTest {
         form.add("name", "list2");
         resource.post(form, new VariantInfo(MediaType.TEXT_HTML));
         ConstraintViolationsResponse<?> post = (ConstraintViolationsResponse<?>) resource.post(form, new VariantInfo(MediaType.TEXT_HTML));
-        assertValidationFailure(post,  "name", "name already exists");
+        assertValidationFailure(post,  "", "name already exists");
     }
 
 

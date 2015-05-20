@@ -43,6 +43,7 @@ public class PostTodoResourceTest extends PostResourceTest {
     }
 
     @Test
+    @Ignore
     public void empty_html_form_yields_validation_failure() {
         form.add("title", "title_" + randomString());
         ConstraintViolationsResponse<?> post = (ConstraintViolationsResponse<?>) resource.post(form, new VariantInfo(

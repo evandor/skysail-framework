@@ -11,6 +11,7 @@ Include-Resource: resources, templates=src;recursive:=true;filter:=*.st|*.stg
 	biz.aQute.bnd.annotation,\
 	skysail.api;version=${skysail.api.version},\
 	skysail.server;version=latest,\
+	skysail.server.db;version=latest,\
 	skysail.server.codegen;version=latest,\
 	slf4j.api;version=1.7.7,\
 	org.restlet;version=${restlet.version},\
@@ -46,7 +47,11 @@ Include-Resource: resources, templates=src;recursive:=true;filter:=*.st|*.stg
 	org.apache.commons.lang3;version=3.3,\
 	org.apache.commons.lang;version=2.6,\
 	org.apache.commons.collections;version=3.2,\
-	com.googlecode.concurrentlinkedhashmap.lru;version=1.4
+	com.googlecode.concurrentlinkedhashmap.lru;version=1.4,\
+	com.fasterxml.jackson.core.jackson-core;version=2.4,\
+	com.fasterxml.jackson.core.jackson-databind;version=2.4,\
+	com.orientechnologies.orientdb-object;version=2.0,\
+	javassist;version=3.18
 Import-Package: org.osgi.framework,\
 	javassist.util.proxy,\
 	*

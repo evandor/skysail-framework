@@ -16,7 +16,7 @@ import javax.validation.constraints.*;
 import com.fasterxml.jackson.annotation.*;
 
 @JsonIgnoreProperties("handler")
-public class $classname$  implements Serializable, Identifiable {
+public class AppDesignerMoneyBank  implements Serializable, Identifiable {
 
     @Id
     private String id;
@@ -29,8 +29,17 @@ public class $classname$  implements Serializable, Identifiable {
 		return id;
 	}
 	    
-    $fields$
     
-    $gettersAndSetters$
+    @Field
+    private String name;
+    
+        public void setName(String value) {
+        this.name = value;
+    }
+
+    public String getName() {
+        return name;
+    }
+
     
 }

@@ -1,5 +1,6 @@
 package io.skysail.server.converter.wrapper;
 
+import io.skysail.api.domain.Identifiable;
 import io.skysail.api.responses.ConstraintViolationsResponse;
 import io.skysail.api.responses.FormResponse;
 import io.skysail.api.responses.SkysailResponse;
@@ -42,6 +43,11 @@ public class STSourceWrapper {
     public String getDeleteFormTarget() {
         if (!(source instanceof FormResponse)) {
             return null;
+        }
+        FormResponse<?> formResponse = (FormResponse<?>) source;
+        Object entity = formResponse.getEntity();
+        if (entity instanceof Identifiable) {
+            return "../" + ((Identifiable)entity).getId().replace("#", "");
         }
         return "../" + ((FormResponse<?>) source).getId();
     }

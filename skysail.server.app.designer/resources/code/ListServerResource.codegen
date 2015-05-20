@@ -6,10 +6,17 @@ import io.skysail.api.links.Link;
                 
 import java.util.List;
 import java.util.Map;
-                
-public class $classname$ extends ListServerResource<Map<String,Object>> {
 
-    public List<Map<String,Object>> getEntity() {
+import de.twenty11.skysail.server.core.restlet.ResourceContextId;
+                
+public class $classname$ extends ListServerResource<$entityname$> {
+
+    public $classname$() {
+        //super($entityname$.class);
+        addToContext(ResourceContextId.LINK_TITLE, "list $entityname$s");
+    }
+    
+    public List<$entityname$> getEntity() {
         return ((DesignerApplication) getApplication()).getRepository().findAll("select from $entityname$");
     }
 

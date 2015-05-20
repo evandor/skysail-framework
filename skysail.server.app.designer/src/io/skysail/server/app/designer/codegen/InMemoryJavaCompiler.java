@@ -49,6 +49,7 @@ public class InMemoryJavaCompiler {
         customCL.addClassLoader(PostDynamicEntityServerResource.class.getClassLoader());
         customCL.addClassLoader(DynaProperty.class.getClassLoader());
         customCL.addClassLoader(Link.class.getClassLoader());
+        //customCL.addClassLoader(javax.persistence.Id.class.getClassLoader());
 
         dcl = new DynamicClassLoader(customCL);
         fileManager.setClassLoader(dcl);
@@ -79,6 +80,9 @@ public class InMemoryJavaCompiler {
         getBundleLocationFor(DynaProperty.class, bundleLocations, bundles);
         getBundleLocationFor(ConstraintViolation.class, bundleLocations, bundles);
         getBundleLocationFor(Link.class, bundleLocations, bundles);
+        getBundleLocationFor(javax.persistence.Id.class, bundleLocations, bundles);
+        getBundleLocationFor(com.fasterxml.jackson.annotation.JacksonAnnotation.class, bundleLocations, bundles);
+
 
         String locs = bundleLocations.stream().map(l -> {
                 return l.replace("reference:", "").replace("file:/", "/").replace("%25", "%"); // replace("/","\\").

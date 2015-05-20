@@ -2,7 +2,7 @@ package io.skysail.server.app.todos.lists.test;
 
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.assertThat;
-import io.skysail.api.responses.*;
+import io.skysail.api.responses.ConstraintViolationsResponse;
 import io.skysail.server.app.todos.*;
 import io.skysail.server.app.todos.lists.*;
 import io.skysail.server.app.todos.repo.TodosRepository;
@@ -38,44 +38,38 @@ public class PostListResourceTest extends PostResourceTest {
     }
 
     @Test
-    public void empty_form_yields_validation_failure() {
-        
-        Object post = submit(form);
-        
-        assertThat(post, instanceOf(ConstraintViolationsResponse.class));
-        assertThat(response.getStatus(),is(equalTo(Status.CLIENT_ERROR_BAD_REQUEST)));
-        assertThat(response.getHeaders().getFirst("X-Status-Reason").getValue(),is(equalTo("Validation failed")));
-        assertThat(((ConstraintViolationsResponse<?>)post).getViolations().size(),is(1));
-        ConstraintViolationDetails violation = ((ConstraintViolationsResponse<?>)post).getViolations().iterator().next();
-        assertThat(((ConstraintViolationDetails)violation).getMessage(),is(containsString("may not be null")));
+    public void empty_html_form_yields_validation_failure() {
+        ConstraintViolationsResponse<?> post = (ConstraintViolationsResponse<?>) resource.post(form, new VariantInfo(MediaType.TEXT_HTML));
+        assertValidationFailure(post,  "name", "may not be null");
     }
-    
+
+    @Test
+    public void empty_json_request_yields_validation_failure() {
+        ConstraintViolationsResponse<?> post = (ConstraintViolationsResponse<?>) resource.post(new TodoList());
+        assertValidationFailure(post, "name", "may not be null");
+    }
+
+    @Test
+    public void valid_form_data_yields_new_entity() {
+        form.add("name", "list1");
+        resource.post(form, new VariantInfo(MediaType.TEXT_HTML));
+        assertThat(response.getStatus(),is(equalTo(Status.SUCCESS_CREATED)));
+    }
+
     @Test
     public void valid_data_yields_new_entity() {
-        form.add("name", "list1");
-        Object post = submit(form);
-        
-        assertThat(post, instanceOf(TodoList.class));
+        TodoList newTodoList = new TodoList("jsonList1");
+        resource.post(newTodoList);
         assertThat(response.getStatus(),is(equalTo(Status.SUCCESS_CREATED)));
     }
 
     @Test
     public void two_entries_with_same_name_yields_failure() {
         form.add("name", "list2");
-        submit(form);
-        Object post = submit(form);
-        
-        assertThat(post, instanceOf(ConstraintViolationsResponse.class));
-        assertThat(response.getStatus(),is(equalTo(Status.CLIENT_ERROR_BAD_REQUEST)));
-        assertThat(response.getHeaders().getFirst("X-Status-Reason").getValue(),is(equalTo("Validation failed")));
-        assertThat(((ConstraintViolationsResponse<?>)post).getViolations().size(),is(1));
-        ConstraintViolationDetails violation = ((ConstraintViolationsResponse<?>)post).getViolations().iterator().next();
-        assertThat(((ConstraintViolationDetails)violation).getMessage(),is(containsString("name already exists")));
-
+        resource.post(form, new VariantInfo(MediaType.TEXT_HTML));
+        ConstraintViolationsResponse<?> post = (ConstraintViolationsResponse<?>) resource.post(form, new VariantInfo(MediaType.TEXT_HTML));
+        assertValidationFailure(post,  "name", "name already exists");
     }
 
-    private Object submit(Form theForm) {
-        return resource.post(theForm, new VariantInfo(MediaType.TEXT_HTML));
-    }
+
 }
-

@@ -13,7 +13,6 @@ import org.apache.shiro.subject.Subject;
 public class PostTodoWoListResource extends PostTodoResource {
 
     private TodoApplication app;
-    private String listId;
 
     @Override
     public SkysailResponse<?> addEntity(Todo entity) {

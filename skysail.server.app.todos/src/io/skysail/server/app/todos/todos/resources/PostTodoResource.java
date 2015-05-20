@@ -18,7 +18,7 @@ import de.twenty11.skysail.server.core.restlet.ResourceContextId;
 public class PostTodoResource extends PostEntityServerResource<Todo> {
 
     private TodoApplication app;
-    private String listId;
+    protected String listId;
 
     public PostTodoResource() {
         addToContext(ResourceContextId.LINK_TITLE, "Create new Todo");
@@ -32,7 +32,7 @@ public class PostTodoResource extends PostEntityServerResource<Todo> {
 
     @Override
     public Todo createEntityTemplate() {
-        return new Todo(getQuery());
+        return new Todo(getQuery(), listId);
     }
 
     @Override

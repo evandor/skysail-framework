@@ -51,6 +51,7 @@ handleConstraintViolationField(resource, source, formField, messages,i,autofocus
 	        <small style='' class='help-block' data-bv-validator='notEmpty' data-bv-for='title' data-bv-result='INVALID'>
 	            $formField.violationMessage$
 	        </small>
+            $renderDescription(source,field,converter)$          
 	      </div>
 	    </div>
     $elseif(field.selectionProvider)$
@@ -60,6 +61,7 @@ handleConstraintViolationField(resource, source, formField, messages,i,autofocus
             <select name='$field.name$' tabindex="$i$">
                 $field.selectionProviderOptions.keys: {key | $options(field.selectionProviderOptions,key)$}$
             </select>
+            $renderDescription(source,field,converter)$
           </div>
         </div>
     $else$
@@ -71,6 +73,7 @@ handleConstraintViolationField(resource, source, formField, messages,i,autofocus
 	        <small style='' class='help-block' data-bv-validator='notEmpty' data-bv-for='title' data-bv-result='INVALID'>
 	            $formField.violationMessage$
 	        </small>
+            $renderDescription(source,field,converter)$
 	      </div>
 	    </div>  
     $endif$
@@ -83,7 +86,7 @@ handleInputField(resource, source, field, messages,i,autofocus) ::= <<
           <label for='s2id_$field.name$' class='col-sm-2 control-label' style="text-align: left;">$helpmessage(messages, field.nameKey)$ $if(converter.edit)$<a href='/i18n/messages/$source.entity.entity.class.name$.$field.name$/'><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>$endif$</label>
           <div class='col-sm-10'>
             <input type = 'hidden' name = '$field.name$' id = '$field.name$' value='$field.value$' tabindex="$i$" $autofocus$/>
-            <small class="help-block">$helpmessage(messages, field.messageKey)$ $if(converter.edit)$ <a href='/i18n/messages/$source.entity.entity.class.name$.$field.name$.desc/'><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>$endif$</small>
+            $renderDescription(source,field,converter)$
           </div>
         </div>
       $elseif(field.textareaInputType)$
@@ -91,7 +94,7 @@ handleInputField(resource, source, field, messages,i,autofocus) ::= <<
           <label for='$field.name$' class='col-sm-2 control-label' style="text-align: left;">$helpmessage(messages, field.nameKey)$ $if(converter.edit)$<a href='/i18n/messages/$source.entity.entity.class.name$.$field.name$/'><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>$endif$</label>
           <div class='col-sm-10'>
             <textarea class='form-control' rows=3 name='$field.name$' id='$field.name$' tabindex="$i$" $autofocus$>$field.value$</textarea>
-            <small class="help-block">$helpmessage(messages, field.messageKey)$ $if(converter.edit)$<a href='/i18n/messages/$source.entity.entity.class.name$.$field.name$.desc/'><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>$endif$</small>
+            $renderDescription(source,field,converter)$
           </div>
         </div>
       $elseif(field.markdownEditorInputType)$
@@ -99,7 +102,7 @@ handleInputField(resource, source, field, messages,i,autofocus) ::= <<
           <label for='$field.name$' class='col-sm-2 control-label' style="text-align: left;">$helpmessage(messages, field.nameKey)$  $if(converter.edit)$<a href='/i18n/messages/$source.entity.entity.class.name$.$field.name$/'><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>$endif$</label>
           <div class='col-sm-10'>
             <textarea data-uk-htmleditor="{maxsplitsize:600, markdown:true}" name='$field.name$' id='$field.name$' tabindex="$i$" $autofocus$>$field.value$</textarea>
-            <small class="help-block">$helpmessage(messages, field.messageKey)$  $if(converter.edit)$ <a href='/i18n/messages/$source.entity.entity.class.name$.$field.name$.desc/'><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>$endif$</small>
+            $renderDescription(source,field,converter)$
           </div>
         </div>
       $elseif(field.selectionProvider)$
@@ -109,7 +112,7 @@ handleInputField(resource, source, field, messages,i,autofocus) ::= <<
             <select name='$field.name$' tabindex="$i$"  $autofocus$>
                 $field.selectionProviderOptions.keys: {key | $options(field.selectionProviderOptions,key)$}$
             </select>
-            <small class="help-block">$helpmessage(messages, field.messageKey)$ $if(converter.edit)$ <a href='/i18n/messages/$source.entity.entity.class.name$.$field.name$.desc/'><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>$endif$</small>
+            $renderDescription(source,field,converter)$
           </div>
         </div>
       $elseif(field.checkbox)$
@@ -117,7 +120,7 @@ handleInputField(resource, source, field, messages,i,autofocus) ::= <<
           <label for='$field.name$' class='col-sm-2 control-label' style="text-align: left;">$helpmessage(messages, field.nameKey)$  $if(converter.edit)$<a href='/i18n/messages/$source.entity.entity.class.name$.$field.name$/'><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>$endif$</label>
           <div class='col-sm-10'>
             <input type="$field.inputType$" class='form-control' name='$field.name$' id='$field.name$' $if(field.value)$checked$endif$ tabindex="$i$" title="$helpmessage(messages, field.placeholderKey)$">
-            <small class="help-block">$helpmessage(messages, field.messageKey)$  $if(converter.edit)$ <a href='/i18n/messages/$source.entity.entity.class.name$.$field.name$.desc/'><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>$endif$</small>
+            $renderDescription(source,field,converter)$
           </div>
         </div>
       $else$
@@ -125,20 +128,33 @@ handleInputField(resource, source, field, messages,i,autofocus) ::= <<
           <label for='$field.name$' class='col-sm-2 control-label' style="text-align: left;">$helpmessage(messages, field.nameKey)$  $if(converter.edit)$<a href='/i18n/messages/$source.entity.entity.class.name$.$field.name$/'><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>$endif$</label>
           <div class='col-sm-10'>
             <input type="$field.inputType$" class='form-control' name='$field.name$' id='$field.name$' placeholder='$helpmessage(messages, field.placeholderKey)$' value='$field.value$' tabindex="$i$" $autofocus$ title="$helpmessage(messages, field.placeholderKey)$">
-            <small class="help-block">$helpmessage(messages, field.messageKey)$  $if(converter.edit)$ <a href='/i18n/messages/$source.entity.entity.class.name$.$field.name$.desc/'><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>$endif$</small>
+            $renderDescription(source,field,converter)$
           </div>
         </div>
       $endif$    
   $endif$    
 >>
 
+renderDescription(source,field,converter) ::= <<
+  $if(messages.(field.messageKey))$
+    <small class="help-block">_$helpmessage(messages, field.messageKey)$ $editTextLink(source,field,converter)$</small>
+  $else$          
+    $editTextLink(source,field,converter)$  
+  $endif$  
+>>
+
+editTextLink(source,field,converter) ::= <<
+  $if(converter.edit)$ 
+    <a href='/i18n/messages/$source.entity.entity.class.name$.$field.name$.desc/'><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>&nbsp;
+    <a href='/i18n/messages/$source.entity.entity.class.name$.$field.name$.placeholder/'><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>
+  $endif$
+>>
+
 label(prefix, formField) ::= <<
       <label for='$prefix$$formField.name$' class='col-sm-2 control-label' style="text-align: left;">$helpmessage(messages, field.nameKey)$ $if(converter.edit)$<a href='/i18n/messages/$source.entity.entity.class.name$.$field.name$/'><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>$endif$</label>
 >>
 
-helpmessage(messages, identifier) ::= <<
-    $messages.(identifier)$
->>
+helpmessage(messages, identifier) ::= <<$messages.(identifier)$>>
 
 options(options, key) ::= <<
     <option value="$key$">$options.(key)$</option>

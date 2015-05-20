@@ -202,7 +202,9 @@ public abstract class PostEntityServerResource<T> extends SkysailServerResource<
         if (form != null) {
             getRequest().getAttributes().put(SKYSAIL_SERVER_RESTLET_FORM, form);
         }
-        getRequest().getAttributes().put(SKYSAIL_SERVER_RESTLET_VARIANT, variant);
+        if (variant != null) {
+            getRequest().getAttributes().put(SKYSAIL_SERVER_RESTLET_VARIANT, variant);
+        }
         RequestHandler<T> requestHandler = new RequestHandler<T>(getApplication());
         AbstractResourceFilter<PostEntityServerResource<T>, T> handler = requestHandler.createForPost();
         getResponse().setStatus(Status.SUCCESS_CREATED);

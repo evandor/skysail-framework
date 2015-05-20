@@ -1,64 +1,76 @@
-//package io.skysail.server.app.todos.todos.resources.test;
-//
-//import static org.hamcrest.CoreMatchers.equalTo;
-//import static org.hamcrest.CoreMatchers.is;
-//import static org.hamcrest.CoreMatchers.nullValue;
-//import static org.junit.Assert.assertThat;
-//import io.skysail.api.responses.ConstraintViolationsResponse;
-//import io.skysail.server.app.todos.todos.Todo;
-//import io.skysail.server.app.todos.todos.resources.PostTodoResource;
-//import io.skysail.server.app.todos.todos.test.TodoAppTest;
-//
-//import org.junit.Before;
-//import org.junit.Ignore;
-//import org.junit.Test;
-//import org.junit.runner.RunWith;
-//import org.mockito.InjectMocks;
-//import org.mockito.runners.MockitoJUnitRunner;
-//
-//@RunWith(MockitoJUnitRunner.class)
-//public class PostTodoResourceTest extends TodoAppTest {
-//
-//    @InjectMocks
-//    private PostTodoResource resource;
-//
-//    @Before
-//    public void setUp() throws Exception {
-//        super.setUp();
-//        // CrmRepository.getInstance().setDbService(dbService);
-//        resource.init(null, request, response);
-//    }
-//
-//    @Test
-//    public void creates_entity_template() throws Exception {
-//        resource.init(null, null, null);
-//        Todo todo = resource.createEntityTemplate();
-//        assertThat(todo.getTitle(), is(nullValue()));
-//    }
-//
-//    @Test
-//    @Ignore
-//    public void missing_title_in_html_post_yields_failed_validation() {
-//        Object result = resource.post(form);
-//
-//        assertValidationFailed(400, "Validation failed");
-//        assertOneConstraintViolation((ConstraintViolationsResponse<?>) result, "name", "may not be null");
-//    }
-//
-//    @Test
-//    public void posting_minimal_html_form_creates_new_entity() {
-//        form.add("title", "mytitle");
-//        form.add("due", "");
-//        Todo post = (Todo) resource.post(form);
-//        assertThat(post.getTitle(), is(equalTo("mytitle")));
-//    }
-//
-//    @Test
-//    public void posting_minimal_entity_creates_new_entity() {
-//        Todo todo = new Todo();
-//        todo.setTitle("mytitle");
-//        Todo post = (Todo) resource.post(todo);
-//        assertThat(post.getTitle(), is(equalTo("mytitle")));
-//    }
-//
-//}
+package io.skysail.server.app.todos.todos.resources.test;
+
+import static org.hamcrest.CoreMatchers.*;
+import static org.junit.Assert.assertThat;
+import io.skysail.api.responses.ConstraintViolationsResponse;
+import io.skysail.server.app.todos.*;
+import io.skysail.server.app.todos.lists.UniquePerOwnerValidator;
+import io.skysail.server.app.todos.repo.TodosRepository;
+import io.skysail.server.app.todos.todos.*;
+import io.skysail.server.app.todos.todos.resources.PostTodoResource;
+import io.skysail.server.testsupport.PostResourceTest;
+
+import java.util.HashMap;
+
+import org.apache.shiro.subject.SimplePrincipalMap;
+import org.junit.*;
+import org.mockito.*;
+import org.restlet.data.*;
+import org.restlet.engine.resource.VariantInfo;
+
+public class PostTodoResourceTest extends PostResourceTest {
+
+    @Spy
+    private PostTodoResource resource;
+
+    @Before
+    public void setUp() throws Exception {
+        super.setUp(Mockito.mock(TodoApplication.class), resource);
+
+        TodosRepository repo = new TodosRepository();
+        repo.setDbService(testDb);
+        repo.activate();
+        ((TodoApplication) application).setRepository(repo);
+        Mockito.when(((TodoApplication) application).getRepository()).thenReturn(repo);
+
+        Mockito.when(subjectUnderTest.getPrincipal()).thenReturn("admin");
+        Mockito.when(subjectUnderTest.getPrincipals()).thenReturn(new SimplePrincipalMap(new HashMap<>()));
+        setSubject(subjectUnderTest);
+
+        new UniquePerOwnerValidator().setDbService(testDb);
+        new ValidListIdValidator().setDbService(testDb);
+
+    }
+
+    @Test
+    public void empty_html_form_yields_validation_failure() {
+        form.add("title", "title_" + randomString());
+        ConstraintViolationsResponse<?> post = (ConstraintViolationsResponse<?>) resource.post(form, new VariantInfo(
+                MediaType.TEXT_HTML));
+        assertValidationFailure(post, "list", "may not be null");
+    }
+
+    @Test
+    public void wrong_list_yields_validation_failure() { 
+        form.add("title", "title_" + randomString());
+        form.add("list", "list_" + randomString());
+        ConstraintViolationsResponse<?> post = (ConstraintViolationsResponse<?>) resource.post(form, new VariantInfo(MediaType.TEXT_HTML));
+        assertValidationFailure(post, "list", "This list does not exist or has another owner");
+    }
+
+    @Test
+    public void valid_data_yields_new_entity() {
+        
+        TodoList entity = new TodoList();
+        entity.setName("list_" + randomString());
+        entity.setOwner("admin");
+        String id = TodosRepository.add(entity).toString();
+        
+        
+        form.add("title", "title_" + randomString());
+        form.add("list", id);
+        Todo post = (Todo) resource.post(form, new VariantInfo(MediaType.TEXT_HTML));
+        assertThat(response.getStatus(), is(equalTo(Status.SUCCESS_CREATED)));
+    }
+
+}

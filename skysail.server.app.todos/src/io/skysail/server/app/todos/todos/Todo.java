@@ -33,6 +33,7 @@ public class Todo implements Serializable, Identifiable {
     @Reference(cls = Todo.class, selectionProvider = ListSelectionProvider.class)
     @PostView(visibility = Visibility.SHOW_IF_NULL)
     @ListView(hide = true)
+    @ValidListId
     private String list;
 
     @Field
@@ -73,12 +74,16 @@ public class Todo implements Serializable, Identifiable {
         this.title = title;
     }
     
-    public Todo(Form query) {
+    public Todo(Form query, String listId) {
         if (query == null) {
             return;
         }
         this.title = query.getFirstValue("title");
         this.desc = query.getFirstValue("desc");
+        this.list = listId;
+        if (listId == null) {
+            this.list = query.getFirstValue("list");
+        }
     }
 
 }

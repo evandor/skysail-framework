@@ -3,6 +3,8 @@ package io.skysail.server.testsupport;
 import io.skysail.api.validation.*;
 import io.skysail.server.app.SkysailApplication;
 
+import java.math.BigInteger;
+import java.security.SecureRandom;
 import java.util.concurrent.*;
 import java.util.concurrent.atomic.AtomicReference;
 
@@ -101,9 +103,9 @@ public class ResourceTestBase {
 
         Mockito.doReturn(application).when(resource).getApplication();
         Mockito.doReturn(query).when(resource).getQuery();
-        
+
         resource.init(null, request, response);
-        
+
     }
 
     @After
@@ -169,6 +171,11 @@ public class ResourceTestBase {
 
     protected static org.apache.shiro.mgt.SecurityManager getSecurityManager() {
         return SecurityUtils.getSecurityManager();
+    }
+
+    protected String randomString() {
+        SecureRandom random = new SecureRandom();
+        return new BigInteger(130, random).toString(32);
     }
 
 }

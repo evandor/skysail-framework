@@ -3,7 +3,7 @@ Bundle-Name: SKYSAIL :: server :: testsupport
 Export-Package:  \
 	io.skysail.server.testsupport
 -buildpath:  \
-	org.restlet;version=2.1,\
+	org.restlet;version=${restlet.version},\
 	org.mockito.mockito-all;version=1.10,\
 	com.springsource.org.junit;version=4.11,\
 	org.apache.shiro.core;version=1.2,\

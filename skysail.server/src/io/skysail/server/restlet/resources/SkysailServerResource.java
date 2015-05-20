@@ -176,21 +176,20 @@ public abstract class SkysailServerResource<T> extends ServerResource {
             }
 
             String baseKey = MessagesUtils.getBaseKey(entityClass, f);
-            addTranslation(msgs, application, f, baseKey);
-            addTranslation(msgs, application, f, baseKey + ".desc");
-            addTranslation(msgs, application, f, baseKey + ".placeholder");
+            addTranslation(msgs, application, f, baseKey, MessagesUtils.getSimpleName(f));
+            addTranslation(msgs, application, f, baseKey + ".desc", null);
+            addTranslation(msgs, application, f, baseKey + ".placeholder",null);
         });
 
         return msgs;
     }
 
-    private void addTranslation(Map<String, String> msgs, Application application, FormField f, String key) {
-        String defaultMsg = MessagesUtils.getSimpleName(f);
+    private void addTranslation(Map<String, String> msgs, Application application, FormField f, String key, String defaultMsg) {
         String translation = ((SkysailApplication) application).translate(key, defaultMsg, this, false);
         if (translation != null) {
             msgs.put(key, translation);
-        } else {
-            msgs.put(key, key);
+        } else if(defaultMsg != null) {
+            msgs.put(key, defaultMsg);
         }
     }
 

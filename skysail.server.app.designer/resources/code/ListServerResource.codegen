@@ -12,7 +12,7 @@ import de.twenty11.skysail.server.core.restlet.ResourceContextId;
 public class $classname$ extends ListServerResource<$entityname$> {
 
     public $classname$() {
-        //super($entityname$.class);
+        super($entityname$Resource.class);
         addToContext(ResourceContextId.LINK_TITLE, "list $entityname$s");
     }
     

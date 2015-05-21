@@ -1,5 +1,8 @@
 package io.skysail.server.app.designer.codegen;
 
+import java.util.List;
+
+import io.skysail.api.links.Link;
 import io.skysail.api.responses.SkysailResponse;
 import io.skysail.server.app.designer.DesignerApplication;
 import io.skysail.server.restlet.resources.EntityServerResource;
@@ -7,7 +10,7 @@ import de.twenty11.skysail.server.core.restlet.ResourceContextId;
 
 public class $classname$  extends EntityServerResource<$entityname$ > {
 
-    private String listId;
+    private String id;
     private DesignerApplication app;
 
     public $classname$() {
@@ -17,13 +20,13 @@ public class $classname$  extends EntityServerResource<$entityname$ > {
 
     @Override
     protected void doInit() {
-        //listId = getAttribute(TodoApplication.LIST_ID);
+        id = getAttribute("id");
         app = (DesignerApplication) getApplication();
     }
 
     @Override
     public SkysailResponse<?> eraseEntity() {
-       /* TodoList todoList = app.getRepository().getById(TodoList.class, listId);
+       /* TodoList todoList = app.getRepository().getById($entityname$.class, listId);
         if (todoList.getTodosCount() > 0) {
             // TODO revisit: make a business violation from that
             getResponse().setStatus(Status.CLIENT_ERROR_BAD_REQUEST, new IllegalStateException(),
@@ -36,38 +39,15 @@ public class $classname$  extends EntityServerResource<$entityname$ > {
 
     @Override
     public $entityname$ getEntity() {
-        return null;// app.getRepository().getById(TodoList.class, listId);
+        return app.getRepository().getById($entityname$.class, id);
     }
     
-    /*@Override
-    public $entityname$ getEntity(String installation) {
-        if (installation == null || installation.trim().length() == 0) {
-            return getEntity();
-        }
-        String peersCredentialsName = "Credentials_" + installation;
-        String peersCredentials = getRequest().getCookies().getFirstValue(peersCredentialsName);
-
-        String path = app.getRemotePath(installation, "/Todos/Lists/" + listId);
-        //String uri = path + "/Todos/Lists";
-        
-        if (peersCredentials == null) {
-            getResponse().redirectSeeOther("/_remotelogin");
-            return null;
-        } 
-        ClientResource cr = new ClientResource(path);
-        cr.getCookies().add("Credentials", peersCredentials);
-        //cr.get(MediaType.APPLICATION_JSON);
-
-        return cr.get(TodoList.class);
-    }*/
-
- /*
     @Override
     public List<Link> getLinks() {
-        return super.getLinks(ListResource.class, TodosResource.class, PutListResource.class);
+        return super.getLinks(Put$entityname$Resource.class);
     }
 
-    @Override
+/*    @Override
     public String redirectTo() {
         return super.redirectTo(ListsResource.class);
     }

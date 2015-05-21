@@ -294,8 +294,8 @@ public class DesignerApplication extends SkysailApplication implements MenuItemP
         } catch (Exception e) {
             log.error(e.getMessage(), e);
         }
-        //String filename = "../skysail.server.app.designer/src-gen/" + classNameToPath(className);
-        String filename = "../skysail.server.app.designer/src/" + classNameToPath(className);
+        String filename = "../skysail.server.app.designer/src-gen/" + classNameToPath(className);
+        //String filename = "../skysail.server.app.designer/src/" + classNameToPath(className);
         try {
             Path path = Paths.get(filename);
             new File(path.getParent().toString()).mkdirs();

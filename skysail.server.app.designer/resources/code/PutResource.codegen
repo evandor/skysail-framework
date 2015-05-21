@@ -23,7 +23,7 @@ public class $classname$ extends PutEntityServerResource<$entityname$> {
     
     @Override
     public SkysailResponse<?> updateEntity($entityname$ entity) {
-        TodoList original = getEntity();
+        $entityname$ original = getEntity();
         //original.setName(entity.getName());
         //original.setDesc(entity.getDesc());
         //original.setModified(new Date());

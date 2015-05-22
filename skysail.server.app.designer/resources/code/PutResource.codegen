@@ -23,11 +23,7 @@ public class $classname$ extends PutEntityServerResource<$entityname$> {
     
     @Override
     public SkysailResponse<?> updateEntity($entityname$ entity) {
-        $entityname$ original = getEntity();
-        //original.setName(entity.getName());
-        //original.setDesc(entity.getDesc());
-        //original.setModified(new Date());
-        app.getRepository().update(id, original);
+        $updateEntity$
         return new SkysailResponse<>();
     }
 
@@ -38,7 +34,7 @@ public class $classname$ extends PutEntityServerResource<$entityname$> {
     
     @Override
     public String redirectTo() {
-        return super.redirectTo(ListsResource.class);
+        return super.redirectTo($entityname$sResource.class);
     }
 
 }

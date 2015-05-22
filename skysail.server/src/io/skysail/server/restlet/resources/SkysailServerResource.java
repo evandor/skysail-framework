@@ -54,6 +54,8 @@ public abstract class SkysailServerResource<T> extends ServerResource {
     public static final String SKYSAIL_SERVER_RESTLET_FORM = "de.twenty11.skysail.server.core.restlet.form";
     public static final String SKYSAIL_SERVER_RESTLET_ENTITY = "de.twenty11.skysail.server.core.restlet.entity";
     public static final String SKYSAIL_SERVER_RESTLET_VARIANT = "de.twenty11.skysail.server.core.restlet.variant";
+    public static final String SKYSAIL_SERVER_RESTLET_FILTER_PARAM_NAME = "_filter";
+    public static final String SKYSAIL_SERVER_RESTLET_FILTER_PARAM_VALUE = "io.skysail.server.restlet.resources.filter";
     public static final String NO_REDIRECTS = "noRedirects";
 
     @Setter

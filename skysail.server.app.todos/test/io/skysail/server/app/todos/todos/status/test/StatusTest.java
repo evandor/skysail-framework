@@ -11,9 +11,9 @@ import org.junit.Test;
 public class StatusTest {
 
     @Test
-    public void has_six_values() {
+    public void has_seven_values() {
         Status[] values = Status.values();
-        assertThat(values.length, is(6));
+        assertThat(values.length, is(7));
     }
 
     @Test
@@ -26,7 +26,7 @@ public class StatusTest {
     @Test
     public void testNextsOfWipStatus() {
         Status newStatus = Status.WIP;
-        assertThat(newStatus.getNexts().size(), is(2));
+        assertThat(newStatus.getNexts().size(), is(3));
         checkFollowUpStatuses(newStatus.getNexts());
     }
 
@@ -46,15 +46,15 @@ public class StatusTest {
 
     @Test
     public void testNextsOfClosedStatus() {
-        Status newStatus = Status.CLOSED;
-        assertThat(newStatus.getNexts().size(), is(2));
+        Status newStatus = Status.ARCHIVED;
+        assertThat(newStatus.getNexts().size(), is(1));
         checkFollowUpStatuses(newStatus.getNexts());
     }
 
     @Test
     public void testNextsOfFinishedStatus() {
         Status newStatus = Status.FINISHED;
-        assertThat(newStatus.getNexts().size(), is(0));
+        assertThat(newStatus.getNexts().size(), is(2));
         checkFollowUpStatuses(newStatus.getNexts());
     }
 

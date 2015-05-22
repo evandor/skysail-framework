@@ -13,8 +13,7 @@ import org.restlet.util.Series;
 
 import de.twenty11.skysail.server.core.restlet.ResponseWrapper;
 
-public class AddLinkheadersFilter<R extends SkysailServerResource<T>, T> extends
-        ResponseHeadersManipulatingFilter<R, T> {
+public class AddLinkheadersFilter<R extends SkysailServerResource<T>, T> extends AbstractResourceFilter<R, T> {
 
     @Override
     protected void afterHandle(R resource, ResponseWrapper<T> responseWrapper) {

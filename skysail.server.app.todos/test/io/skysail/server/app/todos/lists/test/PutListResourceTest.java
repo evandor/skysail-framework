@@ -40,11 +40,11 @@ public class PutListResourceTest extends PutResourceTest {
     }
 
     @Test
-    public void empty_form_yields_validation_failure() {
+    public void list_can_be_updated() {
         
-        TodoList entity = new TodoList();
-        entity.setName("list3");
-        String id = TodosRepository.add(entity).toString();
+        TodoList list = new TodoList();
+        list.setName("list_" + randomString());
+        String id = TodosRepository.add(list).toString();
         
         form.add("name", "list3a");
         form.add("id", id);
@@ -53,11 +53,11 @@ public class PutListResourceTest extends PutResourceTest {
         
         resource.put(form, new VariantInfo(MediaType.TEXT_HTML));
         
-        TodoList entityFromDb = new TodosRepository().getById(TodoList.class, id);
+        TodoList listFromDb = new TodosRepository().getById(TodoList.class, id);
         
         assertThat(response.getStatus(),is(equalTo(Status.SUCCESS_OK)));
-        assertThat(entityFromDb.getModified(), is(notNullValue()));
-        assertThat(entityFromDb.getName(), is(equalTo("list3a")));
+        assertThat(listFromDb.getModified(), is(notNullValue()));
+        assertThat(listFromDb.getName(), is(equalTo("list3a")));
 //        assertThat(response.getHeaders().getFirst("X-Status-Reason").getValue(),is(equalTo("Validation failed")));
 //        assertThat(((ConstraintViolationsResponse<?>)put).getViolations().size(),is(1));
 //        ConstraintViolationDetails violation = ((ConstraintViolationsResponse<?>)put).getViolations().iterator().next();

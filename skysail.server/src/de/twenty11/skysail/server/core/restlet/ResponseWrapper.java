@@ -9,12 +9,6 @@ public class ResponseWrapper<T> {
 
     private T entity;
 
-    /**
-     * an internal request id added by a filter to track request and response
-     * information
-     */
-    private Long requestId;
-
     private Response response;
 
     private ConstraintViolationsResponse<T> constraintViolationsResponse;
@@ -54,14 +48,6 @@ public class ResponseWrapper<T> {
 
     public ConstraintViolationsResponse<T> getConstraintViolationsResponse() {
         return constraintViolationsResponse;
-    }
-
-    public void setRequestId(Long requestId) {
-        this.requestId = requestId;
-    }
-
-    public Long getRequestId() {
-        return requestId;
     }
 
     @Override

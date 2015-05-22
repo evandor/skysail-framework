@@ -1,8 +1,6 @@
 package io.skysail.server.app.todos.todos.status;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 import lombok.Getter;
 
@@ -10,12 +8,13 @@ import lombok.Getter;
 public enum Status {
 
     
-    NEW("NEW", "PLANNED","WIP","POSTPONED"), 
-    PLANNED("PLANNED", "WIP","CLOSED"), 
-    WIP("WIP", "POSTPONED"), 
-    POSTPONED("POSTPONED", "PLANNED", "WIP", "CLOSED"), 
-    CLOSED("CLOSED", "FINISHED"), 
-    FINISHED();
+    NEW("NEW", "PLANNED", "WIP", "POSTPONED"), 
+    PLANNED("PLANNED", "WIP","ARCHIVED"), 
+    WIP("WIP", "POSTPONED","ARCHIVED"), 
+    POSTPONED("POSTPONED", "PLANNED", "WIP", "ARCHIVED"), 
+    FINISHED("ARCHIVED", "REOPENED"),
+    REOPENED("PLANNED", "WIP", "POSTPONED"),
+    ARCHIVED("ARCHIVED");
     
     private List<String> nexts = new ArrayList<>();
    

@@ -2,6 +2,7 @@ package io.skysail.server.app.todos.todos.resources;
 
 import io.skysail.api.responses.SkysailResponse;
 import io.skysail.server.app.todos.TodoApplication;
+import io.skysail.server.app.todos.lists.ListsResource;
 import io.skysail.server.app.todos.todos.Todo;
 import io.skysail.server.restlet.resources.PutEntityServerResource;
 
@@ -34,13 +35,15 @@ public class PutTodoResource extends PutEntityServerResource<Todo> {
         original.setTitle(entity.getTitle());
         original.setDesc(entity.getDesc());
         original.setModified(new Date());
+        original.setStatus(entity.getStatus());
         app.getRepository().update(listId, original);
         return new SkysailResponse<>();
     }
 
     @Override
     public String redirectTo() {
-        return super.redirectTo(TodosResource.class);
+       // return super.redirectTo(TodosResource.class);
+        return super.redirectTo(ListsResource.class);
     }
 
 }

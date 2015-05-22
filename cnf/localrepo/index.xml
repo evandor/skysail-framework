@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<repository increment="1431951221531" name="Local" xmlns="http://www.osgi.org/xmlns/repository/v1.0.0">
+<repository increment="1432321668600" name="Local" xmlns="http://www.osgi.org/xmlns/repository/v1.0.0">
   <resource>
     <capability namespace="osgi.identity">
       <attribute name="osgi.identity" value="ch.qos.logback.classic"/>
@@ -3347,6 +3347,312 @@
       <attribute name="bundle-symbolic-name" value="org.apache.commons.lang3"/>
       <attribute name="bundle-version" type="Version" value="3.3.2"/>
     </capability>
+  </resource>
+  <resource>
+    <capability namespace="osgi.identity">
+      <attribute name="osgi.identity" value="org.apache.directory.api.i18n"/>
+      <attribute name="type" value="osgi.bundle"/>
+      <attribute name="version" type="Version" value="1.0.0.M30"/>
+    </capability>
+    <capability namespace="osgi.content">
+      <attribute name="osgi.content" value="1c58f14867011a1f1e10f01ca43932edb18d23866c65008be8133a7d70fcf265"/>
+      <attribute name="url" value="org.apache.directory.api.i18n/org.apache.directory.api.i18n-1.0.0.jar"/>
+      <attribute name="size" type="Long" value="44535"/>
+      <attribute name="mime" value="application/vnd.osgi.bundle"/>
+    </capability>
+    <capability namespace="osgi.wiring.bundle">
+      <attribute name="osgi.wiring.bundle" value="org.apache.directory.api.i18n"/>
+      <attribute name="bundle-version" type="Version" value="1.0.0.M30"/>
+    </capability>
+    <capability namespace="osgi.wiring.host">
+      <attribute name="osgi.wiring.host" value="org.apache.directory.api.i18n"/>
+      <attribute name="bundle-version" type="Version" value="1.0.0.M30"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.apache.directory.api.i18n"/>
+      <attribute name="version" type="Version" value="1.0.0.M30"/>
+      <attribute name="bundle-symbolic-name" value="org.apache.directory.api.i18n"/>
+      <attribute name="bundle-version" type="Version" value="1.0.0.M30"/>
+    </capability>
+    <requirement namespace="osgi.ee">
+      <directive name="filter" value="(&amp;(osgi.ee=JavaSE)(version=1.6))"/>
+    </requirement>
+  </resource>
+  <resource>
+    <capability namespace="osgi.identity">
+      <attribute name="osgi.identity" value="org.apache.directory.api.ldap.model"/>
+      <attribute name="type" value="osgi.bundle"/>
+      <attribute name="version" type="Version" value="1.0.0.M30"/>
+    </capability>
+    <capability namespace="osgi.content">
+      <attribute name="osgi.content" value="1a8fb0099a26d816d679935b1e5a78152d45afb7654e992a742df716ca917e15"/>
+      <attribute name="url" value="org.apache.directory.api.ldap.model/org.apache.directory.api.ldap.model-1.0.0.jar"/>
+      <attribute name="size" type="Long" value="922398"/>
+      <attribute name="mime" value="application/vnd.osgi.bundle"/>
+    </capability>
+    <capability namespace="osgi.wiring.bundle">
+      <attribute name="osgi.wiring.bundle" value="org.apache.directory.api.ldap.model"/>
+      <attribute name="bundle-version" type="Version" value="1.0.0.M30"/>
+    </capability>
+    <capability namespace="osgi.wiring.host">
+      <attribute name="osgi.wiring.host" value="org.apache.directory.api.ldap.model"/>
+      <attribute name="bundle-version" type="Version" value="1.0.0.M30"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.apache.directory.api.ldap.model.constants"/>
+      <attribute name="version" type="Version" value="1.0.0.M30"/>
+      <attribute name="bundle-symbolic-name" value="org.apache.directory.api.ldap.model"/>
+      <attribute name="bundle-version" type="Version" value="1.0.0.M30"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.apache.directory.api.ldap.model.csn"/>
+      <attribute name="version" type="Version" value="1.0.0.M30"/>
+      <attribute name="bundle-symbolic-name" value="org.apache.directory.api.ldap.model"/>
+      <attribute name="bundle-version" type="Version" value="1.0.0.M30"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.apache.directory.api.ldap.model.cursor"/>
+      <attribute name="version" type="Version" value="1.0.0.M30"/>
+      <attribute name="bundle-symbolic-name" value="org.apache.directory.api.ldap.model"/>
+      <attribute name="bundle-version" type="Version" value="1.0.0.M30"/>
+      <directive name="uses" value="org.apache.directory.api.ldap.model.entry,org.apache.directory.api.ldap.model.exception,org.apache.directory.api.ldap.model.message,org.apache.directory.api.ldap.model.name"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.apache.directory.api.ldap.model.entry"/>
+      <attribute name="version" type="Version" value="1.0.0.M30"/>
+      <attribute name="bundle-symbolic-name" value="org.apache.directory.api.ldap.model"/>
+      <attribute name="bundle-version" type="Version" value="1.0.0.M30"/>
+      <directive name="uses" value="javax.naming.directory,org.apache.directory.api.ldap.model.exception,org.apache.directory.api.ldap.model.name,org.apache.directory.api.ldap.model.schema,org.apache.directory.api.util,org.slf4j"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.apache.directory.api.ldap.model.exception"/>
+      <attribute name="version" type="Version" value="1.0.0.M30"/>
+      <attribute name="bundle-symbolic-name" value="org.apache.directory.api.ldap.model"/>
+      <attribute name="bundle-version" type="Version" value="1.0.0.M30"/>
+      <directive name="uses" value="javax.naming,org.apache.directory.api.ldap.model.message,org.apache.directory.api.ldap.model.name,org.apache.directory.api.ldap.model.schema,org.apache.directory.api.util.exception"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.apache.directory.api.ldap.model.filter"/>
+      <attribute name="version" type="Version" value="1.0.0.M30"/>
+      <attribute name="bundle-symbolic-name" value="org.apache.directory.api.ldap.model"/>
+      <attribute name="bundle-version" type="Version" value="1.0.0.M30"/>
+      <directive name="uses" value="javax.naming,org.apache.directory.api.ldap.model.entry,org.apache.directory.api.ldap.model.exception,org.apache.directory.api.ldap.model.message,org.apache.directory.api.ldap.model.name,org.apache.directory.api.ldap.model.schema,org.apache.directory.api.util"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.apache.directory.api.ldap.model.ldif"/>
+      <attribute name="version" type="Version" value="1.0.0.M30"/>
+      <attribute name="bundle-symbolic-name" value="org.apache.directory.api.ldap.model"/>
+      <attribute name="bundle-version" type="Version" value="1.0.0.M30"/>
+      <directive name="uses" value="javax.naming.directory,org.apache.directory.api.ldap.model.entry,org.apache.directory.api.ldap.model.exception,org.apache.directory.api.ldap.model.message,org.apache.directory.api.ldap.model.name,org.apache.directory.api.ldap.model.schema"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.apache.directory.api.ldap.model.ldif.anonymizer"/>
+      <attribute name="version" type="Version" value="1.0.0.M30"/>
+      <attribute name="bundle-symbolic-name" value="org.apache.directory.api.ldap.model"/>
+      <attribute name="bundle-version" type="Version" value="1.0.0.M30"/>
+      <directive name="uses" value="org.apache.directory.api.ldap.model.entry"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.apache.directory.api.ldap.model.message"/>
+      <attribute name="version" type="Version" value="1.0.0.M30"/>
+      <attribute name="bundle-symbolic-name" value="org.apache.directory.api.ldap.model"/>
+      <attribute name="bundle-version" type="Version" value="1.0.0.M30"/>
+      <directive name="uses" value="javax.naming.directory,org.apache.directory.api.ldap.model.entry,org.apache.directory.api.ldap.model.exception,org.apache.directory.api.ldap.model.filter,org.apache.directory.api.ldap.model.name,org.apache.directory.api.ldap.model.schema"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.apache.directory.api.ldap.model.message.controls"/>
+      <attribute name="version" type="Version" value="1.0.0.M30"/>
+      <attribute name="bundle-symbolic-name" value="org.apache.directory.api.ldap.model"/>
+      <attribute name="bundle-version" type="Version" value="1.0.0.M30"/>
+      <directive name="uses" value="org.apache.directory.api.ldap.model.message,org.apache.directory.api.ldap.model.name"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.apache.directory.api.ldap.model.message.extended"/>
+      <attribute name="version" type="Version" value="1.0.0.M30"/>
+      <attribute name="bundle-symbolic-name" value="org.apache.directory.api.ldap.model"/>
+      <attribute name="bundle-version" type="Version" value="1.0.0.M30"/>
+      <directive name="uses" value="org.apache.directory.api.ldap.model.message"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.apache.directory.api.ldap.model.name"/>
+      <attribute name="version" type="Version" value="1.0.0.M30"/>
+      <attribute name="bundle-symbolic-name" value="org.apache.directory.api.ldap.model"/>
+      <attribute name="bundle-version" type="Version" value="1.0.0.M30"/>
+      <directive name="uses" value="antlr,antlr.collections.impl,org.apache.directory.api.ldap.model.entry,org.apache.directory.api.ldap.model.exception,org.apache.directory.api.ldap.model.schema,org.apache.directory.api.ldap.model.schema.parsers,org.slf4j"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.apache.directory.api.ldap.model.password"/>
+      <attribute name="version" type="Version" value="1.0.0.M30"/>
+      <attribute name="bundle-symbolic-name" value="org.apache.directory.api.ldap.model"/>
+      <attribute name="bundle-version" type="Version" value="1.0.0.M30"/>
+      <directive name="uses" value="org.apache.directory.api.ldap.model.constants"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.apache.directory.api.ldap.model.schema"/>
+      <attribute name="version" type="Version" value="1.0.0.M30"/>
+      <attribute name="bundle-symbolic-name" value="org.apache.directory.api.ldap.model"/>
+      <attribute name="bundle-version" type="Version" value="1.0.0.M30"/>
+      <directive name="uses" value="org.apache.directory.api.ldap.model.entry,org.apache.directory.api.ldap.model.exception,org.apache.directory.api.ldap.model.name,org.apache.directory.api.ldap.model.schema.normalizers,org.apache.directory.api.ldap.model.schema.registries"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.apache.directory.api.ldap.model.schema.comparators"/>
+      <attribute name="version" type="Version" value="1.0.0.M30"/>
+      <attribute name="bundle-symbolic-name" value="org.apache.directory.api.ldap.model"/>
+      <attribute name="bundle-version" type="Version" value="1.0.0.M30"/>
+      <directive name="uses" value="org.apache.directory.api.ldap.model.exception,org.apache.directory.api.ldap.model.name,org.apache.directory.api.ldap.model.schema"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.apache.directory.api.ldap.model.schema.normalizers"/>
+      <attribute name="version" type="Version" value="1.0.0.M30"/>
+      <attribute name="bundle-symbolic-name" value="org.apache.directory.api.ldap.model"/>
+      <attribute name="bundle-version" type="Version" value="1.0.0.M30"/>
+      <directive name="uses" value="org.apache.directory.api.ldap.model.entry,org.apache.directory.api.ldap.model.exception,org.apache.directory.api.ldap.model.name,org.apache.directory.api.ldap.model.schema"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.apache.directory.api.ldap.model.schema.parsers"/>
+      <attribute name="version" type="Version" value="1.0.0.M30"/>
+      <attribute name="bundle-symbolic-name" value="org.apache.directory.api.ldap.model"/>
+      <attribute name="bundle-version" type="Version" value="1.0.0.M30"/>
+      <directive name="uses" value="antlr,org.apache.directory.api.i18n,org.apache.directory.api.ldap.model.schema,org.apache.directory.api.ldap.model.schema.syntaxCheckers,org.slf4j"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.apache.directory.api.ldap.model.schema.registries"/>
+      <attribute name="version" type="Version" value="1.0.0.M30"/>
+      <attribute name="bundle-symbolic-name" value="org.apache.directory.api.ldap.model"/>
+      <attribute name="bundle-version" type="Version" value="1.0.0.M30"/>
+      <directive name="uses" value="org.apache.directory.api.ldap.model.entry,org.apache.directory.api.ldap.model.exception,org.apache.directory.api.ldap.model.schema,org.apache.directory.api.ldap.model.schema.normalizers"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.apache.directory.api.ldap.model.schema.registries.helper"/>
+      <attribute name="version" type="Version" value="1.0.0.M30"/>
+      <attribute name="bundle-symbolic-name" value="org.apache.directory.api.ldap.model"/>
+      <attribute name="bundle-version" type="Version" value="1.0.0.M30"/>
+      <directive name="uses" value="org.apache.directory.api.ldap.model.exception,org.apache.directory.api.ldap.model.schema,org.apache.directory.api.ldap.model.schema.registries"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.apache.directory.api.ldap.model.schema.syntaxCheckers"/>
+      <attribute name="version" type="Version" value="1.0.0.M30"/>
+      <attribute name="bundle-symbolic-name" value="org.apache.directory.api.ldap.model"/>
+      <attribute name="bundle-version" type="Version" value="1.0.0.M30"/>
+      <directive name="uses" value="org.apache.directory.api.ldap.model.schema"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.apache.directory.api.ldap.model.subtree"/>
+      <attribute name="version" type="Version" value="1.0.0.M30"/>
+      <attribute name="bundle-symbolic-name" value="org.apache.directory.api.ldap.model"/>
+      <attribute name="bundle-version" type="Version" value="1.0.0.M30"/>
+      <directive name="uses" value="antlr,antlr.collections.impl,org.apache.directory.api.ldap.model.filter,org.apache.directory.api.ldap.model.name,org.apache.directory.api.ldap.model.schema"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.apache.directory.api.ldap.model.url"/>
+      <attribute name="version" type="Version" value="1.0.0.M30"/>
+      <attribute name="bundle-symbolic-name" value="org.apache.directory.api.ldap.model"/>
+      <attribute name="bundle-version" type="Version" value="1.0.0.M30"/>
+      <directive name="uses" value="org.apache.directory.api.ldap.model.exception,org.apache.directory.api.ldap.model.message,org.apache.directory.api.ldap.model.name"/>
+    </capability>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(&amp;(osgi.wiring.package=antlr)(version&gt;=2.7.7))"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(&amp;(osgi.wiring.package=antlr.collections.impl)(version&gt;=2.7.7))"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(&amp;(osgi.wiring.package=org.apache.commons.collections)(version&gt;=3.2.1))"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(&amp;(osgi.wiring.package=org.apache.commons.collections.list)(version&gt;=3.2.1))"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(&amp;(osgi.wiring.package=org.apache.commons.collections.map)(version&gt;=3.2.1))"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(&amp;(osgi.wiring.package=org.apache.commons.lang)(version&gt;=2.6.0))"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(&amp;(osgi.wiring.package=org.apache.commons.lang.exception)(version&gt;=2.6.0))"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(&amp;(osgi.wiring.package=org.apache.directory.api.asn1.util)(version&gt;=1.0.0.M30))"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(&amp;(osgi.wiring.package=org.apache.directory.api.i18n)(version&gt;=1.0.0.M30))"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(&amp;(osgi.wiring.package=org.apache.directory.api.util)(version&gt;=1.0.0.M30))"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(&amp;(osgi.wiring.package=org.apache.directory.api.util.exception)(version&gt;=1.0.0.M30))"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(&amp;(osgi.wiring.package=org.slf4j)(version&gt;=1.7.0)(!(version&gt;=1.8.0)))"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=javax.naming)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=javax.naming.directory)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=javax.naming.ldap)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(&amp;(osgi.wiring.package=org.apache.directory.api.asn1)(version&gt;=1.0.0.M30))"/>
+    </requirement>
+    <requirement namespace="osgi.ee">
+      <directive name="filter" value="(&amp;(osgi.ee=JavaSE)(version=1.6))"/>
+    </requirement>
+  </resource>
+  <resource>
+    <capability namespace="osgi.identity">
+      <attribute name="osgi.identity" value="org.apache.directory.api.util"/>
+      <attribute name="type" value="osgi.bundle"/>
+      <attribute name="version" type="Version" value="1.0.0.M30"/>
+    </capability>
+    <capability namespace="osgi.content">
+      <attribute name="osgi.content" value="7e696f83e2ce478a7eeb3360da63015c2da421d40a891ca1e4391ed9c6273f03"/>
+      <attribute name="url" value="org.apache.directory.api.util/org.apache.directory.api.util-1.0.0.jar"/>
+      <attribute name="size" type="Long" value="82514"/>
+      <attribute name="mime" value="application/vnd.osgi.bundle"/>
+    </capability>
+    <capability namespace="osgi.wiring.bundle">
+      <attribute name="osgi.wiring.bundle" value="org.apache.directory.api.util"/>
+      <attribute name="bundle-version" type="Version" value="1.0.0.M30"/>
+    </capability>
+    <capability namespace="osgi.wiring.host">
+      <attribute name="osgi.wiring.host" value="org.apache.directory.api.util"/>
+      <attribute name="bundle-version" type="Version" value="1.0.0.M30"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.apache.directory.api.util"/>
+      <attribute name="version" type="Version" value="1.0.0.M30"/>
+      <attribute name="bundle-symbolic-name" value="org.apache.directory.api.util"/>
+      <attribute name="bundle-version" type="Version" value="1.0.0.M30"/>
+      <directive name="uses" value="javax.naming"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.apache.directory.api.util.exception"/>
+      <attribute name="version" type="Version" value="1.0.0.M30"/>
+      <attribute name="bundle-symbolic-name" value="org.apache.directory.api.util"/>
+      <attribute name="bundle-version" type="Version" value="1.0.0.M30"/>
+    </capability>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(&amp;(osgi.wiring.package=org.apache.directory.api.i18n)(version&gt;=1.0.0.M30))"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(&amp;(osgi.wiring.package=org.slf4j)(version&gt;=1.7.0)(!(version&gt;=1.8.0)))"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=javax.naming)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=javax.naming.directory)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=javax.naming.ldap)"/>
+    </requirement>
+    <requirement namespace="osgi.ee">
+      <directive name="filter" value="(&amp;(osgi.ee=JavaSE)(version=1.6))"/>
+    </requirement>
   </resource>
   <resource>
     <capability namespace="osgi.identity">

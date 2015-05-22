@@ -50,6 +50,7 @@ public class TodosResource extends ListServerResource<Todo> {
         headers.add(new Header(HeadersUtils.PAGINATION_PAGE, Integer.toString(page)));
         headers.add(new Header(HeadersUtils.PAGINATION_HITS, Long.toString(clipCount)));
 
+       // QueryFilter queryFilter = (QueryFilter)getRequest().getAttributes().get(SkysailServerResource.SKYSAIL_SERVER_RESTLET_FILTER_PARAM_VALUE);
         return app.getRepository().findAll(Todo.class, listId, "ORDER BY rank ASC");
     }
 

@@ -39,6 +39,7 @@ public class ListsResourceTest extends ResourceTestBase {
     }
 
     @Test
+    @Ignore
     public void empty_form_yields_validation_failure() {
         
         TodoList entity = new TodoList();

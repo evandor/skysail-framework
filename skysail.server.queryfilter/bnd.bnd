@@ -1,11 +1,24 @@
-Bundle-Version: 0.0.0.${tstamp}
-Export-Package:  \
-	io.skysail.server.queryfilter
+Bundle-Version: 0.1.0.${tstamp}
 -buildpath:  \
 	lombok;version=1.16,\
-	org.apache.directory.api.ldap.model;version=1.0,\
 	slf4j.api;version=1.7,\
 	junit;version=4.11,\
 	de.twentyeleven.skysail.org.hamcrest.hamcrest-all-osgi;version=1.3,\
-	org.apache.directory.api.i18n;version=1.0,\
-	org.apache.directory.api.util;version=1.0
+	osgi.core;version=5.0,\
+	osgi.cmpn;version=5.0,\
+	biz.aQute.bnd.annotation;version=2.4,\
+	org.apache.directory.api.ldap.model;version=1.0,\
+	org.restlet;version=${restlet.version},\
+	skysail.api;version=${skysail.api.version},\
+	skysail.server;version=latest,\
+	org.apache.commons.beanutils;version=1.9
+Bundle-Name: SKYSAIL :: server :: queryfilter
+Bundle-Description: Takes care of filter expressions provided in the request query
+Service-Component:  \
+	*
+	
+Private-Package:  \
+	io.skysail.server.queryfilter.nodes,\
+	io.skysail.server.queryfilter.parser
+Export-Package:  \
+	io.skysail.server.queryfilter

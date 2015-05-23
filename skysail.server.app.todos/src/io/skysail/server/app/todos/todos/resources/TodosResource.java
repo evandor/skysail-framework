@@ -3,6 +3,7 @@ package io.skysail.server.app.todos.todos.resources;
 import io.skysail.api.links.Link;
 import io.skysail.server.app.todos.*;
 import io.skysail.server.app.todos.todos.Todo;
+import io.skysail.server.queryfilter.Filter;
 import io.skysail.server.restlet.resources.ListServerResource;
 import io.skysail.server.utils.HeadersUtils;
 
@@ -50,8 +51,10 @@ public class TodosResource extends ListServerResource<Todo> {
         headers.add(new Header(HeadersUtils.PAGINATION_PAGE, Integer.toString(page)));
         headers.add(new Header(HeadersUtils.PAGINATION_HITS, Long.toString(clipCount)));
 
-       // QueryFilter queryFilter = (QueryFilter)getRequest().getAttributes().get(SkysailServerResource.SKYSAIL_SERVER_RESTLET_FILTER_PARAM_VALUE);
-        return app.getRepository().findAll(Todo.class, listId, "ORDER BY rank ASC");
+        Filter filter = new Filter(getRequest());
+        filter.add("owner",  SecurityUtils.getSubject().getPrincipal().toString());
+        filter.add("list", listId);
+        return app.getRepository().findAll(Todo.class, listId, filter, "ORDER BY rank ASC");
     }
 
     @Override

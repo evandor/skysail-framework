@@ -3,6 +3,7 @@ package io.skysail.server.app.todos.repo;
 import io.skysail.server.app.todos.TodoList;
 import io.skysail.server.app.todos.todos.Todo;
 import io.skysail.server.db.*;
+import io.skysail.server.queryfilter.Filter;
 
 import java.util.*;
 
@@ -31,14 +32,10 @@ public class TodosRepository implements DbRepository {
         TodosRepository.dbService = null;
     }
 
-    public <T> List<T> findAll(Class<T> cls, String listId, String sorting) {
-        String username = SecurityUtils.getSubject().getPrincipal().toString();
-
-        String sql = "SELECT from " + cls.getSimpleName() + " WHERE " + getWhereStatement(listId) + " " + sorting;
-        Map<String, Object> params = new HashMap<String, Object>();
-        params.put("username", username);
-        params.put("list", listId);
-        return dbService.findObjects(sql, params);
+    @SuppressWarnings("unchecked")
+    public <T> List<T> findAll(Class<T> cls, String listId, Filter filter, String sorting) {
+        String sql = "SELECT from " + cls.getSimpleName() + " WHERE " + filter.getPreparedStatement() + " " + sorting;
+        return dbService.findObjects(sql, filter.getParams());
     }
 
     public List<TodoList> findAllLists() {
@@ -61,7 +58,7 @@ public class TodosRepository implements DbRepository {
                 + " WHERE owner= :username AND list= :listId";
         params = new HashMap<String, Object>();
         params.put("username", username);
-        params.put("listId", list.getId().replace("#",""));
+        params.put("listId", list.getId().replace("#", ""));
         long cnt = dbService.getCount(sql, params);
         list.setTodosCount(cnt);
     }
@@ -73,7 +70,7 @@ public class TodosRepository implements DbRepository {
     public <T> T getById(Class<?> cls, String id) {
         T list = dbService.findObjectById(cls, id);
         if (cls.equals(TodoList.class)) {
-            addCount(((TodoList)list).getOwner(),(TodoList)list);
+            addCount(((TodoList) list).getOwner(), (TodoList) list);
         }
         return list;
     }
@@ -117,13 +114,10 @@ public class TodosRepository implements DbRepository {
         return dbService.getCount(sql, params);
     }
 
-
     private String getWhereStatement(String listId) {
         if ("null".equals(listId)) {
-            return "owner= :username AND list IS NULL";
+            return "list IS NULL";
         }
-        return "owner= :username AND list= :list";
+        return "list= :list";
     }
-
-
 }

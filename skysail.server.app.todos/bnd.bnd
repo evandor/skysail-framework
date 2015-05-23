@@ -18,6 +18,7 @@ Include-Resource: resources, templates=src;recursive:=true;filter:=*.st|*.stg
 	skysail.server;version=latest,\
 	skysail.server.db;version=latest,\
 	skysail.server.codegen;version=latest,\
+	skysail.server.queryfilter;version=latest,\
 	skysail.server.testsupport;version=latest,\
 	slf4j.api;version=1.7.7,\
 	org.restlet;version=${restlet.version},\
@@ -50,6 +51,7 @@ Include-Resource: resources, templates=src;recursive:=true;filter:=*.st|*.stg
 	javassist;version=3.18,\
 	org.apache.commons.lang;version=2.6,\
 	org.apache.commons.collections;version=3.2
+	
 Import-Package: org.osgi.framework,\
 	javassist.util.proxy,\
 	*

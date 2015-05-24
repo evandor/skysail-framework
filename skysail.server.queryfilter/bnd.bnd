@@ -21,4 +21,5 @@ Private-Package:  \
 	io.skysail.server.queryfilter.nodes,\
 	io.skysail.server.queryfilter.parser
 Export-Package:  \
-	io.skysail.server.queryfilter
+	io.skysail.server.queryfilter,\
+	io.skysail.server.queryfilter.pagination

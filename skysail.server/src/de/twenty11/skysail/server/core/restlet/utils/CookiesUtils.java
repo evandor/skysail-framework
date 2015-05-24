@@ -30,6 +30,10 @@ public class CookiesUtils {
         return returnCookieOrNull(request,Constants.COOKIE_NAME_INSTALLATIONS);
     }
 
+    public static String getEntriesPerPageFromCookie(Request request) {
+        return returnCookieOrNull(request,Constants.COOKIE_NAME_ENTRIES_PER_PAGE);
+    }
+
     private static String returnCookieOrNull(Request request, String name) {
         Cookie templateCookie = request.getCookies().getFirst(name);
         if (templateCookie == null) {

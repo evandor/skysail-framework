@@ -4,10 +4,9 @@ import io.skysail.server.app.todos.TodoList;
 import io.skysail.server.app.todos.todos.Todo;
 import io.skysail.server.db.*;
 import io.skysail.server.queryfilter.Filter;
+import io.skysail.server.queryfilter.pagination.Pagination;
 
 import java.util.*;
-
-import org.apache.shiro.SecurityUtils;
 
 import aQute.bnd.annotation.component.*;
 
@@ -38,28 +37,49 @@ public class TodosRepository implements DbRepository {
         return dbService.findObjects(sql, filter.getParams());
     }
 
-    public List<TodoList> findAllLists() {
+    public List<TodoList> findAllLists(Filter filter, Pagination pagination) {
         // TODO do this in one statement
-        String username = SecurityUtils.getSubject().getPrincipal().toString();
-        String sql = "SELECT from " + TodoList.class.getSimpleName() + " WHERE owner= :username ORDER BY name ";
+        String sql = "SELECT from " + TodoList.class.getSimpleName() + " WHERE "+filter.getPreparedStatement()+" ORDER BY name " 
+                + limitClause(pagination.getLinesPerPage(),pagination.getPage()); 
         Map<String, Object> params = new HashMap<String, Object>();
-        params.put("username", username);
-        List<TodoList> lists = dbService.findObjects(sql, params);
+        List<TodoList> lists = dbService.findObjects(sql, filter.getParams());
         for (TodoList list : lists) {
-            addCount(username, list);
+            addCount(filter, list);
         }
         return lists;
     }
 
-    private void addCount(String username, TodoList list) {
+  
+
+    public List<Todo> findAllTodos(Filter filter, Pagination pagination) {
+        String sql = "SELECT from " + Todo.class.getSimpleName() + " WHERE "+filter.getPreparedStatement()+" ORDER BY rank ASC " 
+                + limitClause(pagination.getLinesPerPage(),pagination.getPage()); 
+        return dbService.findObjects(sql, filter.getParams());
+    }
+
+    private String limitClause(long linesPerPage, int page) {
+        if (linesPerPage <= 0) {
+            return "";
+        }
+        StringBuilder sb = new StringBuilder("SKIP " + linesPerPage * (page-1) + " LIMIT " + linesPerPage);
+        return sb.toString();
+    }
+
+    private void addCount(TodoList list) {
         String sql;
         Map<String, Object> params;
         sql = "SELECT COUNT(*) as count from " + Todo.class.getSimpleName()
-                + " WHERE owner= :username AND list= :listId";
+                + " WHERE list= :listId";
         params = new HashMap<String, Object>();
-        params.put("username", username);
         params.put("listId", list.getId().replace("#", ""));
         long cnt = dbService.getCount(sql, params);
+        list.setTodosCount(cnt);
+    }
+    
+    private void addCount(Filter filter, TodoList list) {
+        String sql = "SELECT COUNT(*) as count from " + Todo.class.getSimpleName()
+                + " WHERE "+filter.getPreparedStatement();
+        long cnt = dbService.getCount(sql, filter.getParams());
         list.setTodosCount(cnt);
     }
 
@@ -70,7 +90,7 @@ public class TodosRepository implements DbRepository {
     public <T> T getById(Class<?> cls, String id) {
         T list = dbService.findObjectById(cls, id);
         if (cls.equals(TodoList.class)) {
-            addCount(((TodoList) list).getOwner(), (TodoList) list);
+            addCount((TodoList) list);
         }
         return list;
     }
@@ -98,20 +118,15 @@ public class TodosRepository implements DbRepository {
         dbService.delete(cls, id);
     }
 
-    public long getTodosCount(String username, String listId) {
+    public long getTodosCount(String listId, Filter filter) {
         String sql = "select COUNT(*) as count from " + Todo.class.getSimpleName() + " WHERE "
-                + getWhereStatement(listId);
-        Map<String, Object> params = new HashMap<String, Object>();
-        params.put("username", username);
-        params.put("list", listId);
-        return dbService.getCount(sql, params);
+                + filter.getPreparedStatement();
+        return dbService.getCount(sql, filter.getParams());
     }
 
-    public long getListsCount(String username) {
-        String sql = "select COUNT(*) as count from " + TodoList.class.getSimpleName() + " WHERE owner= :username";
-        Map<String, Object> params = new HashMap<String, Object>();
-        params.put("username", username);
-        return dbService.getCount(sql, params);
+    public long getListsCount(Filter filter) {
+        String sql = "select COUNT(*) as count from " + TodoList.class.getSimpleName() + " WHERE " + filter.getPreparedStatement();
+        return dbService.getCount(sql, filter.getParams());
     }
 
     private String getWhereStatement(String listId) {
@@ -120,4 +135,5 @@ public class TodosRepository implements DbRepository {
         }
         return "list= :list";
     }
+
 }

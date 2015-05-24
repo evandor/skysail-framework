@@ -16,6 +16,7 @@ import org.restlet.Request;
 @Getter
 @NoArgsConstructor
 @Slf4j
+@ToString(of = {"preparedStatement", "params"})
 public class Filter {
 
     private String filterExpressionFromQuery;
@@ -24,17 +25,44 @@ public class Filter {
     private String preparedStatement;
     private org.osgi.framework.Filter ldapFilter;
     private Map<String, Object> params;
-    
+
     public Filter(Request request) {
-        Object filterQuery = request.getAttributes().get(SkysailServerResource.SKYSAIL_SERVER_RESTLET_FILTER_PARAM_VALUE);
+        this(request, null);
+    }
+
+    public Filter(Request request, String defaultFilterExpression) {
+        Object filterQuery = request.getAttributes().get(SkysailServerResource.FILTER_PARAM_NAME);
         if (filterQuery != null) {
             this.filterExpressionFromQuery = (String)filterQuery;
+        } else {
+            this.filterExpressionFromQuery = defaultFilterExpression;
         }
         evaluate();
+    }
+    
+    public Filter(String key, String value) {
+        this("(" + key + "=" + value +")");
     }
 
     public Filter(String filterExpression) {
         this.filterExpressionFromQuery = filterExpression;
+        evaluate();
+    }
+    
+    public void and(String filterExpression) {
+        if (filterExpression == null || filterExpression.trim().length() == 0) {
+            return;
+        }
+        if (filterExpressionFromQuery == null) {
+            this.filterExpressionFromQuery = filterExpression;
+        } else {
+            this.filterExpressionFromQuery = "(&"+filterExpressionFromQuery+filterExpression+")";
+        }
+        evaluate();
+    }
+
+    public void add(String key, String value) {
+        and("(" + key + "=" + value +")");
         evaluate();
     }
 
@@ -59,28 +87,6 @@ public class Filter {
         }
         valid = false;
     }
-
-    public Filter(String key, String value) {
-        this("(" + key + "=" + value +")");
-    }
-    
-    public void and(String filterExpression) {
-        if (filterExpression == null || filterExpression.trim().length() == 0) {
-            return;
-        }
-        if (filterExpressionFromQuery == null) {
-            this.filterExpressionFromQuery = filterExpression;
-        } else {
-            this.filterExpressionFromQuery = "(&"+filterExpressionFromQuery+filterExpression+")";
-        }
-        evaluate();
-    }
-
-    public void add(String key, String value) {
-        and("(" + key + "=" + value +")");
-        evaluate();
-    }
-
 
     private class SqlFilterVisitor implements FilterVisitor {
 

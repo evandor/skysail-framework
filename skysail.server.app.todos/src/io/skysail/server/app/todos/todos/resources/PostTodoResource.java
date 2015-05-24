@@ -17,7 +17,7 @@ import de.twenty11.skysail.server.core.restlet.ResourceContextId;
 
 public class PostTodoResource extends PostEntityServerResource<Todo> {
 
-    private TodoApplication app;
+    protected TodoApplication app;
     protected String listId;
 
     public PostTodoResource() {

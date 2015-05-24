@@ -2,22 +2,16 @@ package io.skysail.server.converter.wrapper;
 
 import io.skysail.api.favorites.FavoritesService;
 import io.skysail.api.links.Link;
-import io.skysail.server.converter.Breadcrumb;
-import io.skysail.server.converter.RepresentationLink;
-import io.skysail.server.restlet.resources.PostEntityServerResource;
-import io.skysail.server.restlet.resources.PutEntityServerResource;
-import io.skysail.server.restlet.resources.SkysailServerResource;
-import io.skysail.server.utils.HeadersUtils;
-import io.skysail.server.utils.ResourceUtils;
+import io.skysail.server.converter.*;
+import io.skysail.server.restlet.resources.*;
+import io.skysail.server.utils.*;
 
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import lombok.extern.slf4j.Slf4j;
 
-import org.restlet.data.Header;
-import org.restlet.data.Status;
+import org.restlet.data.*;
 import org.restlet.util.Series;
 
 import de.twenty11.skysail.server.core.restlet.ResourceContextId;
@@ -132,7 +126,7 @@ public class StResourceWrapper {
         }
         int page = 1;
         String pageAsString = headers.getFirstValue(HeadersUtils.PAGINATION_PAGE);
-        if (pagesAsString != null) {
+        if (pageAsString != null) {
             page = Integer.parseInt(pageAsString);
         }
 
@@ -141,14 +135,14 @@ public class StResourceWrapper {
         sb.append("<ul class='pagination'>");
         String cssClass = (1 == page) ? "class='disabled'" : "";
 
-        sb.append("<li " + cssClass + "><a href='?page=" + (page - 1)
+        sb.append("<li " + cssClass + "><a href='?").append(SkysailServerResource.PAGE_PARAM_NAME).append("=" + (page - 1)
                 + "'><span aria-hidden='true'>&laquo;</span><span class='sr-only'>Previous</span></a></li>");
         for (int i = 1; i <= pages; i++) {
             cssClass = (i == page) ? " class='active'" : "";
-            sb.append("<li" + cssClass + "><a href='?page=" + i + "'>" + i + "</a></li>");
+            sb.append("<li" + cssClass + "><a href='?").append(SkysailServerResource.PAGE_PARAM_NAME).append("=" + i + "'>" + i + "</a></li>");
         }
         cssClass = (pages == page) ? " class='disabled'" : "";
-        sb.append("<li" + cssClass + "><a href='?page=" + (page + 1)
+        sb.append("<li" + cssClass + "><a href='?").append(SkysailServerResource.PAGE_PARAM_NAME).append("=" + (page + 1)
                 + "'><span aria-hidden='true'>&raquo;</span><span class='sr-only'>Next</span></a></li>");
         sb.append("</ul>");
         sb.append("</nav>");

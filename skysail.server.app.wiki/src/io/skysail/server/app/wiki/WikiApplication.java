@@ -5,7 +5,6 @@ import io.skysail.server.app.designer.repo.DesignerRepository;
 import io.skysail.server.app.wiki.pages.Page;
 import io.skysail.server.app.wiki.pages.resources.*;
 import io.skysail.server.app.wiki.repository.WikiRepository;
-import io.skysail.server.app.wiki.spaces.Space;
 import io.skysail.server.app.wiki.spaces.resources.*;
 import io.skysail.server.db.DbRepository;
 
@@ -50,14 +49,14 @@ public class WikiApplication extends SkysailApplication implements MenuItemProvi
     public void setDesignerRepository(DbRepository repo) {
         if (repo instanceof DesignerRepository) {
             this.designerRepo = (DesignerRepository) repo;
-            Space.inject(designerRepo);
+            //Space.inject(designerRepo);
             Page.inject(designerRepo);
         }
     }
 
     public void unsetDesignerRepository(DbRepository repo) {
         this.designerRepo = null;
-        Space.inject(null);
+        //Space.inject(null);
         Page.inject(null);
     }
 

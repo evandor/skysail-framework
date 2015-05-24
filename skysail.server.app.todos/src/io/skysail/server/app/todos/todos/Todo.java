@@ -37,7 +37,7 @@ public class Todo implements Serializable, Identifiable {
     private String list;
 
     @Field
-    @ListView(truncate = 20, link = PutTodoResource.class)
+    @ListView(truncate = 30, link = PutTodoResource.class)
     @NotNull
     @Size(min = 2)
     private String title;

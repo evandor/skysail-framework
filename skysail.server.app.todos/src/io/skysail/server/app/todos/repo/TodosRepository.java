@@ -31,11 +31,11 @@ public class TodosRepository implements DbRepository {
         TodosRepository.dbService = null;
     }
 
-    @SuppressWarnings("unchecked")
-    public <T> List<T> findAll(Class<T> cls, String listId, Filter filter, String sorting) {
-        String sql = "SELECT from " + cls.getSimpleName() + " WHERE " + filter.getPreparedStatement() + " " + sorting;
-        return dbService.findObjects(sql, filter.getParams());
-    }
+//    @SuppressWarnings("unchecked")
+//    public <T> List<T> findAll(Class<T> cls, Filter filter, String sorting) {
+//        String sql = "SELECT from " + cls.getSimpleName() + " WHERE " + filter.getPreparedStatement() + " " + sorting;
+//        return dbService.findObjects(sql, filter.getParams());
+//    }
 
     public List<TodoList> findAllLists(Filter filter, Pagination pagination) {
         // TODO do this in one statement
@@ -78,8 +78,10 @@ public class TodosRepository implements DbRepository {
     
     private void addCount(Filter filter, TodoList list) {
         String sql = "SELECT COUNT(*) as count from " + Todo.class.getSimpleName()
-                + " WHERE "+filter.getPreparedStatement();
-        long cnt = dbService.getCount(sql, filter.getParams());
+                + " WHERE list=:list AND "+filter.getPreparedStatement();
+        Map<String, Object> params = filter.getParams();
+        params.put("list", list.getId().replace("#",""));
+        long cnt = dbService.getCount(sql, params);
         list.setTodosCount(cnt);
     }
 

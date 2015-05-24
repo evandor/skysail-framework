@@ -34,8 +34,10 @@ public class Filter {
         Object filterQuery = request.getAttributes().get(SkysailServerResource.FILTER_PARAM_NAME);
         if (filterQuery != null) {
             this.filterExpressionFromQuery = (String)filterQuery;
-        } else {
+        } else if (defaultFilterExpression != null) {
             this.filterExpressionFromQuery = defaultFilterExpression;
+        } else {
+            //this.filterExpressionFromQuery = "1=1";
         }
         evaluate();
     }

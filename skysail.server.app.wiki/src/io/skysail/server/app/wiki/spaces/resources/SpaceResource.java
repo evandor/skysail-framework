@@ -7,25 +7,26 @@ import io.skysail.server.app.wiki.spaces.Space;
 import io.skysail.server.restlet.resources.EntityServerResource;
 
 import java.util.List;
-import java.util.Map;
 
-public class SpaceResource extends EntityServerResource<Map<String,Object>> {
+public class SpaceResource extends EntityServerResource<Space> {
 
     private String id;
+    private WikiApplication app;
 
     @Override
     protected void doInit() {
         id = getAttribute("id");
+        app = (WikiApplication) getApplication();
     }
     
     @Override
-    public SkysailResponse eraseEntity() {
+    public SkysailResponse<?> eraseEntity() {
         return null;
     }
 
     @Override
-    public Map<String,Object> getEntity() {
-         return ((WikiApplication) getApplication()).getRepository().getById(Space.class, id).toMap();
+    public Space getEntity() {
+         return app.getRepository().getById(Space.class, id);
     }
     
     @Override

@@ -1,23 +1,38 @@
 package io.skysail.server.app.wiki.spaces;
 
-import io.skysail.server.app.designer.DesignerApplication;
-import io.skysail.server.app.designer.repo.DesignerRepository;
+import io.skysail.api.domain.Identifiable;
+import io.skysail.api.forms.*;
+import io.skysail.server.forms.ListView;
 
-import java.util.Set;
+import java.io.Serializable;
 
-import de.twenty11.skysail.server.beans.DynamicEntity;
-import de.twenty11.skysail.server.beans.EntityDynaProperty;
+import javax.persistence.Id;
+import javax.validation.constraints.*;
 
-public class Space extends DynamicEntity {
+import lombok.*;
 
-    private static DesignerRepository repo;
+@Getter
+@Setter
+@NoArgsConstructor
+@UniquePerOwner
+public class Space implements Serializable, Identifiable {
 
-    public Set<EntityDynaProperty> getProperties() {
-        return DesignerApplication.getProperties(repo, getBeanName(), "12:15");
-    }
+    private static final long serialVersionUID = 5061219768727410582L;
+
+    @Id
+    private String id;
+
+    @Field
+    @NotNull
+    @Size(min = 2)
+    private String name;
     
-    public static void inject(DesignerRepository designerRepo) {
-        repo = designerRepo;
+    @Field(type = InputType.READONLY)
+    @ListView(hide=true)
+    private String owner;
+
+    public Space(String name) {
+        this.name = name;
     }
 
 }

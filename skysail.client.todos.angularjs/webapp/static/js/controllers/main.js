@@ -33,9 +33,9 @@ todosProduct.controller('AppCtrl', function($scope, $rootScope, $http, $route, $
     
     $http.get('/usermanagement/currentUser',defaultGetHeadersConfig)
     	.success(function(json) {
-    		if (json.entity.username) {
-    			$scope.currentUser = json.entity.username;
-				$scope.userform.user = json.entity.username;
+    		if (json.username) {
+    			$scope.currentUser = json.username;
+				$scope.userform.user = json.username;
 				$rootScope.loggedIn = true;
     		}
     	 })

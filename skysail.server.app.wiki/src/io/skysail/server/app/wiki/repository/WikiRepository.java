@@ -2,15 +2,12 @@ package io.skysail.server.app.wiki.repository;
 
 import io.skysail.server.app.wiki.pages.Page;
 import io.skysail.server.app.wiki.spaces.Space;
-import io.skysail.server.db.DbRepository;
-import io.skysail.server.db.DbService2;
+import io.skysail.server.db.*;
+import io.skysail.server.queryfilter.Filter;
 
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
-import aQute.bnd.annotation.component.Activate;
-import aQute.bnd.annotation.component.Component;
-import aQute.bnd.annotation.component.Reference;
+import aQute.bnd.annotation.component.*;
 
 import com.orientechnologies.orient.core.record.impl.ODocument;
 
@@ -40,22 +37,17 @@ public class WikiRepository implements DbRepository {
         return dbService.findDocuments("select from " + cls.getSimpleName());
     }
     
-//    public List<Map<String,Object>> findPagesForSpace(String spaceId) {
-//        
-//        String sql = "SELECT from "+Space.class.getSimpleName()+" WHERE owner= :username " + sorting;
-//        Map<String, Object> params = new HashMap<String, Object>();
-//        params.put("username", username);
-//        return dbService.findObjects(sql, params);
-//        
-//        return dbService.findDocuments("select from " + Page.class.getSimpleName() + " WHERE ");
-//    }
-
+    public <T> List<T> findAll(Class<T> cls, Filter filter, String sorting) {
+        String sql = "SELECT from " + cls.getSimpleName() + " WHERE " + filter.getPreparedStatement() + " " + sorting;
+        return dbService.findObjects(sql, filter.getParams());
+    }
+    
     public static Object add(Object entity, String... edges) {
         return dbService.persist(entity, edges);
     }
 
-    public ODocument getById(Class<?> cls, String id) {
-       return dbService.findDocumentById(cls, id);
+    public <T> T getById(Class<?> cls, String id) {
+       return dbService.findObjectById(cls, id);
     }
 
     public Object getObjectById(Class<?> cls, String id) {

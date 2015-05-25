@@ -123,6 +123,14 @@ handleInputField(resource, source, field, messages,i,autofocus) ::= <<
             $renderDescription(source,field,converter)$
           </div>
         </div>
+      $elseif(field.date)$
+        <div class='form-group'>
+          <label for='$field.name$' class='col-sm-2 control-label' style="text-align: left;">$helpmessage(messages, field.nameKey)$  $if(converter.edit)$<a href='/i18n/messages/$source.entity.entity.class.name$.$field.name$/'><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>$endif$</label>
+          <div class='col-sm-10'>
+            <input type="date" class='form-control' name='$field.name$' id='$field.name$' tabindex="$i$" title="$helpmessage(messages, field.placeholderKey)$" value='$field.value$' style="width:190px;">
+            $renderDescription(source,field,converter)$
+          </div>
+        </div>  
       $else$
         <div class='form-group'>
           <label for='$field.name$' class='col-sm-2 control-label' style="text-align: left;">$helpmessage(messages, field.nameKey)$  $if(converter.edit)$<a href='/i18n/messages/$source.entity.entity.class.name$.$field.name$/'><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>$endif$</label>

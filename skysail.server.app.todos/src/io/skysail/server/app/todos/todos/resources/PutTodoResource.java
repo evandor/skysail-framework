@@ -32,10 +32,12 @@ public class PutTodoResource extends PutEntityServerResource<Todo> {
     @Override
     public SkysailResponse<?> updateEntity(Todo entity) {
         Todo original = getEntity();
-        original.setTitle(entity.getTitle());
-        original.setDesc(entity.getDesc());
+        copyProperties(original,entity);
+        //populate(original, toForm(entity));
+//        original.setTitle(entity.getTitle());
+//        original.setDesc(entity.getDesc());
         original.setModified(new Date());
-        original.setStatus(entity.getStatus());
+        //original.setStatus(entity.getStatus());
         app.getRepository().update(listId, original);
         return new SkysailResponse<>();
     }

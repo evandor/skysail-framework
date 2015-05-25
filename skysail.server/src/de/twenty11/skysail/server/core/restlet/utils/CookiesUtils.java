@@ -18,9 +18,9 @@ public class CookiesUtils {
         return returnCookieOrNull(request,Constants.COOKIE_NAME_MAINPAGE);
     }
 
-    public static String getInpsectFromCookie(Request request) {
-        return returnCookieOrNull(request,Constants.COOKIE_NAME_INSPECT);
-    }
+//    public static String getInpsectFromCookie(Request request) {
+//        return returnCookieOrNull(request,Constants.COOKIE_NAME_INSPECT);
+//    }
 
     public static String getFavoritesFromCookie(Request request) {
         return returnCookieOrNull(request,Constants.COOKIE_NAME_FAVORITES);
@@ -35,6 +35,9 @@ public class CookiesUtils {
     }
 
     private static String returnCookieOrNull(Request request, String name) {
+        if (request == null || request.getCookies() == null) {
+            return null;
+        }
         Cookie templateCookie = request.getCookies().getFirst(name);
         if (templateCookie == null) {
             return null;

@@ -1,33 +1,26 @@
 package io.skysail.server.converter.impl;
 
 import io.skysail.api.forms.Reference;
-import io.skysail.server.forms.ListView;
-import io.skysail.server.forms.PostView;
-import io.skysail.server.forms.Visibility;
-import io.skysail.server.restlet.resources.PostEntityServerResource;
-import io.skysail.server.restlet.resources.SkysailServerResource;
+import io.skysail.server.forms.*;
+import io.skysail.server.restlet.resources.*;
 
 import java.lang.reflect.Field;
 import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
 
-import de.twenty11.skysail.server.beans.DynamicEntity;
-import de.twenty11.skysail.server.beans.EntityDynaProperty;
 import de.twenty11.skysail.server.core.FormField;
 
 public abstract class FieldFactory {
 
     public abstract List<FormField> determineFrom(SkysailServerResource<?> resource) throws Exception;
     
-    protected List<FormField> createFieldsForDynamicEntity(SkysailServerResource<?> resource, Object entity) {
-        List<FormField> fields;
-        Set<EntityDynaProperty> properties = ((DynamicEntity) entity).getProperties();
-        fields = properties.stream().map(p -> {
-            return new FormField((DynamicEntity) entity, p, resource);
-        }).collect(Collectors.toList());
-        return fields;
-    }
+//    protected List<FormField> createFieldsForDynamicEntity(SkysailServerResource<?> resource, Object entity) {
+//        List<FormField> fields;
+//        Set<EntityDynaProperty> properties = ((DynamicEntity) entity).getProperties();
+//        fields = properties.stream().map(p -> {
+//            return new FormField((DynamicEntity) entity, p, resource);
+//        }).collect(Collectors.toList());
+//        return fields;
+//    }
     
     protected boolean test(SkysailServerResource<?> resource, Field field) {
         List<String> fieldNames = resource.getFields();

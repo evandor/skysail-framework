@@ -59,6 +59,9 @@ public class PostTodoResource extends PostEntityServerResource<Todo> {
     @Override
     public Consumer<? super Link> getPathSubstitutions() {
         return l -> {
+            if (listId == null) {
+                listId = (String)getContext().getAttributes().get(TodoApplication.LIST_ID);
+            }
             l.substitute(TodoApplication.LIST_ID, listId);
         };
     }

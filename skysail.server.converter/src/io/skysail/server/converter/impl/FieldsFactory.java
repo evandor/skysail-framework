@@ -1,19 +1,10 @@
 package io.skysail.server.converter.impl;
 
 import io.skysail.api.responses.SkysailResponse;
-import io.skysail.server.converter.impl.factories.DefaultEntityFieldFactory;
-import io.skysail.server.converter.impl.factories.DefaultListFieldFactory;
-import io.skysail.server.converter.impl.factories.DynamicEntityFieldFactory;
-import io.skysail.server.converter.impl.factories.ListEnumFieldFactory;
-import io.skysail.server.converter.impl.factories.ListMapFieldFactory;
-import io.skysail.server.converter.impl.factories.NoFieldFactory;
-import io.skysail.server.converter.impl.factories.SkysailResponseEntityFieldFactory;
+import io.skysail.server.converter.impl.factories.*;
 import io.skysail.server.restlet.resources.SkysailServerResource;
 
-import java.util.List;
-import java.util.Map;
-
-import de.twenty11.skysail.server.beans.DynamicEntity;
+import java.util.*;
 
 public class FieldsFactory {
 
@@ -32,12 +23,7 @@ public class FieldsFactory {
 
     private static FieldFactory entityFactory(Object source) {
         Object entity = ((SkysailResponse<?>) source).getEntity();
-        
-        if (entity instanceof DynamicEntity) {
-            return new DynamicEntityFieldFactory((DynamicEntity) entity);
-        } else {
-            return new SkysailResponseEntityFieldFactory((SkysailResponse<?>) source, entity.getClass());
-        }
+        return new SkysailResponseEntityFieldFactory((SkysailResponse<?>) source, entity.getClass());
     }
 
     private static FieldFactory listFactory(Object source, SkysailServerResource<?> resource) {

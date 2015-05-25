@@ -7,6 +7,7 @@ import io.skysail.server.app.todos.todos.status.*;
 import io.skysail.server.forms.*;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.persistence.Id;
@@ -43,12 +44,15 @@ public class Todo implements Serializable, Identifiable {
     private String title;
 
     @Field(type = InputType.TEXTAREA)
-    @ListView(truncate = 10)
+    @ListView(truncate = 20)
     private String desc;
 
     @Field(type = InputType.DATE)
     private Date due;
 
+    @Field(type = InputType.DATE)
+    private Date startDate;
+    
     @Field(type = InputType.READONLY)
     private Date created;
 
@@ -78,8 +82,16 @@ public class Todo implements Serializable, Identifiable {
         if (query == null) {
             return;
         }
+        // to add new entity via get URL
         this.title = query.getFirstValue("title");
         this.desc = query.getFirstValue("desc");
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        try {
+            String dueDate = query.getFirstValue("due");
+            this.due = sdf.parse(dueDate);
+        } catch (Exception e) {
+            // ignore
+        }
         this.list = listId;
         if (listId == null) {
             this.list = query.getFirstValue("list");

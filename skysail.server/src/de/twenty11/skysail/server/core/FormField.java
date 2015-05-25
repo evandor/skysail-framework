@@ -1,33 +1,20 @@
 package de.twenty11.skysail.server.core;
 
-import io.skysail.api.forms.IgnoreSelectionProvider;
-import io.skysail.api.forms.InputType;
-import io.skysail.api.forms.Reference;
-import io.skysail.api.forms.SelectionProvider;
-import io.skysail.api.responses.ConstraintViolationDetails;
-import io.skysail.api.responses.ConstraintViolationsResponse;
-import io.skysail.api.responses.SkysailResponse;
+import io.skysail.api.forms.*;
+import io.skysail.api.responses.*;
 import io.skysail.server.restlet.resources.SkysailServerResource;
 import io.skysail.server.utils.OrientDbUtils;
 
+import java.lang.reflect.*;
 import java.lang.reflect.Field;
-import java.lang.reflect.Method;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Date;
-import java.util.Map;
-import java.util.Optional;
-import java.util.Set;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 
-import org.apache.commons.beanutils.DynaBean;
-import org.apache.commons.beanutils.DynaProperty;
 import org.restlet.resource.Resource;
 
-import de.twenty11.skysail.server.beans.DynamicEntity;
-import de.twenty11.skysail.server.beans.EntityDynaProperty;
 import de.twenty11.skysail.server.core.restlet.MessagesUtils;
 import de.twenty11.skysail.server.um.domain.SkysailUser;
 
@@ -61,106 +48,68 @@ public class FormField {
     private Map<String, String> selectionOptions;
 
     public FormField(Field field, SkysailServerResource<?> resource, Object source) {
-        this.resource = resource;
-        this.name = field.getName();
-        inputType = getFromFieldAnnotation(field);
-        referenceAnnotation = field.getAnnotation(Reference.class);
-        formFieldAnnotation = field.getAnnotation(io.skysail.api.forms.Field.class);
-        this.source = source;
-        
-        Map<String, Object> entityMap = OrientDbUtils.toMap(source);
-        if (entityMap != null) {
-            Object val = entityMap.get(field.getName());
-            if (val == null) {
-                value = "---";
-            } else if (val instanceof String) {
-                value = (String) val;
-            } else {
-                value = val.toString();
-            }
-            type = field.getType();
+        extract(field, resource, source);
 
+        Object currentEntity = resource.getCurrentEntity();
+        if (currentEntity != null) {
+            scan(field, currentEntity);
         } else {
-//            Method[] methods = entity.getClass().getMethods();
-//            String method = "get" + field.getName().substring(0, 1).toUpperCase()
-//                    + field.getName().substring(1);
-//            Arrays.stream(methods).filter(m -> m.getName().equals(method)).findFirst().ifPresent(m -> {
-//                try {
-//                    Object invocationResult = m.invoke(entity, new Object[] {});
-//                    if (invocationResult == null) {
-//                        value = "";
-//                    } else if (invocationResult instanceof String) {
-//                        value = (String) invocationResult;
-//                    } else if (invocationResult instanceof Date) {
-//                        this.type = Date.class;
-//                        value = invocationResult.toString();
-//                    } else {
-//                        value = invocationResult.toString();
-//                    }
-//                } catch (Exception e) {
-//                    log.error(e.getMessage(), e);
-//                }
-//            });
+            Map<String, Object> entityMap = OrientDbUtils.toMap(source);
+            if (entityMap != null) {
+                handleMap(field, entityMap);
+            }
         }
-
     }
-   
 
     public FormField(Field field, SkysailServerResource<?> resource, Object source, Object entity) {
+        extract(field, resource, source);
+        scan(field, entity);
+    }
+
+    private void extract(Field field, SkysailServerResource<?> resource, Object source) {
         this.resource = resource;
         this.name = field.getName();
         inputType = getFromFieldAnnotation(field);
         referenceAnnotation = field.getAnnotation(Reference.class);
         formFieldAnnotation = field.getAnnotation(io.skysail.api.forms.Field.class);
         this.source = source;
-        this.entity = entity;
-
-        Map<String, Object> entityMap = OrientDbUtils.toMap(entity);
-        if (entityMap != null) {
-            Object val = entityMap.get(field.getName());
-            if (val == null) {
-                value = "---";
-            } else if (val instanceof String) {
-                value = (String) val;
-            } else {
-                value = val.toString();
-            }
-            type = field.getType();
-
-        } else {
-            Method[] methods = entity.getClass().getMethods();
-            String method = "get" + field.getName().substring(0, 1).toUpperCase()
-                    + field.getName().substring(1);
-            Arrays.stream(methods).filter(m -> m.getName().equals(method)).findFirst().ifPresent(m -> {
-                try {
-                    Object invocationResult = m.invoke(entity, new Object[] {});
-                    if (invocationResult == null) {
-                        value = "";
-                    } else if (invocationResult instanceof String) {
-                        value = (String) invocationResult;
-                    } else if (invocationResult instanceof Date) {
-                        this.type = Date.class;
-                        value = invocationResult.toString();
-                    } else {
-                        value = invocationResult.toString();
-                    }
-                } catch (Exception e) {
-                    log.error(e.getMessage(), e);
-                }
-            });
-        }
     }
 
-    public FormField(DynamicEntity dynamicBean, DynaProperty d, SkysailServerResource<?> resource) {
-        this.name = d.getName();
-        DynaBean instance = dynamicBean.getInstance();
-        Object valueOrNull = instance.get(name);
-        this.value = valueOrNull == null ? null : valueOrNull.toString();
-        this.inputType = InputType.TEXT;
-        if (d instanceof EntityDynaProperty) {
-            this.inputType = ((EntityDynaProperty) d).getInputType();
+    private void scan(Field field, Object entity) {
+        this.entity = entity;
+
+        if (entity == null) {
+            return;
         }
-        this.cls = dynamicBean.getClass();
+
+        //if (entity != null) {
+            Map<String, Object> entityMap = OrientDbUtils.toMap(entity);
+            if (entityMap != null) {
+                handleMap(field, entityMap);
+                return;
+            }
+       // }
+
+        Method[] methods = entity.getClass().getMethods();
+        String method = "get" + field.getName().substring(0, 1).toUpperCase() + field.getName().substring(1);
+        Arrays.stream(methods).filter(m -> m.getName().equals(method)).findFirst().ifPresent(m -> {
+            try {
+                Object invocationResult = m.invoke(entity, new Object[] {});
+                if (invocationResult == null) {
+                    value = "";
+                } else if (invocationResult instanceof String) {
+                    value = (String) invocationResult;
+                } else if (invocationResult instanceof Date) {
+                    this.type = Date.class;
+                    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                    value = sdf.format(invocationResult);
+                } else {
+                    value = invocationResult.toString();
+                }
+            } catch (Exception e) {
+                log.error(e.getMessage(), e);
+            }
+        });
     }
 
     public FormField(String key, Object object) {
@@ -251,6 +200,13 @@ public class FormField {
         return false;
     }
 
+    public boolean isDate() {
+        if (formFieldAnnotation != null) {
+            return InputType.DATE.equals(formFieldAnnotation.type());
+        }
+        return false;
+    }
+
     public Map<String, String> getSelectionProviderOptions() {
         if (!isSelectionProvider()) {
             throw new IllegalAccessError("not a selection provider");
@@ -317,4 +273,18 @@ public class FormField {
                 .append(isTagsInputType()).toString();
     }
 
+    private void handleMap(Field field, Map<String, Object> entityMap) {
+        Object val = entityMap.get(field.getName());
+        if (val == null) {
+            value = "---";
+        } else if (val instanceof String) {
+            value = (String) val;
+        } else if (val instanceof Date) {
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            value = (String) sdf.format(value);
+        } else {
+            value = val.toString();
+        }
+        type = field.getType();
+    }
 }

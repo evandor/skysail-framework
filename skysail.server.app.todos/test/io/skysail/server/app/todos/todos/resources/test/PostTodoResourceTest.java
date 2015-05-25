@@ -67,9 +67,9 @@ public class PostTodoResourceTest extends PostResourceTest {
         entity.setOwner("admin");
         String id = TodosRepository.add(entity).toString();
         
-        
         form.add("title", "title_" + randomString());
         form.add("list", id);
+        form.add("due", "22/12/2099");
         Todo post = (Todo) resource.post(form, new VariantInfo(MediaType.TEXT_HTML));
         assertThat(response.getStatus(), is(equalTo(Status.SUCCESS_CREATED)));
     }

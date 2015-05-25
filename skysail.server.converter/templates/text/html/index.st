@@ -47,6 +47,17 @@ index(user, messages, source, converter, services, resource, fields, target) ::=
         Mousetrap.bind('command+s', function(e) {
             alert("keyboard shortcut for save not yet implemented");
         });
+        
+        function inspect() {
+        	var url = location.href;    
+        	if (url.indexOf('?') !== -1){
+        		url = (url + "&_inspect=true");
+        	} else {
+        		url = (url + "?_inspect=true");
+        	}
+        	location.replace(url);
+        	//location.reload(true);
+        }
     </script>
     
     <script type="text/javascript" src="/webapp/js/select2.js"></script>
@@ -84,9 +95,8 @@ index(user, messages, source, converter, services, resource, fields, target) ::=
                 <li class="dropdown-header">Nav header</li>
                 <li><a href='javascript:document.cookie="template=debug;path=/";window.location.reload(true)'>Debug</a></li>
                 <li><a href='javascript:document.cookie="template=edit;path=/";window.location.reload(true)'>Edit</a></li>
-                <li><a href='javascript:document.cookie="inspect=on;path=/";window.location.reload(true)'>Inspect on</a></li>
-                <li><a href='javascript:document.cookie="inspect=off;path=/";window.location.reload(true)'>Inspect off</a></li>
                 <li><a href='javascript:document.cookie="template=simple;path=/";window.location.reload(true)'>Simple</a></li>
+                <li><a href='javascript:inspect()'>Inspect Page</a></li>
                 <li><a href='javascript:document.cookie="mainpage=tests;path=/";window.location="/_largetests"'>Tests</a></li>
               </ul>
             </li>

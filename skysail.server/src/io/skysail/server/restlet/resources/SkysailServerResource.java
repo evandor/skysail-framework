@@ -9,6 +9,7 @@ import io.skysail.server.restlet.filter.AbstractResourceFilter;
 import io.skysail.server.utils.*;
 
 import java.lang.reflect.*;
+import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.function.Consumer;
 import java.util.stream.Collectors;
@@ -18,6 +19,7 @@ import lombok.extern.slf4j.Slf4j;
 
 import org.apache.commons.beanutils.*;
 import org.apache.commons.beanutils.converters.*;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.SecurityUtils;
 import org.restlet.Application;
 import org.restlet.data.*;
@@ -34,8 +36,8 @@ import de.twenty11.skysail.server.core.restlet.*;
  * of the entity handled.
  * 
  * <p>
- * The entity can be something concrete (e.g. a contact) or a list of something (e.g. 
- * a list of contacts).
+ * The entity can be something concrete (e.g. a contact) or a list of something
+ * (e.g. a list of contacts).
  * </p>
  * 
  * <p>
@@ -50,6 +52,7 @@ import de.twenty11.skysail.server.core.restlet.*;
 @ToString(exclude = { "beanUtilsBean" })
 public abstract class SkysailServerResource<T> extends ServerResource {
 
+    private static final String DATE_PATTERN = "yyyy-MM-dd";
     public static final String ATTRIBUTES_INTERNAL_REQUEST_ID = "de.twenty11.skysail.server.restlet.SkysailServerResource.requestId";
     public static final String SKYSAIL_SERVER_RESTLET_FORM = "de.twenty11.skysail.server.core.restlet.form";
     public static final String SKYSAIL_SERVER_RESTLET_ENTITY = "de.twenty11.skysail.server.core.restlet.entity";
@@ -59,6 +62,7 @@ public abstract class SkysailServerResource<T> extends ServerResource {
     public static final String PAGE_PARAM_NAME = "_page";
 
     public static final String NO_REDIRECTS = "noRedirects";
+    public static final String INSPECT_PARAM_NAME = "_inspect";
 
     @Setter
     @Getter
@@ -84,7 +88,16 @@ public abstract class SkysailServerResource<T> extends ServerResource {
         public Object convert(String value, @SuppressWarnings("rawtypes") Class clazz) {
             if (clazz.isEnum()) {
                 return Enum.valueOf(clazz, value);
-            } else if (clazz.equals(Date.class) && value.equals("")) {
+            } else if (clazz.equals(Date.class)) {
+                if (StringUtils.isEmpty(value)) {
+                    return null;
+                }
+                SimpleDateFormat sdf = new SimpleDateFormat(DATE_PATTERN);
+                try {
+                    return sdf.parse(value);
+                } catch (Exception e) {
+                    log.info("could not parse date '{}' with pattern {}", value, DATE_PATTERN);
+                }
                 return null;
             } else {
                 return super.convert(value, clazz);
@@ -114,7 +127,7 @@ public abstract class SkysailServerResource<T> extends ServerResource {
      * @return entity of Type T (can be a list as well)
      */
     public abstract T getEntity();
-    
+
     public T getEntity(String installation) {
         return getEntity();
     }
@@ -130,8 +143,9 @@ public abstract class SkysailServerResource<T> extends ServerResource {
         return entityType.getName();
     }
 
-    /* 
-     * delegates to restlets getAttribute, but will decode the attribute as well.
+    /*
+     * delegates to restlets getAttribute, but will decode the attribute as
+     * well.
      */
     public String getAttribute(String name) {
         String attribute = super.getAttribute(name);
@@ -140,7 +154,7 @@ public abstract class SkysailServerResource<T> extends ServerResource {
         }
         return null;
     }
-    
+
     /**
      * get Messages.
      * 
@@ -182,17 +196,18 @@ public abstract class SkysailServerResource<T> extends ServerResource {
             String baseKey = MessagesUtils.getBaseKey(entityClass, f);
             addTranslation(msgs, application, f, baseKey, MessagesUtils.getSimpleName(f));
             addTranslation(msgs, application, f, baseKey + ".desc", null);
-            addTranslation(msgs, application, f, baseKey + ".placeholder",null);
+            addTranslation(msgs, application, f, baseKey + ".placeholder", null);
         });
 
         return msgs;
     }
 
-    private void addTranslation(Map<String, String> msgs, Application application, FormField f, String key, String defaultMsg) {
+    private void addTranslation(Map<String, String> msgs, Application application, FormField f, String key,
+            String defaultMsg) {
         String translation = ((SkysailApplication) application).translate(key, defaultMsg, this, false);
         if (translation != null) {
             msgs.put(key, translation);
-        } else if(defaultMsg != null) {
+        } else if (defaultMsg != null) {
             msgs.put(key, defaultMsg);
         }
     }
@@ -209,8 +224,8 @@ public abstract class SkysailServerResource<T> extends ServerResource {
     private ParameterizedType getParameterizedType(Class cls) {
         Type genericSuperclass = cls.getGenericSuperclass();
         if (genericSuperclass instanceof ParameterizedType) {
-            return (ParameterizedType)genericSuperclass;
-        } 
+            return (ParameterizedType) genericSuperclass;
+        }
         return getParameterizedType(cls.getSuperclass());
     }
 
@@ -233,12 +248,17 @@ public abstract class SkysailServerResource<T> extends ServerResource {
     }
 
     /**
-     * creates a list of links for the provided {@link SkysailServerResource} classes.
+     * creates a list of links for the provided {@link SkysailServerResource}
+     * classes.
      * 
-     * <p>This method is executed only once for the current resource, and the result is cached
-     * for further requests.</p>
+     * <p>
+     * This method is executed only once for the current resource, and the
+     * result is cached for further requests.
+     * </p>
      * 
-     * <p>If the resource has associated resources, those links are added as well.</p>
+     * <p>
+     * If the resource has associated resources, those links are added as well.
+     * </p>
      */
     @SafeVarargs
     public final List<Link> getLinks(Class<? extends SkysailServerResource<?>>... classes) {
@@ -260,27 +280,33 @@ public abstract class SkysailServerResource<T> extends ServerResource {
     }
 
     /**
-     * if the current resource is a {@link ListServerResource}, the associated EntityServerResource (if existent)
-     * is analyzed for its own links. 
+     * if the current resource is a {@link ListServerResource}, the associated
+     * EntityServerResource (if existent) is analyzed for its own links.
      * 
-     * <p>For each entity of the listServerResource, and for each associated link (which 
-     * serves as a template), a new link is created and is having its path placeholders substituted.
-     * So, if the current ListServerResource has a list with two entities of a type which defines three
-     * classes in its getLinks method, we'll get six links in the result.</p>
+     * <p>
+     * For each entity of the listServerResource, and for each associated link
+     * (which serves as a template), a new link is created and is having its
+     * path placeholders substituted. So, if the current ListServerResource has
+     * a list with two entities of a type which defines three classes in its
+     * getLinks method, we'll get six links in the result.
+     * </p>
      */
     private List<? extends Link> getAssociatedLinks() {
         if (!(this instanceof ListServerResource)) {
             return Collections.emptyList();
         }
         ListServerResource<?> listServerResource = (ListServerResource<?>) this;
-        List<Class<? extends SkysailServerResource<?>>> entityResourceClasses = listServerResource.getAssociatedServerResources();
-        //List<Class<? extends EntityServerResource<?>>> entityResourceClass = listServerResource.getAssociatedEntityResources();
+        List<Class<? extends SkysailServerResource<?>>> entityResourceClasses = listServerResource
+                .getAssociatedServerResources();
+        // List<Class<? extends EntityServerResource<?>>> entityResourceClass =
+        // listServerResource.getAssociatedEntityResources();
         T entity = getCurrentEntity();
         List<Link> result = new ArrayList<>();
 
         if (entityResourceClasses != null && entity instanceof List) {
-            List<SkysailServerResource<?>> esrs = ResourceUtils.createSkysailServerResources(entityResourceClasses, this);
-            
+            List<SkysailServerResource<?>> esrs = ResourceUtils.createSkysailServerResources(entityResourceClasses,
+                    this);
+
             for (SkysailServerResource<?> esr : esrs) {
                 List<Link> entityLinkTemplates = esr.getAuthorizedLinks();
                 for (Object object : (List<?>) entity) {
@@ -300,21 +326,21 @@ public abstract class SkysailServerResource<T> extends ServerResource {
             return ((Identifiable) object).getId().replace("#", "");
         }
         if (object instanceof Map) {
-            Map<String,Object> map = (Map)object;
+            Map<String, Object> map = (Map) object;
             if (map.get("@rid") != null) {
-                return map.get("@rid").toString().replace("#",  "");
+                return map.get("@rid").toString().replace("#", "");
             }
             if (map.get("id") != null) {
-                return map.get("id").toString().replace("#",  "");
+                return map.get("id").toString().replace("#", "");
             }
         }
         Map<String, Object> map = OrientDbUtils.toMap(object);
         if (map != null) {
             if (map.get("@rid") != null) {
-                return map.get("@rid").toString().replace("#",  "");
+                return map.get("@rid").toString().replace("#", "");
             }
         }
-        
+
         return "NO_ID";
     }
 
@@ -328,13 +354,10 @@ public abstract class SkysailServerResource<T> extends ServerResource {
         if (id != null && href.contains("{") && href.contains("}")) {
             href = href.replaceFirst(StringParserUtils.placeholderPattern.toString(), id);
         }
-                
-        Link newLink = new Link.Builder(linkTemplate)//.uri()
-            .uri(href)
-            .role(LinkRole.LIST_VIEW)
-            .relation(LinkRelation.ITEM)
-            .refId(id).build();
-        //substituePlaceholders(entityResource, id).build()
+
+        Link newLink = new Link.Builder(linkTemplate)// .uri()
+                .uri(href).role(LinkRole.LIST_VIEW).relation(LinkRelation.ITEM).refId(id).build();
+        // substituePlaceholders(entityResource, id).build()
         result.add(newLink);
     }
 
@@ -402,7 +425,7 @@ public abstract class SkysailServerResource<T> extends ServerResource {
         }
         return false;
     }
-    
+
     public String redirectTo() {
         return null;
     }
@@ -416,7 +439,7 @@ public abstract class SkysailServerResource<T> extends ServerResource {
         getPathSubstitutions().accept(linkheader);
         return linkheader.getUri();
     }
-    
+
     public void addToContext(ResourceContextId id, String value) {
         stringContextMap.put(id, value);
     }
@@ -424,7 +447,7 @@ public abstract class SkysailServerResource<T> extends ServerResource {
     public void addToContext(ResourceContextId id, Map<String, String> map) {
         mapContextMap.put(id, map);
     }
-    
+
     public void removeFromContext(ResourceContextId id) {
         stringContextMap.remove(id);
     }
@@ -438,13 +461,21 @@ public abstract class SkysailServerResource<T> extends ServerResource {
     }
 
     protected T populate(T bean, Form form) {
+        Map<String, String> valuesMap = form.getValuesMap();
         try {
-
-            beanUtilsBean.populate(bean, form.getValuesMap());
+            beanUtilsBean.populate(bean, valuesMap);
             return bean;
         } catch (Exception e) {
-            log.error("Error populating bean {} from form {}", bean, form.getValuesMap(), e);
+            log.error("Error populating bean {} from form {}", bean, valuesMap, e);
             return null;
+        }
+    }
+
+    protected void copyProperties(T dest, T orig) {
+        try {
+            beanUtilsBean.copyProperties(dest, orig);
+        } catch (Exception e) {
+            log.error("Error copying from bean {} to bean {}", orig, dest);
         }
     }
 

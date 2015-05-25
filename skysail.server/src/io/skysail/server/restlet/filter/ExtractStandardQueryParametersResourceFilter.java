@@ -17,6 +17,7 @@ public class ExtractStandardQueryParametersResourceFilter<R extends SkysailServe
     protected FilterResult beforeHandle(R resource, ResponseWrapper<T> responseWrapper) {
         addToAttributes(resource, SkysailServerResource.FILTER_PARAM_NAME);
         addToAttributes(resource, SkysailServerResource.PAGE_PARAM_NAME);
+        addToAttributes(resource, SkysailServerResource.INSPECT_PARAM_NAME);
         return FilterResult.CONTINUE;
     }
 

@@ -1,6 +1,7 @@
 package io.skysail.server.app.todos.todos.resources;
 
 import io.skysail.api.responses.SkysailResponse;
+import io.skysail.server.app.todos.TodoApplication;
 import io.skysail.server.app.todos.todos.Todo;
 import io.skysail.server.app.todos.todos.status.Status;
 
@@ -11,6 +12,8 @@ import org.apache.shiro.subject.Subject;
 
 public class PostTodoWoListResource extends PostTodoResource {
 
+    private String listIdFromEntity;
+
     @Override
     public SkysailResponse<?> addEntity(Todo entity) {
         entity.setCreated(new Date());
@@ -18,11 +21,21 @@ public class PostTodoWoListResource extends PostTodoResource {
         entity.setOwner(subject.getPrincipal().toString());
         entity.setStatus(Status.NEW);
         entity.setRank(1);
-        entity.setList(listId);
+        listIdFromEntity = entity.getList().replace("#","");
+        entity.setList(listIdFromEntity);
         String id = app.getRepository().add(entity).toString();
         entity.setId(id);
         return new SkysailResponse<String>();
     }
-
+    
+    @Override
+    public String redirectTo() {
+        //getRequest().getAttributes().put(TodoApplication.LIST_ID, listIdFromEntity);
+        getContext().getAttributes().put(TodoApplication.LIST_ID, listIdFromEntity);
+        if ("submitAndNew".equals(submitValue)) {
+            return super.redirectTo(PostTodoResource.class);
+        }
+        return super.redirectTo(TodosResource.class);
+    }
    
 }

@@ -1,6 +1,7 @@
 package io.skysail.server.app.todos.todos.resources.test;
 
 import static org.hamcrest.CoreMatchers.*;
+import static org.hamcrest.Matchers.greaterThan;
 import static org.junit.Assert.assertThat;
 import io.skysail.api.responses.ConstraintViolationsResponse;
 import io.skysail.server.app.todos.*;
@@ -10,7 +11,9 @@ import io.skysail.server.app.todos.todos.*;
 import io.skysail.server.app.todos.todos.resources.PostTodoResource;
 import io.skysail.server.testsupport.PostResourceTest;
 
-import java.util.HashMap;
+import java.text.SimpleDateFormat;
+import java.time.*;
+import java.util.*;
 
 import org.apache.shiro.subject.SimplePrincipalMap;
 import org.junit.*;
@@ -58,20 +61,60 @@ public class PostTodoResourceTest extends PostResourceTest {
         ConstraintViolationsResponse<?> post = (ConstraintViolationsResponse<?>) resource.post(form, new VariantInfo(MediaType.TEXT_HTML));
         assertValidationFailure(post, "list", "This list does not exist or has another owner");
     }
+    
+    @Test
+    public void start_date_after_due_date_yields_validation_failure() { 
+        String id = createNewList();
+        
+        form.add("title", "title_" + randomString());
+        form.add("list", id);
+        form.add("due", "2099-12-01");
+        form.add("startDate", "2100-12-30");
+        
+        ConstraintViolationsResponse<?> post = (ConstraintViolationsResponse<?>) resource.post(form, new VariantInfo(MediaType.TEXT_HTML));
+        assertValidationFailure(post, "", "the start date must be before the due date");
+    }
 
     @Test
     public void valid_data_yields_new_entity() {
+        String id = createNewList();
+        form.add("title", "title_" + randomString());
+        form.add("list", id);
+        form.add("due", "2099-12-01");
+        Todo todo = (Todo)resource.post(form, new VariantInfo(MediaType.TEXT_HTML));
+        assertThat(response.getStatus(), is(equalTo(Status.SUCCESS_CREATED)));
+        assertThat(todo.getImportance(), is(50));
+    }
+
+    @Test
+    public void urgency_is_calculated() {
+        String id = createNewList();
+        form.add("title", "title_" + randomString());
+        form.add("list", id);
         
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        form.add("startDate", sdf.format(nowPlusWeeksAndDays(-1,-1)));
+        form.add("due", sdf.format(nowPlusWeeks(1)));
+        Todo todo = (Todo)resource.post(form, new VariantInfo(MediaType.TEXT_HTML));
+        assertThat(response.getStatus(), is(equalTo(Status.SUCCESS_CREATED)));
+        assertThat(todo.getUrgency(), greaterThan(0));
+        assertThat(todo.getUrgency(), not(greaterThan(100)));
+    }
+
+    private String createNewList() {
         TodoList entity = new TodoList();
         entity.setName("list_" + randomString());
         entity.setOwner("admin");
         String id = TodosRepository.add(entity).toString();
-        
-        form.add("title", "title_" + randomString());
-        form.add("list", id);
-        form.add("due", "22/12/2099");
-        Todo post = (Todo) resource.post(form, new VariantInfo(MediaType.TEXT_HTML));
-        assertThat(response.getStatus(), is(equalTo(Status.SUCCESS_CREATED)));
+        return id;
+    }
+    
+    private Date nowPlusWeeks(int weeksOffset) {
+        return Date.from(LocalDate.now().plusWeeks(weeksOffset).atStartOfDay().toInstant(ZoneOffset.MIN));
+    }
+    
+    private Date nowPlusWeeksAndDays(int weeksOffset, int dayOffset) {
+        return Date.from(LocalDate.now().plusWeeks(weeksOffset).plusDays(dayOffset).atStartOfDay().toInstant(ZoneOffset.MIN));
     }
 
 }

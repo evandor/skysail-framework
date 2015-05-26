@@ -3,6 +3,7 @@ package io.skysail.server.app.todos.todos.resources;
 import io.skysail.api.responses.SkysailResponse;
 import io.skysail.server.app.todos.TodoApplication;
 import io.skysail.server.app.todos.lists.ListsResource;
+import io.skysail.server.app.todos.ranking.Ranker;
 import io.skysail.server.app.todos.todos.Todo;
 import io.skysail.server.restlet.resources.PutEntityServerResource;
 
@@ -33,11 +34,8 @@ public class PutTodoResource extends PutEntityServerResource<Todo> {
     public SkysailResponse<?> updateEntity(Todo entity) {
         Todo original = getEntity();
         copyProperties(original,entity);
-        //populate(original, toForm(entity));
-//        original.setTitle(entity.getTitle());
-//        original.setDesc(entity.getDesc());
         original.setModified(new Date());
-        //original.setStatus(entity.getStatus());
+        original.setUrgency(Ranker.calcUrgency(original));
         app.getRepository().update(listId, original);
         return new SkysailResponse<>();
     }

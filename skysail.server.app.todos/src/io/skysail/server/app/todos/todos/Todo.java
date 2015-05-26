@@ -24,6 +24,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 @ToString(of = { "title" })
 @JsonPropertyOrder({ "title", "desc" })
 @NoArgsConstructor
+@StartDateBeforeDueDate
 public class Todo implements Serializable, Identifiable {
 
     private static final long serialVersionUID = -6320289870876900108L;
@@ -62,6 +63,14 @@ public class Todo implements Serializable, Identifiable {
     @Field(type = InputType.READONLY)
     private Integer rank;
 
+    @Field(type = InputType.RANGE)
+    @Min(0)
+    @Max(100)
+    private Integer importance;
+
+    @Field(type = InputType.READONLY)
+    private Integer urgency;
+
     @Field(selectionProvider = StatusSelectionProvider.class)
     @PostView(visibility = Visibility.HIDE)
     private Status status;
@@ -70,7 +79,6 @@ public class Todo implements Serializable, Identifiable {
     @ListView(hide=true)
     private String owner;
 
-    // start date, 
     // assigned to,
     // related to: account, ...
     

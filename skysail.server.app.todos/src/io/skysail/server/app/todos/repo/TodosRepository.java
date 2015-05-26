@@ -31,12 +31,6 @@ public class TodosRepository implements DbRepository {
         TodosRepository.dbService = null;
     }
 
-//    @SuppressWarnings("unchecked")
-//    public <T> List<T> findAll(Class<T> cls, Filter filter, String sorting) {
-//        String sql = "SELECT from " + cls.getSimpleName() + " WHERE " + filter.getPreparedStatement() + " " + sorting;
-//        return dbService.findObjects(sql, filter.getParams());
-//    }
-
     public List<TodoList> findAllLists(Filter filter, Pagination pagination) {
         // TODO do this in one statement
         String sql = "SELECT from " + TodoList.class.getSimpleName() + " WHERE "+filter.getPreparedStatement()+" ORDER BY name " 
@@ -52,7 +46,7 @@ public class TodosRepository implements DbRepository {
   
 
     public List<Todo> findAllTodos(Filter filter, Pagination pagination) {
-        String sql = "SELECT from " + Todo.class.getSimpleName() + " WHERE "+filter.getPreparedStatement()+" ORDER BY rank ASC " 
+        String sql = "SELECT *, SUM(urgency,importance) as rank from " + Todo.class.getSimpleName() + " WHERE "+filter.getPreparedStatement()+" ORDER BY rank DESC " 
                 + limitClause(pagination.getLinesPerPage(),pagination.getPage()); 
         return dbService.findObjects(sql, filter.getParams());
     }

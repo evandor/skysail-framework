@@ -28,4 +28,8 @@ public enum Status {
             nexts.add(str);
         }
     }
+    
+    public boolean isActive() {
+        return !this.equals(FINISHED) && !this.equals(ARCHIVED);
+    }
 }

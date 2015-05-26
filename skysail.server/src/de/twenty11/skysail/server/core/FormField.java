@@ -82,13 +82,11 @@ public class FormField {
             return;
         }
 
-        //if (entity != null) {
-            Map<String, Object> entityMap = OrientDbUtils.toMap(entity);
-            if (entityMap != null) {
-                handleMap(field, entityMap);
-                return;
-            }
-       // }
+        Map<String, Object> entityMap = OrientDbUtils.toMap(entity);
+        if (entityMap != null) {
+            handleMap(field, entityMap);
+            return;
+        }
 
         Method[] methods = entity.getClass().getMethods();
         String method = "get" + field.getName().substring(0, 1).toUpperCase() + field.getName().substring(1);
@@ -156,6 +154,10 @@ public class FormField {
         return checkTypeFor(Date.class);
     }
 
+    public boolean isRangeType() {
+        return isOfInputType(InputType.RANGE);
+    }
+
     public boolean isSkysailUserType() {
         return checkTypeFor(SkysailUser.class);
     }
@@ -205,6 +207,21 @@ public class FormField {
             return InputType.DATE.equals(formFieldAnnotation.type());
         }
         return false;
+    }
+
+    public boolean isRange() {
+        if (formFieldAnnotation != null) {
+            return InputType.RANGE.equals(formFieldAnnotation.type());
+        }
+        return false;
+    }
+
+    public int getRangeMin() {
+        return 0;
+    }
+
+    public int getRangeMax() {
+        return 100;
     }
 
     public Map<String, String> getSelectionProviderOptions() {

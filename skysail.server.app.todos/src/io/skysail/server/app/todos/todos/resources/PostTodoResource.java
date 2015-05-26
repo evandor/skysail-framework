@@ -3,6 +3,7 @@ package io.skysail.server.app.todos.todos.resources;
 import io.skysail.api.links.Link;
 import io.skysail.api.responses.SkysailResponse;
 import io.skysail.server.app.todos.TodoApplication;
+import io.skysail.server.app.todos.ranking.Ranker;
 import io.skysail.server.app.todos.todos.Todo;
 import io.skysail.server.app.todos.todos.status.Status;
 import io.skysail.server.restlet.resources.PostEntityServerResource;
@@ -43,6 +44,10 @@ public class PostTodoResource extends PostEntityServerResource<Todo> {
         entity.setStatus(Status.NEW);
         entity.setRank(1);
         entity.setList(listId);
+        if (entity.getImportance() == null) {
+            entity.setImportance(50);
+        }
+        entity.setUrgency(Ranker.calcUrgency(entity));
         String id = app.getRepository().add(entity).toString();
         entity.setId(id);
         return new SkysailResponse<String>();

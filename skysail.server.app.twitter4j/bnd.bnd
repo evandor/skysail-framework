@@ -2,7 +2,7 @@ Bundle-Version: 0.1.0.${tstamp}
 Bundle-ClassPath: .,lib/twitter4j-core-4.0.3.jar
 -buildpath:  \
 	lib/twitter4j-core-4.0.3.jar;version=file,\
-	skysail.api;version=latest,\
+	skysail.api;version=${skysail.api.version},\
 	skysail.server;version=latest,\
 	com.springsource.org.junit;version=4.11,\
 	biz.aQute.bnd.annotation;version=2.4,\

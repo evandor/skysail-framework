@@ -1,11 +1,12 @@
 package io.skysail.server.converter.wrapper;
 
 import io.skysail.api.domain.Identifiable;
-import io.skysail.api.responses.ConstraintViolationsResponse;
-import io.skysail.api.responses.FormResponse;
-import io.skysail.api.responses.SkysailResponse;
+import io.skysail.api.responses.*;
 
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
+
+import org.apache.commons.lang.StringUtils;
 
 public class STSourceWrapper {
 
@@ -54,6 +55,19 @@ public class STSourceWrapper {
 
     public boolean isConstraintViolationsResponse() {
         return source instanceof ConstraintViolationsResponse;
+    }
+    
+    public String getClasslevelViolationMessage() {
+        if (!isConstraintViolationsResponse()) {
+            return null;
+        }
+        Set<ConstraintViolationDetails> violations = ((ConstraintViolationsResponse)source).getViolations();
+        String msg = violations.stream().filter(v -> {
+            return v.getPropertyPath().equals("");
+        }).map(v -> {
+            return v.getMessage();
+        }).collect(Collectors.joining(", "));
+        return StringUtils.isEmpty(msg) ? null : msg;
     }
 
     public Object getEntity() {

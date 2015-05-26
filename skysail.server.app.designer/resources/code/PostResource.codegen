@@ -1,4 +1,4 @@
-package io.skysail.server.app.designer.codegen;
+package io.skysail.server.app.designer.gencode;
 
 import io.skysail.api.responses.SkysailResponse;
 import io.skysail.server.app.designer.DesignerApplication;

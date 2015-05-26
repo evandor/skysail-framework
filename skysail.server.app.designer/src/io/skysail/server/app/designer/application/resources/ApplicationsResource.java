@@ -3,6 +3,7 @@ package io.skysail.server.app.designer.application.resources;
 import io.skysail.api.links.Link;
 import io.skysail.server.app.designer.DesignerApplication;
 import io.skysail.server.app.designer.application.Application;
+import io.skysail.server.app.designer.codegen.PostCompilationResource;
 import io.skysail.server.restlet.resources.ListServerResource;
 
 import java.util.List;
@@ -30,7 +31,7 @@ public class ApplicationsResource extends ListServerResource<Application> {
 
     @Override
     public List<Link> getLinks() {
-        return super.getLinks(PostApplicationResource.class);
+        return super.getLinks(PostApplicationResource.class, PostCompilationResource.class);
     }
 
 }

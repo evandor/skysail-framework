@@ -1,5 +1,6 @@
 package io.skysail.server.restlet;
 
+import io.skysail.server.model.ResourceModel;
 import io.skysail.server.restlet.resources.SkysailServerResource;
 import io.skysail.server.restlet.sourceconverter.*;
 import io.skysail.server.utils.ReflectionUtils;
@@ -23,7 +24,7 @@ public class SourceWrapper {
     private Object originalSource;
     private Variant target;
     private Object convertedSource;
-    private List<Field> fields;
+    //private List<Field> fields;
 
     private String indexPageName;
 
@@ -32,14 +33,11 @@ public class SourceWrapper {
      * 
      * @param source
      * @param target
-     * @param resource
-     * @param indexPageName 
+     * @param requestModel
      */
-    public SourceWrapper(Object source, Variant target, SkysailServerResource<?> resource, String indexPageName) {
+    public SourceWrapper(Object source, Variant target, ResourceModel<SkysailServerResource<?>, ?> requestModel) {
         this.originalSource = source;
-        this.indexPageName = indexPageName;
-        fields = ReflectionUtils.getInheritedFields(resource.getParameterType());
-        this.convertedSource = convertSource(source, target, resource);
+        this.convertedSource = convertSource(source, target, requestModel);
     }
 
     public Object getOriginalSource() {
@@ -54,11 +52,11 @@ public class SourceWrapper {
         return target;
     }
 
-    private Object convertSource(Object source, Variant target, SkysailServerResource<?> resource) {
+    private Object convertSource(Object source, Variant target, ResourceModel<SkysailServerResource<?>, ?> requestModel) {
         SourceConverter converter = ConverterFactory.getConverter(source, target);
         logger.info("using converter '{}' for {}-Source: {}", new Object[] { converter.getClass().getSimpleName(),
                 source.getClass().getSimpleName(), source });
-        return converter.convert(resource, fields, indexPageName);
+        return converter.convert(requestModel.getResource(), requestModel.getFields());
     }
 
 }

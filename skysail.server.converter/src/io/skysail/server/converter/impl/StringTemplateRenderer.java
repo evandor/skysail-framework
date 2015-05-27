@@ -7,6 +7,7 @@ import io.skysail.server.app.SkysailApplication;
 import io.skysail.server.converter.*;
 import io.skysail.server.converter.stringtemplate.STGroupBundleDir;
 import io.skysail.server.converter.wrapper.*;
+import io.skysail.server.model.ResourceModel;
 import io.skysail.server.restlet.SourceWrapper;
 import io.skysail.server.restlet.resources.*;
 
@@ -49,9 +50,12 @@ public class StringTemplateRenderer {
 
     public StringRepresentation createRepresenation(Object originalSource, Variant target,
             SkysailServerResource<?> resource) {
+        
+        ResourceModel<SkysailServerResource<?>,?> requestModel = new ResourceModel(resource);
 
         templateFromCookie = CookiesUtils.getTemplateFromCookie(resource.getRequest());
 
+        SourceWrapper sourceWrapper = new SourceWrapper(originalSource, target, requestModel);
         STGroupBundleDir stGroup = createSringTemplateGroup(resource, target.getMediaType().getName());
 
         ST index = getStringTemplateIndex(resource, stGroup);

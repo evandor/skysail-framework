@@ -10,7 +10,9 @@ Export-Package:  \
 	io.skysail.server.utils,\
 	de.twenty11.skysail.server.core.osgi,\
 	io.skysail.server.restlet.resources,\
+	io.skysail.server.restlet.model,\
 	io.skysail.server.text,\
+	io.skysail.server.model,\
 	io.skysail.server.restlet.filter,\
 	de.twenty11.skysail.server.validation,\
 	io.skysail.server.app,\

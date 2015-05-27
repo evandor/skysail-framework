@@ -1,6 +1,7 @@
 package io.skysail.server.restlet.sourceconverter;
 
-import io.skysail.api.forms.*;
+import io.skysail.api.forms.Postfix;
+import io.skysail.api.forms.Prefix;
 import io.skysail.api.links.Link;
 import io.skysail.server.forms.ListView;
 import io.skysail.server.restlet.resources.SkysailServerResource;
@@ -10,16 +11,25 @@ import java.io.IOException;
 import java.lang.reflect.Field;
 import java.net.URL;
 import java.text.DateFormat;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+import java.util.Optional;
 
 import lombok.extern.slf4j.Slf4j;
 
-import org.restlet.data.*;
+import org.restlet.data.Language;
+import org.restlet.data.MediaType;
+import org.restlet.data.Preference;
 
 import aQute.bnd.annotation.component.Component;
 
 import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.*;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 
 import de.twenty11.skysail.server.app.AbstractSourceConverter;
 
@@ -116,13 +126,13 @@ public class ListSourceHtmlConverter extends AbstractSourceConverter implements 
         }
         String newValue = null;
         if (listViewAnnotation.truncate() > 3) {
-            if (f.getName() instanceof String) {
+            //if (f.getName() instanceof String) {
                 String oldValue = newValue = (String) result.get(f.getName());
                 if (oldValue != null && oldValue.length() > listViewAnnotation.truncate()) {
                     newValue = "<span title='" + oldValue + "'>"
                             + oldValue.substring(0, listViewAnnotation.truncate() - 3) + "...</span>";
                 }
-            }
+            //}
         }
         if (URL.class.equals(f.getType())) {
             newValue = "<a href='" + result.get(f.getName()).toString() + "' target=\"_blank\">" + newValue + "</a>";

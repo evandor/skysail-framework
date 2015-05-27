@@ -1,12 +1,9 @@
 package io.skysail.server.restlet;
 
+import io.skysail.server.model.ResourceModel;
 import io.skysail.server.restlet.resources.SkysailServerResource;
 import io.skysail.server.restlet.sourceconverter.ConverterFactory;
 import io.skysail.server.restlet.sourceconverter.SourceConverter;
-import io.skysail.server.utils.ReflectionUtils;
-
-import java.lang.reflect.Field;
-import java.util.List;
 
 import org.restlet.representation.Variant;
 import org.slf4j.Logger;
@@ -25,19 +22,18 @@ public class SourceWrapper {
     private Object originalSource;
     private Variant target;
     private Object convertedSource;
-    private List<Field> fields;
+    //private List<Field> fields;
 
     /**
      * Uses target and resource information to convert the source object.
      * 
      * @param source
      * @param target
-     * @param resource
+     * @param requestModel
      */
-    public SourceWrapper(Object source, Variant target, SkysailServerResource<?> resource) {
+    public SourceWrapper(Object source, Variant target, ResourceModel<SkysailServerResource<?>, ?> requestModel) {
         this.originalSource = source;
-        fields = ReflectionUtils.getInheritedFields(resource.getParameterType());
-        this.convertedSource = convertSource(source, target, resource);
+        this.convertedSource = convertSource(source, target, requestModel);
     }
 
     public Object getOriginalSource() {
@@ -52,11 +48,11 @@ public class SourceWrapper {
         return target;
     }
 
-    private Object convertSource(Object source, Variant target, SkysailServerResource<?> resource) {
+    private Object convertSource(Object source, Variant target, ResourceModel<SkysailServerResource<?>, ?> requestModel) {
         SourceConverter converter = ConverterFactory.getConverter(source, target);
         logger.info("using converter '{}' for {}-Source: {}", new Object[] { converter.getClass().getSimpleName(),
                 source.getClass().getSimpleName(), source });
-        return converter.convert(resource, fields);
+        return converter.convert(requestModel.getResource(), requestModel.getFields());
     }
 
 }

@@ -5,8 +5,7 @@ import io.skysail.server.restlet.resources.SkysailServerResource;
 import io.skysail.server.utils.OrientDbUtils;
 
 import java.lang.reflect.Field;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import org.restlet.data.MediaType;
 
@@ -22,7 +21,7 @@ public class SkysailResponseJsonConverter extends AbstractSourceConverter implem
     }
 
     @Override
-    public Object convert(SkysailServerResource<?> resource, List<Field> fields) {
+    public Object convert(SkysailServerResource<?> resource, List<Field> fields, String indexPageName) {
         Object object = ((SkysailResponse<?>) getSource()).getEntity();
         if (object == null || !object.getClass().getName().contains("$$")) {
             return object;

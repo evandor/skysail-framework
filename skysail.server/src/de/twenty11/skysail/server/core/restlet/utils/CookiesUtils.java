@@ -18,10 +18,6 @@ public class CookiesUtils {
         return returnCookieOrNull(request,Constants.COOKIE_NAME_MAINPAGE);
     }
 
-//    public static String getInpsectFromCookie(Request request) {
-//        return returnCookieOrNull(request,Constants.COOKIE_NAME_INSPECT);
-//    }
-
     public static String getFavoritesFromCookie(Request request) {
         return returnCookieOrNull(request,Constants.COOKIE_NAME_FAVORITES);
     }

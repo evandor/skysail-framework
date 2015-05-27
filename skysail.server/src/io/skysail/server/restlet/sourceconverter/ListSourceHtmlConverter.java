@@ -28,10 +28,11 @@ import de.twenty11.skysail.server.app.AbstractSourceConverter;
 public class ListSourceHtmlConverter extends AbstractSourceConverter implements SourceConverter {
 
     private volatile ObjectMapper mapper = new ObjectMapper();
+    private String indexPageName;
 
     public ListSourceHtmlConverter() {
         mapper.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false);
-       // mapper.configure(SerializationFeature.FAIL_ON_EMPTY_BEANS, false);
+        // mapper.configure(SerializationFeature.FAIL_ON_EMPTY_BEANS, false);
     }
 
     @Override
@@ -40,8 +41,9 @@ public class ListSourceHtmlConverter extends AbstractSourceConverter implements 
     }
 
     @Override
-    public Object convert(SkysailServerResource<?> resource, List<Field> fields) {
+    public Object convert(SkysailServerResource<?> resource, List<Field> fields, String indexPageName) {
 
+        this.indexPageName = indexPageName;
         mapper.setDateFormat(DateFormat.getDateInstance(DateFormat.LONG, determineLocale(resource)));
 
         List<Object> result = new ArrayList<Object>();
@@ -136,7 +138,11 @@ public class ListSourceHtmlConverter extends AbstractSourceConverter implements 
                         return linkedResource.equals(l.getCls()) && id.equals(l.getRefId());
                     }).findFirst();
                     if (findFirst.isPresent()) {
-                        newValue = "<a href='" + findFirst.get().getUri() + "'>" + newValue + "</a>";
+                        if (indexPageName.equals("indexMobile")) {
+                            newValue = "<a href='"+findFirst.get().getUri()+"'><input type='button' class='btn btn-primary btn-lg btn-block' value='" + newValue + "' /></a>";
+                        } else {
+                            newValue = "<a href='" + findFirst.get().getUri() + "'>" + newValue + "</a>";                            
+                        }
                     }
                 }
             }
@@ -163,12 +169,6 @@ public class ListSourceHtmlConverter extends AbstractSourceConverter implements 
             @Override
             public int compare(String o1, String o2) {
                 List<String> fieldNames = resource.getFields();
-                // if (!fieldNames.contains(o1)) {
-                // fieldNames.add(o1);
-                // }
-                // if (!fieldNames.contains(o2)) {
-                // fieldNames.add(o2);
-                // }
                 if (fieldNames.indexOf(o1) == -1 && fieldNames.indexOf(o2) == -1) {
                     return o1.compareTo(o2);
                 }

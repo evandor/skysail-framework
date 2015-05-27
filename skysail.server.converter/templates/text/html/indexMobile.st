@@ -1,4 +1,4 @@
-index(user, messages, source, converter, services, resource, fields, target) ::= <<
+indexMobile(user, messages, source, converter, services, resource, fields, target) ::= <<
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -26,28 +26,8 @@ index(user, messages, source, converter, services, resource, fields, target) ::=
     <!-- jstree -->
     <link rel="stylesheet" href="/static/themes/jstree/style.min.css" />
     <script src="/static/js/jstree/jstree.min.js"></script>
-
-    <!-- images in bootstrap menus 
-    <style>
-        .dropdown-menu a.icon {
-		  position: relative;
-		  padding-left: 40px;
-		}
-		.dropdown-menu a.icon .glyphicon {
-		  top: 6px;
-		  left: 10px;
-		  font-size: 18px;
-		}
-    </style>-->
-    
-    <!-- mousetrap -->
-    <script src="/static/js/mousetrap/mousetrap.min.js"></script>
     
     <script type="text/javascript">
-        Mousetrap.bind('command+s', function(e) {
-            alert("keyboard shortcut for save not yet implemented");
-        });
-        
         function inspect() {
         	var url = location.href;    
         	if (url.indexOf('?') !== -1){
@@ -83,39 +63,9 @@ index(user, messages, source, converter, services, resource, fields, target) ::=
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            $dropdownFrontendsNav(services)$
             $dropdownApplicationsNav(services)$
-            $dropdownDesignerNav(services)$
-            $dropdownAdminNav(services)$
-            $if(user.developer)$
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">View (advanced) <span class="caret"></span></a>
-              <ul class="dropdown-menu" role="menu">
-                <li class="divider"></li>
-                <li class="dropdown-header">Nav header</li>
-                <li><a href='javascript:document.cookie="template=debug;path=/";window.location.reload(true)'>Debug</a></li>
-                <li><a href='javascript:document.cookie="template=edit;path=/";window.location.reload(true)'>Edit</a></li>
-                <li><a href='javascript:document.cookie="template=simple;path=/";window.location.reload(true)'>Simple</a></li>
-                <li><a href='javascript:inspect()'>Inspect Page</a></li>
-                <li><a href='javascript:document.cookie="mainpage=tests;path=/";window.location="/_largetests"'>Tests</a></li>
-                <li><a href='javascript:document.cookie="mainpage=indexMobile;path=/";window.location.reload(true)'>Mobile View</a></li>
-              </ul>
-            </li>
-            $endif$
           </ul>
           
-          $if(services.searchService)$
-		  <div class="col-sm-3 col-md-2 pull-right">
-			<form class="navbar-form" role="search" action="/_search" method="POST">
-				<div class="input-group">
-					<input type="text" class="form-control input-sm" placeholder="Search" name="searchterm" id="searchterm">
-					<div class="input-group-btn">
-						<button class="btn btn-default btn-sm" type="submit"><i class="glyphicon glyphicon-search"></i></button>
-					</div>
-				</div>
-			</form>
-  		  </div>
-          $endif$
           $if(user.principal)$
           <ul class="nav navbar-nav navbar-right">
             <li class="dropdown">
@@ -137,20 +87,9 @@ index(user, messages, source, converter, services, resource, fields, target) ::=
     <div class="container-fluid">
     
       <div class="row">
-        <div class="col-md-10">
-            $breadcrumb(resource)$
-        </div>
-        <div class="col-md-2">
-            $representations(resource)$
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col-md-1">$appNavTitle(resource)$</div>
-        <div class="col-md-10">
+        <div class="col-md-12">
             $menuNav(resource.links)$
         </div>
-        <div class="col-md-1">&nbsp;</div>
       </div>
       <div class="row">
         <div class="col-md-12">
@@ -158,7 +97,7 @@ index(user, messages, source, converter, services, resource, fields, target) ::=
         </div>
       </div>
       
-$mainContent(user, resource, converter, messages, source, fields)$
+$mainContentMobile(user, resource, converter, messages, source, fields)$
       
       $if(converter.debug)$
         $debug(resource, source, target, messages)$
@@ -174,24 +113,6 @@ $mainContent(user, resource, converter, messages, source, fields)$
     $notifications(converter.notifications)$
     $select2JsEndOfBody(fields)$ 
     
-    $if(target.treeForm)$
-    <script>
-	  \$(function () {
-	    // 6 create an instance when the DOM is ready
-	    \$('#jstree').jstree();
-	    // 7 bind to events triggered on the tree
-	    \$('#jstree').on("changed.jstree", function (e, data) {
-	      console.log(data.selected);
-	    });
-	    // 8 interact with the tree - either way is OK
-	    \$('button').on('click', function () {
-	      \$('#jstree').jstree(true).select_node('child_node_1');
-	      \$('#jstree').jstree('select_node', 'child_node_1');
-	      \$.jstree.reference('#jstree').select_node('child_node_1');
-	    });
-	  });
-    </script>
-    $endif$
   </body>
 </html>
 

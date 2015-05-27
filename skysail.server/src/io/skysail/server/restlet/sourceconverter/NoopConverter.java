@@ -15,7 +15,7 @@ public class NoopConverter extends AbstractSourceConverter implements SourceConv
     }
 
     @Override
-    public Object convert(SkysailServerResource<?> resource, List<Field> fields) {
+    public Object convert(SkysailServerResource<?> resource, List<Field> fields, String indexPageName) {
         return getSource();
     }
 

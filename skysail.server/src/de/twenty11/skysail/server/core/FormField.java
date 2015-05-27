@@ -2,6 +2,7 @@ package de.twenty11.skysail.server.core;
 
 import io.skysail.api.forms.*;
 import io.skysail.api.responses.*;
+import io.skysail.server.forms.ListView;
 import io.skysail.server.restlet.resources.SkysailServerResource;
 import io.skysail.server.utils.OrientDbUtils;
 
@@ -42,10 +43,10 @@ public class FormField {
     private InputType inputType;
     private Reference referenceAnnotation;
     private io.skysail.api.forms.Field formFieldAnnotation;
-
     private SkysailServerResource<?> resource;
-
     private Map<String, String> selectionOptions;
+
+    private ListView listViewAnnotation;
 
     public FormField(Field field, SkysailServerResource<?> resource, Object source) {
         extract(field, resource, source);
@@ -72,6 +73,7 @@ public class FormField {
         inputType = getFromFieldAnnotation(field);
         referenceAnnotation = field.getAnnotation(Reference.class);
         formFieldAnnotation = field.getAnnotation(io.skysail.api.forms.Field.class);
+        listViewAnnotation = field.getAnnotation(ListView.class);
         this.source = source;
     }
 
@@ -222,6 +224,13 @@ public class FormField {
 
     public int getRangeMax() {
         return 100;
+    }
+
+    public boolean isLink() {
+        if (listViewAnnotation != null) {
+            return listViewAnnotation.link() != null;
+        }
+        return false;
     }
 
     public Map<String, String> getSelectionProviderOptions() {

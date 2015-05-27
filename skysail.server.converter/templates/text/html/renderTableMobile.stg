@@ -1,0 +1,14 @@
+renderTableMobile(resource, source, fields, converter, messages) ::= <<
+  $resource.pagination$
+  $source:{ row | $renderRow(fields,row,i)$}$
+>>
+
+renderRow(fields, row,i) ::= <<
+  $fields: { field | $buttonForLink(row, field)$}$
+>>
+
+buttonForLink(row, field) :: <<
+  $if (field.link)$
+    $row.(field.name)$
+  $endif$
+>>

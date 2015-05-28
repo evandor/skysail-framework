@@ -3,11 +3,7 @@ package io.skysail.server.forms;
 import io.skysail.api.links.LinkRelation;
 import io.skysail.server.restlet.resources.SkysailServerResource;
 
-import java.lang.annotation.Documented;
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.annotation.Target;
+import java.lang.annotation.*;
 
 @Target({ ElementType.FIELD, ElementType.METHOD })
 @Retention(RetentionPolicy.RUNTIME)
@@ -33,5 +29,5 @@ public @interface ListView {
     int truncate() default -1;
 
     boolean hide() default false;
-
+    
 }

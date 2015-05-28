@@ -51,17 +51,14 @@ public class StringTemplateRenderer {
     public StringRepresentation createRepresenation(Object originalSource, Variant target,
             SkysailServerResource<?> resource) {
         
-        ResourceModel<SkysailServerResource<?>,?> requestModel = new ResourceModel(resource);
+        @SuppressWarnings({ "rawtypes", "unchecked" })
+        ResourceModel<SkysailServerResource<?>,?> resourceModel = new ResourceModel(resource);
 
         templateFromCookie = CookiesUtils.getTemplateFromCookie(resource.getRequest());
 
-        SourceWrapper sourceWrapper = new SourceWrapper(originalSource, target, requestModel);
+        SourceWrapper sourceWrapper = new SourceWrapper(originalSource, target, resourceModel, indexPageName);
         STGroupBundleDir stGroup = createSringTemplateGroup(resource, target.getMediaType().getName());
-
         ST index = getStringTemplateIndex(resource, stGroup);
-        
-        SourceWrapper sourceWrapper = new SourceWrapper(originalSource, target, resource, indexPageName);
-
         addAssociatedLinks(resource, sourceWrapper);
         addSubstitutions(sourceWrapper.getConvertedSource(), resource, index, target, menuProviders);
         checkForInspection(resource, index);
@@ -115,10 +112,6 @@ public class StringTemplateRenderer {
         List<Class<? extends SkysailServerResource<?>>> entityResourceClass = listServerResource
                 .getAssociatedServerResources();
         if (entityResourceClass != null && sourceWrapper.getConvertedSource() instanceof List) {
-            // EntityServerResource<?> esr =
-            // ResourceUtils.createEntityServerResource(entityResourceClass,
-            // resource);
-
             List<?> sourceAsList = (List<?>) sourceWrapper.getConvertedSource();
             for (Object object : sourceAsList) {
                 if (!(object instanceof Map)) {

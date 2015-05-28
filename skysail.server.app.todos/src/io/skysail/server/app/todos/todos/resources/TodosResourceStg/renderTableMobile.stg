@@ -18,10 +18,10 @@ buttonForLink(row, field) ::= <<
                     <a class="item-content item-link active-story" data-context-name="stories.0" href='$row.("_href")$'>
                       <div class="item-inner">
                         <div class="item-title-row">
-                          <div class="item-title">$row.(field.name)$</div>
-                          <div class="item-after"><span class="badge">?</span></div>
+                          <div class="item-title">$row.("title")$</div>
+                          
                         </div>
-                        <div class="item-subtitle">ascii.textfiles.com</div>
+                        <div class="item-subtitle">$row.("desc")$</div>
                         <!-- <div class="item-text">38 points by smacktoward 2 hours ago</div> -->
                       </div>
                     </a>

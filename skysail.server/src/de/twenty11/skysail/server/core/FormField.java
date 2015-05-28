@@ -21,7 +21,7 @@ import de.twenty11.skysail.server.um.domain.SkysailUser;
 
 /**
  * A FormField instance encapsulates information which can be used to display a
- * single field in a (web) form.
+ * single field in a (web) form, table or entity representation.
  *
  */
 @Slf4j
@@ -150,6 +150,10 @@ public class FormField {
 
     public String getTitleKey() {
         return MessagesUtils.getBaseKey(cls != null ? cls : getEntity().getClass(), this) + ".title";
+    }
+    
+    public String getHref() {
+        return null;
     }
 
     public boolean isDateType() {

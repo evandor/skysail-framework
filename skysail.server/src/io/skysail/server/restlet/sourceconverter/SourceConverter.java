@@ -1,9 +1,7 @@
 package io.skysail.server.restlet.sourceconverter;
 
+import io.skysail.server.model.ResourceModel;
 import io.skysail.server.restlet.resources.SkysailServerResource;
-
-import java.lang.reflect.Field;
-import java.util.List;
 
 import org.restlet.representation.Variant;
 
@@ -17,6 +15,6 @@ public interface SourceConverter {
 
     boolean isCompatible();
 
-    Object convert(SkysailServerResource<?> resource, List<Field> fields, String indexPageName);
+    Object convert(SkysailServerResource<?> resource, ResourceModel<SkysailServerResource<?>,?> resourceModel, String indexPageName);
 
 }

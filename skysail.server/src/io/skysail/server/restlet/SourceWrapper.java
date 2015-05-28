@@ -3,13 +3,9 @@ package io.skysail.server.restlet;
 import io.skysail.server.model.ResourceModel;
 import io.skysail.server.restlet.resources.SkysailServerResource;
 import io.skysail.server.restlet.sourceconverter.*;
-import io.skysail.server.utils.ReflectionUtils;
-
-import java.lang.reflect.Field;
-import java.util.List;
+import lombok.extern.slf4j.Slf4j;
 
 import org.restlet.representation.Variant;
-import org.slf4j.*;
 
 /**
  * This class converts the provided "source" object according to the logic
@@ -17,16 +13,13 @@ import org.slf4j.*;
  * source as well.
  * 
  */
+@Slf4j
 public class SourceWrapper {
-
-    private static final Logger logger = LoggerFactory.getLogger(SourceWrapper.class);
 
     private Object originalSource;
     private Variant target;
     private Object convertedSource;
-    //private List<Field> fields;
-
-    private String indexPageName;
+    private ResourceModel<SkysailServerResource<?>, ?> requestModel;
 
     /**
      * Uses target and resource information to convert the source object.
@@ -35,9 +28,10 @@ public class SourceWrapper {
      * @param target
      * @param requestModel
      */
-    public SourceWrapper(Object source, Variant target, ResourceModel<SkysailServerResource<?>, ?> requestModel) {
+    public SourceWrapper(Object source, Variant target, ResourceModel<SkysailServerResource<?>, ?> requestModel, String indexPageName) {
         this.originalSource = source;
-        this.convertedSource = convertSource(source, target, requestModel);
+        this.requestModel = requestModel;
+        this.convertedSource = convertSource(source, target, indexPageName);
     }
 
     public Object getOriginalSource() {
@@ -52,11 +46,11 @@ public class SourceWrapper {
         return target;
     }
 
-    private Object convertSource(Object source, Variant target, ResourceModel<SkysailServerResource<?>, ?> requestModel) {
+    private Object convertSource(Object source, Variant target, String indexPageName) {
         SourceConverter converter = ConverterFactory.getConverter(source, target);
-        logger.info("using converter '{}' for {}-Source: {}", new Object[] { converter.getClass().getSimpleName(),
+        log.info("using converter '{}' for {}-Source: {}", new Object[] { converter.getClass().getSimpleName(),
                 source.getClass().getSimpleName(), source });
-        return converter.convert(requestModel.getResource(), requestModel.getFields());
+        return converter.convert(requestModel.getResource(), requestModel, indexPageName);
     }
 
 }

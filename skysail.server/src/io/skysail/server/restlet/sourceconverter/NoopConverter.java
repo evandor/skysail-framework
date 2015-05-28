@@ -1,10 +1,7 @@
 package io.skysail.server.restlet.sourceconverter;
 
+import io.skysail.server.model.ResourceModel;
 import io.skysail.server.restlet.resources.SkysailServerResource;
-
-import java.lang.reflect.Field;
-import java.util.List;
-
 import de.twenty11.skysail.server.app.AbstractSourceConverter;
 
 public class NoopConverter extends AbstractSourceConverter implements SourceConverter {
@@ -15,7 +12,7 @@ public class NoopConverter extends AbstractSourceConverter implements SourceConv
     }
 
     @Override
-    public Object convert(SkysailServerResource<?> resource, List<Field> fields, String indexPageName) {
+    public Object convert(SkysailServerResource<?> resource, ResourceModel<SkysailServerResource<?>,?> resourceModel,  String indexPageName) {
         return getSource();
     }
 

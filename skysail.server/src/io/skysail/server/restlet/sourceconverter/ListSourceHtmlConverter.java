@@ -1,35 +1,19 @@
 package io.skysail.server.restlet.sourceconverter;
 
-import io.skysail.api.forms.Postfix;
-import io.skysail.api.forms.Prefix;
-import io.skysail.api.links.Link;
-import io.skysail.server.forms.ListView;
+import io.skysail.server.model.ResourceModel;
 import io.skysail.server.restlet.resources.SkysailServerResource;
 import io.skysail.server.utils.OrientDbUtils;
 
-import java.io.IOException;
-import java.lang.reflect.Field;
-import java.net.URL;
 import java.text.DateFormat;
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Locale;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
 import lombok.extern.slf4j.Slf4j;
 
-import org.restlet.data.Language;
-import org.restlet.data.MediaType;
-import org.restlet.data.Preference;
+import org.restlet.data.*;
 
 import aQute.bnd.annotation.component.Component;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.databind.*;
 
 import de.twenty11.skysail.server.app.AbstractSourceConverter;
 
@@ -42,7 +26,6 @@ public class ListSourceHtmlConverter extends AbstractSourceConverter implements 
 
     public ListSourceHtmlConverter() {
         mapper.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false);
-        // mapper.configure(SerializationFeature.FAIL_ON_EMPTY_BEANS, false);
     }
 
     @Override
@@ -51,7 +34,7 @@ public class ListSourceHtmlConverter extends AbstractSourceConverter implements 
     }
 
     @Override
-    public Object convert(SkysailServerResource<?> resource, List<Field> fields, String indexPageName) {
+    public Object convert(SkysailServerResource<?> resource, ResourceModel<SkysailServerResource<?>,?> resourceModel,  String indexPageName) {
 
         this.indexPageName = indexPageName;
         mapper.setDateFormat(DateFormat.getDateInstance(DateFormat.LONG, determineLocale(resource)));
@@ -61,11 +44,12 @@ public class ListSourceHtmlConverter extends AbstractSourceConverter implements 
 
             if (object instanceof String && ((String) object).length() > 0
                     && ((String) object).substring(0, 1).equals("{")) {
-                Map<String, Object> mapFromJson = treatAsJson((String) object, fields, resource);
-                if (mapFromJson != null) {
-                    result.add(mapFromJson);
-                }
-                continue;
+//                Map<String, Object> mapFromJson = treatAsJson((String) object, fields, resource);
+//                if (mapFromJson != null) {
+//                    result.add(mapFromJson);
+//                }
+                //continue;
+                throw new IllegalStateException("didnt expect to still get here");
             }
 
             if (object instanceof String) {
@@ -83,8 +67,9 @@ public class ListSourceHtmlConverter extends AbstractSourceConverter implements 
             if (!object.getClass().getName().contains("$$")) {
                 @SuppressWarnings("unchecked")
                 Map<String, Object> props = mapper.convertValue(object, Map.class);
-                fields.stream().forEach(f -> check(f, props, resource));
-                result.add(props);
+                //resourceModel.getFields().stream().forEach(f -> check(f, props, resource));
+                Map<String, Object> props2  = resourceModel.dataFromMap(props);
+                result.add(props2);
                 continue;
             }
             Map<String, Object> map = OrientDbUtils.toMap(object);
@@ -109,69 +94,7 @@ public class ListSourceHtmlConverter extends AbstractSourceConverter implements 
         return localeToUse;
     }
 
-    private Map<String, Object> treatAsJson(String json, List<Field> fields, SkysailServerResource<?> resource) {
-        try {
-            Map<String, Object> result = mapper.readValue(json, new TypeReference<HashMap<String, Object>>() {
-            });
-            fields.stream().forEach(f -> check(f, result, resource));
-            return result;
-        } catch (IOException e) {
-            log.error(e.getMessage(), e);
-            return null;
-        }
-    }
-
-    private Object check(Field f, Map<String, Object> result, SkysailServerResource<?> resource) {
-        ListView listViewAnnotation = f.getAnnotation(io.skysail.server.forms.ListView.class);
-        if (listViewAnnotation == null) {
-            return null;
-        }
-        String newValue = null;
-        if (listViewAnnotation.truncate() > 3) {
-            //if (f.getName() instanceof String) {
-                String oldValue = newValue = (String) result.get(f.getName());
-                if (oldValue != null && oldValue.length() > listViewAnnotation.truncate()) {
-                    newValue = "<span title='" + oldValue + "'>"
-                            + oldValue.substring(0, listViewAnnotation.truncate() - 3) + "...</span>";
-                }
-            //}
-        }
-        if (URL.class.equals(f.getType())) {
-            newValue = "<a href='" + result.get(f.getName()).toString() + "' target=\"_blank\">" + newValue + "</a>";
-        } else {
-            Class<? extends SkysailServerResource<?>> linkedResource = listViewAnnotation.link();
-            if (linkedResource != null) {
-                List<Link> links = resource.getLinks();
-                String id = result.get("id") != null ? result.get("id").toString().replace("#", "") : null;
-                if (links != null && id != null) {
-                    Optional<Link> findFirst = links.stream().filter(l -> {
-                        return linkedResource.equals(l.getCls()) && id.equals(l.getRefId());
-                    }).findFirst();
-                    if (findFirst.isPresent()) {
-                        if (indexPageName.equals("indexMobile")) {
-                            newValue = "<a href='"+findFirst.get().getUri()+"'><input type='button' class='btn btn-primary btn-lg btn-block' value='" + newValue + "' /></a>";
-                        } else {
-                            newValue = "<a href='" + findFirst.get().getUri() + "'>" + newValue + "</a>";                            
-                        }
-                    }
-                }
-            }
-        }
-        Prefix prefix = f.getAnnotation(Prefix.class);
-        if (newValue != null && prefix != null) {
-            newValue = result.get(prefix.methodName()) + "&nbsp;" + newValue;
-        }
-        Postfix postfix = f.getAnnotation(Postfix.class);
-        if (newValue != null && postfix != null) {
-            newValue = newValue + "&nbsp;" + result.get(postfix.methodName());
-        }
-
-        if (newValue != null) {
-            result.put(f.getName(), newValue);
-        }
-        return null;
-    }
-
+ 
     @Override
     protected Comparator<String> getComparator(SkysailServerResource<?> resource) {
         return new Comparator<String>() {

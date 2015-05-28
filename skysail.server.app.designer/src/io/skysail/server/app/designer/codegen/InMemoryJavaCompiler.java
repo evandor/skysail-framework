@@ -1,35 +1,23 @@
 package io.skysail.server.app.designer.codegen;
 
 import io.skysail.api.links.Link;
-import io.skysail.server.app.designer.DesignerApplication;
-import io.skysail.server.app.designer.PostDynamicEntityServerResource;
+import io.skysail.server.app.designer.*;
 import io.skysail.server.restlet.resources.ListServerResource;
 import io.skysail.server.utils.CompositeClassLoader;
 
 import java.io.File;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
-import javax.tools.Diagnostic;
+import javax.tools.*;
 import javax.tools.Diagnostic.Kind;
-import javax.tools.DiagnosticCollector;
-import javax.tools.JavaCompiler;
-import javax.tools.JavaFileObject;
-import javax.tools.ToolProvider;
 import javax.validation.ConstraintViolation;
 
 import lombok.extern.slf4j.Slf4j;
 
 import org.apache.commons.beanutils.DynaProperty;
-import org.osgi.framework.Bundle;
-import org.osgi.framework.BundleContext;
+import org.osgi.framework.*;
 import org.restlet.resource.ServerResource;
 
 @Slf4j
@@ -43,28 +31,29 @@ public class InMemoryJavaCompiler {
     private static CompositeClassLoader customCL;
     
     static {
-        customCL = new CompositeClassLoader();
+        CompositeClassLoader customCL = new CompositeClassLoader();
         customCL.addClassLoader(Thread.currentThread().getContextClassLoader());
         customCL.addClassLoader(ListServerResource.class.getClassLoader());
         customCL.addClassLoader(DesignerApplication.class.getClassLoader());
         customCL.addClassLoader(PostDynamicEntityServerResource.class.getClassLoader());
         customCL.addClassLoader(DynaProperty.class.getClassLoader());
         customCL.addClassLoader(Link.class.getClassLoader());
-        
-    }
-    
 
-    public static void resetClassloader() {
-        customCL = new CompositeClassLoader();
-        customCL.addClassLoader(Thread.currentThread().getContextClassLoader());
-        customCL.addClassLoader(ListServerResource.class.getClassLoader());
-        customCL.addClassLoader(DesignerApplication.class.getClassLoader());
-        customCL.addClassLoader(PostDynamicEntityServerResource.class.getClassLoader());
-        customCL.addClassLoader(DynaProperty.class.getClassLoader());
-        customCL.addClassLoader(Link.class.getClassLoader());
         dcl = new DynamicClassLoader(customCL);
         fileManager.setClassLoader(dcl);
     }
+
+//    public static void resetClassloader() {
+//        customCL = new CompositeClassLoader();
+//        customCL.addClassLoader(Thread.currentThread().getContextClassLoader());
+//        customCL.addClassLoader(ListServerResource.class.getClassLoader());
+//        customCL.addClassLoader(DesignerApplication.class.getClassLoader());
+//        customCL.addClassLoader(PostDynamicEntityServerResource.class.getClassLoader());
+//        customCL.addClassLoader(DynaProperty.class.getClassLoader());
+//        customCL.addClassLoader(Link.class.getClassLoader());
+//        dcl = new DynamicClassLoader(customCL);
+//        fileManager.setClassLoader(dcl);
+//    }
     
     public static void collect(String className, String sourceCodeInText) throws Exception {
 
@@ -134,7 +123,6 @@ public class InMemoryJavaCompiler {
             }
         });
     }
-
 
     public static Class<?> getClass(String className) throws ClassNotFoundException {
         return dcl.loadClass(className);

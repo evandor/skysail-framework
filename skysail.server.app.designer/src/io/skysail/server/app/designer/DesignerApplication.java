@@ -2,47 +2,31 @@ package io.skysail.server.app.designer;
 
 import io.skysail.server.app.SkysailApplication;
 import io.skysail.server.app.designer.application.Application;
-import io.skysail.server.app.designer.application.resources.ApplicationResource;
-import io.skysail.server.app.designer.application.resources.ApplicationsResource;
-import io.skysail.server.app.designer.application.resources.PostApplicationResource;
-import io.skysail.server.app.designer.application.resources.PutApplicationResource;
-import io.skysail.server.app.designer.codegen.PostCompilationResource;
-import io.skysail.server.app.designer.codegen.SkysailCompiler;
+import io.skysail.server.app.designer.application.resources.*;
+import io.skysail.server.app.designer.codegen.*;
 import io.skysail.server.app.designer.entities.Entity;
-import io.skysail.server.app.designer.entities.resources.EntitiesResource;
-import io.skysail.server.app.designer.entities.resources.EntityResource;
-import io.skysail.server.app.designer.entities.resources.PostEntityResource;
-import io.skysail.server.app.designer.entities.resources.PostSubEntityResource;
-import io.skysail.server.app.designer.entities.resources.PutEntityResource;
+import io.skysail.server.app.designer.entities.resources.*;
 import io.skysail.server.app.designer.fields.EntityField;
-import io.skysail.server.app.designer.fields.resources.FieldResource;
-import io.skysail.server.app.designer.fields.resources.FieldsResource;
-import io.skysail.server.app.designer.fields.resources.PostFieldResource;
-import io.skysail.server.app.designer.fields.resources.PutFieldResource;
+import io.skysail.server.app.designer.fields.resources.*;
 import io.skysail.server.app.designer.repo.DesignerRepository;
 import io.skysail.server.db.DbRepository;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
-import java.util.SortedSet;
-import java.util.TreeSet;
+import java.util.*;
+import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
 import lombok.extern.slf4j.Slf4j;
-import aQute.bnd.annotation.component.Component;
-import aQute.bnd.annotation.component.Reference;
+
+import org.osgi.framework.BundleException;
+
+import aQute.bnd.annotation.component.*;
 
 import com.google.common.collect.Iterables;
 
 import de.twenty11.skysail.server.app.ApplicationProvider;
 import de.twenty11.skysail.server.beans.EntityDynaProperty;
-import de.twenty11.skysail.server.core.restlet.ApplicationContextId;
-import de.twenty11.skysail.server.core.restlet.RouteBuilder;
-import de.twenty11.skysail.server.services.MenuItem;
-import de.twenty11.skysail.server.services.MenuItemProvider;
+import de.twenty11.skysail.server.core.restlet.*;
+import de.twenty11.skysail.server.services.*;
 
 @Component(immediate = true)
 @Slf4j
@@ -82,6 +66,7 @@ public class DesignerApplication extends SkysailApplication implements MenuItemP
         router.attach(new RouteBuilder("/applications/{id}/entities/{" + ENTITY_ID + "}/fields/{"+FIELD_ID+"}", FieldResource.class));
         router.attach(new RouteBuilder("/applications/{id}/entities/{" + ENTITY_ID + "}/fields/{"+FIELD_ID+"}/", PutFieldResource.class));
 
+        compileApplications();
     }
    
     public void compileApplications() {
@@ -218,6 +203,23 @@ public class DesignerApplication extends SkysailApplication implements MenuItemP
             }
             return e.getId().replace("#", "").equals(entityId);
         }).findFirst();
+    }
+
+    public void updateBundle() {
+        Runnable command = new Runnable() {
+            
+            @Override
+            public void run() {
+                try {
+                    getBundle().update();
+                    //compileApplications();
+                } catch (BundleException e) {
+                    e.printStackTrace();
+                }
+                
+            }
+        };
+        getTaskService().schedule(command, 10, TimeUnit.SECONDS);
     }
 
 }

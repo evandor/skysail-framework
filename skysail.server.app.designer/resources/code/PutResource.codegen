@@ -28,7 +28,7 @@ public class $classname$ extends PutEntityServerResource<$entityname$> {
     }
 
     @Override
-    public AppDesignerMoneyBank getEntity() {
+    public $entityname$ getEntity() {
          return app.getRepository().getById($entityname$.class, id);
     }
     

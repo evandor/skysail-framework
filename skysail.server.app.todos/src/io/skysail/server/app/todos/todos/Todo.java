@@ -43,6 +43,10 @@ public class Todo implements Serializable, Identifiable {
     @NotNull
     @Size(min = 2)
     private String title;
+    
+    @Field(type = InputType.COLOR)
+    @ListView(hide = true)
+    private String tags;
 
     @Field(type = InputType.TEXTAREA)
     @ListView(truncate = 20)

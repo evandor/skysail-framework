@@ -219,7 +219,7 @@ public class DesignerApplication extends SkysailApplication implements MenuItemP
                 
             }
         };
-        getTaskService().schedule(command, 10, TimeUnit.SECONDS);
+        getTaskService().schedule(command, 1, TimeUnit.SECONDS);
     }
 
 }

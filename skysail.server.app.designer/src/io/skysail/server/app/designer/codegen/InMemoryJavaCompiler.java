@@ -40,21 +40,32 @@ public class InMemoryJavaCompiler {
     private static List<JavaFileObject> sourceCodes = new ArrayList<>();
     private static Map<String, CompiledCode> compiledCodes = new HashMap<>();
     private static CompiledCodeTrackingJavaFileManager fileManager = new CompiledCodeTrackingJavaFileManager(compiledCodes);
-
+    private static CompositeClassLoader customCL;
+    
     static {
-        CompositeClassLoader customCL = new CompositeClassLoader();
+        customCL = new CompositeClassLoader();
         customCL.addClassLoader(Thread.currentThread().getContextClassLoader());
         customCL.addClassLoader(ListServerResource.class.getClassLoader());
         customCL.addClassLoader(DesignerApplication.class.getClassLoader());
         customCL.addClassLoader(PostDynamicEntityServerResource.class.getClassLoader());
         customCL.addClassLoader(DynaProperty.class.getClassLoader());
         customCL.addClassLoader(Link.class.getClassLoader());
-        //customCL.addClassLoader(javax.persistence.Id.class.getClassLoader());
+        
+    }
+    
 
+    public static void resetClassloader() {
+        customCL = new CompositeClassLoader();
+        customCL.addClassLoader(Thread.currentThread().getContextClassLoader());
+        customCL.addClassLoader(ListServerResource.class.getClassLoader());
+        customCL.addClassLoader(DesignerApplication.class.getClassLoader());
+        customCL.addClassLoader(PostDynamicEntityServerResource.class.getClassLoader());
+        customCL.addClassLoader(DynaProperty.class.getClassLoader());
+        customCL.addClassLoader(Link.class.getClassLoader());
         dcl = new DynamicClassLoader(customCL);
         fileManager.setClassLoader(dcl);
     }
-
+    
     public static void collect(String className, String sourceCodeInText) throws Exception {
 
         SourceCode sourceCode = new SourceCode(className, sourceCodeInText);
@@ -128,4 +139,6 @@ public class InMemoryJavaCompiler {
     public static Class<?> getClass(String className) throws ClassNotFoundException {
         return dcl.loadClass(className);
     }
+
+
 }

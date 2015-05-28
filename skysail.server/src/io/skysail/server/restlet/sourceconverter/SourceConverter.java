@@ -15,6 +15,6 @@ public interface SourceConverter {
 
     boolean isCompatible();
 
-    Object convert(SkysailServerResource<?> resource, ResourceModel<SkysailServerResource<?>,?> resourceModel, String indexPageName);
+    Object convert(SkysailServerResource<?> resource, ResourceModel<SkysailServerResource<?>,?> resourceModel);
 
 }

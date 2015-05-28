@@ -1,27 +1,39 @@
 package io.skysail.server.testsupport;
 
-import io.skysail.api.validation.*;
+import io.skysail.api.validation.DefaultValidationImpl;
+import io.skysail.api.validation.ValidatorService;
 import io.skysail.server.app.SkysailApplication;
 
 import java.math.BigInteger;
 import java.security.SecureRandom;
-import java.util.concurrent.*;
+import java.util.Locale;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentMap;
 import java.util.concurrent.atomic.AtomicReference;
 
-import org.apache.shiro.*;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.UnavailableSecurityManagerException;
 import org.apache.shiro.subject.Subject;
 import org.apache.shiro.subject.support.SubjectThreadState;
-import org.apache.shiro.util.*;
-import org.junit.*;
+import org.apache.shiro.util.LifecycleUtils;
+import org.apache.shiro.util.ThreadState;
+import org.junit.After;
+import org.junit.AfterClass;
+import org.junit.BeforeClass;
+import org.junit.Rule;
 import org.junit.rules.ExpectedException;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
-import org.restlet.*;
-import org.restlet.data.*;
+import org.restlet.Request;
+import org.restlet.Response;
+import org.restlet.data.ClientInfo;
+import org.restlet.data.Form;
+import org.restlet.data.Reference;
 import org.restlet.resource.Resource;
 
-import de.twenty11.skysail.server.services.*;
+import de.twenty11.skysail.server.services.EncryptorService;
+import de.twenty11.skysail.server.services.UserManager;
 import de.twenty11.skysail.server.um.domain.SkysailUser;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -57,6 +69,9 @@ public class ResourceTestBase {
         testDb = new TestDb();
         testDb.startDb();
         testDb.activate();
+        
+        Locale englishLocale = Locale.ENGLISH;
+        Locale.setDefault(englishLocale);
     }
 
     public void setUp(SkysailApplication application, Resource resource) throws Exception {

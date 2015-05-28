@@ -4,43 +4,69 @@ import io.skysail.server.model.ResourceModel;
 import io.skysail.server.restlet.resources.SkysailServerResource;
 import io.skysail.server.utils.OrientDbUtils;
 
+import java.lang.reflect.Method;
 import java.text.DateFormat;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+import java.util.Optional;
+import java.util.SortedMap;
+import java.util.TreeMap;
+import java.util.stream.Collectors;
 
-import lombok.extern.slf4j.Slf4j;
+import org.restlet.data.Language;
+import org.restlet.data.MediaType;
+import org.restlet.data.Preference;
+import org.restlet.representation.Variant;
 
-import org.restlet.data.*;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 
-import aQute.bnd.annotation.component.Component;
-
-import com.fasterxml.jackson.databind.*;
-
-import de.twenty11.skysail.server.app.AbstractSourceConverter;
-
-@Component
-@Slf4j
-public class ListSourceHtmlConverter extends AbstractSourceConverter implements SourceConverter {
+public class ListSourceHtmlConverter {
 
     private volatile ObjectMapper mapper = new ObjectMapper();
-    private String indexPageName;
-
-    public ListSourceHtmlConverter() {
+    
+    private Object source;
+    private Variant target;
+    
+    public ListSourceHtmlConverter(Object source, Variant target) {
         mapper.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false);
+        this.source = source;
+        this.target = target;
     }
 
-    @Override
+    protected Optional<Method> findHandlerMethod(Method[] methods) {
+        Optional<Method> getHandlerMethod = Arrays.stream(methods).filter(m -> m.getName().contains("getHandler"))
+                .findFirst();
+        return getHandlerMethod;
+    }
+    
+    protected SortedMap<String, Object> mapSource2(Object source, Map<String, Object> map, SkysailServerResource<?> resource) {
+        SortedMap<String, Object> objectMap = new TreeMap<>(getComparator(resource));
+        Map<String, Object> collect = map.entrySet().stream().filter(entry -> {
+            return !entry.getKey().startsWith("@") || entry.getKey().equals("@rid");
+        }).collect(Collectors.toMap(p -> p.getKey(), p -> p.getValue() == null ? "&lt;null&gt;" : p.getValue()));
+        objectMap.putAll(collect);
+        return objectMap;
+    }
+    
     public boolean isCompatible() {
-        return getSource() instanceof List && getTarget().getMediaType().equals(MediaType.TEXT_HTML);
+        return source instanceof List && target.getMediaType().equals(MediaType.TEXT_HTML);
     }
 
-    @Override
-    public Object convert(SkysailServerResource<?> resource, ResourceModel<SkysailServerResource<?>,?> resourceModel,  String indexPageName) {
+    public List<Map<String, Object>> convert(ResourceModel<SkysailServerResource<?>,?> resourceModel) {
+        
+        if (!isCompatible()) {
+            return null;//(Map<String, Object>)source;
+        }
 
-        this.indexPageName = indexPageName;
-        mapper.setDateFormat(DateFormat.getDateInstance(DateFormat.LONG, determineLocale(resource)));
+        mapper.setDateFormat(DateFormat.getDateInstance(DateFormat.LONG, determineLocale(resourceModel.getResource())));
 
-        List<Object> result = new ArrayList<Object>();
-        for (Object object : (List<?>) getSource()) {
+        List< Map<String, Object>> result = new ArrayList<>();
+        for (Object object : (List<?>) source) {
 
             if (object instanceof String && ((String) object).length() > 0
                     && ((String) object).substring(0, 1).equals("{")) {
@@ -53,16 +79,19 @@ public class ListSourceHtmlConverter extends AbstractSourceConverter implements 
             }
 
             if (object instanceof String) {
-                result.add(object);
-                continue;
+               // result.add(object);
+                throw new IllegalStateException("didnt expect to still get here");
+                //continue;
             }
             if (object instanceof Map) {
-                result.add(object);
-                continue;
+                //result.add(object);
+                //continue;
+                throw new IllegalStateException("didnt expect to still get here");
             }
             if (object.getClass().isEnum()) {
-                result.add(object.toString());
-                continue;
+                //result.add(object.toString());
+                throw new IllegalStateException("didnt expect to still get here");
+                //continue;
             }
             if (!object.getClass().getName().contains("$$")) {
                 @SuppressWarnings("unchecked")
@@ -74,7 +103,8 @@ public class ListSourceHtmlConverter extends AbstractSourceConverter implements 
             }
             Map<String, Object> map = OrientDbUtils.toMap(object);
             if (map != null) {
-                result.add(mapSource2(object, map, resource));
+                result.add(mapSource2(object, map, resourceModel.getResource()));
+                throw new IllegalStateException("didnt expect to still get here");
             }
         }
         return result;
@@ -94,8 +124,6 @@ public class ListSourceHtmlConverter extends AbstractSourceConverter implements 
         return localeToUse;
     }
 
- 
-    @Override
     protected Comparator<String> getComparator(SkysailServerResource<?> resource) {
         return new Comparator<String>() {
 

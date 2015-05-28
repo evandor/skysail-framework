@@ -170,7 +170,7 @@ public class SkysailCompiler {
         } catch (Exception e) {
             log.error(e.getMessage(), e);
         }
-        String filename = "../skysail.server.app.designer/src-gen/" + classNameToPath(className);
+        String filename = "../skysail.server.app.designer.gencode/src/" + classNameToPath(className);
         // String filename = "../skysail.server.app.designer/src/" +
         // classNameToPath(className);
         try {

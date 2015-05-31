@@ -1,4 +1,5 @@
 showFormMobile(resource, source, fields, messages) ::= <<
+
   $if (source.constraintViolationsResponse && source.classlevelViolationMessage)$
     Sorry, there was at least one problem submitting this form:
     <div class="alert alert-danger" role="alert">
@@ -10,15 +11,19 @@ showFormMobile(resource, source, fields, messages) ::= <<
   $endif$
   
   $if (resource.postEntityServerResource)$
-    <form action="$source.formTarget$" method="POST" class="form-horizontal" role="form" id="form" name="form">
-      $handleField(resource, source, first(fields), messages,"1", " autofocus")$
-      $rest(fields):{ field | $handleField(resource, source, field, messages,i, "")$}$
-      $submitPost("Submit",2,10,length(fields))$
+    <form action="$source.formTarget$" method="POST" class="pure-form pure-form-stacked" role="form" id="form" name="form">
+      <fieldset>
+        $handleField(resource, source, first(fields), messages,"1", " autofocus")$
+        $rest(fields):{ field | $handleField(resource, source, field, messages,i, "")$}$
+        $submitPost("Submit",2,10,length(fields))$
+      </fieldset>  
     </form>
   $elseif (resource.putEntityServerResource)$
-    <form action="$source.formTarget$?method=PUT" method="POST" class="form-horizontal" role="form" id="form" name="form">
-      $fields:{ field | $handleField(resource, source, field, messages,i,"")$}$
-      $submitPut("Update",1,9,length(fields))$
+    <form action="$source.formTarget$?method=PUT" method="POST" class="pure-form pure-form-stacked" role="form" id="form" name="form">
+      <fieldset>
+        $fields:{ field | $handleField(resource, source, field, messages,i,"")$}$
+        $submitPut("Update",1,9,length(fields))$
+      </fieldset>
     </form>
   $endif$
 
@@ -27,8 +32,8 @@ showFormMobile(resource, source, fields, messages) ::= <<
 submitPost(label, o1,o2,tabindex) ::= <<
       <div class="form-group">
         <div class="col-sm-offset-$o1$ col-sm-$o2$">
-          <button type="submit" name="submit" value="submit" class="btn btn-default" tabindex="$tabindex$">$label$</button>&nbsp;
-          <button type="submit" name="submit" value="submitAndNew" class="btn btn-default" tabindex="$tabindex$">$label$ and new</button>
+          <button type="submit" name="submit" value="submit" class="pure-button pure-button-primary" tabindex="$tabindex$">$label$</button>&nbsp;
+          <button type="submit" name="submit" value="submitAndNew" class="pure-button pure-button-primary" tabindex="$tabindex$">$label$ and new</button>
         </div>
       </div>
 >>
@@ -36,7 +41,7 @@ submitPost(label, o1,o2,tabindex) ::= <<
 submitPut(label, o1,o2,tabindex) ::= <<
       <div class="form-group">
         <div class="col-sm-offset-$o1$ col-sm-$o2$">
-          <button type="submit" id="submitButton" name="submitButton" class="btn btn-default" tabindex="$tabindex$">$label$</button>&nbsp;
+          <button type="submit" id="submitButton" name="submitButton" class="pure-button pure-button-primary" tabindex="$tabindex$">$label$</button>&nbsp;
         </div>
       </div>
 >>
@@ -149,13 +154,9 @@ handleInputField(resource, source, field, messages,i,autofocus) ::= <<
           </div>
         </div>  
       $else$
-        <div class='form-group'>
-          <label for='$field.name$' class='col-sm-2 control-label' style="text-align: left;">$helpmessage(messages, field.nameKey)$  $if(converter.edit)$<a href='/i18n/messages/$source.entity.entity.class.name$.$field.name$/'><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>$endif$</label>
-          <div class='col-sm-10'>
-            <input type="$field.inputType$" class='form-control' name='$field.name$' id='$field.name$' placeholder='$helpmessage(messages, field.placeholderKey)$' value='$field.value$' tabindex="$i$" $autofocus$ title="$helpmessage(messages, field.placeholderKey)$">
-            $renderDescription(source,field,converter)$
-          </div>
-        </div>
+          <label for='$field.name$'>*** $helpmessage(messages, field.nameKey)$</label>
+          <input type="$field.inputType$" name='$field.name$' id='$field.name$' placeholder='$helpmessage(messages, field.placeholderKey)$' value='$field.value$' tabindex="$i$" $autofocus$ title="$helpmessage(messages, field.placeholderKey)$">
+          $renderDescription(source,field,converter)$
       $endif$    
   $endif$    
 >>

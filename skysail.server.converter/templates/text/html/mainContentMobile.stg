@@ -8,7 +8,7 @@ $elseif(source.list)$
   $renderTableMobile(resource, source, fields, converter, messages)$
 $else$
   <!-- render single entity -->
-  $renderEntity(user, resource, source, fields)$
+  $renderEntityMobile(user, resource, source, fields)$
 $endif$ 
 
 >>

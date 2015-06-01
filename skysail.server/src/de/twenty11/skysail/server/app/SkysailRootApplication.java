@@ -1,6 +1,7 @@
 package de.twenty11.skysail.server.app;
 
 import io.skysail.server.app.SkysailApplication;
+import io.skysail.server.utils.MenuItemUtils;
 
 import java.util.*;
 import java.util.concurrent.atomic.AtomicReference;
@@ -9,6 +10,7 @@ import java.util.stream.Collectors;
 import org.apache.shiro.SecurityUtils;
 import org.osgi.service.cm.*;
 import org.osgi.service.component.ComponentContext;
+import org.restlet.Request;
 
 import aQute.bnd.annotation.component.*;
 import de.twenty11.skysail.server.app.profile.*;
@@ -16,6 +18,7 @@ import de.twenty11.skysail.server.core.restlet.RouteBuilder;
 import de.twenty11.skysail.server.help.*;
 import de.twenty11.skysail.server.resources.*;
 import de.twenty11.skysail.server.services.*;
+import de.twenty11.skysail.server.services.MenuItem.Category;
 
 @Component(immediate = true, properties = { "service.pid=landingpages" })
 public class SkysailRootApplication extends SkysailApplication implements ApplicationProvider, ResourceBundleProvider,
@@ -176,6 +179,11 @@ public class SkysailRootApplication extends SkysailApplication implements Applic
 
     public void clearCache(String username) {
         getAuthenticationService().clearCache(username);
+    }
+
+    public Set<MenuItem> getMainMenuItems(Request request) {
+        Set<MenuItemProvider> providers = menuProviders.stream().map(m -> m.get()).collect(Collectors.toSet());
+        return MenuItemUtils.getMenuItems(providers, request, Category.APPLICATION_MAIN_MENU);
     }
 
 }

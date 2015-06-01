@@ -8,6 +8,16 @@ import java.util.*;
 
 import lombok.Getter;
 
+/**
+ * The model of the resource from which the representation is derived.
+ * 
+ * <p>
+ * Contrary to (e.g.) a JSON representation of an entity, an HTML representation... TODO  
+ * </p>
+ *
+ * @param <R>
+ * @param <T>
+ */
 public class ResourceModel<R extends SkysailServerResource<T>, T> {
 
     @Getter
@@ -15,6 +25,9 @@ public class ResourceModel<R extends SkysailServerResource<T>, T> {
 
     private Class<?> parameterType;
     private EntityModel entityModel;
+    
+    @Getter
+    private String title = "Skysail";
 
     public ResourceModel(R resource) {
         this.resource = resource;

@@ -1,5 +1,7 @@
-mainContentMobile(user, resource, converter, messages, source, fields) ::= <<
+mainContentMobile(user, resource, converter, messages, source, fields, model) ::= <<
   
+$contentHeader(converter, messages)$
+
 $if(source.form)$
   <!-- showForm -->
   $showFormMobile(resource, source, fields, messages)$ 
@@ -8,7 +10,7 @@ $elseif(source.list)$
   $renderTableMobile(resource, source, fields, converter, messages)$
 $else$
   <!-- render single entity -->
-  $renderEntity(user, resource, source, fields)$
+  $renderEntityMobile(user, resource, source, fields)$
 $endif$ 
 
 >>

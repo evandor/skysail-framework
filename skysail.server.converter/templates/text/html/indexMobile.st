@@ -1,43 +1,40 @@
-indexMobile(user, messages, source, converter, services, resource, fields, target) ::= <<
-<html class="retina watch-active-state">
+indexMobile(user, messages, source, converter, services, resource, fields, target, model) ::= <<
+<!doctype html>
+<html>
 <head>
-  <meta charset="utf-8">
-  <meta content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui" name="viewport">
-  <meta content="yes" name="apple-mobile-web-app-capable">
-  <title>Skysail Mobile</title>
-  <link type="text/css" rel="stylesheet" media="all" href="/webapp/css/canJsMain.css">
+  
+    <title>My Page</title>
+  
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+    <!-- <link rel="shortcut icon" href="../favicon.ico"> -->
+    <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,700">
+
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
 </head>
 
-<body class="">
-
-  <div class="statusbar-overlay"></div>
-  <div class="panel-overlay"></div>
-  <div class="appmenu-overlay open"></div>
-  <div class="appmenu"></div>
-  <div class="views tabs toolbar-through">
-    <div class="view view-main" data-page="">
-      <div class="navbar">
-      $menuNavMobile()$
-      </div>
-      
-      <!-- http://www.idangero.us/framework7/apps/ -->
-      <div class="pages navbar-through toolbar-through">
-        <div class="page page-on-center" data-page="">
-          <div class="page-content page_list_page controller">
-
-$mainContentMobile(user, resource, converter, messages, source, fields)$
-
-          </div>
+<body>
+    <div data-role="page">
+ 
+        <div data-role="header" style="overflow:hidden;">
+          <h1><a href='/'>$model.title$</a></h1>
+          $if(user.principal)$
+            <a href="/_logout" class="ui-btn-right">Logout</a>
+          $else$
+            <a href="/_login" data-icon="gear" class="ui-btn-right">Login</a>          
+          $endif$
         </div>
-      </div>
+ 
+        <div role="main" class="ui-content">
+            $mainContentMobile(user, resource, converter, messages, source, fields, model)$
+        
+            <!-- 
+          <p><a href="#" data-role="button" data-icon="star" data-theme="e">Button</a></p> -->
+        </div>
     </div>
-  </div>
-  <div style="display: none;" class="popup">
-    <div class="view ">
-      <div class="navbar"></div>
-      <div class="pages navbar-through toolbar-through"></div>
-    </div>
-  </div>
 </body>
 </html>
 >>

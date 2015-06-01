@@ -1,24 +1,16 @@
 package io.skysail.server.app.bookmarks;
 
 import io.skysail.api.domain.Identifiable;
-import io.skysail.api.forms.Field;
-import io.skysail.api.forms.InputType;
-import io.skysail.api.forms.Prefix;
+import io.skysail.api.forms.*;
 import io.skysail.server.app.bookmarks.resources.BookmarkResource;
 import io.skysail.server.forms.ListView;
 
-import java.net.MalformedURLException;
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.net.URL;
+import java.net.*;
 import java.util.Date;
 
 import javax.persistence.Id;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -43,6 +35,9 @@ public class Bookmark implements Identifiable {
     @Field(type = InputType.TEXTAREA)
     @ListView(truncate = 10)
     private String desc;
+    
+    @Field(type = InputType.TAGS)
+    private String tags;
 
     @Field(type = InputType.READONLY)
     private Date created;

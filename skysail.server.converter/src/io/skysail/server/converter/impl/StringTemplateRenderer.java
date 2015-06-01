@@ -25,7 +25,6 @@ import org.restlet.representation.*;
 import org.restlet.resource.Resource;
 import org.stringtemplate.v4.ST;
 
-import de.twenty11.skysail.server.core.FormField;
 import de.twenty11.skysail.server.core.restlet.ResourceContextId;
 import de.twenty11.skysail.server.core.restlet.utils.CookiesUtils;
 import de.twenty11.skysail.server.services.MenuItemProvider;
@@ -52,7 +51,7 @@ public class StringTemplateRenderer {
             SkysailServerResource<?> resource) {
         
         @SuppressWarnings({ "rawtypes", "unchecked" })
-        ResourceModel<SkysailServerResource<?>,?> resourceModel = new ResourceModel(resource);
+        ResourceModel<SkysailServerResource<?>,?> resourceModel = new ResourceModel(resource, source);
 
         templateFromCookie = CookiesUtils.getTemplateFromCookie(resource.getRequest());
 
@@ -222,19 +221,20 @@ public class StringTemplateRenderer {
             decl.add("source", new STSourceWrapper(source));
         }
 
-        List<FormField> fields = null;
+//        List<FormField> fields = null;
+//
+//        FieldFactory fieldFactory = FieldsFactory.getFactory(source, resource);
+//        log.info("using factory '{}' for {}-Source: {}", new Object[] { fieldFactory.getClass().getSimpleName(),
+//                source.getClass().getSimpleName(), source });
+//        try {
+//            fields = fieldFactory.determineFrom(resource);
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//        //decl.add("fields", new STFieldsWrapper(Collections.emptyList()));
+//        //decl.add("fields", new STFieldsWrapper(fields));
 
-        FieldFactory fieldFactory = FieldsFactory.getFactory(source, resource);
-        log.info("using factory '{}' for {}-Source: {}", new Object[] { fieldFactory.getClass().getSimpleName(),
-                source.getClass().getSimpleName(), source });
-        try {
-            fields = fieldFactory.determineFrom(resource);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        decl.add("fields", new STFieldsWrapper(fields));
-
-        Map<String, String> messages = resource.getMessages(fields);
+        Map<String, String> messages = resource.getMessages(resourceModel.getFormfields());
         messages.put("productName", getProductName());
         decl.add("messages", messages);
         decl.add("model", resourceModel);

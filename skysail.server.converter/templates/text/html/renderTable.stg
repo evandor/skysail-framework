@@ -1,10 +1,10 @@
-renderTable(resource, source, fields, converter, messages) ::= <<
+renderTable(resource, source, fields, converter, messages, model) ::= <<
 
   $resource.pagination$
   
   <table class="table table-striped">
-    <tr>$renderHeader(fields, converter)$<th>Actions</th></tr>
-    $source:{ row | $renderRow(fields,row,i)$}$
+    <tr>$renderHeader(model.formfields, converter)$<th>Actions</th></tr>
+    $source:{ row | $renderRow(model.formfields,row,i)$}$
   </table>
 >>
 

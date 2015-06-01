@@ -1,4 +1,4 @@
-showFormMobile(resource, source, fields, messages) ::= <<
+showFormMobile(resource, source, fields, messages, model) ::= <<
 
   $if (source.constraintViolationsResponse && source.classlevelViolationMessage)$
     Sorry, there was at least one problem submitting this form:
@@ -13,16 +13,16 @@ showFormMobile(resource, source, fields, messages) ::= <<
   $if (resource.postEntityServerResource)$
     <form action="$source.formTarget$" method="POST" class="pure-form pure-form-stacked" role="form" id="form" name="form">
       <fieldset>
-        $handleField(resource, source, first(fields), messages,"1", " autofocus")$
-        $rest(fields):{ field | $handleField(resource, source, field, messages,i, "")$}$
-        $submitPost("Submit",2,10,length(fields))$
+        $handleField(resource, source, first(model.formfields), messages,"1", " autofocus")$
+        $rest(model.formfields):{ field | $handleField(resource, source, field, messages,i, "")$}$
+        $submitPost("Submit",2,10,length(model.formfields))$
       </fieldset>  
     </form>
   $elseif (resource.putEntityServerResource)$
     <form action="$source.formTarget$?method=PUT" method="POST" class="pure-form pure-form-stacked" role="form" id="form" name="form">
       <fieldset>
-        $fields:{ field | $handleField(resource, source, field, messages,i,"")$}$
-        $submitPut("Update",1,9,length(fields))$
+        $model.formfields:{ field | $handleField(resource, source, field, messages,i,"")$}$
+        $submitPut("Update",1,9,length(model.formfields))$
       </fieldset>
     </form>
   $endif$

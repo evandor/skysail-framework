@@ -1,6 +1,6 @@
-renderTableMobile(resource, source, fields, converter, messages) ::= <<
+renderTableMobile(resource, source, fields, converter, messages, model) ::= <<
   <ul data-role="listview" data-inset="true" data-filter="false">
-    $source:{ row | $renderRow(fields,row,i)$}$
+    $source:{ row | $renderRow(model.formfields,row,i)$}$
   </ul>
 >>
 

@@ -50,7 +50,7 @@ public class TodoList implements Serializable, Identifiable {
     @Field(type = InputType.READONLY)
     private Date modified;
 
-    @Field(type = InputType.READONLY)//, listView = { ListViewEnum.HIDE })
+    @Field(type = InputType.READONLY)
     @ListView(hide = true)
     private String owner;
 

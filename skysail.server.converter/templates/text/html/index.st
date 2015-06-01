@@ -1,4 +1,4 @@
-index(user, messages, source, converter, services, resource, fields, target, model) ::= <<
+index(user, messages, source, converter, services, resource, target, model) ::= <<
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -61,9 +61,9 @@ index(user, messages, source, converter, services, resource, fields, target, mod
     </script>
     
     <script type="text/javascript" src="/webapp/js/select2.js"></script>
-	$select2JsHead(fields)$	
+	$select2JsHead(model.formfields)$	
     <script type="text/javascript" src="/webapp/js/moment.js"></script>
-    $endOfHeaderJS(fields)$
+    $endOfHeaderJS(model.formfields)$
     
   </head>
 
@@ -158,7 +158,7 @@ index(user, messages, source, converter, services, resource, fields, target, mod
         </div>
       </div>
       
-$mainContent(user, resource, converter, messages, source, fields)$
+$mainContent(user, resource, converter, messages, source, model)$
       
       $if(converter.debug)$
         $debug(resource, source, target, messages)$
@@ -172,7 +172,7 @@ $mainContent(user, resource, converter, messages, source, fields)$
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="/webapp/js/bootstrap.min.js"></script>
     $notifications(converter.notifications)$
-    $select2JsEndOfBody(fields)$ 
+    $select2JsEndOfBody(model.formfields)$ 
     
     $if(target.treeForm)$
     <script>

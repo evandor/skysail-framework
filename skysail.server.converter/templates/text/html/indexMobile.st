@@ -1,4 +1,4 @@
-indexMobile(user, messages, source, converter, services, resource, fields, target, model) ::= <<
+indexMobile(user, messages, source, converter, services, resource, target, model) ::= <<
 <!doctype html>
 <html>
 <head>
@@ -29,7 +29,7 @@ indexMobile(user, messages, source, converter, services, resource, fields, targe
         </div>
  
         <div role="main" class="ui-content">
-            $mainContentMobile(user, resource, converter, messages, source, fields, model)$
+            $mainContentMobile(user, resource, converter, messages, source, model)$
         
             <!-- 
           <p><a href="#" data-role="button" data-icon="star" data-theme="e">Button</a></p> -->

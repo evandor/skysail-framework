@@ -6,24 +6,13 @@ import io.skysail.server.utils.OrientDbUtils;
 
 import java.lang.reflect.Method;
 import java.text.DateFormat;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Locale;
-import java.util.Map;
-import java.util.Optional;
-import java.util.SortedMap;
-import java.util.TreeMap;
+import java.util.*;
 import java.util.stream.Collectors;
 
-import org.restlet.data.Language;
-import org.restlet.data.MediaType;
-import org.restlet.data.Preference;
+import org.restlet.data.*;
 import org.restlet.representation.Variant;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.databind.*;
 
 public class ListSourceHtmlConverter {
 
@@ -65,7 +54,7 @@ public class ListSourceHtmlConverter {
 
         mapper.setDateFormat(DateFormat.getDateInstance(DateFormat.LONG, determineLocale(resourceModel.getResource())));
 
-        List< Map<String, Object>> result = new ArrayList<>();
+        List<Map<String, Object>> result = new ArrayList<>();
         for (Object object : (List<?>) source) {
 
             if (object instanceof String && ((String) object).length() > 0
@@ -79,9 +68,10 @@ public class ListSourceHtmlConverter {
             }
 
             if (object instanceof String) {
-               // result.add(object);
-                throw new IllegalStateException("didnt expect to still get here");
-                //continue;
+               result.add(new HashMap<String,Object>() {{
+                   put("name", object);
+               }});
+               continue;
             }
             if (object instanceof Map) {
                 //result.add(object);

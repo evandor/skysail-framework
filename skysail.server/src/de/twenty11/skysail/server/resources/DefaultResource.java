@@ -1,12 +1,9 @@
 package de.twenty11.skysail.server.resources;
 
-import io.skysail.api.links.Link;
-import io.skysail.api.links.LinkRelation;
-import io.skysail.api.links.LinkRole;
+import io.skysail.api.links.*;
 import io.skysail.server.restlet.resources.ListServerResource;
 
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import org.apache.shiro.SecurityUtils;
@@ -20,11 +17,8 @@ import de.twenty11.skysail.server.services.MenuItem;
  * Default resource, attached to path "/".
  * 
  */
-public class DefaultResource extends ListServerResource<String> {
+public class DefaultResource extends ListServerResource<MenuItemDescriptor> {
     
-    public DefaultResource() {
-    }
-
     @Override
     public List<Link> getLinks() {
         SkysailRootApplication defaultApp = (SkysailRootApplication) getApplication();
@@ -57,8 +51,9 @@ public class DefaultResource extends ListServerResource<String> {
     }
 
     @Override
-    public List<String> getEntity() {
-        return null;
+    public List<MenuItemDescriptor> getEntity() {
+        Set<MenuItem> mainMenuItems = ((SkysailRootApplication)getApplication()).getMainMenuItems(getRequest());
+        return mainMenuItems.stream().map(i -> new MenuItemDescriptor(i)).collect(Collectors.toList());
     }
 
 }

@@ -232,7 +232,7 @@ public class FormField {
 
     public boolean isLink() {
         if (listViewAnnotation != null) {
-            return listViewAnnotation.link() != null;
+            return !listViewAnnotation.link().toString().equals("class io.skysail.server.forms.ListView$DEFAULT");
         }
         return false;
     }

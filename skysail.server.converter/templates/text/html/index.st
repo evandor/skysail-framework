@@ -1,4 +1,4 @@
-index(user, messages, source, converter, services, resource, fields, target) ::= <<
+index(user, messages, source, converter, services, resource, fields, target, model) ::= <<
 <!DOCTYPE html>
 <html lang="en">
   <head>

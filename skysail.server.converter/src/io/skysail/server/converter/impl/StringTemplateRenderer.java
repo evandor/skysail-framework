@@ -4,27 +4,15 @@ import io.skysail.api.favorites.FavoritesService;
 import io.skysail.api.links.Link;
 import io.skysail.api.peers.PeersProvider;
 import io.skysail.server.app.SkysailApplication;
-import io.skysail.server.converter.HtmlConverter;
-import io.skysail.server.converter.Notification;
+import io.skysail.server.converter.*;
 import io.skysail.server.converter.stringtemplate.STGroupBundleDir;
-import io.skysail.server.converter.wrapper.STFieldsWrapper;
-import io.skysail.server.converter.wrapper.STListSourceWrapper;
-import io.skysail.server.converter.wrapper.STServicesWrapper;
-import io.skysail.server.converter.wrapper.STSourceWrapper;
-import io.skysail.server.converter.wrapper.STTargetWrapper;
-import io.skysail.server.converter.wrapper.STUserWrapper;
-import io.skysail.server.converter.wrapper.StResourceWrapper;
+import io.skysail.server.converter.wrapper.*;
 import io.skysail.server.model.ResourceModel;
 import io.skysail.server.restlet.SourceWrapper;
-import io.skysail.server.restlet.resources.ListServerResource;
-import io.skysail.server.restlet.resources.SkysailServerResource;
+import io.skysail.server.restlet.resources.*;
 
 import java.net.URL;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import lombok.extern.slf4j.Slf4j;
@@ -33,8 +21,7 @@ import org.apache.shiro.SecurityUtils;
 import org.osgi.framework.Bundle;
 import org.restlet.Request;
 import org.restlet.data.MediaType;
-import org.restlet.representation.StringRepresentation;
-import org.restlet.representation.Variant;
+import org.restlet.representation.*;
 import org.restlet.resource.Resource;
 import org.stringtemplate.v4.ST;
 
@@ -76,7 +63,7 @@ public class StringTemplateRenderer {
         ST index = getStringTemplateIndex(resource, stGroup);
         
         addAssociatedLinks(resource, sourceWrapper);
-        addSubstitutions(sourceWrapper.getConvertedSource(), resource, index, target, menuProviders);
+        addSubstitutions(sourceWrapper.getConvertedSource(), resourceModel, index, target, menuProviders);
         checkForInspection(resource, index);
 
         return createRepresentation(index, stGroup);
@@ -216,9 +203,11 @@ public class StringTemplateRenderer {
     }
 
     @SuppressWarnings("unchecked")
-    private void addSubstitutions(Object source, SkysailServerResource<?> resource, ST decl, Variant target,
+    private void addSubstitutions(Object source, ResourceModel<SkysailServerResource<?>,?> resourceModel, ST decl, Variant target,
             Set<MenuItemProvider> menuProviders) {
 
+        SkysailServerResource<?> resource = resourceModel.getResource();
+        
         String installationFromCookie = CookiesUtils.getInstallationFromCookie(resource.getRequest());
 
         decl.add("user", new STUserWrapper(SecurityUtils.getSubject(), peersProvider, installationFromCookie));
@@ -248,6 +237,7 @@ public class StringTemplateRenderer {
         Map<String, String> messages = resource.getMessages(fields);
         messages.put("productName", getProductName());
         decl.add("messages", messages);
+        decl.add("model", resourceModel);
     }
 
     public List<Notification> getNotifications() {

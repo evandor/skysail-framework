@@ -1,13 +1,10 @@
 package io.skysail.server.um.simple.authentication;
 
 import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.cache.Cache;
-import org.apache.shiro.cache.CacheManager;
+import org.apache.shiro.cache.*;
 import org.apache.shiro.subject.Subject;
 import org.apache.shiro.util.ThreadContext;
-import org.restlet.Context;
-import org.restlet.Request;
-import org.restlet.Response;
+import org.restlet.*;
 import org.restlet.data.CookieSetting;
 import org.restlet.ext.crypto.CookieAuthenticator;
 import org.restlet.routing.Filter;
@@ -70,6 +67,7 @@ public class SkysailCookieAuthenticator extends CookieAuthenticator {
         if (Filter.STOP == result) {
             Subject subject = SecurityUtils.getSubject();
             subject.logout();
+            response.redirectSeeOther("/");
         }
         return result;
     }

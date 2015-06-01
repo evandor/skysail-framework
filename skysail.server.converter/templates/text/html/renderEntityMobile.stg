@@ -1,0 +1,15 @@
+renderEntity(user, resource, source, fields) ::= <<
+  <table class="table">
+    $fields: {field | $renderRow(field)$}$
+  </table>
+>>
+
+renderRow(field) ::= <<
+  <tr><th>$field.name$</th><td>&nbsp;<td>$field.value$</td><td>$handleDates(field)$</td></tr>
+>>
+
+handleDates(field) ::= <<
+    $if(field.dateType)$
+    <script>document.write(moment("$field.value$").fromNow());</script>
+    $endif$
+>>

@@ -33,7 +33,7 @@ submitPost(label, o1,o2,tabindex) ::= <<
       <div class="form-group">
         <div class="col-sm-offset-$o1$ col-sm-$o2$">
           <button type="submit" name="submit" value="submit" class="pure-button pure-button-primary" tabindex="$tabindex$">$label$</button>&nbsp;
-          <button type="submit" name="submit" value="submitAndNew" class="pure-button pure-button-primary" tabindex="$tabindex$">$label$ and new</button>
+         <!--  <button type="submit" name="submit" value="submitAndNew" class="pure-button pure-button-primary" tabindex="$tabindex$">$label$ and new</button>-->
         </div>
       </div>
 >>
@@ -154,8 +154,7 @@ handleInputField(resource, source, field, messages,i,autofocus) ::= <<
           </div>
         </div>  
       $else$
-          <label for='$field.name$'>*** $helpmessage(messages, field.nameKey)$</label>
-          <input type="$field.inputType$" name='$field.name$' id='$field.name$' placeholder='$helpmessage(messages, field.placeholderKey)$' value='$field.value$' tabindex="$i$" $autofocus$ title="$helpmessage(messages, field.placeholderKey)$">
+          <input type="$field.inputType$" name='$field.name$' id='$field.name$' placeholder='$helpmessage(messages, field.nameKey)$' value='$field.value$' tabindex="$i$" $autofocus$ title="$helpmessage(messages, field.placeholderKey)$">
           $renderDescription(source,field,converter)$
       $endif$    
   $endif$    

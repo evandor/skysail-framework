@@ -1,39 +1,15 @@
 renderTableMobile(resource, source, fields, converter, messages) ::= <<
-  $resource.pagination$
-  <div class="list-block media-list stories-list list-block-search searchbar-found">
-    <ul>
-      $source:{ row | $renderRow(fields,row,i)$}$
-    </ul>
-  </div>
+  $source:{ row | $renderRow(fields,row,i)$}$
 >>
 
 renderRow(fields, row,i) ::= <<
-  $fields: { field | $buttonForLink(row, field)$}$
+  <ul data-role="listview" data-inset="true" data-filter="false">
+    $fields: { field | $buttonForLink(row, field)$}$
+  </ul>
 >>
 
 buttonForLink(row, field) ::= <<
     $if (field.link)$
-                <li class="swipeout">
-                  <div class="swipeout-content">
-                    <a class="item-content item-link active-story" data-context-name="stories.0" href='$row.("_href")$'>
-                      <div class="item-inner">
-                        <div class="item-title-row">
-                          <div class="item-title">$row.("name")$</div>
-                          <div class="item-after"><span class="badge">$row.("todosCount")$</span></div>
-                        </div>
-                        <div class="item-subtitle">$row.("desc")$</div>
-                        <!-- <div class="item-text">38 points by smacktoward 2 hours ago</div> -->
-                      </div>
-                    </a>
-                  </div>
-                  <div class="swipeout-actions-left">
-                     <a class="external" target="_blank" href="http://ascii.textfiles.com/archives/4641"><i class="icon icon-watch"></i></a>
-                  </div>
-                </li>
+      <li><a href="$row.("_href")$">$row.("name")$</a></li>
     $endif$
 >>
-
-
-              
-                
-            

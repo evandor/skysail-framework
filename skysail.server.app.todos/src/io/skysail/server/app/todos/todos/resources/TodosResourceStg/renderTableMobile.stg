@@ -5,9 +5,7 @@ renderTableMobile(resource, source, fields, converter, messages) ::= <<
 >>
 
 renderRow(fields, row,i) ::= <<
-  <ul data-role="listview" data-inset="true" data-filter="false">
     $fields: { field | $buttonForLink(row, field)$}$
-  </ul>
 >>
 
 buttonForLink(row, field) ::= <<

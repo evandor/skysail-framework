@@ -27,7 +27,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleContext;
 
-import de.twenty11.skysail.server.beans.DynamicEntity;
 import de.twenty11.skysail.server.core.restlet.RouteBuilder;
 import de.twenty11.skysail.server.core.restlet.SkysailRouter;
 
@@ -92,7 +91,7 @@ public class SkysailCompiler {
     }
     
     public void updateRepository(DesignerRepository designerRepository) {
-        designerRepository.createWithSuperClass(DynamicEntity.class.getSimpleName(), entityName);
+        //designerRepository.createWithSuperClass(DynamicEntity.class.getSimpleName(), entityName);
         designerRepository.register(getClass(entityClassName));
     }
 

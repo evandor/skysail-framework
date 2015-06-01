@@ -2,34 +2,47 @@ package io.skysail.server.app.designer;
 
 import io.skysail.server.app.SkysailApplication;
 import io.skysail.server.app.designer.application.Application;
-import io.skysail.server.app.designer.application.resources.*;
-import io.skysail.server.app.designer.codegen.*;
+import io.skysail.server.app.designer.application.resources.ApplicationResource;
+import io.skysail.server.app.designer.application.resources.ApplicationsResource;
+import io.skysail.server.app.designer.application.resources.PostApplicationResource;
+import io.skysail.server.app.designer.application.resources.PutApplicationResource;
+import io.skysail.server.app.designer.codegen.PostCompilationResource;
+import io.skysail.server.app.designer.codegen.SkysailCompiler;
 import io.skysail.server.app.designer.entities.Entity;
-import io.skysail.server.app.designer.entities.resources.*;
+import io.skysail.server.app.designer.entities.resources.EntitiesResource;
+import io.skysail.server.app.designer.entities.resources.EntityResource;
+import io.skysail.server.app.designer.entities.resources.PostEntityResource;
+import io.skysail.server.app.designer.entities.resources.PostSubEntityResource;
+import io.skysail.server.app.designer.entities.resources.PutEntityResource;
 import io.skysail.server.app.designer.fields.EntityField;
-import io.skysail.server.app.designer.fields.resources.*;
+import io.skysail.server.app.designer.fields.resources.FieldResource;
+import io.skysail.server.app.designer.fields.resources.FieldsResource;
+import io.skysail.server.app.designer.fields.resources.PostFieldResource;
+import io.skysail.server.app.designer.fields.resources.PutFieldResource;
 import io.skysail.server.app.designer.repo.DesignerRepository;
 import io.skysail.server.db.DbRepository;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Optional;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
-import lombok.extern.slf4j.Slf4j;
-
 import org.osgi.framework.BundleException;
 
-import aQute.bnd.annotation.component.*;
+import aQute.bnd.annotation.component.Component;
+import aQute.bnd.annotation.component.Reference;
 
 import com.google.common.collect.Iterables;
 
 import de.twenty11.skysail.server.app.ApplicationProvider;
-import de.twenty11.skysail.server.beans.EntityDynaProperty;
-import de.twenty11.skysail.server.core.restlet.*;
-import de.twenty11.skysail.server.services.*;
+import de.twenty11.skysail.server.core.restlet.ApplicationContextId;
+import de.twenty11.skysail.server.core.restlet.RouteBuilder;
+import de.twenty11.skysail.server.services.MenuItem;
+import de.twenty11.skysail.server.services.MenuItemProvider;
 
 @Component(immediate = true)
-@Slf4j
 public class DesignerApplication extends SkysailApplication implements MenuItemProvider, ApplicationProvider {
 
     public static final String APP_NAME = "AppDesigner";
@@ -96,8 +109,7 @@ public class DesignerApplication extends SkysailApplication implements MenuItemP
         StringBuilder sb = new StringBuilder("AppDesigner");
         sb.append(a.getName());
         sb.append(Iterables.getLast(Arrays.asList(e.getName().split("\\."))));
-        String entityName = sb.toString(); // e.g. AppDesignerBankingAccount, e.getName() = Account
-        return entityName;
+        return sb.toString();
     }
 
     private void handleSubEntries(List<Entity> entities) {
@@ -153,32 +165,6 @@ public class DesignerApplication extends SkysailApplication implements MenuItemP
 
     public Application getApplication(String id) {
         return getRepository().getById(Application.class, id);
-    }
-
-    public static Set<EntityDynaProperty> getProperties(DesignerRepository repo, String beanName, String appIdentifier) {
-        // super.getProperties
-        SortedSet<EntityDynaProperty> properties = new TreeSet<>();
-
-        Application designerApplication = repo.getById(Application.class, appIdentifier.replace("#", ""));
-        List<Entity> entities = designerApplication.getEntities();
-
-        // streams dont't seem to work here ?!?! (with orientdb objects)
-        for (Entity entity : entities) {
-            if (beanName.equals(entity.getName())) {
-                List<EntityField> fields = entity.getFields();
-                for (EntityField entityField : fields) {
-                    properties.add(new EntityDynaProperty(entityField.getName(), entityField.getType(), String.class));
-                }
-                
-                List<Entity> subEntities = entity.getSubEntities();
-                for (Entity sub : subEntities) {
-                    properties.add(new EntityDynaProperty(sub.getName(), null, List.class));
-                }
-                break;
-            }
-        }
-
-        return properties;
     }
 
     public EntityField getEntityField(String appId, String entityId, String fieldId) {

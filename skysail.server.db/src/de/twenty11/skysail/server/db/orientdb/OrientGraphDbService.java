@@ -1,37 +1,47 @@
 package de.twenty11.skysail.server.db.orientdb;
 
-import io.skysail.server.db.*;
+import io.skysail.server.db.DbConfigurationProvider;
+import io.skysail.server.db.DbService2;
 
-import java.lang.reflect.Method;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import lombok.extern.slf4j.Slf4j;
 
-import org.apache.commons.beanutils.DynaBean;
 import org.osgi.service.component.ComponentContext;
 
-import aQute.bnd.annotation.component.*;
+import aQute.bnd.annotation.component.Activate;
+import aQute.bnd.annotation.component.Component;
+import aQute.bnd.annotation.component.Deactivate;
+import aQute.bnd.annotation.component.Reference;
 
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.orientechnologies.orient.client.remote.OEngineRemote;
 import com.orientechnologies.orient.core.Orient;
 import com.orientechnologies.orient.core.db.ODatabaseRecordThreadLocal;
 import com.orientechnologies.orient.core.db.document.ODatabaseDocumentTx;
 import com.orientechnologies.orient.core.id.ORecordId;
-import com.orientechnologies.orient.core.metadata.schema.*;
+import com.orientechnologies.orient.core.metadata.schema.OClass;
 import com.orientechnologies.orient.core.metadata.schema.OClass.INDEX_TYPE;
+import com.orientechnologies.orient.core.metadata.schema.OType;
 import com.orientechnologies.orient.core.record.impl.ODocument;
 import com.orientechnologies.orient.core.sql.OCommandSQL;
 import com.orientechnologies.orient.core.sql.query.OSQLSynchQuery;
-import com.orientechnologies.orient.object.db.*;
-import com.orientechnologies.orient.object.enhancement.OObjectProxyMethodHandler;
+import com.orientechnologies.orient.object.db.OObjectDatabasePool;
+import com.orientechnologies.orient.object.db.OObjectDatabaseTx;
 import com.orientechnologies.orient.object.metadata.schema.OSchemaProxyObject;
-import com.tinkerpop.blueprints.impls.orient.*;
+import com.tinkerpop.blueprints.impls.orient.OrientGraph;
+import com.tinkerpop.blueprints.impls.orient.OrientGraphFactory;
+import com.tinkerpop.blueprints.impls.orient.OrientGraphNoTx;
 
-import de.twenty11.skysail.server.beans.*;
 import de.twenty11.skysail.server.core.osgi.EventHelper;
-import de.twenty11.skysail.server.db.orientdb.impl.*;
+import de.twenty11.skysail.server.db.orientdb.impl.AbstractOrientDbService;
+import de.twenty11.skysail.server.db.orientdb.impl.Persister;
+import de.twenty11.skysail.server.db.orientdb.impl.Updater;
 import de.twenty11.skysail.server.events.EventHandler;
 
 @Component(immediate = true)
@@ -67,17 +77,6 @@ public class OrientGraphDbService extends AbstractOrientDbService implements DbS
 
     @Override
     public <T> Object persist(T entity, String... edges) {
-        if (entity instanceof DynamicEntity) {
-            DynamicEntity dynamicEntity = (DynamicEntity) entity;
-            ODatabaseDocumentTx documentDb = getDocumentDb();
-            ODocument doc = new ODocument(dynamicEntity.getInstance().getDynaClass().getName());
-            dynamicEntity.getProperties().stream().forEach(p -> {
-                doc.field(p.getName(), dynamicEntity.getString(p.getName()));
-            });
-            documentDb.save(doc);
-            documentDb.close();
-            return doc;
-        }
         return new Persister(getDb(), edges).persist(entity);
     }
 
@@ -103,38 +102,7 @@ public class OrientGraphDbService extends AbstractOrientDbService implements DbS
 
         List<T> detachedEntities = new ArrayList<>();
         for (T t : query) {
-            T newOne;
-            if (t instanceof DynamicEntity) {
-
-                Method[] methods = t.getClass().getMethods();
-                Optional<Method> getHandlerMethod = Arrays.stream(methods)
-                        .filter(m -> m.getName().contains("getHandler")).findFirst();
-                DynamicEntity de = (DynamicEntity) t;
-                if (getHandlerMethod.isPresent()) {
-                    DynaBean instance = de.getInstance();
-                    Set<EntityDynaProperty> properties = de.getProperties();
-                    try {
-                        HashMap<String, Object> objectMap = new HashMap<String, Object>();
-                        OObjectProxyMethodHandler handler = (OObjectProxyMethodHandler) getHandlerMethod.get()
-                                .invoke(t);
-                        ODocument doc = handler.getDoc();
-                        objectMap = mapper.readValue(doc.toJSON(), new TypeReference<Map<String, Object>>() {
-                        });
-                        System.out.println(objectMap);
-                        for (EntityDynaProperty entityDynaProperty : properties) {
-                            Object val = objectMap.get(entityDynaProperty.getName());
-                            instance.set(entityDynaProperty.getName(), val != null ? val.toString() : "");
-                        }
-                    } catch (Exception e) {
-                        log.error(e.getMessage(), e);
-                    }
-
-                }
-                newOne = (T) de;
-
-            } else {
-                newOne = objectDb.detachAll(t, true);
-            }
+            T newOne = objectDb.detachAll(t, true);
             detachedEntities.add(newOne);
         }
         return detachedEntities;

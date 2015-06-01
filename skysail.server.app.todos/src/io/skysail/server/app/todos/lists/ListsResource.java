@@ -1,7 +1,8 @@
 package io.skysail.server.app.todos.lists;
 
 import io.skysail.api.links.Link;
-import io.skysail.server.app.todos.*;
+import io.skysail.server.app.todos.TodoApplication;
+import io.skysail.server.app.todos.TodoList;
 import io.skysail.server.app.todos.todos.resources.PostTodoWoListResource;
 import io.skysail.server.queryfilter.Filter;
 import io.skysail.server.queryfilter.pagination.Pagination;
@@ -58,7 +59,9 @@ public class ListsResource extends ListServerResource<TodoList> {
 
     @Override
     public List<Link> getLinks() {
-        return super.getLinks(PostListResource.class, PostTodoWoListResource.class);
+        List<Link> links = super.getLinks(PostListResource.class, PostTodoWoListResource.class);
+       // links.add(new Link.Builder("/Todos/docs/api").title("API").build());
+        return links;
     }
 
 }

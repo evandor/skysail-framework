@@ -9,7 +9,9 @@ import java.util.List;
 
 public class EntityDescriptor {
 
+    @io.skysail.api.forms.Field
     private String name;
+    
     private String simpleName;
     private Class<?> rawType;
     private List<AnnotationDescriptor> annotationDescriptors = new ArrayList<AnnotationDescriptor>();

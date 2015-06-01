@@ -1,0 +1,70 @@
+package io.skysail.server.app.designer.gencode;
+
+import io.skysail.server.app.SkysailApplication;
+import io.skysail.server.db.DbRepository;
+
+import java.util.*;
+
+import aQute.bnd.annotation.component.*;
+import de.twenty11.skysail.server.app.ApplicationProvider;
+import de.twenty11.skysail.server.core.restlet.*;
+import de.twenty11.skysail.server.services.*;
+
+@Component(immediate = true)
+public class $classname$ extends SkysailApplication implements ApplicationProvider, MenuItemProvider {
+
+    public static final String LIST_ID = "lid";
+    public static final String TODO_ID = "id";
+    public static final String APP_NAME = "$appname$";
+
+    private $appname$Repository repo;
+
+    public $classname$() {
+        super(APP_NAME);
+        addToAppContext(ApplicationContextId.IMG, "/static/img/silk/page_link.png");
+    }
+
+    @Reference(dynamic = true, multiple = false, optional = false, target = "(name=$appname$Repository)")
+    public void setRepository(DbRepository repo) {
+        this.repo = ($appname$Repository) repo;
+    }
+
+    public void unsetRepository(DbRepository repo) {
+        this.repo = null;
+    }
+
+    public $appname$Repository getRepository() {
+        return repo;
+    }
+
+    @Override
+    protected void attach() {
+        super.attach();
+       /*router.attach(new RouteBuilder("", ListsResource.class));
+        
+        router.attach(new RouteBuilder("/Statuses", StatusesResource.class));
+        router.attach(new RouteBuilder("/Statuses/{statusname}", NextStatusesResource.class));
+
+        router.attach(new RouteBuilder("/Lists", ListsResource.class));
+        router.attach(new RouteBuilder("/Lists/", PostListResource.class));
+        router.attach(new RouteBuilder("/Lists/{"+LIST_ID+"}", ListResource.class));
+        router.attach(new RouteBuilder("/Lists/{"+LIST_ID+"}/", PutListResource.class));
+
+        router.attach(new RouteBuilder("/Lists/list:null/Todos/", PostTodoWoListResource.class));
+        
+        router.attach(new RouteBuilder("/Lists/{"+LIST_ID+"}/Todos/", PostTodoResource.class));
+        router.attach(new RouteBuilder("/Lists/{"+LIST_ID+"}/Todos", TodosResource.class));
+        router.attach(new RouteBuilder("/Lists/{"+LIST_ID+"}/Todos/{"+TODO_ID+"}", TodoResource.class));
+        router.attach(new RouteBuilder("/Lists/{"+LIST_ID+"}/Todos/{"+TODO_ID+"}/", PutTodoResource.class));
+        
+        router.attach(new RouteBuilder("/Lists/{"+LIST_ID+"}/ArchivedTodos", ArchivedTodosResource.class));*/
+
+    }
+
+    public List<MenuItem> getMenuEntries() {
+        MenuItem appMenu = new MenuItem(APP_NAME, "/" + APP_NAME, this);
+        appMenu.setCategory(MenuItem.Category.APPLICATION_MAIN_MENU);
+        return Arrays.asList(appMenu);
+    }
+
+}

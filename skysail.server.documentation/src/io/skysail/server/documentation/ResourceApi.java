@@ -1,6 +1,7 @@
 package io.skysail.server.documentation;
 
 import io.skysail.api.documentation.API;
+import io.skysail.api.forms.Field;
 import io.skysail.server.restlet.resources.SkysailServerResource;
 import io.skysail.server.utils.ReflectionUtils;
 
@@ -11,6 +12,7 @@ import java.util.Collections;
 import java.util.List;
 
 import lombok.EqualsAndHashCode;
+import lombok.extern.slf4j.Slf4j;
 
 import org.restlet.data.Method;
 import org.restlet.resource.Delete;
@@ -18,8 +20,6 @@ import org.restlet.resource.Get;
 import org.restlet.resource.Post;
 import org.restlet.resource.Put;
 import org.restlet.resource.ServerResource;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import de.twenty11.skysail.server.core.restlet.RouteBuilder;
 
@@ -27,18 +27,26 @@ import de.twenty11.skysail.server.core.restlet.RouteBuilder;
  * A resourceApi connects a path with a target {@link ServerResource} and
  * analyzes its associated entity and methods.
  * 
- * resourceApis defines a natural order based on its path.
+ * <p>resourceApis defines a natural order based on its path.</p>
  *
  */
 @EqualsAndHashCode(of = { "path" })
+@Slf4j
 public class ResourceApi implements Comparable<ResourceApi> {
 
-    private static final Logger logger = LoggerFactory.getLogger(ResourceApi.class);
-
+    @Field
     private String path;
+    
+    @Field
     private String securedByRole;
+    
+    @Field
     private Class<? extends ServerResource> target;
+    
+    @Field
     private String desc;
+    
+    @Field
     private List<SupportedMethod> methods = new ArrayList<SupportedMethod>();
 
     private EntityDescriptor entity;
@@ -96,7 +104,7 @@ public class ResourceApi implements Comparable<ResourceApi> {
                 desc = ssr.getDescription();
             }
         } catch (Exception e) {
-            logger.warn("could not create instance from {}", target == null ? "unknown target" : target.getName());
+            log.warn("could not create instance from {}", target == null ? "unknown target" : target.getName());
         }
         List<java.lang.reflect.Method> methods = ReflectionUtils.getInheritedMethods(target);
         for (java.lang.reflect.Method method : methods) {

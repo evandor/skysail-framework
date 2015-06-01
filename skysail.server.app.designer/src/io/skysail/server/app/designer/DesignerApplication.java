@@ -7,7 +7,9 @@ import io.skysail.server.app.designer.application.resources.ApplicationsResource
 import io.skysail.server.app.designer.application.resources.PostApplicationResource;
 import io.skysail.server.app.designer.application.resources.PutApplicationResource;
 import io.skysail.server.app.designer.codegen.PostCompilationResource;
-import io.skysail.server.app.designer.codegen.SkysailCompiler;
+import io.skysail.server.app.designer.codegen.SkysailApplicationCompiler;
+import io.skysail.server.app.designer.codegen.SkysailEntityCompiler;
+import io.skysail.server.app.designer.codegen.SkysailRepositoryCompiler;
 import io.skysail.server.app.designer.entities.Entity;
 import io.skysail.server.app.designer.entities.resources.EntitiesResource;
 import io.skysail.server.app.designer.entities.resources.EntityResource;
@@ -58,6 +60,7 @@ public class DesignerApplication extends SkysailApplication implements MenuItemP
 
     @Override
     protected void attach() {
+        super.attach();
         router.attach(new RouteBuilder("", ApplicationsResource.class));
 
         router.attach(new RouteBuilder("/compilations/", PostCompilationResource.class));
@@ -92,13 +95,20 @@ public class DesignerApplication extends SkysailApplication implements MenuItemP
                     .forEach(
                             e -> {
                                 String entityName = getEntityName(a, e);
-                                SkysailCompiler skysailCompiler = new SkysailCompiler(repo, getBundle(), a.getId(), entityName, e.getName());
+                                SkysailEntityCompiler skysailCompiler = new SkysailEntityCompiler(repo, getBundle(), a.getId(), entityName, e.getName());
                                 skysailCompiler.createEntity();
                                 skysailCompiler.createResources();
                                 skysailCompiler.compile(getBundleContext());
                                 skysailCompiler.updateRepository(getRepository());
                                 skysailCompiler.attachToRouter(router,a.getName(),e);
                             });
+                    
+                    SkysailRepositoryCompiler repoCompiler = new SkysailRepositoryCompiler(getBundle(), a);
+                    repoCompiler.createRepository();
+                    
+                    SkysailApplicationCompiler applicationCompiler = new SkysailApplicationCompiler(getBundle(), a);
+                    applicationCompiler.createApplication();
+                    
                 });
         
         List<Entity> entities = apps.stream().map(a -> a.getEntities()).flatMap(e -> e.stream()).collect(Collectors.toList());

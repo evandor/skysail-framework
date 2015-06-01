@@ -93,6 +93,8 @@ public class InMemoryJavaCompiler {
                 .getTask(null, fileManager, diagnostics, optionList, null, sourceCodes);
         task.call();
         dumpErrorsIfExistent(diagnostics, "xxx");
+        
+        //return cl.loadClass(className);
     }
 
     private static void dumpErrorsIfExistent(DiagnosticCollector<JavaFileObject> diagnostics, String sourceCode) {

@@ -1,4 +1,4 @@
-PlainTranslationRenderService(user, messages, source, converter, services, resource, fields, target) ::= <<
+PlainTranslationRenderService(user, messages, source, converter, services, resource, fields, target,model) ::= <<
 <!DOCTYPE html>
 <html lang="en-gb" dir="ltr">
 

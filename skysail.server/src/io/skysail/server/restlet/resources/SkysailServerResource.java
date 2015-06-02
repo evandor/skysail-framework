@@ -74,9 +74,9 @@ public abstract class SkysailServerResource<T> extends ServerResource {
     @Getter
     private String desc;
 
-    @Getter
-    @Setter
-    private String metaRefreshTarget;
+//    @Getter
+//    @Setter
+//    private String metaRefreshTarget;
 
     private Map<ResourceContextId, String> stringContextMap = new HashMap<>();
 

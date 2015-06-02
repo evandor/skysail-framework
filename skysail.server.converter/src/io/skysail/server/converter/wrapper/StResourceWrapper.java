@@ -1,88 +1,55 @@
 package io.skysail.server.converter.wrapper;
 
 import io.skysail.api.favorites.FavoritesService;
-import io.skysail.api.links.Link;
-import io.skysail.server.converter.*;
-import io.skysail.server.restlet.resources.*;
-import io.skysail.server.utils.*;
+import io.skysail.server.model.ResourceModel;
+import io.skysail.server.restlet.resources.SkysailServerResource;
+import io.skysail.server.utils.ResourceUtils;
 
-import java.util.*;
-import java.util.stream.Collectors;
+import java.util.Set;
 
-import lombok.extern.slf4j.Slf4j;
+import org.restlet.data.Status;
 
-import org.restlet.data.*;
-import org.restlet.util.Series;
-
-import de.twenty11.skysail.server.core.restlet.ResourceContextId;
-
-@Slf4j
 public class StResourceWrapper {
 
-    private SkysailServerResource<?> resource;
-    private Object source;
     private FavoritesService favoritesService;
+    private ResourceModel<SkysailServerResource<?>, ?> model;
 
-    public StResourceWrapper(Object source, SkysailServerResource<?> resource, FavoritesService favoritesService) {
-        this.source = source;
-        this.resource = resource;
+    public StResourceWrapper(ResourceModel<SkysailServerResource<?>,?> model, FavoritesService favoritesService) {
+        this.model = model;
         this.favoritesService = favoritesService;
     }
 
     public STApplicationWrapper getApplication() {
-        return new STApplicationWrapper(resource);
-    }
-
-    public List<Link> getLinks() throws Exception {
-        return resource.getAuthorizedLinks();
-    }
-
-    public List<Breadcrumb> getBreadcrumbs() {
-        return new Breadcrumbs(favoritesService).create(resource);
-    }
-
-    public List<RepresentationLink> getRepresentations() {
-        Set<String> supportedMediaTypes = ResourceUtils.getSupportedMediaTypes(resource, resource.getCurrentEntity());
-        return supportedMediaTypes.stream().map(mediaType -> {
-            return new RepresentationLink(mediaType, resource.getCurrentEntity());
-        }).collect(Collectors.toList());
+        return new STApplicationWrapper(model.getResource());
     }
 
     public String getClassname() {
-        return resource.getClass().getName();
+        return model.getResource().getClass().getName();
     }
 
     public String getEntityType() {
-        String result = resource.getEntityType().replace("<", "&lt;").replace(">", "&gt;");
+        String result = model.getResource().getEntityType().replace("<", "&lt;").replace(">", "&gt;");
         if (!result.contains("skysail")) {
             return result;
         }
         // https://github.com/evandor/skysail/blob/master/skysail.server.app.i18n/src/de/twenty11/skysail/server/app/i18n/messages/BundleMessages.java
-        String bundleName = resource.getApplication().getBundle().getSymbolicName();
+        String bundleName = model.getResource().getApplication().getBundle().getSymbolicName();
         StringBuilder sb = new StringBuilder("<a target='_blank' href='https://github.com/evandor/skysail/blob/master/")
                 //
                 .append(bundleName).append("/").append("src/")
                 //
-                .append(resource.getEntityType().replace("List of ", "").replace(".", "/")).append(".java")
+                .append(model.getResource().getEntityType().replace("List of ", "").replace(".", "/")).append(".java")
                 .append("'>View on github</a>");
         return result + "&nbsp;" + sb.toString();
     }
 
-    public boolean isPostEntityServerResource() {
-        return resource instanceof PostEntityServerResource;
-    }
-
-    public boolean isPutEntityServerResource() {
-        return resource instanceof PutEntityServerResource;
-    }
-
     @Override
     public String toString() {
-        return resource.toString();
+        return model.getResource().toString();
     }
 
     public String getStatus() {
-        Status status = resource.getStatus();
+        Status status = model.getResource().getStatus();
         StringBuilder sb = new StringBuilder();
         String panelClass = "panel-success";
         if (String.valueOf(status.getCode()).startsWith("4")) {
@@ -107,54 +74,8 @@ public class StResourceWrapper {
     }
 
     public Set<String> getSupportedMediaTypes() {
-        return ResourceUtils.getSupportedMediaTypes(resource, source);
+        return ResourceUtils.getSupportedMediaTypes(model.getResource(), model.getConvertedSource());
     }
 
-    public String getAppNavTitle() {
-        return resource.getFromContext(ResourceContextId.APPLICATION_NAVIGATION_TITLE);
-    }
-
-    public String getPagination() {
-        Series<Header> headers = HeadersUtils.getHeaders(resource.getResponse());
-        String pagesAsString = headers.getFirstValue(HeadersUtils.PAGINATION_PAGES);
-        if (pagesAsString == null || pagesAsString.trim().length() == 0) {
-            return "";
-        }
-        int pages = Integer.parseInt(pagesAsString);
-        if (pages == 1) {
-            return "";
-        }
-        int page = 1;
-        String pageAsString = headers.getFirstValue(HeadersUtils.PAGINATION_PAGE);
-        if (pageAsString != null) {
-            page = Integer.parseInt(pageAsString);
-        }
-
-        StringBuilder sb = new StringBuilder();
-        sb.append("<nav>");
-        sb.append("<ul class='pagination'>");
-        String cssClass = (1 == page) ? "class='disabled'" : "";
-
-        sb.append("<li " + cssClass + "><a href='?").append(SkysailServerResource.PAGE_PARAM_NAME).append("=" + (page - 1)
-                + "'><span aria-hidden='true'>&laquo;</span><span class='sr-only'>Previous</span></a></li>");
-        for (int i = 1; i <= pages; i++) {
-            cssClass = (i == page) ? " class='active'" : "";
-            sb.append("<li" + cssClass + "><a href='?").append(SkysailServerResource.PAGE_PARAM_NAME).append("=" + i + "'>" + i + "</a></li>");
-        }
-        cssClass = (pages == page) ? " class='disabled'" : "";
-        sb.append("<li" + cssClass + "><a href='?").append(SkysailServerResource.PAGE_PARAM_NAME).append("=" + (page + 1)
-                + "'><span aria-hidden='true'>&raquo;</span><span class='sr-only'>Next</span></a></li>");
-        sb.append("</ul>");
-        sb.append("</nav>");
-        return sb.toString();
-    }
-
-    public String getMetaRefresh() {
-        String target = resource.getMetaRefreshTarget();
-        if (target == null) {
-            return "";
-        }
-        return "<meta http-equiv=\"Refresh\" content=\"0; url=" + target + "\" />";
-    }
 
 }

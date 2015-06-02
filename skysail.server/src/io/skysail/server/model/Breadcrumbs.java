@@ -1,7 +1,6 @@
-package io.skysail.server.converter.wrapper;
+package io.skysail.server.model;
 
 import io.skysail.api.favorites.*;
-import io.skysail.server.converter.Breadcrumb;
 import io.skysail.server.restlet.resources.SkysailServerResource;
 
 import java.util.*;
@@ -20,7 +19,6 @@ import org.restlet.util.RouteList;
 import de.twenty11.skysail.server.core.restlet.*;
 
 @Slf4j
-@Deprecated // use class from skysail.server
 public class Breadcrumbs {
 
     private FavoritesService favoritesService;

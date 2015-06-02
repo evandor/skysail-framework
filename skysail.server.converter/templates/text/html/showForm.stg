@@ -1,4 +1,4 @@
-showForm(resource, source, fields, messages, model) ::= <<
+showForm(source, fields, messages, model) ::= <<
 
   $if (source.constraintViolationsResponse && source.classlevelViolationMessage)$
     Sorry, there was at least one problem submitting this form:
@@ -10,15 +10,15 @@ showForm(resource, source, fields, messages, model) ::= <<
     
   $endif$
   
-  $if (resource.postEntityServerResource)$
+  $if (model.postEntityServerResource)$
     <form action="$source.formTarget$" method="POST" class="form-horizontal" role="form" id="form" name="form">
-      $handleField(resource, source, first(model.formfields), messages,"1", " autofocus")$
-      $rest(model.formfields):{ field | $handleField(resource, source, field, messages,i, "")$}$
+      $handleField(source, first(model.formfields), messages,"1", " autofocus")$
+      $rest(model.formfields):{ field | $handleField(source, field, messages,i, "")$}$
       $submitPost("Submit",2,10,length(model.formfields))$
     </form>
-  $elseif (resource.putEntityServerResource)$
+  $elseif (model.putEntityServerResource)$
     <form action="$source.formTarget$?method=PUT" method="POST" class="form-horizontal" role="form" id="form" name="form">
-      $model.formfields:{ field | $handleField(resource, source, field, messages,i,"")$}$
+      $model.formfields:{ field | $handleField(source, field, messages,i,"")$}$
       $submitPut("Update",1,9,length(fields))$
     </form>
   $endif$
@@ -42,15 +42,15 @@ submitPut(label, o1,o2,tabindex) ::= <<
       </div>
 >>
 
-handleField(resource, source, field, messages,i, autofocus) ::= <<
+handleField(source, field, messages,i, autofocus) ::= <<
 	$if (source.constraintViolationsResponse && field.violationMessage)$
-        $handleConstraintViolationField(resource, source, field, messages,i,autofocus)$
+        $handleConstraintViolationField(source, field, messages,i,autofocus)$
     $else$
-        $handleInputField(resource, source, field, messages,i, autofocus)$
+        $handleInputField(source, field, messages,i, autofocus)$
     $endif$
 >>
 
-handleConstraintViolationField(resource, source, formField, messages,i,autofocus) ::= <<
+handleConstraintViolationField(source, formField, messages,i,autofocus) ::= <<
 
     $if(formField.tagsInputType)$
 	    <div class='form-group has-error has-feedback'>
@@ -89,7 +89,7 @@ handleConstraintViolationField(resource, source, formField, messages,i,autofocus
     $endif$
 >>
 
-handleInputField(resource, source, field, messages,i,autofocus) ::= <<
+handleInputField(source, field, messages,i,autofocus) ::= <<
   $if(!field.readonlyInputType)$
       $if(field.tagsInputType)$
         <div class='form-group'>

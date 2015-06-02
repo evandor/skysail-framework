@@ -1,6 +1,6 @@
-renderTable(resource, source, fields, converter, messages, model) ::= <<
+renderTable(source, fields, converter, messages, model) ::= <<
 
-  $resource.pagination$
+  $model.pagination$
   
   <table class="table table-striped">
     <tr>$renderHeader(model.formfields, converter)$<th>Actions</th></tr>

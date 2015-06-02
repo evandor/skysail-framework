@@ -1,6 +1,6 @@
-breadcrumb(resource) ::= <<
+breadcrumb(model) ::= <<
   <ul class="breadcrumb">
-    $resource.breadcrumbs:{ breadcrumb | $handleSingleBreadcrumb(breadcrumb,i)$}$
+    $model.breadcrumbs:{ breadcrumb | $handleSingleBreadcrumb(breadcrumb,i)$}$
   </ul>
 >>
 

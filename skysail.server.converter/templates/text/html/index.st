@@ -7,8 +7,6 @@ index(user, messages, source, converter, services, resource, target, model) ::= 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-    $resource.metaRefresh$
-<!--    <link rel="icon" href="../../favicon.ico">-->
 
     <title>$messages.("productName")$</title>
 
@@ -138,17 +136,17 @@ index(user, messages, source, converter, services, resource, target, model) ::= 
     
       <div class="row">
         <div class="col-md-10">
-            $breadcrumb(resource)$
+            $breadcrumb(model)$
         </div>
         <div class="col-md-2">
-            $representations(resource)$
+            $representations(model)$
         </div>
       </div>
 
       <div class="row">
-        <div class="col-md-1">$appNavTitle(resource)$</div>
+        <div class="col-md-1">$appNavTitle(model)$</div>
         <div class="col-md-10">
-            $menuNav(resource.links)$
+            $menuNav(model.links)$
         </div>
         <div class="col-md-1">&nbsp;</div>
       </div>

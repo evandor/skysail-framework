@@ -1,7 +1,7 @@
 mainContent(user, resource, converter, messages, source, model) ::= <<
   
   <div class="row">
-    <div class="col-md-1">$appNav(resource)$</div>
+    <div class="col-md-1">$appNav(model)$</div>
     <div class="col-md-10">
       <!-- contentHeader -->
 $contentHeader(converter, messages)$
@@ -13,10 +13,10 @@ $contentHeader(converter, messages)$
     <div class="col-md-8">
       $if(source.form)$
         <!-- showForm -->
-        $showForm(resource, source, model.formfields, messages, model)$ 
+        $showForm(source, model.formfields, messages, model)$ 
       $elseif(source.list)$
         <!-- renderTable -->
-        $renderTable(resource, source, model.formfields, converter, messages, model)$
+        $renderTable(source, model.formfields, converter, messages, model)$
       $else$
         <!-- render single entity -->
         $renderEntity(user, resource, source, model)$

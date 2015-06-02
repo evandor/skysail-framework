@@ -1,5 +1,5 @@
-appNav(resource) ::= <<
-    $resource.links:{ element | $applinkAsButton(element,i)$}$
+appNav(model) ::= <<
+    $model.links:{ element | $applinkAsButton(element,i)$}$
 >>
 
 applinkAsButton(linkheader,i) ::= <<

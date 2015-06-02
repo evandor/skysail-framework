@@ -1,10 +1,9 @@
-package io.skysail.server.converter;
+package io.skysail.server.model;
 
 import lombok.*;
 
 @Builder
 @ToString
-@Deprecated // use class from skysail.server
 public class Breadcrumb {
 
     @Getter

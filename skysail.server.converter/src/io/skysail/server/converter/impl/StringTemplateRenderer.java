@@ -8,7 +8,6 @@ import io.skysail.server.converter.*;
 import io.skysail.server.converter.stringtemplate.STGroupBundleDir;
 import io.skysail.server.converter.wrapper.*;
 import io.skysail.server.model.ResourceModel;
-import io.skysail.server.restlet.SourceWrapper;
 import io.skysail.server.restlet.resources.*;
 
 import java.net.URL;
@@ -52,17 +51,19 @@ public class StringTemplateRenderer {
         
         @SuppressWarnings({ "rawtypes", "unchecked" })
         ResourceModel<SkysailServerResource<?>,?> resourceModel = new ResourceModel(resource, source);
+        resourceModel.convert(target);
+        resourceModel.setFavoritesService(favoritesService);
 
         templateFromCookie = CookiesUtils.getTemplateFromCookie(resource.getRequest());
 
-        SourceWrapper sourceWrapper = new SourceWrapper(source, target, resourceModel);
+        //SourceWrapper sourceWrapper = new SourceWrapper(source, target, resourceModel);
         
         STGroupBundleDir stGroup = createSringTemplateGroup(resource, target.getMediaType().getName());
         
         ST index = getStringTemplateIndex(resource, stGroup);
         
-        addAssociatedLinks(resource, sourceWrapper);
-        addSubstitutions(sourceWrapper.getConvertedSource(), resourceModel, index, target, menuProviders);
+        addAssociatedLinks(resource, resourceModel);
+        addSubstitutions(resourceModel, index, target, menuProviders);
         checkForInspection(resource, index);
 
         return createRepresentation(index, stGroup);
@@ -105,7 +106,7 @@ public class StringTemplateRenderer {
         }
     }
 
-    private void addAssociatedLinks(Resource resource, SourceWrapper sourceWrapper) {
+    private void addAssociatedLinks(Resource resource, ResourceModel sourceWrapper) {
         if (!(resource instanceof ListServerResource)) {
             return;
         }
@@ -202,7 +203,7 @@ public class StringTemplateRenderer {
     }
 
     @SuppressWarnings("unchecked")
-    private void addSubstitutions(Object source, ResourceModel<SkysailServerResource<?>,?> resourceModel, ST decl, Variant target,
+    private void addSubstitutions(ResourceModel<SkysailServerResource<?>,?> resourceModel, ST decl, Variant target,
             Set<MenuItemProvider> menuProviders) {
 
         SkysailServerResource<?> resource = resourceModel.getResource();
@@ -213,29 +214,18 @@ public class StringTemplateRenderer {
         decl.add("target", new STTargetWrapper(target));
         decl.add("converter", this);
         decl.add("services", new STServicesWrapper(menuProviders, null, resource));
-        decl.add("resource", new StResourceWrapper(source, resource, favoritesService));
+        decl.add("resource", new StResourceWrapper(resourceModel, favoritesService));
 
-        if (source instanceof List) {
-            decl.add("source", new STListSourceWrapper((List<Object>) source));
+        if (resourceModel.getSource() instanceof List) {
+            decl.add("source", new STListSourceWrapper((List<Object>) resourceModel.getConvertedSource()));
         } else {
-            decl.add("source", new STSourceWrapper(source));
+            decl.add("source", new STSourceWrapper(resourceModel.getConvertedSource()));
         }
 
-//        List<FormField> fields = null;
-//
-//        FieldFactory fieldFactory = FieldsFactory.getFactory(source, resource);
-//        log.info("using factory '{}' for {}-Source: {}", new Object[] { fieldFactory.getClass().getSimpleName(),
-//                source.getClass().getSimpleName(), source });
-//        try {
-//            fields = fieldFactory.determineFrom(resource);
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//        //decl.add("fields", new STFieldsWrapper(Collections.emptyList()));
-//        //decl.add("fields", new STFieldsWrapper(fields));
 
         Map<String, String> messages = resource.getMessages(resourceModel.getFormfields());
         messages.put("productName", getProductName());
+        
         decl.add("messages", messages);
         decl.add("model", resourceModel);
     }

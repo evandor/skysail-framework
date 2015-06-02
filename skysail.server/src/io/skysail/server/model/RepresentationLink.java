@@ -1,9 +1,8 @@
-package io.skysail.server.converter;
+package io.skysail.server.model;
 
 import lombok.Getter;
 
 @Getter
-@Deprecated
 public class RepresentationLink {
 
     private String name;

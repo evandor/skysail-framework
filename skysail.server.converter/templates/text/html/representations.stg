@@ -1,6 +1,6 @@
-representations(resource) ::= <<
+representations(model) ::= <<
   <ul class="breadcrumb" style="text-align:right">
-    $resource.representations:{ representation | $handleSingleRepresentation(representation,i)$}$
+    $model.representations:{ representation | $handleSingleRepresentation(representation,i)$}$
   </ul>
 >>
 

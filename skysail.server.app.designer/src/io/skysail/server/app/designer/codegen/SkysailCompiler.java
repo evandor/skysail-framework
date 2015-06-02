@@ -45,11 +45,23 @@ public class SkysailCompiler {
         } catch (IOException e) {
             log.debug("could not write source code for compilation unit '{}' to '{}'", className, filename);
         }
-    
     }
 
+    public void reset() {
+        InMemoryJavaCompiler.reset();
+    }
+    
     protected String classNameToPath(String className) {
         return Arrays.stream(className.split("\\.")).collect(Collectors.joining("/")).concat(".java");
+    }
+    
+    public Class<?> getClass(String className) {
+        try {
+            return InMemoryJavaCompiler.getClass(className);
+        } catch (ClassNotFoundException e) {
+            log.error(e.getMessage(), e);
+            return null;
+        }
     }
 
 }

@@ -8,7 +8,7 @@ Bundle-Description: an application designer application for skysail (used as dem
 Service-Component: *
 Include-Resource: resources, templates=src;recursive:=true;filter:=*.st|*.stg
 -buildpath:  \
-	biz.aQute.bnd.annotation,\
+	biz.aQute.bnd.annotation;version=latest,\
 	skysail.api;version=${skysail.api.version},\
 	skysail.server;version=latest,\
 	skysail.server.db;version=latest,\

@@ -50,4 +50,8 @@ public class CompiledCodeTrackingJavaFileManager extends ForwardingJavaFileManag
     public void setClassLoader(DynamicClassLoader dcl) {
         this.cl = dcl;
     }
+
+    public void clearCompiledCode() {
+        this.compiledCodes.clear();  
+    }
 }

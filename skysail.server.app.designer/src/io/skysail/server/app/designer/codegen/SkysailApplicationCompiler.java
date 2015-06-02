@@ -4,6 +4,7 @@ import io.skysail.server.app.designer.application.Application;
 import io.skysail.server.utils.BundleUtils;
 
 import java.util.HashMap;
+import java.util.Map;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -14,10 +15,14 @@ public class SkysailApplicationCompiler extends SkysailCompiler {
 
     private Bundle bundle;
     private Application application;
+    private Map<String, String> routerPaths;
+    private String applicationClassName;
 
-    public SkysailApplicationCompiler(Bundle bundle, Application application) {
+    public SkysailApplicationCompiler(Bundle bundle, Application application, Map<String, String> routerPaths) {
         this.bundle = bundle;
         this.application = application;
+        this.routerPaths = routerPaths;
+        applicationClassName = "io.skysail.server.app.designer.gencode." + application.getName() + "Application";
     }
 
     public void createApplication() {
@@ -26,15 +31,10 @@ public class SkysailApplicationCompiler extends SkysailCompiler {
     }
 
     private void setupApplicationForCompilation(String template) {
-        // List<EntityField> fields = getFields(repo, appEntityName, appId);
-        // String codeForFields = fields.stream().map(f -> {
-        // StringBuilder sb = new StringBuilder("\n    @Field\n");
-        // sb.append("    private String " + f.getName() + ";");
-        // return sb.toString();
-        // }).collect(Collectors.joining(";\n"));
-        //
-        
         StringBuilder routerCode = new StringBuilder();
+        routerPaths.keySet().stream().forEach(key -> {
+            routerCode.append("        router.attach(new RouteBuilder(\"").append(key).append("\", ").append(routerPaths.get(key)).append(".class));\n");
+        });
         
         @SuppressWarnings("serial")
         String entityCode = substitute(template, new HashMap<String, String>() {
@@ -44,10 +44,12 @@ public class SkysailApplicationCompiler extends SkysailCompiler {
                 put("$routercode$", routerCode.toString());
             }
         });
-        String applicationClassName = "io.skysail.server.app.designer.gencode." + application.getName() + "Application";
+       
         collect(applicationClassName, entityCode);
-        // return entityClassName;
+    }
 
+    public Class<?> getApplicationClass() {
+       return getClass(applicationClassName);
     }
 
 }

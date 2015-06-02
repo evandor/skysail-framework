@@ -139,4 +139,5 @@
 	com.fasterxml.jackson.module.jackson-module-jaxb-annotations;version=2.5.1,\
 	org.codehaus.jettison.jettison;version=1.3.7,\
 	org.jsoup;version=1.8.1,\
-	com.sun.mail.javax.mail;version=1.5.1
+	com.sun.mail.javax.mail;version=1.5.1,\
+	biz.aQute.bnd.annotation;version=2.4.0

@@ -12,13 +12,13 @@ import org.restlet.resource.ResourceException;
 public class $classname$ extends PutEntityServerResource<$entityname$> {
 
     private String id;
-	private DesignerApplication app;
+	private $applicationName$ app;
 
 	@Override
     protected void doInit() throws ResourceException {
         super.doInit();
         id = getAttribute("id");
-        app = (DesignerApplication)getApplication();
+        app = ($applicationName$)getApplication();
     }
     
     @Override

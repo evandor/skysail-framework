@@ -2,8 +2,6 @@ package io.skysail.server.app.designer.gencode;
 
 import io.skysail.api.domain.Identifiable;
 import io.skysail.api.forms.Field;
-import io.skysail.server.app.designer.DesignerApplication;
-import io.skysail.server.app.designer.repo.DesignerRepository;
 
 import java.util.Set;
 

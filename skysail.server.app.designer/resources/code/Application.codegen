@@ -40,24 +40,7 @@ public class $classname$ extends SkysailApplication implements ApplicationProvid
     @Override
     protected void attach() {
         super.attach();
-       /*router.attach(new RouteBuilder("", ListsResource.class));
-        
-        router.attach(new RouteBuilder("/Statuses", StatusesResource.class));
-        router.attach(new RouteBuilder("/Statuses/{statusname}", NextStatusesResource.class));
-
-        router.attach(new RouteBuilder("/Lists", ListsResource.class));
-        router.attach(new RouteBuilder("/Lists/", PostListResource.class));
-        router.attach(new RouteBuilder("/Lists/{"+LIST_ID+"}", ListResource.class));
-        router.attach(new RouteBuilder("/Lists/{"+LIST_ID+"}/", PutListResource.class));
-
-        router.attach(new RouteBuilder("/Lists/list:null/Todos/", PostTodoWoListResource.class));
-        
-        router.attach(new RouteBuilder("/Lists/{"+LIST_ID+"}/Todos/", PostTodoResource.class));
-        router.attach(new RouteBuilder("/Lists/{"+LIST_ID+"}/Todos", TodosResource.class));
-        router.attach(new RouteBuilder("/Lists/{"+LIST_ID+"}/Todos/{"+TODO_ID+"}", TodoResource.class));
-        router.attach(new RouteBuilder("/Lists/{"+LIST_ID+"}/Todos/{"+TODO_ID+"}/", PutTodoResource.class));
-        
-        router.attach(new RouteBuilder("/Lists/{"+LIST_ID+"}/ArchivedTodos", ArchivedTodosResource.class));*/
+$routercode$
 
     }
 

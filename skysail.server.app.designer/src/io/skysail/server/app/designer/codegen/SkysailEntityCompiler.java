@@ -4,14 +4,12 @@ import io.skysail.server.app.designer.application.Application;
 import io.skysail.server.app.designer.entities.Entity;
 import io.skysail.server.app.designer.fields.EntityField;
 import io.skysail.server.app.designer.repo.DesignerRepository;
-import io.skysail.server.restlet.resources.ListServerResource;
-import io.skysail.server.restlet.resources.PostEntityServerResource;
-import io.skysail.server.restlet.resources.PutEntityServerResource;
 import io.skysail.server.utils.BundleUtils;
 
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 import lombok.Getter;
@@ -19,21 +17,21 @@ import lombok.extern.slf4j.Slf4j;
 
 import org.osgi.framework.Bundle;
 
-import de.twenty11.skysail.server.core.restlet.RouteBuilder;
 import de.twenty11.skysail.server.core.restlet.SkysailRouter;
 
 @Slf4j
 public class SkysailEntityCompiler extends SkysailCompiler {
 
-    private String appId;
     private String entityName;
     private String appEntityName;
-    @Getter
-    private String entityClassName;
+    
     private DesignerRepository repo;
     private Bundle bundle;
     private String entityResourceClassName;
     
+    @Getter
+    private String entityClassName;
+
     @Getter
     private String postResourceClassName;
     
@@ -42,29 +40,33 @@ public class SkysailEntityCompiler extends SkysailCompiler {
     
     @Getter
     private String listResourceClassName;
+    
+    private Application application;
 
-    public SkysailEntityCompiler(DesignerRepository repo, Bundle bundle, String appId, String entityName, String appEntityName) {
+    public SkysailEntityCompiler(DesignerRepository repo, Bundle bundle, Application a, String entityName, String appEntityName) {
         this.repo = repo;
         this.bundle = bundle;
-        this.appId = appId;
+        this.application = a;
         this.entityName = entityName;
         this.appEntityName = appEntityName;
     }
 
-    public void createEntity() {
+    public void createEntity(List<String> entityNames, List<String> entityClassNames) {
         String entityTemplate = BundleUtils.readResource(bundle, "code/Entity.codegen");
-        entityClassName = setupEntityForCompilation(entityTemplate, appId, entityName, appEntityName);
+        entityClassName = setupEntityForCompilation(entityTemplate, application.getId(), entityName, appEntityName);
+        entityNames.add(entityName);
+        entityClassNames.add(entityClassName);
     }
     
     public void createResources() {
         String entityResourceTemplate = BundleUtils.readResource(bundle, "code/EntityResource.codegen");
-        entityResourceClassName = setupEntityResourceForCompilation(entityResourceTemplate, appId, entityName, appEntityName);
+        entityResourceClassName = setupEntityResourceForCompilation(entityResourceTemplate, application.getId(), entityName, appEntityName);
         
         String postResourceTemplate = BundleUtils.readResource(bundle, "code/PostResource.codegen");
         postResourceClassName = setupPostResourceForCompilation(postResourceTemplate, entityName, appEntityName); 
         
         String putResourceTemplate = BundleUtils.readResource(bundle, "code/PutResource.codegen");
-        putResourceClassName = setupPutResourceForCompilation(putResourceTemplate, entityName, appId, appEntityName); 
+        putResourceClassName = setupPutResourceForCompilation(putResourceTemplate, entityName, application.getId(), appEntityName); 
         
         String listServerResourceTemplate = BundleUtils.readResource(bundle, "code/ListServerResource.codegen");
         listResourceClassName = setupListResourceForCompilation(listServerResourceTemplate, entityName, entityClassName);
@@ -79,22 +81,27 @@ public class SkysailEntityCompiler extends SkysailCompiler {
         designerRepository.register(getClass(entityClassName));
     }
 
-    public void attachToRouter(SkysailRouter router, String applicationName, Entity e) {
-        String path = "/preview/" + applicationName;
+    public void attachToRouter(SkysailRouter router, String applicationName, Entity e, Map<String, String> routerPaths) {
+        String path = "";
 
-        Class<? extends PostEntityServerResource<?>> postResourceClass = (Class<? extends PostEntityServerResource<?>>) getClass(postResourceClassName);
-        router.attach(new RouteBuilder(path + "/" + appEntityName + "s/",
-                postResourceClass));
+//        Class<? extends PostEntityServerResource<?>> postResourceClass = (Class<? extends PostEntityServerResource<?>>) getClass(postResourceClassName);
+//        router.attach(new RouteBuilder(path + "/" + appEntityName + "s/",
+//                postResourceClass));
+        routerPaths.put(path + "/" + appEntityName + "s/", postResourceClassName);
 
-        Class<? extends PutEntityServerResource<?>> putResourceClass = (Class<? extends PutEntityServerResource<?>>) getClass(putResourceClassName);
-        router.attach(new RouteBuilder(path + "/" + appEntityName + "s/{id}",
-                putResourceClass));
+//        Class<? extends PutEntityServerResource<?>> putResourceClass = (Class<? extends PutEntityServerResource<?>>) getClass(putResourceClassName);
+//        router.attach(new RouteBuilder(path + "/" + appEntityName + "s/{id}",
+//                putResourceClass));
+        routerPaths.put(path + "/" + appEntityName + "s/{id}", putResourceClassName);
 
-        Class<? extends ListServerResource<?>> listResourceClass = (Class<? extends ListServerResource<?>>) getClass(listResourceClassName);
-        router.attach(new RouteBuilder(path + "/" + appEntityName + "s",
-                listResourceClass));
+//        Class<? extends ListServerResource<?>> listResourceClass = (Class<? extends ListServerResource<?>>) getClass(listResourceClassName);
+//        router.attach(new RouteBuilder(path + "/" + appEntityName + "s",
+//                listResourceClass));
+        routerPaths.put(path + "/" + appEntityName + "s", listResourceClassName);
+        
         if (e.isRootEntity()) {
-            router.attach(new RouteBuilder(path, listResourceClass));
+//            router.attach(new RouteBuilder(path, listResourceClass));
+            routerPaths.put(path, listResourceClassName);
         }        
     }
     
@@ -129,6 +136,7 @@ public class SkysailEntityCompiler extends SkysailCompiler {
                 put("$appEntityName$", appEntityName);
                 put("$fields$", codeForFields);
                 put("$gettersAndSetters$", codeForGettersAndSetters);
+                put("$applicationName$", application.getName() + "Application");
             }
         });
         String entityClassName = "io.skysail.server.app.designer.gencode." + entityName;
@@ -168,6 +176,7 @@ public class SkysailEntityCompiler extends SkysailCompiler {
             {
                 put("$classname$", entityName + "Resource");
                 put("$entityname$", entityName);
+                put("$applicationName$", application.getName() + "Application");
             }
         });
         String entityClassName = "io.skysail.server.app.designer.gencode." + entityName + "Resource";
@@ -183,6 +192,7 @@ public class SkysailEntityCompiler extends SkysailCompiler {
                 put("$classname$", className2);
                 put("$entityname$", entityName);
                 put("$entityShortName$", entityShortName);
+                put("$applicationName$", application.getName() + "Application");
             }
         });
         String fullClassName = "io.skysail.server.app.designer.gencode." + className2;
@@ -214,6 +224,7 @@ public class SkysailEntityCompiler extends SkysailCompiler {
                 put("$entityShortName$", entityShortName);
                 
                 put("$updateEntity$", updateEntity.toString());
+                put("$applicationName$", application.getName() + "Application");
             }
         });
         String fullClassName = "io.skysail.server.app.designer.gencode." + className2;
@@ -228,6 +239,7 @@ public class SkysailEntityCompiler extends SkysailCompiler {
             {
                 put("$classname$", theClassName);
                 put("$entityname$", entityName);
+                put("$applicationName$", application.getName() + "Application");
             }
         });
 
@@ -236,14 +248,7 @@ public class SkysailEntityCompiler extends SkysailCompiler {
         return className;
     }
 
-    private Class<?> getClass(String className) {
-        try {
-            return InMemoryJavaCompiler.getClass(className);
-        } catch (ClassNotFoundException e) {
-            log.error(e.getMessage(), e);
-            return null;
-        }
-    }
+   
 
 
 

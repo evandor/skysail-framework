@@ -61,6 +61,10 @@ public class InMemoryJavaCompiler {
         fileManager.add(compiledCode);
     }
 
+    public static void reset() {
+        sourceCodes.clear();
+        fileManager.clearCompiledCode();
+    }
     
     public static void compile(BundleContext bundleContext)//, String className, String sourceCodeInText)
             throws Exception {
@@ -78,6 +82,7 @@ public class InMemoryJavaCompiler {
         getBundleLocationFor(Link.class, bundleLocations, bundles);
         getBundleLocationFor(javax.persistence.Id.class, bundleLocations, bundles);
         getBundleLocationFor(com.fasterxml.jackson.annotation.JacksonAnnotation.class, bundleLocations, bundles);
+        getBundleLocationFor(aQute.bnd.annotation.component.Component.class, bundleLocations, bundles);
 
 
         String locs = bundleLocations.stream().map(l -> {
@@ -85,7 +90,7 @@ public class InMemoryJavaCompiler {
             }).collect(Collectors.joining(File.pathSeparator));
         optionList.addAll(Arrays.asList("-classpath", locs));
 
-        log.info("trying to compile {}", sourceCodes);
+        log.info("compiling {}", sourceCodes);
         log.info("classpath was set to {}", locs);
 
         DiagnosticCollector<JavaFileObject> diagnostics = new DiagnosticCollector<JavaFileObject>();
@@ -125,6 +130,9 @@ public class InMemoryJavaCompiler {
     public static Class<?> getClass(String className) throws ClassNotFoundException {
         return dcl.loadClass(className);
     }
+
+
+    
 
 
 }

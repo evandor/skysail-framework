@@ -4,14 +4,13 @@ import java.util.List;
 
 import io.skysail.api.links.Link;
 import io.skysail.api.responses.SkysailResponse;
-import io.skysail.server.app.designer.DesignerApplication;
 import io.skysail.server.restlet.resources.EntityServerResource;
 import de.twenty11.skysail.server.core.restlet.ResourceContextId;
 
 public class $classname$  extends EntityServerResource<$entityname$ > {
 
     private String id;
-    private DesignerApplication app;
+    private $applicationName$ app;
 
     public $classname$() {
         addToContext(ResourceContextId.LINK_TITLE, "details");
@@ -21,7 +20,7 @@ public class $classname$  extends EntityServerResource<$entityname$ > {
     @Override
     protected void doInit() {
         id = getAttribute("id");
-        app = (DesignerApplication) getApplication();
+        app = ($applicationName$) getApplication();
     }
 
     @Override
@@ -46,16 +45,4 @@ public class $classname$  extends EntityServerResource<$entityname$ > {
     public List<Link> getLinks() {
         return super.getLinks(Put$entityname$Resource.class);
     }
-
-/*    @Override
-    public String redirectTo() {
-        return super.redirectTo(ListsResource.class);
-    }
-
-    @Override
-    public Consumer<? super Link> getPathSubstitutions() {
-        return l -> {
-            l.substitute("lid", listId);
-        };
-    }*/
 }

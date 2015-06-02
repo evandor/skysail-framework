@@ -23,15 +23,20 @@ import io.skysail.server.app.designer.fields.resources.PostFieldResource;
 import io.skysail.server.app.designer.fields.resources.PutFieldResource;
 import io.skysail.server.app.designer.repo.DesignerRepository;
 import io.skysail.server.db.DbRepository;
+import io.skysail.server.db.DbService2;
 
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
 import org.osgi.framework.BundleException;
+import org.osgi.service.component.ComponentContext;
 
 import aQute.bnd.annotation.component.Component;
 import aQute.bnd.annotation.component.Reference;
@@ -52,6 +57,7 @@ public class DesignerApplication extends SkysailApplication implements MenuItemP
     public static final String FIELD_ID = "fieldId";
 
     private DesignerRepository repo;
+    private DbService2 dbService;
 
     public DesignerApplication() {
         super(APP_NAME);
@@ -75,44 +81,94 @@ public class DesignerApplication extends SkysailApplication implements MenuItemP
         router.attach(new RouteBuilder("/applications/{id}/entities/{" + ENTITY_ID + "}", EntityResource.class));
         router.attach(new RouteBuilder("/applications/{id}/entities/{" + ENTITY_ID + "}/", PutEntityResource.class));
 
-        router.attach(new RouteBuilder("/applications/{id}/entities/{" + ENTITY_ID + "}/onetomany/", PostSubEntityResource.class));
+        router.attach(new RouteBuilder("/applications/{id}/entities/{" + ENTITY_ID + "}/onetomany/",
+                PostSubEntityResource.class));
 
         router.attach(new RouteBuilder("/applications/{id}/entities/{" + ENTITY_ID + "}/fields", FieldsResource.class));
-        router.attach(new RouteBuilder("/applications/{id}/entities/{" + ENTITY_ID + "}/fields/", PostFieldResource.class));
-        router.attach(new RouteBuilder("/applications/{id}/entities/{" + ENTITY_ID + "}/fields/{"+FIELD_ID+"}", FieldResource.class));
-        router.attach(new RouteBuilder("/applications/{id}/entities/{" + ENTITY_ID + "}/fields/{"+FIELD_ID+"}/", PutFieldResource.class));
+        router.attach(new RouteBuilder("/applications/{id}/entities/{" + ENTITY_ID + "}/fields/",
+                PostFieldResource.class));
+        router.attach(new RouteBuilder("/applications/{id}/entities/{" + ENTITY_ID + "}/fields/{" + FIELD_ID + "}",
+                FieldResource.class));
+        router.attach(new RouteBuilder("/applications/{id}/entities/{" + ENTITY_ID + "}/fields/{" + FIELD_ID + "}/",
+                PutFieldResource.class));
 
         compileApplications();
     }
-   
+
     public void compileApplications() {
         List<Application> apps = getRepository().findAll(Application.class);
-        apps.stream()
-            .forEach(
+
+        Map<String, String> routerPaths = new HashMap<>();
+        List<String> entityNames = new ArrayList<>();
+        List<String> entityClassNames = new ArrayList<>();
+
+        apps.stream().forEach(
                 a -> {
                     a.getEntities()
-                    .stream()
-                    .forEach(
-                            e -> {
-                                String entityName = getEntityName(a, e);
-                                SkysailEntityCompiler skysailCompiler = new SkysailEntityCompiler(repo, getBundle(), a.getId(), entityName, e.getName());
-                                skysailCompiler.createEntity();
-                                skysailCompiler.createResources();
-                                skysailCompiler.compile(getBundleContext());
-                                skysailCompiler.updateRepository(getRepository());
-                                skysailCompiler.attachToRouter(router,a.getName(),e);
-                            });
-                    
+                            .stream()
+                            .forEach(
+                                    e -> {
+                                        String entityName = getEntityName(a, e);
+                                        SkysailEntityCompiler entityCompiler = new SkysailEntityCompiler(repo,
+                                                getBundle(), a, entityName, e.getName());
+                                        entityCompiler.createEntity(entityNames, entityClassNames);
+                                        entityCompiler.createResources();
+                                        // entityCompiler.compile(getBundleContext());
+                                        // entityCompiler.updateRepository(getRepository());
+                                        entityCompiler.attachToRouter(router, a.getName(), e, routerPaths);
+                                    });
+
                     SkysailRepositoryCompiler repoCompiler = new SkysailRepositoryCompiler(getBundle(), a);
-                    repoCompiler.createRepository();
-                    
-                    SkysailApplicationCompiler applicationCompiler = new SkysailApplicationCompiler(getBundle(), a);
+                    // repoCompiler.reset();
+                    repoCompiler.createRepository(entityNames, entityClassNames);
+                    // repoCompiler.compile(getBundleContext());
+
+                    SkysailApplicationCompiler applicationCompiler = new SkysailApplicationCompiler(getBundle(), a,
+                            routerPaths);
                     applicationCompiler.createApplication();
-                    
+                    applicationCompiler.compile(getBundleContext());
+
+                    setupInMemoryBundle(applicationCompiler, repoCompiler);
+
                 });
-        
-        List<Entity> entities = apps.stream().map(a -> a.getEntities()).flatMap(e -> e.stream()).collect(Collectors.toList());
+
+        List<Entity> entities = apps.stream().map(a -> a.getEntities()).flatMap(e -> e.stream())
+                .collect(Collectors.toList());
         handleSubEntries(entities);
+    }
+
+    private synchronized void setupInMemoryBundle(SkysailApplicationCompiler applicationCompiler,
+            SkysailRepositoryCompiler repoCompiler) {
+        Class<?> applicationClass = applicationCompiler.getApplicationClass();
+        Class<?> repositoryClass = repoCompiler.getRepositoryClass();
+
+        try {
+            SkysailApplication applicationInstance = (SkysailApplication) applicationClass.newInstance();
+            DbRepository dbRepoInstance = (DbRepository) repositoryClass.newInstance();
+            System.out.println(applicationInstance);
+
+            Method setDbServiceMethod = dbRepoInstance.getClass().getMethod("setDbService",
+                    new Class[] { DbService2.class });
+            setDbServiceMethod.invoke(dbRepoInstance, dbService);
+
+            Method setRepositoryMethod = applicationInstance.getClass().getMethod("setRepository",
+                    new Class[] { DbRepository.class });
+            setRepositoryMethod.invoke(applicationInstance, dbRepoInstance);
+
+            Method setComponentContextMethod = applicationInstance.getClass().getMethod("setComponentContext",
+                    new Class[] { ComponentContext.class });
+            setComponentContextMethod.invoke(applicationInstance, new Object[]{getComponentContext()});
+
+            Method activateRepoInstance = dbRepoInstance.getClass().getMethod("activate", new Class[] {});
+            activateRepoInstance.invoke(dbRepoInstance, new Object[] {});
+
+            getBundleContext().registerService(
+                    new String[] { ApplicationProvider.class.getName(), MenuItemProvider.class.getName() },
+                    applicationInstance, null);
+
+        } catch (Exception e1) {
+            e1.printStackTrace();
+        }
     }
 
     private String getEntityName(Application a, Entity e) {
@@ -138,6 +194,15 @@ public class DesignerApplication extends SkysailApplication implements MenuItemP
         this.repo = null;
     }
 
+    @Reference(dynamic = true, multiple = false, optional = false)
+    public void setDbService(DbService2 dbService) {
+        this.dbService = dbService;
+    }
+
+    public void unsetDbService(DbRepository repo) {
+        this.dbService = null;
+    }
+
     public DesignerRepository getRepository() {
         return repo;
     }
@@ -145,7 +210,7 @@ public class DesignerApplication extends SkysailApplication implements MenuItemP
     public List<MenuItem> getMenuEntries() {
         return super.getMenuEntriesWithCache();
     }
-    
+
     public List<MenuItem> createMenuEntries() {
         MenuItem appMenu = new MenuItem("AppDesigner", "/" + APP_NAME, this);
         appMenu.setCategory(MenuItem.Category.APPLICATION_MAIN_MENU);
@@ -191,7 +256,7 @@ public class DesignerApplication extends SkysailApplication implements MenuItemP
         }
         return null;
     }
-    
+
     public Optional<Entity> getEntityFromApplication(Application application, String entityId) {
         return application.getEntities().stream().filter(e -> {
             if (e == null || e.getId() == null) {
@@ -203,16 +268,16 @@ public class DesignerApplication extends SkysailApplication implements MenuItemP
 
     public void updateBundle() {
         Runnable command = new Runnable() {
-            
+
             @Override
             public void run() {
                 try {
                     getBundle().update();
-                    //compileApplications();
+                    // compileApplications();
                 } catch (BundleException e) {
                     e.printStackTrace();
                 }
-                
+
             }
         };
         getTaskService().schedule(command, 1, TimeUnit.SECONDS);

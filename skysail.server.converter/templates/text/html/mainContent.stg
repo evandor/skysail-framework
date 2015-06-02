@@ -24,7 +24,7 @@ $contentHeader(converter, messages)$
     </div>
     <div class="col-md-3">
       $if(source.form)$
-        $renderEntityInfo(resource, source, model.formfields, messages)$ 
+        $renderEntityInfo(source, model.formfields, messages, model)$ 
       $endif$ 
     </div>
   </div>

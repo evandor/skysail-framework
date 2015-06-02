@@ -1,21 +1,21 @@
-renderEntityInfo(resource, source, fields, messages) ::= <<
-  $if (resource.postEntityServerResource)$
+renderEntityInfo(source, fields, messages, model) ::= <<
+  $if (model.postEntityServerResource)$
         
-  $elseif (resource.putEntityServerResource)$
+  $elseif (model.putEntityServerResource)$
     <form action="$source.deleteFormTarget$?method=DELETE" method="POST" class="form-horizontal" id="delete-form" name="delete-form">
       <div class="form-group">
           <button type="submit" class="btn btn-warning">Delete</button>
       </div>
     </form> 
     <hr>
-    $fields:{ field | $handleReadonlyInputField(resource, source, field, messages)$}$
+    $fields:{ field | $handleReadonlyInputField(source, field, messages)$}$
   $else$
-   hier
+   hier4FZH
   $endif$
   
 >>
 
-handleReadonlyInputField(resource, source, field, messages) ::= <<
+handleReadonlyInputField(source, field, messages) ::= <<
   $if(field.readonlyInputType)$
       $if(field.tagsInputType)$
         <div class='form-group'>

@@ -21,7 +21,7 @@ showFormMobile(source, fields, messages, model) ::= <<
   $elseif (model.putEntityServerResource)$
     <form action="$source.formTarget$?method=PUT" method="POST" class="pure-form pure-form-stacked" role="form" id="form" name="form">
       <fieldset>
-        $model.formfields:{ field | $handleFielsource, field, messages,i,"")$}$
+        $model.formfields:{ field | $handleField(source, field, messages,i,"")$}$
         $submitPut("Update",1,9,length(model.formfields))$
       </fieldset>
     </form>

@@ -48,4 +48,8 @@ public class Entity implements Identifiable {
         return subEntities;
     }
 
+    public Entity(String name) {
+        this.name = name;
+    }
+
 }

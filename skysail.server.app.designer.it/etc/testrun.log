@@ -1,6 +1,6 @@
 INFO  io.skysail.client.testsupport.IntegrationTests - 
 INFO  io.skysail.client.testsupport.IntegrationTests - --------------------------------------------
-INFO  io.skysail.client.testsupport.IntegrationTests -  > TEST: running test 'posting_new_application_with_name_containing_specialChar_yields_validation_violation'
+INFO  io.skysail.client.testsupport.IntegrationTests -  > TEST: running test 'altering_application_updates_it_in_DB'
 INFO  io.skysail.client.testsupport.IntegrationTests - --------------------------------------------
 INFO  io.skysail.client.testsupport.IntegrationTests - 
 INFO  io.skysail.client.testsupport.IntegrationTests - setting up test case...

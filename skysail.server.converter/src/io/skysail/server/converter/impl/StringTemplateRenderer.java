@@ -1,28 +1,16 @@
 package io.skysail.server.converter.impl;
 
 import io.skysail.api.favorites.FavoritesService;
-import io.skysail.api.links.Link;
 import io.skysail.api.peers.PeersProvider;
 import io.skysail.server.app.SkysailApplication;
-import io.skysail.server.converter.HtmlConverter;
-import io.skysail.server.converter.Notification;
+import io.skysail.server.converter.*;
 import io.skysail.server.converter.stringtemplate.STGroupBundleDir;
-import io.skysail.server.converter.wrapper.STListSourceWrapper;
-import io.skysail.server.converter.wrapper.STServicesWrapper;
-import io.skysail.server.converter.wrapper.STSourceWrapper;
-import io.skysail.server.converter.wrapper.STTargetWrapper;
-import io.skysail.server.converter.wrapper.STUserWrapper;
-import io.skysail.server.converter.wrapper.StResourceWrapper;
+import io.skysail.server.converter.wrapper.*;
 import io.skysail.server.model.ResourceModel;
-import io.skysail.server.restlet.resources.ListServerResource;
 import io.skysail.server.restlet.resources.SkysailServerResource;
 
 import java.net.URL;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import lombok.extern.slf4j.Slf4j;
@@ -31,8 +19,7 @@ import org.apache.shiro.SecurityUtils;
 import org.osgi.framework.Bundle;
 import org.restlet.Request;
 import org.restlet.data.MediaType;
-import org.restlet.representation.StringRepresentation;
-import org.restlet.representation.Variant;
+import org.restlet.representation.*;
 import org.restlet.resource.Resource;
 import org.stringtemplate.v4.ST;
 
@@ -51,31 +38,30 @@ public class StringTemplateRenderer {
     private HtmlConverter htmlConverter;
     private FavoritesService favoritesService;
     private PeersProvider peersProvider;
-
     private String indexPageName;
 
     public StringTemplateRenderer(HtmlConverter htmlConverter) {
         this.htmlConverter = htmlConverter;
     }
 
-    public StringRepresentation createRepresenation(Object source, Variant target,
+    public StringRepresentation createRepresenation(Object entity, Variant target,
             SkysailServerResource<?> resource) {
         
         @SuppressWarnings({ "rawtypes", "unchecked" })
-        ResourceModel<SkysailServerResource<?>,?> resourceModel = new ResourceModel(resource, source);
-        resourceModel.convert(target);
+        ResourceModel<SkysailServerResource<?>,?> resourceModel = new ResourceModel(resource, entity, target);
+        resourceModel.convert();
         resourceModel.setFavoritesService(favoritesService);
+        resourceModel.setMenuItemProviders(menuProviders);
 
         templateFromCookie = CookiesUtils.getTemplateFromCookie(resource.getRequest());
 
-        //SourceWrapper sourceWrapper = new SourceWrapper(source, target, resourceModel);
-        
         STGroupBundleDir stGroup = createSringTemplateGroup(resource, target.getMediaType().getName());
         
         ST index = getStringTemplateIndex(resource, stGroup);
         
-        addAssociatedLinks(resource, resourceModel);
-        addSubstitutions(resourceModel, index, target, menuProviders);
+        //addAssociatedLinks(resourceModel);
+        addSubstitutions(resourceModel, index);
+        
         checkForInspection(resource, index);
 
         return createRepresentation(index, stGroup);
@@ -118,51 +104,7 @@ public class StringTemplateRenderer {
         }
     }
 
-    private void addAssociatedLinks(Resource resource, ResourceModel sourceWrapper) {
-        if (!(resource instanceof ListServerResource)) {
-            return;
-        }
-        ListServerResource<?> listServerResource = (ListServerResource<?>) resource;
-        List<Link> links = listServerResource.getLinks();
-        List<Class<? extends SkysailServerResource<?>>> entityResourceClass = listServerResource
-                .getAssociatedServerResources();
-        if (entityResourceClass != null && sourceWrapper.getConvertedSource() instanceof List) {
-            List<?> sourceAsList = (List<?>) sourceWrapper.getConvertedSource();
-            for (Object object : sourceAsList) {
-                if (!(object instanceof Map)) {
-                    continue;
-                }
-                String id = guessId(object);
-                if (id == null) {
-                    continue;
-                }
-
-                String linkshtml = links
-                        .stream()
-                        .filter(l -> id.equals(l.getRefId()))
-                        .map(link -> {
-                            StringBuilder sb = new StringBuilder();
-
-                            if (link.getImage(MediaType.TEXT_HTML) != null) {
-                                sb.append("<a href='")
-                                        .append(link.getUri())
-                                        .append("' title='")
-                                        .append(link.getTitle())
-                                        .append("'>")
-                                        .append("<span class='glyphicon glyphicon-"
-                                                + link.getImage(MediaType.TEXT_HTML) + "' aria-hidden='true'></span>")
-                                        .append("</a>");
-                            } else {
-                                sb.append("<a href='").append(link.getUri()).append("'>").append(link.getTitle())
-                                        .append("</a>");
-                            }
-                            return sb.toString();
-                        }).collect(Collectors.joining("&nbsp;&nbsp;"));
-
-                ((Map<String, Object>) object).put("_links", linkshtml);
-            }
-        }
-    }
+   
 
     private StringRepresentation createRepresentation(ST index, STGroupBundleDir stGroup) {
         String stringTemplateRenderedHtml = index.render();
@@ -186,22 +128,7 @@ public class StringTemplateRenderer {
         return "edit".equalsIgnoreCase(templateFromCookie);
     }
 
-    private String guessId(Object object) {
-        if (!(object instanceof Map))
-            return "";
-        Map<String, Object> entity = ((Map<String, Object>) object);
-
-        if (entity.get("id") != null) {
-            Object value = entity.get("id");
-            return value.toString().replace("#", "");
-        } else if (entity.get("@rid") != null) {
-            String str = entity.get("@rid").toString();
-            return (str.replace("#", ""));
-        } else {
-            return "";
-        }
-    }
-
+   
     /**
      * As the templates used for creating the output cannot be added to the
      * output itself during creation time, they are added in an additional step
@@ -215,25 +142,20 @@ public class StringTemplateRenderer {
     }
 
     @SuppressWarnings("unchecked")
-    private void addSubstitutions(ResourceModel<SkysailServerResource<?>,?> resourceModel, ST decl, Variant target,
-            Set<MenuItemProvider> menuProviders) {
+    private void addSubstitutions(ResourceModel<SkysailServerResource<?>,?> resourceModel, ST decl) {
 
         SkysailServerResource<?> resource = resourceModel.getResource();
         
         String installationFromCookie = CookiesUtils.getInstallationFromCookie(resource.getRequest());
 
         decl.add("user", new STUserWrapper(SecurityUtils.getSubject(), peersProvider, installationFromCookie));
-        decl.add("target", new STTargetWrapper(target));
         decl.add("converter", this);
-        decl.add("services", new STServicesWrapper(menuProviders, null, resource));
-        decl.add("resource", new StResourceWrapper(resourceModel, favoritesService));
-
+        
         if (resourceModel.getSource() instanceof List) {
             decl.add("source", new STListSourceWrapper((List<Object>) resourceModel.getConvertedSource()));
         } else {
             decl.add("source", new STSourceWrapper(resourceModel.getConvertedSource()));
         }
-
 
         Map<String, String> messages = resource.getMessages(resourceModel.getFormfields());
         messages.put("productName", getProductName());
@@ -298,7 +220,5 @@ public class StringTemplateRenderer {
         }
         return false;
     }
-
-
 
 }

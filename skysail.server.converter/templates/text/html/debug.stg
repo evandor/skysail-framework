@@ -1,4 +1,4 @@
-debug(resource, source, target, messages) ::= <<
+debug(source, messages, model) ::= <<
   <div class="row">
     <div class="col-md-12">
       <br><br>
@@ -11,17 +11,17 @@ debug(resource, source, target, messages) ::= <<
     <div class="col-md-10">
     
       <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-                $resource.status$
+                $model.status$
                 <div class="panel panel-default">
                   <div class="panel-heading" role="tab" id="headingResource">
                     <h4 class="panel-title">
                       <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseResource" aria-expanded="false" aria-controls="collapseResource">
-                        Resource: $resource.classname$
+                        Resource: $model.classname$
                       </a>
                     </h4>
                   </div>
                   <div id="collapseResource" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingResource">
-                    <div class="panel-body">$resource$</div>
+                    <div class="panel-body">$model.resource$</div>
                   </div>
                 </div>
                 <div class="panel panel-default">
@@ -31,7 +31,7 @@ debug(resource, source, target, messages) ::= <<
                     </h4>
                   </div>
                   <div id="collapseLinks" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingLinks">
-                    <div class="panel-body">$linkheader(resource.links)$</div>
+                    <div class="panel-body">$linkheader(model.links)$</div>
                   </div>
                 </div>
                 <div class="panel panel-default">
@@ -41,7 +41,7 @@ debug(resource, source, target, messages) ::= <<
                     </h4>
                   </div>
                   <div id="collapseEntity" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingEntity">
-                    <div class="panel-body">EntityType: <code>$resource.entityType$</code></div>
+                    <div class="panel-body">EntityType: <code>$model.entityType$</code></div>
                   </div>
                 </div>
                 <div class="panel panel-default">
@@ -51,7 +51,7 @@ debug(resource, source, target, messages) ::= <<
                     </h4>
                   </div>
                   <div id="collapseApplication" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingApplication">
-                    <div class="panel-body">$resource.application$</div>
+                    <div class="panel-body">$model.resource.application$</div>
                   </div>
                 </div>
                 <div class="panel panel-default">
@@ -71,7 +71,7 @@ debug(resource, source, target, messages) ::= <<
                     </h4>
                   </div>
                   <div id="collapseTarget" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTarget">
-                    <div class="panel-body">$target$</div>
+                    <div class="panel-body">$model.target$</div>
                   </div>
                 </div>
                 <div class="panel panel-default">

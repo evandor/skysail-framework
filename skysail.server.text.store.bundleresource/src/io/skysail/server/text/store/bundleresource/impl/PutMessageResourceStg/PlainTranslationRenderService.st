@@ -1,4 +1,4 @@
-PlainTranslationRenderService(user, messages, source, converter, services, resource, fields, target,model) ::= <<
+PlainTranslationRenderService(user, messages, source, converter, model) ::= <<
 <!DOCTYPE html>
 <html lang="en-gb" dir="ltr">
 
@@ -39,9 +39,9 @@ PlainTranslationRenderService(user, messages, source, converter, services, resou
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            $dropdownFrontendsNav(services)$
-            $dropdownApplicationsNav(services)$
-            $dropdownAdminNav(services)$
+            $dropdownFrontendsNav(model.services)$
+            $dropdownApplicationsNav(model.services)$
+            $dropdownAdminNav(model.services)$
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">View (advanced) <span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu">
@@ -72,10 +72,10 @@ PlainTranslationRenderService(user, messages, source, converter, services, resou
       <div class="col-md-1">&nbsp;</div>  
       <div class="col-md-10">
         <div class="row">
-            $breadcrumb(resource)$
+            $breadcrumb(model)$
         </div>
         <div class="row">
-            $menuNav(resource.linkheader)$
+            $menuNav(model.links)$
         </div>
         <div class="row">
             &nbsp;
@@ -84,20 +84,20 @@ PlainTranslationRenderService(user, messages, source, converter, services, resou
               $contentHeader(messages)$
         </div>
         <div class="row">
-        <b>TranslationStore</b>: $first(fields).entity.storeChooser$<br>
+        <b>TranslationStore</b>: $first(model.formfields).entity.storeChooser$<br>
         <b>TranslationRenderer</b>: Plain<br>
         <b>redirecting to</b> '$source.entity.redirectBackTo$'
         <form role="form" action=".?method=PUT&_redirectTo=$source.entity.redirectBackTo$" method="POST">
             <div class="form-group">
-                <label for="exampleInputEmail1">Markdown [<a href='http://daringfireball.net/projects/markdown/syntax' target='_blank'">?</a>] for $first(fields).entity.msgKey$</label>
-                <textarea data-uk-htmleditor="{maxsplitsize:600, markdown:true}" name="msg">$first(fields).entity.msg$</textarea>
+                <label for="exampleInputEmail1">Markdown [<a href='http://daringfireball.net/projects/markdown/syntax' target='_blank'">?</a>] for $first(model.formfields).entity.msgKey$</label>
+                <textarea data-uk-htmleditor="{maxsplitsize:600, markdown:true}" name="msg">$first(model.formfields).entity.msg$</textarea>
             </div>
             <button type="submit" class="btn btn-default">Update</button>
         </form>
     </div>
       
       $if(converter.debug)$
-        $debug(resource, source, target, messages)$
+        $debug(source, messages, model)$
       $endif$ 
       
       <div class="col-md-1">&nbsp;</div>

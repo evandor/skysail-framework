@@ -1,4 +1,5 @@
-index(user, messages, source, converter, services, resource, fields, target, model) ::= <<
+index(user, messages, source, converter, model) ::= <<
+
 <!DOCTYPE html>
 <html lang="en-gb" dir="ltr">
 
@@ -23,6 +24,9 @@ index(user, messages, source, converter, services, resource, fields, target, mod
 
     <body role="document">
               
+NOT USED
+NOT USED
+NOT USED
         
         
          <!-- Fixed navbar -->
@@ -39,9 +43,9 @@ index(user, messages, source, converter, services, resource, fields, target, mod
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            $dropdownFrontendsNav(services)$
-            $dropdownApplicationsNav(services)$
-            $dropdownAdminNav(services)$
+            $dropdownFrontendsNav(model.services)$
+            $dropdownApplicationsNav(model.services)$
+            $dropdownAdminNav(model.services)$
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">View (advanced) <span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu">
@@ -56,7 +60,7 @@ index(user, messages, source, converter, services, resource, fields, target, mod
               </ul>
             </li>
             <li>
-				<a href="/webapp/impress.html">About...</a>
+				<a href="/webapp/impress.html">About...!</a>
 			</li>
           </ul>
           <ul class="nav navbar-nav navbar-right">

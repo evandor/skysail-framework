@@ -1,4 +1,4 @@
-index(user, messages, source, converter, services, resource, target, model) ::= <<
+index(user, messages, source, converter, model) ::= <<
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -81,10 +81,10 @@ index(user, messages, source, converter, services, resource, target, model) ::= 
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            $dropdownFrontendsNav(services)$
-            $dropdownApplicationsNav(services)$
-            $dropdownDesignerNav(services)$
-            $dropdownAdminNav(services)$
+            $dropdownFrontendsNav(model.services)$
+            $dropdownApplicationsNav(model.services)$
+            $dropdownDesignerNav(model.services)$
+            $dropdownAdminNav(model.services)$
             $if(user.developer)$
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">View (advanced) <span class="caret"></span></a>
@@ -102,7 +102,7 @@ index(user, messages, source, converter, services, resource, target, model) ::= 
             $endif$
           </ul>
           
-          $if(services.searchService)$
+          $if(model.services.searchService)$
 		  <div class="col-sm-3 col-md-2 pull-right">
 			<form class="navbar-form" role="search" action="/_search" method="POST">
 				<div class="input-group">
@@ -156,10 +156,10 @@ index(user, messages, source, converter, services, resource, target, model) ::= 
         </div>
       </div>
       
-$mainContent(user, resource, converter, messages, source, model)$
+$mainContent(user, converter, messages, source, model)$
       
       $if(converter.debug)$
-        $debug(resource, source, target, messages)$
+        $debug(source, messages, model)$
       $endif$ 
       
     </div>
@@ -172,7 +172,7 @@ $mainContent(user, resource, converter, messages, source, model)$
     $notifications(converter.notifications)$
     $select2JsEndOfBody(model.formfields)$ 
     
-    $if(target.treeForm)$
+    $if(model.target.treeForm)$
     <script>
 	  \$(function () {
 	    // 6 create an instance when the DOM is ready

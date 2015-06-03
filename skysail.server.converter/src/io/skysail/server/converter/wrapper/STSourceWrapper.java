@@ -3,7 +3,7 @@ package io.skysail.server.converter.wrapper;
 import io.skysail.api.domain.Identifiable;
 import io.skysail.api.responses.*;
 
-import java.util.*;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.apache.commons.lang.StringUtils;
@@ -20,19 +20,8 @@ public class STSourceWrapper {
         return this.source.getClass().getName();
     }
 
-    public boolean isForm() {
-        if (source instanceof FormResponse) {
-            return ((SkysailResponse<?>) source).isForm();
-        }
-        if (source instanceof ConstraintViolationsResponse) {
-            return ((ConstraintViolationsResponse<?>) source).isForm();
-        }
-        return false;
-    }
-
-    public boolean isList() {
-        return source instanceof List;
-    }
+    
+   
 
     public String getFormTarget() {
         if (!(source instanceof FormResponse)) {
@@ -74,15 +63,15 @@ public class STSourceWrapper {
         return source;
     }
 
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder(this.getClass().getSimpleName()).append(": ")
-                .append(source.getClass().getName()).append(", isForm: ").append(isForm());
-        if (source instanceof SkysailResponse) {
-            Object entity = ((SkysailResponse<?>) source).getEntity();
-            sb.append("<br>Entity: ").append(entity == null ? "null" : entity.toString());
-        }
-        return sb.toString();
-    }
+//    @Override
+//    public String toString() {
+//        StringBuilder sb = new StringBuilder(this.getClass().getSimpleName()).append(": ")
+//                .append(source.getClass().getName()).append(", isForm: ").append(isForm());
+//        if (source instanceof SkysailResponse) {
+//            Object entity = ((SkysailResponse<?>) source).getEntity();
+//            sb.append("<br>Entity: ").append(entity == null ? "null" : entity.toString());
+//        }
+//        return sb.toString();
+//    }
 
 }

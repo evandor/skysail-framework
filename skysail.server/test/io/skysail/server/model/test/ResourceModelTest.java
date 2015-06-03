@@ -7,6 +7,8 @@ import io.skysail.server.model.ResourceModel;
 import java.util.List;
 
 import org.junit.*;
+import org.restlet.data.MediaType;
+import org.restlet.engine.resource.VariantInfo;
 
 public class ResourceModelTest {
 
@@ -21,7 +23,7 @@ public class ResourceModelTest {
 
     @Test
     public void finds_formField_from_entityMember() {
-        ResourceModel<TestListResource, List<TestEntity>> resourceModel = new ResourceModel<>(testListResource, testEntity);
+        ResourceModel<TestListResource, List<TestEntity>> resourceModel = new ResourceModel<>(testListResource, testEntity, new VariantInfo(MediaType.TEXT_HTML));
         assertThat(resourceModel.getTitle(), is(equalTo("Skysail")));
         assertThat(resourceModel.getParameterType(), is(equalTo(TestEntity.class)));
         assertThat(resourceModel.getFormfields().size(), is(2));

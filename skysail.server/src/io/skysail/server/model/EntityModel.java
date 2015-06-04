@@ -2,16 +2,19 @@ package io.skysail.server.model;
 
 import io.skysail.server.restlet.resources.SkysailServerResource;
 
-import java.lang.reflect.Field;
 import java.util.*;
+
+import de.twenty11.skysail.server.core.FormField;
 
 public class EntityModel {
 
     private List<FieldDescriptor> fieldDescriptors = new ArrayList<>();
+    
+    private FormField formfield;
 
-    public EntityModel(List<Field> fields) {
-        fields.stream().forEach(field -> {
-            fieldDescriptors .add(new FieldDescriptor(field));
+    public EntityModel(List<FormField> formfields) {
+        formfields.stream().forEach(f -> {
+            fieldDescriptors.add(new FieldDescriptor(f));
         });
     }
 
@@ -21,6 +24,10 @@ public class EntityModel {
            result.putAll(f.dataFromMap(props, resource));  
         });
         return result;
+    }
+
+    public boolean isSubmitButtonNeeded() {
+        return !fieldDescriptors.stream().filter(f -> {return f.isSubmitField();}).findFirst().isPresent();
     }
     
     

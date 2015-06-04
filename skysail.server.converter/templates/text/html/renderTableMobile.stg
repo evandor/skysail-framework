@@ -13,8 +13,3 @@ buttonForLink(row, field) ::= <<
 	 <li>$row.(field.name)$</li>
     $endif$
 >>
-
-
-              
-                
-            

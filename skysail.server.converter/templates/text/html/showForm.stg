@@ -14,12 +14,16 @@ showForm(source, fields, messages, model) ::= <<
     <form action="$source.formTarget$" method="POST" class="form-horizontal" role="form" id="form" name="form">
       $handleField(source, first(model.formfields), messages,"1", " autofocus")$
       $rest(model.formfields):{ field | $handleField(source, field, messages,i, "")$}$
-      $submitPost("Submit",2,10,length(model.formfields))$
+      $if (model.submitButtonNeeded)$
+        $submitPost("Submit",2,10,length(model.formfields))$
+      $endif$
     </form>
   $elseif (model.putEntityServerResource)$
     <form action="$source.formTarget$?method=PUT" method="POST" class="form-horizontal" role="form" id="form" name="form">
       $model.formfields:{ field | $handleField(source, field, messages,i,"")$}$
-      $submitPut("Update",1,9,length(fields))$
+      $if (model.submitButtonNeeded)$
+        $submitPut("Update",1,9,length(fields))$
+      $endif$
     </form>
   $endif$
 
@@ -115,13 +119,21 @@ handleInputField(source, field, messages,i,autofocus) ::= <<
             $renderDescription(source,field,converter)$
           </div>
         </div>
-      $elseif(field.selectionProvider)$
+      $elseif(field.selectionProvider && !field.submitField)$
         <div class='form-group'>
           <label for='$field.name$' class='col-sm-2 control-label' style="text-align: left;">$helpmessage(messages, field.nameKey)$  $if(converter.edit)$<a href='/i18n/messages/$source.entity.entity.class.name$.$field.name$/'><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>$endif$</label>
           <div class='col-sm-10'>
             <select name='$field.name$' tabindex="$i$"  $autofocus$>
-                $field.selectionProviderOptions.keys: {key | $options(field.selectionProviderOptions,key)$}$
+                $field.selectionProviderOptions: {option | $options(option)$}$
             </select>
+            $renderDescription(source,field,converter)$
+          </div>
+        </div>
+      $elseif(field.selectionProvider && field.submitField)$
+        <div class='form-group'>
+          <label for='$field.name$' class='col-sm-2 control-label' style="text-align: left;">$helpmessage(messages, field.nameKey)$  $if(converter.edit)$<a href='/i18n/messages/$source.entity.entity.class.name$.$field.name$/'><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>$endif$</label>
+          <div class='col-sm-10'>
+            $field.selectionProviderOptions: {option | $buttons(option, field)$}$
             $renderDescription(source,field,converter)$
           </div>
         </div>
@@ -182,8 +194,12 @@ label(prefix, formField) ::= <<
 
 helpmessage(messages, identifier) ::= <<$messages.(identifier)$>>
 
-options(options, key) ::= <<
-    <option value="$key$">$options.(key)$</option>
+options(option) ::= <<
+    <option value="$option.key$"$if(option.selected)$ selected$endif$>$option.value$</option>
+>>
+
+buttons(option, field) ::= <<
+    <input type="submit" name="$field.name$" class="btn $if(option.selected)$btn-info$else$btn-default$endif$" value="$option.value$">&nbsp;
 >>
 
 title(messages, ident) ::= <<

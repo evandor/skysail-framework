@@ -36,6 +36,7 @@ public class FormField {
     private String value;
 
     private Object source;
+    @Getter
     private Class<?> type;
     private Object entity;
     private Class<?> cls;
@@ -44,9 +45,12 @@ public class FormField {
     private Reference referenceAnnotation;
     private io.skysail.api.forms.Field formFieldAnnotation;
     private SkysailServerResource<?> resource;
-    private Map<String, String> selectionOptions;
+    private List<Option> selectionOptions;
 
+    @Getter
     private ListView listViewAnnotation;
+
+    private Submit submitAnnotation;
 
     public FormField(Field field, SkysailServerResource<?> resource, Object source) {
         extract(field, resource, source);
@@ -74,6 +78,7 @@ public class FormField {
         referenceAnnotation = field.getAnnotation(Reference.class);
         formFieldAnnotation = field.getAnnotation(io.skysail.api.forms.Field.class);
         listViewAnnotation = field.getAnnotation(ListView.class);
+        submitAnnotation = field.getAnnotation(Submit.class);
         this.source = source;
     }
 
@@ -200,6 +205,10 @@ public class FormField {
         }
         return false;
     }
+    
+    public boolean isSubmitField() {
+        return submitAnnotation != null;
+    }
 
     public boolean isCheckbox() {
         if (formFieldAnnotation != null) {
@@ -237,13 +246,15 @@ public class FormField {
         return false;
     }
 
-    public Map<String, String> getSelectionProviderOptions() {
+    public List<Option> getSelectionProviderOptions() {
         if (!isSelectionProvider()) {
             throw new IllegalAccessError("not a selection provider");
         }
         if (selectionOptions != null) {
             return selectionOptions;
         }
+        List<Option> options = new ArrayList<>();
+        
         Class<? extends SelectionProvider> selectionProvider = null;
         if (formFieldAnnotation != null) {
             selectionProvider = formFieldAnnotation.selectionProvider();
@@ -253,7 +264,7 @@ public class FormField {
             selectionProvider = referenceAnnotation.selectionProvider();
         }
         if (selectionProvider == null) {
-            return Collections.emptyMap();
+            return Collections.emptyList();
         }
         SelectionProvider selection;
         try {
@@ -262,12 +273,15 @@ public class FormField {
 
             method = selectionProvider.getMethod("setResource", Resource.class);
             method.invoke(selection, resource);
-            selectionOptions = selection.getSelections();
-            return selectionOptions;
+            selection.getSelections().entrySet().stream().forEach(entry -> {
+               options.add(new Option(entry, value)); 
+            });
+            selectionOptions = options;
+            return options;
         } catch (Exception e) {
             log.error(e.getMessage(), e);
         }
-        return Collections.emptyMap();
+        return Collections.emptyList();
     }
 
     public String getViolationMessage() {

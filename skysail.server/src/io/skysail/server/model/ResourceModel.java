@@ -2,31 +2,18 @@ package io.skysail.server.model;
 
 import io.skysail.api.favorites.FavoritesService;
 import io.skysail.api.links.Link;
-import io.skysail.api.responses.ConstraintViolationsResponse;
-import io.skysail.api.responses.FormResponse;
-import io.skysail.api.responses.SkysailResponse;
-import io.skysail.server.restlet.resources.ListServerResource;
-import io.skysail.server.restlet.resources.PostEntityServerResource;
-import io.skysail.server.restlet.resources.PutEntityServerResource;
-import io.skysail.server.restlet.resources.SkysailServerResource;
+import io.skysail.api.responses.*;
+import io.skysail.server.restlet.resources.*;
 import io.skysail.server.restlet.sourceconverter.ListSourceHtmlConverter;
-import io.skysail.server.utils.HeadersUtils;
-import io.skysail.server.utils.ReflectionUtils;
-import io.skysail.server.utils.ResourceUtils;
+import io.skysail.server.utils.*;
 
-import java.lang.reflect.Field;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
-import lombok.Getter;
-import lombok.ToString;
+import lombok.*;
 import lombok.extern.slf4j.Slf4j;
 
-import org.restlet.data.Header;
-import org.restlet.data.MediaType;
-import org.restlet.data.Status;
+import org.restlet.data.*;
 import org.restlet.representation.Variant;
 import org.restlet.util.Series;
 
@@ -79,9 +66,6 @@ public class ResourceModel<R extends SkysailServerResource<T>, T> {
         this.target = new STTargetWrapper(target);
         
         parameterType = resource.getParameterType();
-        List<Field> fields = ReflectionUtils.getInheritedFields(resource.getParameterType());
-        entityModel = new EntityModel(fields);
-        
         determineFormfields(resource, source);
     }
 
@@ -212,6 +196,9 @@ public class ResourceModel<R extends SkysailServerResource<T>, T> {
         return resource instanceof PutEntityServerResource;
     }
 
+    public boolean isSubmitButtonNeeded() {
+        return entityModel.isSubmitButtonNeeded();
+    }
 
     
     private void determineFormfields(R resource, Object source) {
@@ -220,6 +207,7 @@ public class ResourceModel<R extends SkysailServerResource<T>, T> {
                 source.getClass().getSimpleName(), source });
         try {
             formfields = fieldFactory.determineFrom(resource);
+            entityModel = new EntityModel(formfields);
         } catch (Exception e) {
             log.error(e.getMessage(),e);
         }

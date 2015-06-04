@@ -55,6 +55,9 @@ public class Todo implements Serializable, Identifiable {
     private Date startDate;
     
     @Field(type = InputType.READONLY)
+    private Integer elapseTime = 3;
+    
+    @Field(type = InputType.READONLY)
     private Date created;
 
     @Field(type = InputType.READONLY)
@@ -73,6 +76,7 @@ public class Todo implements Serializable, Identifiable {
 
     @Field(selectionProvider = StatusSelectionProvider.class)
     @PostView(visibility = Visibility.HIDE)
+    @Submit
     private Status status;
 
     @Field(type = InputType.READONLY)
@@ -104,6 +108,13 @@ public class Todo implements Serializable, Identifiable {
         if (listId == null) {
             this.list = query.getFirstValue("list");
         }
+    }
+    
+    public Integer getElapseTime() {
+        if (due != null && startDate != null) {
+            return (int)((due.getTime() - startDate.getTime()) / (1000*60*60*24l));
+        }
+        return null;
     }
 
 }

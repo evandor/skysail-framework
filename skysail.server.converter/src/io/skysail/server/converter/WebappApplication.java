@@ -57,35 +57,33 @@ public class WebappApplication extends SkysailApplication implements Application
 
         ClassLoaderDirectory staticDirectory = new ClassLoaderDirectory(getContext(), localReference, customCL);
 
-        Filter cachingFilter = new Filter(){
+        Filter cachingFilter = new Filter() {
             @Override
             public Restlet getNext() {
                 return staticDirectory;
             }
-            
+
             @Override
             protected void afterHandle(Request request, Response response) {
                 super.afterHandle(request, response);
                 if (response.getEntity() != null) {
-                    if (request.getResourceRef().toString(false, false)
-                                                                .contains("nocache")) {
+                    if (request.getResourceRef().toString(false, false).contains("nocache")) {
                         response.getEntity().setModificationDate(null);
                         response.getEntity().setExpirationDate(null);
                         response.getEntity().setTag(null);
-                        response.getCacheDirectives().add(
-                                                          CacheDirective.noCache());
+                        response.getCacheDirectives().add(CacheDirective.noCache());
                     } else {
                         response.setStatus(Status.SUCCESS_OK);
                         Calendar c = new GregorianCalendar();
                         c.setTime(new Date());
-                        c.add(Calendar.DAY_OF_MONTH, 1);
+                        c.add(Calendar.DAY_OF_MONTH, 10);
                         response.getEntity().setExpirationDate(c.getTime());
                         response.getEntity().setModificationDate(null);
                     }
                 }
             }
         };
-        
+
         Router router = new Router(getContext());
         router.attachDefault(cachingFilter);
         return router;

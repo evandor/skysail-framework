@@ -1,0 +1,15 @@
+renderTableMobile(source, fields, converter, messages, model) ::= <<
+  <ul data-role="listview" data-inset="true" data-filter="false">
+    $source:{ row | $renderRow(model.formfields,row,i)$}$
+  </ul>
+>>
+
+renderRow(fields, row,i) ::= <<
+    $fields: { field | $buttonForLink(row, field)$}$
+>>
+
+buttonForLink(row, field) ::= <<
+    $if (field.link)$
+   <li><a href='$row.("_href")$'>$row.("title")$</a></li>
+    $endif$
+>>

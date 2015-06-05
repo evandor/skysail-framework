@@ -79,6 +79,7 @@ public class WebappApplication extends SkysailApplication implements Application
                         c.add(Calendar.DAY_OF_MONTH, 10);
                         response.getEntity().setExpirationDate(c.getTime());
                         response.getEntity().setModificationDate(null);
+                        response.getCacheDirectives().add(CacheDirective.publicInfo());
                     }
                 }
             }

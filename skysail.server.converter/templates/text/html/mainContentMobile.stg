@@ -1,6 +1,6 @@
 mainContentMobile(user, converter, messages, source, model) ::= <<
   
-$contentHeader(converter, messages)$
+$contentHeader(converter, messages, model)$
 
 $if(model.form)$
   <!-- showFormMobile -->

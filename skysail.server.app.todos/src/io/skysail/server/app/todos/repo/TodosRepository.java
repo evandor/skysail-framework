@@ -2,6 +2,7 @@ package io.skysail.server.app.todos.repo;
 
 import io.skysail.server.app.todos.TodoList;
 import io.skysail.server.app.todos.todos.Todo;
+import io.skysail.server.app.todos.todos.status.Status;
 import io.skysail.server.db.*;
 import io.skysail.server.queryfilter.Filter;
 import io.skysail.server.queryfilter.pagination.Pagination;
@@ -72,7 +73,7 @@ public class TodosRepository implements DbRepository {
     
     private void addCount(Filter filter, TodoList list) {
         String sql = "SELECT COUNT(*) as count from " + Todo.class.getSimpleName()
-                + " WHERE list=:list AND "+filter.getPreparedStatement();
+                + " WHERE list=:list AND status <> '"+Status.ARCHIVED+"' AND "+filter.getPreparedStatement();
         Map<String, Object> params = filter.getParams();
         params.put("list", list.getId().replace("#",""));
         long cnt = dbService.getCount(sql, params);

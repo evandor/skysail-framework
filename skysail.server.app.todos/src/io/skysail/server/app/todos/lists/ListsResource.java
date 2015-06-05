@@ -1,8 +1,7 @@
 package io.skysail.server.app.todos.lists;
 
 import io.skysail.api.links.Link;
-import io.skysail.server.app.todos.TodoApplication;
-import io.skysail.server.app.todos.TodoList;
+import io.skysail.server.app.todos.*;
 import io.skysail.server.app.todos.todos.resources.PostTodoWoListResource;
 import io.skysail.server.queryfilter.Filter;
 import io.skysail.server.queryfilter.pagination.Pagination;

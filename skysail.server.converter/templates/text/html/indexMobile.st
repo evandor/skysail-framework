@@ -29,10 +29,7 @@ indexMobile(user, messages, source, converter, model) ::= <<
         </div>
  
         <div role="main" class="ui-content">
-            $mainContentMobile(user, converter, messages, source, model)$
-        
-            <!-- 
-          <p><a href="#" data-role="button" data-icon="star" data-theme="e">Button</a></p> -->
+$mainContentMobile(user, converter, messages, source, model)$
         </div>
     </div>
 </body>

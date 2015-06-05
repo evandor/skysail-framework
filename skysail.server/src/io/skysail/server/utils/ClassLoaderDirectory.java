@@ -1,8 +1,6 @@
 package io.skysail.server.utils;
 
-import org.restlet.Context;
-import org.restlet.Request;
-import org.restlet.Response;
+import org.restlet.*;
 import org.restlet.data.Reference;
 import org.restlet.resource.Directory;
 
@@ -26,5 +24,4 @@ public class ClassLoaderDirectory extends Directory {
         super.handle(request, response);
         Thread.currentThread().setContextClassLoader(saveCL);
     }
-
 }

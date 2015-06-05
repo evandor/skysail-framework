@@ -18,12 +18,13 @@
 package io.skysail.server.converter;
 
 import io.skysail.server.app.SkysailApplication;
-import io.skysail.server.utils.ClassLoaderDirectory;
-import io.skysail.server.utils.CompositeClassLoader;
+import io.skysail.server.utils.*;
 
-import org.restlet.Restlet;
-import org.restlet.data.LocalReference;
-import org.restlet.routing.Router;
+import java.util.*;
+
+import org.restlet.*;
+import org.restlet.data.*;
+import org.restlet.routing.*;
 
 import aQute.bnd.annotation.component.Component;
 import de.twenty11.skysail.server.app.ApplicationProvider;
@@ -56,8 +57,37 @@ public class WebappApplication extends SkysailApplication implements Application
 
         ClassLoaderDirectory staticDirectory = new ClassLoaderDirectory(getContext(), localReference, customCL);
 
+        Filter cachingFilter = new Filter(){
+            @Override
+            public Restlet getNext() {
+                return staticDirectory;
+            }
+            
+            @Override
+            protected void afterHandle(Request request, Response response) {
+                super.afterHandle(request, response);
+                if (response.getEntity() != null) {
+                    if (request.getResourceRef().toString(false, false)
+                                                                .contains("nocache")) {
+                        response.getEntity().setModificationDate(null);
+                        response.getEntity().setExpirationDate(null);
+                        response.getEntity().setTag(null);
+                        response.getCacheDirectives().add(
+                                                          CacheDirective.noCache());
+                    } else {
+                        response.setStatus(Status.SUCCESS_OK);
+                        Calendar c = new GregorianCalendar();
+                        c.setTime(new Date());
+                        c.add(Calendar.DAY_OF_MONTH, 1);
+                        response.getEntity().setExpirationDate(c.getTime());
+                        response.getEntity().setModificationDate(null);
+                    }
+                }
+            }
+        };
+        
         Router router = new Router(getContext());
-        router.attachDefault(staticDirectory);
+        router.attachDefault(cachingFilter);
         return router;
     }
 

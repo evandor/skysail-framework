@@ -51,15 +51,15 @@ public class FieldDescriptor {
                     }).findFirst();
                     if (findFirst.isPresent()) {
                         String page = CookiesUtils.getMainPageFromCookie(resource.getRequest());
-                        if (page != null && page.equals("indexMobile")) {
+                        //if (page != null && page.equals("indexMobile")) {
                             // newValue =
                             // "<a href='"+findFirst.get().getUri()+"'><input type='button' class='btn btn-primary btn-lg btn-block' value='"
                             // + newValue + "' /></a>";
                             newValue = newValue;
                             props.put("_href", findFirst.get().getUri());
-                        } else {
-                            newValue = "<a href='" + findFirst.get().getUri() + "'>" + newValue + "</a>";
-                        }
+//                        } else {
+//                            newValue = "<a href='" + findFirst.get().getUri() + "'>" + newValue + "</a>";
+//                        }
                     }
                 }
             }

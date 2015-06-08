@@ -6,18 +6,28 @@ showFormMobile(source, fields, messages, model) ::= <<
       <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
       <span class="sr-only">Error:</span>
         $source.classlevelViolationMessage$
-  </div>
-    
+    </div>
   $endif$
   
   $if (model.postEntityServerResource)$
     <form action="$source.formTarget$" method="POST" class="pure-form pure-form-stacked" role="form" id="form" name="form">
       <fieldset>
         $handleField(source, first(model.formfields), messages,"1", " autofocus")$
-        $rest(model.formfields):{ field | $handleField(source, field, messages,i, "")$}$
+        $rest(model.formfields):{ field | $if(field.mandatory)$$handleField(source, field, messages,i, "")$$endif$}$
+        <!-- <div data-role="collapsible" data-mini="true">
+            <h4>Details...</h4>
+            <ul data-role="listview">
+                <li><a href="#">List item 1</a></li>
+                <li><a href="#">List item 2</a></li>
+                <li><a href="#">List item 3</a></li>
+            </ul>
+        </div> -->
         $if (model.submitButtonNeeded)$
-          $submitPost("Submit",2,10,length(model.formfields))$
+          $submitPost("Submit","2","10",length(model.formfields))$
         $endif$
+        
+      
+  
       </fieldset>  
     </form>
   $elseif (model.putEntityServerResource)$
@@ -25,7 +35,7 @@ showFormMobile(source, fields, messages, model) ::= <<
       <fieldset>
         $model.formfields:{ field | $handleField(source, field, messages,i,"")$}$
         $if (model.submitButtonNeeded)$
-          $submitPut("Update",1,9,length(model.formfields))$
+          $submitPut("Update","1","9",length(model.formfields))$
         $endif$
       </fieldset>
     </form>

@@ -20,6 +20,9 @@ indexMobile(user, messages, source, converter, model) ::= <<
     <div data-role="page">
  
         <div data-role="header" style="overflow:hidden;">
+          $if(user.principal)$
+            <a href="javascript:history.back()" class="ui-btn-left">Back</a>
+          $endif$
           <h1><a href='/'>$model.title$</a></h1>
           $if(user.principal)$
             <a href="/_logout" class="ui-btn-right">Logout</a>

@@ -2,9 +2,12 @@ package io.skysail.server.model;
 
 import io.skysail.api.links.Link;
 import io.skysail.server.restlet.resources.SkysailServerResource;
+import io.skysail.server.utils.RequestUtils;
 
 import java.net.URL;
 import java.util.*;
+
+import org.restlet.Request;
 
 import de.twenty11.skysail.server.core.FormField;
 import de.twenty11.skysail.server.core.restlet.utils.CookiesUtils;
@@ -50,16 +53,15 @@ public class FieldDescriptor {
                         return linkedResource.equals(l.getCls()) && id.equals(l.getRefId());
                     }).findFirst();
                     if (findFirst.isPresent()) {
-                        String page = CookiesUtils.getMainPageFromCookie(resource.getRequest());
-                        //if (page != null && page.equals("indexMobile")) {
+                        if (showMobilePage(resource.getRequest())) {
                             // newValue =
                             // "<a href='"+findFirst.get().getUri()+"'><input type='button' class='btn btn-primary btn-lg btn-block' value='"
                             // + newValue + "' /></a>";
                             newValue = newValue;
                             props.put("_href", findFirst.get().getUri());
-//                        } else {
-//                            newValue = "<a href='" + findFirst.get().getUri() + "'>" + newValue + "</a>";
-//                        }
+                        } else {
+                            newValue = "<a href='" + findFirst.get().getUri() + "'>" + newValue + "</a>";
+                        }
                     }
                 }
             }
@@ -78,6 +80,14 @@ public class FieldDescriptor {
             props.put(f.getName(), newValue);
         }
         return props;
+    }
+
+    private boolean showMobilePage(Request request) {
+        if (RequestUtils.isMobile(request)) {
+            return true;
+        }
+        String page = CookiesUtils.getMainPageFromCookie(request);
+        return page != null && page.equals("indexMobile");
     }
 
     public boolean isSubmitField() {

@@ -140,7 +140,9 @@ public abstract class PostEntityServerResource<T> extends SkysailServerResource<
     @API(desc = "create an html form to post a new entity")
     public SkysailResponse<T> createForm() {
         log.info("Request entry point: {} @Get('htmlform|html')", this.getClass().getSimpleName());
-        return new FormResponse<T>(createEntityTemplate(), ".");
+        List<String> templatePaths = getApplication().getTemplatePaths(this.getClass());
+        String formTarget = templatePaths.stream().findFirst().orElse(".");
+        return new FormResponse<T>(createEntityTemplate(), formTarget);
     }
 
     @Get("json")

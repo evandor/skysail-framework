@@ -11,6 +11,8 @@ import java.lang.reflect.Field;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
+import javax.validation.constraints.*;
+
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 
@@ -52,6 +54,10 @@ public class FormField {
 
     private Submit submitAnnotation;
 
+    private NotNull notNullAnnotation;
+
+    private Size sizeAnnotation;
+
     public FormField(Field field, SkysailServerResource<?> resource, Object source) {
         extract(field, resource, source);
 
@@ -79,6 +85,8 @@ public class FormField {
         formFieldAnnotation = field.getAnnotation(io.skysail.api.forms.Field.class);
         listViewAnnotation = field.getAnnotation(ListView.class);
         submitAnnotation = field.getAnnotation(Submit.class);
+        notNullAnnotation = field.getAnnotation(NotNull.class);
+        sizeAnnotation = field.getAnnotation(Size.class);
         this.source = source;
     }
 
@@ -293,6 +301,19 @@ public class FormField {
         Optional<String> validationMessage = violations.stream().filter(v -> v.getPropertyPath().equals(fieldName))
                 .map(v -> v.getMessage()).findFirst();
         return validationMessage.orElse(null);
+    }
+    
+    public boolean isMandatory() {
+        if (notNullAnnotation != null) {
+            return true;
+        }
+        if (sizeAnnotation != null) {
+            int min = sizeAnnotation.min();
+            if (min > 0) {
+                return true;
+            }
+        }
+        return false;
     }
 
     private boolean isOfInputType(InputType inputType) {

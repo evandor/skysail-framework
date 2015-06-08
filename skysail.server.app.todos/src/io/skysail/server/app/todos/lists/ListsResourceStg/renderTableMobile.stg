@@ -2,6 +2,8 @@ renderTableMobile(source, fields, converter, messages, model) ::= <<
   <ul data-role="listview" data-inset="true" data-filter="false">
     $source:{ row | $renderRow(model.formfields,row,i)$}$
   </ul>
+  
+  <a class="ui-btn" href="/Todos/Lists/">New List</a>
 >>
 
 renderRow(fields, row,i) ::= <<

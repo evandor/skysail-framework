@@ -1,7 +1,12 @@
 renderTableMobile(source, fields, converter, messages, model) ::= <<
+
+  <a class="ui-btn" href="./Todos/">New Todo</a>
+
   <ul data-role="listview" data-inset="true" data-filter="false">
     $source:{ row | $renderRow(model.formfields,row,i)$}$
   </ul>
+  
+  <a class="ui-btn" href="./">Alter List</a>
 >>
 
 renderRow(fields, row,i) ::= <<

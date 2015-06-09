@@ -11,3 +11,6 @@ hs_err_pid*
 /generated/
 *.DS_Store
 /skysail.server.app.github/
+
+*.bat
+/skysail.server.app.designer.gencode1

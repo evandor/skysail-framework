@@ -11,18 +11,15 @@ import org.osgi.framework.Bundle;
 
 public class SkysailRepositoryCompiler extends SkysailCompiler {
 
-    private Bundle bundle;
-    private Application application;
     private String repositoryClassName;
 
     public SkysailRepositoryCompiler(Bundle bundle, Application application) {
-        this.bundle = bundle;
-        this.application = application;
+        super(application, bundle);
         repositoryClassName = "io.skysail.server.app.designer.gencode." + application.getName() + "Repository";
     }
 
     public void createRepository(List<String> entityNames, List<String> entityClassNames) {
-        String template = BundleUtils.readResource(bundle, "code/Repository.codegen");
+        String template = BundleUtils.readResource(getBundle(), "code/Repository.codegen");
         setupForCompilation(template, entityNames, entityClassNames);
     }
 
@@ -37,7 +34,7 @@ public class SkysailRepositoryCompiler extends SkysailCompiler {
         @SuppressWarnings("serial")
         String entityCode = substitute(template, new HashMap<String, String>() {
             {
-                put("$classname$", application.getName() + "Repository");
+                put("$classname$", getApplication().getName() + "Repository");
                 put("$activationcode$", activationCode.toString());
             }
         });

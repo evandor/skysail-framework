@@ -13,20 +13,17 @@ import org.osgi.framework.Bundle;
 @Slf4j
 public class SkysailApplicationCompiler extends SkysailCompiler {
 
-    private Bundle bundle;
-    private Application application;
     private Map<String, String> routerPaths;
     private String applicationClassName;
 
     public SkysailApplicationCompiler(Bundle bundle, Application application, Map<String, String> routerPaths) {
-        this.bundle = bundle;
-        this.application = application;
+        super(application, bundle);
         this.routerPaths = routerPaths;
         applicationClassName = "io.skysail.server.app.designer.gencode." + application.getName() + "Application";
     }
 
     public void createApplication() {
-        String template = BundleUtils.readResource(bundle, "code/Application.codegen");
+        String template = BundleUtils.readResource(getBundle(), "code/Application.codegen");
         setupApplicationForCompilation(template);
     }
 
@@ -39,8 +36,8 @@ public class SkysailApplicationCompiler extends SkysailCompiler {
         @SuppressWarnings("serial")
         String entityCode = substitute(template, new HashMap<String, String>() {
             {
-                put("$classname$", application.getName() + "Application");
-                put("$appname$", application.getName());
+                put("$classname$", getApplication().getName() + "Application");
+                put("$appname$", getApplication().getName());
                 put("$routercode$", routerCode.toString());
             }
         });

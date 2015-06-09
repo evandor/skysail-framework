@@ -26,7 +26,6 @@ public class SkysailEntityCompiler extends SkysailCompiler {
     private String appEntityName;
     
     private DesignerRepository repo;
-    private Bundle bundle;
     private String entityResourceClassName;
     
     @Getter
@@ -41,34 +40,31 @@ public class SkysailEntityCompiler extends SkysailCompiler {
     @Getter
     private String listResourceClassName;
     
-    private Application application;
-
-    public SkysailEntityCompiler(DesignerRepository repo, Bundle bundle, Application a, String entityName, String appEntityName) {
+    public SkysailEntityCompiler(DesignerRepository repo, Bundle bundle, Application application, String entityName, String appEntityName) {
+        super(application, bundle);
         this.repo = repo;
-        this.bundle = bundle;
-        this.application = a;
         this.entityName = entityName;
         this.appEntityName = appEntityName;
     }
 
     public void createEntity(List<String> entityNames, List<String> entityClassNames) {
-        String entityTemplate = BundleUtils.readResource(bundle, "code/Entity.codegen");
-        entityClassName = setupEntityForCompilation(entityTemplate, application.getId(), entityName, appEntityName);
+        String entityTemplate = BundleUtils.readResource(getBundle(), "code/Entity.codegen");
+        entityClassName = setupEntityForCompilation(entityTemplate, getApplication().getId(), entityName, appEntityName);
         entityNames.add(entityName);
         entityClassNames.add(entityClassName);
     }
     
     public void createResources() {
-        String entityResourceTemplate = BundleUtils.readResource(bundle, "code/EntityResource.codegen");
-        entityResourceClassName = setupEntityResourceForCompilation(entityResourceTemplate, application.getId(), entityName, appEntityName);
+        String entityResourceTemplate = BundleUtils.readResource(getBundle(), "code/EntityResource.codegen");
+        entityResourceClassName = setupEntityResourceForCompilation(entityResourceTemplate, getApplication().getId(), entityName, appEntityName);
         
-        String postResourceTemplate = BundleUtils.readResource(bundle, "code/PostResource.codegen");
+        String postResourceTemplate = BundleUtils.readResource(getBundle(), "code/PostResource.codegen");
         postResourceClassName = setupPostResourceForCompilation(postResourceTemplate, entityName, appEntityName); 
         
-        String putResourceTemplate = BundleUtils.readResource(bundle, "code/PutResource.codegen");
-        putResourceClassName = setupPutResourceForCompilation(putResourceTemplate, entityName, application.getId(), appEntityName); 
+        String putResourceTemplate = BundleUtils.readResource(getBundle(), "code/PutResource.codegen");
+        putResourceClassName = setupPutResourceForCompilation(putResourceTemplate, entityName, getApplication().getId(), appEntityName); 
         
-        String listServerResourceTemplate = BundleUtils.readResource(bundle, "code/ListServerResource.codegen");
+        String listServerResourceTemplate = BundleUtils.readResource(getBundle(), "code/ListServerResource.codegen");
         listResourceClassName = setupListResourceForCompilation(listServerResourceTemplate, entityName, entityClassName);
     }
     
@@ -136,7 +132,7 @@ public class SkysailEntityCompiler extends SkysailCompiler {
                 put("$appEntityName$", appEntityName);
                 put("$fields$", codeForFields);
                 put("$gettersAndSetters$", codeForGettersAndSetters);
-                put("$applicationName$", application.getName() + "Application");
+                put("$applicationName$", getApplication().getName() + "Application");
             }
         });
         String entityClassName = "io.skysail.server.app.designer.gencode." + entityName;
@@ -176,7 +172,7 @@ public class SkysailEntityCompiler extends SkysailCompiler {
             {
                 put("$classname$", entityName + "Resource");
                 put("$entityname$", entityName);
-                put("$applicationName$", application.getName() + "Application");
+                put("$applicationName$", getApplication().getName() + "Application");
             }
         });
         String entityClassName = "io.skysail.server.app.designer.gencode." + entityName + "Resource";
@@ -192,7 +188,7 @@ public class SkysailEntityCompiler extends SkysailCompiler {
                 put("$classname$", className2);
                 put("$entityname$", entityName);
                 put("$entityShortName$", entityShortName);
-                put("$applicationName$", application.getName() + "Application");
+                put("$applicationName$", getApplication().getName() + "Application");
             }
         });
         String fullClassName = "io.skysail.server.app.designer.gencode." + className2;
@@ -224,7 +220,7 @@ public class SkysailEntityCompiler extends SkysailCompiler {
                 put("$entityShortName$", entityShortName);
                 
                 put("$updateEntity$", updateEntity.toString());
-                put("$applicationName$", application.getName() + "Application");
+                put("$applicationName$", getApplication().getName() + "Application");
             }
         });
         String fullClassName = "io.skysail.server.app.designer.gencode." + className2;
@@ -239,7 +235,7 @@ public class SkysailEntityCompiler extends SkysailCompiler {
             {
                 put("$classname$", theClassName);
                 put("$entityname$", entityName);
-                put("$applicationName$", application.getName() + "Application");
+                put("$applicationName$", getApplication().getName() + "Application");
             }
         });
 

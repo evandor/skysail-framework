@@ -133,9 +133,10 @@ public class SkysailEntityCompiler extends SkysailCompiler {
                 put("$fields$", codeForFields);
                 put("$gettersAndSetters$", codeForGettersAndSetters);
                 put("$applicationName$", getApplication().getName() + "Application");
+                put("$packagename$", getApplication().getPackageName());
             }
         });
-        String entityClassName = "io.skysail.server.app.designer.gencode." + entityName;
+        String entityClassName = application.getPackageName() + "." + entityName;
         collect(entityClassName, entityCode);
         return entityClassName;
     }
@@ -173,9 +174,10 @@ public class SkysailEntityCompiler extends SkysailCompiler {
                 put("$classname$", entityName + "Resource");
                 put("$entityname$", entityName);
                 put("$applicationName$", getApplication().getName() + "Application");
+                put("$packagename$", getApplication().getPackageName());
             }
         });
-        String entityClassName = "io.skysail.server.app.designer.gencode." + entityName + "Resource";
+        String entityClassName = application.getPackageName() + "." + entityName + "Resource";
         collect(entityClassName, entityCode);
         return entityClassName;
     }
@@ -189,9 +191,10 @@ public class SkysailEntityCompiler extends SkysailCompiler {
                 put("$entityname$", entityName);
                 put("$entityShortName$", entityShortName);
                 put("$applicationName$", getApplication().getName() + "Application");
+                put("$packagename$", getApplication().getPackageName());
             }
         });
-        String fullClassName = "io.skysail.server.app.designer.gencode." + className2;
+        String fullClassName = application.getPackageName() + "." + className2;
         collect(fullClassName, postResourceCode);
         return fullClassName;
     }
@@ -221,9 +224,10 @@ public class SkysailEntityCompiler extends SkysailCompiler {
                 
                 put("$updateEntity$", updateEntity.toString());
                 put("$applicationName$", getApplication().getName() + "Application");
+                put("$packagename$", getApplication().getPackageName());
             }
         });
-        String fullClassName = "io.skysail.server.app.designer.gencode." + className2;
+        String fullClassName = application.getPackageName() + "." + className2;
         collect(fullClassName, putResourceCode);
         return fullClassName;
     }
@@ -236,10 +240,11 @@ public class SkysailEntityCompiler extends SkysailCompiler {
                 put("$classname$", theClassName);
                 put("$entityname$", entityName);
                 put("$applicationName$", getApplication().getName() + "Application");
+                put("$packagename$", getApplication().getPackageName());
             }
         });
 
-        String className = "io.skysail.server.app.designer.gencode." + theClassName;
+        String className = application.getPackageName() + "." + theClassName;
         collect(className, listServerResourceCode);
         return className;
     }

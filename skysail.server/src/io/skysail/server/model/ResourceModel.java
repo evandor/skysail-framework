@@ -2,18 +2,29 @@ package io.skysail.server.model;
 
 import io.skysail.api.favorites.FavoritesService;
 import io.skysail.api.links.Link;
-import io.skysail.api.responses.*;
-import io.skysail.server.restlet.resources.*;
+import io.skysail.api.responses.ConstraintViolationsResponse;
+import io.skysail.api.responses.FormResponse;
+import io.skysail.api.responses.SkysailResponse;
+import io.skysail.server.restlet.resources.ListServerResource;
+import io.skysail.server.restlet.resources.PostEntityServerResource;
+import io.skysail.server.restlet.resources.PutEntityServerResource;
+import io.skysail.server.restlet.resources.SkysailServerResource;
 import io.skysail.server.restlet.sourceconverter.ListSourceHtmlConverter;
-import io.skysail.server.utils.*;
+import io.skysail.server.utils.HeadersUtils;
+import io.skysail.server.utils.ResourceUtils;
 
-import java.util.*;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 import java.util.stream.Collectors;
 
-import lombok.*;
+import lombok.Getter;
+import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
 
-import org.restlet.data.*;
+import org.restlet.data.Header;
+import org.restlet.data.MediaType;
+import org.restlet.data.Status;
 import org.restlet.representation.Variant;
 import org.restlet.util.Series;
 

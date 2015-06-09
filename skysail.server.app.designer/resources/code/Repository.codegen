@@ -1,4 +1,4 @@
-package io.skysail.server.app.designer.gencode;
+package $packagename$;
 
 import io.skysail.server.db.DbRepository;
 import io.skysail.server.db.DbService2;

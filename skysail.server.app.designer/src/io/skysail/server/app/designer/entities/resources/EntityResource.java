@@ -32,7 +32,7 @@ public class EntityResource extends EntityServerResource<Entity> {
 
     public List<Link> getLinks() {
         return super.getLinks(PutEntityResource.class, EntityResource.class, PostFieldResource.class,
-                FieldsResource.class, PostSubEntityResource.class);
+                FieldsResource.class, PostSubEntityResource.class, SubEntitiesResource.class);
     }
 
     @Override

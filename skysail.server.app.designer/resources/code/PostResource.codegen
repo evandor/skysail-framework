@@ -1,8 +1,6 @@
-package io.skysail.server.app.designer.gencode;
+package $packagename$;
 
 import io.skysail.api.responses.SkysailResponse;
-import io.skysail.server.app.designer.DesignerApplication;
-import io.skysail.server.app.designer.repo.DesignerRepository;
 import de.twenty11.skysail.server.core.restlet.ResourceContextId;
 import io.skysail.server.restlet.resources.PostEntityServerResource;
 
@@ -32,7 +30,7 @@ public class $classname$ extends PostEntityServerResource<$entityname$> {
     public SkysailResponse<?> addEntity($entityname$ entity) {
         Subject subject = SecurityUtils.getSubject();
         //entity.setOwner(subject.getPrincipal().toString());
-        String id = DesignerRepository.add(entity).toString();
+        String id = (($applicationName$) getApplication()).getRepository().add(entity).toString();
         entity.setId(id);
         return new SkysailResponse<String>();
     }

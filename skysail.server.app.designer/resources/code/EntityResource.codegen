@@ -1,4 +1,4 @@
-package io.skysail.server.app.designer.gencode;
+package $packagename$;
 
 import java.util.List;
 

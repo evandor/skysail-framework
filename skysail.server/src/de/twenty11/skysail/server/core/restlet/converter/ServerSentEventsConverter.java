@@ -8,8 +8,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import lombok.extern.slf4j.Slf4j;
+
 import org.restlet.data.CharacterSet;
 import org.restlet.data.MediaType;
+import org.restlet.engine.converter.ConverterHelper;
 import org.restlet.engine.resource.VariantInfo;
 import org.restlet.representation.Representation;
 import org.restlet.representation.StringRepresentation;
@@ -17,21 +20,21 @@ import org.restlet.representation.Variant;
 import org.restlet.resource.Resource;
 
 import aQute.bnd.annotation.component.Component;
-import de.twenty11.skysail.server.core.restlet.SkysailConverterHelper;
+import de.twenty11.skysail.server.services.OsgiConverterHelper;
 
 @Component(immediate = true)
-public class ServerSentEventsConverter extends SkysailConverterHelper {
+@Slf4j
+public class ServerSentEventsConverter extends ConverterHelper implements OsgiConverterHelper {
 
-	private static Map<MediaType, Float> mediaTypesMatch = new HashMap<>();
+	private static final float DEFAULT_MATCH_VALUE = 0f;
+	
+    private static Map<MediaType, Float> mediaTypesMatch = new HashMap<>();
 
 	static {
 		mediaTypesMatch.put(SkysailApplication.SKYSAIL_SERVER_SENT_EVENTS, 1.0F);
 	}
 
-	public ServerSentEventsConverter() {
-		super(mediaTypesMatch);
-	}
-
+	
 	@Override
 	public Representation toRepresentation(Object source, Variant target, Resource resource) throws IOException {
 		StringRepresentation representation = new StringRepresentation("data: " + System.currentTimeMillis() +"\n\n");
@@ -44,5 +47,35 @@ public class ServerSentEventsConverter extends SkysailConverterHelper {
 	public List<VariantInfo> getVariants(Class<?> source) {
 		return Arrays.asList(new VariantInfo(SkysailApplication.SKYSAIL_SERVER_SENT_EVENTS));
 	}
+
+	@Override
+    public List<Class<?>> getObjectClasses(Variant source) {
+        throw new RuntimeException("getObjectClasses method is not implemented yet");
+    }
+
+    @Override
+    public float score(Object source, Variant target, Resource resource) {
+        if (target == null) {
+            return 0.0f;
+        }
+        for (MediaType mediaType : mediaTypesMatch.keySet()) {
+            if (target.getMediaType().equals(mediaType)) {
+                log.info("converter '{}' matched '{}' with threshold {}", new Object[] {
+                        this.getClass().getSimpleName(), mediaTypesMatch, mediaTypesMatch.get(mediaType) });
+                return mediaTypesMatch.get(mediaType);
+            }
+        }
+        return DEFAULT_MATCH_VALUE;
+    }
+
+    @Override
+    public <T> float score(Representation source, Class<T> target, Resource resource) {
+        return -1.0F;
+    }
+
+    @Override
+    public <T> T toObject(Representation source, Class<T> target, Resource resource) {
+        throw new RuntimeException("toObject method is not implemented yet");
+    }
 
 }

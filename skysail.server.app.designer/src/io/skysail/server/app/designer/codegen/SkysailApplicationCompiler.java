@@ -19,7 +19,7 @@ public class SkysailApplicationCompiler extends SkysailCompiler {
     public SkysailApplicationCompiler(Bundle bundle, Application application, Map<String, String> routerPaths) {
         super(application, bundle);
         this.routerPaths = routerPaths;
-        applicationClassName = "io.skysail.server.app.designer.gencode." + application.getName() + "Application";
+        applicationClassName = application.getPackageName() + "." + application.getName() + "Application";
     }
 
     public void createApplication() {
@@ -39,6 +39,7 @@ public class SkysailApplicationCompiler extends SkysailCompiler {
                 put("$classname$", getApplication().getName() + "Application");
                 put("$appname$", getApplication().getName());
                 put("$routercode$", routerCode.toString());
+                put("$packagename$", getApplication().getPackageName());
             }
         });
        

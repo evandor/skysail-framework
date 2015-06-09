@@ -1,10 +1,13 @@
 package io.skysail.server.app.designer.fields.resources;
 
+import io.skysail.api.links.Link;
 import io.skysail.api.responses.SkysailResponse;
 import io.skysail.server.app.designer.DesignerApplication;
 import io.skysail.server.app.designer.entities.Entity;
 import io.skysail.server.app.designer.fields.EntityField;
 import io.skysail.server.restlet.resources.PostEntityServerResource;
+
+import java.util.function.Consumer;
 
 import org.restlet.resource.ResourceException;
 
@@ -38,6 +41,12 @@ public class PostFieldResource extends PostEntityServerResource<EntityField> {
         entity.getFields().add(field);
         app.getRepository().update(entity);
         return new SkysailResponse<String>();
+    }
+    
+
+    @Override
+    public Consumer<? super Link> getPathSubstitutions() {
+        return l -> l.substitute("id", id).substitute(DesignerApplication.ENTITY_ID, entityId);
     }
 
 }

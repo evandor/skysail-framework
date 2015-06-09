@@ -1,5 +1,4 @@
 Bundle-Version: 0.1.0.${tstamp}
-Bundle-Name: SKYSAIL :: server :: app :: designer :: gencode
 Bundle-Description: generated code from the application designer bundle
 Service-Component: *
 Include-Resource: resources, templates=src;recursive:=true;filter:=*.st|*.stg
@@ -52,15 +51,6 @@ Include-Resource: resources, templates=src;recursive:=true;filter:=*.st|*.stg
 Import-Package: org.osgi.framework,\
 	javassist.util.proxy,\
 	*
-Private-Package:  \
-	io.skysail.server.app.designer.application.resources,\
-	io.skysail.server.app.designer.entities.resources,\
-	io.skysail.server.app.designer.fields.resources,\
-	io.skysail.server.app.designer.codegen,\
+Private-Package: \
+    $packagename$,\
 	io.skysail.server.app.designer.gencode
-Export-Package:  \
-	io.skysail.server.app.designer.repo,\
-	io.skysail.server.app.designer.application,\
-	io.skysail.server.app.designer.entities,\
-	io.skysail.server.app.designer.fields,\
-	io.skysail.server.app.designer

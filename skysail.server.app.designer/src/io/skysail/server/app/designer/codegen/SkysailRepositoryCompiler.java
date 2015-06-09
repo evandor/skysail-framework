@@ -15,7 +15,7 @@ public class SkysailRepositoryCompiler extends SkysailCompiler {
 
     public SkysailRepositoryCompiler(Bundle bundle, Application application) {
         super(application, bundle);
-        repositoryClassName = "io.skysail.server.app.designer.gencode." + application.getName() + "Repository";
+        repositoryClassName = application.getPackageName() + "." + application.getName() + "Repository";
     }
 
     public void createRepository(List<String> entityNames, List<String> entityClassNames) {
@@ -36,6 +36,7 @@ public class SkysailRepositoryCompiler extends SkysailCompiler {
             {
                 put("$classname$", getApplication().getName() + "Repository");
                 put("$activationcode$", activationCode.toString());
+                put("$packagename$", getApplication().getPackageName());
             }
         });
 

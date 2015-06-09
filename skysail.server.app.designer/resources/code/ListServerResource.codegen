@@ -1,4 +1,4 @@
-package io.skysail.server.app.designer.gencode;
+package $packagename$;
                 
 import io.skysail.server.restlet.resources.ListServerResource;
 import io.skysail.api.links.Link;

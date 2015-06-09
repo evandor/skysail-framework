@@ -1,4 +1,4 @@
-package io.skysail.server.app.designer.gencode;
+package $packagename$;
 
 import io.skysail.api.domain.Identifiable;
 import io.skysail.api.forms.Field;

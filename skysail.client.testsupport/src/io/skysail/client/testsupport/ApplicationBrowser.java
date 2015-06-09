@@ -1,14 +1,23 @@
 package io.skysail.client.testsupport;
 
+import java.security.SecureRandom;
+
+import lombok.*;
 import lombok.extern.slf4j.Slf4j;
 
-import org.restlet.data.Form;
-import org.restlet.data.MediaType;
-import org.restlet.data.Method;
-import org.restlet.data.Status;
+import org.restlet.data.*;
 
 @Slf4j
 public abstract class ApplicationBrowser<T extends ApplicationBrowser<?, U>, U> {
+
+    @Getter
+    protected ApplicationBrowser parentEntityBrowser;
+    
+    protected SecureRandom random = new SecureRandom();
+
+    @Getter
+    @Setter
+    private String id;
 
     protected static final String HOST = "http://localhost";
 
@@ -25,13 +34,13 @@ public abstract class ApplicationBrowser<T extends ApplicationBrowser<?, U>, U> 
     public ApplicationBrowser(String appName, MediaType mediaType, String port) {
         this.mediaType = mediaType;
         String url = HOST + ":" + port;
-        log.info("{}creating new browser client with url '{}' for Application '{}' and mediaType '{}'", ApplicationClient.TESTTAG,
-                url, appName, MediaType.TEXT_HTML);
+        log.info("{}creating new browser client with url '{}' for Application '{}' and mediaType '{}'",
+                ApplicationClient.TESTTAG, url, appName, MediaType.TEXT_HTML);
         client = new ApplicationClient<U>(url, appName, mediaType);
     }
 
     abstract protected Form createForm(U entity);
-    
+
     public void setPort(String port) {
         this.port = Integer.parseInt(port);
     }
@@ -44,7 +53,7 @@ public abstract class ApplicationBrowser<T extends ApplicationBrowser<?, U>, U> 
         log.info("{}logging in as user '{}'", ApplicationClient.TESTTAG, defaultUser);
         client.loginAs(defaultUser, "skysail");
     }
-    
+
     @SuppressWarnings("unchecked")
     public T asUser(String username) {
         this.defaultUser = username;
@@ -54,18 +63,17 @@ public abstract class ApplicationBrowser<T extends ApplicationBrowser<?, U>, U> 
 
     public void setUser(String defaultUser) {
         this.defaultUser = defaultUser;
+        if (parentEntityBrowser != null) {
+            this.parentEntityBrowser.setUser(defaultUser);
+        }
     }
 
-    
     public Status getStatus() {
         return client.getResponse().getStatus();
     }
-    
-    protected void findAndDelete(String id) {
-        client.gotoAppRoot()
-            .followLinkTitleAndRefId("update", id)
-            .followLink(Method.DELETE);
-    }
 
+    protected void findAndDelete(String id) {
+        client.gotoAppRoot().followLinkTitleAndRefId("update", id).followLink(Method.DELETE);
+    }
 
 }

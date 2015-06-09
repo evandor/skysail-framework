@@ -14,20 +14,13 @@ showFormMobile(source, fields, messages, model) ::= <<
       <fieldset>
         $handleField(source, first(model.formfields), messages,"1", " autofocus")$
         $rest(model.formfields):{ field | $if(field.mandatory)$$handleField(source, field, messages,i, "")$$endif$}$
-        <!-- <div data-role="collapsible" data-mini="true">
+        <div data-role="collapsible" data-mini="true">
             <h4>Details...</h4>
-            <ul data-role="listview">
-                <li><a href="#">List item 1</a></li>
-                <li><a href="#">List item 2</a></li>
-                <li><a href="#">List item 3</a></li>
-            </ul>
-        </div> -->
+            $rest(model.formfields):{ field | $if(!field.mandatory)$$handleField(source, field, messages,i, "")$$endif$}$
+        </div>
         $if (model.submitButtonNeeded)$
           $submitPost("Submit","2","10",length(model.formfields))$
         $endif$
-        
-      
-  
       </fieldset>  
     </form>
   $elseif (model.putEntityServerResource)$

@@ -7,28 +7,18 @@ import io.skysail.server.utils.CompositeClassLoader;
 
 import java.io.File;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
-import javax.tools.Diagnostic;
+import javax.tools.*;
 import javax.tools.Diagnostic.Kind;
-import javax.tools.DiagnosticCollector;
-import javax.tools.JavaCompiler;
-import javax.tools.JavaFileObject;
-import javax.tools.ToolProvider;
 import javax.validation.ConstraintViolation;
 
+import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 
 import org.apache.commons.beanutils.DynaProperty;
-import org.osgi.framework.Bundle;
-import org.osgi.framework.BundleContext;
+import org.osgi.framework.*;
 import org.restlet.resource.ServerResource;
 
 @Slf4j
@@ -39,6 +29,9 @@ public class InMemoryJavaCompiler {
     private static List<JavaFileObject> sourceCodes = new ArrayList<>();
     private static Map<String, CompiledCode> compiledCodes = new HashMap<>();
     private static CompiledCodeTrackingJavaFileManager fileManager = new CompiledCodeTrackingJavaFileManager(compiledCodes);
+    
+    @Getter
+    private static boolean compiledSuccessfully = true;
     
     static {
         CompositeClassLoader customCL = new CompositeClassLoader();
@@ -97,12 +90,14 @@ public class InMemoryJavaCompiler {
         JavaCompiler.CompilationTask task = javac
                 .getTask(null, fileManager, diagnostics, optionList, null, sourceCodes);
         task.call();
-        dumpErrorsIfExistent(diagnostics, "xxx");
-        
+        boolean errorFound = dumpErrorsIfExistent(diagnostics, "xxx");
+        if (errorFound) {
+            compiledSuccessfully = false;
+        }
         //return cl.loadClass(className);
     }
 
-    private static void dumpErrorsIfExistent(DiagnosticCollector<JavaFileObject> diagnostics, String sourceCode) {
+    private static boolean dumpErrorsIfExistent(DiagnosticCollector<JavaFileObject> diagnostics, String sourceCode) {
         boolean errorFound = false;
         for (Diagnostic<?> diagnostic : diagnostics.getDiagnostics()) {
             if (!(diagnostic.getKind().equals(Kind.ERROR))) {
@@ -116,6 +111,7 @@ public class InMemoryJavaCompiler {
             log.error("Non-compiling source: ");
             log.error(sourceCode);
         }
+        return errorFound;
     }
 
     private static void getBundleLocationFor(Class<?> cls, Set<String> bundleLocations, Bundle[] bundles) {

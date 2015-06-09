@@ -4,79 +4,71 @@ import static org.hamcrest.CoreMatchers.containsString;
 import static org.junit.Assert.assertThat;
 import io.skysail.client.testsupport.IntegrationTests;
 import io.skysail.server.app.designer.application.Application;
-import io.skysail.server.app.designer.entities.Entity;
+import io.skysail.server.app.designer.fields.EntityField;
 import io.skysail.server.app.designer.it.browser.*;
 
 import java.math.BigInteger;
 
 import org.junit.*;
 import org.restlet.data.MediaType;
-import org.restlet.representation.Representation;
-
-import com.fasterxml.jackson.databind.*;
 
 /**
  * Integration tests for creating, reading, updating, and deleting Entities.
  *
  */
-public class EntitiesCrudIntegrationTests extends IntegrationTests<EntitiesBrowser, Entity> {
+public class FieldsCrudIntegrationTests extends IntegrationTests<EntityFieldsBrowser, EntityField> {
 
-    private Entity entity;
+    private EntityField field;
 
     private ApplicationsBrowser appBrowser;
 
-    private ObjectMapper mapper = new ObjectMapper();
-//    private JsonNode node;
 
     @Before
     public void setUp() {
         String port = determinePort();
-        browser = new EntitiesBrowser(MediaType.APPLICATION_JSON, port);
+        browser = new EntityFieldsBrowser(MediaType.APPLICATION_JSON, port);
         browser.setUser("admin");
-
-        appBrowser = new ApplicationsBrowser(MediaType.APPLICATION_JSON, port);
-        appBrowser.setUser("admin");
-
-        // entity = createRandomEntity();
+        field = browser.createRandomField();
     }
 
     @Test
-    public void creating_entity_for_application_persists_them() throws Exception {
-       // String appId = appBrowser.create(new Application("PropMan"));
-        browser.create(new Entity("Campaign"));
-        Representation rep = browser.getApplication(browser.getParentEntityBrowser().getId());
-        assertThat(rep.getText(), containsString("Campaign"));
+    public void creating_field_for_entity_persists_them() throws Exception {
+        browser.create(field);
+        String appId = browser.getParentEntityBrowser().getParentEntityBrowser().getId();
+        String rep = browser.getApplication(appId).getText();
+        System.out.println(rep);
+        assertThat(rep, containsString(field.getName()));
     }
 
-    @Test
-    // delete
-    public void new_entity_can_be_deleted() throws Exception {
+//    @Test
+//    // delete
+//    public void new_entity_can_be_deleted() throws Exception {
 //        String appId = appBrowser.create(createRandomApplication());
-        Entity theEntity = browser.createRandomEntity();
-        browser.create(theEntity);
-
-        Representation application = appBrowser.getApplication(browser.getParentEntityBrowser().getId());
-        String strRep = application.getText();
-        JsonNode node = mapper.readValue(strRep, JsonNode.class);
-        JsonNode firstEntityId = node.get(0).get("entities").get(0).get("id");
-       // browser.from(application).get("entities").get("id").first();
-        String entityId = firstEntityId.textValue().replace("#", "");
-         browser.deleteEntity(browser.getParentEntityBrowser().getId(), entityId);
-         
-        // assertThat(browser.getEntities().getText(),
-        // not(containsString(entity.getName())));
-    }
+//        Entity theEntity = createRandomEntity();
+//        browser.create(appId, theEntity);
+//
+//        Representation application = appBrowser.getApplication(appId);
+//        String strRep = application.getText();
+//        JsonNode node = mapper.readValue(strRep, JsonNode.class);
+//        JsonNode firstEntityId = node.get(0).get("entities").get(0).get("id");
+//       // browser.from(application).get("entities").get("id").first();
+//        String entityId = firstEntityId.textValue().replace("#", "");
+//         browser.deleteEntity(appId, entityId);
+//         
+//        // assertThat(browser.getEntities().getText(),
+//        // not(containsString(field.getName())));
+//    }
 
     // @Test // update
     // public void altering_application_updates_it_in_DB() throws Exception {
-    // String id = browser.create(entity);
+    // String id = browser.create(field);
     // assertThat(browser.getApplication(id).getText(),
-    // containsString(entity.getName()));
+    // containsString(field.getName()));
     //
-    // entity.setId(id);
-    // //entity.setDesc("description changed");
-    // entity.setName(entity.getName() + "_changed");
-    // browser.updateApplication(entity);
+    // field.setId(id);
+    // //field.setDesc("description changed");
+    // field.setName(field.getName() + "_changed");
+    // browser.updateApplication(field);
     //
     // String updatedText = browser.getApplication(id).getText();
     // assertThat(updatedText, containsString("_changed"));
@@ -113,9 +105,9 @@ public class EntitiesCrudIntegrationTests extends IntegrationTests<EntitiesBrows
     // }
 
     // private void createListAndCheckAssertions() throws IOException {
-    // browser.create(entity);
+    // browser.create(field);
     // String html = browser.getEntities().getText();
-    // assertThat(html, containsString(entity.getName()));
+    // assertThat(html, containsString(field.getName()));
     // }
 
     private Application createRandomApplication() {

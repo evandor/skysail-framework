@@ -1,26 +1,28 @@
 package io.skysail.server.app.designer.codegen;
 
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.Arrays;
-import java.util.Map;
+import java.io.*;
+import java.nio.file.*;
+import java.util.*;
 import java.util.stream.Collectors;
 
+import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 
 import org.osgi.framework.BundleContext;
 
 @Slf4j
 public class SkysailCompiler {
+    
+    @Getter
+    private boolean compiledSuccessfully = true;
 
     public void compile(BundleContext bundleContext) {
         try {
             InMemoryJavaCompiler.compile(bundleContext);
+            compiledSuccessfully = InMemoryJavaCompiler.isCompiledSuccessfully();
         } catch (Exception e) {
             log.error(e.getMessage(), e);
+            compiledSuccessfully = false;
         }
     }
 

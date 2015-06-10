@@ -19,6 +19,7 @@ import org.restlet.resource.ResourceException;
  * Integration tests for creating, reading, updating, and deleting Applications.
  *
  */
+@Ignore
 public class ApplicationsCrudIntegrationTests extends IntegrationTests<ApplicationsBrowser, Application> {
 
     private Application entity;

@@ -1,23 +1,14 @@
 package de.twenty11.skysail.server.db.orientdb;
 
-import io.skysail.server.db.DbConfigurationProvider;
-import io.skysail.server.db.DbService2;
+import io.skysail.server.db.*;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 import lombok.extern.slf4j.Slf4j;
 
 import org.osgi.service.component.ComponentContext;
 
-import aQute.bnd.annotation.component.Activate;
-import aQute.bnd.annotation.component.Component;
-import aQute.bnd.annotation.component.Deactivate;
-import aQute.bnd.annotation.component.Reference;
+import aQute.bnd.annotation.component.*;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.orientechnologies.orient.client.remote.OEngineRemote;
@@ -25,23 +16,17 @@ import com.orientechnologies.orient.core.Orient;
 import com.orientechnologies.orient.core.db.ODatabaseRecordThreadLocal;
 import com.orientechnologies.orient.core.db.document.ODatabaseDocumentTx;
 import com.orientechnologies.orient.core.id.ORecordId;
-import com.orientechnologies.orient.core.metadata.schema.OClass;
+import com.orientechnologies.orient.core.metadata.schema.*;
 import com.orientechnologies.orient.core.metadata.schema.OClass.INDEX_TYPE;
-import com.orientechnologies.orient.core.metadata.schema.OType;
 import com.orientechnologies.orient.core.record.impl.ODocument;
 import com.orientechnologies.orient.core.sql.OCommandSQL;
 import com.orientechnologies.orient.core.sql.query.OSQLSynchQuery;
-import com.orientechnologies.orient.object.db.OObjectDatabasePool;
-import com.orientechnologies.orient.object.db.OObjectDatabaseTx;
+import com.orientechnologies.orient.object.db.*;
 import com.orientechnologies.orient.object.metadata.schema.OSchemaProxyObject;
-import com.tinkerpop.blueprints.impls.orient.OrientGraph;
-import com.tinkerpop.blueprints.impls.orient.OrientGraphFactory;
-import com.tinkerpop.blueprints.impls.orient.OrientGraphNoTx;
+import com.tinkerpop.blueprints.impls.orient.*;
 
 import de.twenty11.skysail.server.core.osgi.EventHelper;
-import de.twenty11.skysail.server.db.orientdb.impl.AbstractOrientDbService;
-import de.twenty11.skysail.server.db.orientdb.impl.Persister;
-import de.twenty11.skysail.server.db.orientdb.impl.Updater;
+import de.twenty11.skysail.server.db.orientdb.impl.*;
 import de.twenty11.skysail.server.events.EventHandler;
 
 @Component(immediate = true)
@@ -81,8 +66,8 @@ public class OrientGraphDbService extends AbstractOrientDbService implements DbS
     }
 
     @Override
-    public <T> void update(Object id, T entity) {
-        new Updater(getObjectDb()).update(entity);
+    public <T> Object update(Object id, T entity) {
+        return new Updater(getObjectDb()).update(entity);
     }
 
     @Override

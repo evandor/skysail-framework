@@ -3,14 +3,11 @@ package io.skysail.server.app.designer.repo;
 import io.skysail.server.app.designer.application.Application;
 import io.skysail.server.app.designer.entities.Entity;
 import io.skysail.server.app.designer.fields.EntityField;
-import io.skysail.server.db.DbRepository;
-import io.skysail.server.db.DbService2;
+import io.skysail.server.db.*;
 
 import java.util.List;
 
-import aQute.bnd.annotation.component.Activate;
-import aQute.bnd.annotation.component.Component;
-import aQute.bnd.annotation.component.Reference;
+import aQute.bnd.annotation.component.*;
 
 @Component(immediate = true, properties = "name=DesignerRepository")
 public class DesignerRepository implements DbRepository {
@@ -48,8 +45,8 @@ public class DesignerRepository implements DbRepository {
         return dbService.findObjectById(cls, id);
     }
 
-    public void update(Application entity) {
-        dbService.update(entity.getId(), entity);
+    public Object update(Application entity) {
+        return dbService.update(entity.getId(), entity);
     }
 
     public void update(Entity entity) {

@@ -16,6 +16,7 @@ import org.restlet.data.MediaType;
  * Integration tests for creating, reading, updating, and deleting Entities.
  *
  */
+@Ignore
 public class FieldsCrudIntegrationTests extends IntegrationTests<EntityFieldsBrowser, EntityField> {
 
     private EntityField field;

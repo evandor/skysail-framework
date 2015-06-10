@@ -41,13 +41,16 @@ public class PostApplicationResourceTest extends PostResourceTest {
         ConstraintViolationsResponse<?> post = (ConstraintViolationsResponse<?>) resource.post(form, new VariantInfo(MediaType.TEXT_HTML));
         assertThat(response.getStatus(),is(equalTo(Status.CLIENT_ERROR_BAD_REQUEST)));
         assertThat(response.getHeaders().getFirst("X-Status-Reason").getValue(),is(equalTo("Validation failed")));
-        assertThat(post.getViolations().size(),is(1));
+        assertThat(post.getViolations().size(),is(4));
     }
     
     @Test
 //    @Ignore // TODO
     public void valid_data_yields_new_entity() {
         form.add("name", "application1");
+        form.add("path", "../");
+        form.add("packageName", "io.skysail.app.test");
+        form.add("projectName", "testproj");
         resource.post(form, new VariantInfo(MediaType.TEXT_HTML));
         assertThat(response.getStatus(),is(equalTo(Status.SUCCESS_CREATED)));
     }

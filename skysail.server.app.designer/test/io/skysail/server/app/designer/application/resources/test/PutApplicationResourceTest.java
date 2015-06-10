@@ -12,12 +12,9 @@ import io.skysail.server.testsupport.PutResourceTest;
 import java.util.HashMap;
 
 import org.apache.shiro.subject.SimplePrincipalMap;
-import org.junit.Before;
-import org.junit.Test;
-import org.mockito.Mockito;
-import org.mockito.Spy;
-import org.restlet.data.MediaType;
-import org.restlet.data.Status;
+import org.junit.*;
+import org.mockito.*;
+import org.restlet.data.*;
 import org.restlet.engine.resource.VariantInfo;
 
 public class PutApplicationResourceTest extends PutResourceTest {
@@ -51,6 +48,10 @@ public class PutApplicationResourceTest extends PutResourceTest {
         
         form.add("name", "application3a");
         form.add("id", id);
+        form.add("path", "../");
+        form.add("packageName", "io.skysail.app.test");
+        form.add("projectName", "testproj");
+
         resource.getRequestAttributes().put("id", id);
         resource.init(null, request, response);
         

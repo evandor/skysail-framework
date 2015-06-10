@@ -18,9 +18,7 @@ public class Updater {
     }
 
     protected <T> Object execute(Object entity) {
-        // ODatabaseRecordThreadLocal.INSTANCE.set(db.getUnderlying());
-        db.save(entity);
-        return null;
+        return db.save(entity);
     }
 
     /**
@@ -34,7 +32,7 @@ public class Updater {
         try {
             Object result = execute(entity);
             db.commit();
-            return result;
+            return db.detach(result);
         } catch (Exception e) {
             db.rollback();
             log.error("Exception in Database, rolled back transaction", e);

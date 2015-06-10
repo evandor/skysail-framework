@@ -19,6 +19,8 @@ import com.fasterxml.jackson.databind.*;
  * Integration tests for creating, reading, updating, and deleting Entities.
  *
  */
+@Ignore
+
 public class EntitiesCrudIntegrationTests extends IntegrationTests<EntitiesBrowser, Entity> {
 
     private Entity entity;

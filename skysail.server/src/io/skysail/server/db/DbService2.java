@@ -1,7 +1,6 @@
 package io.skysail.server.db;
 
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import aQute.bnd.annotation.ProviderType;
 
@@ -42,7 +41,7 @@ public interface DbService2 {
     List<Map<String,Object>> findDocuments(String sql, Map<String, Object> params);
 
 
-    <T> void update(Object id, T entity);
+    <T> Object update(Object id, T entity);
 
     /**
      * creates a vertex class in the database if not existent yet for all

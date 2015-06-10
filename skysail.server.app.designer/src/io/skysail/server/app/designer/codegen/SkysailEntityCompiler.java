@@ -24,23 +24,24 @@ public class SkysailEntityCompiler extends SkysailCompiler {
 
     private String entityName;
     private String appEntityName;
-    
+
     private DesignerRepository repo;
     private String entityResourceClassName;
-    
+
     @Getter
     private String entityClassName;
 
     @Getter
     private String postResourceClassName;
-    
+
     @Getter
     private String putResourceClassName;
-    
+
     @Getter
     private String listResourceClassName;
-    
-    public SkysailEntityCompiler(DesignerRepository repo, Bundle bundle, Application application, String entityName, String appEntityName) {
+
+    public SkysailEntityCompiler(DesignerRepository repo, Bundle bundle, Application application, String entityName,
+            String appEntityName) {
         super(application, bundle);
         this.repo = repo;
         this.entityName = entityName;
@@ -53,60 +54,75 @@ public class SkysailEntityCompiler extends SkysailCompiler {
         entityNames.add(entityName);
         entityClassNames.add(entityClassName);
     }
-    
+
     public void createResources() {
         String entityResourceTemplate = BundleUtils.readResource(getBundle(), "code/EntityResource.codegen");
-        entityResourceClassName = setupEntityResourceForCompilation(entityResourceTemplate, getApplication().getId(), entityName, appEntityName);
-        
+        entityResourceClassName = setupEntityResourceForCompilation(entityResourceTemplate, getApplication().getId(),
+                entityName, appEntityName);
+
         String postResourceTemplate = BundleUtils.readResource(getBundle(), "code/PostResource.codegen");
-        postResourceClassName = setupPostResourceForCompilation(postResourceTemplate, entityName, appEntityName); 
-        
+        postResourceClassName = setupPostResourceForCompilation(postResourceTemplate, entityName, appEntityName);
+
         String putResourceTemplate = BundleUtils.readResource(getBundle(), "code/PutResource.codegen");
-        putResourceClassName = setupPutResourceForCompilation(putResourceTemplate, entityName, getApplication().getId(), appEntityName); 
-        
+        putResourceClassName = setupPutResourceForCompilation(putResourceTemplate, entityName,
+                getApplication().getId(), appEntityName);
+
         String listServerResourceTemplate = BundleUtils.readResource(getBundle(), "code/ListServerResource.codegen");
         listResourceClassName = setupListResourceForCompilation(listServerResourceTemplate, entityName, entityClassName);
     }
-    
+
     public String getEntityResourceClassName() {
         return entityResourceClassName;
     }
-    
+
     public void updateRepository(DesignerRepository designerRepository) {
-        //designerRepository.createWithSuperClass(DynamicEntity.class.getSimpleName(), entityName);
+        // designerRepository.createWithSuperClass(DynamicEntity.class.getSimpleName(),
+        // entityName);
         designerRepository.register(getClass(entityClassName));
     }
 
     public void attachToRouter(SkysailRouter router, String applicationName, Entity e, Map<String, String> routerPaths) {
         String path = "";
 
-//        Class<? extends PostEntityServerResource<?>> postResourceClass = (Class<? extends PostEntityServerResource<?>>) getClass(postResourceClassName);
-//        router.attach(new RouteBuilder(path + "/" + appEntityName + "s/",
-//                postResourceClass));
+        // Class<? extends PostEntityServerResource<?>> postResourceClass =
+        // (Class<? extends PostEntityServerResource<?>>)
+        // getClass(postResourceClassName);
+        // router.attach(new RouteBuilder(path + "/" + appEntityName + "s/",
+        // postResourceClass));
         routerPaths.put(path + "/" + appEntityName + "s/", postResourceClassName);
 
-//        Class<? extends PutEntityServerResource<?>> putResourceClass = (Class<? extends PutEntityServerResource<?>>) getClass(putResourceClassName);
-//        router.attach(new RouteBuilder(path + "/" + appEntityName + "s/{id}",
-//                putResourceClass));
+        // Class<? extends PutEntityServerResource<?>> putResourceClass =
+        // (Class<? extends PutEntityServerResource<?>>)
+        // getClass(putResourceClassName);
+        // router.attach(new RouteBuilder(path + "/" + appEntityName + "s/{id}",
+        // putResourceClass));
         routerPaths.put(path + "/" + appEntityName + "s/{id}", putResourceClassName);
 
-//        Class<? extends ListServerResource<?>> listResourceClass = (Class<? extends ListServerResource<?>>) getClass(listResourceClassName);
-//        router.attach(new RouteBuilder(path + "/" + appEntityName + "s",
-//                listResourceClass));
+        // Class<? extends ListServerResource<?>> listResourceClass = (Class<?
+        // extends ListServerResource<?>>) getClass(listResourceClassName);
+        // router.attach(new RouteBuilder(path + "/" + appEntityName + "s",
+        // listResourceClass));
         routerPaths.put(path + "/" + appEntityName + "s", listResourceClassName);
-        
+
         if (e.isRootEntity()) {
-//            router.attach(new RouteBuilder(path, listResourceClass));
+            // router.attach(new RouteBuilder(path, listResourceClass));
             routerPaths.put(path, listResourceClassName);
-        }        
+        }
     }
-    
+
     private String setupEntityForCompilation(String entityTemplate, String appId, String entityName,
             String appEntityName) {
 
         List<EntityField> fields = getFields(repo, appEntityName, appId);
         String codeForFields = fields.stream().map(f -> {
             StringBuilder sb = new StringBuilder("\n    @Field\n");
+            sb.append("    private String " + f.getName() + ";");
+            return sb.toString();
+        }).collect(Collectors.joining(";\n"));
+        
+        List<Entity> references = getReferences(repo, appEntityName, appId);
+        String codeForReferences = references.stream().map(f -> {
+            StringBuilder sb = new StringBuilder("\n    @Reference(cls = "+f.getName()+".class)\n");
             sb.append("    private String " + f.getName() + ";");
             return sb.toString();
         }).collect(Collectors.joining(";\n"));
@@ -123,6 +139,19 @@ public class SkysailEntityCompiler extends SkysailCompiler {
             sb.append("    }\n");
             return sb.toString();
         }).collect(Collectors.joining(";\n"));
+        
+        String codeForGettersAndSetters2 = references.stream().map(f -> {
+            StringBuilder sb = new StringBuilder();
+//            String methodName = getMethodName(f);
+//            sb.append("    public void set" + methodName + "(String value) {\n");
+//            sb.append("        this." + f.getName() + " = value;\n");
+//            sb.append("    }\n");
+//            sb.append("\n");
+//            sb.append("    public String get" + methodName + "() {\n");
+//            sb.append("        return " + f.getName() + ";\n");
+//            sb.append("    }\n");
+            return sb.toString();
+        }).collect(Collectors.joining(";\n"));
 
         @SuppressWarnings("serial")
         String entityCode = substitute(entityTemplate, new HashMap<String, String>() {
@@ -131,7 +160,8 @@ public class SkysailEntityCompiler extends SkysailCompiler {
                 put("$applicationId$", appId);
                 put("$appEntityName$", appEntityName);
                 put("$fields$", codeForFields);
-                put("$gettersAndSetters$", codeForGettersAndSetters);
+                put("$references$", codeForReferences);
+                put("$gettersAndSetters$", codeForGettersAndSetters + "\n" + codeForGettersAndSetters2);
                 put("$applicationName$", getApplication().getName() + "Application");
                 put("$packagename$", getApplication().getPackageName());
             }
@@ -148,26 +178,47 @@ public class SkysailEntityCompiler extends SkysailCompiler {
     private List<EntityField> getFields(DesignerRepository repo2, String beanName, String appIdentifier) {
         Application designerApplication = repo.getById(Application.class, appIdentifier.replace("#", ""));
         List<Entity> entities = designerApplication.getEntities();
+        return findFields(repo2, beanName, appIdentifier, entities);
+    }
 
+    private List<EntityField> findFields(DesignerRepository repo2, String beanName, String appIdentifier,
+            List<Entity> entities) {
         // streams dont't seem to work here ?!?! (with orientdb objects)
         for (Entity entity : entities) {
             if (beanName.equals(entity.getName())) {
-               return entity.getFields();
-//                for (EntityField entityField : fields) {
-//                    //properties.add(new EntityDynaProperty(entityField.getName(), entityField.getType(), String.class));
-//                }
-//                
-////                List<Entity> subEntities = entity.getSubEntities();
-////                for (Entity sub : subEntities) {
-////                    properties.add(new EntityDynaProperty(sub.getName(), null, List.class));
-////                }
-//                break;
+                return entity.getFields();
+            }
+            List<EntityField> fieldsFromSubEntity = findFields(repo2, beanName, appIdentifier, entity.getSubEntities());
+            if (fieldsFromSubEntity.size() > 0) {
+                return fieldsFromSubEntity;
             }
         }
         return Collections.emptyList();
     }
 
-    private String setupEntityResourceForCompilation(String entityTemplate, String appId, String entityName, String appEntityName) {
+    private List<Entity> getReferences(DesignerRepository repo2, String beanName, String appIdentifier) {
+        Application designerApplication = repo.getById(Application.class, appIdentifier.replace("#", ""));
+        List<Entity> entities = designerApplication.getEntities();
+        return findReferences(repo2, beanName, appIdentifier, entities);
+    }
+    
+    private List<Entity> findReferences(DesignerRepository repo2, String beanName, String appIdentifier,
+            List<Entity> entities) {
+        // streams dont't seem to work here ?!?! (with orientdb objects)
+        for (Entity entity : entities) {
+            if (beanName.equals(entity.getName())) {
+                return entity.getSubEntities();
+            }
+            List<Entity> fieldsFromSubEntity = findReferences(repo2, beanName, appIdentifier, entity.getSubEntities());
+            if (fieldsFromSubEntity.size() > 0) {
+                return fieldsFromSubEntity;
+            }
+        }
+        return Collections.emptyList();
+    }
+
+    private String setupEntityResourceForCompilation(String entityTemplate, String appId, String entityName,
+            String appEntityName) {
         @SuppressWarnings("serial")
         String entityCode = substitute(entityTemplate, new HashMap<String, String>() {
             {
@@ -182,7 +233,8 @@ public class SkysailEntityCompiler extends SkysailCompiler {
         return entityClassName;
     }
 
-    private String setupPostResourceForCompilation(String postResourceTemplate, String entityName, String entityShortName) {
+    private String setupPostResourceForCompilation(String postResourceTemplate, String entityName,
+            String entityShortName) {
         final String className2 = "Post" + entityName + "Resource";
         @SuppressWarnings("serial")
         String postResourceCode = substitute(postResourceTemplate, new HashMap<String, String>() {
@@ -199,29 +251,29 @@ public class SkysailEntityCompiler extends SkysailCompiler {
         return fullClassName;
     }
 
-    private String setupPutResourceForCompilation(String putResourceTemplate, String entityName, String appId, String entityShortName) {
+    private String setupPutResourceForCompilation(String putResourceTemplate, String entityName, String appId,
+            String entityShortName) {
         final String className2 = "Put" + entityName + "Resource";
-        
+
         StringBuilder updateEntity = new StringBuilder(entityName + " original = getEntity();\n");
-                
+
         List<EntityField> fields = getFields(repo, entityShortName, appId);
         String codeForFields = fields.stream().map(f -> {
             StringBuilder sb = new StringBuilder("\n");
-            sb.append("        original.set"+getMethodName(f)+"(entity.get"+getMethodName(f)+"());");
+            sb.append("        original.set" + getMethodName(f) + "(entity.get" + getMethodName(f) + "());");
             return sb.toString();
         }).collect(Collectors.joining(";\n"));
-        
+
         updateEntity.append(codeForFields).append("\n");
         updateEntity.append("app.getRepository().update(id, original);\n");
-        
-        
+
         @SuppressWarnings("serial")
         String putResourceCode = substitute(putResourceTemplate, new HashMap<String, String>() {
             {
                 put("$classname$", className2);
                 put("$entityname$", entityName);
                 put("$entityShortName$", entityShortName);
-                
+
                 put("$updateEntity$", updateEntity.toString());
                 put("$applicationName$", getApplication().getName() + "Application");
                 put("$packagename$", getApplication().getPackageName());
@@ -231,8 +283,9 @@ public class SkysailEntityCompiler extends SkysailCompiler {
         collect(fullClassName, putResourceCode);
         return fullClassName;
     }
-    
-    private String setupListResourceForCompilation(String listServerResourceTemplate, String entityName, String entityClassName) {
+
+    private String setupListResourceForCompilation(String listServerResourceTemplate, String entityName,
+            String entityClassName) {
         final String theClassName = entityName + "sResource";
         @SuppressWarnings("serial")
         String listServerResourceCode = substitute(listServerResourceTemplate, new HashMap<String, String>() {
@@ -248,9 +301,5 @@ public class SkysailEntityCompiler extends SkysailCompiler {
         collect(className, listServerResourceCode);
         return className;
     }
-
-   
-
-
 
 }

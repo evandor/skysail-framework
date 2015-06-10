@@ -193,7 +193,7 @@ public class DesignerApplication extends SkysailApplication implements MenuItemP
             SkysailEntityCompiler entityCompiler = new SkysailEntityCompiler(repo,
                     getBundle(), a, entityName, entityName);
             entityCompiler.createEntity(entityNames, entityClassNames);
-            //entityCompiler.createResources();
+            entityCompiler.createResources();
             //entityCompiler.attachToRouter(router, a.getName(), e, routerPaths);
             
             handleSubEntities(a, sub.getSubEntities(), entityNames, entityClassNames);

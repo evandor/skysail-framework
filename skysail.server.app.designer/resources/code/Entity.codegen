@@ -1,7 +1,7 @@
 package $packagename$;
 
 import io.skysail.api.domain.Identifiable;
-import io.skysail.api.forms.Field;
+import io.skysail.api.forms.*;
 
 import java.util.Set;
 
@@ -28,6 +28,8 @@ public class $classname$  implements Serializable, Identifiable {
 	}
 	    
     $fields$
+    
+    $references$
     
     $gettersAndSetters$
     

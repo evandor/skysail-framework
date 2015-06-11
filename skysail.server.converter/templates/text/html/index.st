@@ -14,6 +14,7 @@ index(user, messages, source, converter, model) ::= <<
 	<script type="text/javascript" src="/webapp/js/jquery-1.11.1.js"></script>
 	    
     <link href="/webapp/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/webapp/css/stickyfooter.css" rel="stylesheet">
     <link href="/webapp/css/bootstrap-theme.min.css" rel="stylesheet">
     
     <link rel="stylesheet" href="/webapp/css/select2.css">
@@ -163,7 +164,26 @@ $mainContent(user, converter, messages, source, model)$
       $endif$ 
       
     </div>
+    
+    <footer class="footer">
+      <div class="container4footer">
+        <p class="text-muted"><div id="output"></div></p>
+      </div>
+    </footer>
 
+    <script>
+        var output = document.getElementById("output");
+        if (typeof(EventSource) !== "undefined") {
+          //var msg = document.getElementById("textID").value;
+          //var source = new EventSource("simplesse?msg=" + msg);
+          var source = new EventSource("/SSE");
+          source.onmessage = function(event) {
+            output.innerHTML = event.data;
+          };
+        } else {
+          output.innerHTML = "Sorry, Server-Sent Event is not supported in your browser";
+        }
+    </script>
 
     <!-- Bootstrap core JavaScript
     ================================================== -->

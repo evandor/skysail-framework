@@ -1,14 +1,12 @@
 package de.twenty11.skysail.server.core.osgi;
 
-import java.util.Dictionary;
-import java.util.Hashtable;
+import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import lombok.extern.slf4j.Slf4j;
 
 import org.apache.shiro.SecurityUtils;
-import org.osgi.service.event.Event;
-import org.osgi.service.event.EventAdmin;
+import org.osgi.service.event.*;
 import org.restlet.Request;
 
 /**
@@ -18,10 +16,14 @@ import org.restlet.Request;
 @Slf4j
 public class EventHelper {
 
+    public static final String EVENT_ID = "msgId";
+    public static final String EVENT_TYPE = "type";
+    public static final String EVENT_TIME = "time";
+    public static final String EVENT_USERNAME = "username";
+    public static final String EVENT_MESSAGE = "msg";
+
     public static final String EVENT_PROPERTY_METHOD = "method";
-
     public static final String EVENT_PROPERTY_ENTITY = "entity";
-
     public static final String EVENT_PROPERTY_PATH = "path";
 
     public static final String GUI_MSG = "GUI/message";
@@ -105,12 +107,12 @@ public class EventHelper {
             return;
         }
         Dictionary<String, Object> properties = new Hashtable<>();
-        properties.put("msg", msg);
+        properties.put(EVENT_MESSAGE, msg);
         Object principal = SecurityUtils.getSubject().getPrincipal();
-        properties.put("username", principal != null ? principal.toString() : "");
-        properties.put("time", System.currentTimeMillis());
-        properties.put("type", type);
-        properties.put("msgId", msgIdCounter);
+        properties.put(EVENT_USERNAME, principal != null ? principal.toString() : "");
+        properties.put(EVENT_TIME, System.currentTimeMillis());
+        properties.put(EVENT_TYPE, type);
+        properties.put(EVENT_ID, msgIdCounter.incrementAndGet());
 
         Event event = new Event(topic, properties);
         eventAdmin.sendEvent(event);

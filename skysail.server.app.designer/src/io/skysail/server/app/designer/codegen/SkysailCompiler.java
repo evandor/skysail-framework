@@ -3,21 +3,15 @@ package io.skysail.server.app.designer.codegen;
 import io.skysail.server.app.designer.application.Application;
 import io.skysail.server.utils.BundleUtils;
 
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.Arrays;
-import java.util.Map;
+import java.io.*;
+import java.nio.file.*;
+import java.util.*;
 import java.util.stream.Collectors;
 
-import lombok.Getter;
-import lombok.NonNull;
+import lombok.*;
 import lombok.extern.slf4j.Slf4j;
 
-import org.osgi.framework.Bundle;
-import org.osgi.framework.BundleContext;
+import org.osgi.framework.*;
 
 @Slf4j
 @Getter
@@ -46,7 +40,9 @@ public class SkysailCompiler {
 
     protected String substitute(String template, Map<String, String> substitutionMap) {
         for (String key : substitutionMap.keySet()) {
-            template = template.replace(key, substitutionMap.get(key));
+            if (substitutionMap.get(key) != null) {
+                template = template.replace(key, substitutionMap.get(key));
+            }
         }
         return template;
     }
@@ -81,41 +77,41 @@ public class SkysailCompiler {
         String path = application.getPath() + "/" + application.getProjectName();
         path = path.replace("//", "/");
         new File(Paths.get(path).toString()).mkdirs();
-//        if (new File(Paths.get(path).toString()).mkdirs()) {
-            String project = BundleUtils.readResource(bundle, "code/project.codegen");
-            project = project.replace("$projectname$", application.getProjectName());
-            Files.write(Paths.get(path + "/.project"), project.getBytes());
+        // if (new File(Paths.get(path).toString()).mkdirs()) {
+        String project = BundleUtils.readResource(bundle, "code/project.codegen");
+        project = project.replace("$projectname$", application.getProjectName() != null ? application.getProjectName() : "unknown");
+        Files.write(Paths.get(path + "/.project"), project.getBytes());
 
-            String classpath = BundleUtils.readResource(bundle, "code/classpath.codegen");
-            // project.replace("$projectname$", application.getProjectName());
-            Files.write(Paths.get(path + "/.classpath"), classpath.getBytes());
+        String classpath = BundleUtils.readResource(bundle, "code/classpath.codegen");
+        // project.replace("$projectname$", application.getProjectName());
+        Files.write(Paths.get(path + "/.classpath"), classpath.getBytes());
 
-            String bnd = BundleUtils.readResource(bundle, "code/bnd.codegen");
-            bnd = bnd.replace("$packagename$", getApplication().getPackageName());
-            Files.write(Paths.get(path + "/bnd.bnd"), bnd.getBytes());
-            
-            String bndrun = BundleUtils.readResource(bundle, "code/bndrun.codegen");
-            // project.replace("$projectname$", application.getProjectName());
-            Files.write(Paths.get(path + "/local.bndrun"), bndrun.getBytes());
-            
-            new File(Paths.get(path + "/test").toString()).mkdir();
-            new File(Paths.get(path + "/resources").toString()).mkdir();
-            new File(Paths.get(path + "/config/local").toString()).mkdirs();
-            
-            copy(Paths.get(path), "io.skysail.server.db.DbConfigurations-skysailgraph.cfg");
-            copy(Paths.get(path), "logback.xml");
-            
-            
-            //Files.walkFileTree(configPath, new CopyDirVisitor(Paths.get("."), Paths.get(path + "/config/local")));
+        String bnd = BundleUtils.readResource(bundle, "code/bnd.codegen");
+        bnd = bnd.replace("$packagename$", getApplication().getPackageName()  != null ? application.getPackageName() : "unknown");
+        Files.write(Paths.get(path + "/bnd.bnd"), bnd.getBytes());
 
-      //  }
+        String bndrun = BundleUtils.readResource(bundle, "code/bndrun.codegen");
+        // project.replace("$projectname$", application.getProjectName());
+        Files.write(Paths.get(path + "/local.bndrun"), bndrun.getBytes());
+
+        new File(Paths.get(path + "/test").toString()).mkdir();
+        new File(Paths.get(path + "/resources").toString()).mkdir();
+        new File(Paths.get(path + "/config/local").toString()).mkdirs();
+
+        copy(Paths.get(path), "io.skysail.server.db.DbConfigurations-skysailgraph.cfg");
+        copy(Paths.get(path), "logback.xml");
+
+        // Files.walkFileTree(configPath, new CopyDirVisitor(Paths.get("."),
+        // Paths.get(path + "/config/local")));
+
+        // }
 
     }
 
     private void copy(Path path, String filename) {
         String cfgFile = BundleUtils.readResource(bundle, "config/" + filename);
         try {
-            Files.write(Paths.get(path + "/config/local/"  + filename), cfgFile.getBytes());
+            Files.write(Paths.get(path + "/config/local/" + filename), cfgFile.getBytes());
         } catch (IOException e) {
             e.printStackTrace();
         }

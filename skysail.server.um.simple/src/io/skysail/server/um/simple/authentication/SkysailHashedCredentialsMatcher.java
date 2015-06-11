@@ -31,12 +31,12 @@ public class SkysailHashedCredentialsMatcher extends SimpleCredentialsMatcher {
         HashedPasswordAndSalt match = HashedPasswordAndSalt.direct(new String((char[]) info.getCredentials()), null);
         if (cacheManager != null && SecurityFeatures.USE_CREDENTIALS_CACHE_FEATURE.isActive()) {
             Cache<Object, Object> cache = cacheManager.getCache(CREDENTIALS_CACHE);
-            log.info("checking cache for entry {}", match.getHashedPassword());
+            log.debug("checking cache for entry {}", match.getHashedPassword());
             Object object = cache.get(match.getHashedPassword());
             if (object != null && object instanceof LocalDateTime) {
                 LocalDateTime timestamp = (LocalDateTime) object;
                 if (Duration.between(timestamp, LocalDateTime.now()).toMinutes() < 5) {
-                    log.info("found entry in credentials hash cache, updating timestamp");
+                    log.debug("found entry in credentials hash cache, updating timestamp");
                     cache.put(match.getHashedPassword(), LocalDateTime.now());
                     return true;
                 }

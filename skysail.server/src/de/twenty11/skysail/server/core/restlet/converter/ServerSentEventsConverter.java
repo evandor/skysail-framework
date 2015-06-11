@@ -3,20 +3,15 @@ package de.twenty11.skysail.server.core.restlet.converter;
 import io.skysail.server.app.SkysailApplication;
 
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 import lombok.extern.slf4j.Slf4j;
 
-import org.restlet.data.CharacterSet;
-import org.restlet.data.MediaType;
+import org.restlet.data.*;
 import org.restlet.engine.converter.ConverterHelper;
 import org.restlet.engine.resource.VariantInfo;
-import org.restlet.representation.Representation;
-import org.restlet.representation.StringRepresentation;
-import org.restlet.representation.Variant;
+import org.restlet.representation.*;
 import org.restlet.resource.Resource;
 
 import aQute.bnd.annotation.component.Component;
@@ -37,7 +32,8 @@ public class ServerSentEventsConverter extends ConverterHelper implements OsgiCo
 	
 	@Override
 	public Representation toRepresentation(Object source, Variant target, Resource resource) throws IOException {
-		StringRepresentation representation = new StringRepresentation("data: " + System.currentTimeMillis() +"\n\n");
+	    SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
+		StringRepresentation representation = new StringRepresentation("retry: 10000\ndata: " + sdf.format(new Date()) +"\n\n");
         representation.setMediaType(SkysailApplication.SKYSAIL_SERVER_SENT_EVENTS);
         representation.setCharacterSet(CharacterSet.UTF_8);
         return representation;

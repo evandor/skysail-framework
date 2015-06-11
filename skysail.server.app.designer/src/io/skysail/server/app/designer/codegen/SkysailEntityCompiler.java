@@ -6,10 +6,7 @@ import io.skysail.server.app.designer.fields.EntityField;
 import io.skysail.server.app.designer.repo.DesignerRepository;
 import io.skysail.server.utils.BundleUtils;
 
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import lombok.Getter;
@@ -115,6 +112,9 @@ public class SkysailEntityCompiler extends SkysailCompiler {
 
         List<EntityField> fields = getFields(repo, appEntityName, appId);
         String codeForFields = fields.stream().map(f -> {
+            
+            fireEvent(f.getName());
+            
             StringBuilder sb = new StringBuilder("\n    @Field\n");
             sb.append("    private String " + f.getName() + ";");
             return sb.toString();
@@ -169,6 +169,15 @@ public class SkysailEntityCompiler extends SkysailCompiler {
         String entityClassName = application.getPackageName() + "." + entityName;
         collect(entityClassName, entityCode);
         return entityClassName;
+    }
+
+    private void fireEvent(String name) {
+        
+//        new EventHelper(application.getEventAdmin().get())//
+//        .channel(EventHelper.GUI_MSG)//
+//        .info(resource.getClass().getSimpleName() + ".saved.success")//
+//        .fire();
+        
     }
 
     private String getMethodName(EntityField f) {

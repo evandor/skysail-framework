@@ -2,54 +2,31 @@ package io.skysail.server.app.designer;
 
 import io.skysail.server.app.SkysailApplication;
 import io.skysail.server.app.designer.application.Application;
-import io.skysail.server.app.designer.application.resources.ApplicationResource;
-import io.skysail.server.app.designer.application.resources.ApplicationsResource;
-import io.skysail.server.app.designer.application.resources.PostApplicationResource;
-import io.skysail.server.app.designer.application.resources.PutApplicationResource;
-import io.skysail.server.app.designer.codegen.PostCompilationResource;
-import io.skysail.server.app.designer.codegen.SkysailApplicationCompiler;
-import io.skysail.server.app.designer.codegen.SkysailEntityCompiler;
-import io.skysail.server.app.designer.codegen.SkysailRepositoryCompiler;
+import io.skysail.server.app.designer.application.resources.*;
+import io.skysail.server.app.designer.codegen.*;
 import io.skysail.server.app.designer.entities.Entity;
-import io.skysail.server.app.designer.entities.resources.EntitiesResource;
-import io.skysail.server.app.designer.entities.resources.EntityResource;
-import io.skysail.server.app.designer.entities.resources.PostEntityResource;
-import io.skysail.server.app.designer.entities.resources.PostSubEntityResource;
-import io.skysail.server.app.designer.entities.resources.PutEntityResource;
-import io.skysail.server.app.designer.entities.resources.SubEntitiesResource;
-import io.skysail.server.app.designer.entities.resources.SubEntityResource;
+import io.skysail.server.app.designer.entities.resources.*;
 import io.skysail.server.app.designer.fields.EntityField;
-import io.skysail.server.app.designer.fields.resources.FieldResource;
-import io.skysail.server.app.designer.fields.resources.FieldsResource;
-import io.skysail.server.app.designer.fields.resources.PostFieldResource;
-import io.skysail.server.app.designer.fields.resources.PutFieldResource;
+import io.skysail.server.app.designer.fields.resources.*;
 import io.skysail.server.app.designer.repo.DesignerRepository;
-import io.skysail.server.db.DbRepository;
-import io.skysail.server.db.DbService2;
+import io.skysail.server.db.*;
 
 import java.lang.reflect.Method;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
 import org.osgi.framework.BundleException;
 import org.osgi.service.component.ComponentContext;
 
-import aQute.bnd.annotation.component.Component;
-import aQute.bnd.annotation.component.Reference;
+import aQute.bnd.annotation.component.*;
 
 import com.google.common.collect.Iterables;
 
 import de.twenty11.skysail.server.app.ApplicationProvider;
-import de.twenty11.skysail.server.core.restlet.ApplicationContextId;
-import de.twenty11.skysail.server.core.restlet.RouteBuilder;
-import de.twenty11.skysail.server.services.MenuItem;
-import de.twenty11.skysail.server.services.MenuItemProvider;
+import de.twenty11.skysail.server.core.osgi.EventHelper;
+import de.twenty11.skysail.server.core.restlet.*;
+import de.twenty11.skysail.server.services.*;
 
 @Component(immediate = true)
 public class DesignerApplication extends SkysailApplication implements MenuItemProvider, ApplicationProvider {
@@ -115,6 +92,7 @@ public class DesignerApplication extends SkysailApplication implements MenuItemP
                             .stream()
                             .forEach(
                                     e -> {
+                                        fireEvent("compiling " + e.getName());
                                         String entityName = getEntityName(a, e);
                                         SkysailEntityCompiler entityCompiler = new SkysailEntityCompiler(repo,
                                                 getBundle(), a, entityName, e.getName());
@@ -142,6 +120,13 @@ public class DesignerApplication extends SkysailApplication implements MenuItemP
 //        List<Entity> entities = apps.stream().map(a -> a.getEntities()).flatMap(e -> e.stream())
 //                .collect(Collectors.toList());
 //        handleSubEntries(entities);
+    }
+
+    private void fireEvent(String msg) {
+        new EventHelper(getEventAdmin().get())//
+        .channel(EventHelper.GUI_MSG)//
+        .info(msg)//
+        .fire();
     }
 
     private synchronized void setupInMemoryBundle(SkysailApplicationCompiler applicationCompiler,

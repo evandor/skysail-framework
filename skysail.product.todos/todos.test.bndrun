@@ -124,6 +124,7 @@
 	skysail.server.db;version=latest,\
 	skysail.server.documentation;version=latest,\
 	skysail.server.ext.favorites.preferences;version=latest,\
+	skysail.server.ext.sse;version=latest,\
 	skysail.server.http;version=latest,\
 	skysail.server.performance.etm;version=latest,\
 	skysail.server.peers.adminconfig;version=latest,\

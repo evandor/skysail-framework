@@ -20,10 +20,10 @@ public class SimpleDelegatingVerifier extends SecretVerifier {
         identifier = identifier.replace("@", "&#64;");
         Subject currentUser = SecurityUtils.getSubject();
         UsernamePasswordToken token = new UsernamePasswordToken(identifier, new String(secret));
-        log.info("login event for user '{}'", identifier);
+        log.debug("login event for user '{}'", identifier);
         try {
             currentUser.login(token);
-            log.info("login event for user '{}' successful", identifier);
+            log.debug("login event for user '{}' successful", identifier);
             return RESULT_VALID;
         } catch (UnknownAccountException uae) {
             log.debug("UnknownAccountException '" + uae.getMessage() + "' when login in " + identifier);

@@ -1,0 +1,22 @@
+Bundle-Version: 0.1.0.${tstamp}
+Bundle-Name: SKYSAIL :: server :: ext :: sse
+Bundle-Description: Server Extension for handling server sent events (sse)
+Private-Package:  \
+	io.skysail.server.ext.sse,\
+	io.skysail.server.ext.sse.resources,\
+	io.skysail.server.ext.sse.domain
+-buildpath:  \
+	osgi.core;version=5.0,\
+	osgi.cmpn;version=5.0,\
+	skysail.api;version=${skysail.api.version},\
+	org.restlet;version=${restlet.version},\
+	lombok;version=1.16,\
+	biz.aQute.bnd.annotation;version=2.4,\
+	skysail.server;version=latest,\
+	slf4j.api;version=1.7,\
+	javax.validation.api;version=1.1,\
+	org.apache.commons.beanutils;version=1.9,\
+	org.apache.shiro.core;version=1.2
+	
+Service-Component:  \
+	*

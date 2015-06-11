@@ -2,16 +2,20 @@ package io.skysail.server.ext.sse;
 
 import io.skysail.server.app.SkysailApplication;
 import io.skysail.server.ext.sse.resources.GuiMessageResource;
+import io.skysail.server.ext.sse.resources.TestSseResource;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.List;
 
-import org.osgi.service.event.*;
+import org.osgi.service.event.Event;
+import org.osgi.service.event.EventHandler;
 
 import aQute.bnd.annotation.component.Component;
 import de.twenty11.skysail.server.app.ApplicationProvider;
 import de.twenty11.skysail.server.core.osgi.EventHelper;
 import de.twenty11.skysail.server.core.restlet.RouteBuilder;
-import de.twenty11.skysail.server.services.*;
+import de.twenty11.skysail.server.services.MenuItem;
+import de.twenty11.skysail.server.services.MenuItemProvider;
 
 @Component(immediate = true, properties = { "event.topics=" + EventHelper.GUI_MSG + "/*" })
 public class SseApplication extends SkysailApplication implements MenuItemProvider, ApplicationProvider, EventHandler {
@@ -22,17 +26,7 @@ public class SseApplication extends SkysailApplication implements MenuItemProvid
     
     public SseApplication() {
         super(APP_NAME);
-        //addToAppContext(ApplicationContextId.IMG, "/static/img/silk/page_link.png");
     }
-
-//    private SseThread sseThread;
-//    
-//    @Activate
-//    protected void activate(ComponentContext componentContext) throws ConfigurationException {
-//        super.activate(componentContext);
-//        sseThread = new SseThread();
-//        sseThread.start();
-//    }
 
     @Override
     public List<MenuItem> getMenuEntries() {
@@ -50,6 +44,7 @@ public class SseApplication extends SkysailApplication implements MenuItemProvid
     @Override
     protected void attach() {
         super.attach();
+        router.attach(new RouteBuilder("/test", TestSseResource.class));
         router.attach(new RouteBuilder("", GuiMessageResource.class));
     }
 

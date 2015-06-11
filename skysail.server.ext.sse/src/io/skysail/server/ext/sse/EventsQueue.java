@@ -1,7 +1,11 @@
 package io.skysail.server.ext.sse;
 
-import java.util.*;
-import java.util.concurrent.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.LinkedBlockingQueue;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -39,6 +43,7 @@ public class EventsQueue {
         List<Message> result = new ArrayList<>();
         queue.drainTo(result);
         return result;
+        //return new ArrayList<Message>(queue);
     }
 
 }

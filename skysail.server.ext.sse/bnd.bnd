@@ -16,8 +16,12 @@ Private-Package:  \
 	slf4j.api;version=1.7,\
 	javax.validation.api;version=1.1,\
 	org.apache.commons.beanutils;version=1.9,\
-	org.apache.shiro.core;version=1.2
+	org.apache.shiro.core;version=1.2,\
+	org.restlet.ext.servlet;version=2.3,\
+	javax.servlet;version=3.0
 	
 Service-Component:  \
 	*
 	
+Include-Resource: resources
+Web-ContextPath: /demo

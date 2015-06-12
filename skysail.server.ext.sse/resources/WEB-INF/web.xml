@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	id="WebApp_ID" version="2.5">
+
+	<display-name>tst</display-name>
+
+	<servlet>
+		<servlet-name>myservlet</servlet-name>
+<!-- 		<servlet-class>io.skysail.server.ext.sse.resources.SseServlet2</servlet-class>-->
+		<servlet-class>org.restlet.ext.servlet.ServerServlet</servlet-class>
+<init-param>
+			<param-name>org.restlet.application</param-name>
+			<param-value>io.skysail.server.ext.sse.SseApplication</param-value>
+		</init-param>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>myservlet</servlet-name>
+		<url-pattern>/demo/*</url-pattern>
+	</servlet-mapping>
+</web-app>

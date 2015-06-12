@@ -34,6 +34,7 @@
     felix.fileinstall.log.level=4,\
     org.apache.felix.log.storeDebug=true,\
     logback.configurationFile=config/logback.xml,\
+    jetty.home.bundle=org.eclipse.jetty.osgi.boot,\
     obr.repository.url=https://raw.githubusercontent.com/evandor/skysail-repository/master/index.xml https://raw.githubusercontent.com/evandor/skysail-framework/master/cnf/releaserepo/index.xml https://raw.githubusercontent.com/evandor/skysail-apps/master/cnf/releaserepo/index.xml http://felix.apache.org/obr/releases.xml
 
 #    http.proxyHost=192.168.11.140,\
@@ -72,7 +73,7 @@
 	javassist;version='[3.18.1,3.18.2)',\
 	javax.el-api;version='[3.0.0,3.0.1)',\
 	javax.persistence;version='[2.1.0,2.1.1)',\
-	javax.servlet;version='[3.0.0,3.0.1)',\
+	javax.servlet;version=2.5.0,\
 	javax.validation.api;version='[1.1.0,1.1.1)',\
 	org.apache.commons.beanutils;version='[1.9.2,1.9.3)',\
 	org.apache.commons.collections;version='[3.2.1,3.2.2)',\
@@ -98,6 +99,7 @@
 	org.restlet;version='[2.3,2.4)',\
 	org.restlet.ext.jackson;version='[2.3,2.4)',\
 	org.restlet.ext.json;version='[2.3,2.4)',\
+	org.restlet.ext.servlet;version='[2.3,2.4)',\
 	org.restlet.ext.slf4j;version='[2.3,2.4)',\
 	org.restlet.ext.jetty;version='[2.3,2.4)',\
 	org.restlet.ext.crypto;version='[2.3,2.4)',\

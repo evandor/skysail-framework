@@ -2,7 +2,7 @@ package io.skysail.server.app.todos.lists;
 
 import io.skysail.api.links.Link;
 import io.skysail.server.app.todos.*;
-import io.skysail.server.app.todos.todos.resources.PostTodoWoListResource;
+import io.skysail.server.app.todos.todos.resources.*;
 import io.skysail.server.queryfilter.Filter;
 import io.skysail.server.queryfilter.pagination.Pagination;
 import io.skysail.server.restlet.resources.ListServerResource;
@@ -13,12 +13,15 @@ import org.apache.shiro.SecurityUtils;
 import org.restlet.data.MediaType;
 import org.restlet.resource.ClientResource;
 
+import de.twenty11.skysail.server.core.restlet.ResourceContextId;
+
 public class ListsResource extends ListServerResource<TodoList> {
 
     private TodoApplication app;
 
     public ListsResource() {
         super(ListResource.class);
+        addToContext(ResourceContextId.LINK_TITLE, "Show Todo-Lists");
     }
 
     @Override
@@ -58,7 +61,7 @@ public class ListsResource extends ListServerResource<TodoList> {
 
     @Override
     public List<Link> getLinks() {
-        List<Link> links = super.getLinks(PostListResource.class, PostTodoWoListResource.class);
+        List<Link> links = super.getLinks(PostListResource.class, PostTodoWoListResource.class, Top10TodosResource.class);
        // links.add(new Link.Builder("/Todos/docs/api").title("API").build());
         return links;
     }

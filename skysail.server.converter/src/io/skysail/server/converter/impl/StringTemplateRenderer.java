@@ -51,6 +51,7 @@ public class StringTemplateRenderer {
         ResourceModel<SkysailServerResource<?>,?> resourceModel = new ResourceModel(resource, entity, target);
         resourceModel.convert();
         resourceModel.addAssociatedLinks();
+        
         resourceModel.setFavoritesService(favoritesService);
         resourceModel.setMenuItemProviders(menuProviders);
 

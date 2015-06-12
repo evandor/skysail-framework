@@ -1,19 +1,16 @@
 package io.skysail.server.ext.sse.resources;
 
 import io.skysail.server.app.SkysailApplication;
-import io.skysail.server.ext.sse.Message;
-import io.skysail.server.ext.sse.SseApplication;
+import io.skysail.server.ext.sse.*;
 
-import java.io.IOException;
-import java.io.Writer;
+import java.io.*;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
 import org.apache.shiro.SecurityUtils;
-import org.restlet.representation.Representation;
-import org.restlet.representation.WriterRepresentation;
-import org.restlet.resource.ResourceException;
-import org.restlet.resource.ServerResource;
+import org.restlet.representation.*;
+import org.restlet.resource.*;
 
 public class GuiMessageResource extends ServerResource {
 
@@ -81,17 +78,23 @@ public class GuiMessageResource extends ServerResource {
         // }
 
         Representation representation = new WriterRepresentation(SkysailApplication.SKYSAIL_SERVER_SENT_EVENTS) {
+
+            AtomicInteger i = new AtomicInteger();
+
             @Override
             public void write(Writer writer) throws IOException {
                 String json = "{\"foo\" : \"bar\"}";
                 while (true) {
-                    try {
-                        Thread.sleep(10000);
-                        writer.write("data: hier\n\n");
-                    } catch (InterruptedException e) {
-                        // TODO Auto-generated catch block
-                        e.printStackTrace();
-                    }
+                     try {
+                     Thread.sleep(1000);
+                     writer.write("data: hier ("+i.incrementAndGet()+")\n\n");
+                     } catch (InterruptedException e) {
+                     // TODO Auto-generated catch block
+                     e.printStackTrace();
+                     }
+                    // if (i.incrementAndGet() % 1000 == 1) {
+                    // writer.write("data: hier" + i.get() + "\n\n");
+                    // }
                 }
             }
         };

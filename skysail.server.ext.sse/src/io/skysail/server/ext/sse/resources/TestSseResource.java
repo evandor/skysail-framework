@@ -19,7 +19,7 @@ public class TestSseResource extends EntityServerResource<String> {
         sb.append(" if (typeof(EventSource) !== 'undefined') {\n");
         sb.append("  var source = new EventSource('/SSE');\n");
         sb.append("   source.onmessage = function(event) {\n");
-        sb.append("     alert(event);\n");
+        //sb.append("     alert(event);\n");
         sb.append("     output.innerHTML += event.data + '<br>';\n");
         sb.append("   };\n");
         sb.append("   source.onerror = function(event) {\n");

@@ -14,3 +14,4 @@ hs_err_pid*
 
 *.bat
 /skysail.server.app.designer.gencode1
+/skysail.bundles.simpleframework/

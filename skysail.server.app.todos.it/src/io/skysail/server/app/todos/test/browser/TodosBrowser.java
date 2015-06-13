@@ -60,12 +60,16 @@ public class TodosBrowser extends ApplicationBrowser<TodosBrowser, Todo> {
     }
 
     private void navigateToPostTodo(ApplicationClient<Todo> client, String listId) {
-        client.gotoAppRoot().followLinkTitleAndRefId("List of Todos", listId)
+        client.gotoAppRoot()
+            .followLinkTitle("Show Todo-Lists")
+            .followLinkTitleAndRefId("List of Todos", listId)
                 .followLinkRelation(LinkRelation.CREATE_FORM);
     }
 
     private void getTodosForList(ApplicationClient<Todo> client, String id) {
-        client.gotoAppRoot().followLinkTitleAndRefId("List of Todos", id);
+        client.gotoAppRoot()
+            .followLinkTitle("Show Todo-Lists")
+            .followLinkTitleAndRefId("List of Todos", id);
     }
 
 }

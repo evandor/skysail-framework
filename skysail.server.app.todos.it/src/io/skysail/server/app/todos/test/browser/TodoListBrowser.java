@@ -56,29 +56,35 @@ public class TodoListBrowser extends ApplicationBrowser<TodoListBrowser, TodoLis
     }
     
     private void getTodoLists(ApplicationClient<TodoList> client) {
-        client.gotoRoot();
-        client.followLinkTitle(TodoApplication.APP_NAME);
+        client.gotoAppRoot()
+            .followLinkTitle("Show Todo-Lists");
+            //.followLinkTitle(TodoApplication.APP_NAME);
     }
 
     private void updateTodoList(ApplicationClient<TodoList> client, TodoList theTodoList) {
         client.gotoAppRoot()
+            .followLinkTitle("Show Todo-Lists")
             .followLinkTitleAndRefId("update", theTodoList.getId())
             .followLink(Method.PUT, theTodoList);
     }
 
     private void getTodoList(ApplicationClient<?> client, String id) {
-        client.gotoRoot().followLinkTitle(TodoApplication.APP_NAME);
+        client.gotoAppRoot()
+            .followLinkTitle("Show Todo-Lists");
+            //.followLinkTitle(TodoApplication.APP_NAME);
     }
 
     private void deleteTodoList(ApplicationClient<?> client, String id) {
         client.gotoAppRoot() //
+            .followLinkTitle("Show Todo-Lists")
                 .followLinkTitleAndRefId("update", id)
                 .followLink(Method.DELETE, null);
     }
 
     private void navigateToPostTodoListAs(ApplicationClient<TodoList> client) {
-        //client.gotoAppRoot().followLinkRelation(LinkRelation.CREATE_FORM);
-        client.gotoAppRoot().followLinkTitle("create new List");
+        client.gotoAppRoot()
+            .followLinkTitle("Show Todo-Lists")
+            .followLinkTitle("create new List");
     }
 
 }

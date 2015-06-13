@@ -52,30 +52,29 @@ public class GuiMessageResource extends ServerResource {
         // representation.setMediaType(SkysailApplication.SKYSAIL_SERVER_SENT_EVENTS);
         // representation.setCharacterSet(CharacterSet.UTF_8);
 
-        // PipedInputStream pi = new PipedInputStream();
-        // PipedOutputStream po;
-        // try {
-        // po = new PipedOutputStream(pi);
-        // Representation ir = new
-        // OutputRepresentation(SkysailApplication.SKYSAIL_SERVER_SENT_EVENTS) {
-        // @Override
-        // public void write(OutputStream realOutput) throws IOException {
-        // byte[] b = new byte[8];
-        // int read;
-        // while ((read = pi.read(b)) != -1) {
-        // realOutput.write(b, 0, read);
-        // realOutput.flush();
-        // }
-        // }
-        // };
-        // representation.setCharacterSet(CharacterSet.UTF_8);
-        // OutputStreamWriter ow = new OutputStreamWriter(po);
-        // PrintWriter out = new PrintWriter(ow, true);
-        // new Thread(new LongRunningBeast(out)).start();
-        // return ir;
-        // } catch (IOException e1) {
-        // e1.printStackTrace();
-        // }
+//        PipedInputStream pi = new PipedInputStream();
+//        PipedOutputStream po;
+//        try {
+//            po = new PipedOutputStream(pi);
+//            Representation ir = new OutputRepresentation(SkysailApplication.SKYSAIL_SERVER_SENT_EVENTS) {
+//                @Override
+//                public void write(OutputStream realOutput) throws IOException {
+//                    byte[] b = new byte[8];
+//                    int read;
+//                    while ((read = pi.read(b)) != -1) {
+//                        realOutput.write(b, 0, read);
+//                        realOutput.flush();
+//                    }
+//                }
+//            };
+//           // representation.setCharacterSet(CharacterSet.UTF_8);
+//            OutputStreamWriter ow = new OutputStreamWriter(po);
+//            PrintWriter out = new PrintWriter(ow, true);
+//            new Thread(new LongRunningBeast(out)).start();
+//            return ir;
+//        } catch (IOException e1) {
+//            e1.printStackTrace();
+//        }
 
         Representation representation = new WriterRepresentation(SkysailApplication.SKYSAIL_SERVER_SENT_EVENTS) {
 
@@ -85,18 +84,40 @@ public class GuiMessageResource extends ServerResource {
             public void write(Writer writer) throws IOException {
                 String json = "{\"foo\" : \"bar\"}";
                 while (true) {
-                     try {
-                     Thread.sleep(1000);
-                     writer.write("data: hier ("+i.incrementAndGet()+")\n\n");
-                     } catch (InterruptedException e) {
-                     // TODO Auto-generated catch block
-                     e.printStackTrace();
-                     }
+                    try {
+                        writer.write("data: hier (" + i.incrementAndGet() + ")\n\n");
+                        writer.flush();
+                        Thread.sleep(5000);
+                        
+                    } catch (InterruptedException e) {
+                        // TODO Auto-generated catch block
+                        e.printStackTrace();
+                    }
                     // if (i.incrementAndGet() % 1000 == 1) {
-                    // writer.write("data: hier" + i.get() + "\n\n");
+                    //writer.write("data: hier" + i.incrementAndGet() + "\n\n");
                     // }
                 }
             }
+
+//            @Override
+//            public void write(OutputStream writer) throws IOException {
+//                while (true) {
+//                    try {
+//                        String str = "data: hier2 (" + i.incrementAndGet() + ")\n\n";
+//                        byte[] bytes = str.getBytes();
+//                        writer.write(bytes);
+//                        writer.flush();
+//                        Thread.sleep(150);
+//                        
+//                    } catch (InterruptedException e) {
+//                        // TODO Auto-generated catch block
+//                        e.printStackTrace();
+//                    }
+//                    // if (i.incrementAndGet() % 1000 == 1) {
+//                    //writer.write("data: hier" + i.get() + "\n\n");
+//                    // }
+//                }
+//            }
         };
 
         return representation;

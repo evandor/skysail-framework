@@ -1,7 +1,7 @@
 Bundle-Version: 2.1.0.${tstamp}
 Service-Component: *
-Bundle-Name: SKYSAIL :: server :: http
-Bundle-Description: provides the skysail http server
+Bundle-Name: SKYSAIL :: server :: jetty
+Bundle-Description: provides the skysail http server based on jetty
 -buildpath:  \
 	skysail.api;version=${skysail.api.version},\
 	skysail.server;version=latest,\
@@ -24,7 +24,7 @@ Bundle-Description: provides the skysail http server
 	org.restlet.ext.servlet;version=2.3,\
 	org.eclipse.jetty.util;version=9.2
 Export-Package:  \
-	io.skysail.server.http
+	io.skysail.server.jetty
 Private-Package:  \
 	io.skysail.server.http.impl
-Include-Resource: resources
+#-wab

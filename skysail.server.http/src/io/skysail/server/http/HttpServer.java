@@ -217,6 +217,7 @@ public class HttpServer extends ServerResource implements RestletServicesProvide
             try {
                 server = new Server(new Context(), Protocol.HTTP, Integer.valueOf(port), restletComponent);
                 server.getContext().getParameters().add("useForwardedForHeader", "true");
+                //server.getContext().getParameters().add("tracing", "true");
 
                 server.start();
             } catch (Exception e) {

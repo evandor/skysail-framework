@@ -25,3 +25,4 @@ Service-Component:  \
 	
 Include-Resource: resources
 Web-ContextPath: /demo
+-wab: static-pages/

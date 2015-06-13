@@ -33,9 +33,12 @@ public class TodoSummary implements Serializable, Identifiable {
     private String title;
     
     @Reference(cls = TodoSummary.class, selectionProvider = ListSelectionProvider.class)
-    @PostView(visibility = Visibility.SHOW_IF_NULL)
     @ValidListId
     private String list;
+    
+    public String getList() {
+        return "<a href='/Todos/Lists/"+list+"/'>" +  list +"</a>";
+    }
     
     @Field(type = InputType.DATE)
     private Date due;

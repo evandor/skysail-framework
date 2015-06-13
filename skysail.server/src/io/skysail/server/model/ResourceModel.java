@@ -46,6 +46,7 @@ import de.twenty11.skysail.server.services.MenuItemProvider;
 public class ResourceModel<R extends SkysailServerResource<T>, T> {
 
     private R resource;
+    
     private Class<?> parameterType;
     private EntityModel entityModel;
     private String title = "Skysail";

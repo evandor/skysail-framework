@@ -21,3 +21,4 @@ Export-Package:  \
 	io.skysail.server.http
 Private-Package:  \
 	io.skysail.server.http.impl
+Include-Resource: resources

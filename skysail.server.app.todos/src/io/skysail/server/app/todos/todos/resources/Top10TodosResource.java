@@ -23,7 +23,7 @@ public class Top10TodosResource extends ListServerResource<TodoSummary> {
     protected TodoApplication app;
 
     public Top10TodosResource() {
-        // super(TodoResource.class);
+        super(TodoResource.class);
         addToContext(ResourceContextId.LINK_TITLE, "TOP 10 of Todos");
         addToContext(ResourceContextId.LINK_GLYPH, "th-list");
     }

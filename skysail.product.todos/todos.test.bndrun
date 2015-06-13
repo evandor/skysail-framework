@@ -34,7 +34,7 @@
     felix.fileinstall.log.level=4,\
     org.apache.felix.log.storeDebug=true,\
     logback.configurationFile=config/logback.xml,\
-    jetty.home.bundle=org.eclipse.jetty.osgi.boot,\
+    jetty.home.bundle=skysail.server.http,\
     obr.repository.url=https://raw.githubusercontent.com/evandor/skysail-repository/master/index.xml https://raw.githubusercontent.com/evandor/skysail-framework/master/cnf/releaserepo/index.xml https://raw.githubusercontent.com/evandor/skysail-apps/master/cnf/releaserepo/index.xml http://felix.apache.org/obr/releases.xml
 
 #    http.proxyHost=192.168.11.140,\

@@ -143,7 +143,8 @@ public abstract class SkysailApplication extends Application implements Applicat
     private List<MenuItem> applicationMenu;
 
     public SkysailApplication() {
-        //getEncoderService().setEnabled(true);
+        getEncoderService().getIgnoredMediaTypes().add(SkysailApplication.SKYSAIL_SERVER_SENT_EVENTS);
+        getEncoderService().setEnabled(true);
     }
 
     /**

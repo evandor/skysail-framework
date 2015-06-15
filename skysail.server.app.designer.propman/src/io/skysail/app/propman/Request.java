@@ -14,7 +14,7 @@ import javax.validation.constraints.*;
 import com.fasterxml.jackson.annotation.*;
 
 @JsonIgnoreProperties("handler")
-public class Campaign  implements Serializable, Identifiable {
+public class Request  implements Serializable, Identifiable {
 
     @Id
     private String id;
@@ -28,32 +28,10 @@ public class Campaign  implements Serializable, Identifiable {
 	}
 	    
     
-    @Field
-    private String name;;
-
-    @Field
-    private String name;
     
     
-    @Reference(cls = Request.class)
-    private String Request;
     
-        public void setName(String value) {
-        this.name = value;
-    }
-
-    public String getName() {
-        return name;
-    }
-;
-    public void setName(String value) {
-        this.name = value;
-    }
-
-    public String getName() {
-        return name;
-    }
-
+    
 
     
 }

@@ -7,7 +7,7 @@ import java.util.Date;
 
 import org.restlet.resource.ResourceException;
 
-public class PutCampaignResource extends PutEntityServerResource<Campaign> {
+public class PutRequestResource extends PutEntityServerResource<Request> {
 
     private String id;
 	private PropManApplication app;
@@ -20,25 +20,22 @@ public class PutCampaignResource extends PutEntityServerResource<Campaign> {
     }
     
     @Override
-    public SkysailResponse<?> updateEntity(Campaign entity) {
-        Campaign original = getEntity();
+    public SkysailResponse<?> updateEntity(Request entity) {
+        Request original = getEntity();
 
-        original.setName(entity.getName());;
-
-        original.setName(entity.getName());
 app.getRepository().update(id, original);
 
         return new SkysailResponse<>();
     }
 
     @Override
-    public Campaign getEntity() {
-         return app.getRepository().getById(Campaign.class, id);
+    public Request getEntity() {
+         return app.getRepository().getById(Request.class, id);
     }
     
     @Override
     public String redirectTo() {
-        return super.redirectTo(CampaignsResource.class);
+        return super.redirectTo(RequestsResource.class);
     }
 
 }

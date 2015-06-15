@@ -1,0 +1,385 @@
+2015-06-15 16:35:35,974 DEBUG io.skysail.server.app.SkysailApplication - Instanciating new Skysail Application 'TodosClient'
+2015-06-15 16:35:35,978 DEBUG io.skysail.server.app.SkysailApplication - Activating Application io.skysail.client.todos.angularjs.TodosClient
+2015-06-15 16:35:35,979 DEBUG io.skysail.server.app.SkysailApplication - Instanciating new Skysail Application 'SkysailRootApplication'
+2015-06-15 16:35:35,996 INFO  io.skysail.server.app.ApplicationList - (+) Adding application 'TodosClient'
+2015-06-15 16:35:35,997 INFO  io.skysail.server.app.ApplicationList - (+) Adding application 'root'
+2015-06-15 16:35:36,003 INFO  io.skysail.server.db.DbConfigurations - activating DbConfigurations with config DbConfig(name=skysailgraph, driver=, url=memory:testapp, username=admin)
+2015-06-15 16:35:36,025 DEBUG io.skysail.server.app.SkysailApplication - Instanciating new Skysail Application 'WebappApplication'
+2015-06-15 16:35:36,025 DEBUG io.skysail.server.app.SkysailApplication - Activating Application io.skysail.server.converter.WebappApplication
+2015-06-15 16:35:36,025 INFO  io.skysail.server.app.ApplicationList - (+) Adding application 'webapp'
+2015-06-15 16:35:36,026 DEBUG d.t.s.s.c.o.i.listener.SkysailServerBundleListener - could not send bundleStartedMessage for skysail.server.converter
+2015-06-15 16:35:36,030 DEBUG d.t.s.s.c.o.i.listener.SkysailServerBundleListener - could not send bundleStartedMessage for skysail.server.ext.mail
+2015-06-15 16:35:36,852 DEBUG d.t.skysail.server.db.orientdb.OrientGraphDbService - activating de.twenty11.skysail.server.db.orientdb.OrientGraphDbService
+2015-06-15 16:35:36,854 DEBUG d.t.s.s.c.o.i.listener.SkysailServerBundleListener - could not send bundleStartedMessage for skysail.api
+2015-06-15 16:35:36,864 DEBUG d.t.skysail.server.db.orientdb.OrientGraphDbService - registering class 'class de.twenty11.skysail.server.ext.mail.accounts.Account' @ orientDB
+2015-06-15 16:35:36,870 DEBUG io.skysail.server.app.SkysailApplication - Instanciating new Skysail Application 'MailApplication'
+2015-06-15 16:35:36,871 DEBUG io.skysail.server.app.SkysailApplication - Activating Application de.twenty11.skysail.server.ext.mail.MailApplication
+2015-06-15 16:35:36,871 INFO  io.skysail.server.app.ApplicationList - (+) Adding application 'mail'
+2015-06-15 16:35:36,879 DEBUG d.t.s.s.c.o.i.listener.SkysailServerBundleListener - could not send bundleStartedMessage for skysail.server.db
+2015-06-15 16:35:36,882 DEBUG d.t.s.s.c.o.i.listener.SkysailServerBundleListener - could not send bundleStartedMessage for skysail.server.documentation
+2015-06-15 16:35:36,888 DEBUG d.t.s.s.c.o.i.listener.SkysailServerBundleListener - could not send bundleStartedMessage for skysail.server.ext.favorites.preferences
+2015-06-15 16:35:36,896 INFO  io.skysail.server.http.HttpServer - Activating io.skysail.server.http.HttpServer
+2015-06-15 16:35:36,901 INFO  de.twenty11.skysail.server.SkysailComponent - Creating Restlet Component: de.twenty11.skysail.server.SkysailComponent
+2015-06-15 16:35:36,905 DEBUG d.t.s.s.c.o.i.listener.SkysailServerBundleListener - could not send bundleStartedMessage for skysail.server.http
+2015-06-15 16:35:36,910 DEBUG io.skysail.server.performance.etm.EtmPerformanceMonitor - starting etm performance monitor
+2015-06-15 16:35:36,919 DEBUG io.skysail.server.app.SkysailApplication - Instanciating new Skysail Application 'PerformanceApplication'
+2015-06-15 16:35:36,919 DEBUG io.skysail.server.app.SkysailApplication - Activating Application io.skysail.server.performance.etm.impl.PerformanceApplication
+2015-06-15 16:35:36,920 INFO  io.skysail.server.app.ApplicationList - (+) Adding application 'Performance'
+2015-06-15 16:35:36,921 DEBUG d.t.s.s.c.o.i.listener.SkysailServerBundleListener - could not send bundleStartedMessage for skysail.server.performance.etm
+2015-06-15 16:35:36,922 DEBUG d.t.s.s.c.o.i.listener.SkysailServerBundleListener - could not send bundleStartedMessage for skysail.server.peers.adminconfig
+2015-06-15 16:35:36,932 DEBUG d.t.skysail.server.db.orientdb.OrientGraphDbService - registering class 'class io.skysail.app.propman.Campaign' @ orientDB
+2015-06-15 16:35:36,933 DEBUG io.skysail.server.app.SkysailApplication - Instanciating new Skysail Application 'PropManApplication'
+2015-06-15 16:35:36,933 DEBUG io.skysail.server.app.SkysailApplication - Activating Application io.skysail.app.propman.PropManApplication
+2015-06-15 16:35:36,934 INFO  io.skysail.server.app.ApplicationList - (+) Adding application 'PropMan'
+2015-06-15 16:35:36,936 DEBUG d.t.s.s.c.o.i.listener.SkysailServerBundleListener - could not send bundleStartedMessage for skysail.server.app.designer.propman
+2015-06-15 16:35:36,936 DEBUG d.t.s.s.c.o.i.listener.SkysailServerBundleListener - could not send bundleStartedMessage for skysail.server.queryfilter
+2015-06-15 16:35:36,943 DEBUG io.skysail.server.app.SkysailApplication - Instanciating new Skysail Application 'WebappApplication'
+2015-06-15 16:35:36,943 DEBUG io.skysail.server.app.SkysailApplication - Activating Application de.twenty11.skysail.server.webapp.internal.WebappApplication
+2015-06-15 16:35:36,943 INFO  io.skysail.server.app.ApplicationList - (+) Adding application 'static'
+2015-06-15 16:35:36,944 DEBUG d.t.s.s.c.o.i.listener.SkysailServerBundleListener - could not send bundleStartedMessage for skysail.server.static
+2015-06-15 16:35:41,903 INFO  io.skysail.server.http.HttpServer - creating default configuration after waiting for 5000ms for provided configuration
+2015-06-15 16:35:41,914 INFO  io.skysail.server.http.HttpServer - Deactivating io.skysail.server.http.HttpServer
+2015-06-15 16:35:41,917 INFO  io.skysail.server.http.HttpServer - Activating io.skysail.server.http.HttpServer
+2015-06-15 16:35:41,918 INFO  io.skysail.server.http.HttpServer - configuration was provided
+2015-06-15 16:35:41,918 INFO  io.skysail.server.http.HttpServer - 
+2015-06-15 16:35:41,918 INFO  io.skysail.server.http.HttpServer - ====================================
+2015-06-15 16:35:41,918 INFO  io.skysail.server.http.HttpServer - Starting skysail server on port 2015
+2015-06-15 16:35:41,918 INFO  io.skysail.server.http.HttpServer - ====================================
+2015-06-15 16:35:41,918 INFO  io.skysail.server.http.HttpServer - 
+2015-06-15 16:35:41,930 INFO  org.restlet - Starting the internal [HTTP/1.1] server on port 2015
+2015-06-15 16:35:42,150 DEBUG LogService - Processing request to: "http://localhost:2015/"
+2015-06-15 16:35:42,158 DEBUG org.restlet.SkysailComponent.StatusFilter - Total score of variant "[application/json]"= 0.0014999999
+2015-06-15 16:35:42,158 DEBUG org.restlet.SkysailComponent.StatusFilter - Total score of variant "[application/x-json-smile]"= 0.0014999999
+2015-06-15 16:35:42,158 DEBUG org.restlet.SkysailComponent.StatusFilter - Total score of variant "[application/xml]"= 0.22499998
+2015-06-15 16:35:42,158 DEBUG org.restlet.SkysailComponent.StatusFilter - Total score of variant "[text/xml]"= 0.0014999999
+2015-06-15 16:35:42,158 DEBUG org.restlet.SkysailComponent.StatusFilter - Total score of variant "[application/x-yaml]"= 0.0014999999
+2015-06-15 16:35:42,159 DEBUG org.restlet.SkysailComponent.StatusFilter - Total score of variant "[text/x-yaml]"= 0.0014999999
+2015-06-15 16:35:42,159 DEBUG org.restlet.SkysailComponent.StatusFilter - Total score of variant "[text/csv]"= 0.0014999999
+2015-06-15 16:35:42,159 DEBUG org.restlet.SkysailComponent.StatusFilter - Total score of variant "[text/html]"= 0.25
+2015-06-15 16:35:42,159 DEBUG org.restlet.SkysailComponent.StatusFilter - Total score of variant "[application/xhtml+xml]"= 0.25
+2015-06-15 16:35:42,159 DEBUG org.restlet.SkysailComponent.StatusFilter - Total score of variant "[text/event-stream]"= 0.0014999999
+2015-06-15 16:35:42,159 DEBUG org.restlet.SkysailComponent.StatusFilter - Total score of variant "[treeform/*]"= 2.5E-4
+2015-06-15 16:35:42,159 DEBUG org.restlet.SkysailComponent.StatusFilter - Total score of variant "[mailto/*]"= 2.5E-4
+2015-06-15 16:35:42,159 DEBUG org.restlet.SkysailComponent.StatusFilter - Total score of variant "[treeform/*]"= 2.5E-4
+2015-06-15 16:35:42,159 DEBUG org.restlet.SkysailComponent.StatusFilter - Total score of variant "[mailto/*]"= 2.5E-4
+2015-06-15 16:35:42,159 INFO  io.skysail.server.converter.HtmlConverter - converter 'HtmlConverter' matched '{text/html=0.95, treeform/*=1.0}' with threshold 0.95
+2015-06-15 16:35:42,160 DEBUG org.restlet.SkysailComponent.StatusFilter - Converter selected for StatusInfo: StatusInfoHtmlConverter
+2015-06-15 16:35:42,161 INFO  LogService - 2015-06-15	16:35:42	0:0:0:0:0:0:0:1	-	-	2015	GET	/	-	404	439	0	10	http://localhost:2015	Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/43.0.2357.124 Safari/537.36	http://localhost:2015/
+2015-06-15 16:35:42,860 DEBUG d.t.s.s.c.o.i.listener.SkysailServerBundleListener - could not send bundleStartedMessage for skysail.server.text.asciidoc
+2015-06-15 16:35:42,872 DEBUG d.t.s.s.c.o.i.listener.SkysailServerBundleListener - could not send bundleStartedMessage for skysail.server.text.markdown
+2015-06-15 16:35:42,876 DEBUG io.skysail.server.app.SkysailApplication - Instanciating new Skysail Application 'I18nApplication'
+2015-06-15 16:35:42,877 DEBUG io.skysail.server.app.SkysailApplication - Activating Application io.skysail.server.text.store.bundleresource.impl.I18nApplication
+2015-06-15 16:35:42,878 INFO  io.skysail.server.app.ApplicationList - (+) Adding application 'i18n'
+2015-06-15 16:35:42,883 DEBUG d.t.s.s.c.o.i.listener.SkysailServerBundleListener - could not send bundleStartedMessage for skysail.server.text.store.bundleresource
+2015-06-15 16:35:42,887 DEBUG d.t.s.s.c.o.i.listener.SkysailServerBundleListener - could not send bundleStartedMessage for skysail.server.text.store.git
+2015-06-15 16:35:42,892 DEBUG io.skysail.server.app.SkysailApplication - Instanciating new Skysail Application 'SimpleUserManagementApplication'
+2015-06-15 16:35:42,892 DEBUG i.s.s.um.simple.app.SimpleUserManagementApplication - instanciating new UserManagementApplication #2135889206
+2015-06-15 16:35:42,892 DEBUG io.skysail.server.app.SkysailApplication - Activating Application io.skysail.server.um.simple.app.SimpleUserManagementApplication
+2015-06-15 16:35:42,898 WARN  i.s.server.um.simple.FileBasedUserManagementProvider - creating default configuration for usermanagement as no configuration was provided (yet)!
+2015-06-15 16:35:42,912 INFO  io.skysail.server.app.ApplicationList - (+) Adding application 'usermanagement'
+2015-06-15 16:35:42,917 DEBUG d.t.s.s.c.o.i.listener.SkysailServerBundleListener - could not send bundleStartedMessage for skysail.server.um.simple
+2015-06-15 16:35:42,917 INFO  io.skysail.server.app.ApplicationList -  >>> unsetting ServerConfiguration
+2015-06-15 16:35:42,917 INFO  io.skysail.server.app.ApplicationList -  >>> attaching skysailApplication '/TodosClient' to defaultHost
+2015-06-15 16:35:42,918 INFO  io.skysail.server.app.ApplicationList -  >>> unsetting ServerConfiguration
+2015-06-15 16:35:42,918 INFO  io.skysail.server.app.ApplicationList -  >>> attaching skysailApplication '/root' to defaultHost
+2015-06-15 16:35:42,918 INFO  io.skysail.server.app.ApplicationList -  >>> unsetting ServerConfiguration
+2015-06-15 16:35:42,918 INFO  io.skysail.server.app.ApplicationList -  >>> attaching skysailApplication '/webapp' to defaultHost
+2015-06-15 16:35:42,918 INFO  io.skysail.server.app.ApplicationList -  >>> unsetting ServerConfiguration
+2015-06-15 16:35:42,918 INFO  io.skysail.server.app.ApplicationList -  >>> attaching skysailApplication '/mail' to defaultHost
+2015-06-15 16:35:42,918 INFO  io.skysail.server.app.ApplicationList -  >>> unsetting ServerConfiguration
+2015-06-15 16:35:42,918 INFO  io.skysail.server.app.ApplicationList -  >>> attaching skysailApplication '/Performance' to defaultHost
+2015-06-15 16:35:42,918 INFO  io.skysail.server.app.ApplicationList -  >>> unsetting ServerConfiguration
+2015-06-15 16:35:42,918 INFO  io.skysail.server.app.ApplicationList -  >>> attaching skysailApplication '/PropMan' to defaultHost
+2015-06-15 16:35:42,918 INFO  io.skysail.server.app.ApplicationList -  >>> unsetting ServerConfiguration
+2015-06-15 16:35:42,918 INFO  io.skysail.server.app.ApplicationList -  >>> attaching skysailApplication '/static' to defaultHost
+2015-06-15 16:35:42,918 INFO  io.skysail.server.app.ApplicationList -  >>> unsetting ServerConfiguration
+2015-06-15 16:35:42,918 INFO  io.skysail.server.app.ApplicationList -  >>> attaching skysailApplication '/i18n' to defaultHost
+2015-06-15 16:35:42,918 INFO  io.skysail.server.app.ApplicationList -  >>> unsetting ServerConfiguration
+2015-06-15 16:35:42,918 INFO  io.skysail.server.app.ApplicationList -  >>> attaching skysailApplication '/usermanagement' to defaultHost
+2015-06-15 16:35:42,928 DEBUG d.t.skysail.server.db.orientdb.OrientGraphDbService - registering class 'class io.skysail.application.money.Bank' @ orientDB
+2015-06-15 16:35:42,931 DEBUG d.t.skysail.server.db.orientdb.OrientGraphDbService - registering class 'class io.skysail.application.money.Account' @ orientDB
+2015-06-15 16:35:42,931 DEBUG io.skysail.server.app.SkysailApplication - Instanciating new Skysail Application 'MoneyApplication'
+2015-06-15 16:35:42,931 DEBUG io.skysail.server.app.SkysailApplication - Activating Application io.skysail.application.money.MoneyApplication
+2015-06-15 16:35:42,932 INFO  io.skysail.server.app.ApplicationList - (+) Adding application 'Money'
+2015-06-15 16:35:42,932 DEBUG i.s.s.u.s.a.SkysailHashedCredentialsMatcher - cacheManager set in io.skysail.server.um.simple.authentication.SkysailHashedCredentialsMatcher
+2015-06-15 16:35:42,934 DEBUG d.t.s.s.c.o.i.listener.SkysailServerBundleListener - could not send bundleStartedMessage for skysail.server.app.designer.gencode1
+2015-06-15 16:35:42,936 DEBUG d.t.s.s.c.o.i.listener.SkysailServerBundleListener - could not send bundleStartedMessage for slf4j.api
+2015-06-15 16:35:42,936 DEBUG d.t.s.s.c.o.i.listener.SkysailServerBundleListener - could not send bundleStartedMessage for de.twentyeleven.skysail.org.antlr.stringtemplate-osgi
+2015-06-15 16:35:42,939 DEBUG d.t.s.s.c.o.i.listener.SkysailServerBundleListener - could not send bundleStartedMessage for org.jruby.jruby
+2015-06-15 16:35:42,940 DEBUG d.t.s.s.c.o.i.listener.SkysailServerBundleListener - could not send bundleStartedMessage for com.beust.jcommander
+2015-06-15 16:35:42,940 DEBUG d.t.s.s.c.o.i.listener.SkysailServerBundleListener - could not send bundleStartedMessage for stax2-api
+2015-06-15 16:35:42,940 DEBUG d.t.s.s.c.o.i.listener.SkysailServerBundleListener - could not send bundleStartedMessage for com.fasterxml.jackson.module.jackson-module-jaxb-annotations
+2015-06-15 16:35:42,941 DEBUG d.t.s.s.c.o.i.listener.SkysailServerBundleListener - could not send bundleStartedMessage for org.codehaus.jettison.jettison
+2015-06-15 16:35:42,942 DEBUG d.t.s.s.c.o.i.listener.SkysailServerBundleListener - could not send bundleStartedMessage for org.jsoup
+2015-06-15 16:35:42,942 DEBUG d.t.s.s.c.o.i.listener.SkysailServerBundleListener - could not send bundleStartedMessage for com.sun.mail.javax.mail
+2015-06-15 16:35:42,944 DEBUG d.t.s.s.c.o.i.listener.SkysailServerBundleListener - could not send bundleStartedMessage for biz.aQute.bnd.annotation
+2015-06-15 16:35:42,962 DEBUG org.apache.shiro.realm.AuthorizingRealm - No authorizationCache instance set.  Checking for a cacheManager...
+2015-06-15 16:35:42,962 DEBUG org.apache.shiro.realm.AuthorizingRealm - CacheManager [MemoryConstrainedCacheManager with 0 cache(s)): []] has been configured.  Building authorization cache named [io.skysail.server.um.simple.authorization.SimpleAuthorizingRealm.authorizationCache]
+2015-06-15 16:35:43,489 DEBUG LogService - Processing request to: "http://localhost:2015/"
+2015-06-15 16:35:43,490 INFO  org.restlet.SkysailComponent.TodosClient - Starting de.twenty11.skysail.server.app.SkysailRootApplication application
+2015-06-15 16:35:43,492 INFO  io.skysail.server.app.SkysailApplication - creating new Router in de.twenty11.skysail.server.app.SkysailRootApplication
+2015-06-15 16:35:43,493 INFO  io.skysail.server.app.SkysailApplication - adding extensions to metadata service
+2015-06-15 16:35:43,493 INFO  io.skysail.server.app.SkysailApplication - adding protocols
+2015-06-15 16:35:43,493 DEBUG io.skysail.server.app.SkysailApplication - attaching application-specific routes
+2015-06-15 16:35:43,494 INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/' -> 'de.twenty11.skysail.server.resources.DefaultResource'
+2015-06-15 16:35:43,494 WARN  de.twenty11.skysail.server.core.restlet.SkysailRouter - please use a RouteBuilder to attach this resource: class de.twenty11.skysail.server.resources.DefaultResource
+2015-06-15 16:35:43,495 INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/_login' -> 'de.twenty11.skysail.server.resources.LoginResource'
+2015-06-15 16:35:43,495 WARN  de.twenty11.skysail.server.core.restlet.SkysailRouter - please use a RouteBuilder to attach this resource: class de.twenty11.skysail.server.resources.LoginResource
+2015-06-15 16:35:43,495 INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/_login/{provider}' -> 'de.twenty11.skysail.server.app.OAuthLoginResource'
+2015-06-15 16:35:43,496 WARN  de.twenty11.skysail.server.core.restlet.SkysailRouter - please use a RouteBuilder to attach this resource: class de.twenty11.skysail.server.app.OAuthLoginResource
+2015-06-15 16:35:43,496 INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/_version' -> 'RolesPredicateAuthorizer' -> 'de.twenty11.skysail.server.resources.VersionResource'
+2015-06-15 16:35:43,496 INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/_name' -> 'RolesPredicateAuthorizer' -> 'de.twenty11.skysail.server.resources.NameResource'
+2015-06-15 16:35:43,497 INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/_profile' -> 'RolesPredicateAuthorizer' -> 'de.twenty11.skysail.server.app.profile.ProfileResource'
+2015-06-15 16:35:43,497 INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/_profile/password/' -> 'RolesPredicateAuthorizer' -> 'de.twenty11.skysail.server.app.profile.PutPasswordResource'
+2015-06-15 16:35:43,497 INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/_largetests' -> 'RolesPredicateAuthorizer' -> 'de.twenty11.skysail.server.app.LargeTestsResource'
+2015-06-15 16:35:43,498 INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/_largetests/{id}' -> 'RolesPredicateAuthorizer' -> 'de.twenty11.skysail.server.app.LargeTestsFileResource'
+2015-06-15 16:35:43,498 INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/welcome' -> 'de.twenty11.skysail.server.resources.WelcomeResource'
+2015-06-15 16:35:43,498 WARN  de.twenty11.skysail.server.core.restlet.SkysailRouter - please use a RouteBuilder to attach this resource: class de.twenty11.skysail.server.resources.WelcomeResource
+2015-06-15 16:35:43,498 INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/_iframe' -> 'RolesPredicateAuthorizer' -> 'de.twenty11.skysail.server.app.IFrameResource'
+2015-06-15 16:35:43,499 INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/_remotelogin' -> 'de.twenty11.skysail.server.resources.RemoteLoginResource'
+2015-06-15 16:35:43,499 WARN  de.twenty11.skysail.server.core.restlet.SkysailRouter - please use a RouteBuilder to attach this resource: class de.twenty11.skysail.server.resources.RemoteLoginResource
+2015-06-15 16:35:43,499 DEBUG io.skysail.server.app.SkysailApplication - creating tracer...
+2015-06-15 16:35:43,499 DEBUG io.skysail.server.app.SkysailApplication - creating original request filter...
+2015-06-15 16:35:43,499 DEBUG io.skysail.server.app.SkysailApplication - determining authentication service...
+2015-06-15 16:35:43,499 DEBUG io.skysail.server.app.SkysailApplication - setting authenticationGuard from authentication service
+2015-06-15 16:35:43,642 DEBUG org.apache.shiro.web.mgt.CookieRememberMeManager - SubjectContext argument is not an HTTP-aware instance.  This is required to obtain a servlet request and response in order to retrieve the rememberMe cookie. Returning immediately and ignoring rememberMe operation.
+2015-06-15 16:35:43,644 DEBUG i.s.s.um.simple.authentication.SimpleDelegatingVerifier - login event for user 'admin'
+2015-06-15 16:35:43,645 DEBUG org.apache.shiro.realm.AuthenticatingRealm - Looked up AuthenticationInfo [io.skysail.server.um.simple.authentication.SkysailAuthenticationInfo@3d5427a7] from doGetAuthenticationInfo
+2015-06-15 16:35:43,958 DEBUG org.apache.shiro.authc.AbstractAuthenticator - Authentication successful for token [org.apache.shiro.authc.UsernamePasswordToken - admin, rememberMe=false].  Returned account [io.skysail.server.um.simple.authentication.SkysailAuthenticationInfo@3d5427a7]
+2015-06-15 16:35:43,959 DEBUG org.apache.shiro.subject.support.DefaultSubjectContext - No SecurityManager available in subject context map.  Falling back to SecurityUtils.getSecurityManager() lookup.
+2015-06-15 16:35:43,959 DEBUG org.apache.shiro.subject.support.DefaultSubjectContext - No SecurityManager available in subject context map.  Falling back to SecurityUtils.getSecurityManager() lookup.
+2015-06-15 16:35:43,960 DEBUG org.apache.shiro.mgt.AbstractRememberMeManager - AuthenticationToken did not indicate RememberMe is requested.  RememberMe functionality will not be executed for corresponding account.
+2015-06-15 16:35:43,960 DEBUG i.s.s.um.simple.authentication.SimpleDelegatingVerifier - login event for user 'admin' successful
+2015-06-15 16:35:43,960 DEBUG org.restlet.SkysailComponent.TodosClient - Authentication succeeded. Valid credentials provided for identifier: admin.
+2015-06-15 16:35:43,961 DEBUG org.restlet.SkysailComponent.TodosClient - The authentication succeeded for the identifer "admin" using the HTTP_Cookie scheme.
+2015-06-15 16:35:43,962 DEBUG org.restlet.SkysailComponent.TodosClient - Selected route: "/" -> Finder for DefaultResource
+2015-06-15 16:35:43,962 DEBUG org.restlet.SkysailComponent.TodosClient - New base URI: "http://localhost:2015/". No remaining part to match
+2015-06-15 16:35:44,000 DEBUG org.restlet.SkysailComponent.TodosClient - Score of annotation "MethodAnnotationInfo [javaMethod: public final java.util.List io.skysail.server.restlet.resources.ListServerResource.getEntities(org.restlet.representation.Variant), javaClass: class de.twenty11.skysail.server.resources.DefaultResource, restletMethod: GET, input: html|json|yaml|xml, value: html|json|yaml|xml, output: html|json|yaml|xml, query: null]"= 0.5
+2015-06-15 16:35:44,000 DEBUG org.restlet.SkysailComponent.TodosClient - Total score of variant "[text/html]"= 0.16666667
+2015-06-15 16:35:44,000 DEBUG org.restlet.SkysailComponent.TodosClient - Score of annotation "MethodAnnotationInfo [javaMethod: public final java.util.List io.skysail.server.restlet.resources.ListServerResource.getEntities(org.restlet.representation.Variant), javaClass: class de.twenty11.skysail.server.resources.DefaultResource, restletMethod: GET, input: html|json|yaml|xml, value: html|json|yaml|xml, output: html|json|yaml|xml, query: null]"= 0.5
+2015-06-15 16:35:44,000 DEBUG org.restlet.SkysailComponent.TodosClient - Total score of variant "[application/json]"= 0.042416666
+2015-06-15 16:35:44,000 DEBUG org.restlet.SkysailComponent.TodosClient - Score of annotation "MethodAnnotationInfo [javaMethod: public final java.util.List io.skysail.server.restlet.resources.ListServerResource.getEntities(org.restlet.representation.Variant), javaClass: class de.twenty11.skysail.server.resources.DefaultResource, restletMethod: GET, input: html|json|yaml|xml, value: html|json|yaml|xml, output: html|json|yaml|xml, query: null]"= 0.5
+2015-06-15 16:35:44,000 DEBUG org.restlet.SkysailComponent.TodosClient - Total score of variant "[application/x-yaml]"= 0.042416666
+2015-06-15 16:35:44,000 DEBUG org.restlet.SkysailComponent.TodosClient - Score of annotation "MethodAnnotationInfo [javaMethod: public final java.util.List io.skysail.server.restlet.resources.ListServerResource.getEntities(org.restlet.representation.Variant), javaClass: class de.twenty11.skysail.server.resources.DefaultResource, restletMethod: GET, input: html|json|yaml|xml, value: html|json|yaml|xml, output: html|json|yaml|xml, query: null]"= 0.5
+2015-06-15 16:35:44,000 DEBUG org.restlet.SkysailComponent.TodosClient - Total score of variant "[text/x-yaml]"= 0.042416666
+2015-06-15 16:35:44,000 DEBUG org.restlet.SkysailComponent.TodosClient - Score of annotation "MethodAnnotationInfo [javaMethod: public final java.util.List io.skysail.server.restlet.resources.ListServerResource.getEntities(org.restlet.representation.Variant), javaClass: class de.twenty11.skysail.server.resources.DefaultResource, restletMethod: GET, input: html|json|yaml|xml, value: html|json|yaml|xml, output: html|json|yaml|xml, query: null]"= 0.5
+2015-06-15 16:35:44,000 DEBUG org.restlet.SkysailComponent.TodosClient - Total score of variant "[text/xml]"= 0.042416666
+2015-06-15 16:35:44,001 DEBUG org.restlet.SkysailComponent.TodosClient - Score of annotation "MethodAnnotationInfo [javaMethod: public final java.util.List io.skysail.server.restlet.resources.ListServerResource.getEntities(org.restlet.representation.Variant), javaClass: class de.twenty11.skysail.server.resources.DefaultResource, restletMethod: GET, input: html|json|yaml|xml, value: html|json|yaml|xml, output: html|json|yaml|xml, query: null]"= 0.5
+2015-06-15 16:35:44,001 DEBUG org.restlet.SkysailComponent.TodosClient - Total score of variant "[application/xml]"= 0.15416665
+2015-06-15 16:35:44,002 INFO  io.skysail.server.restlet.resources.ListServerResource - Request entry point: DefaultResource @Get('html|json|yaml|xml') with variant [text/html]
+2015-06-15 16:35:44,003 DEBUG i.skysail.server.restlet.filter.ExceptionCatchingFilter - entering ExceptionCatchingFilter#doHandle
+2015-06-15 16:35:44,004 DEBUG io.skysail.server.restlet.filter.AbstractResourceFilter - next filter in chain: AddApiVersionHeaderFilter
+2015-06-15 16:35:44,004 DEBUG io.skysail.server.restlet.filter.AbstractResourceFilter - next filter in chain: GetRequestPreFilterHook
+2015-06-15 16:35:44,004 DEBUG io.skysail.server.restlet.filter.AbstractResourceFilter - next filter in chain: ExtractStandardQueryParametersResourceFilter
+2015-06-15 16:35:44,004 DEBUG io.skysail.server.restlet.filter.AbstractResourceFilter - next filter in chain: DataExtractingFilter
+2015-06-15 16:35:44,004 DEBUG io.skysail.server.restlet.filter.DataExtractingFilter - entering DataExtractingFilter#doHandle
+2015-06-15 16:35:44,008 DEBUG io.skysail.server.restlet.filter.AbstractResourceFilter - next filter in chain: AddLinkheadersFilter
+2015-06-15 16:35:44,009 DEBUG io.skysail.server.restlet.filter.AbstractResourceFilter - next filter in chain: CheckFavoritesFilter
+2015-06-15 16:35:44,011 DEBUG io.skysail.server.restlet.filter.AbstractResourceFilter - next filter in chain: SetExecutionTimeInResponseFilter
+2015-06-15 16:35:44,011 DEBUG io.skysail.server.restlet.filter.AbstractResourceFilter - next filter in chain: RedirectFilter
+2015-06-15 16:35:44,017 INFO  io.skysail.server.converter.HtmlConverter - converter 'HtmlConverter' matched '{text/html=0.95, treeform/*=1.0}' with threshold 0.95
+2015-06-15 16:35:44,017 DEBUG org.restlet.SkysailComponent.TodosClient - Converter selected for ArrayList: HtmlConverter
+2015-06-15 16:35:44,021 DEBUG io.skysail.server.model.ResourceModel - using factory 'DefaultListFieldFactory' for ArrayList-Source: [de.twenty11.skysail.server.resources.MenuItemDescriptor@4fa8caa4, de.twenty11.skysail.server.resources.MenuItemDescriptor@60774f09, de.twenty11.skysail.server.resources.MenuItemDescriptor@799d4634, de.twenty11.skysail.server.resources.MenuItemDescriptor@42215b20]
+2015-06-15 16:35:44,054 INFO  io.skysail.server.converter.impl.StringTemplateRenderer - reading templates from resource path '/templates/text/html'
+2015-06-15 16:35:44,065 DEBUG i.s.server.converter.stringtemplate.STGroupBundleDir - found resource in skysail.server.converter [0.1.1.201506151432]: bundle://68.0:1/templates/text/html/index.st
+2015-06-15 16:35:44,115 WARN  io.skysail.server.text.store.git.GitTranslationStore - .\en\de.twenty11.skysail.server.resources.properties (Das System kann den angegebenen Pfad nicht finden)
+2015-06-15 16:35:44,136 WARN  io.skysail.server.text.store.git.GitTranslationStore - .\en\de.twenty11.skysail.server.resources.properties (Das System kann den angegebenen Pfad nicht finden)
+2015-06-15 16:35:44,136 DEBUG i.s.s.t.store.bundleresource.impl.ResourceBundleStore - Can't find resource for bundle java.util.PropertyResourceBundle, key de.twenty11.skysail.server.resources.MenuItemDescriptor.url
+2015-06-15 16:35:44,136 DEBUG i.s.s.t.store.bundleresource.impl.ResourceBundleStore - Can't find resource for bundle java.util.PropertyResourceBundle, key de.twenty11.skysail.server.resources.MenuItemDescriptor.url
+2015-06-15 16:35:44,137 DEBUG i.s.s.t.store.bundleresource.impl.ResourceBundleStore - Can't find resource for bundle java.util.PropertyResourceBundle, key de.twenty11.skysail.server.resources.MenuItemDescriptor.url
+2015-06-15 16:35:44,137 DEBUG i.s.s.t.store.bundleresource.impl.ResourceBundleStore - Can't find resource for bundle java.util.PropertyResourceBundle, key de.twenty11.skysail.server.resources.MenuItemDescriptor.url
+2015-06-15 16:35:44,171 WARN  io.skysail.server.text.store.git.GitTranslationStore - .\en\de.twenty11.skysail.server.resources.properties (Das System kann den angegebenen Pfad nicht finden)
+2015-06-15 16:35:44,172 DEBUG i.s.s.t.store.bundleresource.impl.ResourceBundleStore - Can't find resource for bundle java.util.PropertyResourceBundle, key de.twenty11.skysail.server.resources.MenuItemDescriptor.url.desc
+2015-06-15 16:35:44,172 DEBUG i.s.s.t.store.bundleresource.impl.ResourceBundleStore - Can't find resource for bundle java.util.PropertyResourceBundle, key de.twenty11.skysail.server.resources.MenuItemDescriptor.url.desc
+2015-06-15 16:35:44,172 DEBUG i.s.s.t.store.bundleresource.impl.ResourceBundleStore - Can't find resource for bundle java.util.PropertyResourceBundle, key de.twenty11.skysail.server.resources.MenuItemDescriptor.url.desc
+2015-06-15 16:35:44,172 DEBUG i.s.s.t.store.bundleresource.impl.ResourceBundleStore - Can't find resource for bundle java.util.PropertyResourceBundle, key de.twenty11.skysail.server.resources.MenuItemDescriptor.url.desc
+2015-06-15 16:35:44,173 WARN  io.skysail.server.text.store.git.GitTranslationStore - .\en\de.twenty11.skysail.server.resources.properties (Das System kann den angegebenen Pfad nicht finden)
+2015-06-15 16:35:44,174 DEBUG i.s.s.t.store.bundleresource.impl.ResourceBundleStore - Can't find resource for bundle java.util.PropertyResourceBundle, key de.twenty11.skysail.server.resources.MenuItemDescriptor.url.placeholder
+2015-06-15 16:35:44,174 DEBUG i.s.s.t.store.bundleresource.impl.ResourceBundleStore - Can't find resource for bundle java.util.PropertyResourceBundle, key de.twenty11.skysail.server.resources.MenuItemDescriptor.url.placeholder
+2015-06-15 16:35:44,174 DEBUG i.s.s.t.store.bundleresource.impl.ResourceBundleStore - Can't find resource for bundle java.util.PropertyResourceBundle, key de.twenty11.skysail.server.resources.MenuItemDescriptor.url.placeholder
+2015-06-15 16:35:44,174 DEBUG i.s.s.t.store.bundleresource.impl.ResourceBundleStore - Can't find resource for bundle java.util.PropertyResourceBundle, key de.twenty11.skysail.server.resources.MenuItemDescriptor.url.placeholder
+2015-06-15 16:35:44,179 DEBUG i.s.server.converter.stringtemplate.STGroupBundleDir - found resource in skysail.server.converter [0.1.1.201506151432]: bundle://68.0:1/templates/text/html/select2JsHead.stg
+2015-06-15 16:35:44,183 DEBUG i.s.server.converter.stringtemplate.STGroupBundleDir - found resource in skysail.server.converter [0.1.1.201506151432]: bundle://68.0:1/templates/text/html/endOfHeaderJS.stg
+2015-06-15 16:35:44,186 DEBUG i.s.server.converter.stringtemplate.STGroupBundleDir - found resource in skysail.server.converter [0.1.1.201506151432]: bundle://68.0:1/templates/text/html/dropdownFrontendsNav.stg
+2015-06-15 16:35:44,188 DEBUG i.s.server.converter.stringtemplate.STGroupBundleDir - found resource in skysail.server.converter [0.1.1.201506151432]: bundle://68.0:1/templates/text/html/dropdownApplicationsNav.stg
+2015-06-15 16:35:44,191 DEBUG i.s.server.converter.stringtemplate.STGroupBundleDir - found resource in skysail.server.converter [0.1.1.201506151432]: bundle://68.0:1/templates/text/html/dropdownDesignerNav.stg
+2015-06-15 16:35:44,193 DEBUG i.s.server.converter.stringtemplate.STGroupBundleDir - found resource in skysail.server.converter [0.1.1.201506151432]: bundle://68.0:1/templates/text/html/dropdownAdminNav.stg
+2015-06-15 16:35:44,199 DEBUG i.s.server.converter.stringtemplate.STGroupBundleDir - found resource in skysail.server.converter [0.1.1.201506151432]: bundle://68.0:1/templates/text/html/backends.stg
+2015-06-15 16:35:44,201 DEBUG i.s.server.converter.stringtemplate.STGroupBundleDir - found resource in skysail.server.converter [0.1.1.201506151432]: bundle://68.0:1/templates/text/html/breadcrumb.stg
+2015-06-15 16:35:44,205 DEBUG i.s.server.converter.stringtemplate.STGroupBundleDir - found resource in skysail.server.converter [0.1.1.201506151432]: bundle://68.0:1/templates/text/html/representations.stg
+2015-06-15 16:35:44,211 DEBUG i.s.server.converter.stringtemplate.STGroupBundleDir - found resource in skysail.server.converter [0.1.1.201506151432]: bundle://68.0:1/templates/text/html/appNavTitle.stg
+2015-06-15 16:35:44,212 DEBUG i.s.server.converter.stringtemplate.STGroupBundleDir - found resource in skysail.server.converter [0.1.1.201506151432]: bundle://68.0:1/templates/text/html/menuNav.stg
+2015-06-15 16:35:44,218 DEBUG i.s.server.converter.stringtemplate.STGroupBundleDir - found resource in skysail.server.converter [0.1.1.201506151432]: bundle://68.0:1/templates/text/html/mainContent.stg
+2015-06-15 16:35:44,220 DEBUG i.s.server.converter.stringtemplate.STGroupBundleDir - found resource in skysail.server.converter [0.1.1.201506151432]: bundle://68.0:1/templates/text/html/appNav.stg
+2015-06-15 16:35:44,226 DEBUG i.s.server.converter.stringtemplate.STGroupBundleDir - found resource in skysail.server.converter [0.1.1.201506151432]: bundle://68.0:1/templates/text/html/contentHeader.st
+2015-06-15 16:35:44,229 DEBUG i.s.server.converter.stringtemplate.STGroupBundleDir - found resource in skysail.server.converter [0.1.1.201506151432]: bundle://68.0:1/templates/text/html/renderTable.stg
+2015-06-15 16:35:44,237 DEBUG i.s.server.converter.stringtemplate.STGroupBundleDir - found resource in skysail.server.converter [0.1.1.201506151432]: bundle://68.0:1/templates/text/html/notifications.stg
+2015-06-15 16:35:44,239 DEBUG i.s.server.converter.stringtemplate.STGroupBundleDir - found resource in skysail.server.converter [0.1.1.201506151432]: bundle://68.0:1/templates/text/html/select2JsEndOfBody.stg
+2015-06-15 16:35:44,241 INFO  LogService - 2015-06-15	16:35:44	0:0:0:0:0:0:0:1	admin	-	2015	GET	/	-	200	-	0	752	http://localhost:2015	Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/43.0.2357.124 Safari/537.36	http://localhost:2015/
+2015-06-15 16:35:44,292 DEBUG LogService - Processing request to: "http://localhost:2015/SSE"
+2015-06-15 16:35:44,292 DEBUG org.apache.shiro.web.mgt.CookieRememberMeManager - SubjectContext argument is not an HTTP-aware instance.  This is required to obtain a servlet request and response in order to retrieve the rememberMe cookie. Returning immediately and ignoring rememberMe operation.
+2015-06-15 16:35:44,292 DEBUG i.s.s.um.simple.authentication.SimpleDelegatingVerifier - login event for user 'admin'
+2015-06-15 16:35:44,292 DEBUG org.apache.shiro.realm.AuthenticatingRealm - Using cached authentication info [io.skysail.server.um.simple.authentication.SkysailAuthenticationInfo@3d5427a7] to perform credentials matching.
+2015-06-15 16:35:44,596 DEBUG org.apache.shiro.authc.AbstractAuthenticator - Authentication successful for token [org.apache.shiro.authc.UsernamePasswordToken - admin, rememberMe=false].  Returned account [io.skysail.server.um.simple.authentication.SkysailAuthenticationInfo@3d5427a7]
+2015-06-15 16:35:44,596 DEBUG org.apache.shiro.subject.support.DefaultSubjectContext - No SecurityManager available in subject context map.  Falling back to SecurityUtils.getSecurityManager() lookup.
+2015-06-15 16:35:44,596 DEBUG org.apache.shiro.subject.support.DefaultSubjectContext - No SecurityManager available in subject context map.  Falling back to SecurityUtils.getSecurityManager() lookup.
+2015-06-15 16:35:44,596 DEBUG org.apache.shiro.mgt.AbstractRememberMeManager - AuthenticationToken did not indicate RememberMe is requested.  RememberMe functionality will not be executed for corresponding account.
+2015-06-15 16:35:44,596 DEBUG i.s.s.um.simple.authentication.SimpleDelegatingVerifier - login event for user 'admin' successful
+2015-06-15 16:35:44,596 DEBUG org.restlet.SkysailComponent.TodosClient - Authentication succeeded. Valid credentials provided for identifier: admin.
+2015-06-15 16:35:44,597 DEBUG org.restlet.SkysailComponent.TodosClient - The authentication succeeded for the identifer "admin" using the HTTP_Cookie scheme.
+2015-06-15 16:35:44,597 DEBUG org.restlet.SkysailComponent.TodosClient - The default route was selected
+2015-06-15 16:35:44,597 INFO  LogService - 2015-06-15	16:35:44	0:0:0:0:0:0:0:1	admin	-	2015	GET	/SSE	-	404	276	0	305	http://localhost:2015	Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/43.0.2357.124 Safari/537.36	http://localhost:2015/
+2015-06-15 16:35:46,379 DEBUG LogService - Processing request to: "http://localhost:2015/PropMan"
+2015-06-15 16:35:46,380 INFO  org.restlet.SkysailComponent.TodosClient - Starting io.skysail.app.propman.PropManApplication application
+2015-06-15 16:35:46,381 INFO  io.skysail.server.app.SkysailApplication - creating new Router in io.skysail.app.propman.PropManApplication
+2015-06-15 16:35:46,381 INFO  io.skysail.server.app.SkysailApplication - adding extensions to metadata service
+2015-06-15 16:35:46,381 INFO  io.skysail.server.app.SkysailApplication - adding protocols
+2015-06-15 16:35:46,381 DEBUG io.skysail.server.app.SkysailApplication - attaching application-specific routes
+2015-06-15 16:35:46,382 INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/docs/api' -> 'RolesPredicateAuthorizer' -> 'io.skysail.server.documentation.ApiResource'
+2015-06-15 16:35:46,382 INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/docs/entities/{name}' -> 'RolesPredicateAuthorizer' -> 'io.skysail.server.documentation.EntitiesResource'
+2015-06-15 16:35:46,382 INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/docs/entities' -> 'RolesPredicateAuthorizer' -> 'io.skysail.server.documentation.EntitiesResource'
+2015-06-15 16:35:46,382 INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/Campaigns/' -> 'RolesPredicateAuthorizer' -> 'io.skysail.app.propman.PostCampaignResource'
+2015-06-15 16:35:46,383 INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '' -> 'RolesPredicateAuthorizer' -> 'io.skysail.app.propman.CampaignsResource'
+2015-06-15 16:35:46,383 INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/Campaigns' -> 'RolesPredicateAuthorizer' -> 'io.skysail.app.propman.CampaignsResource'
+2015-06-15 16:35:46,383 INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/Campaigns/{id}' -> 'RolesPredicateAuthorizer' -> 'io.skysail.app.propman.PutCampaignResource'
+2015-06-15 16:35:46,383 DEBUG io.skysail.server.app.SkysailApplication - creating tracer...
+2015-06-15 16:35:46,383 DEBUG io.skysail.server.app.SkysailApplication - creating original request filter...
+2015-06-15 16:35:46,383 DEBUG io.skysail.server.app.SkysailApplication - determining authentication service...
+2015-06-15 16:35:46,383 DEBUG io.skysail.server.app.SkysailApplication - setting authenticationGuard from authentication service
+2015-06-15 16:35:46,384 DEBUG org.apache.shiro.web.mgt.CookieRememberMeManager - SubjectContext argument is not an HTTP-aware instance.  This is required to obtain a servlet request and response in order to retrieve the rememberMe cookie. Returning immediately and ignoring rememberMe operation.
+2015-06-15 16:35:46,384 DEBUG i.s.s.um.simple.authentication.SimpleDelegatingVerifier - login event for user 'admin'
+2015-06-15 16:35:46,384 DEBUG org.apache.shiro.realm.AuthenticatingRealm - Using cached authentication info [io.skysail.server.um.simple.authentication.SkysailAuthenticationInfo@3d5427a7] to perform credentials matching.
+2015-06-15 16:35:46,690 DEBUG org.apache.shiro.authc.AbstractAuthenticator - Authentication successful for token [org.apache.shiro.authc.UsernamePasswordToken - admin, rememberMe=false].  Returned account [io.skysail.server.um.simple.authentication.SkysailAuthenticationInfo@3d5427a7]
+2015-06-15 16:35:46,690 DEBUG org.apache.shiro.subject.support.DefaultSubjectContext - No SecurityManager available in subject context map.  Falling back to SecurityUtils.getSecurityManager() lookup.
+2015-06-15 16:35:46,690 DEBUG org.apache.shiro.subject.support.DefaultSubjectContext - No SecurityManager available in subject context map.  Falling back to SecurityUtils.getSecurityManager() lookup.
+2015-06-15 16:35:46,690 DEBUG org.apache.shiro.mgt.AbstractRememberMeManager - AuthenticationToken did not indicate RememberMe is requested.  RememberMe functionality will not be executed for corresponding account.
+2015-06-15 16:35:46,690 DEBUG i.s.s.um.simple.authentication.SimpleDelegatingVerifier - login event for user 'admin' successful
+2015-06-15 16:35:46,690 DEBUG org.restlet.SkysailComponent.TodosClient - Authentication succeeded. Valid credentials provided for identifier: admin.
+2015-06-15 16:35:46,691 DEBUG org.restlet.SkysailComponent.TodosClient - The authentication succeeded for the identifer "admin" using the HTTP_Cookie scheme.
+2015-06-15 16:35:46,691 DEBUG org.restlet.SkysailComponent.TodosClient - Selected route: "" -> de.twenty11.skysail.server.security.AuthenticatedAuthorizer@2f9947ca
+2015-06-15 16:35:46,692 DEBUG org.restlet.SkysailComponent.TodosClient - Score of annotation "MethodAnnotationInfo [javaMethod: public final java.util.List io.skysail.server.restlet.resources.ListServerResource.getEntities(org.restlet.representation.Variant), javaClass: class io.skysail.app.propman.CampaignsResource, restletMethod: GET, input: html|json|yaml|xml, value: html|json|yaml|xml, output: html|json|yaml|xml, query: null]"= 0.5
+2015-06-15 16:35:46,692 DEBUG org.restlet.SkysailComponent.TodosClient - Total score of variant "[text/html]"= 0.16666667
+2015-06-15 16:35:46,692 DEBUG org.restlet.SkysailComponent.TodosClient - Score of annotation "MethodAnnotationInfo [javaMethod: public final java.util.List io.skysail.server.restlet.resources.ListServerResource.getEntities(org.restlet.representation.Variant), javaClass: class io.skysail.app.propman.CampaignsResource, restletMethod: GET, input: html|json|yaml|xml, value: html|json|yaml|xml, output: html|json|yaml|xml, query: null]"= 0.5
+2015-06-15 16:35:46,692 DEBUG org.restlet.SkysailComponent.TodosClient - Total score of variant "[application/json]"= 0.042416666
+2015-06-15 16:35:46,692 DEBUG org.restlet.SkysailComponent.TodosClient - Score of annotation "MethodAnnotationInfo [javaMethod: public final java.util.List io.skysail.server.restlet.resources.ListServerResource.getEntities(org.restlet.representation.Variant), javaClass: class io.skysail.app.propman.CampaignsResource, restletMethod: GET, input: html|json|yaml|xml, value: html|json|yaml|xml, output: html|json|yaml|xml, query: null]"= 0.5
+2015-06-15 16:35:46,692 DEBUG org.restlet.SkysailComponent.TodosClient - Total score of variant "[application/x-yaml]"= 0.042416666
+2015-06-15 16:35:46,692 DEBUG org.restlet.SkysailComponent.TodosClient - Score of annotation "MethodAnnotationInfo [javaMethod: public final java.util.List io.skysail.server.restlet.resources.ListServerResource.getEntities(org.restlet.representation.Variant), javaClass: class io.skysail.app.propman.CampaignsResource, restletMethod: GET, input: html|json|yaml|xml, value: html|json|yaml|xml, output: html|json|yaml|xml, query: null]"= 0.5
+2015-06-15 16:35:46,692 DEBUG org.restlet.SkysailComponent.TodosClient - Total score of variant "[text/x-yaml]"= 0.042416666
+2015-06-15 16:35:46,692 DEBUG org.restlet.SkysailComponent.TodosClient - Score of annotation "MethodAnnotationInfo [javaMethod: public final java.util.List io.skysail.server.restlet.resources.ListServerResource.getEntities(org.restlet.representation.Variant), javaClass: class io.skysail.app.propman.CampaignsResource, restletMethod: GET, input: html|json|yaml|xml, value: html|json|yaml|xml, output: html|json|yaml|xml, query: null]"= 0.5
+2015-06-15 16:35:46,692 DEBUG org.restlet.SkysailComponent.TodosClient - Total score of variant "[text/xml]"= 0.042416666
+2015-06-15 16:35:46,692 DEBUG org.restlet.SkysailComponent.TodosClient - Score of annotation "MethodAnnotationInfo [javaMethod: public final java.util.List io.skysail.server.restlet.resources.ListServerResource.getEntities(org.restlet.representation.Variant), javaClass: class io.skysail.app.propman.CampaignsResource, restletMethod: GET, input: html|json|yaml|xml, value: html|json|yaml|xml, output: html|json|yaml|xml, query: null]"= 0.5
+2015-06-15 16:35:46,692 DEBUG org.restlet.SkysailComponent.TodosClient - Total score of variant "[application/xml]"= 0.15416665
+2015-06-15 16:35:46,692 INFO  io.skysail.server.restlet.resources.ListServerResource - Request entry point: CampaignsResource @Get('html|json|yaml|xml') with variant [text/html]
+2015-06-15 16:35:46,692 DEBUG i.skysail.server.restlet.filter.ExceptionCatchingFilter - entering ExceptionCatchingFilter#doHandle
+2015-06-15 16:35:46,693 DEBUG io.skysail.server.restlet.filter.AbstractResourceFilter - next filter in chain: AddApiVersionHeaderFilter
+2015-06-15 16:35:46,693 DEBUG io.skysail.server.restlet.filter.AbstractResourceFilter - next filter in chain: GetRequestPreFilterHook
+2015-06-15 16:35:46,693 DEBUG io.skysail.server.restlet.filter.AbstractResourceFilter - next filter in chain: ExtractStandardQueryParametersResourceFilter
+2015-06-15 16:35:46,693 DEBUG io.skysail.server.restlet.filter.AbstractResourceFilter - next filter in chain: DataExtractingFilter
+2015-06-15 16:35:46,693 DEBUG io.skysail.server.restlet.filter.DataExtractingFilter - entering DataExtractingFilter#doHandle
+2015-06-15 16:35:46,694 DEBUG io.skysail.server.restlet.filter.AbstractResourceFilter - next filter in chain: AddLinkheadersFilter
+2015-06-15 16:35:46,694 DEBUG io.skysail.server.restlet.filter.AbstractResourceFilter - next filter in chain: CheckFavoritesFilter
+2015-06-15 16:35:46,697 DEBUG io.skysail.server.restlet.filter.AbstractResourceFilter - next filter in chain: SetExecutionTimeInResponseFilter
+2015-06-15 16:35:46,697 DEBUG io.skysail.server.restlet.filter.AbstractResourceFilter - next filter in chain: RedirectFilter
+2015-06-15 16:35:46,699 INFO  io.skysail.server.utils.LinkUtils - created link Link(uri=/PropMan/Campaigns/, title=Create new Campaign, rel=CREATE_FORM, verbs=[GET], needsAuthentication=true, role=DEFAULT, rolesPredicate=null, images={text/html=plus}, refId=null, cls=class io.skysail.app.propman.PostCampaignResource)
+2015-06-15 16:35:46,700 INFO  io.skysail.server.utils.LinkUtils - created link Link(uri=/PropMan/Campaigns/{id}, title=update, rel=CREATE_FORM, verbs=[GET], needsAuthentication=true, role=DEFAULT, rolesPredicate=null, images={text/html=edit}, refId=null, cls=class io.skysail.app.propman.PutCampaignResource)
+2015-06-15 16:35:46,701 INFO  io.skysail.server.converter.HtmlConverter - converter 'HtmlConverter' matched '{text/html=0.95, treeform/*=1.0}' with threshold 0.95
+2015-06-15 16:35:46,701 DEBUG org.restlet.SkysailComponent.TodosClient - Converter selected for ArrayList: HtmlConverter
+2015-06-15 16:35:46,701 DEBUG io.skysail.server.model.ResourceModel - using factory 'DefaultListFieldFactory' for ArrayList-Source: []
+2015-06-15 16:35:46,701 INFO  io.skysail.server.converter.impl.StringTemplateRenderer - reading templates from resource path '/templates/text/html'
+2015-06-15 16:35:46,703 DEBUG i.s.server.converter.stringtemplate.STGroupBundleDir - found resource in skysail.server.converter [0.1.1.201506151432]: bundle://68.0:1/templates/text/html/index.st
+2015-06-15 16:35:46,708 WARN  io.skysail.server.text.store.git.GitTranslationStore - .\en\io.skysail.app.propman.CampaignsResource.properties (Das System kann den angegebenen Pfad nicht finden)
+2015-06-15 16:35:46,710 WARN  io.skysail.server.text.store.git.GitTranslationStore - .\en\io.skysail.app.propman.Campaign.properties (Das System kann den angegebenen Pfad nicht finden)
+2015-06-15 16:35:46,711 WARN  io.skysail.server.text.store.git.GitTranslationStore - .\en\io.skysail.app.propman.Campaign.properties (Das System kann den angegebenen Pfad nicht finden)
+2015-06-15 16:35:46,712 WARN  io.skysail.server.text.store.git.GitTranslationStore - .\en\io.skysail.app.propman.Campaign.properties (Das System kann den angegebenen Pfad nicht finden)
+2015-06-15 16:35:46,714 DEBUG i.s.server.converter.stringtemplate.STGroupBundleDir - found resource in skysail.server.converter [0.1.1.201506151432]: bundle://68.0:1/templates/text/html/select2JsHead.stg
+2015-06-15 16:35:46,715 DEBUG i.s.server.converter.stringtemplate.STGroupBundleDir - found resource in skysail.server.converter [0.1.1.201506151432]: bundle://68.0:1/templates/text/html/endOfHeaderJS.stg
+2015-06-15 16:35:46,716 DEBUG i.s.server.converter.stringtemplate.STGroupBundleDir - found resource in skysail.server.converter [0.1.1.201506151432]: bundle://68.0:1/templates/text/html/dropdownFrontendsNav.stg
+2015-06-15 16:35:46,718 DEBUG i.s.server.converter.stringtemplate.STGroupBundleDir - found resource in skysail.server.converter [0.1.1.201506151432]: bundle://68.0:1/templates/text/html/dropdownApplicationsNav.stg
+2015-06-15 16:35:46,721 DEBUG i.s.server.converter.stringtemplate.STGroupBundleDir - found resource in skysail.server.converter [0.1.1.201506151432]: bundle://68.0:1/templates/text/html/dropdownDesignerNav.stg
+2015-06-15 16:35:46,722 DEBUG i.s.server.converter.stringtemplate.STGroupBundleDir - found resource in skysail.server.converter [0.1.1.201506151432]: bundle://68.0:1/templates/text/html/dropdownAdminNav.stg
+2015-06-15 16:35:46,725 DEBUG i.s.server.converter.stringtemplate.STGroupBundleDir - found resource in skysail.server.converter [0.1.1.201506151432]: bundle://68.0:1/templates/text/html/backends.stg
+2015-06-15 16:35:46,726 DEBUG i.s.server.converter.stringtemplate.STGroupBundleDir - found resource in skysail.server.converter [0.1.1.201506151432]: bundle://68.0:1/templates/text/html/breadcrumb.stg
+2015-06-15 16:35:46,728 DEBUG i.s.server.converter.stringtemplate.STGroupBundleDir - found resource in skysail.server.converter [0.1.1.201506151432]: bundle://68.0:1/templates/text/html/representations.stg
+2015-06-15 16:35:46,730 DEBUG i.s.server.converter.stringtemplate.STGroupBundleDir - found resource in skysail.server.converter [0.1.1.201506151432]: bundle://68.0:1/templates/text/html/appNavTitle.stg
+2015-06-15 16:35:46,731 DEBUG i.s.server.converter.stringtemplate.STGroupBundleDir - found resource in skysail.server.converter [0.1.1.201506151432]: bundle://68.0:1/templates/text/html/menuNav.stg
+2015-06-15 16:35:46,732 DEBUG i.s.server.converter.stringtemplate.STGroupBundleDir - found resource in skysail.server.converter [0.1.1.201506151432]: bundle://68.0:1/templates/text/html/mainContent.stg
+2015-06-15 16:35:46,734 DEBUG i.s.server.converter.stringtemplate.STGroupBundleDir - found resource in skysail.server.converter [0.1.1.201506151432]: bundle://68.0:1/templates/text/html/appNav.stg
+2015-06-15 16:35:46,735 DEBUG i.s.server.converter.stringtemplate.STGroupBundleDir - found resource in skysail.server.converter [0.1.1.201506151432]: bundle://68.0:1/templates/text/html/contentHeader.st
+2015-06-15 16:35:46,736 DEBUG i.s.server.converter.stringtemplate.STGroupBundleDir - found resource in skysail.server.converter [0.1.1.201506151432]: bundle://68.0:1/templates/text/html/renderTable.stg
+2015-06-15 16:35:46,739 DEBUG i.s.server.converter.stringtemplate.STGroupBundleDir - found resource in skysail.server.converter [0.1.1.201506151432]: bundle://68.0:1/templates/text/html/notifications.stg
+2015-06-15 16:35:46,741 DEBUG i.s.server.converter.stringtemplate.STGroupBundleDir - found resource in skysail.server.converter [0.1.1.201506151432]: bundle://68.0:1/templates/text/html/select2JsEndOfBody.stg
+2015-06-15 16:35:46,742 INFO  LogService - 2015-06-15	16:35:46	0:0:0:0:0:0:0:1	admin	-	2015	GET	/PropMan	-	200	-	0	363	http://localhost:2015	Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/43.0.2357.124 Safari/537.36	http://localhost:2015/
+2015-06-15 16:35:46,800 DEBUG LogService - Processing request to: "http://localhost:2015/SSE"
+2015-06-15 16:35:46,801 DEBUG org.apache.shiro.web.mgt.CookieRememberMeManager - SubjectContext argument is not an HTTP-aware instance.  This is required to obtain a servlet request and response in order to retrieve the rememberMe cookie. Returning immediately and ignoring rememberMe operation.
+2015-06-15 16:35:46,801 DEBUG i.s.s.um.simple.authentication.SimpleDelegatingVerifier - login event for user 'admin'
+2015-06-15 16:35:46,801 DEBUG org.apache.shiro.realm.AuthenticatingRealm - Using cached authentication info [io.skysail.server.um.simple.authentication.SkysailAuthenticationInfo@3d5427a7] to perform credentials matching.
+2015-06-15 16:35:47,111 DEBUG org.apache.shiro.authc.AbstractAuthenticator - Authentication successful for token [org.apache.shiro.authc.UsernamePasswordToken - admin, rememberMe=false].  Returned account [io.skysail.server.um.simple.authentication.SkysailAuthenticationInfo@3d5427a7]
+2015-06-15 16:35:47,111 DEBUG org.apache.shiro.subject.support.DefaultSubjectContext - No SecurityManager available in subject context map.  Falling back to SecurityUtils.getSecurityManager() lookup.
+2015-06-15 16:35:47,111 DEBUG org.apache.shiro.subject.support.DefaultSubjectContext - No SecurityManager available in subject context map.  Falling back to SecurityUtils.getSecurityManager() lookup.
+2015-06-15 16:35:47,111 DEBUG org.apache.shiro.mgt.AbstractRememberMeManager - AuthenticationToken did not indicate RememberMe is requested.  RememberMe functionality will not be executed for corresponding account.
+2015-06-15 16:35:47,111 DEBUG i.s.s.um.simple.authentication.SimpleDelegatingVerifier - login event for user 'admin' successful
+2015-06-15 16:35:47,111 DEBUG org.restlet.SkysailComponent.TodosClient - Authentication succeeded. Valid credentials provided for identifier: admin.
+2015-06-15 16:35:47,111 DEBUG org.restlet.SkysailComponent.TodosClient - The authentication succeeded for the identifer "admin" using the HTTP_Cookie scheme.
+2015-06-15 16:35:47,111 DEBUG org.restlet.SkysailComponent.TodosClient - The default route was selected
+2015-06-15 16:35:47,112 INFO  LogService - 2015-06-15	16:35:47	0:0:0:0:0:0:0:1	admin	-	2015	GET	/SSE	-	404	276	0	311	http://localhost:2015	Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/43.0.2357.124 Safari/537.36	http://localhost:2015/PropMan
+2015-06-15 16:35:47,875 DEBUG LogService - Processing request to: "http://localhost:2015/PropMan/Campaigns/"
+2015-06-15 16:35:47,876 DEBUG org.apache.shiro.web.mgt.CookieRememberMeManager - SubjectContext argument is not an HTTP-aware instance.  This is required to obtain a servlet request and response in order to retrieve the rememberMe cookie. Returning immediately and ignoring rememberMe operation.
+2015-06-15 16:35:47,877 DEBUG i.s.s.um.simple.authentication.SimpleDelegatingVerifier - login event for user 'admin'
+2015-06-15 16:35:47,877 DEBUG org.apache.shiro.realm.AuthenticatingRealm - Using cached authentication info [io.skysail.server.um.simple.authentication.SkysailAuthenticationInfo@3d5427a7] to perform credentials matching.
+2015-06-15 16:35:48,188 DEBUG org.apache.shiro.authc.AbstractAuthenticator - Authentication successful for token [org.apache.shiro.authc.UsernamePasswordToken - admin, rememberMe=false].  Returned account [io.skysail.server.um.simple.authentication.SkysailAuthenticationInfo@3d5427a7]
+2015-06-15 16:35:48,189 DEBUG org.apache.shiro.subject.support.DefaultSubjectContext - No SecurityManager available in subject context map.  Falling back to SecurityUtils.getSecurityManager() lookup.
+2015-06-15 16:35:48,189 DEBUG org.apache.shiro.subject.support.DefaultSubjectContext - No SecurityManager available in subject context map.  Falling back to SecurityUtils.getSecurityManager() lookup.
+2015-06-15 16:35:48,189 DEBUG org.apache.shiro.mgt.AbstractRememberMeManager - AuthenticationToken did not indicate RememberMe is requested.  RememberMe functionality will not be executed for corresponding account.
+2015-06-15 16:35:48,189 DEBUG i.s.s.um.simple.authentication.SimpleDelegatingVerifier - login event for user 'admin' successful
+2015-06-15 16:35:48,189 DEBUG org.restlet.SkysailComponent.TodosClient - Authentication succeeded. Valid credentials provided for identifier: admin.
+2015-06-15 16:35:48,189 DEBUG org.restlet.SkysailComponent.TodosClient - The authentication succeeded for the identifer "admin" using the HTTP_Cookie scheme.
+2015-06-15 16:35:48,189 DEBUG org.restlet.SkysailComponent.TodosClient - Selected route: "/Campaigns/" -> de.twenty11.skysail.server.security.AuthenticatedAuthorizer@4d37b099
+2015-06-15 16:35:48,189 DEBUG org.restlet.SkysailComponent.TodosClient - New base URI: "http://localhost:2015/PropMan/Campaigns/". No remaining part to match
+2015-06-15 16:35:48,192 DEBUG org.restlet.SkysailComponent.TodosClient - Score of annotation "MethodAnnotationInfo [javaMethod: public io.skysail.api.responses.SkysailResponse io.skysail.server.restlet.resources.PostEntityServerResource.createForm(), javaClass: class io.skysail.app.propman.PostCampaignResource, restletMethod: GET, input: htmlform|html, value: htmlform|html, output: htmlform|html, query: null]"= 0.5
+2015-06-15 16:35:48,192 DEBUG org.restlet.SkysailComponent.TodosClient - Total score of variant "[htmlform/*]"= 0.041791666
+2015-06-15 16:35:48,192 DEBUG org.restlet.SkysailComponent.TodosClient - Score of annotation "MethodAnnotationInfo [javaMethod: public io.skysail.api.responses.SkysailResponse io.skysail.server.restlet.resources.PostEntityServerResource.createForm(), javaClass: class io.skysail.app.propman.PostCampaignResource, restletMethod: GET, input: htmlform|html, value: htmlform|html, output: htmlform|html, query: null]"= 0.5
+2015-06-15 16:35:48,192 DEBUG org.restlet.SkysailComponent.TodosClient - Total score of variant "[text/html]"= 0.16666667
+2015-06-15 16:35:48,192 DEBUG org.restlet.SkysailComponent.TodosClient - Score of annotation "MethodAnnotationInfo [javaMethod: public java.lang.Object io.skysail.server.restlet.resources.PostEntityServerResource.getJson(), javaClass: class io.skysail.app.propman.PostCampaignResource, restletMethod: GET, input: json, value: json, output: json, query: null]"= 0.5
+2015-06-15 16:35:48,192 DEBUG org.restlet.SkysailComponent.TodosClient - Total score of variant "[application/json]"= 0.042416666
+2015-06-15 16:35:48,192 INFO  i.s.server.restlet.resources.PostEntityServerResource - Request entry point: PostCampaignResource @Get('htmlform|html')
+2015-06-15 16:35:48,192 INFO  io.skysail.server.converter.HtmlConverter - converter 'HtmlConverter' matched '{text/html=0.95, treeform/*=1.0}' with threshold 0.95
+2015-06-15 16:35:48,192 DEBUG org.restlet.SkysailComponent.TodosClient - Converter selected for FormResponse: HtmlConverter
+2015-06-15 16:35:48,193 DEBUG io.skysail.server.model.ResourceModel - using factory 'SkysailResponseEntityFieldFactory' for FormResponse-Source: FormResponse: 
+2015-06-15 16:35:48,194 INFO  io.skysail.server.converter.impl.StringTemplateRenderer - reading templates from resource path '/templates/text/html'
+2015-06-15 16:35:48,195 DEBUG i.s.server.converter.stringtemplate.STGroupBundleDir - found resource in skysail.server.converter [0.1.1.201506151432]: bundle://68.0:1/templates/text/html/index.st
+2015-06-15 16:35:48,203 WARN  io.skysail.server.text.store.git.GitTranslationStore - .\en\io.skysail.app.propman.PostCampaignResource.properties (Das System kann den angegebenen Pfad nicht finden)
+2015-06-15 16:35:48,204 WARN  io.skysail.server.text.store.git.GitTranslationStore - .\en\io.skysail.app.propman.Campaign.properties (Das System kann den angegebenen Pfad nicht finden)
+2015-06-15 16:35:48,205 WARN  io.skysail.server.text.store.git.GitTranslationStore - .\en\io.skysail.app.propman.Campaign.properties (Das System kann den angegebenen Pfad nicht finden)
+2015-06-15 16:35:48,207 WARN  io.skysail.server.text.store.git.GitTranslationStore - .\en\io.skysail.app.propman.Campaign.properties (Das System kann den angegebenen Pfad nicht finden)
+2015-06-15 16:35:48,208 DEBUG i.s.server.converter.stringtemplate.STGroupBundleDir - found resource in skysail.server.converter [0.1.1.201506151432]: bundle://68.0:1/templates/text/html/select2JsHead.stg
+2015-06-15 16:35:48,210 DEBUG i.s.server.converter.stringtemplate.STGroupBundleDir - found resource in skysail.server.converter [0.1.1.201506151432]: bundle://68.0:1/templates/text/html/endOfHeaderJS.stg
+2015-06-15 16:35:48,211 DEBUG i.s.server.converter.stringtemplate.STGroupBundleDir - found resource in skysail.server.converter [0.1.1.201506151432]: bundle://68.0:1/templates/text/html/dropdownFrontendsNav.stg
+2015-06-15 16:35:48,212 DEBUG i.s.server.converter.stringtemplate.STGroupBundleDir - found resource in skysail.server.converter [0.1.1.201506151432]: bundle://68.0:1/templates/text/html/dropdownApplicationsNav.stg
+2015-06-15 16:35:48,215 DEBUG i.s.server.converter.stringtemplate.STGroupBundleDir - found resource in skysail.server.converter [0.1.1.201506151432]: bundle://68.0:1/templates/text/html/dropdownDesignerNav.stg
+2015-06-15 16:35:48,216 DEBUG i.s.server.converter.stringtemplate.STGroupBundleDir - found resource in skysail.server.converter [0.1.1.201506151432]: bundle://68.0:1/templates/text/html/dropdownAdminNav.stg
+2015-06-15 16:35:48,222 DEBUG i.s.server.converter.stringtemplate.STGroupBundleDir - found resource in skysail.server.converter [0.1.1.201506151432]: bundle://68.0:1/templates/text/html/backends.stg
+2015-06-15 16:35:48,224 DEBUG i.s.server.converter.stringtemplate.STGroupBundleDir - found resource in skysail.server.converter [0.1.1.201506151432]: bundle://68.0:1/templates/text/html/breadcrumb.stg
+2015-06-15 16:35:48,230 DEBUG i.s.server.converter.stringtemplate.STGroupBundleDir - found resource in skysail.server.converter [0.1.1.201506151432]: bundle://68.0:1/templates/text/html/representations.stg
+2015-06-15 16:35:48,233 DEBUG i.s.server.converter.stringtemplate.STGroupBundleDir - found resource in skysail.server.converter [0.1.1.201506151432]: bundle://68.0:1/templates/text/html/appNavTitle.stg
+2015-06-15 16:35:48,234 DEBUG i.s.server.converter.stringtemplate.STGroupBundleDir - found resource in skysail.server.converter [0.1.1.201506151432]: bundle://68.0:1/templates/text/html/menuNav.stg
+2015-06-15 16:35:48,236 DEBUG i.s.server.converter.stringtemplate.STGroupBundleDir - found resource in skysail.server.converter [0.1.1.201506151432]: bundle://68.0:1/templates/text/html/mainContent.stg
+2015-06-15 16:35:48,238 DEBUG i.s.server.converter.stringtemplate.STGroupBundleDir - found resource in skysail.server.converter [0.1.1.201506151432]: bundle://68.0:1/templates/text/html/appNav.stg
+2015-06-15 16:35:48,241 DEBUG i.s.server.converter.stringtemplate.STGroupBundleDir - found resource in skysail.server.converter [0.1.1.201506151432]: bundle://68.0:1/templates/text/html/contentHeader.st
+2015-06-15 16:35:48,242 DEBUG i.s.server.converter.stringtemplate.STGroupBundleDir - found resource in skysail.server.converter [0.1.1.201506151432]: bundle://68.0:1/templates/text/html/showForm.stg
+2015-06-15 16:35:48,260 DEBUG i.s.server.converter.stringtemplate.STGroupBundleDir - found resource in skysail.server.converter [0.1.1.201506151432]: bundle://68.0:1/templates/text/html/renderEntityInfo.stg
+2015-06-15 16:35:48,263 DEBUG i.s.server.converter.stringtemplate.STGroupBundleDir - found resource in skysail.server.converter [0.1.1.201506151432]: bundle://68.0:1/templates/text/html/notifications.stg
+2015-06-15 16:35:48,265 DEBUG i.s.server.converter.stringtemplate.STGroupBundleDir - found resource in skysail.server.converter [0.1.1.201506151432]: bundle://68.0:1/templates/text/html/select2JsEndOfBody.stg
+2015-06-15 16:35:48,267 INFO  LogService - 2015-06-15	16:35:48	0:0:0:0:0:0:0:1	admin	-	2015	GET	/Campaigns	-	200	-	0	392	http://localhost:2015	Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/43.0.2357.124 Safari/537.36	http://localhost:2015/PropMan
+2015-06-15 16:35:48,339 DEBUG LogService - Processing request to: "http://localhost:2015/SSE"
+2015-06-15 16:35:48,340 DEBUG org.apache.shiro.web.mgt.CookieRememberMeManager - SubjectContext argument is not an HTTP-aware instance.  This is required to obtain a servlet request and response in order to retrieve the rememberMe cookie. Returning immediately and ignoring rememberMe operation.
+2015-06-15 16:35:48,340 DEBUG i.s.s.um.simple.authentication.SimpleDelegatingVerifier - login event for user 'admin'
+2015-06-15 16:35:48,340 DEBUG org.apache.shiro.realm.AuthenticatingRealm - Using cached authentication info [io.skysail.server.um.simple.authentication.SkysailAuthenticationInfo@3d5427a7] to perform credentials matching.
+2015-06-15 16:35:48,658 DEBUG org.apache.shiro.authc.AbstractAuthenticator - Authentication successful for token [org.apache.shiro.authc.UsernamePasswordToken - admin, rememberMe=false].  Returned account [io.skysail.server.um.simple.authentication.SkysailAuthenticationInfo@3d5427a7]
+2015-06-15 16:35:48,658 DEBUG org.apache.shiro.subject.support.DefaultSubjectContext - No SecurityManager available in subject context map.  Falling back to SecurityUtils.getSecurityManager() lookup.
+2015-06-15 16:35:48,659 DEBUG org.apache.shiro.subject.support.DefaultSubjectContext - No SecurityManager available in subject context map.  Falling back to SecurityUtils.getSecurityManager() lookup.
+2015-06-15 16:35:48,659 DEBUG org.apache.shiro.mgt.AbstractRememberMeManager - AuthenticationToken did not indicate RememberMe is requested.  RememberMe functionality will not be executed for corresponding account.
+2015-06-15 16:35:48,659 DEBUG i.s.s.um.simple.authentication.SimpleDelegatingVerifier - login event for user 'admin' successful
+2015-06-15 16:35:48,659 DEBUG org.restlet.SkysailComponent.TodosClient - Authentication succeeded. Valid credentials provided for identifier: admin.
+2015-06-15 16:35:48,659 DEBUG org.restlet.SkysailComponent.TodosClient - The authentication succeeded for the identifer "admin" using the HTTP_Cookie scheme.
+2015-06-15 16:35:48,659 DEBUG org.restlet.SkysailComponent.TodosClient - The default route was selected
+2015-06-15 16:35:48,660 INFO  LogService - 2015-06-15	16:35:48	0:0:0:0:0:0:0:1	admin	-	2015	GET	/SSE	-	404	276	0	320	http://localhost:2015	Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/43.0.2357.124 Safari/537.36	http://localhost:2015/PropMan/Campaigns/

@@ -25,7 +25,7 @@ public class ResourceModelTest {
     public void finds_formField_from_entityMember() {
         ResourceModel<TestListResource, List<TestEntity>> resourceModel = new ResourceModel<>(testListResource, testEntity, new VariantInfo(MediaType.TEXT_HTML));
         assertThat(resourceModel.getTitle(), is(equalTo("Skysail")));
-        assertThat(resourceModel.getParameterType(), is(equalTo(TestEntity.class)));
+        assertThat(resourceModel.getParameterizedType(), is(equalTo(TestEntity.class)));
         assertThat(resourceModel.getFormfields().size(), is(2));
         //assertThat(resourceModel.getFormfields().get(0).getInputType(), is(equalTo(InputType.TEXT.name())));
         assertThat(resourceModel.getFormfields().get(0).getName(), is(equalTo("stringField")));

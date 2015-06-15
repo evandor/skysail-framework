@@ -153,7 +153,7 @@ public class StringTemplateRenderer {
         decl.add("user", new STUserWrapper(SecurityUtils.getSubject(), peersProvider, installationFromCookie));
         decl.add("converter", this);
         
-        if (resourceModel.getSource() instanceof List) {
+        if (resourceModel.getEntity() instanceof List) {
             decl.add("source", new STListSourceWrapper((List<Object>) resourceModel.getConvertedSource()));
         } else {
             decl.add("source", new STSourceWrapper(resourceModel.getConvertedSource()));

@@ -29,7 +29,7 @@ public class SkysailResponseEntityFieldFactory extends FieldFactory {
     public List<FormField> determineFrom(SkysailServerResource<?> resource) throws Exception {
         return ReflectionUtils.getInheritedFields(cls).stream()
                 .filter(f -> test(resource, f))
-                .map(f -> new FormField(f, resource, source, source.getEntity()))
+                .map(f -> new FormField(f, resource, source))//, source.getEntity()))
                 .collect(Collectors.toList());
     }
 

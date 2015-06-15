@@ -12,7 +12,7 @@ public class FieldsFactory {
             return new NoFieldFactory();
         }
         if (source instanceof List) {
-            return listFactory(source, resource);
+            return listFactory((List<?>)source, resource);
         }
         if (source instanceof SkysailResponse) {
             return entityFactory(source);
@@ -25,12 +25,14 @@ public class FieldsFactory {
         return new SkysailResponseEntityFieldFactory((SkysailResponse<?>) source, entity.getClass());
     }
 
-    private static FieldFactory listFactory(Object source, SkysailServerResource<?> resource) {
-        Class<?> parameterType = resource.getParameterType();
+    private static FieldFactory listFactory(List<?> source, SkysailServerResource<?> resource) {
+        Class<?> parameterType = resource.getParameterizedType();
         if (parameterType.equals(Map.class)) {
-            return new ListMapFieldFactory();
+            //return new ListMapFieldFactory();
+            throw new UnsupportedOperationException();
         } else if (parameterType.isEnum()) {
-            return new ListEnumFieldFactory();
+           // return new ListEnumFieldFactory();
+            throw new UnsupportedOperationException();
         } else {
             return new DefaultListFieldFactory(source);
         }

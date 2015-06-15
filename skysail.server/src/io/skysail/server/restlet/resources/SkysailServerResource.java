@@ -212,7 +212,7 @@ public abstract class SkysailServerResource<T> extends ServerResource {
         }
     }
 
-    public Class<?> getParameterType() {
+    public Class<?> getParameterizedType() {
         ParameterizedType parameterizedType = getParameterizedType(getClass());
         Type firstActualTypeArgument = parameterizedType.getActualTypeArguments()[0];
         if (firstActualTypeArgument.getTypeName().startsWith("java.util.Map")) {
@@ -489,7 +489,7 @@ public abstract class SkysailServerResource<T> extends ServerResource {
     }
 
     public List<String> getFields() {
-        List<Field> inheritedFields = getInheritedFields(getParameterType());
+        List<Field> inheritedFields = getInheritedFields(getParameterizedType());
         return inheritedFields.stream().map(f -> f.getName()).collect(Collectors.toList());
     }
 

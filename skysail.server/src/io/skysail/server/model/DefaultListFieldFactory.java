@@ -11,20 +11,18 @@ import de.twenty11.skysail.server.core.FormField;
 
 public class DefaultListFieldFactory extends FieldFactory {
 
-    private Object source;
+    private List<?> source;
 
     public DefaultListFieldFactory(Object source) {
-        this.source = source;
+        this.source = (List<?>)source;
     }
 
     @Override
     public List<FormField> determineFrom(SkysailServerResource<?> resource) throws Exception {
-        Class<?> parameterType = resource.getParameterType();
-        Object entity = parameterType.newInstance();
-        return ReflectionUtils.getInheritedFields(resource.getParameterType()).stream()
+        return ReflectionUtils.getInheritedFields(resource.getParameterizedType()).stream()
                 .filter(f -> test(resource, f))
                 .sorted((f1, f2) -> sort(resource, f1, f2))
-                .map(f -> new FormField(f, resource, source, entity))//
+                .map(f -> new FormField(f, resource, source))//
                 .collect(Collectors.toList());
     }
 

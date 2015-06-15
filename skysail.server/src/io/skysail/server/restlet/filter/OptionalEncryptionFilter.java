@@ -59,7 +59,7 @@ public class OptionalEncryptionFilter<R extends SkysailServerResource<T>, T> ext
             if (application != null && resource instanceof EntityServerResource) {
                 Class<? extends Object> cls = ((EntityServerResource<T>) resource)
                         .getEntity().getClass();
-                cls = resource.getParameterType();
+                cls = resource.getParameterizedType();
                 String encryptionParameter = application.getEncryptionParameter(cls, parameter.getName());
                 if (encryptionParameter != null && encryptionParameter.trim().length() > 0) {
                     String password = form.getFirstValue(encryptionParameter);

@@ -26,8 +26,6 @@ public class SseWriterRepresentation extends WriterRepresentation {
 
     @Override
     public void write(Writer writer) throws IOException {
-        String json = "{\"foo\" : \"bar\"}";
-
         while (true) {
             try {
                 List<Message> messages;
@@ -51,13 +49,7 @@ public class SseWriterRepresentation extends WriterRepresentation {
                         }).collect(Collectors.joining("\n")));
                     sb.append("\n\n");
 
-                    // writer.write("data: hier (" + i.incrementAndGet() +
-                    // ")\n\n");
-                    String msg = sb.toString();
-                    System.out.println("===================");
-                    System.out.println(msg);
-                    System.out.println("===================");
-                    writer.write(msg);
+                    writer.write(sb.toString());
                     writer.flush();
                 }
                 Thread.sleep(5000);

@@ -82,7 +82,7 @@ public class MailToConverter extends ConverterHelper implements OsgiConverterHel
         EtmPoint point = etmMonitor.createPoint(this.getClass().getSimpleName() + ":toRepresentation");
 
         SkysailServerResource<?> ssr = (SkysailServerResource<?>) resource;
-        List<Field> fields = ReflectionUtils.getInheritedFields(ssr.getParameterType());
+        List<Field> fields = ReflectionUtils.getInheritedFields(ssr.getParameterizedType());
 
         String subject = Reference.encode("Exporting " + resource.getClass().getSimpleName());
 

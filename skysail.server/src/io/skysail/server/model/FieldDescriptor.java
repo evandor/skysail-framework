@@ -18,11 +18,6 @@ public class FieldDescriptor {
 
     public FieldDescriptor(FormField f2) {
         this.f = f2;
-//        formField = f2.getAnnotation(io.skysail.api.forms.Field.class);
-//        listView = f2.getAnnotation(ListView.class);
-//        postfix = f2.getAnnotation(Postfix.class);
-//        prefix = f2.getAnnotation(Prefix.class);
-//        type = f2.getType();
     }
 
     public Map<String, Object> dataFromMap(Map<String, Object> props, SkysailServerResource<?> resource) {

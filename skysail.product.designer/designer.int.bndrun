@@ -111,7 +111,7 @@
 	skysail.server.documentation;version=latest,\
 	skysail.server.ext.favorites.preferences;version=latest,\
 	skysail.server.http;version=latest,\
-	skysail.server.performance.etm;version=latest,\
+	skysail.server.performance.etm;version=${skysail.server.performance.etm.version},\
 	skysail.server.peers.adminconfig;version=latest,\
 	skysail.server.plugins;version=latest,\
 	skysail.server.queryfilter;version=latest,\

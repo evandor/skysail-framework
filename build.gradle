@@ -14,7 +14,7 @@ buildscript {
 /* Configure the subprojects */
 subprojects {
   def bndProject = bndWorkspace.getProject(name)
-  if (bndProject != null) {
+  if (bndProject != null && name != 'skysail.server.performance.etm') {
     plugins.apply 'biz.aQute.bnd'
   }
 }

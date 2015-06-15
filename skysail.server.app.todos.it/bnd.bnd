@@ -138,7 +138,7 @@ Test-Cases: io.skysail.server.app.todos.test.TodoListsCrudIntegrationTests
 	skysail.server.documentation;version=latest,\
 	skysail.server.http;version=latest,\
 	skysail.server.plugins;version=latest,\
-    skysail.server.queryfilter;version={skysail.server.queryfilter.version},\
+    skysail.server.queryfilter;version=latest,\
 	skysail.server.static;version=latest,\
 	skysail.server.text.markdown;version=latest,\
 	skysail.server.um.simple;version=latest,\

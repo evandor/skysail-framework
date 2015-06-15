@@ -1,4 +1,4 @@
-Bundle-Version: 0.1.0.${tstamp}
+Bundle-Version: 0.1.1.${tstamp}
 -buildpath:  \
 	lombok;version=1.16,\
 	slf4j.api;version=1.7,\

@@ -1,16 +1,23 @@
 package io.skysail.server.app.designer.application;
 
 import io.skysail.api.domain.Identifiable;
-import io.skysail.api.forms.*;
+import io.skysail.api.forms.Field;
+import io.skysail.api.forms.InputType;
 import io.skysail.server.app.designer.entities.Entity;
 import io.skysail.server.forms.ListView;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Id;
-import javax.validation.constraints.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
-import lombok.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
 @NoArgsConstructor
 @Getter
@@ -31,7 +38,7 @@ public class Application implements Identifiable {
     @Field
     @NotNull
     @Size(min = 1)
-    @Pattern(regexp = "[a-zA-Z_]([\\.\\w])*", message = "please choose a simpler Identifier. Some of the characters are not allowed.")
+    @Pattern(regexp = "[a-zA-Z_]([\\.\\w])*", message = "please choose a simpler Identifier like 'skysail.server.app.designer.myapp'. Some of the characters are not allowed.")
     private String projectName;
 
     @Field

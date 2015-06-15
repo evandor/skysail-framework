@@ -7,18 +7,29 @@ import io.skysail.server.utils.CompositeClassLoader;
 
 import java.io.File;
 import java.net.URL;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 import java.util.stream.Collectors;
 
-import javax.tools.*;
+import javax.tools.Diagnostic;
 import javax.tools.Diagnostic.Kind;
+import javax.tools.DiagnosticCollector;
+import javax.tools.JavaCompiler;
+import javax.tools.JavaFileObject;
+import javax.tools.ToolProvider;
 import javax.validation.ConstraintViolation;
 
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 
 import org.apache.commons.beanutils.DynaProperty;
-import org.osgi.framework.*;
+import org.osgi.framework.Bundle;
+import org.osgi.framework.BundleContext;
 import org.restlet.resource.ServerResource;
 
 @Slf4j
@@ -77,13 +88,14 @@ public class InMemoryJavaCompiler {
         getBundleLocationFor(com.fasterxml.jackson.annotation.JacksonAnnotation.class, bundleLocations, bundles);
         getBundleLocationFor(aQute.bnd.annotation.component.Component.class, bundleLocations, bundles);
 
-
         String locs = bundleLocations.stream().map(l -> {
                 return l.replace("reference:", "").replace("file:/", "/").replace("%25", "%"); // replace("/","\\").
             }).collect(Collectors.joining(File.pathSeparator));
         optionList.addAll(Arrays.asList("-classpath", locs));
 
-        log.info("compiling {}", sourceCodes);
+        sourceCodes.stream().forEach(code -> {
+            log.info("about to compile {}", code);
+        });
         log.info("classpath was set to {}", locs);
 
         DiagnosticCollector<JavaFileObject> diagnostics = new DiagnosticCollector<JavaFileObject>();
@@ -94,7 +106,6 @@ public class InMemoryJavaCompiler {
         if (errorFound) {
             compiledSuccessfully = false;
         }
-        //return cl.loadClass(className);
     }
 
     private static boolean dumpErrorsIfExistent(DiagnosticCollector<JavaFileObject> diagnostics, String sourceCode) {

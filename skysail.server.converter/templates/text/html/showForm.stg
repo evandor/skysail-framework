@@ -15,14 +15,14 @@ showForm(source, fields, messages, model) ::= <<
       $handleField(source, first(model.formfields), messages,"1", " autofocus")$
       $rest(model.formfields):{ field | $handleField(source, field, messages,i, "")$}$
       $if (model.submitButtonNeeded)$
-        $submitPost("Submit",2,10,length(model.formfields))$
+        $submitPost("Submit","2","10",length(model.formfields))$
       $endif$
     </form>
   $elseif (model.putEntityServerResource)$
     <form action="$source.formTarget$?method=PUT" method="POST" class="form-horizontal" role="form" id="form" name="form">
       $model.formfields:{ field | $handleField(source, field, messages,i,"")$}$
       $if (model.submitButtonNeeded)$
-        $submitPut("Update",1,9,length(fields))$
+        $submitPut("Update","1","9",length(fields))$
       $endif$
     </form>
   $endif$

@@ -173,15 +173,23 @@ $mainContent(user, converter, messages, source, model)$
 
     <script>
         var output = document.getElementById("output");
+        
+        function printMe(msg) {
+      		output.innerHTML = msg;
+        }        
+        
         if (typeof(EventSource) !== "undefined") {
-          //var msg = document.getElementById("textID").value;
-          //var source = new EventSource("simplesse?msg=" + msg);
-          var source = new EventSource("/SSE");
-          source.onmessage = function(event) {
-            output.innerHTML = event.data;
-          };
+            var source = new EventSource("/SSE");
+            source.onmessage = function(event) {
+                var msgArray = event.data.split('\n');
+                var timeout = Math.round(5000 / msgArray.length);
+        		for (var i = 0; i < msgArray.length; i++) {
+        			console.log(msgArray[i] + " " + (i * timeout));
+        			setTimeout(printMe, i * timeout, msgArray[i]);
+        		}
+            };
         } else {
-          output.innerHTML = "Sorry, Server-Sent Event is not supported in your browser";
+            output.innerHTML = "<!-- SSE not supported -->";
         }
     </script>
 

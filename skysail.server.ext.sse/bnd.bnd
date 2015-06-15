@@ -4,7 +4,8 @@ Bundle-Description: Server Extension for handling server sent events (sse)
 Private-Package:  \
 	io.skysail.server.ext.sse,\
 	io.skysail.server.ext.sse.resources,\
-	io.skysail.server.ext.sse.domain
+	io.skysail.server.ext.sse.domain,\
+	io.skysail.server.ext.sse.representation
 -buildpath:  \
 	osgi.core;version=5.0,\
 	osgi.cmpn;version=5.0,\
@@ -24,7 +25,3 @@ Private-Package:  \
 	
 Service-Component:  \
 	*
-	
-Include-Resource: resources
-Web-ContextPath: /demo
--wab: static-pages/

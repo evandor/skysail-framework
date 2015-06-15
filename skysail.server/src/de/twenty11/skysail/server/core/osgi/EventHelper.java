@@ -37,6 +37,7 @@ public class EventHelper {
     private String msg;
 
     private String type;
+    private int obsoleteEventId;
 
     public EventHelper(EventAdmin eventAdmin) {
         this.eventAdmin = eventAdmin;
@@ -100,11 +101,19 @@ public class EventHelper {
         this.type = "error";
         return this;
     }
+    
+    public EventHelper markObsolete(int msgId) {
+        this.obsoleteEventId = msgId;
+        this.msg = "marking msg obsolete";
+        this.topic += "/obsolete";
+        this.type = "obsolete";
+        return this;
+    }
 
-    public void fire() {
+    public int fire() {
         if (eventAdmin == null) {
             log.warn("eventAdmin is null, cannot fire Event");
-            return;
+            return -1;
         }
         Dictionary<String, Object> properties = new Hashtable<>();
         properties.put(EVENT_MESSAGE, msg);
@@ -112,11 +121,24 @@ public class EventHelper {
         properties.put(EVENT_USERNAME, principal != null ? principal.toString() : "");
         properties.put(EVENT_TIME, System.currentTimeMillis());
         properties.put(EVENT_TYPE, type);
-        properties.put(EVENT_ID, msgIdCounter.incrementAndGet());
+        int msgId = msgIdCounter.incrementAndGet();
+        properties.put(EVENT_ID, msgId);
 
         Event event = new Event(topic, properties);
-        eventAdmin.sendEvent(event);
-
+        new Thread() {
+            public void run() {
+                try {
+                    Thread.sleep(500);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                eventAdmin.postEvent(event);
+            };
+        }.start();
+        
+        return msgId;
     }
+
+   
 
 }

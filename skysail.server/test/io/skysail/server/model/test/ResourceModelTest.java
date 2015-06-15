@@ -10,6 +10,7 @@ import org.junit.*;
 import org.restlet.data.MediaType;
 import org.restlet.engine.resource.VariantInfo;
 
+@Ignore
 public class ResourceModelTest {
 
     private TestEntity testEntity;

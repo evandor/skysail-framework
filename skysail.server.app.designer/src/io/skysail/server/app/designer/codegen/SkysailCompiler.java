@@ -3,21 +3,15 @@ package io.skysail.server.app.designer.codegen;
 import io.skysail.server.app.designer.application.Application;
 import io.skysail.server.utils.BundleUtils;
 
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.Arrays;
-import java.util.Map;
+import java.io.*;
+import java.nio.file.*;
+import java.util.*;
 import java.util.stream.Collectors;
 
-import lombok.Getter;
-import lombok.NonNull;
+import lombok.*;
 import lombok.extern.slf4j.Slf4j;
 
-import org.osgi.framework.Bundle;
-import org.osgi.framework.BundleContext;
+import org.osgi.framework.*;
 
 @Slf4j
 @Getter
@@ -97,7 +91,7 @@ public class SkysailCompiler {
         Files.write(Paths.get(path + "/bnd.bnd"), bnd.getBytes());
 
         String bndrun = BundleUtils.readResource(bundle, "code/bndrun.codegen");
-        bndrun = bndrun.replace("$projectname$", application.getProjectName());
+        bndrun = bndrun.replace("$projectname$", application.getProjectName() != null ? application.getProjectName() : "unknown");
         Files.write(Paths.get(path + "/local.bndrun"), bndrun.getBytes());
 
         new File(Paths.get(path + "/test").toString()).mkdir();

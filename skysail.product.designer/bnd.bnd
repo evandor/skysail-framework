@@ -10,7 +10,6 @@ Private-Package:  \
 	skysail.client.todos.angularjs,\
 	skysail.server.app.todos;version=latest,\
 	skysail.server.app.twitter4j;version=latest,\
-	skysail.server.app.bookmarks;version=latest,\
 	skysail.server.app.designer;version=latest,\
     skysail.server.converter;version=latest,\
 	skysail.server.documentation;version=latest,\
@@ -26,3 +25,5 @@ Private-Package:  \
 	skysail.server.text.store.git;version=latest,\
 	skysail.server.um.simple;version=latest,\
 	org.codehaus.jettison.jettison;version=1.3
+	
+#	skysail.server.app.bookmarks;version=latest,\

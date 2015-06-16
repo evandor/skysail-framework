@@ -25,30 +25,39 @@ import de.twenty11.skysail.server.um.domain.SkysailUser;
  * A FormField instance encapsulates information which can be used to display a
  * single field in a (web) form, table or entity representation.
  * 
- * <p>A FormField can be constructed from a java.lang.reflect.Field, together with a 
- * SkysailServerResource.</p>
+ * <p>
+ * A FormField can be constructed from a java.lang.reflect.Field, together with
+ * a SkysailServerResource.
+ * </p>
  *
  */
 @Slf4j
-@ToString
+@ToString(of = { "name", "type", "value", "entity" })
 public class FormField {
 
     /** the fields name or identifier. */
     @Getter
     private final String name;
 
-    /** the value to be passed to the GUI renderer. */
+    /**
+     * the value to be passed to the GUI renderer.
+     * 
+     * <p>
+     * the value is not set from outside, but derived from the passed resource.
+     * </p>
+     */
     @Getter
     private String value;
 
-    /** text, textarea, radio, checkbox etc... */ 
+    /** text, textarea, radio, checkbox etc... */
     private final InputType inputType;
 
-    private Object source;
+    // private Object source;
 
     @Getter
     private Class<?> type;
-    
+
+    @Getter
     private Object entity;
 
     @Getter
@@ -66,24 +75,43 @@ public class FormField {
     private NotNull notNullAnnotation;
     private Size sizeAnnotation;
 
-//    public FormField(@NonNull String key, Object object) {
-//        this.name = key;
-//        this.value = object != null ? object.toString() : "";
-//        this.inputType = InputType.TEXT;
-//    }
+    @Getter
+    private String violationMessage;
 
-    public FormField(Field field, SkysailServerResource<?> resource, Object source) {
+    /**
+     * @param field
+     *            from java reflection
+     * @param resource
+     *            the
+     * @param source
+     */
+    public FormField(Field field, SkysailServerResource<?> resource, List<?> source) {
         name = field.getName();
+        type = field.getType();
         inputType = getFromFieldAnnotation(field);
         entity = resource.getCurrentEntity();
         this.resource = resource;
-        this.source = source;
+        setAnnotations(field);
+        scan(field, entity);
+    }
+
+    public FormField(Field field, SkysailServerResource<?> resource, ConstraintViolationsResponse<?> source) {
+        name = field.getName();
+        type = field.getType();
+        inputType = getFromFieldAnnotation(field);
+        entity = resource.getCurrentEntity();
+        Set<ConstraintViolationDetails> violations = ((ConstraintViolationsResponse<?>) source).getViolations();
+        Optional<String> validationMessage = violations.stream()
+                .filter(v -> v.getPropertyPath().equals(field.getName())).map(v -> v.getMessage()).findFirst();
+        violationMessage = validationMessage.orElse(null);
+        this.resource = resource;
         setAnnotations(field);
         scan(field, entity);
     }
 
     public FormField(Field field, SkysailServerResource<?> resource) {
         name = field.getName();
+        type = field.getType();
         inputType = getFromFieldAnnotation(field);
         entity = resource.getCurrentEntity();
         this.resource = resource;
@@ -142,12 +170,12 @@ public class FormField {
         });
     }
 
-    public Object getEntity() {
-        if (source instanceof SkysailResponse) {
-            return ((SkysailResponse<?>) source).getEntity();
-        }
-        return entity;
-    }
+    // public Object getEntity() {
+    // if (source instanceof SkysailResponse) {
+    // return ((SkysailResponse<?>) source).getEntity();
+    // }
+    // return entity;
+    // }
 
     public String getInputType() {
         return inputType.name().toLowerCase();
@@ -171,7 +199,7 @@ public class FormField {
     public String getTitleKey() {
         return MessagesUtils.getBaseKey(cls != null ? cls : getEntity().getClass(), this) + ".title";
     }
-    
+
     public String getHref() {
         return null;
     }
@@ -220,7 +248,7 @@ public class FormField {
         }
         return false;
     }
-    
+
     public boolean isSubmitField() {
         return submitAnnotation != null;
     }
@@ -269,7 +297,7 @@ public class FormField {
             return selectionOptions;
         }
         List<Option> options = new ArrayList<>();
-        
+
         Class<? extends SelectionProvider> selectionProvider = null;
         if (formFieldAnnotation != null) {
             selectionProvider = formFieldAnnotation.selectionProvider();
@@ -289,7 +317,7 @@ public class FormField {
             method = selectionProvider.getMethod("setResource", Resource.class);
             method.invoke(selection, resource);
             selection.getSelections().entrySet().stream().forEach(entry -> {
-               options.add(new Option(entry, value)); 
+                options.add(new Option(entry, value));
             });
             selectionOptions = options;
             return options;
@@ -299,17 +327,19 @@ public class FormField {
         return Collections.emptyList();
     }
 
-    public String getViolationMessage() {
-        if (!(source instanceof ConstraintViolationsResponse)) {
-            return null;
-        }
-        String fieldName = getName();
-        Set<ConstraintViolationDetails> violations = ((ConstraintViolationsResponse<?>) source).getViolations();
-        Optional<String> validationMessage = violations.stream().filter(v -> v.getPropertyPath().equals(fieldName))
-                .map(v -> v.getMessage()).findFirst();
-        return validationMessage.orElse(null);
-    }
-    
+    // public String getViolationMessage() {
+    // if (!(source instanceof ConstraintViolationsResponse)) {
+    // return null;
+    // }
+    // String fieldName = getName();
+    // Set<ConstraintViolationDetails> violations =
+    // ((ConstraintViolationsResponse<?>) source).getViolations();
+    // Optional<String> validationMessage = violations.stream().filter(v ->
+    // v.getPropertyPath().equals(fieldName))
+    // .map(v -> v.getMessage()).findFirst();
+    // return validationMessage.orElse(null);
+    // }
+
     public boolean isMandatory() {
         if (notNullAnnotation != null) {
             return true;

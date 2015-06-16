@@ -1,6 +1,5 @@
 package io.skysail.server.model;
 
-import io.skysail.api.responses.SkysailResponse;
 import io.skysail.server.restlet.resources.SkysailServerResource;
 
 import java.util.*;
@@ -14,16 +13,16 @@ public class FieldsFactory {
         if (source instanceof List) {
             return listFactory((List<?>)source, resource);
         }
-        if (source instanceof SkysailResponse) {
-            return entityFactory(source);
-        }
+//        if (source instanceof SkysailResponse) {
+//            return entityFactory(source);
+//        }
         return new DefaultEntityFieldFactory(source);
     }
 
-    private static FieldFactory entityFactory(Object source) {
-        Object entity = ((SkysailResponse<?>) source).getEntity();
-        return new SkysailResponseEntityFieldFactory((SkysailResponse<?>) source, entity.getClass());
-    }
+//    private static FieldFactory entityFactory(Object source) {
+//        Object entity = ((SkysailResponse<?>) source).getEntity();
+//        return new SkysailResponseEntityFieldFactory((SkysailResponse<?>) source, entity.getClass());
+//    }
 
     private static FieldFactory listFactory(List<?> source, SkysailServerResource<?> resource) {
         Class<?> parameterType = resource.getParameterizedType();

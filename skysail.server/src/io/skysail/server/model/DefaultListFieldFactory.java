@@ -22,7 +22,7 @@ public class DefaultListFieldFactory extends FieldFactory {
         return ReflectionUtils.getInheritedFields(resource.getParameterizedType()).stream()
                 .filter(f -> test(resource, f))
                 .sorted((f1, f2) -> sort(resource, f1, f2))
-                .map(f -> new FormField(f, resource, source))//
+                .map(f -> new FormField(f, resource, (List<?>)source))//
                 .collect(Collectors.toList());
     }
 

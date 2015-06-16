@@ -103,7 +103,7 @@ if (projectNames.remove('')) {
   projectNames += "skysail.server.app.intro"
   projectNames += "skysail.server.app.todos"
   projectNames += "skysail.server.app.todos.it"
-  projectNames += "skysail.server.app.twitter4j"
+  //projectNames += "skysail.server.app.twitter4j"
   projectNames += "skysail.server.app.wiki"
   projectNames += "skysail.server.app.wiki.it"
   projectNames += "skysail.server.codegen"

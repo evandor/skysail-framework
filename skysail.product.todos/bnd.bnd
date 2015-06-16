@@ -18,7 +18,6 @@ Private-Package:  \
     skysail.server.ext.browser;version=latest,\
     skysail.server.ext.favorites.preferences;version=latest,\
     skysail.server.ext.sse;version=latest,\
-	skysail.server.ext.mail;version=latest,\
 	skysail.server.http;version=latest,\
 	skysail.server.peers.adminconfig;version=latest,\
 	skysail.server.plugins;version=latest,\

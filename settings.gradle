@@ -99,7 +99,7 @@ if (projectNames.remove('')) {
   projectNames += "skysail.server.app.designer"
   projectNames += "skysail.server.app.designer.gencode"
   projectNames += "skysail.server.app.designer.it"
-  projectNames += "skysail.server.app.designer.propman"
+  //projectNames += "skysail.server.app.designer.propman"
   projectNames += "skysail.server.app.intro"
   projectNames += "skysail.server.app.todos"
   projectNames += "skysail.server.app.todos.it"

@@ -31,5 +31,4 @@ public class PageResource extends EntityServerResource<Map<String,Object>> {
     }
 
 
-
 }

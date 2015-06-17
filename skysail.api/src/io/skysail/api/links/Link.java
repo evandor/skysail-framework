@@ -31,6 +31,7 @@ import com.google.common.base.Predicate;
 public class Link {
 
     /** URI reference, absolute ("http://www.foo.org") or relative ("/todos"). */
+    @Setter
     private String uri;
 
     private String title;

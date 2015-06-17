@@ -3,6 +3,7 @@ package io.skysail.server.app.wiki.spaces.resources;
 import io.skysail.api.links.Link;
 import io.skysail.api.responses.SkysailResponse;
 import io.skysail.server.app.wiki.WikiApplication;
+import io.skysail.server.app.wiki.pages.resources.PagesResource;
 import io.skysail.server.app.wiki.spaces.Space;
 import io.skysail.server.restlet.resources.EntityServerResource;
 
@@ -21,7 +22,8 @@ public class SpaceResource extends EntityServerResource<Space> {
     
     @Override
     public SkysailResponse<?> eraseEntity() {
-        return null;
+        app.getRepository().delete(Space.class, id);
+        return new SkysailResponse<String>();
     }
 
     @Override
@@ -31,7 +33,7 @@ public class SpaceResource extends EntityServerResource<Space> {
     
     @Override
     public List<Link> getLinks() {
-        return super.getLinks(SpaceResource.class, PutSpaceResource.class);
+        return super.getLinks(SpaceResource.class, PutSpaceResource.class, PagesResource.class);
     }
 
 }

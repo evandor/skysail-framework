@@ -19,6 +19,7 @@ import de.twenty11.skysail.server.core.restlet.ResourceContextId;
 public class TodosResource extends ListServerResource<Todo> {
 
     public static final String DEFAULT_FILTER_EXPRESSION = "(!(status="+Status.ARCHIVED+"))";
+
     protected String listId;
     protected TodoApplication app;
 

@@ -133,7 +133,9 @@ public abstract class PostEntityServerResource<T> extends SkysailServerResource<
      */
     public T getData(Form form) {
         submitValue = form.getFirstValue("submit");
-        return populate(createEntityTemplate(), form);
+        T entity = createEntityTemplate();
+        this.setCurrentEntity(entity);
+        return populate(entity, form);
     };
 
     @Get("htmlform|html")

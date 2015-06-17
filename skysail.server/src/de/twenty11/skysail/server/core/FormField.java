@@ -78,11 +78,13 @@ public class FormField {
     @Getter
     private String violationMessage;
 
-    private FormField(Field field) {
+    public FormField(Field field, SkysailServerResource<?> resource) {
         name = field.getName();
         type = field.getType();
         inputType = getFromFieldAnnotation(field);
         setAnnotations(field);
+        entity = resource.getCurrentEntity();
+        this.resource = resource;
     }
     
     /**
@@ -93,44 +95,38 @@ public class FormField {
      * @param source
      */
     public FormField(Field field, SkysailServerResource<?> resource, List<?> source) {
-        this(field);
-        entity = resource.getCurrentEntity();
-        this.resource = resource;
+        this(field, resource);
         scan(field, entity);
     }
 
     public FormField(Field field, SkysailServerResource<?> resource, ConstraintViolationsResponse<?> source) {
-        this(field);
-        entity = resource.getCurrentEntity();
+        this(field, resource);
         Set<ConstraintViolationDetails> violations = ((ConstraintViolationsResponse<?>) source).getViolations();
         Optional<String> validationMessage = violations.stream()
                 .filter(v -> v.getPropertyPath().equals(field.getName())).map(v -> v.getMessage()).findFirst();
         violationMessage = validationMessage.orElse(null);
-        this.resource = resource;
         scan(field, entity);
     }
     
     public FormField(Field field, SkysailServerResource<?> resource, FormResponse<?> source) {
-        this(field);
-        entity = resource.getCurrentEntity();
-        this.resource = resource;
+        this(field, resource);
         scan(field, entity);
     }
 
-    public FormField(Field field, SkysailServerResource<?> resource) {
-        this(field);
-        entity = resource.getCurrentEntity();
-        this.resource = resource;
-        if (entity != null) {
-            scan(field, entity);
-        } else {
-            throw new IllegalStateException("didnt expect to get here...");
-//            Map<String, Object> entityMap = OrientDbUtils.toMap(entity);
-//            if (entityMap != null) {
-//                handleMap(field, entityMap);
-//            }
-        }
-    }
+//    public FormField(Field field, SkysailServerResource<?> resource) {
+//        this(field);
+//        entity = resource.getCurrentEntity();
+//        this.resource = resource;
+//        if (entity != null) {
+//            scan(field, entity);
+//        } else {
+//            throw new IllegalStateException("didnt expect to get here...");
+////            Map<String, Object> entityMap = OrientDbUtils.toMap(entity);
+////            if (entityMap != null) {
+////                handleMap(field, entityMap);
+////            }
+//        }
+//    }
 
     private void setAnnotations(Field field) {
         referenceAnnotation = field.getAnnotation(Reference.class);

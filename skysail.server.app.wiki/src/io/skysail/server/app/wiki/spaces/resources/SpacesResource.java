@@ -16,7 +16,7 @@ public class SpacesResource extends ListServerResource<Space> {
     private WikiApplication app;
 
     public SpacesResource() {
-       // super(SpaceResource.class, PagesResource.class);
+       super(SpaceResource.class);
     }
 
     @Override

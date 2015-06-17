@@ -75,4 +75,15 @@ public class WikiRepository implements DbRepository {
         return (Page) dbService.findObjectById(Page.class, id);
     }
 
+    public void delete(Class<Space> cls, String id) {
+        dbService.delete(cls, id);
+    }
+
+    public List<Page> findAllPages(Filter filter) {
+        String sql = "SELECT * from " + Page.class.getSimpleName() + " WHERE "+filter.getPreparedStatement()+" ORDER BY name DESC ";
+//                + limitClause(pagination.getLinesPerPage(),pagination.getPage()); 
+        return dbService.findObjects(sql, filter.getParams());
+
+    }
+
 }

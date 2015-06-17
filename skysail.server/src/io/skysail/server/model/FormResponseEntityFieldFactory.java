@@ -19,7 +19,7 @@ public class FormResponseEntityFieldFactory extends FieldFactory {
     public FormResponseEntityFieldFactory(@NonNull FormResponse<?> source, Object entity) {
         this.source = source;
         this.entity = entity;
-        this.cls = entity.getClass();
+        this.cls = entity != null ? entity.getClass() : null;
     }
 
     /**

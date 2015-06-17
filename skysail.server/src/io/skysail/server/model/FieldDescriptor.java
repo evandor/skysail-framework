@@ -5,7 +5,9 @@ import io.skysail.server.restlet.resources.SkysailServerResource;
 import io.skysail.server.utils.RequestUtils;
 
 import java.net.URL;
-import java.util.*;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 
 import org.restlet.Request;
 
@@ -61,15 +63,6 @@ public class FieldDescriptor {
                 }
             }
         }
-//        Prefix prefix = f.getAnnotation(Prefix.class);
-//        if (newValue != null && prefix != null) {
-//            newValue = props.get(prefix.methodName()) + "&nbsp;" + newValue;
-//        }
-//        Postfix postfix = f.getAnnotation(Postfix.class);
-//        if (newValue != null && postfix != null) {
-//            newValue = newValue + "&nbsp;" + props.get(postfix.methodName());
-//            props.put(f.getName() + "_postfix", props.get(postfix.methodName()));
-//        }
 
         if (newValue != null) {
             props.put(f.getName(), newValue);

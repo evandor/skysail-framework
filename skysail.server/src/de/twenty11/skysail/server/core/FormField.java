@@ -113,21 +113,6 @@ public class FormField {
         scan(field, entity);
     }
 
-//    public FormField(Field field, SkysailServerResource<?> resource) {
-//        this(field);
-//        entity = resource.getCurrentEntity();
-//        this.resource = resource;
-//        if (entity != null) {
-//            scan(field, entity);
-//        } else {
-//            throw new IllegalStateException("didnt expect to get here...");
-////            Map<String, Object> entityMap = OrientDbUtils.toMap(entity);
-////            if (entityMap != null) {
-////                handleMap(field, entityMap);
-////            }
-//        }
-//    }
-
     private void setAnnotations(Field field) {
         referenceAnnotation = field.getAnnotation(Reference.class);
         formFieldAnnotation = field.getAnnotation(io.skysail.api.forms.Field.class);
@@ -171,13 +156,6 @@ public class FormField {
             }
         });
     }
-
-    // public Object getEntity() {
-    // if (source instanceof SkysailResponse) {
-    // return ((SkysailResponse<?>) source).getEntity();
-    // }
-    // return entity;
-    // }
 
     public String getInputType() {
         return inputType.name().toLowerCase();
@@ -328,19 +306,6 @@ public class FormField {
         }
         return Collections.emptyList();
     }
-
-    // public String getViolationMessage() {
-    // if (!(source instanceof ConstraintViolationsResponse)) {
-    // return null;
-    // }
-    // String fieldName = getName();
-    // Set<ConstraintViolationDetails> violations =
-    // ((ConstraintViolationsResponse<?>) source).getViolations();
-    // Optional<String> validationMessage = violations.stream().filter(v ->
-    // v.getPropertyPath().equals(fieldName))
-    // .map(v -> v.getMessage()).findFirst();
-    // return validationMessage.orElse(null);
-    // }
 
     public boolean isMandatory() {
         if (notNullAnnotation != null) {

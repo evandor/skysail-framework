@@ -54,6 +54,13 @@ public class Campaign  implements Serializable, Identifiable {
         return name;
     }
 
+    public void setRequest(String value) {
+        this.Request = value;
+    }
+
+    public String getRequest() {
+        return Request;
+    }
 
     
 }

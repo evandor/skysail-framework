@@ -1,19 +1,34 @@
 package de.twenty11.skysail.server.core;
 
-import io.skysail.api.forms.*;
-import io.skysail.api.responses.*;
+import io.skysail.api.forms.IgnoreSelectionProvider;
+import io.skysail.api.forms.InputType;
+import io.skysail.api.forms.Reference;
+import io.skysail.api.forms.SelectionProvider;
+import io.skysail.api.forms.Submit;
+import io.skysail.api.responses.ConstraintViolationDetails;
+import io.skysail.api.responses.ConstraintViolationsResponse;
+import io.skysail.api.responses.FormResponse;
 import io.skysail.server.forms.ListView;
 import io.skysail.server.restlet.resources.SkysailServerResource;
 import io.skysail.server.utils.OrientDbUtils;
 
-import java.lang.reflect.*;
 import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Date;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+import java.util.Set;
 
-import javax.validation.constraints.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
-import lombok.*;
+import lombok.Getter;
+import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
 
 import org.restlet.resource.Resource;
@@ -125,10 +140,6 @@ public class FormField {
             scan(field, entity);
         } else {
             throw new IllegalStateException("didnt expect to get here...");
-//            Map<String, Object> entityMap = OrientDbUtils.toMap(entity);
-//            if (entityMap != null) {
-//                handleMap(field, entityMap);
-//            }
         }
     }
 
@@ -175,13 +186,6 @@ public class FormField {
             }
         });
     }
-
-    // public Object getEntity() {
-    // if (source instanceof SkysailResponse) {
-    // return ((SkysailResponse<?>) source).getEntity();
-    // }
-    // return entity;
-    // }
 
     public String getInputType() {
         return inputType.name().toLowerCase();
@@ -332,19 +336,6 @@ public class FormField {
         }
         return Collections.emptyList();
     }
-
-    // public String getViolationMessage() {
-    // if (!(source instanceof ConstraintViolationsResponse)) {
-    // return null;
-    // }
-    // String fieldName = getName();
-    // Set<ConstraintViolationDetails> violations =
-    // ((ConstraintViolationsResponse<?>) source).getViolations();
-    // Optional<String> validationMessage = violations.stream().filter(v ->
-    // v.getPropertyPath().equals(fieldName))
-    // .map(v -> v.getMessage()).findFirst();
-    // return validationMessage.orElse(null);
-    // }
 
     public boolean isMandatory() {
         if (notNullAnnotation != null) {

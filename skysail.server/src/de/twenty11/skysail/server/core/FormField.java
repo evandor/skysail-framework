@@ -78,51 +78,57 @@ public class FormField {
     @Getter
     private String violationMessage;
 
+    private FormField(Field field) {
+        name = field.getName();
+        type = field.getType();
+        inputType = getFromFieldAnnotation(field);
+        setAnnotations(field);
+    }
+    
     /**
      * @param field
      *            from java reflection
      * @param resource
-     *            the
+     *            the resource which is about to being represented
      * @param source
      */
     public FormField(Field field, SkysailServerResource<?> resource, List<?> source) {
-        name = field.getName();
-        type = field.getType();
-        inputType = getFromFieldAnnotation(field);
+        this(field);
         entity = resource.getCurrentEntity();
         this.resource = resource;
-        setAnnotations(field);
         scan(field, entity);
     }
 
     public FormField(Field field, SkysailServerResource<?> resource, ConstraintViolationsResponse<?> source) {
-        name = field.getName();
-        type = field.getType();
-        inputType = getFromFieldAnnotation(field);
+        this(field);
         entity = resource.getCurrentEntity();
         Set<ConstraintViolationDetails> violations = ((ConstraintViolationsResponse<?>) source).getViolations();
         Optional<String> validationMessage = violations.stream()
                 .filter(v -> v.getPropertyPath().equals(field.getName())).map(v -> v.getMessage()).findFirst();
         violationMessage = validationMessage.orElse(null);
         this.resource = resource;
-        setAnnotations(field);
+        scan(field, entity);
+    }
+    
+    public FormField(Field field, SkysailServerResource<?> resource, FormResponse<?> source) {
+        this(field);
+        entity = resource.getCurrentEntity();
+        this.resource = resource;
         scan(field, entity);
     }
 
     public FormField(Field field, SkysailServerResource<?> resource) {
-        name = field.getName();
-        type = field.getType();
-        inputType = getFromFieldAnnotation(field);
+        this(field);
         entity = resource.getCurrentEntity();
         this.resource = resource;
-        setAnnotations(field);
         if (entity != null) {
             scan(field, entity);
         } else {
-            Map<String, Object> entityMap = OrientDbUtils.toMap(entity);
-            if (entityMap != null) {
-                handleMap(field, entityMap);
-            }
+            throw new IllegalStateException("didnt expect to get here...");
+//            Map<String, Object> entityMap = OrientDbUtils.toMap(entity);
+//            if (entityMap != null) {
+//                handleMap(field, entityMap);
+//            }
         }
     }
 

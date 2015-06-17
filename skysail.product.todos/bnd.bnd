@@ -4,7 +4,7 @@ Private-Package:  \
 	io.skysail.product.todos
 -buildpath:  \
 	skysail.api;version=latest,\
-	skysail.api.documentation;version=latest,\
+	skysail.api.documentation;version='[0.2,0.3)',\
 	skysail.api.favorites;version=latest,\
 	skysail.api.peers;version=latest,\
 	skysail.client.todos.angularjs,\
@@ -12,7 +12,7 @@ Private-Package:  \
 	skysail.server.app.twitter4j;version=latest,\
 	skysail.server.app.designer;version=latest,\
 	skysail.server.converter;version=latest,\
-	skysail.server.documentation;version=latest,\
+	skysail.server.documentation;version='[0.1,0.2)',\
 	skysail.server.db;version=latest,\
     skysail.server.ext.browser;version=latest,\
     skysail.server.ext.sse;version=latest,\

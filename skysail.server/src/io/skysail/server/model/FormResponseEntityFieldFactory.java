@@ -1,6 +1,6 @@
 package io.skysail.server.model;
 
-import io.skysail.api.responses.ConstraintViolationsResponse;
+import io.skysail.api.responses.FormResponse;
 import io.skysail.server.restlet.resources.SkysailServerResource;
 import io.skysail.server.utils.ReflectionUtils;
 
@@ -10,14 +10,16 @@ import java.util.stream.Collectors;
 import lombok.NonNull;
 import de.twenty11.skysail.server.core.FormField;
 
-public class SkysailResponseEntityFieldFactory extends FieldFactory {
+public class FormResponseEntityFieldFactory extends FieldFactory {
 
     private Class<? extends Object> cls;
-    private ConstraintViolationsResponse<?> source;
+    private FormResponse<?> source;
+    private Object entity;
 
-    public SkysailResponseEntityFieldFactory(@NonNull ConstraintViolationsResponse<?> source, Class<? extends Object> cls) {
+    public FormResponseEntityFieldFactory(@NonNull FormResponse<?> source, Object entity) {
         this.source = source;
-        this.cls = cls;
+        this.entity = entity;
+        this.cls = entity.getClass();
     }
 
     /**
@@ -27,6 +29,7 @@ public class SkysailResponseEntityFieldFactory extends FieldFactory {
      */
     @Override
     public List<FormField> determineFrom(SkysailServerResource<?> resource) throws Exception {
+        //resource.setCurrentEntity(entity);
         return ReflectionUtils.getInheritedFields(cls).stream()
                 .filter(f -> test(resource, f))
                 .map(f -> new FormField(f, resource, source))//, source.getEntity()))

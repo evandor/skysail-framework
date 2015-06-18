@@ -4,7 +4,7 @@ import io.skysail.api.favorites.FavoritesService;
 import io.skysail.api.links.Link;
 import io.skysail.api.responses.*;
 import io.skysail.server.restlet.resources.*;
-import io.skysail.server.restlet.sourceconverter.ListSourceHtmlConverter;
+import io.skysail.server.restlet.sourceconverter.*;
 import io.skysail.server.utils.*;
 
 import java.util.*;
@@ -32,9 +32,9 @@ import de.twenty11.skysail.server.services.MenuItemProvider;
  * 
  * <p>
  * The purpose of this class is a little bit different, as it aims to be more generic. All 
- * relevant data (links, the current user, pagination information, the entities fields and their 
- * metadata and so on) can be accessed, so that a complete "one-time-request" representation
- * of the current resource can be generated from this information.
+ * relevant data (links, the current user, pagination information, the entities fields, their 
+ * metadata and associated entities and so on) can be accessed, so that a complete 
+ * "one-time-request" representation of the current resource can be generated from this information.
  * </p>
  *
  * @param <R>
@@ -59,6 +59,11 @@ public class ResourceModel<R extends SkysailServerResource<T>, T> {
     @Getter
     private STServicesWrapper services;
 
+    /**
+     * @param resource a SkysailServerResource
+     * @param source one of: entity (like Todo) | List<Todo> | FormResponse<Todo> | ConstraintViolationResponse<Todo>
+     * @param target text/html
+     */
     public ResourceModel(R resource, Object source, Variant target) {
         this.resource = resource;
         this.entity = source;
@@ -212,11 +217,11 @@ public class ResourceModel<R extends SkysailServerResource<T>, T> {
     }
 
     public void convert() {
+        Variant variant = target.getTarget();
         if (entity instanceof List) {
-            Variant variant = target.getTarget();
             this.convertedSource = new ListSourceHtmlConverter(entity, variant).convert((ResourceModel<SkysailServerResource<?>,?>)this);
         } else {
-            this.convertedSource = entity;
+            this.convertedSource = new EntitySourceHtmlConverter(entity, variant).convert((ResourceModel<SkysailServerResource<?>,?>)this);
         }
     }
 

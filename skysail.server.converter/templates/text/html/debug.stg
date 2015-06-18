@@ -13,6 +13,7 @@ debug(source, messages, model) ::= <<
       <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
                 $model.status$
                 <div class="panel panel-default">
+
                   <div class="panel-heading" role="tab" id="headingResource">
                     <h4 class="panel-title">
                       <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseResource" aria-expanded="false" aria-controls="collapseResource">
@@ -24,6 +25,19 @@ debug(source, messages, model) ::= <<
                     <div class="panel-body">$model.resource$</div>
                   </div>
                 </div>
+
+                <div class="panel-heading" role="tab" id="headingResourceModel">
+                    <h4 class="panel-title">
+                      <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseResourceModel" aria-expanded="false" aria-controls="collapseResourceModel">
+                        ResourceModel
+                      </a>
+                    </h4>
+                  </div>
+                  <div id="collapseResourceModel" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingResourceModel">
+                    <div class="panel-body">...</div>
+                  </div>
+                </div>
+
                 <div class="panel panel-default">
                   <div class="panel-heading" role="tab" id="headingLinks">
                     <h4 class="panel-title">
@@ -34,6 +48,7 @@ debug(source, messages, model) ::= <<
                     <div class="panel-body">$linkheader(model.links)$</div>
                   </div>
                 </div>
+
                 <div class="panel panel-default">
                   <div class="panel-heading" role="tab" id="headingEntity">
                     <h4 class="panel-title">
@@ -44,6 +59,7 @@ debug(source, messages, model) ::= <<
                     <div class="panel-body">EntityType: <code>$model.entityType$</code></div>
                   </div>
                 </div>
+                
                 <div class="panel panel-default">
                   <div class="panel-heading" role="tab" id="headingApplication">
                     <h4 class="panel-title">
@@ -54,6 +70,7 @@ debug(source, messages, model) ::= <<
                     <div class="panel-body">$model.resource.application$</div>
                   </div>
                 </div>
+                
                 <div class="panel panel-default">
                   <div class="panel-heading" role="tab" id="headingSource">
                     <h4 class="panel-title">
@@ -64,6 +81,7 @@ debug(source, messages, model) ::= <<
                     <div class="panel-body">$source$</div>
                   </div>
                 </div>
+                  
                 <div class="panel panel-default">
                   <div class="panel-heading" role="tab" id="headingTarget">
                     <h4 class="panel-title">
@@ -74,6 +92,7 @@ debug(source, messages, model) ::= <<
                     <div class="panel-body">$model.target$</div>
                   </div>
                 </div>
+                
                 <div class="panel panel-default">
                   <div class="panel-heading" role="tab" id="headingTemplates">
                     <h4 class="panel-title">
@@ -88,6 +107,7 @@ debug(source, messages, model) ::= <<
                     </div>
                   </div>
                 </div>
+                
                 <div class="panel panel-default">
                   <div class="panel-heading" role="tab" id="headingMessages">
                     <h4 class="panel-title">

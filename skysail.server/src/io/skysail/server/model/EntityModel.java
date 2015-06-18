@@ -4,8 +4,10 @@ import io.skysail.server.restlet.resources.SkysailServerResource;
 
 import java.util.*;
 
+import lombok.ToString;
 import de.twenty11.skysail.server.core.FormField;
 
+@ToString
 public class EntityModel {
 
     private List<FieldDescriptor> fieldDescriptors = new ArrayList<>();

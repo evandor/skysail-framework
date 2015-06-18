@@ -1,15 +1,15 @@
 renderEntity(user, source, model) ::= <<
   <table class="table">
-    $model.formfields: {field | $renderRow(field)$}$
+    $model.formfields: {field | $renderRow(source.entity, field)$}$
   </table>
 >>
 
-renderRow(field) ::= <<
-  <tr><th>$field.name$</th><td>&nbsp;<td>$field.value$</td><td>$handleDates(field)$</td></tr>
+renderRow(entity, field) ::= <<
+  <tr><th>$field.name$</th><td>&nbsp;<td>$entity.(field.name)$</td><td>$handleDates(entity,field)$</td></tr>
 >>
 
-handleDates(field) ::= <<
+handleDates(entity, field) ::= <<
     $if(field.dateType)$
-    <script>document.write(moment("$field.value$").fromNow());</script>
+    <script>document.write(moment("$entity.(field.name)$").fromNow());</script>
     $endif$
 >>

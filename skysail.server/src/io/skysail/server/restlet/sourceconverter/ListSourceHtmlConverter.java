@@ -9,22 +9,13 @@ import java.text.DateFormat;
 import java.util.*;
 import java.util.stream.Collectors;
 
-import org.restlet.data.*;
+import org.restlet.data.MediaType;
 import org.restlet.representation.Variant;
 
-import com.fasterxml.jackson.databind.*;
+public class ListSourceHtmlConverter extends SourceHtmlConverter {
 
-public class ListSourceHtmlConverter {
-
-    private volatile ObjectMapper mapper = new ObjectMapper();
-    
-    private Object source;
-    private Variant target;
-    
     public ListSourceHtmlConverter(Object source, Variant target) {
-        mapper.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false);
-        this.source = source;
-        this.target = target;
+        super(source, target);
     }
 
     protected Optional<Method> findHandlerMethod(Method[] methods) {
@@ -98,42 +89,6 @@ public class ListSourceHtmlConverter {
             }
         }
         return result;
-    }
-
-    private Locale determineLocale(SkysailServerResource<?> resource) {
-        List<Preference<Language>> acceptedLanguages = resource.getRequest().getClientInfo().getAcceptedLanguages();
-        Locale localeToUse = Locale.getDefault();
-        if (!acceptedLanguages.isEmpty()) {
-            String[] languageSplit = acceptedLanguages.get(0).getMetadata().getName().split("-");
-            if (languageSplit.length == 1) {
-                localeToUse = new Locale(languageSplit[0]);
-            } else if (languageSplit.length == 2) {
-                localeToUse = new Locale(languageSplit[0], languageSplit[1]);
-            }
-        }
-        return localeToUse;
-    }
-
-    protected Comparator<String> getComparator(SkysailServerResource<?> resource) {
-        return new Comparator<String>() {
-
-            @Override
-            public int compare(String o1, String o2) {
-                List<String> fieldNames = resource.getFields();
-                if (fieldNames.indexOf(o1) == -1 && fieldNames.indexOf(o2) == -1) {
-                    return o1.compareTo(o2);
-                }
-                if (fieldNames.indexOf(o1) == -1) {
-                    return -1;
-                }
-                if (fieldNames.indexOf(o2) == -1) {
-                    return 1;
-                }
-                return fieldNames.indexOf(o1) - fieldNames.indexOf(o2);
-
-            }
-
-        };
     }
 
 }

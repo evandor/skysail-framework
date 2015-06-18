@@ -4,16 +4,15 @@ import io.skysail.server.restlet.resources.SkysailServerResource;
 
 import java.util.*;
 
-import lombok.ToString;
+import lombok.*;
 import de.twenty11.skysail.server.core.FormField;
 
 @ToString
 public class EntityModel {
 
+    @Getter
     private List<FieldDescriptor> fieldDescriptors = new ArrayList<>();
     
-    private FormField formfield;
-
     public EntityModel(List<FormField> formfields) {
         formfields.stream().forEach(f -> {
             fieldDescriptors.add(new FieldDescriptor(f));

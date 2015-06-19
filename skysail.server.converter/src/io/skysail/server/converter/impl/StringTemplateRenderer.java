@@ -2,11 +2,11 @@ package io.skysail.server.converter.impl;
 
 import io.skysail.api.favorites.FavoritesService;
 import io.skysail.api.peers.PeersProvider;
-import io.skysail.api.responses.*;
+import io.skysail.api.responses.SkysailResponse;
 import io.skysail.server.app.SkysailApplication;
 import io.skysail.server.converter.*;
 import io.skysail.server.converter.stringtemplate.STGroupBundleDir;
-import io.skysail.server.converter.wrapper.*;
+import io.skysail.server.converter.wrapper.STUserWrapper;
 import io.skysail.server.model.ResourceModel;
 import io.skysail.server.restlet.resources.SkysailServerResource;
 import io.skysail.server.utils.RequestUtils;
@@ -50,7 +50,6 @@ public class StringTemplateRenderer {
         
         @SuppressWarnings({ "rawtypes", "unchecked" })
         ResourceModel<SkysailServerResource<?>,?> resourceModel = new ResourceModel(resource, (SkysailResponse<?>)entity, target);
-        
         resourceModel.setFavoritesService(favoritesService);
         resourceModel.setMenuItemProviders(menuProviders);
 
@@ -151,13 +150,15 @@ public class StringTemplateRenderer {
         decl.add("user", new STUserWrapper(SecurityUtils.getSubject(), peersProvider, installationFromCookie));
         decl.add("converter", this);
         
-        if (resourceModel.getSource() instanceof ListServerResponse) {
-            decl.add("source", new STListSourceWrapper((List<Object>) ((SkysailResponse<?>)resourceModel.getConvertedSource()).getEntity()));
-        } else {
-            decl.add("source", new STSourceWrapper(resourceModel.getConvertedSource()));
-        }
+//        if (resourceModel.getSource() instanceof ListServerResponse) {
+//            decl.add("source", new STListSourceWrapper((List<Object>) ((SkysailResponse<?>)resourceModel.getConvertedSource()).getEntity()));
+//        } else {
+//            decl.add("source", new STSourceWrapper(resourceModel.getConvertedSource()));
+//        }
+        
+        decl.add("source", null);
 
-        Map<String, String> messages = resource.getMessages(resourceModel.getFormfields());
+        Map<String, String> messages = resource.getMessages(resourceModel.getFields());
         messages.put("productName", getProductName());
         
         decl.add("messages", messages);

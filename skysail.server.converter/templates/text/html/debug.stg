@@ -37,7 +37,7 @@ debug(source, messages, model) ::= <<
                     	<h4>Resource</h4>
                     	<p>$model.resource$</p>
                     	<h4>Formfields</h4>
-                    	<ol>$model.formfields:{ field | <li>$field$</li>}$</ol>
+                    	<ol>$model.formfields.keys: { key | <li>$model.formfields.(key)$</li>}$</ol>
                     	<h4>EntityModel</h4>
                     	<ol>$model.entityModel.fieldDescriptors: {descriptor | <li>$descriptor$</li>}$</ol>
                         <h4>Data</h4>

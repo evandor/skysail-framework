@@ -36,11 +36,6 @@ public class TodoList implements Serializable, Identifiable {
     //@Postfix(methodName = "todosCount")
     @ListView(link = TodosResource.class, truncate = 20)
     private String name;
-
-    @Field
-    @ListView(hide =true)
-    private String kurzname;
-
     
     @Field(type=InputType.READONLY)
     //@ListView(hide = true)

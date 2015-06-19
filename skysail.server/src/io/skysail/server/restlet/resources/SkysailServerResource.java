@@ -77,10 +77,6 @@ public abstract class SkysailServerResource<T> extends ServerResource {
 
     private Pattern pattern = Pattern.compile("\\{(.*?)\\}", Pattern.DOTALL);
 
-    // @Getter
-    // @Setter
-    // private String metaRefreshTarget;
-
     private Map<ResourceContextId, String> stringContextMap = new HashMap<>();
 
     private Map<ResourceContextId, Map<String, String>> mapContextMap = new HashMap<>();
@@ -181,13 +177,13 @@ public abstract class SkysailServerResource<T> extends ServerResource {
      *            a list of fields
      * @return messages the messages
      */
-    public Map<String, String> getMessages(List<FormField> fields) {
+    public Map<String, String> getMessages(Map<String, FormField> fields) {
         Map<String, String> msgs = getMessages();
         if (fields == null) {
             return msgs;
         }
         Application application = getApplication();
-        fields.stream().forEach(f -> {
+        fields.values().stream().forEach(f -> {
 
             Class<? extends Object> entityClass = null;
             if (getCurrentEntity() != null) {

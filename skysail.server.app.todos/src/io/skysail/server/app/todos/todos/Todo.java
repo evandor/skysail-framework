@@ -69,9 +69,11 @@ public class Todo implements Serializable, Identifiable {
     @Field(type = InputType.RANGE)
     @Min(0)
     @Max(100)
+    @ListView(hide=true)
     private Integer importance;
 
     @Field(type = InputType.READONLY)
+    @ListView(hide=true)
     private Integer urgency;
 
     @Field(selectionProvider = StatusSelectionProvider.class)

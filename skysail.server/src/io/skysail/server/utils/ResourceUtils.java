@@ -48,7 +48,7 @@ public class ResourceUtils {
         }
         return null;
     }
-    public static Set<String> getSupportedMediaTypes(Resource resource, Object entity) {
+    public static Set<String> getSupportedMediaTypes(Resource resource, Class<?> type) {
         List<Variant> supportedVariants = Collections.emptyList();
         Set<MediaType> supportedMediaTypes = new HashSet<>();
         if (resource instanceof ServerResource) {
@@ -63,7 +63,7 @@ public class ResourceUtils {
         for (ConverterHelper ch : registeredConverters) {
             List<VariantInfo> variants;
             try {
-                variants = ch.getVariants(entity.getClass());
+                variants = ch.getVariants(type);
                 if (variants == null) {
                     continue;
                 }

@@ -1,11 +1,11 @@
 package io.skysail.server.model;
 
 import io.skysail.server.restlet.resources.SkysailServerResource;
-import io.skysail.server.utils.ReflectionUtils;
+import io.skysail.server.utils.*;
 
 import java.lang.reflect.Field;
 import java.util.*;
-import java.util.stream.Collectors;
+import java.util.function.Function;
 
 import de.twenty11.skysail.server.core.FormField;
 
@@ -18,12 +18,13 @@ public class DefaultListFieldFactory extends FieldFactory {
     }
 
     @Override
-    public List<FormField> determineFrom(SkysailServerResource<?> resource, List<Map<String, Object>> data) throws Exception {
+    public Map<String,FormField> determineFrom(SkysailServerResource<?> resource, List<Map<String, Object>> data) throws Exception {
         return ReflectionUtils.getInheritedFields(resource.getParameterizedType()).stream()
                 .filter(f -> test(resource, f))
                 .sorted((f1, f2) -> sort(resource, f1, f2))
-                .map(f -> new FormField(f, resource, (List<?>)source))//
-                .collect(Collectors.toList());
+                .map(f -> new FormField(f, resource, (List<?>)source))
+                .collect(MyCollectors.toLinkedMap(FormField::getName, Function.identity()));
+
     }
 
     private int sort(SkysailServerResource<?> resource, Field f1, Field f2) {

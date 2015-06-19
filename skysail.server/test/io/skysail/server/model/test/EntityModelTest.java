@@ -1,12 +1,8 @@
 package io.skysail.server.model.test;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertThat;
-import io.skysail.server.model.EntityModel;
-
 import java.util.*;
 
-import org.junit.*;
+import org.junit.Before;
 
 import de.twenty11.skysail.server.core.FormField;
 
@@ -19,11 +15,6 @@ public class EntityModelTest {
         formfields = new ArrayList<>();
     }
     
-    @Test
-    public void testName() {
-        EntityModel entityModel = new EntityModel(formfields);
-        assertThat(entityModel.isSubmitButtonNeeded(), is(true));
-    }
 
 //    @Test
 //    public void no_fields() {

@@ -54,11 +54,10 @@ public class ResourceModel<R extends SkysailServerResource<T>, T> {
     private final STTargetWrapper target;
     private final Class<?> parameterizedType;
 
-    private EntityModel entityModel;
+    private Map<String, FormField> fields;
 
     private String title = "Skysail";
-    private List<FormField> formfields;
-    private Object convertedSource;
+    // private Object convertedSource;
     private FavoritesService favoritesService;
 
     @Getter
@@ -124,19 +123,15 @@ public class ResourceModel<R extends SkysailServerResource<T>, T> {
 
     private void determineFormfields() {
         FieldFactory fieldFactory = FieldsFactory.getFactory(source.getEntity(), resource);
-        // log.debug("using factory '{}' for {}-Source: {}", new Object[] {
-        // fieldFactory.getClass().getSimpleName(),
-        // entity.getClass().getSimpleName(), entity });
         try {
-            formfields = fieldFactory.determineFrom(resource, rawData);
-            entityModel = new EntityModel(formfields);
+            fields = fieldFactory.determineFrom(resource, rawData);
+            // entityModel = new EntityModel(fields);
         } catch (Exception e) {
             log.error(e.getMessage(), e);
         }
     }
 
     private List<Map<String, Object>> convert() {
-        this.convertedSource = source;
         List<Map<String, Object>> result = new ArrayList<>();
         rawData.stream().forEach(row -> {
             Map<String, Object> newRow = new HashMap<>();
@@ -149,19 +144,24 @@ public class ResourceModel<R extends SkysailServerResource<T>, T> {
     }
 
     private void apply(Map<String, Object> newRow, Map<String, Object> dataRow, String columnName) {
-        newRow.put(columnName, "*"+dataRow.get(columnName));
+        FormField formField = fields.get(columnName);
+        if (formField != null) {
+            newRow.put(columnName, formField.process(source, dataRow, columnName));
+        } else {
+            newRow.put(columnName, dataRow.get(columnName));
+        }
     }
 
-    public Map<String, Object> dataFromMap(Map<String, Object> props) {
-        return entityModel.dataFromMap(props, resource);
-    }
+    // public Map<String, Object> dataFromMap(Map<String, Object> props) {
+    // return entityModel.dataFromMap(props, resource);
+    // }
 
     public List<Breadcrumb> getBreadcrumbs() {
         return new Breadcrumbs(favoritesService).create(resource);
     }
 
     public List<RepresentationLink> getRepresentations() {
-        Set<String> supportedMediaTypes = ResourceUtils.getSupportedMediaTypes(resource, resource.getCurrentEntity());
+        Set<String> supportedMediaTypes = ResourceUtils.getSupportedMediaTypes(resource, getParameterizedType());
         return supportedMediaTypes.stream().map(mediaType -> {
             return new RepresentationLink(mediaType, resource.getCurrentEntity());
         }).collect(Collectors.toList());
@@ -277,7 +277,9 @@ public class ResourceModel<R extends SkysailServerResource<T>, T> {
     }
 
     public boolean isSubmitButtonNeeded() {
-        return entityModel.isSubmitButtonNeeded();
+        return !fields.values().stream().filter(f -> {
+            return f.isSubmitField();
+        }).findFirst().isPresent();
     }
 
     public void setFavoritesService(FavoritesService favoritesService) {
@@ -296,13 +298,10 @@ public class ResourceModel<R extends SkysailServerResource<T>, T> {
         List<Link> links = listServerResource.getLinks();
         List<Class<? extends SkysailServerResource<?>>> entityResourceClass = listServerResource
                 .getAssociatedServerResources();
-        if (entityResourceClass != null && convertedSource instanceof List) {
-            List<?> sourceAsList = (List<?>) getConvertedSource();
-            for (Object object : sourceAsList) {
-                if (!(object instanceof Map)) {
-                    continue;
-                }
-                String id = guessId(object);
+        if (entityResourceClass != null) {
+            List<Map<String, Object>> sourceAsList = data;
+            for (Map<String, Object> dataRow : sourceAsList) {
+                String id = guessId(dataRow);
                 if (id == null) {
                     continue;
                 }
@@ -329,7 +328,7 @@ public class ResourceModel<R extends SkysailServerResource<T>, T> {
                             return sb.toString();
                         }).collect(Collectors.joining("&nbsp;&nbsp;"));
 
-                ((Map<String, Object>) object).put("_links", linkshtml);
+                dataRow.put("_links", linkshtml);
             }
         }
     }
@@ -365,5 +364,9 @@ public class ResourceModel<R extends SkysailServerResource<T>, T> {
             }
         }
         return localeToUse;
+    }
+
+    public List<FormField> getFormfields() {
+        return new ArrayList<FormField>(fields.values());
     }
 }

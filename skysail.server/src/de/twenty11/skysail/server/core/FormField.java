@@ -1,12 +1,15 @@
 package de.twenty11.skysail.server.core;
 
 import io.skysail.api.forms.*;
+import io.skysail.api.links.Link;
 import io.skysail.api.responses.*;
 import io.skysail.server.forms.ListView;
 import io.skysail.server.restlet.resources.SkysailServerResource;
+import io.skysail.server.utils.RequestUtils;
 
 import java.lang.reflect.*;
 import java.lang.reflect.Field;
+import java.net.URL;
 import java.util.*;
 
 import javax.validation.constraints.*;
@@ -14,22 +17,27 @@ import javax.validation.constraints.*;
 import lombok.*;
 import lombok.extern.slf4j.Slf4j;
 
+import org.restlet.Request;
 import org.restlet.resource.Resource;
 
 import de.twenty11.skysail.server.core.restlet.MessagesUtils;
+import de.twenty11.skysail.server.core.restlet.utils.CookiesUtils;
 import de.twenty11.skysail.server.um.domain.SkysailUser;
 
 /**
- * A FormField instance encapsulates (meta) information which can be used to display a
- * single field in a (web) form, or a column in a table representation.
+ * A FormField instance encapsulates (meta) information which can be used to
+ * display a single field in a (web) form, or a column in a table
+ * representation.
  * 
  * <p>
- * A FormField is constructed from a java.lang.reflect.Field, together with
- * a SkysailServerResource.
+ * A FormField is constructed from a java.lang.reflect.Field, together with a
+ * SkysailServerResource.
  * </p>
  * 
- * <p>This class will not try to determine the actual value of the field, this is
- * left to further processing.</p>
+ * <p>
+ * This class will not try to determine the actual value of the field, this is
+ * left to further processing.
+ * </p>
  *
  */
 @Slf4j
@@ -42,10 +50,9 @@ public class FormField {
 
     /** the fields (java) type. */
     private final Class<?> type;
-    
+
     /** text, textarea, radio, checkbox etc... */
     private final InputType inputType;
-
 
     private Reference referenceAnnotation;
     private io.skysail.api.forms.Field formFieldAnnotation;
@@ -53,7 +60,6 @@ public class FormField {
     private NotNull notNullAnnotation;
     private Size sizeAnnotation;
     private ListView listViewAnnotation;
-
 
     private SkysailServerResource<?> resource;
     private List<Option> selectionOptions;
@@ -66,10 +72,10 @@ public class FormField {
         type = field.getType();
         inputType = getFromFieldAnnotation(field);
         setAnnotations(field);
-        //entity = resource.getCurrentEntity();
+        // entity = resource.getCurrentEntity();
         this.resource = resource;
     }
-    
+
     /**
      * @param field
      *            from java reflection
@@ -84,7 +90,7 @@ public class FormField {
     public FormField(Field field, SkysailServerResource<?> resource, FormResponse<?> source) {
         this(field, resource);
     }
-    
+
     public FormField(Field field, SkysailServerResource<?> resource, ConstraintViolationsResponse<?> source) {
         this(field, resource);
         Set<ConstraintViolationDetails> violations = ((ConstraintViolationsResponse<?>) source).getViolations();
@@ -92,7 +98,7 @@ public class FormField {
                 .filter(v -> v.getPropertyPath().equals(field.getName())).map(v -> v.getMessage()).findFirst();
         violationMessage = validationMessage.orElse(null);
     }
-    
+
     private void setAnnotations(Field field) {
         referenceAnnotation = field.getAnnotation(Reference.class);
         formFieldAnnotation = field.getAnnotation(io.skysail.api.forms.Field.class);
@@ -242,7 +248,7 @@ public class FormField {
             method = selectionProvider.getMethod("setResource", Resource.class);
             method.invoke(selection, resource);
             selection.getSelections().entrySet().stream().forEach(entry -> {
-               options.add(new Option(entry, ""));
+                options.add(new Option(entry, ""));
             });
             selectionOptions = options;
             return options;
@@ -277,5 +283,76 @@ public class FormField {
         io.skysail.api.forms.Field annotation = fieldAnnotation.getAnnotation(io.skysail.api.forms.Field.class);
         return annotation != null ? annotation.type() : null;
     }
+
+    public Object process(SkysailResponse<?> response, Map<String, Object> dataRow, String columnName) {
+        Object object = dataRow.get(columnName);
+        if (object == null) {
+            return "";
+        }
+        if (!(object instanceof String)) {
+            return object.toString();
+        }
+        String string = (String) object;
+
+        if (response instanceof ListServerResponse) {
+            string = handleListView(string, dataRow);
+        }
+
+        return string;
+    }
+
+    private String handleListView(String string, Map<String, Object> dataRow) {
+        if (URL.class.equals(getType())) {
+            string = "<a href='" + string + "' target=\"_blank\">" + truncate(string, true) + "</a>";
+        } else if (getListViewAnnotation() != null && !getListViewAnnotation().link().equals(ListView.DEFAULT.class)) {
+
+            Class<? extends SkysailServerResource<?>> linkedResource = getListViewAnnotation().link();
+            List<Link> links = resource.getLinks();
+            String id = dataRow.get("id") != null ? dataRow.get("id").toString().replace("#", "") : null;
+            if (links != null && id != null) {
+                Optional<Link> findFirst = links.stream().filter(l -> {
+                    return linkedResource.equals(l.getCls()) && id.equals(l.getRefId());
+                }).findFirst();
+                if (findFirst.isPresent()) {
+                    if (showMobilePage(resource.getRequest())) {
+                        //props.put("_href", findFirst.get().getUri());
+                    } else {
+                        string = "<a href='" + findFirst.get().getUri() + "'>" + string + "</a>";
+                    }
+                }
+            }
+
+        } else {
+            string = truncate(string, false);
+        }
+
+        return string;
+    }
+
+    private String truncate(String string, boolean withoutHtml) {
+        if (getListViewAnnotation() == null) {
+            return string;
+        }
+        if (getListViewAnnotation().truncate() > 3) {
+            String oldValue = string;
+            if (string != null && string.length() > getListViewAnnotation().truncate()) {
+                if (withoutHtml) {
+                    return oldValue.substring(0, getListViewAnnotation().truncate() - 3) + "...";
+                }
+                return "<span title='" + oldValue + "'>"
+                        + oldValue.substring(0, getListViewAnnotation().truncate() - 3) + "...</span>";
+            }
+        }
+        return string;
+    }
+    
+    private boolean showMobilePage(Request request) {
+        if (RequestUtils.isMobile(request)) {
+            return true;
+        }
+        String page = CookiesUtils.getMainPageFromCookie(request);
+        return page != null && page.equals("indexMobile");
+    }
+
 
 }

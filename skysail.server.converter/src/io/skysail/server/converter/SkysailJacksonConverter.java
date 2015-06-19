@@ -1,6 +1,6 @@
 package io.skysail.server.converter;
 
-import io.skysail.api.responses.EntityServerResponse;
+import io.skysail.api.responses.SkysailResponse;
 
 import org.restlet.ext.jackson.JacksonConverter;
 import org.restlet.representation.*;
@@ -14,8 +14,8 @@ public class SkysailJacksonConverter extends JacksonConverter implements OsgiCon
 
     @Override
     public Representation toRepresentation(Object source, Variant target, Resource resource) {
-        if (source instanceof EntityServerResponse) {
-            return super.toRepresentation(((EntityServerResponse<?>)source).getEntity(), target, resource);
+        if (source instanceof SkysailResponse) {
+            return super.toRepresentation(((SkysailResponse<?>)source).getEntity(), target, resource);
         }
         return super.toRepresentation(source, target, resource);
     }

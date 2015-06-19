@@ -11,7 +11,7 @@ import de.twenty11.skysail.server.core.FormField;
 
 public abstract class FieldFactory {
 
-    public abstract List<FormField> determineFrom(SkysailServerResource<?> resource, List<Map<String, Object>> data) throws Exception;
+    public abstract Map<String, FormField> determineFrom(SkysailServerResource<?> resource, List<Map<String, Object>> data) throws Exception;
     
     protected boolean test(SkysailServerResource<?> resource, Field field) {
         List<String> fieldNames = resource.getFields();

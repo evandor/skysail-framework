@@ -28,7 +28,7 @@ public class PutPasswordResource extends PutEntityServerResource<ChangePasswordE
         String username = (String) SecurityUtils.getSubject().getPrincipal();
         User user = new User(username, entity.getOld());
         app.getAuthenticationService().updatePassword(user, entity.getPassword());
-        return new SkysailResponse<String>();
+        return new SkysailResponse<String>(){};
     }
 
     @Override

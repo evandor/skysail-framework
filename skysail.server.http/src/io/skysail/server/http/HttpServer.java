@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.ServerSocket;
 import java.util.*;
 import java.util.logging.Level;
+import java.util.stream.Collectors;
 
 import javax.naming.ConfigurationException;
 
@@ -15,6 +16,7 @@ import org.restlet.*;
 import org.restlet.data.Protocol;
 import org.restlet.engine.Engine;
 import org.restlet.engine.converter.ConverterHelper;
+import org.restlet.ext.jackson.JacksonConverter;
 import org.restlet.resource.ServerResource;
 import org.restlet.service.ConverterService;
 
@@ -38,7 +40,7 @@ public class HttpServer extends ServerResource implements RestletServicesProvide
     private volatile ComponentContext componentContext;
     private volatile boolean serverActive = false;
     private volatile SkysailRootApplication defaultApplication;
-    private volatile List<ConverterHelper> registeredConverters = Engine.getInstance().getRegisteredConverters();
+    private volatile List<ConverterHelper> registeredConverters;
     private volatile ConfigurationAdmin configurationAdmin;
     private volatile boolean configurationProvided = false;
 
@@ -48,6 +50,19 @@ public class HttpServer extends ServerResource implements RestletServicesProvide
 
     public HttpServer() {
         Engine.setRestletLogLevel(Level.ALL);
+        removeDefaultJacksonConverter();
+        registeredConverters = Engine.getInstance().getRegisteredConverters();
+    }
+
+    /**
+     * We add an overwritten implementation of the jackson converter, see @link {@link SkysailJacksonConverter}
+     */
+    private void removeDefaultJacksonConverter() {
+        List<ConverterHelper> converters = Engine.getInstance().getRegisteredConverters().stream().filter(converter -> {
+            return !(converter instanceof JacksonConverter);
+        }).collect(Collectors.toList());
+        Engine.getInstance().setRegisteredConverters(converters);
+        
     }
 
     @Activate

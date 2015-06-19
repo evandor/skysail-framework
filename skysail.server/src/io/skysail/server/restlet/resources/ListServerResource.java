@@ -2,7 +2,7 @@ package io.skysail.server.restlet.resources;
 
 import io.skysail.api.documentation.API;
 import io.skysail.api.links.LinkRelation;
-import io.skysail.api.responses.SkysailResponse;
+import io.skysail.api.responses.*;
 import io.skysail.server.restlet.RequestHandler;
 import io.skysail.server.services.PerformanceTimer;
 
@@ -107,14 +107,14 @@ public abstract class ListServerResource<T> extends SkysailServerResource<List<T
     // treeform, csv:broken http://stackoverflow.com/questions/24569318/writing-multi-line-csv-with-jacksonrepresentation
     // https://github.com/restlet/restlet-framework-java/issues/928
     @API(desc = "lists the entities according to the media type provided")
-    public final List<T> getEntities(Variant variant) {
+    public final ListServerResponse<T> getEntities(Variant variant) {
         Set<PerformanceTimer> perfTimer = getApplication().startPerformanceMonitoring(
                 this.getClass().getSimpleName() + ":getEntities");
         log.info("Request entry point: {} @Get('html|json|yaml|xml') with variant {}", this.getClass().getSimpleName(),
                 variant);
         List<T> response = listEntities();
         getApplication().stopPerformanceMonitoring(perfTimer);
-        return response;
+        return new ListServerResponse<T>(response);
 
         // if (SecurityFeatures.ALLOW_ORIGIN_FEATURE.isActive()) {
         // responseHeaders.add("Access-Control-Allow-Origin", "*");

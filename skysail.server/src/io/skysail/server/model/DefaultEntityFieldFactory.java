@@ -4,7 +4,7 @@ import io.skysail.server.restlet.resources.SkysailServerResource;
 import io.skysail.server.utils.ReflectionUtils;
 
 import java.lang.reflect.Field;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import lombok.NonNull;
@@ -19,7 +19,7 @@ public class DefaultEntityFieldFactory extends FieldFactory {
     }
 
     @Override
-    public List<FormField> determineFrom(SkysailServerResource<?> resource) throws Exception {
+    public List<FormField> determineFrom(SkysailServerResource<?> resource, List<Map<String, Object>> data) throws Exception {
         Class<?> cls = source.getClass();
         List<Field> inheritedFields = ReflectionUtils.getInheritedFields(cls);
         System.out.println(inheritedFields);

@@ -190,10 +190,8 @@ public abstract class SkysailServerResource<T> extends ServerResource {
         fields.stream().forEach(f -> {
 
             Class<? extends Object> entityClass = null;
-            if (f.getEntity() != null) {
-                entityClass = f.getEntity().getClass();
-            } else {
-                entityClass = f.getCls();
+            if (getCurrentEntity() != null) {
+                entityClass = getCurrentEntity().getClass();
             }
 
             String baseKey = MessagesUtils.getBaseKey(entityClass, f);

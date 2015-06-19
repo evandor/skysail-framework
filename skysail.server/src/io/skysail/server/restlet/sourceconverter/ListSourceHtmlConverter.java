@@ -9,13 +9,10 @@ import java.text.DateFormat;
 import java.util.*;
 import java.util.stream.Collectors;
 
-import org.restlet.data.MediaType;
-import org.restlet.representation.Variant;
-
 public class ListSourceHtmlConverter extends SourceHtmlConverter {
 
-    public ListSourceHtmlConverter(Object source, Variant target) {
-        super(source, target);
+    public ListSourceHtmlConverter(Object source) {
+        super(source);
     }
 
     protected Optional<Method> findHandlerMethod(Method[] methods) {
@@ -32,17 +29,8 @@ public class ListSourceHtmlConverter extends SourceHtmlConverter {
         objectMap.putAll(collect);
         return objectMap;
     }
-    
-    public boolean isCompatible() {
-        return source instanceof List && target.getMediaType().equals(MediaType.TEXT_HTML);
-    }
 
     public List<Map<String, Object>> convert(ResourceModel<SkysailServerResource<?>,?> resourceModel) {
-        
-        if (!isCompatible()) {
-            return null;//(Map<String, Object>)source;
-        }
-
         mapper.setDateFormat(DateFormat.getDateInstance(DateFormat.LONG, determineLocale(resourceModel.getResource())));
 
         List<Map<String, Object>> result = new ArrayList<>();
@@ -50,11 +38,6 @@ public class ListSourceHtmlConverter extends SourceHtmlConverter {
 
             if (object instanceof String && ((String) object).length() > 0
                     && ((String) object).substring(0, 1).equals("{")) {
-//                Map<String, Object> mapFromJson = treatAsJson((String) object, fields, resource);
-//                if (mapFromJson != null) {
-//                    result.add(mapFromJson);
-//                }
-                //continue;
                 throw new IllegalStateException("didnt expect to still get here");
             }
 

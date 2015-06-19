@@ -29,7 +29,7 @@ debug(source, messages, model) ::= <<
                   <div class="panel-heading" role="tab" id="headingResourceModel">
                     <h4 class="panel-title">
                       <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseResourceModel" 
-                      	aria-expanded="false" aria-controls="collapseResourceModel">ResourceModel&lt;$model.parameterizedType$&gt;</a>
+                      	aria-expanded="false" aria-controls="collapseResourceModel">ResourceModel ($model.parameterizedType$)</a>
                     </h4>
                   </div>
                   <div id="collapseResourceModel" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingResourceModel">
@@ -39,7 +39,11 @@ debug(source, messages, model) ::= <<
                     	<h4>Formfields</h4>
                     	<ol>$model.formfields:{ field | <li>$field$</li>}$</ol>
                     	<h4>EntityModel</h4>
-                    	<ol>$model.entityModel.fieldDescriptors$</ol>
+                    	<ol>$model.entityModel.fieldDescriptors: {descriptor | <li>$descriptor$</li>}$</ol>
+                        <h4>Data</h4>
+                        <ol>$model.data: {row | <li>$row.keys: {key | <b>$key$</b>: $row.(key)$ }$</li>}$</ol>
+                        <h4>Raw Data</h4>
+                        <ol>$model.rawData: {row | <li>$row.keys: {key | <b>$key$</b>: $row.(key)$ }$</li>}$</ol>
                     </div>
                   </div>
                 </div>

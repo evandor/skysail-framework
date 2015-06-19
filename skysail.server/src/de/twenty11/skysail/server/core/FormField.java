@@ -21,7 +21,7 @@ import de.twenty11.skysail.server.um.domain.SkysailUser;
 
 /**
  * A FormField instance encapsulates (meta) information which can be used to display a
- * single field in a (web) form, table or entity representation.
+ * single field in a (web) form, or a column in a table representation.
  * 
  * <p>
  * A FormField is constructed from a java.lang.reflect.Field, together with
@@ -33,46 +33,30 @@ import de.twenty11.skysail.server.um.domain.SkysailUser;
  *
  */
 @Slf4j
-@ToString(of = { "name", "type", "entity" })
+@ToString(of = { "name", "type", "inputType" })
+@Getter
 public class FormField {
 
     /** the fields name or identifier. */
-    @Getter
     private final String name;
 
-//    /**
-//     * the value to be passed to the GUI renderer.
-//     * 
-//     * <p>
-//     * the value is not set from outside, but derived from the passed resource.
-//     * </p>
-//     */
-//    @Getter
-//    private String value;
-
+    /** the fields (java) type. */
+    private final Class<?> type;
+    
     /** text, textarea, radio, checkbox etc... */
     private final InputType inputType;
 
-    @Getter
-    private Class<?> type;
-
-    @Getter
-    private Object entity;
-
-    @Getter
-    private Class<?> cls;
 
     private Reference referenceAnnotation;
     private io.skysail.api.forms.Field formFieldAnnotation;
-    private SkysailServerResource<?> resource;
-    private List<Option> selectionOptions;
-
-    @Getter
-    private ListView listViewAnnotation;
-
     private Submit submitAnnotation;
     private NotNull notNullAnnotation;
     private Size sizeAnnotation;
+    private ListView listViewAnnotation;
+
+
+    private SkysailServerResource<?> resource;
+    private List<Option> selectionOptions;
 
     @Getter
     private String violationMessage;
@@ -82,7 +66,7 @@ public class FormField {
         type = field.getType();
         inputType = getFromFieldAnnotation(field);
         setAnnotations(field);
-        entity = resource.getCurrentEntity();
+        //entity = resource.getCurrentEntity();
         this.resource = resource;
     }
     
@@ -95,23 +79,20 @@ public class FormField {
      */
     public FormField(Field field, SkysailServerResource<?> resource, List<?> source) {
         this(field, resource);
-        scan(field);
     }
 
+    public FormField(Field field, SkysailServerResource<?> resource, FormResponse<?> source) {
+        this(field, resource);
+    }
+    
     public FormField(Field field, SkysailServerResource<?> resource, ConstraintViolationsResponse<?> source) {
         this(field, resource);
         Set<ConstraintViolationDetails> violations = ((ConstraintViolationsResponse<?>) source).getViolations();
         Optional<String> validationMessage = violations.stream()
                 .filter(v -> v.getPropertyPath().equals(field.getName())).map(v -> v.getMessage()).findFirst();
         violationMessage = validationMessage.orElse(null);
-        scan(field);
     }
     
-    public FormField(Field field, SkysailServerResource<?> resource, FormResponse<?> source) {
-        this(field, resource);
-        scan(field);
-    }
-
     private void setAnnotations(Field field) {
         referenceAnnotation = field.getAnnotation(Reference.class);
         formFieldAnnotation = field.getAnnotation(io.skysail.api.forms.Field.class);
@@ -121,54 +102,27 @@ public class FormField {
         sizeAnnotation = field.getAnnotation(Size.class);
     }
 
-    private void scan(Field field) {
-        if (entity == null) {
-            return;
-        }
-
-//        Method[] methods = entity.getClass().getMethods();
-//        String method = "get" + field.getName().substring(0, 1).toUpperCase() + field.getName().substring(1);
-//        Arrays.stream(methods).filter(m -> m.getName().equals(method)).findFirst().ifPresent(m -> {
-//            try {
-//                Object invocationResult = m.invoke(entity, new Object[] {});
-//                if (invocationResult == null) {
-//                    value = "";
-//                } else if (invocationResult instanceof String) {
-//                    value = (String) invocationResult;
-//                } else if (invocationResult instanceof Date) {
-//                    this.type = Date.class;
-//                    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-//                    value = sdf.format(invocationResult);
-//                } else {
-//                    value = invocationResult.toString();
-//                }
-//            } catch (Exception e) {
-//                log.error(e.getMessage(), e);
-//            }
-//        });
-    }
-
     public String getInputType() {
         return inputType.name().toLowerCase();
     }
 
     public String getMessageKey() {
-        return MessagesUtils.getBaseKey(cls != null ? cls : getEntity().getClass(), this) + ".desc";
+        return MessagesUtils.getBaseKey(resource.getCurrentEntity().getClass(), this) + ".desc";
     }
 
     public String getNameKey() {
-        if (cls == null && getEntity() == null) {
+        if (resource.getCurrentEntity() == null) {
             return name;
         }
-        return MessagesUtils.getBaseKey(cls != null ? cls : getEntity().getClass(), this);
+        return MessagesUtils.getBaseKey(resource.getCurrentEntity().getClass(), this);
     }
 
     public String getPlaceholderKey() {
-        return MessagesUtils.getBaseKey(cls != null ? cls : getEntity().getClass(), this) + ".placeholder";
+        return MessagesUtils.getBaseKey(resource.getCurrentEntity().getClass(), this) + ".placeholder";
     }
 
     public String getTitleKey() {
-        return MessagesUtils.getBaseKey(cls != null ? cls : getEntity().getClass(), this) + ".title";
+        return MessagesUtils.getBaseKey(resource.getCurrentEntity().getClass(), this) + ".title";
     }
 
     public String getHref() {
@@ -288,7 +242,7 @@ public class FormField {
             method = selectionProvider.getMethod("setResource", Resource.class);
             method.invoke(selection, resource);
             selection.getSelections().entrySet().stream().forEach(entry -> {
-               // options.add(new Option(entry, value));
+               options.add(new Option(entry, ""));
             });
             selectionOptions = options;
             return options;
@@ -324,18 +278,4 @@ public class FormField {
         return annotation != null ? annotation.type() : null;
     }
 
-//    private void handleMap(Field field, Map<String, Object> entityMap) {
-//        Object val = entityMap.get(field.getName());
-//        if (val == null) {
-//            value = "---";
-//        } else if (val instanceof String) {
-//            value = (String) val;
-//        } else if (val instanceof Date) {
-//            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-//            value = (String) sdf.format(value);
-//        } else {
-//            value = val.toString();
-//        }
-//        type = field.getType();
-//    }
 }

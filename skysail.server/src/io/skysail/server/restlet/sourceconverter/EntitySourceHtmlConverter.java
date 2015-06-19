@@ -7,12 +7,10 @@ import io.skysail.server.restlet.resources.SkysailServerResource;
 import java.text.DateFormat;
 import java.util.Map;
 
-import org.restlet.representation.Variant;
-
 public class EntitySourceHtmlConverter extends SourceHtmlConverter {
 
-    public EntitySourceHtmlConverter(Object source, Variant target) {
-        super(source, target);
+    public EntitySourceHtmlConverter(Object source) {
+        super(source);
     }
 
     @SuppressWarnings("unchecked")

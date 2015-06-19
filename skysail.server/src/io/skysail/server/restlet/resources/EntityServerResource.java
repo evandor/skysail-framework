@@ -2,8 +2,7 @@ package io.skysail.server.restlet.resources;
 
 import io.skysail.api.documentation.API;
 import io.skysail.api.links.LinkRelation;
-import io.skysail.api.responses.FormResponse;
-import io.skysail.api.responses.SkysailResponse;
+import io.skysail.api.responses.*;
 import io.skysail.server.restlet.RequestHandler;
 import io.skysail.server.restlet.filter.AbstractResourceFilter;
 import io.skysail.server.services.PerformanceTimer;
@@ -11,19 +10,13 @@ import io.skysail.server.services.PerformanceTimer;
 import java.text.ParseException;
 import java.util.Set;
 
-import javax.validation.ConstraintValidatorFactory;
-import javax.validation.ConstraintViolation;
-import javax.validation.Validator;
+import javax.validation.*;
 
-import org.restlet.data.Form;
-import org.restlet.data.Method;
-import org.restlet.resource.Delete;
-import org.restlet.resource.Get;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.restlet.data.*;
+import org.restlet.resource.*;
+import org.slf4j.*;
 
-import de.twenty11.skysail.server.core.restlet.ResourceContextId;
-import de.twenty11.skysail.server.core.restlet.ResponseWrapper;
+import de.twenty11.skysail.server.core.restlet.*;
 
 /**
  * Abstract base class for skysail server-side resources representing a single
@@ -136,12 +129,12 @@ public abstract class EntityServerResource<T> extends SkysailServerResource<T> {
      */
     @Get("html|json|eventstream|treeform|txt|csv|yaml|mailto")
     @API(desc = "retrieves the entity defined by the url")
-    public T getEntity2() {
+    public EntityServerResponse<T> getEntity2() {
         Set<PerformanceTimer> perfTimer = getApplication().startPerformanceMonitoring(this.getClass().getSimpleName() + ":getEntity");
         logger.info("Request entry point: {} @Get('html|json|eventstream|treeform|txt')", this.getClass().getSimpleName());
         T entity = getEntity3();
         getApplication().stopPerformanceMonitoring(perfTimer);
-        return entity;
+        return new EntityServerResponse<>(entity);
     }
     
     @Get("htmlform")
@@ -152,7 +145,7 @@ public abstract class EntityServerResource<T> extends SkysailServerResource<T> {
 
     @Delete("x-www-form-urlencoded:html|html|json")
     @API(desc = "deletes the entity defined in the url")
-    public T deleteEntity() {
+    public EntityServerResponse<T> deleteEntity() {
         Set<PerformanceTimer> perfTimer = getApplication().startPerformanceMonitoring(this.getClass().getSimpleName() + ":deleteEntity");
         logger.info("Request entry point: {} @Delete('x-www-form-urlencoded:html|html|json')", this.getClass()
                 .getSimpleName());
@@ -161,7 +154,7 @@ public abstract class EntityServerResource<T> extends SkysailServerResource<T> {
         AbstractResourceFilter<EntityServerResource<T>, T> handler = requestHandler.createForEntity(Method.DELETE);
         T entity = handler.handle(this, getResponse()).getEntity();
         getApplication().stopPerformanceMonitoring(perfTimer);
-        return entity;
+        return new EntityServerResponse<>(entity);
     }
     
     protected T getEntity3() {

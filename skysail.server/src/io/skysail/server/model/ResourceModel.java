@@ -4,9 +4,9 @@ import io.skysail.api.favorites.FavoritesService;
 import io.skysail.api.links.Link;
 import io.skysail.api.responses.*;
 import io.skysail.server.restlet.resources.*;
-import io.skysail.server.restlet.sourceconverter.*;
 import io.skysail.server.utils.*;
 
+import java.text.DateFormat;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -17,6 +17,8 @@ import org.restlet.data.*;
 import org.restlet.representation.Variant;
 import org.restlet.util.Series;
 
+import com.fasterxml.jackson.databind.*;
+
 import de.twenty11.skysail.server.core.FormField;
 import de.twenty11.skysail.server.core.restlet.ResourceContextId;
 import de.twenty11.skysail.server.services.MenuItemProvider;
@@ -25,16 +27,18 @@ import de.twenty11.skysail.server.services.MenuItemProvider;
  * The model of the resource from which the html representation is derived.
  *
  * <p>
- * The typical setup for a skysail client is something like single-page application, i.e
- * the client initiates all the request to the resources it needs and builds up the GUI 
- * from that. Subsequent requests might alter only parts of the GUI.
+ * The typical setup for a skysail client is something like single-page
+ * application, i.e the client initiates all the request to the resources it
+ * needs and builds up the GUI from that. Subsequent requests might alter only
+ * parts of the GUI.
  * </p>
  * 
  * <p>
- * The purpose of this class is a little bit different, as it aims to be more generic. All 
- * relevant data (links, the current user, pagination information, the entities fields, their 
- * metadata and associated entities and so on) can be accessed, so that a complete 
- * "one-time-request" representation of the current resource can be generated from this information.
+ * The purpose of this class is a little bit different, as it aims to be more
+ * generic. All relevant rawData (links, the current user, pagination
+ * information, the entities fields, their metadata and associated entities and
+ * so on) can be accessed, so that a complete "one-time-request" representation
+ * of the current resource can be generated from this information.
  * </p>
  *
  * @param <R>
@@ -46,11 +50,12 @@ import de.twenty11.skysail.server.services.MenuItemProvider;
 public class ResourceModel<R extends SkysailServerResource<T>, T> {
 
     private final R resource;
-    private final Object entity;
+    private final SkysailResponse<?> source;
     private final STTargetWrapper target;
     private final Class<?> parameterizedType;
-    
+
     private EntityModel entityModel;
+
     private String title = "Skysail";
     private List<FormField> formfields;
     private Object convertedSource;
@@ -59,23 +64,98 @@ public class ResourceModel<R extends SkysailServerResource<T>, T> {
     @Getter
     private STServicesWrapper services;
 
+    private volatile ObjectMapper mapper = new ObjectMapper();
+
     /**
-     * @param resource a SkysailServerResource
-     * @param source one of: entity (like Todo) | List<Todo> | FormResponse<Todo> | ConstraintViolationResponse<Todo>
-     * @param target text/html
+     * raw, original rawData, always as List, even for only one entry.
      */
-    public ResourceModel(R resource, Object source, Variant target) {
+    private List<Map<String, Object>> rawData;
+
+    /**
+     * converted data (truncated, augemented, formatted, translated ...)
+     */
+    private List<Map<String, Object>> data;
+
+    /**
+     * @param resource
+     *            a SkysailServerResource
+     * @param source
+     *            one of: entity (like Todo) | List<Todo> | FormResponse<Todo> |
+     *            ConstraintViolationResponse<Todo>
+     * @param target
+     *            text/html
+     */
+    public ResourceModel(R resource, SkysailResponse<?> source, Variant target) {
+
+        mapper.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false);
+        mapper.setDateFormat(DateFormat.getDateInstance(DateFormat.LONG, determineLocale(resource)));
+
+        rawData = getData(source);
+
         this.resource = resource;
-        this.entity = source;
+        this.source = source;
         this.target = new STTargetWrapper(target);
+
         parameterizedType = resource.getParameterizedType();
+
         determineFormfields();
+
+        data = convert();
+
+        addAssociatedLinks();
+    }
+
+    @SuppressWarnings("unchecked")
+    private List<Map<String, Object>> getData(Object source) {
+        List<Map<String, Object>> result = new ArrayList<>();
+        if (source instanceof ListServerResponse) {
+            for (Object object : ((ListServerResponse<?>) source).getEntity()) {
+                result.add((Map<String, Object>) mapper.convertValue(object, Map.class));
+            }
+        } else if (source instanceof EntityServerResponse) {
+            result.add((Map<String, Object>) mapper.convertValue(((EntityServerResponse<?>) source).getEntity(),
+                    Map.class));
+
+        } else if (source instanceof FormResponse) {
+            result.add((Map<String, Object>) mapper.convertValue(((FormResponse<?>) source).getEntity(), Map.class));
+        }
+        return result;
+    }
+
+    private void determineFormfields() {
+        FieldFactory fieldFactory = FieldsFactory.getFactory(source.getEntity(), resource);
+        // log.debug("using factory '{}' for {}-Source: {}", new Object[] {
+        // fieldFactory.getClass().getSimpleName(),
+        // entity.getClass().getSimpleName(), entity });
+        try {
+            formfields = fieldFactory.determineFrom(resource, rawData);
+            entityModel = new EntityModel(formfields);
+        } catch (Exception e) {
+            log.error(e.getMessage(), e);
+        }
+    }
+
+    private List<Map<String, Object>> convert() {
+        this.convertedSource = source;
+        List<Map<String, Object>> result = new ArrayList<>();
+        rawData.stream().forEach(row -> {
+            Map<String, Object> newRow = new HashMap<>();
+            result.add(newRow);
+            row.keySet().stream().forEach(columnName -> {
+                apply(newRow, row, columnName);
+            });
+        });
+        return result;
+    }
+
+    private void apply(Map<String, Object> newRow, Map<String, Object> dataRow, String columnName) {
+        newRow.put(columnName, "*"+dataRow.get(columnName));
     }
 
     public Map<String, Object> dataFromMap(Map<String, Object> props) {
-        return entityModel.dataFromMap(props , resource);
+        return entityModel.dataFromMap(props, resource);
     }
-    
+
     public List<Breadcrumb> getBreadcrumbs() {
         return new Breadcrumbs(favoritesService).create(resource);
     }
@@ -89,12 +169,12 @@ public class ResourceModel<R extends SkysailServerResource<T>, T> {
 
     public List<Link> getLinks() throws Exception {
         return resource.getAuthorizedLinks();
-    }    
-    
+    }
+
     public String getAppNavTitle() {
         return resource.getFromContext(ResourceContextId.APPLICATION_NAVIGATION_TITLE);
     }
-    
+
     public String getPagination() {
         Series<Header> headers = HeadersUtils.getHeaders(resource.getResponse());
         String pagesAsString = headers.getFirstValue(HeadersUtils.PAGINATION_PAGES);
@@ -116,20 +196,25 @@ public class ResourceModel<R extends SkysailServerResource<T>, T> {
         sb.append("<ul class='pagination'>");
         String cssClass = (1 == page) ? "class='disabled'" : "";
 
-        sb.append("<li " + cssClass + "><a href='?").append(SkysailServerResource.PAGE_PARAM_NAME).append("=" + (page - 1)
-                + "'><span aria-hidden='true'>&laquo;</span><span class='sr-only'>Previous</span></a></li>");
+        sb.append("<li " + cssClass + "><a href='?")
+                .append(SkysailServerResource.PAGE_PARAM_NAME)
+                .append("=" + (page - 1)
+                        + "'><span aria-hidden='true'>&laquo;</span><span class='sr-only'>Previous</span></a></li>");
         for (int i = 1; i <= pages; i++) {
             cssClass = (i == page) ? " class='active'" : "";
-            sb.append("<li" + cssClass + "><a href='?").append(SkysailServerResource.PAGE_PARAM_NAME).append("=" + i + "'>" + i + "</a></li>");
+            sb.append("<li" + cssClass + "><a href='?").append(SkysailServerResource.PAGE_PARAM_NAME)
+                    .append("=" + i + "'>" + i + "</a></li>");
         }
         cssClass = (pages == page) ? " class='disabled'" : "";
-        sb.append("<li" + cssClass + "><a href='?").append(SkysailServerResource.PAGE_PARAM_NAME).append("=" + (page + 1)
-                + "'><span aria-hidden='true'>&raquo;</span><span class='sr-only'>Next</span></a></li>");
+        sb.append("<li" + cssClass + "><a href='?")
+                .append(SkysailServerResource.PAGE_PARAM_NAME)
+                .append("=" + (page + 1)
+                        + "'><span aria-hidden='true'>&raquo;</span><span class='sr-only'>Next</span></a></li>");
         sb.append("</ul>");
         sb.append("</nav>");
         return sb.toString();
     }
-    
+
     public String getStatus() {
         Status status = resource.getStatus();
         StringBuilder sb = new StringBuilder();
@@ -143,7 +228,7 @@ public class ResourceModel<R extends SkysailServerResource<T>, T> {
         sb.append("<div class='panel ").append(panelClass).append("'>");
         sb.append("  <div class='panel-heading' role='tab' id='headingStatus'>");
         sb.append("    <h4 class='panel-title'>");
-        sb.append("      <a data-toggle='collapse' data-parent='#accordion' href='#collapseStatus' aria-expanded='false' aria-controls='collapseStatus'>");
+        sb.append("      <a rawData-toggle='collapse' rawData-parent='#accordion' href='#collapseStatus' aria-expanded='false' aria-controls='collapseStatus'>");
         sb.append("        Http Status Code: ").append(status.getCode());
         sb.append("      </a>");
         sb.append("    </h4>");
@@ -154,7 +239,7 @@ public class ResourceModel<R extends SkysailServerResource<T>, T> {
         sb.append("</div>");
         return sb.toString();
     }
-    
+
     public String getClassname() {
         return resource.getClass().getName();
     }
@@ -176,20 +261,12 @@ public class ResourceModel<R extends SkysailServerResource<T>, T> {
     }
 
     public boolean isForm() {
-        if (entity instanceof FormResponse) {
-            return ((SkysailResponse<?>) entity).isForm();
-        }
-        if (entity instanceof ConstraintViolationsResponse) {
-            return ((ConstraintViolationsResponse<?>) entity).isForm();
-        }
-        return false;
+        return source.isForm();
     }
-    
+
     public boolean isList() {
-        return entity instanceof List;
+        return source.getEntity() instanceof List;
     }
-
-
 
     public boolean isPostEntityServerResource() {
         return resource instanceof PostEntityServerResource;
@@ -203,28 +280,6 @@ public class ResourceModel<R extends SkysailServerResource<T>, T> {
         return entityModel.isSubmitButtonNeeded();
     }
 
-    
-    private void determineFormfields() {
-        FieldFactory fieldFactory = FieldsFactory.getFactory(entity, resource);
-        log.debug("using factory '{}' for {}-Source: {}", new Object[] { fieldFactory.getClass().getSimpleName(),
-                entity.getClass().getSimpleName(), entity });
-        try {
-            formfields = fieldFactory.determineFrom(resource);
-            entityModel = new EntityModel(formfields);
-        } catch (Exception e) {
-            log.error(e.getMessage(),e);
-        }
-    }
-
-    public void convert() {
-        Variant variant = target.getTarget();
-        if (entity instanceof List) {
-            this.convertedSource = new ListSourceHtmlConverter(entity, variant).convert((ResourceModel<SkysailServerResource<?>,?>)this);
-        } else {
-            this.convertedSource = new EntitySourceHtmlConverter(entity, variant).convert((ResourceModel<SkysailServerResource<?>,?>)this);
-        }
-    }
-
     public void setFavoritesService(FavoritesService favoritesService) {
         this.favoritesService = favoritesService;
     }
@@ -233,8 +288,7 @@ public class ResourceModel<R extends SkysailServerResource<T>, T> {
         this.services = new STServicesWrapper(menuProviders, null, resource);
     }
 
-    
-    public void addAssociatedLinks() {
+    private void addAssociatedLinks() {
         if (!(getResource() instanceof ListServerResource)) {
             return;
         }
@@ -279,7 +333,7 @@ public class ResourceModel<R extends SkysailServerResource<T>, T> {
             }
         }
     }
-    
+
     private String guessId(Object object) {
         if (!(object instanceof Map))
             return "";
@@ -296,5 +350,20 @@ public class ResourceModel<R extends SkysailServerResource<T>, T> {
         }
     }
 
-
+    protected Locale determineLocale(SkysailServerResource<?> resource) {
+        if (resource.getRequest() == null) {
+            return Locale.getDefault();
+        }
+        List<Preference<Language>> acceptedLanguages = resource.getRequest().getClientInfo().getAcceptedLanguages();
+        Locale localeToUse = Locale.getDefault();
+        if (!acceptedLanguages.isEmpty()) {
+            String[] languageSplit = acceptedLanguages.get(0).getMetadata().getName().split("-");
+            if (languageSplit.length == 1) {
+                localeToUse = new Locale(languageSplit[0]);
+            } else if (languageSplit.length == 2) {
+                localeToUse = new Locale(languageSplit[0], languageSplit[1]);
+            }
+        }
+        return localeToUse;
+    }
 }

@@ -7,7 +7,6 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 import org.restlet.data.*;
-import org.restlet.representation.Variant;
 
 import com.fasterxml.jackson.databind.*;
 
@@ -16,12 +15,10 @@ public class SourceHtmlConverter {
     protected volatile ObjectMapper mapper = new ObjectMapper();
     
     protected Object source;
-    protected Variant target;
 
-    public SourceHtmlConverter(Object source, Variant target) {
+    public SourceHtmlConverter(Object source) {
         mapper.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false);
         this.source = source;
-        this.target = target;
     }
 
     protected Optional<Method> findHandlerMethod(Method[] methods) {
@@ -40,6 +37,9 @@ public class SourceHtmlConverter {
     }
 
     protected Locale determineLocale(SkysailServerResource<?> resource) {
+        if (resource.getRequest() == null) {
+            return Locale.getDefault();
+        }
         List<Preference<Language>> acceptedLanguages = resource.getRequest().getClientInfo().getAcceptedLanguages();
         Locale localeToUse = Locale.getDefault();
         if (!acceptedLanguages.isEmpty()) {

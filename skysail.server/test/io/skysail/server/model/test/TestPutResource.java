@@ -1,18 +1,19 @@
 package io.skysail.server.model.test;
 
 import io.skysail.api.responses.SkysailResponse;
-import io.skysail.server.restlet.resources.PutEntityServerResource;
+import io.skysail.server.restlet.resources.PostEntityServerResource;
 
-public class TestPutResource extends PutEntityServerResource<TestEntity>{
+public class TestPutResource extends PostEntityServerResource<TestEntity>{
 
     @Override
-    public SkysailResponse<?> updateEntity(TestEntity entity) {
+    public TestEntity createEntityTemplate() {
         return null;
     }
 
     @Override
-    public TestEntity getEntity() {
+    public SkysailResponse<?> addEntity(TestEntity entity) {
         return null;
     }
+
 
 }

@@ -4,7 +4,7 @@ renderTable(source, converter, messages, model) ::= <<
   
   <table class="table table-striped">
     <tr>$renderHeader(model.formfields, converter)$<th>Actions</th></tr>
-    $source:{ row | $renderRow(model.formfields,row,i)$}$
+    $model.data:{ row | $renderRow(model.formfields,row,i)$}$
   </table>
 >>
 

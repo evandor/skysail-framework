@@ -23,7 +23,7 @@ public class DefaultListFieldFactoryTest {
     @SneakyThrows
     public void testName() {
         TestEntity source = new TestEntity();
-        List<FormField> formfields = new DefaultListFieldFactory(source).determineFrom(new TestListResource());
+        List<FormField> formfields = new DefaultListFieldFactory(source).determineFrom(new TestListResource(), null);
         assertThat(formfields.size(), is(2));
         assertThat(formfields.get(0).getName(), is(equalTo("stringField")));
         assertThat(formfields.get(1).getName(), is(equalTo("stringField_Textarea")));

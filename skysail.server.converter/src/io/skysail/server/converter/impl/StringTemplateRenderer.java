@@ -2,6 +2,7 @@ package io.skysail.server.converter.impl;
 
 import io.skysail.api.favorites.FavoritesService;
 import io.skysail.api.peers.PeersProvider;
+import io.skysail.api.responses.*;
 import io.skysail.server.app.SkysailApplication;
 import io.skysail.server.converter.*;
 import io.skysail.server.converter.stringtemplate.STGroupBundleDir;
@@ -48,9 +49,7 @@ public class StringTemplateRenderer {
             SkysailServerResource<?> resource) {
         
         @SuppressWarnings({ "rawtypes", "unchecked" })
-        ResourceModel<SkysailServerResource<?>,?> resourceModel = new ResourceModel(resource, entity, target);
-        resourceModel.convert();
-        resourceModel.addAssociatedLinks();
+        ResourceModel<SkysailServerResource<?>,?> resourceModel = new ResourceModel(resource, (SkysailResponse<?>)entity, target);
         
         resourceModel.setFavoritesService(favoritesService);
         resourceModel.setMenuItemProviders(menuProviders);
@@ -61,7 +60,6 @@ public class StringTemplateRenderer {
         
         ST index = getStringTemplateIndex(resource, stGroup);
         
-        //addAssociatedLinks(resourceModel);
         addSubstitutions(resourceModel, index);
         
         checkForInspection(resource, index);
@@ -153,8 +151,8 @@ public class StringTemplateRenderer {
         decl.add("user", new STUserWrapper(SecurityUtils.getSubject(), peersProvider, installationFromCookie));
         decl.add("converter", this);
         
-        if (resourceModel.getEntity() instanceof List) {
-            decl.add("source", new STListSourceWrapper((List<Object>) resourceModel.getConvertedSource()));
+        if (resourceModel.getSource() instanceof ListServerResponse) {
+            decl.add("source", new STListSourceWrapper((List<Object>) ((SkysailResponse<?>)resourceModel.getConvertedSource()).getEntity()));
         } else {
             decl.add("source", new STSourceWrapper(resourceModel.getConvertedSource()));
         }

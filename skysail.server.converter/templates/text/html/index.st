@@ -1,4 +1,4 @@
-index(user, messages, source, converter, model) ::= <<
+index(user, messages, converter, model) ::= <<
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -157,10 +157,10 @@ index(user, messages, source, converter, model) ::= <<
         </div>
       </div>
       
-$mainContent(user, converter, messages, source, model)$
+$mainContent(user, converter, messages, model)$
       
       $if(converter.debug)$
-        $debug(source, messages, model)$
+        $debug(messages, model)$
       $endif$ 
       
     </div>

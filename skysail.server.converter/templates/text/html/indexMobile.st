@@ -1,4 +1,4 @@
-indexMobile(user, messages, source, converter, model) ::= <<
+indexMobile(user, messages, converter, model) ::= <<
 <!doctype html>
 <html>
 <head>

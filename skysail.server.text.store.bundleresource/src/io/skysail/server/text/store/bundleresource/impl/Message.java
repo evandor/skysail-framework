@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 
 import lombok.Getter;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.google.common.base.Splitter;
 import com.google.common.collect.Iterables;
 
@@ -23,8 +24,10 @@ public class Message {
 
     private Set<String> availableStores;
 
+    @JsonIgnore
     private Splitter splitter = Splitter.on(".").trimResults();
 
+    @JsonIgnore
     private TranslationRenderService preferredRenderer;
 
     public Message(String msgKey) {

@@ -9,7 +9,7 @@ import de.twenty11.skysail.server.core.FormField;
 public class NoFieldFactory extends FieldFactory {
 
     @Override
-    public Map<String,FormField> determineFrom(SkysailServerResource<?> resource, List<Map<String, Object>> data) {
+    public Map<String,FormField> determineFrom(SkysailServerResource<?> resource) {
         return Collections.emptyMap();
     }
 

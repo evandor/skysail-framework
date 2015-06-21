@@ -52,7 +52,7 @@ public class FormField {
     private final Class<?> type;
 
     /** text, textarea, radio, checkbox etc... */
-    private final InputType inputType;
+    private final InputType inputType; // optional for a reference
 
     private Reference referenceAnnotation;
     private io.skysail.api.forms.Field formFieldAnnotation;
@@ -72,23 +72,7 @@ public class FormField {
         type = field.getType();
         inputType = getFromFieldAnnotation(field);
         setAnnotations(field);
-        // entity = resource.getCurrentEntity();
         this.resource = resource;
-    }
-
-    /**
-     * @param field
-     *            from java reflection
-     * @param resource
-     *            the resource which is about to being represented
-     * @param source
-     */
-    public FormField(Field field, SkysailServerResource<?> resource, List<?> source) {
-        this(field, resource);
-    }
-
-    public FormField(Field field, SkysailServerResource<?> resource, FormResponse<?> source) {
-        this(field, resource);
     }
 
     public FormField(Field field, SkysailServerResource<?> resource, ConstraintViolationsResponse<?> source) {
@@ -109,7 +93,7 @@ public class FormField {
     }
 
     public String getInputType() {
-        return inputType.name().toLowerCase();
+        return inputType != null ? inputType.name().toLowerCase() : "";
     }
 
     public String getMessageKey() {

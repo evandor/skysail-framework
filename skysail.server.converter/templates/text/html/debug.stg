@@ -1,4 +1,4 @@
-debug(source, messages, model) ::= <<
+debug(messages, model) ::= <<
   <div class="row">
     <div class="col-md-12">
       <br><br>
@@ -34,10 +34,8 @@ debug(source, messages, model) ::= <<
                   </div>
                   <div id="collapseResourceModel" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingResourceModel">
                     <div class="panel-body">
-                    	<h4>Resource</h4>
-                    	<p>$model.resource$</p>
                     	<h4>Formfields</h4>
-                    	<ol>$model.formfields.keys: { key | <li>$model.formfields.(key)$</li>}$</ol>
+                    	<ol>$model.formfields: { field | <li>$field$</li>}$</ol>
                     	<h4>EntityModel</h4>
                     	<ol>$model.entityModel.fieldDescriptors: {descriptor | <li>$descriptor$</li>}$</ol>
                         <h4>Data</h4>
@@ -81,17 +79,6 @@ debug(source, messages, model) ::= <<
                   </div>
                 </div>
                 
-                <div class="panel panel-default">
-                  <div class="panel-heading" role="tab" id="headingSource">
-                    <h4 class="panel-title">
-                      <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseSource" aria-expanded="false" aria-controls="collapseSource">Source</a>
-                    </h4>
-                  </div>
-                  <div id="collapseSource" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingSource">
-                    <div class="panel-body">$source$</div>
-                  </div>
-                </div>
-                  
                 <div class="panel panel-default">
                   <div class="panel-heading" role="tab" id="headingTarget">
                     <h4 class="panel-title">

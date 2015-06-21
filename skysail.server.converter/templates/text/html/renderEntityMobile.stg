@@ -1,4 +1,4 @@
-renderEntity(user, source, model) ::= <<
+renderEntity(user, model) ::= <<
   <table class="table">
     $model.formfields: {field | $renderRow(field)$}$
   </table>

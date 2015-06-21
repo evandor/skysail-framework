@@ -1,4 +1,4 @@
-index(user, messages, source, converter, model) ::= <<
+index(user, messages, converter, model) ::= <<
 
 <!DOCTYPE html>
 <html lang="en-gb" dir="ltr">

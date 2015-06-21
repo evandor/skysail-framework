@@ -3,7 +3,7 @@ package io.skysail.server.model;
 import io.skysail.api.responses.*;
 import io.skysail.server.restlet.resources.SkysailServerResource;
 
-import java.util.*;
+import java.util.List;
 
 public class FieldsFactory {
 
@@ -12,13 +12,13 @@ public class FieldsFactory {
             return new NoFieldFactory();
         }
         if (source instanceof List) {
-            return listFactory((List<?>) source, resource);
+            return new DefaultListFieldFactory();
         } else if (source instanceof ConstraintViolationsResponse) {
-            return entityFactory((ConstraintViolationsResponse<?>)source);
+            return entityFactory((ConstraintViolationsResponse<?>) source);
         } else if (source instanceof FormResponse) {
-            return entityFactoryForForm((FormResponse<?>)source);
+            return entityFactoryForForm((FormResponse<?>) source);
         } else {
-            return new DefaultEntityFieldFactory(source);
+            return new DefaultEntityFieldFactory(source.getClass());
         }
     }
 
@@ -26,22 +26,9 @@ public class FieldsFactory {
         Object entity = ((SkysailResponse<?>) source).getEntity();
         return new SkysailResponseEntityFieldFactory(source, entity.getClass());
     }
-    
-    private static FieldFactory entityFactoryForForm(FormResponse<?> source) {
-        return new FormResponseEntityFieldFactory(source, source.getEntity());
-    }
 
-    private static FieldFactory listFactory(List<?> source, SkysailServerResource<?> resource) {
-        Class<?> parameterType = resource.getParameterizedType();
-        if (parameterType.equals(Map.class)) {
-            // return new ListMapFieldFactory();
-            throw new UnsupportedOperationException();
-        } else if (parameterType.isEnum()) {
-            // return new ListEnumFieldFactory();
-            throw new UnsupportedOperationException();
-        } else {
-            return new DefaultListFieldFactory(source);
-        }
+    private static FieldFactory entityFactoryForForm(FormResponse<?> source) {
+        return new FormResponseEntityFieldFactory(source.getEntity().getClass());
     }
 
 }

@@ -29,14 +29,9 @@ public class Campaign  implements Serializable, Identifiable {
 	    
     
     @Field
-    private String name;;
-
-    @Field
     private String name;
     
     
-    @Reference(cls = Request.class)
-    private String Request;
     
         public void setName(String value) {
         this.name = value;
@@ -45,22 +40,7 @@ public class Campaign  implements Serializable, Identifiable {
     public String getName() {
         return name;
     }
-;
-    public void setName(String value) {
-        this.name = value;
-    }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setRequest(String value) {
-        this.Request = value;
-    }
-
-    public String getRequest() {
-        return Request;
-    }
 
     
 }

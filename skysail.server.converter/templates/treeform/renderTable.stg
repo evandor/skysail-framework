@@ -1,4 +1,4 @@
-renderTable(resource, source, fields) ::= <<
+renderTable(resource, fields) ::= <<
   <table>
     $source:{ row | $renderRow(row,i)$}$
   </table>

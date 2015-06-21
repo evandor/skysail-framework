@@ -89,6 +89,7 @@ public class I18nApplication extends SkysailApplication implements ApplicationPr
         }
         List<Translation> translations = TranslationUtils.getAllTranslations(translationStores, key, resource);
         if (translations.size() == 0) {
+            // TODO fixme
             return new Message(key, "");            
         }
         return new Message(key, translations.get(0), getPreferedRenderer(rendererServices, translations.get(0)));

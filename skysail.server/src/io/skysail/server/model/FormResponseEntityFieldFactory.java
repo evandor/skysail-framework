@@ -1,25 +1,19 @@
 package io.skysail.server.model;
 
-import io.skysail.api.responses.FormResponse;
 import io.skysail.server.restlet.resources.SkysailServerResource;
 import io.skysail.server.utils.*;
 
-import java.util.*;
+import java.util.Map;
 import java.util.function.Function;
 
-import lombok.NonNull;
 import de.twenty11.skysail.server.core.FormField;
 
 public class FormResponseEntityFieldFactory extends FieldFactory {
 
     private Class<? extends Object> cls;
-    private FormResponse<?> source;
-    private Object entity;
 
-    public FormResponseEntityFieldFactory(@NonNull FormResponse<?> source, Object entity) {
-        this.source = source;
-        this.entity = entity;
-        this.cls = entity != null ? entity.getClass() : null;
+    public FormResponseEntityFieldFactory(Class<?> cls) {
+        this.cls = cls;
     }
 
     /**
@@ -28,10 +22,10 @@ public class FormResponseEntityFieldFactory extends FieldFactory {
      * "test" method) a new FormField is created. 
      */
     @Override
-    public Map<String,FormField> determineFrom(SkysailServerResource<?> resource, List<Map<String, Object>> data) throws Exception {
+    public Map<String,FormField> determineFrom(SkysailServerResource<?> resource) throws Exception {
         return ReflectionUtils.getInheritedFields(cls).stream()
                 .filter(f -> test(resource, f))
-                .map(f -> new FormField(f, resource, source))//, source.getEntity()))
+                .map(f -> new FormField(f, resource))
                 .collect(MyCollectors.toLinkedMap(FormField::getName, Function.identity()));
     }
 

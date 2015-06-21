@@ -1,36 +1,35 @@
-//package io.skysail.server.model;
-//
-//import io.skysail.server.restlet.resources.SkysailServerResource;
-//
-//import java.util.*;
-//
-//import lombok.*;
-//import de.twenty11.skysail.server.core.FormField;
-//
-//@ToString
-//public class EntityModel {
-//
-//    @Getter
-//    private List<FieldDescriptor> fieldDescriptors = new ArrayList<>();
-//    
-//    public EntityModel(List<FormField> formfields) {
-//        formfields.stream().forEach(f -> {
-//            fieldDescriptors.add(new FieldDescriptor(f));
-//        });
-//    }
-//
-//    public Map<String, Object> dataFromMap(Map<String, Object> props, SkysailServerResource<?> resource) {
-//        Map<String,Object> result = new HashMap<>();
-//        fieldDescriptors.stream().forEach(f -> {
-//           result.putAll(f.dataFromMap(props, resource));  
-//        });
-//        return result;
-//    }
-//
-//    public boolean isSubmitButtonNeeded() {
-//        return !fieldDescriptors.stream().filter(f -> {return f.isSubmitField();}).findFirst().isPresent();
-//    }
-//    
-//    
-//
-//}
+package io.skysail.server.model;
+
+import io.skysail.server.restlet.resources.SkysailServerResource;
+
+import java.util.Map;
+
+import lombok.ToString;
+import lombok.extern.slf4j.Slf4j;
+import de.twenty11.skysail.server.core.FormField;
+
+@ToString
+@Slf4j
+public class EntityModel<R extends SkysailServerResource<?>> {
+
+    private Object entity;
+    private R resource;
+    
+    private Map<String, FormField> fields;
+
+    public EntityModel(Object entity, R resource) {
+        this.entity = entity;
+        this.resource = resource;
+        determineFormfields();
+    }
+
+    private void determineFormfields() {
+        FieldFactory fieldFactory = FieldsFactory.getFactory(entity, resource);
+        try {
+            fields = fieldFactory.determineFrom(resource);
+        } catch (Exception e) {
+            log.error(e.getMessage(), e);
+        }
+    }
+
+}

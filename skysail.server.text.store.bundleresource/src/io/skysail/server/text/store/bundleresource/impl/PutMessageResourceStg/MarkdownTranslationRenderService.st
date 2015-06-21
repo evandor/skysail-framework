@@ -1,4 +1,4 @@
-MarkdownTranslationRenderService(user, messages, source, converter, model) ::= <<
+MarkdownTranslationRenderService(user, messages, converter, model) ::= <<
 <!DOCTYPE html>
 <html lang="en-gb" dir="ltr">
 
@@ -85,14 +85,14 @@ MarkdownTranslationRenderService(user, messages, source, converter, model) ::= <
         </div>
         <div class="row">
         
-        <b>TranslationStore</b>: $first(model.formfields).entity.storeChooser$<br>
+        <b>TranslationStore</b>: $first(model.data).storeChooser$<br>
         <b>TranslationRenderer</b>: Markdown<br>
-        <b>redirecting to</b> '$source.entity.redirectBackTo$'
+        <b>redirecting to</b> '$model.redirectBackTo$'
         
-        <form role="form" action=".?method=PUT&_redirectTo=$source.entity.redirectBackTo$" method="POST">
+        <form role="form" action=".?method=PUT&_redirectTo=$model.redirectBackTo$" method="POST">
             <div class="form-group">
-                <label for="exampleInputEmail1">Markdown [<a href='http://daringfireball.net/projects/markdown/syntax' target='_blank'">?</a>] for $first(model.formfields).entity.msgKey$</label>
-                <textarea data-uk-htmleditor="{maxsplitsize:600, markdown:true}" name="msg">$first(model.formfields).entity.msg$</textarea>
+                <label for="exampleInputEmail1">Markdown [<a href='http://daringfireball.net/projects/markdown/syntax' target='_blank'">?</a>] for $first(model.data).msgKey$</label>
+                <textarea data-uk-htmleditor="{maxsplitsize:600, markdown:true}" name="msg">$first(model.data).msg$</textarea>
             </div>
             <button type="submit" class="btn btn-default">Update</button>
         </form>

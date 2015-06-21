@@ -193,14 +193,14 @@ public abstract class PostEntityServerResource<T> extends SkysailServerResource<
      */
     @Post("x-www-form-urlencoded:html")
     @API(desc = "generic POST for x-www-form-urlencoded")
-    public Object post(Form form, Variant variant) {
+    public SkysailResponse<T> post(Form form, Variant variant) {
         Set<PerformanceTimer> perfTimer = getApplication().startPerformanceMonitoring(this.getClass().getSimpleName() + ":postForm");
         ResponseWrapper<T> handledRequest = doPost(form, variant);
         getApplication().stopPerformanceMonitoring(perfTimer);
         if (handledRequest.getConstraintViolationsResponse() != null) {
             return handledRequest.getConstraintViolationsResponse();
         }
-        return handledRequest.getEntity();
+        return new FormResponse<T>(handledRequest.getEntity(), ".");
     }
 
     private ResponseWrapper<T> doPost(Form form, Variant variant) {

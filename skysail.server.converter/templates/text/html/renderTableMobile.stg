@@ -1,9 +1,9 @@
-renderTableMobile(source, fields, converter, messages, model) ::= <<
+renderTableMobile(fields, converter, messages, model) ::= <<
 
   $model.pagination$
 
   <ul data-role="listview" data-inset="true" data-filter="false">
-    $source:{ row | $renderRow(model.formfields,row,i)$}$
+    $model.data:{ row | $renderRow(model.formfields,row,i)$}$
   </ul>
 >>
 

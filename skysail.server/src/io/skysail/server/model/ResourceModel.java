@@ -1,5 +1,6 @@
 package io.skysail.server.model;
 
+import io.skysail.api.domain.Identifiable;
 import io.skysail.api.favorites.FavoritesService;
 import io.skysail.api.links.Link;
 import io.skysail.api.responses.*;
@@ -13,7 +14,9 @@ import java.util.stream.Collectors;
 import lombok.*;
 import lombok.extern.slf4j.Slf4j;
 
+import org.apache.commons.lang.StringUtils;
 import org.restlet.data.*;
+import org.restlet.engine.resource.VariantInfo;
 import org.restlet.representation.Variant;
 import org.restlet.util.Series;
 
@@ -49,55 +52,45 @@ import de.twenty11.skysail.server.services.MenuItemProvider;
 @ToString
 public class ResourceModel<R extends SkysailServerResource<T>, T> {
 
+    private volatile ObjectMapper mapper = new ObjectMapper();
+
     private final R resource;
-    private final SkysailResponse<?> source;
+    private final SkysailResponse<?> response;
     private final STTargetWrapper target;
     private final Class<?> parameterizedType;
 
+    private EntityModel<R> rootEntity;
+    
     private Map<String, FormField> fields;
 
+    private List<Map<String, Object>> rawData; // raw, original rawData, always as List, even for only one entry.
+    private List<Map<String, Object>> data; // converted data (truncated, augemented, formatted, translated ...)
+    
     private String title = "Skysail";
-    // private Object convertedSource;
     private FavoritesService favoritesService;
-
-    @Getter
     private STServicesWrapper services;
 
-    private volatile ObjectMapper mapper = new ObjectMapper();
-
-    /**
-     * raw, original rawData, always as List, even for only one entry.
-     */
-    private List<Map<String, Object>> rawData;
-
-    /**
-     * converted data (truncated, augemented, formatted, translated ...)
-     */
-    private List<Map<String, Object>> data;
-
-    /**
-     * @param resource
-     *            a SkysailServerResource
-     * @param source
-     *            one of: entity (like Todo) | List<Todo> | FormResponse<Todo> |
-     *            ConstraintViolationResponse<Todo>
-     * @param target
-     *            text/html
-     */
+    public ResourceModel(R resource, SkysailResponse<?> response) {
+        this(resource, response, new VariantInfo(MediaType.TEXT_HTML));
+    }
+    
     public ResourceModel(R resource, SkysailResponse<?> source, Variant target) {
 
         mapper.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false);
+        mapper.configure(SerializationFeature.FAIL_ON_EMPTY_BEANS, false);
         mapper.setDateFormat(DateFormat.getDateInstance(DateFormat.LONG, determineLocale(resource)));
 
         rawData = getData(source);
 
         this.resource = resource;
-        this.source = source;
+        this.response = source;
         this.target = new STTargetWrapper(target);
 
         parameterizedType = resource.getParameterizedType();
 
         determineFormfields();
+        
+        rootEntity = new EntityModel<R>(response.getEntity(), resource);
 
         data = convert();
 
@@ -109,23 +102,22 @@ public class ResourceModel<R extends SkysailServerResource<T>, T> {
         List<Map<String, Object>> result = new ArrayList<>();
         if (source instanceof ListServerResponse) {
             for (Object object : ((ListServerResponse<?>) source).getEntity()) {
-                result.add((Map<String, Object>) mapper.convertValue(object, Map.class));
+                result.add((Map<String, Object>) mapper.convertValue(object, LinkedHashMap.class));
             }
         } else if (source instanceof EntityServerResponse) {
             result.add((Map<String, Object>) mapper.convertValue(((EntityServerResponse<?>) source).getEntity(),
-                    Map.class));
+                    LinkedHashMap.class));
 
         } else if (source instanceof FormResponse) {
-            result.add((Map<String, Object>) mapper.convertValue(((FormResponse<?>) source).getEntity(), Map.class));
+            result.add((Map<String, Object>) mapper.convertValue(((FormResponse<?>) source).getEntity(), LinkedHashMap.class));
         }
         return result;
     }
 
     private void determineFormfields() {
-        FieldFactory fieldFactory = FieldsFactory.getFactory(source.getEntity(), resource);
+        FieldFactory fieldFactory = FieldsFactory.getFactory(response.getEntity(), resource);
         try {
-            fields = fieldFactory.determineFrom(resource, rawData);
-            // entityModel = new EntityModel(fields);
+            fields = fieldFactory.determineFrom(resource);
         } catch (Exception e) {
             log.error(e.getMessage(), e);
         }
@@ -146,15 +138,11 @@ public class ResourceModel<R extends SkysailServerResource<T>, T> {
     private void apply(Map<String, Object> newRow, Map<String, Object> dataRow, String columnName) {
         FormField formField = fields.get(columnName);
         if (formField != null) {
-            newRow.put(columnName, formField.process(source, dataRow, columnName));
+            newRow.put(columnName, formField.process(response, dataRow, columnName));
         } else {
             newRow.put(columnName, dataRow.get(columnName));
         }
     }
-
-    // public Map<String, Object> dataFromMap(Map<String, Object> props) {
-    // return entityModel.dataFromMap(props, resource);
-    // }
 
     public List<Breadcrumb> getBreadcrumbs() {
         return new Breadcrumbs(favoritesService).create(resource);
@@ -261,11 +249,11 @@ public class ResourceModel<R extends SkysailServerResource<T>, T> {
     }
 
     public boolean isForm() {
-        return source.isForm();
+        return response.isForm();
     }
 
     public boolean isList() {
-        return source.getEntity() instanceof List;
+        return response.getEntity() instanceof List;
     }
 
     public boolean isPostEntityServerResource() {
@@ -350,7 +338,7 @@ public class ResourceModel<R extends SkysailServerResource<T>, T> {
     }
 
     protected Locale determineLocale(SkysailServerResource<?> resource) {
-        if (resource.getRequest() == null) {
+        if (resource.getRequest() == null || resource.getRequest().getClientInfo() == null) {
             return Locale.getDefault();
         }
         List<Preference<Language>> acceptedLanguages = resource.getRequest().getClientInfo().getAcceptedLanguages();
@@ -369,4 +357,50 @@ public class ResourceModel<R extends SkysailServerResource<T>, T> {
     public List<FormField> getFormfields() {
         return new ArrayList<FormField>(fields.values());
     }
+    
+    public boolean isConstraintViolationsResponse() {
+        return response instanceof ConstraintViolationsResponse;
+    }
+    
+    public String getClasslevelViolationMessage() {
+        if (!isConstraintViolationsResponse()) {
+            return null;
+        }
+        Set<ConstraintViolationDetails> violations = ((ConstraintViolationsResponse<?>)response).getViolations();
+        String msg = violations.stream().filter(v -> {
+            return v.getPropertyPath().equals("");
+        }).map(v -> {
+            return v.getMessage();
+        }).collect(Collectors.joining(", "));
+        return StringUtils.isEmpty(msg) ? null : msg;
+    }
+    
+    
+
+    public String getFormTarget() {
+        if (!(response instanceof FormResponse)) {
+            return null;
+        }
+        return ((FormResponse<?>) response).getTarget();
+    }
+
+    public String getDeleteFormTarget() {
+        if (!(response instanceof FormResponse)) {
+            return null;
+        }
+        FormResponse<?> formResponse = (FormResponse<?>) response;
+        Object entity = formResponse.getEntity();
+        if (entity instanceof Identifiable) {
+            return "../" + ((Identifiable)entity).getId().replace("#", "");
+        }
+        return "../" + ((FormResponse<?>) response).getId();
+    }
+
+    public String getRedirectBackTo() {
+        if (response instanceof FormResponse) {
+            return ((FormResponse<?>) response).getRedirectBackTo();
+        }
+        return null;
+    }
+
 }

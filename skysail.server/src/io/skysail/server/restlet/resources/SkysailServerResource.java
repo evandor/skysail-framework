@@ -50,7 +50,7 @@ import de.twenty11.skysail.server.core.restlet.*;
  * </p>
  */
 @Slf4j
-@ToString(exclude = { "beanUtilsBean" })
+@ToString(exclude = { "beanUtilsBean","linkheader" })
 public abstract class SkysailServerResource<T> extends ServerResource {
 
     private static final String DATE_PATTERN = "yyyy-MM-dd";

@@ -1,4 +1,4 @@
-showForm(resource, source,fields, messages) ::= <<
+showForm(resource,fields, messages) ::= <<
 <table>
     
     <br>

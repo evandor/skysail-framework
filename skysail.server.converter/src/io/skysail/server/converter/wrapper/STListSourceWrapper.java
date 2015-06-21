@@ -40,12 +40,7 @@ public class STListSourceWrapper implements List<Object> {
         return null;
     }
 
-    public String getRedirectBackTo() {
-        if (source instanceof FormResponse) {
-            return ((FormResponse<?>) source).getRedirectBackTo();
-        }
-        return null;
-    }
+   
 
     @Override
     public int size() {

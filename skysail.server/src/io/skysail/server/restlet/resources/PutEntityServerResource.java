@@ -156,7 +156,7 @@ public abstract class PutEntityServerResource<T> extends SkysailServerResource<T
 
     @Put("x-www-form-urlencoded:html|json")
     @API(desc = "generic PUT for x-www-form-urlencoded")
-    public Object put(Form form, Variant variant) {
+    public SkysailResponse<T> put(Form form, Variant variant) {
         Set<PerformanceTimer> perfTimer = getApplication().startPerformanceMonitoring(this.getClass().getSimpleName() + ":put");
         log.info("Request entry point: {} @Put('x-www-form-urlencoded:html|json')", this.getClass().getSimpleName());
         if (form != null) {
@@ -170,7 +170,7 @@ public abstract class PutEntityServerResource<T> extends SkysailServerResource<T
         if (handledRequest.getConstraintViolationsResponse() != null) {
             return handledRequest.getConstraintViolationsResponse();
         }
-        return handledRequest.getEntity();
+        return new FormResponse<T>(handledRequest.getEntity(),".");
     }
 
     @Override

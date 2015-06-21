@@ -1,4 +1,4 @@
-renderEntityInfo(source, fields, messages, model) ::= <<
+renderEntityInfo(fields, messages, model) ::= <<
   $if (model.postEntityServerResource)$
         
   $elseif (model.putEntityServerResource)$

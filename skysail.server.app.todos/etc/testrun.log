@@ -1,11 +1,171 @@
 DEBUG d.t.skysail.server.db.orientdb.OrientGraphDbService - activating io.skysail.server.testsupport.TestDb
 DEBUG d.t.skysail.server.db.orientdb.OrientGraphDbService - registering class 'class io.skysail.server.app.todos.todos.Todo' @ orientDB
 DEBUG d.t.skysail.server.db.orientdb.OrientGraphDbService - registering class 'class io.skysail.server.app.todos.TodoList' @ orientDB
-INFO  i.s.server.restlet.resources.PostEntityServerResource - Request entry point: PostListResource$$EnhancerByMockitoWithCGLIB$$aff5994b @Post('json')
-INFO  i.s.server.restlet.resources.PostEntityServerResource - Request entry point: PostListResource$$EnhancerByMockitoWithCGLIB$$aff5994b @Post('x-www-form-urlencoded:html|json|xml')
-INFO  i.s.server.restlet.resources.PostEntityServerResource - calling post(Form), media types '[]'
+INFO  de.twenty11.skysail.server.db.orientdb.impl.Persister - setting owner=admin [class java.lang.String]
+INFO  de.twenty11.skysail.server.db.orientdb.impl.Persister - setting name=list_9fjkmjkan13mvndfviq28ju2nb [class java.lang.String]
+INFO  de.twenty11.skysail.server.db.orientdb.impl.Persister - setting owner=admin [class java.lang.String]
+INFO  de.twenty11.skysail.server.db.orientdb.impl.Persister - setting list=#13:0 [class java.lang.String]
+INFO  de.twenty11.skysail.server.db.orientdb.impl.Persister - setting title=title_5ufpao5vrmqskql4hk1ordc40v [class java.lang.String]
+INFO  de.twenty11.skysail.server.db.orientdb.impl.Persister - setting status=NEW [class io.skysail.server.app.todos.todos.status.Status]
+INFO  i.s.server.restlet.resources.PutEntityServerResource - Request entry point: PutTodoResource$$EnhancerByMockitoWithCGLIB$$2e8ab5fd @Put('x-www-form-urlencoded:html|json')
 DEBUG org.jboss.logging - Logging Provider: org.jboss.logging.Slf4jLoggerProvider
 INFO  org.hibernate.validator.internal.util.Version - HV000001: Hibernate Validator 5.0.1.Final
+DEBUG o.h.v.i.engine.resolver.DefaultTraversableResolver - Found javax.persistence.Persistence on classpath containing 'getPersistenceUtil'. Assuming JPA 2 environment. Trying to instantiate JPA aware TraversableResolver
+DEBUG o.h.v.i.engine.resolver.DefaultTraversableResolver - Instantiated JPA aware TraversableResolver of type org.hibernate.validator.internal.engine.resolver.JPATraversableResolver.
+DEBUG o.hibernate.validator.internal.xml.ValidationXmlParser - Trying to load META-INF/validation.xml for XML based Validator configuration.
+INFO  o.hibernate.validator.internal.xml.ValidationXmlParser - HV000007: META-INF/validation.xml found. Parsing XML based configuration.
+DEBUG o.h.v.i.engine.resolver.DefaultTraversableResolver - Found javax.persistence.Persistence on classpath containing 'getPersistenceUtil'. Assuming JPA 2 environment. Trying to instantiate JPA aware TraversableResolver
+DEBUG o.h.v.i.engine.resolver.DefaultTraversableResolver - Instantiated JPA aware TraversableResolver of type org.hibernate.validator.internal.engine.resolver.JPATraversableResolver.
+INFO  o.h.v.internal.xml.ValidationBootstrapParameters - HV000005: Using de.twenty11.skysail.server.validation.MyValidationTraversableResolver as traversable resolver.
+DEBUG i.skysail.server.restlet.filter.ExceptionCatchingFilter - entering ExceptionCatchingFilter#doHandle
+DEBUG io.skysail.server.restlet.filter.AbstractResourceFilter - next filter in chain: ExtractStandardQueryParametersResourceFilter
+DEBUG io.skysail.server.restlet.filter.AbstractResourceFilter - next filter in chain: CheckInvalidInputFilter
+DEBUG i.skysail.server.restlet.filter.CheckInvalidInputFilter - entering CheckInvalidInputFilter#doHandle
+DEBUG io.skysail.server.restlet.filter.AbstractResourceFilter - next filter in chain: FormDataExtractingFilter
+DEBUG i.s.server.restlet.filter.FormDataExtractingFilter - entering FormDataExtractingFilter#doHandle
+DEBUG io.skysail.server.restlet.filter.AbstractResourceFilter - next filter in chain: CheckBusinessViolationsFilter
+DEBUG i.s.server.restlet.filter.CheckBusinessViolationsFilter - entering CheckBusinessViolationsFilter#doHandle
+DEBUG io.skysail.server.restlet.filter.AbstractResourceFilter - next filter in chain: OptionalEncryptionFilter
+DEBUG io.skysail.server.restlet.filter.AbstractResourceFilter - next filter in chain: UpdateEntityFilter
+DEBUG io.skysail.server.restlet.filter.UpdateEntityFilter - entering UpdateEntityFilter#doHandle
+DEBUG io.skysail.server.restlet.filter.AbstractResourceFilter - next filter in chain: EntityWasAddedFilter
+DEBUG io.skysail.server.restlet.filter.EntityWasAddedFilter - entering EntityWasAddedFilter#doHandle
+DEBUG io.skysail.server.restlet.filter.AbstractResourceFilter - next filter in chain: AddLinkheadersFilter
+DEBUG io.skysail.server.restlet.filter.AbstractResourceFilter - next filter in chain: PutRedirectGetFilter
+WARN  io.skysail.server.utils.LinkUtils - problem with linkheader for resource ListsResource; no routeBuilder was found.
+DEBUG d.t.skysail.server.db.orientdb.OrientGraphDbService - activating io.skysail.server.testsupport.TestDb
+DEBUG d.t.skysail.server.db.orientdb.OrientGraphDbService - registering class 'class io.skysail.server.app.todos.todos.Todo' @ orientDB
+DEBUG d.t.skysail.server.db.orientdb.OrientGraphDbService - registering class 'class io.skysail.server.app.todos.TodoList' @ orientDB
+INFO  de.twenty11.skysail.server.db.orientdb.impl.Persister - setting owner=admin [class java.lang.String]
+INFO  de.twenty11.skysail.server.db.orientdb.impl.Persister - setting name=list_cp8ii040tdckij9lhod3mfskp0 [class java.lang.String]
+INFO  i.s.server.restlet.resources.PostEntityServerResource - Request entry point: PostTodoResource$$EnhancerByMockitoWithCGLIB$$13523c34 @Post('x-www-form-urlencoded:html|json|xml')
+INFO  i.s.server.restlet.resources.PostEntityServerResource - calling post(Form), media types '[]'
+DEBUG o.h.v.i.engine.resolver.DefaultTraversableResolver - Found javax.persistence.Persistence on classpath containing 'getPersistenceUtil'. Assuming JPA 2 environment. Trying to instantiate JPA aware TraversableResolver
+DEBUG o.h.v.i.engine.resolver.DefaultTraversableResolver - Instantiated JPA aware TraversableResolver of type org.hibernate.validator.internal.engine.resolver.JPATraversableResolver.
+DEBUG o.hibernate.validator.internal.xml.ValidationXmlParser - Trying to load META-INF/validation.xml for XML based Validator configuration.
+INFO  o.hibernate.validator.internal.xml.ValidationXmlParser - HV000007: META-INF/validation.xml found. Parsing XML based configuration.
+DEBUG o.h.v.i.engine.resolver.DefaultTraversableResolver - Found javax.persistence.Persistence on classpath containing 'getPersistenceUtil'. Assuming JPA 2 environment. Trying to instantiate JPA aware TraversableResolver
+DEBUG o.h.v.i.engine.resolver.DefaultTraversableResolver - Instantiated JPA aware TraversableResolver of type org.hibernate.validator.internal.engine.resolver.JPATraversableResolver.
+INFO  o.h.v.internal.xml.ValidationBootstrapParameters - HV000005: Using de.twenty11.skysail.server.validation.MyValidationTraversableResolver as traversable resolver.
+DEBUG i.skysail.server.restlet.filter.ExceptionCatchingFilter - entering ExceptionCatchingFilter#doHandle
+DEBUG io.skysail.server.restlet.filter.AbstractResourceFilter - next filter in chain: ExtractStandardQueryParametersResourceFilter
+DEBUG io.skysail.server.restlet.filter.AbstractResourceFilter - next filter in chain: CheckInvalidInputFilter
+DEBUG i.skysail.server.restlet.filter.CheckInvalidInputFilter - entering CheckInvalidInputFilter#doHandle
+DEBUG io.skysail.server.restlet.filter.AbstractResourceFilter - next filter in chain: FormDataExtractingFilter
+DEBUG i.s.server.restlet.filter.FormDataExtractingFilter - entering FormDataExtractingFilter#doHandle
+DEBUG io.skysail.server.restlet.filter.AbstractResourceFilter - next filter in chain: CheckBusinessViolationsFilter
+DEBUG i.s.server.restlet.filter.CheckBusinessViolationsFilter - entering CheckBusinessViolationsFilter#doHandle
+DEBUG io.skysail.server.restlet.filter.AbstractResourceFilter - next filter in chain: OptionalEncryptionFilter
+DEBUG io.skysail.server.restlet.filter.AbstractResourceFilter - next filter in chain: PersistEntityFilter
+DEBUG io.skysail.server.restlet.filter.PersistEntityFilter - entering PersistEntityFilter#doHandle
+INFO  de.twenty11.skysail.server.db.orientdb.impl.Persister - setting owner=admin [class java.lang.String]
+INFO  de.twenty11.skysail.server.db.orientdb.impl.Persister - setting created=Sun Jun 21 06:26:12 CEST 2015 [class java.util.Date]
+INFO  de.twenty11.skysail.server.db.orientdb.impl.Persister - setting importance=50 [class java.lang.Integer]
+INFO  de.twenty11.skysail.server.db.orientdb.impl.Persister - setting title=title_c0ubs2i9qnddhcfiltvt4psqc8 [class java.lang.String]
+INFO  de.twenty11.skysail.server.db.orientdb.impl.Persister - setting elapseTime=15 [class java.lang.Integer]
+INFO  de.twenty11.skysail.server.db.orientdb.impl.Persister - setting due=Sun Jun 28 00:00:00 CEST 2015 [class java.util.Date]
+INFO  de.twenty11.skysail.server.db.orientdb.impl.Persister - setting urgency=55 [class java.lang.Integer]
+INFO  de.twenty11.skysail.server.db.orientdb.impl.Persister - setting rank=1 [class java.lang.Integer]
+INFO  de.twenty11.skysail.server.db.orientdb.impl.Persister - setting startDate=Sat Jun 13 00:00:00 CEST 2015 [class java.util.Date]
+INFO  de.twenty11.skysail.server.db.orientdb.impl.Persister - setting status=NEW [class io.skysail.server.app.todos.todos.status.Status]
+DEBUG io.skysail.server.restlet.filter.AbstractResourceFilter - next filter in chain: EntityWasAddedFilter
+DEBUG io.skysail.server.restlet.filter.EntityWasAddedFilter - entering EntityWasAddedFilter#doHandle
+DEBUG io.skysail.server.restlet.filter.AbstractResourceFilter - next filter in chain: AddLinkheadersFilter
+DEBUG io.skysail.server.restlet.filter.AbstractResourceFilter - next filter in chain: PostRedirectGetFilter
+WARN  io.skysail.server.utils.LinkUtils - problem with linkheader for resource TodosResource; no routeBuilder was found.
+DEBUG d.t.skysail.server.db.orientdb.OrientGraphDbService - registering class 'class io.skysail.server.app.todos.todos.Todo' @ orientDB
+DEBUG d.t.skysail.server.db.orientdb.OrientGraphDbService - registering class 'class io.skysail.server.app.todos.TodoList' @ orientDB
+INFO  de.twenty11.skysail.server.db.orientdb.impl.Persister - setting owner=admin [class java.lang.String]
+INFO  de.twenty11.skysail.server.db.orientdb.impl.Persister - setting name=list_mukk77ctq3t5hq8u7pkd5g1lr6 [class java.lang.String]
+INFO  i.s.server.restlet.resources.PostEntityServerResource - Request entry point: PostTodoResource$$EnhancerByMockitoWithCGLIB$$13523c34 @Post('x-www-form-urlencoded:html|json|xml')
+INFO  i.s.server.restlet.resources.PostEntityServerResource - calling post(Form), media types '[]'
+DEBUG o.h.v.i.engine.resolver.DefaultTraversableResolver - Found javax.persistence.Persistence on classpath containing 'getPersistenceUtil'. Assuming JPA 2 environment. Trying to instantiate JPA aware TraversableResolver
+DEBUG o.h.v.i.engine.resolver.DefaultTraversableResolver - Instantiated JPA aware TraversableResolver of type org.hibernate.validator.internal.engine.resolver.JPATraversableResolver.
+DEBUG o.hibernate.validator.internal.xml.ValidationXmlParser - Trying to load META-INF/validation.xml for XML based Validator configuration.
+INFO  o.hibernate.validator.internal.xml.ValidationXmlParser - HV000007: META-INF/validation.xml found. Parsing XML based configuration.
+DEBUG o.h.v.i.engine.resolver.DefaultTraversableResolver - Found javax.persistence.Persistence on classpath containing 'getPersistenceUtil'. Assuming JPA 2 environment. Trying to instantiate JPA aware TraversableResolver
+DEBUG o.h.v.i.engine.resolver.DefaultTraversableResolver - Instantiated JPA aware TraversableResolver of type org.hibernate.validator.internal.engine.resolver.JPATraversableResolver.
+INFO  o.h.v.internal.xml.ValidationBootstrapParameters - HV000005: Using de.twenty11.skysail.server.validation.MyValidationTraversableResolver as traversable resolver.
+DEBUG i.skysail.server.restlet.filter.ExceptionCatchingFilter - entering ExceptionCatchingFilter#doHandle
+DEBUG io.skysail.server.restlet.filter.AbstractResourceFilter - next filter in chain: ExtractStandardQueryParametersResourceFilter
+DEBUG io.skysail.server.restlet.filter.AbstractResourceFilter - next filter in chain: CheckInvalidInputFilter
+DEBUG i.skysail.server.restlet.filter.CheckInvalidInputFilter - entering CheckInvalidInputFilter#doHandle
+DEBUG io.skysail.server.restlet.filter.AbstractResourceFilter - next filter in chain: FormDataExtractingFilter
+DEBUG i.s.server.restlet.filter.FormDataExtractingFilter - entering FormDataExtractingFilter#doHandle
+DEBUG io.skysail.server.restlet.filter.AbstractResourceFilter - next filter in chain: CheckBusinessViolationsFilter
+DEBUG i.s.server.restlet.filter.CheckBusinessViolationsFilter - entering CheckBusinessViolationsFilter#doHandle
+DEBUG io.skysail.server.restlet.filter.AbstractResourceFilter - next filter in chain: OptionalEncryptionFilter
+DEBUG io.skysail.server.restlet.filter.AbstractResourceFilter - next filter in chain: PersistEntityFilter
+DEBUG io.skysail.server.restlet.filter.PersistEntityFilter - entering PersistEntityFilter#doHandle
+INFO  de.twenty11.skysail.server.db.orientdb.impl.Persister - setting owner=admin [class java.lang.String]
+INFO  de.twenty11.skysail.server.db.orientdb.impl.Persister - setting created=Sun Jun 21 06:26:12 CEST 2015 [class java.util.Date]
+INFO  de.twenty11.skysail.server.db.orientdb.impl.Persister - setting importance=50 [class java.lang.Integer]
+INFO  de.twenty11.skysail.server.db.orientdb.impl.Persister - setting title=title_6cs5bmfue936ad3974ghb33911 [class java.lang.String]
+INFO  de.twenty11.skysail.server.db.orientdb.impl.Persister - setting due=Tue Dec 01 00:00:00 CET 2099 [class java.util.Date]
+INFO  de.twenty11.skysail.server.db.orientdb.impl.Persister - setting urgency=0 [class java.lang.Integer]
+INFO  de.twenty11.skysail.server.db.orientdb.impl.Persister - setting rank=1 [class java.lang.Integer]
+INFO  de.twenty11.skysail.server.db.orientdb.impl.Persister - setting status=NEW [class io.skysail.server.app.todos.todos.status.Status]
+DEBUG io.skysail.server.restlet.filter.AbstractResourceFilter - next filter in chain: EntityWasAddedFilter
+DEBUG io.skysail.server.restlet.filter.EntityWasAddedFilter - entering EntityWasAddedFilter#doHandle
+DEBUG io.skysail.server.restlet.filter.AbstractResourceFilter - next filter in chain: AddLinkheadersFilter
+DEBUG io.skysail.server.restlet.filter.AbstractResourceFilter - next filter in chain: PostRedirectGetFilter
+WARN  io.skysail.server.utils.LinkUtils - problem with linkheader for resource TodosResource; no routeBuilder was found.
+DEBUG d.t.skysail.server.db.orientdb.OrientGraphDbService - registering class 'class io.skysail.server.app.todos.todos.Todo' @ orientDB
+DEBUG d.t.skysail.server.db.orientdb.OrientGraphDbService - registering class 'class io.skysail.server.app.todos.TodoList' @ orientDB
+INFO  de.twenty11.skysail.server.db.orientdb.impl.Persister - setting owner=admin [class java.lang.String]
+INFO  de.twenty11.skysail.server.db.orientdb.impl.Persister - setting name=list_nli6kbs97umrpnipkugotmmof [class java.lang.String]
+INFO  i.s.server.restlet.resources.PostEntityServerResource - Request entry point: PostTodoResource$$EnhancerByMockitoWithCGLIB$$13523c34 @Post('x-www-form-urlencoded:html|json|xml')
+INFO  i.s.server.restlet.resources.PostEntityServerResource - calling post(Form), media types '[]'
+DEBUG o.h.v.i.engine.resolver.DefaultTraversableResolver - Found javax.persistence.Persistence on classpath containing 'getPersistenceUtil'. Assuming JPA 2 environment. Trying to instantiate JPA aware TraversableResolver
+DEBUG o.h.v.i.engine.resolver.DefaultTraversableResolver - Instantiated JPA aware TraversableResolver of type org.hibernate.validator.internal.engine.resolver.JPATraversableResolver.
+DEBUG o.hibernate.validator.internal.xml.ValidationXmlParser - Trying to load META-INF/validation.xml for XML based Validator configuration.
+INFO  o.hibernate.validator.internal.xml.ValidationXmlParser - HV000007: META-INF/validation.xml found. Parsing XML based configuration.
+DEBUG o.h.v.i.engine.resolver.DefaultTraversableResolver - Found javax.persistence.Persistence on classpath containing 'getPersistenceUtil'. Assuming JPA 2 environment. Trying to instantiate JPA aware TraversableResolver
+DEBUG o.h.v.i.engine.resolver.DefaultTraversableResolver - Instantiated JPA aware TraversableResolver of type org.hibernate.validator.internal.engine.resolver.JPATraversableResolver.
+INFO  o.h.v.internal.xml.ValidationBootstrapParameters - HV000005: Using de.twenty11.skysail.server.validation.MyValidationTraversableResolver as traversable resolver.
+DEBUG i.skysail.server.restlet.filter.ExceptionCatchingFilter - entering ExceptionCatchingFilter#doHandle
+DEBUG io.skysail.server.restlet.filter.AbstractResourceFilter - next filter in chain: ExtractStandardQueryParametersResourceFilter
+DEBUG io.skysail.server.restlet.filter.AbstractResourceFilter - next filter in chain: CheckInvalidInputFilter
+DEBUG i.skysail.server.restlet.filter.CheckInvalidInputFilter - entering CheckInvalidInputFilter#doHandle
+DEBUG io.skysail.server.restlet.filter.AbstractResourceFilter - next filter in chain: FormDataExtractingFilter
+DEBUG i.s.server.restlet.filter.FormDataExtractingFilter - entering FormDataExtractingFilter#doHandle
+DEBUG io.skysail.server.restlet.filter.AbstractResourceFilter - next filter in chain: CheckBusinessViolationsFilter
+DEBUG i.s.server.restlet.filter.CheckBusinessViolationsFilter - entering CheckBusinessViolationsFilter#doHandle
+DEBUG o.h.v.resourceloading.PlatformResourceBundleLocator - ValidationMessages not found.
+DEBUG o.h.v.resourceloading.PlatformResourceBundleLocator - org.hibernate.validator.ValidationMessages found.
+WARN  i.s.server.restlet.filter.CheckBusinessViolationsFilter - constraint violations found on Todo(title=title_8hl2na4l9picpvdkiqnmk4l42k): [ConstraintViolationImpl{interpolatedMessage='the start date must be before the due date', propertyPath=startDate, rootBeanClass=class io.skysail.server.app.todos.todos.Todo, messageTemplate='the start date must be before the due date'}]
+INFO  i.s.server.restlet.filter.CheckBusinessViolationsFilter - found 1 business validation violation(s): [ConstraintViolationImpl{interpolatedMessage='the start date must be before the due date', propertyPath=startDate, rootBeanClass=class io.skysail.server.app.todos.todos.Todo, messageTemplate='the start date must be before the due date'}]
+INFO  io.skysail.server.restlet.filter.AbstractResourceFilter - stopping filter chain at filter CheckBusinessViolationsFilter
+DEBUG d.t.skysail.server.db.orientdb.OrientGraphDbService - registering class 'class io.skysail.server.app.todos.todos.Todo' @ orientDB
+DEBUG d.t.skysail.server.db.orientdb.OrientGraphDbService - registering class 'class io.skysail.server.app.todos.TodoList' @ orientDB
+INFO  i.s.server.restlet.resources.PostEntityServerResource - Request entry point: PostTodoResource$$EnhancerByMockitoWithCGLIB$$13523c34 @Post('x-www-form-urlencoded:html|json|xml')
+INFO  i.s.server.restlet.resources.PostEntityServerResource - calling post(Form), media types '[]'
+DEBUG o.h.v.i.engine.resolver.DefaultTraversableResolver - Found javax.persistence.Persistence on classpath containing 'getPersistenceUtil'. Assuming JPA 2 environment. Trying to instantiate JPA aware TraversableResolver
+DEBUG o.h.v.i.engine.resolver.DefaultTraversableResolver - Instantiated JPA aware TraversableResolver of type org.hibernate.validator.internal.engine.resolver.JPATraversableResolver.
+DEBUG o.hibernate.validator.internal.xml.ValidationXmlParser - Trying to load META-INF/validation.xml for XML based Validator configuration.
+INFO  o.hibernate.validator.internal.xml.ValidationXmlParser - HV000007: META-INF/validation.xml found. Parsing XML based configuration.
+DEBUG o.h.v.i.engine.resolver.DefaultTraversableResolver - Found javax.persistence.Persistence on classpath containing 'getPersistenceUtil'. Assuming JPA 2 environment. Trying to instantiate JPA aware TraversableResolver
+DEBUG o.h.v.i.engine.resolver.DefaultTraversableResolver - Instantiated JPA aware TraversableResolver of type org.hibernate.validator.internal.engine.resolver.JPATraversableResolver.
+INFO  o.h.v.internal.xml.ValidationBootstrapParameters - HV000005: Using de.twenty11.skysail.server.validation.MyValidationTraversableResolver as traversable resolver.
+DEBUG i.skysail.server.restlet.filter.ExceptionCatchingFilter - entering ExceptionCatchingFilter#doHandle
+DEBUG io.skysail.server.restlet.filter.AbstractResourceFilter - next filter in chain: ExtractStandardQueryParametersResourceFilter
+DEBUG io.skysail.server.restlet.filter.AbstractResourceFilter - next filter in chain: CheckInvalidInputFilter
+DEBUG i.skysail.server.restlet.filter.CheckInvalidInputFilter - entering CheckInvalidInputFilter#doHandle
+DEBUG io.skysail.server.restlet.filter.AbstractResourceFilter - next filter in chain: FormDataExtractingFilter
+DEBUG i.s.server.restlet.filter.FormDataExtractingFilter - entering FormDataExtractingFilter#doHandle
+DEBUG io.skysail.server.restlet.filter.AbstractResourceFilter - next filter in chain: CheckBusinessViolationsFilter
+DEBUG i.s.server.restlet.filter.CheckBusinessViolationsFilter - entering CheckBusinessViolationsFilter#doHandle
+DEBUG o.h.v.resourceloading.PlatformResourceBundleLocator - ValidationMessages not found.
+DEBUG o.h.v.resourceloading.PlatformResourceBundleLocator - org.hibernate.validator.ValidationMessages found.
+WARN  i.s.server.restlet.filter.CheckBusinessViolationsFilter - constraint violations found on Todo(title=title_s89kpc06j92s0o89vot7ilrfm8): [ConstraintViolationImpl{interpolatedMessage='This list does not exist or has another owner', propertyPath=list, rootBeanClass=class io.skysail.server.app.todos.todos.Todo, messageTemplate='This list does not exist or has another owner'}]
+INFO  i.s.server.restlet.filter.CheckBusinessViolationsFilter - found 1 business validation violation(s): [ConstraintViolationImpl{interpolatedMessage='This list does not exist or has another owner', propertyPath=list, rootBeanClass=class io.skysail.server.app.todos.todos.Todo, messageTemplate='This list does not exist or has another owner'}]
+INFO  io.skysail.server.restlet.filter.AbstractResourceFilter - stopping filter chain at filter CheckBusinessViolationsFilter
+DEBUG d.t.skysail.server.db.orientdb.OrientGraphDbService - activating io.skysail.server.testsupport.TestDb
+DEBUG d.t.skysail.server.db.orientdb.OrientGraphDbService - registering class 'class io.skysail.server.app.todos.todos.Todo' @ orientDB
+DEBUG d.t.skysail.server.db.orientdb.OrientGraphDbService - registering class 'class io.skysail.server.app.todos.TodoList' @ orientDB
+INFO  i.s.server.restlet.resources.PostEntityServerResource - Request entry point: PostListResource$$EnhancerByMockitoWithCGLIB$$b87a1d03 @Post('json')
+INFO  i.s.server.restlet.resources.PostEntityServerResource - Request entry point: PostListResource$$EnhancerByMockitoWithCGLIB$$b87a1d03 @Post('x-www-form-urlencoded:html|json|xml')
+INFO  i.s.server.restlet.resources.PostEntityServerResource - calling post(Form), media types '[]'
 DEBUG o.h.v.i.engine.resolver.DefaultTraversableResolver - Found javax.persistence.Persistence on classpath containing 'getPersistenceUtil'. Assuming JPA 2 environment. Trying to instantiate JPA aware TraversableResolver
 DEBUG o.h.v.i.engine.resolver.DefaultTraversableResolver - Instantiated JPA aware TraversableResolver of type org.hibernate.validator.internal.engine.resolver.JPATraversableResolver.
 DEBUG o.hibernate.validator.internal.xml.ValidationXmlParser - Trying to load META-INF/validation.xml for XML based Validator configuration.
@@ -28,7 +188,7 @@ INFO  i.s.server.restlet.filter.CheckBusinessViolationsFilter - found 1 business
 INFO  io.skysail.server.restlet.filter.AbstractResourceFilter - stopping filter chain at filter CheckBusinessViolationsFilter
 DEBUG d.t.skysail.server.db.orientdb.OrientGraphDbService - registering class 'class io.skysail.server.app.todos.todos.Todo' @ orientDB
 DEBUG d.t.skysail.server.db.orientdb.OrientGraphDbService - registering class 'class io.skysail.server.app.todos.TodoList' @ orientDB
-INFO  i.s.server.restlet.resources.PostEntityServerResource - Request entry point: PostListResource$$EnhancerByMockitoWithCGLIB$$aff5994b @Post('x-www-form-urlencoded:html|json|xml')
+INFO  i.s.server.restlet.resources.PostEntityServerResource - Request entry point: PostListResource$$EnhancerByMockitoWithCGLIB$$b87a1d03 @Post('x-www-form-urlencoded:html|json|xml')
 INFO  i.s.server.restlet.resources.PostEntityServerResource - calling post(Form), media types '[]'
 DEBUG o.h.v.i.engine.resolver.DefaultTraversableResolver - Found javax.persistence.Persistence on classpath containing 'getPersistenceUtil'. Assuming JPA 2 environment. Trying to instantiate JPA aware TraversableResolver
 DEBUG o.h.v.i.engine.resolver.DefaultTraversableResolver - Instantiated JPA aware TraversableResolver of type org.hibernate.validator.internal.engine.resolver.JPATraversableResolver.
@@ -49,14 +209,14 @@ DEBUG io.skysail.server.restlet.filter.AbstractResourceFilter - next filter in c
 DEBUG io.skysail.server.restlet.filter.AbstractResourceFilter - next filter in chain: PersistEntityFilter
 DEBUG io.skysail.server.restlet.filter.PersistEntityFilter - entering PersistEntityFilter#doHandle
 INFO  de.twenty11.skysail.server.db.orientdb.impl.Persister - setting owner=admin [class java.lang.String]
-INFO  de.twenty11.skysail.server.db.orientdb.impl.Persister - setting created=Thu May 28 14:37:43 CEST 2015 [class java.util.Date]
+INFO  de.twenty11.skysail.server.db.orientdb.impl.Persister - setting created=Sun Jun 21 06:26:12 CEST 2015 [class java.util.Date]
 INFO  de.twenty11.skysail.server.db.orientdb.impl.Persister - setting name=list2 [class java.lang.String]
 DEBUG io.skysail.server.restlet.filter.AbstractResourceFilter - next filter in chain: EntityWasAddedFilter
 DEBUG io.skysail.server.restlet.filter.EntityWasAddedFilter - entering EntityWasAddedFilter#doHandle
 DEBUG io.skysail.server.restlet.filter.AbstractResourceFilter - next filter in chain: AddLinkheadersFilter
 DEBUG io.skysail.server.restlet.filter.AbstractResourceFilter - next filter in chain: PostRedirectGetFilter
 WARN  io.skysail.server.utils.LinkUtils - problem with linkheader for resource ListsResource; no routeBuilder was found.
-INFO  i.s.server.restlet.resources.PostEntityServerResource - Request entry point: PostListResource$$EnhancerByMockitoWithCGLIB$$aff5994b @Post('x-www-form-urlencoded:html|json|xml')
+INFO  i.s.server.restlet.resources.PostEntityServerResource - Request entry point: PostListResource$$EnhancerByMockitoWithCGLIB$$b87a1d03 @Post('x-www-form-urlencoded:html|json|xml')
 INFO  i.s.server.restlet.resources.PostEntityServerResource - calling post(Form), media types '[]'
 DEBUG o.h.v.i.engine.resolver.DefaultTraversableResolver - Found javax.persistence.Persistence on classpath containing 'getPersistenceUtil'. Assuming JPA 2 environment. Trying to instantiate JPA aware TraversableResolver
 DEBUG o.h.v.i.engine.resolver.DefaultTraversableResolver - Instantiated JPA aware TraversableResolver of type org.hibernate.validator.internal.engine.resolver.JPATraversableResolver.
@@ -80,7 +240,7 @@ INFO  i.s.server.restlet.filter.CheckBusinessViolationsFilter - found 1 business
 INFO  io.skysail.server.restlet.filter.AbstractResourceFilter - stopping filter chain at filter CheckBusinessViolationsFilter
 DEBUG d.t.skysail.server.db.orientdb.OrientGraphDbService - registering class 'class io.skysail.server.app.todos.todos.Todo' @ orientDB
 DEBUG d.t.skysail.server.db.orientdb.OrientGraphDbService - registering class 'class io.skysail.server.app.todos.TodoList' @ orientDB
-INFO  i.s.server.restlet.resources.PostEntityServerResource - Request entry point: PostListResource$$EnhancerByMockitoWithCGLIB$$aff5994b @Post('x-www-form-urlencoded:html|json|xml')
+INFO  i.s.server.restlet.resources.PostEntityServerResource - Request entry point: PostListResource$$EnhancerByMockitoWithCGLIB$$b87a1d03 @Post('x-www-form-urlencoded:html|json|xml')
 INFO  i.s.server.restlet.resources.PostEntityServerResource - calling post(Form), media types '[]'
 DEBUG o.h.v.i.engine.resolver.DefaultTraversableResolver - Found javax.persistence.Persistence on classpath containing 'getPersistenceUtil'. Assuming JPA 2 environment. Trying to instantiate JPA aware TraversableResolver
 DEBUG o.h.v.i.engine.resolver.DefaultTraversableResolver - Instantiated JPA aware TraversableResolver of type org.hibernate.validator.internal.engine.resolver.JPATraversableResolver.
@@ -101,7 +261,7 @@ DEBUG io.skysail.server.restlet.filter.AbstractResourceFilter - next filter in c
 DEBUG io.skysail.server.restlet.filter.AbstractResourceFilter - next filter in chain: PersistEntityFilter
 DEBUG io.skysail.server.restlet.filter.PersistEntityFilter - entering PersistEntityFilter#doHandle
 INFO  de.twenty11.skysail.server.db.orientdb.impl.Persister - setting owner=admin [class java.lang.String]
-INFO  de.twenty11.skysail.server.db.orientdb.impl.Persister - setting created=Thu May 28 14:37:44 CEST 2015 [class java.util.Date]
+INFO  de.twenty11.skysail.server.db.orientdb.impl.Persister - setting created=Sun Jun 21 06:26:12 CEST 2015 [class java.util.Date]
 INFO  de.twenty11.skysail.server.db.orientdb.impl.Persister - setting name=list1 [class java.lang.String]
 DEBUG io.skysail.server.restlet.filter.AbstractResourceFilter - next filter in chain: EntityWasAddedFilter
 DEBUG io.skysail.server.restlet.filter.EntityWasAddedFilter - entering EntityWasAddedFilter#doHandle
@@ -110,8 +270,8 @@ DEBUG io.skysail.server.restlet.filter.AbstractResourceFilter - next filter in c
 WARN  io.skysail.server.utils.LinkUtils - problem with linkheader for resource ListsResource; no routeBuilder was found.
 DEBUG d.t.skysail.server.db.orientdb.OrientGraphDbService - registering class 'class io.skysail.server.app.todos.todos.Todo' @ orientDB
 DEBUG d.t.skysail.server.db.orientdb.OrientGraphDbService - registering class 'class io.skysail.server.app.todos.TodoList' @ orientDB
-INFO  i.s.server.restlet.resources.PostEntityServerResource - Request entry point: PostListResource$$EnhancerByMockitoWithCGLIB$$aff5994b @Post('json')
-INFO  i.s.server.restlet.resources.PostEntityServerResource - Request entry point: PostListResource$$EnhancerByMockitoWithCGLIB$$aff5994b @Post('x-www-form-urlencoded:html|json|xml')
+INFO  i.s.server.restlet.resources.PostEntityServerResource - Request entry point: PostListResource$$EnhancerByMockitoWithCGLIB$$b87a1d03 @Post('json')
+INFO  i.s.server.restlet.resources.PostEntityServerResource - Request entry point: PostListResource$$EnhancerByMockitoWithCGLIB$$b87a1d03 @Post('x-www-form-urlencoded:html|json|xml')
 INFO  i.s.server.restlet.resources.PostEntityServerResource - calling post(Form), media types '[]'
 DEBUG o.h.v.i.engine.resolver.DefaultTraversableResolver - Found javax.persistence.Persistence on classpath containing 'getPersistenceUtil'. Assuming JPA 2 environment. Trying to instantiate JPA aware TraversableResolver
 DEBUG o.h.v.i.engine.resolver.DefaultTraversableResolver - Instantiated JPA aware TraversableResolver of type org.hibernate.validator.internal.engine.resolver.JPATraversableResolver.
@@ -132,7 +292,7 @@ DEBUG io.skysail.server.restlet.filter.AbstractResourceFilter - next filter in c
 DEBUG io.skysail.server.restlet.filter.AbstractResourceFilter - next filter in chain: PersistEntityFilter
 DEBUG io.skysail.server.restlet.filter.PersistEntityFilter - entering PersistEntityFilter#doHandle
 INFO  de.twenty11.skysail.server.db.orientdb.impl.Persister - setting owner=admin [class java.lang.String]
-INFO  de.twenty11.skysail.server.db.orientdb.impl.Persister - setting created=Thu May 28 14:37:44 CEST 2015 [class java.util.Date]
+INFO  de.twenty11.skysail.server.db.orientdb.impl.Persister - setting created=Sun Jun 21 06:26:12 CEST 2015 [class java.util.Date]
 INFO  de.twenty11.skysail.server.db.orientdb.impl.Persister - setting name=jsonList1 [class java.lang.String]
 DEBUG io.skysail.server.restlet.filter.AbstractResourceFilter - next filter in chain: EntityWasAddedFilter
 DEBUG io.skysail.server.restlet.filter.EntityWasAddedFilter - entering EntityWasAddedFilter#doHandle
@@ -141,7 +301,7 @@ DEBUG io.skysail.server.restlet.filter.AbstractResourceFilter - next filter in c
 WARN  io.skysail.server.utils.LinkUtils - problem with linkheader for resource ListsResource; no routeBuilder was found.
 DEBUG d.t.skysail.server.db.orientdb.OrientGraphDbService - registering class 'class io.skysail.server.app.todos.todos.Todo' @ orientDB
 DEBUG d.t.skysail.server.db.orientdb.OrientGraphDbService - registering class 'class io.skysail.server.app.todos.TodoList' @ orientDB
-INFO  i.s.server.restlet.resources.PostEntityServerResource - Request entry point: PostListResource$$EnhancerByMockitoWithCGLIB$$aff5994b @Post('x-www-form-urlencoded:html|json|xml')
+INFO  i.s.server.restlet.resources.PostEntityServerResource - Request entry point: PostListResource$$EnhancerByMockitoWithCGLIB$$b87a1d03 @Post('x-www-form-urlencoded:html|json|xml')
 INFO  i.s.server.restlet.resources.PostEntityServerResource - calling post(Form), media types '[]'
 DEBUG o.h.v.i.engine.resolver.DefaultTraversableResolver - Found javax.persistence.Persistence on classpath containing 'getPersistenceUtil'. Assuming JPA 2 environment. Trying to instantiate JPA aware TraversableResolver
 DEBUG o.h.v.i.engine.resolver.DefaultTraversableResolver - Instantiated JPA aware TraversableResolver of type org.hibernate.validator.internal.engine.resolver.JPATraversableResolver.
@@ -163,3 +323,32 @@ DEBUG o.h.v.resourceloading.PlatformResourceBundleLocator - org.hibernate.valida
 WARN  i.s.server.restlet.filter.CheckBusinessViolationsFilter - constraint violations found on TodoList(id=null, name=null): [ConstraintViolationImpl{interpolatedMessage='may not be null', propertyPath=name, rootBeanClass=class io.skysail.server.app.todos.TodoList, messageTemplate='{javax.validation.constraints.NotNull.message}'}]
 INFO  i.s.server.restlet.filter.CheckBusinessViolationsFilter - found 1 business validation violation(s): [ConstraintViolationImpl{interpolatedMessage='may not be null', propertyPath=name, rootBeanClass=class io.skysail.server.app.todos.TodoList, messageTemplate='{javax.validation.constraints.NotNull.message}'}]
 INFO  io.skysail.server.restlet.filter.AbstractResourceFilter - stopping filter chain at filter CheckBusinessViolationsFilter
+DEBUG d.t.skysail.server.db.orientdb.OrientGraphDbService - activating io.skysail.server.testsupport.TestDb
+DEBUG d.t.skysail.server.db.orientdb.OrientGraphDbService - activating io.skysail.server.testsupport.TestDb
+DEBUG d.t.skysail.server.db.orientdb.OrientGraphDbService - registering class 'class io.skysail.server.app.todos.todos.Todo' @ orientDB
+DEBUG d.t.skysail.server.db.orientdb.OrientGraphDbService - registering class 'class io.skysail.server.app.todos.TodoList' @ orientDB
+INFO  de.twenty11.skysail.server.db.orientdb.impl.Persister - setting name=list_hoj8ft1our7t1rduua395dgfn8 [class java.lang.String]
+INFO  i.s.server.restlet.resources.PutEntityServerResource - Request entry point: PutListResource$$EnhancerByMockitoWithCGLIB$$2e57457e @Put('x-www-form-urlencoded:html|json')
+DEBUG o.h.v.i.engine.resolver.DefaultTraversableResolver - Found javax.persistence.Persistence on classpath containing 'getPersistenceUtil'. Assuming JPA 2 environment. Trying to instantiate JPA aware TraversableResolver
+DEBUG o.h.v.i.engine.resolver.DefaultTraversableResolver - Instantiated JPA aware TraversableResolver of type org.hibernate.validator.internal.engine.resolver.JPATraversableResolver.
+DEBUG o.hibernate.validator.internal.xml.ValidationXmlParser - Trying to load META-INF/validation.xml for XML based Validator configuration.
+INFO  o.hibernate.validator.internal.xml.ValidationXmlParser - HV000007: META-INF/validation.xml found. Parsing XML based configuration.
+DEBUG o.h.v.i.engine.resolver.DefaultTraversableResolver - Found javax.persistence.Persistence on classpath containing 'getPersistenceUtil'. Assuming JPA 2 environment. Trying to instantiate JPA aware TraversableResolver
+DEBUG o.h.v.i.engine.resolver.DefaultTraversableResolver - Instantiated JPA aware TraversableResolver of type org.hibernate.validator.internal.engine.resolver.JPATraversableResolver.
+INFO  o.h.v.internal.xml.ValidationBootstrapParameters - HV000005: Using de.twenty11.skysail.server.validation.MyValidationTraversableResolver as traversable resolver.
+DEBUG i.skysail.server.restlet.filter.ExceptionCatchingFilter - entering ExceptionCatchingFilter#doHandle
+DEBUG io.skysail.server.restlet.filter.AbstractResourceFilter - next filter in chain: ExtractStandardQueryParametersResourceFilter
+DEBUG io.skysail.server.restlet.filter.AbstractResourceFilter - next filter in chain: CheckInvalidInputFilter
+DEBUG i.skysail.server.restlet.filter.CheckInvalidInputFilter - entering CheckInvalidInputFilter#doHandle
+DEBUG io.skysail.server.restlet.filter.AbstractResourceFilter - next filter in chain: FormDataExtractingFilter
+DEBUG i.s.server.restlet.filter.FormDataExtractingFilter - entering FormDataExtractingFilter#doHandle
+DEBUG io.skysail.server.restlet.filter.AbstractResourceFilter - next filter in chain: CheckBusinessViolationsFilter
+DEBUG i.s.server.restlet.filter.CheckBusinessViolationsFilter - entering CheckBusinessViolationsFilter#doHandle
+DEBUG io.skysail.server.restlet.filter.AbstractResourceFilter - next filter in chain: OptionalEncryptionFilter
+DEBUG io.skysail.server.restlet.filter.AbstractResourceFilter - next filter in chain: UpdateEntityFilter
+DEBUG io.skysail.server.restlet.filter.UpdateEntityFilter - entering UpdateEntityFilter#doHandle
+DEBUG io.skysail.server.restlet.filter.AbstractResourceFilter - next filter in chain: EntityWasAddedFilter
+DEBUG io.skysail.server.restlet.filter.EntityWasAddedFilter - entering EntityWasAddedFilter#doHandle
+DEBUG io.skysail.server.restlet.filter.AbstractResourceFilter - next filter in chain: AddLinkheadersFilter
+DEBUG io.skysail.server.restlet.filter.AbstractResourceFilter - next filter in chain: PutRedirectGetFilter
+WARN  io.skysail.server.utils.LinkUtils - problem with linkheader for resource ListsResource; no routeBuilder was found.

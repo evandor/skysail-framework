@@ -150,14 +150,6 @@ public class StringTemplateRenderer {
         decl.add("user", new STUserWrapper(SecurityUtils.getSubject(), peersProvider, installationFromCookie));
         decl.add("converter", this);
         
-//        if (resourceModel.getSource() instanceof ListServerResponse) {
-//            decl.add("source", new STListSourceWrapper((List<Object>) ((SkysailResponse<?>)resourceModel.getConvertedSource()).getEntity()));
-//        } else {
-//            decl.add("source", new STSourceWrapper(resourceModel.getConvertedSource()));
-//        }
-        
-        decl.add("source", null);
-
         Map<String, String> messages = resource.getMessages(resourceModel.getFields());
         messages.put("productName", getProductName());
         

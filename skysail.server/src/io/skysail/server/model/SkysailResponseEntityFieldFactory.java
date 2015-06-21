@@ -4,7 +4,7 @@ import io.skysail.api.responses.ConstraintViolationsResponse;
 import io.skysail.server.restlet.resources.SkysailServerResource;
 import io.skysail.server.utils.*;
 
-import java.util.*;
+import java.util.Map;
 import java.util.function.Function;
 
 import lombok.NonNull;
@@ -26,7 +26,7 @@ public class SkysailResponseEntityFieldFactory extends FieldFactory {
      * "test" method) a new FormField is created. 
      */
     @Override
-    public Map<String,FormField> determineFrom(SkysailServerResource<?> resource, List<Map<String, Object>> data) throws Exception {
+    public Map<String,FormField> determineFrom(SkysailServerResource<?> resource) throws Exception {
         return ReflectionUtils.getInheritedFields(cls).stream()
                 .filter(f -> test(resource, f))
                 .map(f -> new FormField(f, resource, source))

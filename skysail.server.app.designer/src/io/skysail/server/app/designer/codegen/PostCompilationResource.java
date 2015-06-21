@@ -9,7 +9,7 @@ import org.restlet.resource.ResourceException;
 
 import de.twenty11.skysail.server.core.restlet.ResourceContextId;
 
-public class PostCompilationResource extends PostEntityServerResource<String> {
+public class PostCompilationResource extends PostEntityServerResource<Empty> {
 
     private DesignerApplication app;
 
@@ -23,12 +23,12 @@ public class PostCompilationResource extends PostEntityServerResource<String> {
     }
     
     @Override
-    public String createEntityTemplate() {
-        return "";
+    public Empty createEntityTemplate() {
+        return new Empty();
     }
 
     @Override
-    public SkysailResponse<?> addEntity(String entity) {
+    public SkysailResponse<?> addEntity(Empty entity) {
         //InMemoryJavaCompiler.resetClassloader();
         app.updateBundle();
         //app.compileApplications();

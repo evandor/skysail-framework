@@ -125,6 +125,7 @@
 	skysail.server.ext.mail;version=latest,\
 	skysail.server.app.twitter4j;version=latest,\
 	skysail.server.app.wiki;version=latest,\
+	skysail.server.app.propman;version=latest,\
 	skysail.server.ext.sse;version=latest,\
 	skysail.server.db;version=latest,\
 	skysail.server.documentation;version=latest,\

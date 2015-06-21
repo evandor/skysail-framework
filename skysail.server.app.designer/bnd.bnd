@@ -60,7 +60,8 @@ Private-Package:  \
 	io.skysail.server.app.designer.entities.resources,\
 	io.skysail.server.app.designer.fields.resources,\
 	io.skysail.server.app.designer.codegen,\
-	io.skysail.server.app.designer.codegen.utils
+	io.skysail.server.app.designer.codegen.utils,\
+	io.skysail.server.app.designer.model
 Export-Package:  \
 	io.skysail.server.app.designer.repo,\
 	io.skysail.server.app.designer.application,\

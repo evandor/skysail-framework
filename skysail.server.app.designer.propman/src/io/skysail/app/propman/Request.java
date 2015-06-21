@@ -2,11 +2,12 @@ package io.skysail.app.propman;
 
 import io.skysail.api.domain.Identifiable;
 import io.skysail.api.forms.*;
+import io.skysail.server.forms.*;
 
 import java.util.Set;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.util.*;
 
 import javax.persistence.Id;
 import javax.validation.constraints.*;
@@ -28,10 +29,19 @@ public class Request  implements Serializable, Identifiable {
 	}
 	    
     
+    @Field
+    private String requestname;
     
     
     
-    
+        public void setRequestname(String value) {
+        this.requestname = value;
+    }
+
+    public String getRequestname() {
+        return requestname;
+    }
+
 
     
 }

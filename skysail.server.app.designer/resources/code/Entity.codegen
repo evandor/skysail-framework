@@ -2,11 +2,12 @@ package $packagename$;
 
 import io.skysail.api.domain.Identifiable;
 import io.skysail.api.forms.*;
+import io.skysail.server.forms.*;
 
 import java.util.Set;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.util.*;
 
 import javax.persistence.Id;
 import javax.validation.constraints.*;

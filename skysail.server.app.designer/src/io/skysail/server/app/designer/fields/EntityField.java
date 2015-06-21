@@ -1,17 +1,16 @@
 package io.skysail.server.app.designer.fields;
 
 import io.skysail.api.domain.Identifiable;
-import io.skysail.api.forms.Field;
-import io.skysail.api.forms.InputType;
+import io.skysail.api.forms.*;
 import io.skysail.server.app.designer.fields.resources.InputTypeSelectionProvider;
 
 import javax.persistence.Id;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 @Getter
 @Setter
+@ToString
 public class EntityField implements Identifiable {
 
     @Id

@@ -3,13 +3,11 @@ package io.skysail.server.app.designer.codegen;
 import io.skysail.server.app.designer.application.Application;
 import io.skysail.server.app.designer.entities.Entity;
 import io.skysail.server.app.designer.fields.EntityField;
+import io.skysail.server.app.designer.model.EntityModel;
 import io.skysail.server.app.designer.repo.DesignerRepository;
 import io.skysail.server.utils.BundleUtils;
 
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import lombok.Getter;
@@ -22,23 +20,23 @@ import de.twenty11.skysail.server.core.restlet.SkysailRouter;
 @Slf4j
 public class SkysailEntityCompiler extends SkysailCompiler {
 
-    private String entityName;
-    private String appEntityName;
+    protected String entityName;
+    protected String appEntityName;
 
     private DesignerRepository repo;
-    private String entityResourceClassName;
+    protected String entityResourceClassName;
 
     @Getter
-    private String entityClassName;
+    protected String entityClassName;
 
     @Getter
-    private String postResourceClassName;
+    protected String postResourceClassName;
 
     @Getter
-    private String putResourceClassName;
+    protected String putResourceClassName;
 
     @Getter
-    private String listResourceClassName;
+    protected String listResourceClassName;
 
     public SkysailEntityCompiler(DesignerRepository repo, Bundle bundle, Application application, String entityName,
             String appEntityName) {
@@ -48,9 +46,9 @@ public class SkysailEntityCompiler extends SkysailCompiler {
         this.appEntityName = appEntityName;
     }
 
-    public void createEntity(List<String> entityNames, List<String> entityClassNames) {
+    public void createEntity(List<String> entityNames, List<String> entityClassNames, EntityModel entityModel) {
         String entityTemplate = BundleUtils.readResource(getBundle(), "code/Entity.codegen");
-        entityClassName = setupEntityForCompilation(entityTemplate, getApplication().getId(), entityName, appEntityName);
+        entityClassName = setupEntityForCompilation(entityTemplate, getApplication().getId(), entityName, appEntityName, entityModel);
         entityNames.add(entityName);
         entityClassNames.add(entityClassName);
     }
@@ -111,10 +109,12 @@ public class SkysailEntityCompiler extends SkysailCompiler {
     }
 
     private String setupEntityForCompilation(String entityTemplate, String appId, String entityName,
-            String appEntityName) {
+            String appEntityName, EntityModel entityModel) {
 
         List<EntityField> fields = getFields(repo, appEntityName, appId);
         String codeForFields = fields.stream().map(f -> {
+            
+            entityModel.addField(f);
             
             fireEvent(f.getName());
             
@@ -124,9 +124,19 @@ public class SkysailEntityCompiler extends SkysailCompiler {
         }).collect(Collectors.joining(";\n"));
         
         List<Entity> references = getReferences(repo, appEntityName, appId);
+        
         String codeForReferences = references.stream().map(f -> {
+            
+            entityModel.addReference(f);
+
             StringBuilder sb = new StringBuilder("\n    @Reference(cls = "+f.getName()+".class)\n");
-            sb.append("    private String " + f.getName() + ";");
+            sb.append("    @PostView(visibility=Visibility.HIDE)\n");
+            sb.append("    @PutView(visibility=Visibility.HIDE)\n");
+            sb.append("    private List<"+f.getName()+"> " + f.getName().toLowerCase() + "s = new ArrayList<>();\n");
+            sb.append("\n");
+            sb.append("    public void add"+f.getName()+"("+f.getName()+" entity) {\n");
+            sb.append("        "+f.getName().toLowerCase()+"s.add(entity);\n");
+            sb.append("    }\n");
             return sb.toString();
         }).collect(Collectors.joining(";\n"));
 
@@ -143,18 +153,18 @@ public class SkysailEntityCompiler extends SkysailCompiler {
             return sb.toString();
         }).collect(Collectors.joining(";\n"));
         
-        String codeForGettersAndSetters2 = references.stream().map(r -> {
-            StringBuilder sb = new StringBuilder();
-            String methodName = r.getName();
-            sb.append("    public void set" + methodName + "(String value) {\n");
-            sb.append("        this." + r.getName() + " = value;\n");
-            sb.append("    }\n");
-            sb.append("\n");
-            sb.append("    public String get" + methodName + "() {\n");
-            sb.append("        return " + r.getName() + ";\n");
-            sb.append("    }\n");
-            return sb.toString();
-        }).collect(Collectors.joining(";\n"));
+//        String codeForGettersAndSetters2 = references.stream().map(r -> {
+//            StringBuilder sb = new StringBuilder();
+//            String methodName = r.getName();
+//            sb.append("    public void set" + methodName + "(String value) {\n");
+//            sb.append("        this." + r.getName() + " = value;\n");
+//            sb.append("    }\n");
+//            sb.append("\n");
+//            sb.append("    public String get" + methodName + "() {\n");
+//            sb.append("        return " + r.getName() + ";\n");
+//            sb.append("    }\n");
+//            return sb.toString();
+//        }).collect(Collectors.joining(";\n"));
 
         @SuppressWarnings("serial")
         String entityCode = substitute(entityTemplate, new HashMap<String, String>() {
@@ -164,7 +174,7 @@ public class SkysailEntityCompiler extends SkysailCompiler {
                 put("$appEntityName$", appEntityName);
                 put("$fields$", codeForFields);
                 put("$references$", codeForReferences);
-                put("$gettersAndSetters$", codeForGettersAndSetters + "\n" + codeForGettersAndSetters2);
+                put("$gettersAndSetters$", codeForGettersAndSetters + "\n");// + codeForGettersAndSetters2);
                 put("$applicationName$", getApplication().getName() + "Application");
                 put("$packagename$", getApplication().getPackageName());
             }
@@ -229,7 +239,7 @@ public class SkysailEntityCompiler extends SkysailCompiler {
         return Collections.emptyList();
     }
 
-    private String setupEntityResourceForCompilation(String entityTemplate, String appId, String entityName,
+    protected String setupEntityResourceForCompilation(String entityTemplate, String appId, String entityName,
             String appEntityName) {
         @SuppressWarnings("serial")
         String entityCode = substitute(entityTemplate, new HashMap<String, String>() {
@@ -245,7 +255,7 @@ public class SkysailEntityCompiler extends SkysailCompiler {
         return entityClassName;
     }
 
-    private String setupPostResourceForCompilation(String postResourceTemplate, String entityName,
+    protected String setupPostResourceForCompilation(String postResourceTemplate, String entityName,
             String entityShortName) {
         final String className2 = "Post" + entityName + "Resource";
         @SuppressWarnings("serial")
@@ -263,7 +273,7 @@ public class SkysailEntityCompiler extends SkysailCompiler {
         return fullClassName;
     }
 
-    private String setupPutResourceForCompilation(String putResourceTemplate, String entityName, String appId,
+    protected String setupPutResourceForCompilation(String putResourceTemplate, String entityName, String appId,
             String entityShortName) {
         final String className2 = "Put" + entityName + "Resource";
 
@@ -296,7 +306,7 @@ public class SkysailEntityCompiler extends SkysailCompiler {
         return fullClassName;
     }
 
-    private String setupListResourceForCompilation(String listServerResourceTemplate, String entityName,
+    protected String setupListResourceForCompilation(String listServerResourceTemplate, String entityName,
             String entityClassName) {
         final String theClassName = entityName + "sResource";
         @SuppressWarnings("serial")

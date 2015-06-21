@@ -41,8 +41,10 @@ public class PropManApplication extends SkysailApplication implements Applicatio
     protected void attach() {
         super.attach();
         router.attach(new RouteBuilder("/Campaigns/", io.skysail.app.propman.PostCampaignResource.class));
+        router.attach(new RouteBuilder("", io.skysail.app.propman.CampaignsResource.class));
         router.attach(new RouteBuilder("/Campaigns", io.skysail.app.propman.CampaignsResource.class));
         router.attach(new RouteBuilder("/Campaigns/{id}", io.skysail.app.propman.PutCampaignResource.class));
+        router.attach(new RouteBuilder("/Campaigns/{id}/Requests/", PostRequestResource.class));
 
 
     }

@@ -16,8 +16,8 @@ public class PropManRepository implements DbRepository {
 
     @Activate
     public void activate() {
-                dbService.createWithSuperClass("V", "Campaign");
-        dbService.register(io.skysail.app.propman.Campaign.class);
+                dbService.createWithSuperClass("V", "Campaign","Request");
+        dbService.register(io.skysail.app.propman.Campaign.class,io.skysail.app.propman.Request.class);
 
     }
 

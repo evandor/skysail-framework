@@ -1,4 +1,4 @@
-package io.skysail.app.propman;
+package $packagename$;
 
 import io.skysail.api.responses.SkysailResponse;
 import de.twenty11.skysail.server.core.restlet.ResourceContextId;
@@ -8,31 +8,31 @@ import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
 import org.restlet.resource.ResourceException;
 
-public class PostRequestResource extends PostEntityServerResource<Request> {
+public class $classname$ extends PostEntityServerResource<$entityname$> {
 
-	private PropManApplication app;
+	private $applicationName$ app;
 	private String id;
 	
 
-    public PostRequestResource() {
-        addToContext(ResourceContextId.LINK_TITLE, "Create new Request");
+    public $classname$() {
+        addToContext(ResourceContextId.LINK_TITLE, "Create new $entityname$");
     }
 
     @Override
     protected void doInit() throws ResourceException {
-        app = (PropManApplication) getApplication();
+        app = ($applicationName$) getApplication();
         id = getAttribute("id");
         
     }
 
 	@Override
-    public Request createEntityTemplate() {
-        return new Request();
+    public $entityname$ createEntityTemplate() {
+        return new $entityname$();
     }
 
     @Override
-    public SkysailResponse<?> addEntity(Request entity) {
-        Campaign parentEntity = app.getRepository().getById(Campaign.class, id);
+    public SkysailResponse<?> addEntity($entityname$ entity) {
+        $parententity$ parentEntity = app.getRepository().getById($parententity$.class, id);
         parentEntity.addRequest(entity);
         app.getRepository().update(id, parentEntity);
         return new SkysailResponse<String>();    }

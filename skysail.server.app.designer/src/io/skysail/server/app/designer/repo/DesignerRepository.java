@@ -5,11 +5,13 @@ import io.skysail.server.app.designer.entities.Entity;
 import io.skysail.server.app.designer.fields.EntityField;
 import io.skysail.server.db.*;
 
-import java.util.List;
+import java.util.*;
 
+import lombok.extern.slf4j.Slf4j;
 import aQute.bnd.annotation.component.*;
 
 @Component(immediate = true, properties = "name=DesignerRepository")
+@Slf4j
 public class DesignerRepository implements DbRepository {
 
     private static DbService2 dbService;
@@ -30,7 +32,12 @@ public class DesignerRepository implements DbRepository {
     }
 
     public <T> List<T> findAll(Class<T> cls) {
-        return dbService.findObjects("select from " + cls.getSimpleName());
+        try {
+            return dbService.findObjects("select from " + cls.getSimpleName());
+        } catch (Exception e) {
+            log.error(e.getMessage(),e);
+            return Collections.emptyList();
+        }
     }
     
     public <T> List<T> findAll(String sql) {

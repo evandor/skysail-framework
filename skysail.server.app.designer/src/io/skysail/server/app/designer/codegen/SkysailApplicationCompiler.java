@@ -1,10 +1,10 @@
 package io.skysail.server.app.designer.codegen;
 
 import io.skysail.server.app.designer.application.Application;
+import io.skysail.server.app.designer.model.ApplicationModel;
 import io.skysail.server.utils.BundleUtils;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -22,15 +22,22 @@ public class SkysailApplicationCompiler extends SkysailCompiler {
         applicationClassName = application.getPackageName() + "." + application.getName() + "Application";
     }
 
-    public void createApplication() {
+    public void createApplication(ApplicationModel applicationModel) {
         String template = BundleUtils.readResource(getBundle(), "code/Application.codegen");
-        setupApplicationForCompilation(template);
+        setupApplicationForCompilation(template, applicationModel);
     }
 
-    private void setupApplicationForCompilation(String template) {
+    private void setupApplicationForCompilation(String template, ApplicationModel applicationModel) {
         StringBuilder routerCode = new StringBuilder();
         routerPaths.keySet().stream().forEach(key -> {
             routerCode.append("        router.attach(new RouteBuilder(\"").append(key).append("\", ").append(routerPaths.get(key)).append(".class));\n");
+        });
+        
+        //router.attach(new RouteBuilder("/Campaigns/{id}/Requests/", PostRequestResource.class));
+        applicationModel.getEntities().stream().forEach(entity -> {
+            entity.getReferences().stream().forEach(ref -> {
+                routerCode.append("        router.attach(new RouteBuilder(\"").append("/Campaigns/{id}/Requests/").append("\", ").append("PostRequestResource").append(".class));\n");
+            });
         });
         
         @SuppressWarnings("serial")

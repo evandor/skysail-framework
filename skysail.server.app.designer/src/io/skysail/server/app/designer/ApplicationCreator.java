@@ -2,21 +2,14 @@ package io.skysail.server.app.designer;
 
 import io.skysail.server.app.SkysailApplication;
 import io.skysail.server.app.designer.application.Application;
-import io.skysail.server.app.designer.codegen.InMemoryJavaCompiler;
-import io.skysail.server.app.designer.codegen.SkysailApplicationCompiler;
-import io.skysail.server.app.designer.codegen.SkysailEntityCompiler;
-import io.skysail.server.app.designer.codegen.SkysailRepositoryCompiler;
+import io.skysail.server.app.designer.codegen.*;
 import io.skysail.server.app.designer.entities.Entity;
+import io.skysail.server.app.designer.model.*;
 import io.skysail.server.app.designer.repo.DesignerRepository;
-import io.skysail.server.db.DbRepository;
-import io.skysail.server.db.DbService2;
+import io.skysail.server.db.*;
 
 import java.lang.reflect.Method;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.concurrent.atomic.AtomicReference;
 
 import org.osgi.framework.Bundle;
@@ -42,12 +35,14 @@ public class ApplicationCreator {
 
     private List<String> entityNames = new ArrayList<>();
     private List<String> entityClassNames = new ArrayList<>();
+    private ApplicationModel applicationModel;
 
     public ApplicationCreator(Application application, SkysailRouter router, DesignerRepository repo, Bundle bundle) {
         this.application = application;
         this.router = router;
         this.repo = repo;
         this.bundle = bundle;
+        this.applicationModel = new ApplicationModel(application.getName());
     }
 
     public boolean create(AtomicReference<EventAdmin> eventAdminRef) {
@@ -58,12 +53,14 @@ public class ApplicationCreator {
             fireEvent(eventAdminRef, "compiling entity " + e.getName() + " for application " + application.getName());
             compileEntity(application, routerPaths, e);
         });
+        
+        applicationModel.validate();
 
         repoCompiler = new SkysailRepositoryCompiler(bundle, application);
         repoCompiler.createRepository(entityNames, entityClassNames);
 
         applicationCompiler = new SkysailApplicationCompiler(bundle, application, routerPaths);
-        applicationCompiler.createApplication();
+        applicationCompiler.createApplication(applicationModel);
         applicationCompiler.compile(bundle.getBundleContext());
 
         return applicationCompiler.isCompiledSuccessfully();
@@ -71,12 +68,13 @@ public class ApplicationCreator {
 
     private void compileEntity(Application a, Map<String, String> routerPaths, Entity e) {
         String entityName = getEntityName(a, e);
+        EntityModel entityModel = applicationModel.addEntity(entityName);
         SkysailEntityCompiler entityCompiler = new SkysailEntityCompiler(repo, bundle, a, entityName, e.getName());
-        entityCompiler.createEntity(entityNames, entityClassNames);
+        entityCompiler.createEntity(entityNames, entityClassNames, entityModel);
         entityCompiler.createResources();
         entityCompiler.attachToRouter(router, a.getName(), e, routerPaths);
 
-        handleSubEntities(a, e.getSubEntities(), entityNames, entityClassNames);
+        handleSubEntities(a, e.getSubEntities(), entityNames, entityClassNames, entityModel);
     }
 
     synchronized void setupInMemoryBundle(DbService2 dbService, ComponentContext componentContext) {
@@ -120,15 +118,17 @@ public class ApplicationCreator {
     }
 
     private void handleSubEntities(Application a, List<Entity> entities, List<String> entityNames,
-            List<String> entityClassNames) {
+            List<String> entityClassNames, EntityModel parentEntityModel) {
         entities.forEach(sub -> {
             System.out.println(sub);
 
-            String entityName = sub.getName();// getEntityName(a, e);
-            SkysailEntityCompiler entityCompiler = new SkysailEntityCompiler(repo, bundle, a, entityName, entityName);
-            entityCompiler.createEntity(entityNames, entityClassNames);
+            String entityName = sub.getName();
+            EntityModel entityModel = applicationModel.addEntity(entityName);
+            SkysailSubEntityCompiler entityCompiler = new SkysailSubEntityCompiler(repo, bundle, a, entityName, entityName);
+            entityCompiler.setParent(parentEntityModel.getEntityName());
+            entityCompiler.createEntity(entityNames, entityClassNames, entityModel);
             entityCompiler.createResources();
-            handleSubEntities(a, sub.getSubEntities(), entityNames, entityClassNames);
+            handleSubEntities(a, sub.getSubEntities(), entityNames, entityClassNames, entityModel);
         });
     }
 

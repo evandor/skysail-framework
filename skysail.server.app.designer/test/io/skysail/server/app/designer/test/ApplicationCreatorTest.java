@@ -2,30 +2,41 @@ package io.skysail.server.app.designer.test;
 
 import io.skysail.server.app.designer.ApplicationCreator;
 import io.skysail.server.app.designer.application.Application;
-import io.skysail.server.app.designer.repo.DesignerRepository;
 
-import org.junit.Before;
-import org.mockito.Mockito;
-import org.osgi.framework.Bundle;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.runners.MockitoJUnitRunner;
 
-import de.twenty11.skysail.server.core.restlet.SkysailRouter;
-
+@RunWith(MockitoJUnitRunner.class)
 public class ApplicationCreatorTest {
 
     private ApplicationCreator applicationCreator;
+    private Application application;
 
-    @Before
-    public void setUp() throws Exception {
-        Application application = new Application("testapp");
-        SkysailRouter router = Mockito.mock(SkysailRouter.class);
-        DesignerRepository repo = Mockito.mock(DesignerRepository.class);
-        Bundle bundle = Mockito.mock(Bundle.class);
-        applicationCreator = new ApplicationCreator(application, router, repo, bundle);
-    }
-    
-//    @Test
-//    public void testName() throws Exception {
-//        boolean created = applicationCreator.create(null);
+//    @Mock
+//    private SkysailRouter router;
+//
+//    @Mock
+//    private DesignerRepository repo;
+//
+//    @Mock
+//    private Bundle bundle;
+//    private List<Entity> entities;
+//
+//    @Before
+//    public void setUp() throws Exception {
+//        application = new Application("testapp");
+//        application.setId("#1");
+//        entities = new ArrayList<>();
+//        application.setEntities(entities);
+//        Mockito.when(repo.getById(Application.class, "1")).thenReturn(application);
 //    }
+
+    @Test
+    public void testName() {
+        
+    }
+   
+
 
 }

@@ -8,9 +8,9 @@ import lombok.*;
 @ToString
 public class FieldModel {
 
-    private String name;
+    private final String name;
 
-    public FieldModel(EntityField f) {
+    public FieldModel(@NonNull EntityField f) {
         this.name = f.getName();
     }
 

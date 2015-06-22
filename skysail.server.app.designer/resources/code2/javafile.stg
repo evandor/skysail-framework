@@ -1,0 +1,6 @@
+javafile(application, entity) ::= <<
+package $application.package$;
+
+hi
+
+>>

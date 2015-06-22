@@ -7,14 +7,19 @@ import io.skysail.server.app.designer.entities.Entity;
 import io.skysail.server.app.designer.model.*;
 import io.skysail.server.app.designer.repo.DesignerRepository;
 import io.skysail.server.db.*;
+import io.skysail.server.utils.BundleUtils;
 
 import java.lang.reflect.Method;
+import java.net.URL;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicReference;
+
+import lombok.Getter;
 
 import org.osgi.framework.Bundle;
 import org.osgi.service.component.ComponentContext;
 import org.osgi.service.event.EventAdmin;
+import org.stringtemplate.v4.ST;
 
 import com.google.common.collect.Iterables;
 
@@ -35,26 +40,53 @@ public class ApplicationCreator {
 
     private List<String> entityNames = new ArrayList<>();
     private List<String> entityClassNames = new ArrayList<>();
+
+    @Getter
     private ApplicationModel applicationModel;
+
+    private Map<String, String> templates;
+    private ST stringTemplateRoot;
 
     public ApplicationCreator(Application application, SkysailRouter router, DesignerRepository repo, Bundle bundle) {
         this.application = application;
         this.router = router;
         this.repo = repo;
         this.bundle = bundle;
-        this.applicationModel = new ApplicationModel(application.getName());
+        this.applicationModel = new ApplicationModel(application, repo);
+        this.templates = getTemplates(bundle);
+
+        STGroupBundleDir stGroup = createSringTemplateGroup(bundle);
+
+        stringTemplateRoot = getStringTemplateIndex(stGroup);
+    }
+
+    private STGroupBundleDir createSringTemplateGroup(Bundle bundle2) {
+        URL templatesResource = bundle.getResource("/code2");
+        return new STGroupBundleDir(bundle2, "/code2");
+    }
+
+    private ST getStringTemplateIndex(STGroupBundleDir stGroup) {
+        return stGroup.getInstanceOf("javafile");
+    }
+
+    private Map<String, String> getTemplates(Bundle bundle2) {
+        Map<String, String> result = new HashMap<>();
+        add(result, bundle2, "code/Entity2.codegen");
+        return result;
     }
 
     public boolean create(AtomicReference<EventAdmin> eventAdminRef) {
 
         InMemoryJavaCompiler.reset();
 
+        new EntityCreator(applicationModel).create(templates);
+
         application.getEntities().stream().forEach(e -> {
             fireEvent(eventAdminRef, "compiling entity " + e.getName() + " for application " + application.getName());
             compileEntity(application, routerPaths, e);
         });
-        
-        applicationModel.validate();
+
+        // applicationModel.validate();
 
         repoCompiler = new SkysailRepositoryCompiler(bundle, application);
         repoCompiler.createRepository(entityNames, entityClassNames);
@@ -124,7 +156,8 @@ public class ApplicationCreator {
 
             String entityName = sub.getName();
             EntityModel entityModel = applicationModel.addEntity(entityName);
-            SkysailSubEntityCompiler entityCompiler = new SkysailSubEntityCompiler(repo, bundle, a, entityName, entityName);
+            SkysailSubEntityCompiler entityCompiler = new SkysailSubEntityCompiler(repo, bundle, a, entityName,
+                    entityName);
             entityCompiler.setParent(parentEntityModel.getEntityName());
             entityCompiler.createEntity(entityNames, entityClassNames, entityModel);
             entityCompiler.createResources();
@@ -140,6 +173,10 @@ public class ApplicationCreator {
                 .channel(EventHelper.GUI_MSG)//
                 .info(msg)//
                 .fire();
+    }
+
+    private void add(Map<String, String> result, Bundle bundle2, String string) {
+        result.put("code/Entity.codegen", BundleUtils.readResource(bundle2, "code/Entity.codegen"));
     }
 
 }

@@ -82,28 +82,11 @@ public class SkysailEntityCompiler extends SkysailCompiler {
     public void attachToRouter(SkysailRouter router, String applicationName, Entity e, Map<String, String> routerPaths) {
         String path = "";
 
-        // Class<? extends PostEntityServerResource<?>> postResourceClass =
-        // (Class<? extends PostEntityServerResource<?>>)
-        // getClass(postResourceClassName);
-        // router.attach(new RouteBuilder(path + "/" + appEntityName + "s/",
-        // postResourceClass));
         routerPaths.put(path + "/" + appEntityName + "s/", postResourceClassName);
-
-        // Class<? extends PutEntityServerResource<?>> putResourceClass =
-        // (Class<? extends PutEntityServerResource<?>>)
-        // getClass(putResourceClassName);
-        // router.attach(new RouteBuilder(path + "/" + appEntityName + "s/{id}",
-        // putResourceClass));
         routerPaths.put(path + "/" + appEntityName + "s/{id}", putResourceClassName);
-
-        // Class<? extends ListServerResource<?>> listResourceClass = (Class<?
-        // extends ListServerResource<?>>) getClass(listResourceClassName);
-        // router.attach(new RouteBuilder(path + "/" + appEntityName + "s",
-        // listResourceClass));
         routerPaths.put(path + "/" + appEntityName + "s", listResourceClassName);
 
         if (e.isRootEntity()) {
-            // router.attach(new RouteBuilder(path, listResourceClass));
             routerPaths.put(path, listResourceClassName);
         }
     }

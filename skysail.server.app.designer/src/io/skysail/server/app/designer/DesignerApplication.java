@@ -15,6 +15,8 @@ import java.util.*;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
+import lombok.extern.slf4j.Slf4j;
+
 import org.osgi.framework.BundleException;
 
 import aQute.bnd.annotation.component.*;
@@ -23,6 +25,7 @@ import de.twenty11.skysail.server.core.restlet.*;
 import de.twenty11.skysail.server.services.*;
 
 @Component(immediate = true)
+@Slf4j
 public class DesignerApplication extends SkysailApplication implements MenuItemProvider, ApplicationProvider {
 
     public static final String APP_NAME = "AppDesigner";
@@ -72,7 +75,7 @@ public class DesignerApplication extends SkysailApplication implements MenuItemP
 
         compileApplications();
     }
-    
+
     @Reference(dynamic = true, multiple = false, optional = false, target = "(name=DesignerRepository)")
     public void setDesignerRepository(DbRepository repo) {
         this.repo = (DesignerRepository) repo;
@@ -110,9 +113,13 @@ public class DesignerApplication extends SkysailApplication implements MenuItemP
 
     public void compileApplications() {
         getRepository().findAll(Application.class).stream().forEach(app -> {
-            ApplicationCreator applicationCreator = new ApplicationCreator(app, router, repo, getBundle());
-            if (applicationCreator.create(getEventAdmin())) {
-                applicationCreator.setupInMemoryBundle(dbService, getComponentContext());
+            try {
+                ApplicationCreator applicationCreator = new ApplicationCreator(app, router, repo, getBundle());
+                if (applicationCreator.create(getEventAdmin())) {
+                    applicationCreator.setupInMemoryBundle(dbService, getComponentContext());
+                }
+            } catch (IllegalStateException ise) {
+                log.error(ise.getMessage(), ise);
             }
         });
     }

@@ -8,9 +8,9 @@ import lombok.*;
 @ToString
 public class ReferenceModel {
 
-    private String name;
+    private final String name;
 
-    public ReferenceModel(Entity entity) {
+    public ReferenceModel(@NonNull Entity entity) {
         this.name = entity.getName();
     }
 

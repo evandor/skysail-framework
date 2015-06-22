@@ -14,11 +14,11 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class EntityModel {
 
-    private String entityName;
-    private Set<FieldModel> fields = new HashSet<>();
-    private Set<ReferenceModel> references = new HashSet<>();
+    private final String entityName;
+    private final Set<FieldModel> fields = new HashSet<>();
+    private final Set<ReferenceModel> references = new HashSet<>();
 
-    public EntityModel(String entityName) {
+    public EntityModel(@NonNull String entityName) {
         this.entityName = entityName;
     }
 

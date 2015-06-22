@@ -3,11 +3,13 @@ package io.skysail.server.app.designer.codegen;
 import io.skysail.server.app.designer.application.Application;
 import io.skysail.server.app.designer.entities.Entity;
 import io.skysail.server.app.designer.fields.EntityField;
-import io.skysail.server.app.designer.model.EntityModel;
 import io.skysail.server.app.designer.repo.DesignerRepository;
 import io.skysail.server.utils.BundleUtils;
 
-import java.util.*;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 import lombok.Getter;
@@ -46,9 +48,9 @@ public class SkysailEntityCompiler extends SkysailCompiler {
         this.appEntityName = appEntityName;
     }
 
-    public void createEntity(List<String> entityNames, List<String> entityClassNames, EntityModel entityModel) {
+    public void createEntity(List<String> entityNames, List<String> entityClassNames) {
         String entityTemplate = BundleUtils.readResource(getBundle(), "code/Entity.codegen");
-        entityClassName = setupEntityForCompilation(entityTemplate, getApplication().getId(), entityName, appEntityName, entityModel);
+        entityClassName = setupEntityForCompilation(entityTemplate, getApplication().getId(), entityName, appEntityName);
         entityNames.add(entityName);
         entityClassNames.add(entityClassName);
     }
@@ -92,12 +94,10 @@ public class SkysailEntityCompiler extends SkysailCompiler {
     }
 
     private String setupEntityForCompilation(String entityTemplate, String appId, String entityName,
-            String appEntityName, EntityModel entityModel) {
+            String appEntityName) {
 
         List<EntityField> fields = getFields(repo, appEntityName, appId);
         String codeForFields = fields.stream().map(f -> {
-            
-            entityModel.addField(f);
             
             fireEvent(f.getName());
             
@@ -110,8 +110,6 @@ public class SkysailEntityCompiler extends SkysailCompiler {
         
         String codeForReferences = references.stream().map(f -> {
             
-            entityModel.addReference(f);
-
             StringBuilder sb = new StringBuilder("\n    @Reference(cls = "+f.getName()+".class)\n");
             sb.append("    @PostView(visibility=Visibility.HIDE)\n");
             sb.append("    @PutView(visibility=Visibility.HIDE)\n");

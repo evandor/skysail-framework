@@ -2,16 +2,25 @@ package io.skysail.server.app.designer;
 
 import io.skysail.server.app.SkysailApplication;
 import io.skysail.server.app.designer.application.Application;
-import io.skysail.server.app.designer.codegen.*;
+import io.skysail.server.app.designer.codegen.InMemoryJavaCompiler;
+import io.skysail.server.app.designer.codegen.SkysailApplicationCompiler;
+import io.skysail.server.app.designer.codegen.SkysailEntityCompiler;
+import io.skysail.server.app.designer.codegen.SkysailRepositoryCompiler;
+import io.skysail.server.app.designer.codegen.SkysailSubEntityCompiler;
 import io.skysail.server.app.designer.entities.Entity;
-import io.skysail.server.app.designer.model.*;
+import io.skysail.server.app.designer.model.ApplicationModel;
+import io.skysail.server.app.designer.model.EntityModel;
 import io.skysail.server.app.designer.repo.DesignerRepository;
-import io.skysail.server.db.*;
+import io.skysail.server.db.DbRepository;
+import io.skysail.server.db.DbService2;
 import io.skysail.server.utils.BundleUtils;
 
 import java.lang.reflect.Method;
-import java.net.URL;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.concurrent.atomic.AtomicReference;
 
 import lombok.Getter;
@@ -44,7 +53,7 @@ public class ApplicationCreator {
     @Getter
     private ApplicationModel applicationModel;
 
-    private Map<String, String> templates;
+   // private Map<String, String> templates;
     private ST stringTemplateRoot;
 
     public ApplicationCreator(Application application, SkysailRouter router, DesignerRepository repo, Bundle bundle) {
@@ -53,33 +62,28 @@ public class ApplicationCreator {
         this.repo = repo;
         this.bundle = bundle;
         this.applicationModel = new ApplicationModel(application, repo);
-        this.templates = getTemplates(bundle);
+     //   this.templates = getTemplates(bundle);
 
         STGroupBundleDir stGroup = createSringTemplateGroup(bundle);
-
-        stringTemplateRoot = getStringTemplateIndex(stGroup);
+        stringTemplateRoot = getStringTemplateIndex(stGroup, applicationModel);
+       // String rendered = stringTemplateRoot.render();
     }
 
     private STGroupBundleDir createSringTemplateGroup(Bundle bundle2) {
-        URL templatesResource = bundle.getResource("/code2");
         return new STGroupBundleDir(bundle2, "/code2");
     }
 
-    private ST getStringTemplateIndex(STGroupBundleDir stGroup) {
-        return stGroup.getInstanceOf("javafile");
-    }
-
-    private Map<String, String> getTemplates(Bundle bundle2) {
-        Map<String, String> result = new HashMap<>();
-        add(result, bundle2, "code/Entity2.codegen");
-        return result;
+    private ST getStringTemplateIndex(STGroupBundleDir stGroup, ApplicationModel applicationModel) {
+        ST javafile = stGroup.getInstanceOf("javafile");
+        javafile.add("application", applicationModel);
+        return javafile;
     }
 
     public boolean create(AtomicReference<EventAdmin> eventAdminRef) {
 
         InMemoryJavaCompiler.reset();
 
-        new EntityCreator(applicationModel).create(templates);
+        new EntityCreator(applicationModel).create(stringTemplateRoot);
 
         application.getEntities().stream().forEach(e -> {
             fireEvent(eventAdminRef, "compiling entity " + e.getName() + " for application " + application.getName());
@@ -100,13 +104,13 @@ public class ApplicationCreator {
 
     private void compileEntity(Application a, Map<String, String> routerPaths, Entity e) {
         String entityName = getEntityName(a, e);
-        EntityModel entityModel = applicationModel.addEntity(entityName);
+        //EntityModel entityModel = applicationModel.addEntity(entityName);
         SkysailEntityCompiler entityCompiler = new SkysailEntityCompiler(repo, bundle, a, entityName, e.getName());
-        entityCompiler.createEntity(entityNames, entityClassNames, entityModel);
+        entityCompiler.createEntity(entityNames, entityClassNames);
         entityCompiler.createResources();
         entityCompiler.attachToRouter(router, a.getName(), e, routerPaths);
 
-        handleSubEntities(a, e.getSubEntities(), entityNames, entityClassNames, entityModel);
+        handleSubEntities(a, e.getSubEntities(), entityNames, entityClassNames);
     }
 
     synchronized void setupInMemoryBundle(DbService2 dbService, ComponentContext componentContext) {
@@ -150,7 +154,7 @@ public class ApplicationCreator {
     }
 
     private void handleSubEntities(Application a, List<Entity> entities, List<String> entityNames,
-            List<String> entityClassNames, EntityModel parentEntityModel) {
+            List<String> entityClassNames) {
         entities.forEach(sub -> {
             System.out.println(sub);
 
@@ -158,10 +162,10 @@ public class ApplicationCreator {
             EntityModel entityModel = applicationModel.addEntity(entityName);
             SkysailSubEntityCompiler entityCompiler = new SkysailSubEntityCompiler(repo, bundle, a, entityName,
                     entityName);
-            entityCompiler.setParent(parentEntityModel.getEntityName());
-            entityCompiler.createEntity(entityNames, entityClassNames, entityModel);
+            entityCompiler.setParent("Campaign");
+            entityCompiler.createEntity(entityNames, entityClassNames);
             entityCompiler.createResources();
-            handleSubEntities(a, sub.getSubEntities(), entityNames, entityClassNames, entityModel);
+            handleSubEntities(a, sub.getSubEntities(), entityNames, entityClassNames);
         });
     }
 

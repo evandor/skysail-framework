@@ -1,6 +1,8 @@
 package io.skysail.server.app.designer.codegen;
 
-import io.skysail.server.app.designer.model.*;
+import io.skysail.server.app.designer.model.ApplicationModel;
+import io.skysail.server.app.designer.model.EntityModel;
+import io.skysail.server.app.designer.model.FieldModel;
 import io.skysail.server.app.designer.repo.DesignerRepository;
 
 import java.util.stream.Collectors;
@@ -8,8 +10,10 @@ import java.util.stream.Collectors;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 
+import org.stringtemplate.v4.ST;
+
 @Slf4j
-public class SkysailEntityCompiler2 {
+public class SkysailEntityCompiler2 extends SkysailCompiler2 {
 
     protected String entityName;
     protected String appEntityName;
@@ -29,8 +33,8 @@ public class SkysailEntityCompiler2 {
     @Getter
     protected String listResourceClassName;
     
-    private String template;
-
+    private ST template;
+    
     public SkysailEntityCompiler2(
             //DesignerRepository repo, Bundle bundle, Application application, String entityName,
             //String appEntityName
@@ -41,7 +45,7 @@ public class SkysailEntityCompiler2 {
 //        this.appEntityName = appEntityName;
     }
 
-    public SkysailEntityCompiler2(String template) {
+    public SkysailEntityCompiler2(ST template) {
         this.template = template;
     }
 
@@ -89,7 +93,7 @@ public class SkysailEntityCompiler2 {
 //        }
 //    }
 //
-    private String setupEntityForCompilation(String entityTemplate, ApplicationModel applicationModel, EntityModel entityModel) {//, String appId, String entityName,
+    private String setupEntityForCompilation(ST template, ApplicationModel applicationModel, EntityModel entityModel) {//, String appId, String entityName,
 //            String appEntityName, EntityModel entityModel) {
 
         String codeForFields = entityModel.getFields().stream().map(f -> {
@@ -141,8 +145,11 @@ public class SkysailEntityCompiler2 {
 //                put("$packagename$", applicationModel.getPackageName());
 //            }
 //        });
-        String entityClassName = applicationModel.getPackageName() + "." + entityName;
-        //collect(entityClassName, entityCode);
+        template.add("entity", entityModel);
+        entityCode = template.render();
+        System.out.println(entityCode);
+        String entityClassName = applicationModel.getPackageName() + "." + entityModel.getEntityName();
+        collect(entityClassName, entityCode);
         return entityClassName;
     }
 //

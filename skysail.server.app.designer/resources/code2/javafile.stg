@@ -1,6 +1,30 @@
 javafile(application, entity) ::= <<
-package $application.package$;
+package $application.packageName$;
 
-hi
+import io.skysail.api.domain.Identifiable;
+import io.skysail.api.forms.Field;
+import io.skysail.api.forms.Reference;
+import io.skysail.server.forms.PostView;
+import io.skysail.server.forms.PutView;
+import io.skysail.server.forms.Visibility;
 
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.Id;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+@JsonIgnoreProperties("handler")
+public class $entity.entityName$ implements Serializable, Identifiable {
+
+	/*
+	Application:
+	$application$
+	
+	Entity:
+	$entity$
+	*/
+}
 >>

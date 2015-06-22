@@ -1,9 +1,10 @@
 package io.skysail.server.app.designer;
 
 import io.skysail.server.app.designer.codegen.SkysailEntityCompiler2;
-import io.skysail.server.app.designer.model.*;
+import io.skysail.server.app.designer.model.ApplicationModel;
+import io.skysail.server.app.designer.model.EntityModel;
 
-import java.util.Map;
+import org.stringtemplate.v4.ST;
 
 public class EntityCreator {
 
@@ -13,14 +14,14 @@ public class EntityCreator {
         this.applicationModel = applicationModel;
     }
 
-    public void create(Map<String, String> templates) {
+    public void create(ST stringTemplateRoot) {
         applicationModel.getEntities().stream().forEach(entity -> {
             //fireEvent(eventAdminRef, "compiling entity " + e.getName() + " for application " + application.getName());
-            compileEntity(entity,templates.get("code/Entity.codegen"));
+            compileEntity(entity,stringTemplateRoot);
         });
     }
 
-    private void compileEntity(EntityModel entityModel, String template) {
+    private void compileEntity(EntityModel entityModel, ST template) {
         
 //      SkysailEntityCompiler entityCompiler = new SkysailEntityCompiler(repo, bundle, a, entityName, e.getName());
       SkysailEntityCompiler2 entityCompiler = new SkysailEntityCompiler2(template);

@@ -3,9 +3,13 @@ package io.skysail.server.app.designer.model;
 import io.skysail.server.app.designer.entities.Entity;
 import io.skysail.server.app.designer.fields.EntityField;
 
-import java.util.*;
+import java.util.HashSet;
+import java.util.Set;
 
-import lombok.*;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NonNull;
+import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
 
 @Getter
@@ -17,6 +21,7 @@ public class EntityModel {
     private final String entityName;
     private final Set<FieldModel> fields = new HashSet<>();
     private final Set<ReferenceModel> references = new HashSet<>();
+    private String className;
 
     public EntityModel(@NonNull String entityName) {
         this.entityName = entityName;
@@ -30,10 +35,14 @@ public class EntityModel {
     }
 
     public void addReference(Entity entity) {
-        log.info("EntityModel:      adding Reference (to Entity '{}') to Entity '{}'", entity.getName(), entityName);
+        log.info("EntityModel:      adding Reference from Entity '{}' to Entity '{}'", entityName, entity.getName());
         if (!references.add(new ReferenceModel(entity))) {
-            throw new IllegalStateException("field '"+entity.getName()+"' already exists!");
+            throw new IllegalStateException("reference '"+entity.getName()+"' already exists!");
         }
+    }
+
+    public void setClassName(String entityClassName) {
+        this.className = entityClassName;
     }
 
 }

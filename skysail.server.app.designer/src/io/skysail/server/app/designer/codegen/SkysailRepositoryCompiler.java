@@ -25,9 +25,10 @@ public class SkysailRepositoryCompiler extends SkysailCompiler {
 
     private void setupForCompilation(String template, List<String> entityNames, List<String> entityClassNames) {
         StringBuilder activationCode = new StringBuilder();
-        activationCode.append("        dbService.createWithSuperClass(\"V\", ").append(entityNames.stream().map(n -> {
-            return "\"".concat(n).concat("\"");
-        }).collect(Collectors.joining(","))).append(");\n");
+//        activationCode.append("        dbService.createWithSuperClass(\"V\", ").append(entityNames.stream().map(n -> {
+//            return "\"".concat(n).concat("\"");
+//        }).collect(Collectors.joining(","))).append(");\n"); //  "Campaign","Request"
+        activationCode.append("        dbService.createWithSuperClass(\"V\", \"Campaign\",\"Request\");\n"); //  
         activationCode.append("        dbService.register(").append(entityClassNames.stream().map(n -> {
             return n.concat(".class");
         }).collect(Collectors.joining(","))).append(");\n");

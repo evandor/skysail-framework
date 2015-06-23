@@ -3,6 +3,7 @@ package io.skysail.server.app.designer;
 import io.skysail.server.app.designer.codegen.SkysailEntityCompiler2;
 import io.skysail.server.app.designer.model.ApplicationModel;
 import io.skysail.server.app.designer.model.EntityModel;
+import io.skysail.server.app.designer.model.ReferenceModel;
 
 import org.stringtemplate.v4.ST;
 
@@ -23,13 +24,13 @@ public class EntityCreator {
 
     private void compileEntity(EntityModel entityModel, ST template) {
         
-//      SkysailEntityCompiler entityCompiler = new SkysailEntityCompiler(repo, bundle, a, entityName, e.getName());
-      SkysailEntityCompiler2 entityCompiler = new SkysailEntityCompiler2(template);
+      SkysailEntityCompiler2 entityCompiler = new SkysailEntityCompiler2(applicationModel, template);
       entityCompiler.createEntity(applicationModel, entityModel);
-//      entityCompiler.createResources();
-//      entityCompiler.attachToRouter(router, a.getName(), e, routerPaths);
-//
-//      handleSubEntities(a, e.getSubEntities(), entityNames, entityClassNames, entityModel);
+        //      entityCompiler.createResources();
+        //      entityCompiler.attachToRouter(router, a.getName(), e, routerPaths);
+      for (ReferenceModel referenceModel : entityModel.getReferences()) {
+          compileEntity(applicationModel.getEntityModel(referenceModel), template);
+      }
     }
 
 

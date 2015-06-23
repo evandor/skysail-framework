@@ -1,0 +1,14 @@
+references(references) ::= <<
+
+$references: { reference| 
+@Reference(cls = Request.class)
+@PostView(visibility=Visibility.HIDE)
+@PutView(visibility=Visibility.HIDE)
+private List<$reference.name$> $reference.variableName$s = new ArrayList<>();
+
+public void add$reference.name$($reference.name$ entity) {
+    $reference.variableName$s.add(entity);
+\}
+
+}$
+>>

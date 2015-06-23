@@ -1,38 +1,46 @@
 package io.skysail.app.propman;
 
 import io.skysail.api.domain.Identifiable;
-import io.skysail.api.forms.*;
-import io.skysail.server.forms.*;
-
-import java.util.Set;
+import io.skysail.api.forms.Field;
+import io.skysail.api.forms.Reference;
+import io.skysail.server.forms.PostView;
+import io.skysail.server.forms.PutView;
+import io.skysail.server.forms.Visibility;
 
 import java.io.Serializable;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Id;
-import javax.validation.constraints.*;
 
-import com.fasterxml.jackson.annotation.*;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @JsonIgnoreProperties("handler")
-public class Campaign  implements Serializable, Identifiable {
+public class Campaign implements Serializable, Identifiable {
 
-    @Id
+	@Id
     private String id;
-    
-    public void setId(String id) {
-        this.id = id;
+
+    @Override
+    public String getId() {
+        return null;
     }
 
-	public String getId() {
-		return id;
-	}
-	    
-    
+    @Override
+    public void setId(String id) {
+    }
+
     @Field
     private String name;
-    
-    
+    public void setName(String value) {
+        this.name = value;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+
     @Reference(cls = Request.class)
     @PostView(visibility=Visibility.HIDE)
     @PutView(visibility=Visibility.HIDE)
@@ -42,15 +50,15 @@ public class Campaign  implements Serializable, Identifiable {
         requests.add(entity);
     }
 
-    
-        public void setName(String value) {
-        this.name = value;
-    }
-
-    public String getName() {
-        return name;
-    }
 
 
-    
+	/*
+	Application:
+	ApplicationModel(applicationName=PropMan, entities=[EntityModel(entityName=Campaign, fields=[FieldModel(name=name)], references=[ReferenceModel(name=Request)], className=null), EntityModel(entityName=Request, fields=[FieldModel(name=requestname)], references=[], className=null)], packageName=io.skysail.app.propman, path=../, projectName=skysail.server.app.designer.propman)
+
+	Entity:
+	EntityModel(entityName=Campaign, fields=[FieldModel(name=name)], references=[ReferenceModel(name=Request)], className=null)
+	entity.fields:
+	FieldModel(name=name)
+	*/
 }

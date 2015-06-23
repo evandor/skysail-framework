@@ -1,5 +1,12 @@
 package io.skysail.server.app.designer.codegen;
 
+import io.skysail.server.app.designer.model.ApplicationModel;
+
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -8,13 +15,21 @@ import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 
 import org.osgi.framework.BundleContext;
+import org.stringtemplate.v4.ST;
 
 @Slf4j
 @Getter
 public class SkysailCompiler2 {
 
     @Getter
-    private boolean compiledSuccessfully = true;
+    protected boolean compiledSuccessfully = true;
+    protected ApplicationModel applicationModel;
+    protected ST template;
+
+    public SkysailCompiler2(ApplicationModel applicationModel, ST template) {
+        this.applicationModel = applicationModel;
+        this.template = template;
+    }
 
     public void compile(BundleContext bundleContext) {
         try {
@@ -42,26 +57,58 @@ public class SkysailCompiler2 {
             log.error(e.getMessage(), e);
         }
 
-//        try {
-//            createProjectIfNeeded();
-//        } catch (IOException e1) {
-//            // TODO Auto-generated catch block
-//            e1.printStackTrace();
-//        }
+        try {
+            createProjectIfNeeded();
+        } catch (IOException e1) {
+            e1.printStackTrace();
+        }
 
-//        String filename = application.getPath() + "/" + application.getProjectName() + "/src/"
-//                + classNameToPath(className);
-//        filename = filename.replace("//", "/");
-//        try {
-//            Path path = Paths.get(filename);
-//            new File(path.getParent().toString()).mkdirs();
-//            Files.write(path, entityCode.getBytes());
-//        } catch (IOException e) {
-//            log.debug("could not write source code for compilation unit '{}' to '{}'", className, filename);
-//        }
+        String filename = applicationModel.getPath() + "/" + applicationModel.getProjectName() + "/src/"
+                + classNameToPath(className);
+        filename = filename.replace("//", "/");
+        try {
+            Path path = Paths.get(filename);
+            new File(path.getParent().toString()).mkdirs();
+            Files.write(path, entityCode.getBytes());
+        } catch (IOException e) {
+            log.debug("could not write source code for compilation unit '{}' to '{}'", className, filename);
+        }
     }
 
-   
+    private void createProjectIfNeeded() throws IOException {
+//        String path = applicationModel.getPath() + "/" + applicationModel.getProjectName();
+//        path = path.replace("//", "/");
+//        new File(Paths.get(path).toString()).mkdirs();
+//        // if (new File(Paths.get(path).toString()).mkdirs()) {
+//        String project = BundleUtils.readResource(bundle, "code/project.codegen");
+//        project = project.replace("$projectname$", applicationModel.getProjectName() != null ? applicationModel.getProjectName() : "unknown");
+//        Files.write(Paths.get(path + "/.project"), project.getBytes());
+//
+//        String classpath = BundleUtils.readResource(bundle, "code/classpath.codegen");
+//        // project.replace("$projectname$", application.getProjectName());
+//        Files.write(Paths.get(path + "/.classpath"), classpath.getBytes());
+//
+//        String bnd = BundleUtils.readResource(bundle, "code/bnd.codegen");
+//        bnd = bnd.replace("$packagename$", applicationModel().getPackageName()  != null ? applicationModel.getPackageName() : "unknown");
+//        Files.write(Paths.get(path + "/bnd.bnd"), bnd.getBytes());
+//
+//        String bndrun = BundleUtils.readResource(bundle, "code/bndrun.codegen");
+//        bndrun = bndrun.replace("$projectname$", applicationModel.getProjectName() != null ? applicationModel.getProjectName() : "unknown");
+//        Files.write(Paths.get(path + "/local.bndrun"), bndrun.getBytes());
+//
+//        new File(Paths.get(path + "/test").toString()).mkdir();
+//        new File(Paths.get(path + "/resources").toString()).mkdir();
+//        new File(Paths.get(path + "/config/local").toString()).mkdirs();
+//
+//        copy(Paths.get(path), "io.skysail.server.db.DbConfigurations-skysailgraph.cfg");
+//        copy(Paths.get(path), "logback.xml");
+//
+//        // Files.walkFileTree(configPath, new CopyDirVisitor(Paths.get("."),
+//        // Paths.get(path + "/config/local")));
+
+        // }
+
+    }
 
    
     public void reset() {

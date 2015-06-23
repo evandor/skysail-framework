@@ -1,4 +1,4 @@
-package io.skysail.app.propman;
+package io.skysail.app.propman_;
 
 import io.skysail.api.domain.Identifiable;
 import io.skysail.api.forms.*;

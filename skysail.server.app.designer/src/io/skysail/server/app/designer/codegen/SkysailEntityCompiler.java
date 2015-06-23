@@ -50,9 +50,9 @@ public class SkysailEntityCompiler extends SkysailCompiler {
 
     public void createEntity(List<String> entityNames, List<String> entityClassNames) {
         String entityTemplate = BundleUtils.readResource(getBundle(), "code/Entity.codegen");
-        entityClassName = setupEntityForCompilation(entityTemplate, getApplication().getId(), entityName, appEntityName);
-        entityNames.add(entityName);
-        entityClassNames.add(entityClassName);
+//        entityClassName = setupEntityForCompilation(entityTemplate, getApplication().getId(), entityName, appEntityName);
+//        entityNames.add(entityName);
+//        entityClassNames.add(entityClassName);
     }
 
     public void createResources() {

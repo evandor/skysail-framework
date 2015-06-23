@@ -22,6 +22,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicReference;
+import java.util.stream.Collectors;
 
 import lombok.Getter;
 
@@ -62,15 +63,7 @@ public class ApplicationCreator {
         this.repo = repo;
         this.bundle = bundle;
         this.applicationModel = new ApplicationModel(application, repo);
-     //   this.templates = getTemplates(bundle);
-
-        STGroupBundleDir stGroup = createSringTemplateGroup(bundle);
-        stringTemplateRoot = getStringTemplateIndex(stGroup, applicationModel);
-       // String rendered = stringTemplateRoot.render();
-    }
-
-    private STGroupBundleDir createSringTemplateGroup(Bundle bundle2) {
-        return new STGroupBundleDir(bundle2, "/code2");
+        stringTemplateRoot = getStringTemplateIndex(new STGroupBundleDir(bundle, "/code2"), applicationModel);
     }
 
     private ST getStringTemplateIndex(STGroupBundleDir stGroup, ApplicationModel applicationModel) {
@@ -84,13 +77,14 @@ public class ApplicationCreator {
         InMemoryJavaCompiler.reset();
 
         new EntityCreator(applicationModel).create(stringTemplateRoot);
-
+        
+        entityClassNames.addAll(applicationModel.getEntities().stream().map(EntityModel::getClassName).collect(Collectors.toList()));
+        entityNames.addAll(applicationModel.getEntities().stream().map(EntityModel::getEntityName).collect(Collectors.toList()));
+        
         application.getEntities().stream().forEach(e -> {
             fireEvent(eventAdminRef, "compiling entity " + e.getName() + " for application " + application.getName());
             compileEntity(application, routerPaths, e);
         });
-
-        // applicationModel.validate();
 
         repoCompiler = new SkysailRepositoryCompiler(bundle, application);
         repoCompiler.createRepository(entityNames, entityClassNames);
@@ -159,7 +153,7 @@ public class ApplicationCreator {
             System.out.println(sub);
 
             String entityName = sub.getName();
-            EntityModel entityModel = applicationModel.addEntity(entityName);
+            //EntityModel entityModel = applicationModel.addEntity(entityName);
             SkysailSubEntityCompiler entityCompiler = new SkysailSubEntityCompiler(repo, bundle, a, entityName,
                     entityName);
             entityCompiler.setParent("Campaign");

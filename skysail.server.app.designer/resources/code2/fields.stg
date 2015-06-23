@@ -1,0 +1,14 @@
+fields(fields) ::= <<
+
+$fields: { field| 
+@Field
+private String $field.name$;
+public void $field.setMethodName$(String value) {
+    this.$field.name$ = value;
+\}
+
+public String $field.getMethodName$() {
+    return $field.name$;
+\}
+}$
+>>

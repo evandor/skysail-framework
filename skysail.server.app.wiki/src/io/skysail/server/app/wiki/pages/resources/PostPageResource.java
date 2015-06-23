@@ -4,6 +4,7 @@ import io.skysail.api.links.Link;
 import io.skysail.api.responses.SkysailResponse;
 import io.skysail.server.app.wiki.WikiApplication;
 import io.skysail.server.app.wiki.pages.Page;
+import io.skysail.server.app.wiki.spaces.Space;
 import io.skysail.server.restlet.resources.PostEntityServerResource;
 
 import java.util.List;
@@ -31,15 +32,15 @@ public class PostPageResource extends PostEntityServerResource<Page> {
 
     @Override
     public Page createEntityTemplate() {
-        return new Page(getQuery(), spaceId);
+        return new Page();
     }
 
     public SkysailResponse<?> addEntity(Page entity) {
+        Space space = app.getRepository().getById(Space.class, spaceId);
         Subject subject = SecurityUtils.getSubject();
         entity.setOwner(subject.getPrincipal().toString());
-        entity.setSpace(spaceId);
-        String id = app.getRepository().add(entity).toString();
-        entity.setId(id);
+        space.addPage(entity);
+        app.getRepository().update(spaceId, space);
         return new SkysailResponse<String>();
     }
     

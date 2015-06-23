@@ -2,15 +2,12 @@ package io.skysail.server.app.wiki.pages;
 
 import io.skysail.api.domain.Identifiable;
 import io.skysail.api.forms.*;
-import io.skysail.server.app.wiki.spaces.Space;
-import io.skysail.server.forms.*;
+import io.skysail.server.forms.ListView;
 
 import java.io.Serializable;
 
 import javax.persistence.Id;
 import javax.validation.constraints.*;
-
-import org.restlet.data.Form;
 
 import lombok.*;
 
@@ -30,23 +27,16 @@ public class Page implements Serializable, Identifiable {
     @Size(min = 2)
     private String name;
 
+    @Field(type = InputType.TEXTAREA)
+    @ListView(hide=true)
+    private String content;
+
     @Field(type = InputType.READONLY)
     @ListView(hide = true)
     private String owner;
 
-    @Reference(cls = Space.class)
-    // , selectionProvider = ListSelectionProvider.class)
-    @PostView(visibility = Visibility.SHOW_IF_NULL)
-    // @ListView(hide = true)
-    // @ValidListId
-    private String space;
-
     public Page(String name) {
         this.name = name;
-    }
-
-    public Page(Form query, String spaceId) {
-        this.space = spaceId;
     }
 
 }

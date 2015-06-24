@@ -47,7 +47,7 @@ public class ApplicationModel {
     }
 
     private void createEntityModel(Application application, DesignerRepository repo, Entity entity) {
-        EntityModel entityModel = addEntity(entity.getName());
+        EntityModel entityModel = addEntity(entity);
 
         List<EntityField> fields = getFields(repo, entity.getName(), application.getId());
         fields.stream().forEach(f -> {
@@ -60,11 +60,11 @@ public class ApplicationModel {
         });
     }
 
-    public EntityModel addEntity(String entityName) {
-        log.info("ApplicationModel: adding Entity '{}'", entityName);
-        EntityModel entityModel = new EntityModel(entityName);
+    public EntityModel addEntity(Entity entity) {
+        log.info("ApplicationModel: adding Entity '{}'", entity);
+        EntityModel entityModel = new EntityModel(entity);
         if (!entities.add(entityModel)) {
-            log.warn("EntityModel '{}' already exists!", entityName);
+            log.warn("EntityModel '{}' already exists!", entity);
         }
         return entityModel;
     }

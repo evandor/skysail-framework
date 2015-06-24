@@ -1,20 +1,29 @@
 package io.skysail.server.app.designer.model.test;
 
-import static org.hamcrest.Matchers.*;
+import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.hasItem;
+import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
 import io.skysail.server.app.designer.application.Application;
 import io.skysail.server.app.designer.entities.Entity;
 import io.skysail.server.app.designer.fields.EntityField;
-import io.skysail.server.app.designer.model.*;
+import io.skysail.server.app.designer.model.ApplicationModel;
+import io.skysail.server.app.designer.model.EntityModel;
+import io.skysail.server.app.designer.model.FieldModel;
 import io.skysail.server.app.designer.repo.DesignerRepository;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.stream.Collectors;
 
-import org.junit.*;
+import org.junit.Before;
+import org.junit.Rule;
+import org.junit.Test;
 import org.junit.rules.ExpectedException;
 import org.junit.runner.RunWith;
-import org.mockito.*;
+import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
 import org.osgi.framework.Bundle;
 
@@ -57,7 +66,7 @@ public class ApplicationModelTest {
     @Test
     public void adding_entity_succeeds() {
         ApplicationModel applicationModel = new ApplicationModel(application, repo);
-        EntityModel addedEntity = applicationModel.addEntity("entityName");
+        EntityModel addedEntity = applicationModel.addEntity(new Entity("entityName"));
         assertThat(addedEntity.getEntityName(), is(equalTo("entityName")));
     }
 
@@ -65,14 +74,14 @@ public class ApplicationModelTest {
     public void adding_entity_twice_throws_exception() {
         thrown.expect(IllegalStateException.class);
         ApplicationModel applicationModel = new ApplicationModel(application, repo);
-        applicationModel.addEntity("entityName");
-        applicationModel.addEntity("entityName");
+        applicationModel.addEntity(new Entity("entityName"));
+        applicationModel.addEntity(new Entity("entityName"));
     }
 
     @Test
     public void validation_succeeds_for_reference_with_known_entity() {
         ApplicationModel applicationModel = new ApplicationModel(application, repo);
-        EntityModel entity = applicationModel.addEntity("entityName");
+        EntityModel entity = applicationModel.addEntity(new Entity("entityName"));
         Entity unknownEntity = new Entity("entityName");
         entity.addReference(unknownEntity);
         applicationModel.validate();
@@ -82,7 +91,7 @@ public class ApplicationModelTest {
     public void validation_throws_expection_for_reference_with_unknown_entity() {
         thrown.expect(IllegalStateException.class);
         ApplicationModel applicationModel = new ApplicationModel(application, repo);
-        EntityModel entity = applicationModel.addEntity("entityName");
+        EntityModel entity = applicationModel.addEntity(new Entity("entityName"));
         Entity unknownEntity = new Entity("unknown");
         entity.addReference(unknownEntity);
         applicationModel.validate();

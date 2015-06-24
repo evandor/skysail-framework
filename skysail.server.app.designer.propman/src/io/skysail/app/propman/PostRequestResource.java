@@ -11,8 +11,6 @@ import org.restlet.resource.ResourceException;
 public class PostRequestResource extends PostEntityServerResource<Request> {
 
 	private PropManApplication app;
-	private String id;
-	
 
     public PostRequestResource() {
         addToContext(ResourceContextId.LINK_TITLE, "Create new Request");
@@ -21,21 +19,19 @@ public class PostRequestResource extends PostEntityServerResource<Request> {
     @Override
     protected void doInit() throws ResourceException {
         app = (PropManApplication) getApplication();
-        id = getAttribute("id");
-        
     }
 
-	@Override
+    @Override
     public Request createEntityTemplate() {
         return new Request();
     }
 
     @Override
     public SkysailResponse<?> addEntity(Request entity) {
-        Campaign parentEntity = app.getRepository().getById(Campaign.class, id);
-        parentEntity.addRequest(entity);
-        app.getRepository().update(id, parentEntity);
-        return new SkysailResponse<String>();    }
-    
-   
+         Subject subject = SecurityUtils.getSubject();
+        //entity.setOwner(subject.getPrincipal().toString());
+        String id = app.getRepository().add(entity).toString();
+        entity.setId(id);
+        return new SkysailResponse<String>();
+    }
 }

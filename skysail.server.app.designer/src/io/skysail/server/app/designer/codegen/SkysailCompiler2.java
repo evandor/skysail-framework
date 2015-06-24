@@ -1,5 +1,6 @@
 package io.skysail.server.app.designer.codegen;
 
+import io.skysail.server.app.designer.STGroupBundleDir;
 import io.skysail.server.app.designer.model.ApplicationModel;
 
 import java.io.File;
@@ -16,6 +17,7 @@ import lombok.extern.slf4j.Slf4j;
 
 import org.osgi.framework.BundleContext;
 import org.stringtemplate.v4.ST;
+import org.stringtemplate.v4.STGroupDir;
 
 @Slf4j
 @Getter
@@ -24,11 +26,11 @@ public class SkysailCompiler2 {
     @Getter
     protected boolean compiledSuccessfully = true;
     protected ApplicationModel applicationModel;
-    protected ST template;
+    protected STGroupDir stGroupDir;
 
-    public SkysailCompiler2(ApplicationModel applicationModel, ST template) {
+    public SkysailCompiler2(ApplicationModel applicationModel, STGroupBundleDir stGroup) {
         this.applicationModel = applicationModel;
-        this.template = template;
+        this.stGroupDir = stGroup;
     }
 
     public void compile(BundleContext bundleContext) {
@@ -127,5 +129,14 @@ public class SkysailCompiler2 {
             return null;
         }
     }
+    
+    protected ST getStringTemplateIndex(String root) {
+        ST javafile = stGroupDir.getInstanceOf(root);
+        javafile.add("application", applicationModel);
+        return javafile;
+    }
+    
+ 
+
 
 }

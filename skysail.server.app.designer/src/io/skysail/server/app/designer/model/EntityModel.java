@@ -13,7 +13,7 @@ import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
 
 @Getter
-@EqualsAndHashCode(of={"entityName"})
+@EqualsAndHashCode(of = { "entityName" })
 @ToString
 @Slf4j
 public class EntityModel {
@@ -22,27 +22,33 @@ public class EntityModel {
     private final Set<FieldModel> fields = new HashSet<>();
     private final Set<ReferenceModel> references = new HashSet<>();
     private String className;
+    private boolean rootEntity;
 
-    public EntityModel(@NonNull String entityName) {
-        this.entityName = entityName;
+    public EntityModel(@NonNull Entity entity) {
+        this.entityName = entity.getName();
+        rootEntity = entity.isRootEntity();
     }
 
     public void addField(EntityField f) {
         log.info("EntityModel:      adding Field '{}' to Entity '{}'", f.getName(), entityName);
         if (!fields.add(new FieldModel(f))) {
-            throw new IllegalStateException("field '"+f.getName()+"' already exists!");
+            throw new IllegalStateException("field '" + f.getName() + "' already exists!");
         }
     }
 
     public void addReference(Entity entity) {
         log.info("EntityModel:      adding Reference from Entity '{}' to Entity '{}'", entityName, entity.getName());
         if (!references.add(new ReferenceModel(entity))) {
-            throw new IllegalStateException("reference '"+entity.getName()+"' already exists!");
+            throw new IllegalStateException("reference '" + entity.getName() + "' already exists!");
         }
     }
 
     public void setClassName(String entityClassName) {
         this.className = entityClassName;
+    }
+
+    public boolean isRootEntity() {
+        return rootEntity;
     }
 
 }

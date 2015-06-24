@@ -1,0 +1,21 @@
+putResource(application, entity) ::= <<
+package $application.packageName$;
+
+import io.skysail.api.responses.SkysailResponse;
+import io.skysail.server.restlet.resources.PutEntityServerResource;
+
+import java.util.Date;
+
+public class Put$entity.entityName$Resource extends PutEntityServerResource<$entity.entityName$> {
+
+    @Override
+    public SkysailResponse<?> updateEntity($entity.entityName$ entity) {
+        return null;
+    }
+
+    @Override
+    public $entity.entityName$ getEntity() {
+        return null;
+    }
+}
+>>

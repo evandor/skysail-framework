@@ -44,10 +44,10 @@ public class Request implements Serializable, Identifiable {
 
 	/*
 	Application:
-	ApplicationModel(applicationName=PropMan, entities=[EntityModel(entityName=Campaign, fields=[FieldModel(name=name)], references=[ReferenceModel(name=Request)], className=io.skysail.app.propman.Campaign), EntityModel(entityName=Request, fields=[FieldModel(name=requestname)], references=[], className=io.skysail.app.propman.Request)], packageName=io.skysail.app.propman, path=../, projectName=skysail.server.app.designer.propman)
+	ApplicationModel(applicationName=PropMan, entities=[EntityModel(entityName=Campaign, fields=[FieldModel(name=name)], references=[ReferenceModel(name=Request)], className=io.skysail.app.propman.Campaign, rootEntity=true), EntityModel(entityName=Request, fields=[FieldModel(name=requestname)], references=[], className=null, rootEntity=false)], packageName=io.skysail.app.propman, path=../, projectName=skysail.server.app.designer.propman)
 
 	Entity:
-	EntityModel(entityName=Request, fields=[FieldModel(name=requestname)], references=[], className=io.skysail.app.propman.Request)
+	EntityModel(entityName=Request, fields=[FieldModel(name=requestname)], references=[], className=null, rootEntity=false)
 	entity.fields:
 	FieldModel(name=requestname)
 	*/

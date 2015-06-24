@@ -4,7 +4,6 @@ import io.skysail.server.app.designer.application.Application;
 import io.skysail.server.app.designer.entities.Entity;
 import io.skysail.server.app.designer.fields.EntityField;
 import io.skysail.server.app.designer.repo.DesignerRepository;
-import io.skysail.server.utils.BundleUtils;
 
 import java.util.Collections;
 import java.util.HashMap;
@@ -48,28 +47,21 @@ public class SkysailEntityCompiler extends SkysailCompiler {
         this.appEntityName = appEntityName;
     }
 
-    public void createEntity(List<String> entityNames, List<String> entityClassNames) {
-        String entityTemplate = BundleUtils.readResource(getBundle(), "code/Entity.codegen");
-//        entityClassName = setupEntityForCompilation(entityTemplate, getApplication().getId(), entityName, appEntityName);
-//        entityNames.add(entityName);
-//        entityClassNames.add(entityClassName);
-    }
-
-    public void createResources() {
-        String entityResourceTemplate = BundleUtils.readResource(getBundle(), "code/EntityResource.codegen");
-        entityResourceClassName = setupEntityResourceForCompilation(entityResourceTemplate, getApplication().getId(),
-                entityName, appEntityName);
-
-        String postResourceTemplate = BundleUtils.readResource(getBundle(), "code/PostResource.codegen");
-        postResourceClassName = setupPostResourceForCompilation(postResourceTemplate, entityName, appEntityName);
-
-        String putResourceTemplate = BundleUtils.readResource(getBundle(), "code/PutResource.codegen");
-        putResourceClassName = setupPutResourceForCompilation(putResourceTemplate, entityName,
-                getApplication().getId(), appEntityName);
-
-        String listServerResourceTemplate = BundleUtils.readResource(getBundle(), "code/ListServerResource.codegen");
-        listResourceClassName = setupListResourceForCompilation(listServerResourceTemplate, entityName, entityClassName);
-    }
+//    public void createResources() {
+////        String entityResourceTemplate = BundleUtils.readResource(getBundle(), "code/EntityResource.codegen");
+////        entityResourceClassName = setupEntityResourceForCompilation(entityResourceTemplate, getApplication().getId(),
+////                entityName, appEntityName);
+//
+////        String postResourceTemplate = BundleUtils.readResource(getBundle(), "code/PostResource.codegen");
+////        postResourceClassName = setupPostResourceForCompilation(postResourceTemplate, entityName, appEntityName);
+//
+////        String putResourceTemplate = BundleUtils.readResource(getBundle(), "code/PutResource.codegen");
+////        putResourceClassName = setupPutResourceForCompilation(putResourceTemplate, entityName,
+////                getApplication().getId(), appEntityName);
+//
+////        String listServerResourceTemplate = BundleUtils.readResource(getBundle(), "code/ListServerResource.codegen");
+////        listResourceClassName = setupListResourceForCompilation(listServerResourceTemplate, entityName, entityClassName);
+//    }
 
     public String getEntityResourceClassName() {
         return entityResourceClassName;
@@ -93,78 +85,7 @@ public class SkysailEntityCompiler extends SkysailCompiler {
         }
     }
 
-    private String setupEntityForCompilation(String entityTemplate, String appId, String entityName,
-            String appEntityName) {
-
-        List<EntityField> fields = getFields(repo, appEntityName, appId);
-        String codeForFields = fields.stream().map(f -> {
-            
-            fireEvent(f.getName());
-            
-            StringBuilder sb = new StringBuilder("\n    @Field\n");
-            sb.append("    private String " + f.getName() + ";");
-            return sb.toString();
-        }).collect(Collectors.joining(";\n"));
-        
-        List<Entity> references = getReferences(repo, appEntityName, appId);
-        
-        String codeForReferences = references.stream().map(f -> {
-            
-            StringBuilder sb = new StringBuilder("\n    @Reference(cls = "+f.getName()+".class)\n");
-            sb.append("    @PostView(visibility=Visibility.HIDE)\n");
-            sb.append("    @PutView(visibility=Visibility.HIDE)\n");
-            sb.append("    private List<"+f.getName()+"> " + f.getName().toLowerCase() + "s = new ArrayList<>();\n");
-            sb.append("\n");
-            sb.append("    public void add"+f.getName()+"("+f.getName()+" entity) {\n");
-            sb.append("        "+f.getName().toLowerCase()+"s.add(entity);\n");
-            sb.append("    }\n");
-            return sb.toString();
-        }).collect(Collectors.joining(";\n"));
-
-        String codeForGettersAndSetters = fields.stream().map(f -> {
-            StringBuilder sb = new StringBuilder();
-            String methodName = getMethodName(f);
-            sb.append("    public void set" + methodName + "(String value) {\n");
-            sb.append("        this." + f.getName() + " = value;\n");
-            sb.append("    }\n");
-            sb.append("\n");
-            sb.append("    public String get" + methodName + "() {\n");
-            sb.append("        return " + f.getName() + ";\n");
-            sb.append("    }\n");
-            return sb.toString();
-        }).collect(Collectors.joining(";\n"));
-        
-//        String codeForGettersAndSetters2 = references.stream().map(r -> {
-//            StringBuilder sb = new StringBuilder();
-//            String methodName = r.getName();
-//            sb.append("    public void set" + methodName + "(String value) {\n");
-//            sb.append("        this." + r.getName() + " = value;\n");
-//            sb.append("    }\n");
-//            sb.append("\n");
-//            sb.append("    public String get" + methodName + "() {\n");
-//            sb.append("        return " + r.getName() + ";\n");
-//            sb.append("    }\n");
-//            return sb.toString();
-//        }).collect(Collectors.joining(";\n"));
-
-        @SuppressWarnings("serial")
-        String entityCode = substitute(entityTemplate, new HashMap<String, String>() {
-            {
-                put("$classname$", entityName);
-                put("$applicationId$", appId);
-                put("$appEntityName$", appEntityName);
-                put("$fields$", codeForFields);
-                put("$references$", codeForReferences);
-                put("$gettersAndSetters$", codeForGettersAndSetters + "\n");// + codeForGettersAndSetters2);
-                put("$applicationName$", getApplication().getName() + "Application");
-                put("$packagename$", getApplication().getPackageName());
-            }
-        });
-        String entityClassName = application.getPackageName() + "." + entityName;
-        collect(entityClassName, entityCode);
-        return entityClassName;
-    }
-
+    
     private void fireEvent(String name) {
         
 //        new EventHelper(application.getEventAdmin().get())//
@@ -199,27 +120,9 @@ public class SkysailEntityCompiler extends SkysailCompiler {
         return Collections.emptyList();
     }
 
-    private List<Entity> getReferences(DesignerRepository repo2, String beanName, String appIdentifier) {
-        Application designerApplication = repo.getById(Application.class, appIdentifier.replace("#", ""));
-        List<Entity> entities = designerApplication.getEntities();
-        return findReferences(repo2, beanName, appIdentifier, entities);
-    }
+   
     
-    private List<Entity> findReferences(DesignerRepository repo2, String beanName, String appIdentifier,
-            List<Entity> entities) {
-        // streams dont't seem to work here ?!?! (with orientdb objects)
-        for (Entity entity : entities) {
-            if (beanName.equals(entity.getName())) {
-                return entity.getSubEntities();
-            }
-            List<Entity> fieldsFromSubEntity = findReferences(repo2, beanName, appIdentifier, entity.getSubEntities());
-            if (fieldsFromSubEntity.size() > 0) {
-                return fieldsFromSubEntity;
-            }
-        }
-        return Collections.emptyList();
-    }
-
+   
     protected String setupEntityResourceForCompilation(String entityTemplate, String appId, String entityName,
             String appEntityName) {
         @SuppressWarnings("serial")

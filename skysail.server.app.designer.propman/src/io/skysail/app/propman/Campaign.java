@@ -54,10 +54,10 @@ public class Campaign implements Serializable, Identifiable {
 
 	/*
 	Application:
-	ApplicationModel(applicationName=PropMan, entities=[EntityModel(entityName=Campaign, fields=[FieldModel(name=name)], references=[ReferenceModel(name=Request)], className=null), EntityModel(entityName=Request, fields=[FieldModel(name=requestname)], references=[], className=null)], packageName=io.skysail.app.propman, path=../, projectName=skysail.server.app.designer.propman)
+	ApplicationModel(applicationName=PropMan, entities=[EntityModel(entityName=Campaign, fields=[FieldModel(name=name)], references=[ReferenceModel(name=Request)], className=null, rootEntity=true), EntityModel(entityName=Request, fields=[FieldModel(name=requestname)], references=[], className=null, rootEntity=false)], packageName=io.skysail.app.propman, path=../, projectName=skysail.server.app.designer.propman)
 
 	Entity:
-	EntityModel(entityName=Campaign, fields=[FieldModel(name=name)], references=[ReferenceModel(name=Request)], className=null)
+	EntityModel(entityName=Campaign, fields=[FieldModel(name=name)], references=[ReferenceModel(name=Request)], className=null, rootEntity=true)
 	entity.fields:
 	FieldModel(name=name)
 	*/

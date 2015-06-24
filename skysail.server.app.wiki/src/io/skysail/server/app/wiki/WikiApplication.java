@@ -30,8 +30,8 @@ public class WikiApplication extends SkysailApplication implements MenuItemProvi
     @Override
     protected void attach() {
         // Application root resource
-        router.attach(new RouteBuilder("", RootResource.class));
-        router.attach(new RouteBuilder("/", RootResource.class));
+        router.attach(new RouteBuilder("", SpacesResource.class));
+        router.attach(new RouteBuilder("/", SpacesResource.class));
         router.attach(new RouteBuilder("/spaces", SpacesResource.class));
         router.attach(new RouteBuilder("/spaces/", PostSpaceResource.class));
         router.attach(new RouteBuilder("/spaces/{id}", SpaceResource.class));
@@ -39,7 +39,7 @@ public class WikiApplication extends SkysailApplication implements MenuItemProvi
 
         router.attach(new RouteBuilder("/spaces/{id}/pages", PagesResource.class));
         router.attach(new RouteBuilder("/spaces/{id}/pages/", PostPageResource.class));
-        router.attach(new RouteBuilder("/spaces/{id}/pages/{pageId}", PageResource.class));
+        router.attach(new RouteBuilder("/spaces/{id}/pages/{pageId}", PageResource.class).noAuthenticationNeeded());
         router.attach(new RouteBuilder("/spaces/{id}/pages/{pageId}/", PutPageResource.class));
 
     }

@@ -3,22 +3,25 @@ package io.skysail.server.app.wiki.pages.resources;
 import io.skysail.api.links.Link;
 import io.skysail.api.responses.SkysailResponse;
 import io.skysail.server.app.wiki.WikiApplication;
+import io.skysail.server.app.wiki.pages.Page;
 import io.skysail.server.restlet.resources.EntityServerResource;
 
-import java.util.*;
+import java.util.List;
 
-public class PageResource extends EntityServerResource<Map<String,Object>> {
+public class PageResource extends EntityServerResource<Page> {
 
     private WikiApplication app;
-    private String myEntityId;
+    private String spaceId;
+    private String pageId;
 
     protected void doInit() {
-        myEntityId = getAttribute("id");
+        spaceId = getAttribute("id");
+        pageId = getAttribute("pageId");
         app = (WikiApplication) getApplication();
     }
 
-    public Map<String,Object> getEntity() {
-        return null;//app.getRepository().getById(Page.class, myEntityId).toMap();
+    public Page getEntity() {
+        return app.getRepository().getById(Page.class, pageId);
     }
 
     public List<Link> getLinks() {

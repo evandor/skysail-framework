@@ -1,0 +1,33 @@
+mainContent(user, converter, messages, model) ::= <<
+ 
+  $if (user.principal)$
+  <div class="row">
+    <div class="col-md-1">$appNav(model)$</div>
+    <div class="col-md-10">
+      <!-- contentHeader -->
+$contentHeader(converter, messages, model)$
+    </div>
+  </div>
+  $endif$
+    
+  <div class="row">
+    <div class="col-md-1">&nbsp;</div>
+    <div class="col-md-8">
+      $if(model.form)$
+        <!-- showForm -->
+        $showForm(model.formfields, messages, model)$ 
+      $elseif(model.list)$
+        <!-- renderTable -->
+        $renderTable(converter, messages, model)$
+      $else$
+        <!-- render single entity -->
+        $renderEntity(user, model)$
+      $endif$ 
+    </div>
+    <div class="col-md-3">
+      $if(model.form)$
+        $renderEntityInfo(model.formfields, messages, model)$ 
+      $endif$ 
+    </div>
+  </div>
+>>

@@ -34,4 +34,9 @@ public class PostRequestResource extends PostEntityServerResource<Request> {
         entity.setId(id);
         return new SkysailResponse<String>();
     }
+
+    @Override
+    public String redirectTo() {
+        return super.redirectTo(RequestsResource.class);
+    }
 }

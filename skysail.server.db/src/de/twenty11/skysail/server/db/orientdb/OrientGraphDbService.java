@@ -23,6 +23,7 @@ import com.orientechnologies.orient.core.sql.OCommandSQL;
 import com.orientechnologies.orient.core.sql.query.OSQLSynchQuery;
 import com.orientechnologies.orient.object.db.*;
 import com.orientechnologies.orient.object.metadata.schema.OSchemaProxyObject;
+import com.tinkerpop.blueprints.Vertex;
 import com.tinkerpop.blueprints.impls.orient.*;
 
 import de.twenty11.skysail.server.core.osgi.EventHelper;
@@ -114,17 +115,38 @@ public class OrientGraphDbService extends AbstractOrientDbService implements DbS
          //return load;
     }
     
+//    @Override
+//    public ODocument findDocumentById(Class<?> cls, String id) {
+//        ODatabaseDocumentTx db = getDocumentDb();
+//        Map<String, Object> params = new HashMap<>();
+//        params.put("rid", id);
+//        List<ODocument> query = db.query(new OSQLSynchQuery<ODocument>("SELECT * FROM " + cls.getSimpleName()
+//                + " WHERE @rid= :rid"), params);
+//        if (query != null) {
+//            return query.get(0);
+//        }
+//        return null;//new HashMap<String, Object>();
+//    }
+    
     @Override
-    public ODocument findDocumentById(Class<?> cls, String id) {
-        ODatabaseDocumentTx db = getDocumentDb();
-        Map<String, Object> params = new HashMap<>();
-        params.put("rid", id);
-        List<ODocument> query = db.query(new OSQLSynchQuery<ODocument>("SELECT * FROM " + cls.getSimpleName()
-                + " WHERE @rid= :rid"), params);
-        if (query != null) {
-            return query.get(0);
+    public <T> List<T> findWithGraph(String sql, Class<?> cls, Map<String, Object> params) {
+        OrientGraph db = getDb();
+        List<T> result = new ArrayList<>();
+        Iterable<Vertex> query = (Iterable<Vertex>) db.getVerticesOfClass("Page");
+        for (Vertex vertex : query) {
+            OrientVertex ov = (OrientVertex)vertex;
+            Map<String, Object> record = ov.getRecord().toMap();
+            ORecordId id = (ORecordId) record.get("@rid");
+            record.put("id", id.toString());
+            record.remove("@rid");
+            record.remove("@class");
+            record.remove("versions");
+            @SuppressWarnings("unchecked")
+            T convertedValue = (T) mapper.convertValue(record, cls);
+            result.add(convertedValue);
         }
-        return null;//new HashMap<String, Object>();
+
+        return result;
     }
 
     @Override

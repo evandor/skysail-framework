@@ -31,7 +31,7 @@ public interface DbService2 {
      */
     <T> T findObjectById(Class<?> cls, String id);
     
-    ODocument findDocumentById(Class<?> cls, String id);
+    //ODocument findDocumentById(Class<?> cls, String id);
     
 
     <T> List<T> findObjects(String sql);
@@ -39,6 +39,8 @@ public interface DbService2 {
 
     <T> List findObjects(String sql, Map<String, Object> params);
     List<Map<String,Object>> findDocuments(String sql, Map<String, Object> params);
+
+    <T> List<T> findWithGraph(String sql, Class<?> cls, Map<String, Object> params);
 
 
     <T> Object update(Object id, T entity);

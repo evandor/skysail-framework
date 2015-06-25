@@ -1,21 +1,36 @@
-putResource(application, entity) ::= <<
+putResource(application, entity, updateEntity) ::= <<
 package $application.packageName$;
 
 import io.skysail.api.responses.SkysailResponse;
 import io.skysail.server.restlet.resources.PutEntityServerResource;
 
 import java.util.Date;
+import org.restlet.resource.ResourceException;
 
 public class Put$entity.entityName$Resource extends PutEntityServerResource<$entity.entityName$> {
 
+
+    private String id;
+    private $application.applicationName$Application app;
+
     @Override
-    public SkysailResponse<?> updateEntity($entity.entityName$ entity) {
-        return null;
-    }
+    protected void doInit() throws ResourceException {
+        super.doInit();
+        id = getAttribute("id");
+        app = ($application.applicationName$Application)getApplication();
+    \}
+    
+    @Override
+    public SkysailResponse<?> updateEntity($entity.entityName$  entity) {
+        $entity.entityName$  original = getEntity();
+        $updateEntity$
+        app.getRepository().update(id, original);
+        return new SkysailResponse<>();
+    \}
 
     @Override
     public $entity.entityName$ getEntity() {
         return null;
-    }
+    \}
 }
 >>

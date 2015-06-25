@@ -133,7 +133,9 @@ public class ResourceModel<R extends SkysailServerResource<T>, T> {
 
     private List<Map<String, Object>> convert() {
         List<Map<String, Object>> result = new ArrayList<>();
-        rawData.stream().forEach(row -> {
+        rawData.stream().filter(row -> {
+            return row != null;
+        }).forEach(row -> {
             Map<String, Object> newRow = new HashMap<>();
             result.add(newRow);
             row.keySet().stream().forEach(columnName -> {

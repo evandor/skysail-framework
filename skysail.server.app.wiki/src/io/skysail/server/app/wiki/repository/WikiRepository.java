@@ -2,6 +2,7 @@ package io.skysail.server.app.wiki.repository;
 
 import io.skysail.server.app.wiki.pages.Page;
 import io.skysail.server.app.wiki.spaces.Space;
+import io.skysail.server.app.wiki.versions.Version;
 import io.skysail.server.db.*;
 import io.skysail.server.queryfilter.Filter;
 
@@ -22,6 +23,8 @@ public class WikiRepository implements DbRepository {
         dbService.register(Space.class);
         dbService.createWithSuperClass("V", Page.class.getSimpleName());
         dbService.register(Page.class);
+        dbService.createWithSuperClass("V", Version.class.getSimpleName());
+        dbService.register(Version.class);
     }
 
     @Reference
@@ -58,6 +61,10 @@ public class WikiRepository implements DbRepository {
         dbService.update(id, space);
     }
 
+    public void update(String id, Page page) {
+        dbService.update(id, page);
+    }
+
     public void update(Map<String, Object> space) {
         dbService.update(space);
     }
@@ -84,6 +91,10 @@ public class WikiRepository implements DbRepository {
 //                + limitClause(pagination.getLinesPerPage(),pagination.getPage()); 
         return dbService.findObjects(sql, filter.getParams());
 
+    }
+
+    public List<Page> findAllPages2(Filter filter) {
+        return dbService.findWithGraph("",Page.class,Collections.emptyMap());
     }
 
 }

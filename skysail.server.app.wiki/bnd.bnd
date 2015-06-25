@@ -49,7 +49,8 @@ Include-Resource: resources, templates=src;recursive:=true;filter:=*.st|*.stg
 	com.fasterxml.jackson.core.jackson-databind;version=2.4,\
 	com.googlecode.concurrentlinkedhashmap.lru;version=1.4,\
 	com.orientechnologies.orientdb-object;version=2.0,\
-	javassist;version=3.18
+	javassist;version=3.18,\
+	com.fasterxml.jackson.module.jackson-module-jaxb-annotations;version=2.5
 Import-Package: org.osgi.framework,\
 	javassist.util.proxy,\
 	org.apache.commons.beanutils,\
@@ -58,7 +59,8 @@ Private-Package:  \
 	io.skysail.server.app.wiki.application,\
 	io.skysail.server.app.wiki.pages.resources,\
 	io.skysail.server.app.wiki.spaces.resources,\
-	io.skysail.server.app.wiki.repository
+	io.skysail.server.app.wiki.repository,\
+	io.skysail.server.app.wiki.versions
 Export-Package:  \
 	io.skysail.server.app.wiki.pages,\
 	io.skysail.server.app.wiki.spaces,\

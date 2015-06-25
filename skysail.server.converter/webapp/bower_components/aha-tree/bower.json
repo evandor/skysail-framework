@@ -1,0 +1,19 @@
+{
+    "name": "aha-tree",
+    "version": "1.0.0",
+    "description": "A custome element to render a JSON to tree.",
+    "license": "MIT",
+    "main": "dist/aha-tree.html",
+    "keywords": [
+        "polymer",
+        "web-components"
+    ],
+    "ignore": [
+        "**/.*",
+        "node_modules",
+        "bower_components"
+    ],
+    "dependencies": {
+        "polymer": "Polymer/polymer#~0.4"
+    }
+}

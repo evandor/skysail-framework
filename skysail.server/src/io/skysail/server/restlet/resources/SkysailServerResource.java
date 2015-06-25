@@ -320,7 +320,8 @@ public abstract class SkysailServerResource<T> extends ServerResource {
 
     private String guessId(Object object) {
         if (object instanceof Identifiable) {
-            return ((Identifiable) object).getId().replace("#", "");
+            Identifiable identifiable = (Identifiable) object;
+            return identifiable.getId().replace("#", "");
         }
         if (object instanceof Map) {
             Map<String, Object> map = (Map) object;

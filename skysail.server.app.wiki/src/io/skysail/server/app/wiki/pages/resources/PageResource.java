@@ -25,7 +25,8 @@ public class PageResource extends EntityServerResource<Page> {
     }
 
     public List<Link> getLinks() {
-         return super.getLinks(PutPageResource.class);
+        return super.getLinks(PutPageResource.class, PageResource.class, PostPageResource.class);
+        //return super.getLinks(PostSubPageResource.class);
     }
 
     @Override

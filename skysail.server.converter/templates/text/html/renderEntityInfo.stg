@@ -2,7 +2,7 @@ renderEntityInfo(fields, messages, model) ::= <<
   $if (model.postEntityServerResource)$
         
   $elseif (model.putEntityServerResource)$
-    <form action="$source.deleteFormTarget$?method=DELETE" method="POST" class="form-horizontal" id="delete-form" name="delete-form">
+    <form action="$model.deleteFormTarget$?method=DELETE" method="POST" class="form-horizontal" id="delete-form" name="delete-form">
       <div class="form-group">
           <button type="submit" class="btn btn-warning">Delete</button>
       </div>

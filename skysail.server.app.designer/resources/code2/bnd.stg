@@ -1,15 +1,16 @@
-Bundle-Version: 0.1.0.${tstamp}
+bnd(packagename)::=<<
+Bundle-Version: 0.1.0.\${tstamp}
 Bundle-Description: generated code from the application designer bundle
 Service-Component: *
 Include-Resource: resources, templates=src;recursive:=true;filter:=*.st|*.stg
 -buildpath:  \
 	biz.aQute.bnd.annotation,\
-	skysail.api;version=${skysail.api.version},\
+	skysail.api;version=\${skysail.api.version},\
 	skysail.server;version=latest,\
 	skysail.server.db;version=latest,\
 	skysail.server.codegen;version=latest,\
 	slf4j.api;version=1.7.7,\
-	org.restlet;version=${restlet.version},\
+	org.restlet;version=\${restlet.version},\
 	javax.validation.api;version=1.1,\
 	javax.persistence;version=2.1,\
 	com.springsource.org.junit;version=4.11,\
@@ -28,11 +29,11 @@ Include-Resource: resources, templates=src;recursive:=true;filter:=*.st|*.stg
 	osgi.core;version=5.0,\
 	osgi.cmpn;version=5.0,\
 	de.twenty11.owasp-java-html-sanitizer;version=239.0,\
-	com.google.guava;version=${guava.version},\
+	com.google.guava;version=\${guava.version},\
 	skysail.api.um;version=latest,\
-	skysail.api.favorites;version=${skysail.api.favorites.version},\
+	skysail.api.favorites;version=\${skysail.api.favorites.version},\
 	skysail.api.text;version=latest,\
-	skysail.api.documentation;version=${skysail.api.documentation.version},\
+	skysail.api.documentation;version=\${skysail.api.documentation.version},\
 	org.apache.commons.beanutils;version=1.9,\
 	org.hibernate.validator;version=5.1,\
 	org.jboss.logging.jboss-logging;version=3.1,\
@@ -52,4 +53,5 @@ Import-Package: org.osgi.framework,\
 	javassist.util.proxy,\
 	*
 Private-Package: \
-    io.skysail.app.propman
+    $packagename$
+>>

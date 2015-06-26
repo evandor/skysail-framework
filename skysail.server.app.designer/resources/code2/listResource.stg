@@ -22,7 +22,7 @@ public class $entity.entityName$sResource extends ListServerResource<$entity.ent
     \}
 
     public List<Link> getLinks() {
-       return super.getLinks(PostCampaignResource.class);
+       return super.getLinks(Post$entity.entityName$Resource.class);
     \}
 }
 >>

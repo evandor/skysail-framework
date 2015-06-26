@@ -21,6 +21,6 @@ public class RequestsResource extends ListServerResource<Request> {
     }
 
     public List<Link> getLinks() {
-       return super.getLinks(PostCampaignResource.class);
+       return super.getLinks(PostRequestResource.class);
     }
 }

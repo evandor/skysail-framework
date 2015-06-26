@@ -21,7 +21,10 @@ public class PutRequestResource extends PutEntityServerResource<Request> {
 
     @Override
     public SkysailResponse<?> updateEntity(Request  entity) {
+<<<<<<< HEAD
         Request  original = getEntity();
+=======
+>>>>>>> 8f0daa6a1048a5118acd82fc33534b1649cf5887
         Request original = getEntity();
 
         app.getRepository().update(id, original);

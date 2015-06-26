@@ -1,6 +1,7 @@
+project(projectname) ::= <<
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>skysail.server.app.designer.propman</name>
+	<name>$projectname$</name>
 	<comment></comment>
 	<projects>
 	</projects>
@@ -21,3 +22,4 @@
 		<nature>bndtools.core.bndnature</nature>
 	</natures>
 </projectDescription>
+>>

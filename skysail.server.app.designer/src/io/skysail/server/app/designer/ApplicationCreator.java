@@ -10,8 +10,14 @@ import io.skysail.server.app.designer.model.RouteModel;
 import io.skysail.server.app.designer.repo.DesignerRepository;
 import io.skysail.server.db.DbRepository;
 import io.skysail.server.db.DbService2;
+import io.skysail.server.utils.BundleUtils;
 
+import java.io.File;
+import java.io.IOException;
 import java.lang.reflect.Method;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicReference;
@@ -22,6 +28,7 @@ import lombok.Getter;
 import org.osgi.framework.Bundle;
 import org.osgi.service.component.ComponentContext;
 import org.osgi.service.event.EventAdmin;
+import org.stringtemplate.v4.ST;
 
 import de.twenty11.skysail.server.app.ApplicationProvider;
 import de.twenty11.skysail.server.core.osgi.EventHelper;
@@ -31,16 +38,14 @@ import de.twenty11.skysail.server.services.MenuItemProvider;
 public class ApplicationCreator {
 
     private Bundle bundle;
-    //private SkysailRepositoryCompiler repoCompiler;
     private List<String> entityNames = new ArrayList<>();
     private List<String> entityClassNames = new ArrayList<>();
     private STGroupBundleDir stGroup;
     private SkysailApplicationCompiler2 skysailApplicationCompiler;
+    private String repositoryClassName;
 
     @Getter
     private ApplicationModel applicationModel;
-    private Class<?> repositoryClass;
-    private String repositoryClassName;
 
     public ApplicationCreator(Application application, SkysailRouter router, DesignerRepository repo, Bundle bundle) {
         this.bundle = bundle;
@@ -49,6 +54,13 @@ public class ApplicationCreator {
     }
 
     public boolean create(AtomicReference<EventAdmin> eventAdminRef) {
+        
+        try {
+            createProjectIfNeeded();
+        } catch (IOException e1) {
+            e1.printStackTrace();
+        }
+
 
         InMemoryJavaCompiler.reset();
 
@@ -108,5 +120,49 @@ public class ApplicationCreator {
                 .info(msg)//
                 .fire();
     }
+    
+    private void createProjectIfNeeded() throws IOException {
+        String path = applicationModel.getPath() + "/" + applicationModel.getProjectName();
+        path = path.replace("//", "/");
+        new File(Paths.get(path).toString()).mkdirs();
+        
+        ST project = getStringTemplateIndex("project");
+        project.add("projectname", applicationModel.getProjectName());
+        Files.write(Paths.get(path + "/.project"), project.render().getBytes());
+
+        ST classpath = getStringTemplateIndex("classpath");
+        Files.write(Paths.get(path + "/.classpath"), classpath.render().getBytes());
+
+        ST bnd = getStringTemplateIndex("bnd");
+        bnd.add("packagename", applicationModel.getPackageName());
+        Files.write(Paths.get(path + "/bnd.bnd"), bnd.render().getBytes());
+
+        ST bndrun = getStringTemplateIndex("bndrun");
+        bndrun.add("projectname", applicationModel.getProjectName());
+        Files.write(Paths.get(path + "/bndrun.bnd"), bndrun.render().getBytes());
+
+        new File(Paths.get(path + "/test").toString()).mkdir();
+        new File(Paths.get(path + "/resources").toString()).mkdir();
+        new File(Paths.get(path + "/config/local").toString()).mkdirs();
+
+        copy(Paths.get(path), "io.skysail.server.db.DbConfigurations-skysailgraph.cfg");
+        copy(Paths.get(path), "logback.xml");
+    }
+
+    private void copy(Path path, String filename) {
+        String cfgFile = BundleUtils.readResource(bundle, "config/" + filename);
+        try {
+            Files.write(Paths.get(path + "/config/local/" + filename), cfgFile.getBytes());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    private ST getStringTemplateIndex(String root) {
+        ST javafile = stGroup.getInstanceOf(root);
+        //javafile.add("application", applicationModel);
+        return javafile;
+    }
+   
 
 }

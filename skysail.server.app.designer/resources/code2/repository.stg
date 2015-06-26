@@ -30,7 +30,7 @@ public class $application.applicationName$Repository implements DbRepository {
     \}
 
     public <T> List<T> findAll(Class<T> cls) {
-        return dbService.findObjects("select from " + cls.getSimpleName());
+        return dbService.findObjects("select from " + cls.getName());
     \}
     
     public <T> List<T> findAll(String sql) {

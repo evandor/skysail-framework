@@ -16,7 +16,7 @@ public class PropManRepository implements DbRepository {
 
     @Activate
     public void activate() {
-                dbService.createWithSuperClass("V", "Campaign","Request");
+                dbService.createWithSuperClass("V", "io.skysail.app.propman.Campaign","io.skysail.app.propman.Request");
                 dbService.register(io.skysail.app.propman.Campaign.class,io.skysail.app.propman.Request.class);
 
     }
@@ -31,7 +31,7 @@ public class PropManRepository implements DbRepository {
     }
 
     public <T> List<T> findAll(Class<T> cls) {
-        return dbService.findObjects("select from " + cls.getSimpleName());
+        return dbService.findObjects("select from " + cls.getName());
     }
 
     public <T> List<T> findAll(String sql) {

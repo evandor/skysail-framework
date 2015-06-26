@@ -34,4 +34,9 @@ public class PostCampaignResource extends PostEntityServerResource<Campaign> {
         entity.setId(id);
         return new SkysailResponse<String>();
     }
+
+    @Override
+    public String redirectTo() {
+        return super.redirectTo(CampaignsResource.class);
+    }
 }

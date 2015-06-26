@@ -21,11 +21,13 @@ public class PageResource extends EntityServerResource<Page> {
     }
 
     public Page getEntity() {
-        return app.getRepository().getById(Page.class, pageId);
+        Page page = app.getRepository().getById(Page.class, pageId);
+        page.setContent(page.getVersions().get(page.getVersions().size()-1).getContent());
+        return page;
     }
 
     public List<Link> getLinks() {
-        return super.getLinks(PutPageResource.class, PageResource.class, PostPageResource.class);
+        return super.getLinks(PutPageResource.class, PageResource.class, PostSubPageResource.class, SubpagesResource.class);
         //return super.getLinks(PostSubPageResource.class);
     }
 

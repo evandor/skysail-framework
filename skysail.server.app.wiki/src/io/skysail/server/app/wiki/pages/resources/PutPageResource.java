@@ -4,10 +4,10 @@ import io.skysail.api.links.Link;
 import io.skysail.api.responses.SkysailResponse;
 import io.skysail.server.app.wiki.WikiApplication;
 import io.skysail.server.app.wiki.pages.Page;
+import io.skysail.server.app.wiki.versions.Version;
 import io.skysail.server.restlet.resources.PutEntityServerResource;
 
 import java.util.List;
-import java.util.function.Consumer;
 
 public class PutPageResource extends PutEntityServerResource<Page> {
 
@@ -24,7 +24,11 @@ public class PutPageResource extends PutEntityServerResource<Page> {
 
     @Override
     public SkysailResponse<?> updateEntity(Page entity) {
-        return null;
+        Version version = new Version();
+        version.setContent(entity.getContent());
+        entity.addVersion(version);
+        app.getRepository().update(entity.getId(), entity);
+        return new SkysailResponse<>();
     }
 
     @Override
@@ -36,11 +40,10 @@ public class PutPageResource extends PutEntityServerResource<Page> {
     public List<Link> getLinks() {
         return super.getLinks(PutPageResource.class);
     }
-
+    
     @Override
-    public Consumer<? super Link> getPathSubstitutions() {
-        return l -> {
-            l.substitute("id", id);
-        };
+    public String redirectTo() {
+        return super.redirectTo(PagesResource.class);
     }
+
 }

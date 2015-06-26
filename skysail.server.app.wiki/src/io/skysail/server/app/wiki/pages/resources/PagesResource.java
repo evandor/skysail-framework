@@ -3,6 +3,7 @@ package io.skysail.server.app.wiki.pages.resources;
 import io.skysail.api.links.Link;
 import io.skysail.server.app.wiki.WikiApplication;
 import io.skysail.server.app.wiki.pages.Page;
+import io.skysail.server.app.wiki.spaces.Space;
 import io.skysail.server.queryfilter.Filter;
 import io.skysail.server.restlet.resources.ListServerResource;
 
@@ -18,7 +19,7 @@ public class PagesResource extends ListServerResource<Page> {
     //public static final String DEFAULT_FILTER_EXPRESSION = "(!(status="+Status.ARCHIVED+"))";
 
     private String spaceId;
-    private WikiApplication app;
+    protected WikiApplication app;
 
     public PagesResource() {
         super(PageResource.class);
@@ -39,7 +40,10 @@ public class PagesResource extends ListServerResource<Page> {
         
        
         //Pagination pagination = new Pagination(getRequest(), getResponse(), app.getRepository().getTodosCount(spaceId, filter));
-        return app.getRepository().findAllPages2(filter);
+        //return app.getRepository().findAllPages2(filter);
+        Space space = app.getRepository().getById(Space.class, spaceId);
+        return space.getPages();
+        
     }
 
     @Override

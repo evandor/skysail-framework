@@ -13,14 +13,17 @@ import javax.validation.constraints.*;
 
 import lombok.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Getter
 @Setter
-// @UniquePerOwner
+@UniquePerParentOrSpace
 public class Page implements Serializable, Identifiable {
 
     private static final long serialVersionUID = 5061219768727410582L;
 
     @Id
+    @Field(type = InputType.READONLY)
     private String id;
 
     @Field
@@ -50,6 +53,7 @@ public class Page implements Serializable, Identifiable {
     }
 
     @Field(type = InputType.READONLY)
+    @JsonIgnore
     private Page parent;
 
     @Field(type = InputType.TEXTAREA)

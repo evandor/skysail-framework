@@ -9,6 +9,9 @@ import io.skysail.server.restlet.resources.EntityServerResource;
 
 import java.util.List;
 
+import org.apache.shiro.SecurityUtils;
+import org.restlet.data.Status;
+
 public class SpaceResource extends EntityServerResource<Space> {
 
     private String id;
@@ -22,13 +25,23 @@ public class SpaceResource extends EntityServerResource<Space> {
     
     @Override
     public SkysailResponse<?> eraseEntity() {
+        Space space = app.getRepository().getSpaceById(id);
+        if (space.getPages().size() > 0) {
+            throw new IllegalArgumentException("a space with at least one page cannot be deleted");
+        }
         app.getRepository().delete(Space.class, id);
         return new SkysailResponse<String>();
     }
 
     @Override
     public Space getEntity() {
-         return app.getRepository().getById(Space.class, id);
+         Space space = app.getRepository().getById(Space.class, id);
+         String username = SecurityUtils.getSubject().getPrincipal().toString();
+         if (!space.getOwner().equals(username)) {
+             getResponse().setStatus(Status.CLIENT_ERROR_FORBIDDEN);
+             return null;
+         }
+         return space;
     }
     
     @Override

@@ -9,7 +9,7 @@ import io.skysail.server.app.wiki.spaces.resources.SpacesResource;
 import io.skysail.server.app.wiki.versions.Version;
 import io.skysail.server.restlet.resources.PostEntityServerResource;
 
-import java.util.*;
+import java.util.List;
 
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
@@ -18,23 +18,27 @@ import org.restlet.resource.ResourceException;
 import de.twenty11.skysail.server.core.restlet.ResourceContextId;
 
 public class PostPageResource extends PostEntityServerResource<Page> {
-    
+
     private String spaceId;
     protected WikiApplication app;
-    private Space space;
 
     public PostPageResource() {
         addToContext(ResourceContextId.LINK_TITLE, "create new Page");
-        app = (WikiApplication)getApplication();
     }
-    
+
     @Override
     protected void doInit() throws ResourceException {
+        app = (WikiApplication) getApplication();
         spaceId = getAttribute("id");
-        space = app.getRepository().getById(Space.class, spaceId);
-        Map<String, String> substitutions = new HashMap<>();
-        substitutions.put("/spaces/" + spaceId, space.getName());
-        getContext().getAttributes().put(ResourceContextId.PATH_SUBSTITUTION.name(), substitutions);
+//        if (spaceId == null) {
+//            return;
+//        }
+//        space = app.getRepository().getById(Space.class, spaceId);
+//        if (space != null) {
+//            Map<String, String> substitutions = new HashMap<>();
+//            substitutions.put("/spaces/" + spaceId, space.getName());
+//            getContext().getAttributes().put(ResourceContextId.PATH_SUBSTITUTION.name(), substitutions);
+//        }
     }
 
     @Override
@@ -48,21 +52,22 @@ public class PostPageResource extends PostEntityServerResource<Page> {
         Version version = new Version();
         version.setContent(entity.getContent());
         version.setOwner(subject.getPrincipal().toString());
-        
+
         entity.setContent(null);
         entity.addVersion(version);
-        
+
         entity.setOwner(subject.getPrincipal().toString());
+        Space space = app.getRepository().getById(Space.class, spaceId);
         space.addPage(entity);
         app.getRepository().update(spaceId, space);
         return new SkysailResponse<String>();
     }
-    
+
     @Override
     public List<Link> getLinks() {
         return super.getLinks(PostPageResource.class);
     }
-    
+
     @Override
     public String redirectTo() {
         return super.redirectTo(SpacesResource.class);

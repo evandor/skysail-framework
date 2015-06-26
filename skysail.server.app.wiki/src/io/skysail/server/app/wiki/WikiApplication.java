@@ -43,7 +43,8 @@ public class WikiApplication extends SkysailApplication implements MenuItemProvi
         router.attach(new RouteBuilder("/spaces/{id}/pages/{pageId}/", PutPageResource.class));
 
         router.attach(new RouteBuilder("/pages/{pageId}", PageResource.class).noAuthenticationNeeded());
-        router.attach(new RouteBuilder("/pages/{id}/pages/", PostSubPageResource.class));
+        router.attach(new RouteBuilder("/pages/{pageId}/pages", SubpagesResource.class));
+        router.attach(new RouteBuilder("/pages/{pageId}/pages/", PostSubPageResource.class));
     }
 
     @Reference(dynamic = true, multiple = false, optional = false, target = "(name=wikiRepository)")

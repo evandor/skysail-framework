@@ -45,7 +45,7 @@ public class PostListResourceTest extends PostResourceTest {
 
     @Test
     public void empty_json_request_yields_validation_failure() {
-        ConstraintViolationsResponse<?> post = (ConstraintViolationsResponse<?>) resource.post(new TodoList());
+        ConstraintViolationsResponse<?> post = (ConstraintViolationsResponse<?>) resource.post(new TodoList(), new VariantInfo(MediaType.APPLICATION_JSON));
         assertValidationFailure(post, "name", "may not be null");
     }
 
@@ -59,7 +59,7 @@ public class PostListResourceTest extends PostResourceTest {
     @Test
     public void valid_data_yields_new_entity() {
         TodoList newTodoList = new TodoList("jsonList1");
-        resource.post(newTodoList);
+        resource.post(newTodoList, new VariantInfo(MediaType.APPLICATION_JSON));
         assertThat(response.getStatus(),is(equalTo(Status.SUCCESS_CREATED)));
     }
 

@@ -2,42 +2,28 @@ package io.skysail.server.app.wiki.spaces.resources.test;
 
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.assertThat;
-import io.skysail.server.app.wiki.WikiApplication;
+import io.skysail.server.app.wiki.*;
 import io.skysail.server.app.wiki.repository.WikiRepository;
 import io.skysail.server.app.wiki.spaces.*;
 import io.skysail.server.app.wiki.spaces.resources.PutSpaceResource;
-import io.skysail.server.testsupport.PutResourceTest;
 
-import java.util.HashMap;
-
-import org.apache.shiro.subject.SimplePrincipalMap;
 import org.junit.*;
 import org.mockito.*;
 import org.restlet.data.*;
 import org.restlet.engine.resource.VariantInfo;
 
-public class PutSpaceResourceTest extends PutResourceTest {
+public class PutSpaceResourceTest extends WikiPostOrPutResourceTest {
 
     @Spy
     private PutSpaceResource resource;
     
-    private WikiRepository repo;
-
     @Before
     public void setUp() throws Exception {
         super.setUp(Mockito.mock(WikiApplication.class), resource);
-
-        repo = new WikiRepository();
-        repo.setDbService(testDb);
-        repo.activate();
-        ((WikiApplication)application).setWikiRepository(repo);
-        Mockito.when(((WikiApplication)application).getRepository()).thenReturn(repo);
-        
-        Mockito.when(subjectUnderTest.getPrincipal()).thenReturn("admin");
-        Mockito.when(subjectUnderTest.getPrincipals()).thenReturn(new SimplePrincipalMap(new HashMap<>()));
-        setSubject(subjectUnderTest);
-        
+        initRepository();
+        initUser("admin");
         new UniquePerOwnerValidator().setDbService(testDb);
+        resource.init(null, request, response);
     }
 
     @Test

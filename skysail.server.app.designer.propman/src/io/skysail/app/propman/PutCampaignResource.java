@@ -22,7 +22,8 @@ public class PutCampaignResource extends PutEntityServerResource<Campaign> {
     @Override
     public SkysailResponse<?> updateEntity(Campaign  entity) {
         Campaign  original = getEntity();
-        original.setName(entity.getName());
+        Campaign original = getEntity();
+
         app.getRepository().update(id, original);
         return new SkysailResponse<>();
     }

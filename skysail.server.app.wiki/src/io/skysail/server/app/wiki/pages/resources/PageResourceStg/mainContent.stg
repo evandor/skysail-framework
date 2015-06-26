@@ -18,6 +18,14 @@ $contentHeader(converter, messages, model)$
         id="example"
         data-src='{"name": "Tree A", "children": [{"name": "Child", "children": [{"name": "Grandchild"}]}]}'>
       </aha-tree>
+      
+      <aha-tree 
+        id="example2"
+        data-src='{"name": "Favorites", "children": [{"name": "Child", "children": [{"name": "<a href=\"\">Grandchild</a>"}]}]}'>
+      </aha-tree>
+      
+      <link rel="import" href="/webapp/bower_components/juicy-markdown-tabbededitor-gh-pages/juicy-markdown-tabbededitor.html">
+      
     </div>
     <div class="col-md-8">
       $if(model.form)$

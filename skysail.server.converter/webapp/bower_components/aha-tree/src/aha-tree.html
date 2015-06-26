@@ -20,13 +20,16 @@
             li{
                 list-style-type: none;
             }
+            div {
+				font-size: 22px;
+			}
         </style>
         <div id="main" unresolved="">
             <template id="tree_template" bind="{{data}}">
                 <div 
                     class="{{ children && children.length > 0 ? 'parent' : ''}} expanded" 
                     on-click="{{toggleChildren}}">
-                    {{ name }}
+                    {{ name  }}
                 </div>
                 <ul>
                     <template repeat="{{ child in children }}">

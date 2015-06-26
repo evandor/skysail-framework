@@ -1,17 +1,26 @@
 package io.skysail.server.app.wiki.spaces;
 
 import io.skysail.api.domain.Identifiable;
-import io.skysail.api.forms.*;
+import io.skysail.api.forms.Field;
+import io.skysail.api.forms.InputType;
+import io.skysail.api.forms.Reference;
 import io.skysail.server.app.wiki.pages.Page;
-import io.skysail.server.forms.*;
+import io.skysail.server.forms.ListView;
+import io.skysail.server.forms.PostView;
+import io.skysail.server.forms.PutView;
+import io.skysail.server.forms.Visibility;
 
 import java.io.Serializable;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Id;
-import javax.validation.constraints.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
-import lombok.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Getter
 @Setter
@@ -22,6 +31,7 @@ public class Space implements Serializable, Identifiable {
     private static final long serialVersionUID = 5061219768727410582L;
 
     @Id
+    @Field(type = InputType.READONLY)
     private String id;
 
     @Field

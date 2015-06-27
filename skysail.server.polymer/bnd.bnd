@@ -1,0 +1,12 @@
+Bundle-Version: 0.1.0.${tstamp}
+Bundle-Name: SKYSAIL :: server :: polymer
+Bundle-Description: polymer support
+#https://groups.google.com/forum/#!topic/bndtools-users/aYjvNAs5lPI
+Provide-Capability: osgi.service; objectClass=org.osgi.service.event.EventHandler; uses:="org.osgi.service.event"
+Service-Component:  \
+	*
+Export-Package:  \
+	io.skysail.server.polymer
+
+Include-Resource: webapp=webapp
+

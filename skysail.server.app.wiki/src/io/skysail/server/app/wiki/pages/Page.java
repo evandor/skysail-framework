@@ -17,6 +17,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Getter
 @Setter
+@ToString
 @UniquePerParentOrSpace
 public class Page implements Serializable, Identifiable {
 

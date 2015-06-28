@@ -1,0 +1,22 @@
+accordion(entries) ::=<<
+<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+  $entries: { entry | $panel(entry, i)$}$
+</div>
+>>
+
+panel(entry, i) ::= <<
+  <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="heading$i$">
+      <h4 class="panel-title">
+        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse$i$" aria-expanded="true" aria-controls="collapse$i$">
+          Favorites $i$
+        </a>
+      </h4>
+    </div>
+    <div id="collapse$i$" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading$i$">
+      <div class="panel-body">
+      $i$
+      </div>
+    </div>
+  </div>
+>>  

@@ -1,0 +1,8 @@
+{
+  "name": "polymer-project",
+  "dependencies": {
+    "iron-ajax": "PolymerElements/iron-ajax#1.0.0",
+    "iron-input": "PolymerElements/iron-input#^1.0.0",
+    "paper-input": "PolymerElements/paper-input#^1.0.0"
+  }
+}

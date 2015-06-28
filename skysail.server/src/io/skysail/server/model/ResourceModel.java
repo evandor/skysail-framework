@@ -7,6 +7,7 @@ import io.skysail.api.responses.*;
 import io.skysail.server.restlet.resources.*;
 import io.skysail.server.utils.*;
 
+import java.awt.MenuItem;
 import java.text.DateFormat;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -160,7 +161,9 @@ public class ResourceModel<R extends SkysailServerResource<T>, T> {
 
     public List<RepresentationLink> getRepresentations() {
         Set<String> supportedMediaTypes = ResourceUtils.getSupportedMediaTypes(resource, getParameterizedType());
-        return supportedMediaTypes.stream().map(mediaType -> {
+        return supportedMediaTypes.stream().filter(mediaType -> {
+            return !mediaType.equals("event-stream");
+        }).map(mediaType -> {
             return new RepresentationLink(mediaType, resource.getCurrentEntity());
         }).collect(Collectors.toList());
     }
@@ -409,6 +412,10 @@ public class ResourceModel<R extends SkysailServerResource<T>, T> {
             return ((FormResponse<?>) response).getRedirectBackTo();
         }
         return null;
+    }
+    
+    public List<MenuItem> getAppNavigation() {
+        return Arrays.asList(new MenuItem(),new MenuItem());
     }
 
 }

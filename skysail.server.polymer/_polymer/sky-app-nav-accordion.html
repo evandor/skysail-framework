@@ -1,0 +1,48 @@
+<link rel="import" href="/_polymer/bower_components/polymer/polymer.html">
+
+<link rel="import" href="/_polymer/bower_components/iron-input/iron-input.html">
+
+<dom-module id="sky-app-nav-accordion">
+
+  <template>
+
+    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+      <template is="dom-repeat" items="{{employees}}">
+        <div class="panel panel-default">
+          <div class="panel-heading" role="tab" id="heading{{index}}">
+            <h4 class="panel-title">
+              <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse{{index}}" aria-expanded="true" aria-controls="collapse{{index}}">
+                <span>{{index}}</span>.<span>{{item.first}}</span>
+              </a>
+            </h4>
+          </div>
+          <div id="collapse{{index}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading{{index}}">
+            <div class="panel-body">
+            <span>{{item.last}}</span>
+            </div>
+          </div>
+        </div>
+      </template>
+    </div>
+    
+
+  </template>
+
+  <script>
+    Polymer({
+      is: 'sky-app-nav-accordion',
+      ready: function() {
+        this.employees = [
+            {first: 'Bob', last: 'Smith'},
+            {first: 'Sally', last: 'Johnson'}
+        ];
+      }
+    });
+  </script>
+
+</dom-module>
+
+
+  
+
+</dom-module>

@@ -60,6 +60,7 @@ public class PostPageResource extends PostEntityServerResource<Page> {
         Space space = app.getRepository().getById(Space.class, spaceId);
         space.addPage(entity);
         app.getRepository().update(spaceId, space);
+        
         return new SkysailResponse<String>();
     }
 

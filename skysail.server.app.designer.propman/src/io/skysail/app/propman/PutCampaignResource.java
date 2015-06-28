@@ -3,6 +3,7 @@ package io.skysail.app.propman;
 import io.skysail.api.responses.SkysailResponse;
 import io.skysail.server.restlet.resources.PutEntityServerResource;
 
+import java.util.Date;
 import org.restlet.resource.ResourceException;
 
 public class PutCampaignResource extends PutEntityServerResource<Campaign> {
@@ -20,7 +21,7 @@ public class PutCampaignResource extends PutEntityServerResource<Campaign> {
 
     @Override
     public SkysailResponse<?> updateEntity(Campaign  entity) {
-        Campaign  original = getEntity();
+        Campaign original = getEntity();
 
         app.getRepository().update(id, original);
         return new SkysailResponse<>();

@@ -1,0 +1,33 @@
+<link rel="import" href="/_polymer/bower_components/polymer/polymer.html">
+
+<link rel="import" href="/_polymer/bower_components/iron-input/iron-input.html">
+
+<dom-module id="proto-element">
+  <template>
+
+    <div> Employee list: </div>
+    <template is="dom-repeat" items="{{employees}}">
+        <div>First name: <span>{{item.first}}</span></div>
+        <div>Last name: <span>{{item.last}}</span></div>
+    </template>
+
+  </template>
+
+  <script>
+    Polymer({
+      is: 'proto-element',
+      ready: function() {
+        this.employees = [
+            {first: 'Bob', last: 'Smith'},
+            {first: 'Sally', last: 'Johnson'}
+        ];
+      }
+    });
+  </script>
+
+</dom-module>
+
+
+  
+
+</dom-module>

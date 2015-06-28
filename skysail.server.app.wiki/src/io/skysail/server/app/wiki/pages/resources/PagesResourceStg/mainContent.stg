@@ -1,0 +1,40 @@
+mainContent(user, converter, messages, model) ::= <<
+ 
+ 
+  <div class="row">
+    <div class="col-md-1">
+      <h5>Spaces</h5>
+        <sky-ajax url="/Wiki/spaces"></sky-ajax>
+    </div>
+    <div class="col-md-10">
+      <!-- contentHeader -->
+<br><p>$contentHeader(converter, messages, model)$</p>
+
+      <div class="col-md-10">
+        $if(model.form)$
+          <!-- showForm -->
+          $showForm(model.formfields, messages, model)$ 
+        $elseif(model.list)$
+          <!-- renderTable -->
+          $renderTable(converter, messages, model)$
+        $else$
+          <!-- render single entity -->
+          $renderEntity(user, model)$
+        $endif$ 
+      </div>
+      <div class="col-md-2">
+        $if(model.form)$
+          $renderEntityInfo(model.formfields, messages, model)$ 
+        $endif$ 
+      </div>
+
+
+
+    </div>
+    <div class="col-md-1">
+      &nbsp;
+    </div>
+  </div>
+  
+    
+>>

@@ -3,7 +3,6 @@ renderEntity(user, model) ::= <<
   <h1>$first(model.data).("name")$</h1>
 
   <p>$first(model.data).("content")$</p>
-
-  <juicy-markdown-tabbededitor></juicy-markdown-tabbededitor>
+  
 
 >>

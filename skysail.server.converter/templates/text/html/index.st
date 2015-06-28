@@ -151,11 +151,6 @@ index(user, messages, converter, model) ::= <<
         </div>
         <div class="col-md-1">&nbsp;</div>
       </div>
-      <div class="row">
-        <div class="col-md-12">
-            <hr>
-        </div>
-      </div>
       
 $mainContent(user, converter, messages, model)$
       

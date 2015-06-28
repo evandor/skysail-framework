@@ -46,7 +46,7 @@ public class LinkUtils {
             .image(MediaType.TEXT_HTML, resource.isPresent() ? resource.get().getFromContext(ResourceContextId.LINK_GLYPH) : null)
             .build();
         
-        log.info("created link {}", link);
+        log.debug("created link {}", link);
         return link;
     }
 

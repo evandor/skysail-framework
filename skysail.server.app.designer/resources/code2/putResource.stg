@@ -15,7 +15,6 @@ public class Put$entity.entityName$Resource extends PutEntityServerResource<$ent
 
     @Override
     protected void doInit() throws ResourceException {
-        super.doInit();
         id = getAttribute("id");
         app = ($application.applicationName$Application)getApplication();
     \}
@@ -29,7 +28,12 @@ public class Put$entity.entityName$Resource extends PutEntityServerResource<$ent
 
     @Override
     public $entity.entityName$ getEntity() {
-        return null;
+        return app.getRepository().getById($entity.entityName$.class, id);
     \}
+
+    @Override
+    public String redirectTo() {
+        return super.redirectTo($entity.entityName$sResource.class);
+    }
 }
 >>

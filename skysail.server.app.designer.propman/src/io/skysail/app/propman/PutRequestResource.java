@@ -14,7 +14,6 @@ public class PutRequestResource extends PutEntityServerResource<Request> {
 
     @Override
     protected void doInit() throws ResourceException {
-        super.doInit();
         id = getAttribute("id");
         app = (PropManApplication)getApplication();
     }
@@ -22,6 +21,7 @@ public class PutRequestResource extends PutEntityServerResource<Request> {
     @Override
     public SkysailResponse<?> updateEntity(Request  entity) {
         Request original = getEntity();
+        copyProperties(original,entity);
 
         app.getRepository().update(id, original);
         return new SkysailResponse<>();
@@ -29,6 +29,11 @@ public class PutRequestResource extends PutEntityServerResource<Request> {
 
     @Override
     public Request getEntity() {
-        return null;
+        return app.getRepository().getById(Request.class, id);
+    }
+
+    @Override
+    public String redirectTo() {
+        return super.redirectTo(RequestsResource.class);
     }
 }

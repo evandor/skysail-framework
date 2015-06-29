@@ -14,7 +14,6 @@ public class PutCampaignResource extends PutEntityServerResource<Campaign> {
 
     @Override
     protected void doInit() throws ResourceException {
-        super.doInit();
         id = getAttribute("id");
         app = (PropManApplication)getApplication();
     }
@@ -22,6 +21,7 @@ public class PutCampaignResource extends PutEntityServerResource<Campaign> {
     @Override
     public SkysailResponse<?> updateEntity(Campaign  entity) {
         Campaign original = getEntity();
+        copyProperties(original,entity);
 
         app.getRepository().update(id, original);
         return new SkysailResponse<>();
@@ -29,6 +29,11 @@ public class PutCampaignResource extends PutEntityServerResource<Campaign> {
 
     @Override
     public Campaign getEntity() {
-        return null;
+        return app.getRepository().getById(Campaign.class, id);
+    }
+
+    @Override
+    public String redirectTo() {
+        return super.redirectTo(CampaignsResource.class);
     }
 }

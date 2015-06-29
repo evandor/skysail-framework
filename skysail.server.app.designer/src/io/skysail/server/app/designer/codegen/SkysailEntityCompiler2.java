@@ -1,9 +1,12 @@
 package io.skysail.server.app.designer.codegen;
 
 import io.skysail.server.app.designer.STGroupBundleDir;
-import io.skysail.server.app.designer.model.*;
+import io.skysail.server.app.designer.model.ApplicationModel;
+import io.skysail.server.app.designer.model.EntityModel;
+import io.skysail.server.app.designer.model.RouteModel;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 import lombok.Getter;
 
@@ -84,7 +87,9 @@ public class SkysailEntityCompiler2 extends SkysailCompiler2 {
         final String simpleClassName = "Put" + entityModel.getEntityName() + "Resource";
         template.remove("entity");
         template.add("entity", entityModel);
-        template.add("updateEntity", entityModel.getEntityName() + " original = getEntity();\n");
+        String updateEntityCode = entityModel.getEntityName() + " original = getEntity();\n";
+        updateEntityCode += "copyProperties(original,entity);\n";
+        template.add("updateEntity", updateEntityCode);
         String entityCode = template.render();
         String entityClassName = applicationModel.getPackageName() + "." + simpleClassName;
         collect(entityClassName, entityCode);

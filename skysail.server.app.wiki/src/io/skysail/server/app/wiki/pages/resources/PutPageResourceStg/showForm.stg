@@ -1,8 +1,0 @@
-showForm(fields, messages, model) ::= <<
-
-  <h1>$first(model.data).("name")$</h1>
-
-  <juicy-markdown-tabbededitor style="height:200px;" value="$first(model.data).("content")$"></juicy-markdown-tabbededitor>
- 
-
->>

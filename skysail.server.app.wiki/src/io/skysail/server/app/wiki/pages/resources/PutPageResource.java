@@ -7,7 +7,7 @@ import io.skysail.server.app.wiki.pages.Page;
 import io.skysail.server.app.wiki.versions.Version;
 import io.skysail.server.restlet.resources.PutEntityServerResource;
 
-import java.util.List;
+import java.util.*;
 
 public class PutPageResource extends PutEntityServerResource<Page> {
 
@@ -27,13 +27,17 @@ public class PutPageResource extends PutEntityServerResource<Page> {
         Version version = new Version();
         version.setContent(entity.getContent());
         entity.addVersion(version);
+        entity.setModified(new Date());
         app.getRepository().update(entity.getId(), entity);
         return new SkysailResponse<>();
     }
 
     @Override
     public Page getEntity() {
-        return app.getRepository().getById(Page.class, pageId);
+         Page page = app.getRepository().getById(Page.class, pageId);
+         Version lastVersion = page.getVersions().get(page.getVersions().size()-1);
+         page.setContent(lastVersion.getContent());
+         return page;
     }
 
     @Override

@@ -46,7 +46,7 @@ public class SpaceResource extends EntityServerResource<Space> {
     
     @Override
     public List<Link> getLinks() {
-        return super.getLinks(SpaceResource.class, PutSpaceResource.class, PagesResource.class);
+        return super.getLinks(PutSpaceResource.class, PagesResource.class);
     }
     
     @Override

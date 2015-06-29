@@ -4,7 +4,9 @@ mainContent(user, converter, messages, model) ::= <<
   <div class="row">
     <div class="col-md-1">
       <h5>Spaces</h5>
-      <sky-ajax link-prefix="/Wiki/spaces/"></sky-ajax>
+      <sky-ajax-get url="/Wiki/spaces" link-to="/Wiki/spaces/{id}/pages"></sky-ajax-get>
+      <h5>Subpages</h5>
+      <sky-ajax-get url="/Wiki/pages/$first(model.data).id$/pages" link-to="/Wiki/pages/{id}"></sky-ajax-get>
     </div>
     <div class="col-md-10">
       <!-- contentHeader -->

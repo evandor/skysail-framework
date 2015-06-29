@@ -3,6 +3,7 @@ package io.skysail.server.app.wiki.spaces;
 import io.skysail.api.domain.Identifiable;
 import io.skysail.api.forms.*;
 import io.skysail.server.app.wiki.pages.Page;
+import io.skysail.server.app.wiki.pages.resources.PagesResource;
 import io.skysail.server.forms.*;
 
 import java.io.Serializable;
@@ -29,6 +30,7 @@ public class Space implements Serializable, Identifiable {
     @Field
     @NotNull
     @Size(min = 2)
+    @ListView(link = PagesResource.class)
     private String name;
 
     @Field(type = InputType.READONLY)

@@ -8,6 +8,7 @@ import io.skysail.server.utils.TranslationUtils;
 
 import java.lang.ref.WeakReference;
 import java.util.*;
+import java.util.stream.Collectors;
 
 import org.osgi.framework.Bundle;
 import org.osgi.framework.wiring.BundleWiring;
@@ -84,20 +85,24 @@ public class I18nApplication extends SkysailApplication implements ApplicationPr
         if (selectedStore != null) {
             Translation translation = TranslationUtils.getTranslation(key, translationStores, selectedStore, resource);
             if (translation != null) {
-                return new Message(key, translation, getPreferedRenderer(rendererServices, translation));
+                return new Message(key, translation, getPreferedRenderer(rendererServices, translation.getValue()));
             }
         }
         List<Translation> translations = TranslationUtils.getAllTranslations(translationStores, key, resource);
         if (translations.size() == 0) {
-            // TODO fixme
-            return new Message(key, "");            
+            Set<String> storeNames = translationStores.stream().map(ts -> {
+                return ts.getName();
+            }).collect(Collectors.toSet());
+            Translation translation = new Translation("", translationStores.iterator().next().getStore().get(),
+                    storeNames);
+            return new Message(key, translation, getPreferedRenderer(rendererServices, ""));
         }
-        return new Message(key, translations.get(0), getPreferedRenderer(rendererServices, translations.get(0)));
+        return new Message(key, translations.get(0), getPreferedRenderer(rendererServices, translations.get(0).getValue()));
     }
 
-    private TranslationRenderService getPreferedRenderer(Set<TranslationRenderServiceHolder> rendererServices, Translation translation) {
+    private TranslationRenderService getPreferedRenderer(Set<TranslationRenderServiceHolder> rendererServices, String translationValue) {
        return rendererServices.stream().filter(rs -> {
-            return rs.getService().get().applicable(translation.getValue());
+            return rs.getService().get().applicable(translationValue);
         }).map(TranslationRenderServiceHolder::getService).map(WeakReference::get).findFirst().orElse(null);
     }
 

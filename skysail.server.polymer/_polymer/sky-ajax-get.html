@@ -1,43 +1,32 @@
 <link rel="import" href="/_polymer/bower_components/polymer/polymer.html">
 <link rel="import" href="/_polymer/bower_components/iron-ajax/iron-ajax.html">
 
-<dom-module id="sky-ajax">
+<dom-module id="sky-ajax-get">
 
   <template>
-
-<!--         auto 
-        url="http://www.filltext.com"
-        params='{"rows":"5", "fname":"{firstName}", "lname":"{lastName}", "company":"{business}"}'
-        handle-as="json" 
-        on-response="hResponse"
-        last-response="{{data}}" -->
-    
     <iron-ajax 
         id="ajax"
         handle-as="json" 
         headers='{"Accept": "application/json"}'
         on-response="hResponse"
         last-response="{{data}}"
-        verbose
-    >
-    </iron-ajax>
-    
+        debounce-duration="300" />
     <ul>
       <template is="dom-repeat" items="{{data}}">
-        <li><a href='{{renderLink(linkPrefix, item.id)}}'>{{item.name}}</a></li>
+        <li><a href='{{renderLink(linkTo, item.id)}}'>{{item.name}}</a></li>
       </template>
     </ul>
-    
   </template>
 
   <script>
     Polymer({
-      is: 'sky-ajax',
+      is: 'sky-ajax-get',
       properties: {
-    	  url: String
+    	  url: String,
+    	  linkTo: String,
       },
       renderLink: function(href, value) {
-    	  return href + value + "/";
+    	  return href.replace("{id}", value);
       },
       attached: function() {
     	  console.log("hier: " + this.url);
@@ -46,8 +35,6 @@
       },
       hResponse: function(request) {
           console.log(request.detail);
-    	    //console.log(this.$.ajax.lastResponse);
-    	    //console.log(this.$.ajax.params);
       }
     });
   </script>

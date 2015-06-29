@@ -159,7 +159,9 @@ public class ResourceBundleStore implements TranslationStore {
     private List<BundleMessages> getBundleMessages(Locale locale, BundleContext bundleContext) {
         Bundle[] bundles = bundleContext.getBundles();
         List<BundleMessages> result = new ArrayList<>();
-        Arrays.stream(bundles).forEach(b -> {
+        Arrays.stream(bundles).filter(b -> {
+            return b.getState() == Bundle.ACTIVE;
+        }).forEach(b -> {
             ClassLoader loader = b.adapt(BundleWiring.class).getClassLoader();
             handleResourceBundle(loader, b, locale, result);
         });

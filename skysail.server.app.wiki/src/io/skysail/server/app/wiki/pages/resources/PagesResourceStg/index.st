@@ -22,7 +22,7 @@ index(user, messages, converter, model) ::= <<
       <script src="/_polymer/bower_components/webcomponentsjs/webcomponents-lite.min.js"></script>
       <link rel="import" href="/_polymer/proto-element.html">
       <link rel="import" href="/_polymer/sky-app-nav-accordion.html">
-      <link rel="import" href="/_polymer/sky-ajax.html">
+      <link rel="import" href="/_polymer/sky-ajax-get.html">
   </head>
   
   <body>

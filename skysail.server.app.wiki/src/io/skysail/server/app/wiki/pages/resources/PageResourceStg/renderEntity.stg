@@ -1,6 +1,7 @@
 renderEntity(user, model) ::= <<
 
-  <h1>$first(model.data).("name")$</h1>
+  <h2>$first(model.data).("name")$ <small>created: $first(model.data).("created")$</small></h2>
+  
 
   <p>$first(model.data).("content")$</p>
   

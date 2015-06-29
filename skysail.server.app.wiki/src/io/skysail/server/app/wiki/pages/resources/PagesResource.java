@@ -24,7 +24,8 @@ public class PagesResource extends ListServerResource<Page> {
     public PagesResource() {
         super(PageResource.class);
         addToContext(ResourceContextId.LINK_TITLE, "list Pages");
-    }
+        addToContext(ResourceContextId.LINK_GLYPH, "th-list");
+   }
 
     @Override
     protected void doInit() throws ResourceException {

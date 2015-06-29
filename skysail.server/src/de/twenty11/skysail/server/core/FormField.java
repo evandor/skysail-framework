@@ -273,6 +273,9 @@ public class FormField {
         if (object == null) {
             return "";
         }
+        if (object instanceof List) {
+            return ((List<?>)object).size();
+        }
         if (!(object instanceof String)) {
             return object.toString();
         }

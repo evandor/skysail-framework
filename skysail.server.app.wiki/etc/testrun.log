@@ -2,7 +2,7 @@ DEBUG d.t.skysail.server.db.orientdb.OrientGraphDbService - activating io.skysai
 DEBUG d.t.skysail.server.db.orientdb.OrientGraphDbService - registering class 'class io.skysail.server.app.wiki.spaces.Space' @ orientDB
 DEBUG d.t.skysail.server.db.orientdb.OrientGraphDbService - registering class 'class io.skysail.server.app.wiki.pages.Page' @ orientDB
 DEBUG d.t.skysail.server.db.orientdb.OrientGraphDbService - registering class 'class io.skysail.server.app.wiki.versions.Version' @ orientDB
-INFO  de.twenty11.skysail.server.db.orientdb.impl.Persister - setting name=space_8c6jpuivne26liqloktd2ol00c [class java.lang.String]
+INFO  de.twenty11.skysail.server.db.orientdb.impl.Persister - setting name=space_5cr2hdquubj6c6l53kul4qa4cl [class java.lang.String]
 INFO  i.s.server.restlet.resources.PutEntityServerResource - Request entry point: PutSpaceResource$$EnhancerByMockitoWithCGLIB$$d1b52e2e @Put('x-www-form-urlencoded:html|json')
 DEBUG org.jboss.logging - Logging Provider: org.jboss.logging.Slf4jLoggerProvider
 INFO  org.hibernate.validator.internal.util.Version - HV000001: Hibernate Validator 5.0.1.Final
@@ -34,18 +34,18 @@ DEBUG d.t.skysail.server.db.orientdb.OrientGraphDbService - registering class 'c
 DEBUG d.t.skysail.server.db.orientdb.OrientGraphDbService - registering class 'class io.skysail.server.app.wiki.pages.Page' @ orientDB
 DEBUG d.t.skysail.server.db.orientdb.OrientGraphDbService - registering class 'class io.skysail.server.app.wiki.versions.Version' @ orientDB
 INFO  de.twenty11.skysail.server.db.orientdb.impl.Persister - setting owner=admin [class java.lang.String]
-INFO  de.twenty11.skysail.server.db.orientdb.impl.Persister - setting name=space_59ph591009hqvb17vs0csv8bq8 [class java.lang.String]
+INFO  de.twenty11.skysail.server.db.orientdb.impl.Persister - setting name=space_ksnkro7lt2p6rrr12uu87q7s2v [class java.lang.String]
 DEBUG d.t.skysail.server.db.orientdb.OrientGraphDbService - registering class 'class io.skysail.server.app.wiki.spaces.Space' @ orientDB
 DEBUG d.t.skysail.server.db.orientdb.OrientGraphDbService - registering class 'class io.skysail.server.app.wiki.pages.Page' @ orientDB
 DEBUG d.t.skysail.server.db.orientdb.OrientGraphDbService - registering class 'class io.skysail.server.app.wiki.versions.Version' @ orientDB
 INFO  de.twenty11.skysail.server.db.orientdb.impl.Persister - setting owner=demo [class java.lang.String]
-INFO  de.twenty11.skysail.server.db.orientdb.impl.Persister - setting name=space_9t5njb0ap3jvnkjfo8a3apgvus [class java.lang.String]
+INFO  de.twenty11.skysail.server.db.orientdb.impl.Persister - setting name=space_qnr2i9gli2009uc601kho74mgl [class java.lang.String]
 DEBUG d.t.skysail.server.db.orientdb.OrientGraphDbService - activating io.skysail.server.testsupport.TestDb
 DEBUG d.t.skysail.server.db.orientdb.OrientGraphDbService - registering class 'class io.skysail.server.app.wiki.spaces.Space' @ orientDB
 DEBUG d.t.skysail.server.db.orientdb.OrientGraphDbService - registering class 'class io.skysail.server.app.wiki.pages.Page' @ orientDB
 DEBUG d.t.skysail.server.db.orientdb.OrientGraphDbService - registering class 'class io.skysail.server.app.wiki.versions.Version' @ orientDB
 INFO  de.twenty11.skysail.server.db.orientdb.impl.Persister - setting owner=admin [class java.lang.String]
-INFO  de.twenty11.skysail.server.db.orientdb.impl.Persister - setting name=space_8vrnpumtqlrk0j7ec7sagv065d [class java.lang.String]
+INFO  de.twenty11.skysail.server.db.orientdb.impl.Persister - setting name=space_em4f9nt513fh6eg9hiuu3oqaru [class java.lang.String]
 INFO  i.skysail.server.restlet.resources.EntityServerResource - Request entry point: SpaceResource$$EnhancerByMockitoWithCGLIB$$b0ed3f85 @Delete('x-www-form-urlencoded:html|html|json')
 DEBUG i.skysail.server.restlet.filter.ExceptionCatchingFilter - entering ExceptionCatchingFilter#doHandle
 DEBUG io.skysail.server.restlet.filter.AbstractResourceFilter - next filter in chain: ExtractStandardQueryParametersResourceFilter
@@ -59,7 +59,7 @@ DEBUG d.t.skysail.server.db.orientdb.OrientGraphDbService - registering class 'c
 DEBUG d.t.skysail.server.db.orientdb.OrientGraphDbService - registering class 'class io.skysail.server.app.wiki.pages.Page' @ orientDB
 DEBUG d.t.skysail.server.db.orientdb.OrientGraphDbService - registering class 'class io.skysail.server.app.wiki.versions.Version' @ orientDB
 INFO  de.twenty11.skysail.server.db.orientdb.impl.Persister - setting owner=admin [class java.lang.String]
-INFO  de.twenty11.skysail.server.db.orientdb.impl.Persister - setting name=space_cv9vje7d70io505u42lva24pbj [class java.lang.String]
+INFO  de.twenty11.skysail.server.db.orientdb.impl.Persister - setting name=space_m66qhtmqjl1eo4a0f1ns4sp3gi [class java.lang.String]
 INFO  i.skysail.server.restlet.resources.EntityServerResource - Request entry point: SpaceResource$$EnhancerByMockitoWithCGLIB$$b0ed3f85 @Delete('x-www-form-urlencoded:html|html|json')
 DEBUG i.skysail.server.restlet.filter.ExceptionCatchingFilter - entering ExceptionCatchingFilter#doHandle
 DEBUG io.skysail.server.restlet.filter.AbstractResourceFilter - next filter in chain: ExtractStandardQueryParametersResourceFilter
@@ -152,7 +152,7 @@ DEBUG io.skysail.server.restlet.filter.AbstractResourceFilter - next filter in c
 DEBUG io.skysail.server.restlet.filter.AbstractResourceFilter - next filter in chain: PersistEntityFilter
 DEBUG io.skysail.server.restlet.filter.PersistEntityFilter - entering PersistEntityFilter#doHandle
 INFO  de.twenty11.skysail.server.db.orientdb.impl.Persister - setting owner=admin [class java.lang.String]
-INFO  de.twenty11.skysail.server.db.orientdb.impl.Persister - setting name=space_mej61i4le8h6nb8nour9chv1ta [class java.lang.String]
+INFO  de.twenty11.skysail.server.db.orientdb.impl.Persister - setting name=space_24c36ban9cpnjmhfs5vrmr6keg [class java.lang.String]
 DEBUG io.skysail.server.restlet.filter.AbstractResourceFilter - next filter in chain: EntityWasAddedFilter
 DEBUG io.skysail.server.restlet.filter.EntityWasAddedFilter - entering EntityWasAddedFilter#doHandle
 DEBUG io.skysail.server.restlet.filter.AbstractResourceFilter - next filter in chain: AddLinkheadersFilter
@@ -177,7 +177,7 @@ DEBUG io.skysail.server.restlet.filter.AbstractResourceFilter - next filter in c
 DEBUG i.s.server.restlet.filter.CheckBusinessViolationsFilter - entering CheckBusinessViolationsFilter#doHandle
 DEBUG o.h.v.resourceloading.PlatformResourceBundleLocator - ValidationMessages not found.
 DEBUG o.h.v.resourceloading.PlatformResourceBundleLocator - org.hibernate.validator.ValidationMessages found.
-WARN  i.s.server.restlet.filter.CheckBusinessViolationsFilter - constraint violations found on Space(id=null, name=space_mej61i4le8h6nb8nour9chv1ta, owner=null, pages=[]): [ConstraintViolationImpl{interpolatedMessage='This name already exists', propertyPath=, rootBeanClass=class io.skysail.server.app.wiki.spaces.Space, messageTemplate='This name already exists'}]
+WARN  i.s.server.restlet.filter.CheckBusinessViolationsFilter - constraint violations found on Space(id=null, name=space_24c36ban9cpnjmhfs5vrmr6keg, owner=null, pages=[]): [ConstraintViolationImpl{interpolatedMessage='This name already exists', propertyPath=, rootBeanClass=class io.skysail.server.app.wiki.spaces.Space, messageTemplate='This name already exists'}]
 INFO  i.s.server.restlet.filter.CheckBusinessViolationsFilter - found 1 business validation violation(s): [ConstraintViolationImpl{interpolatedMessage='This name already exists', propertyPath=, rootBeanClass=class io.skysail.server.app.wiki.spaces.Space, messageTemplate='This name already exists'}]
 INFO  io.skysail.server.restlet.filter.AbstractResourceFilter - stopping filter chain at filter CheckBusinessViolationsFilter
 DEBUG d.t.skysail.server.db.orientdb.OrientGraphDbService - registering class 'class io.skysail.server.app.wiki.spaces.Space' @ orientDB
@@ -204,7 +204,7 @@ DEBUG io.skysail.server.restlet.filter.AbstractResourceFilter - next filter in c
 DEBUG io.skysail.server.restlet.filter.AbstractResourceFilter - next filter in chain: PersistEntityFilter
 DEBUG io.skysail.server.restlet.filter.PersistEntityFilter - entering PersistEntityFilter#doHandle
 INFO  de.twenty11.skysail.server.db.orientdb.impl.Persister - setting owner=admin [class java.lang.String]
-INFO  de.twenty11.skysail.server.db.orientdb.impl.Persister - setting name=space_mjce215b3o5jmm0sqqon9vkrpo [class java.lang.String]
+INFO  de.twenty11.skysail.server.db.orientdb.impl.Persister - setting name=space_1d0hr5dhanitenipjonak1cu7s [class java.lang.String]
 DEBUG io.skysail.server.restlet.filter.AbstractResourceFilter - next filter in chain: EntityWasAddedFilter
 DEBUG io.skysail.server.restlet.filter.EntityWasAddedFilter - entering EntityWasAddedFilter#doHandle
 DEBUG io.skysail.server.restlet.filter.AbstractResourceFilter - next filter in chain: AddLinkheadersFilter
@@ -235,7 +235,7 @@ DEBUG io.skysail.server.restlet.filter.AbstractResourceFilter - next filter in c
 DEBUG io.skysail.server.restlet.filter.AbstractResourceFilter - next filter in chain: PersistEntityFilter
 DEBUG io.skysail.server.restlet.filter.PersistEntityFilter - entering PersistEntityFilter#doHandle
 INFO  de.twenty11.skysail.server.db.orientdb.impl.Persister - setting owner=admin [class java.lang.String]
-INFO  de.twenty11.skysail.server.db.orientdb.impl.Persister - setting name=space_b5s1ldhbobg20clgv0fa88boj4 [class java.lang.String]
+INFO  de.twenty11.skysail.server.db.orientdb.impl.Persister - setting name=space_p4uh84bfarbqm9jknp9q7d16h1 [class java.lang.String]
 DEBUG io.skysail.server.restlet.filter.AbstractResourceFilter - next filter in chain: EntityWasAddedFilter
 DEBUG io.skysail.server.restlet.filter.EntityWasAddedFilter - entering EntityWasAddedFilter#doHandle
 DEBUG io.skysail.server.restlet.filter.AbstractResourceFilter - next filter in chain: AddLinkheadersFilter
@@ -290,14 +290,14 @@ DEBUG io.skysail.server.restlet.filter.AbstractResourceFilter - next filter in c
 DEBUG i.s.server.restlet.filter.CheckBusinessViolationsFilter - entering CheckBusinessViolationsFilter#doHandle
 DEBUG o.h.v.resourceloading.PlatformResourceBundleLocator - ValidationMessages not found.
 DEBUG o.h.v.resourceloading.PlatformResourceBundleLocator - org.hibernate.validator.ValidationMessages found.
-WARN  i.s.server.restlet.filter.CheckBusinessViolationsFilter - constraint violations found on Page(id=null, name=null, created=Mon Jun 29 08:35:47 CEST 2015, modified=null, versions=[], subpages=[], content=null, owner=null): [ConstraintViolationImpl{interpolatedMessage='may not be null', propertyPath=name, rootBeanClass=class io.skysail.server.app.wiki.pages.Page, messageTemplate='{javax.validation.constraints.NotNull.message}'}]
+WARN  i.s.server.restlet.filter.CheckBusinessViolationsFilter - constraint violations found on Page(id=null, name=null, created=Mon Jun 29 08:50:50 CEST 2015, modified=null, versions=[], subpages=[], content=null, owner=null): [ConstraintViolationImpl{interpolatedMessage='may not be null', propertyPath=name, rootBeanClass=class io.skysail.server.app.wiki.pages.Page, messageTemplate='{javax.validation.constraints.NotNull.message}'}]
 INFO  i.s.server.restlet.filter.CheckBusinessViolationsFilter - found 1 business validation violation(s): [ConstraintViolationImpl{interpolatedMessage='may not be null', propertyPath=name, rootBeanClass=class io.skysail.server.app.wiki.pages.Page, messageTemplate='{javax.validation.constraints.NotNull.message}'}]
 INFO  io.skysail.server.restlet.filter.AbstractResourceFilter - stopping filter chain at filter CheckBusinessViolationsFilter
 DEBUG d.t.skysail.server.db.orientdb.OrientGraphDbService - registering class 'class io.skysail.server.app.wiki.spaces.Space' @ orientDB
 DEBUG d.t.skysail.server.db.orientdb.OrientGraphDbService - registering class 'class io.skysail.server.app.wiki.pages.Page' @ orientDB
 DEBUG d.t.skysail.server.db.orientdb.OrientGraphDbService - registering class 'class io.skysail.server.app.wiki.versions.Version' @ orientDB
 INFO  de.twenty11.skysail.server.db.orientdb.impl.Persister - setting owner=admin [class java.lang.String]
-INFO  de.twenty11.skysail.server.db.orientdb.impl.Persister - setting name=space_rd1s3nvpj5d3bbjncha4qj5gjj [class java.lang.String]
+INFO  de.twenty11.skysail.server.db.orientdb.impl.Persister - setting name=space_sdag2lvr80bihbt0icjvhpl24o [class java.lang.String]
 INFO  i.s.server.restlet.resources.PostEntityServerResource - Request entry point: PostPageResource$$EnhancerByMockitoWithCGLIB$$342ba63b @Post('json')
 INFO  i.s.server.restlet.resources.PostEntityServerResource - Request entry point: PostPageResource$$EnhancerByMockitoWithCGLIB$$342ba63b @Post('x-www-form-urlencoded:html|json|xml')
 INFO  i.s.server.restlet.resources.PostEntityServerResource - calling post(Form), media types '[]'
@@ -329,7 +329,7 @@ DEBUG d.t.skysail.server.db.orientdb.OrientGraphDbService - registering class 'c
 DEBUG d.t.skysail.server.db.orientdb.OrientGraphDbService - registering class 'class io.skysail.server.app.wiki.pages.Page' @ orientDB
 DEBUG d.t.skysail.server.db.orientdb.OrientGraphDbService - registering class 'class io.skysail.server.app.wiki.versions.Version' @ orientDB
 INFO  de.twenty11.skysail.server.db.orientdb.impl.Persister - setting owner=admin [class java.lang.String]
-INFO  de.twenty11.skysail.server.db.orientdb.impl.Persister - setting name=space_pg8vsdga417vdrc33537si5krg [class java.lang.String]
+INFO  de.twenty11.skysail.server.db.orientdb.impl.Persister - setting name=space_vbi131b1m2gm6f810i5m925pg6 [class java.lang.String]
 INFO  i.s.server.restlet.resources.PostEntityServerResource - Request entry point: PostPageResource$$EnhancerByMockitoWithCGLIB$$342ba63b @Post('json')
 INFO  i.s.server.restlet.resources.PostEntityServerResource - Request entry point: PostPageResource$$EnhancerByMockitoWithCGLIB$$342ba63b @Post('x-www-form-urlencoded:html|json|xml')
 INFO  i.s.server.restlet.resources.PostEntityServerResource - calling post(Form), media types '[]'
@@ -361,7 +361,7 @@ DEBUG d.t.skysail.server.db.orientdb.OrientGraphDbService - registering class 'c
 DEBUG d.t.skysail.server.db.orientdb.OrientGraphDbService - registering class 'class io.skysail.server.app.wiki.pages.Page' @ orientDB
 DEBUG d.t.skysail.server.db.orientdb.OrientGraphDbService - registering class 'class io.skysail.server.app.wiki.versions.Version' @ orientDB
 INFO  de.twenty11.skysail.server.db.orientdb.impl.Persister - setting owner=admin [class java.lang.String]
-INFO  de.twenty11.skysail.server.db.orientdb.impl.Persister - setting name=space_le781d7rel824s25c0gur0vadi [class java.lang.String]
+INFO  de.twenty11.skysail.server.db.orientdb.impl.Persister - setting name=space_bbni8lvnhiofsvuq96felqe15v [class java.lang.String]
 INFO  i.s.server.restlet.resources.PostEntityServerResource - Request entry point: PostPageResource$$EnhancerByMockitoWithCGLIB$$342ba63b @Post('json')
 INFO  i.s.server.restlet.resources.PostEntityServerResource - Request entry point: PostPageResource$$EnhancerByMockitoWithCGLIB$$342ba63b @Post('x-www-form-urlencoded:html|json|xml')
 INFO  i.s.server.restlet.resources.PostEntityServerResource - calling post(Form), media types '[]'
@@ -393,7 +393,7 @@ DEBUG d.t.skysail.server.db.orientdb.OrientGraphDbService - registering class 'c
 DEBUG d.t.skysail.server.db.orientdb.OrientGraphDbService - registering class 'class io.skysail.server.app.wiki.pages.Page' @ orientDB
 DEBUG d.t.skysail.server.db.orientdb.OrientGraphDbService - registering class 'class io.skysail.server.app.wiki.versions.Version' @ orientDB
 INFO  de.twenty11.skysail.server.db.orientdb.impl.Persister - setting owner=admin [class java.lang.String]
-INFO  de.twenty11.skysail.server.db.orientdb.impl.Persister - setting name=space_kl6qg31q30avrch7eanv4o9kh [class java.lang.String]
+INFO  de.twenty11.skysail.server.db.orientdb.impl.Persister - setting name=space_6pttq1n0huid210ocl3v89uvdk [class java.lang.String]
 INFO  i.s.server.restlet.resources.PostEntityServerResource - Request entry point: PostPageResource$$EnhancerByMockitoWithCGLIB$$342ba63b @Post('x-www-form-urlencoded:html|json|xml')
 INFO  i.s.server.restlet.resources.PostEntityServerResource - calling post(Form), media types '[]'
 DEBUG o.h.v.i.engine.resolver.DefaultTraversableResolver - Found javax.persistence.Persistence on classpath containing 'getPersistenceUtil'. Assuming JPA 2 environment. Trying to instantiate JPA aware TraversableResolver
@@ -424,7 +424,7 @@ DEBUG d.t.skysail.server.db.orientdb.OrientGraphDbService - registering class 'c
 DEBUG d.t.skysail.server.db.orientdb.OrientGraphDbService - registering class 'class io.skysail.server.app.wiki.pages.Page' @ orientDB
 DEBUG d.t.skysail.server.db.orientdb.OrientGraphDbService - registering class 'class io.skysail.server.app.wiki.versions.Version' @ orientDB
 INFO  de.twenty11.skysail.server.db.orientdb.impl.Persister - setting owner=admin [class java.lang.String]
-INFO  de.twenty11.skysail.server.db.orientdb.impl.Persister - setting name=space_ig23373i3ltmatud3cgh73a22n [class java.lang.String]
+INFO  de.twenty11.skysail.server.db.orientdb.impl.Persister - setting name=space_83o5e3c20nr2rlvg6qq4vg91j1 [class java.lang.String]
 INFO  i.s.server.restlet.resources.PostEntityServerResource - Request entry point: PostPageResource$$EnhancerByMockitoWithCGLIB$$342ba63b @Post('json')
 INFO  i.s.server.restlet.resources.PostEntityServerResource - Request entry point: PostPageResource$$EnhancerByMockitoWithCGLIB$$342ba63b @Post('x-www-form-urlencoded:html|json|xml')
 INFO  i.s.server.restlet.resources.PostEntityServerResource - calling post(Form), media types '[]'
@@ -474,7 +474,7 @@ DEBUG io.skysail.server.restlet.filter.AbstractResourceFilter - next filter in c
 DEBUG i.s.server.restlet.filter.CheckBusinessViolationsFilter - entering CheckBusinessViolationsFilter#doHandle
 DEBUG o.h.v.resourceloading.PlatformResourceBundleLocator - ValidationMessages not found.
 DEBUG o.h.v.resourceloading.PlatformResourceBundleLocator - org.hibernate.validator.ValidationMessages found.
-WARN  i.s.server.restlet.filter.CheckBusinessViolationsFilter - constraint violations found on Page(id=null, name=null, created=Mon Jun 29 08:35:47 CEST 2015, modified=null, versions=[], subpages=[], content=null, owner=null): [ConstraintViolationImpl{interpolatedMessage='may not be null', propertyPath=name, rootBeanClass=class io.skysail.server.app.wiki.pages.Page, messageTemplate='{javax.validation.constraints.NotNull.message}'}]
+WARN  i.s.server.restlet.filter.CheckBusinessViolationsFilter - constraint violations found on Page(id=null, name=null, created=Mon Jun 29 08:50:51 CEST 2015, modified=null, versions=[], subpages=[], content=null, owner=null): [ConstraintViolationImpl{interpolatedMessage='may not be null', propertyPath=name, rootBeanClass=class io.skysail.server.app.wiki.pages.Page, messageTemplate='{javax.validation.constraints.NotNull.message}'}]
 INFO  i.s.server.restlet.filter.CheckBusinessViolationsFilter - found 1 business validation violation(s): [ConstraintViolationImpl{interpolatedMessage='may not be null', propertyPath=name, rootBeanClass=class io.skysail.server.app.wiki.pages.Page, messageTemplate='{javax.validation.constraints.NotNull.message}'}]
 INFO  io.skysail.server.restlet.filter.AbstractResourceFilter - stopping filter chain at filter CheckBusinessViolationsFilter
 DEBUG d.t.skysail.server.db.orientdb.OrientGraphDbService - activating io.skysail.server.testsupport.TestDb
@@ -482,9 +482,9 @@ DEBUG d.t.skysail.server.db.orientdb.OrientGraphDbService - registering class 'c
 DEBUG d.t.skysail.server.db.orientdb.OrientGraphDbService - registering class 'class io.skysail.server.app.wiki.pages.Page' @ orientDB
 DEBUG d.t.skysail.server.db.orientdb.OrientGraphDbService - registering class 'class io.skysail.server.app.wiki.versions.Version' @ orientDB
 INFO  de.twenty11.skysail.server.db.orientdb.impl.Persister - setting owner=admin [class java.lang.String]
-INFO  de.twenty11.skysail.server.db.orientdb.impl.Persister - setting name=space_c37qmve3tucv202v4vj9n2k61u [class java.lang.String]
+INFO  de.twenty11.skysail.server.db.orientdb.impl.Persister - setting name=space_4n6rj81g8dk6k9pmobht0o8499 [class java.lang.String]
 DEBUG d.t.skysail.server.db.orientdb.OrientGraphDbService - registering class 'class io.skysail.server.app.wiki.spaces.Space' @ orientDB
 DEBUG d.t.skysail.server.db.orientdb.OrientGraphDbService - registering class 'class io.skysail.server.app.wiki.pages.Page' @ orientDB
 DEBUG d.t.skysail.server.db.orientdb.OrientGraphDbService - registering class 'class io.skysail.server.app.wiki.versions.Version' @ orientDB
 INFO  de.twenty11.skysail.server.db.orientdb.impl.Persister - setting owner=demo [class java.lang.String]
-INFO  de.twenty11.skysail.server.db.orientdb.impl.Persister - setting name=space_aqcu5ccqseuq1bijptvcoerq4m [class java.lang.String]
+INFO  de.twenty11.skysail.server.db.orientdb.impl.Persister - setting name=space_stflka2at39fkes6q2u3hbqn97 [class java.lang.String]

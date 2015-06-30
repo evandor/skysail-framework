@@ -1,11 +1,14 @@
 package io.skysail.server.app.designer.model.test;
 
-import static org.hamcrest.Matchers.*;
+import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
 import io.skysail.server.app.designer.entities.Entity;
+import io.skysail.server.app.designer.model.EntityModel;
 import io.skysail.server.app.designer.model.ReferenceModel;
 
-import org.junit.*;
+import org.junit.Before;
+import org.junit.Test;
 
 public class ReferenceModelTest {
 
@@ -14,12 +17,13 @@ public class ReferenceModelTest {
     @Before
     public void setUp()  {
         Entity entity = new Entity("entityName");
-        referenceModel = new ReferenceModel(entity);
+        EntityModel entityModel = new EntityModel(entity);
+        referenceModel = new ReferenceModel(entityModel, entity);
     }
 
     @Test
     public void testName() {
-        assertThat(referenceModel.getName(),is(equalTo("entityName")));
+        assertThat(referenceModel.getReferencedEntityName(),is(equalTo("entityName")));
     }
 
 }

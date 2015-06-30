@@ -28,11 +28,11 @@ public class PostCampaignResource extends PostEntityServerResource<Campaign> {
 
     @Override
     public SkysailResponse<?> addEntity(Campaign entity) {
-         Subject subject = SecurityUtils.getSubject();
-        //entity.setOwner(subject.getPrincipal().toString());
+        Subject subject = SecurityUtils.getSubject();
         String id = app.getRepository().add(entity).toString();
         entity.setId(id);
         return new SkysailResponse<String>();
+
     }
 
     @Override

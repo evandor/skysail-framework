@@ -22,7 +22,7 @@ import lombok.extern.slf4j.Slf4j;
 public class ApplicationModel {
 
     private final String applicationName;
-    private final Set<EntityModel> entities = new HashSet<>();
+    private final Set<EntityModel> entityModels = new HashSet<>();
     private final String packageName;
 
     private String path;
@@ -38,12 +38,32 @@ public class ApplicationModel {
     }
 
     private void setupModel(Application application, DesignerRepository repo) {
+        createEnityModels(application, repo);
+        createReferences(application, repo);
+    }
+
+    private void createEnityModels(Application application, DesignerRepository repo) {
         application.getEntities().stream().forEach(entity -> {
             createEntityModel(application, repo, entity);
             for (Entity subEntity : entity.getSubEntities()) {
                 createEntityModel(application, repo, subEntity);
             }
         });
+    }
+
+    private void createReferences(Application application, DesignerRepository repo) {
+        entityModels.stream().forEach(entityModel -> {
+            List<Entity> referencedEntities = getReferences(repo, entityModel.getEntityName(), application.getId());
+            referencedEntities.stream().forEach(referencedEntity -> {
+                entityModel.addReference(referencedEntity);
+                getEntityModel(referencedEntity).setReferencedBy(entityModel);
+            });               
+        });
+        
+ }
+    
+    private EntityModel getEntityModel(Entity referencedEntity) {
+        return null;
     }
 
     private void createEntityModel(Application application, DesignerRepository repo, Entity entity) {
@@ -54,16 +74,13 @@ public class ApplicationModel {
             entityModel.addField(f);
         });
 
-        List<Entity> references = getReferences(repo, entity.getName(), application.getId());
-        references.stream().forEach(f -> {
-            entityModel.addReference(f);
-        });
+
     }
 
     public EntityModel addEntity(Entity entity) {
         log.info("ApplicationModel: adding Entity '{}'", entity);
         EntityModel entityModel = new EntityModel(entity);
-        if (!entities.add(entityModel)) {
+        if (!entityModels.add(entityModel)) {
             log.warn("EntityModel '{}' already exists!", entity);
         }
         return entityModel;
@@ -74,8 +91,8 @@ public class ApplicationModel {
     }
 
     private void eachEntitiesReferencesMustPointToExistingEntity() {
-        List<String> entityNames = entities.stream().map(EntityModel::getEntityName).collect(Collectors.toList());
-        entities.stream().forEach(entity -> {
+        List<String> entityNames = entityModels.stream().map(EntityModel::getEntityName).collect(Collectors.toList());
+        entityModels.stream().forEach(entity -> {
             entity.getReferences().stream().forEach(reference -> {
                 validateReference(reference, entityNames);
             });
@@ -83,8 +100,8 @@ public class ApplicationModel {
     }
 
     private void validateReference(ReferenceModel reference, List<String> entities) {
-        if (!entities.contains(reference.getName())) {
-            throw new IllegalStateException("Reference '" + reference.getName()
+        if (!entities.contains(reference.getReferencedEntityName())) {
+            throw new IllegalStateException("Reference '" + reference.getReferencedEntityName()
                     + "' was not contained in the list of known entities: " + entities);
         }
     }
@@ -132,8 +149,8 @@ public class ApplicationModel {
     }
 
     public EntityModel getEntityModel(ReferenceModel referenceModel) {
-        return getEntities().stream().filter(e -> {
-            return referenceModel.getName().equals(e.getEntityName());
+        return entityModels.stream().filter(e -> {
+            return referenceModel.getReferencedEntityName().equals(e.getEntityName());
         }).findFirst().orElseThrow(IllegalStateException::new);
     }
 }

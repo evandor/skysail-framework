@@ -40,7 +40,7 @@ public class Entity implements Identifiable {
     }
 
     private List<Entity> subEntities;
-    
+
     public List<Entity> getSubEntities() { // = getReferences?
         if (subEntities == null) {
             subEntities = new ArrayList<>();

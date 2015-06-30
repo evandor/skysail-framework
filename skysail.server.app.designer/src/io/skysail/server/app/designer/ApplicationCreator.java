@@ -66,8 +66,8 @@ public class ApplicationCreator {
 
         List<RouteModel> routeModels = new EntityCreator(applicationModel).create(stGroup);
         
-        entityClassNames.addAll(applicationModel.getEntities().stream().map(EntityModel::getClassName).collect(Collectors.toList()));
-        entityNames.addAll(applicationModel.getEntities().stream().map(EntityModel::getEntityName).collect(Collectors.toList()));
+        entityClassNames.addAll(applicationModel.getEntityModels().stream().map(EntityModel::getClassName).collect(Collectors.toList()));
+        entityNames.addAll(applicationModel.getEntityModels().stream().map(EntityModel::getEntityName).collect(Collectors.toList()));
         
         repositoryClassName = new RepositoryCreator(applicationModel).create(stGroup);
         

@@ -11,9 +11,9 @@
         on-response="hResponse"
         last-response="{{data}}"
         debounce-duration="300" />
-    <ul>
+    <ul class="list-group">
       <template is="dom-repeat" items="{{data}}">
-        <li><a href='{{renderLink(linkTo, item.id)}}'>{{item.name}}</a></li>
+        <li><a class="list-group-item" href='{{renderLink(linkTo, item.id)}}'>{{item.name}}</a></li>
       </template>
     </ul>
   </template>

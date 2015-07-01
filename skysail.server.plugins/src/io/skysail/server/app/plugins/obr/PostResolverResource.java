@@ -5,8 +5,7 @@ import io.skysail.server.app.plugins.PluginApplication;
 import io.skysail.server.restlet.resources.PostEntityServerResource;
 
 import org.apache.commons.lang.StringEscapeUtils;
-import org.apache.felix.bundlerepository.Reason;
-import org.apache.felix.bundlerepository.Resolver;
+import org.apache.felix.bundlerepository.*;
 import org.restlet.data.Form;
 
 public class PostResolverResource extends PostEntityServerResource<ObrResource> {

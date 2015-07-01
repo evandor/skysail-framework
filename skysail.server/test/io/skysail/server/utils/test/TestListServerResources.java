@@ -2,8 +2,7 @@ package io.skysail.server.utils.test;
 
 import io.skysail.server.restlet.resources.ListServerResource;
 
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 public class TestListServerResources extends ListServerResource<String> {
 

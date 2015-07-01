@@ -20,6 +20,7 @@ Include-Resource: resources, templates=src;recursive:=true;filter:=*.st|*.stg
 	org.apache.commons.beanutils;version=1.9,\
 	com.google.guava;version=16.0,\
 	osgi.cmpn;version=5.0,\
-	com.fasterxml.jackson.core.jackson-annotations;version=2.5
+	com.fasterxml.jackson.core.jackson-annotations;version=2.5,\
+	org.apache.shiro.core;version=1.2
 Private-Package:  \
 	io.skysail.server.text.store.bundleresource.impl

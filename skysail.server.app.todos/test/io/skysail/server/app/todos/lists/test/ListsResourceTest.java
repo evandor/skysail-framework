@@ -3,7 +3,7 @@ package io.skysail.server.app.todos.lists.test;
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.assertThat;
 import io.skysail.server.app.todos.*;
-import io.skysail.server.app.todos.lists.*;
+import io.skysail.server.app.todos.lists.UniquePerOwnerValidator;
 import io.skysail.server.app.todos.repo.TodosRepository;
 import io.skysail.server.restlet.resources.ListServerResource;
 import io.skysail.server.testsupport.ResourceTestBase;

@@ -2,7 +2,7 @@ package io.skysail.server.app.wiki.pages;
 
 import io.skysail.api.domain.Identifiable;
 import io.skysail.api.forms.*;
-import io.skysail.server.app.wiki.pages.resources.PageResource;
+import io.skysail.server.app.wiki.pages.resources.PutPageResource;
 import io.skysail.server.app.wiki.versions.Version;
 import io.skysail.server.forms.*;
 
@@ -23,7 +23,7 @@ public class Page implements Serializable, Identifiable {
     private static final long serialVersionUID = 5061219768727410582L;
 
     @Id
-    @Field(type = InputType.READONLY)
+    //@Field(type = InputType.READONLY)
     private String id;
 
     @Field
@@ -31,7 +31,7 @@ public class Page implements Serializable, Identifiable {
     @Size(min = 2)
     //@Prefix(methodName="boldStart")
     //@Postfix(methodName="boldEnd")
-    @ListView(link = PageResource.class)
+    @ListView(link = PutPageResource.class)
     private String name;
     
     @Field(type = InputType.READONLY)

@@ -96,6 +96,7 @@ public class ServiceListTest {
     public void adding_another_renderService_yields_two_holders() {
         serviceList.addTranslationRenderService(renderService, new HashMap<>());
         serviceList.addTranslationRenderService(new TranslationRenderService() {
+            public String render(String in, Object... substitutions) {return null;}
             public String render(Translation translation, Object... substitutions) {return null;}
             public boolean applicable(String unformattedTranslation) {return false;}
             public String adjustText(String unformatted) {return null;}

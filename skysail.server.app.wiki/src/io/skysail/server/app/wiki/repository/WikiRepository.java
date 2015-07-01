@@ -41,8 +41,14 @@ public class WikiRepository implements DbRepository {
     }
     
     public <T> List<T> findAll(Class<T> cls, Filter filter, String sorting) {
-        String sql = "SELECT from " + cls.getSimpleName() + " WHERE " + filter.getPreparedStatement() + " " + sorting;
-        return dbService.findObjects(sql, filter.getParams());
+        String sql;
+        if (filter != null) {
+            sql = "SELECT from " + cls.getSimpleName() + " WHERE " + filter.getPreparedStatement() + " " + sorting;
+            return dbService.findObjects(sql, filter.getParams());
+        } else {
+            sql = "SELECT from " + cls.getSimpleName() + " " + sorting;
+            return dbService.findObjects(sql, Collections.emptyMap());
+        }
     }
     
     public static Object add(Object entity, String... edges) {

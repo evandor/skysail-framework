@@ -1,13 +1,10 @@
 package io.skysail.server.restlet.resources;
 
-import static org.hamcrest.Matchers.equalTo;
-import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.assertThat;
 import io.skysail.api.links.LinkRelation;
-import io.skysail.server.restlet.resources.SkysailServerResource;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.*;
 import org.junit.runner.RunWith;
 import org.mockito.runners.MockitoJUnitRunner;
 

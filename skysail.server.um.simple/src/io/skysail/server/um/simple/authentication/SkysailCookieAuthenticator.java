@@ -5,7 +5,7 @@ import org.apache.shiro.cache.*;
 import org.apache.shiro.subject.Subject;
 import org.apache.shiro.util.ThreadContext;
 import org.restlet.*;
-import org.restlet.data.CookieSetting;
+import org.restlet.data.*;
 import org.restlet.ext.crypto.CookieAuthenticator;
 import org.restlet.routing.Filter;
 
@@ -49,6 +49,26 @@ public class SkysailCookieAuthenticator extends CookieAuthenticator {
         CookieSetting credentialsCookie = super.getCredentialsCookie(request, response);
         credentialsCookie.setPath("/");
         return credentialsCookie;
+    }
+    
+    @Override
+    protected boolean authenticate(Request request, Response response) {
+        // Restore credentials from the cookie
+        Cookie credentialsCookie = request.getCookies().getFirst(
+                getCookieName());
+
+        if (credentialsCookie != null) {
+            if (byPassIfPublicUrl(request)) {
+                return false;// super.authenticate(request, response);
+            }
+            request.setChallengeResponse(parseCredentials(credentialsCookie
+                    .getValue()));
+        }
+        return super.authenticate(request, response);
+    }
+
+    private boolean byPassIfPublicUrl(Request request) {
+        return request.getOriginalRef().getQueryAsForm().getFirst("_preview") != null;
     }
 
     @Override

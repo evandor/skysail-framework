@@ -1,12 +1,10 @@
 package io.skysail.server.app.plugins.features;
 
-import io.skysail.api.links.Link;
-import io.skysail.api.links.LinkRelation;
+import io.skysail.api.links.*;
 import io.skysail.api.responses.SkysailResponse;
 import io.skysail.server.restlet.resources.EntityServerResource;
 
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 public class FeatureResource extends EntityServerResource<Feature> {
 

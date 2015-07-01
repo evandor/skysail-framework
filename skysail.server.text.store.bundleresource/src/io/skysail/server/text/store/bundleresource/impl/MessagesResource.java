@@ -3,8 +3,7 @@ package io.skysail.server.text.store.bundleresource.impl;
 import io.skysail.server.app.SkysailApplication;
 import io.skysail.server.restlet.resources.ListServerResource;
 
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 public class MessagesResource extends ListServerResource<BundleMessages> {
 

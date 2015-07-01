@@ -110,7 +110,7 @@ public abstract class PutEntityServerResource<T> extends SkysailServerResource<T
      * @return the resource of type T
      */
     public T getData(Form form) {
-        return populate(getEntity(), form);
+        return populate(getEntity(null), form);
     }
 
     @Get("htmlform|html|json")

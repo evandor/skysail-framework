@@ -20,6 +20,16 @@ public class MarkdownTranslationRenderService implements TranslationRenderServic
     public static final String SERVICE_RANKING = "100";
 
     @Override
+    public String render(String in, Object... substitutions) {
+        String unformatted = StringEscapeUtils.unescapeHtml4(in.trim());
+        try {
+            return new Markdown4jProcessor().process(adjustText(unformatted));
+        } catch (IOException e) {
+            log.error(e.getMessage(), e);
+            return in;        }
+    }
+    
+    @Override
     // TODO handle substitutions
     public String render(Translation translation, Object... substitutions) {
         if (translation == null) {

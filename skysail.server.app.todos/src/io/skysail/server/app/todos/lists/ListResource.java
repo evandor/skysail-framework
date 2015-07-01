@@ -2,8 +2,7 @@ package io.skysail.server.app.todos.lists;
 
 import io.skysail.api.links.Link;
 import io.skysail.api.responses.SkysailResponse;
-import io.skysail.server.app.todos.TodoApplication;
-import io.skysail.server.app.todos.TodoList;
+import io.skysail.server.app.todos.*;
 import io.skysail.server.app.todos.todos.resources.TodosResource;
 import io.skysail.server.restlet.resources.EntityServerResource;
 

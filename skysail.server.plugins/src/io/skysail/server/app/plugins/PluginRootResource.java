@@ -2,8 +2,7 @@ package io.skysail.server.app.plugins;
 
 import io.skysail.api.links.Link;
 import io.skysail.server.app.plugins.features.FeaturesResource;
-import io.skysail.server.app.plugins.obr.PostResolverResource;
-import io.skysail.server.app.plugins.obr.RepositoriesResource;
+import io.skysail.server.app.plugins.obr.*;
 import io.skysail.server.app.plugins.resources.ResourcesResource;
 import io.skysail.server.restlet.resources.ListServerResource;
 

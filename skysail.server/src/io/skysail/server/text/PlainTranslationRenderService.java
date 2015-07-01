@@ -15,6 +15,11 @@ public class PlainTranslationRenderService implements TranslationRenderService {
     public static final String SERVICE_RANKING = "-1";
 
     @Override
+    public String render(String in, Object... substitutions) {
+        return in.trim();
+    }
+
+    @Override
     public String render(Translation translation, Object... substitutions) {
         return translation.getValue();
     }

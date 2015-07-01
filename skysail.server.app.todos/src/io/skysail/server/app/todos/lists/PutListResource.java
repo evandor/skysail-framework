@@ -1,8 +1,7 @@
 package io.skysail.server.app.todos.lists;
 
 import io.skysail.api.responses.SkysailResponse;
-import io.skysail.server.app.todos.TodoApplication;
-import io.skysail.server.app.todos.TodoList;
+import io.skysail.server.app.todos.*;
 import io.skysail.server.restlet.resources.PutEntityServerResource;
 
 import java.util.Date;
@@ -27,7 +26,7 @@ public class PutListResource extends PutEntityServerResource<TodoList> {
     
     @Override
     public SkysailResponse<?> updateEntity(TodoList entity) {
-        TodoList original = getEntity();
+        TodoList original = getEntity(null);
         original.setName(entity.getName());
         original.setDesc(entity.getDesc());
         original.setModified(new Date());

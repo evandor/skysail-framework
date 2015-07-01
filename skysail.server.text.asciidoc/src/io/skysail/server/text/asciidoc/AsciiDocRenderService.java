@@ -1,12 +1,9 @@
 package io.skysail.server.text.asciidoc;
 
-import io.skysail.api.text.Translation;
-import io.skysail.api.text.TranslationRenderService;
+import io.skysail.api.text.*;
 import io.skysail.server.utils.CompositeClassLoader;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Optional;
+import java.util.*;
 
 import org.asciidoctor.Asciidoctor;
 import org.jruby.RubyInstanceConfig;
@@ -15,9 +12,7 @@ import org.osgi.framework.Bundle;
 import org.osgi.framework.wiring.BundleWiring;
 import org.osgi.service.component.ComponentContext;
 
-import aQute.bnd.annotation.component.Activate;
-import aQute.bnd.annotation.component.Component;
-import aQute.bnd.annotation.component.Deactivate;
+import aQute.bnd.annotation.component.*;
 
 @Component(immediate = true, properties = { org.osgi.framework.Constants.SERVICE_RANKING + "="
         + AsciiDocRenderService.SERVICE_RANKING })
@@ -68,6 +63,11 @@ public class AsciiDocRenderService implements TranslationRenderService {
     @Deactivate
     public void deactivate() {
         asciidoctor = null;
+    }
+
+    @Override
+    public String render(String in, Object... substitutions) {
+        return asciidoctor.convert(in, new HashMap<String, Object>());
     }
 
     @Override

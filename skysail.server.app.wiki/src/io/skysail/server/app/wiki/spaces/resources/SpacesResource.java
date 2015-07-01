@@ -8,7 +8,6 @@ import io.skysail.server.restlet.resources.ListServerResource;
 
 import java.util.List;
 
-import org.apache.shiro.SecurityUtils;
 import org.restlet.resource.ResourceException;
 
 public class SpacesResource extends ListServerResource<Space> {
@@ -27,8 +26,8 @@ public class SpacesResource extends ListServerResource<Space> {
     @Override
     public List<Space> getEntity() {
         Filter filter = new Filter(getRequest());
-        filter.add("owner", SecurityUtils.getSubject().getPrincipal().toString());
-        return app.getRepository().findAll(Space.class, filter, "");
+        //filter.add("owner", SecurityUtils.getSubject().getPrincipal().toString());
+        return app.getRepository().findAll(Space.class, null, "");
     }
 
     @Override

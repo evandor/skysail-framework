@@ -4,10 +4,8 @@ import io.skysail.api.links.Link;
 import io.skysail.api.responses.SkysailResponse;
 import io.skysail.server.app.designer.DesignerApplication;
 import io.skysail.server.app.designer.application.Application;
-import io.skysail.server.app.designer.entities.resources.EntitiesResource;
-import io.skysail.server.app.designer.entities.resources.PostEntityResource;
-import io.skysail.server.restlet.resources.EntityServerResource;
-import io.skysail.server.restlet.resources.SkysailServerResource;
+import io.skysail.server.app.designer.entities.resources.*;
+import io.skysail.server.restlet.resources.*;
 
 import java.util.List;
 import java.util.function.Consumer;

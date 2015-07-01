@@ -43,7 +43,9 @@ public class DataExtractingFilter<R extends SkysailServerResource<T>, T> extends
 
     private void replaceHash(Object element) {
         Identifiable identifiable = (Identifiable) element;
-        identifiable.setId(identifiable.getId().replace("#", ""));
+        if (identifiable.getId() != null) {
+            identifiable.setId(identifiable.getId().replace("#", ""));
+        }
     }
 
 }

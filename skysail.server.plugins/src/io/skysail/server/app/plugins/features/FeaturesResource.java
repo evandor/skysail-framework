@@ -1,8 +1,7 @@
 package io.skysail.server.app.plugins.features;
 
 import io.skysail.api.links.Link;
-import io.skysail.server.app.plugins.PluginApplication;
-import io.skysail.server.app.plugins.PluginRootResource;
+import io.skysail.server.app.plugins.*;
 import io.skysail.server.restlet.resources.ListServerResource;
 
 import java.util.List;

@@ -1,10 +1,8 @@
 package io.skysail.server.restlet.filter;
 
-import io.skysail.api.forms.AllowedAttribute;
-import io.skysail.api.forms.HtmlPolicy;
+import io.skysail.api.forms.*;
 import io.skysail.server.app.SkysailApplication;
-import io.skysail.server.restlet.resources.EntityServerResource;
-import io.skysail.server.restlet.resources.SkysailServerResource;
+import io.skysail.server.restlet.resources.*;
 import io.skysail.server.utils.ReflectionUtils;
 
 import java.lang.reflect.Field;
@@ -12,14 +10,9 @@ import java.util.List;
 
 import lombok.extern.slf4j.Slf4j;
 
-import org.owasp.html.Handler;
-import org.owasp.html.HtmlPolicyBuilder;
-import org.owasp.html.HtmlSanitizer;
-import org.owasp.html.HtmlStreamRenderer;
-import org.restlet.Request;
-import org.restlet.Response;
-import org.restlet.data.Form;
-import org.restlet.data.Parameter;
+import org.owasp.html.*;
+import org.restlet.*;
+import org.restlet.data.*;
 
 import de.twenty11.skysail.server.core.restlet.ResponseWrapper;
 

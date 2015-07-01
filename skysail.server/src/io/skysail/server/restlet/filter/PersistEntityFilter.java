@@ -2,12 +2,10 @@ package io.skysail.server.restlet.filter;
 
 import io.skysail.api.domain.Identifiable;
 import io.skysail.server.app.SkysailApplication;
-import io.skysail.server.restlet.resources.PostEntityServerResource;
-import io.skysail.server.restlet.resources.SkysailServerResource;
+import io.skysail.server.restlet.resources.*;
 
 import org.restlet.Response;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.slf4j.*;
 
 import de.twenty11.skysail.server.core.restlet.ResponseWrapper;
 

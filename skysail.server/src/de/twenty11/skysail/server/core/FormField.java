@@ -280,6 +280,7 @@ public class FormField {
             return object.toString();
         }
         String string = (String) object;
+        string = string.replace("\r", "&#13;").replace("\n", "&#10;");
 
         if (response instanceof ListServerResponse) {
             string = handleListView(string, dataRow);

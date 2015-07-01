@@ -15,7 +15,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Getter
 @EqualsAndHashCode(of = { "entityName" })
-@ToString
+@ToString(of = {"entityName"})
 @Slf4j
 public class EntityModel {
 
@@ -55,7 +55,7 @@ public class EntityModel {
     }
 
     public void setReferencedBy(@NonNull EntityModel entityModel) {
-        if (referencedBy.get() != null) {
+        if (referencedBy != null && referencedBy.get() != null) {
             throw new IllegalStateException("setReferencedBy was called before on this object");
         }
         this.referencedBy = Optional.of(entityModel);

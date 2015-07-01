@@ -1,13 +1,17 @@
 references(references) ::= <<
 
 $references: { reference| 
-@Reference(cls = Request.class)
+@Reference(cls = $reference.referencedEntityName$.class)
 @PostView(visibility=Visibility.HIDE)
 @PutView(visibility=Visibility.HIDE)
-private List<$reference.name$> $reference.variableName$s = new ArrayList<>();
+private List<$reference.referencedEntityName$> $reference.variableName$s = new ArrayList<>();
 
-public void add$reference.name$($reference.name$ entity) {
+public void add$reference.referencedEntityName$($reference.referencedEntityName$ entity) {
     $reference.variableName$s.add(entity);
+\}
+
+public List<$reference.referencedEntityName$> get$reference.referencedEntityName$s() {
+    return $reference.variableName$s;
 \}
 
 }$

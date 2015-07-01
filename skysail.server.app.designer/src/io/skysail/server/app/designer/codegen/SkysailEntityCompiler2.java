@@ -40,8 +40,12 @@ public class SkysailEntityCompiler2 extends SkysailCompiler2 {
         ST postResourceTemplate = getStringTemplateIndex("postResource");
         String postResourceClassName = setupPostResourceForCompilation(postResourceTemplate, applicationModel,
                 entityModel);
-        routes.add(new RouteModel("/" + entityModel.getEntityName() + "s/", postResourceClassName));
-
+        if (entityModel.isRootEntity()) {
+            routes.add(new RouteModel("/" + entityModel.getEntityName() + "s/", postResourceClassName));
+        } else {
+            EntityModel parentEntityModel = entityModel.getReferencedBy().get();
+            routes.add(new RouteModel("/" + parentEntityModel.getEntityName() + "/{id}/" + entityModel.getEntityName() + "s/", postResourceClassName));
+        }
         ST putResourceTemplate = getStringTemplateIndex("putResource");
         String putResourceClassName = setupPutResourceForCompilation(putResourceTemplate, applicationModel, entityModel);
         routes.add(new RouteModel("/" + entityModel.getEntityName() + "s/{id}", putResourceClassName));
@@ -97,9 +101,9 @@ public class SkysailEntityCompiler2 extends SkysailCompiler2 {
             addEntityCode.append("entity.setId(id);\n");
         } else {
             EntityModel parent = entityModel.getReferencedBy().get();
-            addEntityCode.append("Space space = app.getRepository().getById(Space.class, spaceId);\n");
-            addEntityCode.append("space.addPage(entity);\n");
-            addEntityCode.append("app.getRepository().update(spaceId, space);\n");
+            addEntityCode.append(parent.getEntityName() + " root = app.getRepository().getById("+parent.getEntityName()+".class, getAttribute(\"id\"));\n");
+            addEntityCode.append("root.add"+entityModel.getEntityName()+"(entity);\n");
+            addEntityCode.append("app.getRepository().update(getAttribute(\"id\"), root);\n");
         }
         addEntityCode.append("return new SkysailResponse<String>();\n");
         template.add("addEntity", addEntityCode);

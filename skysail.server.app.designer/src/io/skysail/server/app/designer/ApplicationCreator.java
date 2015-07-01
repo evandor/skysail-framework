@@ -61,7 +61,6 @@ public class ApplicationCreator {
             e1.printStackTrace();
         }
 
-
         InMemoryJavaCompiler.reset();
 
         List<RouteModel> routeModels = new EntityCreator(applicationModel).create(stGroup);

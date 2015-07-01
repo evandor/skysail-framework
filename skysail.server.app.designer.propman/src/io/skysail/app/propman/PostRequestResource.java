@@ -29,8 +29,9 @@ public class PostRequestResource extends PostEntityServerResource<Request> {
     @Override
     public SkysailResponse<?> addEntity(Request entity) {
         Subject subject = SecurityUtils.getSubject();
-        String id = app.getRepository().add(entity).toString();
-        entity.setId(id);
+        Campaign root = app.getRepository().getById(Campaign.class, getAttribute("id"));
+        root.addRequest(entity);
+        app.getRepository().update(getAttribute("id"), root);
         return new SkysailResponse<String>();
 
     }

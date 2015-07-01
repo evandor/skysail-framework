@@ -41,10 +41,10 @@ public class CampaignResource extends EntityServerResource<Campaign> {
 
 	/*
 	Application:
-	ApplicationModel(applicationName=PropMan, entities=[EntityModel(entityName=Campaign, fields=[FieldModel(name=name)], references=[ReferenceModel(name=Request)], className=io.skysail.app.propman.Campaign, rootEntity=true), EntityModel(entityName=Request, fields=[FieldModel(name=requestname)], references=[], className=null, rootEntity=false)], packageName=io.skysail.app.propman, path=../, projectName=skysail.server.app.designer.propman)
+	ApplicationModel(applicationName=PropMan, entityModels=[EntityModel(entityName=Campaign), EntityModel(entityName=Request)], packageName=io.skysail.app.propman, path=../, projectName=skysail.server.app.designer.propman)
 
 	Entity:
-	EntityModel(entityName=Campaign, fields=[FieldModel(name=name)], references=[ReferenceModel(name=Request)], className=io.skysail.app.propman.Campaign, rootEntity=true)
+	EntityModel(entityName=Campaign)
 	entity.fields:
 	FieldModel(name=name)
 	*/

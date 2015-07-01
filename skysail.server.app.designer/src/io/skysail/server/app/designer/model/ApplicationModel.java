@@ -62,8 +62,10 @@ public class ApplicationModel {
         
  }
     
-    private EntityModel getEntityModel(Entity referencedEntity) {
-        return null;
+    private EntityModel getEntityModel(Entity entity) {
+        return getEntityModels().stream().filter(em -> {
+            return em.getEntityName().equals(entity.getName());
+        }).findFirst().orElseThrow(IllegalStateException::new);
     }
 
     private void createEntityModel(Application application, DesignerRepository repo, Entity entity) {

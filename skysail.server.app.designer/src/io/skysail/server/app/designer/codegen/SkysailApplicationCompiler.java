@@ -4,7 +4,8 @@ import io.skysail.server.app.designer.application.Application;
 import io.skysail.server.app.designer.model.ApplicationModel;
 import io.skysail.server.utils.BundleUtils;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -34,7 +35,7 @@ public class SkysailApplicationCompiler extends SkysailCompiler {
         });
         
         //router.attach(new RouteBuilder("/Campaigns/{id}/Requests/", PostRequestResource.class));
-        applicationModel.getEntities().stream().forEach(entity -> {
+        applicationModel.getEntityModels().stream().forEach(entity -> {
             entity.getReferences().stream().forEach(ref -> {
                 routerCode.append("        router.attach(new RouteBuilder(\"").append("/Campaigns/{id}/Requests/").append("\", ").append("PostRequestResource").append(".class));\n");
             });

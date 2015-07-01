@@ -36,7 +36,7 @@ public class CampaignResource extends EntityServerResource<Campaign> {
 
 	@Override
     public List<Link> getLinks() {
-        return super.getLinks(PutCampaignResource.class);
+        return super.getLinks(PutCampaignResource.class,PostRequestResource.class);
     }
 
 	/*

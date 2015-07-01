@@ -19,7 +19,7 @@ public class EntityCreator {
     }
 
     public List<RouteModel> create(STGroupBundleDir stGroup) {
-        applicationModel.getEntities().stream().forEach(entity -> {
+        applicationModel.getEntityModels().stream().forEach(entity -> {
             // fireEvent(eventAdminRef, "compiling entity " + e.getName() +
             // " for application " + application.getName());
                 routeModels.addAll(compileEntity(entity, stGroup));

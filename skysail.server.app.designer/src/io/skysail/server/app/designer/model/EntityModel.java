@@ -4,6 +4,7 @@ import io.skysail.server.app.designer.entities.Entity;
 import io.skysail.server.app.designer.fields.EntityField;
 
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
 import lombok.EqualsAndHashCode;
@@ -23,6 +24,7 @@ public class EntityModel {
     private final Set<ReferenceModel> references = new HashSet<>();
     private String className;
     private boolean rootEntity;
+    private Optional<EntityModel> referencedBy;
 
     public EntityModel(@NonNull Entity entity) {
         this.entityName = entity.getName();
@@ -36,10 +38,11 @@ public class EntityModel {
         }
     }
 
-    public void addReference(Entity entity) {
-        log.info("EntityModel:      adding Reference from Entity '{}' to Entity '{}'", entityName, entity.getName());
-        if (!references.add(new ReferenceModel(entity))) {
-            throw new IllegalStateException("reference '" + entity.getName() + "' already exists!");
+    public void addReference(Entity referencedEntity) {
+        log.info("EntityModel:      adding Reference from Entity '{}' to Entity '{}'", entityName,
+                referencedEntity.getName());
+        if (!references.add(new ReferenceModel(this, referencedEntity))) {
+            throw new IllegalStateException("reference '" + referencedEntity.getName() + "' already exists!");
         }
     }
 
@@ -49,6 +52,13 @@ public class EntityModel {
 
     public boolean isRootEntity() {
         return rootEntity;
+    }
+
+    public void setReferencedBy(@NonNull EntityModel entityModel) {
+        if (referencedBy.get() != null) {
+            throw new IllegalStateException("setReferencedBy was called before on this object");
+        }
+        this.referencedBy = Optional.of(entityModel);
     }
 
 }

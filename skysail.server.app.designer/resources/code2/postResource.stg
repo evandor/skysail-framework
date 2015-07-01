@@ -1,4 +1,4 @@
-postResource(application, entity) ::= <<
+postResource(application, entity, addEntity) ::= <<
 package $application.packageName$;
 
 import io.skysail.api.responses.SkysailResponse;
@@ -29,11 +29,7 @@ public class Post$entity.entityName$Resource extends PostEntityServerResource<$e
 
     @Override
     public SkysailResponse<?> addEntity($entity.entityName$ entity) {
-         Subject subject = SecurityUtils.getSubject();
-        //entity.setOwner(subject.getPrincipal().toString());
-        String id = app.getRepository().add(entity).toString();
-        entity.setId(id);
-        return new SkysailResponse<String>();
+        $addEntity$
     \}
 
     @Override

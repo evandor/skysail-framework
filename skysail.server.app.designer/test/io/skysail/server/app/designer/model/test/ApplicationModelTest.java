@@ -1,20 +1,30 @@
 package io.skysail.server.app.designer.model.test;
 
-import static org.hamcrest.Matchers.*;
+import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.hasItem;
+import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
 import io.skysail.server.app.designer.application.Application;
 import io.skysail.server.app.designer.entities.Entity;
 import io.skysail.server.app.designer.fields.EntityField;
-import io.skysail.server.app.designer.model.*;
+import io.skysail.server.app.designer.model.ApplicationModel;
+import io.skysail.server.app.designer.model.EntityModel;
+import io.skysail.server.app.designer.model.FieldModel;
 import io.skysail.server.app.designer.repo.DesignerRepository;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.stream.Collectors;
 
-import org.junit.*;
+import org.junit.Before;
+import org.junit.Ignore;
+import org.junit.Rule;
+import org.junit.Test;
 import org.junit.rules.ExpectedException;
 import org.junit.runner.RunWith;
-import org.mockito.*;
+import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
 import org.osgi.framework.Bundle;
 
@@ -93,7 +103,7 @@ public class ApplicationModelTest {
     public void simplest_model_is_empty() throws Exception {
         ApplicationModel applicationModel = new ApplicationModel(application, repo);
         assertThat(applicationModel.getApplicationName(), is(equalTo("testapp")));
-        assertThat(applicationModel.getEntities().size(), is(0));
+        assertThat(applicationModel.getEntityModels().size(), is(0));
     }
 
     @Test
@@ -103,9 +113,9 @@ public class ApplicationModelTest {
         ApplicationModel applicationModel = new ApplicationModel(application, repo);
 
         assertThat(applicationModel.getApplicationName(), is(equalTo("testapp")));
-        assertThat(applicationModel.getEntities().size(), is(1));
+        assertThat(applicationModel.getEntityModels().size(), is(1));
 
-        EntityModel entityModel = applicationModel.getEntities().iterator().next();
+        EntityModel entityModel = applicationModel.getEntityModels().iterator().next();
         assertThat(entityModel.getEntityName(), is(equalTo("Bank")));
         assertThat(entityModel.getFields().size(), is(0));
         assertThat(entityModel.getReferences().size(), is(0));
@@ -123,7 +133,7 @@ public class ApplicationModelTest {
 
         assertThat(applicationModel.getApplicationName(), is(equalTo("testapp")));
 
-        EntityModel entityModel = applicationModel.getEntities().iterator().next();
+        EntityModel entityModel = applicationModel.getEntityModels().iterator().next();
         assertThat(entityModel.getEntityName(), is(equalTo("Bank")));
         assertThat(entityModel.getFields().size(), is(1));
         assertThat(entityModel.getReferences().size(), is(0));
@@ -139,7 +149,7 @@ public class ApplicationModelTest {
 
         assertThat(applicationModel.getApplicationName(), is(equalTo("testapp")));
 
-        EntityModel entityModel = applicationModel.getEntities().iterator().next();
+        EntityModel entityModel = applicationModel.getEntityModels().iterator().next();
         assertThat(entityModel.getEntityName(), is(equalTo("Bank")));
         assertThat(entityModel.getFields().size(), is(0));
         assertThat(entityModel.getReferences().size(), is(1));
@@ -166,7 +176,7 @@ public class ApplicationModelTest {
 
         assertThat(applicationModel.getApplicationName(), is(equalTo("testapp")));
 
-        List<EntityModel> models = new ArrayList<>(applicationModel.getEntities());
+        List<EntityModel> models = new ArrayList<>(applicationModel.getEntityModels());
         List<String> entityModelNames = models.stream().map(EntityModel::getEntityName).collect(Collectors.toList());
         
         assertThat(entityModelNames, hasItem("Bank"));
@@ -175,5 +185,21 @@ public class ApplicationModelTest {
         List<String> fieldModelNames = models.stream().map(EntityModel::getFields).flatMap(f -> f.stream()).map(FieldModel::getName).collect(Collectors.toList());
         assertThat(fieldModelNames, hasItem("accountNr"));
     }
+    
+//    @Test
+//    public void rejects_creates_model_for_Entity_with_reference_to_itself() {
+//        Entity entity = new Entity("Bank");
+//        entity.setSubEntities(Arrays.asList(entity));
+//        entities.add(entity);
+//
+//        ApplicationModel applicationModel = new ApplicationModel(application, repo);
+//
+//        assertThat(applicationModel.getApplicationName(), is(equalTo("testapp")));
+//
+//        EntityModel entityModel = applicationModel.getEntities().iterator().next();
+//        assertThat(entityModel.getEntityName(), is(equalTo("Bank")));
+//        assertThat(entityModel.getFields().size(), is(0));
+//        assertThat(entityModel.getReferences().size(), is(1));
+//    }
 
 }

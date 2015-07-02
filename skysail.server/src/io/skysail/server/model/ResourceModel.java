@@ -7,7 +7,6 @@ import io.skysail.api.responses.*;
 import io.skysail.server.restlet.resources.*;
 import io.skysail.server.utils.*;
 
-import java.awt.MenuItem;
 import java.text.DateFormat;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -414,8 +413,4 @@ public class ResourceModel<R extends SkysailServerResource<T>, T> {
         return null;
     }
     
-    public List<MenuItem> getAppNavigation() {
-        return Arrays.asList(new MenuItem(),new MenuItem());
-    }
-
 }

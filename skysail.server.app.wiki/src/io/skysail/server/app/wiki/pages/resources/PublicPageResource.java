@@ -10,12 +10,13 @@ public class PublicPageResource extends PageResource {
 
     public PublicPageResource() {
         addToContext(ResourceContextId.LINK_TITLE, "preview page");
+        addToContext(ResourceContextId.LINK_GLYPH, "eye-open");
     }
 
     @Override
     public Page getEntity() {
         Reference originalRef = getOriginalRef();
-        getResponse().redirectSeeOther(originalRef.toString().replace("/preview", "").concat("?_preview"));
+        getResponse().redirectSeeOther(originalRef.toString().replace("/preview", "").concat("?_asUser=anonymous"));
         return new Page();
     }
 

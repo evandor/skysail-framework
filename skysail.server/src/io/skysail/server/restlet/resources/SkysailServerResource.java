@@ -31,6 +31,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import de.twenty11.skysail.server.core.FormField;
 import de.twenty11.skysail.server.core.restlet.*;
+import de.twenty11.skysail.server.services.MenuItem;
 
 /**
  * Abstract base class for all skysail resources, parameterized with T, the type
@@ -512,6 +513,10 @@ public abstract class SkysailServerResource<T> extends ServerResource {
         return inheritedFields.stream().map(f -> f.getName()).collect(Collectors.toList());
     }
 
+    public List<MenuItem> getAppNavigation() {
+        return Collections.emptyList();
+    }
+
     private List<java.lang.reflect.Field> getInheritedFields(Class<?> type) {
         List<java.lang.reflect.Field> result = new ArrayList<java.lang.reflect.Field>();
 
@@ -529,5 +534,6 @@ public abstract class SkysailServerResource<T> extends ServerResource {
 
         return result;
     }
+
 
 }

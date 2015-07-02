@@ -29,7 +29,7 @@ public class Space implements Serializable, Identifiable {
 
     @Field
     @NotNull
-    @Size(min = 2)
+    @Size(min = 2, max = 20)
     @ListView(link = PagesResource.class)
     private String name;
 

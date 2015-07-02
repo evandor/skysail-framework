@@ -23,11 +23,12 @@ public class PageResource extends EntityServerResource<Page> {
 
     public Page getEntity() {
         Page page = app.getRepository().getById(Page.class, pageId);
+        String content = page.getVersions().get(page.getVersions().size() - 1).getContent();
         if (SecurityUtils.getSubject().isAuthenticated()) {
-            page.setContent(page.getVersions().get(page.getVersions().size() - 1).getContent());
+            page.setContent(content);
         } else {
             TranslationRenderService markdownRenderer = ((WikiApplication)getApplication()).getMarkdownRenderer();
-            page.setContent(markdownRenderer.render(page.getContent()));
+            page.setContent(markdownRenderer.render(content));
         }
         return page;
     }

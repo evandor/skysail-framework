@@ -68,7 +68,7 @@ public class SkysailCookieAuthenticator extends CookieAuthenticator {
     }
 
     private boolean byPassIfPublicUrl(Request request) {
-        return request.getOriginalRef().getQueryAsForm().getFirst("_preview") != null;
+        return "anonymous".equals(request.getOriginalRef().getQueryAsForm().getFirstValue("_asUser"));
     }
 
     @Override

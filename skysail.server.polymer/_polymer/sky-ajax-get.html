@@ -11,11 +11,11 @@
         on-response="hResponse"
         last-response="{{data}}"
         debounce-duration="300" />
-    <ul class="list-group">
+    <div class="list-group">
       <template is="dom-repeat" items="{{data}}">
-        <li><a class="list-group-item" href='{{renderLink(linkTo, item.id)}}'>{{item.name}}</a></li>
+        <a href="{{renderLink(linkTo, item.id)}}" class="list-group-item" title="{{item.name}}">{{shorten(item.name,linkLength)}}s</a>
       </template>
-    </ul>
+    </div>
   </template>
 
   <script>
@@ -24,9 +24,20 @@
       properties: {
     	  url: String,
     	  linkTo: String,
+    	  linkLength: {
+    		  type: Number,
+    		  value: 10
+    	  }
       },
       renderLink: function(href, value) {
     	  return href.replace("{id}", value);
+    	  return href;
+      },
+      shorten(str, maxLength) {
+    	  if (str.length > maxLength) {
+    		  return str.slice(0,maxLength-3) + "...";
+    	  }
+    	  return str;
       },
       attached: function() {
     	  console.log("hier: " + this.url);

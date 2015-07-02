@@ -144,17 +144,9 @@ index(user, messages, converter, model) ::= <<
         </div>
       </div>
 
-      <div class="row">
-        <div class="col-md-1">$appNavTitle(model)$</div>
-        <div class="col-md-10">
-            $menuNav(model.links)$
-        </div>
-        <div class="col-md-1">&nbsp;</div>
-      </div>
-      
 $mainContent(user, converter, messages, model)$
       
-      $if(converter.debug)$
+      $if(converter.debug && user.principal)$
         $debug(messages, model)$
       $endif$ 
       

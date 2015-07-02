@@ -17,9 +17,10 @@ mainContent(user, converter, messages, model) ::= <<
       <div class="row">
         <div class="col-md-12">
 
-            <!-- contentHeader -->
-        <br><p>$contentHeader(converter, messages, model)$</p>
-        
+          <!-- contentHeader -->
+          $if(user.principal)$
+          <br><p>$contentHeader(converter, messages, model)$</p>
+          $endif$
               <div class="col-md-10">
                 $if(model.form)$
                   <!-- showForm -->

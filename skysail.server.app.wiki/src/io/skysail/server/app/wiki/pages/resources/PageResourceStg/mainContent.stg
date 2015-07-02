@@ -9,7 +9,10 @@ mainContent(user, converter, messages, model) ::= <<
     </div>
     <div class="col-md-10">
       <!-- contentHeader -->
-<br><p>$contentHeader(converter, messages, model)$</p>
+      $if(user.principal)$
+      <br><p>$contentHeader(converter, messages, model)$</p>
+      $endif$
+
 
       <div class="col-md-10">
         $if(model.form)$

@@ -1,9 +1,10 @@
 javafile(application, entity) ::= <<
 package $application.packageName$;
 
+import java.util.Date;
+
 import io.skysail.api.domain.Identifiable;
-import io.skysail.api.forms.Field;
-import io.skysail.api.forms.Reference;
+import io.skysail.api.forms.*;
 import io.skysail.server.forms.PostView;
 import io.skysail.server.forms.PutView;
 import io.skysail.server.forms.Visibility;
@@ -33,6 +34,8 @@ public class $entity.entityName$ implements Serializable, Identifiable {
     }
     
     $fields(entity.fields)$
+
+    $actionFields(entity.actionFields)$
     
     $references(entity.references)$
     

@@ -1,0 +1,14 @@
+actionFields(fields) ::= <<
+
+$fields: { field| 
+@Field(type=InputType.READONLY)
+private $field.type$ $field.name$;
+public void $field.setMethodName$($field.type$ value) {
+    this.$field.name$ = value;
+\}
+
+public $field.type$ $field.getMethodName$() {
+    return $field.name$;
+\}
+}$
+>>

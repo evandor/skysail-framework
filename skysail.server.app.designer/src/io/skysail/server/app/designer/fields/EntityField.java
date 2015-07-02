@@ -1,12 +1,17 @@
 package io.skysail.server.app.designer.fields;
 
 import io.skysail.api.domain.Identifiable;
-import io.skysail.api.forms.*;
+import io.skysail.api.forms.Field;
+import io.skysail.api.forms.InputType;
 import io.skysail.server.app.designer.fields.resources.InputTypeSelectionProvider;
 
 import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
-import lombok.*;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
 @Getter
 @Setter
@@ -17,6 +22,8 @@ public class EntityField implements Identifiable {
     private String id;
 
     @Field
+    @NotNull
+    @Size(min = 1)
     private String name;
 
     @Field(selectionProvider = InputTypeSelectionProvider.class)

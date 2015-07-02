@@ -1,5 +1,7 @@
 package io.skysail.app.propman;
 
+import java.util.Date;
+
 import io.skysail.api.responses.SkysailResponse;
 import de.twenty11.skysail.server.core.restlet.ResourceContextId;
 import io.skysail.server.restlet.resources.PostEntityServerResource;

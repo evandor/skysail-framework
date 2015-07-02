@@ -1,6 +1,7 @@
 package io.skysail.server.app.designer.model;
 
 import io.skysail.server.app.designer.entities.Entity;
+import io.skysail.server.app.designer.fields.ActionEntityField;
 import io.skysail.server.app.designer.fields.EntityField;
 
 import java.util.HashSet;
@@ -21,6 +22,7 @@ public class EntityModel {
 
     private final String entityName;
     private final Set<FieldModel> fields = new HashSet<>();
+    private final Set<ActionFieldModel> actionFields = new HashSet<>();
     private final Set<ReferenceModel> references = new HashSet<>();
     private String className;
     private boolean rootEntity;
@@ -35,6 +37,13 @@ public class EntityModel {
         log.info("EntityModel:      adding Field '{}' to Entity '{}'", f.getName(), entityName);
         if (!fields.add(new FieldModel(f))) {
             throw new IllegalStateException("field '" + f.getName() + "' already exists!");
+        }
+    }
+
+    public void addActionField(ActionEntityField f) {
+        log.info("EntityModel:      adding ActionField '{}' to Entity '{}'", f.getName(), entityName);
+        if (!actionFields.add(new ActionFieldModel(f))) {
+            throw new IllegalStateException("actionField '" + f.getName() + "' already exists!");
         }
     }
 
@@ -60,5 +69,6 @@ public class EntityModel {
         }
         this.referencedBy = Optional.of(entityModel);
     }
+
 
 }

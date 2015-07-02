@@ -51,7 +51,7 @@ public class FieldsResource extends ListServerResource<EntityField> {
     
     @Override
     public List<Link> getLinks() {
-        return super.getLinks(PostFieldResource.class);
+        return super.getLinks(PostFieldResource.class, PostActionFieldResource.class);
     }
 
     @Override

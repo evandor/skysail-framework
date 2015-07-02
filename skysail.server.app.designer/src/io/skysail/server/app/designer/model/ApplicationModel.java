@@ -2,6 +2,7 @@ package io.skysail.server.app.designer.model;
 
 import io.skysail.server.app.designer.application.Application;
 import io.skysail.server.app.designer.entities.Entity;
+import io.skysail.server.app.designer.fields.ActionEntityField;
 import io.skysail.server.app.designer.fields.EntityField;
 import io.skysail.server.app.designer.repo.DesignerRepository;
 
@@ -76,6 +77,10 @@ public class ApplicationModel {
             entityModel.addField(f);
         });
 
+        List<ActionEntityField> actionFields = getActionFields(repo, entity.getName(), application.getId());
+        actionFields.stream().forEach(f -> {
+            entityModel.addActionField(f);
+        });
 
     }
 
@@ -114,6 +119,12 @@ public class ApplicationModel {
         return findFields(repo2, beanName, appIdentifier, entities);
     }
 
+    private List<ActionEntityField> getActionFields(DesignerRepository repo2, String beanName, String appIdentifier) {
+        Application designerApplication = repo2.getById(Application.class, appIdentifier.replace("#", ""));
+        List<Entity> entities = designerApplication.getEntities();
+        return findActionFields(repo2, beanName, appIdentifier, entities);
+    }
+
     private List<EntityField> findFields(DesignerRepository repo2, String beanName, String appIdentifier,
             List<Entity> entities) {
         // streams dont't seem to work here ?!?! (with orientdb objects)
@@ -124,6 +135,17 @@ public class ApplicationModel {
             List<EntityField> fieldsFromSubEntity = findFields(repo2, beanName, appIdentifier, entity.getSubEntities());
             if (fieldsFromSubEntity.size() > 0) {
                 return fieldsFromSubEntity;
+            }
+        }
+        return Collections.emptyList();
+    }
+
+    private List<ActionEntityField> findActionFields(DesignerRepository repo2, String beanName, String appIdentifier,
+            List<Entity> entities) {
+        // streams dont't seem to work here ?!?! (with orientdb objects)
+        for (Entity entity : entities) {
+            if (beanName.equals(entity.getName())) {
+                return entity.getActionFields();
             }
         }
         return Collections.emptyList();

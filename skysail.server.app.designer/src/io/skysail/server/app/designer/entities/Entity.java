@@ -3,6 +3,7 @@ package io.skysail.server.app.designer.entities;
 import io.skysail.api.domain.Identifiable;
 import io.skysail.api.forms.Field;
 import io.skysail.api.forms.InputType;
+import io.skysail.server.app.designer.fields.ActionEntityField;
 import io.skysail.server.app.designer.fields.EntityField;
 
 import java.util.ArrayList;
@@ -37,6 +38,15 @@ public class Entity implements Identifiable {
             fields = new ArrayList<>();
         }
         return fields;
+    }
+
+    private List<ActionEntityField> actionFields;
+
+    public List<ActionEntityField> getActionFields() {
+        if (actionFields == null) {
+            actionFields = new ArrayList<>();
+        }
+        return actionFields;
     }
 
     private List<Entity> subEntities;

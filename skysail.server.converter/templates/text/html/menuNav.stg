@@ -4,8 +4,7 @@ menuNav(linkheader) ::= <<
 
 linkAsButton(linkheader,i) ::= <<
     $if(linkheader.showAsButtonInHtml)$
-      
-      <a href="$linkheader.uri$" class="btn btn-default btn-xs" role="button">
+      <a href="$linkheader.uri$" class="btn btn-default btn-xs" role="button" tabindex="1">
       $if(linkheader.image)$
         <span class="glyphicon glyphicon-$linkheader.image$" aria-hidden="true"></span> 
       $endif$

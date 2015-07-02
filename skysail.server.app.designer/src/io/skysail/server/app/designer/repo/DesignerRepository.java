@@ -2,13 +2,18 @@ package io.skysail.server.app.designer.repo;
 
 import io.skysail.server.app.designer.application.Application;
 import io.skysail.server.app.designer.entities.Entity;
+import io.skysail.server.app.designer.fields.ActionEntityField;
 import io.skysail.server.app.designer.fields.EntityField;
-import io.skysail.server.db.*;
+import io.skysail.server.db.DbRepository;
+import io.skysail.server.db.DbService2;
 
-import java.util.*;
+import java.util.Collections;
+import java.util.List;
 
 import lombok.extern.slf4j.Slf4j;
-import aQute.bnd.annotation.component.*;
+import aQute.bnd.annotation.component.Activate;
+import aQute.bnd.annotation.component.Component;
+import aQute.bnd.annotation.component.Reference;
 
 @Component(immediate = true, properties = "name=DesignerRepository")
 @Slf4j
@@ -18,8 +23,9 @@ public class DesignerRepository implements DbRepository {
 
     @Activate
     public void activate() {
-        dbService.createWithSuperClass("V", Application.class.getSimpleName(), Entity.class.getSimpleName(), EntityField.class.getSimpleName());
-        dbService.register(Application.class, Entity.class, EntityField.class);
+        dbService.createWithSuperClass("V", Application.class.getSimpleName(), Entity.class.getSimpleName(), 
+                EntityField.class.getSimpleName(), ActionEntityField.class.getSimpleName());
+        dbService.register(Application.class, Entity.class, EntityField.class, ActionEntityField.class);
     }
 
     @Reference

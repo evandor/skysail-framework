@@ -4,7 +4,8 @@ Bundle-Description: Server Extension for handling server sent events (sse)
 Private-Package:  \
 	io.skysail.server.ext.sse,\
 	io.skysail.server.ext.sse.resources,\
-	io.skysail.server.ext.sse.domain
+	io.skysail.server.ext.sse.domain,\
+	io.skysail.server.ext.sse.representation
 -buildpath:  \
 	osgi.core;version=5.0,\
 	osgi.cmpn;version=5.0,\
@@ -18,11 +19,9 @@ Private-Package:  \
 	org.apache.commons.beanutils;version=1.9,\
 	org.apache.shiro.core;version=1.2,\
 	org.restlet.ext.servlet;version=2.3,\
-	javax.servlet;version=3.0
+	javax.servlet;version=3.0,\
+	org.eclipse.jetty.servlet;version=9.2,\
+	org.eclipse.jetty.server;version=9.2
 	
 Service-Component:  \
 	*
-	
-Include-Resource: resources
-Web-ContextPath: /demo
--wab: static-pages/

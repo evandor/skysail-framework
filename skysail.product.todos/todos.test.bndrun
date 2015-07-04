@@ -36,6 +36,8 @@
     logback.configurationFile=config/logback.xml,\
     obr.repository.url=https://raw.githubusercontent.com/evandor/skysail-repository/master/index.xml https://raw.githubusercontent.com/evandor/skysail-framework/master/cnf/releaserepo/index.xml https://raw.githubusercontent.com/evandor/skysail-apps/master/cnf/releaserepo/index.xml http://felix.apache.org/obr/releases.xml
 
+#    jetty.home.bundle=skysail.server.http,\
+
 #    http.proxyHost=192.168.11.140,\
 #    http.proxyPort=8080,\
 #    https.proxyHost=192.168.11.140,\
@@ -99,6 +101,8 @@
 	org.restlet.ext.jackson;version='[2.3,2.4)',\
 	org.restlet.ext.json;version='[2.3,2.4)',\
 	org.restlet.ext.slf4j;version='[2.3,2.4)',\
+	org.restlet.ext.jetty;version='[2.3,2.4)',\
+	org.restlet.ext.servlet;version='[2.3,2.4)',\
 	org.restlet.ext.crypto;version='[2.3,2.4)',\
 	org.xerial.snappy.snappy-java;version='[1.1.1,1.1.2)',\
 	osgi.cmpn;version='[5.0.0,5.0.1)',\
@@ -121,11 +125,12 @@
 	skysail.server.ext.mail;version=latest,\
 	skysail.server.app.twitter4j;version=latest,\
 	skysail.server.app.wiki;version=latest,\
+	skysail.server.ext.sse;version=latest,\
 	skysail.server.db;version=latest,\
 	skysail.server.documentation;version=latest,\
 	skysail.server.ext.favorites.preferences;version=latest,\
 	skysail.server.http;version=latest,\
-	skysail.server.performance.etm;version=latest,\
+	skysail.server.performance.etm;version=${skysail.server.performance.etm.version},\
 	skysail.server.peers.adminconfig;version=latest,\
 	skysail.server.plugins;version=latest,\
 	skysail.server.queryfilter;version=latest,\
@@ -144,4 +149,15 @@
 	org.codehaus.jettison.jettison;version=1.3.7,\
 	org.jsoup;version=1.8.1,\
 	com.sun.mail.javax.mail;version=1.5.1,\
-	biz.aQute.bnd.annotation;version=2.4.0
+	biz.aQute.bnd.annotation;version=2.4.0,\
+	org.eclipse.jetty.util;version=9.2.11,\
+	org.eclipse.jetty.http;version=9.2.11,\
+	org.eclipse.jetty.io;version=9.2.11,\
+	org.eclipse.jetty.security;version=9.2.11,\
+	org.eclipse.jetty.server;version=9.2.11,\
+	org.eclipse.jetty.servlet;version=9.2.11,\
+	org.eclipse.jetty.webapp;version=9.2.11,\
+	org.eclipse.jetty.deploy;version=9.2.11,\
+	org.eclipse.jetty.xml;version=9.2.11,\
+	org.eclipse.jetty.osgi-servlet-api;version=3.1.0,\
+	org.eclipse.jetty.client;version=9.2.11

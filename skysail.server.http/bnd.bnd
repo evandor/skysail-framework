@@ -1,4 +1,4 @@
-Bundle-Version: 2.0.1.${tstamp}
+Bundle-Version: 2.1.0.${tstamp}
 Service-Component: *
 Bundle-Name: SKYSAIL :: server :: http
 Bundle-Description: provides the skysail http server
@@ -16,7 +16,13 @@ Bundle-Description: provides the skysail http server
 	com.springsource.org.junit;version=4.11,\
 	org.mockito.mockito-all;version=1.9,\
 	org.restlet.ext.slf4j;version=2.1,\
-	lombok;version=1.16
+	lombok;version=1.16,\
+	org.eclipse.jetty.servlet;version=9.2,\
+	org.eclipse.jetty.server;version=9.2,\
+	javax.servlet;version=3.0,\
+	org.restlet.ext.jetty;version=2.3,\
+	org.restlet.ext.servlet;version=2.3,\
+	org.eclipse.jetty.util;version=9.2
 Export-Package:  \
 	io.skysail.server.http
 Private-Package:  \

@@ -52,5 +52,4 @@ Import-Package: org.osgi.framework,\
 	javassist.util.proxy,\
 	*
 Private-Package: \
-    $packagename$,\
-	io.skysail.server.app.designer.gencode
+    $packagename$

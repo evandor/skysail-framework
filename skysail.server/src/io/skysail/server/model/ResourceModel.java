@@ -22,7 +22,7 @@ import de.twenty11.skysail.server.core.restlet.ResourceContextId;
 import de.twenty11.skysail.server.services.MenuItemProvider;
 
 /**
- * The model of the resource from which the representation is derived.
+ * The model of the resource from which the html representation is derived.
  *
  * <p>
  * The typical setup for a skysail client is something like single-page application, i.e
@@ -45,29 +45,26 @@ import de.twenty11.skysail.server.services.MenuItemProvider;
 @ToString
 public class ResourceModel<R extends SkysailServerResource<T>, T> {
 
-    private R resource;
+    private final R resource;
+    private final Object entity;
+    private final STTargetWrapper target;
+    private final Class<?> parameterizedType;
     
-    private Class<?> parameterType;
     private EntityModel entityModel;
     private String title = "Skysail";
-    private Object source;
     private List<FormField> formfields;
     private Object convertedSource;
     private FavoritesService favoritesService;
-
-    @Getter
-    private STTargetWrapper target;
 
     @Getter
     private STServicesWrapper services;
 
     public ResourceModel(R resource, Object source, Variant target) {
         this.resource = resource;
-        this.source = source;
+        this.entity = source;
         this.target = new STTargetWrapper(target);
-        
-        parameterType = resource.getParameterType();
-        determineFormfields(resource, source);
+        parameterizedType = resource.getParameterizedType();
+        determineFormfields();
     }
 
     public Map<String, Object> dataFromMap(Map<String, Object> props) {
@@ -174,17 +171,17 @@ public class ResourceModel<R extends SkysailServerResource<T>, T> {
     }
 
     public boolean isForm() {
-        if (source instanceof FormResponse) {
-            return ((SkysailResponse<?>) source).isForm();
+        if (entity instanceof FormResponse) {
+            return ((SkysailResponse<?>) entity).isForm();
         }
-        if (source instanceof ConstraintViolationsResponse) {
-            return ((ConstraintViolationsResponse<?>) source).isForm();
+        if (entity instanceof ConstraintViolationsResponse) {
+            return ((ConstraintViolationsResponse<?>) entity).isForm();
         }
         return false;
     }
     
     public boolean isList() {
-        return source instanceof List;
+        return entity instanceof List;
     }
 
 
@@ -202,10 +199,10 @@ public class ResourceModel<R extends SkysailServerResource<T>, T> {
     }
 
     
-    private void determineFormfields(R resource, Object source) {
-        FieldFactory fieldFactory = FieldsFactory.getFactory(source, resource);
+    private void determineFormfields() {
+        FieldFactory fieldFactory = FieldsFactory.getFactory(entity, resource);
         log.debug("using factory '{}' for {}-Source: {}", new Object[] { fieldFactory.getClass().getSimpleName(),
-                source.getClass().getSimpleName(), source });
+                entity.getClass().getSimpleName(), entity });
         try {
             formfields = fieldFactory.determineFrom(resource);
             entityModel = new EntityModel(formfields);
@@ -215,11 +212,11 @@ public class ResourceModel<R extends SkysailServerResource<T>, T> {
     }
 
     public void convert() {
-        if (source instanceof List) {
+        if (entity instanceof List) {
             Variant variant = target.getTarget();
-            this.convertedSource = new ListSourceHtmlConverter(source, variant).convert((ResourceModel<SkysailServerResource<?>,?>)this);
+            this.convertedSource = new ListSourceHtmlConverter(entity, variant).convert((ResourceModel<SkysailServerResource<?>,?>)this);
         } else {
-            this.convertedSource = source;
+            this.convertedSource = entity;
         }
     }
 

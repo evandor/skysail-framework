@@ -91,7 +91,7 @@ public class SkysailCompiler {
         Files.write(Paths.get(path + "/bnd.bnd"), bnd.getBytes());
 
         String bndrun = BundleUtils.readResource(bundle, "code/bndrun.codegen");
-        // project.replace("$projectname$", application.getProjectName());
+        bndrun = bndrun.replace("$projectname$", application.getProjectName() != null ? application.getProjectName() : "unknown");
         Files.write(Paths.get(path + "/local.bndrun"), bndrun.getBytes());
 
         new File(Paths.get(path + "/test").toString()).mkdir();

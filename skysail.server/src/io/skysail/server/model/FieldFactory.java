@@ -13,15 +13,6 @@ public abstract class FieldFactory {
 
     public abstract List<FormField> determineFrom(SkysailServerResource<?> resource) throws Exception;
     
-//    protected List<FormField> createFieldsForDynamicEntity(SkysailServerResource<?> resource, Object entity) {
-//        List<FormField> fields;
-//        Set<EntityDynaProperty> properties = ((DynamicEntity) entity).getProperties();
-//        fields = properties.stream().map(p -> {
-//            return new FormField((DynamicEntity) entity, p, resource);
-//        }).collect(Collectors.toList());
-//        return fields;
-//    }
-    
     protected boolean test(SkysailServerResource<?> resource, Field field) {
         List<String> fieldNames = resource.getFields();
         if (isValidFieldAnnotation(resource, field, fieldNames)) {

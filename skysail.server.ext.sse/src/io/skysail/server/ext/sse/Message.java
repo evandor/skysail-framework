@@ -22,4 +22,9 @@ public class Message {
         type = (String)event.getProperty(EventHelper.EVENT_TYPE);
     }
 
+    public Message(String message, String type) {
+        this.message = message;
+        this.type = type;
+    }
+
 }

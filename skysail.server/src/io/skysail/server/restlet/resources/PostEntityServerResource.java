@@ -144,7 +144,10 @@ public abstract class PostEntityServerResource<T> extends SkysailServerResource<
         String formTarget = templatePaths.stream().findFirst().orElse(".");
         List<Link> links = Arrays.asList(new Link.Builder(formTarget).build());
         links.stream().forEach(getPathSubstitutions());
-        return new FormResponse<T>(createEntityTemplate(), links.get(0).getUri());
+        
+        T entity = createEntityTemplate();
+        this.setCurrentEntity(entity);
+        return new FormResponse<T>(entity, links.get(0).getUri());
     }
 
     @Get("json")

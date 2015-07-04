@@ -6,7 +6,10 @@ import io.skysail.server.app.designer.fields.EntityField;
 import io.skysail.server.app.designer.repo.DesignerRepository;
 import io.skysail.server.utils.BundleUtils;
 
-import java.util.*;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 import lombok.Getter;
@@ -140,16 +143,16 @@ public class SkysailEntityCompiler extends SkysailCompiler {
             return sb.toString();
         }).collect(Collectors.joining(";\n"));
         
-        String codeForGettersAndSetters2 = references.stream().map(f -> {
+        String codeForGettersAndSetters2 = references.stream().map(r -> {
             StringBuilder sb = new StringBuilder();
-//            String methodName = getMethodName(f);
-//            sb.append("    public void set" + methodName + "(String value) {\n");
-//            sb.append("        this." + f.getName() + " = value;\n");
-//            sb.append("    }\n");
-//            sb.append("\n");
-//            sb.append("    public String get" + methodName + "() {\n");
-//            sb.append("        return " + f.getName() + ";\n");
-//            sb.append("    }\n");
+            String methodName = r.getName();
+            sb.append("    public void set" + methodName + "(String value) {\n");
+            sb.append("        this." + r.getName() + " = value;\n");
+            sb.append("    }\n");
+            sb.append("\n");
+            sb.append("    public String get" + methodName + "() {\n");
+            sb.append("        return " + r.getName() + ";\n");
+            sb.append("    }\n");
             return sb.toString();
         }).collect(Collectors.joining(";\n"));
 

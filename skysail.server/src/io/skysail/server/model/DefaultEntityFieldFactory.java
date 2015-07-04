@@ -25,7 +25,7 @@ public class DefaultEntityFieldFactory extends FieldFactory {
         System.out.println(inheritedFields);
         return ReflectionUtils.getInheritedFields(cls).stream()
                 .filter(f -> test(resource, f))
-                .map(f -> new FormField(f, resource, source))
+                .map(f -> new FormField(f, resource))
                 .collect(Collectors.toList());
        // return Collections.emptyList();
     }

@@ -1,0 +1,105 @@
+INFO  io.skysail.server.app.ApplicationList - (+) Adding application 'TodosClient'
+INFO  io.skysail.server.app.ApplicationList - (+) Adding application 'root'
+INFO  io.skysail.server.db.DbConfigurations - activating DbConfigurations with config DbConfig(name=skysailgraph, driver=, url=memory:testapp, username=admin)
+INFO  io.skysail.server.app.ApplicationList - (+) Adding application 'webapp'
+INFO  io.skysail.server.app.ApplicationList - (+) Adding application 'mail'
+INFO  io.skysail.server.http.HttpServer - Activating io.skysail.server.http.HttpServer
+INFO  de.twenty11.skysail.server.SkysailComponent - Creating Restlet Component: de.twenty11.skysail.server.SkysailComponent
+INFO  io.skysail.server.app.ApplicationList - (+) Adding application 'Performance'
+INFO  io.skysail.server.app.ApplicationList - (+) Adding application 'PropMan'
+INFO  io.skysail.server.app.ApplicationList - (+) Adding application 'static'
+INFO  io.skysail.server.http.HttpServer - creating default configuration after waiting for 5000ms for provided configuration
+INFO  io.skysail.server.http.HttpServer - Deactivating io.skysail.server.http.HttpServer
+INFO  io.skysail.server.http.HttpServer - Activating io.skysail.server.http.HttpServer
+INFO  io.skysail.server.http.HttpServer - configuration was provided
+INFO  io.skysail.server.http.HttpServer - 
+INFO  io.skysail.server.http.HttpServer - ====================================
+INFO  io.skysail.server.http.HttpServer - Starting skysail server on port 2015
+INFO  io.skysail.server.http.HttpServer - ====================================
+INFO  io.skysail.server.http.HttpServer - 
+INFO  org.restlet - Starting the internal [HTTP/1.1] server on port 2015
+INFO  io.skysail.server.converter.HtmlConverter - converter 'HtmlConverter' matched '{text/html=0.95, treeform/*=1.0}' with threshold 0.95
+INFO  LogService - 2015-06-15	16:35:42	0:0:0:0:0:0:0:1	-	-	2015	GET	/	-	404	439	0	10	http://localhost:2015	Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/43.0.2357.124 Safari/537.36	http://localhost:2015/
+INFO  io.skysail.server.app.ApplicationList - (+) Adding application 'i18n'
+WARN  i.s.server.um.simple.FileBasedUserManagementProvider - creating default configuration for usermanagement as no configuration was provided (yet)!
+INFO  io.skysail.server.app.ApplicationList - (+) Adding application 'usermanagement'
+INFO  io.skysail.server.app.ApplicationList -  >>> unsetting ServerConfiguration
+INFO  io.skysail.server.app.ApplicationList -  >>> attaching skysailApplication '/TodosClient' to defaultHost
+INFO  io.skysail.server.app.ApplicationList -  >>> unsetting ServerConfiguration
+INFO  io.skysail.server.app.ApplicationList -  >>> attaching skysailApplication '/root' to defaultHost
+INFO  io.skysail.server.app.ApplicationList -  >>> unsetting ServerConfiguration
+INFO  io.skysail.server.app.ApplicationList -  >>> attaching skysailApplication '/webapp' to defaultHost
+INFO  io.skysail.server.app.ApplicationList -  >>> unsetting ServerConfiguration
+INFO  io.skysail.server.app.ApplicationList -  >>> attaching skysailApplication '/mail' to defaultHost
+INFO  io.skysail.server.app.ApplicationList -  >>> unsetting ServerConfiguration
+INFO  io.skysail.server.app.ApplicationList -  >>> attaching skysailApplication '/Performance' to defaultHost
+INFO  io.skysail.server.app.ApplicationList -  >>> unsetting ServerConfiguration
+INFO  io.skysail.server.app.ApplicationList -  >>> attaching skysailApplication '/PropMan' to defaultHost
+INFO  io.skysail.server.app.ApplicationList -  >>> unsetting ServerConfiguration
+INFO  io.skysail.server.app.ApplicationList -  >>> attaching skysailApplication '/static' to defaultHost
+INFO  io.skysail.server.app.ApplicationList -  >>> unsetting ServerConfiguration
+INFO  io.skysail.server.app.ApplicationList -  >>> attaching skysailApplication '/i18n' to defaultHost
+INFO  io.skysail.server.app.ApplicationList -  >>> unsetting ServerConfiguration
+INFO  io.skysail.server.app.ApplicationList -  >>> attaching skysailApplication '/usermanagement' to defaultHost
+INFO  io.skysail.server.app.ApplicationList - (+) Adding application 'Money'
+INFO  org.restlet.SkysailComponent.TodosClient - Starting de.twenty11.skysail.server.app.SkysailRootApplication application
+INFO  io.skysail.server.app.SkysailApplication - creating new Router in de.twenty11.skysail.server.app.SkysailRootApplication
+INFO  io.skysail.server.app.SkysailApplication - adding extensions to metadata service
+INFO  io.skysail.server.app.SkysailApplication - adding protocols
+INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/' -> 'de.twenty11.skysail.server.resources.DefaultResource'
+WARN  de.twenty11.skysail.server.core.restlet.SkysailRouter - please use a RouteBuilder to attach this resource: class de.twenty11.skysail.server.resources.DefaultResource
+INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/_login' -> 'de.twenty11.skysail.server.resources.LoginResource'
+WARN  de.twenty11.skysail.server.core.restlet.SkysailRouter - please use a RouteBuilder to attach this resource: class de.twenty11.skysail.server.resources.LoginResource
+INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/_login/{provider}' -> 'de.twenty11.skysail.server.app.OAuthLoginResource'
+WARN  de.twenty11.skysail.server.core.restlet.SkysailRouter - please use a RouteBuilder to attach this resource: class de.twenty11.skysail.server.app.OAuthLoginResource
+INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/_version' -> 'RolesPredicateAuthorizer' -> 'de.twenty11.skysail.server.resources.VersionResource'
+INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/_name' -> 'RolesPredicateAuthorizer' -> 'de.twenty11.skysail.server.resources.NameResource'
+INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/_profile' -> 'RolesPredicateAuthorizer' -> 'de.twenty11.skysail.server.app.profile.ProfileResource'
+INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/_profile/password/' -> 'RolesPredicateAuthorizer' -> 'de.twenty11.skysail.server.app.profile.PutPasswordResource'
+INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/_largetests' -> 'RolesPredicateAuthorizer' -> 'de.twenty11.skysail.server.app.LargeTestsResource'
+INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/_largetests/{id}' -> 'RolesPredicateAuthorizer' -> 'de.twenty11.skysail.server.app.LargeTestsFileResource'
+INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/welcome' -> 'de.twenty11.skysail.server.resources.WelcomeResource'
+WARN  de.twenty11.skysail.server.core.restlet.SkysailRouter - please use a RouteBuilder to attach this resource: class de.twenty11.skysail.server.resources.WelcomeResource
+INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/_iframe' -> 'RolesPredicateAuthorizer' -> 'de.twenty11.skysail.server.app.IFrameResource'
+INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/_remotelogin' -> 'de.twenty11.skysail.server.resources.RemoteLoginResource'
+WARN  de.twenty11.skysail.server.core.restlet.SkysailRouter - please use a RouteBuilder to attach this resource: class de.twenty11.skysail.server.resources.RemoteLoginResource
+INFO  io.skysail.server.restlet.resources.ListServerResource - Request entry point: DefaultResource @Get('html|json|yaml|xml') with variant [text/html]
+INFO  io.skysail.server.converter.HtmlConverter - converter 'HtmlConverter' matched '{text/html=0.95, treeform/*=1.0}' with threshold 0.95
+INFO  io.skysail.server.converter.impl.StringTemplateRenderer - reading templates from resource path '/templates/text/html'
+WARN  io.skysail.server.text.store.git.GitTranslationStore - .\en\de.twenty11.skysail.server.resources.properties (Das System kann den angegebenen Pfad nicht finden)
+WARN  io.skysail.server.text.store.git.GitTranslationStore - .\en\de.twenty11.skysail.server.resources.properties (Das System kann den angegebenen Pfad nicht finden)
+WARN  io.skysail.server.text.store.git.GitTranslationStore - .\en\de.twenty11.skysail.server.resources.properties (Das System kann den angegebenen Pfad nicht finden)
+WARN  io.skysail.server.text.store.git.GitTranslationStore - .\en\de.twenty11.skysail.server.resources.properties (Das System kann den angegebenen Pfad nicht finden)
+INFO  LogService - 2015-06-15	16:35:44	0:0:0:0:0:0:0:1	admin	-	2015	GET	/	-	200	-	0	752	http://localhost:2015	Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/43.0.2357.124 Safari/537.36	http://localhost:2015/
+INFO  LogService - 2015-06-15	16:35:44	0:0:0:0:0:0:0:1	admin	-	2015	GET	/SSE	-	404	276	0	305	http://localhost:2015	Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/43.0.2357.124 Safari/537.36	http://localhost:2015/
+INFO  org.restlet.SkysailComponent.TodosClient - Starting io.skysail.app.propman.PropManApplication application
+INFO  io.skysail.server.app.SkysailApplication - creating new Router in io.skysail.app.propman.PropManApplication
+INFO  io.skysail.server.app.SkysailApplication - adding extensions to metadata service
+INFO  io.skysail.server.app.SkysailApplication - adding protocols
+INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/docs/api' -> 'RolesPredicateAuthorizer' -> 'io.skysail.server.documentation.ApiResource'
+INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/docs/entities/{name}' -> 'RolesPredicateAuthorizer' -> 'io.skysail.server.documentation.EntitiesResource'
+INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/docs/entities' -> 'RolesPredicateAuthorizer' -> 'io.skysail.server.documentation.EntitiesResource'
+INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/Campaigns/' -> 'RolesPredicateAuthorizer' -> 'io.skysail.app.propman.PostCampaignResource'
+INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '' -> 'RolesPredicateAuthorizer' -> 'io.skysail.app.propman.CampaignsResource'
+INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/Campaigns' -> 'RolesPredicateAuthorizer' -> 'io.skysail.app.propman.CampaignsResource'
+INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/Campaigns/{id}' -> 'RolesPredicateAuthorizer' -> 'io.skysail.app.propman.PutCampaignResource'
+INFO  io.skysail.server.restlet.resources.ListServerResource - Request entry point: CampaignsResource @Get('html|json|yaml|xml') with variant [text/html]
+INFO  io.skysail.server.utils.LinkUtils - created link Link(uri=/PropMan/Campaigns/, title=Create new Campaign, rel=CREATE_FORM, verbs=[GET], needsAuthentication=true, role=DEFAULT, rolesPredicate=null, images={text/html=plus}, refId=null, cls=class io.skysail.app.propman.PostCampaignResource)
+INFO  io.skysail.server.utils.LinkUtils - created link Link(uri=/PropMan/Campaigns/{id}, title=update, rel=CREATE_FORM, verbs=[GET], needsAuthentication=true, role=DEFAULT, rolesPredicate=null, images={text/html=edit}, refId=null, cls=class io.skysail.app.propman.PutCampaignResource)
+INFO  io.skysail.server.converter.HtmlConverter - converter 'HtmlConverter' matched '{text/html=0.95, treeform/*=1.0}' with threshold 0.95
+INFO  io.skysail.server.converter.impl.StringTemplateRenderer - reading templates from resource path '/templates/text/html'
+WARN  io.skysail.server.text.store.git.GitTranslationStore - .\en\io.skysail.app.propman.CampaignsResource.properties (Das System kann den angegebenen Pfad nicht finden)
+WARN  io.skysail.server.text.store.git.GitTranslationStore - .\en\io.skysail.app.propman.Campaign.properties (Das System kann den angegebenen Pfad nicht finden)
+WARN  io.skysail.server.text.store.git.GitTranslationStore - .\en\io.skysail.app.propman.Campaign.properties (Das System kann den angegebenen Pfad nicht finden)
+WARN  io.skysail.server.text.store.git.GitTranslationStore - .\en\io.skysail.app.propman.Campaign.properties (Das System kann den angegebenen Pfad nicht finden)
+INFO  LogService - 2015-06-15	16:35:46	0:0:0:0:0:0:0:1	admin	-	2015	GET	/PropMan	-	200	-	0	363	http://localhost:2015	Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/43.0.2357.124 Safari/537.36	http://localhost:2015/
+INFO  LogService - 2015-06-15	16:35:47	0:0:0:0:0:0:0:1	admin	-	2015	GET	/SSE	-	404	276	0	311	http://localhost:2015	Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/43.0.2357.124 Safari/537.36	http://localhost:2015/PropMan
+INFO  i.s.server.restlet.resources.PostEntityServerResource - Request entry point: PostCampaignResource @Get('htmlform|html')
+INFO  io.skysail.server.converter.HtmlConverter - converter 'HtmlConverter' matched '{text/html=0.95, treeform/*=1.0}' with threshold 0.95
+INFO  io.skysail.server.converter.impl.StringTemplateRenderer - reading templates from resource path '/templates/text/html'
+WARN  io.skysail.server.text.store.git.GitTranslationStore - .\en\io.skysail.app.propman.PostCampaignResource.properties (Das System kann den angegebenen Pfad nicht finden)
+WARN  io.skysail.server.text.store.git.GitTranslationStore - .\en\io.skysail.app.propman.Campaign.properties (Das System kann den angegebenen Pfad nicht finden)
+WARN  io.skysail.server.text.store.git.GitTranslationStore - .\en\io.skysail.app.propman.Campaign.properties (Das System kann den angegebenen Pfad nicht finden)
+WARN  io.skysail.server.text.store.git.GitTranslationStore - .\en\io.skysail.app.propman.Campaign.properties (Das System kann den angegebenen Pfad nicht finden)
+INFO  LogService - 2015-06-15	16:35:48	0:0:0:0:0:0:0:1	admin	-	2015	GET	/Campaigns	-	200	-	0	392	http://localhost:2015	Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/43.0.2357.124 Safari/537.36	http://localhost:2015/PropMan
+INFO  LogService - 2015-06-15	16:35:48	0:0:0:0:0:0:0:1	admin	-	2015	GET	/SSE	-	404	276	0	320	http://localhost:2015	Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/43.0.2357.124 Safari/537.36	http://localhost:2015/PropMan/Campaigns/

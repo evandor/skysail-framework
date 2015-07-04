@@ -1,4 +1,4 @@
-renderTable(source, fields, converter, messages, model) ::= <<
+renderTable(source, converter, messages, model) ::= <<
 
   $model.pagination$
   

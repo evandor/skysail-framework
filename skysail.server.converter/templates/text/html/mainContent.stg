@@ -16,7 +16,7 @@ $contentHeader(converter, messages, model)$
         $showForm(source, model.formfields, messages, model)$ 
       $elseif(model.list)$
         <!-- renderTable -->
-        $renderTable(source, model.formfields, converter, messages, model)$
+        $renderTable(source, converter, messages, model)$
       $else$
         <!-- render single entity -->
         $renderEntity(user, source, model)$

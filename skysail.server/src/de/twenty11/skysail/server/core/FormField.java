@@ -1,19 +1,34 @@
 package de.twenty11.skysail.server.core;
 
-import io.skysail.api.forms.*;
-import io.skysail.api.responses.*;
+import io.skysail.api.forms.IgnoreSelectionProvider;
+import io.skysail.api.forms.InputType;
+import io.skysail.api.forms.Reference;
+import io.skysail.api.forms.SelectionProvider;
+import io.skysail.api.forms.Submit;
+import io.skysail.api.responses.ConstraintViolationDetails;
+import io.skysail.api.responses.ConstraintViolationsResponse;
+import io.skysail.api.responses.FormResponse;
 import io.skysail.server.forms.ListView;
 import io.skysail.server.restlet.resources.SkysailServerResource;
 import io.skysail.server.utils.OrientDbUtils;
 
-import java.lang.reflect.*;
 import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Date;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+import java.util.Set;
 
-import javax.validation.constraints.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import lombok.Getter;
+import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
 
 import org.restlet.resource.Resource;
@@ -24,26 +39,45 @@ import de.twenty11.skysail.server.um.domain.SkysailUser;
 /**
  * A FormField instance encapsulates information which can be used to display a
  * single field in a (web) form, table or entity representation.
+ * 
+ * <p>
+ * A FormField can be constructed from a java.lang.reflect.Field, together with
+ * a SkysailServerResource.
+ * </p>
  *
  */
 @Slf4j
+@ToString(of = { "name", "type", "value", "entity" })
 public class FormField {
 
     /** the fields name or identifier. */
     @Getter
-    private String name;
+    private final String name;
 
-    /** the value to be passed to the GUI renderer. */
+    /**
+     * the value to be passed to the GUI renderer.
+     * 
+     * <p>
+     * the value is not set from outside, but derived from the passed resource.
+     * </p>
+     */
     @Getter
     private String value;
 
-    private Object source;
+    /** text, textarea, radio, checkbox etc... */
+    private final InputType inputType;
+
+    // private Object source;
+
     @Getter
     private Class<?> type;
+
+    @Getter
     private Object entity;
+
+    @Getter
     private Class<?> cls;
 
-    private InputType inputType;
     private Reference referenceAnnotation;
     private io.skysail.api.forms.Field formFieldAnnotation;
     private SkysailServerResource<?> resource;
@@ -53,41 +87,69 @@ public class FormField {
     private ListView listViewAnnotation;
 
     private Submit submitAnnotation;
-
     private NotNull notNullAnnotation;
-
     private Size sizeAnnotation;
 
-    public FormField(Field field, SkysailServerResource<?> resource, Object source) {
-        extract(field, resource, source);
+    @Getter
+    private String violationMessage;
 
-        Object currentEntity = resource.getCurrentEntity();
-        if (currentEntity != null) {
-            scan(field, currentEntity);
-        } else {
-            Map<String, Object> entityMap = OrientDbUtils.toMap(source);
-            if (entityMap != null) {
-                handleMap(field, entityMap);
-            }
-        }
+    private FormField(Field field) {
+        name = field.getName();
+        type = field.getType();
+        inputType = getFromFieldAnnotation(field);
+        setAnnotations(field);
     }
-
-    public FormField(Field field, SkysailServerResource<?> resource, Object source, Object entity) {
-        extract(field, resource, source);
+    
+    /**
+     * @param field
+     *            from java reflection
+     * @param resource
+     *            the resource which is about to being represented
+     * @param source
+     */
+    public FormField(Field field, SkysailServerResource<?> resource, List<?> source) {
+        this(field);
+        entity = resource.getCurrentEntity();
+        this.resource = resource;
         scan(field, entity);
     }
 
-    private void extract(Field field, SkysailServerResource<?> resource, Object source) {
+    public FormField(Field field, SkysailServerResource<?> resource, ConstraintViolationsResponse<?> source) {
+        this(field);
+        entity = resource.getCurrentEntity();
+        Set<ConstraintViolationDetails> violations = ((ConstraintViolationsResponse<?>) source).getViolations();
+        Optional<String> validationMessage = violations.stream()
+                .filter(v -> v.getPropertyPath().equals(field.getName())).map(v -> v.getMessage()).findFirst();
+        violationMessage = validationMessage.orElse(null);
         this.resource = resource;
-        this.name = field.getName();
-        inputType = getFromFieldAnnotation(field);
+        scan(field, entity);
+    }
+    
+    public FormField(Field field, SkysailServerResource<?> resource, FormResponse<?> source) {
+        this(field);
+        entity = resource.getCurrentEntity();
+        this.resource = resource;
+        scan(field, entity);
+    }
+
+    public FormField(Field field, SkysailServerResource<?> resource) {
+        this(field);
+        entity = resource.getCurrentEntity();
+        this.resource = resource;
+        if (entity != null) {
+            scan(field, entity);
+        } else {
+            throw new IllegalStateException("didnt expect to get here...");
+        }
+    }
+
+    private void setAnnotations(Field field) {
         referenceAnnotation = field.getAnnotation(Reference.class);
         formFieldAnnotation = field.getAnnotation(io.skysail.api.forms.Field.class);
         listViewAnnotation = field.getAnnotation(ListView.class);
         submitAnnotation = field.getAnnotation(Submit.class);
         notNullAnnotation = field.getAnnotation(NotNull.class);
         sizeAnnotation = field.getAnnotation(Size.class);
-        this.source = source;
     }
 
     private void scan(Field field, Object entity) {
@@ -125,23 +187,6 @@ public class FormField {
         });
     }
 
-    public FormField(String key, Object object) {
-        this.name = key;
-        this.value = object != null ? object.toString() : "";
-        this.inputType = InputType.TEXT;
-    }
-
-    public Object getEntity() {
-        if (source instanceof SkysailResponse) {
-            return ((SkysailResponse<?>) source).getEntity();
-        }
-        return entity;// source.getEntity();
-    }
-
-    public Class<?> getCls() {
-        return cls;
-    }
-
     public String getInputType() {
         return inputType.name().toLowerCase();
     }
@@ -164,7 +209,7 @@ public class FormField {
     public String getTitleKey() {
         return MessagesUtils.getBaseKey(cls != null ? cls : getEntity().getClass(), this) + ".title";
     }
-    
+
     public String getHref() {
         return null;
     }
@@ -213,7 +258,7 @@ public class FormField {
         }
         return false;
     }
-    
+
     public boolean isSubmitField() {
         return submitAnnotation != null;
     }
@@ -262,7 +307,7 @@ public class FormField {
             return selectionOptions;
         }
         List<Option> options = new ArrayList<>();
-        
+
         Class<? extends SelectionProvider> selectionProvider = null;
         if (formFieldAnnotation != null) {
             selectionProvider = formFieldAnnotation.selectionProvider();
@@ -282,7 +327,7 @@ public class FormField {
             method = selectionProvider.getMethod("setResource", Resource.class);
             method.invoke(selection, resource);
             selection.getSelections().entrySet().stream().forEach(entry -> {
-               options.add(new Option(entry, value)); 
+                options.add(new Option(entry, value));
             });
             selectionOptions = options;
             return options;
@@ -292,17 +337,6 @@ public class FormField {
         return Collections.emptyList();
     }
 
-    public String getViolationMessage() {
-        if (!(source instanceof ConstraintViolationsResponse)) {
-            return null;
-        }
-        String fieldName = getName();
-        Set<ConstraintViolationDetails> violations = ((ConstraintViolationsResponse<?>) source).getViolations();
-        Optional<String> validationMessage = violations.stream().filter(v -> v.getPropertyPath().equals(fieldName))
-                .map(v -> v.getMessage()).findFirst();
-        return validationMessage.orElse(null);
-    }
-    
     public boolean isMandatory() {
         if (notNullAnnotation != null) {
             return true;
@@ -327,15 +361,6 @@ public class FormField {
     private InputType getFromFieldAnnotation(Field fieldAnnotation) {
         io.skysail.api.forms.Field annotation = fieldAnnotation.getAnnotation(io.skysail.api.forms.Field.class);
         return annotation != null ? annotation.type() : null;
-    }
-
-    @Override
-    public String toString() {
-        return new StringBuilder("FormField: [").append(name).append("=").append(value).append("], isReadonly: ")
-                .append(isReadonlyInputType()).append(", isTextareaInputType: ").append(isTextareaInputType())
-                .append(", isMarkdownEditorInputType: ").append(isMarkdownEditorInputType())
-                .append(", isSelectionProvider: ").append(isSelectionProvider()).append(", isTagsInputType: ")
-                .append(isTagsInputType()).toString();
     }
 
     private void handleMap(Field field, Map<String, Object> entityMap) {

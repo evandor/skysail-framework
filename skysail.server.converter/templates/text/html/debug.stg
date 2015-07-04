@@ -24,6 +24,26 @@ debug(source, messages, model) ::= <<
                     <div class="panel-body">$model.resource$</div>
                   </div>
                 </div>
+                
+                <div class="panel panel-default">
+                  <div class="panel-heading" role="tab" id="headingResourceModel">
+                    <h4 class="panel-title">
+                      <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseResourceModel" 
+                      	aria-expanded="false" aria-controls="collapseResourceModel">ResourceModel&lt;$model.parameterizedType$&gt;</a>
+                    </h4>
+                  </div>
+                  <div id="collapseResourceModel" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingResourceModel">
+                    <div class="panel-body">
+                    	<h4>Resource</h4>
+                    	<p>$model.resource$</p>
+                    	<h4>Formfields</h4>
+                    	<ol>$model.formfields:{ field | <li>$field$</li>}$</ol>
+                    	<h4>EntityModel</h4>
+                    	<ol>$model.entityModel.fieldDescriptors$</ol>
+                    </div>
+                  </div>
+                </div>
+                
                 <div class="panel panel-default">
                   <div class="panel-heading" role="tab" id="headingLinks">
                     <h4 class="panel-title">

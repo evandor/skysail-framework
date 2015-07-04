@@ -12,6 +12,7 @@ import org.junit.*;
 
 import de.twenty11.skysail.server.core.FormField;
 
+@Ignore
 public class DefaultListFieldFactoryTest {
 
     @Before

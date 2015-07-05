@@ -1,12 +1,11 @@
 package io.skysail.server.restlet.resources;
  
 import lombok.*;
- 
+
 @Getter
 @ToString
 @Builder
 public class WebComponentCall {
- 
     private final String type;
     private String url;
     private String linkTo;
@@ -24,5 +23,4 @@ public class WebComponentCall {
         }
         return "identifier=\""+identifier+"\"";
     }
-    
 }

@@ -1,0 +1,92 @@
+<link rel="import" href="/_polymer/bower_components/polymer/polymer.html">
+<link rel="import" href="/_polymer/bower_components/iron-ajax/iron-ajax.html">
+
+<dom-module id="sky-ajax-table">
+
+ <style>
+    .list-group-item {
+      padding: 5px 15px;
+    }
+  </style>
+
+  <template>
+    <iron-ajax 
+        id="ajaxTable"
+        handle-as="json" 
+        headers='{"Accept": "application/json"}'
+        on-response="hResponse"
+        last-response="{{data}}"
+        debounce-duration="300" />
+    <table class="table table-striped">
+      <template is="dom-repeat" items="{{data}}">
+        <tr>
+          <td>
+            <a href="{{renderLink(linkTo, item, identifier)}}" title="{{item.name}}">
+              <span class="glyphicon glyphicon-file"></span>
+              <span>{{shorten(item,nameProperty,linkLength)}}</span>
+            </a>
+          </td>
+        </tr>
+      </template>
+    </table>
+  </template>
+
+  <script>
+    Polymer({
+      is: 'sky-ajax-table',
+      properties: {
+    	  url: String,
+    	  nameProperty: {
+    		  type: String,
+    		  value: "name"
+    	  },
+    	  identifier: {
+    		  type: String,
+    		  value: "id"
+    	  },
+    	  linkTo: String,
+    	  requestUrl: String,
+    	  linkLength: {
+    		  type: Number,
+    		  value: 10
+    	  }
+      },
+      renderLink: function(href, item, identifier) {
+       	  return href.replace("{" + identifier + "}", item.id);
+      },
+      shorten(str, nameProperty, maxLength) {
+    	  console.log("name: " + nameProperty);
+    	  if (str[nameProperty].length > maxLength) {
+    		  return str[nameProperty].slice(0,maxLength-3) + "...";
+    	  }
+    	  return str[nameProperty];
+      },
+      itemClass: function(href, item, identifier, requestUrl) {
+    	  if (requestUrl.startsWith(href.replace("{" + identifier + "}", item.id))) {
+              return "list-group-item active";  
+    	  } else {
+              return "list-group-item";  
+    	  }
+      },
+      attached: function() {
+    	console.log(this.localName + '#' + this.id + ' was attached1');
+     	  this.$.ajaxTable.url=this.url;
+    	  this.$.ajaxTable.generateRequest();
+      },
+      hResponse: function(request) {
+          console.log(request.detail);
+      },
+      created: function() {
+  	    console.log(this.localName + '#' + this.id + ' was created');
+  	  },
+  	  detached: function() {
+  	    console.log(this.localName + '#' + this.id + ' was detached');
+  	  },
+  	  attributeChanged: function(name, type) {
+  	    console.log(this.localName + '#' + this.id + ' attribute ' + name +
+  	      ' was changed to ' + this.getAttribute(name));
+  	  }
+    });
+  </script>
+
+</dom-module>

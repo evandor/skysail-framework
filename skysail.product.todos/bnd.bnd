@@ -4,7 +4,7 @@ Private-Package:  \
 	io.skysail.product.todos
 -buildpath:  \
 	skysail.api;version=${skysail.api.version},\
-	skysail.api.documentation;version=${skysail.api.documentation.version},\
+	skysail.api.documentation;version=latest,\
 	skysail.api.favorites;version=latest,\
 	skysail.api.peers;version=latest,\
 	skysail.server.app.todos;version=latest,\

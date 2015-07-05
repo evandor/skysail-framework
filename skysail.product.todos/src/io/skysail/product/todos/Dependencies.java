@@ -5,6 +5,5 @@ package io.skysail.product.todos;
  */
 public class Dependencies {
 
-    private io.skysail.api.documentation.DocumentationProvider provider;
-    
+    // handled in build.gradle
 }

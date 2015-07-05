@@ -1,5 +1,5 @@
-tasks.export.dependsOn(':skysail.api:build')
-tasks.export.dependsOn(':skysail.api.documentation:build')
+tasks.build.dependsOn(':skysail.api:build')
+tasks.build.dependsOn(':skysail.api.documentation:build')
 
 tasks.build.dependsOn(':skysail.server.um.simple:build')
 tasks.build.dependsOn(':skysail.server.http:build')

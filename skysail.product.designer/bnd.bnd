@@ -17,19 +17,11 @@ Private-Package:  \
 	skysail.server.http;version=latest,\
 	skysail.server.plugins;version=latest,\
 	skysail.server.queryfilter;version=latest,\
-<<<<<<< HEAD
 	skysail.server.static;version='[1.0,1.1)',\
 	skysail.server.text.markdown;version='[0.1,0.2)',\
 	skysail.server.text.store.bundleresource;version='[0.1,0.2)',\
 	skysail.server.text.store.git;version='[0.1,0.2)',\
 	skysail.server.um.simple;version='[0.1,0.2)',\
-=======
-	skysail.server.static;version=latest,\
-	skysail.server.text.markdown;version='[0.1,0.2)',\
-	skysail.server.text.store.bundleresource;version='[0.1,0.2)',\
-	skysail.server.text.store.git;version='[0.1,0.2)',\
-	skysail.server.um.simple;version=latest,\
->>>>>>> master
 	org.codehaus.jettison.jettison;version=1.3
 	
 #	skysail.server.app.bookmarks;version=latest,\

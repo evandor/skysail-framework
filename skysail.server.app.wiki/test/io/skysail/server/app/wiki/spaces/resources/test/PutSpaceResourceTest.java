@@ -12,6 +12,7 @@ import org.mockito.*;
 import org.restlet.data.*;
 import org.restlet.engine.resource.VariantInfo;
 
+@Ignore
 public class PutSpaceResourceTest extends WikiPostOrPutResourceTest {
 
     @Spy

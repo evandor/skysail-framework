@@ -1,11 +1,20 @@
 mainContent(user, converter, messages, model) ::= <<
   
   <div class="row">
-    <div class="col-md-1" style="background-color: #f5f5f5; height:500px;">
-      $appNav(model.resource.appNavigation)$
-      <sky-ajax-get url="/Wiki/spaces" link-to="/Wiki/spaces/{id}/pages"></sky-ajax-get>
+    <div class="col-md-2" style="background-color: #f5f5f5; height:500px;">
+      $appNav(model.resource.resourceContext)$
     </div>
     <div class="col-md-10">
+    
+      <div class="row">
+        <div class="col-md-10">
+            $breadcrumb(model)$
+        </div>
+        <div class="col-md-2">
+            $representations(model)$
+        </div>
+      </div>
+    
       
       <div class="row">
         <div class="col-md-12">
@@ -13,35 +22,44 @@ mainContent(user, converter, messages, model) ::= <<
         </div>
       </div>
       <div class="row">
-      <div class="col-md-12">
+        <div class="col-md-12">
 
-            <!-- contentHeader -->
-        <br><p>$contentHeader(converter, messages, model)$</p>
+          <br><p>$contentHeader(converter, messages, model)$</p>
         
+            $if(model.form)$
               <div class="col-md-10">
-                $if(model.form)$
-                  <!-- showForm -->
                 $showForm(model.formfields, messages, model)$ 
-              $elseif(model.list)$
-                <!-- renderTable -->
-                $renderTable(converter, messages, model)$
-              $else$
-                <!-- render single entity -->
-                $renderEntity(user, model)$
-              $endif$ 
-            </div>
-            <div class="col-md-2">
-              $if(model.form)$
+              </div>
+              <div class="col-md-2">
                 $renderEntityInfo(model.formfields, messages, model)$ 
-              $endif$ 
-            </div>
+              </div>
+            $elseif(model.list)$
+              <div class="col-md-12">
+                $renderTable(converter, messages, model)$
+              </div>
+            $else$
+              <div class="col-md-12">
+                $renderEntity(user, model)$
+              </div>
+            $endif$ 
         
         </div>
       </div>
+      
+      <div class="row">
+        <div class="col-md-12" id="content">
+          <script>
+          	var table = document.createElement('sky-ajax-table');
+          	table.url = "/Todos/Lists/22:57/Todos";
+          	table.linkTo="/Todos/Lists/{lid}/Todos";
+          	table.identifier="lid";
+          	table.requestUrl="/Todos";
+          	table.nameProperty="title";
+          	document.getElementById("content").appendChild(table);
+          </script>
+        </div>
+      </div>
 
-    </div>
-    <div class="col-md-1">
-      &nbsp;
     </div>
   </div>
     

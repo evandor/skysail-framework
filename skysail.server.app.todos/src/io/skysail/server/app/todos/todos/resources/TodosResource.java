@@ -2,6 +2,7 @@ package io.skysail.server.app.todos.todos.resources;
 
 import io.skysail.api.links.Link;
 import io.skysail.server.app.todos.*;
+import io.skysail.server.app.todos.lists.ListsResource;
 import io.skysail.server.app.todos.todos.Todo;
 import io.skysail.server.app.todos.todos.status.Status;
 import io.skysail.server.queryfilter.Filter;
@@ -37,6 +38,7 @@ public class TodosResource extends ListServerResource<Todo> {
         Map<String,String> substitutions = new HashMap<>();
         substitutions.put("/Lists/" + listId, list.getName());
         getContext().getAttributes().put(ResourceContextId.PATH_SUBSTITUTION.name(), substitutions);
+        getResourceContext().addAjaxNavigation("Todo-Lists", ListsResource.class, TodosResource.class, "lid");
     }
 
     @Override

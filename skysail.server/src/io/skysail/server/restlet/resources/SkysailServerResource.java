@@ -12,7 +12,6 @@ import java.lang.reflect.*;
 import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.function.Consumer;
-import java.util.regex.*;
 import java.util.stream.Collectors;
 
 import lombok.*;
@@ -76,12 +75,13 @@ public abstract class SkysailServerResource<T> extends ServerResource {
     @Getter
     private String desc;
 
-    private Pattern pattern = Pattern.compile("\\{(.*?)\\}", Pattern.DOTALL);
-
     private Map<ResourceContextId, String> stringContextMap = new HashMap<>();
 
     private Map<ResourceContextId, Map<String, String>> mapContextMap = new HashMap<>();
 
+    @Getter
+    private ResourceContext resourceContext;
+    
     private BeanUtilsBean beanUtilsBean = new BeanUtilsBean(new ConvertUtilsBean() {
         @SuppressWarnings("unchecked")
         @Override
@@ -113,11 +113,14 @@ public abstract class SkysailServerResource<T> extends ServerResource {
         ConvertUtils.deregister(Date.class);
         ConvertUtils.register(dateConverter, Date.class);
         beanUtilsBean.getConvertUtils().register(dateConverter, Date.class);
+        
+        resourceContext = new ResourceContext(getApplication(), this);
     }
 
     @Override
     public SkysailApplication getApplication() {
-        return (SkysailApplication) super.getApplication();
+        Application app = super.getApplication();
+        return (app instanceof SkysailApplication) ? (SkysailApplication)app : null;
     }
 
     /**
@@ -370,26 +373,8 @@ public abstract class SkysailServerResource<T> extends ServerResource {
     public Consumer<? super Link> getPathSubstitutions() {
         return l -> {
             String uri = l.getUri();
-            l.setUri(replaceValues(uri));
+            l.setUri(LinkUtils.replaceValues(uri, getRequestAttributes()));
         };
-    }
-
-    private String replaceValues(final String template) {
-
-        final StringBuffer sb = new StringBuffer();
-        final Matcher matcher = pattern.matcher(template);
-        while (matcher.find()) {
-            final String key = matcher.group(1);
-            final String replacement = getAttribute(key);
-            if (replacement == null) {
-                log.debug("Template contains unmapped key: " + key);
-            } else {
-                matcher.appendReplacement(sb, replacement);
-            }
-        }
-        matcher.appendTail(sb);
-        return sb.toString();
-
     }
 
     /**
@@ -535,5 +520,6 @@ public abstract class SkysailServerResource<T> extends ServerResource {
         return result;
     }
 
+   
 
 }

@@ -3,9 +3,11 @@ package io.skysail.server.restlet.resources;
 import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.assertThat;
 import io.skysail.api.links.LinkRelation;
+import io.skysail.server.app.SkysailApplication;
 
 import org.junit.*;
 import org.junit.runner.RunWith;
+import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -23,6 +25,11 @@ public class SkysailServerResourceTest {
         @Override
         public String getEntity() {
             return null;
+        }
+        
+        @Override
+        public SkysailApplication getApplication() {
+            return Mockito.mock(SkysailApplication.class);
         }
 
     };

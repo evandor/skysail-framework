@@ -309,6 +309,9 @@ public class ServiceList implements ServiceListProvider {
     }
 
     private Stream<SkysailApplication> getSkysailApps() {
+        if (applicationListProvider.get() == null) {
+            return Stream.empty();
+        }
         return applicationListProvider.get().getApplications().stream();
     }
 

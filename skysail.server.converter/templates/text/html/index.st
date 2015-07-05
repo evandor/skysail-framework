@@ -16,7 +16,15 @@ index(user, messages, converter, model) ::= <<
     <link href="/webapp/css/bootstrap.min.css" rel="stylesheet">
     <link href="/webapp/css/stickyfooter.css" rel="stylesheet">
     <link href="/webapp/css/bootstrap-theme.min.css" rel="stylesheet">
+
+    <!-- polymer stuff -->
+    <script src="/_polymer/bower_components/webcomponentsjs/webcomponents-lite.min.js"></script>
+    <link rel="import" href="/_polymer/proto-element.html">
+    <link rel="import" href="/_polymer/sky-app-nav-accordion.html">
+    <link rel="import" href="/_polymer/sky-ajax-get.html">
+    <link rel="import" href="/_polymer/sky-ajax-table.html">
     
+
     <link rel="stylesheet" href="/webapp/css/select2.css">
     <link rel="stylesheet" href="/webapp/css/select2-bootstrap.css">
     
@@ -98,6 +106,7 @@ index(user, messages, converter, model) ::= <<
                 <li><a href='javascript:inspect()'>Inspect Page</a></li>
                 <li><a href='javascript:document.cookie="mainpage=tests;path=/";window.location="/_largetests"'>Tests</a></li>
                 <li><a href='javascript:document.cookie="mainpage=indexMobile;path=/";window.location.reload(true)'>Mobile View</a></li>
+                <li><a href='javascript:document.cookie="mainpage=indexSpa;path=/";window.location.reload(true)'>Single Page App</a></li>
               </ul>
             </li>
             $endif$
@@ -135,16 +144,7 @@ index(user, messages, converter, model) ::= <<
     
     <div class="container-fluid">
     
-      <div class="row">
-        <div class="col-md-10">
-            $breadcrumb(model)$
-        </div>
-        <div class="col-md-2">
-            $representations(model)$
-        </div>
-      </div>
-
-$mainContent(user, converter, messages, model)$
+      $mainContent(user, converter, messages, model)$
       
       $if(converter.debug && user.principal)$
         $debug(messages, model)$

@@ -43,16 +43,6 @@ public class Campaign implements Serializable, Identifiable {
     }
 
 
-    @Field(type=InputType.READONLY)
-    private Date created;
-    public void setCreated(Date value) {
-        this.created = value;
-    }
-
-    public Date getCreated() {
-        return created;
-    }
-
 
     @Reference(cls = Request.class)
     @PostView(visibility=Visibility.HIDE)

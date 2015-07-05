@@ -3,6 +3,12 @@
 
 <dom-module id="sky-ajax-get">
 
+ <style>
+    .list-group-item {
+      padding: 5px 15px;
+    }
+  </style>
+
   <template>
     <iron-ajax 
         id="ajax"
@@ -13,7 +19,9 @@
         debounce-duration="300" />
     <div class="list-group">
       <template is="dom-repeat" items="{{data}}">
-        <a href="{{renderLink(linkTo, item.id)}}" class="list-group-item" title="{{item.name}}">{{shorten(item.name,linkLength)}}s</a>
+        <a nothref="{{renderLink(linkTo, item, identifier)}}" on-click="handleClick" class$="{{itemClass(linkTo, item, identifier, requestUrl)}}" title="{{item.name}}">
+          <span class="glyphicon glyphicon-file"></span>
+          <span>{{shorten(item,nameProperty,linkLength)}}</span> </a>
       </template>
     </div>
   </template>
@@ -23,26 +31,49 @@
       is: 'sky-ajax-get',
       properties: {
     	  url: String,
+    	  nameProperty: {
+    		  type: String,
+    		  value: "name"
+    	  },
+    	  identifier: {
+    		  type: String,
+    		  value: "id"
+    	  },
     	  linkTo: String,
+    	  requestUrl: String,
     	  linkLength: {
     		  type: Number,
     		  value: 10
     	  }
       },
-      renderLink: function(href, value) {
-    	  return href.replace("{id}", value);
-    	  return href;
+      renderLink: function(href, item, identifier) {
+       	  return href.replace("{" + identifier + "}", item.id);
       },
-      shorten(str, maxLength) {
-    	  if (str.length > maxLength) {
-    		  return str.slice(0,maxLength-3) + "...";
+      shorten(str, nameProperty, maxLength) {
+    	  if (str[nameProperty].length > maxLength) {
+    		  return str[nameProperty].slice(0,maxLength-3) + "...";
     	  }
-    	  return str;
+    	  return str[nameProperty];
+      },
+      itemClass: function(href, item, identifier, requestUrl) {
+    	  if (requestUrl.startsWith(href.replace("{" + identifier + "}", item.id))) {
+              return "list-group-item active";  
+    	  } else {
+              return "list-group-item";  
+    	  }
       },
       attached: function() {
-    	  console.log("hier: " + this.url);
     	  this.$.ajax.url=this.url;
     	  this.$.ajax.generateRequest();
+      },
+      handleClick: function(e) {
+          var ajaxTable = document.getElementById("ajaxTable");
+          ajaxTable.url = "/Todos/Lists";
+          ajaxTable.linkTo="/Todos/Lists/{lid}/Todos";
+          ajaxTable.identifier="id";
+          ajaxTable.requestUrl="/Todos";
+          ajaxTable.nameProperty="name";
+          ajaxTable.generateRequest();
       },
       hResponse: function(request) {
           console.log(request.detail);

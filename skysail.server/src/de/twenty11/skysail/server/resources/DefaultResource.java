@@ -7,6 +7,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 import org.apache.shiro.SecurityUtils;
+import org.restlet.resource.ResourceException;
 
 import com.google.common.base.Predicate;
 
@@ -18,7 +19,12 @@ import de.twenty11.skysail.server.services.MenuItem;
  * 
  */
 public class DefaultResource extends ListServerResource<MenuItemDescriptor> {
-    
+
+    @Override
+    protected void doInit() throws ResourceException {
+       // getResourceContext().addAjaxNavigation("Skysail Applications", "", "{id}");
+    }
+
     @Override
     public List<Link> getLinks() {
         SkysailRootApplication defaultApp = (SkysailRootApplication) getApplication();

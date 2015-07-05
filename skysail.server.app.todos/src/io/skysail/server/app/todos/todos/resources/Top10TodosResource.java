@@ -9,14 +9,13 @@ import io.skysail.server.queryfilter.Filter;
 import io.skysail.server.queryfilter.pagination.Pagination;
 import io.skysail.server.restlet.resources.ListServerResource;
 
-import java.util.*;
+import java.util.List;
 import java.util.stream.Collectors;
 
 import org.apache.shiro.SecurityUtils;
 import org.restlet.resource.ResourceException;
 
 import de.twenty11.skysail.server.core.restlet.ResourceContextId;
-import de.twenty11.skysail.server.services.MenuItem;
 
 public class Top10TodosResource extends ListServerResource<TodoSummary> {
 
@@ -32,6 +31,7 @@ public class Top10TodosResource extends ListServerResource<TodoSummary> {
     @Override
     protected void doInit() throws ResourceException {
         app = (TodoApplication) getApplication();
+        getResourceContext().addAjaxNavigation("Todo-Lists", ListsResource.class, TodosResource.class, "lid");
         // Map<String,String> substitutions = new HashMap<>();
         // substitutions.put("/Lists/" + listId, list.getName());
         // getContext().getAttributes().put(ResourceContextId.PATH_SUBSTITUTION.name(),
@@ -54,17 +54,6 @@ public class Top10TodosResource extends ListServerResource<TodoSummary> {
     @Override
     public List<Link> getLinks() {
         return super.getLinks(ListsResource.class, PostTodoWoListResource.class);
-    }
-
-    @Override
-    public List<MenuItem> getAppNavigation() {
-        MenuItem shortcuts = new MenuItem("Shortcuts", "link1");
-        
-        new MenuItem(shortcuts, "Show Lists", "link3");
-        
-        MenuItem documentation = new MenuItem("Documentation", "link1");
-
-        return Arrays.asList(shortcuts, documentation);
     }
 
 }

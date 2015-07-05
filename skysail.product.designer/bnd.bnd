@@ -3,7 +3,7 @@ Bundle-Name: SKYSAIL :: product :: designer
 Private-Package:  \
 	io.skysail.product.designer
 -buildpath:  \
-	skysail.api;version=latest,\
+	skysail.api;version=${skysail.api.version},\
 	skysail.api.documentation;version='[0.2,0.3)',\
 	skysail.api.favorites;version=latest,\
 	skysail.api.peers;version=latest,\

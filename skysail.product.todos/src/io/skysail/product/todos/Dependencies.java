@@ -5,5 +5,6 @@ package io.skysail.product.todos;
  */
 public class Dependencies {
 
+    private io.skysail.api.domain.Identifiable identifiable;
     // handled in build.gradle
 }

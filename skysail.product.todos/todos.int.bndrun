@@ -101,7 +101,7 @@
 	skysail.api.um;version=latest,\
 	skysail.api.peers;version=latest,\
 	skysail.api.text;version=latest,\
-	skysail.api.documentation;version=latest,\
+	skysail.api.documentation;version=${skysail.api.documentation.version},\
 	skysail.api.validation;version=latest,\
 	skysail.api.features;version=latest,\
 	skysail.api.favorites;version=${skysail.api.favorites.version},\

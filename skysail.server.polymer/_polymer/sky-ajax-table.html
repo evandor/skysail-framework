@@ -10,7 +10,7 @@
   </style>
 
   <template>
-    <iron-ajax 
+    <iron-ajax
         id="ajaxTable"
         handle-as="json" 
         headers='{"Accept": "application/json"}'
@@ -35,10 +35,14 @@
     Polymer({
       is: 'sky-ajax-table',
       properties: {
-    	  url: String,
+    	  url: {
+    		  type: String,
+    		  observer: '_urlChanged'
+    	  },
     	  nameProperty: {
     		  type: String,
-    		  value: "name"
+    		  value: "name",
+    		  observer: '_namePropertyChanged'
     	  },
     	  identifier: {
     		  type: String,
@@ -70,8 +74,8 @@
       },
       attached: function() {
     	console.log(this.localName + '#' + this.id + ' was attached1');
-     	  this.$.ajaxTable.url=this.url;
-    	  this.$.ajaxTable.generateRequest();
+     	this.$.ajaxTable.url=this.url;
+    	//this.$.ajaxTable.generateRequest();
       },
       hResponse: function(request) {
           console.log(request.detail);
@@ -85,6 +89,14 @@
   	  attributeChanged: function(name, type) {
   	    console.log(this.localName + '#' + this.id + ' attribute ' + name +
   	      ' was changed to ' + this.getAttribute(name));
+  	  },
+  	  _urlChanged: function(newValue, oldValue) {
+        this.$.ajaxTable.url=newValue;
+        console.log("value url changed from " + oldValue + " to " + newValue);
+  	  },
+  	  _namePropertyChanged:function(newValue, oldValue) {
+        this.$.ajaxTable.nameProperty=newValue;
+        console.log("nameProperty changed from " + oldValue + " to " + newValue);
   	  }
     });
   </script>

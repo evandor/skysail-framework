@@ -48,7 +48,9 @@ mainContent(user, converter, messages, model) ::= <<
       
       <div class="row">
         <div class="col-md-12" id="content">
-          <script>
+          <sky-ajax-table id="theAjaxContent" url="/Todos/Lists/22:57/Todos" link-to="/Todos/Lists/{lid}/Todos" identifier="lid" request-url="/Todos" name-property="title"></sky-ajax-table>
+<!--          <sky-ajax-get url="/Todos/Lists" link-to="/Todos/Lists/{lid}/Todos" identifier="lid" request-url="/Todos"></sky-ajax-get><br>-->
+<!--           <script>
           	var table = document.createElement('sky-ajax-table');
           	table.url = "/Todos/Lists/22:57/Todos";
           	table.linkTo="/Todos/Lists/{lid}/Todos";
@@ -56,7 +58,7 @@ mainContent(user, converter, messages, model) ::= <<
           	table.requestUrl="/Todos";
           	table.nameProperty="title";
           	document.getElementById("content").appendChild(table);
-          </script>
+          </script> -->
         </div>
       </div>
 

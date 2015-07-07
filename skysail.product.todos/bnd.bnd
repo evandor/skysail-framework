@@ -5,6 +5,7 @@ Private-Package:  \
 -buildpath:  \
 	skysail.api;version=latest,\
 	skysail.api.documentation;version=latest,\
+	skysail.api.features;version=latest,\
 	skysail.api.favorites;version=latest,\
 	skysail.api.peers;version=latest,\
 	skysail.server.app.todos;version=latest,\

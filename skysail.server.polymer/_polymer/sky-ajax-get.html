@@ -19,7 +19,7 @@
         debounce-duration="300" />
     <div class="list-group">
       <template is="dom-repeat" items="{{data}}">
-        <a nothref="{{renderLink(linkTo, item, identifier)}}" on-click="handleClick" class$="{{itemClass(linkTo, item, identifier, requestUrl)}}" title="{{item.name}}">
+        <a ajaxhref="{{renderLink(linkTo, item, identifier)}}" on-click="handleClick" class$="{{itemClass(linkTo, item, identifier, requestUrl)}}" title="{{item.name}}">
           <span class="glyphicon glyphicon-file"></span>
           <span>{{shorten(item,nameProperty,linkLength)}}</span> </a>
       </template>
@@ -67,13 +67,15 @@
     	  this.$.ajax.generateRequest();
       },
       handleClick: function(e) {
-          var ajaxTable = document.getElementById("ajaxTable");
-          ajaxTable.url = "/Todos/Lists";
-          ajaxTable.linkTo="/Todos/Lists/{lid}/Todos";
-          ajaxTable.identifier="id";
-          ajaxTable.requestUrl="/Todos";
-          ajaxTable.nameProperty="name";
-          ajaxTable.generateRequest();
+    	  var srcElement = e.srcElement;
+    	  var ajaxhref = srcElement.ajaxhref;
+          var ajaxTable = document.getElementById("theAjaxContent");
+          ajaxTable.url = ajaxhref;
+          // ajaxTable.linkTo="/Todos/Lists/{lid}/Todos";
+          // ajaxTable.identifier="lid";
+          // ajaxTable.requestUrl="/Todos";
+          ajaxTable.nameProperty="title";
+          document.getElementById("ajaxTable").generateRequest();
       },
       hResponse: function(request) {
           console.log(request.detail);

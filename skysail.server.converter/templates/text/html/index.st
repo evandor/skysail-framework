@@ -166,15 +166,16 @@ index(user, messages, converter, model) ::= <<
         }        
         
         if (typeof(EventSource) !== "undefined") {
-            var source = new EventSource("/SSE");
-            source.onmessage = function(event) {
-                var msgArray = event.data.split('\n');
-                var timeout = Math.round(5000 / msgArray.length);
-        		for (var i = 0; i < msgArray.length; i++) {
-        			console.log(msgArray[i] + " " + (i * timeout));
-        			setTimeout(printMe, i * timeout, msgArray[i]);
-        		}
-            };
+            // disabled for now
+        	//var source = new EventSource("/SSE");
+            //source.onmessage = function(event) {
+            //    var msgArray = event.data.split('\n');
+            //    var timeout = Math.round(5000 / msgArray.length);
+        	//	for (var i = 0; i < msgArray.length; i++) {
+        	//		console.log(msgArray[i] + " " + (i * timeout));
+        	//		setTimeout(printMe, i * timeout, msgArray[i]);
+        	//	}
+            //};
         } else {
             output.innerHTML = "<!-- SSE not supported -->";
         }

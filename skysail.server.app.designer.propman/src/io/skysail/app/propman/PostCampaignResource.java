@@ -1,14 +1,13 @@
 package io.skysail.app.propman;
 
-import java.util.Date;
-
 import io.skysail.api.responses.SkysailResponse;
-import de.twenty11.skysail.server.core.restlet.ResourceContextId;
 import io.skysail.server.restlet.resources.PostEntityServerResource;
 
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
 import org.restlet.resource.ResourceException;
+
+import de.twenty11.skysail.server.core.restlet.ResourceContextId;
 
 public class PostCampaignResource extends PostEntityServerResource<Campaign> {
 
@@ -31,7 +30,6 @@ public class PostCampaignResource extends PostEntityServerResource<Campaign> {
     @Override
     public SkysailResponse<?> addEntity(Campaign entity) {
         Subject subject = SecurityUtils.getSubject();
-        setcreated(new Date());String id = app.getRepository().add(entity).toString();
         entity.setId(id);
         return new SkysailResponse<String>();
 

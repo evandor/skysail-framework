@@ -66,8 +66,12 @@
     	  this.$.ajax.url=this.url;
     	  this.$.ajax.generateRequest();
       },
-      handleClick: function(e) {
-    	  var srcElement = e.srcElement;
+      handleClick: function(e, f, g) {
+    	  
+    	  // http://www.quirksmode.org/js/events_properties.html
+          if (!e) var e = window.event;
+    		var srcElement = e.target;
+    		
     	  var ajaxhref = srcElement.ajaxhref;
           var ajaxTable = document.getElementById("theAjaxContent");
           ajaxTable.url = ajaxhref;

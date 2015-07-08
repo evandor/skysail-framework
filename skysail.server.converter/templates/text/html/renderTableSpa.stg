@@ -1,0 +1,45 @@
+renderTableSpa(converter, messages, model) ::= <<
+
+  $model.pagination$
+  
+  <table class="table table-striped">
+    <tr>$renderHeader(model.formfields, converter)$<th>Actions</th></tr>
+    $model.data:{ row | $renderRow(model.formfields,row,i)$}$
+  </table>
+  
+  <hr>
+  <sky-ajax-table1 
+    id="top10" 
+    url="/Todos" 
+    link-to="/Todos/Lists/{lid}/Todos" 
+    identifier="lid" 
+    request-url="/Todos" 
+    name-property="title" 
+    column-names='[$renderColumnNames(model.formfields, converter)$,"Actions"]'>
+  </sky-ajax-table1>
+  
+>>
+
+renderRow(fields, row,i) ::= <<
+  <tr>$fields: { field | <td>$row.(field.name)$</td>}$<td>$row.("_links")$</td></tr>
+>>
+
+renderHeader(fields, converter) ::= <<
+  $if(converter.edit)$
+    $fields: { field | <th><a href='/i18n/messages/$field.nameKey$/'>$helpmessage(messages, field.nameKey)$</a></th>}$
+  $else$
+    $fields: { field | <th>$helpmessage(messages, field.nameKey)$</th>}$
+  $endif$
+>>
+
+renderColumnNames(fields, converter) ::= <<
+    $fields: { field | $th(messages,field)$}; separator=", "$
+>>
+
+th(messages, field) ::= <<
+"$helpmessage(messages, field.nameKey)$"
+>>
+
+helpmessage(messages, identifier) ::= <<
+    $messages.(identifier)$
+>>

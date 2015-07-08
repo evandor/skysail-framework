@@ -1,7 +1,7 @@
 <link rel="import" href="/_polymer/bower_components/polymer/polymer.html">
 <link rel="import" href="/_polymer/bower_components/iron-ajax/iron-ajax.html">
 
-<dom-module id="sky-ajax-table">
+<dom-module id="sky-ajax-table1">
 
  <style>
     .list-group-item {
@@ -18,26 +18,32 @@
         last-response="{{data}}"
         debounce-duration="300" />
     <table class="table table-striped">
-      <template is="dom-repeat" items="{{data}}">
-        <tr>
-          <td>
-            <a href="{{renderLink(linkTo, item, identifier)}}" title="{{item.name}}">
-              <span class="glyphicon glyphicon-file"></span>
-              <span>{{shorten(item,nameProperty,linkLength)}}</span>
-            </a>
-          </td>
-        </tr>
+      <tr>
+        <template is="dom-repeat" items="{{columnNames}}">
+          <th>{{item}}</th>
+        </template>
+      </tr>
+      <template is="dom-repeat" items="{{data}}" as="row">
+      <tr>
+        <template is="dom-repeat" items="{{_toArray(row,columnNames)}}" as="column">
+          <td>{{column.value}}</td>
+        </template>
+      </tr>
       </template>
     </table>
   </template>
 
   <script>
     Polymer({
-      is: 'sky-ajax-table',
+      is: 'sky-ajax-table1',
       properties: {
     	  url: {
     		  type: String,
     		  observer: '_urlChanged'
+    	  },
+    	  columnNames: {
+    		  type: Array,
+    		  value: ['please define the attribute column-names']
     	  },
     	  nameProperty: {
     		  type: String,
@@ -97,7 +103,17 @@
   	  _namePropertyChanged:function(newValue, oldValue) {
         this.$.ajaxTable.nameProperty=newValue;
         console.log("nameProperty changed from " + oldValue + " to " + newValue);
-  	  }
+  	  },
+  	  _toArray: function(obj, columnNames) {
+        return columnNames.map(function(key) {
+          return {name: key, value: obj[key]};
+        });
+      },
+      _toArrayOrig: function(obj, columnNames) {
+          return Object.keys(obj).map(function(key) {
+            return {name: key, value: obj[key]};
+          });
+      }
     });
   </script>
 

@@ -1,0 +1,2 @@
+DEBUG d.t.skysail.server.db.orientdb.OrientGraphDbService - activating io.skysail.server.testsupport.TestDb
+INFO  io.skysail.server.ext.sse.EventsQueue - added new message Message(topic=topic/info, id=2, message=msg, type=success, expires=0) to public queue, size now is 1

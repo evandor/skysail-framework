@@ -97,7 +97,7 @@ public class SkysailEntityCompiler2 extends SkysailCompiler2 {
         StringBuilder addEntityCode;
         addEntityCode = new StringBuilder("Subject subject = SecurityUtils.getSubject();\n");
         addEntityCode.append(entityModel.getActionFields().stream().map(actionField -> {
-            return actionField.getCode("postEntity#addEntity");
+            return actionField.getCode("postEntity#addEntity").replace("$Methodname$", actionField.getName());
         }).collect(Collectors.joining("\n")));
         if (entityModel.isRootEntity()) {
             addEntityCode.append("String id = app.getRepository().add(entity).toString();\n");

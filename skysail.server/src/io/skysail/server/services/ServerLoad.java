@@ -1,7 +1,7 @@
 package io.skysail.server.services;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.lang.management.ManagementFactory;
+import java.lang.management.OperatingSystemMXBean;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.atomic.AtomicReference;
@@ -18,47 +18,44 @@ import de.twenty11.skysail.server.core.osgi.EventHelper;
 
 @Component(immediate = true)
 @Slf4j
-public class ServerTime {
-    
+public class ServerLoad {
+
     private AtomicReference<EventAdmin> eventAdminRef = new AtomicReference<>();
-    
+
     private volatile TimerTask timerTask;
 
-    public class MyTimerTask extends TimerTask {
+    public class ServerLoadTimerTask extends TimerTask {
 
         private EventHelper eventHelper;
-        private String currentTime;
-        private int msgId;
-        
-        public MyTimerTask(AtomicReference<EventAdmin> eventAdminRef) {
+        private OperatingSystemMXBean operatingSystemMXBean;
+
+        public ServerLoadTimerTask(AtomicReference<EventAdmin> eventAdminRef) {
             eventHelper = new EventHelper(eventAdminRef.get());
+            operatingSystemMXBean = ManagementFactory.getOperatingSystemMXBean();
         }
 
         @Override
         public void run() {
-            SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
-            if (!sdf.format(new Date()).equals(currentTime)) {
-                currentTime = sdf.format(new Date());
-                msgId = eventHelper.channel(EventHelper.GUI_MSG).info(currentTime).lifetime(1000 * 60L).fire();
-            }
+            double serverLoad = operatingSystemMXBean.getSystemLoadAverage();
+            eventHelper.channel(EventHelper.GUI_MSG).info(Double.toString(serverLoad)).fire();
         }
     }
 
     @Activate
     public void activate() {
-        log.info("activating ServerTime task");
-        timerTask = new MyTimerTask(eventAdminRef);
+        log.info("activating ServerLoad task");
+        timerTask = new ServerLoadTimerTask(eventAdminRef);
         Timer timer = new Timer(true);
-        timer.scheduleAtFixedRate(timerTask, 10000, 10*1000);
+        timer.scheduleAtFixedRate(timerTask, 10000, 10 * 1000);
     }
-    
+
     @Deactivate
     public void deactivate() {
-        log.info("deactivating ServerTime task");
+        log.info("deactivating ServerLoad task");
         timerTask.cancel();
         timerTask = null;
     }
-    
+
     @Reference(dynamic = true, multiple = false, optional = false)
     public void setEventAdmin(EventAdmin eventAdmin) {
         this.eventAdminRef = new AtomicReference<EventAdmin>(eventAdmin);
@@ -67,6 +64,5 @@ public class ServerTime {
     public void unsetEventAdmin(EventAdmin eventAdmin) {
         this.eventAdminRef.compareAndSet(eventAdmin, null);
     }
-    
 
 }

@@ -1,26 +1,26 @@
 package io.skysail.server.text.store.bundleresource.impl;
 
 import io.skysail.api.responses.SkysailResponse;
-import io.skysail.server.app.SkysailApplication;
 import io.skysail.server.restlet.resources.EntityServerResource;
 
 import org.restlet.resource.ResourceException;
 
+import de.twenty11.skysail.server.core.restlet.ResourceContextId;
+
 public class MessageResource extends EntityServerResource<Message> {
 
-    private SkysailApplication app;
+    private I18nApplication app;
     private String msgKey;
+    private String store;
 
     public MessageResource() {
-        app = (SkysailApplication) getApplication();
+        app = (I18nApplication) getApplication();
     }
 
     protected void doInit() throws ResourceException {
         msgKey = getAttribute("key");
-    }
+        store = getQueryValue("store");    }
 
-
-    // for stringtemplate
     public boolean isMessageResource() {
         return true;
     }
@@ -37,6 +37,11 @@ public class MessageResource extends EntityServerResource<Message> {
 
     @Override
     public Message getEntity() {
-        return null;
+        Message message = app.getMessage(msgKey, store, this);
+        if (message.getPreferredRenderer() != null) {
+            String rendererHint = message.getPreferredRenderer().getClass().getSimpleName();
+            getContext().getAttributes().put(ResourceContextId.RENDERER_HINT.name(), rendererHint);
+        }
+        return message;
     }
 }

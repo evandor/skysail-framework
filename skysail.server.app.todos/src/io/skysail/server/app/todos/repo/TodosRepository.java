@@ -3,13 +3,18 @@ package io.skysail.server.app.todos.repo;
 import io.skysail.server.app.todos.TodoList;
 import io.skysail.server.app.todos.todos.Todo;
 import io.skysail.server.app.todos.todos.status.Status;
-import io.skysail.server.db.*;
+import io.skysail.server.db.DbRepository;
+import io.skysail.server.db.DbService2;
 import io.skysail.server.queryfilter.Filter;
 import io.skysail.server.queryfilter.pagination.Pagination;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
-import aQute.bnd.annotation.component.*;
+import aQute.bnd.annotation.component.Activate;
+import aQute.bnd.annotation.component.Component;
+import aQute.bnd.annotation.component.Reference;
 
 @Component(immediate = true, properties = "name=TodosRepository")
 public class TodosRepository implements DbRepository {
@@ -75,7 +80,7 @@ public class TodosRepository implements DbRepository {
         String sql = "SELECT COUNT(*) as count from " + Todo.class.getSimpleName()
                 + " WHERE list=:list AND status <> '"+Status.ARCHIVED+"' AND "+filter.getPreparedStatement();
         Map<String, Object> params = filter.getParams();
-        params.put("list", list.getId().replace("#",""));
+        params.put("list", list.getId());//.replace("#",""));
         long cnt = dbService.getCount(sql, params);
         list.setTodosCount(cnt);
     }

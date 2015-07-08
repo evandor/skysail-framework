@@ -4,7 +4,8 @@ import io.skysail.api.favorites.FavoritesService;
 import io.skysail.api.peers.PeersProvider;
 import io.skysail.api.responses.SkysailResponse;
 import io.skysail.server.app.SkysailApplication;
-import io.skysail.server.converter.*;
+import io.skysail.server.converter.HtmlConverter;
+import io.skysail.server.converter.Notification;
 import io.skysail.server.converter.stringtemplate.STGroupBundleDir;
 import io.skysail.server.converter.wrapper.STUserWrapper;
 import io.skysail.server.model.ResourceModel;
@@ -12,15 +13,21 @@ import io.skysail.server.restlet.resources.SkysailServerResource;
 import io.skysail.server.utils.RequestUtils;
 
 import java.net.URL;
-import java.util.*;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Collectors;
 
+import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
 
 import org.apache.shiro.SecurityUtils;
 import org.osgi.framework.Bundle;
 import org.restlet.data.MediaType;
-import org.restlet.representation.*;
+import org.restlet.representation.StringRepresentation;
+import org.restlet.representation.Variant;
 import org.restlet.resource.Resource;
 import org.stringtemplate.v4.ST;
 
@@ -141,7 +148,7 @@ public class StringTemplateRenderer {
     }
 
     @SuppressWarnings("unchecked")
-    private void addSubstitutions(ResourceModel<SkysailServerResource<?>,?> resourceModel, ST decl) {
+    private void addSubstitutions(ResourceModel<SkysailServerResource<?>,?> resourceModel, @NonNull ST decl) {
 
         SkysailServerResource<?> resource = resourceModel.getResource();
         

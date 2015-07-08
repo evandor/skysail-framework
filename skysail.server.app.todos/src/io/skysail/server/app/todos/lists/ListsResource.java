@@ -1,8 +1,11 @@
 package io.skysail.server.app.todos.lists;
 
 import io.skysail.api.links.Link;
-import io.skysail.server.app.todos.*;
-import io.skysail.server.app.todos.todos.resources.*;
+import io.skysail.server.app.todos.TodoApplication;
+import io.skysail.server.app.todos.TodoList;
+import io.skysail.server.app.todos.todos.resources.PostTodoWoListResource;
+import io.skysail.server.app.todos.todos.resources.TodosResource;
+import io.skysail.server.app.todos.todos.resources.Top10TodosResource;
 import io.skysail.server.queryfilter.Filter;
 import io.skysail.server.queryfilter.pagination.Pagination;
 import io.skysail.server.restlet.resources.ListServerResource;
@@ -27,6 +30,7 @@ public class ListsResource extends ListServerResource<TodoList> {
     @Override
     protected void doInit() {
         app = (TodoApplication) getApplication();
+        getResourceContext().addAjaxNavigation("Todo-Lists:", ListsResource.class, TodosResource.class, "lid");
     }
 
     @Override

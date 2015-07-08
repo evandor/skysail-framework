@@ -11,7 +11,7 @@ public enum ActionType {
 
     @SuppressWarnings("serial")
     CREATION_DATE(Date.class, new HashMap<String,String>() {{
-        put("postEntity#addEntity", "entity.set");
+        put("postEntity#addEntity", "set$Methodname$(new Date());");
     }});
     
     private Map<String, String> codes;

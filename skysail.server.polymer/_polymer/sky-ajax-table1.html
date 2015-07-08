@@ -26,7 +26,7 @@
       <template is="dom-repeat" items="{{data}}" as="row">
       <tr>
         <template is="dom-repeat" items="{{_toArray(row,columnNames)}}" as="column">
-          <td>{{column.value}}</td>
+          <td><sky-html html="{{column.value}}"></sky-html></td>
         </template>
       </tr>
       </template>
@@ -87,7 +87,7 @@
           console.log(request.detail);
       },
       created: function() {
-  	    console.log(this.localName + '#' + this.id + ' was created');
+  	    //console.log(this.localName + '#' + this.id + ' was created');
   	  },
   	  detached: function() {
   	    console.log(this.localName + '#' + this.id + ' was detached');
@@ -113,7 +113,11 @@
           return Object.keys(obj).map(function(key) {
             return {name: key, value: obj[key]};
           });
-      }
+      },
+      unescape: function(value) {
+    	  this.innerHTML = "<a href='#'>heise</a>";
+	    return value;
+	  }
     });
   </script>
 

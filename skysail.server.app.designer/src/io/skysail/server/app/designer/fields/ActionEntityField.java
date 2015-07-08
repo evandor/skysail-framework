@@ -2,6 +2,7 @@ package io.skysail.server.app.designer.fields;
 
 import io.skysail.api.forms.Field;
 
+import java.util.Collections;
 import java.util.Map;
 
 import javax.persistence.Id;
@@ -27,7 +28,7 @@ public class ActionEntityField {
     private ActionType type;
 
     public Map<String, String> getCodes() {
-        return type.getCodes();
+        return type == null ? Collections.emptyMap() : type.getCodes();
     }
 
 }

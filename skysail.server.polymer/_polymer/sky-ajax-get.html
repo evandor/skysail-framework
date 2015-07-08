@@ -47,7 +47,7 @@
     	  }
       },
       renderLink: function(href, item, identifier) {
-       	  return href.replace("{" + identifier + "}", item.id);
+       	  return href.replace("{" + identifier + "}", item.id) + "?_rendered";
       },
       shorten(str, nameProperty, maxLength) {
     	  if (str[nameProperty].length > maxLength) {
@@ -70,8 +70,8 @@
     	  
     	  // http://www.quirksmode.org/js/events_properties.html
           if (!e) var e = window.event;
-    		var srcElement = e.target;
-    		
+    	  var srcElement = e.target;
+    	  console.log("found srcElement: " + srcElement + " with reference to " + srcElement.ajaxhref );	
     	  var ajaxhref = srcElement.ajaxhref;
           var ajaxTable = document.getElementById("theAjaxContent");
           ajaxTable.url = ajaxhref;

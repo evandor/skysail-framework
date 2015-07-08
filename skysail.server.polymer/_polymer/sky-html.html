@@ -1,0 +1,25 @@
+<link rel="import" href="/_polymer/bower_components/polymer/polymer.html">
+<link rel="import" href="/_polymer/bower_components/iron-ajax/iron-ajax.html">
+
+<dom-module id="sky-html">
+
+  <template>
+    <span>{{html}}</span>
+  </template>
+
+  <script>
+    Polymer({
+      is: 'sky-html',
+      properties: {
+    	  html: {
+    		  type: String,
+    		  value: 'html'
+    	  }
+      },
+      ready: function() {
+          this.innerHTML = this.html;
+      }
+    });
+  </script>
+
+</dom-module>

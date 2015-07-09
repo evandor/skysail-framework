@@ -23,7 +23,7 @@ mainContentSpa(user, converter, messages, model) ::= <<
       </div>
       <div class="row">
         <div class="col-md-12">
-
+			--$model.headers.("X-Duration")$--<br>
           <br><p>$contentHeader(converter, messages, model)$</p>
         
             $if(model.form)$

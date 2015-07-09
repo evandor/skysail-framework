@@ -19,13 +19,13 @@
         debounce-duration="300" />
     <table class="table table-striped">
       <tr>
-        <template is="dom-repeat" items="{{columnNames}}">
-          <th>{{item}}</th>
+        <template is="dom-repeat" items="{{_toArray2(columnNames)}}">
+          <th>{{item.value}}</th>
         </template>
       </tr>
       <template is="dom-repeat" items="{{data}}" as="row">
       <tr>
-        <template is="dom-repeat" items="{{_toArray(row,columnNames)}}" as="column">
+        <template is="dom-repeat" items="{{_toArray(row,columns)}}" as="column">
           <td><sky-html html="{{column.value}}"></sky-html></td>
         </template>
       </tr>
@@ -41,9 +41,13 @@
     		  type: String,
     		  observer: '_urlChanged'
     	  },
-    	  columnNames: {
+    	  columns: {
     		  type: Array,
-    		  value: ['please define the attribute column-names']
+    		  value: ['please define the columns']
+    	  },
+    	  columnNames: {
+    		  type: Object,
+    		  value: {"name": "please define the attribute column-names"}
     	  },
     	  nameProperty: {
     		  type: String,
@@ -104,12 +108,12 @@
         this.$.ajaxTable.nameProperty=newValue;
         console.log("nameProperty changed from " + oldValue + " to " + newValue);
   	  },
-  	  _toArray: function(obj, columnNames) {
-        return columnNames.map(function(key) {
+  	  _toArray: function(obj, columns) {
+        return columns.map(function(key) {
           return {name: key, value: obj[key]};
         });
       },
-      _toArrayOrig: function(obj, columnNames) {
+      _toArray2: function(obj) {
           return Object.keys(obj).map(function(key) {
             return {name: key, value: obj[key]};
           });

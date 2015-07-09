@@ -21,7 +21,7 @@ public class AccountsResource extends ListServerResource<Account> {
 
     @Override
     public List<Account> getEntity() {
-        return app.getAccountsRepository().findAll(Account.class);
+        return app.getRepository().findAll(Account.class);
     }
 
     @Override

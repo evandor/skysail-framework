@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<repository increment="1434396159614" name="Local" xmlns="http://www.osgi.org/xmlns/repository/v1.0.0">
+<repository increment="1436424448448" name="Local" xmlns="http://www.osgi.org/xmlns/repository/v1.0.0">
   <resource>
     <capability namespace="osgi.identity">
       <attribute name="osgi.identity" value="ch.qos.logback.classic"/>
@@ -5499,6 +5499,390 @@
     </requirement>
     <requirement namespace="osgi.wiring.package">
       <directive name="filter" value="(&amp;(osgi.wiring.package=org.jsoup.select)(version&gt;=1.8.0))"/>
+    </requirement>
+  </resource>
+  <resource>
+    <capability namespace="osgi.identity">
+      <attribute name="osgi.identity" value="org.quartz-scheduler.quartz"/>
+      <attribute name="type" value="osgi.bundle"/>
+      <attribute name="version" type="Version" value="2.2.1"/>
+    </capability>
+    <capability namespace="osgi.content">
+      <attribute name="osgi.content" value="6ffd415cf76f98734ff7715021d19a68b5fc1ee1be35a0fdadc86995327f72bc"/>
+      <attribute name="url" value="org.quartz-scheduler.quartz/org.quartz-scheduler.quartz-2.2.1.jar"/>
+      <attribute name="size" type="Long" value="660316"/>
+      <attribute name="mime" value="application/vnd.osgi.bundle"/>
+    </capability>
+    <capability namespace="osgi.wiring.bundle">
+      <attribute name="osgi.wiring.bundle" value="org.quartz-scheduler.quartz"/>
+      <attribute name="bundle-version" type="Version" value="2.2.1"/>
+    </capability>
+    <capability namespace="osgi.wiring.host">
+      <attribute name="osgi.wiring.host" value="org.quartz-scheduler.quartz"/>
+      <attribute name="bundle-version" type="Version" value="2.2.1"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.quartz.plugins.management"/>
+      <attribute name="version" type="Version" value="2.2.1"/>
+      <attribute name="bundle-symbolic-name" value="org.quartz-scheduler.quartz"/>
+      <attribute name="bundle-version" type="Version" value="2.2.1"/>
+      <directive name="uses" value="org.quartz.spi,org.quartz,org.slf4j"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.quartz.plugins.history"/>
+      <attribute name="version" type="Version" value="2.2.1"/>
+      <attribute name="bundle-symbolic-name" value="org.quartz-scheduler.quartz"/>
+      <attribute name="bundle-version" type="Version" value="2.2.1"/>
+      <directive name="uses" value="org.quartz.spi,org.quartz,org.slf4j,org.quartz.impl.matchers"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.quartz.core"/>
+      <attribute name="version" type="Version" value="2.2.1"/>
+      <attribute name="bundle-symbolic-name" value="org.quartz-scheduler.quartz"/>
+      <attribute name="bundle-version" type="Version" value="2.2.1"/>
+      <directive name="uses" value="org.quartz,org.quartz.listeners,org.slf4j,org.quartz.spi,org.quartz.impl,org.quartz.impl.matchers,org.quartz.core.jmx,org.quartz.simpl,javax.management,org.quartz.utils,javax.management.openmbean,org.quartz.impl.triggers,org.quartz.management,org.quartz.utils.counter,org.quartz.utils.counter.sampled"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.quartz.simpl"/>
+      <attribute name="version" type="Version" value="2.2.1"/>
+      <attribute name="bundle-symbolic-name" value="org.quartz-scheduler.quartz"/>
+      <attribute name="bundle-version" type="Version" value="2.2.1"/>
+      <directive name="uses" value="org.quartz.spi,org.quartz,org.slf4j,org.quartz.impl.matchers"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.quartz.xml"/>
+      <attribute name="version" type="Version" value="2.2.1"/>
+      <attribute name="bundle-symbolic-name" value="org.quartz-scheduler.quartz"/>
+      <attribute name="bundle-version" type="Version" value="2.2.1"/>
+      <directive name="uses" value="javax.xml.namespace,org.quartz.spi,org.quartz,javax.xml.parsers,org.w3c.dom,org.slf4j,org.xml.sax,javax.xml.xpath,javax.xml.bind,org.quartz.impl.matchers"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.quartz.impl.jdbcjobstore"/>
+      <attribute name="version" type="Version" value="2.2.1"/>
+      <attribute name="bundle-symbolic-name" value="org.quartz-scheduler.quartz"/>
+      <attribute name="bundle-version" type="Version" value="2.2.1"/>
+      <directive name="uses" value="org.slf4j,com.mchange.v2.c3p0,org.quartz.impl.triggers,org.quartz.spi,org.quartz,org.quartz.utils,org.quartz.impl.matchers,javax.transaction,javax.naming,org.quartz.impl"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.quartz.helpers"/>
+      <attribute name="version" type="Version" value="2.2.1"/>
+      <attribute name="bundle-symbolic-name" value="org.quartz-scheduler.quartz"/>
+      <attribute name="bundle-version" type="Version" value="2.2.1"/>
+      <directive name="uses" value="org.quartz.core"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.quartz.utils"/>
+      <attribute name="version" type="Version" value="2.2.1"/>
+      <attribute name="bundle-symbolic-name" value="org.quartz-scheduler.quartz"/>
+      <attribute name="bundle-version" type="Version" value="2.2.1"/>
+      <directive name="uses" value="javax.naming,javax.sql,org.slf4j,org.quartz,com.mchange.v2.c3p0,org.quartz.core"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.quartz.commonj"/>
+      <attribute name="version" type="Version" value="2.2.1"/>
+      <attribute name="bundle-symbolic-name" value="org.quartz-scheduler.quartz"/>
+      <attribute name="bundle-version" type="Version" value="2.2.1"/>
+      <directive name="uses" value="commonj.work,javax.naming,org.quartz.spi,org.slf4j"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.quartz.ee.jta"/>
+      <attribute name="version" type="Version" value="2.2.1"/>
+      <attribute name="bundle-symbolic-name" value="org.quartz-scheduler.quartz"/>
+      <attribute name="bundle-version" type="Version" value="2.2.1"/>
+      <directive name="uses" value="org.quartz.utils,org.quartz.core,org.quartz.spi,org.quartz,javax.transaction,org.slf4j,javax.naming"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.quartz.utils.weblogic"/>
+      <attribute name="version" type="Version" value="2.2.1"/>
+      <attribute name="bundle-symbolic-name" value="org.quartz-scheduler.quartz"/>
+      <attribute name="bundle-version" type="Version" value="2.2.1"/>
+      <directive name="uses" value="org.quartz.utils,weblogic.jdbc.jts"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.quartz.impl.jdbcjobstore.oracle.weblogic"/>
+      <attribute name="version" type="Version" value="2.2.1"/>
+      <attribute name="bundle-symbolic-name" value="org.quartz-scheduler.quartz"/>
+      <attribute name="bundle-version" type="Version" value="2.2.1"/>
+      <directive name="uses" value="weblogic.jdbc.vendor.oracle,org.quartz.impl.jdbcjobstore.oracle"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.quartz.plugins.xml"/>
+      <attribute name="version" type="Version" value="2.2.1"/>
+      <attribute name="bundle-symbolic-name" value="org.quartz-scheduler.quartz"/>
+      <attribute name="bundle-version" type="Version" value="2.2.1"/>
+      <directive name="uses" value="org.quartz.spi,org.quartz,org.slf4j,org.quartz.jobs,org.quartz.xml,javax.transaction,org.quartz.plugins"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.quartz.impl.jdbcjobstore.oracle"/>
+      <attribute name="version" type="Version" value="2.2.1"/>
+      <attribute name="bundle-symbolic-name" value="org.quartz-scheduler.quartz"/>
+      <attribute name="bundle-version" type="Version" value="2.2.1"/>
+      <directive name="uses" value="org.quartz.spi,org.quartz,oracle.sql,org.quartz.impl.jdbcjobstore"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.quartz.impl.triggers"/>
+      <attribute name="version" type="Version" value="2.2.1"/>
+      <attribute name="bundle-symbolic-name" value="org.quartz-scheduler.quartz"/>
+      <attribute name="bundle-version" type="Version" value="2.2.1"/>
+      <directive name="uses" value="org.quartz.utils,org.quartz.spi,org.quartz"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.quartz.spi"/>
+      <attribute name="version" type="Version" value="2.2.1"/>
+      <attribute name="bundle-symbolic-name" value="org.quartz-scheduler.quartz"/>
+      <attribute name="bundle-version" type="Version" value="2.2.1"/>
+      <directive name="uses" value="org.quartz,org.quartz.impl.matchers"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.quartz"/>
+      <attribute name="version" type="Version" value="2.2.1"/>
+      <attribute name="bundle-symbolic-name" value="org.quartz-scheduler.quartz"/>
+      <attribute name="bundle-version" type="Version" value="2.2.1"/>
+      <directive name="uses" value="org.quartz.impl.triggers,org.quartz.spi,org.quartz.utils,org.quartz.impl,org.quartz.impl.matchers"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.quartz.core.jmx"/>
+      <attribute name="version" type="Version" value="2.2.1"/>
+      <attribute name="bundle-symbolic-name" value="org.quartz-scheduler.quartz"/>
+      <attribute name="bundle-version" type="Version" value="2.2.1"/>
+      <directive name="uses" value="org.quartz.impl.triggers,javax.management.openmbean,org.quartz.spi,org.quartz,org.quartz.impl"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.quartz.listeners"/>
+      <attribute name="version" type="Version" value="2.2.1"/>
+      <attribute name="bundle-symbolic-name" value="org.quartz-scheduler.quartz"/>
+      <attribute name="bundle-version" type="Version" value="2.2.1"/>
+      <directive name="uses" value="org.quartz,org.slf4j"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.quartz.ee.servlet"/>
+      <attribute name="version" type="Version" value="2.2.1"/>
+      <attribute name="bundle-symbolic-name" value="org.quartz-scheduler.quartz"/>
+      <attribute name="bundle-version" type="Version" value="2.2.1"/>
+      <directive name="uses" value="javax.servlet,org.quartz.impl,org.quartz,org.slf4j,javax.servlet.http"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.quartz.impl.calendar"/>
+      <attribute name="version" type="Version" value="2.2.1"/>
+      <attribute name="bundle-symbolic-name" value="org.quartz-scheduler.quartz"/>
+      <attribute name="bundle-version" type="Version" value="2.2.1"/>
+      <directive name="uses" value="org.quartz"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.quartz.management"/>
+      <attribute name="version" type="Version" value="2.2.1"/>
+      <attribute name="bundle-symbolic-name" value="org.quartz-scheduler.quartz"/>
+      <attribute name="bundle-version" type="Version" value="2.2.1"/>
+      <directive name="uses" value="org.quartz.core"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.quartz.impl"/>
+      <attribute name="version" type="Version" value="2.2.1"/>
+      <attribute name="bundle-symbolic-name" value="org.quartz-scheduler.quartz"/>
+      <attribute name="bundle-version" type="Version" value="2.2.1"/>
+      <directive name="uses" value="org.quartz.spi,org.quartz.core,org.quartz.simpl,org.quartz,org.slf4j,org.quartz.utils,org.quartz.listeners,org.quartz.impl.matchers,javax.management.openmbean,org.quartz.core.jmx,javax.management,org.quartz.management,org.quartz.impl.jdbcjobstore,org.quartz.ee.jta"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.quartz.utils.counter"/>
+      <attribute name="version" type="Version" value="2.2.1"/>
+      <attribute name="bundle-symbolic-name" value="org.quartz-scheduler.quartz"/>
+      <attribute name="bundle-version" type="Version" value="2.2.1"/>
+      <directive name="uses" value="org.quartz.utils.counter.sampled"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.quartz.utils.counter.sampled"/>
+      <attribute name="version" type="Version" value="2.2.1"/>
+      <attribute name="bundle-symbolic-name" value="org.quartz-scheduler.quartz"/>
+      <attribute name="bundle-version" type="Version" value="2.2.1"/>
+      <directive name="uses" value="org.quartz.utils.counter,org.quartz.utils"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.quartz.ee.jmx.jboss"/>
+      <attribute name="version" type="Version" value="2.2.1"/>
+      <attribute name="bundle-symbolic-name" value="org.quartz-scheduler.quartz"/>
+      <attribute name="bundle-version" type="Version" value="2.2.1"/>
+      <directive name="uses" value="javax.naming,org.quartz.impl,org.quartz,javax.management,org.jboss.logging,org.jboss.naming,org.jboss.system"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.quartz.plugins"/>
+      <attribute name="version" type="Version" value="2.2.1"/>
+      <attribute name="bundle-symbolic-name" value="org.quartz-scheduler.quartz"/>
+      <attribute name="bundle-version" type="Version" value="2.2.1"/>
+      <directive name="uses" value="org.quartz.spi,org.quartz,org.quartz.ee.jta,javax.transaction,org.slf4j"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.quartz.impl.matchers"/>
+      <attribute name="version" type="Version" value="2.2.1"/>
+      <attribute name="bundle-symbolic-name" value="org.quartz-scheduler.quartz"/>
+      <attribute name="bundle-version" type="Version" value="2.2.1"/>
+      <directive name="uses" value="org.quartz.utils,org.quartz"/>
+    </capability>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=com.mchange.v2.c3p0)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=commonj.work)"/>
+      <directive name="resolution" value="optional"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=javax.ejb)"/>
+      <directive name="resolution" value="optional"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=javax.jms)"/>
+      <directive name="resolution" value="optional"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=javax.mail)"/>
+      <directive name="resolution" value="optional"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=javax.mail.internet)"/>
+      <directive name="resolution" value="optional"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=javax.management)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=javax.management.openmbean)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=javax.naming)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=javax.servlet)"/>
+      <directive name="resolution" value="optional"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=javax.servlet.http)"/>
+      <directive name="resolution" value="optional"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=javax.sql)"/>
+      <directive name="resolution" value="optional"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=javax.transaction)"/>
+      <directive name="resolution" value="optional"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=javax.xml.bind)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=javax.xml.namespace)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=javax.xml.parsers)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=javax.xml.xpath)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=oracle.sql)"/>
+      <directive name="resolution" value="optional"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.jboss.logging)"/>
+      <directive name="resolution" value="optional"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.jboss.naming)"/>
+      <directive name="resolution" value="optional"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.jboss.system)"/>
+      <directive name="resolution" value="optional"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.quartz)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.quartz.core)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.quartz.impl.matchers)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.quartz.impl.triggers)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.quartz.jobs)"/>
+      <directive name="resolution" value="optional"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.quartz.spi)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(&amp;(osgi.wiring.package=org.slf4j)(version&gt;=1.6.0)(!(version&gt;=2.0.0)))"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.terracotta.toolkit)"/>
+      <directive name="resolution" value="optional"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.terracotta.toolkit.atomic)"/>
+      <directive name="resolution" value="optional"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.terracotta.toolkit.builder)"/>
+      <directive name="resolution" value="optional"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.terracotta.toolkit.cluster)"/>
+      <directive name="resolution" value="optional"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.terracotta.toolkit.collections)"/>
+      <directive name="resolution" value="optional"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.terracotta.toolkit.concurrent.locks)"/>
+      <directive name="resolution" value="optional"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.terracotta.toolkit.config)"/>
+      <directive name="resolution" value="optional"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.terracotta.toolkit.internal)"/>
+      <directive name="resolution" value="optional"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.terracotta.toolkit.internal.concurrent.locks)"/>
+      <directive name="resolution" value="optional"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.terracotta.toolkit.rejoin)"/>
+      <directive name="resolution" value="optional"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.terracotta.toolkit.search)"/>
+      <directive name="resolution" value="optional"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.terracotta.toolkit.search.attribute)"/>
+      <directive name="resolution" value="optional"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.terracotta.toolkit.store)"/>
+      <directive name="resolution" value="optional"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.w3c.dom)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.xml.sax)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=weblogic.jdbc.jts)"/>
+      <directive name="resolution" value="optional"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=weblogic.jdbc.vendor.oracle)"/>
+      <directive name="resolution" value="optional"/>
+    </requirement>
+    <requirement namespace="osgi.ee">
+      <directive name="filter" value="(&amp;(osgi.ee=JavaSE)(version=1.6))"/>
     </requirement>
   </resource>
   <resource>

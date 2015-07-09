@@ -1,15 +1,15 @@
 package de.twenty11.skysail.server.ext.mail.folders;
 
+import io.skysail.api.links.Link;
 import io.skysail.server.restlet.resources.ListServerResource;
 
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
-import org.apache.commons.lang.Validate;
 import org.restlet.resource.ResourceException;
 
 import de.twenty11.skysail.server.ext.mail.MailApplication;
 import de.twenty11.skysail.server.ext.mail.accounts.Account;
+import de.twenty11.skysail.server.ext.mail.mails.MailsResource;
 
 public class FoldersResource extends ListServerResource<MailFolder> {
 
@@ -17,13 +17,13 @@ public class FoldersResource extends ListServerResource<MailFolder> {
     private Account account;
 
     public FoldersResource() {
-        super(null);
+        super(FolderResource.class);
         app = (MailApplication) getApplication();
     }
 
     @Override
     protected void doInit() throws ResourceException {
-        super.doInit();
+       // super.doInit();
         if (getRequest().getAttributes().get("id") != null) {
             String accountId = (String) getRequest().getAttributes().get("id");
             account = null;//app.getAccountsRepository().getById(accountId);
@@ -32,17 +32,14 @@ public class FoldersResource extends ListServerResource<MailFolder> {
 
     @Override
     public List<MailFolder> getEntity() {
-        Validate.notNull(account);
         // Assuming pop3 for now, there is only one folder
         // http://stackoverflow.com/questions/5925944/how-to-retrieve-gmail-sub-folders-labels-using-pop3
         return Arrays.asList(new MailFolder("INBOX"));
     }
 
-//    @Override
-//    public List<Link> getLinks() {
-//        List<Link> links = super.getLinks();
-//        links.add(new RelativeLink("mail/accounts/" + account.getId() + "/folders/INBOX/mails", "open"));
-//        return links;
-//    }
+    @Override
+    public List<Link> getLinks() {
+        return super.getLinks(MailsResource.class);
+    }
 
 }

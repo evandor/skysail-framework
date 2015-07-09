@@ -3,52 +3,41 @@ package de.twenty11.skysail.server.ext.mail;
 import io.skysail.server.app.SkysailApplication;
 import io.skysail.server.db.DbRepository;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Properties;
+import java.util.*;
 
+import javax.mail.*;
 import javax.mail.Message;
-import javax.mail.MessagingException;
-import javax.mail.NoSuchProviderException;
-import javax.mail.Session;
-import javax.mail.Transport;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;
+import javax.mail.internet.*;
 
-import aQute.bnd.annotation.component.Component;
-import aQute.bnd.annotation.component.Reference;
+import aQute.bnd.annotation.component.*;
 import de.twenty11.skysail.server.app.ApplicationProvider;
 import de.twenty11.skysail.server.core.restlet.RouteBuilder;
-import de.twenty11.skysail.server.ext.mail.accounts.impl.AccountResource;
-import de.twenty11.skysail.server.ext.mail.accounts.impl.AccountsRepository;
-import de.twenty11.skysail.server.ext.mail.accounts.impl.AccountsResource;
-import de.twenty11.skysail.server.ext.mail.folders.FoldersResource;
-import de.twenty11.skysail.server.ext.mail.mails.MailsResource;
-import de.twenty11.skysail.server.ext.mail.mails.SendMailResource;
-import de.twenty11.skysail.server.services.MenuItem;
-import de.twenty11.skysail.server.services.MenuItemProvider;
+import de.twenty11.skysail.server.ext.mail.accounts.impl.*;
+import de.twenty11.skysail.server.ext.mail.folders.*;
+import de.twenty11.skysail.server.ext.mail.mails.*;
+import de.twenty11.skysail.server.services.*;
 
 @Component(immediate = true)
 public class MailApplication extends SkysailApplication implements ApplicationProvider, MenuItemProvider {
 
 	private static final String APP_NAME = "mail";
-    private AccountsRepository accountsRepo;
+    private MailRepository repo;
 
 	public MailApplication() {
 		super(APP_NAME);
 	}
 
-    @Reference(dynamic = true, multiple = false, optional = false, target = "(name=AccountsRepository)")
+    @Reference(dynamic = true, multiple = false, optional = false, target = "(name=MailRepository)")
     public void setRepository(DbRepository repo) {
-        this.accountsRepo = (AccountsRepository) repo;
+        this.repo = (MailRepository) repo;
     }
 
     public void unsetRepository(DbRepository repo) {
-        this.accountsRepo = null;
+        this.repo = null;
     }
 
-    public AccountsRepository getRepository() {
-        return accountsRepo;
+    public MailRepository getRepository() {
+        return repo;
     }
 
 	@Override
@@ -56,17 +45,14 @@ public class MailApplication extends SkysailApplication implements ApplicationPr
 		router.attach(new RouteBuilder("", MailRootResource.class));
 		router.attach(new RouteBuilder("/mail/", SendMailResource.class));
 		router.attach(new RouteBuilder("/accounts", AccountsResource.class));
-		router.attach(new RouteBuilder("/accounts/", AccountResource.class));
+		router.attach(new RouteBuilder("/accounts/", PostAccountResource.class));
 		router.attach(new RouteBuilder("/accounts/{id}", AccountResource.class));
+        router.attach(new RouteBuilder("/accounts/{id}/", PutAccountResource.class));
 		router.attach(new RouteBuilder("/accounts/{id}/folders", FoldersResource.class));
+        router.attach(new RouteBuilder("/accounts/{id}/folders/{folderId}", FolderResource.class));
 		router.attach(new RouteBuilder("/accounts/{id}/folders/{folderId}/mails", MailsResource.class));
 	}
-
-	public AccountsRepository getAccountsRepository() {
-		return accountsRepo;
-	}
-
-//	@Override
+	
 	public void send(String subject, String body) {
 		send("to", subject, body);
 	}

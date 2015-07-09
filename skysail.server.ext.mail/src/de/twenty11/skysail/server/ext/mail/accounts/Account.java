@@ -1,22 +1,18 @@
 package de.twenty11.skysail.server.ext.mail.accounts;
 
 import io.skysail.api.domain.Identifiable;
-import io.skysail.api.forms.Field;
-import io.skysail.api.forms.InputType;
+import io.skysail.api.forms.*;
 import io.skysail.server.forms.ListView;
 
 import java.io.Serializable;
 
 import javax.persistence.Id;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 @Getter
 @Setter
-@ToString(of = { "title" })
+@ToString(of = { "id", "host", "user" })
 //@JsonPropertyOrder({ "title", "desc" })
 @NoArgsConstructor
 public class Account implements Serializable, Identifiable {
@@ -30,9 +26,13 @@ public class Account implements Serializable, Identifiable {
     private String host;
 
     @Field
-    private String user;
+    private Integer port;
 
     @Field
+    private String user;
+
+    @Field(type = InputType.PASSWORD)
+    @ListView(hide = true)
     private String pass;
     
     @Field(type = InputType.READONLY)

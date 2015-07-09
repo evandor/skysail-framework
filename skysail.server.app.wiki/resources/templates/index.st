@@ -43,7 +43,6 @@ index(user, messages, converter, model) ::= <<
           <ul class="nav navbar-nav">
             $dropdownFrontendsNav(model.services)$
             $dropdownApplicationsNav(model.services)$
-            $dropdownDesignerNav(model.services)$
             $dropdownAdminNav(model.services)$
             $if(user.developer)$
             <li class="dropdown">

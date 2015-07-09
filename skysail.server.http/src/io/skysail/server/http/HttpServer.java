@@ -224,7 +224,7 @@ public class HttpServer extends ServerResource implements RestletServicesProvide
         log.info("");
         log.info("====================================");
         log.info("Starting skysail server on port {}", port);
-        System.out.println("Starting skysail server on port: " + port);
+        //System.out.println("Starting skysail server on port: " + port);
         log.info("====================================");
         log.info("");
 

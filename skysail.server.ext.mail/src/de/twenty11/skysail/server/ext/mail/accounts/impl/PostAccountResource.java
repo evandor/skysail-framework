@@ -3,6 +3,8 @@ package de.twenty11.skysail.server.ext.mail.accounts.impl;
 import io.skysail.api.responses.SkysailResponse;
 import io.skysail.server.restlet.resources.PostEntityServerResource;
 
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.subject.Subject;
 import org.restlet.resource.ResourceException;
 
 import de.twenty11.skysail.server.ext.mail.MailApplication;
@@ -24,7 +26,9 @@ public class PostAccountResource extends PostEntityServerResource<Account> {
 
     @Override
     public SkysailResponse<?> addEntity(Account entity) {
-        app.getAccountsRepository().add(entity);
+        Subject subject = SecurityUtils.getSubject();
+        entity.setOwner(subject.getPrincipal().toString());
+        app.getRepository().add(entity);
         return new SkysailResponse<>();
     }
 

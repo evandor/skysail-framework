@@ -43,7 +43,7 @@ public class STUserWrapper {
             return Collections.emptyList();
         }
         Optional<String> username = subject.getPrincipals().asList().stream().filter(p -> {
-            System.out.println(p.toString());
+            //System.out.println(p.toString());
             return (!(p.toString().startsWith(("#"))));
         }).findFirst();
         if(username.isPresent()) {

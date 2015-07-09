@@ -2,24 +2,16 @@ package io.skysail.server.app.designer;
 
 import io.skysail.server.app.SkysailApplication;
 import io.skysail.server.app.designer.application.Application;
-import io.skysail.server.app.designer.codegen.InMemoryJavaCompiler;
-import io.skysail.server.app.designer.codegen.SkysailApplicationCompiler2;
-import io.skysail.server.app.designer.model.ApplicationModel;
-import io.skysail.server.app.designer.model.EntityModel;
-import io.skysail.server.app.designer.model.RouteModel;
+import io.skysail.server.app.designer.codegen.*;
+import io.skysail.server.app.designer.model.*;
 import io.skysail.server.app.designer.repo.DesignerRepository;
-import io.skysail.server.db.DbRepository;
-import io.skysail.server.db.DbService2;
+import io.skysail.server.db.*;
 import io.skysail.server.utils.BundleUtils;
 
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 import java.lang.reflect.Method;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.List;
+import java.nio.file.*;
+import java.util.*;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.stream.Collectors;
 
@@ -84,7 +76,7 @@ public class ApplicationCreator {
         try {
             SkysailApplication applicationInstance = (SkysailApplication) applicationClass.newInstance();
             DbRepository dbRepoInstance = (DbRepository) repositoryClass.newInstance();
-            System.out.println(applicationInstance);
+            //System.out.println(applicationInstance);
 
             Method setDbServiceMethod = dbRepoInstance.getClass().getMethod("setDbService",
                     new Class[] { DbService2.class });

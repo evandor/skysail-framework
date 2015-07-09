@@ -1,14 +1,16 @@
 package de.twenty11.skysail.server.ext.mail.accounts.impl;
 
-import io.skysail.api.responses.FormResponse;
-import io.skysail.api.responses.SkysailResponse;
+import io.skysail.api.links.Link;
+import io.skysail.api.responses.*;
 import io.skysail.server.restlet.resources.EntityServerResource;
 
-import org.restlet.resource.Get;
-import org.restlet.resource.ResourceException;
+import java.util.List;
+
+import org.restlet.resource.*;
 
 import de.twenty11.skysail.server.ext.mail.MailApplication;
 import de.twenty11.skysail.server.ext.mail.accounts.Account;
+import de.twenty11.skysail.server.ext.mail.folders.FoldersResource;
 
 public class AccountResource extends EntityServerResource<Account> {
 
@@ -41,14 +43,12 @@ public class AccountResource extends EntityServerResource<Account> {
     }
 
     @Override
-    public String getId() {
-        // TODO Auto-generated method stub
-        return null;
+    public Account getEntity() {
+        return app.getRepository().findById(Account.class, accountId);
     }
 
     @Override
-    public Account getEntity() {
-        return null;//app.getAccountsRepository().getById(accountId);
+    public List<Link> getLinks() {
+        return super.getLinks(FoldersResource.class, PutAccountResource.class);
     }
-
 }

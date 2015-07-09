@@ -16,10 +16,15 @@ Bundle-Version: 1.0.5.${tstamp}
 	etm.core;version=1.2,\
 	org.apache.commons.beanutils;version=1.9,\
 	org.apache.shiro.core;version=1.2,\
-	lombok;version=1.16
+	lombok;version=1.16,\
+	javassist;version=3.18,\
+	com.orientechnologies.orientdb-core;version=2.0
 Service-Component: *
 Private-Package: de.twenty11.skysail.server.ext.mail,\
 	de.twenty11.skysail.server.ext.mail.accounts.impl,\
 	de.twenty11.skysail.server.ext.mail.folders,\
 	de.twenty11.skysail.server.ext.mail.mails
 Export-Package: de.twenty11.skysail.server.ext.mail.accounts
+Import-Package: org.osgi.framework,\
+	javassist.util.proxy,\
+	*

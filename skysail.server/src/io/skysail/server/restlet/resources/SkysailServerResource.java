@@ -8,6 +8,7 @@ import io.skysail.api.utils.StringParserUtils;
 import io.skysail.server.app.SkysailApplication;
 import io.skysail.server.restlet.RequestHandler;
 import io.skysail.server.restlet.filter.AbstractResourceFilter;
+import io.skysail.server.utils.HeadersUtils;
 import io.skysail.server.utils.LinkUtils;
 import io.skysail.server.utils.OrientDbUtils;
 import io.skysail.server.utils.ResourceUtils;
@@ -195,6 +196,9 @@ public abstract class SkysailServerResource<T> extends ServerResource {
         String key = getClass().getName() + ".message";
         String translated = ((SkysailApplication) application).translate(key, key, this, true);
         msgs.put("content.header", translated);
+        
+        HeadersUtils.getHeaders(getResponse()).add("X-Resource-Description", translated);
+        
         return msgs;
     }
 

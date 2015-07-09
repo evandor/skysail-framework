@@ -23,9 +23,9 @@ mainContentSpa(user, converter, messages, model) ::= <<
       </div>
       <div class="row">
         <div class="col-md-12">
-			--$model.headers.("X-Duration")$--<br>
-          <br><p>$contentHeader(converter, messages, model)$</p>
-        
+        <br>
+          <p>$model.headers.("X-Resource-Description")$</p>
+        <br>
             $if(model.form)$
               <div class="col-md-10">
                 $showForm(model.formfields, messages, model)$ 

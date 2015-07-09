@@ -156,7 +156,7 @@ indexSpa(user, messages, converter, model) ::= <<
     
     <footer class="footer">
       <div class="container4footer">
-        <p class="text-muted"><div id="output"></div></p>
+        <p class="text-muted"><div id="output"></div><div style="text-align:right;"><small>resource processed in $model.headers.("X-Duration")$ ms</small></div></p>
       </div>
     </footer>
 

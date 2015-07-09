@@ -147,7 +147,6 @@ public class StringTemplateRenderer {
                 .collect(Collectors.joining("\n"));
     }
 
-    @SuppressWarnings("unchecked")
     private void addSubstitutions(ResourceModel<SkysailServerResource<?>,?> resourceModel, @NonNull ST decl) {
 
         SkysailServerResource<?> resource = resourceModel.getResource();

@@ -19,7 +19,7 @@
         debounce-duration="300" />
     <div class="list-group">
       <template is="dom-repeat" items="{{data}}">
-        <a ajaxhref="{{renderLink(linkTo, item, identifier)}}" on-click="handleClick" class$="{{itemClass(linkTo, item, identifier, requestUrl)}}" title="{{item.name}}">
+        <a ajaxhref="{{renderLink(linkTo, item, identifier)}}" on-click="handleClick" class$="{{itemClass(linkTo, item, identifier, requestUrl)}}" title="{{renderLink(linkTo, item, identifier)}}">
           <span class="glyphicon glyphicon-file"></span>
           <span>{{shorten(item,nameProperty,linkLength)}}</span> </a>
       </template>
@@ -47,6 +47,7 @@
     	  }
       },
       renderLink: function(href, item, identifier) {
+    	  console.log("replacing '" + href + "' -> '" + href.replace("{" + identifier + "}", item.id) + "?_rendered"); 
        	  return href.replace("{" + identifier + "}", item.id) + "?_rendered";
       },
       shorten(str, nameProperty, maxLength) {
@@ -69,8 +70,10 @@
       handleClick: function(e, f, g) {
     	  
     	  // http://www.quirksmode.org/js/events_properties.html
-          if (!e) var e = window.event;
-    	  var srcElement = e.target;
+          if (!e) {
+        	  var e = window.event;
+          }
+    	  var srcElement = e.currentTarget;
     	  console.log("found srcElement: " + srcElement + " with reference to " + srcElement.ajaxhref );	
     	  var ajaxhref = srcElement.ajaxhref;
           var ajaxTable = document.getElementById("theAjaxContent");

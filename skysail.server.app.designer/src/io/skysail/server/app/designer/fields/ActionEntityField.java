@@ -2,13 +2,9 @@ package io.skysail.server.app.designer.fields;
 
 import io.skysail.api.forms.Field;
 
-<<<<<<< Updated upstream
-import java.util.Collections;
-import java.util.Map;
-=======
-import java.util.*;
->>>>>>> Stashed changes
 
+import java.util.Collections;
+import java.util.*;
 import javax.persistence.Id;
 import javax.validation.constraints.*;
 

@@ -82,7 +82,23 @@
           // ajaxTable.identifier="lid";
           // ajaxTable.requestUrl="/Todos";
           ajaxTable.nameProperty="title";
-          document.getElementById("ajaxTable").generateRequest();
+          //ajaxTable.onResponse = function(e) {
+          //	console.log("hier!" + e);  
+          //};
+          var test =   document.getElementById("ajaxTable").generateRequest();
+          var complete = test.properties.completes.value();
+          console.log("completes: " + complete);
+          complete
+         	.then(function(val,reject) {
+    	            console.log('beforeend' + val);
+    	        })
+    	    .catch(function() { 
+    	        	console.log('promise was rejected');
+    	        });	 
+          var response = test.properties.response;
+          console.log("response: " + response);
+         
+         
       },
       hResponse: function(request) {
           console.log(request.detail);

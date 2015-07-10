@@ -24,7 +24,8 @@ mainContentSpa(user, converter, messages, model) ::= <<
       <div class="row">
         <div class="col-md-12">
         <br>
-          <p>$model.headers.("X-Resource-Description")$</p>
+        <!-- $model.headers.("X-Resource-Description")$ -->
+          <p id="resourceDescription"></p>
         <br>
             $if(model.form)$
               <div class="col-md-10">

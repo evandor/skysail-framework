@@ -119,10 +119,8 @@
 	skysail.product.todos;version=latest,\
 	skysail.server;version=latest,\
 	skysail.server.converter;version=latest,\
-	skysail.server.app.bookmarks;version=latest,\
 	skysail.server.app.todos;version=latest,\
 	skysail.server.app.designer;version=latest,\
-	skysail.server.app.twitter4j;version=latest,\
 	skysail.server.app.wiki;version=latest,\
 	skysail.server.db;version=latest,\
 	skysail.server.documentation;version=latest,\

@@ -87,8 +87,9 @@
      	this.$.ajaxTable.url=this.url;
     	//this.$.ajaxTable.generateRequest();
       },
-      hResponse: function(request) {
-          console.log(request.detail);
+      hResponse: function(event, request) {
+          console.log("sky-ajax-table1#onResponse " + request.xhr.getAllResponseHeaders());
+          document.getElementById("resourceDescription").innerHtml = "there";
       },
       created: function() {
   	    //console.log(this.localName + '#' + this.id + ' was created');

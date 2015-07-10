@@ -29,7 +29,7 @@ mainContentSpa(user, converter, messages, model) ::= <<
         <br>
             $if(model.form)$
               <div class="col-md-10">
-                $showForm(model.formfields, messages, model)$ 
+                $showFormSpa(model.formfields, messages, model)$ 
               </div>
               <div class="col-md-2">
                 $renderEntityInfo(model.formfields, messages, model)$ 

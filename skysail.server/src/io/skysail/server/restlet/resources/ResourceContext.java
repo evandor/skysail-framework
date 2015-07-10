@@ -4,9 +4,11 @@ import io.skysail.api.links.Link;
 import io.skysail.server.app.SkysailApplication;
 import io.skysail.server.utils.LinkUtils;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
-import lombok.*;
+import lombok.Getter;
+import lombok.ToString;
 
 @Getter
 @ToString(of = "application")
@@ -36,4 +38,16 @@ public class ResourceContext {
         navItems.add(call);
     }
 
+    public void addDisabledAjaxNavigation(String title, Class<? extends SkysailServerResource<?>> cls) {
+        Link ajaxTarget = LinkUtils.fromResource(application, cls);
+
+        WebComponentCall call = WebComponentCall.builder()
+                .type("sky-ajax-get")
+                .title(title)
+                .requestUrl(skysailServerResource.getOriginalRef().getPath().toString())
+                .url(ajaxTarget.getUri())
+                .disabled(true)
+                .build();
+        navItems.add(call);
+    }
 }

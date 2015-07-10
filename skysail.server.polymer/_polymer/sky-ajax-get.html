@@ -19,7 +19,7 @@
         debounce-duration="300" />
     <div class="list-group">
       <template is="dom-repeat" items="{{data}}">
-        <a ajaxhref="{{renderLink(linkTo, item, identifier)}}" on-click="handleClick" class$="{{itemClass(linkTo, item, identifier, requestUrl)}}" title="{{renderLink(linkTo, item, identifier)}}">
+        <a ajaxhref="{{renderLink(linkTo, item, identifier)}}" on-click="handleClick" class$="{{itemClass(linkTo, item, identifier, requestUrl, disabled)}}" title="{{renderLink(linkTo, item, identifier)}}">
           <span class="glyphicon glyphicon-file"></span>
           <span>{{shorten(item,nameProperty,linkLength)}}</span> </a>
       </template>
@@ -44,6 +44,10 @@
     	  linkLength: {
     		  type: Number,
     		  value: 10
+    	  },
+    	  disabled: {
+    		  type: Boolean,
+    		  value: false
     	  }
       },
       renderLink: function(href, item, identifier) {
@@ -56,7 +60,10 @@
     	  }
     	  return str[nameProperty];
       },
-      itemClass: function(href, item, identifier, requestUrl) {
+      itemClass: function(href, item, identifier, requestUrl, disabled) {
+    	  if (disabled) {
+    		  return "list-group-item disabled";
+    	  }
     	  if (requestUrl.startsWith(href.replace("{" + identifier + "}", item.id))) {
               return "list-group-item active";  
     	  } else {

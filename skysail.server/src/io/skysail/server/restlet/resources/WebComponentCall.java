@@ -1,6 +1,8 @@
 package io.skysail.server.restlet.resources;
  
-import lombok.*;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.ToString;
 
 @Getter
 @ToString
@@ -12,15 +14,35 @@ public class WebComponentCall {
     private String title;
     private String identifier;
     private String requestUrl;
+    private boolean disabled;
  
     public String getHtml() {
-        return "<"+type+" url=\""+url+"\" link-to=\""+linkTo+"\" "+identifiersAttribute()+" request-url=\""+requestUrl+"\"></"+type+">";
+        StringBuilder sb = new StringBuilder("<").append(type).append(" ");
+        append(sb, "url", url);
+        append(sb, "link-to", linkTo);
+        appendOptional(sb, "identifier", identifier);
+        appendBoolean(sb, "disabled", disabled);
+        append(sb, "request-url", requestUrl);
+        sb.append("></").append(type).append(">");
+        return sb.toString();
     }
  
-    private String identifiersAttribute() {
-        if (identifier == null) {
-            return "";
-        }
-        return "identifier=\""+identifier+"\"";
+    private void append(StringBuilder sb, String key, String value) {
+        sb.append(key).append("=\"").append(value).append("\" ");
     }
+
+    private void appendOptional(StringBuilder sb, String key, String value) {
+        if (value == null) {
+            return;
+        }
+        sb.append(key).append("=\"").append(value).append("\" ");
+    }
+
+    private void appendBoolean(StringBuilder sb, String key, boolean bool) {
+        if (bool) {
+            sb.append(key).append(" ");
+        }
+    }
+
+
 }

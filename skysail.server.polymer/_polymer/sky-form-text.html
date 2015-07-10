@@ -1,0 +1,48 @@
+<link rel="import" href="/_polymer/bower_components/polymer/polymer.html">
+<link rel="import" href="/_polymer/bower_components/iron-ajax/iron-ajax.html">
+
+<dom-module id="sky-form-text">
+
+  <template>
+     <div class='form-group'>
+          <label for='{{name}}' class='col-sm-2 control-label' style="text-align: left;">{{label}}</label>
+          <div class='col-sm-10'>
+            <input type="text" class='form-control' name='{{name}}' id='{{name}}' placeholder='{{placeholder}}' value='{{data}}' tabindex="{{tabindex}}" title="">
+            <span>{{description}}</span>
+          </div>
+    </div>
+  </template>
+
+  <script>
+    Polymer({
+      is: 'sky-form-text',
+      properties: {
+    	  name: {
+    		  type: String,
+    		  value: "name unknown"
+    	  },
+    	  data: {
+    		  type: String,
+    		  value: ""
+    	  },
+    	  placeholder: {
+    		  type: String,
+    		  value: ""
+    	  },
+    	  description: {
+    		  type: String,
+    		  value: ""
+    	  },
+    	  label: {
+    		  type: String,
+    		  value: "label unknown"
+    	  },
+    	  tabindex: {
+    		  type: Number,
+    		  value: 1
+    	  }
+      }
+    });
+  </script>
+
+</dom-module>

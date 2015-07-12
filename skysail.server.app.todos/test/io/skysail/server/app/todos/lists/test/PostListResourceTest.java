@@ -11,7 +11,7 @@ import org.apache.shiro.subject.SimplePrincipalMap;
 import org.junit.Before;
 import org.mockito.*;
 
-public class PostListResourceTest extends PostResourceTest {
+public abstract class PostListResourceTest extends PostResourceTest {
 
     @Spy
     protected PostListResource resource;

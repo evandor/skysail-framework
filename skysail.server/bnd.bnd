@@ -50,6 +50,7 @@ Import-Package: \
 Bundle-ActivationPolicy: lazy
 Include-Resource: lib=lib,resources, templates=src;recursive:=true;filter:=*.st|*.stg
 Private-Package:  \
+	io.skysail.server.commands,\
 	de.twenty11.skysail.server.app.profile,\
 	de.twenty11.skysail.server.core.restlet.converter.renderer,\
 	de.twenty11.skysail.server.core.restlet.converter.internal,\
@@ -92,6 +93,7 @@ Service-Component: *
 	org.mockito.mockito-all;version=1.10,\
 	org.hibernate.validator;version=5.0;resolution:=optional,\
 	javax.validation.api;version=1.1,\
+	org.apache.felix.gogo.runtime;version=0.12,\
 	org.apache.httpcomponents.httpclient;version=4.3,\
 	org.apache.httpcomponents.httpcore;version=4.3,\
 	org.apache.commons.io;version=2.4,\

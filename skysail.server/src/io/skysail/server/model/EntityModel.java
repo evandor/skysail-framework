@@ -20,16 +20,16 @@ public class EntityModel<R extends SkysailServerResource<?>> {
     public EntityModel(Object entity, R resource) {
         this.entity = entity;
         this.resource = resource;
-        determineFormfields();
+        //determineFormfields();
     }
 
-    private void determineFormfields() {
-        FieldFactory fieldFactory = FieldsFactory.getFactory(entity, resource);
-        try {
-            fields = fieldFactory.determineFrom(resource);
-        } catch (Exception e) {
-            log.error(e.getMessage(), e);
-        }
-    }
+//    private void determineFormfields() {
+//        FieldFactory fieldFactory = FieldsFactory.getFactory(entity, resource);
+//        try {
+//            fields = fieldFactory.determineFrom(resource);
+//        } catch (Exception e) {
+//            log.error(e.getMessage(), e);
+//        }
+//    }
 
 }

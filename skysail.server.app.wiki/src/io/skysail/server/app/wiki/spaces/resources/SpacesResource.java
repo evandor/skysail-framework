@@ -21,6 +21,7 @@ public class SpacesResource extends ListServerResource<Space> {
     @Override
     protected void doInit() throws ResourceException {
         app = (WikiApplication) getApplication();
+        getResourceContext().addAjaxNavigation("Spaces", SpacesResource.class, SpaceResource.class, "id");
     }
 
     @Override

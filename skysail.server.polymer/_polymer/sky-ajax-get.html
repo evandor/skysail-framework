@@ -17,11 +17,14 @@
         on-response="hResponse"
         last-response="{{data}}"
         debounce-duration="300" />
+    <!-- <div class="list-group">
+      <a href='#' class="list-group-item">create new List</a>
+    </div> -->
     <div class="list-group">
       <template is="dom-repeat" items="{{data}}">
         <a ajaxhref="{{renderLink(linkTo, item, identifier)}}" on-click="handleClick" class$="{{itemClass(linkTo, item, identifier, requestUrl, disabled)}}" title="{{renderLink(linkTo, item, identifier)}}">
-          <span class="glyphicon glyphicon-file"></span>
-          <span>{{shorten(item,nameProperty,linkLength)}}</span> </a>
+          <span class$="{{getGlyph(glyphicon)}}"></span>
+          <span>{{shorten(item,nameProperty,linkLength)}}</span> <span class="badge">{{item.todosCount}}</span></a>
       </template>
     </div>
   </template>
@@ -45,10 +48,8 @@
     		  type: Number,
     		  value: 10
     	  },
-    	  disabled: {
-    		  type: Boolean,
-    		  value: false
-    	  }
+    	  glyphicon : { type: String, value: "file"},
+    	  disabled: { type: Boolean, value: false}
       },
       renderLink: function(href, item, identifier) {
     	  console.log("replacing '" + href + "' -> '" + href.replace("{" + identifier + "}", item.id) + "?_rendered"); 
@@ -109,6 +110,9 @@
       },
       hResponse: function(request) {
           console.log(request.detail);
+      },
+      getGlyph: function(glyph) {
+    	  return "glyphicon glyphicon-"+glyph;
       }
     });
   </script>

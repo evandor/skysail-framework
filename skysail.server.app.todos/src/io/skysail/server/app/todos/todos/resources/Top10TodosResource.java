@@ -31,7 +31,8 @@ public class Top10TodosResource extends ListServerResource<TodoSummary> {
     @Override
     protected void doInit() throws ResourceException {
         app = (TodoApplication) getApplication();
-        getResourceContext().addAjaxNavigation("Todo-Lists:", ListsResource.class, TodosResource.class, "lid");
+        getResourceContext().addAjaxNavigation(getResourceContext().getAjaxBuilder("Lists:", ListsResource.class, TodosResource.class).identifier("lid").build());
+//        getResourceContext().addAjaxNavigation("Lists:", ListsResource.class, TodosResource.class, "lid");
         // Map<String,String> substitutions = new HashMap<>();
         // substitutions.put("/Lists/" + listId, list.getName());
         // getContext().getAttributes().put(ResourceContextId.PATH_SUBSTITUTION.name(),

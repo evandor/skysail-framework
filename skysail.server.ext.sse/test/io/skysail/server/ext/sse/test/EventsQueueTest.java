@@ -1,25 +1,22 @@
 package io.skysail.server.ext.sse.test;
 
-import static org.hamcrest.CoreMatchers.equalTo;
-import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.assertThat;
 import io.skysail.server.app.SkysailApplication;
-import io.skysail.server.ext.sse.EventsQueue;
-import io.skysail.server.ext.sse.Message;
+import io.skysail.server.ext.sse.*;
 import io.skysail.server.restlet.resources.SkysailServerResource;
 import io.skysail.server.testsupport.ResourceTestBase;
 
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 import org.apache.shiro.subject.SimplePrincipalMap;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.*;
 import org.mockito.Mockito;
 import org.osgi.service.event.Event;
 
 import de.twenty11.skysail.server.core.osgi.EventHelper;
 
+@Ignore
 public class EventsQueueTest  extends ResourceTestBase {
 
     private Event event;

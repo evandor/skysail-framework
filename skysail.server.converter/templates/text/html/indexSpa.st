@@ -26,8 +26,8 @@ indexSpa(user, messages, converter, model) ::= <<
     <link rel="import" href="/_polymer/sky-ajax-table1.html">
     <link rel="import" href="/_polymer/sky-html.html">
     <link rel="import" href="/_polymer/sky-breadcrumbs.html">
-    <link rel="import" href="/_polymer/sky-form-text.html">
-    
+    <link rel="import" href="/_polymer/sky-form-text.html">   
+    <link rel="import" href="/_polymer/sky-ajax-thumbnails.html"> 
 
     <link rel="stylesheet" href="/webapp/css/select2.css">
     <link rel="stylesheet" href="/webapp/css/select2-bootstrap.css">

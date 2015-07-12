@@ -24,8 +24,7 @@ mainContentSpa(user, converter, messages, model) ::= <<
       <div class="row">
         <div class="col-md-12">
         <br>
-        <!-- $model.headers.("X-Resource-Description")$ -->
-          <p id="resourceDescription"></p>
+        <p id="resourceDescription"></p>
         <br>
             $if(model.form)$
               <div class="col-md-10">
@@ -37,7 +36,6 @@ mainContentSpa(user, converter, messages, model) ::= <<
             $elseif(model.list)$
               <div class="col-md-12">
                 $renderTableSpa(converter, messages, model)$
-                <!-- <sky-ajax-table id="theAjaxContent" url="/Todos" link-to="/Todos/Lists/{lid}/Todos" identifier="lid" request-url="/Todos" name-property="title"></sky-ajax-table>-->
               </div>
             $else$
               <div class="col-md-12">
@@ -48,12 +46,6 @@ mainContentSpa(user, converter, messages, model) ::= <<
         </div>
       </div>
       
-      <div class="row">
-        <div class="col-md-12" id="content">
-<!--          <sky-ajax-get url="/Todos/Lists" link-to="/Todos/Lists/{lid}/Todos" identifier="lid" request-url="/Todos"></sky-ajax-get><br>-->
-        </div>
-      </div>
-
     </div>
   </div>
     

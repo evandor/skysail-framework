@@ -25,7 +25,7 @@ public class TodoApplication extends SkysailApplication implements ApplicationPr
 
     public TodoApplication() {
         super(APP_NAME);
-        addToAppContext(ApplicationContextId.IMG, "/static/img/silk/page_link.png");
+        addToAppContext(ApplicationContextId.IMG, "/static/img/silk/tag_yellow.png");
     }
 
     @Reference(dynamic = true, multiple = false, optional = false, target = "(name=TodosRepository)")

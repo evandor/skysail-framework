@@ -9,6 +9,7 @@ import java.util.Date;
 
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
+import org.restlet.resource.ResourceException;
 
 import de.twenty11.skysail.server.core.restlet.ResourceContextId;
 
@@ -16,6 +17,11 @@ public class PostListResource extends PostEntityServerResource<TodoList> {
 
     public PostListResource() {
         addToContext(ResourceContextId.LINK_TITLE, "create new List");
+    }
+    
+    @Override
+    protected void doInit() throws ResourceException {
+        getResourceContext().addDisabledAjaxNavigation("Todo-Lists", ListsResource.class);
     }
     
     @Override

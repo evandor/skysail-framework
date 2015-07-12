@@ -101,14 +101,6 @@ handleInputField(data, field, messages,i,autofocus) ::= <<
             $renderDescription(field,converter)$
           </div>
         </div>
-      $elseif(field.textareaInputType)$
-        <div class='form-group'>
-          <label for='$field.name$' class='col-sm-2 control-label' style="text-align: left;">$helpmessage(messages, field.nameKey)$ $if(converter.edit)$<a href='/i18n/messages/$data.entity.entity.class.name$.$field.name$/'><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>$endif$</label>
-          <div class='col-sm-10'>
-            <textarea class='form-control' rows=3 name='$field.name$' id='$field.name$' tabindex="$i$" $autofocus$>$data.(field.name)$</textarea>
-            $renderDescription(field,converter)$
-          </div>
-        </div>
       $elseif(field.markdownEditorInputType)$
         <div class='form-group'>
           <label for='$field.name$' class='col-sm-2 control-label' style="text-align: left;">$helpmessage(messages, field.nameKey)$  $if(converter.edit)$<a href='/i18n/messages/$data.entity.entity.class.name$.$field.name$/'><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>$endif$</label>
@@ -160,14 +152,15 @@ handleInputField(data, field, messages,i,autofocus) ::= <<
           </div>
         </div>  
       $else$
-        <sky-form-$field.inputType$ 
+        <sky-form-text 
+            type="$field.inputType$"
         	name="$field.name$" 
         	data="$data.(field.name)$"
         	placeholder="$helpmessage(messages, field.placeholderKey)$"
         	description="xxx"
         	tabindex="$i$"
         	label="$helpmessage(messages, field.nameKey)$">
-        </sky-form-$field.inputType$>
+        </sky-form-text>
       $endif$    
   $endif$    
 >>

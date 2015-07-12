@@ -24,6 +24,7 @@ public class GetSpacesResourceTest extends WikiResourceTestBase {
     }
 
     @Test
+    @Ignore
     public void retrieves_owners_entity() {
         Space space = RepositoryHelper.createTestSpace("admin");
         resource.getRequestAttributes().put("id", space.getId());

@@ -52,6 +52,9 @@ public class TodoSummary implements Serializable, Identifiable {
     @Submit
     private Status status;
 
+    @Field(type = InputType.READONLY)
+    private Integer views;
+
     public TodoSummary(Todo todo) {
         this.id = todo.getId();
         this.due = todo.getDue();
@@ -59,7 +62,7 @@ public class TodoSummary implements Serializable, Identifiable {
         this.startDate = todo.getStartDate();
         this.status = todo.getStatus();
         this.title = todo.getTitle();
-        
+        this.views = todo.getViews();
     }
 
 }

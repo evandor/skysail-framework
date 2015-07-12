@@ -1,13 +1,11 @@
 package io.skysail.server.restlet.resources.test;
 
-import static org.hamcrest.Matchers.equalTo;
-import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.assertThat;
-import io.skysail.server.restlet.resources.WebComponentCall;
+import io.skysail.server.restlet.resources.*;
 import io.skysail.server.restlet.resources.WebComponentCall.WebComponentCallBuilder;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.*;
 
 public class WebComponentCallTest {
 
@@ -29,6 +27,13 @@ public class WebComponentCallTest {
         WebComponentCall call = builder.build();
         assertThat(call.getHtml(), is(
                 equalTo("<sky-ajax-get url=\"uri\" link-to=\"linkTarget\" identifier=\"identifier\" request-url=\"requestUrl\" ></sky-ajax-get>")));
+    }
+
+    @Test
+    public void creates_proper_html_with_glyph() throws Exception {
+        WebComponentCall call = builder.glyphicon("glyph").build();
+        assertThat(call.getHtml(), is(
+                equalTo("<sky-ajax-get url=\"uri\" link-to=\"linkTarget\" identifier=\"identifier\" glyphicon=\"glyph\" request-url=\"requestUrl\" ></sky-ajax-get>")));
     }
 
     @Test

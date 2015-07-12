@@ -3,7 +3,7 @@ package io.skysail.server.app.todos.lists.test;
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.assertThat;
 import io.skysail.api.responses.ConstraintViolationsResponse;
-import io.skysail.server.app.todos.*;
+import io.skysail.server.app.todos.TodoApplication;
 import io.skysail.server.app.todos.lists.*;
 import io.skysail.server.app.todos.repo.TodosRepository;
 import io.skysail.server.testsupport.PostResourceTest;
@@ -16,7 +16,7 @@ import org.mockito.*;
 import org.restlet.data.*;
 import org.restlet.engine.resource.VariantInfo;
 
-public class PostListResourceTest extends PostResourceTest {
+public class PostListResourceAsHtmlTest extends PostResourceTest {
 
     @Spy
     private PostListResource resource;
@@ -44,22 +44,9 @@ public class PostListResourceTest extends PostResourceTest {
     }
 
     @Test
-    public void empty_json_request_yields_validation_failure() {
-        ConstraintViolationsResponse<?> post = (ConstraintViolationsResponse<?>) resource.post(new TodoList(), new VariantInfo(MediaType.APPLICATION_JSON));
-        assertValidationFailure(post, "name", "may not be null");
-    }
-
-    @Test
     public void valid_form_data_yields_new_entity() {
         form.add("name", "list1");
         resource.post(form, new VariantInfo(MediaType.TEXT_HTML));
-        assertThat(response.getStatus(),is(equalTo(Status.SUCCESS_CREATED)));
-    }
-
-    @Test
-    public void valid_data_yields_new_entity() {
-        TodoList newTodoList = new TodoList("jsonList1");
-        resource.post(newTodoList, new VariantInfo(MediaType.APPLICATION_JSON));
         assertThat(response.getStatus(),is(equalTo(Status.SUCCESS_CREATED)));
     }
 

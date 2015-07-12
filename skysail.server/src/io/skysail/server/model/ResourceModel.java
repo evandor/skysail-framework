@@ -3,45 +3,24 @@ package io.skysail.server.model;
 import io.skysail.api.domain.Identifiable;
 import io.skysail.api.favorites.FavoritesService;
 import io.skysail.api.links.Link;
-import io.skysail.api.responses.ConstraintViolationDetails;
-import io.skysail.api.responses.ConstraintViolationsResponse;
-import io.skysail.api.responses.EntityServerResponse;
-import io.skysail.api.responses.FormResponse;
-import io.skysail.api.responses.ListServerResponse;
-import io.skysail.api.responses.SkysailResponse;
-import io.skysail.server.restlet.resources.ListServerResource;
-import io.skysail.server.restlet.resources.PostEntityServerResource;
-import io.skysail.server.restlet.resources.PutEntityServerResource;
-import io.skysail.server.restlet.resources.SkysailServerResource;
-import io.skysail.server.utils.HeadersUtils;
-import io.skysail.server.utils.ResourceUtils;
+import io.skysail.api.responses.*;
+import io.skysail.server.restlet.resources.*;
+import io.skysail.server.utils.*;
 
 import java.text.DateFormat;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Locale;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
-import lombok.Getter;
-import lombok.ToString;
+import lombok.*;
 import lombok.extern.slf4j.Slf4j;
 
 import org.apache.commons.lang.StringUtils;
-import org.restlet.data.Header;
-import org.restlet.data.Language;
-import org.restlet.data.MediaType;
-import org.restlet.data.Preference;
-import org.restlet.data.Status;
+import org.restlet.data.*;
 import org.restlet.engine.resource.VariantInfo;
 import org.restlet.representation.Variant;
 import org.restlet.util.Series;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.databind.*;
 
 import de.twenty11.skysail.server.core.FormField;
 import de.twenty11.skysail.server.core.restlet.ResourceContextId;
@@ -99,16 +78,16 @@ public class ResourceModel<R extends SkysailServerResource<T>, T> {
         this(resource, response, new VariantInfo(MediaType.TEXT_HTML));
     }
 
-    public ResourceModel(R resource, SkysailResponse<?> source, Variant target) {
+    public ResourceModel(R resource, SkysailResponse<?> skysailResponse, Variant target) {
 
         mapper.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false);
         mapper.configure(SerializationFeature.FAIL_ON_EMPTY_BEANS, false);
         mapper.setDateFormat(DateFormat.getDateInstance(DateFormat.LONG, determineLocale(resource)));
 
-        rawData = getData(source);
+        rawData = getData(skysailResponse);
 
         this.resource = resource;
-        this.response = source;
+        this.response = skysailResponse;
         this.target = new STTargetWrapper(target);
 
         parameterizedType = resource.getParameterizedType();
@@ -144,7 +123,7 @@ public class ResourceModel<R extends SkysailServerResource<T>, T> {
     }
 
     private void determineFormfields() {
-        FieldFactory fieldFactory = FieldsFactory.getFactory(response.getEntity(), resource);
+        FieldFactory fieldFactory = FieldsFactory.getFactory(response, resource);
         try {
             fields = fieldFactory.determineFrom(resource);
         } catch (Exception e) {

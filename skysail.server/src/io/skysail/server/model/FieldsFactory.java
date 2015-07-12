@@ -7,18 +7,18 @@ import java.util.List;
 
 public class FieldsFactory {
 
-    public static FieldFactory getFactory(Object source, SkysailServerResource<?> resource) {
-        if (source == null) {
+    public static FieldFactory getFactory(SkysailResponse<?> response, SkysailServerResource<?> resource) {
+        if (response.getEntity() == null) {
             return new NoFieldFactory();
         }
-        if (source instanceof List) {
+        if (response.getEntity() instanceof List) {
             return new DefaultListFieldFactory();
-        } else if (source instanceof ConstraintViolationsResponse) {
-            return entityFactory((ConstraintViolationsResponse<?>) source);
-        } else if (source instanceof FormResponse) {
-            return entityFactoryForForm((FormResponse<?>) source);
+        } else if (response instanceof ConstraintViolationsResponse) {
+            return entityFactory((ConstraintViolationsResponse<?>) response);
+        } else if (response instanceof FormResponse) {
+            return entityFactoryForForm((FormResponse<?>) response);
         } else {
-            return new DefaultEntityFieldFactory(source.getClass());
+            return new DefaultEntityFieldFactory(response.getEntity().getClass());
         }
     }
 

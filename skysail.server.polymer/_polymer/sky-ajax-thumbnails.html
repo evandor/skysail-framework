@@ -1,7 +1,7 @@
 <link rel="import" href="/_polymer/bower_components/polymer/polymer.html">
 <link rel="import" href="/_polymer/bower_components/iron-ajax/iron-ajax.html">
 
-<dom-module id="sky-ajax-table1">
+<dom-module id="sky-ajax-thumbnails">
 
  <style>
     .list-group-item {
@@ -17,25 +17,27 @@
         on-response="hResponse"
         last-response="{{data}}"
         debounce-duration="300" />
-    <table class="table table-striped">
-      <tr>
-        <template is="dom-repeat" items="{{_toArray2(columnNames)}}">
-          <th>{{item.value}}</th>
-        </template>
-      </tr>
+        
+    <div class="row">
       <template is="dom-repeat" items="{{data}}" as="row">
-      <tr>
-        <template is="dom-repeat" items="{{_toArray(row,columns)}}" as="column">
-          <td><sky-html html="{{column.value}}"></sky-html></td>
-        </template>
-      </tr>
+        <div class="col-sm-6 col-md-4">
+          <div class="thumbnail">
+            <img data-src="holder.js/100%x200" alt="Generic placeholder thumbnail">
+            <div class="caption">
+              <h3><sky-html html="{{row.url}}"></sky-html></h3>
+              <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+              <!-- <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p> -->
+            </div>
+          </div>
+        </div>
       </template>
-    </table>
+    </div>
+    
   </template>
 
   <script>
     Polymer({
-      is: 'sky-ajax-table1',
+      is: 'sky-ajax-thumbnails',
       properties: {
     	  url: {
     		  type: String,
@@ -87,42 +89,10 @@
      	this.$.ajaxTable.url=this.url;
     	//this.$.ajaxTable.generateRequest();
       },
-      hResponse: function(event, request) {
-          console.log("sky-ajax-table1#onResponse " + request.xhr.getResponseHeader('X-Resource-Description'));
-          document.getElementById("resourceDescription").innerHTML = request.xhr.getResponseHeader('X-Resource-Description');
-      },
-      created: function() {
-  	    //console.log(this.localName + '#' + this.id + ' was created');
-  	  },
-  	  detached: function() {
-  	    console.log(this.localName + '#' + this.id + ' was detached');
-  	  },
   	  attributeChanged: function(name, type) {
   	    console.log(this.localName + '#' + this.id + ' attribute ' + name +
   	      ' was changed to ' + this.getAttribute(name));
-  	  },
-  	  _urlChanged: function(newValue, oldValue) {
-        this.$.ajaxTable.url=newValue;
-        console.log("value url changed from " + oldValue + " to " + newValue);
-  	  },
-  	  _namePropertyChanged:function(newValue, oldValue) {
-        this.$.ajaxTable.nameProperty=newValue;
-        console.log("nameProperty changed from " + oldValue + " to " + newValue);
-  	  },
-  	  _toArray: function(obj, columns) {
-        return columns.map(function(key) {
-          return {name: key, value: obj[key]};
-        });
-      },
-      _toArray2: function(obj) {
-          return Object.keys(obj).map(function(key) {
-            return {name: key, value: obj[key]};
-          });
-      },
-      unescape: function(value) {
-    	  this.innerHTML = "<a href='#'>heise</a>";
-	    return value;
-	  }
+  	  }
     });
   </script>
 

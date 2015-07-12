@@ -85,6 +85,10 @@ public class Todo implements Serializable, Identifiable {
     @ListView(hide=true)
     private String owner;
 
+    @Field(type = InputType.READONLY)
+    //@ListView(hide=true)
+    private Integer views;
+    
     // assigned to,
     // related to: account, ...
     

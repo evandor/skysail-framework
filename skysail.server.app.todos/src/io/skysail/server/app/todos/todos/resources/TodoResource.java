@@ -26,7 +26,10 @@ public class TodoResource extends EntityServerResource<Todo> {
 
     @Override
     public Todo getEntity() {
-        return app.getRepository().getById(Todo.class, id);
+        Todo todo = app.getRepository().getById(Todo.class, id);
+        todo.setViews(todo.getViews() + 1);
+        app.getRepository().update(todo.getId(), todo);
+        return todo;
     }
 
     @Override

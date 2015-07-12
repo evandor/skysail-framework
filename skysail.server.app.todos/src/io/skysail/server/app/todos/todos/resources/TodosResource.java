@@ -1,8 +1,7 @@
 package io.skysail.server.app.todos.todos.resources;
 
 import io.skysail.api.links.Link;
-import io.skysail.server.app.todos.TodoApplication;
-import io.skysail.server.app.todos.TodoList;
+import io.skysail.server.app.todos.*;
 import io.skysail.server.app.todos.lists.ListsResource;
 import io.skysail.server.app.todos.todos.Todo;
 import io.skysail.server.app.todos.todos.status.Status;
@@ -10,9 +9,7 @@ import io.skysail.server.queryfilter.Filter;
 import io.skysail.server.queryfilter.pagination.Pagination;
 import io.skysail.server.restlet.resources.ListServerResource;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.function.Consumer;
 
 import org.apache.shiro.SecurityUtils;
@@ -48,7 +45,7 @@ public class TodosResource extends ListServerResource<Todo> {
     public List<Todo> getEntity() {
         Filter filter = new Filter(getRequest(), DEFAULT_FILTER_EXPRESSION);
         filter.add("owner",  SecurityUtils.getSubject().getPrincipal().toString());
-        filter.add("list", "#"+listId);
+        filter.add("list", listId);
         
         Pagination pagination = new Pagination(getRequest(), getResponse(), app.getRepository().getTodosCount(listId, filter));
         return app.getRepository().findAllTodos(filter, pagination);

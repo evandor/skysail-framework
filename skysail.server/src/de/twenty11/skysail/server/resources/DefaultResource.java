@@ -22,7 +22,7 @@ public class DefaultResource extends ListServerResource<MenuItemDescriptor> {
 
     @Override
     protected void doInit() throws ResourceException {
-       // getResourceContext().addAjaxNavigation("Skysail Applications", "", "{id}");
+       getResourceContext().addAjaxNavigation("Skysail Applications", DefaultResource.class, DefaultResource.class, "url");
     }
 
     @Override
@@ -32,15 +32,11 @@ public class DefaultResource extends ListServerResource<MenuItemDescriptor> {
         List<Link> linkheaders = menuItems.stream().map(mi -> createLinkheaderForApp(mi))
                 .sorted((l1, l2) -> l1.getTitle().compareTo(l2.getTitle())).collect(Collectors.toList());
         if (SecurityUtils.getSubject().isAuthenticated()) {
-//            linkheaders.add(new Link.Builder(SkysailRootApplication.LOGOUT_PATH + "?targetUri=/")
-//                    .relation(LinkRelation.CREATE_FORM).title("Logout").build());
+
         } else {
             linkheaders.add(new Link.Builder(SkysailRootApplication.LOGIN_PATH)
                     .relation(LinkRelation.CREATE_FORM).title("Login form").authenticationNeeded(false).build());
         }
-//        linkheaders.add(new Link.Builder("/usermanagement/registrations/")
-//                .relation(LinkRelation.CREATE_FORM).title("Register new User").authenticationNeeded(false)
-//                .build());
         return linkheaders;
     }
 

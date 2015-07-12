@@ -36,6 +36,10 @@ public class PutTodoResource extends PutEntityServerResource<Todo> {
         copyProperties(original,entity);
         original.setModified(new Date());
         original.setUrgency(Ranker.calcUrgency(original));
+        Integer views = original.getViews();
+        if (views == null) {
+            original.setViews(1);
+        }
         app.getRepository().update(listId, original);
         return new SkysailResponse<>();
     }

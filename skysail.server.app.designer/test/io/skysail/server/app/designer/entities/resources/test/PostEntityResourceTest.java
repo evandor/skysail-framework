@@ -1,26 +1,22 @@
 package io.skysail.server.app.designer.entities.resources.test;
 
-import static org.hamcrest.CoreMatchers.equalTo;
-import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.assertThat;
 import io.skysail.server.app.designer.DesignerApplication;
 import io.skysail.server.app.designer.application.Application;
 import io.skysail.server.app.designer.entities.resources.PostEntityResource;
 import io.skysail.server.app.designer.repo.DesignerRepository;
-import io.skysail.server.testsupport.PostResourceTest;
+import io.skysail.server.testsupport.ResourceTestBase;
 
 import java.util.HashMap;
 
 import org.apache.shiro.subject.SimplePrincipalMap;
-import org.junit.Before;
-import org.junit.Test;
-import org.mockito.Mockito;
-import org.mockito.Spy;
-import org.restlet.data.MediaType;
-import org.restlet.data.Status;
+import org.junit.*;
+import org.mockito.*;
+import org.restlet.data.*;
 import org.restlet.engine.resource.VariantInfo;
 
-public class PostEntityResourceTest extends PostResourceTest {
+public class PostEntityResourceTest extends ResourceTestBase {
 
    
     @Spy

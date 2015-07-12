@@ -7,7 +7,7 @@ import io.skysail.server.app.designer.application.Application;
 import io.skysail.server.app.designer.entities.Entity;
 import io.skysail.server.app.designer.fields.resources.PostFieldResource;
 import io.skysail.server.app.designer.repo.DesignerRepository;
-import io.skysail.server.testsupport.PostResourceTest;
+import io.skysail.server.testsupport.ResourceTestBase;
 
 import java.util.HashMap;
 
@@ -17,7 +17,7 @@ import org.mockito.*;
 import org.restlet.data.*;
 import org.restlet.engine.resource.VariantInfo;
 
-public class PostFieldResourceTest extends PostResourceTest {
+public class PostFieldResourceTest extends ResourceTestBase {
 
    
     @Spy

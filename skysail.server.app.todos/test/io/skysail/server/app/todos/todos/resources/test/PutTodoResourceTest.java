@@ -7,7 +7,7 @@ import io.skysail.server.app.todos.lists.UniquePerOwnerValidator;
 import io.skysail.server.app.todos.repo.TodosRepository;
 import io.skysail.server.app.todos.todos.*;
 import io.skysail.server.app.todos.todos.resources.PutTodoResource;
-import io.skysail.server.testsupport.PutResourceTest;
+import io.skysail.server.testsupport.ResourceTestBase;
 
 import java.util.HashMap;
 
@@ -17,7 +17,7 @@ import org.mockito.*;
 import org.restlet.data.*;
 import org.restlet.engine.resource.VariantInfo;
 
-public class PutTodoResourceTest extends PutResourceTest {
+public class PutTodoResourceTest extends ResourceTestBase {
 
     @Spy
     private PutTodoResource resource;

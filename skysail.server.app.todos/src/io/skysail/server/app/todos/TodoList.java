@@ -33,12 +33,10 @@ public class TodoList implements Serializable, Identifiable {
     @Field
     @NotNull
     @Size(min = 2)
-    //@Postfix(methodName = "todosCount")
     @ListView(link = TodosResource.class, truncate = 20)
     private String name;
     
     @Field(type=InputType.READONLY)
-    //@ListView(hide = true)
     private Long todosCount;
 
     @Field(type = InputType.TEXTAREA)

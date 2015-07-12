@@ -1,5 +1,9 @@
 package io.skysail.server.testsupport;
 
+import static org.hamcrest.CoreMatchers.*;
+import static org.hamcrest.Matchers.containsString;
+import static org.junit.Assert.assertThat;
+import io.skysail.api.responses.*;
 import io.skysail.api.validation.*;
 import io.skysail.server.app.SkysailApplication;
 
@@ -20,6 +24,8 @@ import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
 import org.restlet.*;
 import org.restlet.data.*;
+import org.restlet.engine.resource.VariantInfo;
+import org.restlet.representation.Variant;
 import org.restlet.resource.Resource;
 
 import de.twenty11.skysail.server.services.*;
@@ -29,6 +35,9 @@ import de.twenty11.skysail.server.um.domain.SkysailUser;
 public class ResourceTestBase {
 
     protected static final String ADMIN_DEFAUTL_PASSWORD = "$2a$12$52R8v2QH3vQRz8NcdtOm5.HhE5tFPZ0T/.MpfUa9rBzOugK.btAHS";
+    
+    protected static final Variant HTML_VARIANT = new VariantInfo(MediaType.TEXT_HTML);
+    protected static final Variant JSON_VARIANT = new VariantInfo(MediaType.APPLICATION_JSON);
 
     @Rule
     public ExpectedException thrown = ExpectedException.none();
@@ -181,5 +190,16 @@ public class ResourceTestBase {
         SecureRandom random = new SecureRandom();
         return new BigInteger(130, random).toString(32);
     }
+    
+    protected void assertValidationFailure(SkysailResponse<?> post, String path, String msg) {
+        ConstraintViolationsResponse<?> skysailReponse = (ConstraintViolationsResponse<?>)post;
+        assertThat(response.getStatus(),is(equalTo(Status.CLIENT_ERROR_BAD_REQUEST)));
+        assertThat(response.getHeaders().getFirst("X-Status-Reason").getValue(),is(equalTo("Validation failed")));
+        assertThat(skysailReponse.getViolations().size(),is(1));
+        ConstraintViolationDetails violation = ((ConstraintViolationsResponse<?>)post).getViolations().iterator().next();
+        assertThat(violation.getPropertyPath(),is(containsString(path)));
+        assertThat(violation.getMessage(),is(containsString(msg)));
+    }
+
 
 }

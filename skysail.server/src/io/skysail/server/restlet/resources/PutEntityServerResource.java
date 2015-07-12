@@ -154,6 +154,22 @@ public abstract class PutEntityServerResource<T> extends SkysailServerResource<T
         return patch;
     }
 
+    @Post("json")
+    @API(desc = "generic PUT for JSON")
+    public SkysailResponse<T> put(T entity, Variant variant) {
+        Set<PerformanceTimer> perfTimer = getApplication().startPerformanceMonitoring(this.getClass().getSimpleName() + ":put");
+        log.info("Request entry point: {} @Put('json')", this.getClass().getSimpleName());
+        if (entity != null) {
+            getRequest().getAttributes().put(SKYSAIL_SERVER_RESTLET_ENTITY, entity);
+        } else {
+            log.warn("provided entity was null!");
+        }
+
+        SkysailResponse<T> put = put((Form) null, variant);
+        getApplication().stopPerformanceMonitoring(perfTimer);
+        return put;
+    }
+
     @Put("x-www-form-urlencoded:html|json")
     @API(desc = "generic PUT for x-www-form-urlencoded")
     public SkysailResponse<T> put(Form form, Variant variant) {

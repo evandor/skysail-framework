@@ -7,7 +7,7 @@ import io.skysail.server.app.designer.DesignerApplication;
 import io.skysail.server.app.designer.application.Application;
 import io.skysail.server.app.designer.application.resources.PutApplicationResource;
 import io.skysail.server.app.designer.repo.DesignerRepository;
-import io.skysail.server.testsupport.PutResourceTest;
+import io.skysail.server.testsupport.ResourceTestBase;
 
 import java.util.HashMap;
 
@@ -17,7 +17,7 @@ import org.mockito.*;
 import org.restlet.data.*;
 import org.restlet.engine.resource.VariantInfo;
 
-public class PutApplicationResourceTest extends PutResourceTest {
+public class PutApplicationResourceTest extends ResourceTestBase {
 
     @Spy
     private PutApplicationResource resource;

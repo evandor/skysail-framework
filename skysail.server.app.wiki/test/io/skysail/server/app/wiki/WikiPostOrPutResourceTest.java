@@ -1,14 +1,14 @@
 package io.skysail.server.app.wiki;
 
 import io.skysail.server.app.wiki.repository.WikiRepository;
-import io.skysail.server.testsupport.PostResourceTest;
+import io.skysail.server.testsupport.ResourceTestBase;
 
 import java.util.HashMap;
 
 import org.apache.shiro.subject.SimplePrincipalMap;
 import org.mockito.Mockito;
 
-public abstract class WikiPostOrPutResourceTest extends PostResourceTest {
+public abstract class WikiPostOrPutResourceTest extends ResourceTestBase {
 
     protected WikiRepository repo;
 

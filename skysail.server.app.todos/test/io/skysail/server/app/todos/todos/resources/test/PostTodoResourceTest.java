@@ -6,7 +6,7 @@ import io.skysail.server.app.todos.lists.UniquePerOwnerValidator;
 import io.skysail.server.app.todos.repo.TodosRepository;
 import io.skysail.server.app.todos.todos.*;
 import io.skysail.server.app.todos.todos.resources.PostTodoResource;
-import io.skysail.server.testsupport.PostResourceTest;
+import io.skysail.server.testsupport.ResourceTestBase;
 
 import java.text.SimpleDateFormat;
 import java.time.*;
@@ -18,7 +18,7 @@ import org.mockito.*;
 import org.restlet.data.MediaType;
 import org.restlet.engine.resource.VariantInfo;
 
-public class PostTodoResourceTest extends PostResourceTest {
+public class PostTodoResourceTest extends ResourceTestBase {
 
     @Spy
     private PostTodoResource resource;

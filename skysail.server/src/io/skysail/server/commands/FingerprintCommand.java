@@ -26,6 +26,13 @@ public class FingerprintCommand {
     }
 
     public void fingerprint() {
+        System.out.println("installed bundles (without version)");
+        System.out.println("===================================");
+        Arrays.stream(ctx.getBundleContext().getBundles()).forEach(b -> {
+            System.out.println(b.getSymbolicName());
+        });
+        System.out.println("installed bundles (with version)");
+        System.out.println("================================");
         Arrays.stream(ctx.getBundleContext().getBundles()).forEach(b -> {
             System.out.println(b.getSymbolicName() + "("+b.getVersion()+")");
         });

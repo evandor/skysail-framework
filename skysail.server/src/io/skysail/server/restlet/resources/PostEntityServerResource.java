@@ -164,14 +164,9 @@ public abstract class PostEntityServerResource<T> extends SkysailServerResource<
         return entity;
     }
 
-    /**
-     * 
-     * @param entity
-     * @return
-     */
     @Post("json")
     @API(desc = "generic POST for JSON")
-    public Object post(T entity, Variant variant) {
+    public SkysailResponse<T> post(T entity, Variant variant) {
         Set<PerformanceTimer> perfTimer = getApplication().startPerformanceMonitoring(this.getClass().getSimpleName() + ":post");
         log.info("Request entry point: {} @Post('json')", this.getClass().getSimpleName());
         if (entity != null) {
@@ -180,7 +175,7 @@ public abstract class PostEntityServerResource<T> extends SkysailServerResource<
             log.warn("provided entity was null!");
         }
 
-        Object post = post((Form) null, variant);
+        SkysailResponse<T> post = post((Form) null, variant);
         getApplication().stopPerformanceMonitoring(perfTimer);
         return post;
     }

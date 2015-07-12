@@ -8,7 +8,7 @@ import io.skysail.server.testsupport.ResourceTestBase;
 
 import org.restlet.data.Status;
 
-public class ListResourceTest extends ResourceTestBase {
+public abstract class ListResourceTest extends ResourceTestBase {
 
     protected void assertResult(SkysailResponse<TodoList> result, String name) {
         TodoList entity = result.getEntity();

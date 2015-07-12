@@ -128,6 +128,7 @@ if (projectNames.remove('')) {
   projectNames += "skysail.server.peers.adminconfig"
   projectNames += "skysail.server.performance.etm"
   projectNames += "skysail.server.plugins"
+  projectNames += "skysail.server.polymer"
   projectNames += "skysail.server.queryfilter"
   projectNames += "skysail.server.static"
   projectNames += "skysail.server.test"

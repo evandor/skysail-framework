@@ -6,15 +6,15 @@ Include-Resource: resources, templates=src;recursive:=true;filter:=*.st|*.stg
 -buildpath:  \
 	biz.aQute.bnd.annotation,\
 	skysail.api;version=${skysail.api.version},\
-	skysail.api.um;version=latest,\
+	skysail.api.um;version=${skysail.api.um.version},\
 	skysail.api.favorites;version=${skysail.api.favorites.version},\
 	skysail.api.text;version=latest,\
 	skysail.api.documentation;version=${skysail.api.documentation.version},\
+	skysail.api.validation;version=latest,\
 	skysail.server;version=latest,\
 	skysail.server.codegen;version=latest,\
 	skysail.server.db;version=latest,\
 	skysail.server.testsupport;version=latest,\
-	skysail.api.validation;version=latest,\
 	skysail.server.app.designer;version=latest,\
 	skysail.server.queryfilter;version=latest,\
 	slf4j.api;version=1.7.7,\

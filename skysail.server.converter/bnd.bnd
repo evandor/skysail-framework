@@ -18,7 +18,7 @@ Include-Resource: templates=templates,webapp=webapp
 	skysail.api.favorites;version=${skysail.api.favorites.version},\
 	skysail.api.peers;version=latest,\
 	skysail.api.text;version=latest,\
-	skysail.api.um;version=latest,\
+	skysail.api.um;version=${skysail.api.um.version},\
 	skysail.api.validation;version=latest,\
 	skysail.server;version=latest,\
 	skysail.server.testsupport;version=latest,\

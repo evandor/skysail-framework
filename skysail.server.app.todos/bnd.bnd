@@ -12,7 +12,7 @@ Include-Resource: resources, templates=src;recursive:=true;filter:=*.st|*.stg
 	skysail.api.documentation;version=${skysail.api.documentation.version},\
 	skysail.api.favorites;version=${skysail.api.favorites.version},\
 	skysail.api.peers;version=latest,\
-	skysail.api.um;version=latest,\
+	skysail.api.um;version=${skysail.api.um.version},\
 	skysail.api.validation;version=latest,\
 	skysail.server;version=latest,\
 	skysail.server.db;version=latest,\

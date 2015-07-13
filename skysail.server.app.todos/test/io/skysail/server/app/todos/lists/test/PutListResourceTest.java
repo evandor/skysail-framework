@@ -20,6 +20,9 @@ public class PutListResourceTest extends ListResourceTest {
     @Spy
     private PutListResource resource;
     
+    @Spy
+    protected PostListResource postResource;
+    
     private TodosRepository repo;
 
     private TodoList aList;
@@ -42,6 +45,8 @@ public class PutListResourceTest extends ListResourceTest {
         
         new UniquePerOwnerValidator().setDbService(testDb);
         
+        super.setUp(Mockito.mock(TodoApplication.class), postResource);
+
         aList = createList();
     }
 
@@ -70,7 +75,8 @@ public class PutListResourceTest extends ListResourceTest {
     
     @Test
     public void list_can_be_updated() {
-        form.add("name", "list3a");
+        form.add("name", "updated_list");
+        form.add("desc", "description");
         form.add("id", aList.getId());
         resource.getRequestAttributes().put(TodoApplication.LIST_ID, aList.getId());
         resource.init(null, request, response);
@@ -81,15 +87,24 @@ public class PutListResourceTest extends ListResourceTest {
         
         assertThat(response.getStatus(),is(equalTo(Status.SUCCESS_OK)));
         assertThat(listFromDb.getModified(), is(notNullValue()));
-        assertThat(listFromDb.getName(), is(equalTo("list3a")));
+        assertThat(listFromDb.getCreated(), is(not(nullValue())));
+        assertThat(listFromDb.getName(), is(equalTo("updated_list")));
+        assertThat(listFromDb.getDesc(), is(equalTo("desc")));
     }
 
     private TodoList createList() {
-        aList = new TodoList();
+        
+        
+        TodoList aList = new TodoList();
         aList.setName("list_" + randomString());
-        String id = TodosRepository.add(aList).toString();
-        aList.setId(id);
-        return aList;
+        SkysailResponse<TodoList> post = postResource.post(aList,JSON_VARIANT);
+        return post.getEntity();
+        
+//        aList = aList;
+//        aList.setName("list_" + randomString());
+//        String id = TodosRepository.add(aList).toString();
+//        aList.setId(id);
+//        return aList;
     }
 
 }

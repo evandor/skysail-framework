@@ -8,9 +8,11 @@ import io.skysail.server.utils.LinkUtils;
 import java.util.*;
 
 import lombok.*;
+import lombok.extern.slf4j.Slf4j;
 
 @Getter
 @ToString(of = "application")
+@Slf4j
 public class ResourceContext {
 
     private List<WebComponentCall> navItems = new ArrayList<>();
@@ -23,6 +25,11 @@ public class ResourceContext {
     }
 
     public void addAjaxNavigation(String title, Class<? extends SkysailServerResource<?>> cls, Class<? extends SkysailServerResource<?>> targetClass, String identifier) {
+        if (application == null) {
+            log.warn("no application available for ResourceContext#addAjaxNavigation");
+            return;
+        }
+        
         Link ajaxTarget = LinkUtils.fromResource(application, cls);
         Link linkTarget = LinkUtils.fromResource(application, targetClass);
         
@@ -38,6 +45,11 @@ public class ResourceContext {
     }
 
     public void addDisabledAjaxNavigation(String title, Class<? extends SkysailServerResource<?>> cls) {
+        if (application == null) {
+            log.warn("no application available for ResourceContext#addAjaxNavigation");
+            return;
+        }
+
         Link ajaxTarget = LinkUtils.fromResource(application, cls);
 
         WebComponentCall call = WebComponentCall.builder()
@@ -51,6 +63,11 @@ public class ResourceContext {
     }
 
     public WebComponentCallBuilder getAjaxBuilder(String title, Class<? extends SkysailServerResource<?>> cls, Class<? extends SkysailServerResource<?>> targetClass) {
+        if (application == null) {
+            log.warn("no application available for ResourceContext#addAjaxNavigation");
+            return null;
+        }
+
         Link ajaxTarget = LinkUtils.fromResource(application, cls);
         Link linkTarget = LinkUtils.fromResource(application, targetClass);
         

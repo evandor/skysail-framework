@@ -98,7 +98,7 @@
 	osgi.cmpn;version='[5.0.0,5.0.1)',\
 	osgi.enterprise;version='[4.2.0,4.2.1)',\
 	skysail.api;version=${skysail.api.version},\
-	skysail.api.um;version=latest,\
+	skysail.api.um;version=${skysail.api.um.version},\
 	skysail.api.peers;version=latest,\
 	skysail.api.text;version=latest,\
 	skysail.api.documentation;version=${skysail.api.documentation.version},\
@@ -116,9 +116,9 @@
 	skysail.server.app.wiki;version=latest,\
 	skysail.server.db;version=latest,\
 	skysail.server.documentation;version=latest,\
+	skysail.server.ext.favorites.preferences;version=latest,\
 	skysail.server.ext.mail;version=latest,\
 	skysail.server.ext.sse;version=latest,\
-	skysail.server.ext.favorites.preferences;version=latest,\
 	skysail.server.http;version=latest,\
 	skysail.server.performance.etm;version=${skysail.server.performance.etm.version},\
 	skysail.server.peers.adminconfig;version=latest,\
@@ -126,14 +126,12 @@
 	skysail.server.plugins;version=latest,\
 	skysail.server.queryfilter;version=latest,\
 	skysail.server.static;version=latest,\
-	skysail.server.text.asciidoc;version=latest,\
 	skysail.server.text.markdown;version=latest,\
 	skysail.server.text.store.bundleresource;version=latest,\
 	skysail.server.text.store.git;version=latest,\
 	skysail.server.um.simple;version=latest,\
 	slf4j.api;version='[1.7.7,1.7.8)',\
 	de.twentyeleven.skysail.org.antlr.stringtemplate-osgi;version=4.0.8,\
-	org.jruby.jruby;version=1.7.19,\
 	com.beust.jcommander;version=1.47.0,\
 	stax2-api;version=3.1.4,\
 	com.fasterxml.jackson.module.jackson-module-jaxb-annotations;version=2.5.1,\

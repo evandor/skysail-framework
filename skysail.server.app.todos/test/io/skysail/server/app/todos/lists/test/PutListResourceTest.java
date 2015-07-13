@@ -58,7 +58,6 @@ public class PutListResourceTest extends ListResourceTest {
     }
 
     @Test
-    @Ignore
     public void empty_json_data_yields_validation_failure() {
         resource.getRequestAttributes().put(TodoApplication.LIST_ID, aList.getId());
         resource.init(null, request, response);

@@ -1,41 +1,59 @@
 package io.skysail.server.testsupport;
 
-import static org.hamcrest.CoreMatchers.*;
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.Matchers.containsString;
 import static org.junit.Assert.assertThat;
-import io.skysail.api.responses.*;
-import io.skysail.api.validation.*;
+import io.skysail.api.responses.ConstraintViolationDetails;
+import io.skysail.api.responses.ConstraintViolationsResponse;
+import io.skysail.api.responses.SkysailResponse;
+import io.skysail.api.validation.DefaultValidationImpl;
+import io.skysail.api.validation.ValidatorService;
 import io.skysail.server.app.SkysailApplication;
 
 import java.math.BigInteger;
 import java.security.SecureRandom;
 import java.util.Locale;
-import java.util.concurrent.*;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentMap;
 import java.util.concurrent.atomic.AtomicReference;
 
-import org.apache.shiro.*;
+import lombok.Getter;
+
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.UnavailableSecurityManagerException;
 import org.apache.shiro.subject.Subject;
 import org.apache.shiro.subject.support.SubjectThreadState;
-import org.apache.shiro.util.*;
-import org.junit.*;
+import org.apache.shiro.util.LifecycleUtils;
+import org.apache.shiro.util.ThreadState;
+import org.junit.After;
+import org.junit.AfterClass;
+import org.junit.BeforeClass;
+import org.junit.Rule;
 import org.junit.rules.ExpectedException;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
-import org.restlet.*;
-import org.restlet.data.*;
+import org.restlet.Request;
+import org.restlet.Response;
+import org.restlet.data.ClientInfo;
+import org.restlet.data.Form;
+import org.restlet.data.MediaType;
+import org.restlet.data.Reference;
+import org.restlet.data.Status;
 import org.restlet.engine.resource.VariantInfo;
 import org.restlet.representation.Variant;
 import org.restlet.resource.Resource;
 
-import de.twenty11.skysail.server.services.*;
+import de.twenty11.skysail.server.services.EncryptorService;
+import de.twenty11.skysail.server.services.UserManager;
 import de.twenty11.skysail.server.um.domain.SkysailUser;
 
 @RunWith(MockitoJUnitRunner.class)
 public class ResourceTestBase {
 
     protected static final String ADMIN_DEFAUTL_PASSWORD = "$2a$12$52R8v2QH3vQRz8NcdtOm5.HhE5tFPZ0T/.MpfUa9rBzOugK.btAHS";
-    
+
     protected static final Variant HTML_VARIANT = new VariantInfo(MediaType.TEXT_HTML);
     protected static final Variant JSON_VARIANT = new VariantInfo(MediaType.APPLICATION_JSON);
 
@@ -44,7 +62,9 @@ public class ResourceTestBase {
 
     protected static ThreadState subjectThreadState;
 
-    protected ConcurrentMap<String, Object> attributes;
+    @Getter
+    private ConcurrentMap<String, Object> attributes;
+
     protected Request request;
     protected Response response;
     protected Form form;
@@ -67,12 +87,26 @@ public class ResourceTestBase {
         testDb = new TestDb();
         testDb.startDb();
         testDb.activate();
-        
+
         Locale englishLocale = Locale.ENGLISH;
         Locale.setDefault(englishLocale);
     }
 
-    public void setUp(SkysailApplication application, Resource resource) throws Exception {
+    public void setUp(SkysailApplication application) {
+        this.application = application;
+        
+        validatorServiceRef = new AtomicReference<>();
+        encryptorServiceRef = new AtomicReference<>();
+
+        ValidatorService validatorService = new DefaultValidationImpl();
+        validatorServiceRef.set(validatorService);
+
+        Mockito.doReturn(validatorServiceRef).when(application).getValidatorService();
+        Mockito.doReturn(encryptorServiceRef).when(application).getEncryptorService();
+
+    }
+
+    public void setUp(Resource resource) throws Exception {
         attributes = new ConcurrentHashMap<String, Object>();
         request = Mockito.mock(Request.class);
         Mockito.when(request.getAttributes()).thenReturn(attributes);
@@ -103,17 +137,13 @@ public class ResourceTestBase {
         subjectUnderTest = Mockito.mock(Subject.class);
         Mockito.when(subjectUnderTest.isAuthenticated()).thenReturn(true);
 
-        validatorServiceRef = new AtomicReference<>();
-        encryptorServiceRef = new AtomicReference<>();
+       
 
-        ValidatorService validatorService = new DefaultValidationImpl();
-        validatorServiceRef.set(validatorService);
-
-        this.application = application;
-
-        Mockito.doReturn(validatorServiceRef).when(application).getValidatorService();
-        Mockito.doReturn(encryptorServiceRef).when(application).getEncryptorService();
-
+        // this.application = application;
+        //
+        // Mockito.doReturn(validatorServiceRef).when(application).getValidatorService();
+        // Mockito.doReturn(encryptorServiceRef).when(application).getEncryptorService();
+        //
         Mockito.doReturn(application).when(resource).getApplication();
         Mockito.doReturn(query).when(resource).getQuery();
 
@@ -139,7 +169,6 @@ public class ResourceTestBase {
             // mock Subject instances)
         }
         setSecurityManager(null);
-        // testDb.
     }
 
     /**
@@ -190,16 +219,16 @@ public class ResourceTestBase {
         SecureRandom random = new SecureRandom();
         return new BigInteger(130, random).toString(32);
     }
-    
-    protected void assertValidationFailure(SkysailResponse<?> post, String path, String msg) {
-        ConstraintViolationsResponse<?> skysailReponse = (ConstraintViolationsResponse<?>)post;
-        assertThat(response.getStatus(),is(equalTo(Status.CLIENT_ERROR_BAD_REQUEST)));
-        assertThat(response.getHeaders().getFirst("X-Status-Reason").getValue(),is(equalTo("Validation failed")));
-        assertThat(skysailReponse.getViolations().size(),is(1));
-        ConstraintViolationDetails violation = ((ConstraintViolationsResponse<?>)post).getViolations().iterator().next();
-        assertThat(violation.getPropertyPath(),is(containsString(path)));
-        assertThat(violation.getMessage(),is(containsString(msg)));
-    }
 
+    protected void assertValidationFailure(SkysailResponse<?> post, String path, String msg) {
+        ConstraintViolationsResponse<?> skysailReponse = (ConstraintViolationsResponse<?>) post;
+        assertThat(response.getStatus(), is(equalTo(Status.CLIENT_ERROR_BAD_REQUEST)));
+        assertThat(response.getHeaders().getFirst("X-Status-Reason").getValue(), is(equalTo("Validation failed")));
+        assertThat(skysailReponse.getViolations().size(), is(1));
+        ConstraintViolationDetails violation = ((ConstraintViolationsResponse<?>) post).getViolations().iterator()
+                .next();
+        assertThat(violation.getPropertyPath(), is(containsString(path)));
+        assertThat(violation.getMessage(), is(containsString(msg)));
+    }
 
 }

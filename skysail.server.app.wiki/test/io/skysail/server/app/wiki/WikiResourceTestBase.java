@@ -15,7 +15,8 @@ public abstract class WikiResourceTestBase extends ResourceTestBase {
     protected WikiRepository repo;
 
     public void setUp(SkysailServerResource<?> resource) throws Exception {
-        super.setUp(Mockito.mock(WikiApplication.class), resource);
+        super.setUp(Mockito.mock(WikiApplication.class));
+        super.setUp(resource);
 
         repo = new WikiRepository();
         repo.setDbService(testDb);

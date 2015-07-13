@@ -1,15 +1,22 @@
 package io.skysail.server.app.wiki.spaces.resources.test;
 
-import static org.hamcrest.CoreMatchers.*;
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
-import io.skysail.server.app.wiki.*;
+import io.skysail.server.app.wiki.WikiApplication;
+import io.skysail.server.app.wiki.WikiPostOrPutResourceTest;
 import io.skysail.server.app.wiki.repository.WikiRepository;
-import io.skysail.server.app.wiki.spaces.*;
+import io.skysail.server.app.wiki.spaces.Space;
+import io.skysail.server.app.wiki.spaces.UniquePerOwnerValidator;
 import io.skysail.server.app.wiki.spaces.resources.PutSpaceResource;
 
-import org.junit.*;
-import org.mockito.*;
-import org.restlet.data.*;
+import org.junit.Before;
+import org.junit.Ignore;
+import org.junit.Test;
+import org.mockito.Mockito;
+import org.mockito.Spy;
+import org.restlet.data.MediaType;
+import org.restlet.data.Status;
 import org.restlet.engine.resource.VariantInfo;
 
 @Ignore
@@ -20,7 +27,8 @@ public class PutSpaceResourceTest extends WikiPostOrPutResourceTest {
     
     @Before
     public void setUp() throws Exception {
-        super.setUp(Mockito.mock(WikiApplication.class), resource);
+        super.setUp(Mockito.mock(WikiApplication.class));
+        super.setUp(resource);
         initRepository();
         initUser("admin");
         new UniquePerOwnerValidator().setDbService(testDb);

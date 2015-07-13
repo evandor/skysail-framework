@@ -1,4 +1,4 @@
-Bundle-Version: 0.2.1.${tstamp}
+Bundle-Version: 0.2.2.${tstamp}
 Bundle-Name: SKYSAIL :: api :: um
 Bundle-Description: an incubator bundle for the skysail usermanagement API  (which will be moved \
 	to skysail.api once stable) together with default implementations
@@ -52,7 +52,7 @@ Service-Component:  \
 	org.restlet;version='[2.3.1,2.3.2)',\
 	osgi.enterprise;version='[4.2.0,4.2.1)',\
 	osgi.residential;version='[4.3.0,4.3.1)',\
-	skysail.api.um;version=latest,\
+	skysail.api.um;version='[0.2.1,0.2.2)',\
 	slf4j.api;version='[1.7.7,1.7.8)'
 Export-Package:  \
 	io.skysail.api.um

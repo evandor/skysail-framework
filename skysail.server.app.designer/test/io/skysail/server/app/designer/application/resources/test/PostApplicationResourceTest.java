@@ -1,6 +1,7 @@
 package io.skysail.server.app.designer.application.resources.test;
 
-import static org.hamcrest.CoreMatchers.*;
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 import io.skysail.api.responses.ConstraintViolationsResponse;
 import io.skysail.server.app.designer.DesignerApplication;
@@ -11,9 +12,12 @@ import io.skysail.server.testsupport.ResourceTestBase;
 import java.util.HashMap;
 
 import org.apache.shiro.subject.SimplePrincipalMap;
-import org.junit.*;
-import org.mockito.*;
-import org.restlet.data.*;
+import org.junit.Before;
+import org.junit.Test;
+import org.mockito.Mockito;
+import org.mockito.Spy;
+import org.restlet.data.MediaType;
+import org.restlet.data.Status;
 import org.restlet.engine.resource.VariantInfo;
 
 public class PostApplicationResourceTest extends ResourceTestBase {
@@ -24,7 +28,8 @@ public class PostApplicationResourceTest extends ResourceTestBase {
 
     @Before
     public void setUp() throws Exception {
-        super.setUp(Mockito.mock(DesignerApplication.class), resource);
+        super.setUp(Mockito.mock(DesignerApplication.class));
+        super.setUp(resource);
 
         DesignerRepository repo = new DesignerRepository();
         repo.setDbService(testDb);

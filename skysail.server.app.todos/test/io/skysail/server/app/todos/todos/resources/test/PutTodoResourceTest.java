@@ -1,20 +1,28 @@
 package io.skysail.server.app.todos.todos.resources.test;
 
-import static org.hamcrest.CoreMatchers.*;
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.junit.Assert.assertThat;
-import io.skysail.server.app.todos.*;
+import io.skysail.server.app.todos.TodoApplication;
+import io.skysail.server.app.todos.TodoList;
 import io.skysail.server.app.todos.lists.UniquePerOwnerValidator;
 import io.skysail.server.app.todos.repo.TodosRepository;
-import io.skysail.server.app.todos.todos.*;
+import io.skysail.server.app.todos.todos.Todo;
+import io.skysail.server.app.todos.todos.ValidListIdValidator;
 import io.skysail.server.app.todos.todos.resources.PutTodoResource;
 import io.skysail.server.testsupport.ResourceTestBase;
 
 import java.util.HashMap;
 
 import org.apache.shiro.subject.SimplePrincipalMap;
-import org.junit.*;
-import org.mockito.*;
-import org.restlet.data.*;
+import org.junit.Before;
+import org.junit.Ignore;
+import org.junit.Test;
+import org.mockito.Mockito;
+import org.mockito.Spy;
+import org.restlet.data.MediaType;
+import org.restlet.data.Status;
 import org.restlet.engine.resource.VariantInfo;
 
 public class PutTodoResourceTest extends ResourceTestBase {
@@ -28,7 +36,9 @@ public class PutTodoResourceTest extends ResourceTestBase {
     @Before
     public void setUp() throws Exception {
 
-        super.setUp(Mockito.mock(TodoApplication.class), resource);
+        super.setUp(Mockito.mock(TodoApplication.class));
+        super.setUp(resource);
+
 
         repo = new TodosRepository();
         repo.setDbService(testDb);

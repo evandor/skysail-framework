@@ -1,20 +1,28 @@
 package io.skysail.server.app.todos.todos.resources.test;
 
-import io.skysail.api.responses.*;
-import io.skysail.server.app.todos.*;
+import io.skysail.api.responses.ConstraintViolationsResponse;
+import io.skysail.api.responses.SkysailResponse;
+import io.skysail.server.app.todos.TodoApplication;
+import io.skysail.server.app.todos.TodoList;
 import io.skysail.server.app.todos.lists.UniquePerOwnerValidator;
 import io.skysail.server.app.todos.repo.TodosRepository;
-import io.skysail.server.app.todos.todos.*;
+import io.skysail.server.app.todos.todos.Todo;
+import io.skysail.server.app.todos.todos.ValidListIdValidator;
 import io.skysail.server.app.todos.todos.resources.PostTodoResource;
 import io.skysail.server.testsupport.ResourceTestBase;
 
 import java.text.SimpleDateFormat;
-import java.time.*;
-import java.util.*;
+import java.time.LocalDate;
+import java.time.ZoneOffset;
+import java.util.Date;
+import java.util.HashMap;
 
 import org.apache.shiro.subject.SimplePrincipalMap;
-import org.junit.*;
-import org.mockito.*;
+import org.junit.Before;
+import org.junit.Ignore;
+import org.junit.Test;
+import org.mockito.Mockito;
+import org.mockito.Spy;
 import org.restlet.data.MediaType;
 import org.restlet.engine.resource.VariantInfo;
 
@@ -25,7 +33,8 @@ public class PostTodoResourceTest extends ResourceTestBase {
 
     @Before
     public void setUp() throws Exception {
-        super.setUp(Mockito.mock(TodoApplication.class), resource);
+        super.setUp(Mockito.mock(TodoApplication.class));
+        super.setUp(resource);
 
         TodosRepository repo = new TodosRepository();
         repo.setDbService(testDb);

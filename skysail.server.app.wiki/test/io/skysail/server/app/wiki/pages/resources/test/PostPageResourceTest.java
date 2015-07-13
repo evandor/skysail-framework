@@ -1,21 +1,30 @@
 package io.skysail.server.app.wiki.pages.resources.test;
 
-import static org.hamcrest.CoreMatchers.*;
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.Matchers.lessThan;
 import static org.junit.Assert.assertThat;
 import io.skysail.api.responses.ConstraintViolationsResponse;
-import io.skysail.server.app.wiki.*;
+import io.skysail.server.app.wiki.RepositoryHelper;
+import io.skysail.server.app.wiki.WikiApplication;
+import io.skysail.server.app.wiki.WikiPostOrPutResourceTest;
 import io.skysail.server.app.wiki.pages.Page;
 import io.skysail.server.app.wiki.pages.resources.PostPageResource;
-import io.skysail.server.app.wiki.spaces.*;
+import io.skysail.server.app.wiki.spaces.Space;
+import io.skysail.server.app.wiki.spaces.UniquePerOwnerValidator;
 import io.skysail.server.app.wiki.versions.Version;
 
-import java.util.*;
+import java.util.Date;
+import java.util.List;
 
-import org.junit.*;
-import org.mockito.*;
+import org.junit.Before;
+import org.junit.Ignore;
+import org.junit.Test;
+import org.mockito.Mockito;
+import org.mockito.Spy;
 import org.restlet.Context;
-import org.restlet.data.*;
+import org.restlet.data.MediaType;
+import org.restlet.data.Status;
 import org.restlet.engine.resource.VariantInfo;
 
 public class PostPageResourceTest extends WikiPostOrPutResourceTest {
@@ -26,7 +35,8 @@ public class PostPageResourceTest extends WikiPostOrPutResourceTest {
 
     @Before
     public void setUp() throws Exception {
-        super.setUp(Mockito.mock(WikiApplication.class), resource);
+        super.setUp(Mockito.mock(WikiApplication.class));
+        super.setUp(resource);
         initRepository();
         initUser("admin");
         new UniquePerOwnerValidator().setDbService(testDb);

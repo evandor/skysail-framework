@@ -12,9 +12,12 @@ import io.skysail.server.testsupport.ResourceTestBase;
 import java.util.HashMap;
 
 import org.apache.shiro.subject.SimplePrincipalMap;
-import org.junit.*;
-import org.mockito.*;
-import org.restlet.data.*;
+import org.junit.Before;
+import org.junit.Test;
+import org.mockito.Mockito;
+import org.mockito.Spy;
+import org.restlet.data.MediaType;
+import org.restlet.data.Status;
 import org.restlet.engine.resource.VariantInfo;
 
 public class PutApplicationResourceTest extends ResourceTestBase {
@@ -26,7 +29,8 @@ public class PutApplicationResourceTest extends ResourceTestBase {
 
     @Before
     public void setUp() throws Exception {
-        super.setUp(Mockito.mock(DesignerApplication.class), resource);
+        super.setUp(Mockito.mock(DesignerApplication.class));
+        super.setUp(resource);
 
         repo = new DesignerRepository();
         repo.setDbService(testDb);

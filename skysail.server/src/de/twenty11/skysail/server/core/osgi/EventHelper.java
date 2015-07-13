@@ -66,7 +66,7 @@ public class EventHelper {
     
     public EventHelper lifetime(long ms) {
         expires = new Date().getTime() + ms;
-        log.info("setting lifetime to " + expires);
+        //log.info("setting lifetime to " + expires);
         return this;
     }
     
@@ -95,7 +95,7 @@ public class EventHelper {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-                log.info("about to post event "  + event + ": " + event.getProperty(EVENT_MESSAGE));
+                log.debug("about to post event "  + event + ": " + event.getProperty(EVENT_MESSAGE));
                 eventAdmin.postEvent(event);
             };
         }.start();

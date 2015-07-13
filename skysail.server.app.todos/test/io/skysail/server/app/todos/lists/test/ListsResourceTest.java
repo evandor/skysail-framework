@@ -1,17 +1,24 @@
 package io.skysail.server.app.todos.lists.test;
 
-import static org.hamcrest.CoreMatchers.*;
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
-import io.skysail.server.app.todos.*;
-import io.skysail.server.app.todos.lists.*;
+import io.skysail.server.app.todos.TodoApplication;
+import io.skysail.server.app.todos.TodoList;
+import io.skysail.server.app.todos.lists.ListsResource;
+import io.skysail.server.app.todos.lists.UniquePerOwnerValidator;
 import io.skysail.server.app.todos.repo.TodosRepository;
 import io.skysail.server.testsupport.ResourceTestBase;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.List;
 
 import org.apache.shiro.subject.SimplePrincipalMap;
-import org.junit.*;
-import org.mockito.*;
+import org.junit.Before;
+import org.junit.Ignore;
+import org.junit.Test;
+import org.mockito.Mockito;
+import org.mockito.Spy;
 import org.restlet.data.Status;
 
 public class ListsResourceTest extends ResourceTestBase {
@@ -23,7 +30,8 @@ public class ListsResourceTest extends ResourceTestBase {
 
     @Before
     public void setUp() throws Exception {
-        super.setUp(Mockito.mock(TodoApplication.class), resource);
+        super.setUp(Mockito.mock(TodoApplication.class));
+        super.setUp(resource);
 
         repo = new TodosRepository();
         repo.setDbService(testDb);

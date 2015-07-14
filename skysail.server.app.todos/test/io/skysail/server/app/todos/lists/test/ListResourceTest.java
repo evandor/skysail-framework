@@ -1,35 +1,45 @@
 package io.skysail.server.app.todos.lists.test;
 
-import static org.hamcrest.CoreMatchers.equalTo;
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.not;
-import static org.hamcrest.CoreMatchers.nullValue;
+import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.assertThat;
 import io.skysail.api.responses.SkysailResponse;
-import io.skysail.server.app.todos.TodoList;
-import io.skysail.server.app.todos.lists.PostListResource;
-import io.skysail.server.app.todos.lists.PutListResource;
-import io.skysail.server.testsupport.ResourceTestBase;
+import io.skysail.server.app.todos.*;
 
-import org.mockito.Spy;
+import org.junit.Test;
 import org.restlet.data.Status;
 
-public abstract class ListResourceTest extends ResourceTestBase {
+public class ListResourceTest extends TodoListResourceTest {
 
-    @Spy
-    protected PostListResource postListresource;
-    @Spy
-    protected PutListResource putListResource;
-    
-    protected void assertResult(SkysailResponse<TodoList> result, String name) {
-        TodoList entity = result.getEntity();
-        assertThat(response.getStatus(),is(equalTo(Status.SUCCESS_CREATED)));
-        assertThat(entity.getName(),is(equalTo(name)));
-        assertThat(entity.getCreated(),is(not(nullValue())));
-        assertThat(entity.getModified(),is(nullValue()));
-        assertThat(entity.getOwner(),is("admin"));
-        //assertThat(result.getEntity().getTodosCount(),is(0));
+    @Test
+    public void gets_list_representation() {
+        TodoList aList = createList();
+
+        getAttributes().put(TodoApplication.LIST_ID, aList.getId());
+        listResource.init(null, request, responses.get(listResource.getClass().getName()));
+
+        SkysailResponse<TodoList> get = listResource.getEntity2(HTML_VARIANT);
+
+        assertThat(responses.get(listResource.getClass().getName()).getStatus(),is(equalTo(Status.SUCCESS_OK)));
+        assertThat(get.getEntity().getName(),is(equalTo(aList.getName())));
+        assertThat(get.getEntity().getCreated(), is(notNullValue()));
     }
 
-    
+    @Test
+    public void deletes_list_resource_if_empty() {
+        TodoList aList = createList();
+
+        getAttributes().put(TodoApplication.LIST_ID, aList.getId());
+        listResource.init(null, request, responses.get(listResource.getClass().getName()));
+
+        listResource.deleteEntity(HTML_VARIANT);
+        assertThat(responses.get(listResource.getClass().getName()).getStatus(),is(equalTo(Status.SUCCESS_OK)));
+
+        Object byId = repo.getById(TodoList.class, aList.getId());
+        assertThat(byId,is(nullValue()));
+    }
+
+    @Test
+    public void does_not_delete_list_with_todo() {
+
+    }
 }

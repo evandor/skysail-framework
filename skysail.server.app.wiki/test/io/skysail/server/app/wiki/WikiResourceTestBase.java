@@ -15,19 +15,21 @@ public abstract class WikiResourceTestBase extends ResourceTestBase {
     protected WikiRepository repo;
 
     public void setUp(SkysailServerResource<?> resource) throws Exception {
-        super.setUp(Mockito.mock(WikiApplication.class));
-        super.setUp(resource);
+        super.setUpFixture();
+
+        super.setUpApplication(Mockito.mock(WikiApplication.class));
+        super.setUpResource(resource);
 
         repo = new WikiRepository();
         repo.setDbService(testDb);
         repo.activate();
         ((WikiApplication)application).setWikiRepository(repo);
         Mockito.when(((WikiApplication)application).getRepository()).thenReturn(repo);
-        
+
         Mockito.when(subjectUnderTest.getPrincipal()).thenReturn("admin");
         Mockito.when(subjectUnderTest.getPrincipals()).thenReturn(new SimplePrincipalMap(new HashMap<>()));
         setSubject(subjectUnderTest);
-        
+
         new UniquePerOwnerValidator().setDbService(testDb);
     }
 

@@ -34,8 +34,8 @@ public class TodosRepository implements DbRepository {
 
     public List<TodoList> findAllLists(Filter filter, Pagination pagination) {
         // TODO do this in one statement
-        String sql = "SELECT from " + TodoList.class.getSimpleName() + " WHERE "+filter.getPreparedStatement()+" ORDER BY name " 
-                + limitClause(pagination.getLinesPerPage(),pagination.getPage()); 
+        String sql = "SELECT from " + TodoList.class.getSimpleName() + " WHERE "+filter.getPreparedStatement()+" ORDER BY name "
+                + limitClause(pagination.getLinesPerPage(),pagination.getPage());
         Map<String, Object> params = new HashMap<String, Object>();
         List<TodoList> lists = dbService.findObjects(sql, filter.getParams());
         for (TodoList list : lists) {
@@ -44,11 +44,11 @@ public class TodosRepository implements DbRepository {
         return lists;
     }
 
-  
+
 
     public List<Todo> findAllTodos(Filter filter, Pagination pagination) {
-        String sql = "SELECT *, SUM(urgency,importance) as rank from " + Todo.class.getSimpleName() + " WHERE "+filter.getPreparedStatement()+" ORDER BY rank DESC " 
-                + limitClause(pagination.getLinesPerPage(),pagination.getPage()); 
+        String sql = "SELECT *, SUM(urgency,importance) as rank from " + Todo.class.getSimpleName() + " WHERE "+filter.getPreparedStatement()+" ORDER BY rank DESC "
+                + limitClause(pagination.getLinesPerPage(),pagination.getPage());
         return dbService.findObjects(sql, filter.getParams());
     }
 
@@ -70,7 +70,7 @@ public class TodosRepository implements DbRepository {
         long cnt = dbService.getCount(sql, params);
         list.setTodosCount(cnt);
     }
-    
+
     private void addCount(Filter filter, TodoList list) {
         String sql = "SELECT COUNT(*) as count from " + Todo.class.getSimpleName()
                 + " WHERE list=:list AND status <> '"+Status.ARCHIVED+"' AND "+filter.getPreparedStatement();
@@ -86,7 +86,7 @@ public class TodosRepository implements DbRepository {
 
     public <T> T getById(Class<?> cls, String id) {
         T list = dbService.findObjectById(cls, id);
-        if (cls.equals(TodoList.class)) {
+        if (list != null && cls.equals(TodoList.class)) {
             addCount((TodoList) list);
         }
         return list;

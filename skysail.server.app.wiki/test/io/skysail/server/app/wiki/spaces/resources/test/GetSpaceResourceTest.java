@@ -14,7 +14,7 @@ public class GetSpaceResourceTest extends WikiResourceTestBase {
 
     @Spy
     private SpaceResource resource;
-    
+
     @Before
     public void setUp() throws Exception {
         super.setUp(resource);
@@ -24,11 +24,11 @@ public class GetSpaceResourceTest extends WikiResourceTestBase {
     public void retrieves_owners_entity() {
         Space space = RepositoryHelper.createTestSpace("admin");
         resource.getRequestAttributes().put("id", space.getId());
-        resource.init(null, request, response);
-        
+        resource.init(null, request, responses.get(resource.getClass().getName()));
+
         Space entity = resource.getEntity();
 
-        assertThat(response.getStatus(),is(equalTo(Status.SUCCESS_OK)));
+        assertThat(responses.get(resource.getClass().getName()).getStatus(),is(equalTo(Status.SUCCESS_OK)));
         assertThat(entity, is(not(nullValue())));
     }
 
@@ -37,11 +37,11 @@ public class GetSpaceResourceTest extends WikiResourceTestBase {
     public void doesnot_retrieve_other_users_entity() {
         Space space = RepositoryHelper.createTestSpace("demo");
         resource.getRequestAttributes().put("id", space.getId());
-        resource.init(null, request, response);
-        
+        resource.init(null, request, responses.get(resource.getClass().getName()));
+
         Space entity = resource.getEntity();
 
-        assertThat(response.getStatus(),is(equalTo(Status.CLIENT_ERROR_FORBIDDEN)));
+        assertThat(responses.get(resource.getClass().getName()).getStatus(),is(equalTo(Status.CLIENT_ERROR_FORBIDDEN)));
         assertThat(entity, is(nullValue()));
     }
 

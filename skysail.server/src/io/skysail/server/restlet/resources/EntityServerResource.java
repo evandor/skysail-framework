@@ -13,6 +13,7 @@ import java.util.Set;
 import javax.validation.*;
 
 import org.restlet.data.*;
+import org.restlet.representation.Variant;
 import org.restlet.resource.*;
 import org.slf4j.*;
 
@@ -34,27 +35,27 @@ import de.twenty11.skysail.server.core.restlet.*;
  * <pre>
  *  <code>
  *  public class MyEntityResource extends EntityServerResource&lt;MyEntity&gt; {
- * 
+ *
  *     private MyApplication app;
  *     private String myEntityId;
- * 
+ *
  *     protected void doInit() {
  *         myEntityId = getAttribute("id");
  *         app = (MyApplication) getApplication();
  *     }
- * 
+ *
  *     public MyEntity getEntity() {
  *         return app.getRepository().getById(MyEntity.class, myEntityId);
  *     }
- * 
+ *
  *     public List&lt;Link&gt; getLinks() {
  *          return super.getLinkheader(PutMyEntityResource.class);
  *     }
- *     
+ *
  *     public SkysailResponse<?> eraseEntity() {
  *         return null;
  *     }
- * 
+ *
  * }
  * </code>
  * </pre>
@@ -92,7 +93,7 @@ public abstract class EntityServerResource<T> extends SkysailServerResource<T> {
     public String getId() {
         return null;
     }
-    
+
     /**
      * will be called in case of a DELETE request. Override in subclasses if
      * they support DELETE requests.
@@ -104,7 +105,7 @@ public abstract class EntityServerResource<T> extends SkysailServerResource<T> {
     /**
      * This method will be called by the skysail framework to create the actual
      * resource from its form representation.
-     * 
+     *
      * @param form
      *            the representation of the resource as a form
      * @return the resource of type T
@@ -129,14 +130,17 @@ public abstract class EntityServerResource<T> extends SkysailServerResource<T> {
      */
     @Get("html|json|eventstream|treeform|txt|csv|yaml|mailto")
     @API(desc = "retrieves the entity defined by the url")
-    public EntityServerResponse<T> getEntity2() {
+    public EntityServerResponse<T> getEntity2(Variant variant) {
         Set<PerformanceTimer> perfTimer = getApplication().startPerformanceMonitoring(this.getClass().getSimpleName() + ":getEntity");
         logger.info("Request entry point: {} @Get('html|json|eventstream|treeform|txt')", this.getClass().getSimpleName());
+        if (variant != null) {
+            getRequest().getAttributes().put(SKYSAIL_SERVER_RESTLET_VARIANT, variant);
+        }
         T entity = getEntity3();
         getApplication().stopPerformanceMonitoring(perfTimer);
         return new EntityServerResponse<>(entity);
     }
-    
+
     @Get("htmlform")
     @API(desc = "provides a form to delete the entity")
     public SkysailResponse<T> getDeleteForm() {
@@ -145,25 +149,27 @@ public abstract class EntityServerResource<T> extends SkysailServerResource<T> {
 
     @Delete("x-www-form-urlencoded:html|html|json")
     @API(desc = "deletes the entity defined in the url")
-    public EntityServerResponse<T> deleteEntity() {
+    public EntityServerResponse<T> deleteEntity(Variant variant) {
         Set<PerformanceTimer> perfTimer = getApplication().startPerformanceMonitoring(this.getClass().getSimpleName() + ":deleteEntity");
         logger.info("Request entry point: {} @Delete('x-www-form-urlencoded:html|html|json')", this.getClass()
                 .getSimpleName());
-
+        if (variant != null) {
+            getRequest().getAttributes().put(SKYSAIL_SERVER_RESTLET_VARIANT, variant);
+        }
         RequestHandler<T> requestHandler = new RequestHandler<T>(getApplication());
         AbstractResourceFilter<EntityServerResource<T>, T> handler = requestHandler.createForEntity(Method.DELETE);
         T entity = handler.handle(this, getResponse()).getEntity();
         getApplication().stopPerformanceMonitoring(perfTimer);
         return new EntityServerResponse<>(entity);
     }
-    
+
     protected T getEntity3() {
         RequestHandler<T> requestHandler = new RequestHandler<T>(getApplication());
         AbstractResourceFilter<EntityServerResource<T>, T> chain = requestHandler.createForEntity(Method.GET);
         ResponseWrapper<T> wrapper = chain.handle(this, getResponse());
         return wrapper.getEntity();
     }
-    
+
     protected String getDataAsJson() {
         return "    ";
     }

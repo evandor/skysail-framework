@@ -17,7 +17,7 @@ public class GetSpacesResourceTest extends WikiResourceTestBase {
 
     @Spy
     private SpacesResource resource;
-    
+
     @Before
     public void setUp() throws Exception {
         super.setUp(resource);
@@ -28,25 +28,25 @@ public class GetSpacesResourceTest extends WikiResourceTestBase {
     public void retrieves_owners_entity() {
         Space space = RepositoryHelper.createTestSpace("admin");
         resource.getRequestAttributes().put("id", space.getId());
-        resource.init(null, request, response);
-        
+        resource.init(null, request, responses.get(resource.getClass().getName()));
+
         List<Space> entities = resource.getEntity();
 
-        assertThat(response.getStatus(),is(equalTo(Status.SUCCESS_OK)));
+        assertThat(responses.get(resource.getClass().getName()).getStatus(),is(equalTo(Status.SUCCESS_OK)));
         List<String> spaceNames = entities.stream().map(Space::getName).collect(Collectors.toList());
         assertThat(spaceNames, hasItem(space.getName()));
     }
-    
+
     @Test
     @Ignore
     public void doesnot_retrieve_other_users_entity() {
         Space space = RepositoryHelper.createTestSpace("demo");
         resource.getRequestAttributes().put("id", space.getId());
-        resource.init(null, request, response);
-        
+        resource.init(null, request, responses.get(resource.getClass().getName()));
+
         List<Space> entities = resource.getEntity();
 
-        assertThat(response.getStatus(),is(equalTo(Status.SUCCESS_OK)));
+        assertThat(responses.get(resource.getClass().getName()).getStatus(),is(equalTo(Status.SUCCESS_OK)));
         List<String> spaceNames = entities.stream().map(Space::getName).collect(Collectors.toList());
         assertThat(spaceNames, not(hasItem(space.getName())));
     }

@@ -1,28 +1,20 @@
 package io.skysail.server.app.todos.todos.resources.test;
 
-import io.skysail.api.responses.ConstraintViolationsResponse;
-import io.skysail.api.responses.SkysailResponse;
-import io.skysail.server.app.todos.TodoApplication;
-import io.skysail.server.app.todos.TodoList;
+import io.skysail.api.responses.*;
+import io.skysail.server.app.todos.*;
 import io.skysail.server.app.todos.lists.UniquePerOwnerValidator;
 import io.skysail.server.app.todos.repo.TodosRepository;
-import io.skysail.server.app.todos.todos.Todo;
-import io.skysail.server.app.todos.todos.ValidListIdValidator;
+import io.skysail.server.app.todos.todos.*;
 import io.skysail.server.app.todos.todos.resources.PostTodoResource;
 import io.skysail.server.testsupport.ResourceTestBase;
 
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.ZoneOffset;
-import java.util.Date;
-import java.util.HashMap;
+import java.time.*;
+import java.util.*;
 
 import org.apache.shiro.subject.SimplePrincipalMap;
-import org.junit.Before;
-import org.junit.Ignore;
-import org.junit.Test;
-import org.mockito.Mockito;
-import org.mockito.Spy;
+import org.junit.*;
+import org.mockito.*;
 import org.restlet.data.MediaType;
 import org.restlet.engine.resource.VariantInfo;
 
@@ -33,8 +25,9 @@ public class PostTodoResourceTest extends ResourceTestBase {
 
     @Before
     public void setUp() throws Exception {
-        super.setUp(Mockito.mock(TodoApplication.class));
-        super.setUp(resource);
+        super.setUpFixture();
+        super.setUpApplication(Mockito.mock(TodoApplication.class));
+        super.setUpResource(resource);
 
         TodosRepository repo = new TodosRepository();
         repo.setDbService(testDb);
@@ -57,28 +50,28 @@ public class PostTodoResourceTest extends ResourceTestBase {
         form.add("title", "title_" + randomString());
         ConstraintViolationsResponse<?> post = (ConstraintViolationsResponse<?>) resource.post(form, new VariantInfo(
                 MediaType.TEXT_HTML));
-        assertValidationFailure(post, "list", "may not be null");
+        assertValidationFailure(resource, post, "list", "may not be null");
     }
 
     @Test
-    public void wrong_list_yields_validation_failure() { 
+    public void wrong_list_yields_validation_failure() {
         form.add("title", "title_" + randomString());
         form.add("list", "list_" + randomString());
         ConstraintViolationsResponse<?> post = (ConstraintViolationsResponse<?>) resource.post(form, new VariantInfo(MediaType.TEXT_HTML));
-        assertValidationFailure(post, "list", "This list does not exist or has another owner");
+        assertValidationFailure(resource, post, "list", "This list does not exist or has another owner");
     }
-    
+
     @Test
-    public void start_date_after_due_date_yields_validation_failure() { 
+    public void start_date_after_due_date_yields_validation_failure() {
         String id = createNewList();
-        
+
         form.add("title", "title_" + randomString());
         form.add("list", id);
         form.add("due", "2099-12-01");
         form.add("startDate", "2100-12-30");
-        
+
         ConstraintViolationsResponse<?> post = (ConstraintViolationsResponse<?>) resource.post(form, new VariantInfo(MediaType.TEXT_HTML));
-        assertValidationFailure(post, "", "the start date must be before the due date");
+        assertValidationFailure(resource, post, "", "the start date must be before the due date");
     }
 
     @Test
@@ -97,7 +90,7 @@ public class PostTodoResourceTest extends ResourceTestBase {
         String id = createNewList();
         form.add("title", "title_" + randomString());
         form.add("list", id);
-        
+
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         form.add("startDate", sdf.format(nowPlusWeeksAndDays(-1,-1)));
         form.add("due", sdf.format(nowPlusWeeks(1)));
@@ -114,11 +107,11 @@ public class PostTodoResourceTest extends ResourceTestBase {
         String id = TodosRepository.add(entity).toString();
         return id;
     }
-    
+
     private Date nowPlusWeeks(int weeksOffset) {
         return Date.from(LocalDate.now().plusWeeks(weeksOffset).atStartOfDay().toInstant(ZoneOffset.MIN));
     }
-    
+
     private Date nowPlusWeeksAndDays(int weeksOffset, int dayOffset) {
         return Date.from(LocalDate.now().plusWeeks(weeksOffset).plusDays(dayOffset).atStartOfDay().toInstant(ZoneOffset.MIN));
     }

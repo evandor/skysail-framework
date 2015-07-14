@@ -1,28 +1,20 @@
 package io.skysail.server.app.todos.todos.resources.test;
 
-import static org.hamcrest.CoreMatchers.equalTo;
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.notNullValue;
+import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.assertThat;
-import io.skysail.server.app.todos.TodoApplication;
-import io.skysail.server.app.todos.TodoList;
+import io.skysail.server.app.todos.*;
 import io.skysail.server.app.todos.lists.UniquePerOwnerValidator;
 import io.skysail.server.app.todos.repo.TodosRepository;
-import io.skysail.server.app.todos.todos.Todo;
-import io.skysail.server.app.todos.todos.ValidListIdValidator;
+import io.skysail.server.app.todos.todos.*;
 import io.skysail.server.app.todos.todos.resources.PutTodoResource;
 import io.skysail.server.testsupport.ResourceTestBase;
 
 import java.util.HashMap;
 
 import org.apache.shiro.subject.SimplePrincipalMap;
-import org.junit.Before;
-import org.junit.Ignore;
-import org.junit.Test;
-import org.mockito.Mockito;
-import org.mockito.Spy;
-import org.restlet.data.MediaType;
-import org.restlet.data.Status;
+import org.junit.*;
+import org.mockito.*;
+import org.restlet.data.*;
 import org.restlet.engine.resource.VariantInfo;
 
 public class PutTodoResourceTest extends ResourceTestBase {
@@ -35,10 +27,9 @@ public class PutTodoResourceTest extends ResourceTestBase {
 
     @Before
     public void setUp() throws Exception {
-
-        super.setUp(Mockito.mock(TodoApplication.class));
-        super.setUp(resource);
-
+        super.setUpFixture();
+        super.setUpApplication(Mockito.mock(TodoApplication.class));
+        super.setUpResource(resource);
 
         repo = new TodosRepository();
         repo.setDbService(testDb);
@@ -97,13 +88,13 @@ public class PutTodoResourceTest extends ResourceTestBase {
         form.add("id", id);
         resource.getRequestAttributes().put(TodoApplication.LIST_ID, listId);
         resource.getRequestAttributes().put(TodoApplication.TODO_ID, id);
-        resource.init(null, request, response);
+        resource.init(null, request, responses.get(resource.getClass().getName()));
 
         resource.put(form, new VariantInfo(MediaType.TEXT_HTML));
 
         Todo entityFromDb = repo.getById(Todo.class, id);
 
-        assertThat(response.getStatus(), is(equalTo(Status.SUCCESS_OK)));
+        assertThat(responses.get(resource.getClass().getName()).getStatus(), is(equalTo(Status.SUCCESS_OK)));
         assertThat(entityFromDb.getModified(), is(notNullValue()));
         assertThat(entityFromDb.getTitle(), is(equalTo(todoTitle + "_New")));
         assertThat(entityFromDb.getStatus(), is(equalTo(io.skysail.server.app.todos.todos.status.Status.WIP)));

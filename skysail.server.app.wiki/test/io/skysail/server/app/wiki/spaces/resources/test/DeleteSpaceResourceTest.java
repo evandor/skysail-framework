@@ -15,7 +15,7 @@ public class DeleteSpaceResourceTest extends WikiResourceTestBase {
 
     @Spy
     private SpaceResource resource;
-    
+
     @Before
     public void setUp() throws Exception {
         super.setUp(resource);
@@ -25,12 +25,12 @@ public class DeleteSpaceResourceTest extends WikiResourceTestBase {
     public void space_with_no_pages_can_be_deleted() {
         Space space = RepositoryHelper.createTestSpace("admin");
         resource.getRequestAttributes().put("id", space.getId());
-        resource.init(null, request, response);
-        
+        resource.init(null, request, responses.get(resource.getClass().getName()));
+
         resource.deleteEntity();
-        
+
         Space spaceFromDb = new WikiRepository().getById(Space.class, space.getId());
-        assertThat(response.getStatus(),is(equalTo(Status.SUCCESS_OK)));
+        assertThat(responses.get(resource.getClass().getName()).getStatus(),is(equalTo(Status.SUCCESS_OK)));
         assertThat(spaceFromDb, is(nullValue()));
     }
 
@@ -39,14 +39,14 @@ public class DeleteSpaceResourceTest extends WikiResourceTestBase {
         Space space = RepositoryHelper.createTestSpace("admin");
         RepositoryHelper.createTestPageIn(repo, space);
         resource.getRequestAttributes().put("id", space.getId());
-        resource.init(null, request, response);
-        
+        resource.init(null, request, responses.get(resource.getClass().getName()));
+
         resource.deleteEntity();
-        
+
         Space spaceFromDb = new WikiRepository().getById(Space.class, space.getId());
-        assertThat(response.getStatus(),is(equalTo(Status.SERVER_ERROR_INTERNAL)));
+        assertThat(responses.get(resource.getClass().getName()).getStatus(),is(equalTo(Status.SERVER_ERROR_INTERNAL)));
         assertThat(spaceFromDb, is(not(nullValue())));
     }
 
-   
+
 }

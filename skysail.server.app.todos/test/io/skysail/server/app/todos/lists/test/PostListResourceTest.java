@@ -11,17 +11,6 @@ import org.restlet.engine.resource.VariantInfo;
 
 public class PostListResourceTest extends TodoListResourceTest {
 
-//    @Before
-//    public void setUp() throws Exception {
-//        super.setUpFixture();
-//        super.setUpApplication(Mockito.mock(TodoApplication.class));
-//        super.setUpResource(postListresource);
-//        super.setUpRepository(new TodosRepository());
-//        super.setUpSubject("admin");
-//
-//        new UniquePerOwnerValidator().setDbService(testDb);
-//    }
-
     @Test
     public void empty_form_data_yields_validation_failure() {
         ConstraintViolationsResponse<?> post = (ConstraintViolationsResponse<?>) postListresource.post(form, HTML_VARIANT);

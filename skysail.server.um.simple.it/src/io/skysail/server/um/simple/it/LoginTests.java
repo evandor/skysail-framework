@@ -60,6 +60,7 @@ public class LoginTests extends IntegrationTests {
 
 
     @Test
+    @Ignore
     public void logging_out_and_logging_in_with_wrong_credentials_is_not_successful() throws Exception {
         logout();
         login("admin", "skysail");

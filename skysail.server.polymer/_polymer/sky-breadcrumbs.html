@@ -5,14 +5,23 @@
 
   <template>
     <iron-ajax
-        id="ajaxTable" auto
-        handle-as="json" 
+        id="breadcrumbs" auto
+        handle-as="json"
         headers='{"Accept": "application/json"}'
         on-response="hResponse"
         last-response="{{data}}"
         debounce-duration="300" />
-        
-     <span>abc</span>
+
+     <ul class="breadcrumb" style="height:35px;">
+       <template is="dom-repeat" items="{{data.breadcrumbs}}" as="breadcrumb">
+		 <template is="dom-if" if="{{breadcrumb.href}}">
+		   <li><a href='{{breadcrumb.href}}'><sky-html html="{{breadcrumb.value}}" /></a>&nbsp;/&nbsp;</li>
+		 </template>
+		 <template is="dom-if" if="{{!breadcrumb.href}}">
+		   <li><b><sky-html html="{{breadcrumb.value}}" /></b></li>
+		 </template>
+       </template>
+     </ul>
   </template>
 
   <script>
@@ -26,11 +35,6 @@
     	  columnNames: {
     		  type: Array,
     		  value: ['please define the attribute column-names']
-    	  },
-    	  nameProperty: {
-    		  type: String,
-    		  value: "name",
-    		  observer: '_namePropertyChanged'
     	  },
     	  identifier: {
     		  type: String,
@@ -55,15 +59,15 @@
       },
       itemClass: function(href, item, identifier, requestUrl) {
     	  if (requestUrl.startsWith(href.replace("{" + identifier + "}", item.id))) {
-              return "list-group-item active";  
+              return "list-group-item active";
     	  } else {
-              return "list-group-item";  
+              return "list-group-item";
     	  }
       },
       attached: function() {
     	console.log(this.localName + '#' + this.id + ' was attached1');
-     	this.$.ajaxTable.url=this.url;
-    	//this.$.ajaxTable.generateRequest();
+     	this.$.breadcrumbs.url=this.url;
+    	//this.$.breadcrumbs.generateRequest();
       },
       hResponse: function(request) {
           console.log(request.detail);
@@ -79,12 +83,8 @@
   	      ' was changed to ' + this.getAttribute(name));
   	  },
   	  _urlChanged: function(newValue, oldValue) {
-        this.$.ajaxTable.url=newValue;
+        this.$.breadcrumbs.url=newValue;
         console.log("value url changed from " + oldValue + " to " + newValue);
-  	  },
-  	  _namePropertyChanged:function(newValue, oldValue) {
-        this.$.ajaxTable.nameProperty=newValue;
-        console.log("nameProperty changed from " + oldValue + " to " + newValue);
   	  },
   	  _toArray: function(obj, columnNames) {
         return columnNames.map(function(key) {

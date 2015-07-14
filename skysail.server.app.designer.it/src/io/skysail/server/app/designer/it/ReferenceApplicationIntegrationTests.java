@@ -5,6 +5,7 @@ import io.skysail.server.app.designer.application.Application;
 import io.skysail.server.app.designer.it.browser.ApplicationsBrowser;
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.restlet.data.MediaType;
 
@@ -12,6 +13,7 @@ import org.restlet.data.MediaType;
  * Integration tests for creating, reading, updating, and deleting Applications.
  *
  */
+@Ignore
 public class ReferenceApplicationIntegrationTests extends IntegrationTests<ApplicationsBrowser, Application> {
 
     private Application entity;
@@ -24,13 +26,13 @@ public class ReferenceApplicationIntegrationTests extends IntegrationTests<Appli
     }
 
 
-    @Test  
+    @Test
     public void creating_new_application_will_persist_it() throws Exception {
         //createListAndCheckAssertions();
     }
-    
+
     private Application createReferenceApplication() {
         return new Application("CampaignManager");
     }
-   
+
 }

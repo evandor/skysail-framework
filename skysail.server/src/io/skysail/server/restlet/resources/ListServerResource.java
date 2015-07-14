@@ -2,32 +2,38 @@ package io.skysail.server.restlet.resources;
 
 import io.skysail.api.documentation.API;
 import io.skysail.api.links.LinkRelation;
-import io.skysail.api.responses.*;
+import io.skysail.api.responses.ListServerResponse;
+import io.skysail.api.responses.SkysailResponse;
 import io.skysail.server.restlet.RequestHandler;
 import io.skysail.server.services.PerformanceTimer;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Set;
 
 import lombok.extern.slf4j.Slf4j;
 
 import org.restlet.Restlet;
-import org.restlet.data.*;
-import org.restlet.representation.*;
-import org.restlet.resource.*;
-import org.restlet.util.Series;
+import org.restlet.data.Method;
+import org.restlet.representation.Representation;
+import org.restlet.representation.Variant;
+import org.restlet.resource.Get;
+import org.restlet.resource.Options;
+import org.restlet.resource.ServerResource;
 
-import de.twenty11.skysail.server.core.restlet.*;
+import de.twenty11.skysail.server.core.restlet.ResourceContextId;
+import de.twenty11.skysail.server.core.restlet.ResponseWrapper;
 
 /**
  * A ListServerResource implementation takes care of a List of Entities.
- * 
+ *
  * <p>
  * Typically, the request issuer provides headers defining the accepted media
  * types. Depending on those headers this implementation will provide the
  * entities associated with the current URI in various formats such as JSON,
  * Html, etc.
  * </p>
- * 
+ *
  * <p>
  * In a browser, you can add something like <code>?media=json</code> to the URL
  * to get the desired representation
@@ -41,21 +47,21 @@ import de.twenty11.skysail.server.core.restlet.*;
  * <code>
  *    private MailApplication app;
  *    ...
- * 
+ *
  *    {@literal @}Override
  *    protected void doInit() {
  *        app = (MailApplication) getApplication();
  *    }
- * 
+ *
  *    {@literal @}Override
  *    public List<Company> getEntity() {
  *       return app.getRepository().findAll(Company.class);
  *    }
- *     
+ *
  *    {@literal @}Override
  *    public List<Link> getLinks() {
  *       return super.getLinkheader(PostCompanyResource.class);
- *    } 
+ *    }
  * </code>
  * </pre>
  *
@@ -85,7 +91,7 @@ public abstract class ListServerResource<T> extends SkysailServerResource<List<T
     /**
      * Constructor which associates this ListServerResource with a corresponding
      * EntityServerResource.
-     * 
+     *
      * @param skysailServerResource
      *            the class
      */
@@ -100,7 +106,7 @@ public abstract class ListServerResource<T> extends SkysailServerResource<List<T
     /**
      * returns the list of entities in the case of a GET request with media
      * types html, json etc.
-     * 
+     *
      * @return the list of entities in html, csv or treeform format
      */
     @Get("html|json|yaml|xml")
@@ -129,20 +135,15 @@ public abstract class ListServerResource<T> extends SkysailServerResource<List<T
     /**
      * todo
      */
-    @Options
-    public final void doOptions(Representation entity) {
+    @Options("json")
+    public final SkysailResponse<ResourceContextResource> doOptions(Representation entity, Variant variant) {
         Set<PerformanceTimer> perfTimer = getApplication().startPerformanceMonitoring(
                 this.getClass().getSimpleName() + ":doOptions");
-        Series<Header> responseHeaders = getResponse().getHeaders();
-        // if (SecurityFeatures.ALLOW_ORIGIN_FEATURE.isActive()) {
-        responseHeaders.add("Access-Control-Allow-Origin", "*");
-        responseHeaders.add("Access-Control-Allow-Methods", "POST,GET,OPTIONS");
-        responseHeaders.add("Access-Control-Allow-Headers", "Content-Type");
-        responseHeaders.add("Access-Control-Allow-Credentials", "false");
-        responseHeaders.add("Access-Control-Max-Age", "60");
-        // }
+        log.info("Request entry point: {}  @Options('json') with variant {}", this.getClass().getSimpleName(),
+                variant);
+        ResourceContextResource context = new ResourceContextResource(this);
         getApplication().stopPerformanceMonitoring(perfTimer);
-        ;
+        return new SkysailResponse<ResourceContextResource>(context);
     }
 
     @Override

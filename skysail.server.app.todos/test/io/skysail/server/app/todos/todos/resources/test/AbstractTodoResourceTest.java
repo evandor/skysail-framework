@@ -1,4 +1,4 @@
-package io.skysail.server.app.todos.lists.test;
+package io.skysail.server.app.todos.todos.resources.test;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;
@@ -8,12 +8,15 @@ import static org.junit.Assert.assertThat;
 import io.skysail.api.responses.SkysailResponse;
 import io.skysail.server.app.todos.TodoApplication;
 import io.skysail.server.app.todos.TodoList;
-import io.skysail.server.app.todos.lists.ListResource;
-import io.skysail.server.app.todos.lists.ListsResource;
 import io.skysail.server.app.todos.lists.PostListResource;
-import io.skysail.server.app.todos.lists.PutListResource;
 import io.skysail.server.app.todos.lists.UniquePerOwnerValidator;
 import io.skysail.server.app.todos.repo.TodosRepository;
+import io.skysail.server.app.todos.todos.Todo;
+import io.skysail.server.app.todos.todos.ValidListIdValidator;
+import io.skysail.server.app.todos.todos.resources.PostTodoResource;
+import io.skysail.server.app.todos.todos.resources.PutTodoResource;
+import io.skysail.server.app.todos.todos.resources.TodoResource;
+import io.skysail.server.app.todos.todos.resources.TodosResource;
 import io.skysail.server.restlet.resources.SkysailServerResource;
 import io.skysail.server.testsupport.ResourceTestBase;
 
@@ -25,19 +28,22 @@ import org.mockito.Mockito;
 import org.mockito.Spy;
 import org.restlet.data.Status;
 
-public abstract class TodoListResourceTest extends ResourceTestBase {
+public abstract class AbstractTodoResourceTest extends ResourceTestBase {
 
     @Spy
-    protected PostListResource postListresource;
+    protected PostTodoResource postTodoResource;
 
     @Spy
-    protected PutListResource putListResource;
+    protected PutTodoResource putTodoResource;
 
     @Spy
-    protected ListsResource listsResource;
+    protected TodosResource todosResource;
 
     @Spy
-    protected ListResource listResource;
+    protected TodoResource todoResource;
+
+    @Spy
+    protected PostListResource postListResource;
 
     protected TodosRepository repo;
 
@@ -45,20 +51,22 @@ public abstract class TodoListResourceTest extends ResourceTestBase {
     public void setUp() throws Exception {
         super.setUpFixture();
         super.setUpApplication(Mockito.mock(TodoApplication.class));
-        super.setUpResource(listResource);
-        super.setUpResource(listsResource);
-        super.setUpResource(putListResource);
-        super.setUpResource(postListresource);
+        super.setUpResource(todoResource);
+        super.setUpResource(todosResource);
+        super.setUpResource(putTodoResource);
+        super.setUpResource(postTodoResource);
+        super.setUpResource(postListResource);
         setUpRepository(new TodosRepository());
         setUpSubject("admin");
 
         new UniquePerOwnerValidator().setDbService(testDb);
+        new ValidListIdValidator().setDbService(testDb);
     }
 
-    protected void assertListResult(SkysailServerResource<?> resource, SkysailResponse<TodoList> result, String name) {
-        TodoList entity = result.getEntity();
+    protected void assertTodoResult(SkysailServerResource<?> resource, SkysailResponse<Todo> result, String name) {
+        Todo entity = result.getEntity();
         assertThat(responses.get(resource.getClass().getName()).getStatus(),is(equalTo(Status.SUCCESS_CREATED)));
-        assertThat(entity.getName(),is(equalTo(name)));
+        assertThat(entity.getTitle(),is(equalTo(name)));
         assertThat(entity.getCreated(),is(not(nullValue())));
         assertThat(entity.getModified(),is(nullValue()));
         assertThat(entity.getOwner(),is("admin"));
@@ -68,8 +76,8 @@ public abstract class TodoListResourceTest extends ResourceTestBase {
         repo = todosRepository;
         repo.setDbService(testDb);
         repo.activate();
-        ((TodoApplication)application).setRepository(repo);
-        Mockito.when(((TodoApplication)application).getRepository()).thenReturn(repo);
+        ((TodoApplication) application).setRepository(repo);
+        Mockito.when(((TodoApplication) application).getRepository()).thenReturn(repo);
 
     }
 
@@ -82,11 +90,19 @@ public abstract class TodoListResourceTest extends ResourceTestBase {
     protected TodoList createList() {
         TodoList aList = new TodoList();
         aList.setName("list_" + randomString());
-        SkysailResponse<TodoList> post = postListresource.post(aList,JSON_VARIANT);
+        SkysailResponse<TodoList> post = postListResource.post(aList, JSON_VARIANT);
         getAttributes().clear();
 
         return post.getEntity();
     }
 
+    protected Todo createTodo() {
+        Todo aList = new Todo();
+        // aList.setName("list_" + randomString());
+        SkysailResponse<Todo> post = postTodoResource.post(aList, JSON_VARIANT);
+        getAttributes().clear();
+
+        return post.getEntity();
+    }
 
 }

@@ -1,21 +1,31 @@
 package io.skysail.server.test;
 
-import static org.hamcrest.CoreMatchers.*;
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 import io.skysail.server.app.ApplicationList;
-import io.skysail.server.db.*;
+import io.skysail.server.db.DbConfig;
+import io.skysail.server.db.DbConfigurationProvider;
+import io.skysail.server.db.DbConfigurations;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.Collection;
 
 import lombok.extern.slf4j.Slf4j;
 
-import org.junit.*;
-import org.osgi.framework.*;
+import org.junit.Before;
+import org.junit.Ignore;
+import org.junit.Test;
+import org.osgi.framework.Bundle;
+import org.osgi.framework.BundleContext;
+import org.osgi.framework.FrameworkUtil;
+import org.osgi.framework.ServiceReference;
 import org.osgi.service.cm.ConfigurationAdmin;
 
 import de.twenty11.skysail.server.app.ApplicationListProvider;
 
 @Slf4j
+@Ignore
 public class ServerIntegrationTests {
 
     private BundleContext context;

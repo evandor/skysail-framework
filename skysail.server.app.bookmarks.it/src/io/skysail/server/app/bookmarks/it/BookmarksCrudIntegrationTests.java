@@ -1,13 +1,17 @@
 package io.skysail.server.app.bookmarks.it;
 
-import static org.hamcrest.CoreMatchers.*;
+import static org.hamcrest.CoreMatchers.containsString;
+import static org.hamcrest.CoreMatchers.not;
 import static org.junit.Assert.assertThat;
 import io.skysail.client.testsupport.IntegrationTests;
 import io.skysail.server.app.bookmarks.Bookmark;
 import lombok.extern.slf4j.Slf4j;
 
-import org.junit.*;
-import org.restlet.data.*;
+import org.junit.Before;
+import org.junit.Ignore;
+import org.junit.Test;
+import org.restlet.data.MediaType;
+import org.restlet.data.Reference;
 import org.restlet.representation.Representation;
 
 /**
@@ -15,8 +19,9 @@ import org.restlet.representation.Representation;
  *
  */
 @Slf4j
+@Ignore
 public class BookmarksCrudIntegrationTests extends IntegrationTests<BookmarksBrowser, Bookmark> {
-    
+
     @Before
     public void setUp() {
         browser = new BookmarksBrowser(MediaType.APPLICATION_JSON,determinePort());
@@ -28,7 +33,7 @@ public class BookmarksCrudIntegrationTests extends IntegrationTests<BookmarksBro
         String html = browser.asUser("admin").getBookmarks().getText();
         assertThat(html, containsString("http://www.heise.de"));
     }
-    
+
     @Test
     @Ignore
     public void new_bookmark_can_be_deleted_by_owner() throws Exception {
@@ -47,7 +52,7 @@ public class BookmarksCrudIntegrationTests extends IntegrationTests<BookmarksBro
 //        String id = location.getLastSegment(true);
 //        String html = browser.asUser("admin").getTodoList(id).getText();
 //        assertThat(html, containsString("crudlist3"));
-//        
+//
 //        theTodoList.setId(id);
 //        theTodoList.setName("crudlist3!");
 //        browser.asUser("admin").updateTodoList(theTodoList);

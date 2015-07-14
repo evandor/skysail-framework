@@ -1,111 +1,101 @@
 package io.skysail.server.app.todos.todos.resources.test;
 
-import io.skysail.api.responses.*;
-import io.skysail.server.app.todos.*;
-import io.skysail.server.app.todos.lists.UniquePerOwnerValidator;
-import io.skysail.server.app.todos.repo.TodosRepository;
-import io.skysail.server.app.todos.todos.*;
-import io.skysail.server.app.todos.todos.resources.PostTodoResource;
-import io.skysail.server.testsupport.ResourceTestBase;
+import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.greaterThan;
+import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.not;
+import static org.junit.Assert.assertThat;
+import io.skysail.api.responses.ConstraintViolationsResponse;
+import io.skysail.api.responses.SkysailResponse;
+import io.skysail.server.app.todos.TodoApplication;
+import io.skysail.server.app.todos.TodoList;
+import io.skysail.server.app.todos.todos.Todo;
 
 import java.text.SimpleDateFormat;
-import java.time.*;
-import java.util.*;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.ZoneOffset;
+import java.util.Date;
 
-import org.apache.shiro.subject.SimplePrincipalMap;
-import org.junit.*;
-import org.mockito.*;
-import org.restlet.data.MediaType;
-import org.restlet.engine.resource.VariantInfo;
+import org.junit.Before;
+import org.junit.Test;
+import org.restlet.data.Status;
 
-public class PostTodoResourceTest extends ResourceTestBase {
+public class PostTodoResourceTest extends AbstractTodoResourceTest {
 
-    @Spy
-    private PostTodoResource resource;
+    private TodoList aList;
 
     @Before
     public void setUp() throws Exception {
-        super.setUpFixture();
-        super.setUpApplication(Mockito.mock(TodoApplication.class));
-        super.setUpResource(resource);
-
-        TodosRepository repo = new TodosRepository();
-        repo.setDbService(testDb);
-        repo.activate();
-        ((TodoApplication) application).setRepository(repo);
-        Mockito.when(((TodoApplication) application).getRepository()).thenReturn(repo);
-
-        Mockito.when(subjectUnderTest.getPrincipal()).thenReturn("admin");
-        Mockito.when(subjectUnderTest.getPrincipals()).thenReturn(new SimplePrincipalMap(new HashMap<>()));
-        setSubject(subjectUnderTest);
-
-        new UniquePerOwnerValidator().setDbService(testDb);
-        new ValidListIdValidator().setDbService(testDb);
-
+        super.setUp();
+        aList = createList();
+        getAttributes().put(TodoApplication.LIST_ID, aList.getId());
     }
 
     @Test
-    @Ignore
     public void empty_html_form_yields_validation_failure() {
-        form.add("title", "title_" + randomString());
-        ConstraintViolationsResponse<?> post = (ConstraintViolationsResponse<?>) resource.post(form, new VariantInfo(
-                MediaType.TEXT_HTML));
-        assertValidationFailure(resource, post, "list", "may not be null");
+        form.add("title", "");
+        form.add("list", aList.getId());
+        SkysailResponse<Todo> post = postTodoResource.post(form, HTML_VARIANT);
+        assertValidationFailure(postTodoResource, post, "title", "size must be between");
     }
 
     @Test
     public void wrong_list_yields_validation_failure() {
         form.add("title", "title_" + randomString());
         form.add("list", "list_" + randomString());
-        ConstraintViolationsResponse<?> post = (ConstraintViolationsResponse<?>) resource.post(form, new VariantInfo(MediaType.TEXT_HTML));
-        assertValidationFailure(resource, post, "list", "This list does not exist or has another owner");
+        ConstraintViolationsResponse<?> post = (ConstraintViolationsResponse<?>) postTodoResource.post(form,
+                HTML_VARIANT);
+        assertValidationFailure(postTodoResource, post, "list", "This list does not exist or has another owner");
     }
 
     @Test
     public void start_date_after_due_date_yields_validation_failure() {
-        String id = createNewList();
-
         form.add("title", "title_" + randomString());
-        form.add("list", id);
+        form.add("list", aList.getId());
         form.add("due", "2099-12-01");
         form.add("startDate", "2100-12-30");
 
-        ConstraintViolationsResponse<?> post = (ConstraintViolationsResponse<?>) resource.post(form, new VariantInfo(MediaType.TEXT_HTML));
-        assertValidationFailure(resource, post, "", "the start date must be before the due date");
+        SkysailResponse<Todo> post = postTodoResource.post(form, HTML_VARIANT);
+        assertValidationFailure(postTodoResource, post, "", "the start date must be before the due date");
     }
 
     @Test
-    public void valid_data_yields_new_entity() {
-        String id = createNewList();
-        form.add("title", "title_" + randomString());
-        form.add("list", id);
+    public void valid_form_data_yields_new_entity() {
+        String title = "title_" + randomString();
+        form.add("title", title);
+        form.add("list", aList.getId());
         form.add("due", "2099-12-01");
-        SkysailResponse<Todo> response = resource.post(form, new VariantInfo(MediaType.TEXT_HTML));
-//        assertThat(response.getStatus(), is(equalTo(Status.SUCCESS_CREATED)));
-//        assertThat(todo.getImportance(), is(50));
+
+        SkysailResponse<Todo> result = postTodoResource.post(form, HTML_VARIANT);
+
+        assertTodoResult(postTodoResource, result, title);
+    }
+
+    @Test
+    public void valid_json_data_yields_new_entity() {
+        String title = "title_" + randomString();
+        Todo todo = new Todo(title);
+        todo.setList(aList.getId());
+        todo.setDue(Date.from(LocalDate.now().plusMonths(1).atStartOfDay().atZone(ZoneId.systemDefault()).toInstant()));
+        SkysailResponse<Todo> result = postTodoResource.post(todo, HTML_VARIANT);
+
+        assertTodoResult(postTodoResource, result, title);
     }
 
     @Test
     public void urgency_is_calculated() {
-        String id = createNewList();
+        TodoList aList = createList();
         form.add("title", "title_" + randomString());
-        form.add("list", id);
+        form.add("list", aList.getId());
 
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        form.add("startDate", sdf.format(nowPlusWeeksAndDays(-1,-1)));
+        form.add("startDate", sdf.format(nowPlusWeeksAndDays(-1, -1)));
         form.add("due", sdf.format(nowPlusWeeks(1)));
-        SkysailResponse<Todo> response = resource.post(form, new VariantInfo(MediaType.TEXT_HTML));
-//        assertThat(response.getStatus(), is(equalTo(Status.SUCCESS_CREATED)));
-//        assertThat(todo.getUrgency(), greaterThan(0));
-//        assertThat(todo.getUrgency(), not(greaterThan(100)));
-    }
-
-    private String createNewList() {
-        TodoList entity = new TodoList();
-        entity.setName("list_" + randomString());
-        entity.setOwner("admin");
-        String id = TodosRepository.add(entity).toString();
-        return id;
+        SkysailResponse<Todo> post = postTodoResource.post(form, HTML_VARIANT);
+        assertThat(responses.get(postTodoResource.getClass().getName()).getStatus(), is(equalTo(Status.SUCCESS_CREATED)));
+        assertThat(post.getEntity().getUrgency(), greaterThan(0));
+        assertThat(post.getEntity().getUrgency(), not(greaterThan(100)));
     }
 
     private Date nowPlusWeeks(int weeksOffset) {
@@ -113,7 +103,8 @@ public class PostTodoResourceTest extends ResourceTestBase {
     }
 
     private Date nowPlusWeeksAndDays(int weeksOffset, int dayOffset) {
-        return Date.from(LocalDate.now().plusWeeks(weeksOffset).plusDays(dayOffset).atStartOfDay().toInstant(ZoneOffset.MIN));
+        return Date.from(LocalDate.now().plusWeeks(weeksOffset).plusDays(dayOffset).atStartOfDay()
+                .toInstant(ZoneOffset.MIN));
     }
 
 }

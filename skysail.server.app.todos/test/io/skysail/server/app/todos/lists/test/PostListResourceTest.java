@@ -27,14 +27,14 @@ public class PostListResourceTest extends TodoListResourceTest {
     public void valid_form_data_yields_new_entity() {
         form.add("name", "list1");
         SkysailResponse<TodoList> result = postListresource.post(form, HTML_VARIANT);
-        assertResult(postListresource, result, "list1");
+        assertListResult(postListresource, result, "list1");
     }
 
     @Test
     public void valid_json_data_yields_new_entity() {
         SkysailResponse<TodoList> result = postListresource.post(new TodoList("jsonList1"), JSON_VARIANT);
         assertThat(responses.get(postListresource.getClass().getName()).getStatus(),is(equalTo(Status.SUCCESS_CREATED)));
-        assertResult(postListresource, result, "jsonList1");
+        assertListResult(postListresource, result, "jsonList1");
     }
 
     @Test

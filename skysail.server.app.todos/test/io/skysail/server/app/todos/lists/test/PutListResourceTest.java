@@ -16,8 +16,8 @@ public class PutListResourceTest extends TodoListResourceTest {
 //    public void setUp() throws Exception {
 //        super.setUpFixture();
 //        super.setUpApplication(Mockito.mock(TodoApplication.class));
-//        super.setUpResource(putListResource);
-//        super.setUpResource(postListresource);
+//        super.setUpResource(putTodoResource);
+//        super.setUpResource(postTodoResource);
 //        super.setUpRepository(new TodosRepository());
 //        super.setUpSubject("admin");
 //
@@ -44,11 +44,11 @@ public class PutListResourceTest extends TodoListResourceTest {
 //    @Test
 //    @Ignore
 //    public void empty_json_data_yields_validation_failure() {
-//        putListResource.getRequestAttributes().put(TodoApplication.LIST_ID, aList.getId());
+//        putTodoResource.getRequestAttributes().put(TodoApplication.LIST_ID, aList.getId());
 //        getAttributes().put(TodoApplication.LIST_ID, aList.getId());
-//        putListResource.init(null, request, response);
+//        putTodoResource.init(null, request, response);
 //
-//        SkysailResponse<TodoList> skysailResponse = putListResource.put(new TodoList(), JSON_VARIANT);
+//        SkysailResponse<TodoList> skysailResponse = putTodoResource.put(new TodoList(), JSON_VARIANT);
 //
 //        assertValidationFailure(skysailResponse,  "name", "size must be between");
 //    }

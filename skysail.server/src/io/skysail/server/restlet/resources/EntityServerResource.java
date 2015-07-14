@@ -2,7 +2,9 @@ package io.skysail.server.restlet.resources;
 
 import io.skysail.api.documentation.API;
 import io.skysail.api.links.LinkRelation;
-import io.skysail.api.responses.*;
+import io.skysail.api.responses.EntityServerResponse;
+import io.skysail.api.responses.FormResponse;
+import io.skysail.api.responses.SkysailResponse;
 import io.skysail.server.restlet.RequestHandler;
 import io.skysail.server.restlet.filter.AbstractResourceFilter;
 import io.skysail.server.services.PerformanceTimer;
@@ -10,14 +12,24 @@ import io.skysail.server.services.PerformanceTimer;
 import java.text.ParseException;
 import java.util.Set;
 
-import javax.validation.*;
+import javax.validation.ConstraintValidatorFactory;
+import javax.validation.ConstraintViolation;
+import javax.validation.Validator;
 
-import org.restlet.data.*;
+import lombok.extern.slf4j.Slf4j;
+
+import org.restlet.data.Form;
+import org.restlet.data.Method;
+import org.restlet.representation.Representation;
 import org.restlet.representation.Variant;
-import org.restlet.resource.*;
-import org.slf4j.*;
+import org.restlet.resource.Delete;
+import org.restlet.resource.Get;
+import org.restlet.resource.Options;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import de.twenty11.skysail.server.core.restlet.*;
+import de.twenty11.skysail.server.core.restlet.ResourceContextId;
+import de.twenty11.skysail.server.core.restlet.ResponseWrapper;
 
 /**
  * Abstract base class for skysail server-side resources representing a single
@@ -63,6 +75,7 @@ import de.twenty11.skysail.server.core.restlet.*;
  * @param <T>
  *            the entity
  */
+@Slf4j
 public abstract class EntityServerResource<T> extends SkysailServerResource<T> {
 
     private static final Logger logger = LoggerFactory.getLogger(EntityServerResource.class);
@@ -162,6 +175,18 @@ public abstract class EntityServerResource<T> extends SkysailServerResource<T> {
         getApplication().stopPerformanceMonitoring(perfTimer);
         return new EntityServerResponse<>(entity);
     }
+
+    @Options("json")
+    public final SkysailResponse<ResourceContextResource> doOptions(Representation entity, Variant variant) {
+        Set<PerformanceTimer> perfTimer = getApplication().startPerformanceMonitoring(
+                this.getClass().getSimpleName() + ":doOptions");
+        log.info("Request entry point: {}  @Options('json') with variant {}", this.getClass().getSimpleName(),
+                variant);
+        ResourceContextResource context = new ResourceContextResource(this);
+        getApplication().stopPerformanceMonitoring(perfTimer);
+        return new SkysailResponse<ResourceContextResource>(context);
+    }
+
 
     protected T getEntity3() {
         RequestHandler<T> requestHandler = new RequestHandler<T>(getApplication());

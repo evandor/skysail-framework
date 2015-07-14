@@ -60,7 +60,7 @@ public class Link {
      */
     private String refId;
 
-    
+
     private Class<?> cls;
 
     public static class Builder {
@@ -88,7 +88,7 @@ public class Link {
             this.images  = linkTemplate.getImages();
             this.cls = linkTemplate.getCls();
         }
-        
+
         public Builder(@NonNull String uri) {
             this.uri = uri.trim();
             verbs.add(Method.GET);
@@ -98,7 +98,7 @@ public class Link {
             this.uri = uri;
             return this;
         }
-        
+
         public Link build() {
             return new Link(this);
         }
@@ -130,7 +130,7 @@ public class Link {
 
         /**
          * sets the http methods applicable.
-         * 
+         *
          */
         public Builder verbs(Method... verbs) {
             this.verbs = new HashSet<Method>();
@@ -192,6 +192,10 @@ public class Link {
             parsePart(builder, parts[i]);
         }
         return builder.build();
+    }
+
+    public boolean isApplicable() {
+        return true;
     }
 
     private static void parsePart(Builder builder, String part) {

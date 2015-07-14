@@ -10,16 +10,16 @@
   </style>
 
   <template>
-    <iron-ajax 
+    <iron-ajax
         id="ajax"
-        handle-as="json" 
+        handle-as="json"
         headers='{"Accept": "application/json"}'
         on-response="hResponse"
         last-response="{{data}}"
         debounce-duration="300" />
-    <!-- <div class="list-group">
-      <a href='#' class="list-group-item">create new List</a>
-    </div> -->
+    <div class="list-group">
+      <a href='/Todos/Lists/' class="list-group-item">create new List</a>
+    </div>
     <div class="list-group">
       <template is="dom-repeat" items="{{data}}">
         <a ajaxhref="{{renderLink(linkTo, item, identifier)}}" on-click="handleClick" class$="{{itemClass(linkTo, item, identifier, requestUrl, disabled)}}" title="{{renderLink(linkTo, item, identifier)}}">
@@ -52,7 +52,7 @@
     	  disabled: { type: Boolean, value: false}
       },
       renderLink: function(href, item, identifier) {
-    	  console.log("replacing '" + href + "' -> '" + href.replace("{" + identifier + "}", item.id) + "?_rendered"); 
+    	  console.log("replacing '" + href + "' -> '" + href.replace("{" + identifier + "}", item.id) + "?_rendered");
        	  return href.replace("{" + identifier + "}", item.id) + "?_rendered";
       },
       shorten(str, nameProperty, maxLength) {
@@ -66,9 +66,9 @@
     		  return "list-group-item disabled";
     	  }
     	  if (requestUrl.startsWith(href.replace("{" + identifier + "}", item.id))) {
-              return "list-group-item active";  
+              return "list-group-item active";
     	  } else {
-              return "list-group-item";  
+              return "list-group-item";
     	  }
       },
       attached: function() {
@@ -76,13 +76,13 @@
     	  this.$.ajax.generateRequest();
       },
       handleClick: function(e, f, g) {
-    	  
+
     	  // http://www.quirksmode.org/js/events_properties.html
           if (!e) {
         	  var e = window.event;
           }
     	  var srcElement = e.currentTarget;
-    	  console.log("found srcElement: " + srcElement + " with reference to " + srcElement.ajaxhref );	
+    	  console.log("found srcElement: " + srcElement + " with reference to " + srcElement.ajaxhref );
     	  var ajaxhref = srcElement.ajaxhref;
           var ajaxTable = document.getElementById("theAjaxContent");
           ajaxTable.url = ajaxhref;
@@ -91,7 +91,7 @@
           // ajaxTable.requestUrl="/Todos";
           ajaxTable.nameProperty="title";
           //ajaxTable.onResponse = function(e) {
-          //	console.log("hier!" + e);  
+          //	console.log("hier!" + e);
           //};
           var test =   document.getElementById("ajaxTable").generateRequest();
           var complete = test.properties.completes.value();
@@ -100,13 +100,13 @@
          	.then(function(val,reject) {
     	            console.log('beforeend' + val);
     	        })
-    	    .catch(function() { 
+    	    .catch(function() {
     	        	console.log('promise was rejected');
-    	        });	 
+    	        });
           var response = test.properties.response;
           console.log("response: " + response);
-         
-         
+
+
       },
       hResponse: function(request) {
           console.log(request.detail);

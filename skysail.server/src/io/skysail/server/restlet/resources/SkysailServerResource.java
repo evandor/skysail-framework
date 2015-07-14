@@ -35,12 +35,12 @@ import de.twenty11.skysail.server.services.MenuItem;
 /**
  * Abstract base class for all skysail resources, parameterized with T, the type
  * of the entity handled.
- * 
+ *
  * <p>
  * The entity can be something concrete (e.g. a contact) or a list of something
  * (e.g. a list of contacts).
  * </p>
- * 
+ *
  * <p>
  * Those methods are called from the framework, see {@link RequestHandler} and
  * the various {@link AbstractResourceFilter} implementations. The
@@ -81,7 +81,7 @@ public abstract class SkysailServerResource<T> extends ServerResource {
 
     @Getter
     private ResourceContext resourceContext;
-    
+
     private BeanUtilsBean beanUtilsBean = new BeanUtilsBean(new ConvertUtilsBean() {
         @SuppressWarnings("unchecked")
         @Override
@@ -113,7 +113,7 @@ public abstract class SkysailServerResource<T> extends ServerResource {
         ConvertUtils.deregister(Date.class);
         ConvertUtils.register(dateConverter, Date.class);
         beanUtilsBean.getConvertUtils().register(dateConverter, Date.class);
-        
+
         resourceContext = new ResourceContext(getApplication(), this);
     }
 
@@ -126,12 +126,12 @@ public abstract class SkysailServerResource<T> extends ServerResource {
     /**
      * Typically you will query some kind of repository here and return the
      * result (of type T, where T could be a List).
-     * @param subject 
-     * 
+     * @param subject
+     *
      * @return entity of Type T (can be a list as well)
      */
     public abstract T getEntity();
-    
+
     public T getEntity(String installation) {
         return getEntity();
     }
@@ -161,7 +161,7 @@ public abstract class SkysailServerResource<T> extends ServerResource {
 
     /**
      * get Messages.
-     * 
+     *
      * @return map with messages
      */
     public Map<String, String> getMessages() {
@@ -172,15 +172,15 @@ public abstract class SkysailServerResource<T> extends ServerResource {
         String key = getClass().getName() + ".message";
         String translated = ((SkysailApplication) application).translate(key, key, this, true);
         msgs.put("content.header", translated);
-        
+
         //HeadersUtils.getHeaders(getResponse()).add("X-Resource-Description", translated);
-        
+
         return msgs;
     }
 
     /**
      * get Messages.
-     * 
+     *
      * @param fields
      *            a list of fields
      * @return messages the messages
@@ -242,7 +242,7 @@ public abstract class SkysailServerResource<T> extends ServerResource {
      * Reasoning: not overwriting those two (overloaded) methods gives me a
      * jackson deserialization issue. I need to define which method I want to be
      * ignored by jackson.
-     * 
+     *
      * @see org.restlet.resource.ServerResource#setLocationRef(org.restlet.data.Reference)
      */
     @JsonIgnore
@@ -259,12 +259,12 @@ public abstract class SkysailServerResource<T> extends ServerResource {
     /**
      * creates a list of links for the provided {@link SkysailServerResource}
      * classes.
-     * 
+     *
      * <p>
      * This method is executed only once for the current resource, and the
      * result is cached for further requests.
      * </p>
-     * 
+     *
      * <p>
      * If the resource has associated resources, those links are added as well.
      * </p>
@@ -278,7 +278,7 @@ public abstract class SkysailServerResource<T> extends ServerResource {
         List<Link> links = Arrays.asList(classes).stream() //
                 .map(cls -> LinkUtils.fromResource(app, cls))//
                 .filter(lh -> {
-                    return lh != null;
+                    return lh != null;// && lh.isApplicable();
                 }).collect(Collectors.toList());
 
         links.addAll(getAssociatedLinks());
@@ -291,7 +291,7 @@ public abstract class SkysailServerResource<T> extends ServerResource {
     /**
      * if the current resource is a {@link ListServerResource}, the associated
      * EntityServerResource (if existent) is analyzed for its own links.
-     * 
+     *
      * <p>
      * For each entity of the listServerResource, and for each associated link
      * (which serves as a template), a new link is created and is having its
@@ -388,11 +388,11 @@ public abstract class SkysailServerResource<T> extends ServerResource {
      * A resource provides a list of links it references. This is the complete
      * list of links, including links the current user is not authorized to
      * follow.
-     * 
+     *
      * @see SkysailServerResource#getAuthorizedLinks()
-     * 
+     *
      *      for example
-     * 
+     *
      *      <pre>
      * <code>
      * return getLinkheader(PostMyEntityResource.class);
@@ -411,7 +411,7 @@ public abstract class SkysailServerResource<T> extends ServerResource {
     /**
      * Links might be removed from the framework if the current user isn't
      * authorized to call them.
-     * 
+     *
      * @return result
      */
     public List<Link> getAuthorizedLinks() {
@@ -527,6 +527,6 @@ public abstract class SkysailServerResource<T> extends ServerResource {
         return result;
     }
 
-   
+
 
 }

@@ -27,7 +27,7 @@ public class DeleteSpaceResourceTest extends WikiResourceTestBase {
         resource.getRequestAttributes().put("id", space.getId());
         resource.init(null, request, responses.get(resource.getClass().getName()));
 
-        resource.deleteEntity();
+        resource.deleteEntity(HTML_VARIANT);
 
         Space spaceFromDb = new WikiRepository().getById(Space.class, space.getId());
         assertThat(responses.get(resource.getClass().getName()).getStatus(),is(equalTo(Status.SUCCESS_OK)));
@@ -41,7 +41,7 @@ public class DeleteSpaceResourceTest extends WikiResourceTestBase {
         resource.getRequestAttributes().put("id", space.getId());
         resource.init(null, request, responses.get(resource.getClass().getName()));
 
-        resource.deleteEntity();
+        resource.deleteEntity(HTML_VARIANT);
 
         Space spaceFromDb = new WikiRepository().getById(Space.class, space.getId());
         assertThat(responses.get(resource.getClass().getName()).getStatus(),is(equalTo(Status.SERVER_ERROR_INTERNAL)));

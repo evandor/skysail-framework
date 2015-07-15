@@ -9,7 +9,7 @@ Test-Cases: io.skysail.server.app.todos.test.TodoListsCrudIntegrationTests
 
 -buildpath:  \
 	skysail.api;version=${skysail.api.version},\
-	skysail.api.validation;version=latest,\
+	skysail.api.validation;version=${skysail.api.validation.version},\
 	skysail.api.documentation;version=${skysail.api.documentation.version},\
 	skysail.client.testsupport;version=latest,\
 	skysail.server;version=latest,\
@@ -24,8 +24,8 @@ Test-Cases: io.skysail.server.app.todos.test.TodoListsCrudIntegrationTests
 	org.apache.felix.configadmin;version=1.8,\
 	lombok;version=1.16,\
 	slf4j.api;version=1.7
-	
-	
+
+
 -runfw: org.apache.felix.framework;version='[4,5)'
 -runee: JavaSE-1.8
 -runsystemcapabilities: ${native_capability}
@@ -39,7 +39,7 @@ Test-Cases: io.skysail.server.app.todos.test.TodoListsCrudIntegrationTests
 	Local,\
 	Skysail Repository,\
 	Bndtools Hub
-	
+
 -runsystempackages: sun.reflect, sun.misc, com.sun.net.httpserver, javax.imageio.spi, javax.crypto, javax.crypto.spec, javax.script, javax.net,\
     javax.net.ssl,javax.sql,javax.security.auth.x500,org.ietf.jgss,javax.naming,javax.naming.directory,javax.naming.ldap,\
     javax.xml.bind,javax.xml.bind.annotation,javax.xml.bind.annotation.adapters,javax.activation,javax.security.auth.callback,\
@@ -67,7 +67,7 @@ Test-Cases: io.skysail.server.app.todos.test.TodoListsCrudIntegrationTests
 
 #  gosh.args=--nointeractive : otherwise I get a "gosh: stopping framework" message when running the integration tests...
 #-runproperties: \
-#    gosh.args=--nointeractive	
+#    gosh.args=--nointeractive
 
 -runbundles:  \
 	ch.qos.logback.classic;version='[1.1.2,1.1.3)',\

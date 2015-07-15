@@ -13,7 +13,7 @@ Include-Resource: resources, templates=src;recursive:=true;filter:=*.st|*.stg
 	skysail.api.favorites;version=${skysail.api.favorites.version},\
 	skysail.api.peers;version=latest,\
 	skysail.api.um;version=${skysail.api.um.version},\
-	skysail.api.validation;version=latest,\
+	skysail.api.validation;version=${skysail.api.validation.version},\
 	skysail.server;version=latest,\
 	skysail.server.db;version=latest,\
 	skysail.server.codegen;version=latest,\
@@ -55,7 +55,7 @@ Include-Resource: resources, templates=src;recursive:=true;filter:=*.st|*.stg
 	com.fasterxml.jackson.dataformat.jackson-dataformat-smile;version=2.5,\
 	com.fasterxml.jackson.dataformat.jackson-dataformat-xml;version=2.5,\
 	com.fasterxml.jackson.dataformat.jackson-dataformat-yaml;version=2.5
-	
+
 Import-Package: org.osgi.framework,\
 	javassist.util.proxy,\
 	*
@@ -67,7 +67,7 @@ Private-Package:  \
 	io.skysail.server.app.todos.todos.status,\
 	io.skysail.server.app.todos.statuses,\
 	io.skysail.server.app.todos.ranking
-Bundle-Description: a todo application for skysail (used as demo as well) 
+Bundle-Description: a todo application for skysail (used as demo as well)
 Export-Package:  \
 	io.skysail.server.app.todos,\
 	io.skysail.server.app.todos.todos

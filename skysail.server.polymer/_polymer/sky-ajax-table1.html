@@ -12,7 +12,7 @@
   <template>
     <iron-ajax
         id="ajaxTable" auto
-        handle-as="json" 
+        handle-as="json"
         headers='{"Accept": "application/json"}'
         on-response="hResponse"
         last-response="{{data}}"
@@ -77,9 +77,9 @@
       },
       itemClass: function(href, item, identifier, requestUrl) {
     	  if (requestUrl.startsWith(href.replace("{" + identifier + "}", item.id))) {
-              return "list-group-item active";  
+              return "list-group-item active";
     	  } else {
-              return "list-group-item";  
+              return "list-group-item";
     	  }
       },
       attached: function() {
@@ -91,12 +91,6 @@
           console.log("sky-ajax-table1#onResponse " + request.xhr.getResponseHeader('X-Resource-Description'));
           document.getElementById("resourceDescription").innerHTML = request.xhr.getResponseHeader('X-Resource-Description');
       },
-      created: function() {
-  	    //console.log(this.localName + '#' + this.id + ' was created');
-  	  },
-  	  detached: function() {
-  	    console.log(this.localName + '#' + this.id + ' was detached');
-  	  },
   	  attributeChanged: function(name, type) {
   	    console.log(this.localName + '#' + this.id + ' attribute ' + name +
   	      ' was changed to ' + this.getAttribute(name));

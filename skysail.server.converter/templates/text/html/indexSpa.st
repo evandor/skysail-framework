@@ -28,7 +28,8 @@ indexSpa(user, messages, converter, model) ::= <<
     <link rel="import" href="/_polymer/sky-breadcrumbs.html">
     <link rel="import" href="/_polymer/sky-form-text.html">
     <link rel="import" href="/_polymer/sky-ajax-thumbnails.html">
-    s
+    <link rel="import" href="/_polymer/sky-links.html">
+
     <link rel="import" href="/_polymer/bower_components/google-chart/google-chart.html">
 
 

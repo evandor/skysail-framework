@@ -1,0 +1,7 @@
+menuNavSpa(links) ::= <<
+    $links:{ link | $linkAsButton(link,i)$}$
+>>
+
+linkAsButton(link, cnt) ::= <<
+ $cnt$
+>>

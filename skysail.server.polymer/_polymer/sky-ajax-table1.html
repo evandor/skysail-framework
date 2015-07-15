@@ -10,13 +10,15 @@
   </style>
 
   <template>
+
     <iron-ajax
-        id="ajaxTable" auto
+        id="skyTable" auto
         handle-as="json"
         headers='{"Accept": "application/json"}'
         on-response="hResponse"
         last-response="{{data}}"
         debounce-duration="300" />
+
     <table class="table table-striped">
       <tr>
         <template is="dom-repeat" items="{{_toArray2(columnNames)}}">
@@ -37,43 +39,17 @@
     Polymer({
       is: 'sky-ajax-table1',
       properties: {
-    	  url: {
-    		  type: String,
-    		  observer: '_urlChanged'
-    	  },
-    	  columns: {
-    		  type: Array,
-    		  value: ['please define the columns']
-    	  },
-    	  columnNames: {
-    		  type: Object,
-    		  value: {"name": "please define the attribute column-names"}
-    	  },
-    	  nameProperty: {
-    		  type: String,
-    		  value: "name",
-    		  observer: '_namePropertyChanged'
-    	  },
-    	  identifier: {
-    		  type: String,
-    		  value: "id"
-    	  },
-    	  linkTo: String,
-    	  requestUrl: String,
-    	  linkLength: {
-    		  type: Number,
-    		  value: 10
-    	  }
+    	  linkTo:       String,
+    	  requestUrl:   String,
+    	  url:          { type: String, observer: '_urlChanged' },
+    	  columns:      { type: Array,  value: ['please define the columns'] },
+    	  columnNames:  { type: Object, value: {"name": "please define the attribute column-names"} },
+    	  nameProperty: { type: String, value: "name", observer: '_namePropertyChanged' },
+    	  identifier:   { type: String, value: "id" },
+    	  linkLength:   { type: Number, value: 10 }
       },
       renderLink: function(href, item, identifier) {
        	  return href.replace("{" + identifier + "}", item.id);
-      },
-      shorten(str, nameProperty, maxLength) {
-    	  console.log("name: " + nameProperty);
-    	  if (str[nameProperty].length > maxLength) {
-    		  return str[nameProperty].slice(0,maxLength-3) + "...";
-    	  }
-    	  return str[nameProperty];
       },
       itemClass: function(href, item, identifier, requestUrl) {
     	  if (requestUrl.startsWith(href.replace("{" + identifier + "}", item.id))) {
@@ -84,11 +60,10 @@
       },
       attached: function() {
     	console.log(this.localName + '#' + this.id + ' was attached1');
-     	this.$.ajaxTable.url=this.url;
-    	//this.$.ajaxTable.generateRequest();
+     	this.$.skyTable.url=this.url;
+    	//this.$.skyTable.generateRequest();
       },
       hResponse: function(event, request) {
-          console.log("sky-ajax-table1#onResponse " + request.xhr.getResponseHeader('X-Resource-Description'));
           document.getElementById("resourceDescription").innerHTML = request.xhr.getResponseHeader('X-Resource-Description');
       },
   	  attributeChanged: function(name, type) {
@@ -96,11 +71,11 @@
   	      ' was changed to ' + this.getAttribute(name));
   	  },
   	  _urlChanged: function(newValue, oldValue) {
-        this.$.ajaxTable.url=newValue;
+        this.$.skyTable.url=newValue;
         console.log("value url changed from " + oldValue + " to " + newValue);
   	  },
   	  _namePropertyChanged:function(newValue, oldValue) {
-        this.$.ajaxTable.nameProperty=newValue;
+        this.$.skyTable.nameProperty=newValue;
         console.log("nameProperty changed from " + oldValue + " to " + newValue);
   	  },
   	  _toArray: function(obj, columns) {
@@ -112,11 +87,7 @@
           return Object.keys(obj).map(function(key) {
             return {name: key, value: obj[key]};
           });
-      },
-      unescape: function(value) {
-    	  this.innerHTML = "<a href='#'>heise</a>";
-	    return value;
-	  }
+      }
     });
   </script>
 

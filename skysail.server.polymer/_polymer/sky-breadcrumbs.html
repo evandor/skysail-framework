@@ -28,34 +28,15 @@
     Polymer({
       is: 'sky-breadcrumbs',
       properties: {
-    	  url: {
-    		  type: String,
-    		  observer: '_urlChanged'
-    	  },
-    	  columnNames: {
-    		  type: Array,
-    		  value: ['please define the attribute column-names']
-    	  },
-    	  identifier: {
-    		  type: String,
-    		  value: "id"
-    	  },
-    	  linkTo: String,
-    	  requestUrl: String,
-    	  linkLength: {
-    		  type: Number,
-    		  value: 10
-    	  }
+    	  linkTo:      String,
+    	  requestUrl:  String,
+    	  url:         { type: String, observer: '_urlChanged' },
+    	  columnNames: { type: Array,  value: ['please define the attribute column-names'] },
+    	  identifier:  { type: String, value: "id" },
+    	  linkLength:  { type: Number, value: 10 }
       },
       renderLink: function(href, item, identifier) {
        	  return href.replace("{" + identifier + "}", item.id);
-      },
-      shorten(str, nameProperty, maxLength) {
-    	  console.log("name: " + nameProperty);
-    	  if (str[nameProperty].length > maxLength) {
-    		  return str[nameProperty].slice(0,maxLength-3) + "...";
-    	  }
-    	  return str[nameProperty];
       },
       itemClass: function(href, item, identifier, requestUrl) {
     	  if (requestUrl.startsWith(href.replace("{" + identifier + "}", item.id))) {
@@ -67,7 +48,6 @@
       attached: function() {
     	console.log(this.localName + '#' + this.id + ' was attached1');
      	this.$.breadcrumbs.url=this.url;
-    	//this.$.breadcrumbs.generateRequest();
       },
       hResponse: function(request) {
           console.log(request.detail);

@@ -3,20 +3,19 @@
 
 <dom-module id="sky-ajax-get">
 
- <style>
-    .list-group-item {
-      padding: 5px 15px;
-    }
+  <style>
+    .list-group-item { padding: 5px 15px; }
   </style>
 
   <template>
+
     <iron-ajax
         id="ajax"
         handle-as="json"
         headers='{"Accept": "application/json"}'
-        on-response="hResponse"
         last-response="{{data}}"
         debounce-duration="300" />
+
     <div class="list-group">
       <a href='/Todos/Lists/' class="list-group-item">create new List</a>
     </div>
@@ -33,86 +32,65 @@
     Polymer({
       is: 'sky-ajax-get',
       properties: {
-    	  url: String,
-    	  nameProperty: {
-    		  type: String,
-    		  value: "name"
-    	  },
-    	  identifier: {
-    		  type: String,
-    		  value: "id"
-    	  },
-    	  linkTo: String,
-    	  requestUrl: String,
-    	  linkLength: {
-    		  type: Number,
-    		  value: 10
-    	  },
-    	  glyphicon : { type: String, value: "file"},
-    	  disabled: { type: Boolean, value: false}
+        url:          String,
+        linkTo:       String,
+        requestUrl:   String,
+        nameProperty: { type: String,  value: "name" },
+        identifier:   { type: String,  value: "id" },
+        linkLength:   { type: Number,  value: 10 },
+        glyphicon :   { type: String,  value: "file"},
+        disabled:     { type: Boolean, value: false}
       },
       renderLink: function(href, item, identifier) {
-    	  console.log("replacing '" + href + "' -> '" + href.replace("{" + identifier + "}", item.id) + "?_rendered");
-       	  return href.replace("{" + identifier + "}", item.id) + "?_rendered";
+        console.log("replacing '" + href + "' -> '" + href.replace("{" + identifier + "}", item.id) + "?_rendered");
+        return href.replace("{" + identifier + "}", item.id) + "?_rendered";
       },
       shorten(str, nameProperty, maxLength) {
-    	  if (str[nameProperty].length > maxLength) {
-    		  return str[nameProperty].slice(0,maxLength-3) + "...";
-    	  }
-    	  return str[nameProperty];
+        if (str[nameProperty].length > maxLength) {
+          return str[nameProperty].slice(0,maxLength-3) + "...";
+        }
+        return str[nameProperty];
       },
       itemClass: function(href, item, identifier, requestUrl, disabled) {
-    	  if (disabled) {
-    		  return "list-group-item disabled";
-    	  }
-    	  if (requestUrl.startsWith(href.replace("{" + identifier + "}", item.id))) {
+        if (disabled) {
+          return "list-group-item disabled";
+        }
+        if (requestUrl.startsWith(href.replace("{" + identifier + "}", item.id))) {
               return "list-group-item active";
-    	  } else {
+        } else {
               return "list-group-item";
-    	  }
+        }
       },
       attached: function() {
-    	  this.$.ajax.url=this.url;
-    	  this.$.ajax.generateRequest();
+        this.$.ajax.url=this.url;
+        this.$.ajax.generateRequest();
       },
       handleClick: function(e, f, g) {
-
-    	  // http://www.quirksmode.org/js/events_properties.html
-          if (!e) {
-        	  var e = window.event;
-          }
-    	  var srcElement = e.currentTarget;
-    	  console.log("found srcElement: " + srcElement + " with reference to " + srcElement.ajaxhref );
-    	  var ajaxhref = srcElement.ajaxhref;
-          var ajaxTable = document.getElementById("theAjaxContent");
-          ajaxTable.url = ajaxhref;
-          // ajaxTable.linkTo="/Todos/Lists/{lid}/Todos";
-          // ajaxTable.identifier="lid";
-          // ajaxTable.requestUrl="/Todos";
-          ajaxTable.nameProperty="title";
-          //ajaxTable.onResponse = function(e) {
-          //	console.log("hier!" + e);
-          //};
-          var test =   document.getElementById("ajaxTable").generateRequest();
-          var complete = test.properties.completes.value();
-          console.log("completes: " + complete);
-          complete
-         	.then(function(val,reject) {
-    	            console.log('beforeend' + val);
-    	        })
-    	    .catch(function() {
-    	        	console.log('promise was rejected');
-    	        });
-          var response = test.properties.response;
-          console.log("response: " + response);
-
-
-      },
-      hResponse: function(request) {
-          console.log(request.detail);
+        // http://www.quirksmode.org/js/events_properties.html
+        if (!e) {
+          var e = window.event;
+        }
+        var srcElement = e.currentTarget;
+        console.log("found srcElement: " + srcElement + " with reference to " + srcElement.ajaxhref );
+        var ajaxhref = srcElement.ajaxhref;
+        var ajaxTable = document.getElementById("theAjaxContent");
+        ajaxTable.url = ajaxhref;
+        ajaxTable.nameProperty="title";
+        document.getElementById("skyTable").generateRequest();
+        /*var complete = test.properties.completes.value();
+        console.log("completes: " + complete);
+        complete
+           .then(function(val,reject) {
+                  console.log('beforeend' + val);
+              })
+          .catch(function() {
+                console.log('promise was rejected');
+              });
+        var response = test.properties.response;
+        console.log("response: " + response);*/
       },
       getGlyph: function(glyph) {
-    	  return "glyphicon glyphicon-"+glyph;
+        return "glyphicon glyphicon-"+glyph;
       }
     });
   </script>

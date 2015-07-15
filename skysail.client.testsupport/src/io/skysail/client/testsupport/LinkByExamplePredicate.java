@@ -35,6 +35,6 @@ public class LinkByExamplePredicate extends LinkPredicate {
         sb.append("refId = '").append(exampleLink.getRefId()).append("'\n in list of links:");
         sb.append(superToString);
         return sb.toString();
-    } 
-    
+    }
+
 }

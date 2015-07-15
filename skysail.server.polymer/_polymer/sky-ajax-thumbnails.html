@@ -11,13 +11,12 @@
 
   <template>
     <iron-ajax
-        id="ajaxTable" auto
-        handle-as="json" 
+        id="skyThumbnails" auto
+        handle-as="json"
         headers='{"Accept": "application/json"}'
-        on-response="hResponse"
         last-response="{{data}}"
         debounce-duration="300" />
-        
+
     <div class="row">
       <template is="dom-repeat" items="{{data}}" as="row">
         <div class="col-sm-6 col-md-4">
@@ -32,7 +31,7 @@
         </div>
       </template>
     </div>
-    
+
   </template>
 
   <script>
@@ -40,8 +39,7 @@
       is: 'sky-ajax-thumbnails',
       properties: {
     	  url: {
-    		  type: String,
-    		  observer: '_urlChanged'
+    		  type: String
     	  },
     	  columns: {
     		  type: Array,
@@ -53,8 +51,7 @@
     	  },
     	  nameProperty: {
     		  type: String,
-    		  value: "name",
-    		  observer: '_namePropertyChanged'
+    		  value: "name"
     	  },
     	  identifier: {
     		  type: String,
@@ -70,24 +67,17 @@
       renderLink: function(href, item, identifier) {
        	  return href.replace("{" + identifier + "}", item.id);
       },
-      shorten(str, nameProperty, maxLength) {
-    	  console.log("name: " + nameProperty);
-    	  if (str[nameProperty].length > maxLength) {
-    		  return str[nameProperty].slice(0,maxLength-3) + "...";
-    	  }
-    	  return str[nameProperty];
-      },
       itemClass: function(href, item, identifier, requestUrl) {
     	  if (requestUrl.startsWith(href.replace("{" + identifier + "}", item.id))) {
-              return "list-group-item active";  
+              return "list-group-item active";
     	  } else {
-              return "list-group-item";  
+              return "list-group-item";
     	  }
       },
       attached: function() {
     	console.log(this.localName + '#' + this.id + ' was attached1');
-     	this.$.ajaxTable.url=this.url;
-    	//this.$.ajaxTable.generateRequest();
+     	this.$.skyThumbnails.url=this.url;
+    	//this.$.skyThumbnails.generateRequest();
       },
   	  attributeChanged: function(name, type) {
   	    console.log(this.localName + '#' + this.id + ' attribute ' + name +

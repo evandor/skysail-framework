@@ -1,10 +1,14 @@
 package io.skysail.server.app.todos.test.browser;
 
-import io.skysail.client.testsupport.*;
-import io.skysail.server.app.todos.*;
+import io.skysail.client.testsupport.ApplicationBrowser;
+import io.skysail.client.testsupport.ApplicationClient;
+import io.skysail.server.app.todos.TodoApplication;
+import io.skysail.server.app.todos.TodoList;
 import lombok.extern.slf4j.Slf4j;
 
-import org.restlet.data.*;
+import org.restlet.data.Form;
+import org.restlet.data.MediaType;
+import org.restlet.data.Method;
 import org.restlet.representation.Representation;
 
 @Slf4j
@@ -54,7 +58,7 @@ public class TodoListBrowser extends ApplicationBrowser<TodoListBrowser, TodoLis
         form.add("name", todoList.getName());
         return form;
     }
-    
+
     private void getTodoLists(ApplicationClient<TodoList> client) {
         client.gotoAppRoot()
             .followLinkTitle("Show Todo-Lists");
@@ -64,7 +68,7 @@ public class TodoListBrowser extends ApplicationBrowser<TodoListBrowser, TodoLis
     private void updateTodoList(ApplicationClient<TodoList> client, TodoList theTodoList) {
         client.gotoAppRoot()
             .followLinkTitle("Show Todo-Lists")
-            .followLinkTitleAndRefId("update", theTodoList.getId())
+            .followLinkTitleAndRefId("edit list", theTodoList.getId())
             .followLink(Method.PUT, theTodoList);
     }
 
@@ -77,7 +81,7 @@ public class TodoListBrowser extends ApplicationBrowser<TodoListBrowser, TodoLis
     private void deleteTodoList(ApplicationClient<?> client, String id) {
         client.gotoAppRoot() //
             .followLinkTitle("Show Todo-Lists")
-                .followLinkTitleAndRefId("update", id)
+                .followLinkTitleAndRefId("edit list", id)
                 .followLink(Method.DELETE, null);
     }
 

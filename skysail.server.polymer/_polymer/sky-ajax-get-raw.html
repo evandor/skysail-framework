@@ -1,0 +1,81 @@
+<link rel="import" href="/_polymer/bower_components/polymer/polymer.html">
+<link rel="import" href="/_polymer/bower_components/iron-ajax/iron-ajax.html">
+
+<dom-module id="sky-ajax-get-raw">
+
+  <template>
+
+    <iron-ajax
+        id="ajax"
+        handle-as="json"
+        headers='{"Accept": "application/json"}'
+        last-response="{{data}}"
+        debounce-duration="300"
+    />
+
+    <div class="list-group">
+      <template is="dom-repeat" items="{{data}}">
+        <a ajaxhref="{{renderLink(linkTo, item, identifier)}}" on-click="handleClick">
+          <span>{{renderLink(linkTo, item, identifier)}}</span></a>
+      </template>
+    </div>
+  </template>
+
+  <script>
+    Polymer({
+      is: 'sky-ajax-get-raw',
+      properties: {
+        url:          String,
+        linkTo:       String,
+        requestUrl:   String,
+        nameProperty: { type: String,  value: "name" },
+        identifier:   { type: String,  value: "id" },
+        linkLength:   { type: Number,  value: 10 },
+        disabled:     { type: Boolean, value: false}
+      },
+      renderLink: function(href, item, identifier) {
+        //console.log("SKY-AJAX-GET> replacing '" + href + "' -> '" + href.replace("{" + identifier + "}", item.id) + "?_rendered");
+        return href.replace("{" + identifier + "}", item.id) + "?_rendered";
+      },
+      shorten(str, nameProperty, maxLength) {
+        if (str[nameProperty].length > maxLength) {
+          return str[nameProperty].slice(0,maxLength-3) + "...";
+        }
+        return str[nameProperty];
+      },
+      itemClass: function(href, item, identifier, requestUrl, disabled) {
+        if (disabled) {
+          return "list-group-item disabled";
+        }
+        if (requestUrl.startsWith(href.replace("{" + identifier + "}", item.id))) {
+              return "list-group-item active";
+        } else {
+              return "list-group-item";
+        }
+      },
+      attached: function() {
+        console.log("SKY-AJAX-GET (attached)>");
+        this.$.ajax.url=this.url;
+        this.$.ajax.generateRequest();
+      },
+      handleClick: function(e, f, g) {
+          console.log("SKY-AJAX-GET (handleClick)> " + e);
+        // http://www.quirksmode.org/js/events_properties.html
+        if (!e) {
+          var e = window.event;
+        }
+        var srcElement = e.currentTarget;
+        console.log("SKY-AJAX-GET (handleClick)> found srcElement: " + srcElement + " with reference to " + srcElement.ajaxhref );
+        var ajaxhref = srcElement.ajaxhref;
+        var skyAjaxTable = document.getElementById("skyTable");
+        skyAjaxTable.url = ajaxhref;
+       // skyAjaxTable.nameProperty="title";
+        skyAjaxTable.generateRequest();
+        //skyAjaxTable._refresh();
+        //document.getElementById("skyTable").generateRequest();
+
+      }
+    });
+  </script>
+
+</dom-module>

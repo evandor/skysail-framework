@@ -12,7 +12,7 @@ index(user, messages, converter, model) ::= <<
 
 	<!-- jQuery -->
 	<script type="text/javascript" src="/webapp/js/jquery-1.11.1.js"></script>
-	    
+
     <link href="/webapp/css/bootstrap.min.css" rel="stylesheet">
     <link href="/webapp/css/stickyfooter.css" rel="stylesheet">
     <link href="/webapp/css/bootstrap-theme.min.css" rel="stylesheet">
@@ -23,18 +23,18 @@ index(user, messages, converter, model) ::= <<
     <link rel="import" href="/_polymer/sky-app-nav-accordion.html">
     <link rel="import" href="/_polymer/sky-ajax-get.html">
     <link rel="import" href="/_polymer/sky-ajax-table.html">
-    
+
 
     <link rel="stylesheet" href="/webapp/css/select2.css">
     <link rel="stylesheet" href="/webapp/css/select2-bootstrap.css">
-    
+
     <link rel="stylesheet" href="/webapp/js/animate/animate.css">
-    
+
     <!-- jstree -->
     <link rel="stylesheet" href="/static/themes/jstree/style.min.css" />
     <script src="/static/js/jstree/jstree.min.js"></script>
 
-    <!-- images in bootstrap menus 
+    <!-- images in bootstrap menus
     <style>
         .dropdown-menu a.icon {
 		  position: relative;
@@ -46,17 +46,17 @@ index(user, messages, converter, model) ::= <<
 		  font-size: 18px;
 		}
     </style>-->
-    
+
     <!-- mousetrap -->
     <script src="/static/js/mousetrap/mousetrap.min.js"></script>
-    
+
     <script type="text/javascript">
         Mousetrap.bind('command+s', function(e) {
             alert("keyboard shortcut for save not yet implemented");
         });
-        
+
         function inspect() {
-        	var url = location.href;    
+        	var url = location.href;
         	if (url.indexOf('?') !== -1){
         		url = (url + "&_inspect=true");
         	} else {
@@ -66,12 +66,12 @@ index(user, messages, converter, model) ::= <<
         	//location.reload(true);
         }
     </script>
-    
+
     <script type="text/javascript" src="/webapp/js/select2.js"></script>
-	$select2JsHead(model.formfields)$	
+	$select2JsHead(model.formfields)$
     <script type="text/javascript" src="/webapp/js/moment.js"></script>
     $endOfHeaderJS(model.formfields)$
-    
+
   </head>
 
   <body role="document">
@@ -106,11 +106,12 @@ index(user, messages, converter, model) ::= <<
                 <li><a href='javascript:document.cookie="mainpage=tests;path=/";window.location="/_largetests"'>Tests</a></li>
                 <li><a href='javascript:document.cookie="mainpage=indexMobile;path=/";window.location.reload(true)'>Mobile View</a></li>
                 <li><a href='javascript:document.cookie="mainpage=indexSpa;path=/";window.location.reload(true)'>Single Page App</a></li>
+                <li><a href='javascript:document.cookie="mainpage=indexRaw;path=/";window.location.reload(true)'>Single Page App (Raw)</a></li>
               </ul>
             </li>
             $endif$
           </ul>
-          
+
           $if(model.services.searchService)$
 		  <div class="col-sm-3 col-md-2 pull-right">
 			<form class="navbar-form" role="search" action="/_search" method="POST">
@@ -140,17 +141,17 @@ index(user, messages, converter, model) ::= <<
     </div>
 
     <br><br><br>
-    
+
     <div class="container-fluid">
-    
+
       $mainContent(user, converter, messages, model)$
-      
+
       $if(converter.debug && user.principal)$
         $debug(messages, model)$
-      $endif$ 
-      
+      $endif$
+
     </div>
-    
+
     <footer class="footer">
       <div class="container4footer">
         <p class="text-muted"><div id="output"></div></p>
@@ -159,11 +160,11 @@ index(user, messages, converter, model) ::= <<
 
     <script>
         var output = document.getElementById("output");
-        
+
         function printMe(msg) {
       		output.innerHTML = msg;
-        }        
-        
+        }
+
         if (typeof(EventSource) !== "undefined") {
             // disabled for now
         	//var source = new EventSource("/SSE");
@@ -185,8 +186,8 @@ index(user, messages, converter, model) ::= <<
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="/webapp/js/bootstrap.min.js"></script>
     $notifications(converter.notifications)$
-    $select2JsEndOfBody(model.formfields)$ 
-    
+    $select2JsEndOfBody(model.formfields)$
+
     $if(model.target.treeForm)$
     <script>
 	  \$(function () {

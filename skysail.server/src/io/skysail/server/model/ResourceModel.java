@@ -7,7 +7,7 @@ import io.skysail.api.responses.*;
 import io.skysail.server.restlet.resources.*;
 import io.skysail.server.utils.*;
 
-import java.text.DateFormat;
+import java.text.*;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -35,7 +35,7 @@ import de.twenty11.skysail.server.services.MenuItemProvider;
  * needs and builds up the GUI from that. Subsequent requests might alter only
  * parts of the GUI.
  * </p>
- * 
+ *
  * <p>
  * The purpose of this class is a little bit different, as it aims to be more
  * generic. All relevant rawData (links, the current user, pagination
@@ -73,6 +73,7 @@ public class ResourceModel<R extends SkysailServerResource<T>, T> {
     private String title = "Skysail";
     private FavoritesService favoritesService;
     private STServicesWrapper services;
+    private DateFormat dateFormat;
 
     public ResourceModel(R resource, SkysailResponse<?> response) {
         this(resource, response, new VariantInfo(MediaType.TEXT_HTML));
@@ -80,9 +81,11 @@ public class ResourceModel<R extends SkysailServerResource<T>, T> {
 
     public ResourceModel(R resource, SkysailResponse<?> skysailResponse, Variant target) {
 
+        dateFormat = DateFormat.getDateTimeInstance(DateFormat.MEDIUM, DateFormat.MEDIUM, determineLocale(resource));
+
         mapper.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false);
         mapper.configure(SerializationFeature.FAIL_ON_EMPTY_BEANS, false);
-        mapper.setDateFormat(DateFormat.getDateInstance(DateFormat.LONG, determineLocale(resource)));
+        mapper.setDateFormat(dateFormat);
 
         rawData = getData(skysailResponse);
 
@@ -425,4 +428,10 @@ public class ResourceModel<R extends SkysailServerResource<T>, T> {
         return null;
     }
 
+    public String getDateFormat() {
+        if (dateFormat != null && dateFormat instanceof SimpleDateFormat) {
+            return ((SimpleDateFormat)dateFormat).toPattern().replace("d", "D").replace("y", "Y");
+        }
+        return "";
+    }
 }

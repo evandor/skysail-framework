@@ -3,7 +3,7 @@
 
 <dom-module id="sky-ajax-table1">
 
- <style>
+  <style>
     .list-group-item {
       padding: 5px 15px;
     }
@@ -12,12 +12,16 @@
   <template>
 
     <iron-ajax
-        id="skyTable" auto
+        auto
+        id="skyTable"
         handle-as="json"
         headers='{"Accept": "application/json"}'
         on-response="hResponse"
         last-response="{{data}}"
-        debounce-duration="300" />
+        debounce-duration="300"
+        last-request="{{lastRequest}}"
+        verbose
+    />
 
     <table class="table table-striped">
       <tr>
@@ -26,11 +30,11 @@
         </template>
       </tr>
       <template is="dom-repeat" items="{{data}}" as="row">
-      <tr>
-        <template is="dom-repeat" items="{{_toArray(row,columns)}}" as="column">
-          <td><sky-html html="{{column.value}}"></sky-html></td>
-        </template>
-      </tr>
+        <tr>
+          <template is="dom-repeat" items="{{_toArray(row,columns)}}" as="column">
+            <td><sky-html html="{{column.value}}"></sky-html></td>
+          </template>
+        </tr>
       </template>
     </table>
   </template>
@@ -51,42 +55,41 @@
       renderLink: function(href, item, identifier) {
        	  return href.replace("{" + identifier + "}", item.id);
       },
-      itemClass: function(href, item, identifier, requestUrl) {
-    	  if (requestUrl.startsWith(href.replace("{" + identifier + "}", item.id))) {
-              return "list-group-item active";
-    	  } else {
-              return "list-group-item";
-    	  }
-      },
-      attached: function() {
-    	console.log(this.localName + '#' + this.id + ' was attached1');
-     	this.$.skyTable.url=this.url;
-    	//this.$.skyTable.generateRequest();
-      },
       hResponse: function(event, request) {
-          document.getElementById("resourceDescription").innerHTML = request.xhr.getResponseHeader('X-Resource-Description');
+    	  console.log("SKY-AJAX-TABLE (hresponse)> Size:  " + request.xhr.response.length);
+    	  if (request.xhr.response.length > 0) {
+        	  console.log("SKY-AJAX-TABLE (hresponse)> Title: " + request.xhr.response[0].title);
+    	  }
+    	  document.getElementById("resourceDescription").innerHTML = request.xhr.getResponseHeader('X-Resource-Description');
       },
-  	  attributeChanged: function(name, type) {
-  	    console.log(this.localName + '#' + this.id + ' attribute ' + name +
-  	      ' was changed to ' + this.getAttribute(name));
-  	  },
   	  _urlChanged: function(newValue, oldValue) {
+        console.log("SKY-AJAX-TABLE (_urlChanged)> '" + oldValue + "' --> '" + newValue + "'");
         this.$.skyTable.url=newValue;
-        console.log("value url changed from " + oldValue + " to " + newValue);
   	  },
   	  _namePropertyChanged:function(newValue, oldValue) {
+        console.log("SKY-AJAX-TABLE (_namePropertyChanged)> '" + oldValue + "' --> '" + newValue + "'");
         this.$.skyTable.nameProperty=newValue;
-        console.log("nameProperty changed from " + oldValue + " to " + newValue);
   	  },
+  	  /*generateRequest: function(href) {
+  		console.log("SKY-AJAX-TABLE (generateRequest)> " + href);
+  		console.log("SKY-AJAX-TABLE (generateRequest)> for url " + this.$.skyTable.url);
+  		this.$.skyTable.generateRequest();
+  	  },*/
   	  _toArray: function(obj, columns) {
+  		console.log("SKY-AJAX-TABLE (_toArray)> " + obj + ", " + columns);
         return columns.map(function(key) {
+          //console.log("SKY-AJAX-TABLE (_toArray)> " + key + "=" + obj[key]);
           return {name: key, value: obj[key]};
         });
       },
       _toArray2: function(obj) {
+          console.log("SKY-AJAX-TABLE (_toArray2)> " + obj );
           return Object.keys(obj).map(function(key) {
             return {name: key, value: obj[key]};
           });
+      },
+      _refresh: function() {
+    	    this.$.skyTable.generateRequest();
       }
     });
   </script>

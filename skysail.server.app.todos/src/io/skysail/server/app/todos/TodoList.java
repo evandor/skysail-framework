@@ -35,14 +35,13 @@ public class TodoList implements Serializable, Identifiable {
     @Size(min = 2)
     @ListView(link = TodosResource.class, truncate = 20)
     private String name;
-    
+
     @Field(type=InputType.READONLY)
     private Long todosCount;
 
     @Field(type = InputType.TEXTAREA)
     private String desc;
 
-    
     @Field(type = InputType.READONLY)
     private Date created;
 
@@ -53,12 +52,12 @@ public class TodoList implements Serializable, Identifiable {
     @ListView(hide = true)
     private String owner;
 
-    public long todosCount() {
+    public long todosCount() { // NO_UCD
         return todosCount;
     }
 
     public TodoList(String name) {
         this.name = name;
     }
-    
+
 }

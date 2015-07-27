@@ -1,20 +1,17 @@
 package de.twenty11.skysail.server.core.osgi;
 
-import java.util.Date;
-import java.util.Dictionary;
-import java.util.Hashtable;
+import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import lombok.extern.slf4j.Slf4j;
 
 import org.apache.shiro.SecurityUtils;
-import org.osgi.service.event.Event;
-import org.osgi.service.event.EventAdmin;
+import org.osgi.service.event.*;
 import org.restlet.Request;
 
 /**
  * Some utility methods to fire events.
- * 
+ *
  */
 @Slf4j
 public class EventHelper {
@@ -63,17 +60,17 @@ public class EventHelper {
         this.type = "error";
         return this;
     }
-    
+
     public EventHelper lifetime(long ms) {
         expires = new Date().getTime() + ms;
         //log.info("setting lifetime to " + expires);
         return this;
     }
-    
+
     public Event getEvent() {
         return createEvent();
     }
-    
+
     public String fireEvent(Request request) {
         if (eventAdmin == null) {
             log.warn("eventAdmin is null, cannot fire Event");
@@ -81,7 +78,7 @@ public class EventHelper {
         }
         return fire("request", request, null);
     }
-    
+
     public synchronized int fire() {
         if (eventAdmin == null) {
             log.warn("eventAdmin is null, cannot fire Event");
@@ -99,7 +96,7 @@ public class EventHelper {
                 eventAdmin.postEvent(event);
             };
         }.start();
-        
+
         return msgIdCounter.get();
     }
 
@@ -128,13 +125,13 @@ public class EventHelper {
             Event newEvent = new Event(topic, properties);
             eventAdmin.postEvent(newEvent);
         } catch (Exception e) {
-            log.warn("Exception caught when trying to post event with topic '{}'", topic);
+            log.debug("Exception caught when trying to post event with topic '{}'", topic);
         }
     }
 
     private Dictionary<String, Object> createEventProperties() {
         Object principal = SecurityUtils.getSubject().getPrincipal();
-        
+
         Dictionary<String, Object> properties = new Hashtable<>();
         properties.put(EVENT_MESSAGE, msg);
         properties.put(EVENT_USERNAME, principal != null ? principal.toString() : "");
@@ -147,6 +144,6 @@ public class EventHelper {
         return properties;
     }
 
-   
+
 
 }

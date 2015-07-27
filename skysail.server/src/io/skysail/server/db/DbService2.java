@@ -12,7 +12,7 @@ public interface DbService2 {
 
     /**
      * takes an entity of type T and persists it as a vertex.
-     * 
+     *
      * @param entity
      *            the entity to become a vertex
      * @param edges
@@ -24,21 +24,23 @@ public interface DbService2 {
 
     /**
      * retrieves an entity of type T identified by its id.
-     * 
+     *
      * @param cls
      * @param id
      * @return
      */
     <T> T findObjectById(Class<?> cls, String id);
-    
+
     //ODocument findDocumentById(Class<?> cls, String id);
-    
+
 
     <T> List<T> findObjects(String sql);
     List<Map<String,Object>> findDocuments(String sql);
+    <T> List<T> findGraphs(String sql);
 
     <T> List findObjects(String sql, Map<String, Object> params);
     List<Map<String,Object>> findDocuments(String sql, Map<String, Object> params);
+    <T> List<T> findGraphs(String sql, Map<String, Object> params);
 
     <T> List<T> findWithGraph(String sql, Class<?> cls, Map<String, Object> params);
 
@@ -66,5 +68,5 @@ public interface DbService2 {
     void update(Map<String, Object> space);
 
     void update(ODocument doc);
-    
+
 }

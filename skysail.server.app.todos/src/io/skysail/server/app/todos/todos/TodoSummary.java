@@ -25,27 +25,27 @@ public class TodoSummary implements Serializable, Identifiable {
 
     @Id
     private String id;
-    
+
     @Field
     @ListView(truncate = 30, link = PutTodoResource.class)
     @NotNull
     @Size(min = 2)
     private String title;
-    
+
     @Reference(cls = TodoSummary.class, selectionProvider = ListSelectionProvider.class)
     @ValidListId
     private String list;
-    
+
     public String getList() {
         return "<a href='/Todos/Lists/"+list+"/'>" +  list +"</a>";
     }
-    
+
     @Field(type = InputType.DATE)
     private Date due;
 
     @Field(type = InputType.DATE)
     private Date startDate;
-    
+
 
     @Field(selectionProvider = StatusSelectionProvider.class)
     @PostView(visibility = Visibility.HIDE)
@@ -58,7 +58,7 @@ public class TodoSummary implements Serializable, Identifiable {
     public TodoSummary(Todo todo) {
         this.id = todo.getId();
         this.due = todo.getDue();
-        this.list = todo.getList();
+        this.list = todo.getParent();
         this.startDate = todo.getStartDate();
         this.status = todo.getStatus();
         this.title = todo.getTitle();

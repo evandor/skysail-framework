@@ -31,19 +31,19 @@ public class Todo implements Serializable, Identifiable {
 
     @Id
     private String id;
-    
+
     @Reference(cls = Todo.class, selectionProvider = ListSelectionProvider.class)
     @PostView(visibility = Visibility.SHOW_IF_NULL)
     @ListView(hide = true)
     @ValidListId
-    private String list;
+    private String parent;
 
     @Field
     @ListView(truncate = 30, link = PutTodoResource.class)
     @NotNull
     @Size(min = 2)
     private String title;
-    
+
     @Field(type = InputType.TEXTAREA)
     @ListView(truncate = 20)
     private String desc;
@@ -53,10 +53,10 @@ public class Todo implements Serializable, Identifiable {
 
     @Field(type = InputType.DATE)
     private Date startDate;
-    
+
     @Field(type = InputType.READONLY)
     private Integer elapseTime = 3;
-    
+
     @Field(type = InputType.READONLY)
     private Date created;
 
@@ -88,14 +88,14 @@ public class Todo implements Serializable, Identifiable {
     @Field(type = InputType.READONLY)
     //@ListView(hide=true)
     private Integer views;
-    
+
     // assigned to,
     // related to: account, ...
-    
+
     public Todo(String title) {
         this.title = title;
     }
-    
+
     public Todo(Form query, String listId) {
         if (query == null) {
             return;
@@ -110,12 +110,12 @@ public class Todo implements Serializable, Identifiable {
         } catch (Exception e) {
             // ignore
         }
-        this.list = listId;
+        this.parent = listId;
         if (listId == null) {
-            this.list = query.getFirstValue("list");
+            this.parent = query.getFirstValue("list");
         }
     }
-    
+
     public Integer getElapseTime() {
         if (due != null && startDate != null) {
             return (int)((due.getTime() - startDate.getTime()) / (1000*60*60*24l));

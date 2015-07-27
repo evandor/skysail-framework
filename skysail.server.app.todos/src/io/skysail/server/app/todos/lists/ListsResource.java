@@ -28,7 +28,8 @@ public class ListsResource extends ListServerResource<TodoList> {
     @Override
     protected void doInit() {
         app = (TodoApplication) getApplication();
-        getResourceContext().addAjaxNavigation("Todo-Lists:", ListsResource.class, TodosResource.class, "lid");
+        getResourceContext().addAjaxNavigation("ajax", "Todo-Lists:", ListsResource.class, TodosResource.class, "lid");
+        //getResourceContext().addAjaxNavigation("Top 10:", Top10TodosResource.class, TodosResource.class, "lid");
     }
 
     @Override

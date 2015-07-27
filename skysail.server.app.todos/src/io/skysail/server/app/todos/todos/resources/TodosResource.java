@@ -19,7 +19,7 @@ import de.twenty11.skysail.server.core.restlet.ResourceContextId;
 
 public class TodosResource extends ListServerResource<Todo> {
 
-    public static final String DEFAULT_FILTER_EXPRESSION = "(!(status="+Status.ARCHIVED+"))";
+    public static final String DEFAULT_FILTER_EXPRESSION = "(!(status=" + Status.ARCHIVED + "))";
 
     protected String listId;
     protected TodoApplication app;
@@ -34,20 +34,23 @@ public class TodosResource extends ListServerResource<Todo> {
     protected void doInit() throws ResourceException {
         listId = getAttribute(TodoApplication.LIST_ID);
         app = (TodoApplication) getApplication();
-        TodoList list = app.getRepository().getById(TodoList.class, listId);
-        Map<String,String> substitutions = new HashMap<>();
-        substitutions.put("/Lists/" + listId, list.getName());
-        getContext().getAttributes().put(ResourceContextId.PATH_SUBSTITUTION.name(), substitutions);
-        getResourceContext().addAjaxNavigation("Todo-Lists", ListsResource.class, TodosResource.class, "lid");
+        if (listId != null) {
+            TodoList list = app.getRepository().getById(TodoList.class, listId);
+            Map<String, String> substitutions = new HashMap<>();
+            substitutions.put("/Lists/" + listId, list.getName());
+            getContext().getAttributes().put(ResourceContextId.PATH_SUBSTITUTION.name(), substitutions);
+        }
+        getResourceContext().addAjaxNavigation("ajax", "Todo-Lists", ListsResource.class, TodosResource.class, "lid");
     }
 
     @Override
     public List<Todo> getEntity() {
         Filter filter = new Filter(getRequest(), DEFAULT_FILTER_EXPRESSION);
-        filter.add("owner",  SecurityUtils.getSubject().getPrincipal().toString());
-        filter.add("list", listId);
-        
-        Pagination pagination = new Pagination(getRequest(), getResponse(), app.getRepository().getTodosCount(listId, filter));
+        filter.add("owner", SecurityUtils.getSubject().getPrincipal().toString());
+        filter.addEdgeOut("parent", "#" + listId);
+
+        Pagination pagination = new Pagination(getRequest(), getResponse(), app.getRepository().getTodosCount(listId,
+                filter));
         return app.getRepository().findAllTodos(filter, pagination);
     }
 
@@ -60,7 +63,7 @@ public class TodosResource extends ListServerResource<Todo> {
     public Consumer<? super Link> getPathSubstitutions() {
         return l -> {
             if (listId == null) {
-                listId = (String)getContext().getAttributes().get(TodoApplication.LIST_ID);
+                listId = (String) getContext().getAttributes().get(TodoApplication.LIST_ID);
             }
             l.substitute(TodoApplication.LIST_ID, listId);
         };

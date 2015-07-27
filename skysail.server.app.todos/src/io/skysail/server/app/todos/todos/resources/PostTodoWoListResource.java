@@ -21,13 +21,13 @@ public class PostTodoWoListResource extends PostTodoResource {
         entity.setOwner(subject.getPrincipal().toString());
         entity.setStatus(Status.NEW);
         entity.setRank(1);
-        listIdFromEntity = entity.getList().replace("#","");
-        entity.setList(listIdFromEntity);
+        listIdFromEntity = entity.getParent().replace("#","");
+        entity.setParent(listIdFromEntity);
         String id = app.getRepository().add(entity).toString();
         entity.setId(id);
         return new SkysailResponse<String>();
     }
-    
+
     @Override
     public String redirectTo() {
         //getRequest().getAttributes().put(TodoApplication.LIST_ID, listIdFromEntity);
@@ -37,5 +37,5 @@ public class PostTodoWoListResource extends PostTodoResource {
         }
         return super.redirectTo(TodosResource.class);
     }
-   
+
 }

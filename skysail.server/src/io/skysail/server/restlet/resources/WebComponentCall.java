@@ -1,5 +1,5 @@
 package io.skysail.server.restlet.resources;
- 
+
 import lombok.*;
 
 @Getter
@@ -7,6 +7,7 @@ import lombok.*;
 @Builder
 public class WebComponentCall {
 
+    private final String id;
     private final String type;
     private String url;
     private String linkTo;
@@ -15,9 +16,10 @@ public class WebComponentCall {
     private String requestUrl;
     private boolean disabled;
     private String glyphicon;
-    
+
     public String getHtml() {
         StringBuilder sb = new StringBuilder("<").append(type).append(" ");
+        append(sb, "id", id);
         append(sb, "url", url);
         append(sb, "link-to", linkTo);
         appendOptional(sb, "identifier", identifier);
@@ -27,7 +29,7 @@ public class WebComponentCall {
         sb.append("></").append(type).append(">");
         return sb.toString();
     }
- 
+
     private void append(StringBuilder sb, String key, String value) {
         sb.append(key).append("=\"").append(value).append("\" ");
     }

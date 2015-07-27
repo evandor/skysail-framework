@@ -28,6 +28,7 @@ public class ListResource extends EntityServerResource<TodoList> {
     protected void doInit() {
         listId = getAttribute(TodoApplication.LIST_ID);
         app = (TodoApplication) getApplication();
+        getResourceContext().addAjaxNavigation(getResourceContext().getAjaxBuilder("Lists:", ListsResource.class, TodosResource.class).identifier("lid").build());
     }
 
     @Override
@@ -47,7 +48,7 @@ public class ListResource extends EntityServerResource<TodoList> {
     public TodoList getEntity() {
         return app.getRepository().getById(TodoList.class, listId);
     }
-    
+
     @Override
     public TodoList getEntity(String installation) {
         if (installation == null || installation.trim().length() == 0) {
@@ -58,11 +59,11 @@ public class ListResource extends EntityServerResource<TodoList> {
 
         String path = app.getRemotePath(installation, "/Todos/Lists/" + listId);
         //String uri = path + "/Todos/Lists";
-        
+
         if (peersCredentials == null) {
             getResponse().redirectSeeOther("/_remotelogin");
             return null;
-        } 
+        }
         ClientResource cr = new ClientResource(path);
         cr.getCookies().add("Credentials", peersCredentials);
         //cr.get(MediaType.APPLICATION_JSON);

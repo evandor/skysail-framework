@@ -1,24 +1,16 @@
 package io.skysail.server.app.todos.todos.resources.test;
 
-import static org.hamcrest.Matchers.equalTo;
-import static org.hamcrest.Matchers.greaterThan;
-import static org.hamcrest.Matchers.is;
-import static org.hamcrest.Matchers.not;
+import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.assertThat;
-import io.skysail.api.responses.ConstraintViolationsResponse;
-import io.skysail.api.responses.SkysailResponse;
-import io.skysail.server.app.todos.TodoApplication;
-import io.skysail.server.app.todos.TodoList;
+import io.skysail.api.responses.*;
+import io.skysail.server.app.todos.*;
 import io.skysail.server.app.todos.todos.Todo;
 
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.ZoneId;
-import java.time.ZoneOffset;
+import java.time.*;
 import java.util.Date;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.*;
 import org.restlet.data.Status;
 
 public class PostTodoResourceTest extends AbstractTodoResourceTest {
@@ -44,9 +36,10 @@ public class PostTodoResourceTest extends AbstractTodoResourceTest {
     public void wrong_list_yields_validation_failure() {
         form.add("title", "title_" + randomString());
         form.add("list", "list_" + randomString());
+        getAttributes().clear();
         ConstraintViolationsResponse<?> post = (ConstraintViolationsResponse<?>) postTodoResource.post(form,
                 HTML_VARIANT);
-        assertValidationFailure(postTodoResource, post, "list", "This list does not exist or has another owner");
+        assertValidationFailure(postTodoResource, post, "parent", "This list does not exist or has another owner");
     }
 
     @Test
@@ -76,7 +69,7 @@ public class PostTodoResourceTest extends AbstractTodoResourceTest {
     public void valid_json_data_yields_new_entity() {
         String title = "title_" + randomString();
         Todo todo = new Todo(title);
-        todo.setList(aList.getId());
+        todo.setParent(aList.getId());
         todo.setDue(Date.from(LocalDate.now().plusMonths(1).atStartOfDay().atZone(ZoneId.systemDefault()).toInstant()));
         SkysailResponse<Todo> result = postTodoResource.post(todo, HTML_VARIANT);
 
@@ -85,7 +78,7 @@ public class PostTodoResourceTest extends AbstractTodoResourceTest {
 
     @Test
     public void urgency_is_calculated() {
-        TodoList aList = createList();
+        //TodoList aList = createList();
         form.add("title", "title_" + randomString());
         form.add("list", aList.getId());
 

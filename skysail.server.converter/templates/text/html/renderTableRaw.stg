@@ -1,0 +1,39 @@
+renderTableRaw(converter, messages, model) ::= <<
+
+  <sky-ajax-table1-raw
+    auto
+    id="skyAjaxTable"
+    url="$model.resource.request.originalRef$?_rendered"
+    link-to="/Todos/Lists/{lid}/Todos"
+    identifier="lid"
+    request-url="/Todos"
+    name-property="title"
+    columns='[$renderColumns(model.formfields, converter)$,"_links"]'
+    column-names='{$renderColumnNames(model.formfields, converter)$,"_links": "Actions"}'>
+  </sky-ajax-table1-raw>
+
+>>
+
+renderColumns(fields, converter) ::= <<
+    $fields: { field | $col(messages,field)$}; separator=", "$
+>>
+
+renderColumnNames(fields, converter) ::= <<
+    $fields: { field | $th(messages,field)$}; separator=", "$
+>>
+
+col(messages, field) ::= <<
+"$field.name$"
+>>
+
+th(messages, field) ::= <<
+"$field.name$": "$helpmessage(messages, field.nameKey)$"
+>>
+
+th2(messages, field) ::= <<
+{"$field.name$": "$helpmessage(messages, field.nameKey)$"}
+>>
+
+helpmessage(messages, identifier) ::= <<
+    $messages.(identifier)$
+>>

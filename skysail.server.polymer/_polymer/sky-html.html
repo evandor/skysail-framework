@@ -4,7 +4,7 @@
 <dom-module id="sky-html">
 
   <template>
-    <span>{{html}}</span>
+    <span>{{renderAs(html)}}</span>
   </template>
 
   <script>
@@ -16,7 +16,7 @@
     		  value: 'html'
     	  }
       },
-      ready: function() {
+      renderAs: function() {
           this.innerHTML = this.html;
       }
     });

@@ -1,22 +1,13 @@
 package io.skysail.server.app.todos.todos.resources.test;
 
-import static org.hamcrest.CoreMatchers.equalTo;
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.not;
-import static org.hamcrest.CoreMatchers.nullValue;
+import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.assertThat;
 import io.skysail.api.responses.SkysailResponse;
-import io.skysail.server.app.todos.TodoApplication;
-import io.skysail.server.app.todos.TodoList;
-import io.skysail.server.app.todos.lists.PostListResource;
-import io.skysail.server.app.todos.lists.UniquePerOwnerValidator;
+import io.skysail.server.app.todos.*;
+import io.skysail.server.app.todos.lists.*;
 import io.skysail.server.app.todos.repo.TodosRepository;
-import io.skysail.server.app.todos.todos.Todo;
-import io.skysail.server.app.todos.todos.ValidListIdValidator;
-import io.skysail.server.app.todos.todos.resources.PostTodoResource;
-import io.skysail.server.app.todos.todos.resources.PutTodoResource;
-import io.skysail.server.app.todos.todos.resources.TodoResource;
-import io.skysail.server.app.todos.todos.resources.TodosResource;
+import io.skysail.server.app.todos.todos.*;
+import io.skysail.server.app.todos.todos.resources.*;
 import io.skysail.server.restlet.resources.SkysailServerResource;
 import io.skysail.server.testsupport.ResourceTestBase;
 
@@ -24,8 +15,7 @@ import java.util.HashMap;
 
 import org.apache.shiro.subject.SimplePrincipalMap;
 import org.junit.Before;
-import org.mockito.Mockito;
-import org.mockito.Spy;
+import org.mockito.*;
 import org.restlet.data.Status;
 
 public abstract class AbstractTodoResourceTest extends ResourceTestBase {
@@ -96,10 +86,11 @@ public abstract class AbstractTodoResourceTest extends ResourceTestBase {
         return post.getEntity();
     }
 
-    protected Todo createTodo() {
-        Todo aList = new Todo();
-        // aList.setName("list_" + randomString());
-        SkysailResponse<Todo> post = postTodoResource.post(aList, JSON_VARIANT);
+    protected Todo createTodo(TodoList list) {
+        Todo aTodo = new Todo();
+        aTodo.setTitle("todo_" + randomString());
+        aTodo.setParent(list.getId());
+        SkysailResponse<Todo> post = postTodoResource.post(aTodo, JSON_VARIANT);
         getAttributes().clear();
 
         return post.getEntity();

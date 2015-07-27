@@ -10,7 +10,7 @@ mainContentSpa(user, converter, messages, model) ::= <<
       <div class="row">
         <div class="col-md-10">
             <!-- breadcrumb(model) -->
-            <sky-breadcrumbs url="$model.resource.request.originalRef$?method=OPTIONS" />
+            <sky-breadcrumbs id="skyBreadcrumbs" url="$model.resource.request.originalRef$?method=OPTIONS" />
         </div>
         <div class="col-md-2">
             $representations(model)$

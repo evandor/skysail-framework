@@ -41,7 +41,7 @@ public class Filter {
         }
         evaluate();
     }
-    
+
     public Filter(String key, String value) {
         this("(" + key + "=" + value +")");
     }
@@ -50,7 +50,7 @@ public class Filter {
         this.filterExpressionFromQuery = filterExpression;
         evaluate();
     }
-    
+
     public void and(String filterExpression) {
         if (filterExpression == null || filterExpression.trim().length() == 0) {
             return;
@@ -65,6 +65,11 @@ public class Filter {
 
     public void add(String key, String value) {
         and("(" + key + "=" + value +")");
+        evaluate();
+    }
+
+    public void addEdgeOut(String name, String value) {
+        and("("+value+" ∈ out['"+name+"'] " +")");
         evaluate();
     }
 
@@ -110,11 +115,16 @@ public class Filter {
                 }).collect(Collectors.toList()));
             } else if (arg0 instanceof NotNode) {
                 return new PreparedStatement("NOT", Arrays.asList(visit(((NotNode) arg0).getChild())));
+            } else if (arg0 instanceof IsInNode) {
+                PreparedStatement ps = new PreparedStatement();
+                IsInNode node = (IsInNode) arg0;
+                ps.append(node.getAttribute()).append(" IN ").append(node.getValue().replace("[", "(").replace("]",")"));
+                //ps.put(node.getAttribute(), node.getValue());
+                return ps;
             }
             return new PreparedStatement();
         }
 
     }
-
 
 }

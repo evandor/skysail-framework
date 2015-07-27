@@ -137,21 +137,24 @@ public class Parser {
         case '~': {
             if (filterChars[pos + 1] == '=') {
                 pos += 2;
-                return null;//new ExprNode(Operation.APPROX, attr, parse_value());
+                return null;// new ExprNode(Operation.APPROX, attr,
+                            // parse_value());
             }
             break;
         }
         case '>': {
             if (filterChars[pos + 1] == '=') {
                 pos += 2;
-                return null;//new ExprNode(Operation.GREATER, attr, parse_value());
+                return null;// new ExprNode(Operation.GREATER, attr,
+                            // parse_value());
             }
             break;
         }
         case '<': {
             if (filterChars[pos + 1] == '=') {
                 pos += 2;
-                return null;//new ExprNode(Operation.LESS, attr, parse_value());
+                return null;// new ExprNode(Operation.LESS, attr,
+                            // parse_value());
             }
             break;
         }
@@ -161,7 +164,7 @@ public class Parser {
                 pos += 2;
                 skipWhiteSpace();
                 if (filterChars[pos] == ')') {
-                    return null;//new ExprNode(Operation.PRESENT, attr, null);
+                    return null;// new ExprNode(Operation.PRESENT, attr, null);
                 }
                 pos = oldpos;
             }
@@ -170,9 +173,18 @@ public class Parser {
             Object string = parse_substring();
 
             if (string instanceof String) {
-                return new EqualityNode(attr, (String)string);
+                return new EqualityNode(attr, (String) string);
             }
-            return null;//new ExprNode(Operation.SUBSTRING, attr, string);
+            return null;// new ExprNode(Operation.SUBSTRING, attr, string);
+        }
+        case '∈': { // "element of", "is in" \u2208, not standard LDAP syntax!
+            pos++;
+            Object string = parse_substring();
+
+            if (string instanceof String) {
+                return new IsInNode(attr, (String) string);
+            }
+            return null;
         }
         }
 
@@ -187,7 +199,7 @@ public class Parser {
 
         char c = filterChars[pos];
 
-        while (c != '~' && c != '<' && c != '>' && c != '=' && c != '(' && c != ')') {
+        while (c != '~' && c != '∈' && c != '<' && c != '>' && c != '=' && c != '(' && c != ')') {
             pos++;
 
             if (!Character.isWhitespace(c)) {
@@ -206,41 +218,41 @@ public class Parser {
         return new String(filterChars, begin, length);
     }
 
-    private String parse_value() throws InvalidSyntaxException {
-        StringBuffer sb = new StringBuffer(filterChars.length - pos);
-
-        parseloop: while (true) {
-            char c = filterChars[pos];
-
-            switch (c) {
-            case ')': {
-                break parseloop;
-            }
-
-            case '(': {
-                throw new InvalidSyntaxException("Invalid value: " + filterstring.substring(pos), filterstring);
-            }
-
-            case '\\': {
-                pos++;
-                c = filterChars[pos];
-                /* fall through into default */
-            }
-
-            default: {
-                sb.append(c);
-                pos++;
-                break;
-            }
-            }
-        }
-
-        if (sb.length() == 0) {
-            throw new InvalidSyntaxException("Missing value: " + filterstring.substring(pos), filterstring);
-        }
-
-        return sb.toString();
-    }
+//    private String parse_value() throws InvalidSyntaxException {
+//        StringBuffer sb = new StringBuffer(filterChars.length - pos);
+//
+//        parseloop: while (true) {
+//            char c = filterChars[pos];
+//
+//            switch (c) {
+//            case ')': {
+//                break parseloop;
+//            }
+//
+//            case '(': {
+//                throw new InvalidSyntaxException("Invalid value: " + filterstring.substring(pos), filterstring);
+//            }
+//
+//            case '\\': {
+//                pos++;
+//                c = filterChars[pos];
+//                /* fall through into default */
+//            }
+//
+//            default: {
+//                sb.append(c);
+//                pos++;
+//                break;
+//            }
+//            }
+//        }
+//
+//        if (sb.length() == 0) {
+//            throw new InvalidSyntaxException("Missing value: " + filterstring.substring(pos), filterstring);
+//        }
+//
+//        return sb.toString();
+//    }
 
     private Object parse_substring() throws InvalidSyntaxException {
         StringBuffer sb = new StringBuffer(filterChars.length - pos);

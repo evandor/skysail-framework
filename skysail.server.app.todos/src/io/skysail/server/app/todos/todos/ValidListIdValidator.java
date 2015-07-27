@@ -22,6 +22,9 @@ public class ValidListIdValidator implements ConstraintValidator<ValidListId, St
 
     @Override
     public boolean isValid(String todoList, ConstraintValidatorContext context) {
+        if (todoList == null) {
+            return false;
+        }
         String sql = "SELECT from TodoList WHERE @rid= :id";
         Map<String, Object> params = new HashMap<>();
         params.put("id", todoList.replace("#", ""));
@@ -35,7 +38,7 @@ public class ValidListIdValidator implements ConstraintValidator<ValidListId, St
         ValidListIdValidator.dbService = dbService;
     }
 
-    public void unsetDbService(DbService2 dbService) {
+    public void unsetDbService(DbService2 dbService) { // NO_UCD
         ValidListIdValidator.dbService = null;
     }
 }

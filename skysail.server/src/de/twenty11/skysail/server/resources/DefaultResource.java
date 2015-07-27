@@ -16,13 +16,13 @@ import de.twenty11.skysail.server.services.MenuItem;
 
 /**
  * Default resource, attached to path "/".
- * 
+ *
  */
 public class DefaultResource extends ListServerResource<MenuItemDescriptor> {
 
     @Override
     protected void doInit() throws ResourceException {
-       getResourceContext().addAjaxNavigation("Skysail Applications", DefaultResource.class, DefaultResource.class, "url");
+       getResourceContext().addAjaxNavigation("ajax", "Skysail Applications", DefaultResource.class, DefaultResource.class, "url");
     }
 
     @Override

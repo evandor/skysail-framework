@@ -4,11 +4,11 @@
 <dom-module id="sky-breadcrumbs">
 
   <template>
+
     <iron-ajax
-        id="breadcrumbs" auto
+        id="skyBreadcrumbsAjax" auto
         handle-as="json"
         headers='{"Accept": "application/json"}'
-        on-response="hResponse"
         last-response="{{data}}"
         debounce-duration="300" />
 
@@ -45,26 +45,17 @@
               return "list-group-item";
     	  }
       },
-      attached: function() {
-    	console.log(this.localName + '#' + this.id + ' was attached1');
-     	this.$.breadcrumbs.url=this.url;
-      },
-      hResponse: function(request) {
-          console.log(request.detail);
-      },
-      created: function() {
-  	    console.log(this.localName + '#' + this.id + ' was created');
-  	  },
-  	  detached: function() {
-  	    console.log(this.localName + '#' + this.id + ' was detached');
-  	  },
+      //attached: function() {
+      //	console.log("SKY-AJAX-BREADCRUMBS: " + this.localName + '#' + this.id + ' was attached1');
+      //	this.$.skyBreadcrumbsAjax.url=this.url;
+      //},
   	  attributeChanged: function(name, type) {
-  	    console.log(this.localName + '#' + this.id + ' attribute ' + name +
+  	    console.log("SKY-AJAX-BREADCRUMBS> " +this.localName + '#' + this.id + ' attribute ' + name +
   	      ' was changed to ' + this.getAttribute(name));
   	  },
   	  _urlChanged: function(newValue, oldValue) {
-        this.$.breadcrumbs.url=newValue;
-        console.log("value url changed from " + oldValue + " to " + newValue);
+        this.$.skyBreadcrumbsAjax.url=newValue;
+        console.log("SKY-AJAX-BREADCRUMBS> url: '" + oldValue + "' --> '" + newValue + "'");
   	  },
   	  _toArray: function(obj, columnNames) {
         return columnNames.map(function(key) {

@@ -8,7 +8,7 @@ indexSpa(user, messages, converter, model) ::= <<
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>$messages.("productName")$</title>
+    <title>$messages.("productName")$ (SPA)</title>
 
 	<!-- jQuery -->
 	<script type="text/javascript" src="/webapp/js/jquery-1.11.1.js"></script>

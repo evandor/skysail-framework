@@ -17,8 +17,9 @@ public class TodosRepository implements DbRepository {
     private static DbService2 dbService;
 
     @Activate
-    public void activate() {
+    public void activate() { // NO_UCD
         dbService.createWithSuperClass("V", Todo.class.getSimpleName(), TodoList.class.getSimpleName());
+        //dbService.createWithSuperClass("E", vertices);
         dbService.register(Todo.class, TodoList.class);
         dbService.createUniqueIndex(TodoList.class, "name", "owner");
     }
@@ -49,6 +50,8 @@ public class TodosRepository implements DbRepository {
     public List<Todo> findAllTodos(Filter filter, Pagination pagination) {
         String sql = "SELECT *, SUM(urgency,importance) as rank from " + Todo.class.getSimpleName() + " WHERE "+filter.getPreparedStatement()+" ORDER BY rank DESC "
                 + limitClause(pagination.getLinesPerPage(),pagination.getPage());
+
+        //sql = "SELECT *, SUM(urgency,importance) as rank from Todo WHERE NOT (status=:status) AND owner=:owner AND #17:0 IN out('parent') ORDER BY rank DESC SKIP 0 LIMIT 10";
         return dbService.findObjects(sql, filter.getParams());
     }
 
@@ -63,17 +66,17 @@ public class TodosRepository implements DbRepository {
     private void addCount(TodoList list) {
         String sql;
         Map<String, Object> params;
-        sql = "SELECT COUNT(*) as count from " + Todo.class.getSimpleName()
-                + " WHERE list= :listId";
+        sql = "SELECT in('parent').size() as count from " + TodoList.class.getSimpleName()
+                + " WHERE @rid=:rid";
         params = new HashMap<String, Object>();
-        params.put("listId", list.getId().replace("#", ""));
+        params.put("rid", list.getId());
         long cnt = dbService.getCount(sql, params);
         list.setTodosCount(cnt);
     }
 
     private void addCount(Filter filter, TodoList list) {
         String sql = "SELECT COUNT(*) as count from " + Todo.class.getSimpleName()
-                + " WHERE list=:list AND status <> '"+Status.ARCHIVED+"' AND "+filter.getPreparedStatement();
+                + " WHERE "+list.getId()+" IN out('parent') AND status <> '"+Status.ARCHIVED+"' AND "+filter.getPreparedStatement();
         Map<String, Object> params = filter.getParams();
         params.put("list", list.getId().replace("#",""));
         long cnt = dbService.getCount(sql, params);

@@ -1,19 +1,19 @@
 renderEntityInfo(fields, messages, model) ::= <<
   $if (model.postEntityServerResource)$
-        
+
   $elseif (model.putEntityServerResource)$
     <form action="$model.deleteFormTarget$?method=DELETE" method="POST" class="form-horizontal" id="delete-form" name="delete-form">
       <div class="form-group">
           <button type="submit" class="btn btn-warning">Delete</button>
       </div>
-    </form> 
+    </form>
     <hr>
-    $fields:{ field | $handleReadonlyInputField(first(model.data), field, messages)$}$
+    $fields:{ field | $handleReadonlyInputField(model, first(model.data), field, messages)$}$
   $endif$
-  
+
 >>
 
-handleReadonlyInputField(source, field, messages) ::= <<
+handleReadonlyInputField(model, source, field, messages) ::= <<
   $if(field.readonlyInputType)$
       $if(field.tagsInputType)$
         <div class='form-group'>
@@ -40,7 +40,7 @@ handleReadonlyInputField(source, field, messages) ::= <<
         <div class='form-group'>
           <b>$helpmessage(messages, field.nameKey)$:</b><br>
           &nbsp;$source.(field.name)$
-          <p class="text-muted">&nbsp;<script>document.write(moment("$source.(field.name)$").fromNow());</script></p>
+          <p class="text-muted">&nbsp;<script>document.write(moment("$source.(field.name)$", "$model.dateFormat$").fromNow());</script></p>
         </div>
       $else$
         <div class='form-group'>

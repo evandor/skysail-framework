@@ -10,7 +10,8 @@
   <template>
 
     <iron-ajax
-        id="ajax"
+        auto
+        id="{{getId()}}"
         handle-as="json"
         headers='{"Accept": "application/json"}'
         last-response="{{data}}"
@@ -42,7 +43,7 @@
         disabled:     { type: Boolean, value: false}
       },
       renderLink: function(href, item, identifier) {
-        console.log("replacing '" + href + "' -> '" + href.replace("{" + identifier + "}", item.id) + "?_rendered");
+        //console.log("SKY-AJAX-GET> replacing '" + href + "' -> '" + href.replace("{" + identifier + "}", item.id) + "?_rendered");
         return href.replace("{" + identifier + "}", item.id) + "?_rendered";
       },
       shorten(str, nameProperty, maxLength) {
@@ -61,33 +62,30 @@
               return "list-group-item";
         }
       },
+      getId: function () {
+    	  return "ajax";
+      },
       attached: function() {
-        this.$.ajax.url=this.url;
-        this.$.ajax.generateRequest();
+        console.log("SKY-AJAX-GET (attached)>");
+        var a = document.getElementById("ajax");
+        a.url=this.url;
+        //a.generateRequest();
       },
       handleClick: function(e, f, g) {
+          console.log("SKY-AJAX-GET (handleClick)> " + e);
         // http://www.quirksmode.org/js/events_properties.html
         if (!e) {
           var e = window.event;
         }
         var srcElement = e.currentTarget;
-        console.log("found srcElement: " + srcElement + " with reference to " + srcElement.ajaxhref );
+        console.log("SKY-AJAX-GET (handleClick)> found srcElement: " + srcElement + " with reference to " + srcElement.ajaxhref );
         var ajaxhref = srcElement.ajaxhref;
-        var ajaxTable = document.getElementById("theAjaxContent");
-        ajaxTable.url = ajaxhref;
-        ajaxTable.nameProperty="title";
-        document.getElementById("skyTable").generateRequest();
-        /*var complete = test.properties.completes.value();
-        console.log("completes: " + complete);
-        complete
-           .then(function(val,reject) {
-                  console.log('beforeend' + val);
-              })
-          .catch(function() {
-                console.log('promise was rejected');
-              });
-        var response = test.properties.response;
-        console.log("response: " + response);*/
+        var skyAjaxTable = document.getElementById("skyTable");
+        skyAjaxTable.url = ajaxhref;
+       // skyAjaxTable.nameProperty="title";
+        skyAjaxTable.generateRequest();
+        //skyAjaxTable._refresh();
+        //document.getElementById("skyTable").generateRequest();
       },
       getGlyph: function(glyph) {
         return "glyphicon glyphicon-"+glyph;

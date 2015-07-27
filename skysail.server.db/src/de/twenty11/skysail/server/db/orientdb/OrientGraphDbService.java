@@ -13,6 +13,7 @@ import aQute.bnd.annotation.component.*;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.orientechnologies.orient.client.remote.OEngineRemote;
 import com.orientechnologies.orient.core.Orient;
+import com.orientechnologies.orient.core.command.OCommandRequest;
 import com.orientechnologies.orient.core.db.ODatabaseRecordThreadLocal;
 import com.orientechnologies.orient.core.db.document.ODatabaseDocumentTx;
 import com.orientechnologies.orient.core.id.ORecordId;
@@ -82,6 +83,11 @@ public class OrientGraphDbService extends AbstractOrientDbService implements DbS
     }
 
     @Override
+    public <T> List<T> findGraphs(String sql) {
+        return findGraphs(sql, new HashMap<>());
+    }
+
+    @Override
     public <T> List<T> findObjects(String sql, Map<String, Object> params) {
         OObjectDatabaseTx objectDb = getObjectDb();
         List<T> query = objectDb.query(new OSQLSynchQuery<ODocument>(sql), params);
@@ -107,6 +113,24 @@ public class OrientGraphDbService extends AbstractOrientDbService implements DbS
     }
 
     @Override
+    public <T> List<T> findGraphs(String sql, Map<String, Object> params) {
+        OrientGraph graph = getDb();
+        OCommandRequest oCommand = new OCommandSQL(sql);
+        Iterable<OrientVertex> execute = graph.command(oCommand).execute(params);
+
+        List<T> detachedEntities = new ArrayList<>();
+        Iterator<OrientVertex> iterator = execute.iterator();
+        while (iterator.hasNext()) {
+            OrientVertex next = iterator.next();
+            //T newOne = objectDb.detachAll(t, true);
+            OrientElement detached = next.detach();
+           // detachedEntities.add((T)detached);
+            //System.out.println(next);
+        }
+        return detachedEntities;
+    }
+
+    @Override
     public <T> T findObjectById(Class<?> cls, String id) {
         OObjectDatabaseTx objectDb = getObjectDb();
         objectDb.getEntityManager().registerEntityClass(cls);
@@ -114,20 +138,7 @@ public class OrientGraphDbService extends AbstractOrientDbService implements DbS
          return objectDb.detachAll(load, true);
          //return load;
     }
-    
-//    @Override
-//    public ODocument findDocumentById(Class<?> cls, String id) {
-//        ODatabaseDocumentTx db = getDocumentDb();
-//        Map<String, Object> params = new HashMap<>();
-//        params.put("rid", id);
-//        List<ODocument> query = db.query(new OSQLSynchQuery<ODocument>("SELECT * FROM " + cls.getSimpleName()
-//                + " WHERE @rid= :rid"), params);
-//        if (query != null) {
-//            return query.get(0);
-//        }
-//        return null;//new HashMap<String, Object>();
-//    }
-    
+
     @Override
     public <T> List<T> findWithGraph(String sql, Class<?> cls, Map<String, Object> params) {
         OrientGraph db = getDb();
@@ -153,7 +164,14 @@ public class OrientGraphDbService extends AbstractOrientDbService implements DbS
     public long getCount(String sql, Map<String, Object> params) {
         OObjectDatabaseTx objectDb = getObjectDb();
         List<ODocument> query = objectDb.query(new OSQLSynchQuery<ODocument>(sql), params);
-        return query.get(0).field("count");
+        Object field = query.get(0).field("count");
+        if (field instanceof Long) {
+            return (Long)field;
+        }
+        if (field instanceof Integer) {
+            return new Long((Integer)field);
+        }
+        return 0;
     }
 
     @Override
@@ -342,7 +360,7 @@ public class OrientGraphDbService extends AbstractOrientDbService implements DbS
         //ODocument doc = new ODocument().fromMap(map);
         documentDb.save(doc);
         documentDb.commit();
-        
+
     }
 
 }

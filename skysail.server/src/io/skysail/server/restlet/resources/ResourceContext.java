@@ -18,23 +18,24 @@ public class ResourceContext {
     private List<WebComponentCall> navItems = new ArrayList<>();
     private SkysailApplication application;
     private SkysailServerResource<?> skysailServerResource;
-    
+
     public ResourceContext(SkysailApplication application, SkysailServerResource<?> skysailServerResource) {
         this.application = application;
         this.skysailServerResource = skysailServerResource;
     }
 
-    public void addAjaxNavigation(String title, Class<? extends SkysailServerResource<?>> cls, Class<? extends SkysailServerResource<?>> targetClass, String identifier) {
+    public void addAjaxNavigation(String id, String title, Class<? extends SkysailServerResource<?>> cls, Class<? extends SkysailServerResource<?>> targetClass, String identifier) {
         if (application == null) {
             log.warn("no application available for ResourceContext#addAjaxNavigation");
             return;
         }
-        
+
         Link ajaxTarget = LinkUtils.fromResource(application, cls);
         Link linkTarget = LinkUtils.fromResource(application, targetClass);
-        
+
         WebComponentCall call = WebComponentCall.builder()
                 .type("sky-ajax-get")
+                .id(id)
                 .title(title)
                 .identifier(identifier)
                 .requestUrl(skysailServerResource.getOriginalRef().getPath().toString())
@@ -70,7 +71,7 @@ public class ResourceContext {
 
         Link ajaxTarget = LinkUtils.fromResource(application, cls);
         Link linkTarget = LinkUtils.fromResource(application, targetClass);
-        
+
         return WebComponentCall.builder()
                 .type("sky-ajax-get")
                 .url(ajaxTarget.getUri())

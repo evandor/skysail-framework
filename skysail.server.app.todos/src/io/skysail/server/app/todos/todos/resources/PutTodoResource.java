@@ -13,21 +13,17 @@ import org.restlet.resource.ResourceException;
 
 public class PutTodoResource extends PutEntityServerResource<Todo> {
 
-    private String listId;
-    private String todoId;
     private TodoApplication app;
 
     @Override
     protected void doInit() throws ResourceException {
         super.doInit();
-        listId = getAttribute(TodoApplication.LIST_ID);
-        todoId = getAttribute(TodoApplication.TODO_ID);
         app = (TodoApplication) getApplication();
     }
 
     @Override
     public Todo getEntity() {
-        return app.getRepository().getById(Todo.class, todoId);
+        return app.getRepository().getById(Todo.class, getAttribute(TodoApplication.TODO_ID));
     }
 
     @Override
@@ -40,7 +36,7 @@ public class PutTodoResource extends PutEntityServerResource<Todo> {
         if (views == null) {
             original.setViews(1);
         }
-        app.getRepository().update(listId, original);
+        app.getRepository().update(getAttribute(TodoApplication.LIST_ID), original);
         return new SkysailResponse<>();
     }
 

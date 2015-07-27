@@ -1,18 +1,18 @@
 renderTableSpa(converter, messages, model) ::= <<
 
   $model.pagination$
-  	
-  <sky-ajax-table1 
-    id="theAjaxContent" 
-    url="$model.resource.request.originalRef$?_rendered" 
-    link-to="/Todos/Lists/{lid}/Todos" 
-    identifier="lid" 
-    request-url="/Todos" 
-    name-property="title" 
+
+  <sky-ajax-table1
+    id="skyAjaxTable"
+    url="$model.resource.request.originalRef$?_rendered"
+    link-to="/Todos/Lists/{lid}/Todos"
+    identifier="lid"
+    request-url="/Todos"
+    name-property="title"
     columns='[$renderColumns(model.formfields, converter)$,"_links"]'
     column-names='{$renderColumnNames(model.formfields, converter)$,"_links": "Actions"}'>
   </sky-ajax-table1>
-  
+
 >>
 
 renderColumns(fields, converter) ::= <<

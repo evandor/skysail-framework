@@ -17,7 +17,7 @@ import lombok.*;
 
 import org.restlet.data.Form;
 
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.*;
 
 @Getter
 @Setter
@@ -42,6 +42,7 @@ public class Todo implements Serializable, Identifiable {
     @ListView(truncate = 30, link = PutTodoResource.class)
     @NotNull
     @Size(min = 2)
+    @Prefix(methodName = "status")
     private String title;
 
     @Field(type = InputType.TEXTAREA)
@@ -49,9 +50,11 @@ public class Todo implements Serializable, Identifiable {
     private String desc;
 
     @Field(type = InputType.DATE)
+    @JsonFormat(shape=JsonFormat.Shape.STRING, pattern="dd.MM.yyyy")
     private Date due;
 
     @Field(type = InputType.DATE)
+    @JsonFormat(shape=JsonFormat.Shape.STRING, pattern="dd.MM.yyyy")
     private Date startDate;
 
     @Field(type = InputType.READONLY)
@@ -76,11 +79,6 @@ public class Todo implements Serializable, Identifiable {
     @ListView(hide=true)
     private Integer urgency;
 
-    @Field(selectionProvider = StatusSelectionProvider.class)
-    @PostView(visibility = Visibility.HIDE)
-    @Submit
-    private Status status;
-
     @Field(type = InputType.READONLY)
     @ListView(hide=true)
     private String owner;
@@ -88,6 +86,12 @@ public class Todo implements Serializable, Identifiable {
     @Field(type = InputType.READONLY)
     //@ListView(hide=true)
     private Integer views;
+
+    @Field(selectionProvider = StatusSelectionProvider.class)
+    @PostView(visibility = Visibility.HIDE)
+    @ListView(colorize = "color")
+    @Submit
+    private Status status;
 
     // assigned to,
     // related to: account, ...

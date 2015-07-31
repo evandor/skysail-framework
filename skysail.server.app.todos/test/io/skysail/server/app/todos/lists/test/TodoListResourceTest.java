@@ -1,18 +1,10 @@
 package io.skysail.server.app.todos.lists.test;
 
-import static org.hamcrest.CoreMatchers.equalTo;
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.not;
-import static org.hamcrest.CoreMatchers.nullValue;
+import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.assertThat;
 import io.skysail.api.responses.SkysailResponse;
-import io.skysail.server.app.todos.TodoApplication;
-import io.skysail.server.app.todos.TodoList;
-import io.skysail.server.app.todos.lists.ListResource;
-import io.skysail.server.app.todos.lists.ListsResource;
-import io.skysail.server.app.todos.lists.PostListResource;
-import io.skysail.server.app.todos.lists.PutListResource;
-import io.skysail.server.app.todos.lists.UniquePerOwnerValidator;
+import io.skysail.server.app.todos.*;
+import io.skysail.server.app.todos.lists.*;
 import io.skysail.server.app.todos.repo.TodosRepository;
 import io.skysail.server.restlet.resources.SkysailServerResource;
 import io.skysail.server.testsupport.ResourceTestBase;
@@ -21,8 +13,7 @@ import java.util.HashMap;
 
 import org.apache.shiro.subject.SimplePrincipalMap;
 import org.junit.Before;
-import org.mockito.Mockito;
-import org.mockito.Spy;
+import org.mockito.*;
 import org.restlet.data.Status;
 
 public abstract class TodoListResourceTest extends ResourceTestBase {
@@ -44,6 +35,7 @@ public abstract class TodoListResourceTest extends ResourceTestBase {
     @Before
     public void setUp() throws Exception {
         super.setUpFixture();
+
         super.setUpApplication(Mockito.mock(TodoApplication.class));
         super.setUpResource(listResource);
         super.setUpResource(listsResource);

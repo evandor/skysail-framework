@@ -23,34 +23,34 @@ import de.twenty11.skysail.server.core.restlet.*;
 /**
  * An abstract resource template dealing with PUT requests (see
  * http://www.ietf.org/rfc/rfc2616.txt, 9.6).
- * 
+ *
  * <p>
  * Process:
  * </p>
- * 
+ *
  * <p>
  * Typically, you'd implement doInit to get hold on the id, then getEntity to
  * retrieve the entitiy to be updated, and finally updateEntity to persist it.
  * </p>
- * 
+ *
  * Example implementing class:
- * 
+ *
  * <pre>
  *  <code>
  *  public class MyEntityResource extends PutEntityServerResource&lt;MyEntity&gt; {
- * 
+ *
  *     ...
- *     
+ *
  *     protected void doInit() throws ResourceException {
  *       super.doInit();
  *       id = getAttribute("id");
  *       app = (MyApplication) getApplication();
  *     }
- *     
+ *
  *     public T getEntity() {
  *        return app.getRepository().getById(id)
  *     }
- *     
+ *
  *     public SkysailResponse<?> updateEntity(T entity) {
  *        app.getRepository().update(entity);
  *        return new SkysailResponse<String>();
@@ -58,7 +58,7 @@ import de.twenty11.skysail.server.core.restlet.*;
  * }
  * </code>
  * </pre>
- * 
+ *
  * @param <T>
  */
 @Slf4j
@@ -80,7 +80,7 @@ public abstract class PutEntityServerResource<T> extends SkysailServerResource<T
     /**
      * If you have a route defined as "/repository/{key}", you can get the key
      * like this: key = (String) getRequest().getAttributes().get("key");
-     * 
+     *
      * <p>
      * To get hold on any parameters passed, consider using this pattern:
      * </p>
@@ -89,10 +89,11 @@ public abstract class PutEntityServerResource<T> extends SkysailServerResource<T
      * Form form = new Form(getRequest().getEntity()); action =
      * form.getFirstValue("action");
      * </p>
-     * 
+     *
      */
     @Override
     protected void doInit() throws ResourceException {
+        super.doInit();
         identifier = getAttribute(identifierName);
     }
 
@@ -104,7 +105,7 @@ public abstract class PutEntityServerResource<T> extends SkysailServerResource<T
     /**
      * This method will be called by the skysail framework to create the actual
      * resource from its form representation.
-     * 
+     *
      * @param form
      *            the representation of the resource as a form
      * @return the resource of type T
@@ -123,7 +124,7 @@ public abstract class PutEntityServerResource<T> extends SkysailServerResource<T
         RequestHandler<T> requestHandler = new RequestHandler<T>(getApplication());
         AbstractResourceFilter<PutEntityServerResource<T>, T> chain = requestHandler.createForFormResponse();
         ResponseWrapper<T> wrapper = chain.handle(this, getResponse());
-        
+
         getApplication().stopPerformanceMonitoring(perfTimer);
         return new FormResponse<T>(wrapper.getEntity(), identifier, null, redirectBackTo());
     }
@@ -200,17 +201,17 @@ public abstract class PutEntityServerResource<T> extends SkysailServerResource<T
 
     @Override
     public List<Link> getLinks() {
-        
+
         String ref = getReference().toString();
         String parentRef = getReference().getParentRef() != null ? getReference().getParentRef().toString() : "";
-        
+
         List<Link> result = new ArrayList<>();
         result.add(new Link.Builder(ref).relation(LinkRelation.NEXT).title("form target").verbs(Method.PUT).build());
 
         T entity = this.getCurrentEntity();
         if (entity instanceof Identifiable) {
             String id = ((Identifiable)entity).getId().replace("#","");
-            
+
             result.add(new Link.Builder(parentRef + id).title("delete").verbs(Method.DELETE).build());
         }
 

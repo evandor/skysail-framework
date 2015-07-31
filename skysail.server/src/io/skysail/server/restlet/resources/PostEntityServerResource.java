@@ -26,9 +26,9 @@ import de.twenty11.skysail.server.services.SearchService;
 /**
  * An abstract resource template dealing with POST requests (see
  * http://www.ietf.org/rfc/rfc2616.txt, 9.5).
- * 
+ *
  * Process:
- * 
+ *
  * Restlet framework will call
  * de.twenty11.skysail.server.core.restlet.PostEntityServerResource.post(Form),
  * where a responseHandler for a post request is created. This response handler
@@ -37,37 +37,37 @@ import de.twenty11.skysail.server.services.SearchService;
  * (#getData(Form form)) and attach the result to the skysail response data
  * field. Afterwards, the {@link CheckBusinessViolationsFilter} will validate
  * the provided data.
- * 
+ *
  * Example implementing class:
- * 
+ *
  * <pre>
  *  <code>
  *  public class MyEntityResource extends PostEntityServerResource&lt;MyEntity&gt; {
- * 
+ *
  *     private MyApplication app;
  *     private String myEntityId;
- * 
+ *
  *     public void doInit() {
  *        app = (MyApplication) getApplication();
  *     }
- *     
+ *
  *     public MyEntity createEntityTemplate() {
  *         return new MyEntity();
  *     }
- *    
+ *
  *     public MyEntity getData(Form form) {
  *         return populate(createEntityTemplate(), form);
  *     }
- *    
+ *
  *    public SkysailResponse&lt;?&gt; addEntity(Clip entity) {
  *        app.getClipsRepository().add(entity);
  *        return new SkysailResponse&lt;String&gt;();
  *    }
- * 
+ *
  * }
  * </code>
  * </pre>
- * 
+ *
  * @param <T>
  */
 @Slf4j
@@ -84,11 +84,11 @@ public abstract class PostEntityServerResource<T> extends SkysailServerResource<
      *
      * <p>Form form = new Form(getRequest().getEntity()); action =
      * form.getFirstValue("action");</p>
-     * 
+     *
      */
     @Override
     protected void doInit() throws ResourceException {
-        // empty
+        super.doInit();
     };
 
     public PostEntityServerResource() {
@@ -104,14 +104,14 @@ public abstract class PostEntityServerResource<T> extends SkysailServerResource<
      * object which will be serialized as json (with all fields null), so that
      * the client knows about the attributes and could provide a generic input
      * form.
-     * 
+     *
      * @return a template instance of type T
      */
     public abstract T createEntityTemplate();
 
     /**
      * will be called in case of a POST request.
-     * 
+     *
      * @param entity
      *            the entity
      * @return the response
@@ -126,7 +126,7 @@ public abstract class PostEntityServerResource<T> extends SkysailServerResource<
     /**
      * This method will be called by the skysail framework to create the actual
      * resource from its form representation.
-     * 
+     *
      * @param form
      *            the representation of the resource as a form
      * @return the resource of type T
@@ -146,7 +146,7 @@ public abstract class PostEntityServerResource<T> extends SkysailServerResource<
         String formTarget = templatePaths.stream().findFirst().orElse(".");
         List<Link> links = Arrays.asList(new Link.Builder(formTarget).build());
         links.stream().forEach(getPathSubstitutions());
-        
+
         T entity = createEntityTemplate();
         this.setCurrentEntity(entity);
         return new FormResponse<T>(entity, links.get(0).getUri());
@@ -182,7 +182,7 @@ public abstract class PostEntityServerResource<T> extends SkysailServerResource<
 
     /**
      * handles a x-www-form-urlencoded POST to this resource.
-     * 
+     *
      * @param form
      * @return
      */
@@ -230,7 +230,7 @@ public abstract class PostEntityServerResource<T> extends SkysailServerResource<
         return Arrays.asList(new Link.Builder(".").relation(LinkRelation.NEXT).title("form target").verbs(Method.POST)
                 .build());
     }
-    
+
     /**
      * String id = entity.getRid().toString().replace("#",""); String link =
      * ServerLink.fromResource(app, ClipResource.class).getUri();

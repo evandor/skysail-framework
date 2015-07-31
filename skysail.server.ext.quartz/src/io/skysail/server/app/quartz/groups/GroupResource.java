@@ -1,14 +1,12 @@
 package io.skysail.server.app.quartz.groups;
 
-import io.skysail.server.app.quartz.schedules.PostScheduleResource;
+import io.skysail.api.links.Link;
+import io.skysail.api.responses.SkysailResponse;
+import io.skysail.server.restlet.resources.EntityServerResource;
 
 import java.util.List;
 
 import org.restlet.resource.ResourceException;
-
-import de.twenty11.skysail.api.responses.Linkheader;
-import de.twenty11.skysail.api.responses.SkysailResponse;
-import de.twenty11.skysail.server.core.restlet.EntityServerResource;
 
 public class GroupResource extends EntityServerResource<Group> {
 
@@ -32,10 +30,10 @@ public class GroupResource extends EntityServerResource<Group> {
 	public SkysailResponse<?> eraseEntity() {
 		return null;
 	}
-	
+
 	@Override
-	public List<Linkheader> getLinkheader() {
-	    return super.getLinkheader(PutGroupResource.class);
+	public List<Link> getLinks() {
+	    return super.getLinks(PutGroupResource.class);
 	}
 
 }

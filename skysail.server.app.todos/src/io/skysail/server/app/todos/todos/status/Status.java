@@ -7,28 +7,28 @@ import lombok.Getter;
 @Getter
 public enum Status {
 
-    
-    NEW("NEW", "PLANNED", "WIP", "POSTPONED"), 
-    PLANNED("PLANNED", "WIP","ARCHIVED"), 
-    WIP("WIP", "POSTPONED","ARCHIVED"), 
-    POSTPONED("POSTPONED", "PLANNED", "WIP", "ARCHIVED"), 
-    FINISHED("ARCHIVED", "REOPENED"),
-    REOPENED("PLANNED", "WIP", "POSTPONED"),
-    ARCHIVED("ARCHIVED");
-    
+    NEW("NEW","yellow", "PLANNED", "WIP"),
+    PLANNED("PLANNED","green", "WIP","ARCHIVED"),
+    WIP("WIP","orange","ARCHIVED"),
+    FINISHED("gray","ARCHIVED"),
+    ARCHIVED("gray","ARCHIVED");
+
     private List<String> nexts = new ArrayList<>();
-   
+
+    private String color;
+
     Status() {
         nexts = Collections.emptyList();
     }
-    
-    Status(String first, String... nextStatuses) {
-        nexts.add(first);
+
+    Status(String name, String color, String... nextStatuses) {
+        this.color = color;
+        nexts.add(name);
         for (String str : nextStatuses) {
             nexts.add(str);
         }
     }
-    
+
     public boolean isActive() {
         return !this.equals(FINISHED) && !this.equals(ARCHIVED);
     }

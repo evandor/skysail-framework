@@ -11,20 +11,23 @@
 
     <iron-ajax
         auto
-        id="{{getId()}}"
+        id="{{getId(id)}}"
         handle-as="json"
         headers='{"Accept": "application/json"}'
         last-response="{{data}}"
         debounce-duration="300" />
 
-    <div class="list-group">
+   <!--  <div class="list-group">
       <a href='/Todos/Lists/' class="list-group-item">create new List</a>
-    </div>
+    </div> -->
     <div class="list-group">
       <template is="dom-repeat" items="{{data}}">
         <a ajaxhref="{{renderLink(linkTo, item, identifier)}}" on-click="handleClick" class$="{{itemClass(linkTo, item, identifier, requestUrl, disabled)}}" title="{{renderLink(linkTo, item, identifier)}}">
           <span class$="{{getGlyph(glyphicon)}}"></span>
           <span>{{shorten(item,nameProperty,linkLength)}}</span> <span class="badge">{{item.todosCount}}</span></a>
+      </template>
+      <template is="dom-if" if="{{createLabel}}">
+        <a href="{{createTarget}}" class="list-group-item"><span class="glyphicon glyphicon-plus" ></span><span>{{createLabel}}</span></a>
       </template>
     </div>
   </template>
@@ -34,11 +37,14 @@
       is: 'sky-ajax-get',
       properties: {
         url:          String,
+        id:           String,
         linkTo:       String,
         requestUrl:   String,
+        createLabel:  String,
+        createTarget: String,
         nameProperty: { type: String,  value: "name" },
         identifier:   { type: String,  value: "id" },
-        linkLength:   { type: Number,  value: 10 },
+        linkLength:   { type: Number,  value: 20 },
         glyphicon :   { type: String,  value: "file"},
         disabled:     { type: Boolean, value: false}
       },
@@ -62,12 +68,12 @@
               return "list-group-item";
         }
       },
-      getId: function () {
-    	  return "ajax";
+      getId: function (parentId) {
+    	  return parentId + "_ajax";
       },
       attached: function() {
         console.log("SKY-AJAX-GET (attached)>");
-        var a = document.getElementById("ajax");
+        var a = document.getElementById(this.id + "_ajax");
         a.url=this.url;
         //a.generateRequest();
       },
@@ -79,11 +85,24 @@
         }
         var srcElement = e.currentTarget;
         console.log("SKY-AJAX-GET (handleClick)> found srcElement: " + srcElement + " with reference to " + srcElement.ajaxhref );
+        console.log("SKY-AJAX-GET (handleClick)> " + srcElement.className );
         var ajaxhref = srcElement.ajaxhref;
-        var skyAjaxTable = document.getElementById("skyTable");
-        skyAjaxTable.url = ajaxhref;
+
+
+        var listGroupItems = document.getElementsByClassName("list-group-item");
+        for (i = 0; i < listGroupItems.length; i++) {
+        	listGroupItems[i].classList.remove("active");
+        }
+        srcElement.className += " active";
+
+        var skyTable = document.getElementById("skyTable");
+        skyTable.url = ajaxhref;
+
+        var skyAjaxTable = document.getElementById("skyAjaxTable");
+
+        skyAjaxTable.columnNames = {"title": "Title", "todosCount": "Cnt.", "desc": "Description", "created": "Created", "modified": "Modified","_links": "Actions"};
        // skyAjaxTable.nameProperty="title";
-        skyAjaxTable.generateRequest();
+        skyTable.generateRequest();
         //skyAjaxTable._refresh();
         //document.getElementById("skyTable").generateRequest();
       },

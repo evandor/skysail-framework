@@ -3,6 +3,7 @@ package io.skysail.server.app.todos.lists;
 import io.skysail.api.links.Link;
 import io.skysail.api.responses.SkysailResponse;
 import io.skysail.server.app.todos.*;
+import io.skysail.server.app.todos.charts.ListChartResource;
 import io.skysail.server.app.todos.todos.resources.TodosResource;
 import io.skysail.server.restlet.resources.EntityServerResource;
 
@@ -26,9 +27,10 @@ public class ListResource extends EntityServerResource<TodoList> {
 
     @Override
     protected void doInit() {
+        super.doInit();
         listId = getAttribute(TodoApplication.LIST_ID);
         app = (TodoApplication) getApplication();
-        getResourceContext().addAjaxNavigation(getResourceContext().getAjaxBuilder("Lists:", ListsResource.class, TodosResource.class).identifier("lid").build());
+        getResourceContext().addAjaxNavigation(getResourceContext().getAjaxBuilder("ajax", "Lists:", ListsResource.class, TodosResource.class).identifier("lid").build());
     }
 
     @Override
@@ -74,7 +76,7 @@ public class ListResource extends EntityServerResource<TodoList> {
 
     @Override
     public List<Link> getLinks() {
-        return super.getLinks(ListResource.class, TodosResource.class, PutListResource.class);
+        return super.getLinks(ListResource.class, TodosResource.class, PutListResource.class, ListChartResource.class);
     }
 
     @Override

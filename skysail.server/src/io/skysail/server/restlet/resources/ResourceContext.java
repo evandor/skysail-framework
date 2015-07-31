@@ -10,6 +10,8 @@ import java.util.*;
 import lombok.*;
 import lombok.extern.slf4j.Slf4j;
 
+import org.restlet.data.Reference;
+
 @Getter
 @ToString(of = "application")
 @Slf4j
@@ -53,17 +55,18 @@ public class ResourceContext {
 
         Link ajaxTarget = LinkUtils.fromResource(application, cls);
 
+        Reference originalRef = skysailServerResource.getOriginalRef();
         WebComponentCall call = WebComponentCall.builder()
                 .type("sky-ajax-get")
                 .title(title)
-                .requestUrl(skysailServerResource.getOriginalRef().getPath().toString())
-                .url(ajaxTarget.getUri())
+                .requestUrl(originalRef != null ? originalRef.getPath().toString() : null)
+                .url(ajaxTarget != null ? ajaxTarget.getUri() : null)
                 .disabled(true)
                 .build();
         navItems.add(call);
     }
 
-    public WebComponentCallBuilder getAjaxBuilder(String title, Class<? extends SkysailServerResource<?>> cls, Class<? extends SkysailServerResource<?>> targetClass) {
+    public WebComponentCallBuilder getAjaxBuilder(String id, String title, Class<? extends SkysailServerResource<?>> cls, Class<? extends SkysailServerResource<?>> targetClass) {
         if (application == null) {
             log.warn("no application available for ResourceContext#addAjaxNavigation");
             return null;
@@ -72,13 +75,15 @@ public class ResourceContext {
         Link ajaxTarget = LinkUtils.fromResource(application, cls);
         Link linkTarget = LinkUtils.fromResource(application, targetClass);
 
+        Reference originalRef = skysailServerResource.getOriginalRef();
         return WebComponentCall.builder()
                 .type("sky-ajax-get")
-                .url(ajaxTarget.getUri())
-                .linkTo(linkTarget.getUri())
+                .id(id)
+                .url(ajaxTarget != null ? ajaxTarget.getUri() : null)
+                .linkTo(linkTarget != null ? linkTarget.getUri() : null)
                 .glyphicon("th-list")
                 .title(title)
-                .requestUrl(skysailServerResource.getOriginalRef().getPath().toString());
+                .requestUrl(originalRef != null ? originalRef.getPath().toString() : null);
     }
 
     public void addAjaxNavigation(WebComponentCall call) {

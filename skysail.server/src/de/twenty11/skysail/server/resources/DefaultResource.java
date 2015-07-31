@@ -22,7 +22,8 @@ public class DefaultResource extends ListServerResource<MenuItemDescriptor> {
 
     @Override
     protected void doInit() throws ResourceException {
-       getResourceContext().addAjaxNavigation("ajax", "Skysail Applications", DefaultResource.class, DefaultResource.class, "url");
+        super.doInit();
+        getResourceContext().addAjaxNavigation("ajax", "Skysail Applications", DefaultResource.class, DefaultResource.class, "url");
     }
 
     @Override

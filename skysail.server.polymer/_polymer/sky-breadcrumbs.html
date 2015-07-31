@@ -6,7 +6,8 @@
   <template>
 
     <iron-ajax
-        id="skyBreadcrumbsAjax" auto
+        auto
+        id="skyBreadcrumbsAjax"
         handle-as="json"
         headers='{"Accept": "application/json"}'
         last-response="{{data}}"
@@ -15,7 +16,7 @@
      <ul class="breadcrumb" style="height:35px;">
        <template is="dom-repeat" items="{{data.breadcrumbs}}" as="breadcrumb">
 		 <template is="dom-if" if="{{breadcrumb.href}}">
-		   <li><a href='{{breadcrumb.href}}'><sky-html html="{{breadcrumb.value}}" /></a>&nbsp;/&nbsp;</li>
+		   <li><a href='{{breadcrumb.href}}'><sky-html html="{{breadcrumb.value}}" /></a>&nbsp;&nbsp;&gt;&nbsp;</li>
 		 </template>
 		 <template is="dom-if" if="{{!breadcrumb.href}}">
 		   <li><b><sky-html html="{{breadcrumb.value}}" /></b></li>

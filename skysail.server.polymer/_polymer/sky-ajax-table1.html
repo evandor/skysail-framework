@@ -70,6 +70,10 @@
         console.log("SKY-AJAX-TABLE (_namePropertyChanged)> '" + oldValue + "' --> '" + newValue + "'");
         this.$.skyTable.nameProperty=newValue;
   	  },
+  	  _columnNamesChanged:function(newValue, oldValue) {
+        console.log("SKY-AJAX-TABLE (_columnNamesChanged)> '" + oldValue + "' --> '" + newValue + "'");
+        this.$.skyTable.columnNames=newValue;
+  	  },
   	  /*generateRequest: function(href) {
   		console.log("SKY-AJAX-TABLE (generateRequest)> " + href);
   		console.log("SKY-AJAX-TABLE (generateRequest)> for url " + this.$.skyTable.url);

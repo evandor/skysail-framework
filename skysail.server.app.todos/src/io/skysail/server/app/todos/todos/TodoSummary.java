@@ -30,6 +30,7 @@ public class TodoSummary implements Serializable, Identifiable {
     @ListView(truncate = 30, link = PutTodoResource.class)
     @NotNull
     @Size(min = 2)
+    @Prefix(methodName = "status")
     private String title;
 
     @Reference(cls = TodoSummary.class, selectionProvider = ListSelectionProvider.class)
@@ -49,6 +50,7 @@ public class TodoSummary implements Serializable, Identifiable {
 
     @Field(selectionProvider = StatusSelectionProvider.class)
     @PostView(visibility = Visibility.HIDE)
+    @ListView(colorize = "color")
     @Submit
     private Status status;
 

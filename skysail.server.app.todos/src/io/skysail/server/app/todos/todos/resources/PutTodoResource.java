@@ -32,6 +32,7 @@ public class PutTodoResource extends PutEntityServerResource<Todo> {
         copyProperties(original,entity);
         original.setModified(new Date());
         original.setUrgency(Ranker.calcUrgency(original));
+        original.setParent(null);
         Integer views = original.getViews();
         if (views == null) {
             original.setViews(1);

@@ -6,6 +6,7 @@ import io.skysail.server.app.todos.todos.resources.*;
 import io.skysail.server.queryfilter.Filter;
 import io.skysail.server.queryfilter.pagination.Pagination;
 import io.skysail.server.restlet.resources.ListServerResource;
+import io.skysail.server.utils.LinkUtils;
 
 import java.util.List;
 
@@ -27,9 +28,24 @@ public class ListsResource extends ListServerResource<TodoList> {
 
     @Override
     protected void doInit() {
+        super.doInit();
         app = (TodoApplication) getApplication();
-        getResourceContext().addAjaxNavigation("ajax", "Todo-Lists:", ListsResource.class, TodosResource.class, "lid");
+        //getResourceContext().addAjaxNavigation("ajax", "Todo-Lists:", ListsResource.class, TodosResource.class, "lid");
         //getResourceContext().addAjaxNavigation("Top 10:", Top10TodosResource.class, TodosResource.class, "lid");
+        getResourceContext().addAjaxNavigation(getResourceContext().getAjaxBuilder("lists-nav", "Lists:", ListsResource.class, TodosResource.class)
+                .identifier("lid")
+                .createLabel("new list")
+                .createTarget(getTarget())
+                .build());
+        getResourceContext().addAjaxNavigation(getResourceContext().getAjaxBuilder("top10-nav", "Top 10:", Top10TodosResource.class, TodosResource.class)
+                .nameProperty("title")
+                .identifier("lid")
+                .build());
+    }
+
+    private String getTarget() {
+        Link fromResource = LinkUtils.fromResource(app, PostListResource.class);
+        return fromResource != null ? fromResource.getUri() : null;
     }
 
     @Override

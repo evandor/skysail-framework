@@ -28,23 +28,27 @@ mainContentSpa(user, converter, messages, model) ::= <<
         <div class="col-md-12">
         <br>
         <p id="resourceDescription"></p>
-        <br>
-            $if(model.form)$
-              <div class="col-md-10">
-                $showFormSpa(model.formfields, messages, model)$
-              </div>
-              <div class="col-md-2">
-                $renderEntityInfo(model.formfields, messages, model)$
-              </div>
-            $elseif(model.list)$
-              <div class="col-md-12">
-                $renderTableSpa(converter, messages, model)$
-              </div>
-            $else$
-              <div class="col-md-12">
-                $renderEntity(user, model)$
-              </div>
-            $endif$
+
+$model.data:{ row | $renderRow(row,i)$}; separator=","$
+
+          <style>
+            google-chart {
+              height: 500px;
+              width: 80%;
+            }
+          </style>
+
+          <google-chart
+              type='bubble'
+              options='{"title": "Eisenhower Chart",
+              "vAxis": {"minValue" : 0, "maxValue": 100},
+              "hAxis": {"minValue" : 0, "maxValue": 100}
+              }'
+              data='[
+                ["ID", "Importance", "Urgency", "List"],
+                     $model.data:{ row | $renderRow(row,i)$}; separator=","$
+                     ]'>
+            </google-chart>
 
         </div>
       </div>
@@ -52,4 +56,8 @@ mainContentSpa(user, converter, messages, model) ::= <<
     </div>
   </div>
 
+>>
+
+renderRow(row,i) ::= <<
+  ["$row.("id")$", $row.("importance")$, $row.("urgency")$, "$row.("list")$"]
 >>

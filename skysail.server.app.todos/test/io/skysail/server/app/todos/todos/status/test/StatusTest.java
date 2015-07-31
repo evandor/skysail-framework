@@ -11,22 +11,22 @@ import org.junit.Test;
 public class StatusTest {
 
     @Test
-    public void has_seven_values() {
+    public void has_five_values() {
         Status[] values = Status.values();
-        assertThat(values.length, is(7));
+        assertThat(values.length, is(5));
     }
 
     @Test
     public void testNextsOfNewStatus() {
         Status newStatus = Status.NEW;
-        assertThat(newStatus.getNexts().size(), is(4));
+        assertThat(newStatus.getNexts().size(), is(3));
         checkFollowUpStatuses(newStatus.getNexts());
     }
 
     @Test
     public void testNextsOfWipStatus() {
         Status newStatus = Status.WIP;
-        assertThat(newStatus.getNexts().size(), is(3));
+        assertThat(newStatus.getNexts().size(), is(2));
         checkFollowUpStatuses(newStatus.getNexts());
     }
 
@@ -34,27 +34,6 @@ public class StatusTest {
     public void testNextsOfPlannedStatus() {
         Status newStatus = Status.PLANNED;
         assertThat(newStatus.getNexts().size(), is(3));
-        checkFollowUpStatuses(newStatus.getNexts());
-    }
-    
-    @Test
-    public void testNextsOfPostponedStatus() {
-        Status newStatus = Status.POSTPONED;
-        assertThat(newStatus.getNexts().size(), is(4));
-        checkFollowUpStatuses(newStatus.getNexts());
-    }
-
-    @Test
-    public void testNextsOfClosedStatus() {
-        Status newStatus = Status.ARCHIVED;
-        assertThat(newStatus.getNexts().size(), is(1));
-        checkFollowUpStatuses(newStatus.getNexts());
-    }
-
-    @Test
-    public void testNextsOfFinishedStatus() {
-        Status newStatus = Status.FINISHED;
-        assertThat(newStatus.getNexts().size(), is(2));
         checkFollowUpStatuses(newStatus.getNexts());
     }
 

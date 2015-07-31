@@ -9,7 +9,7 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 public @interface ListView {
-    
+
     public static final class DEFAULT extends SkysailServerResource<String> {
 
         @Override
@@ -21,7 +21,7 @@ public @interface ListView {
         public LinkRelation getLinkRelation() {
             return null;
         }
-        
+
     }
 
     Class<? extends SkysailServerResource<?>> link() default DEFAULT.class;
@@ -29,5 +29,6 @@ public @interface ListView {
     int truncate() default -1;
 
     boolean hide() default false;
-    
+
+    String colorize() default "";
 }

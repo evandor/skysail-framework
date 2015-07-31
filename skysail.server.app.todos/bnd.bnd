@@ -43,7 +43,11 @@ Include-Resource: resources, templates=src;recursive:=true;filter:=*.st|*.stg
 	org.jboss.logging.jboss-logging;version=3.1,\
 	javax.el-api;version=3.0,\
 	classmate;version=1.0,\
-	com.orientechnologies.orientdb-core;version=2.0,\
+	com.orientechnologies.orientdb-core;version='[2.0,2.1)',\
+	com.orientechnologies.orientdb-graphdb;version='[2.0,2.1)',\
+	com.orientechnologies.orientdb-object;version='[2.0,2.1)',\
+	com.orientechnologies.orientdb-server;version='[2.0,2.1)',\
+	com.orientechnologies.orientdb-tools;version='[2.0,2.1)',\
 	com.googlecode.concurrentlinkedhashmap.lru;version=1.4,\
 	com.fasterxml.jackson.core.jackson-core;version=2.4,\
 	com.fasterxml.jackson.core.jackson-databind;version=2.4,\
@@ -54,7 +58,9 @@ Include-Resource: resources, templates=src;recursive:=true;filter:=*.st|*.stg
 	org.apache.commons.lang3;version=3.3,\
 	com.fasterxml.jackson.dataformat.jackson-dataformat-smile;version=2.5,\
 	com.fasterxml.jackson.dataformat.jackson-dataformat-xml;version=2.5,\
-	com.fasterxml.jackson.dataformat.jackson-dataformat-yaml;version=2.5
+	com.fasterxml.jackson.dataformat.jackson-dataformat-yaml;version=2.5,\
+	ch.qos.logback.core;version=1.1,\
+	ch.qos.logback.classic;version=1.1
 
 Import-Package: org.osgi.framework,\
 	javassist.util.proxy,\
@@ -67,7 +73,8 @@ Private-Package:  \
 	io.skysail.server.app.todos.todos.status,\
 	io.skysail.server.app.todos.statuses,\
 	io.skysail.server.app.todos.ranking,\
-	io.skysail.server.app.todos.relations
+	io.skysail.server.app.todos.relations,\
+	io.skysail.server.app.todos.charts
 Bundle-Description: a todo application for skysail (used as demo as well)
 Export-Package:  \
 	io.skysail.server.app.todos,\

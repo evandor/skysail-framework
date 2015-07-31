@@ -1,35 +1,20 @@
 package de.twenty11.skysail.server.core;
 
-import io.skysail.api.forms.IgnoreSelectionProvider;
-import io.skysail.api.forms.InputType;
-import io.skysail.api.forms.Reference;
-import io.skysail.api.forms.SelectionProvider;
-import io.skysail.api.forms.Submit;
+import io.skysail.api.forms.*;
 import io.skysail.api.links.Link;
-import io.skysail.api.responses.ConstraintViolationDetails;
-import io.skysail.api.responses.ConstraintViolationsResponse;
-import io.skysail.api.responses.ListServerResponse;
-import io.skysail.api.responses.SkysailResponse;
+import io.skysail.api.responses.*;
 import io.skysail.server.forms.ListView;
 import io.skysail.server.restlet.resources.SkysailServerResource;
 import io.skysail.server.utils.RequestUtils;
 
+import java.lang.reflect.*;
 import java.lang.reflect.Field;
-import java.lang.reflect.Method;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 
-import lombok.Getter;
-import lombok.ToString;
+import lombok.*;
 import lombok.extern.slf4j.Slf4j;
 
 import org.restlet.Request;
@@ -43,12 +28,12 @@ import de.twenty11.skysail.server.um.domain.SkysailUser;
  * A FormField instance encapsulates (meta) information which can be used to
  * display a single field in a (web) form, or a column in a table
  * representation.
- * 
+ *
  * <p>
  * A FormField is constructed from a java.lang.reflect.Field, together with a
  * SkysailServerResource.
  * </p>
- * 
+ *
  * <p>
  * This class will not try to determine the actual value of the field, this is
  * left to further processing.
@@ -82,6 +67,10 @@ public class FormField {
     @Getter
     private String violationMessage;
 
+    private Prefix prefixAnnotation;
+
+    private Postfix postfixAnnotation;
+
     public FormField(Field field, SkysailServerResource<?> resource) {
         name = field.getName();
         type = field.getType();
@@ -105,6 +94,8 @@ public class FormField {
         submitAnnotation = field.getAnnotation(Submit.class);
         notNullAnnotation = field.getAnnotation(NotNull.class);
         sizeAnnotation = field.getAnnotation(Size.class);
+        prefixAnnotation = field.getAnnotation(Prefix.class);
+        postfixAnnotation = field.getAnnotation(Postfix.class);
     }
 
     public String getInputType() {
@@ -302,13 +293,13 @@ public class FormField {
         string = string.replace("\r", "&#13;").replace("\n", "&#10;");
 
         if (response instanceof ListServerResponse) {
-            string = handleListView(string, dataRow);
+            string = handleListView(string, dataRow, columnName);
         }
 
         return string;
     }
 
-    private String handleListView(String string, Map<String, Object> dataRow) {
+    private String handleListView(String string, Map<String, Object> dataRow, String columnName) {
         if (URL.class.equals(getType())) {
             string = "<a href='" + string + "' target=\"_blank\">" + truncate(string, true) + "</a>";
         } else if (getListViewAnnotation() != null && !getListViewAnnotation().link().equals(ListView.DEFAULT.class)) {
@@ -328,12 +319,32 @@ public class FormField {
                     }
                 }
             }
-
+        } else if (getListViewAnnotation() != null && !getListViewAnnotation().colorize().equals("")) {
+            String colorize = getListViewAnnotation().colorize();
+            if (this.getType().isEnum()) {
+                @SuppressWarnings("unchecked")
+                Enum valueOf = Enum.valueOf((Class)this.getType(), string);
+                //System.out.println(valueOf);
+                try {
+                    Method getColorMethod = valueOf.getDeclaringClass().getMethod("get" + colorize.substring(0, 1).toUpperCase() + colorize.substring(1));
+                    String theColor = (String)getColorMethod.invoke(valueOf);
+                    string = "<span style='border: 1px solid gray; background-color:"+theColor+"' title='"+columnName+": "+ string +"'>&nbsp;&nbsp;</span>";
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
         } else {
             string = truncate(string, false);
         }
-
         return string;
+    }
+
+    private String getPostfix(Postfix postfix,  Map<String, Object> dataRow) {
+        return handleListView("", dataRow, postfix.methodName());
+    }
+
+    private String getPrefix(Prefix prefix, Map<String, Object> dataRow) {
+        return handleListView("", dataRow, prefix.methodName());
     }
 
     private String truncate(String string, boolean withoutHtml) {
@@ -352,7 +363,7 @@ public class FormField {
         }
         return string;
     }
-    
+
     private boolean showMobilePage(Request request) {
         if (RequestUtils.isMobile(request)) {
             return true;

@@ -2,12 +2,13 @@ package io.skysail.server.app.todos.todos.resources;
 
 import io.skysail.api.links.Link;
 import io.skysail.server.app.todos.TodoApplication;
-import io.skysail.server.app.todos.lists.ListsResource;
+import io.skysail.server.app.todos.lists.*;
 import io.skysail.server.app.todos.todos.*;
 import io.skysail.server.app.todos.todos.status.Status;
 import io.skysail.server.queryfilter.Filter;
 import io.skysail.server.queryfilter.pagination.Pagination;
 import io.skysail.server.restlet.resources.ListServerResource;
+import io.skysail.server.utils.LinkUtils;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -30,8 +31,14 @@ public class Top10TodosResource extends ListServerResource<TodoSummary> {
 
     @Override
     protected void doInit() throws ResourceException {
+        super.doInit();
         app = (TodoApplication) getApplication();
-        getResourceContext().addAjaxNavigation(getResourceContext().getAjaxBuilder("Lists:", ListsResource.class, TodosResource.class).identifier("lid").build());
+        getResourceContext().addAjaxNavigation(
+                getResourceContext().getAjaxBuilder("lists-nav", "Lists:", ListsResource.class, TodosResource.class)
+                .createLabel("new list")
+                .createTarget(LinkUtils.fromResource(app, PostListResource.class).getUri())
+                .nameProperty("name")
+                .identifier("lid").build());
 //        getResourceContext().addAjaxNavigation("Lists:", ListsResource.class, TodosResource.class, "lid");
         // Map<String,String> substitutions = new HashMap<>();
         // substitutions.put("/Lists/" + listId, list.getName());
@@ -51,7 +58,7 @@ public class Top10TodosResource extends ListServerResource<TodoSummary> {
             return new TodoSummary(todo);
         }).collect(Collectors.toList());
     }
-    
+
     @Override
     public List<Link> getLinks() {
         return super.getLinks(ListsResource.class, PostTodoWoListResource.class);

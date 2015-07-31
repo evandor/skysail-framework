@@ -20,8 +20,10 @@ import com.orientechnologies.orient.core.id.ORecordId;
 import com.orientechnologies.orient.core.metadata.schema.*;
 import com.orientechnologies.orient.core.metadata.schema.OClass.INDEX_TYPE;
 import com.orientechnologies.orient.core.record.impl.ODocument;
-import com.orientechnologies.orient.core.sql.OCommandSQL;
+import com.orientechnologies.orient.core.sql.*;
+import com.orientechnologies.orient.core.sql.functions.OSQLFunction;
 import com.orientechnologies.orient.core.sql.query.OSQLSynchQuery;
+import com.orientechnologies.orient.graph.sql.functions.OGraphFunctionFactory;
 import com.orientechnologies.orient.object.db.*;
 import com.orientechnologies.orient.object.metadata.schema.OSchemaProxyObject;
 import com.tinkerpop.blueprints.Vertex;
@@ -42,9 +44,21 @@ public class OrientGraphDbService extends AbstractOrientDbService implements DbS
     public void activate() {
         log.debug("activating {}", this.getClass().getName());
         graphDbFactory = new OrientGraphFactory(getDbUrl(), getDbUsername(), getDbPassword()).setupPool(1, 10);
-        // make sure to create a graphDb object first
-        // http://comments.gmane.org/gmane.comp.db.orientdb.user/8588
-        // OrientGraph tx = graphDbFactory.getTx();
+
+        OGraphFunctionFactory graphFunctions = new OGraphFunctionFactory();
+        Set<String> names = graphFunctions.getFunctionNames();
+
+        for (String name : names) {
+            OSQLEngine.getInstance().registerFunction(name, graphFunctions.createFunction(name));
+            OSQLFunction function = OSQLEngine.getInstance().getFunction(name);
+            if (function != null) {
+                log.debug("ODB graph function [{}] is registered: [{}]", name, function.getSyntax());
+            }
+            else {
+                log.warn("ODB graph function [{}] NOT registered!!!", name);
+            }
+        }
+
     }
 
     @Deactivate

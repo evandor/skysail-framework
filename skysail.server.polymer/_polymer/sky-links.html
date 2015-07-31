@@ -7,17 +7,31 @@
 <dom-module id="sky-links">
 
   <template>
-    ***
-  </template>
 
+    <template is="dom-repeat" items="{{links}}">
+      <a href="{{item.link}}" class="btn btn-default btn-xs" role="button" tabindex="1">
+        <template is="dom-if" if="{{item.title}}">
+          <template is="dom-if" if="{{item.image}}"><span class$="{{glyph(item.image)}}" aria-hidden="true"></span></template>
+          <template is="dom-if" if="{{item.title}}"><span>{{item.title}}</span></template>
+        </template>
+        <template is="dom-if" if="{{!item.title}}">
+          <span>{{item.link}}</span>
+        </template>
+      </a>
+    </template>
+
+  </template>
   <script>
     Polymer({
       is: 'sky-links',
       properties: {
     	  links: {
     		  type: Object,
-    		  value: [{"link": "a"},{"link": "a"}]
+    		  value: [{"link": "a"}]
     	  }
+      },
+      glyph: function (glyph) {
+    	  return "glyphicon glyphicon-" + glyph;
       }
     });
   </script>

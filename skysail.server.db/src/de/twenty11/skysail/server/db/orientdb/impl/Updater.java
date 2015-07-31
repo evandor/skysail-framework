@@ -23,7 +23,7 @@ public class Updater {
 
     /**
      * Template Method to make sure that the orient db is called correctly.
-     * 
+     *
      * @param db
      * @param entity
      * @return
@@ -32,6 +32,9 @@ public class Updater {
         try {
             Object result = execute(entity);
             db.commit();
+            if (result == null) {
+                return null;
+            }
             return db.detach(result);
         } catch (Exception e) {
             db.rollback();

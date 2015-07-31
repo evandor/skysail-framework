@@ -16,6 +16,10 @@ public class WebComponentCall {
     private String requestUrl;
     private boolean disabled;
     private String glyphicon;
+    private String nameProperty;
+
+    private String createLabel;
+    private String createTarget;
 
     public String getHtml() {
         StringBuilder sb = new StringBuilder("<").append(type).append(" ");
@@ -23,6 +27,9 @@ public class WebComponentCall {
         append(sb, "url", url);
         append(sb, "link-to", linkTo);
         appendOptional(sb, "identifier", identifier);
+        appendOptional(sb, "name-property", nameProperty);
+        appendOptional(sb, "create-label", createLabel);
+        appendOptional(sb, "create-target", createTarget);
         appendOptional(sb, "glyphicon", glyphicon);
         appendBoolean(sb, "disabled", disabled);
         append(sb, "request-url", requestUrl);

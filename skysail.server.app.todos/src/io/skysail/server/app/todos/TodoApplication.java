@@ -1,6 +1,7 @@
 package io.skysail.server.app.todos;
 
 import io.skysail.server.app.SkysailApplication;
+import io.skysail.server.app.todos.charts.ListChartResource;
 import io.skysail.server.app.todos.lists.*;
 import io.skysail.server.app.todos.repo.TodosRepository;
 import io.skysail.server.app.todos.statuses.*;
@@ -45,7 +46,7 @@ public class TodoApplication extends SkysailApplication implements ApplicationPr
     protected void attach() {
         super.attach();
         router.attach(new RouteBuilder("", Top10TodosResource.class));
-        
+
         router.attach(new RouteBuilder("/Statuses", StatusesResource.class));
         router.attach(new RouteBuilder("/Statuses/{statusname}", NextStatusesResource.class));
 
@@ -54,13 +55,15 @@ public class TodoApplication extends SkysailApplication implements ApplicationPr
         router.attach(new RouteBuilder("/Lists/{"+LIST_ID+"}", ListResource.class));
         router.attach(new RouteBuilder("/Lists/{"+LIST_ID+"}/", PutListResource.class));
 
+        router.attach(new RouteBuilder("/Lists/{"+LIST_ID+"}/_stats", ListChartResource.class));
+
         router.attach(new RouteBuilder("/Lists/list:null/Todos/", PostTodoWoListResource.class));
-        
+
         router.attach(new RouteBuilder("/Lists/{"+LIST_ID+"}/Todos/", PostTodoResource.class));
         router.attach(new RouteBuilder("/Lists/{"+LIST_ID+"}/Todos", TodosResource.class));
         router.attach(new RouteBuilder("/Lists/{"+LIST_ID+"}/Todos/{"+TODO_ID+"}", TodoResource.class));
         router.attach(new RouteBuilder("/Lists/{"+LIST_ID+"}/Todos/{"+TODO_ID+"}/", PutTodoResource.class));
-        
+
         router.attach(new RouteBuilder("/Lists/{"+LIST_ID+"}/ArchivedTodos", ArchivedTodosResource.class));
 
     }

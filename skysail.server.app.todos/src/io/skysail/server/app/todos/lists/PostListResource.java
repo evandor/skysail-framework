@@ -18,12 +18,13 @@ public class PostListResource extends PostEntityServerResource<TodoList> {
     public PostListResource() {
         addToContext(ResourceContextId.LINK_TITLE, "create new List");
     }
-    
+
     @Override
     protected void doInit() throws ResourceException {
+        super.doInit();
         getResourceContext().addDisabledAjaxNavigation("Todo-Lists", ListsResource.class);
     }
-    
+
     @Override
     public TodoList createEntityTemplate() {
         return new TodoList();
@@ -39,7 +40,7 @@ public class PostListResource extends PostEntityServerResource<TodoList> {
         entity.setId(id);
         return new SkysailResponse<>();
     }
-    
+
     @Override
     public String redirectTo() {
         return super.redirectTo(ListsResource.class);

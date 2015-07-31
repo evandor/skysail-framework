@@ -150,11 +150,17 @@ public class ResourceModel<R extends SkysailServerResource<T>, T> {
 
     private void apply(Map<String, Object> newRow, Map<String, Object> dataRow, String columnName) {
         FormField formField = fields.get(columnName);
+        newRow.put(columnName, calc(formField, dataRow, columnName));
+    }
+
+    private Object calc(FormField formField, Map<String, Object> dataRow, String columnName) {
         if (formField != null) {
-            newRow.put(columnName, formField.process(response, dataRow, columnName));
-        } else {
-            newRow.put(columnName, dataRow.get(columnName));
+            Object processed = formField.process(response, dataRow, columnName);
+            processed = checkPrefix(formField, dataRow, processed);
+            processed = checkPostfix(formField, dataRow, processed);
+            return processed;
         }
+        return dataRow.get(columnName);
     }
 
     public List<Breadcrumb> getBreadcrumbs() {
@@ -172,6 +178,10 @@ public class ResourceModel<R extends SkysailServerResource<T>, T> {
 
     public List<Link> getLinks() throws Exception {
         return resource.getAuthorizedLinks();
+    }
+
+    public List<Link> getResourceLinks() throws Exception {
+        return resource.getAuthorizedLinks().stream().filter(l -> l.isShowAsButtonInHtml()).collect(Collectors.toList());
     }
 
     public String getAppNavTitle() {
@@ -433,5 +443,25 @@ public class ResourceModel<R extends SkysailServerResource<T>, T> {
             return ((SimpleDateFormat)dateFormat).toPattern().replace("d", "D").replace("y", "Y");
         }
         return "";
+    }
+
+    private Object checkPostfix(FormField formField, Map<String, Object>  dataRow, Object  processed) {
+        if (formField.getPostfixAnnotation() != null && !formField.getPostfixAnnotation().methodName().equals("getPostfix")) {
+            Object postfix = calc(fields.get(formField.getPostfixAnnotation().methodName()), dataRow, formField.getPostfixAnnotation().methodName());
+            if (postfix != null) {
+                return processed  + "&nbsp;" + postfix;
+            }
+        }
+        return processed;
+    }
+
+    private Object checkPrefix(FormField formField, Map<String, Object>  dataRow, Object  processed) {
+        if (formField.getPrefixAnnotation() != null && !formField.getPrefixAnnotation().methodName().equals("getPrefix")) {
+            Object prefix = calc(fields.get(formField.getPrefixAnnotation().methodName()), dataRow, formField.getPrefixAnnotation().methodName());
+            if (prefix != null) {
+                return prefix + "&nbsp;" + processed;
+            }
+        }
+        return processed;
     }
 }

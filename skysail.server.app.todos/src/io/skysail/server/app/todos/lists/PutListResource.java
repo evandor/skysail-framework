@@ -22,6 +22,7 @@ public class PutListResource extends PutEntityServerResource<TodoList> {
 
     @Override
     protected void doInit() throws ResourceException {
+        super.doInit();
         listId = getAttribute(TodoApplication.LIST_ID);
         app = (TodoApplication)getApplication();
     }

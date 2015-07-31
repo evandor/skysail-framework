@@ -2,10 +2,12 @@ package io.skysail.server.restlet.resources;
 
 import io.skysail.api.domain.Identifiable;
 import io.skysail.api.links.*;
+import io.skysail.api.responses.SkysailResponse;
 import io.skysail.api.utils.StringParserUtils;
 import io.skysail.server.app.SkysailApplication;
 import io.skysail.server.restlet.RequestHandler;
 import io.skysail.server.restlet.filter.AbstractResourceFilter;
+import io.skysail.server.services.PerformanceTimer;
 import io.skysail.server.utils.*;
 
 import java.lang.reflect.*;
@@ -23,6 +25,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.SecurityUtils;
 import org.restlet.Application;
 import org.restlet.data.*;
+import org.restlet.representation.*;
 import org.restlet.resource.*;
 import org.restlet.security.Role;
 
@@ -113,7 +116,13 @@ public abstract class SkysailServerResource<T> extends ServerResource {
         ConvertUtils.deregister(Date.class);
         ConvertUtils.register(dateConverter, Date.class);
         beanUtilsBean.getConvertUtils().register(dateConverter, Date.class);
+    }
 
+    /**
+     * when overriding this method, don't forget to call <pre>super.doInit();</pre>.
+     */
+    @Override
+    protected void doInit() throws ResourceException {
         resourceContext = new ResourceContext(getApplication(), this);
     }
 
@@ -145,6 +154,20 @@ public abstract class SkysailServerResource<T> extends ServerResource {
             return "List of " + entityType.getName();
         }
         return entityType.getName();
+    }
+
+    /**
+     * todo
+     */
+    @Options("json")
+    public final SkysailResponse<ResourceContextResource> doOptions(Representation entity, Variant variant) {
+        Set<PerformanceTimer> perfTimer = getApplication().startPerformanceMonitoring(
+                this.getClass().getSimpleName() + ":doOptions");
+        log.info("Request entry point: {}  @Options('json') with variant {}", this.getClass().getSimpleName(),
+                variant);
+        ResourceContextResource context = new ResourceContextResource(this);
+        getApplication().stopPerformanceMonitoring(perfTimer);
+        return new SkysailResponse<ResourceContextResource>(context);
     }
 
     /*

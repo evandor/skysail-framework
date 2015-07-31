@@ -71,14 +71,14 @@ if ((startParameter.currentDir != rootDir) || projectNames.empty) {
 
 /* If bnd_build used but declared empty, add all non-private folders of rootDir */
 if (projectNames.remove('')) {
-  /*rootDir.eachDir {
+  rootDir.eachDir {
     def projectName = it.name
     if (!projectName.startsWith('.')) {
       println "projectNames += \"" + projectName + "\""
       projectNames += projectName
     }
-  }*/
-  projectNames += "skysail.api"
+  }
+/*  projectNames += "skysail.api"
   projectNames += "skysail.api.documentation"
   projectNames += "skysail.api.favorites"
   projectNames += "skysail.api.features"
@@ -142,7 +142,7 @@ if (projectNames.remove('')) {
   projectNames += "skysail.server.translations"
   projectNames += "skysail.server.um"
   projectNames += "skysail.server.um.simple"
-  projectNames += "skysail.server.um.simple.it"
+  projectNames += "skysail.server.um.simple.it"*/
 }
 
 /* Add each project and its dependencies to the graph */

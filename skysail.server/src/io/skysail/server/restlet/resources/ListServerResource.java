@@ -2,27 +2,20 @@ package io.skysail.server.restlet.resources;
 
 import io.skysail.api.documentation.API;
 import io.skysail.api.links.LinkRelation;
-import io.skysail.api.responses.ListServerResponse;
-import io.skysail.api.responses.SkysailResponse;
+import io.skysail.api.responses.*;
 import io.skysail.server.restlet.RequestHandler;
 import io.skysail.server.services.PerformanceTimer;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 import lombok.extern.slf4j.Slf4j;
 
 import org.restlet.Restlet;
 import org.restlet.data.Method;
-import org.restlet.representation.Representation;
 import org.restlet.representation.Variant;
-import org.restlet.resource.Get;
-import org.restlet.resource.Options;
-import org.restlet.resource.ServerResource;
+import org.restlet.resource.*;
 
-import de.twenty11.skysail.server.core.restlet.ResourceContextId;
-import de.twenty11.skysail.server.core.restlet.ResponseWrapper;
+import de.twenty11.skysail.server.core.restlet.*;
 
 /**
  * A ListServerResource implementation takes care of a List of Entities.
@@ -88,6 +81,11 @@ public abstract class ListServerResource<T> extends SkysailServerResource<List<T
         addToContext(ResourceContextId.LINK_TITLE, "list");
     }
 
+    @Override
+    protected void doInit() throws ResourceException {
+        super.doInit();
+    }
+
     /**
      * Constructor which associates this ListServerResource with a corresponding
      * EntityServerResource.
@@ -130,20 +128,6 @@ public abstract class ListServerResource<T> extends SkysailServerResource<List<T
         // responseHeaders.add("Access-Control-Allow-Credentials", "false");
         // responseHeaders.add("Access-Control-Max-Age", "60");
         // }
-    }
-
-    /**
-     * todo
-     */
-    @Options("json")
-    public final SkysailResponse<ResourceContextResource> doOptions(Representation entity, Variant variant) {
-        Set<PerformanceTimer> perfTimer = getApplication().startPerformanceMonitoring(
-                this.getClass().getSimpleName() + ":doOptions");
-        log.info("Request entry point: {}  @Options('json') with variant {}", this.getClass().getSimpleName(),
-                variant);
-        ResourceContextResource context = new ResourceContextResource(this);
-        getApplication().stopPerformanceMonitoring(perfTimer);
-        return new SkysailResponse<ResourceContextResource>(context);
     }
 
     @Override

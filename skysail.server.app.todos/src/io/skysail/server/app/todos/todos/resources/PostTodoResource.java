@@ -25,6 +25,7 @@ public class PostTodoResource extends PostEntityServerResource<Todo> {
 
     @Override
     protected void doInit() {
+        super.doInit();
         app = (TodoApplication) getApplication();
         getResourceContext().addDisabledAjaxNavigation("Todo-Lists", ListsResource.class);
     }

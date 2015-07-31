@@ -1,30 +1,29 @@
-package io.skysail.server.app.todos.todos.resources;
+package io.skysail.server.app.todos.charts;
 
-import io.skysail.api.links.Link;
 import io.skysail.server.app.todos.*;
 import io.skysail.server.app.todos.lists.ListsResource;
-import io.skysail.server.app.todos.todos.Todo;
+import io.skysail.server.app.todos.todos.resources.TodosResource;
 import io.skysail.server.app.todos.todos.status.Status;
 import io.skysail.server.queryfilter.Filter;
 import io.skysail.server.queryfilter.pagination.Pagination;
 import io.skysail.server.restlet.resources.ListServerResource;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 import org.apache.shiro.SecurityUtils;
 import org.restlet.resource.ResourceException;
 
 import de.twenty11.skysail.server.core.restlet.ResourceContextId;
 
-public class TodosResource extends ListServerResource<Todo> {
+public class ListChartResource extends ListServerResource<TodoChart> {
 
     public static final String DEFAULT_FILTER_EXPRESSION = "(!(status=" + Status.ARCHIVED + "))";
 
     protected String listId;
     protected TodoApplication app;
 
-    public TodosResource() {
-        super(TodoResource.class);
+    public ListChartResource() {
         addToContext(ResourceContextId.LINK_TITLE, "List of Todos");
         addToContext(ResourceContextId.LINK_GLYPH, "th-list");
     }
@@ -44,29 +43,19 @@ public class TodosResource extends ListServerResource<Todo> {
     }
 
     @Override
-    public List<Todo> getEntity() {
+    public List<TodoChart> getEntity() {
         Filter filter = new Filter(getRequest(), DEFAULT_FILTER_EXPRESSION);
         filter.add("owner", SecurityUtils.getSubject().getPrincipal().toString());
         filter.addEdgeOut("parent", "#" + listId);
 
         Pagination pagination = new Pagination(getRequest(), getResponse(), app.getRepository().getTodosCount(listId,
                 filter));
-        return app.getRepository().findAllTodos(filter, pagination);
-    }
-
-    @Override
-    public List<Link> getLinks() {
-        return super.getLinks(PostTodoResource.class, ArchivedTodosResource.class);
+        return app.getRepository().findAllTodos(filter, pagination).stream().map(t -> new TodoChart(t)).collect(Collectors.toList());
     }
 
 //    @Override
-//    public Consumer<? super Link> getPathSubstitutions() {
-//        return l -> {
-//            if (listId == null) {
-//                listId = (String) getContext().getAttributes().get(TodoApplication.LIST_ID);
-//            }
-//            l.substitute(TodoApplication.LIST_ID, listId);
-//        };
+//    public List<Link> getLinks() {
+//        return super.getLinks(PostTodoResource.class, ArchivedTodosResource.class);
 //    }
 
 }

@@ -5,6 +5,7 @@ package io.skysail.product.todos;
  */
 public class Dependencies {
 
+    private io.skysail.api.forms.InputType inputType;
     private io.skysail.api.domain.Identifiable identifiable;
     private io.skysail.api.um.AuthenticationService authService;
     //private io.skysail.api.validation.DefaultValidationImpl validationImpl;

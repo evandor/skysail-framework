@@ -1,7 +1,7 @@
-Bundle-Version: 0.1.1.${tstamp}
+Bundle-Version: 0.1.2.${tstamp}
 Bundle-Name: SKYSAIL :: api :: peers
 Bundle-Description: an incubator bundle for the skysail peers API  (which will be moved \
-	to skysail.api once stable) 
+	to skysail.api once stable)
 -buildpath:  \
 	skysail.api;version=${skysail.api.version},\
 	biz.aQute.bnd.annotation;version=2.4,\

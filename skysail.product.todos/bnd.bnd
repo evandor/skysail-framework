@@ -3,7 +3,7 @@ Bundle-Name: SKYSAIL :: product :: todos
 Private-Package:  \
 	io.skysail.product.todos
 -buildpath:  \
-	skysail.api;version=${skysail.api.version},\
+	skysail.api;version=7.0.0,\
 	skysail.api.documentation;version=latest,\
 	skysail.api.um;version=latest,\
 	skysail.api.validation;version=latest,\

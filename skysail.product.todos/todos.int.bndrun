@@ -1,6 +1,6 @@
 -runfw: org.apache.felix.framework;version='[4,5)'
 -runee: JavaSE-1.8
--runsystemcapabilities: ${native_capability} 
+-runsystemcapabilities: ${native_capability}
 -runrepos:  \
 	Skysail Framework Hub,\
 	Bndtools Hub,\
@@ -36,7 +36,7 @@
 
 # not used here, resolution takes too long...
 #-runrequires:  \
-	
+
 
 
 -runbundles:  \
@@ -101,7 +101,7 @@
 	org.xerial.snappy.snappy-java;version='[1.1.1,1.1.2)',\
 	osgi.cmpn;version='[5.0.0,5.0.1)',\
 	osgi.enterprise;version='[4.2.0,4.2.1)',\
-	skysail.api;version=${skysail.api.version},\
+	skysail.api;version=7.0.0,\
 	skysail.api.um;version=${skysail.api.um.version},\
 	skysail.api.peers;version=latest,\
 	skysail.api.text;version=latest,\

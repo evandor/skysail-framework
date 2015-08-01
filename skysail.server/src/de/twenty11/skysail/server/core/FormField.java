@@ -307,7 +307,8 @@ public class FormField {
                 }).findFirst();
                 if (findFirst.isPresent()) {
                     if (showMobilePage(resource.getRequest())) {
-                        //props.put("_href", findFirst.get().getUri());
+                        //dataRow.put("_href", findFirst.get().getUri());
+                        string = "<a href='" + findFirst.get().getUri() + "'>" + string + "</a>";
                     } else {
                         string = "<a href='" + findFirst.get().getUri() + "'>" + string + "</a>";
                     }

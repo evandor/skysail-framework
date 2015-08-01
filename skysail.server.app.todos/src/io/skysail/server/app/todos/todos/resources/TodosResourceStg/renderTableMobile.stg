@@ -1,13 +1,13 @@
-renderTableMobile(source, fields, converter, messages, model) ::= <<
+renderTableMobile(fields, converter, messages, model) ::= <<
 
   <a class="ui-btn" href="./Todos/">New Todo</a>
-  
+
   $model.pagination$
 
   <ul data-role="listview" data-inset="true" data-filter="false">
     $model.data:{ row | $renderRow(model.formfields,row,i)$}$
   </ul>
-  
+
   <a class="ui-btn" href="./">Alter List</a>
 >>
 
@@ -17,6 +17,6 @@ renderRow(fields, row,i) ::= <<
 
 buttonForLink(row, field) ::= <<
     $if (field.link)$
-   <li><a href='$row.("_href")$'>$row.("title")$</a></li>
+   <li>$row.("title")$</li>
     $endif$
 >>

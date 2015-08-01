@@ -28,7 +28,7 @@ public class Entity implements Identifiable {
     @Field
     private String name;
     
-    @Field(type = InputType.CHECKBOX)
+    @Field(inputType = InputType.CHECKBOX)
     private boolean rootEntity;
 
     private List<EntityField> fields;

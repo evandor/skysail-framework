@@ -15,7 +15,7 @@ public class Credentials {
     private String username;
 
     @Size(min = 3, message = "Password must have at least three characters")
-    @Field(type = InputType.PASSWORD)
+    @Field(inputType = InputType.PASSWORD)
     private String password;
 
     public Credentials() {

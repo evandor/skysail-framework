@@ -6,8 +6,9 @@ import io.skysail.api.responses.SkysailResponse;
 import io.skysail.server.app.todos.*;
 import io.skysail.server.app.todos.repo.TodosRepository;
 
-import org.junit.Test;
+import org.junit.*;
 
+@Ignore
 public class PutListResourceTest extends TodoListResourceTest {
 
 //    private TodoList aList;

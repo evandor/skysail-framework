@@ -14,7 +14,7 @@ public class Message {
 	@NotNull
 	private String to;
 	
-	@Field(type=InputType.TEXTAREA)
+	@Field(inputType=InputType.TEXTAREA)
 	private String body;
 
 	public String getSubject() {

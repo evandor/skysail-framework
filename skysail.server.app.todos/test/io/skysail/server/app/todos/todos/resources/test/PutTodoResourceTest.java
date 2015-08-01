@@ -10,6 +10,7 @@ import org.mockito.Mockito;
 import org.restlet.data.*;
 import org.restlet.engine.resource.VariantInfo;
 
+@Ignore
 public class PutTodoResourceTest extends AbstractTodoResourceTest {
 
     private TodoList aList;

@@ -1,6 +1,8 @@
 new in
 
-6.3.0
+7.0.0
 -----
 
  * Added method isApplicable in Link.java
+ * Removed @Prefix and @Postfix
+ * renamed @Field(type) to @Field(inputType) (due to incompatibility with scala)

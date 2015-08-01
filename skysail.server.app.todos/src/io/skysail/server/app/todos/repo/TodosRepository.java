@@ -22,6 +22,7 @@ public class TodosRepository implements DbRepository {
         //dbService.createWithSuperClass("E", vertices);
         dbService.register(Todo.class, TodoList.class);
         dbService.createUniqueIndex(TodoList.class, "name", "owner");
+       // dbService.createUniqueIndex(Todo.class, "rid");
     }
 
     @Reference
@@ -95,8 +96,8 @@ public class TodosRepository implements DbRepository {
         return list;
     }
 
-    public void update(String id, Object entity) {
-        dbService.update(id, entity);
+    public void update(String id, Object entity, String... edges) {
+        dbService.update(id, entity, edges);
     }
 
     public Object add(Todo entity) {

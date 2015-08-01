@@ -33,11 +33,11 @@ public class Page implements Serializable, Identifiable {
     //@Postfix(methodName="boldEnd")
     @ListView(link = PutPageResource.class)
     private String name;
-    
-    @Field(type = InputType.READONLY)
+
+    @Field(inputType = InputType.READONLY)
     private Date created;
 
-    @Field(type = InputType.READONLY)
+    @Field(inputType = InputType.READONLY)
     private Date modified;
 
     @Reference(cls = Version.class)
@@ -61,7 +61,7 @@ public class Page implements Serializable, Identifiable {
     //@JsonIgnore
    // private Page parent;
 
-    @Field(type = InputType.TEXTAREA)
+    @Field(inputType = InputType.TEXTAREA)
     @ListView(hide=true)
     private String content;
 
@@ -69,18 +69,18 @@ public class Page implements Serializable, Identifiable {
         versions.add(entity);
     }
 
-    @Field(type = InputType.READONLY)
+    @Field(inputType = InputType.READONLY)
     @ListView(hide = true)
     private String owner;
 
     public Page() {
         this.created = new Date();
     }
-    
+
     public Page(String name) {
         this.name = name;
         this.created = new Date();
     }
-    
+
 
 }

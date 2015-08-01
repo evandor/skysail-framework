@@ -31,4 +31,6 @@ public @interface ListView {
     boolean hide() default false;
 
     String colorize() default "";
+
+    String prefix() default "";
 }

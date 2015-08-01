@@ -23,7 +23,10 @@ public class PutTodoResource extends PutEntityServerResource<Todo> {
 
     @Override
     public Todo getEntity() {
-        return app.getRepository().getById(Todo.class, getAttribute(TodoApplication.TODO_ID));
+         Todo todo = app.getRepository().getById(Todo.class, getAttribute(TodoApplication.TODO_ID));
+         todo.setViews(todo.getViews() != null ? 1 + todo.getViews() : 1);
+         app.getRepository().update(todo.getId(), todo, "parent");
+         return todo;
     }
 
     @Override
@@ -32,12 +35,12 @@ public class PutTodoResource extends PutEntityServerResource<Todo> {
         copyProperties(original,entity);
         original.setModified(new Date());
         original.setUrgency(Ranker.calcUrgency(original));
-        original.setParent(null);
+        //original.setParent(null);
         Integer views = original.getViews();
         if (views == null) {
             original.setViews(1);
         }
-        app.getRepository().update(getAttribute(TodoApplication.LIST_ID), original);
+        app.getRepository().update(getAttribute(TodoApplication.LIST_ID), original, "parent");
         return new SkysailResponse<>();
     }
 

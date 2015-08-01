@@ -25,7 +25,7 @@ public class SkysailUser {
     @Field
     private String username;
 
-    @Field(type = InputType.PASSWORD)
+    @Field(inputType = InputType.PASSWORD)
     private String password;
 
     private Set<SkysailRole> roles = new HashSet<SkysailRole>();

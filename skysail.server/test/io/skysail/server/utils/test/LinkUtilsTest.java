@@ -1,20 +1,15 @@
 package io.skysail.server.utils.test;
 
-import static org.hamcrest.CoreMatchers.equalTo;
-import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.Matchers.nullValue;
 import static org.junit.Assert.assertThat;
-import io.skysail.api.links.Link;
-import io.skysail.api.links.LinkRelation;
-import io.skysail.api.links.LinkRole;
+import io.skysail.api.links.*;
 import io.skysail.server.app.SkysailApplication;
 import io.skysail.server.utils.LinkUtils;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.*;
 import org.mockito.Mockito;
 
 import de.twenty11.skysail.server.core.restlet.RouteBuilder;
@@ -23,7 +18,7 @@ public class LinkUtilsTest {
 
     private SkysailApplication app;
     private List<RouteBuilder> routeBuilderList;
-    
+
     @Before
     public void setUp() throws Exception {
         app = Mockito.mock(SkysailApplication.class);
@@ -52,5 +47,5 @@ public class LinkUtilsTest {
         assertThat(link.getTitle(),is(equalTo("list")));
         assertThat(link.getImage(), is(nullValue()));
     }
-   
+
 }

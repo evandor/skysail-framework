@@ -31,11 +31,11 @@ public class Account implements Serializable, Identifiable {
     @Field
     private String user;
 
-    @Field(type = InputType.PASSWORD)
+    @Field(inputType = InputType.PASSWORD)
     @ListView(hide = true)
     private String pass;
     
-    @Field(type = InputType.READONLY)
+    @Field(inputType = InputType.READONLY)
     @ListView(hide=true)
     private String owner;
 

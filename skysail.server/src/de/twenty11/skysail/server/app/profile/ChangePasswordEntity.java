@@ -18,18 +18,18 @@ import lombok.Data;
 @PasswordsMatch
 public class ChangePasswordEntity {
 
-	@Field(type = InputType.READONLY)
+	@Field(inputType = InputType.READONLY)
 	private String account;
 
-    @Field(type = InputType.PASSWORD, htmlPolicy = HtmlPolicy.NO_HTML)
+    @Field(inputType = InputType.PASSWORD, htmlPolicy = HtmlPolicy.NO_HTML)
 	private String old;
 
 	@NotNull(message = "The Password must not be empty")
     @Size(min = 6, message = "Sorry, the password must have at least 6 Characters.")
-	@Field(type = InputType.PASSWORD, htmlPolicy = HtmlPolicy.NO_HTML)
+	@Field(inputType = InputType.PASSWORD, htmlPolicy = HtmlPolicy.NO_HTML)
 	private String password;
 
-	@Field(type = InputType.PASSWORD)
+	@Field(inputType = InputType.PASSWORD)
 	@Transient
 	private String pwdRepeated;
 

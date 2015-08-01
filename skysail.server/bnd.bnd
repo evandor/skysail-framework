@@ -102,8 +102,8 @@ Service-Component: *
 	com.google.guava;version=${guava.version},\
 	com.fasterxml.jackson.core.jackson-core;version=2.2,\
 	com.fasterxml.jackson.core.jackson-databind;version=2.2,\
-	com.orientechnologies.orientdb-object;version=2.0,\
-	com.orientechnologies.orientdb-core;version=2.0,\
+	com.orientechnologies.orientdb-object;version=${com.orientechnologies.orientdb.version},\
+	com.orientechnologies.orientdb-core;version=${com.orientechnologies.orientdb.version},\
 	org.apache.commons.beanutils;version=1.9,\
 	lombok;version=1.16,\
 	org.apache.commons.logging;version=1.1,\

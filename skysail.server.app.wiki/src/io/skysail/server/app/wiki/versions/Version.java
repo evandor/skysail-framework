@@ -20,17 +20,17 @@ public class Version implements Serializable, Identifiable {
     @Id
     private String id;
 
-    @Field(type = InputType.READONLY)
+    @Field(inputType = InputType.READONLY)
     private Date created;
 
-    @Field(type = InputType.READONLY)
+    @Field(inputType = InputType.READONLY)
     private Integer versionNumber;
 
-    @Field(type = InputType.TEXTAREA)
+    @Field(inputType = InputType.TEXTAREA)
     @ListView(hide=true)
     private String content;
 
-    @Field(type = InputType.READONLY)
+    @Field(inputType = InputType.READONLY)
     @ListView(hide = true)
     private String owner;
 

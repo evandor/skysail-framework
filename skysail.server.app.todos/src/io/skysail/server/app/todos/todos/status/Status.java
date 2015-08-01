@@ -8,7 +8,7 @@ import lombok.Getter;
 public enum Status {
 
     NEW("NEW","yellow", "PLANNED", "WIP"),
-    PLANNED("PLANNED","green", "WIP","ARCHIVED"),
+    PLANNED("PLANNED","green", "WIP", "ARCHIVED"),
     WIP("WIP","orange","ARCHIVED"),
     FINISHED("gray","ARCHIVED"),
     ARCHIVED("gray","ARCHIVED");

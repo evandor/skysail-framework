@@ -8,14 +8,15 @@ Include-Resource: lib=lib,resources=resources
 Bundle-ClassPath: .,lib/blueprints-core-2.6.0.jar
 -buildpath:  \
 	lib/blueprints-core-2.6.0.jar;version=file,\
+	skysail.api;version=${skysail.api.version},\
 	skysail.server;version=latest,\
 	biz.aQute.bnd.annotation;version=2.3,\
 	osgi.cmpn;version=5.0,\
-	com.orientechnologies.orientdb-core;version=2.0,\
-	com.orientechnologies.orientdb-object;version=2.0,\
-	com.orientechnologies.orientdb-client;version=2.0,\
-	com.orientechnologies.orientdb-graphdb;version=2.0,\
-	com.orientechnologies.orientdb-enterprise;version=2.0,\
+	com.orientechnologies.orientdb-core;version=${com.orientechnologies.orientdb.version},\
+	com.orientechnologies.orientdb-object;version=${com.orientechnologies.orientdb.version},\
+	com.orientechnologies.orientdb-client;version=${com.orientechnologies.orientdb.version},\
+	com.orientechnologies.orientdb-graphdb;version=${com.orientechnologies.orientdb.version},\
+	com.orientechnologies.orientdb-enterprise;version=${com.orientechnologies.orientdb.version},\
 	osgi.core;version=5.0,\
 	org.restlet;version=${restlet.version},\
 	com.springsource.org.junit;version=4.11,\
@@ -35,6 +36,6 @@ Import-Package:  \
 	!com.carrotsearch.hppc.*,\
 	*
 Export-Package:  \
-	com.tinkerpop.blueprints.*,\
+	com.tinkerpop.blueprints.*;version=2.6.0,\
 	de.twenty11.skysail.server.db.orientdb
 DynamicImport-Package: *

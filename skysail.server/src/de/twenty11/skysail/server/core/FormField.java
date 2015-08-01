@@ -67,10 +67,6 @@ public class FormField {
     @Getter
     private String violationMessage;
 
-    private Prefix prefixAnnotation;
-
-    private Postfix postfixAnnotation;
-
     public FormField(Field field, SkysailServerResource<?> resource) {
         name = field.getName();
         type = field.getType();
@@ -94,8 +90,6 @@ public class FormField {
         submitAnnotation = field.getAnnotation(Submit.class);
         notNullAnnotation = field.getAnnotation(NotNull.class);
         sizeAnnotation = field.getAnnotation(Size.class);
-        prefixAnnotation = field.getAnnotation(Prefix.class);
-        postfixAnnotation = field.getAnnotation(Postfix.class);
     }
 
     public String getInputType() {
@@ -180,21 +174,21 @@ public class FormField {
 
     public boolean isCheckbox() {
         if (formFieldAnnotation != null) {
-            return InputType.CHECKBOX.equals(formFieldAnnotation.type());
+            return InputType.CHECKBOX.equals(formFieldAnnotation.inputType());
         }
         return false;
     }
 
     public boolean isDate() {
         if (formFieldAnnotation != null) {
-            return InputType.DATE.equals(formFieldAnnotation.type());
+            return InputType.DATE.equals(formFieldAnnotation.inputType());
         }
         return false;
     }
 
     public boolean isRange() {
         if (formFieldAnnotation != null) {
-            return InputType.RANGE.equals(formFieldAnnotation.type());
+            return InputType.RANGE.equals(formFieldAnnotation.inputType());
         }
         return false;
     }
@@ -275,7 +269,7 @@ public class FormField {
 
     private InputType getFromFieldAnnotation(Field fieldAnnotation) {
         io.skysail.api.forms.Field annotation = fieldAnnotation.getAnnotation(io.skysail.api.forms.Field.class);
-        return annotation != null ? annotation.type() : null;
+        return annotation != null ? annotation.inputType() : null;
     }
 
     public Object process(SkysailResponse<?> response, Map<String, Object> dataRow, String columnName) {
@@ -339,13 +333,13 @@ public class FormField {
         return string;
     }
 
-    private String getPostfix(Postfix postfix,  Map<String, Object> dataRow) {
-        return handleListView("", dataRow, postfix.methodName());
-    }
-
-    private String getPrefix(Prefix prefix, Map<String, Object> dataRow) {
-        return handleListView("", dataRow, prefix.methodName());
-    }
+//    private String getPostfix(Postfix postfix,  Map<String, Object> dataRow) {
+//        return handleListView("", dataRow, postfix.methodName());
+//    }
+//
+//    private String getPrefix(Prefix prefix, Map<String, Object> dataRow) {
+//        return handleListView("", dataRow, prefix.methodName());
+//    }
 
     private String truncate(String string, boolean withoutHtml) {
         if (getListViewAnnotation() == null) {

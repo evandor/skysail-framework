@@ -36,19 +36,19 @@ public class TodoList implements Serializable, Identifiable {
     @ListView(link = TodosResource.class, truncate = 20)
     private String name;
 
-    @Field(type=InputType.READONLY)
+    @Field(inputType=InputType.READONLY)
     private Long todosCount;
 
-    @Field(type = InputType.TEXTAREA)
+    @Field(inputType = InputType.TEXTAREA)
     private String desc;
 
-    @Field(type = InputType.READONLY)
+    @Field(inputType = InputType.READONLY)
     private Date created;
 
-    @Field(type = InputType.READONLY)
+    @Field(inputType = InputType.READONLY)
     private Date modified;
 
-    @Field(type = InputType.READONLY)
+    @Field(inputType = InputType.READONLY)
     @ListView(hide = true)
     private String owner;
 

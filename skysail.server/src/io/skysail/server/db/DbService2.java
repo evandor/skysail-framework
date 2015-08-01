@@ -45,7 +45,7 @@ public interface DbService2 {
     <T> List<T> findWithGraph(String sql, Class<?> cls, Map<String, Object> params);
 
 
-    <T> Object update(Object id, T entity);
+    <T> Object update(Object id, T entity, String... edges);
 
     /**
      * creates a vertex class in the database if not existent yet for all

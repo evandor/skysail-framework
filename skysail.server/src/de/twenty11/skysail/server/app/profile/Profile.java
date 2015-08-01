@@ -8,7 +8,7 @@ import lombok.NonNull;
 @Data
 public class Profile {
 	
-	@Field(type = InputType.READONLY)
+	@Field(inputType = InputType.READONLY)
 	@NonNull
 	private String accountname;
 	

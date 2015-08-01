@@ -82,8 +82,8 @@ public class OrientGraphDbService extends AbstractOrientDbService implements DbS
     }
 
     @Override
-    public <T> Object update(Object id, T entity) {
-        return new Updater(getObjectDb()).update(entity);
+    public <T> Object update(Object id, T entity, String... edges) {
+        return new Updater(getDb(), edges).update(entity);
     }
 
     @Override

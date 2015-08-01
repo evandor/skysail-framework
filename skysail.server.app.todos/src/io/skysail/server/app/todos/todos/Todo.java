@@ -39,51 +39,51 @@ public class Todo implements Serializable, Identifiable {
     private String parent;
 
     @Field
-    @ListView(truncate = 30, link = PutTodoResource.class)
+    @ListView(truncate = 30, link = PutTodoResource.class, prefix = "status")
     @NotNull
     @Size(min = 2)
-    @Prefix(methodName = "status")
+    //@Prefix(methodName = "status")
     private String title;
 
-    @Field(type = InputType.TEXTAREA)
+    @Field(inputType = InputType.TEXTAREA)
     @ListView(truncate = 20)
     private String desc;
 
-    @Field(type = InputType.DATE)
+    @Field(inputType = InputType.DATE)
     @JsonFormat(shape=JsonFormat.Shape.STRING, pattern="dd.MM.yyyy")
     private Date due;
 
-    @Field(type = InputType.DATE)
+    @Field(inputType = InputType.DATE)
     @JsonFormat(shape=JsonFormat.Shape.STRING, pattern="dd.MM.yyyy")
     private Date startDate;
 
-    @Field(type = InputType.READONLY)
+    @Field(inputType = InputType.READONLY)
     private Integer elapseTime = 3;
 
-    @Field(type = InputType.READONLY)
+    @Field(inputType = InputType.READONLY)
     private Date created;
 
-    @Field(type = InputType.READONLY)
+    @Field(inputType = InputType.READONLY)
     private Date modified;
 
-    @Field(type = InputType.READONLY)
+    @Field(inputType = InputType.READONLY)
     private Integer rank;
 
-    @Field(type = InputType.RANGE)
+    @Field(inputType = InputType.RANGE)
     @Min(0)
     @Max(100)
     @ListView(hide=true)
     private Integer importance;
 
-    @Field(type = InputType.READONLY)
+    @Field(inputType = InputType.READONLY)
     @ListView(hide=true)
     private Integer urgency;
 
-    @Field(type = InputType.READONLY)
+    @Field(inputType = InputType.READONLY)
     @ListView(hide=true)
     private String owner;
 
-    @Field(type = InputType.READONLY)
+    @Field(inputType = InputType.READONLY)
     //@ListView(hide=true)
     private Integer views;
 

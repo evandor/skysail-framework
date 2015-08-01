@@ -24,7 +24,7 @@ public class Space implements Serializable, Identifiable {
     private static final long serialVersionUID = 5061219768727410582L;
 
     @Id
-    @Field(type = InputType.READONLY)
+    @Field(inputType = InputType.READONLY)
     private String id;
 
     @Field
@@ -33,10 +33,10 @@ public class Space implements Serializable, Identifiable {
     @ListView(link = PagesResource.class)
     private String name;
 
-    @Field(type = InputType.READONLY)
+    @Field(inputType = InputType.READONLY)
     @ListView(hide=true)
     private String owner;
-    
+
     @Reference(cls = Page.class)
     @PostView(visibility=Visibility.HIDE)
     @PutView(visibility=Visibility.HIDE)

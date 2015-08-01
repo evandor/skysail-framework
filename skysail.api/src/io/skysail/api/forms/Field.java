@@ -31,7 +31,7 @@ public @interface Field {
     /**
      * http://www.w3.org/TR/REC-html40/interact/forms.html#h-17.4
      */
-    InputType type() default InputType.TEXT;
+    InputType inputType() default InputType.TEXT;
 
     /**
      * field name.

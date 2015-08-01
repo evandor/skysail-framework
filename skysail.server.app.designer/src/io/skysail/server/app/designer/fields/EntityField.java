@@ -29,13 +29,13 @@ public class EntityField implements Identifiable {
     @Field(selectionProvider = InputTypeSelectionProvider.class)
     private InputType type;
     
-    @Field(type = InputType.CHECKBOX)
+    @Field(inputType = InputType.CHECKBOX)
     private Boolean notNull;
     
-    @Field(type = InputType.TEXT)
+    @Field(inputType = InputType.TEXT)
     private Integer sizeMin;
     
-    @Field(type = InputType.TEXT)
+    @Field(inputType = InputType.TEXT)
     private Integer sizeMax;
 
 }

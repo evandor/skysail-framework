@@ -23,40 +23,40 @@ public class Bookmark implements Identifiable {
     @Id
     private String id;
 
-    @Field(type = InputType.URL)//, listView = { ListViewEnum.TRUNCATE, ListViewEnum.LINK })
-    @ListView(truncate = 20, link = BookmarkResource.class)
-    @Prefix(methodName = "urlPrefix")
+    @Field(inputType = InputType.URL)
+    // , listView = { ListViewEnum.TRUNCATE, ListViewEnum.LINK })
+    @ListView(truncate = 20, link = BookmarkResource.class, prefix = "urlPrefix")
     private URL url;
 
     @Field
     @ListView(truncate = 20, link = BookmarkResource.class)
     private String name;
 
-    @Field(type = InputType.TEXTAREA)
+    @Field(inputType = InputType.TEXTAREA)
     @ListView(truncate = 10)
     private String desc;
-    
-    @Field(type = InputType.TAGS)
+
+    @Field(inputType = InputType.TAGS)
     private String tags;
 
-    @Field(type = InputType.READONLY)
+    @Field(inputType = InputType.READONLY)
     private Date created;
 
-    @Field(type = InputType.READONLY)
+    @Field(inputType = InputType.READONLY)
     private Date modified;
 
-    @Field(type = InputType.READONLY)
-    @ListView(hide=true)
+    @Field(inputType = InputType.READONLY)
+    @ListView(hide = true)
     private String owner;
 
-    @Field(type = InputType.READONLY)
-    @ListView(hide=true)
+    @Field(inputType = InputType.READONLY)
+    @ListView(hide = true)
     private String favicon;
-    
-    @Field(type = InputType.READONLY)
-    @ListView(hide=true)
+
+    @Field(inputType = InputType.READONLY)
+    @ListView(hide = true)
     private String metaDescription;
-    
+
     public Bookmark(String url, String name) throws MalformedURLException {
         this.url = new URL(url);
         this.name = name;
@@ -69,14 +69,13 @@ public class Bookmark implements Identifiable {
         try {
             URI uri = new URI(favicon);
             if (uri.isAbsolute()) {
-                return "<img src='"+favicon+"'>";
+                return "<img src='" + favicon + "'>";
             } else {
-                return "<img src='"+url + "/" + favicon+"'>";
+                return "<img src='" + url + "/" + favicon + "'>";
             }
         } catch (URISyntaxException e) {
             return "";
         }
     }
-
 
 }

@@ -19,10 +19,10 @@ public class TestEntity {
     @Field
     private String stringField;
     
-    @Field(type = InputType.TEXTAREA)
+    @Field(inputType = InputType.TEXTAREA)
     private String stringField_Textarea;
 
-    @Field(type = InputType.RANGE)
+    @Field(inputType = InputType.RANGE)
     @Min(0)
     @Max(100)
     @ListView(hide=true)

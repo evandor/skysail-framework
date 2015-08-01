@@ -52,7 +52,7 @@ public class Application implements Identifiable {
     @NotNull
     private String path;
     
-    @Field(type = InputType.READONLY)
+    @Field(inputType = InputType.READONLY)
     @ListView(hide = true)
     private String owner;
     

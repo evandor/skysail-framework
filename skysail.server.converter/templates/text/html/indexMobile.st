@@ -2,12 +2,12 @@ indexMobile(user, messages, converter, model) ::= <<
 <!doctype html>
 <html>
 <head>
-  
+
     <title>My Page</title>
-  
+
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-  
+
     <!-- <link rel="shortcut icon" href="../favicon.ico"> -->
     <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,700">
@@ -18,7 +18,7 @@ indexMobile(user, messages, converter, model) ::= <<
 
 <body>
     <div data-role="page">
- 
+
         <div data-role="header" style="overflow:hidden;">
           $if(user.principal)$
             <a href="javascript:history.back()" class="ui-btn-left">Back</a>
@@ -27,12 +27,12 @@ indexMobile(user, messages, converter, model) ::= <<
           $if(user.principal)$
             <a href="/_logout" class="ui-btn-right">Logout</a>
           $else$
-            <a href="/_login" data-icon="gear" class="ui-btn-right">Login</a>          
+            <a href="/_login" data-icon="gear" class="ui-btn-right">Login</a>
           $endif$
         </div>
- 
+
         <div role="main" class="ui-content">
-$mainContentMobile(user, converter, messages, source, model)$
+$mainContentMobile(user, converter, messages, model)$
         </div>
     </div>
 </body>

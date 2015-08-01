@@ -2,10 +2,12 @@ Bundle-Version: 0.1.0.${tstamp}
 Bundle-Name: SKYSAIL :: server :: peers :: adminconfig
 Bundle-Description: A simplistic implementation of the skysail.api.peers interface to manage peer \
 	installations based on configuration files
-	
+
 -buildpath:  \
-	skysail.api.peers;version=latest,\
+	skysail.api.peers;version=${skysail.api.peers.version},\
+	skysail.api;version=${skysail.api.version},\
 	skysail.server;version=latest,\
+	skysail.server.testsupport;version=latest,\
 	biz.aQute.bnd.annotation;version=2.4,\
 	slf4j.api;version=1.7,\
 	lombok;version=1.16,\
@@ -16,8 +18,6 @@ Bundle-Description: A simplistic implementation of the skysail.api.peers interfa
 	com.springsource.org.junit;version=4.11,\
 	org.mockito.mockito-all;version=1.10,\
 	org.apache.felix.configadmin;version=1.8,\
-	skysail.server.testsupport;version=latest,\
-	skysail.api;version=${skysail.api.version},\
 	org.apache.felix.gogo.runtime;version=0.12,\
 	com.google.guava;version=16.0,\
 	javax.validation.api;version=1.1,\

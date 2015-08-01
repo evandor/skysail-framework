@@ -4,12 +4,12 @@ Service-Component:  \
 Bundle-Name: SKYSAIL :: server :: text :: store :: db
 Bundle-Description: TranslationStore based on DB repository
 -buildpath:  \
+	skysail.api.text;version=${skysail.api.text.version},\
+	skysail.server;version=latest,\
 	slf4j.api;version=1.7,\
 	biz.aQute.bnd.annotation;version=2.4,\
-	skysail.api.text;version=latest,\
 	org.restlet;version=${restlet.version},\
 	lombok;version=1.16,\
-	skysail.server;version=latest,\
 	osgi.core;version=5.0
 Private-Package:  \
 	io.skysail.server.text.store.db,\

@@ -4,7 +4,7 @@ Private-Package:  \
 	io.skysail.product.todos
 -buildpath:  \
 	skysail.api;version='[7.0.0,7.0.1)',\
-	skysail.api.documentation;version=latest,\
+	skysail.api.documentation;version='[0.2.3,0.2.4)',\
 	skysail.api.um;version=latest,\
 	skysail.api.validation;version=latest,\
 	skysail.api.features;version=latest,\

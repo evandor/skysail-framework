@@ -7,8 +7,8 @@ Private-Package:  \
 	skysail.api.documentation;version='[0.2.3,0.2.4)',\
 	skysail.api.um;version=latest,\
 	skysail.api.validation;version=latest,\
-	skysail.api.features;version=latest,\
-	skysail.api.favorites;version=latest,\
+	skysail.api.features;version='[0.1.2,0.1.3)',\
+	skysail.api.favorites;version='[0.1.2,0.1.3)',\
 	skysail.api.peers;version=latest,\
 	skysail.server.app.todos;version=latest,\
 	skysail.server.converter;version=latest,\

@@ -107,8 +107,8 @@
 	skysail.api.text;version=latest,\
 	skysail.api.documentation;version='[0.2.3,0.2.4)',\
 	skysail.api.validation;version=${skysail.api.validation.version},\
-	skysail.api.features;version=latest,\
-	skysail.api.favorites;version=${skysail.api.favorites.version},\
+	skysail.api.features;version='[0.1.2,0.1.3)',\
+	skysail.api.favorites;version='[0.1.2,0.1.3)',\
 	skysail.client.todos.angularjs;version=latest,\
 	skysail.product.todos;version=latest,\
 	skysail.server;version=latest,\

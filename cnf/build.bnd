@@ -55,8 +55,8 @@ copyright.html:         Copyright &copy; twentyeleven.de (2011, ${tstamp;yyyy}).
 
 skysail.api.version                    '[7.0.0,7.0.1)'
 skysail.api.documentation.version      '[0.2.3,0.3)'
-skysail.api.favorites.version          '[0.1,0.2)'
-skysail.api.features.version           '[0.1,0.2)'
+skysail.api.favorites.version          '[0.1.2,0.1.3)'
+skysail.api.features.version           '[0.1.2,0.1.3)'
 skysail.api.peers.version              '[0.1,0.2)'
 skysail.api.text.version               '[1.0,1.1)'
 skysail.api.um.version                 '[0.2.1,0.3)'

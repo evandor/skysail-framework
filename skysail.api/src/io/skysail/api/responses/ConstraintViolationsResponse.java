@@ -1,7 +1,6 @@
 package io.skysail.api.responses;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 import javax.validation.ConstraintViolation;
 
@@ -25,13 +24,13 @@ public class ConstraintViolationsResponse<T> extends SkysailResponse<T> {
     @JsonIgnore
     private Reference actionReference;
 
-    public ConstraintViolationsResponse(T entity) {
-        super(entity);
-    }
+//    public ConstraintViolationsResponse(T entity) {
+//        super(entity);
+//    }
 
     /**
      * Constructor.
-     * 
+     *
      * @param actionReference
      *            a reference
      * @param entity
@@ -54,7 +53,7 @@ public class ConstraintViolationsResponse<T> extends SkysailResponse<T> {
 
     /**
      * get violations.
-     * 
+     *
      * @return violations
      */
     public Set<ConstraintViolationDetails> getViolations() {

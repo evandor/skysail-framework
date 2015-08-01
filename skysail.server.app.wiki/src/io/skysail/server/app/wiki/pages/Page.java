@@ -40,13 +40,13 @@ public class Page implements Serializable, Identifiable {
     @Field(inputType = InputType.READONLY)
     private Date modified;
 
-    @Reference(cls = Version.class)
+    @Reference
     @PostView(visibility=Visibility.HIDE)
     @PutView(visibility=Visibility.HIDE)
     @ListView(hide=true)
     private List<Version> versions = new ArrayList<>();
 
-    @Reference(cls = Page.class)
+    @Reference
     @PostView(visibility=Visibility.HIDE)
     @PutView(visibility=Visibility.HIDE)
     //@ListView(hide=true)

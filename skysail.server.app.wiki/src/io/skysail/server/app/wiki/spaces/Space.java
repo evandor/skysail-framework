@@ -37,7 +37,7 @@ public class Space implements Serializable, Identifiable {
     @ListView(hide=true)
     private String owner;
 
-    @Reference(cls = Page.class)
+    @Reference
     @PostView(visibility=Visibility.HIDE)
     @PutView(visibility=Visibility.HIDE)
     private List<Page> pages = new ArrayList<>();

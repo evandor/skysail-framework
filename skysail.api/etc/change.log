@@ -6,3 +6,5 @@ new in
  * Added method isApplicable in Link.java
  * Removed @Prefix and @Postfix
  * renamed @Field(type) to @Field(inputType) (due to incompatibility with scala)
+ * removed @Field(name) and @Field(tags)
+ * removed @Reference(cls)

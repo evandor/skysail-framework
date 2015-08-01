@@ -6,8 +6,7 @@
 -->
 <!--
     Checkstyle-Configuration: skysail-framework
-    Description: 
-Checkstyle configurartion that checks the Google coding conventions (https://google-styleguide.googlecode.com/svn-history/r130/trunk/javaguide.html), adapted for skysail-framework.
+    Description: none
 -->
 <module name="Checker">
   <property name="severity" value="warning"/>
@@ -31,7 +30,10 @@ Checkstyle configurartion that checks the Google coding conventions (https://goo
       <property name="tabWidth" value="4"/>
       <metadata name="net.sf.eclipsecs.core.lastEnabledSeverity" value="inherit"/>
     </module>
-    <module name="AvoidStarImport"/>
+    <module name="AvoidStarImport">
+      <property name="severity" value="ignore"/>
+      <metadata name="net.sf.eclipsecs.core.lastEnabledSeverity" value="inherit"/>
+    </module>
     <module name="OneTopLevelClass"/>
     <module name="NoLineWrap"/>
     <module name="EmptyBlock">

@@ -1,18 +1,16 @@
 package io.skysail.api.forms;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 /**
  * An HtmlPolicy defines which (html) content is allowed in a user-provided
  * string value (typically an entities' field with a {@link Field} annotation).
- * 
+ *
  */
 public enum HtmlPolicy {
 
     // @formatter:off
-    NO_HTML(Collections.<String> emptyList(), Collections.<AllowedAttribute> emptyList()), DEFAULT_HTML(Arrays.asList(
+    NO_HTML(Collections.<String> emptyList(), Collections.<AllowedAttribute> emptyList()), DEFAULT_HTML(Arrays.asList( // NO_UCD (test only)
             "b", "p", "ul", "li", "i", "strong", "em", "h1", "h2", "h3", "h4", "h5", "h6", "span", "div", "blockquote",
             "pre", "sup", "sub"), Arrays.asList(new AllowedAttribute("style").onElements("span", "div", "p")));
     // @formatter:on

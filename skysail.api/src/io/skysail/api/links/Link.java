@@ -1,7 +1,5 @@
 package io.skysail.api.links;
 
-import io.skysail.api.utils.StringParserUtils;
-
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -10,7 +8,6 @@ import lombok.extern.slf4j.Slf4j;
 
 import org.restlet.Request;
 import org.restlet.data.*;
-import org.restlet.resource.Resource;
 
 import com.google.common.base.Predicate;
 
@@ -154,7 +151,7 @@ public class Link {
         }
     }
 
-    protected Link(Builder linkBuilder) {
+    private Link(Builder linkBuilder) {
         uri = linkBuilder.uri;
         title = linkBuilder.title;
         if (title == null) {
@@ -280,10 +277,6 @@ public class Link {
         return LinkRelation.SELF.equals(rel);
     }
 
-    public void appendToUri(String string) {
-        this.uri = this.uri + string;
-    }
-
     /**
      * substitute placeholders in URIs.
      */
@@ -303,26 +296,26 @@ public class Link {
         return this;
     }
 
-    public Link setRole(LinkRole role) {
-        this.role = role;
-        return this;
-    }
-
-    public Link setRelation(LinkRelation relation) {
-        this.rel = relation;
-        return this;
-    }
-
-    public Link setRefId(String id) {
-        this.refId = id;
-        return this;
-    }
-
-    public void substituePlaceholders(Resource entityResource, String id) {
-        uri = StringParserUtils.substitutePlaceholders(getUri(), entityResource);
-        if (id != null && uri.contains("{") && uri.contains("}")) {
-            uri = uri.replaceFirst(StringParserUtils.placeholderPattern.toString(), id);
-        }
-    }
+//    public Link setRole(LinkRole role) {
+//        this.role = role;
+//        return this;
+//    }
+//
+//    public Link setRelation(LinkRelation relation) {
+//        this.rel = relation;
+//        return this;
+//    }
+//
+//    public Link setRefId(String id) {
+//        this.refId = id;
+//        return this;
+//    }
+//
+//    public void substituePlaceholders(Resource entityResource, String id) {
+//        uri = StringParserUtils.substitutePlaceholders(getUri(), entityResource);
+//        if (id != null && uri.contains("{") && uri.contains("}")) {
+//            uri = uri.replaceFirst(StringParserUtils.placeholderPattern.toString(), id);
+//        }
+//    }
 
 }

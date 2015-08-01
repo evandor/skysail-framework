@@ -32,7 +32,7 @@ public class Todo implements Serializable, Identifiable {
     @Id
     private String id;
 
-    @Reference(cls = Todo.class, selectionProvider = ListSelectionProvider.class)
+    @Reference(selectionProvider = ListSelectionProvider.class)
     @PostView(visibility = Visibility.SHOW_IF_NULL)
     @ListView(hide = true)
     @ValidListId

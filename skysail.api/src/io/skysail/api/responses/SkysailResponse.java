@@ -11,19 +11,19 @@ package io.skysail.api.responses;
  * have to keep in mind that it is supposed to be serializable into formats as
  * JSON, XML and the like.
  * </p>
- * 
+ *
  * @param <T>
  *            The type of the generic entity
  */
 public class SkysailResponse<T> {
 
-    protected T entity;
+    private T entity;
 
     private Class<?> cls;
 
     /**
      * constructor.
-     * 
+     *
      * @param entity
      *            the parameterized entity
      */

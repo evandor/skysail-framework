@@ -20,11 +20,11 @@ public class Campaign  implements Serializable, Identifiable {
 
     @Id
     private String id;
-    
+
     @Field
     private String name;
-    
-    @Reference(cls = Request.class)
+
+    @Reference
     @PostView(visibility=Visibility.HIDE)
     @PutView(visibility=Visibility.HIDE)
     private List<Request> requests = new ArrayList<>();
@@ -32,9 +32,9 @@ public class Campaign  implements Serializable, Identifiable {
     public void addRequest(Request entity) {
         requests.add(entity);
     }
-    
-    
 
 
-    
+
+
+
 }

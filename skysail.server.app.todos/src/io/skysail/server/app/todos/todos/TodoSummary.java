@@ -32,7 +32,7 @@ public class TodoSummary implements Serializable, Identifiable {
     @Size(min = 2)
     private String title;
 
-    @Reference(cls = TodoSummary.class, selectionProvider = ListSelectionProvider.class)
+    @Reference(selectionProvider = ListSelectionProvider.class)
     @ValidListId
     private String list;
 

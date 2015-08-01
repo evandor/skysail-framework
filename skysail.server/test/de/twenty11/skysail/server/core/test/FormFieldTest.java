@@ -13,11 +13,11 @@ public class FormFieldTest {
     @io.skysail.api.forms.Field(selectionProvider = DummySelectionProvider.class)
     public String testField;
 
-    @Reference(selectionProvider = DummySelectionProvider.class, cls = String.class)
+    @Reference(selectionProvider = DummySelectionProvider.class)
     public String testReference;
 
     private SkysailServerResource<?> resource;
-    
+
     @Before
     public void setUp() {
         resource = new SkysailServerResource<String>() {

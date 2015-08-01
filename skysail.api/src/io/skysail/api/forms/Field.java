@@ -1,10 +1,6 @@
 package io.skysail.api.forms;
 
-import java.lang.annotation.Documented;
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.annotation.Target;
+import java.lang.annotation.*;
 
 /**
  * annotate entities' fields or methods with this annotation in order to let
@@ -19,14 +15,9 @@ public @interface Field {
 
     /**
      * selection provider.
-     * 
+     *
      */
     Class<? extends SelectionProvider> selectionProvider() default IgnoreSelectionProvider.class;
-
-    /**
-     * tags.
-     */
-    String[] tags() default { "all" };
 
     /**
      * http://www.w3.org/TR/REC-html40/interact/forms.html#h-17.4
@@ -34,13 +25,8 @@ public @interface Field {
     InputType inputType() default InputType.TEXT;
 
     /**
-     * field name.
-     */
-    String name() default "";
-
-    /**
      * Define the poliy for HTML strings.
-     * 
+     *
      */
     HtmlPolicy htmlPolicy() default HtmlPolicy.NO_HTML;
 

@@ -1,22 +1,14 @@
 package io.skysail.api.links.test;
 
-import static org.hamcrest.Matchers.contains;
-import static org.hamcrest.Matchers.equalTo;
-import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.assertThat;
-import io.skysail.api.links.Link;
-import io.skysail.api.links.LinkRelation;
+import io.skysail.api.links.*;
 
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Ignore;
-import org.junit.Rule;
-import org.junit.Test;
+import org.junit.*;
 import org.junit.rules.ExpectedException;
 import org.mockito.Mockito;
 import org.restlet.Request;
-import org.restlet.data.Method;
-import org.restlet.data.Reference;
+import org.restlet.data.*;
 
 public class LinkTest {
 
@@ -36,7 +28,7 @@ public class LinkTest {
         resourceRef = Mockito.mock(Reference.class);
         Mockito.when(request.getOriginalRef()).thenReturn(resourceRef);
     }
-    
+
     @Test
     public void builder_creates_link_with_proper_uri() throws Exception {
         Link link = new Link.Builder("uri").build();
@@ -55,7 +47,7 @@ public class LinkTest {
         Link link = new Link.Builder("uri").build();
         assertThat(link.getRel(), is(LinkRelation.ITEM));
     }
-    
+
     @Test
     public void builder_creates_link_with_provided_title() throws Exception {
         Link link = new Link.Builder("uri").title("title").build();
@@ -79,18 +71,11 @@ public class LinkTest {
         Link linkheader = new Link.Builder("uri").relation(LinkRelation.CREATE_FORM).build();
         assertThat(linkheader.toString(null, "path"), is(equalTo("<pathuri>; rel=\"create-form\"; title=\"create-form\"; verbs=\"GET\"")));
     }
-    
+
     @Test
     public void testName() {
         Link link = new Link.Builder("uri").refId("refid").build();
         assertThat(link.toString(null, "path"),is (equalTo("<pathuri>; rel=\"item\"; title=\"item\"; refId=\"refid\"; verbs=\"GET\"")));
-    }
-    
-    @Test
-    public void a_linkheaders_relation_can_be_changed_after_build() {
-        Link linkheader = new Link.Builder("uri").relation(LinkRelation.CREATE_FORM).build();
-        linkheader.setRelation(LinkRelation.SELF);
-        assertThat(linkheader.toString(null, "path"), is(equalTo("<pathuri>; rel=\"self\"; title=\"create-form\"; verbs=\"GET\"")));
     }
 
     @Test
@@ -98,7 +83,7 @@ public class LinkTest {
         String linkheader = "<pathuri>; rel=\"create-form\"; title=\"create-form\"; verbs=\"GET\"";
         assertThat(Link.valueOf(linkheader).getUri(), is(equalTo("pathuri")));
         assertThat(Link.valueOf(linkheader).getRel(), is(equalTo(LinkRelation.CREATE_FORM)));
-        
+
     }
 
     @Test
@@ -109,7 +94,7 @@ public class LinkTest {
         assertThat(Link.valueOf(linkheader).getTitle(), is(equalTo("about me")));
         assertThat(Link.valueOf(linkheader).getVerbs(), contains(Method.POST));
     }
-    
+
     @Test
     @Ignore
     public void matches_id_from_request_with_trailing_slash() throws Exception {
@@ -117,7 +102,7 @@ public class LinkTest {
         Mockito.when(resourceRef.getPath(true)).thenReturn("/wiki/spaces/15:0");
 
         String link = linkheader.toString(request, "");
-        
+
         assertThat(link, is(equalTo("</wiki/spaces/15:0/pages/>; rel=\"create-form\"; title=\"create-form\"; verbs=\"GET\"")));
     }
 
@@ -128,7 +113,7 @@ public class LinkTest {
         Mockito.when(resourceRef.getPath(true)).thenReturn("/wiki/spaces/15:0");
 
         String link = linkheader.toString(request, "");
-        
+
         assertThat(link, is(equalTo("</wiki/spaces/15:0/pages>; rel=\"create-form\"; title=\"create-form\"; verbs=\"GET\"")));
     }
 

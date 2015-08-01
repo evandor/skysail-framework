@@ -102,10 +102,10 @@
 	osgi.cmpn;version='[5.0.0,5.0.1)',\
 	osgi.enterprise;version='[4.2.0,4.2.1)',\
 	skysail.api;version='[7.0.0,7.0.1)',\
-	skysail.api.um;version=${skysail.api.um.version},\
+	skysail.api.um;version='[0.2.1,0.2.2)',\
 	skysail.api.peers;version=latest,\
 	skysail.api.text;version=latest,\
-	skysail.api.documentation;version=${skysail.api.documentation.version},\
+	skysail.api.documentation;version='[0.2.3,0.2.4)',\
 	skysail.api.validation;version=${skysail.api.validation.version},\
 	skysail.api.features;version=latest,\
 	skysail.api.favorites;version=${skysail.api.favorites.version},\

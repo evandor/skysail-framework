@@ -33,6 +33,7 @@ public class TodoListsCrudIntegrationTests extends IntegrationTests<TodoListBrow
     }
 
     @Test  // create and read
+    @Ignore
     public void creating_new_todolist_will_persists_it() throws Exception {
         createListAndCheckAssertions();
     }

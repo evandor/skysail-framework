@@ -112,7 +112,7 @@
 	skysail.client.todos.angularjs;version=latest,\
 	skysail.product.todos;version=latest,\
 	skysail.server;version=${skysail.server.version},\
-	skysail.server.converter;version=${skysail.server.converter.version},\
+	skysail.server.converter;version='[0.2.1,0.3.0)',\
 	skysail.server.db;version=${skysail.server.db.version},\
 	skysail.server.queryfilter;version=${skysail.server.queryfilter.version},\
 	skysail.server.performance.etm;version=${skysail.server.performance.etm.version},\

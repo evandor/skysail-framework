@@ -121,13 +121,13 @@
 	skysail.client.todos.angularjs;version=latest,\
 	skysail.product.todos;version=latest,\
 	skysail.server;version=latest,\
+	skysail.server.db;version=latest,\
 	skysail.server.converter;version=latest,\
 	skysail.server.app.bookmarks;version=latest,\
 	skysail.server.app.todos;version=latest,\
 	skysail.server.app.designer;version=latest,\
 	skysail.server.app.twitter4j;version=latest,\
 	skysail.server.app.wiki;version=latest,\
-	skysail.server.db;version=latest,\
 	skysail.server.documentation;version=latest,\
 	skysail.server.ext.favorites.preferences;version=latest,\
 	skysail.server.ext.mail;version=latest,\

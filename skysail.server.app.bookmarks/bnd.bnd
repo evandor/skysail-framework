@@ -143,7 +143,7 @@ Import-Package: org.osgi.framework,\
 	skysail.server.documentation;version=latest,\
 	skysail.server.http;version=latest,\
 	skysail.server.plugins;version=latest,\
-	skysail.server.static;version=latest,\
+	skysail.server.static;version=${skysail.server.static.version},\
 	skysail.server.text.markdown;version=latest,\
 	skysail.server.um.simple;version=latest,\
 	slf4j.api;version='[1.7.7,1.7.8)',\

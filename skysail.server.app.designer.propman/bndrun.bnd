@@ -119,7 +119,7 @@
 	skysail.server.peers.adminconfig;version=latest,\
 	skysail.server.app.designer.propman;version=latest,\
 	skysail.server.queryfilter;version={skysail.server.queryfilter.version},\
-	skysail.server.static;version=latest,\
+	skysail.server.static;version=${skysail.server.static.version},\
 	skysail.server.text.asciidoc;version=latest,\
 	skysail.server.text.markdown;version=latest,\
 	skysail.server.text.store.bundleresource;version=latest,\

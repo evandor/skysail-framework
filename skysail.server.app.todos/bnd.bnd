@@ -16,8 +16,8 @@ Include-Resource: resources, templates=src;recursive:=true;filter:=*.st|*.stg
 	skysail.api.validation;version=${skysail.api.validation.version},\
 	skysail.server;version=${skysail.server.version},\
 	skysail.server.db;version=${skysail.server.db.version},\
-	skysail.server.codegen;version=latest,\
-	skysail.server.queryfilter;version=latest,\
+	skysail.server.codegen;version=${skysail.server.codegen.version},\
+	skysail.server.queryfilter;version=${skysail.server.queryfilter.version},\
 	skysail.server.testsupport;version=latest,\
 	slf4j.api;version=1.7.7,\
 	org.restlet;version=${restlet.version},\

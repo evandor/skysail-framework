@@ -66,6 +66,8 @@ skysail.server.queryfilter.version     '[0.1,0.2)'
 skysail.server.version                 '[7.0.0,7.0.1)'
 skysail.server.db.version              '[0.2.0,0.2.1)'
 skysail.server.static.version          '[1.0.1,1.0.2)'
+skysail.server.queryfilter.version     '[0.2.0,0.2.1)'
+skysail.server.codegen.version         '[0.1.0,0.1.1)'
 restlet.version                        2.3.1
 guava.version                          16.0
 org.apache.felix.scr.version           1.8.2

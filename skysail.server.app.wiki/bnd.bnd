@@ -13,7 +13,7 @@ Include-Resource: resources, templates=src;recursive:=true;filter:=*.st|*.stg
 	skysail.api.validation;version=${skysail.api.validation.version},\
 	skysail.server;version=${skysail.server.version},\
 	skysail.server.codegen;version=latest,\
-	skysail.server.db;version=latest,\
+	skysail.server.db;version=${skysail.server.db.version},\
 	skysail.server.testsupport;version=latest,\
 	skysail.server.app.designer;version=latest,\
 	skysail.server.queryfilter;version=latest,\

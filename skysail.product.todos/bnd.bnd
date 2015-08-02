@@ -13,7 +13,7 @@ Private-Package:  \
 	skysail.server.app.todos;version=latest,\
 	skysail.server.converter;version=latest,\
 	skysail.server.documentation;version=latest,\
-	skysail.server.db;version=latest,\
+	skysail.server.db;version=${skysail.server.db.version},\
     skysail.server.ext.browser;version=latest,\
     skysail.server.ext.sse;version=latest,\
 	skysail.server.http;version=latest,\

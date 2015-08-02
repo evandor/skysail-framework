@@ -14,7 +14,7 @@ Test-Cases: \
 	de.twentyeleven.skysail.org.json-osgi;version=latest,\
 	org.codehaus.jettison.jettison;version=1.3,\
 	org.apache.felix.configadmin;version=1.8,\
-	skysail.server.db;version=latest,\
+	skysail.server.db;version=${skysail.server.db.version},\
 	lombok;version=1.16,\
 	skysail.client.testsupport;version=latest
 
@@ -128,7 +128,7 @@ Test-Cases: \
 	skysail.client.testsupport;version=latest,\
 	skysail.server;version=${skysail.server.version},\
 	skysail.server.converter;version=latest,\
-	skysail.server.db;version=latest,\
+	skysail.server.db;version=${skysail.server.db.version},\
 	skysail.server.documentation;version=latest,\
 	skysail.server.http;version=latest,\
 	skysail.server.plugins;version=latest,\

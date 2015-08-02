@@ -14,7 +14,7 @@ Test-Cases: io.skysail.server.app.todos.test.TodoListsCrudIntegrationTests
 	skysail.client.testsupport;version=latest,\
 	skysail.server;version=${skysail.server.version},\
 	skysail.server.app.todos;version=latest,\
-	skysail.server.db;version=latest,\
+	skysail.server.db;version=${skysail.server.db.version},\
 	skysail.server.um.internal;version=0.0,\
 	osgi.core;version=5.0,\
 	com.springsource.org.junit;version=4.11,\
@@ -138,7 +138,7 @@ Test-Cases: io.skysail.server.app.todos.test.TodoListsCrudIntegrationTests
 	skysail.server;version=${skysail.server.version},\
 	skysail.server.converter;version=latest,\
 	skysail.server.app.todos;version=latest,\
-	skysail.server.db;version=latest,\
+	skysail.server.db;version=${skysail.server.db.version},\
 	skysail.server.documentation;version=latest,\
 	skysail.server.http;version=latest,\
 	skysail.server.plugins;version=latest,\

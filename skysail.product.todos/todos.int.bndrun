@@ -116,11 +116,11 @@
 	skysail.server.queryfilter;version=${skysail.server.queryfilter.version},\
 	skysail.server.performance.etm;version=${skysail.server.performance.etm.version},\
 	skysail.server.static;version=${skysail.server.static.version},\
+	skysail.server.http;version=${skysail.server.http.version},\
 	skysail.server.peers.adminconfig;version=latest,\
 	skysail.server.polymer;version=latest,\
 	skysail.server.plugins;version=latest,\
 	skysail.server.converter;version=latest,\
-	skysail.server.http;version=latest,\
 	skysail.server.documentation;version=latest,\
 	skysail.server.app.bookmarks;version=latest,\
 	skysail.server.app.todos;version=latest,\

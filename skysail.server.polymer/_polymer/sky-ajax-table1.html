@@ -61,6 +61,10 @@
     	  }
     	  document.getElementById("resourceDescription").innerHTML = request.xhr.getResponseHeader('X-Resource-Description');
       },
+      ready: function() {
+        console.log("SKY-AJAX-TABLE (ready)>");
+        this.$.skyTable.generateRequest();
+      },
   	  _urlChanged: function(newValue, oldValue) {
         console.log("SKY-AJAX-TABLE (_urlChanged)> '" + oldValue + "' --> '" + newValue + "'");
         this.$.skyTable.url=newValue;
@@ -73,11 +77,6 @@
         console.log("SKY-AJAX-TABLE (_columnNamesChanged)> '" + oldValue + "' --> '" + newValue + "'");
         this.$.skyTable.columnNames=newValue;
   	  },
-  	  /*generateRequest: function(href) {
-  		console.log("SKY-AJAX-TABLE (generateRequest)> " + href);
-  		console.log("SKY-AJAX-TABLE (generateRequest)> for url " + this.$.skyTable.url);
-  		this.$.skyTable.generateRequest();
-  	  },*/
   	  _toArray: function(obj, columns) {
   		console.log("SKY-AJAX-TABLE (_toArray)> " + obj + ", " + columns);
         return columns.map(function(key) {

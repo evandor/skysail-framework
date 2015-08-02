@@ -13,8 +13,6 @@ renderTableSpa(converter, messages, model) ::= <<
     column-names='{$renderColumnNames(model.formfields, converter)$,"_links": "Actions"}'>
   </sky-ajax-table1>
 
-  <script>document.getElementById("skyTable").generateRequest();</script>
-
 >>
 
 renderColumns(fields, converter) ::= <<

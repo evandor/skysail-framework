@@ -27,7 +27,7 @@ Private-Package:  \
 	javassist;version=3.18,\
 	skysail.api;version=${skysail.api.version},\
 	skysail.server.app.bookmarks;version=latest,\
-	skysail.server.http;version=latest
+	skysail.server.http;version=${skysail.server.http.version}
 
 -runfw: org.apache.felix.framework;version='[4,5)'
 -runee: JavaSE-1.8
@@ -134,7 +134,7 @@ Private-Package:  \
 	skysail.server.converter;version=latest,\
 	skysail.server.db;version=${skysail.server.db.version},\
 	skysail.server.documentation;version=${skysail.server.documentation.version},\
-	skysail.server.http;version=latest,\
+	skysail.server.http;version=${skysail.server.http.version},\
 	skysail.server.plugins;version=latest,\
 	skysail.server.static;version=${skysail.server.static.version},\
 	skysail.server.text.markdown;version=latest,\

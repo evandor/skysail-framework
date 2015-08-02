@@ -138,7 +138,7 @@ Test-Cases: io.skysail.server.app.designer.it.ApplicationsCrudIntegrationTests
 	skysail.server.app.designer;version=latest,\
 	skysail.server.db;version=${skysail.server.db.version},\
 	skysail.server.documentation;version=${skysail.server.documentation.version},\
-	skysail.server.http;version=latest,\
+	skysail.server.http;version=${skysail.server.http.version},\
 	skysail.server.plugins;version=latest,\
 	skysail.server.static;version=${skysail.server.static.version},\
 	skysail.server.text.markdown;version=latest,\

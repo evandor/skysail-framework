@@ -114,7 +114,7 @@
 	skysail.server.db;version=${skysail.server.db.version},\
 	skysail.server.documentation;version=${skysail.server.documentation.version},\
 	skysail.server.ext.favorites.preferences;version=latest,\
-	skysail.server.http;version=latest,\
+	skysail.server.http;version=${skysail.server.http.version},\
 	skysail.server.performance.etm;version=${skysail.server.performance.etm.version},\
 	skysail.server.peers.adminconfig;version=latest,\
 	skysail.server.app.designer.propman;version=latest,\

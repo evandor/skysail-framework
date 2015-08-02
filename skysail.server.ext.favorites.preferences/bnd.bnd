@@ -7,7 +7,7 @@ Bundle-Description: favorites implementation using the osgi preference service
 	biz.aQute.bnd.annotation;version=2.4,\
 	skysail.api;version=${skysail.api.version},\
 	skysail.api.favorites;version=${skysail.api.favorites.version},\
-	skysail.server;version=latest,\
+	skysail.server;version=${skysail.server.version},\
 	osgi.cmpn;version=5.0
 Private-Package:  \
 	io.skysail.server.ext.favorites.preferences

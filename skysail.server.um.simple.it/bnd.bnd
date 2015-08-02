@@ -126,7 +126,7 @@ Test-Cases: \
 	skysail.api.features;version=latest,\
 	skysail.api.favorites;version=${skysail.api.favorites.version},\
 	skysail.client.testsupport;version=latest,\
-	skysail.server;version=latest,\
+	skysail.server;version=${skysail.server.version},\
 	skysail.server.converter;version=latest,\
 	skysail.server.db;version=latest,\
 	skysail.server.documentation;version=latest,\

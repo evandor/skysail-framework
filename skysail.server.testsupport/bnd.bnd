@@ -5,7 +5,7 @@ Export-Package:  \
 -buildpath:  \
 	skysail.api.validation;version=${skysail.api.validation.version},\
 	skysail.api;version=${skysail.api.version},\
-	skysail.server;version=latest,\
+	skysail.server;version=${skysail.server.version},\
 	skysail.server.db;version=latest,\
 	org.restlet;version=${restlet.version},\
 	org.mockito.mockito-all;version=1.10,\

@@ -15,7 +15,7 @@ Include-Resource: resources, templates=src;recursive:=true;filter:=*.st|*.stg
 	skysail.api.text;version=${skysail.api.text.version},\
 	skysail.api.documentation;version=${skysail.api.documentation.version},\
 	skysail.api.validation;version=${skysail.api.validation.version},\
-	skysail.server;version=latest,\
+	skysail.server;version=${skysail.server.version},\
 	skysail.server.db;version=latest,\
 	skysail.server.codegen;version=latest,\
 	skysail.server.testsupport;version=latest,\

@@ -9,7 +9,7 @@ Test-Cases: io.skysail.server.app.designer.it.ApplicationsCrudIntegrationTests
 	skysail.api.validation;version=${skysail.api.validation.version},\
 	skysail.api.documentation;version=${skysail.api.documentation.version},\
 	skysail.client.testsupport;version=latest,\
-	skysail.server;version=latest,\
+	skysail.server;version=${skysail.server.version},\
 	skysail.server.app.designer;version=latest,\
 	skysail.server.um.internal;version=0.0,\
 	skysail.server.db;version=latest,\
@@ -133,7 +133,7 @@ Test-Cases: io.skysail.server.app.designer.it.ApplicationsCrudIntegrationTests
 	skysail.api.features;version=latest,\
 	skysail.api.favorites;version=${skysail.api.favorites.version},\
 	skysail.client.testsupport;version=latest,\
-	skysail.server;version=latest,\
+	skysail.server;version=${skysail.server.version},\
 	skysail.server.converter;version=latest,\
 	skysail.server.app.designer;version=latest,\
 	skysail.server.db;version=latest,\

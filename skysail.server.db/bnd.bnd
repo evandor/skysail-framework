@@ -9,7 +9,7 @@ Bundle-ClassPath: .,lib/blueprints-core-2.6.0.jar
 -buildpath:  \
 	lib/blueprints-core-2.6.0.jar;version=file,\
 	skysail.api;version=${skysail.api.version},\
-	skysail.server;version=latest,\
+	skysail.server;version=${skysail.server.version},\
 	biz.aQute.bnd.annotation;version=2.3,\
 	osgi.cmpn;version=5.0,\
 	com.orientechnologies.orientdb-core;version=${com.orientechnologies.orientdb.version},\

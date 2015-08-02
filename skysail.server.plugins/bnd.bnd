@@ -3,7 +3,7 @@ Service-Component: *
 -buildpath:  \
 	skysail.api;version=${skysail.api.version},\
 	skysail.api.documentation;version=${skysail.api.documentation.version},\
-	skysail.server;version=latest,\
+	skysail.server;version=${skysail.server.version},\
 	biz.aQute.bnd.annotation,\
 	javax.validation.api;version=1.1,\
 	org.restlet;version=${restlet.version},\

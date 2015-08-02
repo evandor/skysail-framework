@@ -7,7 +7,7 @@ Include-Resource: resources, templates=src;recursive:=true;filter:=*.st|*.stg
 	skysail.api;version=${skysail.api.version},\
 	skysail.api.validation;version=${skysail.api.validation.version},\
 	skysail.api.documentation;version=${skysail.api.documentation.version},\
-	skysail.server;version=latest,\
+	skysail.server;version=${skysail.server.version},\
 	slf4j.api;version=1.7,\
 	biz.aQute.bnd.annotation;version=2.4,\
 	de.twentyeleven.skysail.org.hamcrest.hamcrest-all-osgi;version=1.3,\

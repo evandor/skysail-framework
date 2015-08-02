@@ -6,7 +6,7 @@ Bundle-Description: A simplistic implementation of the skysail.api.peers interfa
 -buildpath:  \
 	skysail.api.peers;version=${skysail.api.peers.version},\
 	skysail.api;version=${skysail.api.version},\
-	skysail.server;version=latest,\
+	skysail.server;version=${skysail.server.version},\
 	skysail.server.testsupport;version=latest,\
 	biz.aQute.bnd.annotation;version=2.4,\
 	slf4j.api;version=1.7,\

@@ -9,7 +9,7 @@ Bundle-Description: TranslationStore based on git repository
 	biz.aQute.bnd.annotation;version=2.4,\
 	skysail.api.text;version=${skysail.api.text.version},\
 	org.restlet;version=${restlet.version},\
-	skysail.server;version=latest,\
+	skysail.server;version=${skysail.server.version},\
 	org.apache.commons.configuration;version=1.10,\
 	osgi.core;version=5.0,\
 	org.apache.commons.lang;version=2.6

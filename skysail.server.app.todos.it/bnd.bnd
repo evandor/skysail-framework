@@ -136,7 +136,7 @@ Test-Cases: io.skysail.server.app.todos.test.TodoListsCrudIntegrationTests
 	skysail.api.peers;version=latest,\
 	skysail.client.testsupport;version=latest,\
 	skysail.server;version=${skysail.server.version},\
-	skysail.server.converter;version=latest,\
+	skysail.server.converter;version=${skysail.server.converter.version},\
 	skysail.server.app.todos;version=latest,\
 	skysail.server.db;version=${skysail.server.db.version},\
 	skysail.server.documentation;version=${skysail.server.documentation.version},\

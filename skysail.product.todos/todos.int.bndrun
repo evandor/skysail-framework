@@ -112,6 +112,7 @@
 	skysail.client.todos.angularjs;version=latest,\
 	skysail.product.todos;version=latest,\
 	skysail.server;version=${skysail.server.version},\
+	skysail.server.converter;version=${skysail.server.converter.version},\
 	skysail.server.db;version=${skysail.server.db.version},\
 	skysail.server.queryfilter;version=${skysail.server.queryfilter.version},\
 	skysail.server.performance.etm;version=${skysail.server.performance.etm.version},\
@@ -120,7 +121,6 @@
 	skysail.server.peers.adminconfig;version=latest,\
 	skysail.server.polymer;version=latest,\
 	skysail.server.plugins;version=latest,\
-	skysail.server.converter;version=latest,\
 	skysail.server.documentation;version=latest,\
 	skysail.server.app.bookmarks;version=latest,\
 	skysail.server.app.todos;version=latest,\

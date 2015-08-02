@@ -109,7 +109,7 @@
 	skysail.client.todos.angularjs;version=latest,\
 	skysail.product.todos;version=latest,\
 	skysail.server;version=${skysail.server.version},\
-	skysail.server.converter;version=latest,\
+	skysail.server.converter;version=${skysail.server.converter.version},\
 	skysail.server.ext.mail;version=latest,\
 	skysail.server.db;version=${skysail.server.db.version},\
 	skysail.server.documentation;version=${skysail.server.documentation.version},\

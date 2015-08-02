@@ -134,7 +134,7 @@ Test-Cases: io.skysail.server.app.designer.it.ApplicationsCrudIntegrationTests
 	skysail.api.favorites;version=${skysail.api.favorites.version},\
 	skysail.client.testsupport;version=latest,\
 	skysail.server;version=${skysail.server.version},\
-	skysail.server.converter;version=latest,\
+	skysail.server.converter;version=${skysail.server.converter.version},\
 	skysail.server.app.designer;version=latest,\
 	skysail.server.db;version=${skysail.server.db.version},\
 	skysail.server.documentation;version=${skysail.server.documentation.version},\

@@ -7,10 +7,10 @@ showFormSpa(fields, messages, model) ::= <<
         $model.classlevelViolationMessage$
     </div>
   $endif$
-  
+
   $if (model.postEntityServerResource)$
     <form action="$model.formTarget$" method="POST" class="form-horizontal" role="form" id="form" name="form">
-      $handleField(first(model.data), first(model.formfields), messages,"1", " autofocus")$
+      $handleField(first(model.data), first(model.formfields), messages,"0", " autofocus")$
       $rest(model.formfields):{ field | $handleField(first(model.data), field, messages,i, "")$}$
       $if (model.submitButtonNeeded)$
         $submitPost("Submit","2","10",length(model.formfields))$
@@ -63,12 +63,12 @@ handleConstraintViolationField(source, formField, messages,i,autofocus) ::= <<
 	        <small style='' class='help-block' data-bv-validator='notEmpty' data-bv-for='title' data-bv-result='INVALID'>
 	            $formField.violationMessage$
 	        </small>
-            $renderDescription(field,converter)$          
+            $renderDescription(field,converter)$
 	      </div>
 	    </div>
     $elseif(field.selectionProvider)$
         <div class='form-group'>
-          $label("", formField)$          
+          $label("", formField)$
           <div class='col-sm-10'>
             <select name='$field.name$' tabindex="$i$">
                 $field.selectionProviderOptions.keys: {key | $options(field.selectionProviderOptions,key)$}$
@@ -87,7 +87,7 @@ handleConstraintViolationField(source, formField, messages,i,autofocus) ::= <<
 	        </small>
             $renderDescription(field,converter)$
 	      </div>
-	    </div>  
+	    </div>
     $endif$
 >>
 
@@ -142,7 +142,7 @@ handleInputField(data, field, messages,i,autofocus) ::= <<
             <input type="date" class='form-control' name='$field.name$' id='$field.name$' tabindex="$i$" title="$helpmessage(messages, field.placeholderKey)$" value='$data.(field.name)$' style="width:190px;">
             $renderDescription(field,converter)$
           </div>
-        </div>  
+        </div>
       $elseif(field.range)$
         <div class='form-group'>
           <label for='$field.name$' class='col-sm-2 control-label' style="text-align: left;">$helpmessage(messages, field.nameKey)$  $if(converter.edit)$<a href='/i18n/messages/$data.entity.entity.class.name$.$field.name$/'><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>$endif$</label>
@@ -150,31 +150,31 @@ handleInputField(data, field, messages,i,autofocus) ::= <<
             <input type="range" class='form-control' name='$field.name$' id='$field.name$' tabindex="$i$" title="$helpmessage(messages, field.placeholderKey)$" value='$data.(field.name)$' min=$field.rangeMin$ max=$field.rangeMax$ step=1 style="width:190px;">
             $renderDescription(field,converter)$
           </div>
-        </div>  
+        </div>
       $else$
-        <sky-form-text 
+        <sky-form-text
             type="$field.inputType$"
-        	name="$field.name$" 
+        	name="$field.name$"
         	data="$data.(field.name)$"
         	placeholder="$helpmessage(messages, field.placeholderKey)$"
         	description="xxx"
-        	tabindex="$i$"
+        	tabnr="$i$"
         	label="$helpmessage(messages, field.nameKey)$">
         </sky-form-text>
-      $endif$    
-  $endif$    
+      $endif$
+  $endif$
 >>
 
 renderDescription(field,converter) ::= <<
   $if(messages.(field.messageKey))$
     <small class="help-block">_$helpmessage(messages, field.messageKey)$ $editTextLink(field,converter)$</small>
-  $else$          
-    $editTextLink(field,converter)$  
-  $endif$  
+  $else$
+    $editTextLink(field,converter)$
+  $endif$
 >>
 
 editTextLink(field,converter) ::= <<
-  $if(converter.edit)$ 
+  $if(converter.edit)$
     <a href='/i18n/messages/$model.classname$.$field.name$.desc/'><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>&nbsp;
     <a href='/i18n/messages/$model.classname$.$field.name$.placeholder/'><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>
   $endif$

@@ -11,12 +11,12 @@
       <label for='{{name}}' class='col-sm-2 control-label' style="text-align: left;">{{label}}</label>
       <div class='col-sm-10'>
         <template is="dom-if" if="{{isInput(type)}}">
-          <input type="{{type}}" class='form-control' name='{{name}}' id='{{name}}' placeholder='{{placeholder}}' value='{{data}}' tabindex="{{tabindex}}" title="">
+          <input type="{{type}}" class='form-control' name='{{name}}' id='{{name}}' placeholder='{{placeholder}}' value='{{data}}' tabindex="{{tabnr}}" title="">
         </template>
         <template is="dom-if" if="{{isTextarea(type)}}">
-          <textarea label="{{label}}" name='{{name}}' id='{{name}}' tabindex="{{tabindex}}" class='form-control' rows=5 >{{data}}</textarea>
+          <textarea label="{{label}}" name='{{name}}' id='{{name}}' tabindex="{{tabnr}}" class='form-control' rows=5 >{{data}}</textarea>
         </template>
-      <!-- <span style="font-weight: lighter;">{{description}}</span> -->
+      <span style="font-weight: lighter;">{{description}}</span>
       </div>
     </div>
   </template>
@@ -49,7 +49,7 @@
     		  type: String,
     		  value: "label unknown"
     	  },
-    	  tabindex: {
+    	  tabnr: {
     		  type: Number,
     		  value: 1
     	  }
@@ -59,6 +59,12 @@
       },
       isTextarea: function(type) {
     	  return type === 'textarea';
+      },
+      checkAutofocus: function(tabnr) {
+    	 if (tabnr === 0) {
+    		 return "autofocus";
+    	 }
+    	 return "";
       }
     });
   </script>

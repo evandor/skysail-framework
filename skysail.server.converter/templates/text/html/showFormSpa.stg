@@ -157,7 +157,7 @@ handleInputField(data, field, messages,i,autofocus) ::= <<
         	name="$field.name$"
         	data="$data.(field.name)$"
         	placeholder="$helpmessage(messages, field.placeholderKey)$"
-        	description="xxx"
+        	description="$renderDescription(field,converter)$"
         	tabnr="$i$"
         	label="$helpmessage(messages, field.nameKey)$">
         </sky-form-text>

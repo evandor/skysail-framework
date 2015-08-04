@@ -56,10 +56,9 @@
       },
       hResponse: function(event, request) {
     	  console.log("SKY-AJAX-TABLE (hresponse)> Size:  " + request.xhr.response.length);
-    	  if (request.xhr.response.length > 0) {
-        	  console.log("SKY-AJAX-TABLE (hresponse)> Title: " + request.xhr.response[0].title);
-    	  }
     	  document.getElementById("resourceDescription").innerHTML = request.xhr.getResponseHeader('X-Resource-Description');
+    	  this.columnNames = JSON.parse(request.xhr.getResponseHeader('X-Resource-ColumnNames'));
+          this.columns = JSON.parse(request.xhr.getResponseHeader('X-Resource-Columns'));
       },
       ready: function() {
         console.log("SKY-AJAX-TABLE (ready)>");
@@ -80,7 +79,6 @@
   	  _toArray: function(obj, columns) {
   		console.log("SKY-AJAX-TABLE (_toArray)> " + obj + ", " + columns);
         return columns.map(function(key) {
-          //console.log("SKY-AJAX-TABLE (_toArray)> " + key + "=" + obj[key]);
           return {name: key, value: obj[key]};
         });
       },

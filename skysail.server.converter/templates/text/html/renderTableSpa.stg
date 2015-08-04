@@ -9,8 +9,6 @@ renderTableSpa(converter, messages, model) ::= <<
     identifier="lid"
     request-url="/Todos"
     name-property="title"
-    columns='[$renderColumns(model.formfields, converter)$,"_links"]'
-    column-names='{$renderColumnNames(model.formfields, converter)$,"_links": "Actions"}'>
   </sky-ajax-table1>
 
 >>

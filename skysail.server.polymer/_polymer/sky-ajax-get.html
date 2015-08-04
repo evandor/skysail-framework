@@ -97,14 +97,8 @@
 
         var skyTable = document.getElementById("skyTable");
         skyTable.url = ajaxhref;
-
         var skyAjaxTable = document.getElementById("skyAjaxTable");
-
-        skyAjaxTable.columnNames = {"title": "Title", "todosCount": "Cnt.", "desc": "Description", "created": "Created", "modified": "Modified","_links": "Actions"};
-       // skyAjaxTable.nameProperty="title";
         skyTable.generateRequest();
-        //skyAjaxTable._refresh();
-        //document.getElementById("skyTable").generateRequest();
       },
       getGlyph: function(glyph) {
         return "glyphicon glyphicon-"+glyph;

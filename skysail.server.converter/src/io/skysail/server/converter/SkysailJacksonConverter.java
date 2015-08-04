@@ -6,12 +6,11 @@ import io.skysail.server.restlet.resources.SkysailServerResource;
 import io.skysail.server.utils.HeadersUtils;
 
 import java.util.Map;
+import java.util.stream.Collectors;
 
-import org.restlet.data.Header;
 import org.restlet.ext.jackson.JacksonConverter;
 import org.restlet.representation.*;
 import org.restlet.resource.Resource;
-import org.restlet.util.Series;
 
 import aQute.bnd.annotation.component.Component;
 import de.twenty11.skysail.server.services.OsgiConverterHelper;
@@ -22,18 +21,29 @@ public class SkysailJacksonConverter extends JacksonConverter implements OsgiCon
     @Override
     public Representation toRepresentation(Object source, Variant target, Resource resource) {
         if (source instanceof SkysailResponse) {
-            Object entity = ((SkysailResponse<?>)source).getEntity();
+            Object entity = ((SkysailResponse<?>) source).getEntity();
             if (resource.getQuery().getNames().contains("_rendered")) {
                 SkysailServerResource<?> skysailServerResource = (SkysailServerResource<?>) resource;
-                ResourceModel<SkysailServerResource<?>,?> resourceModel = new ResourceModel(skysailServerResource, (SkysailResponse<?>)source, target);
-                
-                //String key = resource.getClass().getName() + ".message";
-                //String translated = ((SkysailApplication) application).translate(key, key, this, true);
+
+
+                @SuppressWarnings({ "rawtypes", "unchecked" })
+                ResourceModel<SkysailServerResource<?>, ?> resourceModel = new ResourceModel(skysailServerResource, (SkysailResponse<?>) source, target);
+
                 Map<String, String> messages = skysailServerResource.getMessages(resourceModel.getFields());
                 String descrition = messages.get("content.header");
-                Series<Header> headers = HeadersUtils.getHeaders(resource.getResponse());
                 HeadersUtils.getHeaders(resource.getResponse()).add("X-Resource-Description", descrition);
-                
+
+                String columnNames = resourceModel.getFormfields().stream().map(f -> {
+                    return "\"" + f.getName() + "\": \"" + messages.get(f.getNameKey()) + "\"";
+                }).collect(Collectors.joining(","));
+                HeadersUtils.getHeaders(resource.getResponse()).add("X-Resource-ColumnNames", "{" + columnNames + ",\"_links\": \"Actions\"}");
+
+
+                String columns = resourceModel.getFormfields().stream().map(f -> {
+                    return "\"" + f.getName() + "\"";
+                }).collect(Collectors.joining(","));
+                HeadersUtils.getHeaders(resource.getResponse()).add("X-Resource-Columns", "[" + columns + ",\"_links\"]");
+
                 return super.toRepresentation(resourceModel.getData(), target, resource);
             }
             return super.toRepresentation(entity, target, resource);

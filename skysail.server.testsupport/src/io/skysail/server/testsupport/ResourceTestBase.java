@@ -204,7 +204,7 @@ public class ResourceTestBase {
         assertThat(skysailReponse.getViolations().size(), is(1));
         ConstraintViolationDetails violation = ((ConstraintViolationsResponse<?>) post).getViolations().iterator()
                 .next();
-        assertThat(violation.getPropertyPath(), is(containsString(path)));
+        assertThat(violation.getPropertyPath(), containsString(path));
         assertThat(violation.getMessage(), is(containsString(msg)));
     }
 

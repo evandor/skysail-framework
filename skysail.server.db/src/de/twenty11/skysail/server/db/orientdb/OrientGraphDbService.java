@@ -138,7 +138,7 @@ public class OrientGraphDbService extends AbstractOrientDbService implements DbS
             OrientVertex next = iterator.next();
             //T newOne = objectDb.detachAll(t, true);
             OrientElement detached = next.detach();
-           // detachedEntities.add((T)detached);
+            detachedEntities.add((T)detached);
             //System.out.println(next);
         }
         return detachedEntities;

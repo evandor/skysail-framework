@@ -137,4 +137,7 @@ public class TodosRepository implements DbRepository {
         return "list= :list";
     }
 
+    public Object getVertexById(Class<TodoList> cls, String id) {
+        return dbService.findGraphs("SELECT FROM "+cls.getSimpleName()+" WHERE @rid="+id);
+    }
 }

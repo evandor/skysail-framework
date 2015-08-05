@@ -1,12 +1,10 @@
 package io.skysail.server.ext.apt.model.types;
 
-import java.util.Arrays;
-import java.util.HashSet;
+import java.util.*;
 
 import javax.lang.model.element.Element;
 
 import de.twenty11.skysail.server.app.ApplicationProvider;
-import de.twenty11.skysail.server.app.SkysailApplication;
 import de.twenty11.skysail.server.services.MenuItemProvider;
 
 public class ApplicationModel extends JavaModel {

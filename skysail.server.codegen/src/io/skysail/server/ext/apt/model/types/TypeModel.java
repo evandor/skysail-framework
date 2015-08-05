@@ -1,12 +1,8 @@
 package io.skysail.server.ext.apt.model.types;
 
-import io.skysail.server.ext.apt.model.entities.Entity;
-import io.skysail.server.ext.apt.model.entities.EntityGraph;
+import io.skysail.server.ext.apt.model.entities.*;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 import javax.lang.model.element.Element;
 
@@ -15,7 +11,7 @@ import lombok.Getter;
 /**
  * A TypeModel provides all the information to actually create the java files
  * derived from the annotated model classes.
- * 
+ *
  * It is instantiated with an EntiyGraph model which provides the entities and
  * relations between them.
  *

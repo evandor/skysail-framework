@@ -12,6 +12,8 @@ import io.skysail.server.utils.*;
 
 import java.lang.reflect.*;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.function.Consumer;
 import java.util.stream.Collectors;
@@ -91,6 +93,17 @@ public abstract class SkysailServerResource<T> extends ServerResource {
         public Object convert(String value, @SuppressWarnings("rawtypes") Class clazz) {
             if (clazz.isEnum()) {
                 return Enum.valueOf(clazz, value);
+            } else if (clazz.equals(LocalDate.class)) {
+                if (StringUtils.isEmpty(value)) {
+                    return null;
+                }
+                DateTimeFormatter sdf = DateTimeFormatter.ofPattern(DATE_PATTERN);
+                try {
+                    return sdf.parse(value);
+                } catch (Exception e) {
+                    log.info("could not parse date '{}' with pattern {}", value, DATE_PATTERN);
+                }
+                return null;
             } else if (clazz.equals(Date.class)) {
                 if (StringUtils.isEmpty(value)) {
                     return null;

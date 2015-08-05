@@ -1,8 +1,8 @@
 package io.skysail.server.ext.apt.model.types;
 
-import javax.lang.model.element.Element;
+import io.skysail.server.restlet.resources.ListServerResource;
 
-import de.twenty11.skysail.server.core.restlet.ListServerResource;
+import javax.lang.model.element.Element;
 
 public class RootResourceModel extends JavaModel {
 

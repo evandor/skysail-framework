@@ -27,7 +27,7 @@ public class Updater {
         return runInTransaction(entity);
     }
 
-    protected <T> Object execute(Object entity) {
+    private <T> Object execute(Object entity) {
         //return db.save(entity);
         String id = ((Identifiable) entity).getId();
         Vertex vertex = db.getVertex(id);
@@ -61,7 +61,7 @@ public class Updater {
      * @param entity
      * @return
      */
-    protected <T> Object runInTransaction(Object entity) {
+    private <T> Object runInTransaction(Object entity) {
         try {
             Object result = execute(entity);
             db.commit();

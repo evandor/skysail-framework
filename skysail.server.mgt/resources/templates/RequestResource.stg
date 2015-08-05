@@ -1,0 +1,61 @@
+accordion(list) ::= <<
+
+      $list:{ element | $accordionGroup(element,i)$}$
+
+>>
+
+accordionGroup(element,i) ::= <<
+
+        <div>
+            <div >
+                    $table(element)$
+            </div>
+        </div>
+>>
+
+head(element)  ::= <<
+    <b>$element.name$</b>
+>>
+
+table(map)  ::= <<
+	<form action="?method=PUT" method="POST">
+    <table class='table table-hover table-bordered'>
+        <tr><th colspan=2 style='background-color:ligthgrey;'></th></tr>
+        $headers(map.headers)$
+        <!-- mapIteration(map) -->
+    </table>
+    </form>
+>>
+
+headers(h) ::= <<
+            $h:{ header | $showHeader(header)$}$
+>>
+
+showHeader(h) ::= <<
+            <tr><td style='width:200px;'><b>$header.name$</b></td><td>$header.value$</td></tr>
+>>
+
+mapIteration(map) ::= <<
+            $map.keys:{key| $asRow(map,key,i)$}$
+>>
+
+asRow(map,k,i)      ::= <<
+    <tr><td><b>$k$</b></td><td>$handleValue(k, map.(k))$</td></tr>
+>>
+
+handleValue(k, element) ::= <<
+    $if(rest(element))$
+      <ul>$element.keys:{key| $asList(element,key)$}$</ul>
+    $else$
+      $element;format=(k)$
+    $endif$
+>>
+
+asList(map,k) ::= <<
+    <li><b>$key$</b>: $element.(key)$</li>
+>>
+
+
+
+$! comment !$
+header(map)       ::= "<i class='icon-play'></i>&nbsp;<b>$map.serviceId$</b> [<b>$map.properties.objectClass$</b>]"

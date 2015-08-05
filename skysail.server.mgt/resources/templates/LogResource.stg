@@ -1,0 +1,57 @@
+accordion(list) ::= <<
+
+  <style>
+    #tail {
+      border: 1px dotted #eeeeee;
+      font-size: small;
+      font-family: Courier;
+      height: 600px;
+      width: 100%;
+      overflow: auto;
+    }
+  </style>
+
+  <div id='tail'></div>
+
+  <!--<button>Add Line</button>-->
+
+  <script src="/../static/js/jquery-1.9.1.js"></script>
+  
+  <script language='javascript'>
+  
+    tailScroll();
+  
+    \$('button').click(function(e) {
+        e.preventDefault();
+        \$('<div />').text('new line').appendTo('#tail');
+        tailScroll();
+    });
+  
+    function tailScroll() {
+        var height = \$('#tail').get(0).scrollHeight;
+        \$('#tail').animate({
+            scrollTop: height
+        }, 500);
+    }
+  
+    $list:{ element | $accordionGroup(element,i)$}$
+
+  </script>
+  
+>>
+
+accordionGroup(element,i) ::= <<
+  $if(element.debug)$
+    \$("<div style='color:#aaaaaa' />").text('$head(element)$').appendTo("#tail");
+  $elseif(element.info)$
+    \$("<div style='color:black'/>").text('$head(element)$').appendTo("#tail");
+  $elseif(element.error)$
+    \$("<div style='color:red'/>").text('$head(element)$').appendTo("#tail");
+  $else$
+    \$("<div style='color:orange'/>").text('$head(element)$').appendTo("#tail");
+  $endif$
+>>
+
+head(map)  ::= <<
+    $map.time$ $map.level$ $map.msg$
+>>

@@ -1,21 +1,15 @@
 package de.twenty11.skysail.server.db.orientdb.impl;
 
 import java.io.IOException;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import org.restlet.data.MediaType;
 import org.restlet.engine.converter.ConverterHelper;
 import org.restlet.engine.resource.VariantInfo;
-import org.restlet.representation.Representation;
-import org.restlet.representation.StringRepresentation;
-import org.restlet.representation.Variant;
+import org.restlet.representation.*;
 import org.restlet.resource.Resource;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.slf4j.*;
 
 import aQute.bnd.annotation.component.Component;
 import de.twenty11.skysail.server.services.OsgiConverterHelper;
@@ -23,7 +17,7 @@ import de.twenty11.skysail.server.services.OsgiConverterHelper;
 /**
  * A converter which creates a JSON representation out of a list of JSON
  * elements.
- * 
+ *
  * <p>
  * This is used when we don't have a list of entities which we want to convert
  * to JSON using Jackson, but if we already have a list of JSON strings, e.g.
@@ -32,7 +26,7 @@ import de.twenty11.skysail.server.services.OsgiConverterHelper;
  *
  */
 @Component
-public class OrientDbJsonConverter extends ConverterHelper implements OsgiConverterHelper {
+public class OrientDbJsonConverter extends ConverterHelper implements OsgiConverterHelper { // NO_UCM
 
     private static final Logger logger = LoggerFactory.getLogger(OrientDbJsonConverter.class);
 

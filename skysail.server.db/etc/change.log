@@ -1,0 +1,7 @@
+new in
+
+0.2.1
+-----
+
+ * small fix in OrientGraphDbService#findGraphs
+ * cleanups

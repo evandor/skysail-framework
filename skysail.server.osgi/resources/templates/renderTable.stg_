@@ -1,0 +1,20 @@
+renderTable(resource, source) ::= <<
+  <table>
+    <tr>
+        <th style="width:400px;">Symbolic Name</th>
+        <th style="width:200px;">Version</th>
+        <th style="width:200px;">State</th>
+        <th style="width:150px;">Last modified</th>
+    </tr>
+      $source:{ bundleDescriptor | $renderRow(bundleDescriptor,i)$}$
+  </table>
+>>
+
+renderRow(b,i) ::= <<
+  <tr>
+    <td>$b.symbolicName$</td>
+    <td>$b.version$</td>
+    <td>$b.state$</td>
+    <td><script>document.write(moment("$b.lastModifiedAsIso8601$").fromNow());</script></td>
+  </tr>
+>>

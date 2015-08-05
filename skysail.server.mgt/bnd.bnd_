@@ -1,0 +1,36 @@
+Bundle-Version: 0.1.20.${tstamp}
+Include-Resource: resources, templates=src;recursive:=true;filter:=*.st|*.stg
+-buildpath:  \
+	osgi.cmpn;version=5.0,\
+	osgi.core;version=5.0,\
+	skysail.api;version=${skysail.api.version},\
+	skysail.server;version=${skysail.server.version},\
+	de.twentyeleven.skysail.org.hamcrest.hamcrest-all-osgi;version=1.3,\
+	org.restlet;version=${restlet.version},\
+	slf4j.api;version=1.7.7,\
+	biz.aQute.bnd.annotation;version=2.3,\
+	com.springsource.org.junit;version=4.11,\
+	org.apache.commons.collections;version=3.2,\
+	javax.validation.api;version=1.1,\
+	org.mockito.mockito-core,\
+	com.google.guava;version=15.0,\
+	etm.core;version=1.2,\
+	etm.contrib;version=1.2,\
+	org.apache.commons.beanutils;version=1.9
+Service-Component: *
+Private-Package:  \
+	de.twenty11.skysail.server.mgt.peers,\
+	de.twenty11.skysail.server.mgt.performance,\
+	de.twenty11.skysail.server.mgt.time,\
+	de.twenty11.skysail.server.mgt.apps,\
+	de.twenty11.skysail.server.mgt.load,\
+	de.twenty11.skysail.server.mgt.jmx,\
+	de.twenty11.skysail.server.mgt.requests,\
+	de.twenty11.skysail.server.mgt.captures,\
+	de.twenty11.skysail.server.mgt.log,\
+	de.twenty11.skysail.server.mgt,\
+	de.twenty11.skysail.server.mgt.worker,\
+	de.twenty11.skysail.server.mgt.events
+#Import-Package: de.twenty11.unitprofile.agent;resolution:=optional,\
+#	*
+Bundle-Description: SKYSAIL :: server :: mgt

@@ -62,7 +62,7 @@ public class OrientGraphDbService extends AbstractOrientDbService implements DbS
     }
 
     @Deactivate
-    public void deactivate(ComponentContext context) {
+    public void deactivate(ComponentContext context) { // NO_UCD
         log.debug("activating {}", this.getClass().getName());
         stopDb();
         graphDbFactory = null;
@@ -226,11 +226,6 @@ public class OrientGraphDbService extends AbstractOrientDbService implements DbS
     }
 
     protected synchronized void stopDb() {
-        // OObjectDatabaseTx db =
-        // OObjectDatabasePool.global().acquire(getDbUrl(), "admin", "admin");
-        // if (db != null) {
-        // db.close();
-        // }
         started = false;
     }
 
@@ -249,16 +244,6 @@ public class OrientGraphDbService extends AbstractOrientDbService implements DbS
                 // Note that OrientGraphFactory does not implement Closeable
                 factory.close();
             }
-            // OObjectDatabaseTx db = new OObjectDatabaseTx(dbUrl);
-            // // OrientGraph db = new OrientGraph(dbUrl);
-            // if (!db.exists()) {
-            // log.info("creating new database with dbUrl '{}'", dbUrl);
-            // db.create();
-            //
-            // // graphDb.create();
-            // // OrientGraph db = new OrientGraph(graphDb);
-            //
-            // }
         }
     }
 
@@ -302,21 +287,6 @@ public class OrientGraphDbService extends AbstractOrientDbService implements DbS
     public void createUniqueIndex(Class<?> cls, String... fieldnames) {
         OObjectDatabaseTx db = getObjectDb();
         OClass oClass = db.getMetadata().getSchema().getClass(cls);
-        Set<String> properties = oClass.propertiesMap().keySet();
-        // boolean propertyMissing =
-        // Arrays.asList(fieldnames).stream().filter(field -> {
-        // if (!(properties.contains(field))) {
-        // log.error("cannot create index on non-existing property '" + field
-        // +"'");
-        // return true;
-        // }
-        // return false;
-        // }).findFirst().isPresent();
-        //
-        // if (!propertyMissing) {
-        // oClass.createIndex("compositeUniqueIndex", INDEX_TYPE.UNIQUE,
-        // fieldnames);
-        // }
 
         String indexName = "compositeUniqueIndexNameAndOwner";
         boolean indexExists = oClass.getIndexes().stream().filter(i -> {
@@ -326,7 +296,7 @@ public class OrientGraphDbService extends AbstractOrientDbService implements DbS
             return;
         }
         Arrays.stream(fieldnames).forEach(field -> {
-            // TODO need to get types reflectively
+                // TODO need to get types reflectively
                 createProperty(cls.getSimpleName(), field, OType.STRING);
             });
         oClass.createIndex(indexName, INDEX_TYPE.UNIQUE, fieldnames);
@@ -371,7 +341,6 @@ public class OrientGraphDbService extends AbstractOrientDbService implements DbS
     @Override
     public void update(ODocument doc) {
         ODatabaseDocumentTx documentDb = getDocumentDb();
-        //ODocument doc = new ODocument().fromMap(map);
         documentDb.save(doc);
         documentDb.commit();
 

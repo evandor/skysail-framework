@@ -1,0 +1,329 @@
+accordion(list) ::= <<
+
+   <style>
+     .chart rect {
+		   fill: steelblue;
+		 }
+		
+		 .chart text {
+		   fill: black;
+		   font: 10px sans-serif;
+		   text-anchor: end;
+		 }
+  </style>
+    
+  <script src="/../static/js/d3.v2.js"></script>
+  
+  <svg class="chart"></svg>
+  
+  <script type="text/javascript">
+  
+	function convertDate(d) {
+	  var date = d.split("-");
+	  jsonDate = new Date(date[0],date[1]-1,date[2]); //create a javasript Date object
+	  return jsonDate; // node Date(2013,01,01) returns 2013, Feb, 01 
+	}
+	
+	function drawFirstGraph() {
+	  var margin = [10, 100, 80, 140]; //top, bottom, left, right
+	  var containerWidth = document.getElementsByClassName('graph-container')[0].offsetWidth;
+	  var containerHeight = document.getElementsByTagName('body')[0].offsetHeight - 150;
+	  //w and h represent the size of actual graph
+	  var w = containerWidth - (margin[2] + margin[3]);
+	  var h = containerHeight - (margin[0] + margin[1]);
+	  aspect = containerWidth / containerHeight;
+	  var priceData = [];
+	  var difficultyData = [];
+	  var ratioData = [];
+	  var dates = [];
+
+  d3.csv('http:bitcointrends.herokuapp.com/fetch_graph_data', function (data) {
+    // csv is loaded into "data"
+    data.forEach(function (d) {
+      // prepare data as usable structures
+      priceData.push(d.Price);
+      difficultyData.push(d.Difficulty);
+      dates.push(d.Date);
+    });
+
+    // prepare difficulty/(price*1000) data
+    for (var i=0; i<priceData.length; i++) {
+      var ratio = difficultyData[i] / (priceData[i] * 1000);
+      ratioData.push(ratio);
+    }
+
+    var maxRatio = Math.max.apply(Math, ratioData);
+    var minDate = convertDate(dates[0]);
+    var maxDate = convertDate(dates[dates.length-1]);
+    var maxDifficulty = Math.max.apply(Math, difficultyData);
+    var maxPrice = Math.max.apply(Math, priceData);
+    var difficultyOverPrice = maxDifficulty/maxPrice;
+    var ratioOverPrice = maxRatio/maxPrice;
+
+    //create scales    
+    var x = d3.time.scale()
+      .domain([minDate, maxDate])
+      .range([0, w]);
+    var y1 = d3.scale.linear()
+      .domain([0, maxPrice])
+      .range([h, 0]);
+    var y2 = d3.scale.linear()
+      //.domain([0, difficultyData[difficultyData.length-1]])
+      .domain([0, maxDifficulty])
+      .range([h, 0]);
+    var y3 = d3.scale.linear()
+      .domain([0, maxRatio])
+      .range([h, 0]);
+
+    window.getPriceData = function () {
+      return priceData;
+    };
+
+    //make zoom
+    var zoomFirst = d3.behavior.zoom()
+      .x(x)
+      .y(y1)
+      .scaleExtent([0, 3])
+      .size([w, h])
+      //.center([w/2+200, h/2-200])
+      .on("zoom", zoomedFirst);
+
+    //make zoom
+    var zoomSecond = d3.behavior.zoom()
+      .x(x)
+      .y(y1)
+      .scaleExtent([0, 8])
+      .size([w, h])
+      .on("zoom", zoomedSecond);
+
+    //price line
+    var line1 = d3.svg.line()
+      .x(function(d, i) {
+        return x(convertDate(dates[i]));
+      })
+      .y(function(d) {
+        return y1(d);
+      });
+    //difficulty line
+    var line2 = d3.svg.line()
+      .x(function(d, i) {
+        return x(convertDate(dates[i]));
+      })
+      .y(function(d, i) {
+        return y2(d);
+      });
+    //price divided by difficulty line
+    var line3 = d3.svg.line()
+      // d is difficulty / (price*1000)
+      .x(function(d, i) {
+        return x(convertDate(dates[i]));
+      })
+      .y(function(d) {
+        return y3(d);
+      })
+
+    var svgContainer = d3.select(".graph-container").append("svg")
+      .attr("id", "firstGraph")
+      .attr("width", w + margin[2] + margin[3]) // labels are placed in the margins
+      .attr("height", h + margin[0] + margin[1])
+      .attr("viewBox", "0 0 "+(w+margin[2]+margin[3])+" "+containerHeight)
+      .attr("preserveAspectRation", "xMidYMid")
+      .append("svg:g")
+      .attr("transform", "translate(" + margin[2] + "," + margin[0] + ")") //origin at (marginLeft, marginTop)
+      .call(zoomFirst); 
+
+    //to zoom only inside the graph box
+    svgContainer.append("rect")
+      .attr("width", w)
+      .attr("height", h)
+      .attr("class", "plot");
+
+    //prevents path elements going out of the window
+    svgContainer.append("defs").append("clipPath")
+      .attr("id", "clip")
+      .append("rect")
+      .attr("width", w)
+      .attr("height", h);
+
+    var xAxis = d3.svg.axis().scale(x)
+      .tickSize(-h)
+      .tickSubdivide(true);
+
+    // draw x-axis (timeline)
+    svgContainer.append("svg:g")
+      .attr("class", "x axis")
+      .attr("transform", "translate(0," +(h)+ ")")
+      .call(xAxis);
+
+    svgContainer.append("text")
+      .attr("transform", "translate("+w/2+","+(h+50)+")")
+      .attr("class", "label-font")
+      .style("text-anchor", "middle")
+      .text("Date");
+
+    var yAxisLeft = d3.svg.axis().scale(y1)
+      .ticks(5)
+      .tickSize(-(w+15))
+      .orient("left");
+    
+    // draw left y-axis (weighted price)
+    svgContainer.append("svg:g")
+      .attr("class", "y axis axisLeft")
+      .attr("transform", "translate(-15,0)")
+      .call(yAxisLeft);
+
+    svgContainer.append("text")
+      .attr("transform", "translate(-65,"+(h/2)+") rotate(-90)")
+      .attr("class", "label-font")
+      .style("text-anchor", "middle")
+      .text("Weighted Price($)");
+
+    var yAxisRight = d3.svg.axis().scale(y2)
+      .ticks(5)
+      .orient("right");
+
+    // draw right y-axis (difficulty)
+    svgContainer.append("svg:g")
+      .attr("class", "y axis axisRight")
+      .attr("transform", "translate(" + (w) + ",0)")
+      .call(yAxisRight);
+
+    svgContainer.append("text")
+      .attr("transform", "translate("+(w+115)+","+(h/2)+") rotate(90)")
+      .attr("class", "label-font")
+      .style("text-anchor", "middle")
+      .text("Difficulty");
+
+    //draw price data line
+    var priceLine = svgContainer.append("path")
+      .attr("d", line1(priceData))
+      .attr("clip-path", "url(#clip)")
+      .attr("class", "price");
+    
+    //draw difficulty data line
+    var difficultyLine = svgContainer.append("path")
+      .attr("d", line2(difficultyData))
+      .attr("clip-path", "url(#clip)")
+      .attr("class", "difficulty");
+
+    //data labels
+    var dateText = svgContainer.append("svg:text")
+      .attr("x", 100)
+      .attr("y", 100)
+      .text("Date: ");
+    var priceText = svgContainer.append("svg:text")
+      .attr("x", 100)
+      .attr("y", 120)
+      .text("Price: ");
+    var difficultyText = svgContainer.append("svg:text")
+      .attr("x", 100)
+      .attr("y", 140)
+      .text("Difficulty: ");
+
+    //prepare priceline circles
+    svgContainer.selectAll("circle")
+      .data(priceData)
+      .enter()
+      .append("svg:circle")
+      .attr("r", 6)
+      .attr("class", function (d, i) {
+        return "price price-circle-"+i;
+      })
+      .style("fill", "none")
+      .style("stroke", "none")
+      .style("pointer-events", "all")
+      .on("mouseover", function (d, i) {
+        $(this).css("stroke", "steelblue");
+        $('.diff-circle-'+i).css("stroke", "orange");
+        dateText.text("Date: "+dates[i]);
+        difficultyText.text("Difficulty: "+ difficultyData[i]);
+        priceText.text("Price: $"+ d);
+      })
+      .on("mouseleave", function (d, i) {
+        $(this).css("stroke", "none");
+        $('.diff-circle-'+i).css("stroke", "none");
+        dateText.text("Date:");
+        difficultyText.text("Difficulty:");
+        priceText.text("Price:");
+      })
+      .attr("cx", function(d, i) {
+        return x(convertDate(dates[i]));
+      })
+      .attr("cy", function(d) { return y1(d); });
+
+    //prepare difficultyline circles
+    svgContainer.selectAll("circle")
+      //need to specify key function here to prevent overwriting
+      .data(difficultyData, function(d, i) { 
+        return d+i; })
+      .enter()
+      .append("svg:circle")
+      .attr("r", 6)
+      .attr("class", function (d, i) {
+        return "diff diff-circle-"+i;
+      })
+      .style("fill", "none")
+      .style("stroke", "none")
+      .style("pointer-events", "all")
+      .on("mouseover", function (d, i) {
+        $(this).css("stroke", "orange");
+        $('.price-circle-'+i).css("stroke", "steelblue");
+        dateText.text("Date: "+dates[i]);
+        difficultyText.text("Difficulty: "+ d);
+        priceText.text("Price: $"+ priceData[i]);
+      })
+      .on("mouseleave", function (d, i) {
+        $(this).css("stroke", "none");
+        $('.price-circle-'+i).css("stroke", "none");
+        dateText.text("Date:");
+        difficultyText.text("Difficulty:");
+        priceText.text("Price:");
+      })
+      .attr("cx", function(d, i) {
+        return x(convertDate(dates[i]));
+      })
+      .attr("cy", function(d) { return y2(d); });
+
+    function zoomedFirst() {
+      svgContainer.select(".x.axis").call(xAxis);
+      svgContainer.select(".y.axis.axisLeft").call(yAxisLeft);
+      // set y2's domain manually
+      y2.domain([y1.domain()[0]*difficultyOverPrice, y1.domain()[1]*difficultyOverPrice]);
+      svgContainer.select(".y.axis.axisRight").call(yAxisRight);
+      //
+      svgContainer.selectAll(".y.axis.axisRight").call(yAxisRight);
+      svgContainer.select(".price")
+        .attr("d", line1(priceData))
+        .attr("class", "price");
+      svgContainer.select(".difficulty")
+        .attr("d", line2(difficultyData))
+        .attr("class", "difficulty");
+
+      //redraw circles' positions on zoom
+      svgContainer.selectAll("circle.price")
+        .attr("cx", function(d, i) {
+          return x(convertDate(dates[i]));
+        })
+        .attr("cy", function(d) { 
+          return y1(d); });
+
+      svgContainer.selectAll("circle.diff")
+        .attr("cx", function(d, i) {
+          return x(convertDate(dates[i]));
+        })
+        .attr("cy", function(d) {
+          return y2(d); });
+    } // end of zoomedFirst function
+	
+			      
+  </script>
+ >>
+
+accordionGroup(element,i) ::= <<
+    $head(element)$
+>>
+
+head(map)  ::= <<
+    {"key":"$map.key$", "count":$map.count$},
+    
+>>

@@ -1,17 +1,14 @@
 package de.twenty11.skysail.server.db.orientdb.impl;
 
 import java.lang.reflect.Method;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import lombok.extern.slf4j.Slf4j;
 
 import org.apache.commons.beanutils.BeanUtils;
 
 import com.tinkerpop.blueprints.Vertex;
-import com.tinkerpop.blueprints.impls.orient.OrientGraph;
-import com.tinkerpop.blueprints.impls.orient.OrientVertex;
+import com.tinkerpop.blueprints.impls.orient.*;
 
 @Slf4j
 public class Persister {
@@ -28,7 +25,7 @@ public class Persister {
         return runInTransaction(entity);
     }
 
-    protected <T> Object execute(Object entity) {
+    private <T> Object execute(Object entity) {
         Vertex vertex = db.addVertex("class:" + entity.getClass().getSimpleName());
         try {
             Map<String, String> properties = BeanUtils.describe(entity);
@@ -64,12 +61,12 @@ public class Persister {
 
     /**
      * Template Method to make sure that the orient db is called correctly.
-     * 
+     *
      * @param db
      * @param entity
      * @return
      */
-    protected <T> Object runInTransaction(Object entity) {
+    private <T> Object runInTransaction(Object entity) {
         try {
             Vertex result = (Vertex)execute(entity);
             db.commit();

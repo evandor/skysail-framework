@@ -45,30 +45,34 @@ submitPut(label, o1,o2,tabindex) ::= <<
 >>
 
 handleField(data, field, messages,i, autofocus) ::= <<
-	$if (field.violationMessage)$
+    $handleInputField(data, field, messages,i, autofocus)$
+>>
+
+handleFieldOld(data, field, messages,i, autofocus) ::= <<
+    $if (field.violationMessage)$
         $handleConstraintViolationField(data, field, messages,i,autofocus)$
     $else$
         $handleInputField(data, field, messages,i, autofocus)$
     $endif$
 >>
 
-handleConstraintViolationField(source, formField, messages,i,autofocus) ::= <<
+handleConstraintViolationField(source, field, messages,i,autofocus) ::= <<
 
-    $if(formField.tagsInputType)$
-	    <div class='form-group has-error has-feedback'>
-	      $label("s2id_", formField)$
+    $if(field.tagsInputType)$
+1	    <div class='form-group has-error has-feedback'>
+	      $label("s2id_", field)$
 	      <div class='col-sm-10'>
-	        <input type = 'hidden' name = '$formField.name$' id = '$formField.name$' value='$formField.value$'  tabindex="$i$"/>
+	        <input type = 'hidden' name = '$field.name$' id = '$field.name$' value='$field.value$'  tabindex="$i$"/>
 	        <span class='glyphicon glyphicon-remove form-control-feedback' aria-hidden='true'></span>
 	        <small style='' class='help-block' data-bv-validator='notEmpty' data-bv-for='title' data-bv-result='INVALID'>
-	            $formField.violationMessage$
+	            $field.violationMessage$
 	        </small>
             $renderDescription(field,converter)$
 	      </div>
 	    </div>
     $elseif(field.selectionProvider)$
-        <div class='form-group'>
-          $label("", formField)$
+2        <div class='form-group'>
+          $label("", field)$
           <div class='col-sm-10'>
             <select name='$field.name$' tabindex="$i$">
                 $field.selectionProviderOptions.keys: {key | $options(field.selectionProviderOptions,key)$}$
@@ -78,12 +82,12 @@ handleConstraintViolationField(source, formField, messages,i,autofocus) ::= <<
         </div>
     $else$
 	    <div class='form-group has-error has-feedback'>
-	      $label("", formField)$
+	      $label("", field)$
 	      <div class='col-sm-10'>
-	        <input type="$formField.inputType$" class='form-control' name='$formField.name$' placeholder='' value='$formField.value$' tabindex="$i$">
+	        <input type="$field.inputType$" class='form-control' name='$field.name$' placeholder='' value='$field.value$' tabindex="$i$">
 	        <span class='glyphicon glyphicon-remove form-control-feedback' aria-hidden='true'></span>
 	        <small style='' class='help-block' data-bv-validator='notEmpty' data-bv-for='title' data-bv-result='INVALID'>
-	            $formField.violationMessage$
+	            $field.violationMessage$
 	        </small>
             $renderDescription(field,converter)$
 	      </div>
@@ -159,19 +163,15 @@ handleInputField(data, field, messages,i,autofocus) ::= <<
         	placeholder="$helpmessage(messages, field.placeholderKey)$"
         	description="$renderDescription(field,converter)$"
         	tabnr="$i$"
-        	label="$helpmessage(messages, field.nameKey)$">
+        	label="$helpmessage(messages, field.nameKey)$"
+            warning="$field.violationMessage$"
+          >
         </sky-form-text>
       $endif$
   $endif$
 >>
 
-renderDescription(field,converter) ::= <<
-  $if(messages.(field.messageKey))$
-    <small class="help-block">_$helpmessage(messages, field.messageKey)$ $editTextLink(field,converter)$</small>
-  $else$
-    $editTextLink(field,converter)$
-  $endif$
->>
+renderDescription(field,converter) ::= <<$helpmessage(messages, field.messageKey)$>>
 
 editTextLink(field,converter) ::= <<
   $if(converter.edit)$

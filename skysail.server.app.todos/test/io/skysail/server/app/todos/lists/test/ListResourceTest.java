@@ -15,7 +15,7 @@ public class ListResourceTest extends TodoListResourceTest {
         TodoList aList = createList();
 
         getAttributes().put(TodoApplication.LIST_ID, aList.getId());
-        listResource.init(null, request, responses.get(listResource.getClass().getName()));
+        init(listResource);
 
         SkysailResponse<TodoList> get = listResource.getEntity2(HTML_VARIANT);
 
@@ -29,8 +29,8 @@ public class ListResourceTest extends TodoListResourceTest {
     public void deletes_list_resource_if_empty() {
         TodoList aList = createList();
 
-        getAttributes().put(TodoApplication.LIST_ID, aList.getId());
-        listResource.init(null, request, responses.get(listResource.getClass().getName()));
+        setAttributes(TodoApplication.LIST_ID, aList.getId());
+        init(listResource);
 
         listResource.deleteEntity(HTML_VARIANT);
         assertThat(responses.get(listResource.getClass().getName()).getStatus(), is(equalTo(Status.SUCCESS_OK)));

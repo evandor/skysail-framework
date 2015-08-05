@@ -47,6 +47,7 @@ Include-Resource: resources, templates=src;recursive:=true;filter:=*.st|*.stg
 	com.orientechnologies.orientdb-object;version=${com.orientechnologies.orientdb.version},\
 	com.orientechnologies.orientdb-server;version=${com.orientechnologies.orientdb.version},\
 	com.orientechnologies.orientdb-tools;version=${com.orientechnologies.orientdb.version},\
+	com.orientechnologies.orientdb-object;version=${com.orientechnologies.orientdb.version},\
 	com.googlecode.concurrentlinkedhashmap.lru;version=1.4,\
 	com.fasterxml.jackson.core.jackson-core;version=2.4,\
 	com.fasterxml.jackson.core.jackson-databind;version=2.4,\

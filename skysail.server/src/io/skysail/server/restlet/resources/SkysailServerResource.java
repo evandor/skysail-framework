@@ -99,7 +99,7 @@ public abstract class SkysailServerResource<T> extends ServerResource {
                 }
                 DateTimeFormatter sdf = DateTimeFormatter.ofPattern(DATE_PATTERN);
                 try {
-                    return sdf.parse(value);
+                    return LocalDate.parse(value, sdf);
                 } catch (Exception e) {
                     log.info("could not parse date '{}' with pattern {}", value, DATE_PATTERN);
                 }

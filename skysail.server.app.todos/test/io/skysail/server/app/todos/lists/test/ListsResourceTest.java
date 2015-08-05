@@ -16,8 +16,7 @@ public class ListsResourceTest extends TodoListResourceTest {
     public void todoList_contains_created_todo_list() {
         TodoList aList = createList();
 
-        listsResource.init(null, request, responses.get(listsResource.getClass().getName()));
-
+        init(listsResource);
         List<TodoList> get = listsResource.getEntity();
 
         assertThat(responses.get(listsResource.getClass().getName()).getStatus(), is(equalTo(Status.SUCCESS_OK)));

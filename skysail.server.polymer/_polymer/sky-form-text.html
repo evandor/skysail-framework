@@ -16,6 +16,7 @@
         <template is="dom-if" if="{{isTextarea(type)}}">
           <textarea label="{{label}}" name='{{name}}' id='{{name}}' tabindex="{{tabnr}}" class='form-control' rows=5 >{{data}}</textarea>
         </template>
+      <span style="font-weight: lighter; color: red;">{{warning}}</span>
       <span style="font-weight: lighter;">{{description}}</span>
       </div>
     </div>
@@ -52,6 +53,10 @@
     	  tabnr: {
     		  type: Number,
     		  value: 1
+    	  },
+    	  warning: {
+    		  type: String,
+    		  value: "aaa"
     	  }
       },
       isInput: function(type) {

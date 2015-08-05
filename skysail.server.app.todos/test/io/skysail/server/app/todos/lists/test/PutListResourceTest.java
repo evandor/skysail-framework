@@ -6,27 +6,13 @@ import io.skysail.api.responses.SkysailResponse;
 import io.skysail.server.app.todos.*;
 import io.skysail.server.app.todos.repo.TodosRepository;
 
-import org.junit.*;
+import java.util.List;
 
-@Ignore
+import org.junit.Test;
+
+import com.tinkerpop.blueprints.impls.orient.OrientVertex;
+
 public class PutListResourceTest extends TodoListResourceTest {
-
-//    private TodoList aList;
-//
-//    @Before
-//    public void setUp() throws Exception {
-//        super.setUpFixture();
-//        super.setUpApplication(Mockito.mock(TodoApplication.class));
-//        super.setUpResource(putTodoResource);
-//        super.setUpResource(postTodoResource);
-//        super.setUpRepository(new TodosRepository());
-//        super.setUpSubject("admin");
-//
-//        new UniquePerOwnerValidator().setDbService(testDb);
-//
-//        aList = createList();
-//        getAttributes().clear();
-//    }
 
     @Test
     public void empty_form_data_yields_validation_failure() {
@@ -34,25 +20,24 @@ public class PutListResourceTest extends TodoListResourceTest {
 
         form.add("name", "");
         form.add("id", aList.getId());
-        getAttributes().put(TodoApplication.LIST_ID, aList.getId());
-        putListResource.init(null, request, responses.get(putListResource.getClass().getName()));
+        setAttributes(TodoApplication.LIST_ID, aList.getId());
+        init(putListResource);
 
         SkysailResponse<TodoList> skysailResponse = putListResource.put(form, HTML_VARIANT);
 
         assertValidationFailure(putListResource, skysailResponse,  "name", "size must be between");
     }
 
-//    @Test
-//    @Ignore
-//    public void empty_json_data_yields_validation_failure() {
-//        putTodoResource.getRequestAttributes().put(TodoApplication.LIST_ID, aList.getId());
-//        getAttributes().put(TodoApplication.LIST_ID, aList.getId());
-//        putTodoResource.init(null, request, response);
-//
-//        SkysailResponse<TodoList> skysailResponse = putTodoResource.put(new TodoList(), JSON_VARIANT);
-//
-//        assertValidationFailure(skysailResponse,  "name", "size must be between");
-//    }
+    @Test
+    public void empty_json_data_yields_validation_failure() {
+
+        init(putListResource);
+
+        TodoList updatedList = new TodoList();
+        SkysailResponse<TodoList> skysailResponse = putListResource.put(updatedList, JSON_VARIANT);
+
+        assertValidationFailure(putListResource, skysailResponse,  "name", "may not be null");
+    }
 
     @Test
     public void list_can_be_updated() {
@@ -60,17 +45,19 @@ public class PutListResourceTest extends TodoListResourceTest {
 
         form.add("name", "updated_list");
         form.add("desc", "description");
-        getAttributes().put(TodoApplication.LIST_ID, aList.getId());
-        putListResource.init(null, request, responses.get(putListResource.getClass().getName()));
+        putListResource.getRequestAttributes().put(TodoApplication.LIST_ID, aList.getId());
+        setAttributes(TodoApplication.LIST_ID, aList.getId());
+        init(putListResource);
 
         putListResource.put(form, HTML_VARIANT);
 
-        TodoList listFromDb = new TodosRepository().getById(TodoList.class, aList.getId());
+        List<OrientVertex> vertexById2 = (List<OrientVertex>) new TodosRepository().getVertexById(TodoList.class, aList.getId());
+        OrientVertex vertexById = vertexById2.get(0);
 
-        assertThat(listFromDb.getModified(), is(notNullValue()));
-        assertThat(listFromDb.getCreated(), is(not(nullValue())));
-        assertThat(listFromDb.getName(), is(equalTo("updated_list")));
-        assertThat(listFromDb.getDesc(), is(equalTo("description")));
+        assertThat(vertexById.getProperty("modified"), is(not(nullValue())));
+        assertThat(vertexById.getProperty("created"), is(not(nullValue())));
+        assertThat(vertexById.getProperty("name"), is(equalTo("updated_list")));
+        assertThat(vertexById.getProperty("desc"), is(equalTo("description")));
     }
 
 }

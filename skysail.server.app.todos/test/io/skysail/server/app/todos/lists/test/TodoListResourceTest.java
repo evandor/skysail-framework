@@ -80,5 +80,14 @@ public abstract class TodoListResourceTest extends ResourceTestBase {
         return post.getEntity();
     }
 
+    protected void init(SkysailServerResource<?> resource) {
+        resource.init(null, request, responses.get(resource.getClass().getName()));
+    }
+
+    protected void setAttributes(String name, String id) {
+        getAttributes().clear();
+        getAttributes().put(name, id);
+    }
+
 
 }

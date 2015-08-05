@@ -35,14 +35,15 @@ public class ResourceContext {
         Link ajaxTarget = LinkUtils.fromResource(application, cls);
         Link linkTarget = LinkUtils.fromResource(application, targetClass);
 
+        Reference originalRef = skysailServerResource.getOriginalRef();
         WebComponentCall call = WebComponentCall.builder()
                 .type("sky-ajax-get")
                 .id(id)
                 .title(title)
                 .identifier(identifier)
-                .requestUrl(skysailServerResource.getOriginalRef().getPath().toString())
+                .requestUrl(originalRef != null ? originalRef.getPath().toString() : null)
                 .url(ajaxTarget.getUri())
-                .linkTo(linkTarget.getUri())
+                .linkTo(linkTarget != null ? linkTarget.getUri() : null)
                 .build();
         navItems.add(call);
     }

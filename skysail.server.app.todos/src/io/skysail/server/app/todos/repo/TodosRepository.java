@@ -3,13 +3,18 @@ package io.skysail.server.app.todos.repo;
 import io.skysail.server.app.todos.TodoList;
 import io.skysail.server.app.todos.todos.Todo;
 import io.skysail.server.app.todos.todos.status.Status;
-import io.skysail.server.db.*;
+import io.skysail.server.db.DbRepository;
+import io.skysail.server.db.DbService2;
 import io.skysail.server.queryfilter.Filter;
 import io.skysail.server.queryfilter.pagination.Pagination;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
-import aQute.bnd.annotation.component.*;
+import aQute.bnd.annotation.component.Activate;
+import aQute.bnd.annotation.component.Component;
+import aQute.bnd.annotation.component.Reference;
 
 @Component(immediate = true, properties = "name=TodosRepository")
 public class TodosRepository implements DbRepository {
@@ -140,4 +145,5 @@ public class TodosRepository implements DbRepository {
     public Object getVertexById(Class<TodoList> cls, String id) {
         return dbService.findGraphs("SELECT FROM "+cls.getSimpleName()+" WHERE @rid="+id);
     }
+
 }

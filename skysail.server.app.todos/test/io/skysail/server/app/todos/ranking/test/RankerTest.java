@@ -14,7 +14,7 @@ import org.junit.*;
 import org.junit.rules.ExpectedException;
 
 public class RankerTest {
-    
+
     @Rule
     public ExpectedException thrown = ExpectedException.none();
     private List<Todo> referenceList;
@@ -58,16 +58,16 @@ public class RankerTest {
         todo.setDue(dueDate);
         todo.setImportance(i);
         todo.setStatus(status);
-        
+
         referenceList.add(todo);
-        
+
         return todo;
     }
 
     private Date nowPlusWeeks(int weeksOffset) {
         return Date.from(LocalDate.now().plusWeeks(weeksOffset).atStartOfDay().toInstant(ZoneOffset.MIN));
     }
-    
+
     private Date nowPlusWeeksAndDays(int weeksOffset, int dayOffset) {
         return Date.from(LocalDate.now().plusWeeks(weeksOffset).plusDays(dayOffset).atStartOfDay().toInstant(ZoneOffset.MIN));
     }

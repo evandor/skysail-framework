@@ -1,6 +1,7 @@
 package io.skysail.server.app.todos.todos.resources.test;
 
-import static org.hamcrest.Matchers.*;
+import static org.hamcrest.CoreMatchers.*;
+import static org.hamcrest.Matchers.greaterThan;
 import static org.junit.Assert.assertThat;
 import io.skysail.api.responses.*;
 import io.skysail.server.app.todos.*;

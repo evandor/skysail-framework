@@ -1,6 +1,6 @@
 package io.skysail.server.app.todos.lists.test;
 
-import static org.hamcrest.Matchers.*;
+import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.assertThat;
 import io.skysail.api.responses.SkysailResponse;
 import io.skysail.server.app.todos.*;
@@ -19,8 +19,8 @@ public class ListResourceTest extends TodoListResourceTest {
 
         SkysailResponse<TodoList> get = listResource.getEntity2(HTML_VARIANT);
 
-        assertThat(responses.get(listResource.getClass().getName()).getStatus(),is(equalTo(Status.SUCCESS_OK)));
-        assertThat(get.getEntity().getName(),is(equalTo(aList.getName())));
+        assertThat(responses.get(listResource.getClass().getName()).getStatus(), is(equalTo(Status.SUCCESS_OK)));
+        assertThat(get.getEntity().getName(), is(equalTo(aList.getName())));
         assertThat(get.getEntity().getCreated(), is(notNullValue()));
     }
 
@@ -33,10 +33,10 @@ public class ListResourceTest extends TodoListResourceTest {
         listResource.init(null, request, responses.get(listResource.getClass().getName()));
 
         listResource.deleteEntity(HTML_VARIANT);
-        assertThat(responses.get(listResource.getClass().getName()).getStatus(),is(equalTo(Status.SUCCESS_OK)));
+        assertThat(responses.get(listResource.getClass().getName()).getStatus(), is(equalTo(Status.SUCCESS_OK)));
 
         Object byId = repo.getById(TodoList.class, aList.getId());
-        assertThat(byId,is(nullValue()));
+        assertThat(byId, is(nullValue()));
     }
 
     @Test

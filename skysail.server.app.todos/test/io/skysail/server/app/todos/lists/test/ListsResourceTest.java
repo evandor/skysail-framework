@@ -1,6 +1,7 @@
 package io.skysail.server.app.todos.lists.test;
 
-import static org.hamcrest.Matchers.*;
+import static org.hamcrest.CoreMatchers.*;
+import static org.hamcrest.Matchers.greaterThanOrEqualTo;
 import static org.junit.Assert.assertThat;
 import io.skysail.server.app.todos.TodoList;
 
@@ -19,12 +20,13 @@ public class ListsResourceTest extends TodoListResourceTest {
 
         List<TodoList> get = listsResource.getEntity();
 
-        assertThat(responses.get(listsResource.getClass().getName()).getStatus(),is(equalTo(Status.SUCCESS_OK)));
-        assertThat(get.size(),is(greaterThanOrEqualTo(1)));
+        assertThat(responses.get(listsResource.getClass().getName()).getStatus(), is(equalTo(Status.SUCCESS_OK)));
+        assertThat(get.size(), is(greaterThanOrEqualTo(1)));
 
-        TodoList theList = get.stream().filter(list -> list.getName().equals(aList.getName())).findFirst().orElseThrow(IllegalStateException::new);
+        TodoList theList = get.stream().filter(list -> list.getName().equals(aList.getName())).findFirst()
+                .orElseThrow(IllegalStateException::new);
 
-        assertThat(theList.getName(),is(equalTo(aList.getName())));
+        assertThat(theList.getName(), is(equalTo(aList.getName())));
         assertThat(theList.getCreated(), is(notNullValue()));
     }
 

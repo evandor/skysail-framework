@@ -19,7 +19,7 @@ public class StatusTest {
     @Test
     public void testNextsOfNewStatus() {
         Status newStatus = Status.NEW;
-        assertThat(newStatus.getNexts().size(), is(3));
+        assertThat(newStatus.getNexts().size(), is(4));
         checkFollowUpStatuses(newStatus.getNexts());
     }
 

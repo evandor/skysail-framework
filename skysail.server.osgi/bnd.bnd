@@ -1,5 +1,5 @@
 Bundle-Name: SKYSAIL :: server :: osgi
-Bundle-Version: 0.0.18.${tstamp}
+Bundle-Version: 0.0.19.${tstamp}
 -buildpath:  \
 	osgi.cmpn;version=5.0,\
 	osgi.core;version=5.0,\

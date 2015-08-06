@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<repository increment="1438768577330" name="Release" xmlns="http://www.osgi.org/xmlns/repository/v1.0.0">
+<repository increment="1438837699804" name="Release" xmlns="http://www.osgi.org/xmlns/repository/v1.0.0">
   <resource>
     <capability namespace="osgi.identity">
       <attribute name="osgi.identity" value="skysail.api.documentation"/>
@@ -3825,6 +3825,101 @@
     </requirement>
     <requirement namespace="osgi.extender">
       <directive name="filter" value="(&amp;(osgi.extender=osgi.ds)(version&gt;=1.1.0)(!(version&gt;=2.0.0)))"/>
+      <directive name="effective" value="active"/>
+    </requirement>
+  </resource>
+  <resource>
+    <capability namespace="osgi.identity">
+      <attribute name="osgi.identity" value="skysail.server.osgi"/>
+      <attribute name="type" value="osgi.bundle"/>
+      <attribute name="version" type="Version" value="0.0.18.201508060508"/>
+    </capability>
+    <capability namespace="osgi.content">
+      <attribute name="osgi.content" value="a8c70a60c1243597893323b84b358c1bddbe386d17ea2b2f99fe67e7de0ff99e"/>
+      <attribute name="url" value="skysail.server.osgi/skysail.server.osgi-0.0.18.jar"/>
+      <attribute name="size" type="Long" value="47215"/>
+      <attribute name="mime" value="application/vnd.osgi.bundle"/>
+    </capability>
+    <capability namespace="osgi.wiring.bundle">
+      <attribute name="osgi.wiring.bundle" value="skysail.server.osgi"/>
+      <attribute name="bundle-version" type="Version" value="0.0.18.201508060508"/>
+    </capability>
+    <capability namespace="osgi.wiring.host">
+      <attribute name="osgi.wiring.host" value="skysail.server.osgi"/>
+      <attribute name="bundle-version" type="Version" value="0.0.18.201508060508"/>
+    </capability>
+    <capability namespace="osgi.service">
+      <attribute name="objectClass" type="List&lt;String&gt;" value="de.twenty11.skysail.server.app.ApplicationProvider,de.twenty11.skysail.server.services.MenuItemProvider"/>
+      <directive name="uses" value="de.twenty11.skysail.server.app,de.twenty11.skysail.server.services"/>
+    </capability>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(&amp;(osgi.wiring.package=com.google.common.base)(version&gt;=16.0.0)(!(version&gt;=17.0.0)))"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(&amp;(osgi.wiring.package=de.twenty11.skysail.server.app)(version&gt;=12.0.0)(!(version&gt;=13.0.0)))"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(&amp;(osgi.wiring.package=de.twenty11.skysail.server.core.restlet)(version&gt;=18.0.0)(!(version&gt;=19.0.0)))"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(&amp;(osgi.wiring.package=de.twenty11.skysail.server.services)(version&gt;=7.0.0)(!(version&gt;=7.1.0)))"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(&amp;(osgi.wiring.package=io.skysail.api.forms)(version&gt;=5.0.0)(!(version&gt;=6.0.0)))"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(&amp;(osgi.wiring.package=io.skysail.api.links)(version&gt;=2.0.0)(!(version&gt;=3.0.0)))"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(&amp;(osgi.wiring.package=io.skysail.api.responses)(version&gt;=16.0.0)(!(version&gt;=17.0.0)))"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(&amp;(osgi.wiring.package=io.skysail.server.app)(version&gt;=0.2.0)(!(version&gt;=1.0.0)))"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(&amp;(osgi.wiring.package=io.skysail.server.restlet.resources)(version&gt;=2.0.0)(!(version&gt;=3.0.0)))"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(&amp;(osgi.wiring.package=javax.persistence)(version&gt;=2.1.0)(!(version&gt;=3.0.0)))"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(&amp;(osgi.wiring.package=javax.validation)(version&gt;=1.1.0)(!(version&gt;=2.0.0)))"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(&amp;(osgi.wiring.package=javax.validation.spi)(version&gt;=1.1.0)(!(version&gt;=2.0.0)))"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(&amp;(osgi.wiring.package=org.hibernate.validator)(version&gt;=5.0.0)(!(version&gt;=6.0.0)))"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(&amp;(osgi.wiring.package=org.osgi.framework)(version&gt;=1.7.0)(!(version&gt;=2.0.0)))"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(&amp;(osgi.wiring.package=org.osgi.framework.wiring)(version&gt;=1.1.0)(!(version&gt;=2.0.0)))"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(&amp;(osgi.wiring.package=org.osgi.service.cm)(version&gt;=1.5.0)(!(version&gt;=2.0.0)))"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.restlet)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.restlet.data)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.restlet.representation)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.restlet.resource)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.restlet.security)"/>
+    </requirement>
+    <requirement namespace="osgi.ee">
+      <directive name="filter" value="(&amp;(osgi.ee=JavaSE)(version=1.8))"/>
+    </requirement>
+    <requirement namespace="osgi.extender">
+      <directive name="filter" value="(&amp;(osgi.extender=osgi.ds)(version&gt;=1.0.0)(!(version&gt;=2.0.0)))"/>
       <directive name="effective" value="active"/>
     </requirement>
   </resource>

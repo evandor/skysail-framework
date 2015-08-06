@@ -7,8 +7,6 @@ Private-Package:  \
 	skysail.api.documentation;version='[0.2,0.3)',\
 	skysail.api.favorites;version=${skysail.api.favorites.version},\
 	skysail.api.peers;version=${skysail.api.peers.version},\
-	skysail.client.todos.angularjs,\
-	skysail.server.app.todos;version=latest,\
 	skysail.server.app.designer;version=latest,\
     skysail.server.converter;version=${skysail.server.converter.version},\
 	skysail.server.documentation;version='[0.1,0.2)',\

@@ -27,14 +27,15 @@ public class PostSubEntityResource extends PostEntityServerResource<Entity> {
         addToContext(ResourceContextId.LINK_TITLE, "Create 1:n Relation");
         removeFromContext(ResourceContextId.LINK_GLYPH);
     }
-    
+
     @Override
     protected void doInit() throws ResourceException {
+        super.doInit();
         app = (DesignerApplication) getApplication();
         id = getAttribute("id");
         entityId = getAttribute(DesignerApplication.ENTITY_ID);
     }
-    
+
     @Override
     public Entity createEntityTemplate() {
         return new Entity();

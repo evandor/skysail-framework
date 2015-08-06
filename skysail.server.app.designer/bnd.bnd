@@ -51,6 +51,9 @@ Include-Resource: resources, templates=src;recursive:=true;filter:=*.st|*.stg
 	org.apache.commons.lang3;version=3.3,\
 	org.apache.commons.lang;version=2.6,\
 	org.apache.commons.collections;version=3.2,\
+	com.fasterxml.jackson.dataformat.jackson-dataformat-smile;version=2.5,\
+	com.fasterxml.jackson.dataformat.jackson-dataformat-xml;version=2.5,\
+	com.fasterxml.jackson.dataformat.jackson-dataformat-yaml;version=2.5,\
 	com.googlecode.concurrentlinkedhashmap.lru;version=1.4,\
 	com.fasterxml.jackson.core.jackson-core;version=2.4,\
 	com.fasterxml.jackson.core.jackson-databind;version=2.4,\

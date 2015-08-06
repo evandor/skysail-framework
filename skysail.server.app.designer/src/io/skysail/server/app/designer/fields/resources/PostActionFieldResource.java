@@ -20,9 +20,10 @@ public class PostActionFieldResource extends PostEntityServerResource<ActionEnti
     public PostActionFieldResource() {
         addToContext(ResourceContextId.LINK_TITLE, "create new Action Field");
     }
-    
+
     @Override
     protected void doInit() throws ResourceException {
+        super.doInit();
         app = (DesignerApplication) getApplication();
         id = getAttribute("id");
         entityId = getAttribute(DesignerApplication.ENTITY_ID);
@@ -40,11 +41,11 @@ public class PostActionFieldResource extends PostEntityServerResource<ActionEnti
         app.getRepository().update(entity);
         return new SkysailResponse<String>();
     }
-    
+
     @Override
     public String redirectTo() {
         return super.redirectTo(EntitiesResource.class);
     }
-    
+
 
 }

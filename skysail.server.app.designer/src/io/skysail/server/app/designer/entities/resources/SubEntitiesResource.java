@@ -20,14 +20,15 @@ public class SubEntitiesResource extends ListServerResource<Entity> {
     public SubEntitiesResource() {
         super(SubEntityResource.class);
     }
-    
+
     @Override
     protected void doInit() throws ResourceException {
+        super.doInit();
         app = (DesignerApplication) getApplication();
         id = getAttribute("id");
         entityId = getAttribute(DesignerApplication.ENTITY_ID);
     }
-    
+
     @Override
     public List<Entity> getEntity() {
         Application application = app.getRepository().getById(Application.class, id);
@@ -42,7 +43,7 @@ public class SubEntitiesResource extends ListServerResource<Entity> {
     public List<Link> getLinks() {
         return super.getLinks(PostEntityResource.class);
     }
-    
+
     @Override
     public Consumer<? super Link> getPathSubstitutions() {
         return l -> l.substitute("id", id).substitute(DesignerApplication.ENTITY_ID, entityId);

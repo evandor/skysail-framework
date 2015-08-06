@@ -22,6 +22,7 @@ public class PostFieldResource extends PostEntityServerResource<EntityField> {
 
     @Override
     protected void doInit() throws ResourceException {
+        super.doInit();
         app = (DesignerApplication) getApplication();
         id = getAttribute("id");
         entityId = getAttribute(DesignerApplication.ENTITY_ID);
@@ -39,7 +40,7 @@ public class PostFieldResource extends PostEntityServerResource<EntityField> {
         app.getRepository().update(entity);
         return new SkysailResponse<String>();
     }
-    
+
 
 //    @Override
 //    public Consumer<? super Link> getPathSubstitutions() {

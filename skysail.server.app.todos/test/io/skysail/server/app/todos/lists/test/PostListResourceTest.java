@@ -14,13 +14,13 @@ public class PostListResourceTest extends TodoListResourceTest {
     @Test
     public void empty_form_data_yields_validation_failure() {
         ConstraintViolationsResponse<?> post = (ConstraintViolationsResponse<?>) postListresource.post(form, HTML_VARIANT);
-        assertValidationFailure(postListresource, post,  "name", "may not be null");
+        assertSingleValidationFailure(postListresource, post,  "name", "may not be null");
     }
 
     @Test
     public void empty_json_data_yields_validation_failure() {
         ConstraintViolationsResponse<?> post = (ConstraintViolationsResponse<?>) postListresource.post(new TodoList(), JSON_VARIANT);
-        assertValidationFailure(postListresource, post, "name", "may not be null");
+        assertSingleValidationFailure(postListresource, post, "name", "may not be null");
     }
 
     @Test
@@ -42,7 +42,7 @@ public class PostListResourceTest extends TodoListResourceTest {
         form.add("name", "list2");
         postListresource.post(form, new VariantInfo(MediaType.TEXT_HTML));
         ConstraintViolationsResponse<?> post = (ConstraintViolationsResponse<?>) postListresource.post(form, HTML_VARIANT);
-        assertValidationFailure(postListresource, post,  "", "name already exists");
+        assertSingleValidationFailure(postListresource, post,  "", "name already exists");
     }
 
 }

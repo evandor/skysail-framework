@@ -22,6 +22,7 @@ public class PostApplicationResource extends PostEntityServerResource<Applicatio
 
     @Override
     protected void doInit() throws ResourceException {
+        super.doInit();
         app = (DesignerApplication) getApplication();
     }
 

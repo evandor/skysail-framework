@@ -23,6 +23,7 @@ public class EntitiesResource extends ListServerResource<Entity> {
 
     @Override
     protected void doInit() {
+        super.doInit();
         app = (DesignerApplication) getApplication();
         id = getAttribute("id");
         Application application = app.getRepository().getById(Application.class, id);

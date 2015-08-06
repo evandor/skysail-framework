@@ -1,0 +1,162 @@
+DEBUG d.t.skysail.server.db.orientdb.OrientGraphDbService - activating io.skysail.server.testsupport.TestDb
+DEBUG d.t.skysail.server.db.orientdb.OrientGraphDbService - ODB graph function [ine] is registered: [Syntax error: inE([<labels>])]
+DEBUG d.t.skysail.server.db.orientdb.OrientGraphDbService - ODB graph function [oute] is registered: [Syntax error: outE([<labels>])]
+DEBUG d.t.skysail.server.db.orientdb.OrientGraphDbService - ODB graph function [in] is registered: [Syntax error: in([<labels>])]
+DEBUG d.t.skysail.server.db.orientdb.OrientGraphDbService - ODB graph function [dijkstra] is registered: [dijkstra(<sourceVertex>, <destinationVertex>, <weightEdgeFieldName>, [<direction>])]
+DEBUG d.t.skysail.server.db.orientdb.OrientGraphDbService - ODB graph function [label] is registered: [Syntax error: label()]
+DEBUG d.t.skysail.server.db.orientdb.OrientGraphDbService - ODB graph function [bothv] is registered: [Syntax error: bothV([<labels>])]
+DEBUG d.t.skysail.server.db.orientdb.OrientGraphDbService - ODB graph function [out] is registered: [Syntax error: out([<labels>])]
+DEBUG d.t.skysail.server.db.orientdb.OrientGraphDbService - ODB graph function [both] is registered: [Syntax error: both([<labels>])]
+DEBUG d.t.skysail.server.db.orientdb.OrientGraphDbService - ODB graph function [inv] is registered: [Syntax error: inV([<labels>])]
+DEBUG d.t.skysail.server.db.orientdb.OrientGraphDbService - ODB graph function [gremlin] is registered: [gremlin(<gremlin-expression>)]
+DEBUG d.t.skysail.server.db.orientdb.OrientGraphDbService - ODB graph function [shortestpath] is registered: [shortestPath(<sourceVertex>, <destinationVertex>, [<direction>, [ <edgeTypeAsString> ]])]
+DEBUG d.t.skysail.server.db.orientdb.OrientGraphDbService - ODB graph function [outv] is registered: [Syntax error: outV([<labels>])]
+DEBUG d.t.skysail.server.db.orientdb.OrientGraphDbService - ODB graph function [bothe] is registered: [Syntax error: bothE([<labels>])]
+WARN  io.skysail.server.utils.LinkUtils - problem with linkheader for resource ApplicationsResource; no routeBuilder was found.
+WARN  io.skysail.server.utils.LinkUtils - problem with linkheader for resource ApplicationResource; no routeBuilder was found.
+DEBUG d.t.skysail.server.db.orientdb.OrientGraphDbService - registering class 'class io.skysail.server.app.designer.application.Application' @ orientDB
+DEBUG d.t.skysail.server.db.orientdb.OrientGraphDbService - registering class 'class io.skysail.server.app.designer.entities.Entity' @ orientDB
+DEBUG d.t.skysail.server.db.orientdb.OrientGraphDbService - registering class 'class io.skysail.server.app.designer.fields.EntityField' @ orientDB
+DEBUG d.t.skysail.server.db.orientdb.OrientGraphDbService - registering class 'class io.skysail.server.app.designer.fields.ActionEntityField' @ orientDB
+INFO  i.s.server.restlet.resources.PostEntityServerResource - Request entry point: PostApplicationResource$$EnhancerByMockitoWithCGLIB$$692f238 @Post('x-www-form-urlencoded:html|json|xml')
+INFO  i.s.server.restlet.resources.PostEntityServerResource - calling post(Form), media types '[]'
+DEBUG org.jboss.logging - Logging Provider: org.jboss.logging.Slf4jLoggerProvider
+INFO  org.hibernate.validator.internal.util.Version - HV000001: Hibernate Validator 5.0.1.Final
+DEBUG o.h.v.i.engine.resolver.DefaultTraversableResolver - Found javax.persistence.Persistence on classpath containing 'getPersistenceUtil'. Assuming JPA 2 environment. Trying to instantiate JPA aware TraversableResolver
+DEBUG o.h.v.i.engine.resolver.DefaultTraversableResolver - Instantiated JPA aware TraversableResolver of type org.hibernate.validator.internal.engine.resolver.JPATraversableResolver.
+DEBUG o.hibernate.validator.internal.xml.ValidationXmlParser - Trying to load META-INF/validation.xml for XML based Validator configuration.
+DEBUG o.hibernate.validator.internal.xml.ValidationXmlParser - No META-INF/validation.xml found. Using annotation based configuration only.
+DEBUG i.skysail.server.restlet.filter.ExceptionCatchingFilter - entering ExceptionCatchingFilter#doHandle
+DEBUG io.skysail.server.restlet.filter.AbstractResourceFilter - next filter in chain: ExtractStandardQueryParametersResourceFilter
+DEBUG io.skysail.server.restlet.filter.AbstractResourceFilter - next filter in chain: CheckInvalidInputFilter
+DEBUG i.skysail.server.restlet.filter.CheckInvalidInputFilter - entering CheckInvalidInputFilter#doHandle
+DEBUG io.skysail.server.restlet.filter.AbstractResourceFilter - next filter in chain: FormDataExtractingFilter
+DEBUG i.s.server.restlet.filter.FormDataExtractingFilter - entering FormDataExtractingFilter#doHandle
+DEBUG io.skysail.server.restlet.filter.AbstractResourceFilter - next filter in chain: CheckBusinessViolationsFilter
+DEBUG i.s.server.restlet.filter.CheckBusinessViolationsFilter - entering CheckBusinessViolationsFilter#doHandle
+DEBUG o.h.v.resourceloading.PlatformResourceBundleLocator - ValidationMessages not found.
+DEBUG o.h.v.resourceloading.PlatformResourceBundleLocator - org.hibernate.validator.ValidationMessages found.
+WARN  i.s.server.restlet.filter.CheckBusinessViolationsFilter - constraint violations found on Application(id=null, name=list2): [ConstraintViolationImpl{interpolatedMessage='may not be null', propertyPath=path, rootBeanClass=class io.skysail.server.app.designer.application.Application, messageTemplate='{javax.validation.constraints.NotNull.message}'}, ConstraintViolationImpl{interpolatedMessage='may not be null', propertyPath=projectName, rootBeanClass=class io.skysail.server.app.designer.application.Application, messageTemplate='{javax.validation.constraints.NotNull.message}'}, ConstraintViolationImpl{interpolatedMessage='may not be null', propertyPath=packageName, rootBeanClass=class io.skysail.server.app.designer.application.Application, messageTemplate='{javax.validation.constraints.NotNull.message}'}]
+INFO  i.s.server.restlet.filter.CheckBusinessViolationsFilter - found 3 business validation violation(s): [ConstraintViolationImpl{interpolatedMessage='may not be null', propertyPath=path, rootBeanClass=class io.skysail.server.app.designer.application.Application, messageTemplate='{javax.validation.constraints.NotNull.message}'}, ConstraintViolationImpl{interpolatedMessage='may not be null', propertyPath=projectName, rootBeanClass=class io.skysail.server.app.designer.application.Application, messageTemplate='{javax.validation.constraints.NotNull.message}'}, ConstraintViolationImpl{interpolatedMessage='may not be null', propertyPath=packageName, rootBeanClass=class io.skysail.server.app.designer.application.Application, messageTemplate='{javax.validation.constraints.NotNull.message}'}]
+INFO  io.skysail.server.restlet.filter.AbstractResourceFilter - stopping filter chain at filter CheckBusinessViolationsFilter
+INFO  i.s.server.restlet.resources.PostEntityServerResource - Request entry point: PostApplicationResource$$EnhancerByMockitoWithCGLIB$$692f238 @Post('x-www-form-urlencoded:html|json|xml')
+INFO  i.s.server.restlet.resources.PostEntityServerResource - calling post(Form), media types '[]'
+DEBUG o.h.v.i.engine.resolver.DefaultTraversableResolver - Found javax.persistence.Persistence on classpath containing 'getPersistenceUtil'. Assuming JPA 2 environment. Trying to instantiate JPA aware TraversableResolver
+DEBUG o.h.v.i.engine.resolver.DefaultTraversableResolver - Instantiated JPA aware TraversableResolver of type org.hibernate.validator.internal.engine.resolver.JPATraversableResolver.
+DEBUG o.hibernate.validator.internal.xml.ValidationXmlParser - Trying to load META-INF/validation.xml for XML based Validator configuration.
+DEBUG o.hibernate.validator.internal.xml.ValidationXmlParser - No META-INF/validation.xml found. Using annotation based configuration only.
+DEBUG i.skysail.server.restlet.filter.ExceptionCatchingFilter - entering ExceptionCatchingFilter#doHandle
+DEBUG io.skysail.server.restlet.filter.AbstractResourceFilter - next filter in chain: ExtractStandardQueryParametersResourceFilter
+DEBUG io.skysail.server.restlet.filter.AbstractResourceFilter - next filter in chain: CheckInvalidInputFilter
+DEBUG i.skysail.server.restlet.filter.CheckInvalidInputFilter - entering CheckInvalidInputFilter#doHandle
+DEBUG io.skysail.server.restlet.filter.AbstractResourceFilter - next filter in chain: FormDataExtractingFilter
+DEBUG i.s.server.restlet.filter.FormDataExtractingFilter - entering FormDataExtractingFilter#doHandle
+DEBUG io.skysail.server.restlet.filter.AbstractResourceFilter - next filter in chain: CheckBusinessViolationsFilter
+DEBUG i.s.server.restlet.filter.CheckBusinessViolationsFilter - entering CheckBusinessViolationsFilter#doHandle
+DEBUG o.h.v.resourceloading.PlatformResourceBundleLocator - ValidationMessages not found.
+DEBUG o.h.v.resourceloading.PlatformResourceBundleLocator - org.hibernate.validator.ValidationMessages found.
+WARN  i.s.server.restlet.filter.CheckBusinessViolationsFilter - constraint violations found on Application(id=null, name=list2): [ConstraintViolationImpl{interpolatedMessage='may not be null', propertyPath=packageName, rootBeanClass=class io.skysail.server.app.designer.application.Application, messageTemplate='{javax.validation.constraints.NotNull.message}'}, ConstraintViolationImpl{interpolatedMessage='may not be null', propertyPath=projectName, rootBeanClass=class io.skysail.server.app.designer.application.Application, messageTemplate='{javax.validation.constraints.NotNull.message}'}, ConstraintViolationImpl{interpolatedMessage='may not be null', propertyPath=path, rootBeanClass=class io.skysail.server.app.designer.application.Application, messageTemplate='{javax.validation.constraints.NotNull.message}'}]
+INFO  i.s.server.restlet.filter.CheckBusinessViolationsFilter - found 3 business validation violation(s): [ConstraintViolationImpl{interpolatedMessage='may not be null', propertyPath=packageName, rootBeanClass=class io.skysail.server.app.designer.application.Application, messageTemplate='{javax.validation.constraints.NotNull.message}'}, ConstraintViolationImpl{interpolatedMessage='may not be null', propertyPath=projectName, rootBeanClass=class io.skysail.server.app.designer.application.Application, messageTemplate='{javax.validation.constraints.NotNull.message}'}, ConstraintViolationImpl{interpolatedMessage='may not be null', propertyPath=path, rootBeanClass=class io.skysail.server.app.designer.application.Application, messageTemplate='{javax.validation.constraints.NotNull.message}'}]
+INFO  io.skysail.server.restlet.filter.AbstractResourceFilter - stopping filter chain at filter CheckBusinessViolationsFilter
+WARN  io.skysail.server.utils.LinkUtils - problem with linkheader for resource ApplicationsResource; no routeBuilder was found.
+WARN  io.skysail.server.utils.LinkUtils - problem with linkheader for resource ApplicationResource; no routeBuilder was found.
+DEBUG d.t.skysail.server.db.orientdb.OrientGraphDbService - registering class 'class io.skysail.server.app.designer.application.Application' @ orientDB
+DEBUG d.t.skysail.server.db.orientdb.OrientGraphDbService - registering class 'class io.skysail.server.app.designer.entities.Entity' @ orientDB
+DEBUG d.t.skysail.server.db.orientdb.OrientGraphDbService - registering class 'class io.skysail.server.app.designer.fields.EntityField' @ orientDB
+DEBUG d.t.skysail.server.db.orientdb.OrientGraphDbService - registering class 'class io.skysail.server.app.designer.fields.ActionEntityField' @ orientDB
+INFO  i.s.server.restlet.resources.PostEntityServerResource - Request entry point: PostApplicationResource$$EnhancerByMockitoWithCGLIB$$692f238 @Post('json')
+INFO  i.s.server.restlet.resources.PostEntityServerResource - Request entry point: PostApplicationResource$$EnhancerByMockitoWithCGLIB$$692f238 @Post('x-www-form-urlencoded:html|json|xml')
+INFO  i.s.server.restlet.resources.PostEntityServerResource - calling post(Form), media types '[]'
+DEBUG o.h.v.i.engine.resolver.DefaultTraversableResolver - Found javax.persistence.Persistence on classpath containing 'getPersistenceUtil'. Assuming JPA 2 environment. Trying to instantiate JPA aware TraversableResolver
+DEBUG o.h.v.i.engine.resolver.DefaultTraversableResolver - Instantiated JPA aware TraversableResolver of type org.hibernate.validator.internal.engine.resolver.JPATraversableResolver.
+DEBUG o.hibernate.validator.internal.xml.ValidationXmlParser - Trying to load META-INF/validation.xml for XML based Validator configuration.
+DEBUG o.hibernate.validator.internal.xml.ValidationXmlParser - No META-INF/validation.xml found. Using annotation based configuration only.
+DEBUG i.skysail.server.restlet.filter.ExceptionCatchingFilter - entering ExceptionCatchingFilter#doHandle
+DEBUG io.skysail.server.restlet.filter.AbstractResourceFilter - next filter in chain: ExtractStandardQueryParametersResourceFilter
+DEBUG io.skysail.server.restlet.filter.AbstractResourceFilter - next filter in chain: CheckInvalidInputFilter
+DEBUG i.skysail.server.restlet.filter.CheckInvalidInputFilter - entering CheckInvalidInputFilter#doHandle
+DEBUG io.skysail.server.restlet.filter.AbstractResourceFilter - next filter in chain: FormDataExtractingFilter
+DEBUG i.s.server.restlet.filter.FormDataExtractingFilter - entering FormDataExtractingFilter#doHandle
+DEBUG io.skysail.server.restlet.filter.AbstractResourceFilter - next filter in chain: CheckBusinessViolationsFilter
+DEBUG i.s.server.restlet.filter.CheckBusinessViolationsFilter - entering CheckBusinessViolationsFilter#doHandle
+DEBUG o.h.v.resourceloading.PlatformResourceBundleLocator - ValidationMessages not found.
+DEBUG o.h.v.resourceloading.PlatformResourceBundleLocator - org.hibernate.validator.ValidationMessages found.
+WARN  i.s.server.restlet.filter.CheckBusinessViolationsFilter - constraint violations found on Application(id=null, name=null): [ConstraintViolationImpl{interpolatedMessage='may not be null', propertyPath=name, rootBeanClass=class io.skysail.server.app.designer.application.Application, messageTemplate='{javax.validation.constraints.NotNull.message}'}, ConstraintViolationImpl{interpolatedMessage='may not be null', propertyPath=path, rootBeanClass=class io.skysail.server.app.designer.application.Application, messageTemplate='{javax.validation.constraints.NotNull.message}'}, ConstraintViolationImpl{interpolatedMessage='may not be null', propertyPath=packageName, rootBeanClass=class io.skysail.server.app.designer.application.Application, messageTemplate='{javax.validation.constraints.NotNull.message}'}, ConstraintViolationImpl{interpolatedMessage='may not be null', propertyPath=projectName, rootBeanClass=class io.skysail.server.app.designer.application.Application, messageTemplate='{javax.validation.constraints.NotNull.message}'}]
+INFO  i.s.server.restlet.filter.CheckBusinessViolationsFilter - found 4 business validation violation(s): [ConstraintViolationImpl{interpolatedMessage='may not be null', propertyPath=name, rootBeanClass=class io.skysail.server.app.designer.application.Application, messageTemplate='{javax.validation.constraints.NotNull.message}'}, ConstraintViolationImpl{interpolatedMessage='may not be null', propertyPath=path, rootBeanClass=class io.skysail.server.app.designer.application.Application, messageTemplate='{javax.validation.constraints.NotNull.message}'}, ConstraintViolationImpl{interpolatedMessage='may not be null', propertyPath=packageName, rootBeanClass=class io.skysail.server.app.designer.application.Application, messageTemplate='{javax.validation.constraints.NotNull.message}'}, ConstraintViolationImpl{interpolatedMessage='may not be null', propertyPath=projectName, rootBeanClass=class io.skysail.server.app.designer.application.Application, messageTemplate='{javax.validation.constraints.NotNull.message}'}]
+INFO  io.skysail.server.restlet.filter.AbstractResourceFilter - stopping filter chain at filter CheckBusinessViolationsFilter
+WARN  io.skysail.server.utils.LinkUtils - problem with linkheader for resource ApplicationsResource; no routeBuilder was found.
+WARN  io.skysail.server.utils.LinkUtils - problem with linkheader for resource ApplicationResource; no routeBuilder was found.
+DEBUG d.t.skysail.server.db.orientdb.OrientGraphDbService - registering class 'class io.skysail.server.app.designer.application.Application' @ orientDB
+DEBUG d.t.skysail.server.db.orientdb.OrientGraphDbService - registering class 'class io.skysail.server.app.designer.entities.Entity' @ orientDB
+DEBUG d.t.skysail.server.db.orientdb.OrientGraphDbService - registering class 'class io.skysail.server.app.designer.fields.EntityField' @ orientDB
+DEBUG d.t.skysail.server.db.orientdb.OrientGraphDbService - registering class 'class io.skysail.server.app.designer.fields.ActionEntityField' @ orientDB
+INFO  i.s.server.restlet.resources.PostEntityServerResource - Request entry point: PostApplicationResource$$EnhancerByMockitoWithCGLIB$$692f238 @Post('x-www-form-urlencoded:html|json|xml')
+INFO  i.s.server.restlet.resources.PostEntityServerResource - calling post(Form), media types '[]'
+DEBUG o.h.v.i.engine.resolver.DefaultTraversableResolver - Found javax.persistence.Persistence on classpath containing 'getPersistenceUtil'. Assuming JPA 2 environment. Trying to instantiate JPA aware TraversableResolver
+DEBUG o.h.v.i.engine.resolver.DefaultTraversableResolver - Instantiated JPA aware TraversableResolver of type org.hibernate.validator.internal.engine.resolver.JPATraversableResolver.
+DEBUG o.hibernate.validator.internal.xml.ValidationXmlParser - Trying to load META-INF/validation.xml for XML based Validator configuration.
+DEBUG o.hibernate.validator.internal.xml.ValidationXmlParser - No META-INF/validation.xml found. Using annotation based configuration only.
+DEBUG i.skysail.server.restlet.filter.ExceptionCatchingFilter - entering ExceptionCatchingFilter#doHandle
+DEBUG io.skysail.server.restlet.filter.AbstractResourceFilter - next filter in chain: ExtractStandardQueryParametersResourceFilter
+DEBUG io.skysail.server.restlet.filter.AbstractResourceFilter - next filter in chain: CheckInvalidInputFilter
+DEBUG i.skysail.server.restlet.filter.CheckInvalidInputFilter - entering CheckInvalidInputFilter#doHandle
+DEBUG io.skysail.server.restlet.filter.AbstractResourceFilter - next filter in chain: FormDataExtractingFilter
+DEBUG i.s.server.restlet.filter.FormDataExtractingFilter - entering FormDataExtractingFilter#doHandle
+DEBUG io.skysail.server.restlet.filter.AbstractResourceFilter - next filter in chain: CheckBusinessViolationsFilter
+DEBUG i.s.server.restlet.filter.CheckBusinessViolationsFilter - entering CheckBusinessViolationsFilter#doHandle
+DEBUG o.h.v.resourceloading.PlatformResourceBundleLocator - ValidationMessages not found.
+DEBUG o.h.v.resourceloading.PlatformResourceBundleLocator - org.hibernate.validator.ValidationMessages found.
+WARN  i.s.server.restlet.filter.CheckBusinessViolationsFilter - constraint violations found on Application(id=null, name=list1): [ConstraintViolationImpl{interpolatedMessage='may not be null', propertyPath=packageName, rootBeanClass=class io.skysail.server.app.designer.application.Application, messageTemplate='{javax.validation.constraints.NotNull.message}'}, ConstraintViolationImpl{interpolatedMessage='may not be null', propertyPath=projectName, rootBeanClass=class io.skysail.server.app.designer.application.Application, messageTemplate='{javax.validation.constraints.NotNull.message}'}, ConstraintViolationImpl{interpolatedMessage='may not be null', propertyPath=path, rootBeanClass=class io.skysail.server.app.designer.application.Application, messageTemplate='{javax.validation.constraints.NotNull.message}'}]
+INFO  i.s.server.restlet.filter.CheckBusinessViolationsFilter - found 3 business validation violation(s): [ConstraintViolationImpl{interpolatedMessage='may not be null', propertyPath=packageName, rootBeanClass=class io.skysail.server.app.designer.application.Application, messageTemplate='{javax.validation.constraints.NotNull.message}'}, ConstraintViolationImpl{interpolatedMessage='may not be null', propertyPath=projectName, rootBeanClass=class io.skysail.server.app.designer.application.Application, messageTemplate='{javax.validation.constraints.NotNull.message}'}, ConstraintViolationImpl{interpolatedMessage='may not be null', propertyPath=path, rootBeanClass=class io.skysail.server.app.designer.application.Application, messageTemplate='{javax.validation.constraints.NotNull.message}'}]
+INFO  io.skysail.server.restlet.filter.AbstractResourceFilter - stopping filter chain at filter CheckBusinessViolationsFilter
+WARN  io.skysail.server.utils.LinkUtils - problem with linkheader for resource ApplicationsResource; no routeBuilder was found.
+WARN  io.skysail.server.utils.LinkUtils - problem with linkheader for resource ApplicationResource; no routeBuilder was found.
+DEBUG d.t.skysail.server.db.orientdb.OrientGraphDbService - registering class 'class io.skysail.server.app.designer.application.Application' @ orientDB
+DEBUG d.t.skysail.server.db.orientdb.OrientGraphDbService - registering class 'class io.skysail.server.app.designer.entities.Entity' @ orientDB
+DEBUG d.t.skysail.server.db.orientdb.OrientGraphDbService - registering class 'class io.skysail.server.app.designer.fields.EntityField' @ orientDB
+DEBUG d.t.skysail.server.db.orientdb.OrientGraphDbService - registering class 'class io.skysail.server.app.designer.fields.ActionEntityField' @ orientDB
+INFO  i.s.server.restlet.resources.PostEntityServerResource - Request entry point: PostApplicationResource$$EnhancerByMockitoWithCGLIB$$692f238 @Post('x-www-form-urlencoded:html|json|xml')
+INFO  i.s.server.restlet.resources.PostEntityServerResource - calling post(Form), media types '[]'
+DEBUG o.h.v.i.engine.resolver.DefaultTraversableResolver - Found javax.persistence.Persistence on classpath containing 'getPersistenceUtil'. Assuming JPA 2 environment. Trying to instantiate JPA aware TraversableResolver
+DEBUG o.h.v.i.engine.resolver.DefaultTraversableResolver - Instantiated JPA aware TraversableResolver of type org.hibernate.validator.internal.engine.resolver.JPATraversableResolver.
+DEBUG o.hibernate.validator.internal.xml.ValidationXmlParser - Trying to load META-INF/validation.xml for XML based Validator configuration.
+DEBUG o.hibernate.validator.internal.xml.ValidationXmlParser - No META-INF/validation.xml found. Using annotation based configuration only.
+DEBUG i.skysail.server.restlet.filter.ExceptionCatchingFilter - entering ExceptionCatchingFilter#doHandle
+DEBUG io.skysail.server.restlet.filter.AbstractResourceFilter - next filter in chain: ExtractStandardQueryParametersResourceFilter
+DEBUG io.skysail.server.restlet.filter.AbstractResourceFilter - next filter in chain: CheckInvalidInputFilter
+DEBUG i.skysail.server.restlet.filter.CheckInvalidInputFilter - entering CheckInvalidInputFilter#doHandle
+DEBUG io.skysail.server.restlet.filter.AbstractResourceFilter - next filter in chain: FormDataExtractingFilter
+DEBUG i.s.server.restlet.filter.FormDataExtractingFilter - entering FormDataExtractingFilter#doHandle
+DEBUG io.skysail.server.restlet.filter.AbstractResourceFilter - next filter in chain: CheckBusinessViolationsFilter
+DEBUG i.s.server.restlet.filter.CheckBusinessViolationsFilter - entering CheckBusinessViolationsFilter#doHandle
+DEBUG o.h.v.resourceloading.PlatformResourceBundleLocator - ValidationMessages not found.
+DEBUG o.h.v.resourceloading.PlatformResourceBundleLocator - org.hibernate.validator.ValidationMessages found.
+WARN  i.s.server.restlet.filter.CheckBusinessViolationsFilter - constraint violations found on Application(id=null, name=null): [ConstraintViolationImpl{interpolatedMessage='may not be null', propertyPath=name, rootBeanClass=class io.skysail.server.app.designer.application.Application, messageTemplate='{javax.validation.constraints.NotNull.message}'}, ConstraintViolationImpl{interpolatedMessage='may not be null', propertyPath=projectName, rootBeanClass=class io.skysail.server.app.designer.application.Application, messageTemplate='{javax.validation.constraints.NotNull.message}'}, ConstraintViolationImpl{interpolatedMessage='may not be null', propertyPath=path, rootBeanClass=class io.skysail.server.app.designer.application.Application, messageTemplate='{javax.validation.constraints.NotNull.message}'}, ConstraintViolationImpl{interpolatedMessage='may not be null', propertyPath=packageName, rootBeanClass=class io.skysail.server.app.designer.application.Application, messageTemplate='{javax.validation.constraints.NotNull.message}'}]
+INFO  i.s.server.restlet.filter.CheckBusinessViolationsFilter - found 4 business validation violation(s): [ConstraintViolationImpl{interpolatedMessage='may not be null', propertyPath=name, rootBeanClass=class io.skysail.server.app.designer.application.Application, messageTemplate='{javax.validation.constraints.NotNull.message}'}, ConstraintViolationImpl{interpolatedMessage='may not be null', propertyPath=projectName, rootBeanClass=class io.skysail.server.app.designer.application.Application, messageTemplate='{javax.validation.constraints.NotNull.message}'}, ConstraintViolationImpl{interpolatedMessage='may not be null', propertyPath=path, rootBeanClass=class io.skysail.server.app.designer.application.Application, messageTemplate='{javax.validation.constraints.NotNull.message}'}, ConstraintViolationImpl{interpolatedMessage='may not be null', propertyPath=packageName, rootBeanClass=class io.skysail.server.app.designer.application.Application, messageTemplate='{javax.validation.constraints.NotNull.message}'}]
+INFO  io.skysail.server.restlet.filter.AbstractResourceFilter - stopping filter chain at filter CheckBusinessViolationsFilter
+WARN  io.skysail.server.utils.LinkUtils - problem with linkheader for resource ApplicationsResource; no routeBuilder was found.
+WARN  io.skysail.server.utils.LinkUtils - problem with linkheader for resource ApplicationResource; no routeBuilder was found.
+DEBUG d.t.skysail.server.db.orientdb.OrientGraphDbService - registering class 'class io.skysail.server.app.designer.application.Application' @ orientDB
+DEBUG d.t.skysail.server.db.orientdb.OrientGraphDbService - registering class 'class io.skysail.server.app.designer.entities.Entity' @ orientDB
+DEBUG d.t.skysail.server.db.orientdb.OrientGraphDbService - registering class 'class io.skysail.server.app.designer.fields.EntityField' @ orientDB
+DEBUG d.t.skysail.server.db.orientdb.OrientGraphDbService - registering class 'class io.skysail.server.app.designer.fields.ActionEntityField' @ orientDB
+INFO  i.s.server.restlet.resources.PostEntityServerResource - Request entry point: PostApplicationResource$$EnhancerByMockitoWithCGLIB$$692f238 @Post('json')
+INFO  i.s.server.restlet.resources.PostEntityServerResource - Request entry point: PostApplicationResource$$EnhancerByMockitoWithCGLIB$$692f238 @Post('x-www-form-urlencoded:html|json|xml')
+INFO  i.s.server.restlet.resources.PostEntityServerResource - calling post(Form), media types '[]'
+DEBUG o.h.v.i.engine.resolver.DefaultTraversableResolver - Found javax.persistence.Persistence on classpath containing 'getPersistenceUtil'. Assuming JPA 2 environment. Trying to instantiate JPA aware TraversableResolver
+DEBUG o.h.v.i.engine.resolver.DefaultTraversableResolver - Instantiated JPA aware TraversableResolver of type org.hibernate.validator.internal.engine.resolver.JPATraversableResolver.
+DEBUG o.hibernate.validator.internal.xml.ValidationXmlParser - Trying to load META-INF/validation.xml for XML based Validator configuration.
+DEBUG o.hibernate.validator.internal.xml.ValidationXmlParser - No META-INF/validation.xml found. Using annotation based configuration only.
+DEBUG i.skysail.server.restlet.filter.ExceptionCatchingFilter - entering ExceptionCatchingFilter#doHandle
+DEBUG io.skysail.server.restlet.filter.AbstractResourceFilter - next filter in chain: ExtractStandardQueryParametersResourceFilter
+DEBUG io.skysail.server.restlet.filter.AbstractResourceFilter - next filter in chain: CheckInvalidInputFilter
+DEBUG i.skysail.server.restlet.filter.CheckInvalidInputFilter - entering CheckInvalidInputFilter#doHandle
+DEBUG io.skysail.server.restlet.filter.AbstractResourceFilter - next filter in chain: FormDataExtractingFilter
+DEBUG i.s.server.restlet.filter.FormDataExtractingFilter - entering FormDataExtractingFilter#doHandle
+DEBUG io.skysail.server.restlet.filter.AbstractResourceFilter - next filter in chain: CheckBusinessViolationsFilter
+DEBUG i.s.server.restlet.filter.CheckBusinessViolationsFilter - entering CheckBusinessViolationsFilter#doHandle
+DEBUG o.h.v.resourceloading.PlatformResourceBundleLocator - ValidationMessages not found.
+DEBUG o.h.v.resourceloading.PlatformResourceBundleLocator - org.hibernate.validator.ValidationMessages found.
+WARN  i.s.server.restlet.filter.CheckBusinessViolationsFilter - constraint violations found on Application(id=null, name=jsonList1): [ConstraintViolationImpl{interpolatedMessage='may not be null', propertyPath=packageName, rootBeanClass=class io.skysail.server.app.designer.application.Application, messageTemplate='{javax.validation.constraints.NotNull.message}'}, ConstraintViolationImpl{interpolatedMessage='may not be null', propertyPath=projectName, rootBeanClass=class io.skysail.server.app.designer.application.Application, messageTemplate='{javax.validation.constraints.NotNull.message}'}, ConstraintViolationImpl{interpolatedMessage='may not be null', propertyPath=path, rootBeanClass=class io.skysail.server.app.designer.application.Application, messageTemplate='{javax.validation.constraints.NotNull.message}'}]
+INFO  i.s.server.restlet.filter.CheckBusinessViolationsFilter - found 3 business validation violation(s): [ConstraintViolationImpl{interpolatedMessage='may not be null', propertyPath=packageName, rootBeanClass=class io.skysail.server.app.designer.application.Application, messageTemplate='{javax.validation.constraints.NotNull.message}'}, ConstraintViolationImpl{interpolatedMessage='may not be null', propertyPath=projectName, rootBeanClass=class io.skysail.server.app.designer.application.Application, messageTemplate='{javax.validation.constraints.NotNull.message}'}, ConstraintViolationImpl{interpolatedMessage='may not be null', propertyPath=path, rootBeanClass=class io.skysail.server.app.designer.application.Application, messageTemplate='{javax.validation.constraints.NotNull.message}'}]
+INFO  io.skysail.server.restlet.filter.AbstractResourceFilter - stopping filter chain at filter CheckBusinessViolationsFilter

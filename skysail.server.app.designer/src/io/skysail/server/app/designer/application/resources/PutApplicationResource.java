@@ -25,7 +25,7 @@ public class PutApplicationResource extends PutEntityServerResource<Application>
         app.getRepository().update(entity);
         return new SkysailResponse<String>();
     }
-    
+
     @Override
     public String redirectTo() {
         return super.redirectTo(ApplicationsResource.class);

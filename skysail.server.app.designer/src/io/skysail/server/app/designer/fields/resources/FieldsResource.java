@@ -7,10 +7,7 @@ import io.skysail.server.app.designer.entities.Entity;
 import io.skysail.server.app.designer.fields.EntityField;
 import io.skysail.server.restlet.resources.ListServerResource;
 
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.function.Consumer;
 
 import de.twenty11.skysail.server.core.restlet.ResourceContextId;
@@ -24,13 +21,14 @@ public class FieldsResource extends ListServerResource<EntityField> {
     public FieldsResource() {
         super(FieldResource.class);
     }
-    
+
     @Override
     protected void doInit() {
+        super.doInit();
         app = (DesignerApplication) getApplication();
         id = getAttribute("id");
         entityId = getAttribute(DesignerApplication.ENTITY_ID);
-        
+
         Application application = app.getRepository().getById(Application.class, id);
         Map<String, String> substitutions = new HashMap<>();
         substitutions.put("/applications/" + id, application.getName());
@@ -48,7 +46,7 @@ public class FieldsResource extends ListServerResource<EntityField> {
         }
         return Collections.emptyList();
     }
-    
+
     @Override
     public List<Link> getLinks() {
         return super.getLinks(PostFieldResource.class, PostActionFieldResource.class);

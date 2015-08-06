@@ -32,13 +32,13 @@ public class PostSpaceResourceTest extends WikiPostOrPutResourceTest {
     @Test
     public void empty_html_form_yields_validation_failure() {
         ConstraintViolationsResponse<?> post = (ConstraintViolationsResponse<?>) resource.post(form, new VariantInfo(MediaType.TEXT_HTML));
-        assertValidationFailure(resource, post,  "name", "may not be null");
+        assertSingleValidationFailure(resource, post,  "name", "may not be null");
     }
 
     @Test
     public void empty_json_request_yields_validation_failure() {
         ConstraintViolationsResponse<?> post = (ConstraintViolationsResponse<?>) resource.post(new Space(), new VariantInfo(MediaType.APPLICATION_JSON));
-        assertValidationFailure(resource, post, "name", "may not be null");
+        assertSingleValidationFailure(resource, post, "name", "may not be null");
     }
 
     @Test
@@ -60,7 +60,7 @@ public class PostSpaceResourceTest extends WikiPostOrPutResourceTest {
         form.add("name", "space_" + randomString());
         resource.post(form, new VariantInfo(MediaType.TEXT_HTML));
         ConstraintViolationsResponse<?> post = (ConstraintViolationsResponse<?>) resource.post(form, new VariantInfo(MediaType.TEXT_HTML));
-        assertValidationFailure(resource, post,  "", "name already exists");
+        assertSingleValidationFailure(resource, post,  "", "name already exists");
     }
 
 

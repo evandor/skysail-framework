@@ -21,6 +21,7 @@ public class ApplicationsResource extends ListServerResource<Application> {
 
     @Override
     protected void doInit() {
+        super.doInit();
         app = (DesignerApplication) getApplication();
         getResourceContext().addAjaxNavigation("ajax", "Applications:", ApplicationsResource.class, ApplicationResource.class, "id");
     }

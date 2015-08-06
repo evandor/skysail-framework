@@ -25,7 +25,7 @@ public class PutListResourceTest extends TodoListResourceTest {
 
         SkysailResponse<TodoList> skysailResponse = putListResource.put(form, HTML_VARIANT);
 
-        assertValidationFailure(putListResource, skysailResponse,  "name", "size must be between");
+        assertSingleValidationFailure(putListResource, skysailResponse,  "name", "size must be between");
     }
 
     @Test
@@ -36,7 +36,7 @@ public class PutListResourceTest extends TodoListResourceTest {
         TodoList updatedList = new TodoList();
         SkysailResponse<TodoList> skysailResponse = putListResource.put(updatedList, JSON_VARIANT);
 
-        assertValidationFailure(putListResource, skysailResponse,  "name", "may not be null");
+        assertSingleValidationFailure(putListResource, skysailResponse,  "name", "may not be null");
     }
 
     @Test

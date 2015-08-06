@@ -24,6 +24,7 @@ public class PostEntityResource extends PostEntityServerResource<Entity> {
 
     @Override
     protected void doInit() throws ResourceException {
+        super.doInit();
         app = (DesignerApplication) getApplication();
         id = getAttribute("id");
     }
@@ -45,7 +46,7 @@ public class PostEntityResource extends PostEntityServerResource<Entity> {
     public String redirectTo() {
         return super.redirectTo(EntitiesResource.class);
     }
-    
+
     @Override
     public Consumer<? super Link> getPathSubstitutions() {
         return l -> l.substitute("id", id);

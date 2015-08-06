@@ -30,7 +30,7 @@ public class PostTodoResourceTest extends AbstractTodoResourceTest {
         form.add("title", "");
         form.add("list", aList.getId());
         SkysailResponse<Todo> post = postTodoResource.post(form, HTML_VARIANT);
-        assertValidationFailure(postTodoResource, post, "title", "size must be between");
+        assertSingleValidationFailure(postTodoResource, post, "title", "size must be between");
     }
 
     @Test
@@ -40,7 +40,7 @@ public class PostTodoResourceTest extends AbstractTodoResourceTest {
         getAttributes().clear();
         ConstraintViolationsResponse<?> post = (ConstraintViolationsResponse<?>) postTodoResource.post(form,
                 HTML_VARIANT);
-        assertValidationFailure(postTodoResource, post, "parent", "This list does not exist or has another owner");
+        assertSingleValidationFailure(postTodoResource, post, "parent", "This list does not exist or has another owner");
     }
 
     @Test
@@ -51,7 +51,7 @@ public class PostTodoResourceTest extends AbstractTodoResourceTest {
         form.add("startDate", "2100-12-30");
 
         SkysailResponse<Todo> post = postTodoResource.post(form, HTML_VARIANT);
-        assertValidationFailure(postTodoResource, post, "", "the start date must be before the due date");
+        assertSingleValidationFailure(postTodoResource, post, "", "the start date must be before the due date");
     }
 
     @Test

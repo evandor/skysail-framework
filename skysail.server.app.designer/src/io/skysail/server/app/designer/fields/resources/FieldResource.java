@@ -16,6 +16,7 @@ public class FieldResource extends EntityServerResource<EntityField> {
     private DesignerApplication app;
 
     protected void doInit() {
+        super.doInit();
         appId = getAttribute("id");
         entityId = getAttribute(DesignerApplication.ENTITY_ID);
         fieldId = getAttribute(DesignerApplication.FIELD_ID);

@@ -25,6 +25,7 @@ public class ApplicationResource extends EntityServerResource<Application> {
 
     @Override
     protected void doInit() throws ResourceException {
+        super.doInit();
         id = getAttribute("id");
         app = (DesignerApplication) getApplication();
     }

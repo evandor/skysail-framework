@@ -1,7 +1,6 @@
 package io.skysail.server.testsupport;
 
-import static org.hamcrest.CoreMatchers.*;
-import static org.hamcrest.Matchers.containsString;
+import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.assertThat;
 import io.skysail.api.responses.*;
 import io.skysail.api.validation.*;
@@ -197,7 +196,7 @@ public class ResourceTestBase {
         return new BigInteger(130, random).toString(32);
     }
 
-    protected void assertValidationFailure(SkysailServerResource<?> resource, SkysailResponse<?> post, String path, String msg) {
+    protected void assertSingleValidationFailure(SkysailServerResource<?> resource, SkysailResponse<?> post, String path, String msg) {
         ConstraintViolationsResponse<?> skysailReponse = (ConstraintViolationsResponse<?>) post;
         assertThat(responses.get(resource.getClass().getName()).getStatus(), is(equalTo(Status.CLIENT_ERROR_BAD_REQUEST)));
         assertThat(responses.get(resource.getClass().getName()).getHeaders().getFirst("X-Status-Reason").getValue(), is(equalTo("Validation failed")));
@@ -206,6 +205,13 @@ public class ResourceTestBase {
                 .next();
         assertThat(violation.getPropertyPath(), containsString(path));
         assertThat(violation.getMessage(), is(containsString(msg)));
+    }
+
+    protected void assertValidationFailure(SkysailServerResource<?> resource, SkysailResponse<?> response) {
+        ConstraintViolationsResponse<?> skysailReponse = (ConstraintViolationsResponse<?>) response;
+        assertThat(responses.get(resource.getClass().getName()).getStatus(), is(equalTo(Status.CLIENT_ERROR_BAD_REQUEST)));
+        assertThat(responses.get(resource.getClass().getName()).getHeaders().getFirst("X-Status-Reason").getValue(), is(equalTo("Validation failed")));
+        assertThat(skysailReponse.getViolations().size(), greaterThanOrEqualTo(1));
     }
 
 }

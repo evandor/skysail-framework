@@ -5,10 +5,12 @@ import static org.junit.Assert.assertThat;
 import io.skysail.api.responses.*;
 import io.skysail.server.app.designer.application.Application;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import org.restlet.data.*;
 import org.restlet.engine.resource.VariantInfo;
 
+@Ignore
 public class PostApplicationResourceTest extends ApplicationResourceTest {
 
 

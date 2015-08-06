@@ -114,6 +114,7 @@
 	skysail.server;version=${skysail.server.version},\
 	skysail.server.converter;version=${skysail.server.converter.version},\
 	skysail.server.db;version=${skysail.server.db.version},\
+    skysail.server.osgi;version=latest,\
 	skysail.server.queryfilter;version=${skysail.server.queryfilter.version},\
 	skysail.server.performance.etm;version=${skysail.server.performance.etm.version},\
 	skysail.server.static;version=${skysail.server.static.version},\
@@ -129,7 +130,6 @@
 	skysail.server.app.wiki;version=latest,\
 	skysail.server.ext.favorites.preferences;version=latest,\
 	skysail.server.ext.mail;version=latest,\
-	skysail.server.ext.sse;version=latest,\
 	skysail.server.text.markdown;version=latest,\
 	skysail.server.text.store.bundleresource;version=latest,\
 	skysail.server.text.store.git;version=latest,\

@@ -38,6 +38,7 @@ public class PostApplicationResourceTest extends AbstractApplicationResourceTest
 
     @Test
     public void valid_json_data_yields_new_entity() {
+        //Application app = TestHelper.createApplication("jsonList1").name("TestAppJson").packageName("io.skysail.testpackage").path("../")
         Application app = new Application("jsonList1");
         app.setName("TestAppJson");
         app.setPackageName("io.skysail.testpackage");
@@ -55,27 +56,5 @@ public class PostApplicationResourceTest extends AbstractApplicationResourceTest
         ConstraintViolationsResponse<?> post = (ConstraintViolationsResponse<?>) postApplicationResource.post(form, HTML_VARIANT);
         assertValidationFailure(postApplicationResource, post);
     }
-
-
-//    @Test
-//    public void empty_form_yields_validation_failure() {
-//        ConstraintViolationsResponse<?> post = (ConstraintViolationsResponse<?>) postApplicationResource.post(form, new VariantInfo(MediaType.TEXT_HTML));
-//        assertThat(responses.get(resource.getClass().getName()).getStatus(),is(equalTo(Status.CLIENT_ERROR_BAD_REQUEST)));
-//        assertThat(responses.get(resource.getClass().getName()).getHeaders().getFirst("X-Status-Reason").getValue(),is(equalTo("Validation failed")));
-//        assertThat(post.getViolations().size(),is(4));
-//    }
-//
-//    @Test
-////    @Ignore // TODO
-//    public void valid_data_yields_new_entity() {
-//        form.add("name", "application1");
-//        form.add("path", "../");
-//        form.add("packageName", "io.skysail.app.test");
-//        form.add("projectName", "testproj");
-//        resource.post(form, new VariantInfo(MediaType.TEXT_HTML));
-//        assertThat(responses.get(resource.getClass().getName()).getStatus(),is(equalTo(Status.SUCCESS_CREATED)));
-//    }
-
-
 
 }

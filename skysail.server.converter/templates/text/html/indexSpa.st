@@ -82,7 +82,7 @@ indexSpa(user, messages, converter, model) ::= <<
 
   </head>
 
-  <body role="document">
+  <body role="document" fullbreed unresolved>
 
     <!-- Fixed navbar -->
     <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">

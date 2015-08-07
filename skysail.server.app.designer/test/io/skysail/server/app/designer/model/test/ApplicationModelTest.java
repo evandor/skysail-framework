@@ -47,8 +47,8 @@ public class ApplicationModelTest {
     @Mock
     private Bundle bundle;
     private List<Entity> entities;
-    
-    
+
+
     @Before
     public void setUp() throws Exception {
         application = new Application("testapp");
@@ -98,7 +98,7 @@ public class ApplicationModelTest {
         entity.addReference(unknownEntity);
         applicationModel.validate();
     }
-    
+
     @Test
     public void simplest_model_is_empty() throws Exception {
         ApplicationModel applicationModel = new ApplicationModel(application, repo);
@@ -138,7 +138,7 @@ public class ApplicationModelTest {
         assertThat(entityModel.getFields().size(), is(1));
         assertThat(entityModel.getReferences().size(), is(0));
     }
-    
+
     @Test
     public void creates_model_for_Entity_with_reference_to_itself() {
         Entity entity = new Entity("Bank");
@@ -155,7 +155,7 @@ public class ApplicationModelTest {
         assertThat(entityModel.getReferences().size(), is(1));
     }
 
-    
+
     @Test
     public void creates_model_for_two_entities_with_reference() {
         Entity bankEntity = new Entity("Bank");
@@ -178,14 +178,14 @@ public class ApplicationModelTest {
 
         List<EntityModel> models = new ArrayList<>(applicationModel.getEntityModels());
         List<String> entityModelNames = models.stream().map(EntityModel::getEntityName).collect(Collectors.toList());
-        
+
         assertThat(entityModelNames, hasItem("Bank"));
         assertThat(entityModelNames, hasItem("Account"));
 
         List<String> fieldModelNames = models.stream().map(EntityModel::getFields).flatMap(f -> f.stream()).map(FieldModel::getName).collect(Collectors.toList());
         assertThat(fieldModelNames, hasItem("accountNr"));
     }
-    
+
 //    @Test
 //    public void rejects_creates_model_for_Entity_with_reference_to_itself() {
 //        Entity entity = new Entity("Bank");

@@ -14,6 +14,7 @@ import javax.tools.JavaFileObject.Kind;
 
 import org.junit.*;
 
+@Ignore
 public class CompiledCodeTrackingJavaFileManagerTest {
 
     private Map<String, CompiledCode> compiledCodes;

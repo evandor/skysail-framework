@@ -52,8 +52,9 @@ public abstract class ApplicationResourceTest extends ResourceTestBase {
         Application entity = result.getEntity();
         assertThat(responses.get(resource.getClass().getName()).getStatus(),is(equalTo(Status.SUCCESS_CREATED)));
         assertThat(entity.getName(),is(equalTo(name)));
-//        assertThat(entity.getCreated(),is(not(nullValue())));
-//        assertThat(entity.getModified(),is(nullValue()));
+        assertThat(entity.getPackageName(),is(equalTo("io.skysail.testpackage")));
+        assertThat(entity.getPath(),is(equalTo("../")));
+        assertThat(entity.getProjectName(),is(equalTo("TestProject")));
         assertThat(entity.getOwner(),is("admin"));
     }
 

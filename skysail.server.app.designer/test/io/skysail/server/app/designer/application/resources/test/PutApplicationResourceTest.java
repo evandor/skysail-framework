@@ -17,7 +17,6 @@ import org.mockito.*;
 import org.restlet.data.*;
 import org.restlet.engine.resource.VariantInfo;
 
-@Ignore
 public class PutApplicationResourceTest extends ResourceTestBase {
 
     @Spy
@@ -43,6 +42,7 @@ public class PutApplicationResourceTest extends ResourceTestBase {
     }
 
     @Test
+    @Ignore
     public void empty_form_yields_validation_failure() {
 
         Application entity = new Application();

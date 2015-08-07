@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9ad9bd40_e6281ce4",
+        "filename": "skysail.product.designer/designer.test.bndrun",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1005936
+      },
+      "writtenOn": "2015-08-07T08:42:52Z",
+      "side": 0,
+      "message": "test message",
+      "revId": "e0894a83b9daff219a182e8f2b415ddfda2245a4",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    }
+  ]
+}

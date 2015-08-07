@@ -74,9 +74,12 @@ public abstract class ApplicationResourceTest extends ResourceTestBase {
     }
 
     protected Application createApplication() {
-        Application aList = new Application();
-        aList.setName("list_" + randomString());
-        SkysailResponse<Application> post = postApplicationResource.post(aList,JSON_VARIANT);
+        Application app = new Application();
+        app.setName("application_" + randomString());
+        app.setPackageName("package");
+        app.setPath("../");
+        app.setProjectName("projectName");
+        SkysailResponse<Application> post = postApplicationResource.post(app,JSON_VARIANT);
         getAttributes().clear();
 
         return post.getEntity();

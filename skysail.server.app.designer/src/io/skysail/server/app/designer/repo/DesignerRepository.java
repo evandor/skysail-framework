@@ -23,7 +23,7 @@ public class DesignerRepository implements DbRepository {
 
     @Activate
     public void activate() {
-        dbService.createWithSuperClass("V", Application.class.getSimpleName(), Entity.class.getSimpleName(), 
+        dbService.createWithSuperClass("V", Application.class.getSimpleName(), Entity.class.getSimpleName(),
                 EntityField.class.getSimpleName(), ActionEntityField.class.getSimpleName());
         dbService.register(Application.class, Entity.class, EntityField.class, ActionEntityField.class);
     }
@@ -45,7 +45,7 @@ public class DesignerRepository implements DbRepository {
             return Collections.emptyList();
         }
     }
-    
+
     public <T> List<T> findAll(String sql) {
         return dbService.findObjects(sql);
     }
@@ -69,7 +69,7 @@ public class DesignerRepository implements DbRepository {
     public void update(EntityField field) {
         dbService.update(field.getId(), field);
     }
-    
+
     public void update(String id, Object entity) {
         dbService.update(id, entity);
     }
@@ -84,6 +84,10 @@ public class DesignerRepository implements DbRepository {
 
     public void createWithSuperClass(String superClassName, String entityClassName) {
         dbService.createWithSuperClass(superClassName, entityClassName);
+    }
+
+    public Object getVertexById(Class<Application> cls, String id) {
+        return dbService.findGraphs("SELECT FROM "+cls.getSimpleName()+" WHERE @rid="+id);
     }
 
 

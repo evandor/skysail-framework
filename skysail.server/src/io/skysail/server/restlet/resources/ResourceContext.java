@@ -42,7 +42,7 @@ public class ResourceContext {
                 .title(title)
                 .identifier(identifier)
                 .requestUrl(originalRef != null ? originalRef.getPath().toString() : null)
-                .url(ajaxTarget.getUri())
+                .url(ajaxTarget != null ? ajaxTarget.getUri() : null)
                 .linkTo(linkTarget != null ? linkTarget.getUri() : null)
                 .build();
         navItems.add(call);

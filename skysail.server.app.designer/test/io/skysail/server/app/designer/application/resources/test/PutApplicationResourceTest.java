@@ -1,69 +1,67 @@
 package io.skysail.server.app.designer.application.resources.test;
 
 import static org.hamcrest.CoreMatchers.equalTo;
-import static org.hamcrest.Matchers.is;
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.not;
+import static org.hamcrest.CoreMatchers.nullValue;
 import static org.junit.Assert.assertThat;
-import io.skysail.server.app.designer.DesignerApplication;
+import io.skysail.api.responses.SkysailResponse;
 import io.skysail.server.app.designer.application.Application;
-import io.skysail.server.app.designer.application.resources.PutApplicationResource;
 import io.skysail.server.app.designer.repo.DesignerRepository;
-import io.skysail.server.testsupport.ResourceTestBase;
 
-import java.util.HashMap;
+import java.util.List;
 
-import org.apache.shiro.subject.SimplePrincipalMap;
-import org.junit.*;
-import org.mockito.*;
-import org.restlet.data.*;
-import org.restlet.engine.resource.VariantInfo;
+import org.junit.Test;
 
-public class PutApplicationResourceTest extends ResourceTestBase {
+import com.tinkerpop.blueprints.impls.orient.OrientVertex;
 
-    @Spy
-    private PutApplicationResource resource;
+public class PutApplicationResourceTest extends ApplicationResourceTest {
 
-    private DesignerRepository repo;
+    @Test
+    public void empty_form_data_yields_validation_failure() {
+        Application application = createApplication();
 
-    @Before
-    public void setUp() throws Exception {
-        super.setUpFixture();
-        super.setUpApplication(Mockito.mock(DesignerApplication.class));
-        super.setUpResource(resource);
+        form.add("name", "");
+        //form.add("id", application.getId());
+        setAttributes("id", application.getId());
+        init(putApplicationResource);
 
-        repo = new DesignerRepository();
-        repo.setDbService(testDb);
-        repo.activate();
-        ((DesignerApplication)application).setDesignerRepository(repo);
-        Mockito.when(((DesignerApplication)application).getRepository()).thenReturn(repo);
+        SkysailResponse<Application> skysailResponse = putApplicationResource.put(form, HTML_VARIANT);
 
-        Mockito.when(subjectUnderTest.getPrincipal()).thenReturn("admin");
-        Mockito.when(subjectUnderTest.getPrincipals()).thenReturn(new SimplePrincipalMap(new HashMap<>()));
-        setSubject(subjectUnderTest);
+        assertValidationFailure(putApplicationResource, skysailResponse);
     }
 
     @Test
-    @Ignore
-    public void empty_form_yields_validation_failure() {
+    public void empty_json_data_yields_validation_failure() {
 
-        Application entity = new Application();
-        entity.setName("application3");
-        String id = DesignerRepository.add(entity).toString();
+        init(putApplicationResource);
 
+        Application updatedList = new Application();
+        SkysailResponse<Application> skysailResponse = putApplicationResource.put(updatedList, JSON_VARIANT);
+
+        assertValidationFailure(putApplicationResource, skysailResponse);
+    }
+
+    @Test
+    public void list_can_be_updated() {
+        Application app = createApplication();
         form.add("name", "application3a");
-        form.add("id", id);
+        form.add("id", app.getId());
         form.add("path", "../");
         form.add("packageName", "io.skysail.app.test");
         form.add("projectName", "testproj");
+        putApplicationResource.getRequestAttributes().put("id", app.getId());
+        setAttributes("id", app.getId());
+        init(putApplicationResource);
 
-        resource.getRequestAttributes().put("id", id);
-        resource.init(null, request, responses.get(resource.getClass().getName()));
+        putApplicationResource.put(form, HTML_VARIANT);
 
-        resource.put(form, new VariantInfo(MediaType.TEXT_HTML));
+        List<OrientVertex> vertexById2 = (List<OrientVertex>) new DesignerRepository().getVertexById(Application.class, app.getId());
+        OrientVertex vertexById = vertexById2.get(0);
 
-        Application entityFromDb = new DesignerRepository().getById(Application.class, id);
-
-        assertThat(responses.get(resource.getClass().getName()).getStatus(),is(equalTo(Status.SUCCESS_OK)));
-        assertThat(entityFromDb.getName(), is(equalTo("application3a")));
+        //assertThat(vertexById.getProperty("modified"), is(not(nullValue())));
+        //assertThat(vertexById.getProperty("created"), is(not(nullValue())));
+        assertThat(vertexById.getProperty("name"), is(equalTo("application3a")));
     }
 
 

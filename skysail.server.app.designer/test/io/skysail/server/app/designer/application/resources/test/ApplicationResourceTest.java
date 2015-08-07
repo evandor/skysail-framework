@@ -15,7 +15,7 @@ public class ApplicationResourceTest extends AbstractApplicationResourceTest {
 
     @Test
     public void gets_list_representation() {
-        Application aList = createApplication();
+        Application aList = createValidApplication();
 
         getAttributes().put("id", aList.getId());
         init(applicationResource);
@@ -29,7 +29,7 @@ public class ApplicationResourceTest extends AbstractApplicationResourceTest {
     @Test
     @Ignore
     public void deletes_list_resource_if_empty() {
-        Application aList = createApplication();
+        Application aList = createValidApplication();
 
         setAttributes("id", aList.getId());
         init(applicationResource);

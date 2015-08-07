@@ -51,7 +51,7 @@ public class ApplicationModelTest {
 
     @Before
     public void setUp() throws Exception {
-        application = new Application("testapp");
+        application = new Application("testapp", "pkgName", "../", "projectName");
         application.setId("#1");
         entities = new ArrayList<>();
         application.setEntities(entities);

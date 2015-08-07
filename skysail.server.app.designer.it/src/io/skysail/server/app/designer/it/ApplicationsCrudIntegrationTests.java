@@ -37,7 +37,7 @@ public class ApplicationsCrudIntegrationTests extends IntegrationTests<Applicati
         String html = browser.getApplications().getText();
         assertThat(html, containsString(entity.getName()));
     }
-    
+
     @Test // delete
     public void new_application_can_be_deleted() throws Exception {
         browser.create(entity);
@@ -49,12 +49,12 @@ public class ApplicationsCrudIntegrationTests extends IntegrationTests<Applicati
     public void altering_application_updates_it_in_DB() throws Exception {
         browser.create(entity);
         assertThat(browser.getApplication(browser.getId()).getText(), containsString(entity.getName()));
-        
+
         entity.setId(browser.getId());
         //entity.setDesc("description changed");
         entity.setName(entity.getName() + "_changed");
         browser.updateApplication(entity);
-        
+
         String updatedText = browser.getApplication(browser.getId()).getText();
         assertThat(updatedText, containsString("_changed"));
     }
@@ -67,25 +67,25 @@ public class ApplicationsCrudIntegrationTests extends IntegrationTests<Applicati
         String html = browser.getApplications().getText();
         assertThat(html, containsString(entity.getName()));
     }
-    
-    
+
+
 
     @Test
     @Ignore
     public void posting_new_application_with_name_and_path_persists_it() throws Exception {
-        Application application = new Application("app1");
+        Application application = new Application("app1", "pkgName", "../", "projectName");
        // application.setPath(".");
         browser.create(application);
         Representation applications = browser.getApplications();
         assertThat(applications.getText(), containsString("app1"));
     }
-    
+
     @Test
     @Ignore
     public void posting_new_application_with_name_containing_specialChar_yields_validation_violation() throws Exception {
         thrown.expect(ResourceException.class);
         thrown.expectMessage("Bad Request");
-        browser.create(new Application("app1!"));
+        browser.create(new Application("app1!", "pkgName", "../", "projectName"));
     }
-    
+
 }

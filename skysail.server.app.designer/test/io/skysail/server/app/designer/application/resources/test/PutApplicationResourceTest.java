@@ -19,7 +19,7 @@ public class PutApplicationResourceTest extends AbstractApplicationResourceTest 
 
     @Test
     public void empty_form_data_yields_validation_failure() {
-        Application application = createApplication();
+        Application application = createValidApplication();
 
         form.add("name", "");
         //form.add("id", application.getId());
@@ -44,7 +44,7 @@ public class PutApplicationResourceTest extends AbstractApplicationResourceTest 
 
     @Test
     public void list_can_be_updated() {
-        Application app = createApplication();
+        Application app = createValidApplication();
         form.add("name", "application3a");
         form.add("id", app.getId());
         form.add("path", "../");

@@ -32,7 +32,7 @@ public class ReferenceApplicationIntegrationTests extends IntegrationTests<Appli
     }
 
     private Application createReferenceApplication() {
-        return new Application("CampaignManager");
+        return new Application("CampaignManager", "pkgName", "../", "projectName");
     }
 
 }

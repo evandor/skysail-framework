@@ -25,7 +25,7 @@ public class ApplicationsBrowser extends ApplicationBrowser<ApplicationsBrowser,
     }
 
     public Application createRandomApplication() {
-        return new Application("App_" + new BigInteger(130, random).toString(32));
+        return new Application("App_" + new BigInteger(130, random).toString(32), "pkgName", "../", "projectName");
     }
 
     public void create() {

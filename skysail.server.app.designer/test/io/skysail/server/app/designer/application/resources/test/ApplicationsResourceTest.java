@@ -15,7 +15,7 @@ public class ApplicationsResourceTest extends AbstractApplicationResourceTest {
 
     @Test
     public void Application_contains_created_todo_list() {
-        Application app1 = createApplication();
+        Application app1 = createValidApplication();
 
         init(applicationsResource);
         List<Application> get = applicationsResource.getEntity();

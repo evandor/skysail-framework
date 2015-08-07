@@ -14,8 +14,10 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.NonNull;
 import lombok.Setter;
 import lombok.ToString;
 
@@ -51,16 +53,23 @@ public class Application implements Identifiable {
     @Size(min = 1)
     @NotNull
     private String path;
-    
+
     @Field(inputType = InputType.READONLY)
     @ListView(hide = true)
     private String owner;
-    
+
     //@Reference(cls = Entity.class)
     private List<Entity> entities;
 
-    public Application(String name) {
+    /**
+     * A builder which sets the mandatory attributes
+     */
+    @Builder
+    public Application(@NonNull String name, @NonNull String packageName, @NonNull String path, @NonNull String projectName) {
         this.name = name;
+        this.packageName = packageName;
+        this.path = path;
+        this.projectName = projectName;
     }
 
     public List<Entity> getEntities() {

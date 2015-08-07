@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9ad9bd40_6c2f8b3f",
+        "filename": "skysail.server.app.designer.it/src/io/skysail/server/app/designer/it/ApplicationsCrudIntegrationTests.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1005936
+      },
+      "writtenOn": "2015-08-07T14:48:58Z",
+      "side": 0,
+      "message": "gerrit test",
+      "revId": "51a5c6c97f81c3014336b4b9c0b33199adee4372",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    }
+  ]
+}

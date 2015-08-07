@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9ad9bd40_4652a835",
+        "filename": "skysail.server.app.designer/etc/testrun.log",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1005936
+      },
+      "writtenOn": "2015-08-07T09:19:46Z",
+      "side": 1,
+      "message": "remove testrun.log from git",
+      "revId": "2fd634e44b03bc0ba27b5b106b582b3b28748fe0",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9ad9bd40_863750fe",
+        "filename": "skysail.server.app.designer/test/io/skysail/server/app/designer/application/resources/test/PutApplicationResourceTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1005936
+      },
+      "writtenOn": "2015-08-07T09:19:46Z",
+      "side": 1,
+      "message": "remove @Ignore",
+      "revId": "2fd634e44b03bc0ba27b5b106b582b3b28748fe0",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    }
+  ]
+}

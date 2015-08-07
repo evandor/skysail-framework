@@ -15,7 +15,7 @@ import org.junit.Test;
 
 import com.tinkerpop.blueprints.impls.orient.OrientVertex;
 
-public class PutApplicationResourceTest extends ApplicationResourceTest {
+public class PutApplicationResourceTest extends AbstractApplicationResourceTest {
 
     @Test
     public void empty_form_data_yields_validation_failure() {

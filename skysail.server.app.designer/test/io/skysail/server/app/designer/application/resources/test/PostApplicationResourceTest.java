@@ -12,7 +12,7 @@ import org.restlet.data.MediaType;
 import org.restlet.data.Status;
 import org.restlet.engine.resource.VariantInfo;
 
-public class PostApplicationResourceTest extends ApplicationResourceTest {
+public class PostApplicationResourceTest extends AbstractApplicationResourceTest {
 
     @Test
     public void empty_form_data_yields_validation_failure() {

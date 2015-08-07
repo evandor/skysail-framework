@@ -1,98 +1,44 @@
 package io.skysail.server.app.designer.application.resources.test;
 
-import static org.hamcrest.CoreMatchers.*;
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.nullValue;
 import static org.junit.Assert.assertThat;
 import io.skysail.api.responses.SkysailResponse;
-import io.skysail.server.app.designer.DesignerApplication;
 import io.skysail.server.app.designer.application.Application;
-import io.skysail.server.app.designer.application.resources.*;
-import io.skysail.server.app.designer.repo.DesignerRepository;
-import io.skysail.server.restlet.resources.SkysailServerResource;
-import io.skysail.server.testsupport.ResourceTestBase;
 
-import java.util.HashMap;
-
-import org.apache.shiro.subject.SimplePrincipalMap;
-import org.junit.Before;
-import org.mockito.*;
+import org.junit.Ignore;
+import org.junit.Test;
 import org.restlet.data.Status;
 
-public abstract class ApplicationResourceTest extends ResourceTestBase {
+public class ApplicationResourceTest extends AbstractApplicationResourceTest {
 
-    @Spy
-    protected PostApplicationResource postApplicationResource;
+    @Test
+    public void gets_list_representation() {
+        Application aList = createApplication();
 
-    @Spy
-    protected PutApplicationResource putApplicationResource;
+        getAttributes().put("id", aList.getId());
+        init(applicationResource);
 
-    @Spy
-    protected ApplicationsResource applicationsResource;
+        SkysailResponse<Application> get = applicationResource.getEntity2(HTML_VARIANT);
 
-    @Spy
-    protected ApplicationResource applicationResource;
-
-    protected DesignerRepository repo;
-
-    @Before
-    public void setUp() throws Exception {
-        super.setUpFixture();
-
-        super.setUpApplication(Mockito.mock(DesignerApplication.class));
-        super.setUpResource(applicationResource);
-        super.setUpResource(applicationsResource);
-        super.setUpResource(putApplicationResource);
-        super.setUpResource(postApplicationResource);
-        setUpRepository(new DesignerRepository());
-        setUpSubject("admin");
-
-       // new UniquePerOwnerValidator().setDbService(testDb);
+        assertThat(responses.get(applicationResource.getClass().getName()).getStatus(), is(equalTo(Status.SUCCESS_OK)));
+        assertThat(get.getEntity().getName(), is(equalTo(aList.getName())));
     }
 
-    protected void assertListResult(SkysailServerResource<?> resource, SkysailResponse<Application> result, String name) {
-        Application entity = result.getEntity();
-        assertThat(responses.get(resource.getClass().getName()).getStatus(),is(equalTo(Status.SUCCESS_CREATED)));
-        assertThat(entity.getName(),is(equalTo(name)));
-        assertThat(entity.getPackageName(),is(equalTo("io.skysail.testpackage")));
-        assertThat(entity.getPath(),is(equalTo("../")));
-        assertThat(entity.getProjectName(),is(equalTo("TestProject")));
-        assertThat(entity.getOwner(),is("admin"));
+    @Test
+    @Ignore
+    public void deletes_list_resource_if_empty() {
+        Application aList = createApplication();
+
+        setAttributes("id", aList.getId());
+        init(applicationResource);
+
+        applicationResource.deleteEntity(HTML_VARIANT);
+        assertThat(responses.get(applicationResource.getClass().getName()).getStatus(), is(equalTo(Status.SUCCESS_OK)));
+
+        Object byId = repo.getById(Application.class, aList.getId());
+        assertThat(byId, is(nullValue()));
     }
-
-    public void setUpRepository(DesignerRepository todosRepository) {
-        repo = todosRepository;
-        repo.setDbService(testDb);
-        repo.activate();
-        ((DesignerApplication)application).setDesignerRepository(repo);
-        Mockito.when(((DesignerApplication)application).getRepository()).thenReturn(repo);
-
-    }
-
-    public void setUpSubject(String owner) {
-        Mockito.when(subjectUnderTest.getPrincipal()).thenReturn(owner);
-        Mockito.when(subjectUnderTest.getPrincipals()).thenReturn(new SimplePrincipalMap(new HashMap<>()));
-        setSubject(subjectUnderTest);
-    }
-
-    protected Application createApplication() {
-        Application app = new Application();
-        app.setName("application_" + randomString());
-        app.setPackageName("package");
-        app.setPath("../");
-        app.setProjectName("projectName");
-        SkysailResponse<Application> post = postApplicationResource.post(app,JSON_VARIANT);
-        getAttributes().clear();
-
-        return post.getEntity();
-    }
-
-    protected void init(SkysailServerResource<?> resource) {
-        resource.init(null, request, responses.get(resource.getClass().getName()));
-    }
-
-    protected void setAttributes(String name, String id) {
-        getAttributes().clear();
-        getAttributes().put(name, id);
-    }
-
 
 }

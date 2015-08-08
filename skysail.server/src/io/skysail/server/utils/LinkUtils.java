@@ -54,7 +54,7 @@ public class LinkUtils {
 
     private static Link createLink(SkysailApplication app, Class<? extends SkysailServerResource<?>> resourceClass,
             String title) {
-        
+
         RouteBuilder routeBuilder = app.getRouteBuilders(resourceClass).get(0);
         Optional<SkysailServerResource<?>> resource = createNewInstance(resourceClass);
 
@@ -66,7 +66,7 @@ public class LinkUtils {
             .needsRoles(routeBuilder.getRolesForAuthorization())
             .image(MediaType.TEXT_HTML, resource.isPresent() ? resource.get().getFromContext(ResourceContextId.LINK_GLYPH) : null)
             .build();
-        
+
         log.debug("created link {}", link);
         return link;
     }
@@ -83,7 +83,7 @@ public class LinkUtils {
     }
 
     private static String determineUri(SkysailApplication app, RouteBuilder routeBuilder) {
-        return "/" + app.getName() + routeBuilder.getPathTemplate();
+        return "/" + app.getName() + routeBuilder.getPathTemplate(app.getApiVersion());
     }
 
     private static boolean noRouteBuilderFound(SkysailApplication app, Class<? extends SkysailServerResource<?>> ssr) {

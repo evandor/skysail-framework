@@ -49,30 +49,30 @@ import de.twenty11.skysail.server.services.*;
 /**
  * A skysail application is the entry point to provide additional functionality
  * to the skysail server.
- * 
+ *
  * <p>Typically you will create a subclass of SkysailApplication like this:</p>
- * 
+ *
  * <pre>
  * <code>
- * 
+ *
  * {@literal @}aQute.bnd.annotation.component.Component(immediate = true)
  * public class MyApplication extends SkysailApplication implements ApplicationProvider, MenuItemProvider {
- * 
+ *
  *     private static final String APP_NAME = "myapp";
- * 
+ *
  *     public DbClientApplication() {
  *          super(APP_NAME);
  *     }
- *     
+ *
  *     {@literal @}Override
  *     protected void attach() {
  *        router.attach(new RouteBuilder("/clips", ClipsResource.class));
  *        router.attach(new RouteBuilder("/clips/", PostClipResource.class));
  *        router.attach(new RouteBuilder("/clips/{id}", ClipResource.class));
- *        router.attach(new RouteBuilder("/clips/{id}/", PutClipResource.class)); 
+ *        router.attach(new RouteBuilder("/clips/{id}/", PutClipResource.class));
  *        ...
  *     }
- *     
+ *
  *     public List&lt;MenuItem&gt; getMenuEntries() {
  *         MenuItem appMenu = new MenuItem(APP_NAME, "/" + APP_NAME);
  *         appMenu.setCategory(MenuItem.Category.APPLICATION_MAIN_MENU);
@@ -81,20 +81,20 @@ import de.twenty11.skysail.server.services.*;
  * }
  * </code>
  * </pre>
- * 
+ *
  * A {@link SkysailApplication} is a {@link Application}, which
- * 
+ *
  * - has a number of {@link Resource}s attached to it - handles access to its
  * resources issues via its {@link AuthenticationService} and
  * {@link AuthorizationService} - knows about the OSGi {@link ComponentContext}
  * - deals with XSS issues via its {@link HtmlPolicyBuilder} - can
  * encrypt/decrypt resource entitiies via its {@link EncryptorService}
- * 
+ *
  * Concurrency note from parent class: instances of this class or its subclasses
  * can be invoked by several threads at the same time and therefore must be
  * thread-safe. You should be especially careful when storing state in member
  * variables.
- * 
+ *
  */
 @Slf4j
 public abstract class SkysailApplication extends Application implements ApplicationProvider, ResourceBundleProvider,
@@ -111,7 +111,7 @@ public abstract class SkysailApplication extends Application implements Applicat
 
     /**
      * do not forget to add those media types as extensions in.
-     * 
+     *
      * {@link #createInboundRoot()}
      */
     public static final MediaType SKYSAIL_HTMLFORM_MEDIATYPE = MediaType.register("htmlform", "HTML Form document");
@@ -130,7 +130,7 @@ public abstract class SkysailApplication extends Application implements Applicat
 
     @Getter
     private volatile ComponentContext componentContext;
-    
+
     private volatile BundleContext bundleContext;
     //private volatile AuthenticationService authenticationService;
     private volatile HtmlPolicyBuilder noHtmlPolicyBuilder = new HtmlPolicyBuilder();
@@ -142,11 +142,25 @@ public abstract class SkysailApplication extends Application implements Applicat
 
     private List<MenuItem> applicationMenu;
 
+    @Getter
+    private ApiVersion apiVersion = new ApiVersion(1);
+
     public SkysailApplication() {
         getEncoderService().getIgnoredMediaTypes().add(SkysailApplication.SKYSAIL_SERVER_SENT_EVENTS);
         getEncoderService().setEnabled(true);
     }
 
+    public SkysailApplication(String appName) {
+        this(appName, new ApiVersion(1));
+    }
+
+    public SkysailApplication(String appName, ApiVersion apiVersion) {
+        this();
+        logger.debug("Instanciating new Skysail Application '{}'", this.getClass().getSimpleName());
+        this.home = appName;
+        setName(appName);
+        this.apiVersion = apiVersion;
+    }
     /**
      * probably you want to do something like
      * "router.attach(new RouteBuilder("", RootResource.class))".
@@ -154,7 +168,7 @@ public abstract class SkysailApplication extends Application implements Applicat
      * <p>
      * You can add authorization information like this for all routes:
      * </p>
-     * 
+     *
      * <p>
      * <code>router.setAuthorizationDefaults(anyOf("usermanagement.user", "admin"));</code>
      * </p>
@@ -169,6 +183,7 @@ public abstract class SkysailApplication extends Application implements Applicat
      * </p>
      */
     protected void attach() {
+        router.setApiVersion(apiVersion);
         DocumentationProvider documentationProvider = serviceListProviderRef.get().getDocumentationProvider().get();
         if (documentationProvider == null) {
             log.warn("not documentation provider available. No Selfdocumentation of APIs.");
@@ -178,18 +193,6 @@ public abstract class SkysailApplication extends Application implements Applicat
         docuMap.keySet().stream().forEach(key -> {
             router.attach(new RouteBuilder(key, docuMap.get(key)));
         });
-    }
-
-    /**
-     * setting name.
-     * 
-     * @param home
-     */
-    public SkysailApplication(String home) {
-        this();
-        logger.debug("Instanciating new Skysail Application '{}'", this.getClass().getSimpleName());
-        this.home = home;
-        setName(home);
     }
 
     /**
@@ -222,7 +225,7 @@ public abstract class SkysailApplication extends Application implements Applicat
         setInboundRoot((Restlet) null);
         setOutboundRoot((Restlet) null);
     }
-    
+
     protected void setServiceListProvider(ServiceListProvider service) {
         SkysailApplication.serviceListProviderRef.set(service);
     }
@@ -384,7 +387,7 @@ public abstract class SkysailApplication extends Application implements Applicat
 
     /**
      * get the route builders.
-     * 
+     *
      * @param cls
      * @return list of route builders
      */
@@ -434,7 +437,7 @@ public abstract class SkysailApplication extends Application implements Applicat
     /**
      * Some bundles set the componentContext, others (via blueprint) only the
      * bundleContext... need to revisit
-     * 
+     *
      * @return
      */
     public Bundle getBundle() {
@@ -494,7 +497,7 @@ public abstract class SkysailApplication extends Application implements Applicat
 
     /**
      * get the encryption parameter.
-     * 
+     *
      * @param entityClass
      * @param fieldName
      * @return
@@ -565,7 +568,7 @@ public abstract class SkysailApplication extends Application implements Applicat
 
     /**
      * xxx.
-     * 
+     *
      * @param roles
      * @return
      */
@@ -577,7 +580,7 @@ public abstract class SkysailApplication extends Application implements Applicat
 
     /**
      * yyy.
-     * 
+     *
      * @param roles
      * @return
      */
@@ -612,7 +615,7 @@ public abstract class SkysailApplication extends Application implements Applicat
     public String getFromContext(ApplicationContextId id) {
         return stringContextMap.get(id);
     }
-    
+
     public AtomicReference<ValidatorService> getValidatorService() {
         return serviceListProviderRef.get().getValidatorService();
     }
@@ -644,7 +647,7 @@ public abstract class SkysailApplication extends Application implements Applicat
     public List<MenuItem> createMenuEntries() {
         return Collections.emptyList();
     }
-    
+
     public void invalidateMenuCache() {
         applicationMenu = null;
     }

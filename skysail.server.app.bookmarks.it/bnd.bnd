@@ -10,24 +10,24 @@ Private-Package:  \
 	io.skysail.server.app.bookmarks.it
 
 -buildpath:  \
-	org.restlet;version=2.3,\
-	lombok;version=1.16,\
-	slf4j.api;version=1.7,\
-	skysail.client.testsupport;version=latest,\
 	osgi.core;version=5.0,\
 	osgi.cmpn;version=5.0,\
+	skysail.api;version=${skysail.api.version},\
+	skysail.server;version=${skysail.server.version},\
+	skysail.server.http;version=${skysail.server.http.version},\
+	skysail.server.app.bookmarks;version=latest,\
+	skysail.client.testsupport;version=latest,\
+	org.restlet;version=${restlet.version},\
+	lombok;version=1.16,\
+	slf4j.api;version=1.7,\
 	com.springsource.org.junit;version=4.11,\
 	biz.aQute.bnd.annotation;version=2.4,\
-	skysail.server;version=${skysail.server.version},\
 	javax.validation.api;version=1.1,\
 	etm.core;version=1.2,\
 	org.apache.commons.beanutils;version=1.9,\
 	org.apache.shiro.core;version=1.2,\
 	javax.persistence;version=2.1,\
-	javassist;version=3.18,\
-	skysail.api;version=${skysail.api.version},\
-	skysail.server.app.bookmarks;version=latest,\
-	skysail.server.http;version=${skysail.server.http.version}
+	javassist;version=3.18
 
 -runfw: org.apache.felix.framework;version='[4,5)'
 -runee: JavaSE-1.8

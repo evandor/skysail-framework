@@ -1,9 +1,8 @@
 package de.twenty11.skysail.server.core.restlet;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Map;
+import io.skysail.server.app.ApiVersion;
+
+import java.util.*;
 import java.util.Map.Entry;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -11,8 +10,7 @@ import lombok.extern.slf4j.Slf4j;
 
 import org.restlet.Context;
 import org.restlet.resource.ServerResource;
-import org.restlet.routing.Router;
-import org.restlet.routing.TemplateRoute;
+import org.restlet.routing.*;
 import org.restlet.security.Authorizer;
 
 import com.google.common.base.Predicate;
@@ -26,6 +24,8 @@ public class SkysailRouter extends Router {
 
 	private Predicate<String[]> defaultRolesPredicate;
 
+    private ApiVersion apiVersion;
+
 	public SkysailRouter(Context context) {
 		super(context);
 	}
@@ -36,7 +36,8 @@ public class SkysailRouter extends Router {
 	}
 
 	public void attach(RouteBuilder routeBuilder) {
-		pathRouteBuilderMap.put(routeBuilder.getPathTemplate(), routeBuilder);
+		String pathTemplate = routeBuilder.getPathTemplate(apiVersion);
+        pathRouteBuilderMap.put(pathTemplate, routeBuilder);
 		if (routeBuilder.getTargetClass() == null) {
 			attachForTargetClassNull(routeBuilder);
 			return;
@@ -46,8 +47,8 @@ public class SkysailRouter extends Router {
 			return;
 		}
 		Authorizer isAuthenticatedAuthorizer = createIsAuthenticatedAuthorizer(routeBuilder);
-		log.info("routing path '{}' -> '{}' -> '{}'", routeBuilder.getPathTemplate(), "RolesPredicateAuthorizer", routeBuilder.getTargetClass().getName());
-		attach(routeBuilder.getPathTemplate(), isAuthenticatedAuthorizer);
+		log.info("routing path '{}' -> '{}' -> '{}'", pathTemplate, "RolesPredicateAuthorizer", routeBuilder.getTargetClass().getName());
+		attach(pathTemplate, isAuthenticatedAuthorizer);
 	}
 
 	public void detachAll() {
@@ -65,7 +66,7 @@ public class SkysailRouter extends Router {
 	/**
 	 * provides, for a given skysail server resource, the path templates the
 	 * resource was attached to.
-	 * 
+	 *
 	 * @param cls
 	 * @return List of path templates
 	 */
@@ -130,17 +131,21 @@ public class SkysailRouter extends Router {
 	}
 
 	private void attachForNoAuthenticationNeeded(RouteBuilder routeBuilder) {
-		log.info("routing path '{}' -> '{}'", routeBuilder.getPathTemplate(), routeBuilder.getTargetClass().getName());
-		attach(routeBuilder.getPathTemplate(), routeBuilder.getTargetClass());
+		log.info("routing path '{}' -> '{}'", routeBuilder.getPathTemplate(apiVersion), routeBuilder.getTargetClass().getName());
+		attach(routeBuilder.getPathTemplate(apiVersion), routeBuilder.getTargetClass());
 	}
 
 	private void attachForTargetClassNull(RouteBuilder routeBuilder) {
 		if (routeBuilder.getRestlet() == null) {
 			throw new IllegalStateException("RouteBuilder with neither TargetClass nor Restlet defined!");
 		}
-		log.info("routing path '{}' -> Restlet '{}'", routeBuilder.getPathTemplate(), routeBuilder.getRestlet()
+		log.info("routing path '{}' -> Restlet '{}'", routeBuilder.getPathTemplate(apiVersion), routeBuilder.getRestlet()
 		        .getClass().getSimpleName());
-		attach(routeBuilder.getPathTemplate(), routeBuilder.getRestlet());
+		attach(routeBuilder.getPathTemplate(apiVersion), routeBuilder.getRestlet());
 	}
+
+    public void setApiVersion(ApiVersion apiVersion) {
+        this.apiVersion = apiVersion;
+    }
 
 }

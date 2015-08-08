@@ -11,9 +11,6 @@ import io.skysail.server.services.PerformanceTimer;
 import io.skysail.server.utils.*;
 
 import java.lang.reflect.*;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.function.Consumer;
 import java.util.stream.Collectors;
@@ -23,7 +20,6 @@ import lombok.extern.slf4j.Slf4j;
 
 import org.apache.commons.beanutils.*;
 import org.apache.commons.beanutils.converters.*;
-import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.SecurityUtils;
 import org.restlet.Application;
 import org.restlet.data.*;
@@ -55,7 +51,7 @@ import de.twenty11.skysail.server.services.MenuItem;
  * </p>
  */
 @Slf4j
-@ToString(exclude = { "beanUtilsBean","linkheader" })
+@ToString(exclude = { "linkheader" })
 public abstract class SkysailServerResource<T> extends ServerResource {
 
     private static final String DATE_PATTERN = "yyyy-MM-dd";
@@ -87,39 +83,39 @@ public abstract class SkysailServerResource<T> extends ServerResource {
     @Getter
     private ResourceContext resourceContext;
 
-    private BeanUtilsBean beanUtilsBean = new BeanUtilsBean(new ConvertUtilsBean() {
-        @SuppressWarnings("unchecked")
-        @Override
-        public Object convert(String value, @SuppressWarnings("rawtypes") Class clazz) {
-            if (clazz.isEnum()) {
-                return Enum.valueOf(clazz, value);
-            } else if (clazz.equals(LocalDate.class)) {
-                if (StringUtils.isEmpty(value)) {
-                    return null;
-                }
-                DateTimeFormatter sdf = DateTimeFormatter.ofPattern(DATE_PATTERN);
-                try {
-                    return LocalDate.parse(value, sdf);
-                } catch (Exception e) {
-                    log.info("could not parse date '{}' with pattern {}", value, DATE_PATTERN);
-                }
-                return null;
-            } else if (clazz.equals(Date.class)) {
-                if (StringUtils.isEmpty(value)) {
-                    return null;
-                }
-                SimpleDateFormat sdf = new SimpleDateFormat(DATE_PATTERN);
-                try {
-                    return sdf.parse(value);
-                } catch (Exception e) {
-                    log.info("could not parse date '{}' with pattern {}", value, DATE_PATTERN);
-                }
-                return null;
-            } else {
-                return super.convert(value, clazz);
-            }
-        }
-    });
+//    private BeanUtilsBean beanUtilsBean = new BeanUtilsBean(new ConvertUtilsBean() {
+//        @SuppressWarnings("unchecked")
+//        @Override
+//        public Object convert(String value, @SuppressWarnings("rawtypes") Class clazz) {
+//            if (clazz.isEnum()) {
+//                return Enum.valueOf(clazz, value);
+//            } else if (clazz.equals(LocalDate.class)) {
+//                if (StringUtils.isEmpty(value)) {
+//                    return null;
+//                }
+//                DateTimeFormatter sdf = DateTimeFormatter.ofPattern(DATE_PATTERN);
+//                try {
+//                    return LocalDate.parse(value, sdf);
+//                } catch (Exception e) {
+//                    log.info("could not parse date '{}' with pattern {}", value, DATE_PATTERN);
+//                }
+//                return null;
+//            } else if (clazz.equals(Date.class)) {
+//                if (StringUtils.isEmpty(value)) {
+//                    return null;
+//                }
+//                SimpleDateFormat sdf = new SimpleDateFormat(DATE_PATTERN);
+//                try {
+//                    return sdf.parse(value);
+//                } catch (Exception e) {
+//                    log.info("could not parse date '{}' with pattern {}", value, DATE_PATTERN);
+//                }
+//                return null;
+//            } else {
+//                return super.convert(value, clazz);
+//            }
+//        }
+//    });
 
     public SkysailServerResource() {
         DateTimeConverter dateConverter = new DateConverter(null);
@@ -128,7 +124,7 @@ public abstract class SkysailServerResource<T> extends ServerResource {
         dateConverter.setUseLocaleFormat(true);
         ConvertUtils.deregister(Date.class);
         ConvertUtils.register(dateConverter, Date.class);
-        beanUtilsBean.getConvertUtils().register(dateConverter, Date.class);
+//        beanUtilsBean.getConvertUtils().register(dateConverter, Date.class);
     }
 
     /**
@@ -511,6 +507,10 @@ public abstract class SkysailServerResource<T> extends ServerResource {
     protected T populate(T bean, Form form) {
         Map<String, String> valuesMap = form.getValuesMap();
         try {
+
+            SkysailBeanUtils beanUtilsBean = new SkysailBeanUtils(ResourceUtils.determineLocale(this));
+            //DateTimeConverter dateConverter = new DateConverter(null);
+            //beanUtilsBean.getConvertUtils().register(dateConverter, Date.class);
             beanUtilsBean.populate(bean, valuesMap);
             return bean;
         } catch (Exception e) {
@@ -521,6 +521,9 @@ public abstract class SkysailServerResource<T> extends ServerResource {
 
     protected void copyProperties(T dest, T orig) {
         try {
+            SkysailBeanUtils beanUtilsBean = new SkysailBeanUtils(ResourceUtils.determineLocale(this));
+            //DateTimeConverter dateConverter = new DateConverter(null);
+           // beanUtilsBean.getConvertUtils().register(dateConverter, Date.class);
             beanUtilsBean.copyProperties(dest, orig);
         } catch (Exception e) {
             log.error("Error copying from bean {} to bean {}", orig, dest);

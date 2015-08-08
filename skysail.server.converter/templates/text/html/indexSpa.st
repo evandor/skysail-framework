@@ -12,6 +12,8 @@ indexSpa(user, messages, converter, model) ::= <<
 
 	<!-- jQuery -->
 	<script type="text/javascript" src="/webapp/js/jquery-1.11.1.js"></script>
+    <script tpye="text/javascript" src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://code.jquery.com/ui/1.11.4/themes/ui-lightness/jquery-ui.css">
 
     <link href="/webapp/css/bootstrap.min.css" rel="stylesheet">
     <link href="/webapp/css/stickyfooter.css" rel="stylesheet">
@@ -73,6 +75,16 @@ indexSpa(user, messages, converter, model) ::= <<
         	location.replace(url);
         	//location.reload(true);
         }
+    </script>
+
+    <script type='text/javascript'>
+        \$(window).load(function(){
+          \$("input[type=date]").each(function() {
+            if  (this.type != 'date' ) \$(this).datepicker({
+            	  dateFormat: "yy-mm-dd"
+            });
+          });
+        });
     </script>
 
     <script type="text/javascript" src="/webapp/js/select2.js"></script>

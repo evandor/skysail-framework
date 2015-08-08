@@ -7,7 +7,7 @@ import java.util.*;
 
 import lombok.extern.slf4j.Slf4j;
 
-import org.restlet.data.MediaType;
+import org.restlet.data.*;
 import org.restlet.engine.Engine;
 import org.restlet.engine.converter.ConverterHelper;
 import org.restlet.engine.resource.VariantInfo;
@@ -19,7 +19,7 @@ public class ResourceUtils {
 
     public static List<SkysailServerResource<?>> createSkysailServerResources(List<Class<? extends SkysailServerResource<?>>> entityServerResources,
             Resource resource) {
-        
+
         List<SkysailServerResource<?>> result = new ArrayList<>();
         for (Class<? extends SkysailServerResource<?>> class1 : entityServerResources) {
             SkysailServerResource<?> newInstance;
@@ -80,6 +80,22 @@ public class ResourceUtils {
         return mediaTypes;
     }
 
-  
+    public static Locale determineLocale(SkysailServerResource<?> resource) {
+        if (resource.getRequest() == null || resource.getRequest().getClientInfo() == null) {
+            return Locale.getDefault();
+        }
+        List<Preference<Language>> acceptedLanguages = resource.getRequest().getClientInfo().getAcceptedLanguages();
+        Locale localeToUse = Locale.getDefault();
+        if (!acceptedLanguages.isEmpty()) {
+            String[] languageSplit = acceptedLanguages.get(0).getMetadata().getName().split("-");
+            if (languageSplit.length == 1) {
+                localeToUse = new Locale(languageSplit[0]);
+            } else if (languageSplit.length == 2) {
+                localeToUse = new Locale(languageSplit[0], languageSplit[1]);
+            }
+        }
+        return localeToUse;
+    }
+
 
 }

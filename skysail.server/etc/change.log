@@ -1,0 +1,6 @@
+new in
+
+8.0.0
+-----
+
+ * new Method io.skysail.server.utils.ResourceUtils.determineLocale(SkysailServerResource<?>)

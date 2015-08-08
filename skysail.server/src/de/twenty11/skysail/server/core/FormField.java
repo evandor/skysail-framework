@@ -280,6 +280,10 @@ public class FormField {
         if (object instanceof List) {
             return ((List<?>)object).size();
         }
+//        if (object instanceof Long) { // assuming timestamp for  now
+//            //return "<script>document.write(moment(\""+object.toString()+"\", \"DD.mm.YYYY\").fromNow());</script>";
+//            return "<script>document.write(new Date("+object.toString()+").toString());</script>";
+//        }
         if (!(object instanceof String)) {
             return object.toString();
         }

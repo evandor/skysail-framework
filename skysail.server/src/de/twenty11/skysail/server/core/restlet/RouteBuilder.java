@@ -1,5 +1,7 @@
 package de.twenty11.skysail.server.core.restlet;
 
+import io.skysail.server.app.ApiVersion;
+
 import org.apache.commons.lang.Validate;
 import org.restlet.Restlet;
 import org.restlet.resource.ServerResource;
@@ -49,10 +51,13 @@ public class RouteBuilder {
         return restlet;
     }
 
-    public String getPathTemplate() {
-        return pathTemplate;
+    public String getPathTemplate(ApiVersion apiVersion) {
+        if (apiVersion == null) {
+            return pathTemplate;
+        }
+        return apiVersion.getVersionPath() + pathTemplate;
     }
-    
+
     /**
      * the current user needs on of those roles to get authorized
      */
@@ -68,7 +73,7 @@ public class RouteBuilder {
     public boolean needsAuthentication() {
         return needsAuthentication;
     }
-    
+
     public RouteBuilder noAuthenticationNeeded() {
 		this.needsAuthentication = false;
 		return this;

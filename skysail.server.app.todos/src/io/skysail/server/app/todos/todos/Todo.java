@@ -8,7 +8,7 @@ import io.skysail.server.forms.*;
 
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.util.*;
 
 import javax.persistence.Id;
 import javax.validation.constraints.*;
@@ -17,7 +17,7 @@ import lombok.*;
 
 import org.restlet.data.Form;
 
-import com.fasterxml.jackson.annotation.*;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @Getter
 @Setter
@@ -50,11 +50,11 @@ public class Todo implements Serializable, Identifiable {
     private String desc;
 
     @Field(inputType = InputType.DATE)
-    @JsonFormat(shape=JsonFormat.Shape.STRING, pattern="dd.MM.yyyy")
+    //@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd")
     private Date due;
 
     @Field(inputType = InputType.DATE)
-    @JsonFormat(shape=JsonFormat.Shape.STRING, pattern="dd.MM.yyyy")
+    //@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="dd.MM.yyyy")
     private Date startDate;
 
     @Field(inputType = InputType.READONLY)
@@ -100,16 +100,18 @@ public class Todo implements Serializable, Identifiable {
         this.title = title;
     }
 
-    public Todo(Form query, String listId) {
+    public Todo(Form query, String listId, Locale locale) {
         if (query == null) {
             return;
         }
         // to add new entity via get URL
         this.title = query.getFirstValue("title");
         this.desc = query.getFirstValue("desc");
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy", locale);
         try {
             String dueDate = query.getFirstValue("due");
+//            DateFormat dateInstance = DateFormat.getDateInstance(DateFormat.FULL, locale);
+//            this.due = dateInstance.parse(dueDate);
             this.due = sdf.parse(dueDate);
         } catch (Exception e) {
             // ignore

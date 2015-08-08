@@ -1,13 +1,10 @@
 package de.twenty11.skysail.server.core.restlet.test;
 
-import static org.hamcrest.Matchers.equalTo;
-import static org.hamcrest.Matchers.is;
-import static org.hamcrest.Matchers.nullValue;
+import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.assertThat;
+import io.skysail.server.app.ApiVersion;
 
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.*;
 
 import de.twenty11.skysail.server.core.restlet.RouteBuilder;
 
@@ -24,7 +21,7 @@ public class RouteBuilderTest {
     @Test
     public void testRouteBuilderStringRestlet() throws Exception {
         RouteBuilder routeBuilder = new RouteBuilder("/path", TestServerResource.class);
-        assertThat(routeBuilder.getPathTemplate(), is(equalTo("/path")));
+        assertThat(routeBuilder.getPathTemplate(new ApiVersion(1)), is(equalTo("/v1/path")));
         assertThat(routeBuilder.getRolesForAuthorization(), is(nullValue()));
     }
 

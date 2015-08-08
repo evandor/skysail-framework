@@ -7,8 +7,9 @@ import io.skysail.server.app.todos.ranking.Ranker;
 import io.skysail.server.app.todos.todos.Todo;
 import io.skysail.server.app.todos.todos.status.Status;
 import io.skysail.server.restlet.resources.PostEntityServerResource;
+import io.skysail.server.utils.ResourceUtils;
 
-import java.util.Date;
+import java.util.*;
 
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
@@ -32,12 +33,15 @@ public class PostTodoResource extends PostEntityServerResource<Todo> {
 
     @Override
     public Todo createEntityTemplate() {
-        return new Todo(getQuery(), getAttribute(TodoApplication.LIST_ID));
+        return new Todo(getQuery(), getAttribute(TodoApplication.LIST_ID), ResourceUtils.determineLocale(this));
     }
 
     @Override
     public SkysailResponse<?> addEntity(Todo entity) {
-        entity.setCreated(new Date());
+        Locale locale = ResourceUtils.determineLocale(this);
+
+        Calendar cal = Calendar.getInstance(TimeZone.getTimeZone("GMT"),locale);
+        entity.setCreated(cal.getTime());new Date();
         Subject subject = SecurityUtils.getSubject();
         entity.setOwner(subject.getPrincipal().toString());
         entity.setStatus(Status.NEW);

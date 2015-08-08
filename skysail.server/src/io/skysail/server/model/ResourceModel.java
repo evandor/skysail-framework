@@ -81,11 +81,13 @@ public class ResourceModel<R extends SkysailServerResource<T>, T> {
 
     public ResourceModel(R resource, SkysailResponse<?> skysailResponse, Variant target) {
 
-        dateFormat = DateFormat.getDateTimeInstance(DateFormat.MEDIUM, DateFormat.MEDIUM, determineLocale(resource));
+        Locale locale = ResourceUtils.determineLocale(resource);
+        dateFormat = DateFormat.getDateTimeInstance(DateFormat.MEDIUM, DateFormat.SHORT, locale);
 
-        mapper.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false);
+        mapper.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, true);
         mapper.configure(SerializationFeature.FAIL_ON_EMPTY_BEANS, false);
-        mapper.setDateFormat(dateFormat);
+ //       mapper.setDateFormat(dateFormat);
+ //       mapper.setLocale(locale);
 
         rawData = getData(skysailResponse);
 
@@ -372,23 +374,6 @@ public class ResourceModel<R extends SkysailServerResource<T>, T> {
         } else {
             return "";
         }
-    }
-
-    protected Locale determineLocale(SkysailServerResource<?> resource) {
-        if (resource.getRequest() == null || resource.getRequest().getClientInfo() == null) {
-            return Locale.getDefault();
-        }
-        List<Preference<Language>> acceptedLanguages = resource.getRequest().getClientInfo().getAcceptedLanguages();
-        Locale localeToUse = Locale.getDefault();
-        if (!acceptedLanguages.isEmpty()) {
-            String[] languageSplit = acceptedLanguages.get(0).getMetadata().getName().split("-");
-            if (languageSplit.length == 1) {
-                localeToUse = new Locale(languageSplit[0]);
-            } else if (languageSplit.length == 2) {
-                localeToUse = new Locale(languageSplit[0], languageSplit[1]);
-            }
-        }
-        return localeToUse;
     }
 
     public List<FormField> getFormfields() {

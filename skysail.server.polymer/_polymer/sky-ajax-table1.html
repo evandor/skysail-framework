@@ -79,6 +79,7 @@
   	  _toArray: function(obj, columns) {
   		console.log("SKY-AJAX-TABLE (_toArray)> " + obj + ", " + columns);
         return columns.map(function(key) {
+            //console.log("SKY-AJAX-TABLE (_toArray)> name:" + key + ", value: " + typeof(obj[key]));
           return {name: key, value: obj[key]};
         });
       },

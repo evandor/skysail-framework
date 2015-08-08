@@ -1,6 +1,6 @@
 package io.skysail.server.app.todos;
 
-import io.skysail.server.app.SkysailApplication;
+import io.skysail.server.app.*;
 import io.skysail.server.app.todos.charts.ListChartResource;
 import io.skysail.server.app.todos.lists.*;
 import io.skysail.server.app.todos.repo.TodosRepository;
@@ -25,7 +25,7 @@ public class TodoApplication extends SkysailApplication implements ApplicationPr
     private TodosRepository todosRepo;
 
     public TodoApplication() {
-        super(APP_NAME);
+        super(APP_NAME, new ApiVersion(2));
         addToAppContext(ApplicationContextId.IMG, "/static/img/silk/tag_yellow.png");
     }
 

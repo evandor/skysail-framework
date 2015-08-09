@@ -30,18 +30,18 @@ public class DefaultResource extends ListServerResource<MenuItemDescriptor> {
     public List<Link> getLinks() {
         SkysailRootApplication defaultApp = (SkysailRootApplication) getApplication();
         Set<MenuItem> menuItems = defaultApp.getMenuItems();
-        List<Link> linkheaders = menuItems.stream().map(mi -> createLinkheaderForApp(mi))
+        List<Link> links = menuItems.stream().map(mi -> createLinkForApp(mi))
                 .sorted((l1, l2) -> l1.getTitle().compareTo(l2.getTitle())).collect(Collectors.toList());
         if (SecurityUtils.getSubject().isAuthenticated()) {
 
         } else {
-            linkheaders.add(new Link.Builder(SkysailRootApplication.LOGIN_PATH)
+            links.add(new Link.Builder(SkysailRootApplication.LOGIN_PATH)
                     .relation(LinkRelation.CREATE_FORM).title("Login form").authenticationNeeded(false).build());
         }
-        return linkheaders;
+        return links;
     }
 
-    private Link createLinkheaderForApp(MenuItem mi) {
+    private Link createLinkForApp(MenuItem mi) {
         Predicate<String[]> securedBy = null;
         return new Link.Builder(mi.getLink()).relation(LinkRelation.ITEM).title(mi.getName()).role(LinkRole.MENU_ITEM)
                 .authenticationNeeded(true).needsRoles(securedBy).build();

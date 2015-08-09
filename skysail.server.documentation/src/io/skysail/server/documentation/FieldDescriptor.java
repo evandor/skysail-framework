@@ -1,39 +1,24 @@
 package io.skysail.server.documentation;
 
-import java.lang.annotation.Annotation;
-import java.lang.reflect.Field;
-import java.util.ArrayList;
-import java.util.List;
+import io.skysail.api.forms.Field;
+import io.skysail.server.forms.FormField;
+import lombok.Getter;
 
+@Getter
 public class FieldDescriptor {
 
-    private String name;
-    private List<AnnotationDescriptor> annotationDescriptors = new ArrayList<AnnotationDescriptor>();
+    @Field
+    private String classname;
+
+    @Field
     private Class<?> type;
 
-    public FieldDescriptor(Field field) {
-        name = field.getName(); // e.g. "rid"
-        type = field.getType(); // e.g. class java.lang.Object
-        Annotation[] annotations = field.getAnnotations();
-        for (Annotation annotation : annotations) {
-            annotationDescriptors.add(new AnnotationDescriptor(annotation));
-        }
-    }
+    @Field
+    private String inputType;
 
-    public String getName() {
-        return name;
-    }
-
-    public List<AnnotationDescriptor> getAnnotationDescriptors() {
-        return annotationDescriptors;
-    }
-
-    public String getType() {
-        return type.toString();
-    }
-
-    @Override
-    public String toString() {
-        return new StringBuilder(name).toString();
+    public FieldDescriptor(FormField ff) {
+        this.classname = ff.getName();
+        this.type = ff.getType();
+        this.inputType = ff.getInputType();
     }
 }

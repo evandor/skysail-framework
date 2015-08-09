@@ -5,28 +5,21 @@ import io.skysail.api.forms.Field;
 import io.skysail.server.restlet.resources.SkysailServerResource;
 import io.skysail.server.utils.ReflectionUtils;
 
-import java.lang.reflect.ParameterizedType;
-import java.lang.reflect.Type;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.lang.reflect.*;
+import java.util.*;
 
 import lombok.EqualsAndHashCode;
 import lombok.extern.slf4j.Slf4j;
 
 import org.restlet.data.Method;
-import org.restlet.resource.Delete;
-import org.restlet.resource.Get;
-import org.restlet.resource.Post;
-import org.restlet.resource.Put;
-import org.restlet.resource.ServerResource;
+import org.restlet.resource.*;
 
 import de.twenty11.skysail.server.core.restlet.RouteBuilder;
 
 /**
  * A resourceApi connects a path with a target {@link ServerResource} and
  * analyzes its associated entity and methods.
- * 
+ *
  * <p>resourceApis defines a natural order based on its path.</p>
  *
  */
@@ -36,16 +29,16 @@ public class ResourceApi implements Comparable<ResourceApi> {
 
     @Field
     private String path;
-    
+
     @Field
     private String securedByRole;
-    
+
     @Field
     private Class<? extends ServerResource> target;
-    
+
     @Field
     private String desc;
-    
+
     @Field
     private List<SupportedMethod> methods = new ArrayList<SupportedMethod>();
 
@@ -57,7 +50,7 @@ public class ResourceApi implements Comparable<ResourceApi> {
 
     /**
      * Creates a new instance by analyzing the provided route Builder.
-     * 
+     *
      * @param path
      *            the path (relative to the applications path)
      * @param routeBuilder
@@ -235,7 +228,7 @@ public class ResourceApi implements Comparable<ResourceApi> {
     }
 
     private void analyze(Class<?> entityClass, Class<?> rawType) {
-        entity = new EntityDescriptor(entityClass, rawType);
+        entity = null;//new EntityDescriptor(entityClass, rawType);
     }
 
 }

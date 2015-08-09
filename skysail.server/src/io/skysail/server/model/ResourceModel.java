@@ -4,6 +4,7 @@ import io.skysail.api.domain.Identifiable;
 import io.skysail.api.favorites.FavoritesService;
 import io.skysail.api.links.Link;
 import io.skysail.api.responses.*;
+import io.skysail.server.forms.FormField;
 import io.skysail.server.restlet.resources.*;
 import io.skysail.server.utils.*;
 
@@ -22,7 +23,6 @@ import org.restlet.util.Series;
 
 import com.fasterxml.jackson.databind.*;
 
-import de.twenty11.skysail.server.core.FormField;
 import de.twenty11.skysail.server.core.restlet.ResourceContextId;
 import de.twenty11.skysail.server.services.MenuItemProvider;
 
@@ -371,6 +371,8 @@ public class ResourceModel<R extends SkysailServerResource<T>, T> {
         } else if (entity.get("@rid") != null) {
             String str = entity.get("@rid").toString();
             return (str.replace("#", ""));
+        } else if (entity.get("name") != null) {
+            return entity.get("name").toString();
         } else {
             return "";
         }

@@ -1,5 +1,7 @@
 package de.twenty11.skysail.server.core.restlet.converter.internal;
 
+import io.skysail.server.utils.CookiesUtils;
+
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -8,7 +10,6 @@ import org.apache.shiro.SecurityUtils;
 import org.restlet.resource.Resource;
 import org.restlet.security.Role;
 
-import de.twenty11.skysail.server.core.restlet.utils.CookiesUtils;
 import de.twenty11.skysail.server.services.MenuItem;
 import de.twenty11.skysail.server.services.MenuItemCategoryCollector;
 

@@ -1,10 +1,12 @@
-package de.twenty11.skysail.server.core.test;
+package io.skysail.server.forms;
 
 import io.skysail.api.forms.Reference;
 import io.skysail.api.links.LinkRelation;
 import io.skysail.server.restlet.resources.SkysailServerResource;
 
 import org.junit.Before;
+
+import de.twenty11.skysail.server.core.test.DummySelectionProvider;
 
 public class FormFieldTest {
 

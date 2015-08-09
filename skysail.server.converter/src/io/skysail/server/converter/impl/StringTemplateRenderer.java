@@ -10,7 +10,7 @@ import io.skysail.server.converter.stringtemplate.STGroupBundleDir;
 import io.skysail.server.converter.wrapper.STUserWrapper;
 import io.skysail.server.model.ResourceModel;
 import io.skysail.server.restlet.resources.SkysailServerResource;
-import io.skysail.server.utils.RequestUtils;
+import io.skysail.server.utils.*;
 
 import java.net.URL;
 import java.util.Arrays;
@@ -32,7 +32,6 @@ import org.restlet.resource.Resource;
 import org.stringtemplate.v4.ST;
 
 import de.twenty11.skysail.server.core.restlet.ResourceContextId;
-import de.twenty11.skysail.server.core.restlet.utils.CookiesUtils;
 import de.twenty11.skysail.server.services.MenuItemProvider;
 
 @Slf4j

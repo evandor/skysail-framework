@@ -64,7 +64,7 @@ public class PluginApplication extends SkysailApplication implements Application
 
     @Override
     public List<MenuItem> getMenuEntries() {
-        MenuItem menuItem = new MenuItem(APP_NAME, "/" + APP_NAME, this);
+        MenuItem menuItem = new MenuItem(APP_NAME, "/" + APP_NAME + getApiVersion().getVersionPath(), this);
         menuItem.setCategory(MenuItem.Category.ADMIN_MENU);
         return Arrays.asList(menuItem);
     }

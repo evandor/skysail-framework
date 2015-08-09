@@ -1,15 +1,13 @@
 package io.skysail.server.queryfilter.pagination;
 
 import io.skysail.server.restlet.resources.SkysailServerResource;
-import io.skysail.server.utils.HeadersUtils;
+import io.skysail.server.utils.*;
 import lombok.*;
 import lombok.extern.slf4j.Slf4j;
 
 import org.restlet.*;
 import org.restlet.data.Header;
 import org.restlet.util.Series;
-
-import de.twenty11.skysail.server.core.restlet.utils.CookiesUtils;
 
 @Slf4j
 @NoArgsConstructor

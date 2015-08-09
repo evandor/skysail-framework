@@ -1,6 +1,6 @@
 package de.twenty11.skysail.server.core.restlet;
 
-import de.twenty11.skysail.server.core.FormField;
+import io.skysail.server.forms.FormField;
 
 public class MessagesUtils {
 

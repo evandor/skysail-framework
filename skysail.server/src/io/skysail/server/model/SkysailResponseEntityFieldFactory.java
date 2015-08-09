@@ -1,6 +1,7 @@
 package io.skysail.server.model;
 
 import io.skysail.api.responses.ConstraintViolationsResponse;
+import io.skysail.server.forms.FormField;
 import io.skysail.server.restlet.resources.SkysailServerResource;
 import io.skysail.server.utils.*;
 
@@ -8,7 +9,6 @@ import java.util.Map;
 import java.util.function.Function;
 
 import lombok.NonNull;
-import de.twenty11.skysail.server.core.FormField;
 
 public class SkysailResponseEntityFieldFactory extends FieldFactory {
 

@@ -7,6 +7,8 @@ import io.skysail.api.peers.PeersProvider;
 import io.skysail.api.text.Translation;
 import io.skysail.api.um.*;
 import io.skysail.api.validation.ValidatorService;
+import io.skysail.server.forms.FormField;
+import io.skysail.server.model.DefaultEntityFieldFactory;
 import io.skysail.server.restlet.filter.*;
 import io.skysail.server.restlet.resources.SkysailServerResource;
 import io.skysail.server.services.*;
@@ -145,6 +147,8 @@ public abstract class SkysailApplication extends Application implements Applicat
     @Getter
     private ApiVersion apiVersion = new ApiVersion(1);
 
+    private Map<String, Object> documentedEntities = new ConcurrentHashMap<>();
+
     public SkysailApplication() {
         getEncoderService().getIgnoredMediaTypes().add(SkysailApplication.SKYSAIL_SERVER_SENT_EVENTS);
         getEncoderService().setEnabled(true);
@@ -225,6 +229,14 @@ public abstract class SkysailApplication extends Application implements Applicat
         setInboundRoot((Restlet) null);
         setOutboundRoot((Restlet) null);
     }
+
+    protected void documentEntities(Object... entitiesToDocument) {
+        Arrays.stream(entitiesToDocument).forEach(e -> {
+            documentedEntities .put(e.getClass().getName(), e);
+        });
+    }
+
+
 
     protected void setServiceListProvider(ServiceListProvider service) {
         SkysailApplication.serviceListProviderRef.set(service);
@@ -654,6 +666,16 @@ public abstract class SkysailApplication extends Application implements Applicat
 
     public FavoritesService getFavoritesService() {
         return serviceListProviderRef.get().getFavoritesService();
+    }
+
+    public Map<String, FormField> describe(String className) throws Exception {
+        Object entity = documentedEntities.get(className);
+        if (entity == null) {
+            log.warn("no documented Entity found for identifier '{}'", className);
+            return Collections.emptyMap();
+        }
+        DefaultEntityFieldFactory deff = new DefaultEntityFieldFactory(entity.getClass());
+        return deff.determineFrom(null);
     }
 
 }

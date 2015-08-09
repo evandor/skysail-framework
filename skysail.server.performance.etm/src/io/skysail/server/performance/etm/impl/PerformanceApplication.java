@@ -3,15 +3,12 @@ package io.skysail.server.performance.etm.impl;
 import io.skysail.server.app.SkysailApplication;
 import io.skysail.server.performance.etm.EtmPerformanceMonitor;
 
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 import aQute.bnd.annotation.component.Component;
 import de.twenty11.skysail.server.app.ApplicationProvider;
-import de.twenty11.skysail.server.core.restlet.ApplicationContextId;
-import de.twenty11.skysail.server.core.restlet.RouteBuilder;
-import de.twenty11.skysail.server.services.MenuItem;
-import de.twenty11.skysail.server.services.MenuItemProvider;
+import de.twenty11.skysail.server.core.restlet.*;
+import de.twenty11.skysail.server.services.*;
 import etm.core.monitor.EtmMonitor;
 
 @Component(immediate = true)
@@ -32,7 +29,7 @@ public class PerformanceApplication extends SkysailApplication implements Applic
     }
 
     public List<MenuItem> getMenuEntries() {
-        MenuItem appMenu = new MenuItem(APP_NAME, "/" + APP_NAME, this);
+        MenuItem appMenu = new MenuItem(APP_NAME, "/" + APP_NAME + getApiVersion().getVersionPath(), this);
         appMenu.setCategory(MenuItem.Category.ADMIN_MENU);
         return Arrays.asList(appMenu);
     }

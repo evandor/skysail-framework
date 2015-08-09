@@ -1,13 +1,12 @@
 package io.skysail.server.model;
 
+import io.skysail.server.forms.FormField;
 import io.skysail.server.restlet.resources.SkysailServerResource;
 import io.skysail.server.utils.*;
 
 import java.lang.reflect.Field;
 import java.util.*;
 import java.util.function.Function;
-
-import de.twenty11.skysail.server.core.FormField;
 
 public class DefaultListFieldFactory extends FieldFactory {
 

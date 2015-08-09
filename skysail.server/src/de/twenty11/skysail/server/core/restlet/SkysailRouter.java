@@ -1,6 +1,7 @@
 package de.twenty11.skysail.server.core.restlet;
 
 import io.skysail.server.app.ApiVersion;
+import io.skysail.server.restlet.resources.ListServerResource;
 
 import java.util.*;
 import java.util.Map.Entry;
@@ -20,129 +21,141 @@ import de.twenty11.skysail.server.security.AuthenticatedAuthorizer;
 @Slf4j
 public class SkysailRouter extends Router {
 
-	private Map<String, RouteBuilder> pathRouteBuilderMap = new ConcurrentHashMap<String, RouteBuilder>();
+    private Map<String, RouteBuilder> pathRouteBuilderMap = new ConcurrentHashMap<String, RouteBuilder>();
 
-	private Predicate<String[]> defaultRolesPredicate;
+    private Predicate<String[]> defaultRolesPredicate;
 
     private ApiVersion apiVersion;
 
-	public SkysailRouter(Context context) {
-		super(context);
-	}
+    public SkysailRouter(Context context) {
+        super(context);
+    }
 
-	public TemplateRoute attach(String pathTemplate, Class<? extends ServerResource> targetClass) {
-		log.warn("please use a RouteBuilder to attach this resource: {}", targetClass);
-		return attach(pathTemplate, createFinder(targetClass));
-	}
+    public TemplateRoute attach(String pathTemplate, Class<? extends ServerResource> targetClass) {
+        log.warn("please use a RouteBuilder to attach this resource: {}", targetClass);
+        return attach(pathTemplate, createFinder(targetClass));
+    }
 
-	public void attach(RouteBuilder routeBuilder) {
-		String pathTemplate = routeBuilder.getPathTemplate(apiVersion);
+    public void attach(RouteBuilder routeBuilder) {
+
+        String pathTemplate = routeBuilder.getPathTemplate(apiVersion);
         pathRouteBuilderMap.put(pathTemplate, routeBuilder);
-		if (routeBuilder.getTargetClass() == null) {
-			attachForTargetClassNull(routeBuilder);
-			return;
-		}
-		if (!routeBuilder.needsAuthentication()) {
-			attachForNoAuthenticationNeeded(routeBuilder);
-			return;
-		}
-		Authorizer isAuthenticatedAuthorizer = createIsAuthenticatedAuthorizer(routeBuilder);
-		log.info("routing path '{}' -> '{}' -> '{}'", pathTemplate, "RolesPredicateAuthorizer", routeBuilder.getTargetClass().getName());
-		attach(pathTemplate, isAuthenticatedAuthorizer);
-	}
+        if (routeBuilder.getTargetClass() == null) {
+            attachForTargetClassNull(routeBuilder);
+            return;
+        }
 
-	public void detachAll() {
-		getRoutes().clear();
-	}
+        if (ListServerResource.class.isAssignableFrom(routeBuilder.getTargetClass())) {
+            String metadataPath = pathTemplate + "!meta";
+            RouteBuilder metaRouteBuilder = new RouteBuilder(metadataPath, routeBuilder.getTargetClass());
+            log.info("routing path '{}' -> '{}' -> '{}'", metadataPath, "RolesPredicateAuthorizer",
+                    metaRouteBuilder.getTargetClass().getName());
+            attach(metadataPath, createIsAuthenticatedAuthorizer(metaRouteBuilder));
+        }
 
-	public RouteBuilder getRouteBuilder(String pathTemplate) {
-		return pathRouteBuilderMap.get(pathTemplate);
-	}
+        if (!routeBuilder.needsAuthentication()) {
+            attachForNoAuthenticationNeeded(routeBuilder);
+            return;
+        }
+        Authorizer isAuthenticatedAuthorizer = createIsAuthenticatedAuthorizer(routeBuilder);
+        log.info("routing path '{}' -> '{}' -> '{}'", pathTemplate, "RolesPredicateAuthorizer", routeBuilder
+                .getTargetClass().getName());
+        attach(pathTemplate, isAuthenticatedAuthorizer);
+    }
 
-	public Map<String, RouteBuilder> getRouteBuilders() {
-		return Collections.unmodifiableMap(pathRouteBuilderMap);
-	}
+    public void detachAll() {
+        getRoutes().clear();
+    }
 
-	/**
-	 * provides, for a given skysail server resource, the path templates the
-	 * resource was attached to.
-	 *
-	 * @param cls
-	 * @return List of path templates
-	 */
-	// TODO maybe use getRouteBuildersForResource instead?
-	public List<String> getTemplatePathForResource(Class<? extends ServerResource> cls) {
-		List<String> result = new ArrayList<>();
-		for (Entry<String, RouteBuilder> entries : pathRouteBuilderMap.entrySet()) {
-			if (entries.getValue() == null || entries.getValue().getTargetClass() == null) {
-				continue;
-			}
-			if (entries.getValue().getTargetClass().equals(cls)) {
-				result.add(entries.getKey());
-			}
-		}
-		return result;
-	}
+    public RouteBuilder getRouteBuilder(String pathTemplate) {
+        return pathRouteBuilderMap.get(pathTemplate);
+    }
 
-	public List<RouteBuilder> getRouteBuildersForResource(Class<? extends ServerResource> cls) {
-		List<RouteBuilder> result = new ArrayList<>();
-		for (Entry<String, RouteBuilder> entries : pathRouteBuilderMap.entrySet()) {
-			if (entries.getValue() == null || entries.getValue().getTargetClass() == null) {
-				continue;
-			}
-			if (entries.getValue().getTargetClass().equals(cls)) {
-				result.add(entries.getValue());
-			}
-		}
-		return result;
-	}
+    public Map<String, RouteBuilder> getRouteBuilders() {
+        return Collections.unmodifiableMap(pathRouteBuilderMap);
+    }
 
-	public Map<String, RouteBuilder> getRoutesMap() {
-		return Collections.unmodifiableMap(pathRouteBuilderMap);
-	}
+    /**
+     * provides, for a given skysail server resource, the path templates the
+     * resource was attached to.
+     *
+     * @param cls
+     * @return List of path templates
+     */
+    // TODO maybe use getRouteBuildersForResource instead?
+    public List<String> getTemplatePathForResource(Class<? extends ServerResource> cls) {
+        List<String> result = new ArrayList<>();
+        for (Entry<String, RouteBuilder> entries : pathRouteBuilderMap.entrySet()) {
+            if (entries.getValue() == null || entries.getValue().getTargetClass() == null) {
+                continue;
+            }
+            if (entries.getValue().getTargetClass().equals(cls)) {
+                result.add(entries.getKey());
+            }
+        }
+        return result;
+    }
 
-	@Override
-	public String toString() {
-		StringBuilder sb = new StringBuilder();
-		if (pathRouteBuilderMap != null) {
-			for (String key : pathRouteBuilderMap.keySet()) {
-				sb.append(key).append(": ").append(pathRouteBuilderMap.get(key)).append("\n");
-			}
-		}
-		return sb.toString();
-	}
+    public List<RouteBuilder> getRouteBuildersForResource(Class<? extends ServerResource> cls) {
+        List<RouteBuilder> result = new ArrayList<>();
+        for (Entry<String, RouteBuilder> entries : pathRouteBuilderMap.entrySet()) {
+            if (entries.getValue() == null || entries.getValue().getTargetClass() == null) {
+                continue;
+            }
+            if (entries.getValue().getTargetClass().equals(cls)) {
+                result.add(entries.getValue());
+            }
+        }
+        return result;
+    }
 
-	public void setAuthorizationDefaults(Predicate<String[]> predicate) {
-		this.defaultRolesPredicate = predicate;
+    public Map<String, RouteBuilder> getRoutesMap() {
+        return Collections.unmodifiableMap(pathRouteBuilderMap);
+    }
 
-	}
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        if (pathRouteBuilderMap != null) {
+            for (String key : pathRouteBuilderMap.keySet()) {
+                sb.append(key).append(": ").append(pathRouteBuilderMap.get(key)).append("\n");
+            }
+        }
+        return sb.toString();
+    }
 
-	private Authorizer createIsAuthenticatedAuthorizer(RouteBuilder routeBuilder) {
-		Predicate<String[]> predicateToUse = routeBuilder.getRolesForAuthorization() == null ? defaultRolesPredicate
-		        : routeBuilder.getRolesForAuthorization();
-		routeBuilder.authorizeWith(predicateToUse);
+    public void setAuthorizationDefaults(Predicate<String[]> predicate) {
+        this.defaultRolesPredicate = predicate;
 
-		RolesPredicateAuthorizer authorizer = new RolesPredicateAuthorizer(predicateToUse);
-		authorizer.setContext(getContext());
-		authorizer.setNext(routeBuilder.getTargetClass());
-		Authorizer isAuthenticatedAuthorizer = new AuthenticatedAuthorizer();
-		isAuthenticatedAuthorizer.setNext(authorizer);
-		return isAuthenticatedAuthorizer;
-	}
+    }
 
-	private void attachForNoAuthenticationNeeded(RouteBuilder routeBuilder) {
-		log.info("routing path '{}' -> '{}'", routeBuilder.getPathTemplate(apiVersion), routeBuilder.getTargetClass().getName());
-		attach(routeBuilder.getPathTemplate(apiVersion), routeBuilder.getTargetClass());
-	}
+    private Authorizer createIsAuthenticatedAuthorizer(RouteBuilder routeBuilder) {
+        Predicate<String[]> predicateToUse = routeBuilder.getRolesForAuthorization() == null ? defaultRolesPredicate
+                : routeBuilder.getRolesForAuthorization();
+        routeBuilder.authorizeWith(predicateToUse);
 
-	private void attachForTargetClassNull(RouteBuilder routeBuilder) {
-		if (routeBuilder.getRestlet() == null) {
-			throw new IllegalStateException("RouteBuilder with neither TargetClass nor Restlet defined!");
-		}
-		log.info("routing path '{}' -> Restlet '{}'", routeBuilder.getPathTemplate(apiVersion), routeBuilder.getRestlet()
-		        .getClass().getSimpleName());
-		attach(routeBuilder.getPathTemplate(apiVersion), routeBuilder.getRestlet());
-	}
+        RolesPredicateAuthorizer authorizer = new RolesPredicateAuthorizer(predicateToUse);
+        authorizer.setContext(getContext());
+        authorizer.setNext(routeBuilder.getTargetClass());
+        Authorizer isAuthenticatedAuthorizer = new AuthenticatedAuthorizer();
+        isAuthenticatedAuthorizer.setNext(authorizer);
+        return isAuthenticatedAuthorizer;
+    }
+
+    private void attachForNoAuthenticationNeeded(RouteBuilder routeBuilder) {
+        log.info("routing path '{}' -> '{}'", routeBuilder.getPathTemplate(apiVersion), routeBuilder.getTargetClass()
+                .getName());
+        attach(routeBuilder.getPathTemplate(apiVersion), routeBuilder.getTargetClass());
+    }
+
+    private void attachForTargetClassNull(RouteBuilder routeBuilder) {
+        if (routeBuilder.getRestlet() == null) {
+            throw new IllegalStateException("RouteBuilder with neither TargetClass nor Restlet defined!");
+        }
+        log.info("routing path '{}' -> Restlet '{}'", routeBuilder.getPathTemplate(apiVersion), routeBuilder
+                .getRestlet().getClass().getSimpleName());
+        attach(routeBuilder.getPathTemplate(apiVersion), routeBuilder.getRestlet());
+    }
 
     public void setApiVersion(ApiVersion apiVersion) {
         this.apiVersion = apiVersion;

@@ -38,7 +38,7 @@ public class I18nApplication extends SkysailApplication implements ApplicationPr
 
     @Override
     public List<MenuItem> getMenuEntries() {
-        MenuItem appMenu = new MenuItem("I18N", "/i18n", this);
+        MenuItem appMenu = new MenuItem("I18N", "/i18n" + getApiVersion().getVersionPath(), this);
         appMenu.setCategory(MenuItem.Category.APPLICATION_MAIN_MENU);
         return Arrays.asList(appMenu);
     }
@@ -77,7 +77,7 @@ public class I18nApplication extends SkysailApplication implements ApplicationPr
     /**
      * get a message with the "best" translation (i.e. the first one returned), augmented with the
      * information about which other translation stores are available.
-     * @param selectedStore 
+     * @param selectedStore
      */
     public Message getMessage(String key, String selectedStore, SkysailServerResource<?> resource) {
         Set<TranslationStoreHolder> translationStores = serviceListProviderRef.get().getTranslationStores();
@@ -109,9 +109,9 @@ public class I18nApplication extends SkysailApplication implements ApplicationPr
     /**
      * tries to create or update a message in a properties file of the matching
      * bundle.
-     * 
+     *
      * The property file has to exist.
-     * 
+     *
      * @param message
      * @return If successful, this method will return the file path of the file
      *         which was altered, otherwise null.

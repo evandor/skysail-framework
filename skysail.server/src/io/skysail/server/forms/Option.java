@@ -1,4 +1,4 @@
-package de.twenty11.skysail.server.core;
+package io.skysail.server.forms;
 
 import java.util.Map.Entry;
 

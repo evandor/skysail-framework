@@ -2,32 +2,16 @@ package io.skysail.server.app.designer;
 
 import io.skysail.server.app.SkysailApplication;
 import io.skysail.server.app.designer.application.Application;
-import io.skysail.server.app.designer.application.resources.ApplicationResource;
-import io.skysail.server.app.designer.application.resources.ApplicationsResource;
-import io.skysail.server.app.designer.application.resources.PostApplicationResource;
-import io.skysail.server.app.designer.application.resources.PutApplicationResource;
+import io.skysail.server.app.designer.application.resources.*;
 import io.skysail.server.app.designer.codegen.PostCompilationResource;
 import io.skysail.server.app.designer.entities.Entity;
-import io.skysail.server.app.designer.entities.resources.EntitiesResource;
-import io.skysail.server.app.designer.entities.resources.EntityResource;
-import io.skysail.server.app.designer.entities.resources.PostEntityResource;
-import io.skysail.server.app.designer.entities.resources.PostSubEntityResource;
-import io.skysail.server.app.designer.entities.resources.PutEntityResource;
-import io.skysail.server.app.designer.entities.resources.SubEntitiesResource;
-import io.skysail.server.app.designer.entities.resources.SubEntityResource;
+import io.skysail.server.app.designer.entities.resources.*;
 import io.skysail.server.app.designer.fields.EntityField;
-import io.skysail.server.app.designer.fields.resources.FieldResource;
-import io.skysail.server.app.designer.fields.resources.FieldsResource;
-import io.skysail.server.app.designer.fields.resources.PostActionFieldResource;
-import io.skysail.server.app.designer.fields.resources.PostFieldResource;
-import io.skysail.server.app.designer.fields.resources.PutFieldResource;
+import io.skysail.server.app.designer.fields.resources.*;
 import io.skysail.server.app.designer.repo.DesignerRepository;
-import io.skysail.server.db.DbRepository;
-import io.skysail.server.db.DbService2;
+import io.skysail.server.db.*;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
@@ -35,13 +19,10 @@ import lombok.extern.slf4j.Slf4j;
 
 import org.osgi.framework.BundleException;
 
-import aQute.bnd.annotation.component.Component;
-import aQute.bnd.annotation.component.Reference;
+import aQute.bnd.annotation.component.*;
 import de.twenty11.skysail.server.app.ApplicationProvider;
-import de.twenty11.skysail.server.core.restlet.ApplicationContextId;
-import de.twenty11.skysail.server.core.restlet.RouteBuilder;
-import de.twenty11.skysail.server.services.MenuItem;
-import de.twenty11.skysail.server.services.MenuItemProvider;
+import de.twenty11.skysail.server.core.restlet.*;
+import de.twenty11.skysail.server.services.*;
 
 @Component(immediate = true)
 @Slf4j
@@ -118,7 +99,7 @@ public class DesignerApplication extends SkysailApplication implements MenuItemP
     }
 
     public List<MenuItem> createMenuEntries() {
-        MenuItem appMenu = new MenuItem("AppDesigner", "/" + APP_NAME, this);
+        MenuItem appMenu = new MenuItem("AppDesigner", "/" + APP_NAME + getApiVersion().getVersionPath(), this);
         appMenu.setCategory(MenuItem.Category.APPLICATION_MAIN_MENU);
         List<MenuItem> menuItems = new ArrayList<>();
         menuItems.add(appMenu);

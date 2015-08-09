@@ -2,8 +2,7 @@ package io.skysail.server.documentation;
 
 import io.skysail.api.documentation.DocumentationProvider;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 import org.restlet.resource.ServerResource;
 
@@ -20,7 +19,7 @@ public class SkysailDocumentationProvider implements DocumentationProvider {
         Map<String, Class<? extends ServerResource>> result = new HashMap<>();
         result.put(APPLICATION_API_PATH, ApiResource.class);
         result.put(APPLICATION_ENTITIES_PATH, EntitiesResource.class);
-        result.put(APPLICATION_ENTITIES_PATH + "/{name}", EntitiesResource.class);
+        result.put(APPLICATION_ENTITIES_PATH + "/{id}", EntityResource.class);
         // result.put(APPLICATION_LINKS_PATH, LinksResource.class));
         return result;
     }

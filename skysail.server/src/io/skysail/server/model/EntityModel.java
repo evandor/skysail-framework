@@ -1,12 +1,12 @@
 package io.skysail.server.model;
 
+import io.skysail.server.forms.FormField;
 import io.skysail.server.restlet.resources.SkysailServerResource;
 
 import java.util.Map;
 
 import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
-import de.twenty11.skysail.server.core.FormField;
 
 @ToString
 @Slf4j

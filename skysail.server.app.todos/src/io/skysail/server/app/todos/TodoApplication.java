@@ -5,6 +5,7 @@ import io.skysail.server.app.todos.charts.ListChartResource;
 import io.skysail.server.app.todos.lists.*;
 import io.skysail.server.app.todos.repo.TodosRepository;
 import io.skysail.server.app.todos.statuses.*;
+import io.skysail.server.app.todos.todos.Todo;
 import io.skysail.server.app.todos.todos.resources.*;
 import io.skysail.server.db.DbRepository;
 
@@ -26,6 +27,7 @@ public class TodoApplication extends SkysailApplication implements ApplicationPr
 
     public TodoApplication() {
         super(APP_NAME, new ApiVersion(2));
+        documentEntities(new Todo(), new TodoList());
         addToAppContext(ApplicationContextId.IMG, "/static/img/silk/tag_yellow.png");
     }
 
@@ -54,22 +56,19 @@ public class TodoApplication extends SkysailApplication implements ApplicationPr
         router.attach(new RouteBuilder("/Lists/", PostListResource.class));
         router.attach(new RouteBuilder("/Lists/{"+LIST_ID+"}", ListResource.class));
         router.attach(new RouteBuilder("/Lists/{"+LIST_ID+"}/", PutListResource.class));
-
         router.attach(new RouteBuilder("/Lists/{"+LIST_ID+"}/_stats", ListChartResource.class));
-
         router.attach(new RouteBuilder("/Lists/list:null/Todos/", PostTodoWoListResource.class));
-
         router.attach(new RouteBuilder("/Lists/{"+LIST_ID+"}/Todos/", PostTodoResource.class));
         router.attach(new RouteBuilder("/Lists/{"+LIST_ID+"}/Todos", TodosResource.class));
+        router.attach(new RouteBuilder("/Lists/{"+LIST_ID+"}/ArchivedTodos", ArchivedTodosResource.class));
+
         router.attach(new RouteBuilder("/Todos/{"+TODO_ID+"}", TodoResource.class));
         router.attach(new RouteBuilder("/Todos/{"+TODO_ID+"}/", PutTodoResource.class));
-
-        router.attach(new RouteBuilder("/Lists/{"+LIST_ID+"}/ArchivedTodos", ArchivedTodosResource.class));
 
     }
 
     public List<MenuItem> getMenuEntries() {
-        MenuItem appMenu = new MenuItem(APP_NAME, "/" + APP_NAME, this);
+        MenuItem appMenu = new MenuItem(APP_NAME, "/" + APP_NAME + getApiVersion().getVersionPath(), this);
         appMenu.setCategory(MenuItem.Category.APPLICATION_MAIN_MENU);
         return Arrays.asList(appMenu);
     }

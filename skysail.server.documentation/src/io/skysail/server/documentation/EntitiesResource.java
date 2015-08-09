@@ -1,61 +1,51 @@
 package io.skysail.server.documentation;
 
-import io.skysail.server.app.SkysailApplication;
 import io.skysail.server.restlet.resources.ListServerResource;
 
-import java.util.List;
-
-import org.restlet.resource.ResourceException;
+import java.lang.reflect.*;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class EntitiesResource extends ListServerResource<EntityDescriptor> {
 
-    private SkysailApplication app;
-    private String applicationName = "";
-    private String name;
-
-    /**
-     * Describes the entities of the associated application.
-     */
     public EntitiesResource() {
-        super(null);
-        app = (SkysailApplication) getApplication();
+        //super(EntityResource.class);
         setDescription("Provides information about the RESTful Entities of this application");
     }
 
     @Override
-    protected void doInit() throws ResourceException {
-        super.doInit();
-        applicationName = getRequest().getOriginalRef().getSegments().get(0);
-        if (getRequest().getAttributes().get("name") != null) {
-            name = (String) getRequest().getAttributes().get("name");
-        }
-    }
-
-    @Override
     public List<EntityDescriptor> getEntity() {
-        return null;
+        Set<Class<?>> classes = getApplication().getRoutesMap().values().stream()
+                .map(routeBuilder -> routeBuilder.getTargetClass()).filter(cls -> cls != null)
+                .collect(Collectors.toSet());
+        Set<String> entities = classes.stream()
+                .map(cls -> parameterType(cls))
+                .map(cls -> getEntityType(cls))
+                .collect(Collectors.toSet());
+        return entities.stream()
+                .map(name -> new EntityDescriptor(name))
+                .collect(Collectors.toList());
     }
 
-    // @Override
-    // public List<EntityDescriptor> getData() {
-    // Set<EntityDescriptor> entities = new HashSet<EntityDescriptor>();
-    // Map<String, RouteBuilder> routes = app.getRoutesMap();
-    // for (String path : routes.keySet()) {
-    // ResourceApi applicationApi = new ResourceApi(applicationName + path,
-    // routes.get(path));
-    // if (applicationApi.getEntity() == null) {
-    // continue;
-    // }
-    // if (name != null && applicationApi.getEntity().getName().equals(name)) {
-    // entities.add(applicationApi.getEntity());
-    // } else if (name == null) {
-    // entities.add(applicationApi.getEntity());
-    // }
-    // }
-    //
-    // ArrayList<EntityDescriptor> result = new ArrayList<EntityDescriptor>();
-    // result.addAll(entities);
-    // return result;
-    // }
+    private Class<?> parameterType(Class<?> cls) {
+        ParameterizedType parameterizedType = getParameterizedType(cls);
+        Type firstActualTypeArgument = parameterizedType.getActualTypeArguments()[0];
+        if (firstActualTypeArgument.getTypeName().startsWith("java.util.Map")) {
+            return Map.class;
+        }
+        return (Class<?>) firstActualTypeArgument;
+    }
+
+    private ParameterizedType getParameterizedType(Class<?> cls) {
+        Type genericSuperclass = cls.getGenericSuperclass();
+        if (genericSuperclass instanceof ParameterizedType) {
+            return (ParameterizedType) genericSuperclass;
+        }
+        return getParameterizedType(cls.getSuperclass());
+    }
+
+    private String getEntityType(Class<?> ssr) {
+        return ssr.toString().split(" ")[1].trim();
+    }
 
 }

@@ -5,6 +5,7 @@ import io.skysail.api.links.*;
 import io.skysail.api.responses.SkysailResponse;
 import io.skysail.api.utils.StringParserUtils;
 import io.skysail.server.app.SkysailApplication;
+import io.skysail.server.forms.FormField;
 import io.skysail.server.restlet.RequestHandler;
 import io.skysail.server.restlet.filter.AbstractResourceFilter;
 import io.skysail.server.services.PerformanceTimer;
@@ -29,7 +30,6 @@ import org.restlet.security.Role;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import de.twenty11.skysail.server.core.FormField;
 import de.twenty11.skysail.server.core.restlet.*;
 import de.twenty11.skysail.server.services.MenuItem;
 

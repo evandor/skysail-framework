@@ -7,13 +7,14 @@ import io.skysail.server.restlet.resources.*;
 import java.lang.reflect.Field;
 import java.util.*;
 
-import de.twenty11.skysail.server.core.FormField;
-
 public abstract class FieldFactory {
 
     public abstract Map<String, FormField> determineFrom(SkysailServerResource<?> resource) throws Exception;
-    
+
     protected boolean test(SkysailServerResource<?> resource, Field field) {
+        if (resource == null) {
+            return true;
+        }
         List<String> fieldNames = resource.getFields();
         if (isValidFieldAnnotation(resource, field, fieldNames)) {
             return true;
@@ -39,7 +40,7 @@ public abstract class FieldFactory {
         if (resource instanceof ListServerResource<?>) {
             return isValid(field, (ListServerResource<?>)resource);
         }
-        
+
         return true;
     }
 
@@ -68,7 +69,7 @@ public abstract class FieldFactory {
         }
         return true;
     }
-    
+
     private boolean isValid(Field field, PutEntityServerResource<?> resource) {
         PutView putViewAnnotation = field.getAnnotation(PutView.class);
         if (putViewAnnotation != null) {

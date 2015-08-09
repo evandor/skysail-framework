@@ -4,3 +4,4 @@ new in
 -----
 
  * new Method io.skysail.server.utils.ResourceUtils.determineLocale(SkysailServerResource<?>)
+ * moved FormField to io.skysail package

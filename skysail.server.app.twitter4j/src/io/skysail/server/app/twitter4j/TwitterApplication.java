@@ -1,30 +1,19 @@
 package io.skysail.server.app.twitter4j;
 
 import io.skysail.server.app.SkysailApplication;
-import io.skysail.server.app.twitter4j.resources.SearchRequestResource;
-import io.skysail.server.app.twitter4j.resources.TimelineEntityResource;
-import io.skysail.server.app.twitter4j.resources.TimelineResource;
-import io.skysail.server.app.twitter4j.resources.Tweet2TodoResource;
+import io.skysail.server.app.twitter4j.resources.*;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import org.osgi.service.cm.ConfigurationException;
 import org.osgi.service.component.ComponentContext;
 
-import twitter4j.Twitter;
-import twitter4j.TwitterFactory;
+import twitter4j.*;
 import twitter4j.conf.ConfigurationBuilder;
-import aQute.bnd.annotation.component.Activate;
-import aQute.bnd.annotation.component.Component;
-import aQute.bnd.annotation.component.ConfigurationPolicy;
-import aQute.bnd.annotation.component.Deactivate;
+import aQute.bnd.annotation.component.*;
 import de.twenty11.skysail.server.app.ApplicationProvider;
-import de.twenty11.skysail.server.core.restlet.ApplicationContextId;
-import de.twenty11.skysail.server.core.restlet.RouteBuilder;
-import de.twenty11.skysail.server.services.MenuItem;
-import de.twenty11.skysail.server.services.MenuItemProvider;
+import de.twenty11.skysail.server.core.restlet.*;
+import de.twenty11.skysail.server.services.*;
 
 @Component(immediate = true, configurationPolicy = ConfigurationPolicy.require)
 public class TwitterApplication extends SkysailApplication implements ApplicationProvider, MenuItemProvider {
@@ -36,7 +25,7 @@ public class TwitterApplication extends SkysailApplication implements Applicatio
         super(APP_NAME);
         addToAppContext(ApplicationContextId.IMG, "/static/img/silk/page_link.png");
     }
-    
+
     @Activate
     public void activate(Map<String, String> config, ComponentContext componentContext) throws ConfigurationException {
         super.activate(componentContext);
@@ -47,7 +36,7 @@ public class TwitterApplication extends SkysailApplication implements Applicatio
     public void deactivate() {
         this.config = null;
     }
-    
+
     @Override
     protected void attach() {
         super.attach();
@@ -59,7 +48,7 @@ public class TwitterApplication extends SkysailApplication implements Applicatio
 
     @Override
     public List<MenuItem> getMenuEntries() {
-        MenuItem appMenu = new MenuItem(APP_NAME, "/" + APP_NAME, this);
+        MenuItem appMenu = new MenuItem(APP_NAME, "/" + APP_NAME + getApiVersion().getVersionPath(), this);
         appMenu.setCategory(MenuItem.Category.APPLICATION_MAIN_MENU);
         return Arrays.asList(appMenu);
     }

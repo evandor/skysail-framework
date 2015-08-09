@@ -1,4 +1,4 @@
-package de.twenty11.skysail.server.core.restlet.utils;
+package io.skysail.server.utils;
 
 import org.restlet.Request;
 import org.restlet.data.Cookie;

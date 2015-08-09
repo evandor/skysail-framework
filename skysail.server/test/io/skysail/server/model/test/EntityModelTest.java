@@ -1,10 +1,10 @@
 package io.skysail.server.model.test;
 
+import io.skysail.server.forms.FormField;
+
 import java.util.*;
 
 import org.junit.Before;
-
-import de.twenty11.skysail.server.core.FormField;
 
 public class EntityModelTest {
 

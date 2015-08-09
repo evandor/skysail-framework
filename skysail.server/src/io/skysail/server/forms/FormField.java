@@ -1,11 +1,10 @@
-package de.twenty11.skysail.server.core;
+package io.skysail.server.forms;
 
 import io.skysail.api.forms.*;
 import io.skysail.api.links.Link;
 import io.skysail.api.responses.*;
-import io.skysail.server.forms.ListView;
 import io.skysail.server.restlet.resources.SkysailServerResource;
-import io.skysail.server.utils.RequestUtils;
+import io.skysail.server.utils.*;
 
 import java.lang.reflect.*;
 import java.lang.reflect.Field;
@@ -21,7 +20,6 @@ import org.restlet.Request;
 import org.restlet.resource.Resource;
 
 import de.twenty11.skysail.server.core.restlet.MessagesUtils;
-import de.twenty11.skysail.server.core.restlet.utils.CookiesUtils;
 import de.twenty11.skysail.server.um.domain.SkysailUser;
 
 /**

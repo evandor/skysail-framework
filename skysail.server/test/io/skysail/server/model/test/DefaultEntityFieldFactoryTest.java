@@ -2,14 +2,13 @@ package io.skysail.server.model.test;
 
 import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.assertThat;
+import io.skysail.server.forms.FormField;
 import io.skysail.server.model.DefaultEntityFieldFactory;
 
 import java.util.Map;
 
 import org.junit.*;
 import org.mockito.Mockito;
-
-import de.twenty11.skysail.server.core.FormField;
 
 public class DefaultEntityFieldFactoryTest extends ModelTests {
 

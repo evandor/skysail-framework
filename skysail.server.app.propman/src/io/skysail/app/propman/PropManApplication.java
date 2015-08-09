@@ -44,15 +44,15 @@ public class PropManApplication extends SkysailApplication implements Applicatio
         router.attach(new RouteBuilder("", io.skysail.app.propman.CampaignsResource.class));
         router.attach(new RouteBuilder("/Campaigns", io.skysail.app.propman.CampaignsResource.class));
         router.attach(new RouteBuilder("/Campaigns/{id}", io.skysail.app.propman.PutCampaignResource.class));
-        
+
         router.attach(new RouteBuilder("/Campaigns/{id}/Requests/", PostRequestResource.class));
-        
+
 
 
     }
 
     public List<MenuItem> getMenuEntries() {
-        MenuItem appMenu = new MenuItem(APP_NAME, "/" + APP_NAME, this);
+        MenuItem appMenu = new MenuItem(APP_NAME, "/" + APP_NAME + getApiVersion().getVersionPath(), this);
         appMenu.setCategory(MenuItem.Category.APPLICATION_MAIN_MENU);
         return Arrays.asList(appMenu);
     }

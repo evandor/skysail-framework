@@ -3,6 +3,7 @@ package de.twenty11.skysail.server.resources;
 import io.skysail.api.responses.FormResponse;
 import io.skysail.api.responses.SkysailResponse;
 import io.skysail.server.restlet.resources.PostEntityServerResource;
+import io.skysail.server.utils.CookiesUtils;
 
 import org.apache.shiro.SecurityUtils;
 import org.restlet.data.CookieSetting;
@@ -13,7 +14,6 @@ import org.restlet.resource.Get;
 import org.restlet.resource.ResourceException;
 
 import de.twenty11.skysail.server.app.SkysailRootApplication;
-import de.twenty11.skysail.server.core.restlet.utils.CookiesUtils;
 import de.twenty11.skysail.server.domain.Credentials;
 
 public class RemoteLoginResource extends PostEntityServerResource<Credentials> {

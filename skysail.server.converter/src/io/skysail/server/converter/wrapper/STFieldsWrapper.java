@@ -1,5 +1,7 @@
 package io.skysail.server.converter.wrapper;
 
+import io.skysail.server.forms.FormField;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
@@ -7,7 +9,6 @@ import java.util.List;
 import java.util.ListIterator;
 
 import lombok.ToString;
-import de.twenty11.skysail.server.core.FormField;
 
 @ToString(of = { "fields" })
 public class STFieldsWrapper implements List<FormField> {

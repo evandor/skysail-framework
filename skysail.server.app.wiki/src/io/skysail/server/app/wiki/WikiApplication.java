@@ -86,7 +86,7 @@ public class WikiApplication extends SkysailApplication implements MenuItemProvi
     }
 
     public List<MenuItem> getMenuEntries() {
-        MenuItem appMenu = new MenuItem("Appwiki", "/" + APP_NAME, this);
+        MenuItem appMenu = new MenuItem("Appwiki", "/" + APP_NAME + getApiVersion().getVersionPath(), this);
         appMenu.setCategory(MenuItem.Category.APPLICATION_MAIN_MENU);
         return Arrays.asList(appMenu);
     }

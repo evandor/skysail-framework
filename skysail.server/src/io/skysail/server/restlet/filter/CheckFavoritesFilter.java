@@ -6,6 +6,7 @@ import io.skysail.api.links.Link;
 import io.skysail.api.links.LinkRole;
 import io.skysail.server.app.SkysailApplication;
 import io.skysail.server.restlet.resources.SkysailServerResource;
+import io.skysail.server.utils.CookiesUtils;
 
 import java.util.List;
 
@@ -15,7 +16,6 @@ import org.restlet.Request;
 
 import de.twenty11.skysail.server.Constants;
 import de.twenty11.skysail.server.core.restlet.ResponseWrapper;
-import de.twenty11.skysail.server.core.restlet.utils.CookiesUtils;
 
 public class CheckFavoritesFilter<R extends SkysailServerResource<T>, T> extends AbstractResourceFilter<R, T> {
 

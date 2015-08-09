@@ -2,12 +2,12 @@ package io.skysail.server.restlet.filter;
 
 import io.skysail.api.domain.Identifiable;
 import io.skysail.server.restlet.resources.*;
+import io.skysail.server.utils.CookiesUtils;
 
 import java.util.*;
 
 import lombok.extern.slf4j.Slf4j;
 import de.twenty11.skysail.server.core.restlet.ResponseWrapper;
-import de.twenty11.skysail.server.core.restlet.utils.CookiesUtils;
 
 @Slf4j
 public class DataExtractingFilter<R extends SkysailServerResource<T>, T> extends AbstractResourceFilter<R, T> {

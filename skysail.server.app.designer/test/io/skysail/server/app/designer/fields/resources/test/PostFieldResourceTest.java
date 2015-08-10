@@ -58,7 +58,7 @@ public class PostFieldResourceTest extends ResourceTestBase {
         String id = DesignerRepository.add(application).toString();
 
         application = repo.getById(Application.class, id);
-        application.getEntities().add(entity);
+        //application.getEntities().add(entity);
         repo.update(application);
 
         resource.getRequestAttributes().put("id", id);

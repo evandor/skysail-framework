@@ -125,6 +125,7 @@
 	skysail.server.queryfilter;version=${skysail.server.queryfilter.version},\
 	skysail.server.static;version=latest,\
 	skysail.server.http;version=latest,\
+	skysail.server.osgi;version=latest,\
 	skysail.server.polymer;version=latest,\
 	skysail.server.plugins;version=latest,\
 	skysail.server.documentation;version=${skysail.server.documentation.version},\

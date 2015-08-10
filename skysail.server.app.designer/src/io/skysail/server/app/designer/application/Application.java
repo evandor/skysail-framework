@@ -59,7 +59,7 @@ public class Application implements Identifiable {
     private String owner;
 
     //@Reference(cls = Entity.class)
-    private List<Entity> entities;
+    private List<String> entities;
 
     /**
      * A builder which sets the mandatory attributes
@@ -72,7 +72,7 @@ public class Application implements Identifiable {
         this.projectName = projectName;
     }
 
-    public List<Entity> getEntities() {
+    public List<String> getEntities() {
         if (entities == null) {
             entities = new ArrayList<>();
         }

@@ -35,7 +35,7 @@ public class EntitiesResource extends ListServerResource<Entity> {
     @Override
     public List<Entity> getEntity() {
         Application application = app.getRepository().getById(Application.class, id);
-        return application.getEntities();
+        return null;//application.getEntities();
     }
 
     @Override

@@ -52,4 +52,4 @@ Import-Package: org.osgi.framework,\
 	javassist.util.proxy,\
 	*
 Private-Package: \
-    io.skysail.app.propman
+    io.skysail.app.designer.propman

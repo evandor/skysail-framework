@@ -54,7 +54,7 @@ public class ApplicationModelTest {
         application = new Application("testapp", "pkgName", "../", "projectName");
         application.setId("#1");
         entities = new ArrayList<>();
-        application.setEntities(entities);
+       // application.setEntities(entities);
         Mockito.when(repo.getById(Application.class, "1")).thenReturn(application);
     }
 

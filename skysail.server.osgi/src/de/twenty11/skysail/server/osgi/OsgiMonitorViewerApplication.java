@@ -46,7 +46,7 @@ public class OsgiMonitorViewerApplication extends SkysailApplication implements 
 
     @Override
     protected void attach() {
-        // @formatter:off
+        super.attach();
         router.attach(new RouteBuilder("", OsgiMonitorRootResource.class));
         router.attach(new RouteBuilder("/", OsgiMonitorRootResource.class));
         Role admin = getFrameworkRole("admin");
@@ -73,7 +73,7 @@ public class OsgiMonitorViewerApplication extends SkysailApplication implements 
 
     @Override
     public List<MenuItem> getMenuEntries() {
-        MenuItem appMenu = new MenuItem("OSGi", "/OSGi" , this);
+        MenuItem appMenu = new MenuItem("OSGi", "/OSGi" + getApiVersion().getVersionPath(), this);
     	appMenu.setCategory(MenuItem.Category.APPLICATION_MAIN_MENU);
         return Arrays.asList(appMenu);
     }

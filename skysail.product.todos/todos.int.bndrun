@@ -114,7 +114,7 @@
 	skysail.server;version=${skysail.server.version},\
 	skysail.server.converter;version=${skysail.server.converter.version},\
 	skysail.server.db;version=${skysail.server.db.version},\
-    skysail.server.osgi;version='[0.0.18,0.0.19)',\
+    skysail.server.osgi;version=${skysail.server.osgi.version},\
 	skysail.server.queryfilter;version=${skysail.server.queryfilter.version},\
 	skysail.server.performance.etm;version=${skysail.server.performance.etm.version},\
 	skysail.server.static;version=${skysail.server.static.version},\

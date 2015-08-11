@@ -31,6 +31,7 @@ import org.osgi.framework.Bundle;
 import de.twenty11.skysail.server.core.restlet.SkysailRouter;
 
 @RunWith(MockitoJUnitRunner.class)
+@Ignore
 public class ApplicationModelTest {
 
     @Rule

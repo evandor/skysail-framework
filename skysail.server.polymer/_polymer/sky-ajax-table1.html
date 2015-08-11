@@ -12,6 +12,16 @@
   <template>
 
     <iron-ajax
+        id="skyMeta"
+        handle-as="json"
+        headers='{"Accept": "application/json"}'
+        on-response="metaResponse"
+        last-response="{{meta}}"
+        debounce-duration="300"
+        verbose
+    />
+
+    <iron-ajax
         id="skyTable"
         handle-as="json"
         headers='{"Accept": "application/json"}'
@@ -24,13 +34,13 @@
 
     <table class="table table-striped">
       <tr>
-        <template is="dom-repeat" items="{{_toArray2(columnNames)}}">
+        <template is="dom-repeat" items="{{_headersFrom(columnNames)}}">
           <th>{{item.value}}</th>
         </template>
       </tr>
       <template is="dom-repeat" items="{{data}}" as="row">
         <tr>
-          <template is="dom-repeat" items="{{_toArray(row,columns)}}" as="column">
+          <template is="dom-repeat" items="{{_toArray(row,columns,meta)}}" as="column">
             <td><sky-html html="{{column.value}}"></sky-html></td>
           </template>
         </tr>
@@ -42,14 +52,16 @@
     Polymer({
       is: 'sky-ajax-table1',
       properties: {
-    	  linkTo:       String,
-    	  requestUrl:   String,
-    	  url:          { type: String, observer: '_urlChanged' },
-    	  columns:      { type: Array,  value: ['please define the columns'] },
-    	  columnNames:  { type: Object, value: {"name": "please define the attribute column-names"} },
-    	  nameProperty: { type: String, value: "name", observer: '_namePropertyChanged' },
-    	  identifier:   { type: String, value: "id" },
-    	  linkLength:   { type: Number, value: 10 }
+    	  linkTo:        String,
+    	  requestUrl:    String,
+    	  url:           { type: String, observer: '_urlChanged' },
+          entityTypeUrl: { type: String, observer: '_entityTypeUrlChanged' },
+    	  columns:       { type: Array,  value: ['please define the columns'] },
+          cols:          { type: Array,  value: ['please define the columns'] },
+    	  columnNames:   { type: Object, value: {"name": "please define the attribute column-names"} },
+    	  nameProperty:  { type: String, value: "name", observer: '_namePropertyChanged' },
+    	  identifier:    { type: String, value: "id" },
+    	  linkLength:    { type: Number, value: 10 }
       },
       renderLink: function(href, item, identifier) {
        	  return href.replace("{" + identifier + "}", item.id);
@@ -59,6 +71,11 @@
     	  document.getElementById("resourceDescription").innerHTML = request.xhr.getResponseHeader('X-Resource-Description');
     	  this.columnNames = JSON.parse(request.xhr.getResponseHeader('X-Resource-ColumnNames'));
           this.columns = JSON.parse(request.xhr.getResponseHeader('X-Resource-Columns'));
+      },
+      metaResponse: function(event, request) {
+          console.log("SKY-AJAX-TABLE (metaResponse)> Size:  " + request.xhr.response.length);
+          this.cols = request.xhr.response;
+          console.log(this.cols);
       },
       ready: function() {
         console.log("SKY-AJAX-TABLE (ready)>");
@@ -72,19 +89,36 @@
         console.log("SKY-AJAX-TABLE (_namePropertyChanged)> '" + oldValue + "' --> '" + newValue + "'");
         this.$.skyTable.nameProperty=newValue;
   	  },
+  	  _entityTypeUrlChanged: function(newValue, oldValue) {
+          console.log("SKY-AJAX-TABLE (_entityTypeUrlChanged)> '" + oldValue + "' --> '" + newValue + "'");
+          this.$.skyMeta.url = newValue;
+          this.$.skyMeta.generateRequest();
+  	  },
   	  _columnNamesChanged:function(newValue, oldValue) {
         console.log("SKY-AJAX-TABLE (_columnNamesChanged)> '" + oldValue + "' --> '" + newValue + "'");
         this.$.skyTable.columnNames=newValue;
   	  },
-  	  _toArray: function(obj, columns) {
+  	  _toArray: function(obj, columns, meta) {
   		console.log("SKY-AJAX-TABLE (_toArray)> " + obj + ", " + columns);
         return columns.map(function(key) {
-            //console.log("SKY-AJAX-TABLE (_toArray)> name:" + key + ", value: " + typeof(obj[key]));
-          return {name: key, value: obj[key]};
+          console.log("SKY-AJAX-TABLE (_toArray)> key: "+key+", value: "+obj[key]+", meta:" + meta[key]);
+          var type = "?";
+          if (meta[key]) {
+        	  type = meta[key].type;
+          }
+          if (type === "java.util.Date") {
+        	  if (!obj[key]) {
+        		  return {name: key, value: "---"};
+        	  }
+        	  var timestamp = 1000 * Math.round(obj[key]/1000);
+              return {name: key, value: new Date(timestamp).toLocaleDateString()};
+          } else  {
+        	  return {name: key, value: obj[key]};
+          }
         });
       },
-      _toArray2: function(obj) {
-          console.log("SKY-AJAX-TABLE (_toArray2)> " + obj );
+      _headersFrom: function(obj) {
+          console.log("SKY-AJAX-TABLE (_headersFrom)> " + obj );
           return Object.keys(obj).map(function(key) {
             return {name: key, value: obj[key]};
           });

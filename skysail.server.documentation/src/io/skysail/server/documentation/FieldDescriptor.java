@@ -8,13 +8,13 @@ import lombok.Getter;
 public class FieldDescriptor {
 
     @Field
-    private String classname;
-
-    @Field
     private Class<?> type;
 
     @Field
     private String inputType;
+
+    private String classname;
+
 
     public FieldDescriptor(FormField ff) {
         this.classname = ff.getName();

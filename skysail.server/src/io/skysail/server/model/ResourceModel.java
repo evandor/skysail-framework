@@ -4,6 +4,7 @@ import io.skysail.api.domain.Identifiable;
 import io.skysail.api.favorites.FavoritesService;
 import io.skysail.api.links.Link;
 import io.skysail.api.responses.*;
+import io.skysail.server.app.SkysailApplication;
 import io.skysail.server.forms.FormField;
 import io.skysail.server.restlet.resources.*;
 import io.skysail.server.utils.*;
@@ -257,6 +258,11 @@ public class ResourceModel<R extends SkysailServerResource<T>, T> {
 
     public String getClassname() {
         return resource.getClass().getName();
+    }
+
+    public String getContextPath() {
+        SkysailApplication application = resource.getApplication();
+        return  new StringBuilder("/").append(application.getName()).append(application.getApiVersion().getVersionPath()).toString();
     }
 
     public String getEntityType() {

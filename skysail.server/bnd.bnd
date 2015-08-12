@@ -15,6 +15,7 @@ Export-Package:  \
 	io.skysail.server.model,\
 	io.skysail.server.restlet.filter,\
 	de.twenty11.skysail.server.validation,\
+	fdfdsfs
 	io.skysail.server.app,\
 	de.twenty11.skysail.server.persistence,\
 	io.skysail.server.restlet,\

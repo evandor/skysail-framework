@@ -44,7 +44,7 @@ public class SkysailRootApplication extends SkysailApplication implements Applic
 
     public static final String LOGIN_PATH = "/_login";
     public static final String PEERS_LOGIN_PATH = "/_remotelogin";
-    
+
     public static final String LOGOUT_PATH = "/_logout";
     private static final String PROFILE_PATH = "/_profile";
     private static final String VERSION_PATH = "/_version";
@@ -77,7 +77,7 @@ public class SkysailRootApplication extends SkysailApplication implements Applic
     protected synchronized void deactivate(ComponentContext componentContext) {
         setComponentContext(null);
     }
-    
+
     @aQute.bnd.annotation.component.Reference(optional = true, dynamic = true, multiple = false)
     public void setApplicationListProvider(ServiceListProvider service) {
         super.setServiceListProvider(service);
@@ -92,7 +92,6 @@ public class SkysailRootApplication extends SkysailApplication implements Applic
         router.attach(new RouteBuilder("/", DefaultResource.class).noAuthenticationNeeded());
         // see ShiroDelegationAuthenticator
         router.attach(new RouteBuilder(LOGIN_PATH, LoginResource.class).noAuthenticationNeeded());
-        router.attach(new RouteBuilder(LOGIN_PATH + "/{provider}", OAuthLoginResource.class).noAuthenticationNeeded());
         router.attach(new RouteBuilder(VERSION_PATH, VersionResource.class));
         router.attach(new RouteBuilder(NAME_PATH, NameResource.class));
         router.attach(new RouteBuilder(PROFILE_PATH, ProfileResource.class));
@@ -100,8 +99,7 @@ public class SkysailRootApplication extends SkysailApplication implements Applic
         router.attach(new RouteBuilder(LARGETESTS_PATH, LargeTestsResource.class));
         router.attach(new RouteBuilder(LARGETESTS_PATH + "/{id}", LargeTestsFileResource.class));
         router.attach(new RouteBuilder(WELCOME_PATH, WelcomeResource.class).noAuthenticationNeeded()); // need for tests... why?
-        router.attach(new RouteBuilder("/_iframe", IFrameResource.class));
-        
+
         router.attach(new RouteBuilder(PEERS_LOGIN_PATH, RemoteLoginResource.class).noAuthenticationNeeded());
 
     }

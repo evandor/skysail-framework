@@ -271,6 +271,21 @@ public class OrientGraphDbService extends AbstractOrientDbService implements DbS
     }
 
     @Override
+    public void createEdges(String... edges) {
+        OObjectDatabaseTx objectDb = getObjectDb();
+        try {
+            Arrays.stream(edges).forEach(edge -> {
+                if (objectDb.getMetadata().getSchema().getClass(edge) == null) {
+                    OClass edgeClass = objectDb.getMetadata().getSchema().getClass("E");
+                    objectDb.getMetadata().getSchema().createClass(edge).setSuperClass(edgeClass);
+                }
+            });
+        } catch (Exception e) {
+            log.error(e.getMessage(), e);
+        }
+    }
+
+    @Override
     public void register(Class<?>... entities) {
         OObjectDatabaseTx db = getObjectDb();
         try {

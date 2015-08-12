@@ -40,7 +40,7 @@ public class EntityResource extends EntityServerResource<Entity> {
         // app.invalidateMenuCache();
         Application application = app.getRepository().getById(Application.class, appId);
         application.setEntities(application.getEntities().stream().filter(e -> {
-            return !e.getId().equals("#" + entityId);
+            return false;//!e.getId().equals("#" + entityId);
         }).collect(Collectors.toList()));
         app.getRepository().update(application);
         return new SkysailResponse<>();

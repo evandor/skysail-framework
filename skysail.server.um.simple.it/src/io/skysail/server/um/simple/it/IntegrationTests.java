@@ -4,8 +4,7 @@ import io.skysail.client.testsupport.ApplicationClient;
 
 import org.junit.Rule;
 import org.junit.rules.ExpectedException;
-import org.osgi.framework.Bundle;
-import org.osgi.framework.FrameworkUtil;
+import org.osgi.framework.*;
 import org.restlet.data.Form;
 
 public class IntegrationTests {

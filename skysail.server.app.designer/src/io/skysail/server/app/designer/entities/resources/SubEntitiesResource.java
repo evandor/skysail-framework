@@ -32,7 +32,7 @@ public class SubEntitiesResource extends ListServerResource<Entity> {
     @Override
     public List<Entity> getEntity() {
         Application application = app.getRepository().getById(Application.class, id);
-        Optional<Entity> parentEntity = app.getEntityFromApplication(application, entityId);
+        Optional<Entity> parentEntity = null;// app.getEntityFromApplication(application, entityId);
         if(parentEntity.isPresent()) {
             return parentEntity.get().getSubEntities();
         }

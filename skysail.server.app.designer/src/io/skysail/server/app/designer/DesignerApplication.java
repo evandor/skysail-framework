@@ -130,10 +130,10 @@ public class DesignerApplication extends SkysailApplication implements MenuItemP
     }
 
     public Entity getEntity(Application application, String entityId) {
-        for (Entity entity : application.getEntities()) {
-            if (entity.getId().replace("#", "").equals(entityId)) {
-                return entity;
-            }
+        for (String entity : application.getEntities()) {
+//            if (entity.getId().replace("#", "").equals(entityId)) {
+//                return entity;
+//            }
         }
         return null;
     }
@@ -144,7 +144,7 @@ public class DesignerApplication extends SkysailApplication implements MenuItemP
 
     public EntityField getEntityField(String appId, String entityId, String fieldId) {
         Application application = getRepository().getById(Application.class, appId);
-        Optional<Entity> entityFromApplication = getEntityFromApplication(application, entityId);
+        Optional<Entity> entityFromApplication = null;//getEntityFromApplication(application, entityId);
         if (entityFromApplication.isPresent()) {
             List<EntityField> fields = entityFromApplication.get().getFields();
             return fields.stream().filter(f -> {
@@ -157,13 +157,14 @@ public class DesignerApplication extends SkysailApplication implements MenuItemP
         return null;
     }
 
-    public Optional<Entity> getEntityFromApplication(Application application, String entityId) {
-        return application.getEntities().stream().filter(e -> {
-            if (e == null || e.getId() == null) {
-                return false;
-            }
-            return e.getId().replace("#", "").equals(entityId);
-        }).findFirst();
+    public Optional<String> getEntityFromApplication(Application application, String entityId) {
+//        return application.getEntities().stream().filter(e -> {
+////            if (e == null || e.getId() == null) {
+////                return false;
+////            }
+////            return e.getId().replace("#", "").equals(entityId);
+//        }).findFirst();
+        return null;
     }
 
     public void updateBundle() {

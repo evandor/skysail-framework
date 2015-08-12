@@ -26,6 +26,7 @@ public class DesignerRepository implements DbRepository {
         dbService.createWithSuperClass("V", Application.class.getSimpleName(), Entity.class.getSimpleName(),
                 EntityField.class.getSimpleName(), ActionEntityField.class.getSimpleName());
         dbService.register(Application.class, Entity.class, EntityField.class, ActionEntityField.class);
+        dbService.createEdges("entities");
     }
 
     @Reference
@@ -58,8 +59,8 @@ public class DesignerRepository implements DbRepository {
         return dbService.findObjectById(cls, id);
     }
 
-    public Object update(Application entity) {
-        return dbService.update(entity.getId(), entity);
+    public Object update(Application entity, String... edges) {
+        return dbService.update(entity.getId(), entity, edges);
     }
 
     public void update(Entity entity) {

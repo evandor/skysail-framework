@@ -44,7 +44,7 @@ public class PostSubEntityResource extends PostEntityServerResource<Entity> {
     @Override
     public SkysailResponse<?> addEntity(Entity entity) {
         Application application = app.getRepository().getById(Application.class, id);
-        Optional<Entity> parentEntity = app.getEntityFromApplication(application, entityId);
+        Optional<Entity> parentEntity = null;//app.getEntityFromApplication(application, entityId);
         if(parentEntity.isPresent()) {
             parentEntity.get().getSubEntities().add(entity);
             app.getRepository().update(parentEntity.get());

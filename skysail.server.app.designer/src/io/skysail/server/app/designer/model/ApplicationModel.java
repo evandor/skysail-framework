@@ -45,10 +45,10 @@ public class ApplicationModel {
 
     private void createEnityModels(Application application, DesignerRepository repo) {
         application.getEntities().stream().forEach(entity -> {
-            createEntityModel(application, repo, entity);
-            for (Entity subEntity : entity.getSubEntities()) {
-                createEntityModel(application, repo, subEntity);
-            }
+//            createEntityModel(application, repo, entity);
+//            for (Entity subEntity : entity.getSubEntities()) {
+//                createEntityModel(application, repo, subEntity);
+//            }
         });
     }
 
@@ -58,11 +58,11 @@ public class ApplicationModel {
             referencedEntities.stream().forEach(referencedEntity -> {
                 entityModel.addReference(referencedEntity);
                 getEntityModel(referencedEntity).setReferencedBy(entityModel);
-            });               
+            });
         });
-        
+
  }
-    
+
     private EntityModel getEntityModel(Entity entity) {
         return getEntityModels().stream().filter(em -> {
             return em.getEntityName().equals(entity.getName());
@@ -115,13 +115,13 @@ public class ApplicationModel {
 
     private List<EntityField> getFields(DesignerRepository repo2, String beanName, String appIdentifier) {
         Application designerApplication = repo2.getById(Application.class, appIdentifier.replace("#", ""));
-        List<Entity> entities = designerApplication.getEntities();
+        List<Entity> entities = null;// designerApplication.getEntities();
         return findFields(repo2, beanName, appIdentifier, entities);
     }
 
     private List<ActionEntityField> getActionFields(DesignerRepository repo2, String beanName, String appIdentifier) {
         Application designerApplication = repo2.getById(Application.class, appIdentifier.replace("#", ""));
-        List<Entity> entities = designerApplication.getEntities();
+        List<Entity> entities = null;//designerApplication.getEntities();
         return findActionFields(repo2, beanName, appIdentifier, entities);
     }
 
@@ -153,7 +153,7 @@ public class ApplicationModel {
 
     private List<Entity> getReferences(DesignerRepository repo2, String beanName, String appIdentifier) {
         Application designerApplication = repo2.getById(Application.class, appIdentifier.replace("#", ""));
-        List<Entity> entities = designerApplication.getEntities();
+        List<Entity> entities = null;//designerApplication.getEntities();
         return findReferences(repo2, beanName, appIdentifier, entities);
     }
 

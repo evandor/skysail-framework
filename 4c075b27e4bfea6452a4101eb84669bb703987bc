@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9ad9bd40_7eaabf85",
+        "filename": "skysail.server/bnd.bnd",
+        "patchSetId": 1
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1005936
+      },
+      "writtenOn": "2015-08-12T08:18:11Z",
+      "side": 0,
+      "message": "was soll denn das???",
+      "revId": "4c075b27e4bfea6452a4101eb84669bb703987bc",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    }
+  ]
+}

@@ -35,7 +35,8 @@ public class EntitiesResource extends ListServerResource<Entity> {
     @Override
     public List<Entity> getEntity() {
         Application application = app.getRepository().getById(Application.class, id);
-        return null;//application.getEntities();
+        String sql = "SELECT * from " + Entity.class.getSimpleName() + " WHERE #"+id+" IN in('entities')";
+        return app.getRepository().findAll(sql);
     }
 
     @Override

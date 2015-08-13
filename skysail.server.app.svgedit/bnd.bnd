@@ -6,7 +6,7 @@ Provide-Capability: osgi.service; objectClass=org.osgi.service.event.EventHandle
 Service-Component:  \
 	*
 
-Include-Resource: webapp
+Include-Resource: webapp, resources, templates=src;recursive:=true;filter:=*.st|*.stg
 
 -buildpath:  \
 	osgi.core;version=5.0,\

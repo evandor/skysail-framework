@@ -17,6 +17,6 @@ renderRow(fields, row,i) ::= <<
 
 buttonForLink(row, field) ::= <<
     $if (field.link)$
-   <li>$row.("title")$</li>
+      <li>$row.("title")$</li>
     $endif$
 >>

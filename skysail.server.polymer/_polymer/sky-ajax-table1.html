@@ -135,7 +135,7 @@
         	  type = meta[key].type;
           }
           var value;
-          if (type === "java.util.Date" || type === "java.time.LocalDate" || type === "java.lang.Integer") {
+          if (type === "java.util.Date" || type === "java.time.LocalDate") {
         	  if (!obj[key]) {
         		  return {name: key, value: "---"};
         	  }

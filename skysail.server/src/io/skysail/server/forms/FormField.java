@@ -336,14 +336,6 @@ public class FormField {
         return string;
     }
 
-//    private String getPostfix(Postfix postfix,  Map<String, Object> dataRow) {
-//        return handleListView("", dataRow, postfix.methodName());
-//    }
-//
-//    private String getPrefix(Prefix prefix, Map<String, Object> dataRow) {
-//        return handleListView("", dataRow, prefix.methodName());
-//    }
-
     private String truncate(String string, boolean withoutHtml) {
         if (getListViewAnnotation() == null) {
             return string;

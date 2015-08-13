@@ -42,6 +42,7 @@
         requestUrl:   String,
         createLabel:  String,
         createTarget: String,
+        metadataUrl:  String,
         nameProperty: { type: String,  value: "name" },
         identifier:   { type: String,  value: "id" },
         linkLength:   { type: Number,  value: 20 },
@@ -85,7 +86,7 @@
         }
         var srcElement = e.currentTarget;
         console.log("SKY-AJAX-GET (handleClick)> found srcElement: " + srcElement + " with reference to " + srcElement.ajaxhref );
-        console.log("SKY-AJAX-GET (handleClick)> " + srcElement.className );
+        //console.log("SKY-AJAX-GET (handleClick)> " + srcElement.className );
         var ajaxhref = srcElement.ajaxhref;
 
 
@@ -95,10 +96,16 @@
         }
         srcElement.className += " active";
 
+        var skyMeta = document.getElementById("skyMeta");
+        skyMeta.url = this.metadataUrl;
+        skyMeta.generateRequest();
+
         var skyTable = document.getElementById("skyTable");
         skyTable.url = ajaxhref;
         var skyAjaxTable = document.getElementById("skyAjaxTable");
         skyTable.generateRequest();
+
+
       },
       getGlyph: function(glyph) {
         return "glyphicon glyphicon-"+glyph;

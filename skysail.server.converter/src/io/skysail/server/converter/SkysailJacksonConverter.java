@@ -44,7 +44,7 @@ public class SkysailJacksonConverter extends JacksonConverter implements OsgiCon
                 }).collect(Collectors.joining(","));
                 HeadersUtils.getHeaders(resource.getResponse()).add("X-Resource-Columns", "[" + columns + ",\"_links\"]");
 
-                return super.toRepresentation(resourceModel.getData(), target, resource);
+                return super.toRepresentation(resourceModel.getRawData(), target, resource);
             }
             return super.toRepresentation(entity, target, resource);
         }

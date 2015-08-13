@@ -87,8 +87,8 @@ public class ResourceModel<R extends SkysailServerResource<T>, T> {
 
         mapper.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, true);
         mapper.configure(SerializationFeature.FAIL_ON_EMPTY_BEANS, false);
- //       mapper.setDateFormat(dateFormat);
- //       mapper.setLocale(locale);
+        // mapper.setDateFormat(dateFormat);
+        // mapper.setLocale(locale);
 
         rawData = getData(skysailResponse);
 
@@ -104,7 +104,8 @@ public class ResourceModel<R extends SkysailServerResource<T>, T> {
 
         data = convert();
 
-        addAssociatedLinks();
+        addAssociatedLinks(data);
+        addAssociatedLinks(rawData);
     }
 
     @SuppressWarnings("unchecked")
@@ -323,7 +324,7 @@ public class ResourceModel<R extends SkysailServerResource<T>, T> {
         this.services = new STServicesWrapper(menuProviders, null, resource);
     }
 
-    private void addAssociatedLinks() {
+    private void addAssociatedLinks(List<Map<String, Object>> theData) {
         if (!(getResource() instanceof ListServerResource)) {
             return;
         }
@@ -332,7 +333,7 @@ public class ResourceModel<R extends SkysailServerResource<T>, T> {
         List<Class<? extends SkysailServerResource<?>>> entityResourceClass = listServerResource
                 .getAssociatedServerResources();
         if (entityResourceClass != null) {
-            List<Map<String, Object>> sourceAsList = data;
+            List<Map<String, Object>> sourceAsList = theData;
             for (Map<String, Object> dataRow : sourceAsList) {
                 String id = guessId(dataRow);
                 if (id == null) {

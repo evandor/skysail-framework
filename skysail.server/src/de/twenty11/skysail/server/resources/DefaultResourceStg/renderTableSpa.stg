@@ -5,7 +5,7 @@ renderTableSpa(converter, messages, model) ::= <<
   <sky-ajax-thumbnails
     id="skyAjaxTable"
     url="$model.resource.request.resourceRef.path$?_rendered"
-    link-to="/Todos/Lists/{lid}/Todos"
+    link-to="/Todos/Lists/{id}/Todos"
     identifier="lid"
     request-url="/Todos"
     name-property="title"

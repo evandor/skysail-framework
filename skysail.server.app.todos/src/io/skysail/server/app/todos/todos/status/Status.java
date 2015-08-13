@@ -10,8 +10,8 @@ public enum Status {
     NEW("NEW","yellow", "PLANNED", "WIP", "ARCHIVED"),
     PLANNED("PLANNED","green", "WIP", "ARCHIVED"),
     WIP("WIP","orange","ARCHIVED"),
-    FINISHED("gray","ARCHIVED"),
-    ARCHIVED("gray","ARCHIVED");
+    FINISHED("FINISHED", "gray","ARCHIVED"),
+    ARCHIVED("ARCHIVED", "gray","ARCHIVED");
 
     private List<String> nexts = new ArrayList<>();
 

@@ -9,6 +9,7 @@ import io.skysail.server.utils.*;
 import java.lang.reflect.*;
 import java.lang.reflect.Field;
 import java.net.URL;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 import javax.validation.constraints.*;
@@ -278,10 +279,9 @@ public class FormField {
         if (object instanceof List) {
             return ((List<?>)object).size();
         }
-//        if (object instanceof Long) { // assuming timestamp for  now
-//            //return "<script>document.write(moment(\""+object.toString()+"\", \"DD.mm.YYYY\").fromNow());</script>";
-//            return "<script>document.write(new Date("+object.toString()+").toString());</script>";
-//        }
+        if (object instanceof Long && ((Long)object) > 1000000000) { // assuming timestamp for  now
+            return new SimpleDateFormat("yyyy-MM-dd").format(new Date((Long)object));
+        }
         if (!(object instanceof String)) {
             return object.toString();
         }

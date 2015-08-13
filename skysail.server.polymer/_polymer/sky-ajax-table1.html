@@ -49,6 +49,34 @@
   </template>
 
   <script>
+
+    var processMetadata =  function(meta, obj, key, value) {
+    	if (meta[key] && meta[key].listViewDescriptor && meta[key].listViewDescriptor.truncate) {
+            var maxLength = meta[key].listViewDescriptor.truncate;
+            if (value && maxLength > 0 && value.length > maxLength-3) {
+                value = value.substring(0,maxLength) + "...";
+            }
+        }
+
+        // check links
+        if (meta[key] && meta[key].listViewDescriptor && meta[key].listViewDescriptor.link) {
+            value = meta[key].listViewDescriptor.link.replace("{title}", value).replace("{id}", obj['id']);
+        }
+
+        if (meta[key] && meta[key].listViewDescriptor && meta[key].listViewDescriptor.colorize) {
+            var colorize = meta[key].listViewDescriptor.colorize;
+            value = "<span style='border: 1px solid gray; background-color:"+colorize[value]+"' title='"+key+": "+ value +"'>&nbsp;&nbsp;</span>";
+
+        }
+
+        if (meta[key] && meta[key].listViewDescriptor && meta[key].listViewDescriptor.prefix) {
+            var prefix = meta[key].listViewDescriptor.prefix;
+            value = processMetadata(meta, obj, prefix, obj[prefix]) + "&nbsp;" + value;
+            //value = obj[prefix] + "&nbsp;" + value;
+        }
+        return value;
+    };
+
     Polymer({
       is: 'sky-ajax-table1',
       properties: {
@@ -101,20 +129,25 @@
   	  _toArray: function(obj, columns, meta) {
   		console.log("SKY-AJAX-TABLE (_toArray)> " + obj + ", " + columns);
         return columns.map(function(key) {
-          console.log("SKY-AJAX-TABLE (_toArray)> key: "+key+", value: "+obj[key]+", meta:" + meta[key]);
+          //console.log("SKY-AJAX-TABLE (_toArray)> key: "+key+", value: "+obj[key]+", meta:" + meta[key]);
           var type = "?";
           if (meta[key]) {
         	  type = meta[key].type;
           }
-          if (type === "java.util.Date") {
+          var value;
+          if (type === "java.util.Date" || type === "java.time.LocalDate" || type === "java.lang.Integer") {
         	  if (!obj[key]) {
         		  return {name: key, value: "---"};
         	  }
         	  var timestamp = 1000 * Math.round(obj[key]/1000);
-              return {name: key, value: new Date(timestamp).toLocaleDateString()};
-          } else  {
-        	  return {name: key, value: obj[key]};
+        	  value = new Date(timestamp).toISOString().split('T')[0];//.toLocaleDateString();
+              //return {name: key, value: new Date(timestamp).toLocaleDateString()};
+          } else { //if (type === "java.lang.String" || type === "java.lang.Long") {
+        	  value = obj[key];
           }
+
+          value = processMetadata(meta, obj, key, value);
+          return {name: key, value: value};
         });
       },
       _headersFrom: function(obj) {

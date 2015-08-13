@@ -20,28 +20,33 @@ public class WebComponentCallTest {
         .identifier("identifier")
         .requestUrl("requestUrl")
         .url("uri")
+        .metadataUrl("metadataurl")
         .linkTo("linkTarget");
     }
 
     @Test
     public void creates_proper_html() throws Exception {
         WebComponentCall call = builder.build();
-        assertThat(call.getHtml(), is(
-                equalTo("<sky-ajax-get id=\"theId\" url=\"uri\" link-to=\"linkTarget\" identifier=\"identifier\" request-url=\"requestUrl\" ></sky-ajax-get>")));
+        assertThat(normalize(call.getHtml()), is(
+                equalTo("<sky-ajax-get id=\"theId\" url=\"uri\" link-to=\"linkTarget\" metadata-url=\"metadataurl\" identifier=\"identifier\" request-url=\"requestUrl\" ></sky-ajax-get>")));
     }
 
     @Test
     public void creates_proper_html_with_glyph() throws Exception {
         WebComponentCall call = builder.glyphicon("glyph").build();
-        assertThat(call.getHtml(), is(
-                equalTo("<sky-ajax-get id=\"theId\" url=\"uri\" link-to=\"linkTarget\" identifier=\"identifier\" glyphicon=\"glyph\" request-url=\"requestUrl\" ></sky-ajax-get>")));
+        assertThat(normalize(call.getHtml()), is(
+                equalTo("<sky-ajax-get id=\"theId\" url=\"uri\" link-to=\"linkTarget\" metadata-url=\"metadataurl\" identifier=\"identifier\" glyphicon=\"glyph\" request-url=\"requestUrl\" ></sky-ajax-get>")));
     }
+
 
     @Test
     public void creates_proper_html_for_disabled_call() throws Exception {
         WebComponentCall call = builder.disabled(true).build();
-        assertThat(call.getHtml(), is(
-                equalTo("<sky-ajax-get id=\"theId\" url=\"uri\" link-to=\"linkTarget\" identifier=\"identifier\" disabled request-url=\"requestUrl\" ></sky-ajax-get>")));
+        assertThat(normalize(call.getHtml()), is(
+                equalTo("<sky-ajax-get id=\"theId\" url=\"uri\" link-to=\"linkTarget\" metadata-url=\"metadataurl\" identifier=\"identifier\" disabled request-url=\"requestUrl\" ></sky-ajax-get>")));
     }
 
+    private String normalize(String html) {
+        return html.replace("\n", "").replaceAll(" +", " ");
+    }
 }

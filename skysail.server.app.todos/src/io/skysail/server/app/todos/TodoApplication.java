@@ -19,7 +19,7 @@ import de.twenty11.skysail.server.services.*;
 @Component(immediate = true)
 public class TodoApplication extends SkysailApplication implements ApplicationProvider, MenuItemProvider {
 
-    public static final String LIST_ID = "lid";
+    public static final String LIST_ID = "id";
     public static final String TODO_ID = "id";
     public static final String APP_NAME = "Todos";
 

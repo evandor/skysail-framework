@@ -1,9 +1,0 @@
-representations(model) ::= <<
-  <ul class="breadcrumb" style="text-align:right">
-    $model.representations:{ representation | $handleSingleRepresentation(representation,i)$}$
-  </ul>
->>
-
-handleSingleRepresentation(bc,i) ::= <<
-      <li><a href='$bc.href$' target="_blank"><img src='$bc.img$' title='$bc.name$'></a></li>
->>

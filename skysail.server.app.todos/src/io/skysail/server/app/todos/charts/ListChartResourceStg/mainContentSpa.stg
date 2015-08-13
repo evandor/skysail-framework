@@ -13,7 +13,7 @@ mainContentSpa(user, converter, messages, model) ::= <<
             <sky-breadcrumbs id="skyBreadcrumbs" url="$model.resource.request.resourceRef.path$?method=OPTIONS"></sky-breadcrumbs>
         </div>
         <div class="col-md-2">
-            $representations(model)$
+            $developerLinks(model)$
         </div>
       </div>
 

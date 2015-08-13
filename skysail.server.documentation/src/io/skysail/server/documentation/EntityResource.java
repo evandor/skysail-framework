@@ -23,7 +23,7 @@ public class EntityResource extends EntityServerResource<Map<String, FieldDescri
 
         try {
             Map<String, FormField> description = getApplication().describe(className);
-            List<FieldDescriptor> descriptors = description.values().stream().map(ff -> new FieldDescriptor(ff))
+            List<FieldDescriptor> descriptors = description.values().stream().map(ff -> new FieldDescriptor(ff, getApplication()))
                     .collect(Collectors.toList());
             Map<String, FieldDescriptor> result = new LinkedHashMap<>();
             descriptors.stream().forEach(d -> {

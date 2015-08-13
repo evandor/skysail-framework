@@ -84,6 +84,7 @@ public class ResourceContext {
                 .linkTo(linkTarget != null ? linkTarget.getUri() : null)
                 .glyphicon("th-list")
                 .title(title)
+                .metadataUrl("/Todos/v2/docs/entities/io.skysail.server.app.todos.todos.Todo?media=json")
                 .requestUrl(originalRef != null ? originalRef.getPath().toString() : null);
     }
 

@@ -133,6 +133,7 @@
 	skysail.server.plugins;version=latest,\
 	skysail.server.documentation;version=latest,\
 	skysail.server.app.bookmarks;version=latest,\
+	skysail.server.app.svgedit;version=latest,\
 	skysail.server.app.todos;version=latest,\
 	skysail.server.app.designer;version=latest,\
 	skysail.server.app.twitter4j;version=latest,\

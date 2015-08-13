@@ -53,6 +53,8 @@ public interface DbService2 {
      */
     void createWithSuperClass(String superClass, String... vertices);
 
+    void createEdges(String... vertices);
+
     void register(Class<?>... classes);
 
     void delete(Class<?> cls, String id);

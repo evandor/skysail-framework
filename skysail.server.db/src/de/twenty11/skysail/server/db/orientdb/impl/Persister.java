@@ -1,5 +1,6 @@
 package de.twenty11.skysail.server.db.orientdb.impl;
 
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.*;
 
@@ -50,13 +51,26 @@ public class Persister {
 
     private void setProperty(Object entity, Vertex vertex, Map<String, String> properties, String key) {
         try {
-            Method method = entity.getClass().getMethod("get" + key.substring(0, 1).toUpperCase() + key.substring(1));
-            Object result = method.invoke(entity);
-            log.info("setting {}={} [{}]", new Object[] { key, result, result.getClass() });
-            vertex.setProperty(key, result);
+            setVertexProperty("get", entity, vertex, key);
         } catch (Exception e) {
-            log.error(e.getMessage(), e);
+            try {
+                setVertexProperty("is", entity, vertex, key);
+            } catch (Exception e1) {
+                log.error(e.getMessage(), e);
+            }
         }
+    }
+
+    private void setVertexProperty(String prefix, Object entity, Vertex vertex, String key) throws NoSuchMethodException,
+            IllegalAccessException, InvocationTargetException {
+        Method method = entity.getClass().getMethod(getMethodName(prefix, key));
+        Object result = method.invoke(entity);
+        log.info("setting {}={} [{}]", new Object[] { key, result, result.getClass() });
+        vertex.setProperty(key, result);
+    }
+
+    private String getMethodName(String prefix, String key) {
+        return new StringBuilder(prefix).append(key.substring(0, 1).toUpperCase()).append(key.substring(1)).toString();
     }
 
     /**

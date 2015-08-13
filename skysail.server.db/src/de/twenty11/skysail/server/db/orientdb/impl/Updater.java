@@ -5,12 +5,14 @@ import io.skysail.api.domain.Identifiable;
 import java.lang.reflect.Method;
 import java.util.*;
 
+import lombok.val;
 import lombok.extern.slf4j.Slf4j;
 
 import org.apache.commons.beanutils.BeanUtils;
 
 import com.tinkerpop.blueprints.Vertex;
 import com.tinkerpop.blueprints.impls.orient.OrientGraph;
+import com.tinkerpop.blueprints.impls.orient.OrientVertex;
 
 @Slf4j
 public class Updater {
@@ -39,10 +41,14 @@ public class Updater {
                         setProperty(entity, vertex, properties, key);
                     }
                 } else {
-//                    OrientVertex target = db.getVertex(properties.get("#" + key));
-//                    if (target != null) {
-//                        db.addEdge(null, vertex, target, key);
-//                    }
+                    Object edges = properties.get(key);
+                    if (edges instanceof Object[]) {
+                        Arrays.stream((Object[])edges).forEach(edge -> {
+                            addReference(vertex, properties, key, edge);
+                        });
+                    } else if (edges instanceof String) {
+                        addReference(vertex, properties, key, edges);
+                    }
                 }
             });
             return vertex;
@@ -52,6 +58,13 @@ public class Updater {
         }
 
 
+    }
+
+    private void addReference(Vertex vertex, Map<String, String> properties, String key, Object edge) {
+        OrientVertex target = db.getVertex(edge.toString());
+        if (target != null) {
+            db.addEdge(null, vertex, target, key);
+        }
     }
 
     /**

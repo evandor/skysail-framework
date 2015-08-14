@@ -102,7 +102,8 @@ public class ResourceModel<R extends SkysailServerResource<T>, T> {
 
         rootEntity = new EntityModel<R>(response.getEntity(), resource);
 
-        data = convert();
+        String identifierName = getIdentifierFormField(rawData);
+        data = convert(identifierName);
 
         addAssociatedLinks(data);
         addAssociatedLinks(rawData);
@@ -138,7 +139,12 @@ public class ResourceModel<R extends SkysailServerResource<T>, T> {
         }
     }
 
-    private List<Map<String, Object>> convert() {
+    private String getIdentifierFormField(@NonNull List<Map<String, Object>> theData) {
+        return "id"; // for now
+    }
+
+
+    private List<Map<String, Object>> convert(String identifierName) {
         List<Map<String, Object>> result = new ArrayList<>();
         rawData.stream().filter(row -> {
             return row != null;
@@ -146,25 +152,26 @@ public class ResourceModel<R extends SkysailServerResource<T>, T> {
             Map<String, Object> newRow = new HashMap<>();
             result.add(newRow);
             row.keySet().stream().forEach(columnName -> {
-                apply(newRow, row, columnName);
+                Object identifier = row.get(identifierName);
+                apply(newRow, row, columnName, identifier);
             });
         });
         return result;
     }
 
-    private void apply(Map<String, Object> newRow, Map<String, Object> dataRow, String columnName) {
+    private void apply(Map<String, Object> newRow, Map<String, Object> dataRow, String columnName, Object id) {
         FormField formField = fields.get(columnName);
-        newRow.put(columnName, calc(formField, dataRow, columnName));
+        newRow.put(columnName, calc(formField, dataRow, columnName, id));
     }
 
-    private Object calc(FormField formField, Map<String, Object> dataRow, String columnName) {
+    private String calc(FormField formField, Map<String, Object> dataRow, String columnName, Object id) {
         if (formField != null) {
-            Object processed = formField.process(response, dataRow, columnName);
-            processed = checkPrefix(formField, dataRow, processed);
-            processed = checkPostfix(formField, dataRow, processed);
+            String processed = formField.process(response, dataRow, columnName, id);
+            processed = checkPrefix(formField, dataRow, processed, id);
+            processed = checkPostfix(formField, dataRow, processed, id);
             return processed;
         }
-        return dataRow.get(columnName);
+        return dataRow.get(columnName) != null ? dataRow.get(columnName).toString() : "";
     }
 
     public List<Breadcrumb> getBreadcrumbs() {
@@ -439,10 +446,10 @@ public class ResourceModel<R extends SkysailServerResource<T>, T> {
         return "";
     }
 
-    private Object checkPrefix(FormField formField, Map<String, Object>  dataRow, Object  processed) {
+    private String checkPrefix(FormField formField, Map<String, Object>  dataRow, String  processed, Object id) {
         if (this.resource instanceof ListServerResource) {
             if (formField.getListViewAnnotation() != null && !formField.getListViewAnnotation().prefix().equals("")) {
-                Object prefix = calc(fields.get(formField.getListViewAnnotation().prefix()), dataRow, formField.getListViewAnnotation().prefix());
+                Object prefix = calc(fields.get(formField.getListViewAnnotation().prefix()), dataRow, formField.getListViewAnnotation().prefix(), id);
                 if (prefix != null) {
                     return prefix + "&nbsp;" + processed;
                 }
@@ -451,7 +458,7 @@ public class ResourceModel<R extends SkysailServerResource<T>, T> {
         return processed;
     }
 
-    private Object checkPostfix(FormField formField, Map<String, Object>  dataRow, Object  processed) {
+    private String checkPostfix(FormField formField, Map<String, Object>  dataRow, String  processed, Object id) {
 //        if (formField.getPostfixAnnotation() != null && !formField.getPostfixAnnotation().methodName().equals("getPostfix")) {
 //            Object postfix = calc(fields.get(formField.getPostfixAnnotation().methodName()), dataRow, formField.getPostfixAnnotation().methodName());
 //            if (postfix != null) {

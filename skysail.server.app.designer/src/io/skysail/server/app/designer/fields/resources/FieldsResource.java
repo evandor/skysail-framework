@@ -42,7 +42,7 @@ public class FieldsResource extends ListServerResource<EntityField> {
         Application application = app.getApplication(id);
         Entity entity = app.getEntity(application, entityId);
         if (entity != null) {
-            return entity.getFields();
+            return Collections.emptyList();//entity.getFields();
         }
         return Collections.emptyList();
     }

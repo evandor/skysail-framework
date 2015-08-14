@@ -2,18 +2,13 @@ package io.skysail.server.app.designer.repo;
 
 import io.skysail.server.app.designer.application.Application;
 import io.skysail.server.app.designer.entities.Entity;
-import io.skysail.server.app.designer.fields.ActionEntityField;
-import io.skysail.server.app.designer.fields.EntityField;
-import io.skysail.server.db.DbRepository;
-import io.skysail.server.db.DbService2;
+import io.skysail.server.app.designer.fields.*;
+import io.skysail.server.db.*;
 
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 import lombok.extern.slf4j.Slf4j;
-import aQute.bnd.annotation.component.Activate;
-import aQute.bnd.annotation.component.Component;
-import aQute.bnd.annotation.component.Reference;
+import aQute.bnd.annotation.component.*;
 
 @Component(immediate = true, properties = "name=DesignerRepository")
 @Slf4j
@@ -26,7 +21,7 @@ public class DesignerRepository implements DbRepository {
         dbService.createWithSuperClass("V", Application.class.getSimpleName(), Entity.class.getSimpleName(),
                 EntityField.class.getSimpleName(), ActionEntityField.class.getSimpleName());
         dbService.register(Application.class, Entity.class, EntityField.class, ActionEntityField.class);
-        dbService.createEdges("entities");
+        dbService.createEdges("entities", "fields");
     }
 
     @Reference
@@ -63,8 +58,8 @@ public class DesignerRepository implements DbRepository {
         return dbService.update(entity.getId(), entity, edges);
     }
 
-    public void update(Entity entity) {
-        dbService.update(entity.getId(), entity);
+    public void update(Entity entity, String... edges) {
+        dbService.update(entity.getId(), entity, edges);
     }
 
     public void update(EntityField field) {

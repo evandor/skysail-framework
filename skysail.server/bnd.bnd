@@ -50,6 +50,7 @@ Bundle-ActivationPolicy: lazy
 Include-Resource: lib=lib,resources, templates=src;recursive:=true;filter:=*.st|*.stg
 Private-Package:  \
 	io.skysail.server.commands,\
+	io.skysail.server.forms.helper,\
 	de.twenty11.skysail.server.app.profile,\
 	de.twenty11.skysail.server.core.restlet.converter.renderer,\
 	de.twenty11.skysail.server.core.restlet.converter.internal,\

@@ -1,15 +1,12 @@
 package io.skysail.server.forms;
 
 import io.skysail.api.forms.*;
-import io.skysail.api.links.Link;
 import io.skysail.api.responses.*;
+import io.skysail.server.forms.helper.CellRendererHelper;
 import io.skysail.server.restlet.resources.SkysailServerResource;
-import io.skysail.server.utils.*;
 
 import java.lang.reflect.*;
 import java.lang.reflect.Field;
-import java.net.URL;
-import java.text.SimpleDateFormat;
 import java.util.*;
 
 import javax.validation.constraints.*;
@@ -17,7 +14,6 @@ import javax.validation.constraints.*;
 import lombok.*;
 import lombok.extern.slf4j.Slf4j;
 
-import org.restlet.Request;
 import org.restlet.resource.Resource;
 
 import de.twenty11.skysail.server.core.restlet.MessagesUtils;
@@ -30,7 +26,8 @@ import de.twenty11.skysail.server.um.domain.SkysailUser;
  *
  * <p>
  * A FormField is constructed from a java.lang.reflect.Field, together with a
- * SkysailServerResource.
+ * SkysailServerResource; only {@link Field}s and {@link Reference}s should be taken into account.
+ *
  * </p>
  *
  * <p>
@@ -39,15 +36,16 @@ import de.twenty11.skysail.server.um.domain.SkysailUser;
  * </p>
  *
  */
+// TODO make Field annotation nested
 @Slf4j
 @ToString(of = { "name", "type", "inputType" })
 @Getter
 public class FormField {
 
-    /** the fields name or identifier. */
+    /** the fields name or identifier, e.g. "title" */
     private final String name;
 
-    /** the fields (java) type. */
+    /** the fields (java) type, e.g. java.lang.String */
     private final Class<?> type;
 
     /** text, textarea, radio, checkbox etc... */
@@ -258,6 +256,10 @@ public class FormField {
         return false;
     }
 
+    public String process(SkysailResponse<?> response, Map<String, Object> dataRow, String columnName, Object id) {
+        return new CellRendererHelper(this, response).render(dataRow.get(columnName), id);
+    }
+
     private boolean isOfInputType(InputType inputType) {
         return this.inputType.equals(inputType);
     }
@@ -269,96 +271,6 @@ public class FormField {
     private InputType getFromFieldAnnotation(Field fieldAnnotation) {
         io.skysail.api.forms.Field annotation = fieldAnnotation.getAnnotation(io.skysail.api.forms.Field.class);
         return annotation != null ? annotation.inputType() : null;
-    }
-
-    public Object process(SkysailResponse<?> response, Map<String, Object> dataRow, String columnName) {
-        Object object = dataRow.get(columnName);
-        if (object == null) {
-            return "";
-        }
-        if (object instanceof List) {
-            return ((List<?>)object).size();
-        }
-        if (object instanceof Long && ((Long)object) > 1000000000) { // assuming timestamp for  now
-            return new SimpleDateFormat("yyyy-MM-dd").format(new Date((Long)object));
-        }
-        if (!(object instanceof String)) {
-            return object.toString();
-        }
-        String string = (String) object;
-        string = string.replace("\r", "&#13;").replace("\n", "&#10;");
-
-        if (response instanceof ListServerResponse) {
-            string = handleListView(string, dataRow, columnName);
-        }
-
-        return string;
-    }
-
-    private String handleListView(String string, Map<String, Object> dataRow, String columnName) {
-        if (URL.class.equals(getType())) {
-            string = "<a href='" + string + "' target=\"_blank\">" + truncate(string, true) + "</a>";
-        } else if (getListViewAnnotation() != null && !getListViewAnnotation().link().equals(ListView.DEFAULT.class)) {
-
-            Class<? extends SkysailServerResource<?>> linkedResource = getListViewAnnotation().link();
-            List<Link> links = resource.getLinks();
-            String id = dataRow.get("id") != null ? dataRow.get("id").toString().replace("#", "") : null;
-            if (links != null && id != null) {
-                Optional<Link> findFirst = links.stream().filter(l -> {
-                    return linkedResource.equals(l.getCls()) && id.equals(l.getRefId());
-                }).findFirst();
-                if (findFirst.isPresent()) {
-                    if (showMobilePage(resource.getRequest())) {
-                        //dataRow.put("_href", findFirst.get().getUri());
-                        string = "<a href='" + findFirst.get().getUri() + "'>" + string + "</a>";
-                    } else {
-                        string = "<a href='" + findFirst.get().getUri() + "'>" + string + "</a>";
-                    }
-                }
-            }
-        } else if (getListViewAnnotation() != null && !getListViewAnnotation().colorize().equals("")) {
-            String colorize = getListViewAnnotation().colorize();
-            if (this.getType().isEnum()) {
-                @SuppressWarnings("unchecked")
-                Enum valueOf = Enum.valueOf((Class)this.getType(), string);
-                //System.out.println(valueOf);
-                try {
-                    Method getColorMethod = valueOf.getDeclaringClass().getMethod("get" + colorize.substring(0, 1).toUpperCase() + colorize.substring(1));
-                    String theColor = (String)getColorMethod.invoke(valueOf);
-                    string = "<span style='border: 1px solid gray; background-color:"+theColor+"' title='"+columnName+": "+ string +"'>&nbsp;&nbsp;</span>";
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        } else {
-            string = truncate(string, false);
-        }
-        return string;
-    }
-
-    private String truncate(String string, boolean withoutHtml) {
-        if (getListViewAnnotation() == null) {
-            return string;
-        }
-        if (getListViewAnnotation().truncate() > 3) {
-            String oldValue = string;
-            if (string != null && string.length() > getListViewAnnotation().truncate()) {
-                if (withoutHtml) {
-                    return oldValue.substring(0, getListViewAnnotation().truncate() - 3) + "...";
-                }
-                return "<span title='" + oldValue + "'>"
-                        + oldValue.substring(0, getListViewAnnotation().truncate() - 3) + "...</span>";
-            }
-        }
-        return string;
-    }
-
-    private boolean showMobilePage(Request request) {
-        if (RequestUtils.isMobile(request)) {
-            return true;
-        }
-        String page = CookiesUtils.getMainPageFromCookie(request);
-        return page != null && page.equals("indexMobile");
     }
 
 

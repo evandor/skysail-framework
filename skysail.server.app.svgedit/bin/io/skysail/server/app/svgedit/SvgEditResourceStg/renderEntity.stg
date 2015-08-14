@@ -1,0 +1,5 @@
+renderEntity(user, model) ::= <<
+
+<iframe src="/svgedit/svg-editor.html" style="width:100%;height:800px;"></iframe>
+
+>>

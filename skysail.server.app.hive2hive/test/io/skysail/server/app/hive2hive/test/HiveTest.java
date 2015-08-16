@@ -220,6 +220,7 @@ public class HiveTest {
     }
 
     @Test
+    @Ignore
     public void testName6() throws Exception {
         IFileConfiguration fileConfiguration = FileConfiguration.createDefault();
 

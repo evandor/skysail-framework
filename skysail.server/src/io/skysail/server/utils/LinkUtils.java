@@ -106,6 +106,18 @@ public class LinkUtils {
          return links;
     }
 
+    /**
+     * if the current resource is a {@link ListServerResource}, the associated
+     * EntityServerResource (if existent) is analyzed for its own links.
+     *
+     * <p>
+     * For each entity of the listServerResource, and for each associated link
+     * (which serves as a template), a new link is created and is having its
+     * path placeholders substituted. So, if the current ListServerResource has
+     * a list with two entities of a type which defines three classes in its
+     * getLinks method, we'll get six links in the result.
+     * </p>
+     */
     private  static <T> List<? extends Link> getAssociatedLinks(Object entity, SkysailServerResource<T> skysailServerResource) {
         if (!(skysailServerResource instanceof ListServerResource)) {
             return Collections.emptyList();

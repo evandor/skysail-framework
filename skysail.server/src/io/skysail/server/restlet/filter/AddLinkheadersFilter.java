@@ -37,7 +37,7 @@ public class AddLinkheadersFilter<R extends SkysailServerResource<T>, T> extends
      *
      * @return consumer for pathSubs
      */
-    public Consumer<? super Link> getPathSubstitutions(R resource) {
+    private Consumer<? super Link> getPathSubstitutions(R resource) {
         return l -> {
             String uri = l.getUri();
             l.setUri(LinkUtils.replaceValues(uri, resource.getRequestAttributes()));

@@ -30,8 +30,6 @@ public class ListsResource extends ListServerResource<TodoList> {
     protected void doInit() {
         super.doInit();
         app = (TodoApplication) getApplication();
-        //getResourceContext().addAjaxNavigation("ajax", "Todo-Lists:", ListsResource.class, TodosResource.class, "lid");
-        //getResourceContext().addAjaxNavigation("Top 10:", Top10TodosResource.class, TodosResource.class, "lid");
         getResourceContext().addAjaxNavigation(getResourceContext().getAjaxBuilder("lists-nav", "Lists:", ListsResource.class, TodosResource.class)
                 .identifier("id")
                 .createLabel("new list")

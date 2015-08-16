@@ -88,10 +88,11 @@ Service-Component: *
 	org.apache.commons.lang,\
 	com.fasterxml.jackson.core.jackson-annotations,\
 	org.apache.shiro.core,\
-	org.mockito.mockito-core;version=1.10,\
 	org.hibernate.validator;version=5.0;resolution:=optional,\
 	javax.validation.api;version=1.1,\
+	org.mockito.mockito-core;version=1.10,\
 	com.springsource.org.junit;version=4.11,\
+	de.twentyeleven.skysail.org.hamcrest.hamcrest-all-osgi;version=1.3,\
 	org.apache.felix.gogo.runtime;version=0.12,\
 	org.apache.httpcomponents.httpclient;version=4.3,\
 	org.apache.httpcomponents.httpcore;version=4.3,\
@@ -114,5 +115,4 @@ Service-Component: *
 	com.fasterxml.jackson.dataformat.jackson-dataformat-csv;version=2.5,\
 	de.twentyeleven.skysail.org.json-osgi;version=20080701.0,\
 	org.apache.commons.lang3;version=3.3,\
-	org.objenesis;version=2.1,\
-	de.twentyeleven.skysail.org.hamcrest.hamcrest-all-osgi;version=1.3
+	org.objenesis;version=2.1

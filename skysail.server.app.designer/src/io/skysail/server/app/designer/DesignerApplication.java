@@ -29,7 +29,7 @@ import de.twenty11.skysail.server.services.*;
 public class DesignerApplication extends SkysailApplication implements MenuItemProvider, ApplicationProvider {
 
     public static final String APP_NAME = "AppDesigner";
-    public static final String ENTITY_ID = "entityId";
+    public static final String ENTITY_ID = "id";
     public static final String FIELD_ID = "fieldId";
 
     private DesignerRepository repo;
@@ -54,20 +54,20 @@ public class DesignerApplication extends SkysailApplication implements MenuItemP
 
         router.attach(new RouteBuilder("/applications/{id}/entities", EntitiesResource.class));
         router.attach(new RouteBuilder("/applications/{id}/entities/", PostEntityResource.class));
-        router.attach(new RouteBuilder("/applications/{id}/entities/{" + ENTITY_ID + "}", EntityResource.class));
-        router.attach(new RouteBuilder("/applications/{id}/entities/{" + ENTITY_ID + "}/", PutEntityResource.class));
+        router.attach(new RouteBuilder("/entities/{" + ENTITY_ID + "}", EntityResource.class));
+        router.attach(new RouteBuilder("/entities/{" + ENTITY_ID + "}/", PutEntityResource.class));
 
-        router.attach(new RouteBuilder("/applications/{id}/entities/{" + ENTITY_ID + "}/onetomany", SubEntitiesResource.class));
-        router.attach(new RouteBuilder("/applications/{id}/entities/{" + ENTITY_ID + "}/onetomany/{subEntityId}", SubEntityResource.class));
+        router.attach(new RouteBuilder("/entities/{" + ENTITY_ID + "}/onetomany", SubEntitiesResource.class));
+        router.attach(new RouteBuilder("/entities/{" + ENTITY_ID + "}/onetomany/{subEntityId}", SubEntityResource.class));
 
-        router.attach(new RouteBuilder("/applications/{id}/entities/{" + ENTITY_ID + "}/onetomany/", PostSubEntityResource.class));
+        router.attach(new RouteBuilder("/entities/{" + ENTITY_ID + "}/onetomany/", PostSubEntityResource.class));
 
-        router.attach(new RouteBuilder("/applications/{id}/entities/{" + ENTITY_ID + "}/fields", FieldsResource.class));
-        router.attach(new RouteBuilder("/applications/{id}/entities/{" + ENTITY_ID + "}/fields/", PostFieldResource.class));
-        router.attach(new RouteBuilder("/applications/{id}/entities/{" + ENTITY_ID + "}/fields/{" + FIELD_ID + "}", FieldResource.class));
-        router.attach(new RouteBuilder("/applications/{id}/entities/{" + ENTITY_ID + "}/fields/{" + FIELD_ID + "}/",PutFieldResource.class));
+        router.attach(new RouteBuilder("/entities/{" + ENTITY_ID + "}/fields", FieldsResource.class));
+        router.attach(new RouteBuilder("/entities/{" + ENTITY_ID + "}/fields/", PostFieldResource.class));
+        router.attach(new RouteBuilder("/entities/{" + ENTITY_ID + "}/fields/{" + FIELD_ID + "}", FieldResource.class));
+        router.attach(new RouteBuilder("/entities/{" + ENTITY_ID + "}/fields/{" + FIELD_ID + "}/",PutFieldResource.class));
 
-        router.attach(new RouteBuilder("/applications/{id}/entities/{" + ENTITY_ID + "}/actionfields/", PostActionFieldResource.class));
+        router.attach(new RouteBuilder("/entities/{" + ENTITY_ID + "}/actionfields/", PostActionFieldResource.class));
 
         compileApplications();
     }
@@ -146,7 +146,7 @@ public class DesignerApplication extends SkysailApplication implements MenuItemP
         Application application = getRepository().getById(Application.class, appId);
         Optional<Entity> entityFromApplication = null;//getEntityFromApplication(application, entityId);
         if (entityFromApplication.isPresent()) {
-            List<EntityField> fields = entityFromApplication.get().getFields();
+            List<EntityField> fields = Collections.emptyList();//entityFromApplication.get().getFields();
             return fields.stream().filter(f -> {
                 if (f == null || f.getId() == null) {
                     return false;

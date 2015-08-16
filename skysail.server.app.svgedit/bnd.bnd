@@ -1,0 +1,45 @@
+Bundle-Version: 0.1.0.${tstamp}
+Bundle-Name: SKYSAIL :: server :: app :: svgedit
+Bundle-Description: Integration of svg-edit
+#https://groups.google.com/forum/#!topic/bndtools-users/aYjvNAs5lPI
+Provide-Capability: osgi.service; objectClass=org.osgi.service.event.EventHandler; uses:="org.osgi.service.event"
+Service-Component:  \
+	*
+
+Include-Resource: webapp, resources, templates=src;recursive:=true;filter:=*.st|*.stg
+
+-buildpath:  \
+	osgi.core;version=5.0,\
+	osgi.cmpn;version=5.0,\
+	skysail.api;version=${skysail.api.version},\
+	skysail.api.documentation;version=${skysail.api.documentation.version},\
+	skysail.api.favorites;version=${skysail.api.favorites.version},\
+	skysail.api.um;version=${skysail.api.um.version},\
+	skysail.api.validation;version=${skysail.api.validation.version},\
+	skysail.api.peers;version=${skysail.api.peers.version},\
+	skysail.api.text;version=${skysail.api.text.version},\
+	skysail.server;version=${skysail.server.version},\
+	skysail.server.testsupport;version=latest,\
+	de.twentyeleven.skysail.org.antlr.stringtemplate-osgi;version=4.0.8,\
+	biz.aQute.bnd.annotation;version=2.4,\
+	org.restlet;version=${restlet.version},\
+	lombok;version=1.16,\
+	etm.core;version=1.2,\
+	slf4j.api;version=1.7,\
+	org.apache.shiro.core;version=1.2,\
+	com.google.guava;version=${guava.version},\
+	org.apache.commons.lang;version=2.6,\
+	com.springsource.org.junit;version=4.11,\
+	org.mockito.mockito-all;version=1.10,\
+	javax.validation.api;version=1.1,\
+	org.apache.commons.beanutils;version=1.9,\
+	org.codehaus.jettison.jettison;version=1.3,\
+	de.twenty11.owasp-java-html-sanitizer;version=239.0,\
+	org.apache.commons.logging;version=1.1,\
+	com.fasterxml.jackson.core.jackson-annotations;version=2.4,\
+	com.fasterxml.jackson.core.jackson-core;version=2.4,\
+	com.fasterxml.jackson.core.jackson-databind;version=2.4,\
+	org.restlet.ext.jackson;version=2.3
+
+Private-Package:  \
+	io.skysail.server.app.svgedit

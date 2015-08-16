@@ -4,9 +4,12 @@ import io.skysail.api.responses.SkysailResponse;
 import io.skysail.server.app.designer.DesignerApplication;
 import io.skysail.server.app.designer.entities.Entity;
 import io.skysail.server.app.designer.fields.EntityField;
+import io.skysail.server.app.designer.repo.DesignerRepository;
 import io.skysail.server.restlet.resources.PostEntityServerResource;
 
 import org.restlet.resource.ResourceException;
+
+import com.orientechnologies.orient.core.id.ORecordId;
 
 import de.twenty11.skysail.server.core.restlet.ResourceContextId;
 
@@ -35,10 +38,19 @@ public class PostFieldResource extends PostEntityServerResource<EntityField> {
 
     @Override
     public SkysailResponse<?> addEntity(EntityField field) {
-        Entity entity = app.getRepository().getById(Entity.class, entityId);
-        entity.getFields().add(field);
-        app.getRepository().update(entity);
+
+        ORecordId added = (ORecordId) DesignerRepository.add(field);
+
+        Entity entity= app.getRepository().getById(Entity.class, id);
+        entity.getFields().add(added.getIdentity().toString());
+        app.getRepository().update(entity, "fields");
         return new SkysailResponse<String>();
+
+
+//        Entity entity = app.getRepository().getById(Entity.class, entityId);
+//        entity.getFields().add(field);
+//        app.getRepository().update(entity);
+//        return new SkysailResponse<String>();
     }
 
 

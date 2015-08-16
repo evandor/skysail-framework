@@ -117,7 +117,7 @@ public class ApplicationModelTest {
         Entity entity = new Entity("Bank");
         EntityField field = new EntityField();
         field.setName("fieldname");
-        entity.setFields(Arrays.asList(field));
+        //entity.setFields(Arrays.asList(field));
         entities.add(entity);
 
         ApplicationModel applicationModel = new ApplicationModel(application, repo);
@@ -152,13 +152,13 @@ public class ApplicationModelTest {
         Entity bankEntity = new Entity("Bank");
         EntityField field = new EntityField();
         field.setName("iban");
-        bankEntity.setFields(Arrays.asList(field));
+       // bankEntity.setFields(Arrays.asList(field));
 
         Entity accountEntity = new Entity("Account");
         accountEntity.setSubEntities(Arrays.asList(bankEntity));
         EntityField accountNumberField = new EntityField();
         accountNumberField.setName("accountNr");
-        accountEntity.setFields(Arrays.asList(accountNumberField));
+       // accountEntity.setFields(Arrays.asList(accountNumberField));
 
         entities.add(bankEntity);
         entities.add(accountEntity);

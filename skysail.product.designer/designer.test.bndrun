@@ -120,7 +120,6 @@
 	skysail.product.designer;version=latest,\
 	skysail.server;version=${skysail.server.version},\
 	skysail.server.converter;version=${skysail.server.converter.version},\
-	skysail.server.app.designer;version=latest,\
 	skysail.server.db;version=latest,\
 	skysail.server.queryfilter;version=${skysail.server.queryfilter.version},\
 	skysail.server.static;version=latest,\
@@ -129,9 +128,11 @@
 	skysail.server.polymer;version=latest,\
 	skysail.server.plugins;version=latest,\
 	skysail.server.documentation;version=${skysail.server.documentation.version},\
+	skysail.server.app.designer;version=latest,\
 	skysail.server.app.bookmarks;version=latest,\
 	skysail.server.app.todos;version=latest,\
 	skysail.server.app.designer;version=latest,\
+	skysail.server.app.svgedit;version=latest,\
 	skysail.server.text.markdown;version=latest,\
 	skysail.server.text.store.bundleresource;version=latest,\
 	skysail.server.text.store.git;version=latest,\

@@ -40,7 +40,7 @@ public class TodosResource extends ListServerResource<Todo> {
             substitutions.put("/Lists/" + listId, list.getName());
             getContext().getAttributes().put(ResourceContextId.PATH_SUBSTITUTION.name(), substitutions);
         }
-        getResourceContext().addAjaxNavigation("ajax", "Todo-Lists", ListsResource.class, TodosResource.class, "lid");
+        getResourceContext().addAjaxNavigation("ajax", "Todo-Lists", ListsResource.class, TodosResource.class, "id");
     }
 
     @Override

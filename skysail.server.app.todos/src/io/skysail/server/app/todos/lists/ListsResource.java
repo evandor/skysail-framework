@@ -33,13 +33,13 @@ public class ListsResource extends ListServerResource<TodoList> {
         //getResourceContext().addAjaxNavigation("ajax", "Todo-Lists:", ListsResource.class, TodosResource.class, "lid");
         //getResourceContext().addAjaxNavigation("Top 10:", Top10TodosResource.class, TodosResource.class, "lid");
         getResourceContext().addAjaxNavigation(getResourceContext().getAjaxBuilder("lists-nav", "Lists:", ListsResource.class, TodosResource.class)
-                .identifier("lid")
+                .identifier("id")
                 .createLabel("new list")
                 .createTarget(getTarget())
                 .build());
         getResourceContext().addAjaxNavigation(getResourceContext().getAjaxBuilder("top10-nav", "Top 10:", Top10TodosResource.class, TodosResource.class)
                 .nameProperty("title")
-                .identifier("lid")
+                .identifier("id")
                 .build());
     }
 

@@ -7,7 +7,6 @@ import io.skysail.server.app.todos.todos.Todo;
 import io.skysail.server.restlet.resources.EntityServerResource;
 
 import java.util.List;
-import java.util.function.Consumer;
 
 import org.restlet.resource.ResourceException;
 
@@ -53,11 +52,11 @@ public class TodoResource extends EntityServerResource<Todo> {
         return super.redirectTo(TodosResource.class);
     }
     
-    @Override
-    public Consumer<? super Link> getPathSubstitutions() {
-        return l -> {
-            l.substitute(TodoApplication.LIST_ID, listId);
-        };
-    }
+//    @Override
+//    public Consumer<? super Link> getPathSubstitutions() {
+//        return l -> {
+//            l.substitute(TodoApplication.LIST_ID, listId);
+//        };
+//    }
 
 }

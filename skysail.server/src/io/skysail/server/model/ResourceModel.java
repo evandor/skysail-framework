@@ -87,8 +87,6 @@ public class ResourceModel<R extends SkysailServerResource<T>, T> {
 
         mapper.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, true);
         mapper.configure(SerializationFeature.FAIL_ON_EMPTY_BEANS, false);
-        // mapper.setDateFormat(dateFormat);
-        // mapper.setLocale(locale);
 
         rawData = getData(skysailResponse);
 
@@ -342,36 +340,40 @@ public class ResourceModel<R extends SkysailServerResource<T>, T> {
         if (entityResourceClass != null) {
             List<Map<String, Object>> sourceAsList = theData;
             for (Map<String, Object> dataRow : sourceAsList) {
-                String id = guessId(dataRow);
-                if (id == null) {
-                    continue;
-                }
-
-                String linkshtml = links
-                        .stream()
-                        .filter(l -> id.equals(l.getRefId()))
-                        .map(link -> {
-                            StringBuilder sb = new StringBuilder();
-
-                            if (link.getImage(MediaType.TEXT_HTML) != null) {
-                                sb.append("<a href='")
-                                        .append(link.getUri())
-                                        .append("' title='")
-                                        .append(link.getTitle())
-                                        .append("'>")
-                                        .append("<span class='glyphicon glyphicon-"
-                                                + link.getImage(MediaType.TEXT_HTML) + "' aria-hidden='true'></span>")
-                                        .append("</a>");
-                            } else {
-                                sb.append("<a href='").append(link.getUri()).append("'>").append(link.getTitle())
-                                        .append("</a>");
-                            }
-                            return sb.toString();
-                        }).collect(Collectors.joining("&nbsp;&nbsp;"));
-
-                dataRow.put("_links", linkshtml);
+                addLinks(links, dataRow);
             }
         }
+    }
+
+    private void addLinks(List<Link> links, Map<String, Object> dataRow) {
+        String id = guessId(dataRow);
+        if (id == null) {
+            return;
+        }
+
+        String linkshtml = links
+                .stream()
+                .filter(l -> id.equals(l.getRefId()))
+                .map(link -> {
+                    StringBuilder sb = new StringBuilder();
+
+                    if (link.getImage(MediaType.TEXT_HTML) != null) {
+                        sb.append("<a href='")
+                                .append(link.getUri())
+                                .append("' title='")
+                                .append(link.getTitle())
+                                .append("'>")
+                                .append("<span class='glyphicon glyphicon-"
+                                        + link.getImage(MediaType.TEXT_HTML) + "' aria-hidden='true'></span>")
+                                .append("</a>");
+                    } else {
+                        sb.append("<a href='").append(link.getUri()).append("'>").append(link.getTitle())
+                                .append("</a>");
+                    }
+                    return sb.toString();
+                }).collect(Collectors.joining("&nbsp;&nbsp;"));
+
+        dataRow.put("_links", linkshtml);
     }
 
     private String guessId(Object object) {

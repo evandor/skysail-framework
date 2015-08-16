@@ -51,7 +51,7 @@ import de.twenty11.skysail.server.services.MenuItem;
  * </p>
  */
 @Slf4j
-@ToString(exclude = { "linkheader" })
+@ToString(exclude = { "links" })
 public abstract class SkysailServerResource<T> extends ServerResource {
 
     private static final String DATE_PATTERN = "yyyy-MM-dd";
@@ -70,7 +70,7 @@ public abstract class SkysailServerResource<T> extends ServerResource {
     @Getter
     private T currentEntity;
 
-    private List<Link> linkheader;
+    private List<Link> links;
 
     @Setter
     @Getter
@@ -82,40 +82,6 @@ public abstract class SkysailServerResource<T> extends ServerResource {
 
     @Getter
     private ResourceContext resourceContext;
-
-//    private BeanUtilsBean beanUtilsBean = new BeanUtilsBean(new ConvertUtilsBean() {
-//        @SuppressWarnings("unchecked")
-//        @Override
-//        public Object convert(String value, @SuppressWarnings("rawtypes") Class clazz) {
-//            if (clazz.isEnum()) {
-//                return Enum.valueOf(clazz, value);
-//            } else if (clazz.equals(LocalDate.class)) {
-//                if (StringUtils.isEmpty(value)) {
-//                    return null;
-//                }
-//                DateTimeFormatter sdf = DateTimeFormatter.ofPattern(DATE_PATTERN);
-//                try {
-//                    return LocalDate.parse(value, sdf);
-//                } catch (Exception e) {
-//                    log.info("could not parse date '{}' with pattern {}", value, DATE_PATTERN);
-//                }
-//                return null;
-//            } else if (clazz.equals(Date.class)) {
-//                if (StringUtils.isEmpty(value)) {
-//                    return null;
-//                }
-//                SimpleDateFormat sdf = new SimpleDateFormat(DATE_PATTERN);
-//                try {
-//                    return sdf.parse(value);
-//                } catch (Exception e) {
-//                    log.info("could not parse date '{}' with pattern {}", value, DATE_PATTERN);
-//                }
-//                return null;
-//            } else {
-//                return super.convert(value, clazz);
-//            }
-//        }
-//    });
 
     public SkysailServerResource() {
         DateTimeConverter dateConverter = new DateConverter(null);
@@ -303,20 +269,10 @@ public abstract class SkysailServerResource<T> extends ServerResource {
      */
     @SafeVarargs
     public final List<Link> getLinks(Class<? extends SkysailServerResource<?>>... classes) {
-        if (linkheader != null) {
-            return linkheader;
+        if (links != null) {
+            return links;
         }
-        SkysailApplication app = getApplication();
-        List<Link> links = Arrays.asList(classes).stream() //
-                .map(cls -> LinkUtils.fromResource(app, cls))//
-                .filter(lh -> {
-                    return lh != null;// && lh.isApplicable();
-                }).collect(Collectors.toList());
-
-        links.addAll(getAssociatedLinks());
-
-        links.forEach(getPathSubstitutions());
-        this.linkheader = links;
+        links = LinkUtils.fromResources(this, getCurrentEntity(), classes);
         return links;
     }
 
@@ -389,11 +345,11 @@ public abstract class SkysailServerResource<T> extends ServerResource {
     private void addLink(Link linkTemplate, Resource entityResource, String id, ListServerResource<?> resource,
             List<Link> result) {
         String path = linkTemplate.getUri();
-        // does this ever work?
-        String href = StringParserUtils.substitutePlaceholders(path, entityResource);
 
+        //String href = StringParserUtils.substitutePlaceholders(path, entityResource);
+        String href = path;
         // hmmm... last resort
-        if (id != null && href.contains("{") && href.contains("}")) {
+        if (id != null && path.contains("{") && path.contains("}")) {
             href = href.replaceFirst(StringParserUtils.placeholderPattern.toString(), id);
         }
 
@@ -434,8 +390,8 @@ public abstract class SkysailServerResource<T> extends ServerResource {
      * @return result
      */
     public List<Link> getLinks() {
-        if (linkheader != null) {
-            return linkheader;
+        if (links != null) {
+            return links;
         }
         return new ArrayList<Link>();
     }

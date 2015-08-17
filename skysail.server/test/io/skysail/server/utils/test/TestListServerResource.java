@@ -7,7 +7,7 @@ import java.util.*;
 
 import org.mockito.Mockito;
 
-public class TestListServerResources extends ListServerResource<String> {
+public class TestListServerResource extends ListServerResource<String> {
 
     @Override
     public List<String> getEntity() {

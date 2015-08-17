@@ -7,6 +7,7 @@ import io.skysail.server.app.SkysailApplication;
 import io.skysail.server.restlet.resources.*;
 
 import java.util.*;
+import java.util.function.Function;
 import java.util.regex.*;
 import java.util.stream.Collectors;
 
@@ -96,7 +97,7 @@ public class LinkUtils {
 
     public static List<Link> fromResources(SkysailServerResource<?> skysailServerResource, Object entity, Class<? extends SkysailServerResource<?>>[] classes) {
          List<Link> links = Arrays.stream(classes)
-                .map(cls -> LinkUtils.fromResource(skysailServerResource.getApplication(), cls))//
+                .map(determineLink(skysailServerResource))//
                 .filter(lh -> {
                     return lh != null;// && lh.isApplicable();
                 }).collect(Collectors.toList());
@@ -104,6 +105,11 @@ public class LinkUtils {
          links.addAll(getAssociatedLinks(entity, skysailServerResource));
 
          return links;
+    }
+
+    private static Function<? super Class<? extends SkysailServerResource<?>>, ? extends Link> determineLink(
+            SkysailServerResource<?> skysailServerResource) {
+        return cls -> LinkUtils.fromResource(skysailServerResource.getApplication(), cls);
     }
 
     /**

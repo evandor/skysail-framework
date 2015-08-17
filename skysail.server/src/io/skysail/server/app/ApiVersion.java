@@ -1,7 +1,8 @@
 package io.skysail.server.app;
 
-import lombok.NonNull;
+import lombok.*;
 
+@EqualsAndHashCode(of = "versionNr")
 public class ApiVersion {
 
     private Integer versionNr;
@@ -15,6 +16,11 @@ public class ApiVersion {
 
     public String getVersionPath() {
         return new StringBuilder("/v").append(versionNr).toString();
+    }
+
+    @Override
+    public String toString() {
+        return "v" + versionNr;
     }
 
 }

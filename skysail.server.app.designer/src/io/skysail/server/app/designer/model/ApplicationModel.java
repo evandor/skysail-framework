@@ -2,19 +2,13 @@ package io.skysail.server.app.designer.model;
 
 import io.skysail.server.app.designer.application.Application;
 import io.skysail.server.app.designer.entities.Entity;
-import io.skysail.server.app.designer.fields.ActionEntityField;
-import io.skysail.server.app.designer.fields.EntityField;
+import io.skysail.server.app.designer.fields.*;
 import io.skysail.server.app.designer.repo.DesignerRepository;
 
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
-import lombok.Getter;
-import lombok.NonNull;
-import lombok.ToString;
+import lombok.*;
 import lombok.extern.slf4j.Slf4j;
 
 @Getter
@@ -130,7 +124,7 @@ public class ApplicationModel {
         // streams dont't seem to work here ?!?! (with orientdb objects)
         for (Entity entity : entities) {
             if (beanName.equals(entity.getName())) {
-                return entity.getFields();
+                return Collections.emptyList();//entity.getFields();
             }
             List<EntityField> fieldsFromSubEntity = findFields(repo2, beanName, appIdentifier, entity.getSubEntities());
             if (fieldsFromSubEntity.size() > 0) {

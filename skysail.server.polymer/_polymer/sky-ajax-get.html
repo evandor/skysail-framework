@@ -42,6 +42,7 @@
         requestUrl:   String,
         createLabel:  String,
         createTarget: String,
+        metadataUrl:  String,
         nameProperty: { type: String,  value: "name" },
         identifier:   { type: String,  value: "id" },
         linkLength:   { type: Number,  value: 20 },
@@ -72,20 +73,19 @@
     	  return parentId + "_ajax";
       },
       attached: function() {
-        console.log("SKY-AJAX-GET (attached)>");
+        debug("SKY-AJAX-GET (attached): calling " + this.url, true);
         var a = document.getElementById(this.id + "_ajax");
         a.url=this.url;
-        //a.generateRequest();
       },
       handleClick: function(e, f, g) {
-          console.log("SKY-AJAX-GET (handleClick)> " + e);
+        console.log("SKY-AJAX-GET (handleClick)> " + e);
         // http://www.quirksmode.org/js/events_properties.html
         if (!e) {
           var e = window.event;
         }
         var srcElement = e.currentTarget;
         console.log("SKY-AJAX-GET (handleClick)> found srcElement: " + srcElement + " with reference to " + srcElement.ajaxhref );
-        console.log("SKY-AJAX-GET (handleClick)> " + srcElement.className );
+        //console.log("SKY-AJAX-GET (handleClick)> " + srcElement.className );
         var ajaxhref = srcElement.ajaxhref;
 
 
@@ -95,10 +95,18 @@
         }
         srcElement.className += " active";
 
+        var skyMeta = document.getElementById("skyMeta");
+        skyMeta.url = this.metadataUrl;
+        debug("SKY-AJAX-GET (handleClick): metadata call to  " + this.metadataUrl, true);
+        skyMeta.generateRequest();
+
         var skyTable = document.getElementById("skyTable");
         skyTable.url = ajaxhref;
         var skyAjaxTable = document.getElementById("skyAjaxTable");
+        debug("SKY-AJAX-GET (handleClick): data call to  <a href='" + ajaxhref +"&media=json' target='_blank'>"+ajaxhref+"</a>", true);
         skyTable.generateRequest();
+
+
       },
       getGlyph: function(glyph) {
         return "glyphicon glyphicon-"+glyph;

@@ -42,6 +42,9 @@ public class TodoList implements Serializable, Identifiable {
     @Field(inputType = InputType.TEXTAREA)
     private String desc;
 
+    @Field(inputType = InputType.TEXT)
+    private String desc2;
+
     @Field(inputType = InputType.READONLY)
     private Date created;
 

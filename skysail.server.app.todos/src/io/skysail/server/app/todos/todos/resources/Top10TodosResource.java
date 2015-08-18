@@ -20,7 +20,7 @@ import de.twenty11.skysail.server.core.restlet.ResourceContextId;
 
 public class Top10TodosResource extends ListServerResource<TodoSummary> {
 
-    public static final String DEFAULT_FILTER_EXPRESSION = "(!(status=" + Status.ARCHIVED + "))";
+    private static final String DEFAULT_FILTER_EXPRESSION = "(!(status=" + Status.ARCHIVED + "))";
     protected TodoApplication app;
 
     public Top10TodosResource() {
@@ -38,7 +38,7 @@ public class Top10TodosResource extends ListServerResource<TodoSummary> {
                 .createLabel("new list")
                 .createTarget(LinkUtils.fromResource(app, PostListResource.class).getUri())
                 .nameProperty("name")
-                .identifier("lid").build());
+                .identifier("id").build());
 //        getResourceContext().addAjaxNavigation("Lists:", ListsResource.class, TodosResource.class, "lid");
         // Map<String,String> substitutions = new HashMap<>();
         // substitutions.put("/Lists/" + listId, list.getName());
@@ -50,7 +50,6 @@ public class Top10TodosResource extends ListServerResource<TodoSummary> {
     public List<TodoSummary> getEntity() {
         Filter filter = new Filter(getRequest(), DEFAULT_FILTER_EXPRESSION);
         filter.add("owner", SecurityUtils.getSubject().getPrincipal().toString());
-        // filter.add("list", listId);
 
         Pagination pagination = new Pagination(getRequest(), getResponse(), 10);
         List<Todo> todos = app.getRepository().findAllTodos(filter, pagination);

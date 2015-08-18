@@ -7,7 +7,6 @@ import io.skysail.server.app.designer.entities.Entity;
 import io.skysail.server.restlet.resources.ListServerResource;
 
 import java.util.*;
-import java.util.function.Consumer;
 
 import de.twenty11.skysail.server.core.restlet.ResourceContextId;
 
@@ -34,22 +33,13 @@ public class EntitiesResource extends ListServerResource<Entity> {
 
     @Override
     public List<Entity> getEntity() {
-        Application application = app.getRepository().getById(Application.class, id);
-        return null;//application.getEntities();
+        String sql = "SELECT * from " + Entity.class.getSimpleName() + " WHERE #"+id+" IN in('entities')";
+        return app.getRepository().findAll(sql);
     }
 
     @Override
     public List<Link> getLinks() {
         return super.getLinks(PostEntityResource.class);
-    }
-
-    @Override
-    public Consumer<? super Link> getPathSubstitutions() {
-        return l -> {
-            if (id != null) {
-                l.substitute("id", id);
-            }
-        };
     }
 
 }

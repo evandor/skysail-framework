@@ -22,7 +22,7 @@ import de.twenty11.skysail.server.core.restlet.*;
 public class Breadcrumbs {
 
     private FavoritesService favoritesService;
-    
+
     public Breadcrumbs(FavoritesService favoritesService) {
         if (favoritesService == null) {
             log.info("favoritesService was null when creating breadcrumbs");
@@ -44,7 +44,7 @@ public class Breadcrumbs {
     private void addSegments(SkysailServerResource<?> resource, List<Breadcrumb> result, List<String> segments) {
         String path = "";
         Route match = null;
-        for (int i = 1; i < segments.size(); i++) {
+        for (int i = 2; i < segments.size(); i++) {
             path = path + "/" + segments.get(i);
             match = handleSegment(result, segments, path, match, i, resource);
         }
@@ -54,7 +54,8 @@ public class Breadcrumbs {
         String img = resource.getApplication().getFromContext(ApplicationContextId.IMG);
         String imgHtml = img != null ? "<img src='" + img + "'>" : "";
         String text = imgHtml + " " + resource.getApplication().getName();
-        return Breadcrumb.builder().href("/" + resource.getApplication().getName()).value(text)
+        text += " (" + resource.getApplication().getApiVersion().toString() + ")";
+        return Breadcrumb.builder().href("/" + resource.getApplication().getName() + resource.getApplication().getApiVersion().getVersionPath()).value(text)
                 //.favorite(getFavoriteIndicator(resource))
                 .build();
     }

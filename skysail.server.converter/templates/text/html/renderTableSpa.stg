@@ -5,10 +5,11 @@ renderTableSpa(converter, messages, model) ::= <<
   <sky-ajax-table1
     id="skyAjaxTable"
     url="$model.resource.request.resourceRef.path$?_rendered"
-    link-to="/Todos/Lists/{lid}/Todos"
+    entity-type-url="$model.contextPath$/docs/entities/$model.parameterizedType.name$?media=json"
+    link-to="/Todos/Lists/{id}/Todos"
     identifier="lid"
     request-url="/Todos"
-    name-property="title"
+    name-property="title">
   </sky-ajax-table1>
 
 >>

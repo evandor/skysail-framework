@@ -30,16 +30,14 @@ public class ListsResource extends ListServerResource<TodoList> {
     protected void doInit() {
         super.doInit();
         app = (TodoApplication) getApplication();
-        //getResourceContext().addAjaxNavigation("ajax", "Todo-Lists:", ListsResource.class, TodosResource.class, "lid");
-        //getResourceContext().addAjaxNavigation("Top 10:", Top10TodosResource.class, TodosResource.class, "lid");
         getResourceContext().addAjaxNavigation(getResourceContext().getAjaxBuilder("lists-nav", "Lists:", ListsResource.class, TodosResource.class)
-                .identifier("lid")
+                .identifier("id")
                 .createLabel("new list")
                 .createTarget(getTarget())
                 .build());
         getResourceContext().addAjaxNavigation(getResourceContext().getAjaxBuilder("top10-nav", "Top 10:", Top10TodosResource.class, TodosResource.class)
                 .nameProperty("title")
-                .identifier("lid")
+                .identifier("id")
                 .build());
     }
 
@@ -80,9 +78,7 @@ public class ListsResource extends ListServerResource<TodoList> {
 
     @Override
     public List<Link> getLinks() {
-        List<Link> links = super.getLinks(PostListResource.class, PostTodoWoListResource.class, Top10TodosResource.class, PutListResource.class);
-       // links.add(new Link.Builder("/Todos/docs/api").title("API").build());
-        return links;
+        return super.getLinks(PostListResource.class, PostTodoWoListResource.class, Top10TodosResource.class);
     }
 
 }

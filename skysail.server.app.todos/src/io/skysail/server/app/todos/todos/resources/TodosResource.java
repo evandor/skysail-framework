@@ -1,7 +1,7 @@
 package io.skysail.server.app.todos.todos.resources;
 
 import io.skysail.api.links.Link;
-import io.skysail.server.app.todos.*;
+import io.skysail.server.app.todos.TodoApplication;
 import io.skysail.server.app.todos.lists.ListsResource;
 import io.skysail.server.app.todos.todos.Todo;
 import io.skysail.server.app.todos.todos.status.Status;
@@ -9,7 +9,7 @@ import io.skysail.server.queryfilter.Filter;
 import io.skysail.server.queryfilter.pagination.Pagination;
 import io.skysail.server.restlet.resources.ListServerResource;
 
-import java.util.*;
+import java.util.List;
 
 import org.apache.shiro.SecurityUtils;
 import org.restlet.resource.ResourceException;
@@ -34,13 +34,13 @@ public class TodosResource extends ListServerResource<Todo> {
         super.doInit();
         listId = getAttribute(TodoApplication.LIST_ID);
         app = (TodoApplication) getApplication();
-        if (listId != null) {
-            TodoList list = app.getRepository().getById(TodoList.class, listId);
-            Map<String, String> substitutions = new HashMap<>();
-            substitutions.put("/Lists/" + listId, list.getName());
-            getContext().getAttributes().put(ResourceContextId.PATH_SUBSTITUTION.name(), substitutions);
-        }
-        getResourceContext().addAjaxNavigation("ajax", "Todo-Lists", ListsResource.class, TodosResource.class, "lid");
+//        if (listId != null) {
+//            TodoList list = app.getRepository().getById(TodoList.class, listId);
+//            Map<String, String> substitutions = new HashMap<>();
+//            substitutions.put("/Lists/" + listId, list.getName());
+//            getContext().getAttributes().put(ResourceContextId.PATH_SUBSTITUTION.name(), substitutions);
+//        }
+        getResourceContext().addAjaxNavigation("ajax", "Todo-Lists", ListsResource.class, TodosResource.class, "id");
     }
 
     @Override
@@ -58,15 +58,5 @@ public class TodosResource extends ListServerResource<Todo> {
     public List<Link> getLinks() {
         return super.getLinks(PostTodoResource.class, ArchivedTodosResource.class);
     }
-
-//    @Override
-//    public Consumer<? super Link> getPathSubstitutions() {
-//        return l -> {
-//            if (listId == null) {
-//                listId = (String) getContext().getAttributes().get(TodoApplication.LIST_ID);
-//            }
-//            l.substitute(TodoApplication.LIST_ID, listId);
-//        };
-//    }
 
 }

@@ -26,8 +26,8 @@ public class EntityResource extends EntityServerResource<Entity> {
     }
 
     public Entity getEntity() {
-        Application application = app.getRepository().getById(Application.class, appId);
-        return app.getEntity(application, entityId);
+        return app.getRepository().getById(Entity.class, appId);
+//        return app.getEntity(application, entityId);
     }
 
     public List<Link> getLinks() {

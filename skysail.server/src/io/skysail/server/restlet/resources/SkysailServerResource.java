@@ -1,9 +1,7 @@
 package io.skysail.server.restlet.resources;
 
-import io.skysail.api.domain.Identifiable;
 import io.skysail.api.links.*;
 import io.skysail.api.responses.SkysailResponse;
-import io.skysail.api.utils.StringParserUtils;
 import io.skysail.server.app.SkysailApplication;
 import io.skysail.server.forms.FormField;
 import io.skysail.server.restlet.RequestHandler;
@@ -51,7 +49,7 @@ import de.twenty11.skysail.server.services.MenuItem;
  * </p>
  */
 @Slf4j
-@ToString(exclude = { "linkheader" })
+@ToString(exclude = { "links" })
 public abstract class SkysailServerResource<T> extends ServerResource {
 
     private static final String DATE_PATTERN = "yyyy-MM-dd";
@@ -70,7 +68,7 @@ public abstract class SkysailServerResource<T> extends ServerResource {
     @Getter
     private T currentEntity;
 
-    private List<Link> linkheader;
+    private List<Link> links;
 
     @Setter
     @Getter
@@ -82,40 +80,6 @@ public abstract class SkysailServerResource<T> extends ServerResource {
 
     @Getter
     private ResourceContext resourceContext;
-
-//    private BeanUtilsBean beanUtilsBean = new BeanUtilsBean(new ConvertUtilsBean() {
-//        @SuppressWarnings("unchecked")
-//        @Override
-//        public Object convert(String value, @SuppressWarnings("rawtypes") Class clazz) {
-//            if (clazz.isEnum()) {
-//                return Enum.valueOf(clazz, value);
-//            } else if (clazz.equals(LocalDate.class)) {
-//                if (StringUtils.isEmpty(value)) {
-//                    return null;
-//                }
-//                DateTimeFormatter sdf = DateTimeFormatter.ofPattern(DATE_PATTERN);
-//                try {
-//                    return LocalDate.parse(value, sdf);
-//                } catch (Exception e) {
-//                    log.info("could not parse date '{}' with pattern {}", value, DATE_PATTERN);
-//                }
-//                return null;
-//            } else if (clazz.equals(Date.class)) {
-//                if (StringUtils.isEmpty(value)) {
-//                    return null;
-//                }
-//                SimpleDateFormat sdf = new SimpleDateFormat(DATE_PATTERN);
-//                try {
-//                    return sdf.parse(value);
-//                } catch (Exception e) {
-//                    log.info("could not parse date '{}' with pattern {}", value, DATE_PATTERN);
-//                }
-//                return null;
-//            } else {
-//                return super.convert(value, clazz);
-//            }
-//        }
-//    });
 
     public SkysailServerResource() {
         DateTimeConverter dateConverter = new DateConverter(null);
@@ -303,104 +267,10 @@ public abstract class SkysailServerResource<T> extends ServerResource {
      */
     @SafeVarargs
     public final List<Link> getLinks(Class<? extends SkysailServerResource<?>>... classes) {
-        if (linkheader != null) {
-            return linkheader;
+        if (links == null) {
+            links = LinkUtils.fromResources(this, getCurrentEntity(), classes);
         }
-        SkysailApplication app = getApplication();
-        List<Link> links = Arrays.asList(classes).stream() //
-                .map(cls -> LinkUtils.fromResource(app, cls))//
-                .filter(lh -> {
-                    return lh != null;// && lh.isApplicable();
-                }).collect(Collectors.toList());
-
-        links.addAll(getAssociatedLinks());
-
-        links.forEach(getPathSubstitutions());
-        this.linkheader = links;
         return links;
-    }
-
-    /**
-     * if the current resource is a {@link ListServerResource}, the associated
-     * EntityServerResource (if existent) is analyzed for its own links.
-     *
-     * <p>
-     * For each entity of the listServerResource, and for each associated link
-     * (which serves as a template), a new link is created and is having its
-     * path placeholders substituted. So, if the current ListServerResource has
-     * a list with two entities of a type which defines three classes in its
-     * getLinks method, we'll get six links in the result.
-     * </p>
-     */
-    private List<? extends Link> getAssociatedLinks() {
-        if (!(this instanceof ListServerResource)) {
-            return Collections.emptyList();
-        }
-        ListServerResource<?> listServerResource = (ListServerResource<?>) this;
-        List<Class<? extends SkysailServerResource<?>>> entityResourceClasses = listServerResource
-                .getAssociatedServerResources();
-        // List<Class<? extends EntityServerResource<?>>> entityResourceClass =
-        // listServerResource.getAssociatedEntityResources();
-        T entity = getCurrentEntity();
-        List<Link> result = new ArrayList<>();
-
-        if (entityResourceClasses != null && entity instanceof List) {
-            List<SkysailServerResource<?>> esrs = ResourceUtils.createSkysailServerResources(entityResourceClasses,
-                    this);
-
-            for (SkysailServerResource<?> esr : esrs) {
-                List<Link> entityLinkTemplates = esr.getAuthorizedLinks();
-                for (Object object : (List<?>) entity) {
-                    String id = guessId(object);
-                    entityLinkTemplates.stream().filter(lh -> {
-                        return lh.getRole().equals(LinkRole.DEFAULT);
-                    }).forEach(link -> addLink(link, esr, id, listServerResource, result));
-                }
-            }
-        }
-        return result;
-
-    }
-
-    private String guessId(Object object) {
-        if (object instanceof Identifiable) {
-            Identifiable identifiable = (Identifiable) object;
-            return identifiable.getId().replace("#", "");
-        }
-        if (object instanceof Map) {
-            Map<String, Object> map = (Map) object;
-            if (map.get("@rid") != null) {
-                return map.get("@rid").toString().replace("#", "");
-            }
-            if (map.get("id") != null) {
-                return map.get("id").toString().replace("#", "");
-            }
-        }
-        Map<String, Object> map = OrientDbUtils.toMap(object);
-        if (map != null) {
-            if (map.get("@rid") != null) {
-                return map.get("@rid").toString().replace("#", "");
-            }
-        }
-
-        return "NO_ID";
-    }
-
-    private void addLink(Link linkTemplate, Resource entityResource, String id, ListServerResource<?> resource,
-            List<Link> result) {
-        String path = linkTemplate.getUri();
-        // does this ever work?
-        String href = StringParserUtils.substitutePlaceholders(path, entityResource);
-
-        // hmmm... last resort
-        if (id != null && href.contains("{") && href.contains("}")) {
-            href = href.replaceFirst(StringParserUtils.placeholderPattern.toString(), id);
-        }
-
-        Link newLink = new Link.Builder(linkTemplate)// .uri()
-                .uri(href).role(LinkRole.LIST_VIEW).relation(LinkRelation.ITEM).refId(id).build();
-        // substituePlaceholders(entityResource, id).build()
-        result.add(newLink);
     }
 
     /**
@@ -434,8 +304,8 @@ public abstract class SkysailServerResource<T> extends ServerResource {
      * @return result
      */
     public List<Link> getLinks() {
-        if (linkheader != null) {
-            return linkheader;
+        if (links != null) {
+            return links;
         }
         return new ArrayList<Link>();
     }

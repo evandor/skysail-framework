@@ -4,6 +4,7 @@ import io.skysail.api.domain.Identifiable;
 import io.skysail.api.favorites.FavoritesService;
 import io.skysail.api.links.Link;
 import io.skysail.api.responses.*;
+import io.skysail.server.app.SkysailApplication;
 import io.skysail.server.forms.FormField;
 import io.skysail.server.restlet.resources.*;
 import io.skysail.server.utils.*;
@@ -86,8 +87,6 @@ public class ResourceModel<R extends SkysailServerResource<T>, T> {
 
         mapper.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, true);
         mapper.configure(SerializationFeature.FAIL_ON_EMPTY_BEANS, false);
- //       mapper.setDateFormat(dateFormat);
- //       mapper.setLocale(locale);
 
         rawData = getData(skysailResponse);
 
@@ -101,9 +100,11 @@ public class ResourceModel<R extends SkysailServerResource<T>, T> {
 
         rootEntity = new EntityModel<R>(response.getEntity(), resource);
 
-        data = convert();
+        String identifierName = getIdentifierFormField(rawData);
+        data = convert(identifierName);
 
-        addAssociatedLinks();
+        addAssociatedLinks(data);
+        addAssociatedLinks(rawData);
     }
 
     @SuppressWarnings("unchecked")
@@ -136,7 +137,12 @@ public class ResourceModel<R extends SkysailServerResource<T>, T> {
         }
     }
 
-    private List<Map<String, Object>> convert() {
+    private String getIdentifierFormField(@NonNull List<Map<String, Object>> theData) {
+        return "id"; // for now
+    }
+
+
+    private List<Map<String, Object>> convert(String identifierName) {
         List<Map<String, Object>> result = new ArrayList<>();
         rawData.stream().filter(row -> {
             return row != null;
@@ -144,25 +150,26 @@ public class ResourceModel<R extends SkysailServerResource<T>, T> {
             Map<String, Object> newRow = new HashMap<>();
             result.add(newRow);
             row.keySet().stream().forEach(columnName -> {
-                apply(newRow, row, columnName);
+                Object identifier = row.get(identifierName);
+                apply(newRow, row, columnName, identifier);
             });
         });
         return result;
     }
 
-    private void apply(Map<String, Object> newRow, Map<String, Object> dataRow, String columnName) {
+    private void apply(Map<String, Object> newRow, Map<String, Object> dataRow, String columnName, Object id) {
         FormField formField = fields.get(columnName);
-        newRow.put(columnName, calc(formField, dataRow, columnName));
+        newRow.put(columnName, calc(formField, dataRow, columnName, id));
     }
 
-    private Object calc(FormField formField, Map<String, Object> dataRow, String columnName) {
+    private String calc(FormField formField, Map<String, Object> dataRow, String columnName, Object id) {
         if (formField != null) {
-            Object processed = formField.process(response, dataRow, columnName);
-            processed = checkPrefix(formField, dataRow, processed);
-            processed = checkPostfix(formField, dataRow, processed);
+            String processed = formField.process(response, dataRow, columnName, id);
+            processed = checkPrefix(formField, dataRow, processed, id);
+            processed = checkPostfix(formField, dataRow, processed, id);
             return processed;
         }
-        return dataRow.get(columnName);
+        return dataRow.get(columnName) != null ? dataRow.get(columnName).toString() : "";
     }
 
     public List<Breadcrumb> getBreadcrumbs() {
@@ -259,6 +266,11 @@ public class ResourceModel<R extends SkysailServerResource<T>, T> {
         return resource.getClass().getName();
     }
 
+    public String getContextPath() {
+        SkysailApplication application = resource.getApplication();
+        return  new StringBuilder("/").append(application.getName()).append(application.getApiVersion().getVersionPath()).toString();
+    }
+
     public String getEntityType() {
         String result = resource.getEntityType().replace("<", "&lt;").replace(">", "&gt;");
         if (!result.contains("skysail")) {
@@ -317,7 +329,7 @@ public class ResourceModel<R extends SkysailServerResource<T>, T> {
         this.services = new STServicesWrapper(menuProviders, null, resource);
     }
 
-    private void addAssociatedLinks() {
+    private void addAssociatedLinks(List<Map<String, Object>> theData) {
         if (!(getResource() instanceof ListServerResource)) {
             return;
         }
@@ -326,38 +338,42 @@ public class ResourceModel<R extends SkysailServerResource<T>, T> {
         List<Class<? extends SkysailServerResource<?>>> entityResourceClass = listServerResource
                 .getAssociatedServerResources();
         if (entityResourceClass != null) {
-            List<Map<String, Object>> sourceAsList = data;
+            List<Map<String, Object>> sourceAsList = theData;
             for (Map<String, Object> dataRow : sourceAsList) {
-                String id = guessId(dataRow);
-                if (id == null) {
-                    continue;
-                }
-
-                String linkshtml = links
-                        .stream()
-                        .filter(l -> id.equals(l.getRefId()))
-                        .map(link -> {
-                            StringBuilder sb = new StringBuilder();
-
-                            if (link.getImage(MediaType.TEXT_HTML) != null) {
-                                sb.append("<a href='")
-                                        .append(link.getUri())
-                                        .append("' title='")
-                                        .append(link.getTitle())
-                                        .append("'>")
-                                        .append("<span class='glyphicon glyphicon-"
-                                                + link.getImage(MediaType.TEXT_HTML) + "' aria-hidden='true'></span>")
-                                        .append("</a>");
-                            } else {
-                                sb.append("<a href='").append(link.getUri()).append("'>").append(link.getTitle())
-                                        .append("</a>");
-                            }
-                            return sb.toString();
-                        }).collect(Collectors.joining("&nbsp;&nbsp;"));
-
-                dataRow.put("_links", linkshtml);
+                addLinks(links, dataRow);
             }
         }
+    }
+
+    private void addLinks(List<Link> links, Map<String, Object> dataRow) {
+        String id = guessId(dataRow);
+        if (id == null) {
+            return;
+        }
+
+        String linkshtml = links
+                .stream()
+                .filter(l -> id.equals(l.getRefId()))
+                .map(link -> {
+                    StringBuilder sb = new StringBuilder();
+
+                    if (link.getImage(MediaType.TEXT_HTML) != null) {
+                        sb.append("<a href='")
+                                .append(link.getUri())
+                                .append("' title='")
+                                .append(link.getTitle())
+                                .append("'>")
+                                .append("<span class='glyphicon glyphicon-"
+                                        + link.getImage(MediaType.TEXT_HTML) + "' aria-hidden='true'></span>")
+                                .append("</a>");
+                    } else {
+                        sb.append("<a href='").append(link.getUri()).append("'>").append(link.getTitle())
+                                .append("</a>");
+                    }
+                    return sb.toString();
+                }).collect(Collectors.joining("&nbsp;&nbsp;"));
+
+        dataRow.put("_links", linkshtml);
     }
 
     private String guessId(Object object) {
@@ -432,10 +448,10 @@ public class ResourceModel<R extends SkysailServerResource<T>, T> {
         return "";
     }
 
-    private Object checkPrefix(FormField formField, Map<String, Object>  dataRow, Object  processed) {
+    private String checkPrefix(FormField formField, Map<String, Object>  dataRow, String  processed, Object id) {
         if (this.resource instanceof ListServerResource) {
             if (formField.getListViewAnnotation() != null && !formField.getListViewAnnotation().prefix().equals("")) {
-                Object prefix = calc(fields.get(formField.getListViewAnnotation().prefix()), dataRow, formField.getListViewAnnotation().prefix());
+                Object prefix = calc(fields.get(formField.getListViewAnnotation().prefix()), dataRow, formField.getListViewAnnotation().prefix(), id);
                 if (prefix != null) {
                     return prefix + "&nbsp;" + processed;
                 }
@@ -444,7 +460,7 @@ public class ResourceModel<R extends SkysailServerResource<T>, T> {
         return processed;
     }
 
-    private Object checkPostfix(FormField formField, Map<String, Object>  dataRow, Object  processed) {
+    private String checkPostfix(FormField formField, Map<String, Object>  dataRow, String  processed, Object id) {
 //        if (formField.getPostfixAnnotation() != null && !formField.getPostfixAnnotation().methodName().equals("getPostfix")) {
 //            Object postfix = calc(fields.get(formField.getPostfixAnnotation().methodName()), dataRow, formField.getPostfixAnnotation().methodName());
 //            if (postfix != null) {

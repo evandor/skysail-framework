@@ -99,7 +99,7 @@ index(user, messages, converter, model) ::= <<
             $breadcrumb(model)$
         </div>
         <div class="col-md-2">
-            $representations(model)$
+            $developerLinks(model)$
         </div>
       </div>
 

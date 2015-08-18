@@ -1,5 +1,6 @@
 package io.skysail.server.documentation;
 
+import io.skysail.server.app.SkysailApplication;
 import io.skysail.server.restlet.resources.ListServerResource;
 
 import java.lang.reflect.*;
@@ -7,6 +8,8 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class EntitiesResource extends ListServerResource<EntityDescriptor> {
+
+    private SkysailApplication app;
 
     public EntitiesResource() {
         //super(EntityResource.class);

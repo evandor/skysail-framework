@@ -1,0 +1,11 @@
+developerLinks(model) ::= <<
+  <ul class="breadcrumb" style="text-align:right">
+    <li><a href='$model.contextPath$/docs/entities' target="_blank"><img src='/static/img/silk/information.png' title='This applications entities'></a></li>
+    <li><a href='$model.contextPath$/docs/entities/$model.parameterizedType.name$' target="_blank"><img src='/static/img/silk/information.png' title='This resources entity'></a></li>
+    $model.representations:{ representation | $handleSingleRepresentation(representation,i)$}$
+  </ul>
+>>
+
+handleSingleRepresentation(bc,i) ::= <<
+      <li><a href='$bc.href$' target="_blank"><img src='$bc.img$' title='$bc.name$'></a></li>
+>>

@@ -3,18 +3,13 @@ package io.skysail.server.app.todos.repo;
 import io.skysail.server.app.todos.TodoList;
 import io.skysail.server.app.todos.todos.Todo;
 import io.skysail.server.app.todos.todos.status.Status;
-import io.skysail.server.db.DbRepository;
-import io.skysail.server.db.DbService2;
+import io.skysail.server.db.*;
 import io.skysail.server.queryfilter.Filter;
 import io.skysail.server.queryfilter.pagination.Pagination;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
-import aQute.bnd.annotation.component.Activate;
-import aQute.bnd.annotation.component.Component;
-import aQute.bnd.annotation.component.Reference;
+import aQute.bnd.annotation.component.*;
 
 @Component(immediate = true, properties = "name=TodosRepository")
 public class TodosRepository implements DbRepository {
@@ -54,7 +49,10 @@ public class TodosRepository implements DbRepository {
 
 
     public List<Todo> findAllTodos(Filter filter, Pagination pagination) {
-        String sql = "SELECT *, SUM(urgency,importance) as rank from " + Todo.class.getSimpleName() + " WHERE "+filter.getPreparedStatement()+" ORDER BY rank DESC "
+        String sql =
+                "SELECT *, SUM(urgency,importance) as rank, out('parent') as parent from " + Todo.class.getSimpleName() +
+                " WHERE "+filter.getPreparedStatement()+
+                " ORDER BY rank DESC "
                 + limitClause(pagination.getLinesPerPage(),pagination.getPage());
 
         //sql = "SELECT *, SUM(urgency,importance) as rank from Todo WHERE NOT (status=:status) AND owner=:owner AND #17:0 IN out('parent') ORDER BY rank DESC SKIP 0 LIMIT 10";

@@ -8,7 +8,6 @@ import io.skysail.server.app.todos.todos.resources.TodosResource;
 import io.skysail.server.restlet.resources.EntityServerResource;
 
 import java.util.List;
-import java.util.function.Consumer;
 
 import org.restlet.data.Status;
 import org.restlet.resource.ClientResource;
@@ -30,7 +29,7 @@ public class ListResource extends EntityServerResource<TodoList> {
         super.doInit();
         listId = getAttribute(TodoApplication.LIST_ID);
         app = (TodoApplication) getApplication();
-        getResourceContext().addAjaxNavigation(getResourceContext().getAjaxBuilder("ajax", "Lists:", ListsResource.class, TodosResource.class).identifier("lid").build());
+        getResourceContext().addAjaxNavigation(getResourceContext().getAjaxBuilder("ajax", "Lists:", ListsResource.class, TodosResource.class).identifier("id").build());
     }
 
     @Override
@@ -84,10 +83,10 @@ public class ListResource extends EntityServerResource<TodoList> {
         return super.redirectTo(ListsResource.class);
     }
 
-    @Override
-    public Consumer<? super Link> getPathSubstitutions() {
-        return l -> {
-            l.substitute("lid", listId);
-        };
-    }
+//    @Override
+//    public Consumer<? super Link> getPathSubstitutions() {
+//        return l -> {
+//            l.substitute("lid", listId);
+//        };
+//    }
 }

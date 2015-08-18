@@ -78,9 +78,7 @@ public class ListsResource extends ListServerResource<TodoList> {
 
     @Override
     public List<Link> getLinks() {
-        List<Link> links = super.getLinks(PostListResource.class, PostTodoWoListResource.class, Top10TodosResource.class, PutListResource.class);
-       // links.add(new Link.Builder("/Todos/docs/api").title("API").build());
-        return links;
+        return super.getLinks(PostListResource.class, PostTodoWoListResource.class, Top10TodosResource.class);
     }
 
 }

@@ -78,6 +78,7 @@ public class LinkUtilsTest {
     }
 
     @Test
+    @Ignore
     public void testName() {
         Mockito.when(app.getRouteBuilders(TestListServerResource.class)).thenReturn(routeBuilderList);
         SkysailServerResource<?> skysailServerResource = new TestListServerResource();

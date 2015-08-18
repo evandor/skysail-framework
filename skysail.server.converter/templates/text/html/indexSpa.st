@@ -21,6 +21,9 @@ indexSpa(user, messages, converter, model) ::= <<
 
     <!-- polymer stuff -->
     <script src="/_polymer/bower_components/webcomponentsjs/webcomponents-lite.min.js"></script>
+
+    <script type="text/javascript" src="/_polymer/helper/debug.js"></script>
+
     <link rel="import" href="/_polymer/proto-element.html">
     <link rel="import" href="/_polymer/sky-app-nav-accordion.html">
     <link rel="import" href="/_polymer/sky-ajax-get.html">
@@ -33,6 +36,7 @@ indexSpa(user, messages, converter, model) ::= <<
     <link rel="import" href="/_polymer/sky-links.html">
 
     <link rel="import" href="/_polymer/bower_components/google-chart/google-chart.html">
+
 
 
     <link rel="stylesheet" href="/webapp/css/select2.css">
@@ -166,7 +170,7 @@ indexSpa(user, messages, converter, model) ::= <<
       $mainContentSpa(user, converter, messages, model)$
 
       $if(converter.debug && user.principal)$
-        $debug(messages, model)$
+        $debugSpa(messages, model)$
       $endif$
 
     </div>

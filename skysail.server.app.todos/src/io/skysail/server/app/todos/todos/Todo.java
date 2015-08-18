@@ -30,7 +30,6 @@ public class Todo implements Serializable, Identifiable {
     private static final long serialVersionUID = -6320289870876900108L;
 
     @Id
-    @Field
     private String id;
 
     @Reference(selectionProvider = ListSelectionProvider.class)

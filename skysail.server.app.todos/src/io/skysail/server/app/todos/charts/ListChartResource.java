@@ -39,7 +39,7 @@ public class ListChartResource extends ListServerResource<TodoChart> {
             substitutions.put("/Lists/" + listId, list.getName());
             getContext().getAttributes().put(ResourceContextId.PATH_SUBSTITUTION.name(), substitutions);
         }
-        getResourceContext().addAjaxNavigation("ajax", "Todo-Lists", ListsResource.class, TodosResource.class, "lid");
+        getResourceContext().addAjaxNavigation("ajax", "Todo-Lists", ListsResource.class, TodosResource.class, "id");
     }
 
     @Override

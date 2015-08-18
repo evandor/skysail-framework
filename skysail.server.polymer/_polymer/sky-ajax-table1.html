@@ -106,7 +106,7 @@
           console.log(this.cols);
       },
       ready: function() {
-        console.log("SKY-AJAX-TABLE (ready)>");
+        debug("SKY-AJAX-TABLE (ready): calling " + this.url, true);
         this.$.skyTable.generateRequest();
       },
   	  _urlChanged: function(newValue, oldValue) {
@@ -118,7 +118,7 @@
         this.$.skyTable.nameProperty=newValue;
   	  },
   	  _entityTypeUrlChanged: function(newValue, oldValue) {
-          console.log("SKY-AJAX-TABLE (_entityTypeUrlChanged)> '" + oldValue + "' --> '" + newValue + "'");
+          debug("SKY-AJAX-TABLE (_entityTypeUrlChanged)> calling '" + newValue + "'", true);
           this.$.skyMeta.url = newValue;
           this.$.skyMeta.generateRequest();
   	  },
@@ -155,10 +155,11 @@
           return Object.keys(obj).map(function(key) {
             return {name: key, value: obj[key]};
           });
-      },
+      }
+      /*,
       _refresh: function() {
     	    this.$.skyTable.generateRequest();
-      }
+      }*/
     });
   </script>
 

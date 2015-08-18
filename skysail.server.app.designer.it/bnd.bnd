@@ -24,7 +24,7 @@ Test-Cases: io.skysail.server.app.designer.it.ApplicationsCrudIntegrationTests
 	com.fasterxml.jackson.core.jackson-core;version=2.5
 
 
--runfw: org.apache.felix.framework;version='[4,5)'
+-runfw: org.apache.felix.framework;version=${org.apache.felix.framework.version}
 -runee: JavaSE-1.8
 -runsystemcapabilities: ${native_capability}
 

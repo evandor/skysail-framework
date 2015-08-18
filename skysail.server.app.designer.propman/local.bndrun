@@ -1,6 +1,9 @@
 -runfw: org.apache.felix.framework;version=${org.apache.felix.framework.version}
 -runee: JavaSE-1.8
 -runsystemcapabilities: ${native_capability} 
+
+-runvm: -ea
+
 -runrepos:  \
 	Skysail Framework Hub,\
 	Bndtools Hub,\
@@ -22,21 +25,21 @@
 
 -runtrace: false
 
--runproperties: felix.fileinstall.dir=config/runtime,\
+-runproperties: felix.fileinstall.dir=config/local,\
     felix.fileinstall.filter=.*\\.jar|.*\\.cfg,\
     felix.fileinstall.noInitialDelay=true,\
     felix.fileinstall.poll=1000,\
     org.apache.felix.log.storeDebug=true,\
     felix.fileinstall.log.level=4,\
     org.apache.felix.log.storeDebug=true,\
-    logback.configurationFile=config/runtime/logback.xml,\
-    osgi.shell.telnet.port=6667,\
-    obr.repository.url=https://raw.githubusercontent.com/evandor/skysail-repository/master/index.xml https://raw.githubusercontent.com/evandor/skysail/master/cnf/releaserepo/index.xml http://felix.apache.org/obr/releases.xml
+    logback.configurationFile=config/local/logback.xml,\
+    obr.repository.url=https://raw.githubusercontent.com/evandor/skysail-repository/master/index.xml https://raw.githubusercontent.com/evandor/skysail-framework/master/cnf/releaserepo/index.xml https://raw.githubusercontent.com/evandor/skysail-apps/master/cnf/releaserepo/index.xml http://felix.apache.org/obr/releases.xml
 
+#    http.proxyHost=192.168.11.140,\
+#    http.proxyPort=8080,\
+#    https.proxyHost=192.168.11.140,\
+#    https.proxyPort=8080
 
-# not used here, resolution takes too long...
-#-runrequires:  \
-	
 
 -runbundles:  \
 	ch.qos.logback.classic;version='[1.1.2,1.1.3)',\
@@ -107,19 +110,22 @@
 	skysail.product.todos;version=latest,\
 	skysail.server;version=latest,\
 	skysail.server.converter;version=latest,\
-	skysail.server.app.bookmarks;version=latest,\
-	skysail.server.app.todos;version=latest,\
+	skysail.server.ext.mail;version=latest,\
 	skysail.server.db;version=latest,\
 	skysail.server.documentation;version=latest,\
 	skysail.server.ext.favorites.preferences;version=latest,\
 	skysail.server.http;version=latest,\
 	skysail.server.performance.etm;version=${skysail.server.performance.etm.version},\
 	skysail.server.peers.adminconfig;version=latest,\
-	skysail.server.plugins;version=latest,\
+	skysail.server.app.designer.propman;version=latest,\
+	skysail.server.queryfilter;version={skysail.server.queryfilter.version},\
 	skysail.server.static;version=latest,\
+	skysail.server.text.asciidoc;version=latest,\
 	skysail.server.text.markdown;version=latest,\
 	skysail.server.text.store.bundleresource;version=latest,\
+	skysail.server.text.store.git;version=latest,\
 	skysail.server.um.simple;version=latest,\
+	skysail.server.app.designer.gencode1;version=latest,\
 	slf4j.api;version='[1.7.7,1.7.8)',\
 	de.twentyeleven.skysail.org.antlr.stringtemplate-osgi;version=4.0.8,\
 	org.jruby.jruby;version=1.7.19,\
@@ -128,4 +134,5 @@
 	com.fasterxml.jackson.module.jackson-module-jaxb-annotations;version=2.5.1,\
 	org.codehaus.jettison.jettison;version=1.3.7,\
 	org.jsoup;version=1.8.1,\
-	com.sun.mail.javax.mail;version=1.5.1
+	com.sun.mail.javax.mail;version=1.5.1,\
+	biz.aQute.bnd.annotation;version=2.4.0

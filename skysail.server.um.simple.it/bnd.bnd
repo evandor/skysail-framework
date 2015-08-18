@@ -18,7 +18,7 @@ Test-Cases: \
 	lombok;version=1.16,\
 	skysail.client.testsupport;version=latest
 
--runfw: org.apache.felix.framework;version='[4,5)'
+-runfw: org.apache.felix.framework;version=${org.apache.felix.framework.version}
 -runee: JavaSE-1.8
 -runsystemcapabilities: ${native_capability}
 

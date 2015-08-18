@@ -29,7 +29,7 @@ Private-Package:  \
 	javax.persistence;version=2.1,\
 	javassist;version=3.18
 
--runfw: org.apache.felix.framework;version='[4,5)'
+-runfw: org.apache.felix.framework;version=${org.apache.felix.framework.version}
 -runee: JavaSE-1.8
 -runsystemcapabilities: ${native_capability}
 

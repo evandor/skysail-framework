@@ -2,7 +2,6 @@ package io.skysail.server.app.designer.entities.resources;
 
 import io.skysail.api.responses.SkysailResponse;
 import io.skysail.server.app.designer.DesignerApplication;
-import io.skysail.server.app.designer.application.Application;
 import io.skysail.server.app.designer.entities.Entity;
 import io.skysail.server.restlet.resources.PutEntityServerResource;
 
@@ -20,8 +19,8 @@ public class PutEntityResource extends PutEntityServerResource<Entity> {
     }
 
     public Entity getEntity() {
-        Application application = app.getRepository().getById(Application.class, appId);
-        return app.getEntity(application, entityId);
+        //Application application = app.getRepository().getById(Application.class, appId);
+        return app.getEntity(entityId);
 //        System.out.println(application.getEntities());
 //        Optional<Entity> optionalEntity = application.getEntities().stream().filter(e -> {
 //            if (e == null || e.getId() == null) {

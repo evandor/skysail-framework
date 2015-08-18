@@ -129,13 +129,8 @@ public class DesignerApplication extends SkysailApplication implements MenuItemP
         }).collect(Collectors.toList());
     }
 
-    public Entity getEntity(Application application, String entityId) {
-        for (String entity : application.getEntities()) {
-//            if (entity.getId().replace("#", "").equals(entityId)) {
-//                return entity;
-//            }
-        }
-        return null;
+    public Entity getEntity(String entityId) {
+        return getRepository().getById(Entity.class, entityId);
     }
 
     public Application getApplication(String id) {

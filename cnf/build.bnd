@@ -74,6 +74,7 @@ skysail.server.static.version          '[1.0.2,1.0.3)'
 skysail.server.um.version              '[0.1.1,0.1.2)'
 restlet.version                        2.3.1
 guava.version                          16.0
+org.apache.felix.framework.version     '[4,5)'
 org.apache.felix.scr.version           1.8.2
 com.orientechnologies.orientdb.version '[2.0.13, 2.1)'
 

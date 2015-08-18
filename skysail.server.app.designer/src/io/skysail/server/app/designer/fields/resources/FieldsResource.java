@@ -2,15 +2,12 @@ package io.skysail.server.app.designer.fields.resources;
 
 import io.skysail.api.links.Link;
 import io.skysail.server.app.designer.DesignerApplication;
-import io.skysail.server.app.designer.application.Application;
 import io.skysail.server.app.designer.entities.Entity;
 import io.skysail.server.app.designer.fields.EntityField;
 import io.skysail.server.restlet.resources.ListServerResource;
 
 import java.util.*;
 import java.util.function.Consumer;
-
-import de.twenty11.skysail.server.core.restlet.ResourceContextId;
 
 public class FieldsResource extends ListServerResource<EntityField> {
 
@@ -29,22 +26,22 @@ public class FieldsResource extends ListServerResource<EntityField> {
         id = getAttribute("id");
         entityId = getAttribute(DesignerApplication.ENTITY_ID);
 
-        Application application = app.getRepository().getById(Application.class, id);
-        Map<String, String> substitutions = new HashMap<>();
-        substitutions.put("/applications/" + id, application.getName());
-        Entity entity = app.getRepository().getById(Entity.class, entityId);
-        substitutions.put("/entities/" + entityId, entity.getName());
-        getContext().getAttributes().put(ResourceContextId.PATH_SUBSTITUTION.name(), substitutions);
+//        Application application = app.getRepository().getById(Application.class, id);
+//        Map<String, String> substitutions = new HashMap<>();
+//        substitutions.put("/applications/" + id, application.getName());
+//        Entity entity = app.getRepository().getById(Entity.class, entityId);
+//        substitutions.put("/entities/" + entityId, entity.getName());
+//        getContext().getAttributes().put(ResourceContextId.PATH_SUBSTITUTION.name(), substitutions);
     }
 
     @Override
     public List<EntityField> getEntity() {
-        Application application = app.getApplication(id);
-        Entity entity = app.getEntity(application, entityId);
+        //Application application = app.getApplication(id);
+        Entity entity = app.getEntity(entityId);
         if (entity != null) {
             return Collections.emptyList();//entity.getFields();
         }
-        return Collections.emptyList();
+        return null;//entity.getFields()
     }
 
     @Override

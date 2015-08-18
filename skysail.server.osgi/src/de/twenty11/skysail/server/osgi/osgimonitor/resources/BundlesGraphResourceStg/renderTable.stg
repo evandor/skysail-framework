@@ -1,0 +1,51 @@
+renderTable(converter, messages, model) ::= <<
+
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.7.0/vis.min.js"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.7.0/vis.min.css" rel="stylesheet" type="text/css" />
+
+  <style type="text/css">
+    #mynetwork {
+      width: 100%;
+      height: 600px;
+      border: 1px solid lightgray;
+    }
+  </style>
+
+  <div id="mynetwork"></div>
+
+<script type="text/javascript">
+  // create an array with nodes
+  var nodes = new vis.DataSet([
+    $model.data:{ row | $renderRow(model.formfields,row,i)$}; separator=", "$
+  ]);
+
+  // create an array with edges
+  var edges = new vis.DataSet([
+    $model.data:{ row | $row.visEdgesForUsingBundles$}$
+  ]);
+
+  // create a network
+  var container = document.getElementById('mynetwork');
+  var data = {
+    nodes: nodes,
+    edges: edges
+  };
+  var options = {};
+  var network = new vis.Network(container, data, options);
+</script>
+
+
+
+>>
+
+renderRow(fields, row,i) ::= <<
+  {id: $row.("bundleId")$, label: '$row.("symbolicName")$'}
+>>
+
+renderEdges(fields, row,i) ::= <<
+    $row.usingBundles: {edge | $renderEdge(row.("bundleId"), edge)$}; separator=", <br>"$
+>>
+
+renderEdge(bundleId, edge) ::= <<
+   {from: $bundleId$, to: $edge$}
+>>

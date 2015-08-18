@@ -26,7 +26,7 @@ public class OsgiMonitorRootResource extends ListServerResource<String> {
 
     @Override
     public List<Link> getLinks() {
-        return super.getLinks(BundlesResource.class);
+        return super.getLinks(BundlesResource.class, BundlesGraphResource.class);
     }
 
 

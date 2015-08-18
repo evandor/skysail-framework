@@ -1,57 +1,56 @@
-//package de.twenty11.skysail.server.osgi.osgimonitor.resources;
-//
-//import java.util.List;
-//
-//import org.osgi.framework.Bundle;
-//import org.osgi.framework.wiring.BundleWire;
-//import org.osgi.framework.wiring.BundleWiring;
-//
-//import de.twenty11.skysail.api.responses.SkysailResponse;
-//import de.twenty11.skysail.server.core.restlet.EntityServerResource;
-//import de.twenty11.skysail.server.osgi.OsgiMonitorViewerApplication;
-//import de.twenty11.skysail.server.osgi.osgimonitor.domain.NodesAndEdges;
-//
-//public class BundlesGraphResource extends EntityServerResource<NodesAndEdges> {
-//
-//	private OsgiMonitorViewerApplication app;
-//
-//	public BundlesGraphResource() {
-//		app = (OsgiMonitorViewerApplication) getApplication();
-//	}
-//
-//	@Override
-//	public NodesAndEdges getData() {
-//		NodesAndEdges nodesAndEdges = new NodesAndEdges();
-//		Bundle[] allBundles = app.getBundleContext().getBundles();
-//		for (Bundle bundle : allBundles) {
-//			if (bundle.getSymbolicName().contains("skysail")) {
-//				nodesAndEdges.addNode(bundle);
-//			}
-//		}
-//		for (Bundle bundle : allBundles) {
-//			BundleWiring bundleWiring = bundle.adapt(BundleWiring.class);
-//			List<BundleWire> requiredWires = bundleWiring.getRequiredWires("osgi.wiring.package");
-//			for (BundleWire wire : requiredWires) {
-//				Integer sourceIndex = nodesAndEdges.getNodeIndex(bundle.getBundleId());
-//				Integer targetIndex = nodesAndEdges.getNodeIndex(wire.getProvider().getBundle().getBundleId());
-//				if (sourceIndex != null && targetIndex != null && sourceIndex != targetIndex) {
-//					nodesAndEdges.addEdge(sourceIndex, targetIndex);
-//				}
-//			}
-//		}
-//		return nodesAndEdges;
-//	}
-//
-//    @Override
-//    public SkysailResponse<?> eraseEntity() {
-//        // TODO Auto-generated method stub
-//        return null;
-//    }
-//
-//    @Override
-//    public String getId() {
-//        // TODO Auto-generated method stub
-//        return null;
-//    }
-//
-//}
+package de.twenty11.skysail.server.osgi.osgimonitor.resources;
+
+import io.skysail.server.restlet.resources.ListServerResource;
+
+import java.util.*;
+
+import org.osgi.framework.*;
+import org.restlet.representation.*;
+import org.restlet.resource.*;
+
+import de.twenty11.skysail.server.osgi.OsgiMonitorViewerApplication;
+import de.twenty11.skysail.server.osgi.osgimonitor.domain.BundleDescriptor;
+
+/**
+ * Restlet Resource class for OSGi Bundles.
+ *
+ */
+public class BundlesGraphResource extends ListServerResource<BundleDescriptor> {
+
+    private List<Bundle> bundles;
+    private OsgiMonitorViewerApplication app;
+
+    @Override
+    protected void doInit() throws ResourceException {
+        super.doInit();
+        app = (OsgiMonitorViewerApplication) getApplication();
+        BundleContext bundleContext = app.getBundleContext();
+        if (bundleContext == null) {
+            bundles = Collections.emptyList();
+        } else {
+            bundles = Arrays.asList(bundleContext.getBundles());
+        }
+    }
+
+    @Post
+    public Representation install(String location) {
+        String prefix = "prefix";
+        if (!location.startsWith(prefix)) {
+            return new StringRepresentation("location didn't start with '" + prefix + "'");
+        }
+        return new StringRepresentation("success");
+    }
+
+    @Override
+    public List<BundleDescriptor> getEntity() {
+        List<BundleDescriptor> result = new ArrayList<BundleDescriptor>();
+        for (Bundle bundle : bundles) {
+            BundleDescriptor bundleDescriptor = new BundleDescriptor(bundle);
+            // if (filterMatches(bundleDescriptor)) {
+            result.add(bundleDescriptor);
+            // }
+        }
+        return result;
+    }
+
+}

@@ -51,6 +51,9 @@ public class OsgiMonitorViewerApplication extends SkysailApplication implements 
         router.attach(new RouteBuilder("/", OsgiMonitorRootResource.class));
         Role admin = getFrameworkRole("admin");
         router.attach(new RouteBuilder("/bundles", BundlesResource.class).authorizeWith(anyOf("admin")));
+        
+        router.attach(new RouteBuilder("/bundlesgraph", BundlesGraphResource.class).authorizeWith(anyOf("admin")));
+        
      //   router.attach(new RouteBuilder("/bundles/asGraph", IFrameResource.class).setText("Bundles as visualized Graph"));
         //router.attach(new RouteBuilder("/bundles/asGraph/", BundlesAsGraphResource.class).setText("Json Graph representation"));
      //   router.attach(new RouteBuilder("/bundles/asGraph/d3Simple", BundlesAsD3GraphResource.class));

@@ -20,4 +20,4 @@ Private-Package: de.twenty11.skysail.server.osgi,\
 	de.twenty11.skysail.server.osgi.osgimonitor.domain,\
 	de.twenty11.skysail.server.osgi.osgimonitor.resources
 Service-Component: *
-Include-Resource: resources
+Include-Resource: resources, templates=src;recursive:=true;filter:=*.st|*.stg

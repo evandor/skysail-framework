@@ -42,7 +42,7 @@ public class Breadcrumbs {
     }
 
     private void addSegments(SkysailServerResource<?> resource, List<Breadcrumb> result, List<String> segments) {
-        String path = "";
+        String path = resource.getApplication().getApiVersion().getVersionPath();
         Route match = null;
         for (int i = 2; i < segments.size(); i++) {
             path = path + "/" + segments.get(i);

@@ -5,6 +5,7 @@ import io.skysail.api.forms.Field;
 import java.io.Serializable;
 import java.text.*;
 import java.util.*;
+import java.util.stream.Collectors;
 
 import org.osgi.framework.*;
 
@@ -34,6 +35,8 @@ public class BundleDescriptor implements Serializable {
 
     private List<BundleEvent> events = new ArrayList<BundleEvent>();
 
+    private List<Long> usingBundles;
+
     /**
      * Initialization with concrete bundle.
      *
@@ -46,6 +49,13 @@ public class BundleDescriptor implements Serializable {
         this.version = bundle.getVersion();
         this.lastModified = bundle.getLastModified();
         this.state = bundle.getState();
+        this.usingBundles = new ArrayList<>();
+        if (bundle.getRegisteredServices() != null) {
+            this.usingBundles = Arrays.stream(bundle.getRegisteredServices()).map(service -> {
+                return service.getUsingBundles();
+            }).filter(bundles -> bundles != null).flatMap(bundles -> Arrays.stream(bundles)).map(b -> b.getBundleId())
+                    .collect(Collectors.toList());
+        }
     }
 
     private String mapState(int state) {
@@ -87,14 +97,6 @@ public class BundleDescriptor implements Serializable {
         this.symbolicName = symbolicName;
     }
 
-    public void setBundleId(long bundleId) {
-        this.bundleId = bundleId;
-    }
-
-    public long getBundleId() {
-        return bundleId;
-    }
-
     public void setLastModified(long lastModified) {
         this.lastModified = lastModified;
     }
@@ -132,7 +134,6 @@ public class BundleDescriptor implements Serializable {
         // + this.bundleId;
     }
 
-
     public void addEvent(BundleEvent event) {
         events.add(event);
     }
@@ -145,6 +146,23 @@ public class BundleDescriptor implements Serializable {
 
     public List<BundleEvent> getEvents() {
         return Collections.unmodifiableList(events);
+    }
+
+    public List<Long> getUsingBundles() {
+        return usingBundles;
+    }
+
+    public String getVisEdgesForUsingBundles() {
+        if (usingBundles.size() == 0) {
+            return null;
+        }
+        return usingBundles.stream().map(bundle -> {
+            return "{from: " + this.bundleId + ", to: "+bundle+"},";
+        }).collect(Collectors.joining());
+    }
+
+    public long getBundleId() {
+        return bundleId;
     }
 
 }

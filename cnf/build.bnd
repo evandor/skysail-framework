@@ -72,6 +72,9 @@ skysail.server.performance.etm.version '[0.1.1,0.1.2)'
 skysail.server.queryfilter.version     '[0.2.1,0.2.2)'
 skysail.server.static.version          '[1.0.2,1.0.3)'
 skysail.server.um.version              '[0.1.1,0.1.2)'
+
+skysail.server.app.svgedit.version     '[0.1.0,0.1.1)'
+
 restlet.version                        2.3.1
 guava.version                          16.0
 org.apache.felix.framework.version     '[4,5)'

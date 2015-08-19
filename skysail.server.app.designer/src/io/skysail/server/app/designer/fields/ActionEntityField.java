@@ -2,9 +2,8 @@ package io.skysail.server.app.designer.fields;
 
 import io.skysail.api.forms.Field;
 
-
-import java.util.Collections;
 import java.util.*;
+
 import javax.persistence.Id;
 import javax.validation.constraints.*;
 
@@ -26,7 +25,7 @@ public class ActionEntityField {
     private ActionType type;
 
     public Map<String, String> getCodes() {
-        return type == null ? Collections.emptyMap() : type.getCodes();
+        return type != null ? type.getCodes() : Collections.emptyMap();
     }
 
 }

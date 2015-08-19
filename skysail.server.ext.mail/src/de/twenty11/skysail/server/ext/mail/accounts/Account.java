@@ -34,7 +34,7 @@ public class Account implements Serializable, Identifiable {
     @Field(inputType = InputType.PASSWORD)
     @ListView(hide = true)
     private String pass;
-    
+
     @Field(inputType = InputType.READONLY)
     @ListView(hide=true)
     private String owner;

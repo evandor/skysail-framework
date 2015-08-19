@@ -1,8 +1,6 @@
 package io.skysail.server.app.designer.fields;
 
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 import lombok.Getter;
 
@@ -17,7 +15,7 @@ public enum ActionType {
     MODIFICATION_DATE(Date.class, new HashMap<String,String>() {{
         //put("putEntity#updateEntity", "entity.set");
     }});
-    
+
     private Map<String, String> codes;
     private Class<?> type;
 

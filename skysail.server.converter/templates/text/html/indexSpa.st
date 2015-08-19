@@ -37,8 +37,6 @@ indexSpa(user, messages, converter, model) ::= <<
 
     <link rel="import" href="/_polymer/bower_components/google-chart/google-chart.html">
 
-
-
     <link rel="stylesheet" href="/webapp/css/select2.css">
     <link rel="stylesheet" href="/webapp/css/select2-bootstrap.css">
 

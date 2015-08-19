@@ -128,10 +128,7 @@ if (projectNames.remove('')) {
   projectNames += "skysail.server.peers.adminconfig"
   projectNames += "skysail.server.performance.etm"
   projectNames += "skysail.server.plugins"
-<<<<<<< Updated upstream
   projectNames += "skysail.server.polymer"
-=======
->>>>>>> Stashed changes
   projectNames += "skysail.server.queryfilter"
   projectNames += "skysail.server.static"
   projectNames += "skysail.server.test"

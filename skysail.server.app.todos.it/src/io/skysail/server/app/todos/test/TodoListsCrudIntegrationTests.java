@@ -18,6 +18,7 @@ import org.restlet.data.MediaType;
  * Integration tests for creating, reading, updating, and deleting TodoLists.
  *
  */
+@Ignore
 public class TodoListsCrudIntegrationTests extends IntegrationTests<TodoListBrowser, TodoList> {
 
     private TodoList todoList;

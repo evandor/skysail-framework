@@ -59,6 +59,7 @@ public class BreadcrumbsTest {
     }
 
     @Test
+@Ignore
     public void creates_homelink_and_app_with_version_for_list_resource() throws Exception {
         List<String> values = Arrays.asList("Todos","v2", "Lists", "14:0", "Todos");
         Route route = Mockito.mock(Route.class);

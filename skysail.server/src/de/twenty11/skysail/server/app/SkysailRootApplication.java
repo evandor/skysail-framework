@@ -3,38 +3,22 @@ package de.twenty11.skysail.server.app;
 import io.skysail.server.app.SkysailApplication;
 import io.skysail.server.utils.MenuItemUtils;
 
-import java.util.Dictionary;
-import java.util.HashSet;
-import java.util.Set;
-import java.util.TreeSet;
+import java.util.*;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.stream.Collectors;
 
 import org.apache.shiro.SecurityUtils;
-import org.osgi.service.cm.ConfigurationException;
-import org.osgi.service.cm.ManagedService;
+import org.osgi.service.cm.*;
 import org.osgi.service.component.ComponentContext;
 import org.restlet.Request;
 
-import aQute.bnd.annotation.component.Activate;
-import aQute.bnd.annotation.component.Component;
-import aQute.bnd.annotation.component.Deactivate;
-import aQute.bnd.annotation.component.Reference;
-import de.twenty11.skysail.server.app.profile.ProfileResource;
-import de.twenty11.skysail.server.app.profile.PutPasswordResource;
+import aQute.bnd.annotation.component.*;
+import de.twenty11.skysail.server.app.profile.*;
 import de.twenty11.skysail.server.core.restlet.RouteBuilder;
-import de.twenty11.skysail.server.help.HelpEntry;
-import de.twenty11.skysail.server.help.HelpTour;
-import de.twenty11.skysail.server.resources.DefaultResource;
-import de.twenty11.skysail.server.resources.LoginResource;
-import de.twenty11.skysail.server.resources.NameResource;
-import de.twenty11.skysail.server.resources.RemoteLoginResource;
-import de.twenty11.skysail.server.resources.VersionResource;
-import de.twenty11.skysail.server.resources.WelcomeResource;
-import de.twenty11.skysail.server.services.MenuItem;
+import de.twenty11.skysail.server.help.*;
+import de.twenty11.skysail.server.resources.*;
+import de.twenty11.skysail.server.services.*;
 import de.twenty11.skysail.server.services.MenuItem.Category;
-import de.twenty11.skysail.server.services.MenuItemProvider;
-import de.twenty11.skysail.server.services.ResourceBundleProvider;
 
 @Component(immediate = true, properties = { "service.pid=landingpages" })
 public class SkysailRootApplication extends SkysailApplication implements ApplicationProvider, ResourceBundleProvider,
@@ -89,6 +73,7 @@ public class SkysailRootApplication extends SkysailApplication implements Applic
 
     @Override
     protected void attach() {
+//        super.attach();
         router.attach(new RouteBuilder("/", DefaultResource.class).noAuthenticationNeeded());
         // see ShiroDelegationAuthenticator
         router.attach(new RouteBuilder(LOGIN_PATH, LoginResource.class).noAuthenticationNeeded());

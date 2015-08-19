@@ -138,7 +138,6 @@
 	skysail.server.app.designer;version=latest,\
 	skysail.server.app.twitter4j;version=latest,\
 	skysail.server.app.wiki;version=latest,\
-	skysail.server.ext.favorites.preferences;version=latest,\
 	skysail.server.ext.mail;version=latest,\
 	skysail.server.text.markdown;version=latest,\
 	skysail.server.text.store.bundleresource;version=latest,\

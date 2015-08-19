@@ -1,7 +1,6 @@
 package io.skysail.server.app.todos.test;
 
-import static org.hamcrest.CoreMatchers.containsString;
-import static org.hamcrest.CoreMatchers.not;
+import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.assertThat;
 import io.skysail.client.testsupport.IntegrationTests;
 import io.skysail.server.app.todos.TodoList;
@@ -11,9 +10,7 @@ import io.skysail.server.restlet.resources.SkysailServerResource;
 import java.io.IOException;
 import java.math.BigInteger;
 
-import org.junit.Before;
-import org.junit.Ignore;
-import org.junit.Test;
+import org.junit.*;
 import org.osgi.framework.BundleException;
 import org.restlet.data.MediaType;
 
@@ -32,8 +29,7 @@ public class TodoListsCrudIntegrationTests extends IntegrationTests<TodoListBrow
         todoList = createRandomTodoList();
     }
 
-    @Test  // create and read
-    @Ignore
+    @Test
     public void creating_new_todolist_will_persists_it() throws Exception {
         createListAndCheckAssertions();
     }

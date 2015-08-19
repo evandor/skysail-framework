@@ -1,34 +1,6 @@
 INFO  io.skysail.client.testsupport.IntegrationTests - 
 INFO  io.skysail.client.testsupport.IntegrationTests - --------------------------------------------
-INFO  io.skysail.client.testsupport.IntegrationTests -  > TEST: running test 'altering_todolist_updates_existing_todolist'
-INFO  io.skysail.client.testsupport.IntegrationTests - --------------------------------------------
-INFO  io.skysail.client.testsupport.IntegrationTests - 
-INFO  io.skysail.client.testsupport.IntegrationTests - setting up test case...
-INFO  io.skysail.client.testsupport.IntegrationTests - 
-INFO  io.skysail.client.testsupport.IntegrationTests - --------------------------------------------
 INFO  io.skysail.client.testsupport.IntegrationTests -  > TEST: running test 'creating_new_todolist_will_persists_it'
 INFO  io.skysail.client.testsupport.IntegrationTests - --------------------------------------------
 INFO  io.skysail.client.testsupport.IntegrationTests - 
 INFO  io.skysail.client.testsupport.IntegrationTests - setting up test case...
-INFO  io.skysail.client.testsupport.IntegrationTests - 
-INFO  io.skysail.client.testsupport.IntegrationTests - --------------------------------------------
-INFO  io.skysail.client.testsupport.IntegrationTests -  > TEST: running test 'new_todolist_can_be_deleted_by_owner'
-INFO  io.skysail.client.testsupport.IntegrationTests - --------------------------------------------
-INFO  io.skysail.client.testsupport.IntegrationTests - 
-INFO  io.skysail.client.testsupport.IntegrationTests - setting up test case...
-INFO  io.skysail.client.testsupport.IntegrationTests - 
-INFO  io.skysail.client.testsupport.IntegrationTests - --------------------------------------------
-INFO  io.skysail.client.testsupport.IntegrationTests -  > TEST: running test 'creating_todo_in_new_list_persists_them'
-INFO  io.skysail.client.testsupport.IntegrationTests - --------------------------------------------
-INFO  io.skysail.client.testsupport.IntegrationTests - 
-INFO  io.skysail.client.testsupport.IntegrationTests - setting up test case...
-INFO  io.skysail.client.testsupport.IntegrationTests - 
-INFO  io.skysail.client.testsupport.IntegrationTests - --------------------------------------------
-INFO  io.skysail.client.testsupport.IntegrationTests -  > TEST: running test 'documentationProvider_is_available'
-INFO  io.skysail.client.testsupport.IntegrationTests - --------------------------------------------
-INFO  io.skysail.client.testsupport.IntegrationTests - 
-INFO  io.skysail.client.testsupport.IntegrationTests - 
-INFO  io.skysail.client.testsupport.IntegrationTests - --------------------------------------------
-INFO  io.skysail.client.testsupport.IntegrationTests -  > TEST: running test 'resourceMap_contains_apiResource'
-INFO  io.skysail.client.testsupport.IntegrationTests - --------------------------------------------
-INFO  io.skysail.client.testsupport.IntegrationTests - 

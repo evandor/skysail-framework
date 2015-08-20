@@ -54,6 +54,7 @@ public class TodoSummary implements Serializable, Identifiable {
     private Status status;
 
     @Field(inputType = InputType.READONLY)
+    @ListView(hide = true)
     private Integer views;
 
     public TodoSummary(Todo todo) {

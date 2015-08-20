@@ -50,7 +50,7 @@ public class TodosRepository implements DbRepository {
 
     public List<Todo> findAllTodos(Filter filter, Pagination pagination) {
         String sql =
-                "SELECT *, SUM(urgency,importance) as rank, out('parent') as parent from " + Todo.class.getSimpleName() +
+                "SELECT *, SUM(urgency,importance, views) as rank, out('parent') as parent from " + Todo.class.getSimpleName() +
                 " WHERE "+filter.getPreparedStatement()+
                 " ORDER BY rank DESC "
                 + limitClause(pagination.getLinesPerPage(),pagination.getPage());

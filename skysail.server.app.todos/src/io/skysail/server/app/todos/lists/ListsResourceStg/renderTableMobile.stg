@@ -15,6 +15,6 @@ renderRow(fields, row,i) ::= <<
 
 buttonForLink(row, field) ::= <<
     $if (field.link)$
-   <li>$row.("name")$ <span class='ui-li-count'>$row.("todosCount")$</span></li>
+   <li class='ui-li-has-icon'>$row.("name")$ <span class='ui-li-count'>$row.("todosCount")$</span></li>
     $endif$
 >>

@@ -1,13 +1,11 @@
 package de.twenty11.skysail.server.resources;
 
-import io.skysail.api.responses.FormResponse;
-import io.skysail.api.responses.SkysailResponse;
+import io.skysail.api.responses.*;
 import io.skysail.server.restlet.resources.PostEntityServerResource;
 
 import org.apache.shiro.SecurityUtils;
 import org.restlet.data.Form;
-import org.restlet.resource.Get;
-import org.restlet.resource.ResourceException;
+import org.restlet.resource.*;
 
 import de.twenty11.skysail.server.app.SkysailRootApplication;
 import de.twenty11.skysail.server.domain.Credentials;
@@ -35,7 +33,7 @@ public class LoginResource extends PostEntityServerResource<Credentials> {
     @Override
     protected void doInit() throws ResourceException {
     }
-    
+
     @Override
     public Credentials createEntityTemplate() {
         return new Credentials();
@@ -45,12 +43,12 @@ public class LoginResource extends PostEntityServerResource<Credentials> {
     public SkysailResponse<?> addEntity(Credentials entity) {
         return null;
     }
-    
+
     @Override
     public String redirectTo() {
         boolean authenticated = SecurityUtils.getSubject().isAuthenticated();
         if (authenticated) {
-            return super.redirectTo(DefaultResource.class);
+            return "/";//super.redirectTo(DefaultResource.class);
         }
         return super.redirectTo(LoginResource.class);
     }

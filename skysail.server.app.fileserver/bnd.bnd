@@ -1,11 +1,8 @@
-### bnd allows only two src-Folders; we will use src-gen instead of test to place the generated code into
-#testsrc: src-gen
-#testbin: bin
-
 Bundle-Version: 0.1.0.${tstamp}
-Bundle-Name: SKYSAIL :: server :: app :: todos
+Bundle-Name: SKYSAIL :: server :: app :: fileserver
+Bundle-Description: a fileserver application for skysail
 Service-Component: *
-Include-Resource: resources, templates=src;recursive:=true;filter:=*.st|*.stg
+Include-Resource: templates=src;recursive:=true;filter:=*.st|*.stg
 -buildpath:  \
 	biz.aQute.bnd.annotation,\
 	skysail.api;version=${skysail.api.version},\
@@ -62,21 +59,5 @@ Include-Resource: resources, templates=src;recursive:=true;filter:=*.st|*.stg
 	ch.qos.logback.core;version=1.1,\
 	ch.qos.logback.classic;version=1.1,\
 	org.objenesis;version=2.1
-
-Import-Package: org.osgi.framework,\
-	javassist.util.proxy,\
-	*
 Private-Package:  \
-	io.skysail.server.app.todos.todos.resources,\
-	io.skysail.server.app.todos.lists,\
-	io.skysail.server.app.todos.todos,\
-	io.skysail.server.app.todos.repo,\
-	io.skysail.server.app.todos.todos.status,\
-	io.skysail.server.app.todos.statuses,\
-	io.skysail.server.app.todos.ranking,\
-	io.skysail.server.app.todos.relations,\
-	io.skysail.server.app.todos.charts
-Bundle-Description: a todo application for skysail (used as demo as well)
-Export-Package:  \
-	io.skysail.server.app.todos,\
-	io.skysail.server.app.todos.todos
+	io.skysail.server.app.fileserver

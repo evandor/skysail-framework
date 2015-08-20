@@ -2,7 +2,7 @@ package io.skysail.server.app.todos.test;
 
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.assertThat;
-import io.skysail.client.testsupport.IntegrationTests;
+import io.skysail.client.testsupport.*;
 import io.skysail.server.app.todos.TodoList;
 import io.skysail.server.app.todos.test.browser.TodoListBrowser;
 import io.skysail.server.restlet.resources.SkysailServerResource;
@@ -16,12 +16,16 @@ import org.restlet.data.MediaType;
 
 /**
  * Integration tests for creating, reading, updating, and deleting TodoLists.
- *
  */
-@Ignore
 public class TodoListsCrudIntegrationTests extends IntegrationTests<TodoListBrowser, TodoList> {
 
     private TodoList todoList;
+    private static BrowserUtils browserUtils;
+
+    @BeforeClass
+    public static void before() {
+        browserUtils = new BrowserUtils();
+    }
 
     @Before
     public void setUp() {
@@ -30,12 +34,18 @@ public class TodoListsCrudIntegrationTests extends IntegrationTests<TodoListBrow
         todoList = createRandomTodoList();
     }
 
+    @After
+    public void tearDown() throws Exception {
+         //browserUtils.screenShot(browser.getUrl());
+    }
+
     @Test
-    public void creating_new_todolist_will_persists_it() throws Exception {
+    public void creating_new_todolist_will_persist_it() throws Exception {
         createListAndCheckAssertions();
     }
 
-    @Test // delete
+    @Test
+    // delete
     @Ignore
     public void new_todolist_can_be_deleted_by_owner() throws Exception {
         String id = browser.createTodoList(todoList);
@@ -44,7 +54,8 @@ public class TodoListsCrudIntegrationTests extends IntegrationTests<TodoListBrow
     }
 
     @Test
-    @Ignore // cannot follow link as it is not displayed
+    @Ignore
+    // cannot follow link as it is not displayed
     public void new_todolist_cannot_be_deleted_by_someone_else() throws Exception {
         String id = browser.createTodoList(todoList);
         browser.setUser("demo");
@@ -52,7 +63,8 @@ public class TodoListsCrudIntegrationTests extends IntegrationTests<TodoListBrow
         assertThat(browser.getTodoLists().getText(), not(containsString(todoList.getName())));
     }
 
-    @Test // update
+    @Test
+    // update
     @Ignore
     public void altering_todolist_updates_existing_todolist() throws Exception {
         String id = browser.createTodoList(todoList);
@@ -74,8 +86,10 @@ public class TodoListsCrudIntegrationTests extends IntegrationTests<TodoListBrow
     }
 
     @Test
-    @Ignore // not working yet...
-    public void stopping_and_starting_the_ServerBundle_doesnt_break_list_creationg() throws IOException, BundleException {
+    @Ignore
+    // not working yet...
+    public void stopping_and_starting_the_ServerBundle_doesnt_break_list_creationg() throws IOException,
+            BundleException {
         stopAndStartBundle(SkysailServerResource.class);
         createListAndCheckAssertions();
     }
@@ -83,6 +97,7 @@ public class TodoListsCrudIntegrationTests extends IntegrationTests<TodoListBrow
     private void createListAndCheckAssertions() throws IOException {
         browser.createTodoList(todoList);
         String html = browser.getTodoLists().getText();
+        capture(html);
         assertThat(html, containsString(todoList.getName()));
     }
 
@@ -90,4 +105,3 @@ public class TodoListsCrudIntegrationTests extends IntegrationTests<TodoListBrow
         return new TodoList(new BigInteger(130, random).toString(32));
     }
 }
-

@@ -12,7 +12,7 @@ public abstract class ApplicationBrowser<T extends ApplicationBrowser<?, U>, U> 
 
     @Getter
     protected ApplicationBrowser parentEntityBrowser;
-    
+
     protected SecureRandom random = new SecureRandom();
 
     @Getter
@@ -27,13 +27,16 @@ public abstract class ApplicationBrowser<T extends ApplicationBrowser<?, U>, U> 
     private String defaultUser = null;
     private Integer port = 2014;
 
+    @Getter
+    private String url;
+
     public ApplicationBrowser(String url) {
         this(url, MediaType.TEXT_HTML, "2014");
     }
 
     public ApplicationBrowser(String appName, MediaType mediaType, String port) {
         this.mediaType = mediaType;
-        String url = HOST + ":" + port;
+        url = HOST + ":" + port;
         log.info("{}creating new browser client with url '{}' for Application '{}' and mediaType '{}'",
                 ApplicationClient.TESTTAG, url, appName, MediaType.TEXT_HTML);
         client = new ApplicationClient<U>(url, appName, mediaType);

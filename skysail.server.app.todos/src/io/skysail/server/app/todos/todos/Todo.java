@@ -39,7 +39,7 @@ public class Todo implements Serializable, Identifiable {
     private String parent;
 
     @Field
-    @ListView(truncate = 30, link = PutTodoResource.class, prefix = "status")
+    @ListView(truncate = 30, link = PutTodoResource.class) //, prefix = "status")
     @NotNull
     @Size(min = 2)
     //@Prefix(methodName = "status")
@@ -58,6 +58,7 @@ public class Todo implements Serializable, Identifiable {
     private Date startDate;
 
     @Field(inputType = InputType.READONLY)
+    @ListView(hide = true)
     private Integer elapseTime = 3;
 
     @Field(inputType = InputType.READONLY)
@@ -67,6 +68,7 @@ public class Todo implements Serializable, Identifiable {
     private Date modified;
 
     @Field(inputType = InputType.READONLY)
+    @ListView(hide = true)
     private Integer rank;
 
     @Field(inputType = InputType.RANGE)
@@ -84,7 +86,7 @@ public class Todo implements Serializable, Identifiable {
     private String owner;
 
     @Field(inputType = InputType.READONLY)
-    //@ListView(hide=true)
+    @ListView(hide=true)
     private Integer views;
 
     @Field(selectionProvider = StatusSelectionProvider.class)

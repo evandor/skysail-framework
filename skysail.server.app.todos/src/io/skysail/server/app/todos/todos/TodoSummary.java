@@ -27,7 +27,7 @@ public class TodoSummary implements Serializable, Identifiable {
     private String id;
 
     @Field
-    @ListView(truncate = 30, link = PutTodoResource.class, prefix="status")
+    @ListView(truncate = 30, link = PutTodoResource.class)//, prefix="status")
     @NotNull
     @Size(min = 2)
     private String title;
@@ -54,6 +54,7 @@ public class TodoSummary implements Serializable, Identifiable {
     private Status status;
 
     @Field(inputType = InputType.READONLY)
+    @ListView(hide = true)
     private Integer views;
 
     public TodoSummary(Todo todo) {

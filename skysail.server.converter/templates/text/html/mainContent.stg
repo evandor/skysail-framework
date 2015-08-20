@@ -8,28 +8,20 @@ mainContent(user, converter, messages, model) ::= <<
         $developerLinks(model)$
     </div>
   </div>
-    
+
   <div class="row">
     <div class="col-md-1">
-      &nbsp;
+      $menuNav(model.collectionLinks)$
     </div>
-    <div class="col-md-10">
+    <div class="col-md-11">
       <div class="row">
         <div class="col-md-12">
-          $menuNav(model.links)$
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-12">
-
-          <br><p>$contentHeader(converter, messages, model)$</p>
-        
             $if(model.form)$
               <div class="col-md-10">
-                $showForm(model.formfields, messages, model)$ 
+                $showForm(model.formfields, messages, model)$
               </div>
               <div class="col-md-2">
-                $renderEntityInfo(model.formfields, messages, model)$ 
+                $renderEntityInfo(model.formfields, messages, model)$
               </div>
             $elseif(model.list)$
               <div class="col-md-12">
@@ -39,16 +31,23 @@ mainContent(user, converter, messages, model) ::= <<
               <div class="col-md-12">
                 $renderEntity(user, model)$
               </div>
-            $endif$ 
-        
+            $endif$
+          <!-- <br><p>$contentHeader(converter, messages, model)$</p>-->
+
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12" style="padding-left:28px;">
+            <hr>
+            $menuNav(model.createFormLinks)$
         </div>
       </div>
     </div>
-    
-    <div class="col-md-1">
+
+   <!--  <div class="col-md-1">
       &nbsp;
-    </div>
+    </div> -->
 
   </div>
-    
+
 >>

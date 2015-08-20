@@ -78,7 +78,8 @@ public class ListsResource extends ListServerResource<TodoList> {
 
     @Override
     public List<Link> getLinks() {
-        return super.getLinks(PostListResource.class, PostTodoWoListResource.class, Top10TodosResource.class);
+        // PostTodoWoListResource.class,
+        return super.getLinks(PostListResource.class, Top10TodosResource.class);
     }
 
 }

@@ -1,8 +1,8 @@
 renderTable(converter, messages, model) ::= <<
 
   $model.pagination$
-  
-  <table class="table table-striped">
+
+  <table class="table table-striped table-condensed table-hover">
     <tr>$renderHeader(model.formfields, converter)$<th>Actions</th></tr>
     $model.data:{ row | $renderRow(model.formfields,row,i)$}$
   </table>

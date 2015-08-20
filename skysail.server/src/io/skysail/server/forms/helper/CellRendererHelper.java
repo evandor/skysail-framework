@@ -89,7 +89,7 @@ public class CellRendererHelper {
                 return linkedResource.equals(l.getCls()) && idAsString.equals(l.getRefId());
             }).findFirst();
             if (findFirst.isPresent()) {
-                string = "<a href='" + findFirst.get().getUri() + "'>" + string + "</a>";
+                string = "<a href='" + findFirst.get().getUri() + "'><b>" + string + "</b></a>";
             }
         }
         return string;

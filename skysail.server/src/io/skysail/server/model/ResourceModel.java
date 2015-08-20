@@ -2,7 +2,7 @@ package io.skysail.server.model;
 
 import io.skysail.api.domain.Identifiable;
 import io.skysail.api.favorites.FavoritesService;
-import io.skysail.api.links.Link;
+import io.skysail.api.links.*;
 import io.skysail.api.responses.*;
 import io.skysail.server.app.SkysailApplication;
 import io.skysail.server.forms.FormField;
@@ -187,6 +187,14 @@ public class ResourceModel<R extends SkysailServerResource<T>, T> {
 
     public List<Link> getLinks() throws Exception {
         return resource.getAuthorizedLinks();
+    }
+
+    public List<Link> getCollectionLinks() throws Exception {
+        return resource.getAuthorizedLinks().stream().filter(l -> LinkRelation.COLLECTION.equals(l.getRel())).collect(Collectors.toList());
+    }
+
+    public List<Link> getCreateFormLinks() throws Exception {
+        return resource.getAuthorizedLinks().stream().filter(l -> LinkRelation.CREATE_FORM.equals(l.getRel())).collect(Collectors.toList());
     }
 
     public List<Link> getResourceLinks() throws Exception {

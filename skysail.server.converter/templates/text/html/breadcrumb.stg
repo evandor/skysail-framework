@@ -1,7 +1,7 @@
 breadcrumb(model) ::= <<
-  <ul class="breadcrumb">
+  <ol class="breadcrumb">
     $model.breadcrumbs:{ breadcrumb | $handleSingleBreadcrumb(breadcrumb,i)$}$
-  </ul>
+  </ol>
 >>
 
 handleSingleBreadcrumb(bc,i) ::= <<

@@ -34,19 +34,6 @@ index(user, messages, converter, model) ::= <<
     <link rel="stylesheet" href="/static/themes/jstree/style.min.css" />
     <script src="/static/js/jstree/jstree.min.js"></script>
 
-    <!-- images in bootstrap menus
-    <style>
-        .dropdown-menu a.icon {
-		  position: relative;
-		  padding-left: 40px;
-		}
-		.dropdown-menu a.icon .glyphicon {
-		  top: 6px;
-		  left: 10px;
-		  font-size: 18px;
-		}
-    </style>-->
-
     <!-- mousetrap -->
     <script src="/static/js/mousetrap/mousetrap.min.js"></script>
 
@@ -77,7 +64,7 @@ index(user, messages, converter, model) ::= <<
   <body role="document">
 
     <!-- Fixed navbar -->
-    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container" style="margin-left:inherit; padding-left:19px;padding-right:15px;width:100%;">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
@@ -138,11 +125,9 @@ index(user, messages, converter, model) ::= <<
           $endif$
         </div><!--/.nav-collapse -->
       </div>
-    </div>
+    </nav>
 
-    <br><br><br>
-
-    <div class="container-fluid">
+    <div class="container-fluid" style="padding-top:55px;">
 
       $mainContent(user, converter, messages, model)$
 
@@ -153,7 +138,7 @@ index(user, messages, converter, model) ::= <<
     </div>
 
     <footer class="footer">
-      <div class="container4footer">
+      <div class="container4footer" style="border-top: 1px dotted #a0a0a0;">
         <p class="text-muted"><div id="output"></div></p>
       </div>
     </footer>

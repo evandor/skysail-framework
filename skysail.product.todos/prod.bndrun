@@ -102,7 +102,7 @@
 	org.xerial.snappy.snappy-java;version='[1.1.1,1.1.2)',\
 	osgi.cmpn;version='[5.0.0,5.0.1)',\
 	osgi.enterprise;version='[4.2.0,4.2.1)',\
-	skysail.api;version='[7.0.0,7.0.1)',\
+	skysail.api;version=${skysail.api.version},\
 	skysail.api.um;version='[0.2.1,0.2.2)',\
 	skysail.api.peers;version='[0.1.1,0.1.2)',\
 	skysail.api.text;version='[1.0.0,1.0.1)',\
@@ -125,12 +125,14 @@
 	skysail.server.plugins;version=latest,\
 	skysail.server.documentation;version=latest,\
 	skysail.server.app.bookmarks;version=latest,\
+	skysail.server.app.designer;version=latest,\
+    skysail.server.app.fileserver;version=latest,\
+	skysail.server.ext.mail;version=latest,\
+	skysail.server.app.svgedit;version=latest,\
 	skysail.server.app.todos;version=latest,\
 	skysail.server.app.designer;version=latest,\
 	skysail.server.app.twitter4j;version=latest,\
 	skysail.server.app.wiki;version=latest,\
-	skysail.server.ext.favorites.preferences;version=latest,\
-	skysail.server.ext.mail;version=latest,\
 	skysail.server.text.markdown;version=latest,\
 	skysail.server.text.store.bundleresource;version=latest,\
 	skysail.server.text.store.git;version=latest,\

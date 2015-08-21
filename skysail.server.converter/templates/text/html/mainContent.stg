@@ -29,17 +29,21 @@ mainContent(user, converter, messages, model) ::= <<
         <div class="col-md-12">
             $if(model.form)$
               <div class="col-md-10">
+                <br>
                 $showForm(model.formfields, messages, model)$
               </div>
               <div class="col-md-2">
+                <br>
                 $renderEntityInfo(model.formfields, messages, model)$
               </div>
             $elseif(model.list)$
-              <div class="col-md-12"><br>
+              <div class="col-md-12">
+                <br>
                 $renderTable(converter, messages, model)$
               </div>
             $else$
               <div class="col-md-12">
+                <br>
                 $renderEntity(user, model)$
               </div>
             $endif$

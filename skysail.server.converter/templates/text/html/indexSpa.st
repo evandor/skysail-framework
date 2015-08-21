@@ -10,6 +10,10 @@ indexSpa(user, messages, converter, model) ::= <<
 
     <title>$messages.("productName")$ (SPA)</title>
 
+    <!-- Pace -->
+    <script type="text/javascript" src="/webapp/js/pace/pace-1.0.0.min.js"></script>
+    <link rel="stylesheet" href="/webapp/css/pace/pace-minimal.css">
+
 	<!-- jQuery -->
 	<script type="text/javascript" src="/webapp/js/jquery-1.11.1.js"></script>
     <script tpye="text/javascript" src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>

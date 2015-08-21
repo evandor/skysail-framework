@@ -1,10 +1,12 @@
 package io.skysail.server.app.todos.lists;
 
+import io.skysail.api.links.Link;
 import io.skysail.api.responses.SkysailResponse;
 import io.skysail.server.app.todos.*;
+import io.skysail.server.app.todos.todos.resources.Top10TodosResource;
 import io.skysail.server.restlet.resources.PutEntityServerResource;
 
-import java.util.Date;
+import java.util.*;
 
 import org.restlet.resource.ResourceException;
 
@@ -40,6 +42,11 @@ public class PutListResource extends PutEntityServerResource<TodoList> {
     @Override
     public TodoList getEntity() {
         return app.getRepository().getById(TodoList.class, listId);
+    }
+
+    @Override
+    public List<Link> getLinks() {
+        return super.getLinks(Top10TodosResource.class, ListsResource.class);
     }
 
     @Override

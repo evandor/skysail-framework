@@ -10,6 +10,9 @@ index(user, messages, converter, model) ::= <<
 
     <title>$messages.("productName")$</title>
 
+    <!-- Pace -->
+    <script type="text/javascript" src="/webapp/js/pace/pace-1.0.0.min.js"></script>
+
 	<!-- jQuery -->
 	<script type="text/javascript" src="/webapp/js/jquery-1.11.1.js"></script>
 
@@ -29,6 +32,9 @@ index(user, messages, converter, model) ::= <<
     <link rel="stylesheet" href="/webapp/css/select2-bootstrap.css">
 
     <link rel="stylesheet" href="/webapp/js/animate/animate.css">
+
+    <!-- Pace -->
+    <link rel="stylesheet" href="/webapp/css/pace/pace-minimal.css">
 
     <!-- jstree -->
     <link rel="stylesheet" href="/static/themes/jstree/style.min.css" />
@@ -93,7 +99,6 @@ index(user, messages, converter, model) ::= <<
                 <li><a href='javascript:document.cookie="mainpage=tests;path=/";window.location="/_largetests"'>Tests</a></li>
                 <li><a href='javascript:document.cookie="mainpage=indexMobile;path=/";window.location.reload(true)'>Mobile View</a></li>
                 <li><a href='javascript:document.cookie="mainpage=indexSpa;path=/";window.location.reload(true)'>Single Page App</a></li>
-                <li><a href='javascript:document.cookie="mainpage=indexRaw;path=/";window.location.reload(true)'>Single Page App (Raw)</a></li>
               </ul>
             </li>
             $endif$

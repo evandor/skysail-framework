@@ -1,5 +1,6 @@
 package io.skysail.server.app.todos.todos.resources;
 
+import io.skysail.api.links.Link;
 import io.skysail.api.responses.SkysailResponse;
 import io.skysail.server.app.todos.TodoApplication;
 import io.skysail.server.app.todos.lists.ListsResource;
@@ -7,7 +8,7 @@ import io.skysail.server.app.todos.ranking.Ranker;
 import io.skysail.server.app.todos.todos.Todo;
 import io.skysail.server.restlet.resources.PutEntityServerResource;
 
-import java.util.Date;
+import java.util.*;
 
 import org.restlet.resource.ResourceException;
 
@@ -42,6 +43,11 @@ public class PutTodoResource extends PutEntityServerResource<Todo> {
         }
         app.getRepository().update(getAttribute(TodoApplication.LIST_ID), original, "parent");
         return new SkysailResponse<>();
+    }
+
+    @Override
+    public List<Link> getLinks() {
+        return super.getLinks(Top10TodosResource.class, ListsResource.class);
     }
 
     @Override

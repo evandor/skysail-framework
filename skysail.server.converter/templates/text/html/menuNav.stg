@@ -1,14 +1,17 @@
-menuNav(linkheader) ::= <<
-    $linkheader:{ element | $linkAsButton(element,i)$}$
+menuNav(link) ::= <<
+    $link:{ element | $linkAsButton(element,i)$}$
 >>
 
-linkAsButton(linkheader,i) ::= <<
-    $if(linkheader.showAsButtonInHtml)$
-      <a href="$linkheader.uri$" class="btn btn-default btn-xs" role="button" tabindex="1" style="width:80%; max-width:180px;">
-      $if(linkheader.image)$
-        <span class="glyphicon glyphicon-$linkheader.image$" aria-hidden="true"></span>
+linkAsButton(link,i) ::= <<
+    $if(link.showAsButtonInHtml)$
+      <a href="$link.uri$" class="btn btn-default btn-xs $if(link.linkingToSelf)$active$endif$"
+            $if(link.linkingToSelf)$ disabled="disabled" $endif$
+            role="button" tabindex="1"
+            style="width:90%; max-width:200px; margin-bottom: 9px;">
+      $if(link.image)$
+        <span class="glyphicon glyphicon-$link.image$" aria-hidden="true"></span>
       $endif$
-      $linkheader.title$
+      $link.title$
       </a>&nbsp;
     $endif$
 >>

@@ -60,6 +60,8 @@ public class Link {
 
     private Class<?> cls;
 
+    private boolean linkingToSelf = false;
+
     public static class Builder {
 
         private String uri;
@@ -72,6 +74,7 @@ public class Link {
         private String refId;
         private Map<MediaType, String> images = new HashMap<>();
         private Class<?> cls;
+        private String requestPath;
 
         public Builder(@NonNull Link linkTemplate) {
             this.uri = linkTemplate.getUri();
@@ -149,6 +152,11 @@ public class Link {
             images.put(mediaType, img);
             return this;
         }
+
+        public Builder requestPath(String path) {
+            this.requestPath = path;
+            return this;
+        }
     }
 
     private Link(Builder linkBuilder) {
@@ -168,6 +176,7 @@ public class Link {
         this.refId = linkBuilder.refId;
         this.images = linkBuilder.images;
         this.cls = linkBuilder.cls;
+        this.linkingToSelf = uri.equals(linkBuilder.requestPath);
     }
 
     /**

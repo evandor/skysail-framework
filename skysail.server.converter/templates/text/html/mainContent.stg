@@ -20,6 +20,11 @@ mainContent(user, converter, messages, model) ::= <<
       $menuNav(model.collectionLinks)$
     </div>
     <div class="col-md-10" style="border-top: 1px dotted #a0a0a0;margin-top:-21px;">
+      <div class="row" style="background-color: #F8FAD4">
+        <div class="col-md-12" style="border-bottom: 1px dotted #a0a0a0;">
+          $contentHeader(converter, messages, model)$
+        </div>
+      </div>
       <div class="row">
         <div class="col-md-12">
             $if(model.form)$
@@ -38,11 +43,10 @@ mainContent(user, converter, messages, model) ::= <<
                 $renderEntity(user, model)$
               </div>
             $endif$
-          <!-- <br><p>$contentHeader(converter, messages, model)$</p>-->
 
         </div>
       </div>
-      <div class="row">
+      <div class="row" style="border-top: 1px dotted #a0a0a0; padding-top: 10px;">
         <div class="col-md-11">
             $menuNav(model.createFormLinks)$
         </div>

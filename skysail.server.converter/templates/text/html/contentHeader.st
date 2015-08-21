@@ -4,5 +4,4 @@ contentHeader(converter, messages, model) ::= <<
   $else$
 $messages.("content.header")$
   $endif$
-  <br>
 >>

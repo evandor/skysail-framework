@@ -5,7 +5,13 @@ mainContent(user, converter, messages, model) ::= <<
         $breadcrumb(model)$
     </div>
     <div class="col-md-2">
+      $if(user.developer)$
         $developerLinks(model)$
+      $else$
+        <ul class="breadcrumb" style="text-align:right">
+          <li>&nbsp;</li>
+        </ul>
+      $endif$
     </div>
   </div>
 

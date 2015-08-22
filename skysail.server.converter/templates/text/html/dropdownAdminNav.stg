@@ -1,5 +1,5 @@
-dropdownAdminNav(services) ::= <<
-    $if(services.adminMenuItems)$
+dropdownAdminNav(user, services) ::= <<
+    $if(user.admin && services.adminMenuItems)$
     <li class="dropdown">
       <a href="#" class="dropdown-toggle" data-toggle="dropdown">Admin <span class="caret"></span></a>
       <ul class="dropdown-menu" role="menu">

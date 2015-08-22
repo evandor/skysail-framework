@@ -95,7 +95,7 @@ index(user, messages, converter, model) ::= <<
           <ul class="nav navbar-nav">
             $dropdownFrontendsNav(model.services)$
             $dropdownApplicationsNav(model.services)$
-            $dropdownAdminNav(model.services)$
+            $dropdownAdminNav(user, model.services)$
             $if(user.developer)$
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">View (advanced) <span class="caret"></span></a>

@@ -30,7 +30,11 @@ public class STUserWrapper {
     public boolean isDeveloper() {
         return subject.hasRole("developer");
     }
-    
+
+    public boolean isAdmin() {
+        return subject.hasRole("admin");
+    }
+
     public String getBackend() {
         if (peerName == null || peerName.trim().length() == 0) {
             return "";
@@ -53,6 +57,6 @@ public class STUserWrapper {
             }).collect(Collectors.toList());
         }
         return Collections.emptyList();
-            
+
     }
 }

@@ -4,8 +4,7 @@ import io.skysail.api.favorites.FavoritesService;
 import io.skysail.api.peers.PeersProvider;
 import io.skysail.api.responses.SkysailResponse;
 import io.skysail.server.app.SkysailApplication;
-import io.skysail.server.converter.HtmlConverter;
-import io.skysail.server.converter.Notification;
+import io.skysail.server.converter.*;
 import io.skysail.server.converter.stringtemplate.STGroupBundleDir;
 import io.skysail.server.converter.wrapper.STUserWrapper;
 import io.skysail.server.model.ResourceModel;
@@ -13,11 +12,7 @@ import io.skysail.server.restlet.resources.SkysailServerResource;
 import io.skysail.server.utils.*;
 
 import java.net.URL;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import lombok.NonNull;
@@ -26,8 +21,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.SecurityUtils;
 import org.osgi.framework.Bundle;
 import org.restlet.data.MediaType;
-import org.restlet.representation.StringRepresentation;
-import org.restlet.representation.Variant;
+import org.restlet.representation.*;
 import org.restlet.resource.Resource;
 import org.stringtemplate.v4.ST;
 
@@ -37,8 +31,8 @@ import de.twenty11.skysail.server.services.MenuItemProvider;
 @Slf4j
 public class StringTemplateRenderer {
 
-    public static final String INDEX_FOR_MOBILES = "indexMobile";
-    
+    private static final String INDEX_FOR_MOBILES = "indexMobile";
+
     private STGroupBundleDir importedGroupBundleDir;
     private Set<MenuItemProvider> menuProviders;
     private String templateFromCookie;
@@ -53,7 +47,7 @@ public class StringTemplateRenderer {
 
     public StringRepresentation createRepresenation(Object entity, Variant target,
             SkysailServerResource<?> resource) {
-        
+
         @SuppressWarnings({ "rawtypes", "unchecked" })
         ResourceModel<SkysailServerResource<?>,?> resourceModel = new ResourceModel(resource, (SkysailResponse<?>)entity, target);
         resourceModel.setFavoritesService(favoritesService);
@@ -62,11 +56,11 @@ public class StringTemplateRenderer {
         templateFromCookie = CookiesUtils.getTemplateFromCookie(resource.getRequest());
 
         STGroupBundleDir stGroup = createSringTemplateGroup(resource, target.getMediaType().getName());
-        
+
         ST index = getStringTemplateIndex(resource, stGroup);
-        
+
         addSubstitutions(resourceModel, index);
-        
+
         checkForInspection(resource, index);
 
         return createRepresentation(index, stGroup);
@@ -109,7 +103,7 @@ public class StringTemplateRenderer {
         }
     }
 
-   
+
 
     private StringRepresentation createRepresentation(ST index, STGroupBundleDir stGroup) {
         String stringTemplateRenderedHtml = index.render();
@@ -133,12 +127,12 @@ public class StringTemplateRenderer {
         return "edit".equalsIgnoreCase(templateFromCookie);
     }
 
-   
+
     /**
      * As the templates used for creating the output cannot be added to the
      * output itself during creation time, they are added in an additional step
      * here
-     * 
+     *
      * @param stGroup
      */
     private String getTemplatesHtml(STGroupBundleDir stGroup) {
@@ -149,15 +143,15 @@ public class StringTemplateRenderer {
     private void addSubstitutions(ResourceModel<SkysailServerResource<?>,?> resourceModel, @NonNull ST decl) {
 
         SkysailServerResource<?> resource = resourceModel.getResource();
-        
+
         String installationFromCookie = CookiesUtils.getInstallationFromCookie(resource.getRequest());
 
         decl.add("user", new STUserWrapper(SecurityUtils.getSubject(), peersProvider, installationFromCookie));
         decl.add("converter", this);
-        
+
         Map<String, String> messages = resource.getMessages(resourceModel.getFields());
         messages.put("productName", getProductName());
-        
+
         decl.add("messages", messages);
         decl.add("model", resourceModel);
     }
@@ -207,7 +201,7 @@ public class StringTemplateRenderer {
     public void setPeersProvider(PeersProvider peersProvider) {
         this.peersProvider = peersProvider;
     }
-    
-    
+
+
 
 }

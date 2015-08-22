@@ -1,13 +1,14 @@
 -runfw: org.apache.felix.framework;version=${org.apache.felix.framework.version}
 -runee: JavaSE-1.8
--runsystemcapabilities: ${native_capability} 
+-runsystemcapabilities: ${native_capability}
 -runrepos:  \
 	Skysail Framework Hub,\
 	Bndtools Hub,\
 	Local,\
 	Workspace,\
 	Skysail Repository,\
-	Skysail Hub
+	Skysail Hub,\
+	Release
 
 -resolve.effective: active;skip:="osgi.service"
 

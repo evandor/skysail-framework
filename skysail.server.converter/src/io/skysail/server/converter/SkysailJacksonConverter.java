@@ -16,7 +16,7 @@ import aQute.bnd.annotation.component.Component;
 import de.twenty11.skysail.server.services.OsgiConverterHelper;
 
 @Component(immediate = true)
-public class SkysailJacksonConverter extends JacksonConverter implements OsgiConverterHelper {
+public class SkysailJacksonConverter extends JacksonConverter implements OsgiConverterHelper { // NO_UCD
 
     @Override
     public Representation toRepresentation(Object source, Variant target, Resource resource) {

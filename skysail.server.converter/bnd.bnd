@@ -1,4 +1,4 @@
-Bundle-Version: 0.2.2.${tstamp}
+Bundle-Version: 1.0.0.${tstamp}
 Bundle-Name: SKYSAIL :: server :: converter
 Bundle-Description: Converts resources into html
 #https://groups.google.com/forum/#!topic/bndtools-users/aYjvNAs5lPI
@@ -45,7 +45,5 @@ Include-Resource: templates=templates,webapp=webapp
 
 Private-Package:  \
 	io.skysail.server.converter.wrapper,\
-	io.skysail.server.converter.renderer,\
 	io.skysail.server.converter.stringtemplate,\
-	io.skysail.server.converter.impl,\
-	io.skysail.server.converter.impl.factories
+	io.skysail.server.converter.impl

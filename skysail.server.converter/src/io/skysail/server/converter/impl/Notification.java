@@ -1,4 +1,4 @@
-package io.skysail.server.converter;
+package io.skysail.server.converter.impl;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

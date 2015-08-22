@@ -36,10 +36,6 @@ public class WebappApplication extends SkysailApplication implements Application
         this("webapp serving static files");
     }
 
-    /**
-     * @param staticPathTemplate
-     * @param bundleContext
-     */
     public WebappApplication(String staticPathTemplate) {
         super("webapp");
         setName("webapp");

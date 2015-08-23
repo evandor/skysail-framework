@@ -21,6 +21,7 @@ Include-Resource: templates=templates,webapp=webapp
 	skysail.api.peers;version=${skysail.api.peers.version},\
 	skysail.api.text;version=${skysail.api.text.version},\
 	skysail.server;version=${skysail.server.version},\
+    skysail.server.http;version=${skysail.server.http.version},\
 	skysail.server.testsupport;version=latest,\
 	de.twentyeleven.skysail.org.antlr.stringtemplate-osgi;version=4.0.8,\
 	biz.aQute.bnd.annotation;version=2.4,\

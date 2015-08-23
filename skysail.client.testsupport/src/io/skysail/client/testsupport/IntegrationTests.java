@@ -1,6 +1,6 @@
 package io.skysail.client.testsupport;
 
-import io.skysail.server.http.PortProvider;
+import io.skysail.server.http.InstallationProvider;
 
 import java.io.*;
 import java.nio.file.*;
@@ -41,8 +41,8 @@ public class IntegrationTests<T extends ApplicationBrowser<?,?>, U> {
 
     protected String determinePort() {
         log.info("setting up test case...");
-        ServiceReference<PortProvider> serviceReference = this.thisBundle.getBundleContext().getServiceReference(PortProvider.class);
-        PortProvider service = thisBundle.getBundleContext().getService(serviceReference);
+        ServiceReference<InstallationProvider> serviceReference = this.thisBundle.getBundleContext().getServiceReference(InstallationProvider.class);
+        InstallationProvider service = thisBundle.getBundleContext().getService(serviceReference);
         log.info("setting test port to {}", service.getPort());
         return service.getPort();
     }

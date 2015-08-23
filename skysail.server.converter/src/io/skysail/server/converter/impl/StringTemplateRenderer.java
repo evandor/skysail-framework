@@ -4,7 +4,7 @@ import io.skysail.api.favorites.FavoritesService;
 import io.skysail.api.peers.PeersProvider;
 import io.skysail.api.responses.SkysailResponse;
 import io.skysail.server.app.SkysailApplication;
-import io.skysail.server.converter.*;
+import io.skysail.server.converter.HtmlConverter;
 import io.skysail.server.converter.stringtemplate.STGroupBundleDir;
 import io.skysail.server.converter.wrapper.STUserWrapper;
 import io.skysail.server.model.ResourceModel;
@@ -171,8 +171,11 @@ public class StringTemplateRenderer {
         }
     }
 
-    private String getProductName() {
-        return "Skysail";
+    private synchronized String getProductName() {
+        if (htmlConverter == null) {
+            return "Skysail";
+        }
+        return htmlConverter.getProductName();
     }
 
     private Optional<Bundle> findBundle(Bundle bundle, String bundleName) {

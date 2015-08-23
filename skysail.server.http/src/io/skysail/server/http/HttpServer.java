@@ -29,7 +29,7 @@ import de.twenty11.skysail.server.services.*;
 @Component(immediate = true, configurationPolicy = ConfigurationPolicy.optional, properties = { "event.topics=de/twenty11/skysail/server/configuration/UPDATED" })
 @Slf4j
 public class HttpServer extends ServerResource implements RestletServicesProvider, SkysailComponentProvider,
-        ManagedService, PortProvider {
+        ManagedService, InstallationProvider {
 
     private static final String DEFAULT_PORT = "2015";
 
@@ -62,7 +62,7 @@ public class HttpServer extends ServerResource implements RestletServicesProvide
             return !(converter instanceof JacksonConverter);
         }).collect(Collectors.toList());
         Engine.getInstance().setRegisteredConverters(converters);
-        
+
     }
 
     @Activate
@@ -162,7 +162,16 @@ public class HttpServer extends ServerResource implements RestletServicesProvide
     public String getPort() {
         return runningOnPort;
     }
-    
+
+    @Override
+    public String getProductName() {
+        String productName = (String)properties.get("productName");
+        if (productName == null) {
+            productName = "Skysail";
+        }
+        return productName;
+    }
+
     private String findAvailablePort() {
         ServerSocket socket = null;
         try {

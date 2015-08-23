@@ -35,6 +35,10 @@ public class STUserWrapper {
         return subject.hasRole("admin");
     }
 
+    public boolean isDemoUser() {
+        return ((String)getUsername()).equals("demo");
+    }
+
     public String getBackend() {
         if (peerName == null || peerName.trim().length() == 0) {
             return "";

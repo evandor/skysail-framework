@@ -1,0 +1,22 @@
+renderTableMobile(fields, converter, messages, model) ::= <<
+
+  $model.pagination$
+
+  <ul data-role="listview" data-inset="true" data-filter="false">
+    $model.data:{ row | $renderRow(model.formfields,row,i)$}$
+  </ul>
+
+  <a class="ui-btn" href="./">New Todo</a>
+
+  <a class="ui-btn" href="/Todos/v2/Lists">Show Lists</a>
+>>
+
+renderRow(fields, row,i) ::= <<
+    $fields: { field | $buttonForLink(row, field)$}$
+>>
+
+buttonForLink(row, field) ::= <<
+    $if (field.link)$
+      <li>$row.("title")$</li>
+    $endif$
+>>

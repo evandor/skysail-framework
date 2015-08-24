@@ -62,8 +62,7 @@ public class ListsResource extends ListServerResource<TodoList> {
         String peersCredentialsName = "Credentials_" + installation;
         String peersCredentials = getRequest().getCookies().getFirstValue(peersCredentialsName);
 
-        String path = app.getRemotePath(installation, "/Todos/Lists");
-        // String uri = path + "/Todos/Lists";
+        String path = app.getRemotePath(installation, "/Todos/v2/Lists");
 
         if (peersCredentials == null) {
             getResponse().redirectSeeOther("/_remotelogin");

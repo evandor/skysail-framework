@@ -101,8 +101,10 @@ index(user, messages, converter, model) ::= <<
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            $dropdownFrontendsNav(model.services)$
-            $dropdownApplicationsNav(model.services)$
+            $if (!user.demoUser)$
+              $dropdownFrontendsNav(model.services)$
+              $dropdownApplicationsNav(model.services)$
+            $endif$
             $dropdownAdminNav(user, model.services)$
             $if(user.developer)$
             <li class="dropdown">

@@ -1,11 +1,13 @@
 package io.skysail.server.app.todos.lists;
 
+import io.skysail.api.links.Link;
 import io.skysail.api.responses.SkysailResponse;
 import io.skysail.server.app.todos.TodoList;
 import io.skysail.server.app.todos.repo.TodosRepository;
+import io.skysail.server.app.todos.todos.resources.Top10TodosResource;
 import io.skysail.server.restlet.resources.PostEntityServerResource;
 
-import java.util.Date;
+import java.util.*;
 
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
@@ -39,6 +41,11 @@ public class PostListResource extends PostEntityServerResource<TodoList> {
         String id = TodosRepository.add(entity).toString();
         entity.setId(id);
         return new SkysailResponse<>();
+    }
+
+    @Override
+    public List<Link> getLinks() {
+        return super.getLinks(Top10TodosResource.class, ListsResource.class);
     }
 
     @Override

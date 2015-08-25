@@ -1,5 +1,6 @@
 package io.skysail.server.app.todos.todos.resources;
 
+import io.skysail.api.links.Link;
 import io.skysail.api.responses.SkysailResponse;
 import io.skysail.server.app.todos.TodoApplication;
 import io.skysail.server.app.todos.lists.ListsResource;
@@ -57,6 +58,11 @@ public class PostTodoResource extends PostEntityServerResource<Todo> {
     }
 
     @Override
+    public List<Link> getLinks() {
+        return super.getLinks(Top10TodosResource.class, ListsResource.class);
+    }
+
+    @Override
     public String redirectTo() {
         if ("submitAndNew".equals(submitValue)) {
             return super.redirectTo(PostTodoResource.class);
@@ -64,13 +70,4 @@ public class PostTodoResource extends PostEntityServerResource<Todo> {
         return super.redirectTo(TodosResource.class);
     }
 
-//    @Override
-//    public Consumer<? super Link> getPathSubstitutions() {
-//        return l -> {
-//            if (listId == null) {
-//                listId = (String)getContext().getAttributes().get(TodoApplication.LIST_ID);
-//            }
-//            l.substitute(TodoApplication.LIST_ID, listId);
-//        };
-//    }
 }

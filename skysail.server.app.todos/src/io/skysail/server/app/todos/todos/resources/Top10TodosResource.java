@@ -22,6 +22,7 @@ public class Top10TodosResource extends ListServerResource<TodoSummary> {
 
     private static final String DEFAULT_FILTER_EXPRESSION = "(!(status=" + Status.ARCHIVED + "))";
     protected TodoApplication app;
+    private List<TodoSummary> todosSummary;
 
     public Top10TodosResource() {
         super(TodoResource.class);
@@ -35,11 +36,11 @@ public class Top10TodosResource extends ListServerResource<TodoSummary> {
         app = (TodoApplication) getApplication();
         getResourceContext().addAjaxNavigation(
                 getResourceContext().getAjaxBuilder("lists-nav", "Lists:", ListsResource.class, TodosResource.class)
-                .createLabel("new list")
-                .createTarget(LinkUtils.fromResource(app, PostListResource.class).getUri())
-                .nameProperty("name")
-                .identifier("id").build());
-//        getResourceContext().addAjaxNavigation("Lists:", ListsResource.class, TodosResource.class, "lid");
+                        .createLabel("new list")
+                        .createTarget(LinkUtils.fromResource(app, PostListResource.class).getUri())
+                        .nameProperty("name").identifier("id").build());
+        // getResourceContext().addAjaxNavigation("Lists:", ListsResource.class,
+        // TodosResource.class, "lid");
         // Map<String,String> substitutions = new HashMap<>();
         // substitutions.put("/Lists/" + listId, list.getName());
         // getContext().getAttributes().put(ResourceContextId.PATH_SUBSTITUTION.name(),
@@ -53,9 +54,18 @@ public class Top10TodosResource extends ListServerResource<TodoSummary> {
 
         Pagination pagination = new Pagination(getRequest(), getResponse(), 10);
         List<Todo> todos = app.getRepository().findAllTodos(filter, pagination);
-        return todos.stream().map(todo -> {
+        todosSummary = todos.stream().map(todo -> {
             return new TodoSummary(todo);
         }).collect(Collectors.toList());
+        return todosSummary;
+    }
+
+    @Override
+    public String redirectTo() {
+        if (todosSummary.size() == 0) {
+            return super.redirectTo(PostListResource.class);
+        }
+        return null;
     }
 
     @Override

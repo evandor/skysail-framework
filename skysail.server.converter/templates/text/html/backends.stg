@@ -1,7 +1,9 @@
 backends(user) ::= <<
+  $if(user.developer)$
     <li class="dropdown-header">Backends:</li>
     <li><a href='javascript:document.cookie="peer=;path=/";window.location.reload(true)'>Direct</a></li>
     $peers(user)$
+  $endif$
 >>
 
 peers(user) ::= <<

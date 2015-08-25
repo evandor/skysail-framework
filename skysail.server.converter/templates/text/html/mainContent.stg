@@ -63,7 +63,7 @@ mainContent(user, converter, messages, model) ::= <<
       </div>
     </div>
     $if(user.demoUser)$
-    <div class="col-md-2" style="border-top: 1px dotted #a0a0a0; margin-top:-21px; background-color: gray;">
+    <div class="col-md-2" style="border-top: 1px dotted #a0a0a0; margin-top:-21px;">
       <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
         <!-- todos.prod.skysail.io -->
         <ins class="adsbygoogle"

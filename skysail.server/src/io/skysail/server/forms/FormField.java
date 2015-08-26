@@ -26,7 +26,8 @@ import de.twenty11.skysail.server.um.domain.SkysailUser;
  *
  * <p>
  * A FormField is constructed from a java.lang.reflect.Field, together with a
- * SkysailServerResource; only {@link Field}s and {@link Reference}s should be taken into account.
+ * SkysailServerResource; only {@link Field}s and {@link Reference}s should be
+ * taken into account.
  *
  * </p>
  *
@@ -102,8 +103,8 @@ public class FormField {
         if (entity == null) {
             return name;
         }
-        if (entity instanceof List && ((List<?>)entity).size() > 0) {
-            return MessagesUtils.getBaseKey(((List<?>)entity).get(0).getClass(), this);
+        if (entity instanceof List && ((List<?>) entity).size() > 0) {
+            return MessagesUtils.getBaseKey(((List<?>) entity).get(0).getClass(), this);
         }
         return MessagesUtils.getBaseKey(entity.getClass(), this);
     }
@@ -230,14 +231,11 @@ public class FormField {
             Method method = selectionProvider.getMethod("getInstance");
             selection = (SelectionProvider) method.invoke(selectionProvider, new Object[] {});
 
-            Object currentEntity = resource.getCurrentEntity();
-            Method method2 = currentEntity.getClass().getMethod("get" + getName().substring(0, 1).toUpperCase() + getName().substring(1));
-            Object value = method2.invoke(currentEntity);
-
+            String value = getSelectedValue();
             method = selectionProvider.getMethod("setResource", Resource.class);
             method.invoke(selection, resource);
             selection.getSelections().entrySet().stream().forEach(entry -> {
-                options.add(new Option(entry, value != null ? value.toString() : ""));
+                options.add(new Option(entry, value));
             });
             if (!options.stream().filter(o -> o.isSelected()).findFirst().isPresent()) {
                 options.get(0).setSelected(true);
@@ -249,6 +247,20 @@ public class FormField {
             log.error(e.getMessage(), e);
         }
         return Collections.emptyList();
+    }
+
+    private String getSelectedValue() throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
+        Object currentEntity = resource.getCurrentEntity();
+        String value = "";
+        if (currentEntity != null) {
+            Method method2 = currentEntity.getClass().getMethod(
+                    "get" + getName().substring(0, 1).toUpperCase() + getName().substring(1));
+            Object methodCall = method2.invoke(currentEntity);
+            if (methodCall != null) {
+                value = methodCall.toString();
+            }
+        }
+        return value;
     }
 
     public boolean isMandatory() {
@@ -280,6 +292,5 @@ public class FormField {
         io.skysail.api.forms.Field annotation = fieldAnnotation.getAnnotation(io.skysail.api.forms.Field.class);
         return annotation != null ? annotation.inputType() : null;
     }
-
 
 }

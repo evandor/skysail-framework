@@ -3,7 +3,6 @@ package io.skysail.server.app.wiki.pages;
 import io.skysail.api.domain.Identifiable;
 import io.skysail.api.forms.*;
 import io.skysail.server.app.wiki.pages.resources.PutPageResource;
-import io.skysail.server.app.wiki.versions.Version;
 import io.skysail.server.forms.*;
 
 import java.io.Serializable;
@@ -23,14 +22,11 @@ public class Page implements Serializable, Identifiable {
     private static final long serialVersionUID = 5061219768727410582L;
 
     @Id
-    //@Field(type = InputType.READONLY)
     private String id;
 
     @Field
     @NotNull
     @Size(min = 2)
-    //@Prefix(methodName="boldStart")
-    //@Postfix(methodName="boldEnd")
     @ListView(link = PutPageResource.class)
     private String name;
 
@@ -44,29 +40,29 @@ public class Page implements Serializable, Identifiable {
     @PostView(visibility=Visibility.HIDE)
     @PutView(visibility=Visibility.HIDE)
     @ListView(hide=true)
-    private List<Version> versions = new ArrayList<>();
+    private List<String> versions = new ArrayList<>();
 
     @Reference
     @PostView(visibility=Visibility.HIDE)
     @PutView(visibility=Visibility.HIDE)
-    //@ListView(hide=true)
-    private List<Page> subpages = new ArrayList<>();
+    private List<String> subpages = new ArrayList<>();
 
-    public void addPage(Page entity) {
-        subpages.add(entity);
-       // entity.setParent(this);
+    public List<String> getSubpages() {
+        if (subpages == null) {
+            subpages = new ArrayList<>();
+        }
+        return subpages;
     }
-
-    //@Field(type = InputType.READONLY)
-    //@JsonIgnore
-   // private Page parent;
 
     @Field(inputType = InputType.TEXTAREA)
     @ListView(hide=true)
     private String content;
 
-    public void addVersion(Version entity) {
-        versions.add(entity);
+    public List<String> getVersions() {
+        if (versions == null) {
+            versions = new ArrayList<>();
+        }
+        return versions;
     }
 
     @Field(inputType = InputType.READONLY)

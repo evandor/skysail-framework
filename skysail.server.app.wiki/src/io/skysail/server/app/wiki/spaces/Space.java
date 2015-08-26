@@ -2,7 +2,6 @@ package io.skysail.server.app.wiki.spaces;
 
 import io.skysail.api.domain.Identifiable;
 import io.skysail.api.forms.*;
-import io.skysail.server.app.wiki.pages.Page;
 import io.skysail.server.app.wiki.pages.resources.PagesResource;
 import io.skysail.server.forms.*;
 
@@ -40,11 +39,15 @@ public class Space implements Serializable, Identifiable {
     @Reference
     @PostView(visibility=Visibility.HIDE)
     @PutView(visibility=Visibility.HIDE)
-    private List<Page> pages = new ArrayList<>();
+    private List<String> pages = new ArrayList<>();
 
-    public void addPage(Page entity) {
-        pages.add(entity);
+    public List<String> getPages() {
+        if (pages == null) {
+            pages = new ArrayList<>();
+        }
+        return pages;
     }
+
 
     public Space(String name) {
         this.name = name;

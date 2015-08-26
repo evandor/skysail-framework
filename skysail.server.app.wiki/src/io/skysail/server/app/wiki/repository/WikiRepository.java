@@ -39,7 +39,7 @@ public class WikiRepository implements DbRepository {
     public List<Map<String,Object>> findAll(Class<?> cls) {
         return dbService.findDocuments("select from " + cls.getSimpleName());
     }
-    
+
     public <T> List<T> findAll(Class<T> cls, Filter filter, String sorting) {
         String sql;
         if (filter != null) {
@@ -50,7 +50,7 @@ public class WikiRepository implements DbRepository {
             return dbService.findObjects(sql, Collections.emptyMap());
         }
     }
-    
+
     public static Object add(Object entity, String... edges) {
         return dbService.persist(entity, edges);
     }
@@ -77,13 +77,16 @@ public class WikiRepository implements DbRepository {
 
     public void updateDocument(ODocument doc) {
         dbService.update(doc);
-        
+    }
+
+    public Object update(Space entity, String... edges) {
+        return dbService.update(entity.getId(), entity, edges);
     }
 
     public Space getSpaceById(String id) {
         return (Space) dbService.findObjectById(Space.class, id);
     }
-    
+
     public Page getPageById(String id) {
         return (Page) dbService.findObjectById(Page.class, id);
     }
@@ -94,7 +97,7 @@ public class WikiRepository implements DbRepository {
 
     public List<Page> findAllPages(Filter filter) {
         String sql = "SELECT * from " + Page.class.getSimpleName() + " WHERE "+filter.getPreparedStatement()+" ORDER BY name DESC ";
-//                + limitClause(pagination.getLinesPerPage(),pagination.getPage()); 
+//                + limitClause(pagination.getLinesPerPage(),pagination.getPage());
         return dbService.findObjects(sql, filter.getParams());
 
     }

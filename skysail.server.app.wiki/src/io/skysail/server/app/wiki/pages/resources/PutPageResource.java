@@ -26,7 +26,7 @@ public class PutPageResource extends PutEntityServerResource<Page> {
     public SkysailResponse<?> updateEntity(Page entity) {
         Version version = new Version();
         version.setContent(entity.getContent());
-        entity.addVersion(version);
+       // entity.addVersion(version);
         entity.setModified(new Date());
         app.getRepository().update(entity.getId(), entity);
         return new SkysailResponse<>();
@@ -35,16 +35,17 @@ public class PutPageResource extends PutEntityServerResource<Page> {
     @Override
     public Page getEntity() {
          Page page = app.getRepository().getById(Page.class, pageId);
-         Version lastVersion = page.getVersions().get(page.getVersions().size()-1);
-         page.setContent(lastVersion.getContent());
-         return page;
+//         Version lastVersion = page.getVersions().get(page.getVersions().size()-1);
+//         page.setContent(lastVersion.getContent());
+//         return page;
+         return null;
     }
 
     @Override
     public List<Link> getLinks() {
         return super.getLinks(PutPageResource.class);
     }
-    
+
     @Override
     public String redirectTo() {
         return super.redirectTo(PagesResource.class);

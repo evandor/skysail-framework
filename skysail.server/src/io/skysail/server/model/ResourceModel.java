@@ -124,6 +124,9 @@ public class ResourceModel<R extends SkysailServerResource<T>, T> {
         } else if (source instanceof FormResponse) {
             result.add((Map<String, Object>) mapper.convertValue(((FormResponse<?>) source).getEntity(),
                     LinkedHashMap.class));
+        } else if (source instanceof ConstraintViolationsResponse) {
+            Object entity = ((ConstraintViolationsResponse<?>) source).getEntity();
+            result.add((Map<String, Object>) mapper.convertValue(entity, LinkedHashMap.class));
         }
         return result;
     }
@@ -140,7 +143,6 @@ public class ResourceModel<R extends SkysailServerResource<T>, T> {
     private String getIdentifierFormField(@NonNull List<Map<String, Object>> theData) {
         return "id"; // for now
     }
-
 
     private List<Map<String, Object>> convert(String identifierName) {
         List<Map<String, Object>> result = new ArrayList<>();
@@ -190,15 +192,18 @@ public class ResourceModel<R extends SkysailServerResource<T>, T> {
     }
 
     public List<Link> getCollectionLinks() throws Exception {
-        return resource.getAuthorizedLinks().stream().filter(l -> LinkRelation.COLLECTION.equals(l.getRel())).collect(Collectors.toList());
+        return resource.getAuthorizedLinks().stream().filter(l -> LinkRelation.COLLECTION.equals(l.getRel()))
+                .collect(Collectors.toList());
     }
 
     public List<Link> getCreateFormLinks() throws Exception {
-        return resource.getAuthorizedLinks().stream().filter(l -> LinkRelation.CREATE_FORM.equals(l.getRel())).collect(Collectors.toList());
+        return resource.getAuthorizedLinks().stream().filter(l -> LinkRelation.CREATE_FORM.equals(l.getRel()))
+                .collect(Collectors.toList());
     }
 
     public List<Link> getResourceLinks() throws Exception {
-        return resource.getAuthorizedLinks().stream().filter(l -> l.isShowAsButtonInHtml()).collect(Collectors.toList());
+        return resource.getAuthorizedLinks().stream().filter(l -> l.isShowAsButtonInHtml())
+                .collect(Collectors.toList());
     }
 
     public String getAppNavTitle() {
@@ -276,7 +281,8 @@ public class ResourceModel<R extends SkysailServerResource<T>, T> {
 
     public String getContextPath() {
         SkysailApplication application = resource.getApplication();
-        return  new StringBuilder("/").append(application.getName()).append(application.getApiVersion().getVersionPath()).toString();
+        return new StringBuilder("/").append(application.getName())
+                .append(application.getApiVersion().getVersionPath()).toString();
     }
 
     public String getEntityType() {
@@ -371,9 +377,8 @@ public class ResourceModel<R extends SkysailServerResource<T>, T> {
                                 .append("' title='")
                                 .append(link.getTitle())
                                 .append("'>")
-                                .append("<span class='glyphicon glyphicon-"
-                                        + link.getImage(MediaType.TEXT_HTML) + "' aria-hidden='true'></span>")
-                                .append("</a>");
+                                .append("<span class='glyphicon glyphicon-" + link.getImage(MediaType.TEXT_HTML)
+                                        + "' aria-hidden='true'></span>").append("</a>");
                     } else {
                         sb.append("<a href='").append(link.getUri()).append("'>").append(link.getTitle())
                                 .append("</a>");
@@ -424,6 +429,10 @@ public class ResourceModel<R extends SkysailServerResource<T>, T> {
     }
 
     public String getFormTarget() {
+        if (response instanceof ConstraintViolationsResponse) {
+             Reference actionReference = ((ConstraintViolationsResponse<?>)response).getActionReference();
+             return actionReference.toString();
+        }
         if (!(response instanceof FormResponse)) {
             return null;
         }
@@ -451,15 +460,16 @@ public class ResourceModel<R extends SkysailServerResource<T>, T> {
 
     public String getDateFormat() {
         if (dateFormat != null && dateFormat instanceof SimpleDateFormat) {
-            return ((SimpleDateFormat)dateFormat).toPattern().replace("d", "D").replace("y", "Y");
+            return ((SimpleDateFormat) dateFormat).toPattern().replace("d", "D").replace("y", "Y");
         }
         return "";
     }
 
-    private String checkPrefix(FormField formField, Map<String, Object>  dataRow, String  processed, Object id) {
+    private String checkPrefix(FormField formField, Map<String, Object> dataRow, String processed, Object id) {
         if (this.resource instanceof ListServerResource) {
             if (formField.getListViewAnnotation() != null && !formField.getListViewAnnotation().prefix().equals("")) {
-                Object prefix = calc(fields.get(formField.getListViewAnnotation().prefix()), dataRow, formField.getListViewAnnotation().prefix(), id);
+                Object prefix = calc(fields.get(formField.getListViewAnnotation().prefix()), dataRow, formField
+                        .getListViewAnnotation().prefix(), id);
                 if (prefix != null) {
                     return prefix + "&nbsp;" + processed;
                 }
@@ -468,13 +478,17 @@ public class ResourceModel<R extends SkysailServerResource<T>, T> {
         return processed;
     }
 
-    private String checkPostfix(FormField formField, Map<String, Object>  dataRow, String  processed, Object id) {
-//        if (formField.getPostfixAnnotation() != null && !formField.getPostfixAnnotation().methodName().equals("getPostfix")) {
-//            Object postfix = calc(fields.get(formField.getPostfixAnnotation().methodName()), dataRow, formField.getPostfixAnnotation().methodName());
-//            if (postfix != null) {
-//                return processed  + "&nbsp;" + postfix;
-//            }
-//        }
+    private String checkPostfix(FormField formField, Map<String, Object> dataRow, String processed, Object id) {
+        // if (formField.getPostfixAnnotation() != null &&
+        // !formField.getPostfixAnnotation().methodName().equals("getPostfix"))
+        // {
+        // Object postfix =
+        // calc(fields.get(formField.getPostfixAnnotation().methodName()),
+        // dataRow, formField.getPostfixAnnotation().methodName());
+        // if (postfix != null) {
+        // return processed + "&nbsp;" + postfix;
+        // }
+        // }
         return processed;
     }
 

@@ -17,7 +17,7 @@ public class SubpagesResource extends PagesResource {
    //     super(PageResource.class);
         addToContext(ResourceContextId.LINK_TITLE, "list SubPages");
     }
-    
+
     @Override
     protected void doInit() throws ResourceException {
         pageId = getAttribute("pageId");
@@ -27,7 +27,7 @@ public class SubpagesResource extends PagesResource {
     @Override
     public List<Page> getEntity() {
         Page page = app.getRepository().getById(Page.class, pageId);
-        return page.getSubpages();
-        
+        return null;//page.getSubpages();
+
     }
 }

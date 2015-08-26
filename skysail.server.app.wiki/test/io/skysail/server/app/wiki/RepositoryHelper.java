@@ -10,7 +10,7 @@ import java.security.SecureRandom;
 import lombok.SneakyThrows;
 
 public class RepositoryHelper {
-    
+
     @SneakyThrows
     public static Space createTestSpace(String owner) {
         String spacename = "space_" + randomString();
@@ -24,10 +24,10 @@ public class RepositoryHelper {
     public static Page createTestPageIn(WikiRepository repo, Space space) {
         String pagename = "page_" + randomString();
         Page page = new Page(pagename);
-        space.addPage(page);
+        space.getPages().add(page.getId());
         repo.update(space.getId(), space);
         return page;
-    
+
     }
 
     protected static String randomString() {

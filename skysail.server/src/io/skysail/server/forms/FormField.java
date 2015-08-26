@@ -230,11 +230,19 @@ public class FormField {
             Method method = selectionProvider.getMethod("getInstance");
             selection = (SelectionProvider) method.invoke(selectionProvider, new Object[] {});
 
+            Object currentEntity = resource.getCurrentEntity();
+            Method method2 = currentEntity.getClass().getMethod("get" + getName().substring(0, 1).toUpperCase() + getName().substring(1));
+            Object value = method2.invoke(currentEntity);
+
             method = selectionProvider.getMethod("setResource", Resource.class);
             method.invoke(selection, resource);
             selection.getSelections().entrySet().stream().forEach(entry -> {
-                options.add(new Option(entry, ""));
+                options.add(new Option(entry, value != null ? value.toString() : ""));
             });
+            if (!options.stream().filter(o -> o.isSelected()).findFirst().isPresent()) {
+                options.get(0).setSelected(true);
+            }
+
             selectionOptions = options;
             return options;
         } catch (Exception e) {

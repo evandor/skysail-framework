@@ -11,25 +11,25 @@ import org.apache.shiro.subject.Subject;
 import de.twenty11.skysail.server.core.restlet.ResourceContextId;
 
 public class PostSubPageResource extends PostPageResource {
-    
+
     public PostSubPageResource() {
         addToContext(ResourceContextId.LINK_TITLE, "create new Subpage");
         app = (WikiApplication)getApplication();
     }
-    
+
     public SkysailResponse<?> addEntity(Page page) {
         Subject subject = SecurityUtils.getSubject();
 
         Version version = new Version();
         version.setContent(page.getContent());
         version.setOwner(subject.getPrincipal().toString());
-        
+
         page.setContent(null);
-        page.addVersion(version);
-        
+        //page.addVersion(version);
+
         Page parentPage = app.getRepository().getById(Page.class, getAttribute("pageId"));
         page.setOwner(subject.getPrincipal().toString());
-        parentPage.addPage(page);
+       // parentPage.addPage(page);
         app.getRepository().update(getAttribute("id"), parentPage);
         return new SkysailResponse<String>();
     }

@@ -5,14 +5,12 @@ import io.skysail.api.domain.Identifiable;
 import java.lang.reflect.Method;
 import java.util.*;
 
-import lombok.val;
 import lombok.extern.slf4j.Slf4j;
 
 import org.apache.commons.beanutils.BeanUtils;
 
 import com.tinkerpop.blueprints.Vertex;
-import com.tinkerpop.blueprints.impls.orient.OrientGraph;
-import com.tinkerpop.blueprints.impls.orient.OrientVertex;
+import com.tinkerpop.blueprints.impls.orient.*;
 
 @Slf4j
 public class Updater {
@@ -30,7 +28,6 @@ public class Updater {
     }
 
     private <T> Object execute(Object entity) {
-        //return db.save(entity);
         String id = ((Identifiable) entity).getId();
         Vertex vertex = db.getVertex(id);
         try {
@@ -54,10 +51,8 @@ public class Updater {
             return vertex;
         } catch (Exception e) {
             log.error(e.getMessage(), e);
-            return null;
+            throw new RuntimeException("Problem when updating entity", e);
         }
-
-
     }
 
     private void addReference(Vertex vertex, Map<String, String> properties, String key, Object edge) {
@@ -69,10 +64,6 @@ public class Updater {
 
     /**
      * Template Method to make sure that the orient db is called correctly.
-     *
-     * @param db
-     * @param entity
-     * @return
      */
     private <T> Object runInTransaction(Object entity) {
         try {
@@ -84,8 +75,7 @@ public class Updater {
             return result; //db.detach(result);
         } catch (Exception e) {
             db.rollback();
-            log.error("Exception in Database, rolled back transaction", e);
-            return null;
+            throw new RuntimeException("Database Problem, rolled back transaction", e);
         } finally {
             db.shutdown();
         }

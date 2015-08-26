@@ -23,7 +23,7 @@ public class PageResource extends EntityServerResource<Page> {
 
     public Page getEntity() {
         Page page = app.getRepository().getById(Page.class, pageId);
-        String content = page.getVersions().get(page.getVersions().size() - 1).getContent();
+        String content = "xxx";//page.getVersions().get(page.getVersions().size() - 1).getContent();
         if (SecurityUtils.getSubject().isAuthenticated()) {
             page.setContent(content);
         } else {

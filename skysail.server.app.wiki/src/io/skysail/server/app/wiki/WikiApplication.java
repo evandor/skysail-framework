@@ -33,6 +33,8 @@ public class WikiApplication extends SkysailApplication implements MenuItemProvi
 
     @Override
     protected void attach() {
+        super.attach();
+
         // Application root resource
         router.attach(new RouteBuilder("", SpacesResource.class));
         router.attach(new RouteBuilder("/", SpacesResource.class));

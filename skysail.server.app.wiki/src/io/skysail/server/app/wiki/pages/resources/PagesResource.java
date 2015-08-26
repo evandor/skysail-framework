@@ -38,20 +38,20 @@ public class PagesResource extends ListServerResource<Page> {
         Filter filter = new Filter(getRequest());
         filter.add("owner",  SecurityUtils.getSubject().getPrincipal().toString());
         filter.add("space", spaceId);
-        
-       
+
+
         //Pagination pagination = new Pagination(getRequest(), getResponse(), app.getRepository().getTodosCount(spaceId, filter));
         //return app.getRepository().findAllPages2(filter);
         Space space = app.getRepository().getById(Space.class, spaceId);
-        return space.getPages();
-        
+        return null;//space.getPages();
+
     }
 
     @Override
     public List<Link> getLinks() {
-        return super.getLinks(PagesResource.class, PostPageResource.class); 
+        return super.getLinks(PagesResource.class, PostPageResource.class);
     }
-    
+
 //    @Override
 //    public Consumer<? super Link> getPathSubstitutions() {
 //        return l -> l.substitute("id", spaceId);

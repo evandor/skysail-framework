@@ -5,7 +5,9 @@ Private-Package:  \
 	io.skysail.server.app.todos.test,\
 	io.skysail.server.app.todos.test.browser
 
-Test-Cases: io.skysail.server.app.todos.test.TodoListsCrudIntegrationTests
+Test-Cases: io.skysail.server.app.todos.test.TodoListsCrudIntegrationTests,\
+    io.skysail.server.app.todos.test.PostListHtmlLargeTest,\
+    io.skysail.server.app.todos.test.TodoListsHtmlLargeTests
 
 -buildpath:  \
 	skysail.api;version=${skysail.api.version},\

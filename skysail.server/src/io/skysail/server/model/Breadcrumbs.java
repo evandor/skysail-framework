@@ -25,7 +25,7 @@ public class Breadcrumbs {
 
     public Breadcrumbs(FavoritesService favoritesService) {
         if (favoritesService == null) {
-            log.info("favoritesService was null when creating breadcrumbs");
+            log.debug("favoritesService was null when creating breadcrumbs");
         }
         this.favoritesService = favoritesService;
     }

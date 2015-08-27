@@ -16,7 +16,7 @@ import org.junit.Before;
 import org.mockito.*;
 import org.restlet.data.Status;
 
-public abstract class TodoListResourceTest extends ResourceTestBase {
+public abstract class AbstractListResourceTest extends ResourceTestBase {
 
     @Spy
     protected PostListResource postListresource;

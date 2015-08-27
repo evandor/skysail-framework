@@ -1,9 +1,9 @@
 package io.skysail.client.testsupport;
 
 import java.awt.*;
-import java.awt.datatransfer.*;
+import java.awt.datatransfer.Transferable;
 import java.awt.event.KeyEvent;
-import java.awt.image.RenderedImage;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.net.*;
 
@@ -45,8 +45,11 @@ public class BrowserUtils {
         }
 
         Transferable t = Toolkit.getDefaultToolkit().getSystemClipboard().getContents(null);
-        RenderedImage capture = (RenderedImage) t.getTransferData(DataFlavor.imageFlavor);
-        ImageIO.write(capture, "png", new File("generated/output.png"));
+        //RenderedImage capture = (RenderedImage) t.getTransferData(DataFlavor.imageFlavor);
+        //ImageIO.write(capture, "png", new File("generated/output.png"));
+
+        BufferedImage image = new Robot().createScreenCapture(new Rectangle(Toolkit.getDefaultToolkit().getScreenSize()));
+        ImageIO.write(image, "png", new File("generated/output.png"));
     }
 
     private void openWebpage(URL url) {

@@ -9,7 +9,7 @@ import org.junit.Test;
 import org.restlet.data.*;
 import org.restlet.engine.resource.VariantInfo;
 
-public class PostListResourceTest extends TodoListResourceTest {
+public class PostListResourceTest extends AbstractListResourceTest {
 
     @Test
     public void empty_form_data_yields_validation_failure() {

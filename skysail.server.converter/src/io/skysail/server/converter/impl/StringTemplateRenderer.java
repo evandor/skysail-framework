@@ -70,7 +70,7 @@ public class StringTemplateRenderer {
         SkysailApplication currentApplication = (SkysailApplication) resource.getApplication();
         Bundle appBundle = currentApplication.getBundle();
         String resourcePath = ("/templates/" + mediaType).replace("/*", "");
-        log.info("reading templates from resource path '{}'", resourcePath);
+        log.debug("reading templates from resource path '{}'", resourcePath);
         URL templatesResource = appBundle.getResource("/templates");
         if (templatesResource != null) {
             STGroupBundleDir stGroup = new STGroupBundleDir(appBundle, resource, "/templates");

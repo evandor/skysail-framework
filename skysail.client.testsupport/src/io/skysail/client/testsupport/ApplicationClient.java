@@ -30,6 +30,9 @@ public class ApplicationClient<T> {
     private MediaType mediaType = MediaType.TEXT_HTML;
     private String appName;
 
+    @Getter
+    private Series<Header> currentHeader;
+
     public ApplicationClient(@NonNull String baseUrl, @NonNull String appName, @NonNull MediaType mediaType) {
         this.baseUrl = baseUrl;
         this.appName = appName;
@@ -46,6 +49,7 @@ public class ApplicationClient<T> {
         String currentUrl = baseUrl + url;
         log.info("{}issuing GET on '{}', providing credentials {}", TESTTAG, currentUrl, credentials);
         cr = new ClientResource(currentUrl);
+        //cr.setFollowingRedirects(false);
         cr.getCookies().add("Credentials", credentials);
         return cr.get(mediaType);
     }
@@ -55,7 +59,7 @@ public class ApplicationClient<T> {
         get();
         return this;
     }
-    
+
     public ApplicationClient<T> gotoAppRoot() {
         gotoRoot().followLinkTitle(appName);
         return this;
@@ -113,8 +117,11 @@ public class ApplicationClient<T> {
     }
 
     private ApplicationClient<T> follow(LinkPredicate predicate, Method method, T entity) {
-        Series<Header> headers = cr.getResponse().getHeaders();
-        String linkheader = headers.getFirstValue("Link");
+        currentHeader = cr.getResponse().getHeaders();
+        String linkheader = currentHeader.getFirstValue("Link");
+        if (linkheader == null) {
+            throw new IllegalStateException("no link header found");
+        }
         List<Link> links = Arrays.stream(linkheader.split(",")).map(l -> Link.valueOf(l)).collect(Collectors.toList());
         Link theLink = getTheOnlyLink(predicate, links);
 
@@ -126,7 +133,7 @@ public class ApplicationClient<T> {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-        
+
         url =  isAbsolute ? theLink.getUri() : baseUrl + theLink.getUri();
         cr = new ClientResource(url);
         cr.getCookies().add("Credentials", credentials);
@@ -143,12 +150,13 @@ public class ApplicationClient<T> {
                 currentRepresentation = cr.post(entity, mediaType);
             } else if (Method.PUT.equals(method)) {
                 log.info("{}issuing PUT on '{}' with entity '{}', providing credentials {}", TESTTAG, url, entity, credentials);
-                currentRepresentation = cr.put(entity, mediaType);    
+                currentRepresentation = cr.put(entity, mediaType);
             } else {
                 throw new UnsupportedOperationException();
             }
         } else {
             currentRepresentation = cr.get(mediaType);
+            //url = currentRepresentation.getLocationRef().toUri().toString();
         }
         return this;
     }
@@ -173,6 +181,10 @@ public class ApplicationClient<T> {
         return cr.getLocationRef();
     }
 
-    
+    public void setUrlFromCurrentRepresentation() {
+        url = currentRepresentation.getLocationRef().toUri().toString();
+    }
+
+
 
 }

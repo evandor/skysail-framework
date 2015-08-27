@@ -52,9 +52,10 @@ public abstract class ApplicationBrowser<T extends ApplicationBrowser<?, U>, U> 
         return HOST + (port != null ? ":" + port : "");
     }
 
-    protected void login() {
+    public ApplicationBrowser<T, U> login() {
         log.info("{}logging in as user '{}'", ApplicationClient.TESTTAG, defaultUser);
         client.loginAs(defaultUser, "skysail");
+        return this;
     }
 
     @SuppressWarnings("unchecked")

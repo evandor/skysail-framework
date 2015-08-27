@@ -10,7 +10,7 @@ import java.util.List;
 import org.junit.Test;
 import org.restlet.data.Status;
 
-public class ListsResourceTest extends TodoListResourceTest {
+public class ListsResourceTest extends AbstractListResourceTest {
 
     @Test
     public void todoList_contains_created_todo_list() {

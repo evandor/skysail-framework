@@ -12,7 +12,7 @@ import org.junit.Test;
 
 import com.tinkerpop.blueprints.impls.orient.OrientVertex;
 
-public class PutListResourceTest extends TodoListResourceTest {
+public class PutListResourceTest extends AbstractListResourceTest {
 
     @Test
     public void empty_form_data_yields_validation_failure() {

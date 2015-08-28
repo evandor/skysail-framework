@@ -24,8 +24,8 @@ public class ListChartResource extends ListServerResource<TodoChart> {
     protected TodoApplication app;
 
     public ListChartResource() {
-        addToContext(ResourceContextId.LINK_TITLE, "List of Todos");
-        addToContext(ResourceContextId.LINK_GLYPH, "th-list");
+        addToContext(ResourceContextId.LINK_TITLE, "Todos Chart");
+        addToContext(ResourceContextId.LINK_GLYPH, "stats");
     }
 
     @Override

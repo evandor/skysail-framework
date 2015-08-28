@@ -14,8 +14,6 @@ import java.util.*;
 import org.junit.*;
 import org.mockito.Mockito;
 
-import de.twenty11.skysail.server.resources.DefaultResource;
-
 public class CellRendererHelperTest {
 
     private ListServerResponse<String> listResponse;
@@ -27,7 +25,7 @@ public class CellRendererHelperTest {
         formField = Mockito.mock(FormField.class);
         listResponse = new ListServerResponse<>(Arrays.asList("1","2","3") );
         resource = Mockito.mock(SkysailServerResource.class);
-        Mockito.when(resource.getLinks()).thenReturn(Arrays.asList(new Link.Builder("uri").build()));
+        Mockito.when(resource.getLinks()).thenReturn(Arrays.asList(new Link.Builder("uri").definingClass(ResourceWithLink.class).refId("id").build()));
     }
 
     @Test
@@ -82,15 +80,14 @@ public class CellRendererHelperTest {
         assertThat(((String)formatted), is("<a href='abc' target=\"_blank\">abc</a>"));
     }
 
-    @ListView(link = DefaultResource.class)
+    @ListView(link = ResourceWithLink.class, truncate = 4)
     private static String linksToDefaultResourceField;
 
     @Test
-    @Ignore
-    public void testName() throws Exception {
+    public void formField_with_linked_listView_is_rendered_as_truncated_link() throws Exception {
         FormField linksToDefaultResourceField = new FormField(CellRendererHelperTest.class.getDeclaredField("linksToDefaultResourceField"), resource);
-        Object formatted = new CellRendererHelper(linksToDefaultResourceField, listResponse).render(1100000000L, "id");
-        assertThat(((String)formatted), is("abc"));
+        String formatted = new CellRendererHelper(linksToDefaultResourceField, listResponse).render("123456789", "id");
+        assertThat(formatted, is("<a href='uri'><b><span title='123456789'>1...</span></b></a>"));
     }
 
 }

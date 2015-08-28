@@ -46,8 +46,8 @@ public class TodoListsHtmlLargeTests extends IntegrationTests<TodoListBrowser, T
     private void createListAndCheckAssertions() throws IOException {
         browser.createTodoList(todoList);
         String html = browser.getTodoLists().getText();
-        System.out.println(html);
         assertThat(html, containsString(todoList.getName()));
+        assertThat(html, containsString(todoList.getName().substring(0, 17) + "..."));
     }
 
     private TodoList createRandomTodoList() {

@@ -1,10 +1,10 @@
-mainContent(user, resource, converter, messages, source, fields) ::= <<
+mainContent(user, converter, messages, model) ::= <<
 
 <div class="row">
-	<div class="col-md-2">$appNav(resource)$</div>
+	<div class="col-md-2">$menuNav(model.links)$</div>
 	<div class="col-md-7">
 <!-- contentHeader -->
-$contentHeader(converter, messages)$
+$contentHeader(converter, messages, model)$
 	</div>
 	<div class="col-md-1">&nbsp;</div>
 	<div class="col-md-2">
@@ -23,13 +23,5 @@ $contentHeader(converter, messages)$
 	</div>
 </div>
 
-
-    <div class="row">
-    <div class="col-md-2">&nbsp;</div>
-    <div class="col-md-7">
-        <a href='/tutorialM2R/v1/step1'><button type="button" class="btn btn-primary btn">Next Step</button></a>
-    </div>
-    <div class="col-md-3">
-    </div>
-  </div>
+$nextStepRow("step1")$
 >>

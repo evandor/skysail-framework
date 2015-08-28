@@ -33,7 +33,7 @@ public class TutorialHomeResource extends EntityServerResource<Dummy> {
     @Override
     public List<Link> getLinks() {
          List<Link> linkheader = ((Model2RestTutorialApplication) getApplication()).getAppNavigation(this);
-         linkheader.add(new Link.Builder("/tutorialM2R/step1").title("Start tutorial: Create Model").build());
+         //linkheader.add(new Link.Builder("/tutorialM2R/step1").title("Start tutorial: Create Model").build());
          return linkheader;
     }
 

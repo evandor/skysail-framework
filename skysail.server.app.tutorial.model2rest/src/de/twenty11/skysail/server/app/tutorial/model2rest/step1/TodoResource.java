@@ -33,7 +33,7 @@ public class TodoResource extends EntityServerResource<TodoModel1> {
     @Override
     public List<Link> getLinks() {
          List<Link> linkheaders = ((Model2RestTutorialApplication) getApplication()).getAppNavigation(this);
-         linkheaders.add(new Link.Builder("step2").title("Next step: Add Validation").build());
+         //linkheaders.add(new Link.Builder("step2").title("Next step: Add Validation").build());
          return linkheaders;
 
     }

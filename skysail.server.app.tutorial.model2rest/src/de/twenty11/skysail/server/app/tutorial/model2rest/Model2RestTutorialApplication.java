@@ -3,6 +3,7 @@ package de.twenty11.skysail.server.app.tutorial.model2rest;
 import io.skysail.api.links.Link;
 import io.skysail.server.app.SkysailApplication;
 import io.skysail.server.restlet.resources.SkysailServerResource;
+import io.skysail.server.utils.LinkUtils;
 
 import java.util.*;
 
@@ -70,22 +71,20 @@ public class Model2RestTutorialApplication extends SkysailApplication implements
 
     public List<Link> getAppNavigation(SkysailServerResource<?> resource) {
         List<Link> linkheader = new ArrayList<>();
-//        linkheader.add(getLinkheader(resource, TutorialHomeResource.class).role(LinkRole.APPLICATION_NAVIGATION).setShowInHtml(false));
-//        linkheader.add(getLinkheader(resource, de.twenty11.skysail.server.app.tutorial.model2rest.step1.TodoResource.class).setRole(LinkheaderRole.APPLICATION_NAVIGATION).setShowInHtml(false));
-//        linkheader.add(getLinkheader(resource, de.twenty11.skysail.server.app.tutorial.model2rest.step2.TodoResource.class).setRole(LinkheaderRole.APPLICATION_NAVIGATION).setShowInHtml(false));
-//        linkheader.add(getLinkheader(resource, de.twenty11.skysail.server.app.tutorial.model2rest.step3.TodoResource.class).setRole(LinkheaderRole.APPLICATION_NAVIGATION).setShowInHtml(false));
-//        linkheader.add(getLinkheader(resource, de.twenty11.skysail.server.app.tutorial.model2rest.step4.TodoResource.class).setRole(LinkheaderRole.APPLICATION_NAVIGATION).setShowInHtml(false));
-//        linkheader.add(getLinkheader(resource, de.twenty11.skysail.server.app.tutorial.model2rest.step5.TodoResource.class).setRole(LinkheaderRole.APPLICATION_NAVIGATION).setShowInHtml(false));
-//        linkheader.add(getLinkheader(resource, de.twenty11.skysail.server.app.tutorial.model2rest.step6.TodoResource.class).setRole(LinkheaderRole.APPLICATION_NAVIGATION).setShowInHtml(false));
-//        linkheader.add(getLinkheader(resource, ConclusionResource.class).setRole(LinkRole.APPLICATION_NAVIGATION).setShowInHtml(false));
+        linkheader.add(getLinkFor(resource, TutorialHomeResource.class));
+        linkheader.add(getLinkFor(resource, de.twenty11.skysail.server.app.tutorial.model2rest.step1.TodoResource.class));
+        linkheader.add(getLinkFor(resource, de.twenty11.skysail.server.app.tutorial.model2rest.step2.TodoResource.class));
+        linkheader.add(getLinkFor(resource, de.twenty11.skysail.server.app.tutorial.model2rest.step3.TodoResource.class));
+        linkheader.add(getLinkFor(resource, de.twenty11.skysail.server.app.tutorial.model2rest.step4.TodoResource.class));
+        linkheader.add(getLinkFor(resource, de.twenty11.skysail.server.app.tutorial.model2rest.step5.TodoResource.class));
+        linkheader.add(getLinkFor(resource, de.twenty11.skysail.server.app.tutorial.model2rest.step6.TodoResource.class));
+        linkheader.add(getLinkFor(resource, ConclusionResource.class));
         return linkheader;
     }
 
-    private Link getLinkheader(SkysailServerResource<?> resource, Class<? extends SkysailServerResource<?>> resourceClass) {
-        Link link = resource.getLinks(resourceClass).get(0);
-        if (resource.getClass().equals(resourceClass)) {
-            //link.set(LinkRelation.SELF);
-        }
-        return link;
+    private Link getLinkFor(SkysailServerResource<?> resource, Class<? extends SkysailServerResource<?>> cls) {
+         Link link = LinkUtils.fromResource(getApplication(), cls);
+         link.isSelfRelation();
+         return link;
     }
 }

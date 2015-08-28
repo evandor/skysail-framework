@@ -1,0 +1,20 @@
+footer() ::= <<
+<!-- Footer -->
+    <footer>
+        <div class="container text-center">
+            <p>Made with <span class="glyphicon glyphicon-heart" aria-hidden="true"></span> in Munich &copy; 2015</p>
+        </div>
+    </footer>
+
+    <!-- jQuery -->
+    <script src="/website/js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="/website/js/bootstrap.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="/website/js/jquery.easing.min.js"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src="/website/js/grayscale.js"></script>
+>>

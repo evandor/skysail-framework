@@ -70,6 +70,9 @@ index(user, messages, converter, model) ::= <<
                         <a class="page-scroll" href="#learnmore">Tutorial</a>
                     </li>
                     <li>
+                        <a class="page-scroll" href="#demo">Demo</a>
+                    </li>
+                    <li>
                         <a class="page-scroll" href="#contact">Contact</a>
                     </li>
                 </ul>
@@ -85,7 +88,7 @@ index(user, messages, converter, model) ::= <<
             <div class="container">
                 <div class="row">
                     <div class="col-md-8 col-md-offset-2">
-                        <h1 class="brand-heading">business rulez</h1>
+                        <h1 class="brand-heading">models @ work</h1>
                         <p class="intro-text">skysail: Modular Runtime - RESTful API - NoSQL</p>
                         <a href="#about" class="btn btn-circle page-scroll">
                             <i class="fa fa-angle-double-down animated"></i>
@@ -119,7 +122,20 @@ index(user, messages, converter, model) ::= <<
                 <div class="col-lg-8 col-lg-offset-2">
                     <h2>Tutorial</h2>
                     <p>This tutorial will help you understand what skysail is about and how to get your feet wet with its concepts.</p>
-                    <a href="/tutorialM2R" class="btn btn-default btn-lg">Getting Started</a>
+                    <a href="/tutorialM2R/v1" class="btn btn-default btn-lg">Getting Started</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- demo Section -->
+    <section id="demo" class="content-section text-center">
+        <div class="download-section">
+            <div class="container">
+                <div class="col-lg-8 col-lg-offset-2">
+                    <h2>Demo</h2>
+                    <p>Proceed to the skysail Todos demo application and log in with username '<i>demo</i>' and password '<i>skysail</i>'.</p>
+                    <a href="http://todos.demo.skysail.io" class="btn btn-default btn-lg">Complete todos demo application</a>
                 </div>
             </div>
         </div>
@@ -130,6 +146,15 @@ index(user, messages, converter, model) ::= <<
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2">
                 <h2>Contact</h2>
+                <p>
+                  Carsten Gräf<br>
+                  Burgauerstr. 148<br>
+                  81929 München<br>
+                    <br>
+                  Telephone: 0151 252 787 41<br>
+                  e-Mail: hello@skysail.io
+                </p>
+
                 <p>What about providing some feedback, or just say hello?</p>
                 <p><a href="mailto:hello@skysail.io?subject=A question about skysail">hello@skysail.io</a>
                 </p>

@@ -1,0 +1,35 @@
+mainContent(user, resource, converter, messages, source, fields) ::= <<
+
+<div class="row">
+	<div class="col-md-2">$appNav(resource)$</div>
+	<div class="col-md-7">
+<!-- contentHeader -->
+$contentHeader(converter, messages)$
+	</div>
+	<div class="col-md-1">&nbsp;</div>
+	<div class="col-md-2">
+		<span class="label label-success" style="font-size:100%">Code</span> <br>
+		<br>
+		<p>This is where you will find all the code snippets used in each of the following steps.</p>
+        <p>The complete code for this tutorial can be found at
+          <a href='https://github.com/evandor/skysail/tree/master/skysail.server.app.tutorial.model2rest/src/de/twenty11/skysail/server/app/tutorial/model2rest'>github</a>.
+        </p>
+		<hr>
+		<span class="label label-info" style="font-size:100%">Good to know...</span> <br>
+		<br>
+		<p>
+			See every stage of the application in action! Use the "<i>launch demo</i>" button on every of the following pages.
+		</p>
+	</div>
+</div>
+
+
+    <div class="row">
+    <div class="col-md-2">&nbsp;</div>
+    <div class="col-md-7">
+        <a href='/tutorialM2R/v1/step1'><button type="button" class="btn btn-primary btn">Next Step</button></a>
+    </div>
+    <div class="col-md-3">
+    </div>
+  </div>
+>>

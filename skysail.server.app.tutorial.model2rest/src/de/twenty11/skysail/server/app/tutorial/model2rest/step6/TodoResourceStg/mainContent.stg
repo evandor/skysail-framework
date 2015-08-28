@@ -1,0 +1,32 @@
+mainContent(user, resource, converter, messages, source, fields) ::= <<
+  
+  <div class="row">
+    <div class="col-md-2">$appNav(resource)$</div>
+    <div class="col-md-7">
+      <!-- contentHeader -->
+$contentHeader(converter, messages)$
+    </div>
+    <div class="col-md-1">&nbsp;</div>
+    <div class="col-md-2">
+	    $code("step6")$
+		<hr>
+		$demoapp("/tutorialM2R/step6/", "Todo-List Application Step 6")$
+        <hr>
+		<span class="label label-info" style="font-size:110%">Good to know...</span> <br>
+		<br>
+		<p>
+			skysail is about integration: Create easily an AngularJS frontend which communicates with the skysail backend via JSON.
+			Or write a .Net GUI. Or get mobile. Or setup an eclipse richt client. Or simply use the browser...
+		</p>
+    </div>
+  </div>
+    
+  <div class="row">
+    <div class="col-md-2">&nbsp;</div>
+    <div class="col-md-7">
+        <a href='conclusion'><button type="button" class="btn btn-primary btn">Conclusion</button></a>
+    </div>
+    <div class="col-md-3">
+    </div>
+  </div>
+>>

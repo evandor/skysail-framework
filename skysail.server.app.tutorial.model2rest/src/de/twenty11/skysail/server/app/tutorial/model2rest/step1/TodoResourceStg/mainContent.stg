@@ -1,0 +1,34 @@
+mainContent(user, resource, converter, messages, source, fields) ::= <<
+
+<div class="row">
+	<div class="col-md-2">$appNav(resource)$</div>
+	<div class="col-md-7">
+<!-- contentHeader -->
+$contentHeader(converter, messages)$
+	</div>
+	<div class="col-md-1">&nbsp;</div>
+	<div class="col-md-2">
+	    $code("step1")$
+		<hr>
+		$demoapp("/tutorialM2R/step1/", "Todo-List Application Step 1")$
+		<hr>
+		<span class="label label-info" style="font-size:110%">Good to know...</span> <br>
+		<br>
+		<p>
+			Maybe you wonder where all the text and labels in the demo applications come from? They are
+			defined in a <a
+				href='https://github.com/evandor/skysail/tree/master/skysail.server.app.tutorial.model2rest/resources/translations'>resource
+				bundle</a>, the classic approach in java for internationalization, aka
+			i18n.
+		</p>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-md-2">&nbsp;</div>
+	<div class="col-md-7">
+		<a href='step2'><button type="button" class="btn btn-primary btn">Next Step</button></a> 
+	</div>
+	<div class="col-md-3"></div>
+</div>
+>> 

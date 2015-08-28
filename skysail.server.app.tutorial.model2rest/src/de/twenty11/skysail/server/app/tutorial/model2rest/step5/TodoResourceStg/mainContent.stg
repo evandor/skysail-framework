@@ -1,0 +1,31 @@
+mainContent(user, resource, converter, messages, source, fields) ::= <<
+  
+  <div class="row">
+    <div class="col-md-2">$appNav(resource)$</div>
+    <div class="col-md-7">
+      <!-- contentHeader -->
+$contentHeader(converter, messages)$
+    </div>
+    <div class="col-md-1">&nbsp;</div>
+    <div class="col-md-2">
+		$code("step5")$
+		<hr>
+		$demoapp("/tutorialM2R/step5/", "Todo-List Application Step 5")$
+		<hr>
+		<span class="label label-info" style="font-size:110%">Good to know...</span> <br>
+		<br>
+		<p>
+		  Of course skysail implements a user management and security scheme, but to actually see that you'd have to 
+		  register. If you like to register once this will be available, check our <a href='https://twitter.com/skysailserver' target='_blank'>twitter</a> account.
+		</p>
+    </div>
+  </div>
+    
+  <div class="row">
+    <div class="col-md-2">&nbsp;</div>
+    <div class="col-md-7">
+        <a href='step6'><button type="button" class="btn btn-primary btn">Next Step</button></a></div>
+    <div class="col-md-3">
+    </div>
+  </div>
+>>

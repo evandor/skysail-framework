@@ -1,0 +1,30 @@
+Bundle-Name: SKYSAIL :: server :: app :: tutorial :: model2rest
+Bundle-Version: 0.0.5.${tstamp}
+Service-Component: *
+Include-Resource: resources, templates=src;recursive:=true;filter:=*.st|*.stg
+-buildpath:  \
+	skysail.api;version=${skysail.api.version},\
+	skysail.server;version=${skysail.server.version},\
+	de.twentyeleven.skysail.org.hamcrest.hamcrest-all-osgi;version=1.3,\
+	biz.aQute.bnd.annotation,\
+	slf4j.api;version=1.7.7,\
+	org.restlet;version=${restlet.version},\
+	javax.validation.api;version=1.1,\
+	javax.persistence;version=2.1,\
+	com.springsource.org.junit;version=4.11,\
+	etm.core;version=1.2,\
+	lombok;version=1.12,\
+	org.apache.commons.collections4;version=4.0
+Import-Package: org.osgi.framework,\
+    javassist.util.proxy,\
+    *
+Private-Package:  \
+	de.twenty11.skysail.server.app.tutorial.model2rest,\
+	de.twenty11.skysail.server.app.tutorial.model2rest.conclusion,\
+	de.twenty11.skysail.server.app.tutorial.model2rest.step5,\
+	de.twenty11.skysail.server.app.tutorial.model2rest.step1,\
+	de.twenty11.skysail.server.app.tutorial.model2rest.step2,\
+	de.twenty11.skysail.server.app.tutorial.model2rest.home,\
+	de.twenty11.skysail.server.app.tutorial.model2rest.step3,\
+	de.twenty11.skysail.server.app.tutorial.model2rest.step4,\
+	de.twenty11.skysail.server.app.tutorial.model2rest.step6

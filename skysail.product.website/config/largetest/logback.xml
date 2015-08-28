@@ -1,0 +1,79 @@
+<configuration scan="true">
+
+	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+		<filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+			<level>INFO</level>
+		</filter>
+		<encoder>
+			<!--%d{mm:ss.SSS}-->
+			<pattern>%date{ISO8601}  %-5level [%-45logger{40}] - %msg [%thread]%n
+			</pattern>
+		</encoder>
+	</appender>
+
+	<!-- <appender name="memory" class="skysail.server.osgi.logging.memoryAppender.MemoryAppender"> 
+		</appender> -->
+
+	<appender name="WARN_FILE" class="ch.qos.logback.core.FileAppender">
+		<filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+			<level>WARN</level>
+		</filter>
+		<file>logs/warn.log</file>
+		<append>false</append>
+		<encoder>
+			<pattern>%-5level %logger{55} - %msg%n
+			</pattern>
+		</encoder>
+	</appender>
+
+	<appender name="INFO_FILE" class="ch.qos.logback.core.FileAppender">
+		<filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+			<level>INFO</level>
+		</filter>
+		<file>logs/info.log</file>
+		<append>false</append>
+		<encoder>
+			<pattern>%-5level %logger{55} - %msg%n
+			</pattern>
+		</encoder>
+	</appender>
+
+	<appender name="DEBUG_FILE" class="ch.qos.logback.core.FileAppender">
+		<filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+			<level>DEBUG</level>
+		</filter>
+		<file>logs/debug.log</file>
+		<append>false</append>
+		<encoder>
+			<pattern>%date{ISO8601} %-5level %logger{55} - %msg%n
+			</pattern>
+		</encoder>
+	</appender>
+	
+	<appender name="BUNDLE_STATUS_FILE" class="ch.qos.logback.core.FileAppender">
+		<param name="Append" value="false" />
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>INFO</level>
+        </filter>
+        <maxFileSize>1MB</maxFileSize>
+        <file>logs/status.log</file>
+        <append>false</append>
+        <encoder>
+            <pattern>%date{ISO8601} PeriodicFrameworkStatusLogger - %msg%n
+            </pattern>
+        </encoder>
+    </appender>
+
+	<logger name="de.twenty11.skysail.api.health" level="INFO" additivity="false">
+    	<appender-ref ref="BUNDLE_STATUS_FILE"/>
+	</logger>
+
+	<root>
+		<appender-ref ref="STDOUT" />
+		<appender-ref ref="INFO_FILE" />
+		<appender-ref ref="DEBUG_FILE" />
+		<appender-ref ref="WARN_FILE" />
+		<!-- <appender-ref ref="memory" /> -->
+	</root>
+	
+</configuration>

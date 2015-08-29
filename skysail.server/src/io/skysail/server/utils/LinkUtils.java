@@ -36,7 +36,7 @@ public class LinkUtils {
             log.warn("problem with linkheader for resource {}; no routeBuilder was found.", ssr.getSimpleName());
             return null;
         }
-        return createLink(app, ssr, title, null);
+        return createLink(app, ssr, title);
     }
 
     public static List<Link> fromResources(SkysailServerResource<?> skysailServerResource, Object entity,
@@ -78,7 +78,7 @@ public class LinkUtils {
     }
 
     private static Link createLink(SkysailApplication app, Class<? extends SkysailServerResource<?>> resourceClass,
-            String title, String path) {
+            String title) {
 
         RouteBuilder routeBuilder = app.getRouteBuilders(resourceClass).get(0);
         Optional<SkysailServerResource<?>> resource = createNewInstance(resourceClass);
@@ -91,7 +91,7 @@ public class LinkUtils {
                 .needsRoles(routeBuilder.getRolesForAuthorization())
                 .image(MediaType.TEXT_HTML,
                         resource.isPresent() ? resource.get().getFromContext(ResourceContextId.LINK_GLYPH) : null)
-                .requestPath(path).build();
+            .build();
 
         log.debug("created link {}", link);
         return link;
@@ -100,7 +100,7 @@ public class LinkUtils {
     private static Link createLink(SkysailServerResource<?> skysailServerResource,
             Class<? extends SkysailServerResource<?>> resourceClass) {
         String path = skysailServerResource.getRequest().getOriginalRef().getPath();
-        return createLink(skysailServerResource.getApplication(), resourceClass, null, path);
+        return createLink(skysailServerResource.getApplication(), resourceClass, null);
     }
 
     private static Optional<SkysailServerResource<?>> createNewInstance(

@@ -1,0 +1,11 @@
+good2know() ::= <<
+<span class="label label-info" style="font-size:110%">Good to know...</span> <br>
+        <br>
+        <p style="font-size:100%">
+            Maybe you wonder where all the text and labels in the demo applications come from? They are
+            defined in a <a
+                href='https://github.com/evandor/skysail/tree/master/skysail.server.app.tutorial.model2rest/resources/translations'>resource
+                bundle</a>, the classic approach in java for internationalization, aka
+            i18n.
+        </p>
+>>

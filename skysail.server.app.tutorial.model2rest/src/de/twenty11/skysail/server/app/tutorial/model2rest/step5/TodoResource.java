@@ -48,9 +48,7 @@ public class TodoResource extends EntityServerResource<TodoModel> {
 
     @Override
     public List<Link> getLinks() {
-        List<Link> Link = ((Model2RestTutorialApplication) getApplication()).getAppNavigation(this);
-        Link.addAll(super.getLinks(PutTodoResource.class));
-        return Link;
+        return ((Model2RestTutorialApplication) getApplication()).getAppNavigation(this);
     }
 
     @Override

@@ -42,7 +42,7 @@ public class Model2RestTutorialApplication extends SkysailApplication implements
 
         router.attach(new RouteBuilder("/step3", de.twenty11.skysail.server.app.tutorial.model2rest.step3.TodoResource.class).noAuthenticationNeeded());
         router.attach(new RouteBuilder("/step3/", de.twenty11.skysail.server.app.tutorial.model2rest.step3.PostTodoResource.class).noAuthenticationNeeded());
-        router.attach(new RouteBuilder("/step3/{id}", de.twenty11.skysail.server.app.tutorial.model2rest.step3.TodoResource.class).noAuthenticationNeeded());
+        //router.attach(new RouteBuilder("/step3/{id}", de.twenty11.skysail.server.app.tutorial.model2rest.step3.TodoResource.class).noAuthenticationNeeded());
         router.attach(new RouteBuilder("/step3demo", Step3DemoResource.class).noAuthenticationNeeded());
 
         router.attach(new RouteBuilder("/step4", de.twenty11.skysail.server.app.tutorial.model2rest.step4.TodoResource.class).noAuthenticationNeeded());
@@ -83,8 +83,6 @@ public class Model2RestTutorialApplication extends SkysailApplication implements
     }
 
     private Link getLinkFor(SkysailServerResource<?> resource, Class<? extends SkysailServerResource<?>> cls) {
-         Link link = LinkUtils.fromResource(getApplication(), cls);
-         link.isSelfRelation();
-         return link;
+         return LinkUtils.fromResource(getApplication(), cls).checkSelfRelation(resource.getRequest());
     }
 }

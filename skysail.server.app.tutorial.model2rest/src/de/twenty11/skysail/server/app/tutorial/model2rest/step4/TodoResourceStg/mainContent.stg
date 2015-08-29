@@ -1,9 +1,9 @@
-mainContent(user, resource, converter, messages, source, fields) ::= <<
-  
-  <div class="row">
-    <div class="col-md-2">$appNav(resource)$</div>
+mainContent(user, converter, messages, model) ::= <<
+
+<div class="row">
+    <div class="col-md-2">$menuNav(model.links)$</div>
     <div class="col-md-7">
-      <!-- contentHeader -->
+<!-- contentHeader -->
 $contentHeader(converter, messages)$
     </div>
     <div class="col-md-1">&nbsp;</div>
@@ -12,21 +12,9 @@ $contentHeader(converter, messages)$
 		<hr>
 		$demoapp("/tutorialM2R/step4/", "Todo-List Application Step 4")$
         <hr>
-		<span class="label label-info" style="font-size:110%">Good to know...</span> <br>
-		<br>
-		<p>
-			Seems like the guys at <a href='http://isis.apache.org' target='_blank'>Apache Isis</a> and at <a href='http://restlet.com/products/apispark/' target='_blank'>API Spark</a> are
-			doing something quite similar.... working on a comparison matrix, stay <a href='https://twitter.com/skysailserver' target='_blank'>tuned</a> ;)
-		</p>
+		$good2know()$
     </div>
   </div>
-    
-  <div class="row">
-    <div class="col-md-2">&nbsp;</div>
-    <div class="col-md-7">
-        <a href='step5'><button type="button" class="btn btn-primary btn">Next Step</button></a>
-    </div>
-    <div class="col-md-3">
-    </div>
-  </div>
+
+  $nextStepRow("step5")$
 >>

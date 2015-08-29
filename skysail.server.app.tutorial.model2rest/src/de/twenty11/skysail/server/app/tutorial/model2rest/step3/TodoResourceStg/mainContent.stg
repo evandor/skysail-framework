@@ -1,9 +1,9 @@
-mainContent(user, resource, converter, messages, source, fields) ::= <<
-  
-  <div class="row">
-    <div class="col-md-2">$appNav(resource)$</div>
+mainContent(user, converter, messages, model) ::= <<
+
+<div class="row">
+    <div class="col-md-2">$menuNav(model.links)$</div>
     <div class="col-md-7">
-      <!-- contentHeader -->
+<!-- contentHeader -->
 $contentHeader(converter, messages)$
     </div>
     <div class="col-md-1">&nbsp;</div>
@@ -12,20 +12,9 @@ $contentHeader(converter, messages)$
 		<hr>
 		$demoapp("/tutorialM2R/step3/", "Todo-List Application Step 3")$
         <hr>
-		<span class="label label-info" style="font-size:110%">Good to know...</span> <br>
-		<br>
-		<p>
-			Btw - this tutorial (and the whole website) actually <i>is</i> a skysail application.
-		</p>
+		$good2know()$
     </div>
   </div>
-    
-  <div class="row">
-    <div class="col-md-2">&nbsp;</div>
-    <div class="col-md-7">
-        <a href='step4'><button type="button" class="btn btn-primary btn">Next Step</button></a>
-    </div>
-    <div class="col-md-3">
-    </div>
-  </div>
+
+    $nextStepRow("step4")$
 >>

@@ -12,24 +12,10 @@ $contentHeader(converter, messages)$
 		<hr>
 		$demoapp("/tutorialM2R/step2/", "Todo-List Application Step 2")$
         <hr>
-		<span class="label label-info" style="font-size:110%">Good to know...</span> <br>
-		<br>
-		<p>
-			skysail is not about the GUI, but there is a generic User Interface
-			which is created with <a href='http://www.stringtemplate.org' target="_blank">stringtemplate</a>.
-			The relevant files can be found in the <a href='$baseUrl()$/step1/'>*Stg-Folders</a>.
-			As long as you are happy with the generic layout, you don't have to
-			write any html for the generated application - but you could.
-		</p>
+		$good2know()$
     </div>
   </div>
 
-  <div class="row">
-    <div class="col-md-2">&nbsp;</div>
-    <div class="col-md-7">
-		<a href='step3'><button type="button" class="btn btn-primary btn">Next Step</button></a>
-    </div>
-	<div class="col-md-3"></div>
-  </div>
+  $nextStepRow("step3")$
 >>
 baseUrl() ::= <%https://github.com/evandor/skysail/tree/master/skysail.server.app.tutorial.model2rest/src/de/twenty11/skysail/server/app/tutorial/model2rest%>

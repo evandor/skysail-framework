@@ -21,9 +21,9 @@ public class ResourceContext {
     private SkysailApplication application;
     private SkysailServerResource<?> skysailServerResource;
 
-    public ResourceContext(SkysailApplication application, SkysailServerResource<?> skysailServerResource) {
+    public ResourceContext(SkysailApplication application, SkysailServerResource<?> ssr) {
         this.application = application;
-        this.skysailServerResource = skysailServerResource;
+        this.skysailServerResource = ssr;
     }
 
     public void addAjaxNavigation(String id, String title, Class<? extends SkysailServerResource<?>> cls, Class<? extends SkysailServerResource<?>> targetClass, String identifier) {

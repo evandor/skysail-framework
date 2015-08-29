@@ -39,12 +39,6 @@ public class Top10TodosResource extends ListServerResource<TodoSummary> {
                         .createLabel("new list")
                         .createTarget(LinkUtils.fromResource(app, PostListResource.class).getUri())
                         .nameProperty("name").identifier("id").build());
-        // getResourceContext().addAjaxNavigation("Lists:", ListsResource.class,
-        // TodosResource.class, "lid");
-        // Map<String,String> substitutions = new HashMap<>();
-        // substitutions.put("/Lists/" + listId, list.getName());
-        // getContext().getAttributes().put(ResourceContextId.PATH_SUBSTITUTION.name(),
-        // substitutions);
     }
 
     @Override

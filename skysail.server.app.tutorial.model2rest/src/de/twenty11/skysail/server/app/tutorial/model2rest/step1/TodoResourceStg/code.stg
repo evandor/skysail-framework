@@ -3,6 +3,6 @@ baseUrl() ::= <%https://github.com/evandor/skysail/tree/master/skysail.server.ap
 code(link) ::= <<
         <span class="label label-success" style="font-size:110%">Code</span> <br>
         <br>
-        <p>The <a href='$baseUrl()$/$link$/' target="_blank">complete code</a> for the current step</p>
+        <p style="font-size:100%">The <a href='$baseUrl()$/$link$/' target="_blank">complete code</a> for the current step</p>
 
 >>

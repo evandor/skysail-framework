@@ -1,0 +1,8 @@
+good2know() ::= <<
+<span class="label label-info" style="font-size:110%">Good to know...</span> <br>
+        <br>
+        <p>
+            Seems like the guys at <a href='http://isis.apache.org' target='_blank'>Apache Isis</a> and at <a href='http://restlet.com/products/apispark/' target='_blank'>API Spark</a> are
+            doing something quite similar.... working on a comparison matrix, stay <a href='https://twitter.com/skysailserver' target='_blank'>tuned</a> ;)
+        </p>
+>>

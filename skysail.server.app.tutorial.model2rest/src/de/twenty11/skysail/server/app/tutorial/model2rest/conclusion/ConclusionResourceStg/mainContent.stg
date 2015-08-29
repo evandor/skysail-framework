@@ -1,32 +1,23 @@
-mainContent(user, resource, converter, messages, source, fields) ::= <<
-  
-  <div class="row">
-    <div class="col-md-2">$appNav(resource)$</div>
+mainContent(user, converter, messages, model) ::= <<
+
+<div class="row">
+    <div class="col-md-2">$menuNav(model.links)$</div>
     <div class="col-md-7">
-      <!-- contentHeader -->
+<!-- contentHeader -->
 $contentHeader(converter, messages)$
     </div>
     <div class="col-md-1">&nbsp;</div>
 	<div class="col-md-2">
-		<span class="label label-success" style="font-size:110%">Code</span> 
+		<span class="label label-success" style="font-size:110%">Code</span>
 		<br><br>
-        <p>The complete code for this tutorial can be found at 
+        <p style="font-size:100%">The complete code for this tutorial can be found at
           <a href='https://github.com/evandor/skysail/tree/master/skysail.server.app.tutorial.model2rest/src/de/twenty11/skysail/server/app/tutorial/model2rest'>github</a>.
         </p>
 		<hr>
-		<span class="label label-info" style="font-size:110%">Good to know...</span> <br>
-		<br>
-		<p>
-			We are happy about feedback! 
-			<br><br>
-			Drop us an email: <a href="mailto:hello@skysail.io?subject=A question about skysail">hello@skysail.io</a>
-			<br><br>
-			There is much more in the pipeline... stay tuned on
-			<a href="https://twitter.com/skysailserver">Twitter</a>.
-		</p>
+		$good2know()$
 	</div>
   </div>
-    
+
   <div class="row">
     <div class="col-md-2">&nbsp;</div>
     <div class="col-md-7">

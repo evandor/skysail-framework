@@ -1,0 +1,8 @@
+good2know() ::= <<
+<span class="label label-info" style="font-size:110%">Good to know...</span> <br>
+        <br>
+        <p style="font-size:100%">
+          Of course skysail implements a user management and security scheme, but to actually see that you'd have to
+          register. If you like to register once this will be available, check our <a href='https://twitter.com/skysailserver' target='_blank'>twitter</a> account.
+        </p>
+>>

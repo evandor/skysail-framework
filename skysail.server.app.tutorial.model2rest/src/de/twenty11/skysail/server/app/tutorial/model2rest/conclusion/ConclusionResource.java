@@ -6,18 +6,18 @@ import io.skysail.server.restlet.resources.EntityServerResource;
 
 import java.util.List;
 
-import de.twenty11.skysail.server.app.tutorial.model2rest.Model2RestTutorialApplication;
+import de.twenty11.skysail.server.app.tutorial.model2rest.*;
 import de.twenty11.skysail.server.core.restlet.ResourceContextId;
 
-public class ConclusionResource extends EntityServerResource<String> {
+public class ConclusionResource extends EntityServerResource<Dummy> {
 
 	public ConclusionResource() {
 		addToContext(ResourceContextId.LINK_TITLE, "Conclusion");
 	}
 
 	@Override
-	public String getEntity() {
-		return "";
+	public Dummy getEntity() {
+		return new Dummy();
 	}
 
 	@Override

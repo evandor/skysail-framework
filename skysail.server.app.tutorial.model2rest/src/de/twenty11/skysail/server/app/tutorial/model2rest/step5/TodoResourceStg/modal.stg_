@@ -1,7 +1,7 @@
 modal(link,title) ::= <<
-       
-        <p><a href='#' data-toggle="modal" data-target="#myModal">Launch</a> the current application</p>
-        
+
+        <p style="font-size:100%"><a href='#' data-toggle="modal" data-target="#myModal">Launch</a> the current application</p>
+
         <!-- Modal -->
         <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
           <div class="modal-dialog modal-lg">
@@ -19,5 +19,5 @@ modal(link,title) ::= <<
             </div>
           </div>
         </div>
- 
+
 >>

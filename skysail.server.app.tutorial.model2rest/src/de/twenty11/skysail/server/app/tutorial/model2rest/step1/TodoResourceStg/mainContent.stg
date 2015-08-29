@@ -12,15 +12,7 @@ $contentHeader(converter, messages, model)$
 		<hr>
 		$demoapp("/tutorialM2R/v1/step1/", "Todo-List Application Step 1")$
 		<hr>
-		<span class="label label-info" style="font-size:110%">Good to know...</span> <br>
-		<br>
-		<p>
-			Maybe you wonder where all the text and labels in the demo applications come from? They are
-			defined in a <a
-				href='https://github.com/evandor/skysail/tree/master/skysail.server.app.tutorial.model2rest/resources/translations'>resource
-				bundle</a>, the classic approach in java for internationalization, aka
-			i18n.
-		</p>
+		$good2know()$
 	</div>
 </div>
 

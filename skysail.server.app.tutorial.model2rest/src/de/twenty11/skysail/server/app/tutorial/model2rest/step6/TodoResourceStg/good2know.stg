@@ -1,0 +1,9 @@
+good2know() ::= <<
+        <span class="label label-info" style="font-size:110%">Good to know...</span> <br>
+        <br>
+        <p style="font-size:100%">
+            skysail is about integration: Create easily an AngularJS frontend which communicates with the skysail backend via JSON.
+            Or write a .Net GUI. Or get mobile. Or setup an eclipse richt client. Or simply use the browser...
+        </p>
+
+>>

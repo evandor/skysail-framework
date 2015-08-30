@@ -2,7 +2,7 @@
 
 export JAVA_HOME=/home/carsten/.hudson/tools/hudson.model.JDK/java_SDK_8u25/
 
-cd /home/carsten/.hudson/jobs/skysail.product.website.export.prod/workspace/skysail.products.website/generated/distributions/executable
+cd /home/carsten/.hudson/jobs/skysail.product.website.export.prod/workspace/skysail.product.website/generated/distributions/executable
 
 echo "Creating ZIP Archive"
 cp prod.jar skysail.website.jar
@@ -20,7 +20,7 @@ cp skysail.website.jar /home/carsten/skysail/products/website/prod/bin/skysail.w
 echo "stopping website service"
 /home/carsten/skysail/products/website/prod/bin/website_prod stop
 
-cd /home/carsten/.hudson/jobs/skysail.product.website.export.prod/workspace/skysail.products.website
+cd /home/carsten/.hudson/jobs/skysail.product.website.export.prod/workspace/skysail.product.website
 cp -r deployment/service/* /home/carsten/skysail/products/website/prod
 
 # needed for website functionality (to get access to the contained jars for compiling)

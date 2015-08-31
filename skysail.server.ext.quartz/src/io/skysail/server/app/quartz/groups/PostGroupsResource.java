@@ -1,8 +1,7 @@
 package io.skysail.server.app.quartz.groups;
 
-import io.skysail.server.app.quartz.jobs.JobsResource;
-import de.twenty11.skysail.api.responses.SkysailResponse;
-import de.twenty11.skysail.server.core.restlet.PostEntityServerResource;
+import io.skysail.api.responses.SkysailResponse;
+import io.skysail.server.restlet.resources.PostEntityServerResource;
 import de.twenty11.skysail.server.core.restlet.ResourceContextId;
 
 public class PostGroupsResource extends PostEntityServerResource<Group> {
@@ -24,6 +23,6 @@ public class PostGroupsResource extends PostEntityServerResource<Group> {
 
 	@Override
 	public String redirectTo() {
-	    return super.redirectTo(JobsResource.class);
+	    return null;// super.redirectTo(JobsResource.class);
 	}
 }

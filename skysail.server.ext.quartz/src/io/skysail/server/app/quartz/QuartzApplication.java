@@ -1,67 +1,77 @@
 package io.skysail.server.app.quartz;
 
-import io.skysail.server.app.SkysailApplication;
+import io.skysail.server.app.*;
+import io.skysail.server.app.quartz.groups.*;
 
 import java.util.*;
 
-import javax.naming.ConfigurationException;
-
 import lombok.extern.slf4j.Slf4j;
 
+import org.osgi.service.cm.ConfigurationException;
+import org.osgi.service.component.ComponentContext;
 import org.quartz.*;
 import org.quartz.impl.StdSchedulerFactory;
 import org.quartz.simpl.CascadingClassLoadHelper;
 
+import aQute.bnd.annotation.component.*;
 import de.twenty11.skysail.server.app.ApplicationProvider;
-import de.twenty11.skysail.server.core.restlet.ApplicationContextId;
+import de.twenty11.skysail.server.core.restlet.*;
 import de.twenty11.skysail.server.services.*;
 
-@aQute.bnd.annotation.component.Component(immediate = true, properties = { "service.pid=quartz" })
 @Slf4j
-public class QuartzApplication extends SkysailApplication implements ApplicationProvider, MenuItemProvider { //,
-      //  ManagedService {
+@Component(immediate = true)
+public class QuartzApplication extends SkysailApplication implements ApplicationProvider, MenuItemProvider {
 
-    private static final String APP_NAME = "quartz";
+    private static final String APP_NAME = "Quartz";
 
     private Scheduler scheduler;
-
-    private Dictionary<String, ?> properties;
+    private QuartzRepository repository;
+    private Map<String, String> config;
 
     public QuartzApplication() {
-        super(APP_NAME);
+        super(APP_NAME, new ApiVersion(1));
+        //documentEntities(new Todo(), new TodoList());
+        addToAppContext(ApplicationContextId.IMG, "/static/img/silk/tag_yellow.png");
     }
 
-    @Override
     @Activate
-    public void activate(ComponentContext componentContext) throws ConfigurationException {
+    public void activate(Map<String, String> config, ComponentContext componentContext) throws ConfigurationException {
         super.activate(componentContext);
-        // startScheduler();
-        addToAppContext(ApplicationContextId.IMG, "/static/img/silk/clock.png");
+        this.config = config;
+        startScheduler();
     }
 
-    @Override
     @Deactivate
-    public void deactivate(ComponentContext componentContext) {
-        super.deactivate(componentContext);
+    public void deactivate() {
+        //super.deactivate(componentContext);
         stopScheduler();
+        this.config = null;
     }
 
-    private void stopScheduler() {
-        try {
-            scheduler.shutdown();
-        } catch (SchedulerException e) {
-            e.printStackTrace();
-        }
+//    @Reference(dynamic = true, multiple = false, optional = false, target = "(name=QuartzRepository)")
+//    public void setRepository(DbRepository repo) {
+//        this.repository = (QuartzRepository) repo;
+//    }
+//
+//    public void unsetRepository(DbRepository repo) {
+//        this.repository = null;
+//    }
+
+    public QuartzRepository getRepository() {
+        return repository;
     }
 
     @Override
     protected void attach() {
-//        router.attach(new RouteBuilder("", DashboardResource.class));
-//        router.attach(new RouteBuilder("/", DashboardResource.class));
-//        router.attach(new RouteBuilder("/groups", GroupsResource.class));
-//        router.attach(new RouteBuilder("/groups/", PostGroupsResource.class));
-//        router.attach(new RouteBuilder("/groups/{id}", GroupResource.class));
-//        router.attach(new RouteBuilder("/groups/{id}/", PutGroupResource.class));
+        super.attach();
+       // router.attach(new RouteBuilder("", Top10TodosResource.class));
+
+        router.attach(new RouteBuilder("", DashboardResource.class));
+        router.attach(new RouteBuilder("/", DashboardResource.class));
+        router.attach(new RouteBuilder("/groups", GroupsResource.class));
+        router.attach(new RouteBuilder("/groups/", PostGroupsResource.class));
+        router.attach(new RouteBuilder("/groups/{id}", GroupResource.class));
+        router.attach(new RouteBuilder("/groups/{id}/", PutGroupResource.class));
 //        router.attach(new RouteBuilder("/jobs", JobsResource.class));
 //        router.attach(new RouteBuilder("/jobs/", PostJobResource.class));
 //        router.attach(new RouteBuilder("/jobs/{id}", JobResource.class));
@@ -70,28 +80,14 @@ public class QuartzApplication extends SkysailApplication implements Application
 //        router.attach(new RouteBuilder("/triggers", TriggersResource.class));
 //        router.attach(new RouteBuilder("/triggers/", PostTriggerResource.class));
 //        router.attach(new RouteBuilder("/schedules", SchedulesResource.class));
+
     }
 
-    @Override
     public List<MenuItem> getMenuEntries() {
-        MenuItem appMenu = new MenuItem("Quartz Scheduler", "/quartz", this);
+        MenuItem appMenu = new MenuItem(APP_NAME, "/" + APP_NAME + getApiVersion().getVersionPath(), this);
         appMenu.setCategory(MenuItem.Category.APPLICATION_MAIN_MENU);
         return Arrays.asList(appMenu);
     }
-
-    public Scheduler getScheduler() {
-        return scheduler;
-    }
-
-//    @Override
-//    public void updated(Dictionary<String, ?> properties) throws ConfigurationException {
-//        this.properties = properties;
-//        if (properties == null) {
-//            stopScheduler();
-//            return;
-//        }
-//        startScheduler();
-//    }
 
     private synchronized void startScheduler() {
         log.info("Activating Skysail Scheduler...");
@@ -102,11 +98,11 @@ public class QuartzApplication extends SkysailApplication implements Application
             StdSchedulerFactory sf = new StdSchedulerFactory();
             Properties props = new Properties();
 
-            Enumeration<String> keys = this.properties.keys();
-            Collections.list(keys).stream().filter(key -> {
+            Set<String> keys = this.config.keySet();
+            keys.stream().filter(key -> {
                 return key.startsWith("org.quartz");
             }).forEach(key -> {
-                props.put(key, properties.get(key));
+                props.put(key, config.get(key));
             });
 
             sf.initialize(props);
@@ -119,6 +115,18 @@ public class QuartzApplication extends SkysailApplication implements Application
         } catch (SchedulerException e) {
             log.error(e.getMessage(), e);
         }
+    }
+
+    private void stopScheduler() {
+        try {
+            scheduler.shutdown();
+        } catch (SchedulerException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public Scheduler getScheduler() {
+        return this.scheduler;
     }
 
 }

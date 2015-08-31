@@ -1,33 +1,33 @@
 package io.skysail.server.app.quartz.jobdetails;
 
+import io.skysail.api.links.Link;
 import io.skysail.server.app.quartz.QuartzApplication;
 import io.skysail.server.app.quartz.jobs.PostJobResource;
+import io.skysail.server.restlet.resources.ListServerResource;
 
-import java.util.Collections;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
-import org.quartz.JobKey;
-import org.quartz.Scheduler;
-import org.quartz.SchedulerException;
+import org.quartz.*;
 import org.quartz.impl.matchers.GroupMatcher;
+import org.restlet.resource.ResourceException;
 
-import de.twenty11.skysail.api.responses.Linkheader;
-import de.twenty11.skysail.server.core.restlet.ListServerResource;
 import de.twenty11.skysail.server.core.restlet.ResourceContextId;
 
 public class JobDetailsResource extends ListServerResource<JobDetail> {
 
     private QuartzApplication app;
-    public JobDetailsResource() {
+
+    @Override
+    protected void doInit() throws ResourceException {
+        super.doInit();
         app = (QuartzApplication)getApplication();
         addToContext(ResourceContextId.LINK_TITLE, "List Job Details");
     }
-    
+
     @Override
-    public List<JobDetail> getData() {
+    public List<JobDetail> getEntity() {
         Scheduler scheduler = app.getScheduler();
         try {
             Function<? super String, ? extends Set<JobKey>> toJobKey = groupName -> {
@@ -53,10 +53,10 @@ public class JobDetailsResource extends ListServerResource<JobDetail> {
             return Collections.emptyList();
         }
     }
-    
+
     @Override
-    public List<Linkheader> getLinkheader() {
-        return super.getLinkheader(PostJobResource.class);
+    public List<Link> getLinks() {
+        return super.getLinks(PostJobResource.class);
     }
 
 }

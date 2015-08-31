@@ -1,16 +1,15 @@
 package io.skysail.server.app.quartz.jobs;
 
+import io.skysail.api.links.Link;
+import io.skysail.api.responses.SkysailResponse;
 import io.skysail.server.app.quartz.QuartzApplication;
 import io.skysail.server.app.quartz.groups.PostGroupsResource;
+import io.skysail.server.restlet.resources.PostEntityServerResource;
 
 import java.util.List;
 
-import org.quartz.JobDetail;
-import org.quartz.SchedulerException;
+import org.quartz.*;
 
-import de.twenty11.skysail.api.responses.Linkheader;
-import de.twenty11.skysail.api.responses.SkysailResponse;
-import de.twenty11.skysail.server.core.restlet.PostEntityServerResource;
 import de.twenty11.skysail.server.core.restlet.ResourceContextId;
 
 public class PostJobResource extends PostEntityServerResource<Job> {
@@ -26,7 +25,7 @@ public class PostJobResource extends PostEntityServerResource<Job> {
 	public Job createEntityTemplate() {
 		return new Job();
 	}
-	
+
 	@Override
 	public SkysailResponse<?> addEntity(Job entity) {
 		JobDetail jobDetail = org.quartz.JobBuilder.newJob(ConsoleTimePrinterJob.class)
@@ -41,12 +40,12 @@ public class PostJobResource extends PostEntityServerResource<Job> {
         }
 		return new SkysailResponse<String>();
 	}
-	
+
 	@Override
-	public List<Linkheader> getLinkheader() {
-	    return super.getLinkheader(PostGroupsResource.class);
+	public List<Link> getLinks() {
+	    return super.getLinks(PostGroupsResource.class);
 	}
-	
+
 	@Override
 	public String redirectTo() {
 	    return super.redirectTo(JobsResource.class);

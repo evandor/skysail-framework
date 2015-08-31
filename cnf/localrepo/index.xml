@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<repository increment="1439960104543" name="Local" xmlns="http://www.osgi.org/xmlns/repository/v1.0.0">
+<repository increment="1441023169819" name="Local" xmlns="http://www.osgi.org/xmlns/repository/v1.0.0">
   <resource>
     <capability namespace="osgi.identity">
       <attribute name="osgi.identity" value="bcprov"/>
@@ -5017,6 +5017,363 @@
     </requirement>
     <requirement namespace="osgi.wiring.package">
       <directive name="filter" value="(&amp;(osgi.wiring.package=org.osgi.util.tracker)(version&gt;=1.5.0)(!(version&gt;=2.0.0)))"/>
+    </requirement>
+  </resource>
+  <resource>
+    <capability namespace="osgi.identity">
+      <attribute name="osgi.identity" value="org.apache.servicemix.bundles.c3p0"/>
+      <attribute name="type" value="osgi.bundle"/>
+      <attribute name="version" type="Version" value="0.9.1.2_1"/>
+    </capability>
+    <capability namespace="osgi.content">
+      <attribute name="osgi.content" value="556a382b728803bff161fb240dcd691791e245fdf100e32ddd596f65b2538429"/>
+      <attribute name="url" value="org.apache.servicemix.bundles.c3p0/org.apache.servicemix.bundles.c3p0-0.9.1.jar"/>
+      <attribute name="size" type="Long" value="626898"/>
+      <attribute name="mime" value="application/vnd.osgi.bundle"/>
+    </capability>
+    <capability namespace="osgi.wiring.bundle">
+      <attribute name="osgi.wiring.bundle" value="org.apache.servicemix.bundles.c3p0"/>
+      <attribute name="bundle-version" type="Version" value="0.9.1.2_1"/>
+    </capability>
+    <capability namespace="osgi.wiring.host">
+      <attribute name="osgi.wiring.host" value="org.apache.servicemix.bundles.c3p0"/>
+      <attribute name="bundle-version" type="Version" value="0.9.1.2_1"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="com.mchange.v2.cfg.junit"/>
+      <attribute name="version" type="Version" value="0.9.1.2"/>
+      <attribute name="bundle-symbolic-name" value="org.apache.servicemix.bundles.c3p0"/>
+      <attribute name="bundle-version" type="Version" value="0.9.1.2_1"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="com.mchange.v2.codegen"/>
+      <attribute name="version" type="Version" value="0.9.1.2"/>
+      <attribute name="bundle-symbolic-name" value="org.apache.servicemix.bundles.c3p0"/>
+      <attribute name="bundle-version" type="Version" value="0.9.1.2_1"/>
+      <directive name="uses" value="com.mchange.v1.lang,com.mchange.v2.debug,com.mchange.v2.io"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="com.mchange.v1.identicator"/>
+      <attribute name="version" type="Version" value="0.9.1.2"/>
+      <attribute name="bundle-symbolic-name" value="org.apache.servicemix.bundles.c3p0"/>
+      <attribute name="bundle-version" type="Version" value="0.9.1.2_1"/>
+      <directive name="uses" value="com.mchange.v2.debug,com.mchange.v1.util"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="com.mchange.v2.cfg"/>
+      <attribute name="version" type="Version" value="0.9.1.2"/>
+      <attribute name="bundle-symbolic-name" value="org.apache.servicemix.bundles.c3p0"/>
+      <attribute name="bundle-version" type="Version" value="0.9.1.2_1"/>
+      <directive name="uses" value="com.mchange.v2.log,com.mchange.v2.debug"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="com.mchange.v2.coalesce"/>
+      <attribute name="version" type="Version" value="0.9.1.2"/>
+      <attribute name="bundle-symbolic-name" value="org.apache.servicemix.bundles.c3p0"/>
+      <attribute name="bundle-version" type="Version" value="0.9.1.2_1"/>
+      <directive name="uses" value="com.mchange.v1.identicator,com.mchange.v2.debug"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="com.mchange.v2.sql"/>
+      <attribute name="version" type="Version" value="0.9.1.2"/>
+      <attribute name="bundle-symbolic-name" value="org.apache.servicemix.bundles.c3p0"/>
+      <attribute name="bundle-version" type="Version" value="0.9.1.2_1"/>
+      <directive name="uses" value="com.mchange.v2.debug,com.mchange.v2.lang,com.mchange.v2.log,com.mchange.lang"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="com.mchange.v2.encounter"/>
+      <attribute name="version" type="Version" value="0.9.1.2"/>
+      <attribute name="bundle-symbolic-name" value="org.apache.servicemix.bundles.c3p0"/>
+      <attribute name="bundle-version" type="Version" value="0.9.1.2_1"/>
+      <directive name="uses" value="com.mchange.v2.debug"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="com.mchange.v1.db"/>
+      <attribute name="version" type="Version" value="0.9.1.2"/>
+      <attribute name="bundle-symbolic-name" value="org.apache.servicemix.bundles.c3p0"/>
+      <attribute name="bundle-version" type="Version" value="0.9.1.2_1"/>
+      <directive name="uses" value="com.mchange.v2.debug"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="com.mchange.v2.c3p0.subst"/>
+      <attribute name="version" type="Version" value="0.9.1.2"/>
+      <attribute name="bundle-symbolic-name" value="org.apache.servicemix.bundles.c3p0"/>
+      <attribute name="bundle-version" type="Version" value="0.9.1.2_1"/>
+      <directive name="uses" value="com.mchange.v2.debug"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="com.mchange.v2.resourcepool"/>
+      <attribute name="version" type="Version" value="0.9.1.2"/>
+      <attribute name="bundle-symbolic-name" value="org.apache.servicemix.bundles.c3p0"/>
+      <attribute name="bundle-version" type="Version" value="0.9.1.2_1"/>
+      <directive name="uses" value="com.mchange.v2.log,com.mchange.v2.util,com.mchange.v2.async,com.mchange.v2.cfg,com.mchange.v2.lang,com.mchange.v2.debug,com.mchange.v1.util,com.mchange.lang"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="com.mchange"/>
+      <attribute name="version" type="Version" value="0.9.1.2"/>
+      <attribute name="bundle-symbolic-name" value="org.apache.servicemix.bundles.c3p0"/>
+      <attribute name="bundle-version" type="Version" value="0.9.1.2_1"/>
+      <directive name="uses" value="com.mchange.v2.debug"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="com.mchange.v2.c3p0"/>
+      <attribute name="version" type="Version" value="0.9.1.2"/>
+      <attribute name="bundle-symbolic-name" value="org.apache.servicemix.bundles.c3p0"/>
+      <attribute name="bundle-version" type="Version" value="0.9.1.2_1"/>
+      <directive name="uses" value="com.mchange.v2.c3p0.cfg,com.mchange.v2.sql,com.mchange.v2.coalesce,com.mchange.v2.util,com.mchange.v2.c3p0.management,com.mchange.v2.c3p0.impl,com.mchange.v2.log,javax.sql,javax.naming,com.mchange.v2.beans,com.mchange.v2.debug,com.mchange.v2.naming,com.mchange.v2.cfg,com.mchange.v1.io"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="com.mchange.v2.lang"/>
+      <attribute name="version" type="Version" value="0.9.1.2"/>
+      <attribute name="bundle-symbolic-name" value="org.apache.servicemix.bundles.c3p0"/>
+      <attribute name="bundle-version" type="Version" value="0.9.1.2_1"/>
+      <directive name="uses" value="com.mchange.v2.debug,com.mchange.v2.log,com.mchange.v1.util"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="com.mchange.v2.codegen.bean"/>
+      <attribute name="version" type="Version" value="0.9.1.2"/>
+      <attribute name="bundle-symbolic-name" value="org.apache.servicemix.bundles.c3p0"/>
+      <attribute name="bundle-version" type="Version" value="0.9.1.2_1"/>
+      <directive name="uses" value="com.mchange.v2.codegen,com.mchange.v1.lang,com.mchange.v2.debug,com.mchange.v2.log,com.mchange.v2.ser,com.mchange.v1.xml,org.w3c.dom,com.mchange.v2.naming"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="com.mchange.v2.c3p0.mbean"/>
+      <attribute name="version" type="Version" value="0.9.1.2"/>
+      <attribute name="bundle-symbolic-name" value="org.apache.servicemix.bundles.c3p0"/>
+      <attribute name="bundle-version" type="Version" value="0.9.1.2_1"/>
+      <directive name="uses" value="javax.naming,com.mchange.v2.c3p0,com.mchange.v2.log,com.mchange.v2.debug"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="com.mchange.v2.util"/>
+      <attribute name="version" type="Version" value="0.9.1.2"/>
+      <attribute name="bundle-symbolic-name" value="org.apache.servicemix.bundles.c3p0"/>
+      <attribute name="bundle-version" type="Version" value="0.9.1.2_1"/>
+      <directive name="uses" value="com.mchange.v2.debug,com.mchange.v1.util,com.mchange.v2.lang"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="com.mchange.v2.c3p0.impl"/>
+      <attribute name="version" type="Version" value="0.9.1.2"/>
+      <attribute name="bundle-symbolic-name" value="org.apache.servicemix.bundles.c3p0"/>
+      <attribute name="bundle-version" type="Version" value="0.9.1.2_1"/>
+      <directive name="uses" value="javax.sql,com.mchange.v1.util,com.mchange.v2.c3p0.stmt,com.mchange.v2.c3p0.cfg,com.mchange.v2.c3p0,com.mchange.v2.log,com.mchange.lang,com.mchange.v2.cfg,com.mchange.v2.sql,com.mchange.v2.ser,com.mchange.v2.encounter,com.mchange.v2.naming,com.mchange.v2.sql.filter,com.mchange.v2.c3p0.util,com.mchange.v2.lang,com.mchange.v2.resourcepool,com.mchange.v1.db.sql,com.mchange.v2.async,com.mchange.v2.coalesce,com.mchange.v1.lang,com.mchange.v2.debug,javax.naming,com.mchange.v2.util"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="com.mchange.v2.c3p0.util"/>
+      <attribute name="version" type="Version" value="0.9.1.2"/>
+      <attribute name="bundle-symbolic-name" value="org.apache.servicemix.bundles.c3p0"/>
+      <attribute name="bundle-version" type="Version" value="0.9.1.2_1"/>
+      <directive name="uses" value="com.mchange.v2.sql.filter,javax.sql,com.mchange.v2.debug,com.mchange.v2.sql,com.mchange.v2.c3p0"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="com.mchange.v2.io"/>
+      <attribute name="version" type="Version" value="0.9.1.2"/>
+      <attribute name="bundle-symbolic-name" value="org.apache.servicemix.bundles.c3p0"/>
+      <attribute name="bundle-version" type="Version" value="0.9.1.2_1"/>
+      <directive name="uses" value="com.mchange.v2.debug"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="com.mchange.v2.log"/>
+      <attribute name="version" type="Version" value="0.9.1.2"/>
+      <attribute name="bundle-symbolic-name" value="org.apache.servicemix.bundles.c3p0"/>
+      <attribute name="bundle-version" type="Version" value="0.9.1.2_1"/>
+      <directive name="uses" value="com.mchange.v2.debug,com.mchange.lang,com.mchange.v2.cfg,com.mchange.v1.util"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="com.mchange.v1.db.sql"/>
+      <attribute name="version" type="Version" value="0.9.1.2"/>
+      <attribute name="bundle-symbolic-name" value="org.apache.servicemix.bundles.c3p0"/>
+      <attribute name="bundle-version" type="Version" value="0.9.1.2_1"/>
+      <directive name="uses" value="com.mchange.v2.log,com.mchange.v2.debug"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="com.mchange.lang"/>
+      <attribute name="version" type="Version" value="0.9.1.2"/>
+      <attribute name="bundle-symbolic-name" value="org.apache.servicemix.bundles.c3p0"/>
+      <attribute name="bundle-version" type="Version" value="0.9.1.2_1"/>
+      <directive name="uses" value="com.mchange.v2.debug,com.mchange.v2.lang"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="com.mchange.util"/>
+      <attribute name="version" type="Version" value="0.9.1.2"/>
+      <attribute name="bundle-symbolic-name" value="org.apache.servicemix.bundles.c3p0"/>
+      <attribute name="bundle-version" type="Version" value="0.9.1.2_1"/>
+      <directive name="uses" value="com.mchange.v2.debug"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="com.mchange.v2.c3p0.management"/>
+      <attribute name="version" type="Version" value="0.9.1.2"/>
+      <attribute name="bundle-symbolic-name" value="org.apache.servicemix.bundles.c3p0"/>
+      <attribute name="bundle-version" type="Version" value="0.9.1.2_1"/>
+      <directive name="uses" value="com.mchange.v2.c3p0,com.mchange.v2.log,javax.management,com.mchange.v2.debug,javax.sql,com.mchange.v2.c3p0.impl,com.mchange.v2.management,com.mchange.v1.lang"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="com.mchange.v2.log.jdk14logging"/>
+      <attribute name="version" type="Version" value="0.9.1.2"/>
+      <attribute name="bundle-symbolic-name" value="org.apache.servicemix.bundles.c3p0"/>
+      <attribute name="bundle-version" type="Version" value="0.9.1.2_1"/>
+      <directive name="uses" value="com.mchange.v2.debug,com.mchange.v2.log,com.mchange.v2.util"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="com.mchange.v2.ser"/>
+      <attribute name="version" type="Version" value="0.9.1.2"/>
+      <attribute name="bundle-symbolic-name" value="org.apache.servicemix.bundles.c3p0"/>
+      <attribute name="bundle-version" type="Version" value="0.9.1.2_1"/>
+      <directive name="uses" value="com.mchange.v2.debug,com.mchange.v1.io,com.mchange.v2.log"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="com.mchange.v1.io"/>
+      <attribute name="version" type="Version" value="0.9.1.2"/>
+      <attribute name="bundle-symbolic-name" value="org.apache.servicemix.bundles.c3p0"/>
+      <attribute name="bundle-version" type="Version" value="0.9.1.2_1"/>
+      <directive name="uses" value="com.mchange.v2.debug,com.mchange.v2.log"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="com.mchange.v1.util"/>
+      <attribute name="version" type="Version" value="0.9.1.2"/>
+      <attribute name="bundle-symbolic-name" value="org.apache.servicemix.bundles.c3p0"/>
+      <attribute name="bundle-version" type="Version" value="0.9.1.2_1"/>
+      <directive name="uses" value="com.mchange.v2.lang,com.mchange.v2.log,com.mchange.v2.debug,com.mchange.util"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="com.mchange.v2.debug"/>
+      <attribute name="version" type="Version" value="0.9.1.2"/>
+      <attribute name="bundle-symbolic-name" value="org.apache.servicemix.bundles.c3p0"/>
+      <attribute name="bundle-version" type="Version" value="0.9.1.2_1"/>
+      <directive name="uses" value="com.mchange.lang"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="com.mchange.v2.c3p0.jboss"/>
+      <attribute name="version" type="Version" value="0.9.1.2"/>
+      <attribute name="bundle-symbolic-name" value="org.apache.servicemix.bundles.c3p0"/>
+      <attribute name="bundle-version" type="Version" value="0.9.1.2_1"/>
+      <directive name="uses" value="javax.naming,com.mchange.v2.c3p0,com.mchange.v2.log,com.mchange.v2.debug"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="com.mchange.v2.async"/>
+      <attribute name="version" type="Version" value="0.9.1.2"/>
+      <attribute name="bundle-symbolic-name" value="org.apache.servicemix.bundles.c3p0"/>
+      <attribute name="bundle-version" type="Version" value="0.9.1.2_1"/>
+      <directive name="uses" value="com.mchange.v1.util,com.mchange.v2.log,com.mchange.v2.util,com.mchange.v2.debug,com.mchange.v2.io"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="com.mchange.v2.c3p0.stmt"/>
+      <attribute name="version" type="Version" value="0.9.1.2"/>
+      <attribute name="bundle-symbolic-name" value="org.apache.servicemix.bundles.c3p0"/>
+      <attribute name="bundle-version" type="Version" value="0.9.1.2_1"/>
+      <directive name="uses" value="com.mchange.v2.debug,com.mchange.v2.async,com.mchange.v1.db.sql,com.mchange.v2.sql,com.mchange.v2.log,com.mchange.v2.util,com.mchange.v2.io,com.mchange.v2.coalesce,com.mchange.v1.util,javax.sql,com.mchange.v2.c3p0,com.mchange.v2.lang"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="com.mchange.v1.lang"/>
+      <attribute name="version" type="Version" value="0.9.1.2"/>
+      <attribute name="bundle-symbolic-name" value="org.apache.servicemix.bundles.c3p0"/>
+      <attribute name="bundle-version" type="Version" value="0.9.1.2_1"/>
+      <directive name="uses" value="com.mchange.v2.debug"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="com.mchange.v2.holders"/>
+      <attribute name="version" type="Version" value="0.9.1.2"/>
+      <attribute name="bundle-symbolic-name" value="org.apache.servicemix.bundles.c3p0"/>
+      <attribute name="bundle-version" type="Version" value="0.9.1.2_1"/>
+      <directive name="uses" value="com.mchange.v2.ser,com.mchange.v2.debug"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="com.mchange.v2.naming"/>
+      <attribute name="version" type="Version" value="0.9.1.2"/>
+      <attribute name="bundle-symbolic-name" value="org.apache.servicemix.bundles.c3p0"/>
+      <attribute name="bundle-version" type="Version" value="0.9.1.2_1"/>
+      <directive name="uses" value="com.mchange.v2.debug,javax.naming,com.mchange.v2.ser,com.mchange.v2.lang,com.mchange.v2.log,com.mchange.v2.beans,javax.naming.spi"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="com.mchange.v2.codegen.intfc"/>
+      <attribute name="version" type="Version" value="0.9.1.2"/>
+      <attribute name="bundle-symbolic-name" value="org.apache.servicemix.bundles.c3p0"/>
+      <attribute name="bundle-version" type="Version" value="0.9.1.2_1"/>
+      <directive name="uses" value="com.mchange.v2.debug,com.mchange.v2.codegen,com.mchange.v1.lang"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="com.mchange.v2.c3p0.cfg"/>
+      <attribute name="version" type="Version" value="0.9.1.2"/>
+      <attribute name="bundle-symbolic-name" value="org.apache.servicemix.bundles.c3p0"/>
+      <attribute name="bundle-version" type="Version" value="0.9.1.2_1"/>
+      <directive name="uses" value="com.mchange.v2.cfg,com.mchange.v2.c3p0.impl,com.mchange.v2.log,com.mchange.v2.beans,com.mchange.v1.lang,org.w3c.dom,javax.xml.parsers,com.mchange.v1.xml,com.mchange.v2.debug"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="com.mchange.v2.c3p0.filter"/>
+      <attribute name="version" type="Version" value="0.9.1.2"/>
+      <attribute name="bundle-symbolic-name" value="org.apache.servicemix.bundles.c3p0"/>
+      <attribute name="bundle-version" type="Version" value="0.9.1.2_1"/>
+      <directive name="uses" value="com.mchange.v2.debug,javax.sql"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="com.mchange.v2.management"/>
+      <attribute name="version" type="Version" value="0.9.1.2"/>
+      <attribute name="bundle-symbolic-name" value="org.apache.servicemix.bundles.c3p0"/>
+      <attribute name="bundle-version" type="Version" value="0.9.1.2_1"/>
+      <directive name="uses" value="com.mchange.v2.debug,javax.management"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="com.mchange.v1.xml"/>
+      <attribute name="version" type="Version" value="0.9.1.2"/>
+      <attribute name="bundle-symbolic-name" value="org.apache.servicemix.bundles.c3p0"/>
+      <attribute name="bundle-version" type="Version" value="0.9.1.2_1"/>
+      <directive name="uses" value="com.mchange.v2.debug,org.w3c.dom,com.mchange.v1.util"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="com.mchange.v2.log.log4j"/>
+      <attribute name="version" type="Version" value="0.9.1.2"/>
+      <attribute name="bundle-symbolic-name" value="org.apache.servicemix.bundles.c3p0"/>
+      <attribute name="bundle-version" type="Version" value="0.9.1.2_1"/>
+      <directive name="uses" value="com.mchange.v2.debug,org.apache.log4j,com.mchange.v2.log"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="com.mchange.v2.sql.filter"/>
+      <attribute name="version" type="Version" value="0.9.1.2"/>
+      <attribute name="bundle-symbolic-name" value="org.apache.servicemix.bundles.c3p0"/>
+      <attribute name="bundle-version" type="Version" value="0.9.1.2_1"/>
+      <directive name="uses" value="com.mchange.v2.debug,com.mchange.v2.codegen.intfc,javax.sql,com.mchange.v1.lang"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="com.mchange.v2.beans"/>
+      <attribute name="version" type="Version" value="0.9.1.2"/>
+      <attribute name="bundle-symbolic-name" value="org.apache.servicemix.bundles.c3p0"/>
+      <attribute name="bundle-version" type="Version" value="0.9.1.2_1"/>
+      <directive name="uses" value="com.mchange.v2.log,com.mchange.v2.lang,com.mchange.v2.debug"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="com.mchange.v2"/>
+      <attribute name="version" type="Version" value="0.9.1.2"/>
+      <attribute name="bundle-symbolic-name" value="org.apache.servicemix.bundles.c3p0"/>
+      <attribute name="bundle-version" type="Version" value="0.9.1.2_1"/>
+      <directive name="uses" value="com.mchange.v2.debug"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="com.mchange.v1"/>
+      <attribute name="version" type="Version" value="0.9.1.2"/>
+      <attribute name="bundle-symbolic-name" value="org.apache.servicemix.bundles.c3p0"/>
+      <attribute name="bundle-version" type="Version" value="0.9.1.2_1"/>
+      <directive name="uses" value="com.mchange.v2.debug"/>
+    </capability>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=javax.management)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=javax.naming)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=javax.naming.spi)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=javax.sql)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=javax.xml.parsers)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.apache.log4j)"/>
+      <directive name="resolution" value="optional"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.w3c.dom)"/>
     </requirement>
   </resource>
   <resource>

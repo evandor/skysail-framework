@@ -1,21 +1,17 @@
 package io.skysail.server.app.quartz.triggers;
 
+import io.skysail.api.links.Link;
 import io.skysail.server.app.quartz.QuartzApplication;
 import io.skysail.server.app.quartz.jobs.JobsResource;
+import io.skysail.server.restlet.resources.ListServerResource;
 
-import java.util.Collections;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
-import org.quartz.Scheduler;
-import org.quartz.SchedulerException;
-import org.quartz.TriggerKey;
+import org.quartz.*;
 import org.quartz.impl.matchers.GroupMatcher;
 
-import de.twenty11.skysail.api.responses.Linkheader;
-import de.twenty11.skysail.server.core.restlet.ListServerResource;
 import de.twenty11.skysail.server.core.restlet.ResourceContextId;
 
 public class TriggersResource extends ListServerResource<Trigger> {
@@ -28,7 +24,7 @@ public class TriggersResource extends ListServerResource<Trigger> {
     }
 
     @Override
-    public List<Trigger> getData() {
+    public List<Trigger> getEntity() {
         Scheduler scheduler = app.getScheduler();
         try {
             Function<? super String, ? extends Set<TriggerKey>> toJobKey = groupName -> {
@@ -57,7 +53,7 @@ public class TriggersResource extends ListServerResource<Trigger> {
     }
 
     @Override
-    public List<Linkheader> getLinkheader() {
-        return super.getLinkheader(JobsResource.class, PostTriggerResource.class);
+    public List<Link> getLinks() {
+        return super.getLinks(JobsResource.class, PostTriggerResource.class);
     }
 }

@@ -2,19 +2,12 @@ package io.skysail.server.app.quartz.schedules;
 
 import io.skysail.server.app.quartz.QuartzApplication;
 import io.skysail.server.app.quartz.jobs.Job;
+import io.skysail.server.restlet.resources.ListServerResource;
 
-import java.util.Collections;
-import java.util.List;
-import java.util.Set;
-import java.util.function.Function;
-import java.util.stream.Collectors;
+import java.util.*;
 
-import org.quartz.JobKey;
 import org.quartz.Scheduler;
-import org.quartz.SchedulerException;
-import org.quartz.impl.matchers.GroupMatcher;
 
-import de.twenty11.skysail.server.core.restlet.ListServerResource;
 import de.twenty11.skysail.server.core.restlet.ResourceContextId;
 
 public class SchedulesResource extends ListServerResource<Job> {
@@ -26,9 +19,9 @@ public class SchedulesResource extends ListServerResource<Job> {
 		app = (QuartzApplication) getApplication();
 		addToContext(ResourceContextId.LINK_TITLE, "List Jobs");
 	}
-	
+
 	@Override
-    public List<Job> getData() {
+    public List<Job> getEntity() {
 		Scheduler scheduler = app.getScheduler();
 //		try {
 ////			Function<? super String, ? extends Set<JobKey>> toJobKey = groupName -> {

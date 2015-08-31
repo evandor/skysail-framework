@@ -1,8 +1,10 @@
 package io.skysail.server.app.quartz.jobs;
 
-import io.skysail.api.forms.Reference;
-
 import java.util.*;
+
+import org.restlet.resource.Resource;
+
+import aQute.bnd.annotation.component.*;
 
 @Component(immediate = true)
 public class JobsProviderImpl implements io.skysail.api.forms.SelectionProvider {
@@ -24,7 +26,7 @@ public class JobsProviderImpl implements io.skysail.api.forms.SelectionProvider 
         JobsProviderImpl.instance = null;
     }
 
-    @Reference(multiple = true, optional = false, dynamic = true)
+   // @Reference(multiple = true, optional = false, dynamic = true)
     public void addJob(org.quartz.Job job) {
         jobs.add(job);
     }
@@ -44,5 +46,9 @@ public class JobsProviderImpl implements io.skysail.api.forms.SelectionProvider 
     public void setConfiguration(Object osgiServicesProvider) {
     }
 
-    
+    @Override
+    public void setResource(Resource resource) {
+    }
+
+
 }

@@ -1,12 +1,11 @@
 package io.skysail.server.app.quartz.jobs;
 
+import io.skysail.api.forms.Field;
 import io.skysail.server.app.quartz.groups.GroupsProvider;
 
 import javax.validation.constraints.Size;
 
 import org.quartz.JobKey;
-
-import de.twenty11.skysail.api.forms.Field;
 
 public class Job {
 
@@ -21,7 +20,7 @@ public class Job {
     private String group;
 
     private String id;
-	
+
 	public Job(JobKey jobKey) {
         this.name = jobKey.getName();
         this.group = jobKey.getGroup();
@@ -47,7 +46,7 @@ public class Job {
 	public String getJobImpl() {
         return jobImpl;
     }
-	
+
 	public void setJobImpl(String jobImpl) {
         this.jobImpl = jobImpl;
     }

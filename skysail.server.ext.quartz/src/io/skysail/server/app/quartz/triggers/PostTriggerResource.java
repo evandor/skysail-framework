@@ -1,9 +1,9 @@
 package io.skysail.server.app.quartz.triggers;
 
+import io.skysail.api.responses.SkysailResponse;
 import io.skysail.server.app.quartz.QuartzApplication;
 import io.skysail.server.app.quartz.jobs.JobsResource;
-import de.twenty11.skysail.api.responses.SkysailResponse;
-import de.twenty11.skysail.server.core.restlet.PostEntityServerResource;
+import io.skysail.server.restlet.resources.PostEntityServerResource;
 import de.twenty11.skysail.server.core.restlet.ResourceContextId;
 
 public class PostTriggerResource extends PostEntityServerResource<Trigger> {
@@ -28,7 +28,7 @@ public class PostTriggerResource extends PostEntityServerResource<Trigger> {
 //		app.getScheduler().
         return new SkysailResponse<String>();
 	}
-	
+
 	@Override
 	public String redirectTo() {
 	    return super.redirectTo(JobsResource.class);

@@ -17,7 +17,7 @@ public class GroupResource extends EntityServerResource<Group> {
 	}
 
 	@Override
-	public Group getData() {
+	public Group getEntity() {
 		return GroupsRepository.getInstance().getById(id);
 	}
 

@@ -1,15 +1,12 @@
 package io.skysail.server.app.quartz.schedules;
 
+import io.skysail.api.responses.SkysailResponse;
 import io.skysail.server.app.quartz.QuartzApplication;
+import io.skysail.server.restlet.resources.PostEntityServerResource;
 
-import org.quartz.JobKey;
-import org.quartz.SchedulerException;
-import org.quartz.SimpleScheduleBuilder;
-import org.quartz.Trigger;
+import org.quartz.*;
 import org.restlet.resource.ResourceException;
 
-import de.twenty11.skysail.api.responses.SkysailResponse;
-import de.twenty11.skysail.server.core.restlet.PostEntityServerResource;
 import de.twenty11.skysail.server.core.restlet.ResourceContextId;
 
 public class PostScheduleResource extends PostEntityServerResource<Schedule> {
@@ -52,7 +49,7 @@ public class PostScheduleResource extends PostEntityServerResource<Schedule> {
     @Override
     public SkysailResponse<?> addEntity(Schedule entity) {
         Trigger trigger = org.quartz.TriggerBuilder.newTrigger().withIdentity("trigger1", "group1").startNow()
-                .forJob(JobKey.jobKey(entity.getJobName(), entity.getJobGroup())) 
+                .forJob(JobKey.jobKey(entity.getJobName(), entity.getJobGroup()))
                 .withSchedule(SimpleScheduleBuilder.simpleSchedule().withIntervalInSeconds(60).repeatForever()).build();
         try {
             app.getScheduler().scheduleJob(trigger);

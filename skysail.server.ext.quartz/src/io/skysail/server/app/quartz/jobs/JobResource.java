@@ -1,15 +1,14 @@
 package io.skysail.server.app.quartz.jobs;
 
+import io.skysail.api.links.Link;
+import io.skysail.api.responses.SkysailResponse;
 import io.skysail.server.app.quartz.groups.GroupsResource;
 import io.skysail.server.app.quartz.schedules.PostScheduleResource;
+import io.skysail.server.restlet.resources.EntityServerResource;
 
 import java.util.List;
 
 import org.restlet.resource.ResourceException;
-
-import de.twenty11.skysail.api.responses.Linkheader;
-import de.twenty11.skysail.api.responses.SkysailResponse;
-import de.twenty11.skysail.server.core.restlet.EntityServerResource;
 
 public class JobResource extends EntityServerResource<Job> {
 
@@ -20,7 +19,7 @@ public class JobResource extends EntityServerResource<Job> {
 	}
 
 	@Override
-	public Job getData() {
+	public Job getEntity() {
 		return JobsRepository.getInstance().getById(id);
 	}
 
@@ -33,10 +32,10 @@ public class JobResource extends EntityServerResource<Job> {
 	public SkysailResponse<?> eraseEntity() {
 		return null;
 	}
-	
+
 	@Override
-	public List<Linkheader> getLinkheader() {
-	    return super.getLinkheader(PostScheduleResource.class, GroupsResource.class);
+	public List<Link> getLinks() {
+	    return super.getLinks(PostScheduleResource.class, GroupsResource.class);
 	}
 
 }

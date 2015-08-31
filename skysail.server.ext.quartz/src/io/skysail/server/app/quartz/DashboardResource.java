@@ -1,11 +1,15 @@
 package io.skysail.server.app.quartz;
 
 import io.skysail.api.links.Link;
+import io.skysail.server.app.quartz.groups.GroupsResource;
+import io.skysail.server.app.quartz.jobdetails.JobDetailsResource;
+import io.skysail.server.app.quartz.triggers.TriggersResource;
 import io.skysail.server.restlet.resources.ListServerResource;
 
 import java.util.*;
 
-import com.google.common.util.concurrent.AbstractScheduledService.Scheduler;
+import org.quartz.Scheduler;
+
 
 public class DashboardResource extends ListServerResource<SchedulerDetails> {
 
@@ -14,10 +18,10 @@ public class DashboardResource extends ListServerResource<SchedulerDetails> {
 	public DashboardResource() {
 	 app = (QuartzApplication)getApplication();
     }
-	
+
 	@Override
 	public List<Link> getLinks() {
-	    return super.getLinks();//JobDetailsResource.class, TriggersResource.class);
+	    return super.getLinks(GroupsResource.class, JobDetailsResource.class, TriggersResource.class);
 	}
 
     @Override

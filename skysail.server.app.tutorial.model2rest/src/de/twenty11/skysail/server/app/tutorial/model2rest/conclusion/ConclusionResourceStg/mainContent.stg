@@ -1,0 +1,29 @@
+mainContent(user, converter, messages, model) ::= <<
+
+<div class="row">
+    <div class="col-md-2">$menuNav(model.links)$</div>
+    <div class="col-md-7">
+<!-- contentHeader -->
+$contentHeader(converter, messages)$
+    </div>
+    <div class="col-md-1">&nbsp;</div>
+	<div class="col-md-2">
+		<span class="label label-success" style="font-size:110%">Code</span>
+		<br><br>
+        <p style="font-size:100%">The complete code for this tutorial can be found at
+          <a href='https://github.com/evandor/skysail/tree/master/skysail.server.app.tutorial.model2rest/src/de/twenty11/skysail/server/app/tutorial/model2rest'>github</a>.
+        </p>
+		<hr>
+		$good2know()$
+	</div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-2">&nbsp;</div>
+    <div class="col-md-7">
+        &nbsp;
+    </div>
+    <div class="col-md-3">
+    </div>
+  </div>
+>>

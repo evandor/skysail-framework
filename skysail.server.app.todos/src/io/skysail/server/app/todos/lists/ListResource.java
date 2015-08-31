@@ -75,7 +75,8 @@ public class ListResource extends EntityServerResource<TodoList> {
 
     @Override
     public List<Link> getLinks() {
-        return super.getLinks(ListResource.class, TodosResource.class, PutListResource.class, ListChartResource.class);
+        // ListResource.class,
+        return super.getLinks(TodosResource.class, PutListResource.class, ListChartResource.class);
     }
 
     @Override

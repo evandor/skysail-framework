@@ -8,7 +8,7 @@ import io.skysail.server.app.todos.*;
 import org.junit.*;
 import org.restlet.data.Status;
 
-public class ListResourceTest extends TodoListResourceTest {
+public class ListResourceTest extends AbstractListResourceTest {
 
     @Test
     public void gets_list_representation() {

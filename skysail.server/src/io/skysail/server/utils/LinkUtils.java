@@ -27,15 +27,6 @@ public class LinkUtils {
         return fromResource(app, ssr, null);
     }
 
-    private static Link fromResource(SkysailServerResource<?> skysailServerResource,
-            Class<? extends SkysailServerResource<?>> ssr) {
-        if (noRouteBuilderFound(skysailServerResource.getApplication(), ssr)) {
-            log.warn("problem with linkheader for resource {}; no routeBuilder was found.", ssr.getSimpleName());
-            return null;
-        }
-        return createLink(skysailServerResource, ssr);
-    }
-
     /**
      * tries to create a link (with given title) for the provided
      * SkysailServerResource and SkysailApplication.
@@ -45,7 +36,19 @@ public class LinkUtils {
             log.warn("problem with linkheader for resource {}; no routeBuilder was found.", ssr.getSimpleName());
             return null;
         }
-        return createLink(app, ssr, title, null);
+        return createLink(app, ssr, title);
+    }
+
+    public static List<Link> fromResources(SkysailServerResource<?> skysailServerResource, Object entity,
+            Class<? extends SkysailServerResource<?>>[] classes) {
+        List<Link> links = Arrays.stream(classes).map(determineLink(skysailServerResource))//
+                .filter(lh -> {
+                    return lh != null;// && lh.isApplicable();
+                }).collect(Collectors.toList());
+
+        links.addAll(getAssociatedLinks(entity, skysailServerResource));
+
+        return links;
     }
 
     public static String replaceValues(final String template, Map<String, Object> attributes) {
@@ -63,34 +66,42 @@ public class LinkUtils {
         }
         matcher.appendTail(sb);
         return sb.toString();
+    }
 
+    private static Link fromResource(SkysailServerResource<?> skysailServerResource,
+            Class<? extends SkysailServerResource<?>> ssr) {
+        if (noRouteBuilderFound(skysailServerResource.getApplication(), ssr)) {
+            log.warn("problem with linkheader for resource {}; no routeBuilder was found.", ssr.getSimpleName());
+            return null;
+        }
+        return createLink(skysailServerResource, ssr);
     }
 
     private static Link createLink(SkysailApplication app, Class<? extends SkysailServerResource<?>> resourceClass,
-            String title, String path) {
+            String title) {
 
         RouteBuilder routeBuilder = app.getRouteBuilders(resourceClass).get(0);
         Optional<SkysailServerResource<?>> resource = createNewInstance(resourceClass);
 
         Link link = new Link.Builder(determineUri(app, routeBuilder))
-            .definingClass(resourceClass)
-            .relation(resource.isPresent() ? resource.get().getLinkRelation() : LinkRelation.ALTERNATE)
-            .title(resource.isPresent() ? resource.get().getFromContext(ResourceContextId.LINK_TITLE) : "unknown")
-            .authenticationNeeded(routeBuilder.needsAuthentication())
-            .needsRoles(routeBuilder.getRolesForAuthorization())
-            .image(MediaType.TEXT_HTML, resource.isPresent() ? resource.get().getFromContext(ResourceContextId.LINK_GLYPH) : null)
-            .requestPath(path)
+                .definingClass(resourceClass)
+                .relation(resource.isPresent() ? resource.get().getLinkRelation() : LinkRelation.ALTERNATE)
+                .title(resource.isPresent() ? resource.get().getFromContext(ResourceContextId.LINK_TITLE) : "unknown")
+                .authenticationNeeded(routeBuilder.needsAuthentication())
+                .needsRoles(routeBuilder.getRolesForAuthorization())
+                .image(MediaType.TEXT_HTML,
+                        resource.isPresent() ? resource.get().getFromContext(ResourceContextId.LINK_GLYPH) : null)
             .build();
 
         log.debug("created link {}", link);
         return link;
     }
 
-    private static Link createLink(SkysailServerResource<?> skysailServerResource, Class<? extends SkysailServerResource<?>> resourceClass) {
+    private static Link createLink(SkysailServerResource<?> skysailServerResource,
+            Class<? extends SkysailServerResource<?>> resourceClass) {
         String path = skysailServerResource.getRequest().getOriginalRef().getPath();
-        return createLink(skysailServerResource.getApplication(), resourceClass, null, path);
+        return createLink(skysailServerResource.getApplication(), resourceClass, null);
     }
-
 
     private static Optional<SkysailServerResource<?>> createNewInstance(
             Class<? extends SkysailServerResource<?>> resource) {
@@ -111,18 +122,6 @@ public class LinkUtils {
         return app.getRouteBuilders(ssr).size() == 0;
     }
 
-    public static List<Link> fromResources(SkysailServerResource<?> skysailServerResource, Object entity, Class<? extends SkysailServerResource<?>>[] classes) {
-         List<Link> links = Arrays.stream(classes)
-                .map(determineLink(skysailServerResource))//
-                .filter(lh -> {
-                    return lh != null;// && lh.isApplicable();
-                }).collect(Collectors.toList());
-
-         links.addAll(getAssociatedLinks(entity, skysailServerResource));
-
-         return links;
-    }
-
     private static Function<? super Class<? extends SkysailServerResource<?>>, ? extends Link> determineLink(
             SkysailServerResource<?> skysailServerResource) {
         return cls -> LinkUtils.fromResource(skysailServerResource, cls);
@@ -140,16 +139,14 @@ public class LinkUtils {
      * getLinks method, we'll get six links in the result.
      * </p>
      */
-    private  static <T> List<? extends Link> getAssociatedLinks(Object entity, SkysailServerResource<T> skysailServerResource) {
+    private static <T> List<? extends Link> getAssociatedLinks(Object entity,
+            SkysailServerResource<T> skysailServerResource) {
         if (!(skysailServerResource instanceof ListServerResource)) {
             return Collections.emptyList();
         }
         ListServerResource<?> listServerResource = (ListServerResource<?>) skysailServerResource;
         List<Class<? extends SkysailServerResource<?>>> entityResourceClasses = listServerResource
                 .getAssociatedServerResources();
-        // List<Class<? extends EntityServerResource<?>>> entityResourceClass =
-        // listServerResource.getAssociatedEntityResources();
-        //T entity = getCurrentEntity();
         List<Link> result = new ArrayList<>();
 
         if (entityResourceClasses != null && entity instanceof List) {
@@ -198,7 +195,8 @@ public class LinkUtils {
             List<Link> result) {
         String path = linkTemplate.getUri();
 
-        //String href = StringParserUtils.substitutePlaceholders(path, entityResource);
+        // String href = StringParserUtils.substitutePlaceholders(path,
+        // entityResource);
         String href = path;
         // hmmm... last resort
         if (id != null && path.contains("{") && path.contains("}")) {

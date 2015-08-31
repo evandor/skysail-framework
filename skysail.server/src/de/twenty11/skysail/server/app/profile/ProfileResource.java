@@ -31,7 +31,7 @@ public class ProfileResource extends EntityServerResource<Profile> {
 	public List<Link> getLinks() {
 	    Subject subject = SecurityUtils.getSubject();
 	    if (!((String)getUsername(subject)).equals("demo")) {
-	        return super.getLinks(PutPasswordResource.class);
+	        return null;//super.getLinks(PutPasswordResource.class);
 	    }
 	    return Collections.emptyList();
 	}

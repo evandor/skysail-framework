@@ -17,7 +17,14 @@ import org.restlet.data.MediaType;
  */
 public class TodoListsHtmlLargeTests extends IntegrationTests<TodoListBrowser, TodoList> {
 
+    //private static BrowserUtils browserUtils;
+
     private TodoList todoList;
+
+    @BeforeClass
+    public static void before() {
+      //  browserUtils = new BrowserUtils();
+    }
 
     @Before
     public void setUp() {
@@ -26,18 +33,21 @@ public class TodoListsHtmlLargeTests extends IntegrationTests<TodoListBrowser, T
         todoList = createRandomTodoList();
     }
 
+    @After
+    public void tearDown() throws Exception {
+         //browserUtils.screenShot(browser.getUrl());
+    }
+
     @Test
     public void creating_new_todolist_will_persists_it() throws Exception {
         createListAndCheckAssertions();
     }
 
-
-
     private void createListAndCheckAssertions() throws IOException {
         browser.createTodoList(todoList);
         String html = browser.getTodoLists().getText();
-        System.out.println(html);
         assertThat(html, containsString(todoList.getName()));
+        assertThat(html, containsString(todoList.getName().substring(0, 17) + "..."));
     }
 
     private TodoList createRandomTodoList() {

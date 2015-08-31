@@ -1,21 +1,26 @@
 package io.skysail.server.app.todos.test.browser;
 
-import io.skysail.client.testsupport.ApplicationBrowser;
-import io.skysail.client.testsupport.ApplicationClient;
-import io.skysail.server.app.todos.TodoApplication;
-import io.skysail.server.app.todos.TodoList;
+import static org.hamcrest.CoreMatchers.*;
+import static org.junit.Assert.assertThat;
+import io.skysail.client.testsupport.*;
+import io.skysail.server.app.todos.*;
 import lombok.extern.slf4j.Slf4j;
 
-import org.restlet.data.Form;
-import org.restlet.data.MediaType;
-import org.restlet.data.Method;
+import org.restlet.data.*;
 import org.restlet.representation.Representation;
+import org.restlet.util.Series;
 
 @Slf4j
 public class TodoListBrowser extends ApplicationBrowser<TodoListBrowser, TodoList> {
 
     public TodoListBrowser(MediaType mediaType, String port) {
         super(TodoApplication.APP_NAME, mediaType, port);
+    }
+
+    public void navigateToPostList() {
+        log.info("{}navigating to PostListResource", ApplicationClient.TESTTAG);
+        login();
+        navigateToPostTodoListAs(client);
     }
 
     public String createTodoList(TodoList todoList) {
@@ -29,8 +34,8 @@ public class TodoListBrowser extends ApplicationBrowser<TodoListBrowser, TodoLis
     public Representation getTodoLists() {
         log.info("{}retrieving TodoLists", ApplicationClient.TESTTAG);
         login();
-        getTodoLists(client);
-        return client.getCurrentRepresentation();
+        return getTodoLists(client);
+//        return client.getCurrentRepresentation();
     }
 
     public void deleteTodoList(String id) {
@@ -52,6 +57,21 @@ public class TodoListBrowser extends ApplicationBrowser<TodoListBrowser, TodoLis
         updateTodoList(client, theTodoList);
     }
 
+    public void verifyLocation(String expectedLocationEnding) {
+        Reference location = client.getLocation();
+        assertThat(location.toString(), endsWith(expectedLocationEnding));
+    }
+
+    public void verifyHeader(String key, String containedValue) {
+        Series<Header> currentHeader = client.getCurrentHeader();
+        assertThat(currentHeader.getFirstValue(key), containsString(containedValue));
+    }
+
+    public void verifyHeaderCount(String key, int count) {
+        Series<Header> currentHeader = client.getCurrentHeader();
+        assertThat(currentHeader.getFirstValue(key).split(",").length, is(count));
+    }
+
     @Override
     protected Form createForm(TodoList todoList) {
         Form form = new Form();
@@ -59,10 +79,18 @@ public class TodoListBrowser extends ApplicationBrowser<TodoListBrowser, TodoLis
         return form;
     }
 
-    private void getTodoLists(ApplicationClient<TodoList> client) {
-        client.gotoAppRoot()
-            .followLinkTitle("Show Todo-Lists");
-            //.followLinkTitle(TodoApplication.APP_NAME);
+    private Representation getTodoLists(ApplicationClient<TodoList> client) {
+
+        client.setUrl("/Todos/v2/Lists");
+        return client.get();
+//        ApplicationClient<TodoList> appRoot = client.gotoAppRoot();
+//        System.out.println(appRoot.getLocation());
+//        if (appRoot.getLocation().toString().endsWith("/Todos/v2/Lists/")) {
+//
+//
+//        }
+//        appRoot.followLinkTitle("Show Todo-Lists");
+//            //.followLinkTitle(TodoApplication.APP_NAME);
     }
 
     private void updateTodoList(ApplicationClient<TodoList> client, TodoList theTodoList) {
@@ -86,9 +114,15 @@ public class TodoListBrowser extends ApplicationBrowser<TodoListBrowser, TodoLis
     }
 
     private void navigateToPostTodoListAs(ApplicationClient<TodoList> client) {
-        client.gotoAppRoot()
-            .followLinkTitle("Show Todo-Lists")
+        ApplicationClient<TodoList> appClient = client.gotoAppRoot();
+        if (appClient.getLocation().toString().endsWith("/Todos/v2/Lists/")) {
+            // already redirected to PostListResource by server.
+            client.setUrlFromCurrentRepresentation();
+            return;
+        }
+        appClient.followLinkTitle("Show Todo-Lists")
             .followLinkTitle("create new List");
     }
+
 
 }

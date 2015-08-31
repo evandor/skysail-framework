@@ -164,12 +164,12 @@ handleInputField(data, field, messages,i,autofocus) ::= <<
         <div class='form-group'>
           <label for='$field.name$' class='col-sm-2 control-label' style="text-align: left;">$helpmessage(messages, field.nameKey)$  $if(converter.edit)$<a href='/i18n/messages/$data.entity.entity.class.name$.$field.name$/'><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>$endif$</label>
           <div class='col-sm-10'>
-            <input type="range" name='$field.name$' id='$field.name$' tabindex="$i$" value='$field.value$' min=$field.rangeMin$ max=$field.rangeMax$ step=1 data-highlight="true">
+            <input type="range" name='$field.name$' id='$field.name$' tabindex="$i$" value='$data.(field.name)$' min=$field.rangeMin$ max=$field.rangeMax$ step=1 data-highlight="true">
             $renderDescription(field,converter)$
           </div>
         </div>
       $else$
-          <input type="$field.inputType$" name='$field.name$' id='$field.name$' placeholder='$helpmessage(messages, field.nameKey)$' value='$field.value$' tabindex="$i$" $autofocus$ title="$helpmessage(messages, field.placeholderKey)$">
+          <input type="$field.inputType$" name='$field.name$' id='$field.name$' placeholder='$helpmessage(messages, field.nameKey)$' value='$data.(field.name)$' tabindex="$i$" $autofocus$ title="$helpmessage(messages, field.placeholderKey)$">
           $renderDescription(field,converter)$
       $endif$
   $endif$

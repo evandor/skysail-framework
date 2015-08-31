@@ -1,0 +1,11 @@
+good2know() ::= <<
+<span class="label label-info" style="font-size:110%">Good to know...</span> <br>
+        <br>
+        <p style="font-size: 100%;">
+            skysail is not about the GUI, but there is a generic User Interface
+            which is created with <a href='http://www.stringtemplate.org' target="_blank">stringtemplate</a>.
+            The relevant files can be found in the <a href='$baseUrl()$/step1/'>*Stg-Folders</a>.
+            As long as you are happy with the generic layout, you don't have to
+            write any html for the generated application - but you could.
+        </p>
+>>

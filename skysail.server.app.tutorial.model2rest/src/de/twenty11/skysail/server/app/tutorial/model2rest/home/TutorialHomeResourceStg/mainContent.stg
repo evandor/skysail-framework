@@ -1,0 +1,18 @@
+mainContent(user, converter, messages, model) ::= <<
+
+<div class="row">
+	<div class="col-md-2">$menuNav(model.links)$</div>
+	<div class="col-md-7">
+<!-- contentHeader -->
+$contentHeader(converter, messages, model)$
+	</div>
+	<div class="col-md-1">&nbsp;</div>
+	<div class="col-md-2">
+        $code()$
+		<hr>
+        $good2know()$
+	</div>
+</div>
+
+$nextStepRow("step1")$
+>>

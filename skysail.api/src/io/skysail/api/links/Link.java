@@ -60,8 +60,6 @@ public class Link {
 
     private Class<?> cls;
 
-    private boolean linkingToSelf = false;
-
     public static class Builder {
 
         private String uri;
@@ -74,7 +72,6 @@ public class Link {
         private String refId;
         private Map<MediaType, String> images = new HashMap<>();
         private Class<?> cls;
-        private String requestPath;
 
         public Builder(@NonNull Link linkTemplate) {
             this.uri = linkTemplate.getUri();
@@ -153,10 +150,6 @@ public class Link {
             return this;
         }
 
-        public Builder requestPath(String path) {
-            this.requestPath = path;
-            return this;
-        }
     }
 
     private Link(Builder linkBuilder) {
@@ -176,7 +169,6 @@ public class Link {
         this.refId = linkBuilder.refId;
         this.images = linkBuilder.images;
         this.cls = linkBuilder.cls;
-        this.linkingToSelf = uri.equals(linkBuilder.requestPath);
     }
 
     /**
@@ -305,26 +297,12 @@ public class Link {
         return this;
     }
 
-//    public Link setRole(LinkRole role) {
-//        this.role = role;
-//        return this;
-//    }
-//
-//    public Link setRelation(LinkRelation relation) {
-//        this.rel = relation;
-//        return this;
-//    }
-//
-//    public Link setRefId(String id) {
-//        this.refId = id;
-//        return this;
-//    }
-//
-//    public void substituePlaceholders(Resource entityResource, String id) {
-//        uri = StringParserUtils.substitutePlaceholders(getUri(), entityResource);
-//        if (id != null && uri.contains("{") && uri.contains("}")) {
-//            uri = uri.replaceFirst(StringParserUtils.placeholderPattern.toString(), id);
-//        }
-//    }
+    public Link checkSelfRelation(Request request) {
+        if (request.getResourceRef().getPath().toString().equals(this.uri)) {
+            this.rel = LinkRelation.SELF;
+        }
+        return this;
+    }
+
 
 }

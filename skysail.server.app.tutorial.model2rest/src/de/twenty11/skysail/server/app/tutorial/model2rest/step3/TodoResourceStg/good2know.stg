@@ -1,0 +1,7 @@
+good2know() ::= <<
+<span class="label label-info" style="font-size:110%">Good to know...</span> <br>
+        <br>
+        <p style="font-size:100%">
+            Btw - this tutorial (and the whole website) actually <i>is</i> a skysail application.
+        </p>
+>>

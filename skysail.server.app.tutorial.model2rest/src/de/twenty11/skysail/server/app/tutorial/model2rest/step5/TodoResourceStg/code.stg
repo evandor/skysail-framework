@@ -1,0 +1,8 @@
+baseUrl() ::= <%https://github.com/evandor/skysail/tree/master/skysail.server.app.tutorial.model2rest/src/de/twenty11/skysail/server/app/tutorial/model2rest%>
+
+code(link) ::= <<
+        <span class="label label-success" style="font-size:110%">Code</span> <br>
+        <br>
+        <p style="font-size:100%">The <a href='$baseUrl()$/$link$/' target="_blank">complete code</a> for the current step</p>
+
+>>

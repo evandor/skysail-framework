@@ -1,0 +1,3 @@
+renderEntity(user, resource, source, fields) ::= <<
+ 
+>>

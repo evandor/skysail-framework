@@ -1,0 +1,9 @@
+nextStepRow(link) ::= <<
+<div class="row">
+  <div class="col-md-2">&nbsp;</div>
+  <div class="col-md-7">
+    <a href='/tutorialM2R/v1/$link$'><button type="button" class="btn btn-primary btn">Next Step</button></a>
+  </div>
+  <div class="col-md-3"></div>
+</div>
+>>

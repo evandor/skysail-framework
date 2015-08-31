@@ -1,0 +1,21 @@
+mainContent(user, converter, messages, model) ::= <<
+
+<div class="row">
+    <div class="col-md-2">$menuNav(model.links)$</div>
+    <div class="col-md-7">
+<!-- contentHeader -->
+$contentHeader(converter, messages)$
+    </div>
+    <div class="col-md-1">&nbsp;</div>
+    <div class="col-md-2">
+		$code("step2")$
+		<hr>
+		$demoapp("/tutorialM2R/step2/", "Todo-List Application Step 2")$
+        <hr>
+		$good2know()$
+    </div>
+  </div>
+
+  $nextStepRow("step3")$
+>>
+baseUrl() ::= <%https://github.com/evandor/skysail/tree/master/skysail.server.app.tutorial.model2rest/src/de/twenty11/skysail/server/app/tutorial/model2rest%>

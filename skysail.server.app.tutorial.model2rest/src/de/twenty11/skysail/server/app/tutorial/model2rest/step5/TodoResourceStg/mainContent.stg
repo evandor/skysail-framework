@@ -1,0 +1,20 @@
+mainContent(user, converter, messages, model) ::= <<
+
+<div class="row">
+    <div class="col-md-2">$menuNav(model.links)$</div>
+    <div class="col-md-7">
+<!-- contentHeader -->
+$contentHeader(converter, messages)$
+    </div>
+    <div class="col-md-1">&nbsp;</div>
+    <div class="col-md-2">
+		$code("step5")$
+		<hr>
+		$demoapp("/tutorialM2R/step5/", "Todo-List Application Step 5")$
+		<hr>
+		$good2know()$
+    </div>
+  </div>
+
+  $nextStepRow("step6")$
+>>

@@ -1,0 +1,7 @@
+good2know() ::= <<
+        <span class="label label-info" style="font-size:100%">Good to know...</span> <br>
+        <br>
+        <p style="font-size:100%">
+            See every stage of the application in action! Use the "<i>launch demo</i>" button on every of the following pages.
+        </p>
+>>

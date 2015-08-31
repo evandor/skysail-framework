@@ -126,7 +126,7 @@ public class HtmlConverter extends ConverterHelper implements OsgiConverterHelpe
         }
         for (MediaType mediaType : mediaTypesMatch.keySet()) {
             if (target.getMediaType().equals(mediaType)) {
-                log.info("converter '{}' matched '{}' with threshold {}", new Object[] {
+                log.debug("converter '{}' matched '{}' with threshold {}", new Object[] {
                         this.getClass().getSimpleName(), mediaTypesMatch, mediaTypesMatch.get(mediaType) });
                 return mediaTypesMatch.get(mediaType);
             }

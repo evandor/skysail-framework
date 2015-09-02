@@ -1,32 +1,27 @@
 package io.skysail.server.app.quartz.groups;
 
+import io.skysail.api.domain.Identifiable;
 import io.skysail.api.forms.Field;
+
+import java.io.Serializable;
 
 import javax.persistence.Id;
 import javax.validation.constraints.Size;
 
-public class Group {
+import lombok.*;
 
-	@Id
-	private Object rid;
+@Getter
+@Setter
+public class Group implements Serializable, Identifiable {
 
-	public Object getRid() {
-	    return rid;
-    }
+    private static final long serialVersionUID = 5444440718293296363L;
 
-	public void setRid(Object rid) {
-	    this.rid = rid;
-    }
+    @Id
+	private String id;
 
 	@Field
 	@Size(min = 1)
 	private String name;
 
-	public String getName() {
-	    return name;
-    }
 
-	public void setName(String name) {
-	    this.name = name;
-    }
 }

@@ -19,11 +19,14 @@ public class JobDetailsResource extends ListServerResource<JobDetail> {
 
     private QuartzApplication app;
 
+    public JobDetailsResource() {
+        addToContext(ResourceContextId.LINK_TITLE, "List Job Details");
+    }
+
     @Override
     protected void doInit() throws ResourceException {
         super.doInit();
         app = (QuartzApplication)getApplication();
-        addToContext(ResourceContextId.LINK_TITLE, "List Job Details");
     }
 
     @Override

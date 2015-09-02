@@ -33,7 +33,7 @@ public class DesignerApplication extends SkysailApplication implements MenuItemP
     public static final String FIELD_ID = "fieldId";
 
     private DesignerRepository repo;
-    private DbService2 dbService;
+    private DbService dbService;
 
     public DesignerApplication() {
         super(APP_NAME);
@@ -82,11 +82,11 @@ public class DesignerApplication extends SkysailApplication implements MenuItemP
     }
 
     @Reference(dynamic = true, multiple = false, optional = false)
-    public void setDbService(DbService2 dbService) {
+    public void setDbService(DbService dbService) {
         this.dbService = dbService;
     }
 
-    public void unsetDbService(DbService2 dbService) {
+    public void unsetDbService(DbService dbService) {
         this.dbService = null;
     }
 

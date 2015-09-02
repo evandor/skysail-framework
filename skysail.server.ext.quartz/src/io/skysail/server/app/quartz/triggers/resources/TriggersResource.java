@@ -1,8 +1,8 @@
-package io.skysail.server.app.quartz.triggers;
+package io.skysail.server.app.quartz.triggers.resources;
 
 import io.skysail.api.links.Link;
 import io.skysail.server.app.quartz.QuartzApplication;
-import io.skysail.server.app.quartz.jobs.JobsResource;
+import io.skysail.server.app.quartz.triggers.Trigger;
 import io.skysail.server.restlet.resources.ListServerResource;
 
 import java.util.*;
@@ -54,6 +54,6 @@ public class TriggersResource extends ListServerResource<Trigger> {
 
     @Override
     public List<Link> getLinks() {
-        return super.getLinks(JobsResource.class, PostTriggerResource.class);
+        return super.getLinks(app.defaultResourcesPlus(PostTriggerResource.class));
     }
 }

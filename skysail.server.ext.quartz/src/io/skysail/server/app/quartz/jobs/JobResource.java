@@ -2,7 +2,7 @@ package io.skysail.server.app.quartz.jobs;
 
 import io.skysail.api.links.Link;
 import io.skysail.api.responses.SkysailResponse;
-import io.skysail.server.app.quartz.groups.GroupsResource;
+import io.skysail.server.app.quartz.groups.resources.GroupsResource;
 import io.skysail.server.app.quartz.schedules.PostScheduleResource;
 import io.skysail.server.restlet.resources.EntityServerResource;
 
@@ -20,7 +20,7 @@ public class JobResource extends EntityServerResource<Job> {
 
 	@Override
 	public Job getEntity() {
-		return JobsRepository.getInstance().getById(id);
+		return null;//JobsRepository.getInstance().getById(id);
 	}
 
 	@Override

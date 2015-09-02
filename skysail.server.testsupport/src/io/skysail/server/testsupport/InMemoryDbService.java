@@ -1,6 +1,6 @@
 //package io.skysail.server.testsupport;
 //
-//import io.skysail.server.db.DbService2;
+//import io.skysail.server.db.DbService;
 //
 //import java.util.*;
 //import java.util.concurrent.atomic.AtomicInteger;
@@ -9,12 +9,12 @@
 //import com.orientechnologies.orient.core.metadata.schema.OType;
 //
 ///**
-// * An DbService2 implementation to be used in tests.
+// * An DbService implementation to be used in tests.
 // * 
 // * The provided entities need a method "String getId()".
 // *
 // */
-//public class InMemoryDbService implements DbService2 {
+//public class InMemoryDbService implements DbService {
 //
 //    private volatile AtomicInteger cnt = new AtomicInteger(0);
 //

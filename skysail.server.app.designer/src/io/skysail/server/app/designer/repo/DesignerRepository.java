@@ -14,7 +14,7 @@ import aQute.bnd.annotation.component.*;
 @Slf4j
 public class DesignerRepository implements DbRepository {
 
-    private static DbService2 dbService;
+    private static DbService dbService;
 
     @Activate
     public void activate() {
@@ -25,11 +25,11 @@ public class DesignerRepository implements DbRepository {
     }
 
     @Reference
-    public void setDbService(DbService2 dbService) {
+    public void setDbService(DbService dbService) {
         DesignerRepository.dbService = dbService;
     }
 
-    public void unsetDbService(DbService2 dbService) {
+    public void unsetDbService(DbService dbService) {
         DesignerRepository.dbService = null;
     }
 

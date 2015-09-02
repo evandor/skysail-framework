@@ -6,7 +6,7 @@
 //import io.skysail.api.validation.DefaultValidationImpl;
 //import io.skysail.server.app.todos.TodoApplication;
 //import io.skysail.server.app.todos.repo.TodosRepository;
-//import io.skysail.server.db.DbService2;
+//import io.skysail.server.db.DbService;
 //import io.skysail.server.testsupport.AbstractShiroTest;
 //
 //import java.util.Locale;
@@ -28,7 +28,7 @@
 //
 //    protected TodosRepository repo;
 //
-//    protected DbService2 dbService;
+//    protected DbService dbService;
 //
 //    public void setUp() throws Exception {
 //        super.setUp();

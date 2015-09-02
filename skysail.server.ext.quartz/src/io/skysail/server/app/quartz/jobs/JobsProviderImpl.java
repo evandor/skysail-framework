@@ -26,7 +26,7 @@ public class JobsProviderImpl implements io.skysail.api.forms.SelectionProvider 
         JobsProviderImpl.instance = null;
     }
 
-   // @Reference(multiple = true, optional = false, dynamic = true)
+    @Reference(multiple = true, optional = false, dynamic = true)
     public void addJob(org.quartz.Job job) {
         jobs.add(job);
     }

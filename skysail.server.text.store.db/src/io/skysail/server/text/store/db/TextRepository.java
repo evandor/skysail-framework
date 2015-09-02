@@ -1,6 +1,6 @@
 package io.skysail.server.text.store.db;
 
-import io.skysail.server.db.DbService2;
+import io.skysail.server.db.DbService;
 import io.skysail.server.text.store.db.text.Text;
 
 import java.util.List;
@@ -15,7 +15,7 @@ public class TextRepository {
 
     private static TextRepository instance;
 
-    private DbService2 dbService;
+    private DbService dbService;
 
     public static TextRepository getInstance() {
         // for tests
@@ -36,11 +36,11 @@ public class TextRepository {
     }
 
     @Reference
-    public void setDbService(DbService2 dbService) {
+    public void setDbService(DbService dbService) {
         this.dbService = dbService;
     }
 
-    public void unsetDbService(DbService2 dbService) {
+    public void unsetDbService(DbService dbService) {
         this.dbService = null;
     }
 

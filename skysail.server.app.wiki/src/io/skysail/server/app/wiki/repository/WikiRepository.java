@@ -15,7 +15,7 @@ import com.orientechnologies.orient.core.record.impl.ODocument;
 @Component(immediate = true, properties = "name=wikiRepository")
 public class WikiRepository implements DbRepository {
 
-    private static DbService2 dbService;
+    private static DbService dbService;
 
     @Activate
     public void activate() {
@@ -28,11 +28,11 @@ public class WikiRepository implements DbRepository {
     }
 
     @Reference
-    public void setDbService(DbService2 dbService) {
+    public void setDbService(DbService dbService) {
         WikiRepository.dbService = dbService;
     }
 
-    public void unsetDbService(DbService2 dbService) {
+    public void unsetDbService(DbService dbService) {
         WikiRepository.dbService = null;
     }
 

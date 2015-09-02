@@ -1,6 +1,6 @@
 package io.skysail.server.app.wiki.spaces;
 
-import io.skysail.server.db.DbService2;
+import io.skysail.server.db.DbService;
 
 import java.util.*;
 
@@ -13,7 +13,7 @@ import aQute.bnd.annotation.component.*;
 @Component(immediate = true)
 public class UniquePerOwnerValidator implements ConstraintValidator<UniquePerOwner, Space> {
 
-    private static DbService2 dbService;
+    private static DbService dbService;
     
     @Override
     public void initialize(UniquePerOwner uniquePerOwner) {
@@ -36,11 +36,11 @@ public class UniquePerOwnerValidator implements ConstraintValidator<UniquePerOwn
     }
 
     @Reference(dynamic = true, multiple = false, optional = false)
-    public void setDbService(DbService2 dbService) {
+    public void setDbService(DbService dbService) {
         UniquePerOwnerValidator.dbService = dbService;
     }
 
-    public void unsetDbService(DbService2 dbService) {
+    public void unsetDbService(DbService dbService) {
         UniquePerOwnerValidator.dbService = null;
     }
 }

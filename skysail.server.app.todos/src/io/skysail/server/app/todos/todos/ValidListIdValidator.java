@@ -1,7 +1,7 @@
 package io.skysail.server.app.todos.todos;
 
 import io.skysail.server.app.todos.TodoList;
-import io.skysail.server.db.DbService2;
+import io.skysail.server.db.DbService;
 
 import java.util.*;
 
@@ -14,7 +14,7 @@ import aQute.bnd.annotation.component.*;
 @Component(immediate = true)
 public class ValidListIdValidator implements ConstraintValidator<ValidListId, String> {
 
-    private static DbService2 dbService;
+    private static DbService dbService;
 
     @Override
     public void initialize(ValidListId listId) {
@@ -34,11 +34,11 @@ public class ValidListIdValidator implements ConstraintValidator<ValidListId, St
     }
 
     @Reference(dynamic = true, multiple = false, optional = false)
-    public void setDbService(DbService2 dbService) {
+    public void setDbService(DbService dbService) {
         ValidListIdValidator.dbService = dbService;
     }
 
-    public void unsetDbService(DbService2 dbService) { // NO_UCD
+    public void unsetDbService(DbService dbService) { // NO_UCD
         ValidListIdValidator.dbService = null;
     }
 }

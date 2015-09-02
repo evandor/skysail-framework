@@ -1,12 +1,14 @@
-package io.skysail.server.app.quartz.groups;
+package io.skysail.server.app.quartz.groups.resources;
 
 import io.skysail.api.responses.SkysailResponse;
+import io.skysail.server.app.quartz.QuartzRepository;
+import io.skysail.server.app.quartz.groups.Group;
 import io.skysail.server.restlet.resources.PostEntityServerResource;
 import de.twenty11.skysail.server.core.restlet.ResourceContextId;
 
-public class PostGroupsResource extends PostEntityServerResource<Group> {
+public class PostGroupResource extends PostEntityServerResource<Group> {
 
-	public PostGroupsResource() {
+	public PostGroupResource() {
 		addToContext(ResourceContextId.LINK_TITLE, "Create New Group");
 	}
 
@@ -17,7 +19,7 @@ public class PostGroupsResource extends PostEntityServerResource<Group> {
 
 	@Override
 	public SkysailResponse<?> addEntity(Group entity) {
-		GroupsRepository.getInstance().add(entity);
+		QuartzRepository.add(entity);
 		return new SkysailResponse<String>();
 	}
 

@@ -1,9 +1,18 @@
 package io.skysail.server.app.quartz;
 
 import io.skysail.server.app.*;
-import io.skysail.server.app.quartz.groups.*;
+import io.skysail.server.app.quartz.groups.resources.*;
+import io.skysail.server.app.quartz.jobdetails.JobDetailsResource;
+import io.skysail.server.app.quartz.jobs.*;
+import io.skysail.server.app.quartz.jobs.Job;
+import io.skysail.server.app.quartz.schedules.*;
+import io.skysail.server.app.quartz.triggers.resources.*;
+import io.skysail.server.db.DbRepository;
+import io.skysail.server.restlet.resources.SkysailServerResource;
 
 import java.util.*;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -11,6 +20,7 @@ import org.osgi.service.cm.ConfigurationException;
 import org.osgi.service.component.ComponentContext;
 import org.quartz.*;
 import org.quartz.impl.StdSchedulerFactory;
+import org.quartz.impl.matchers.GroupMatcher;
 import org.quartz.simpl.CascadingClassLoadHelper;
 
 import aQute.bnd.annotation.component.*;
@@ -48,14 +58,14 @@ public class QuartzApplication extends SkysailApplication implements Application
         this.config = null;
     }
 
-//    @Reference(dynamic = true, multiple = false, optional = false, target = "(name=QuartzRepository)")
-//    public void setRepository(DbRepository repo) {
-//        this.repository = (QuartzRepository) repo;
-//    }
-//
-//    public void unsetRepository(DbRepository repo) {
-//        this.repository = null;
-//    }
+    @Reference(dynamic = true, multiple = false, optional = false, target = "(name=QuartzRepository)")
+    public void setRepository(DbRepository repo) {
+        this.repository = (QuartzRepository) repo;
+    }
+
+    public void unsetRepository(DbRepository repo) {
+        this.repository = null;
+    }
 
     public QuartzRepository getRepository() {
         return repository;
@@ -64,23 +74,21 @@ public class QuartzApplication extends SkysailApplication implements Application
     @Override
     protected void attach() {
         super.attach();
-       // router.attach(new RouteBuilder("", Top10TodosResource.class));
 
         router.attach(new RouteBuilder("", DashboardResource.class));
         router.attach(new RouteBuilder("/", DashboardResource.class));
         router.attach(new RouteBuilder("/groups", GroupsResource.class));
-        router.attach(new RouteBuilder("/groups/", PostGroupsResource.class));
+        router.attach(new RouteBuilder("/groups/", PostGroupResource.class));
         router.attach(new RouteBuilder("/groups/{id}", GroupResource.class));
         router.attach(new RouteBuilder("/groups/{id}/", PutGroupResource.class));
-//        router.attach(new RouteBuilder("/jobs", JobsResource.class));
-//        router.attach(new RouteBuilder("/jobs/", PostJobResource.class));
-//        router.attach(new RouteBuilder("/jobs/{id}", JobResource.class));
-//        router.attach(new RouteBuilder("/jobs/{id}/schedules/", PostScheduleResource.class));
-//        router.attach(new RouteBuilder("/jobDetails", JobDetailsResource.class));
-//        router.attach(new RouteBuilder("/triggers", TriggersResource.class));
-//        router.attach(new RouteBuilder("/triggers/", PostTriggerResource.class));
-//        router.attach(new RouteBuilder("/schedules", SchedulesResource.class));
-
+        router.attach(new RouteBuilder("/jobs", JobsResource.class));
+        router.attach(new RouteBuilder("/jobs/", PostJobResource.class));
+        router.attach(new RouteBuilder("/jobs/{id}", JobResource.class));
+        router.attach(new RouteBuilder("/jobs/{id}/schedules/", PostScheduleResource.class));
+        router.attach(new RouteBuilder("/jobDetails", JobDetailsResource.class));
+        router.attach(new RouteBuilder("/triggers", TriggersResource.class));
+        router.attach(new RouteBuilder("/triggers/", PostTriggerResource.class));
+        router.attach(new RouteBuilder("/schedules", SchedulesResource.class));
     }
 
     public List<MenuItem> getMenuEntries() {
@@ -127,6 +135,35 @@ public class QuartzApplication extends SkysailApplication implements Application
 
     public Scheduler getScheduler() {
         return this.scheduler;
+    }
+
+    public Class<SkysailServerResource<?>>[] defaultResourcesPlus(Class<? extends SkysailServerResource<?>>... classes) {
+        List<Class<? extends SkysailServerResource<?>>> result = new ArrayList<>();
+        result.addAll(Arrays.asList(GroupsResource.class, JobDetailsResource.class,TriggersResource.class));
+        Arrays.stream(classes).forEach(cls -> result.add(cls));
+        return result.toArray(new Class[result.size()]);
+    }
+
+    public List<Job> getJobs() {
+        try {
+            Function<? super String, ? extends Set<JobKey>> toJobKey = groupName -> {
+                try {
+                    return scheduler.getJobKeys(GroupMatcher.jobGroupEquals(groupName));
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    return null;
+                }
+            };
+            return scheduler.getJobGroupNames().stream().map(toJobKey).filter(jobKey -> {
+                return jobKey != null;
+            }).flatMap(jobKey -> jobKey.stream()).map(jobKey -> {
+                return new Job(jobKey);
+            }).collect(Collectors.toList());
+        } catch (SchedulerException e) {
+            e.printStackTrace();
+            return Collections.emptyList();
+        }
+
     }
 
 }

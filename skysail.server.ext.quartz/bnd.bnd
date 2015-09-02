@@ -69,4 +69,6 @@ Private-Package:  \
 	io.skysail.server.app.quartz.jobdetails,\
 	io.skysail.server.app.quartz.jobs,\
 	io.skysail.server.app.quartz.schedules,\
-	io.skysail.server.app.quartz.triggers
+	io.skysail.server.app.quartz.triggers,\
+	io.skysail.server.app.quartz.groups.resources,\
+	io.skysail.server.app.quartz.triggers.resources

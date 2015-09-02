@@ -35,7 +35,7 @@ import de.twenty11.skysail.server.events.EventHandler;
 
 @Component(immediate = true)
 @Slf4j
-public class OrientGraphDbService extends AbstractOrientDbService implements DbService2 {
+public class OrientGraphDbService extends AbstractOrientDbService implements DbService {
 
     private OrientGraphFactory graphDbFactory;
     private ObjectMapper mapper = new ObjectMapper();

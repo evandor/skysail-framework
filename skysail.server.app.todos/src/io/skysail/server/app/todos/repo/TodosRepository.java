@@ -14,7 +14,7 @@ import aQute.bnd.annotation.component.*;
 @Component(immediate = true, properties = "name=TodosRepository")
 public class TodosRepository implements DbRepository {
 
-    private static DbService2 dbService;
+    private static DbService dbService;
 
     @Activate
     public void activate() { // NO_UCD
@@ -26,11 +26,11 @@ public class TodosRepository implements DbRepository {
     }
 
     @Reference
-    public void setDbService(DbService2 dbService) {
+    public void setDbService(DbService dbService) {
         TodosRepository.dbService = dbService;
     }
 
-    public void unsetDbService(DbService2 dbService) {
+    public void unsetDbService(DbService dbService) {
         TodosRepository.dbService = null;
     }
 

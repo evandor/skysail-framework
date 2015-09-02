@@ -1,5 +1,9 @@
 package io.skysail.server.app.quartz.groups;
 
+import io.skysail.server.app.quartz.QuartzApplication;
+import io.skysail.server.queryfilter.Filter;
+import io.skysail.server.restlet.resources.SkysailServerResource;
+
 import java.util.*;
 
 import org.restlet.resource.Resource;
@@ -10,12 +14,13 @@ public class GroupsProvider implements io.skysail.api.forms.SelectionProvider {
         return new GroupsProvider();
     }
 
-
+    private Resource resource;
 
     @Override
     public Map<String, String> getSelections() {
+        QuartzApplication application = (QuartzApplication)((SkysailServerResource<?>)this.resource).getApplication();
         Map<String, String> result = new HashMap<>();
-        List<Group> groups = GroupsRepository.getInstance().findAll();
+        List<Group> groups = application.getRepository().findAll(Group.class, new Filter(this.resource.getRequest()), null);
         groups.stream().forEach(group -> {result.put(group.getName(), group.getName());});
         if (result.isEmpty()) {
             result.put("default", "default");
@@ -32,6 +37,7 @@ public class GroupsProvider implements io.skysail.api.forms.SelectionProvider {
 
     @Override
     public void setResource(Resource resource) {
+        this.resource = resource;
     }
 
 

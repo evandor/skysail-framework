@@ -3,7 +3,9 @@ package io.skysail.server.app.quartz.jobs;
 import io.skysail.api.links.Link;
 import io.skysail.api.responses.SkysailResponse;
 import io.skysail.server.app.quartz.QuartzApplication;
-import io.skysail.server.app.quartz.groups.PostGroupsResource;
+import io.skysail.server.app.quartz.groups.resources.GroupsResource;
+import io.skysail.server.app.quartz.jobdetails.JobDetailsResource;
+import io.skysail.server.app.quartz.triggers.resources.TriggersResource;
 import io.skysail.server.restlet.resources.PostEntityServerResource;
 
 import java.util.List;
@@ -43,7 +45,7 @@ public class PostJobResource extends PostEntityServerResource<Job> {
 
 	@Override
 	public List<Link> getLinks() {
-	    return super.getLinks(PostGroupsResource.class);
+	    return super.getLinks(GroupsResource.class, JobDetailsResource.class, TriggersResource.class);
 	}
 
 	@Override

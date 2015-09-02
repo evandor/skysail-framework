@@ -1,7 +1,8 @@
-package io.skysail.server.app.quartz.groups;
+package io.skysail.server.app.quartz.groups.resources;
 
 import io.skysail.api.responses.SkysailResponse;
 import io.skysail.server.app.quartz.QuartzApplication;
+import io.skysail.server.app.quartz.groups.Group;
 import io.skysail.server.restlet.resources.PutEntityServerResource;
 
 import org.restlet.resource.ResourceException;
@@ -21,13 +22,13 @@ public class PutGroupResource extends PutEntityServerResource<Group> {
 
  	@Override
      public Group getEntity() {
-        return GroupsRepository.getInstance().getById(id);
+        return app.getRepository().getById(Group.class, id);
      }
 
 
 	@Override
 	public SkysailResponse<?> updateEntity(Group entity) {
-		GroupsRepository.getInstance().update(entity);
+		//GroupsRepository.getInstance().update(entity);
 		return new SkysailResponse<String>();
 	}
 

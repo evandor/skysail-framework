@@ -2,7 +2,7 @@ package io.skysail.server.um.security.shiro;
 
 import io.skysail.api.um.AuthorizationService;
 import io.skysail.api.um.RestletRolesProvider;
-import io.skysail.server.db.DbService2;
+import io.skysail.server.db.DbService;
 
 import java.util.Collections;
 import java.util.Set;
@@ -25,14 +25,14 @@ public class DefaultAuthorizationService implements AuthorizationService, Enrole
 
     private UserRepository userRepository;
     private RestletRolesProvider restletRolesProvider;
-    private DbService2 dbService;
+    private DbService dbService;
 
     @Reference
-    public synchronized void setDbService(DbService2 service) {
+    public synchronized void setDbService(DbService service) {
         this.dbService = service;
     }
 
-    public synchronized void unsetEntityManager(@SuppressWarnings("unused") DbService2 service) {
+    public synchronized void unsetEntityManager(@SuppressWarnings("unused") DbService service) {
         this.dbService = null;
     }
 

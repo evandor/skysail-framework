@@ -8,7 +8,7 @@ import com.orientechnologies.orient.core.metadata.schema.OType;
 import com.orientechnologies.orient.core.record.impl.ODocument;
 
 @ProviderType
-public interface DbService2 {
+public interface DbService {
 
     /**
      * takes an entity of type T and persists it as a vertex.
@@ -38,7 +38,7 @@ public interface DbService2 {
     List<Map<String,Object>> findDocuments(String sql);
     <T> List<T> findGraphs(String sql);
 
-    <T> List findObjects(String sql, Map<String, Object> params);
+    <T> List<T> findObjects(String sql, Map<String, Object> params);
     List<Map<String,Object>> findDocuments(String sql, Map<String, Object> params);
     <T> List<T> findGraphs(String sql, Map<String, Object> params);
 

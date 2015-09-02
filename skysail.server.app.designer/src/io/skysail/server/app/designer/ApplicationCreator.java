@@ -69,7 +69,7 @@ public class ApplicationCreator {
         return skysailApplicationCompiler.isCompiledSuccessfully();
     }
 
-    synchronized void setupInMemoryBundle(DbService2 dbService, ComponentContext componentContext) {
+    synchronized void setupInMemoryBundle(DbService dbService, ComponentContext componentContext) {
         Class<?> applicationClass = skysailApplicationCompiler.getApplicationClass();
         Class<?> repositoryClass = skysailApplicationCompiler.getClass(repositoryClassName);
 
@@ -79,7 +79,7 @@ public class ApplicationCreator {
             //System.out.println(applicationInstance);
 
             Method setDbServiceMethod = dbRepoInstance.getClass().getMethod("setDbService",
-                    new Class[] { DbService2.class });
+                    new Class[] { DbService.class });
             setDbServiceMethod.invoke(dbRepoInstance, dbService);
 
             Method setRepositoryMethod = applicationInstance.getClass().getMethod("setRepository",

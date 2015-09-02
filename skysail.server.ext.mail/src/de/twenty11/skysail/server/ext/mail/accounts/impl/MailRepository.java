@@ -13,7 +13,7 @@ import de.twenty11.skysail.server.ext.mail.mails.Mail;
 @Component(immediate = true, properties = "name=MailRepository")
 public class MailRepository implements DbRepository {
 
-    private static DbService2 dbService;
+    private static DbService dbService;
 
     @Activate
     public void activate() {
@@ -25,11 +25,11 @@ public class MailRepository implements DbRepository {
     }
 
     @Reference
-    public void setDbService(DbService2 dbService) {
+    public void setDbService(DbService dbService) {
         MailRepository.dbService = dbService;
     }
 
-    public void unsetDbService(DbService2 dbService) {
+    public void unsetDbService(DbService dbService) {
         MailRepository.dbService = null;
     }
 

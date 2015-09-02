@@ -1,6 +1,6 @@
 package io.skysail.server.app.wiki.pages;
 
-import io.skysail.server.db.DbService2;
+import io.skysail.server.db.DbService;
 
 import javax.validation.*;
 
@@ -9,7 +9,7 @@ import aQute.bnd.annotation.component.*;
 @Component(immediate = true)
 public class UniquePerParentOrSpaceValidator implements ConstraintValidator<UniquePerParentOrSpace, Page> {
 
-    private static DbService2 dbService;
+    private static DbService dbService;
     
     @Override
     public void initialize(UniquePerParentOrSpace uniquePerOwner) {
@@ -33,11 +33,11 @@ public class UniquePerParentOrSpaceValidator implements ConstraintValidator<Uniq
     }
 
     @Reference(dynamic = true, multiple = false, optional = false)
-    public void setDbService(DbService2 dbService) {
+    public void setDbService(DbService dbService) {
         UniquePerParentOrSpaceValidator.dbService = dbService;
     }
 
-    public void unsetDbService(DbService2 dbService) {
+    public void unsetDbService(DbService dbService) {
         UniquePerParentOrSpaceValidator.dbService = null;
     }
 }

@@ -6,7 +6,7 @@ import static org.hamcrest.CoreMatchers.nullValue;
 import static org.junit.Assert.assertThat;
 import io.skysail.api.um.AuthenticationService;
 import io.skysail.api.um.AuthorizationService;
-import io.skysail.server.db.DbService2;
+import io.skysail.server.db.DbService;
 import io.skysail.server.um.SkysailUserManagementProvider;
 
 import org.junit.Before;
@@ -19,7 +19,7 @@ import org.mockito.runners.MockitoJUnitRunner;
 @RunWith(MockitoJUnitRunner.class)
 public class SkysailUserManagementProviderTest {
     @Mock
-    private DbService2 dbService;
+    private DbService dbService;
     @InjectMocks
     private SkysailUserManagementProvider skysailUserManagementProvider;
 

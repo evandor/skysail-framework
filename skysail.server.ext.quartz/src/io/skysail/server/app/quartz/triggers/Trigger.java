@@ -4,33 +4,27 @@ import io.skysail.api.forms.Field;
 
 import java.util.Date;
 
+import lombok.*;
+
+@Getter
+@Setter
+@ToString
+@NoArgsConstructor
 public class Trigger {
 
 	@Field
 	private String name;
-    private String group;
+
+    @Field(selectionProvider = JobsSelectionProvider.class)
+	private String job;
+
     private Date nextFireTime;
 
 	public Trigger(org.quartz.Trigger trigger) {
 	    name = trigger.getKey().getName();
-	    group = trigger.getKey().getGroup();
+	    //group = trigger.getKey().getGroup();
 	    nextFireTime = trigger.getNextFireTime();
 	}
-
-	public Trigger() {
-    }
-
-	public String getName() {
-	    return name;
-    }
-
-	public void setName(String name) {
-	    this.name = name;
-    }
-
-	public String getGroup() {
-        return group;
-    }
 
 	public Date getNextFireTime() {
         return nextFireTime;

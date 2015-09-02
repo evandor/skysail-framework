@@ -1,6 +1,6 @@
 package io.skysail.server.um.security.shiro;
 
-import io.skysail.server.db.DbService2;
+import io.skysail.server.db.DbService;
 
 import java.util.List;
 
@@ -8,9 +8,9 @@ import de.twenty11.skysail.server.um.domain.SkysailUser;
 
 public class UserRepository {
 
-    private DbService2 dbService;
+    private DbService dbService;
 
-    public UserRepository(DbService2 service) {
+    public UserRepository(DbService service) {
         dbService = service;
     }
 

@@ -1,12 +1,9 @@
 package de.twenty11.skysail.server.app.profile;
 
-import io.skysail.api.forms.Field;
-import io.skysail.api.forms.HtmlPolicy;
-import io.skysail.api.forms.InputType;
+import io.skysail.api.forms.*;
 
 import javax.persistence.Transient;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 
 import lombok.Data;
 
@@ -14,7 +11,7 @@ import lombok.Data;
  * TODO: make sure to (programmatically) apply the same password validation rules like in skysailUser and registrations
  *
  */
-@Data
+@Data // NO_UCD
 @PasswordsMatch
 public class ChangePasswordEntity {
 

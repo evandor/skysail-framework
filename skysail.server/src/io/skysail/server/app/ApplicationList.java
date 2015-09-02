@@ -29,7 +29,7 @@ import de.twenty11.skysail.server.app.*;
  *
  */
 @Component(immediate = true)
-public class ApplicationList implements ApplicationListProvider {
+public class ApplicationList implements ApplicationListProvider { // NO_UCD (unused code)
 
     private static Logger logger = LoggerFactory.getLogger(ApplicationList.class);
 

@@ -8,10 +8,10 @@ import org.osgi.service.component.ComponentContext;
 import aQute.bnd.annotation.component.*;
 
 @Component(properties = {
-        CommandProcessor.COMMAND_SCOPE + ":String=skysail", 
+        CommandProcessor.COMMAND_SCOPE + ":String=skysail",
         CommandProcessor.COMMAND_FUNCTION + ":String=fingerprint",
 }, provide = Object.class)
-public class FingerprintCommand {
+public class FingerprintCommand { // NO_UCD (unused code)
 
     private ComponentContext ctx;
 

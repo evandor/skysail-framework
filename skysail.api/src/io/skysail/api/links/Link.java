@@ -53,7 +53,7 @@ public class Link {
 
     /**
      * a refId can be used to group links which belong together, for example, as
-     * they reference the same entity
+     * they reference the same entity.
      */
     private String refId;
 
@@ -73,6 +73,9 @@ public class Link {
         private Map<MediaType, String> images = new HashMap<>();
         private Class<?> cls;
 
+        /**
+         * Builder pattern for links.
+         */
         public Builder(@NonNull Link linkTemplate) {
             this.uri = linkTemplate.getUri();
             this.title  = linkTemplate.getTitle();

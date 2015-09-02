@@ -12,7 +12,7 @@
  *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
- * 
+ *
  */
 
 package de.twenty11.skysail.server.core.osgi.internal.listener;
@@ -30,11 +30,11 @@ import de.twenty11.skysail.server.services.SocketIoBroadcasting;
 
 /**
  * listener for bundle events.
- * 
+ *
  */
 @Component(immediate = true)
 @Slf4j
-public class SkysailServerBundleListener implements BundleListener {
+public class SkysailServerBundleListener implements BundleListener {// NO_UCD
 
     private AtomicReference<SocketIoBroadcasting> socketIoBroadcastingRef = new AtomicReference<>();
 

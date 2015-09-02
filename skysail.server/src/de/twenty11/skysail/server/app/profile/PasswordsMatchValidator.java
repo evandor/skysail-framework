@@ -1,9 +1,8 @@
 package de.twenty11.skysail.server.app.profile;
 
-import javax.validation.ConstraintValidator;
-import javax.validation.ConstraintValidatorContext;
+import javax.validation.*;
 
-public class PasswordsMatchValidator implements ConstraintValidator<PasswordsMatch, ChangePasswordEntity> {
+class PasswordsMatchValidator implements ConstraintValidator<PasswordsMatch, ChangePasswordEntity> {
 
     @Override
     public void initialize(PasswordsMatch arg0) {

@@ -2,7 +2,7 @@ package io.skysail.server.app;
 
 import lombok.*;
 
-@EqualsAndHashCode(of = "versionNr")
+@EqualsAndHashCode(of = "versionNr") // NO_UCD (unused code)
 public class ApiVersion {
 
     private Integer versionNr;

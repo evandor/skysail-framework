@@ -18,7 +18,7 @@ import org.osgi.framework.Constants;
  */
 @Getter
 @Slf4j
-@EqualsAndHashCode(of = {"name"})
+@EqualsAndHashCode(of = {"name"})// NO_UCD
 @ToString(of = {"name"})
 public class TranslationRenderServiceHolder {
 

@@ -1,5 +1,10 @@
 new in
 
+7.1.0
+-----
+
+ * removed StringParserUtils#substitutePlaceholders as it was not used.
+
 7.0.0
 -----
 

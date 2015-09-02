@@ -40,6 +40,12 @@ index(user, messages, converter, model) ::= <<
 		  ga('send', 'pageview');
     </script>
 
+    <!-- Begin Cookie Consent plugin by Silktide - http://silktide.com/cookieconsent -->
+    <script type="text/javascript">
+        var cookieMsg = "This site uses cookies from Google to deliver its services, to personalize ads and to analyze traffic. Information about your use of this site is shared with Google. By using this site, you agree to its use of cookies.";
+        window.cookieconsent_options = {"message":cookieMsg,"dismiss":"Got it!","learnMore":"More info","link":null,"theme":"dark-top"};
+    </script>
+
 </head>
 
 <body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">

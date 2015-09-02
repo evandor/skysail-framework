@@ -10,7 +10,7 @@ $contentHeader(converter, messages)$
     <div class="col-md-2">
 	    $code("step4")$
 		<hr>
-		$demoapp("/tutorialM2R/step4/", "Todo-List Application Step 4")$
+		$demoapp("/tutorialM2R/v1/step4/", "Todo-List Application Step 4")$
         <hr>
 		$good2know()$
     </div>

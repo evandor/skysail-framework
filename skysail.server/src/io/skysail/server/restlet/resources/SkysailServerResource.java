@@ -70,10 +70,6 @@ public abstract class SkysailServerResource<T> extends ServerResource {
 
     private List<Link> links;
 
-    @Setter
-    @Getter
-    private String desc;
-
     private Map<ResourceContextId, String> stringContextMap = new HashMap<>();
 
     private Map<ResourceContextId, Map<String, String>> mapContextMap = new HashMap<>();

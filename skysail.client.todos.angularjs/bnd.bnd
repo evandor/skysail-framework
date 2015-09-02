@@ -8,6 +8,7 @@ Include-Resource: webapp
 	slf4j.api;version=1.7.7,\
 	osgi.core;version=4.3,\
 	org.restlet;version=${restlet.version},\
+	org.restlet.ext.raml;version=${restlet.version},\
 	biz.aQute.bnd.annotation;version=1.52
 Service-Component: *
 Private-Package: \

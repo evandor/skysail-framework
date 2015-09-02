@@ -100,13 +100,14 @@
 	org.apache.shiro.web;version='[1.2.2,1.2.3)',\
 	org.hibernate.validator;version='[5.1.2,5.1.3)',\
 	org.jboss.logging.jboss-logging;version='[3.1.4,3.1.5)',\
-	org.restlet;version='[2.3,2.4)',\
-	org.restlet.ext.jackson;version='[2.3,2.4)',\
-	org.restlet.ext.json;version='[2.3,2.4)',\
-	org.restlet.ext.slf4j;version='[2.3,2.4)',\
-	org.restlet.ext.jetty;version='[2.3,2.4)',\
-	org.restlet.ext.servlet;version='[2.3,2.4)',\
-	org.restlet.ext.crypto;version='[2.3,2.4)',\
+	org.restlet;version=${restlet.version},\
+	org.restlet.ext.crypto;version=${restlet.version},\
+	org.restlet.ext.jackson;version=${restlet.version},\
+	org.restlet.ext.jetty;version=${restlet.version},\
+	org.restlet.ext.json;version=${restlet.version},\
+	org.restlet.ext.slf4j;version=${restlet.version},\
+	org.restlet.ext.raml;version=${restlet.version},\
+	org.restlet.ext.servlet;version=${restlet.version},\
 	org.xerial.snappy.snappy-java;version='[1.1.1,1.1.2)',\
 	osgi.cmpn;version='[5.0.0,5.0.1)',\
 	osgi.enterprise;version='[4.2.0,4.2.1)',\
@@ -150,6 +151,7 @@
 	com.beust.jcommander;version=1.47.0,\
 	stax2-api;version=3.1.4,\
 	com.fasterxml.jackson.module.jackson-module-jaxb-annotations;version=2.5.1,\
+	com.fasterxml.jackson.module.jackson-module-jsonSchema;version=2.5.1,\
 	org.codehaus.jettison.jettison;version=1.3.7,\
 	org.jsoup;version=1.8.1,\
 	com.sun.mail.javax.mail;version=1.5.1,\
@@ -166,7 +168,8 @@
 	org.eclipse.jetty.osgi-servlet-api;version=3.1.0,\
 	org.eclipse.jetty.client;version=9.2.11,\
 	org.quartz-scheduler.quartz;version=2.2.1,\
-	org.apache.servicemix.bundles.c3p0;version=0.9.1
+	org.apache.servicemix.bundles.c3p0;version=0.9.1,\
+	io.skysail.bundled.raml-parser;version=0.8.12,\
+	org.restlet.ext.apispark;version=2.3.4,\
+	org.yaml.snakeyaml;version=1.15.0
 
-#	org.jruby.jruby;version=1.7.19,\
-#	skysail.server.text.asciidoc;version=latest,\

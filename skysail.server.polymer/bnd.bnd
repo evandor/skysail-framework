@@ -25,6 +25,7 @@ Include-Resource: _polymer=_polymer
 	de.twentyeleven.skysail.org.antlr.stringtemplate-osgi;version=4.0.8,\
 	biz.aQute.bnd.annotation;version=2.4,\
 	org.restlet;version=${restlet.version},\
+	org.restlet.ext.raml;version=${restlet.version},\
 	lombok;version=1.16,\
 	etm.core;version=1.2,\
 	slf4j.api;version=1.7,\

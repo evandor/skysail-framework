@@ -7,6 +7,7 @@ Service-Component: *
 	biz.aQute.bnd.annotation,\
 	javax.validation.api;version=1.1,\
 	org.restlet;version=${restlet.version},\
+	org.restlet.ext.raml;version=${restlet.version},\
 	slf4j.api;version=1.7.7,\
 	osgi.core;version=5.0,\
 	osgi.cmpn;version=5.0,\

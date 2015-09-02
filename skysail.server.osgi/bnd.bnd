@@ -8,6 +8,7 @@ Bundle-Version: 0.0.21.${tstamp}
 	javax.validation.api,\
 	org.hibernate.validator;version=5.0,\
 	org.restlet;version=${restlet.version},\
+	org.restlet.ext.raml;version=${restlet.version},\
 	slf4j.api;version=1.7.7,\
 	javax.persistence,\
 	biz.aQute.bnd.annotation,\

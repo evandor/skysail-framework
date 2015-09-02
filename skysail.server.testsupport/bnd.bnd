@@ -8,6 +8,7 @@ Export-Package:  \
 	skysail.server;version=${skysail.server.version},\
 	skysail.server.db;version=${skysail.server.db.version},\
 	org.restlet;version=${restlet.version},\
+	org.restlet.ext.raml;version=${restlet.version},\
 	org.mockito.mockito-core;version=1.10,\
 	com.springsource.org.junit;version=4.11,\
 	org.apache.shiro.core;version=1.2,\

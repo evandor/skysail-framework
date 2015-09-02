@@ -19,6 +19,7 @@ Include-Resource: resources, templates=src;recursive:=true;filter:=*.st|*.stg
 	skysail.server.queryfilter;version=${skysail.server.queryfilter.version},\
 	slf4j.api;version=1.7.7,\
 	org.restlet;version=${restlet.version},\
+	org.restlet.ext.raml;version=${restlet.version},\
 	javax.validation.api;version=1.1,\
 	javax.persistence;version=2.1,\
 	com.springsource.org.junit;version=4.11,\

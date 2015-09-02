@@ -10,6 +10,7 @@ Bundle-Version: 0.1.2.${tstamp}
 	lombok;version=1.16,\
 	org.restlet;version=${restlet.version},\
 	org.restlet.ext.crypto;version=${restlet.version},\
+	org.restlet.ext.raml;version=${restlet.version},\
 	org.apache.shiro.core;version=1.2,\
 	org.apache.shiro.web;version=1.2,\
 	com.springsource.org.junit;version=4.11,\

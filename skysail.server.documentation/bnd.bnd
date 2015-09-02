@@ -4,6 +4,7 @@ Private-Package:  \
 Include-Resource: resources, templates=src;recursive:=true;filter:=*.st|*.stg
 -buildpath:  \
 	org.restlet;version=${restlet.version},\
+	org.restlet.ext.raml;version=${restlet.version},\
 	skysail.api;version=${skysail.api.version},\
 	skysail.api.validation;version=${skysail.api.validation.version},\
 	skysail.api.documentation;version=${skysail.api.documentation.version},\

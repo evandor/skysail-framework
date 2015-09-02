@@ -32,6 +32,7 @@ import org.owasp.html.HtmlPolicyBuilder;
 import org.restlet.*;
 import org.restlet.data.*;
 import org.restlet.data.Reference;
+import org.restlet.ext.raml.RamlApplication;
 import org.restlet.resource.*;
 import org.restlet.routing.Filter;
 import org.restlet.security.*;
@@ -99,7 +100,7 @@ import de.twenty11.skysail.server.services.*;
  *
  */
 @Slf4j
-public abstract class SkysailApplication extends Application implements ApplicationProvider, ResourceBundleProvider,
+public abstract class SkysailApplication extends RamlApplication implements ApplicationProvider, ResourceBundleProvider,
         Comparable<ApplicationProvider> {
 
     /** slf4j based logger implementation. */

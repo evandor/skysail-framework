@@ -26,6 +26,7 @@ public class Top10TodosResource extends ListServerResource<TodoSummary> {
 
     public Top10TodosResource() {
         super(TodoResource.class);
+        setDescription("Returns the Users Top 10 Todos.");
         addToContext(ResourceContextId.LINK_TITLE, "TOP 10 of Todos");
         addToContext(ResourceContextId.LINK_GLYPH, "th-list");
     }

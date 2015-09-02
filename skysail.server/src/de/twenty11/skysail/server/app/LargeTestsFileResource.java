@@ -5,17 +5,14 @@ import io.skysail.server.restlet.resources.EntityServerResource;
 
 import java.io.IOException;
 import java.nio.charset.Charset;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
+import java.nio.file.*;
 import java.util.stream.Collectors;
 
 import org.restlet.resource.ResourceException;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.slf4j.*;
 
-public class LargeTestsFileResource extends EntityServerResource<String> {
-	
+class LargeTestsFileResource extends EntityServerResource<String> {
+
 	private static final Logger logger = LoggerFactory.getLogger(LargeTestsFileResource.class);
 
     private String pathid;
@@ -40,6 +37,6 @@ public class LargeTestsFileResource extends EntityServerResource<String> {
         return null;
     }
 
-    
+
 
 }

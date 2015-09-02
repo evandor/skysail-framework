@@ -6,7 +6,7 @@ Include-Resource: resources, templates=src;recursive:=true;filter:=*.st|*.stg
 -buildpath:  \
 	biz.aQute.bnd.annotation,\
 	skysail.api;version=\${skysail.api.version},\
-	skysail.server;version=latest,\
+	skysail.server;version=${skysail.server.version},\
 	skysail.server.db;version=latest,\
 	skysail.server.codegen;version=latest,\
 	slf4j.api;version=1.7.7,\

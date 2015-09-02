@@ -1,6 +1,6 @@
 -runfw: org.apache.felix.framework;version=${org.apache.felix.framework.version}
 -runee: JavaSE-1.8
--runsystemcapabilities: ${native_capability} 
+-runsystemcapabilities: ${native_capability}
 -runrepos:  \
 	Skysail Framework Hub,\
 	Bndtools Hub,\
@@ -44,15 +44,15 @@
 	osgi.identity;filter:='(&(osgi.identity=jackson-mapper-asl)(version>=1.9.8))',\
 	osgi.identity;filter:='(&(osgi.identity=org.apache.felix.bundlerepository)(version>=2.0.2))',\
 	osgi.identity;filter:='(&(osgi.identity=osgi.cmpn)(version>=5.0))'
-	
+
 #	osgi.identity;filter:='(&(osgi.identity=skysail.server.db.orientdb)(version>=0.0.3))',\
 #	osgi.identity;filter:='(&(osgi.identity=skysail.server.ext.i18n)(version>=0.0.10))',\
 #	osgi.identity;filter:='(&(osgi.identity=skysail.server.mgt)(version>=0.1))',\
 #	osgi.identity;filter:='(&(osgi.identity=skysail.server.security.shiro)(version>=5.1.2))',\
 #	osgi.identity;filter:='(&(osgi.identity=skysail.server.static)(version>=0.5.20))',\
 #	osgi.identity;filter:='(&(osgi.identity=skysail.products.website)(version>=0.0.5))',\
-	
-	
+
+
 
 -runbundles:  \
 	ch.qos.logback.classic;version='[1.1.2,1.1.3)',\
@@ -105,7 +105,7 @@
 	skysail.api.documentation;version=${skysail.api.documentation.version},\
 	skysail.api.um;version=latest,\
 	skysail.api.validation;version=latest,\
-	skysail.server;version=latest,\
+	skysail.server;version=${skysail.server.version},\
 	skysail.server.http;version=latest,\
 	skysail.server.um.simple;version=latest,\
 	slf4j.api;version='[1.7.7,1.7.8)'

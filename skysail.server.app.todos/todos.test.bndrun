@@ -1,6 +1,6 @@
 -runfw: org.apache.felix.framework;version=${org.apache.felix.framework.version}
 -runee: JavaSE-1.8
--runsystemcapabilities: ${native_capability} 
+-runsystemcapabilities: ${native_capability}
 -runrepos:  \
 	Skysail Framework Hub,\
 	Bndtools Hub,\
@@ -38,7 +38,7 @@
 
 # not used here, resolution takes too long...
 #-runrequires:  \
-	
+
 
 -runbundles:  \
 	ch.qos.logback.classic;version='[1.1.2,1.1.3)',\
@@ -99,7 +99,7 @@
 	skysail.api.validation;version=latest,\
 	skysail.api.features;version=latest,\
 	skysail.api.favorites;version=${skysail.api.favorites.version},\
-	skysail.server;version=latest,\
+	skysail.server;version=${skysail.server.version},\
 	skysail.server.converter;version=latest,\
 	skysail.server.app.todos;version=latest,\
 	skysail.server.db;version=latest,\

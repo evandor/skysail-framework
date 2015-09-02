@@ -3,8 +3,7 @@ package de.twenty11.skysail.server.app;
 import io.skysail.api.documentation.DocumentationProvider;
 import io.skysail.api.favorites.FavoritesService;
 import io.skysail.api.peers.PeersProvider;
-import io.skysail.api.um.AuthenticationService;
-import io.skysail.api.um.AuthorizationService;
+import io.skysail.api.um.*;
 import io.skysail.api.validation.ValidatorService;
 import io.skysail.server.restlet.filter.HookFilter;
 import io.skysail.server.services.PerformanceMonitor;
@@ -27,14 +26,12 @@ public interface ServiceListProvider {
     FavoritesService getFavoritesService();
 
     AtomicReference<PeersProvider> getPeersProvider();
-    
+
     AuthenticationService getAuthenticationService();
 
     AtomicReference<EncryptorService> getEncryptorService();
 
     AtomicReference<EventAdmin> getEventAdmin();
-
-    //AtomicReference<ConfigurationAdmin> getConfigurationAdmin();
 
     SkysailComponent getSkysailComponent();
 

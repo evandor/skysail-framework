@@ -23,7 +23,7 @@
     felix.fileinstall.log.level=4,\
     org.apache.felix.log.storeDebug=true,\
     logback.configurationFile=testresources/logback.xml
-        
+
 -runrequires:  \
 	osgi.identity;filter:='(osgi.identity=org.apache.felix.gogo.shell)',\
 	osgi.identity;filter:='(osgi.identity=org.apache.felix.gogo.command)',\
@@ -42,28 +42,26 @@
 
 
 -runbundles:  \
-	ch.qos.logback.classic;version='[1.1.2,1.1.3)',\
-	ch.qos.logback.core;version='[1.1.2,1.1.3)',\
+	ch.qos.logback.classic;version='[1.1.3,1.1.4)',\
+	ch.qos.logback.core;version='[1.1.3,1.1.4)',\
 	classmate;version='[1.0.0,1.0.1)',\
-	com.fasterxml.jackson.core.jackson-annotations;version='[2.4.4,2.4.5)',\
-	com.fasterxml.jackson.core.jackson-core;version='[2.4.4,2.4.5)',\
-	com.fasterxml.jackson.core.jackson-databind;version='[2.4.4,2.4.5)',\
-	com.google.guava;version='[15.0.0,15.0.1)',\
+	com.fasterxml.jackson.core.jackson-annotations;version='[2.5.1,2.5.2)',\
+	com.fasterxml.jackson.core.jackson-core;version='[2.5.1,2.5.2)',\
+	com.fasterxml.jackson.core.jackson-databind;version='[2.5.1,2.5.2)',\
+	com.google.guava;version='[16.0.1,16.0.2)',\
 	com.googlecode.concurrentlinkedhashmap.lru;version='[1.4.0,1.4.1)',\
-	com.orientechnologies.orientdb-core;version='[2.0,2.1)',\
-	com.orientechnologies.orientdb-object;version='[2.0,2.1)',\
-	com.springsource.org.junit;version='[4.11.0,4.11.1)',\
+	com.orientechnologies.orientdb-core;version='[2.0.13,2.0.14)',\
+	com.orientechnologies.orientdb-object;version='[2.0.13,2.0.14)',\
 	com.sun.el;version='[2.2.0,2.2.1)',\
 	de.twenty11.owasp-java-html-sanitizer;version='[239.0.0,239.0.1)',\
-	etm.core;version='[1.2.3,1.2.4)',\
 	javassist;version='[3.18.1,3.18.2)',\
 	javax.el-api;version='[3.0.0,3.0.1)',\
 	javax.persistence;version='[2.1.0,2.1.1)',\
-	javax.servlet;version='[3.0.0,3.0.1)',\
 	javax.validation.api;version='[1.1.0,1.1.1)',\
 	org.apache.commons.beanutils;version='[1.9.2,1.9.3)',\
 	org.apache.commons.collections;version='[3.2.1,3.2.2)',\
 	org.apache.commons.lang;version='[2.6.0,2.6.1)',\
+	org.apache.commons.lang3;version='[3.3.2,3.3.3)',\
 	org.apache.commons.logging;version='[1.1.3,1.1.4)',\
 	org.apache.felix.configadmin;version='[1.8.0,1.8.1)',\
 	org.apache.felix.fileinstall;version='[3.4.0,3.4.1)',\
@@ -73,18 +71,24 @@
 	org.apache.felix.log;version='[1.0.1,1.0.2)',\
 	org.apache.felix.scr;version='[1.6.2,1.6.3)',\
 	org.apache.shiro.core;version='[1.2.2,1.2.3)',\
+	org.codehaus.jettison.jettison;version='[1.3.7,1.3.8)',\
+	org.eclipse.jetty.osgi-servlet-api;version='[3.1.0,3.1.1)',\
 	org.hibernate.validator;version='[5.1.2,5.1.3)',\
 	org.jboss.logging.jboss-logging;version='[3.1.4,3.1.5)',\
-	org.restlet;version='[2.1.7,2.1.8)',\
-	org.restlet.ext.jackson;version='[2.1.7,2.1.8)',\
-	org.restlet.ext.slf4j;version='[2.1.7,2.1.8)',\
+	org.restlet;version='[2.3.1,2.3.2)',\
+	org.restlet.ext.jackson;version='[2.3.1,2.3.2)',\
+	org.restlet.ext.slf4j;version='[2.3.1,2.3.2)',\
 	org.xerial.snappy.snappy-java;version='[1.1.1,1.1.2)',\
 	osgi.cmpn;version='[5.0.0,5.0.1)',\
 	osgi.enterprise;version='[4.2.0,4.2.1)',\
 	osgi.residential;version='[4.3.0,4.3.1)',\
-	skysail.api;version=${skysail.api.version},\
-	skysail.api.documentation;version=${skysail.api.documentation.version},\
-	skysail.api.um;version=latest,\
+	skysail.api;version=latest,\
+	skysail.api.documentation;version='[0.2.3,0.2.4)',\
+	skysail.api.favorites;version='[0.1.2,0.1.3)',\
+	skysail.api.features;version='[0.1.2,0.1.3)',\
+	skysail.api.peers;version='[0.1.1,0.1.2)',\
+	skysail.api.text;version='[1.0.0,1.0.1)',\
+	skysail.api.um;version='[0.2.1,0.2.2)',\
 	skysail.api.validation;version=latest,\
 	skysail.server;version=latest,\
 	slf4j.api;version='[1.7.7,1.7.8)'

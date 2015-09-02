@@ -2,7 +2,7 @@ index(user, messages, converter, model) ::= <<
 <!DOCTYPE html>
 <html lang="en">
   <head>
-  $head()$
+  $headWithoutGrayscaleCss()$
   </head>
 
   <body role="document" style="background-color: #eeeeee;">

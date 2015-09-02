@@ -1,5 +1,0 @@
-demoapp(link, title) ::= <<
-        <span class="label label-danger" style="font-size:110%">Demo Application</span> <br>
-        <br>
-        $modal(link,title)$
->>

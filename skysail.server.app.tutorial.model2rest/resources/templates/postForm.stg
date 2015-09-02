@@ -1,0 +1,51 @@
+postForm(model, messages) ::= <<
+    <form action="$model.formTarget$" method="POST" class="form-horizontal" role="form" id="form" name="form">
+      $handleField(first(model.data), first(model.formfields), messages,"1", " autofocus")$
+      $rest(model.formfields):{ field | $handleField(first(model.data), field, messages,i, "")$}$
+      $if (model.submitButtonNeeded)$
+        $submitPost("Submit","2","10",length(model.formfields))$
+      $endif$
+    </form>
+>>
+
+submitPost(label, o1,o2,tabindex) ::= <<
+      <div class="form-group">
+        <div class="col-sm-offset-$o1$ col-sm-$o2$">
+          <button type="submit" name="submit" value="submit" class="btn btn-default" tabindex="$tabindex$">$label$!</button>&nbsp;
+          <!-- <button type="submit" name="submit" value="submitAndNew" class="btn btn-default" tabindex="$tabindex$">$label$ and new</button> -->
+        </div>
+      </div>
+>>
+
+renderDescription(field,converter) ::= <<
+  $if(messages.(field.messageKey))$
+    <small class="help-block">_$helpmessage(messages, field.messageKey)$ $editTextLink(field,converter)$</small>
+  $else$
+    $editTextLink(field,converter)$
+  $endif$
+>>
+
+editTextLink(field,converter) ::= <<
+  $if(converter.edit)$
+    <a href='/i18n/messages/$model.classname$.$field.name$.desc/'><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>&nbsp;
+    <a href='/i18n/messages/$model.classname$.$field.name$.placeholder/'><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>
+  $endif$
+>>
+
+label(prefix, formField) ::= <<
+      <label for='$prefix$$formField.name$' class='col-sm-2 control-label' style="text-align: left;">$helpmessage(messages, field.nameKey)$ $if(converter.edit)$<a href='/i18n/messages/$source.entity.entity.class.name$.$field.name$/'><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>$endif$</label>
+>>
+
+helpmessage(messages, identifier) ::= <<$messages.(identifier)$>>
+
+options(option) ::= <<
+    <option value="$option.key$"$if(option.selected)$ selected$endif$>$option.value$</option>
+>>
+
+buttons(option, field) ::= <<
+    <input type="submit" name="$field.name$" class="btn $if(option.selected)$btn-info$else$btn-default$endif$" value="$option.value$">&nbsp;
+>>
+
+title(messages, ident) ::= <<
+    $helpmessage(messages, ident)$
+>>

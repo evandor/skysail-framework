@@ -103,7 +103,7 @@
 	osgi.residential;version='[4.3.0,4.3.1)',\
 	skysail.api;version='[2.0.0,2.0.1)',\
 	skysail.products.website;version=latest,\
-	skysail.server;version='[4.1.0,4.1.1)',\
+	skysail.server;version=${skysail.server.version},\
 	skysail.server.app.git;version=latest,\
 	skysail.server.app.i18n;version=latest,\
 	skysail.server.db.orientdb;version=latest,\

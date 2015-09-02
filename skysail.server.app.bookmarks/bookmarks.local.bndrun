@@ -10,7 +10,7 @@
 	Local,\
 	Skysail Repository,\
 	Bndtools Hub
-	
+
 -runsystempackages: sun.reflect, sun.misc, com.sun.net.httpserver, javax.imageio.spi, javax.crypto, javax.crypto.spec, javax.script, javax.net,\
     javax.net.ssl,javax.sql,javax.security.auth.x500,org.ietf.jgss,javax.naming,javax.naming.directory,javax.naming.ldap,\
     javax.xml.bind,javax.xml.bind.annotation,javax.xml.bind.annotation.adapters,javax.activation,javax.security.auth.callback,\
@@ -93,7 +93,7 @@
 	skysail.api.features;version=latest,\
 	skysail.api.favorites;version=${skysail.api.favorites.version},\
 	skysail.client.testsupport;version=latest,\
-	skysail.server;version=latest,\
+	skysail.server;version=${skysail.server.version},\
 	skysail.server.converter;version=latest,\
 	skysail.server.app.bookmarks;version=latest,\
 	skysail.server.db;version=latest,\

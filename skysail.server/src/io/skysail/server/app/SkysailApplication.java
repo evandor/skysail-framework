@@ -107,22 +107,22 @@ public abstract class SkysailApplication extends Application implements Applicat
 
     private Map<ApplicationContextId, String> stringContextMap = new HashMap<>();
 
-    public static final String APPLICATION_API_PATH = "/api";
-    public static final String APPLICATION_ENTITIES_PATH = "/entities";
-    public static final String APPLICATION_LINKS_PATH = "/links";
+//    public static final String APPLICATION_API_PATH = "/api";
+//    public static final String APPLICATION_ENTITIES_PATH = "/entities";
+//    public static final String APPLICATION_LINKS_PATH = "/links";
 
     /**
      * do not forget to add those media types as extensions in.
      *
      * {@link #createInboundRoot()}
      */
-    public static final MediaType SKYSAIL_HTMLFORM_MEDIATYPE = MediaType.register("htmlform", "HTML Form document");
-    public static final MediaType SKYSAIL_GRAPH = MediaType.register("graph", "graph representation");
+//    public static final MediaType SKYSAIL_HTMLFORM_MEDIATYPE = MediaType.register("htmlform", "HTML Form document");
+//    public static final MediaType SKYSAIL_GRAPH = MediaType.register("graph", "graph representation");
     public static final MediaType SKYSAIL_SERVER_SENT_EVENTS = MediaType.register("text/event-stream",
             "Server Side Events");
     public static final MediaType SKYSAIL_TREE_FORM = MediaType
             .register("treeform", "Html Form as tree representation");
-    public static final MediaType SKYSAIL_SHTML_MEDIATYPE = MediaType.register("shtml", "Server Side Include");
+//    public static final MediaType SKYSAIL_SHTML_MEDIATYPE = MediaType.register("shtml", "Server Side Include");
     public static final MediaType SKYSAIL_MAILTO_MEDIATYPE = MediaType.register("mailto", "href mailto target");
 
     protected static AtomicReference<ServiceListProvider> serviceListProviderRef = new AtomicReference<>();
@@ -286,11 +286,11 @@ public abstract class SkysailApplication extends Application implements Applicat
         // router.setDefaultMatchingQuery(true);
 
         logger.info("adding extensions to metadata service");
-        getMetadataService().addExtension("htmlform", SKYSAIL_HTMLFORM_MEDIATYPE);
-        getMetadataService().addExtension("shtml", SKYSAIL_SHTML_MEDIATYPE);
+//        getMetadataService().addExtension("htmlform", SKYSAIL_HTMLFORM_MEDIATYPE);
+//        getMetadataService().addExtension("shtml", SKYSAIL_SHTML_MEDIATYPE);
         getMetadataService().addExtension("eventstream", SKYSAIL_SERVER_SENT_EVENTS);
         getMetadataService().addExtension("treeform", SKYSAIL_TREE_FORM);
-        getMetadataService().addExtension("graph", SKYSAIL_GRAPH);
+//        getMetadataService().addExtension("graph", SKYSAIL_GRAPH);
         getMetadataService().addExtension("mailto", SKYSAIL_MAILTO_MEDIATYPE);
 
         // see

@@ -13,7 +13,7 @@ public class MenuItemDescriptor {
     @ListView(link = RemoteLoginResource.class) // TODO, thats just an awful workaround
     private String url;
 
-    public MenuItemDescriptor(MenuItem menuItem) {
+    MenuItemDescriptor(MenuItem menuItem) {
         String name = menuItem.getName();
         String link = menuItem.getLink();
         url = "<a href='"+link+"'>"+name+"</a>";

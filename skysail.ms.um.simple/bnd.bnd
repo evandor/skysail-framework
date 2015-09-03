@@ -1,0 +1,5 @@
+Bundle-Version: 0.1.0.${tstamp}
+Bundle-Name: SKYSAIL :: microservice :: usermanagement :: simple
+-buildpath:  \
+	skysail.api;version=${skysail.api.version}
+

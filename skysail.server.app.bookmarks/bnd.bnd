@@ -32,6 +32,7 @@ Import-Package: org.osgi.framework,\
 	com.springsource.org.junit;version=4.11,\
 	biz.aQute.bnd.annotation;version=2.4,\
 	skysail.server;version=${skysail.server.version},\
+	skysail.server.db;version=${skysail.server.db.version},\
 	javax.validation.api;version=1.1,\
 	org.apache.commons.beanutils;version=1.9,\
 	org.apache.shiro.core;version=1.2,\

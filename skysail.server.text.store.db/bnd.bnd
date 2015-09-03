@@ -5,7 +5,7 @@ Bundle-Name: SKYSAIL :: server :: text :: store :: db
 Bundle-Description: TranslationStore based on DB repository
 -buildpath:  \
 	skysail.api.text;version=${skysail.api.text.version},\
-	skysail.server;version=${skysail.server.version},\
+	skysail.server.db;version=${skysail.server.db.version},\
 	slf4j.api;version=1.7,\
 	biz.aQute.bnd.annotation;version=2.4,\
 	org.restlet;version=${restlet.version},\

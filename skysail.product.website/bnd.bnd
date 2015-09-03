@@ -41,7 +41,8 @@ Bundle-Name: SKYSAIL :: products :: website
 	jackson-core-asl;version=1.9,\
 	jackson-mapper-asl;version=1.9,\
 	org.restlet;version=${restlet.version},\
-	javax.validation.api;version=1.1
+	javax.validation.api;version=1.1,\
+	org.restlet.ext.raml;version=2.3
 
 Private-Package:  \
 	de.twenty11.skysail.products.website

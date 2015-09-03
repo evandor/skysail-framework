@@ -1,25 +1,15 @@
 package io.skysail.server.test;
 
-import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 import io.skysail.server.app.ApplicationList;
-import io.skysail.server.db.DbConfig;
-import io.skysail.server.db.DbConfigurationProvider;
-import io.skysail.server.db.DbConfigurations;
 
-import java.util.Arrays;
-import java.util.Collection;
+import java.util.*;
 
 import lombok.extern.slf4j.Slf4j;
 
-import org.junit.Before;
-import org.junit.Ignore;
-import org.junit.Test;
-import org.osgi.framework.Bundle;
-import org.osgi.framework.BundleContext;
-import org.osgi.framework.FrameworkUtil;
-import org.osgi.framework.ServiceReference;
+import org.junit.*;
+import org.osgi.framework.*;
 import org.osgi.service.cm.ConfigurationAdmin;
 
 import de.twenty11.skysail.server.app.ApplicationListProvider;
@@ -56,19 +46,19 @@ public class ServerIntegrationTests {
         assertThat(configAdmin, is(org.hamcrest.CoreMatchers.notNullValue()));
     }
 
-    @Test
-    public void DbConfigurationProvider_is_available() throws Exception {
-        ServiceReference<?> reference = getServiceReference(DbConfigurationProvider.class, "(name=defaultDbConfig)");
-        DbConfigurationProvider service = (DbConfigurationProvider) context.getService(reference);
-        assertThat(service instanceof DbConfigurations, org.hamcrest.CoreMatchers.is(true));
-
-        DbConfig config = service.getConfig();
-        assertThat(config.getDriver(), is(equalTo("thedriver")));
-        assertThat(config.getUrl(), is(equalTo("theurl")));
-        assertThat(config.getUsername(), is(equalTo("theusername")));
-        assertThat(config.getPassword(), is(equalTo("thepassword")));
-        assertThat(config.get("addProp"), is(equalTo("theAdditionalProperty")));
-    }
+//    @Test
+//    public void DbConfigurationProvider_is_available() throws Exception {
+//        ServiceReference<?> reference = getServiceReference(DbConfigurationProvider.class, "(name=defaultDbConfig)");
+//        DbConfigurationProvider service = (DbConfigurationProvider) context.getService(reference);
+//        assertThat(service instanceof DbConfigurations, org.hamcrest.CoreMatchers.is(true));
+//
+//        DbConfig config = service.getConfig();
+//        assertThat(config.getDriver(), is(equalTo("thedriver")));
+//        assertThat(config.getUrl(), is(equalTo("theurl")));
+//        assertThat(config.getUsername(), is(equalTo("theusername")));
+//        assertThat(config.getPassword(), is(equalTo("thepassword")));
+//        assertThat(config.get("addProp"), is(equalTo("theAdditionalProperty")));
+//    }
 
 //    @Test
 //    public void StateRepository_is_available() throws Exception {

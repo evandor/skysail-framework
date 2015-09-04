@@ -48,6 +48,9 @@ public class TodoList implements Serializable, Identifiable {
     @Field(inputType = InputType.READONLY)
     private Date modified;
 
+    @Field(inputType = InputType.CHECKBOX)
+    private boolean defaultList;
+
     @Field(inputType = InputType.READONLY)
     @ListView(hide = true)
     private String owner;

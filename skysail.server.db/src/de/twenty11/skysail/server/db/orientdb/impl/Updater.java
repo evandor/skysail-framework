@@ -2,7 +2,7 @@ package de.twenty11.skysail.server.db.orientdb.impl;
 
 import io.skysail.api.domain.Identifiable;
 
-import java.lang.reflect.Method;
+import java.lang.reflect.*;
 import java.util.*;
 
 import lombok.extern.slf4j.Slf4j;
@@ -40,7 +40,7 @@ public class Updater {
                 } else {
                     Object edges = properties.get(key);
                     if (edges instanceof Object[]) {
-                        Arrays.stream((Object[])edges).forEach(edge -> {
+                        Arrays.stream((Object[]) edges).forEach(edge -> {
                             addReference(vertex, properties, key, edge);
                         });
                     } else if (edges instanceof String) {
@@ -72,7 +72,7 @@ public class Updater {
             if (result == null) {
                 return null;
             }
-            return result; //db.detach(result);
+            return result; // db.detach(result);
         } catch (Exception e) {
             db.rollback();
             throw new RuntimeException("Database Problem, rolled back transaction", e);
@@ -86,14 +86,25 @@ public class Updater {
             return;
         }
         try {
-            Method method = entity.getClass().getMethod("get" + key.substring(0, 1).toUpperCase() + key.substring(1));
-            Object result = method.invoke(entity);
-            log.info("setting {}={} [{}]", new Object[] { key, result, result.getClass() });
-            vertex.setProperty(key, result);
+            invokeAndSet(entity, vertex, key, methodWith("get", entity, key));
         } catch (Exception e) {
-            log.error(e.getMessage(), e);
+            try {
+                invokeAndSet(entity, vertex, key, methodWith("is", entity, key));
+            } catch (Exception inner) {
+                log.error(e.getMessage(), inner);
+            }
         }
     }
 
-}
+    private Method methodWith(String prefix, Object entity, String key) throws NoSuchMethodException {
+        return entity.getClass().getMethod(prefix + key.substring(0, 1).toUpperCase() + key.substring(1));
+    }
 
+    private void invokeAndSet(Object entity, Vertex vertex, String key, Method method) throws IllegalAccessException,
+            InvocationTargetException {
+        Object result = method.invoke(entity);
+        log.info("setting {}={} [{}]", new Object[] { key, result, result.getClass() });
+        vertex.setProperty(key, result);
+    }
+
+}

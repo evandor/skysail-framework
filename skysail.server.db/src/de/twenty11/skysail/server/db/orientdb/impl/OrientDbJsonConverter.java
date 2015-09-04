@@ -2,7 +2,6 @@ package de.twenty11.skysail.server.db.orientdb.impl;
 
 import java.io.IOException;
 import java.util.*;
-import java.util.stream.Collectors;
 
 import org.restlet.data.MediaType;
 import org.restlet.engine.converter.ConverterHelper;
@@ -26,6 +25,7 @@ import de.twenty11.skysail.server.services.OsgiConverterHelper;
  *
  */
 @Component
+@Deprecated
 public class OrientDbJsonConverter extends ConverterHelper implements OsgiConverterHelper { // NO_UCM
 
     private static final Logger logger = LoggerFactory.getLogger(OrientDbJsonConverter.class);
@@ -86,10 +86,12 @@ public class OrientDbJsonConverter extends ConverterHelper implements OsgiConver
 
     @Override
     public Representation toRepresentation(Object source, Variant target, Resource resource) throws IOException {
-        List<?> listSource = (List<?>) source;
-        return new StringRepresentation("["
-                + listSource.stream().map(s -> s.toString()).collect(Collectors.joining(",")) + "]",
-                MediaType.APPLICATION_JSON);
+        throw new IllegalStateException("code not expected to be used no more");
+//
+//        List<?> listSource = (List<?>) source;
+//        return new StringRepresentation("["
+//                + listSource.stream().map(s -> s.toString()).collect(Collectors.joining(",")) + "]",
+//                MediaType.APPLICATION_JSON);
     }
 
 }

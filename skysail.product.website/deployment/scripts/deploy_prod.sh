@@ -35,7 +35,7 @@ echo "starting website service"
 cd /home/carsten/skysail/products/website/prod/bin/
 rm -rf META-INF
 rm -rf aQute
-rm -rf jar
+#rm -rf jar
 unzip -o skysail.website.jar
 ./website_prod start
 

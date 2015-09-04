@@ -2,8 +2,8 @@
 <class-diagram version="1.1.8" icons="true" automaticImage="PNG" always-add-relationships="false" generalizations="true" 
   realizations="true" associations="true" dependencies="false" nesting-relationships="true">  
   <class id="1" language="java" name="de.twenty11.skysail.server.app.tutorial.model2rest.step5.TodoModel" 
-    project="de.twenty11.skysail.server.app.tutorial.model2rest" 
-    file="/de.twenty11.skysail.server.app.tutorial.model2rest/src/de/twenty11/skysail/server/app/tutorial/model2rest/step5/TodoModel.java" 
+    project="skysail.server.app.tutorial.model2rest" 
+    file="/skysail.server.app.tutorial.model2rest/src/de/twenty11/skysail/server/app/tutorial/model2rest/step5/TodoModel.java" 
     binary="false" corner="BOTTOM_RIGHT">    
     <position height="368" width="269" x="23" y="34"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -13,8 +13,8 @@
     </display>  
   </class>  
   <enumeration id="2" language="java" name="de.twenty11.skysail.server.app.tutorial.model2rest.step5.State" 
-    project="de.twenty11.skysail.server.app.tutorial.model2rest" 
-    file="/de.twenty11.skysail.server.app.tutorial.model2rest/src/de/twenty11/skysail/server/app/tutorial/model2rest/step5/State.java" 
+    project="skysail.server.app.tutorial.model2rest" 
+    file="/skysail.server.app.tutorial.model2rest/src/de/twenty11/skysail/server/app/tutorial/model2rest/step5/State.java" 
     binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="519" y="218"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -25,8 +25,12 @@
   </enumeration>  
   <association id="3">    
     <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="4" name="state"/>      
-      <multiplicity id="5" minimum="0" maximum="1"/>    
+      <attribute id="4" name="state">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="5" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
     </end>    
     <end type="TARGET" refId="2" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  

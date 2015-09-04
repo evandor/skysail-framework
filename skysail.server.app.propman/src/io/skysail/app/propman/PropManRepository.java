@@ -1,18 +1,15 @@
 package io.skysail.app.propman;
 
-import io.skysail.server.db.DbRepository;
-import io.skysail.server.db.DbService2;
+import io.skysail.server.db.*;
 
 import java.util.List;
 
-import aQute.bnd.annotation.component.Activate;
-import aQute.bnd.annotation.component.Component;
-import aQute.bnd.annotation.component.Reference;
+import aQute.bnd.annotation.component.*;
 
 @Component(immediate = true, properties = "name=PropManRepository")
 public class PropManRepository implements DbRepository {
 
-    private static DbService2 dbService;
+    private static DbService dbService;
 
     @Activate
     public void activate() {
@@ -22,18 +19,18 @@ public class PropManRepository implements DbRepository {
     }
 
     @Reference
-    public void setDbService(DbService2 dbService) {
+    public void setDbService(DbService dbService) {
         PropManRepository.dbService = dbService;
     }
 
-    public void unsetDbService(DbService2 dbService) {
+    public void unsetDbService(DbService dbService) {
         PropManRepository.dbService = null;
     }
 
     public <T> List<T> findAll(Class<T> cls) {
         return dbService.findObjects("select from " + cls.getSimpleName());
     }
-    
+
     public <T> List<T> findAll(String sql) {
         return dbService.findObjects(sql);
     }

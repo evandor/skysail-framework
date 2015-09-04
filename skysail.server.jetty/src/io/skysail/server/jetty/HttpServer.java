@@ -98,7 +98,7 @@ public class HttpServer extends ServerResource implements RestletServicesProvide
             log.error("Exception when trying to stop standalone server", e);
         }
 
-        restletComponent.getDefaultHost().detach(defaultApplication);
+        //restletComponent.getDefaultHost().detach(defaultApplication);
 
         restletComponent.setServers(null);
 
@@ -147,7 +147,7 @@ public class HttpServer extends ServerResource implements RestletServicesProvide
 
     @Override
     public ConverterService getConverterSerivce() {
-        return defaultApplication.getConverterService();
+        return null;//defaultApplication.getConverterService();
     }
 
     @Override

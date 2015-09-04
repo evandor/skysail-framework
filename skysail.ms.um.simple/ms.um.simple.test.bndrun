@@ -78,6 +78,7 @@
 	de.twenty11.owasp-java-html-sanitizer;version='[239.0.0,239.0.1)',\
 	com.sun.el;version='[2.2.0,2.2.1)',\
 	org.restlet;version=${restlet.version},\
+	org.restlet.ext.apispark;version=${restlet.version},\
 	org.restlet.ext.crypto;version=${restlet.version},\
 	org.restlet.ext.jackson;version=${restlet.version},\
 	org.restlet.ext.jetty;version=${restlet.version},\
@@ -95,6 +96,9 @@
 	skysail.server;version=${skysail.server.version},\
 	skysail.server.http;version=${skysail.server.http.version},\
 	skysail.server.um.simple;version=latest,\
+	skysail.server.static;version=latest,\
+	skysail.server.converter;version=latest,\
+	de.twentyeleven.skysail.org.antlr.stringtemplate-osgi;version=4.0.8,\
 	org.eclipse.jetty.util;version=9.2.11,\
 	org.eclipse.jetty.http;version=9.2.11,\
 	org.eclipse.jetty.io;version=9.2.11,\
@@ -105,11 +109,13 @@
 	org.eclipse.jetty.deploy;version=9.2.11,\
 	org.eclipse.jetty.xml;version=9.2.11,\
 	org.eclipse.jetty.osgi-servlet-api;version=3.1.0,\
-	org.eclipse.jetty.client;version=9.2.11
+	org.eclipse.jetty.client;version=9.2.11,\
+	io.skysail.bundled.raml-parser;version=0.8.12,\
+	etm.core;version='[1.2.3,1.2.4)',\
+	org.yaml.snakeyaml;version=1.14.0
 
 
 
-	skysail.server.converter;version=latest,\
 	com.googlecode.concurrentlinkedhashmap.lru;version='[1.4.0,1.4.1)',\
 	com.springsource.org.junit;version='[4.11.0,4.11.1)',\
 	de.twentyeleven.skysail.org.json-osgi;version=latest,\
@@ -123,8 +129,6 @@
 	skysail.server.osgi;version=${skysail.server.osgi.version},\
 	skysail.server.queryfilter;version=latest,\
 	skysail.server.performance.etm;version=${skysail.server.performance.etm.version},\
-	skysail.server.static;version=latest,\
-	skysail.server.http;version=latest,\
 	skysail.server.peers.adminconfig;version=latest,\
 	skysail.server.polymer;version=latest,\
 	skysail.server.plugins;version=latest,\
@@ -136,5 +140,4 @@
 	com.beust.jcommander;version=1.47.0,\
 	stax2-api;version=3.1.4,\
 	org.jsoup;version=1.8.1,\
-	io.skysail.bundled.raml-parser;version=0.8.12,\
 

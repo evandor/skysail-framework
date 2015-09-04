@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<repository increment="1441195925348" name="Local" xmlns="http://www.osgi.org/xmlns/repository/v1.0.0">
+<repository increment="1441368565347" name="Local" xmlns="http://www.osgi.org/xmlns/repository/v1.0.0">
   <resource>
     <capability namespace="osgi.identity">
       <attribute name="osgi.identity" value="bcprov"/>
@@ -8855,6 +8855,154 @@
     </capability>
     <requirement namespace="osgi.ee">
       <directive name="filter" value="(&amp;(osgi.ee=JavaSE)(version=1.5))"/>
+    </requirement>
+  </resource>
+  <resource>
+    <capability namespace="osgi.identity">
+      <attribute name="osgi.identity" value="rome.rome"/>
+      <attribute name="type" value="osgi.bundle"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+    </capability>
+    <capability namespace="osgi.content">
+      <attribute name="osgi.content" value="ef95119f04cf7878d03988b7a89c8051acce1ccd513b7ed2913d040c1053a766"/>
+      <attribute name="url" value="rome.rome/rome.rome-1.0.0.jar"/>
+      <attribute name="size" type="Long" value="219671"/>
+      <attribute name="mime" value="application/vnd.osgi.bundle"/>
+    </capability>
+    <capability namespace="osgi.wiring.bundle">
+      <attribute name="osgi.wiring.bundle" value="rome.rome"/>
+      <attribute name="bundle-version" type="Version" value="1.0.0"/>
+    </capability>
+    <capability namespace="osgi.wiring.host">
+      <attribute name="osgi.wiring.host" value="rome.rome"/>
+      <attribute name="bundle-version" type="Version" value="1.0.0"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="com.sun.syndication.feed.module"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="rome.rome"/>
+      <attribute name="bundle-version" type="Version" value="1.0.0"/>
+      <directive name="uses" value="com.sun.syndication.feed.impl,com.sun.syndication.feed"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="com.sun.syndication.feed.module.impl"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="rome.rome"/>
+      <attribute name="bundle-version" type="Version" value="1.0.0"/>
+      <directive name="uses" value="com.sun.syndication.feed.module"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="com.sun.syndication.feed.synd"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="rome.rome"/>
+      <attribute name="bundle-version" type="Version" value="1.0.0"/>
+      <directive name="uses" value="com.sun.syndication.feed.module,com.sun.syndication.feed.module.impl,com.sun.syndication.feed.impl,com.sun.syndication.feed.synd.impl,com.sun.syndication.feed"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="com.sun.syndication"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="rome.rome"/>
+      <attribute name="bundle-version" type="Version" value="1.0.0"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="com.sun.syndication.feed.rss"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="rome.rome"/>
+      <attribute name="bundle-version" type="Version" value="1.0.0"/>
+      <directive name="uses" value="com.sun.syndication.feed.module,com.sun.syndication.feed.module.impl,com.sun.syndication.feed.impl,com.sun.syndication.feed"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="com.sun.syndication.io.impl"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="rome.rome"/>
+      <attribute name="bundle-version" type="Version" value="1.0.0"/>
+      <directive name="uses" value="com.sun.syndication.feed.module,org.jdom.output,org.jdom.input,com.sun.syndication.io,com.sun.syndication.feed.rss,com.sun.syndication.feed,org.jdom,com.sun.syndication.feed.atom"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="com.sun.syndication.feed.impl"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="rome.rome"/>
+      <attribute name="bundle-version" type="Version" value="1.0.0"/>
+      <directive name="uses" value="com.sun.syndication.feed"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="com.sun.syndication.feed.synd.impl"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="rome.rome"/>
+      <attribute name="bundle-version" type="Version" value="1.0.0"/>
+      <directive name="uses" value="com.sun.syndication.feed.module,com.sun.syndication.feed.module.impl,com.sun.syndication.feed.synd,com.sun.syndication.feed.rss,com.sun.syndication.io.impl,com.sun.syndication.feed,com.sun.syndication.feed.atom"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="com.sun.syndication.feed"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="rome.rome"/>
+      <attribute name="bundle-version" type="Version" value="1.0.0"/>
+      <directive name="uses" value="com.sun.syndication.feed.module,com.sun.syndication.feed.module.impl,com.sun.syndication.feed.impl"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="com.sun.syndication.io"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="rome.rome"/>
+      <attribute name="bundle-version" type="Version" value="1.0.0"/>
+      <directive name="uses" value="com.sun.syndication.feed.module,org.jdom.output,com.sun.syndication.io.impl,org.jdom.input,org.w3c.dom,org.xml.sax,com.sun.syndication.feed.synd,com.sun.syndication.feed,org.jdom"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="com.sun.syndication.feed.atom"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="rome.rome"/>
+      <attribute name="bundle-version" type="Version" value="1.0.0"/>
+      <directive name="uses" value="com.sun.syndication.feed.module,com.sun.syndication.feed.module.impl,com.sun.syndication.feed.impl,com.sun.syndication.feed"/>
+    </capability>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(&amp;(osgi.wiring.package=com.sun.syndication)(version&gt;=1.0.0))"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(&amp;(osgi.wiring.package=com.sun.syndication.feed)(version&gt;=1.0.0))"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(&amp;(osgi.wiring.package=com.sun.syndication.feed.atom)(version&gt;=1.0.0))"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(&amp;(osgi.wiring.package=com.sun.syndication.feed.impl)(version&gt;=1.0.0))"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(&amp;(osgi.wiring.package=com.sun.syndication.feed.module)(version&gt;=1.0.0))"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(&amp;(osgi.wiring.package=com.sun.syndication.feed.module.impl)(version&gt;=1.0.0))"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(&amp;(osgi.wiring.package=com.sun.syndication.feed.rss)(version&gt;=1.0.0))"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(&amp;(osgi.wiring.package=com.sun.syndication.feed.synd)(version&gt;=1.0.0))"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(&amp;(osgi.wiring.package=com.sun.syndication.feed.synd.impl)(version&gt;=1.0.0))"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(&amp;(osgi.wiring.package=com.sun.syndication.io)(version&gt;=1.0.0))"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(&amp;(osgi.wiring.package=com.sun.syndication.io.impl)(version&gt;=1.0.0))"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.jdom)"/>
+      <directive name="resolution" value="optional"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.jdom.input)"/>
+      <directive name="resolution" value="optional"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.jdom.output)"/>
+      <directive name="resolution" value="optional"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.w3c.dom)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.xml.sax)"/>
     </requirement>
   </resource>
   <resource>

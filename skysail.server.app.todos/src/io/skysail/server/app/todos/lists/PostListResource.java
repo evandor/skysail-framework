@@ -5,7 +5,6 @@ import io.skysail.api.responses.SkysailResponse;
 import io.skysail.server.app.todos.*;
 import io.skysail.server.app.todos.repo.TodosRepository;
 import io.skysail.server.app.todos.todos.resources.Top10TodosResource;
-import io.skysail.server.queryfilter.Filter;
 import io.skysail.server.restlet.resources.PostEntityServerResource;
 
 import java.util.*;
@@ -42,7 +41,7 @@ public class PostListResource extends PostEntityServerResource<TodoList> {
     @Override
     public SkysailResponse<?> addEntity(TodoList entity) {
         if (entity.isDefaultList()) {
-            clearUsersOtherLists();
+            app.clearUsersOtherLists(getRequest());
         }
         entity.setCreated(new Date());
         Subject subject = SecurityUtils.getSubject();
@@ -51,20 +50,6 @@ public class PostListResource extends PostEntityServerResource<TodoList> {
         String id = TodosRepository.add(entity).toString();
         entity.setId(id);
         return new SkysailResponse<>();
-    }
-
-    private void clearUsersOtherLists() {
-        Filter filter = new Filter(getRequest());
-        filter.add("owner", SecurityUtils.getSubject().getPrincipal().toString());
-        filter.add("defaultList", "true");
-
-        List<TodoList> usersDefaultsList = app.getRepository().findAllLists(filter, null);
-        for (TodoList todoList : usersDefaultsList) {
-            todoList.setDefaultList(false);
-            log.info("removing default-List Flag from todo list with id '{}'", todoList.getId());
-            app.getRepository().update(todoList.getId(), todoList);
-        }
-
     }
 
     @Override

@@ -104,8 +104,8 @@ public class ResourceTestBase {
 
     }
 
-    public void setUpApplication(SkysailApplication application) {
-        this.application = application;
+    public void setUpApplication(SkysailApplication app) {
+        this.application = app;
 
         validatorServiceRef = new AtomicReference<>();
         encryptorServiceRef = new AtomicReference<>();
@@ -113,9 +113,12 @@ public class ResourceTestBase {
         ValidatorService validatorService = new DefaultValidationImpl();
         validatorServiceRef.set(validatorService);
 
-        Mockito.doReturn(validatorServiceRef).when(application).getValidatorService();
-        Mockito.doReturn(encryptorServiceRef).when(application).getEncryptorService();
+        Mockito.doReturn(validatorServiceRef).when(app).getValidatorService();
+        Mockito.doReturn(encryptorServiceRef).when(app).getEncryptorService();
+      //  Mockito.doReturn(encryptorServiceRef).when(app).getServiceL;
 
+       // Mockito.when(app.startPerformanceMonitoring(Mockito.anyString())).thenReturn(Collections.emptySet());
+        Mockito.doReturn(Collections.emptySet()).when(app).startPerformanceMonitoring(Mockito.anyString());
     }
 
     public void setUpResource(Resource resource) throws Exception {

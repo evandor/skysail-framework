@@ -1,4 +1,4 @@
-Bundle-Version: 1.0.1.${tstamp}
+Bundle-Version: 2.0.0.${tstamp}
 Bundle-Name: SKYSAIL :: api :: text
 Bundle-Description: Text API defining an interface to get formatted, substitued and internationalized \
 	text blocks for given keys
@@ -6,9 +6,10 @@ Export-Package:  \
 	io.skysail.api.text
 -buildpath:  \
 	org.restlet;version=${restlet.version},\
+	org.mockito.mockito-core;version=1.10,\
 	com.springsource.org.junit;version=4.11,\
-	org.mockito.mockito-all;version=1.10,\
 	de.twentyeleven.skysail.org.hamcrest.hamcrest-all-osgi;version=1.3,\
 	lombok;version=1.16,\
 	biz.aQute.bnd.annotation;version=2.4,\
-	osgi.core;version=5.0
+	osgi.core;version=5.0,\
+	org.objenesis;version=2.1

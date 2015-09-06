@@ -245,8 +245,7 @@ public abstract class SkysailApplication extends RamlApplication implements Appl
         SkysailApplication.serviceListProviderRef.compareAndSet(service, null);
     }
 
-    // @Override
-    public String translate(String key, String defaultMsg, Resource resource, Object... substitutions) {
+    public String translate(String key, String defaultMsg, SkysailServerResource<?> resource) {
 
         Set<TranslationStoreHolder> translationStores = serviceListProviderRef.get().getTranslationStores();
         Optional<Translation> bestTranslationFromAStore = TranslationUtils.getBestTranslation(translationStores, key,

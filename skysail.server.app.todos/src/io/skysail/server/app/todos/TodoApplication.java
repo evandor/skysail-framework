@@ -104,4 +104,16 @@ public class TodoApplication extends SkysailApplication implements ApplicationPr
         return null;
     }
 
+    public int getListCount(Request request) {
+        Filter filter = new Filter(request);
+        filter.add("owner", SecurityUtils.getSubject().getPrincipal().toString());
+
+        return getRepository().findAllLists(filter).size();
+    }
+
+    public int getTodosCount(Request request) {
+        String owner = SecurityUtils.getSubject().getPrincipal().toString();
+        return getRepository().findAllTodos(new Filter(request).add("owner", owner)).size();
+    }
+
 }

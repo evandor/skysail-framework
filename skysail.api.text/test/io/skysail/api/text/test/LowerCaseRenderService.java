@@ -18,7 +18,7 @@ public class LowerCaseRenderService implements TranslationRenderService {
     }
 
     @Override
-    public String render(Translation translation, Object... substitutions) {
+    public String render(Translation translation) {
         return translation.getValue().toLowerCase();
     }
 

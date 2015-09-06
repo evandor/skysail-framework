@@ -3,6 +3,7 @@ package io.skysail.server.text.markdown;
 import io.skysail.api.text.*;
 
 import java.io.IOException;
+import java.text.MessageFormat;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -16,8 +17,14 @@ import aQute.bnd.annotation.component.Component;
 public class MarkdownTranslationRenderService implements TranslationRenderService {
 
     public static final String PREFIX_IDENTIFIER = "renderer:markdown ";
-    
+
     public static final String SERVICE_RANKING = "100";
+
+    private MessageFormat formatter;
+
+    public MarkdownTranslationRenderService() {
+        formatter = new MessageFormat("");
+    }
 
     @Override
     public String render(String in, Object... substitutions) {
@@ -28,22 +35,24 @@ public class MarkdownTranslationRenderService implements TranslationRenderServic
             log.error(e.getMessage(), e);
             return in;        }
     }
-    
+
     @Override
     // TODO handle substitutions
-    public String render(Translation translation, Object... substitutions) {
+    public String render(Translation translation) {
         if (translation == null) {
             return null;
         }
+        String rawTranslation = translation.getValue();
+        formatter.applyPattern(rawTranslation);
         try {
-            String unformatted = StringEscapeUtils.unescapeHtml4(translation.getValue());
+            String unformatted = StringEscapeUtils.unescapeHtml4(formatter.format(translation.getMessageArguments().toArray(new Object[translation.getMessageArguments().size()])));
             if (unformatted == null) {
                 return null;
             }
             return new Markdown4jProcessor().process(adjustText(unformatted));
         } catch (IOException e) {
             log.error(e.getMessage(), e);
-            return translation.getValue();
+            return rawTranslation;
         }
     }
 
@@ -62,6 +71,6 @@ public class MarkdownTranslationRenderService implements TranslationRenderServic
         return PREFIX_IDENTIFIER;
     }
 
-   
+
 
 }

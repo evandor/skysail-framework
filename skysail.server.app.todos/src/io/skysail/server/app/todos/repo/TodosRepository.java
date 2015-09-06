@@ -52,7 +52,9 @@ public class TodosRepository implements DbRepository {
         return lists;
     }
 
-
+    public List<Todo> findAllTodos(Filter filter) {
+        return findAllTodos(filter, new Pagination());
+    }
 
     public List<Todo> findAllTodos(Filter filter, Pagination pagination) {
         String sql =

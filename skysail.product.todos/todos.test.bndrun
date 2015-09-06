@@ -114,7 +114,7 @@
 	skysail.api;version=${skysail.api.version},\
 	skysail.api.um;version='[0.2.1,0.2.2)',\
 	skysail.api.peers;version='[0.1.1,0.1.2)',\
-	skysail.api.text;version='[1.0.0,1.0.1)',\
+	skysail.api.text;version=${skysail.api.text.version},\
 	skysail.api.documentation;version='[0.2.3,0.2.4)',\
 	skysail.api.validation;version='[0.2.1,0.2.2)',\
 	skysail.api.features;version='[0.1.2,0.1.3)',\

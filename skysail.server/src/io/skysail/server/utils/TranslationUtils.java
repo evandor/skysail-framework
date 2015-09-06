@@ -52,7 +52,7 @@ public class TranslationUtils {
         }).map(renderService -> {
             String translated = renderService.getService().get().render(translation);
             translation.setTranslated(translated);
-            translation.setRenderer(renderService.getClass().getSimpleName());
+            translation.setRenderer(renderService.getService().get().getClass().getSimpleName());
             return translation;
         }).findFirst().orElse(translation);
     }

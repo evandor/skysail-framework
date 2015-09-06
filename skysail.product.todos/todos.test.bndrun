@@ -127,8 +127,8 @@
 	skysail.server.osgi;version=${skysail.server.osgi.version},\
 	skysail.server.queryfilter;version=latest,\
 	skysail.server.performance.etm;version=${skysail.server.performance.etm.version},\
-	skysail.server.static;version=latest,\
-	skysail.server.http;version=latest,\
+	skysail.server.static;version=${skysail.server.static.version},\
+	skysail.server.http;version=${skysail.server.http.version},\
 	skysail.server.peers.adminconfig;version=latest,\
 	skysail.server.polymer;version=latest,\
 	skysail.server.plugins;version=latest,\

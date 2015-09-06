@@ -2,6 +2,7 @@ package io.skysail.server.restlet.resources;
 
 import io.skysail.api.links.*;
 import io.skysail.api.responses.SkysailResponse;
+import io.skysail.api.text.Translation;
 import io.skysail.server.app.SkysailApplication;
 import io.skysail.server.forms.FormField;
 import io.skysail.server.restlet.RequestHandler;
@@ -151,22 +152,14 @@ public abstract class SkysailServerResource<T> extends ServerResource {
         return null;
     }
 
-    /**
-     * get Messages.
-     *
-     * @return map with messages
-     */
-    public Map<String, String> getMessages() {
+    public Map<String, Translation> getMessages() {
         Application application = getApplication();
-        Map<String, String> msgs = new HashMap<>();
-        msgs.put("content.header",
-                "default msg from de.twenty11.skysail.server.core.restlet.SkysailServerResource.getMessages()");
+        Map<String, Translation> msgs = new TreeMap<>();
+//        msgs.put("content.header",
+//                new Trans"default msg from de.twenty11.skysail.server.core.restlet.SkysailServerResource.getMessages()");
         String key = getClass().getName() + ".message";
-        String translated = ((SkysailApplication) application).translate(key, key, this);
+        Translation translated = ((SkysailApplication) application).translate(key, key, this);
         msgs.put("content.header", translated);
-
-        //HeadersUtils.getHeaders(getResponse()).add("X-Resource-Description", translated);
-
         return msgs;
     }
 
@@ -177,8 +170,8 @@ public abstract class SkysailServerResource<T> extends ServerResource {
      *            a list of fields
      * @return messages the messages
      */
-    public Map<String, String> getMessages(Map<String, FormField> fields) {
-        Map<String, String> msgs = getMessages();
+    public Map<String, Translation> getMessages(Map<String, FormField> fields) {
+        Map<String, Translation> msgs = getMessages();
         if (fields == null) {
             return msgs;
         }
@@ -203,13 +196,13 @@ public abstract class SkysailServerResource<T> extends ServerResource {
         return msgs;
     }
 
-    private void addTranslation(Map<String, String> msgs, Application application, FormField f, String key,
+    private void addTranslation(Map<String, Translation> msgs, Application application, FormField f, String key,
             String defaultMsg) {
-        String translation = ((SkysailApplication) application).translate(key, defaultMsg, this);
+        Translation translation = ((SkysailApplication) application).translate(key, defaultMsg, this);
         if (translation != null) {
             msgs.put(key, translation);
         } else if (defaultMsg != null) {
-            msgs.put(key, defaultMsg);
+            msgs.put(key, new Translation(defaultMsg, null, Collections.emptySet()));
         }
     }
 

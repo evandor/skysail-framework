@@ -3,6 +3,7 @@ package io.skysail.server.converter.impl;
 import io.skysail.api.favorites.FavoritesService;
 import io.skysail.api.peers.PeersProvider;
 import io.skysail.api.responses.SkysailResponse;
+import io.skysail.api.text.Translation;
 import io.skysail.server.app.SkysailApplication;
 import io.skysail.server.converter.HtmlConverter;
 import io.skysail.server.converter.stringtemplate.STGroupBundleDir;
@@ -149,8 +150,8 @@ public class StringTemplateRenderer {
         decl.add("user", new STUserWrapper(SecurityUtils.getSubject(), peersProvider, installationFromCookie));
         decl.add("converter", this);
 
-        Map<String, String> messages = resource.getMessages(resourceModel.getFields());
-        messages.put("productName", getProductName());
+        Map<String, Translation> messages = resource.getMessages(resourceModel.getFields());
+        messages.put("productName", new Translation(getProductName(), null, Collections.emptySet()));
 
         decl.add("messages", messages);
         decl.add("model", resourceModel);

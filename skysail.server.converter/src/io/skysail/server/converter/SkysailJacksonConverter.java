@@ -1,6 +1,7 @@
 package io.skysail.server.converter;
 
 import io.skysail.api.responses.SkysailResponse;
+import io.skysail.api.text.Translation;
 import io.skysail.server.model.ResourceModel;
 import io.skysail.server.restlet.resources.SkysailServerResource;
 import io.skysail.server.utils.HeadersUtils;
@@ -29,9 +30,9 @@ public class SkysailJacksonConverter extends JacksonConverter implements OsgiCon
                 @SuppressWarnings({ "rawtypes", "unchecked" })
                 ResourceModel<SkysailServerResource<?>, ?> resourceModel = new ResourceModel(skysailServerResource, (SkysailResponse<?>) source, target);
 
-                Map<String, String> messages = skysailServerResource.getMessages(resourceModel.getFields());
-                String descrition = messages.get("content.header");
-                HeadersUtils.getHeaders(resource.getResponse()).add("X-Resource-Description", descrition);
+                Map<String, Translation> messages = skysailServerResource.getMessages(resourceModel.getFields());
+                Translation descrition = messages.get("content.header");
+                HeadersUtils.getHeaders(resource.getResponse()).add("X-Resource-Description", descrition.getTranslated());
 
                 String columnNames = resourceModel.getFormfields().stream().map(f -> {
                     return "\"" + f.getName() + "\": \"" + messages.get(f.getNameKey()) + "\"";

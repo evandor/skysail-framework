@@ -8,7 +8,7 @@ indexSpa(user, messages, converter, model) ::= <<
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>$messages.("productName")$ (SPA)</title>
+    <title>$messages.("productName").translated$ (SPA)</title>
 
     <!-- Pace -->
     <script type="text/javascript" src="/webapp/js/pace/pace-1.0.0.min.js"></script>
@@ -112,7 +112,7 @@ indexSpa(user, messages, converter, model) ::= <<
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="/">$messages.("productName")$</a>
+          <a class="navbar-brand" href="/">$messages.("productName").translated$</a>
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">

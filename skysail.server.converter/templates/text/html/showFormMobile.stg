@@ -189,7 +189,7 @@ label(prefix, formField) ::= <<
       <label for='$prefix$$formField.name$' class='col-sm-2 control-label' style="text-align: left;">$helpmessage(messages, field.nameKey)$</label>
 >>
 
-helpmessage(messages, identifier) ::= <<$messages.(identifier)$>>
+helpmessage(messages, identifier) ::= <<$messages.(identifier).translated$>>
 
 options(option) ::= <<
     <option value="$option.key$"$if(option.selected)$ selected$endif$>$option.value$</option>

@@ -44,14 +44,17 @@ public class TranslationUtils {
         return null;
     }
 
-    public static String render(Set<TranslationRenderServiceHolder> translationRenderServices, Translation translation) {
+    public static Translation render(Set<TranslationRenderServiceHolder> translationRenderServices, Translation translation) {
         List<TranslationRenderServiceHolder> sortedTranslationRenderServices = getSortedTranslationRenderServices(translationRenderServices);
 
         return sortedTranslationRenderServices.stream().filter(renderService -> {
             return renderService.getService().get().applicable(translation.getValue());
         }).map(renderService -> {
-            return renderService.getService().get().render(translation);
-        }).findFirst().orElse("");
+            String translated = renderService.getService().get().render(translation);
+            translation.setTranslated(translated);
+            translation.setRenderer(renderService.getClass().getSimpleName());
+            return translation;
+        }).findFirst().orElse(translation);
     }
 
     private static List<TranslationRenderServiceHolder> getSortedTranslationRenderServices(

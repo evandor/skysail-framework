@@ -44,7 +44,7 @@ label(prefix, formField) ::= <<
       <label for='$prefix$$formField.name$' class='col-sm-2 control-label' style="text-align: left;">$helpmessage(messages, field.nameKey)$ $if(converter.edit)$<a href='/i18n/messages/$source.entity.entity.class.name$.$field.name$/'><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>$endif$</label>
 >>
 
-helpmessage(messages, identifier) ::= <<$messages.(identifier)$>>
+helpmessage(messages, identifier) ::= <<$messages.(identifier).translated$>>
 
 options(option) ::= <<
     <option value="$option.key$"$if(option.selected)$ selected$endif$>$option.value$</option>

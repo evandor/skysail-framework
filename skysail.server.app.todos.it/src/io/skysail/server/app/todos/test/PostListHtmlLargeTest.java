@@ -21,7 +21,7 @@ public class PostListHtmlLargeTest extends IntegrationTests<TodoListBrowser, Tod
         createBrowser(MediaType.TEXT_HTML);
         browser.navigateToPostList();
         browser.verifyHeader("Link", "</Todos/v2>; rel=\"item\"; title=\"Todos\"; verbs=\"GET\"");
-        browser.verifyHeader("Link", "</usermanagement>; rel=\"item\"; title=\"Usermanagement\"; verbs=\"GET\"");
+        browser.verifyHeader("Link", "</usermanagement/v1>; rel=\"item\"; title=\"usermanagement\"; verbs=\"GET\"");
         browser.verifyHeader("Link", "</plugins/v1>; rel=\"item\"; title=\"plugins\"; verbs=\"GET\"");
         browser.verifyHeaderCount("Link", 3);
     }
@@ -31,7 +31,7 @@ public class PostListHtmlLargeTest extends IntegrationTests<TodoListBrowser, Tod
         createBrowser(MediaType.APPLICATION_JSON);
         browser.navigateToPostList();
         browser.verifyHeader("Link", "</Todos/v2>; rel=\"item\"; title=\"Todos\"; verbs=\"GET\"");
-        browser.verifyHeader("Link", "</usermanagement>; rel=\"item\"; title=\"Usermanagement\"; verbs=\"GET\"");
+        browser.verifyHeader("Link", "</usermanagement/v1>; rel=\"item\"; title=\"usermanagement\"; verbs=\"GET\"");
         browser.verifyHeader("Link", "</plugins/v1>; rel=\"item\"; title=\"plugins\"; verbs=\"GET\"");
         browser.verifyHeaderCount("Link", 3);
     }

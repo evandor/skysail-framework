@@ -30,13 +30,16 @@ public abstract class AbstractListResourceTest extends ResourceTestBase {
     @Spy
     protected ListResource listResource;
 
+    @Spy
+    private TodoApplication application;
+
     protected TodosRepository repo;
 
     @Before
     public void setUp() throws Exception {
         super.setUpFixture();
 
-        super.setUpApplication(Mockito.mock(TodoApplication.class));
+        super.setUpApplication(application);//Mockito.mock(TodoApplication.class));
         super.setUpResource(listResource);
         super.setUpResource(listsResource);
         super.setUpResource(putListResource);

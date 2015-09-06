@@ -60,4 +60,24 @@ public class PutListResourceTest extends AbstractListResourceTest {
         assertThat(vertexById.getProperty("desc"), is(equalTo("description")));
     }
 
+    @Test
+    public void updated_list_with_default_flag_becomes_default() {
+        TodoList aList = createList();
+
+        form.add("name", "updated_list_with_default_flag_becomes_default");
+        form.add("defaultList", "on");
+
+        putListResource.getRequestAttributes().put(TodoApplication.LIST_ID, aList.getId());
+        setAttributes(TodoApplication.LIST_ID, aList.getId());
+        init(putListResource);
+
+        putListResource.put(form, HTML_VARIANT);
+
+        List<OrientVertex> vertexById2 = (List<OrientVertex>) new TodosRepository().getVertexById(TodoList.class, aList.getId());
+        OrientVertex vertexById = vertexById2.get(0);
+
+        assertThat(vertexById.getProperty("name"), is(equalTo("updated_list_with_default_flag_becomes_default")));
+        assertThat(vertexById.getProperty("defaultList"), is(true));
+
+    }
 }

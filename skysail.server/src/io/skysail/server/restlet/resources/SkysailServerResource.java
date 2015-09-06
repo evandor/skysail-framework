@@ -162,7 +162,7 @@ public abstract class SkysailServerResource<T> extends ServerResource {
         msgs.put("content.header",
                 "default msg from de.twenty11.skysail.server.core.restlet.SkysailServerResource.getMessages()");
         String key = getClass().getName() + ".message";
-        String translated = ((SkysailApplication) application).translate(key, key, this, true);
+        String translated = ((SkysailApplication) application).translate(key, key, this);
         msgs.put("content.header", translated);
 
         //HeadersUtils.getHeaders(getResponse()).add("X-Resource-Description", translated);
@@ -205,7 +205,7 @@ public abstract class SkysailServerResource<T> extends ServerResource {
 
     private void addTranslation(Map<String, String> msgs, Application application, FormField f, String key,
             String defaultMsg) {
-        String translation = ((SkysailApplication) application).translate(key, defaultMsg, this, false);
+        String translation = ((SkysailApplication) application).translate(key, defaultMsg, this);
         if (translation != null) {
             msgs.put(key, translation);
         } else if (defaultMsg != null) {
@@ -431,7 +431,5 @@ public abstract class SkysailServerResource<T> extends ServerResource {
 
         return result;
     }
-
-
 
 }

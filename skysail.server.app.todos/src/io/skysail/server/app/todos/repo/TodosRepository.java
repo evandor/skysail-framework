@@ -9,6 +9,8 @@ import io.skysail.server.queryfilter.pagination.Pagination;
 
 import java.util.*;
 
+import org.restlet.Request;
+
 import aQute.bnd.annotation.component.*;
 
 @Component(immediate = true, properties = "name=TodosRepository")
@@ -34,10 +36,14 @@ public class TodosRepository implements DbRepository {
         TodosRepository.dbService = null;
     }
 
+    public List<TodoList> findAllLists(Filter filter) {
+        return findAllLists(filter, new Pagination());
+    }
+
     public List<TodoList> findAllLists(Filter filter, Pagination pagination) {
         // TODO do this in one statement
         String sql = "SELECT from " + TodoList.class.getSimpleName() + " WHERE "+filter.getPreparedStatement()+" ORDER BY name "
-                + limitClause(pagination.getLinesPerPage(),pagination.getPage());
+                + limitClause(pagination);
         Map<String, Object> params = new HashMap<String, Object>();
         List<TodoList> lists = dbService.findObjects(sql, filter.getParams());
         for (TodoList list : lists) {
@@ -46,20 +52,27 @@ public class TodosRepository implements DbRepository {
         return lists;
     }
 
-
+    public List<Todo> findAllTodos(Filter filter) {
+        return findAllTodos(filter, new Pagination());
+    }
 
     public List<Todo> findAllTodos(Filter filter, Pagination pagination) {
         String sql =
                 "SELECT *, SUM(urgency,importance, views) as rank, out('parent') as parent from " + Todo.class.getSimpleName() +
                 " WHERE "+filter.getPreparedStatement()+
                 " ORDER BY rank DESC "
-                + limitClause(pagination.getLinesPerPage(),pagination.getPage());
+                + limitClause(pagination);
 
         //sql = "SELECT *, SUM(urgency,importance) as rank from Todo WHERE NOT (status=:status) AND owner=:owner AND #17:0 IN out('parent') ORDER BY rank DESC SKIP 0 LIMIT 10";
         return dbService.findObjects(sql, filter.getParams());
     }
 
-    private String limitClause(long linesPerPage, int page) {
+    private String limitClause(Pagination pagination) {
+        if (pagination == null) {
+            return "";
+        }
+        long linesPerPage = pagination.getLinesPerPage();
+        long page = pagination.getPage();
         if (linesPerPage <= 0) {
             return "";
         }
@@ -142,6 +155,9 @@ public class TodosRepository implements DbRepository {
 
     public Object getVertexById(Class<TodoList> cls, String id) {
         return dbService.findGraphs("SELECT FROM "+cls.getSimpleName()+" WHERE @rid="+id);
+    }
+
+    public void clearDefault(Request request) {
     }
 
 }

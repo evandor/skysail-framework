@@ -90,6 +90,7 @@ s-runsystemcapabilities: ${native_capability}
 	org.restlet.ext.json;version='[2.3,2.4)',\
 	org.restlet.ext.slf4j;version='[2.3,2.4)',\
 	org.restlet.ext.jetty;version='[2.3,2.4)',\
+    org.restlet.ext.raml;version='[2.3,2.4)',\
 	org.restlet.ext.servlet;version='[2.3,2.4)',\
 	org.restlet.ext.crypto;version='[2.3,2.4)',\
 	org.xerial.snappy.snappy-java;version='[1.1.1,1.1.2)',\
@@ -121,6 +122,7 @@ s-runsystemcapabilities: ${native_capability}
 	skysail.server.text.store.bundleresource;version=latest,\
 	skysail.server.text.store.git;version=latest,\
 	skysail.server.um.simple;version=latest,\
+	skysail.server.app.tutorial.model2rest;version=latest,\
 	slf4j.api;version='[1.7.7,1.7.8)',\
 	de.twentyeleven.skysail.org.antlr.stringtemplate-osgi;version=4.0.8,\
 	com.beust.jcommander;version=1.47.0,\

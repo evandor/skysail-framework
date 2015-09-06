@@ -31,15 +31,15 @@ public class AsciiDocRenderService implements TranslationRenderService {
             return b.getSymbolicName().equals("org.jruby.jruby");
         }).findFirst();
         if (jrubyBundle.isPresent()) {
-            
+
             ClassLoader loader = jrubyBundle.get().adapt(BundleWiring.class).getClassLoader();
             ClassLoader originalLoader = Thread.currentThread().getContextClassLoader();
-            
+
             CompositeClassLoader ccl = new CompositeClassLoader();
             ccl.addClassLoader(loader);
             ccl.addClassLoader(originalLoader);
             ccl.addClassLoader(this.getClass().getClassLoader());
-            
+
             RubyInstanceConfig config = new RubyInstanceConfig();
             config.setLoader(ccl);//this.getClass().getClassLoader());
 
@@ -71,7 +71,7 @@ public class AsciiDocRenderService implements TranslationRenderService {
     }
 
     @Override
-    public String render(Translation translation, Object... substitutions) {
+    public String render(Translation translation) {
         return asciidoctor.convert(translation.getValue(), new HashMap<String, Object>());
     }
 

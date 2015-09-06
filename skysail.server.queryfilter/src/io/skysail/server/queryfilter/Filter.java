@@ -63,9 +63,10 @@ public class Filter {
         evaluate();
     }
 
-    public void add(String key, String value) {
+    public Filter add(String key, String value) {
         and("(" + key + "=" + value +")");
         evaluate();
+        return this;
     }
 
     public void addEdgeOut(String name, String value) {

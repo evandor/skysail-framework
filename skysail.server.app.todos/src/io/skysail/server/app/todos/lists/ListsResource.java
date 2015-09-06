@@ -1,6 +1,7 @@
 package io.skysail.server.app.todos.lists;
 
 import io.skysail.api.links.Link;
+import io.skysail.api.text.*;
 import io.skysail.server.app.todos.*;
 import io.skysail.server.app.todos.todos.resources.*;
 import io.skysail.server.queryfilter.Filter;
@@ -16,7 +17,7 @@ import org.restlet.resource.ClientResource;
 
 import de.twenty11.skysail.server.core.restlet.ResourceContextId;
 
-public class ListsResource extends ListServerResource<TodoList> {
+public class ListsResource extends ListServerResource<TodoList> implements I18nArgumentsProvider {
 
     private TodoApplication app;
 
@@ -79,6 +80,15 @@ public class ListsResource extends ListServerResource<TodoList> {
     public List<Link> getLinks() {
         // PostTodoWoListResource.class,
         return super.getLinks(PostListResource.class, Top10TodosResource.class, ListsResource.class);
+    }
+
+    @Override
+    public MessageArguments getMessageArguments() {
+        return new MessageArguments(this.getClass())
+            .add("count of all lists of the current user", app.getListCount(getRequest()))
+            .add("count of all todos of the current user", app.getTodosCount(getRequest()))
+            .setNewIdentifier("testname")
+            .add("1", "b");
     }
 
 }

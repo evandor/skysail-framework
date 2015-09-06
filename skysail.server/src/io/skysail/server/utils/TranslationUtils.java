@@ -1,20 +1,18 @@
 package io.skysail.server.utils;
 
-import io.skysail.api.text.Translation;
+import io.skysail.api.text.*;
 import io.skysail.server.restlet.resources.SkysailServerResource;
 import io.skysail.server.text.TranslationStoreHolder;
 
 import java.util.*;
 import java.util.stream.Collectors;
 
-import org.restlet.resource.Resource;
-
 import de.twenty11.skysail.server.app.TranslationRenderServiceHolder;
 
 public class TranslationUtils {
 
     public static Optional<Translation> getBestTranslation(Set<TranslationStoreHolder> stores, String key,
-            Resource resource) {
+            SkysailServerResource<?> resource) {
         return getSortedTranslationStores(stores).stream().filter(store -> {
             return store.getStore().get() != null;
         }).map(store -> {
@@ -24,7 +22,7 @@ public class TranslationUtils {
         }).findFirst();
     }
 
-    public static List<Translation> getAllTranslations(Set<TranslationStoreHolder> stores, String key, Resource resource) {
+    public static List<Translation> getAllTranslations(Set<TranslationStoreHolder> stores, String key, SkysailServerResource<?> resource) {
         List<TranslationStoreHolder> sortedTranslationStores = getSortedTranslationStores(stores);
         return sortedTranslationStores.stream().filter(store -> {
             return store.getStore().get() != null;
@@ -71,15 +69,25 @@ public class TranslationUtils {
         return sortedStores;
     }
 
-    private static Translation createFromStore(String key, Resource resource, TranslationStoreHolder store,
+    private static Translation createFromStore(String key, SkysailServerResource<?> resource, TranslationStoreHolder store,
             Set<TranslationStoreHolder> stores) {
         String result = store.getStore().get().get(key, resource.getClass().getClassLoader(), resource.getRequest())
                 .orElse(null);
         if (result == null) {
             return null;
         }
-        return new Translation(result, store.getStore().get(), stores.stream().map(TranslationStoreHolder::getName)
-                .collect(Collectors.toSet()));
+        if (resource instanceof I18nArgumentsProvider) {
+            MessageArguments messageArguments = ((I18nArgumentsProvider)resource).getMessageArguments();
+            return new Translation(
+                    result,
+                    store.getStore().get(),
+                    messageArguments.get(key),
+                    stores.stream().map(TranslationStoreHolder::getName).collect(Collectors.toSet()));
+        }
+        return new Translation(
+                result,
+                store.getStore().get(),
+                stores.stream().map(TranslationStoreHolder::getName).collect(Collectors.toSet()));
     }
 
 }

@@ -1,0 +1,8 @@
+new in
+
+2.0.0
+-----
+
+ * new Translation Constructor taking messageArguments
+ * cleanup TranslationRenderService
+ * added ConsumerInterface I18nArgumentsProvider

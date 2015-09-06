@@ -28,7 +28,7 @@ public class ServiceListTest {
     private SkysailApplication application;
 
     private TranslationStore translationStore;
-    
+
     private TranslationRenderService renderService;
 
     @Before
@@ -43,20 +43,20 @@ public class ServiceListTest {
     }
 
     /** === Translation Stores ================================== */
-    
+
     @Test
     public void adding_new_store_creates_holder_in_serviceList_and_application() {
         serviceList.addTranslationStore(translationStore, new HashMap<>());
         assertThat(serviceList.getTranslationStores().size(), is(1));
     }
-    
+
     @Test
     public void adding_the_same_store_twice_yields_only_one_holder() {
         serviceList.addTranslationStore(translationStore, new HashMap<>());
         serviceList.addTranslationStore(translationStore, new HashMap<>());
         assertThat(serviceList.getTranslationStores().size(), is(1));
     }
-    
+
     @Test
     public void adding_another_store_yields_two_holders() {
         serviceList.addTranslationStore(translationStore, new HashMap<>());
@@ -69,42 +69,42 @@ public class ServiceListTest {
         }, new HashMap<>());
         assertThat(serviceList.getTranslationStores().size(), is(2));
     }
-    
+
     @Test
     public void removing_a_store_again_yields_empty_list_of_stores() {
         serviceList.addTranslationStore(translationStore, new HashMap<>());
         serviceList.removeTranslationStore(translationStore);
         assertThat(serviceList.getTranslationStores().size(), is(0));
     }
-    
+
     /** === Translation Render Services ================================== */
-    
+
     @Test
     public void adding_new_renderService_creates_holder_in_serviceList_and_application() {
         serviceList.addTranslationRenderService(renderService, new HashMap<>());
         assertThat(serviceList.getTranslationRenderServices().size(), is(1));
     }
-    
+
     @Test
     public void adding_the_same_renderService_twice_yields_only_one_holder() {
         serviceList.addTranslationRenderService(renderService, new HashMap<>());
         serviceList.addTranslationRenderService(renderService, new HashMap<>());
         assertThat(serviceList.getTranslationRenderServices().size(), is(1));
     }
-    
+
     @Test
     public void adding_another_renderService_yields_two_holders() {
         serviceList.addTranslationRenderService(renderService, new HashMap<>());
         serviceList.addTranslationRenderService(new TranslationRenderService() {
             public String render(String in, Object... substitutions) {return null;}
-            public String render(Translation translation, Object... substitutions) {return null;}
+            public String render(Translation translation) {return null;}
             public boolean applicable(String unformattedTranslation) {return false;}
             public String adjustText(String unformatted) {return null;}
             public String addRendererInfo() {return "";}
         }, new HashMap<>());
         assertThat(serviceList.getTranslationRenderServices().size(), is(2));
     }
-    
+
     @Test
     public void removing_a_renderService_again_yields_empty_list_of_renderServices() {
         serviceList.addTranslationRenderService(renderService, new HashMap<>());

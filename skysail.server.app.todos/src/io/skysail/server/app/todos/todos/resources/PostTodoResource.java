@@ -34,7 +34,11 @@ public class PostTodoResource extends PostEntityServerResource<Todo> {
 
     @Override
     public Todo createEntityTemplate() {
-        return new Todo(getQuery(), getAttribute(TodoApplication.LIST_ID), ResourceUtils.determineLocale(this));
+        String listId = getAttribute(TodoApplication.LIST_ID);
+        if (listId == null) {
+            listId = app.getDefaultList(getRequest());
+        }
+        return new Todo(getQuery(), listId, ResourceUtils.determineLocale(this));
     }
 
     @Override

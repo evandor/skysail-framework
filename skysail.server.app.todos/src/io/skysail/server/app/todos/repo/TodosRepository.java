@@ -36,6 +36,10 @@ public class TodosRepository implements DbRepository {
         TodosRepository.dbService = null;
     }
 
+    public List<TodoList> findAllLists(Filter filter) {
+        return findAllLists(filter, new Pagination());
+    }
+
     public List<TodoList> findAllLists(Filter filter, Pagination pagination) {
         // TODO do this in one statement
         String sql = "SELECT from " + TodoList.class.getSimpleName() + " WHERE "+filter.getPreparedStatement()+" ORDER BY name "

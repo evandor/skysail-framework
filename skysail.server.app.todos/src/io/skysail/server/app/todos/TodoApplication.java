@@ -80,18 +80,28 @@ public class TodoApplication extends SkysailApplication implements ApplicationPr
         return Arrays.asList(appMenu);
     }
 
-    public void clearUsersOtherLists(Request request) {
+    public List<TodoList> getUsersDefaultLists(Request request) {
         Filter filter = new Filter(request);
         filter.add("owner", SecurityUtils.getSubject().getPrincipal().toString());
         filter.add("defaultList", "true");
 
-        List<TodoList> usersDefaultsList = getRepository().findAllLists(filter, null);
-        for (TodoList todoList : usersDefaultsList) {
+        return getRepository().findAllLists(filter, null);
+    }
+
+    public void removeDefaultFlag(List<TodoList> usersDefaultLists) {
+        for (TodoList todoList : usersDefaultLists) {
             todoList.setDefaultList(false);
             log.info("removing default-List Flag from todo list with id '{}'", todoList.getId());
             getRepository().update(todoList.getId(), todoList);
         }
+    }
 
+    public String getDefaultList(Request request) {
+        List<TodoList> usersDefaultLists = getUsersDefaultLists(request);
+        if (usersDefaultLists.size() > 0) {
+            return usersDefaultLists.get(0).getId();
+        }
+        return null;
     }
 
 }

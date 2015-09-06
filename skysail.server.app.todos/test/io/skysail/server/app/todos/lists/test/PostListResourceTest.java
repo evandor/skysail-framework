@@ -61,6 +61,16 @@ public class PostListResourceTest extends AbstractListResourceTest {
     }
 
     @Test
+    public void users_first_list_becomes_default_even_if_not_flagged_as_such() {
+        setUpSubject("user_users_first_list_becomes_default_even_if_not_flagged_as_such");
+        form.add("name", "name_users_first_list_becomes_default_even_if_not_flagged_as_such");
+        SkysailResponse<TodoList> result = postListresource.post(form, HTML_VARIANT);
+
+        assertThat(responses.get(postListresource.getClass().getName()).getStatus(),is(Status.SUCCESS_CREATED));
+        assertThat(result.getEntity().isDefaultList(),is(true));
+    }
+
+    @Test
     public void second_list_with_default_flag_toggles_first_one() {
         setUpSubject("user_second_list_with_default_flag_toggles_first_one");
 

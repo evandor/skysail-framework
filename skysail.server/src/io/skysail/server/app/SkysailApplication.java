@@ -237,9 +237,7 @@ public abstract class SkysailApplication extends RamlApplication implements Appl
         });
     }
 
-
-
-    protected void setServiceListProvider(ServiceListProvider service) {
+    public void setServiceListProvider(ServiceListProvider service) {
         SkysailApplication.serviceListProviderRef.set(service);
     }
 

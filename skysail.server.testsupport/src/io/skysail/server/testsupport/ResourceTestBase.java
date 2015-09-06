@@ -4,7 +4,7 @@ import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.assertThat;
 import io.skysail.api.responses.*;
 import io.skysail.api.validation.*;
-import io.skysail.server.app.SkysailApplication;
+import io.skysail.server.app.*;
 import io.skysail.server.restlet.resources.SkysailServerResource;
 
 import java.math.BigInteger;
@@ -30,6 +30,7 @@ import org.restlet.engine.resource.VariantInfo;
 import org.restlet.representation.Variant;
 import org.restlet.resource.Resource;
 
+import de.twenty11.skysail.server.app.ServiceListProvider;
 import de.twenty11.skysail.server.services.*;
 import de.twenty11.skysail.server.um.domain.SkysailUser;
 
@@ -64,6 +65,7 @@ public class ResourceTestBase {
 
     protected AtomicReference<ValidatorService> validatorServiceRef;
     protected AtomicReference<EncryptorService> encryptorServiceRef;
+    protected AtomicReference<ServiceList> serviceListProviderRef;
 
     protected Map<String, Response> responses = new HashMap<>();
 
@@ -107,15 +109,18 @@ public class ResourceTestBase {
     public void setUpApplication(SkysailApplication app) {
         this.application = app;
 
+        ServiceListProvider service = Mockito.mock(ServiceListProvider.class);
+        app.setServiceListProvider(service);
+
         validatorServiceRef = new AtomicReference<>();
         encryptorServiceRef = new AtomicReference<>();
+        serviceListProviderRef = new AtomicReference<>();
 
         ValidatorService validatorService = new DefaultValidationImpl();
         validatorServiceRef.set(validatorService);
 
         Mockito.doReturn(validatorServiceRef).when(app).getValidatorService();
         Mockito.doReturn(encryptorServiceRef).when(app).getEncryptorService();
-      //  Mockito.doReturn(encryptorServiceRef).when(app).getServiceL;
 
        // Mockito.when(app.startPerformanceMonitoring(Mockito.anyString())).thenReturn(Collections.emptySet());
         Mockito.doReturn(Collections.emptySet()).when(app).startPerformanceMonitoring(Mockito.anyString());

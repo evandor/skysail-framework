@@ -2,6 +2,7 @@ package io.skysail.server.app.todos;
 
 import io.skysail.server.app.*;
 import io.skysail.server.app.todos.charts.ListChartResource;
+import io.skysail.server.app.todos.columns.ListAsColumnsResource;
 import io.skysail.server.app.todos.lists.*;
 import io.skysail.server.app.todos.repo.TodosRepository;
 import io.skysail.server.app.todos.statuses.*;
@@ -9,6 +10,7 @@ import io.skysail.server.app.todos.todos.Todo;
 import io.skysail.server.app.todos.todos.resources.*;
 import io.skysail.server.db.DbRepository;
 import io.skysail.server.queryfilter.Filter;
+import io.skysail.server.restlet.resources.SkysailServerResource;
 
 import java.util.*;
 
@@ -69,8 +71,11 @@ public class TodoApplication extends SkysailApplication implements ApplicationPr
         router.attach(new RouteBuilder("/Lists/{"+LIST_ID+"}/Todos", TodosResource.class));
         router.attach(new RouteBuilder("/Lists/{"+LIST_ID+"}/ArchivedTodos", ArchivedTodosResource.class));
 
+        router.attach(new RouteBuilder("/Todos/_columns", ListAsColumnsResource.class));
+
         router.attach(new RouteBuilder("/Todos/{"+TODO_ID+"}", TodoResource.class));
         router.attach(new RouteBuilder("/Todos/{"+TODO_ID+"}/", PutTodoResource.class));
+
 
     }
 
@@ -114,6 +119,14 @@ public class TodoApplication extends SkysailApplication implements ApplicationPr
     public int getTodosCount(Request request) {
         String owner = SecurityUtils.getSubject().getPrincipal().toString();
         return getRepository().findAllTodos(new Filter(request).add("owner", owner)).size();
+    }
+
+    public List<Class<? extends SkysailServerResource<?>>> getMainLinks() {
+        List<Class<? extends SkysailServerResource<?>>> result = new ArrayList<>();
+        result.add(Top10TodosResource.class);
+        result.add(ListsResource.class);
+        result.add(ListAsColumnsResource.class);
+        return result;
     }
 
 }

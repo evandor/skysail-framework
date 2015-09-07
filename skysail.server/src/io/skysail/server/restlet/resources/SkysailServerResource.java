@@ -262,6 +262,10 @@ public abstract class SkysailServerResource<T> extends ServerResource {
         return links;
     }
 
+    public List<Link> getLinks(List<Class<? extends SkysailServerResource<?>>> links) {
+        return getLinks(links.toArray(new Class[links.size()]));
+    }
+
     /**
      * example: l -&gt; { l.substitute("spaceId", spaceId).substitute("id",
      * getData().getPage().getRid()); };

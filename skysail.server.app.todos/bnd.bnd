@@ -77,7 +77,8 @@ Private-Package:  \
 	io.skysail.server.app.todos.statuses,\
 	io.skysail.server.app.todos.ranking,\
 	io.skysail.server.app.todos.relations,\
-	io.skysail.server.app.todos.charts
+	io.skysail.server.app.todos.charts,\
+	io.skysail.server.app.todos.columns
 Bundle-Description: a todo application for skysail (used as demo as well)
 Export-Package:  \
 	io.skysail.server.app.todos,\

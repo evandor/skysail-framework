@@ -1,32 +1,8 @@
 package io.skysail.server.restlet;
 
 import io.skysail.server.app.SkysailApplication;
-import io.skysail.server.restlet.filter.AbstractResourceFilter;
-import io.skysail.server.restlet.filter.AddApiVersionHeaderFilter;
-import io.skysail.server.restlet.filter.AddLinkheadersFilter;
-import io.skysail.server.restlet.filter.ExtractStandardQueryParametersResourceFilter;
-import io.skysail.server.restlet.filter.CheckBusinessViolationsFilter;
-import io.skysail.server.restlet.filter.CheckFavoritesFilter;
-import io.skysail.server.restlet.filter.CheckInvalidInputFilter;
-import io.skysail.server.restlet.filter.DataExtractingFilter;
-import io.skysail.server.restlet.filter.DeleteEntityFilter;
-import io.skysail.server.restlet.filter.DeleteRedirectGetFilter;
-import io.skysail.server.restlet.filter.EntityWasAddedFilter;
-import io.skysail.server.restlet.filter.EntityWasDeletedFilter;
-import io.skysail.server.restlet.filter.ExceptionCatchingFilter;
-import io.skysail.server.restlet.filter.FormDataExtractingFilter;
-import io.skysail.server.restlet.filter.GetRequestPreFilterHook;
-import io.skysail.server.restlet.filter.OptionalEncryptionFilter;
-import io.skysail.server.restlet.filter.PersistEntityFilter;
-import io.skysail.server.restlet.filter.PostRedirectGetFilter;
-import io.skysail.server.restlet.filter.PutRedirectGetFilter;
-import io.skysail.server.restlet.filter.RedirectFilter;
-import io.skysail.server.restlet.filter.SetExecutionTimeInResponseFilter;
-import io.skysail.server.restlet.filter.UpdateEntityFilter;
-import io.skysail.server.restlet.resources.EntityServerResource;
-import io.skysail.server.restlet.resources.ListServerResource;
-import io.skysail.server.restlet.resources.PostEntityServerResource;
-import io.skysail.server.restlet.resources.PutEntityServerResource;
+import io.skysail.server.restlet.filter.*;
+import io.skysail.server.restlet.resources.*;
 
 import java.util.List;
 
@@ -42,7 +18,7 @@ public class RequestHandler<T> {
 
     /**
      * for now, always return new objects
-     * 
+     *
      * @param method
      *            http method
      * @return chain
@@ -58,7 +34,7 @@ public class RequestHandler<T> {
 
     /**
      * for now, always return new objects
-     * 
+     *
      * @param method
      *            http method
      * @return the chain
@@ -72,7 +48,7 @@ public class RequestHandler<T> {
 
         throw new RuntimeException("Method " + method + " is not yet supported");
     }
-    
+
     public  AbstractResourceFilter<PutEntityServerResource<T>, T> createForFormResponse() {
         return new ExceptionCatchingFilter<PutEntityServerResource<T>, T>(application)
                 .calling(new AddApiVersionHeaderFilter<PutEntityServerResource<T>, T>())
@@ -84,7 +60,7 @@ public class RequestHandler<T> {
 
     /**
      * for now, always return new objects
-     * 
+     *
      * @return the filter chain
      */
     public AbstractResourceFilter<PostEntityServerResource<T>, T> createForPost() {
@@ -93,10 +69,14 @@ public class RequestHandler<T> {
 
     /**
      * for now, always return new objects
-     * 
+     *
      */
     public AbstractResourceFilter<PutEntityServerResource<T>, T> createForPut() {
         return chainForEntityPut();
+    }
+
+    public AbstractResourceFilter<PutEntityServerResource<T>, T> createForPatch() {
+        return chainForEntityPatch();
     }
 
     // @formatter:off
@@ -153,6 +133,18 @@ public class RequestHandler<T> {
                 .calling(new UpdateEntityFilter<PutEntityServerResource<T>, T>())
                 // .calling(new LocationHeader)
                 .calling(new EntityWasAddedFilter<PutEntityServerResource<T>, T>(application))
+                .calling(new AddLinkheadersFilter<PutEntityServerResource<T>, T>())
+                .calling(new PutRedirectGetFilter<PutEntityServerResource<T>, T>());
+    }
+
+    private AbstractResourceFilter<PutEntityServerResource<T>, T> chainForEntityPatch() {
+        return new ExceptionCatchingFilter<PutEntityServerResource<T>, T>(application)
+                .calling(new ExtractStandardQueryParametersResourceFilter<PutEntityServerResource<T>, T>())
+                .calling(new CheckInvalidInputFilter<PutEntityServerResource<T>, T>(application))
+                .calling(new FormDataExtractingFilter<PutEntityServerResource<T>, T>())
+                //.calling(new CheckBusinessViolationsFilter<PutEntityServerResource<T>, T>(application))
+                .calling(new UpdateEntityFilter<PutEntityServerResource<T>, T>())
+                //.calling(new EntityWasAddedFilter<PutEntityServerResource<T>, T>(application))
                 .calling(new AddLinkheadersFilter<PutEntityServerResource<T>, T>())
                 .calling(new PutRedirectGetFilter<PutEntityServerResource<T>, T>());
     }

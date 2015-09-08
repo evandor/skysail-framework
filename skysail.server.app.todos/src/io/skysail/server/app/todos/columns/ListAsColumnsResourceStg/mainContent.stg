@@ -51,7 +51,36 @@ mainContent(user, converter, messages, model) ::= <<
 		    <script>
 			  \$(function() {
 			    \$( "#sortable1, #sortable2, #sortable3" ).sortable({
-			      connectWith: ".connectedSortable"
+			      connectWith: ".connectedSortable",
+			      receive: function( event, ui ) {
+			          console.log(event.target);
+			          //alert("dropped: " + ui.item[0].id);
+			          //alert("to: "  + event.target.title);
+					  var json = JSON.stringify({status: "WIP", owner: "#2"});
+					 // alert(json);
+			          \$.ajax({
+			              headers : {
+			                  'Accept' : 'application/json',
+			                  'Content-Type' : 'application/json'
+			              },
+			              url: '/Todos/v2/Todos/13:2/',
+			              type: 'PATCH',
+			              dataType: 'json',
+			              contentType: 'application/json',
+			              data: json,
+			              success : function(response, textStatus, jqXhr) {
+			                  console.log("Venue Successfully Patched!");
+			              },
+			              error : function(jqXHR, textStatus, errorThrown) {
+			                  // log the error to the console
+			                  console.log("The following error occured: " + textStatus, errorThrown);
+			              },
+			              complete : function() {
+			                  console.log("Venue Patch Ran");
+			              }
+			            });
+
+			      }
 			    }).disableSelection();
 			  });
 		    </script>
@@ -103,12 +132,16 @@ mainContent(user, converter, messages, model) ::= <<
 columnDiv(i, row) ::= <<
   <div class="sa">
     <h4>$i$ - $row.name$</h4>
-	  <ul id="sortable$i$" class="connectedSortable">
+	  <ul id="sortable$i$" class="connectedSortable" title="status_$row.name$">
 	    $row.todos: { todo | $todoLi(todo)$}$
       </ul>
   </div>
 >>
 
 todoLi(todo) ::= <<
-   <li class="ui-state-highlight">$todo$</li>
+   <li class="ui-state-highlight" id="Todo_$todo.id$">
+   <h4><a href='../Todos/$todo.id$/'>$todo.title$</a></h4>
+   <small>Due: $todo.due$</small>
+   <p>$todo.desc$</p>
+   </li>
 >>

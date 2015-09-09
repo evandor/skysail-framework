@@ -1,5 +1,12 @@
 menuNav(link) ::= <<
     $link:{ element | $linkAsButton(element,i)$}$
+
+<!--
+    <hr>
+    <form>
+      <input type="text" value=""/><input type="submit" value="Add" />
+    </form>-->
+
 >>
 
 linkAsButton(link,i) ::= <<

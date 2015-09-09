@@ -17,7 +17,7 @@ submitPut(label, o1,o2,tabindex) ::= <<
 
 renderDescription(field,converter) ::= <<
   $if(messages.(field.messageKey))$
-    <small class="help-block">_$helpmessage(messages, field.messageKey)$ $editTextLink(field,converter)$</small>
+    <small class="help-block">$helpmessage(messages, field.messageKey)$ $editTextLink(field,converter)$</small>
   $else$
     $editTextLink(field,converter)$
   $endif$
@@ -45,5 +45,5 @@ buttons(option, field) ::= <<
 >>
 
 title(messages, ident) ::= <<
-    $helpmessage(messages, ident)$
+    $helpmessage(messages, ident).translated$
 >>

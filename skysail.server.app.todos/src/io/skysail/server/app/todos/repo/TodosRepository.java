@@ -112,8 +112,8 @@ public class TodosRepository implements DbRepository {
         return list;
     }
 
-    public void update(String id, Object entity, String... edges) {
-        dbService.update(id, entity, edges);
+    public Object update(String id, Object entity, String... edges) {
+        return dbService.update(id, entity, edges);
     }
 
     public Object add(Todo entity) {
@@ -153,7 +153,7 @@ public class TodosRepository implements DbRepository {
         return "list= :list";
     }
 
-    public Object getVertexById(Class<TodoList> cls, String id) {
+    public Object getVertexById(Class<?> cls, String id) {
         return dbService.findGraphs("SELECT FROM "+cls.getSimpleName()+" WHERE @rid="+id);
     }
 

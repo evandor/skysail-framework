@@ -200,5 +200,5 @@ buttons(option, field) ::= <<
 >>
 
 title(messages, ident) ::= <<
-    $helpmessage(messages, ident)$
+    $helpmessage(messages, ident).translated$
 >>

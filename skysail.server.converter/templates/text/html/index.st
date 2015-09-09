@@ -128,7 +128,7 @@ index(user, messages, converter, model) ::= <<
 
           $if(model.services.searchService)$
 		  <div class="col-sm-3 col-md-2 pull-right">
-			<form class="navbar-form" role="search" action="/_search" method="POST">
+			<form class="navbar-form" role="search" action="./_documents/" method="GET"> <!-- action="/_search" -->
 				<div class="input-group">
 					<input type="text" class="form-control input-sm" placeholder="Search" name="searchterm" id="searchterm">
 					<div class="input-group-btn">

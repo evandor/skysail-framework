@@ -22,7 +22,7 @@ public class PostTodoResourceTest extends AbstractTodoResourceTest {
     public void setUp() throws Exception {
         super.setUp();
         aList = createList();
-        getAttributes().put(TodoApplication.LIST_ID, aList.getId());
+        setAttributes(TodoApplication.LIST_ID, aList.getId());
     }
 
     @Test
@@ -36,7 +36,7 @@ public class PostTodoResourceTest extends AbstractTodoResourceTest {
     @Test
     public void wrong_list_yields_validation_failure() {
         form.add("title", "title_" + randomString());
-        form.add("list", "list_" + randomString());
+        form.add("parent", "list_" + randomString());
         getAttributes().clear();
         ConstraintViolationsResponse<?> post = (ConstraintViolationsResponse<?>) postTodoResource.post(form,
                 HTML_VARIANT);

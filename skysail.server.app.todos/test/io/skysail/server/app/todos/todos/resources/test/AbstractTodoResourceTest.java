@@ -35,12 +35,15 @@ public abstract class AbstractTodoResourceTest extends ResourceTestBase {
     @Spy
     protected PostListResource postListResource;
 
+    @Spy
+    protected TodoApplication application;
+
     protected TodosRepository repo;
 
     @Before
     public void setUp() throws Exception {
         super.setUpFixture();
-        super.setUpApplication(Mockito.mock(TodoApplication.class));
+        super.setUpApplication(application);
         super.setUpResource(todoResource);
         super.setUpResource(todosResource);
         super.setUpResource(putTodoResource);
@@ -95,5 +98,15 @@ public abstract class AbstractTodoResourceTest extends ResourceTestBase {
 
         return post.getEntity();
     }
+
+    protected void init(SkysailServerResource<?> resource) {
+        resource.init(null, request, responses.get(resource.getClass().getName()));
+    }
+
+    protected void setAttributes(String name, String id) {
+        getAttributes().clear();
+        getAttributes().put(name, id);
+    }
+
 
 }

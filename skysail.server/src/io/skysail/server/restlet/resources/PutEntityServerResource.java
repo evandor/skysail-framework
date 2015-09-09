@@ -135,14 +135,42 @@ public abstract class PutEntityServerResource<T> extends SkysailServerResource<T
 
     @Put("json")
     @API(desc = "generic PUT for JSON")
-    public Object putEntity(T entity, Variant variant) {
+    public SkysailResponse<T> putEntity(T entity, Variant variant) {
         Set<PerformanceTimer> perfTimer = getApplication().startPerformanceMonitoring(this.getClass().getSimpleName() + ":putEntity");
         log.info("Request entry point: {} @Put('json')", this.getClass().getSimpleName());
         getRequest().getAttributes().put(SKYSAIL_SERVER_RESTLET_ENTITY, entity);
-        Object put = put((Form) null, variant);
+        //Object put = put((Form) null, variant);
+        RequestHandler<T> requestHandler = new RequestHandler<T>(getApplication());
+        AbstractResourceFilter<PutEntityServerResource<T>, T> handler = requestHandler.createForPut();
+        ResponseWrapper<T> handledRequest = handler.handle(this, getResponse());
         getApplication().stopPerformanceMonitoring(perfTimer);
-        return put;
+        if (handledRequest.getConstraintViolationsResponse() != null) {
+            return handledRequest.getConstraintViolationsResponse();
+        }
+        return new FormResponse<T>(handledRequest.getEntity(),".");
     }
+
+    @Put("x-www-form-urlencoded:html|json")
+    @API(desc = "generic PUT for x-www-form-urlencoded")
+    public SkysailResponse<T> put(Form form, Variant variant) {
+        Set<PerformanceTimer> perfTimer = getApplication().startPerformanceMonitoring(this.getClass().getSimpleName() + ":put");
+        log.info("Request entry point: {} @Put('x-www-form-urlencoded:html|json')", this.getClass().getSimpleName());
+        if (form != null) {
+            getRequest().getAttributes().put(SKYSAIL_SERVER_RESTLET_FORM, form);
+        }
+        if (variant != null) {
+            getRequest().getAttributes().put(SKYSAIL_SERVER_RESTLET_VARIANT, variant);
+        }
+        RequestHandler<T> requestHandler = new RequestHandler<T>(getApplication());
+        AbstractResourceFilter<PutEntityServerResource<T>, T> handler = requestHandler.createForPut();
+        ResponseWrapper<T> handledRequest = handler.handle(this, getResponse());
+        getApplication().stopPerformanceMonitoring(perfTimer);
+        if (handledRequest.getConstraintViolationsResponse() != null) {
+            return handledRequest.getConstraintViolationsResponse();
+        }
+        return new FormResponse<T>(handledRequest.getEntity(),".");
+    }
+
 
     @Patch("json")
     @API(desc = "generic Patch for JSON")
@@ -170,42 +198,22 @@ public abstract class PutEntityServerResource<T> extends SkysailServerResource<T
         return new FormResponse<T>(handledRequest.getEntity(),".");
     }
 
-    @Post("json")
-    @API(desc = "generic PUT for JSON")
-    public SkysailResponse<T> put(T entity, Variant variant) {
-        Set<PerformanceTimer> perfTimer = getApplication().startPerformanceMonitoring(this.getClass().getSimpleName() + ":put");
-        log.info("Request entry point: {} @Put('json')", this.getClass().getSimpleName());
-        if (entity != null) {
-            getRequest().getAttributes().put(SKYSAIL_SERVER_RESTLET_ENTITY, entity);
-        } else {
-            log.warn("provided entity was null!");
-        }
-
-        SkysailResponse<T> put = put((Form) null, variant);
-        getApplication().stopPerformanceMonitoring(perfTimer);
-        return put;
-    }
-
-    @Put("x-www-form-urlencoded:html|json")
-    @API(desc = "generic PUT for x-www-form-urlencoded")
-    public SkysailResponse<T> put(Form form, Variant variant) {
-        Set<PerformanceTimer> perfTimer = getApplication().startPerformanceMonitoring(this.getClass().getSimpleName() + ":put");
-        log.info("Request entry point: {} @Put('x-www-form-urlencoded:html|json')", this.getClass().getSimpleName());
-        if (form != null) {
-            getRequest().getAttributes().put(SKYSAIL_SERVER_RESTLET_FORM, form);
-        }
-        if (variant != null) {
-            getRequest().getAttributes().put(SKYSAIL_SERVER_RESTLET_VARIANT, variant);
-        }
-        RequestHandler<T> requestHandler = new RequestHandler<T>(getApplication());
-        AbstractResourceFilter<PutEntityServerResource<T>, T> handler = requestHandler.createForPut();
-        ResponseWrapper<T> handledRequest = handler.handle(this, getResponse());
-        getApplication().stopPerformanceMonitoring(perfTimer);
-        if (handledRequest.getConstraintViolationsResponse() != null) {
-            return handledRequest.getConstraintViolationsResponse();
-        }
-        return new FormResponse<T>(handledRequest.getEntity(),".");
-    }
+//    //@Post("json")
+//    @API(desc = "generic PUT for JSON")
+//    public SkysailResponse<T> put(T entity, Variant variant) {
+//        throw new IllegalStateException("we are here???");
+////        Set<PerformanceTimer> perfTimer = getApplication().startPerformanceMonitoring(this.getClass().getSimpleName() + ":put");
+////        log.info("Request entry point: {} @Put('json')", this.getClass().getSimpleName());
+////        if (entity != null) {
+////            getRequest().getAttributes().put(SKYSAIL_SERVER_RESTLET_ENTITY, entity);
+////        } else {
+////            log.warn("provided entity was null!");
+////        }
+////
+////        SkysailResponse<T> put = put((Form) null, variant);
+////        getApplication().stopPerformanceMonitoring(perfTimer);
+////        return put;
+//    }
 
     @Override
     public LinkRelation getLinkRelation() {

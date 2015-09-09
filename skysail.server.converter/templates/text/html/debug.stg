@@ -21,7 +21,17 @@ debug(messages, model) ::= <<
                     </h4>
                   </div>
                   <div id="collapseResource" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingResource">
-                    <div class="panel-body">$model.resource$</div>
+                    <div class="panel-body">
+                        <h4>Entity</h4>
+                        <p>$model.resource.entity$</p>
+                        <h4>ResourceContext</h4>
+                        <h5>Application (see below)</h5>
+                        <h5>Resource (see below)</h5>
+                        <h5>NavItems</h5>
+                        <p>$model.resource.resourceContext.navItems$</p>
+                        <h4>all</h4>
+                        <p>$model.resource$</p>
+                    </div>
                   </div>
                 </div>
                 <div class="panel panel-default">
@@ -75,17 +85,6 @@ debug(messages, model) ::= <<
                   </div>
                   <div id="collapseApplication" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingApplication">
                     <div class="panel-body">$model.resource.application$</div>
-                  </div>
-                </div>
-
-                <div class="panel panel-default">
-                  <div class="panel-heading" role="tab" id="headingTarget">
-                    <h4 class="panel-title">
-                      <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTarget" aria-expanded="false" aria-controls="collapseTarget">Target</a>
-                    </h4>
-                  </div>
-                  <div id="collapseTarget" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTarget">
-                    <div class="panel-body">$model.target$</div>
                   </div>
                 </div>
 

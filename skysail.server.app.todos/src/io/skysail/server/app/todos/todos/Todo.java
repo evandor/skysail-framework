@@ -21,7 +21,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @Getter
 @Setter
-@ToString(of = { "title" })
+@ToString(of = { "id", "title" })
 @JsonPropertyOrder({ "title", "desc" })
 @NoArgsConstructor
 @StartDateBeforeDueDate

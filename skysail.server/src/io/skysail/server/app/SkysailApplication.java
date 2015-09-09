@@ -191,6 +191,7 @@ public abstract class SkysailApplication extends RamlApplication implements Appl
         docuMap.keySet().stream().forEach(key -> {
             router.attach(new RouteBuilder(key, docuMap.get(key)));
         });
+
     }
 
     /**

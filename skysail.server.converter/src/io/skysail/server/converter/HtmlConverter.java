@@ -2,6 +2,7 @@ package io.skysail.server.converter;
 
 import io.skysail.api.favorites.FavoritesService;
 import io.skysail.api.peers.PeersProvider;
+import io.skysail.api.search.SearchService;
 import io.skysail.server.app.SkysailApplication;
 import io.skysail.server.converter.impl.*;
 import io.skysail.server.http.InstallationProvider;
@@ -51,6 +52,8 @@ public class HtmlConverter extends ConverterHelper implements OsgiConverterHelpe
 
     private InstallationProvider installationProvider;
 
+    private SearchService searchService;
+
     static {
         mediaTypesMatch.put(MediaType.TEXT_HTML, 0.95F);
         mediaTypesMatch.put(SkysailApplication.SKYSAIL_TREE_FORM, 1.0F);
@@ -84,6 +87,17 @@ public class HtmlConverter extends ConverterHelper implements OsgiConverterHelpe
 
     public void unsetFavoritesService(FavoritesService service) {
         this.favoritesService = null;
+    }
+
+    // --- Favorites Service ------------------------------------------------
+
+    @Reference(multiple = false, optional = true, dynamic = true)
+    public void setSearchService(SearchService service) {
+        this.searchService = service;
+    }
+
+    public void unsetSearchService(SearchService service) {
+        this.searchService = null;
     }
 
     // --- Peers Provider Service ------------------------------------------------
@@ -156,6 +170,7 @@ public class HtmlConverter extends ConverterHelper implements OsgiConverterHelpe
         stringTemplateRenderer.setMenuProviders(menuProviders);
         stringTemplateRenderer.setFavoritesService(favoritesService);
         stringTemplateRenderer.setPeersProvider(peersProvider);
+        stringTemplateRenderer.setSearchService(searchService);
         StringRepresentation rep = stringTemplateRenderer.createRepresenation(originalSource, target,
                 (SkysailServerResource<?>) resource);
 

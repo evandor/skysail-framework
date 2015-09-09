@@ -34,7 +34,7 @@ public class PutListResourceTest extends AbstractListResourceTest {
         init(putListResource);
 
         TodoList updatedList = new TodoList();
-        SkysailResponse<TodoList> skysailResponse = putListResource.put(updatedList, JSON_VARIANT);
+        SkysailResponse<TodoList> skysailResponse = putListResource.putEntity(updatedList, JSON_VARIANT);
 
         assertSingleValidationFailure(putListResource, skysailResponse,  "name", "may not be null");
     }

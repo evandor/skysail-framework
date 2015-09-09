@@ -3,6 +3,7 @@ package io.skysail.server.restlet.resources;
 import io.skysail.api.documentation.API;
 import io.skysail.api.links.*;
 import io.skysail.api.responses.*;
+import io.skysail.api.search.SearchService;
 import io.skysail.server.restlet.RequestHandler;
 import io.skysail.server.restlet.filter.*;
 import io.skysail.server.services.PerformanceTimer;
@@ -21,7 +22,6 @@ import org.restlet.representation.Variant;
 import org.restlet.resource.*;
 
 import de.twenty11.skysail.server.core.restlet.*;
-import de.twenty11.skysail.server.services.SearchService;
 
 /**
  * An abstract resource template dealing with POST requests (see

@@ -26,7 +26,8 @@ public class TodoResource extends EntityServerResource<Todo> {
     @Override
     public Todo getEntity() {
         Todo todo = app.getRepository().getById(Todo.class, id);
-        todo.setViews(todo.getViews() + 1);
+        Integer views = todo.getViews();
+        todo.setViews(views == null ? 1 : views + 1);
         app.getRepository().update(todo.getId(), todo);
         return todo;
     }
@@ -51,7 +52,7 @@ public class TodoResource extends EntityServerResource<Todo> {
     public String redirectTo() {
         return super.redirectTo(TodosResource.class);
     }
-    
+
 //    @Override
 //    public Consumer<? super Link> getPathSubstitutions() {
 //        return l -> {

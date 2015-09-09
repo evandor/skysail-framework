@@ -4,6 +4,7 @@ import io.skysail.api.domain.Identifiable;
 import io.skysail.api.favorites.FavoritesService;
 import io.skysail.api.links.*;
 import io.skysail.api.responses.*;
+import io.skysail.api.search.*;
 import io.skysail.server.app.SkysailApplication;
 import io.skysail.server.forms.FormField;
 import io.skysail.server.restlet.resources.*;
@@ -76,6 +77,8 @@ public class ResourceModel<R extends SkysailServerResource<T>, T> {
     private STServicesWrapper services;
     private DateFormat dateFormat;
 
+    private SearchService searchService;
+
     public ResourceModel(R resource, SkysailResponse<?> response) {
         this(resource, response, new VariantInfo(MediaType.TEXT_HTML));
     }
@@ -114,7 +117,11 @@ public class ResourceModel<R extends SkysailServerResource<T>, T> {
             List<?> list = ((ListServerResponse<?>) source).getEntity();
             if (list != null) {
                 for (Object object : list) {
-                    result.add((Map<String, Object>) mapper.convertValue(object, LinkedHashMap.class));
+                    if (object instanceof Document) {
+                        result.add(((Document)object).getDocMap());
+                    } else {
+                        result.add((Map<String, Object>) mapper.convertValue(object, LinkedHashMap.class));
+                    }
                 }
             }
         } else if (source instanceof EntityServerResponse) {
@@ -339,8 +346,12 @@ public class ResourceModel<R extends SkysailServerResource<T>, T> {
         this.favoritesService = favoritesService;
     }
 
+    public void setSearchService(SearchService searchService) {
+        this.searchService = searchService;
+    }
+
     public void setMenuItemProviders(Set<MenuItemProvider> menuProviders) {
-        this.services = new STServicesWrapper(menuProviders, null, resource);
+        this.services = new STServicesWrapper(menuProviders, searchService, resource);
     }
 
     private void addAssociatedLinks(List<Map<String, Object>> theData) {

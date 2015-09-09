@@ -3,6 +3,7 @@ package io.skysail.server.converter.impl;
 import io.skysail.api.favorites.FavoritesService;
 import io.skysail.api.peers.PeersProvider;
 import io.skysail.api.responses.SkysailResponse;
+import io.skysail.api.search.SearchService;
 import io.skysail.api.text.Translation;
 import io.skysail.server.app.SkysailApplication;
 import io.skysail.server.converter.HtmlConverter;
@@ -27,7 +28,7 @@ import org.restlet.resource.Resource;
 import org.stringtemplate.v4.ST;
 
 import de.twenty11.skysail.server.core.restlet.ResourceContextId;
-import de.twenty11.skysail.server.services.MenuItemProvider;
+import de.twenty11.skysail.server.services.*;
 
 @Slf4j
 public class StringTemplateRenderer {
@@ -42,6 +43,8 @@ public class StringTemplateRenderer {
     private PeersProvider peersProvider;
     private String indexPageName;
 
+    private SearchService searchService;
+
     public StringTemplateRenderer(HtmlConverter htmlConverter) {
         this.htmlConverter = htmlConverter;
     }
@@ -52,6 +55,7 @@ public class StringTemplateRenderer {
         @SuppressWarnings({ "rawtypes", "unchecked" })
         ResourceModel<SkysailServerResource<?>,?> resourceModel = new ResourceModel(resource, (SkysailResponse<?>)entity, target);
         resourceModel.setFavoritesService(favoritesService);
+        resourceModel.setSearchService(searchService); // TODO: has to be set before menuItemProviders ;(
         resourceModel.setMenuItemProviders(menuProviders);
 
         templateFromCookie = CookiesUtils.getTemplateFromCookie(resource.getRequest());
@@ -204,6 +208,10 @@ public class StringTemplateRenderer {
 
     public void setPeersProvider(PeersProvider peersProvider) {
         this.peersProvider = peersProvider;
+    }
+
+    public void setSearchService(SearchService searchService) {
+        this.searchService = searchService;
     }
 
 

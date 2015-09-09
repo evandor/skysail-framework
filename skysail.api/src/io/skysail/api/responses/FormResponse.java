@@ -1,8 +1,9 @@
 package io.skysail.api.responses;
 
-import lombok.Getter;
+import lombok.*;
 
 @Getter
+@ToString
 public class FormResponse<T> extends SkysailResponse<T> {
 
     private String target;
@@ -19,7 +20,7 @@ public class FormResponse<T> extends SkysailResponse<T> {
 
     /**
      * Constructor.
-     * 
+     *
      * @param entity
      *            e
      * @param id

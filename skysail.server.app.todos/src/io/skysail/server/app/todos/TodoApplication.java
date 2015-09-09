@@ -56,6 +56,7 @@ public class TodoApplication extends SkysailApplication implements ApplicationPr
     @Override
     protected void attach() {
         super.attach();
+
         router.attach(new RouteBuilder("", Top10TodosResource.class));
 
         router.attach(new RouteBuilder("/Statuses", StatusesResource.class));
@@ -76,6 +77,7 @@ public class TodoApplication extends SkysailApplication implements ApplicationPr
         router.attach(new RouteBuilder("/Todos/{"+TODO_ID+"}", TodoResource.class));
         router.attach(new RouteBuilder("/Todos/{"+TODO_ID+"}/", PutTodoResource.class));
 
+        router.attach(new RouteBuilder("/_documents/", DocumentsResource.class));
 
     }
 

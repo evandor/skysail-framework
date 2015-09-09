@@ -1,9 +1,6 @@
 package io.skysail.server.app.designer.application.resources.test;
 
-import static org.hamcrest.CoreMatchers.equalTo;
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.not;
-import static org.hamcrest.CoreMatchers.nullValue;
+import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.assertThat;
 import io.skysail.api.responses.SkysailResponse;
 import io.skysail.server.app.designer.application.Application;
@@ -37,7 +34,7 @@ public class PutApplicationResourceTest extends AbstractApplicationResourceTest 
         init(putApplicationResource);
 
         Application updatedList = new Application();
-        SkysailResponse<Application> skysailResponse = putApplicationResource.put(updatedList, JSON_VARIANT);
+        SkysailResponse<Application> skysailResponse = putApplicationResource.putEntity(updatedList, JSON_VARIANT);
 
         assertValidationFailure(putApplicationResource, skysailResponse);
     }

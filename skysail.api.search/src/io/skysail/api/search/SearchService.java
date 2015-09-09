@@ -1,8 +1,8 @@
-package de.twenty11.skysail.server.services;
+package io.skysail.api.search;
 
 import java.io.IOException;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+
 
 public interface SearchService {
 

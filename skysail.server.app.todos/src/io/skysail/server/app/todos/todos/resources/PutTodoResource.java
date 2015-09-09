@@ -41,8 +41,8 @@ public class PutTodoResource extends PutEntityServerResource<Todo> {
         if (views == null) {
             original.setViews(1);
         }
-        app.getRepository().update(getAttribute(TodoApplication.LIST_ID), original, "parent");
-        return new SkysailResponse<>();
+        Object updated = app.getRepository().update(getAttribute(TodoApplication.LIST_ID), original, "parent");
+        return new SkysailResponse<>(updated);
     }
 
     @Override

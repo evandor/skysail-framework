@@ -8,6 +8,7 @@ import io.skysail.server.services.PerformanceTimer;
 
 import java.util.*;
 
+import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
 
 import org.restlet.Restlet;
@@ -66,6 +67,7 @@ import de.twenty11.skysail.server.core.restlet.*;
  *
  */
 @Slf4j
+@ToString
 public abstract class ListServerResource<T> extends SkysailServerResource<List<T>> {
 
     public static final String CONSTRAINT_VIOLATIONS = "constraintViolations";
@@ -154,6 +156,6 @@ public abstract class ListServerResource<T> extends SkysailServerResource<List<T
         return associatedEntityServerResources;
     }
 
-   
+
 
 }

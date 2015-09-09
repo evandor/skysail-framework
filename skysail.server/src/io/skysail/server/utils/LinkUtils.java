@@ -187,7 +187,7 @@ public class LinkUtils {
                 return map.get("@rid").toString().replace("#", "");
             }
         }*/
-
+        log.warn("not able to determine id");
         return "NO_ID";
     }
 

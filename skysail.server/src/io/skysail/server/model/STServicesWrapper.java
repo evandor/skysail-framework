@@ -1,5 +1,6 @@
 package io.skysail.server.model;
 
+import io.skysail.api.search.SearchService;
 import io.skysail.server.restlet.resources.SkysailServerResource;
 import io.skysail.server.utils.MenuItemUtils;
 
@@ -41,12 +42,12 @@ public class STServicesWrapper {
 
     public Set<MenuItem> getDesignerAppItems() throws Exception {
         return MenuItemUtils.getMenuItems(menuProviders, resource.getRequest(), MenuItem.Category.DESIGNER_APP_MENU);
-    } 
-    
+    }
+
     public SearchService getSearchService() {
         return searchService;
     }
 
-    
+
 
 }

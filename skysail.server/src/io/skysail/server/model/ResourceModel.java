@@ -99,7 +99,7 @@ public class ResourceModel<R extends SkysailServerResource<T>, T> {
 
         parameterizedType = resource.getParameterizedType();
 
-        determineFormfields();
+        fields = FormfieldUtils.determineFormfields(response, resource);
 
         rootEntity = new EntityModel<R>(response.getEntity(), resource);
 
@@ -138,14 +138,14 @@ public class ResourceModel<R extends SkysailServerResource<T>, T> {
         return result;
     }
 
-    private void determineFormfields() {
-        FieldFactory fieldFactory = FieldsFactory.getFactory(response, resource);
-        try {
-            fields = fieldFactory.determineFrom(resource);
-        } catch (Exception e) {
-            log.error(e.getMessage(), e);
-        }
-    }
+//    private void determineFormfields() {
+//        FieldFactory fieldFactory = FieldsFactory.getFactory(response, resource);
+//        try {
+//            fields = fieldFactory.determineFrom(resource);
+//        } catch (Exception e) {
+//            log.error(e.getMessage(), e);
+//        }
+//    }
 
     private String getIdentifierFormField(@NonNull List<Map<String, Object>> theData) {
         return "id"; // for now

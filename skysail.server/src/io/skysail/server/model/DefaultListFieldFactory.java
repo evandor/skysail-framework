@@ -11,7 +11,7 @@ import java.util.function.Function;
 public class DefaultListFieldFactory extends FieldFactory {
 
     @Override
-    public Map<String,FormField> determineFrom(SkysailServerResource<?> resource) throws Exception {
+    public Map<String,FormField> determineFrom(SkysailServerResource<?> resource) {
         return ReflectionUtils.getInheritedFields(resource.getParameterizedType()).stream()
                 .filter(f -> test(resource, f))
                 .sorted((f1, f2) -> sort(resource, f1, f2))

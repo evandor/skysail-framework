@@ -125,6 +125,7 @@ Private-Package:  \
 	skysail.api;version=${skysail.api.version},\
 	skysail.api.um;version=latest,\
 	skysail.api.text;version=latest,\
+	skysail.api.search;version=${skysail.api.search.version},\
 	skysail.api.documentation;version=${skysail.api.documentation.version},\
 	skysail.api.validation;version=latest,\
 	skysail.api.peers;version=latest,\

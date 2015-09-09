@@ -1,10 +1,16 @@
 package io.skysail.server.utils;
 
+import io.skysail.api.forms.InputType;
+import io.skysail.server.forms.FormField;
+import io.skysail.server.restlet.resources.SkysailServerResource;
+
+import java.beans.PropertyDescriptor;
 import java.lang.reflect.InvocationTargetException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
+import java.util.Map.Entry;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -58,7 +64,44 @@ public class SkysailBeanUtils {
         beanUtilsBean.populate(bean, properties);
     }
 
-    public void copyProperties(Object dest, Object orig) throws IllegalAccessException, InvocationTargetException  {
+    public void copyProperties(Object dest, Object orig, SkysailServerResource<?> resource) throws IllegalAccessException, InvocationTargetException, NoSuchMethodException  {
+        Map<String, String> described = beanUtilsBean.describe(dest);
+        Map<String, FormField> formfields = FormfieldUtils.determineFormfields(resource);
+
+        PropertyDescriptor[] origDescriptors = beanUtilsBean.getPropertyUtils().getPropertyDescriptors(orig);
+        for (int i = 0; i < origDescriptors.length; i++) {
+            String name = origDescriptors[i].getName();
+            if ("class".equals(name)) {
+                continue; // No point in trying to set an object's class
+            }
+            if (beanUtilsBean.getPropertyUtils().isReadable(orig, name) &&
+                    beanUtilsBean.getPropertyUtils().isWriteable(dest, name)) {
+                try {
+                    Object value =
+                            beanUtilsBean.getPropertyUtils().getSimpleProperty(orig, name);
+                    beanUtilsBean.copyProperty(dest, name, value);
+                } catch (NoSuchMethodException e) {
+                    // Should not happen
+                }
+            }
+        }
+
+        formfields.entrySet().stream().filter(entry -> test(entry)).forEach(entry -> {
+          try {
+            beanUtilsBean.copyProperty(dest, entry.getKey(), described.get(entry.getKey()));
+        } catch (Exception e) {
+            throw new RuntimeException("Problem copying property "  + entry.getKey(), e);
+        }
+        });
+
         beanUtilsBean.copyProperties(dest, orig);
     }
+
+    private boolean test(Entry<String, FormField> entry) {
+        FormField formfield = entry.getValue();
+        if (InputType.READONLY.name().toLowerCase().equals(formfield.getInputType())) { // TODO
+            return false;
+        }
+        return true;
+     }
 }

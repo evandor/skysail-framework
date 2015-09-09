@@ -22,11 +22,11 @@ public class SkysailResponseEntityFieldFactory extends FieldFactory {
 
     /**
      * the class object which was provided in the constructor is scanned for its fields and
-     * for each of those which are valid in respect to the current resource (see the 
-     * "test" method) a new FormField is created. 
+     * for each of those which are valid in respect to the current resource (see the
+     * "test" method) a new FormField is created.
      */
     @Override
-    public Map<String,FormField> determineFrom(SkysailServerResource<?> resource) throws Exception {
+    public Map<String,FormField> determineFrom(SkysailServerResource<?> resource) {
         return ReflectionUtils.getInheritedFields(cls).stream()
                 .filter(f -> test(resource, f))
                 .map(f -> new FormField(f, resource, source))

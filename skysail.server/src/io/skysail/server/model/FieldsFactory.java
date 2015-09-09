@@ -7,6 +7,17 @@ import java.util.List;
 
 public class FieldsFactory {
 
+    public static FieldFactory getFactory(SkysailServerResource<?> resource) {
+        Object entity = resource.getEntity();
+        if (entity == null) {
+            return new NoFieldFactory();
+        }
+        if (entity instanceof List) {
+            return new DefaultListFieldFactory();
+        }
+        return new DefaultEntityFieldFactory(entity.getClass());
+    }
+
     public static FieldFactory getFactory(SkysailResponse<?> response, SkysailServerResource<?> resource) {
         if (response.getEntity() == null) {
             return new NoFieldFactory();

@@ -18,7 +18,7 @@ public class DefaultEntityFieldFactory extends FieldFactory {
     }
 
     @Override
-    public Map<String,FormField> determineFrom(SkysailServerResource<?> resource) throws Exception {
+    public Map<String,FormField> determineFrom(SkysailServerResource<?> resource) {
         return ReflectionUtils.getInheritedFields(cls).stream()
                 .filter(f -> test(resource, f))
                 .map(f -> new FormField(f, resource))

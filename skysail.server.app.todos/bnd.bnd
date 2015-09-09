@@ -11,6 +11,7 @@ Include-Resource: resources, templates=src;recursive:=true;filter:=*.st|*.stg
 	skysail.api;version=${skysail.api.version},\
 	skysail.api.documentation;version=${skysail.api.documentation.version},\
 	skysail.api.favorites;version=${skysail.api.favorites.version},\
+    skysail.api.search;version=${skysail.api.search.version},\
     skysail.api.text;version=${skysail.api.text.version},\
 	skysail.api.peers;version=${skysail.api.peers.version},\
 	skysail.api.um;version=${skysail.api.um.version},\

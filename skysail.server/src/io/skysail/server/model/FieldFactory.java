@@ -9,7 +9,7 @@ import java.util.*;
 
 public abstract class FieldFactory {
 
-    public abstract Map<String, FormField> determineFrom(SkysailServerResource<?> resource) throws Exception;
+    public abstract Map<String, FormField> determineFrom(SkysailServerResource<?> resource);
 
     protected boolean test(SkysailServerResource<?> resource, Field field) {
         if (resource == null) {

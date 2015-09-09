@@ -387,9 +387,10 @@ public abstract class SkysailServerResource<T> extends ServerResource {
             SkysailBeanUtils beanUtilsBean = new SkysailBeanUtils(ResourceUtils.determineLocale(this));
             //DateTimeConverter dateConverter = new DateConverter(null);
            // beanUtilsBean.getConvertUtils().register(dateConverter, Date.class);
-            beanUtilsBean.copyProperties(dest, orig);
+            beanUtilsBean.copyProperties(dest, orig, this);
         } catch (Exception e) {
-            log.error("Error copying from bean {} to bean {}", orig, dest);
+            //log.error("Error copying from bean {} to bean {}", orig, dest);
+            throw new RuntimeException("Error copying beans", e);
         }
     }
 

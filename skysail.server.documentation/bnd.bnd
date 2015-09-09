@@ -6,6 +6,7 @@ Include-Resource: resources, templates=src;recursive:=true;filter:=*.st|*.stg
 	org.restlet;version=${restlet.version},\
 	org.restlet.ext.raml;version=${restlet.version},\
 	skysail.api;version=${skysail.api.version},\
+	skysail.api.search;version=${skysail.api.search.version},\
 	skysail.api.validation;version=${skysail.api.validation.version},\
 	skysail.api.documentation;version=${skysail.api.documentation.version},\
 	skysail.server;version=${skysail.server.version},\

@@ -128,10 +128,10 @@
 	skysail.client.todos.angularjs;version=latest,\
 	skysail.product.todos;version=latest,\
 	skysail.server;version=${skysail.server.version},\
-	skysail.server.converter;version=latest,\
-	skysail.server.db;version=latest,\
-	skysail.server.osgi;version=${skysail.server.osgi.version},\
-	skysail.server.queryfilter;version=latest,\
+	skysail.server.converter;version=${skysail.server.converter.version},\
+	skysail.server.db;version=${skysail.server.db.version},\
+    skysail.server.osgi;version=${skysail.server.osgi.version},\
+	skysail.server.queryfilter;version=${skysail.server.queryfilter.version},\
 	skysail.server.performance.etm;version=${skysail.server.performance.etm.version},\
 	skysail.server.static;version=${skysail.server.static.version},\
 	skysail.server.http;version=${skysail.server.http.version},\

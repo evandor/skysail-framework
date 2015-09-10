@@ -21,12 +21,12 @@ public class PutRedirectGetFilter<R extends PutEntityServerResource<T>, T> exten
         Parameter noRedirects = resource.getQuery().getFirst(SkysailServerResource.NO_REDIRECTS);
         if (redirectTo != null && noRedirects == null) {
             Variant variant = (Variant) resource.getRequest().getAttributes().get(SkysailServerResource.SKYSAIL_SERVER_RESTLET_VARIANT);
-            if (MediaType.TEXT_HTML.equals(variant.getMediaType())) {
+            if (variant != null && MediaType.TEXT_HTML.equals(variant.getMediaType())) {
                 resource.getResponse().redirectSeeOther(redirectTo);
                 return;
             }
         }
-        
+
         Response response = responseWrapper.getResponse();
         String redirectFromQuery = resource.getQuery() != null ? resource.getQuery().getFirstValue("_redirectTo")
                 : null;

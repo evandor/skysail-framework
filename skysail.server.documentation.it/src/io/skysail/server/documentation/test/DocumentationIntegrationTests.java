@@ -3,15 +3,13 @@ package io.skysail.server.documentation.test;
 import static org.junit.Assert.assertTrue;
 import io.skysail.api.documentation.DocumentationProvider;
 
-import java.util.Collection;
-import java.util.Map;
+import java.util.*;
 
-import org.junit.Test;
-import org.osgi.framework.BundleContext;
-import org.osgi.framework.FrameworkUtil;
-import org.osgi.framework.ServiceReference;
+import org.junit.*;
+import org.osgi.framework.*;
 import org.restlet.resource.ServerResource;
 
+@Ignore
 public class DocumentationIntegrationTests { // extends
                                              // ListServerResourceTestBase {
 

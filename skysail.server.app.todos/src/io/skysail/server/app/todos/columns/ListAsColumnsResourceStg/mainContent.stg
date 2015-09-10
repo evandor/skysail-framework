@@ -56,14 +56,16 @@ mainContent(user, converter, messages, model) ::= <<
 			          console.log(event.target);
 			          //alert("dropped: " + ui.item[0].id);
 			          //alert("to: "  + event.target.title);
-					  var json = JSON.stringify({status: "WIP", owner: "#2"});
-					 // alert(json);
+					  var json = JSON.stringify({status: event.target.title.replace("status_","")});
+					  //alert(json);
+					  var theUrl = '/Todos/v2/Todos/'+ui.item[0].id.replace("Todo_","")+'/';
+					  //alert(theUrl);
 			          \$.ajax({
 			              headers : {
 			                  'Accept' : 'application/json',
 			                  'Content-Type' : 'application/json'
 			              },
-			              url: '/Todos/v2/Todos/13:2/',
+			              url: theUrl,
 			              type: 'PATCH',
 			              dataType: 'json',
 			              contentType: 'application/json',
@@ -72,11 +74,9 @@ mainContent(user, converter, messages, model) ::= <<
 			                  console.log("Venue Successfully Patched!");
 			              },
 			              error : function(jqXHR, textStatus, errorThrown) {
-			                  // log the error to the console
-			                  console.log("The following error occured: " + textStatus, errorThrown);
-			              },
-			              complete : function() {
-			                  console.log("Venue Patch Ran");
+			                  alert("The following error occured: " + textStatus + ", " + errorThrown);
+			                  //\$(this).sortable('refresh');
+			                  window.location.reload();
 			              }
 			            });
 

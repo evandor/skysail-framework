@@ -100,13 +100,13 @@ s-runsystemcapabilities: ${native_capability}
 	skysail.api.um;version='[0.2.1,0.2.2)',\
 	skysail.api.peers;version='[0.1.1,0.1.2)',\
     skysail.api.search;version=${skysail.api.search.version},\
-	skysail.api.text;version='[1.0.0,1.0.1)',\
+	skysail.api.text;version=${skysail.api.text.version},\
 	skysail.api.documentation;version='[0.2.3,0.2.4)',\
 	skysail.api.validation;version='[0.2.1,0.2.2)',\
 	skysail.api.features;version='[0.1.2,0.1.3)',\
 	skysail.api.favorites;version='[0.1.2,0.1.3)',\
 	skysail.product.website;version=latest,\
-	skysail.server;version=${skysail.server.version},\
+	skysail.server;version=latest,\
 	skysail.server.converter;version=latest,\
 	skysail.server.db;version=latest,\
 	skysail.server.osgi;version=${skysail.server.osgi.version},\

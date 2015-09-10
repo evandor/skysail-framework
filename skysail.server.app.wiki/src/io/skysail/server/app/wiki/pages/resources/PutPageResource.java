@@ -23,7 +23,7 @@ public class PutPageResource extends PutEntityServerResource<Page> {
     }
 
     @Override
-    public SkysailResponse<?> updateEntity(Page entity) {
+    public SkysailResponse<Page> updateEntity(Page entity) {
         Version version = new Version();
         version.setContent(entity.getContent());
        // entity.addVersion(version);

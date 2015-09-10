@@ -100,7 +100,7 @@ public abstract class PutEntityServerResource<T> extends SkysailServerResource<T
     /**
      * will be called in case of a PUT request.
      */
-    public abstract SkysailResponse<?> updateEntity(T entity);
+    public abstract SkysailResponse<T> updateEntity(T entity);
 
     /**
      * This method will be called by the skysail framework to create the actual

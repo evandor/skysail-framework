@@ -10,7 +10,6 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
-import java.util.Map.Entry;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -71,8 +70,8 @@ public class SkysailBeanUtils {
         PropertyDescriptor[] origDescriptors = beanUtilsBean.getPropertyUtils().getPropertyDescriptors(orig);
         for (int i = 0; i < origDescriptors.length; i++) {
             String name = origDescriptors[i].getName();
-            if ("class".equals(name)) {
-                continue; // No point in trying to set an object's class
+            if ("class".equals(name) || ignore(formfields.get(name))) {
+                continue;
             }
             if (beanUtilsBean.getPropertyUtils().isReadable(orig, name) &&
                     beanUtilsBean.getPropertyUtils().isWriteable(dest, name)) {
@@ -86,22 +85,16 @@ public class SkysailBeanUtils {
             }
         }
 
-        formfields.entrySet().stream().filter(entry -> test(entry)).forEach(entry -> {
-          try {
-            beanUtilsBean.copyProperty(dest, entry.getKey(), described.get(entry.getKey()));
-        } catch (Exception e) {
-            throw new RuntimeException("Problem copying property "  + entry.getKey(), e);
-        }
-        });
-
-        beanUtilsBean.copyProperties(dest, orig);
     }
 
-    private boolean test(Entry<String, FormField> entry) {
-        FormField formfield = entry.getValue();
-        if (InputType.READONLY.name().toLowerCase().equals(formfield.getInputType())) { // TODO
-            return false;
+    private boolean ignore(FormField formField) {
+        if (formField == null) {
+            return true;
         }
-        return true;
-     }
+        if (InputType.READONLY.name().toLowerCase().equals(formField.getInputType())) { // TODO why not use the enum directly?
+            return true;
+        }
+        return false;
+    }
+
 }

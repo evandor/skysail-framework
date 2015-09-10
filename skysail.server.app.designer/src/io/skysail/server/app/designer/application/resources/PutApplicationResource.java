@@ -20,10 +20,10 @@ public class PutApplicationResource extends PutEntityServerResource<Application>
         return app.getRepository().getById(Application.class, id);
     }
 
-    public SkysailResponse<?> updateEntity(Application entity) {
+    public SkysailResponse<Application> updateEntity(Application entity) {
         app.invalidateMenuCache();
         app.getRepository().update(entity);
-        return new SkysailResponse<String>();
+        return new SkysailResponse<>();
     }
 
     @Override

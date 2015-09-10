@@ -31,9 +31,9 @@ public class PutEntityResource extends PutEntityServerResource<Entity> {
 //        return optionalEntity.orElse(null);
     }
 
-    public SkysailResponse<?> updateEntity(Entity entity) {
+    public SkysailResponse<Entity> updateEntity(Entity entity) {
         app.getRepository().update(entity);
-        return new SkysailResponse<String>();
+        return new SkysailResponse<>();
     }
 
 }

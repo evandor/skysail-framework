@@ -1,5 +1,6 @@
 package io.skysail.server.restlet.filter;
 
+import io.skysail.api.responses.SkysailResponse;
 import io.skysail.server.restlet.resources.PutEntityServerResource;
 
 import org.slf4j.*;
@@ -15,7 +16,8 @@ public class UpdateEntityFilter<R extends PutEntityServerResource<T>, T> extends
         logger.debug("entering {}#doHandle", this.getClass().getSimpleName());
         T entity = responseWrapper.getEntity();
         if (entity != null) {
-            resource.updateEntity(entity);
+            SkysailResponse<T> response = resource.updateEntity(entity);
+            responseWrapper.setEntity(response.getEntity());
         }
         super.doHandle(resource, responseWrapper);
         return FilterResult.CONTINUE;

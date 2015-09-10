@@ -27,9 +27,9 @@ public class PutGroupResource extends PutEntityServerResource<Group> {
 
 
 	@Override
-	public SkysailResponse<?> updateEntity(Group entity) {
+	public SkysailResponse<Group> updateEntity(Group entity) {
 		//GroupsRepository.getInstance().update(entity);
-		return new SkysailResponse<String>();
+		return new SkysailResponse<>();
 	}
 
 	@Override

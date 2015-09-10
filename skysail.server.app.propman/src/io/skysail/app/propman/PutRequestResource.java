@@ -3,8 +3,6 @@ package io.skysail.app.propman;
 import io.skysail.api.responses.SkysailResponse;
 import io.skysail.server.restlet.resources.PutEntityServerResource;
 
-import java.util.Date;
-
 import org.restlet.resource.ResourceException;
 
 public class PutRequestResource extends PutEntityServerResource<Request> {
@@ -18,9 +16,9 @@ public class PutRequestResource extends PutEntityServerResource<Request> {
         id = getAttribute("id");
         app = (PropManApplication)getApplication();
     }
-    
+
     @Override
-    public SkysailResponse<?> updateEntity(Request entity) {
+    public SkysailResponse<Request> updateEntity(Request entity) {
         Request original = getEntity();
 
 app.getRepository().update(id, original);
@@ -32,7 +30,7 @@ app.getRepository().update(id, original);
     public Request getEntity() {
          return app.getRepository().getById(Request.class, id);
     }
-    
+
     @Override
     public String redirectTo() {
         return super.redirectTo(RequestsResource.class);

@@ -10,7 +10,7 @@ public class TestPutEntityResource extends PutEntityServerResource<String> {
     }
 
     @Override
-    public SkysailResponse<?> updateEntity(String entity) {
+    public SkysailResponse<String> updateEntity(String entity) {
         return new SkysailResponse<String>("resonse");
     }
 

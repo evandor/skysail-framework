@@ -10,25 +10,25 @@ import de.twenty11.skysail.server.ext.mail.accounts.Account;
 
 public class PutAccountResource extends PutEntityServerResource<Account> {
 
-    
+
     private MailApplication app;
 
     @Override
     protected void doInit() throws ResourceException {
         app = (MailApplication)getApplication();
     }
-    
+
     @Override
     public Account getEntity() {
         return app.getRepository().findById(Account.class, getAttribute("id"));
     }
 
     @Override
-    public SkysailResponse<?> updateEntity(Account entity) {
+    public SkysailResponse<Account> updateEntity(Account entity) {
         Account original = getEntity(null);
         copyProperties(original,entity);
         app.getRepository().update(getAttribute("id"), original);
         return new SkysailResponse<>();
     }
-    
+
 }

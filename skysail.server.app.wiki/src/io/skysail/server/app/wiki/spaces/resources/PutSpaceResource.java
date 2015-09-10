@@ -15,14 +15,14 @@ public class PutSpaceResource extends PutEntityServerResource<Space> {
         id = getAttribute("id");
         app = (WikiApplication) getApplication();
     }
-    
+
     @Override
     public Space getEntity() {
         return app.getRepository().getSpaceById(id);
     }
 
     @Override
-    public SkysailResponse<?> updateEntity(Space entity) {
+    public SkysailResponse<Space> updateEntity(Space entity) {
         Space original = getEntity(null);
         original.setName(entity.getName());
         app.getRepository().update(id, original);

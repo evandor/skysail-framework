@@ -25,12 +25,12 @@ public class PutMessageResource extends PutEntityServerResource<Message> {
     }
 
     @Override
-    public SkysailResponse<?> updateEntity(Message entity) {
+    public SkysailResponse<Message> updateEntity(Message entity) {
         if (!entity.getMsgKey().equals(msgKey)) {
             throw new IllegalStateException("wrong key");
         }
         app.setMessage(entity);
-        return new SkysailResponse<String>();
+        return new SkysailResponse<Message>();
     }
 
     // for stringtemplate

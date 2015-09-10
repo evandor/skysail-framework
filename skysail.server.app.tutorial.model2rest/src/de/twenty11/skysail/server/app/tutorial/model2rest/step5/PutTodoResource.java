@@ -25,7 +25,7 @@ public class PutTodoResource extends PutEntityServerResource<TodoModel> {
 	}
 
 	@Override
-	public SkysailResponse<?> updateEntity(TodoModel entity) {
+	public SkysailResponse<TodoModel> updateEntity(TodoModel entity) {
 		return null;
 	}
 

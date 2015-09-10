@@ -24,9 +24,9 @@ public class PutFieldResource extends PutEntityServerResource<EntityField> {
         return app.getEntityField(appId, entityId, fieldId);
     }
 
-    public SkysailResponse<?> updateEntity(EntityField entity) {
+    public SkysailResponse<EntityField> updateEntity(EntityField entity) {
         app.getRepository().update(entity);
-        return new SkysailResponse<String>();
+        return new SkysailResponse<>();
     }
-    
+
 }

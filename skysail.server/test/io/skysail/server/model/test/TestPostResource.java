@@ -9,7 +9,7 @@ import org.mockito.Mockito;
 public class TestPostResource extends PutEntityServerResource<TestEntity>{
 
     @Override
-    public SkysailResponse<?> updateEntity(TestEntity entity) {
+    public SkysailResponse<TestEntity> updateEntity(TestEntity entity) {
         return null;
     }
 

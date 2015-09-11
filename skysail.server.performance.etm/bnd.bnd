@@ -6,6 +6,7 @@ Include-Resource: resources, templates=src;recursive:=true;filter:=*.st|*.stg
 Bundle-Description: Performance monitoring based on etm library
 -buildpath:  \
 	skysail.api;version=${skysail.api.version},\
+    skysail.api.text;version=${skysail.api.text.version},\
 	skysail.server;version=${skysail.server.version},\
 	etm.core;version=1.2,\
 	etm.contrib;version=1.2,\

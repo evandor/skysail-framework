@@ -13,11 +13,13 @@ Private-Package:  \
 	skysail.server.db;version=${skysail.server.db.version},\
 	skysail.server.static;version=${skysail.server.static.version},\
 	skysail.server.app.todos;version=latest,\
+	skysail.server.app.bookmarks;version=latest,\
 	skysail.server.converter;version=${skysail.server.converter.version},\
 	skysail.server.documentation;version=${skysail.server.documentation.version},\
-    skysail.server.ext.browser;version=latest,\
-    skysail.server.ext.sse;version=latest,\
+	skysail.server.ext.browser;version=latest,\
+	skysail.server.ext.sse;version=latest,\
 	skysail.server.http;version=${skysail.server.http.version},\
+	skysail.server.osgi;version=latest,\
 	skysail.server.plugins;version=latest,\
 	skysail.server.polymer;version=latest,\
 	skysail.server.queryfilter;version=${skysail.server.queryfilter.version},\

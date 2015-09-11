@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<repository increment="1441996788618" name="Release" xmlns="http://www.osgi.org/xmlns/repository/v1.0.0">
+<repository increment="1441999000805" name="Release" xmlns="http://www.osgi.org/xmlns/repository/v1.0.0">
   <resource>
     <capability namespace="osgi.identity">
       <attribute name="osgi.identity" value="skysail.api.documentation"/>
@@ -705,6 +705,43 @@
       <attribute name="version" type="Version" value="0.1.0"/>
       <attribute name="bundle-symbolic-name" value="skysail.api.um"/>
       <attribute name="bundle-version" type="Version" value="0.2.1.201507121837"/>
+      <directive name="uses" value="org.restlet,org.restlet.security"/>
+    </capability>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.restlet)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.restlet.security)"/>
+    </requirement>
+    <requirement namespace="osgi.ee">
+      <directive name="filter" value="(&amp;(osgi.ee=JavaSE)(version=1.8))"/>
+    </requirement>
+  </resource>
+  <resource>
+    <capability namespace="osgi.identity">
+      <attribute name="osgi.identity" value="skysail.api.um"/>
+      <attribute name="type" value="osgi.bundle"/>
+      <attribute name="version" type="Version" value="0.2.2.201509111916"/>
+    </capability>
+    <capability namespace="osgi.content">
+      <attribute name="osgi.content" value="6e255482e8079aab15f9c3ef267f1d129560edb06fd125f2f862216b624d9f60"/>
+      <attribute name="url" value="skysail.api.um/skysail.api.um-0.2.2.jar"/>
+      <attribute name="size" type="Long" value="6747"/>
+      <attribute name="mime" value="application/vnd.osgi.bundle"/>
+    </capability>
+    <capability namespace="osgi.wiring.bundle">
+      <attribute name="osgi.wiring.bundle" value="skysail.api.um"/>
+      <attribute name="bundle-version" type="Version" value="0.2.2.201509111916"/>
+    </capability>
+    <capability namespace="osgi.wiring.host">
+      <attribute name="osgi.wiring.host" value="skysail.api.um"/>
+      <attribute name="bundle-version" type="Version" value="0.2.2.201509111916"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="io.skysail.api.um"/>
+      <attribute name="version" type="Version" value="0.1.0"/>
+      <attribute name="bundle-symbolic-name" value="skysail.api.um"/>
+      <attribute name="bundle-version" type="Version" value="0.2.2.201509111916"/>
       <directive name="uses" value="org.restlet,org.restlet.security"/>
     </capability>
     <requirement namespace="osgi.wiring.package">

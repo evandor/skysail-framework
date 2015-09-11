@@ -2,7 +2,8 @@
 -runee: JavaSE-1.8
 -runsystemcapabilities: ${native_capability}
 
--runvm: -ea, -XX:+UnlockCommercialFeatures,-XX:+FlightRecorder,-XX:StartFlightRecording="duration=120m,filename=flightrecorder.jfr"
+-runvm: -ea
+#, -XX:+UnlockCommercialFeatures,-XX:+FlightRecorder,-XX:StartFlightRecording="duration=120m,filename=flightrecorder.jfr"
 
 -runrepos:  \
 	Skysail Framework Hub,\

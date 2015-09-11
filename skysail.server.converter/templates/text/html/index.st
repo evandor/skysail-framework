@@ -126,7 +126,7 @@ index(user, messages, converter, model) ::= <<
             $endif$
           </ul>
 
-          $if(model.services.searchService)$
+          $if(model.services.searchService && user.principal)$
 		  <div class="col-sm-3 col-md-2 pull-right">
 			<form class="navbar-form" role="search" action="./_documents/" method="GET"> <!-- action="/_search" -->
 				<div class="input-group">

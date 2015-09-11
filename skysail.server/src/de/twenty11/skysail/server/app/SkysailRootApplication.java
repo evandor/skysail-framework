@@ -24,9 +24,14 @@ import de.twenty11.skysail.server.services.MenuItem.Category;
 public class SkysailRootApplication extends SkysailApplication implements ApplicationProvider, ResourceBundleProvider,
         ManagedService {
 
+    private static final String CONFIG_IDENTIFIER_LANDINGPAGE_NOT_AUTHENTICATED = "landingPage.notAuthenticated";
+    private static final String CONFIG_IDENTIFIER_LANDINGPAGE_AUTHENTICATED = "landingPage.authenticated";
+    //private static final String CONFIG_IDENTIFIER_LOGIN_PAGE = "loginPage";
+
     private static final String ROOT_APPLICATION_NAME = "root";
 
     public static final String LOGIN_PATH = "/_login";
+    public static final String DEMO_LOGIN_PATH = "/_demologin";
     public static final String PEERS_LOGIN_PATH = "/_remotelogin";
 
     public static final String LOGOUT_PATH = "/_logout";
@@ -75,8 +80,10 @@ public class SkysailRootApplication extends SkysailApplication implements Applic
     protected void attach() {
 //        super.attach();
         router.attach(new RouteBuilder("/", DefaultResource.class).noAuthenticationNeeded());
+
         // see ShiroDelegationAuthenticator
         router.attach(new RouteBuilder(LOGIN_PATH, LoginResource.class).noAuthenticationNeeded());
+        router.attach(new RouteBuilder(DEMO_LOGIN_PATH, DemoLoginResource.class).noAuthenticationNeeded());
         router.attach(new RouteBuilder(VERSION_PATH, VersionResource.class));
         router.attach(new RouteBuilder(NAME_PATH, NameResource.class));
         router.attach(new RouteBuilder(PROFILE_PATH, ProfileResource.class));
@@ -161,9 +168,9 @@ public class SkysailRootApplication extends SkysailApplication implements Applic
             return null;
         }
         if (!SecurityUtils.getSubject().isAuthenticated()) {
-            return (String) properties.get("landingPage.notAuthenticated");
+            return (String) properties.get(CONFIG_IDENTIFIER_LANDINGPAGE_NOT_AUTHENTICATED);
         }
-        String landingPage = (String) properties.get("landingPage.authenticated");
+        String landingPage = (String) properties.get(CONFIG_IDENTIFIER_LANDINGPAGE_AUTHENTICATED);
         if (landingPage == null || landingPage.equals("") || landingPage.equals("/")) {
             return null;
         }

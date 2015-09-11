@@ -2,21 +2,15 @@ package io.skysail.server.app.bookmarks;
 
 import io.skysail.server.app.SkysailApplication;
 import io.skysail.server.app.bookmarks.repo.BookmarksRepository;
-import io.skysail.server.app.bookmarks.resources.BookmarkResource;
-import io.skysail.server.app.bookmarks.resources.BookmarksResource;
-import io.skysail.server.app.bookmarks.resources.PostBookmarkResource;
-import io.skysail.server.app.bookmarks.resources.PutBookmarkResource;
+import io.skysail.server.app.bookmarks.resources.*;
 import io.skysail.server.db.DbRepository;
 
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
-import aQute.bnd.annotation.component.Component;
-import aQute.bnd.annotation.component.Reference;
+import aQute.bnd.annotation.component.*;
 import de.twenty11.skysail.server.app.ApplicationProvider;
-import de.twenty11.skysail.server.core.restlet.RouteBuilder;
-import de.twenty11.skysail.server.services.MenuItem;
-import de.twenty11.skysail.server.services.MenuItemProvider;
+import de.twenty11.skysail.server.core.restlet.*;
+import de.twenty11.skysail.server.services.*;
 
 @Component(immediate = true)
 public class BookmarksApplication extends SkysailApplication implements ApplicationProvider, MenuItemProvider {
@@ -26,10 +20,12 @@ public class BookmarksApplication extends SkysailApplication implements Applicat
 
     public BookmarksApplication() {
         super(APP_NAME);
+        addToAppContext(ApplicationContextId.IMG, "/static/img/silk/book_link.png");
     }
 
     @Override
     protected void attach() {
+        super.attach();
         router.attach(new RouteBuilder("", BookmarksResource.class));
         router.attach(new RouteBuilder("/", BookmarksResource.class));
         router.attach(new RouteBuilder("/bookmarks", BookmarksResource.class));
@@ -53,7 +49,7 @@ public class BookmarksApplication extends SkysailApplication implements Applicat
 
     @Override
     public List<MenuItem> getMenuEntries() {
-        MenuItem appMenu = new MenuItem(APP_NAME, "/" + APP_NAME);
+        MenuItem appMenu = new MenuItem(APP_NAME, "/" + APP_NAME + getApiVersion().getVersionPath(), this);
         appMenu.setCategory(MenuItem.Category.APPLICATION_MAIN_MENU);
         return Arrays.asList(appMenu);
     }

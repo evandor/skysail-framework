@@ -1,7 +1,7 @@
 showForm(fields, messages, model) ::= <<
 
     <form action="$model.formTarget$" method="POST" class="form-horizontal" role="form" id="form" name="form">
-    
+
           <div class='form-group'>
             <label for='username' class='col-sm-2 control-label' style="text-align: left;">Username</label>
             <div class='col-sm-10'>

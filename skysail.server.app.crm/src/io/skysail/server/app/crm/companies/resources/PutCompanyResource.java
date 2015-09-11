@@ -25,11 +25,11 @@ public class PutCompanyResource extends PutEntityServerResource<Company> {
     }
 
     @Override
-    public SkysailResponse<?> updateEntity(Company entity) {
+    public SkysailResponse<Company> updateEntity(Company entity) {
         // entity.setChanged(new Date());
         entity.setChangedBy(SecurityUtils.getSubject().getPrincipal().toString());
         app.getRepository().update(entity);
-        return new SkysailResponse<String>();
+        return new SkysailResponse<>();
     }
 
 }

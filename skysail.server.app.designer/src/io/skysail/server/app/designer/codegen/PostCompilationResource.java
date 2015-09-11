@@ -16,25 +16,25 @@ public class PostCompilationResource extends PostEntityServerResource<Empty> {
     public PostCompilationResource() {
         addToContext(ResourceContextId.LINK_TITLE, "compile applications");
     }
- 
+
     @Override
     protected void doInit() throws ResourceException {
         app = (DesignerApplication)getApplication();
     }
-    
+
     @Override
     public Empty createEntityTemplate() {
         return new Empty();
     }
 
     @Override
-    public SkysailResponse<?> addEntity(Empty entity) {
+    public SkysailResponse<Empty> addEntity(Empty entity) {
         //InMemoryJavaCompiler.resetClassloader();
         app.updateBundle();
         //app.compileApplications();
-        return new SkysailResponse<String>("compiling...");
+        return new SkysailResponse<>();
     }
-    
+
     @Override
     public String redirectTo() {
         return super.redirectTo(ApplicationsResource.class);

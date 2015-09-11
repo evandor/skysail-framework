@@ -25,7 +25,7 @@ public class PostAccountResource extends PostEntityServerResource<Account> {
     }
 
     @Override
-    public SkysailResponse<?> addEntity(Account entity) {
+    public SkysailResponse<Account> addEntity(Account entity) {
         Subject subject = SecurityUtils.getSubject();
         entity.setOwner(subject.getPrincipal().toString());
         app.getRepository().add(entity);

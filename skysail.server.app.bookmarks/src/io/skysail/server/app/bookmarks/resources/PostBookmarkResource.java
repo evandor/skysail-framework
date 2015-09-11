@@ -1,8 +1,7 @@
 package io.skysail.server.app.bookmarks.resources;
 
 import io.skysail.api.responses.SkysailResponse;
-import io.skysail.server.app.bookmarks.Bookmark;
-import io.skysail.server.app.bookmarks.BookmarksApplication;
+import io.skysail.server.app.bookmarks.*;
 import io.skysail.server.restlet.resources.PostEntityServerResource;
 
 import java.io.IOException;
@@ -14,8 +13,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
 import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
+import org.jsoup.nodes.*;
 import org.jsoup.select.Elements;
 
 @Slf4j
@@ -34,7 +32,7 @@ public class PostBookmarkResource extends PostEntityServerResource<Bookmark> {
     }
 
     @Override
-    public SkysailResponse<?> addEntity(Bookmark entity) {
+    public SkysailResponse<Bookmark> addEntity(Bookmark entity) {
 
         analyzeBookmarkUrl(entity);
 
@@ -44,7 +42,7 @@ public class PostBookmarkResource extends PostEntityServerResource<Bookmark> {
         String id = app.getRepository().add(entity).toString();
         entity.setId(id);
 
-        return new SkysailResponse<String>();
+        return new SkysailResponse<>();
     }
 
     @Override

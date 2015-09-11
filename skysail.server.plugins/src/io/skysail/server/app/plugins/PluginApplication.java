@@ -6,6 +6,7 @@ import io.skysail.server.app.plugins.installations.PostInstallationResource;
 import io.skysail.server.app.plugins.obr.*;
 import io.skysail.server.app.plugins.query.PostQueryResource;
 import io.skysail.server.app.plugins.resources.*;
+import io.skysail.server.restlet.resources.SkysailServerResource;
 
 import java.util.*;
 import java.util.concurrent.atomic.AtomicReference;
@@ -162,6 +163,15 @@ public class PluginApplication extends SkysailApplication implements Application
             log.error(e.getMessage(), e);
         }
         return Collections.emptyList();
+    }
+
+    public List<Class<? extends SkysailServerResource<?>>> getMainLinks() {
+        List<Class<? extends SkysailServerResource<?>>> result = new ArrayList<>();
+        result.add(FeaturesResource.class);
+        result.add(RepositoriesResource.class);
+        //result.add(PostResolverResource.class);
+        result.add(ResourcesResource.class);
+        return result;
     }
 
 }

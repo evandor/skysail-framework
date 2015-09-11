@@ -28,22 +28,22 @@ public class PostRequestResource extends PostEntityServerResource<Request> {
     }
 
     @Override
-    public SkysailResponse<?> addEntity(Request entity) {
-        
+    public SkysailResponse<Request> addEntity(Request entity) {
+
         Campaign campaign = ((PropManApplication) getApplication()).getRepository().getById(Campaign.class, campaignId);
         campaign.addRequest(entity);
         ((PropManApplication) getApplication()).getRepository().update(campaignId, campaign);
-        
+
 //        Subject subject = SecurityUtils.getSubject();
 //        //entity.setOwner(subject.getPrincipal().toString());
 //        String id = ((PropManApplication) getApplication()).getRepository().add(entity).toString();
 //        entity.setId(id);
-        return new SkysailResponse<String>();
+        return new SkysailResponse<>();
     }
-    
+
     //@Override
     //public String redirectTo() {
     //    return super.redirectTo(ApplicationsResource.class);
     //}
-   
+
 }

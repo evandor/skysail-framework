@@ -49,7 +49,7 @@ public class PostPageResource extends PostEntityServerResource<Page> {
         return new Page();
     }
 
-    public SkysailResponse<?> addEntity(Page entity) {
+    public SkysailResponse<Page> addEntity(Page entity) {
         Subject subject = SecurityUtils.getSubject();
 
         Version version = new Version();
@@ -70,7 +70,7 @@ public class PostPageResource extends PostEntityServerResource<Page> {
         //app.getRepository().update(spaceId, space);
         app.getRepository().update(space, "pages", "versions");
 
-        return new SkysailResponse<String>();
+        return new SkysailResponse<>();
     }
 
     @Override

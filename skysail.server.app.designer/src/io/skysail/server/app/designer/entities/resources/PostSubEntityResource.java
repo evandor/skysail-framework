@@ -42,7 +42,7 @@ public class PostSubEntityResource extends PostEntityServerResource<Entity> {
     }
 
     @Override
-    public SkysailResponse<?> addEntity(Entity entity) {
+    public SkysailResponse<Entity> addEntity(Entity entity) {
         Application application = app.getRepository().getById(Application.class, id);
         Optional<Entity> parentEntity = null;//app.getEntityFromApplication(application, entityId);
         if(parentEntity.isPresent()) {
@@ -51,7 +51,7 @@ public class PostSubEntityResource extends PostEntityServerResource<Entity> {
         } else {
             log.warn("could not find entity with id '{}'", entity);
         }
-        return new SkysailResponse<String>();
+        return new SkysailResponse<>();
     }
 
     @Override

@@ -42,7 +42,7 @@ public class PostTodoResource extends PostEntityServerResource<Todo> {
     }
 
     @Override
-    public SkysailResponse<?> addEntity(Todo entity) {
+    public SkysailResponse<Todo> addEntity(Todo entity) {
         Locale locale = ResourceUtils.determineLocale(this);
 
         Calendar cal = Calendar.getInstance(TimeZone.getTimeZone("GMT"),locale);
@@ -58,7 +58,7 @@ public class PostTodoResource extends PostEntityServerResource<Todo> {
         entity.setUrgency(Ranker.calcUrgency(entity));
         String id = app.getRepository().add(entity, "parent").toString();
         entity.setId(id);
-        return new SkysailResponse<String>();
+        return new SkysailResponse<>();
     }
 
     @Override

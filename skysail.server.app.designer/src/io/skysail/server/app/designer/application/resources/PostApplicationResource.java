@@ -32,13 +32,13 @@ public class PostApplicationResource extends PostEntityServerResource<Applicatio
     }
 
     @Override
-    public SkysailResponse<?> addEntity(Application entity) {
+    public SkysailResponse<Application> addEntity(Application entity) {
         app.invalidateMenuCache();
         Subject subject = SecurityUtils.getSubject();
         entity.setOwner(subject.getPrincipal().toString());
         String id = DesignerRepository.add(entity).toString();
         entity.setId(id);
-        return new SkysailResponse<String>();
+        return new SkysailResponse<>();
     }
 
     @Override

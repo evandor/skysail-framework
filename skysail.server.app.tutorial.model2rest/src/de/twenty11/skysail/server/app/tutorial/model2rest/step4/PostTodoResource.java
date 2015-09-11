@@ -16,9 +16,9 @@ public class PostTodoResource extends PostEntityServerResource<TodoModel4> {
     }
 
     @Override
-    public SkysailResponse<?> addEntity(TodoModel4 entity) {
+    public SkysailResponse<TodoModel4> addEntity(TodoModel4 entity) {
         Step4ModelsRepository.getInstance().add(entity);
-        return new SkysailResponse<String>();
+        return new SkysailResponse<>();
     }
 
     @Override

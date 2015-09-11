@@ -17,7 +17,7 @@ public class PostSubPageResource extends PostPageResource {
         app = (WikiApplication)getApplication();
     }
 
-    public SkysailResponse<?> addEntity(Page page) {
+    public SkysailResponse<Page> addEntity(Page page) {
         Subject subject = SecurityUtils.getSubject();
 
         Version version = new Version();
@@ -31,7 +31,7 @@ public class PostSubPageResource extends PostPageResource {
         page.setOwner(subject.getPrincipal().toString());
        // parentPage.addPage(page);
         app.getRepository().update(getAttribute("id"), parentPage);
-        return new SkysailResponse<String>();
+        return new SkysailResponse<>();
     }
 
 }

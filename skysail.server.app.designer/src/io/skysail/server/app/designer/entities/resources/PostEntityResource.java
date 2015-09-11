@@ -38,14 +38,14 @@ public class PostEntityResource extends PostEntityServerResource<Entity> {
     }
 
     @Override
-    public SkysailResponse<?> addEntity(Entity entity) {
+    public SkysailResponse<Entity> addEntity(Entity entity) {
 
         ORecordId added = (ORecordId) DesignerRepository.add(entity);
 
         Application application = app.getRepository().getById(Application.class, id);
         application.getEntities().add(added.getIdentity().toString());
         app.getRepository().update(application, "entities");
-        return new SkysailResponse<String>();
+        return new SkysailResponse<>();
     }
 
     @Override

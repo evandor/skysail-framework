@@ -1,20 +1,15 @@
 package io.skysail.server.app.crm.test;
 
-import static org.hamcrest.CoreMatchers.equalTo;
-import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.assertThat;
-import io.skysail.api.validation.DefaultValidationImpl;
-import io.skysail.server.app.crm.CrmApplication;
-import io.skysail.server.app.crm.CrmRepository;
-import io.skysail.server.db.DbService2;
+import io.skysail.server.app.crm.*;
+import io.skysail.server.db.DbService;
 import io.skysail.server.testsupport.AbstractShiroTest;
 
 import java.util.Locale;
 
-import org.junit.After;
-import org.junit.Rule;
+import org.junit.*;
 import org.junit.rules.ExpectedException;
-import org.mockito.Mockito;
 import org.mockito.Spy;
 import org.restlet.data.Form;
 
@@ -28,7 +23,7 @@ public class CrmAppTest extends AbstractShiroTest {
 
     protected CrmRepository crmRepository;
 
-    protected DbService2 dbService;
+    protected DbService dbService;
 
     public void setUp() throws Exception {
         super.setUp();
@@ -36,7 +31,7 @@ public class CrmAppTest extends AbstractShiroTest {
         dbService = null;//new InMemoryDbService();
         crmRepository.setDbService(dbService);
         app.setCrmRepository(crmRepository);
-        Mockito.when(app.getValidatorService()).thenReturn(new DefaultValidationImpl());
+       // Mockito.when(app.getValidatorService()).thenReturn(new DefaultValidationImpl());
 
         form = new Form();
         Locale locale_en = new Locale("en");

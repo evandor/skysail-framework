@@ -1,28 +1,16 @@
 package io.skysail.server.app.crm;
 
 import io.skysail.server.app.SkysailApplication;
-import io.skysail.server.app.crm.companies.resources.CompaniesResource;
-import io.skysail.server.app.crm.companies.resources.CompanyResource;
-import io.skysail.server.app.crm.companies.resources.PostCompanyResource;
-import io.skysail.server.app.crm.companies.resources.PutCompanyResource;
-import io.skysail.server.app.crm.contacts.ContactResource;
-import io.skysail.server.app.crm.contacts.ContactsResource;
-import io.skysail.server.app.crm.contacts.PostContactResource;
-import io.skysail.server.app.crm.contacts.PutContactResource;
-import io.skysail.server.app.crm.contracts.ContractsResource;
-import io.skysail.server.app.crm.contracts.PostContractResource;
+import io.skysail.server.app.crm.companies.resources.*;
+import io.skysail.server.app.crm.contacts.*;
 import io.skysail.server.db.DbRepository;
 
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
-import aQute.bnd.annotation.component.Component;
-import aQute.bnd.annotation.component.Reference;
+import aQute.bnd.annotation.component.*;
 import de.twenty11.skysail.server.app.ApplicationProvider;
-import de.twenty11.skysail.server.core.restlet.ApplicationContextId;
-import de.twenty11.skysail.server.core.restlet.RouteBuilder;
-import de.twenty11.skysail.server.services.MenuItem;
-import de.twenty11.skysail.server.services.MenuItemProvider;
+import de.twenty11.skysail.server.core.restlet.*;
+import de.twenty11.skysail.server.services.*;
 
 @Component(immediate = true)
 public class CrmApplication extends SkysailApplication implements MenuItemProvider, ApplicationProvider {
@@ -65,8 +53,8 @@ public class CrmApplication extends SkysailApplication implements MenuItemProvid
         router.attach(new RouteBuilder("/Companies/{id}", CompanyResource.class));
         router.attach(new RouteBuilder("/Companies/{id}/", PutCompanyResource.class));
 
-        router.attach(new RouteBuilder("/Contracts/", PostContractResource.class));
-        router.attach(new RouteBuilder("/Contracts", ContractsResource.class));
+//        router.attach(new RouteBuilder("/Contracts/", PostContractResource.class));
+//        router.attach(new RouteBuilder("/Contracts", ContractsResource.class));
         // router.attach(new RouteBuilder("/Contracts/{id}",
         // ContractResource.class));
         // router.attach(new RouteBuilder("/Contracts/{id}/",

@@ -40,7 +40,7 @@ public class LoginResource extends PostEntityServerResource<Credentials> {
     }
 
     @Override
-    public SkysailResponse<?> addEntity(Credentials entity) {
+    public SkysailResponse<Credentials> addEntity(Credentials entity) {
         return null;
     }
 

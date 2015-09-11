@@ -39,7 +39,7 @@ public class PostListResource extends PostEntityServerResource<TodoList> {
     }
 
     @Override
-    public SkysailResponse<?> addEntity(TodoList entity) {
+    public SkysailResponse<TodoList> addEntity(TodoList entity) {
         List<TodoList> usersDefaultLists = app.getUsersDefaultLists(getRequest());
         if (usersDefaultLists.size() == 0) {
             entity.setDefaultList(true);
@@ -52,7 +52,7 @@ public class PostListResource extends PostEntityServerResource<TodoList> {
         entity.setOwner(subject.getPrincipal().toString());
         String id = TodosRepository.add(entity).toString();
         entity.setId(id);
-        return new SkysailResponse<>();
+        return new SkysailResponse<>(entity);
     }
 
     @Override

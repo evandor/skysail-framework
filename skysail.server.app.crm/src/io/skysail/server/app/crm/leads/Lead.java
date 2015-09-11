@@ -1,13 +1,9 @@
 package io.skysail.server.app.crm.leads;
 
-import io.skysail.server.app.crm.Salutation;
-import io.skysail.server.app.crm.SalutationSelectionProvider;
+import io.skysail.api.forms.*;
+import io.skysail.server.app.crm.*;
 
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
-
-import io.skysail.api.forms.Field;
-import io.skysail.api.forms.InputType;
+import javax.validation.constraints.*;
 
 public class Lead {
 
@@ -22,7 +18,7 @@ public class Lead {
     @Field
     private String firstname;
 
-    @Field(type = InputType.EMAIL)
+    @Field(inputType = InputType.EMAIL)
     private String email;
 
     // title, mobile, website, donotcall, account, lead score

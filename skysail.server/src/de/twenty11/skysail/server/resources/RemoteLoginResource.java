@@ -1,17 +1,12 @@
 package de.twenty11.skysail.server.resources;
 
-import io.skysail.api.responses.FormResponse;
-import io.skysail.api.responses.SkysailResponse;
+import io.skysail.api.responses.*;
 import io.skysail.server.restlet.resources.PostEntityServerResource;
 import io.skysail.server.utils.CookiesUtils;
 
 import org.apache.shiro.SecurityUtils;
-import org.restlet.data.CookieSetting;
-import org.restlet.data.Form;
-import org.restlet.data.MediaType;
-import org.restlet.resource.ClientResource;
-import org.restlet.resource.Get;
-import org.restlet.resource.ResourceException;
+import org.restlet.data.*;
+import org.restlet.resource.*;
 
 import de.twenty11.skysail.server.app.SkysailRootApplication;
 import de.twenty11.skysail.server.domain.Credentials;
@@ -46,11 +41,11 @@ public class RemoteLoginResource extends PostEntityServerResource<Credentials> {
     }
 
     @Override
-    public SkysailResponse<?> addEntity(Credentials entity) {
+    public SkysailResponse<Credentials> addEntity(Credentials entity) {
 
         String installation = CookiesUtils.getInstallationFromCookie(getRequest());
         String peersCredentialsName = "Credentials_" + installation;
-        
+
         ClientResource loginCr = new ClientResource("http://todos.int.skysail.io/_login");
         loginCr.setFollowingRedirects(true);
         Form form = new Form();

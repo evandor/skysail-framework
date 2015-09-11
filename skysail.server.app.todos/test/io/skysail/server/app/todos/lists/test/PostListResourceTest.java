@@ -40,6 +40,8 @@ public class PostListResourceTest extends AbstractListResourceTest {
         SkysailResponse<TodoList> result = postListresource.post(new TodoList("jsonList1"), JSON_VARIANT);
         assertThat(responses.get(postListresource.getClass().getName()).getStatus(),is(equalTo(Status.SUCCESS_CREATED)));
         assertListResult(postListresource, result, "jsonList1");
+        assertThat(result.getEntity().getCreated(), is(notNullValue()));
+        assertThat(result.getEntity().getOwner(), is("admin"));
     }
 
     @Test

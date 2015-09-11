@@ -1,20 +1,13 @@
 package io.skysail.server.app.crm.companies;
 
-import io.skysail.api.forms.Field;
-import io.skysail.api.forms.InputType;
+import io.skysail.api.forms.*;
 import io.skysail.server.app.crm.CrmEntity;
-import io.skysail.server.app.crm.companies.resources.CompanyType;
-import io.skysail.server.app.crm.companies.resources.CompanyTypeSelectionProvider;
-import io.skysail.server.app.crm.companies.resources.IndustryType;
-import io.skysail.server.app.crm.companies.resources.IndustryTypeSelectionProvider;
+import io.skysail.server.app.crm.companies.resources.*;
 import io.skysail.server.forms.ListView;
 
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @NoArgsConstructor
 @Getter
@@ -30,7 +23,7 @@ public class Company extends CrmEntity {
     @NotNull
     private String name;
 
-    @Field(type = InputType.URL)
+    @Field(inputType = InputType.URL)
     private String website;
 
     @Field(selectionProvider = CompanyTypeSelectionProvider.class)
@@ -46,7 +39,7 @@ public class Company extends CrmEntity {
     @Field
     private String officePhone;
 
-    @Field(type = InputType.EMAIL)
+    @Field(inputType = InputType.EMAIL)
     private String email;
 
     // @Reference(cls = Address.class)
@@ -55,7 +48,7 @@ public class Company extends CrmEntity {
     // @Reference(cls = Address.class)
     // private String shippingAddress;
 
-    @Field(type = InputType.TEXTAREA)
+    @Field(inputType = InputType.TEXTAREA)
     private String description;
 
 }

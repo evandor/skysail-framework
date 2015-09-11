@@ -4,11 +4,12 @@ import static org.hamcrest.Matchers.containsString;
 import static org.junit.Assert.assertThat;
 import io.skysail.server.ext.apt.model.types.RootResourceModel;
 
-import org.junit.Test;
+import org.junit.*;
 import org.junit.runner.RunWith;
 import org.mockito.runners.MockitoJUnitRunner;
 
 @RunWith(MockitoJUnitRunner.class)
+@Ignore
 public class RootResourceModelTest extends ModelTestBase {
 
 	@Test

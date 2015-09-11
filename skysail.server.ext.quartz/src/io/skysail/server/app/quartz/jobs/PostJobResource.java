@@ -29,7 +29,7 @@ public class PostJobResource extends PostEntityServerResource<Job> {
 	}
 
 	@Override
-	public SkysailResponse<?> addEntity(Job entity) {
+	public SkysailResponse<Job> addEntity(Job entity) {
 		JobDetail jobDetail = org.quartz.JobBuilder.newJob(ConsoleTimePrinterJob.class)
 				.withIdentity(entity.getName(), entity.getGroup())
 				.storeDurably(true)
@@ -40,7 +40,7 @@ public class PostJobResource extends PostEntityServerResource<Job> {
         } catch (SchedulerException e) {
 	        e.printStackTrace();
         }
-		return new SkysailResponse<String>();
+		return new SkysailResponse<>();
 	}
 
 	@Override

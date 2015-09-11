@@ -1,16 +1,14 @@
 package io.skysail.server.app.crm.contacts;
 
+import io.skysail.api.responses.SkysailResponse;
 import io.skysail.server.app.crm.CrmRepository;
 import io.skysail.server.restlet.resources.PostEntityServerResource;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 import org.apache.shiro.SecurityUtils;
-import org.restlet.data.Form;
-import org.restlet.data.Parameter;
+import org.restlet.data.*;
 
-import io.skysail.api.responses.SkysailResponse;
 import de.twenty11.skysail.server.core.restlet.ResourceContextId;
 
 public class PostContactResource extends PostEntityServerResource<Contact> {
@@ -44,10 +42,10 @@ public class PostContactResource extends PostEntityServerResource<Contact> {
     }
 
     @Override
-    public SkysailResponse<?> addEntity(Contact entity) {
+    public SkysailResponse<Contact> addEntity(Contact entity) {
         entity.setOwner(SecurityUtils.getSubject().getPrincipal().toString());
         CrmRepository.add(entity, "worksFor");
-        return new SkysailResponse<String>();
+        return new SkysailResponse<>();
     }
 
     @Override

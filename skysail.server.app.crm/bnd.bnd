@@ -10,15 +10,18 @@ Include-Resource: resources, templates=src;recursive:=true;filter:=*.st|*.stg
 	biz.aQute.bnd.annotation,\
 	skysail.api;version=${skysail.api.version},\
 	skysail.api.validation;version=latest,\
-	skysail.api.um;version=latest,\
+	skysail.api.um;version=${skysail.api.validation.version},\
 	skysail.api.favorites;version=${skysail.api.favorites.version},\
-	skysail.api.text;version=latest,\
-	skysail.api.peers;version=latest,\
+	skysail.api.text;version=${skysail.api.text.version},\
+	skysail.api.peers;version=${skysail.api.peers.version},\
 	skysail.api.documentation;version=${skysail.api.documentation.version},\
-	skysail.server;version=latest,\
-	skysail.server.codegen;version=latest,\
+	skysail.server;version=${skysail.server.version},\
+    skysail.server.codegen;version=latest,\
+	skysail.server.db;version=latest,\
+	skysail.server.testsupport;version=latest,\
 	slf4j.api;version=1.7.7,\
 	org.restlet;version=${restlet.version},\
+    org.restlet.ext.raml;version=${restlet.version},\
 	javax.validation.api;version=1.1,\
 	javax.persistence;version=2.1,\
 	com.springsource.org.junit;version=4.11,\
@@ -31,7 +34,6 @@ Include-Resource: resources, templates=src;recursive:=true;filter:=*.st|*.stg
 	com.orientechnologies.orientdb-core;version=2.0,\
 	org.codehaus.jettison.jettison;version=1.3,\
 	org.mockito.mockito-all;version=1.10,\
-	skysail.server.testsupport;version=latest,\
 	de.twentyeleven.skysail.org.json-osgi;version=20080701.0,\
 	osgi.core;version=5.0,\
 	osgi.cmpn;version=5.0,\
@@ -50,7 +52,7 @@ Import-Package: org.osgi.framework,\
 	javassist.util.proxy,\
 	org.apache.commons.beanutils,\
 	*
-Bundle-Description: a contacts application for skysail (used as demo as well) 
+Bundle-Description: a contacts application for skysail (used as demo as well)
 Private-Package:  \
 	io.skysail.server.app.crm,\
 	io.skysail.server.app.crm.contracts,\

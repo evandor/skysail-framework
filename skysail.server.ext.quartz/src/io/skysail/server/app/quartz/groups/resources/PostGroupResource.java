@@ -18,9 +18,9 @@ public class PostGroupResource extends PostEntityServerResource<Group> {
 	}
 
 	@Override
-	public SkysailResponse<?> addEntity(Group entity) {
+	public SkysailResponse<Group> addEntity(Group entity) {
 		QuartzRepository.add(entity);
-		return new SkysailResponse<String>();
+		return new SkysailResponse<>();
 	}
 
 	@Override

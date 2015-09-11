@@ -15,7 +15,7 @@ public class TestPostEntityResource extends PostEntityServerResource<String> {
     }
 
     @Override
-    public SkysailResponse<?> addEntity(String entity) {
+    public SkysailResponse<String> addEntity(String entity) {
         return new SkysailResponse<String>("added");
     }
 

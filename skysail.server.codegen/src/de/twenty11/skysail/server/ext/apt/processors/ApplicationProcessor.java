@@ -1,40 +1,21 @@
 package de.twenty11.skysail.server.ext.apt.processors;
 
-import io.skysail.server.ext.apt.model.entities.Entity;
-import io.skysail.server.ext.apt.model.entities.EntityGraph;
-import io.skysail.server.ext.apt.model.entities.Reference;
-import io.skysail.server.ext.apt.model.types.RepositoryModel;
-import io.skysail.server.ext.apt.model.types.TypeModel;
+import io.skysail.server.ext.apt.model.entities.*;
+import io.skysail.server.ext.apt.model.types.*;
 
-import java.io.IOException;
-import java.io.Writer;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.io.*;
+import java.util.*;
 import java.util.stream.Collectors;
 
-import javax.annotation.processing.RoundEnvironment;
-import javax.annotation.processing.SupportedAnnotationTypes;
-import javax.annotation.processing.SupportedSourceVersion;
-import javax.lang.model.element.Element;
-import javax.lang.model.element.ElementKind;
-import javax.lang.model.element.TypeElement;
-import javax.lang.model.element.VariableElement;
+import javax.annotation.processing.*;
+import javax.lang.model.element.*;
 import javax.lang.model.type.TypeMirror;
 import javax.tools.JavaFileObject;
 
-import org.stringtemplate.v4.ST;
-import org.stringtemplate.v4.STGroup;
-import org.stringtemplate.v4.STGroupFile;
+import org.stringtemplate.v4.*;
 
-import de.twenty11.skysail.server.ext.apt.Processors;
-import de.twenty11.skysail.server.ext.apt.STElement;
-import de.twenty11.skysail.server.ext.apt.annotations.GenerateEntityResource;
-import de.twenty11.skysail.server.ext.apt.annotations.GenerateListResource;
-import de.twenty11.skysail.server.ext.apt.annotations.GeneratePostResource;
-import de.twenty11.skysail.server.ext.apt.annotations.GeneratePutResource;
-import de.twenty11.skysail.server.ext.apt.annotations.SkysailApplication;
+import de.twenty11.skysail.server.ext.apt.*;
+import de.twenty11.skysail.server.ext.apt.annotations.*;
 
 @SupportedAnnotationTypes("de.twenty11.skysail.server.ext.apt.annotations.SkysailApplication")
 @SupportedSourceVersion(javax.lang.model.SourceVersion.RELEASE_8)

@@ -47,7 +47,7 @@ public class PostScheduleResource extends PostEntityServerResource<Schedule> {
     }
 
     @Override
-    public SkysailResponse<?> addEntity(Schedule entity) {
+    public SkysailResponse<Schedule> addEntity(Schedule entity) {
         Trigger trigger = org.quartz.TriggerBuilder.newTrigger().withIdentity("trigger1", "group1").startNow()
                 .forJob(JobKey.jobKey(entity.getJobName(), entity.getJobGroup()))
                 .withSchedule(SimpleScheduleBuilder.simpleSchedule().withIntervalInSeconds(60).repeatForever()).build();
@@ -56,6 +56,6 @@ public class PostScheduleResource extends PostEntityServerResource<Schedule> {
         } catch (SchedulerException e) {
             e.printStackTrace();
         }
-        return new SkysailResponse<String>();
+        return new SkysailResponse<>();
     }
 }

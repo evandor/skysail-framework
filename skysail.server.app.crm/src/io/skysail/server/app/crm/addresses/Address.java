@@ -1,8 +1,8 @@
 package io.skysail.server.app.crm.addresses;
 
 import io.skysail.api.forms.Field;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
+
 
 @Getter
 @Setter

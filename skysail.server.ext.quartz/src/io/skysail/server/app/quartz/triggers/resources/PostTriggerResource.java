@@ -28,7 +28,7 @@ public class PostTriggerResource extends PostEntityServerResource<Trigger> {
 	}
 
 	@Override
-	public SkysailResponse<?> addEntity(Trigger entity) {
+	public SkysailResponse<Trigger> addEntity(Trigger entity) {
         org.quartz.Trigger trigger = TriggerBuilder.newTrigger()
                 .withIdentity(entity.getName())
                 .startNow()
@@ -53,7 +53,7 @@ public class PostTriggerResource extends PostEntityServerResource<Trigger> {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-        return new SkysailResponse<String>();
+        return new SkysailResponse<>();
 	}
 
 	@Override

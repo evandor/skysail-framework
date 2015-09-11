@@ -15,19 +15,19 @@ public class PostSpaceResource extends PostEntityServerResource<Space> {
     public PostSpaceResource() {
         addToContext(ResourceContextId.LINK_TITLE, "create new Space");
     }
-    
+
     @Override
     public Space createEntityTemplate() {
         return new Space();
     }
 
-    public SkysailResponse<?> addEntity(Space entity) {
+    public SkysailResponse<Space> addEntity(Space entity) {
         Subject subject = SecurityUtils.getSubject();
         subject.getPrincipals().getPrimaryPrincipal();
         entity.setOwner(subject.getPrincipal().toString());
         String id = WikiRepository.add(entity).toString();
         entity.setId(id);
-        return new SkysailResponse<>();        
+        return new SkysailResponse<>();
     }
 
     @Override

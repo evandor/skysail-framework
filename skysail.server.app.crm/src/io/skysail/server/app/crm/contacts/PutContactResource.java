@@ -23,7 +23,7 @@ public class PutContactResource extends PutEntityServerResource<Contact> {
     }
 
     @Override
-    public SkysailResponse<?> updateEntity(Contact entity) {
+    public SkysailResponse<Contact> updateEntity(Contact entity) {
         // CompaniesRepository.getInstance().update(entity);
         return null;
     }

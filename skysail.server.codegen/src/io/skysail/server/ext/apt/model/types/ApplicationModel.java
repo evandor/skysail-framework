@@ -1,5 +1,7 @@
 package io.skysail.server.ext.apt.model.types;
 
+import io.skysail.server.app.SkysailApplication;
+
 import java.util.*;
 
 import javax.lang.model.element.Element;

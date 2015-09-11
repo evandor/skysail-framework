@@ -17,7 +17,7 @@ public class PostTodoWoListResource extends PostTodoResource {
     private String listIdFromEntity;
 
     @Override
-    public SkysailResponse<?> addEntity(Todo entity) {
+    public SkysailResponse<Todo> addEntity(Todo entity) {
         entity.setCreated(new Date());
         Subject subject = SecurityUtils.getSubject();
         entity.setOwner(subject.getPrincipal().toString());
@@ -28,7 +28,7 @@ public class PostTodoWoListResource extends PostTodoResource {
         //String id = app.getRepository().add(entity).toString();
         String id = app.getRepository().add(entity, "parent").toString();
         entity.setId(id);
-        return new SkysailResponse<String>();
+        return new SkysailResponse<>();
     }
 
     @Override

@@ -22,10 +22,12 @@ public class RepositoriesResource extends ListServerResource<ObrRepository> {
     public List<ObrRepository> getEntity() {
         return app.getReposList();
     }
-    
+
     @Override
     public List<Link> getLinks() {
-        return super.getLinks(RepositoriesResource.class);
+        List<Link> links = super.getLinks(app.getMainLinks());
+        //links.addAll(super.getLinks(RepositoriesResource.class));
+        return links;
     }
-    
+
 }

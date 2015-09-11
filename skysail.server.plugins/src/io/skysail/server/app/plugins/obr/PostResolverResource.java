@@ -32,7 +32,7 @@ public class PostResolverResource extends PostEntityServerResource<ObrResource> 
         return entity;
     }
 
-    public SkysailResponse<String> addEntity(ObrResource entity) {
+    public SkysailResponse<ObrResource> addEntity(ObrResource entity) {
         String filter = StringEscapeUtils.unescapeHtml(entity.getSearchFor());
         StringBuilder sb = new StringBuilder();
         sb.append("Discovering Resources for filter '").append(filter).append("'\n<br>");
@@ -46,6 +46,6 @@ public class PostResolverResource extends PostEntityServerResource<ObrResource> 
                 sb.append("Unable to resolve: " + reqs[i]).append("\\n<br>");
             }
         }
-        return new SkysailResponse<String>();
+        return new SkysailResponse<>();
     }
 }

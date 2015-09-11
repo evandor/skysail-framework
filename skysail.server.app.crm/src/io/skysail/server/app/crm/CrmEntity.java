@@ -1,7 +1,6 @@
 package io.skysail.server.app.crm;
 
-import io.skysail.api.forms.Field;
-import io.skysail.api.forms.InputType;
+import io.skysail.api.forms.*;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -9,9 +8,7 @@ import java.util.Date;
 import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @Getter
 @Setter
@@ -19,7 +16,7 @@ import lombok.Setter;
 public class CrmEntity implements Serializable {
 
     /**
-     * 
+     *
      */
     private static final long serialVersionUID = -8977053023931029701L;
     @Id
@@ -31,7 +28,7 @@ public class CrmEntity implements Serializable {
         this.created = new Date();
     }
 
-    @Field(type = InputType.READONLY)
+    @Field(inputType = InputType.READONLY)
     protected String creator;
 
     @NotNull
@@ -41,16 +38,16 @@ public class CrmEntity implements Serializable {
         return creator;
     }
 
-    @Field(type = InputType.READONLY)
+    @Field(inputType = InputType.READONLY)
     protected Date created;
     //
     // @Field(type = InputType.READONLY)
     // protected Date changed;
 
-    @Field(type = InputType.READONLY)
+    @Field(inputType = InputType.READONLY)
     protected String changedBy;
 
-    @Field(type = InputType.READONLY)
+    @Field(inputType = InputType.READONLY)
     protected String owner;
 
 }

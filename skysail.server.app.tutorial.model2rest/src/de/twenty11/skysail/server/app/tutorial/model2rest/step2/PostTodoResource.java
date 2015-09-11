@@ -16,7 +16,7 @@ public class PostTodoResource extends PostEntityServerResource<TodoModel2> {
     }
 
     @Override
-    public SkysailResponse<?> addEntity(TodoModel2 entity) {
+    public SkysailResponse<TodoModel2> addEntity(TodoModel2 entity) {
         return null;
     }
 

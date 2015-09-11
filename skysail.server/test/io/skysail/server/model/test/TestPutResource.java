@@ -14,10 +14,10 @@ public class TestPutResource extends PostEntityServerResource<TestEntity>{
     }
 
     @Override
-    public SkysailResponse<?> addEntity(TestEntity entity) {
+    public SkysailResponse<TestEntity> addEntity(TestEntity entity) {
         return null;
     }
-    
+
     @Override
     public SkysailApplication getApplication() {
         return Mockito.mock(SkysailApplication.class);

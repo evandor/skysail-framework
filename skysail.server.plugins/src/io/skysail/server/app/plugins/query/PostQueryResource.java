@@ -31,10 +31,10 @@ public class PostQueryResource extends PostEntityServerResource<Query> {
         return populate(createEntityTemplate(), form);
     }
 
-    public SkysailResponse<?> addEntity(Query entity) {
+    public SkysailResponse<Query> addEntity(Query entity) {
         // Resolver discoverResources =
         // app.discoverResources("(|(presentationname=*)(symbolicname=*))");
-        return new SkysailResponse<String>();
+        return new SkysailResponse<>();
     }
 
 }

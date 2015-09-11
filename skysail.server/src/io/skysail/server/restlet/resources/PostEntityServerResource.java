@@ -116,7 +116,7 @@ public abstract class PostEntityServerResource<T> extends SkysailServerResource<
      *            the entity
      * @return the response
      */
-    public abstract SkysailResponse<?> addEntity(T entity);
+    public abstract SkysailResponse<T> addEntity(T entity);
 
     @Override
     public T getEntity() {

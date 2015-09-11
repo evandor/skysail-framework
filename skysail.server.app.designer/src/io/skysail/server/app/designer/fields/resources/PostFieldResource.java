@@ -37,14 +37,14 @@ public class PostFieldResource extends PostEntityServerResource<EntityField> {
     }
 
     @Override
-    public SkysailResponse<?> addEntity(EntityField field) {
+    public SkysailResponse<EntityField> addEntity(EntityField field) {
 
         ORecordId added = (ORecordId) DesignerRepository.add(field);
 
         Entity entity= app.getRepository().getById(Entity.class, id);
         entity.getFields().add(added.getIdentity().toString());
         app.getRepository().update(entity, "fields");
-        return new SkysailResponse<String>();
+        return new SkysailResponse<>();
 
 
 //        Entity entity = app.getRepository().getById(Entity.class, entityId);

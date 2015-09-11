@@ -35,11 +35,11 @@ public class PostActionFieldResource extends PostEntityServerResource<ActionEnti
     }
 
     @Override
-    public SkysailResponse<?> addEntity(ActionEntityField field) {
+    public SkysailResponse<ActionEntityField> addEntity(ActionEntityField field) {
         Entity entity = app.getRepository().getById(Entity.class, entityId);
         entity.getActionFields().add(field);
         app.getRepository().update(entity);
-        return new SkysailResponse<String>();
+        return new SkysailResponse<>();
     }
 
     @Override

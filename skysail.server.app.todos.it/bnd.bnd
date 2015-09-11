@@ -11,6 +11,7 @@ Test-Cases: io.skysail.server.app.todos.test.TodoListsCrudIntegrationTests,\
 
 -buildpath:  \
 	skysail.api;version=${skysail.api.version},\
+    skysail.api.text;version=${skysail.api.text.version},\
 	skysail.api.validation;version=${skysail.api.validation.version},\
 	skysail.api.documentation;version=${skysail.api.documentation.version},\
 	skysail.client.testsupport;version=latest,\
@@ -32,8 +33,7 @@ Test-Cases: io.skysail.server.app.todos.test.TodoListsCrudIntegrationTests,\
 -runee: JavaSE-1.8
 -runsystemcapabilities: ${native_capability}
 
--runvm: -ea
-#,-XX:+UnlockCommercialFeatures,-XX:+FlightRecorder,-XX:StartFlightRecording="duration=120m,filename=flightrecorder.jfr"
+-runvm: -ea, -XX:+UnlockCommercialFeatures,-XX:+FlightRecorder,-XX:StartFlightRecording="duration=120m,filename=flightrecorder.jfr"
 
 -runrepos:  \
 	Workspace,\
@@ -52,7 +52,7 @@ Test-Cases: io.skysail.server.app.todos.test.TodoListsCrudIntegrationTests,\
 
 
 -resolve.effective: active;skip:="osgi.service"
-#-XX:+UnlockCommercialFeatures -XX:+FlightRecorder -XX:StartFlightRecording=duration=120m,filename=recording1.jfr
+
 -runproperties: felix.fileinstall.dir=config/test,\
     felix.fileinstall.filter=.*\\.jar|.*\\.cfg,\
     felix.fileinstall.noInitialDelay=true,\
@@ -132,7 +132,7 @@ Test-Cases: io.skysail.server.app.todos.test.TodoListsCrudIntegrationTests,\
 	skysail.api;version=${skysail.api.version},\
 	skysail.api.um;version=latest,\
 	skysail.api.search;version=latest,\
-	skysail.api.text;version=latest,\
+	skysail.api.text;version=${skysail.api.text.version},\
 	skysail.api.documentation;version=${skysail.api.documentation.version},\
 	skysail.api.validation;version=latest,\
 	skysail.api.features;version=latest,\

@@ -8,6 +8,7 @@ Bundle-Name: SKYSAIL :: products :: website
 	skysail.api;version=${skysail.api.version},\
     skysail.api.search;version=${skysail.api.search.version},\
     skysail.api.text;version=${skysail.api.text.version},\
+    skysail.api.um;version=${skysail.api.um.version},\
 	skysail.server;version=${skysail.server.version},\
     skysail.server.db;version=${skysail.server.db.version},\
     skysail.server.static;version=${skysail.server.static.version},\

@@ -3,13 +3,13 @@ Bundle-Name: SKYSAIL :: server :: um
 Bundle-Description: Default Usermanagement Implementation
 -buildpath:  \
 	skysail.api.um;version=${skysail.api.um.version},\
+    skysail.server;version=${skysail.server.version},\
+	skysail.server.db;version=${skysail.server.db.version},\
 	biz.aQute.bnd.annotation;version=2.4,\
 	org.apache.shiro.core;version=1.2,\
 	org.restlet;version=2.1,\
 	slf4j.api;version=1.7,\
 	lombok;version=1.16,\
-    skysail.server;version=${skysail.server.version},\
-	skysail.server.db;version=${skysail.server.db.version},\
 	org.apache.shiro.web;version=1.2,\
 	javax.servlet;version=3.0,\
 	org.restlet.ext.crypto;version=${restlet.version},\

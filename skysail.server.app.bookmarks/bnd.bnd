@@ -31,6 +31,7 @@ Import-Package: org.osgi.framework,\
 	osgi.cmpn;version=5.0,\
 	com.springsource.org.junit;version=4.11,\
 	biz.aQute.bnd.annotation;version=2.4,\
+    skysail.api.search;version=${skysail.api.search.version},\
     skysail.api.text;version=${skysail.api.text.version},\
 	skysail.server;version=${skysail.server.version},\
 	skysail.server.db;version=${skysail.server.db.version},\

@@ -3,6 +3,7 @@ Bundle-ClassPath: .,lib/twitter4j-core-4.0.3.jar
 -buildpath:  \
 	lib/twitter4j-core-4.0.3.jar;version=file,\
 	skysail.api;version=${skysail.api.version},\
+    skysail.api.search;version=${skysail.api.search.version},\
     skysail.api.text;version=${skysail.api.text.version},\
 	skysail.server;version=${skysail.server.version},\
 	com.springsource.org.junit;version=4.11,\

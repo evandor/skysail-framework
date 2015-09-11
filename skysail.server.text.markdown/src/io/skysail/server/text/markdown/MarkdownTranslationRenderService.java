@@ -43,16 +43,25 @@ public class MarkdownTranslationRenderService implements TranslationRenderServic
             return null;
         }
         String rawTranslation = translation.getValue();
-        formatter.applyPattern(rawTranslation);
         try {
-            String unformatted = StringEscapeUtils.unescapeHtml4(formatter.format(translation.getMessageArguments().toArray(new Object[translation.getMessageArguments().size()])));
-            if (unformatted == null) {
-                return null;
-            }
-            return new Markdown4jProcessor().process(adjustText(unformatted));
+            formatter.applyPattern(rawTranslation);
+            String messageFormatted = formatter.format(translation.getMessageArguments().toArray(new Object[translation.getMessageArguments().size()]));
+            return process(messageFormatted);
+        } catch (IllegalArgumentException iae) {
+            return process(rawTranslation);
+        }
+    }
+
+    private String process(String inputString) {
+        String unescaped = StringEscapeUtils.unescapeHtml4(inputString);
+        if (unescaped == null) {
+            return null;
+        }
+        try {
+            return new Markdown4jProcessor().process(adjustText(unescaped));
         } catch (IOException e) {
             log.error(e.getMessage(), e);
-            return rawTranslation;
+            return inputString;
         }
     }
 

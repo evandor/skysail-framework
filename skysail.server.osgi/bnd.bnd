@@ -4,6 +4,7 @@ Bundle-Version: 0.0.21.${tstamp}
 	osgi.cmpn;version=5.0,\
 	osgi.core;version=5.0,\
 	skysail.api;version=${skysail.api.version},\
+    skysail.api.text;version=${skysail.api.text.version},\
 	skysail.server;version=${skysail.server.version},\
 	javax.validation.api,\
 	org.hibernate.validator;version=5.0,\

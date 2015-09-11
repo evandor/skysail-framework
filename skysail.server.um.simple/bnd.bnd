@@ -2,6 +2,7 @@ Bundle-Version: 0.1.2.${tstamp}
 -buildpath:  \
 	skysail.api;version=${skysail.api.version},\
 	skysail.api.features;version=${skysail.api.features.version},\
+    skysail.api.text;version=${skysail.api.text.version},\
 	skysail.api.um;version=${skysail.api.um.version},\
 	skysail.server.testsupport;version=latest,\
 	skysail.server;version=${skysail.server.version},\

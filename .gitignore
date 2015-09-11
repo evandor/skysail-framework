@@ -20,3 +20,4 @@ hs_err_pid*
 /skysail.server.converter/webapp/.bowerrc
 skysail.server.polymer/_polymer/.bowerrc
 /skysail.server.app.designer.propman
+/hellowithoutannotations/

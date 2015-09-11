@@ -9,12 +9,12 @@ Include-Resource: resources, templates=src;recursive:=true;filter:=*.st|*.stg
 -buildpath:  \
 	biz.aQute.bnd.annotation,\
 	skysail.api;version=${skysail.api.version},\
-	skysail.api.validation;version=latest,\
 	skysail.api.um;version=${skysail.api.validation.version},\
 	skysail.api.favorites;version=${skysail.api.favorites.version},\
 	skysail.api.text;version=${skysail.api.text.version},\
 	skysail.api.peers;version=${skysail.api.peers.version},\
 	skysail.api.documentation;version=${skysail.api.documentation.version},\
+    skysail.api.validation;version=${skysail.api.validation.version},\
 	skysail.server;version=${skysail.server.version},\
     skysail.server.codegen;version=latest,\
 	skysail.server.db;version=latest,\

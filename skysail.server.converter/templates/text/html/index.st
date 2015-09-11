@@ -126,20 +126,8 @@ index(user, messages, converter, model) ::= <<
             $endif$
           </ul>
 
-          $if(model.services.searchService && user.principal)$
-		  <div class="col-sm-3 col-md-2 pull-right">
-			<form class="navbar-form" role="search" action="./_documents/" method="GET"> <!-- action="/_search" -->
-				<div class="input-group">
-					<input type="text" class="form-control input-sm" placeholder="Search" name="searchterm" id="searchterm">
-					<div class="input-group-btn">
-						<button class="btn btn-default btn-sm" type="submit"><i class="glyphicon glyphicon-search"></i></button>
-					</div>
-				</div>
-			</form>
-  		  </div>
-          $endif$
           $if(user.principal)$
-          <ul class="nav navbar-nav navbar-right">
+          <ul class="nav navbar-nav navbar-right" >
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">$user.username$ <font style="color:red">$user.backend$</font><span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu">
@@ -149,6 +137,18 @@ index(user, messages, converter, model) ::= <<
               </ul>
             </li>
           </ul>
+          $endif$
+          $if(model.services.searchService && user.principal)$
+          <ul class="nav navbar-nav navbar-right" >
+			<form class="navbar-form" role="search" action="./_documents/" method="GET"> <!-- action="/_search" -->
+				<div class="input-group">
+					<input type="text" class="form-control input-sm" placeholder="Search" name="searchterm" id="searchterm">
+					<div class="input-group-btn">
+						<button class="btn btn-default btn-sm" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+					</div>
+				</div>
+			</form>
+           </ul>
           $endif$
         </div><!--/.nav-collapse -->
       </div>

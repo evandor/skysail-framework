@@ -9,12 +9,11 @@ public interface MenuItemProvider {
 
     /**
      * Example implementation
-     * 
+     *
      * <pre>
      * <code>
-     *   MenuItem menuItem = new MenuItem("Incubator", "/incubator");
+     *   MenuItem menuItem = new MenuItem(APP_NAME, "/" + APP_NAME + getApiVersion().getVersionPath());
      *   menuItem.setCategory(MenuItem.Category.APPLICATION_MAIN_MENU);
-     *   new MenuItem(menuItem, "add new application", "application?media=htmlform");
      *   return Arrays.asList(menuItem);
      * </code>
      * </pre>

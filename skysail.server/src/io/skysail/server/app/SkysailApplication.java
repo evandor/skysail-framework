@@ -58,7 +58,7 @@ import de.twenty11.skysail.server.services.*;
  * <pre>
  * <code>
  *
- * {@literal @}aQute.bnd.annotation.component.Component(immediate = true)
+ * {@literal @}org.osgi.service.component.annotations.Component.Component(immediate = true)
  * public class MyApplication extends SkysailApplication implements ApplicationProvider, MenuItemProvider {
  *
  *     private static final String APP_NAME = "myapp";
@@ -85,13 +85,17 @@ import de.twenty11.skysail.server.services.*;
  * </code>
  * </pre>
  *
+ * Important:
+ *
  * A {@link SkysailApplication} is a {@link Application}, which
  *
- * - has a number of {@link Resource}s attached to it - handles access to its
- * resources issues via its {@link AuthenticationService} and
- * {@link AuthorizationService} - knows about the OSGi {@link ComponentContext}
- * - deals with XSS issues via its {@link HtmlPolicyBuilder} - can
- * encrypt/decrypt resource entitiies via its {@link EncryptorService}
+ * - has a number of {@link Resource}s attached to it
+ *
+ * - handles access to its resources issues via its {@link AuthenticationService} and {@link AuthorizationService}
+ *
+ * - knows about the OSGi {@link ComponentContext}
+ *
+ * - deals with XSS issues via its {@link HtmlPolicyBuilder} - can encrypt/decrypt resource entitiies via its {@link EncryptorService}
  *
  * Concurrency note from parent class: instances of this class or its subclasses
  * can be invoked by several threads at the same time and therefore must be
@@ -162,6 +166,8 @@ public abstract class SkysailApplication extends RamlApplication implements Appl
     /**
      * probably you want to do something like
      * "router.attach(new RouteBuilder("", RootResource.class))".
+     *
+     * Important: Call <pre>super.attach()</pre> in the first line of this method.
      *
      * <p>
      * You can add authorization information like this for all routes:

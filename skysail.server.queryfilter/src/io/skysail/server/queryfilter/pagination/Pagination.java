@@ -55,4 +55,13 @@ public class Pagination {
         return DEFAULT_LINES_PER_PAGE;
     }
 
+    public String getLimitClause() {
+        long linesPerPage = getLinesPerPage();
+        long page = getPage();
+        if (linesPerPage <= 0) {
+            return "";
+        }
+        return new StringBuilder("SKIP " + linesPerPage * (page-1) + " LIMIT " + linesPerPage).toString();
+    }
+
 }

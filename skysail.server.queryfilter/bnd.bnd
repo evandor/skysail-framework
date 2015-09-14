@@ -1,4 +1,4 @@
-Bundle-Version: 0.3.1.${tstamp}
+Bundle-Version: 0.4.0.${tstamp}
 -buildpath:  \
 	osgi.core;version=5.0,\
 	osgi.cmpn;version=5.0,\
@@ -11,7 +11,9 @@ Bundle-Version: 0.3.1.${tstamp}
 	biz.aQute.bnd.annotation;version=2.4,\
 	org.apache.directory.api.ldap.model;version=1.0,\
 	org.restlet;version=${restlet.version},\
-	org.apache.commons.beanutils;version=1.9
+	org.apache.commons.beanutils;version=1.9,\
+	org.mockito.mockito-core;version=1.10,\
+	org.objenesis;version=2.1
 Bundle-Name: SKYSAIL :: server :: queryfilter
 Bundle-Description: Takes care of filter expressions provided in the request query
 Service-Component:  \

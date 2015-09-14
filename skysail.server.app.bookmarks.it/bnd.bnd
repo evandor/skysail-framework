@@ -13,6 +13,7 @@ Private-Package:  \
 	osgi.core;version=5.0,\
 	osgi.cmpn;version=5.0,\
 	skysail.api;version=${skysail.api.version},\
+    skysail.api.search;version=${skysail.api.search.version},\
 	skysail.server;version=${skysail.server.version},\
 	skysail.server.http;version=${skysail.server.http.version},\
 	skysail.server.app.bookmarks;version=latest,\

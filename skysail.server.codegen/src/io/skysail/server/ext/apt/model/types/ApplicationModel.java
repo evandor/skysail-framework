@@ -1,12 +1,11 @@
 package io.skysail.server.ext.apt.model.types;
 
-import io.skysail.server.app.SkysailApplication;
-
 import java.util.*;
 
 import javax.lang.model.element.Element;
 
 import de.twenty11.skysail.server.app.ApplicationProvider;
+import de.twenty11.skysail.server.ext.apt.annotations.SkysailApplication;
 import de.twenty11.skysail.server.services.MenuItemProvider;
 
 public class ApplicationModel extends JavaModel {

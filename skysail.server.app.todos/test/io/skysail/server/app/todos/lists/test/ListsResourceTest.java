@@ -7,12 +7,13 @@ import io.skysail.server.app.todos.TodoList;
 
 import java.util.List;
 
-import org.junit.Test;
+import org.junit.*;
 import org.restlet.data.Status;
 
 public class ListsResourceTest extends AbstractListResourceTest {
 
     @Test
+    @Ignore
     public void todoList_contains_created_todo_list() {
         TodoList aList = createList();
 

@@ -1,4 +1,4 @@
-Bundle-Version: 0.2.2.${tstamp}
+Bundle-Version: 0.2.3.${tstamp}
 Bundle-Name: SKYSAIL :: api :: um
 Bundle-Description: an incubator bundle for the skysail usermanagement API  (which will be moved \
 	to skysail.api once stable) together with default implementations
@@ -17,7 +17,7 @@ Bundle-Description: an incubator bundle for the skysail usermanagement API  (whi
 
 Service-Component:  \
 	*
-	
+
 -runfw: org.apache.felix.framework;version=${org.apache.felix.framework.version}
 -runee: JavaSE-1.8
 -runsystemcapabilities: ${native_capability}
@@ -31,7 +31,7 @@ Service-Component:  \
 
 -resolve.effective: active;skip:="osgi.service"
 
-	
+
 -runrequires:  \
 	osgi.identity;filter:='(osgi.identity=org.apache.felix.gogo.shell)',\
 	osgi.identity;filter:='(osgi.identity=org.apache.felix.gogo.command)',\
@@ -43,16 +43,14 @@ Service-Component:  \
 -runbundles:  \
 	ch.qos.logback.classic;version='[1.1.3,1.1.4)',\
 	ch.qos.logback.core;version='[1.1.3,1.1.4)',\
-	org.apache.felix.configadmin;version='[1.8.0,1.8.1)',\
 	org.apache.felix.gogo.command;version='[0.14.0,0.14.1)',\
-	org.apache.felix.gogo.runtime;version='[0.12.1,0.12.2)',\
+	org.apache.felix.gogo.runtime;version='[0.16.2,0.16.3)',\
 	org.apache.felix.gogo.shell;version='[0.10.0,0.10.1)',\
 	org.apache.felix.log;version='[1.0.1,1.0.2)',\
-	org.apache.felix.scr;version='[1.8.2,1.8.3)',\
-	org.restlet;version='[2.3.1,2.3.2)',\
+	org.apache.felix.scr;version='[2.0.0,2.0.1)',\
+	org.restlet;version='[2.3.4,2.3.5)',\
 	osgi.enterprise;version='[4.2.0,4.2.1)',\
-	osgi.residential;version='[4.3.0,4.3.1)',\
-	skysail.api.um;version='[0.2.1,0.2.2)',\
-	slf4j.api;version='[1.7.7,1.7.8)'
+	skysail.api.um;version=latest,\
+	slf4j.api;version='[1.7.12,1.7.13)'
 Export-Package:  \
 	io.skysail.api.um

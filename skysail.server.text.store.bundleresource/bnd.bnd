@@ -7,12 +7,12 @@ Include-Resource: resources, templates=src;recursive:=true;filter:=*.st|*.stg
 -buildpath:  \
 	skysail.api;version=${skysail.api.version},\
 	skysail.api.text;version=${skysail.api.text.version},\
+	skysail.server;version=${skysail.server.version},\
 	slf4j.api;version=1.7,\
 	biz.aQute.bnd.annotation;version=2.4,\
 	org.restlet;version=${restlet.version},\
 	org.restlet.ext.raml;version=${restlet.version},\
 	lombok;version=1.16,\
-	skysail.server;version=${skysail.server.version},\
 	osgi.core;version=5.0,\
 	org.apache.commons.lang;version=2.6,\
 	javax.validation.api;version=1.1,\

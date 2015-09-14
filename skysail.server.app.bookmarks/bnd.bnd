@@ -26,6 +26,10 @@ Import-Package: org.osgi.framework,\
 	org.restlet.ext.raml;version=${restlet.version},\
 	lombok;version=1.16,\
 	slf4j.api;version=1.7,\
+    skysail.api.search;version=${skysail.api.search.version},\
+    skysail.api.text;version=${skysail.api.text.version},\
+	skysail.server;version=${skysail.server.version},\
+	skysail.server.db;version=${skysail.server.db.version},\
 	skysail.client.testsupport;version=latest,\
 	osgi.core;version=5.0,\
 	osgi.cmpn;version=5.0,\
@@ -149,7 +153,7 @@ Import-Package: org.osgi.framework,\
 	skysail.server.plugins;version=latest,\
 	skysail.server.static;version=${skysail.server.static.version},\
 	skysail.server.text.markdown;version=latest,\
-	skysail.server.um.simple;version=latest,\
+	skysail.server.um.simple;version=${skysail.server.um.simple.version},\
 	slf4j.api;version='[1.7.7,1.7.8)',\
 	de.twentyeleven.skysail.org.antlr.stringtemplate-osgi;version=4.0.8,\
 	org.jruby.jruby;version=1.7.19,\

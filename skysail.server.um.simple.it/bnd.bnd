@@ -7,6 +7,7 @@ Test-Cases: \
 -buildpath:  \
 	skysail.api.validation;version=${skysail.api.validation.version},\
 	skysail.api.documentation;version=${skysail.api.documentation.version},\
+	skysail.server.db;version=${skysail.server.db.version},\
 	skysail.server.um.internal;version=0.0,\
 	osgi.core;version=5.0,\
 	com.springsource.org.junit;version=4.11,\
@@ -14,7 +15,6 @@ Test-Cases: \
 	de.twentyeleven.skysail.org.json-osgi;version=latest,\
 	org.codehaus.jettison.jettison;version=1.3,\
 	org.apache.felix.configadmin;version=1.8,\
-	skysail.server.db;version=${skysail.server.db.version},\
 	lombok;version=1.16,\
 	skysail.client.testsupport;version=latest
 

@@ -6,6 +6,7 @@ Test-Cases: io.skysail.server.app.designer.it.ApplicationsCrudIntegrationTests
 -buildpath:  \
 	osgi.core;version=5.0,\
 	skysail.api;version=${skysail.api.version},\
+    skysail.api.um;version=${skysail.api.um.version},\
 	skysail.api.validation;version=${skysail.api.validation.version},\
 	skysail.api.documentation;version=${skysail.api.documentation.version},\
 	skysail.client.testsupport;version=latest,\

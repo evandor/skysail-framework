@@ -19,7 +19,7 @@ Include-Resource: webapp, resources, templates=src;recursive:=true;filter:=*.st|
 	skysail.api.peers;version=${skysail.api.peers.version},\
 	skysail.api.text;version=${skysail.api.text.version},\
 	skysail.server;version=${skysail.server.version},\
-	skysail.server.testsupport;version=latest,\
+	skysail.server.testsupport;version=${skysail.server.testsupport.version},\
 	de.twentyeleven.skysail.org.antlr.stringtemplate-osgi;version=4.0.8,\
 	biz.aQute.bnd.annotation;version=2.4,\
 	org.restlet;version=${restlet.version},\

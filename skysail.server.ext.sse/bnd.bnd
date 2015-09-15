@@ -26,7 +26,7 @@ Private-Package:  \
 	org.eclipse.jetty.server;version=9.2,\
 	com.springsource.org.junit;version=4.11,\
 	org.mockito.mockito-all;version=1.10,\
-	skysail.server.testsupport;version=latest,\
+	skysail.server.testsupport;version=${skysail.server.testsupport.version},\
 	com.googlecode.concurrentlinkedhashmap.lru;version=1.4
 
 Service-Component:  \

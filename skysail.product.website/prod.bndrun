@@ -115,7 +115,7 @@ s-runsystemcapabilities: ${native_capability}
 	skysail.server.static;version=latest,\
 	skysail.server.http;version=latest,\
 	skysail.server.peers.adminconfig;version=latest,\
-	skysail.server.polymer;version=latest,\
+	skysail.server.polymer;version=${skysail.server.polymer.version},\
 	skysail.server.plugins;version=latest,\
 	skysail.server.documentation;version=latest,\
 	skysail.server.app.tutorial.model2rest;version=latest,\

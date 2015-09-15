@@ -9,15 +9,12 @@ import io.skysail.server.restlet.resources.PostEntityServerResource;
 
 import java.util.*;
 
-import lombok.extern.slf4j.Slf4j;
-
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
 import org.restlet.resource.ResourceException;
 
 import de.twenty11.skysail.server.core.restlet.ResourceContextId;
 
-@Slf4j
 public class PostListResource extends PostEntityServerResource<TodoList> {
 
     private TodoApplication app;

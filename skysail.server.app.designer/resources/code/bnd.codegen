@@ -13,7 +13,7 @@ Include-Resource: resources, templates=src;recursive:=true;filter:=*.st|*.stg
 	skysail.server;version=${skysail.server.version},\
 	skysail.server.db;version=latest,\
 	skysail.server.codegen;version=latest,\
-	skysail.server.testsupport;version=latest,\
+	skysail.server.testsupport;version=${skysail.server.testsupport.version},\
 	skysail.server.app.designer;version=latest,\
 	slf4j.api;version=1.7.7,\
 	org.restlet;version=${restlet.version},\

@@ -21,7 +21,7 @@ Private-Package:  \
 	skysail.server.http;version=${skysail.server.http.version},\
 	skysail.server.osgi;version=latest,\
 	skysail.server.plugins;version=latest,\
-	skysail.server.polymer;version=latest,\
+	skysail.server.polymer;version=${skysail.server.polymer.version},\
 	skysail.server.queryfilter;version=${skysail.server.queryfilter.version},\
 	skysail.server.text.markdown;version=latest,\
 	skysail.server.text.store.bundleresource;version=latest,\

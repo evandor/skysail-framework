@@ -13,7 +13,7 @@ Bundle-Version: 1.0.5.${tstamp}
 	skysail.api;version=${skysail.api.version},\
     skysail.api.search;version=${skysail.api.search.version},\
     skysail.api.text;version=${skysail.api.text.version},\
-	skysail.server.testsupport;version=latest,\
+	skysail.server.testsupport;version=${skysail.server.testsupport.version},\
 	skysail.server;version=${skysail.server.version},\
     skysail.server.db;version=${skysail.server.db.version},\
 	org.apache.commons.lang,\

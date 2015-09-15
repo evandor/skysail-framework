@@ -16,7 +16,7 @@ Include-Resource: templates=src;recursive:=true;filter:=*.st|*.stg
 	skysail.server.db;version=${skysail.server.db.version},\
 	skysail.server.codegen;version=${skysail.server.codegen.version},\
 	skysail.server.queryfilter;version=${skysail.server.queryfilter.version},\
-	skysail.server.testsupport;version=latest,\
+	skysail.server.testsupport;version=${skysail.server.testsupport.version},\
 	slf4j.api;version=1.7.7,\
 	org.mockito.mockito-core;version=1.10,\
 	com.springsource.org.junit;version=4.11,\

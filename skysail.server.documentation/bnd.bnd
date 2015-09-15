@@ -23,7 +23,7 @@ Include-Resource: resources, templates=src;recursive:=true;filter:=*.st|*.stg
 	org.apache.commons.lang;version=2.6,\
 	lombok;version=1.16,\
 	javax.validation.api;version=1.1,\
-	skysail.server.testsupport;version=latest,\
+	skysail.server.testsupport;version=${skysail.server.testsupport.version},\
 	com.fasterxml.jackson.core.jackson-annotations;version=2.4,\
 	de.twentyeleven.skysail.org.json-osgi;version=latest,\
 	org.codehaus.jettison.jettison;version=1.3,\

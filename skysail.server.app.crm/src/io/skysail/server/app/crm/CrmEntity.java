@@ -1,5 +1,6 @@
 package io.skysail.server.app.crm;
 
+import io.skysail.api.domain.Identifiable;
 import io.skysail.api.forms.*;
 
 import java.io.Serializable;
@@ -13,12 +14,10 @@ import lombok.*;
 @Getter
 @Setter
 @NoArgsConstructor
-public class CrmEntity implements Serializable {
+public class CrmEntity implements Serializable, Identifiable {
 
-    /**
-     *
-     */
     private static final long serialVersionUID = -8977053023931029701L;
+
     @Id
     private String id;
 

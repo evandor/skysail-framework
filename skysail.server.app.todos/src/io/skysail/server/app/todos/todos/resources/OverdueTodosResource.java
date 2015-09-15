@@ -12,14 +12,14 @@ import org.apache.shiro.SecurityUtils;
 
 import de.twenty11.skysail.server.core.restlet.ResourceContextId;
 
-public class Top10TodosResource extends TodoSummaryResource {
+public class OverdueTodosResource extends TodoSummaryResource {
 
-    private static final String DEFAULT_FILTER_EXPRESSION = "(!(status=" + Status.ARCHIVED + "))";
+    private static final String DEFAULT_FILTER_EXPRESSION = "(&(due < date())(!(status=" + Status.ARCHIVED + ")))";
 
-    public Top10TodosResource() {
+    public OverdueTodosResource() {
         super(TodoResource.class);
-        setDescription("Returns the Users Top 10 Todos.");
-        addToContext(ResourceContextId.LINK_TITLE, "TOP 10 of Todos");
+        setDescription("Todos which are overdue.");
+        addToContext(ResourceContextId.LINK_TITLE, "Overdue Todos");
         addToContext(ResourceContextId.LINK_GLYPH, "th-list");
     }
 

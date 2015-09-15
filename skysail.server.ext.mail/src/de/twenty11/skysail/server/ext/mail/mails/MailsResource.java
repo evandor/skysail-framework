@@ -47,20 +47,20 @@ public class MailsResource extends ListServerResource<Mail> {
 ////            properties.put("mail.pop3.starttls.enable", true);
 //            properties.put("mail.pop3.ssl.trust", "*");
 //
-//            
-//            
-//            
+//
+//
+//
 //            Session emailSession = Session.getDefaultInstance(properties);
 //
 //            // 2) create the POP3 store object and connect with the pop server
 //            POP3Store emailStore = (POP3Store) emailSession.getStore("pop3s");
 //            emailStore.connect(account.getUser().replace("&#64;", "@"), account.getPass());
 
-            
+
             String SSL_FACTORY = "javax.net.ssl.SSLSocketFactory";
 
             Properties pop3Props = new Properties();
-
+            // http://stackoverflow.com/questions/28104453/smtp-pop3-through-proxy-system-getproperties-vs-new-properties
             pop3Props.setProperty("mail.pop3.socketFactory.class", SSL_FACTORY);
             pop3Props.setProperty("mail.pop3.socketFactory.fallback", "false");
             pop3Props.setProperty("mail.pop3.port",  "995");
@@ -73,7 +73,7 @@ public class MailsResource extends ListServerResource<Mail> {
             session.setDebug(true);
             POP3SSLStore emailStore = new POP3SSLStore(session, url);
             emailStore.connect();
-            
+
             // 3) create the folder object and open it
             Folder emailFolder = emailStore.getFolder(folderId);
             emailFolder.open(Folder.READ_ONLY);
@@ -83,8 +83,8 @@ public class MailsResource extends ListServerResource<Mail> {
 //            for (int i = 0; i < messages.length; i++) {
 //                result.add(new Mail(messages[i]));
 //            }
-            
-            
+
+
             Message messages[] = emailFolder.search(new FlagTerm(new Flags(
                     Flags.Flag.SEEN), false));
             System.out.println("No. of Unread Messages : " + messages.length);
@@ -96,7 +96,7 @@ public class MailsResource extends ListServerResource<Mail> {
             fp.add(FetchProfile.Item.CONTENT_INFO);
 
             emailFolder.fetch(messages, fp);
-            
+
             for (int i = 0; i < messages.length; i++) {
                 log.info("reading mail {} of {}", i,messages.length+1);
                 Mail mail = new Mail(getAttribute("id"), messages[i]);

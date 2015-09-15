@@ -4,7 +4,9 @@ import io.skysail.server.queryfilter.*;
 
 import java.util.List;
 
+import lombok.ToString;
 
+@ToString
 public class AndNode extends BranchNode {
 
     public AndNode() {

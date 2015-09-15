@@ -4,9 +4,9 @@ import io.skysail.server.queryfilter.*;
 
 import java.util.List;
 
-import lombok.Getter;
+import lombok.*;
 
-
+@ToString
 public abstract class BranchNode extends AbstractExprNode {
 
     @Getter

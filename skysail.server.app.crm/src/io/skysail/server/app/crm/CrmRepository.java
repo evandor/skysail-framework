@@ -1,6 +1,7 @@
 package io.skysail.server.app.crm;
 
 import io.skysail.server.app.crm.companies.Company;
+import io.skysail.server.app.crm.contacts.Contact;
 import io.skysail.server.db.*;
 
 import java.util.List;
@@ -14,8 +15,8 @@ public class CrmRepository implements DbRepository {
 
     @Activate
     public void activate() {
-//        dbService.createWithSuperClass("V", CrmEntity.class.getSimpleName(), DynamicEntity.class.getSimpleName(),
-//                EmailRelation.class.getSimpleName());
+        dbService.createWithSuperClass("V", CrmEntity.class.getSimpleName(), Company.class.getSimpleName(), Contact.class.getSimpleName());
+        dbService.register(CrmEntity.class, Company.class, Contact.class);
 //        // dbService.createProperty(CrmEntity.class.getSimpleName(), "created",
 //        // OType.DATE);
 //        // dbService.createProperty(CrmEntity.class.getSimpleName(), "changed",

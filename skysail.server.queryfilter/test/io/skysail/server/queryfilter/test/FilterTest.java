@@ -33,7 +33,7 @@ public class FilterTest {
         assertThat(filter.getParams().size(),is(1));
         assertThat(filter.getParams().get("a"),is(equalTo("b")));
     }
-    
+
     @Test
     public void and_filter_expression_is_valid() {
         Filter filter = new Filter("(&(a=b)(c=d))");
@@ -57,7 +57,7 @@ public class FilterTest {
         assertThat(Filter.isValid(),is(true));
         assertThat(Filter.getPreparedStatement(),equalTo("a=:a OR c=:c"));
     }
-    
+
     @Test
     @Ignore // not implemented yet
     public void wildcard_filter_expression_is_valid() {
@@ -65,7 +65,7 @@ public class FilterTest {
         assertThat(Filter.isValid(),is(true));
         assertThat(Filter.getPreparedStatement(),equalTo("a LIKE '%b%'"));
     }
-    
+
     @Test
     public void not_filter_expression_is_valid() {
         Filter filter = new Filter("(!(a=b))");
@@ -73,7 +73,16 @@ public class FilterTest {
         assertThat(filter.getPreparedStatement(),equalTo("NOT (a=:a)"));
         assertThat(filter.getParams().size(),is(1));
         assertThat(filter.getParams().get("a"),is(equalTo("b")));
+    }
 
+    @Test
+    // "(&(due < date())(!(status=ARCHIVED)))"
+    public void smaller_than_method_is_valid_expression() throws Exception {
+        Filter filter = new Filter("(due < date())");
+        assertThat(filter.isValid(),is(true));
+        assertThat(filter.getPreparedStatement(),equalTo("due<:due"));
+        assertThat(filter.getParams().size(),is(1));
+        assertThat(filter.getParams().get("due"),is(equalTo("date()")));
     }
 
 }

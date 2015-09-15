@@ -34,14 +34,14 @@
     felix.fileinstall.log.level=4,\
     org.apache.felix.log.storeDebug=true,\
     logback.configurationFile=config/logback.xml,\
-    obr.repository.url=https://raw.githubusercontent.com/evandor/skysail-repository/master/index.xml https://raw.githubusercontent.com/evandor/skysail-framework/master/cnf/releaserepo/index.xml https://raw.githubusercontent.com/evandor/skysail-apps/master/cnf/releaserepo/index.xml http://felix.apache.org/obr/releases.xml
+    obr.repository.url=https://raw.githubusercontent.com/evandor/skysail-repository/master/index.xml https://raw.githubusercontent.com/evandor/skysail-framework/master/cnf/releaserepo/index.xml https://raw.githubusercontent.com/evandor/skysail-apps/master/cnf/releaserepo/index.xml http://felix.apache.org/obr/releases.xml,\
+    http.proxyHost=192.168.11.140,\
+    http.proxyPort=8080,\
+    https.proxyHost=192.168.11.140,\
+    https.proxyPort=8080
 
 #    jetty.home.bundle=skysail.server.http,\
 
-#    http.proxyHost=192.168.11.140,\
-#    http.proxyPort=8080,\
-#    https.proxyHost=192.168.11.140,\
-#    https.proxyPort=8080
 
 
 # not used here, resolution takes too long...
@@ -140,6 +140,7 @@
 	skysail.server.plugins;version=latest,\
 	skysail.server.documentation;version=latest,\
 	skysail.server.app.bookmarks;version=latest,\
+	skysail.server.app.crm;version=latest,\
 	skysail.server.app.designer;version=latest,\
 	skysail.server.app.fileserver;version=latest,\
 	skysail.server.app.svgedit;version=latest,\

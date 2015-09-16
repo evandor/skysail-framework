@@ -50,4 +50,18 @@ public class ParserTest {
         assertThat(parsed.isLeaf(), is(true));
     }
 
+    @Test
+    public void less_than() throws InvalidSyntaxException {
+        ExprNode parsed = new Parser("(due < date())").parse();
+        assertThat(parsed.getOperation(), is(equalTo(Operation.LESS)));
+        assertThat(parsed.isLeaf(), is(true));
+    }
+
+    @Test
+    public void greater_than() throws InvalidSyntaxException {
+        ExprNode parsed = new Parser("(due > date())").parse();
+        assertThat(parsed.getOperation(), is(equalTo(Operation.GREATER)));
+        assertThat(parsed.isLeaf(), is(true));
+    }
+
 }

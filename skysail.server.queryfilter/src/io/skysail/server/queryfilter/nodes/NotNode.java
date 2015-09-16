@@ -4,7 +4,9 @@ import io.skysail.server.queryfilter.*;
 
 import java.util.Arrays;
 
+import lombok.ToString;
 
+@ToString
 public class NotNode extends BranchNode {
 
     public NotNode(ExprNode child) {

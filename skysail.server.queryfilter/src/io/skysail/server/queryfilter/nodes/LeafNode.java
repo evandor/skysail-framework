@@ -5,6 +5,7 @@ import lombok.*;
 
 @Getter
 @Setter
+@ToString
 public abstract class LeafNode extends AbstractExprNode {
 
     protected String attribute;
@@ -22,13 +23,13 @@ public abstract class LeafNode extends AbstractExprNode {
     public LeafNode(Operation op, String attribute, String value) {
         super(op);
         this.attribute = attribute;
-        this.value = value;
+        this.value = value != null ? value.trim() : "";
     }
 
     public final boolean isLeaf() {
         return true;
     }
 
-    
+
 
 }

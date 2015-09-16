@@ -30,11 +30,7 @@ public class Parser {
         } catch (ArrayIndexOutOfBoundsException e) {
             throw new InvalidSyntaxException("Filter ended abruptly", filterstring, e);
         }
-
-        if (pos != filterChars.length) {
-            throw new InvalidSyntaxException("Extraneous trailing characters: " + filterstring.substring(pos),
-                    filterstring);
-        }
+        sanityCheck();
         return filter;
     }
 
@@ -60,18 +56,18 @@ public class Parser {
         char c = filterChars[pos];
 
         switch (c) {
-        case '&': {
-            pos++;
-            return parse_and();
-        }
-        case '|': {
-            pos++;
-            return parse_or();
-        }
-        case '!': {
-            pos++;
-            return parse_not();
-        }
+            case '&': {
+                pos++;
+                return parse_and();
+            }
+            case '|': {
+                pos++;
+                return parse_or();
+            }
+            case '!': {
+                pos++;
+                return parse_not();
+            }
         }
         return parse_item();
     }
@@ -145,18 +141,20 @@ public class Parser {
         case '>': {
             if (filterChars[pos + 1] == '=') {
                 pos += 2;
-                return null;// new ExprNode(Operation.GREATER, attr,
-                            // parse_value());
+                throw new InvalidSyntaxException("Invalid operator: >= not implemented", filterstring);
+            } else {
+                pos += 1;
+                return new GreaterNode(attr, (String) parse_substring());
             }
-            break;
         }
         case '<': {
             if (filterChars[pos + 1] == '=') {
                 pos += 2;
-                return null;// new ExprNode(Operation.LESS, attr,
-                            // parse_value());
+                throw new InvalidSyntaxException("Invalid operator: <= not implemented", filterstring);
+            } else {
+                pos += 1;
+                return new LessNode(attr, (String) parse_substring());
             }
-            break;
         }
         case '=': {
             if (filterChars[pos + 1] == '*') {
@@ -218,61 +216,40 @@ public class Parser {
         return new String(filterChars, begin, length);
     }
 
-//    private String parse_value() throws InvalidSyntaxException {
-//        StringBuffer sb = new StringBuffer(filterChars.length - pos);
-//
-//        parseloop: while (true) {
-//            char c = filterChars[pos];
-//
-//            switch (c) {
-//            case ')': {
-//                break parseloop;
-//            }
-//
-//            case '(': {
-//                throw new InvalidSyntaxException("Invalid value: " + filterstring.substring(pos), filterstring);
-//            }
-//
-//            case '\\': {
-//                pos++;
-//                c = filterChars[pos];
-//                /* fall through into default */
-//            }
-//
-//            default: {
-//                sb.append(c);
-//                pos++;
-//                break;
-//            }
-//            }
-//        }
-//
-//        if (sb.length() == 0) {
-//            throw new InvalidSyntaxException("Missing value: " + filterstring.substring(pos), filterstring);
-//        }
-//
-//        return sb.toString();
-//    }
-
     private Object parse_substring() throws InvalidSyntaxException {
         StringBuffer sb = new StringBuffer(filterChars.length - pos);
 
         List<String> operands = new ArrayList<String>(10);
+
+        boolean isMethod = false;
 
         parseloop: while (true) {
             char c = filterChars[pos];
 
             switch (c) {
             case ')': {
-                if (sb.length() > 0) {
-                    operands.add(sb.toString());
+                if (!isMethod) {
+                    if (sb.length() > 0) {
+                        operands.add(sb.toString());
+                    }
+                    break parseloop;
+                } else {
+                    isMethod=false;
+                    pos++;
+                    sb.append(")");
+                    break;
                 }
-
-                break parseloop;
             }
 
             case '(': {
-                throw new InvalidSyntaxException("Invalid value: " + filterstring.substring(pos), filterstring);
+                isMethod = true;
+                //if (filterChars[pos + 1] == ')') {
+                    pos += 1;
+                    sb.append("(");
+                    break;
+//                } else {
+//                    throw new InvalidSyntaxException("Invalid value: " + filterstring.substring(pos), filterstring);
+//                }
             }
 
             case '*': {
@@ -324,5 +301,14 @@ public class Parser {
             pos++;
         }
     }
+
+    private void sanityCheck() throws InvalidSyntaxException {
+        if (pos != filterChars.length) {
+            throw new InvalidSyntaxException("Extraneous trailing characters: " + filterstring.substring(pos),
+                    filterstring);
+        }
+    }
+
+
 
 }

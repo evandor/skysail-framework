@@ -3,19 +3,15 @@ package de.twenty11.skysail.server.ext.mail;
 import io.skysail.api.links.Link;
 import io.skysail.server.restlet.resources.ListServerResource;
 
-import java.util.List;
+import java.util.*;
 
 import de.twenty11.skysail.server.ext.mail.accounts.impl.AccountsResource;
 
 public class MailRootResource extends ListServerResource<String> {
 
-    public MailRootResource() {
-        super(null);
-    }
-
     @Override
     public List<String> getEntity() {
-        return null;
+        return Collections.emptyList();
     }
 
     @Override

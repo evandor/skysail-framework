@@ -12,14 +12,14 @@ import org.apache.shiro.SecurityUtils;
 
 import de.twenty11.skysail.server.core.restlet.ResourceContextId;
 
-public class Top10TodosResource extends TodoSummaryResource {
+public class OverdueTodosResource extends TodoSummaryResource {
 
-    private static final String DEFAULT_FILTER_EXPRESSION = "(!(status=" + Status.ARCHIVED + "))";
+    private static final String DEFAULT_FILTER_EXPRESSION = "(&(due < date())(!(status=" + Status.ARCHIVED + ")))";
 
-    public Top10TodosResource() {
+    public OverdueTodosResource() {
         super(TodoResource.class);
-        setDescription("Returns the Users Top 10 Todos.");
-        addToContext(ResourceContextId.LINK_TITLE, "TOP 10 of Todos");
+        setDescription("Todos which are overdue.");
+        addToContext(ResourceContextId.LINK_TITLE, "Overdue Todos");
         addToContext(ResourceContextId.LINK_GLYPH, "th-list");
     }
 
@@ -29,7 +29,7 @@ public class Top10TodosResource extends TodoSummaryResource {
         filter.add("owner", SecurityUtils.getSubject().getPrincipal().toString());
 
         Pagination pagination = new Pagination(getRequest(), getResponse(), 10);
-        List<Todo> todos = app.getTodosRepo().findAllTodos(filter, pagination);
+        List<Todo> todos = app.getRepository().findAllTodos(filter, pagination);
         todosSummary = todos.stream().map(todo -> {
             return new TodoSummary(todo);
         }).collect(Collectors.toList());

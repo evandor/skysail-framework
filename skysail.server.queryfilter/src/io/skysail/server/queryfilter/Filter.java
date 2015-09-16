@@ -100,8 +100,9 @@ public class Filter {
 
         @Override
         public PreparedStatement visit(ExprNode arg0) {
+            PreparedStatement ps = new PreparedStatement();
             if (arg0 instanceof EqualityNode) {
-                PreparedStatement ps = new PreparedStatement();
+
                 EqualityNode node = (EqualityNode) arg0;
                 ps.append(node.getAttribute()).append("=:").append(node.getAttribute());
                 ps.put(node.getAttribute(), node.getValue());
@@ -117,13 +118,22 @@ public class Filter {
             } else if (arg0 instanceof NotNode) {
                 return new PreparedStatement("NOT", Arrays.asList(visit(((NotNode) arg0).getChild())));
             } else if (arg0 instanceof IsInNode) {
-                PreparedStatement ps = new PreparedStatement();
                 IsInNode node = (IsInNode) arg0;
                 ps.append(node.getAttribute()).append(" IN ").append(node.getValue().replace("[", "(").replace("]",")"));
-                //ps.put(node.getAttribute(), node.getValue());
                 return ps;
+            } else if (arg0 instanceof LessNode) {
+                LessNode node = (LessNode) arg0;
+                ps.append(node.getAttribute()).append("<:").append(node.getAttribute());
+                ps.put(node.getAttribute(), node.getValue());
+                return ps;
+            } else if (arg0 instanceof GreaterNode) {
+                GreaterNode node = (GreaterNode) arg0;
+                ps.append(node.getAttribute()).append(">:").append(node.getAttribute());
+                ps.put(node.getAttribute(), node.getValue());
+                return ps;
+            } else {
+                throw new IllegalStateException("cannot visit node of type " + arg0.getClass());
             }
-            return new PreparedStatement();
         }
 
     }

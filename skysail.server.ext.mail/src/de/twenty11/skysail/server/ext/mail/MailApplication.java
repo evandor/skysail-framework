@@ -42,6 +42,8 @@ public class MailApplication extends SkysailApplication implements ApplicationPr
 
 	@Override
 	protected void attach() {
+	    super.attach();
+
 		router.attach(new RouteBuilder("", MailRootResource.class));
 		router.attach(new RouteBuilder("/mail/", SendMailResource.class));
 		router.attach(new RouteBuilder("/accounts", AccountsResource.class));
@@ -49,10 +51,11 @@ public class MailApplication extends SkysailApplication implements ApplicationPr
 		router.attach(new RouteBuilder("/accounts/{id}", AccountResource.class));
         router.attach(new RouteBuilder("/accounts/{id}/", PutAccountResource.class));
 		router.attach(new RouteBuilder("/accounts/{id}/folders", FoldersResource.class));
-        router.attach(new RouteBuilder("/accounts/{id}/folders/{folderId}", FolderResource.class));
-		router.attach(new RouteBuilder("/accounts/{id}/folders/{folderId}/mails", MailsResource.class));
+
+        router.attach(new RouteBuilder("/folders/{id}", FolderResource.class));
+		router.attach(new RouteBuilder("/folders/{id}/mails", MailsResource.class));
 	}
-	
+
 	public void send(String subject, String body) {
 		send("to", subject, body);
 	}
@@ -68,7 +71,7 @@ public class MailApplication extends SkysailApplication implements ApplicationPr
 		properties.put("mail.smtp.auth", "true");
 		properties.put("mail.smtp.user", "carsten");
 		properties.put("mail.smtp.password", "23");
-		
+
 //		props.put("mail.smtp.host", "SMTPHOST");
 //		props.put("mail.smtp.port", "PORTNUMBER");
 //		props.put("mail.transport.protocol","smtp");
@@ -76,7 +79,7 @@ public class MailApplication extends SkysailApplication implements ApplicationPr
 //		props.put("mail.smtp.tls", "true");
 //		props.put("mail.smtp.user", "EXAMPLENAME@PROVIDER.COM");
 //		props.put("mail.password", "PASSWORD");
-		
+
 		Session session = Session.getDefaultInstance(properties);
 		try {
 			session.getTransport();
@@ -93,24 +96,23 @@ public class MailApplication extends SkysailApplication implements ApplicationPr
 			message.setText(body);
 
 			//			Transport.send(message);
-			
+
 			Transport tr = session.getTransport("smtp");
 			tr.connect(host, "", "");
 			message.saveChanges();      // don't forget this
 			tr.sendMessage(message, message.getAllRecipients());
 			tr.close();
-			
+
 		} catch (MessagingException mex) {
 			mex.printStackTrace();
 		}
-		
+
 	}
 
     @Override
     public List<MenuItem> getMenuEntries() {
-        MenuItem menuItem = new MenuItem(APP_NAME, "/" + APP_NAME);
+        MenuItem menuItem = new MenuItem(APP_NAME, "/" + APP_NAME  + getApiVersion().getVersionPath());
         menuItem.setCategory(MenuItem.Category.APPLICATION_MAIN_MENU);
-//        new MenuItem(menuItem, "add new application", "application?media=htmlform");
         return Arrays.asList(menuItem);    }
 
 }

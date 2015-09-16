@@ -76,8 +76,7 @@ public class FilterTest {
     }
 
     @Test
-    // "(&(due < date())(!(status=ARCHIVED)))"
-    public void smaller_than_method_is_valid_expression() throws Exception {
+    public void smaller_method_is_valid_expression() throws Exception {
         Filter filter = new Filter("(due < date())");
         assertThat(filter.isValid(),is(true));
         assertThat(filter.getPreparedStatement(),equalTo("due<:due"));
@@ -85,4 +84,20 @@ public class FilterTest {
         assertThat(filter.getParams().get("due"),is(equalTo("date()")));
     }
 
+    @Test
+    public void complex_smaller_is_valid() {
+        Filter filter = new Filter("(&(due < date[])(!(status=ARCHIVED)))");
+        assertThat(filter.isValid(),is(true));
+        assertThat(filter.getPreparedStatement(),equalTo("due<date() AND NOT (status=:status)"));
+        assertThat(filter.getParams().size(),is(1));
+        assertThat(filter.getParams().get("status"),is(equalTo("ARCHIVED")));
+    }
+
+    @Test
+    public void element_of_is_valid_expression() {
+        Filter filter = new Filter("(#17:0 ∈ out['parent'])");
+        assertThat(filter.isValid(),is(true));
+        assertThat(filter.getPreparedStatement(),equalTo("#17:0 IN out('parent')"));
+        assertThat(filter.getParams().size(),is(0));
+    }
 }

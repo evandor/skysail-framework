@@ -9,7 +9,7 @@ import lombok.extern.slf4j.Slf4j;
 
 import org.apache.commons.beanutils.BeanUtils;
 
-import com.tinkerpop.blueprints.Vertex;
+import com.tinkerpop.blueprints.*;
 import com.tinkerpop.blueprints.impls.orient.*;
 
 @Slf4j
@@ -44,6 +44,7 @@ public class Updater {
                             addReference(vertex, properties, key, edge);
                         });
                     } else if (edges instanceof String) {
+                        removeOldReferences(vertex, key);
                         addReference(vertex, properties, key, edges);
                     }
                 }
@@ -52,6 +53,13 @@ public class Updater {
         } catch (Exception e) {
             log.error(e.getMessage(), e);
             throw new RuntimeException("Problem when updating entity", e);
+        }
+    }
+
+    private void removeOldReferences(Vertex vertex, String key) {
+        Iterable<Edge> edges = vertex.getEdges(Direction.OUT, key);
+        for (Edge edge : edges) {
+            db.removeEdge(edge);
         }
     }
 

@@ -56,18 +56,18 @@ public class Parser {
         char c = filterChars[pos];
 
         switch (c) {
-            case '&': {
-                pos++;
-                return parse_and();
-            }
-            case '|': {
-                pos++;
-                return parse_or();
-            }
-            case '!': {
-                pos++;
-                return parse_not();
-            }
+        case '&': {
+            pos++;
+            return parse_and();
+        }
+        case '|': {
+            pos++;
+            return parse_or();
+        }
+        case '!': {
+            pos++;
+            return parse_not();
+        }
         }
         return parse_item();
     }
@@ -234,7 +234,7 @@ public class Parser {
                     }
                     break parseloop;
                 } else {
-                    isMethod=false;
+                    isMethod = false;
                     pos++;
                     sb.append(")");
                     break;
@@ -243,13 +243,9 @@ public class Parser {
 
             case '(': {
                 isMethod = true;
-                //if (filterChars[pos + 1] == ')') {
-                    pos += 1;
-                    sb.append("(");
-                    break;
-//                } else {
-//                    throw new InvalidSyntaxException("Invalid value: " + filterstring.substring(pos), filterstring);
-//                }
+                pos += 1;
+                sb.append("(");
+                break;
             }
 
             case '*': {
@@ -308,7 +304,5 @@ public class Parser {
                     filterstring);
         }
     }
-
-
 
 }

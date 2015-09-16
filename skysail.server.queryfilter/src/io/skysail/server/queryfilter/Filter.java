@@ -123,13 +123,21 @@ public class Filter {
                 return ps;
             } else if (arg0 instanceof LessNode) {
                 LessNode node = (LessNode) arg0;
-                ps.append(node.getAttribute()).append("<:").append(node.getAttribute());
-                ps.put(node.getAttribute(), node.getValue());
+                if (node.getValue().contains("(")) {
+                    ps.append(node.getAttribute()).append(" < ").append(node.getValue());
+                } else {
+                    ps.append(node.getAttribute()).append("<:").append(node.getAttribute());
+                    ps.put(node.getAttribute(), node.getValue());
+                }
                 return ps;
             } else if (arg0 instanceof GreaterNode) {
                 GreaterNode node = (GreaterNode) arg0;
-                ps.append(node.getAttribute()).append(">:").append(node.getAttribute());
-                ps.put(node.getAttribute(), node.getValue());
+                if (node.getValue().contains("(")) {
+                    ps.append(node.getAttribute()).append(" > ").append(node.getValue());
+                } else {
+                    ps.append(node.getAttribute()).append(">:").append(node.getAttribute());
+                    ps.put(node.getAttribute(), node.getValue());
+                }
                 return ps;
             } else {
                 throw new IllegalStateException("cannot visit node of type " + arg0.getClass());

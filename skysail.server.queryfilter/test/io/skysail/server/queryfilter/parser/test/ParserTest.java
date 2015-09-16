@@ -3,6 +3,7 @@ package io.skysail.server.queryfilter.parser.test;
 import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.assertThat;
 import io.skysail.server.queryfilter.*;
+import io.skysail.server.queryfilter.nodes.*;
 import io.skysail.server.queryfilter.parser.Parser;
 
 import org.junit.*;
@@ -48,17 +49,28 @@ public class ParserTest {
         ExprNode parsed = new Parser("(#17:0 ∈ out['parent'])").parse();
         assertThat(parsed.getOperation(), is(equalTo(Operation.IN)));
         assertThat(parsed.isLeaf(), is(true));
+        assertThat(parsed, is(instanceOf(IsInNode.class)));
+        assertThat(((IsInNode)parsed).getValue(),is("out['parent']"));
     }
 
     @Test
-    public void less_than() throws InvalidSyntaxException {
-        ExprNode parsed = new Parser("(due < date())").parse();
+    public void less() throws InvalidSyntaxException {
+        ExprNode parsed = new Parser("(due < date[])").parse();
         assertThat(parsed.getOperation(), is(equalTo(Operation.LESS)));
         assertThat(parsed.isLeaf(), is(true));
+        assertThat(parsed, is(instanceOf(LessNode.class)));
+        assertThat(((LessNode)parsed).getValue(),is("date[]"));
     }
 
     @Test
-    public void greater_than() throws InvalidSyntaxException {
+    public void complex_less() throws InvalidSyntaxException {
+        ExprNode parsed = new Parser("(&(due < date())(!(status=ARCHIVED)))").parse();
+        assertThat(parsed.getOperation(), is(equalTo(Operation.AND)));
+        assertThat(parsed.isLeaf(), is(false));
+    }
+
+    @Test
+    public void greater() throws InvalidSyntaxException {
         ExprNode parsed = new Parser("(due > date())").parse();
         assertThat(parsed.getOperation(), is(equalTo(Operation.GREATER)));
         assertThat(parsed.isLeaf(), is(true));

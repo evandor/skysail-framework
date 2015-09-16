@@ -56,7 +56,7 @@ public class PostTodoResource extends PostEntityServerResource<Todo> {
             entity.setImportance(50);
         }
         entity.setUrgency(Ranker.calcUrgency(entity));
-        String id = app.getRepository().add(entity, "parent").toString();
+        String id = app.getTodosRepo().save(entity, "parent").toString();
         entity.setId(id);
         return new SkysailResponse<>();
     }

@@ -37,7 +37,7 @@ public class DocumentsResource extends ListServerResource<SearchResult> {
         Filter filter = new Filter(getRequest());
         filter.add("owner", SecurityUtils.getSubject().getPrincipal().toString());
         filter.add("title", searchterm);
-        List<Todo> hits = app.getRepository().findAllTodos(filter);
+        List<Todo> hits = app.getTodosRepo().findAllTodos(filter);
         return hits.stream().map(h -> new SearchResult(h)).collect(Collectors.toList());
     }
 

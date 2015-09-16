@@ -35,7 +35,7 @@ public class ListResourceTest extends AbstractListResourceTest {
         listResource.deleteEntity(HTML_VARIANT);
         assertThat(responses.get(listResource.getClass().getName()).getStatus(), is(equalTo(Status.SUCCESS_OK)));
 
-        Object byId = repo.getById(TodoList.class, aList.getId());
+        Object byId = repo.getById(aList.getId());
         assertThat(byId, is(nullValue()));
     }
 

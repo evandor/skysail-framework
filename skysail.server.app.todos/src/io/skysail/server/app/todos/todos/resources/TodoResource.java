@@ -25,10 +25,10 @@ public class TodoResource extends EntityServerResource<Todo> {
 
     @Override
     public Todo getEntity() {
-        Todo todo = app.getRepository().getById(Todo.class, id);
+        Todo todo = app.getTodosRepo().getById(id);
         Integer views = todo.getViews();
         todo.setViews(views == null ? 1 : views + 1);
-        app.getRepository().update(todo.getId(), todo);
+        app.getTodosRepo().update(todo.getId(), todo);
         return todo;
     }
 
@@ -39,7 +39,7 @@ public class TodoResource extends EntityServerResource<Todo> {
 
     @Override
     public SkysailResponse<?> eraseEntity() {
-        app.getRepository().delete(Todo.class, id);
+        app.getTodosRepo().delete(id);
         return new SkysailResponse<String>();
     }
 

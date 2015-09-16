@@ -4,7 +4,6 @@ import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.assertThat;
 import io.skysail.api.responses.SkysailResponse;
 import io.skysail.server.app.todos.*;
-import io.skysail.server.app.todos.repo.TodosRepository;
 
 import java.util.List;
 
@@ -51,7 +50,7 @@ public class PutListResourceTest extends AbstractListResourceTest {
 
         putListResource.put(form, HTML_VARIANT);
 
-        List<OrientVertex> vertexById2 = (List<OrientVertex>) new TodosRepository().getVertexById(TodoList.class, aList.getId());
+        List<OrientVertex> vertexById2 = (List<OrientVertex>) repo.getVertexById(TodoList.class, aList.getId());
         OrientVertex vertexById = vertexById2.get(0);
 
         assertThat(vertexById.getProperty("modified"), is(not(nullValue())));
@@ -73,7 +72,7 @@ public class PutListResourceTest extends AbstractListResourceTest {
 
         putListResource.put(form, HTML_VARIANT);
 
-        List<OrientVertex> vertexById2 = (List<OrientVertex>) new TodosRepository().getVertexById(TodoList.class, aList.getId());
+        List<OrientVertex> vertexById2 = (List<OrientVertex>) listRepo.getVertexById(aList.getId());
         OrientVertex vertexById = vertexById2.get(0);
 
         assertThat(vertexById.getProperty("name"), is(equalTo("updated_list_with_default_flag_becomes_default")));

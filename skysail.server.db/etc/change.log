@@ -1,9 +1,10 @@
 new in
 
-1.0.1
+1.1.0
 -----
 
  * improving javadoc
+ * new class: abstract GraphDbRepository
 
 1.0.0
 -----

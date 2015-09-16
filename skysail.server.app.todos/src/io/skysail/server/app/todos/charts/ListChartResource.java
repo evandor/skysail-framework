@@ -34,7 +34,7 @@ public class ListChartResource extends ListServerResource<TodoChart> {
         listId = getAttribute(TodoApplication.LIST_ID);
         app = (TodoApplication) getApplication();
         if (listId != null) {
-            TodoList list = app.getRepository().getById(TodoList.class, listId);
+            TodoList list = app.getListRepo().getById(TodoList.class, listId);
             Map<String, String> substitutions = new HashMap<>();
             substitutions.put("/Lists/" + listId, list.getName());
             getContext().getAttributes().put(ResourceContextId.PATH_SUBSTITUTION.name(), substitutions);
@@ -48,9 +48,9 @@ public class ListChartResource extends ListServerResource<TodoChart> {
         filter.add("owner", SecurityUtils.getSubject().getPrincipal().toString());
         filter.addEdgeOut("parent", "#" + listId);
 
-        Pagination pagination = new Pagination(getRequest(), getResponse(), app.getRepository().getTodosCount(listId,
+        Pagination pagination = new Pagination(getRequest(), getResponse(), app.getTodosRepo().getTodosCount(listId,
                 filter));
-        return app.getRepository().findAllTodos(filter, pagination).stream().map(t -> new TodoChart(t)).collect(Collectors.toList());
+        return app.getTodosRepo().findAllTodos(filter, pagination).stream().map(t -> new TodoChart(t)).collect(Collectors.toList());
     }
 
 //    @Override

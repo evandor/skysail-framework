@@ -35,7 +35,7 @@ public class TodosResource extends ListServerResource<Todo> {
         listId = getAttribute(TodoApplication.LIST_ID);
         app = (TodoApplication) getApplication();
         if (listId != null) {
-            TodoList list = app.getRepository().getById(TodoList.class, listId);
+            TodoList list = app.getListRepo().getById(listId);
             Map<String, String> substitutions = new HashMap<>();
             substitutions.put("/Lists/" + listId, list.getName());
             getContext().getAttributes().put(ResourceContextId.PATH_SUBSTITUTION.name(), substitutions);
@@ -49,9 +49,9 @@ public class TodosResource extends ListServerResource<Todo> {
         filter.add("owner", SecurityUtils.getSubject().getPrincipal().toString());
         filter.addEdgeOut("parent", "#" + listId);
 
-        Pagination pagination = new Pagination(getRequest(), getResponse(), app.getRepository().getTodosCount(listId,
+        Pagination pagination = new Pagination(getRequest(), getResponse(), app.getTodosRepo().getTodosCount(listId,
                 filter));
-        return app.getRepository().findAllTodos(filter, pagination);
+        return app.getTodosRepo().findAllTodos(filter, pagination);
     }
 
     @Override

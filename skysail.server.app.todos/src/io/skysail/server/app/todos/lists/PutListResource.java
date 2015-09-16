@@ -41,13 +41,13 @@ public class PutListResource extends PutEntityServerResource<TodoList> {
         original.setDesc(entity.getDesc());
         original.setDefaultList(entity.isDefaultList());
         original.setModified(new Date());
-        app.getRepository().update(listId, original);
+        app.getListRepo().update(listId, original);
         return new SkysailResponse<>();
     }
 
     @Override
     public TodoList getEntity() {
-        return app.getRepository().getById(TodoList.class, listId);
+        return app.getListRepo().getById(TodoList.class, listId);
     }
 
     @Override

@@ -5,7 +5,7 @@ import static org.junit.Assert.assertThat;
 import io.skysail.api.responses.SkysailResponse;
 import io.skysail.server.app.todos.*;
 import io.skysail.server.app.todos.lists.*;
-import io.skysail.server.app.todos.repo.TodosRepository;
+import io.skysail.server.app.todos.repo.*;
 import io.skysail.server.restlet.resources.SkysailServerResource;
 import io.skysail.server.testsupport.ResourceTestBase;
 
@@ -34,6 +34,7 @@ public abstract class AbstractListResourceTest extends ResourceTestBase {
     private TodoApplication application;
 
     protected TodosRepository repo;
+    protected ListsRepository listRepo;
 
     @Before
     public void setUp() throws Exception {
@@ -44,7 +45,8 @@ public abstract class AbstractListResourceTest extends ResourceTestBase {
         super.setUpResource(listsResource);
         super.setUpResource(putListResource);
         super.setUpResource(postListresource);
-        setUpRepository(new TodosRepository());
+        setUpTodosRepository(new TodosRepository());
+        setUpListRepository(new ListsRepository());
         setUpSubject("admin");
 
         new UniquePerOwnerValidator().setDbService(testDb);
@@ -59,12 +61,21 @@ public abstract class AbstractListResourceTest extends ResourceTestBase {
         assertThat(entity.getOwner(),is("admin"));
     }
 
-    public void setUpRepository(TodosRepository todosRepository) {
-        repo = todosRepository;
+    public void setUpTodosRepository(TodosRepository repo) {
+        this.repo = repo;
         repo.setDbService(testDb);
         repo.activate();
-        ((TodoApplication)application).setRepository(repo);
-        Mockito.when(((TodoApplication)application).getRepository()).thenReturn(repo);
+        ((TodoApplication)application).setTodoRepository(repo);
+        Mockito.when(((TodoApplication)application).getTodosRepo()).thenReturn(repo);
+
+    }
+
+    public void setUpListRepository(ListsRepository repo) {
+        this.listRepo = repo;
+        listRepo.setDbService(testDb);
+        listRepo.activate();
+        ((TodoApplication)application).setTodoListRepository(repo);
+        Mockito.when(((TodoApplication)application).getListRepo()).thenReturn(listRepo);
 
     }
 

@@ -4,7 +4,7 @@ import io.skysail.server.app.*;
 import io.skysail.server.app.todos.charts.ListChartResource;
 import io.skysail.server.app.todos.columns.ListAsColumnsResource;
 import io.skysail.server.app.todos.lists.*;
-import io.skysail.server.app.todos.repo.TodosRepository;
+import io.skysail.server.app.todos.repo.*;
 import io.skysail.server.app.todos.statuses.*;
 import io.skysail.server.app.todos.todos.Todo;
 import io.skysail.server.app.todos.todos.resources.*;
@@ -14,6 +14,7 @@ import io.skysail.server.restlet.resources.SkysailServerResource;
 
 import java.util.*;
 
+import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 
 import org.apache.shiro.SecurityUtils;
@@ -32,7 +33,11 @@ public class TodoApplication extends SkysailApplication implements ApplicationPr
     public static final String TODO_ID = "id";
     public static final String APP_NAME = "Todos";
 
+    @Getter
     private TodosRepository todosRepo;
+
+    @Getter
+    private ListsRepository listRepo;
 
     public TodoApplication() {
         super(APP_NAME, new ApiVersion(2));
@@ -41,17 +46,23 @@ public class TodoApplication extends SkysailApplication implements ApplicationPr
     }
 
     @Reference(dynamic = true, multiple = false, optional = false, target = "(name=TodosRepository)")
-    public void setRepository(DbRepository repo) {
+    public void setTodoRepository(DbRepository repo) {
         this.todosRepo = (TodosRepository) repo;
     }
 
-    public void unsetRepository(DbRepository repo) {
+    public void unsetTodoRepository(DbRepository repo) {
         this.todosRepo = null;
     }
 
-    public TodosRepository getRepository() {
-        return todosRepo;
+    @Reference(dynamic = true, multiple = false, optional = false, target = "(name=ListsRepository)")
+    public void setTodoListRepository(DbRepository repo) {
+        this.listRepo = (ListsRepository) repo;
     }
+
+    public void unsetTodoListRepository(DbRepository repo) {
+        this.listRepo = null;
+    }
+
 
     @Override
     protected void attach() {
@@ -92,14 +103,14 @@ public class TodoApplication extends SkysailApplication implements ApplicationPr
         filter.add("owner", SecurityUtils.getSubject().getPrincipal().toString());
         filter.add("defaultList", "true");
 
-        return getRepository().findAllLists(filter, null);
+        return getListRepo().findAllLists(filter, null);
     }
 
     public void removeDefaultFlag(List<TodoList> usersDefaultLists) {
         for (TodoList todoList : usersDefaultLists) {
             todoList.setDefaultList(false);
             log.info("removing default-List Flag from todo list with id '{}'", todoList.getId());
-            getRepository().update(todoList.getId(), todoList);
+            getListRepo().update(todoList.getId(), todoList);
         }
     }
 
@@ -115,12 +126,12 @@ public class TodoApplication extends SkysailApplication implements ApplicationPr
         Filter filter = new Filter(request);
         filter.add("owner", SecurityUtils.getSubject().getPrincipal().toString());
 
-        return getRepository().findAllLists(filter).size();
+        return getListRepo().findAllLists(filter).size();
     }
 
     public int getTodosCount(Request request) {
         String owner = SecurityUtils.getSubject().getPrincipal().toString();
-        return getRepository().findAllTodos(new Filter(request).add("owner", owner)).size();
+        return getTodosRepo().findAllTodos(new Filter(request).add("owner", owner)).size();
     }
 
     public List<Class<? extends SkysailServerResource<?>>> getMainLinks() {
@@ -129,6 +140,10 @@ public class TodoApplication extends SkysailApplication implements ApplicationPr
         result.add(ListsResource.class);
         result.add(ListAsColumnsResource.class);
         return result;
+    }
+
+    public Object getListRepository() {
+        return null;
     }
 
 }

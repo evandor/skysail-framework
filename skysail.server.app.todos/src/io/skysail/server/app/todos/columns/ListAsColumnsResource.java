@@ -32,7 +32,7 @@ public class ListAsColumnsResource extends ListServerResource<TodoColumn> {
         addTodoColumn(map, Status.PLANNED);
         addTodoColumn(map, Status.WIP);
 
-        app.getRepository().findAllTodos(filter).stream().forEach(todo -> {
+        app.getTodosRepo().findAllTodos(filter).stream().forEach(todo -> {
             TodoColumn todoColumn = map.get(todo.getStatus());
             if (todoColumn != null) {
                 todoColumn.add(todo);

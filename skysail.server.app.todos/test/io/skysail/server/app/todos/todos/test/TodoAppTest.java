@@ -26,16 +26,16 @@
 //    @Spy
 //    protected TodoApplication app;
 //
-//    protected TodosRepository repo;
+//    protected TodosRepository todoRepo;
 //
 //    protected DbService dbService;
 //
 //    public void setUp() throws Exception {
 //        super.setUp();
-//        repo = new TodosRepository();
+//        todoRepo = new TodosRepository();
 //        dbService = new InMemoryDbService();
-//        repo.setDbService(dbService);
-//        app.setRepository(repo);
+//        todoRepo.setDbService(dbService);
+//        app.setRepository(todoRepo);
 //        Mockito.when(app.getValidatorService()).thenReturn(new DefaultValidationImpl());
 //
 //        form = new Form();

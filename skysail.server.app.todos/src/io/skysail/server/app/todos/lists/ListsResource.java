@@ -51,8 +51,8 @@ public class ListsResource extends ListServerResource<TodoList> implements I18nA
     public List<TodoList> getEntity() {
         Filter filter = new Filter(getRequest());
         filter.add("owner", SecurityUtils.getSubject().getPrincipal().toString());
-        Pagination pagination = new Pagination(getRequest(), getResponse(), app.getRepository().getListsCount(filter));
-        return app.getRepository().findAllLists(filter, pagination);
+        Pagination pagination = new Pagination(getRequest(), getResponse(), app.getListRepo().getListsCount(filter));
+        return app.getListRepo().findAllLists(filter, pagination);
     }
 
     @Override

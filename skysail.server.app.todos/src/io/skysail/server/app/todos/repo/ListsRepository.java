@@ -2,6 +2,7 @@ package io.skysail.server.app.todos.repo;
 
 import io.skysail.server.app.todos.TodoList;
 import io.skysail.server.app.todos.todos.Todo;
+import io.skysail.server.app.todos.todos.status.Status;
 import io.skysail.server.db.*;
 import io.skysail.server.queryfilter.Filter;
 import io.skysail.server.queryfilter.pagination.Pagination;
@@ -12,13 +13,14 @@ import org.restlet.Request;
 
 import aQute.bnd.annotation.component.*;
 
-@Component(immediate = true, properties = "name=TodosRepository")
-public class TodosRepository extends GraphDbRepository<Todo>  implements DbRepository {
+@Component(immediate = true, properties = "name=ListsRepository")
+public class ListsRepository extends GraphDbRepository<TodoList> implements DbRepository {
 
     @Activate
     public void activate() { // NO_UCD
-        dbService.createWithSuperClass("V", Todo.class.getSimpleName());
-        dbService.register(Todo.class);
+        dbService.createWithSuperClass("V", TodoList.class.getSimpleName());
+        dbService.register(TodoList.class);
+        dbService.createUniqueIndex(TodoList.class, "name", "owner");
     }
 
     @Reference
@@ -30,20 +32,22 @@ public class TodosRepository extends GraphDbRepository<Todo>  implements DbRepos
         this.dbService = null;
     }
 
-    public List<Todo> findAllTodos(Filter filter) {
-        return findAllTodos(filter, new Pagination());
+    public List<TodoList> findAllLists(Filter filter) {
+        return findAllLists(filter, new Pagination());
     }
 
-    public List<Todo> findAllTodos(Filter filter, Pagination pagination) {
-        String sql =
-                "SELECT *, SUM(urgency,importance, views) as rank, out('parent') as parent from " + Todo.class.getSimpleName() +
-                " WHERE "+filter.getPreparedStatement()+
-                " ORDER BY rank DESC "
+    public List<TodoList> findAllLists(Filter filter, Pagination pagination) {
+        // TODO do this in one statement
+        String sql = "SELECT from " + TodoList.class.getSimpleName() + " WHERE "+filter.getPreparedStatement()+" ORDER BY name "
                 + limitClause(pagination);
-
-        //sql = "SELECT *, SUM(urgency,importance) as rank from Todo WHERE NOT (status=:status) AND owner=:owner AND #17:0 IN out('parent') ORDER BY rank DESC SKIP 0 LIMIT 10";
-        return dbService.findObjects(sql, filter.getParams());
+        Map<String, Object> params = new HashMap<String, Object>();
+        List<TodoList> lists = dbService.findObjects(sql, filter.getParams());
+        for (TodoList list : lists) {
+            addCount(filter, list);
+        }
+        return lists;
     }
+
 
     private String limitClause(Pagination pagination) {
         if (pagination == null) {
@@ -69,20 +73,21 @@ public class TodosRepository extends GraphDbRepository<Todo>  implements DbRepos
         list.setTodosCount(cnt);
     }
 
-    @Override
-    public Object save(Todo entity, String... edges) {
-        Object result = super.save(entity, edges);
-        increaseOtherTodosRank(entity);
-        return result;
+    private void addCount(Filter filter, TodoList list) {
+        String sql = "SELECT COUNT(*) as count from " + Todo.class.getSimpleName()
+                + " WHERE "+list.getId()+" IN out('parent') AND status <> '"+Status.ARCHIVED+"' AND "+filter.getPreparedStatement();
+        Map<String, Object> params = filter.getParams();
+        params.put("list", list.getId().replace("#",""));
+        long cnt = dbService.getCount(sql, params);
+        list.setTodosCount(cnt);
     }
 
-    private void increaseOtherTodosRank(Todo entity) {
-        String sql = "update " + Todo.class.getSimpleName()
-                + " INCREMENT rank = 1 WHERE owner = :username AND rank >= :referenceRank";
-        Map<String, Object> params = new HashMap<String, Object>();
-        params.put("username", entity.getOwner());
-        params.put("referenceRank", entity.getRank());
-        dbService.executeUpdate(sql, params);
+    public <T> T getById(Class<?> cls, String id) {
+        T list = dbService.findObjectById(cls, id);
+        if (list != null && cls.equals(TodoList.class)) {
+            addCount((TodoList) list);
+        }
+        return list;
     }
 
     public long getTodosCount(String listId, Filter filter) {
@@ -94,11 +99,6 @@ public class TodosRepository extends GraphDbRepository<Todo>  implements DbRepos
     public long getListsCount(Filter filter) {
         String sql = "select COUNT(*) as count from " + TodoList.class.getSimpleName() + " WHERE " + filter.getPreparedStatement();
         return dbService.getCount(sql, filter.getParams());
-    }
-
-
-    public Object getVertexById(Class<?> cls, String id) {
-        return dbService.findGraphs("SELECT FROM "+cls.getSimpleName()+" WHERE @rid="+id);
     }
 
     public void clearDefault(Request request) {

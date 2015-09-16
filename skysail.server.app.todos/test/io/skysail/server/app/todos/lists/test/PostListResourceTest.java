@@ -4,7 +4,6 @@ import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.assertThat;
 import io.skysail.api.responses.*;
 import io.skysail.server.app.todos.TodoList;
-import io.skysail.server.app.todos.repo.TodosRepository;
 
 import java.util.List;
 
@@ -85,8 +84,8 @@ public class PostListResourceTest extends AbstractListResourceTest {
         form.add("defaultList", "on");
         String id2 = postListresource.post(form, HTML_VARIANT).getEntity().getId();
 
-        OrientVertex vertexById1 = ((List<OrientVertex>) new TodosRepository().getVertexById(TodoList.class, id1)).get(0);
-        OrientVertex vertexById2 = ((List<OrientVertex>) new TodosRepository().getVertexById(TodoList.class, id2)).get(0);
+        OrientVertex vertexById1 = ((List<OrientVertex>) repo.getVertexById(TodoList.class, id1)).get(0);
+        OrientVertex vertexById2 = ((List<OrientVertex>) repo.getVertexById(TodoList.class, id2)).get(0);
 
         assertThat(vertexById1.getProperty("defaultList"), is(false));
         assertThat(vertexById2.getProperty("defaultList"), is(true));

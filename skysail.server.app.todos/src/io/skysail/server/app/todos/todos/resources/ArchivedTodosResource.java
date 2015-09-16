@@ -27,8 +27,8 @@ public class ArchivedTodosResource extends TodosResource {
         filter.add("list", listId);
         filter.add("status", Status.ARCHIVED.name());
 
-        Pagination pagination = new Pagination(getRequest(), getResponse(), app.getRepository().getTodosCount(listId, filter));
-        return app.getRepository().findAllTodos(filter, pagination);
+        Pagination pagination = new Pagination(getRequest(), getResponse(), app.getTodosRepo().getTodosCount(listId, filter));
+        return app.getTodosRepo().findAllTodos(filter, pagination);
     }
 
     @Override

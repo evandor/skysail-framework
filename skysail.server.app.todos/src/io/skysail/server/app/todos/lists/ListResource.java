@@ -34,20 +34,20 @@ public class ListResource extends EntityServerResource<TodoList> {
 
     @Override
     public SkysailResponse<?> eraseEntity() {
-        TodoList todoList = app.getRepository().getById(TodoList.class, listId);
+        TodoList todoList = app.getListRepo().getById(TodoList.class, listId);
         if (todoList.getTodosCount() > 0) {
             // TODO revisit: make a business violation from that
             getResponse().setStatus(Status.CLIENT_ERROR_BAD_REQUEST, new IllegalStateException(),
                     "cannot delete list as it is not empty");
             return new SkysailResponse<String>();
         }
-        app.getRepository().delete(TodoList.class, listId);
+        app.getListRepo().delete(listId);
         return new SkysailResponse<String>();
     }
 
     @Override
     public TodoList getEntity() {
-        return app.getRepository().getById(TodoList.class, listId);
+        return app.getListRepo().getById(TodoList.class, listId);
     }
 
     @Override

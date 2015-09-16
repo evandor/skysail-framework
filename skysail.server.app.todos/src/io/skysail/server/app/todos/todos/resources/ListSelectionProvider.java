@@ -24,10 +24,10 @@ public class ListSelectionProvider implements SelectionProvider {
     public Map<String, String> getSelections() {
         SkysailServerResource<?> ssr = (SkysailServerResource<?>) resource;
         TodoApplication app = (TodoApplication) ssr.getApplication();
-        
+
         Filter filter = new Filter(resource.getRequest(), null);
         filter.add("owner", SecurityUtils.getSubject().getPrincipal().toString());
-        List<TodoList> allLists = app.getRepository().findAllLists(filter, new Pagination());
+        List<TodoList> allLists = app.getListRepo().findAllLists(filter, new Pagination());
         return allLists.stream().collect(Collectors.toMap(TodoList::getId, TodoList::getName));
     }
 

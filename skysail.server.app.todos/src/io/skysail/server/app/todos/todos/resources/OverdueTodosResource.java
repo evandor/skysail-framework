@@ -29,7 +29,7 @@ public class OverdueTodosResource extends TodoSummaryResource {
         filter.add("owner", SecurityUtils.getSubject().getPrincipal().toString());
 
         Pagination pagination = new Pagination(getRequest(), getResponse(), 10);
-        List<Todo> todos = app.getRepository().findAllTodos(filter, pagination);
+        List<Todo> todos = app.getTodosRepo().findAllTodos(filter, pagination);
         todosSummary = todos.stream().map(todo -> {
             return new TodoSummary(todo);
         }).collect(Collectors.toList());

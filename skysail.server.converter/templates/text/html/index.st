@@ -11,12 +11,12 @@ index(user, messages, converter, model) ::= <<
     <title>$messages.("productName").translated$</title>
 
     <!-- Pace -->
-    <script type="text/javascript" src="/webapp/js/pace/pace-1.0.0.min.js"></script>
+    <script type="text/javascript" src="/webapp/js/pace/pace-1.0.0.min.js" async></script>
     <link rel="stylesheet" href="/webapp/css/pace/pace-minimal.css">
 
 	<!-- jQuery -->
-	<script type="text/javascript" src="/webapp/js/jquery-1.11.1.js"></script>
-    <script tpye="text/javascript" src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="/webapp/js/jquery-1.11.1.js" async></script>
+    <script tpye="text/javascript" src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js" async></script>
     <link rel="stylesheet" type="text/css" href="https://code.jquery.com/ui/1.11.4/themes/ui-lightness/jquery-ui.css">
 
     <link href="/webapp/css/bootstrap.min.css" rel="stylesheet">
@@ -24,7 +24,7 @@ index(user, messages, converter, model) ::= <<
     <link href="/webapp/css/bootstrap-theme.min.css" rel="stylesheet">
 
     <!-- polymer stuff -->
-    <script src="/_polymer/bower_components/webcomponentsjs/webcomponents-lite.min.js"></script>
+    <script src="/_polymer/bower_components/webcomponentsjs/webcomponents-lite.min.js" async></script>
     <link rel="import" href="/_polymer/proto-element.html">
     <link rel="import" href="/_polymer/sky-app-nav-accordion.html">
     <link rel="import" href="/_polymer/sky-ajax-get.html">
@@ -39,10 +39,10 @@ index(user, messages, converter, model) ::= <<
 
     <!-- jstree -->
     <link rel="stylesheet" href="/static/themes/jstree/style.min.css" />
-    <script src="/static/js/jstree/jstree.min.js"></script>
+    <script src="/static/js/jstree/jstree.min.js" async></script>
 
     <!-- mousetrap -->
-    <script src="/static/js/mousetrap/mousetrap.min.js"></script>
+    <script src="/static/js/mousetrap/mousetrap.min.js" async></script>
 
     <script type="text/javascript">
         Mousetrap.bind('command+s', function(e) {
@@ -71,9 +71,9 @@ index(user, messages, converter, model) ::= <<
         });
     </script>
 
-    <script type="text/javascript" src="/webapp/js/select2.js"></script>
+    <script type="text/javascript" src="/webapp/js/select2.js" async></script>
 	$select2JsHead(model.formfields)$
-    <script type="text/javascript" src="/webapp/js/moment.js"></script>
+    <script type="text/javascript" src="/webapp/js/moment.js" async></script>
     $endOfHeaderJS(model.formfields)$
 
     <!-- Begin Cookie Consent plugin by Silktide - http://silktide.com/cookieconsent -->
@@ -82,7 +82,7 @@ index(user, messages, converter, model) ::= <<
         window.cookieconsent_options = {"message":"We use cookies to personalise content and ads, to provide social media features and to analyse our traffic. We also share information about your use of our site with our social media, advertising and analytics partners.","dismiss":"Got it!","learnMore":"More info","link":null,"theme":"dark-top"};
     </script>
 
-    <script type="text/javascript" src="//s3.amazonaws.com/cc.silktide.com/cookieconsent.latest.min.js"></script>
+    <script type="text/javascript" src="//s3.amazonaws.com/cc.silktide.com/cookieconsent.latest.min.js" async></script>
     <!-- End Cookie Consent plugin -->
 
   </head>

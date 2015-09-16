@@ -22,20 +22,20 @@ public class SpaceResource extends EntityServerResource<Space> {
         id = getAttribute("id");
         app = (WikiApplication) getApplication();
     }
-    
+
     @Override
     public SkysailResponse<?> eraseEntity() {
-        Space space = app.getRepository().getSpaceById(id);
+        Space space = app.getSpacesRepo().getById(id);
         if (space.getPages().size() > 0) {
             throw new IllegalArgumentException("a space with at least one page cannot be deleted");
         }
-        app.getRepository().delete(Space.class, id);
+        app.getSpacesRepo().delete(id);
         return new SkysailResponse<String>();
     }
 
     @Override
     public Space getEntity() {
-         Space space = app.getRepository().getById(Space.class, id);
+         Space space = app.getSpacesRepo().getById(id);
          String username = SecurityUtils.getSubject().getPrincipal().toString();
          if (!space.getOwner().equals(username)) {
              getResponse().setStatus(Status.CLIENT_ERROR_FORBIDDEN);
@@ -43,12 +43,12 @@ public class SpaceResource extends EntityServerResource<Space> {
          }
          return space;
     }
-    
+
     @Override
     public List<Link> getLinks() {
         return super.getLinks(PutSpaceResource.class, PagesResource.class);
     }
-    
+
     @Override
     public String redirectTo() {
         return super.redirectTo(SpacesResource.class);

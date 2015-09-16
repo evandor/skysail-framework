@@ -2,66 +2,48 @@ package io.skysail.server.app.wiki.spaces.resources.test;
 
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.assertThat;
-import io.skysail.api.responses.ConstraintViolationsResponse;
-import io.skysail.server.app.wiki.*;
-import io.skysail.server.app.wiki.spaces.*;
-import io.skysail.server.app.wiki.spaces.resources.PostSpaceResource;
+import io.skysail.api.responses.*;
+import io.skysail.server.app.wiki.spaces.Space;
 
-import org.junit.*;
-import org.mockito.*;
+import org.junit.Test;
 import org.restlet.data.*;
 import org.restlet.engine.resource.VariantInfo;
 
-@Ignore
-public class PostSpaceResourceTest extends WikiPostOrPutResourceTest {
+public class PostSpaceResourceTest extends AbstractSpaceResourceTest {
 
-    @Spy
-    private PostSpaceResource resource;
-
-    @Before
-    public void setUp() throws Exception {
-        super.setUpApplication(Mockito.mock(WikiApplication.class));
-        super.setUpResource(resource);
-        initRepository();
-        initUser("admin");
-        new UniquePerOwnerValidator().setDbService(testDb);
-        resource.init(null, request, responses.get(resource.getClass().getName()));
-
+    @Test
+    public void empty_form_data_yields_validation_failure() {
+        SkysailResponse<Space> posted = postSpaceResource.post(form, HTML_VARIANT);
+        assertSingleValidationFailure(postSpaceResource, posted,  "name", "may not be null");
     }
 
     @Test
-    public void empty_html_form_yields_validation_failure() {
-        ConstraintViolationsResponse<?> post = (ConstraintViolationsResponse<?>) resource.post(form, new VariantInfo(MediaType.TEXT_HTML));
-        assertSingleValidationFailure(resource, post,  "name", "may not be null");
-    }
-
-    @Test
-    public void empty_json_request_yields_validation_failure() {
-        ConstraintViolationsResponse<?> post = (ConstraintViolationsResponse<?>) resource.post(new Space(), new VariantInfo(MediaType.APPLICATION_JSON));
-        assertSingleValidationFailure(resource, post, "name", "may not be null");
+    public void empty_json_data_yields_validation_failure() {
+        SkysailResponse<Space> posted =  postSpaceResource.post(new Space(), JSON_VARIANT);
+        assertSingleValidationFailure(postSpaceResource, posted, "name", "may not be null");
     }
 
     @Test
     public void valid_form_data_yields_new_entity() {
-        form.add("name", "space_" + randomString());
-        resource.post(form, new VariantInfo(MediaType.TEXT_HTML));
-        assertThat(responses.get(resource.getClass().getName()).getStatus(),is(equalTo(Status.SUCCESS_CREATED)));
+        form.add("name", "list1");
+        SkysailResponse<Space> result = postSpaceResource.post(form, HTML_VARIANT);
+        assertSpaceResult(postSpaceResource, result, "list1");
     }
 
     @Test
-    public void valid_data_yields_new_entity() {
-        Space newTodoList = new Space("space_" + randomString());
-        resource.post(newTodoList, new VariantInfo(MediaType.APPLICATION_JSON));
-        assertThat(responses.get(resource.getClass().getName()).getStatus(),is(equalTo(Status.SUCCESS_CREATED)));
+    public void valid_json_data_yields_new_entity() {
+        SkysailResponse<Space> result = postSpaceResource.post(new Space("jsonSpace1"), JSON_VARIANT);
+        assertThat(responses.get(postSpaceResource.getClass().getName()).getStatus(),is(equalTo(Status.SUCCESS_CREATED)));
+        assertSpaceResult(postSpaceResource, result, "jsonSpace1");
+        assertThat(result.getEntity().getOwner(), is("admin"));
     }
 
     @Test
     public void two_entries_with_same_name_yields_failure() {
-        form.add("name", "space_" + randomString());
-        resource.post(form, new VariantInfo(MediaType.TEXT_HTML));
-        ConstraintViolationsResponse<?> post = (ConstraintViolationsResponse<?>) resource.post(form, new VariantInfo(MediaType.TEXT_HTML));
-        assertSingleValidationFailure(resource, post,  "", "name already exists");
+        form.add("name", "same_name");
+        postSpaceResource.post(form, new VariantInfo(MediaType.TEXT_HTML));
+        ConstraintViolationsResponse<?> post = (ConstraintViolationsResponse<?>) postSpaceResource.post(form, HTML_VARIANT);
+        assertSingleValidationFailure(postSpaceResource, post,  "", "name already exists");
     }
-
 
 }

@@ -1,51 +1,68 @@
 package io.skysail.server.app.wiki.spaces.resources.test;
 
-import static org.hamcrest.CoreMatchers.*;
+import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
-import io.skysail.server.app.wiki.*;
-import io.skysail.server.app.wiki.repository.WikiRepository;
-import io.skysail.server.app.wiki.spaces.*;
-import io.skysail.server.app.wiki.spaces.resources.PutSpaceResource;
+import io.skysail.api.responses.SkysailResponse;
+import io.skysail.server.app.wiki.spaces.Space;
 
-import org.junit.*;
-import org.mockito.*;
-import org.restlet.data.*;
-import org.restlet.engine.resource.VariantInfo;
+import org.junit.Test;
 
-@Ignore
-public class PutSpaceResourceTest extends WikiPostOrPutResourceTest {
 
-    @Spy
-    private PutSpaceResource resource;
+public class PutSpaceResourceTest extends AbstractSpaceResourceTest {
 
-    @Before
-    public void setUp() throws Exception {
-        super.setUpApplication(Mockito.mock(WikiApplication.class));
-        super.setUpResource(resource);
-        initRepository();
-        initUser("admin");
-        new UniquePerOwnerValidator().setDbService(testDb);
-        resource.init(null, request, responses.get(resource.getClass().getName()));
+    @Test
+    public void empty_form_data_yields_validation_failure() {
+        Space aSpace = createSpace();
+
+        form.add("name", "");
+        form.add("id", aSpace.getId());
+        setAttributes("id", aSpace.getId());
+        init(putSpaceResource);
+
+        SkysailResponse<Space> skysailResponse = putSpaceResource.put(form, HTML_VARIANT);
+
+        assertSingleValidationFailure(putSpaceResource, skysailResponse,  "name", "size must be between");
     }
 
     @Test
-    public void space_can_be_updated() {
+    public void empty_json_data_yields_validation_failure() {
 
-        String spacename = "space_" + randomString();
-        Space space = new Space(spacename);
-        String id = WikiRepository.add(space).toString();
+        init(putSpaceResource);
 
-        form.add("name", spacename + "_NEW");
-        form.add("id", id);
-        resource.getRequestAttributes().put("id", id);
-        resource.init(null, request, responses.get(resource.getClass().getName()));
+        Space updatedSpace = new Space();
+        SkysailResponse<Space> skysailResponse = putSpaceResource.putEntity(updatedSpace, JSON_VARIANT);
 
-        resource.put(form, new VariantInfo(MediaType.TEXT_HTML));
+        assertSingleValidationFailure(putSpaceResource, skysailResponse,  "name", "may not be null");
+    }
 
-        Space listFromDb = new WikiRepository().getById(Space.class, id);
+    @Test
+    public void entities_editable_fields_can_be_updated_via_htmlform() {
+        Space aSpace = createSpace();
 
-        assertThat(responses.get(resource.getClass().getName()).getStatus(),is(equalTo(Status.SUCCESS_OK)));
-        assertThat(listFromDb.getName(), is(equalTo(spacename + "_NEW")));
+        form.add("name", "updated_space");
+        form.add("owner", "readonly");
+        setAttributes("id", aSpace.getId());
+        init(putSpaceResource);
+
+        SkysailResponse<Space> response = putSpaceResource.put(form, HTML_VARIANT);
+
+        assertThat(response.getEntity().getName(),is("updated_space"));
+        assertThat(response.getEntity().getOwner(),is("admin"));
+    }
+
+    @Test
+    public void entities_editable_fields_can_be_updated_via_json() {
+        Space aSpace = createSpace();
+
+        Space entityToPut = new Space("updated_space_json");
+        entityToPut.setId(aSpace.getId());
+        setAttributes("id", aSpace.getId());
+        init(putSpaceResource);
+
+        SkysailResponse<Space> response = putSpaceResource.putEntity(entityToPut, JSON_VARIANT);
+
+        assertThat(response.getEntity().getName(),is("updated_space_json"));
+        assertThat(response.getEntity().getOwner(),is("admin"));
     }
 
 }

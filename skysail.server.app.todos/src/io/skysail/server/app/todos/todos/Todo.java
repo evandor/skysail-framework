@@ -46,7 +46,6 @@ public class Todo implements Serializable, Identifiable {
     @ListView(truncate = 30, link = PutTodoResource.class) //, prefix = "status")
     @NotNull
     @Size(min = 2)
-    //@Prefix(methodName = "status")
     private String title;
 
     @Field(inputType = InputType.TEXTAREA)

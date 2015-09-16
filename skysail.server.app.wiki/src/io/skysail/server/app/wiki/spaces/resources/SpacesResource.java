@@ -21,14 +21,12 @@ public class SpacesResource extends ListServerResource<Space> {
     @Override
     protected void doInit() throws ResourceException {
         app = (WikiApplication) getApplication();
-        //getResourceContext().addAjaxNavigation("ajax", "Spaces", SpacesResource.class, SpaceResource.class, "id");
     }
 
     @Override
     public List<Space> getEntity() {
         Filter filter = new Filter(getRequest());
-        //filter.add("owner", SecurityUtils.getSubject().getPrincipal().toString());
-        return app.getRepository().findAll(Space.class, null, "");
+        return app.getSpacesRepo().find(filter);
     }
 
     @Override

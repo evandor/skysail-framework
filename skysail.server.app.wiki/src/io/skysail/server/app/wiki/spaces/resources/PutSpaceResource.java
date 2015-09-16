@@ -18,15 +18,15 @@ public class PutSpaceResource extends PutEntityServerResource<Space> {
 
     @Override
     public Space getEntity() {
-        return app.getRepository().getSpaceById(id);
+        return app.getSpacesRepo().getById(id);
     }
 
     @Override
-    public SkysailResponse<Space> updateEntity(Space entity) {
-        Space original = getEntity(null);
-        original.setName(entity.getName());
-        app.getRepository().update(id, original);
-        return new SkysailResponse<>();
+    public SkysailResponse<Space> updateEntity(Space entityFromTheWire) {
+        Space entityToBeUpdated = getEntity(null);
+        copyProperties(entityToBeUpdated,entityFromTheWire);
+        app.getSpacesRepo().update(id, entityToBeUpdated);
+        return new SkysailResponse<>(entityToBeUpdated);
     }
 
     @Override

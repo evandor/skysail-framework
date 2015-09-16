@@ -204,12 +204,12 @@ public class ResourceTestBase {
         return new BigInteger(130, random).toString(32);
     }
 
-    protected void assertSingleValidationFailure(SkysailServerResource<?> resource, SkysailResponse<?> post, String path, String msg) {
-        ConstraintViolationsResponse<?> skysailReponse = (ConstraintViolationsResponse<?>) post;
+    protected void assertSingleValidationFailure(SkysailServerResource<?> resource, SkysailResponse<?> response, String path, String msg) {
+        ConstraintViolationsResponse<?> skysailReponse = (ConstraintViolationsResponse<?>) response;
         assertThat(responses.get(resource.getClass().getName()).getStatus(), is(equalTo(Status.CLIENT_ERROR_BAD_REQUEST)));
         assertThat(responses.get(resource.getClass().getName()).getHeaders().getFirst("X-Status-Reason").getValue(), is(equalTo("Validation failed")));
         assertThat(skysailReponse.getViolations().size(), is(1));
-        ConstraintViolationDetails violation = ((ConstraintViolationsResponse<?>) post).getViolations().iterator()
+        ConstraintViolationDetails violation = ((ConstraintViolationsResponse<?>) response).getViolations().iterator()
                 .next();
         assertThat(violation.getPropertyPath(), containsString(path));
         assertThat(violation.getMessage(), is(containsString(msg)));

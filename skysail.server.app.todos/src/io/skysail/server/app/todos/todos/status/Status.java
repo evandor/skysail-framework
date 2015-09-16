@@ -7,10 +7,14 @@ import lombok.Getter;
 @Getter
 public enum Status {
 
-    NEW("NEW","yellow", "PLANNED", "WIP", "ARCHIVED"),
-    PLANNED("PLANNED","green", "WIP", "ARCHIVED"),
-    WIP("WIP","orange","ARCHIVED"),
-    FINISHED("FINISHED", "gray","ARCHIVED"),
+    NEW("NEW","yellow", "WIP", "ARCHIVED"),
+    @Deprecated // planned will be: due date != null && now < due date
+    PLANNED("PLANNED","green", "WIP", "DONE"),
+    WIP("WIP","orange", "DONE"),
+    @Deprecated // renamed to done
+    FINISHED("FINISHED", "gray", "DONE"),
+    DONE("DONE", "gray"),
+    @Deprecated // archived will be: done & done date + 7 < now
     ARCHIVED("ARCHIVED", "gray","ARCHIVED");
 
     private List<String> nexts = new ArrayList<>();

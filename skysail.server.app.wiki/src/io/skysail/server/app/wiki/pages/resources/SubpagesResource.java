@@ -26,7 +26,7 @@ public class SubpagesResource extends PagesResource {
 
     @Override
     public List<Page> getEntity() {
-        Page page = app.getRepository().getById(Page.class, pageId);
+        Page page = app.getPagesRepo().getById(pageId);
         return null;//page.getSubpages();
 
     }

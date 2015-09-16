@@ -1,7 +1,10 @@
 package io.skysail.server.db;
 
+import io.skysail.server.queryfilter.Filter;
+import io.skysail.server.queryfilter.pagination.Pagination;
+
 import java.lang.reflect.*;
-import java.util.Map;
+import java.util.*;
 
 
 public class GraphDbRepository<T> implements DbRepository {
@@ -33,6 +36,33 @@ public class GraphDbRepository<T> implements DbRepository {
     public Object getVertexById(String id) {
         return dbService.findGraphs("SELECT FROM "+entityType.getSimpleName()+" WHERE @rid="+id);
     }
+
+    public List<T> find(Filter filter) {
+        return find(filter, new Pagination());
+    }
+
+    public List<T> find(Filter filter, Pagination pagination) {
+        String sql =
+                "SELECT * from " + entityType.getSimpleName() +
+                " WHERE "+filter.getPreparedStatement()+
+                " "
+                + limitClause(pagination);
+        return dbService.findObjects(sql, filter.getParams());
+    }
+
+    private String limitClause(Pagination pagination) {
+        if (pagination == null) {
+            return "";
+        }
+        long linesPerPage = pagination.getLinesPerPage();
+        long page = pagination.getPage();
+        if (linesPerPage <= 0) {
+            return "";
+        }
+        StringBuilder sb = new StringBuilder("SKIP " + linesPerPage * (page-1) + " LIMIT " + linesPerPage);
+        return sb.toString();
+    }
+
 
     private Class<?> getParameterizedType() {
         ParameterizedType parameterizedType = getParameterizedType(getClass());

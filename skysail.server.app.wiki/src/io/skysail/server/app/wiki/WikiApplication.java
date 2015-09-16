@@ -4,13 +4,14 @@ import io.skysail.api.text.TranslationRenderService;
 import io.skysail.server.app.SkysailApplication;
 import io.skysail.server.app.designer.repo.DesignerRepository;
 import io.skysail.server.app.wiki.pages.resources.*;
-import io.skysail.server.app.wiki.repository.WikiRepository;
+import io.skysail.server.app.wiki.repository.*;
 import io.skysail.server.app.wiki.spaces.resources.*;
 import io.skysail.server.db.DbRepository;
 
 import java.util.*;
 import java.util.concurrent.atomic.AtomicReference;
 
+import lombok.Getter;
 import aQute.bnd.annotation.component.*;
 import de.twenty11.skysail.server.app.ApplicationProvider;
 import de.twenty11.skysail.server.core.restlet.*;
@@ -22,9 +23,14 @@ public class WikiApplication extends SkysailApplication implements MenuItemProvi
     public static final String APP_NAME = "Wiki";
 
     private DesignerRepository designerRepo;
-    private WikiRepository wikiRepo;
 
     private List<AtomicReference<TranslationRenderService>> rendererServices = new ArrayList<>();
+
+    @Getter
+    private SpacesRepository spacesRepo;
+
+    @Getter
+    private PagesRepository pagesRepo;
 
     public WikiApplication() {
         super(APP_NAME);
@@ -59,17 +65,22 @@ public class WikiApplication extends SkysailApplication implements MenuItemProvi
 
     }
 
-    @Reference(dynamic = true, multiple = false, optional = false, target = "(name=wikiRepository)")
-    public void setWikiRepository(DbRepository repo) {
-        this.wikiRepo = (WikiRepository) repo;
+    @Reference(dynamic = true, multiple = false, optional = false, target = "(name=PagesRepository)")
+    public void setPagesRepository(DbRepository repo) {
+        this.pagesRepo = (PagesRepository) repo;
     }
 
-    public void unsetWikiRepository(DbRepository repo) {
-        this.wikiRepo = null;
+    public void unsetPagesRepository(DbRepository repo) {
+        this.pagesRepo = null;
     }
 
-    public WikiRepository getRepository() {
-        return wikiRepo;
+    @Reference(dynamic = true, multiple = false, optional = false, target = "(name=SpacesRepository)")
+    public void setSpacesRepository(DbRepository repo) {
+        this.spacesRepo = (SpacesRepository) repo;
+    }
+
+    public void unsetSpacesRepository(DbRepository repo) {
+        this.spacesRepo = null;
     }
 
     @Reference(dynamic = true, multiple = true, optional = false)

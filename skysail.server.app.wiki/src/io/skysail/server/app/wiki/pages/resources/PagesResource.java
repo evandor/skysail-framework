@@ -42,7 +42,7 @@ public class PagesResource extends ListServerResource<Page> {
 
         //Pagination pagination = new Pagination(getRequest(), getResponse(), app.getRepository().getTodosCount(spaceId, filter));
         //return app.getRepository().findAllPages2(filter);
-        Space space = app.getRepository().getById(Space.class, spaceId);
+        Space space = app.getSpacesRepo().getById(spaceId);
         return null;//space.getPages();
 
     }

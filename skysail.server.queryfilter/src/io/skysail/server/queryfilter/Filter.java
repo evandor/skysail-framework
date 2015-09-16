@@ -22,7 +22,7 @@ public class Filter {
     private String filterExpressionFromQuery;
     boolean valid = true;
     private Long filterId;
-    private String preparedStatement;
+    private String preparedStatement = "";
     private org.osgi.framework.Filter ldapFilter;
     private Map<String, Object> params;
 

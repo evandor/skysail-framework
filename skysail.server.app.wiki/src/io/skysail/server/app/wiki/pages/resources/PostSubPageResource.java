@@ -27,10 +27,10 @@ public class PostSubPageResource extends PostPageResource {
         page.setContent(null);
         //page.addVersion(version);
 
-        Page parentPage = app.getRepository().getById(Page.class, getAttribute("pageId"));
+        Page parentPage = app.getPagesRepo().getById(getAttribute("pageId"));
         page.setOwner(subject.getPrincipal().toString());
        // parentPage.addPage(page);
-        app.getRepository().update(getAttribute("id"), parentPage);
+        app.getPagesRepo().update(getAttribute("id"), parentPage);
         return new SkysailResponse<>();
     }
 

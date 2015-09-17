@@ -11,15 +11,15 @@ import org.junit.Test;
 public class StatusTest {
 
     @Test
-    public void has_five_values() {
+    public void has_six_values() {
         Status[] values = Status.values();
-        assertThat(values.length, is(5));
+        assertThat(values.length, is(6));
     }
 
     @Test
     public void testNextsOfNewStatus() {
         Status newStatus = Status.NEW;
-        assertThat(newStatus.getNexts().size(), is(4));
+        assertThat(newStatus.getNexts().size(), is(3));
         checkFollowUpStatuses(newStatus.getNexts());
     }
 

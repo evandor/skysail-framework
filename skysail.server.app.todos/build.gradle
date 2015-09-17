@@ -1,9 +1,29 @@
 apply plugin: "jacoco"
+apply plugin: 'net.serenity-bdd.aggregator'
 
 repositories {
     mavenCentral()
+    jcenter()
+}
+
+buildscript {
+    repositories {
+        mavenLocal()
+        jcenter()
+    }
+    dependencies {
+        classpath("net.serenity-bdd:serenity-gradle-plugin:1.1.12")
+    }
 }
 
 jacoco {
     toolVersion = "0.7.1.201405082137"
 }
+
+dependencies {
+    testCompile 'net.serenity-bdd:core:1.0.47'
+    testCompile 'net.serenity-bdd:serenity-junit:1.0.47'
+    testCompile('org.assertj:assertj-core:1.7.0')
+}
+
+gradle.startParameter.continueOnFailure = true

@@ -1,0 +1,22 @@
+<acceptance-test-run title="Should calculate points based on distance1" name="shouldCalculatePointsBasedOnDistance1" steps="3" successful="2" failures="1" skipped="0" ignored="0" pending="0" annotated-result="FAILURE" result="FAILURE" duration="216" timestamp="2015-09-17T16:19:47.341+02:00">
+  <user-story id="io.skysail.server.app.todos.WhenCalculatingFrequentFlyerPoints" name="When calculating frequent flyer points" path="io.skysail.server.app.todos"/>
+  <tags>
+    <tag name="When calculating frequent flyer points" type="story"/>
+  </tags>
+  <test-step result="SUCCESS" duration="49">
+    <description>Given a traveller has a frequent flyer account with &lt;span class=&apos;step-parameter&apos;&gt;10000&lt;/span&gt; points</description>
+  </test-step>
+  <test-step result="SUCCESS" duration="16">
+    <description>When the traveller flies &lt;span class=&apos;step-parameter&apos;&gt;0&lt;/span&gt; km</description>
+  </test-step>
+  <test-step result="FAILURE" duration="21">
+    <description>Then the traveller should have a balance of &lt;span class=&apos;step-parameter&apos;&gt;10001&lt;/span&gt; points</description>
+    <error>java.lang.AssertionError: 
+Expected: is &lt;10001&gt;
+     but: was &lt;10000&gt;</error>
+    <exception>java.lang.AssertionError:
+Expected: is &lt;10001&gt;
+     but: was &lt;10000&gt;&#xd;
+[io.skysail.server.app.todos.TravellerSteps.traveller_should_have_a_balance_of(TravellerSteps.java:24), io.skysail.server.app.todos.WhenCalculatingFrequentFlyerPoints.shouldCalculatePointsBasedOnDistance1(WhenCalculatingFrequentFlyerPoints.java:37)]</exception>
+  </test-step>
+</acceptance-test-run>

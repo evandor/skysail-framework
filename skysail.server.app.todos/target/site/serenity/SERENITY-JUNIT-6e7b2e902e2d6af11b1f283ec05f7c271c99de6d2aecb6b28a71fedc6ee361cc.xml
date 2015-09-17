@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?><testsuite errors="0" failures="1" name="io.skysail.server.app.todos.WhenCalculatingFrequentFlyerPoints" skipped="0" tests="2" time="0.29" timestamp="2015-09-260 04:19:47"><testcase classname="io.skysail.server.app.todos.WhenCalculatingFrequentFlyerPoints" name="Should calculate points based on distance1"><failure message="&#10;Expected: is &lt;10001&gt;&#10;     but: was &lt;10000&gt;" type="java.lang.AssertionError">
+Expected: is &lt;10001&gt;
+     but: was &lt;10000&gt;</failure><system-err>
+Expected: is &lt;10001&gt;
+     but: was &lt;10000&gt;&#13;
+io.skysail.server.app.todos.TravellerSteps.traveller_should_have_a_balance_of(TravellerSteps.java:24)&#13;
+io.skysail.server.app.todos.WhenCalculatingFrequentFlyerPoints.shouldCalculatePointsBasedOnDistance1(WhenCalculatingFrequentFlyerPoints.java:37)&#13;
+</system-err></testcase><testcase classname="io.skysail.server.app.todos.WhenCalculatingFrequentFlyerPoints" name="Should calculate points based on distance"/></testsuite>

@@ -1,8 +1,4 @@
-Bundle-Version: 0.8.12
+Bundle-Version: 0.2.0
 
--classpath: jar/raml-parser-0.8.12.jar
-
-Export-Package: org.raml.*;version=1.0
-Bundle-Name: raml-parser
 -sub:  \
 	*.bnd

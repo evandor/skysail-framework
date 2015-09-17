@@ -1,0 +1,12 @@
+<acceptance-test-run title="Should calculate points based on distance" name="shouldCalculatePointsBasedOnDistance" steps="1" successful="0" failures="0" errors="1" skipped="0" ignored="0" pending="0" annotated-result="ERROR" result="ERROR" duration="20" timestamp="2015-09-17T16:45:04.519+02:00">
+  <user-story id="io.skysail.server.app.todos.lists.test.ListTests" name="List tests" path="io.skysail.server.app.todos.lists.test"/>
+  <tags>
+    <tag name="List tests" type="story"/>
+  </tags>
+  <test-step result="ERROR" duration="18">
+    <description>xxx_posting</description>
+    <error>java.lang.NullPointerException</error>
+    <exception>java.lang.NullPointerException:null&#xd;
+[io.skysail.server.app.todos.lists.test.ListSteps.when_posting_this(ListSteps.java:20), io.skysail.server.app.todos.lists.test.ListTests.shouldCalculatePointsBasedOnDistance(ListTests.java:17)]</exception>
+  </test-step>
+</acceptance-test-run>

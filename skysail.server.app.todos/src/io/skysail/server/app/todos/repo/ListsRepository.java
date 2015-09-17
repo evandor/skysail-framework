@@ -9,8 +9,6 @@ import io.skysail.server.queryfilter.pagination.Pagination;
 
 import java.util.*;
 
-import org.restlet.Request;
-
 import aQute.bnd.annotation.component.*;
 
 @Component(immediate = true, properties = "name=ListsRepository")
@@ -40,26 +38,11 @@ public class ListsRepository extends GraphDbRepository<TodoList> implements DbRe
         // TODO do this in one statement
         String sql = "SELECT from " + TodoList.class.getSimpleName() + " WHERE "+filter.getPreparedStatement()+" ORDER BY name "
                 + limitClause(pagination);
-        Map<String, Object> params = new HashMap<String, Object>();
         List<TodoList> lists = dbService.findObjects(sql, filter.getParams());
         for (TodoList list : lists) {
             addCount(filter, list);
         }
         return lists;
-    }
-
-
-    private String limitClause(Pagination pagination) {
-        if (pagination == null) {
-            return "";
-        }
-        long linesPerPage = pagination.getLinesPerPage();
-        long page = pagination.getPage();
-        if (linesPerPage <= 0) {
-            return "";
-        }
-        StringBuilder sb = new StringBuilder("SKIP " + linesPerPage * (page-1) + " LIMIT " + linesPerPage);
-        return sb.toString();
     }
 
     private void addCount(TodoList list) {
@@ -100,8 +83,4 @@ public class ListsRepository extends GraphDbRepository<TodoList> implements DbRe
         String sql = "select COUNT(*) as count from " + TodoList.class.getSimpleName() + " WHERE " + filter.getPreparedStatement();
         return dbService.getCount(sql, filter.getParams());
     }
-
-    public void clearDefault(Request request) {
-    }
-
 }

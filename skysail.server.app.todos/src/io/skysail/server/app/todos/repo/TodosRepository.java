@@ -8,8 +8,6 @@ import io.skysail.server.queryfilter.pagination.Pagination;
 
 import java.util.*;
 
-import org.restlet.Request;
-
 import aQute.bnd.annotation.component.*;
 
 @Component(immediate = true, properties = "name=TodosRepository")
@@ -45,30 +43,6 @@ public class TodosRepository extends GraphDbRepository<Todo>  implements DbRepos
         return dbService.findObjects(sql, filter.getParams());
     }
 
-    private String limitClause(Pagination pagination) {
-        if (pagination == null) {
-            return "";
-        }
-        long linesPerPage = pagination.getLinesPerPage();
-        long page = pagination.getPage();
-        if (linesPerPage <= 0) {
-            return "";
-        }
-        StringBuilder sb = new StringBuilder("SKIP " + linesPerPage * (page-1) + " LIMIT " + linesPerPage);
-        return sb.toString();
-    }
-
-    private void addCount(TodoList list) {
-        String sql;
-        Map<String, Object> params;
-        sql = "SELECT in('parent').size() as count from " + TodoList.class.getSimpleName()
-                + " WHERE @rid=:rid";
-        params = new HashMap<String, Object>();
-        params.put("rid", list.getId());
-        long cnt = dbService.getCount(sql, params);
-        list.setTodosCount(cnt);
-    }
-
     @Override
     public Object save(Todo entity, String... edges) {
         Object result = super.save(entity, edges);
@@ -94,14 +68,6 @@ public class TodosRepository extends GraphDbRepository<Todo>  implements DbRepos
     public long getListsCount(Filter filter) {
         String sql = "select COUNT(*) as count from " + TodoList.class.getSimpleName() + " WHERE " + filter.getPreparedStatement();
         return dbService.getCount(sql, filter.getParams());
-    }
-
-
-    public Object getVertexById(Class<?> cls, String id) {
-        return dbService.findGraphs("SELECT FROM "+cls.getSimpleName()+" WHERE @rid="+id);
-    }
-
-    public void clearDefault(Request request) {
     }
 
 }

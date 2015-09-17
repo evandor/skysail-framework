@@ -50,7 +50,7 @@ public class GraphDbRepository<T> implements DbRepository {
         return dbService.findObjects(sql, filter.getParams());
     }
 
-    private String limitClause(Pagination pagination) {
+    protected String limitClause(Pagination pagination) {
         if (pagination == null) {
             return "";
         }

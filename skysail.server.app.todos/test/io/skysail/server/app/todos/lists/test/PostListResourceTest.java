@@ -84,8 +84,8 @@ public class PostListResourceTest extends AbstractListResourceTest {
         form.add("defaultList", "on");
         String id2 = postListresource.post(form, HTML_VARIANT).getEntity().getId();
 
-        OrientVertex vertexById1 = ((List<OrientVertex>) repo.getVertexById(TodoList.class, id1)).get(0);
-        OrientVertex vertexById2 = ((List<OrientVertex>) repo.getVertexById(TodoList.class, id2)).get(0);
+        OrientVertex vertexById1 = ((List<OrientVertex>) listRepo.getVertexById(id1)).get(0);
+        OrientVertex vertexById2 = ((List<OrientVertex>) listRepo.getVertexById(id2)).get(0);
 
         assertThat(vertexById1.getProperty("defaultList"), is(false));
         assertThat(vertexById2.getProperty("defaultList"), is(true));

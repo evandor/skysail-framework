@@ -27,7 +27,7 @@ public class HiveTest {
     }
 
     @Test
-    public void testName() throws Exception {
+    public void joining_existing_p2p_network() throws Exception {
         IFileConfiguration fileConfig = setUpInitialNetwork();
 
         INetworkConfiguration netConfig2 = NetworkConfiguration.create("second", InetAddress.getByName("127.0.0.1"));
@@ -36,12 +36,12 @@ public class HiveTest {
     }
 
     @Test
-    @Ignore
     public void testName2() throws Exception {
+        IFileConfiguration fileConfig = setUpInitialNetwork();
         IUserManager userManager = peerNode.getUserManager();
 
         UserCredentials credentials = new UserCredentials("userId", "password", "pin");
-        Path rootDirectory = Paths.get("sample/path/to/rootDirectory");
+        Path rootDirectory = Paths.get("/Users/carsten/shared/aerofs/books/iText");
 
         if (!userManager.isRegistered(credentials.getUserId())) {
            userManager.createRegisterProcess(credentials);//.await();
@@ -220,7 +220,6 @@ public class HiveTest {
     }
 
     @Test
-    @Ignore
     public void testName6() throws Exception {
         IFileConfiguration fileConfiguration = FileConfiguration.createDefault();
 

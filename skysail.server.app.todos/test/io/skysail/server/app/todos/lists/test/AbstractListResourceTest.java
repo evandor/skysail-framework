@@ -33,7 +33,7 @@ public abstract class AbstractListResourceTest extends ResourceTestBase {
     @Spy
     private TodoApplication application;
 
-    protected TodosRepository repo;
+    protected TodosRepository todoRepo;
     protected ListsRepository listRepo;
 
     @Before
@@ -62,7 +62,7 @@ public abstract class AbstractListResourceTest extends ResourceTestBase {
     }
 
     public void setUpTodosRepository(TodosRepository repo) {
-        this.repo = repo;
+        this.todoRepo = repo;
         repo.setDbService(testDb);
         repo.activate();
         ((TodoApplication)application).setTodoRepository(repo);

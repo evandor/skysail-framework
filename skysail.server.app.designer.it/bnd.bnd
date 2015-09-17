@@ -13,6 +13,8 @@ Test-Cases: io.skysail.server.app.designer.it.ApplicationsCrudIntegrationTests
 	skysail.server;version=${skysail.server.version},\
 	skysail.server.app.designer;version=latest,\
 	skysail.server.um.internal;version=0.0,\
+    skysail.server.db;version=${skysail.server.db.version},\
+    skysail.server.queryfilter;version=${skysail.server.queryfilter.version},\
 	skysail.server.db;version=${skysail.server.db.version},\
 	org.restlet;version=${restlet.version},\
 	org.restlet.ext.raml;version=${restlet.version},\

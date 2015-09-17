@@ -81,7 +81,6 @@ public class FilterTest {
         assertThat(filter.isValid(),is(true));
         assertThat(filter.getPreparedStatement(),equalTo("due < date()"));
         assertThat(filter.getParams().size(),is(0));
-        //assertThat(filter.getParams().get("due"),is(equalTo("date()")));
     }
 
     @Test

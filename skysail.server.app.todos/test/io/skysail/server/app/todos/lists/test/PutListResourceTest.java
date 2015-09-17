@@ -50,7 +50,7 @@ public class PutListResourceTest extends AbstractListResourceTest {
 
         putListResource.put(form, HTML_VARIANT);
 
-        List<OrientVertex> vertexById2 = (List<OrientVertex>) repo.getVertexById(TodoList.class, aList.getId());
+        List<OrientVertex> vertexById2 = (List<OrientVertex>) listRepo.getVertexById(aList.getId());
         OrientVertex vertexById = vertexById2.get(0);
 
         assertThat(vertexById.getProperty("modified"), is(not(nullValue())));

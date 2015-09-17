@@ -74,7 +74,7 @@ if (projectNames.remove('')) {
   rootDir.eachDir {
     def projectName = it.name
     if (!projectName.startsWith('.')) {
-      println "projectNames += \"" + projectName + "\""
+      //println "projectNames += \"" + projectName + "\""
       projectNames += projectName
     }
   }

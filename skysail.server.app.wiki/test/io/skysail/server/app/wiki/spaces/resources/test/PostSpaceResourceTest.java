@@ -5,10 +5,11 @@ import static org.junit.Assert.assertThat;
 import io.skysail.api.responses.*;
 import io.skysail.server.app.wiki.spaces.Space;
 
-import org.junit.Test;
+import org.junit.*;
 import org.restlet.data.*;
 import org.restlet.engine.resource.VariantInfo;
 
+@Ignore
 public class PostSpaceResourceTest extends AbstractSpaceResourceTest {
 
     @Test

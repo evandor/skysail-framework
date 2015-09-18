@@ -1,1 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?><testsuite errors="0" failures="0" name="io.skysail.server.app.todos.WhenCalculatingFrequentFlyerPoints" skipped="0" tests="1" time="0.19" timestamp="2015-09-260 04:45:00"><testcase classname="io.skysail.server.app.todos.WhenCalculatingFrequentFlyerPoints" name="Should calculate points based on distance"/></testsuite>

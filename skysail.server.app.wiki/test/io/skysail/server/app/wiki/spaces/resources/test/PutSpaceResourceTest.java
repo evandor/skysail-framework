@@ -5,9 +5,10 @@ import static org.junit.Assert.assertThat;
 import io.skysail.api.responses.SkysailResponse;
 import io.skysail.server.app.wiki.spaces.Space;
 
-import org.junit.Test;
+import org.junit.*;
 
 
+@Ignore
 public class PutSpaceResourceTest extends AbstractSpaceResourceTest {
 
     @Test

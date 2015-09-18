@@ -2,6 +2,8 @@ package de.twenty11.skysail.server.db.orientdb;
 
 import io.skysail.server.db.*;
 
+import java.beans.*;
+import java.lang.reflect.*;
 import java.util.*;
 
 import lombok.extern.slf4j.Slf4j;
@@ -26,7 +28,7 @@ import com.orientechnologies.orient.core.sql.query.OSQLSynchQuery;
 import com.orientechnologies.orient.graph.sql.functions.OGraphFunctionFactory;
 import com.orientechnologies.orient.object.db.*;
 import com.orientechnologies.orient.object.metadata.schema.OSchemaProxyObject;
-import com.tinkerpop.blueprints.Vertex;
+import com.tinkerpop.blueprints.*;
 import com.tinkerpop.blueprints.impls.orient.*;
 
 import de.twenty11.skysail.server.core.osgi.EventHelper;
@@ -53,8 +55,7 @@ public class OrientGraphDbService extends AbstractOrientDbService implements DbS
             OSQLFunction function = OSQLEngine.getInstance().getFunction(name);
             if (function != null) {
                 log.debug("ODB graph function [{}] is registered: [{}]", name, function.getSyntax());
-            }
-            else {
+            } else {
                 log.warn("ODB graph function [{}] NOT registered!!!", name);
             }
         }
@@ -136,21 +137,116 @@ public class OrientGraphDbService extends AbstractOrientDbService implements DbS
         Iterator<OrientVertex> iterator = execute.iterator();
         while (iterator.hasNext()) {
             OrientVertex next = iterator.next();
-            //T newOne = objectDb.detachAll(t, true);
+            // T newOne = objectDb.detachAll(t, true);
             OrientElement detached = next.detach();
-            detachedEntities.add((T)detached);
-            //System.out.println(next);
+            detachedEntities.add((T) detached);
+            // System.out.println(next);
         }
         return detachedEntities;
     }
 
     @Override
     public <T> T findObjectById(Class<?> cls, String id) {
+
+        // OrientGraph graphDb = getDb();
+        // OrientVertex vertex = graphDb.getVertex(new ORecordId(id));
+        // //T load = graphDb.load();
+        // return (T)vertex.detach();
+
         OObjectDatabaseTx objectDb = getObjectDb();
         objectDb.getEntityManager().registerEntityClass(cls);
-         T load = objectDb.load(new ORecordId(id));
-         return objectDb.detachAll(load, true);
-         //return load;
+        T load = objectDb.load(new ORecordId(id), "*:-1");
+        return objectDb.detachAll(load, true);
+    }
+
+    @Override
+    public <T> T findById(Class<?> cls, String id) {
+        OrientGraph graphDb = getDb();
+        OrientVertex vertex = graphDb.getVertex(new ORecordId(id));
+        return vertexToPojo(vertex, cls);
+    }
+
+    private <T> T vertexToPojo(OrientVertex v, Class<?> cls) {
+        if (v == null) {
+            return null;
+        }
+
+        T result;
+        try {
+            result = (T)cls.newInstance();
+        } catch (InstantiationException | IllegalAccessException e1) {
+            log.error("Problem creating new instance of type {}", cls);
+            return null;
+        }
+
+        for (Field field : getAllFields(new LinkedList<Field>(), cls)) {
+            field.setAccessible(true);
+
+            String name = field.getName();
+            String type = field.getType().getSimpleName();
+            boolean isPrimitive = field.getType().isPrimitive();
+
+            if (!isPrimitive && !type.equals("String"))
+                continue;
+
+            Method setter;
+            try {
+                setter = new PropertyDescriptor(name, cls).getWriteMethod();
+
+            } catch (IntrospectionException ie) {
+                continue;
+            }
+
+            try {
+                if (name.equals("id")) {
+                    setter.invoke(result, v.getId().toString());
+                } else {
+                    Object storedValue = v.getProperty(name);
+                    if (storedValue != null) {
+                        if (type.equals("String"))
+                            setter.invoke(result, storedValue.toString());
+                        else if (type.equals("byte"))
+                            setter.invoke(result, (byte) storedValue);
+                        else if (type.equals("int"))
+                            setter.invoke(result, (int) storedValue);
+                        else if (type.equals("float"))
+                            setter.invoke(result, (float) storedValue);
+                        else if (type.equals("long"))
+                            setter.invoke(result, (long) storedValue);
+                        else if (type.equals("double"))
+                            setter.invoke(result, (double) storedValue);
+                        else if (type.equals("boolean"))
+                            setter.invoke(result, (boolean) storedValue);
+                    } else {
+                        v.getEdges(Direction.BOTH).forEach(edge -> {
+                            if (name.equals(edge.getLabel())) {
+                                try {
+                                    setter.invoke(result, edge.getVertex(Direction.OUT).getId().toString());
+                                } catch (Exception e) {
+                                    // TODO Auto-generated catch block
+                                    e.printStackTrace();
+                                }
+                            }
+                        });
+                    }
+                }
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+        }
+        return result;
+    }
+
+    private static List<Field> getAllFields(List<Field> fields, Class<?> type) {
+        fields.addAll(Arrays.asList(type.getDeclaredFields()));
+
+        if (type.getSuperclass() != null) {
+            fields = getAllFields(fields, type.getSuperclass());
+        }
+
+        return fields;
     }
 
     @Override
@@ -159,7 +255,7 @@ public class OrientGraphDbService extends AbstractOrientDbService implements DbS
         List<T> result = new ArrayList<>();
         Iterable<Vertex> query = (Iterable<Vertex>) db.getVerticesOfClass("Page");
         for (Vertex vertex : query) {
-            OrientVertex ov = (OrientVertex)vertex;
+            OrientVertex ov = (OrientVertex) vertex;
             Map<String, Object> record = ov.getRecord().toMap();
             ORecordId id = (ORecordId) record.get("@rid");
             record.put("id", id.toString());
@@ -180,10 +276,10 @@ public class OrientGraphDbService extends AbstractOrientDbService implements DbS
         List<ODocument> query = objectDb.query(new OSQLSynchQuery<ODocument>(sql), params);
         Object field = query.get(0).field("count");
         if (field instanceof Long) {
-            return (Long)field;
+            return (Long) field;
         }
         if (field instanceof Integer) {
-            return new Long((Integer)field);
+            return new Long((Integer) field);
         }
         return 0;
     }
@@ -311,7 +407,7 @@ public class OrientGraphDbService extends AbstractOrientDbService implements DbS
             return;
         }
         Arrays.stream(fieldnames).forEach(field -> {
-                // TODO need to get types reflectively
+            // TODO need to get types reflectively
                 createProperty(cls.getSimpleName(), field, OType.STRING);
             });
         oClass.createIndex(indexName, INDEX_TYPE.UNIQUE, fieldnames);

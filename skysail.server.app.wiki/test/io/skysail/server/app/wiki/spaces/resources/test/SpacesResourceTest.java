@@ -7,10 +7,11 @@ import io.skysail.server.app.wiki.spaces.Space;
 
 import java.util.List;
 
-import org.junit.Test;
+import org.junit.*;
 import org.restlet.data.Status;
 
 
+@Ignore
 public class SpacesResourceTest extends AbstractSpaceResourceTest {
 
     @Test

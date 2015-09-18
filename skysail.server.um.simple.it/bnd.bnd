@@ -134,6 +134,7 @@ Test-Cases: \
 	skysail.server.documentation;version=${skysail.server.documentation.version},\
 	skysail.server.http;version=${skysail.server.http.version},\
 	skysail.server.plugins;version=latest,\
+    skysail.server.queryfilter;version=${skysail.server.queryfilter.version},\
 	skysail.server.static;version=${skysail.server.static.version},\
 	skysail.server.text.markdown;version=latest,\
 	skysail.server.um.simple;version=latest,\

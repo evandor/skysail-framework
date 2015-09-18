@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?><testsuite errors="1" failures="0" name="io.skysail.server.app.todos.lists.test.ListTests" skipped="0" tests="1" time="0.02" timestamp="2015-09-260 04:45:04"><testcase classname="io.skysail.server.app.todos.lists.test.ListTests" name="Should calculate points based on distance"><error type="java.lang.NullPointerException"/><system-err>null&#13;
-io.skysail.server.app.todos.lists.test.ListSteps.when_posting_this(ListSteps.java:20)&#13;
-io.skysail.server.app.todos.lists.test.ListTests.shouldCalculatePointsBasedOnDistance(ListTests.java:17)&#13;
-</system-err></testcase></testsuite>

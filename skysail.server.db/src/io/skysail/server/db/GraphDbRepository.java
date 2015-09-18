@@ -30,7 +30,7 @@ public class GraphDbRepository<T> implements DbRepository {
     }
 
     public T getById(String id) {
-        return dbService.findObjectById(entityType, id);
+        return dbService.findById(entityType, id);
     }
 
     public Object getVertexById(String id) {

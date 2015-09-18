@@ -1,3 +1,0 @@
-"Story","Title","Result","Date","Stability","Duration (s)"
-"When calculating frequent flyer points","Should calculate points based on distance","SUCCESS","2015-09-17T16:45:00.008+02:00","0.0","0.19"
-"When calculating frequent flyer points","Should calculate points based on distance1","FAILURE","2015-09-17T16:19:47.341+02:00","0.0","0.22"

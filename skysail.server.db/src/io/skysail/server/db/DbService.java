@@ -31,8 +31,7 @@ public interface DbService {
      */
     <T> T findObjectById(Class<?> cls, String id);
 
-    //ODocument findDocumentById(Class<?> cls, String id);
-
+    <T> T findById(Class<?> cls, String id);
 
     <T> List<T> findObjects(String sql);
     List<Map<String,Object>> findDocuments(String sql);

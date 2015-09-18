@@ -221,10 +221,11 @@ public class OrientGraphDbService extends AbstractOrientDbService implements DbS
                         v.getEdges(Direction.BOTH).forEach(edge -> {
                             if (name.equals(edge.getLabel())) {
                                 try {
-                                    setter.invoke(result, edge.getVertex(Direction.OUT).getId().toString());
+                                    Vertex connectedVertex = edge.getVertex(Direction.IN);
+                                    String str = (String)connectedVertex.getProperty("name");
+                                    setter.invoke(result, str != null ? str : "???");
                                 } catch (Exception e) {
-                                    // TODO Auto-generated catch block
-                                    e.printStackTrace();
+                                    log.error(e.getMessage(), e);
                                 }
                             }
                         });

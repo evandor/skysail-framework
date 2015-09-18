@@ -65,10 +65,7 @@ skysail.api.validation.version         '[0.2.2,0.2.3)'
 skysail.server.version                 '[8.0.0,8.0.1)'
 skysail.server.codegen.version         '[0.1.0,0.1.1)'
 skysail.server.converter.version       '[1.0.0,1.0.1)'
-
-#wip:
 skysail.server.db.version              '[1.1.0,1.1.1)'
-
 skysail.server.documentation.version   '[0.1.3,0.1.4)'
 skysail.server.http.version            '[4.0.0,4.0.1)'
 skysail.server.osgi.version            '[0.0.21,0.0.22)'

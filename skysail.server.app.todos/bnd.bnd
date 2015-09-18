@@ -73,7 +73,7 @@ Include-Resource: resources, templates=src;recursive:=true;filter:=*.st|*.stg
 	joda-time;version=2.7,\
 	org.freemarker.freemarker;version=2.3,\
 	io.skysail.bundled.selenium;version=2.47,\
-	com.google.gson;version=1.7,\
+	com.google.gson;version=2.2,\
 	io.skysail.bundled.java-client;version=3.2,\
 	io.skysail.bundled.asciidoctorj;version=1.5,\
 	io.skysail.bundled.lambdaj;version=2.3,\

@@ -1,9 +1,10 @@
 new in
 
-1.1.1
+1.2.0
 -----
 
  * fix for getting POJOs by ID from db
+ * new method unsetDbService(DbService dbService) in GraphDbService
 
 1.1.0
 -----

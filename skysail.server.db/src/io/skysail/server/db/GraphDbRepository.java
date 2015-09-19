@@ -17,6 +17,10 @@ public class GraphDbRepository<T> implements DbRepository {
         entityType = getParameterizedType();
     }
 
+    public void unsetDbService(DbService dbService) {
+        this.dbService = null;
+    }
+
     public Object save(T entity, String... edges) {
         return dbService.persist(entity, edges);
     }

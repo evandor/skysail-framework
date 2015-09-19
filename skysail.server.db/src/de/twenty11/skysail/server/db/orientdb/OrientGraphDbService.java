@@ -166,6 +166,7 @@ public class OrientGraphDbService extends AbstractOrientDbService implements DbS
         return vertexToPojo(vertex, cls);
     }
 
+    @SuppressWarnings("unchecked")
     private <T> T vertexToPojo(OrientVertex v, Class<?> cls) {
         if (v == null) {
             return null;
@@ -186,14 +187,15 @@ public class OrientGraphDbService extends AbstractOrientDbService implements DbS
             String type = field.getType().getSimpleName();
             boolean isPrimitive = field.getType().isPrimitive();
 
-            if (!isPrimitive && !type.equals("String"))
-                continue;
+//            if (!isPrimitive && !type.equals("String"))
+//                continue;
 
             Method setter;
             try {
                 setter = new PropertyDescriptor(name, cls).getWriteMethod();
 
             } catch (IntrospectionException ie) {
+                log.warn(ie.getMessage());
                 continue;
             }
 
@@ -203,26 +205,19 @@ public class OrientGraphDbService extends AbstractOrientDbService implements DbS
                 } else {
                     Object storedValue = v.getProperty(name);
                     if (storedValue != null) {
-                        if (type.equals("String"))
-                            setter.invoke(result, storedValue.toString());
-                        else if (type.equals("byte"))
-                            setter.invoke(result, (byte) storedValue);
-                        else if (type.equals("int"))
-                            setter.invoke(result, (int) storedValue);
-                        else if (type.equals("float"))
-                            setter.invoke(result, (float) storedValue);
-                        else if (type.equals("long"))
-                            setter.invoke(result, (long) storedValue);
-                        else if (type.equals("double"))
-                            setter.invoke(result, (double) storedValue);
-                        else if (type.equals("boolean"))
-                            setter.invoke(result, (boolean) storedValue);
+                        if (field.getType().isEnum()) {
+                            Enum storedValueAsEnum = Enum.valueOf((Class<Enum>) field.getType(), storedValue.toString());
+                            setter.invoke(result, storedValueAsEnum);
+                        } else {
+                            setter.invoke(result, storedValue);
+                        }
+
                     } else {
                         v.getEdges(Direction.BOTH).forEach(edge -> {
                             if (name.equals(edge.getLabel())) {
                                 try {
                                     Vertex connectedVertex = edge.getVertex(Direction.IN);
-                                    String str = (String)connectedVertex.getProperty("name");
+                                    String str = connectedVertex.getId().toString();
                                     setter.invoke(result, str != null ? str : "???");
                                 } catch (Exception e) {
                                     log.error(e.getMessage(), e);

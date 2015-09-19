@@ -32,7 +32,6 @@ public class PutTodoResourceTest extends AbstractTodoResourceTest {
     }
 
     @Test
-    @Ignore
     public void todo_can_be_updated() {
         Todo todo = createTodo(aList);
 

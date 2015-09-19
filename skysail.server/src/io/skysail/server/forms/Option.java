@@ -5,6 +5,7 @@ import java.util.Map.Entry;
 import lombok.*;
 
 @Getter
+@ToString
 public class Option {
 
     private String key;

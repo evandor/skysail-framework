@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<repository increment="1442656458953" name="Release" xmlns="http://www.osgi.org/xmlns/repository/v1.0.0">
+<repository increment="1442660075580" name="Release" xmlns="http://www.osgi.org/xmlns/repository/v1.0.0">
   <resource>
     <capability namespace="osgi.identity">
       <attribute name="osgi.identity" value="skysail.api.documentation"/>
@@ -6606,6 +6606,54 @@
     </capability>
     <requirement namespace="osgi.wiring.package">
       <directive name="filter" value="(&amp;(osgi.wiring.package=io.skysail.api.text)(version&gt;=0.1.0)(!(version&gt;=1.0.0)))"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(&amp;(osgi.wiring.package=org.apache.commons.lang3)(version&gt;=3.1.0)(!(version&gt;=4.0.0)))"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(&amp;(osgi.wiring.package=org.slf4j)(version&gt;=1.7.0)(!(version&gt;=2.0.0)))"/>
+    </requirement>
+    <requirement namespace="osgi.ee">
+      <directive name="filter" value="(&amp;(osgi.ee=JavaSE)(version=1.8))"/>
+    </requirement>
+    <requirement namespace="osgi.extender">
+      <directive name="filter" value="(&amp;(osgi.extender=osgi.ds)(version&gt;=1.0.0)(!(version&gt;=2.0.0)))"/>
+      <directive name="effective" value="active"/>
+    </requirement>
+  </resource>
+  <resource>
+    <capability namespace="osgi.identity">
+      <attribute name="osgi.identity" value="skysail.server.text.markdown"/>
+      <attribute name="type" value="osgi.bundle"/>
+      <attribute name="version" type="Version" value="0.1.1.201509190553"/>
+    </capability>
+    <capability namespace="osgi.content">
+      <attribute name="osgi.content" value="ef3674cc2876555e59a5fe1a57737d4e0781836f4344c4fc09b51f5d7c63cd8d"/>
+      <attribute name="url" value="skysail.server.text.markdown/skysail.server.text.markdown-0.1.1.jar"/>
+      <attribute name="size" type="Long" value="74481"/>
+      <attribute name="mime" value="application/vnd.osgi.bundle"/>
+    </capability>
+    <capability namespace="osgi.wiring.bundle">
+      <attribute name="osgi.wiring.bundle" value="skysail.server.text.markdown"/>
+      <attribute name="bundle-version" type="Version" value="0.1.1.201509190553"/>
+    </capability>
+    <capability namespace="osgi.wiring.host">
+      <attribute name="osgi.wiring.host" value="skysail.server.text.markdown"/>
+      <attribute name="bundle-version" type="Version" value="0.1.1.201509190553"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.markdown4j"/>
+      <attribute name="version" type="Version" value="0.1.1"/>
+      <attribute name="bundle-symbolic-name" value="skysail.server.text.markdown"/>
+      <attribute name="bundle-version" type="Version" value="0.1.1.201509190553"/>
+    </capability>
+    <capability namespace="osgi.service">
+      <attribute name="objectClass" type="List&lt;String&gt;" value="io.skysail.api.text.TranslationRenderService"/>
+      <attribute name="service.ranking" value="100"/>
+      <directive name="uses" value="io.skysail.api.text"/>
+    </capability>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(&amp;(osgi.wiring.package=io.skysail.api.text)(version&gt;=2.0.0)(!(version&gt;=2.1.0)))"/>
     </requirement>
     <requirement namespace="osgi.wiring.package">
       <directive name="filter" value="(&amp;(osgi.wiring.package=org.apache.commons.lang3)(version&gt;=3.1.0)(!(version&gt;=4.0.0)))"/>

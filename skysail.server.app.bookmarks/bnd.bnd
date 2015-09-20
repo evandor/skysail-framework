@@ -152,7 +152,7 @@ Import-Package: org.osgi.framework,\
 	skysail.server.http;version=${skysail.server.http.version},\
 	skysail.server.plugins;version=latest,\
 	skysail.server.static;version=${skysail.server.static.version},\
-	skysail.server.text.markdown;version=latest,\
+	skysail.server.text.markdown;version=${skysail.server.text.markdown.version};,\
 	skysail.server.um.simple;version=${skysail.server.um.simple.version},\
 	slf4j.api;version='[1.7.7,1.7.8)',\
 	de.twentyeleven.skysail.org.antlr.stringtemplate-osgi;version=4.0.8,\

@@ -17,7 +17,7 @@ Private-Package:  \
 	skysail.server.plugins;version=latest,\
 	skysail.server.queryfilter;version=${skysail.server.queryfilter.version},\
 	skysail.server.static;version='[1.0,1.1)',\
-	skysail.server.text.markdown;version='[0.1,0.2)',\
+	skysail.server.text.markdown;version=${skysail.server.text.markdown.version};version='[0.1,0.2)',\
 	skysail.server.text.store.bundleresource;version='[0.1,0.2)',\
 	skysail.server.text.store.git;version='[0.1,0.2)',\
 	skysail.server.um.simple;version=${skysail.server.um.simple.version},\

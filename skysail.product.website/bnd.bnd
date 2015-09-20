@@ -22,7 +22,7 @@ Bundle-Name: SKYSAIL :: products :: website
     skysail.server.plugins;version=latest,\
     skysail.server.polymer;version=${skysail.server.polymer.version},\
     skysail.server.queryfilter;version=${skysail.server.queryfilter.version},\
-    skysail.server.text.markdown;version=latest,\
+    skysail.server.text.markdown;version=${skysail.server.text.markdown.version};,\
     skysail.server.text.store.bundleresource;version=latest,\
     skysail.server.text.store.git;version=latest,\
     skysail.server.um.simple;version=${skysail.server.um.simple.version},\

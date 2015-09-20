@@ -2,7 +2,7 @@ Bundle-Version: 0.1.0.${tstamp}
 Bundle-Name: SKYSAIL :: server :: app :: hive2hive
 Bundle-ActivationPolicy: lazy
 Include-Resource: lib=lib, templates=src;recursive:=true;filter:=*.st|*.stg
-### markdown is moving to skysail.server.text.markdown, remove here when done
+### markdown is moving to skysail.server.text.markdown;version=${skysail.server.text.markdown.version}, remove here when done
 Bundle-ClassPath: .,lib/org.hive2hive.client-1.2.2.jar,\
     lib/org.hive2hive.core-1.2.2.jar,\
     lib/tomp2p-core-5.0-Beta5.jar,lib/fst-2.23.jar,\

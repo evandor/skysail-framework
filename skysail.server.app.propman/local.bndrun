@@ -121,7 +121,7 @@
 	skysail.server.queryfilter;version={skysail.server.queryfilter.version},\
 	skysail.server.static;version=latest,\
 	skysail.server.text.asciidoc;version=latest,\
-	skysail.server.text.markdown;version=latest,\
+	skysail.server.text.markdown;version=${skysail.server.text.markdown.version};,\
 	skysail.server.text.store.bundleresource;version=latest,\
 	skysail.server.text.store.git;version=latest,\
 	skysail.server.um.simple;version=latest,\

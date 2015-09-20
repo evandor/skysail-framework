@@ -11,11 +11,12 @@ Private-Package:  \
 	osgi.cmpn;version=5.0,\
 	skysail.api;version=${skysail.api.version},\
     skysail.api.text;version=${skysail.api.text.version},\
+	skysail.server;version=${skysail.server.version},\
+	skysail.server.testsupport;version=${skysail.server.testsupport.version},\
 	org.restlet;version=${restlet.version},\
 	org.restlet.ext.raml;version=${restlet.version},\
 	lombok;version=1.16,\
 	biz.aQute.bnd.annotation;version=2.4,\
-	skysail.server;version=${skysail.server.version},\
 	slf4j.api;version=1.7,\
 	javax.validation.api;version=1.1,\
 	org.apache.commons.beanutils;version=1.9,\
@@ -26,7 +27,6 @@ Private-Package:  \
 	org.eclipse.jetty.server;version=9.2,\
 	com.springsource.org.junit;version=4.11,\
 	org.mockito.mockito-all;version=1.10,\
-	skysail.server.testsupport;version=${skysail.server.testsupport.version},\
 	com.googlecode.concurrentlinkedhashmap.lru;version=1.4
 
 Service-Component:  \

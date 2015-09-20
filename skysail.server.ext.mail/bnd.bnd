@@ -1,5 +1,11 @@
 Bundle-Version: 1.0.5.${tstamp}
 -buildpath:  \
+	skysail.api;version=${skysail.api.version},\
+    skysail.api.search;version=${skysail.api.search.version},\
+    skysail.api.text;version=${skysail.api.text.version},\
+	skysail.server.testsupport;version=${skysail.server.testsupport.version},\
+	skysail.server;version=${skysail.server.version},\
+    skysail.server.db;version=${skysail.server.db.version},\
 	com.sun.mail.javax.mail;version=1.5,\
 	biz.aQute.bnd.annotation;version=1.52,\
 	javax.validation.api;version=1.1,\
@@ -10,12 +16,6 @@ Bundle-Version: 1.0.5.${tstamp}
 	osgi.core;version=5.0,\
 	javax.persistence;version=2.0,\
 	de.twentyeleven.skysail.org.hamcrest.hamcrest-all-osgi;version=1.3,\
-	skysail.api;version=${skysail.api.version},\
-    skysail.api.search;version=${skysail.api.search.version},\
-    skysail.api.text;version=${skysail.api.text.version},\
-	skysail.server.testsupport;version=${skysail.server.testsupport.version},\
-	skysail.server;version=${skysail.server.version},\
-    skysail.server.db;version=${skysail.server.db.version},\
 	org.apache.commons.lang,\
 	etm.core;version=1.2,\
 	org.apache.commons.beanutils;version=1.9,\

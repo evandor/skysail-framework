@@ -133,7 +133,7 @@
 	skysail.server.app.todos;version=latest,\
 	skysail.server.app.designer;version=latest,\
 	skysail.server.app.svgedit;version=latest,\
-	skysail.server.text.markdown;version=latest,\
+	skysail.server.text.markdown;version=${skysail.server.text.markdown.version};,\
 	skysail.server.text.store.bundleresource;version=latest,\
 	skysail.server.text.store.git;version=latest,\
 	skysail.server.um.simple;version=latest,\

@@ -142,7 +142,7 @@ Private-Package:  \
 	skysail.server.plugins;version=latest,\
     skysail.server.queryfilter;version=${skysail.server.queryfilter.version},\
 	skysail.server.static;version=${skysail.server.static.version},\
-	skysail.server.text.markdown;version=latest,\
+	skysail.server.text.markdown;version=${skysail.server.text.markdown.version};,\
 	skysail.server.um.simple;version=latest,\
 	slf4j.api;version='[1.7.7,1.7.8)',\
 	de.twentyeleven.skysail.org.antlr.stringtemplate-osgi;version=4.0.8,\

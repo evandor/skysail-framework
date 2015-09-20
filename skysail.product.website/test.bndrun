@@ -120,7 +120,7 @@
 	skysail.server.plugins;version=latest,\
 	skysail.server.documentation;version=latest,\
 	skysail.server.app.tutorial.model2rest;version=latest,\
-	skysail.server.text.markdown;version=latest,\
+	skysail.server.text.markdown;version=${skysail.server.text.markdown.version};,\
 	skysail.server.text.store.bundleresource;version=latest,\
 	skysail.server.text.store.git;version=latest,\
 	skysail.server.um.simple;version=latest,\

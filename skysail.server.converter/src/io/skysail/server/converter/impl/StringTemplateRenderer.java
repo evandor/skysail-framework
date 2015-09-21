@@ -28,7 +28,7 @@ import org.restlet.resource.Resource;
 import org.stringtemplate.v4.ST;
 
 import de.twenty11.skysail.server.core.restlet.ResourceContextId;
-import de.twenty11.skysail.server.services.*;
+import de.twenty11.skysail.server.services.MenuItemProvider;
 
 @Slf4j
 public class StringTemplateRenderer {
@@ -74,18 +74,18 @@ public class StringTemplateRenderer {
     private STGroupBundleDir createSringTemplateGroup(Resource resource, String mediaType) {
         SkysailApplication currentApplication = (SkysailApplication) resource.getApplication();
         Bundle appBundle = currentApplication.getBundle();
-        String resourcePath = ("/templates/" + mediaType).replace("/*", "");
-        log.debug("reading templates from resource path '{}'", resourcePath);
+        //String resourcePath = ("/templates/" + mediaType).replace("/*", "");
+        //log.debug("reading templates from resource path '{}'", resourcePath);
         URL templatesResource = appBundle.getResource("/templates");
         if (templatesResource != null) {
             STGroupBundleDir stGroup = new STGroupBundleDir(appBundle, resource, "/templates");
-            importTemplate("skysail.server.converter", resource, appBundle, resourcePath, stGroup);
-            importTemplate("skysail.server.documentation", resource, appBundle, resourcePath, stGroup);
+            importTemplate("skysail.server.converter", resource, appBundle, "/templates", stGroup, mediaType);
+            importTemplate("skysail.server.documentation", resource, appBundle, "/templates", stGroup, mediaType);
             return stGroup;
 
         } else {
             Optional<Bundle> thisBundle = findBundle(appBundle, "skysail.server.converter");
-            return new STGroupBundleDir(thisBundle.get(), resource, resourcePath);
+            return new STGroupBundleDir(thisBundle.get(), resource, "/templates");
         }
     }
 
@@ -166,14 +166,30 @@ public class StringTemplateRenderer {
     }
 
     private void importTemplate(String symbolicName, Resource resource, Bundle appBundle, String resourcePath,
-            STGroupBundleDir stGroup) {
+            STGroupBundleDir stGroup, String mediaType) {
         Optional<Bundle> theBundle = findBundle(appBundle, symbolicName);
         if (theBundle.isPresent()) {
-            if (theBundle.get().getResource(resourcePath) != null) {
-                importedGroupBundleDir = new STGroupBundleDir(theBundle.get(), resource, resourcePath);
-                stGroup.importTemplates(importedGroupBundleDir);
-            }
+            importTemplates(resource, resourcePath + "/common", stGroup, theBundle);
+            importTemplates(resource, resourcePath + "/common/head", stGroup, theBundle);
+            importTemplates(resource, resourcePath + "/common/navigation", stGroup, theBundle);
+            String mediaTypedResourcePath = (resourcePath + "/" + mediaType).replace("/*", "");
+            importTemplates(resource, mediaTypedResourcePath , stGroup, theBundle);
+            importTemplates(resource, mediaTypedResourcePath + "/head", stGroup, theBundle);
+            importTemplates(resource, mediaTypedResourcePath + "/navigation", stGroup, theBundle);
         }
+    }
+
+    private void importTemplates(Resource resource, String resourcePath, STGroupBundleDir stGroup,
+            Optional<Bundle> theBundle) {
+        if (resourcePathExists(resourcePath, theBundle)) {
+            importedGroupBundleDir = new STGroupBundleDir(theBundle.get(), resource, resourcePath);
+            stGroup.importTemplates(importedGroupBundleDir);
+            log.debug("importing templates from '{}'", resourcePath);
+        }
+    }
+
+    private boolean resourcePathExists(String resourcePath, Optional<Bundle> theBundle) {
+        return theBundle.get().getResource(resourcePath) != null;
     }
 
     private synchronized String getProductName() {

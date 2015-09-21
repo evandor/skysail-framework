@@ -1,28 +1,21 @@
 package io.skysail.server.converter.test;
 
-import static org.hamcrest.CoreMatchers.equalTo;
-import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.assertThat;
 import io.skysail.server.converter.HtmlConverter;
 import io.skysail.server.restlet.resources.EntityServerResource;
 
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
-import org.junit.Before;
-import org.junit.Ignore;
-import org.junit.Rule;
-import org.junit.Test;
+import org.junit.*;
 import org.junit.rules.ExpectedException;
 import org.mockito.Mockito;
 import org.restlet.data.MediaType;
 import org.restlet.engine.resource.VariantInfo;
-import org.restlet.representation.Representation;
-import org.restlet.representation.Variant;
+import org.restlet.representation.*;
 import org.restlet.resource.Resource;
 
-import de.twenty11.skysail.server.services.MenuItem;
-import de.twenty11.skysail.server.services.MenuItemProvider;
+import de.twenty11.skysail.server.services.*;
 
 public class HtmlConverterTest {
 
@@ -76,7 +69,7 @@ public class HtmlConverterTest {
     public void returns_variants() throws Exception {
         Class<?> source = String.class;
         List<VariantInfo> variants = htmlConverter.getVariants(source);
-        assertThat(variants.size(), is(2));
+        assertThat(variants.size(), is(3));
         assertThat(variants.get(0).getMediaType().getName(), is(equalTo("treeform/*")));
     }
 

@@ -118,11 +118,10 @@ public abstract class SkysailApplication extends RamlApplication implements Appl
      *
      * {@link #createInboundRoot()}
      */
-    public static final MediaType SKYSAIL_SERVER_SENT_EVENTS = MediaType.register("text/event-stream",
-            "Server Side Events");
-    public static final MediaType SKYSAIL_TREE_FORM = MediaType
-            .register("treeform", "Html Form as tree representation");
+    public static final MediaType SKYSAIL_SERVER_SENT_EVENTS = MediaType.register("text/event-stream","Server Side Events");
+    public static final MediaType SKYSAIL_TREE_FORM = MediaType.register("treeform", "Html Form as tree representation");
     public static final MediaType SKYSAIL_MAILTO_MEDIATYPE = MediaType.register("mailto", "href mailto target");
+    public static final MediaType SKYSAIL_TIMELINE_MEDIATYPE = MediaType.register("timeline", "vis.js timeline representation");
 
     protected static AtomicReference<ServiceListProvider> serviceListProviderRef = new AtomicReference<>();
 
@@ -303,6 +302,7 @@ public abstract class SkysailApplication extends RamlApplication implements Appl
         getMetadataService().addExtension("treeform", SKYSAIL_TREE_FORM);
 //        getMetadataService().addExtension("graph", SKYSAIL_GRAPH);
         getMetadataService().addExtension("mailto", SKYSAIL_MAILTO_MEDIATYPE);
+        getMetadataService().addExtension("timeline", SKYSAIL_TIMELINE_MEDIATYPE);
 
         // see
         // http://nexnet.wordpress.com/2010/09/29/clap-protocol-in-restlet-and-osgi/

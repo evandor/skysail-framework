@@ -58,6 +58,7 @@ public class HtmlConverter extends ConverterHelper implements OsgiConverterHelpe
         mediaTypesMatch.put(MediaType.TEXT_HTML, 0.95F);
         mediaTypesMatch.put(SkysailApplication.SKYSAIL_TREE_FORM, 1.0F);
         //mediaTypesMatch.put(SkysailApplication.SKYSAIL_MAILTO_MEDIATYPE, 1.0F);
+        mediaTypesMatch.put(SkysailApplication.SKYSAIL_TIMELINE_MEDIATYPE, 1.0F);
     }
 
     // --- Menu Providers ------------------------------------------------
@@ -130,7 +131,11 @@ public class HtmlConverter extends ConverterHelper implements OsgiConverterHelpe
 
     @Override
     public List<VariantInfo> getVariants(Class<?> source) {
-        return Arrays.asList(new VariantInfo(SkysailApplication.SKYSAIL_TREE_FORM), new VariantInfo(SkysailApplication.SKYSAIL_MAILTO_MEDIATYPE));
+        return Arrays.asList(
+                new VariantInfo(SkysailApplication.SKYSAIL_TREE_FORM),
+                new VariantInfo(SkysailApplication.SKYSAIL_MAILTO_MEDIATYPE),
+                new VariantInfo(SkysailApplication.SKYSAIL_TIMELINE_MEDIATYPE)
+        );
     }
 
     @Override

@@ -1,0 +1,23 @@
+mousetrap() ::= <<
+
+<!-- mousetrap -->
+<script src="/static/js/mousetrap/mousetrap.min.js"></script>
+
+<script type="text/javascript">
+    Mousetrap.bind('command+s', function(e) {
+        alert("keyboard shortcut for save not yet implemented");
+    });
+
+    function inspect() {
+        var url = location.href;
+        if (url.indexOf('?') !== -1){
+            url = (url + "&_inspect=true");
+        } else {
+            url = (url + "?_inspect=true");
+        }
+        location.replace(url);
+        //location.reload(true);
+    }
+</script>
+
+>>

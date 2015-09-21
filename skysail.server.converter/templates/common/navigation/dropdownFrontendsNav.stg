@@ -1,0 +1,14 @@
+dropdownFrontendsNav(services) ::= <<
+    $if(services.frontendMenuItems)$
+    <li class="dropdown">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown">Frontends <span class="caret"></span></a>
+      <ul class="dropdown-menu" role="menu">
+        $services.frontendMenuItems:{ item | $frontendsItem(item)$}$
+      </ul>
+    </li>
+    $endif$
+>>
+
+frontendsItem(item) ::= <<
+        <li><a href='$item.link$'><img src='$item.applicationImage$' width='16px' alt=''>&nbsp;$item.name$</a></li>
+>>

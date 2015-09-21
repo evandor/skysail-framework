@@ -1,0 +1,21 @@
+select2(formFields) ::= <<
+
+<!-- select2 lib -->
+<script type="text/javascript" src="/webapp/js/select2.js" async></script>
+<link rel="stylesheet" href="/webapp/css/select2.css">
+<link rel="stylesheet" href="/webapp/css/select2-bootstrap.css">
+
+<script type="text/javascript">
+  $formFields:{ formField | $handleSelect2Javascript(formField)$}$
+</script>
+>>
+
+handleSelect2Javascript(formField) ::= <<
+  $if(formField.tagsInputType)$
+    \$(document).ready(function() {
+      \$('#$formField.fieldAnnotation.name$').select2(
+        {tags:['red', 'green', 'blue'], placeholder: "choose or type tags", width:"100%"}
+      );
+    });
+  $endif$
+>>

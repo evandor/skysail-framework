@@ -84,6 +84,7 @@ public class TodoApplication extends SkysailApplication implements ApplicationPr
         router.attach(new RouteBuilder("/Lists/{"+LIST_ID+"}/ArchivedTodos", ArchivedTodosResource.class));
 
         router.attach(new RouteBuilder("/OverdueTodos", OverdueTodosResource.class));
+        router.attach(new RouteBuilder("/TodosTimeline", TodosTimelineResource.class));
 
         router.attach(new RouteBuilder("/Todos/_columns", ListAsColumnsResource.class));
 
@@ -142,6 +143,7 @@ public class TodoApplication extends SkysailApplication implements ApplicationPr
         result.add(ListsResource.class);
         result.add(ListAsColumnsResource.class);
         result.add(OverdueTodosResource.class);
+        result.add(TodosTimelineResource.class);
         return result;
     }
 

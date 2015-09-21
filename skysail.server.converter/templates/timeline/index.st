@@ -1,4 +1,4 @@
-indexSpa(user, messages, converter, model) ::= <<
+index(user, messages, converter, model) ::= <<
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -8,13 +8,12 @@ indexSpa(user, messages, converter, model) ::= <<
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>$messages.("productName").translated$ (SPA)</title>
+    <title>$messages.("productName").translated$</title>
 
     $pace()$
     $jquery()$
     $bootstrap()$
-    $polymer()$
-    $select2()$
+    $select2(model.formfields)$
     $animate()$
     $jstree()$
     $mousetrap()$
@@ -25,29 +24,26 @@ indexSpa(user, messages, converter, model) ::= <<
 
   </head>
 
-  <body role="document" fullbreed unresolved>
+  <body role="document">
 
-    <!-- Fixed navbar -->
     <!-- Fixed navbar (upper navigation)-->
     <nav class="navbar navbar-inverse navbar-fixed-top">
       $navbar(user, messages, converter, model)$
     </nav>
 
-    <br><br><br>
+    <div class="container-fluid" style="padding-top:55px;">
 
-    <div class="container-fluid">
-
-      $mainContentSpa(user, converter, messages, model)$
+      $mainContent(user, converter, messages, model)$
 
       $if(converter.debug && user.principal)$
-        $debugSpa(messages, model)$
+        $debug(messages, model)$
       $endif$
 
     </div>
 
     <footer class="footer">
-      <div class="container4footer">
-        <p class="text-muted"><div id="output"></div><div style="text-align:right;"><small>resource processed in $model.headers.("X-Duration")$ ms</small></div></p>
+      <div class="container4footer" style="border-top: 1px dotted #a0a0a0;">
+        <p class="text-muted"><div id="output"></div></p>
       </div>
     </footer>
 
@@ -59,16 +55,7 @@ indexSpa(user, messages, converter, model) ::= <<
         }
 
         if (typeof(EventSource) !== "undefined") {
-            // disabled for now
-        	//var source = new EventSource("/SSE");
-            //source.onmessage = function(event) {
-            //    var msgArray = event.data.split('\n');
-            //    var timeout = Math.round(5000 / msgArray.length);
-        	//	for (var i = 0; i < msgArray.length; i++) {
-        	//		console.log(msgArray[i] + " " + (i * timeout));
-        	//		setTimeout(printMe, i * timeout, msgArray[i]);
-        	//	}
-            //};
+
         } else {
             output.innerHTML = "<!-- SSE not supported -->";
         }
@@ -80,6 +67,7 @@ indexSpa(user, messages, converter, model) ::= <<
     <script src="/webapp/js/bootstrap.min.js"></script>
     $notifications(converter.notifications)$
     $select2JsEndOfBody(model.formfields)$
+
 
   </body>
 </html>

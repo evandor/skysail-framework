@@ -1,0 +1,7 @@
+pace() ::= <<
+
+<!-- pace lib -->
+<script type="text/javascript" src="/webapp/js/pace/pace-1.0.0.min.js" async></script>
+<link rel="stylesheet" href="/webapp/css/pace/pace-minimal.css">
+
+>>

@@ -111,7 +111,7 @@ public abstract class ListServerResource<T extends Identifiable> extends Skysail
      *
      * @return the list of entities in html, csv or treeform format
      */
-    @Get("html|json|yaml|xml|csv")
+    @Get("html|json|yaml|xml|csv|timeline")
     // treeform, csv:broken http://stackoverflow.com/questions/24569318/writing-multi-line-csv-with-jacksonrepresentation
     // https://github.com/restlet/restlet-framework-java/issues/928
     @API(desc = "lists the entities according to the media type provided")

@@ -1,17 +1,13 @@
 package de.twenty11.skysail.server.um.domain;
 
-import io.skysail.api.forms.Field;
-import io.skysail.api.forms.InputType;
+import io.skysail.api.domain.Identifiable;
+import io.skysail.api.forms.*;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.*;
 
-public class SkysailUser {
+public class SkysailUser implements Identifiable {
 
     /**
      * this username is reserved; altering any data should be prevented by the
@@ -86,5 +82,14 @@ public class SkysailUser {
 
     public void setRid(Object rid) {
         this.rid = rid;
+    }
+
+    @Override
+    public String getId() {
+        return null;
+    }
+
+    @Override
+    public void setId(String id) {
     }
 }

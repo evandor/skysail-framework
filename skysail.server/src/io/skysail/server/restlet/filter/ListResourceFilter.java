@@ -1,12 +1,13 @@
 package io.skysail.server.restlet.filter;
 
+import io.skysail.api.domain.Identifiable;
 import io.skysail.server.restlet.resources.ListServerResource;
 
 import org.restlet.Request;
 
 import de.twenty11.skysail.server.core.restlet.ResponseWrapper;
 
-public interface ListResourceFilter<T> {
+public interface ListResourceFilter<T extends Identifiable> {
 
     public FilterResult beforeHandle(ListServerResource<T> resource, Request request, ResponseWrapper<T> response);
 

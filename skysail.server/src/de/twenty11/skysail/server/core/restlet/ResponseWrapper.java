@@ -1,11 +1,12 @@
 package de.twenty11.skysail.server.core.restlet;
 
+import io.skysail.api.domain.Identifiable;
 import io.skysail.api.responses.ConstraintViolationsResponse;
 
 import org.codehaus.jettison.json.JSONObject;
 import org.restlet.Response;
 
-public class ResponseWrapper<T> {
+public class ResponseWrapper<T extends Identifiable> implements Wrapper {
 
     private T entity;
 
@@ -34,6 +35,10 @@ public class ResponseWrapper<T> {
         this.entity = entity;
     }
 
+//    public void setListEntity(List<T> listEntity) {
+//        this.entity = listEntity;
+//    }
+
     public void setResponse(Response response) {
         this.response = response;
     }
@@ -42,7 +47,8 @@ public class ResponseWrapper<T> {
         return response;
     }
 
-    public void setConstraintViolationResponse(ConstraintViolationsResponse<T> cvr) {
+    @Override
+    public void setConstraintViolationResponse(ConstraintViolationsResponse cvr) {
         this.constraintViolationsResponse = cvr;
     }
 
@@ -62,4 +68,10 @@ public class ResponseWrapper<T> {
     public JSONObject getData() {
         return data;
     }
+
+    @Override
+    public void setEntity(Object entity) {
+        this.entity = (T)entity;
+    }
+
 }

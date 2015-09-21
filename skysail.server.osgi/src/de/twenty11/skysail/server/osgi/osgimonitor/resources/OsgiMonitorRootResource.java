@@ -1,5 +1,6 @@
 package de.twenty11.skysail.server.osgi.osgimonitor.resources;
 
+import io.skysail.api.domain.Identifiable;
 import io.skysail.api.links.Link;
 import io.skysail.server.restlet.resources.ListServerResource;
 
@@ -11,7 +12,7 @@ import de.twenty11.skysail.server.core.restlet.ResourceContextId;
  * Restlet Root Resource for dbViewer application.
  *
  */
-public class OsgiMonitorRootResource extends ListServerResource<String> {
+public class OsgiMonitorRootResource extends ListServerResource<Identifiable> {
 
     public OsgiMonitorRootResource() {
         super(null);
@@ -20,7 +21,7 @@ public class OsgiMonitorRootResource extends ListServerResource<String> {
 
 
     @Override
-    public List<String> getEntity() {
+    public List<Identifiable> getEntity() {
         return Collections.emptyList();
     }
 

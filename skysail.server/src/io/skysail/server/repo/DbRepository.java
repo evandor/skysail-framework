@@ -1,4 +1,4 @@
-package io.skysail.server.db;
+package io.skysail.server.repo;
 
 /**
  * marker interface, typically defined like this:
@@ -22,6 +22,6 @@ package io.skysail.server.db;
  * </code></pre>
  *
  */
-public interface DbRepository {
+public interface DbRepository extends Repository {
 
 }

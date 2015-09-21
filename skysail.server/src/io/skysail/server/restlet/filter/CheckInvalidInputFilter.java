@@ -1,5 +1,6 @@
 package io.skysail.server.restlet.filter;
 
+import io.skysail.api.domain.Identifiable;
 import io.skysail.api.forms.*;
 import io.skysail.server.app.SkysailApplication;
 import io.skysail.server.restlet.resources.*;
@@ -8,30 +9,29 @@ import io.skysail.server.utils.ReflectionUtils;
 import java.lang.reflect.Field;
 import java.util.List;
 
+import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 import org.owasp.html.*;
 import org.restlet.*;
 import org.restlet.data.*;
 
-import de.twenty11.skysail.server.core.restlet.ResponseWrapper;
+import de.twenty11.skysail.server.core.restlet.Wrapper;
 
 @Slf4j
-public class CheckInvalidInputFilter<R extends SkysailServerResource<T>, T> extends AbstractResourceFilter<R, T> {
+@NoArgsConstructor
+public class CheckInvalidInputFilter<R extends SkysailServerResource<?>, T extends Identifiable> extends AbstractResourceFilter<R, T> {
 
     private static HtmlPolicyBuilder noHtmlPolicyBuilder = new HtmlPolicyBuilder();
 
     private SkysailApplication application;
-
-    public CheckInvalidInputFilter() {
-    }
 
     public CheckInvalidInputFilter(SkysailApplication application) {
         this.application = application;
     }
 
     @Override
-    public FilterResult doHandle(R resource, ResponseWrapper<T> responseWrapper) {
+    public FilterResult doHandle(R resource, Wrapper responseWrapper) {
         log.debug("entering {}#doHandle", this.getClass().getSimpleName());
 
         // do in "before"?

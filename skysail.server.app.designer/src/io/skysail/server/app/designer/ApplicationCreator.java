@@ -5,7 +5,8 @@ import io.skysail.server.app.designer.application.Application;
 import io.skysail.server.app.designer.codegen.*;
 import io.skysail.server.app.designer.model.*;
 import io.skysail.server.app.designer.repo.DesignerRepository;
-import io.skysail.server.db.*;
+import io.skysail.server.db.DbService;
+import io.skysail.server.repo.DbRepository;
 import io.skysail.server.utils.BundleUtils;
 
 import java.io.*;
@@ -46,7 +47,7 @@ public class ApplicationCreator {
     }
 
     public boolean create(AtomicReference<EventAdmin> eventAdminRef) {
-        
+
         try {
             createProjectIfNeeded();
         } catch (IOException e1) {
@@ -56,12 +57,12 @@ public class ApplicationCreator {
         InMemoryJavaCompiler.reset();
 
         List<RouteModel> routeModels = new EntityCreator(applicationModel).create(stGroup);
-        
+
         entityClassNames.addAll(applicationModel.getEntityModels().stream().map(EntityModel::getClassName).collect(Collectors.toList()));
         entityNames.addAll(applicationModel.getEntityModels().stream().map(EntityModel::getEntityName).collect(Collectors.toList()));
-        
+
         repositoryClassName = new RepositoryCreator(applicationModel).create(stGroup);
-        
+
         skysailApplicationCompiler = new SkysailApplicationCompiler2(applicationModel, stGroup);
         skysailApplicationCompiler.createApplication(routeModels);
         skysailApplicationCompiler.compile(bundle.getBundleContext());
@@ -111,12 +112,12 @@ public class ApplicationCreator {
                 .info(msg)//
                 .fire();
     }
-    
+
     private void createProjectIfNeeded() throws IOException {
         String path = applicationModel.getPath() + "/" + applicationModel.getProjectName();
         path = path.replace("//", "/");
         new File(Paths.get(path).toString()).mkdirs();
-        
+
         ST project = getStringTemplateIndex("project");
         project.add("projectname", applicationModel.getProjectName());
         Files.write(Paths.get(path + "/.project"), project.render().getBytes());
@@ -148,12 +149,12 @@ public class ApplicationCreator {
             e.printStackTrace();
         }
     }
-    
+
     private ST getStringTemplateIndex(String root) {
         ST javafile = stGroup.getInstanceOf(root);
         //javafile.add("application", applicationModel);
         return javafile;
     }
-   
+
 
 }

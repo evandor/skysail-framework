@@ -1,10 +1,11 @@
 new in
 
-1.2.0
+2.0.0
 -----
 
  * fix for getting POJOs by ID from db
  * new method unsetDbService(DbService dbService) in GraphDbService
+ * moved DbRepository marker interface to skysail.server
 
 1.1.0
 -----

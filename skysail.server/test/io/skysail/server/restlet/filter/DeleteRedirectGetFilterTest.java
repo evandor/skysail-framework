@@ -1,25 +1,20 @@
 package io.skysail.server.restlet.filter;
 
-import io.skysail.server.restlet.filter.DeleteRedirectGetFilter;
+import static org.hamcrest.Matchers.*;
+import static org.junit.Assert.assertThat;
+import io.skysail.api.domain.Identifiable;
 import io.skysail.server.restlet.resources.EntityServerResource;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.*;
 import org.mockito.Mockito;
-import org.restlet.Request;
-import org.restlet.Response;
+import org.restlet.*;
 import org.restlet.data.Status;
 
-import static org.hamcrest.Matchers.equalTo;
-import static org.hamcrest.Matchers.is;
-import static org.hamcrest.Matchers.nullValue;
-import static org.junit.Assert.*;
-
 public class DeleteRedirectGetFilterTest {
-	
-	private DeleteRedirectGetFilter<EntityServerResource<String>,String> filter;
+
+	private DeleteRedirectGetFilter<EntityServerResource<Identifiable>,Identifiable> filter;
 	private Request request;
-	private EntityServerResource<String> resource;
+	private EntityServerResource<Identifiable> resource;
 	private Response response;
 
 	@SuppressWarnings("unchecked")
@@ -30,7 +25,7 @@ public class DeleteRedirectGetFilterTest {
 		request = Mockito.mock(Request.class);
 		response = new Response(request);
 	}
-	
+
 	@Test
 	public void does_not_redirect_by_default()  {
 		filter.handle(resource, response);

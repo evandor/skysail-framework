@@ -1,9 +1,8 @@
 package io.skysail.server.restlet.filter;
 
-import io.skysail.api.favorites.Favorite;
-import io.skysail.api.favorites.FavoritesService;
-import io.skysail.api.links.Link;
-import io.skysail.api.links.LinkRole;
+import io.skysail.api.domain.Identifiable;
+import io.skysail.api.favorites.*;
+import io.skysail.api.links.*;
 import io.skysail.server.app.SkysailApplication;
 import io.skysail.server.restlet.resources.SkysailServerResource;
 import io.skysail.server.utils.CookiesUtils;
@@ -11,16 +10,15 @@ import io.skysail.server.utils.CookiesUtils;
 import java.util.List;
 
 import org.apache.shiro.SecurityUtils;
-import org.restlet.Application;
-import org.restlet.Request;
+import org.restlet.*;
 
 import de.twenty11.skysail.server.Constants;
-import de.twenty11.skysail.server.core.restlet.ResponseWrapper;
+import de.twenty11.skysail.server.core.restlet.Wrapper;
 
-public class CheckFavoritesFilter<R extends SkysailServerResource<T>, T> extends AbstractResourceFilter<R, T> {
+public class CheckFavoritesFilter<R extends SkysailServerResource<?>, T extends Identifiable> extends AbstractResourceFilter<R, T> {
 
     @Override
-    protected FilterResult beforeHandle(R resource, ResponseWrapper<T> responseWrapper) {
+    protected FilterResult beforeHandle(R resource, Wrapper responseWrapper) {
         super.beforeHandle(resource, responseWrapper);
 
         Application app = resource.getApplication();

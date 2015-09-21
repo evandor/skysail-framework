@@ -1,19 +1,19 @@
 package de.twenty11.skysail.server.ext.mail.mails;
 
-import io.skysail.api.forms.Field;
-import io.skysail.api.forms.InputType;
+import io.skysail.api.domain.Identifiable;
+import io.skysail.api.forms.*;
 
 import javax.validation.constraints.NotNull;
 
-public class Message {
-	
+public class Message implements Identifiable {
+
 	@Field
 	private String subject;
-	
+
 	@Field
 	@NotNull
 	private String to;
-	
+
 	@Field(inputType=InputType.TEXTAREA)
 	private String body;
 
@@ -40,5 +40,14 @@ public class Message {
 	public void setBody(String body) {
 		this.body = body;
 	}
+
+    @Override
+    public String getId() {
+        return null;
+    }
+
+    @Override
+    public void setId(String id) {
+    }
 
 }

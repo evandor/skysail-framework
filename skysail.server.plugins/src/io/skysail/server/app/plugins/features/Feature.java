@@ -1,16 +1,17 @@
 package io.skysail.server.app.plugins.features;
 
-import java.util.ArrayList;
-import java.util.List;
+import io.skysail.api.domain.Identifiable;
 
-public class Feature {
+import java.util.*;
+
+public class Feature implements Identifiable {
 
     private String id;
-    
+
 	private String name;
-	
+
 	private String version;
-	
+
 	private FeatureStatus status;
 
     private List<String> locations = new ArrayList<>();
@@ -18,7 +19,7 @@ public class Feature {
     private String landingPage;
 
     private boolean openInNewWindow;
-    
+
 	public Feature(String location) {
 		this.locations.add(location);
     }
@@ -29,11 +30,11 @@ public class Feature {
 	public String getName() {
 		return name;
 	}
-	
+
 	public void setId(String id) {
         this.id = id;
     }
-	
+
 	public String getId() {
         return id;
     }
@@ -61,15 +62,15 @@ public class Feature {
     public void addBundleLocation(String location) {
         locations .add(location);
     }
-	
+
 	public List<String> getLocations() {
         return locations;
     }
-	
+
 	public String getLandingPage() {
         return landingPage;
     }
-	
+
 	public void setLandingPage(String landingPage) {
         this.landingPage = landingPage;
     }
@@ -77,7 +78,7 @@ public class Feature {
     public boolean isOpenInNewWindow() {
         return openInNewWindow;
     }
-    
+
     public void setOpenInNewWindow(boolean openInNewWindow) {
         this.openInNewWindow = openInNewWindow;
     }

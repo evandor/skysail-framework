@@ -1,36 +1,32 @@
 package io.skysail.server.restlet.filter;
 
-import io.skysail.server.restlet.resources.EntityServerResource;
-import io.skysail.server.restlet.resources.PostEntityServerResource;
-import io.skysail.server.restlet.resources.PutEntityServerResource;
-import io.skysail.server.restlet.resources.SkysailServerResource;
+import io.skysail.api.domain.Identifiable;
+import io.skysail.server.restlet.resources.*;
 
 import java.text.ParseException;
 
-import org.restlet.Request;
-import org.restlet.Response;
+import org.restlet.*;
 import org.restlet.data.Form;
 import org.restlet.routing.Filter;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.slf4j.*;
 
-import de.twenty11.skysail.server.core.restlet.ResponseWrapper;
+import de.twenty11.skysail.server.core.restlet.*;
 
 /**
  * The abstract base class for Skysail Resource Filters.
- * 
+ *
  * The approach is similar to what happens in the Restlet {@link Filter} system,
  * but happens after the resource (which handles the request) has been found.
  * Filtering therefore is based on a {@link SkysailServerResource}, the incoming
  * {@link Request} and the outgoing (wrapped) response.
- * 
- * 
+ *
+ *
  * @param <R>
  *            a {@link SkysailServerResource} with T as Type Parameter
  * @param <T>
  *            a type representing an Entity
  */
-public abstract class AbstractResourceFilter<R extends SkysailServerResource<T>, T> {
+public abstract class AbstractResourceFilter<R extends SkysailServerResource<?>, T extends Identifiable> {
 
     private static final Logger logger = LoggerFactory.getLogger(AbstractResourceFilter.class);
 
@@ -38,21 +34,27 @@ public abstract class AbstractResourceFilter<R extends SkysailServerResource<T>,
 
     /**
      * The entry point when using Resource Filters.
-     * 
+     *
      * @param resource
      *            a {@link SkysailServerResource} object
      * @return the result of the processing
      */
     public final ResponseWrapper<T> handle(R resource, Response response) {
         ResponseWrapper<T> responseWrapper = new ResponseWrapper<T>(response);
-        handle(resource, responseWrapper);
+        handleMe(resource, responseWrapper);
+        return responseWrapper;
+    }
+
+    public final ListResponseWrapper<T> handleList(R resource, Response response) {
+        ListResponseWrapper<T> responseWrapper = new ListResponseWrapper<T>(response);
+        handleMe(resource, responseWrapper);
         return responseWrapper;
     }
 
     /**
      * pre-processing logic, called before the control is passed to the doHandle
      * Method.
-     * 
+     *
      * @param resource
      *            a {@link SkysailServerResource} object
      * @param response
@@ -60,13 +62,13 @@ public abstract class AbstractResourceFilter<R extends SkysailServerResource<T>,
      * @return the {@link FilterResult} of the processing, indicating whether to
      *         Continue, Skip or Stop.
      */
-    protected FilterResult beforeHandle(R resource, ResponseWrapper<T> responseWrapper) {
+    protected FilterResult beforeHandle(R resource, Wrapper responseWrapper) {
         return FilterResult.CONTINUE;
     }
 
     /**
      * the main processing logic
-     * 
+     *
      * @param resource
      *            a {@link SkysailServerResource} object
      * @param responseWrapper
@@ -74,11 +76,11 @@ public abstract class AbstractResourceFilter<R extends SkysailServerResource<T>,
      * @return the {@link FilterResult} of the processing, indicating whether to
      *         Continue, Skip or Stop.
      */
-    protected FilterResult doHandle(R resource, ResponseWrapper<T> responseWrapper) {
+    protected FilterResult doHandle(R resource, Wrapper responseWrapper) {
         AbstractResourceFilter<R, T> next = getNext();
         if (next != null) {
             logger.debug("next filter in chain: {}", next.getClass().getSimpleName());
-            next.handle(resource, responseWrapper);
+            next.handleMe(resource, responseWrapper);
         }
         return FilterResult.CONTINUE;
     }
@@ -86,17 +88,17 @@ public abstract class AbstractResourceFilter<R extends SkysailServerResource<T>,
     /**
      * post-processing logic, called before the control is passed to the
      * doHandle Method.
-     * 
+     *
      * @param resource
      *            a {@link SkysailServerResource} object
      * @param response
      *            the response to update
      */
-    protected void afterHandle(R resource, ResponseWrapper<T> responseWrapper) {
+    protected void afterHandle(R resource, Wrapper responseWrapper) {
         // default implementation doesn't do anything
     }
 
-    private final void handle(R resource, ResponseWrapper<T> responseWrapper) {
+    private final void handleMe(R resource, Wrapper responseWrapper) {
         switch (beforeHandle(resource, responseWrapper)) {
         case CONTINUE:
             switch (doHandle(resource, responseWrapper)) {
@@ -124,6 +126,7 @@ public abstract class AbstractResourceFilter<R extends SkysailServerResource<T>,
             throw new IllegalStateException("result from beforeHandle was not in [CONTINUE,SKIP,STOP]");
         }
     }
+
 
     public AbstractResourceFilter<R, T> calling(AbstractResourceFilter<R, T> next) {
         AbstractResourceFilter<R, T> lastInChain = getLast();

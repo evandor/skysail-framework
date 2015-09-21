@@ -1,6 +1,8 @@
 package de.twenty11.skysail.server.ext.mail.accounts.impl;
 
-import io.skysail.server.db.*;
+import io.skysail.api.domain.Identifiable;
+import io.skysail.server.db.DbService;
+import io.skysail.server.repo.DbRepository;
 
 import java.util.*;
 
@@ -52,6 +54,11 @@ public class MailRepository implements DbRepository {
 
     public void update(String attribute, Account original) {
         dbService.update(attribute, original);
+    }
+
+    @Override
+    public Object save(Identifiable identifiable) {
+        return null;
     }
 
 

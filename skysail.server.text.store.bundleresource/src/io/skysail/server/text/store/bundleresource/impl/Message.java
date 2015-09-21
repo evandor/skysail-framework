@@ -1,5 +1,6 @@
 package io.skysail.server.text.store.bundleresource.impl;
 
+import io.skysail.api.domain.Identifiable;
 import io.skysail.api.forms.Field;
 import io.skysail.api.text.*;
 
@@ -13,7 +14,7 @@ import com.google.common.base.Splitter;
 import com.google.common.collect.Iterables;
 
 @Getter
-public class Message {
+public class Message implements Identifiable {
 
     @Field
     private String msgKey;
@@ -58,7 +59,7 @@ public class Message {
         return availableStores.stream().map(s -> {
             if (s.equals(store)) {
                 return "<u>" + simpleName(store) + "</u>";
-            } 
+            }
             return "<a href='?store="+s+"'>" + simpleName(s) + "</a>";
         }).collect(Collectors.joining(" - "));
 
@@ -66,5 +67,14 @@ public class Message {
 
     private String simpleName(String className) {
         return Iterables.getLast(splitter.split(className));
+    }
+
+    @Override
+    public String getId() {
+        return null;
+    }
+
+    @Override
+    public void setId(String id) {
     }
 }

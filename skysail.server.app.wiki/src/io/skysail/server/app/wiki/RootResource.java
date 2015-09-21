@@ -1,5 +1,6 @@
 package io.skysail.server.app.wiki;
 
+import io.skysail.api.domain.Identifiable;
 import io.skysail.api.links.Link;
 import io.skysail.server.app.wiki.pages.resources.*;
 import io.skysail.server.app.wiki.spaces.resources.*;
@@ -7,7 +8,7 @@ import io.skysail.server.restlet.resources.ListServerResource;
 
 import java.util.*;
 
-public class RootResource extends ListServerResource<String> {
+public class RootResource extends ListServerResource<Identifiable> {
 
     @Override
     public List<Link> getLinks() {
@@ -15,8 +16,17 @@ public class RootResource extends ListServerResource<String> {
     }
 
     @Override
-    public List<String> getEntity() {
-        return Arrays.asList("");
+    public List<Identifiable> getEntity() {
+        return Arrays.asList(new Identifiable() {
+
+            @Override
+            public String getId() {
+                return null;
+            }
+
+            @Override
+            public void setId(String id) {
+            }});
     }
     
 

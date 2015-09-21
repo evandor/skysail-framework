@@ -2,6 +2,7 @@ package io.skysail.server.app.wiki.repository;
 
 import io.skysail.server.app.wiki.spaces.Space;
 import io.skysail.server.db.*;
+import io.skysail.server.repo.DbRepository;
 import aQute.bnd.annotation.component.*;
 
 @Component(immediate = true, properties = "name=SpacesRepository")

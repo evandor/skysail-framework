@@ -9,7 +9,8 @@ import io.skysail.server.app.designer.entities.resources.*;
 import io.skysail.server.app.designer.fields.EntityField;
 import io.skysail.server.app.designer.fields.resources.*;
 import io.skysail.server.app.designer.repo.DesignerRepository;
-import io.skysail.server.db.*;
+import io.skysail.server.db.DbService;
+import io.skysail.server.repo.DbRepository;
 
 import java.util.*;
 import java.util.concurrent.TimeUnit;

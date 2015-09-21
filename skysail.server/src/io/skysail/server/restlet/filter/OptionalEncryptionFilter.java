@@ -1,18 +1,18 @@
 package io.skysail.server.restlet.filter;
 
+import io.skysail.api.domain.Identifiable;
 import io.skysail.server.app.SkysailApplication;
 import io.skysail.server.restlet.resources.*;
 
 import java.text.ParseException;
 
-import org.codehaus.jettison.json.JSONObject;
 import org.restlet.Response;
 import org.restlet.data.*;
 
-import de.twenty11.skysail.server.core.restlet.ResponseWrapper;
+import de.twenty11.skysail.server.core.restlet.Wrapper;
 import de.twenty11.skysail.server.services.EncryptorService;
 
-public class OptionalEncryptionFilter<R extends SkysailServerResource<T>, T> extends AbstractResourceFilter<R, T> {
+public class OptionalEncryptionFilter<R extends SkysailServerResource<T>, T extends Identifiable> extends AbstractResourceFilter<R, T> {
 
     private SkysailApplication application;
 
@@ -21,7 +21,7 @@ public class OptionalEncryptionFilter<R extends SkysailServerResource<T>, T> ext
     }
 
     @Override
-    protected FilterResult doHandle(R resource, ResponseWrapper<T> responseWrapper) {
+    protected FilterResult doHandle(R resource, Wrapper responseWrapper) {
         EncryptorService encryptorService = application.getEncryptorService().get();
         if (encryptorService == null) {
             return super.doHandle(resource, responseWrapper);
@@ -37,11 +37,7 @@ public class OptionalEncryptionFilter<R extends SkysailServerResource<T>, T> ext
         Object data;
         try {
             data = getDataFromRequest(response.getRequest(), resource);
-            if (data instanceof JSONObject) {
-                responseWrapper.setJson((JSONObject) data);
-            } else {
                 responseWrapper.setEntity((T) data);
-            }
         } catch (ParseException e) {
             throw new RuntimeException("could not parse form", e);
         }
@@ -71,5 +67,5 @@ public class OptionalEncryptionFilter<R extends SkysailServerResource<T>, T> ext
         }
     }
 
-   
+
 }

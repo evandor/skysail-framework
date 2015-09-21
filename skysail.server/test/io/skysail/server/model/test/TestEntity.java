@@ -1,5 +1,6 @@
 package io.skysail.server.model.test;
 
+import io.skysail.api.domain.Identifiable;
 import io.skysail.api.forms.*;
 import io.skysail.server.forms.*;
 
@@ -9,7 +10,7 @@ import lombok.*;
 
 @Getter
 @Setter
-public class TestEntity {
+public class TestEntity implements Identifiable {
 
     /**
      * This field is ignored by skysails ResourceModel
@@ -33,5 +34,14 @@ public class TestEntity {
     @ListView(hide = true)
     //@ValidListId
     private String parent;
+
+    @Override
+    public String getId() {
+        return null;
+    }
+
+    @Override
+    public void setId(String id) {
+    }
 
 }

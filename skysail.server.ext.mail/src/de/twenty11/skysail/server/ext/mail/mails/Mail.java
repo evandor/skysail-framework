@@ -1,5 +1,6 @@
 package de.twenty11.skysail.server.ext.mail.mails;
 
+import io.skysail.api.domain.Identifiable;
 import io.skysail.api.forms.Field;
 
 import java.util.Date;
@@ -12,14 +13,14 @@ import com.sun.mail.pop3.POP3Message;
 
 @Getter
 @Setter
-public class Mail {
+public class Mail implements Identifiable {
 
     @Field
     private String messageId;
 
     @Field
     private String subject;
-    
+
     @Field
     private String contentType;
 
@@ -34,10 +35,10 @@ public class Mail {
 
     @Field
     private String accountId;
-    
+
 //    @Field
 //    private List<String> from;
-    
+
    // private Object content;
 
     public Mail(String accountId, Message message) {
@@ -58,6 +59,15 @@ public class Mail {
         }
     }
 
-   
+    @Override
+    public String getId() {
+        return null;
+    }
+
+    @Override
+    public void setId(String id) {
+    }
+
+
 
 }

@@ -1,8 +1,10 @@
 package io.skysail.server.app.quartz.jobdetails;
 
+import io.skysail.api.domain.Identifiable;
+
 import org.quartz.JobDataMap;
 
-public class JobDetail {
+public class JobDetail implements Identifiable {
 
     private String jobName;
     private String jobGroup;
@@ -36,5 +38,14 @@ public class JobDetail {
 
     public boolean isDurable() {
         return durable;
+    }
+
+    @Override
+    public String getId() {
+        return null;
+    }
+
+    @Override
+    public void setId(String id) {
     }
 }

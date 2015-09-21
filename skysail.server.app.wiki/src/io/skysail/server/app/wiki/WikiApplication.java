@@ -6,7 +6,7 @@ import io.skysail.server.app.designer.repo.DesignerRepository;
 import io.skysail.server.app.wiki.pages.resources.*;
 import io.skysail.server.app.wiki.repository.*;
 import io.skysail.server.app.wiki.spaces.resources.*;
-import io.skysail.server.db.DbRepository;
+import io.skysail.server.repo.DbRepository;
 
 import java.util.*;
 import java.util.concurrent.atomic.AtomicReference;

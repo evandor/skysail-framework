@@ -1,7 +1,7 @@
 package de.twenty11.skysail.server.ext.mail;
 
 import io.skysail.server.app.SkysailApplication;
-import io.skysail.server.db.DbRepository;
+import io.skysail.server.repo.DbRepository;
 
 import java.util.*;
 

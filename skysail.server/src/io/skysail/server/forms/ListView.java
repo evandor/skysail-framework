@@ -1,5 +1,6 @@
 package io.skysail.server.forms;
 
+import io.skysail.api.domain.Identifiable;
 import io.skysail.api.links.LinkRelation;
 import io.skysail.server.restlet.resources.SkysailServerResource;
 
@@ -10,10 +11,10 @@ import java.lang.annotation.*;
 @Documented
 public @interface ListView {
 
-    public static final class DEFAULT extends SkysailServerResource<String> {
+    public static final class DEFAULT extends SkysailServerResource<Identifiable> {
 
         @Override
-        public String getEntity() {
+        public Identifiable getEntity() {
             return null;
         }
 

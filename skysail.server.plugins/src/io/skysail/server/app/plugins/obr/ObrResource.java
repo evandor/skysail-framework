@@ -1,12 +1,13 @@
 package io.skysail.server.app.plugins.obr;
 
+import io.skysail.api.domain.Identifiable;
 import io.skysail.api.forms.Field;
 import lombok.Getter;
 
 import org.apache.felix.bundlerepository.Resource;
 
 @Getter
-public class ObrResource {
+public class ObrResource implements Identifiable {
 
     @Field
     private String searchFor;
@@ -47,6 +48,10 @@ public class ObrResource {
 
     public void setSearchFor(String searchFor) {
         this.searchFor = searchFor;
+    }
+
+    @Override
+    public void setId(String id) {
     }
 
 }

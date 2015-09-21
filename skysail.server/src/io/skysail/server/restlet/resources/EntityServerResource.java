@@ -1,6 +1,7 @@
 package io.skysail.server.restlet.resources;
 
 import io.skysail.api.documentation.API;
+import io.skysail.api.domain.Identifiable;
 import io.skysail.api.links.LinkRelation;
 import io.skysail.api.responses.*;
 import io.skysail.server.restlet.RequestHandler;
@@ -66,7 +67,7 @@ import de.twenty11.skysail.server.core.restlet.*;
  *            the entity
  */
 @Slf4j
-public abstract class EntityServerResource<T> extends SkysailServerResource<T> {
+public abstract class EntityServerResource<T extends Identifiable> extends SkysailServerResource<T> {
 
     private static final Logger logger = LoggerFactory.getLogger(EntityServerResource.class);
 

@@ -1,5 +1,6 @@
 package de.twenty11.skysail.server.app.profile;
 
+import io.skysail.api.domain.Identifiable;
 import io.skysail.api.forms.*;
 
 import javax.persistence.Transient;
@@ -13,7 +14,7 @@ import lombok.Data;
  */
 @Data // NO_UCD
 @PasswordsMatch
-public class ChangePasswordEntity {
+public class ChangePasswordEntity implements Identifiable {
 
 	@Field(inputType = InputType.READONLY)
 	private String account;
@@ -29,5 +30,14 @@ public class ChangePasswordEntity {
 	@Field(inputType = InputType.PASSWORD)
 	@Transient
 	private String pwdRepeated;
+
+    @Override
+    public String getId() {
+        return null;
+    }
+
+    @Override
+    public void setId(String id) {
+    }
 
 }

@@ -1,5 +1,6 @@
 package io.skysail.server.restlet.filter;
 
+import io.skysail.api.domain.Identifiable;
 import io.skysail.server.restlet.resources.*;
 
 import java.net.*;
@@ -10,13 +11,13 @@ import org.restlet.Response;
 import org.restlet.data.*;
 import org.restlet.representation.Variant;
 
-import de.twenty11.skysail.server.core.restlet.ResponseWrapper;
+import de.twenty11.skysail.server.core.restlet.Wrapper;
 
 @Slf4j
-public class PutRedirectGetFilter<R extends PutEntityServerResource<T>, T> extends AbstractResourceFilter<R, T> {
+public class PutRedirectGetFilter<R extends PutEntityServerResource<T>, T extends Identifiable> extends AbstractResourceFilter<R, T> {
 
     @Override
-    protected void afterHandle(R resource, ResponseWrapper<T> responseWrapper) {
+    protected void afterHandle(R resource, Wrapper responseWrapper) {
         String redirectTo = resource.redirectTo();
         Parameter noRedirects = resource.getQuery().getFirst(SkysailServerResource.NO_REDIRECTS);
         if (redirectTo != null && noRedirects == null) {

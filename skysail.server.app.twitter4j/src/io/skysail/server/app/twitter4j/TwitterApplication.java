@@ -43,7 +43,7 @@ public class TwitterApplication extends SkysailApplication implements Applicatio
         router.attach(new RouteBuilder("", TimelineResource.class));
         router.attach(new RouteBuilder("/tweet", TimelineEntityResource.class));
         router.attach(new RouteBuilder("/tweets/{id}", Tweet2TodoResource.class));
-        router.attach(new RouteBuilder("/searchrequest", SearchRequestResource.class));
+//        router.attach(new RouteBuilder("/searchrequest", SearchRequestResource.class));
     }
 
     @Override

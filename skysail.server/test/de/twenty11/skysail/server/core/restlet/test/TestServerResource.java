@@ -1,9 +1,10 @@
 package de.twenty11.skysail.server.core.restlet.test;
 
+import io.skysail.api.domain.Identifiable;
 import io.skysail.api.links.LinkRelation;
 import io.skysail.server.restlet.resources.SkysailServerResource;
 
-public class TestServerResource extends SkysailServerResource<String> {
+public class TestServerResource extends SkysailServerResource<Identifiable> {
 
     public TestServerResource() {
         super();
@@ -15,7 +16,7 @@ public class TestServerResource extends SkysailServerResource<String> {
     }
 
     @Override
-    public String getEntity() {
+    public Identifiable getEntity() {
         return null;
     }
 

@@ -1,17 +1,15 @@
 package de.twenty11.skysail.server.osgi.osgimonitor.domain;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import io.skysail.api.domain.Identifiable;
+
+import java.util.*;
 
 import javax.persistence.Transient;
 
-import org.osgi.framework.Bundle;
-import org.osgi.framework.ServiceReference;
+import org.osgi.framework.*;
 import org.restlet.data.Reference;
 
-public class ServiceDescriptor implements Comparable<ServiceDescriptor> {
+public class ServiceDescriptor implements Comparable<ServiceDescriptor>, Identifiable {
 
     private static final String SERVICE_ID_IDENTIFIER = "service.id";
 
@@ -85,6 +83,15 @@ public class ServiceDescriptor implements Comparable<ServiceDescriptor> {
                 properties.put(key, sr.getProperty(key));
             }
         }
+    }
+
+    @Override
+    public String getId() {
+        return null;
+    }
+
+    @Override
+    public void setId(String id) {
     }
 
 }

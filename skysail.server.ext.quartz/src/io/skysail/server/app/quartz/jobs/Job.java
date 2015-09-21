@@ -1,5 +1,6 @@
 package io.skysail.server.app.quartz.jobs;
 
+import io.skysail.api.domain.Identifiable;
 import io.skysail.api.forms.Field;
 import io.skysail.server.app.quartz.groups.GroupsProvider;
 
@@ -7,7 +8,7 @@ import javax.validation.constraints.Size;
 
 import org.quartz.JobKey;
 
-public class Job {
+public class Job implements Identifiable {
 
 	@Field
 	@Size(min = 1)
@@ -31,8 +32,8 @@ public class Job {
         // TODO Auto-generated constructor stub
     }
 
-    public Object getId() {
-		return id;
+    public String getId() {
+		return id.toString();
 	}
 
 	public String getName() {
@@ -53,5 +54,9 @@ public class Job {
 
 	public String getGroup() {
         return group;
+    }
+
+    @Override
+    public void setId(String id) {
     }
 }

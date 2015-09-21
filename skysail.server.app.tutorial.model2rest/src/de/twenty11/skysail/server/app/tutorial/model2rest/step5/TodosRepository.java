@@ -1,15 +1,12 @@
 package de.twenty11.skysail.server.app.tutorial.model2rest.step5;
 
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class TodosRepository {
 
     private static TodosRepository instance;
-    
+
     private AtomicInteger id = new AtomicInteger(0);
 
     public static synchronized TodosRepository getInstance() {
@@ -23,7 +20,7 @@ public class TodosRepository {
 
     private TodosRepository() {
     }
-    
+
     @SuppressWarnings("serial")
 	private static Map<Integer, TodoModel> createLRUMap(final int maxEntries) {
         return new LinkedHashMap<Integer, TodoModel>(maxEntries*3/2, 0.7f, true) {
@@ -36,7 +33,7 @@ public class TodosRepository {
 
     public int add(TodoModel entity) {
         int newId = id.getAndIncrement();
-        entity.setId(newId);
+        //entity.setId(newId);
         models.put(newId, entity);
         return newId;
     }

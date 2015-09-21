@@ -1,14 +1,12 @@
 package io.skysail.server.text.store.bundleresource.impl;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.ResourceBundle;
+import io.skysail.api.domain.Identifiable;
+
+import java.util.*;
 
 import org.osgi.framework.Bundle;
 
-public class BundleMessages {
+public class BundleMessages implements Identifiable {
 
     private Bundle bundle;
     private ResourceBundle resourceBundle;
@@ -41,5 +39,14 @@ public class BundleMessages {
 
     public String getBaseBundleName() {
         return resourceBundle.getBaseBundleName();
+    }
+
+    @Override
+    public String getId() {
+        return null;
+    }
+
+    @Override
+    public void setId(String id) {
     }
 }

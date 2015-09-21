@@ -1,9 +1,10 @@
 package io.skysail.server.documentation.test;
 
+import io.skysail.api.domain.Identifiable;
 import io.skysail.api.responses.SkysailResponse;
 import io.skysail.server.restlet.resources.EntityServerResource;
 
-public class TestEntityResource extends EntityServerResource<String> {
+public class TestEntityResource extends EntityServerResource<Identifiable> {
 
     public TestEntityResource() {
         setDescription("API description of class '" + this.getClass().getSimpleName() + "'");
@@ -25,7 +26,7 @@ public class TestEntityResource extends EntityServerResource<String> {
     }
 
     @Override
-    public String getEntity() {
+    public Identifiable getEntity() {
         return null;
     }
 

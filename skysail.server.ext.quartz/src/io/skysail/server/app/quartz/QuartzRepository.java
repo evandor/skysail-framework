@@ -1,9 +1,11 @@
 package io.skysail.server.app.quartz;
 
+import io.skysail.api.domain.Identifiable;
 import io.skysail.server.app.quartz.groups.Group;
-import io.skysail.server.db.*;
+import io.skysail.server.db.DbService;
 import io.skysail.server.queryfilter.Filter;
 import io.skysail.server.queryfilter.pagination.Pagination;
+import io.skysail.server.repo.DbRepository;
 
 import java.util.List;
 
@@ -158,6 +160,11 @@ public class QuartzRepository implements DbRepository {
             return "";
         }
         return " WHERE " + filter.getPreparedStatement();
+    }
+
+    @Override
+    public Object save(Identifiable identifiable) {
+        return null;
     }
 
     // public Object getVertexById(Class<TodoList> cls, String id) {

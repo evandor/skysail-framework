@@ -1,7 +1,9 @@
 package io.skysail.server.app.bookmarks.repo;
 
+import io.skysail.api.domain.Identifiable;
 import io.skysail.server.app.bookmarks.Bookmark;
-import io.skysail.server.db.*;
+import io.skysail.server.db.DbService;
+import io.skysail.server.repo.DbRepository;
 
 import java.util.*;
 
@@ -32,13 +34,13 @@ public class BookmarksRepository implements DbRepository {
 
     public <T> List<T> findAll(Class<T> cls, String sorting) {
         String username = SecurityUtils.getSubject().getPrincipal().toString();
-        
+
         String sql = "SELECT from "+cls.getSimpleName()+" WHERE owner= :username " + sorting;
         Map<String, Object> params = new HashMap<String, Object>();
         params.put("username", username);
         return dbService.findObjects(sql, params);
     }
-    
+
 
 //    public List<TodoList> findAllLists() {
 //        String username = SecurityUtils.getSubject().getPrincipal().toString();
@@ -52,7 +54,7 @@ public class BookmarksRepository implements DbRepository {
         return dbService.persist(entity, edges);
     }
 
-    
+
     public <T> T getById(Class<?> cls, String id) {
         return dbService.findObjectById(cls, id);
     }
@@ -87,7 +89,12 @@ public class BookmarksRepository implements DbRepository {
 //        return dbService.getCount(sql, params);
 //    }
 
+    @Override
+    public Object save(Identifiable identifiable) {
+        return null;
+    }
 
-    
-  
+
+
+
 }

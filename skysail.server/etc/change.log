@@ -1,9 +1,11 @@
 new in
 
-8.0.1
+9.0.0
 -----
 
  * improving javadoc
+ * new package io.skysail.server.repo, moved DbRepository here
+ * Non-List Resources now have Identifiable entities
 
 8.0.0
 -----

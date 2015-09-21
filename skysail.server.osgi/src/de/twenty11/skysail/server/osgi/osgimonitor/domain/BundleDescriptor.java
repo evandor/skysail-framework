@@ -1,5 +1,6 @@
 package de.twenty11.skysail.server.osgi.osgimonitor.domain;
 
+import io.skysail.api.domain.Identifiable;
 import io.skysail.api.forms.Field;
 
 import java.io.Serializable;
@@ -12,7 +13,7 @@ import org.osgi.framework.*;
 /**
  * The meta-information about a {@link Bundle}.
  */
-public class BundleDescriptor implements Serializable {
+public class BundleDescriptor implements Serializable, Identifiable {
 
     private static final long serialVersionUID = -3490514848138717614L;
 
@@ -163,6 +164,15 @@ public class BundleDescriptor implements Serializable {
 
     public long getBundleId() {
         return bundleId;
+    }
+
+    @Override
+    public String getId() {
+        return null;
+    }
+
+    @Override
+    public void setId(String id) {
     }
 
 }

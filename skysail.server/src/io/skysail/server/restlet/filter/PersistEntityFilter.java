@@ -7,9 +7,10 @@ import io.skysail.server.restlet.resources.*;
 import org.restlet.Response;
 import org.slf4j.*;
 
-import de.twenty11.skysail.server.core.restlet.ResponseWrapper;
+import de.twenty11.skysail.server.core.restlet.Wrapper;
 
-public class PersistEntityFilter<R extends SkysailServerResource<T>, T> extends AbstractResourceFilter<R, T> {
+public class PersistEntityFilter<R extends SkysailServerResource<?>, T extends Identifiable> extends
+        AbstractResourceFilter<R, T> {
 
     private static Logger logger = LoggerFactory.getLogger(PersistEntityFilter.class);
 
@@ -18,17 +19,14 @@ public class PersistEntityFilter<R extends SkysailServerResource<T>, T> extends 
     }
 
     @Override
-    public FilterResult doHandle(R resource, ResponseWrapper<T> responseWrapper) {
+    public FilterResult doHandle(R resource, Wrapper responseWrapper) {
         logger.debug("entering {}#doHandle", this.getClass().getSimpleName());
         Response response = responseWrapper.getResponse();
-        T entity = responseWrapper.getEntity();
-        ((PostEntityServerResource<T>) resource).addEntity(entity);
-        // TODO filter of its own?
-        if (entity instanceof Identifiable) {
-            String id = ((Identifiable) entity).getId();
-            if (id != null) {
-                response.setLocationRef(response.getRequest().getResourceRef().addSegment(id.replace("#","")));
-            }
+        Object entity = responseWrapper.getEntity();
+        ((PostEntityServerResource<T>) resource).addEntity((T)entity);
+        String id = ((T)entity).getId();
+        if (id != null) {
+            response.setLocationRef(response.getRequest().getResourceRef().addSegment(id.replace("#", "")));
         }
         super.doHandle(resource, responseWrapper);
         return FilterResult.CONTINUE;

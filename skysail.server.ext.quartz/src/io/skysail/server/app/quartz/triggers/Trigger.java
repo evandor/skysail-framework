@@ -1,5 +1,6 @@
 package io.skysail.server.app.quartz.triggers;
 
+import io.skysail.api.domain.Identifiable;
 import io.skysail.api.forms.Field;
 
 import java.util.Date;
@@ -10,7 +11,7 @@ import lombok.*;
 @Setter
 @ToString
 @NoArgsConstructor
-public class Trigger {
+public class Trigger implements Identifiable {
 
 	@Field
 	private String name;
@@ -28,5 +29,14 @@ public class Trigger {
 
 	public Date getNextFireTime() {
         return nextFireTime;
+    }
+
+    @Override
+    public String getId() {
+        return null;
+    }
+
+    @Override
+    public void setId(String id) {
     }
 }

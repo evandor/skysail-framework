@@ -67,7 +67,7 @@ public abstract class SkysailServerResource<T> extends ServerResource {
 
     @Setter
     @Getter
-    private T currentEntity;
+    private Object currentEntity;
 
     private List<Link> links;
 

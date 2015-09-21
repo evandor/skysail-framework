@@ -1,5 +1,6 @@
 package io.skysail.server.app.plugins;
 
+import io.skysail.api.domain.Identifiable;
 import io.skysail.api.links.Link;
 import io.skysail.server.restlet.resources.ListServerResource;
 
@@ -7,7 +8,7 @@ import java.util.List;
 
 import de.twenty11.skysail.server.core.restlet.ResourceContextId;
 
-public class PluginRootResource extends ListServerResource<String> {
+public class PluginRootResource extends ListServerResource<Identifiable> {
 
     private PluginApplication app;
 

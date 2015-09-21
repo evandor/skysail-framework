@@ -3,7 +3,7 @@ package io.skysail.server.app.crm;
 import io.skysail.server.app.SkysailApplication;
 import io.skysail.server.app.crm.companies.resources.*;
 import io.skysail.server.app.crm.contacts.*;
-import io.skysail.server.db.DbRepository;
+import io.skysail.server.repo.DbRepository;
 
 import java.util.*;
 

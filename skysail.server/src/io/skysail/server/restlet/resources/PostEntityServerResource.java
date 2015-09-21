@@ -1,9 +1,11 @@
 package io.skysail.server.restlet.resources;
 
 import io.skysail.api.documentation.API;
+import io.skysail.api.domain.Identifiable;
 import io.skysail.api.links.*;
 import io.skysail.api.responses.*;
 import io.skysail.api.search.SearchService;
+import io.skysail.server.app.SkysailApplication;
 import io.skysail.server.restlet.RequestHandler;
 import io.skysail.server.restlet.filter.*;
 import io.skysail.server.services.PerformanceTimer;
@@ -71,7 +73,7 @@ import de.twenty11.skysail.server.core.restlet.*;
  * @param <T>
  */
 @Slf4j
-public abstract class PostEntityServerResource<T> extends SkysailServerResource<T> {
+public abstract class PostEntityServerResource<T extends Identifiable> extends SkysailServerResource<T> {
 
     /** the value of the submit button */
     protected String submitValue;
@@ -116,7 +118,13 @@ public abstract class PostEntityServerResource<T> extends SkysailServerResource<
      *            the entity
      * @return the response
      */
-    public abstract SkysailResponse<T> addEntity(T entity);
+    //public abstract SkysailResponse<T> addEntity(T entity);
+
+    public SkysailResponse<T> addEntity(T entity) {
+        String id = ((SkysailApplication)getApplication()).getRepository().save(entity).toString();
+        //entity.setId(id);
+        return new SkysailResponse<>(entity);
+    }
 
     @Override
     public T getEntity() {

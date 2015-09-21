@@ -2,6 +2,7 @@ Bundle-Version: 0.1.3.${tstamp}
 Bundle-Name: SKYSAIL :: server :: um
 Bundle-Description: Default Usermanagement Implementation
 -buildpath:  \
+    skysail.api;version=${skysail.api.version},\
 	skysail.api.um;version=${skysail.api.um.version},\
     skysail.server;version=${skysail.server.version},\
 	skysail.server.db;version=${skysail.server.db.version},\

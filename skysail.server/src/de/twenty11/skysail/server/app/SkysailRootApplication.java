@@ -84,13 +84,13 @@ public class SkysailRootApplication extends SkysailApplication implements Applic
         // see ShiroDelegationAuthenticator
         router.attach(new RouteBuilder(LOGIN_PATH, LoginResource.class).noAuthenticationNeeded());
         router.attach(new RouteBuilder(DEMO_LOGIN_PATH, DemoLoginResource.class).noAuthenticationNeeded());
-        router.attach(new RouteBuilder(VERSION_PATH, VersionResource.class));
-        router.attach(new RouteBuilder(NAME_PATH, NameResource.class));
+//        router.attach(new RouteBuilder(VERSION_PATH, VersionResource.class));
+//        router.attach(new RouteBuilder(NAME_PATH, NameResource.class));
         router.attach(new RouteBuilder(PROFILE_PATH, ProfileResource.class));
         router.attach(new RouteBuilder(PROFILE_PATH + "/password/", PutPasswordResource.class));
-        router.attach(new RouteBuilder(LARGETESTS_PATH, LargeTestsResource.class));
-        router.attach(new RouteBuilder(LARGETESTS_PATH + "/{id}", LargeTestsFileResource.class));
-        router.attach(new RouteBuilder(WELCOME_PATH, WelcomeResource.class).noAuthenticationNeeded()); // need for tests... why?
+//        router.attach(new RouteBuilder(LARGETESTS_PATH, LargeTestsResource.class));
+//        router.attach(new RouteBuilder(LARGETESTS_PATH + "/{id}", LargeTestsFileResource.class));
+//        router.attach(new RouteBuilder(WELCOME_PATH, WelcomeResource.class).noAuthenticationNeeded()); // need for tests... why?
 
         router.attach(new RouteBuilder(PEERS_LOGIN_PATH, RemoteLoginResource.class).noAuthenticationNeeded());
 

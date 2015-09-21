@@ -62,7 +62,7 @@ import de.twenty11.skysail.server.core.restlet.*;
  * @param <T>
  */
 @Slf4j
-public abstract class PutEntityServerResource<T> extends SkysailServerResource<T> {
+public abstract class PutEntityServerResource<T extends Identifiable> extends SkysailServerResource<T> {
 
     private String identifierName;
     private String identifier;
@@ -233,7 +233,7 @@ public abstract class PutEntityServerResource<T> extends SkysailServerResource<T
         List<Link> result = new ArrayList<>();
         result.add(new Link.Builder(ref).relation(LinkRelation.NEXT).title("form target").verbs(Method.PUT).build());
 
-        T entity = this.getCurrentEntity();
+        Object entity = this.getCurrentEntity();
         if (entity instanceof Identifiable) {
             String id = ((Identifiable)entity).getId().replace("#","");
 

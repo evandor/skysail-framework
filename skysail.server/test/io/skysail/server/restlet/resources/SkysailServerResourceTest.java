@@ -2,6 +2,7 @@ package io.skysail.server.restlet.resources;
 
 import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.assertThat;
+import io.skysail.api.domain.Identifiable;
 import io.skysail.api.links.LinkRelation;
 import io.skysail.server.app.SkysailApplication;
 
@@ -15,7 +16,7 @@ public class SkysailServerResourceTest {
 
     private TestSkysailServerResource serverResource;
 
-    private class TestSkysailServerResource extends SkysailServerResource<String> {
+    private class TestSkysailServerResource extends SkysailServerResource<Identifiable> {
 
         @Override
         public LinkRelation getLinkRelation() {
@@ -23,10 +24,10 @@ public class SkysailServerResourceTest {
         }
 
         @Override
-        public String getEntity() {
+        public Identifiable getEntity() {
             return null;
         }
-        
+
         @Override
         public SkysailApplication getApplication() {
             return Mockito.mock(SkysailApplication.class);
@@ -46,7 +47,7 @@ public class SkysailServerResourceTest {
 
     @Test
     public void testName() throws Exception {
-        assertThat(serverResource.getEntityType(), is(equalTo("java.lang.String")));
+        assertThat(serverResource.getEntityType(), is(equalTo(Identifiable.class.getName())));
     }
 
 }

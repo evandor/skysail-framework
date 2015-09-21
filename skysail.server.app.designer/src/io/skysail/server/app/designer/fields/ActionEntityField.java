@@ -1,5 +1,6 @@
 package io.skysail.server.app.designer.fields;
 
+import io.skysail.api.domain.Identifiable;
 import io.skysail.api.forms.Field;
 
 import java.util.*;
@@ -11,7 +12,7 @@ import lombok.*;
 
 @Getter
 @Setter
-public class ActionEntityField {
+public class ActionEntityField implements Identifiable {
 
     @Id
     private String id;

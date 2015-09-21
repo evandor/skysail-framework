@@ -1,8 +1,10 @@
 package io.skysail.server.app.quartz;
 
+import io.skysail.api.domain.Identifiable;
+
 import org.quartz.*;
 
-public class SchedulerDetails {
+public class SchedulerDetails implements Identifiable {
 
     private SchedulerMetaData metaData;
 
@@ -14,7 +16,7 @@ public class SchedulerDetails {
             e.printStackTrace();
         }
     }
-    
+
     public String getName() {
         return metaData.getSchedulerName();
     }
@@ -22,7 +24,7 @@ public class SchedulerDetails {
     public int getJobsExecuted() {
         return metaData.getNumberOfJobsExecuted();
     }
-    
+
     public String getSummary() {
         try {
             return metaData.getSummary();
@@ -30,6 +32,15 @@ public class SchedulerDetails {
             e.printStackTrace();
             return "error";
         }
+    }
+
+    @Override
+    public String getId() {
+        return null;
+    }
+
+    @Override
+    public void setId(String id) {
     }
 
 

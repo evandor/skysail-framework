@@ -1,6 +1,7 @@
 package io.skysail.server.documentation;
 
 import io.skysail.api.documentation.API;
+import io.skysail.api.domain.Identifiable;
 import io.skysail.api.forms.Field;
 import io.skysail.server.restlet.resources.SkysailServerResource;
 import io.skysail.server.utils.ReflectionUtils;
@@ -25,7 +26,7 @@ import de.twenty11.skysail.server.core.restlet.RouteBuilder;
  */
 @EqualsAndHashCode(of = { "path" })
 @Slf4j
-public class ResourceApi implements Comparable<ResourceApi> {
+public class ResourceApi implements Comparable<ResourceApi>, Identifiable {
 
     @Field
     private String path;
@@ -229,6 +230,15 @@ public class ResourceApi implements Comparable<ResourceApi> {
 
     private void analyze(Class<?> entityClass, Class<?> rawType) {
         entity = null;//new EntityDescriptor(entityClass, rawType);
+    }
+
+    @Override
+    public String getId() {
+        return null;
+    }
+
+    @Override
+    public void setId(String id) {
     }
 
 }

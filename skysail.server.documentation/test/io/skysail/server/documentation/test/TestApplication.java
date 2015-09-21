@@ -14,7 +14,7 @@ public class TestApplication extends SkysailApplication {
         super.attach();
         router.attach(new RouteBuilder("/path/to/listResource", TestListResource.class));
         router.attach(new RouteBuilder("/path/to/entityResource", TestEntityResource.class));
-        router.attach(new RouteBuilder("/path/to/postResource", TestPostEntityResource.class));
+//        router.attach(new RouteBuilder("/path/to/postResource", TestPostEntityResource.class));
         router.attach(new RouteBuilder("/path/to/putResource", TestPutEntityResource.class));
     }
 }

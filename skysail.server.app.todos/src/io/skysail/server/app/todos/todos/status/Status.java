@@ -1,11 +1,13 @@
 package io.skysail.server.app.todos.todos.status;
 
+import io.skysail.api.domain.Identifiable;
+
 import java.util.*;
 
 import lombok.Getter;
 
 @Getter
-public enum Status {
+public enum Status implements Identifiable{
 
     NEW("NEW","yellow", "WIP", "ARCHIVED"),
     @Deprecated // planned will be: due date != null && now < due date
@@ -35,5 +37,14 @@ public enum Status {
 
     public boolean isActive() {
         return !this.equals(FINISHED) && !this.equals(ARCHIVED);
+    }
+
+    @Override
+    public String getId() {
+        return name();
+    }
+
+    @Override
+    public void setId(String id) {
     }
 }

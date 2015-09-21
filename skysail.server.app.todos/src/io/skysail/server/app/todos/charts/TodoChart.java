@@ -1,5 +1,6 @@
 package io.skysail.server.app.todos.charts;
 
+import io.skysail.api.domain.Identifiable;
 import io.skysail.server.app.todos.todos.Todo;
 import lombok.*;
 
@@ -7,7 +8,7 @@ import lombok.*;
 @Getter
 @Setter
 @ToString
-public class TodoChart {
+public class TodoChart implements Identifiable {
 
     private String id;
     private Integer importance;

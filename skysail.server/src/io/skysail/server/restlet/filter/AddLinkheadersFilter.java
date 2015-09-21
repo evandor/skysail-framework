@@ -1,5 +1,6 @@
 package io.skysail.server.restlet.filter;
 
+import io.skysail.api.domain.Identifiable;
 import io.skysail.api.links.Link;
 import io.skysail.server.restlet.resources.SkysailServerResource;
 import io.skysail.server.utils.*;
@@ -12,12 +13,12 @@ import org.restlet.Response;
 import org.restlet.data.Header;
 import org.restlet.util.Series;
 
-import de.twenty11.skysail.server.core.restlet.ResponseWrapper;
+import de.twenty11.skysail.server.core.restlet.Wrapper;
 
-public class AddLinkheadersFilter<R extends SkysailServerResource<T>, T> extends AbstractResourceFilter<R, T> {
+public class AddLinkheadersFilter<R extends SkysailServerResource<?>, T extends Identifiable> extends AbstractResourceFilter<R, T> {
 
     @Override
-    protected void afterHandle(R resource, ResponseWrapper<T> responseWrapper) {
+    protected void afterHandle(R resource, Wrapper responseWrapper) {
         Response response = responseWrapper.getResponse();
         if (resource instanceof SkysailServerResource) {
             SkysailServerResource<?> ssr = resource;

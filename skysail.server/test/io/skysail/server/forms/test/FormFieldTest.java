@@ -1,18 +1,16 @@
 package io.skysail.server.forms.test;
 
-import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
+import io.skysail.api.domain.Identifiable;
+import io.skysail.api.forms.Reference;
+import io.skysail.api.links.LinkRelation;
+import io.skysail.server.forms.FormField;
+import io.skysail.server.restlet.resources.SkysailServerResource;
 
 import java.lang.reflect.Field;
 
-import io.skysail.api.forms.Reference;
-import io.skysail.api.links.LinkRelation;
-import io.skysail.server.restlet.resources.SkysailServerResource;
-import io.skysail.server.forms.FormField;
-
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.*;
 
 import de.twenty11.skysail.server.core.test.DummySelectionProvider;
 
@@ -30,10 +28,10 @@ public class FormFieldTest {
 
     @Before
     public void setUp() {
-        resource = new SkysailServerResource<String>() {
+        resource = new SkysailServerResource<Identifiable>() {
 
             @Override
-            public String getEntity() {
+            public Identifiable getEntity() {
                 return null;
             }
 

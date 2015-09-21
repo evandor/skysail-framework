@@ -1,20 +1,16 @@
 package io.skysail.server.app.twitter4j.resources;
 
-import io.skysail.api.links.Link;
 import io.skysail.server.app.twitter4j.TwitterApplication;
 import io.skysail.server.restlet.resources.ListServerResource;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 import lombok.extern.slf4j.Slf4j;
-import twitter4j.Status;
-import twitter4j.Twitter;
-import twitter4j.TwitterException;
+import twitter4j.*;
 
 @Slf4j
 public class TimelineResource extends ListServerResource<Tweet>{
-    
+
     public TimelineResource() {
         super(TimelineEntityResource.class);
     }
@@ -32,13 +28,13 @@ public class TimelineResource extends ListServerResource<Tweet>{
         } catch (TwitterException e) {
             log.error(e.getMessage(), e);
         }
-       
+
         return tweets;
     }
-    
-    @Override
-    public List<Link> getLinks() {
-        return super.getLinks(SearchRequestResource.class);
-    }
+
+//    @Override
+//    public List<Link> getLinks() {
+//        return super.getLinks(SearchRequestResource.class);
+//    }
 
 }

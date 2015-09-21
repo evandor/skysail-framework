@@ -1,7 +1,6 @@
 package de.twenty11.skysail.server.app.tutorial.model2rest.step4;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import org.apache.commons.collections4.queue.CircularFifoQueue;
@@ -9,7 +8,7 @@ import org.apache.commons.collections4.queue.CircularFifoQueue;
 public class Step4ModelsRepository {
 
     private static Step4ModelsRepository instance;
-    
+
     private AtomicInteger id = new AtomicInteger(0);
 
     public static synchronized Step4ModelsRepository getInstance() {
@@ -26,7 +25,7 @@ public class Step4ModelsRepository {
 
     public int add(TodoModel4 entity) {
         int newId = id.getAndIncrement();
-        entity.setId(newId);
+        //entity.setId(newId);
         models.add(entity);
         return newId;
     }

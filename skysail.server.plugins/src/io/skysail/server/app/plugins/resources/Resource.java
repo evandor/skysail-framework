@@ -1,5 +1,6 @@
 package io.skysail.server.app.plugins.resources;
 
+import io.skysail.api.domain.Identifiable;
 import io.skysail.api.forms.Field;
 
 import java.util.List;
@@ -10,7 +11,7 @@ import org.osgi.framework.Bundle;
 
 @Getter
 @NoArgsConstructor
-public class Resource {
+public class Resource implements Identifiable {
 
     private enum InstalledBundleMatch {
         NONE, NAME, VERSION
@@ -18,26 +19,26 @@ public class Resource {
 
     @Field
     private String symbolicName;
-    
+
     @Field
     private String version;
-   
+
     private Long size;
     private InstalledBundleMatch installedBundleMatch = InstalledBundleMatch.NONE;
-    
+
     @Field
     private String bundleId;
 
     @Field
     private String id;
-    
+
     private String uri;
 
     public Resource(org.apache.felix.bundlerepository.Resource r, List<Bundle> installedBundles) {
         symbolicName = r.getSymbolicName();
         version = r.getVersion().toString();
         size = r.getSize();
-        id = symbolicName + ";" + version;  
+        id = symbolicName + ";" + version;
         bundleId = r.getId();
         uri = r.getURI();
         if (installedBundles.stream().filter(installedBundle -> {
@@ -54,6 +55,10 @@ public class Resource {
             installedBundleMatch = InstalledBundleMatch.VERSION;
         }
 
+    }
+
+    @Override
+    public void setId(String id) {
     }
 
 }

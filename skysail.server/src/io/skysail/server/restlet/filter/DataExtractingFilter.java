@@ -7,26 +7,43 @@ import io.skysail.server.utils.CookiesUtils;
 import java.util.*;
 
 import lombok.extern.slf4j.Slf4j;
-import de.twenty11.skysail.server.core.restlet.ResponseWrapper;
+import de.twenty11.skysail.server.core.restlet.Wrapper;
 
 @Slf4j
-public class DataExtractingFilter<R extends SkysailServerResource<T>, T> extends AbstractResourceFilter<R, T> {
+public class DataExtractingFilter<R extends SkysailServerResource<?>, T extends Identifiable> extends AbstractResourceFilter<R, T> {
 
     @Override
-    public FilterResult doHandle(R resource, ResponseWrapper<T> responseWrapper) {
+    public FilterResult doHandle(R resource, Wrapper responseWrapper) {
         log.debug("entering {}#doHandle", this.getClass().getSimpleName());
 
         String installation = CookiesUtils.getInstallationFromCookie(resource.getRequest());
-        T data = resource.getEntity(installation);
-        if (data == null && resource instanceof ListServerResource<?>) {
-            data = (T) Collections.emptyList();
+        Object entity = resource.getEntity(installation);
+        if (entity instanceof List) {
+            List<T> data = (List<T>) entity;
+            if (data == null && resource instanceof ListServerResource<?>) {
+                data = Collections.emptyList();
+            }
+            sanitizeIds(data);
+
+            responseWrapper.setEntity(data);
+            resource.setCurrentEntity(data); // TODO why both wrapper AND resource?
+        } else {
+            sanitizeIds((T)entity);
+
+            responseWrapper.setEntity(entity);
+            resource.setCurrentEntity(entity); // TODO why both wrapper AND resource?
+
         }
-        sanitizeIds(data);
-        
-        responseWrapper.setEntity(data);
-        resource.setCurrentEntity(data);
         super.doHandle(resource, responseWrapper);
         return FilterResult.CONTINUE;
+    }
+
+    private void sanitizeIds(List<T> data) {
+        data.stream().forEach(element -> {
+            if (element instanceof Identifiable) {
+                replaceHash(element);
+            }
+        });
     }
 
     private void sanitizeIds(T data) {

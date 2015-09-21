@@ -31,13 +31,13 @@ import de.twenty11.skysail.server.services.EncryptorService;
  * manages the list of default services which will be injected into all
  * (currently available) skysail applications (by calling the
  * applicationsListProvider).
- * 
+ *
  * <p>
  * This class connected with the {@link ApplicationList}, which keeps track of
  * all currently available skysail applications and injects the services once a
  * new application becomes available.
  * </p>
- * 
+ *
  * <p>
  * Non of the references should be defined as mandatory, as, otherwise, the
  * whole ServiceList will not be available. Clients themselves have to decide
@@ -240,21 +240,21 @@ public class ServiceList implements ServiceListProvider {
 
     /** === Hooks Service ============================== */
 
-    @Reference(optional = true, dynamic = true, multiple = true)
-    public synchronized <R extends SkysailServerResource<T>, T> void addHookFilter(HookFilter<R, T> filter) {
-        hookFilters.add(filter);
-//        getSkysailApps().forEach(app -> app.addFilter(filter));
-    }
-
-    public synchronized <R extends SkysailServerResource<T>, T> void removeHookFilter(HookFilter<R, T> filter) {
-        hookFilters.remove(filter);
-//        getSkysailApps().forEach(app -> app.removeFilter(filter));
-    }
-
-    @Override
-    public Set<HookFilter> getHookFilters() {
-        return hookFilters;
-    }
+//    @Reference(optional = true, dynamic = true, multiple = true)
+//    public synchronized <R extends SkysailServerResource<T>, T> void addHookFilter(HookFilter<R, T> filter) {
+//        hookFilters.add(filter);
+////        getSkysailApps().forEach(app -> app.addFilter(filter));
+//    }
+//
+//    public synchronized <R extends SkysailServerResource<T>, T> void removeHookFilter(HookFilter<R, T> filter) {
+//        hookFilters.remove(filter);
+////        getSkysailApps().forEach(app -> app.removeFilter(filter));
+//    }
+//
+//    @Override
+//    public Set<HookFilter> getHookFilters() {
+//        return hookFilters;
+//    }
 
     /** === Performance Monitor Service ============================== */
 

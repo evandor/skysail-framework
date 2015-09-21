@@ -9,6 +9,7 @@ import io.skysail.api.um.*;
 import io.skysail.api.validation.ValidatorService;
 import io.skysail.server.forms.FormField;
 import io.skysail.server.model.DefaultEntityFieldFactory;
+import io.skysail.server.repo.Repository;
 import io.skysail.server.restlet.filter.*;
 import io.skysail.server.restlet.resources.SkysailServerResource;
 import io.skysail.server.services.*;
@@ -163,6 +164,7 @@ public abstract class SkysailApplication extends RamlApplication implements Appl
         setName(appName);
         this.apiVersion = apiVersion;
     }
+
     /**
      * probably you want to do something like
      * "router.attach(new RouteBuilder("", RootResource.class))".
@@ -229,6 +231,11 @@ public abstract class SkysailApplication extends RamlApplication implements Appl
 
         setInboundRoot((Restlet) null);
         setOutboundRoot((Restlet) null);
+    }
+
+    public Repository getRepository() {
+        log.warn("calling default implementation of getRepository, which should be overwritten if the application provides a repository.");
+        return null;
     }
 
     protected void documentEntities(Object... entitiesToDocument) {
@@ -621,10 +628,6 @@ public abstract class SkysailApplication extends RamlApplication implements Appl
             logger.trace("{} service was set to '{}' for application '{}'", new Object[] { name,
                     service.getClass().getSimpleName(), getName() });
         }
-    }
-
-    public Set<HookFilter> getFilters() {
-        return serviceListProviderRef.get().getHookFilters();
     }
 
     public Set<PerformanceMonitor> getPerformanceMonitors() {

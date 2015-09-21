@@ -1,11 +1,12 @@
 package io.skysail.server.app.quartz.schedules;
 
+import io.skysail.api.domain.Identifiable;
 import io.skysail.api.forms.Field;
 import io.skysail.server.app.quartz.jobs.Job;
 
 import org.quartz.JobDetail;
 
-public class Schedule {
+public class Schedule implements Identifiable {
 
 	private Job job;
     private JobDetail jobDetail;
@@ -42,6 +43,15 @@ public class Schedule {
 
 	public String getJobGroup() {
         return jobGroup;
+    }
+
+    @Override
+    public String getId() {
+        return null;
+    }
+
+    @Override
+    public void setId(String id) {
     }
 
 }

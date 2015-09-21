@@ -1,9 +1,11 @@
 package io.skysail.server.app.designer.repo;
 
+import io.skysail.api.domain.Identifiable;
 import io.skysail.server.app.designer.application.Application;
 import io.skysail.server.app.designer.entities.Entity;
 import io.skysail.server.app.designer.fields.*;
-import io.skysail.server.db.*;
+import io.skysail.server.db.DbService;
+import io.skysail.server.repo.DbRepository;
 
 import java.util.*;
 
@@ -84,6 +86,11 @@ public class DesignerRepository implements DbRepository {
 
     public Object getVertexById(Class<Application> cls, String id) {
         return dbService.findGraphs("SELECT FROM "+cls.getSimpleName()+" WHERE @rid="+id);
+    }
+
+    @Override
+    public Object save(Identifiable identifiable) {
+        return null;
     }
 
 

@@ -5,7 +5,6 @@ import io.skysail.api.favorites.FavoritesService;
 import io.skysail.api.peers.PeersProvider;
 import io.skysail.api.um.*;
 import io.skysail.api.validation.ValidatorService;
-import io.skysail.server.restlet.filter.HookFilter;
 import io.skysail.server.services.PerformanceMonitor;
 import io.skysail.server.text.TranslationStoreHolder;
 
@@ -34,8 +33,6 @@ public interface ServiceListProvider {
     AtomicReference<EventAdmin> getEventAdmin();
 
     SkysailComponent getSkysailComponent();
-
-    Set<HookFilter> getHookFilters();
 
     AtomicReference<ValidatorService> getValidatorService();
 

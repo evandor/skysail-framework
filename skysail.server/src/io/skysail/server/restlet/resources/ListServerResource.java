@@ -1,9 +1,10 @@
 package io.skysail.server.restlet.resources;
 
 import io.skysail.api.documentation.API;
+import io.skysail.api.domain.Identifiable;
 import io.skysail.api.links.LinkRelation;
 import io.skysail.api.responses.*;
-import io.skysail.server.restlet.RequestHandler;
+import io.skysail.server.restlet.ListRequestHandler;
 import io.skysail.server.services.PerformanceTimer;
 
 import java.util.*;
@@ -68,18 +69,19 @@ import de.twenty11.skysail.server.core.restlet.*;
  */
 @Slf4j
 @ToString
-public abstract class ListServerResource<T> extends SkysailServerResource<List<T>> {
+public abstract class ListServerResource<T extends Identifiable> extends SkysailServerResource<List<?>> {
 
     public static final String CONSTRAINT_VIOLATIONS = "constraintViolations";
 
     private List<Class<? extends SkysailServerResource<?>>> associatedEntityServerResources;
-    private RequestHandler<T> requestHandler;
+
+    private ListRequestHandler<?> requestHandler;
 
     /**
      * Default constructor without associatedEntityServerResource.
      */
     public ListServerResource() {
-        requestHandler = new RequestHandler<T>(null);
+        requestHandler = new ListRequestHandler<T>(null);
         addToContext(ResourceContextId.LINK_TITLE, "list");
     }
 
@@ -118,7 +120,7 @@ public abstract class ListServerResource<T> extends SkysailServerResource<List<T
                 this.getClass().getSimpleName() + ":getEntities");
         log.info("Request entry point: {} @Get('html|json|yaml|xml') with variant {}", this.getClass().getSimpleName(),
                 variant);
-        List<T> response = listEntities();
+        List<T> response = (List<T>) listEntities();
         getApplication().stopPerformanceMonitoring(perfTimer);
         return new ListServerResponse<T>(response);
 
@@ -137,9 +139,9 @@ public abstract class ListServerResource<T> extends SkysailServerResource<List<T
         return LinkRelation.COLLECTION;
     }
 
-    private final List<T> listEntities() {
-        ResponseWrapper<List<T>> responseWrapper = requestHandler.createForList(Method.GET).handle(this, getResponse());
-        return responseWrapper.getEntity();
+    private final List<?> listEntities() {
+        ListResponseWrapper<?> responseWrapper = requestHandler.createForList(Method.GET).handleList(this, getResponse());
+        return (List<?>) responseWrapper.getEntity();
     }
 
     /**

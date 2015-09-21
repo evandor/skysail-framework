@@ -1,13 +1,15 @@
 package io.skysail.server.db;
 
+import io.skysail.api.domain.Identifiable;
 import io.skysail.server.queryfilter.Filter;
 import io.skysail.server.queryfilter.pagination.Pagination;
+import io.skysail.server.repo.DbRepository;
 
 import java.lang.reflect.*;
 import java.util.*;
 
 
-public class GraphDbRepository<T> implements DbRepository {
+public class GraphDbRepository<T extends Identifiable> implements DbRepository {
 
     protected DbService dbService;
 
@@ -23,6 +25,11 @@ public class GraphDbRepository<T> implements DbRepository {
 
     public Object save(T entity, String... edges) {
         return dbService.persist(entity, edges);
+    }
+
+    @Override
+    public Object save(Identifiable entity) {
+        return dbService.persist(entity);
     }
 
     public Object update(String id, Object entity, String... edges) {
@@ -84,4 +91,6 @@ public class GraphDbRepository<T> implements DbRepository {
         }
         return getParameterizedType(cls.getSuperclass());
     }
+
+
 }

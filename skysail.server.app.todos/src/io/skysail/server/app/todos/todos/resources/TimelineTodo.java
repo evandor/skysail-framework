@@ -1,6 +1,7 @@
 package io.skysail.server.app.todos.todos.resources;
 
 import io.skysail.api.domain.Identifiable;
+import io.skysail.api.forms.Field;
 import io.skysail.server.app.todos.todos.Todo;
 
 import java.text.SimpleDateFormat;
@@ -13,10 +14,17 @@ public class TimelineTodo implements Identifiable {
 
     private static final String DATE_FORMAT = "yyyy-MM-dd";
 
+    @Field
     private String id;
+
+    @Field
     private String content;
+
     private String type;
+
+    @Field
     private String start;
+
     private Object end;
 
     public TimelineTodo(Todo todo) {

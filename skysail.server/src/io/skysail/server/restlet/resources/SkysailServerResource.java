@@ -79,7 +79,7 @@ public abstract class SkysailServerResource<T> extends ServerResource {
     private ResourceContext resourceContext;
 
     @Getter
-    private Set<String> restrictedToMediaType = new HashSet<>();
+    private Set<String> restrictedToMediaTypes = new HashSet<>();
 
     public SkysailServerResource() {
         DateTimeConverter dateConverter = new DateConverter(null);
@@ -430,6 +430,25 @@ public abstract class SkysailServerResource<T> extends ServerResource {
             }
         }
 
+        return result;
+    }
+
+    public Set<String> getRestrictedToMediaTypes() {
+        return Collections.emptySet();
+    }
+
+    public Set<String> getRestrictedToMediaTypes(String... supportedMediaTypes) {
+        HashSet<String> result = new HashSet<String>();
+        Arrays.stream(supportedMediaTypes).forEach(smt -> result.add(smt));
+        return result;
+    }
+
+    public Set<String> getDefaultMediaTypes() {
+        HashSet<String> result = new HashSet<>();
+        result.add("xml");
+        result.add("json");
+        result.add("x-yaml");
+        result.add("csv");
         return result;
     }
 

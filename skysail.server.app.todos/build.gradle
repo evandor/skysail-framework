@@ -26,4 +26,4 @@ dependencies {
     testCompile('org.assertj:assertj-core:1.7.0')
 }
 
-gradle.startParameter.continueOnFailure = true
+//gradle.startParameter.continueOnFailure = true

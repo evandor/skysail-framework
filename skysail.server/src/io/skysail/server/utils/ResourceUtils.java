@@ -76,10 +76,12 @@ public class ResourceUtils {
         if (supportedMediaTypes.contains(variantInfo.getMediaType())) {
             String subType = variantInfo.getMediaType().getSubType();
             String mediaTypeName = subType.equals("*") ? variantInfo.getMediaType().getName() : subType;
-            if (resource.getRestrictedToMediaType().isEmpty()) {
-                mediaTypes.add(mediaTypeName);
+            if (resource.getRestrictedToMediaTypes().isEmpty()) {
+                if (resource.getDefaultMediaTypes().contains(mediaTypeName)) {
+                    mediaTypes.add(mediaTypeName);
+                }
             } else {
-                if (resource.getRestrictedToMediaType().contains(mediaTypeName)) {
+                if (resource.getRestrictedToMediaTypes().contains(mediaTypeName)) {
                     mediaTypes.add(mediaTypeName);
                 }
             }

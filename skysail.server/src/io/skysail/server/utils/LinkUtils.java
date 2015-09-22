@@ -99,8 +99,28 @@ public class LinkUtils {
 
     private static Link createLink(SkysailServerResource<?> skysailServerResource,
             Class<? extends SkysailServerResource<?>> resourceClass) {
-        String path = skysailServerResource.getRequest().getOriginalRef().getPath();
-        return createLink(skysailServerResource.getApplication(), resourceClass, null);
+        return createLink2(skysailServerResource, resourceClass, null);
+    }
+
+    private static Link createLink2(SkysailServerResource<?> skysailServerResource,
+            Class<? extends SkysailServerResource<?>> resourceClass, Object object) {
+        SkysailApplication app = skysailServerResource.getApplication();
+        RouteBuilder routeBuilder = app.getRouteBuilders(resourceClass).get(0);
+        Optional<SkysailServerResource<?>> resource = createNewInstance(resourceClass);
+
+        Link link = new Link.Builder(determineUri2(skysailServerResource, routeBuilder))
+                .definingClass(resourceClass)
+                .relation(resource.isPresent() ? resource.get().getLinkRelation() : LinkRelation.ALTERNATE)
+                .title(resource.isPresent() ? resource.get().getFromContext(ResourceContextId.LINK_TITLE) : "unknown")
+                .authenticationNeeded(routeBuilder.needsAuthentication())
+                .needsRoles(routeBuilder.getRolesForAuthorization())
+                .image(MediaType.TEXT_HTML,
+                        resource.isPresent() ? resource.get().getFromContext(ResourceContextId.LINK_GLYPH) : null)
+            .build();
+
+        log.debug("created link {}", link);
+        return link;
+
     }
 
     private static Optional<SkysailServerResource<?>> createNewInstance(
@@ -116,6 +136,15 @@ public class LinkUtils {
 
     private static String determineUri(SkysailApplication app, RouteBuilder routeBuilder) {
         return "/" + app.getName() + routeBuilder.getPathTemplate(app.getApiVersion());
+    }
+
+    private static String determineUri2(SkysailServerResource<?> skysailServerResource, RouteBuilder routeBuilder) {
+        SkysailApplication app = skysailServerResource.getApplication();
+        String result = "/" + app.getName() + routeBuilder.getPathTemplate(app.getApiVersion());
+        if (skysailServerResource.getRestrictedToMediaTypes().size() == 1) {
+            result += "?media=" + skysailServerResource.getRestrictedToMediaTypes().iterator().next();
+        }
+        return result;
     }
 
     private static boolean noRouteBuilderFound(SkysailApplication app, Class<? extends SkysailServerResource<?>> ssr) {

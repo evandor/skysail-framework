@@ -158,12 +158,4 @@ public abstract class ListServerResource<T extends Identifiable> extends Skysail
         return associatedEntityServerResources;
     }
 
-    public Set<String> getRestrictedToMediaType(String... supportedMediaTypes) {
-        HashSet<String> result = new HashSet<String>();
-        Arrays.stream(supportedMediaTypes).forEach(smt -> result.add(smt));
-        return result;
-    }
-
-
-
 }

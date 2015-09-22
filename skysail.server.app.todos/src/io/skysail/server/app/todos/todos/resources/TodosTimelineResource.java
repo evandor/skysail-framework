@@ -12,9 +12,16 @@ import java.util.stream.Collectors;
 import org.apache.shiro.SecurityUtils;
 import org.restlet.resource.ResourceException;
 
+import de.twenty11.skysail.server.core.restlet.ResourceContextId;
+
 public class TodosTimelineResource extends ListServerResource<TimelineTodo> {
 
     private TodoApplication app;
+
+    public TodosTimelineResource() {
+        addToContext(ResourceContextId.LINK_TITLE, "Timeline");
+        addToContext(ResourceContextId.LINK_GLYPH, "minus");
+    }
 
     @Override
     protected void doInit() throws ResourceException {
@@ -23,8 +30,8 @@ public class TodosTimelineResource extends ListServerResource<TimelineTodo> {
     }
 
     @Override
-    public Set<String> getRestrictedToMediaType() {
-        return super.getRestrictedToMediaType("timeline");
+    public Set<String> getRestrictedToMediaTypes() {
+        return super.getRestrictedToMediaTypes("timeline/*");
     }
 
     @Override

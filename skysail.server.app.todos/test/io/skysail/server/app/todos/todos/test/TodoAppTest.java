@@ -38,7 +38,7 @@
 //        app.setRepository(todoRepo);
 //        Mockito.when(app.getValidatorService()).thenReturn(new DefaultValidationImpl());
 //
-//        form = new Form();
+//        form = new AForm();
 //        Locale locale_en = new Locale("en");
 //        Locale.setDefault(locale_en);
 //    }

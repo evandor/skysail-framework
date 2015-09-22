@@ -14,8 +14,10 @@ public class MenuItemDescriptor implements Identifiable {
     @ListView(link = RemoteLoginResource.class) // TODO, thats just an awful workaround
     private String url;
 
+    private String name;
+
     MenuItemDescriptor(MenuItem menuItem) {
-        String name = menuItem.getName();
+        name = menuItem.getName();
         String link = menuItem.getLink();
         url = "<a href='"+link+"'>"+name+"</a>";
     }

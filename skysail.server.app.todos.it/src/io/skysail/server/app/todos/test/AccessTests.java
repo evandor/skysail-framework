@@ -18,7 +18,7 @@
 //    public void demoUser_doesnot_see_admins_todolists_inHtml() throws IOException {
 //        ApplicationClient client = new ApplicationClient(getBaseUrl(), MediaType.TEXT_HTML);
 //
-//        Form form = new Form();
+//        AForm form = new AForm();
 //        form.add("name", "adminstodolist");
 //        createTodoListAs(client, "admin", form);
 //
@@ -32,7 +32,7 @@
 //    public void demoUser_doesnot_see_admins_todolists_inJson() throws IOException {
 //        ApplicationClient client = new ApplicationClient(getBaseUrl(), MediaType.APPLICATION_JSON);
 //
-//        Form form = new Form();
+//        AForm form = new AForm();
 //        form.add("name", "adminstodolist");
 //        createTodoListAs(client, "admin", form);
 //

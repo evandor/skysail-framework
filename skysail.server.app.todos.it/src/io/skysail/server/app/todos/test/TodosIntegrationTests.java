@@ -86,7 +86,7 @@ public class TodosIntegrationTests extends IntegrationTests<TodosBrowser, Todo> 
     // MediaType.APPLICATION_JSON);
     //
     // thrown.expectMessage("Bad Request");
-    // Form form = new Form();
+    // AForm form = new AForm();
     // form.add("title", "");
     // client.setUrl("/Todos/Todos/").post(form);
     // }

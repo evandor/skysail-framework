@@ -19,16 +19,16 @@ import org.restlet.data.Status;
 public abstract class AbstractListResourceTest extends ResourceTestBase {
 
     @Spy
-    protected PostListResource postListresource;
+    public PostListResource postListresource;
 
     @Spy
-    protected PutListResource putListResource;
+    public PutListResource putListResource;
 
     @Spy
-    protected ListsResource listsResource;
+    public ListsResource listsResource;
 
     @Spy
-    protected ListResource listResource;
+    public ListResource listResource;
 
     @Spy
     private TodoApplication application;
@@ -52,7 +52,7 @@ public abstract class AbstractListResourceTest extends ResourceTestBase {
         new UniquePerOwnerValidator().setDbService(testDb);
     }
 
-    protected void assertListResult(SkysailServerResource<?> resource, SkysailResponse<TodoList> result, String name) {
+    public void assertListResult(SkysailServerResource<?> resource, SkysailResponse<TodoList> result, String name) {
         TodoList entity = result.getEntity();
         assertThat(responses.get(resource.getClass().getName()).getStatus(),is(equalTo(Status.SUCCESS_CREATED)));
         assertThat(entity.getName(),is(equalTo(name)));

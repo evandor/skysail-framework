@@ -56,7 +56,10 @@ public class DefaultResource extends ListServerResource<MenuItemDescriptor> {
     @Override
     public List<MenuItemDescriptor> getEntity() {
         Set<MenuItem> mainMenuItems = ((SkysailRootApplication)getApplication()).getMainMenuItems(getRequest());
-        return mainMenuItems.stream().map(i -> new MenuItemDescriptor(i)).collect(Collectors.toList());
+        return mainMenuItems.stream()
+                .map(i -> new MenuItemDescriptor(i))
+                .sorted((m1,m2) -> m1.getName().compareTo(m2.getName()))
+                .collect(Collectors.toList());
     }
 
 }

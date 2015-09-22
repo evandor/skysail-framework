@@ -52,8 +52,8 @@ public class MailRepository implements DbRepository {
         return dbService.findObjectById(cls, id);
     }
 
-    public void update(String attribute, Account original) {
-        dbService.update(attribute, original);
+    public Object update(String id, Object entity, String... edges) {
+        return dbService.update(id, entity);
     }
 
     @Override

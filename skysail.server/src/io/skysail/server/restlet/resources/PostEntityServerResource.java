@@ -118,11 +118,9 @@ public abstract class PostEntityServerResource<T extends Identifiable> extends S
      *            the entity
      * @return the response
      */
-    //public abstract SkysailResponse<T> addEntity(T entity);
-
     public SkysailResponse<T> addEntity(T entity) {
         String id = ((SkysailApplication)getApplication()).getRepository().save(entity).toString();
-        //entity.setId(id);
+        entity.setId(id);
         return new SkysailResponse<>(entity);
     }
 

@@ -105,8 +105,8 @@ public class QuartzRepository implements DbRepository {
     // return list;
     // }
 
-    public void update(String id, Object entity, String... edges) {
-        dbService.update(id, entity, edges);
+    public Object update(String id, Object entity, String... edges) {
+        return dbService.update(id, entity, edges);
     }
 
     // public Object add(Todo entity) {

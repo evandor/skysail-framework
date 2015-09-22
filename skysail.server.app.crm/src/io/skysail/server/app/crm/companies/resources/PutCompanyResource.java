@@ -28,7 +28,7 @@ public class PutCompanyResource extends PutEntityServerResource<Company> {
     public SkysailResponse<Company> updateEntity(Company entity) {
         // entity.setChanged(new Date());
         entity.setChangedBy(SecurityUtils.getSubject().getPrincipal().toString());
-        app.getRepository().update(entity);
+        app.getRepository().update(id, entity);
         return new SkysailResponse<>();
     }
 

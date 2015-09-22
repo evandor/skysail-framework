@@ -60,16 +60,16 @@ public class DesignerRepository implements DbRepository {
         return dbService.update(entity.getId(), entity, edges);
     }
 
-    public void update(Entity entity, String... edges) {
-        dbService.update(entity.getId(), entity, edges);
+    public Object update(Entity entity, String... edges) {
+        return dbService.update(entity.getId(), entity, edges);
     }
 
     public void update(EntityField field) {
         dbService.update(field.getId(), field);
     }
 
-    public void update(String id, Object entity) {
-        dbService.update(id, entity);
+    public Object update(String id, Object entity, String... edges) {
+        return dbService.update(id, entity);
     }
 
     public void register(Class<?>... classes) {

@@ -59,8 +59,8 @@ public class BookmarksRepository implements DbRepository {
         return dbService.findObjectById(cls, id);
     }
 
-    public void update(String id, Object entity) {
-        dbService.update(id, entity);
+    public Object update(String id, Object entity, String... edges) {
+        return dbService.update(id, entity);
     }
 
 //    public Object add(Todo entity) {

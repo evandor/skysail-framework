@@ -4,6 +4,7 @@ import io.skysail.api.documentation.API;
 import io.skysail.api.domain.Identifiable;
 import io.skysail.api.links.*;
 import io.skysail.api.responses.*;
+import io.skysail.server.app.SkysailApplication;
 import io.skysail.server.restlet.RequestHandler;
 import io.skysail.server.restlet.filter.AbstractResourceFilter;
 import io.skysail.server.services.PerformanceTimer;
@@ -100,7 +101,13 @@ public abstract class PutEntityServerResource<T extends Identifiable> extends Sk
     /**
      * will be called in case of a PUT request.
      */
-    public abstract SkysailResponse<T> updateEntity(T entity);
+    public SkysailResponse<T> updateEntity(T entity) {
+        T original = getEntity(null);
+        SkysailApplication app = (SkysailApplication)getApplication();
+        //app.getListRepo().update(listId, original);
+        app.getRepository().update(getAttribute("id"), original);
+        return new SkysailResponse<>();
+    }
 
     /**
      * This method will be called by the skysail framework to create the actual

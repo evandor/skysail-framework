@@ -15,22 +15,6 @@ public class RequestHandler<T extends Identifiable> {
         this.application = application;
     }
 
-//    /**
-//     * for now, always return new objects
-//     *
-//     * @param method
-//     *            http method
-//     * @return chain
-//     */
-//    public synchronized AbstractResourceFilter<ListServerResource<T>, List<T>> createForList(Method method) {
-//        if (method.equals(Method.GET)) {
-//            return chainForListGet();
-//        } else if (method.equals(Method.POST)) {
-//            return chainForListPost();
-//        }
-//        throw new RuntimeException("Method " + method + " is not yet supported");
-//    }
-
     /**
      * for now, always return new objects
      *
@@ -76,27 +60,6 @@ public class RequestHandler<T extends Identifiable> {
     public AbstractResourceFilter<PutEntityServerResource<T>, T> createForPatch() {
         return chainForEntityPatch();
     }
-
-//    // @formatter:off
-//    private AbstractResourceFilter<ListServerResource<T>, List<T>> chainForListPost() {
-//        return new ExceptionCatchingFilter<ListServerResource<T>, List<T>>(application)
-//                .calling(new ExtractStandardQueryParametersResourceFilter<ListServerResource<T>, List<T>>())
-//                .calling(new CheckInvalidInputFilter<ListServerResource<T>, List<T>>())
-//                .calling(new FormDataExtractingFilter<ListServerResource<T>, List<T>>())
-//                .calling(new CheckBusinessViolationsFilter<ListServerResource<T>, List<T>>(application))
-//                .calling(new PersistEntityFilter<ListServerResource<T>, List<T>>(application));
-//    }
-//
-//    private AbstractResourceFilter<ListServerResource<T>, List<T>> chainForListGet() {
-//        return new ExceptionCatchingFilter<ListServerResource<T>, List<T>>(application)
-//                .calling(new AddApiVersionHeaderFilter<ListServerResource<T>, List<T>>())
-//                .calling(new ExtractStandardQueryParametersResourceFilter<ListServerResource<T>, List<T>>())
-//                .calling(new DataExtractingFilter<ListServerResource<T>, List<T>>())
-//                .calling(new AddLinkheadersFilter<ListServerResource<T>, List<T>>())
-//                .calling(new CheckFavoritesFilter<ListServerResource<T>, List<T>>())
-//                .calling(new SetExecutionTimeInResponseFilter<ListServerResource<T>, List<T>>())
-//                .calling(new RedirectFilter<ListServerResource<T>, List<T>>());
-//    }
 
     private AbstractResourceFilter<EntityServerResource<T>, T> chainForEntityGet() {
         return new ExceptionCatchingFilter<EntityServerResource<T>, T>(application)

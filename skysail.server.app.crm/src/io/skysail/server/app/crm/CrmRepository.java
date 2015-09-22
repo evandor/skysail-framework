@@ -52,8 +52,8 @@ public class CrmRepository implements DbRepository {
         return dbService.findObjectById(cls, id);
     }
 
-    public void update(Company entity) {
-        // dbService.update(entity.getId(), entity);
+    public Object update(String id, Object entity, String... edges) {
+        return dbService.update(id, entity);
     }
 
     @Override

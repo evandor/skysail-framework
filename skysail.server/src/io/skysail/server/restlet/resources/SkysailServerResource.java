@@ -78,6 +78,9 @@ public abstract class SkysailServerResource<T> extends ServerResource {
     @Getter
     private ResourceContext resourceContext;
 
+    @Getter
+    private Set<String> restrictedToMediaType = new HashSet<>();
+
     public SkysailServerResource() {
         DateTimeConverter dateConverter = new DateConverter(null);
 

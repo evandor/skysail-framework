@@ -6,7 +6,7 @@ import io.skysail.server.app.todos.TodoApplication;
 import io.skysail.server.queryfilter.Filter;
 import io.skysail.server.restlet.resources.ListServerResource;
 
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import org.apache.shiro.SecurityUtils;
@@ -20,6 +20,11 @@ public class TodosTimelineResource extends ListServerResource<TimelineTodo> {
     protected void doInit() throws ResourceException {
         super.doInit();
         app = (TodoApplication)getApplication();
+    }
+
+    @Override
+    public Set<String> getRestrictedToMediaType() {
+        return super.getRestrictedToMediaType("timeline");
     }
 
     @Override

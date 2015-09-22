@@ -48,15 +48,9 @@ public class ResourceUtils {
         }
         return null;
     }
-    public static Set<String> getSupportedMediaTypes(Resource resource, Class<?> type) {
-        List<Variant> supportedVariants = Collections.emptyList();
-        Set<MediaType> supportedMediaTypes = new HashSet<>();
-        if (resource instanceof ServerResource) {
-            supportedVariants = ((ServerResource) resource).getVariants();
-            for (Variant variant : supportedVariants) {
-                supportedMediaTypes.add(variant.getMediaType());
-            }
-        }
+
+    public static Set<String> getSupportedMediaTypes(SkysailServerResource<?> resource, Class<?> type) {
+        Set<MediaType> supportedMediaTypes = getMaximumSetOfSupportedMediumTypes(resource);
 
         Set<String> mediaTypes = new HashSet<String>();
         List<ConverterHelper> registeredConverters = Engine.getInstance().getRegisteredConverters();
@@ -68,16 +62,40 @@ public class ResourceUtils {
                     continue;
                 }
                 for (VariantInfo variantInfo : variants) {
-                    if (supportedMediaTypes.contains(variantInfo.getMediaType())) {
-                        String subType = variantInfo.getMediaType().getSubType();
-                        mediaTypes.add(subType.equals("*") ? variantInfo.getMediaType().getName() : subType);
-                    }
+                    addValidMediaTypes(resource, supportedMediaTypes, mediaTypes, variantInfo);
                 }
             } catch (IOException e) {
                 log.error(e.getMessage(), e);
             }
         }
         return mediaTypes;
+    }
+
+    private static void addValidMediaTypes(SkysailServerResource<?> resource, Set<MediaType> supportedMediaTypes,
+            Set<String> mediaTypes, VariantInfo variantInfo) {
+        if (supportedMediaTypes.contains(variantInfo.getMediaType())) {
+            String subType = variantInfo.getMediaType().getSubType();
+            String mediaTypeName = subType.equals("*") ? variantInfo.getMediaType().getName() : subType;
+            if (resource.getRestrictedToMediaType().isEmpty()) {
+                mediaTypes.add(mediaTypeName);
+            } else {
+                if (resource.getRestrictedToMediaType().contains(mediaTypeName)) {
+                    mediaTypes.add(mediaTypeName);
+                }
+            }
+        }
+    }
+
+    private static Set<MediaType> getMaximumSetOfSupportedMediumTypes(SkysailServerResource<?> resource) {
+        List<Variant> supportedVariants;
+        Set<MediaType> supportedMediaTypes = new HashSet<>();
+        if (resource instanceof ServerResource) {
+            supportedVariants = ((ServerResource) resource).getVariants();
+            for (Variant variant : supportedVariants) {
+                supportedMediaTypes.add(variant.getMediaType());
+            }
+        }
+        return supportedMediaTypes;
     }
 
     public static Locale determineLocale(SkysailServerResource<?> resource) {

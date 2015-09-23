@@ -1,4 +1,4 @@
-Bundle-Version: 2.0.1.${tstamp}
+Bundle-Version: 3.0.0.${tstamp}
 Service-Component: *
 Bundle-Name: SKYSAIL :: server :: db
 Private-Package:  \
@@ -35,7 +35,7 @@ Import-Package:  \
 	!com.carrotsearch.hppc.*,\
 	*
 Export-Package:  \
-	com.tinkerpop.blueprints.*;version=2.6.0,\
+	com.tinkerpop.blueprints.*;version=3.0.0,\
 	de.twenty11.skysail.server.db.orientdb,\
 	io.skysail.server.db
 DynamicImport-Package: *

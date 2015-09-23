@@ -59,7 +59,7 @@ public class ListsRepository extends GraphDbRepository<TodoList> implements DbRe
 
     private void addCount(Filter filter, TodoList list) {
         String sql = "SELECT COUNT(*) as count from " + Todo.class.getSimpleName()
-                + " WHERE "+list.getId()+" IN out('parent') AND status <> '"+Status.ARCHIVED+"' AND "+filter.getPreparedStatement();
+                + " WHERE "+list.getId()+" IN out('parent') AND status <> '"+Status.DONE+"' AND "+filter.getPreparedStatement();
         Map<String, Object> params = filter.getParams();
         params.put("list", list.getId().replace("#",""));
         long cnt = dbService.getCount(sql, params);

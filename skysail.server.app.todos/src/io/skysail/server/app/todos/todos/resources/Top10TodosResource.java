@@ -14,7 +14,7 @@ import de.twenty11.skysail.server.core.restlet.ResourceContextId;
 
 public class Top10TodosResource extends TodoSummaryResource {
 
-    private static final String DEFAULT_FILTER_EXPRESSION = "(!(status=" + Status.ARCHIVED + "))";
+    private static final String DEFAULT_FILTER_EXPRESSION = "(!(status=" + Status.DONE + "))";
 
     public Top10TodosResource() {
         super(TodoResource.class);

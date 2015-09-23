@@ -25,7 +25,7 @@ public class ArchivedTodosResource extends TodosResource {
         Filter filter = new Filter(getRequest());
         filter.add("owner",  SecurityUtils.getSubject().getPrincipal().toString());
         filter.add("list", listId);
-        filter.add("status", Status.ARCHIVED.name());
+        filter.add("status", Status.DONE.name());
 
         Pagination pagination = new Pagination(getRequest(), getResponse(), app.getTodosRepo().getTodosCount(listId, filter));
         return app.getTodosRepo().findAllTodos(filter, pagination);

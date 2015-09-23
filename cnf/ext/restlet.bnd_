@@ -1,2 +1,0 @@
-restlet:\
-    org.restlet;version=${restlet.version},\

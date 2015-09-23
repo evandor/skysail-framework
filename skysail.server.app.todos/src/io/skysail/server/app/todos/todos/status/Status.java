@@ -36,7 +36,7 @@ public enum Status implements Identifiable{
     }
 
     public boolean isActive() {
-        return !this.equals(FINISHED) && !this.equals(ARCHIVED);
+        return !this.equals(FINISHED) && !this.equals(ARCHIVED) && !this.equals(DONE);
     }
 
     @Override

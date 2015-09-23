@@ -14,7 +14,7 @@ import de.twenty11.skysail.server.core.restlet.ResourceContextId;
 
 public class OverdueTodosResource extends TodoSummaryResource {
 
-    private static final String DEFAULT_FILTER_EXPRESSION = "(&(due < date())(!(status=" + Status.ARCHIVED + ")))";
+    private static final String DEFAULT_FILTER_EXPRESSION = "(&(due < date())(!(status=" + Status.DONE + ")))";
 
     public OverdueTodosResource() {
         super(TodoResource.class);

@@ -4,7 +4,6 @@ Service-Component: *
 	skysail.api;version=${skysail.api.version},\
     skysail.api.search;version=${skysail.api.search.version},\
     skysail.api.text;version=${skysail.api.text.version},\
-	skysail.api.documentation;version=${skysail.api.documentation.version},\
 	skysail.server;version=${skysail.server.version},\
 	biz.aQute.bnd.annotation,\
 	javax.validation.api;version=1.1,\

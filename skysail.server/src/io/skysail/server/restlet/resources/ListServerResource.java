@@ -49,12 +49,12 @@ import de.twenty11.skysail.server.core.restlet.*;
  *
  *    {@literal @}Override
  *    public List<Company> getEntity() {
- *       return app.getRepository().findAll(Company.class);
+ *      return app.getRepository().find(new Filter(getRequest()));
  *    }
  *
  *    {@literal @}Override
  *    public List<Link> getLinks() {
- *       return super.getLinkheader(PostCompanyResource.class);
+ *       return super.getLinks(PostCompanyResource.class);
  *    }
  * </code>
  * </pre>

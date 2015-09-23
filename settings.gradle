@@ -79,7 +79,6 @@ if (projectNames.remove('')) {
     }
   }
 /*  projectNames += "skysail.api"
-  projectNames += "skysail.api.documentation"
   projectNames += "skysail.api.favorites"
   projectNames += "skysail.api.features"
   projectNames += "skysail.api.peers"
@@ -110,8 +109,6 @@ if (projectNames.remove('')) {
   projectNames += "skysail.server.codegen.test"
   projectNames += "skysail.server.converter"
   projectNames += "skysail.server.db"
-  projectNames += "skysail.server.documentation"
-  projectNames += "skysail.server.documentation.it"
   //projectNames += "skysail.server.emf.application"
   //projectNames += "skysail.server.emf.application.edit"
   //projectNames += "skysail.server.emf.application.editor"

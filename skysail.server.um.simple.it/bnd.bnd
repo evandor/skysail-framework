@@ -6,7 +6,6 @@ Test-Cases: \
 
 -buildpath:  \
 	skysail.api.validation;version=${skysail.api.validation.version},\
-	skysail.api.documentation;version=${skysail.api.documentation.version},\
 	skysail.server.db;version=${skysail.server.db.version},\
 	skysail.server.um.internal;version=0.0,\
 	osgi.core;version=5.0,\

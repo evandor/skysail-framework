@@ -57,7 +57,6 @@ Test-Cases:  \
 #	osgi.identity;filter:='(&(osgi.identity=skysail.api)(version>=2.0))',\
 #	osgi.identity;filter:='(&(osgi.identity=skysail.api.validation)(version>=0.1))',\
 #	osgi.identity;filter:='(&(osgi.identity=skysail.api.features)(version>=0.1))',\
-#	osgi.identity;filter:='(&(osgi.identity=skysail.api.documentation)(version>=0.1))',\
 #	osgi.identity;filter:='(&(osgi.identity=osgi.cmpn)(version>=5.0))',\
 #	osgi.identity;filter:='(&(osgi.identity=ch.qos.logback.classic)(version>=1.1.2))',\
 #	osgi.identity;filter:='(&(osgi.identity=org.hibernate.validator)(version>=5.0.1.Final))'
@@ -105,7 +104,6 @@ Test-Cases:  \
 	osgi.cmpn;version='[5.0.0,5.0.1)',\
 	osgi.enterprise;version='[4.2.0,4.2.1)',\
 	skysail.api;version=${skysail.api.version},\
-	skysail.api.documentation;version=${skysail.api.documentation.version},\
 	skysail.api.features;version=latest,\
 	skysail.api.favorites;version=${skysail.api.favorites.version},\
 	skysail.api.search;version=latest,\

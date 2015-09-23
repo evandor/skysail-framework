@@ -1,20 +1,14 @@
 package io.skysail.server.app.todos.test;
 
-import static org.junit.Assert.assertTrue;
-import io.skysail.api.documentation.DocumentationProvider;
 import io.skysail.api.links.LinkRelation;
 import io.skysail.client.testsupport.*;
 import io.skysail.server.app.todos.TodoApplication;
 import io.skysail.server.app.todos.test.browser.TodosBrowser;
 import io.skysail.server.app.todos.todos.Todo;
 
-import java.util.*;
-
 import org.junit.*;
-import org.osgi.framework.ServiceReference;
 import org.restlet.data.Form;
 import org.restlet.representation.Representation;
-import org.restlet.resource.ServerResource;
 
 public class TodosIntegrationTests extends IntegrationTests<TodosBrowser, Todo> {
 
@@ -32,22 +26,6 @@ public class TodosIntegrationTests extends IntegrationTests<TodosBrowser, Todo> 
         client.loginAs(username, "skysail").followLinkTitle(TodoApplication.APP_NAME);
     }
 
-    @Test
-    public void documentationProvider_is_available() throws Exception {
-        Collection<ServiceReference<DocumentationProvider>> serviceRefs = thisBundle.getBundleContext()
-                .getServiceReferences(DocumentationProvider.class, null);
-        assertTrue("service not available", serviceRefs.size() > 0);
-    }
-
-    @Test
-    public void resourceMap_contains_apiResource() throws Exception {
-        Collection<ServiceReference<DocumentationProvider>> serviceRefs = thisBundle.getBundleContext()
-                .getServiceReferences(DocumentationProvider.class, null);
-        DocumentationProvider documentationProvider = thisBundle.getBundleContext().getService(
-                serviceRefs.iterator().next());
-        Map<String, Class<? extends ServerResource>> resourceMap = documentationProvider.getResourceMap();
-        assertTrue(resourceMap.size() > 0);
-    }
 
     // @Test
     // public void get_html_on_ListsResource_returns_200() throws Exception {

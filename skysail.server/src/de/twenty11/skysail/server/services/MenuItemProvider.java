@@ -12,9 +12,11 @@ public interface MenuItemProvider {
      *
      * <pre>
      * <code>
-     *   MenuItem menuItem = new MenuItem(APP_NAME, "/" + APP_NAME + getApiVersion().getVersionPath());
-     *   menuItem.setCategory(MenuItem.Category.APPLICATION_MAIN_MENU);
-     *   return Arrays.asList(menuItem);
+     *    public List&lt;MenuItem&gt; getMenuEntries() {
+     *         MenuItem appMenu = new MenuItem(APP_NAME, "/" + APP_NAME + getApiVersion().getVersionPath());
+     *         appMenu.setCategory(MenuItem.Category.APPLICATION_MAIN_MENU);
+     *         return Arrays.asList(appMenu);
+     *    }
      * </code>
      * </pre>
      */

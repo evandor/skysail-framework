@@ -4,7 +4,6 @@ Private-Package:  \
 	io.skysail.product.designer
 -buildpath:  \
 	skysail.api;version=${skysail.api.version},\
-	skysail.api.documentation;version='[0.2,0.3)',\
 	skysail.api.favorites;version=${skysail.api.favorites.version},\
 	skysail.api.peers;version=${skysail.api.peers.version},\
     skysail.server;version=${skysail.server.version},\

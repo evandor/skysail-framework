@@ -58,10 +58,14 @@ import de.twenty11.skysail.server.services.*;
  * <pre>
  * <code>
  *
- * {@literal @}org.osgi.service.component.annotations.Component.Component(immediate = true)
+ * {@literal @}org.osgi.service.component.annotations.Component(immediate = true)
  * public class MyApplication extends SkysailApplication implements ApplicationProvider, MenuItemProvider {
  *
  *     private static final String APP_NAME = "myapp";
+ *
+ *     @Reference(target = "(name=MyRepository)")
+ *     // myRepository extends GraphDbRepository<Clip>implements DbRepository
+ *     private DbRepository myRepository;
  *
  *     public DbClientApplication() {
  *          super(APP_NAME);
@@ -77,9 +81,13 @@ import de.twenty11.skysail.server.services.*;
  *     }
  *
  *     public List&lt;MenuItem&gt; getMenuEntries() {
- *         MenuItem appMenu = new MenuItem(APP_NAME, "/" + APP_NAME);
+ *         MenuItem appMenu = new MenuItem(APP_NAME, "/" + APP_NAME + getApiVersion().getVersionPath());
  *         appMenu.setCategory(MenuItem.Category.APPLICATION_MAIN_MENU);
  *         return Arrays.asList(appMenu);
+ *     }
+ *
+ *     public MyRepository getRepository() {
+ *          return (MyRepository) myRepository;
  *     }
  * }
  * </code>

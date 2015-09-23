@@ -5,8 +5,7 @@ developerLinks(model) ::= <<
      --><li>
       <select id="representations">
         $model.representations:{ representation | $handleSingleRepresentation(representation,i)$}$
-      </select>
-      <input type="button" value="Export" onClick="(window.location = representations.options[representations.selectedIndex].value);"/>
+      </select>&nbsp;<a href='#' onClick="(window.location = representations.options[representations.selectedIndex].value);">Export</a>
     </li>
   </ul>
 >>

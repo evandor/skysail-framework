@@ -8,7 +8,6 @@ Bundle-Version: 0.1.0.${tstamp}
 	skysail.api;version=${skysail.api.version},\
     skysail.api.um;version=${skysail.api.um.version},\
 	skysail.api.validation;version=${skysail.api.validation.version},\
-	skysail.api.documentation;version=${skysail.api.documentation.version},\
 	skysail.client.testsupport;version=latest,\
 	skysail.server;version=${skysail.server.version},\
 	skysail.server.app.designer;version=latest,\
@@ -134,7 +133,6 @@ Bundle-Version: 0.1.0.${tstamp}
 	skysail.api.um;version=latest,\
 	skysail.api.search;version=latest,\
 	skysail.api.text;version=latest,\
-	skysail.api.documentation;version=${skysail.api.documentation.version},\
 	skysail.api.validation;version=latest,\
 	skysail.api.peers;version=latest,\
 	skysail.api.features;version=latest,\
@@ -144,7 +142,6 @@ Bundle-Version: 0.1.0.${tstamp}
 	skysail.server.converter;version=${skysail.server.converter.version},\
 	skysail.server.app.designer;version=latest,\
 	skysail.server.db;version=${skysail.server.db.version},\
-	skysail.server.documentation;version=${skysail.server.documentation.version},\
 	skysail.server.http;version=${skysail.server.http.version},\
 	skysail.server.plugins;version=latest,\
     skysail.server.queryfilter;version=${skysail.server.queryfilter.version},\

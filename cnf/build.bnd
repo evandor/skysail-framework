@@ -62,7 +62,6 @@ skysail.api.search.version             '[0.1.0,0.1.1)'
 skysail.api.text.version               '[2.0.0,2.0.1)'
 skysail.api.um.version                 '[0.2.2,0.2.3)'
 skysail.api.validation.version         '[0.2.2,0.2.3)'
-#wip:
 skysail.server.version                 '[9.0.0,9.0.1)'
 skysail.server.codegen.version         '[0.1.0,0.1.1)'
 #wip

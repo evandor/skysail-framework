@@ -10,8 +10,9 @@ import org.restlet.data.LocalReference;
 import org.restlet.routing.Router;
 
 import de.twenty11.skysail.server.app.ApplicationProvider;
-import de.twenty11.skysail.server.core.restlet.*;
+import de.twenty11.skysail.server.core.restlet.SkysailRouter;
 import de.twenty11.skysail.server.services.*;
+
 
 @aQute.bnd.annotation.component.Component(immediate = true)
 public class SkysailWebsiteApplication extends SkysailApplication implements ApplicationProvider, MenuItemProvider {
@@ -25,7 +26,7 @@ public class SkysailWebsiteApplication extends SkysailApplication implements App
     @Override
     protected void attach() {
         super.attach();
-        router.attach(new RouteBuilder("", WebsiteRootResource.class).noAuthenticationNeeded());
+        //router.attach(new RouteBuilder("",  WebsiteRootResource.class)).noAuthenticationNeeded());
     }
 
     @Override

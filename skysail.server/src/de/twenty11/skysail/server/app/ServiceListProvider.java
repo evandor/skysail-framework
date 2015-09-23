@@ -1,6 +1,5 @@
 package de.twenty11.skysail.server.app;
 
-import io.skysail.api.documentation.DocumentationProvider;
 import io.skysail.api.favorites.FavoritesService;
 import io.skysail.api.peers.PeersProvider;
 import io.skysail.api.um.*;
@@ -35,8 +34,6 @@ public interface ServiceListProvider {
     SkysailComponent getSkysailComponent();
 
     AtomicReference<ValidatorService> getValidatorService();
-
-    AtomicReference<DocumentationProvider> getDocumentationProvider();
 
     Set<TranslationRenderServiceHolder> getTranslationRenderServices();
     Set<TranslationStoreHolder> getTranslationStores();

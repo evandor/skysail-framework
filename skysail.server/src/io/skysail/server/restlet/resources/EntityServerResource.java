@@ -1,6 +1,5 @@
 package io.skysail.server.restlet.resources;
 
-import io.skysail.api.documentation.API;
 import io.skysail.api.domain.Identifiable;
 import io.skysail.api.links.LinkRelation;
 import io.skysail.api.responses.*;
@@ -133,7 +132,6 @@ public abstract class EntityServerResource<T extends Identifiable> extends Skysa
      * @return the response
      */
     @Get("html|json|eventstream|treeform|txt|csv|yaml|mailto")
-    @API(desc = "retrieves the entity defined by the url")
     public EntityServerResponse<T> getEntity2(Variant variant) {
         Set<PerformanceTimer> perfTimer = getApplication().startPerformanceMonitoring(this.getClass().getSimpleName() + ":getEntity");
         logger.info("Request entry point: {} @Get('html|json|eventstream|treeform|txt')", this.getClass().getSimpleName());
@@ -146,13 +144,11 @@ public abstract class EntityServerResource<T extends Identifiable> extends Skysa
     }
 
     @Get("htmlform")
-    @API(desc = "provides a form to delete the entity")
     public SkysailResponse<T> getDeleteForm() {
         return new FormResponse<T>(getEntity("dummy"), ".", "/");
     }
 
     @Delete("x-www-form-urlencoded:html|html|json")
-    @API(desc = "deletes the entity defined in the url")
     public EntityServerResponse<T> deleteEntity(Variant variant) {
         Set<PerformanceTimer> perfTimer = getApplication().startPerformanceMonitoring(this.getClass().getSimpleName() + ":deleteEntity");
         logger.info("Request entry point: {} @Delete('x-www-form-urlencoded:html|html|json')", this.getClass()

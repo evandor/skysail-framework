@@ -1,6 +1,5 @@
 package io.skysail.server.restlet.resources;
 
-import io.skysail.api.documentation.API;
 import io.skysail.api.domain.Identifiable;
 import io.skysail.api.links.LinkRelation;
 import io.skysail.api.responses.*;
@@ -114,7 +113,6 @@ public abstract class ListServerResource<T extends Identifiable> extends Skysail
     @Get("html|json|yaml|xml|csv|timeline")
     // treeform, csv:broken http://stackoverflow.com/questions/24569318/writing-multi-line-csv-with-jacksonrepresentation
     // https://github.com/restlet/restlet-framework-java/issues/928
-    @API(desc = "lists the entities according to the media type provided")
     public ListServerResponse<T> getEntities(Variant variant) {
         Set<PerformanceTimer> perfTimer = getApplication().startPerformanceMonitoring(
                 this.getClass().getSimpleName() + ":getEntities");

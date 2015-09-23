@@ -4,7 +4,7 @@ Service-Component:  \
 	*
 Bundle-Name: SKYSAIL :: server :: app :: bookmarks :: integration tests
 
-Test-Cases: io.skysail.server.app.bookmarks.it.BookmarksCrudIntegrationTests
+#Test-Cases: io.skysail.server.app.bookmarks.it.BookmarksCrudIntegrationTests
 
 Private-Package:  \
 	io.skysail.server.app.bookmarks.it
@@ -15,7 +15,9 @@ Private-Package:  \
 	skysail.api;version=${skysail.api.version},\
     skysail.api.search;version=${skysail.api.search.version},\
 	skysail.server;version=${skysail.server.version},\
-	skysail.server.http;version=${skysail.server.http.version},\
+	skysail.server.db;version=${skysail.server.db.version},\
+    skysail.server.converter;version=${skysail.server.converter.version},\
+    skysail.server.http;version=${skysail.server.http.version},\
 	skysail.server.app.bookmarks;version=latest,\
 	skysail.client.testsupport;version=latest,\
 	org.restlet;version=${restlet.version},\
@@ -127,7 +129,6 @@ Private-Package:  \
 	skysail.api.um;version=latest,\
 	skysail.api.text;version=latest,\
 	skysail.api.search;version=${skysail.api.search.version},\
-	skysail.api.documentation;version=${skysail.api.documentation.version},\
 	skysail.api.validation;version=latest,\
 	skysail.api.peers;version=latest,\
 	skysail.api.features;version=latest,\
@@ -137,7 +138,6 @@ Private-Package:  \
 	skysail.server.app.bookmarks;version=latest,\
 	skysail.server.converter;version=${skysail.server.converter.version},\
 	skysail.server.db;version=${skysail.server.db.version},\
-	skysail.server.documentation;version=${skysail.server.documentation.version},\
 	skysail.server.http;version=${skysail.server.http.version},\
 	skysail.server.plugins;version=latest,\
     skysail.server.queryfilter;version=${skysail.server.queryfilter.version},\

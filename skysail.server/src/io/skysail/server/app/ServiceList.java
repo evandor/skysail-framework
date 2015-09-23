@@ -1,6 +1,5 @@
 package io.skysail.server.app;
 
-import io.skysail.api.documentation.DocumentationProvider;
 import io.skysail.api.favorites.FavoritesService;
 import io.skysail.api.peers.PeersProvider;
 import io.skysail.api.text.*;
@@ -69,7 +68,6 @@ public class ServiceList implements ServiceListProvider {
     private AtomicReference<EventAdmin> eventAdmin = new AtomicReference<>();
     private AtomicReference<EncryptorService> encryptorService = new AtomicReference<>();
     private AtomicReference<ValidatorService> validatorService = new AtomicReference<>();
-    private AtomicReference<DocumentationProvider> documentationProvider = new AtomicReference<>();
     private AtomicReference<PeersProvider> peersProvider = new AtomicReference<>();
 
     /** === UserManagementProvider Service ============================== */
@@ -290,22 +288,6 @@ public class ServiceList implements ServiceListProvider {
     @Override
     public AtomicReference<ValidatorService> getValidatorService() {
         return validatorService;
-    }
-
-    /** === Documentation Provider ============================== */
-
-    @Reference(optional = true, dynamic = true, multiple = false)
-    public synchronized void setDocumentationProvider(DocumentationProvider service) {
-        this.documentationProvider.set(service);
-    }
-
-    public synchronized void unsetDocumentationProvider(DocumentationProvider service) {
-        this.documentationProvider.compareAndSet(service, null);
-    }
-
-    @Override
-    public AtomicReference<DocumentationProvider> getDocumentationProvider() {
-        return documentationProvider;
     }
 
     private Stream<SkysailApplication> getSkysailApps() {

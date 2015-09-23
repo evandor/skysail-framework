@@ -112,7 +112,6 @@
 	skysail.api.um;version=${skysail.api.um.version},\
 	skysail.api.peers;version=${skysail.api.peers.version},\
 	skysail.api.text;version=${skysail.api.text.version},\
-	skysail.api.documentation;version=${skysail.api.documentation.version},\
 	skysail.api.validation;version=${skysail.api.validation.version},\
 	skysail.api.features;version=${skysail.api.features.version},\
 	skysail.api.favorites;version=${skysail.api.favorites.version},\
@@ -127,7 +126,6 @@
 	skysail.server.osgi;version=latest,\
 	skysail.server.polymer;version=${skysail.server.polymer.version},\
 	skysail.server.plugins;version=latest,\
-	skysail.server.documentation;version=${skysail.server.documentation.version},\
 	skysail.server.app.designer;version=latest,\
 	skysail.server.app.bookmarks;version=latest,\
 	skysail.server.app.todos;version=latest,\

@@ -1,6 +1,5 @@
 package io.skysail.server.restlet.resources;
 
-import io.skysail.api.documentation.API;
 import io.skysail.api.domain.Identifiable;
 import io.skysail.api.links.*;
 import io.skysail.api.responses.*;
@@ -145,7 +144,6 @@ public abstract class PostEntityServerResource<T extends Identifiable> extends S
     };
 
     @Get("htmlform|html")
-    @API(desc = "create an html form to post a new entity")
     public SkysailResponse<T> createForm() {
         log.info("Request entry point: {} @Get('htmlform|html')", this.getClass().getSimpleName());
         List<String> templatePaths = getApplication().getTemplatePaths(this.getClass());
@@ -159,7 +157,6 @@ public abstract class PostEntityServerResource<T extends Identifiable> extends S
     }
 
     @Get("json")
-    @API(desc = "as Json")
     public T getJson() {
         Set<PerformanceTimer> perfTimer = getApplication().startPerformanceMonitoring(this.getClass().getSimpleName() + ":getJson");
         log.info("Request entry point: {} @Get('json')", this.getClass().getSimpleName());
@@ -171,7 +168,6 @@ public abstract class PostEntityServerResource<T extends Identifiable> extends S
     }
 
     @Post("json")
-    @API(desc = "generic POST for JSON")
     public SkysailResponse<T> post(T entity, Variant variant) {
         Set<PerformanceTimer> perfTimer = getApplication().startPerformanceMonitoring(this.getClass().getSimpleName() + ":post");
         log.info("Request entry point: {} @Post('json')", this.getClass().getSimpleName());
@@ -193,7 +189,6 @@ public abstract class PostEntityServerResource<T extends Identifiable> extends S
      * @return
      */
     @Post("x-www-form-urlencoded:html")
-    @API(desc = "generic POST for x-www-form-urlencoded")
     public SkysailResponse<T> post(Form form, Variant variant) {
         Set<PerformanceTimer> perfTimer = getApplication().startPerformanceMonitoring(this.getClass().getSimpleName() + ":postForm");
         ResponseWrapper<T> handledRequest = doPost(form, variant);

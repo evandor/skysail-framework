@@ -80,7 +80,7 @@ public class StringTemplateRenderer {
         if (templatesResource != null) {
             STGroupBundleDir stGroup = new STGroupBundleDir(appBundle, resource, "/templates");
             importTemplate("skysail.server.converter", resource, appBundle, "/templates", stGroup, mediaType);
-            importTemplate("skysail.server.documentation", resource, appBundle, "/templates", stGroup, mediaType);
+            //importTemplate("skysail.server.documentation", resource, appBundle, "/templates", stGroup, mediaType);
             return stGroup;
 
         } else {

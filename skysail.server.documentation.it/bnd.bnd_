@@ -4,8 +4,8 @@ Bundle-Version: 0.1.2.${tstamp}
 Private-Package:  \
 	io.skysail.server.documentation.test
 
-Test-Cases: \
-	io.skysail.server.documentation.test.DocumentationIntegrationTests
+#Test-Cases: \
+#	io.skysail.server.documentation.test.DocumentationIntegrationTests
 
 -buildpath:  \
 	skysail.api.validation;version=latest,\

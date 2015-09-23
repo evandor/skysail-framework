@@ -95,7 +95,6 @@
 	skysail.api;version=${skysail.api.version},\
 	skysail.api.um;version=${skysail.api.um.version},\
 	skysail.api.text;version=latest,\
-	skysail.api.documentation;version=${skysail.api.documentation.version},\
 	skysail.api.validation;version=latest,\
 	skysail.api.features;version=latest,\
 	skysail.api.favorites;version=${skysail.api.favorites.version},\
@@ -103,7 +102,6 @@
 	skysail.server.converter;version=latest,\
 	skysail.server.app.todos;version=latest,\
 	skysail.server.db;version=latest,\
-	skysail.server.documentation;version=latest,\
 	skysail.server.ext.favorites.preferences;version=latest,\
 	skysail.server.http;version=latest,\
 	skysail.server.plugins;version=latest,\

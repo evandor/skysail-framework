@@ -123,7 +123,6 @@ Test-Cases: \
 	skysail.api.search;version=latest,\
 	skysail.api.text;version=latest,\
 	skysail.api.peers;version=latest,\
-	skysail.api.documentation;version=${skysail.api.documentation.version},\
 	skysail.api.validation;version=latest,\
 	skysail.api.features;version=latest,\
 	skysail.api.favorites;version=${skysail.api.favorites.version},\
@@ -131,7 +130,6 @@ Test-Cases: \
 	skysail.server;version=${skysail.server.version},\
 	skysail.server.converter;version=${skysail.server.converter.version},\
 	skysail.server.db;version=${skysail.server.db.version},\
-	skysail.server.documentation;version=${skysail.server.documentation.version},\
 	skysail.server.http;version=${skysail.server.http.version},\
 	skysail.server.plugins;version=latest,\
     skysail.server.queryfilter;version=${skysail.server.queryfilter.version},\

@@ -1,7 +1,7 @@
 Bundle-Name: SKYSAIL :: server :: app :: designer :: integrationtests
 Bundle-Version: 0.1.0.${tstamp}
 
-Test-Cases: io.skysail.server.app.designer.it.ApplicationsCrudIntegrationTests
+#Test-Cases: io.skysail.server.app.designer.it.ApplicationsCrudIntegrationTests
 
 -buildpath:  \
 	osgi.core;version=5.0,\
@@ -14,6 +14,7 @@ Test-Cases: io.skysail.server.app.designer.it.ApplicationsCrudIntegrationTests
 	skysail.server.app.designer;version=latest,\
 	skysail.server.um.internal;version=0.0,\
     skysail.server.db;version=${skysail.server.db.version},\
+    skysail.server.converter;version=${skysail.server.converter.version},\
     skysail.server.queryfilter;version=${skysail.server.queryfilter.version},\
 	skysail.server.db;version=${skysail.server.db.version},\
 	org.restlet;version=${restlet.version},\

@@ -1,5 +1,10 @@
 new in
 
+10.0.0
+-----
+
+ * removing @API annotations and documentationProvider logic
+
 9.0.0
 -----
 

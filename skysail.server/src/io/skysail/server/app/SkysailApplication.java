@@ -1,6 +1,5 @@
 package io.skysail.server.app;
 
-import io.skysail.api.documentation.DocumentationProvider;
 import io.skysail.api.favorites.FavoritesService;
 import io.skysail.api.forms.*;
 import io.skysail.api.peers.PeersProvider;
@@ -189,16 +188,6 @@ public abstract class SkysailApplication extends RamlApplication implements Appl
      */
     protected void attach() {
         router.setApiVersion(apiVersion);
-        DocumentationProvider documentationProvider = serviceListProviderRef.get().getDocumentationProvider().get();
-        if (documentationProvider == null) {
-            log.warn("not documentation provider available. No Selfdocumentation of APIs.");
-            return;
-        }
-        Map<String, Class<? extends ServerResource>> docuMap = documentationProvider.getResourceMap();
-        docuMap.keySet().stream().forEach(key -> {
-            router.attach(new RouteBuilder(key, docuMap.get(key)));
-        });
-
     }
 
     /**

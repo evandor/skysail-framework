@@ -1,0 +1,7 @@
+Bundle-Version: 2.7.2
+
+-classpath: jar/xalan-2.7.2.jar
+
+Export-Package: org.apache.xml.utils.*;version=1.0
+
+Bundle-Name: xalan

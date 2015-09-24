@@ -1,0 +1,9 @@
+Bundle-Version: 4.4.1
+
+-classpath: jar/httpclient-4.4.1.jar
+
+Export-Package: \
+    org.apache.http.conn.*;version=1.0
+
+Bundle-Name: httpclient.jar
+

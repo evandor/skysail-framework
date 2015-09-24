@@ -1,0 +1,9 @@
+Bundle-Version: 2.11.0
+
+-classpath: jar/xercesImpl-2.11.0.jar
+
+Export-Package: \
+    org.apache.xerces.*;version=1.0
+
+Bundle-Name: xerces.jar
+

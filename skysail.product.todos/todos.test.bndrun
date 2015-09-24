@@ -1,30 +1,27 @@
--runfw: org.apache.felix.framework;version=${org.apache.felix.framework.version}
+
 -runee: JavaSE-1.8
+
+-runfw: org.apache.felix.framework;version=${org.apache.felix.framework.version}
+
 -runsystemcapabilities: ${native_capability}
+
+-runsystempackages: ${runsystempackages}
+
+-runtrace: false
 
 -runvm: -ea
 #, -XX:+UnlockCommercialFeatures,-XX:+FlightRecorder,-XX:StartFlightRecording="duration=120m,filename=flightrecorder.jfr"
 
 -runrepos:  \
-	Skysail Framework Hub,\
-	Bndtools Hub,\
-	Local,\
-	Workspace,\
-	Skysail Repository,\
-	Skysail Hub,\
-	Release
+    Skysail Framework Hub,\
+    Bndtools Hub,\
+    Local,\
+    Workspace,\
+    Skysail Repository,\
+    Skysail Hub,\
+    Release
 
 -resolve.effective: active;skip:="osgi.service"
-
--runsystempackages: sun.reflect, sun.misc, com.sun.net.httpserver, javax.imageio.spi, javax.crypto, javax.crypto.spec, javax.script, javax.net,\
-    javax.net.ssl,javax.sql,javax.security.auth.x500,org.ietf.jgss,javax.naming,javax.naming.directory,javax.naming.ldap,\
-    javax.xml.bind,javax.xml.bind.annotation,javax.xml.bind.annotation.adapters,javax.activation,javax.security.auth.callback,\
-    javax.naming.spi,javax.management,javax.management.openmbean,javax.swing.tree,javax.transaction,javax.transaction.xa,\
-    javax.xml.transform.stax,javafx.application,javafx.scene,javafx.scene.control,javafx.scene.layout,javafx.stage,\
-    javafx.beans.property,javafx.collections,javafx.beans.value,javafx.concurrent,javafx.event,javafx.geometry,\
-    javafx.scene.image,javafx.scene.web,javafx.util,netscape.javascript,javafx.scene.paint
-
--runtrace: false
 
 -runproperties: felix.fileinstall.dir=config,\
     felix.fileinstall.filter=.*\\.jar|.*\\.cfg,\
@@ -34,12 +31,11 @@
     felix.fileinstall.log.level=4,\
     org.apache.felix.log.storeDebug=true,\
     logback.configurationFile=config/logback.xml,\
-    obr.repository.url=https://raw.githubusercontent.com/evandor/skysail-repository/master/index.xml https://raw.githubusercontent.com/evandor/skysail-framework/master/cnf/releaserepo/index.xml https://raw.githubusercontent.com/evandor/skysail-apps/master/cnf/releaserepo/index.xml http://felix.apache.org/obr/releases.xml,\
+    obr.repository.url=${obrRepositories},\
     http.proxyHost=192.168.11.140,\
     http.proxyPort=8080,\
     https.proxyHost=192.168.11.140,\
     https.proxyPort=8080
-
 
 -runbundles:  \
 	ch.qos.logback.classic;version='[1.1.2,1.1.3)',\

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<repository increment="1443028049922" name="Local" xmlns="http://www.osgi.org/xmlns/repository/v1.0.0">
+<repository increment="1443109621461" name="Local" xmlns="http://www.osgi.org/xmlns/repository/v1.0.0">
   <resource>
     <capability namespace="osgi.identity">
       <attribute name="osgi.identity" value="bcprov"/>
@@ -3762,6 +3762,1051 @@
   </resource>
   <resource>
     <capability namespace="osgi.identity">
+      <attribute name="osgi.identity" value="io.skysail.bundled.cssparser"/>
+      <attribute name="type" value="osgi.bundle"/>
+      <attribute name="version" type="Version" value="0.9.17"/>
+    </capability>
+    <capability namespace="osgi.content">
+      <attribute name="osgi.content" value="c7dc4cb3e39b2d0d64c9f6102bfa3e9063390921dcfd95f96177637a05206488"/>
+      <attribute name="url" value="io.skysail.bundled.cssparser/io.skysail.bundled.cssparser-0.9.17.jar"/>
+      <attribute name="size" type="Long" value="366873"/>
+      <attribute name="mime" value="application/vnd.osgi.bundle"/>
+    </capability>
+    <capability namespace="osgi.wiring.bundle">
+      <attribute name="osgi.wiring.bundle" value="io.skysail.bundled.cssparser"/>
+      <attribute name="bundle-version" type="Version" value="0.9.17"/>
+    </capability>
+    <capability namespace="osgi.wiring.host">
+      <attribute name="osgi.wiring.host" value="io.skysail.bundled.cssparser"/>
+      <attribute name="bundle-version" type="Version" value="0.9.17"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="com.steadystate.css.dom"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.cssparser"/>
+      <attribute name="bundle-version" type="Version" value="0.9.17"/>
+      <directive name="uses" value="com.steadystate.css.format,com.steadystate.css.parser.media,org.w3c.css.sac,org.w3c.dom,org.w3c.dom.css,org.w3c.dom.stylesheets"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="com.steadystate.css.format"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.cssparser"/>
+      <attribute name="bundle-version" type="Version" value="0.9.17"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="com.steadystate.css.parser"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.cssparser"/>
+      <attribute name="bundle-version" type="Version" value="0.9.17"/>
+      <directive name="uses" value="com.steadystate.css.dom,com.steadystate.css.format,com.steadystate.css.parser.media,com.steadystate.css.sac,org.w3c.css.sac,org.w3c.dom,org.w3c.dom.css"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="com.steadystate.css.parser.media"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.cssparser"/>
+      <attribute name="bundle-version" type="Version" value="0.9.17"/>
+      <directive name="uses" value="com.steadystate.css.dom,com.steadystate.css.parser"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="com.steadystate.css.parser.selectors"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.cssparser"/>
+      <attribute name="bundle-version" type="Version" value="0.9.17"/>
+      <directive name="uses" value="com.steadystate.css.parser,org.w3c.css.sac"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="com.steadystate.css.sac"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.cssparser"/>
+      <attribute name="bundle-version" type="Version" value="0.9.17"/>
+      <directive name="uses" value="org.w3c.css.sac"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="com.steadystate.css.userdata"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.cssparser"/>
+      <attribute name="bundle-version" type="Version" value="0.9.17"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="com.steadystate.css.util"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.cssparser"/>
+      <attribute name="bundle-version" type="Version" value="0.9.17"/>
+      <directive name="uses" value="org.w3c.css.sac"/>
+    </capability>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.w3c.css.sac)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.w3c.css.sac.helpers)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.w3c.dom)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.w3c.dom.css)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.w3c.dom.stylesheets)"/>
+    </requirement>
+    <requirement namespace="osgi.ee">
+      <directive name="filter" value="(&amp;(osgi.ee=JavaSE)(version=1.5))"/>
+    </requirement>
+  </resource>
+  <resource>
+    <capability namespace="osgi.identity">
+      <attribute name="osgi.identity" value="io.skysail.bundled.htmlunit-core-js"/>
+      <attribute name="type" value="osgi.bundle"/>
+      <attribute name="version" type="Version" value="2.17.0"/>
+    </capability>
+    <capability namespace="osgi.content">
+      <attribute name="osgi.content" value="39d8103d962e09a7964809b913d7c281534450fd215770977daca2aa18dab9ca"/>
+      <attribute name="url" value="io.skysail.bundled.htmlunit-core-js/io.skysail.bundled.htmlunit-core-js-2.17.0.jar"/>
+      <attribute name="size" type="Long" value="1080955"/>
+      <attribute name="mime" value="application/vnd.osgi.bundle"/>
+    </capability>
+    <capability namespace="osgi.wiring.bundle">
+      <attribute name="osgi.wiring.bundle" value="io.skysail.bundled.htmlunit-core-js"/>
+      <attribute name="bundle-version" type="Version" value="2.17.0"/>
+    </capability>
+    <capability namespace="osgi.wiring.host">
+      <attribute name="osgi.wiring.host" value="io.skysail.bundled.htmlunit-core-js"/>
+      <attribute name="bundle-version" type="Version" value="2.17.0"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="net.sourceforge.htmlunit.corejs.classfile"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.htmlunit-core-js"/>
+      <attribute name="bundle-version" type="Version" value="2.17.0"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="net.sourceforge.htmlunit.corejs.javascript"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.htmlunit-core-js"/>
+      <attribute name="bundle-version" type="Version" value="2.17.0"/>
+      <directive name="uses" value="net.sourceforge.htmlunit.corejs.javascript.ast,net.sourceforge.htmlunit.corejs.javascript.debug,net.sourceforge.htmlunit.corejs.javascript.xml"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="net.sourceforge.htmlunit.corejs.javascript.annotations"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.htmlunit-core-js"/>
+      <attribute name="bundle-version" type="Version" value="2.17.0"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="net.sourceforge.htmlunit.corejs.javascript.ast"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.htmlunit-core-js"/>
+      <attribute name="bundle-version" type="Version" value="2.17.0"/>
+      <directive name="uses" value="net.sourceforge.htmlunit.corejs.javascript"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="net.sourceforge.htmlunit.corejs.javascript.commonjs.module"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.htmlunit-core-js"/>
+      <attribute name="bundle-version" type="Version" value="2.17.0"/>
+      <directive name="uses" value="net.sourceforge.htmlunit.corejs.javascript"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="net.sourceforge.htmlunit.corejs.javascript.commonjs.module.provider"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.htmlunit-core-js"/>
+      <attribute name="bundle-version" type="Version" value="2.17.0"/>
+      <directive name="uses" value="net.sourceforge.htmlunit.corejs.javascript,net.sourceforge.htmlunit.corejs.javascript.commonjs.module"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="net.sourceforge.htmlunit.corejs.javascript.debug"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.htmlunit-core-js"/>
+      <attribute name="bundle-version" type="Version" value="2.17.0"/>
+      <directive name="uses" value="net.sourceforge.htmlunit.corejs.javascript"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="net.sourceforge.htmlunit.corejs.javascript.jdk13"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.htmlunit-core-js"/>
+      <attribute name="bundle-version" type="Version" value="2.17.0"/>
+      <directive name="uses" value="net.sourceforge.htmlunit.corejs.javascript"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="net.sourceforge.htmlunit.corejs.javascript.jdk15"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.htmlunit-core-js"/>
+      <attribute name="bundle-version" type="Version" value="2.17.0"/>
+      <directive name="uses" value="net.sourceforge.htmlunit.corejs.javascript,net.sourceforge.htmlunit.corejs.javascript.jdk13"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="net.sourceforge.htmlunit.corejs.javascript.json"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.htmlunit-core-js"/>
+      <attribute name="bundle-version" type="Version" value="2.17.0"/>
+      <directive name="uses" value="net.sourceforge.htmlunit.corejs.javascript"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="net.sourceforge.htmlunit.corejs.javascript.optimizer"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.htmlunit-core-js"/>
+      <attribute name="bundle-version" type="Version" value="2.17.0"/>
+      <directive name="uses" value="net.sourceforge.htmlunit.corejs.javascript,net.sourceforge.htmlunit.corejs.javascript.ast"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="net.sourceforge.htmlunit.corejs.javascript.regexp"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.htmlunit-core-js"/>
+      <attribute name="bundle-version" type="Version" value="2.17.0"/>
+      <directive name="uses" value="net.sourceforge.htmlunit.corejs.javascript"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="net.sourceforge.htmlunit.corejs.javascript.resources"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.htmlunit-core-js"/>
+      <attribute name="bundle-version" type="Version" value="2.17.0"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="net.sourceforge.htmlunit.corejs.javascript.serialize"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.htmlunit-core-js"/>
+      <attribute name="bundle-version" type="Version" value="2.17.0"/>
+      <directive name="uses" value="net.sourceforge.htmlunit.corejs.javascript"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="net.sourceforge.htmlunit.corejs.javascript.tools"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.htmlunit-core-js"/>
+      <attribute name="bundle-version" type="Version" value="2.17.0"/>
+      <directive name="uses" value="net.sourceforge.htmlunit.corejs.javascript"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="net.sourceforge.htmlunit.corejs.javascript.tools.debugger"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.htmlunit-core-js"/>
+      <attribute name="bundle-version" type="Version" value="2.17.0"/>
+      <directive name="uses" value="javax.swing,net.sourceforge.htmlunit.corejs.javascript,net.sourceforge.htmlunit.corejs.javascript.debug"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="net.sourceforge.htmlunit.corejs.javascript.tools.debugger.treetable"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.htmlunit-core-js"/>
+      <attribute name="bundle-version" type="Version" value="2.17.0"/>
+      <directive name="uses" value="javax.swing,javax.swing.event,javax.swing.table,javax.swing.tree"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="net.sourceforge.htmlunit.corejs.javascript.tools.shell"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.htmlunit-core-js"/>
+      <attribute name="bundle-version" type="Version" value="2.17.0"/>
+      <directive name="uses" value="javax.swing,javax.swing.event,net.sourceforge.htmlunit.corejs.javascript,net.sourceforge.htmlunit.corejs.javascript.commonjs.module,net.sourceforge.htmlunit.corejs.javascript.tools"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="net.sourceforge.htmlunit.corejs.javascript.typedarrays"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.htmlunit-core-js"/>
+      <attribute name="bundle-version" type="Version" value="2.17.0"/>
+      <directive name="uses" value="net.sourceforge.htmlunit.corejs.javascript"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="net.sourceforge.htmlunit.corejs.javascript.v8dtoa"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.htmlunit-core-js"/>
+      <attribute name="bundle-version" type="Version" value="2.17.0"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="net.sourceforge.htmlunit.corejs.javascript.xml"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.htmlunit-core-js"/>
+      <attribute name="bundle-version" type="Version" value="2.17.0"/>
+      <directive name="uses" value="net.sourceforge.htmlunit.corejs.javascript"/>
+    </capability>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=javax.swing)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=javax.swing.border)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=javax.swing.event)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=javax.swing.filechooser)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=javax.swing.table)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=javax.swing.text)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=javax.swing.tree)"/>
+    </requirement>
+    <requirement namespace="osgi.ee">
+      <directive name="filter" value="(&amp;(osgi.ee=JavaSE)(version=1.5))"/>
+    </requirement>
+  </resource>
+  <resource>
+    <capability namespace="osgi.identity">
+      <attribute name="osgi.identity" value="io.skysail.bundled.htmlunit"/>
+      <attribute name="type" value="osgi.bundle"/>
+      <attribute name="version" type="Version" value="2.18.0"/>
+    </capability>
+    <capability namespace="osgi.content">
+      <attribute name="osgi.content" value="baacc731f903e1ce56c0d10854c7dbbf6642d1deeeb1c664db2b86a6467ad8db"/>
+      <attribute name="url" value="io.skysail.bundled.htmlunit/io.skysail.bundled.htmlunit-2.18.0.jar"/>
+      <attribute name="size" type="Long" value="1852574"/>
+      <attribute name="mime" value="application/vnd.osgi.bundle"/>
+    </capability>
+    <capability namespace="osgi.wiring.bundle">
+      <attribute name="osgi.wiring.bundle" value="io.skysail.bundled.htmlunit"/>
+      <attribute name="bundle-version" type="Version" value="2.18.0"/>
+    </capability>
+    <capability namespace="osgi.wiring.host">
+      <attribute name="osgi.wiring.host" value="io.skysail.bundled.htmlunit"/>
+      <attribute name="bundle-version" type="Version" value="2.18.0"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="com.gargoylesoftware.htmlunit"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.htmlunit"/>
+      <attribute name="bundle-version" type="Version" value="2.18.0"/>
+      <directive name="uses" value="com.gargoylesoftware.htmlunit.activex.javascript.msxml,com.gargoylesoftware.htmlunit.attachment,com.gargoylesoftware.htmlunit.html,com.gargoylesoftware.htmlunit.javascript,com.gargoylesoftware.htmlunit.javascript.background,com.gargoylesoftware.htmlunit.javascript.configuration,com.gargoylesoftware.htmlunit.util,net.sourceforge.htmlunit.corejs.javascript,org.apache.http,org.apache.http.auth,org.apache.http.client,org.apache.http.client.methods,org.apache.http.cookie,org.apache.http.impl.client,org.w3c.css.sac,org.w3c.dom,org.w3c.dom.css,org.w3c.dom.ranges"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="com.gargoylesoftware.htmlunit.activex.javascript.msxml"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.htmlunit"/>
+      <attribute name="bundle-version" type="Version" value="2.18.0"/>
+      <directive name="uses" value="com.gargoylesoftware.htmlunit,com.gargoylesoftware.htmlunit.html,com.gargoylesoftware.htmlunit.javascript,com.gargoylesoftware.htmlunit.javascript.configuration,com.gargoylesoftware.htmlunit.javascript.host.dom,net.sourceforge.htmlunit.corejs.javascript,org.w3c.dom"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="com.gargoylesoftware.htmlunit.attachment"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.htmlunit"/>
+      <attribute name="bundle-version" type="Version" value="2.18.0"/>
+      <directive name="uses" value="com.gargoylesoftware.htmlunit"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="com.gargoylesoftware.htmlunit.gae"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.htmlunit"/>
+      <attribute name="bundle-version" type="Version" value="2.18.0"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="com.gargoylesoftware.htmlunit.html"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.htmlunit"/>
+      <attribute name="bundle-version" type="Version" value="2.18.0"/>
+      <directive name="uses" value="com.gargoylesoftware.htmlunit,com.gargoylesoftware.htmlunit.html.impl,com.gargoylesoftware.htmlunit.javascript.configuration,com.gargoylesoftware.htmlunit.javascript.host.dom,com.gargoylesoftware.htmlunit.javascript.host.event,com.gargoylesoftware.htmlunit.util,javax.imageio,net.sourceforge.htmlunit.corejs.javascript,org.apache.xml.utils,org.w3c.dom,org.xml.sax"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="com.gargoylesoftware.htmlunit.html.applets"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.htmlunit"/>
+      <attribute name="bundle-version" type="Version" value="2.18.0"/>
+      <directive name="uses" value="com.gargoylesoftware.htmlunit,com.gargoylesoftware.htmlunit.html"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="com.gargoylesoftware.htmlunit.html.impl"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.htmlunit"/>
+      <attribute name="bundle-version" type="Version" value="2.18.0"/>
+      <directive name="uses" value="com.gargoylesoftware.htmlunit,com.gargoylesoftware.htmlunit.html,org.w3c.dom,org.w3c.dom.ranges"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="com.gargoylesoftware.htmlunit.html.xpath"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.htmlunit"/>
+      <attribute name="bundle-version" type="Version" value="2.18.0"/>
+      <directive name="uses" value="com.gargoylesoftware.htmlunit.html,javax.xml.transform,org.apache.xml.utils,org.apache.xpath,org.apache.xpath.functions,org.apache.xpath.objects"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="com.gargoylesoftware.htmlunit.httpclient"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.htmlunit"/>
+      <attribute name="bundle-version" type="Version" value="2.18.0"/>
+      <directive name="uses" value="com.gargoylesoftware.htmlunit,org.apache.http,org.apache.http.client,org.apache.http.conn.socket,org.apache.http.conn.ssl,org.apache.http.cookie,org.apache.http.impl.client,org.apache.http.impl.cookie,org.apache.http.protocol"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="com.gargoylesoftware.htmlunit.javascript"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.htmlunit"/>
+      <attribute name="bundle-version" type="Version" value="2.18.0"/>
+      <directive name="uses" value="com.gargoylesoftware.htmlunit,com.gargoylesoftware.htmlunit.html,com.gargoylesoftware.htmlunit.javascript.background,com.gargoylesoftware.htmlunit.javascript.configuration,com.gargoylesoftware.htmlunit.javascript.host,com.gargoylesoftware.htmlunit.javascript.host.dom,net.sourceforge.htmlunit.corejs.javascript,net.sourceforge.htmlunit.corejs.javascript.debug,org.apache.commons.collections,org.xml.sax"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="com.gargoylesoftware.htmlunit.javascript.background"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.htmlunit"/>
+      <attribute name="bundle-version" type="Version" value="2.18.0"/>
+      <directive name="uses" value="com.gargoylesoftware.htmlunit,net.sourceforge.htmlunit.corejs.javascript"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="com.gargoylesoftware.htmlunit.javascript.configuration"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.htmlunit"/>
+      <attribute name="bundle-version" type="Version" value="2.18.0"/>
+      <directive name="uses" value="com.gargoylesoftware.htmlunit,com.gargoylesoftware.htmlunit.javascript"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="com.gargoylesoftware.htmlunit.javascript.host"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.htmlunit"/>
+      <attribute name="bundle-version" type="Version" value="2.18.0"/>
+      <directive name="uses" value="com.gargoylesoftware.htmlunit,com.gargoylesoftware.htmlunit.html,com.gargoylesoftware.htmlunit.javascript,com.gargoylesoftware.htmlunit.javascript.configuration,com.gargoylesoftware.htmlunit.javascript.host.css,com.gargoylesoftware.htmlunit.javascript.host.dom,com.gargoylesoftware.htmlunit.javascript.host.event,com.gargoylesoftware.htmlunit.javascript.host.geo,com.gargoylesoftware.htmlunit.javascript.host.html,com.gargoylesoftware.htmlunit.javascript.host.performance,com.gargoylesoftware.htmlunit.javascript.host.speech,net.sourceforge.htmlunit.corejs.javascript,org.apache.xml.utils,org.w3c.dom"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="com.gargoylesoftware.htmlunit.javascript.host.arrays"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.htmlunit"/>
+      <attribute name="bundle-version" type="Version" value="2.18.0"/>
+      <directive name="uses" value="com.gargoylesoftware.htmlunit.javascript,com.gargoylesoftware.htmlunit.javascript.configuration,net.sourceforge.htmlunit.corejs.javascript"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="com.gargoylesoftware.htmlunit.javascript.host.canvas"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.htmlunit"/>
+      <attribute name="bundle-version" type="Version" value="2.18.0"/>
+      <directive name="uses" value="com.gargoylesoftware.htmlunit.javascript,com.gargoylesoftware.htmlunit.javascript.configuration,com.gargoylesoftware.htmlunit.javascript.host.arrays,com.gargoylesoftware.htmlunit.javascript.host.html"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="com.gargoylesoftware.htmlunit.javascript.host.crypto"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.htmlunit"/>
+      <attribute name="bundle-version" type="Version" value="2.18.0"/>
+      <directive name="uses" value="com.gargoylesoftware.htmlunit.javascript,com.gargoylesoftware.htmlunit.javascript.configuration"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="com.gargoylesoftware.htmlunit.javascript.host.css"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.htmlunit"/>
+      <attribute name="bundle-version" type="Version" value="2.18.0"/>
+      <directive name="uses" value="com.gargoylesoftware.htmlunit,com.gargoylesoftware.htmlunit.html,com.gargoylesoftware.htmlunit.javascript,com.gargoylesoftware.htmlunit.javascript.configuration,com.gargoylesoftware.htmlunit.javascript.host,com.gargoylesoftware.htmlunit.javascript.host.dom,com.gargoylesoftware.htmlunit.javascript.host.event,com.gargoylesoftware.htmlunit.javascript.host.html,net.sourceforge.htmlunit.corejs.javascript,org.w3c.css.sac,org.w3c.dom.css"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="com.gargoylesoftware.htmlunit.javascript.host.dom"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.htmlunit"/>
+      <attribute name="bundle-version" type="Version" value="2.18.0"/>
+      <directive name="uses" value="com.gargoylesoftware.htmlunit,com.gargoylesoftware.htmlunit.html,com.gargoylesoftware.htmlunit.html.impl,com.gargoylesoftware.htmlunit.javascript,com.gargoylesoftware.htmlunit.javascript.configuration,com.gargoylesoftware.htmlunit.javascript.host,com.gargoylesoftware.htmlunit.javascript.host.css,com.gargoylesoftware.htmlunit.javascript.host.event,com.gargoylesoftware.htmlunit.javascript.host.html,com.gargoylesoftware.htmlunit.javascript.host.xml,net.sourceforge.htmlunit.corejs.javascript,org.apache.xml.utils,org.w3c.dom,org.w3c.dom.ranges,org.w3c.dom.stylesheets"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="com.gargoylesoftware.htmlunit.javascript.host.event"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.htmlunit"/>
+      <attribute name="bundle-version" type="Version" value="2.18.0"/>
+      <directive name="uses" value="com.gargoylesoftware.htmlunit,com.gargoylesoftware.htmlunit.html,com.gargoylesoftware.htmlunit.javascript,com.gargoylesoftware.htmlunit.javascript.configuration,com.gargoylesoftware.htmlunit.javascript.host,net.sourceforge.htmlunit.corejs.javascript"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="com.gargoylesoftware.htmlunit.javascript.host.fetch"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.htmlunit"/>
+      <attribute name="bundle-version" type="Version" value="2.18.0"/>
+      <directive name="uses" value="com.gargoylesoftware.htmlunit.javascript,com.gargoylesoftware.htmlunit.javascript.configuration"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="com.gargoylesoftware.htmlunit.javascript.host.file"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.htmlunit"/>
+      <attribute name="bundle-version" type="Version" value="2.18.0"/>
+      <directive name="uses" value="com.gargoylesoftware.htmlunit.javascript,com.gargoylesoftware.htmlunit.javascript.configuration,com.gargoylesoftware.htmlunit.javascript.host.dom,com.gargoylesoftware.htmlunit.javascript.host.event,net.sourceforge.htmlunit.corejs.javascript"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="com.gargoylesoftware.htmlunit.javascript.host.geo"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.htmlunit"/>
+      <attribute name="bundle-version" type="Version" value="2.18.0"/>
+      <directive name="uses" value="com.gargoylesoftware.htmlunit.javascript,com.gargoylesoftware.htmlunit.javascript.configuration,net.sourceforge.htmlunit.corejs.javascript"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="com.gargoylesoftware.htmlunit.javascript.host.html"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.htmlunit"/>
+      <attribute name="bundle-version" type="Version" value="2.18.0"/>
+      <directive name="uses" value="com.gargoylesoftware.htmlunit,com.gargoylesoftware.htmlunit.html,com.gargoylesoftware.htmlunit.javascript,com.gargoylesoftware.htmlunit.javascript.configuration,com.gargoylesoftware.htmlunit.javascript.host,com.gargoylesoftware.htmlunit.javascript.host.css,com.gargoylesoftware.htmlunit.javascript.host.dom,com.gargoylesoftware.htmlunit.javascript.host.event,net.sourceforge.htmlunit.corejs.javascript,org.w3c.dom,org.xml.sax.helpers"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="com.gargoylesoftware.htmlunit.javascript.host.idb"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.htmlunit"/>
+      <attribute name="bundle-version" type="Version" value="2.18.0"/>
+      <directive name="uses" value="com.gargoylesoftware.htmlunit.javascript,com.gargoylesoftware.htmlunit.javascript.configuration,com.gargoylesoftware.htmlunit.javascript.host.event"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="com.gargoylesoftware.htmlunit.javascript.host.intl"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.htmlunit"/>
+      <attribute name="bundle-version" type="Version" value="2.18.0"/>
+      <directive name="uses" value="com.gargoylesoftware.htmlunit,com.gargoylesoftware.htmlunit.javascript,com.gargoylesoftware.htmlunit.javascript.configuration"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="com.gargoylesoftware.htmlunit.javascript.host.media"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.htmlunit"/>
+      <attribute name="bundle-version" type="Version" value="2.18.0"/>
+      <directive name="uses" value="com.gargoylesoftware.htmlunit.javascript,com.gargoylesoftware.htmlunit.javascript.configuration,com.gargoylesoftware.htmlunit.javascript.host.event"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="com.gargoylesoftware.htmlunit.javascript.host.media.midi"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.htmlunit"/>
+      <attribute name="bundle-version" type="Version" value="2.18.0"/>
+      <directive name="uses" value="com.gargoylesoftware.htmlunit.javascript,com.gargoylesoftware.htmlunit.javascript.configuration,com.gargoylesoftware.htmlunit.javascript.host.event"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="com.gargoylesoftware.htmlunit.javascript.host.media.rtc"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.htmlunit"/>
+      <attribute name="bundle-version" type="Version" value="2.18.0"/>
+      <directive name="uses" value="com.gargoylesoftware.htmlunit.javascript,com.gargoylesoftware.htmlunit.javascript.configuration,com.gargoylesoftware.htmlunit.javascript.host.event"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="com.gargoylesoftware.htmlunit.javascript.host.moz"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.htmlunit"/>
+      <attribute name="bundle-version" type="Version" value="2.18.0"/>
+      <directive name="uses" value="com.gargoylesoftware.htmlunit.javascript,com.gargoylesoftware.htmlunit.javascript.configuration,com.gargoylesoftware.htmlunit.javascript.host.event"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="com.gargoylesoftware.htmlunit.javascript.host.performance"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.htmlunit"/>
+      <attribute name="bundle-version" type="Version" value="2.18.0"/>
+      <directive name="uses" value="com.gargoylesoftware.htmlunit.javascript,com.gargoylesoftware.htmlunit.javascript.configuration,com.gargoylesoftware.htmlunit.javascript.host.event"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="com.gargoylesoftware.htmlunit.javascript.host.speech"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.htmlunit"/>
+      <attribute name="bundle-version" type="Version" value="2.18.0"/>
+      <directive name="uses" value="com.gargoylesoftware.htmlunit.javascript.configuration,com.gargoylesoftware.htmlunit.javascript.host.event"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="com.gargoylesoftware.htmlunit.javascript.host.svg"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.htmlunit"/>
+      <attribute name="bundle-version" type="Version" value="2.18.0"/>
+      <directive name="uses" value="com.gargoylesoftware.htmlunit.javascript,com.gargoylesoftware.htmlunit.javascript.configuration,com.gargoylesoftware.htmlunit.javascript.host,com.gargoylesoftware.htmlunit.svg"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="com.gargoylesoftware.htmlunit.javascript.host.worker"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.htmlunit"/>
+      <attribute name="bundle-version" type="Version" value="2.18.0"/>
+      <directive name="uses" value="com.gargoylesoftware.htmlunit.javascript.configuration,com.gargoylesoftware.htmlunit.javascript.host.event"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="com.gargoylesoftware.htmlunit.javascript.host.xml"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.htmlunit"/>
+      <attribute name="bundle-version" type="Version" value="2.18.0"/>
+      <directive name="uses" value="com.gargoylesoftware.htmlunit,com.gargoylesoftware.htmlunit.html,com.gargoylesoftware.htmlunit.javascript,com.gargoylesoftware.htmlunit.javascript.configuration,com.gargoylesoftware.htmlunit.javascript.host.dom,com.gargoylesoftware.htmlunit.javascript.host.event,com.gargoylesoftware.htmlunit.javascript.host.html,net.sourceforge.htmlunit.corejs.javascript"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="com.gargoylesoftware.htmlunit.javascript.regexp"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.htmlunit"/>
+      <attribute name="bundle-version" type="Version" value="2.18.0"/>
+      <directive name="uses" value="com.gargoylesoftware.htmlunit,net.sourceforge.htmlunit.corejs.javascript,net.sourceforge.htmlunit.corejs.javascript.regexp"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="com.gargoylesoftware.htmlunit.protocol"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.htmlunit"/>
+      <attribute name="bundle-version" type="Version" value="2.18.0"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="com.gargoylesoftware.htmlunit.protocol.about"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.htmlunit"/>
+      <attribute name="bundle-version" type="Version" value="2.18.0"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="com.gargoylesoftware.htmlunit.protocol.data"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.htmlunit"/>
+      <attribute name="bundle-version" type="Version" value="2.18.0"/>
+      <directive name="uses" value="org.apache.commons.codec"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="com.gargoylesoftware.htmlunit.protocol.javascript"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.htmlunit"/>
+      <attribute name="bundle-version" type="Version" value="2.18.0"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="com.gargoylesoftware.htmlunit.svg"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.htmlunit"/>
+      <attribute name="bundle-version" type="Version" value="2.18.0"/>
+      <directive name="uses" value="com.gargoylesoftware.htmlunit,com.gargoylesoftware.htmlunit.html,org.w3c.dom,org.xml.sax"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="com.gargoylesoftware.htmlunit.util"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.htmlunit"/>
+      <attribute name="bundle-version" type="Version" value="2.18.0"/>
+      <directive name="uses" value="com.gargoylesoftware.htmlunit,org.apache.http,org.apache.http.cookie"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="com.gargoylesoftware.htmlunit.xml"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.htmlunit"/>
+      <attribute name="bundle-version" type="Version" value="2.18.0"/>
+      <directive name="uses" value="com.gargoylesoftware.htmlunit,com.gargoylesoftware.htmlunit.html,javax.xml.parsers,org.w3c.dom,org.xml.sax"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="netscape.javascript"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.htmlunit"/>
+      <attribute name="bundle-version" type="Version" value="2.18.0"/>
+    </capability>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=com.steadystate.css.dom)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=com.steadystate.css.parser)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=com.steadystate.css.parser.selectors)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=javax.imageio)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=javax.imageio.stream)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=javax.net)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=javax.net.ssl)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=javax.swing)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=javax.xml.parsers)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=javax.xml.transform)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=javax.xml.transform.dom)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=javax.xml.transform.stream)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=net.sourceforge.htmlunit.corejs.javascript)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=net.sourceforge.htmlunit.corejs.javascript.debug)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=net.sourceforge.htmlunit.corejs.javascript.regexp)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=net.sourceforge.htmlunit.corejs.javascript.tools.debugger)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.apache.commons.codec)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.apache.commons.codec.binary)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.apache.commons.codec.net)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.apache.commons.collections)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.apache.commons.io)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.apache.commons.lang3)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.apache.commons.lang3.builder)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.apache.commons.lang3.math)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.apache.commons.lang3.reflect)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.apache.commons.lang3.time)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.apache.commons.logging)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.apache.http)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.apache.http.auth)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.apache.http.client)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.apache.http.client.config)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.apache.http.client.methods)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.apache.http.client.protocol)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.apache.http.client.utils)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.apache.http.config)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.apache.http.conn)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.apache.http.conn.socket)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.apache.http.conn.ssl)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.apache.http.cookie)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.apache.http.entity)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.apache.http.entity.mime)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.apache.http.entity.mime.content)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.apache.http.impl.client)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.apache.http.impl.conn)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.apache.http.impl.cookie)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.apache.http.message)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.apache.http.protocol)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.apache.http.ssl)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.apache.http.util)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.apache.xerces.parsers)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.apache.xerces.util)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.apache.xerces.xni)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.apache.xerces.xni.parser)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.apache.xml.utils)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.apache.xpath)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.apache.xpath.compiler)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.apache.xpath.functions)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.apache.xpath.objects)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.apache.xpath.res)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.cyberneko.html)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.eclipse.jetty.websocket.api)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.eclipse.jetty.websocket.client)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.w3c.css.sac)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.w3c.dom)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.w3c.dom.css)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.w3c.dom.ranges)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.w3c.dom.stylesheets)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.xml.sax)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.xml.sax.ext)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.xml.sax.helpers)"/>
+    </requirement>
+    <requirement namespace="osgi.ee">
+      <directive name="filter" value="(&amp;(osgi.ee=JavaSE)(version=1.7))"/>
+    </requirement>
+  </resource>
+  <resource>
+    <capability namespace="osgi.identity">
+      <attribute name="osgi.identity" value="io.skysail.bundled.httpclient"/>
+      <attribute name="type" value="osgi.bundle"/>
+      <attribute name="version" type="Version" value="4.4.1"/>
+    </capability>
+    <capability namespace="osgi.content">
+      <attribute name="osgi.content" value="1a76425ea9f7f8ee0369d935f862cb97e002aea265701206279acc8007c41bc4"/>
+      <attribute name="url" value="io.skysail.bundled.httpclient/io.skysail.bundled.httpclient-4.4.1.jar"/>
+      <attribute name="size" type="Long" value="95259"/>
+      <attribute name="mime" value="application/vnd.osgi.bundle"/>
+    </capability>
+    <capability namespace="osgi.wiring.bundle">
+      <attribute name="osgi.wiring.bundle" value="io.skysail.bundled.httpclient"/>
+      <attribute name="bundle-version" type="Version" value="4.4.1"/>
+    </capability>
+    <capability namespace="osgi.wiring.host">
+      <attribute name="osgi.wiring.host" value="io.skysail.bundled.httpclient"/>
+      <attribute name="bundle-version" type="Version" value="4.4.1"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.apache.http.conn"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.httpclient"/>
+      <attribute name="bundle-version" type="Version" value="4.4.1"/>
+      <directive name="uses" value="javax.net.ssl,org.apache.http,org.apache.http.concurrent,org.apache.http.config,org.apache.http.conn.routing,org.apache.http.conn.scheme,org.apache.http.entity,org.apache.http.params,org.apache.http.protocol"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.apache.http.conn.params"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.httpclient"/>
+      <attribute name="bundle-version" type="Version" value="4.4.1"/>
+      <directive name="uses" value="org.apache.http,org.apache.http.conn.routing,org.apache.http.params"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.apache.http.conn.routing"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.httpclient"/>
+      <attribute name="bundle-version" type="Version" value="4.4.1"/>
+      <directive name="uses" value="org.apache.http,org.apache.http.protocol"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.apache.http.conn.scheme"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.httpclient"/>
+      <attribute name="bundle-version" type="Version" value="4.4.1"/>
+      <directive name="uses" value="org.apache.http,org.apache.http.conn,org.apache.http.params"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.apache.http.conn.socket"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.httpclient"/>
+      <attribute name="bundle-version" type="Version" value="4.4.1"/>
+      <directive name="uses" value="org.apache.http,org.apache.http.protocol"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.apache.http.conn.ssl"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.httpclient"/>
+      <attribute name="bundle-version" type="Version" value="4.4.1"/>
+      <directive name="uses" value="javax.net.ssl,org.apache.http,org.apache.http.conn,org.apache.http.conn.scheme,org.apache.http.conn.socket,org.apache.http.conn.util,org.apache.http.params,org.apache.http.protocol,org.apache.http.ssl"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.apache.http.conn.util"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.httpclient"/>
+      <attribute name="bundle-version" type="Version" value="4.4.1"/>
+    </capability>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=javax.naming)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=javax.naming.directory)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=javax.naming.ldap)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=javax.net)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=javax.net.ssl)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=javax.security.auth.x500)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.apache.commons.logging)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.apache.http)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.apache.http.concurrent)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.apache.http.config)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.apache.http.entity)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.apache.http.params)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.apache.http.protocol)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.apache.http.ssl)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.apache.http.util)"/>
+    </requirement>
+    <requirement namespace="osgi.ee">
+      <directive name="filter" value="(&amp;(osgi.ee=JavaSE)(version=1.6))"/>
+    </requirement>
+  </resource>
+  <resource>
+    <capability namespace="osgi.identity">
+      <attribute name="osgi.identity" value="io.skysail.bundled.httpclient"/>
+      <attribute name="type" value="osgi.bundle"/>
+      <attribute name="version" type="Version" value="4.5.1"/>
+    </capability>
+    <capability namespace="osgi.content">
+      <attribute name="osgi.content" value="ed5edcf3e0aa210af5c4c2265c89d31c84a5bf6f81776506e2c37cc2215df8d4"/>
+      <attribute name="url" value="io.skysail.bundled.httpclient/io.skysail.bundled.httpclient-4.5.1.jar"/>
+      <attribute name="size" type="Long" value="97344"/>
+      <attribute name="mime" value="application/vnd.osgi.bundle"/>
+    </capability>
+    <capability namespace="osgi.wiring.bundle">
+      <attribute name="osgi.wiring.bundle" value="io.skysail.bundled.httpclient"/>
+      <attribute name="bundle-version" type="Version" value="4.5.1"/>
+    </capability>
+    <capability namespace="osgi.wiring.host">
+      <attribute name="osgi.wiring.host" value="io.skysail.bundled.httpclient"/>
+      <attribute name="bundle-version" type="Version" value="4.5.1"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.apache.http.conn"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.httpclient"/>
+      <attribute name="bundle-version" type="Version" value="4.5.1"/>
+      <directive name="uses" value="javax.net.ssl,org.apache.http,org.apache.http.concurrent,org.apache.http.config,org.apache.http.conn.routing,org.apache.http.conn.scheme,org.apache.http.entity,org.apache.http.params,org.apache.http.protocol"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.apache.http.conn.params"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.httpclient"/>
+      <attribute name="bundle-version" type="Version" value="4.5.1"/>
+      <directive name="uses" value="org.apache.http,org.apache.http.conn.routing,org.apache.http.params"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.apache.http.conn.routing"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.httpclient"/>
+      <attribute name="bundle-version" type="Version" value="4.5.1"/>
+      <directive name="uses" value="org.apache.http,org.apache.http.protocol"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.apache.http.conn.scheme"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.httpclient"/>
+      <attribute name="bundle-version" type="Version" value="4.5.1"/>
+      <directive name="uses" value="org.apache.http,org.apache.http.conn,org.apache.http.params"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.apache.http.conn.socket"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.httpclient"/>
+      <attribute name="bundle-version" type="Version" value="4.5.1"/>
+      <directive name="uses" value="org.apache.http,org.apache.http.protocol"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.apache.http.conn.ssl"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.httpclient"/>
+      <attribute name="bundle-version" type="Version" value="4.5.1"/>
+      <directive name="uses" value="javax.net.ssl,org.apache.http,org.apache.http.conn,org.apache.http.conn.scheme,org.apache.http.conn.socket,org.apache.http.conn.util,org.apache.http.params,org.apache.http.protocol,org.apache.http.ssl"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.apache.http.conn.util"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.httpclient"/>
+      <attribute name="bundle-version" type="Version" value="4.5.1"/>
+    </capability>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=javax.naming)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=javax.naming.directory)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=javax.naming.ldap)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=javax.net)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=javax.net.ssl)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=javax.security.auth.x500)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.apache.commons.logging)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.apache.http)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.apache.http.concurrent)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.apache.http.config)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.apache.http.entity)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.apache.http.params)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.apache.http.protocol)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.apache.http.ssl)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.apache.http.util)"/>
+    </requirement>
+    <requirement namespace="osgi.ee">
+      <directive name="filter" value="(&amp;(osgi.ee=JavaSE)(version=1.6))"/>
+    </requirement>
+  </resource>
+  <resource>
+    <capability namespace="osgi.identity">
       <attribute name="osgi.identity" value="io.skysail.bundled.java-client"/>
       <attribute name="type" value="osgi.bundle"/>
       <attribute name="version" type="Version" value="3.2.0"/>
@@ -4036,6 +5081,418 @@
     </requirement>
     <requirement namespace="osgi.ee">
       <directive name="filter" value="(&amp;(osgi.ee=JavaSE)(version=1.5))"/>
+    </requirement>
+  </resource>
+  <resource>
+    <capability namespace="osgi.identity">
+      <attribute name="osgi.identity" value="io.skysail.bundled.nekohtml"/>
+      <attribute name="type" value="osgi.bundle"/>
+      <attribute name="version" type="Version" value="1.9.22"/>
+    </capability>
+    <capability namespace="osgi.content">
+      <attribute name="osgi.content" value="77c8c16137c8fe085dcdfa87eeae2c7c89b779a74424d34f01607dd31140673e"/>
+      <attribute name="url" value="io.skysail.bundled.nekohtml/io.skysail.bundled.nekohtml-1.9.22.jar"/>
+      <attribute name="size" type="Long" value="123055"/>
+      <attribute name="mime" value="application/vnd.osgi.bundle"/>
+    </capability>
+    <capability namespace="osgi.wiring.bundle">
+      <attribute name="osgi.wiring.bundle" value="io.skysail.bundled.nekohtml"/>
+      <attribute name="bundle-version" type="Version" value="1.9.22"/>
+    </capability>
+    <capability namespace="osgi.wiring.host">
+      <attribute name="osgi.wiring.host" value="io.skysail.bundled.nekohtml"/>
+      <attribute name="bundle-version" type="Version" value="1.9.22"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.cyberneko.html"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.nekohtml"/>
+      <attribute name="bundle-version" type="Version" value="1.9.22"/>
+      <directive name="uses" value="org.apache.xerces.util,org.apache.xerces.xni,org.apache.xerces.xni.parser,org.cyberneko.html.filters"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.cyberneko.html.filters"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.nekohtml"/>
+      <attribute name="bundle-version" type="Version" value="1.9.22"/>
+      <directive name="uses" value="org.apache.xerces.xni,org.apache.xerces.xni.parser,org.cyberneko.html"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.cyberneko.html.parsers"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.nekohtml"/>
+      <attribute name="bundle-version" type="Version" value="1.9.22"/>
+      <directive name="uses" value="org.apache.xerces.parsers,org.apache.xerces.xni,org.apache.xerces.xni.parser,org.w3c.dom,org.xml.sax"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.cyberneko.html.res"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.nekohtml"/>
+      <attribute name="bundle-version" type="Version" value="1.9.22"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.cyberneko.html.xercesbridge"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.nekohtml"/>
+      <attribute name="bundle-version" type="Version" value="1.9.22"/>
+      <directive name="uses" value="org.apache.xerces.xni,org.apache.xerces.xni.parser"/>
+    </capability>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.apache.xerces.impl)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.apache.xerces.parsers)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.apache.xerces.util)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.apache.xerces.xni)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.apache.xerces.xni.parser)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.w3c.dom)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.xml.sax)"/>
+    </requirement>
+    <requirement namespace="osgi.ee">
+      <directive name="filter" value="(&amp;(osgi.ee=JavaSE)(version=1.3))"/>
+    </requirement>
+  </resource>
+  <resource>
+    <capability namespace="osgi.identity">
+      <attribute name="osgi.identity" value="io.skysail.bundled.operadriver"/>
+      <attribute name="type" value="osgi.bundle"/>
+      <attribute name="version" type="Version" value="1.5.0"/>
+    </capability>
+    <capability namespace="osgi.content">
+      <attribute name="osgi.content" value="14bd91fc325d1adc223e9bff8664386b43b09847909aaad0537995ffc4ee12ad"/>
+      <attribute name="url" value="io.skysail.bundled.operadriver/io.skysail.bundled.operadriver-1.5.0.jar"/>
+      <attribute name="size" type="Long" value="2615723"/>
+      <attribute name="mime" value="application/vnd.osgi.bundle"/>
+    </capability>
+    <capability namespace="osgi.wiring.bundle">
+      <attribute name="osgi.wiring.bundle" value="io.skysail.bundled.operadriver"/>
+      <attribute name="bundle-version" type="Version" value="1.5.0"/>
+    </capability>
+    <capability namespace="osgi.wiring.host">
+      <attribute name="osgi.wiring.host" value="io.skysail.bundled.operadriver"/>
+      <attribute name="bundle-version" type="Version" value="1.5.0"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="com.opera.core.systems"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.operadriver"/>
+      <attribute name="bundle-version" type="Version" value="1.5.0"/>
+      <directive name="uses" value="com.opera.core.systems.arguments,com.opera.core.systems.arguments.interfaces,com.opera.core.systems.internal,com.opera.core.systems.mobile,com.opera.core.systems.model,com.opera.core.systems.preferences,com.opera.core.systems.runner,com.opera.core.systems.scope,com.opera.core.systems.scope.exceptions,com.opera.core.systems.scope.internal,com.opera.core.systems.scope.protos,com.opera.core.systems.scope.services,com.opera.core.systems.scope.services.desktop,com.opera.core.systems.scope.stp.services.desktop,org.json,org.openqa.selenium,org.openqa.selenium.interactions,org.openqa.selenium.interactions.internal,org.openqa.selenium.logging,org.openqa.selenium.remote"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="com.opera.core.systems.arguments"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.operadriver"/>
+      <attribute name="bundle-version" type="Version" value="1.5.0"/>
+      <directive name="uses" value="com.opera.core.systems"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="com.opera.core.systems.arguments.interfaces"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.operadriver"/>
+      <attribute name="bundle-version" type="Version" value="1.5.0"/>
+      <directive name="uses" value="com.opera.core.systems.arguments"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="com.opera.core.systems.common.collect"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.operadriver"/>
+      <attribute name="bundle-version" type="Version" value="1.5.0"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="com.opera.core.systems.common.hash"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.operadriver"/>
+      <attribute name="bundle-version" type="Version" value="1.5.0"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="com.opera.core.systems.common.io"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.operadriver"/>
+      <attribute name="bundle-version" type="Version" value="1.5.0"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="com.opera.core.systems.common.lang"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.operadriver"/>
+      <attribute name="bundle-version" type="Version" value="1.5.0"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="com.opera.core.systems.internal"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.operadriver"/>
+      <attribute name="bundle-version" type="Version" value="1.5.0"/>
+      <directive name="uses" value="com.opera.core.systems,com.opera.core.systems.model,org.openqa.selenium.support.ui"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="com.opera.core.systems.internal.input"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.operadriver"/>
+      <attribute name="bundle-version" type="Version" value="1.5.0"/>
+      <directive name="uses" value="org.openqa.selenium"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="com.opera.core.systems.mobile"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.operadriver"/>
+      <attribute name="bundle-version" type="Version" value="1.5.0"/>
+      <directive name="uses" value="com.opera.core.systems,org.json,org.openqa.selenium"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="com.opera.core.systems.model"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.operadriver"/>
+      <attribute name="bundle-version" type="Version" value="1.5.0"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="com.opera.core.systems.preferences"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.operadriver"/>
+      <attribute name="bundle-version" type="Version" value="1.5.0"/>
+      <directive name="uses" value="com.opera.core.systems.scope.protos,com.opera.core.systems.scope.services"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="com.opera.core.systems.runner"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.operadriver"/>
+      <attribute name="bundle-version" type="Version" value="1.5.0"/>
+      <directive name="uses" value="com.opera.core.systems,com.opera.core.systems.model,com.opera.core.systems.scope.internal"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="com.opera.core.systems.runner.inprocess"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.operadriver"/>
+      <attribute name="bundle-version" type="Version" value="1.5.0"/>
+      <directive name="uses" value="com.opera.core.systems,com.opera.core.systems.model,com.opera.core.systems.runner"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="com.opera.core.systems.runner.launcher"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.operadriver"/>
+      <attribute name="bundle-version" type="Version" value="1.5.0"/>
+      <directive name="uses" value="com.google.protobuf,com.opera.core.systems,com.opera.core.systems.model,com.opera.core.systems.runner"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="com.opera.core.systems.scope"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.operadriver"/>
+      <attribute name="bundle-version" type="Version" value="1.5.0"/>
+      <directive name="uses" value="com.google.protobuf,com.opera.core.systems,com.opera.core.systems.model,com.opera.core.systems.runner,com.opera.core.systems.scope.handlers,com.opera.core.systems.scope.protos,com.opera.core.systems.scope.services,com.opera.core.systems.scope.services.desktop,com.opera.core.systems.scope.stp,com.opera.core.systems.scope.stp.services.desktop,org.apache.commons.jxpath,org.openqa.selenium"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="com.opera.core.systems.scope.exceptions"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.operadriver"/>
+      <attribute name="bundle-version" type="Version" value="1.5.0"/>
+      <directive name="uses" value="org.openqa.selenium"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="com.opera.core.systems.scope.handlers"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.operadriver"/>
+      <attribute name="bundle-version" type="Version" value="1.5.0"/>
+      <directive name="uses" value="com.opera.core.systems.scope,com.opera.core.systems.scope.protos,com.opera.core.systems.scope.stp"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="com.opera.core.systems.scope.internal"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.operadriver"/>
+      <attribute name="bundle-version" type="Version" value="1.5.0"/>
+      <directive name="uses" value="org.openqa.selenium,org.openqa.selenium.support.ui"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="com.opera.core.systems.scope.protos"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.operadriver"/>
+      <attribute name="bundle-version" type="Version" value="1.5.0"/>
+      <directive name="uses" value="com.google.protobuf"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="com.opera.core.systems.scope.services"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.operadriver"/>
+      <attribute name="bundle-version" type="Version" value="1.5.0"/>
+      <directive name="uses" value="com.opera.core.systems,com.opera.core.systems.internal,com.opera.core.systems.model,com.opera.core.systems.scope,com.opera.core.systems.scope.internal,com.opera.core.systems.scope.protos,org.openqa.selenium"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="com.opera.core.systems.scope.services.desktop"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.operadriver"/>
+      <attribute name="bundle-version" type="Version" value="1.5.0"/>
+      <directive name="uses" value="com.opera.core.systems,com.opera.core.systems.scope,com.opera.core.systems.scope.protos"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="com.opera.core.systems.scope.stp"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.operadriver"/>
+      <attribute name="bundle-version" type="Version" value="1.5.0"/>
+      <directive name="uses" value="com.opera.core.systems.internal,com.opera.core.systems.scope.handlers,com.opera.core.systems.scope.protos"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="com.opera.core.systems.scope.stp.services"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.operadriver"/>
+      <attribute name="bundle-version" type="Version" value="1.5.0"/>
+      <directive name="uses" value="com.opera.core.systems,com.opera.core.systems.internal,com.opera.core.systems.model,com.opera.core.systems.scope,com.opera.core.systems.scope.internal,com.opera.core.systems.scope.protos,com.opera.core.systems.scope.services,org.apache.commons.jxpath,org.json,org.openqa.selenium"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="com.opera.core.systems.scope.stp.services.desktop"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.operadriver"/>
+      <attribute name="bundle-version" type="Version" value="1.5.0"/>
+      <directive name="uses" value="com.opera.core.systems,com.opera.core.systems.scope,com.opera.core.systems.scope.protos,com.opera.core.systems.scope.services.desktop"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="com.opera.core.systems.scope.stp.services.messages"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.operadriver"/>
+      <attribute name="bundle-version" type="Version" value="1.5.0"/>
+      <directive name="uses" value="com.opera.core.systems.scope"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="com.opera.core.systems.scope.stp.services.messages.desktop"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.operadriver"/>
+      <attribute name="bundle-version" type="Version" value="1.5.0"/>
+      <directive name="uses" value="com.opera.core.systems.scope"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="com.opera.core.systems.testing.drivers"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.operadriver"/>
+      <attribute name="bundle-version" type="Version" value="1.5.0"/>
+      <directive name="uses" value="com.google.common.base,com.opera.core.systems,com.opera.core.systems.preferences,com.opera.core.systems.runner,com.opera.core.systems.scope,com.opera.core.systems.scope.exceptions,com.opera.core.systems.scope.services,org.openqa.selenium,org.openqa.selenium.interactions"/>
+    </capability>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=com.google.common.base)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=com.google.common.collect)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=com.google.common.hash)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=com.google.common.io)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=com.google.protobuf)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=javax.imageio)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.apache.commons.jxpath)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.ini4j)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.json)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.openqa.selenium)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.openqa.selenium.interactions)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.openqa.selenium.interactions.internal)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.openqa.selenium.internal)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.openqa.selenium.io)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.openqa.selenium.logging)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.openqa.selenium.net)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.openqa.selenium.os)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.openqa.selenium.remote)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.openqa.selenium.support)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.openqa.selenium.support.ui)"/>
+    </requirement>
+    <requirement namespace="osgi.ee">
+      <directive name="filter" value="(&amp;(osgi.ee=JavaSE)(version=1.6))"/>
+    </requirement>
+  </resource>
+  <resource>
+    <capability namespace="osgi.identity">
+      <attribute name="osgi.identity" value="io.skysail.bundled.phantomjsdriver"/>
+      <attribute name="type" value="osgi.bundle"/>
+      <attribute name="version" type="Version" value="1.2.0"/>
+    </capability>
+    <capability namespace="osgi.content">
+      <attribute name="osgi.content" value="0b4b96442e9b08e8f5d9c631abd9dba48fe6d1a344d0c5d309a1a66079eb5f53"/>
+      <attribute name="url" value="io.skysail.bundled.phantomjsdriver/io.skysail.bundled.phantomjsdriver-1.2.0.jar"/>
+      <attribute name="size" type="Long" value="11174"/>
+      <attribute name="mime" value="application/vnd.osgi.bundle"/>
+    </capability>
+    <capability namespace="osgi.wiring.bundle">
+      <attribute name="osgi.wiring.bundle" value="io.skysail.bundled.phantomjsdriver"/>
+      <attribute name="bundle-version" type="Version" value="1.2.0"/>
+    </capability>
+    <capability namespace="osgi.wiring.host">
+      <attribute name="osgi.wiring.host" value="io.skysail.bundled.phantomjsdriver"/>
+      <attribute name="bundle-version" type="Version" value="1.2.0"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.openqa.selenium.phantomjs"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.phantomjsdriver"/>
+      <attribute name="bundle-version" type="Version" value="1.2.0"/>
+      <directive name="uses" value="org.openqa.selenium,org.openqa.selenium.remote,org.openqa.selenium.remote.service"/>
+    </capability>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=com.google.common.base)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=com.google.common.collect)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.openqa.selenium)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.openqa.selenium.browserlaunchers)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.openqa.selenium.net)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.openqa.selenium.os)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.openqa.selenium.remote)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.openqa.selenium.remote.internal)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.openqa.selenium.remote.service)"/>
+    </requirement>
+    <requirement namespace="osgi.ee">
+      <directive name="filter" value="(&amp;(osgi.ee=JavaSE)(version=1.6))"/>
     </requirement>
   </resource>
   <resource>
@@ -5134,6 +6591,43 @@
     </requirement>
     <requirement namespace="osgi.ee">
       <directive name="filter" value="(&amp;(osgi.ee=JavaSE)(version=1.6))"/>
+    </requirement>
+  </resource>
+  <resource>
+    <capability namespace="osgi.identity">
+      <attribute name="osgi.identity" value="io.skysail.bundled.sac"/>
+      <attribute name="type" value="osgi.bundle"/>
+      <attribute name="version" type="Version" value="1.3.0"/>
+    </capability>
+    <capability namespace="osgi.content">
+      <attribute name="osgi.content" value="9a0da13d57e3abd498019caace7de63722a95d598fb76a58201126ae50ff7179"/>
+      <attribute name="url" value="io.skysail.bundled.sac/io.skysail.bundled.sac-1.3.0.jar"/>
+      <attribute name="size" type="Long" value="14932"/>
+      <attribute name="mime" value="application/vnd.osgi.bundle"/>
+    </capability>
+    <capability namespace="osgi.wiring.bundle">
+      <attribute name="osgi.wiring.bundle" value="io.skysail.bundled.sac"/>
+      <attribute name="bundle-version" type="Version" value="1.3.0"/>
+    </capability>
+    <capability namespace="osgi.wiring.host">
+      <attribute name="osgi.wiring.host" value="io.skysail.bundled.sac"/>
+      <attribute name="bundle-version" type="Version" value="1.3.0"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.w3c.css.sac"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.sac"/>
+      <attribute name="bundle-version" type="Version" value="1.3.0"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.w3c.css.sac.helpers"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.sac"/>
+      <attribute name="bundle-version" type="Version" value="1.3.0"/>
+      <directive name="uses" value="org.w3c.css.sac"/>
+    </capability>
+    <requirement namespace="osgi.ee">
+      <directive name="filter" value="(&amp;(osgi.ee=JavaSE)(version=1.1))"/>
     </requirement>
   </resource>
   <resource>
@@ -6735,6 +8229,509 @@
     </requirement>
     <requirement namespace="osgi.ee">
       <directive name="filter" value="(&amp;(osgi.ee=JavaSE)(version=1.7))"/>
+    </requirement>
+  </resource>
+  <resource>
+    <capability namespace="osgi.identity">
+      <attribute name="osgi.identity" value="io.skysail.bundled.xalan"/>
+      <attribute name="type" value="osgi.bundle"/>
+      <attribute name="version" type="Version" value="2.7.2"/>
+    </capability>
+    <capability namespace="osgi.content">
+      <attribute name="osgi.content" value="d32d9ebd029d27d8da36fc1e96ca66aecb89eeee9b935be11966df131158ca8a"/>
+      <attribute name="url" value="io.skysail.bundled.xalan/io.skysail.bundled.xalan-2.7.2.jar"/>
+      <attribute name="size" type="Long" value="145244"/>
+      <attribute name="mime" value="application/vnd.osgi.bundle"/>
+    </capability>
+    <capability namespace="osgi.wiring.bundle">
+      <attribute name="osgi.wiring.bundle" value="io.skysail.bundled.xalan"/>
+      <attribute name="bundle-version" type="Version" value="2.7.2"/>
+    </capability>
+    <capability namespace="osgi.wiring.host">
+      <attribute name="osgi.wiring.host" value="io.skysail.bundled.xalan"/>
+      <attribute name="bundle-version" type="Version" value="2.7.2"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.apache.xml.utils"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.xalan"/>
+      <attribute name="bundle-version" type="Version" value="2.7.2"/>
+      <directive name="uses" value="javax.xml.transform,org.w3c.dom,org.xml.sax,org.xml.sax.ext,org.xml.sax.helpers"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.apache.xml.utils.res"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.xalan"/>
+      <attribute name="bundle-version" type="Version" value="2.7.2"/>
+    </capability>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=javax.xml.parsers)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=javax.xml.transform)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=javax.xml.transform.sax)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.apache.xml.dtm.ref)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.apache.xml.dtm.ref.dom2dtm)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.apache.xml.res)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.w3c.dom)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.xml.sax)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.xml.sax.ext)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.xml.sax.helpers)"/>
+    </requirement>
+    <requirement namespace="osgi.ee">
+      <directive name="filter" value="(&amp;(osgi.ee=JavaSE)(version=1.3))"/>
+    </requirement>
+  </resource>
+  <resource>
+    <capability namespace="osgi.identity">
+      <attribute name="osgi.identity" value="io.skysail.bundled.xerces"/>
+      <attribute name="type" value="osgi.bundle"/>
+      <attribute name="version" type="Version" value="2.11.0"/>
+    </capability>
+    <capability namespace="osgi.content">
+      <attribute name="osgi.content" value="37ea84028d520fd108e0cf652bd5ec6cfefa1ea735b37fd88e1c9c962b222d78"/>
+      <attribute name="url" value="io.skysail.bundled.xerces/io.skysail.bundled.xerces-2.11.0.jar"/>
+      <attribute name="size" type="Long" value="1213308"/>
+      <attribute name="mime" value="application/vnd.osgi.bundle"/>
+    </capability>
+    <capability namespace="osgi.wiring.bundle">
+      <attribute name="osgi.wiring.bundle" value="io.skysail.bundled.xerces"/>
+      <attribute name="bundle-version" type="Version" value="2.11.0"/>
+    </capability>
+    <capability namespace="osgi.wiring.host">
+      <attribute name="osgi.wiring.host" value="io.skysail.bundled.xerces"/>
+      <attribute name="bundle-version" type="Version" value="2.11.0"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.apache.xerces.dom"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.xerces"/>
+      <attribute name="bundle-version" type="Version" value="2.11.0"/>
+      <directive name="uses" value="org.apache.xerces.dom3.as,org.apache.xerces.impl,org.apache.xerces.impl.dv,org.apache.xerces.impl.validation,org.apache.xerces.impl.xs,org.apache.xerces.util,org.apache.xerces.xni,org.apache.xerces.xni.parser,org.apache.xerces.xs,org.w3c.dom,org.w3c.dom.events,org.w3c.dom.ls,org.w3c.dom.ranges,org.w3c.dom.traversal"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.apache.xerces.dom.events"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.xerces"/>
+      <attribute name="bundle-version" type="Version" value="2.11.0"/>
+      <directive name="uses" value="org.w3c.dom,org.w3c.dom.events,org.w3c.dom.views"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.apache.xerces.dom3.as"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.xerces"/>
+      <attribute name="bundle-version" type="Version" value="2.11.0"/>
+      <directive name="uses" value="org.w3c.dom,org.w3c.dom.ls"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.apache.xerces.impl"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.xerces"/>
+      <attribute name="bundle-version" type="Version" value="2.11.0"/>
+      <directive name="uses" value="org.apache.xerces.impl.dtd,org.apache.xerces.impl.validation,org.apache.xerces.util,org.apache.xerces.xni,org.apache.xerces.xni.grammars,org.apache.xerces.xni.parser,org.xml.sax"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.apache.xerces.impl.dtd"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.xerces"/>
+      <attribute name="bundle-version" type="Version" value="2.11.0"/>
+      <directive name="uses" value="org.apache.xerces.impl,org.apache.xerces.impl.dtd.models,org.apache.xerces.impl.dv,org.apache.xerces.impl.validation,org.apache.xerces.util,org.apache.xerces.xni,org.apache.xerces.xni.grammars,org.apache.xerces.xni.parser"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.apache.xerces.impl.dtd.models"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.xerces"/>
+      <attribute name="bundle-version" type="Version" value="2.11.0"/>
+      <directive name="uses" value="org.apache.xerces.xni"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.apache.xerces.impl.dv"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.xerces"/>
+      <attribute name="bundle-version" type="Version" value="2.11.0"/>
+      <directive name="uses" value="org.apache.xerces.impl.xs.util,org.apache.xerces.util,org.apache.xerces.xs"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.apache.xerces.impl.dv.dtd"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.xerces"/>
+      <attribute name="bundle-version" type="Version" value="2.11.0"/>
+      <directive name="uses" value="org.apache.xerces.impl.dv"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.apache.xerces.impl.dv.util"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.xerces"/>
+      <attribute name="bundle-version" type="Version" value="2.11.0"/>
+      <directive name="uses" value="org.apache.xerces.xs,org.apache.xerces.xs.datatypes"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.apache.xerces.impl.dv.xs"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.xerces"/>
+      <attribute name="bundle-version" type="Version" value="2.11.0"/>
+      <directive name="uses" value="javax.xml.datatype,org.apache.xerces.impl.dv,org.apache.xerces.impl.xs,org.apache.xerces.impl.xs.util,org.apache.xerces.util,org.apache.xerces.xs,org.apache.xerces.xs.datatypes,org.w3c.dom"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.apache.xerces.impl.io"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.xerces"/>
+      <attribute name="bundle-version" type="Version" value="2.11.0"/>
+      <directive name="uses" value="org.apache.xerces.util"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.apache.xerces.impl.msg"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.xerces"/>
+      <attribute name="bundle-version" type="Version" value="2.11.0"/>
+      <directive name="uses" value="org.apache.xerces.util"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.apache.xerces.impl.validation"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.xerces"/>
+      <attribute name="bundle-version" type="Version" value="2.11.0"/>
+      <directive name="uses" value="org.apache.xerces.impl.dv,org.apache.xerces.util,org.apache.xerces.xni"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.apache.xerces.impl.xpath"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.xerces"/>
+      <attribute name="bundle-version" type="Version" value="2.11.0"/>
+      <directive name="uses" value="org.apache.xerces.util,org.apache.xerces.xni"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.apache.xerces.impl.xpath.regex"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.xerces"/>
+      <attribute name="bundle-version" type="Version" value="2.11.0"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.apache.xerces.impl.xs"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.xerces"/>
+      <attribute name="bundle-version" type="Version" value="2.11.0"/>
+      <directive name="uses" value="org.apache.xerces.dom,org.apache.xerces.impl,org.apache.xerces.impl.dv,org.apache.xerces.impl.dv.xs,org.apache.xerces.impl.validation,org.apache.xerces.impl.xs.identity,org.apache.xerces.impl.xs.models,org.apache.xerces.impl.xs.util,org.apache.xerces.util,org.apache.xerces.xni,org.apache.xerces.xni.grammars,org.apache.xerces.xni.parser,org.apache.xerces.xs,org.apache.xerces.xs.datatypes,org.w3c.dom,org.w3c.dom.ls"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.apache.xerces.impl.xs.identity"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.xerces"/>
+      <attribute name="bundle-version" type="Version" value="2.11.0"/>
+      <directive name="uses" value="org.apache.xerces.impl.xpath,org.apache.xerces.impl.xs,org.apache.xerces.util,org.apache.xerces.xni,org.apache.xerces.xs"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.apache.xerces.impl.xs.models"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.xerces"/>
+      <attribute name="bundle-version" type="Version" value="2.11.0"/>
+      <directive name="uses" value="org.apache.xerces.impl.dtd.models,org.apache.xerces.impl.xs,org.apache.xerces.xni,org.apache.xerces.xni.parser"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.apache.xerces.impl.xs.opti"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.xerces"/>
+      <attribute name="bundle-version" type="Version" value="2.11.0"/>
+      <directive name="uses" value="org.apache.xerces.impl,org.apache.xerces.impl.dv,org.apache.xerces.impl.validation,org.apache.xerces.parsers,org.apache.xerces.util,org.apache.xerces.xni,org.apache.xerces.xni.grammars,org.apache.xerces.xni.parser,org.w3c.dom"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.apache.xerces.impl.xs.traversers"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.xerces"/>
+      <attribute name="bundle-version" type="Version" value="2.11.0"/>
+      <directive name="uses" value="org.apache.xerces.impl.dv,org.apache.xerces.impl.xs,org.apache.xerces.impl.xs.util,org.apache.xerces.util,org.apache.xerces.xni,org.apache.xerces.xni.parser,org.w3c.dom"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.apache.xerces.impl.xs.util"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.xerces"/>
+      <attribute name="bundle-version" type="Version" value="2.11.0"/>
+      <directive name="uses" value="org.apache.xerces.impl.xs,org.apache.xerces.util,org.apache.xerces.xni,org.apache.xerces.xni.parser,org.apache.xerces.xs,org.apache.xerces.xs.datatypes,org.w3c.dom.ls"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.apache.xerces.jaxp"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.xerces"/>
+      <attribute name="bundle-version" type="Version" value="2.11.0"/>
+      <directive name="uses" value="javax.xml.parsers,javax.xml.validation,org.apache.xerces.parsers,org.apache.xerces.xs,org.w3c.dom,org.xml.sax,org.xml.sax.helpers"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.apache.xerces.jaxp.datatype"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.xerces"/>
+      <attribute name="bundle-version" type="Version" value="2.11.0"/>
+      <directive name="uses" value="javax.xml.datatype"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.apache.xerces.jaxp.validation"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.xerces"/>
+      <attribute name="bundle-version" type="Version" value="2.11.0"/>
+      <directive name="uses" value="javax.xml.transform,javax.xml.validation,org.apache.xerces.xni.grammars,org.w3c.dom.ls,org.xml.sax"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.apache.xerces.parsers"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.xerces"/>
+      <attribute name="bundle-version" type="Version" value="2.11.0"/>
+      <directive name="uses" value="org.apache.xerces.dom,org.apache.xerces.dom3.as,org.apache.xerces.impl,org.apache.xerces.impl.dtd,org.apache.xerces.impl.dv,org.apache.xerces.impl.validation,org.apache.xerces.impl.xs,org.apache.xerces.util,org.apache.xerces.xinclude,org.apache.xerces.xni,org.apache.xerces.xni.grammars,org.apache.xerces.xni.parser,org.apache.xerces.xs,org.w3c.dom,org.w3c.dom.ls,org.xml.sax,org.xml.sax.ext"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.apache.xerces.stax"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.xerces"/>
+      <attribute name="bundle-version" type="Version" value="2.11.0"/>
+      <directive name="uses" value="javax.xml.namespace,javax.xml.stream,javax.xml.stream.events"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.apache.xerces.stax.events"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.xerces"/>
+      <attribute name="bundle-version" type="Version" value="2.11.0"/>
+      <directive name="uses" value="javax.xml.namespace,javax.xml.stream,javax.xml.stream.events"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.apache.xerces.util"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.xerces"/>
+      <attribute name="bundle-version" type="Version" value="2.11.0"/>
+      <directive name="uses" value="javax.xml.namespace,javax.xml.stream,org.apache.xerces.dom,org.apache.xerces.impl,org.apache.xerces.xni,org.apache.xerces.xni.grammars,org.apache.xerces.xni.parser,org.w3c.dom,org.w3c.dom.ls,org.xml.sax,org.xml.sax.ext"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.apache.xerces.xinclude"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.xerces"/>
+      <attribute name="bundle-version" type="Version" value="2.11.0"/>
+      <directive name="uses" value="org.apache.xerces.impl,org.apache.xerces.util,org.apache.xerces.xni,org.apache.xerces.xni.parser,org.apache.xerces.xpointer"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.apache.xerces.xni"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.xerces"/>
+      <attribute name="bundle-version" type="Version" value="2.11.0"/>
+      <directive name="uses" value="org.apache.xerces.xni.parser"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.apache.xerces.xni.grammars"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.xerces"/>
+      <attribute name="bundle-version" type="Version" value="2.11.0"/>
+      <directive name="uses" value="org.apache.xerces.xni,org.apache.xerces.xni.parser,org.apache.xerces.xs"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.apache.xerces.xni.parser"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.xerces"/>
+      <attribute name="bundle-version" type="Version" value="2.11.0"/>
+      <directive name="uses" value="org.apache.xerces.xni"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.apache.xerces.xpointer"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.xerces"/>
+      <attribute name="bundle-version" type="Version" value="2.11.0"/>
+      <directive name="uses" value="org.apache.xerces.impl,org.apache.xerces.util,org.apache.xerces.xinclude,org.apache.xerces.xni,org.apache.xerces.xni.parser"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.apache.xerces.xs"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.xerces"/>
+      <attribute name="bundle-version" type="Version" value="2.11.0"/>
+      <directive name="uses" value="org.apache.xerces.xs.datatypes,org.w3c.dom,org.w3c.dom.ls"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.apache.xerces.xs.datatypes"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.xerces"/>
+      <attribute name="bundle-version" type="Version" value="2.11.0"/>
+      <directive name="uses" value="javax.xml.datatype,javax.xml.namespace,org.apache.xerces.xni,org.apache.xerces.xs"/>
+    </capability>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=javax.xml.datatype)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=javax.xml.namespace)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=javax.xml.parsers)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=javax.xml.stream)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=javax.xml.stream.events)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=javax.xml.transform)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=javax.xml.transform.dom)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=javax.xml.transform.sax)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=javax.xml.transform.stax)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=javax.xml.transform.stream)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=javax.xml.validation)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.apache.xml.resolver)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.apache.xml.resolver.readers)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.apache.xml.serialize)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.w3c.dom)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.w3c.dom.events)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.w3c.dom.ls)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.w3c.dom.ranges)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.w3c.dom.traversal)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.w3c.dom.views)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.xml.sax)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.xml.sax.ext)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.xml.sax.helpers)"/>
+    </requirement>
+    <requirement namespace="osgi.ee">
+      <directive name="filter" value="(&amp;(osgi.ee=JavaSE)(version=1.3))"/>
+    </requirement>
+  </resource>
+  <resource>
+    <capability namespace="osgi.identity">
+      <attribute name="osgi.identity" value="io.skysail.bundled.xml-apis"/>
+      <attribute name="type" value="osgi.bundle"/>
+      <attribute name="version" type="Version" value="1.4.1"/>
+    </capability>
+    <capability namespace="osgi.content">
+      <attribute name="osgi.content" value="3efd7e0d66bde1fb4977629cdec26653ca419c5ee7afb96e74f278a6e58577c8"/>
+      <attribute name="url" value="io.skysail.bundled.xml-apis/io.skysail.bundled.xml-apis-1.4.1.jar"/>
+      <attribute name="size" type="Long" value="66077"/>
+      <attribute name="mime" value="application/vnd.osgi.bundle"/>
+    </capability>
+    <capability namespace="osgi.wiring.bundle">
+      <attribute name="osgi.wiring.bundle" value="io.skysail.bundled.xml-apis"/>
+      <attribute name="bundle-version" type="Version" value="1.4.1"/>
+    </capability>
+    <capability namespace="osgi.wiring.host">
+      <attribute name="osgi.wiring.host" value="io.skysail.bundled.xml-apis"/>
+      <attribute name="bundle-version" type="Version" value="1.4.1"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.w3c.dom"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.xml-apis"/>
+      <attribute name="bundle-version" type="Version" value="1.4.1"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.w3c.dom.bootstrap"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.xml-apis"/>
+      <attribute name="bundle-version" type="Version" value="1.4.1"/>
+      <directive name="uses" value="org.w3c.dom"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.w3c.dom.css"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.xml-apis"/>
+      <attribute name="bundle-version" type="Version" value="1.4.1"/>
+      <directive name="uses" value="org.w3c.dom,org.w3c.dom.stylesheets,org.w3c.dom.views"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.w3c.dom.events"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.xml-apis"/>
+      <attribute name="bundle-version" type="Version" value="1.4.1"/>
+      <directive name="uses" value="org.w3c.dom,org.w3c.dom.views"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.w3c.dom.html"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.xml-apis"/>
+      <attribute name="bundle-version" type="Version" value="1.4.1"/>
+      <directive name="uses" value="org.w3c.dom"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.w3c.dom.ls"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.xml-apis"/>
+      <attribute name="bundle-version" type="Version" value="1.4.1"/>
+      <directive name="uses" value="org.w3c.dom,org.w3c.dom.events,org.w3c.dom.traversal"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.w3c.dom.ranges"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.xml-apis"/>
+      <attribute name="bundle-version" type="Version" value="1.4.1"/>
+      <directive name="uses" value="org.w3c.dom"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.w3c.dom.stylesheets"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.xml-apis"/>
+      <attribute name="bundle-version" type="Version" value="1.4.1"/>
+      <directive name="uses" value="org.w3c.dom"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.w3c.dom.traversal"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.xml-apis"/>
+      <attribute name="bundle-version" type="Version" value="1.4.1"/>
+      <directive name="uses" value="org.w3c.dom"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.w3c.dom.views"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.xml-apis"/>
+      <attribute name="bundle-version" type="Version" value="1.4.1"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.w3c.dom.xpath"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.xml-apis"/>
+      <attribute name="bundle-version" type="Version" value="1.4.1"/>
+      <directive name="uses" value="org.w3c.dom"/>
+    </capability>
+    <requirement namespace="osgi.ee">
+      <directive name="filter" value="(&amp;(osgi.ee=JavaSE)(version=1.1))"/>
     </requirement>
   </resource>
   <resource>

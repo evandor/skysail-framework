@@ -17,7 +17,7 @@ public enum Status implements Identifiable{
     FINISHED("FINISHED", "gray", "DONE"),
     DONE("DONE", "gray"),
     @Deprecated // archived will be: done & done date + 7 < now
-    ARCHIVED("ARCHIVED", "gray","ARCHIVED");
+    ARCHIVED("ARCHIVED", "gray","DONE");
 
     private List<String> nexts = new ArrayList<>();
 

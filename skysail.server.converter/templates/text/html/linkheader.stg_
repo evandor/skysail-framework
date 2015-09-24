@@ -5,6 +5,7 @@ linkheader(list) ::= <<
     <th>Link</th>
     <th>URI</th>
     <th>Relation</th>
+    <th>Role</th>
     <th>Methods</th>
     <th>Auth. needed</th>
     <th>Images</th>
@@ -20,10 +21,11 @@ handleSingleLinkheader(link,i) ::= <<
       <td><a href='$link.uri$'>$link.title$</a></td>
       <td>$link.uri$</td>
       <td>$link.rel$</td>
+      <td>$link.role$</td>
       <td>$link.verbs$</td>
       <td>$link.needsAuthentication$</td>
       <td>$images(link.images)$</td>
-      <td>$if(link.refId)$ [Ref#: $link.refId$]$endif$</td> 
+      <td>$if(link.refId)$ [Ref#: $link.refId$]$endif$</td>
     </tr>
 >>
 

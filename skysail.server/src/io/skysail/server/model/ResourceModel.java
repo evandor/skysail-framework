@@ -199,7 +199,7 @@ public class ResourceModel<R extends SkysailServerResource<T>, T> {
     }
 
     public List<Link> getCollectionLinks() throws Exception {
-        return resource.getAuthorizedLinks().stream().filter(l -> LinkRelation.COLLECTION.equals(l.getRel()))
+        return resource.getAuthorizedLinks().stream().filter(l -> LinkRelation.COLLECTION.equals(l.getRel()) || LinkRelation.SELF.equals(l.getRel()))
                 .collect(Collectors.toList());
     }
 

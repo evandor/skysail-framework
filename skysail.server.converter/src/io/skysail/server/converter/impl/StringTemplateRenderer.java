@@ -169,13 +169,13 @@ public class StringTemplateRenderer {
             STGroupBundleDir stGroup, String mediaType) {
         Optional<Bundle> theBundle = findBundle(appBundle, symbolicName);
         if (theBundle.isPresent()) {
-            importTemplates(resource, resourcePath + "/common", stGroup, theBundle);
-            importTemplates(resource, resourcePath + "/common/head", stGroup, theBundle);
-            importTemplates(resource, resourcePath + "/common/navigation", stGroup, theBundle);
             String mediaTypedResourcePath = (resourcePath + "/" + mediaType).replace("/*", "");
             importTemplates(resource, mediaTypedResourcePath , stGroup, theBundle);
             importTemplates(resource, mediaTypedResourcePath + "/head", stGroup, theBundle);
             importTemplates(resource, mediaTypedResourcePath + "/navigation", stGroup, theBundle);
+            importTemplates(resource, resourcePath + "/common", stGroup, theBundle);
+            importTemplates(resource, resourcePath + "/common/head", stGroup, theBundle);
+            importTemplates(resource, resourcePath + "/common/navigation", stGroup, theBundle);
         }
     }
 

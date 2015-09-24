@@ -1,8 +1,0 @@
-bootstrap() ::= <<
-
-<!--  bootstrap -->
-<link href="/webapp/css/bootstrap.min.css" rel="stylesheet">
-<link href="/webapp/css/stickyfooter.css" rel="stylesheet">
-<link href="/webapp/css/bootstrap-theme.min.css" rel="stylesheet">
-
->>

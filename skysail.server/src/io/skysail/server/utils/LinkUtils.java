@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 
 import lombok.extern.slf4j.Slf4j;
 
-import org.restlet.data.MediaType;
+import org.restlet.data.*;
 import org.restlet.resource.Resource;
 
 import de.twenty11.skysail.server.core.restlet.*;
@@ -91,7 +91,7 @@ public class LinkUtils {
                 .needsRoles(routeBuilder.getRolesForAuthorization())
                 .image(MediaType.TEXT_HTML,
                         resource.isPresent() ? resource.get().getFromContext(ResourceContextId.LINK_GLYPH) : null)
-            .build();
+                .build();
 
         log.debug("created link {}", link);
         return link;
@@ -108,15 +108,21 @@ public class LinkUtils {
         RouteBuilder routeBuilder = app.getRouteBuilders(resourceClass).get(0);
         Optional<SkysailServerResource<?>> resource = createNewInstance(resourceClass);
 
-        Link link = new Link.Builder(determineUri2(skysailServerResource, routeBuilder))
+        LinkRelation relation = resource.isPresent() ? resource.get().getLinkRelation() : LinkRelation.ALTERNATE;
+        String uri = determineUri2(skysailServerResource, routeBuilder);
+        Reference resourceRef = skysailServerResource.getRequest().getResourceRef();
+        if (uri.equals(resourceRef.getPath())) {
+            relation = LinkRelation.SELF;
+        }
+        Link link = new Link.Builder(uri)
                 .definingClass(resourceClass)
-                .relation(resource.isPresent() ? resource.get().getLinkRelation() : LinkRelation.ALTERNATE)
+                .relation(relation)
                 .title(resource.isPresent() ? resource.get().getFromContext(ResourceContextId.LINK_TITLE) : "unknown")
                 .authenticationNeeded(routeBuilder.needsAuthentication())
                 .needsRoles(routeBuilder.getRolesForAuthorization())
                 .image(MediaType.TEXT_HTML,
                         resource.isPresent() ? resource.get().getFromContext(ResourceContextId.LINK_GLYPH) : null)
-            .build();
+                .build();
 
         log.debug("created link {}", link);
         return link;
@@ -210,12 +216,11 @@ public class LinkUtils {
                 return map.get("id").toString().replace("#", "");
             }
         }
-        /*Map<String, Object> map = OrientDbUtils.toMap(object);
-        if (map != null) {
-            if (map.get("@rid") != null) {
-                return map.get("@rid").toString().replace("#", "");
-            }
-        }*/
+        /*
+         * Map<String, Object> map = OrientDbUtils.toMap(object); if (map !=
+         * null) { if (map.get("@rid") != null) { return
+         * map.get("@rid").toString().replace("#", ""); } }
+         */
         log.warn("not able to determine id");
         return "NO_ID";
     }

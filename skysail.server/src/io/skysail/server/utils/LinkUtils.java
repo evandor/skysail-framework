@@ -109,7 +109,7 @@ public class LinkUtils {
         Optional<SkysailServerResource<?>> resource = createNewInstance(resourceClass);
 
         LinkRelation relation = resource.isPresent() ? resource.get().getLinkRelation() : LinkRelation.ALTERNATE;
-        String uri = determineUri2(skysailServerResource, routeBuilder);
+        String uri = determineUri2(skysailServerResource, resourceClass, routeBuilder);
         Reference resourceRef = skysailServerResource.getRequest().getResourceRef();
         if (uri.equals(resourceRef.getPath())) {
             relation = LinkRelation.SELF;
@@ -144,11 +144,16 @@ public class LinkUtils {
         return "/" + app.getName() + routeBuilder.getPathTemplate(app.getApiVersion());
     }
 
-    private static String determineUri2(SkysailServerResource<?> skysailServerResource, RouteBuilder routeBuilder) {
+    private static String determineUri2(SkysailServerResource<?> skysailServerResource,Class<? extends SkysailServerResource<?>> resourceClass, RouteBuilder routeBuilder) {
         SkysailApplication app = skysailServerResource.getApplication();
         String result = "/" + app.getName() + routeBuilder.getPathTemplate(app.getApiVersion());
-        if (skysailServerResource.getRestrictedToMediaTypes().size() == 1) {
-            result += "?media=" + skysailServerResource.getRestrictedToMediaTypes().iterator().next();
+        try {
+            Set<String> types = resourceClass.newInstance().getRestrictedToMediaTypes();
+            if (types.size() == 1) {
+                result += "?media=" + types.iterator().next();
+            }
+        } catch (InstantiationException | IllegalAccessException e) {
+            log.warn(e.getMessage());
         }
         return result;
     }

@@ -1,6 +1,8 @@
 package de.twenty11.skysail.server.app;
 
 import io.skysail.server.app.SkysailApplication;
+import io.skysail.server.menus.*;
+import io.skysail.server.menus.MenuItem.Category;
 import io.skysail.server.utils.MenuItemUtils;
 
 import java.util.*;
@@ -18,7 +20,6 @@ import de.twenty11.skysail.server.core.restlet.RouteBuilder;
 import de.twenty11.skysail.server.help.*;
 import de.twenty11.skysail.server.resources.*;
 import de.twenty11.skysail.server.services.*;
-import de.twenty11.skysail.server.services.MenuItem.Category;
 
 @Component(immediate = true, properties = { "service.pid=landingpages" })
 public class SkysailRootApplication extends SkysailApplication implements ApplicationProvider, ResourceBundleProvider,

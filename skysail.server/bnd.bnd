@@ -6,6 +6,7 @@ Export-Package:  \
 	io.skysail.server.services,\
 	io.skysail.server.forms,\
 	de.twenty11.skysail.server.help,\
+	io.skysail.server.menus,\
 	io.skysail.server.utils,\
 	de.twenty11.skysail.server.core.osgi,\
 	io.skysail.server.restlet.resources,\

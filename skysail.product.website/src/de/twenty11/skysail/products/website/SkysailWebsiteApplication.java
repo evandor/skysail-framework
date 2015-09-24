@@ -1,6 +1,7 @@
 package de.twenty11.skysail.products.website;
 
 import io.skysail.server.app.SkysailApplication;
+import io.skysail.server.menus.*;
 import io.skysail.server.utils.*;
 
 import java.util.*;

@@ -1,6 +1,7 @@
 package io.skysail.server.app.svgedit;
 
 import io.skysail.server.app.SkysailApplication;
+import io.skysail.server.menus.*;
 import io.skysail.server.utils.*;
 
 import java.util.*;

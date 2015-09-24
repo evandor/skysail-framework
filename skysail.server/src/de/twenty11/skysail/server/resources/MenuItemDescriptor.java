@@ -3,8 +3,8 @@ package de.twenty11.skysail.server.resources;
 import io.skysail.api.domain.Identifiable;
 import io.skysail.api.forms.Field;
 import io.skysail.server.forms.ListView;
+import io.skysail.server.menus.MenuItem;
 import lombok.*;
-import de.twenty11.skysail.server.services.MenuItem;
 
 @NoArgsConstructor
 @Getter

@@ -2,6 +2,7 @@ package io.skysail.server.app.twitter4j;
 
 import io.skysail.server.app.SkysailApplication;
 import io.skysail.server.app.twitter4j.resources.*;
+import io.skysail.server.menus.*;
 
 import java.util.*;
 

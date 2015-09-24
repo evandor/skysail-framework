@@ -1,4 +1,4 @@
-package de.twenty11.skysail.server.services;
+package io.skysail.server.menus;
 
 import io.skysail.server.app.SkysailApplication;
 

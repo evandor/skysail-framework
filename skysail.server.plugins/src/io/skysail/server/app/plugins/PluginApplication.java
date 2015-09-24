@@ -6,6 +6,7 @@ import io.skysail.server.app.plugins.installations.PostInstallationResource;
 import io.skysail.server.app.plugins.obr.*;
 import io.skysail.server.app.plugins.query.PostQueryResource;
 import io.skysail.server.app.plugins.resources.*;
+import io.skysail.server.menus.*;
 import io.skysail.server.restlet.resources.SkysailServerResource;
 
 import java.util.*;

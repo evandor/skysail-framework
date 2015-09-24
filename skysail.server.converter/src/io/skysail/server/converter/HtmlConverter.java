@@ -6,6 +6,7 @@ import io.skysail.api.search.SearchService;
 import io.skysail.server.app.SkysailApplication;
 import io.skysail.server.converter.impl.*;
 import io.skysail.server.http.InstallationProvider;
+import io.skysail.server.menus.MenuItemProvider;
 import io.skysail.server.restlet.resources.SkysailServerResource;
 
 import java.util.*;

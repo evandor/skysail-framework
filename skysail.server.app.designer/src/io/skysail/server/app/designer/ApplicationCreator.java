@@ -6,6 +6,7 @@ import io.skysail.server.app.designer.codegen.*;
 import io.skysail.server.app.designer.model.*;
 import io.skysail.server.app.designer.repo.DesignerRepository;
 import io.skysail.server.db.DbService;
+import io.skysail.server.menus.MenuItemProvider;
 import io.skysail.server.repo.DbRepository;
 import io.skysail.server.utils.BundleUtils;
 
@@ -26,7 +27,6 @@ import org.stringtemplate.v4.ST;
 import de.twenty11.skysail.server.app.ApplicationProvider;
 import de.twenty11.skysail.server.core.osgi.EventHelper;
 import de.twenty11.skysail.server.core.restlet.SkysailRouter;
-import de.twenty11.skysail.server.services.MenuItemProvider;
 
 public class ApplicationCreator {
 

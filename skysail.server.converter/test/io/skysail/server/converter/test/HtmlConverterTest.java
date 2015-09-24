@@ -3,6 +3,7 @@ package io.skysail.server.converter.test;
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.assertThat;
 import io.skysail.server.converter.HtmlConverter;
+import io.skysail.server.menus.*;
 import io.skysail.server.restlet.resources.EntityServerResource;
 
 import java.util.*;
@@ -14,8 +15,6 @@ import org.restlet.data.MediaType;
 import org.restlet.engine.resource.VariantInfo;
 import org.restlet.representation.*;
 import org.restlet.resource.Resource;
-
-import de.twenty11.skysail.server.services.*;
 
 public class HtmlConverterTest {
 

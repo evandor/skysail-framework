@@ -1,15 +1,13 @@
-package de.twenty11.skysail.server.services.test;
+package io.skysail.server.menus;
 
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
+import io.skysail.server.menus.*;
 
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
-
-import de.twenty11.skysail.server.services.MenuItem;
-import de.twenty11.skysail.server.services.MenuItemCategoryCollector;
 
 public class MenuItemCategoryCollectorTest {
 

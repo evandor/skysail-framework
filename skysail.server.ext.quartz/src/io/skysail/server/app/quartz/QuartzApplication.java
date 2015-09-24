@@ -7,6 +7,7 @@ import io.skysail.server.app.quartz.jobs.*;
 import io.skysail.server.app.quartz.jobs.Job;
 import io.skysail.server.app.quartz.schedules.*;
 import io.skysail.server.app.quartz.triggers.resources.*;
+import io.skysail.server.menus.*;
 import io.skysail.server.repo.DbRepository;
 import io.skysail.server.restlet.resources.SkysailServerResource;
 

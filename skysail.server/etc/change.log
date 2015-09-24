@@ -4,6 +4,7 @@ new in
 -----
 
  * removing @API annotations and documentationProvider logic
+ * moved MenuItem to io.skysail.server.menus
 
 9.0.0
 -----

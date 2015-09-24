@@ -1,6 +1,7 @@
 package de.twenty11.skysail.server.resources;
 
 import io.skysail.api.links.*;
+import io.skysail.server.menus.MenuItem;
 import io.skysail.server.restlet.resources.ListServerResource;
 
 import java.util.*;
@@ -12,7 +13,6 @@ import org.restlet.resource.ResourceException;
 import com.google.common.base.Predicate;
 
 import de.twenty11.skysail.server.app.SkysailRootApplication;
-import de.twenty11.skysail.server.services.MenuItem;
 
 /**
  * Default resource, attached to path "/".

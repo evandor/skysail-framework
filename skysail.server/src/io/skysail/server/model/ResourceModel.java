@@ -7,6 +7,7 @@ import io.skysail.api.responses.*;
 import io.skysail.api.search.*;
 import io.skysail.server.app.SkysailApplication;
 import io.skysail.server.forms.FormField;
+import io.skysail.server.menus.MenuItemProvider;
 import io.skysail.server.restlet.resources.*;
 import io.skysail.server.utils.*;
 
@@ -26,7 +27,6 @@ import org.restlet.util.Series;
 import com.fasterxml.jackson.databind.*;
 
 import de.twenty11.skysail.server.core.restlet.ResourceContextId;
-import de.twenty11.skysail.server.services.MenuItemProvider;
 
 /**
  * The model of the resource from which the html representation is derived.

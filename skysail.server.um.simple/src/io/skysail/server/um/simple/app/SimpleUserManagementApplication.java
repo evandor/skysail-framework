@@ -2,6 +2,7 @@ package io.skysail.server.um.simple.app;
 
 import io.skysail.api.um.RestletRolesProvider;
 import io.skysail.server.app.SkysailApplication;
+import io.skysail.server.menus.*;
 import io.skysail.server.um.simple.app.users.resources.CurrentUserResource;
 
 import java.util.*;

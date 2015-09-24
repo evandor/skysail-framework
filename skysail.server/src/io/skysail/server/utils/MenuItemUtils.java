@@ -1,5 +1,8 @@
 package io.skysail.server.utils;
 
+import io.skysail.server.menus.*;
+import io.skysail.server.menus.MenuItem.Category;
+
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -8,7 +11,6 @@ import org.restlet.Request;
 import org.restlet.security.Role;
 
 import de.twenty11.skysail.server.services.*;
-import de.twenty11.skysail.server.services.MenuItem.Category;
 
 public class MenuItemUtils {
 

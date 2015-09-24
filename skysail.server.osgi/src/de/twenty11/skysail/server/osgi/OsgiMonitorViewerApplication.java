@@ -18,6 +18,7 @@
 package de.twenty11.skysail.server.osgi;
 
 import io.skysail.server.app.SkysailApplication;
+import io.skysail.server.menus.*;
 
 import java.util.*;
 

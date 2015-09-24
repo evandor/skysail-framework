@@ -1,4 +1,5 @@
-package de.twenty11.skysail.server.services;
+package io.skysail.server.menus;
+
 
 public class MenuItemCategoryCollector extends MenuItem {
 

@@ -66,7 +66,7 @@ skysail.api.validation.version         '[0.2.2,0.2.3)'
 skysail.server.version                 '[10.0.0,10.0.1)'
 skysail.server.codegen.version         '[0.1.0,0.1.1)'
 skysail.server.converter.version       '[2.0.0,2.0.1)'
-skysail.server.db.version              '[3.0.0,3.0.1)'
+skysail.server.db.version              '[3.0.1,3.0.2)'
 
 # phasing out: skysail.server.documentation.version   '[0.1.3,0.1.4)'
 skysail.server.http.version            '[4.0.1,4.0.2)'

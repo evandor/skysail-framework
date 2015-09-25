@@ -1,4 +1,4 @@
-Bundle-Version: 0.4.1.${tstamp}
+Bundle-Version: 0.4.2.${tstamp}
 -buildpath:  \
 	osgi.core;version=5.0,\
 	osgi.cmpn;version=5.0,\

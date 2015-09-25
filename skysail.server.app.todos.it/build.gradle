@@ -11,12 +11,12 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath("net.serenity-bdd:serenity-gradle-plugin:1.1.12")
+        classpath("net.serenity-bdd:serenity-gradle-plugin:1.1.13")
     }
 }
 
 dependencies {
-    testCompile 'net.serenity-bdd:core:1.0.47'
-    testCompile 'net.serenity-bdd:serenity-junit:1.0.47'
+    testCompile 'net.serenity-bdd:serenity-core:1.1.13'
+    testCompile 'net.serenity-bdd:serenity-junit:1.1.13'
     testCompile('org.assertj:assertj-core:1.7.0')
 }

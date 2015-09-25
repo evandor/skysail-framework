@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<repository increment="1443159391440" name="Local" xmlns="http://www.osgi.org/xmlns/repository/v1.0.0">
+<repository increment="1443186303803" name="Local" xmlns="http://www.osgi.org/xmlns/repository/v1.0.0">
   <resource>
     <capability namespace="osgi.identity">
       <attribute name="osgi.identity" value="bcprov"/>
@@ -4578,9 +4578,9 @@
       <attribute name="version" type="Version" value="4.4.1"/>
     </capability>
     <capability namespace="osgi.content">
-      <attribute name="osgi.content" value="1a76425ea9f7f8ee0369d935f862cb97e002aea265701206279acc8007c41bc4"/>
+      <attribute name="osgi.content" value="b676be0338381574dd40d37b493de2c1d9ee7ec4f4e7df3d0e87ba24584d0063"/>
       <attribute name="url" value="io.skysail.bundled.httpclient/io.skysail.bundled.httpclient-4.4.1.jar"/>
-      <attribute name="size" type="Long" value="95259"/>
+      <attribute name="size" type="Long" value="671772"/>
       <attribute name="mime" value="application/vnd.osgi.bundle"/>
     </capability>
     <capability namespace="osgi.wiring.bundle">
@@ -4590,6 +4590,62 @@
     <capability namespace="osgi.wiring.host">
       <attribute name="osgi.wiring.host" value="io.skysail.bundled.httpclient"/>
       <attribute name="bundle-version" type="Version" value="4.4.1"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.apache.http.impl.auth"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.httpclient"/>
+      <attribute name="bundle-version" type="Version" value="4.4.1"/>
+      <directive name="uses" value="org.apache.commons.logging,org.apache.http,org.apache.http.auth,org.apache.http.client,org.apache.http.params,org.apache.http.protocol,org.apache.http.util,org.ietf.jgss"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.apache.http.impl.client"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.httpclient"/>
+      <attribute name="bundle-version" type="Version" value="4.4.1"/>
+      <directive name="uses" value="javax.net.ssl,org.apache.commons.logging,org.apache.http,org.apache.http.auth,org.apache.http.client,org.apache.http.client.config,org.apache.http.client.entity,org.apache.http.client.methods,org.apache.http.concurrent,org.apache.http.config,org.apache.http.conn,org.apache.http.conn.routing,org.apache.http.conn.socket,org.apache.http.conn.ssl,org.apache.http.conn.util,org.apache.http.cookie,org.apache.http.impl.auth,org.apache.http.impl.execchain,org.apache.http.message,org.apache.http.params,org.apache.http.pool,org.apache.http.protocol"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.apache.http.impl.conn"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.httpclient"/>
+      <attribute name="bundle-version" type="Version" value="4.4.1"/>
+      <directive name="uses" value="javax.net.ssl,org.apache.commons.logging,org.apache.http,org.apache.http.config,org.apache.http.conn,org.apache.http.conn.routing,org.apache.http.conn.scheme,org.apache.http.conn.socket,org.apache.http.entity,org.apache.http.impl,org.apache.http.impl.io,org.apache.http.io,org.apache.http.message,org.apache.http.params,org.apache.http.pool,org.apache.http.protocol,org.apache.http.util"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.apache.http.impl.conn.tsccm"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.httpclient"/>
+      <attribute name="bundle-version" type="Version" value="4.4.1"/>
+      <directive name="uses" value="org.apache.http.conn,org.apache.http.conn.params,org.apache.http.conn.routing,org.apache.http.conn.scheme,org.apache.http.impl.conn,org.apache.http.params"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.apache.http.impl.cookie"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.httpclient"/>
+      <attribute name="bundle-version" type="Version" value="4.4.1"/>
+      <directive name="uses" value="org.apache.http,org.apache.http.conn.util,org.apache.http.cookie,org.apache.http.message,org.apache.http.params,org.apache.http.protocol,org.apache.http.util"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.apache.http.impl.execchain"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.httpclient"/>
+      <attribute name="bundle-version" type="Version" value="4.4.1"/>
+      <directive name="uses" value="org.apache.http,org.apache.http.client,org.apache.http.client.methods,org.apache.http.client.protocol,org.apache.http.conn,org.apache.http.conn.routing,org.apache.http.protocol"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.apache.http.cookie"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.httpclient"/>
+      <attribute name="bundle-version" type="Version" value="4.4.1"/>
+      <directive name="uses" value="org.apache.http,org.apache.http.config,org.apache.http.params,org.apache.http.protocol"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.apache.http.cookie.params"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.httpclient"/>
+      <attribute name="bundle-version" type="Version" value="4.4.1"/>
+      <directive name="uses" value="org.apache.http.params"/>
     </capability>
     <capability namespace="osgi.wiring.package">
       <attribute name="osgi.wiring.package" value="org.apache.http.conn"/>
@@ -4639,6 +4695,75 @@
       <attribute name="bundle-symbolic-name" value="io.skysail.bundled.httpclient"/>
       <attribute name="bundle-version" type="Version" value="4.4.1"/>
     </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.apache.http.auth"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.httpclient"/>
+      <attribute name="bundle-version" type="Version" value="4.4.1"/>
+      <directive name="uses" value="org.apache.http,org.apache.http.config,org.apache.http.params,org.apache.http.protocol,org.ietf.jgss"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.apache.http.auth.params"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.httpclient"/>
+      <attribute name="bundle-version" type="Version" value="4.4.1"/>
+      <directive name="uses" value="org.apache.http.params"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.apache.http.client"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.httpclient"/>
+      <attribute name="bundle-version" type="Version" value="4.4.1"/>
+      <directive name="uses" value="org.apache.http,org.apache.http.auth,org.apache.http.client.methods,org.apache.http.conn,org.apache.http.conn.routing,org.apache.http.cookie,org.apache.http.params,org.apache.http.protocol"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.apache.http.client.config"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.httpclient"/>
+      <attribute name="bundle-version" type="Version" value="4.4.1"/>
+      <directive name="uses" value="org.apache.http"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.apache.http.client.entity"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.httpclient"/>
+      <attribute name="bundle-version" type="Version" value="4.4.1"/>
+      <directive name="uses" value="org.apache.http,org.apache.http.entity"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.apache.http.client.methods"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.httpclient"/>
+      <attribute name="bundle-version" type="Version" value="4.4.1"/>
+      <directive name="uses" value="org.apache.http,org.apache.http.client.config,org.apache.http.concurrent,org.apache.http.conn,org.apache.http.message,org.apache.http.params"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.apache.http.client.params"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.httpclient"/>
+      <attribute name="bundle-version" type="Version" value="4.4.1"/>
+      <directive name="uses" value="org.apache.http,org.apache.http.auth.params,org.apache.http.client.config,org.apache.http.conn.params,org.apache.http.cookie.params,org.apache.http.params"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.apache.http.client.protocol"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.httpclient"/>
+      <attribute name="bundle-version" type="Version" value="4.4.1"/>
+      <directive name="uses" value="org.apache.http,org.apache.http.auth,org.apache.http.client,org.apache.http.client.config,org.apache.http.client.entity,org.apache.http.config,org.apache.http.conn.routing,org.apache.http.cookie,org.apache.http.protocol"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.apache.http.client.utils"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.httpclient"/>
+      <attribute name="bundle-version" type="Version" value="4.4.1"/>
+      <directive name="uses" value="org.apache.http,org.apache.http.client,org.apache.http.client.methods,org.apache.http.conn.routing,org.apache.http.util"/>
+    </capability>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=javax.crypto)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=javax.crypto.spec)"/>
+    </requirement>
     <requirement namespace="osgi.wiring.package">
       <directive name="filter" value="(osgi.wiring.package=javax.naming)"/>
     </requirement>
@@ -4658,6 +4783,9 @@
       <directive name="filter" value="(osgi.wiring.package=javax.security.auth.x500)"/>
     </requirement>
     <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.apache.commons.codec.binary)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
       <directive name="filter" value="(osgi.wiring.package=org.apache.commons.logging)"/>
     </requirement>
     <requirement namespace="osgi.wiring.package">
@@ -4673,7 +4801,25 @@
       <directive name="filter" value="(osgi.wiring.package=org.apache.http.entity)"/>
     </requirement>
     <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.apache.http.impl)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.apache.http.impl.entity)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.apache.http.impl.io)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.apache.http.io)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.apache.http.message)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
       <directive name="filter" value="(osgi.wiring.package=org.apache.http.params)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.apache.http.pool)"/>
     </requirement>
     <requirement namespace="osgi.wiring.package">
       <directive name="filter" value="(osgi.wiring.package=org.apache.http.protocol)"/>
@@ -4683,6 +4829,9 @@
     </requirement>
     <requirement namespace="osgi.wiring.package">
       <directive name="filter" value="(osgi.wiring.package=org.apache.http.util)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.ietf.jgss)"/>
     </requirement>
     <requirement namespace="osgi.ee">
       <directive name="filter" value="(&amp;(osgi.ee=JavaSE)(version=1.6))"/>
@@ -4695,9 +4844,9 @@
       <attribute name="version" type="Version" value="4.5.1"/>
     </capability>
     <capability namespace="osgi.content">
-      <attribute name="osgi.content" value="ed5edcf3e0aa210af5c4c2265c89d31c84a5bf6f81776506e2c37cc2215df8d4"/>
+      <attribute name="osgi.content" value="b2f91ee3ed7cd9f4a1a4332c52c190578d87d04fe31c58f895fc45e3d6fb6250"/>
       <attribute name="url" value="io.skysail.bundled.httpclient/io.skysail.bundled.httpclient-4.5.1.jar"/>
-      <attribute name="size" type="Long" value="97344"/>
+      <attribute name="size" type="Long" value="675719"/>
       <attribute name="mime" value="application/vnd.osgi.bundle"/>
     </capability>
     <capability namespace="osgi.wiring.bundle">
@@ -4707,6 +4856,62 @@
     <capability namespace="osgi.wiring.host">
       <attribute name="osgi.wiring.host" value="io.skysail.bundled.httpclient"/>
       <attribute name="bundle-version" type="Version" value="4.5.1"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.apache.http.impl.auth"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.httpclient"/>
+      <attribute name="bundle-version" type="Version" value="4.5.1"/>
+      <directive name="uses" value="org.apache.commons.logging,org.apache.http,org.apache.http.auth,org.apache.http.client,org.apache.http.params,org.apache.http.protocol,org.apache.http.util,org.ietf.jgss"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.apache.http.impl.client"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.httpclient"/>
+      <attribute name="bundle-version" type="Version" value="4.5.1"/>
+      <directive name="uses" value="javax.net.ssl,org.apache.commons.logging,org.apache.http,org.apache.http.auth,org.apache.http.client,org.apache.http.client.config,org.apache.http.client.entity,org.apache.http.client.methods,org.apache.http.concurrent,org.apache.http.config,org.apache.http.conn,org.apache.http.conn.routing,org.apache.http.conn.socket,org.apache.http.conn.ssl,org.apache.http.conn.util,org.apache.http.cookie,org.apache.http.impl.auth,org.apache.http.impl.execchain,org.apache.http.message,org.apache.http.params,org.apache.http.pool,org.apache.http.protocol"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.apache.http.impl.conn"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.httpclient"/>
+      <attribute name="bundle-version" type="Version" value="4.5.1"/>
+      <directive name="uses" value="javax.net.ssl,org.apache.commons.logging,org.apache.http,org.apache.http.config,org.apache.http.conn,org.apache.http.conn.routing,org.apache.http.conn.scheme,org.apache.http.conn.socket,org.apache.http.entity,org.apache.http.impl,org.apache.http.impl.io,org.apache.http.io,org.apache.http.message,org.apache.http.params,org.apache.http.pool,org.apache.http.protocol,org.apache.http.util"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.apache.http.impl.conn.tsccm"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.httpclient"/>
+      <attribute name="bundle-version" type="Version" value="4.5.1"/>
+      <directive name="uses" value="org.apache.http.conn,org.apache.http.conn.params,org.apache.http.conn.routing,org.apache.http.conn.scheme,org.apache.http.impl.conn,org.apache.http.params"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.apache.http.impl.cookie"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.httpclient"/>
+      <attribute name="bundle-version" type="Version" value="4.5.1"/>
+      <directive name="uses" value="org.apache.http,org.apache.http.conn.util,org.apache.http.cookie,org.apache.http.message,org.apache.http.params,org.apache.http.protocol,org.apache.http.util"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.apache.http.impl.execchain"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.httpclient"/>
+      <attribute name="bundle-version" type="Version" value="4.5.1"/>
+      <directive name="uses" value="org.apache.http,org.apache.http.client,org.apache.http.client.methods,org.apache.http.client.protocol,org.apache.http.conn,org.apache.http.conn.routing,org.apache.http.protocol"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.apache.http.cookie"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.httpclient"/>
+      <attribute name="bundle-version" type="Version" value="4.5.1"/>
+      <directive name="uses" value="org.apache.http,org.apache.http.config,org.apache.http.params,org.apache.http.protocol"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.apache.http.cookie.params"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.httpclient"/>
+      <attribute name="bundle-version" type="Version" value="4.5.1"/>
+      <directive name="uses" value="org.apache.http.params"/>
     </capability>
     <capability namespace="osgi.wiring.package">
       <attribute name="osgi.wiring.package" value="org.apache.http.conn"/>
@@ -4756,6 +4961,75 @@
       <attribute name="bundle-symbolic-name" value="io.skysail.bundled.httpclient"/>
       <attribute name="bundle-version" type="Version" value="4.5.1"/>
     </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.apache.http.auth"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.httpclient"/>
+      <attribute name="bundle-version" type="Version" value="4.5.1"/>
+      <directive name="uses" value="org.apache.http,org.apache.http.config,org.apache.http.params,org.apache.http.protocol,org.ietf.jgss"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.apache.http.auth.params"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.httpclient"/>
+      <attribute name="bundle-version" type="Version" value="4.5.1"/>
+      <directive name="uses" value="org.apache.http.params"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.apache.http.client"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.httpclient"/>
+      <attribute name="bundle-version" type="Version" value="4.5.1"/>
+      <directive name="uses" value="org.apache.http,org.apache.http.auth,org.apache.http.client.methods,org.apache.http.conn,org.apache.http.conn.routing,org.apache.http.cookie,org.apache.http.params,org.apache.http.protocol"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.apache.http.client.config"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.httpclient"/>
+      <attribute name="bundle-version" type="Version" value="4.5.1"/>
+      <directive name="uses" value="org.apache.http"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.apache.http.client.entity"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.httpclient"/>
+      <attribute name="bundle-version" type="Version" value="4.5.1"/>
+      <directive name="uses" value="org.apache.http,org.apache.http.entity"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.apache.http.client.methods"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.httpclient"/>
+      <attribute name="bundle-version" type="Version" value="4.5.1"/>
+      <directive name="uses" value="org.apache.http,org.apache.http.client.config,org.apache.http.concurrent,org.apache.http.conn,org.apache.http.message,org.apache.http.params"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.apache.http.client.params"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.httpclient"/>
+      <attribute name="bundle-version" type="Version" value="4.5.1"/>
+      <directive name="uses" value="org.apache.http,org.apache.http.auth.params,org.apache.http.client.config,org.apache.http.conn.params,org.apache.http.cookie.params,org.apache.http.params"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.apache.http.client.protocol"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.httpclient"/>
+      <attribute name="bundle-version" type="Version" value="4.5.1"/>
+      <directive name="uses" value="org.apache.http,org.apache.http.auth,org.apache.http.client,org.apache.http.client.config,org.apache.http.client.entity,org.apache.http.config,org.apache.http.conn.routing,org.apache.http.cookie,org.apache.http.protocol"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.apache.http.client.utils"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.httpclient"/>
+      <attribute name="bundle-version" type="Version" value="4.5.1"/>
+      <directive name="uses" value="org.apache.http,org.apache.http.client,org.apache.http.client.methods,org.apache.http.conn.routing,org.apache.http.util"/>
+    </capability>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=javax.crypto)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=javax.crypto.spec)"/>
+    </requirement>
     <requirement namespace="osgi.wiring.package">
       <directive name="filter" value="(osgi.wiring.package=javax.naming)"/>
     </requirement>
@@ -4775,6 +5049,9 @@
       <directive name="filter" value="(osgi.wiring.package=javax.security.auth.x500)"/>
     </requirement>
     <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.apache.commons.codec.binary)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
       <directive name="filter" value="(osgi.wiring.package=org.apache.commons.logging)"/>
     </requirement>
     <requirement namespace="osgi.wiring.package">
@@ -4790,13 +5067,134 @@
       <directive name="filter" value="(osgi.wiring.package=org.apache.http.entity)"/>
     </requirement>
     <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.apache.http.impl)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.apache.http.impl.entity)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.apache.http.impl.io)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.apache.http.io)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.apache.http.message)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
       <directive name="filter" value="(osgi.wiring.package=org.apache.http.params)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.apache.http.pool)"/>
     </requirement>
     <requirement namespace="osgi.wiring.package">
       <directive name="filter" value="(osgi.wiring.package=org.apache.http.protocol)"/>
     </requirement>
     <requirement namespace="osgi.wiring.package">
       <directive name="filter" value="(osgi.wiring.package=org.apache.http.ssl)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.apache.http.util)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.ietf.jgss)"/>
+    </requirement>
+    <requirement namespace="osgi.ee">
+      <directive name="filter" value="(&amp;(osgi.ee=JavaSE)(version=1.6))"/>
+    </requirement>
+  </resource>
+  <resource>
+    <capability namespace="osgi.identity">
+      <attribute name="osgi.identity" value="io.skysail.bundled.httpmime"/>
+      <attribute name="type" value="osgi.bundle"/>
+      <attribute name="version" type="Version" value="4.4.1"/>
+    </capability>
+    <capability namespace="osgi.content">
+      <attribute name="osgi.content" value="330b3c9ca262be750059b328ee3243ff81994535661900108a7294b7e7be181d"/>
+      <attribute name="url" value="io.skysail.bundled.httpmime/io.skysail.bundled.httpmime-4.4.1.jar"/>
+      <attribute name="size" type="Long" value="34078"/>
+      <attribute name="mime" value="application/vnd.osgi.bundle"/>
+    </capability>
+    <capability namespace="osgi.wiring.bundle">
+      <attribute name="osgi.wiring.bundle" value="io.skysail.bundled.httpmime"/>
+      <attribute name="bundle-version" type="Version" value="4.4.1"/>
+    </capability>
+    <capability namespace="osgi.wiring.host">
+      <attribute name="osgi.wiring.host" value="io.skysail.bundled.httpmime"/>
+      <attribute name="bundle-version" type="Version" value="4.4.1"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.apache.http.entity.mime"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.httpmime"/>
+      <attribute name="bundle-version" type="Version" value="4.4.1"/>
+      <directive name="uses" value="org.apache.http,org.apache.http.entity,org.apache.http.entity.mime.content"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.apache.http.entity.mime.content"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.httpmime"/>
+      <attribute name="bundle-version" type="Version" value="4.4.1"/>
+      <directive name="uses" value="org.apache.http.entity"/>
+    </capability>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.apache.http)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.apache.http.entity)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.apache.http.message)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.apache.http.util)"/>
+    </requirement>
+    <requirement namespace="osgi.ee">
+      <directive name="filter" value="(&amp;(osgi.ee=JavaSE)(version=1.6))"/>
+    </requirement>
+  </resource>
+  <resource>
+    <capability namespace="osgi.identity">
+      <attribute name="osgi.identity" value="io.skysail.bundled.httpmime"/>
+      <attribute name="type" value="osgi.bundle"/>
+      <attribute name="version" type="Version" value="4.5.0"/>
+    </capability>
+    <capability namespace="osgi.content">
+      <attribute name="osgi.content" value="32cfa2712e75dedc873c3c51fcd5d516c762946c14e31f04512d676ac0b3b093"/>
+      <attribute name="url" value="io.skysail.bundled.httpmime/io.skysail.bundled.httpmime-4.5.0.jar"/>
+      <attribute name="size" type="Long" value="34138"/>
+      <attribute name="mime" value="application/vnd.osgi.bundle"/>
+    </capability>
+    <capability namespace="osgi.wiring.bundle">
+      <attribute name="osgi.wiring.bundle" value="io.skysail.bundled.httpmime"/>
+      <attribute name="bundle-version" type="Version" value="4.5.0"/>
+    </capability>
+    <capability namespace="osgi.wiring.host">
+      <attribute name="osgi.wiring.host" value="io.skysail.bundled.httpmime"/>
+      <attribute name="bundle-version" type="Version" value="4.5.0"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.apache.http.entity.mime"/>
+      <attribute name="version" type="Version" value="1.1.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.httpmime"/>
+      <attribute name="bundle-version" type="Version" value="4.5.0"/>
+      <directive name="uses" value="org.apache.http,org.apache.http.entity,org.apache.http.entity.mime.content"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.apache.http.entity.mime.content"/>
+      <attribute name="version" type="Version" value="1.1.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.httpmime"/>
+      <attribute name="bundle-version" type="Version" value="4.5.0"/>
+      <directive name="uses" value="org.apache.http.entity"/>
+    </capability>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.apache.http)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.apache.http.entity)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.apache.http.message)"/>
     </requirement>
     <requirement namespace="osgi.wiring.package">
       <directive name="filter" value="(osgi.wiring.package=org.apache.http.util)"/>
@@ -9899,6 +10297,63 @@
   </resource>
   <resource>
     <capability namespace="osgi.identity">
+      <attribute name="osgi.identity" value="org.apache.commons.codec"/>
+      <attribute name="type" value="osgi.bundle"/>
+      <attribute name="version" type="Version" value="1.9.0"/>
+    </capability>
+    <capability namespace="osgi.content">
+      <attribute name="osgi.content" value="ad19d2601c3abf0b946b5c3a4113e226a8c1e3305e395b90013b78dd94a723ce"/>
+      <attribute name="url" value="org.apache.commons.codec/org.apache.commons.codec-1.9.0.jar"/>
+      <attribute name="size" type="Long" value="263965"/>
+      <attribute name="mime" value="application/vnd.osgi.bundle"/>
+    </capability>
+    <capability namespace="osgi.wiring.bundle">
+      <attribute name="osgi.wiring.bundle" value="org.apache.commons.codec"/>
+      <attribute name="bundle-version" type="Version" value="1.9.0"/>
+    </capability>
+    <capability namespace="osgi.wiring.host">
+      <attribute name="osgi.wiring.host" value="org.apache.commons.codec"/>
+      <attribute name="bundle-version" type="Version" value="1.9.0"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.apache.commons.codec"/>
+      <attribute name="version" type="Version" value="1.9.0"/>
+      <attribute name="bundle-symbolic-name" value="org.apache.commons.codec"/>
+      <attribute name="bundle-version" type="Version" value="1.9.0"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.apache.commons.codec.binary"/>
+      <attribute name="version" type="Version" value="1.9.0"/>
+      <attribute name="bundle-symbolic-name" value="org.apache.commons.codec"/>
+      <attribute name="bundle-version" type="Version" value="1.9.0"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.apache.commons.codec.digest"/>
+      <attribute name="version" type="Version" value="1.9.0"/>
+      <attribute name="bundle-symbolic-name" value="org.apache.commons.codec"/>
+      <attribute name="bundle-version" type="Version" value="1.9.0"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.apache.commons.codec.language"/>
+      <attribute name="version" type="Version" value="1.9.0"/>
+      <attribute name="bundle-symbolic-name" value="org.apache.commons.codec"/>
+      <attribute name="bundle-version" type="Version" value="1.9.0"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.apache.commons.codec.language.bm"/>
+      <attribute name="version" type="Version" value="1.9.0"/>
+      <attribute name="bundle-symbolic-name" value="org.apache.commons.codec"/>
+      <attribute name="bundle-version" type="Version" value="1.9.0"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.apache.commons.codec.net"/>
+      <attribute name="version" type="Version" value="1.9.0"/>
+      <attribute name="bundle-symbolic-name" value="org.apache.commons.codec"/>
+      <attribute name="bundle-version" type="Version" value="1.9.0"/>
+    </capability>
+  </resource>
+  <resource>
+    <capability namespace="osgi.identity">
       <attribute name="osgi.identity" value="org.apache.commons.configuration"/>
       <attribute name="type" value="osgi.bundle"/>
       <attribute name="version" type="Version" value="1.10.0"/>
@@ -10601,6 +11056,247 @@
     </requirement>
     <requirement namespace="osgi.wiring.package">
       <directive name="filter" value="(&amp;(osgi.wiring.package=org.osgi.util.tracker)(version&gt;=1.5.0)(!(version&gt;=2.0.0)))"/>
+    </requirement>
+  </resource>
+  <resource>
+    <capability namespace="osgi.identity">
+      <attribute name="osgi.identity" value="org.apache.httpcomponents.httpcore"/>
+      <attribute name="type" value="osgi.bundle"/>
+      <attribute name="version" type="Version" value="4.4.1"/>
+    </capability>
+    <capability namespace="osgi.content">
+      <attribute name="osgi.content" value="14603aa615b4b3be0cedf67fe01890b5a35e5e25b967b7a0222d1cf1584e345b"/>
+      <attribute name="url" value="org.apache.httpcomponents.httpcore/org.apache.httpcomponents.httpcore-4.4.1.jar"/>
+      <attribute name="size" type="Long" value="683866"/>
+      <attribute name="mime" value="application/vnd.osgi.bundle"/>
+    </capability>
+    <capability namespace="osgi.wiring.bundle">
+      <attribute name="osgi.wiring.bundle" value="org.apache.httpcomponents.httpcore"/>
+      <attribute name="bundle-version" type="Version" value="4.4.1"/>
+    </capability>
+    <capability namespace="osgi.wiring.host">
+      <attribute name="osgi.wiring.host" value="org.apache.httpcomponents.httpcore"/>
+      <attribute name="bundle-version" type="Version" value="4.4.1"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.apache.http"/>
+      <attribute name="version" type="Version" value="4.4.1"/>
+      <attribute name="bundle-symbolic-name" value="org.apache.httpcomponents.httpcore"/>
+      <attribute name="bundle-version" type="Version" value="4.4.1"/>
+      <directive name="uses" value="org.apache.http.params,org.apache.http.protocol,org.apache.http.util"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.apache.http.annotation"/>
+      <attribute name="version" type="Version" value="4.4.1"/>
+      <attribute name="bundle-symbolic-name" value="org.apache.httpcomponents.httpcore"/>
+      <attribute name="bundle-version" type="Version" value="4.4.1"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.apache.http.concurrent"/>
+      <attribute name="version" type="Version" value="4.4.1"/>
+      <attribute name="bundle-symbolic-name" value="org.apache.httpcomponents.httpcore"/>
+      <attribute name="bundle-version" type="Version" value="4.4.1"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.apache.http.config"/>
+      <attribute name="version" type="Version" value="4.4.1"/>
+      <attribute name="bundle-symbolic-name" value="org.apache.httpcomponents.httpcore"/>
+      <attribute name="bundle-version" type="Version" value="4.4.1"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.apache.http.entity"/>
+      <attribute name="version" type="Version" value="4.4.1"/>
+      <attribute name="bundle-symbolic-name" value="org.apache.httpcomponents.httpcore"/>
+      <attribute name="bundle-version" type="Version" value="4.4.1"/>
+      <directive name="uses" value="org.apache.http"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.apache.http.impl"/>
+      <attribute name="version" type="Version" value="4.4.1"/>
+      <attribute name="bundle-symbolic-name" value="org.apache.httpcomponents.httpcore"/>
+      <attribute name="bundle-version" type="Version" value="4.4.1"/>
+      <directive name="uses" value="org.apache.http,org.apache.http.config,org.apache.http.entity,org.apache.http.impl.entity,org.apache.http.io,org.apache.http.params,org.apache.http.protocol"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.apache.http.impl.bootstrap"/>
+      <attribute name="version" type="Version" value="4.4.1"/>
+      <attribute name="bundle-symbolic-name" value="org.apache.httpcomponents.httpcore"/>
+      <attribute name="bundle-version" type="Version" value="4.4.1"/>
+      <directive name="uses" value="javax.net,javax.net.ssl,org.apache.http,org.apache.http.config,org.apache.http.impl,org.apache.http.protocol"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.apache.http.impl.entity"/>
+      <attribute name="version" type="Version" value="4.4.1"/>
+      <attribute name="bundle-symbolic-name" value="org.apache.httpcomponents.httpcore"/>
+      <attribute name="bundle-version" type="Version" value="4.4.1"/>
+      <directive name="uses" value="org.apache.http,org.apache.http.entity,org.apache.http.io"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.apache.http.impl.io"/>
+      <attribute name="version" type="Version" value="4.4.1"/>
+      <attribute name="bundle-symbolic-name" value="org.apache.httpcomponents.httpcore"/>
+      <attribute name="bundle-version" type="Version" value="4.4.1"/>
+      <directive name="uses" value="org.apache.http,org.apache.http.config,org.apache.http.io,org.apache.http.message,org.apache.http.params,org.apache.http.util"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.apache.http.impl.nio"/>
+      <attribute name="version" type="Version" value="4.4.1"/>
+      <attribute name="bundle-symbolic-name" value="org.apache.httpcomponents.httpcore"/>
+      <attribute name="bundle-version" type="Version" value="4.4.1"/>
+      <directive name="uses" value="javax.net.ssl,org.apache.http,org.apache.http.config,org.apache.http.entity,org.apache.http.impl,org.apache.http.impl.io,org.apache.http.impl.nio.reactor,org.apache.http.io,org.apache.http.nio,org.apache.http.nio.reactor,org.apache.http.nio.reactor.ssl,org.apache.http.nio.util,org.apache.http.params,org.apache.http.protocol"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.apache.http.impl.nio.bootstrap"/>
+      <attribute name="version" type="Version" value="4.4.1"/>
+      <attribute name="bundle-symbolic-name" value="org.apache.httpcomponents.httpcore"/>
+      <attribute name="bundle-version" type="Version" value="4.4.1"/>
+      <directive name="uses" value="javax.net.ssl,org.apache.http,org.apache.http.config,org.apache.http.impl.nio,org.apache.http.impl.nio.reactor,org.apache.http.nio,org.apache.http.nio.protocol,org.apache.http.nio.reactor,org.apache.http.nio.reactor.ssl,org.apache.http.protocol"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.apache.http.impl.nio.codecs"/>
+      <attribute name="version" type="Version" value="4.4.1"/>
+      <attribute name="bundle-symbolic-name" value="org.apache.httpcomponents.httpcore"/>
+      <attribute name="bundle-version" type="Version" value="4.4.1"/>
+      <directive name="uses" value="org.apache.http,org.apache.http.config,org.apache.http.impl.io,org.apache.http.message,org.apache.http.nio,org.apache.http.nio.reactor,org.apache.http.params,org.apache.http.util"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.apache.http.impl.nio.pool"/>
+      <attribute name="version" type="Version" value="4.4.1"/>
+      <attribute name="bundle-symbolic-name" value="org.apache.httpcomponents.httpcore"/>
+      <attribute name="bundle-version" type="Version" value="4.4.1"/>
+      <directive name="uses" value="javax.net.ssl,org.apache.http,org.apache.http.concurrent,org.apache.http.config,org.apache.http.nio,org.apache.http.nio.pool,org.apache.http.nio.reactor,org.apache.http.nio.reactor.ssl,org.apache.http.nio.util,org.apache.http.params,org.apache.http.pool"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.apache.http.impl.nio.reactor"/>
+      <attribute name="version" type="Version" value="4.4.1"/>
+      <attribute name="bundle-symbolic-name" value="org.apache.httpcomponents.httpcore"/>
+      <attribute name="bundle-version" type="Version" value="4.4.1"/>
+      <directive name="uses" value="javax.net.ssl,org.apache.http.config,org.apache.http.nio.reactor,org.apache.http.nio.reactor.ssl,org.apache.http.nio.util,org.apache.http.params,org.apache.http.util"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.apache.http.impl.nio.ssl"/>
+      <attribute name="version" type="Version" value="4.4.1"/>
+      <attribute name="bundle-symbolic-name" value="org.apache.httpcomponents.httpcore"/>
+      <attribute name="bundle-version" type="Version" value="4.4.1"/>
+      <directive name="uses" value="javax.net.ssl,org.apache.http.impl.nio,org.apache.http.impl.nio.reactor,org.apache.http.nio,org.apache.http.nio.reactor,org.apache.http.params"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.apache.http.impl.pool"/>
+      <attribute name="version" type="Version" value="4.4.1"/>
+      <attribute name="bundle-symbolic-name" value="org.apache.httpcomponents.httpcore"/>
+      <attribute name="bundle-version" type="Version" value="4.4.1"/>
+      <directive name="uses" value="javax.net,javax.net.ssl,org.apache.http,org.apache.http.config,org.apache.http.params,org.apache.http.pool"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.apache.http.io"/>
+      <attribute name="version" type="Version" value="4.4.1"/>
+      <attribute name="bundle-symbolic-name" value="org.apache.httpcomponents.httpcore"/>
+      <attribute name="bundle-version" type="Version" value="4.4.1"/>
+      <directive name="uses" value="org.apache.http,org.apache.http.config,org.apache.http.util"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.apache.http.message"/>
+      <attribute name="version" type="Version" value="4.4.1"/>
+      <attribute name="bundle-symbolic-name" value="org.apache.httpcomponents.httpcore"/>
+      <attribute name="bundle-version" type="Version" value="4.4.1"/>
+      <directive name="uses" value="org.apache.http,org.apache.http.params,org.apache.http.util"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.apache.http.nio"/>
+      <attribute name="version" type="Version" value="4.4.1"/>
+      <attribute name="bundle-symbolic-name" value="org.apache.httpcomponents.httpcore"/>
+      <attribute name="bundle-version" type="Version" value="4.4.1"/>
+      <directive name="uses" value="org.apache.http,org.apache.http.config,org.apache.http.nio.reactor,org.apache.http.protocol"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.apache.http.nio.entity"/>
+      <attribute name="version" type="Version" value="4.4.1"/>
+      <attribute name="bundle-symbolic-name" value="org.apache.httpcomponents.httpcore"/>
+      <attribute name="bundle-version" type="Version" value="4.4.1"/>
+      <directive name="uses" value="org.apache.http,org.apache.http.entity,org.apache.http.nio,org.apache.http.nio.util"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.apache.http.nio.params"/>
+      <attribute name="version" type="Version" value="4.4.1"/>
+      <attribute name="bundle-symbolic-name" value="org.apache.httpcomponents.httpcore"/>
+      <attribute name="bundle-version" type="Version" value="4.4.1"/>
+      <directive name="uses" value="org.apache.http.params"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.apache.http.nio.pool"/>
+      <attribute name="version" type="Version" value="4.4.1"/>
+      <attribute name="bundle-symbolic-name" value="org.apache.httpcomponents.httpcore"/>
+      <attribute name="bundle-version" type="Version" value="4.4.1"/>
+      <directive name="uses" value="org.apache.http.concurrent,org.apache.http.nio.reactor,org.apache.http.pool"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.apache.http.nio.protocol"/>
+      <attribute name="version" type="Version" value="4.4.1"/>
+      <attribute name="bundle-symbolic-name" value="org.apache.httpcomponents.httpcore"/>
+      <attribute name="bundle-version" type="Version" value="4.4.1"/>
+      <directive name="uses" value="org.apache.http,org.apache.http.concurrent,org.apache.http.entity,org.apache.http.nio,org.apache.http.nio.entity,org.apache.http.nio.util,org.apache.http.params,org.apache.http.pool,org.apache.http.protocol"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.apache.http.nio.reactor"/>
+      <attribute name="version" type="Version" value="4.4.1"/>
+      <attribute name="bundle-symbolic-name" value="org.apache.httpcomponents.httpcore"/>
+      <attribute name="bundle-version" type="Version" value="4.4.1"/>
+      <directive name="uses" value="org.apache.http.util"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.apache.http.nio.reactor.ssl"/>
+      <attribute name="version" type="Version" value="4.4.1"/>
+      <attribute name="bundle-symbolic-name" value="org.apache.httpcomponents.httpcore"/>
+      <attribute name="bundle-version" type="Version" value="4.4.1"/>
+      <directive name="uses" value="javax.net.ssl,org.apache.http,org.apache.http.nio.reactor"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.apache.http.nio.util"/>
+      <attribute name="version" type="Version" value="4.4.1"/>
+      <attribute name="bundle-symbolic-name" value="org.apache.httpcomponents.httpcore"/>
+      <attribute name="bundle-version" type="Version" value="4.4.1"/>
+      <directive name="uses" value="org.apache.http.io,org.apache.http.nio"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.apache.http.params"/>
+      <attribute name="version" type="Version" value="4.4.1"/>
+      <attribute name="bundle-symbolic-name" value="org.apache.httpcomponents.httpcore"/>
+      <attribute name="bundle-version" type="Version" value="4.4.1"/>
+      <directive name="uses" value="org.apache.http,org.apache.http.config"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.apache.http.pool"/>
+      <attribute name="version" type="Version" value="4.4.1"/>
+      <attribute name="bundle-symbolic-name" value="org.apache.httpcomponents.httpcore"/>
+      <attribute name="bundle-version" type="Version" value="4.4.1"/>
+      <directive name="uses" value="org.apache.http.concurrent"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.apache.http.protocol"/>
+      <attribute name="version" type="Version" value="4.4.1"/>
+      <attribute name="bundle-symbolic-name" value="org.apache.httpcomponents.httpcore"/>
+      <attribute name="bundle-version" type="Version" value="4.4.1"/>
+      <directive name="uses" value="org.apache.http,org.apache.http.params"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.apache.http.ssl"/>
+      <attribute name="version" type="Version" value="4.4.1"/>
+      <attribute name="bundle-symbolic-name" value="org.apache.httpcomponents.httpcore"/>
+      <attribute name="bundle-version" type="Version" value="4.4.1"/>
+      <directive name="uses" value="javax.net.ssl"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.apache.http.util"/>
+      <attribute name="version" type="Version" value="4.4.1"/>
+      <attribute name="bundle-symbolic-name" value="org.apache.httpcomponents.httpcore"/>
+      <attribute name="bundle-version" type="Version" value="4.4.1"/>
+      <directive name="uses" value="org.apache.http"/>
+    </capability>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=javax.net)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=javax.net.ssl)"/>
     </requirement>
   </resource>
   <resource>

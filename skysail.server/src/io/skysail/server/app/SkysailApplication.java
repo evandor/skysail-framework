@@ -46,7 +46,6 @@ import com.google.common.base.Predicate;
 
 import de.twenty11.skysail.server.app.*;
 import de.twenty11.skysail.server.core.restlet.*;
-import de.twenty11.skysail.server.help.HelpTour;
 import de.twenty11.skysail.server.security.*;
 import de.twenty11.skysail.server.services.*;
 
@@ -554,10 +553,6 @@ public abstract class SkysailApplication extends RamlApplication implements Appl
 
     public List<String> getSecuredByAllRoles() {
         return Collections.unmodifiableList(securedByAllRoles);
-    }
-
-    public HelpTour getHelpTour() {
-        return null;
     }
 
     public AtomicReference<EncryptorService> getEncryptorService() {

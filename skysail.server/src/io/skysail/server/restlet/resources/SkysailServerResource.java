@@ -6,8 +6,6 @@ import io.skysail.api.text.Translation;
 import io.skysail.server.app.SkysailApplication;
 import io.skysail.server.forms.FormField;
 import io.skysail.server.menus.MenuItem;
-import io.skysail.server.restlet.RequestHandler;
-import io.skysail.server.restlet.filter.AbstractResourceFilter;
 import io.skysail.server.services.PerformanceTimer;
 import io.skysail.server.utils.*;
 
@@ -40,21 +38,11 @@ import de.twenty11.skysail.server.core.restlet.*;
  * The entity can be something concrete (e.g. a contact) or a list of something
  * (e.g. a list of contacts).
  * </p>
- *
- * <p>
- * Those methods are called from the framework, see {@link RequestHandler} and
- * the various {@link AbstractResourceFilter} implementations. The
- * RequestHandler provides a chain of filters (depending on the current request)
- * which will make sure that aspects like error management, logging, security
- * issues and the like are always dealt with in the same way.
- * </p>
  */
 @Slf4j
 @ToString(exclude = { "links" })
 public abstract class SkysailServerResource<T> extends ServerResource {
 
-    private static final String DATE_PATTERN = "yyyy-MM-dd";
-    public static final String ATTRIBUTES_INTERNAL_REQUEST_ID = "de.twenty11.skysail.server.restlet.SkysailServerResource.requestId";
     public static final String SKYSAIL_SERVER_RESTLET_FORM = "de.twenty11.skysail.server.core.restlet.form";
     public static final String SKYSAIL_SERVER_RESTLET_ENTITY = "de.twenty11.skysail.server.core.restlet.entity";
     public static final String SKYSAIL_SERVER_RESTLET_VARIANT = "de.twenty11.skysail.server.core.restlet.variant";
@@ -73,22 +61,15 @@ public abstract class SkysailServerResource<T> extends ServerResource {
 
     private Map<ResourceContextId, String> stringContextMap = new HashMap<>();
 
-    private Map<ResourceContextId, Map<String, String>> mapContextMap = new HashMap<>();
-
     @Getter
     private ResourceContext resourceContext;
 
-    @Getter
-    private Set<String> restrictedToMediaTypes = new HashSet<>();
-
     public SkysailServerResource() {
         DateTimeConverter dateConverter = new DateConverter(null);
-
         dateConverter.setPattern("yyyy-MM-dd");
         dateConverter.setUseLocaleFormat(true);
         ConvertUtils.deregister(Date.class);
         ConvertUtils.register(dateConverter, Date.class);
-//        beanUtilsBean.getConvertUtils().register(dateConverter, Date.class);
     }
 
     /**
@@ -129,11 +110,8 @@ public abstract class SkysailServerResource<T> extends ServerResource {
         return entityType.getName();
     }
 
-    /**
-     * todo
-     */
     @Options("json")
-    public final SkysailResponse<ResourceContextResource> doOptions(Representation entity, Variant variant) {
+    public final SkysailResponse<ResourceContextResource> doOptions(Representation entity, Variant variant) { // NO_UCD (unused code)
         Set<PerformanceTimer> perfTimer = getApplication().startPerformanceMonitoring(
                 this.getClass().getSimpleName() + ":doOptions");
         log.info("Request entry point: {}  @Options('json') with variant {}", this.getClass().getSimpleName(),
@@ -143,7 +121,7 @@ public abstract class SkysailServerResource<T> extends ServerResource {
         return new SkysailResponse<ResourceContextResource>(context);
     }
 
-    /*
+    /**
      * delegates to restlets getAttribute, but will decode the attribute as
      * well.
      */
@@ -156,12 +134,9 @@ public abstract class SkysailServerResource<T> extends ServerResource {
     }
 
     public Map<String, Translation> getMessages() {
-        Application application = getApplication();
         Map<String, Translation> msgs = new TreeMap<>();
-//        msgs.put("content.header",
-//                new Trans"default msg from de.twenty11.skysail.server.core.restlet.SkysailServerResource.getMessages()");
         String key = getClass().getName() + ".message";
-        Translation translated = ((SkysailApplication) application).translate(key, key, this);
+        Translation translated = ((SkysailApplication) getApplication()).translate(key, key, this);
         msgs.put("content.header", translated);
         return msgs;
     }
@@ -218,7 +193,7 @@ public abstract class SkysailServerResource<T> extends ServerResource {
         return (Class<?>) firstActualTypeArgument;
     }
 
-    private ParameterizedType getParameterizedType(Class cls) {
+    private ParameterizedType getParameterizedType(Class<?> cls) {
         Type genericSuperclass = cls.getGenericSuperclass();
         if (genericSuperclass instanceof ParameterizedType) {
             return (ParameterizedType) genericSuperclass;
@@ -265,6 +240,7 @@ public abstract class SkysailServerResource<T> extends ServerResource {
         return links;
     }
 
+    @SuppressWarnings("unchecked")
     public List<Link> getLinks(List<Class<? extends SkysailServerResource<?>>> links) {
         return getLinks(links.toArray(new Class[links.size()]));
     }
@@ -289,15 +265,6 @@ public abstract class SkysailServerResource<T> extends ServerResource {
      *
      * @see SkysailServerResource#getAuthorizedLinks()
      *
-     *      for example
-     *
-     *      <pre>
-     * <code>
-     * return getLinkheader(PostMyEntityResource.class);
-     * </code>
-     * </pre>
-     *
-     * @return result
      */
     public List<Link> getLinks() {
         if (links != null) {
@@ -309,8 +276,6 @@ public abstract class SkysailServerResource<T> extends ServerResource {
     /**
      * Links might be removed from the framework if the current user isn't
      * authorized to call them.
-     *
-     * @return result
      */
     public List<Link> getAuthorizedLinks() {
         List<Link> allLinks = getLinks();
@@ -354,10 +319,6 @@ public abstract class SkysailServerResource<T> extends ServerResource {
         stringContextMap.put(id, value);
     }
 
-    public void addToContext(ResourceContextId id, Map<String, String> map) {
-        mapContextMap.put(id, map);
-    }
-
     public void removeFromContext(ResourceContextId id) {
         stringContextMap.remove(id);
     }
@@ -366,17 +327,11 @@ public abstract class SkysailServerResource<T> extends ServerResource {
         return stringContextMap.get(id);
     }
 
-    public Map<String, String> getMapFromContext(ResourceContextId id) {
-        return mapContextMap.get(id);
-    }
-
     protected T populate(T bean, Form form) {
         Map<String, String> valuesMap = form.getValuesMap();
         try {
 
             SkysailBeanUtils beanUtilsBean = new SkysailBeanUtils(ResourceUtils.determineLocale(this));
-            //DateTimeConverter dateConverter = new DateConverter(null);
-            //beanUtilsBean.getConvertUtils().register(dateConverter, Date.class);
             beanUtilsBean.populate(bean, valuesMap);
             return bean;
         } catch (Exception e) {
@@ -388,11 +343,8 @@ public abstract class SkysailServerResource<T> extends ServerResource {
     protected void copyProperties(T dest, T orig) {
         try {
             SkysailBeanUtils beanUtilsBean = new SkysailBeanUtils(ResourceUtils.determineLocale(this));
-            //DateTimeConverter dateConverter = new DateConverter(null);
-           // beanUtilsBean.getConvertUtils().register(dateConverter, Date.class);
             beanUtilsBean.copyProperties(dest, orig, this);
         } catch (Exception e) {
-            //log.error("Error copying from bean {} to bean {}", orig, dest);
             throw new RuntimeException("Error copying beans", e);
         }
     }
@@ -449,6 +401,7 @@ public abstract class SkysailServerResource<T> extends ServerResource {
         result.add("json");
         result.add("x-yaml");
         result.add("csv");
+        result.add("mailto");
         return result;
     }
 

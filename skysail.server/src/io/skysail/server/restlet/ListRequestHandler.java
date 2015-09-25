@@ -47,7 +47,6 @@ public class ListRequestHandler<T extends Identifiable> {
                 .calling(new ExtractStandardQueryParametersResourceFilter<ListServerResource<?>, T>())
                 .calling(new DataExtractingFilter<ListServerResource<?>, T>())
                 .calling(new AddLinkheadersFilter<ListServerResource<?>, T>())
-                .calling(new CheckFavoritesFilter<ListServerResource<?>, T>())
                 .calling(new SetExecutionTimeInResponseFilter<ListServerResource<?>, T>())
                 .calling(new RedirectFilter<ListServerResource<?>, T>());
     }

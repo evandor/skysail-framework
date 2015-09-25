@@ -4,8 +4,10 @@ import io.skysail.server.app.SkysailApplication;
 
 import java.util.List;
 
+import aQute.bnd.annotation.ProviderType;
 import de.twenty11.skysail.server.SkysailComponent;
 
+@ProviderType
 public interface ApplicationListProvider {
 
     List<SkysailApplication> getApplications();

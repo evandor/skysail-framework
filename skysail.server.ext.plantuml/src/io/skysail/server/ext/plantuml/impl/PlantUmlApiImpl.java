@@ -17,12 +17,6 @@ public class PlantUmlApiImpl implements PlantUmlApi {
         throwExceptionIfError(desc);
     }
 
-    private String wrapInputWithMarker(String plantUmlSource) {
-        String source = "@startuml\n";
-        source += plantUmlSource + "\n";
-        source += "@enduml\n";
-        return source;
-    }
 
     @Override
     public String getSvg(String plantUmlSource) throws IOException {
@@ -32,6 +26,13 @@ public class PlantUmlApiImpl implements PlantUmlApi {
         os.close();
         throwExceptionIfError(desc);
         return new String(os.toByteArray(), Charset.forName("UTF-8"));
+    }
+
+    private String wrapInputWithMarker(String plantUmlSource) {
+        String source = "@startuml\n";
+        source += plantUmlSource + "\n";
+        source += "@enduml\n";
+        return source;
     }
 
     private void throwExceptionIfError(String desc) throws IOException {

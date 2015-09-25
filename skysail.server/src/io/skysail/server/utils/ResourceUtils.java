@@ -75,7 +75,7 @@ public class ResourceUtils {
             Set<String> mediaTypes, VariantInfo variantInfo) {
         if (supportedMediaTypes.contains(variantInfo.getMediaType())) {
             String subType = variantInfo.getMediaType().getSubType();
-            String mediaTypeName = subType.equals("*") ? variantInfo.getMediaType().getName() : subType;
+            String mediaTypeName = subType.equals("*") ? variantInfo.getMediaType().getMainType() : subType;
             if (resource.getRestrictedToMediaTypes().isEmpty()) {
                 if (resource.getDefaultMediaTypes().contains(mediaTypeName)) {
                     mediaTypes.add(mediaTypeName);

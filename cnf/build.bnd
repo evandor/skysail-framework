@@ -76,7 +76,6 @@ skysail.server.db.version              '[3.0.1,3.0.2)'
 skysail.server.http.version            '[4.0.2,4.0.3)'
 skysail.server.osgi.version            '[0.0.21,0.0.22)'
 skysail.server.performance.etm.version '[0.1.1,0.1.2)'
-#wip
 skysail.server.polymer.version         '[0.1.1,0.1.2)'
 skysail.server.queryfilter.version     '[0.4.1,0.4.2)'
 #wip:

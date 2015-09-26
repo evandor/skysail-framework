@@ -1,18 +1,10 @@
 navbar(user, messages, converter, model) ::= <<
 <div class="container" style="margin-left:inherit; padding-left:19px;padding-right:15px;width:100%;">
-  <div class="navbar-header">
-    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
-      <span class="sr-only">Toggle navigation</span>
-      <span class="icon-bar"></span>
-      <span class="icon-bar"></span>
-      <span class="icon-bar"></span>
-    </button>
-    <a class="navbar-brand" href="/">$messages.("productName").translated$</a>
-  </div>
   <div class="navbar-collapse collapse">
     <ul class="nav navbar-nav">
-      <li>logo</li>
-
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="/webapp/skysail-logo-white-bg.png" height="16" width="16"></a>
+      </li>
       $if (!user.demoUser)$
         $dropdownFrontendsNav(model.services)$
         $dropdownApplicationsNav(model.services)$

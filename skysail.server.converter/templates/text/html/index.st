@@ -9,6 +9,7 @@ index(user, messages, converter, model) ::= <<
     <meta name="author" content="">
 
     <title>$messages.("productName").translated$</title>
+    <link rel="shortcut icon" href="/webapp/favicon.ico" type="image/x-icon" >
 
     $pace()$
     $jquery()$

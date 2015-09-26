@@ -11,6 +11,8 @@ navbar(user, messages, converter, model) ::= <<
   </div>
   <div class="navbar-collapse collapse">
     <ul class="nav navbar-nav">
+      <li>logo</li>
+
       $if (!user.demoUser)$
         $dropdownFrontendsNav(model.services)$
         $dropdownApplicationsNav(model.services)$

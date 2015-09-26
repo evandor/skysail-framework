@@ -1,7 +1,6 @@
 package io.skysail.server.model;
 
 import io.skysail.api.domain.Identifiable;
-import io.skysail.api.favorites.FavoritesService;
 import io.skysail.api.links.*;
 import io.skysail.api.responses.*;
 import io.skysail.api.search.*;
@@ -73,7 +72,6 @@ public class ResourceModel<R extends SkysailServerResource<T>, T> {
                                             // ...)
 
     private String title = "Skysail";
-    private FavoritesService favoritesService;
     private STServicesWrapper services;
     private DateFormat dateFormat;
 
@@ -182,7 +180,7 @@ public class ResourceModel<R extends SkysailServerResource<T>, T> {
     }
 
     public List<Breadcrumb> getBreadcrumbs() {
-        return new Breadcrumbs(favoritesService).create(resource);
+        return new Breadcrumbs().create(resource);
     }
 
     public List<RepresentationLink> getRepresentations() {
@@ -340,10 +338,6 @@ public class ResourceModel<R extends SkysailServerResource<T>, T> {
         return !fields.values().stream().filter(f -> {
             return f.isSubmitField();
         }).findFirst().isPresent();
-    }
-
-    public void setFavoritesService(FavoritesService favoritesService) {
-        this.favoritesService = favoritesService;
     }
 
     public void setSearchService(SearchService searchService) {

@@ -12,7 +12,7 @@ public class ResourceContextResource {
     List<Breadcrumb> breadcrumbs;
 
     public ResourceContextResource(SkysailServerResource<?> skysailServerResource) {
-        breadcrumbs = new Breadcrumbs(null).create(skysailServerResource);
+        breadcrumbs = new Breadcrumbs().create(skysailServerResource);
     }
 
 }

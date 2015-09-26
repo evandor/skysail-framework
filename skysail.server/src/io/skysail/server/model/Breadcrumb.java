@@ -13,15 +13,4 @@ public class Breadcrumb {
     @Getter
     private String value;
 
-    private Boolean favorite;
-
-
-    public boolean isFavoriteEmpty() {
-        return favorite != null && !favorite;
-    }
-
-    public boolean isFavoriteFull() {
-        return favorite != null && favorite;
-    }
-
 }

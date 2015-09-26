@@ -1,6 +1,5 @@
 package io.skysail.server.model;
 
-import io.skysail.api.favorites.*;
 import io.skysail.server.restlet.resources.SkysailServerResource;
 
 import java.util.*;
@@ -10,7 +9,6 @@ import javax.validation.constraints.NotNull;
 import lombok.extern.slf4j.Slf4j;
 
 import org.apache.commons.lang.StringUtils;
-import org.apache.shiro.SecurityUtils;
 import org.restlet.Request;
 import org.restlet.data.Reference;
 import org.restlet.routing.Route;
@@ -20,15 +18,6 @@ import de.twenty11.skysail.server.core.restlet.*;
 
 @Slf4j
 public class Breadcrumbs {
-
-    private FavoritesService favoritesService;
-
-    public Breadcrumbs(FavoritesService favoritesService) {
-        if (favoritesService == null) {
-            log.debug("favoritesService was null when creating breadcrumbs");
-        }
-        this.favoritesService = favoritesService;
-    }
 
     public List<Breadcrumb> create(@NotNull SkysailServerResource<?> resource) {
         List<Breadcrumb> result = new ArrayList<Breadcrumb>();
@@ -89,8 +78,7 @@ public class Breadcrumbs {
                 breadcrumbs.add(Breadcrumb.builder().href("/" + resource.getApplication().getName() + path)
                         .value(limit(value, 22)).build());
             } else {
-                Boolean favoriteIndicator = getFavoriteIndicator(resource);
-                breadcrumbs.add(Breadcrumb.builder().value(value).favorite(favoriteIndicator).build());
+                breadcrumbs.add(Breadcrumb.builder().value(value).build());
             }
         }
         return match;
@@ -116,20 +104,4 @@ public class Breadcrumbs {
         }
         return value.substring(0, lengthLimit - 3).concat("...");
     }
-
-    private synchronized Boolean getFavoriteIndicator(SkysailServerResource<?> resource) {
-        if (favoritesService == null) {
-            return null;
-        }
-        String username = SecurityUtils.getSubject().getPrincipal().toString();
-        List<Favorite> list = favoritesService.get(username);
-        if (list.size() == 0) {
-            return false;
-        }
-        String link = resource.getRequest().getResourceRef().toString(false, false);
-        return list.stream().filter(l -> {
-            return l.getFavoriteLink().equals(link);
-        }).findFirst().isPresent();
-    }
-
 }

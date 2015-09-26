@@ -101,7 +101,6 @@
 	skysail.api.text;version=latest,\
 	skysail.api.validation;version=latest,\
 	skysail.api.features;version=latest,\
-	skysail.api.favorites;version=${skysail.api.favorites.version},\
 	skysail.product.designer;version=latest,\
 	skysail.server;version=latest,\
 	skysail.server.converter;version=latest,\

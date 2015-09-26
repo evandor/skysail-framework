@@ -42,7 +42,7 @@ public class BreadcrumbsTest {
 
     @Test
     public void creates_homelink_only_for_trivial_resource() throws Exception {
-        List<Breadcrumb> bcs = new Breadcrumbs(null).create(resource);
+        List<Breadcrumb> bcs = new Breadcrumbs().create(resource);
         assertThat(bcs.size(),is(1));
         assertThat(bcs.get(0).getHref(),is("/"));
         assertThat(bcs.get(0).getValue(),is("<span class='glyphicon glyphicon-home'></span>"));
@@ -52,7 +52,7 @@ public class BreadcrumbsTest {
     public void creates_homelink_and_app_with_version_for_simple_resource() throws Exception {
         List<String> values = Arrays.asList("app","v2");
         Mockito.when(reference.getSegments()).thenReturn(values);
-        List<Breadcrumb> bcs = new Breadcrumbs(null).create(resource);
+        List<Breadcrumb> bcs = new Breadcrumbs().create(resource);
         assertThat(bcs.size(),is(2));
         assertThat(bcs.get(1).getHref(),is("/appName/v1"));
         assertThat(bcs.get(1).getValue(),is(" appName (v1)"));
@@ -65,7 +65,7 @@ public class BreadcrumbsTest {
         Route route = Mockito.mock(Route.class);
         routes.add(route);
         Mockito.when(reference.getSegments()).thenReturn(values);
-        List<Breadcrumb> bcs = new Breadcrumbs(null).create(resource);
+        List<Breadcrumb> bcs = new Breadcrumbs().create(resource);
         assertThat(bcs.size(),is(3));
         assertThat(bcs.get(1).getHref(),is("/appName/v1"));
         assertThat(bcs.get(1).getValue(),is(" appName (v1)"));

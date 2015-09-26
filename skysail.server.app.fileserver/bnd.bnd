@@ -6,7 +6,6 @@ Include-Resource: templates=src;recursive:=true;filter:=*.st|*.stg
 -buildpath:  \
 	biz.aQute.bnd.annotation,\
 	skysail.api;version=${skysail.api.version},\
-	skysail.api.favorites;version=${skysail.api.favorites.version},\
 	skysail.api.peers;version=${skysail.api.peers.version},\
     skysail.api.text;version=${skysail.api.text.version},\
 	skysail.api.um;version=${skysail.api.um.version},\

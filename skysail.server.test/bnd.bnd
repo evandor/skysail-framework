@@ -90,7 +90,6 @@ Test-Cases:  \
 	osgi.enterprise;version='[4.2.0,4.2.1)',\
 	skysail.api;version=${skysail.api.version},\
 	skysail.api.features;version=latest,\
-	skysail.api.favorites;version=${skysail.api.favorites.version},\
 	skysail.api.search;version=latest,\
 	skysail.api.text;version=latest,\
 	skysail.api.um;version=latest,\

@@ -90,8 +90,6 @@ Test-Cases: io.skysail.server.app.todos.test.TodoListsCrudIntegrationTests,\
     org.apache.felix.log.storeDebug=true,\
     felix.fileinstall.log.level=4,\
     org.apache.felix.log.storeDebug=true,\
-    https.proxyHost=192.168.11.140,\
-    https.proxyPort=8080,\
     logback.configurationFile=config/test/logback.xml,\
     obr.repository.url=https://raw.githubusercontent.com/evandor/skysail-repository/master/index.xml https://raw.githubusercontent.com/evandor/skysail/master/cnf/releaserepo/index.xml http://felix.apache.org/obr/releases.xml,\
     gosh.args=--nointeractive
@@ -165,7 +163,6 @@ Test-Cases: io.skysail.server.app.todos.test.TodoListsCrudIntegrationTests,\
 	skysail.api.text;version=${skysail.api.text.version},\
 	skysail.api.validation;version=latest,\
 	skysail.api.features;version=latest,\
-	skysail.api.favorites;version=${skysail.api.favorites.version},\
 	skysail.api.peers;version=latest,\
 	skysail.client.testsupport;version=latest,\
 	skysail.server;version=${skysail.server.version},\

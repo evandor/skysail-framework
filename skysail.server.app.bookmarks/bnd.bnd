@@ -141,7 +141,6 @@ Import-Package: org.osgi.framework,\
 	skysail.api.text;version=latest,\
 	skysail.api.validation;version=latest,\
 	skysail.api.features;version=latest,\
-	skysail.api.favorites;version=${skysail.api.favorites.version},\
 	skysail.client.testsupport;version=latest,\
 	skysail.server;version=${skysail.server.version},\
 	skysail.server.converter;version=${skysail.server.converter.version},\

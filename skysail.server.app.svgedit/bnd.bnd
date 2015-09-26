@@ -12,7 +12,6 @@ Include-Resource: webapp, resources, templates=src;recursive:=true;filter:=*.st|
 	osgi.core;version=5.0,\
 	osgi.cmpn;version=5.0,\
 	skysail.api;version=${skysail.api.version},\
-	skysail.api.favorites;version=${skysail.api.favorites.version},\
 	skysail.api.um;version=${skysail.api.um.version},\
 	skysail.api.validation;version=${skysail.api.validation.version},\
 	skysail.api.peers;version=${skysail.api.peers.version},\

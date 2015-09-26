@@ -114,7 +114,6 @@
 	skysail.api.text;version=${skysail.api.text.version},\
 	skysail.api.validation;version=${skysail.api.validation.version},\
 	skysail.api.features;version=${skysail.api.features.version},\
-	skysail.api.favorites;version=${skysail.api.favorites.version},\
 	skysail.client.todos.angularjs;version=latest,\
 	skysail.product.designer;version=latest,\
 	skysail.server;version=${skysail.server.version},\

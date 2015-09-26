@@ -1,6 +1,5 @@
 package io.skysail.server.converter;
 
-import io.skysail.api.favorites.FavoritesService;
 import io.skysail.api.peers.PeersProvider;
 import io.skysail.api.search.SearchService;
 import io.skysail.server.app.SkysailApplication;
@@ -24,7 +23,7 @@ import org.restlet.resource.Resource;
 
 import aQute.bnd.annotation.component.*;
 import de.twenty11.skysail.server.core.osgi.EventHelper;
-import de.twenty11.skysail.server.services.*;
+import de.twenty11.skysail.server.services.OsgiConverterHelper;
 import etm.core.configuration.EtmManager;
 import etm.core.monitor.*;
 
@@ -48,7 +47,6 @@ public class HtmlConverter extends ConverterHelper implements OsgiConverterHelpe
     private List<Event> events = new CopyOnWriteArrayList<>();
 
     private volatile Set<MenuItemProvider> menuProviders = new HashSet<>();
-    private volatile FavoritesService favoritesService;
     private volatile PeersProvider peersProvider;
 
     private InstallationProvider installationProvider;
@@ -80,18 +78,8 @@ public class HtmlConverter extends ConverterHelper implements OsgiConverterHelpe
         return Collections.unmodifiableSet(menuProviders);
     }
 
-    // --- Favorites Service ------------------------------------------------
 
-    @Reference(multiple = false, optional = true, dynamic = true)
-    public void setFavoritesService(FavoritesService service) {
-        this.favoritesService = service;
-    }
-
-    public void unsetFavoritesService(FavoritesService service) {
-        this.favoritesService = null;
-    }
-
-    // --- Favorites Service ------------------------------------------------
+    // --- Search Service ------------------------------------------------
 
     @Reference(multiple = false, optional = true, dynamic = true)
     public void setSearchService(SearchService service) {
@@ -174,7 +162,6 @@ public class HtmlConverter extends ConverterHelper implements OsgiConverterHelpe
 
         StringTemplateRenderer stringTemplateRenderer = new StringTemplateRenderer(this);
         stringTemplateRenderer.setMenuProviders(menuProviders);
-        stringTemplateRenderer.setFavoritesService(favoritesService);
         stringTemplateRenderer.setPeersProvider(peersProvider);
         stringTemplateRenderer.setSearchService(searchService);
         StringRepresentation rep = stringTemplateRenderer.createRepresenation(originalSource, target,

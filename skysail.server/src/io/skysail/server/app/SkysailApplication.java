@@ -1,6 +1,5 @@
 package io.skysail.server.app;
 
-import io.skysail.api.favorites.FavoritesService;
 import io.skysail.api.forms.*;
 import io.skysail.api.peers.PeersProvider;
 import io.skysail.api.text.Translation;
@@ -670,10 +669,6 @@ public abstract class SkysailApplication extends RamlApplication implements Appl
 
     public void invalidateMenuCache() {
         applicationMenu = null;
-    }
-
-    public FavoritesService getFavoritesService() {
-        return serviceListProviderRef.get().getFavoritesService();
     }
 
     public Map<String, FormField> describe(String className) throws Exception {

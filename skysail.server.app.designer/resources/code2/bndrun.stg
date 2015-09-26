@@ -105,7 +105,6 @@ bndrun(projectname)::=<<
 	skysail.api.text;version=latest,\
 	skysail.api.validation;version=latest,\
 	skysail.api.features;version=latest,\
-	skysail.api.favorites;version=\${skysail.api.favorites.version},\
 	skysail.client.todos.angularjs;version=latest,\
 	skysail.product.todos;version=latest,\
 	skysail.server;version=${skysail.server.version},\

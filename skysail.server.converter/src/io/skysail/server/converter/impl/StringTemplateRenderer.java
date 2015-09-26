@@ -1,6 +1,5 @@
 package io.skysail.server.converter.impl;
 
-import io.skysail.api.favorites.FavoritesService;
 import io.skysail.api.peers.PeersProvider;
 import io.skysail.api.responses.SkysailResponse;
 import io.skysail.api.search.SearchService;
@@ -39,7 +38,6 @@ public class StringTemplateRenderer {
     private Set<MenuItemProvider> menuProviders;
     private String templateFromCookie;
     private HtmlConverter htmlConverter;
-    private FavoritesService favoritesService;
     private PeersProvider peersProvider;
     private String indexPageName;
 
@@ -54,7 +52,6 @@ public class StringTemplateRenderer {
 
         @SuppressWarnings({ "rawtypes", "unchecked" })
         ResourceModel<SkysailServerResource<?>,?> resourceModel = new ResourceModel(resource, (SkysailResponse<?>)entity, target);
-        resourceModel.setFavoritesService(favoritesService);
         resourceModel.setSearchService(searchService); // TODO: has to be set before menuItemProviders ;(
         resourceModel.setMenuItemProviders(menuProviders);
 
@@ -216,10 +213,6 @@ public class StringTemplateRenderer {
         if (resource.getHostRef().getHostDomain().contains("localhost") && inspect != null) {
             index.inspect();
         }
-    }
-
-    public void setFavoritesService(FavoritesService favoritesService) {
-        this.favoritesService = favoritesService;
     }
 
     public void setPeersProvider(PeersProvider peersProvider) {

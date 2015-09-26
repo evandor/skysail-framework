@@ -1,6 +1,5 @@
 package de.twenty11.skysail.server.app;
 
-import io.skysail.api.favorites.FavoritesService;
 import io.skysail.api.peers.PeersProvider;
 import io.skysail.api.um.*;
 import io.skysail.api.validation.ValidatorService;
@@ -20,8 +19,6 @@ import de.twenty11.skysail.server.services.EncryptorService;
 public interface ServiceListProvider {
 
     AuthorizationService getAuthorizationService();
-
-    FavoritesService getFavoritesService();
 
     AtomicReference<PeersProvider> getPeersProvider();
 

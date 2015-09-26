@@ -105,7 +105,6 @@
 	skysail.api.documentation;version='[0.2,0.3)',\
 	skysail.api.validation;version='[0.2,0.3)',\
 	skysail.api.features;version='[0.1.2,0.1.3)',\
-	skysail.api.favorites;version='[0.1.2,0.1.3)',\
 	skysail.product.website;version=latest,\
 	skysail.server;version='[9.0,9.1)',\
 	skysail.server.converter;version='[1.0,1.1)',\

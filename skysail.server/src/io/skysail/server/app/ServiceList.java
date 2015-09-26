@@ -1,6 +1,5 @@
 package io.skysail.server.app;
 
-import io.skysail.api.favorites.FavoritesService;
 import io.skysail.api.peers.PeersProvider;
 import io.skysail.api.text.*;
 import io.skysail.api.um.*;
@@ -62,7 +61,6 @@ public class ServiceList implements ServiceListProvider {
 
     //http://stackoverflow.com/questions/30061032/best-way-to-handle-dynamic-osgi-service-dependencies
     private AtomicReference<ApplicationListProvider> applicationListProvider = new AtomicReference<>();
-    private AtomicReference<FavoritesService> favoritesService = new AtomicReference<>();
     private AtomicReference<ConfigurationAdmin> configurationAdmin = new AtomicReference<>();
     private AtomicReference<SkysailComponentProvider> skysailComponentProviderRef = new AtomicReference<>();
     private AtomicReference<EventAdmin> eventAdmin = new AtomicReference<>();
@@ -126,22 +124,6 @@ public class ServiceList implements ServiceListProvider {
     @Override
     public SkysailComponent getSkysailComponent() {
         return skysailComponentProviderRef.get().getSkysailComponent();
-    }
-
-    /** === Favorites Service ============================== */
-
-    @Reference(optional = true, dynamic = true, multiple = false)
-    public synchronized void setFavoritesService(FavoritesService service) {
-        this.favoritesService.set(service);
-    }
-
-    public synchronized void unsetFavoritesService(FavoritesService service) {
-        this.favoritesService.compareAndSet(service, null);
-    }
-
-    @Override
-    public FavoritesService getFavoritesService() {
-        return favoritesService.get();
     }
 
     /** === PeersProvider Service ============================== */

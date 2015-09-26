@@ -131,7 +131,7 @@
 	skysail.server.ext.quartz;version=latest,\
 	skysail.server.ext.lucene;version=latest,\
 	skysail.server.text.markdown;version=${skysail.server.text.markdown.version};,\
-	skysail.server.text.store.bundleresource;version=latest,\
+	skysail.server.text.store.bundleresource;version=${skysail.server.text.store.bundleresource.version},\
 	skysail.server.text.store.git;version=latest,\
 	skysail.server.um.simple;version=latest,\
 	slf4j.api;version='[1.7.7,1.7.8)',\

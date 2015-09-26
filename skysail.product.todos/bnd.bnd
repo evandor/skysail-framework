@@ -21,7 +21,7 @@ Private-Package:  \
 	skysail.server.polymer;version=${skysail.server.polymer.version},\
 	skysail.server.queryfilter;version=${skysail.server.queryfilter.version},\
 	skysail.server.text.markdown;version=${skysail.server.text.markdown.version};,\
-	skysail.server.text.store.bundleresource;version=latest,\
+	skysail.server.text.store.bundleresource;version=${skysail.server.text.store.bundleresource.version},\
 	skysail.server.text.store.git;version=latest,\
 	skysail.server.um.simple;version=${skysail.server.um.simple.version},\
 	org.codehaus.jettison.jettison;version=1.3

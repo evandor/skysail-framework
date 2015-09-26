@@ -147,7 +147,7 @@ projectNames.each { projectName ->
   include projectName
   def project = getBndProject(workspace, projectName)
   project?.dependson.each {
-    println ">>> added dependency " + it.name
+    //println ">>> added dependency " + it.name
     include it.name
   }
 }

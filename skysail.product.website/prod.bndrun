@@ -120,7 +120,7 @@ s-runsystemcapabilities: ${native_capability}
 	skysail.server.app.tutorial.model2rest;version=latest,\
 	skysail.server.text.markdown;version=${skysail.server.text.markdown.version};,\
 	skysail.server.text.store.bundleresource;version=${skysail.server.text.store.bundleresource.version},\
-	skysail.server.text.store.git;version=latest,\
+	skysail.server.text.store.git;version=${skysail.server.text.store.git.version},\
 	skysail.server.um.simple;version=latest,\
 	skysail.server.app.tutorial.model2rest;version=latest,\
 	slf4j.api;version='[1.7.7,1.7.8)',\

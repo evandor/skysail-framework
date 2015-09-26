@@ -23,7 +23,7 @@ Bundle-Name: SKYSAIL :: products :: website
     skysail.server.queryfilter;version=${skysail.server.queryfilter.version},\
     skysail.server.text.markdown;version=${skysail.server.text.markdown.version};,\
     skysail.server.text.store.bundleresource;version=${skysail.server.text.store.bundleresource.version},\
-    skysail.server.text.store.git;version=latest,\
+    skysail.server.text.store.git;version=${skysail.server.text.store.git.version},\
     skysail.server.um.simple;version=${skysail.server.um.simple.version},\
 	skysail.wrapped.bundles.spring.shell;version=1.1,\
 	de.twentyeleven.skysail.org.hamcrest.hamcrest-all-osgi;version=1.3,\

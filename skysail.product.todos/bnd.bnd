@@ -20,6 +20,7 @@ Private-Package:  \
 	skysail.server.plugins;version=latest,\
 	skysail.server.polymer;version=${skysail.server.polymer.version},\
 	skysail.server.queryfilter;version=${skysail.server.queryfilter.version},\
+    skysail.server.static;version=${skysail.server.static.version},\
 	skysail.server.text.markdown;version=${skysail.server.text.markdown.version};,\
 	skysail.server.text.store.bundleresource;version=${skysail.server.text.store.bundleresource.version},\
 	skysail.server.text.store.git;version=${skysail.server.text.store.git.version},\

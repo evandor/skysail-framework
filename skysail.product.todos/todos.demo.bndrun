@@ -2,13 +2,14 @@
 -runee: JavaSE-1.8
 -runsystemcapabilities: ${native_capability}
 -runrepos:  \
-	Skysail Framework Hub,\
-	Bndtools Hub,\
-	Local,\
-	Workspace,\
-	Skysail Repository,\
-	Skysail Hub,\
-	Release
+    Bndtools Hub,\
+    Local,\
+    Workspace,\
+    Skysail Repository,\
+    Skysail Hub,\
+    Release,\
+    Skysail Framework Dev Hub,\
+    Skysail Framework Master Hub
 
 -resolve.effective: active;skip:="osgi.service"
 

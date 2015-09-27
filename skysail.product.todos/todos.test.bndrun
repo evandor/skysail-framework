@@ -133,7 +133,7 @@
 	skysail.server.text.markdown;version=${skysail.server.text.markdown.version};,\
 	skysail.server.text.store.bundleresource;version=${skysail.server.text.store.bundleresource.version},\
 	skysail.server.text.store.git;version=${skysail.server.text.store.git.version},\
-	skysail.server.um.simple;version=latest,\
+	skysail.server.um.simple;version=${skysail.server.um.simple.version},\
 	slf4j.api;version='[1.7.7,1.7.8)',\
 	de.twentyeleven.skysail.org.antlr.stringtemplate-osgi;version=4.0.8,\
 	com.beust.jcommander;version=1.47.0,\

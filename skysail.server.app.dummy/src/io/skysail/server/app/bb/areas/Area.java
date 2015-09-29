@@ -1,0 +1,11 @@
+package io.skysail.server.app.bb.areas;
+
+public enum Area {
+ WORK_AND_CAREERS,
+ RECREATION_AND_FREETIME,
+ FINANCE,
+ HEALTH_AND_FITNESS,
+ PERSONAL_GOALS,
+ RELATIONSHIPS,
+ CONTRIBUTION
+}

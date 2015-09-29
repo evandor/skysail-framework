@@ -6,7 +6,7 @@ import io.skysail.server.app.todos.*;
 import io.skysail.server.app.todos.todos.resources.*;
 import io.skysail.server.queryfilter.Filter;
 import io.skysail.server.queryfilter.pagination.Pagination;
-import io.skysail.server.restlet.resources.ListServerResource;
+import io.skysail.server.restlet.resources.*;
 import io.skysail.server.utils.LinkUtils;
 
 import java.util.List;
@@ -78,8 +78,9 @@ public class ListsResource extends ListServerResource<TodoList> implements I18nA
 
     @Override
     public List<Link> getLinks() {
-        // PostTodoWoListResource.class,
-        return super.getLinks(PostListResource.class, Top10TodosResource.class, ListsResource.class);
+        List<Class<? extends SkysailServerResource<?>>> links = app.getMainLinks();
+        links.add(PostListResource.class);
+        return super.getLinks(links);
     }
 
     @Override

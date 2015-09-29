@@ -7,7 +7,7 @@ import io.skysail.server.app.todos.lists.ListsResource;
 import io.skysail.server.app.todos.ranking.Ranker;
 import io.skysail.server.app.todos.todos.Todo;
 import io.skysail.server.app.todos.todos.status.Status;
-import io.skysail.server.restlet.resources.PutEntityServerResource;
+import io.skysail.server.restlet.resources.*;
 
 import java.util.*;
 
@@ -57,7 +57,8 @@ public class PutTodoResource extends PutEntityServerResource<Todo> {
 
     @Override
     public List<Link> getLinks() {
-        return super.getLinks(Top10TodosResource.class, ListsResource.class);
+        List<Class<? extends SkysailServerResource<?>>> links = app.getMainLinks();
+        return super.getLinks(links);
     }
 
     @Override

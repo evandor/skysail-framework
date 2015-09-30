@@ -1,0 +1,15 @@
+Bundle-Version: 4.5.1
+
+-classpath: jar/httpclient-4.5.1.jar
+
+Export-Package: \
+    org.apache.*;version=1.0
+
+Bundle-Name: httpclient.jar
+
+Import-Package: !org.apache.http,\
+    !org.apache.http.concurrent,\
+    !org.apache.http.config,\
+    !org.apache.http.entity,\
+    !org.apache.http.impl.*,\
+    *

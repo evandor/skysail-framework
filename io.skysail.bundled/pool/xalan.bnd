@@ -1,0 +1,17 @@
+Bundle-Version: 2.7.2
+
+-classpath: jar/xalan-2.7.2.jar
+
+Export-Package: \
+    org.apache.xml.utils.*;version=1.0,\
+    org.apache.xml.dtm.*;version=1.0,\
+    org.apache.xml.serializer.*;version=1.0,\
+    org.apache.xml.res.*;version=1.0,\
+    org.apache.xalan.*;version=1.0,\
+    org.apache.xpath.*;version=1.0,\
+    org.apache.bcel.*;version=1.0,\
+
+Bundle-Name: xalan
+
+Import-Package: !org.apache.xml.serializer,\
+    *

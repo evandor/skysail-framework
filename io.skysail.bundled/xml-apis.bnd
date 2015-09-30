@@ -1,9 +1,0 @@
-Bundle-Version: 1.4.1
-
--classpath: jar/xml-apis-1.4.01.jar
-
-Export-Package: \
-    org.w3c.dom.*;version=1.0
-
-Bundle-Name: xml-apis.jar
-

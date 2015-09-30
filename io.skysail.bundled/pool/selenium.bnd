@@ -1,0 +1,14 @@
+Bundle-Version: 2.47.1
+
+-classpath: jar/selenium-java-2.47.1.jar
+
+Export-Package: \
+    com.thoughtworks.*;version=1.0,\
+    org.openqa.*;version=1.0
+
+Bundle-Name: selenium-java
+
+Import-Package: !com.sun.jna.*,\
+    !org.jboss.netty.*,\
+    !org.testng.*,\
+    *

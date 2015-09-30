@@ -1,0 +1,9 @@
+Bundle-Version: 0.5.4
+
+-classpath: jar/ini4j-0.5.4.jar
+
+Export-Package: \
+    org.ini4j.*;version=1.0
+
+Bundle-Name: ini4j.jar
+

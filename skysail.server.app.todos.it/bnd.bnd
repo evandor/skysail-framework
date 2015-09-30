@@ -5,9 +5,10 @@ Private-Package:  \
 	io.skysail.server.app.todos.test,\
 	io.skysail.server.app.todos.test.browser
 
-Test-Cases: io.skysail.server.app.todos.test.TodoListsCrudIntegrationTests,\
-    io.skysail.server.app.todos.test.PostListHtmlLargeTest,\
-    io.skysail.server.app.todos.test.TodoListsHtmlLargeTests
+Test-Cases: io.skysail.server.app.todos.test.WhenSearchingOnGoogle2
+#io.skysail.server.app.todos.test.TodoListsCrudIntegrationTests,\
+#    io.skysail.server.app.todos.test.PostListHtmlLargeTest,\
+#    io.skysail.server.app.todos.test.TodoListsHtmlLargeTests
 
 -buildpath:  \
 	skysail.api;version=${skysail.api.version},\
@@ -52,7 +53,7 @@ Test-Cases: io.skysail.server.app.todos.test.TodoListsCrudIntegrationTests,\
 	io.skysail.bundled.xerces;version=2.11,\
 	io.skysail.bundled.cssparser;version=0.9,\
 	io.skysail.bundled.nekohtml;version=1.9,\
-	io.skysail.bundled.httpclient;version='[4.5.1,4.5.2)',\
+	org.apache.httpcomponents.httpclient;version=4.5.1,\
 	org.apache.commons.io;version=2.4,\
 	org.apache.commons.codec;version=1.9,\
 	org.apache.httpcomponents.httpcore;version=4.4,\
@@ -78,7 +79,8 @@ Test-Cases: io.skysail.server.app.todos.test.TodoListsCrudIntegrationTests,\
     javax.naming.spi,javax.management,javax.management.openmbean,javax.swing.tree,javax.transaction,javax.transaction.xa,\
     javax.xml.transform.stax,javafx.application,javafx.scene,javafx.scene.control,javafx.scene.layout,javafx.stage,\
     javafx.beans.property,javafx.collections,javafx.beans.value,javafx.concurrent,javafx.event,javafx.geometry,\
-    javafx.scene.image,javafx.scene.web,javafx.util,netscape.javascript,javafx.scene.paint
+    javafx.scene.image,javafx.scene.web,javafx.util,netscape.javascript,javafx.scene.paint,sun.io,org.w3c.dom.css,\
+    org.w3c.dom.stylesheets,org.w3c.dom.html,org.w3c.dom.ranges,org.w3c.dom.traversal,org.w3c.dom.views,org.w3c.dom.xpath
 
 
 -resolve.effective: active;skip:="osgi.service"
@@ -111,6 +113,9 @@ Test-Cases: io.skysail.server.app.todos.test.TodoListsCrudIntegrationTests,\
 	com.fasterxml.jackson.dataformat.jackson-dataformat-yaml;version='[2.5,2.6)',\
 	com.fasterxml.jackson.dataformat.jackson-dataformat-csv;version='[2.5,2.6)',\
 	com.google.guava;version='[16.0,16.1)',\
+	com.google.inject;version=4.0,\
+	javax.inject;version=1.0,\
+	org.apache.servicemix.bundles.aopalliance;version=1.0,\
 	com.googlecode.concurrentlinkedhashmap.lru;version='[1.4.0,1.4.1)',\
 	com.orientechnologies.orientdb-client;version=${com.orientechnologies.orientdb.version},\
 	com.orientechnologies.orientdb-core;version=${com.orientechnologies.orientdb.version},\
@@ -124,6 +129,20 @@ Test-Cases: io.skysail.server.app.todos.test.TodoListsCrudIntegrationTests,\
 	de.twenty11.owasp-java-html-sanitizer;version='[239.0.0,239.0.1)',\
 	de.twentyeleven.skysail.org.json-osgi;version=latest,\
 	etm.core;version='[1.2.3,1.2.4)',\
+	io.skysail.bundled.cssparser;version=0.9,\
+	io.skysail.bundled.htmlunit;version=2.18,\
+	io.skysail.bundled.htmlunit-core-js;version=2.17,\
+	io.skysail.bundled.lambdaj;version=2.3,\
+	io.skysail.bundled.nekohtml;version=1.9,\
+	io.skysail.bundled.opencsv;version=2.4,\
+	io.skysail.bundled.operadriver;version=1.5.0,\
+	io.skysail.bundled.phantomjsdriver;version=1.2,\
+	io.skysail.bundled.sac;version=1.3,\
+	io.skysail.bundled.serenity-core;version=1.1,\
+	io.skysail.bundled.serenity-junit;version=1.0,\
+	io.skysail.bundled.xalan;version=2.7,\
+	io.skysail.bundled.xerces;version=2.11,\
+	org.apache.servicemix.bundles.cglib;version=3.1,\
 	javassist;version='[3.18.1,3.18.2)',\
 	javax.el-api;version='[3.0.0,3.0.1)',\
 	javax.persistence;version='[2.1.0,2.1.1)',\
@@ -171,9 +190,9 @@ Test-Cases: io.skysail.server.app.todos.test.TodoListsCrudIntegrationTests,\
 	skysail.server.db;version=${skysail.server.db.version},\
 	skysail.server.http;version=${skysail.server.http.version},\
 	skysail.server.plugins;version=latest,\
-    skysail.server.queryfilter;version=${skysail.server.queryfilter.version},\
+	skysail.server.queryfilter;version=${skysail.server.queryfilter.version},\
 	skysail.server.static;version=${skysail.server.static.version},\
-	skysail.server.text.markdown;version=${skysail.server.text.markdown.version};,\
+	skysail.server.text.markdown;version=${skysail.server.text.markdown.version},\
 	skysail.server.um.simple;version=latest,\
 	slf4j.api;version='[1.7.7,1.7.8)',\
 	de.twentyeleven.skysail.org.antlr.stringtemplate-osgi;version=4.0.8,\
@@ -181,7 +200,31 @@ Test-Cases: io.skysail.server.app.todos.test.TodoListsCrudIntegrationTests,\
 	com.beust.jcommander;version=1.47.0,\
 	stax2-api;version=3.1.4,\
 	com.fasterxml.jackson.module.jackson-module-jaxb-annotations;version=2.5.1,\
-	org.codehaus.jettison.jettison;version=1.3.7
+	org.codehaus.jettison.jettison;version=1.3.7,\
+	org.objenesis;version=2.1.0,\
+	org.apache.commons.codec;version=1.9.0,\
+	org.apache.commons.io;version=2.4.0,\
+	io.skysail.bundled.xml-resolver;version=1.2.0,\
+	io.skysail.bundled.java_cup;version=0.9.5,\
+	org.apache.servicemix.bundles.jakarta-regexp;version=1.4.0,\
+	com.google.protobuf;version=3.0.0,\
+	org.apache.servicemix.bundles.commons-jxpath;version=1.3.0,\
+	org.apache.httpcomponents.httpclient;version=4.5.1,\
+	org.apache.httpcomponents.httpcore;version=4.4.1,\
+	com.google.gson;version=2.2.4,\
+	io.skysail.bundled.awaitility;version=1.6.5,\
+	io.skysail.bundled.filters;version=2.0.235,\
+	io.skysail.bundled.ini4j;version=0.5.4,\
+	io.skysail.bundled.selenium;version=2.47.1,\
+	org.apache.commons.exec;version=1.3.0,\
+	xstream;version=1.4.8,\
+	org.apache.servicemix.bundles.xpp3;version=1.1.4,\
+	org.freemarker.freemarker;version=2.3.23,\
+	io.skysail.bundled.asciidoctorj;version=1.5.2,\
+	joda-time;version=2.7.0,\
+	org.jsoup;version=1.8.1
+
+#   io.skysail.bundled.xml-apis;version=1.4,\
 
 Export-Package:  \
 	!org.hamcrest.*

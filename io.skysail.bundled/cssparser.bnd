@@ -1,9 +1,0 @@
-Bundle-Version: 0.9.17
-
--classpath: jar/cssparser-0.9.17.jar
-
-Export-Package: \
-    com.steadystate.css.*;version=1.0
-
-Bundle-Name: cssparser.jar
-

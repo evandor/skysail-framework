@@ -1,0 +1,18 @@
+Bundle-Version: 1.0.47
+
+-classpath: jar/serenity-junit-1.0.47.jar
+
+Export-Package: \
+    net.serenitybdd.*;version=1.0,\
+    net.thucydides.*;version=1.0
+
+Bundle-Name: serenity-junit
+
+
+
+#Export-Package: org.raml.*;version=1.0,\
+#    com.ctreber.*;version=1.0,\
+#    com.google.xzing.*;version=1.0,\
+#    jcckit.*;version=1.0,\
+#    net.sourceforge.plantuml.*;version=1.0,\
+#    org.stathissideris.*;version=1.0

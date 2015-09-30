@@ -1,0 +1,9 @@
+Bundle-Version: 2.4.0
+
+-classpath: jar/opencsv-2.4.jar
+
+Export-Package: \
+    au.com.*;version=1.0
+
+Bundle-Name: opencsv.jar
+

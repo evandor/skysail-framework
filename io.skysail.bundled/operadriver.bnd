@@ -1,9 +1,0 @@
-Bundle-Version: 1.5.0
-
--classpath: jar/operadriver-1.5.jar
-
-Export-Package: \
-    com.opera.core.systems.*;version=1.0
-
-Bundle-Name: operadriver.jar
-

@@ -1,0 +1,9 @@
+Bundle-Version: 1.6.5
+
+-classpath: jar/awaitility-1.6.5.jar
+
+Export-Package: \
+    com.jayway.awaitility.*;version=1.0
+
+Bundle-Name: awaitility.jar
+

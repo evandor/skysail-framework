@@ -1,0 +1,9 @@
+Bundle-Version: 1.2.0
+
+-classpath: jar/xml-resolver-1.2.jar
+
+Export-Package: \
+    org.apache.xml.resolver.*;version=1.0
+
+Bundle-Name: xml-resolver.jar
+

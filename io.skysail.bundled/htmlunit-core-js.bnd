@@ -1,9 +1,0 @@
-Bundle-Version: 2.17.0
-
--classpath: jar/htmlunit-core-js-2.17.jar
-
-Export-Package: \
-    net.sourceforge.htmlunit.corejs.*;version=1.0
-
-Bundle-Name: htmlunit-core-js.jar
-

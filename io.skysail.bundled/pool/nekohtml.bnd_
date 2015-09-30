@@ -1,0 +1,9 @@
+Bundle-Version: 1.9.22
+
+-classpath: jar/nekohtml-1.9.22.jar
+
+Export-Package: \
+    org.cyberneko.html.*;version=1.0
+
+Bundle-Name: nekohtml.jar
+

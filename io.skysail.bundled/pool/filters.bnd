@@ -1,0 +1,9 @@
+Bundle-Version: 2.0.235
+
+-classpath: jar/filters-2.0.235.jar
+
+Export-Package: \
+    com.jhlabs.*;version=1.0
+
+Bundle-Name: filters.jar
+

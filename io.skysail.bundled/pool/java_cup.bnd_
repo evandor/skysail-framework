@@ -1,0 +1,9 @@
+Bundle-Version: 0.9.5
+
+-classpath: jar/java_cup-0.9e.jar
+
+Export-Package: \
+    java_cup.*;version=1.0
+
+Bundle-Name: java_cup.jar
+

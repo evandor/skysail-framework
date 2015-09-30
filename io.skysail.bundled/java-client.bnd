@@ -1,9 +1,0 @@
-Bundle-Version: 3.2.0
-
--classpath: jar/java-client-3.2.0.jar
-
-Export-Package: \
-    io.appium.java_client.*;version=1.0
-
-Bundle-Name: java-client.jar
-

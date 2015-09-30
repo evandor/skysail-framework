@@ -1,9 +1,0 @@
-Bundle-Version: 2.3.3
-
--classpath: jar/lambdaj-2.3.3.jar
-
-Export-Package: \
-    ch.lambdaj.*;version=1.0,\
-
-
-Bundle-Name: lambdaj

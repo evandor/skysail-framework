@@ -33,22 +33,22 @@ public class ListRequestHandler<T extends Identifiable> {
 
     private AbstractResourceFilter<ListServerResource<?>, T> chainForListPost() {
         return new ExceptionCatchingFilter<ListServerResource<?>, T>(application)
-                .calling(new ExtractStandardQueryParametersResourceFilter<ListServerResource<?>, T>())
-                .calling(new CheckInvalidInputFilter<ListServerResource<?>, T>())
-                .calling(new FormDataExtractingFilter<ListServerResource<?>, T>())
-                .calling(new CheckBusinessViolationsFilter<ListServerResource<?>, T>(application))
-                .calling(new PersistEntityFilter<ListServerResource<?>, T>(application))
+                .calling(new ExtractStandardQueryParametersResourceFilter<>())
+                .calling(new CheckInvalidInputFilter<>())
+                .calling(new FormDataExtractingFilter<>())
+                .calling(new CheckBusinessViolationsFilter<>(application))
+                .calling(new PersistEntityFilter<>(application))
                 ;
     }
 
     private AbstractResourceFilter<ListServerResource<?>, T> chainForListGet() {
         return new ExceptionCatchingFilter<ListServerResource<?>, T>(application)
-                .calling(new AddApiVersionHeaderFilter<ListServerResource<?>, T>())
-                .calling(new ExtractStandardQueryParametersResourceFilter<ListServerResource<?>, T>())
-                .calling(new DataExtractingFilter<ListServerResource<?>, T>())
-                .calling(new AddLinkheadersFilter<ListServerResource<?>, T>())
-                .calling(new SetExecutionTimeInResponseFilter<ListServerResource<?>, T>())
-                .calling(new RedirectFilter<ListServerResource<?>, T>());
+                .calling(new AddApiVersionHeaderFilter<>())
+                .calling(new ExtractStandardQueryParametersResourceFilter<>())
+                .calling(new DataExtractingFilter<>())
+                .calling(new AddLinkheadersFilter<>())
+                .calling(new SetExecutionTimeInResponseFilter<>())
+                .calling(new RedirectFilter<>());
     }
 
 }

@@ -1,0 +1,6 @@
+test> 06:54:19.831: INFO  io.skysail.client.testsupport.IntegrationTests - 
+test> 06:54:19.843: INFO  io.skysail.client.testsupport.IntegrationTests - --------------------------------------------
+test> 06:54:19.844: INFO  io.skysail.client.testsupport.IntegrationTests -  > TEST: running test 'login'
+test> 06:54:19.846: INFO  io.skysail.client.testsupport.IntegrationTests - --------------------------------------------
+test> 06:54:19.847: INFO  io.skysail.client.testsupport.IntegrationTests - 
+test> 06:54:19.865: INFO  io.skysail.client.testsupport.IntegrationTests - setting up test case...

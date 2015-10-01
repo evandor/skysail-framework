@@ -18,6 +18,7 @@ Private-Package:  \
 	skysail.server.converter;version=${skysail.server.converter.version},\
 	skysail.server.ext.browser;version=latest,\
 	skysail.server.ext.sse;version=latest,\
+    skysail.server.ext.initconfig;version=latest,\
 	skysail.server.http;version=${skysail.server.http.version},\
 	skysail.server.osgi;version=latest,\
 	skysail.server.plugins;version=latest,\

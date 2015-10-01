@@ -1,11 +1,21 @@
+########################################################################################
+### --- general settings, do not change unless you know what you are doing --------- ###
+########################################################################################
+
+-resolve.effective: active;skip:="osgi.service"
+-runbundles: ${runbundles}
 -runee: JavaSE-1.8
 -runfw: org.apache.felix.framework;version=${org.apache.felix.framework.version}
+-runproperties: ${runproperties}
+-runrepos: ${runrepos}
 -runsystemcapabilities: ${native_capability}
 -runsystempackages: ${runsystempackages}
 -runtrace: false
 -runvm: -ea
 #, -XX:+UnlockCommercialFeatures,-XX:+FlightRecorder,-XX:StartFlightRecording="duration=120m,filename=etc/todos.jfr"
--runrepos: ${runrepos}
--resolve.effective: active;skip:="osgi.service"
--runproperties: ${runproperties}
--runbundles: ${runbundles}
+
+########################################################################################
+### --- run-file-specific settings ------------------------------------------------- ###
+########################################################################################
+
+skysail.config.path = config/local

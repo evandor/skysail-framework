@@ -7,4 +7,5 @@ runproperties:\
     felix.fileinstall.log.level=4,\
     org.apache.felix.log.storeDebug=true,\
     logback.configurationFile=${skysail.config.path}/logback.xml,\
-    obr.repository.url=${obrRepositories}
+    obr.repository.url=${obrRepositories},\
+    product.bundle=${p}

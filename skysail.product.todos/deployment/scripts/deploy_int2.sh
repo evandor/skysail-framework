@@ -32,7 +32,7 @@ cp -r deployment/service/* /home/carsten/skysail/products/todos/int2
 
 #echo "starting todos service"
 cd /home/carsten/skysail/products/todos/int2/bin/
-unzip -o skysail.todos.jar
+#unzip -o skysail.todos.jar
 chmod 755 todos_int2
 ./todos_int2 start
 

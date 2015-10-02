@@ -7,7 +7,7 @@ import io.skysail.server.app.todos.todos.Todo;
 import io.skysail.server.app.todos.todos.status.Status;
 import io.skysail.server.queryfilter.Filter;
 import io.skysail.server.queryfilter.pagination.Pagination;
-import io.skysail.server.restlet.resources.ListServerResource;
+import io.skysail.server.restlet.resources.*;
 
 import java.util.*;
 
@@ -56,7 +56,11 @@ public class TodosResource extends ListServerResource<Todo> {
 
     @Override
     public List<Link> getLinks() {
-        return super.getLinks(Top10TodosResource.class, ListsResource.class, PostTodoResource.class, ArchivedTodosResource.class);
+        List<Class<? extends SkysailServerResource<?>>> links = app.getMainLinks();
+        links.add(PostTodoResource.class);
+        links.add(ArchivedTodosResource.class);
+        return super.getLinks(links);
     }
+
 
 }

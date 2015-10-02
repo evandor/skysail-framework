@@ -3,9 +3,9 @@ package io.skysail.server.app.todos.todos.resources;
 import io.skysail.api.links.Link;
 import io.skysail.api.responses.SkysailResponse;
 import io.skysail.server.app.todos.TodoApplication;
-import io.skysail.server.app.todos.lists.ListsResource;
 import io.skysail.server.app.todos.todos.Todo;
 import io.skysail.server.app.todos.todos.status.Status;
+import io.skysail.server.restlet.resources.SkysailServerResource;
 
 import java.util.*;
 
@@ -33,8 +33,11 @@ public class PostTodoWoListResource extends PostTodoResource {
 
     @Override
     public List<Link> getLinks() {
-        return super.getLinks(Top10TodosResource.class, ListsResource.class);
+        List<Class<? extends SkysailServerResource<?>>> links = app.getMainLinks();
+        return super.getLinks(links);
     }
+
+
 
     @Override
     public String redirectTo() {

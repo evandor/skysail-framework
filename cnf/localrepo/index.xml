@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<repository increment="1443625406249" name="Local" xmlns="http://www.osgi.org/xmlns/repository/v1.0.0">
+<repository increment="1443790841734" name="Local" xmlns="http://www.osgi.org/xmlns/repository/v1.0.0">
   <resource>
     <capability namespace="osgi.identity">
       <attribute name="osgi.identity" value="bcprov"/>
@@ -2205,6 +2205,132 @@
     </capability>
     <requirement namespace="osgi.ee">
       <directive name="filter" value="(&amp;(osgi.ee=JavaSE)(version=1.5))"/>
+    </requirement>
+  </resource>
+  <resource>
+    <capability namespace="osgi.identity">
+      <attribute name="osgi.identity" value="com.sun.jna.platform"/>
+      <attribute name="type" value="osgi.bundle"/>
+      <attribute name="version" type="Version" value="4.2.0"/>
+    </capability>
+    <capability namespace="osgi.content">
+      <attribute name="osgi.content" value="1d6de0b78ea516e8511c6d77edf32da656c06a4ac69f90d7a48da95d78119cc4"/>
+      <attribute name="url" value="com.sun.jna.platform/com.sun.jna.platform-4.2.0.jar"/>
+      <attribute name="size" type="Long" value="1844529"/>
+      <attribute name="mime" value="application/vnd.osgi.bundle"/>
+    </capability>
+    <capability namespace="osgi.wiring.bundle">
+      <attribute name="osgi.wiring.bundle" value="com.sun.jna.platform"/>
+      <attribute name="bundle-version" type="Version" value="4.2.0"/>
+    </capability>
+    <capability namespace="osgi.wiring.host">
+      <attribute name="osgi.wiring.host" value="com.sun.jna.platform"/>
+      <attribute name="bundle-version" type="Version" value="4.2.0"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="com.sun.jna.platform"/>
+      <attribute name="version" type="Version" value="0.0.0"/>
+      <attribute name="bundle-symbolic-name" value="com.sun.jna.platform"/>
+      <attribute name="bundle-version" type="Version" value="4.2.0"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="com.sun.jna.platform.dnd"/>
+      <attribute name="version" type="Version" value="0.0.0"/>
+      <attribute name="bundle-symbolic-name" value="com.sun.jna.platform"/>
+      <attribute name="bundle-version" type="Version" value="4.2.0"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="com.sun.jna.platform.mac"/>
+      <attribute name="version" type="Version" value="0.0.0"/>
+      <attribute name="bundle-symbolic-name" value="com.sun.jna.platform"/>
+      <attribute name="bundle-version" type="Version" value="4.2.0"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="com.sun.jna.platform.unix"/>
+      <attribute name="version" type="Version" value="0.0.0"/>
+      <attribute name="bundle-symbolic-name" value="com.sun.jna.platform"/>
+      <attribute name="bundle-version" type="Version" value="4.2.0"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="com.sun.jna.platform.win32"/>
+      <attribute name="version" type="Version" value="0.0.0"/>
+      <attribute name="bundle-symbolic-name" value="com.sun.jna.platform"/>
+      <attribute name="bundle-version" type="Version" value="4.2.0"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="com.sun.jna.platform.win32.COM"/>
+      <attribute name="version" type="Version" value="0.0.0"/>
+      <attribute name="bundle-symbolic-name" value="com.sun.jna.platform"/>
+      <attribute name="bundle-version" type="Version" value="4.2.0"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="com.sun.jna.platform.win32.COM.tlb"/>
+      <attribute name="version" type="Version" value="0.0.0"/>
+      <attribute name="bundle-symbolic-name" value="com.sun.jna.platform"/>
+      <attribute name="bundle-version" type="Version" value="4.2.0"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="com.sun.jna.platform.win32.COM.tlb.imp"/>
+      <attribute name="version" type="Version" value="0.0.0"/>
+      <attribute name="bundle-symbolic-name" value="com.sun.jna.platform"/>
+      <attribute name="bundle-version" type="Version" value="4.2.0"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="com.sun.jna.platform.wince"/>
+      <attribute name="version" type="Version" value="0.0.0"/>
+      <attribute name="bundle-symbolic-name" value="com.sun.jna.platform"/>
+      <attribute name="bundle-version" type="Version" value="4.2.0"/>
+    </capability>
+    <requirement namespace="osgi.wiring.bundle">
+      <directive name="filter" value="(&amp;(osgi.wiring.bundle=com.sun.jna)(bundle-version&gt;=4.2.0))"/>
+    </requirement>
+    <requirement namespace="osgi.ee">
+      <directive name="filter" value="(&amp;(osgi.ee=JavaSE)(version=1.4))"/>
+    </requirement>
+  </resource>
+  <resource>
+    <capability namespace="osgi.identity">
+      <attribute name="osgi.identity" value="com.sun.jna"/>
+      <attribute name="type" value="osgi.bundle"/>
+      <attribute name="version" type="Version" value="4.2.0"/>
+    </capability>
+    <capability namespace="osgi.content">
+      <attribute name="osgi.content" value="b23136174a73c6132adbbe46e594698fc9b6f0b841168706b9467d13d23c1137"/>
+      <attribute name="url" value="com.sun.jna/com.sun.jna-4.2.0.jar"/>
+      <attribute name="size" type="Long" value="1092828"/>
+      <attribute name="mime" value="application/vnd.osgi.bundle"/>
+    </capability>
+    <capability namespace="osgi.wiring.bundle">
+      <attribute name="osgi.wiring.bundle" value="com.sun.jna"/>
+      <attribute name="bundle-version" type="Version" value="4.2.0"/>
+    </capability>
+    <capability namespace="osgi.wiring.host">
+      <attribute name="osgi.wiring.host" value="com.sun.jna"/>
+      <attribute name="bundle-version" type="Version" value="4.2.0"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="com.sun.jna"/>
+      <attribute name="version" type="Version" value="0.0.0"/>
+      <attribute name="bundle-symbolic-name" value="com.sun.jna"/>
+      <attribute name="bundle-version" type="Version" value="4.2.0"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="com.sun.jna.ptr"/>
+      <attribute name="version" type="Version" value="0.0.0"/>
+      <attribute name="bundle-symbolic-name" value="com.sun.jna"/>
+      <attribute name="bundle-version" type="Version" value="4.2.0"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="com.sun.jna.win32"/>
+      <attribute name="version" type="Version" value="0.0.0"/>
+      <attribute name="bundle-symbolic-name" value="com.sun.jna"/>
+      <attribute name="bundle-version" type="Version" value="4.2.0"/>
+    </capability>
+    <requirement namespace="osgi.ee">
+      <directive name="filter" value="(&amp;(osgi.ee=JavaSE)(version=1.4))"/>
+    </requirement>
+    <requirement namespace="osgi.native">
+      <directive name="filter" value="(|(&amp;(osgi.native.osname~=win32)(osgi.native.processor~=x86))(&amp;(osgi.native.osname~=win32)(osgi.native.processor~=x86-64))(&amp;(osgi.native.osname~=win)(osgi.native.processor~=x86))(&amp;(osgi.native.osname~=win)(osgi.native.processor~=x86-64))(&amp;(osgi.native.osname~=wince)(osgi.native.processor~=arm))(&amp;(osgi.native.osname~=sunos)(osgi.native.processor~=x86))(&amp;(osgi.native.osname~=sunos)(osgi.native.processor~=x86-64))(&amp;(osgi.native.osname~=sunos)(osgi.native.processor~=sparc))(&amp;(osgi.native.osname~=sunos)(osgi.native.processor~=sparcv9))(&amp;(osgi.native.osname~=aix)(osgi.native.processor~=ppc))(&amp;(osgi.native.osname~=aix)(osgi.native.processor~=ppc64))(&amp;(osgi.native.osname~=linux)(osgi.native.processor~=ppc))(&amp;(osgi.native.osname~=linux)(osgi.native.processor~=ppc64))(&amp;(osgi.native.osname~=linux)(osgi.native.processor~=ppc64le))(&amp;(osgi.native.osname~=linux)(osgi.native.processor~=x86))(&amp;(osgi.native.osname~=linux)(osgi.native.processor~=x86-64))(&amp;(osgi.native.osname~=linux)(osgi.native.processor~=arm))(&amp;(osgi.native.osname~=linux)(osgi.native.processor~=aarch64))(&amp;(osgi.native.osname~=linux)(osgi.native.processor~=ia64))(&amp;(osgi.native.osname~=freebsd)(osgi.native.processor~=x86))(&amp;(osgi.native.osname~=freebsd)(osgi.native.processor~=x86-64))(&amp;(osgi.native.osname~=openbsd)(osgi.native.processor~=x86))(&amp;(osgi.native.osname~=openbsd)(osgi.native.processor~=x86-64))(&amp;(osgi.native.osname~=macosx)(|(osgi.native.processor~=x86)(osgi.native.processor~=x86-64)(osgi.native.processor~=ppc))))"/>
     </requirement>
   </resource>
   <resource>
@@ -10810,6 +10936,84 @@
   </resource>
   <resource>
     <capability namespace="osgi.identity">
+      <attribute name="osgi.identity" value="org.apache.commons.validator"/>
+      <attribute name="type" value="osgi.bundle"/>
+      <attribute name="version" type="Version" value="1.4.1"/>
+    </capability>
+    <capability namespace="osgi.content">
+      <attribute name="osgi.content" value="b2987eff521ad4dffdc009f4a468e48ddca2e2261f1a0f8c11dd1421a3ef9a4a"/>
+      <attribute name="url" value="org.apache.commons.validator/org.apache.commons.validator-1.4.1.jar"/>
+      <attribute name="size" type="Long" value="190098"/>
+      <attribute name="mime" value="application/vnd.osgi.bundle"/>
+    </capability>
+    <capability namespace="osgi.wiring.bundle">
+      <attribute name="osgi.wiring.bundle" value="org.apache.commons.validator"/>
+      <attribute name="bundle-version" type="Version" value="1.4.1"/>
+    </capability>
+    <capability namespace="osgi.wiring.host">
+      <attribute name="osgi.wiring.host" value="org.apache.commons.validator"/>
+      <attribute name="bundle-version" type="Version" value="1.4.1"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.apache.commons.validator"/>
+      <attribute name="version" type="Version" value="1.4.1"/>
+      <attribute name="bundle-symbolic-name" value="org.apache.commons.validator"/>
+      <attribute name="bundle-version" type="Version" value="1.4.1"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.apache.commons.validator.javascript"/>
+      <attribute name="version" type="Version" value="1.4.1"/>
+      <attribute name="bundle-symbolic-name" value="org.apache.commons.validator"/>
+      <attribute name="bundle-version" type="Version" value="1.4.1"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.apache.commons.validator.resources"/>
+      <attribute name="version" type="Version" value="1.4.1"/>
+      <attribute name="bundle-symbolic-name" value="org.apache.commons.validator"/>
+      <attribute name="bundle-version" type="Version" value="1.4.1"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.apache.commons.validator.routines"/>
+      <attribute name="version" type="Version" value="1.4.1"/>
+      <attribute name="bundle-symbolic-name" value="org.apache.commons.validator"/>
+      <attribute name="bundle-version" type="Version" value="1.4.1"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.apache.commons.validator.routines.checkdigit"/>
+      <attribute name="version" type="Version" value="1.4.1"/>
+      <attribute name="bundle-symbolic-name" value="org.apache.commons.validator"/>
+      <attribute name="bundle-version" type="Version" value="1.4.1"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.apache.commons.validator.util"/>
+      <attribute name="version" type="Version" value="1.4.1"/>
+      <attribute name="bundle-symbolic-name" value="org.apache.commons.validator"/>
+      <attribute name="bundle-version" type="Version" value="1.4.1"/>
+    </capability>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.apache.commons.beanutils)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.apache.commons.collections)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.apache.commons.digester)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.apache.commons.digester.xmlrules)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.apache.commons.logging)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.xml.sax)"/>
+    </requirement>
+    <requirement namespace="osgi.ee">
+      <directive name="filter" value="(&amp;(osgi.ee=JavaSE)(version=1.4))"/>
+    </requirement>
+  </resource>
+  <resource>
+    <capability namespace="osgi.identity">
       <attribute name="osgi.identity" value="org.apache.directory.api.i18n"/>
       <attribute name="type" value="osgi.bundle"/>
       <attribute name="version" type="Version" value="1.0.0.M30"/>
@@ -12171,6 +12375,97 @@
     </requirement>
     <requirement namespace="osgi.wiring.package">
       <directive name="filter" value="(osgi.wiring.package=org.w3c.dom)"/>
+    </requirement>
+  </resource>
+  <resource>
+    <capability namespace="osgi.identity">
+      <attribute name="osgi.identity" value="org.apache.servicemix.bundles.commons-digester"/>
+      <attribute name="type" value="osgi.bundle"/>
+      <attribute name="version" type="Version" value="1.8.0.4"/>
+    </capability>
+    <capability namespace="osgi.content">
+      <attribute name="osgi.content" value="9ee37df6880d5d1707c78a7590db986cbfecfff0ec146a81099bb12f8324f9a1"/>
+      <attribute name="url" value="org.apache.servicemix.bundles.commons-digester/org.apache.servicemix.bundles.commons-digester-1.8.0.jar"/>
+      <attribute name="size" type="Long" value="181422"/>
+      <attribute name="mime" value="application/vnd.osgi.bundle"/>
+    </capability>
+    <capability namespace="osgi.wiring.bundle">
+      <attribute name="osgi.wiring.bundle" value="org.apache.servicemix.bundles.commons-digester"/>
+      <attribute name="bundle-version" type="Version" value="1.8.0.4"/>
+    </capability>
+    <capability namespace="osgi.wiring.host">
+      <attribute name="osgi.wiring.host" value="org.apache.servicemix.bundles.commons-digester"/>
+      <attribute name="bundle-version" type="Version" value="1.8.0.4"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.apache.commons.digester"/>
+      <attribute name="version" type="Version" value="1.8.0"/>
+      <attribute name="bundle-symbolic-name" value="org.apache.servicemix.bundles.commons-digester"/>
+      <attribute name="bundle-version" type="Version" value="1.8.0.4"/>
+      <directive name="uses" value="org.xml.sax,org.apache.commons.beanutils,org.apache.commons.logging,org.apache.commons.collections,javax.xml.parsers,org.xml.sax.helpers,org.w3c.dom,org.apache.commons.digester.parser"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.apache.commons.digester.substitution"/>
+      <attribute name="version" type="Version" value="1.8.0"/>
+      <attribute name="bundle-symbolic-name" value="org.apache.servicemix.bundles.commons-digester"/>
+      <attribute name="bundle-version" type="Version" value="1.8.0.4"/>
+      <directive name="uses" value="org.xml.sax,org.apache.commons.digester"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.apache.commons.digester.parser"/>
+      <attribute name="version" type="Version" value="1.8.0"/>
+      <attribute name="bundle-symbolic-name" value="org.apache.servicemix.bundles.commons-digester"/>
+      <attribute name="bundle-version" type="Version" value="1.8.0.4"/>
+      <directive name="uses" value="org.apache.commons.logging,javax.xml.parsers,org.xml.sax"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.apache.commons.digester.xmlrules"/>
+      <attribute name="version" type="Version" value="1.8.0"/>
+      <attribute name="bundle-symbolic-name" value="org.apache.servicemix.bundles.commons-digester"/>
+      <attribute name="bundle-version" type="Version" value="1.8.0.4"/>
+      <directive name="uses" value="org.apache.commons.digester,org.xml.sax,org.apache.commons.beanutils,org.apache.commons.collections"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.apache.commons.digester.plugins.strategies"/>
+      <attribute name="version" type="Version" value="1.8.0"/>
+      <attribute name="bundle-symbolic-name" value="org.apache.servicemix.bundles.commons-digester"/>
+      <attribute name="bundle-version" type="Version" value="1.8.0.4"/>
+      <directive name="uses" value="org.apache.commons.digester,org.apache.commons.digester.plugins,org.apache.commons.beanutils,org.apache.commons.logging,org.apache.commons.digester.xmlrules,org.xml.sax"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.apache.commons.digester.plugins"/>
+      <attribute name="version" type="Version" value="1.8.0"/>
+      <attribute name="bundle-symbolic-name" value="org.apache.servicemix.bundles.commons-digester"/>
+      <attribute name="bundle-version" type="Version" value="1.8.0.4"/>
+      <directive name="uses" value="org.apache.commons.digester,org.apache.commons.logging,org.apache.commons.logging.impl,org.apache.commons.digester.plugins.strategies,org.xml.sax"/>
+    </capability>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=javax.xml.parsers)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.apache.commons.beanutils)"/>
+      <directive name="resolution" value="optional"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.apache.commons.collections)"/>
+      <directive name="resolution" value="optional"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.apache.commons.logging)"/>
+      <directive name="resolution" value="optional"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.apache.commons.logging.impl)"/>
+      <directive name="resolution" value="optional"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.w3c.dom)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.xml.sax)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.xml.sax.helpers)"/>
     </requirement>
   </resource>
   <resource>

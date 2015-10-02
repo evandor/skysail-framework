@@ -1,0 +1,7 @@
+lucene:\
+    org.apache.servicemix.bundles.lucene;version=5.2,\
+    org.apache.servicemix.bundles.lucene-analyzers-common;version=5.2,\
+    org.apache.servicemix.bundles.lucene-queryparser;version=5.2,\
+    org.apache.servicemix.bundles.lucene-queries;version=5.2,\
+    org.apache.servicemix.bundles.lucene-sandbox;version=5.2,\
+    skysail.server.ext.lucene;version=latest

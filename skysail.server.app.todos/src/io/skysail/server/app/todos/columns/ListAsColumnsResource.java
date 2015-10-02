@@ -4,7 +4,7 @@ import io.skysail.api.links.Link;
 import io.skysail.server.app.todos.TodoApplication;
 import io.skysail.server.app.todos.todos.status.Status;
 import io.skysail.server.queryfilter.Filter;
-import io.skysail.server.restlet.resources.ListServerResource;
+import io.skysail.server.restlet.resources.*;
 
 import java.util.*;
 
@@ -43,8 +43,11 @@ public class ListAsColumnsResource extends ListServerResource<TodoColumn> {
 
     @Override
     public List<Link> getLinks() {
-        return super.getLinks(app.getMainLinks());
+        List<Class<? extends SkysailServerResource<?>>> links = app.getMainLinks();
+        //links.add(PostListResource.class);
+        return super.getLinks(links);
     }
+
 
     private void addTodoColumn(Map<Status, TodoColumn> map, Status status) {
         map.put(status, new TodoColumn(status));

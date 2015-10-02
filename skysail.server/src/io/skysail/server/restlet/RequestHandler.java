@@ -34,10 +34,10 @@ public class RequestHandler<T extends Identifiable> {
 
     public  AbstractResourceFilter<PutEntityServerResource<T>, T> createForFormResponse() {
         return new ExceptionCatchingFilter<PutEntityServerResource<T>, T>(application)
-                .calling(new AddApiVersionHeaderFilter<PutEntityServerResource<T>, T>())
-                .calling(new ExtractStandardQueryParametersResourceFilter<PutEntityServerResource<T>, T>())
-                .calling(new DataExtractingFilter<PutEntityServerResource<T>, T>())
-                .calling(new AddLinkheadersFilter<PutEntityServerResource<T>, T>());
+                .calling(new AddApiVersionHeaderFilter<>())
+                .calling(new ExtractStandardQueryParametersResourceFilter<>())
+                .calling(new DataExtractingFilter<>())
+                .calling(new AddLinkheadersFilter<>());
     }
 
     /**
@@ -63,64 +63,65 @@ public class RequestHandler<T extends Identifiable> {
 
     private AbstractResourceFilter<EntityServerResource<T>, T> chainForEntityGet() {
         return new ExceptionCatchingFilter<EntityServerResource<T>, T>(application)
-                .calling(new AddApiVersionHeaderFilter<EntityServerResource<T>, T>())
-                .calling(new ExtractStandardQueryParametersResourceFilter<EntityServerResource<T>, T>())
-                .calling(new DataExtractingFilter<EntityServerResource<T>, T>())
-                .calling(new AddLinkheadersFilter<EntityServerResource<T>, T>());
+                .calling(new AddApiVersionHeaderFilter<>())
+                .calling(new ExtractStandardQueryParametersResourceFilter<>())
+                .calling(new DataExtractingFilter<>())
+                .calling(new AddReferrerCookieFilter<>())
+                .calling(new AddLinkheadersFilter<>());
     }
 
     private AbstractResourceFilter<PostEntityServerResource<T>, T> chainForEntityPost() {
         return new ExceptionCatchingFilter<PostEntityServerResource<T>, T>(application)
-                .calling(new ExtractStandardQueryParametersResourceFilter<PostEntityServerResource<T>, T>())
-                .calling(new CheckInvalidInputFilter<PostEntityServerResource<T>, T>(application))
-                .calling(new FormDataExtractingFilter<PostEntityServerResource<T>, T>())
-                .calling(new CheckBusinessViolationsFilter<PostEntityServerResource<T>, T>(application))
-                .calling(new OptionalEncryptionFilter<PostEntityServerResource<T>, T>(application))
-                .calling(new PersistEntityFilter<PostEntityServerResource<T>, T>(application))
-                .calling(new EntityWasAddedFilter<PostEntityServerResource<T>, T>(application))
-                .calling(new AddLinkheadersFilter<PostEntityServerResource<T>, T>())
-                .calling(new PostRedirectGetFilter<PostEntityServerResource<T>, T>());
+                .calling(new ExtractStandardQueryParametersResourceFilter<>())
+                .calling(new CheckInvalidInputFilter<>(application))
+                .calling(new FormDataExtractingFilter<>())
+                .calling(new CheckBusinessViolationsFilter<>(application))
+                .calling(new OptionalEncryptionFilter<>(application))
+                .calling(new PersistEntityFilter<>(application))
+                .calling(new EntityWasAddedFilter<>(application))
+                .calling(new AddLinkheadersFilter<>())
+                .calling(new PostRedirectGetFilter<>());
     }
 
     private AbstractResourceFilter<PutEntityServerResource<T>, T> chainForEntityPut() {
         return new ExceptionCatchingFilter<PutEntityServerResource<T>, T>(application)
-                .calling(new ExtractStandardQueryParametersResourceFilter<PutEntityServerResource<T>, T>())
-                .calling(new CheckInvalidInputFilter<PutEntityServerResource<T>, T>(application))
-                .calling(new FormDataExtractingFilter<PutEntityServerResource<T>, T>())
-                .calling(new CheckBusinessViolationsFilter<PutEntityServerResource<T>, T>(application))
-                .calling(new OptionalEncryptionFilter<PutEntityServerResource<T>, T>(application))
-                .calling(new UpdateEntityFilter<PutEntityServerResource<T>, T>())
+                .calling(new ExtractStandardQueryParametersResourceFilter<>())
+                .calling(new CheckInvalidInputFilter<>(application))
+                .calling(new FormDataExtractingFilter<>())
+                .calling(new CheckBusinessViolationsFilter<>(application))
+                .calling(new OptionalEncryptionFilter<>(application))
+                .calling(new UpdateEntityFilter<>())
                 // .calling(new LocationHeader)
-                .calling(new EntityWasAddedFilter<PutEntityServerResource<T>, T>(application))
-                .calling(new AddLinkheadersFilter<PutEntityServerResource<T>, T>())
-                .calling(new PutRedirectGetFilter<PutEntityServerResource<T>, T>());
+                .calling(new EntityWasAddedFilter<>(application))
+                .calling(new AddLinkheadersFilter<>())
+                .calling(new PutRedirectGetFilter<>());
     }
 
     private AbstractResourceFilter<PutEntityServerResource<T>, T> chainForEntityPatch() {
         return new ExceptionCatchingFilter<PutEntityServerResource<T>, T>(application)
-                .calling(new ExtractStandardQueryParametersResourceFilter<PutEntityServerResource<T>, T>())
-                .calling(new CheckInvalidInputFilter<PutEntityServerResource<T>, T>(application))
-                .calling(new FormDataExtractingFilter<PutEntityServerResource<T>, T>())
-                //.calling(new CheckBusinessViolationsFilter<PutEntityServerResource<T>, T>(application))
-                .calling(new UpdateEntityFilter<PutEntityServerResource<T>, T>())
-                //.calling(new EntityWasAddedFilter<PutEntityServerResource<T>, T>(application))
-                .calling(new AddLinkheadersFilter<PutEntityServerResource<T>, T>())
-                .calling(new PutRedirectGetFilter<PutEntityServerResource<T>, T>());
+                .calling(new ExtractStandardQueryParametersResourceFilter<>())
+                .calling(new CheckInvalidInputFilter<>(application))
+                .calling(new FormDataExtractingFilter<>())
+                //.calling(new CheckBusinessViolationsFilter<>(application))
+                .calling(new UpdateEntityFilter<>())
+                //.calling(new EntityWasAddedFilter<>(application))
+                .calling(new AddLinkheadersFilter<>())
+                .calling(new PutRedirectGetFilter<>());
     }
 
     private AbstractResourceFilter<EntityServerResource<T>, T> chainForEntityDelete() {
         return new ExceptionCatchingFilter<EntityServerResource<T>, T>(application)
-                .calling(new ExtractStandardQueryParametersResourceFilter<EntityServerResource<T>, T>())
-                .calling(new DeleteEntityFilter<EntityServerResource<T>, T>())
-                .calling(new EntityWasDeletedFilter<EntityServerResource<T>, T>(application))
-                .calling(new DeleteRedirectGetFilter<EntityServerResource<T>, T>());
+                .calling(new ExtractStandardQueryParametersResourceFilter<>())
+                .calling(new DeleteEntityFilter<>())
+                .calling(new EntityWasDeletedFilter<>(application))
+                .calling(new DeleteRedirectGetFilter<>());
     }
 
     public AbstractResourceFilter<PostEntityServerResource<T>, T> newInstance(Method method) {
         if (method.equals(Method.GET)) {
-            return new ExceptionCatchingFilter<PostEntityServerResource<T>, T>(application).calling(
-                    new DataExtractingFilter<PostEntityServerResource<T>, T>()).calling(
-                    new AddLinkheadersFilter<PostEntityServerResource<T>, T>());
+            return new ExceptionCatchingFilter<PostEntityServerResource<T>, T>(application)
+                .calling(new DataExtractingFilter<>())
+                .calling(new AddLinkheadersFilter<>());
         }
 
         throw new RuntimeException("Method " + method + " is not yet supported");

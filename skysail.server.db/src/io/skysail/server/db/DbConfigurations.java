@@ -1,20 +1,14 @@
 package io.skysail.server.db;
 
 import java.io.IOException;
-import java.util.Dictionary;
-import java.util.Hashtable;
-import java.util.Map;
+import java.util.*;
 
 import lombok.extern.slf4j.Slf4j;
 
 import org.osgi.framework.Constants;
-import org.osgi.service.cm.Configuration;
-import org.osgi.service.cm.ConfigurationAdmin;
+import org.osgi.service.cm.*;
 
-import aQute.bnd.annotation.component.Activate;
-import aQute.bnd.annotation.component.Component;
-import aQute.bnd.annotation.component.ConfigurationPolicy;
-import aQute.bnd.annotation.component.Reference;
+import aQute.bnd.annotation.component.*;
 
 @Component(immediate = true, configurationPolicy = ConfigurationPolicy.optional)
 @Slf4j

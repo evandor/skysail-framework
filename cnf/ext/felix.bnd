@@ -1,0 +1,11 @@
+felix:\
+    org.apache.felix.bundlerepository;version=latest,\
+    org.apache.felix.configadmin;version='[1.8.0,1.8.1)',\
+    org.apache.felix.fileinstall;version='[3.4.0,3.4.1)',\
+    org.apache.felix.eventadmin;version=1.3.2,\
+    org.apache.felix.gogo.command;version='[0.14.0,0.14.1)',\
+    org.apache.felix.gogo.runtime;version='[0.12.1,0.12.2)',\
+    org.apache.felix.gogo.shell;version='[0.10.0,0.10.1)',\
+    org.apache.felix.log;version='[1.0.1,1.0.2)',\
+    org.apache.felix.prefs;version=1.0.6,\
+    org.apache.felix.scr;version='[1.8.2,1.8.3)'

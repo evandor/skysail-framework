@@ -35,7 +35,7 @@ public class PutPageResource extends PutEntityServerResource<Page> {
     @Override
     public Page getEntity() {
          Page page = app.getPagesRepo().getById(pageId);
-//         Version lastVersion = page.getVersions().get(page.getVersions().size()-1);
+//         ComponentDbVersion lastVersion = page.getVersions().get(page.getVersions().size()-1);
 //         page.setContent(lastVersion.getContent());
 //         return page;
          return null;

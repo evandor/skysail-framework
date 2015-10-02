@@ -8,6 +8,7 @@ import io.skysail.server.app.todos.repo.*;
 import io.skysail.server.app.todos.statuses.*;
 import io.skysail.server.app.todos.todos.Todo;
 import io.skysail.server.app.todos.todos.resources.*;
+import io.skysail.server.db.versions.VersioningService;
 import io.skysail.server.menus.*;
 import io.skysail.server.queryfilter.Filter;
 import io.skysail.server.repo.DbRepository;
@@ -19,12 +20,12 @@ import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 
 import org.apache.shiro.SecurityUtils;
+import org.osgi.service.component.ComponentContext;
 import org.restlet.Request;
 
 import aQute.bnd.annotation.component.*;
 import de.twenty11.skysail.server.app.ApplicationProvider;
 import de.twenty11.skysail.server.core.restlet.*;
-import de.twenty11.skysail.server.services.*;
 
 @Component(immediate = true)
 @Slf4j
@@ -39,6 +40,7 @@ public class TodoApplication extends SkysailApplication implements ApplicationPr
 
     @Getter
     private ListsRepository listRepo;
+    private VersioningService versioningService;
 
     public TodoApplication() {
         super(APP_NAME, new ApiVersion(2));
@@ -64,6 +66,22 @@ public class TodoApplication extends SkysailApplication implements ApplicationPr
         this.listRepo = null;
     }
 
+    @Reference(dynamic = true, multiple = false, optional = true)
+    public void setVersioningService(VersioningService service) {
+        this.versioningService = (VersioningService) service;
+    }
+
+    @Activate
+    public void activate(ComponentContext context) {
+        if (versioningService != null) {
+            System.out.println("hier");
+            versioningService.register(context.getBundleContext().getBundle());
+        }
+    }
+
+    public void unsetVersioningService(VersioningService service) {
+        this.versioningService = null;
+    }
 
     @Override
     protected void attach() {

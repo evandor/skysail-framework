@@ -67,7 +67,8 @@ skysail.server.version                 '[11.0.0,11.0.1)'
 skysail.server.codegen.version         '[0.1.0,0.1.1)'
 # wip
 skysail.server.converter.version       '[3.0.1,3.0.2)'
-skysail.server.db.version              '[3.0.1,3.0.2)'
+#wip
+skysail.server.db.version              '[3.1.0,3.1.1)'
 
 # wip
 skysail.server.http.version                        '[4.0.2,4.0.3)'

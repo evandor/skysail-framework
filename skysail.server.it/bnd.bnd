@@ -46,7 +46,6 @@ Test-Cases: io.skysail.server.test.LoginIntegrationTests
 	io.skysail.bundled.xerces;version=2.11,\
 	io.skysail.bundled.cssparser;version=0.9,\
 	io.skysail.bundled.nekohtml;version=1.9,\
-	io.skysail.bundled.httpclient;version='[4.5.1,4.5.2)',\
 	org.apache.commons.io;version=2.4,\
 	org.apache.commons.codec;version=1.9,\
 	org.apache.httpcomponents.httpcore;version=4.4,\

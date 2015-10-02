@@ -63,7 +63,7 @@
 //    public void creates_one_version_in_new_page() {
 //        Space space = postPage("page_" + randomString(), "theContent");
 //        Space spaceFromDb = repo.getSpaceById(space.getId());
-//        List<Version> versions = spaceFromDb.getPages().get(0).getVersions();
+//        List<ComponentDbVersion> versions = spaceFromDb.getPages().get(0).getVersions();
 //        assertThat(versions.size(), is(1));
 //    }
 //
@@ -71,7 +71,7 @@
 //    public void creates_content_in_first_version_of_new_page() {
 //        Space space = postPage("page_" + randomString(), "theContent");
 //        Space spaceFromDb = repo.getSpaceById(space.getId());
-//        Version firstVersion = spaceFromDb.getPages().get(0).getVersions().get(0);
+//        ComponentDbVersion firstVersion = spaceFromDb.getPages().get(0).getVersions().get(0);
 //        assertThat(firstVersion.getContent(), is(equalTo("theContent")));
 //    }
 //
@@ -79,7 +79,7 @@
 //    public void creates_new_version_in_new_page_belonging_to_current_user() {
 //        Space space = postPage("page_" + randomString(), "theContent");
 //        Space spaceFromDb = repo.getSpaceById(space.getId());
-//        Version firstVersion = spaceFromDb.getPages().get(0).getVersions().get(0);
+//        ComponentDbVersion firstVersion = spaceFromDb.getPages().get(0).getVersions().get(0);
 //        assertThat(firstVersion.getOwner(), is(equalTo("admin")));
 //    }
 //
@@ -87,7 +87,7 @@
 //    public void creates_new_version_in_new_page_which_was_created_now() {
 //        Space space = postPage("page_" + randomString(), "theContent");
 //        Space spaceFromDb = repo.getSpaceById(space.getId());
-//        Version firstVersion = spaceFromDb.getPages().get(0).getVersions().get(0);
+//        ComponentDbVersion firstVersion = spaceFromDb.getPages().get(0).getVersions().get(0);
 //        assertThat(new Date().getTime() - firstVersion.getCreated().getTime(), is(lessThan(PASSED_TIME_THRESHOLD)));
 //    }
 //

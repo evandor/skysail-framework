@@ -1,4 +1,4 @@
-Bundle-Version: 0.0.6.${tstamp}
+Bundle-Version: 0.1.0.${tstamp}
 Bundle-ActivationPolicy: lazy
 Service-Component: *
 Include-Resource: resources, webapp, templates=src;recursive:=true;filter:=*.st|*.stg
@@ -32,8 +32,6 @@ Bundle-Name: SKYSAIL :: products :: website
 	org.mockito.mockito-all;version=1.9,\
 	slf4j.api;version=1.7.7,\
 	biz.aQute.bndlib;version=2.3,\
-	org.clamshell.clamshell-impl-core.osgi;version=0.5,\
-	org.clamshellcli.clamshell-api.osgi;version=0.5,\
 	org.springframework.core;version=3.1,\
 	org.springframework.context;version=3.1,\
 	org.springframework.expression;version=3.1,\
@@ -44,13 +42,12 @@ Bundle-Name: SKYSAIL :: products :: website
 	org.apache.commons.io;version=2.4,\
 	org.apache.httpcomponents.httpclient;version=4.3,\
 	org.apache.httpcomponents.httpcore;version=4.3,\
-	org.clamshellcli.clamshell-test.osgi;version=0.5,\
 	org.apache.commons.lang;version=2.6,\
 	jackson-core-asl;version=1.9,\
 	jackson-mapper-asl;version=1.9,\
-	org.restlet;version=${restlet.version},\
 	javax.validation.api;version=1.1,\
-	org.restlet.ext.raml;version=2.3
+	org.restlet.ext.raml;version=${restlet.version},\
+	org.restlet;version=${restlet.version}
 
 Private-Package:  \
 	de.twenty11.skysail.products.website

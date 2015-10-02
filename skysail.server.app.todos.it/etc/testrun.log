@@ -9,9 +9,9 @@ INFO  net.serenitybdd.core.Serenity -
 |_______/    |_______|| _| `._____||_______||__| \__| |__|     |__|         |__|    
 -------------------------------------------------------------------------------------
 
-DEBUG net.serenitybdd.junit.runners.RetryFilteringRunNotifier - Test started: shouldInstantiateAWebDriverInstanceForAWebTest(io.skysail.server.app.todos.test.WhenSearchingOnGoogle)
-DEBUG net.thucydides.core.steps.StepEventBus - Test suite started for class io.skysail.server.app.todos.test.WhenSearchingOnGoogle
-INFO  net.serenitybdd.core.Serenity - Test Suite Started: When searching on google
+DEBUG net.serenitybdd.junit.runners.RetryFilteringRunNotifier - Test started: admin_can_login_successfully(io.skysail.server.app.todos.test.TodosAppLargeTests)
+DEBUG net.thucydides.core.steps.StepEventBus - Test suite started for class io.skysail.server.app.todos.test.TodosAppLargeTests
+INFO  net.serenitybdd.core.Serenity - Test Suite Started: Todos app large tests
 INFO  net.serenitybdd.core.Serenity - 
   _____ _____ ____ _____   ____ _____  _    ____ _____ _____ ____  
  |_   _| ____/ ___|_   _| / ___|_   _|/ \  |  _ \_   _| ____|  _ \ 
@@ -20,10 +20,19 @@ INFO  net.serenitybdd.core.Serenity -
    |_| |_____|____/ |_|   |____/ |_/_/   \_\_| \_\|_| |_____|____/ 
                                                                    
 
-TEST STARTED: shouldInstantiateAWebDriverInstanceForAWebTest
+TEST STARTED: admin_can_login_successfully
 --------------------------------------------------------------------
 INFO  net.serenitybdd.core.Serenity - TEST NUMBER: 1
-DEBUG net.serenitybdd.junit.runners.RetryFilteringRunNotifier - Test failed: shouldInstantiateAWebDriverInstanceForAWebTest(io.skysail.server.app.todos.test.WhenSearchingOnGoogle): org.apache.http.conn.ssl.SSLConnectionSocketFactory.<init>(Ljavax/net/ssl/SSLContext;[Ljava/lang/String;[Ljava/lang/String;Ljavax/net/ssl/HostnameVerifier;)V
-DEBUG net.serenitybdd.junit.runners.RetryFilteringRunNotifier - Test finished: shouldInstantiateAWebDriverInstanceForAWebTest(io.skysail.server.app.todos.test.WhenSearchingOnGoogle)
+DEBUG net.serenitybdd.junit.runners.RetryFilteringRunNotifier - Test finished: admin_can_login_successfully(io.skysail.server.app.todos.test.TodosAppLargeTests)
+INFO  net.serenitybdd.core.Serenity - 
+        __    _____ _____ ____ _____   ____   _    ____  ____  _____ ____  
+  _     \ \  |_   _| ____/ ___|_   _| |  _ \ / \  / ___|/ ___|| ____|  _ \ 
+ (_)_____| |   | | |  _| \___ \ | |   | |_) / _ \ \___ \\___ \|  _| | | | |
+  _|_____| |   | | | |___ ___) || |   |  __/ ___ \ ___) |___) | |___| |_| |
+ (_)     | |   |_| |_____|____/ |_|   |_| /_/   \_\____/|____/|_____|____/ 
+        /_/                                                                
+
+TEST PASSED: Admin can login successfully
+----------------------------------------------------------------------------
 DEBUG net.serenitybdd.junit.runners.RetryFilteringRunNotifier - Flushing notifications
 INFO  net.thucydides.core.reports.ReportService - Reporting formats: [JSON, XML, HTML]

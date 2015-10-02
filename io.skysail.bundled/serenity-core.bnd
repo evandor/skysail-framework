@@ -12,10 +12,9 @@ Export-Package: \
 
 Bundle-Name: serenity-core
 
-Import-Package: !com.typesafe.config.*,\
+Import-Package: \
     !gherkin.*,\
     !groovy.*,\
-    !io.appium.*,\
     !jxl.*,\
     !org.fluentlenium.*,\
     *

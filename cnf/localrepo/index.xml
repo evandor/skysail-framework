@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<repository increment="1443790841734" name="Local" xmlns="http://www.osgi.org/xmlns/repository/v1.0.0">
+<repository increment="1443790954891" name="Local" xmlns="http://www.osgi.org/xmlns/repository/v1.0.0">
   <resource>
     <capability namespace="osgi.identity">
       <attribute name="osgi.identity" value="bcprov"/>
@@ -7333,9 +7333,9 @@
       <attribute name="version" type="Version" value="1.1.12"/>
     </capability>
     <capability namespace="osgi.content">
-      <attribute name="osgi.content" value="0ce9867eb94db4d921d2b4fa7dbe5ebce0b304a1a536d5ccf80995962354fb0b"/>
+      <attribute name="osgi.content" value="06f9c606a44ec2e66e1ba6af5d17760e8702a4fb2730a0e337b417b2ee264564"/>
       <attribute name="url" value="io.skysail.bundled.serenity-core/io.skysail.bundled.serenity-core-1.1.12.jar"/>
-      <attribute name="size" type="Long" value="4505895"/>
+      <attribute name="size" type="Long" value="4505925"/>
       <attribute name="mime" value="application/vnd.osgi.bundle"/>
     </capability>
     <capability namespace="osgi.wiring.bundle">
@@ -7406,7 +7406,7 @@
       <attribute name="version" type="Version" value="1.0.0"/>
       <attribute name="bundle-symbolic-name" value="io.skysail.bundled.serenity-core"/>
       <attribute name="bundle-version" type="Version" value="1.1.12"/>
-      <directive name="uses" value="com.google.common.base,net.serenitybdd.core.annotations,net.serenitybdd.core.time,net.thucydides.core.annotations,net.thucydides.core.fluent,net.thucydides.core.pages,net.thucydides.core.pages.components,net.thucydides.core.reflection,net.thucydides.core.scheduling,net.thucydides.core.steps,net.thucydides.core.util,net.thucydides.core.webdriver,net.thucydides.core.webdriver.javascript,net.thucydides.core.webelements,org.openqa.selenium,org.openqa.selenium.interactions,org.openqa.selenium.interactions.internal,org.openqa.selenium.internal,org.openqa.selenium.support.pagefactory,org.openqa.selenium.support.ui"/>
+      <directive name="uses" value="com.google.common.base,io.appium.java_client,net.serenitybdd.core.annotations,net.serenitybdd.core.time,net.thucydides.core.annotations,net.thucydides.core.fluent,net.thucydides.core.pages,net.thucydides.core.pages.components,net.thucydides.core.reflection,net.thucydides.core.scheduling,net.thucydides.core.steps,net.thucydides.core.util,net.thucydides.core.webdriver,net.thucydides.core.webdriver.javascript,net.thucydides.core.webelements,org.openqa.selenium,org.openqa.selenium.interactions,org.openqa.selenium.interactions.internal,org.openqa.selenium.internal,org.openqa.selenium.support.pagefactory,org.openqa.selenium.support.ui"/>
     </capability>
     <capability namespace="osgi.wiring.package">
       <attribute name="osgi.wiring.package" value="net.serenitybdd.core.rest"/>
@@ -8059,10 +8059,25 @@
       <directive name="filter" value="(osgi.wiring.package=com.thoughtworks.xstream.mapper)"/>
     </requirement>
     <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=com.typesafe.config)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
       <directive name="filter" value="(osgi.wiring.package=freemarker.core)"/>
     </requirement>
     <requirement namespace="osgi.wiring.package">
       <directive name="filter" value="(osgi.wiring.package=freemarker.template)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=io.appium.java_client)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=io.appium.java_client.android)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=io.appium.java_client.ios)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=io.appium.java_client.pagefactory)"/>
     </requirement>
     <requirement namespace="osgi.wiring.package">
       <directive name="filter" value="(osgi.wiring.package=javax.crypto)"/>

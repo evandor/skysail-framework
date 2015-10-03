@@ -18,14 +18,14 @@ Private-Package:  \
 	skysail.server.converter;version=${skysail.server.converter.version},\
 	skysail.server.ext.browser;version=latest,\
 	skysail.server.ext.sse;version=latest,\
-    skysail.server.ext.initconfig;version=latest,\
+	skysail.server.ext.initconfig;version=latest,\
 	skysail.server.http;version=${skysail.server.http.version},\
 	skysail.server.osgi;version=latest,\
 	skysail.server.plugins;version=latest,\
 	skysail.server.polymer;version=${skysail.server.polymer.version},\
 	skysail.server.queryfilter;version=${skysail.server.queryfilter.version},\
-    skysail.server.static;version=${skysail.server.static.version},\
-	skysail.server.text.markdown;version=${skysail.server.text.markdown.version};,\
+	skysail.server.testsupport;version=${skysail.server.testsupport.version},\
+	skysail.server.text.markdown;version=${skysail.server.text.markdown.version},\
 	skysail.server.text.store.bundleresource;version=${skysail.server.text.store.bundleresource.version},\
 	skysail.server.text.store.git;version=${skysail.server.text.store.git.version},\
 	skysail.server.um.simple;version=${skysail.server.um.simple.version},\

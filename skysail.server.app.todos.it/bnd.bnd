@@ -21,6 +21,7 @@ Test-Cases: \
 	skysail.server;version=${skysail.server.version},\
 	skysail.server.app.todos;version=latest,\
 	skysail.server.db;version=${skysail.server.db.version},\
+	skysail.server.testsupport;version=${skysail.server.testsupport.version},\
 	skysail.server.um.internal;version=0.0,\
 	osgi.core;version=5.0,\
 	com.springsource.org.junit;version=4.11,\
@@ -110,7 +111,7 @@ Test-Cases: \
 #    gosh.args=--nointeractive
 
 -runbundles:  \
-${aQute},\
+    ${aQute},\
     ${logging},\
     ${fasterxml},\
     com.google.guava;version='[16.0,16.1)',\

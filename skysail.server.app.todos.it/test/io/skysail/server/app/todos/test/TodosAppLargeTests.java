@@ -1,5 +1,8 @@
 package io.skysail.server.app.todos.test;
 
+import static org.hamcrest.CoreMatchers.containsString;
+import static org.junit.Assert.assertThat;
+import io.skysail.server.testsupport.SkysailServerRule;
 import net.serenitybdd.junit.runners.SerenityRunner;
 import net.thucydides.core.annotations.Managed;
 
@@ -8,13 +11,15 @@ import org.junit.runner.RunWith;
 import org.openqa.selenium.*;
 
 import aQute.bnd.build.*;
-import aQute.lib.io.IO;
 
 @RunWith(SerenityRunner.class)
 public class TodosAppLargeTests {
 
     @Managed(driver = "firefox")
     private static WebDriver driver;
+
+    @Rule
+    public final SkysailServerRule serverRule = new SkysailServerRule( );
 
     private static Workspace ws;
     private static Project project;
@@ -28,34 +33,34 @@ public class TodosAppLargeTests {
 
     @BeforeClass
     public static void s() throws Exception {
-        ws = new Workspace(IO.getFile("../"));
-        project = ws.getProject("skysail.product.todos");
-        run = Workspace.getRun(IO.getFile("todos.test.bndrun"));
-        bndLauncher = run.getProjectLauncher();
-        bndLauncher.prepare();
-
-        launcherThread = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    bndLauncher.launch();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        }, "Test Launcher");
-
-        launcherThread.start();
-        Thread.currentThread().sleep(35000);
+//        ws = new Workspace(IO.getFile("../"));
+//        project = ws.getProject("skysail.product.todos");
+//        run = Workspace.getRun(IO.getFile("todos.test.bndrun"));
+//        bndLauncher = run.getProjectLauncher();
+//        bndLauncher.prepare();
+//
+//        launcherThread = new Thread(new Runnable() {
+//            @Override
+//            public void run() {
+//                try {
+//                    bndLauncher.launch();
+//                } catch (Exception e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//        }, "Test Launcher");
+//
+//        launcherThread.start();
+//        Thread.currentThread().sleep(35000);
     }
 
     @AfterClass
     public static void tearDown() throws Exception {
         driver.quit();
-        launcherThread.stop();
-        run.close();
-        project.close();
-        ws.close();
+//        launcherThread.stop();
+//        run.close();
+//        project.close();
+//        ws.close();
     }
 
     @Test
@@ -67,6 +72,6 @@ public class TodosAppLargeTests {
         passwordElement.submit();
         System.out.println("Page title is: " + driver.getTitle());
         System.out.println(driver.getPageSource());
-       // assertThat(driver.getPageSource(), containsString("/Todos/v2"));
+        assertThat(driver.getPageSource(), containsString("/Todos/v2"));
     }
 }

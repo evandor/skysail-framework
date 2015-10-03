@@ -115,7 +115,7 @@ public class TodoListBrowser extends ApplicationBrowser<TodoListBrowser, TodoLis
 
     private void navigateToPostTodoListAs(ApplicationClient<TodoList> client) {
         ApplicationClient<TodoList> appClient = client.gotoAppRoot();
-        if (appClient.getLocation().toString().endsWith("/Todos/v2/Lists/")) {
+        if (appClient.getLocation() != null && appClient.getLocation().toString().endsWith("/Todos/v2/Lists/")) {
             // already redirected to PostListResource by server.
             client.setUrlFromCurrentRepresentation();
             return;

@@ -20,6 +20,7 @@ import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 
 import org.apache.shiro.SecurityUtils;
+import org.osgi.service.cm.ConfigurationException;
 import org.osgi.service.component.ComponentContext;
 import org.restlet.Request;
 
@@ -72,10 +73,11 @@ public class TodoApplication extends SkysailApplication implements ApplicationPr
     }
 
     @Activate
-    public void activate(ComponentContext context) {
+    public void activate(ComponentContext componentContext) throws ConfigurationException {
+        super.activate(componentContext);
         if (versioningService != null) {
             System.out.println("hier");
-            versioningService.register(context.getBundleContext().getBundle());
+        //    versioningService.register(context.getBundleContext().getBundle());
         }
     }
 

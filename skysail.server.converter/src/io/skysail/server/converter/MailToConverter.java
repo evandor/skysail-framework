@@ -5,28 +5,21 @@ import io.skysail.server.restlet.resources.SkysailServerResource;
 import io.skysail.server.utils.ReflectionUtils;
 
 import java.lang.reflect.Field;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import lombok.extern.slf4j.Slf4j;
 
-import org.restlet.data.MediaType;
-import org.restlet.data.Reference;
+import org.restlet.data.*;
 import org.restlet.engine.converter.ConverterHelper;
 import org.restlet.engine.resource.VariantInfo;
-import org.restlet.representation.Representation;
-import org.restlet.representation.StringRepresentation;
-import org.restlet.representation.Variant;
+import org.restlet.representation.*;
 import org.restlet.resource.Resource;
 
 import aQute.bnd.annotation.component.Component;
 import de.twenty11.skysail.server.services.OsgiConverterHelper;
 import etm.core.configuration.EtmManager;
-import etm.core.monitor.EtmMonitor;
-import etm.core.monitor.EtmPoint;
+import etm.core.monitor.*;
 
 @Component(immediate = true)
 @Slf4j
@@ -34,7 +27,8 @@ public class MailToConverter extends ConverterHelper implements OsgiConverterHel
 
     protected static final EtmMonitor etmMonitor = EtmManager.getEtmMonitor();
 
-    private static final float DEFAULT_MATCH_VALUE = 0.5f;
+    private static final float DEFAULT_MATCH_VALUE = 0.0f;
+
     private static Map<MediaType, Float> mediaTypesMatch = new HashMap<MediaType, Float>();
 
     static {

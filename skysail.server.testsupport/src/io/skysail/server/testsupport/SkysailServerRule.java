@@ -6,18 +6,24 @@ import aQute.bnd.build.*;
 import aQute.lib.io.IO;
 public class SkysailServerRule extends ExternalResource {
 
-
     private Workspace ws;
     private Project project;
     private Run run;
     private ProjectLauncher bndLauncher;
     private Thread launcherThread;
+    private String projectName;
+    private String bndrunFile;
+
+    public SkysailServerRule(String project, String bndrunFile) {
+        this.projectName = project;
+        this.bndrunFile = bndrunFile;
+    }
 
     @Override
     protected void before() throws Throwable {
         ws = new Workspace(IO.getFile("../"));
-        project = ws.getProject("skysail.product.todos");
-        run = Workspace.getRun(IO.getFile("todos.test.bndrun"));
+        project = ws.getProject(projectName);
+        run = Workspace.getRun(IO.getFile(bndrunFile));
         bndLauncher = run.getProjectLauncher();
         bndLauncher.prepare();
 

@@ -2,65 +2,32 @@ package io.skysail.server.app.todos.test;
 
 import static org.hamcrest.CoreMatchers.containsString;
 import static org.junit.Assert.assertThat;
-import io.skysail.server.testsupport.SkysailServerRule;
+import io.skysail.server.testsupport.*;
 import net.serenitybdd.junit.runners.SerenityRunner;
 import net.thucydides.core.annotations.Managed;
 
 import org.junit.*;
+import org.junit.experimental.categories.Category;
 import org.junit.runner.RunWith;
 import org.openqa.selenium.*;
 
-import aQute.bnd.build.*;
-
 @RunWith(SerenityRunner.class)
+@Category(LargeTests.class)
 public class TodosAppLargeTests {
 
     @Managed(driver = "firefox")
     private static WebDriver driver;
 
     @Rule
-    public final SkysailServerRule serverRule = new SkysailServerRule( );
-
-    private static Workspace ws;
-    private static Project project;
-    private static ProjectLauncher bndLauncher;
-    private static Run run;
-    private static Thread launcherThread;
+    public final SkysailServerRule serverRule = new SkysailServerRule("skysail.product.todos","todos.bndrun" );
 
     public TodosAppLargeTests() {
        // System.setProperty("webdriver.firefox.bin", "C:\\Users\\graefca\\AppData\\Local\\Mozilla Firefox\\firefox.exe");
     }
 
-    @BeforeClass
-    public static void s() throws Exception {
-//        ws = new Workspace(IO.getFile("../"));
-//        project = ws.getProject("skysail.product.todos");
-//        run = Workspace.getRun(IO.getFile("todos.test.bndrun"));
-//        bndLauncher = run.getProjectLauncher();
-//        bndLauncher.prepare();
-//
-//        launcherThread = new Thread(new Runnable() {
-//            @Override
-//            public void run() {
-//                try {
-//                    bndLauncher.launch();
-//                } catch (Exception e) {
-//                    e.printStackTrace();
-//                }
-//            }
-//        }, "Test Launcher");
-//
-//        launcherThread.start();
-//        Thread.currentThread().sleep(35000);
-    }
-
     @AfterClass
     public static void tearDown() throws Exception {
         driver.quit();
-//        launcherThread.stop();
-//        run.close();
-//        project.close();
-//        ws.close();
     }
 
     @Test

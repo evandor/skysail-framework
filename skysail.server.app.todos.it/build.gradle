@@ -20,3 +20,17 @@ dependencies {
     testCompile 'net.serenity-bdd:serenity-junit:1.1.13'
     testCompile('org.assertj:assertj-core:1.7.0')
 }
+
+
+test {
+    useJUnit {
+        //includeCategories 'org.gradle.junit.CategoryA'
+        excludeCategories 'io.skysail.server.testsupport.LargeTests'
+    }
+}
+
+task largeTest(type: Test) {
+    useJUnit {
+        includeCategories 'io.skysail.server.testsupport.LargeTests'
+    }
+}

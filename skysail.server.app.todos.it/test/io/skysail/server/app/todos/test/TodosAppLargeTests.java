@@ -11,7 +11,6 @@ import aQute.bnd.build.*;
 import aQute.lib.io.IO;
 
 @RunWith(SerenityRunner.class)
-@Ignore
 public class TodosAppLargeTests {
 
     @Managed(driver = "firefox")

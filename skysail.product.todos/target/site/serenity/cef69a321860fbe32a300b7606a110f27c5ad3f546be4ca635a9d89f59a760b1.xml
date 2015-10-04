@@ -1,0 +1,6 @@
+<acceptance-test-run title="Admin can login successfully" name="admin_can_login_successfully" steps="0" successful="0" failures="0" skipped="0" ignored="0" pending="0" result="SUCCESS" duration="61001" timestamp="2015-10-04T18:38:16.341+02:00">
+  <user-story id="io.skysail.product.todos.test.TodosProductLargeTests" name="Todos product large tests" path="io.skysail.product.todos.test"/>
+  <tags>
+    <tag name="Todos product large tests" type="story"/>
+  </tags>
+</acceptance-test-run>

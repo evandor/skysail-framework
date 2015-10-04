@@ -6,23 +6,18 @@ import aQute.bnd.build.*;
 import aQute.lib.io.IO;
 public class SkysailServerRule extends ExternalResource {
 
-    private Workspace ws;
-    private Project project;
     private Run run;
     private ProjectLauncher bndLauncher;
     private Thread launcherThread;
-    private String projectName;
     private String bndrunFile;
 
-    public SkysailServerRule(String project, String bndrunFile) {
-        this.projectName = project;
+    public SkysailServerRule(String bndrunFile) {
         this.bndrunFile = bndrunFile;
     }
 
+    @SuppressWarnings("static-access")
     @Override
     protected void before() throws Throwable {
-        ws = new Workspace(IO.getFile("../"));
-        project = ws.getProject(projectName);
         run = Workspace.getRun(IO.getFile(bndrunFile));
         bndLauncher = run.getProjectLauncher();
         bndLauncher.prepare();
@@ -39,15 +34,14 @@ public class SkysailServerRule extends ExternalResource {
         }, "Test Launcher");
 
         launcherThread.start();
-        Thread.currentThread().sleep(35000);
+        Thread.currentThread().sleep(30000);
     }
 
+    @SuppressWarnings("deprecation")
     @Override
     protected void after() {
         //driver.quit();
         launcherThread.stop();
         run.close();
-        project.close();
-        ws.close();
     }
 }

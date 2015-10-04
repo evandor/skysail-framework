@@ -9,8 +9,8 @@ INFO  net.serenitybdd.core.Serenity -
 |_______/    |_______|| _| `._____||_______||__| \__| |__|     |__|         |__|    
 -------------------------------------------------------------------------------------
 
-DEBUG net.serenitybdd.junit.runners.RetryFilteringRunNotifier - Test started: admin_can_login_successfully(io.skysail.server.app.todos.test.TodosAppLargeTests)
-DEBUG net.thucydides.core.steps.StepEventBus - Test suite started for class io.skysail.server.app.todos.test.TodosAppLargeTests
+DEBUG net.serenitybdd.junit.runners.RetryFilteringRunNotifier - Test started: admin_can_login_successfully(io.skysail.product.todos.test.TodosAppLargeTests)
+DEBUG net.thucydides.core.steps.StepEventBus - Test suite started for class io.skysail.product.todos.test.TodosAppLargeTests
 INFO  net.serenitybdd.core.Serenity - Test Suite Started: Todos app large tests
 INFO  net.serenitybdd.core.Serenity - 
   _____ _____ ____ _____   ____ _____  _    ____ _____ _____ ____  
@@ -23,7 +23,7 @@ INFO  net.serenitybdd.core.Serenity -
 TEST STARTED: admin_can_login_successfully
 --------------------------------------------------------------------
 INFO  net.serenitybdd.core.Serenity - TEST NUMBER: 1
-DEBUG net.serenitybdd.junit.runners.RetryFilteringRunNotifier - Test finished: admin_can_login_successfully(io.skysail.server.app.todos.test.TodosAppLargeTests)
+DEBUG net.serenitybdd.junit.runners.RetryFilteringRunNotifier - Test finished: admin_can_login_successfully(io.skysail.product.todos.test.TodosAppLargeTests)
 INFO  net.serenitybdd.core.Serenity - 
         __    _____ _____ ____ _____   ____   _    ____  ____  _____ ____  
   _     \ \  |_   _| ____/ ___|_   _| |  _ \ / \  / ___|/ ___|| ____|  _ \ 

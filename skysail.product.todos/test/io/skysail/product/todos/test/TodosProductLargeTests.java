@@ -2,16 +2,17 @@ package io.skysail.product.todos.test;
 
 import static org.hamcrest.CoreMatchers.containsString;
 import static org.junit.Assert.assertThat;
-import io.skysail.server.testsupport.SkysailServerRule;
+import io.skysail.server.testsupport.*;
 import net.serenitybdd.junit.runners.SerenityRunner;
 import net.thucydides.core.annotations.Managed;
 
 import org.junit.*;
+import org.junit.experimental.categories.Category;
 import org.junit.runner.RunWith;
 import org.openqa.selenium.*;
 
 @RunWith(SerenityRunner.class)
-//@Category(LargeTests.class)
+@Category(LargeTests.class)
 public class TodosProductLargeTests {
 
     @Managed(driver = "firefox")

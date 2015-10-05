@@ -1,6 +1,0 @@
-<acceptance-test-run title="This is to create the serenity output directory" name="this_is_to_create_the_serenity_output_directory" steps="0" successful="0" failures="0" skipped="0" ignored="0" pending="0" result="SUCCESS" duration="453" timestamp="2015-10-04T21:57:32.155+02:00">
-  <user-story id="io.skysail.product.todos.test.DummyTest" name="Dummy test" path="io.skysail.product.todos.test"/>
-  <tags>
-    <tag name="Dummy test" type="story"/>
-  </tags>
-</acceptance-test-run>

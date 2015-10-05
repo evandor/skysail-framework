@@ -39,6 +39,6 @@ public class TodosProductLargeTests {
         passwordElement.submit();
         System.out.println("Page title is: " + driver.getTitle());
         System.out.println(driver.getPageSource());
-        assertThat(driver.getPageSource(), containsString("/Todos/v2/xxx"));
+        assertThat(driver.getPageSource(), containsString("/Todos/v2"));
     }
 }

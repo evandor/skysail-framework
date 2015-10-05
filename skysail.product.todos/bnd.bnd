@@ -13,8 +13,6 @@ Private-Package:  \
 	skysail.api.validation;version=${skysail.api.validation.version},\
 	skysail.server.db;version=${skysail.server.db.version},\
 	skysail.server.static;version=${skysail.server.static.version},\
-	skysail.server.app.todos;version=latest,\
-	skysail.server.app.bookmarks;version=latest,\
 	skysail.server.converter;version=${skysail.server.converter.version},\
 	skysail.server.ext.browser;version=latest,\
 	skysail.server.ext.sse;version=latest,\

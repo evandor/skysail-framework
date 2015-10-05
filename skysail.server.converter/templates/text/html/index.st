@@ -44,7 +44,7 @@ index(user, messages, converter, model) ::= <<
 
     <footer class="footer">
       <div class="container4footer" style="border-top: 1px dotted #a0a0a0;">
-        <p class="text-muted"><div id="output"></div></p>
+        <div id="output"></div>
       </div>
     </footer>
 

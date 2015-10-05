@@ -52,16 +52,10 @@ skysail.config.path = config/largetest
     skysail.server.peers.adminconfig;version=latest,\
     skysail.server.polymer;version=${skysail.server.polymer.version},\
     skysail.server.plugins;version=latest,\
-    skysail.server.app.bookmarks;version=latest,\
-    skysail.server.app.crm;version=latest,\
-    skysail.server.app.designer;version=latest,\
     skysail.server.app.fileserver;version=latest,\
     skysail.server.app.svgedit;version=latest,\
     skysail.server.app.todos;version=latest,\
     skysail.server.app.twitter4j;version=latest,\
-    skysail.server.app.wiki;version=latest,\
-    skysail.server.ext.mail;version=latest,\
-    skysail.server.ext.initconfig;version=latest,\
     org.jsoup;version=1.8.1,\
     com.sun.mail.javax.mail;version=1.5.1,\
     ${jetty},\

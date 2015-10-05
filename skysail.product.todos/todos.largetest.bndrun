@@ -4,7 +4,6 @@
 
 -resolve.effective: active;skip:="osgi.service"
 -runee: JavaSE-1.8
--runbundles:${runbundles}
 -runfw: org.apache.felix.framework;version=${org.apache.felix.framework.version}
 -runproperties: ${runproperties}
 -runrepos: ${runrepos}
@@ -18,5 +17,46 @@
 ### --- run-file-specific settings ------------------------------------------------- ###
 ########################################################################################
 
-skysail.config.path            = config/common,config/largetest
-logback.configurationFile.path = config/common
+skysail.config.path = config/common,config/largetest
+logback.configurationFile.path =  config/common
+
+-runbundles: \
+    ${aQute},\
+    ${logging},\
+    ${fasterxml},\
+    com.google.guava;version='[16.0,16.1)',\
+    com.googlecode.concurrentlinkedhashmap.lru;version='[1.4.0,1.4.1)',\
+    ${orientdb},\
+    com.sun.el;version='[2.2.0,2.2.1)',\
+    de.twenty11.owasp-java-html-sanitizer;version='[239.0.0,239.0.1)',\
+    de.twentyeleven.skysail.org.antlr.stringtemplate-osgi;version=4.0.8,\
+    de.twentyeleven.skysail.org.json-osgi;version=latest,\
+    ${etm},\
+    javassist;version='[3.18.1,3.18.2)',\
+    ${javax},\
+    ${commons},\
+    ${felix},\
+    org.apache.servicemix.bundles.c3p0;version=0.9.1,\
+    org.apache.servicemix.bundles.jakarta-regexp,\
+    ${lucene},\
+    ${shiro},\
+    org.codehaus.jettison.jettison;version=1.3.7,\
+    org.hibernate.validator;version='[5.1.2,5.1.3)',\
+    org.jboss.logging.jboss-logging;version='[3.1.4,3.1.5)',\
+    org.quartz-scheduler.quartz;version=2.2.1,\
+    ${restlet},\
+    ${osgi},\
+    ${skysail.api},\
+    skysail.client.todos.angularjs;version=latest,\
+    skysail.product.todos;version=latest,\
+    ${skysail.server},\
+    skysail.server.peers.adminconfig;version=latest,\
+    skysail.server.polymer;version=${skysail.server.polymer.version},\
+    skysail.server.plugins;version=latest,\
+    skysail.server.app.svgedit;version=latest,\
+    skysail.server.app.todos;version=latest,\
+    skysail.server.app.twitter4j;version=latest,\
+    org.jsoup;version=1.8.1,\
+    com.sun.mail.javax.mail;version=1.5.1,\
+    ${jetty},\
+    org.yaml.snakeyaml;version=1.15.0

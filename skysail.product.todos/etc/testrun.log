@@ -1,3 +1,7 @@
+INFO  net.thucydides.core.util.PropertiesFileLocalPreferences - LOADING LOCAL PROPERTIES FROM /Users/carsten/git/skysail-framework/skysail.product.todos/serenity.properties 
+INFO  net.thucydides.core.util.PropertiesFileLocalPreferences - LOADING LOCAL PROPERTIES FROM /Users/carsten/git/skysail-framework/skysail.product.todos/serenity.properties 
+INFO  net.thucydides.core.util.PropertiesFileLocalPreferences - serenity.take.screenshots=FOR_EACH_ACTION
+INFO  net.thucydides.core.util.PropertiesFileLocalPreferences - //serenity.outputDirectory=generated/serenity1
 INFO  net.serenitybdd.core.Serenity - 
 
 -------------------------------------------------------------------------------------
@@ -9,9 +13,9 @@ INFO  net.serenitybdd.core.Serenity -
 |_______/    |_______|| _| `._____||_______||__| \__| |__|     |__|         |__|    
 -------------------------------------------------------------------------------------
 
-DEBUG net.serenitybdd.junit.runners.RetryFilteringRunNotifier - Test started: admin_can_login_successfully(io.skysail.product.todos.test.TodosAppLargeTests)
-DEBUG net.thucydides.core.steps.StepEventBus - Test suite started for class io.skysail.product.todos.test.TodosAppLargeTests
-INFO  net.serenitybdd.core.Serenity - Test Suite Started: Todos app large tests
+DEBUG net.serenitybdd.junit.runners.RetryFilteringRunNotifier - Test started: admin_can_login_successfully(io.skysail.product.todos.test.TodosProductLargeTests)
+DEBUG net.thucydides.core.steps.StepEventBus - Test suite started for class io.skysail.product.todos.test.TodosProductLargeTests
+INFO  net.serenitybdd.core.Serenity - Test Suite Started: Todos product large tests
 INFO  net.serenitybdd.core.Serenity - 
   _____ _____ ____ _____   ____ _____  _    ____ _____ _____ ____  
  |_   _| ____/ ___|_   _| / ___|_   _|/ \  |  _ \_   _| ____|  _ \ 
@@ -23,7 +27,7 @@ INFO  net.serenitybdd.core.Serenity -
 TEST STARTED: admin_can_login_successfully
 --------------------------------------------------------------------
 INFO  net.serenitybdd.core.Serenity - TEST NUMBER: 1
-DEBUG net.serenitybdd.junit.runners.RetryFilteringRunNotifier - Test finished: admin_can_login_successfully(io.skysail.product.todos.test.TodosAppLargeTests)
+DEBUG net.serenitybdd.junit.runners.RetryFilteringRunNotifier - Test finished: admin_can_login_successfully(io.skysail.product.todos.test.TodosProductLargeTests)
 INFO  net.serenitybdd.core.Serenity - 
         __    _____ _____ ____ _____   ____   _    ____  ____  _____ ____  
   _     \ \  |_   _| ____/ ___|_   _| |  _ \ / \  / ___|/ ___|| ____|  _ \ 

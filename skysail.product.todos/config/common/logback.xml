@@ -6,8 +6,7 @@
 		</filter>
 		<encoder>
 			<!--%d{mm:ss.SSS} [%thread]-->
-			<pattern>%date{ISO8601}  %-5level [%-45logger{40}] - %msg %n
-			</pattern>
+			<pattern>common: %date{ISO8601}  %-5level [%-45logger{40}] - %msg %n</pattern>
 		</encoder>
 	</appender>
 

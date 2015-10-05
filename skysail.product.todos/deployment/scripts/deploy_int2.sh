@@ -2,8 +2,8 @@
 
 export JAVA_HOME=/home/carsten/.hudson/tools/hudson.model.JDK/java_SDK_8u25/
 
-JOB_DIR = "/home/carsten/.hudson/jobs/ssp.todos.export.int/workspace/skysail.product.todos"
-PRODUCT_DIR = "/home/carsten/skysail/products/todos"
+JOB_DIR="/home/carsten/.hudson/jobs/ssp.todos.export.int/workspace/skysail.product.todos"
+PRODUCT_DIR="/home/carsten/skysail/products/todos"
 
 cd $JOB_DIR/generated/distributions/executable
 

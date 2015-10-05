@@ -3,7 +3,6 @@
 ########################################################################################
 
 -resolve.effective: active;skip:="osgi.service"
--runbundles: ${runbundles}
 -runee: JavaSE-1.8
 -runfw: org.apache.felix.framework;version=${org.apache.felix.framework.version}
 -runproperties: ${runproperties}
@@ -13,6 +12,11 @@
 -runtrace: false
 -runvm: -ea
 #, -XX:+UnlockCommercialFeatures,-XX:+FlightRecorder,-XX:StartFlightRecording="duration=120m,filename=etc/todos.jfr"
+
+-runbundles: \
+    ${runbundles},\
+    skysail.server.app.todos;version=latest
+
 
 ########################################################################################
 ### --- run-file-specific settings ------------------------------------------------- ###

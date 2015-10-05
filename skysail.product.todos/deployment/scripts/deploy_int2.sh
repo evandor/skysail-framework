@@ -22,7 +22,7 @@ cp skysail.todos.jar $PRODUCT_DIR/int2/bin/skysail.todos.jar
 echo "stopping todos service: $PRODUCT_DIR/int2/bin/todos_int2"
 if [ -e "$PRODUCT_DIR/int2/bin/todos_int2" ]
 then
-  chmod 755 todos_int2
+  chmod 755 $PRODUCT_DIR/int2/bin/todos_int2
   $PRODUCT_DIR/int2/bin/todos_int2 stop
 fi
 

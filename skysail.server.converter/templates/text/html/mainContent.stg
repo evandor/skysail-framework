@@ -75,7 +75,7 @@ mainContent(user, converter, messages, model) ::= <<
 	    );
 	}
     var h = window.innerHeight;
-    height = (h - 130)+"px";
+    height = (h - 133)+"px";
     if (window.innerWidth > 1000) {
       document.getElementById('leftMenu').style.height = height;
     }

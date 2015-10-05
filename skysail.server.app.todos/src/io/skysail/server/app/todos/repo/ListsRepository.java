@@ -10,13 +10,16 @@ import io.skysail.server.repo.DbRepository;
 
 import java.util.*;
 
+import lombok.extern.slf4j.Slf4j;
 import aQute.bnd.annotation.component.*;
 
 @Component(immediate = true, properties = "name=ListsRepository")
+@Slf4j
 public class ListsRepository extends GraphDbRepository<TodoList> implements DbRepository {
 
     @Activate
     public void activate() { // NO_UCD
+        log.debug("activating Repository");
         dbService.createWithSuperClass("V", TodoList.class.getSimpleName());
         dbService.register(TodoList.class);
         dbService.createUniqueIndex(TodoList.class, "name", "owner");
@@ -24,10 +27,12 @@ public class ListsRepository extends GraphDbRepository<TodoList> implements DbRe
 
     @Reference
     public void setDbService(DbService dbService) {
+        log.debug("setting dbService");
         this.dbService = dbService;
     }
 
     public void unsetDbService(DbService dbService) {
+        log.debug("unsetting dbService");
         this.dbService = null;
     }
 

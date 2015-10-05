@@ -9,23 +9,28 @@ import io.skysail.server.repo.DbRepository;
 
 import java.util.*;
 
+import lombok.extern.slf4j.Slf4j;
 import aQute.bnd.annotation.component.*;
 
 @Component(immediate = true, properties = "name=TodosRepository")
+@Slf4j
 public class TodosRepository extends GraphDbRepository<Todo>  implements DbRepository {
 
     @Activate
     public void activate() { // NO_UCD
+        log.debug("activating repository");
         dbService.createWithSuperClass("V", Todo.class.getSimpleName());
         dbService.register(Todo.class);
     }
 
     @Reference
     public void setDbService(DbService dbService) {
+        log.debug("setting dbService");
         this.dbService = dbService;
     }
 
     public void unsetDbService(DbService dbService) {
+        log.debug("unsetting dbService");
         this.dbService = null;
     }
 

@@ -28,9 +28,9 @@ test {
         excludeCategories 'io.skysail.server.testsupport.LargeTests'
     }
 }
-
+/*
 task largeTest(type: Test) {
     useJUnit {
         includeCategories 'io.skysail.server.testsupport.LargeTests'
     }
-}
+}*/

@@ -41,7 +41,7 @@ svn export --force https://85.25.22.125/repos/skysale/skysailconfigs/todos/int/
 
 echo "starting todos service"
 cd $PRODUCT_DIR/int2/bin/
-#unzip -o skysail.todos.jar
+unzip -o skysail.todos.jar
 chmod 755 todos_int2
 ./todos_int2 start
 

@@ -37,7 +37,7 @@ cd $PRODUCT_DIR/int2/bin
 #rm -rf config
 #mkdir config
 cd config
-svn checkout https://85.25.22.125/repos/skysale/skysailconfigs/todos/int/
+svn export https://85.25.22.125/repos/skysale/skysailconfigs/todos/int/
 
 echo "starting todos service"
 cd $PRODUCT_DIR/int2/bin/

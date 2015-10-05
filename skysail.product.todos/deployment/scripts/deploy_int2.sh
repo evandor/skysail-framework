@@ -19,8 +19,12 @@ mkdir -p $PRODUCT_DIR/int2/lib
 echo "copying skysail.todos.jar to products directory"
 cp skysail.todos.jar $PRODUCT_DIR/int2/bin/skysail.todos.jar
 
-echo "stopping todos service"
-$PRODUCT_DIR/int2/bin/todos_int2 stop
+echo "stopping todos service: $PRODUCT_DIR/int2/bin/todos_int2"
+if [ -e "$PRODUCT_DIR/int2/bin/todos_int2" ]
+then
+  $PRODUCT_DIR/int2/bin/todos_int2 stop
+fi
+
 
 cd $JOB_DIR
 cp -r deployment/service/* $PRODUCT_DIR/int2

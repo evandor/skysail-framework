@@ -13,7 +13,7 @@ cp todos.int2.jar skysail.todos.jar
 echo "copying skysail.todos.jar to public site"
 cp skysail.todos.jar /var/www/skysail/products/todos/skysail.todos.int2.jar
 
-mkdir -p $PRODUCT_DIR/int2/bin
+mkdir -p $PRODUCT_DIR/int2/bin/config/int
 mkdir -p $PRODUCT_DIR/int2/lib
 
 echo "copying skysail.todos.jar to products directory"

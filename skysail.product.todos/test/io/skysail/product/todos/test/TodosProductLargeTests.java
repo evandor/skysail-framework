@@ -19,7 +19,7 @@ public class TodosProductLargeTests {
     private static WebDriver driver;
 
     @Rule
-    public final SkysailServerRule serverRule = new SkysailServerRule("todos.bndrun" );
+    public final SkysailServerRule serverRule = new SkysailServerRule("todos.largetest.bndrun" );
 
     public TodosProductLargeTests() {
        // System.setProperty("webdriver.firefox.bin", "C:\\Users\\graefca\\AppData\\Local\\Mozilla Firefox\\firefox.exe");

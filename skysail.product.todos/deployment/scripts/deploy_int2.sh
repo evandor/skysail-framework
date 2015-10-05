@@ -23,14 +23,14 @@ cd /home/carsten/.hudson/jobs/ssp.todos.export.int/workspace/skysail.product.tod
 cp -r deployment/service/* /home/carsten/skysail/products/todos/int2
 
 
-#echo "getting config files for installation from svn"
-#cd /home/carsten/skysail/products/todos/int/bin
+echo "getting config files for installation from svn"
+cd /home/carsten/skysail/products/todos/int2/bin
 #rm -rf config
 #mkdir config
-#cd config
-#svn checkout https://85.25.22.125/repos/skysale/skysailconfigs/todos/int/
+cd config
+svn checkout https://85.25.22.125/repos/skysale/skysailconfigs/todos/int/
 
-#echo "starting todos service"
+echo "starting todos service"
 cd /home/carsten/skysail/products/todos/int2/bin/
 #unzip -o skysail.todos.jar
 chmod 755 todos_int2

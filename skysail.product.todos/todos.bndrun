@@ -3,8 +3,8 @@
 ########################################################################################
 
 -resolve.effective: active;skip:="osgi.service"
+-runbundles: ${runbundles}
 -runee: JavaSE-1.8
--runbundles:${runbundles}
 -runfw: org.apache.felix.framework;version=${org.apache.felix.framework.version}
 -runproperties: ${runproperties}
 -runrepos: ${runrepos}

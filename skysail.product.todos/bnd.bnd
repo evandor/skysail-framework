@@ -71,8 +71,10 @@ Private-Package:  \
 	org.apache.commons.logging;version=1.1
 Include-Resource: config=config
 
-### runbundles configuration; if you change something here, please check todos.largetest.bndrun as well,
-### as it seems this defintion cannot be picked up from the largetests.
+##############################################################################################################
+### runbundles configuration; if you change something here, please check todos.largetest.bndrun as well,   ###
+### as it seems this defintion cannot be picked up from the largetests.                                    ###
+##############################################################################################################
 
 runbundles:\
     ${aQute},\

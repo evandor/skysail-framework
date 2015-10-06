@@ -1,8 +1,10 @@
 new in
+
 3.1.0
 -----
 
  * starting VersionService
+ * executeUpdate returns Object now
 
 2.0.0
 -----

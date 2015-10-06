@@ -9,8 +9,7 @@ Bundle-Name: SKYSAIL :: server :: app :: bookmarks
 Export-Package:  \
 	io.skysail.server.app.bookmarks
 
-Include-Resource: resources
-#, templates=src;recursive:=true;filter:=*.st|*.stg
+Include-Resource: resources, templates=src;recursive:=true;filter:=*.st|*.stg
 
 Private-Package:  \
 	io.skysail.server.app.bookmarks.app,\

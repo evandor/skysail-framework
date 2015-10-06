@@ -281,9 +281,9 @@ public class OrientGraphDbService extends AbstractOrientDbService implements DbS
     }
 
     @Override
-    public void executeUpdate(String sql, Map<String, Object> params) {
+    public Object executeUpdate(String sql, Map<String, Object> params) {
         OObjectDatabaseTx objectDb = getObjectDb();
-        objectDb.command(new OCommandSQL(sql)).execute(params);
+        return objectDb.command(new OCommandSQL(sql)).execute(params);
     }
 
     @Override

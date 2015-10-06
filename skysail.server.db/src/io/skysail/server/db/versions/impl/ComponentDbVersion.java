@@ -17,11 +17,20 @@ public class ComponentDbVersion implements Identifiable {
 
     private String entity;
 
-    private Integer version;
+    private String title;
+
+    private Integer version = 0;
+
+    private Status status = Status.NEW;
 
     public ComponentDbVersion(Bundle bundle) {
         this.entity = bundle.getSymbolicName();
-        this.version = 0;
+    }
+
+    public ComponentDbVersion(Bundle bundle, String title, Integer version) {
+        this.entity = bundle.getSymbolicName();
+        this.title = title;
+        this.version = version;
     }
 
 }

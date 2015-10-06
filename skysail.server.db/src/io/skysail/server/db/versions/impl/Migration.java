@@ -5,17 +5,20 @@ import java.util.regex.*;
 import lombok.*;
 
 @Getter
-public class Migration {
+public class Migration implements Comparable<Migration> {
 
     private Pattern pattern = Pattern.compile("V(\\d+)_(.*)\\.sql");
 
-    private int version;
+    private Integer version;
     private String title;
+    private String content;
 
     /**
      * @param path matching the defined pattern, otherwise exception.
+     * @param content
      */
-    public Migration(@NonNull String path) {
+    public Migration(@NonNull String path, String content) {
+        this.content = content;
         validate(path);
     }
 
@@ -31,5 +34,10 @@ public class Migration {
             throw new IllegalArgumentException(
                     "filename must start with V, followed by a number, optionally followed with '_sometext', with a postfix of '.sql'");
         }
+    }
+
+    @Override
+    public int compareTo(Migration o) {
+        return version.compareTo(o.getVersion());
     }
 }

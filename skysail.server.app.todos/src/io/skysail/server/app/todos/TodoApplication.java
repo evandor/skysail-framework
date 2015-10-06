@@ -77,8 +77,7 @@ public class TodoApplication extends SkysailApplication implements ApplicationPr
     public void activate(ComponentContext componentContext) throws ConfigurationException {
         super.activate(componentContext);
         if (versioningService != null) {
-            System.out.println("hier");
-        //    versioningService.register(context.getBundleContext().getBundle());
+            versioningService.register(componentContext.getBundleContext().getBundle());
         }
     }
 

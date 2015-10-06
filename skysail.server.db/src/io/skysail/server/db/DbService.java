@@ -62,7 +62,7 @@ public interface DbService {
 
     long getCount(String sql, Map<String, Object> params);
 
-    void executeUpdate(String sql, Map<String, Object> params);
+    Object executeUpdate(String sql, Map<String, Object> params);
 
     void createUniqueIndex(Class<?> cls, String... columnNames);
 

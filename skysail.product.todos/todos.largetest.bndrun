@@ -47,7 +47,6 @@ logback.configurationFile.path =  config/common
     ${restlet},\
     ${osgi},\
     ${skysail.api},\
-    skysail.client.todos.angularjs;version=latest,\
     skysail.product.todos;version=latest,\
     ${skysail.server},\
     skysail.server.peers.adminconfig;version=latest,\

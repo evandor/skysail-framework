@@ -39,7 +39,7 @@ public class RankerTest {
 
     @Test
     public void urgency_is_zero_for_non_active_todo_with_due_date_today() {
-        Todo todo = createTodo("nonActiveDueToday", Status.FINISHED, nowPlusWeeks(-1), nowPlusWeeks(0), 51);
+        Todo todo = createTodo("nonActiveDueToday", Status.DONE, nowPlusWeeks(-1), nowPlusWeeks(0), 51);
         Integer urgency = Ranker.calcUrgency(todo);
         assertThat(urgency,is(0));
     }

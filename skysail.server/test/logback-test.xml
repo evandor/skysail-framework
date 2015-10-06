@@ -17,7 +17,7 @@
 		<filter class="ch.qos.logback.classic.filter.ThresholdFilter">
 			<level>DEBUG</level>
 		</filter>
-		<file>etc/testrun.log</file>
+		<file>etc/logs/testrun.log</file>
 		<append>false</append>
 		<encoder>
 			<pattern>%-5level %logger{55} - %msg%n

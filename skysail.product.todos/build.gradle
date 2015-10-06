@@ -24,7 +24,6 @@ dependencies {
 
 test {
     useJUnit {
-        //includeCategories 'org.gradle.junit.CategoryA'
         excludeCategories 'io.skysail.server.testsupport.LargeTests'
     }
 }

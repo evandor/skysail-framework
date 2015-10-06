@@ -29,8 +29,9 @@ public class ListAsColumnsResource extends ListServerResource<TodoColumn> {
 
         Map<Status, TodoColumn> map = new LinkedHashMap<>();
         addTodoColumn(map, Status.NEW);
-        addTodoColumn(map, Status.PLANNED);
         addTodoColumn(map, Status.WIP);
+        addTodoColumn(map, Status.DONE);
+
 
         app.getTodosRepo().findAllTodos(filter).stream().forEach(todo -> {
             TodoColumn todoColumn = map.get(todo.getStatus());

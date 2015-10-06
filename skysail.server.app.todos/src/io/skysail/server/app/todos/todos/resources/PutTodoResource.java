@@ -6,7 +6,6 @@ import io.skysail.server.app.todos.TodoApplication;
 import io.skysail.server.app.todos.lists.ListsResource;
 import io.skysail.server.app.todos.ranking.Ranker;
 import io.skysail.server.app.todos.todos.Todo;
-import io.skysail.server.app.todos.todos.status.Status;
 import io.skysail.server.restlet.resources.*;
 
 import java.util.*;
@@ -31,7 +30,6 @@ public class PutTodoResource extends PutEntityServerResource<Todo> {
          return todo;
     }
 
-    @SuppressWarnings("deprecation")
     @Override
     public SkysailResponse<Todo> updateEntity(Todo entityFromTheWire) {
         Todo entityToBeUpdated = getEntity(null);
@@ -43,14 +41,6 @@ public class PutTodoResource extends PutEntityServerResource<Todo> {
         if (views == null) {
             entityToBeUpdated.setViews(1);
         }
-        if (Status.PLANNED.equals(entityToBeUpdated.getStatus())) {
-            entityToBeUpdated.setStatus(Status.NEW);
-        } else if (Status.FINISHED.equals(entityToBeUpdated.getStatus())) {
-            entityToBeUpdated.setStatus(Status.DONE);
-        } else if (Status.ARCHIVED.equals(entityToBeUpdated.getStatus())) {
-            entityToBeUpdated.setStatus(Status.DONE);
-        }
-
         app.getTodosRepo().update(getAttribute(TodoApplication.LIST_ID), entityToBeUpdated, "parent");
         return new SkysailResponse<>(entityToBeUpdated);
     }
@@ -63,7 +53,6 @@ public class PutTodoResource extends PutEntityServerResource<Todo> {
 
     @Override
     public String redirectTo() {
-       // return super.redirectTo(TodosResource.class);
         return super.redirectTo(ListsResource.class);
     }
 

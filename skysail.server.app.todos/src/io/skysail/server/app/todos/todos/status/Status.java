@@ -9,15 +9,15 @@ import lombok.Getter;
 @Getter
 public enum Status implements Identifiable{
 
-    NEW("NEW","yellow", "WIP", "ARCHIVED"),
-    @Deprecated // planned will be: due date != null && now < due date
-    PLANNED("PLANNED","green", "WIP", "DONE"),
+    NEW("NEW","yellow", "WIP", "DONE"),
+    //@Deprecated // planned will be: due date != null && now < due date
+    //PLANNED("PLANNED","green", "WIP", "DONE"),
     WIP("WIP","orange", "DONE"),
-    @Deprecated // renamed to done
-    FINISHED("FINISHED", "gray", "DONE"),
-    DONE("DONE", "gray"),
-    @Deprecated // archived will be: done & done date + 7 < now
-    ARCHIVED("ARCHIVED", "gray","DONE");
+    //@Deprecated // renamed to done
+    //FINISHED("FINISHED", "gray", "DONE"),
+    DONE("DONE", "gray", "DONE");
+    //@Deprecated // archived will be: done & done date + 7 < now
+    //ARCHIVED("ARCHIVED", "gray","DONE");
 
     private List<String> nexts = new ArrayList<>();
 
@@ -36,7 +36,7 @@ public enum Status implements Identifiable{
     }
 
     public boolean isActive() {
-        return !this.equals(FINISHED) && !this.equals(ARCHIVED) && !this.equals(DONE);
+        return !this.equals(DONE);
     }
 
     @Override

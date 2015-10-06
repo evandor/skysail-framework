@@ -13,7 +13,7 @@ public class StatusTest {
     @Test
     public void has_six_values() {
         Status[] values = Status.values();
-        assertThat(values.length, is(6));
+        assertThat(values.length, is(3));
     }
 
     @Test
@@ -27,13 +27,6 @@ public class StatusTest {
     public void testNextsOfWipStatus() {
         Status newStatus = Status.WIP;
         assertThat(newStatus.getNexts().size(), is(2));
-        checkFollowUpStatuses(newStatus.getNexts());
-    }
-
-    @Test
-    public void testNextsOfPlannedStatus() {
-        Status newStatus = Status.PLANNED;
-        assertThat(newStatus.getNexts().size(), is(3));
         checkFollowUpStatuses(newStatus.getNexts());
     }
 

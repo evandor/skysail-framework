@@ -18,7 +18,7 @@
 		<filter class="ch.qos.logback.classic.filter.ThresholdFilter">
 			<level>WARN</level>
 		</filter>
-		<file>logs/warn.log</file>
+		<file>etc/logs/warn.log</file>
 		<append>false</append>
 		<encoder>
 			<pattern>%date{ISO8601} %-5level [%-45logger{40}] - %msg%n
@@ -30,7 +30,7 @@
 		<filter class="ch.qos.logback.classic.filter.ThresholdFilter">
 			<level>INFO</level>
 		</filter>
-		<file>logs/info.log</file>
+		<file>etc/logs/info.log</file>
 		<append>false</append>
 		<encoder>
 			<pattern>%date{ISO8601} %-5level [%-45logger{40}] - %msg%n
@@ -42,7 +42,7 @@
 		<filter class="ch.qos.logback.classic.filter.ThresholdFilter">
 			<level>DEBUG</level>
 		</filter>
-		<file>logs/debug.log</file>
+		<file>etc/logs/debug.log</file>
 		<append>false</append>
 		<encoder>
 			<pattern>%date{ISO8601} %-5level [%-45logger{40}] - %msg%n

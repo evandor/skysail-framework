@@ -30,7 +30,10 @@ Bundle-ClassPath: .,lib/blueprints-core-2.6.0.jar
 	javax.persistence;version=2.1,\
 	org.apache.commons.collections4;version=4.0,\
 	ch.qos.logback.classic;version=1.1,\
-	ch.qos.logback.core;version=1.1
+	ch.qos.logback.core;version=1.1,\
+	org.objenesis;version=2.1,\
+	org.apache.commons.configuration;version=1.10,\
+	org.apache.commons.logging;version=1.1
 Import-Package:  \
 	javassist.util.proxy,\
 	org.codehaus.jettison.*,\

@@ -41,7 +41,7 @@ public class TodoApplication extends SkysailApplication implements ApplicationPr
 
     @Getter
     private ListsRepository listRepo;
-   // private VersioningService versioningService;
+
     private VersioningService versioningService;
 
     public TodoApplication() {

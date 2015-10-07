@@ -8,4 +8,5 @@ runproperties:\
     org.apache.felix.log.storeDebug=true,\
     logback.configurationFile=${logback.configurationFile.path}/logback.xml,\
     obr.repository.url=${obrRepositories},\
-    product.bundle=${p}
+    product.bundle=${p},\
+    ${proxy}

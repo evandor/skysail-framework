@@ -112,6 +112,7 @@ runbundles:\
     skysail.server.app.svgedit;version=latest,\
     skysail.server.app.todos;version=latest,\
     skysail.server.app.twitter4j;version=latest,\
+    skysail.server.ext.initconfig;version=latest,\
     org.jsoup;version=1.8.1,\
     com.sun.mail.javax.mail;version=1.5.1,\
     ${jetty},\

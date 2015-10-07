@@ -5,6 +5,7 @@ import io.skysail.server.utils.BundleUtils;
 import java.io.IOException;
 import java.nio.file.*;
 import java.util.*;
+import java.util.stream.Collectors;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -54,27 +55,34 @@ public class ConfigMover {
     }
 
     private void copyConfigurationFiles(Bundle bundle) {
-        Enumeration<String> entryPaths = bundle.getEntryPaths(getFrom(bundle));
-        if (entryPaths == null) {
-            log.info("no configuration found in bundle {}", bundle.getSymbolicName());
-            return;
+        List<String> fromPaths = getFrom(bundle);
+        for (String fromPath : fromPaths) {
+            Enumeration<String> entryPaths = bundle.getEntryPaths(fromPath);
+            if (entryPaths == null) {
+                log.info("no configuration found in bundle {}", bundle.getSymbolicName());
+                return;
+            }
+            Path copyToPath = Paths.get("./" + fromPath);
+            try {
+                log.info("will try to create directory '{}' if it not exists", copyToPath.toAbsolutePath().toString());
+                Files.createDirectories(copyToPath);
+                handleConfigFiles(bundle, entryPaths);
+            } catch (FileAlreadyExistsException faee) {
+                log.info("file '{}' already exists, no config files will be copied", copyToPath.toAbsolutePath().toString());
+            } catch (IOException e1) {
+                log.error(e1.getMessage(), e1);
+            }
         }
-        Path copyToPath = Paths.get("./config");
-        try {
-            log.info("will try to create directory '{}' if it not exists", copyToPath.toAbsolutePath().toString());
-            Files.createDirectories(copyToPath);
-            handleConfigFiles(bundle, entryPaths);
-        } catch (FileAlreadyExistsException faee) {
-            log.info("file '{}' already exists, no config files will be copied", copyToPath.toAbsolutePath().toString());
-        } catch (IOException e1) {
-            log.error(e1.getMessage(), e1);
-        }
+
     }
 
-    private String getFrom(Bundle bundle) {
-        String configPathSource = System.getProperty(CONFIG_SOURCE_SYSTEM_PROPERTY_IDENTIFIER);
-        log.info("checking directory '{}' in bundle {} for configurations", configPathSource, bundle.getSymbolicName());
-        return configPathSource;
+    private List<String> getFrom(Bundle bundle) {
+        String configPathSources = System.getProperty(CONFIG_SOURCE_SYSTEM_PROPERTY_IDENTIFIER);
+        if (configPathSources == null) {
+            return Collections.emptyList();
+        }
+        log.info("checking directories '{}' in bundle {} for configurations", configPathSources.toString(), bundle.getSymbolicName());
+        return Arrays.stream(configPathSources.split(",")).map(String::trim).collect(Collectors.toList());
     }
 
     private void handleConfigFiles(Bundle bundle, Enumeration<String> entryPaths) {

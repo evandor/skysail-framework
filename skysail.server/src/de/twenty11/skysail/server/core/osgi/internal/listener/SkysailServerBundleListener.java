@@ -71,7 +71,7 @@ public class SkysailServerBundleListener implements BundleListener {// NO_UCD
     private synchronized void sendBundleStoppedMessage(BundleEvent event) {
         String symbolicName = event.getBundle().getSymbolicName();
         if (socketIoBroadcastingRef.get() == null) {
-            log.debug("could not send bundleStoppedMessage for {}", symbolicName);
+            //log.debug("could not send bundleStoppedMessage for {}", symbolicName);
             return;
         }
         socketIoBroadcastingRef.get().send("bundle " + symbolicName + " was stopped");
@@ -80,7 +80,7 @@ public class SkysailServerBundleListener implements BundleListener {// NO_UCD
     private synchronized void sendBundleStartedMessage(BundleEvent event) {
         String symbolicName = event.getBundle().getSymbolicName();
         if (socketIoBroadcastingRef.get() == null) {
-            log.debug("could not send bundleStartedMessage for {}", symbolicName);
+            //log.debug("could not send bundleStartedMessage for {}", symbolicName);
             return;
         }
         socketIoBroadcastingRef.get().send("bundle " + symbolicName + " was started");

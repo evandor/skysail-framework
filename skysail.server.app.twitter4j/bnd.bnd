@@ -21,8 +21,7 @@ Bundle-ClassPath: .,lib/twitter4j-core-4.0.3.jar
 Service-Component:  \
 	*
 Bundle-Name: SKYSAIL :: server :: app :: twitter4j
-Include-Resource: lib=lib
-#,resources, templates=src;recursive:=true;filter:=*.st|*.stg
+Include-Resource: lib=lib,resources, templates=src;recursive:=true;filter:=*.st|*.stg
 Private-Package:  \
 	io.skysail.server.app.twitter4j,\
 	io.skysail.server.app.twitter4j.resources

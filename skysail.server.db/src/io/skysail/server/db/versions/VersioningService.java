@@ -23,47 +23,52 @@ public class VersioningService {
     private VersionsRepository repo;
 
     @Reference(dynamic = true, multiple = false, optional = false, target = "(name=VersionsRepository)")
-    public void setTodoRepository(DbRepository repo) {
+    public void setVersionsRepository(DbRepository repo) {
         this.repo = (VersionsRepository) repo;
     }
 
-    public void unsetTodoRepository(DbRepository repo) {
+    public void unsetVersionsRepository(DbRepository repo) {
         this.repo = null;
     }
 
     public void register(Bundle bundle) {
-        Filter filter = new Filter();
-        filter.add("entity", bundle.getSymbolicName());
-        List<ComponentDbVersion> found = repo.find(filter);
-        Integer maxVersion;
-        if (found.size() == 0) {
-            maxVersion = -1;
-        } else {
-            maxVersion = found.stream().map(c -> c.getVersion()).reduce(0, (a,b) -> Math.max(a,b)).intValue();
-        }
-
         List<String> results = new ArrayList<>();
         try {
-            Enumeration<String> entryPathsEnumeration = bundle.getEntryPaths(DB_MIGRATIONS_PATH);
-            if (entryPathsEnumeration == null) {
-                return;
-            }
-            List<String> entryPaths = Collections.list(entryPathsEnumeration);
-            List<Migration> migrations = entryPaths.stream()
-                .map(path -> path.substring(DB_MIGRATIONS_PATH.length()))
-                .filter(path -> path.startsWith("V"))
-                .filter(path -> path.endsWith(".sql"))
-                .map(path -> new Migration(path, BundleUtils.readResource(bundle, DB_MIGRATIONS_PATH + "/" + path)))
-                .collect(Collectors.toList());
-
-            validate(migrations);
-            Collections.sort(migrations);
-            execute(bundle, migrations, maxVersion, results);
-            results.stream().forEach(r -> log.info(r));
+            List<ComponentDbVersion> entityVersions = repo.find(new Filter().add("entity", bundle.getSymbolicName()));
+            migrateBundleDb(bundle, getCurrentVersionNr(entityVersions), results);
         } catch (Exception e) {
             log.warn("could not run migrations: {}", e.getMessage());
             results.stream().forEach(r -> log.error(r));
         }
+    }
+
+    private void migrateBundleDb(Bundle bundle, Integer currentVersion, List<String> results) {
+        Enumeration<String> entryPathsEnumeration = bundle.getEntryPaths(DB_MIGRATIONS_PATH);
+        if (entryPathsEnumeration == null) {
+            return;
+        }
+        List<String> entryPaths = Collections.list(entryPathsEnumeration);
+        List<Migration> migrations = entryPaths.stream()
+            .map(path -> path.substring(DB_MIGRATIONS_PATH.length()))
+            .filter(path -> path.startsWith("V"))
+            .filter(path -> path.endsWith(".sql"))
+            .map(path -> new Migration(path, BundleUtils.readResource(bundle, DB_MIGRATIONS_PATH + "/" + path)))
+            .collect(Collectors.toList());
+
+        validate(migrations);
+        Collections.sort(migrations);
+        execute(bundle, migrations, currentVersion, results);
+        results.stream().forEach(r -> log.info(r));
+    }
+
+    private Integer getCurrentVersionNr(List<ComponentDbVersion> entityVersions) {
+        Integer maxVersion;
+        if (entityVersions.size() == 0) {
+            maxVersion = -1;
+        } else {
+            maxVersion = entityVersions.stream().map(c -> c.getVersion()).reduce(0, (a,b) -> Math.max(a,b)).intValue();
+        }
+        return maxVersion;
     }
 
     private void validate(List<Migration> migrations) {

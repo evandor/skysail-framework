@@ -10,7 +10,7 @@ Export-Package:  \
 
 Include-Resource: templates=templates,webapp=webapp
 
--buildpath:  \
+-buildpath: \
 	osgi.core;version=5.0,\
 	osgi.cmpn;version=5.0,\
 	skysail.api;version=${skysail.api.version},\

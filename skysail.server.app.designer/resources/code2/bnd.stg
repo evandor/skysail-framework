@@ -8,7 +8,7 @@ Include-Resource: resources, templates=src;recursive:=true;filter:=*.st|*.stg
 	skysail.api;version=\${skysail.api.version},\
 	skysail.server;version=${skysail.server.version},\
 	skysail.server.db;version=latest,\
-	skysail.server.codegen;version=latest,\
+	skysail.server.codegen;version=${skysail.server.codegen.version},\
 	slf4j.api;version=1.7.7,\
 	org.restlet;version=\${restlet.version},\
 	javax.validation.api;version=1.1,\

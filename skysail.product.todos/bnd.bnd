@@ -78,6 +78,8 @@ Include-Resource: config=config
 
 runbundles:\
     ${aQute},\
+    me.moocar.logback-gelf;version=0.2.0,\
+    com.google.gson;version=2.4,\
     ${logging},\
     ${fasterxml},\
     com.google.guava;version='[16.0,16.1)',\

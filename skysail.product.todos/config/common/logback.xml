@@ -10,9 +10,6 @@
 		</encoder>
 	</appender>
 
-	<!-- <appender name="memory" class="skysail.server.osgi.logging.memoryAppender.MemoryAppender">
-		</appender> -->
-
 	<appender name="WARN_FILE" class="ch.qos.logback.core.FileAppender">
 		<filter class="ch.qos.logback.classic.filter.ThresholdFilter">
 			<level>WARN</level>
@@ -20,8 +17,7 @@
 		<file>etc/logs/warn.log</file>
 		<append>false</append>
 		<encoder>
-			<pattern>%date{ISO8601} %-5level [%-45logger{40}] - %msg%n
-            </pattern>
+			<pattern>%date{ISO8601} %-5level [%-45logger{40}] - %msg%n</pattern>
 		</encoder>
 	</appender>
 
@@ -32,8 +28,7 @@
 		<file>etc/logs/info.log</file>
 		<append>false</append>
 		<encoder>
-			<pattern>%date{ISO8601} %-5level [%-45logger{40}] - %msg%n
-            </pattern>
+			<pattern>%date{ISO8601} %-5level [%-45logger{40}] - %msg%n</pattern>
 		</encoder>
 	</appender>
 
@@ -44,20 +39,25 @@
 		<file>etc/logs/debug.log</file>
 		<append>false</append>
 		<encoder>
-			<pattern>%date{ISO8601} %-5level [%-45logger{40}] - %msg%n
-			</pattern>
+			<pattern>%date{ISO8601} %-5level [%-45logger{40}] - %msg%n</pattern>
 		</encoder>
 	</appender>
 
-    <!-- does not work !? -->
-	<logger name="io.skysail.server" level="DEBUG" />
+    <appender name="GELF UDP APPENDER" class="me.moocar.logbackgelf.GelfUDPAppender">
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>DEBUG</level>
+        </filter>
+        <encoder class="me.moocar.logbackgelf.GZIPEncoder">
+            <layout class="me.moocar.logbackgelf.GelfLayout"/>
+        </encoder>
+    </appender>
 
 	<root level="INFO">
 		<appender-ref ref="STDOUT" />
 		<appender-ref ref="INFO_FILE" />
 		<appender-ref ref="DEBUG_FILE" />
 		<appender-ref ref="WARN_FILE" />
-		<!-- <appender-ref ref="memory" /> -->
+		<!-- <appender-ref ref="GELF UDP APPENDER" /> -->
 	</root>
 
 </configuration>

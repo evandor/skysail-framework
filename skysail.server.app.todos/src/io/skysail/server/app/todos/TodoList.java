@@ -39,9 +39,6 @@ public class TodoList implements Serializable, Identifiable {
     @Field(inputType=InputType.READONLY)
     private Long todosCount;
 
-    @Field(inputType=InputType.TEXT)
-    private Integer wipLimit;
-
     @Field(inputType = InputType.TEXTAREA)
     private String desc;
 

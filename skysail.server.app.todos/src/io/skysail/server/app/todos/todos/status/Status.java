@@ -11,13 +11,13 @@ public enum Status implements Identifiable{
 
     NEW("NEW","yellow", "WIP", "DONE"),
     //@Deprecated // planned will be: due date != null && now < due date
-    //PLANNED("PLANNED","green", "WIP", "DONE"),
+    PLANNED("PLANNED","green", "WIP", "DONE"),
     WIP("WIP","orange", "DONE"),
     //@Deprecated // renamed to done
-    //FINISHED("FINISHED", "gray", "DONE"),
-    DONE("DONE", "gray", "DONE");
+    FINISHED("FINISHED", "gray", "DONE"),
+    DONE("DONE", "gray", "DONE"),
     //@Deprecated // archived will be: done & done date + 7 < now
-    //ARCHIVED("ARCHIVED", "gray","DONE");
+    ARCHIVED("ARCHIVED", "gray","DONE");
 
     private List<String> nexts = new ArrayList<>();
 

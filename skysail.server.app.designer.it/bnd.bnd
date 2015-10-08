@@ -142,7 +142,7 @@ Bundle-Version: 0.1.0.${tstamp}
 	skysail.server.app.designer;version=latest,\
 	skysail.server.db;version=${skysail.server.db.version},\
 	skysail.server.http;version=${skysail.server.http.version},\
-	skysail.server.plugins;version=latest,\
+	skysail.server.plugins;version=${skysail.server.plugins.version},\
     skysail.server.queryfilter;version=${skysail.server.queryfilter.version},\
  	skysail.server.static;version=${skysail.server.static.version},\
 	skysail.server.text.markdown;version=${skysail.server.text.markdown.version};,\

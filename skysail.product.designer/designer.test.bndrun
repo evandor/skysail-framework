@@ -124,7 +124,7 @@
 	skysail.server.http;version=latest,\
 	skysail.server.osgi;version=${skysail.server.osgi.version},\
 	skysail.server.polymer;version=${skysail.server.polymer.version},\
-	skysail.server.plugins;version=latest,\
+	skysail.server.plugins;version=${skysail.server.plugins.version},\
 	skysail.server.app.designer;version=latest,\
 	skysail.server.app.bookmarks;version=latest,\
 	skysail.server.app.todos;version=latest,\

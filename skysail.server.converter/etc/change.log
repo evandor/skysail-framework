@@ -5,6 +5,7 @@ new in
 
  * added favicon
  * changed default threshold of MailToConverter to 0.0
+ * deactivated MailToConverter
 
 2.0.0
 -----

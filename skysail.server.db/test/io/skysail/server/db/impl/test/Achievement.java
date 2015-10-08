@@ -1,4 +1,4 @@
-package de.twenty11.skysail.server.db.orientdb.impl.test;
+package io.skysail.server.db.impl.test;
 
 import io.skysail.api.domain.Identifiable;
 import io.skysail.api.forms.*;

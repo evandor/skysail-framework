@@ -1,10 +1,9 @@
-Bundle-Version: 3.1.0.${tstamp}
+Bundle-Version: 4.0.0.${tstamp}
 Service-Component: *
 Bundle-Name: SKYSAIL :: server :: db
 Private-Package:  \
-	de.twenty11.skysail.server.db.orientdb,\
-	de.twenty11.skysail.server.db.orientdb.impl,\
-	io.skysail.server.db.versions.impl
+	io.skysail.server.db.versions.impl,\
+	io.skysail.server.db.impl
 Include-Resource: lib=lib,resources=resources
 Bundle-ClassPath: .,lib/blueprints-core-2.6.0.jar
 -buildpath:  \

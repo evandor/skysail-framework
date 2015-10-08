@@ -1,6 +1,6 @@
 package io.skysail.server.testsupport;
 
-import de.twenty11.skysail.server.db.orientdb.OrientGraphDbService;
+import io.skysail.server.db.OrientGraphDbService;
 
 
 public class TestDb extends OrientGraphDbService {

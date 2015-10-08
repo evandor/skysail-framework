@@ -51,7 +51,7 @@ logback.configurationFile.path =  config/common
     ${skysail.server},\
     skysail.server.peers.adminconfig;version=${skysail.server.peers.adminconfig.version},\
     skysail.server.polymer;version=${skysail.server.polymer.version},\
-    skysail.server.plugins;version=latest,\
+    skysail.server.plugins;version=${skysail.server.plugins.version},\
     skysail.server.app.bookmarks;version=latest,\
     skysail.server.app.todos;version=latest,\
     skysail.server.app.twitter4j;version=latest,\

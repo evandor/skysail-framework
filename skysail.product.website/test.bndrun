@@ -116,7 +116,7 @@
 	skysail.server.http;version='[4.0,4.1)',\
 	skysail.server.peers.adminconfig;version=${skysail.server.peers.adminconfig.version},\
 	skysail.server.polymer;version=${skysail.server.polymer.version},\
-	skysail.server.plugins;version=latest,\
+	skysail.server.plugins;version=${skysail.server.plugins.version},\
 	skysail.server.documentation;version=latest,\
 	skysail.server.app.tutorial.model2rest;version=latest,\
 	skysail.server.text.markdown;version=${skysail.server.text.markdown.version};,\

@@ -16,12 +16,11 @@ import org.restlet.engine.resource.VariantInfo;
 import org.restlet.representation.*;
 import org.restlet.resource.Resource;
 
-import aQute.bnd.annotation.component.Component;
 import de.twenty11.skysail.server.services.OsgiConverterHelper;
 import etm.core.configuration.EtmManager;
 import etm.core.monitor.*;
 
-@Component(immediate = true)
+//@Component(immediate = true)
 @Slf4j
 public class MailToConverter extends ConverterHelper implements OsgiConverterHelper {
 

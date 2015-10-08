@@ -146,7 +146,7 @@ Import-Package: org.osgi.framework,\
 	skysail.server.app.bookmarks;version=latest,\
 	skysail.server.db;version=${skysail.server.db.version},\
 	skysail.server.http;version=${skysail.server.http.version},\
-	skysail.server.plugins;version=latest,\
+	skysail.server.plugins;version=${skysail.server.plugins.version},\
 	skysail.server.static;version=${skysail.server.static.version},\
 	skysail.server.text.markdown;version=${skysail.server.text.markdown.version};,\
 	skysail.server.um.simple;version=${skysail.server.um.simple.version},\

@@ -1,4 +1,4 @@
-package de.twenty11.skysail.server.db.orientdb.impl;
+package io.skysail.server.db.impl;
 
 import io.skysail.api.domain.Identifiable;
 

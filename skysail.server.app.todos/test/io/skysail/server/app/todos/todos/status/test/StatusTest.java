@@ -13,7 +13,7 @@ public class StatusTest {
     @Test
     public void has_six_values() {
         Status[] values = Status.values();
-        assertThat(values.length, is(3));
+        assertThat(values.length, is(6));
     }
 
     @Test

@@ -38,14 +38,29 @@ public class Updater {
                         setProperty(entity, vertex, properties, key);
                     }
                 } else {
-                    Object edges = properties.get(key);
-                    if (edges instanceof Object[]) {
-                        Arrays.stream((Object[]) edges).forEach(edge -> {
-                            addReference(vertex, properties, key, edge);
-                        });
-                    } else if (edges instanceof String) {
-                        removeOldReferences(vertex, key);
-                        addReference(vertex, properties, key, edges);
+                    try {
+                        System.out.println(entity.getClass().toString());
+                        Field field = entity.getClass().getDeclaredField(key);
+                        Class<?> type = field.getType();
+                        Object edges = properties.get(key);
+                        if (Collection.class.isAssignableFrom(type)) {
+                            Method method = entity.getClass().getMethod("get" + key.substring(0,1).toUpperCase() + key.substring(1));
+                            Collection<Identifiable> references = (Collection<Identifiable>) method.invoke(entity);
+                            for (Identifiable referencedObject : references) {
+                                OrientVertex target;
+                                if (referencedObject.getId() == null) {
+                                    target = db.addVertex(referencedObject);
+                                } else {
+                                    target = db.getVertex(referencedObject.getId());
+                                }
+                                    db.addEdge(null, vertex, target, key);
+                            }
+                        } else if (String.class.isAssignableFrom(type)) { //(edges instanceof String) {
+                            removeOldReferences(vertex, key);
+                            addReference(vertex, properties, key, edges);
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
                     }
                 }
             });
@@ -58,6 +73,10 @@ public class Updater {
 
     private void removeOldReferences(Vertex vertex, String key) {
         Iterable<Edge> edges = vertex.getEdges(Direction.OUT, key);
+        if (edges == null) {
+            log.info("no edge found for key '{}'", key);
+            return;
+        }
         for (Edge edge : edges) {
             db.removeEdge(edge);
         }

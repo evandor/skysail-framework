@@ -33,6 +33,8 @@ public class Goal implements Identifiable {
 
     private List<Achievement> achievements = new ArrayList<>();
 
+    private String comment;
+
 //    @Field(inputType = InputType.READONLY)
 //    @ListView(hide=true)
 //    private String owner = "#1";

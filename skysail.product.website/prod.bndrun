@@ -113,7 +113,7 @@ s-runsystemcapabilities: ${native_capability}
 	skysail.server.performance.etm;version=${skysail.server.performance.etm.version},\
 	skysail.server.static;version=latest,\
 	skysail.server.http;version=latest,\
-	skysail.server.peers.adminconfig;version=latest,\
+	skysail.server.peers.adminconfig;version=${skysail.server.peers.adminconfig.version},\
 	skysail.server.polymer;version=${skysail.server.polymer.version},\
 	skysail.server.plugins;version=latest,\
 	skysail.server.documentation;version=latest,\

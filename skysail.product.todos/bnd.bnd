@@ -107,7 +107,7 @@ runbundles:\
     ${skysail.api},\
     skysail.product.todos;version=latest,\
     ${skysail.server},\
-    skysail.server.peers.adminconfig;version=latest,\
+    skysail.server.peers.adminconfig;version=${skysail.server.peers.adminconfig.version},\
     skysail.server.polymer;version=${skysail.server.polymer.version},\
     skysail.server.plugins;version=latest,\
     skysail.server.app.bookmarks;version=latest,\

@@ -1,4 +1,4 @@
-Bundle-Version: 0.1.0.${tstamp}
+Bundle-Version: 0.1.1.${tstamp}
 Bundle-Name: SKYSAIL :: server :: peers :: adminconfig
 Bundle-Description: A simplistic implementation of the skysail.api.peers interface to manage peer \
 	installations based on configuration files

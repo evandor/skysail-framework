@@ -20,7 +20,7 @@ Private-Package:  \
 	skysail.server.ext.sse;version=latest,\
 	skysail.server.ext.initconfig;version=latest,\
 	skysail.server.http;version=${skysail.server.http.version},\
-	skysail.server.osgi;version=latest,\
+	skysail.server.osgi;version=${skysail.server.osgi.version},\
 	skysail.server.plugins;version=latest,\
 	skysail.server.polymer;version=${skysail.server.polymer.version},\
 	skysail.server.queryfilter;version=${skysail.server.queryfilter.version},\

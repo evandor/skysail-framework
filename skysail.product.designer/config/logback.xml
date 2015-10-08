@@ -11,9 +11,6 @@
 		</encoder>
 	</appender>
 
-	<!-- <appender name="memory" class="skysail.server.osgi.logging.memoryAppender.MemoryAppender"> 
-		</appender> -->
-
 	<appender name="WARN_FILE" class="ch.qos.logback.core.FileAppender">
 		<filter class="ch.qos.logback.classic.filter.ThresholdFilter">
 			<level>WARN</level>
@@ -49,7 +46,7 @@
 			</pattern>
 		</encoder>
 	</appender>
-	
+
 	<root>
 		<appender-ref ref="STDOUT" />
 		<appender-ref ref="INFO_FILE" />
@@ -57,5 +54,5 @@
 		<appender-ref ref="WARN_FILE" />
 		<!-- <appender-ref ref="memory" /> -->
 	</root>
-	
+
 </configuration>

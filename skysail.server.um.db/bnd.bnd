@@ -1,0 +1,32 @@
+Bundle-Version: 0.1.5.${tstamp}
+Bundle-Name: SKYSAIL :: server :: um :: db
+Bundle-Description: An implementation of the skysail.api.um interface to manage users \
+    and roles backed up by a database
+-buildpath:  \
+    skysail.api;version=${skysail.api.version},\
+    skysail.api.features;version=${skysail.api.features.version},\
+    skysail.api.text;version=${skysail.api.text.version},\
+    skysail.api.um;version=${skysail.api.um.version},\
+    skysail.server;version=${skysail.server.version},\
+    skysail.server.um;version=${skysail.server.um.version},\
+    skysail.server.testsupport;version=${skysail.server.testsupport.version},\
+    biz.aQute.bnd.annotation;version=2.4,\
+    slf4j.api;version=1.7,\
+    lombok;version=1.16,\
+    org.restlet;version=${restlet.version},\
+    org.restlet.ext.crypto;version=${restlet.version},\
+    org.restlet.ext.raml;version=${restlet.version},\
+    org.apache.shiro.core;version=1.2,\
+    org.apache.shiro.web;version=1.2,\
+    com.springsource.org.junit;version=4.11,\
+    org.mockito.mockito-all;version=1.10,\
+    org.apache.felix.configadmin;version=1.8,\
+    org.apache.felix.gogo.runtime;version=0.12,\
+    com.google.guava;version=16.0,\
+    javax.validation.api;version=1.1,\
+    org.apache.commons.beanutils;version=1.9
+Service-Component: \
+    *
+Private-Package:  \
+	io.skysail.server.um.db,\
+	io.skysail.server.um.db.authorization

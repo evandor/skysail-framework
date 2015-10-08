@@ -83,7 +83,8 @@ skysail.server.testsupport.version                 '[1.0.0,1.0.1)'
 skysail.server.text.markdown.version               '[0.1.1,0.1.2)'
 skysail.server.text.store.bundleresource.version   '[0.1.1,0.1.2)'
 skysail.server.text.store.git.version              '[0.1.1,0.1.2)'
-skysail.server.um.version                          '[0.1.2,0.1.3)'
+#wip
+skysail.server.um.version                          '[0.2.0,0.2.1)'
 skysail.server.um.simple.version                   '[0.1.4,0.1.5)'
 
 skysail.server.app.svgedit.version                 '[0.1.0,0.1.1)'

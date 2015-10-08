@@ -25,7 +25,7 @@ public class SkysailAuthorizingRealm extends AuthorizingRealm {
         return this.getClass().getSimpleName();
     }
 
-    public SkysailAuthorizingRealm(SkysailHashedCredentialsMatcher hashedCredetialsMatcher, ShiroServices shiroServices) {
+    public SkysailAuthorizingRealm(SkysailHashedCredentialsMatcherOld hashedCredetialsMatcher, ShiroServices shiroServices) {
         this.shiroServices = shiroServices;
         setCredentialsMatcher(hashedCredetialsMatcher);
         setAuthenticationCachingEnabled(true);

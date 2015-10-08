@@ -34,7 +34,7 @@ public class ShiroServices implements AuthenticationService {
     public ShiroServices(DbService dbService) {
         this.dbService = dbService;
         log.info("creating new SkysailAuthorizingRealm...");
-        authorizingRealm = new SkysailAuthorizingRealm(new SkysailHashedCredentialsMatcher(), this);
+        authorizingRealm = new SkysailAuthorizingRealm(new SkysailHashedCredentialsMatcherOld(), this);
 
         log.info("Setting new SkysailWebSecurityManager as Shiros SecurityManager");
         SecurityUtils.setSecurityManager(new SkysailWebSecurityManager(authorizingRealm));

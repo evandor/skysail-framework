@@ -29,4 +29,5 @@ Service-Component: \
     *
 Private-Package:  \
 	io.skysail.server.um.db,\
-	io.skysail.server.um.db.authorization
+	io.skysail.server.um.db.authorization,\
+	io.skysail.server.um.db.authentication

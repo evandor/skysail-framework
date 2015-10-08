@@ -5,9 +5,11 @@ Test-Cases: \
 	io.skysail.server.um.simple.it.LoginTests
 
 -buildpath:  \
-	skysail.api.validation;version=${skysail.api.validation.version},\
+	skysail.api.um;version=${skysail.api.um.version},\
+    skysail.api.validation;version=${skysail.api.validation.version},\
 	skysail.server.db;version=${skysail.server.db.version},\
-	skysail.server.um.internal;version=0.0,\
+	skysail.server.um;version=${skysail.server.um.version},\
+    skysail.server.um.simple;version=${skysail.server.um.simple.version},\
 	osgi.core;version=5.0,\
 	com.springsource.org.junit;version=4.11,\
 	org.restlet;version=${restlet.version},\
@@ -118,10 +120,10 @@ Test-Cases: \
 	osgi.cmpn;version='[5.0.0,5.0.1)',\
 	osgi.enterprise;version='[4.2.0,4.2.1)',\
 	skysail.api;version=${skysail.api.version},\
-	skysail.api.um;version=latest,\
-	skysail.api.search;version=latest,\
+	skysail.api.um;version=${skysail.api.um.version},\
 	skysail.api.text;version=latest,\
 	skysail.api.peers;version=latest,\
+    skysail.api.search;version=latest,\
 	skysail.api.validation;version=latest,\
 	skysail.api.features;version=latest,\
 	skysail.client.testsupport;version=latest,\
@@ -133,7 +135,8 @@ Test-Cases: \
     skysail.server.queryfilter;version=${skysail.server.queryfilter.version},\
 	skysail.server.static;version=${skysail.server.static.version},\
 	skysail.server.text.markdown;version=${skysail.server.text.markdown.version};,\
-	skysail.server.um.simple;version=latest,\
+    skysail.server.um;version=${skysail.server.um.version},\
+	skysail.server.um.simple;version=${skysail.server.um.simple.version},\
 	slf4j.api;version='[1.7.7,1.7.8)',\
 	de.twentyeleven.skysail.org.antlr.stringtemplate-osgi;version=4.0.8,\
 	org.jruby.jruby;version=1.7.19,\

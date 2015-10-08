@@ -1,6 +1,5 @@
 package io.skysail.server.db;
 
-import io.skysail.server.db.*;
 import io.skysail.server.db.impl.*;
 
 import java.beans.*;
@@ -33,7 +32,6 @@ import com.tinkerpop.blueprints.*;
 import com.tinkerpop.blueprints.impls.orient.*;
 
 import de.twenty11.skysail.server.core.osgi.EventHelper;
-import de.twenty11.skysail.server.db.orientdb.impl.*;
 import de.twenty11.skysail.server.events.EventHandler;
 
 @Component(immediate = true)

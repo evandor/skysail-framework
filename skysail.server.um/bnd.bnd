@@ -3,9 +3,11 @@ Bundle-Name: SKYSAIL :: server :: um
 Bundle-Description: Default Usermanagement Implementation
 -buildpath:  \
     skysail.api;version=${skysail.api.version},\
+    skysail.api.features;version=${skysail.api.features.version},\
 	skysail.api.um;version=${skysail.api.um.version},\
     skysail.server;version=${skysail.server.version},\
 	skysail.server.db;version=${skysail.server.db.version},\
+    skysail.server.testsupport;version=${skysail.server.testsupport.version},\
 	biz.aQute.bnd.annotation;version=2.4,\
 	org.apache.shiro.core;version=1.2,\
 	org.restlet;version=2.1,\

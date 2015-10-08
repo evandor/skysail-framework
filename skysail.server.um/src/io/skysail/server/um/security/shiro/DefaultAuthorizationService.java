@@ -1,11 +1,9 @@
 package io.skysail.server.um.security.shiro;
 
-import io.skysail.api.um.AuthorizationService;
-import io.skysail.api.um.RestletRolesProvider;
+import io.skysail.api.um.*;
 import io.skysail.server.db.DbService;
 
-import java.util.Collections;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import lombok.extern.slf4j.Slf4j;
@@ -13,12 +11,10 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
 import org.restlet.data.ClientInfo;
-import org.restlet.security.Enroler;
-import org.restlet.security.Role;
+import org.restlet.security.*;
 
 import aQute.bnd.annotation.component.Reference;
-import de.twenty11.skysail.server.um.domain.SkysailRole;
-import de.twenty11.skysail.server.um.domain.SkysailUser;
+import de.twenty11.skysail.server.um.domain.*;
 
 @Slf4j
 public class DefaultAuthorizationService implements AuthorizationService, Enroler {

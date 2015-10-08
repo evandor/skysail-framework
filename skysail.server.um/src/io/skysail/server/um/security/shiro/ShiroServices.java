@@ -1,13 +1,11 @@
 package io.skysail.server.um.security.shiro;
 
-import io.skysail.api.um.AuthenticationService;
-import io.skysail.api.um.User;
+import io.skysail.api.um.*;
 import io.skysail.server.db.DbService;
 import io.skysail.server.um.security.shiro.mgt.SkysailWebSecurityManager;
 import io.skysail.server.um.security.shiro.restlet.ShiroDelegationAuthenticator;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
@@ -19,7 +17,7 @@ import org.restlet.security.Authenticator;
 
 /**
  * Default AuthenticationService Implementation shipped with skysail
- * 
+ *
  */
 @Slf4j
 public class ShiroServices implements AuthenticationService {

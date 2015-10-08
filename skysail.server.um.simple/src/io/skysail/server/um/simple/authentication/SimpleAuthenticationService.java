@@ -1,14 +1,11 @@
 package io.skysail.server.um.simple.authentication;
 
-import io.skysail.api.um.AuthenticationService;
-import io.skysail.api.um.User;
+import io.skysail.api.um.*;
+import io.skysail.server.um.security.shiro.SkysailCookieAuthenticator;
 import io.skysail.server.um.simple.FileBasedUserManagementProvider;
 import io.skysail.server.utils.PasswordUtils;
 
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.util.Properties;
 
 import lombok.extern.slf4j.Slf4j;

@@ -1,18 +1,13 @@
-package io.skysail.server.um.simple.authentication.test;
+package io.skysail.server.um.security.shiro.test;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 import io.skysail.server.testsupport.AbstractShiroTest;
-import io.skysail.server.um.simple.authentication.SimpleDelegatingVerifier;
+import io.skysail.server.um.security.shiro.SimpleDelegatingVerifier;
 
-import org.apache.shiro.authc.AuthenticationException;
-import org.apache.shiro.authc.IncorrectCredentialsException;
-import org.apache.shiro.authc.LockedAccountException;
-import org.apache.shiro.authc.UnknownAccountException;
+import org.apache.shiro.authc.*;
 import org.apache.shiro.subject.Subject;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.*;
 import org.mockito.Mockito;
 
 public class SimpleDelegatingVerifierTest extends AbstractShiroTest {

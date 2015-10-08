@@ -10,4 +10,5 @@ skysail.server:\
     skysail.server.text.markdown;version=${skysail.server.text.markdown.version};,\
     skysail.server.text.store.bundleresource;version=${skysail.server.text.store.bundleresource.version},\
     skysail.server.text.store.git;version=${skysail.server.text.store.git.version},\
+    skysail.server.um;version=${skysail.server.um.version},\
     skysail.server.um.simple;version=${skysail.server.um.simple.version}

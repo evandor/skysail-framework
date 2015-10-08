@@ -5,6 +5,7 @@ Bundle-Version: 0.1.5.${tstamp}
     skysail.api.text;version=${skysail.api.text.version},\
 	skysail.api.um;version=${skysail.api.um.version},\
 	skysail.server;version=${skysail.server.version},\
+    skysail.server.um;version=${skysail.server.um.version},\
 	skysail.server.testsupport;version=${skysail.server.testsupport.version},\
 	biz.aQute.bnd.annotation;version=2.4,\
 	slf4j.api;version=1.7,\

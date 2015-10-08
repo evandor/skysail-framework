@@ -85,7 +85,8 @@ skysail.server.text.store.bundleresource.version   '[0.1.1,0.1.2)'
 skysail.server.text.store.git.version              '[0.1.1,0.1.2)'
 #wip
 skysail.server.um.version                          '[0.2.0,0.2.1)'
-skysail.server.um.simple.version                   '[0.1.4,0.1.5)'
+#wip
+skysail.server.um.simple.version                   '[0.1.5,0.1.6)'
 
 skysail.server.app.svgedit.version                 '[0.1.0,0.1.1)'
 

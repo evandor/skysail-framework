@@ -1,6 +1,7 @@
 package io.skysail.server.um.db;
 
 import io.skysail.api.um.*;
+import io.skysail.server.um.db.authentication.DbAuthenticationService;
 import io.skysail.server.um.db.authorization.DbAuthorizationService;
 import io.skysail.server.um.security.shiro.mgt.SkysailWebSecurityManager;
 
@@ -17,11 +18,12 @@ import aQute.bnd.annotation.component.*;
 public class DbBasedUserManagementProvider implements UserManagementProvider {
 
     private DbAuthorizationService authorizationService;
+    private DbAuthenticationService authenticationService;
 
     @Activate
     public void activate(Map<String, String> config) {
         // userManagerRepo = new UserManagementRepository(config);
-        // authenticationService = new SimpleAuthenticationService(this);
+        authenticationService = new DbAuthenticationService(this);
         authorizationService = new DbAuthorizationService(this);
         SecurityUtils.setSecurityManager(new SkysailWebSecurityManager());//authorizationService.getRealm()));
     }
@@ -35,12 +37,12 @@ public class DbBasedUserManagementProvider implements UserManagementProvider {
 
     @Override
     public AuthenticationService getAuthenticationService() {
-        return null;
+        return authenticationService;
     }
 
     @Override
     public AuthorizationService getAuthorizationService() {
-        return null;
+        return authorizationService;
     }
 
 }

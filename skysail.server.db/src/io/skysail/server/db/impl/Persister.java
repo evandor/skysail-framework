@@ -8,17 +8,19 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.beanutils.BeanUtils;
 
 import com.tinkerpop.blueprints.Vertex;
-import com.tinkerpop.blueprints.impls.orient.*;
+import com.tinkerpop.blueprints.impls.orient.OrientGraph;
 
 @Slf4j
 public class Persister {
 
     private OrientGraph db;
     private List<String> edges;
+    private EdgeHandler edgeHandler;
 
     public Persister(OrientGraph db, String[] edges) {
         this.edges = Arrays.asList(edges);
         this.db = db;
+        edgeHandler = new EdgeHandler(db, edges);
     }
 
     public <T> Object persist(T entity) {
@@ -38,9 +40,14 @@ public class Persister {
                         setProperty(entity, vertex, properties, key);
                     }
                 } else {
-                    OrientVertex target = db.getVertex(properties.get(key));
+                   /* OrientVertex target = db.getVertex(properties.get(key));
                     if (target != null) {
                         db.addEdge(null, vertex, target, key);
+                    }*/
+                    try {
+                        edgeHandler.handleEdges(entity, vertex, properties, key);
+                    } catch (Exception e) {
+                        log.error(e.getMessage(),e);
                     }
                 }
             });

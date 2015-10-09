@@ -12,16 +12,7 @@
       <operations public="false" package="false" protected="false" private="false" static="false"/>    
     </display>  
   </class>  
-  <interface id="2" language="java" name="io.skysail.api.um.UserManagementProvider" project="skysail.api.um" 
-    file="/skysail.api.um/src/io/skysail/api/um/UserManagementProvider.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="168" y="59"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="false" static="false"/>      
-      <operations public="true" package="true" protected="true" private="false" static="false"/>    
-    </display>  
-  </interface>  
-  <class id="3" language="java" name="io.skysail.server.um.simple.authentication.SimpleAuthenticationService" 
+  <class id="2" language="java" name="io.skysail.server.um.simple.authentication.SimpleAuthenticationService" 
     project="skysail.server.um.simple" 
     file="/skysail.server.um.simple/src/io/skysail/server/um/simple/authentication/SimpleAuthenticationService.java" 
     binary="false" corner="BOTTOM_RIGHT">    
@@ -32,7 +23,7 @@
       <operations public="true" package="true" protected="true" private="false" static="false"/>    
     </display>  
   </class>  
-  <class id="4" language="java" name="io.skysail.server.um.simple.repository.UserManagementRepository" 
+  <class id="3" language="java" name="io.skysail.server.um.simple.repository.UserManagementRepository" 
     project="skysail.server.um.simple" 
     file="/skysail.server.um.simple/src/io/skysail/server/um/simple/repository/UserManagementRepository.java" 
     binary="false" corner="BOTTOM_RIGHT">    
@@ -43,7 +34,7 @@
       <operations public="true" package="true" protected="true" private="false" static="false"/>    
     </display>  
   </class>  
-  <class id="5" language="java" name="io.skysail.server.um.simple.authorization.SimpleAuthorizationService" 
+  <class id="4" language="java" name="io.skysail.server.um.simple.authorization.SimpleAuthorizationService" 
     project="skysail.server.um.simple" 
     file="/skysail.server.um.simple/src/io/skysail/server/um/simple/authorization/SimpleAuthorizationService.java" 
     binary="false" corner="BOTTOM_RIGHT">    
@@ -54,7 +45,7 @@
       <operations public="true" package="true" protected="true" private="false" static="false"/>    
     </display>  
   </class>  
-  <interface id="6" language="java" name="org.restlet.security.Enroler" project="skysail.server.um.simple" 
+  <interface id="5" language="java" name="org.restlet.security.Enroler" project="skysail.server.um.simple" 
     file="/Users/carsten/.bnd/cache/https%3A%2F%2Fgithub.com%2Fevandor%2Fskysail-repository%2Fraw%2Fmaster%2Frelease/org.restlet.jar" 
     binary="true" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="325" y="506"/>    
@@ -64,18 +55,7 @@
       <operations public="true" package="true" protected="true" private="false" static="false"/>    
     </display>  
   </interface>  
-  <class id="7" language="java" name="io.skysail.server.um.simple.authentication.SkysailCookieAuthenticator" 
-    project="skysail.server.um.simple" 
-    file="/skysail.server.um.simple/src/io/skysail/server/um/simple/authentication/SkysailCookieAuthenticator.java" 
-    binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="588" y="238"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="false" static="false"/>      
-      <operations public="true" package="true" protected="true" private="false" static="false"/>    
-    </display>  
-  </class>  
-  <class id="8" language="java" name="io.skysail.server.um.simple.authorization.SimpleAuthorizingRealm" 
+  <class id="6" language="java" name="io.skysail.server.um.simple.authorization.SimpleAuthorizingRealm" 
     project="skysail.server.um.simple" 
     file="/skysail.server.um.simple/src/io/skysail/server/um/simple/authorization/SimpleAuthorizingRealm.java" 
     binary="false" corner="BOTTOM_RIGHT">    
@@ -86,7 +66,7 @@
       <operations public="true" package="true" protected="true" private="false" static="false"/>    
     </display>  
   </class>  
-  <class id="9" language="java" name="io.skysail.server.um.simple.authentication.SkysailHashedCredentialsMatcher" 
+  <class id="7" language="java" name="io.skysail.server.um.simple.authentication.SkysailHashedCredentialsMatcher" 
     project="skysail.server.um.simple" 
     file="/skysail.server.um.simple/src/io/skysail/server/um/simple/authentication/SkysailHashedCredentialsMatcher.java" 
     binary="false" corner="BOTTOM_RIGHT">    
@@ -97,104 +77,90 @@
       <operations public="true" package="true" protected="true" private="false" static="false"/>    
     </display>  
   </class>  
-  <class id="10" language="java" name="io.skysail.server.um.simple.web.impl.SkysailWebSecurityManagerr" 
-    project="skysail.server.um.simple" 
-    file="/skysail.server.um.simple/src/io/skysail/server/um/simple/web/impl/SkysailWebSecurityManager.java" 
-    binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="-159" y="100"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="false" static="false"/>      
-      <operations public="true" package="true" protected="true" private="false" static="false"/>    
-    </display>  
-  </class>  
-  <class id="11" language="java" name="io.skysail.server.um.simple.authentication.SimpleDelegatingVerifier" 
-    project="skysail.server.um.simple" 
-    file="/skysail.server.um.simple/src/io/skysail/server/um/simple/authentication/SimpleDelegatingVerifier.java" 
-    binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="759" y="60"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="false" static="false"/>      
-      <operations public="true" package="true" protected="true" private="false" static="false"/>    
-    </display>  
-  </class>  
-  <realization id="12">    
-    <end type="SOURCE" refId="5"/>    
-    <end type="TARGET" refId="6"/>  
-  </realization>  
-  <dependency id="13">    
-    <end type="SOURCE" refId="3"/>    
-    <end type="TARGET" refId="7"/>  
-  </dependency>  
-  <association id="14">    
-    <end type="SOURCE" refId="8" navigable="false">      
-      <attribute id="15" name="simpleUserManagementProvider"/>      
-      <multiplicity id="16" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="1" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <dependency id="17">    
-    <end type="SOURCE" refId="7"/>    
-    <end type="TARGET" refId="11"/>  
-  </dependency>  
-  <association id="18">    
-    <end type="SOURCE" refId="5" navigable="false">      
-      <attribute id="19" name="userManagementProvider"/>      
-      <multiplicity id="20" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="1" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <dependency id="21">    
-    <end type="SOURCE" refId="1"/>    
-    <end type="TARGET" refId="10"/>  
-  </dependency>  
-  <dependency id="22">    
-    <end type="SOURCE" refId="5"/>    
-    <end type="TARGET" refId="9"/>  
-  </dependency>  
-  <association id="23">    
+  <association id="8">    
     <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="24" name="authenticationService"/>      
-      <multiplicity id="25" minimum="0" maximum="1"/>    
+      <attribute id="9" name="authenticationService">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="10" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
     </end>    
-    <end type="TARGET" refId="3" navigable="true"/>    
+    <end type="TARGET" refId="2" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="26">    
+  <association id="11">    
     <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="27" name="authorizationService"/>      
-      <multiplicity id="28" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="5" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <dependency id="29">    
-    <end type="SOURCE" refId="8"/>    
-    <end type="TARGET" refId="9"/>  
-  </dependency>  
-  <realization id="30">    
-    <end type="SOURCE" refId="1"/>    
-    <end type="TARGET" refId="2"/>  
-  </realization>  
-  <association id="31">    
-    <end type="SOURCE" refId="5" navigable="false">      
-      <attribute id="32" name="authorizingRealm"/>      
-      <multiplicity id="33" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="8" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="34">    
-    <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="35" name="userManagerRepo"/>      
-      <multiplicity id="36" minimum="0" maximum="1"/>    
+      <attribute id="12" name="authorizationService">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="13" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
     </end>    
     <end type="TARGET" refId="4" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
+  <association id="14">    
+    <end type="SOURCE" refId="4" navigable="false">      
+      <attribute id="15" name="authorizingRealm">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="16" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="6" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="17">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="7"/>  
+  </dependency>  
+  <dependency id="18">    
+    <end type="SOURCE" refId="6"/>    
+    <end type="TARGET" refId="7"/>  
+  </dependency>  
+  <association id="19">    
+    <end type="SOURCE" refId="6" navigable="false">      
+      <attribute id="20" name="simpleUserManagementProvider">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="21" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="1" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="22">    
+    <end type="SOURCE" refId="4" navigable="false">      
+      <attribute id="23" name="userManagementProvider">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="24" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="1" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="25">    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="26" name="userManagerRepo">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="27" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="3" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="28">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="5"/>  
+  </realization>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
     sort-features="false" accessors="true" visibility="true">    
     <attributes public="true" package="true" protected="true" private="false" static="false"/>    

@@ -5,4 +5,9 @@ bootstrap() ::= <<
 <link href="/webapp/css/stickyfooter.css" rel="stylesheet">
 <link href="/webapp/css/bootstrap-theme.min.css" rel="stylesheet">
 
+<!-- plugins -->
+
+<script type="text/javascript" src="/webapp/js/bootstrap-plugins/multiselect/bootstrap-multiselect.js"></script>
+<link rel="stylesheet" href="/webapp/css/bootstrap-plugins/multiselect/bootstrap-multiselect.css" type="text/css"/>
+
 >>

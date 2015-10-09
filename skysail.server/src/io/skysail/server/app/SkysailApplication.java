@@ -72,6 +72,7 @@ import de.twenty11.skysail.server.services.*;
  *
  *     {@literal @}Override
  *     protected void attach() {
+ *        super.attach();
  *        router.attach(new RouteBuilder("/clips", ClipsResource.class));
  *        router.attach(new RouteBuilder("/clips/", PostClipResource.class));
  *        router.attach(new RouteBuilder("/clips/{id}", ClipResource.class));

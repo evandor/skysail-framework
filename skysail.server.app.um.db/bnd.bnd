@@ -1,0 +1,52 @@
+Bundle-Version: 0.1.0.${tstamp}
+Bundle-Name: SKYSAIL :: server :: app :: um :: db
+Bundle-Description: usermanagement with database
+Service-Component: *
+Include-Resource: resources, templates=src;recursive:=true;filter:=*.st|*.stg
+-buildpath:  \
+    biz.aQute.bnd.annotation,\
+    skysail.api;version=${skysail.api.version},\
+    skysail.api.search;version=${skysail.api.search.version},\
+    skysail.api.text;version=${skysail.api.text.version},\
+    skysail.api.peers;version=${skysail.api.peers.version},\
+    skysail.api.um;version=${skysail.api.um.version},\
+    skysail.api.validation;version=${skysail.api.validation.version},\
+    skysail.server;version=${skysail.server.version},\
+    skysail.server.db;version=${skysail.server.db.version},\
+    skysail.server.codegen;version=${skysail.server.codegen.version},\
+    skysail.server.queryfilter;version=${skysail.server.queryfilter.version},\
+    skysail.server.testsupport;version=${skysail.server.testsupport.version},\
+    slf4j.api;version=1.7.7,\
+    ${restlet},\
+    org.mockito.mockito-core;version=1.10,\
+    com.springsource.org.junit;version=4.11,\
+    de.twentyeleven.skysail.org.hamcrest.hamcrest-all-osgi;version=1.3,\
+    javax.validation.api;version=1.1,\
+    javax.persistence;version=2.1,\
+    com.sun.el;version='[2.2.0,2.2.1)',\
+    de.twentyeleven.skysail.org.antlr.stringtemplate-osgi;version=4.0,\
+    de.twenty11.owasp-java-html-sanitizer;version=239.0,\
+    lombok;version=1.16.2,\
+    com.sun.mail.javax.mail;version=1.5,\
+    org.apache.shiro.core;version=1.2,\
+    org.codehaus.jettison.jettison;version=1.3,\
+    org.apache.commons.beanutils;version=1.9,\
+    osgi.core;version=5.0,\
+    osgi.cmpn;version=5.0,\
+    com.google.guava;version=${guava.version},\
+    org.apache.commons.logging;version=1.1,\
+    org.hibernate.validator;version=5.1,\
+    org.jboss.logging.jboss-logging;version=3.1,\
+    javax.el-api;version=3.0,\
+    classmate;version=1.0
+
+
+Import-Package: org.osgi.framework,\
+    javassist.util.proxy,\
+    *
+Private-Package:  \
+	io.skysail.server.app.um.db,\
+	io.skysail.server.app.um.db.roles.resources,\
+	io.skysail.server.app.um.db.domain,\
+	io.skysail.server.app.um.db.repo,\
+	io.skysail.server.app.um.db.users.resources

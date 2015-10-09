@@ -3,9 +3,9 @@ postForm(model, messages) ::= <<
       $handleField(first(model.data), first(model.formfields), messages,"1", " autofocus")$
       $rest(model.formfields):{ field | $handleField(first(model.data), field, messages,i, "")$}$
 
-      <select id="roles" multiple="multiple">
-        <option value="#38:0">Admin</option>
-        <option value="#38:1">User</option>
+      <select name="roles" id="roles" multiple="multiple">
+        <option value="38:0">Admin</option>
+        <option value="38:1">User</option>
       </select>
 
 <script type="text/javascript">

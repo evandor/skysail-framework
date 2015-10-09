@@ -1,9 +1,9 @@
 package io.skysail.server.app.bookmarks.repo;
 
 import io.skysail.api.domain.Identifiable;
+import io.skysail.api.repos.DbRepository;
 import io.skysail.server.app.bookmarks.Bookmark;
 import io.skysail.server.db.DbService;
-import io.skysail.server.repo.DbRepository;
 
 import java.util.*;
 

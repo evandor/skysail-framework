@@ -1,10 +1,10 @@
 package io.skysail.server.app.crm;
 
 import io.skysail.api.domain.Identifiable;
+import io.skysail.api.repos.DbRepository;
 import io.skysail.server.app.crm.companies.Company;
 import io.skysail.server.app.crm.contacts.Contact;
 import io.skysail.server.db.DbService;
-import io.skysail.server.repo.DbRepository;
 
 import java.util.List;
 

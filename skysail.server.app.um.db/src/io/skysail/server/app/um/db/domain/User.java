@@ -2,6 +2,7 @@ package io.skysail.server.app.um.db.domain;
 
 import io.skysail.api.domain.Identifiable;
 import io.skysail.api.forms.*;
+import io.skysail.server.app.um.db.repo.RoleRepository;
 
 import java.util.List;
 
@@ -28,5 +29,6 @@ public class User implements Identifiable {
     @NotNull
     private String lastname;
 
+    @Field(inputType = InputType.MULTISELECT, repository = RoleRepository.class)
     private List<Role> roles;
 }

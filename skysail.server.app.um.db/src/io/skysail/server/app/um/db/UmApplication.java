@@ -1,11 +1,11 @@
 package io.skysail.server.app.um.db;
 
+import io.skysail.api.repos.DbRepository;
 import io.skysail.server.app.SkysailApplication;
 import io.skysail.server.app.um.db.repo.*;
 import io.skysail.server.app.um.db.roles.resources.*;
 import io.skysail.server.app.um.db.users.resources.*;
 import io.skysail.server.menus.*;
-import io.skysail.server.repo.DbRepository;
 
 import java.util.*;
 

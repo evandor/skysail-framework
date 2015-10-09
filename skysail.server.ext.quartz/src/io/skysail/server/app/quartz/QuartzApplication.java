@@ -1,5 +1,6 @@
 package io.skysail.server.app.quartz;
 
+import io.skysail.api.repos.DbRepository;
 import io.skysail.server.app.*;
 import io.skysail.server.app.quartz.groups.resources.*;
 import io.skysail.server.app.quartz.jobdetails.JobDetailsResource;
@@ -8,7 +9,6 @@ import io.skysail.server.app.quartz.jobs.Job;
 import io.skysail.server.app.quartz.schedules.*;
 import io.skysail.server.app.quartz.triggers.resources.*;
 import io.skysail.server.menus.*;
-import io.skysail.server.repo.DbRepository;
 import io.skysail.server.restlet.resources.SkysailServerResource;
 
 import java.util.*;

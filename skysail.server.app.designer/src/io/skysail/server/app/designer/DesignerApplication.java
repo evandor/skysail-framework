@@ -1,5 +1,6 @@
 package io.skysail.server.app.designer;
 
+import io.skysail.api.repos.DbRepository;
 import io.skysail.server.app.SkysailApplication;
 import io.skysail.server.app.designer.application.Application;
 import io.skysail.server.app.designer.application.resources.*;
@@ -11,7 +12,6 @@ import io.skysail.server.app.designer.fields.resources.*;
 import io.skysail.server.app.designer.repo.DesignerRepository;
 import io.skysail.server.db.DbService;
 import io.skysail.server.menus.*;
-import io.skysail.server.repo.DbRepository;
 
 import java.util.*;
 import java.util.concurrent.TimeUnit;

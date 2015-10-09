@@ -1,8 +1,8 @@
 package io.skysail.server.db.versions;
 
+import io.skysail.api.repos.DbRepository;
 import io.skysail.server.db.versions.impl.*;
 import io.skysail.server.queryfilter.Filter;
-import io.skysail.server.repo.DbRepository;
 import io.skysail.server.utils.BundleUtils;
 
 import java.util.*;

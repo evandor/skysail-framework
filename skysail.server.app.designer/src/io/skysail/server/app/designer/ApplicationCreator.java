@@ -1,5 +1,6 @@
 package io.skysail.server.app.designer;
 
+import io.skysail.api.repos.DbRepository;
 import io.skysail.server.app.SkysailApplication;
 import io.skysail.server.app.designer.application.Application;
 import io.skysail.server.app.designer.codegen.*;
@@ -7,7 +8,6 @@ import io.skysail.server.app.designer.model.*;
 import io.skysail.server.app.designer.repo.DesignerRepository;
 import io.skysail.server.db.DbService;
 import io.skysail.server.menus.MenuItemProvider;
-import io.skysail.server.repo.DbRepository;
 import io.skysail.server.utils.BundleUtils;
 
 import java.io.*;

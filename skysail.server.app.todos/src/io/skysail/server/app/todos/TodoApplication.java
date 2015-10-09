@@ -1,5 +1,6 @@
 package io.skysail.server.app.todos;
 
+import io.skysail.api.repos.DbRepository;
 import io.skysail.server.app.*;
 import io.skysail.server.app.todos.charts.ListChartResource;
 import io.skysail.server.app.todos.columns.ListAsColumnsResource;
@@ -11,7 +12,6 @@ import io.skysail.server.app.todos.todos.resources.*;
 import io.skysail.server.db.versions.VersioningService;
 import io.skysail.server.menus.*;
 import io.skysail.server.queryfilter.Filter;
-import io.skysail.server.repo.DbRepository;
 import io.skysail.server.restlet.resources.SkysailServerResource;
 
 import java.util.*;

@@ -1,4 +1,5 @@
-package io.skysail.server.repo;
+package io.skysail.api.repos;
+
 
 /**
  * marker interface, typically defined like this:

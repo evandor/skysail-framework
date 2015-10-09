@@ -1,8 +1,8 @@
 package de.twenty11.skysail.server.ext.mail.accounts.impl;
 
 import io.skysail.api.domain.Identifiable;
+import io.skysail.api.repos.DbRepository;
 import io.skysail.server.db.DbService;
-import io.skysail.server.repo.DbRepository;
 
 import java.util.*;
 

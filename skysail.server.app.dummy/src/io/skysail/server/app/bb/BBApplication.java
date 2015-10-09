@@ -1,5 +1,6 @@
 package io.skysail.server.app.bb;
 
+import io.skysail.api.repos.DbRepository;
 import io.skysail.server.app.SkysailApplication;
 import io.skysail.server.app.bb.achievements.PostAchievementResource;
 import io.skysail.server.app.bb.goals.f.*;
@@ -8,7 +9,6 @@ import io.skysail.server.app.bb.goals.pg.*;
 import io.skysail.server.app.bb.goals.rf.*;
 import io.skysail.server.app.bb.goals.wc.*;
 import io.skysail.server.menus.*;
-import io.skysail.server.repo.DbRepository;
 import io.skysail.server.restlet.resources.SkysailServerResource;
 
 import java.util.*;

@@ -1,8 +1,8 @@
 package io.skysail.server.app.um.db.repo;
 
+import io.skysail.api.repos.DbRepository;
 import io.skysail.server.app.um.db.domain.Role;
 import io.skysail.server.db.*;
-import io.skysail.server.repo.DbRepository;
 import lombok.extern.slf4j.Slf4j;
 import aQute.bnd.annotation.component.*;
 

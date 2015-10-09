@@ -1,10 +1,10 @@
 package io.skysail.server.app.bookmarks;
 
+import io.skysail.api.repos.DbRepository;
 import io.skysail.server.app.SkysailApplication;
 import io.skysail.server.app.bookmarks.repo.BookmarksRepository;
 import io.skysail.server.app.bookmarks.resources.*;
 import io.skysail.server.menus.*;
-import io.skysail.server.repo.DbRepository;
 
 import java.util.*;
 

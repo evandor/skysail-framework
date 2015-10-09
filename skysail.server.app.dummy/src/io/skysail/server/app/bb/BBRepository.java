@@ -1,8 +1,8 @@
 package io.skysail.server.app.bb;
 
+import io.skysail.api.repos.DbRepository;
 import io.skysail.server.app.bb.achievements.DummyAchievement;
 import io.skysail.server.db.*;
-import io.skysail.server.repo.DbRepository;
 import aQute.bnd.annotation.component.*;
 
 @Component(immediate = true, properties = "name=BodyboosterRepository")

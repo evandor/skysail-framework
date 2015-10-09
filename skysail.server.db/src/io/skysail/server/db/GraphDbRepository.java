@@ -1,9 +1,9 @@
 package io.skysail.server.db;
 
 import io.skysail.api.domain.Identifiable;
+import io.skysail.api.repos.DbRepository;
 import io.skysail.server.queryfilter.Filter;
 import io.skysail.server.queryfilter.pagination.Pagination;
-import io.skysail.server.repo.DbRepository;
 
 import java.lang.reflect.*;
 import java.util.*;

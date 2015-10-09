@@ -185,20 +185,7 @@ public abstract class SkysailServerResource<T> extends ServerResource {
     }
 
     public Class<?> getParameterizedType() {
-        ParameterizedType parameterizedType = getParameterizedType(getClass());
-        Type firstActualTypeArgument = parameterizedType.getActualTypeArguments()[0];
-        if (firstActualTypeArgument.getTypeName().startsWith("java.util.Map")) {
-            return Map.class;
-        }
-        return (Class<?>) firstActualTypeArgument;
-    }
-
-    private ParameterizedType getParameterizedType(Class<?> cls) {
-        Type genericSuperclass = cls.getGenericSuperclass();
-        if (genericSuperclass instanceof ParameterizedType) {
-            return (ParameterizedType) genericSuperclass;
-        }
-        return getParameterizedType(cls.getSuperclass());
+        return ReflectionUtils.getParameterizedType(getClass());
     }
 
     /**
@@ -331,7 +318,7 @@ public abstract class SkysailServerResource<T> extends ServerResource {
         Map<String, String> valuesMap = form.getValuesMap();
         try {
 
-            SkysailBeanUtils beanUtilsBean = new SkysailBeanUtils(ResourceUtils.determineLocale(this));
+            SkysailBeanUtils beanUtilsBean = new SkysailBeanUtils(bean, ResourceUtils.determineLocale(this));
             beanUtilsBean.populate(bean, valuesMap);
             return bean;
         } catch (Exception e) {
@@ -342,7 +329,7 @@ public abstract class SkysailServerResource<T> extends ServerResource {
 
     protected void copyProperties(T dest, T orig) {
         try {
-            SkysailBeanUtils beanUtilsBean = new SkysailBeanUtils(ResourceUtils.determineLocale(this));
+            SkysailBeanUtils beanUtilsBean = new SkysailBeanUtils(orig, ResourceUtils.determineLocale(this));
             beanUtilsBean.copyProperties(dest, orig, this);
         } catch (Exception e) {
             throw new RuntimeException("Error copying beans", e);

@@ -22,6 +22,14 @@ public class PostUserResource extends PostEntityServerResource<User> {
         return new User();
     }
 
+//    public User getData(Form form) {
+//        submitValue = form.getFirstValue("submit");
+//        String roles = form.getFirstValue("roles");
+//        User entity = createEntityTemplate();
+//        this.setCurrentEntity(entity);
+//        return populate(entity, form);
+//    };
+
     @Override
     public SkysailResponse<User> addEntity(User entity) {
         String roles = getQueryValue("roles");

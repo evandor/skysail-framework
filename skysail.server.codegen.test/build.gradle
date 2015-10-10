@@ -28,6 +28,6 @@ compileGeneratedJava {
     classpath += sourceSets.main.runtimeClasspath
 }
 
-clean {
+/*clean {
     delete sourceSets.generated.java.srcDirs
-}
+}*/

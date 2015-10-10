@@ -12,7 +12,7 @@ Import-Package:  \
 	*
 Export-Package: de.twenty11.skysail.server.ext.apt.annotations
 -buildpath:  \
-	de.twentyeleven.skysail.org.antlr.stringtemplate-osgi;version=4.0,\
+	de.twentyeleven.skysail.org.antlr.stringtemplate-osgi;version=4.0.8,\
 	com.springsource.org.junit;version=4.11,\
 	org.mockito.mockito-all;version=1.9,\
 	lombok;version=1.16,\

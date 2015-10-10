@@ -5,14 +5,10 @@ import io.skysail.server.ext.apt.model.types.TypeModel;
 
 import java.io.IOException;
 import java.lang.annotation.Annotation;
-import java.util.HashSet;
-import java.util.Set;
-import java.util.stream.Collectors;
+import java.util.*;
 
-import javax.annotation.processing.AbstractProcessor;
-import javax.annotation.processing.RoundEnvironment;
-import javax.lang.model.element.Element;
-import javax.lang.model.element.TypeElement;
+import javax.annotation.processing.*;
+import javax.lang.model.element.*;
 import javax.tools.JavaFileObject;
 
 import de.twenty11.skysail.server.ext.apt.annotations.SkysailApplication;
@@ -84,7 +80,7 @@ public abstract class Processors extends AbstractProcessor {
 
 	protected Set<STElement> getElements2(RoundEnvironment roundEnv, Class<? extends Annotation> gpr, EntityGraph graph) {
 		Set<? extends Element> elementsAnnotatedWith = roundEnv.getElementsAnnotatedWith(gpr);
-		printMessage("Here: " + elementsAnnotatedWith + " " + gpr);
+		printMessage("Here!: " + elementsAnnotatedWith + " " + gpr);
 		Set<STElement> result = new HashSet<>();
 		for (Element element : elementsAnnotatedWith) {
 			result.add(new STElement(element, graph, gpr));

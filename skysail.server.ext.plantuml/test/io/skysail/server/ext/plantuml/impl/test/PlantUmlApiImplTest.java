@@ -8,6 +8,7 @@ import java.io.IOException;
 
 import org.junit.*;
 
+@Ignore
 public class PlantUmlApiImplTest {
 
     private PlantUmlApiImpl plantUmlApiImpl;

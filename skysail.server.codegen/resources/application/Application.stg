@@ -3,7 +3,7 @@ package $applicationModel.packageName$;
 
 import java.util.Arrays;
 import java.util.List;
-
+XXX
 import aQute.bnd.annotation.component.Component;
 import aQute.bnd.annotation.component.Reference;
 import de.twenty11.skysail.server.app.ApplicationProvider;
@@ -34,7 +34,7 @@ $applicationModel.typeDefinition$ {
 	protected void attach() {
 	    // Application root resource
 		router.attach(new RouteBuilder("", RootResource.class));
-		
+
 		$attachPostResources(postResources)$
 		$attachListResources(listResources)$
 		$attachEntityResources(entityResources)$

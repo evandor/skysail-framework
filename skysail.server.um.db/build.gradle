@@ -1,0 +1,33 @@
+sourceSets {
+    generated {
+        java {
+            srcDirs = ['src']
+        }
+    }
+}
+
+task runApt(type: JavaCompile, group: 'build', description: 'Generates the apt sources') {
+	dependsOn(':skysail.server.codegen:build')
+    source = sourceSets.main.java
+    classpath = configurations.compile// + configurations.querydslapt
+    options.compilerArgs = [
+            "-proc:only",
+            "-processor", "de.twenty11.skysail.server.ext.apt.processors.ApplicationProcessor"
+    ]
+    destinationDir = sourceSets.generated.java.srcDirs.iterator().next()
+}
+
+compileJava {
+    //dependsOn runApt
+    source runApt.destinationDir
+}
+
+compileGeneratedJava {
+    dependsOn runApt
+    options.warnings = false
+    classpath += sourceSets.main.runtimeClasspath
+}
+
+clean {
+    delete sourceSets.generated.java.srcDirs
+}

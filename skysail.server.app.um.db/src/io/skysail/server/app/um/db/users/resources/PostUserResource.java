@@ -2,7 +2,7 @@ package io.skysail.server.app.um.db.users.resources;
 
 import io.skysail.api.responses.SkysailResponse;
 import io.skysail.server.app.um.db.UmApplication;
-import io.skysail.server.app.um.db.domain.*;
+import io.skysail.server.app.um.db.domain.User;
 import io.skysail.server.restlet.resources.PostEntityServerResource;
 
 import org.restlet.resource.ResourceException;
@@ -32,10 +32,9 @@ public class PostUserResource extends PostEntityServerResource<User> {
 
     @Override
     public SkysailResponse<User> addEntity(User entity) {
-        String roles = getQueryValue("roles");
 
-        Role role = app.getRoleRepo().getById(roles);
-        entity.getRoles().add(role);
+//        Role role = app.getRoleRepo().getById(roles);
+//        entity.getRoles().add(role);
 
         String id = app.getRepository().save(entity).toString();
         entity.setId(id);

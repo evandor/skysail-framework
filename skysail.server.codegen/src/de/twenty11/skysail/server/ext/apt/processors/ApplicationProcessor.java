@@ -28,13 +28,13 @@ public class ApplicationProcessor extends Processors {
                 graph = analyseEntities(roundEnv, skysailApplicationElement);
                 typeModel = new TypeModel(graph, skysailApplicationElement);
 
-                createRepositories(typeModel);
-                createApplication(skysailApplicationElement, roundEnv);
+                /*createRepositories(typeModel);
+                createApplication(skysailApplicationElement, roundEnv);*/
                 createRootResource(skysailApplicationElement, roundEnv);
-                createEntityResources(skysailApplicationElement, roundEnv, graph);
+                /*createEntityResources(skysailApplicationElement, roundEnv, graph);
                 createListResources(skysailApplicationElement, roundEnv, graph);
                 createPostResources(skysailApplicationElement, roundEnv, graph);
-                createPutResources(skysailApplicationElement, roundEnv, graph);
+                createPutResources(skysailApplicationElement, roundEnv, graph);*/
             }
         }
         return true;
@@ -51,7 +51,8 @@ public class ApplicationProcessor extends Processors {
             jfo = createSourceFile(repo.getPackageName() + "." + repo.getTypeName());
 
             Writer writer = jfo.openWriter();
-            STGroup group = new STGroupFile("repository/Repository.stg", '$', '$');
+            STGroup group = new STGroupFile("repository/repository.stg", '$', '$');
+
             ST st = group.getInstanceOf("repository");
             st.add("repo", repo);
             st.add("linkedClasses", repo.getLinkedClasses());

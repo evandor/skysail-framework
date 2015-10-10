@@ -1,3 +1,7 @@
+### bnd allows only two src-Folders; we will use src-gen instead of test to place the generated code into
+#testsrc: src-gen
+#testbin: bin
+
 Bundle-Version: 0.1.5.${tstamp}
 Bundle-Name: SKYSAIL :: server :: um :: db
 Bundle-Description: An implementation of the skysail.api.um interface to manage users \
@@ -8,6 +12,7 @@ Bundle-Description: An implementation of the skysail.api.um interface to manage 
     skysail.api.text;version=${skysail.api.text.version},\
     skysail.api.um;version=${skysail.api.um.version},\
     skysail.server;version=${skysail.server.version},\
+    skysail.server.codegen;version=${skysail.server.codegen.version},\
     skysail.server.um;version=${skysail.server.um.version},\
     skysail.server.testsupport;version=${skysail.server.testsupport.version},\
     biz.aQute.bnd.annotation;version=2.4,\

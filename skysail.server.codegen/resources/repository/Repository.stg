@@ -1,5 +1,5 @@
 repository(repo, linkedClasses, imports) ::= <<
-package $repo.packageName$;
+package xxxx$repo.packageName$;
 
 import java.util.List;
 
@@ -9,9 +9,10 @@ import aQute.bnd.annotation.component.Activate;
 import aQute.bnd.annotation.component.Component;
 import aQute.bnd.annotation.component.Deactivate;
 import aQute.bnd.annotation.component.Reference;
-import de.twenty11.skysail.server.core.db.DbService;
 
-@Component
+import io.skysail.server.db.DbService;
+
+@Component(immediate=true)
 public class $repo.typeName$ {
 
 	private static $repo.typeName$ instance;
@@ -25,7 +26,7 @@ public class $repo.typeName$ {
 		}
 	    return instance;
     }
-	
+
 	@Activate
 	public void activate() {
 		$repo.typeName$.instance = this;
@@ -60,11 +61,11 @@ public class $repo.typeName$ {
 	public void update($repo.entityName$ entity) {
 		dbService.update(entity);
     }
-    
+
     public void delete(String id) {
         dbService.delete(id);
     }
-    
+
 
 }
 >>

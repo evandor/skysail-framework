@@ -28,7 +28,7 @@ public class UsersResource extends ListServerResource<User> {
 
     @Override
     public List<User> getEntity() {
-      return app.getRepository().find(new Filter(getRequest()));
+      return app.getRepository().findVertex(new Filter(getRequest()));
     }
 
     @Override

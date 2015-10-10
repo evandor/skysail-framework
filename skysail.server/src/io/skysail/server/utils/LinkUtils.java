@@ -210,7 +210,9 @@ public class LinkUtils {
     private static String guessId(Object object) {
         if (object instanceof Identifiable) {
             Identifiable identifiable = (Identifiable) object;
-            return identifiable.getId().replace("#", "");
+            if (identifiable.getId() != null) {
+                return identifiable.getId().replace("#", "");
+            }
         }
         if (object instanceof Map) {
             Map<String, Object> map = (Map) object;

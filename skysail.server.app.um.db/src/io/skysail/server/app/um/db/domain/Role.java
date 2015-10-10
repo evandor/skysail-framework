@@ -10,6 +10,7 @@ import lombok.*;
 
 @Getter
 @Setter
+@ToString
 public class Role implements Identifiable {
 
     @Id

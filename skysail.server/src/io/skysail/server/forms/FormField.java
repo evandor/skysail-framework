@@ -137,6 +137,10 @@ public class FormField {
         return isOfInputType(InputType.TAGS);
     }
 
+    public boolean isMultiselectInputType() {
+        return isOfInputType(InputType.MULTISELECT);
+    }
+
     public boolean isReadonlyInputType() {
         return isOfInputType(InputType.READONLY);
     }

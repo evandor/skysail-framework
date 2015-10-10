@@ -13,6 +13,7 @@ import lombok.*;
 
 @Getter
 @Setter
+@ToString
 public class User implements Identifiable {
 
     @Id
@@ -29,6 +30,6 @@ public class User implements Identifiable {
     @NotNull
     private String lastname;
 
-    @Field(inputType = InputType.MULTISELECT, repository = RoleRepository.class)
+    @Field(inputType = InputType.MULTISELECT, repository = RoleRepository.class, selectionProvider = RolesSelectionProvider.class)
     private List<Role> roles;
 }

@@ -61,5 +61,10 @@ public class MailRepository implements DbRepository {
         return null;
     }
 
+    @Override
+    public Identifiable findOne(String id) {
+        return null;
+    }
+
 
 }

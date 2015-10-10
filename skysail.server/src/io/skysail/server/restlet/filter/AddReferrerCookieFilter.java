@@ -8,13 +8,16 @@ import org.restlet.data.CookieSetting;
 import de.twenty11.skysail.server.Constants;
 import de.twenty11.skysail.server.core.restlet.Wrapper;
 
-public class AddReferrerCookieFilter<R extends SkysailServerResource<?>, T extends Identifiable> extends AbstractResourceFilter<R, T> {
+public class AddReferrerCookieFilter<R extends SkysailServerResource<?>, T extends Identifiable> extends
+        AbstractResourceFilter<R, T> {
 
     @Override
     protected void afterHandle(R resource, Wrapper responseWrapper) {
         CookieSetting referrerCookie = createCookie();
-        referrerCookie.setValue(resource.getReferrerRef().getPath());
-        responseWrapper.getResponse().getCookieSettings().add(referrerCookie);
+        if (resource.getReferrerRef() != null) {
+            referrerCookie.setValue(resource.getReferrerRef().getPath());
+            responseWrapper.getResponse().getCookieSettings().add(referrerCookie);
+        }
     }
 
     private CookieSetting createCookie() {

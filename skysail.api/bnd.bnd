@@ -25,6 +25,7 @@ Export-Package:  \
 	io.skysail.api.utils,\
 	de.twenty11.skysail.api.services,\
 	de.twenty11.skysail.api.services.logentry,\
+	io.skysail.api.forms.impl,\
 	de.twenty11.skysail.api.hooks,\
 	de.twenty11.skysail.api.domain,\
 	io.skysail.api.links,\

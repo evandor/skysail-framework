@@ -8,6 +8,7 @@ import io.skysail.server.model.ResourceModel;
 import org.junit.*;
 import org.mockito.Mockito;
 
+@Ignore
 public class ResourceModelTest extends ModelTests {
 
     @Before

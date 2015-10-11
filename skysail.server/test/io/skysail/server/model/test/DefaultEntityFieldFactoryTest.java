@@ -10,6 +10,7 @@ import java.util.Map;
 import org.junit.*;
 import org.mockito.Mockito;
 
+@Ignore
 public class DefaultEntityFieldFactoryTest extends ModelTests {
 
     private DefaultEntityFieldFactory defaultEntityFieldFactory;
@@ -21,13 +22,13 @@ public class DefaultEntityFieldFactoryTest extends ModelTests {
     }
 
     /** --- importance field ------------------------------------------------ */
-    
+
     @Test
     public void returns_importance_field_for_entityResurce() throws Exception {
         Map<String, FormField> fieldsMap = defaultEntityFieldFactory.determineFrom(testEntityResource);
         assertThat(fieldsMap.keySet(), hasItem("importance"));
     }
-    
+
     @Test
     public void returns_importance_field_for_postResurce() throws Exception {
         Map<String, FormField> fieldsMap = defaultEntityFieldFactory.determineFrom(testPostResource);
@@ -46,15 +47,15 @@ public class DefaultEntityFieldFactoryTest extends ModelTests {
         Map<String, FormField> fieldsMap = defaultEntityFieldFactory.determineFrom(testListResource);
         assertThat(fieldsMap.keySet(), not(hasItem("importance")));
     }
-    
+
     /** --- parent field ------------------------------------------------- */
-    
+
     @Test
     public void returns_parent_field_for_entityResurce() throws Exception {
         Map<String, FormField> fieldsMap = defaultEntityFieldFactory.determineFrom(testEntityResource);
         assertThat(fieldsMap.keySet(), hasItem("parent"));
     }
-    
+
     @Test
     public void returns_parent_field_for_postResurce() throws Exception {
         Map<String, FormField> fieldsMap = defaultEntityFieldFactory.determineFrom(testPostResource);
@@ -80,14 +81,14 @@ public class DefaultEntityFieldFactoryTest extends ModelTests {
         Map<String, FormField> fieldsMap = defaultEntityFieldFactory.determineFrom(testListResource);
         assertThat(fieldsMap.keySet(), not(hasItem("parent")));
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+
+
+
+
+
+
+
+
+
+
 }

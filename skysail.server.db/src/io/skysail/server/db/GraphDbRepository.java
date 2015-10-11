@@ -4,7 +4,7 @@ import io.skysail.api.domain.Identifiable;
 import io.skysail.api.repos.DbRepository;
 import io.skysail.server.queryfilter.Filter;
 import io.skysail.server.queryfilter.pagination.Pagination;
-import io.skysail.server.utils.SkysailBeanUtils;
+import io.skysail.server.utils.*;
 
 import java.lang.reflect.*;
 import java.util.*;
@@ -12,17 +12,22 @@ import java.util.*;
 import lombok.extern.slf4j.Slf4j;
 
 import com.orientechnologies.orient.core.record.impl.ODocument;
+import com.tinkerpop.blueprints.*;
 import com.tinkerpop.blueprints.impls.orient.OrientVertex;
 
 @Slf4j
 public class GraphDbRepository<T extends Identifiable> implements DbRepository {
+
+    private static final String OUT_KEY_PREFIX = "out_";
+    private static final String IN_KEY_PREFIX = "in_";
 
     protected DbService dbService;
 
     private Class<?> entityType;
 
     public GraphDbRepository() {
-        entityType = getParameterizedType();
+        //entityType = getParameterizedType();
+        entityType = ReflectionUtils.getParameterizedType(getClass());
     }
 
     public void unsetDbService(DbService dbService) {
@@ -80,26 +85,45 @@ public class GraphDbRepository<T extends Identifiable> implements DbRepository {
     public List<T> findVertex(Filter filter, Pagination pagination) {
         String sql = "SELECT * from " + entityType.getSimpleName() + " WHERE " + filter.getPreparedStatement() + " "
                 + limitClause(pagination);
-        // return dbService.findObjects(sql, filter.getParams());
         List<Object> entities = dbService.findGraphs(sql, filter.getParams());
         List<T> result = new ArrayList<>();
         entities.stream().map(OrientVertex.class::cast).forEach(vertex -> {
-            ODocument record = vertex.getRecord();
-            System.out.println(record);
-            Map<String, Object> map = record.toMap();
-            T bean;
-            try {
-                bean = (T) entityType.newInstance();
-                SkysailBeanUtils beanUtilsBean = new SkysailBeanUtils(bean, Locale.getDefault());
-                beanUtilsBean.populate(bean, map);
-                result.add(bean);
-            } catch (Exception e) {
-                log.error(e.getMessage(), e);
-            }
+            result.add(beanFromVertex(vertex, entityType));
         });
-
         return result;
+    }
 
+    @SuppressWarnings("unchecked")
+    private T beanFromVertex(OrientVertex vertex, Class<?> beanType) {
+        ODocument record = vertex.getRecord();
+        Map<String, Object> entityMap = record.toMap();
+        T bean;
+        try {
+            bean = (T) beanType.newInstance();
+            SkysailBeanUtils beanUtilsBean = new SkysailBeanUtils(bean, Locale.getDefault());
+            beanUtilsBean.populate(bean, entityMap);
+            if (entityMap.get("@rid") != null && bean.getId() == null) {
+                bean.setId(entityMap.get("@rid").toString());
+            }
+
+            Iterable<Edge> edges = vertex.getEdges(Direction.OUT);
+            edges.spliterator().forEachRemaining(e -> {
+                System.out.println(e);
+                OrientVertex vertexFromEdge = (OrientVertex) e.getVertex(Direction.IN);
+                System.out.println(vertexFromEdge);
+                try {
+                    Class<?> forName = Class.forName("io.skysail.server.app.um.db.domain.Role");
+                    Identifiable beanFromVertex = beanFromVertex(vertexFromEdge, forName);
+                } catch (Exception e1) {
+                    e1.printStackTrace();
+                }
+
+            });
+            return bean;
+        } catch (Exception e) {
+            log.error(e.getMessage(), e);
+        }
+        return null;
     }
 
     protected String limitClause(Pagination pagination) {

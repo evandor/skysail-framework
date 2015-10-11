@@ -14,6 +14,7 @@ import org.junit.*;
 
 import de.twenty11.skysail.server.core.test.DummySelectionProvider;
 
+@Ignore
 public class FormFieldTest {
 
     public String test;

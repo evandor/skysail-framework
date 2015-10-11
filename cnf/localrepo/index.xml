@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<repository increment="1444282628927" name="Local" xmlns="http://www.osgi.org/xmlns/repository/v1.0.0">
+<repository increment="1444564680620" name="Local" xmlns="http://www.osgi.org/xmlns/repository/v1.0.0">
   <resource>
     <capability namespace="osgi.identity">
       <attribute name="osgi.identity" value="bcprov"/>
@@ -8478,6 +8478,284 @@
     </requirement>
     <requirement namespace="osgi.ee">
       <directive name="filter" value="(&amp;(osgi.ee=JavaSE)(version=1.7))"/>
+    </requirement>
+  </resource>
+  <resource>
+    <capability namespace="osgi.identity">
+      <attribute name="osgi.identity" value="io.skysail.bundled.tinkerpop.blueprints-core"/>
+      <attribute name="type" value="osgi.bundle"/>
+      <attribute name="version" type="Version" value="2.6.0"/>
+    </capability>
+    <capability namespace="osgi.content">
+      <attribute name="osgi.content" value="e305b86102e45311550f952c7e1d5b4906467819ddec9d176cde8bcba7323b65"/>
+      <attribute name="url" value="io.skysail.bundled.tinkerpop.blueprints-core/io.skysail.bundled.tinkerpop.blueprints-core-2.6.0.jar"/>
+      <attribute name="size" type="Long" value="276744"/>
+      <attribute name="mime" value="application/vnd.osgi.bundle"/>
+    </capability>
+    <capability namespace="osgi.wiring.bundle">
+      <attribute name="osgi.wiring.bundle" value="io.skysail.bundled.tinkerpop.blueprints-core"/>
+      <attribute name="bundle-version" type="Version" value="2.6.0"/>
+    </capability>
+    <capability namespace="osgi.wiring.host">
+      <attribute name="osgi.wiring.host" value="io.skysail.bundled.tinkerpop.blueprints-core"/>
+      <attribute name="bundle-version" type="Version" value="2.6.0"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="com.tinkerpop.blueprints"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.tinkerpop.blueprints-core"/>
+      <attribute name="bundle-version" type="Version" value="2.6.0"/>
+      <directive name="uses" value="org.apache.commons.configuration"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="com.tinkerpop.blueprints.impls.tg"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.tinkerpop.blueprints-core"/>
+      <attribute name="bundle-version" type="Version" value="2.6.0"/>
+      <directive name="uses" value="com.tinkerpop.blueprints,org.apache.commons.configuration"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="com.tinkerpop.blueprints.util"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.tinkerpop.blueprints-core"/>
+      <attribute name="bundle-version" type="Version" value="2.6.0"/>
+      <directive name="uses" value="com.tinkerpop.blueprints"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="com.tinkerpop.blueprints.util.io"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.tinkerpop.blueprints-core"/>
+      <attribute name="bundle-version" type="Version" value="2.6.0"/>
+      <directive name="uses" value="com.tinkerpop.blueprints"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="com.tinkerpop.blueprints.util.io.gml"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.tinkerpop.blueprints-core"/>
+      <attribute name="bundle-version" type="Version" value="2.6.0"/>
+      <directive name="uses" value="com.tinkerpop.blueprints"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="com.tinkerpop.blueprints.util.io.graphml"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.tinkerpop.blueprints-core"/>
+      <attribute name="bundle-version" type="Version" value="2.6.0"/>
+      <directive name="uses" value="com.tinkerpop.blueprints,javax.xml.namespace,javax.xml.stream"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="com.tinkerpop.blueprints.util.io.graphson"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.tinkerpop.blueprints-core"/>
+      <attribute name="bundle-version" type="Version" value="2.6.0"/>
+      <directive name="uses" value="com.fasterxml.jackson.databind,com.fasterxml.jackson.databind.node,com.tinkerpop.blueprints,org.codehaus.jettison.json"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="com.tinkerpop.blueprints.util.wrappers"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.tinkerpop.blueprints-core"/>
+      <attribute name="bundle-version" type="Version" value="2.6.0"/>
+      <directive name="uses" value="com.tinkerpop.blueprints"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="com.tinkerpop.blueprints.util.wrappers.batch"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.tinkerpop.blueprints-core"/>
+      <attribute name="bundle-version" type="Version" value="2.6.0"/>
+      <directive name="uses" value="com.tinkerpop.blueprints,com.tinkerpop.blueprints.util.wrappers,com.tinkerpop.blueprints.util.wrappers.batch.cache"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="com.tinkerpop.blueprints.util.wrappers.batch.cache"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.tinkerpop.blueprints-core"/>
+      <attribute name="bundle-version" type="Version" value="2.6.0"/>
+      <directive name="uses" value="com.tinkerpop.blueprints"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="com.tinkerpop.blueprints.util.wrappers.event"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.tinkerpop.blueprints-core"/>
+      <attribute name="bundle-version" type="Version" value="2.6.0"/>
+      <directive name="uses" value="com.tinkerpop.blueprints,com.tinkerpop.blueprints.util.wrappers,com.tinkerpop.blueprints.util.wrappers.event.listener"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="com.tinkerpop.blueprints.util.wrappers.event.listener"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.tinkerpop.blueprints-core"/>
+      <attribute name="bundle-version" type="Version" value="2.6.0"/>
+      <directive name="uses" value="com.tinkerpop.blueprints"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="com.tinkerpop.blueprints.util.wrappers.id"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.tinkerpop.blueprints-core"/>
+      <attribute name="bundle-version" type="Version" value="2.6.0"/>
+      <directive name="uses" value="com.tinkerpop.blueprints,com.tinkerpop.blueprints.util.wrappers"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="com.tinkerpop.blueprints.util.wrappers.partition"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.tinkerpop.blueprints-core"/>
+      <attribute name="bundle-version" type="Version" value="2.6.0"/>
+      <directive name="uses" value="com.tinkerpop.blueprints,com.tinkerpop.blueprints.util.wrappers"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="com.tinkerpop.blueprints.util.wrappers.readonly"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.tinkerpop.blueprints-core"/>
+      <attribute name="bundle-version" type="Version" value="2.6.0"/>
+      <directive name="uses" value="com.tinkerpop.blueprints,com.tinkerpop.blueprints.util.wrappers"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="com.tinkerpop.blueprints.util.wrappers.wrapped"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.tinkerpop.blueprints-core"/>
+      <attribute name="bundle-version" type="Version" value="2.6.0"/>
+      <directive name="uses" value="com.tinkerpop.blueprints,com.tinkerpop.blueprints.util.wrappers"/>
+    </capability>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=com.fasterxml.jackson.core)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=com.fasterxml.jackson.databind)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=com.fasterxml.jackson.databind.node)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=javax.xml.namespace)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=javax.xml.stream)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.apache.commons.configuration)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.codehaus.jettison.json)"/>
+    </requirement>
+    <requirement namespace="osgi.ee">
+      <directive name="filter" value="(&amp;(osgi.ee=JavaSE)(version=1.6))"/>
+    </requirement>
+  </resource>
+  <resource>
+    <capability namespace="osgi.identity">
+      <attribute name="osgi.identity" value="io.skysail.bundled.tinkerpop.blueprints-orient-graph"/>
+      <attribute name="type" value="osgi.bundle"/>
+      <attribute name="version" type="Version" value="2.4.0"/>
+    </capability>
+    <capability namespace="osgi.content">
+      <attribute name="osgi.content" value="b4788b43765f1c0fa4ead6fd6de1634b3e280b31f3b5f9217d90d7a53025f2ac"/>
+      <attribute name="url" value="io.skysail.bundled.tinkerpop.blueprints-orient-graph/io.skysail.bundled.tinkerpop.blueprints-orient-graph-2.4.0.jar"/>
+      <attribute name="size" type="Long" value="63747"/>
+      <attribute name="mime" value="application/vnd.osgi.bundle"/>
+    </capability>
+    <capability namespace="osgi.wiring.bundle">
+      <attribute name="osgi.wiring.bundle" value="io.skysail.bundled.tinkerpop.blueprints-orient-graph"/>
+      <attribute name="bundle-version" type="Version" value="2.4.0"/>
+    </capability>
+    <capability namespace="osgi.wiring.host">
+      <attribute name="osgi.wiring.host" value="io.skysail.bundled.tinkerpop.blueprints-orient-graph"/>
+      <attribute name="bundle-version" type="Version" value="2.4.0"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="com.tinkerpop.blueprints.impls.orient"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="io.skysail.bundled.tinkerpop.blueprints-orient-graph"/>
+      <attribute name="bundle-version" type="Version" value="2.4.0"/>
+      <directive name="uses" value="com.orientechnologies.common.util,com.orientechnologies.orient.core.command,com.orientechnologies.orient.core.command.traverse,com.orientechnologies.orient.core.db.document,com.orientechnologies.orient.core.db.record,com.orientechnologies.orient.core.exception,com.orientechnologies.orient.core.id,com.orientechnologies.orient.core.index,com.orientechnologies.orient.core.iterator,com.orientechnologies.orient.core.metadata.schema,com.orientechnologies.orient.core.record,com.orientechnologies.orient.core.record.impl,com.orientechnologies.orient.core.serialization,com.tinkerpop.blueprints,com.tinkerpop.blueprints.util,com.tinkerpop.blueprints.util.wrappers.batch,org.apache.commons.configuration"/>
+    </capability>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=com.orientechnologies.common.collection)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=com.orientechnologies.common.concur.resource)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=com.orientechnologies.common.io)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=com.orientechnologies.common.listener)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=com.orientechnologies.common.log)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=com.orientechnologies.common.util)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=com.orientechnologies.orient.core.command)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=com.orientechnologies.orient.core.command.traverse)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=com.orientechnologies.orient.core.config)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=com.orientechnologies.orient.core.db)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=com.orientechnologies.orient.core.db.document)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=com.orientechnologies.orient.core.db.record)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=com.orientechnologies.orient.core.exception)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=com.orientechnologies.orient.core.id)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=com.orientechnologies.orient.core.index)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=com.orientechnologies.orient.core.iterator)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=com.orientechnologies.orient.core.metadata)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=com.orientechnologies.orient.core.metadata.schema)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=com.orientechnologies.orient.core.metadata.security)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=com.orientechnologies.orient.core.query)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=com.orientechnologies.orient.core.record)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=com.orientechnologies.orient.core.record.impl)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=com.orientechnologies.orient.core.serialization)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=com.orientechnologies.orient.core.sql.query)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=com.orientechnologies.orient.core.tx)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=com.orientechnologies.orient.core.type.tree)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=com.tinkerpop.blueprints)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=com.tinkerpop.blueprints.util)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=com.tinkerpop.blueprints.util.wrappers.batch)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.apache.commons.configuration)"/>
+    </requirement>
+    <requirement namespace="osgi.ee">
+      <directive name="filter" value="(&amp;(osgi.ee=JavaSE)(version=1.6))"/>
     </requirement>
   </resource>
   <resource>

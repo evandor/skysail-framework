@@ -7,6 +7,7 @@ new in
  * executeUpdate returns Object now
  * removed OrientDbJsonConverter
  * moved some classes from de.xxx to io.xxx
+ * made tinkerpop.blueprints a bundle of its own
 
 2.0.0
 -----

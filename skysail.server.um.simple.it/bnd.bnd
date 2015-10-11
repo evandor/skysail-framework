@@ -114,7 +114,7 @@ Test-Cases: \
 	org.restlet.ext.jackson;version=${restlet.version},\
 	org.restlet.ext.json;version=${restlet.version},\
 	org.restlet.ext.slf4j;version=${restlet.version},\
-    org.restlet.ext.raml;version=${restlet.version},\
+	org.restlet.ext.raml;version=${restlet.version},\
 	org.restlet.ext.crypto;version=${restlet.version},\
 	org.xerial.snappy.snappy-java;version='[1.1.1,1.1.2)',\
 	osgi.cmpn;version='[5.0.0,5.0.1)',\
@@ -123,7 +123,7 @@ Test-Cases: \
 	skysail.api.um;version=${skysail.api.um.version},\
 	skysail.api.text;version=latest,\
 	skysail.api.peers;version=latest,\
-    skysail.api.search;version=latest,\
+	skysail.api.search;version=latest,\
 	skysail.api.validation;version=latest,\
 	skysail.api.features;version=latest,\
 	skysail.client.testsupport;version=latest,\
@@ -132,10 +132,10 @@ Test-Cases: \
 	skysail.server.db;version=${skysail.server.db.version},\
 	skysail.server.http;version=${skysail.server.http.version},\
 	skysail.server.plugins;version=${skysail.server.plugins.version},\
-    skysail.server.queryfilter;version=${skysail.server.queryfilter.version},\
+	skysail.server.queryfilter;version=${skysail.server.queryfilter.version},\
 	skysail.server.static;version=${skysail.server.static.version},\
-	skysail.server.text.markdown;version=${skysail.server.text.markdown.version};,\
-    skysail.server.um;version=${skysail.server.um.version},\
+	skysail.server.text.markdown;version=${skysail.server.text.markdown.version},\
+	skysail.server.um;version=${skysail.server.um.version},\
 	skysail.server.um.simple;version=${skysail.server.um.simple.version},\
 	slf4j.api;version='[1.7.7,1.7.8)',\
 	de.twentyeleven.skysail.org.antlr.stringtemplate-osgi;version=4.0.8,\
@@ -143,6 +143,7 @@ Test-Cases: \
 	com.beust.jcommander;version=1.47.0,\
 	stax2-api;version=3.1.4,\
 	com.fasterxml.jackson.module.jackson-module-jaxb-annotations;version=2.5.1,\
-	org.codehaus.jettison.jettison;version=1.3.7
+	org.codehaus.jettison.jettison;version=1.3.7,\
+	io.skysail.bundled.tinkerpop.blueprints-core;version=2.6.0
 Private-Package:  \
 	io.skysail.server.um.simple.it

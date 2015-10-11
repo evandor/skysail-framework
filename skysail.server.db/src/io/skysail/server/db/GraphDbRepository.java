@@ -4,7 +4,7 @@ import io.skysail.api.domain.Identifiable;
 import io.skysail.api.repos.DbRepository;
 import io.skysail.server.queryfilter.Filter;
 import io.skysail.server.queryfilter.pagination.Pagination;
-import io.skysail.server.utils.*;
+import io.skysail.server.utils.SkysailBeanUtils;
 
 import java.lang.reflect.*;
 import java.util.*;
@@ -18,16 +18,13 @@ import com.tinkerpop.blueprints.impls.orient.OrientVertex;
 @Slf4j
 public class GraphDbRepository<T extends Identifiable> implements DbRepository {
 
-    private static final String OUT_KEY_PREFIX = "out_";
-    private static final String IN_KEY_PREFIX = "in_";
-
     protected DbService dbService;
 
     private Class<?> entityType;
 
     public GraphDbRepository() {
-        //entityType = getParameterizedType();
-        entityType = ReflectionUtils.getParameterizedType(getClass());
+        entityType = getParameterizedType();
+        //entityType = ReflectionUtils.getParameterizedType(getClass());
     }
 
     public void unsetDbService(DbService dbService) {

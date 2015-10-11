@@ -1,27 +1,20 @@
 package io.skysail.server.app.designer.test;
 
+import io.skysail.api.responses.SkysailResponse;
+import io.skysail.server.app.designer.DesignerApplication;
+import io.skysail.server.app.designer.application.Application;
+import io.skysail.server.app.designer.application.resources.*;
+import io.skysail.server.app.designer.entities.Entity;
+import io.skysail.server.app.designer.entities.resources.*;
+import io.skysail.server.app.designer.repo.DesignerRepository;
+import io.skysail.server.restlet.resources.SkysailServerResource;
+import io.skysail.server.testsupport.ResourceTestBase;
+
 import java.util.HashMap;
 
 import org.apache.shiro.subject.SimplePrincipalMap;
 import org.junit.Before;
-import org.mockito.Mockito;
-import org.mockito.Spy;
-
-import io.skysail.api.responses.SkysailResponse;
-import io.skysail.server.app.designer.DesignerApplication;
-import io.skysail.server.app.designer.application.Application;
-import io.skysail.server.app.designer.application.resources.ApplicationResource;
-import io.skysail.server.app.designer.application.resources.ApplicationsResource;
-import io.skysail.server.app.designer.application.resources.PostApplicationResource;
-import io.skysail.server.app.designer.application.resources.PutApplicationResource;
-import io.skysail.server.app.designer.entities.Entity;
-import io.skysail.server.app.designer.entities.resources.EntitiesResource;
-import io.skysail.server.app.designer.entities.resources.EntityResource;
-import io.skysail.server.app.designer.entities.resources.PostEntityResource;
-import io.skysail.server.app.designer.entities.resources.PutEntityResource;
-import io.skysail.server.app.designer.repo.DesignerRepository;
-import io.skysail.server.restlet.resources.SkysailServerResource;
-import io.skysail.server.testsupport.ResourceTestBase;
+import org.mockito.*;
 
 public abstract class AbstractDesignerResourceTest extends ResourceTestBase {
 

@@ -75,7 +75,8 @@ Include-Resource: resources, templates=src;recursive:=true;filter:=*.st|*.stg
 	io.skysail.bundled.java-client;version=3.2,\
 	io.skysail.bundled.asciidoctorj;version=1.5,\
 	io.skysail.bundled.lambdaj;version=2.3,\
-	org.apache.servicemix.bundles.cglib;version=3.1
+	org.apache.servicemix.bundles.cglib;version=3.1,\
+    io.skysail.bundled.tinkerpop.blueprints-core;version=2.6
 
 Import-Package: org.osgi.framework,\
 	javassist.util.proxy,\

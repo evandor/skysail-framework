@@ -5,9 +5,8 @@ Private-Package:  \
 	io.skysail.server.db.versions.impl,\
 	io.skysail.server.db.impl
 Include-Resource: lib=lib,resources=resources
-Bundle-ClassPath: .,lib/blueprints-core-2.6.0.jar
+
 -buildpath:  \
-	lib/blueprints-core-2.6.0.jar;version=file,\
 	skysail.api;version=${skysail.api.version},\
 	skysail.server;version=${skysail.server.version},\
 	skysail.server.queryfilter;version=${skysail.server.queryfilter.version},\
@@ -37,12 +36,10 @@ Import-Package:  \
 	javassist.util.proxy,\
 	org.codehaus.jettison.*,\
 	!cern.colt.*,\
-	!com.tinkerpop.*,\
 	!org.apache.commons.configuration.*,\
 	!com.carrotsearch.hppc.*,\
 	*
 Export-Package:  \
-	com.tinkerpop.blueprints.*;version=3.0.0,\
 	de.twenty11.skysail.server.db.orientdb,\
 	io.skysail.server.db,\
 	io.skysail.server.db.versions

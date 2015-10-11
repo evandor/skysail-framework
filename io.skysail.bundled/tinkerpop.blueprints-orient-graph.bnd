@@ -1,0 +1,11 @@
+Bundle-Version: 2.4.0
+
+-classpath: jar/blueprints-orient-graph-2.4.0
+
+Export-Package: \
+    com.tinkerpop.blueprints.*;version=1.0
+
+Bundle-Name: tinkerpop.blueprints-orient-graph.jar
+
+Import-Package: !com.carrotsearch.hppc.*,\
+    *

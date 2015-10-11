@@ -1,0 +1,11 @@
+Bundle-Version: 2.6.0
+
+-classpath: jar/blueprints-core-2.6.0.jar
+
+Export-Package: \
+    com.tinkerpop.blueprints.*;version=1.0
+
+Bundle-Name: tinkerpop.blueprints-core.jar
+
+Import-Package: !com.carrotsearch.hppc.*,\
+    *

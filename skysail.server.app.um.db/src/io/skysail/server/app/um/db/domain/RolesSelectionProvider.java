@@ -1,6 +1,8 @@
 package io.skysail.server.app.um.db.domain;
 
 import io.skysail.api.forms.SelectionProvider;
+import io.skysail.server.app.um.db.UmApplication;
+import io.skysail.server.queryfilter.Filter;
 
 import java.util.*;
 
@@ -12,11 +14,13 @@ public class RolesSelectionProvider implements SelectionProvider {
         return new RolesSelectionProvider();
     }
 
+    private Resource resource;
+
     @Override
     public Map<String, String> getSelections() {
+        List<Role> allRoles = ((UmApplication)resource.getApplication()).getRoleRepo().find(new Filter());
         Map<String,String> result = new HashMap<>();
-        result.put("38:0", "Admin");
-        result.put("38:1", "User");
+        allRoles.stream().forEach(r -> result.put(r.getId().toString(), r.getName()));
         return result;
     }
 
@@ -26,6 +30,7 @@ public class RolesSelectionProvider implements SelectionProvider {
 
     @Override
     public void setResource(Resource resource) {
+        this.resource = resource;
     }
 
 }

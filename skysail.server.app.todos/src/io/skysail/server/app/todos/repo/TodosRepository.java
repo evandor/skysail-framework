@@ -18,9 +18,7 @@ public class TodosRepository extends GraphDbRepository<Todo>  implements DbRepos
 
     @Activate
     public void activate() { // NO_UCD
-        log.debug("activating repository");
-        dbService.createWithSuperClass("V", Todo.class.getSimpleName());
-        dbService.register(Todo.class);
+        super.activate(Todo.class);
     }
 
     @Reference

@@ -1,3 +1,15 @@
+DEBUG i.s.server.um.security.shiro.SimpleDelegatingVerifier - login event for user 'identifier'
+INFO  i.s.server.um.security.shiro.SimpleDelegatingVerifier - LockedAccountException 'null' when login in identifier
+org.apache.shiro.authc.LockedAccountException: null
+DEBUG i.s.server.um.security.shiro.SimpleDelegatingVerifier - login event for user 'identifier'
+DEBUG i.s.server.um.security.shiro.SimpleDelegatingVerifier - UnknownAccountException 'null' when login in identifier
+DEBUG i.s.server.um.security.shiro.SimpleDelegatingVerifier - login event for user 'identifier'
+DEBUG i.s.server.um.security.shiro.SimpleDelegatingVerifier - IncorrectCredentialsException 'null' when login in identifier
+DEBUG i.s.server.um.security.shiro.SimpleDelegatingVerifier - login event for user 'identifier'
+ERROR i.s.server.um.security.shiro.SimpleDelegatingVerifier - AuthenticationException 'null' when login in identifier
+org.apache.shiro.authc.AuthenticationException: null
+DEBUG i.s.server.um.security.shiro.SimpleDelegatingVerifier - login event for user 'identifier'
+DEBUG i.s.server.um.security.shiro.SimpleDelegatingVerifier - login event for user 'identifier' successful
 INFO  io.skysail.server.um.security.shiro.ShiroServices - creating new SkysailAuthorizingRealm...
 INFO  io.skysail.server.um.security.shiro.ShiroServices - Setting new SkysailWebSecurityManager as Shiros SecurityManager
 INFO  i.s.s.u.s.shiro.session.mgt.SkysailWebSessionManager - creating new SkysailWebSessionManager

@@ -16,7 +16,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.orientechnologies.orient.client.remote.OEngineRemote;
 import com.orientechnologies.orient.core.Orient;
 import com.orientechnologies.orient.core.command.OCommandRequest;
-import com.orientechnologies.orient.core.db.ODatabaseRecordThreadLocal;
 import com.orientechnologies.orient.core.db.document.ODatabaseDocumentTx;
 import com.orientechnologies.orient.core.id.ORecordId;
 import com.orientechnologies.orient.core.metadata.schema.*;
@@ -415,12 +414,14 @@ public class OrientGraphDbService extends AbstractOrientDbService implements DbS
 
     private ODatabaseDocumentTx getDocumentDb() {
         ODatabaseDocumentTx db = new ODatabaseDocumentTx(getDbUrl()).open(getDbUsername(), getDbPassword());
-        ODatabaseRecordThreadLocal.INSTANCE.set(db);
+        //ODatabaseRecordThreadLocal.INSTANCE.set(db);
+        db.activateOnCurrentThread();
         return db;
     }
 
     private OObjectDatabaseTx getObjectDb() {
         OObjectDatabaseTx db = OObjectDatabasePool.global().acquire(getDbUrl(), getDbUsername(), getDbPassword());
+        db.activateOnCurrentThread();
         return db;
     }
 

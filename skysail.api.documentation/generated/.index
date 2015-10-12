@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<repository increment="1442998463179" name="skysail.api.documentation" xmlns="http://www.osgi.org/xmlns/repository/v1.0.0">
+  <resource>
+    <capability namespace="osgi.identity">
+      <attribute name="osgi.identity" value="skysail.api.documentation"/>
+      <attribute name="type" value="osgi.bundle"/>
+      <attribute name="version" type="Version" value="0.2.4.201509230850"/>
+    </capability>
+    <capability namespace="osgi.content">
+      <attribute name="osgi.content" value="ca57f374bf45d5f7091a3a48adbf6e258f29da94020e74b9156b66a0fab5eb4d"/>
+      <attribute name="url" value="generated/skysail.api.documentation.jar"/>
+      <attribute name="size" type="Long" value="4194"/>
+      <attribute name="mime" value="application/vnd.osgi.bundle"/>
+    </capability>
+    <capability namespace="osgi.wiring.bundle">
+      <attribute name="osgi.wiring.bundle" value="skysail.api.documentation"/>
+      <attribute name="bundle-version" type="Version" value="0.2.4.201509230850"/>
+    </capability>
+    <capability namespace="osgi.wiring.host">
+      <attribute name="osgi.wiring.host" value="skysail.api.documentation"/>
+      <attribute name="bundle-version" type="Version" value="0.2.4.201509230850"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="io.skysail.api.documentation"/>
+      <attribute name="version" type="Version" value="0.2.0"/>
+      <attribute name="bundle-symbolic-name" value="skysail.api.documentation"/>
+      <attribute name="bundle-version" type="Version" value="0.2.4.201509230850"/>
+      <directive name="uses" value="org.restlet.resource"/>
+    </capability>
+    <capability namespace="bndtools.workspace">
+      <attribute name="bndtools.workspace" value="file:/C:/workspaces/ssf"/>
+      <attribute name="project.path" value="/skysail.api.documentation"/>
+    </capability>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.restlet.resource)"/>
+    </requirement>
+    <requirement namespace="osgi.ee">
+      <directive name="filter" value="(&amp;(osgi.ee=JavaSE)(version=1.8))"/>
+    </requirement>
+  </resource>
+</repository>

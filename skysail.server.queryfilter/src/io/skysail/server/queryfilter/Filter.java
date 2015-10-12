@@ -14,7 +14,6 @@ import org.osgi.framework.InvalidSyntaxException;
 import org.restlet.Request;
 
 @Getter
-@NoArgsConstructor
 @Slf4j
 @ToString(of = {"preparedStatement", "params"})
 public class Filter {
@@ -26,11 +25,18 @@ public class Filter {
     private org.osgi.framework.Filter ldapFilter;
     private Map<String, Object> params;
 
+    public Filter() {
+        this((Request)null, null);
+    }
+
     public Filter(Request request) {
         this(request, null);
     }
 
     public Filter(Request request, String defaultFilterExpression) {
+        if (request == null) {
+            return;
+        }
         Object filterQuery = request.getAttributes().get(SkysailServerResource.FILTER_PARAM_NAME);
         if (filterQuery != null) {
             this.filterExpressionFromQuery = (String)filterQuery;

@@ -60,7 +60,10 @@ Include-Resource: resources, templates=src;recursive:=true;filter:=*.st|*.stg
 	com.fasterxml.jackson.core.jackson-core;version=2.4,\
 	com.fasterxml.jackson.core.jackson-databind;version=2.4,\
 	javassist;version=3.18,\
-	io.skysail.bundled.tinkerpop.blueprints-core;version=2.6
+	io.skysail.bundled.tinkerpop.blueprints-core;version=2.6,\
+    com.sun.jna;version=4.2,\
+    com.sun.jna.platform;version=4.2
+
 Import-Package: org.osgi.framework,\
 	javassist.util.proxy,\
 	*

@@ -20,7 +20,7 @@ public class Persister {
     public Persister(OrientGraph db, String[] edges) {
         this.edges = Arrays.asList(edges);
         this.db = db;
-        edgeHandler = new EdgeHandler(db, edges);
+        edgeHandler = new EdgeHandler(db);
     }
 
     public <T> Object persist(T entity) {

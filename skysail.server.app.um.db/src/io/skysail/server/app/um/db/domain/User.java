@@ -32,4 +32,8 @@ public class User implements Identifiable {
 
     @Field(inputType = InputType.MULTISELECT, repository = RoleRepository.class, selectionProvider = RolesSelectionProvider.class)
     private List<Role> roles = new ArrayList<>();
+
+   // @Field(inputType = InputType.MULTISELECT, repository = GroupRepository.class, selectionProvider = GroupsSelectionProvider.class)
+   // private List<Group> groups = new ArrayList<>();
+
 }

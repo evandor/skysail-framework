@@ -3,9 +3,8 @@ package io.skysail.server.app.um.db.users.resources;
 import io.skysail.api.links.Link;
 import io.skysail.server.app.um.db.UmApplication;
 import io.skysail.server.app.um.db.domain.User;
-import io.skysail.server.app.um.db.roles.resources.RolesResource;
 import io.skysail.server.queryfilter.Filter;
-import io.skysail.server.restlet.resources.ListServerResource;
+import io.skysail.server.restlet.resources.*;
 
 import java.util.List;
 
@@ -33,7 +32,9 @@ public class UsersResource extends ListServerResource<User> {
 
     @Override
     public List<Link> getLinks() {
-       return super.getLinks(PostUserResource.class, RolesResource.class, UsersResource.class);
+        List<Class<? extends SkysailServerResource<?>>> links = app.getMainLinks();
+        links.add(PostUserResource.class);
+        return super.getLinks(links);
     }
 
 

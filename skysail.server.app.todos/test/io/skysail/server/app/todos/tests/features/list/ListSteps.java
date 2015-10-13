@@ -14,30 +14,31 @@ import org.restlet.engine.resource.VariantInfo;
 
 public class ListSteps extends AbstractSteps {
 
-    private ListTests listTests;
+    private TodoListTests listTests;
     private SkysailResponse<TodoList> result;
 
-    @Step("posting form with '{0}'")
+    @Step("posting todolist form with '{0}'")
     public void post(String input) {
-        result = listTests.postListresource.post(createForm(input),  new VariantInfo(MediaType.TEXT_HTML));
+        result = listTests.postListresource.post(createForm(input), new VariantInfo(MediaType.TEXT_HTML));
     }
 
-    @Step("posting form with '{0}'")
+    @Step("posting todolist form with '{0}'")
     public void post(TodoList list) {
         result = listTests.postListresource.post(list, new VariantInfo(MediaType.APPLICATION_JSON));
     }
 
-    @Step("yields name '{0}'")
+    @Step("yields new list with name '{0}'")
     public void new_list_should_have_the_name(String name) {
         listTests.assertListResult(listTests.postListresource, result, name);
     }
 
-    public void setTestClass(ListTests listTests) {
+    public void setTestClass(TodoListTests listTests) {
         this.listTests = listTests;
     }
 
+    @Step("asserting single validation failure for '{0}' with message '{1}'")
     public void hasSingleValidationFailure(String key, String msg) {
-        //listTests.assertSingleValidationFailure(listTests.postListresource, ( ConstraintViolationsResponse<?>)result,  key, msg);
+        listTests.assertSingleValidationFailure(listTests.postListresource, ( io.skysail.api.responses.ConstraintViolationsResponse<?>)result,  key, msg);
     }
 
     @Step("asserting that '{0}' is not null")

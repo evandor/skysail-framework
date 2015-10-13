@@ -22,6 +22,8 @@ public interface DbService {
      */
     <T> Object persist(T entity, String... edges);
 
+    <T> Object update(Object id, T entity, String... edges);
+
     /**
      * retrieves an entity of type T identified by its id.
      *
@@ -30,21 +32,15 @@ public interface DbService {
      * @return
      */
     <T> T findObjectById(Class<?> cls, String id);
-
     <T> T findById(Class<?> cls, String id);
-
     <T> List<T> findObjects(String sql);
     List<Map<String,Object>> findDocuments(String sql);
     <T> List<T> findGraphs(String sql);
-
     <T> List<T> findObjects(String sql, Map<String, Object> params);
     List<Map<String,Object>> findDocuments(String sql, Map<String, Object> params);
     <T> List<T> findGraphs(String sql, Map<String, Object> params);
-
     <T> List<T> findWithGraph(String sql, Class<?> cls, Map<String, Object> params);
 
-
-    <T> Object update(Object id, T entity, String... edges);
 
     /**
      * creates a vertex class in the database if not existent yet for all

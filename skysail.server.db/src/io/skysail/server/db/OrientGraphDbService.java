@@ -58,7 +58,6 @@ public class OrientGraphDbService extends AbstractOrientDbService implements DbS
                 log.warn("ODB graph function [{}] NOT registered!!!", name);
             }
         }
-
     }
 
     @Deactivate

@@ -2,10 +2,12 @@ package io.skysail.server.app.todos.tests.features.list;
 
 import io.skysail.server.app.todos.TodoList;
 import io.skysail.server.app.todos.lists.test.AbstractListResourceTest;
+import io.skysail.server.testsupport.categories.MediumTests;
 import net.serenitybdd.junit.runners.SerenityRunner;
 import net.thucydides.core.annotations.*;
 
 import org.junit.*;
+import org.junit.experimental.categories.Category;
 import org.junit.runner.RunWith;
 import org.mockito.MockitoAnnotations;
 
@@ -15,7 +17,8 @@ import org.mockito.MockitoAnnotations;
         "I want to be able to organize them in lists"})
 
 @RunWith(SerenityRunner.class)
-public class ListTests extends AbstractListResourceTest {
+@Category(MediumTests.class)
+public class TodoListTests extends AbstractListResourceTest {
 
     @Steps
     ListSteps listSteps;
@@ -28,7 +31,7 @@ public class ListTests extends AbstractListResourceTest {
     }
 
     @Test
-    public void posting_empty_form_shouldGiven400() {
+    public void posting_empty_form_should_result_in_http_status_400() {
         listSteps.post("");
         listSteps.hasSingleValidationFailure("name", "may not be null");
     }
@@ -50,7 +53,6 @@ public class ListTests extends AbstractListResourceTest {
     }
 
     @Test
-    @Ignore
     public void shouldNotChangeTheOwner() {
         listSteps.post("name=theName&owner=anotherOwner");
         listSteps.new_list_should_have_the_name("theName");

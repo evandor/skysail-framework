@@ -1,7 +1,8 @@
 Bundle-Version: 1.0.0.${tstamp}
 Bundle-Name: SKYSAIL :: server :: testsupport
 Export-Package:  \
-	io.skysail.server.testsupport
+	io.skysail.server.testsupport,\
+	io.skysail.server.testsupport.categories
 -buildpath:  \
 	skysail.api.validation;version=${skysail.api.validation.version},\
 	skysail.api;version=${skysail.api.version},\

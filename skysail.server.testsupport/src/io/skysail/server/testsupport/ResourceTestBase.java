@@ -204,7 +204,7 @@ public class ResourceTestBase {
         return new BigInteger(130, random).toString(32);
     }
 
-    protected void assertSingleValidationFailure(SkysailServerResource<?> resource, SkysailResponse<?> response, String path, String msg) {
+    public void assertSingleValidationFailure(SkysailServerResource<?> resource, SkysailResponse<?> response, String path, String msg) {
         ConstraintViolationsResponse<?> skysailReponse = (ConstraintViolationsResponse<?>) response;
         assertThat(responses.get(resource.getClass().getName()).getStatus(), is(equalTo(Status.CLIENT_ERROR_BAD_REQUEST)));
         assertThat(responses.get(resource.getClass().getName()).getHeaders().getFirst("X-Status-Reason").getValue(), is(equalTo("Validation failed")));

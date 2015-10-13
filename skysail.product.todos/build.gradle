@@ -24,12 +24,20 @@ dependencies {
 
 test {
     useJUnit {
-        excludeCategories 'io.skysail.server.testsupport.LargeTests'
+        excludeCategories 'io.skysail.server.testsupport.categories.LargeTests'
+        excludeCategories 'io.skysail.server.testsupport.categories.MediumTests'
     }
 }
 
 task largeTest(type: Test) {
     useJUnit {
-        includeCategories 'io.skysail.server.testsupport.LargeTests'
+        includeCategories 'io.skysail.server.testsupport.categories.LargeTests'
     }
 }
+
+task mediumTest(type: Test) {
+    useJUnit {
+        includeCategories 'io.skysail.server.testsupport.categories.MediumTests'
+    }
+}
+

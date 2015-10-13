@@ -26,4 +26,24 @@ dependencies {
     testCompile('org.assertj:assertj-core:1.7.0')
 }
 
+test {
+    useJUnit {
+        excludeCategories 'io.skysail.server.testsupport.categories.LargeTests'
+        excludeCategories 'io.skysail.server.testsupport.categories.MediumTests'
+    }
+}
+
+task largeTest(type: Test) {
+    useJUnit {
+        includeCategories 'io.skysail.server.testsupport.categories.LargeTests'
+    }
+}
+
+task mediumTest(type: Test) {
+    ignoreFailures = true
+    useJUnit {
+        includeCategories 'io.skysail.server.testsupport.categories.MediumTests'
+    }
+}
+
 //gradle.startParameter.continueOnFailure = true

@@ -12,9 +12,7 @@ public class UserRepository extends GraphDbRepository<User>  implements DbReposi
 
     @Activate
     public void activate() { // NO_UCD
-        log.debug("activating repository");
-        dbService.createWithSuperClass("V", User.class.getSimpleName());
-        dbService.register(User.class);
+        super.activate(User.class);
     }
 
     @Reference

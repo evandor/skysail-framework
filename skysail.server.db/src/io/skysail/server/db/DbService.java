@@ -56,6 +56,8 @@ public interface DbService {
 
     void register(Class<?>... classes);
 
+    Class<?> getRegisteredClass(String classname);
+
     void delete(Class<?> cls, String id);
 
     void createProperty(String simpleName, String string, OType date);
@@ -69,5 +71,6 @@ public interface DbService {
     void update(Map<String, Object> space);
 
     void update(ODocument doc);
+
 
 }

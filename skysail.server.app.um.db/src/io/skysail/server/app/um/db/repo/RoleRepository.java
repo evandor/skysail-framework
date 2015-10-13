@@ -12,9 +12,7 @@ public class RoleRepository extends GraphDbRepository<Role>  implements DbReposi
 
     @Activate
     public void activate() { // NO_UCD
-        log.debug("activating repository");
-        dbService.createWithSuperClass("V", Role.class.getSimpleName());
-        dbService.register(Role.class);
+        super.activate(Role.class);
     }
 
     @Reference

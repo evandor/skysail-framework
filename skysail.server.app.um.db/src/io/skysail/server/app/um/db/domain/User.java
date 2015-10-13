@@ -4,7 +4,7 @@ import io.skysail.api.domain.Identifiable;
 import io.skysail.api.forms.*;
 import io.skysail.server.app.um.db.repo.RoleRepository;
 
-import java.util.List;
+import java.util.*;
 
 import javax.persistence.Id;
 import javax.validation.constraints.*;
@@ -31,5 +31,5 @@ public class User implements Identifiable {
     private String lastname;
 
     @Field(inputType = InputType.MULTISELECT, repository = RoleRepository.class, selectionProvider = RolesSelectionProvider.class)
-    private List<Role> roles;
+    private List<Role> roles = new ArrayList<>();
 }

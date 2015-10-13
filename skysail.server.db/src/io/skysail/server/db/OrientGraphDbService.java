@@ -389,6 +389,17 @@ public class OrientGraphDbService extends AbstractOrientDbService implements DbS
     }
 
     @Override
+    public Class<?> getRegisteredClass(String classname) {
+        OObjectDatabaseTx db = getObjectDb();
+        try {
+            return db.getEntityManager().getEntityClass(classname);
+        } finally {
+            db.close();
+        }
+    }
+
+
+    @Override
     public void createUniqueIndex(Class<?> cls, String... fieldnames) {
         OObjectDatabaseTx db = getObjectDb();
         OClass oClass = db.getMetadata().getSchema().getClass(cls);
@@ -452,5 +463,6 @@ public class OrientGraphDbService extends AbstractOrientDbService implements DbS
         documentDb.commit();
 
     }
+
 
 }

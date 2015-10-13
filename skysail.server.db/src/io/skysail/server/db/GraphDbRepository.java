@@ -117,16 +117,25 @@ public class GraphDbRepository<T extends Identifiable> implements DbRepository {
                 bean.setId(entityMap.get("@rid").toString());
             }
 
-            Iterable<Edge> edges = vertex.getEdges(Direction.OUT, "roles");
+            Iterable<Edge> edges = vertex.getEdges(Direction.OUT);
             edges.spliterator().forEachRemaining(e -> {
-                System.out.println(e);
+                String edgeName = e.getLabel();
                 OrientVertex vertexFromEdge = (OrientVertex) e.getVertex(Direction.IN);
                 System.out.println(vertexFromEdge);
                 try {
-                    Class<?> forName = Class.forName("io.skysail.server.app.um.db.domain.Role");
-                    Identifiable beanFromVertex = beanFromVertex(vertexFromEdge, forName);
+                    Class<?> vertexClass = dbService.getRegisteredClass(vertexFromEdge.getRecord().getClassName());
+                    Identifiable beanFromVertex = beanFromVertex(vertexFromEdge, vertexClass);
+                    Class<?> fieldType = bean.getClass().getDeclaredField(edgeName).getType();
+                    if (Collection.class.isAssignableFrom(fieldType)) {
+                        Method collectionGetter = bean.getClass().getMethod("get" + edgeName.substring(0, 1).toUpperCase() + edgeName.substring(1));
+                        Collection<Identifiable> collection = (Collection<Identifiable>) collectionGetter.invoke(bean);
+                        if (collection == null) {
+                            throw new IllegalStateException("could not add to collection object; please make sure your beans field '"+edgeName+"' is initialized");
+                        }
+                        collection.add(beanFromVertex);
+                    }
                 } catch (Exception e1) {
-                    e1.printStackTrace();
+                    log.error(e1.getMessage(),e1);
                 }
 
             });

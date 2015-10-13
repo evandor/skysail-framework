@@ -32,6 +32,7 @@ Include-Resource: lib=lib,resources=resources
 	org.objenesis;version=2.1,\
 	org.apache.commons.configuration;version=1.10,\
 	org.apache.commons.logging;version=1.1
+
 Import-Package:  \
 	javassist.util.proxy,\
 	org.codehaus.jettison.*,\
@@ -39,8 +40,10 @@ Import-Package:  \
 	!org.apache.commons.configuration.*,\
 	!com.carrotsearch.hppc.*,\
 	*
+
 Export-Package:  \
 	de.twenty11.skysail.server.db.orientdb,\
 	io.skysail.server.db,\
 	io.skysail.server.db.versions
+
 DynamicImport-Package: *

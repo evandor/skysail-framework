@@ -8,9 +8,6 @@ import java.beans.PropertyDescriptor;
 import java.lang.reflect.InvocationTargetException;
 import java.util.*;
 
-import lombok.extern.slf4j.Slf4j;
-
-@Slf4j
 public class SkysailBeanUtils {
 
     private SkysailBeanUtilsBean beanUtilsBean;
@@ -24,9 +21,7 @@ public class SkysailBeanUtils {
     }
 
     public void copyProperties(Object dest, Object orig, SkysailServerResource<?> resource) throws IllegalAccessException, InvocationTargetException, NoSuchMethodException  {
-        Map<String, String> described = beanUtilsBean.describe(dest);
         Map<String, FormField> formfields = FormfieldUtils.determineFormfields(resource);
-
         PropertyDescriptor[] origDescriptors = beanUtilsBean.getPropertyUtils().getPropertyDescriptors(orig);
         for (int i = 0; i < origDescriptors.length; i++) {
             String name = origDescriptors[i].getName();

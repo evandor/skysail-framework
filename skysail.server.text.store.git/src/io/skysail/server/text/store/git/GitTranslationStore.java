@@ -2,18 +2,8 @@ package io.skysail.server.text.store.git;
 
 import io.skysail.api.text.TranslationStore;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Enumeration;
-import java.util.Locale;
-import java.util.Map;
-import java.util.Optional;
-import java.util.Properties;
-import java.util.TreeSet;
+import java.io.*;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import lombok.extern.slf4j.Slf4j;
@@ -21,8 +11,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.osgi.framework.BundleContext;
 import org.restlet.Request;
 
-import aQute.bnd.annotation.component.Activate;
-import aQute.bnd.annotation.component.Component;
+import aQute.bnd.annotation.component.*;
 
 @Component(immediate = true, properties = { org.osgi.framework.Constants.SERVICE_RANKING + "=50" })
 @Slf4j
@@ -71,7 +60,7 @@ public class GitTranslationStore implements TranslationStore {
         try {
             props.load(new FileInputStream(filePath));
         } catch (IOException e) {
-            log.warn(e.getMessage());
+            log.debug(e.getMessage());
         }
         return props;
     }
@@ -83,10 +72,10 @@ public class GitTranslationStore implements TranslationStore {
         if (!file.exists()) {
             create(file, locale);
         }
-        
+
         Properties props = loadProperties(getFile(key, locale));
         props.put(key, message);
-        
+
         @SuppressWarnings("serial")
         Properties tmp = new Properties() {
             @Override
@@ -100,7 +89,7 @@ public class GitTranslationStore implements TranslationStore {
         } catch (IOException e) {
             log.error(e.getMessage(),e);
         }
-        
+
         return false;
     }
 

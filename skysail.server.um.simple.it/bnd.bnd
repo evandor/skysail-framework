@@ -1,8 +1,8 @@
 Bundle-Name: SKYSAIL :: server :: um :: simple :: integrationtests
 Bundle-Version: 0.1.1.${tstamp}
 
-Test-Cases: \
-	io.skysail.server.um.simple.it.LoginTests
+#Test-Cases: \
+#	io.skysail.server.um.simple.it.LoginTests
 
 -buildpath:  \
 	skysail.api.um;version=${skysail.api.um.version},\

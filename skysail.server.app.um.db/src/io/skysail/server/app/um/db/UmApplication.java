@@ -2,10 +2,12 @@ package io.skysail.server.app.um.db;
 
 import io.skysail.api.repos.DbRepository;
 import io.skysail.server.app.SkysailApplication;
+import io.skysail.server.app.um.db.permissions.resources.*;
 import io.skysail.server.app.um.db.repo.*;
 import io.skysail.server.app.um.db.roles.resources.*;
 import io.skysail.server.app.um.db.users.resources.*;
 import io.skysail.server.menus.*;
+import io.skysail.server.restlet.resources.SkysailServerResource;
 
 import java.util.*;
 
@@ -24,6 +26,9 @@ public class UmApplication extends SkysailApplication implements ApplicationProv
 
     @Getter
     private RoleRepository roleRepo;
+
+    @Getter
+    private PermissionRepository permissionRepo;
 
     public UmApplication() {
         super(APP_NAME);
@@ -48,6 +53,15 @@ public class UmApplication extends SkysailApplication implements ApplicationProv
         this.roleRepo = null;
     }
 
+    @Reference(dynamic = true, multiple = false, optional = false, target = "(name=PermissionRepository)")
+    public void setPermissionRepository(DbRepository repo) {
+        this.permissionRepo = (PermissionRepository) repo;
+    }
+
+    public void unsetPermissionRepository(DbRepository repo) {
+        this.permissionRepo = null;
+    }
+
     @Override
     public List<MenuItem> getMenuEntries() {
         MenuItem appMenu = new MenuItem(APP_NAME, "/" + APP_NAME + getApiVersion().getVersionPath(), this);
@@ -70,11 +84,25 @@ public class UmApplication extends SkysailApplication implements ApplicationProv
         router.attach(new RouteBuilder("/roles/", PostRoleResource.class));
         router.attach(new RouteBuilder("/roles/{id}", RoleResource.class));
         router.attach(new RouteBuilder("/roles/{id}/", PutRoleResource.class));
+
+        router.attach(new RouteBuilder("/permissions", PermissionsResource.class));
+        router.attach(new RouteBuilder("/permissions/", PostPermissionResource.class));
+        router.attach(new RouteBuilder("/permissions/{id}", PermissionResource.class));
+        router.attach(new RouteBuilder("/permissions/{id}/", PutPermissionResource.class));
+
     }
 
     @Override
     public UserRepository getRepository() {
         return userRepo;
+    }
+
+    public List<Class<? extends SkysailServerResource<?>>> getMainLinks() {
+        List<Class<? extends SkysailServerResource<?>>> result = new ArrayList<>();
+        result.add(UsersResource.class);
+        result.add(RolesResource.class);
+        result.add(PermissionsResource.class);
+        return result;
     }
 
 }

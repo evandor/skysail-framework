@@ -315,9 +315,10 @@ public abstract class SkysailServerResource<T> extends ServerResource {
     }
 
     protected T populate(T bean, Form form) {
-        Map<String, String> valuesMap = form.getValuesMap();
+        Map<String, Object> valuesMap = new HashMap<>();
+        form.getNames().stream().forEach(key -> valuesMap.put(key, null));
+        form.copyTo(valuesMap);
         try {
-
             SkysailBeanUtils beanUtilsBean = new SkysailBeanUtils(bean, ResourceUtils.determineLocale(this));
             beanUtilsBean.populate(bean, valuesMap);
             return bean;

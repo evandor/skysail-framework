@@ -114,7 +114,7 @@ public class CellRendererHelper {
 
     private static String toString(Object cellData) {
         if (cellData instanceof List) {
-            return Integer.toString(((List<?>) cellData).size());
+            return "#"+Integer.toString(((List<?>) cellData).size());
         }
         if (cellData instanceof Set) {
             return Integer.toString(((Set<?>) cellData).size());

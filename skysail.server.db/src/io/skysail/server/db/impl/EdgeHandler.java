@@ -14,17 +14,15 @@ import com.tinkerpop.blueprints.impls.orient.*;
 public class EdgeHandler {
 
     private OrientGraph db;
-    private List<String> edges;
 
-    public EdgeHandler(OrientGraph db, String[] edges) {
+    public EdgeHandler(OrientGraph db) {
         this.db = db;
-        this.edges = Arrays.asList(edges);
     }
 
     public void handleEdges(Object entity, Vertex vertex, Map<String, String> properties, String key)
             throws NoSuchFieldException, SecurityException, NoSuchMethodException, IllegalAccessException,
             IllegalArgumentException, InvocationTargetException {
-        
+
         Field field = entity.getClass().getDeclaredField(key);
         Class<?> type = field.getType();
         Object edges = properties.get(key);
@@ -40,8 +38,7 @@ public class EdgeHandler {
                 }
                 db.addEdge(null, vertex, target, key);
             }
-        } else if (String.class.isAssignableFrom(type)) { // (edges instanceof
-                                                          // String) {
+        } else if (String.class.isAssignableFrom(type)) {
             removeOldReferences(vertex, key);
             addReference(vertex, properties, key, edges);
         }

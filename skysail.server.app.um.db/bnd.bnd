@@ -52,4 +52,6 @@ Private-Package:  \
 	io.skysail.server.app.um.db.roles.resources,\
 	io.skysail.server.app.um.db.domain,\
 	io.skysail.server.app.um.db.repo,\
-	io.skysail.server.app.um.db.users.resources
+	io.skysail.server.app.um.db.users.resources,\
+	io.skysail.server.app.um.db.groups.resources,\
+	io.skysail.server.app.um.db.permissions.resources

@@ -15,7 +15,7 @@ public class PutUserResource extends PutEntityServerResource<User> {
     }
 
     public User getEntity() {
-        return app.getRepository().getById(getAttribute("id"));
+        return app.getRepository().findOne(getAttribute("id"));
     }
 
     public SkysailResponse<User> updateEntity(User entity) {

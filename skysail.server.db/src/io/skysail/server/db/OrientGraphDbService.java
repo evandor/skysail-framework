@@ -1,8 +1,9 @@
 package io.skysail.server.db;
 
+import io.skysail.api.domain.Identifiable;
 import io.skysail.server.db.impl.*;
+import io.skysail.server.utils.SkysailBeanUtils;
 
-import java.beans.*;
 import java.lang.reflect.*;
 import java.util.*;
 
@@ -161,77 +162,119 @@ public class OrientGraphDbService extends AbstractOrientDbService implements DbS
     public <T> T findById(Class<?> cls, String id) {
         OrientGraph graphDb = getDb();
         OrientVertex vertex = graphDb.getVertex(new ORecordId(id));
-        return vertexToPojo(vertex, cls);
+        return beanFromVertex(vertex, cls);
     }
 
     @SuppressWarnings("unchecked")
-    private <T> T vertexToPojo(OrientVertex v, Class<?> cls) {
-        if (v == null) {
-            return null;
-        }
-
-        T result;
+    public <T extends Identifiable> T beanFromVertex(OrientVertex vertex, Class<?> beanType) {
+        ODocument record = vertex.getRecord();
+        Map<String, Object> entityMap = record.toMap();
+        T bean;
         try {
-            result = (T)cls.newInstance();
-        } catch (InstantiationException | IllegalAccessException e1) {
-            log.error("Problem creating new instance of type {}", cls);
-            return null;
-        }
-
-        for (Field field : getAllFields(new LinkedList<Field>(), cls)) {
-            field.setAccessible(true);
-
-            String name = field.getName();
-            String type = field.getType().getSimpleName();
-            boolean isPrimitive = field.getType().isPrimitive();
-
-//            if (!isPrimitive && !type.equals("String"))
-//                continue;
-
-            Method setter;
-            try {
-                setter = new PropertyDescriptor(name, cls).getWriteMethod();
-
-            } catch (IntrospectionException ie) {
-                log.warn(ie.getMessage());
-                continue;
+            bean = (T) beanType.newInstance();
+            SkysailBeanUtils beanUtilsBean = new SkysailBeanUtils(bean, Locale.getDefault());
+            beanUtilsBean.populate(bean, entityMap);
+            if (entityMap.get("@rid") != null && bean.getId() == null) {
+                bean.setId(entityMap.get("@rid").toString());
             }
 
-            try {
-                if (name.equals("id")) {
-                    setter.invoke(result, v.getId().toString());
-                } else {
-                    Object storedValue = v.getProperty(name);
-                    if (storedValue != null) {
-                        if (field.getType().isEnum()) {
-                            Enum storedValueAsEnum = Enum.valueOf((Class<Enum>) field.getType(), storedValue.toString());
-                            setter.invoke(result, storedValueAsEnum);
-                        } else {
-                            setter.invoke(result, storedValue);
+            Iterable<Edge> edges = vertex.getEdges(Direction.OUT);
+            edges.spliterator().forEachRemaining(e -> {
+                String edgeName = e.getLabel();
+                OrientVertex vertexFromEdge = (OrientVertex) e.getVertex(Direction.IN);
+                System.out.println(vertexFromEdge);
+                try {
+                    Class<?> vertexClass = getRegisteredClass(vertexFromEdge.getRecord().getClassName());
+                    Identifiable beanFromVertex = beanFromVertex(vertexFromEdge, vertexClass);
+                    Class<?> fieldType = bean.getClass().getDeclaredField(edgeName).getType();
+                    if (Collection.class.isAssignableFrom(fieldType)) {
+                        Method collectionGetter = bean.getClass().getMethod("get" + edgeName.substring(0, 1).toUpperCase() + edgeName.substring(1));
+                        Collection<Identifiable> collection = (Collection<Identifiable>) collectionGetter.invoke(bean);
+                        if (collection == null) {
+                            throw new IllegalStateException("could not add to collection object; please make sure your beans field '"+edgeName+"' is initialized");
                         }
-
-                    } else {
-                        v.getEdges(Direction.BOTH).forEach(edge -> {
-                            if (name.equals(edge.getLabel())) {
-                                try {
-                                    Vertex connectedVertex = edge.getVertex(Direction.IN);
-                                    String str = connectedVertex.getId().toString();
-                                    setter.invoke(result, str != null ? str : "???");
-                                } catch (Exception e) {
-                                    log.error(e.getMessage(), e);
-                                }
-                            }
-                        });
+                        collection.add(beanFromVertex);
                     }
+                } catch (Exception e1) {
+                    log.error(e1.getMessage(),e1);
                 }
 
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-
+            });
+            return bean;
+        } catch (Exception e) {
+            log.error(e.getMessage(), e);
         }
-        return result;
+        return null;
     }
+
+//    @SuppressWarnings("unchecked")
+//    private <T> T vertexToPojo(OrientVertex v, Class<?> cls) {
+//        if (v == null) {
+//            return null;
+//        }
+//
+//        T result;
+//        try {
+//            result = (T)cls.newInstance();
+//        } catch (InstantiationException | IllegalAccessException e1) {
+//            log.error("Problem creating new instance of type {}", cls);
+//            return null;
+//        }
+//
+//        for (Field field : getAllFields(new LinkedList<Field>(), cls)) {
+//            field.setAccessible(true);
+//
+//            String name = field.getName();
+//            String type = field.getType().getSimpleName();
+//            boolean isPrimitive = field.getType().isPrimitive();
+//
+////            if (!isPrimitive && !type.equals("String"))
+////                continue;
+//
+//            Method setter;
+//            try {
+//                setter = new PropertyDescriptor(name, cls).getWriteMethod();
+//
+//            } catch (IntrospectionException ie) {
+//                log.warn(ie.getMessage());
+//                continue;
+//            }
+//
+//            try {
+//                if (name.equals("id")) {
+//                    setter.invoke(result, v.getId().toString());
+//                } else {
+//                    Object storedValue = v.getProperty(name);
+//                    if (storedValue != null) {
+//                        if (field.getType().isEnum()) {
+//                            Enum storedValueAsEnum = Enum.valueOf((Class<Enum>) field.getType(), storedValue.toString());
+//                            setter.invoke(result, storedValueAsEnum);
+//                        } else {
+//                            setter.invoke(result, storedValue);
+//                        }
+//
+//                    } else {
+//                        v.getEdges(Direction.BOTH).forEach(edge -> {
+//                            if (name.equals(edge.getLabel())) {
+//                                try {
+//                                    Vertex connectedVertex = edge.getVertex(Direction.IN);
+//                                    String str = connectedVertex.getId().toString();
+//                                    setter.invoke(result, str != null ? str : "???");
+//                                } catch (Exception e) {
+//                                    log.error(e.getMessage(), e);
+//                                }
+//                            }
+//                        });
+//                    }
+//                }
+//
+//            } catch (Exception e) {
+//                e.printStackTrace();
+//            }
+//
+//        }
+//        return result;
+//    }
 
     private static List<Field> getAllFields(List<Field> fields, Class<?> type) {
         fields.addAll(Arrays.asList(type.getDeclaredFields()));

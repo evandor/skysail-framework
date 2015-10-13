@@ -40,10 +40,6 @@ public class Persister {
                         setProperty(entity, vertex, properties, key);
                     }
                 } else {
-                   /* OrientVertex target = db.getVertex(properties.get(key));
-                    if (target != null) {
-                        db.addEdge(null, vertex, target, key);
-                    }*/
                     try {
                         edgeHandler.handleEdges(entity, vertex, properties, key);
                     } catch (Exception e) {

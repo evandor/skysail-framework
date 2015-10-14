@@ -8,20 +8,22 @@ testsrc: src-gen
 testbin: bin
 
 Service-Component: *
+
 Import-Package: org.osgi.framework,\
 	javassist.util.proxy,\
 	*
+
 Private-Package:  \
-	io.skysail.server.ext.apt.test_.twoentities.schedules,\
-	io.skysail.server.ext.apt.test_.withlist.companies,\
-	io.skysail.server.ext.apt.test_.withlist,\
-	io.skysail.server.ext.apt.test_.withlist.folders,\
-	io.skysail.server.ext.apt.test_.crm,\
-	io.skysail.server.ext.apt.test_.crm.contacts,\
-	io.skysail.server.ext.apt.test_.simple,\
-	io.skysail.server.ext.apt.test_.simple.todos,\
-	io.skysail.server.ext.apt.test_.twoentities,\
-	io.skysail.server.ext.apt.test_.twoentities.jobs
+	io.skysail.server.ext.apt.test.crm,\
+	io.skysail.server.ext.apt.test.withlist.folders,\
+	io.skysail.server.ext.apt.test.crm.contacts,\
+	io.skysail.server.ext.apt.test.simple,\
+	io.skysail.server.ext.apt.test.simple.todos,\
+	io.skysail.server.ext.apt.test.twoentities,\
+	io.skysail.server.ext.apt.test.twoentities.jobs,\
+	io.skysail.server.ext.apt.test.twoentities.schedules,\
+	io.skysail.server.ext.apt.test.withlist.companies
+
 -buildpath:  \
 	osgi.core;version=5.0,\
 	osgi.cmpn;version=5.0,\
@@ -33,7 +35,7 @@ Private-Package:  \
 	skysail.api.um;version=latest,\
 	skysail.api.favorites;version=latest,\
 	skysail.server;version=latest,\
-    skysail.server.codegen;version=${skysail.server.codegen.version},\
+    skysail.server.codegen;version=latest,\
     skysail.server.db;version=latest,\
 	slf4j.api;version=1.7.7,\
 	org.restlet;version=${restlet.version},\

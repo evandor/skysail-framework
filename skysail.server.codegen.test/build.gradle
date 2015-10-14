@@ -12,7 +12,7 @@ task runApt(type: JavaCompile, group: 'build', description: 'Generates the apt s
     classpath = configurations.compile// + configurations.querydslapt
     options.compilerArgs = [
             "-proc:only",
-            "-processor", "de.twenty11.skysail.server.ext.apt.processors.ApplicationProcessor"
+            "-processor", "io.skysail.server.codegen.apt.processors.EntityProcessor"
     ]
     destinationDir = sourceSets.generated.java.srcDirs.iterator().next()
 }
@@ -28,6 +28,6 @@ compileGeneratedJava {
     classpath += sourceSets.main.runtimeClasspath
 }
 
-/*clean {
+clean {
     delete sourceSets.generated.java.srcDirs
-}*/
+}

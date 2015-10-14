@@ -1,7 +1,7 @@
 package de.twenty11.skysail.server.ext.apt;
 
 import io.skysail.server.ext.apt.model.entities.EntityGraph;
-import io.skysail.server.ext.apt.model.types.TypeModel;
+import io.skysail.server.ext.apt.model.types.*;
 
 import java.io.IOException;
 import java.lang.annotation.Annotation;
@@ -18,6 +18,8 @@ public abstract class Processors extends AbstractProcessor {
 	protected static EntityGraph graph;
 
 	protected static TypeModel typeModel;
+
+    protected static TypeModel2 typeModel2;
 
 	public abstract boolean doProcess(Set<? extends TypeElement> annotations, RoundEnvironment roundEnv)
 	        throws Exception;

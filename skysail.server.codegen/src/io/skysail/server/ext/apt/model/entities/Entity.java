@@ -2,14 +2,11 @@ package io.skysail.server.ext.apt.model.entities;
 
 import javax.lang.model.element.Element;
 
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NonNull;
-import lombok.ToString;
+import lombok.*;
 
 /**
  * Instances of this class identify a business entity.
- * 
+ *
  * Typically, an annotation processor scans the classes in the given project for
  * specific annotations and creates new Entity instances by passing a
  * {@link Element} object to the constructor.
@@ -24,9 +21,10 @@ public class Entity {
 	private @NonNull String elementName;
 	private @NonNull String simpleName;
     private @NonNull String packageName;
+   // private @NonNull Class<? extends SkysailApplication> application;
 
 	public Entity(Element element) {
-		this.elementName = element.toString();
+	 	this.elementName = element.toString();
 		this.simpleName = element.getSimpleName().toString();
 		packageName = element.getEnclosingElement().toString();
 	}

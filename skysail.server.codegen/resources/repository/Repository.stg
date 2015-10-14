@@ -1,71 +1,39 @@
-repository(repo, linkedClasses, imports) ::= <<
-package xxxx$repo.packageName$;
-
-import java.util.List;
+repository(package, name, repo, linkedClasses, imports) ::= <<
+package $package$;
 
 $imports$
 
-import aQute.bnd.annotation.component.Activate;
-import aQute.bnd.annotation.component.Component;
-import aQute.bnd.annotation.component.Deactivate;
-import aQute.bnd.annotation.component.Reference;
+import javax.annotation.Generated;
 
-import io.skysail.server.db.DbService;
+import io.skysail.api.repos.DbRepository;
+
+import lombok.extern.slf4j.Slf4j;
+import aQute.bnd.annotation.component.*;
+import io.skysail.server.db.*;
 
 @Component(immediate=true)
-public class $repo.typeName$ {
+@Slf4j
+@Generated("io.skysail.server.codegen.apt.processors.EntityProcessor")
+public class $name$Repo extends GraphDbRepository<$name$> implements DbRepository {
 
-	private static $repo.typeName$ instance;
-
-	private DbService dbService;
-
-	public static $repo.typeName$ getInstance() {
-		// for tests
-		if (instance == null) {
-			instance = new $repo.typeName$();
-		}
-	    return instance;
+    @Activate
+    public void activate() {
+        super.activate($name$.class);
     }
 
-	@Activate
-	public void activate() {
-		$repo.typeName$.instance = this;
-	}
-
-	@Deactivate
-	public void deactivate() {
-		$repo.typeName$.instance = null;
-	}
-
-	@Reference
-	public void setDbService(DbService dbService) {
-		this.dbService = dbService;
-	}
-
-	public void unsetDbService(@SuppressWarnings("unused") DbService dbService) {
-		this.dbService = null;
-	}
-
-	public $repo.entityName$ add($repo.entityName$ entity) {
-		return dbService.persist(entity);
+    @Reference
+    public void setDbService(DbService dbService) {
+        log.debug("setting dbService");
+        this.dbService = dbService;
     }
 
-	public List<$repo.entityName$> get$repo.entityName$s() {
-	    return dbService.findAll($repo.entityName$.class$linkedClasses$);
+    public void unsetDbService(DbService dbService) {
+        log.debug("unsetting dbService");
+        this.dbService = null;
     }
-
-	public $repo.entityName$ getById(String id) {
-	    return dbService.find(id);
-    }
-
-	public void update($repo.entityName$ entity) {
-		dbService.update(entity);
-    }
-
-    public void delete(String id) {
-        dbService.delete(id);
-    }
-
-
 }
+
+
+
+
 >>

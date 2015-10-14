@@ -1,58 +1,43 @@
-entity(element, entityResources, imports, linkheader) ::= <<
+entity(element, entityResources, appName, imports, linkheader) ::= <<
 package $element.enclosingElement$;
 
 import java.util.List;
+import javax.annotation.Generated;
 
 import org.restlet.resource.ResourceException;
 
 $imports$
 
-import de.twenty11.skysail.api.responses.Linkheader;
-import de.twenty11.skysail.api.responses.SkysailResponse;
-import de.twenty11.skysail.server.core.restlet.EntityServerResource;
+import io.skysail.api.links.Link;
+import io.skysail.api.responses.SkysailResponse;
+import io.skysail.server.restlet.resources.EntityServerResource;
 
+@Generated("io.skysail.server.codegen.apt.processors.EntityProcessor")
 public class $element.simpleName$Resource extends EntityServerResource<$element.simpleName$> {
 
-	private String id;
+     private $appName$ app;
 
-	@Override
-	protected void doInit() throws ResourceException {
-	    id = getAttribute("id");
-	}
-	
-	@Override
-	public $element.simpleName$ getData() {
-		return $element.simpleName$sRepository.getInstance().getById(id);
-	}
+    protected void doInit() {
+        app = ($appName$)getApplication();
+    }
 
-	@Override
-	public String getId() {
-		return null;
-	}
+    public $element.simpleName$ getEntity() {
+        return app.get$element.simpleName$Repo().findOne(getAttribute("id"));
+    }
 
-	@Override
-	public SkysailResponse<?> eraseEntity() {
-        $element.simpleName$sRepository.getInstance().delete(id);
-        return new SkysailResponse<String>();
-	}
+    public List<Link> getLinks() {
+        return super.getLinks(Put$element.simpleName$Resource.class);
+    }
+
+    public SkysailResponse<$element.simpleName$> eraseEntity() {
+        app.get$element.simpleName$Repo().delete(getAttribute("id"));
+        return new SkysailResponse<>();
+    }
 
     @Override
-	public List<Linkheader> getLinkheader() {
-        return super.getLinkheader($linkheader$);
-	}
-
+    public String redirectTo() {
+        return null;//super.getLinkheader($linkheader$);
+    }
 }
-
->>
-
-defineAttributes(entities) ::= <<
-    $entities: {entity | private String $entity.variableName$Id;
-}$
-
->>
-
-assignAttributes(entities) ::= <<
-    $entities: {entity | $entity.variableName$Id = getAttribute("$entity.simpleName$Id");
-}$
 
 >>

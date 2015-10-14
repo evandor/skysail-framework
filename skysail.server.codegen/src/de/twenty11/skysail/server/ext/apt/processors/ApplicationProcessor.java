@@ -12,6 +12,8 @@ import javax.lang.model.element.*;
 import javax.lang.model.type.TypeMirror;
 import javax.tools.JavaFileObject;
 
+import lombok.extern.slf4j.Slf4j;
+
 import org.stringtemplate.v4.*;
 
 import de.twenty11.skysail.server.ext.apt.*;
@@ -19,24 +21,41 @@ import de.twenty11.skysail.server.ext.apt.annotations.*;
 
 @SupportedAnnotationTypes("de.twenty11.skysail.server.ext.apt.annotations.SkysailApplication")
 @SupportedSourceVersion(javax.lang.model.SourceVersion.RELEASE_8)
+@Slf4j
+@Deprecated // use EntityProcessor
 public class ApplicationProcessor extends Processors {
 
     @Override
     public boolean doProcess(Set<? extends TypeElement> annotations, RoundEnvironment roundEnv) throws Exception {
-        for (Element skysailApplicationElement : roundEnv.getElementsAnnotatedWith(SkysailApplication.class)) {
-            if (skysailApplicationElement.getKind() == ElementKind.CLASS) {
-                graph = analyseEntities(roundEnv, skysailApplicationElement);
-                typeModel = new TypeModel(graph, skysailApplicationElement);
-
-                createRepositories(typeModel);
-                /*createApplication(skysailApplicationElement, roundEnv);*/
-                createRootResource(skysailApplicationElement, roundEnv);
-                /*createEntityResources(skysailApplicationElement, roundEnv, graph);
-                createListResources(skysailApplicationElement, roundEnv, graph);
-                createPostResources(skysailApplicationElement, roundEnv, graph);
-                createPutResources(skysailApplicationElement, roundEnv, graph);*/
+        // for (Element skysailApplicationElement :
+        // roundEnv.getElementsAnnotatedWith(SkysailApplication.class)) {
+        // if (skysailApplicationElement.getKind() == ElementKind.CLASS) {
+        // Set<? extends Element> entities = getSubElements(roundEnv,
+        // GenerateEntityResource.class,
+        // skysailApplicationElement);
+        // graph = analyseEntities2(roundEnv, entities);
+        // typeModel = new TypeModel(graph, skysailApplicationElement);
+        //
+        // /*createRepositories(typeModel);
+        // createApplication(skysailApplicationElement, roundEnv);*/
+        // //createRootResource(skysailApplicationElement, roundEnv);
+        // /*createEntityResources(skysailApplicationElement, roundEnv, graph);
+        // createListResources(skysailApplicationElement, roundEnv, graph);
+        // createPostResources(skysailApplicationElement, roundEnv, graph);
+        // createPutResources(skysailApplicationElement, roundEnv, graph);*/
+        // }
+        // }
+        Set<? extends Element> generateResourceElements = roundEnv.getElementsAnnotatedWith(GenerateResources.class);
+        graph = analyseEntities2(roundEnv, generateResourceElements);
+        typeModel2 = new TypeModel2(graph);
+        generateResourceElements.stream().forEach(entity -> {
+            try {
+                //createPostResources2(roundEnv, graph, entity);
+            } catch (Exception e) {
+                log.error(e.getMessage(),e);
             }
-        }
+        });
+
         return true;
     }
 
@@ -65,21 +84,18 @@ public class ApplicationProcessor extends Processors {
         }
     }
 
-    private EntityGraph analyseEntities(RoundEnvironment roundEnv, Element skysailApplicationElement) {
-        Set<? extends Element> entities = getSubElements(roundEnv, GenerateEntityResource.class,
-                skysailApplicationElement);
-
+    private EntityGraph analyseEntities2(RoundEnvironment roundEnv, Set<? extends Element> generateResourceElements) {
         Set<Entity> nodes = new HashSet<>();
         Set<Reference> edges = new HashSet<>();
 
         // create nodes
-        for (Element entity : entities) {
-            printMessage("adding entity: " + entity.toString());
-            nodes.add(new Entity(entity));
+        for (Element entityElement : generateResourceElements) {
+            printMessage("adding entity: " + entityElement.toString());
+            nodes.add(new Entity(entityElement));
         }
 
         // create edges
-        for (Element entity : entities) {
+        for (Element entity : generateResourceElements) {
 
             for (Element member : entity.getEnclosedElements()) {
                 if (!(member instanceof VariableElement)) {
@@ -208,7 +224,7 @@ public class ApplicationProcessor extends Processors {
         if (linkheader.trim().length() > 0) {
             linkheader += ", ";
         }
-        linkheader += "Put"+simpleName+"Resource.class";
+        linkheader += "Put" + simpleName + "Resource.class";
         return linkheader;
     }
 
@@ -314,28 +330,6 @@ public class ApplicationProcessor extends Processors {
         return sb.toString();
     }
 
-    private void createPutResources(Element skysailApplicationElement, RoundEnvironment roundEnv, EntityGraph graph)
-            throws IOException {
 
-        Set<? extends Element> entityElements = getSubElements(roundEnv, GeneratePutResource.class,
-                skysailApplicationElement);
-
-        for (Element entityElement : entityElements) {
-            JavaFileObject jfo = createSourceFile(entityElement.getEnclosingElement().toString() + ".Put"
-                    + entityElement.getSimpleName() + "Resource");
-
-            Writer writer = jfo.openWriter();
-            STGroup group = new STGroupFile("putResource/PutResource.stg", '$', '$');
-            ST st = group.getInstanceOf("put");
-            st.add("name", entityElement.getSimpleName());
-            st.add("package", entityElement.getEnclosingElement().toString());
-            st.add("appName", typeModel.getApplication().getTypeName());
-            st.add("appPkg", typeModel.getApplication().getPackageName());
-            String result = st.render();
-            writer.append(result);
-            writer.close();
-        }
-
-    }
 
 }

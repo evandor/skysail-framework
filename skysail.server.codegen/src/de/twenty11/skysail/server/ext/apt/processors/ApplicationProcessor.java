@@ -28,8 +28,8 @@ public class ApplicationProcessor extends Processors {
                 graph = analyseEntities(roundEnv, skysailApplicationElement);
                 typeModel = new TypeModel(graph, skysailApplicationElement);
 
-                /*createRepositories(typeModel);
-                createApplication(skysailApplicationElement, roundEnv);*/
+                createRepositories(typeModel);
+                /*createApplication(skysailApplicationElement, roundEnv);*/
                 createRootResource(skysailApplicationElement, roundEnv);
                 /*createEntityResources(skysailApplicationElement, roundEnv, graph);
                 createListResources(skysailApplicationElement, roundEnv, graph);

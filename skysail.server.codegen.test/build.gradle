@@ -1,7 +1,7 @@
 sourceSets {
     generated {
         java {
-            srcDirs = ['src-gen']
+            srcDirs = ['src']
         }
     }
 }
@@ -29,5 +29,5 @@ compileGeneratedJava {
 }
 
 clean {
-    delete sourceSets.generated.java.srcDirs
+    //delete sourceSets.generated.java.srcDirs
 }

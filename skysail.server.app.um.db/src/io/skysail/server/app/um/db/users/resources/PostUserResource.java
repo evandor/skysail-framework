@@ -5,14 +5,12 @@ import io.skysail.server.app.um.db.UmApplication;
 import io.skysail.server.app.um.db.domain.User;
 import io.skysail.server.restlet.resources.PostEntityServerResource;
 
-import org.restlet.resource.ResourceException;
-
 public class PostUserResource extends PostEntityServerResource<User> {
 
     private UmApplication app;
 
     @Override
-    protected void doInit() throws ResourceException {
+    protected void doInit() {
         super.doInit();
         app = (UmApplication)getApplication();
     }

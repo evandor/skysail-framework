@@ -146,6 +146,19 @@ public class EntityProcessor extends Processors {
         JavaFileObject jfo = createSourceFile(entityElement.getEnclosingElement().toString() + ".Post"
                 + entityElement.getSimpleName() + "Resource");
 
+        Reader reader = jfo.openReader(true);
+        printMessage("opened reader: " + reader.toString());
+        if (reader != null) {
+            int data = reader.read();
+            List<Character> content = new ArrayList<>();
+            while(data != -1) {
+                System.out.print((char) data);
+                content.add((char)data);
+                data = reader.read();
+            }
+            printMessage(content.toString());
+        }
+
         Writer writer = jfo.openWriter();
 
         STGroup group = new STGroupFile("postResource/PostResource2.stg", '$', '$');

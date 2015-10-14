@@ -4,8 +4,8 @@ Bundle-Version: 0.1.0.${tstamp}
 Bundle-Name: SKYSAIL :: server :: codegen :: test
 Bundle-Description: test bundle for codegen
 
-testsrc: src-gen
-testbin: bin
+#testsrc: src-gen
+#testbin: bin
 
 Service-Component: *
 

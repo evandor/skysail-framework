@@ -1,0 +1,7 @@
+package de.twenty11.skysail.server.ext.apt.annotations;
+
+public enum ResourceType {
+
+    APPLICATION, REPO, POST, PUT, GET, LIST
+
+}

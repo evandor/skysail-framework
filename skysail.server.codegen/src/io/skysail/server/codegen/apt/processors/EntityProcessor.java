@@ -4,8 +4,9 @@ import io.skysail.server.ext.apt.model.entities.*;
 import io.skysail.server.ext.apt.model.types.TypeModel2;
 
 import java.io.*;
+import java.nio.file.*;
 import java.util.*;
-import java.util.stream.Collectors;
+import java.util.stream.*;
 
 import javax.annotation.processing.*;
 import javax.lang.model.element.*;
@@ -24,10 +25,12 @@ import de.twenty11.skysail.server.ext.apt.annotations.*;
 @Slf4j
 public class EntityProcessor extends Processors {
 
+    private static final String GENERATED_ANNOTATION = "@Generated(\"io.skysail.server.codegen.apt.processors.EntityProcessor\")";
+
     @Override
     public boolean doProcess(Set<? extends TypeElement> annotations, RoundEnvironment roundEnv) throws Exception {
         Set<? extends Element> generateResourceElements = roundEnv.getElementsAnnotatedWith(GenerateResources.class);
-        graph = analyseEntities2(roundEnv, generateResourceElements);
+        graph = analyse(roundEnv, generateResourceElements);
         typeModel2 = new TypeModel2(graph);
         generateResourceElements.stream().forEach(entity -> {
             try {
@@ -42,7 +45,7 @@ public class EntityProcessor extends Processors {
         return true;
     }
 
-    private EntityGraph analyseEntities2(RoundEnvironment roundEnv, Set<? extends Element> generateResourceElements) {
+    private EntityGraph analyse(RoundEnvironment roundEnv, Set<? extends Element> generateResourceElements) {
         Set<Entity> nodes = new HashSet<>();
         Set<Reference> edges = new HashSet<>();
 
@@ -142,22 +145,16 @@ public class EntityProcessor extends Processors {
 
         GenerateResources annotation = entityElement.getAnnotation(GenerateResources.class);
         String application = annotation.application();
-
-        JavaFileObject jfo = createSourceFile(entityElement.getEnclosingElement().toString() + ".Post"
-                + entityElement.getSimpleName() + "Resource");
-
-        Reader reader = jfo.openReader(true);
-        printMessage("opened reader: " + reader.toString());
-        if (reader != null) {
-            int data = reader.read();
-            List<Character> content = new ArrayList<>();
-            while(data != -1) {
-                System.out.print((char) data);
-                content.add((char)data);
-                data = reader.read();
-            }
-            printMessage(content.toString());
+        if (Arrays.asList(annotation.exclude()).contains(ResourceType.POST)) {
+            return;
         }
+
+        String typeName = entityElement.getEnclosingElement().toString() + ".Post" + entityElement.getSimpleName()
+                + "Resource";
+//        if (skipGeneration(typeName)) {
+//            return;
+//        }
+        JavaFileObject jfo = createSourceFile(typeName);
 
         Writer writer = jfo.openWriter();
 
@@ -174,6 +171,26 @@ public class EntityProcessor extends Processors {
 
         writer.close();
 
+    }
+
+    private boolean skipGeneration(String typename) {
+        String filename = "C:\\git\\skysail-framework\\skysail.server.codegen.test\\src" + File.separatorChar + typename.replace('.', File.separatorChar) + ".java";
+        Path path = Paths.get(filename);
+        if (!(new File(filename).exists())) {
+            printMessage("file '" + filename + "' not found, start generation...");
+            return false;
+        }
+        try (Stream<String> lines = Files.lines(path)) {
+            Optional<String> hasAnnotation = lines.filter(s -> s.contains(GENERATED_ANNOTATION)).findFirst();
+            if (hasAnnotation.isPresent()) {
+                printMessage("file " + filename + " will be regenerated, as it contains the proper @Generate annotation.");
+                return false;
+            }
+        } catch (IOException e) {
+            log.error(e.getMessage(),e);
+        }
+        printMessage("file " + filename + " will not be regenerated, as it is missing the proper @Generate annotation");
+        return true;
     }
 
     private void createPutResource(RoundEnvironment roundEnv, EntityGraph graph, Element entityElement)

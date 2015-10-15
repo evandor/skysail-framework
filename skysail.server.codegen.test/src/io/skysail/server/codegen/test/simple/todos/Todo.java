@@ -6,7 +6,7 @@ import io.skysail.api.forms.Field;
 import javax.persistence.Id;
 
 import lombok.*;
-import de.twenty11.skysail.server.ext.apt.annotations.GenerateResources;
+import de.twenty11.skysail.server.ext.apt.annotations.*;
 
 /**
  * A simple Model containing one simple Entity.
@@ -14,7 +14,7 @@ import de.twenty11.skysail.server.ext.apt.annotations.GenerateResources;
  */
 @Getter
 @Setter
-@GenerateResources(application = "io.skysail.server.codegen.test.simple.TodoApplication")
+@GenerateResources(application = "io.skysail.server.codegen.test.simple.TodoApplication", exclude = {ResourceType.POST})
 public class Todo implements Identifiable {
 
     @Id

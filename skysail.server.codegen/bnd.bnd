@@ -1,4 +1,4 @@
-Bundle-Version: 0.2.0.${tstamp}
+Bundle-Version: 0.2.1.${tstamp}
 Bundle-Name: SKYSAIL :: server :: codegen
 Bundle-Description: Annotation processing tool to generate skysail resources from model annotations
 

@@ -17,6 +17,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.orientechnologies.orient.client.remote.OEngineRemote;
 import com.orientechnologies.orient.core.Orient;
 import com.orientechnologies.orient.core.command.OCommandRequest;
+import com.orientechnologies.orient.core.db.OPartitionedDatabasePool;
 import com.orientechnologies.orient.core.db.document.ODatabaseDocumentTx;
 import com.orientechnologies.orient.core.id.ORecordId;
 import com.orientechnologies.orient.core.metadata.schema.*;
@@ -26,7 +27,7 @@ import com.orientechnologies.orient.core.sql.*;
 import com.orientechnologies.orient.core.sql.functions.OSQLFunction;
 import com.orientechnologies.orient.core.sql.query.OSQLSynchQuery;
 import com.orientechnologies.orient.graph.sql.functions.OGraphFunctionFactory;
-import com.orientechnologies.orient.object.db.*;
+import com.orientechnologies.orient.object.db.OObjectDatabaseTx;
 import com.orientechnologies.orient.object.metadata.schema.OSchemaProxyObject;
 import com.tinkerpop.blueprints.*;
 import com.tinkerpop.blueprints.impls.orient.*;
@@ -342,7 +343,14 @@ public class OrientGraphDbService extends AbstractOrientDbService implements DbS
         }
         try {
             createDbIfNeeded();
-            OObjectDatabaseTx db = OObjectDatabasePool.global().acquire(getDbUrl(), getDbUsername(), getDbPassword());
+
+            OPartitionedDatabasePool opDatabasePool = new OPartitionedDatabasePool(
+                    getDbUrl(), getDbUsername(), getDbPassword());
+            ODatabaseDocumentTx oDatabaseDocumentTx = opDatabasePool.acquire();
+            OObjectDatabaseTx db  = new OObjectDatabaseTx(oDatabaseDocumentTx);
+
+
+            //OObjectDatabaseTx db = OObjectDatabasePool.global().acquire(getDbUrl(), getDbUsername(), getDbPassword());
             db.setLazyLoading(false);
             started = true;
             if (getDbUrl().startsWith("memory:")) {
@@ -473,9 +481,16 @@ public class OrientGraphDbService extends AbstractOrientDbService implements DbS
     }
 
     private OObjectDatabaseTx getObjectDb() {
-        OObjectDatabaseTx db = OObjectDatabasePool.global().acquire(getDbUrl(), getDbUsername(), getDbPassword());
-        db.activateOnCurrentThread();
-        return db;
+
+        OPartitionedDatabasePool opDatabasePool = new OPartitionedDatabasePool(
+                getDbUrl(), getDbUsername(), getDbPassword());
+        ODatabaseDocumentTx oDatabaseDocumentTx = opDatabasePool.acquire();
+        return new OObjectDatabaseTx(oDatabaseDocumentTx);
+
+
+//        OObjectDatabaseTx db = OObjectDatabasePool.global().acquire(getDbUrl(), getDbUsername(), getDbPassword());
+//        db.activateOnCurrentThread();
+//        return db;
     }
 
     @Override

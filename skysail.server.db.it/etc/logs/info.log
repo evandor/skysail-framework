@@ -1,28 +1,6 @@
-2015-10-16 08:54:04,091 INFO  [io.skysail.server.app.ApplicationList        ] - (+) Adding application 'root'
-2015-10-16 08:54:04,103 INFO  [i.s.s.f.r.ConfigAdminFeatureStateRepository  ] - activating ConfigAdminFeatureStateRepository with config {USE_CREDENTIALS_CACHE_FEATURE=true, service.pid=io.skysail.server.features.repositories.ConfigAdminFeatureStateRepository, de.twenty11.skysail.server.core.restlet.SecurityFeatures.ALLOW_ORIGIN_FEATURE=true, component.name=io.skysail.server.features.repositories.ConfigAdminFeatureStateRepository, felix.fileinstall.filename=file:/Users/carsten/git/skysail-framework/skysail.server.db.it/config/io.skysail.server.features.repositories.ConfigAdminFeatureStateRepository.cfg, component.id=9}
-2015-10-16 08:54:04,110 INFO  [io.skysail.server.services.ServerLoad        ] - activating ServerLoad task
-2015-10-16 08:54:04,117 INFO  [io.skysail.server.services.ServerTime        ] - activating ServerTime task
-2015-10-16 08:54:04,159 INFO  [io.skysail.server.app.ApplicationList        ] - (+) Adding application 'webapp'
-2015-10-16 08:54:04,191 INFO  [io.skysail.server.db.DbConfigurations        ] - activating DbConfigurations with config DbConfig(name=skysailgraph, driver=, url=memory:dbintegrationtest, username=admin)
-2015-10-16 08:54:05,361 INFO  [i.s.s.d.versions.impl.VersionsRepository     ] - activating VersionsRepository
-2015-10-16 08:54:05,423 INFO  [i.s.s.d.versions.impl.VersionsRepository     ] - activating VersionsRepository
-2015-10-16 08:54:05,469 INFO  [io.skysail.server.http.HttpServer            ] - Activating io.skysail.server.http.HttpServer
-2015-10-16 08:54:05,482 INFO  [d.t.skysail.server.SkysailComponent          ] - Creating Restlet Component: de.twenty11.skysail.server.SkysailComponent
-2015-10-16 08:54:05,485 INFO  [io.skysail.server.http.HttpServer            ] - configuration was provided
-2015-10-16 08:54:05,486 INFO  [io.skysail.server.http.HttpServer            ] - 
-2015-10-16 08:54:05,486 INFO  [io.skysail.server.http.HttpServer            ] - ====================================
-2015-10-16 08:54:05,486 INFO  [io.skysail.server.http.HttpServer            ] - Starting skysail server on port 2015
-2015-10-16 08:54:05,486 INFO  [io.skysail.server.http.HttpServer            ] - ====================================
-2015-10-16 08:54:05,487 INFO  [io.skysail.server.http.HttpServer            ] - 
-2015-10-16 08:54:05,533 INFO  [org.restlet                                  ] - Starting the internal [HTTP/1.1] server on port 2015
-2015-10-16 08:54:05,556 INFO  [io.skysail.server.app.ApplicationList        ] - (+) Adding application 'plugins'
-2015-10-16 08:54:05,573 INFO  [io.skysail.server.app.ApplicationList        ] - (+) Adding application 'static'
-2015-10-16 08:54:05,606 INFO  [i.s.s.um.security.shiro.ShiroServices        ] - creating new SkysailAuthorizingRealm...
-2015-10-16 08:54:05,618 INFO  [i.s.s.um.security.shiro.ShiroServices        ] - Setting new SkysailWebSecurityManager as Shiros SecurityManager
-2015-10-16 08:54:05,659 INFO  [i.s.s.u.s.s.s.m.SkysailWebSessionManager     ] - creating new SkysailWebSessionManager
-2015-10-16 08:54:05,689 INFO  [io.skysail.server.app.ApplicationList        ] - (+) Adding application 'usermanagement'
-2015-10-16 08:54:05,855 INFO  [i.s.client.testsupport.IntegrationTests      ] - 
-2015-10-16 08:54:05,856 INFO  [i.s.client.testsupport.IntegrationTests      ] - --------------------------------------------
-2015-10-16 08:54:05,857 INFO  [i.s.client.testsupport.IntegrationTests      ] -  > TEST: running test 'test'
-2015-10-16 08:54:05,857 INFO  [i.s.client.testsupport.IntegrationTests      ] - --------------------------------------------
-2015-10-16 08:54:05,859 INFO  [i.s.client.testsupport.IntegrationTests      ] - 
+2015-10-16 16:13:26,813 INFO  [io.skysail.server.app.ApplicationList        ] - (+) Adding application 'root'
+2015-10-16 16:13:26,822 INFO  [i.s.s.f.r.ConfigAdminFeatureStateRepository  ] - activating ConfigAdminFeatureStateRepository with config {USE_CREDENTIALS_CACHE_FEATURE=true, service.pid=io.skysail.server.features.repositories.ConfigAdminFeatureStateRepository, de.twenty11.skysail.server.core.restlet.SecurityFeatures.ALLOW_ORIGIN_FEATURE=true, component.name=io.skysail.server.features.repositories.ConfigAdminFeatureStateRepository, felix.fileinstall.filename=file:/C:/git/skysail-framework/skysail.server.db.it/config/io.skysail.server.features.repositories.ConfigAdminFeatureStateRepository.cfg, component.id=9}
+2015-10-16 16:13:26,827 INFO  [io.skysail.server.services.ServerLoad        ] - activating ServerLoad task
+2015-10-16 16:13:26,831 INFO  [io.skysail.server.services.ServerTime        ] - activating ServerTime task
+2015-10-16 16:13:26,849 INFO  [io.skysail.server.app.ApplicationList        ] - (+) Adding application 'webapp'
+2015-10-16 16:13:26,867 INFO  [io.skysail.server.db.DbConfigurations        ] - activating DbConfigurations with config DbConfig(name=skysailgraph, driver=, url=plocal:etc/db/itest, username=admin)

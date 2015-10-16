@@ -1,17 +1,22 @@
-package io.skysail.server.db.it;
+package io.skysail.server.codegen.test.simple.todos;
+
+
+import javax.annotation.Generated;
 
 import io.skysail.api.repos.DbRepository;
-import io.skysail.server.db.*;
+
 import lombok.extern.slf4j.Slf4j;
 import aQute.bnd.annotation.component.*;
+import io.skysail.server.db.*;
 
-@Component(immediate = true, properties = "name=TestRepository")
+@Component(immediate=true)
 @Slf4j
-public class TestRepository extends GraphDbRepository<TestEntity> implements DbRepository {
+@Generated("io.skysail.server.codegen.apt.processors.EntityProcessor")
+public class TodoRepo extends GraphDbRepository<Todo> implements DbRepository {
 
     @Activate
     public void activate() {
-        super.activate(TestEntity.class);
+        super.activate(Todo.class);
     }
 
     @Reference
@@ -24,6 +29,7 @@ public class TestRepository extends GraphDbRepository<TestEntity> implements DbR
         log.debug("unsetting dbService");
         this.dbService = null;
     }
-
-
 }
+
+
+

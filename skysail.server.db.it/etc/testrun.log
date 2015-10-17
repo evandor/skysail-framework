@@ -1,6 +1,5 @@
-INFO  io.skysail.client.testsupport.IntegrationTests - 
-INFO  io.skysail.client.testsupport.IntegrationTests - --------------------------------------------
-INFO  io.skysail.client.testsupport.IntegrationTests -  > TEST: running test 'test'
-INFO  io.skysail.client.testsupport.IntegrationTests - --------------------------------------------
-INFO  io.skysail.client.testsupport.IntegrationTests - 
-DEBUG io.skysail.server.app.SkysailApplication - Instanciating new Skysail Application 'SkysailItApplication'
+INFO  io.skysail.client.testsupport.TestsupportTestBase - 
+INFO  io.skysail.client.testsupport.TestsupportTestBase - --------------------------------------------
+INFO  io.skysail.client.testsupport.TestsupportTestBase -  > TEST: running test 'retrieves_a_simple_entity'
+INFO  io.skysail.client.testsupport.TestsupportTestBase - --------------------------------------------
+INFO  io.skysail.client.testsupport.TestsupportTestBase - 

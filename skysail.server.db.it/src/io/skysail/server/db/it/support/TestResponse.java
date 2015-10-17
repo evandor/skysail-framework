@@ -1,4 +1,4 @@
-package io.skysail.server.db.it;
+package io.skysail.server.db.it.support;
 
 import org.restlet.*;
 

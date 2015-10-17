@@ -1,6 +1,254 @@
-2015-10-16 16:13:26,813 INFO  [io.skysail.server.app.ApplicationList        ] - (+) Adding application 'root'
-2015-10-16 16:13:26,822 INFO  [i.s.s.f.r.ConfigAdminFeatureStateRepository  ] - activating ConfigAdminFeatureStateRepository with config {USE_CREDENTIALS_CACHE_FEATURE=true, service.pid=io.skysail.server.features.repositories.ConfigAdminFeatureStateRepository, de.twenty11.skysail.server.core.restlet.SecurityFeatures.ALLOW_ORIGIN_FEATURE=true, component.name=io.skysail.server.features.repositories.ConfigAdminFeatureStateRepository, felix.fileinstall.filename=file:/C:/git/skysail-framework/skysail.server.db.it/config/io.skysail.server.features.repositories.ConfigAdminFeatureStateRepository.cfg, component.id=9}
-2015-10-16 16:13:26,827 INFO  [io.skysail.server.services.ServerLoad        ] - activating ServerLoad task
-2015-10-16 16:13:26,831 INFO  [io.skysail.server.services.ServerTime        ] - activating ServerTime task
-2015-10-16 16:13:26,849 INFO  [io.skysail.server.app.ApplicationList        ] - (+) Adding application 'webapp'
-2015-10-16 16:13:26,867 INFO  [io.skysail.server.db.DbConfigurations        ] - activating DbConfigurations with config DbConfig(name=skysailgraph, driver=, url=plocal:etc/db/itest, username=admin)
+2015-10-17 13:09:30,466 INFO  [io.skysail.server.app.ApplicationList        ] - (+) Adding application 'root'
+2015-10-17 13:09:30,485 INFO  [i.s.s.f.r.ConfigAdminFeatureStateRepository  ] - activating ConfigAdminFeatureStateRepository with config {USE_CREDENTIALS_CACHE_FEATURE=true, service.pid=io.skysail.server.features.repositories.ConfigAdminFeatureStateRepository, de.twenty11.skysail.server.core.restlet.SecurityFeatures.ALLOW_ORIGIN_FEATURE=true, component.name=io.skysail.server.features.repositories.ConfigAdminFeatureStateRepository, felix.fileinstall.filename=file:/Users/carsten/git/skysail-framework/skysail.server.db.it/config/io.skysail.server.features.repositories.ConfigAdminFeatureStateRepository.cfg, component.id=9}
+2015-10-17 13:09:30,488 INFO  [io.skysail.server.services.ServerLoad        ] - activating ServerLoad task
+2015-10-17 13:09:30,497 INFO  [io.skysail.server.services.ServerTime        ] - activating ServerTime task
+2015-10-17 13:09:30,530 INFO  [io.skysail.server.app.ApplicationList        ] - (+) Adding application 'webapp'
+2015-10-17 13:09:30,554 INFO  [io.skysail.server.db.DbConfigurations        ] - activating DbConfigurations with config DbConfig(name=skysailgraph, driver=, url=remote:localhost/skysaillargetest, username=admin)
+2015-10-17 13:09:32,006 INFO  [i.s.s.d.versions.impl.VersionsRepository     ] - activating VersionsRepository
+2015-10-17 13:09:32,079 INFO  [io.skysail.server.http.HttpServer            ] - Activating io.skysail.server.http.HttpServer
+2015-10-17 13:09:32,088 INFO  [d.t.skysail.server.SkysailComponent          ] - Creating Restlet Component: de.twenty11.skysail.server.SkysailComponent
+2015-10-17 13:09:32,107 INFO  [io.skysail.server.http.HttpServer            ] - configuration was provided
+2015-10-17 13:09:32,107 INFO  [io.skysail.server.http.HttpServer            ] - 
+2015-10-17 13:09:32,108 INFO  [io.skysail.server.http.HttpServer            ] - ====================================
+2015-10-17 13:09:32,108 INFO  [io.skysail.server.http.HttpServer            ] - Starting skysail server on port 2015
+2015-10-17 13:09:32,108 INFO  [io.skysail.server.http.HttpServer            ] - ====================================
+2015-10-17 13:09:32,108 INFO  [io.skysail.server.http.HttpServer            ] - 
+2015-10-17 13:09:32,128 INFO  [io.skysail.server.app.ApplicationList        ] - (+) Adding application 'plugins'
+2015-10-17 13:09:32,147 INFO  [io.skysail.server.app.ApplicationList        ] - (+) Adding application 'static'
+2015-10-17 13:09:32,149 INFO  [org.restlet                                  ] - Starting the internal [HTTP/1.1] server on port 2015
+2015-10-17 13:09:32,200 INFO  [i.s.s.um.security.shiro.ShiroServices        ] - creating new SkysailAuthorizingRealm...
+2015-10-17 13:09:32,211 INFO  [i.s.s.um.security.shiro.ShiroServices        ] - Setting new SkysailWebSecurityManager as Shiros SecurityManager
+2015-10-17 13:09:32,259 INFO  [i.s.s.u.s.s.s.m.SkysailWebSessionManager     ] - creating new SkysailWebSessionManager
+2015-10-17 13:09:32,302 INFO  [io.skysail.server.app.ApplicationList        ] - (+) Adding application 'usermanagement'
+2015-10-17 13:09:32,381 INFO  [io.skysail.server.app.ApplicationList        ] - (+) Adding application 'ClipApp'
+2015-10-17 13:09:32,413 INFO  [io.skysail.server.app.ApplicationList        ] - (+) Adding application 'TodoApplication'
+2015-10-17 13:09:32,495 INFO  [i.s.c.testsupport.TestsupportTestBase        ] - 
+2015-10-17 13:09:32,495 INFO  [i.s.c.testsupport.TestsupportTestBase        ] - --------------------------------------------
+2015-10-17 13:09:32,496 INFO  [i.s.c.testsupport.TestsupportTestBase        ] -  > TEST: running test 'retrieves_a_clip_by_id'
+2015-10-17 13:09:32,496 INFO  [i.s.c.testsupport.TestsupportTestBase        ] - --------------------------------------------
+2015-10-17 13:09:32,497 INFO  [i.s.c.testsupport.TestsupportTestBase        ] - 
+2015-10-17 13:09:32,556 INFO  [i.s.s.r.r.PostEntityServerResource           ] - Request entry point: PostClipResource @Post('json')
+2015-10-17 13:09:32,556 INFO  [i.s.s.r.r.PostEntityServerResource           ] - Request entry point: PostClipResource @Post('x-www-form-urlencoded:html|json|xml')
+2015-10-17 13:09:32,558 INFO  [i.s.s.r.r.PostEntityServerResource           ] - calling post(Form), media types '[]'
+2015-10-17 13:09:32,832 INFO  [io.skysail.server.db.impl.Persister          ] - setting created=Sat Oct 17 13:09:32 CEST 2015 [class java.util.Date]
+2015-10-17 13:09:32,833 INFO  [io.skysail.server.db.impl.Persister          ] - setting title=1445080172555 [class java.lang.String]
+2015-10-17 13:09:32,999 INFO  [i.s.c.testsupport.TestsupportTestBase        ] - 
+2015-10-17 13:09:33,008 INFO  [i.s.c.testsupport.TestsupportTestBase        ] - --------------------------------------------
+2015-10-17 13:09:33,008 INFO  [i.s.c.testsupport.TestsupportTestBase        ] -  > TEST: running test 'retrieves_the_list_of_clips'
+2015-10-17 13:09:33,017 INFO  [i.s.c.testsupport.TestsupportTestBase        ] - --------------------------------------------
+2015-10-17 13:09:33,018 INFO  [i.s.c.testsupport.TestsupportTestBase        ] - 
+2015-10-17 13:09:33,020 INFO  [i.s.s.r.r.PostEntityServerResource           ] - Request entry point: PostClipResource @Post('json')
+2015-10-17 13:09:33,022 INFO  [i.s.s.r.r.PostEntityServerResource           ] - Request entry point: PostClipResource @Post('x-www-form-urlencoded:html|json|xml')
+2015-10-17 13:09:33,024 INFO  [i.s.s.r.r.PostEntityServerResource           ] - calling post(Form), media types '[]'
+2015-10-17 13:09:33,066 INFO  [io.skysail.server.db.impl.Persister          ] - setting created=Sat Oct 17 13:09:33 CEST 2015 [class java.util.Date]
+2015-10-17 13:09:33,067 INFO  [io.skysail.server.db.impl.Persister          ] - setting title=1445080173020 [class java.lang.String]
+2015-10-17 13:09:33,074 INFO  [i.s.s.r.r.PostEntityServerResource           ] - Request entry point: PostClipResource @Post('json')
+2015-10-17 13:09:33,074 INFO  [i.s.s.r.r.PostEntityServerResource           ] - Request entry point: PostClipResource @Post('x-www-form-urlencoded:html|json|xml')
+2015-10-17 13:09:33,075 INFO  [i.s.s.r.r.PostEntityServerResource           ] - calling post(Form), media types '[]'
+2015-10-17 13:09:33,128 INFO  [io.skysail.server.db.impl.Persister          ] - setting created=Sat Oct 17 13:09:33 CEST 2015 [class java.util.Date]
+2015-10-17 13:09:33,133 INFO  [io.skysail.server.db.impl.Persister          ] - setting title=1445080173020 [class java.lang.String]
+2015-10-17 13:09:33,251 INFO  [i.s.s.r.resources.ListServerResource         ] - Request entry point: ClipsResource @Get('html|json|yaml|xml') with variant [text/html]
+2015-10-17 13:09:33,523 INFO  [i.s.c.testsupport.TestsupportTestBase        ] - 
+2015-10-17 13:09:33,524 INFO  [i.s.c.testsupport.TestsupportTestBase        ] - --------------------------------------------
+2015-10-17 13:09:33,524 INFO  [i.s.c.testsupport.TestsupportTestBase        ] -  > TEST: running test 'clip_can_be_updated'
+2015-10-17 13:09:33,524 INFO  [i.s.c.testsupport.TestsupportTestBase        ] - --------------------------------------------
+2015-10-17 13:09:33,524 INFO  [i.s.c.testsupport.TestsupportTestBase        ] - 
+2015-10-17 13:09:33,526 INFO  [i.s.s.r.r.PostEntityServerResource           ] - Request entry point: PostClipResource @Post('json')
+2015-10-17 13:09:33,527 INFO  [i.s.s.r.r.PostEntityServerResource           ] - Request entry point: PostClipResource @Post('x-www-form-urlencoded:html|json|xml')
+2015-10-17 13:09:33,529 INFO  [i.s.s.r.r.PostEntityServerResource           ] - calling post(Form), media types '[]'
+2015-10-17 13:09:33,556 INFO  [io.skysail.server.db.impl.Persister          ] - setting created=Sat Oct 17 13:09:33 CEST 2015 [class java.util.Date]
+2015-10-17 13:09:33,557 INFO  [io.skysail.server.db.impl.Persister          ] - setting title=1445080173525 [class java.lang.String]
+2015-10-17 13:09:33,560 INFO  [i.s.s.r.r.PutEntityServerResource            ] - Request entry point: PutClipResource @Put('json')
+2015-10-17 13:09:33,587 INFO  [io.skysail.server.db.impl.Updater            ] - setting created=Sat Oct 17 13:09:33 CEST 2015 [class java.util.Date]
+2015-10-17 13:09:33,587 INFO  [io.skysail.server.db.impl.Updater            ] - setting modified=Sat Oct 17 13:09:33 CEST 2015 [class java.util.Date]
+2015-10-17 13:09:33,588 INFO  [io.skysail.server.db.impl.Updater            ] - setting title=changed [class java.lang.String]
+2015-10-17 13:09:33,616 ERROR [i.s.s.r.f.h.ExceptionCatchingFilterHelper    ] - null
+java.lang.NullPointerException: null
+	at org.restlet.data.Reference.getParentRef(Reference.java:1320) ~[org.restlet.jar:na]
+	at io.skysail.server.restlet.resources.PutEntityServerResource.getLinks(PutEntityServerResource.java:232) [skysail.server.jar:na]
+	at io.skysail.server.restlet.resources.SkysailServerResource.getAuthorizedLinks(SkysailServerResource.java:268) ~[skysail.server.jar:na]
+	at io.skysail.server.restlet.filter.AddLinkheadersFilter.afterHandle(AddLinkheadersFilter.java:26) ~[skysail.server.jar:na]
+	at io.skysail.server.restlet.filter.AbstractResourceFilter.handleMe(AbstractResourceFilter.java:106) [skysail.server.jar:na]
+	at io.skysail.server.restlet.filter.AbstractResourceFilter.doHandle(AbstractResourceFilter.java:83) [skysail.server.jar:na]
+	at io.skysail.server.restlet.filter.EntityWasAddedFilter.doHandle(EntityWasAddedFilter.java:29) ~[skysail.server.jar:na]
+	at io.skysail.server.restlet.filter.AbstractResourceFilter.handleMe(AbstractResourceFilter.java:104) [skysail.server.jar:na]
+	at io.skysail.server.restlet.filter.AbstractResourceFilter.doHandle(AbstractResourceFilter.java:83) [skysail.server.jar:na]
+	at io.skysail.server.restlet.filter.UpdateEntityFilter.doHandle(UpdateEntityFilter.java:23) ~[skysail.server.jar:na]
+	at io.skysail.server.restlet.filter.UpdateEntityFilter.doHandle(UpdateEntityFilter.java:1) ~[skysail.server.jar:na]
+	at io.skysail.server.restlet.filter.AbstractResourceFilter.handleMe(AbstractResourceFilter.java:104) [skysail.server.jar:na]
+	at io.skysail.server.restlet.filter.AbstractResourceFilter.doHandle(AbstractResourceFilter.java:83) [skysail.server.jar:na]
+	at io.skysail.server.restlet.filter.OptionalEncryptionFilter.doHandle(OptionalEncryptionFilter.java:27) ~[skysail.server.jar:na]
+	at io.skysail.server.restlet.filter.AbstractResourceFilter.handleMe(AbstractResourceFilter.java:104) [skysail.server.jar:na]
+	at io.skysail.server.restlet.filter.AbstractResourceFilter.doHandle(AbstractResourceFilter.java:83) [skysail.server.jar:na]
+	at io.skysail.server.restlet.filter.CheckBusinessViolationsFilter.doHandle(CheckBusinessViolationsFilter.java:58) ~[skysail.server.jar:na]
+	at io.skysail.server.restlet.filter.AbstractResourceFilter.handleMe(AbstractResourceFilter.java:104) [skysail.server.jar:na]
+	at io.skysail.server.restlet.filter.AbstractResourceFilter.doHandle(AbstractResourceFilter.java:83) [skysail.server.jar:na]
+	at io.skysail.server.restlet.filter.FormDataExtractingFilter.doHandle(FormDataExtractingFilter.java:33) ~[skysail.server.jar:na]
+	at io.skysail.server.restlet.filter.AbstractResourceFilter.handleMe(AbstractResourceFilter.java:104) [skysail.server.jar:na]
+	at io.skysail.server.restlet.filter.AbstractResourceFilter.doHandle(AbstractResourceFilter.java:83) [skysail.server.jar:na]
+	at io.skysail.server.restlet.filter.CheckInvalidInputFilter.doHandle(CheckInvalidInputFilter.java:45) ~[skysail.server.jar:na]
+	at io.skysail.server.restlet.filter.AbstractResourceFilter.handleMe(AbstractResourceFilter.java:104) [skysail.server.jar:na]
+	at io.skysail.server.restlet.filter.AbstractResourceFilter.doHandle(AbstractResourceFilter.java:83) [skysail.server.jar:na]
+	at io.skysail.server.restlet.filter.AbstractResourceFilter.handleMe(AbstractResourceFilter.java:104) [skysail.server.jar:na]
+	at io.skysail.server.restlet.filter.AbstractResourceFilter.doHandle(AbstractResourceFilter.java:83) [skysail.server.jar:na]
+	at io.skysail.server.restlet.filter.ExceptionCatchingFilter.doHandle(ExceptionCatchingFilter.java:27) ~[skysail.server.jar:na]
+	at io.skysail.server.restlet.filter.AbstractResourceFilter.handleMe(AbstractResourceFilter.java:104) [skysail.server.jar:na]
+	at io.skysail.server.restlet.filter.AbstractResourceFilter.handle(AbstractResourceFilter.java:44) [skysail.server.jar:na]
+	at io.skysail.server.restlet.resources.PutEntityServerResource.putEntity(PutEntityServerResource.java:149) [skysail.server.jar:na]
+	at io.skysail.server.db.it.ClipDbTests.clip_can_be_updated(ClipDbTests.java:74) [skysail.server.db.it.jar:na]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:1.8.0_20]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:1.8.0_20]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:1.8.0_20]
+	at java.lang.reflect.Method.invoke(Method.java:483) ~[na:1.8.0_20]
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:47) [biz.aQute.junit-latest.jar:na]
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12) [biz.aQute.junit-latest.jar:na]
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:44) [biz.aQute.junit-latest.jar:na]
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17) [biz.aQute.junit-latest.jar:na]
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26) [biz.aQute.junit-latest.jar:na]
+	at org.junit.rules.ExpectedException$ExpectedExceptionStatement.evaluate(ExpectedException.java:168) [biz.aQute.junit-latest.jar:na]
+	at org.junit.rules.TestWatcher$1.evaluate(TestWatcher.java:55) [biz.aQute.junit-latest.jar:na]
+	at org.junit.rules.RunRules.evaluate(RunRules.java:20) [biz.aQute.junit-latest.jar:na]
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:271) [biz.aQute.junit-latest.jar:na]
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:70) [biz.aQute.junit-latest.jar:na]
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:50) [biz.aQute.junit-latest.jar:na]
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:238) [biz.aQute.junit-latest.jar:na]
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:63) [biz.aQute.junit-latest.jar:na]
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:236) [biz.aQute.junit-latest.jar:na]
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:53) [biz.aQute.junit-latest.jar:na]
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:229) [biz.aQute.junit-latest.jar:na]
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26) [biz.aQute.junit-latest.jar:na]
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:309) [biz.aQute.junit-latest.jar:na]
+	at junit.framework.JUnit4TestAdapter.run(JUnit4TestAdapter.java:38) [biz.aQute.junit-latest.jar:na]
+	at junit.framework.TestSuite.runTest(TestSuite.java:255) [biz.aQute.junit-latest.jar:na]
+	at junit.framework.TestSuite.run(TestSuite.java:250) [biz.aQute.junit-latest.jar:na]
+	at aQute.junit.Activator.test(Activator.java:303) [biz.aQute.junit-latest.jar:na]
+	at aQute.junit.Activator.run(Activator.java:128) [biz.aQute.junit-latest.jar:na]
+	at aQute.launcher.Launcher$5.call(Launcher.java:1175) [biz.aQute.launcher-latest.jar:na]
+	at aQute.launcher.Launcher$5.call(Launcher.java:1173) [biz.aQute.launcher-latest.jar:na]
+	at aQute.launcher.Launcher.run(Launcher.java:278) [biz.aQute.launcher-latest.jar:na]
+	at aQute.launcher.Launcher.main(Launcher.java:87) [biz.aQute.launcher-latest.jar:na]
+2015-10-17 13:09:33,709 INFO  [i.s.c.testsupport.TestsupportTestBase        ] - 
+2015-10-17 13:09:33,710 INFO  [i.s.c.testsupport.TestsupportTestBase        ] - --------------------------------------------
+2015-10-17 13:09:33,711 INFO  [i.s.c.testsupport.TestsupportTestBase        ] -  > TEST: running test 'creates_a_new_simple_entity'
+2015-10-17 13:09:33,711 INFO  [i.s.c.testsupport.TestsupportTestBase        ] - --------------------------------------------
+2015-10-17 13:09:33,719 INFO  [i.s.c.testsupport.TestsupportTestBase        ] - 
+2015-10-17 13:09:33,720 INFO  [i.s.s.r.r.PostEntityServerResource           ] - Request entry point: PostClipResource @Post('json')
+2015-10-17 13:09:33,720 INFO  [i.s.s.r.r.PostEntityServerResource           ] - Request entry point: PostClipResource @Post('x-www-form-urlencoded:html|json|xml')
+2015-10-17 13:09:33,720 INFO  [i.s.s.r.r.PostEntityServerResource           ] - calling post(Form), media types '[]'
+2015-10-17 13:09:33,737 INFO  [io.skysail.server.db.impl.Persister          ] - setting created=Sat Oct 17 13:09:33 CEST 2015 [class java.util.Date]
+2015-10-17 13:09:33,740 INFO  [io.skysail.server.db.impl.Persister          ] - setting title=1445080173720 [class java.lang.String]
+2015-10-17 13:09:33,749 INFO  [i.s.c.testsupport.TestsupportTestBase        ] - 
+2015-10-17 13:09:33,750 INFO  [i.s.c.testsupport.TestsupportTestBase        ] - --------------------------------------------
+2015-10-17 13:09:33,750 INFO  [i.s.c.testsupport.TestsupportTestBase        ] -  > TEST: running test 'retrieves_the_list_of_Todos'
+2015-10-17 13:09:33,750 INFO  [i.s.c.testsupport.TestsupportTestBase        ] - --------------------------------------------
+2015-10-17 13:09:33,750 INFO  [i.s.c.testsupport.TestsupportTestBase        ] - 
+2015-10-17 13:09:33,769 INFO  [i.s.s.r.r.PostEntityServerResource           ] - Request entry point: PostTodoResource @Post('json')
+2015-10-17 13:09:33,770 INFO  [i.s.s.r.r.PostEntityServerResource           ] - Request entry point: PostTodoResource @Post('x-www-form-urlencoded:html|json|xml')
+2015-10-17 13:09:33,771 INFO  [i.s.s.r.r.PostEntityServerResource           ] - calling post(Form), media types '[]'
+2015-10-17 13:09:33,784 INFO  [io.skysail.server.db.impl.Persister          ] - setting created=Sat Oct 17 13:09:33 CEST 2015 [class java.util.Date]
+2015-10-17 13:09:33,785 INFO  [io.skysail.server.db.impl.Persister          ] - setting title=1445080173769 [class java.lang.String]
+2015-10-17 13:09:33,789 INFO  [i.s.s.r.r.PostEntityServerResource           ] - Request entry point: PostTodoResource @Post('json')
+2015-10-17 13:09:33,790 INFO  [i.s.s.r.r.PostEntityServerResource           ] - Request entry point: PostTodoResource @Post('x-www-form-urlencoded:html|json|xml')
+2015-10-17 13:09:33,790 INFO  [i.s.s.r.r.PostEntityServerResource           ] - calling post(Form), media types '[]'
+2015-10-17 13:09:33,796 INFO  [io.skysail.server.db.impl.Persister          ] - setting created=Sat Oct 17 13:09:33 CEST 2015 [class java.util.Date]
+2015-10-17 13:09:33,798 INFO  [io.skysail.server.db.impl.Persister          ] - setting title=1445080173769 [class java.lang.String]
+2015-10-17 13:09:33,800 INFO  [i.s.s.r.resources.ListServerResource         ] - Request entry point: TodosResource @Get('html|json|yaml|xml') with variant [text/html]
+2015-10-17 13:09:33,817 INFO  [i.s.c.testsupport.TestsupportTestBase        ] - 
+2015-10-17 13:09:33,817 INFO  [i.s.c.testsupport.TestsupportTestBase        ] - --------------------------------------------
+2015-10-17 13:09:33,818 INFO  [i.s.c.testsupport.TestsupportTestBase        ] -  > TEST: running test 'retrieves_a_Todo_by_id'
+2015-10-17 13:09:33,818 INFO  [i.s.c.testsupport.TestsupportTestBase        ] - --------------------------------------------
+2015-10-17 13:09:33,818 INFO  [i.s.c.testsupport.TestsupportTestBase        ] - 
+2015-10-17 13:09:33,818 INFO  [i.s.s.r.r.PostEntityServerResource           ] - Request entry point: PostTodoResource @Post('json')
+2015-10-17 13:09:33,819 INFO  [i.s.s.r.r.PostEntityServerResource           ] - Request entry point: PostTodoResource @Post('x-www-form-urlencoded:html|json|xml')
+2015-10-17 13:09:33,819 INFO  [i.s.s.r.r.PostEntityServerResource           ] - calling post(Form), media types '[]'
+2015-10-17 13:09:33,826 INFO  [io.skysail.server.db.impl.Persister          ] - setting created=Sat Oct 17 13:09:33 CEST 2015 [class java.util.Date]
+2015-10-17 13:09:33,826 INFO  [io.skysail.server.db.impl.Persister          ] - setting title=1445080173818 [class java.lang.String]
+2015-10-17 13:09:33,831 INFO  [i.s.c.testsupport.TestsupportTestBase        ] - 
+2015-10-17 13:09:33,832 INFO  [i.s.c.testsupport.TestsupportTestBase        ] - --------------------------------------------
+2015-10-17 13:09:33,833 INFO  [i.s.c.testsupport.TestsupportTestBase        ] -  > TEST: running test 'Todo_can_be_updated'
+2015-10-17 13:09:33,835 INFO  [i.s.c.testsupport.TestsupportTestBase        ] - --------------------------------------------
+2015-10-17 13:09:33,835 INFO  [i.s.c.testsupport.TestsupportTestBase        ] - 
+2015-10-17 13:09:33,836 INFO  [i.s.s.r.r.PostEntityServerResource           ] - Request entry point: PostTodoResource @Post('json')
+2015-10-17 13:09:33,836 INFO  [i.s.s.r.r.PostEntityServerResource           ] - Request entry point: PostTodoResource @Post('x-www-form-urlencoded:html|json|xml')
+2015-10-17 13:09:33,836 INFO  [i.s.s.r.r.PostEntityServerResource           ] - calling post(Form), media types '[]'
+2015-10-17 13:09:33,843 INFO  [io.skysail.server.db.impl.Persister          ] - setting created=Sat Oct 17 13:09:33 CEST 2015 [class java.util.Date]
+2015-10-17 13:09:33,844 INFO  [io.skysail.server.db.impl.Persister          ] - setting title=1445080173836 [class java.lang.String]
+2015-10-17 13:09:33,846 INFO  [i.s.s.r.r.PutEntityServerResource            ] - Request entry point: PutTodoResource @Put('json')
+2015-10-17 13:09:33,856 INFO  [io.skysail.server.db.impl.Updater            ] - setting created=Sat Oct 17 13:09:33 CEST 2015 [class java.util.Date]
+2015-10-17 13:09:33,856 INFO  [io.skysail.server.db.impl.Updater            ] - setting modified=Sat Oct 17 13:09:33 CEST 2015 [class java.util.Date]
+2015-10-17 13:09:33,857 INFO  [io.skysail.server.db.impl.Updater            ] - setting title=changed [class java.lang.String]
+2015-10-17 13:09:33,860 ERROR [i.s.s.r.f.h.ExceptionCatchingFilterHelper    ] - null
+java.lang.NullPointerException: null
+	at org.restlet.data.Reference.getParentRef(Reference.java:1320) ~[org.restlet.jar:na]
+	at io.skysail.server.restlet.resources.PutEntityServerResource.getLinks(PutEntityServerResource.java:232) [skysail.server.jar:na]
+	at io.skysail.server.restlet.resources.SkysailServerResource.getAuthorizedLinks(SkysailServerResource.java:268) ~[skysail.server.jar:na]
+	at io.skysail.server.restlet.filter.AddLinkheadersFilter.afterHandle(AddLinkheadersFilter.java:26) ~[skysail.server.jar:na]
+	at io.skysail.server.restlet.filter.AbstractResourceFilter.handleMe(AbstractResourceFilter.java:106) [skysail.server.jar:na]
+	at io.skysail.server.restlet.filter.AbstractResourceFilter.doHandle(AbstractResourceFilter.java:83) [skysail.server.jar:na]
+	at io.skysail.server.restlet.filter.EntityWasAddedFilter.doHandle(EntityWasAddedFilter.java:29) ~[skysail.server.jar:na]
+	at io.skysail.server.restlet.filter.AbstractResourceFilter.handleMe(AbstractResourceFilter.java:104) [skysail.server.jar:na]
+	at io.skysail.server.restlet.filter.AbstractResourceFilter.doHandle(AbstractResourceFilter.java:83) [skysail.server.jar:na]
+	at io.skysail.server.restlet.filter.UpdateEntityFilter.doHandle(UpdateEntityFilter.java:23) ~[skysail.server.jar:na]
+	at io.skysail.server.restlet.filter.UpdateEntityFilter.doHandle(UpdateEntityFilter.java:1) ~[skysail.server.jar:na]
+	at io.skysail.server.restlet.filter.AbstractResourceFilter.handleMe(AbstractResourceFilter.java:104) [skysail.server.jar:na]
+	at io.skysail.server.restlet.filter.AbstractResourceFilter.doHandle(AbstractResourceFilter.java:83) [skysail.server.jar:na]
+	at io.skysail.server.restlet.filter.OptionalEncryptionFilter.doHandle(OptionalEncryptionFilter.java:27) ~[skysail.server.jar:na]
+	at io.skysail.server.restlet.filter.AbstractResourceFilter.handleMe(AbstractResourceFilter.java:104) [skysail.server.jar:na]
+	at io.skysail.server.restlet.filter.AbstractResourceFilter.doHandle(AbstractResourceFilter.java:83) [skysail.server.jar:na]
+	at io.skysail.server.restlet.filter.CheckBusinessViolationsFilter.doHandle(CheckBusinessViolationsFilter.java:58) ~[skysail.server.jar:na]
+	at io.skysail.server.restlet.filter.AbstractResourceFilter.handleMe(AbstractResourceFilter.java:104) [skysail.server.jar:na]
+	at io.skysail.server.restlet.filter.AbstractResourceFilter.doHandle(AbstractResourceFilter.java:83) [skysail.server.jar:na]
+	at io.skysail.server.restlet.filter.FormDataExtractingFilter.doHandle(FormDataExtractingFilter.java:33) ~[skysail.server.jar:na]
+	at io.skysail.server.restlet.filter.AbstractResourceFilter.handleMe(AbstractResourceFilter.java:104) [skysail.server.jar:na]
+	at io.skysail.server.restlet.filter.AbstractResourceFilter.doHandle(AbstractResourceFilter.java:83) [skysail.server.jar:na]
+	at io.skysail.server.restlet.filter.CheckInvalidInputFilter.doHandle(CheckInvalidInputFilter.java:45) ~[skysail.server.jar:na]
+	at io.skysail.server.restlet.filter.AbstractResourceFilter.handleMe(AbstractResourceFilter.java:104) [skysail.server.jar:na]
+	at io.skysail.server.restlet.filter.AbstractResourceFilter.doHandle(AbstractResourceFilter.java:83) [skysail.server.jar:na]
+	at io.skysail.server.restlet.filter.AbstractResourceFilter.handleMe(AbstractResourceFilter.java:104) [skysail.server.jar:na]
+	at io.skysail.server.restlet.filter.AbstractResourceFilter.doHandle(AbstractResourceFilter.java:83) [skysail.server.jar:na]
+	at io.skysail.server.restlet.filter.ExceptionCatchingFilter.doHandle(ExceptionCatchingFilter.java:27) ~[skysail.server.jar:na]
+	at io.skysail.server.restlet.filter.AbstractResourceFilter.handleMe(AbstractResourceFilter.java:104) [skysail.server.jar:na]
+	at io.skysail.server.restlet.filter.AbstractResourceFilter.handle(AbstractResourceFilter.java:44) [skysail.server.jar:na]
+	at io.skysail.server.restlet.resources.PutEntityServerResource.putEntity(PutEntityServerResource.java:149) [skysail.server.jar:na]
+	at io.skysail.server.db.it.OneToManyDbTests.Todo_can_be_updated(OneToManyDbTests.java:74) [skysail.server.db.it.jar:na]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:1.8.0_20]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:1.8.0_20]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:1.8.0_20]
+	at java.lang.reflect.Method.invoke(Method.java:483) ~[na:1.8.0_20]
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:47) [biz.aQute.junit-latest.jar:na]
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12) [biz.aQute.junit-latest.jar:na]
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:44) [biz.aQute.junit-latest.jar:na]
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17) [biz.aQute.junit-latest.jar:na]
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26) [biz.aQute.junit-latest.jar:na]
+	at org.junit.rules.ExpectedException$ExpectedExceptionStatement.evaluate(ExpectedException.java:168) [biz.aQute.junit-latest.jar:na]
+	at org.junit.rules.TestWatcher$1.evaluate(TestWatcher.java:55) [biz.aQute.junit-latest.jar:na]
+	at org.junit.rules.RunRules.evaluate(RunRules.java:20) [biz.aQute.junit-latest.jar:na]
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:271) [biz.aQute.junit-latest.jar:na]
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:70) [biz.aQute.junit-latest.jar:na]
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:50) [biz.aQute.junit-latest.jar:na]
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:238) [biz.aQute.junit-latest.jar:na]
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:63) [biz.aQute.junit-latest.jar:na]
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:236) [biz.aQute.junit-latest.jar:na]
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:53) [biz.aQute.junit-latest.jar:na]
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:229) [biz.aQute.junit-latest.jar:na]
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26) [biz.aQute.junit-latest.jar:na]
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:309) [biz.aQute.junit-latest.jar:na]
+	at junit.framework.JUnit4TestAdapter.run(JUnit4TestAdapter.java:38) [biz.aQute.junit-latest.jar:na]
+	at junit.framework.TestSuite.runTest(TestSuite.java:255) [biz.aQute.junit-latest.jar:na]
+	at junit.framework.TestSuite.run(TestSuite.java:250) [biz.aQute.junit-latest.jar:na]
+	at aQute.junit.Activator.test(Activator.java:303) [biz.aQute.junit-latest.jar:na]
+	at aQute.junit.Activator.run(Activator.java:128) [biz.aQute.junit-latest.jar:na]
+	at aQute.launcher.Launcher$5.call(Launcher.java:1175) [biz.aQute.launcher-latest.jar:na]
+	at aQute.launcher.Launcher$5.call(Launcher.java:1173) [biz.aQute.launcher-latest.jar:na]
+	at aQute.launcher.Launcher.run(Launcher.java:278) [biz.aQute.launcher-latest.jar:na]
+	at aQute.launcher.Launcher.main(Launcher.java:87) [biz.aQute.launcher-latest.jar:na]
+2015-10-17 13:09:33,866 INFO  [i.s.c.testsupport.TestsupportTestBase        ] - 
+2015-10-17 13:09:33,866 INFO  [i.s.c.testsupport.TestsupportTestBase        ] - --------------------------------------------
+2015-10-17 13:09:33,866 INFO  [i.s.c.testsupport.TestsupportTestBase        ] -  > TEST: running test 'creates_a_new_simple_entity'
+2015-10-17 13:09:33,867 INFO  [i.s.c.testsupport.TestsupportTestBase        ] - --------------------------------------------
+2015-10-17 13:09:33,867 INFO  [i.s.c.testsupport.TestsupportTestBase        ] - 
+2015-10-17 13:09:33,867 INFO  [i.s.s.r.r.PostEntityServerResource           ] - Request entry point: PostTodoResource @Post('json')
+2015-10-17 13:09:33,868 INFO  [i.s.s.r.r.PostEntityServerResource           ] - Request entry point: PostTodoResource @Post('x-www-form-urlencoded:html|json|xml')
+2015-10-17 13:09:33,868 INFO  [i.s.s.r.r.PostEntityServerResource           ] - calling post(Form), media types '[]'
+2015-10-17 13:09:33,881 INFO  [io.skysail.server.db.impl.Persister          ] - setting created=Sat Oct 17 13:09:33 CEST 2015 [class java.util.Date]
+2015-10-17 13:09:33,882 INFO  [io.skysail.server.db.impl.Persister          ] - setting title=1445080173867 [class java.lang.String]

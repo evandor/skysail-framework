@@ -1,17 +1,21 @@
-package io.skysail.server.db.it;
+package io.skysail.server.db.it.clip;
 
 import io.skysail.api.repos.DbRepository;
 import io.skysail.server.db.*;
+
+import java.util.Collections;
+
 import lombok.extern.slf4j.Slf4j;
 import aQute.bnd.annotation.component.*;
 
-@Component(immediate = true, properties = "name=TestRepository")
+@Component(immediate = true, properties = "name=ClipRepository")
 @Slf4j
-public class TestRepository extends GraphDbRepository<TestEntity> implements DbRepository {
+public class ClipRepository extends GraphDbRepository<Clip> implements DbRepository {
 
     @Activate
     public void activate() {
-        super.activate(TestEntity.class);
+        super.activate(Clip.class);
+        dbService.executeUpdate("DELETE vertex Clip", Collections.emptyMap());
     }
 
     @Reference

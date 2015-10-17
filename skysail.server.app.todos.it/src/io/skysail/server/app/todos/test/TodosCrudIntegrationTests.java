@@ -2,7 +2,7 @@ package io.skysail.server.app.todos.test;
 
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.assertThat;
-import io.skysail.client.testsupport.IntegrationTests;
+import io.skysail.client.testsupport.BrowserTests;
 import io.skysail.server.app.todos.TodoList;
 import io.skysail.server.app.todos.test.browser.*;
 import io.skysail.server.app.todos.todos.Todo;
@@ -15,7 +15,7 @@ import org.restlet.representation.Representation;
  * Integration tests for creating, reading, updating, and deleting Todos.
  *
  */
-public class TodosCrudIntegrationTests extends IntegrationTests<TodosBrowser, Todo> {
+public class TodosCrudIntegrationTests extends BrowserTests<TodosBrowser, Todo> {
     
     private TodoListBrowser listBrowser;
 

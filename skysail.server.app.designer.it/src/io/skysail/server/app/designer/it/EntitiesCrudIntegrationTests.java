@@ -2,7 +2,7 @@ package io.skysail.server.app.designer.it;
 
 import static org.hamcrest.CoreMatchers.containsString;
 import static org.junit.Assert.assertThat;
-import io.skysail.client.testsupport.IntegrationTests;
+import io.skysail.client.testsupport.BrowserTests;
 import io.skysail.server.app.designer.application.Application;
 import io.skysail.server.app.designer.entities.Entity;
 import io.skysail.server.app.designer.it.browser.*;
@@ -21,7 +21,7 @@ import com.fasterxml.jackson.databind.*;
  */
 @Ignore
 
-public class EntitiesCrudIntegrationTests extends IntegrationTests<EntitiesBrowser, Entity> {
+public class EntitiesCrudIntegrationTests extends BrowserTests<EntitiesBrowser, Entity> {
 
     private Entity entity;
 

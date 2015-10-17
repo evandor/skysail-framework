@@ -2,7 +2,7 @@ package io.skysail.server.app.designer.it;
 
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.assertThat;
-import io.skysail.client.testsupport.IntegrationTests;
+import io.skysail.client.testsupport.BrowserTests;
 import io.skysail.server.app.designer.application.Application;
 import io.skysail.server.app.designer.it.browser.ApplicationsBrowser;
 import io.skysail.server.restlet.resources.SkysailServerResource;
@@ -20,7 +20,7 @@ import org.restlet.resource.ResourceException;
  *
  */
 @Ignore
-public class ApplicationsCrudIntegrationTests extends IntegrationTests<ApplicationsBrowser, Application> {
+public class ApplicationsCrudIntegrationTests extends BrowserTests<ApplicationsBrowser, Application> {
 
     private Application entity;
 

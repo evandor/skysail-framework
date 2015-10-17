@@ -2,7 +2,7 @@ package io.skysail.server.app.todos.test;
 
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.assertThat;
-import io.skysail.client.testsupport.IntegrationTests;
+import io.skysail.client.testsupport.BrowserTests;
 import io.skysail.server.app.todos.TodoList;
 import io.skysail.server.app.todos.test.browser.TodoListBrowser;
 import io.skysail.server.restlet.resources.SkysailServerResource;
@@ -17,7 +17,7 @@ import org.restlet.data.MediaType;
 /**
  * Integration tests for creating, reading, updating, and deleting TodoLists.
  */
-public class TodoListsCrudIntegrationTests extends IntegrationTests<TodoListBrowser, TodoList> {
+public class TodoListsCrudIntegrationTests extends BrowserTests<TodoListBrowser, TodoList> {
 
     private TodoList todoList;
 

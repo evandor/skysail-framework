@@ -4,7 +4,7 @@
 //import static org.hamcrest.CoreMatchers.not;
 //import static org.junit.Assert.assertThat;
 //import io.skysail.client.testsupport.ApplicationClient;
-//import io.skysail.client.testsupport.IntegrationTests;
+//import io.skysail.client.testsupport.BrowserTests;
 //
 //import java.io.IOException;
 //
@@ -12,7 +12,7 @@
 //import org.restlet.data.Form;
 //import org.restlet.data.MediaType;
 //
-//public class AccessTests extends IntegrationTests<TodosBrowser> {
+//public class AccessTests extends BrowserTests<TodosBrowser> {
 //
 //    @Test
 //    public void demoUser_doesnot_see_admins_todolists_inHtml() throws IOException {

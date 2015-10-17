@@ -2,7 +2,7 @@ package io.skysail.server.app.designer.it;
 
 import static org.hamcrest.CoreMatchers.containsString;
 import static org.junit.Assert.assertThat;
-import io.skysail.client.testsupport.IntegrationTests;
+import io.skysail.client.testsupport.BrowserTests;
 import io.skysail.server.app.designer.application.Application;
 import io.skysail.server.app.designer.fields.EntityField;
 import io.skysail.server.app.designer.it.browser.*;
@@ -17,7 +17,7 @@ import org.restlet.data.MediaType;
  *
  */
 @Ignore
-public class FieldsCrudIntegrationTests extends IntegrationTests<EntityFieldsBrowser, EntityField> {
+public class FieldsCrudIntegrationTests extends BrowserTests<EntityFieldsBrowser, EntityField> {
 
     private EntityField field;
 

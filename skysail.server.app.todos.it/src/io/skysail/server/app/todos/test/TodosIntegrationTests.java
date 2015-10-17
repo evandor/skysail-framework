@@ -10,7 +10,7 @@ import org.junit.*;
 import org.restlet.data.Form;
 import org.restlet.representation.Representation;
 
-public class TodosIntegrationTests extends IntegrationTests<TodosBrowser, Todo> {
+public class TodosIntegrationTests extends BrowserTests<TodosBrowser, Todo> {
 
     protected Representation createTodoListAs(ApplicationClient client, String username, Form form) {
         navigateToPostTodoListAs(client, "admin");

@@ -1,13 +1,13 @@
 package io.skysail.server.app.todos.test;
 
-import io.skysail.client.testsupport.IntegrationTests;
+import io.skysail.client.testsupport.BrowserTests;
 import io.skysail.server.app.todos.TodoList;
 import io.skysail.server.app.todos.test.browser.TodoListBrowser;
 
 import org.junit.Test;
 import org.restlet.data.MediaType;
 
-public class PostListHtmlLargeTest extends IntegrationTests<TodoListBrowser, TodoList> {
+public class PostListHtmlLargeTest extends BrowserTests<TodoListBrowser, TodoList> {
 
     @Test
     public void postListResource_has_expected_Location() {

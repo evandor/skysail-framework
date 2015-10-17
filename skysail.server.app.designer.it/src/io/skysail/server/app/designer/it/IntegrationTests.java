@@ -5,7 +5,7 @@
 //import org.osgi.framework.Bundle;
 //import org.osgi.framework.FrameworkUtil;
 //
-//public class IntegrationTests {
+//public class BrowserTests {
 //
 //    private static final String HOST = "http://localhost";
 //    private static final String PORT = "2015";

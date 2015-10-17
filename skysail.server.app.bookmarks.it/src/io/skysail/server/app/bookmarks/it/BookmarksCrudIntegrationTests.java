@@ -3,7 +3,7 @@ package io.skysail.server.app.bookmarks.it;
 import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.CoreMatchers.not;
 import static org.junit.Assert.assertThat;
-import io.skysail.client.testsupport.IntegrationTests;
+import io.skysail.client.testsupport.BrowserTests;
 import io.skysail.server.app.bookmarks.Bookmark;
 import lombok.extern.slf4j.Slf4j;
 
@@ -20,7 +20,7 @@ import org.restlet.representation.Representation;
  */
 @Slf4j
 @Ignore
-public class BookmarksCrudIntegrationTests extends IntegrationTests<BookmarksBrowser, Bookmark> {
+public class BookmarksCrudIntegrationTests extends BrowserTests<BookmarksBrowser, Bookmark> {
 
     @Before
     public void setUp() {

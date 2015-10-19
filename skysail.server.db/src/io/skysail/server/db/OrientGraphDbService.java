@@ -267,6 +267,7 @@ public class OrientGraphDbService extends AbstractOrientDbService implements DbS
             return;
         }
         try {
+            log.info("about to start db");
             createDbIfNeeded();
 
             OPartitionedDatabasePool opDatabasePool = new OPartitionedDatabasePool(
@@ -274,8 +275,7 @@ public class OrientGraphDbService extends AbstractOrientDbService implements DbS
             ODatabaseDocumentTx oDatabaseDocumentTx = opDatabasePool.acquire();
             OObjectDatabaseTx db  = new OObjectDatabaseTx(oDatabaseDocumentTx);
 
-
-            //OObjectDatabaseTx db = OObjectDatabasePool.global().acquire(getDbUrl(), getDbUsername(), getDbPassword());
+            log.info("setting lazy loading to false");
             db.setLazyLoading(false);
             started = true;
             if (getDbUrl().startsWith("memory:")) {
@@ -297,12 +297,16 @@ public class OrientGraphDbService extends AbstractOrientDbService implements DbS
     private void createDbIfNeeded() {
         String dbUrl = getDbUrl();
         if (dbUrl.startsWith("remote")) {
+            log.info("registering remote engine");
             Orient.instance().registerEngine(new OEngineRemote());
         }
         if (dbUrl.startsWith("memory:") || dbUrl.startsWith("plocal")) {
-            final OrientGraphFactory factory = new OrientGraphFactory(dbUrl, getDbUsername(), getDbPassword());
+            final OrientGraphFactory factory = new OrientGraphFactory(dbUrl, getDbUsername(), getDbPassword()).setupPool(1, 10);
             try {
-                OrientGraphNoTx g = factory.getNoTx();
+                log.info("testing graph factory connection");
+                OrientGraph g = factory.getTx();
+            } catch (Exception e) {
+                log.error(e.getMessage(),e);
             } finally {
                 // this also closes the OrientGraph instances created by the
                 // factory
@@ -322,17 +326,17 @@ public class OrientGraphDbService extends AbstractOrientDbService implements DbS
 
     @Override
     public void createWithSuperClass(String superClass, String... vertices) {
-        OObjectDatabaseTx objectDb = getObjectDb();
-        try {
-            Arrays.stream(vertices).forEach(v -> {
-                if (objectDb.getMetadata().getSchema().getClass(v) == null) {
-                    OClass vertexClass = objectDb.getMetadata().getSchema().getClass(superClass);
-                    objectDb.getMetadata().getSchema().createClass(v).setSuperClass(vertexClass);
-                }
-            });
-        } catch (Exception e) {
-            log.error(e.getMessage(), e);
-        }
+//        OObjectDatabaseTx objectDb = getObjectDb();
+//        try {
+//            Arrays.stream(vertices).forEach(v -> {
+//                if (objectDb.getMetadata().getSchema().getClass(v) == null) {
+//                    OClass vertexClass = objectDb.getMetadata().getSchema().getClass(superClass);
+//                    objectDb.getMetadata().getSchema().createClass(v).setSuperClass(vertexClass);
+//                }
+//            });
+//        } catch (Exception e) {
+//            log.error(e.getMessage(), e);
+//        }
     }
 
     @Override
@@ -406,6 +410,8 @@ public class OrientGraphDbService extends AbstractOrientDbService implements DbS
 
     private OObjectDatabaseTx getObjectDb() {
 
+//        OObjectDatabaseTx opDatabasePool= OObjectDatabasePool.global().acquire(getDbUrl(), getDbUsername(), getDbPassword());
+//        return opDatabasePool;
         OPartitionedDatabasePool opDatabasePool = new OPartitionedDatabasePool(
                 getDbUrl(), getDbUsername(), getDbPassword());
         ODatabaseDocumentTx oDatabaseDocumentTx = opDatabasePool.acquire();

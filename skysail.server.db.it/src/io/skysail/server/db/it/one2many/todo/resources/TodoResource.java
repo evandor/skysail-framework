@@ -13,7 +13,10 @@ public class TodoResource extends EntityServerResource<Todo> {
     }
     @Override
     public SkysailResponse<?> eraseEntity() {
-        return null;
+        Todo todo = app.getRepository().findOne(getAttribute("id"));
+        todo.getComments().forEach(comment -> app.getRepository().deleteVertex(comment.getId()));
+        app.getRepository().deleteVertex(getAttribute("id"));
+        return new SkysailResponse<>();
     }
 
     @Override

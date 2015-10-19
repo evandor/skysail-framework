@@ -17,7 +17,7 @@ public class TodosResource extends ListServerResource<Todo> {
 
     @Override
     public List<Todo> getEntity() {
-      return app.getRepository().find(new Filter(getRequest()));
+      return app.getRepository().findVertex(new Filter(getRequest()));
     }
 
 }

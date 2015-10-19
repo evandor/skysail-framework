@@ -19,12 +19,12 @@ public class PutTodoResource extends PutEntityServerResource<Todo> {
         return app.getRepository().findOne(getAttribute("id"));
     }
 
-    public SkysailResponse<Todo> updateEntity(Todo entity) {
-        Todo original = getEntity(null);
-        original.setTitle(entity.getTitle());
-        original.setModified(new Date());
-        Object update = app.getRepository().update(getAttribute("id"), original);
-        return new SkysailResponse<>();
+    public SkysailResponse<Todo> updateEntity(Todo entityFromTheWire) {
+        Todo entityToBeUpdated = getEntity(null);
+        copyProperties(entityToBeUpdated, entityFromTheWire);
+        entityToBeUpdated.setModified(new Date());
+        app.getRepository().update(getAttribute("id"), entityToBeUpdated, "comments");
+        return new SkysailResponse<>(entityToBeUpdated);
     }
 
 }

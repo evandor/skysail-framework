@@ -44,7 +44,7 @@ public class EdgeHandlerTest {
         theUser = new SomeUser();
         theRole = new SomeRole();
         theUser.getRoles().add(theRole);
-        edgeHandler = new EdgeHandler(db);
+        edgeHandler = new EdgeHandler(null,db);
     }
 
     @Test

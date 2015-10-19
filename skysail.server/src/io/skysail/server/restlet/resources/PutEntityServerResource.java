@@ -200,22 +200,6 @@ public abstract class PutEntityServerResource<T extends Identifiable> extends Sk
         return new FormResponse<T>(handledRequest.getEntity(),".");
     }
 
-//    //@Post("json")
-//    public SkysailResponse<T> put(T entity, Variant variant) {
-//        throw new IllegalStateException("we are here???");
-////        Set<PerformanceTimer> perfTimer = getApplication().startPerformanceMonitoring(this.getClass().getSimpleName() + ":put");
-////        log.info("Request entry point: {} @Put('json')", this.getClass().getSimpleName());
-////        if (entity != null) {
-////            getRequest().getAttributes().put(SKYSAIL_SERVER_RESTLET_ENTITY, entity);
-////        } else {
-////            log.warn("provided entity was null!");
-////        }
-////
-////        SkysailResponse<T> put = put((Form) null, variant);
-////        getApplication().stopPerformanceMonitoring(perfTimer);
-////        return put;
-//    }
-
     @Override
     public LinkRelation getLinkRelation() {
         return LinkRelation.CREATE_FORM;
@@ -229,7 +213,10 @@ public abstract class PutEntityServerResource<T extends Identifiable> extends Sk
     public List<Link> getLinks() {
 
         String ref = getReference().toString();
-        String parentRef = getReference().getParentRef() != null ? getReference().getParentRef().toString() : "";
+        if (ref == null) {
+            return Collections.emptyList();
+        }
+        String parentRef = (getReference().getParentRef() != null) ? getReference().getParentRef().toString() : "";
 
         List<Link> result = new ArrayList<>();
         result.add(new Link.Builder(ref).relation(LinkRelation.NEXT).title("form target").verbs(Method.PUT).build());

@@ -1,9 +1,10 @@
 package io.skysail.server.db.it.one2many.todo;
 
 import io.skysail.api.domain.Identifiable;
-import io.skysail.api.forms.Field;
+import io.skysail.api.forms.*;
+import io.skysail.server.db.it.one2many.comment.Comment;
 
-import java.util.Date;
+import java.util.*;
 
 import javax.persistence.Id;
 
@@ -35,7 +36,8 @@ public class Todo implements Identifiable {
     @Field
     private Date modified;
 
-//    @Field(inputType = InputType.MULTISELECT, repository = RoleRepository.class, selectionProvider = RolesSelectionProvider.class)
-//    private List<Role> roles = new ArrayList<>();
+    //    @Field(inputType = InputType.MULTISELECT, repository = RoleRepository.class, selectionProvider = RolesSelectionProvider.class)
+    @Field(inputType = InputType.HIDDEN)
+    private List<Comment> comments = new ArrayList<>();
 
 }

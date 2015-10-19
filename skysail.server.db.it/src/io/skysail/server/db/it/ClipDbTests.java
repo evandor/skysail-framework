@@ -2,7 +2,6 @@ package io.skysail.server.db.it;
 
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.assertThat;
-import io.skysail.api.responses.SkysailResponse;
 import io.skysail.server.db.it.clip.*;
 import io.skysail.server.db.it.clip.resources.*;
 
@@ -10,6 +9,8 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 import org.junit.*;
+import org.restlet.data.Form;
+import org.restlet.representation.Variant;
 
 public class ClipDbTests extends DbIntegrationTests {
 
@@ -17,6 +18,9 @@ public class ClipDbTests extends DbIntegrationTests {
     private ClipResource clipResource;
     private ClipsResource clipsResource;
     private PutClipResource putClipResource;
+
+    private Clip aNewClip;
+    private Form form;
 
     @BeforeClass
     public static void beforeClass() {
@@ -36,52 +40,117 @@ public class ClipDbTests extends DbIntegrationTests {
         setupEntityResource(putClipResource);
 
         request.clearAttributes();
+        form = new Form();
+        aNewClip = createClip();
     }
 
     @Test
-    public void creates_a_new_simple_entity() {
-        Clip simpleEntity = createSimpleEntity();
-        SkysailResponse<Clip> post = postClipResource.post(simpleEntity, HTML_VARIANT);
-        assertThat(post.getEntity(),is(simpleEntity));
-        assertThat(post.getEntity().getCreated(),is(notNullValue()));
-        assertThat(post.getEntity().getModified(),is(nullValue()));
+    public void html_variant_creates_a_new_clip() {
+        Clip clip = postClipResource.post(aNewClip, HTML_VARIANT).getEntity();
+        assertNewClipWithTitle(clip, aNewClip.getTitle());
     }
 
     @Test
-    public void retrieves_a_clip_by_id() {
-        Clip clip = createSimpleEntity();
-        String newClipId = postClipResource.post(clip, HTML_VARIANT).getEntity().getId();
-        request.addAttribute("id", newClipId);
-        Clip clipFromDb = clipResource.getEntity();
-        assertThat(clipFromDb.getTitle(),is(clip.getTitle()));
+    public void json_variant_creates_a_new_clip() {
+        form.add("title", aNewClip.getTitle());
+        Clip clip = postClipResource.post(form, JSON_VARIANT).getEntity();
+        assertNewClipWithTitle(clip, aNewClip.getTitle());
     }
 
     @Test
-    public void retrieves_the_list_of_clips() {
-        Clip newClip = createSimpleEntity();
-        postClipResource.post(newClip, HTML_VARIANT);
-        postClipResource.post(newClip, HTML_VARIANT);
+    public void html_variant_retrieves_a_clip_by_id() {
+        Clip clip = postClipResource.post(aNewClip, HTML_VARIANT).getEntity();
+        assertNewClipWithTitle(clip, aNewClip.getTitle());
+    }
+
+    @Test
+    public void json_variant_retrieves_a_clip_by_id() {
+        form.add("title", aNewClip.getTitle());
+        String id = postClipResource.post(form, HTML_VARIANT).getEntity().getId();
+        getByIdAndAssertTitle(id, aNewClip.getTitle());
+    }
+
+    @Test
+    public void html_variant_retrieves_the_list_of_clips() {
+        postClipResource.post(aNewClip, HTML_VARIANT);
+        postClipResource.post(aNewClip, HTML_VARIANT);
         List<Clip> clips = clipsResource.getEntities(HTML_VARIANT).getEntity();
-        assertThat(clips.stream().filter(clip -> clip.getTitle().equals(newClip.getTitle())).collect(Collectors.toList()).size(),is(2));
+        assertThat(
+                clips.stream().filter(clip -> clip.getTitle().equals(aNewClip.getTitle())).collect(Collectors.toList())
+                        .size(), is(2));
     }
 
     @Test
-    public void clip_can_be_updated() {
-        Clip clip = createSimpleEntity();
-        String clipId = postClipResource.post(clip, HTML_VARIANT).getEntity().getId();
-        request.addAttribute("id", clipId);
-        clip.setTitle("changed");
-        putClipResource.putEntity(clip, HTML_VARIANT).getEntity();
-
-        Clip clipFromDb = clipResource.getEntity();
-        assertThat(clipFromDb.getModified(),is(notNullValue()));
-        assertThat(clipFromDb.getTitle(),is("changed"));
+    public void json_variant_retrieves_the_list_of_clips() {
+        postClipResource.post(aNewClip, HTML_VARIANT);
+        postClipResource.post(aNewClip, HTML_VARIANT);
+        List<Clip> clips = clipsResource.getEntities(JSON_VARIANT).getEntity();
+        assertThat(
+                clips.stream().filter(clip -> clip.getTitle().equals(aNewClip.getTitle())).collect(Collectors.toList())
+                        .size(), is(2));
     }
 
-    private Clip createSimpleEntity() {
+    @Test
+    public void html_variant_clip_can_be_updated() {
+        request.addAttribute("id", postClipResource.post(aNewClip, HTML_VARIANT).getEntity().getId());
+        aNewClip.setTitle("changed");
+        putClipResource.putEntity(aNewClip, HTML_VARIANT).getEntity();
+
+        assertModifiedClipWithTitle(clipResource.getEntity(), "changed");
+    }
+
+    @Test
+    public void json_variant_clip_can_be_updated() {
+        request.addAttribute("id", postClipResource.post(aNewClip, HTML_VARIANT).getEntity().getId());
+        aNewClip.setTitle("changed");
+        putClipResource.putEntity(aNewClip, JSON_VARIANT).getEntity();
+
+        assertModifiedClipWithTitle(clipResource.getEntity(), "changed");
+    }
+
+    @Test
+    public void html_variant_clip_can_be_deleted_again() {
+        String id = postClipResource.post(aNewClip, HTML_VARIANT).getEntity().getId();
+        deleteClip(id, HTML_VARIANT);
+        assertThat(clipResource.getEntity(), is(nullValue()));
+    }
+
+    @Test
+    public void json_variant_clip_can_be_deleted_again() {
+        String id = postClipResource.post(aNewClip, HTML_VARIANT).getEntity().getId();
+        deleteClip(id, JSON_VARIANT);
+        assertThat(clipResource.getEntity(), is(nullValue()));
+    }
+
+    private Clip createClip() {
         String name = Long.toString(new Date().getTime());
         Clip simpleEntity = new Clip(name);
         return simpleEntity;
     }
+
+    private void assertNewClipWithTitle(Clip clip, String title) {
+        assertThat(clip.getTitle(), is(aNewClip.getTitle()));
+        assertThat(clip.getCreated(), is(notNullValue()));
+        assertThat(clip.getModified(), is(nullValue()));
+    }
+
+    private void assertModifiedClipWithTitle(Clip clip, String title) {
+        assertThat(clip.getTitle(), is(aNewClip.getTitle()));
+        assertThat(clip.getCreated(), is(notNullValue()));
+        assertThat(clip.getModified(), is(notNullValue()));
+    }
+
+    private void getByIdAndAssertTitle(String id, String title) {
+        request.addAttribute("id", id);
+        Clip clipFromDb = clipResource.getEntity();
+        assertThat(clipFromDb.getTitle(), is(title));
+    }
+
+    private void deleteClip(String id, Variant variant) {
+        request.addAttribute("id", id);
+        clipResource.deleteEntity(variant);
+    }
+
+
 
 }

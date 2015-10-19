@@ -25,7 +25,7 @@ public class SkysailBeanUtils {
         PropertyDescriptor[] origDescriptors = beanUtilsBean.getPropertyUtils().getPropertyDescriptors(orig);
         for (int i = 0; i < origDescriptors.length; i++) {
             String name = origDescriptors[i].getName();
-            if ("class".equals(name) || ignore(formfields.get(name))) {
+            if ("class".equals(name) || ignore(formfields, name)) {
                 continue;
             }
             if (beanUtilsBean.getPropertyUtils().isReadable(orig, name) &&
@@ -42,7 +42,11 @@ public class SkysailBeanUtils {
 
     }
 
-    private boolean ignore(FormField formField) {
+    private boolean ignore(Map<String, FormField> formfields, String name) { //FormField formField) {
+        if ("id".equals(name)) {
+            return false;
+        }
+        FormField formField = formfields.get(name);
         if (formField == null) {
             return true;
         }

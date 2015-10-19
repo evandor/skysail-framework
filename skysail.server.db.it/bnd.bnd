@@ -149,7 +149,8 @@ Private-Package:  \
 	io.skysail.server.db.it.clip,\
 	io.skysail.server.db.it.support,\
 	io.skysail.server.db.it.one2many.todo.resources,\
-	io.skysail.server.db.it.one2many.todo
+	io.skysail.server.db.it.one2many.todo,\
+	io.skysail.server.db.it.one2many.comment
 
 Import-Package:  \
     javassist.util.proxy,\

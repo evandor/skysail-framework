@@ -2,6 +2,7 @@ package io.skysail.server.db.it.one2many.todo;
 
 import io.skysail.api.repos.DbRepository;
 import io.skysail.server.db.*;
+import io.skysail.server.db.it.one2many.comment.Comment;
 
 import java.util.Collections;
 
@@ -14,8 +15,9 @@ public class TodoRepository extends GraphDbRepository<Todo> implements DbReposit
 
     @Activate
     public void activate() {
-        super.activate(Todo.class);
+        super.activate(Todo.class,Comment.class);
         dbService.executeUpdate("DELETE vertex Todo", Collections.emptyMap());
+        dbService.executeUpdate("DELETE vertex Comment", Collections.emptyMap());
     }
 
     @Reference

@@ -1,7 +1,6 @@
 package io.skysail.server.db.it.clip.resources;
 
 import io.skysail.api.responses.SkysailResponse;
-import io.skysail.server.db.it.*;
 import io.skysail.server.db.it.clip.*;
 import io.skysail.server.restlet.resources.EntityServerResource;
 
@@ -14,7 +13,8 @@ public class ClipResource extends EntityServerResource<Clip> {
     }
     @Override
     public SkysailResponse<?> eraseEntity() {
-        return null;
+        app.getRepository().delete(getAttribute("id"));
+        return new SkysailResponse<>();
     }
 
     @Override

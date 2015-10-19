@@ -4,7 +4,7 @@ import io.skysail.api.domain.Identifiable;
 import io.skysail.server.db.impl.*;
 import io.skysail.server.utils.SkysailBeanUtils;
 
-import java.lang.reflect.*;
+import java.lang.reflect.Method;
 import java.util.*;
 
 import lombok.extern.slf4j.Slf4j;
@@ -146,12 +146,6 @@ public class OrientGraphDbService extends AbstractOrientDbService implements DbS
 
     @Override
     public <T> T findObjectById(Class<?> cls, String id) {
-
-        // OrientGraph graphDb = getDb();
-        // OrientVertex vertex = graphDb.getVertex(new ORecordId(id));
-        // //T load = graphDb.load();
-        // return (T)vertex.detach();
-
         OObjectDatabaseTx objectDb = getObjectDb();
         objectDb.getEntityManager().registerEntityClass(cls);
         T load = objectDb.load(new ORecordId(id), "*:-1");
@@ -167,6 +161,9 @@ public class OrientGraphDbService extends AbstractOrientDbService implements DbS
 
     @SuppressWarnings("unchecked")
     public <T extends Identifiable> T beanFromVertex(OrientVertex vertex, Class<?> beanType) {
+        if (vertex == null) {
+            return null;
+        }
         ODocument record = vertex.getRecord();
         Map<String, Object> entityMap = record.toMap();
         T bean;
@@ -205,85 +202,6 @@ public class OrientGraphDbService extends AbstractOrientDbService implements DbS
             log.error(e.getMessage(), e);
         }
         return null;
-    }
-
-//    @SuppressWarnings("unchecked")
-//    private <T> T vertexToPojo(OrientVertex v, Class<?> cls) {
-//        if (v == null) {
-//            return null;
-//        }
-//
-//        T result;
-//        try {
-//            result = (T)cls.newInstance();
-//        } catch (InstantiationException | IllegalAccessException e1) {
-//            log.error("Problem creating new instance of type {}", cls);
-//            return null;
-//        }
-//
-//        for (Field field : getAllFields(new LinkedList<Field>(), cls)) {
-//            field.setAccessible(true);
-//
-//            String name = field.getName();
-//            String type = field.getType().getSimpleName();
-//            boolean isPrimitive = field.getType().isPrimitive();
-//
-////            if (!isPrimitive && !type.equals("String"))
-////                continue;
-//
-//            Method setter;
-//            try {
-//                setter = new PropertyDescriptor(name, cls).getWriteMethod();
-//
-//            } catch (IntrospectionException ie) {
-//                log.warn(ie.getMessage());
-//                continue;
-//            }
-//
-//            try {
-//                if (name.equals("id")) {
-//                    setter.invoke(result, v.getId().toString());
-//                } else {
-//                    Object storedValue = v.getProperty(name);
-//                    if (storedValue != null) {
-//                        if (field.getType().isEnum()) {
-//                            Enum storedValueAsEnum = Enum.valueOf((Class<Enum>) field.getType(), storedValue.toString());
-//                            setter.invoke(result, storedValueAsEnum);
-//                        } else {
-//                            setter.invoke(result, storedValue);
-//                        }
-//
-//                    } else {
-//                        v.getEdges(Direction.BOTH).forEach(edge -> {
-//                            if (name.equals(edge.getLabel())) {
-//                                try {
-//                                    Vertex connectedVertex = edge.getVertex(Direction.IN);
-//                                    String str = connectedVertex.getId().toString();
-//                                    setter.invoke(result, str != null ? str : "???");
-//                                } catch (Exception e) {
-//                                    log.error(e.getMessage(), e);
-//                                }
-//                            }
-//                        });
-//                    }
-//                }
-//
-//            } catch (Exception e) {
-//                e.printStackTrace();
-//            }
-//
-//        }
-//        return result;
-//    }
-
-    private static List<Field> getAllFields(List<Field> fields, Class<?> type) {
-        fields.addAll(Arrays.asList(type.getDeclaredFields()));
-
-        if (type.getSuperclass() != null) {
-            fields = getAllFields(fields, type.getSuperclass());
-        }
-
-        return fields;
     }
 
     @Override
@@ -333,8 +251,15 @@ public class OrientGraphDbService extends AbstractOrientDbService implements DbS
         objectDb.getEntityManager().registerEntityClass(cls);
         ORecordId recordId = new ORecordId(id);
         Object loaded = objectDb.load(recordId);
-        Object cast = cls.cast(loaded);
         objectDb.delete(recordId);
+    }
+
+    @Override
+    public void deleteVertex(String id) {
+        OrientGraph db = getDb();
+        ORecordId recordId = new ORecordId(id);
+        OrientVertex vertex = db.getVertex(recordId);
+        db.removeVertex(vertex);
     }
 
     public synchronized void startDb() {
@@ -475,7 +400,6 @@ public class OrientGraphDbService extends AbstractOrientDbService implements DbS
 
     private ODatabaseDocumentTx getDocumentDb() {
         ODatabaseDocumentTx db = new ODatabaseDocumentTx(getDbUrl()).open(getDbUsername(), getDbPassword());
-        //ODatabaseRecordThreadLocal.INSTANCE.set(db);
         db.activateOnCurrentThread();
         return db;
     }
@@ -486,11 +410,6 @@ public class OrientGraphDbService extends AbstractOrientDbService implements DbS
                 getDbUrl(), getDbUsername(), getDbPassword());
         ODatabaseDocumentTx oDatabaseDocumentTx = opDatabasePool.acquire();
         return new OObjectDatabaseTx(oDatabaseDocumentTx);
-
-
-//        OObjectDatabaseTx db = OObjectDatabasePool.global().acquire(getDbUrl(), getDbUsername(), getDbPassword());
-//        db.activateOnCurrentThread();
-//        return db;
     }
 
     @Override

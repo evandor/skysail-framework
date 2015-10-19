@@ -19,7 +19,7 @@ public class TestRequest extends Request {
         return attributes;
     }
 
-    public synchronized void addAttribute(String key, String value) {
+    public void addAttribute(String key, String value) {
         attributes.put(key, value);
     }
 

@@ -10,7 +10,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.beanutils.BeanUtils;
 
 import com.tinkerpop.blueprints.Vertex;
-import com.tinkerpop.blueprints.impls.orient.OrientGraph;
+import com.tinkerpop.blueprints.impls.orient.*;
 
 @Slf4j
 public class Updater {
@@ -22,7 +22,9 @@ public class Updater {
     public Updater(OrientGraph db, String[] edges) {
         this.edges = Arrays.asList(edges);
         this.db = db;
-        edgeHandler = new EdgeHandler(db);
+        //edgeHandler = new EdgeHandler(null,db);
+        edgeHandler = new EdgeHandler((identifiable) -> (OrientVertex) execute(identifiable), db);
+
     }
 
     public <T> Object update(Object entity) {

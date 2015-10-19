@@ -59,6 +59,10 @@ public class GraphDbRepository<T extends Identifiable> implements DbRepository {
         dbService.delete(entityType, id);
     }
 
+    public void deleteVertex(String id) {
+        dbService.deleteVertex(id);
+    }
+
     @Override
     public T findOne(String id) {
         return dbService.findById(entityType, id);

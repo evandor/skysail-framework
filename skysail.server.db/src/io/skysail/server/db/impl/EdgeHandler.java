@@ -4,6 +4,7 @@ import io.skysail.api.domain.Identifiable;
 
 import java.lang.reflect.*;
 import java.util.*;
+import java.util.function.Function;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -14,8 +15,10 @@ import com.tinkerpop.blueprints.impls.orient.*;
 public class EdgeHandler {
 
     private OrientGraph db;
+    private Function<Identifiable, OrientVertex> fn;
 
-    public EdgeHandler(OrientGraph db) {
+    public EdgeHandler(Function<Identifiable,OrientVertex> fn, OrientGraph db) {
+        this.fn = fn;
         this.db = db;
     }
 
@@ -31,11 +34,11 @@ public class EdgeHandler {
             Collection<Identifiable> references = (Collection<Identifiable>) method.invoke(entity);
             for (Identifiable referencedObject : references) {
                 OrientVertex target;
-                if (referencedObject.getId() == null) {
-                    target = db.addVertex(referencedObject);
-                } else {
-                    target = db.getVertex(referencedObject.getId());
-                }
+                //if (referencedObject.getId() == null) {
+                    target = fn.apply(referencedObject);//(OrientVertex) persister.execute(referencedObject);
+//                } else {
+//                    target = db.getVertex(referencedObject.getId());
+//                }
                 db.addEdge(null, vertex, target, key);
             }
         } else if (String.class.isAssignableFrom(type)) {

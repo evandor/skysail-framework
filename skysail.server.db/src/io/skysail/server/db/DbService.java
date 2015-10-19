@@ -55,6 +55,7 @@ public interface DbService {
     Class<?> getRegisteredClass(String classname);
 
     void delete(Class<?> cls, String id);
+    void deleteVertex(String id);
 
     void createProperty(String simpleName, String string, OType date);
 

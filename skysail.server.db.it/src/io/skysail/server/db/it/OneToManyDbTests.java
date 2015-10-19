@@ -22,7 +22,7 @@ public class OneToManyDbTests extends DbIntegrationTests {
     private TodosResource todosResource;
     private PutTodoResource putTodoResource;
 
-    private Todo aNewTodo;
+    private Todo aNewTodoWithOneComment;
 
     @BeforeClass
     public static void beforeClass() {
@@ -42,19 +42,19 @@ public class OneToManyDbTests extends DbIntegrationTests {
         setupEntityResource(putTodoResource);
 
         request.clearAttributes();
-        aNewTodo = createTodoWithComments(new Comment());
+        aNewTodoWithOneComment = createTodoWithComments(new Comment());
     }
 
     @Test
     public void html_variant_creates_a_new_todo_without_comment() {
         Todo todo = postTodoResource.post(createTodoWithComments(), HTML_VARIANT).getEntity();
-        assertThat(todo.getTitle(),is(aNewTodo.getTitle()));
+        assertThat(todo.getTitle(),is(aNewTodoWithOneComment.getTitle()));
         assertThat(todo.getComments().size(),is(0));
     }
 
     @Test
     public void html_variant_creates_a_new_todo_with_comment() {
-        Todo todo = postTodoResource.post(aNewTodo, HTML_VARIANT).getEntity();
+        Todo todo = postTodoResource.post(aNewTodoWithOneComment, HTML_VARIANT).getEntity();
         assertNewTodoWithTitleAndComment(todo, todo.getTitle());
     }
 
@@ -70,15 +70,15 @@ public class OneToManyDbTests extends DbIntegrationTests {
     public void html_variant_retrieves_a_Todo_without_comment_by_id() {
         request.addAttribute("id", postTodoResource.post(createTodoWithComments(), HTML_VARIANT).getEntity().getId());
         Todo todoFromDb = todoResource.getEntity();
-        assertThat(todoFromDb.getTitle(),is(aNewTodo.getTitle()));
+        assertThat(todoFromDb.getTitle(),is(aNewTodoWithOneComment.getTitle()));
         assertThat(todoFromDb.getComments().size(),is(0));
     }
 
     @Test
-    public void html_variant_retrieves_a_Todo_by_id() {
-        request.addAttribute("id", postTodoResource.post(aNewTodo, HTML_VARIANT).getEntity().getId());
+    public void html_variant_retrieves_a_Todo_with_a_comment_by_id() {
+        request.addAttribute("id", postTodoResource.post(aNewTodoWithOneComment, HTML_VARIANT).getEntity().getId());
         Todo todoFromDb = todoResource.getEntity();
-        assertThat(todoFromDb.getTitle(),is(aNewTodo.getTitle()));
+        assertThat(todoFromDb.getTitle(),is(aNewTodoWithOneComment.getTitle()));
         assertThat(todoFromDb.getComments().get(0).getComment(),is(notNullValue()));
     }
 
@@ -86,23 +86,23 @@ public class OneToManyDbTests extends DbIntegrationTests {
     public void html_variant_retrieves_a_Todo_with_two_comments_by_id() {
         request.addAttribute("id", postTodoResource.post(createTodoWithComments(new Comment(),new Comment()), HTML_VARIANT).getEntity().getId());
         Todo todoFromDb = todoResource.getEntity();
-        assertThat(todoFromDb.getTitle(),is(aNewTodo.getTitle()));
+        assertThat(todoFromDb.getTitle(),is(aNewTodoWithOneComment.getTitle()));
         assertThat(todoFromDb.getComments().size(),is(2));
     }
 
     @Test
     public void html_variant_retrieves_the_list_of_Todos() {
-        postTodoResource.post(aNewTodo, HTML_VARIANT);
-        postTodoResource.post(aNewTodo, HTML_VARIANT);
+        postTodoResource.post(aNewTodoWithOneComment, HTML_VARIANT);
+        postTodoResource.post(aNewTodoWithOneComment, HTML_VARIANT);
         List<Todo> todos = todosResource.getEntities(HTML_VARIANT).getEntity();
-        List<Todo> byTestCreatedTodos = todos.stream().filter(Todo -> Todo.getTitle().equals(aNewTodo.getTitle())).collect(Collectors.toList());
+        List<Todo> byTestCreatedTodos = todos.stream().filter(Todo -> Todo.getTitle().equals(aNewTodoWithOneComment.getTitle())).collect(Collectors.toList());
         assertThat(byTestCreatedTodos.size(),is(2));
         assertThat(byTestCreatedTodos.get(0).getComments().get(0).getComment(),is(notNullValue()));
     }
 
     @Test
-    public void html_variant_todo_can_be_updated() {
-        String todoId = postTodoResource.post(aNewTodo, HTML_VARIANT).getEntity().getId();
+    public void html_variant_todo_with_one_comment_title_and_comment_be_updated() {
+        String todoId = postTodoResource.post(aNewTodoWithOneComment, HTML_VARIANT).getEntity().getId();
         request.addAttribute("id", todoId);
         Todo todoFromDb = todoResource.getEntity();
 
@@ -118,8 +118,34 @@ public class OneToManyDbTests extends DbIntegrationTests {
     }
 
     @Test
-    public void html_variant_todo_can_be_deleted_again() {
-        String id = postTodoResource.post(aNewTodo, HTML_VARIANT).getEntity().getId();
+    public void html_variant_todo_with_one_comment_comment_can_be_added() {
+        String todoId = postTodoResource.post(aNewTodoWithOneComment, HTML_VARIANT).getEntity().getId();
+        request.addAttribute("id", todoId);
+        Todo todoFromDb = todoResource.getEntity();
+
+        todoFromDb.getComments().add(new Comment());
+
+        putTodoResource.putEntity(todoFromDb, HTML_VARIANT).getEntity();
+
+        assertThat(todoResource.getEntity().getComments().size(),is(2));
+    }
+
+    @Test
+    public void html_variant_todo_with_one_comment_comment_can_be_deleted() {
+        String todoId = postTodoResource.post(aNewTodoWithOneComment, HTML_VARIANT).getEntity().getId();
+        request.addAttribute("id", todoId);
+        Todo todoFromDb = todoResource.getEntity();
+
+        todoFromDb.setComments(new ArrayList<>());
+
+        putTodoResource.putEntity(todoFromDb, HTML_VARIANT).getEntity();
+
+        assertThat(todoResource.getEntity().getComments().size(),is(0));
+    }
+
+    @Test
+    public void html_variant_todo_with_one_comment_can_be_deleted_including_comment() {
+        String id = postTodoResource.post(aNewTodoWithOneComment, HTML_VARIANT).getEntity().getId();
         request.addAttribute("id", id);
         String commentId = todoResource.getEntity().getComments().get(0).getId();
 
@@ -140,7 +166,7 @@ public class OneToManyDbTests extends DbIntegrationTests {
     }
 
     private void assertNewTodoWithTitleAndComment(Todo todo, String title) {
-        assertThat(todo.getTitle(),is(aNewTodo.getTitle()));
+        assertThat(todo.getTitle(),is(aNewTodoWithOneComment.getTitle()));
         assertThat(todo.getCreated(),is(notNullValue()));
         assertThat(todo.getModified(),is(nullValue()));
         assertThat(todo.getComments().size(),is(1));

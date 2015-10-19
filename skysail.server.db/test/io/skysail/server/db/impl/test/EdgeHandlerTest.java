@@ -35,7 +35,8 @@ public class EdgeHandlerTest {
     private SomeUser theUser;
     private SomeRole theRole;
     private OrientVertex vertex;
-    private EdgeHandler edgeHandler;
+    private EdgeHandler persistEdgeHandler;
+    private EdgeHandler updateEdgeHandler;
 
     @Before
     public void setUp() throws Exception {
@@ -44,14 +45,23 @@ public class EdgeHandlerTest {
         theUser = new SomeUser();
         theRole = new SomeRole();
         theUser.getRoles().add(theRole);
-        edgeHandler = new EdgeHandler(null,db);
+        persistEdgeHandler = new EdgeHandler((identifiable) -> (OrientVertex) executePersist(identifiable),db);
+        updateEdgeHandler = new EdgeHandler((identifiable) -> (OrientVertex) executeUpdate(identifiable),db);
+    }
+
+    private OrientVertex executeUpdate(Identifiable identifiable) {
+        return vertex;
+    }
+
+    private OrientVertex executePersist(Identifiable identifiable) {
+        return vertex;
     }
 
     @Test
     public void new_vertex_with_new_edge_is_added_to_collection_field_for_reference_without_id() throws Exception {
         theRole.setId(null);
 
-        edgeHandler.handleEdges(theUser, vertex, Collections.emptyMap(), "roles");
+        persistEdgeHandler.handleEdges(theUser, vertex, Collections.emptyMap(), "roles");
 
         Mockito.verify(db).addVertex(theRole);
         Mockito.verify(db).addEdge(null, vertex, null, "roles");
@@ -61,7 +71,7 @@ public class EdgeHandlerTest {
     public void existing_vertex_with_new_edge_is_added_to_collection_field_for_reference_with_id() throws Exception {
         theRole.setId("theRoleId");
 
-        edgeHandler.handleEdges(theUser, vertex, Collections.emptyMap(), "roles");
+        persistEdgeHandler.handleEdges(theUser, vertex, Collections.emptyMap(), "roles");
 
         Mockito.verify(db).getVertex(theRole.getId());
         Mockito.verify(db).addEdge(null, vertex, null, "roles");
@@ -73,7 +83,7 @@ public class EdgeHandlerTest {
         Iterable<Edge> edges = Arrays.asList(edge);
         Mockito.when(vertex.getEdges(Direction.OUT, "roleId")).thenReturn(edges);
         Mockito.when(db.getVertex(edge.toString())).thenReturn(vertex);
-//        edgeHandler.handleEdges(theUser, vertex, Collections.emptyMap(), "roleId");
+//        persistEdgeHandler.handleEdges(theUser, vertex, Collections.emptyMap(), "roleId");
 //        Mockito.verify(db).removeEdge(edge);
 //        Mockito.verify(db).addEdge(null, vertex, null, "roleId");
     }

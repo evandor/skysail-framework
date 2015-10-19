@@ -17,7 +17,7 @@ public class EdgeHandler {
     private OrientGraph db;
     private Function<Identifiable, OrientVertex> fn;
 
-    public EdgeHandler(Function<Identifiable,OrientVertex> fn, OrientGraph db) {
+    public EdgeHandler(Function<Identifiable, OrientVertex> fn, OrientGraph db) {
         this.fn = fn;
         this.db = db;
     }
@@ -31,14 +31,10 @@ public class EdgeHandler {
         Object edges = properties.get(key);
         if (Collection.class.isAssignableFrom(type)) {
             Method method = entity.getClass().getMethod("get" + key.substring(0, 1).toUpperCase() + key.substring(1));
+            @SuppressWarnings("unchecked")
             Collection<Identifiable> references = (Collection<Identifiable>) method.invoke(entity);
             for (Identifiable referencedObject : references) {
-                OrientVertex target;
-                //if (referencedObject.getId() == null) {
-                    target = fn.apply(referencedObject);//(OrientVertex) persister.execute(referencedObject);
-//                } else {
-//                    target = db.getVertex(referencedObject.getId());
-//                }
+                OrientVertex target = fn.apply(referencedObject);
                 db.addEdge(null, vertex, target, key);
             }
         } else if (String.class.isAssignableFrom(type)) {

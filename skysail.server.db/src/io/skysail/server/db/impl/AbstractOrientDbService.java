@@ -21,6 +21,7 @@ public abstract class AbstractOrientDbService {
     public void updated(DbConfigurationProvider provider) {
         this.provider = provider;
         if (provider == null || provider.getConfig() == null) {
+            log.warn("DbConfigurationProvider was null or has null-config, stopping db");
             stopDb();
             return;
         }

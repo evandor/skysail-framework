@@ -51,7 +51,7 @@ public class GraphDbRepository<T extends Identifiable> implements DbRepository {
         return dbService.persist(entity);
     }
 
-    public Object update(String id, Object entity, String... edges) {
+    public Object update(String id, Identifiable entity, String... edges) {
         return dbService.update(id, entity, edges);
     }
 
@@ -100,7 +100,7 @@ public class GraphDbRepository<T extends Identifiable> implements DbRepository {
         List<Object> entities = dbService.findGraphs(sql, filter.getParams());
         List<T> result = new ArrayList<>();
         entities.stream().map(OrientVertex.class::cast).forEach(vertex -> {
-            result.add(((OrientGraphDbService)dbService).beanFromVertex(vertex, entityType));
+            result.add(((OrientGraphDbService)dbService).vertexToBean(vertex, entityType));
         });
         return result;
     }

@@ -11,7 +11,7 @@ public class NoRepository implements DbRepository {
     }
 
     @Override
-    public Object update(String id, Object entity, String... edges) {
+    public Object update(String id, Identifiable entity, String... edges) {
         return null;
     }
 

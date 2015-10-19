@@ -1,12 +1,10 @@
 package io.skysail.server.db.impl.test;
 
 import io.skysail.api.domain.Identifiable;
-import io.skysail.api.forms.*;
 import io.skysail.server.db.impl.EdgeHandler;
+import io.skysail.server.db.impl.test.entities.*;
 
 import java.util.*;
-
-import lombok.Data;
 
 import org.junit.*;
 import org.mockito.Mockito;
@@ -15,21 +13,6 @@ import com.tinkerpop.blueprints.*;
 import com.tinkerpop.blueprints.impls.orient.*;
 
 public class EdgeHandlerTest {
-
-    @Data
-    public class SomeUser implements Identifiable {
-        private String id;
-        @Field(inputType = InputType.MULTISELECT)
-        private List<SomeRole> roles = new ArrayList<>();
-        private String roleId;
-    }
-
-    @Data
-    public class SomeRole implements Identifiable {
-        private String id;
-        @Field(inputType = InputType.TEXT)
-        private String name;
-    }
 
     private OrientGraph db;
     private SomeUser theUser;
@@ -42,8 +25,8 @@ public class EdgeHandlerTest {
     public void setUp() throws Exception {
         vertex = Mockito.mock(OrientVertex.class);
         db = Mockito.mock(OrientGraph.class);
-        theUser = new SomeUser();
-        theRole = new SomeRole();
+        theUser = new SomeUser("aUser");
+        theRole = new SomeRole("aRole");
         theUser.getRoles().add(theRole);
         persistEdgeHandler = new EdgeHandler((identifiable) -> (OrientVertex) executePersist(identifiable),db);
         updateEdgeHandler = new EdgeHandler((identifiable) -> (OrientVertex) executeUpdate(identifiable),db);

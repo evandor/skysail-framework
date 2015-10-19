@@ -1,0 +1,5 @@
+INFO  io.skysail.server.db.impl.Persister - setting rolename=aRole [class java.lang.String]
+INFO  io.skysail.server.db.impl.Persister - setting username=theUsername [class java.lang.String]
+INFO  io.skysail.server.db.impl.Persister - setting rolename=aRole [class java.lang.String]
+INFO  io.skysail.server.db.impl.Persister - setting rolename=asecondrole [class java.lang.String]
+INFO  io.skysail.server.db.impl.Persister - setting username=theUsername [class java.lang.String]

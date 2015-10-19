@@ -44,7 +44,7 @@ public class MailRepository implements DbRepository {
         return dbService.findObjects(sql, params);
     }
 
-    public static Object add(Object entity, String... edges) {
+    public static Object add(Identifiable entity, String... edges) {
         return dbService.persist(entity, edges);
     }
 
@@ -52,7 +52,7 @@ public class MailRepository implements DbRepository {
         return dbService.findObjectById(cls, id);
     }
 
-    public Object update(String id, Object entity, String... edges) {
+    public Object update(String id, Identifiable entity, String... edges) {
         return dbService.update(id, entity);
     }
 

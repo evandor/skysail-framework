@@ -1,5 +1,7 @@
 package io.skysail.server.db;
 
+import io.skysail.api.domain.Identifiable;
+
 import java.util.*;
 
 import aQute.bnd.annotation.ProviderType;
@@ -20,9 +22,9 @@ public interface DbService {
      *            edges
      * @return to be done
      */
-    <T> Object persist(T entity, String... edges);
+    Object persist(Identifiable entity, String... edges);
 
-    <T> Object update(Object id, T entity, String... edges);
+    Object update(Object id, Identifiable entity, String... edges);
 
     /**
      * retrieves an entity of type T identified by its id.

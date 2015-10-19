@@ -42,7 +42,7 @@ public class SkysailBeanUtils {
 
     }
 
-    private boolean ignore(Map<String, FormField> formfields, String name) { //FormField formField) {
+    private boolean ignore(Map<String, FormField> formfields, String name) {
         if ("id".equals(name)) {
             return false;
         }

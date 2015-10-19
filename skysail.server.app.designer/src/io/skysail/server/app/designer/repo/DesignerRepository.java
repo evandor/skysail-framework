@@ -48,7 +48,7 @@ public class DesignerRepository implements DbRepository {
         return dbService.findObjects(sql);
     }
 
-    public static Object add(Object entity, String... edges) {
+    public static Object add(Identifiable entity, String... edges) {
         return dbService.persist(entity, edges);
     }
 
@@ -68,7 +68,7 @@ public class DesignerRepository implements DbRepository {
         dbService.update(field.getId(), field);
     }
 
-    public Object update(String id, Object entity, String... edges) {
+    public Object update(String id, Identifiable entity, String... edges) {
         return dbService.update(id, entity);
     }
 

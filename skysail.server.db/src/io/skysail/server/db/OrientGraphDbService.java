@@ -77,12 +77,12 @@ public class OrientGraphDbService extends AbstractOrientDbService implements DbS
     }
 
     @Override
-    public <T> Object persist(T entity, String... edges) {
+    public Object persist(Identifiable entity, String... edges) {
         return new Persister(getDb(), edges).persist(entity);
     }
 
     @Override
-    public <T> Object update(Object id, T entity, String... edges) {
+    public Object update(Object id, Identifiable entity, String... edges) {
         return new Updater(getDb(), edges).update(entity);
     }
 
@@ -156,11 +156,11 @@ public class OrientGraphDbService extends AbstractOrientDbService implements DbS
     public <T> T findById(Class<?> cls, String id) {
         OrientGraph graphDb = getDb();
         OrientVertex vertex = graphDb.getVertex(new ORecordId(id));
-        return beanFromVertex(vertex, cls);
+        return vertexToBean(vertex, cls);
     }
 
     @SuppressWarnings("unchecked")
-    public <T extends Identifiable> T beanFromVertex(OrientVertex vertex, Class<?> beanType) {
+    public <T extends Identifiable> T vertexToBean(OrientVertex vertex, Class<?> beanType) {
         if (vertex == null) {
             return null;
         }
@@ -182,7 +182,7 @@ public class OrientGraphDbService extends AbstractOrientDbService implements DbS
                 System.out.println(vertexFromEdge);
                 try {
                     Class<?> vertexClass = getRegisteredClass(vertexFromEdge.getRecord().getClassName());
-                    Identifiable beanFromVertex = beanFromVertex(vertexFromEdge, vertexClass);
+                    Identifiable beanFromVertex = vertexToBean(vertexFromEdge, vertexClass);
                     Class<?> fieldType = bean.getClass().getDeclaredField(edgeName).getType();
                     if (Collection.class.isAssignableFrom(fieldType)) {
                         Method collectionGetter = bean.getClass().getMethod("get" + edgeName.substring(0, 1).toUpperCase() + edgeName.substring(1));

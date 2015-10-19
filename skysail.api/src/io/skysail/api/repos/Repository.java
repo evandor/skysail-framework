@@ -8,6 +8,6 @@ public interface Repository {
 
     Object save (Identifiable identifiable);
 
-    Object update(String id, Object entity, String... edges);
+    Object update(String id, Identifiable entity, String... edges);
 
 }

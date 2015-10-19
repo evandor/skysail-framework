@@ -93,7 +93,7 @@ public class QuartzRepository implements DbRepository {
     // list.setTodosCount(cnt);
     // }
 
-    public static Object add(Object entity, String... edges) {
+    public static Object add(Identifiable entity, String... edges) {
         return dbService.persist(entity, edges);
     }
 
@@ -105,7 +105,7 @@ public class QuartzRepository implements DbRepository {
     // return list;
     // }
 
-    public Object update(String id, Object entity, String... edges) {
+    public Object update(String id, Identifiable entity, String... edges) {
         return dbService.update(id, entity, edges);
     }
 

@@ -7,8 +7,7 @@ import java.util.*;
 
 import lombok.extern.slf4j.Slf4j;
 
-import org.apache.commons.beanutils.BeanUtils;
-
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.tinkerpop.blueprints.Vertex;
 import com.tinkerpop.blueprints.impls.orient.*;
 
@@ -18,6 +17,7 @@ public class Updater {
     private OrientGraph db;
     private List<String> edges;
     private EdgeHandler edgeHandler;
+    private ObjectMapper mapper = new ObjectMapper();
 
     public Updater(OrientGraph db, String[] edges) {
         this.edges = Arrays.asList(edges);
@@ -27,15 +27,16 @@ public class Updater {
 
     }
 
-    public <T> Object update(Object entity) {
+    public <T extends Identifiable> Object update(T entity) {
         return runInTransaction(entity);
     }
 
-    private <T> Object execute(Object entity) {
+    private Object execute(Identifiable entity) {
         String id = ((Identifiable) entity).getId();
         Vertex vertex = db.getVertex(id);
         try {
-            Map<String, String> properties = BeanUtils.describe(entity);
+            @SuppressWarnings("unchecked")
+            Map<String, Object> properties = mapper.convertValue(entity, Map.class);
             properties.keySet().stream().forEach(key -> {
                 if (!edges.contains(key)) {
                     if (properties.get(key) != null && !("class".equals(key))) {
@@ -59,7 +60,7 @@ public class Updater {
     /**
      * Template Method to make sure that the orient db is called correctly.
      */
-    private <T> Object runInTransaction(Object entity) {
+    private <T> Object runInTransaction(Identifiable entity) {
         try {
             Object result = execute(entity);
             db.commit();
@@ -75,7 +76,7 @@ public class Updater {
         }
     }
 
-    private void setProperty(Object entity, Vertex vertex, Map<String, String> properties, String key) {
+    private void setProperty(Object entity, Vertex vertex, Map<String, Object> properties, String key) {
         if (key.equals("id")) {
             return;
         }

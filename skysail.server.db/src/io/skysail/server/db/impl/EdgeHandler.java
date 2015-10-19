@@ -22,7 +22,7 @@ public class EdgeHandler {
         this.db = db;
     }
 
-    public void handleEdges(Object entity, Vertex vertex, Map<String, String> properties, String key)
+    public void handleEdges(Object entity, Vertex vertex, Map<String, Object> properties, String key)
             throws NoSuchFieldException, SecurityException, NoSuchMethodException, IllegalAccessException,
             IllegalArgumentException, InvocationTargetException {
 
@@ -54,7 +54,7 @@ public class EdgeHandler {
         }
     }
 
-    private void addReference(Vertex vertex, Map<String, String> properties, String key, Object edge) {
+    private void addReference(Vertex vertex, Map<String, Object> properties, String key, Object edge) {
         OrientVertex target = db.getVertex(edge.toString());
         if (target != null) {
             db.addEdge(null, vertex, target, key);

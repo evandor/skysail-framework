@@ -2,9 +2,12 @@ package io.skysail.server.db.it;
 
 import io.skysail.server.db.it.folder.FolderApplication;
 import io.skysail.server.db.it.folder.resources.*;
+import io.skysail.server.testsupport.categories.LargeTests;
 
 import org.junit.*;
+import org.junit.experimental.categories.Category;
 
+@Category(LargeTests.class)
 public class FolderDbTests extends DbIntegrationTests {
 
     private PostFolderResource postFolderResource;

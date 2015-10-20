@@ -4,14 +4,17 @@ import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.assertThat;
 import io.skysail.server.db.it.clip.*;
 import io.skysail.server.db.it.clip.resources.*;
+import io.skysail.server.testsupport.categories.LargeTests;
 
 import java.util.*;
 import java.util.stream.Collectors;
 
 import org.junit.*;
+import org.junit.experimental.categories.Category;
 import org.restlet.data.Form;
 import org.restlet.representation.Variant;
 
+@Category(LargeTests.class)
 public class ClipDbTests extends DbIntegrationTests {
 
     private PostClipResource postClipResource;

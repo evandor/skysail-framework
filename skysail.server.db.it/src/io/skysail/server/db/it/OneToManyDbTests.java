@@ -5,16 +5,20 @@ import static org.junit.Assert.assertThat;
 import io.skysail.server.db.it.one2many.comment.Comment;
 import io.skysail.server.db.it.one2many.todo.*;
 import io.skysail.server.db.it.one2many.todo.resources.*;
+import io.skysail.server.testsupport.categories.LargeTests;
 
 import java.util.*;
 import java.util.stream.Collectors;
 
 import org.junit.*;
+import org.junit.experimental.categories.Category;
 
 /**
  * TODO: what about the JSON-variants?
  *
  */
+
+@Category(LargeTests.class)
 public class OneToManyDbTests extends DbIntegrationTests {
 
     private PostTodoResource postTodoResource;

@@ -41,7 +41,6 @@ Import-Package:  \
 	*
 
 Export-Package:  \
-	de.twenty11.skysail.server.db.orientdb,\
 	io.skysail.server.db,\
 	io.skysail.server.db.versions
 

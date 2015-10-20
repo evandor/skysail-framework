@@ -1,5 +1,3 @@
-apply plugin: 'net.serenity-bdd.aggregator'
-
 test {
     useJUnit {
         excludeCategories 'io.skysail.server.testsupport.categories.LargeTests'

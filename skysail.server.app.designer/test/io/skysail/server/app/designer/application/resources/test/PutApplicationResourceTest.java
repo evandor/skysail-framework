@@ -8,10 +8,11 @@ import io.skysail.server.app.designer.repo.DesignerRepository;
 
 import java.util.List;
 
-import org.junit.Test;
+import org.junit.*;
 
 import com.tinkerpop.blueprints.impls.orient.OrientVertex;
 
+@Ignore
 public class PutApplicationResourceTest extends AbstractApplicationResourceTest {
 
     @Test

@@ -1,22 +1,17 @@
 package io.skysail.server.app.designer.application.resources.test;
 
-import static org.hamcrest.CoreMatchers.equalTo;
-import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.assertThat;
-
-import java.util.Map;
-
-import io.skysail.api.responses.ConstraintViolationsResponse;
-import io.skysail.api.responses.SkysailResponse;
+import io.skysail.api.responses.*;
 import io.skysail.server.app.designer.application.Application;
 
-import org.junit.Test;
-import org.restlet.data.MediaType;
-import org.restlet.data.Status;
+import org.junit.*;
+import org.restlet.data.*;
 import org.restlet.engine.resource.VariantInfo;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+@Ignore
 public class PostApplicationResourceTest extends AbstractApplicationResourceTest {
 
     ObjectMapper mapper = new ObjectMapper();

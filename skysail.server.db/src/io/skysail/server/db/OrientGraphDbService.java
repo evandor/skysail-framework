@@ -326,17 +326,17 @@ public class OrientGraphDbService extends AbstractOrientDbService implements DbS
 
     @Override
     public void createWithSuperClass(String superClass, String... vertices) {
-//        OObjectDatabaseTx objectDb = getObjectDb();
-//        try {
-//            Arrays.stream(vertices).forEach(v -> {
-//                if (objectDb.getMetadata().getSchema().getClass(v) == null) {
-//                    OClass vertexClass = objectDb.getMetadata().getSchema().getClass(superClass);
-//                    objectDb.getMetadata().getSchema().createClass(v).setSuperClass(vertexClass);
-//                }
-//            });
-//        } catch (Exception e) {
-//            log.error(e.getMessage(), e);
-//        }
+        OObjectDatabaseTx objectDb = getObjectDb();
+        try {
+            Arrays.stream(vertices).forEach(v -> {
+                if (objectDb.getMetadata().getSchema().getClass(v) == null) {
+                    OClass vertexClass = objectDb.getMetadata().getSchema().getClass(superClass);
+                    objectDb.getMetadata().getSchema().createClass(v).setSuperClass(vertexClass);
+                }
+            });
+        } catch (Exception e) {
+            log.error(e.getMessage(), e);
+        }
     }
 
     @Override

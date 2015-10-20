@@ -150,7 +150,9 @@ Private-Package:  \
 	io.skysail.server.db.it.support,\
 	io.skysail.server.db.it.one2many.todo.resources,\
 	io.skysail.server.db.it.one2many.todo,\
-	io.skysail.server.db.it.one2many.comment
+	io.skysail.server.db.it.one2many.comment,\
+	io.skysail.server.db.it.folder,\
+	io.skysail.server.db.it.folder.resources
 
 Import-Package:  \
     javassist.util.proxy,\

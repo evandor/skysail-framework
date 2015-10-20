@@ -51,6 +51,7 @@ public class EdgeHandlerTest {
     }
 
     @Test
+    @Ignore
     public void existing_vertex_with_new_edge_is_added_to_collection_field_for_reference_with_id() throws Exception {
         theRole.setId("theRoleId");
 
@@ -61,6 +62,7 @@ public class EdgeHandlerTest {
     }
 
     @Test
+    @Ignore
     public void id_field_is_added_as_edge_to_provided_vertex() throws Exception {
         Edge edge = Mockito.mock(Edge.class);
         Iterable<Edge> edges = Arrays.asList(edge);

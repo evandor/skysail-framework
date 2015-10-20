@@ -1,42 +1,291 @@
-2015-10-19 08:43:23,630 INFO  [io.skysail.server.app.ApplicationList        ] - (+) Adding application 'root'
-2015-10-19 08:43:23,644 INFO  [i.s.s.f.r.ConfigAdminFeatureStateRepository  ] - activating ConfigAdminFeatureStateRepository with config {USE_CREDENTIALS_CACHE_FEATURE=true, service.pid=io.skysail.server.features.repositories.ConfigAdminFeatureStateRepository, de.twenty11.skysail.server.core.restlet.SecurityFeatures.ALLOW_ORIGIN_FEATURE=true, component.name=io.skysail.server.features.repositories.ConfigAdminFeatureStateRepository, felix.fileinstall.filename=file:/Users/carsten/git/skysail-framework/skysail.server.db.it/config/io.skysail.server.features.repositories.ConfigAdminFeatureStateRepository.cfg, component.id=9}
-2015-10-19 08:43:23,651 INFO  [io.skysail.server.services.ServerLoad        ] - activating ServerLoad task
-2015-10-19 08:43:23,660 INFO  [io.skysail.server.services.ServerTime        ] - activating ServerTime task
-2015-10-19 08:43:23,692 INFO  [io.skysail.server.app.ApplicationList        ] - (+) Adding application 'webapp'
-2015-10-19 08:43:23,720 INFO  [io.skysail.server.db.DbConfigurations        ] - activating DbConfigurations with config DbConfig(name=skysailgraph, driver=, url=remote:localhost/skysaillargetest, username=admin)
-2015-10-19 08:43:24,001 INFO  [i.skysail.server.db.OrientGraphDbService     ] - about to start db
-2015-10-19 08:43:24,001 INFO  [i.skysail.server.db.OrientGraphDbService     ] - registering remote engine
-2015-10-19 08:43:25,024 INFO  [i.skysail.server.db.OrientGraphDbService     ] - setting lazy loading to false
-2015-10-19 08:43:25,064 INFO  [i.s.s.d.versions.impl.VersionsRepository     ] - activating VersionsRepository
-2015-10-19 08:43:25,143 INFO  [io.skysail.server.http.HttpServer            ] - Activating io.skysail.server.http.HttpServer
-2015-10-19 08:43:25,156 INFO  [d.t.skysail.server.SkysailComponent          ] - Creating Restlet Component: de.twenty11.skysail.server.SkysailComponent
-2015-10-19 08:43:25,184 INFO  [io.skysail.server.http.HttpServer            ] - configuration was provided
-2015-10-19 08:43:25,185 INFO  [io.skysail.server.http.HttpServer            ] - 
-2015-10-19 08:43:25,185 INFO  [io.skysail.server.http.HttpServer            ] - ====================================
-2015-10-19 08:43:25,185 INFO  [io.skysail.server.http.HttpServer            ] - Starting skysail server on port 2015
-2015-10-19 08:43:25,185 INFO  [io.skysail.server.http.HttpServer            ] - ====================================
-2015-10-19 08:43:25,185 INFO  [io.skysail.server.http.HttpServer            ] - 
-2015-10-19 08:43:25,216 INFO  [org.restlet                                  ] - Starting the internal [HTTP/1.1] server on port 2015
-2015-10-19 08:43:25,245 INFO  [io.skysail.server.app.ApplicationList        ] - (+) Adding application 'plugins'
-2015-10-19 08:43:25,277 INFO  [io.skysail.server.app.ApplicationList        ] - (+) Adding application 'static'
-2015-10-19 08:43:25,319 INFO  [i.s.s.um.security.shiro.ShiroServices        ] - creating new SkysailAuthorizingRealm...
-2015-10-19 08:43:25,332 INFO  [i.s.s.um.security.shiro.ShiroServices        ] - Setting new SkysailWebSecurityManager as Shiros SecurityManager
-2015-10-19 08:43:25,362 INFO  [i.s.s.u.s.s.s.m.SkysailWebSessionManager     ] - creating new SkysailWebSessionManager
-2015-10-19 08:43:25,384 INFO  [io.skysail.server.app.ApplicationList        ] - (+) Adding application 'usermanagement'
-2015-10-19 08:43:25,493 INFO  [io.skysail.server.app.ApplicationList        ] - (+) Adding application 'ClipApp'
-2015-10-19 08:43:25,536 INFO  [io.skysail.server.app.ApplicationList        ] - (+) Adding application 'TodoApplication'
-2015-10-19 08:43:25,634 INFO  [i.s.c.testsupport.TestsupportTestBase        ] - 
-2015-10-19 08:43:25,635 INFO  [i.s.c.testsupport.TestsupportTestBase        ] - --------------------------------------------
-2015-10-19 08:43:25,636 INFO  [i.s.c.testsupport.TestsupportTestBase        ] -  > TEST: running test 'html_variant_todo_with_one_comment_comment_can_be_deleted'
-2015-10-19 08:43:25,637 INFO  [i.s.c.testsupport.TestsupportTestBase        ] - --------------------------------------------
-2015-10-19 08:43:25,637 INFO  [i.s.c.testsupport.TestsupportTestBase        ] - 
-2015-10-19 08:43:25,718 INFO  [i.s.s.r.r.PostEntityServerResource           ] - Request entry point: PostTodoResource @Post('json')
-2015-10-19 08:43:25,719 INFO  [i.s.s.r.r.PostEntityServerResource           ] - Request entry point: PostTodoResource @Post('x-www-form-urlencoded:html|json|xml')
-2015-10-19 08:43:25,721 INFO  [i.s.s.r.r.PostEntityServerResource           ] - calling post(Form), media types '[]'
-2015-10-19 08:43:27,453 INFO  [io.skysail.server.db.impl.Persister          ] - setting comment=Comment #1 [class java.lang.String]
-2015-10-19 08:43:27,459 INFO  [io.skysail.server.db.impl.Persister          ] - setting created=Mon Oct 19 08:43:25 CEST 2015 [class java.util.Date]
-2015-10-19 08:43:27,459 INFO  [io.skysail.server.db.impl.Persister          ] - setting title=1445237005716 [class java.lang.String]
-2015-10-19 08:44:04,494 INFO  [i.s.s.r.r.PutEntityServerResource            ] - Request entry point: PutTodoResource @Put('json')
-2015-10-19 08:44:59,575 INFO  [io.skysail.server.db.impl.Updater            ] - setting created=Mon Oct 19 08:43:25 CEST 2015 [class java.util.Date]
-2015-10-19 08:44:59,584 INFO  [io.skysail.server.db.impl.Updater            ] - setting modified=Mon Oct 19 08:44:14 CEST 2015 [class java.util.Date]
-2015-10-19 08:44:59,584 INFO  [io.skysail.server.db.impl.Updater            ] - setting title=1445237005716 [class java.lang.String]
+2015-10-20 15:25:52,810 INFO  [io.skysail.server.app.ApplicationList        ] - (+) Adding application 'root'
+2015-10-20 15:25:52,816 INFO  [i.s.s.f.r.ConfigAdminFeatureStateRepository  ] - activating ConfigAdminFeatureStateRepository with config {USE_CREDENTIALS_CACHE_FEATURE=true, service.pid=io.skysail.server.features.repositories.ConfigAdminFeatureStateRepository, de.twenty11.skysail.server.core.restlet.SecurityFeatures.ALLOW_ORIGIN_FEATURE=true, component.name=io.skysail.server.features.repositories.ConfigAdminFeatureStateRepository, felix.fileinstall.filename=file:/C:/git/skysail-framework/skysail.server.db.it/config/io.skysail.server.features.repositories.ConfigAdminFeatureStateRepository.cfg, component.id=9}
+2015-10-20 15:25:52,819 INFO  [io.skysail.server.services.ServerLoad        ] - activating ServerLoad task
+2015-10-20 15:25:52,823 INFO  [io.skysail.server.services.ServerTime        ] - activating ServerTime task
+2015-10-20 15:25:52,840 INFO  [io.skysail.server.app.ApplicationList        ] - (+) Adding application 'webapp'
+2015-10-20 15:25:52,859 INFO  [io.skysail.server.db.DbConfigurations        ] - activating DbConfigurations with config DbConfig(name=skysailgraph, driver=, url=remote:localhost/skysaillargetest, username=admin)
+2015-10-20 15:25:52,956 INFO  [i.skysail.server.db.OrientGraphDbService     ] - about to start db
+2015-10-20 15:25:52,956 INFO  [i.skysail.server.db.OrientGraphDbService     ] - registering remote engine
+2015-10-20 15:25:53,550 INFO  [i.skysail.server.db.OrientGraphDbService     ] - setting lazy loading to false
+2015-10-20 15:25:53,567 INFO  [i.s.s.d.versions.impl.VersionsRepository     ] - activating VersionsRepository
+2015-10-20 15:25:53,609 INFO  [io.skysail.server.http.HttpServer            ] - Activating io.skysail.server.http.HttpServer
+2015-10-20 15:25:53,616 INFO  [d.t.skysail.server.SkysailComponent          ] - Creating Restlet Component: de.twenty11.skysail.server.SkysailComponent
+2015-10-20 15:25:53,626 INFO  [io.skysail.server.http.HttpServer            ] - configuration was provided
+2015-10-20 15:25:53,626 INFO  [io.skysail.server.http.HttpServer            ] - 
+2015-10-20 15:25:53,626 INFO  [io.skysail.server.http.HttpServer            ] - ====================================
+2015-10-20 15:25:53,626 INFO  [io.skysail.server.http.HttpServer            ] - Starting skysail server on port 2015
+2015-10-20 15:25:53,627 INFO  [io.skysail.server.http.HttpServer            ] - ====================================
+2015-10-20 15:25:53,627 INFO  [io.skysail.server.http.HttpServer            ] - 
+2015-10-20 15:25:53,634 INFO  [io.skysail.server.app.ApplicationList        ] - (+) Adding application 'plugins'
+2015-10-20 15:25:53,642 INFO  [io.skysail.server.app.ApplicationList        ] - (+) Adding application 'static'
+2015-10-20 15:25:53,643 INFO  [org.restlet                                  ] - Starting the internal [HTTP/1.1] server on port 2015
+2015-10-20 15:25:53,665 INFO  [i.s.s.um.security.shiro.ShiroServices        ] - creating new SkysailAuthorizingRealm...
+2015-10-20 15:25:53,671 INFO  [i.s.s.um.security.shiro.ShiroServices        ] - Setting new SkysailWebSecurityManager as Shiros SecurityManager
+2015-10-20 15:25:53,686 INFO  [i.s.s.u.s.s.s.m.SkysailWebSessionManager     ] - creating new SkysailWebSessionManager
+2015-10-20 15:25:53,702 INFO  [io.skysail.server.app.ApplicationList        ] - (+) Adding application 'usermanagement'
+2015-10-20 15:25:53,755 INFO  [io.skysail.server.app.ApplicationList        ] - (+) Adding application 'ClipApp'
+2015-10-20 15:25:53,800 INFO  [io.skysail.server.app.ApplicationList        ] - (+) Adding application 'TodoApplication'
+2015-10-20 15:25:53,831 INFO  [i.s.c.testsupport.TestsupportTestBase        ] - 
+2015-10-20 15:25:53,831 INFO  [i.s.c.testsupport.TestsupportTestBase        ] - --------------------------------------------
+2015-10-20 15:25:53,832 INFO  [i.s.c.testsupport.TestsupportTestBase        ] -  > TEST: running test 'html_variant_creates_a_new_clip'
+2015-10-20 15:25:53,832 INFO  [i.s.c.testsupport.TestsupportTestBase        ] - --------------------------------------------
+2015-10-20 15:25:53,832 INFO  [i.s.c.testsupport.TestsupportTestBase        ] - 
+2015-10-20 15:25:53,870 INFO  [i.s.s.r.r.PostEntityServerResource           ] - Request entry point: PostClipResource @Post('json')
+2015-10-20 15:25:53,871 INFO  [i.s.s.r.r.PostEntityServerResource           ] - Request entry point: PostClipResource @Post('x-www-form-urlencoded:html|json|xml')
+2015-10-20 15:25:53,872 INFO  [i.s.s.r.r.PostEntityServerResource           ] - calling post(Form), media types '[]'
+2015-10-20 15:25:54,042 INFO  [io.skysail.server.db.impl.Persister          ] - setting title=1445347553870 [class java.lang.String]
+2015-10-20 15:25:54,043 INFO  [io.skysail.server.db.impl.Persister          ] - setting created=Tue Oct 20 15:25:53 CEST 2015 [class java.util.Date]
+2015-10-20 15:25:54,064 INFO  [i.s.c.testsupport.TestsupportTestBase        ] - 
+2015-10-20 15:25:54,064 INFO  [i.s.c.testsupport.TestsupportTestBase        ] - --------------------------------------------
+2015-10-20 15:25:54,064 INFO  [i.s.c.testsupport.TestsupportTestBase        ] -  > TEST: running test 'json_variant_retrieves_a_clip_by_id'
+2015-10-20 15:25:54,064 INFO  [i.s.c.testsupport.TestsupportTestBase        ] - --------------------------------------------
+2015-10-20 15:25:54,064 INFO  [i.s.c.testsupport.TestsupportTestBase        ] - 
+2015-10-20 15:25:54,065 INFO  [i.s.s.r.r.PostEntityServerResource           ] - Request entry point: PostClipResource @Post('x-www-form-urlencoded:html|json|xml')
+2015-10-20 15:25:54,065 INFO  [i.s.s.r.r.PostEntityServerResource           ] - calling post(Form), media types '[]'
+2015-10-20 15:25:54,078 INFO  [io.skysail.server.db.impl.Persister          ] - setting title=1445347554065 [class java.lang.String]
+2015-10-20 15:25:54,078 INFO  [io.skysail.server.db.impl.Persister          ] - setting created=Tue Oct 20 15:25:54 CEST 2015 [class java.util.Date]
+2015-10-20 15:25:54,083 INFO  [i.s.c.testsupport.TestsupportTestBase        ] - 
+2015-10-20 15:25:54,084 INFO  [i.s.c.testsupport.TestsupportTestBase        ] - --------------------------------------------
+2015-10-20 15:25:54,084 INFO  [i.s.c.testsupport.TestsupportTestBase        ] -  > TEST: running test 'html_variant_clip_can_be_deleted_again'
+2015-10-20 15:25:54,084 INFO  [i.s.c.testsupport.TestsupportTestBase        ] - --------------------------------------------
+2015-10-20 15:25:54,084 INFO  [i.s.c.testsupport.TestsupportTestBase        ] - 
+2015-10-20 15:25:54,084 INFO  [i.s.s.r.r.PostEntityServerResource           ] - Request entry point: PostClipResource @Post('json')
+2015-10-20 15:25:54,084 INFO  [i.s.s.r.r.PostEntityServerResource           ] - Request entry point: PostClipResource @Post('x-www-form-urlencoded:html|json|xml')
+2015-10-20 15:25:54,084 INFO  [i.s.s.r.r.PostEntityServerResource           ] - calling post(Form), media types '[]'
+2015-10-20 15:25:54,090 INFO  [io.skysail.server.db.impl.Persister          ] - setting title=1445347554084 [class java.lang.String]
+2015-10-20 15:25:54,090 INFO  [io.skysail.server.db.impl.Persister          ] - setting created=Tue Oct 20 15:25:54 CEST 2015 [class java.util.Date]
+2015-10-20 15:25:54,092 INFO  [i.s.s.r.resources.EntityServerResource       ] - Request entry point: ClipResource @Delete('x-www-form-urlencoded:html|html|json')
+2015-10-20 15:25:54,189 INFO  [i.s.c.testsupport.TestsupportTestBase        ] - 
+2015-10-20 15:25:54,190 INFO  [i.s.c.testsupport.TestsupportTestBase        ] - --------------------------------------------
+2015-10-20 15:25:54,190 INFO  [i.s.c.testsupport.TestsupportTestBase        ] -  > TEST: running test 'json_variant_creates_a_new_clip'
+2015-10-20 15:25:54,190 INFO  [i.s.c.testsupport.TestsupportTestBase        ] - --------------------------------------------
+2015-10-20 15:25:54,190 INFO  [i.s.c.testsupport.TestsupportTestBase        ] - 
+2015-10-20 15:25:54,190 INFO  [i.s.s.r.r.PostEntityServerResource           ] - Request entry point: PostClipResource @Post('x-www-form-urlencoded:html|json|xml')
+2015-10-20 15:25:54,190 INFO  [i.s.s.r.r.PostEntityServerResource           ] - calling post(Form), media types '[]'
+2015-10-20 15:25:54,195 INFO  [io.skysail.server.db.impl.Persister          ] - setting title=1445347554190 [class java.lang.String]
+2015-10-20 15:25:54,195 INFO  [io.skysail.server.db.impl.Persister          ] - setting created=Tue Oct 20 15:25:54 CEST 2015 [class java.util.Date]
+2015-10-20 15:25:54,197 INFO  [i.s.c.testsupport.TestsupportTestBase        ] - 
+2015-10-20 15:25:54,197 INFO  [i.s.c.testsupport.TestsupportTestBase        ] - --------------------------------------------
+2015-10-20 15:25:54,197 INFO  [i.s.c.testsupport.TestsupportTestBase        ] -  > TEST: running test 'json_variant_retrieves_the_list_of_clips'
+2015-10-20 15:25:54,197 INFO  [i.s.c.testsupport.TestsupportTestBase        ] - --------------------------------------------
+2015-10-20 15:25:54,197 INFO  [i.s.c.testsupport.TestsupportTestBase        ] - 
+2015-10-20 15:25:54,198 INFO  [i.s.s.r.r.PostEntityServerResource           ] - Request entry point: PostClipResource @Post('json')
+2015-10-20 15:25:54,198 INFO  [i.s.s.r.r.PostEntityServerResource           ] - Request entry point: PostClipResource @Post('x-www-form-urlencoded:html|json|xml')
+2015-10-20 15:25:54,198 INFO  [i.s.s.r.r.PostEntityServerResource           ] - calling post(Form), media types '[]'
+2015-10-20 15:25:54,203 INFO  [io.skysail.server.db.impl.Persister          ] - setting title=json_variant_retrieves_the_list_of_clips [class java.lang.String]
+2015-10-20 15:25:54,204 INFO  [io.skysail.server.db.impl.Persister          ] - setting created=Tue Oct 20 15:25:54 CEST 2015 [class java.util.Date]
+2015-10-20 15:25:54,206 INFO  [i.s.s.r.r.PostEntityServerResource           ] - Request entry point: PostClipResource @Post('json')
+2015-10-20 15:25:54,207 INFO  [i.s.s.r.r.PostEntityServerResource           ] - Request entry point: PostClipResource @Post('x-www-form-urlencoded:html|json|xml')
+2015-10-20 15:25:54,207 INFO  [i.s.s.r.r.PostEntityServerResource           ] - calling post(Form), media types '[]'
+2015-10-20 15:25:54,211 INFO  [io.skysail.server.db.impl.Persister          ] - setting title=json_variant_retrieves_the_list_of_clips [class java.lang.String]
+2015-10-20 15:25:54,211 INFO  [io.skysail.server.db.impl.Persister          ] - setting created=Tue Oct 20 15:25:54 CEST 2015 [class java.util.Date]
+2015-10-20 15:25:54,213 INFO  [i.s.s.r.resources.ListServerResource         ] - Request entry point: ClipsResource @Get('html|json|yaml|xml') with variant [application/json]
+2015-10-20 15:25:54,225 INFO  [i.s.c.testsupport.TestsupportTestBase        ] - 
+2015-10-20 15:25:54,226 INFO  [i.s.c.testsupport.TestsupportTestBase        ] - --------------------------------------------
+2015-10-20 15:25:54,226 INFO  [i.s.c.testsupport.TestsupportTestBase        ] -  > TEST: running test 'html_variant_retrieves_a_clip_by_id'
+2015-10-20 15:25:54,226 INFO  [i.s.c.testsupport.TestsupportTestBase        ] - --------------------------------------------
+2015-10-20 15:25:54,226 INFO  [i.s.c.testsupport.TestsupportTestBase        ] - 
+2015-10-20 15:25:54,226 INFO  [i.s.s.r.r.PostEntityServerResource           ] - Request entry point: PostClipResource @Post('json')
+2015-10-20 15:25:54,226 INFO  [i.s.s.r.r.PostEntityServerResource           ] - Request entry point: PostClipResource @Post('x-www-form-urlencoded:html|json|xml')
+2015-10-20 15:25:54,226 INFO  [i.s.s.r.r.PostEntityServerResource           ] - calling post(Form), media types '[]'
+2015-10-20 15:25:54,230 INFO  [io.skysail.server.db.impl.Persister          ] - setting title=1445347554226 [class java.lang.String]
+2015-10-20 15:25:54,230 INFO  [io.skysail.server.db.impl.Persister          ] - setting created=Tue Oct 20 15:25:54 CEST 2015 [class java.util.Date]
+2015-10-20 15:25:54,232 INFO  [i.s.c.testsupport.TestsupportTestBase        ] - 
+2015-10-20 15:25:54,232 INFO  [i.s.c.testsupport.TestsupportTestBase        ] - --------------------------------------------
+2015-10-20 15:25:54,232 INFO  [i.s.c.testsupport.TestsupportTestBase        ] -  > TEST: running test 'html_variant_retrieves_the_list_of_clips'
+2015-10-20 15:25:54,232 INFO  [i.s.c.testsupport.TestsupportTestBase        ] - --------------------------------------------
+2015-10-20 15:25:54,232 INFO  [i.s.c.testsupport.TestsupportTestBase        ] - 
+2015-10-20 15:25:54,232 INFO  [i.s.s.r.r.PostEntityServerResource           ] - Request entry point: PostClipResource @Post('json')
+2015-10-20 15:25:54,232 INFO  [i.s.s.r.r.PostEntityServerResource           ] - Request entry point: PostClipResource @Post('x-www-form-urlencoded:html|json|xml')
+2015-10-20 15:25:54,232 INFO  [i.s.s.r.r.PostEntityServerResource           ] - calling post(Form), media types '[]'
+2015-10-20 15:25:54,236 INFO  [io.skysail.server.db.impl.Persister          ] - setting title=html_variant_retrieves_the_list_of_clips [class java.lang.String]
+2015-10-20 15:25:54,237 INFO  [io.skysail.server.db.impl.Persister          ] - setting created=Tue Oct 20 15:25:54 CEST 2015 [class java.util.Date]
+2015-10-20 15:25:54,238 INFO  [i.s.s.r.r.PostEntityServerResource           ] - Request entry point: PostClipResource @Post('json')
+2015-10-20 15:25:54,238 INFO  [i.s.s.r.r.PostEntityServerResource           ] - Request entry point: PostClipResource @Post('x-www-form-urlencoded:html|json|xml')
+2015-10-20 15:25:54,238 INFO  [i.s.s.r.r.PostEntityServerResource           ] - calling post(Form), media types '[]'
+2015-10-20 15:25:54,242 INFO  [io.skysail.server.db.impl.Persister          ] - setting title=html_variant_retrieves_the_list_of_clips [class java.lang.String]
+2015-10-20 15:25:54,242 INFO  [io.skysail.server.db.impl.Persister          ] - setting created=Tue Oct 20 15:25:54 CEST 2015 [class java.util.Date]
+2015-10-20 15:25:54,244 INFO  [i.s.s.r.resources.ListServerResource         ] - Request entry point: ClipsResource @Get('html|json|yaml|xml') with variant [text/html]
+2015-10-20 15:25:54,250 INFO  [i.s.c.testsupport.TestsupportTestBase        ] - 
+2015-10-20 15:25:54,250 INFO  [i.s.c.testsupport.TestsupportTestBase        ] - --------------------------------------------
+2015-10-20 15:25:54,250 INFO  [i.s.c.testsupport.TestsupportTestBase        ] -  > TEST: running test 'html_variant_clip_can_be_updated'
+2015-10-20 15:25:54,250 INFO  [i.s.c.testsupport.TestsupportTestBase        ] - --------------------------------------------
+2015-10-20 15:25:54,250 INFO  [i.s.c.testsupport.TestsupportTestBase        ] - 
+2015-10-20 15:25:54,251 INFO  [i.s.s.r.r.PostEntityServerResource           ] - Request entry point: PostClipResource @Post('json')
+2015-10-20 15:25:54,251 INFO  [i.s.s.r.r.PostEntityServerResource           ] - Request entry point: PostClipResource @Post('x-www-form-urlencoded:html|json|xml')
+2015-10-20 15:25:54,251 INFO  [i.s.s.r.r.PostEntityServerResource           ] - calling post(Form), media types '[]'
+2015-10-20 15:25:54,255 INFO  [io.skysail.server.db.impl.Persister          ] - setting title=1445347554250 [class java.lang.String]
+2015-10-20 15:25:54,255 INFO  [io.skysail.server.db.impl.Persister          ] - setting created=Tue Oct 20 15:25:54 CEST 2015 [class java.util.Date]
+2015-10-20 15:25:54,257 INFO  [i.s.s.r.r.PutEntityServerResource            ] - Request entry point: PutClipResource @Put('json')
+2015-10-20 15:25:54,265 INFO  [io.skysail.server.db.impl.Updater            ] - setting title=changed [class java.lang.String]
+2015-10-20 15:25:54,265 INFO  [io.skysail.server.db.impl.Updater            ] - setting created=Tue Oct 20 15:25:54 CEST 2015 [class java.util.Date]
+2015-10-20 15:25:54,266 INFO  [io.skysail.server.db.impl.Updater            ] - setting modified=Tue Oct 20 15:25:54 CEST 2015 [class java.util.Date]
+2015-10-20 15:25:54,269 INFO  [i.s.c.testsupport.TestsupportTestBase        ] - 
+2015-10-20 15:25:54,269 INFO  [i.s.c.testsupport.TestsupportTestBase        ] - --------------------------------------------
+2015-10-20 15:25:54,269 INFO  [i.s.c.testsupport.TestsupportTestBase        ] -  > TEST: running test 'json_variant_clip_can_be_deleted_again'
+2015-10-20 15:25:54,269 INFO  [i.s.c.testsupport.TestsupportTestBase        ] - --------------------------------------------
+2015-10-20 15:25:54,269 INFO  [i.s.c.testsupport.TestsupportTestBase        ] - 
+2015-10-20 15:25:54,269 INFO  [i.s.s.r.r.PostEntityServerResource           ] - Request entry point: PostClipResource @Post('json')
+2015-10-20 15:25:54,269 INFO  [i.s.s.r.r.PostEntityServerResource           ] - Request entry point: PostClipResource @Post('x-www-form-urlencoded:html|json|xml')
+2015-10-20 15:25:54,270 INFO  [i.s.s.r.r.PostEntityServerResource           ] - calling post(Form), media types '[]'
+2015-10-20 15:25:54,273 INFO  [io.skysail.server.db.impl.Persister          ] - setting title=1445347554269 [class java.lang.String]
+2015-10-20 15:25:54,273 INFO  [io.skysail.server.db.impl.Persister          ] - setting created=Tue Oct 20 15:25:54 CEST 2015 [class java.util.Date]
+2015-10-20 15:25:54,275 INFO  [i.s.s.r.resources.EntityServerResource       ] - Request entry point: ClipResource @Delete('x-www-form-urlencoded:html|html|json')
+2015-10-20 15:25:54,279 INFO  [i.s.c.testsupport.TestsupportTestBase        ] - 
+2015-10-20 15:25:54,279 INFO  [i.s.c.testsupport.TestsupportTestBase        ] - --------------------------------------------
+2015-10-20 15:25:54,279 INFO  [i.s.c.testsupport.TestsupportTestBase        ] -  > TEST: running test 'json_variant_clip_can_be_updated'
+2015-10-20 15:25:54,279 INFO  [i.s.c.testsupport.TestsupportTestBase        ] - --------------------------------------------
+2015-10-20 15:25:54,279 INFO  [i.s.c.testsupport.TestsupportTestBase        ] - 
+2015-10-20 15:25:54,280 INFO  [i.s.s.r.r.PostEntityServerResource           ] - Request entry point: PostClipResource @Post('json')
+2015-10-20 15:25:54,280 INFO  [i.s.s.r.r.PostEntityServerResource           ] - Request entry point: PostClipResource @Post('x-www-form-urlencoded:html|json|xml')
+2015-10-20 15:25:54,280 INFO  [i.s.s.r.r.PostEntityServerResource           ] - calling post(Form), media types '[]'
+2015-10-20 15:25:54,283 INFO  [io.skysail.server.db.impl.Persister          ] - setting title=1445347554280 [class java.lang.String]
+2015-10-20 15:25:54,283 INFO  [io.skysail.server.db.impl.Persister          ] - setting created=Tue Oct 20 15:25:54 CEST 2015 [class java.util.Date]
+2015-10-20 15:25:54,285 INFO  [i.s.s.r.r.PutEntityServerResource            ] - Request entry point: PutClipResource @Put('json')
+2015-10-20 15:25:54,290 INFO  [io.skysail.server.db.impl.Updater            ] - setting title=changed [class java.lang.String]
+2015-10-20 15:25:54,290 INFO  [io.skysail.server.db.impl.Updater            ] - setting created=Tue Oct 20 15:25:54 CEST 2015 [class java.util.Date]
+2015-10-20 15:25:54,290 INFO  [io.skysail.server.db.impl.Updater            ] - setting modified=Tue Oct 20 15:25:54 CEST 2015 [class java.util.Date]
+2015-10-20 15:25:54,294 INFO  [i.s.c.testsupport.TestsupportTestBase        ] - 
+2015-10-20 15:25:54,294 INFO  [i.s.c.testsupport.TestsupportTestBase        ] - --------------------------------------------
+2015-10-20 15:25:54,294 INFO  [i.s.c.testsupport.TestsupportTestBase        ] -  > TEST: running test 'html_variant_gets_a_Todo_without_comment'
+2015-10-20 15:25:54,294 INFO  [i.s.c.testsupport.TestsupportTestBase        ] - --------------------------------------------
+2015-10-20 15:25:54,294 INFO  [i.s.c.testsupport.TestsupportTestBase        ] - 
+2015-10-20 15:25:54,295 INFO  [i.s.s.r.r.PostEntityServerResource           ] - Request entry point: PostTodoResource @Post('json')
+2015-10-20 15:25:54,295 INFO  [i.s.s.r.r.PostEntityServerResource           ] - Request entry point: PostTodoResource @Post('x-www-form-urlencoded:html|json|xml')
+2015-10-20 15:25:54,295 INFO  [i.s.s.r.r.PostEntityServerResource           ] - calling post(Form), media types '[]'
+2015-10-20 15:25:54,300 INFO  [io.skysail.server.db.impl.Persister          ] - setting title=1445347554294 [class java.lang.String]
+2015-10-20 15:25:54,301 INFO  [io.skysail.server.db.impl.Persister          ] - setting created=Tue Oct 20 15:25:54 CEST 2015 [class java.util.Date]
+2015-10-20 15:25:54,306 INFO  [i.s.c.testsupport.TestsupportTestBase        ] - 
+2015-10-20 15:25:54,306 INFO  [i.s.c.testsupport.TestsupportTestBase        ] - --------------------------------------------
+2015-10-20 15:25:54,307 INFO  [i.s.c.testsupport.TestsupportTestBase        ] -  > TEST: running test 'html_variant_gets_a_Todo_with_a_comment'
+2015-10-20 15:25:54,307 INFO  [i.s.c.testsupport.TestsupportTestBase        ] - --------------------------------------------
+2015-10-20 15:25:54,307 INFO  [i.s.c.testsupport.TestsupportTestBase        ] - 
+2015-10-20 15:25:54,307 INFO  [i.s.s.r.r.PostEntityServerResource           ] - Request entry point: PostTodoResource @Post('json')
+2015-10-20 15:25:54,307 INFO  [i.s.s.r.r.PostEntityServerResource           ] - Request entry point: PostTodoResource @Post('x-www-form-urlencoded:html|json|xml')
+2015-10-20 15:25:54,307 INFO  [i.s.s.r.r.PostEntityServerResource           ] - calling post(Form), media types '[]'
+2015-10-20 15:25:54,313 INFO  [io.skysail.server.db.impl.Persister          ] - setting title=1445347554307 [class java.lang.String]
+2015-10-20 15:25:54,313 INFO  [io.skysail.server.db.impl.Persister          ] - setting created=Tue Oct 20 15:25:54 CEST 2015 [class java.util.Date]
+2015-10-20 15:25:54,313 INFO  [io.skysail.server.db.impl.Persister          ] - setting comment=Comment #1 [class java.lang.String]
+2015-10-20 15:25:54,328 INFO  [i.s.c.testsupport.TestsupportTestBase        ] - 
+2015-10-20 15:25:54,328 INFO  [i.s.c.testsupport.TestsupportTestBase        ] - --------------------------------------------
+2015-10-20 15:25:54,328 INFO  [i.s.c.testsupport.TestsupportTestBase        ] -  > TEST: running test 'html_variant_deletes_todo_including_comment'
+2015-10-20 15:25:54,328 INFO  [i.s.c.testsupport.TestsupportTestBase        ] - --------------------------------------------
+2015-10-20 15:25:54,328 INFO  [i.s.c.testsupport.TestsupportTestBase        ] - 
+2015-10-20 15:25:54,329 INFO  [i.s.s.r.r.PostEntityServerResource           ] - Request entry point: PostTodoResource @Post('json')
+2015-10-20 15:25:54,329 INFO  [i.s.s.r.r.PostEntityServerResource           ] - Request entry point: PostTodoResource @Post('x-www-form-urlencoded:html|json|xml')
+2015-10-20 15:25:54,329 INFO  [i.s.s.r.r.PostEntityServerResource           ] - calling post(Form), media types '[]'
+2015-10-20 15:25:54,333 INFO  [io.skysail.server.db.impl.Persister          ] - setting title=1445347554329 [class java.lang.String]
+2015-10-20 15:25:54,333 INFO  [io.skysail.server.db.impl.Persister          ] - setting created=Tue Oct 20 15:25:54 CEST 2015 [class java.util.Date]
+2015-10-20 15:25:54,333 INFO  [io.skysail.server.db.impl.Persister          ] - setting comment=Comment #3 [class java.lang.String]
+2015-10-20 15:25:54,342 INFO  [i.s.s.r.resources.EntityServerResource       ] - Request entry point: TodoResource @Delete('x-www-form-urlencoded:html|html|json')
+2015-10-20 15:25:54,347 INFO  [i.s.c.testsupport.TestsupportTestBase        ] - 
+2015-10-20 15:25:54,347 INFO  [i.s.c.testsupport.TestsupportTestBase        ] - --------------------------------------------
+2015-10-20 15:25:54,347 INFO  [i.s.c.testsupport.TestsupportTestBase        ] -  > TEST: running test 'html_variant_gets_a_Todo_with_two_comments'
+2015-10-20 15:25:54,347 INFO  [i.s.c.testsupport.TestsupportTestBase        ] - --------------------------------------------
+2015-10-20 15:25:54,347 INFO  [i.s.c.testsupport.TestsupportTestBase        ] - 
+2015-10-20 15:25:54,347 INFO  [i.s.s.r.r.PostEntityServerResource           ] - Request entry point: PostTodoResource @Post('json')
+2015-10-20 15:25:54,347 INFO  [i.s.s.r.r.PostEntityServerResource           ] - Request entry point: PostTodoResource @Post('x-www-form-urlencoded:html|json|xml')
+2015-10-20 15:25:54,347 INFO  [i.s.s.r.r.PostEntityServerResource           ] - calling post(Form), media types '[]'
+2015-10-20 15:25:54,351 INFO  [io.skysail.server.db.impl.Persister          ] - setting title=1445347554347 [class java.lang.String]
+2015-10-20 15:25:54,351 INFO  [io.skysail.server.db.impl.Persister          ] - setting created=Tue Oct 20 15:25:54 CEST 2015 [class java.util.Date]
+2015-10-20 15:25:54,351 INFO  [io.skysail.server.db.impl.Persister          ] - setting comment=Comment #6 [class java.lang.String]
+2015-10-20 15:25:54,351 INFO  [io.skysail.server.db.impl.Persister          ] - setting comment=Comment #7 [class java.lang.String]
+2015-10-20 15:25:54,366 INFO  [i.s.c.testsupport.TestsupportTestBase        ] - 
+2015-10-20 15:25:54,366 INFO  [i.s.c.testsupport.TestsupportTestBase        ] - --------------------------------------------
+2015-10-20 15:25:54,366 INFO  [i.s.c.testsupport.TestsupportTestBase        ] -  > TEST: running test 'html_variant_adds_comment'
+2015-10-20 15:25:54,366 INFO  [i.s.c.testsupport.TestsupportTestBase        ] - --------------------------------------------
+2015-10-20 15:25:54,366 INFO  [i.s.c.testsupport.TestsupportTestBase        ] - 
+2015-10-20 15:25:54,367 INFO  [i.s.s.r.r.PostEntityServerResource           ] - Request entry point: PostTodoResource @Post('json')
+2015-10-20 15:25:54,367 INFO  [i.s.s.r.r.PostEntityServerResource           ] - Request entry point: PostTodoResource @Post('x-www-form-urlencoded:html|json|xml')
+2015-10-20 15:25:54,367 INFO  [i.s.s.r.r.PostEntityServerResource           ] - calling post(Form), media types '[]'
+2015-10-20 15:25:54,371 INFO  [io.skysail.server.db.impl.Persister          ] - setting title=1445347554367 [class java.lang.String]
+2015-10-20 15:25:54,371 INFO  [io.skysail.server.db.impl.Persister          ] - setting created=Tue Oct 20 15:25:54 CEST 2015 [class java.util.Date]
+2015-10-20 15:25:54,371 INFO  [io.skysail.server.db.impl.Persister          ] - setting comment=Comment #10 [class java.lang.String]
+2015-10-20 15:25:54,377 INFO  [i.s.s.r.r.PutEntityServerResource            ] - Request entry point: PutTodoResource @Put('json')
+2015-10-20 15:25:54,394 INFO  [io.skysail.server.db.impl.Updater            ] - setting title=1445347554367 [class java.lang.String]
+2015-10-20 15:25:54,394 INFO  [io.skysail.server.db.impl.Updater            ] - setting created=Tue Oct 20 15:25:54 CEST 2015 [class java.util.Date]
+2015-10-20 15:25:54,395 INFO  [io.skysail.server.db.impl.Updater            ] - setting modified=Tue Oct 20 15:25:54 CEST 2015 [class java.util.Date]
+2015-10-20 15:25:54,395 INFO  [io.skysail.server.db.impl.Updater            ] - setting comment=Comment #10 [class java.lang.String]
+2015-10-20 15:25:54,396 INFO  [io.skysail.server.db.impl.Updater            ] - setting comment=Comment #12 [class java.lang.String]
+2015-10-20 15:25:54,406 INFO  [i.s.c.testsupport.TestsupportTestBase        ] - 
+2015-10-20 15:25:54,406 INFO  [i.s.c.testsupport.TestsupportTestBase        ] - --------------------------------------------
+2015-10-20 15:25:54,406 INFO  [i.s.c.testsupport.TestsupportTestBase        ] -  > TEST: running test 'html_variant_updates_title_and_comment'
+2015-10-20 15:25:54,406 INFO  [i.s.c.testsupport.TestsupportTestBase        ] - --------------------------------------------
+2015-10-20 15:25:54,406 INFO  [i.s.c.testsupport.TestsupportTestBase        ] - 
+2015-10-20 15:25:54,406 INFO  [i.s.s.r.r.PostEntityServerResource           ] - Request entry point: PostTodoResource @Post('json')
+2015-10-20 15:25:54,406 INFO  [i.s.s.r.r.PostEntityServerResource           ] - Request entry point: PostTodoResource @Post('x-www-form-urlencoded:html|json|xml')
+2015-10-20 15:25:54,407 INFO  [i.s.s.r.r.PostEntityServerResource           ] - calling post(Form), media types '[]'
+2015-10-20 15:25:54,410 INFO  [io.skysail.server.db.impl.Persister          ] - setting title=1445347554406 [class java.lang.String]
+2015-10-20 15:25:54,410 INFO  [io.skysail.server.db.impl.Persister          ] - setting created=Tue Oct 20 15:25:54 CEST 2015 [class java.util.Date]
+2015-10-20 15:25:54,411 INFO  [io.skysail.server.db.impl.Persister          ] - setting comment=Comment #17 [class java.lang.String]
+2015-10-20 15:25:54,419 INFO  [i.s.s.r.r.PutEntityServerResource            ] - Request entry point: PutTodoResource @Put('json')
+2015-10-20 15:25:54,430 INFO  [io.skysail.server.db.impl.Updater            ] - setting title=changed [class java.lang.String]
+2015-10-20 15:25:54,430 INFO  [io.skysail.server.db.impl.Updater            ] - setting created=Tue Oct 20 15:25:54 CEST 2015 [class java.util.Date]
+2015-10-20 15:25:54,430 INFO  [io.skysail.server.db.impl.Updater            ] - setting modified=Tue Oct 20 15:25:54 CEST 2015 [class java.util.Date]
+2015-10-20 15:25:54,431 INFO  [io.skysail.server.db.impl.Updater            ] - setting comment=a changed comment, too [class java.lang.String]
+2015-10-20 15:25:54,436 INFO  [i.s.c.testsupport.TestsupportTestBase        ] - 
+2015-10-20 15:25:54,436 INFO  [i.s.c.testsupport.TestsupportTestBase        ] - --------------------------------------------
+2015-10-20 15:25:54,436 INFO  [i.s.c.testsupport.TestsupportTestBase        ] -  > TEST: running test 'html_variant_gets_the_list_of_Todos'
+2015-10-20 15:25:54,437 INFO  [i.s.c.testsupport.TestsupportTestBase        ] - --------------------------------------------
+2015-10-20 15:25:54,437 INFO  [i.s.c.testsupport.TestsupportTestBase        ] - 
+2015-10-20 15:25:54,437 INFO  [i.s.s.r.r.PostEntityServerResource           ] - Request entry point: PostTodoResource @Post('json')
+2015-10-20 15:25:54,437 INFO  [i.s.s.r.r.PostEntityServerResource           ] - Request entry point: PostTodoResource @Post('x-www-form-urlencoded:html|json|xml')
+2015-10-20 15:25:54,437 INFO  [i.s.s.r.r.PostEntityServerResource           ] - calling post(Form), media types '[]'
+2015-10-20 15:25:54,440 INFO  [io.skysail.server.db.impl.Persister          ] - setting title=1445347554437 [class java.lang.String]
+2015-10-20 15:25:54,440 INFO  [io.skysail.server.db.impl.Persister          ] - setting created=Tue Oct 20 15:25:54 CEST 2015 [class java.util.Date]
+2015-10-20 15:25:54,440 INFO  [io.skysail.server.db.impl.Persister          ] - setting comment=Comment #22 [class java.lang.String]
+2015-10-20 15:25:54,443 INFO  [i.s.s.r.r.PostEntityServerResource           ] - Request entry point: PostTodoResource @Post('json')
+2015-10-20 15:25:54,443 INFO  [i.s.s.r.r.PostEntityServerResource           ] - Request entry point: PostTodoResource @Post('x-www-form-urlencoded:html|json|xml')
+2015-10-20 15:25:54,443 INFO  [i.s.s.r.r.PostEntityServerResource           ] - calling post(Form), media types '[]'
+2015-10-20 15:25:54,447 INFO  [io.skysail.server.db.impl.Persister          ] - setting title=1445347554437 [class java.lang.String]
+2015-10-20 15:25:54,447 INFO  [io.skysail.server.db.impl.Persister          ] - setting created=Tue Oct 20 15:25:54 CEST 2015 [class java.util.Date]
+2015-10-20 15:25:54,447 INFO  [io.skysail.server.db.impl.Persister          ] - setting comment=Comment #23 [class java.lang.String]
+2015-10-20 15:25:54,452 INFO  [i.s.s.r.resources.ListServerResource         ] - Request entry point: TodosResource @Get('html|json|yaml|xml') with variant [text/html]
+2015-10-20 15:25:54,486 INFO  [i.s.c.testsupport.TestsupportTestBase        ] - 
+2015-10-20 15:25:54,486 INFO  [i.s.c.testsupport.TestsupportTestBase        ] - --------------------------------------------
+2015-10-20 15:25:54,486 INFO  [i.s.c.testsupport.TestsupportTestBase        ] -  > TEST: running test 'html_variant_posts_todo_without_comment'
+2015-10-20 15:25:54,486 INFO  [i.s.c.testsupport.TestsupportTestBase        ] - --------------------------------------------
+2015-10-20 15:25:54,486 INFO  [i.s.c.testsupport.TestsupportTestBase        ] - 
+2015-10-20 15:25:54,486 INFO  [i.s.s.r.r.PostEntityServerResource           ] - Request entry point: PostTodoResource @Post('json')
+2015-10-20 15:25:54,486 INFO  [i.s.s.r.r.PostEntityServerResource           ] - Request entry point: PostTodoResource @Post('x-www-form-urlencoded:html|json|xml')
+2015-10-20 15:25:54,486 INFO  [i.s.s.r.r.PostEntityServerResource           ] - calling post(Form), media types '[]'
+2015-10-20 15:25:54,490 INFO  [io.skysail.server.db.impl.Persister          ] - setting title=1445347554486 [class java.lang.String]
+2015-10-20 15:25:54,490 INFO  [io.skysail.server.db.impl.Persister          ] - setting created=Tue Oct 20 15:25:54 CEST 2015 [class java.util.Date]
+2015-10-20 15:25:54,492 INFO  [i.s.c.testsupport.TestsupportTestBase        ] - 
+2015-10-20 15:25:54,492 INFO  [i.s.c.testsupport.TestsupportTestBase        ] - --------------------------------------------
+2015-10-20 15:25:54,492 INFO  [i.s.c.testsupport.TestsupportTestBase        ] -  > TEST: running test 'html_variant_posts_todo_with_two_comments'
+2015-10-20 15:25:54,492 INFO  [i.s.c.testsupport.TestsupportTestBase        ] - --------------------------------------------
+2015-10-20 15:25:54,492 INFO  [i.s.c.testsupport.TestsupportTestBase        ] - 
+2015-10-20 15:25:54,493 INFO  [i.s.s.r.r.PostEntityServerResource           ] - Request entry point: PostTodoResource @Post('json')
+2015-10-20 15:25:54,493 INFO  [i.s.s.r.r.PostEntityServerResource           ] - Request entry point: PostTodoResource @Post('x-www-form-urlencoded:html|json|xml')
+2015-10-20 15:25:54,493 INFO  [i.s.s.r.r.PostEntityServerResource           ] - calling post(Form), media types '[]'
+2015-10-20 15:25:54,496 INFO  [io.skysail.server.db.impl.Persister          ] - setting title=1445347554492 [class java.lang.String]
+2015-10-20 15:25:54,496 INFO  [io.skysail.server.db.impl.Persister          ] - setting created=Tue Oct 20 15:25:54 CEST 2015 [class java.util.Date]
+2015-10-20 15:25:54,496 INFO  [io.skysail.server.db.impl.Persister          ] - setting comment=Comment #32 [class java.lang.String]
+2015-10-20 15:25:54,497 INFO  [io.skysail.server.db.impl.Persister          ] - setting comment=Comment #33 [class java.lang.String]
+2015-10-20 15:25:54,500 INFO  [i.s.c.testsupport.TestsupportTestBase        ] - 
+2015-10-20 15:25:54,500 INFO  [i.s.c.testsupport.TestsupportTestBase        ] - --------------------------------------------
+2015-10-20 15:25:54,500 INFO  [i.s.c.testsupport.TestsupportTestBase        ] -  > TEST: running test 'html_variant_deletes_comment'
+2015-10-20 15:25:54,500 INFO  [i.s.c.testsupport.TestsupportTestBase        ] - --------------------------------------------
+2015-10-20 15:25:54,500 INFO  [i.s.c.testsupport.TestsupportTestBase        ] - 
+2015-10-20 15:25:54,501 INFO  [i.s.s.r.r.PostEntityServerResource           ] - Request entry point: PostTodoResource @Post('json')
+2015-10-20 15:25:54,501 INFO  [i.s.s.r.r.PostEntityServerResource           ] - Request entry point: PostTodoResource @Post('x-www-form-urlencoded:html|json|xml')
+2015-10-20 15:25:54,501 INFO  [i.s.s.r.r.PostEntityServerResource           ] - calling post(Form), media types '[]'
+2015-10-20 15:25:54,504 INFO  [io.skysail.server.db.impl.Persister          ] - setting title=1445347554500 [class java.lang.String]
+2015-10-20 15:25:54,504 INFO  [io.skysail.server.db.impl.Persister          ] - setting created=Tue Oct 20 15:25:54 CEST 2015 [class java.util.Date]
+2015-10-20 15:25:54,504 INFO  [io.skysail.server.db.impl.Persister          ] - setting comment=Comment #34 [class java.lang.String]
+2015-10-20 15:25:54,514 INFO  [i.s.s.r.r.PutEntityServerResource            ] - Request entry point: PutTodoResource @Put('json')
+2015-10-20 15:25:54,524 INFO  [io.skysail.server.db.impl.Updater            ] - setting title=1445347554500 [class java.lang.String]
+2015-10-20 15:25:54,525 INFO  [io.skysail.server.db.impl.Updater            ] - setting created=Tue Oct 20 15:25:54 CEST 2015 [class java.util.Date]
+2015-10-20 15:25:54,525 INFO  [io.skysail.server.db.impl.Updater            ] - setting modified=Tue Oct 20 15:25:54 CEST 2015 [class java.util.Date]
+2015-10-20 15:25:54,528 INFO  [i.s.c.testsupport.TestsupportTestBase        ] - 
+2015-10-20 15:25:54,528 INFO  [i.s.c.testsupport.TestsupportTestBase        ] - --------------------------------------------
+2015-10-20 15:25:54,529 INFO  [i.s.c.testsupport.TestsupportTestBase        ] -  > TEST: running test 'html_variant_posts_todo_with_comment'
+2015-10-20 15:25:54,529 INFO  [i.s.c.testsupport.TestsupportTestBase        ] - --------------------------------------------
+2015-10-20 15:25:54,529 INFO  [i.s.c.testsupport.TestsupportTestBase        ] - 
+2015-10-20 15:25:54,529 INFO  [i.s.s.r.r.PostEntityServerResource           ] - Request entry point: PostTodoResource @Post('json')
+2015-10-20 15:25:54,529 INFO  [i.s.s.r.r.PostEntityServerResource           ] - Request entry point: PostTodoResource @Post('x-www-form-urlencoded:html|json|xml')
+2015-10-20 15:25:54,529 INFO  [i.s.s.r.r.PostEntityServerResource           ] - calling post(Form), media types '[]'
+2015-10-20 15:25:54,532 INFO  [io.skysail.server.db.impl.Persister          ] - setting title=1445347554529 [class java.lang.String]
+2015-10-20 15:25:54,532 INFO  [io.skysail.server.db.impl.Persister          ] - setting created=Tue Oct 20 15:25:54 CEST 2015 [class java.util.Date]
+2015-10-20 15:25:54,532 INFO  [io.skysail.server.db.impl.Persister          ] - setting comment=Comment #38 [class java.lang.String]

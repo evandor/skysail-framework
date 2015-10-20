@@ -5,6 +5,7 @@ import io.skysail.api.domain.Identifiable;
 import java.lang.reflect.*;
 import java.util.*;
 import java.util.function.Function;
+import java.util.stream.*;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -33,14 +34,49 @@ public class EdgeHandler {
             Method method = entity.getClass().getMethod("get" + key.substring(0, 1).toUpperCase() + key.substring(1));
             @SuppressWarnings("unchecked")
             Collection<Identifiable> references = (Collection<Identifiable>) method.invoke(entity);
+            List<Edge> edgesToDelete = StreamSupport.stream(vertex.getEdges(Direction.OUT, key).spliterator(), false)
+                    .collect(Collectors.toList());
+            for (Identifiable referencedObject : references) {
+                if (referencedObject.getId() != null) {
+                    Optional<Edge> edge = match(vertex, db.getVertex(referencedObject.getId()), edgesToDelete, key);
+                    if (edge.isPresent()) {
+                        edgesToDelete.remove(edge.get());
+                    }
+                }
+            }
+
+            edgesToDelete.stream().forEach(edge -> db.removeEdge(edge));
+
             for (Identifiable referencedObject : references) {
                 OrientVertex target = fn.apply(referencedObject);
-                db.addEdge(null, vertex, target, key);
+                Iterable<Edge> existingEdges = vertex.getEdges(Direction.OUT, key);
+                if (edgeDoesNotExistYet(existingEdges, vertex, target, key)) {
+                    db.addEdge(null, vertex, target, key);
+                }
             }
         } else if (String.class.isAssignableFrom(type)) {
             removeOldReferences(vertex, key);
             addReference(vertex, properties, key, edges);
         }
+    }
+
+    private Optional<Edge> match(Vertex from, Vertex to, List<Edge> edgesToDelete, String key) {
+        return edgesToDelete.stream().filter(edge -> {
+            return edgeExists(edge, from, to, key);
+        }).findFirst();
+    }
+
+    private boolean edgeDoesNotExistYet(Iterable<Edge> existingEdges, Vertex from, Vertex to, String key) {
+        if (existingEdges == null) {
+            return true;
+        }
+        return !StreamSupport.stream(existingEdges.spliterator(), false)
+                .filter(edge -> edgeExists(edge, from, to, key)).findFirst().isPresent();
+    }
+
+    private boolean edgeExists(Edge edge, Vertex from, Vertex to, String key) {
+        return key.equals(edge.getLabel()) && edge.getVertex(Direction.IN).equals(to)
+                && edge.getVertex(Direction.OUT).equals(from);
     }
 
     private void removeOldReferences(Vertex vertex, String key) {

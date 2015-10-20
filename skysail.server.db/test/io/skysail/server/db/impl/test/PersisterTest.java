@@ -6,10 +6,12 @@ import static org.junit.Assert.assertThat;
 import io.skysail.server.db.impl.Persister;
 import io.skysail.server.db.impl.test.entities.*;
 
+import java.util.*;
+
 import org.junit.*;
 import org.mockito.Mockito;
 
-import com.tinkerpop.blueprints.Vertex;
+import com.tinkerpop.blueprints.*;
 import com.tinkerpop.blueprints.impls.orient.*;
 
 public class PersisterTest {
@@ -44,6 +46,7 @@ public class PersisterTest {
         Mockito.when(db.getVertex(SOME_ROLE_ID)).thenReturn(roleVertex);
 
         Mockito.when(userVertex.getId()).thenReturn(SOME_USER_ID);
+        Mockito.when(userVertex.getEdges(Direction.OUT, "roles")).thenReturn(new ArrayList<>());
     }
 
     @Test
@@ -81,6 +84,11 @@ public class PersisterTest {
         SomeUser theUser = setupExistingUserWithRole();
 
         Mockito.when(db.addVertex("class:SomeRole")).thenReturn(roleVertex2);
+        Edge edge = Mockito.mock(Edge.class);
+        Mockito.when(edge.getLabel()).thenReturn("roles");
+        Mockito.when(edge.getVertex(Direction.IN)).thenReturn(roleVertex);
+        Mockito.when(edge.getVertex(Direction.OUT)).thenReturn(userVertex);
+        Mockito.when(userVertex.getEdges(Direction.OUT, "roles")).thenReturn(Arrays.asList(edge));
         theUser.getRoles().add(new SomeRole("asecondrole"));
         persister.persist(theUser);
 

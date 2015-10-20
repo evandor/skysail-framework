@@ -72,21 +72,23 @@ public class ClipDbTests extends DbIntegrationTests {
 
     @Test
     public void html_variant_retrieves_the_list_of_clips() {
-        postClipResource.post(aNewClip, HTML_VARIANT);
-        postClipResource.post(aNewClip, HTML_VARIANT);
+        postClipResource.post(new Clip("html_variant_retrieves_the_list_of_clips"), HTML_VARIANT);
+        postClipResource.post(new Clip("html_variant_retrieves_the_list_of_clips"), HTML_VARIANT);
+
         List<Clip> clips = clipsResource.getEntities(HTML_VARIANT).getEntity();
+
         assertThat(
-                clips.stream().filter(clip -> clip.getTitle().equals(aNewClip.getTitle())).collect(Collectors.toList())
+                clips.stream().filter(clip -> clip.getTitle().equals("html_variant_retrieves_the_list_of_clips")).collect(Collectors.toList())
                         .size(), is(2));
     }
 
     @Test
     public void json_variant_retrieves_the_list_of_clips() {
-        postClipResource.post(aNewClip, HTML_VARIANT);
-        postClipResource.post(aNewClip, HTML_VARIANT);
+        postClipResource.post(new Clip("json_variant_retrieves_the_list_of_clips"), HTML_VARIANT);
+        postClipResource.post(new Clip("json_variant_retrieves_the_list_of_clips"), HTML_VARIANT);
         List<Clip> clips = clipsResource.getEntities(JSON_VARIANT).getEntity();
         assertThat(
-                clips.stream().filter(clip -> clip.getTitle().equals(aNewClip.getTitle())).collect(Collectors.toList())
+                clips.stream().filter(clip -> clip.getTitle().equals("json_variant_retrieves_the_list_of_clips")).collect(Collectors.toList())
                         .size(), is(2));
     }
 

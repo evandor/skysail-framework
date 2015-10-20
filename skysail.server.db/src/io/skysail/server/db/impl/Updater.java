@@ -5,6 +5,7 @@ import io.skysail.api.domain.Identifiable;
 import java.lang.reflect.*;
 import java.util.*;
 
+import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -22,18 +23,15 @@ public class Updater {
     public Updater(OrientGraph db, String[] edges) {
         this.edges = Arrays.asList(edges);
         this.db = db;
-        //edgeHandler = new EdgeHandler(null,db);
         edgeHandler = new EdgeHandler((identifiable) -> (OrientVertex) execute(identifiable), db);
-
     }
 
     public <T extends Identifiable> Object update(T entity) {
         return runInTransaction(entity);
     }
 
-    private Object execute(Identifiable entity) {
-        String id = ((Identifiable) entity).getId();
-        Vertex vertex = db.getVertex(id);
+    private Object execute(@NonNull Identifiable entity) {
+        Vertex vertex = determineVertex(entity);
         try {
             @SuppressWarnings("unchecked")
             Map<String, Object> properties = mapper.convertValue(entity, Map.class);
@@ -74,6 +72,16 @@ public class Updater {
         } finally {
             db.shutdown();
         }
+    }
+
+    private Vertex determineVertex(Identifiable entity) {
+        Vertex vertex;
+        if (entity.getId() != null) {
+            vertex = db.getVertex(entity.getId());
+        } else {
+            vertex = db.addVertex("class:" + entity.getClass().getSimpleName());
+        }
+        return vertex;
     }
 
     private void setProperty(Object entity, Vertex vertex, Map<String, Object> properties, String key) {

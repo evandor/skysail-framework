@@ -34,7 +34,6 @@ public class Persister {
     private Object execute(@NonNull Identifiable entity) {
         Vertex vertex = determineVertex(entity);
         try {
-            //Map<String, String> properties = BeanUtils.describe(entity);
             @SuppressWarnings("unchecked")
             Map<String,Object> props = mapper.convertValue(entity, Map.class);
             props.keySet().stream().forEach(setPropertyOrCreateEdge(entity, vertex, props));

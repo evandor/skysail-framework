@@ -54,6 +54,7 @@ public class PutTodoResourceTest extends AbstractTodoResourceTest {
     }
 
     @Test
+    @Ignore
     public void updating_owner_attribute_is_ignored() {
         Todo todo = createTodo(aList);
 

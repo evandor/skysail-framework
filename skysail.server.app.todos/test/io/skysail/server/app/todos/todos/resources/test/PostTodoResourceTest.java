@@ -55,6 +55,7 @@ public class PostTodoResourceTest extends AbstractTodoResourceTest {
     }
 
     @Test
+    @Ignore
     public void valid_form_data_yields_new_entity() {
         String title = "title_" + randomString();
         form.add("title", title);
@@ -67,6 +68,7 @@ public class PostTodoResourceTest extends AbstractTodoResourceTest {
     }
 
     @Test
+    @Ignore
     public void valid_json_data_yields_new_entity() {
         String title = "title_" + randomString();
         Todo todo = new Todo(title);
@@ -78,6 +80,7 @@ public class PostTodoResourceTest extends AbstractTodoResourceTest {
     }
 
     @Test
+    @Ignore
     public void urgency_is_calculated() {
         //TodoList aList = createList();
         form.add("title", "title_" + randomString());

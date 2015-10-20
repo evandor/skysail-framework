@@ -17,6 +17,7 @@ Test-Cases: \
 	skysail.server;version=${skysail.server.version},\
 	skysail.server.db;version=${skysail.server.db.version},\
 	skysail.server.queryfilter;version=${skysail.server.queryfilter.version},\
+    skysail.server.testsupport;version=${skysail.server.testsupport.version},\
 	skysail.server.um;version=${skysail.server.um.version},\
 	skysail.server.um.simple;version=${skysail.server.um.simple.version},\
 	osgi.core;version=5.0,\

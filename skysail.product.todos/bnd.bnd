@@ -94,6 +94,8 @@ runbundles:\
     ${javax},\
     ${commons},\
     ${felix},\
+    org.apache.felix.webconsole;version=4.2.10.all,\
+    org.apache.felix.http.bundle;version=3.0.0,\
     org.apache.servicemix.bundles.c3p0;version=0.9.1,\
     org.apache.servicemix.bundles.jakarta-regexp,\
     ${lucene},\
@@ -116,7 +118,11 @@ runbundles:\
     skysail.server.app.twitter4j;version=latest,\
     skysail.server.app.um.db;version=latest,\
     skysail.server.ext.initconfig;version=latest,\
+    skysail.server.http.javamelody;version=latest,\
     org.jsoup;version=1.8.1,\
     com.sun.mail.javax.mail;version=1.5.1,\
     ${jetty},\
-    org.yaml.snakeyaml;version=1.15.0
+    org.yaml.snakeyaml;version=1.15.0,\
+    com.google.inject;version=4.0,\
+    javax.inject;version=1.0.0,\
+    org.apache.servicemix.bundles.aopalliance;version=1.0.0.6

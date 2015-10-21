@@ -6,7 +6,8 @@
 -runbundles: ${runbundles}
 -runee: JavaSE-1.8
 -runfw: org.apache.felix.framework;version=${org.apache.felix.framework.version}
--runproperties: ${runproperties}
+-runproperties: ${runproperties},\
+    org.osgi.service.http.port=8888
 -runrepos: ${runrepos}
 -runsystemcapabilities: ${native_capability}
 -runsystempackages: ${runsystempackages}

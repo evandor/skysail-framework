@@ -1,6 +1,0 @@
-WARN  de.twenty11.skysail.server.core.restlet.SkysailRouter - please use a RouteBuilder to attach this resource: class de.twenty11.skysail.server.resources.DefaultResource
-WARN  de.twenty11.skysail.server.core.restlet.SkysailRouter - please use a RouteBuilder to attach this resource: class de.twenty11.skysail.server.resources.LoginResource
-WARN  de.twenty11.skysail.server.core.restlet.SkysailRouter - please use a RouteBuilder to attach this resource: class de.twenty11.skysail.server.resources.AboutResource
-WARN  d.t.skysail.server.core.osgi.internal.EventHelper - eventAdmin is null, cannot fire Event
-WARN  d.t.skysail.server.core.osgi.internal.EventHelper - eventAdmin is null, cannot fire Event
-WARN  d.t.skysail.server.core.osgi.internal.EventHelper - eventAdmin is null, cannot fire Event

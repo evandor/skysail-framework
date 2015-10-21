@@ -5,4 +5,5 @@ runsystempackages:\
     javax.naming.spi,javax.management,javax.management.openmbean,javax.swing.tree,javax.transaction,javax.transaction.xa,\
     javax.xml.transform.stax,javafx.application,javafx.scene,javafx.scene.control,javafx.scene.layout,javafx.stage,\
     javafx.beans.property,javafx.collections,javafx.beans.value,javafx.concurrent,javafx.event,javafx.geometry,\
-    javafx.scene.image,javafx.scene.web,javafx.util,netscape.javascript,javafx.scene.paint
+    javafx.scene.image,javafx.scene.web,javafx.util,netscape.javascript,javafx.scene.paint,com.sun.image.codec.jpeg,\
+    com.sun.management,sun.nio.ch

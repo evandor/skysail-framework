@@ -94,8 +94,6 @@ runbundles:\
     ${javax},\
     ${commons},\
     ${felix},\
-    org.apache.felix.webconsole;version=4.2.10.all,\
-    org.apache.felix.http.bundle;version=3.0.0,\
     org.apache.servicemix.bundles.c3p0;version=0.9.1,\
     org.apache.servicemix.bundles.jakarta-regexp,\
     ${lucene},\

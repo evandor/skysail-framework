@@ -21,7 +21,6 @@ Bundle-Description: provides the skysail http server
 	org.eclipse.jetty.server;version=9.2,\
 	javax.servlet;version=3.0,\
 	org.restlet.ext.jetty;version=2.3,\
-	org.restlet.ext.servlet;version=2.3,\
 	org.eclipse.jetty.util;version=9.2,\
 	org.restlet.ext.jackson;version=2.3
 Export-Package:  \

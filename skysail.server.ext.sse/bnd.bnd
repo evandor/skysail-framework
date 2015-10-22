@@ -21,7 +21,6 @@ Private-Package:  \
 	javax.validation.api;version=1.1,\
 	org.apache.commons.beanutils;version=1.9,\
 	org.apache.shiro.core;version=1.2,\
-	org.restlet.ext.servlet;version=2.3,\
 	javax.servlet;version=3.0,\
 	org.eclipse.jetty.servlet;version=9.2,\
 	org.eclipse.jetty.server;version=9.2,\

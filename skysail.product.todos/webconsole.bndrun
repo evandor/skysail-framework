@@ -3,16 +3,18 @@
 ########################################################################################
 
 -resolve.effective: active;skip:="osgi.service"
--runbundles: ${runbundles}
+
 -runee: JavaSE-1.8
 -runfw: org.apache.felix.framework;version=${org.apache.felix.framework.version}
--runproperties: org.osgi.service.http.port=8081,\
+-runproperties: org.osgi.service.http.port=8888,\
+    org.apache.felix.http.debug=true,\
+    org.apache.felix.http.jettyEnabled=true,\
     ds.loglevel=debug,\
     ${runproperties}
 -runrepos: ${runrepos}
 -runsystemcapabilities: ${native_capability}
 -runsystempackages: ${runsystempackages}
--runtrace: true
+-runtrace: false
 -runvm: -ea
 #, -XX:+UnlockCommercialFeatures,-XX:+FlightRecorder,-XX:StartFlightRecording="duration=120m,filename=etc/todos.jfr"
 
@@ -22,3 +24,31 @@
 
 skysail.config.path            = config/common,config/local
 logback.configurationFile.path = config/common
+
+
+-runbundles: \
+    ${aQute},\
+    ${logging},\
+    ${felix},\
+    javax.servlet;version='[3.1.0,3.1.1)',\
+    osgi.cmpn;version='[5.0.0,5.0.1)',\
+    org.apache.felix.webconsole;version=4.2.10.all,\
+    org.apache.felix.http.bridge;version=3.0.2,\
+    org.apache.felix.http.proxy;version=3.0.0,\
+    org.apache.felix.http.jetty;version=3.1.2
+
+
+    ### works ###
+    ${aQute},\
+    ${logging},\
+    ${felix},\
+    osgi.cmpn;version='[5.0.0,5.0.1)',\
+    org.apache.felix.webconsole;version=4.2.10.all,\
+    org.apache.felix.http.bundle;version='[2.3.2,2.3.3)'
+    #############
+
+
+    ### pool ###
+    org.apache.felix.webconsole;version=4.2.10.all,\
+    org.apache.felix.http.bridge;version=3.0.2,\
+    org.apache.felix.http.proxy;version=3.0.0,\

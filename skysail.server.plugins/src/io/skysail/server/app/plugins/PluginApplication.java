@@ -22,7 +22,6 @@ import org.osgi.framework.*;
 import aQute.bnd.annotation.component.Reference;
 import de.twenty11.skysail.server.app.ApplicationProvider;
 import de.twenty11.skysail.server.core.restlet.*;
-import de.twenty11.skysail.server.services.*;
 
 @aQute.bnd.annotation.component.Component(immediate = true)
 @Slf4j
@@ -43,10 +42,10 @@ public class PluginApplication extends SkysailApplication implements Application
     protected void attach() {
         super.attach();
 
-        router.setAuthorizationDefaults(anyOf("admin"));
+       // router.setAuthorizationDefaults(anyOf("admin"));
 
-        router.attach(new RouteBuilder("", PluginRootResource.class).authorizeWith(anyOf("admin")));
-        router.attach(new RouteBuilder("/", PluginRootResource.class).authorizeWith(anyOf("admin")));
+        router.attach(new RouteBuilder("", PluginRootResource.class));//.authorizeWith(anyOf("admin")));
+        router.attach(new RouteBuilder("/", PluginRootResource.class));//.authorizeWith(anyOf("admin")));
         router.attach(new RouteBuilder("/features/", FeaturesResource.class));
         router.attach(new RouteBuilder("/features/{id}/installations/", PostInstallationResource.class));
 

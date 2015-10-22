@@ -1,8 +1,6 @@
 package io.skysail.server.app.plugins.features;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 public class FeaturesRepository {
 
@@ -13,7 +11,7 @@ public class FeaturesRepository {
         feature.setVersion("1.2.3");
         feature.setStatus(FeatureStatus.AVAILABLE);
 
-        feature.addBundleLocation("https://github.com/evandor/skysail-repository/raw/master/release/org.apache.felix.http.jetty-2.3.0.jar");
+        //feature.addBundleLocation("https://github.com/evandor/skysail-repository/raw/master/release/org.apache.felix.http.jetty-2.3.0.jar");
         feature.addBundleLocation("https://github.com/evandor/skysail-repository/raw/master/release/org.apache.felix.http.bundle/org.apache.felix.http.bundle-2.3.0.jar");
         feature.addBundleLocation("https://github.com/evandor/skysail-repository/raw/master/release/org.apache.felix.webconsole-4.2.2.jar");
         feature.addBundleLocation("https://github.com/evandor/skysail-repository/raw/master/release/org.apache.felix.webconsole.plugins.memoryusage-1.0.4.jar");

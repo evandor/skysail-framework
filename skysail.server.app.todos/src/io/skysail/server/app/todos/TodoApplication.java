@@ -95,7 +95,7 @@ public class TodoApplication extends SkysailApplication implements ApplicationPr
         router.attach(new RouteBuilder("/Statuses/{statusname}", NextStatusesResource.class));
 
         router.attach(new RouteBuilder("/Lists", ListsResource.class));
-        router.attach(new RouteBuilder("/Lists/", PostListResource.class).authorizeWith(anyOf("skysail.server.app.todos.user")));
+        router.attach(new RouteBuilder("/Lists/", PostListResource.class));//.authorizeWith(anyOf("skysail.server.app.todos.user")));
         router.attach(new RouteBuilder("/Lists/{"+LIST_ID+"}", ListResource.class));
         router.attach(new RouteBuilder("/Lists/{"+LIST_ID+"}/", PutListResource.class));
         router.attach(new RouteBuilder("/Lists/{"+LIST_ID+"}/_stats", ListChartResource.class));

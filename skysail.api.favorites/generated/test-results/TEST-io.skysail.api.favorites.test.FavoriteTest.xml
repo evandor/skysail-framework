@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="io.skysail.api.favorites.test.FavoriteTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2015-10-21T07:06:32" hostname="PC-KVB-WIN74459" time="0.008">
+  <properties/>
+  <testcase name="pojo_test" classname="io.skysail.api.favorites.test.FavoriteTest" time="0.008"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

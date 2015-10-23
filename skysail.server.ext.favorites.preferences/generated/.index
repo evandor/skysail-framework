@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<repository increment="1443186757632" name="skysail.server.ext.favorites.preferences" xmlns="http://www.osgi.org/xmlns/repository/v1.0.0">
+  <resource>
+    <capability namespace="osgi.identity">
+      <attribute name="osgi.identity" value="skysail.server.ext.favorites.preferences"/>
+      <attribute name="type" value="osgi.bundle"/>
+      <attribute name="version" type="Version" value="0.1.1.201509251312"/>
+    </capability>
+    <capability namespace="osgi.content">
+      <attribute name="osgi.content" value="bb7953fabe540cfd5ac4ba2fa75fb5393458083d71914801965eb57deb2d8d74"/>
+      <attribute name="url" value="generated/skysail.server.ext.favorites.preferences.jar"/>
+      <attribute name="size" type="Long" value="8363"/>
+      <attribute name="mime" value="application/vnd.osgi.bundle"/>
+    </capability>
+    <capability namespace="osgi.wiring.bundle">
+      <attribute name="osgi.wiring.bundle" value="skysail.server.ext.favorites.preferences"/>
+      <attribute name="bundle-version" type="Version" value="0.1.1.201509251312"/>
+    </capability>
+    <capability namespace="osgi.wiring.host">
+      <attribute name="osgi.wiring.host" value="skysail.server.ext.favorites.preferences"/>
+      <attribute name="bundle-version" type="Version" value="0.1.1.201509251312"/>
+    </capability>
+    <capability namespace="osgi.service">
+      <attribute name="objectClass" type="List&lt;String&gt;" value="io.skysail.api.favorites.FavoritesService"/>
+      <directive name="uses" value="io.skysail.api.favorites"/>
+    </capability>
+    <capability namespace="bndtools.workspace">
+      <attribute name="bndtools.workspace" value="file:/C:/workspaces/ssf"/>
+      <attribute name="project.path" value="/skysail.server.ext.favorites.preferences"/>
+    </capability>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(&amp;(osgi.wiring.package=io.skysail.api.favorites)(version&gt;=0.1.0)(!(version&gt;=0.2.0)))"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(&amp;(osgi.wiring.package=org.osgi.service.prefs)(version&gt;=1.1.0)(!(version&gt;=2.0.0)))"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(&amp;(osgi.wiring.package=org.slf4j)(version&gt;=1.7.0)(!(version&gt;=2.0.0)))"/>
+    </requirement>
+    <requirement namespace="osgi.ee">
+      <directive name="filter" value="(&amp;(osgi.ee=JavaSE)(version=1.8))"/>
+    </requirement>
+    <requirement namespace="osgi.service">
+      <directive name="filter" value="(objectClass=org.osgi.service.prefs.PreferencesService)"/>
+      <directive name="effective" value="active"/>
+    </requirement>
+    <requirement namespace="osgi.extender">
+      <directive name="filter" value="(&amp;(osgi.extender=osgi.ds)(version&gt;=1.0.0)(!(version&gt;=2.0.0)))"/>
+      <directive name="effective" value="active"/>
+    </requirement>
+  </resource>
+</repository>

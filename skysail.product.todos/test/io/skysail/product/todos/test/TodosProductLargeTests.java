@@ -1,16 +1,16 @@
 package io.skysail.product.todos.test;
 
-import static org.hamcrest.CoreMatchers.containsString;
+import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.assertThat;
 import io.skysail.server.testsupport.SkysailServerRule;
 import io.skysail.server.testsupport.categories.LargeTests;
 import net.serenitybdd.junit.runners.SerenityRunner;
-import net.thucydides.core.annotations.Managed;
+import net.thucydides.core.annotations.*;
 
 import org.junit.*;
 import org.junit.experimental.categories.Category;
 import org.junit.runner.RunWith;
-import org.openqa.selenium.*;
+import org.openqa.selenium.WebDriver;
 
 @RunWith(SerenityRunner.class)
 @Category(LargeTests.class)
@@ -22,8 +22,16 @@ public class TodosProductLargeTests {
     @Rule
     public final SkysailServerRule serverRule = new SkysailServerRule("todos.largetest.bndrun" );
 
+    @Steps
+    BrowserSteps browserSteps;
+
     public TodosProductLargeTests() {
-       // System.setProperty("webdriver.firefox.bin", "C:\\Users\\graefca\\AppData\\Local\\Mozilla Firefox\\firefox.exe");
+       System.setProperty("webdriver.firefox.bin", "C:\\Users\\graefca\\AppData\\Local\\Mozilla Firefox\\firefox.exe");
+    }
+
+    @Before
+    public void setUp() {
+        browserSteps.setDriver(driver);
     }
 
     @AfterClass
@@ -32,21 +40,20 @@ public class TodosProductLargeTests {
     }
 
     @Test
-    public void admin_can_login_successfully() {
-        driver.get("http://127.0.0.1:2099/_login");
-        driver.findElement(By.name("username")).sendKeys("admin");
-        WebElement passwordElement = driver.findElement(By.name("password"));
-        passwordElement.sendKeys("skysail");
-        passwordElement.submit();
-//        System.out.println("Page title is: " + driver.getTitle());
-//        System.out.println(driver.getPageSource());
+    public void admin_can_login_and_logout_successfully() {
+        browserSteps.loginAs("admin","skysail");
         assertThat(driver.getPageSource(), containsString("/Todos/v2"));
 
-        driver.findElement(By.linkText("Todos")).click();
-        System.out.println(driver.getPageSource());
+        browserSteps.logout();
+        assertThat(driver.getPageSource(), not(containsString("/Todos/v2")));
 
+//        driver.findElement(By.linkText("Todos")).click();
+//        System.out.println(driver.getPageSource());
+    }
 
-
-
+    @Test
+    public void admin_cannot_login_with_wrong_credentials() {
+        browserSteps.loginAs("admin","xxx");
+        assertThat(driver.getPageSource(), not(containsString("/Todos/v2")));
     }
 }

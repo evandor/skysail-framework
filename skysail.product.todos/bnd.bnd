@@ -98,27 +98,22 @@ runbundles:\
     com.google.guava;version='[16.0,16.1)',\
     org.jboss.logging.jboss-logging;version='[3.1.4,3.1.5)',\
     org.hibernate.validator;version='[5.1.2,5.1.3)',\
+    ${logging},\
     ${skysail.api},\
     com.sun.el;version='[2.2.0,2.2.1)',\
     de.twenty11.owasp-java-html-sanitizer;version='[239.0.0,239.0.1)',\
     de.twentyeleven.skysail.org.antlr.stringtemplate-osgi;version=4.0.8,\
     ${skysail.server},\
-    ${logging},\
+    ${javamelody},\
     skysail.server.app.todos;version=latest
 
     ,\
-    org.apache.servicemix.bundles.c3p0;version=0.9.1,\
-    org.apache.servicemix.bundles.jakarta-regexp,\
     skysail.product.todos;version=latest,\
     skysail.server.peers.adminconfig;version=${skysail.server.peers.adminconfig.version},\
     skysail.server.polymer;version=${skysail.server.polymer.version},\
     skysail.server.plugins;version=${skysail.server.plugins.version},\
     skysail.server.app.um.db;version=latest,\
     org.jsoup;version=1.8.1,\
-    com.sun.mail.javax.mail;version=1.5.1,\
-    com.google.inject;version=4.0,\
-    javax.inject;version=1.0.0,\
-    org.apache.servicemix.bundles.aopalliance;version=1.0.0.6
 
 
     de.twentyeleven.skysail.org.json-osgi;version=latest,\
@@ -128,13 +123,11 @@ runbundles:\
     org.codehaus.jettison.jettison;version=1.3.7,\
     org.hibernate.validator;version='[5.1.2,5.1.3)',\
     org.jboss.logging.jboss-logging;version='[3.1.4,3.1.5)',\
-    org.quartz-scheduler.quartz;version=2.2.1,\
     osgi.enterprise;version='[5.0.0,5.0.1)',\
     skysail.server.app.bookmarks;version=latest,\
     skysail.server.app.svgedit;version=latest,\
     skysail.server.app.twitter4j;version=latest,\
     skysail.server.ext.initconfig;version=latest,\
-    skysail.server.http.javamelody;version=latest,\
     org.quartz-scheduler.quartz;version=2.2.1,\
     org.eclipse.equinox.http.jetty;version=3.1.0,\
     org.eclipse.equinox.http.servlet;version=1.2.0

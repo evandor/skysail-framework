@@ -1,0 +1,8 @@
+javamelody:\
+    com.google.inject;version=4.0,\
+    org.apache.servicemix.bundles.aopalliance;version=1.0.0.6,\
+    com.sun.mail.javax.mail;version=1.5.1,\
+    org.quartz-scheduler.quartz;version=2.2.1,\
+    org.apache.servicemix.bundles.c3p0;version=0.9.1,\
+    org.apache.servicemix.bundles.jakarta-regexp,\
+    skysail.server.http.javamelody;version=latest

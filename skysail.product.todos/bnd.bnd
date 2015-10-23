@@ -105,17 +105,20 @@ runbundles:\
     de.twentyeleven.skysail.org.antlr.stringtemplate-osgi;version=4.0.8,\
     ${skysail.server},\
     ${javamelody},\
+    skysail.server.app.um.db;version=latest,\
+    org.jsoup;version=1.8.1,\
+    skysail.server.app.bookmarks;version=latest,\
+    skysail.server.app.svgedit;version=latest,\
+    skysail.server.app.twitter4j;version=latest,\
     skysail.server.app.todos;version=latest
 
-    ,\
+
+    ### Pool #############################
+
     skysail.product.todos;version=latest,\
     skysail.server.peers.adminconfig;version=${skysail.server.peers.adminconfig.version},\
     skysail.server.polymer;version=${skysail.server.polymer.version},\
     skysail.server.plugins;version=${skysail.server.plugins.version},\
-    skysail.server.app.um.db;version=latest,\
-    org.jsoup;version=1.8.1,\
-
-
     de.twentyeleven.skysail.org.json-osgi;version=latest,\
     javassist;version='[3.18.1,3.18.2)',\
     org.apache.servicemix.bundles.c3p0;version=0.9.1,\
@@ -124,9 +127,6 @@ runbundles:\
     org.hibernate.validator;version='[5.1.2,5.1.3)',\
     org.jboss.logging.jboss-logging;version='[3.1.4,3.1.5)',\
     osgi.enterprise;version='[5.0.0,5.0.1)',\
-    skysail.server.app.bookmarks;version=latest,\
-    skysail.server.app.svgedit;version=latest,\
-    skysail.server.app.twitter4j;version=latest,\
     skysail.server.ext.initconfig;version=latest,\
     org.quartz-scheduler.quartz;version=2.2.1,\
     org.eclipse.equinox.http.jetty;version=3.1.0,\

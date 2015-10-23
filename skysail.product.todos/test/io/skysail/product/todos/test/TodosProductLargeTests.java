@@ -38,8 +38,15 @@ public class TodosProductLargeTests {
         WebElement passwordElement = driver.findElement(By.name("password"));
         passwordElement.sendKeys("skysail");
         passwordElement.submit();
-        System.out.println("Page title is: " + driver.getTitle());
-        System.out.println(driver.getPageSource());
+//        System.out.println("Page title is: " + driver.getTitle());
+//        System.out.println(driver.getPageSource());
         assertThat(driver.getPageSource(), containsString("/Todos/v2"));
+
+        driver.findElement(By.linkText("Todos")).click();
+        System.out.println(driver.getPageSource());
+
+
+
+
     }
 }

@@ -9,7 +9,10 @@ import java.util.*;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.stream.Collectors;
 
+import lombok.extern.slf4j.Slf4j;
+
 import org.apache.shiro.SecurityUtils;
+import org.osgi.framework.Bundle;
 import org.osgi.service.cm.*;
 import org.osgi.service.component.ComponentContext;
 import org.restlet.Request;
@@ -21,6 +24,7 @@ import de.twenty11.skysail.server.resources.*;
 import de.twenty11.skysail.server.services.ResourceBundleProvider;
 
 @Component(immediate = true, properties = { "service.pid=landingpages" })
+@Slf4j
 public class SkysailRootApplication extends SkysailApplication implements ApplicationProvider, ResourceBundleProvider,
         ManagedService {
 
@@ -59,6 +63,7 @@ public class SkysailRootApplication extends SkysailApplication implements Applic
             setContext(getContext().createChildContext());
         }
         setComponentContext(componentContext);
+        dumpBundlesInformationToLog(componentContext.getBundleContext().getBundles());
     }
 
     @Override
@@ -146,5 +151,13 @@ public class SkysailRootApplication extends SkysailApplication implements Applic
         Set<MenuItemProvider> providers = menuProviders.stream().map(m -> m.get()).collect(Collectors.toSet());
         return MenuItemUtils.getMenuItems(providers, request, Category.APPLICATION_MAIN_MENU);
     }
+
+    private void dumpBundlesInformationToLog(Bundle[] bundles) {
+        log.debug("Currently installed bundles:");
+        log.debug("----------------------------");
+        log.debug("");
+        Arrays.stream(bundles).forEach(b -> log.debug("{} [{}] state {}", b.getSymbolicName(), b.getVersion(), b.getState()));
+    }
+
 
 }

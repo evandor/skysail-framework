@@ -10,7 +10,6 @@ import de.twenty11.skysail.server.ext.apt.annotations.*;
 @GeneratePostResource
 @GenerateListResource(linkheader = "PostContactResource")
 @GeneratePutResource
-@GenerateEntityResource(linkheader = "PutContactResource")
 @Getter
 @Setter
 public class Contact {

@@ -1,4 +1,4 @@
-package de.twenty11.skysail.server.ext.apt;
+package io.skysail.server.codegen.apt.processors;
 
 import io.skysail.server.ext.apt.model.entities.EntityGraph;
 import io.skysail.server.ext.apt.model.types.*;
@@ -11,6 +11,7 @@ import javax.annotation.processing.*;
 import javax.lang.model.element.*;
 import javax.tools.JavaFileObject;
 
+import de.twenty11.skysail.server.ext.apt.STElement;
 import de.twenty11.skysail.server.ext.apt.annotations.SkysailApplication;
 
 public abstract class Processors extends AbstractProcessor {

@@ -1,28 +1,19 @@
 package de.twenty11.skysail.server.ext.apt.test;
 
-import static org.hamcrest.Matchers.equalTo;
-import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.assertThat;
-import io.skysail.server.ext.apt.model.entities.Entity;
-import io.skysail.server.ext.apt.model.entities.EntityGraph;
-import io.skysail.server.ext.apt.model.entities.Reference;
+import io.skysail.server.ext.apt.model.entities.*;
 
 import java.lang.annotation.Annotation;
 import java.util.HashSet;
 
-import javax.lang.model.element.Element;
-import javax.lang.model.element.Name;
+import javax.lang.model.element.*;
 
-import org.junit.Before;
-import org.junit.Ignore;
-import org.junit.Test;
+import org.junit.*;
 import org.mockito.Mockito;
 
 import de.twenty11.skysail.server.ext.apt.STElement;
-import de.twenty11.skysail.server.ext.apt.annotations.GenerateEntityResource;
-import de.twenty11.skysail.server.ext.apt.annotations.GenerateListResource;
-import de.twenty11.skysail.server.ext.apt.annotations.GeneratePostResource;
-import de.twenty11.skysail.server.ext.apt.annotations.GeneratePutResource;
+import de.twenty11.skysail.server.ext.apt.annotations.*;
 
 public class STElementTest {
 
@@ -68,25 +59,7 @@ public class STElementTest {
         STElement stElement = new STElement(element, graph, annotation);
         assertThat(stElement.getPath(), is(equalTo("/Type1s/{id}/Type2s")));
     }
-    
-    @Test
-    public void entityResourcePath_for_type1_is_calculated_correctly() throws Exception {
-        Mockito.when(name.toString()).thenReturn("Type1");
-        Class<? extends Annotation> annotation = GenerateEntityResource.class;
-        edges.add(new Reference(type1, type2));
-        STElement stElement = new STElement(element, graph, annotation);
-        assertThat(stElement.getPath(), is(equalTo("/Type1s/{id}")));
-    }
 
-    @Test
-    public void entityResourcePath_for_type2_is_calculated_correctly() throws Exception {
-        Mockito.when(name.toString()).thenReturn("Type2");
-        Class<? extends Annotation> annotation = GenerateEntityResource.class;
-        edges.add(new Reference(type1, type2));
-        STElement stElement = new STElement(element, graph, annotation);
-        assertThat(stElement.getPath(), is(equalTo("/Type2s/{id}")));
-    }
-    
     @Test
     public void postEntityResourcePath_for_type1_is_calculated_correctly() throws Exception {
         Mockito.when(name.toString()).thenReturn("Type1");
@@ -104,7 +77,7 @@ public class STElementTest {
         STElement stElement = new STElement(element, graph, annotation);
         assertThat(stElement.getPath(), is(equalTo("/Type1s/{id}/Type2s/")));
     }
-    
+
     @Test
     public void putEntityResourcePath_for_type1_is_calculated_correctly() throws Exception {
         Mockito.when(name.toString()).thenReturn("Type1");

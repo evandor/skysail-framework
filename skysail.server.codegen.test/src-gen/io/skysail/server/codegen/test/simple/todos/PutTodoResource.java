@@ -16,7 +16,7 @@ public class PutTodoResource extends PutEntityServerResource<Todo> {
     }
 
     public Todo getEntity() {
-        return app.getTodoRepo().findOne(getAttribute("id"));
+        return app.getRepository().findOne(getAttribute("id"));
     }
 
     public SkysailResponse<Todo> updateEntity(Todo entity) {

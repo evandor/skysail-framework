@@ -1,17 +1,13 @@
 package de.twenty11.skysail.server.ext.apt;
 
-import io.skysail.server.ext.apt.model.entities.Entity;
-import io.skysail.server.ext.apt.model.entities.EntityGraph;
-import io.skysail.server.ext.apt.model.entities.Reference;
+import io.skysail.server.ext.apt.model.entities.*;
 
 import java.lang.annotation.Annotation;
 
 import javax.lang.model.element.Element;
 
 import lombok.Getter;
-import de.twenty11.skysail.server.ext.apt.annotations.GenerateEntityResource;
-import de.twenty11.skysail.server.ext.apt.annotations.GeneratePostResource;
-import de.twenty11.skysail.server.ext.apt.annotations.GeneratePutResource;
+import de.twenty11.skysail.server.ext.apt.annotations.*;
 
 @Getter
 public class STElement {
@@ -31,7 +27,7 @@ public class STElement {
 	public String getPath() {
 		Entity entity = new Entity(enclosingElement.toString(), simpleName);
 		String path = getPathTemplate(simpleName);
-		if (graph.getNodesWithNoIncomingEdge().contains(entity) || (gpr.isAssignableFrom(GenerateEntityResource.class))) {
+		if (graph.getNodesWithNoIncomingEdge().contains(entity)) {
 			return path;
 		} else {
 			Reference firstIncomingEdge = graph.getIncomingEdges(entity).get(0);
@@ -48,9 +44,9 @@ public class STElement {
 		if (gpr.isAssignableFrom(GeneratePostResource.class)) {
 			return "/" + simpleName + "s/";
 		}
-		if (gpr.isAssignableFrom(GenerateEntityResource.class)) {
-            return "/" + simpleName + "s/{id}";
-        }
+//		if (gpr.isAssignableFrom(GenerateEntityResource.class)) {
+//            return "/" + simpleName + "s/{id}";
+//        }
         if (gpr.isAssignableFrom(GeneratePutResource.class)) {
             return "/" + simpleName + "s/{id}/";
         }

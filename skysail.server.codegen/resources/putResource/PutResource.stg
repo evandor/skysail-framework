@@ -17,7 +17,7 @@ public class Put$name$Resource extends PutEntityServerResource<$name$> {
     }
 
     public $name$ getEntity() {
-        return app.get$name$Repo().findOne(getAttribute("id"));
+        return app.getRepository().findOne(getAttribute("id"));
     }
 
     public SkysailResponse<$name$> updateEntity($name$ entity) {

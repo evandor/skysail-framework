@@ -4,7 +4,6 @@ import io.skysail.api.forms.Field;
 import lombok.*;
 import de.twenty11.skysail.server.ext.apt.annotations.*;
 
-@GenerateEntityResource
 @GenerateListResource
 @GeneratePostResource
 @GeneratePutResource

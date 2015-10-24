@@ -1,9 +1,12 @@
 package io.skysail.server.codegen.apt.processors;
 
+import io.skysail.server.codegen.apt.stringtemplate.MySTGroupFile;
+import io.skysail.server.ext.apt.annotations.GenerateResources;
 import io.skysail.server.ext.apt.model.entities.*;
 import io.skysail.server.ext.apt.model.types.TypeModel2;
 
 import java.io.*;
+import java.net.URL;
 import java.nio.file.*;
 import java.util.*;
 import java.util.stream.*;
@@ -17,10 +20,9 @@ import lombok.extern.slf4j.Slf4j;
 
 import org.stringtemplate.v4.*;
 
-import de.twenty11.skysail.server.ext.apt.*;
-import de.twenty11.skysail.server.ext.apt.annotations.*;
+import de.twenty11.skysail.server.ext.apt.annotations.ResourceType;
 
-@SupportedAnnotationTypes("de.twenty11.skysail.server.ext.apt.annotations.GenerateResources")
+@SupportedAnnotationTypes("io.skysail.server.ext.apt.annotations.GenerateResources")
 @SupportedSourceVersion(javax.lang.model.SourceVersion.RELEASE_8)
 @Slf4j
 public class EntityProcessor extends Processors {
@@ -36,6 +38,7 @@ public class EntityProcessor extends Processors {
             try {
                 createRepository(entity);
                 createEntityResource(roundEnv, graph, entity);
+                createListResource(roundEnv, graph, entity);
                 createPostResource(roundEnv, graph, entity);
                 createPutResource(roundEnv, graph, entity);
             } catch (Exception e) {
@@ -93,7 +96,7 @@ public class EntityProcessor extends Processors {
             jfo = createSourceFile(getTypeName(entityElement) + "Repo");
 
             Writer writer = jfo.openWriter();
-            STGroup group = new STGroupFile("repository/Repository.stg", '$', '$');
+            STGroup group = new MySTGroupFile("repository/Repository.stg", '$', '$');
 
             ST st = group.getInstanceOf("repository");
             st.add("package", entityElement.getEnclosingElement().toString());
@@ -128,16 +131,60 @@ public class EntityProcessor extends Processors {
 
         JavaFileObject jfo = createSourceFile(getTypeName(entityElement) + "Resource");
         Writer writer = jfo.openWriter();
-        STGroup group = new STGroupFile("entityResource/EntityResource.stg", '$', '$');
+
+        URL url = getURL("entityResource/EntityResource.stg");
+        printMessage("URL " + url.toString());
+
+//        try (Stream<String> lines = Files.lines(Paths.get(url.toURI()))) {
+//            lines.forEach(line -> printMessage(line));
+//        }
+//
+//
+
+        STGroup group = new MySTGroupFile("entityResource/EntityResource.stg", '$', '$');
         ST st = group.getInstanceOf("entity");
+        st.add("package", entityElement.getEnclosingElement().toString());
         st.add("appName", application);
-        st.add("element", new STElement(entityElement, graph, GenerateEntityResource.class));
-        st.add("entityResources", getElements2(roundEnv, GenerateEntityResource.class, graph));
+        st.add("name", entityElement.getSimpleName());
+        // st.add("element", new STElement(entityElement, graph,
+        // GenerateEntityResource.class));
+        // st.add("entityResources", getElements2(roundEnv,
+        // GenerateEntityResource.class, graph));
         st.add("linkheader", linkheader);
         st.add("imports", imports);
         writer.append(st.render());
         writer.close();
 
+    }
+
+    private void createListResource(RoundEnvironment roundEnv, EntityGraph graph, Element entityElement) throws IOException {
+
+        GenerateResources annotation = entityElement.getAnnotation(GenerateResources.class);
+        String application = annotation.application();
+
+        // String linkheader = Arrays.stream(annotation.linkheader()).map(lh ->
+        // lh + ".class")
+        // .collect(Collectors.joining(","));
+        // if (linkheader == null || linkheader.trim().length() == 0) {
+        // linkheader = "Post" + entityElement.getSimpleName() +
+        // "Resource.class";
+        // }
+
+        JavaFileObject jfo = createSourceFile(getTypeName(entityElement) + "sResource");
+
+        Writer writer = jfo.openWriter();
+
+        STGroup group = new MySTGroupFile("listResource/ListResource.stg", '$', '$');
+        ST st = group.getInstanceOf("list");
+        st.add("name", entityElement.getSimpleName());
+        st.add("package", entityElement.getEnclosingElement().toString());
+        st.add("imports", getImports(entityElement, graph));
+        st.add("linkheader", "");//linkheader);
+        st.add("getData", "");//getData(entityElement, graph));
+        String result = st.render();
+        writer.append(result);
+
+        writer.close();
     }
 
     private void createPostResource(RoundEnvironment roundEnv, EntityGraph graph, Element entityElement)
@@ -151,14 +198,14 @@ public class EntityProcessor extends Processors {
 
         String typeName = entityElement.getEnclosingElement().toString() + ".Post" + entityElement.getSimpleName()
                 + "Resource";
-//        if (skipGeneration(typeName)) {
-//            return;
-//        }
+        // if (skipGeneration(typeName)) {
+        // return;
+        // }
         JavaFileObject jfo = createSourceFile(typeName);
 
         Writer writer = jfo.openWriter();
 
-        STGroup group = new STGroupFile("postResource/PostResource2.stg", '$', '$');
+        STGroup group = new MySTGroupFile("postResource/PostResource2.stg", '$', '$');
         ST st = group.getInstanceOf("post");
         st.add("name", entityElement.getSimpleName());
         st.add("package", entityElement.getEnclosingElement().toString());
@@ -174,7 +221,8 @@ public class EntityProcessor extends Processors {
     }
 
     private boolean skipGeneration(String typename) {
-        String filename = "C:\\git\\skysail-framework\\skysail.server.codegen.test\\src" + File.separatorChar + typename.replace('.', File.separatorChar) + ".java";
+        String filename = "C:\\git\\skysail-framework\\skysail.server.codegen.test\\src" + File.separatorChar
+                + typename.replace('.', File.separatorChar) + ".java";
         Path path = Paths.get(filename);
         if (!(new File(filename).exists())) {
             printMessage("file '" + filename + "' not found, start generation...");
@@ -183,11 +231,12 @@ public class EntityProcessor extends Processors {
         try (Stream<String> lines = Files.lines(path)) {
             Optional<String> hasAnnotation = lines.filter(s -> s.contains(GENERATED_ANNOTATION)).findFirst();
             if (hasAnnotation.isPresent()) {
-                printMessage("file " + filename + " will be regenerated, as it contains the proper @Generate annotation.");
+                printMessage("file " + filename
+                        + " will be regenerated, as it contains the proper @Generate annotation.");
                 return false;
             }
         } catch (IOException e) {
-            log.error(e.getMessage(),e);
+            log.error(e.getMessage(), e);
         }
         printMessage("file " + filename + " will not be regenerated, as it is missing the proper @Generate annotation");
         return true;
@@ -202,7 +251,7 @@ public class EntityProcessor extends Processors {
                 + entityElement.getSimpleName() + "Resource");
 
         Writer writer = jfo.openWriter();
-        STGroup group = new STGroupFile("putResource/PutResource.stg", '$', '$');
+        STGroup group = new MySTGroupFile("putResource/PutResource.stg", '$', '$');
         ST st = group.getInstanceOf("put");
         st.add("name", entityElement.getSimpleName());
         st.add("package", entityElement.getEnclosingElement().toString());
@@ -256,6 +305,17 @@ public class EntityProcessor extends Processors {
 
     private Entity toEntity(EntityGraph graph, Element entityElement) {
         return graph.getNode(entityElement.getEnclosingElement().toString(), entityElement.getSimpleName().toString());
+    }
+
+    public URL getURL(String fileName) {
+        URL url;
+        ClassLoader cl = Thread.currentThread().getContextClassLoader();
+        url = cl.getResource(fileName);
+        if ( url==null ) {
+            cl = this.getClass().getClassLoader();
+            url = cl.getResource(fileName);
+        }
+        return url;
     }
 
 }

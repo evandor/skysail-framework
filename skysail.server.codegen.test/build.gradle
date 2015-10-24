@@ -7,6 +7,9 @@ sourceSets {
 }
 
 task runApt(type: JavaCompile, group: 'build', description: 'Generates the apt sources') {
+    /*if (System.getProperty('DEBUG', 'false') == 'true') {
+        jvmArgs = ['-Xdebug','-Xrunjdwp:transport=dt_socket,server=y,suspend=y,address=9009']
+    }*/
 	dependsOn(':skysail.server.codegen:build')
     source = sourceSets.main.java
     classpath = configurations.compile// + configurations.querydslapt

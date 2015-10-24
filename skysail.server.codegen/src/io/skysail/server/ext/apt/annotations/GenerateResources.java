@@ -1,6 +1,8 @@
-package de.twenty11.skysail.server.ext.apt.annotations;
+package io.skysail.server.ext.apt.annotations;
 
 import java.lang.annotation.*;
+
+import de.twenty11.skysail.server.ext.apt.annotations.ResourceType;
 
 
 @Target({ ElementType.TYPE })

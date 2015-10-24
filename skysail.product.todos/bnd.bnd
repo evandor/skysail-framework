@@ -107,8 +107,10 @@ runbundles:\
     ${javamelody},\
     skysail.server.app.um.db;version=latest,\
     org.jsoup;version=1.8.1,\
+    skysail.server.codegen;version=latest,\
     skysail.server.app.bookmarks;version=latest,\
     skysail.server.app.svgedit;version=latest,\
+    skysail.server.app.tap;version=latest,\
     skysail.server.app.twitter4j;version=latest,\
     skysail.server.app.todos;version=latest
 

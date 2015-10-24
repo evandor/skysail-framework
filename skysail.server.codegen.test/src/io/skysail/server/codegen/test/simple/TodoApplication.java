@@ -7,5 +7,5 @@ import lombok.Getter;
 public class TodoApplication extends SkysailApplication {
 
     @Getter
-    private TodoRepo todoRepo;
+    private TodoRepo repository;
 }

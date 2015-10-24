@@ -1,5 +1,5 @@
-entity(element, entityResources, appName, imports, linkheader) ::= <<
-package $element.enclosingElement$;
+entity(package, name, element, entityResources, appName, imports, linkheader) ::= <<
+package $package$;
 
 import java.util.List;
 import javax.annotation.Generated;
@@ -13,7 +13,7 @@ import io.skysail.api.responses.SkysailResponse;
 import io.skysail.server.restlet.resources.EntityServerResource;
 
 @Generated("io.skysail.server.codegen.apt.processors.EntityProcessor")
-public class $element.simpleName$Resource extends EntityServerResource<$element.simpleName$> {
+public class $name$Resource extends EntityServerResource<$name$> {
 
      private $appName$ app;
 
@@ -21,16 +21,16 @@ public class $element.simpleName$Resource extends EntityServerResource<$element.
         app = ($appName$)getApplication();
     }
 
-    public $element.simpleName$ getEntity() {
-        return app.get$element.simpleName$Repo().findOne(getAttribute("id"));
+    public $name$ getEntity() {
+        return app.getRepository().findOne(getAttribute("id"));
     }
 
     public List<Link> getLinks() {
-        return super.getLinks(Put$element.simpleName$Resource.class);
+        return super.getLinks(Put$name$Resource.class);
     }
 
-    public SkysailResponse<$element.simpleName$> eraseEntity() {
-        app.get$element.simpleName$Repo().delete(getAttribute("id"));
+    public SkysailResponse<$name$> eraseEntity() {
+        app.getRepository().delete(getAttribute("id"));
         return new SkysailResponse<>();
     }
 

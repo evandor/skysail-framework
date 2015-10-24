@@ -1,0 +1,57 @@
+### bnd allows only two src-Folders; we will use src-gen instead of test to place the generated code into
+
+Bundle-Version: 0.1.0.${tstamp}
+Bundle-Name: SKYSAIL :: server :: app :: tap
+Bundle-Description: tap (things and places) application
+
+testsrc: src-gen
+testbin: bin
+
+Service-Component: *
+
+Import-Package: org.osgi.framework,\
+    javassist.util.proxy,\
+    *
+
+Include-Resource: resources, templates=src;recursive:=true;filter:=*.st|*.stg
+
+-buildpath:  \
+    osgi.core;version=5.0,\
+    osgi.cmpn;version=5.0,\
+    biz.aQute.bnd.annotation,\
+    skysail.api;version=${skysail.api.version},\
+    skysail.api.validation;version=${skysail.api.validation.version},\
+    skysail.api.search;version=${skysail.api.search.version},\
+    skysail.api.text;version=${skysail.api.text.version},\
+    skysail.api.um;version=${skysail.api.um.version},\
+    skysail.server;version=${skysail.server.version},\
+    skysail.server.codegen;version=${skysail.server.codegen.version},\
+    skysail.server.db;version=${skysail.server.db.version},\
+    slf4j.api;version=1.7.7,\
+    org.restlet;version=${restlet.version},\
+    org.restlet.ext.raml;version=${restlet.version},\
+    javax.validation.api;version=1.1,\
+    javax.persistence;version=2.1,\
+    com.springsource.org.junit;version=4.11,\
+    de.twentyeleven.skysail.org.hamcrest.hamcrest-all-osgi;version=1.3,\
+    de.twentyeleven.skysail.org.antlr.stringtemplate-osgi;version=4.0.8,\
+    lombok;version=1.12.2,\
+    com.sun.mail.javax.mail;version=1.5,\
+    etm.core;version=1.2,\
+    org.mockito.mockito-all;version=1.9,\
+    org.hibernate.validator;version=5.1,\
+    org.jboss.logging.jboss-logging;version=3.1,\
+    javax.el;version=2.2,\
+    classmate;version=1.0,\
+    org.apache.commons.beanutils;version=1.9,\
+    ch.qos.logback.classic;version=1.1,\
+    ch.qos.logback.core;version=1.1,\
+    com.orientechnologies.orientdb-core;version=2.0,\
+    org.apache.shiro.core;version=1.2,\
+    de.twenty11.owasp-java-html-sanitizer;version=239.0,\
+    com.google.guava;version=15.0,\
+    org.apache.commons.logging;version=1.1,\
+    org.apache.commons.lang;version=2.6,\
+    org.codehaus.jettison.jettison;version=1.3
+Private-Package:  \
+	io.skysail.server.app.tap

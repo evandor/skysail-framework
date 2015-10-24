@@ -2,11 +2,12 @@ package io.skysail.server.codegen.test.simple.todos;
 
 import io.skysail.api.domain.Identifiable;
 import io.skysail.api.forms.Field;
+import io.skysail.server.ext.apt.annotations.GenerateResources;
 
 import javax.persistence.Id;
 
 import lombok.*;
-import de.twenty11.skysail.server.ext.apt.annotations.*;
+import de.twenty11.skysail.server.ext.apt.annotations.ResourceType;
 
 /**
  * A simple Model containing one simple Entity.

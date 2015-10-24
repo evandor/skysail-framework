@@ -1,4 +1,4 @@
-Bundle-Version: 0.2.1.${tstamp}
+Bundle-Version: 1.0.0.${tstamp}
 Bundle-Name: SKYSAIL :: server :: codegen
 Bundle-Description: Annotation processing tool to generate skysail resources from model annotations
 
@@ -7,14 +7,17 @@ Private-Package:  \
 	de.twenty11.skysail.server.ext.apt.processors,\
 	io.skysail.server.ext.apt.model.entities,\
 	io.skysail.server.ext.apt.model.types,\
-	io.skysail.server.codegen.apt.processors
+	io.skysail.server.codegen.apt.processors,\
+	io.skysail.server.codegen.apt.stringtemplate
 
 Include-Resource: resources
 
 Import-Package:  \
 	com.sun.tools.javac.code.*,\
 	*
-Export-Package: de.twenty11.skysail.server.ext.apt.annotations
+Export-Package:  \
+	de.twenty11.skysail.server.ext.apt.annotations,\
+	io.skysail.server.ext.apt.annotations
 
 -buildpath:  \
 	de.twentyeleven.skysail.org.antlr.stringtemplate-osgi;version=4.0.8,\
@@ -24,4 +27,5 @@ Export-Package: de.twenty11.skysail.server.ext.apt.annotations
 	de.twentyeleven.skysail.org.hamcrest.hamcrest-all-osgi;version=1.3,\
 	skysail.server;version=${skysail.server.version},\
 	org.restlet;version=2.1,\
-	slf4j.api;version=1.7
+	slf4j.api;version=1.7,\
+	org.apache.commons.io;version=2.4

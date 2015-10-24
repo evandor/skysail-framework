@@ -11,7 +11,7 @@ import lombok.extern.slf4j.Slf4j;
 import aQute.bnd.annotation.component.*;
 import io.skysail.server.db.*;
 
-@Component(immediate=true)
+@Component(immediate = true, properties = "name=$name$Repository")
 @Slf4j
 @Generated("io.skysail.server.codegen.apt.processors.EntityProcessor")
 public class $name$Repo extends GraphDbRepository<$name$> implements DbRepository {

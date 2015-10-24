@@ -2,7 +2,8 @@ package io.skysail.server.codegen.apt.processors.test;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
-import io.skysail.server.codegen.apt.processors.EntityProcessor;
+import io.skysail.server.codegen.apt.processors.*;
+import io.skysail.server.ext.apt.annotations.GenerateResources;
 
 import java.util.*;
 
@@ -11,9 +12,6 @@ import javax.lang.model.element.*;
 
 import org.junit.*;
 import org.mockito.Mockito;
-
-import de.twenty11.skysail.server.ext.apt.Processors;
-import de.twenty11.skysail.server.ext.apt.annotations.GenerateResources;
 
 public class EntityProcessorTest {
 

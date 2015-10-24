@@ -20,7 +20,7 @@ public class TodoResource extends EntityServerResource<Todo> {
     }
 
     public Todo getEntity() {
-        return app.getTodoRepo().findOne(getAttribute("id"));
+        return app.getRepository().findOne(getAttribute("id"));
     }
 
     public List<Link> getLinks() {
@@ -28,7 +28,7 @@ public class TodoResource extends EntityServerResource<Todo> {
     }
 
     public SkysailResponse<Todo> eraseEntity() {
-        app.getTodoRepo().delete(getAttribute("id"));
+        app.getRepository().delete(getAttribute("id"));
         return new SkysailResponse<>();
     }
 

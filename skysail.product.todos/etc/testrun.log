@@ -27,6 +27,10 @@ INFO  net.serenitybdd.core.Serenity -
 TEST STARTED: admin_can_login_successfully
 --------------------------------------------------------------------
 INFO  net.serenitybdd.core.Serenity - TEST NUMBER: 1
+INFO  net.thucydides.core.steps.StepInterceptor - STARTING STEP: TodosProductLargeTests.admin_can_login_successfully - getting url '{0}'
+INFO  n.t.core.screenshots.SingleThreadScreenshotProcessor - Processing screenshot: C:\Users\graefca\AppData\Local\Temp\screenshot8330611874894423197
+INFO  net.thucydides.core.steps.StepInterceptor - STEP DONE: getting url '{0}'
+INFO  n.t.core.screenshots.SingleThreadScreenshotProcessor - Processing screenshot completed
 DEBUG net.serenitybdd.junit.runners.RetryFilteringRunNotifier - Test finished: admin_can_login_successfully(io.skysail.product.todos.test.TodosProductLargeTests)
 INFO  net.serenitybdd.core.Serenity - 
         __    _____ _____ ____ _____   ____   _    ____  ____  _____ ____  
@@ -37,33 +41,6 @@ INFO  net.serenitybdd.core.Serenity -
         /_/                                                                
 
 TEST PASSED: Admin can login successfully
-----------------------------------------------------------------------------
-DEBUG net.serenitybdd.junit.runners.RetryFilteringRunNotifier - Flushing notifications
-INFO  net.thucydides.core.reports.ReportService - Reporting formats: [JSON, XML, HTML]
-DEBUG net.serenitybdd.junit.runners.RetryFilteringRunNotifier - Test started: this_is_to_create_the_serenity_output_directory(io.skysail.product.todos.test.DummyTest)
-DEBUG net.thucydides.core.steps.StepEventBus - Test suite started for class io.skysail.product.todos.test.DummyTest
-INFO  net.serenitybdd.core.Serenity - Test Suite Started: Dummy test
-INFO  net.serenitybdd.core.Serenity - 
-  _____ _____ ____ _____   ____ _____  _    ____ _____ _____ ____  
- |_   _| ____/ ___|_   _| / ___|_   _|/ \  |  _ \_   _| ____|  _ \ 
-   | | |  _| \___ \ | |   \___ \ | | / _ \ | |_) || | |  _| | | | |
-   | | | |___ ___) || |    ___) || |/ ___ \|  _ < | | | |___| |_| |
-   |_| |_____|____/ |_|   |____/ |_/_/   \_\_| \_\|_| |_____|____/ 
-                                                                   
-
-TEST STARTED: this_is_to_create_the_serenity_output_directory
---------------------------------------------------------------------
-INFO  net.serenitybdd.core.Serenity - TEST NUMBER: 2
-DEBUG net.serenitybdd.junit.runners.RetryFilteringRunNotifier - Test finished: this_is_to_create_the_serenity_output_directory(io.skysail.product.todos.test.DummyTest)
-INFO  net.serenitybdd.core.Serenity - 
-        __    _____ _____ ____ _____   ____   _    ____  ____  _____ ____  
-  _     \ \  |_   _| ____/ ___|_   _| |  _ \ / \  / ___|/ ___|| ____|  _ \ 
- (_)_____| |   | | |  _| \___ \ | |   | |_) / _ \ \___ \\___ \|  _| | | | |
-  _|_____| |   | | | |___ ___) || |   |  __/ ___ \ ___) |___) | |___| |_| |
- (_)     | |   |_| |_____|____/ |_|   |_| /_/   \_\____/|____/|_____|____/ 
-        /_/                                                                
-
-TEST PASSED: This is to create the serenity output directory
 ----------------------------------------------------------------------------
 DEBUG net.serenitybdd.junit.runners.RetryFilteringRunNotifier - Flushing notifications
 INFO  net.thucydides.core.reports.ReportService - Reporting formats: [JSON, XML, HTML]

@@ -26,7 +26,7 @@ public class TodosProductLargeTests {
     BrowserSteps browserSteps;
 
     public TodosProductLargeTests() {
-       System.setProperty("webdriver.firefox.bin", "C:\\Users\\graefca\\AppData\\Local\\Mozilla Firefox\\firefox.exe");
+       //System.setProperty("webdriver.firefox.bin", "C:\\Users\\graefca\\AppData\\Local\\Mozilla Firefox\\firefox.exe");
     }
 
     @Before

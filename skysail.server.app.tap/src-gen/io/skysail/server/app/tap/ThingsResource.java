@@ -27,6 +27,6 @@ public class ThingsResource extends ListServerResource<Thing> {
 
     @Override
     public List<Link> getLinks() {
-        return super.getLinks(PostThingResource.class, PlacesResource.class,ThingsResource.class);
+        return super.getLinks(PostThingResource.class, PlacesResource.class, ThingsResource.class);
     }
 }

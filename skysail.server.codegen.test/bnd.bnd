@@ -34,14 +34,14 @@ Private-Package:  \
 	skysail.api;version=${skysail.api.version},\
 	skysail.api.validation;version=${skysail.api.validation.version},\
 	skysail.api.search;version=${skysail.api.search.version},\
-    skysail.api.text;version=${skysail.api.text.version},\
+	skysail.api.text;version=${skysail.api.text.version},\
 	skysail.api.um;version=${skysail.api.um.version},\
 	skysail.server;version=${skysail.server.version},\
-    skysail.server.codegen;version=latest,\
-    skysail.server.db;version=${skysail.server.db.version},\
+	skysail.server.codegen;version=latest,\
+	skysail.server.db;version=${skysail.server.db.version},\
 	slf4j.api;version=1.7.7,\
 	org.restlet;version=${restlet.version},\
-    org.restlet.ext.raml;version=${restlet.version},\
+	org.restlet.ext.raml;version=${restlet.version},\
 	javax.validation.api;version=1.1,\
 	javax.persistence;version=2.1,\
 	com.springsource.org.junit;version=4.11,\
@@ -64,4 +64,5 @@ Private-Package:  \
 	com.google.guava;version=15.0,\
 	org.apache.commons.logging;version=1.1,\
 	org.apache.commons.lang;version=2.6,\
-	org.codehaus.jettison.jettison;version=1.3
+	org.codehaus.jettison.jettison;version=1.3,\
+	org.apache.commons.lang3;version=3.3

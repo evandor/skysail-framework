@@ -18,6 +18,7 @@ import javax.tools.JavaFileObject;
 
 import lombok.extern.slf4j.Slf4j;
 
+import org.apache.commons.lang3.StringUtils;
 import org.stringtemplate.v4.*;
 
 import de.twenty11.skysail.server.ext.apt.annotations.ResourceType;
@@ -52,15 +53,17 @@ public class EntityProcessor extends Processors {
         Set<Entity> nodes = new HashSet<>();
         Set<Reference> edges = new HashSet<>();
 
+        printHeadline("Analysing project for code generation");
+
         // create nodes
         for (Element entityElement : generateResourceElements) {
             printMessage("adding entity: " + entityElement.toString());
             nodes.add(new Entity(entityElement));
         }
 
-        // create edges
-        for (Element entity : generateResourceElements) {
+        printMessage("");
 
+        for (Element entity : generateResourceElements) {
             for (Element member : entity.getEnclosedElements()) {
                 if (!(member instanceof VariableElement)) {
                     continue;
@@ -135,21 +138,11 @@ public class EntityProcessor extends Processors {
         URL url = getURL("entityResource/EntityResource.stg");
         printMessage("URL " + url.toString());
 
-//        try (Stream<String> lines = Files.lines(Paths.get(url.toURI()))) {
-//            lines.forEach(line -> printMessage(line));
-//        }
-//
-//
-
         STGroup group = new MySTGroupFile("entityResource/EntityResource.stg", '$', '$');
         ST st = group.getInstanceOf("entity");
         st.add("package", entityElement.getEnclosingElement().toString());
         st.add("appName", application);
         st.add("name", entityElement.getSimpleName());
-        // st.add("element", new STElement(entityElement, graph,
-        // GenerateEntityResource.class));
-        // st.add("entityResources", getElements2(roundEnv,
-        // GenerateEntityResource.class, graph));
         st.add("linkheader", linkheader);
         st.add("imports", imports);
         writer.append(st.render());
@@ -162,14 +155,6 @@ public class EntityProcessor extends Processors {
         GenerateResources annotation = entityElement.getAnnotation(GenerateResources.class);
         String application = annotation.application();
 
-        // String linkheader = Arrays.stream(annotation.linkheader()).map(lh ->
-        // lh + ".class")
-        // .collect(Collectors.joining(","));
-        // if (linkheader == null || linkheader.trim().length() == 0) {
-        // linkheader = "Post" + entityElement.getSimpleName() +
-        // "Resource.class";
-        // }
-
         JavaFileObject jfo = createSourceFile(getTypeName(entityElement) + "sResource");
 
         Writer writer = jfo.openWriter();
@@ -177,14 +162,20 @@ public class EntityProcessor extends Processors {
         STGroup group = new MySTGroupFile("listResource/ListResource.stg", '$', '$');
         ST st = group.getInstanceOf("list");
         st.add("name", entityElement.getSimpleName());
+        st.add("appName", application);
         st.add("package", entityElement.getEnclosingElement().toString());
         st.add("imports", getImports(entityElement, graph));
-        st.add("linkheader", "");//linkheader);
-        st.add("getData", "");//getData(entityElement, graph));
+        st.add("linkedResources", getLinksForListResource(entityElement.getSimpleName(), graph));
+        st.add("getData", "");
         String result = st.render();
         writer.append(result);
 
         writer.close();
+    }
+
+    private String getLinksForListResource(Name entityName, EntityGraph graph) {
+        String collection = graph.getNodes().stream().map(n -> n.getSimpleName()).map(name -> name + "sResource.class").collect(Collectors.joining(", "));
+        return "Post" + entityName + "Resource.class, " + collection;
     }
 
     private void createPostResource(RoundEnvironment roundEnv, EntityGraph graph, Element entityElement)
@@ -218,28 +209,6 @@ public class EntityProcessor extends Processors {
 
         writer.close();
 
-    }
-
-    private boolean skipGeneration(String typename) {
-        String filename = "C:\\git\\skysail-framework\\skysail.server.codegen.test\\src" + File.separatorChar
-                + typename.replace('.', File.separatorChar) + ".java";
-        Path path = Paths.get(filename);
-        if (!(new File(filename).exists())) {
-            printMessage("file '" + filename + "' not found, start generation...");
-            return false;
-        }
-        try (Stream<String> lines = Files.lines(path)) {
-            Optional<String> hasAnnotation = lines.filter(s -> s.contains(GENERATED_ANNOTATION)).findFirst();
-            if (hasAnnotation.isPresent()) {
-                printMessage("file " + filename
-                        + " will be regenerated, as it contains the proper @Generate annotation.");
-                return false;
-            }
-        } catch (IOException e) {
-            log.error(e.getMessage(), e);
-        }
-        printMessage("file " + filename + " will not be regenerated, as it is missing the proper @Generate annotation");
-        return true;
     }
 
     private void createPutResource(RoundEnvironment roundEnv, EntityGraph graph, Element entityElement)
@@ -307,7 +276,7 @@ public class EntityProcessor extends Processors {
         return graph.getNode(entityElement.getEnclosingElement().toString(), entityElement.getSimpleName().toString());
     }
 
-    public URL getURL(String fileName) {
+    private URL getURL(String fileName) {
         URL url;
         ClassLoader cl = Thread.currentThread().getContextClassLoader();
         url = cl.getResource(fileName);
@@ -318,4 +287,32 @@ public class EntityProcessor extends Processors {
         return url;
     }
 
+    private boolean skipGeneration(String typename) {
+        String filename = "C:\\git\\skysail-framework\\skysail.server.codegen.test\\src" + File.separatorChar
+                + typename.replace('.', File.separatorChar) + ".java";
+        Path path = Paths.get(filename);
+        if (!(new File(filename).exists())) {
+            printMessage("file '" + filename + "' not found, start generation...");
+            return false;
+        }
+        try (Stream<String> lines = Files.lines(path)) {
+            Optional<String> hasAnnotation = lines.filter(s -> s.contains(GENERATED_ANNOTATION)).findFirst();
+            if (hasAnnotation.isPresent()) {
+                printMessage("file " + filename
+                        + " will be regenerated, as it contains the proper @Generate annotation.");
+                return false;
+            }
+        } catch (IOException e) {
+            log.error(e.getMessage(), e);
+        }
+        printMessage("file " + filename + " will not be regenerated, as it is missing the proper @Generate annotation");
+        return true;
+    }
+
+    private void printHeadline(String msg) {
+        printMessage("");
+        printMessage(msg);
+        printMessage(StringUtils.repeat("-", msg.length()));
+        printMessage("");
+    }
 }

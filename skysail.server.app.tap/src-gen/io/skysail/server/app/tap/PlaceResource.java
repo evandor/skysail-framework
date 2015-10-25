@@ -11,7 +11,7 @@ import io.skysail.api.responses.SkysailResponse;
 import io.skysail.server.restlet.resources.EntityServerResource;
 
 @Generated("io.skysail.server.codegen.apt.processors.EntityProcessor")
-public class ThingResource extends EntityServerResource<Thing> {
+public class PlaceResource extends EntityServerResource<Place> {
 
     private io.skysail.server.app.tap.TabApplication app;
 
@@ -20,21 +20,21 @@ public class ThingResource extends EntityServerResource<Thing> {
         app = (io.skysail.server.app.tap.TabApplication)getApplication();
     }
 
-    public Thing getEntity() {
-        return app.getThingRepository().findOne(getAttribute("id"));
+    public Place getEntity() {
+        return app.getPlaceRepository().findOne(getAttribute("id"));
     }
 
     public List<Link> getLinks() {
-        return super.getLinks(PutThingResource.class);
+        return super.getLinks(PutPlaceResource.class);
     }
 
-    public SkysailResponse<Thing> eraseEntity() {
-        app.getThingRepository().delete(getAttribute("id"));
+    public SkysailResponse<Place> eraseEntity() {
+        app.getPlaceRepository().delete(getAttribute("id"));
         return new SkysailResponse<>();
     }
 
     @Override
     public String redirectTo() {
-        return null;//super.getLinkheader(PutThingResource.class);
+        return null;//super.getLinkheader(PutPlaceResource.class);
     }
 }

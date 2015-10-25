@@ -12,7 +12,7 @@
 -runrepos: ${runrepos}
 -runsystemcapabilities: ${native_capability}
 -runsystempackages: ${runsystempackages}
--runtrace: true
+-runtrace: false
 -runvm: -ea
 #, -XX:+UnlockCommercialFeatures,-XX:+FlightRecorder,-XX:StartFlightRecording="duration=120m,filename=etc/todos.jfr"
 

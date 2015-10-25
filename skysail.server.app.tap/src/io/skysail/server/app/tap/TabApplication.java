@@ -17,7 +17,7 @@ public class TabApplication extends SkysailApplication implements ApplicationPro
 
     private static TabApplication instance;
 
-    private DbRepository myRepository;
+    private DbRepository thingRepo,placeRepo;
 
     public TabApplication() {
         super(APP_NAME);
@@ -26,25 +26,46 @@ public class TabApplication extends SkysailApplication implements ApplicationPro
 
     @Reference(dynamic = true, multiple = false, optional = false, target = "(name=ThingRepository)")
     public void setRepository(DbRepository repo) {
-       this.myRepository = (ThingRepo) repo;
+       this.thingRepo = (ThingRepo) repo;
     }
 
     public void unsetRepository(DbRepository repo) {
-        this.myRepository = null;
+        this.thingRepo = null;
+    }
+
+    @Reference(dynamic = true, multiple = false, optional = false, target = "(name=PlaceRepository)")
+    public void setPlaceRepository(DbRepository repo) {
+       this.placeRepo = (PlaceRepo) repo;
+    }
+
+    public void unsetPlaceRepository(DbRepository repo) {
+        this.placeRepo = null;
     }
 
     @Override
     protected void attach() {
        super.attach();
+
+       router.attach(new RouteBuilder("", ThingsResource.class));
+
        router.attach(new RouteBuilder("/thing", ThingsResource.class));
        router.attach(new RouteBuilder("/thing/", PostThingResource.class));
        router.attach(new RouteBuilder("/thing/{id}", ThingResource.class));
        router.attach(new RouteBuilder("/thing/{id}/", PutThingResource.class));
+
+       router.attach(new RouteBuilder("/place", PlacesResource.class));
+       router.attach(new RouteBuilder("/place/", PostPlaceResource.class));
+       router.attach(new RouteBuilder("/place/{id}", PlaceResource.class));
+       router.attach(new RouteBuilder("/place/{id}/", PutPlaceResource.class));
+
     }
 
-    @Override
-    public ThingRepo getRepository() {
-        return (ThingRepo) myRepository;
+    public ThingRepo getThingRepository() {
+        return (ThingRepo) thingRepo;
+    }
+
+    public PlaceRepo getPlaceRepository() {
+        return (PlaceRepo) placeRepo;
     }
 
     public static TabApplication getInstance() {

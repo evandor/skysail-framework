@@ -15,14 +15,15 @@ import io.skysail.server.restlet.resources.EntityServerResource;
 @Generated("io.skysail.server.codegen.apt.processors.EntityProcessor")
 public class $name$Resource extends EntityServerResource<$name$> {
 
-     private $appName$ app;
+    private $appName$ app;
 
     protected void doInit() {
+        super.doInit();
         app = ($appName$)getApplication();
     }
 
     public $name$ getEntity() {
-        return app.getRepository().findOne(getAttribute("id"));
+        return app.get$name$Repository().findOne(getAttribute("id"));
     }
 
     public List<Link> getLinks() {
@@ -30,7 +31,7 @@ public class $name$Resource extends EntityServerResource<$name$> {
     }
 
     public SkysailResponse<$name$> eraseEntity() {
-        app.getRepository().delete(getAttribute("id"));
+        app.get$name$Repository().delete(getAttribute("id"));
         return new SkysailResponse<>();
     }
 

@@ -17,12 +17,17 @@ public class Put$name$Resource extends PutEntityServerResource<$name$> {
     }
 
     public $name$ getEntity() {
-        return app.getRepository().findOne(getAttribute("id"));
+        return app.get$name$Repository().findOne(getAttribute("id"));
     }
 
     public SkysailResponse<$name$> updateEntity($name$ entity) {
-        app.getRepository().update(getAttribute("id"), entity);
+        app.get$name$Repository().update(getAttribute("id"), entity);
         return new SkysailResponse<>();
+    }
+
+    @Override
+    public String redirectTo() {
+        return super.redirectTo($name$sResource.class);
     }
 }
 

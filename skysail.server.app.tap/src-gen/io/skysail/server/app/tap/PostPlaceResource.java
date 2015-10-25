@@ -10,12 +10,12 @@ import io.skysail.server.restlet.resources.PostEntityServerResource;
 import de.twenty11.skysail.server.core.restlet.ResourceContextId;
 
 @Generated("io.skysail.server.codegen.apt.processors.EntityProcessor")
-public class PostThingResource extends PostEntityServerResource<Thing> {
+public class PostPlaceResource extends PostEntityServerResource<Place> {
 
 	private io.skysail.server.app.tap.TabApplication app;
 
-	public PostThingResource() {
-	    addToContext(ResourceContextId.LINK_TITLE, "Create new Thing");
+	public PostPlaceResource() {
+	    addToContext(ResourceContextId.LINK_TITLE, "Create new Place");
     }
 
     @Override
@@ -24,19 +24,19 @@ public class PostThingResource extends PostEntityServerResource<Thing> {
 	}
 
 	@Override
-    public Thing createEntityTemplate() {
-	    return new Thing();
+    public Place createEntityTemplate() {
+	    return new Place();
     }
 
     @Override
-    public SkysailResponse<Thing> addEntity(Thing entity) {
-        String id = app.getThingRepository().save(entity).toString();
+    public SkysailResponse<Place> addEntity(Place entity) {
+        String id = app.getPlaceRepository().save(entity).toString();
         entity.setId(id);
         return new SkysailResponse<>(entity);
     }
 
 	@Override
 	public String redirectTo() {
-	    return super.redirectTo(ThingsResource.class);
+	    return super.redirectTo(PlacesResource.class);
 	}
 }

@@ -6,13 +6,13 @@ import io.skysail.server.queryfilter.Filter;
 import io.skysail.server.restlet.resources.ListServerResource;
 import de.twenty11.skysail.server.core.restlet.ResourceContextId;
 
-public class ThingsResource extends ListServerResource<Thing> {
+public class PlacesResource extends ListServerResource<Place> {
 
     private io.skysail.server.app.tap.TabApplication app;
 
-    public ThingsResource() {
-        super(ThingResource.class);
-        addToContext(ResourceContextId.LINK_TITLE, "List of Things");
+    public PlacesResource() {
+        super(PlaceResource.class);
+        addToContext(ResourceContextId.LINK_TITLE, "List of Places");
     }
 
     protected void doInit() {
@@ -21,12 +21,12 @@ public class ThingsResource extends ListServerResource<Thing> {
     }
 
     @Override
-    public List<Thing> getEntity() {
-        return app.getThingRepository().find(new Filter());
+    public List<Place> getEntity() {
+        return app.getPlaceRepository().find(new Filter());
     }
 
     @Override
     public List<Link> getLinks() {
-        return super.getLinks(PostThingResource.class, PlacesResource.class,ThingsResource.class);
+        return super.getLinks(PostPlaceResource.class, PlacesResource.class,ThingsResource.class);
     }
 }

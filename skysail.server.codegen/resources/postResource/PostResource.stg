@@ -1,6 +1,6 @@
 post(name, package, appName, appPkg, addEntity, imports) ::= <<
 package $package$;
-
+deprecated
 import org.restlet.resource.ResourceException;
 
 $imports$

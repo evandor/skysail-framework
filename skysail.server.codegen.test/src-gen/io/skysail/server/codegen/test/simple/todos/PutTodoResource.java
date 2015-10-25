@@ -16,11 +16,11 @@ public class PutTodoResource extends PutEntityServerResource<Todo> {
     }
 
     public Todo getEntity() {
-        return app.getRepository().findOne(getAttribute("id"));
+        return app.getTodoRepository().findOne(getAttribute("id"));
     }
 
     public SkysailResponse<Todo> updateEntity(Todo entity) {
-        app.getRepository().update(getAttribute("id"), entity);
+        app.getTodoRepository().update(getAttribute("id"), entity);
         return new SkysailResponse<>();
     }
 }

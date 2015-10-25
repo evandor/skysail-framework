@@ -28,15 +28,16 @@ public class Post$name$Resource extends PostEntityServerResource<$name$> {
 	    return new $name$();
     }
 
-	/*@Override
+    @Override
     public SkysailResponse<$name$> addEntity($name$ entity) {
-		$addEntity$
-	    return new SkysailResponse<>(entity);
-    }*/
+        String id = app.get$name$Repository().save(entity).toString();
+        entity.setId(id);
+        return new SkysailResponse<>(entity);
+    }
 
 	@Override
 	public String redirectTo() {
-	    return null;//super.redirectTo($name$sResource.class);
+	    return super.redirectTo($name$sResource.class);
 	}
 }
 >>

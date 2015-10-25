@@ -1,22 +1,34 @@
-list(name, package, imports, linkheader,getData) ::= <<
+list(name, appName, package, imports, linkedResources,getData) ::= <<
 package $package$;
 
 import java.util.List;
-
+import io.skysail.api.links.Link;
+import io.skysail.server.queryfilter.Filter;
 import io.skysail.server.restlet.resources.ListServerResource;
-
 import de.twenty11.skysail.server.core.restlet.ResourceContextId;
 
 public class $name$sResource extends ListServerResource<$name$> {
+
+    private $appName$ app;
 
     public $name$sResource() {
         super($name$Resource.class);
         addToContext(ResourceContextId.LINK_TITLE, "List of $name$s");
     }
 
+    protected void doInit() {
+        super.doInit();
+        app = ($appName$)getApplication();
+    }
+
     @Override
     public List<$name$> getEntity() {
-        return null;
+        return app.get$name$Repository().find(new Filter());
+    }
+
+    @Override
+    public List<Link> getLinks() {
+        return super.getLinks($linkedResources$);
     }
 }
 

@@ -6,7 +6,7 @@ import io.skysail.api.responses.SkysailResponse;
 import io.skysail.server.restlet.resources.PutEntityServerResource;
 
 @Generated("io.skysail.server.codegen.apt.processors.EntityProcessor")
-public class PutThingResource extends PutEntityServerResource<Thing> {
+public class PutPlaceResource extends PutEntityServerResource<Place> {
 
     private io.skysail.server.app.tap.TabApplication app;
 
@@ -15,17 +15,17 @@ public class PutThingResource extends PutEntityServerResource<Thing> {
         app = (io.skysail.server.app.tap.TabApplication) getApplication();
     }
 
-    public Thing getEntity() {
-        return app.getThingRepository().findOne(getAttribute("id"));
+    public Place getEntity() {
+        return app.getPlaceRepository().findOne(getAttribute("id"));
     }
 
-    public SkysailResponse<Thing> updateEntity(Thing entity) {
-        app.getThingRepository().update(getAttribute("id"), entity);
+    public SkysailResponse<Place> updateEntity(Place entity) {
+        app.getPlaceRepository().update(getAttribute("id"), entity);
         return new SkysailResponse<>();
     }
 
     @Override
     public String redirectTo() {
-        return super.redirectTo(ThingsResource.class);
+        return super.redirectTo(PlacesResource.class);
     }
 }

@@ -38,6 +38,7 @@ Private-Package:  \
 	skysail.api.um;version=${skysail.api.um.version},\
 	skysail.server;version=${skysail.server.version},\
 	skysail.server.codegen;version=latest,\
+    skysail.server.queryfilter;version=${skysail.server.queryfilter.version},\
 	skysail.server.db;version=${skysail.server.db.version},\
 	slf4j.api;version=1.7.7,\
 	org.restlet;version=${restlet.version},\

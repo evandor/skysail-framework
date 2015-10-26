@@ -2,7 +2,7 @@ package io.skysail.server.app.todos.todos.resources;
 
 import io.skysail.api.links.Link;
 import io.skysail.api.responses.SkysailResponse;
-import io.skysail.server.app.todos.TodoApplication;
+import io.skysail.server.app.todos.*;
 import io.skysail.server.app.todos.lists.ListsResource;
 import io.skysail.server.app.todos.ranking.Ranker;
 import io.skysail.server.app.todos.todos.Todo;
@@ -43,21 +43,25 @@ public class PostTodoResource extends PostEntityServerResource<Todo> {
 
     @Override
     public SkysailResponse<Todo> addEntity(Todo entity) {
-        Locale locale = ResourceUtils.determineLocale(this);
 
+        TodoList list = app.getListRepo().findOne(getAttribute("id"));
+
+        Locale locale = ResourceUtils.determineLocale(this);
         Calendar cal = Calendar.getInstance(TimeZone.getTimeZone("GMT"),locale);
         entity.setCreated(cal.getTime());new Date();
         Subject subject = SecurityUtils.getSubject();
         entity.setOwner(subject.getPrincipal().toString());
         entity.setStatus(Status.NEW);
         entity.setRank(1);
-        entity.setParent(getAttribute(TodoApplication.LIST_ID));
+        //entity.setParent(getAttribute(TodoApplication.LIST_ID));
         if (entity.getImportance() == null) {
             entity.setImportance(50);
         }
         entity.setUrgency(Ranker.calcUrgency(entity));
-        String id = app.getTodosRepo().save(entity, "parent").toString();
-        entity.setId(id);
+
+        list.getTodos().add(entity);
+        String id = app.getListRepo().update(list.getId(), list, "todos").toString();
+        //entity.setId(id);
         return new SkysailResponse<>();
     }
 

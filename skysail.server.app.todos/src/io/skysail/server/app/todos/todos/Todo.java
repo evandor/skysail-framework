@@ -43,7 +43,7 @@ public class Todo implements Serializable, Identifiable {
     private String parent;
 
     @Field
-    @ListView(truncate = 30, link = PutTodoResource.class) //, prefix = "status")
+    @ListView(truncate = 30, link = PutTodoResource.class)
     @NotNull
     @Size(min = 2)
     private String title;
@@ -97,9 +97,6 @@ public class Todo implements Serializable, Identifiable {
     @ListView(colorize = "color")
     @Submit
     private Status status;
-
-    // assigned to,
-    // related to: account, ...
 
     public Todo(String title) {
         this.title = title;

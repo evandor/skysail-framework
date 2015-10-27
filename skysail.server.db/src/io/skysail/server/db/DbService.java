@@ -71,5 +71,7 @@ public interface DbService {
 
     void update(ODocument doc);
 
+    Object executeUpdateVertex(String sql, Map<String, Object> params);
+
 
 }

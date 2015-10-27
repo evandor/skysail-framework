@@ -46,7 +46,7 @@ public class PostListResource extends PostEntityServerResource<TodoList> {
         Subject subject = SecurityUtils.getSubject();
         subject.getPrincipals().getPrimaryPrincipal();
         entity.setOwner(subject.getPrincipal().toString());
-        String id = app.getListRepo().save(entity).toString();
+        String id = app.getListRepo().save(entity, "todos").toString();
         entity.setId(id);
         return new SkysailResponse<>(entity);
     }

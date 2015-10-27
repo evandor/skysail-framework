@@ -3,9 +3,10 @@ package io.skysail.server.app.todos;
 import io.skysail.api.domain.Identifiable;
 import io.skysail.api.forms.*;
 import io.skysail.server.app.todos.lists.UniquePerOwner;
+import io.skysail.server.app.todos.repo.TodosRepository;
 import io.skysail.server.app.todos.todos.Todo;
 import io.skysail.server.app.todos.todos.resources.TodosResource;
-import io.skysail.server.forms.ListView;
+import io.skysail.server.forms.*;
 
 import java.io.Serializable;
 import java.util.*;
@@ -58,6 +59,9 @@ public class TodoList implements Serializable, Identifiable {
 
     //@Field(inputType = InputType.MULTISELECT, repository = RoleRepository.class, selectionProvider = RolesSelectionProvider.class)
     //private List<Role> roles = new ArrayList<>();
+    @Field(repository = TodosRepository.class)
+    @PostView(visibility = Visibility.HIDE)
+    @PutView(visibility = Visibility.HIDE)
     private List<Todo> todos = new ArrayList<>();
 
     public long todosCount() { // NO_UCD

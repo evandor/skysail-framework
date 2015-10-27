@@ -38,6 +38,7 @@ Import-Package:  \
 	!cern.colt.*,\
 	!org.apache.commons.configuration.*,\
 	!com.carrotsearch.hppc.*,\
+	com.orientechnologies.orient.client.remote;resolution:=optional,\
 	*
 
 Export-Package:  \

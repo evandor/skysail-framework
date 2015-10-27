@@ -24,9 +24,9 @@ public class PutTodoResource extends PutEntityServerResource<Todo> {
 
     @Override
     public Todo getEntity() {
-         Todo todo = app.getTodosRepo().getById(getAttribute(TodoApplication.TODO_ID));
+         Todo todo = app.getTodosRepo().findOne(getAttribute(TodoApplication.TODO_ID));
          todo.setViews(todo.getViews() != null ? 1 + todo.getViews() : 1);
-         app.getTodosRepo().update(todo.getId(), todo, "parent");
+         app.getTodosRepo().update(todo.getId(), todo, "todos");
          return todo;
     }
 
@@ -41,7 +41,7 @@ public class PutTodoResource extends PutEntityServerResource<Todo> {
         if (views == null) {
             entityToBeUpdated.setViews(1);
         }
-        app.getTodosRepo().update(getAttribute(TodoApplication.LIST_ID), entityToBeUpdated, "parent");
+        app.getTodosRepo().update(getAttribute(TodoApplication.LIST_ID), entityToBeUpdated, "todos");
         return new SkysailResponse<>(entityToBeUpdated);
     }
 

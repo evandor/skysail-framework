@@ -17,7 +17,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.orientechnologies.orient.client.remote.OEngineRemote;
 import com.orientechnologies.orient.core.Orient;
 import com.orientechnologies.orient.core.command.OCommandRequest;
-import com.orientechnologies.orient.core.db.OPartitionedDatabasePool;
+import com.orientechnologies.orient.core.db.*;
 import com.orientechnologies.orient.core.db.document.ODatabaseDocumentTx;
 import com.orientechnologies.orient.core.id.ORecordId;
 import com.orientechnologies.orient.core.metadata.schema.*;
@@ -176,27 +176,32 @@ public class OrientGraphDbService extends AbstractOrientDbService implements DbS
             }
 
             Iterable<Edge> edges = vertex.getEdges(Direction.OUT);
-            edges.spliterator().forEachRemaining(e -> {
-                String edgeName = e.getLabel();
-                OrientVertex vertexFromEdge = (OrientVertex) e.getVertex(Direction.IN);
-                System.out.println(vertexFromEdge);
-                try {
-                    Class<?> vertexClass = getRegisteredClass(vertexFromEdge.getRecord().getClassName());
-                    Identifiable beanFromVertex = vertexToBean(vertexFromEdge, vertexClass);
-                    Class<?> fieldType = bean.getClass().getDeclaredField(edgeName).getType();
-                    if (Collection.class.isAssignableFrom(fieldType)) {
-                        Method collectionGetter = bean.getClass().getMethod("get" + edgeName.substring(0, 1).toUpperCase() + edgeName.substring(1));
-                        Collection<Identifiable> collection = (Collection<Identifiable>) collectionGetter.invoke(bean);
-                        if (collection == null) {
-                            throw new IllegalStateException("could not add to collection object; please make sure your beans field '"+edgeName+"' is initialized");
+            edges.spliterator().forEachRemaining(
+                    e -> {
+                        String edgeName = e.getLabel();
+                        OrientVertex vertexFromEdge = (OrientVertex) e.getVertex(Direction.IN);
+                        System.out.println(vertexFromEdge);
+                        try {
+                            Class<?> vertexClass = getRegisteredClass(vertexFromEdge.getRecord().getClassName());
+                            Identifiable beanFromVertex = vertexToBean(vertexFromEdge, vertexClass);
+                            Class<?> fieldType = bean.getClass().getDeclaredField(edgeName).getType();
+                            if (Collection.class.isAssignableFrom(fieldType)) {
+                                Method collectionGetter = bean.getClass().getMethod(
+                                        "get" + edgeName.substring(0, 1).toUpperCase() + edgeName.substring(1));
+                                Collection<Identifiable> collection = (Collection<Identifiable>) collectionGetter
+                                        .invoke(bean);
+                                if (collection == null) {
+                                    throw new IllegalStateException(
+                                            "could not add to collection object; please make sure your beans field '"
+                                                    + edgeName + "' is initialized");
+                                }
+                                collection.add(beanFromVertex);
+                            }
+                        } catch (Exception e1) {
+                            log.error(e1.getMessage(), e1);
                         }
-                        collection.add(beanFromVertex);
-                    }
-                } catch (Exception e1) {
-                    log.error(e1.getMessage(),e1);
-                }
 
-            });
+                    });
             return bean;
         } catch (Exception e) {
             log.error(e.getMessage(), e);
@@ -242,7 +247,17 @@ public class OrientGraphDbService extends AbstractOrientDbService implements DbS
     @Override
     public Object executeUpdate(String sql, Map<String, Object> params) {
         OObjectDatabaseTx objectDb = getObjectDb();
-        return objectDb.command(new OCommandSQL(sql)).execute(params);
+        Object executed = objectDb.command(new OCommandSQL(sql)).execute(params);
+        objectDb.commit();
+        return executed;
+    }
+
+    @Override
+    public Object executeUpdateVertex(String sql, Map<String, Object> params) {
+        OrientGraph graphDb = getDb();
+        Object executed = graphDb.command(new OCommandSQL(sql)).execute(params);
+        graphDb.commit();
+        return executed;
     }
 
     @Override
@@ -270,10 +285,10 @@ public class OrientGraphDbService extends AbstractOrientDbService implements DbS
             log.info("about to start db");
             createDbIfNeeded();
 
-            OPartitionedDatabasePool opDatabasePool = new OPartitionedDatabasePool(
-                    getDbUrl(), getDbUsername(), getDbPassword());
+            OPartitionedDatabasePool opDatabasePool = new OPartitionedDatabasePool(getDbUrl(), getDbUsername(),
+                    getDbPassword());
             ODatabaseDocumentTx oDatabaseDocumentTx = opDatabasePool.acquire();
-            OObjectDatabaseTx db  = new OObjectDatabaseTx(oDatabaseDocumentTx);
+            OObjectDatabaseTx db = new OObjectDatabaseTx(oDatabaseDocumentTx);
 
             log.info("setting lazy loading to false");
             db.setLazyLoading(false);
@@ -299,21 +314,36 @@ public class OrientGraphDbService extends AbstractOrientDbService implements DbS
         if (dbUrl.startsWith("remote")) {
             log.info("registering remote engine");
             Orient.instance().registerEngine(new OEngineRemote());
-        }
-        if (dbUrl.startsWith("memory:") || dbUrl.startsWith("plocal")) {
-            final OrientGraphFactory factory = new OrientGraphFactory(dbUrl, getDbUsername(), getDbPassword()).setupPool(1, 10);
+        } else if (dbUrl.startsWith("plocal")) {
+
+            OrientGraph graph = new OrientGraph(dbUrl, getDbUsername(), getDbPassword());
+
+//            final OrientGraphFactory factory = new OrientGraphFactory(dbUrl, getDbUsername(), getDbPassword())
+//                    .setupPool(1, 10);
             try {
                 log.info("testing graph factory connection");
-                OrientGraph g = factory.getTx();
+//                graph.getTx();
             } catch (Exception e) {
-                log.error(e.getMessage(),e);
+                log.error(e.getMessage(), e);
             } finally {
-                // this also closes the OrientGraph instances created by the
-                // factory
-                // Note that OrientGraphFactory does not implement Closeable
+                graph.shutdown();
+            }
+        } else if (dbUrl.startsWith("memory:")) {
+            ODatabase<?> create = new OObjectDatabaseTx(dbUrl).create();
+            log.info("created new in-memory database {}", create.toString());
+
+            final OrientGraphFactory factory = new OrientGraphFactory(dbUrl, getDbUsername(), getDbPassword())
+                    .setupPool(1, 10);
+            try {
+                log.info("testing graph factory connection");
+                factory.getTx();
+            } catch (Exception e) {
+                log.error(e.getMessage(), e);
+            } finally {
                 factory.close();
             }
         }
+
     }
 
     protected void registerShutdownHook() {
@@ -377,7 +407,6 @@ public class OrientGraphDbService extends AbstractOrientDbService implements DbS
         }
     }
 
-
     @Override
     public void createUniqueIndex(Class<?> cls, String... fieldnames) {
         OObjectDatabaseTx db = getObjectDb();
@@ -410,10 +439,12 @@ public class OrientGraphDbService extends AbstractOrientDbService implements DbS
 
     private OObjectDatabaseTx getObjectDb() {
 
-//        OObjectDatabaseTx opDatabasePool= OObjectDatabasePool.global().acquire(getDbUrl(), getDbUsername(), getDbPassword());
-//        return opDatabasePool;
-        OPartitionedDatabasePool opDatabasePool = new OPartitionedDatabasePool(
-                getDbUrl(), getDbUsername(), getDbPassword());
+        // OObjectDatabaseTx opDatabasePool=
+        // OObjectDatabasePool.global().acquire(getDbUrl(), getDbUsername(),
+        // getDbPassword());
+        // return opDatabasePool;
+        OPartitionedDatabasePool opDatabasePool = new OPartitionedDatabasePool(getDbUrl(), getDbUsername(),
+                getDbPassword());
         ODatabaseDocumentTx oDatabaseDocumentTx = opDatabasePool.acquire();
         return new OObjectDatabaseTx(oDatabaseDocumentTx);
     }
@@ -445,6 +476,5 @@ public class OrientGraphDbService extends AbstractOrientDbService implements DbS
         documentDb.commit();
 
     }
-
 
 }

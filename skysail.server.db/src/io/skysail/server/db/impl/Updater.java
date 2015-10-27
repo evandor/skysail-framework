@@ -8,6 +8,8 @@ import java.util.*;
 import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
 
+import org.restlet.engine.util.StringUtils;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.tinkerpop.blueprints.Vertex;
 import com.tinkerpop.blueprints.impls.orient.*;
@@ -76,10 +78,10 @@ public class Updater {
 
     private Vertex determineVertex(Identifiable entity) {
         Vertex vertex;
-        if (entity.getId() != null) {
-            vertex = db.getVertex(entity.getId());
-        } else {
+        if (StringUtils.isNullOrEmpty(entity.getId())) {
             vertex = db.addVertex("class:" + entity.getClass().getSimpleName());
+        } else {
+            vertex = db.getVertex(entity.getId());
         }
         return vertex;
     }

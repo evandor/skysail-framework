@@ -29,7 +29,7 @@ public class VersionsRepository extends GraphDbRepository<ComponentDbVersion> im
     }
 
     public Object execute(String statement) {
-        return dbService.executeUpdate(statement, Collections.emptyMap());
+        return dbService.executeUpdateVertex(statement, Collections.emptyMap());
     }
 
 }

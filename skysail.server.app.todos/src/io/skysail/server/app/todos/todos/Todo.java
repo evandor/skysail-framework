@@ -6,7 +6,6 @@ import io.skysail.server.app.todos.todos.resources.*;
 import io.skysail.server.app.todos.todos.status.*;
 import io.skysail.server.forms.*;
 
-import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -25,16 +24,10 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 @JsonPropertyOrder({ "title", "desc" })
 @NoArgsConstructor
 @StartDateBeforeDueDate
-public class Todo implements Serializable, Identifiable {
-
-    private static final long serialVersionUID = -6320289870876900108L;
+public class Todo implements Identifiable {
 
     @Id
     private String id;
-
-    public String getId() {
-        return id != null ? id.replace("#","") : "";
-    }
 
     @Reference(selectionProvider = ListSelectionProvider.class)
     @PostView(visibility = Visibility.SHOW_IF_NULL)

@@ -51,7 +51,7 @@ public class VersioningService {
         List<Migration> migrations = entryPaths.stream()
             .map(path -> path.substring(DB_MIGRATIONS_PATH.length()))
             .filter(path -> path.startsWith("V"))
-            .filter(path -> path.endsWith(".sql"))
+            .filter(path -> path.endsWith(".sql") || path.endsWith(".cmd"))
             .map(path -> new Migration(path, BundleUtils.readResource(bundle, DB_MIGRATIONS_PATH + "/" + path)))
             .collect(Collectors.toList());
 
@@ -95,14 +95,7 @@ public class VersioningService {
         List<String> results = new ArrayList<>();
 
         try {
-            String[] statements = m.getContent().split(";");
-            for (String statement : statements) {
-                String sql = statement.trim().replace("\n", " ").replace("\r", " ").trim();
-                if (sql.length() > 5) {
-                    Object result = repo.execute(statement.trim());
-                    results.add("run '" + sql + "' with result: " + result.toString());
-                }
-            }
+            m.runMigration(repo, results);
             componentVersion.setStatus(Status.SUCCESS);
         } catch (Exception e) {
             log.error(e.getMessage(), e);

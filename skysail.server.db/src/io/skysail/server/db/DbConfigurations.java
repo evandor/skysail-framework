@@ -40,9 +40,6 @@ public class DbConfigurations implements DbConfigurationProvider {
         try {
             Thread.sleep(ms);
 
-            // if (configurationProvided) {
-            // return;
-            // }
             log.warn("no default database configuration was provided; creating a new one...");
             String instancePid = configurationAdmin.createFactoryConfiguration(DbConfigurations.class.getName(), null)
                     .getPid();
@@ -55,8 +52,6 @@ public class DbConfigurations implements DbConfigurationProvider {
             props.put("url", "memory:skysail");
             props.put("username", "admin");
             props.put("password", "admin");
-            // props.put("service.factoryPid",
-            // DbConfigurations.class.getName());
             config.update(props);
 
         } catch (IOException e) {

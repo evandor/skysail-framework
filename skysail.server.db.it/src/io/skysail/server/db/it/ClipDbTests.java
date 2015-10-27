@@ -31,7 +31,8 @@ public class ClipDbTests extends DbIntegrationTests {
     }
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
+        super.setUp();
         postClipResource = new PostClipResource();
         clipResource = new ClipResource();
         clipsResource = new ClipsResource();
@@ -42,7 +43,6 @@ public class ClipDbTests extends DbIntegrationTests {
         setupEntityResource(clipsResource);
         setupEntityResource(putClipResource);
 
-        request.clearAttributes();
         form = new Form();
         aNewClip = createClip();
     }

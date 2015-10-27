@@ -113,6 +113,18 @@ debug(messages, model) ::= <<
                     <div class="panel-body">$listMessages(messages)$</div>
                   </div>
                 </div>
+
+                <div class="panel panel-default">
+                  <div class="panel-heading" role="tab" id="headingProduct">
+                    <h4 class="panel-title">
+                      <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProduct" aria-expanded="false" aria-controls="collapseProduct">Product</a>
+                    </h4>
+                  </div>
+                  <div id="collapseProduct" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingProduct">
+                    <div class="panel-body">$messages.("productName").value$ [$messages.("productVersion").value$]</div>
+                  </div>
+                </div>
+
               </div>
       </div>
     </div>

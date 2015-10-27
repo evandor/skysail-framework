@@ -156,6 +156,7 @@ public class StringTemplateRenderer {
 
         Map<String, Translation> messages = resource.getMessages(resourceModel.getFields());
         messages.put("productName", new Translation(getProductName(), null, Collections.emptySet()));
+        messages.put("productVersion", new Translation("1.2.3", null, Collections.emptySet()));
 
         decl.add("messages", messages);
         decl.add("model", resourceModel);

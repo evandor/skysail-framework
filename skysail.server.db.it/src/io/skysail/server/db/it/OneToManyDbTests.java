@@ -32,7 +32,8 @@ public class OneToManyDbTests extends DbIntegrationTests {
     }
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
+        super.setUp();
         postTodoResource = new PostTodoResource();
         todoResource = new TodoResource();
         todosResource = new TodosResource();
@@ -42,8 +43,6 @@ public class OneToManyDbTests extends DbIntegrationTests {
         setupEntityResource(todoResource);
         setupEntityResource(todosResource);
         setupEntityResource(putTodoResource);
-
-        request.clearAttributes();
     }
 
     @Test

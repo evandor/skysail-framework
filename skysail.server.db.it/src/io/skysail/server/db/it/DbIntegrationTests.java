@@ -39,4 +39,8 @@ public class DbIntegrationTests extends IntegrationTests {
         r.init(null, request, response);
     }
 
+    public void setUp() {
+        request.clearAttributes();
+    }
+
 }

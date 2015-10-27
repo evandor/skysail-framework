@@ -475,16 +475,6 @@ public class ResourceModel<R extends SkysailServerResource<T>, T> {
     }
 
     private String checkPostfix(FormField formField, Map<String, Object> dataRow, String processed, Object id) {
-        // if (formField.getPostfixAnnotation() != null &&
-        // !formField.getPostfixAnnotation().methodName().equals("getPostfix"))
-        // {
-        // Object postfix =
-        // calc(fields.get(formField.getPostfixAnnotation().methodName()),
-        // dataRow, formField.getPostfixAnnotation().methodName());
-        // if (postfix != null) {
-        // return processed + "&nbsp;" + postfix;
-        // }
-        // }
         return processed;
     }
 

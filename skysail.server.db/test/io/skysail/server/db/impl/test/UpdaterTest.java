@@ -42,7 +42,7 @@ public class UpdaterTest {
     @Test
     public void updater_adds_single_edge_for_edgeType_string() throws Exception {
         goal.setComment(COMMENT_ID);
-        new Updater(db, new String[]{"comment"}).update(goal);
+        new Updater(db, new String[]{"comment"}).persist(goal);
         Mockito.verify(db).removeEdge(edge);
         Mockito.verify(db).addEdge(null, goalVertex, commentVertex, "comment");
     }
@@ -51,7 +51,7 @@ public class UpdaterTest {
     public void updater_adds_new_edge_for_edgeType_collection() throws Exception {
         List<Achievement> achievements = Arrays.asList(new Achievement());
         goal.setAchievements(achievements);
-        new Updater(db, new String[]{"achievements"}).update(goal);
+        new Updater(db, new String[]{"achievements"}).persist(goal);
        // Mockito.verify(db).addEdge(null, goalVertex, commentVertex, "comment");
     }
 

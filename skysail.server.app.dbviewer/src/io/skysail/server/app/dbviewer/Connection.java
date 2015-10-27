@@ -8,10 +8,11 @@ import io.skysail.server.forms.ListView;
 import javax.persistence.Id;
 
 import lombok.*;
+import de.twenty11.skysail.server.ext.apt.annotations.ResourceType;
 
 @Getter
 @Setter
-@GenerateResources(application = "io.skysail.server.app.dbviewer.DbviewerApplication")
+@GenerateResources(application = "io.skysail.server.app.dbviewer.DbviewerApplication", exclude = {ResourceType.GET})
 public class Connection implements Identifiable {
 
    @Id

@@ -2,7 +2,7 @@ package io.skysail.server.app.dbviewer;
 
 import io.skysail.api.links.Link;
 import io.skysail.api.responses.SkysailResponse;
-import io.skysail.server.app.dbviewer.vertices.VerticesResource;
+import io.skysail.server.app.dbviewer.dbclasses.DbClassesResource;
 import io.skysail.server.restlet.resources.EntityServerResource;
 
 import java.util.List;
@@ -24,7 +24,7 @@ public class ConnectionResource extends EntityServerResource<Connection> {
     }
 
     public List<Link> getLinks() {
-        return super.getLinks(PutConnectionResource.class, VerticesResource.class);
+        return super.getLinks(PutConnectionResource.class, DbClassesResource.class);
     }
 
     public SkysailResponse<Connection> eraseEntity() {

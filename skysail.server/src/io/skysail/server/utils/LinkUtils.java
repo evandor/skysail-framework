@@ -223,11 +223,6 @@ public class LinkUtils {
                 return map.get("id").toString().replace("#", "");
             }
         }
-        /*
-         * Map<String, Object> map = OrientDbUtils.toMap(object); if (map !=
-         * null) { if (map.get("@rid") != null) { return
-         * map.get("@rid").toString().replace("#", ""); } }
-         */
         log.warn("not able to determine id");
         return "NO_ID";
     }

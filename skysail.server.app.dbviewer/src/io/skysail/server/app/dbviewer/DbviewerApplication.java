@@ -2,7 +2,8 @@ package io.skysail.server.app.dbviewer;
 
 import io.skysail.api.repos.DbRepository;
 import io.skysail.server.app.SkysailApplication;
-import io.skysail.server.app.dbviewer.vertices.VerticesResource;
+import io.skysail.server.app.dbviewer.dbclasses.*;
+import io.skysail.server.app.dbviewer.dbentities.DbEntitiesResource;
 import io.skysail.server.menus.*;
 
 import java.util.*;
@@ -40,10 +41,12 @@ public class DbviewerApplication extends SkysailApplication implements Applicati
        router.attach(new RouteBuilder("/connections/{id}", ConnectionResource.class));
        router.attach(new RouteBuilder("/connections/{id}/", PutConnectionResource.class));
 
-       router.attach(new RouteBuilder("/connections/{id}/vertices", VerticesResource.class));
+       router.attach(new RouteBuilder("/connections/{id}/vertices", DbClassesResource.class));
 //       router.attach(new RouteBuilder("/connections/", PostConnectionResource.class));
-//       router.attach(new RouteBuilder("/connections/{id}", ConnectionResource.class));
+       router.attach(new RouteBuilder("/connections/{id}/vertices/{name}", DbClassResource.class));
 //       router.attach(new RouteBuilder("/connections/{id}/", PutConnectionResource.class));
+
+       router.attach(new RouteBuilder("/connections/{id}/vertices/{name}/entities", DbEntitiesResource.class));
 
     }
 

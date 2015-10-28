@@ -19,6 +19,18 @@ Include-Resource: resources, templates=src;recursive:=true;filter:=*.st|*.stg
     osgi.core;version=5.0,\
     osgi.cmpn;version=5.0,\
     biz.aQute.bnd.annotation,\
+    com.orientechnologies.orientdb-client;version=${com.orientechnologies.orientdb.version},\
+    com.orientechnologies.orientdb-core;version=${com.orientechnologies.orientdb.version},\
+    com.orientechnologies.orientdb-enterprise;version=${com.orientechnologies.orientdb.version},\
+    com.orientechnologies.orientdb-graphdb;version=${com.orientechnologies.orientdb.version},\
+    com.orientechnologies.orientdb-object;version=${com.orientechnologies.orientdb.version},\
+    com.orientechnologies.orientdb-server;version=${com.orientechnologies.orientdb.version},\
+    com.orientechnologies.orientdb-tools;version=${com.orientechnologies.orientdb.version},\
+    org.xerial.snappy.snappy-java;version='[1.1.1,1.1.2)',\
+    io.skysail.bundled.tinkerpop.blueprints-core;version=2.6,\
+    io.skysail.bundled.tinkerpop.blueprints-orient-graph;version=2.4,\
+    com.sun.jna;version=4.2,\
+    com.sun.jna.platform;version=4.2,\
     skysail.api;version=${skysail.api.version},\
     skysail.api.validation;version=${skysail.api.validation.version},\
     skysail.api.search;version=${skysail.api.search.version},\
@@ -47,7 +59,6 @@ Include-Resource: resources, templates=src;recursive:=true;filter:=*.st|*.stg
     org.apache.commons.beanutils;version=1.9,\
     ch.qos.logback.classic;version=1.1,\
     ch.qos.logback.core;version=1.1,\
-    com.orientechnologies.orientdb-core;version=2.0,\
     org.apache.shiro.core;version=1.2,\
     de.twenty11.owasp-java-html-sanitizer;version=239.0,\
     com.google.guava;version=15.0,\
@@ -57,4 +68,5 @@ Include-Resource: resources, templates=src;recursive:=true;filter:=*.st|*.stg
     org.apache.commons.lang3;version=3.3
 Private-Package:  \
 	io.skysail.server.app.dbviewer,\
-	io.skysail.server.app.dbviewer.vertices
+	io.skysail.server.app.dbviewer.dbclasses,\
+	io.skysail.server.app.dbviewer.dbentities

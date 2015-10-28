@@ -3,8 +3,10 @@ package io.skysail.server.utils.test;
 import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.Matchers.nullValue;
 import static org.junit.Assert.assertThat;
+import io.skysail.api.domain.Identifiable;
 import io.skysail.api.links.*;
 import io.skysail.server.app.*;
+import io.skysail.server.restlet.resources.SkysailServerResource;
 import io.skysail.server.utils.LinkUtils;
 
 import java.util.*;
@@ -65,6 +67,17 @@ public class LinkUtilsTest {
         String replaced = LinkUtils.replaceValues("/abc/{id}/{value}/xyz", attributes);
         assertThat(replaced, is("/abc/id/value/xyz"));
     }
+
+    @Test
+    public void testName() {
+        LinkUtils linkUtils = new LinkUtils();
+        TestListServerResource resource = new TestListServerResource();
+        Object entity = Mockito.mock(Identifiable.class);
+        Class<? extends SkysailServerResource<?>>[] classes = null;
+        List<Link> fromResources = linkUtils.fromResources(resource, entity, classes );
+        System.out.println(fromResources);
+    }
+
 //
 //    @Test
 //    public void no_classes_yield_no_links() {

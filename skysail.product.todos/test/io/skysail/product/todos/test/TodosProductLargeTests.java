@@ -16,6 +16,8 @@ import org.openqa.selenium.WebDriver;
 @Category(LargeTests.class)
 public class TodosProductLargeTests {
 
+    private static final String ADMIN_DEFAULT_PWD = "skysail";
+
     @Managed(driver = "firefox")
     private static WebDriver driver;
 
@@ -41,7 +43,7 @@ public class TodosProductLargeTests {
 
     @Test
     public void admin_can_login_and_logout_successfully() {
-        browserSteps.loginAs("admin","skysail");
+        browserSteps.loginAs("admin", ADMIN_DEFAULT_PWD);
         assertThat(driver.getPageSource(), containsString("/Todos/v2"));
 
         browserSteps.logout();
@@ -56,4 +58,12 @@ public class TodosProductLargeTests {
         browserSteps.loginAs("admin","xxx");
         assertThat(driver.getPageSource(), not(containsString("/Todos/v2")));
     }
+
+    @Test
+    public void logged_in_admin_can_create_new_list() {
+        browserSteps
+            .loginAs("admin",ADMIN_DEFAULT_PWD)
+            .navigateToPostTodo();
+    }
+
 }

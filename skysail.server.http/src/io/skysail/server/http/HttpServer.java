@@ -233,7 +233,6 @@ public class HttpServer extends ServerResource implements RestletServicesProvide
         log.info("");
         log.info("====================================");
         log.info("Starting skysail server on port {}", port);
-        //System.out.println("Starting skysail server on port: " + port);
         log.info("====================================");
         log.info("");
 
@@ -241,8 +240,10 @@ public class HttpServer extends ServerResource implements RestletServicesProvide
             try {
                 server = new Server(new Context(), Protocol.HTTP, Integer.valueOf(port), restletComponent);
                 server.getContext().getParameters().add("useForwardedForHeader", "true");
+                //server.getContext().getParameters().add("spdy.version", "2");
+                //server.getContext().getParameters().add("spdy.pushStrategy", "referrer");
                 //server.getContext().getParameters().add("tracing", "true");
-                
+
                 server.start();
             } catch (Exception e) {
                 log.error("Exception when starting standalone server trying to parse provided port (" + port + ")", e);

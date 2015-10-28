@@ -2,88 +2,40 @@ package io.skysail.server.db.impl;
 
 import io.skysail.api.domain.Identifiable;
 
-import java.lang.reflect.*;
-import java.util.*;
+import java.util.Map;
+import java.util.function.Consumer;
 
-import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
-
-import org.restlet.engine.util.StringUtils;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.tinkerpop.blueprints.Vertex;
 import com.tinkerpop.blueprints.impls.orient.*;
 
 @Slf4j
-public class Updater {
+public class Updater extends Persister {
 
-    private OrientGraph db;
-    private List<String> edges;
-    private EdgeHandler edgeHandler;
     private ObjectMapper mapper = new ObjectMapper();
 
     public Updater(OrientGraph db, String[] edges) {
-        this.edges = Arrays.asList(edges);
-        this.db = db;
+        super(db, edges);
         edgeHandler = new EdgeHandler((identifiable) -> (OrientVertex) execute(identifiable), db);
     }
 
-    public <T extends Identifiable> Object update(T entity) {
-        return runInTransaction(entity);
-    }
-
-    private Object execute(@NonNull Identifiable entity) {
-        Vertex vertex = determineVertex(entity);
-        try {
-            @SuppressWarnings("unchecked")
-            Map<String, Object> properties = mapper.convertValue(entity, Map.class);
-            properties.keySet().stream().forEach(key -> {
-                if (!edges.contains(key)) {
-                    if (properties.get(key) != null && !("class".equals(key))) {
-                        setProperty(entity, vertex, properties, key);
-                    }
-                } else {
-                    try {
-                        edgeHandler.handleEdges(entity, vertex, properties, key);
-                    } catch (Exception e) {
-                        log.error(e.getMessage(), e);
-                    }
+    protected Consumer<? super String> setPropertyOrCreateEdge(Identifiable entity, Vertex vertex,
+            Map<String, Object> properties) {
+        return key -> {
+            if (!edges.contains(key)) {
+                if (properties.get(key) != null && !("class".equals(key))) {
+                    setProperty(entity, vertex, properties, key);
                 }
-            });
-            return vertex;
-        } catch (Exception e) {
-            log.error(e.getMessage(), e);
-            throw new RuntimeException("Problem when updating entity", e);
-        }
-    }
-
-    /**
-     * Template Method to make sure that the orient db is called correctly.
-     */
-    private <T> Object runInTransaction(Identifiable entity) {
-        try {
-            Object result = execute(entity);
-            db.commit();
-            if (result == null) {
-                return null;
+            } else {
+                try {
+                    edgeHandler.handleEdges(entity, vertex, properties, key);
+                } catch (Exception e) {
+                    log.error(e.getMessage(), e);
+                }
             }
-            return result; // db.detach(result);
-        } catch (Exception e) {
-            db.rollback();
-            throw new RuntimeException("Database Problem, rolled back transaction", e);
-        } finally {
-            db.shutdown();
-        }
-    }
-
-    private Vertex determineVertex(Identifiable entity) {
-        Vertex vertex;
-        if (StringUtils.isNullOrEmpty(entity.getId())) {
-            vertex = db.addVertex("class:" + entity.getClass().getSimpleName());
-        } else {
-            vertex = db.getVertex(entity.getId());
-        }
-        return vertex;
+        };
     }
 
     private void setProperty(Object entity, Vertex vertex, Map<String, Object> properties, String key) {
@@ -91,25 +43,44 @@ public class Updater {
             return;
         }
         try {
-            invokeAndSet(entity, vertex, key, methodWith("get", entity, key));
+            setVertexProperty("get", entity, vertex, key);
         } catch (Exception e) {
             try {
-                invokeAndSet(entity, vertex, key, methodWith("is", entity, key));
+                setVertexProperty("is", entity, vertex, key);
             } catch (Exception inner) {
                 log.error(e.getMessage(), inner);
             }
         }
     }
 
-    private Method methodWith(String prefix, Object entity, String key) throws NoSuchMethodException {
-        return entity.getClass().getMethod(prefix + key.substring(0, 1).toUpperCase() + key.substring(1));
-    }
+//    private Method methodWith(String prefix, Object entity, String key) throws NoSuchMethodException {
+//        return entity.getClass().getMethod(prefix + key.substring(0, 1).toUpperCase() + key.substring(1));
+//    }
 
-    private void invokeAndSet(Object entity, Vertex vertex, String key, Method method) throws IllegalAccessException,
-            InvocationTargetException {
-        Object result = method.invoke(entity);
-        log.info("setting {}={} [{}]", new Object[] { key, result, result.getClass() });
-        vertex.setProperty(key, result);
-    }
+//    private void invokeAndSet(Object entity, Vertex vertex, String key, Method method) throws IllegalAccessException,
+//            InvocationTargetException {
+//        Object result = method.invoke(entity);
+//        log.info("setting {}={} [{}]", new Object[] { key, result, result.getClass() });
+//        vertex.setProperty(key, result);
+//    }
+
+//    /**
+//     * Template Method to make sure that the orient db is called correctly.
+//     */
+//    private <T> Object runInTransaction(Identifiable entity) {
+//        try {
+//            Object result = execute(entity);
+//            db.commit();
+//            if (result == null) {
+//                return null;
+//            }
+//            return result; // db.detach(result);
+//        } catch (Exception e) {
+//            db.rollback();
+//            throw new RuntimeException("Database Problem, rolled back transaction", e);
+//        } finally {
+//            db.shutdown();
+//        }
+//    }
 
 }

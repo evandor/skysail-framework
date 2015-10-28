@@ -16,9 +16,10 @@ import com.tinkerpop.blueprints.impls.orient.*;
 @Slf4j
 public class Persister {
 
-    private OrientGraph db;
-    private List<String> edges;
-    private EdgeHandler edgeHandler;
+    protected OrientGraph db;
+    protected List<String> edges;
+    protected EdgeHandler edgeHandler;
+
     private ObjectMapper mapper = new ObjectMapper();
 
     public Persister(OrientGraph db, String[] edges) {
@@ -31,11 +32,11 @@ public class Persister {
         return runInTransaction(entity);
     }
 
-    private Object execute(@NonNull Identifiable entity) {
+    protected Object execute(@NonNull Identifiable entity) {
         Vertex vertex = determineVertex(entity);
         try {
             @SuppressWarnings("unchecked")
-            Map<String,Object> props = mapper.convertValue(entity, Map.class);
+            Map<String, Object> props = mapper.convertValue(entity, Map.class);
             props.keySet().stream().forEach(setPropertyOrCreateEdge(entity, vertex, props));
             return vertex;
         } catch (Exception e) {
@@ -44,7 +45,7 @@ public class Persister {
         }
     }
 
-    private Consumer<? super String> setPropertyOrCreateEdge(Identifiable entity, Vertex vertex,
+    protected Consumer<? super String> setPropertyOrCreateEdge(Identifiable entity, Vertex vertex,
             Map<String, Object> properties) {
         return key -> {
             if ("id".equals(key)) {
@@ -64,7 +65,7 @@ public class Persister {
         };
     }
 
-    private Vertex determineVertex(Identifiable entity) {
+    protected Vertex determineVertex(Identifiable entity) {
         Vertex vertex;
         if (entity.getId() != null) {
             vertex = db.getVertex(entity.getId());
@@ -86,7 +87,7 @@ public class Persister {
         }
     }
 
-    private void setVertexProperty(String prefix, Object entity, Vertex vertex, String key)
+    protected void setVertexProperty(String prefix, Object entity, Vertex vertex, String key)
             throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
         Method method = entity.getClass().getMethod(getMethodName(prefix, key));
         Object result = method.invoke(entity);
@@ -112,7 +113,7 @@ public class Persister {
             return result.getId();
         } catch (Exception e) {
             db.rollback();
-            throw e;
+            throw new RuntimeException("Database Problem, rolled back transaction", e);
         } finally {
             db.shutdown();
         }

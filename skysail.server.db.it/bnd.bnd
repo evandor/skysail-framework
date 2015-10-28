@@ -5,7 +5,8 @@ Service-Component: *
 
 Test-Cases: \
    io.skysail.server.db.it.ClipDbTests,\
-   io.skysail.server.db.it.OneToManyDbTests
+   io.skysail.server.db.it.OneToManyDbTests,\
+   io.skysail.server.db.it.FolderDbTests
 
 -buildpath:  \
 	biz.aQute.bnd.annotation;version=2.4,\

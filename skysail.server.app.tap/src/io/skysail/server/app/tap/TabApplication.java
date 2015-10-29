@@ -17,30 +17,32 @@ public class TabApplication extends SkysailApplication implements ApplicationPro
 
     private static TabApplication instance;
 
-    private DbRepository thingRepo,placeRepo;
+    //private DbRepository thingRepo,placeRepo;
+
+    private Repositories repos;
 
     public TabApplication() {
         super(APP_NAME, new ApiVersion(1), Arrays.asList(Place.class, Thing.class));
         instance = this;
     }
 
-    @Reference(dynamic = true, multiple = false, optional = false, target = "(name=ThingRepository)")
-    public void setRepository(DbRepository repo) {
-       this.thingRepo = (ThingRepo) repo;
+    @Reference(dynamic = true, multiple = false, optional = false)
+    public void setRepositories(Repositories repos) {
+        super.setRepositories(repos);
     }
 
-    public void unsetRepository(DbRepository repo) {
-        this.thingRepo = null;
+    public void unsetRepositories(DbRepository repo) {
+        super.setRepositories(null);
     }
 
-    @Reference(dynamic = true, multiple = false, optional = false, target = "(name=PlaceRepository)")
-    public void setPlaceRepository(DbRepository repo) {
-       this.placeRepo = (PlaceRepo) repo;
-    }
-
-    public void unsetPlaceRepository(DbRepository repo) {
-        this.placeRepo = null;
-    }
+//    @Reference(dynamic = true, multiple = false, optional = false, target = "(name=PlaceRepository)")
+//    public void setPlaceRepository(DbRepository repo) {
+//       this.placeRepo = (PlaceRepo) repo;
+//    }
+//
+//    public void unsetPlaceRepository(DbRepository repo) {
+//        this.placeRepo = null;
+//    }
 
     @Override
     protected void attach() {
@@ -49,11 +51,11 @@ public class TabApplication extends SkysailApplication implements ApplicationPro
     }
 
     public ThingRepo getThingRepository() {
-        return (ThingRepo) thingRepo;
+        return null;//(ThingRepo) thingRepo;
     }
 
     public PlaceRepo getPlaceRepository() {
-        return (PlaceRepo) placeRepo;
+        return null;//(PlaceRepo) placeRepo;
     }
 
     public static TabApplication getInstance() {

@@ -33,7 +33,6 @@ public class BBApplication extends SkysailApplication implements ApplicationProv
         this.bbRepo = null;
     }
 
-    @Override
     public BBRepository getRepository() {
         return this.bbRepo;
     }

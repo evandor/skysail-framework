@@ -154,6 +154,8 @@ public abstract class SkysailApplication extends RamlApplication implements Appl
      */
     private io.skysail.server.domain.core.Application applicationModel;
 
+    private Repositories repos;
+
     public SkysailApplication() {
         getEncoderService().getIgnoredMediaTypes().add(SkysailApplication.SKYSAIL_SERVER_SENT_EVENTS);
         getEncoderService().setEnabled(true);
@@ -177,6 +179,9 @@ public abstract class SkysailApplication extends RamlApplication implements Appl
         entityClasses.forEach(cls -> applicationModel.add(new Entity(cls)));
         entityClasses.forEach(cls -> applicationModel.add(new RepositoryHolder(cls)));
     }
+
+
+
 
     /**
      * probably you want to do something like
@@ -241,8 +246,17 @@ public abstract class SkysailApplication extends RamlApplication implements Appl
         setOutboundRoot((Restlet) null);
     }
 
+    public Repository getRepository() {
+        log.warn("calling default implementation of getRepository, which should be overwritten if the application provides a repository.");
+        return null;
+    }
+
     public Repository getRepository(Class<? extends Identifiable> entityClass) {
-        return applicationModel.getRepository(entityClass.getName());
+        Repository repository = applicationModel.getRepository(entityClass.getName());
+        if (repository != null) {
+            return repository;
+        }
+        return getRepository();
     }
 
     protected void documentEntities(Object... entitiesToDocument) {
@@ -673,6 +687,10 @@ public abstract class SkysailApplication extends RamlApplication implements Appl
 
     public void invalidateMenuCache() {
         applicationMenu = null;
+    }
+
+    public void setRepositories(Repositories repos) {
+        this.repos = repos;
     }
 
 }

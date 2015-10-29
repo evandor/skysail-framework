@@ -9,7 +9,7 @@ import java.util.*;
 
 import aQute.bnd.annotation.component.*;
 import de.twenty11.skysail.server.app.ApplicationProvider;
-import de.twenty11.skysail.server.core.restlet.RouteBuilder;
+import de.twenty11.skysail.server.core.restlet.*;
 
 @Component(immediate = true)
 public class $application.applicationName$Application extends SkysailApplication implements ApplicationProvider, MenuItemProvider {

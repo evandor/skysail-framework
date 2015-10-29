@@ -38,7 +38,7 @@ public class DbviewerApplication extends SkysailApplication implements Applicati
        router.attach(new RouteBuilder("", ConnectionsResource.class));
        router.attach(new RouteBuilder("/connections", ConnectionsResource.class));
        router.attach(new RouteBuilder("/connections/", PostConnectionResource.class));
-       router.attach(new RouteBuilder("/connections/{id}", ConnectionResource.class));
+       router.attach(new RouteBuilder("/connections/{id}", ConnectionResource1.class));
        router.attach(new RouteBuilder("/connections/{id}/", PutConnectionResource.class));
 
        router.attach(new RouteBuilder("/connections/{id}/vertices", DbClassesResource.class));

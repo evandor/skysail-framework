@@ -1,13 +1,14 @@
 package io.skysail.server.app.dbviewer;
 
+import java.util.List;
+import javax.annotation.Generated;
+
+import org.restlet.resource.ResourceException;
+
+
 import io.skysail.api.links.Link;
 import io.skysail.api.responses.SkysailResponse;
-import io.skysail.server.app.dbviewer.dbclasses.DbClassesResource;
 import io.skysail.server.restlet.resources.EntityServerResource;
-
-import java.util.List;
-
-import javax.annotation.Generated;
 
 @Generated("io.skysail.server.codegen.apt.processors.EntityProcessor")
 public class ConnectionResource extends EntityServerResource<Connection> {
@@ -24,7 +25,7 @@ public class ConnectionResource extends EntityServerResource<Connection> {
     }
 
     public List<Link> getLinks() {
-        return super.getLinks(PutConnectionResource.class, DbClassesResource.class);
+        return super.getLinks(PutConnectionResource.class);
     }
 
     public SkysailResponse<Connection> eraseEntity() {

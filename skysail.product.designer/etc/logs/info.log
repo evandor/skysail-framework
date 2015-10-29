@@ -282,3 +282,24 @@
 2015-10-28 17:08:36,826 WARN  [i.s.s.u.s.s.DefaultAuthorizationService      ] - User '#1' could not be found in the Repository
 2015-10-28 17:08:36,829 INFO  [i.s.s.r.resources.ListServerResource         ] - Request entry point: ApplicationsResource @Get('html|json|yaml|xml') with variant [text/html]
 2015-10-28 17:08:36,928 INFO  [LogService                                   ] - 2015-10-28	17:08:36	0:0:0:0:0:0:0:1	admin	0:0:0:0:0:0:0:1	2015	GET	/AppDesigner/v1	-	200	-	0	105	http://localhost:2015	Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.80 Safari/537.36	http://localhost:2015/AppDesigner/v1/compilations/
+2015-10-29 09:33:42,835 INFO  [io.skysail.server.app.ApplicationList        ] - (-) Removing application 'root'
+2015-10-29 09:33:42,843 INFO  [io.skysail.server.app.ApplicationList        ] - (-) Removing application 'webapp'
+2015-10-29 09:33:42,843 INFO  [io.skysail.server.app.ApplicationList        ] - (-) Removing application 'OSGi'
+2015-10-29 09:33:42,843 INFO  [io.skysail.server.app.ApplicationList        ] - (-) Removing application 'Performance'
+2015-10-29 09:33:42,843 INFO  [io.skysail.server.app.ApplicationList        ] - (-) Removing application 'static'
+2015-10-29 09:33:42,843 INFO  [io.skysail.server.app.ApplicationList        ] - (-) Removing application 'i18n'
+2015-10-29 09:33:42,844 INFO  [io.skysail.server.app.ApplicationList        ] - (-) Removing application 'usermanagement'
+2015-10-29 09:33:42,844 INFO  [io.skysail.server.app.ApplicationList        ] - (-) Removing application 'um'
+2015-10-29 09:33:42,844 INFO  [io.skysail.server.app.ApplicationList        ] - (-) Removing application 'Bookmarks'
+2015-10-29 09:33:42,844 INFO  [io.skysail.server.app.ApplicationList        ] - (-) Removing application 'dbviewer'
+2015-10-29 09:33:42,844 INFO  [io.skysail.server.app.ApplicationList        ] - (-) Removing application 'svgedit'
+2015-10-29 09:33:42,844 INFO  [io.skysail.server.app.ApplicationList        ] - (-) Removing application 'TapApplication'
+2015-10-29 09:33:42,844 INFO  [io.skysail.server.app.ApplicationList        ] - (-) Removing application 'Twitter'
+2015-10-29 09:33:42,844 INFO  [io.skysail.server.app.ApplicationList        ] - (-) Removing application 'AppDesigner'
+2015-10-29 09:33:42,850 INFO  [io.skysail.server.services.ServerLoad        ] - deactivating ServerLoad task
+2015-10-29 09:33:42,850 INFO  [io.skysail.server.services.ServerTime        ] - deactivating ServerTime task
+2015-10-29 09:33:42,886 INFO  [org.eclipse.jetty.server.ServerConnector     ] - Stopped ServerConnector@3a7c678b{HTTP/1.1}{0.0.0.0:8090}
+2015-10-29 09:33:42,945 INFO  [o.e.jetty.server.handler.ContextHandler      ] - Stopped o.e.j.s.ServletContextHandler@7d42404e{/,null,UNAVAILABLE}
+2015-10-29 09:33:43,070 INFO  [io.skysail.server.http.HttpServer            ] - Deactivating io.skysail.server.http.HttpServer
+2015-10-29 09:33:43,070 INFO  [org.restlet                                  ] - Stopping the Jetty [HTTP/1.1] server on port 2015
+2015-10-29 09:33:43,076 INFO  [org.eclipse.jetty.server.ServerConnector     ] - Stopped ServerConnector@3014ab0b{HTTP/1.1}{0.0.0.0:2015}

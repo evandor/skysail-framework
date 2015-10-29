@@ -1,12 +1,11 @@
 package io.skysail.server.app.bb.goals;
 
-import org.restlet.resource.ResourceException;
-
 import io.skysail.api.responses.SkysailResponse;
 import io.skysail.server.app.SkysailApplication;
-import io.skysail.server.app.bb.BBApplication;
-import io.skysail.server.app.bb.DummyGoal;
+import io.skysail.server.app.bb.*;
 import io.skysail.server.restlet.resources.PutEntityServerResource;
+
+import org.restlet.resource.ResourceException;
 
 public class PutAreaGoalsResource extends PutEntityServerResource<DummyGoal> {
 
@@ -22,14 +21,14 @@ public class PutAreaGoalsResource extends PutEntityServerResource<DummyGoal> {
     public DummyGoal getEntity() {
         return app.getRepository().getById(getAttribute("id"));
     }
-    
+
     public SkysailResponse<DummyGoal> updateEntity(DummyGoal entityFromTheWire) {
         DummyGoal entityToBeUpdated = getEntity(null);
         SkysailApplication app = (SkysailApplication)getApplication();
         copyProperties(entityToBeUpdated,entityFromTheWire);
 
-        app.getRepository().update(getAttribute("id"), entityToBeUpdated);
+        app.getRepository(DummyGoal.class).update(getAttribute("id"), entityToBeUpdated);
         return new SkysailResponse<>();
     }
-	
+
 }

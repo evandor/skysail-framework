@@ -15,11 +15,11 @@ public class PutUserResource extends PutEntityServerResource<User> {
     }
 
     public User getEntity() {
-        return app.getRepository().findOne(getAttribute("id"));
+        return app.getUserRepository().findOne(getAttribute("id"));
     }
 
     public SkysailResponse<User> updateEntity(User entity) {
-        app.getRepository().update(getAttribute("id"), entity);
+        app.getUserRepository().update(getAttribute("id"), entity);
         return new SkysailResponse<>();
     }
 

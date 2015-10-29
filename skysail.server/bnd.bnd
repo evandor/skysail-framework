@@ -1,9 +1,10 @@
-Bundle-Version: 12.0.1.${tstamp}
+Bundle-Version: 13.0.0.${tstamp}
 Bundle-Name: SKYSAIL :: server
 X-Api-Version: 1
 Export-Package:  \
 	de.twenty11.skysail.server.metrics,\
 	io.skysail.server.services,\
+	io.skysail.server.domain.core,\
 	io.skysail.server.forms,\
 	de.twenty11.skysail.server.help,\
 	io.skysail.server.menus,\

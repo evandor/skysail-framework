@@ -6,6 +6,11 @@ import io.skysail.api.repos.DbRepository;
 public class NoRepository implements DbRepository {
 
     @Override
+    public Class<Identifiable> getRootEntity() {
+        return null;
+    }
+
+    @Override
     public Object save(Identifiable identifiable) {
         return null;
     }

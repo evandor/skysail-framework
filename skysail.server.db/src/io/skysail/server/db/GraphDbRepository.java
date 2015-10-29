@@ -38,6 +38,11 @@ public class GraphDbRepository<T extends Identifiable> implements DbRepository {
         });
     }
 
+    @Override
+    public Class<Identifiable> getRootEntity() {
+        return (Class<Identifiable>)entityType;
+    }
+
     public void unsetDbService(DbService dbService) {
         this.dbService = null;
     }
@@ -137,8 +142,4 @@ public class GraphDbRepository<T extends Identifiable> implements DbRepository {
         }
         return getParameterizedType(cls.getSuperclass());
     }
-
-
-
-
 }

@@ -129,11 +129,12 @@ public class ApplicationCreator {
         bnd.add("packagename", applicationModel.getPackageName());
         Files.write(Paths.get(path + "/bnd.bnd"), bnd.render().getBytes());
 
-        ST bndrun = getStringTemplateIndex("bndrun");
-        bndrun.add("projectname", applicationModel.getProjectName());
-        Files.write(Paths.get(path + "/bndrun.bnd"), bndrun.render().getBytes());
+//        ST bndrun = getStringTemplateIndex("bndrun");
+//        bndrun.add("projectname", applicationModel.getProjectName());
+//        Files.write(Paths.get(path + "/bndrun.bnd"), bndrun.render().getBytes());
 
         new File(Paths.get(path + "/test").toString()).mkdir();
+        new File(Paths.get(path + "/src-gen").toString()).mkdir();
         new File(Paths.get(path + "/resources").toString()).mkdir();
         new File(Paths.get(path + "/config/local").toString()).mkdirs();
 

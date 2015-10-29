@@ -1,23 +1,118 @@
 Bundle-Version: 0.1.0.${tstamp}
+
 Bundle-Name: SKYSAIL :: product :: designer
+
 Private-Package:  \
 	io.skysail.product.designer
+
 -buildpath:  \
 	skysail.api;version=${skysail.api.version},\
+	skysail.api.features;version='[0.1.2,0.1.3)',\
 	skysail.api.peers;version=${skysail.api.peers.version},\
-    skysail.server;version=${skysail.server.version},\
-	skysail.server.app.designer;version=latest,\
-    skysail.server.converter;version=${skysail.server.converter.version},\
+	skysail.api.um;version=${skysail.api.um.version},\
+	skysail.api.validation;version=${skysail.api.validation.version},\
 	skysail.server.db;version=${skysail.server.db.version},\
-    skysail.server.ext.browser;version=latest,\
+	skysail.server.app.designer;version=latest,\
+	skysail.server.app.bookmarks;version=latest,\
+	skysail.server.static;version=${skysail.server.static.version},\
+	skysail.server.converter;version=${skysail.server.converter.version},\
+	skysail.server.ext.browser;version=latest,\
+	skysail.server.ext.sse;version=latest,\
+	skysail.server.ext.initconfig;version=latest,\
 	skysail.server.http;version=${skysail.server.http.version},\
+	skysail.server.osgi;version=${skysail.server.osgi.version},\
 	skysail.server.plugins;version=${skysail.server.plugins.version},\
+	skysail.server.polymer;version=${skysail.server.polymer.version},\
 	skysail.server.queryfilter;version=${skysail.server.queryfilter.version},\
-	skysail.server.static;version='[1.0,1.1)',\
-	skysail.server.text.markdown;version=${skysail.server.text.markdown.version};version='[0.1,0.2)',\
+	skysail.server.testsupport;version=${skysail.server.testsupport.version},\
+	skysail.server.text.markdown;version=${skysail.server.text.markdown.version},\
 	skysail.server.text.store.bundleresource;version=${skysail.server.text.store.bundleresource.version},\
 	skysail.server.text.store.git;version=${skysail.server.text.store.git.version},\
 	skysail.server.um.simple;version=${skysail.server.um.simple.version},\
-	org.codehaus.jettison.jettison;version=1.3
+	slf4j.api;version=1.7,\
+	org.apache.commons.exec;version=1.3.0,\
+	org.codehaus.jettison.jettison;version=1.3,\
+	com.springsource.org.junit;version=4.11,\
+	io.skysail.bundled.serenity-junit;version=1.0,\
+	io.skysail.bundled.serenity-core;version=1.1,\
+	com.typesafe.config;version=1.3,\
+	com.google.inject;version=4.0,\
+	javax.inject;version=1.0,\
+	org.apache.servicemix.bundles.aopalliance;version=1.0,\
+	joda-time;version=2.7,\
+	org.freemarker.freemarker;version=2.3,\
+	io.skysail.bundled.selenium;version=2.47,\
+	com.google.gson;version=2.2,\
+	io.skysail.bundled.java-client;version=3.2,\
+	io.skysail.bundled.asciidoctorj;version=1.5,\
+	io.skysail.bundled.lambdaj;version=2.3,\
+	org.apache.servicemix.bundles.cglib;version=3.1,\
+	com.google.guava;version=16.0,\
+	io.skysail.bundled.operadriver;version=1.5,\
+	io.skysail.bundled.phantomjsdriver;version=1.2,\
+	io.skysail.bundled.htmlunit;version=2.18,\
+	io.skysail.bundled.xml-apis;version=1.4,\
+	io.skysail.bundled.htmlunit-core-js;version=2.17,\
+	io.skysail.bundled.sac;version=1.3,\
+	io.skysail.bundled.xalan;version=2.7,\
+	io.skysail.bundled.xerces;version=2.11,\
+	io.skysail.bundled.cssparser;version=0.9,\
+	io.skysail.bundled.nekohtml;version=1.9,\
+	org.apache.httpcomponents.httpclient;version=4.5.1,\
+	org.apache.commons.io;version=2.4,\
+	org.apache.commons.codec;version=1.9,\
+	org.apache.httpcomponents.httpcore;version=4.4,\
+	io.skysail.bundled.httpmime;version=4.5,\
+	biz.aQute.launcher;version=999999999.0,\
+	biz.aQute.bnd;version=2.4,\
+	com.sun.jna.platform;version=4.2,\
+	com.sun.jna;version=4.2,\
+	org.apache.commons.lang3;version=3.3,\
+	org.apache.commons.logging;version=1.1,\
+	lombok;version=1.16
+Include-Resource: config=config
 
-#	skysail.server.app.bookmarks;version=latest,\
+##############################################################################################################
+### runbundles configuration; if you change something here, please check todos.largetest.bndrun as well,   ###
+### as it seems this defintion cannot be picked up from the largetests.                                    ###
+##############################################################################################################
+
+runbundles:\
+    ${osgi},\
+    me.moocar.logback-gelf;version=0.2.0,\
+    com.google.gson;version=2.4,\
+    ${aQute},\
+    ${etm},\
+    ${javax},\
+    ${commons},\
+    ${felix},\
+    org.apache.felix.shell.remote;version=1.1.2,\
+    ${fasterxml},\
+    javassist;version='[3.18.1,3.18.2)',\
+    org.codehaus.jettison.jettison;version=1.3.7,\
+    com.googlecode.concurrentlinkedhashmap.lru;version='[1.4.0,1.4.1)',\
+    ${orientdb},\
+    ${jetty},\
+    ${shiro},\
+    org.yaml.snakeyaml;version=1.15.0,\
+    de.twentyeleven.skysail.org.json-osgi;version=latest,\
+    ${restlet},\
+    com.google.guava;version='[16.0,16.1)',\
+    org.jboss.logging.jboss-logging;version='[3.1.4,3.1.5)',\
+    org.hibernate.validator;version='[5.1.2,5.1.3)',\
+    ${logging},\
+    ${skysail.api},\
+    com.sun.el;version='[2.2.0,2.2.1)',\
+    de.twenty11.owasp-java-html-sanitizer;version='[239.0.0,239.0.1)',\
+    de.twentyeleven.skysail.org.antlr.stringtemplate-osgi;version=4.0.8,\
+    ${skysail.server},\
+    ${javamelody},\
+    skysail.server.app.um.db;version=latest,\
+    org.jsoup;version=1.8.1,\
+    skysail.server.codegen;version=latest,\
+    skysail.server.app.bookmarks;version=latest,\
+    skysail.server.app.dbviewer;version=latest,\
+    skysail.server.app.svgedit;version=latest,\
+    skysail.server.app.tap;version=latest,\
+    skysail.server.app.twitter4j;version=latest,\
+    skysail.server.app.designer;version=latest

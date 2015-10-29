@@ -99,6 +99,11 @@ public class BookmarksRepository implements DbRepository {
         return null;
     }
 
+    @Override
+    public Class<Identifiable> getRootEntity() {
+        return null;
+    }
+
 
 
 

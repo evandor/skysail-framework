@@ -17,7 +17,7 @@ public class UserResource extends EntityServerResource<User> {
     }
 
     public User getEntity() {
-        return app.getRepository().getById(getAttribute("id"));
+        return app.getUserRepository().getById(getAttribute("id"));
     }
 
     public List<Link> getLinks() {
@@ -25,7 +25,7 @@ public class UserResource extends EntityServerResource<User> {
     }
 
     public SkysailResponse<User> eraseEntity() {
-        app.getRepository().delete(getAttribute("id"));
+        app.getUserRepository().delete(getAttribute("id"));
         return new SkysailResponse<>();
     }
 

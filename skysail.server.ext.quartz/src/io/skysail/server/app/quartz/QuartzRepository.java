@@ -172,6 +172,11 @@ public class QuartzRepository implements DbRepository {
         return null;
     }
 
+    @Override
+    public Class<Identifiable> getRootEntity() {
+        return null;
+    }
+
     // public Object getVertexById(Class<TodoList> cls, String id) {
     // return
     // dbService.findGraphs("SELECT FROM "+cls.getSimpleName()+" WHERE @rid="+id);

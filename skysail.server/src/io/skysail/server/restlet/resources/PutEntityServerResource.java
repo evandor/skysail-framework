@@ -7,6 +7,7 @@ import io.skysail.server.app.SkysailApplication;
 import io.skysail.server.restlet.RequestHandler;
 import io.skysail.server.restlet.filter.AbstractResourceFilter;
 import io.skysail.server.services.PerformanceTimer;
+import io.skysail.server.utils.ReflectionUtils;
 
 import java.util.*;
 
@@ -66,6 +67,7 @@ public abstract class PutEntityServerResource<T extends Identifiable> extends Sk
 
     private String identifierName;
     private String identifier;
+    private Class<? extends Identifiable> parameterizedType;
 
     public PutEntityServerResource() {
         this("id");
@@ -75,6 +77,7 @@ public abstract class PutEntityServerResource<T extends Identifiable> extends Sk
         this.identifierName = identifierName;
         addToContext(ResourceContextId.LINK_TITLE, "update");
         addToContext(ResourceContextId.LINK_GLYPH, "edit");
+        parameterizedType = (Class<? extends Identifiable>) ReflectionUtils.getParameterizedType(this.getClass());
     }
 
     /**
@@ -104,7 +107,7 @@ public abstract class PutEntityServerResource<T extends Identifiable> extends Sk
         T original = getEntity(null);
         SkysailApplication app = (SkysailApplication)getApplication();
         //app.getListRepo().update(listId, original);
-        app.getRepository().update(getAttribute("id"), original);
+        app.getRepository(parameterizedType).update(getAttribute("id"), original);
         return new SkysailResponse<>();
     }
 

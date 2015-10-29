@@ -92,8 +92,7 @@ public class UmApplication extends SkysailApplication implements ApplicationProv
 
     }
 
-    @Override
-    public UserRepository getRepository() {
+    public UserRepository getUserRepository() {
         return userRepo;
     }
 

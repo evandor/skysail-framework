@@ -26,7 +26,7 @@ public class PostUserResource extends PostEntityServerResource<User> {
 //        Role role = app.getRoleRepo().getById(roles);
 //        entity.getRoles().add(role);
 
-        String id = app.getRepository().save(entity, "roles").toString();
+        String id = app.getUserRepository().save(entity, "roles").toString();
         entity.setId(id);
         return new SkysailResponse<>(entity);
     }

@@ -83,7 +83,8 @@ public class SkysailRootApplication extends SkysailApplication implements Applic
 
     @Override
     protected void attach() {
-//        super.attach();
+        //super.attach();
+        router.setApiVersion(null);
         router.attach(new RouteBuilder("/", DefaultResource.class).noAuthenticationNeeded());
 
         // see ShiroDelegationAuthenticator

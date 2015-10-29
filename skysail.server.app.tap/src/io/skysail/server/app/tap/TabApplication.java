@@ -1,7 +1,7 @@
 package io.skysail.server.app.tap;
 
 import io.skysail.api.repos.DbRepository;
-import io.skysail.server.app.SkysailApplication;
+import io.skysail.server.app.*;
 import io.skysail.server.menus.*;
 
 import java.util.*;
@@ -20,7 +20,7 @@ public class TabApplication extends SkysailApplication implements ApplicationPro
     private DbRepository thingRepo,placeRepo;
 
     public TabApplication() {
-        super(APP_NAME);
+        super(APP_NAME, new ApiVersion(1), Arrays.asList(Place.class, Thing.class));
         instance = this;
     }
 
@@ -45,19 +45,7 @@ public class TabApplication extends SkysailApplication implements ApplicationPro
     @Override
     protected void attach() {
        super.attach();
-
        router.attach(new RouteBuilder("", ThingsResource.class));
-
-       router.attach(new RouteBuilder("/thing", ThingsResource.class));
-       router.attach(new RouteBuilder("/thing/", PostThingResource.class));
-       router.attach(new RouteBuilder("/thing/{id}", ThingResource.class));
-       router.attach(new RouteBuilder("/thing/{id}/", PutThingResource.class));
-
-       router.attach(new RouteBuilder("/place", PlacesResource.class));
-       router.attach(new RouteBuilder("/place/", PostPlaceResource.class));
-       router.attach(new RouteBuilder("/place/{id}", PlaceResource.class));
-       router.attach(new RouteBuilder("/place/{id}/", PutPlaceResource.class));
-
     }
 
     public ThingRepo getThingRepository() {

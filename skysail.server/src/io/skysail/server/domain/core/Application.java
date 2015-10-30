@@ -28,13 +28,6 @@ public class Application implements Identifiable {
         return this;
     }
 
-//    public Application add(@NonNull Repository repository) {
-//        String identifier = repository.getRootEntity().getName();
-//        log.info("adding repository {} with identifier {}", repository, identifier);
-//        repositories.put(identifier, repository);
-//        return this;
-//    }
-
     public List<Entity> getEntities() {
         return Collections.unmodifiableList(entities);
     }

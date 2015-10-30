@@ -101,7 +101,7 @@ public class BookmarksRepository implements DbRepository {
 
     @Override
     public Class<Identifiable> getRootEntity() {
-        return (Class<Identifiable>) new Bookmark().getClass();
+        return null;//(Class<Identifiable>) new Bookmark().getClass();
     }
 
 

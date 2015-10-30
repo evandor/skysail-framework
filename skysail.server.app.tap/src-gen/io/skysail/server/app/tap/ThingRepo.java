@@ -1,13 +1,13 @@
 package io.skysail.server.app.tap;
 
 
-import javax.annotation.Generated;
-
 import io.skysail.api.repos.DbRepository;
+import io.skysail.server.db.*;
+
+import javax.annotation.Generated;
 
 import lombok.extern.slf4j.Slf4j;
 import aQute.bnd.annotation.component.*;
-import io.skysail.server.db.*;
 
 @Component(immediate = true, properties = "name=ThingRepository")
 @Slf4j

@@ -154,8 +154,6 @@ public abstract class SkysailApplication extends RamlApplication implements Appl
      */
     private io.skysail.server.domain.core.Application applicationModel;
 
-    private Repositories repos;
-
     public SkysailApplication() {
         getEncoderService().getIgnoredMediaTypes().add(SkysailApplication.SKYSAIL_SERVER_SENT_EVENTS);
         getEncoderService().setEnabled(true);
@@ -177,7 +175,7 @@ public abstract class SkysailApplication extends RamlApplication implements Appl
         this.apiVersion = apiVersion;
         applicationModel = new io.skysail.server.domain.core.Application(appName);
         entityClasses.forEach(cls -> applicationModel.add(new Entity(cls)));
-        entityClasses.forEach(cls -> applicationModel.add(new RepositoryHolder(cls)));
+        //entityClasses.forEach(cls -> applicationModel.add(new RepositoryHolder(cls)));
     }
 
 
@@ -256,6 +254,10 @@ public abstract class SkysailApplication extends RamlApplication implements Appl
         if (repository != null) {
             return repository;
         }
+        log.warn("trying to access repository for entity class {}, but failed...", entityClass.getName());
+        applicationModel.getRepositoryIdentifiers().stream().sorted().forEach(identifier -> {
+            log.info(" - available: {}", identifier);
+        });
         return getRepository();
     }
 
@@ -690,7 +692,18 @@ public abstract class SkysailApplication extends RamlApplication implements Appl
     }
 
     public void setRepositories(Repositories repos) {
-        this.repos = repos;
+        repos.getRepositories().entrySet().stream().forEach(entry -> {
+            applicationModel.addRepository(entry.getKey(),entry.getValue());
+        });
+        //this.repos = repos;
+        //entityClasses.forEach(cls -> applicationModel.add(new RepositoryHolder(cls)));
+
+    }
+
+    public List<MenuItem> getMenuEntries() {
+        MenuItem appMenu = new MenuItem(getName(), "/" + getName() + getApiVersion().getVersionPath());
+        appMenu.setCategory(MenuItem.Category.APPLICATION_MAIN_MENU);
+        return Arrays.asList(appMenu);
     }
 
 }

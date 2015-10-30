@@ -1,7 +1,7 @@
 package io.skysail.server.app;
 
 import io.skysail.api.domain.Identifiable;
-import io.skysail.api.repos.Repository;
+import io.skysail.api.repos.*;
 import lombok.ToString;
 
 @ToString
@@ -9,10 +9,17 @@ public class RepositoryHolder implements Repository {
 
     private String id;
     private Class<? extends Identifiable> identifiableClass;
+    private DbRepository repository;
 
+    @Deprecated
     public RepositoryHolder(Class<? extends Identifiable> identifiableClass) {
         this.id = identifiableClass.getSimpleName() + "Repository";
         this.identifiableClass = identifiableClass;
+    }
+
+    public RepositoryHolder(String key, DbRepository value) {
+        this.id = key;
+        this.repository = value;
     }
 
     @Override

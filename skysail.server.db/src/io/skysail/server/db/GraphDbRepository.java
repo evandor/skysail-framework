@@ -7,6 +7,7 @@ import io.skysail.server.queryfilter.pagination.Pagination;
 
 import java.lang.reflect.*;
 import java.util.*;
+import java.util.stream.Collectors;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -27,7 +28,7 @@ public class GraphDbRepository<T extends Identifiable> implements DbRepository {
     }
 
     public void activate(Class<?>... classes) {
-        log.debug("activating repository");
+        log.info("activating repository for class(es) {}", Arrays.stream(classes).map(Class::getName).collect(Collectors.joining(",")));
         Arrays.stream(classes).forEach(cls -> {
             try {
                 dbService.createWithSuperClass("V", cls.getSimpleName());

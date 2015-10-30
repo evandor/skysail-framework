@@ -2,9 +2,9 @@ package io.skysail.server.app.tap;
 
 import io.skysail.api.repos.DbRepository;
 import io.skysail.server.app.*;
-import io.skysail.server.menus.*;
+import io.skysail.server.menus.MenuItemProvider;
 
-import java.util.*;
+import java.util.Arrays;
 
 import aQute.bnd.annotation.component.*;
 import de.twenty11.skysail.server.app.ApplicationProvider;
@@ -13,17 +13,8 @@ import de.twenty11.skysail.server.core.restlet.RouteBuilder;
 @Component(immediate = true)
 public class TabApplication extends SkysailApplication implements ApplicationProvider, MenuItemProvider {
 
-    private static final String APP_NAME = "TapApplication";
-
-    private static TabApplication instance;
-
-    //private DbRepository thingRepo,placeRepo;
-
-    private Repositories repos;
-
     public TabApplication() {
-        super(APP_NAME, new ApiVersion(1), Arrays.asList(Place.class, Thing.class));
-        instance = this;
+        super("TapApplication", new ApiVersion(1), Arrays.asList(Place.class, Thing.class));
     }
 
     @Reference(dynamic = true, multiple = false, optional = false)
@@ -35,15 +26,6 @@ public class TabApplication extends SkysailApplication implements ApplicationPro
         super.setRepositories(null);
     }
 
-//    @Reference(dynamic = true, multiple = false, optional = false, target = "(name=PlaceRepository)")
-//    public void setPlaceRepository(DbRepository repo) {
-//       this.placeRepo = (PlaceRepo) repo;
-//    }
-//
-//    public void unsetPlaceRepository(DbRepository repo) {
-//        this.placeRepo = null;
-//    }
-
     @Override
     protected void attach() {
        super.attach();
@@ -51,22 +33,10 @@ public class TabApplication extends SkysailApplication implements ApplicationPro
     }
 
     public ThingRepo getThingRepository() {
-        return null;//(ThingRepo) thingRepo;
+        return (ThingRepo) getRepository(Thing.class);
     }
 
     public PlaceRepo getPlaceRepository() {
-        return null;//(PlaceRepo) placeRepo;
+        return (PlaceRepo) getRepository(Place.class);
     }
-
-    public static TabApplication getInstance() {
-        return instance;
-    }
-
-    @Override
-    public List<MenuItem> getMenuEntries() {
-        MenuItem appMenu = new MenuItem(APP_NAME, "/" + APP_NAME + getApiVersion().getVersionPath());
-        appMenu.setCategory(MenuItem.Category.APPLICATION_MAIN_MENU);
-        return Arrays.asList(appMenu);
-    }
-
 }

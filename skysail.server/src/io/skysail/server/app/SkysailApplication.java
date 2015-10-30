@@ -61,33 +61,19 @@ import de.twenty11.skysail.server.services.*;
  *
  *     private static final String APP_NAME = "myapp";
  *
- *     @Reference(target = "(name=MyRepository)")
- *     // myRepository extends GraphDbRepository<Clip>implements DbRepository
- *     private DbRepository myRepository;
- *
  *     public DbClientApplication() {
- *          super(APP_NAME);
+ *          super(APP_NAME, new ApiVersion(1), Arrays.asList(Clip.class);
  *     }
  *
- *     {@literal @}Override
- *     protected void attach() {
- *        super.attach();
- *        router.attach(new RouteBuilder("/clips", ClipsResource.class));
- *        router.attach(new RouteBuilder("/clips/", PostClipResource.class));
- *        router.attach(new RouteBuilder("/clips/{id}", ClipResource.class));
- *        router.attach(new RouteBuilder("/clips/{id}/", PutClipResource.class));
- *        ...
- *     }
+ *      {@literal @}Reference(dynamic = true, multiple = false, optional = false)
+ *      public void setRepositories(Repositories repos) {
+ *         super.setRepositories(repos);
+ *      }
  *
- *     public List&lt;MenuItem&gt; getMenuEntries() {
- *         MenuItem appMenu = new MenuItem(APP_NAME, "/" + APP_NAME + getApiVersion().getVersionPath());
- *         appMenu.setCategory(MenuItem.Category.APPLICATION_MAIN_MENU);
- *         return Arrays.asList(appMenu);
- *     }
+ *      public void unsetRepositories(DbRepository repo) {
+ *          super.setRepositories(null);
+ *      }
  *
- *     public MyRepository getRepository() {
- *          return (MyRepository) myRepository;
- *     }
  * }
  * </code>
  * </pre>
@@ -205,6 +191,14 @@ public abstract class SkysailApplication extends RamlApplication implements Appl
      * </p>
      */
     protected void attach() {
+        if (applicationModel.getEntities() == null || applicationModel.getEntities().size() == 0) {
+            log.warn("there are no entities defined for the applicationModel {}", applicationModel);
+            return;
+        }
+
+        router.attach(new RouteBuilder("" , applicationModel.getEntities().get(0).getListResourceClass()));
+        router.attach(new RouteBuilder("/" , applicationModel.getEntities().get(0).getListResourceClass()));
+
         applicationModel.getEntities().stream().forEach(entity -> {
             router.attach(new RouteBuilder("/" + entity.getId(), entity.getListResourceClass()));
             router.attach(new RouteBuilder("/" + entity.getId() + "/", entity.getPostResourceClass()));

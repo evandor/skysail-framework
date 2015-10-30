@@ -9,18 +9,20 @@ import io.skysail.server.restlet.resources.PutEntityServerResource;
 public class PutTodoResource extends PutEntityServerResource<Todo> {
 
     private io.skysail.server.codegen.test.simple.TodoApplication app;
+    private TodoRepo repository;
 
 	protected void doInit() {
         super.doInit();
         app = (io.skysail.server.codegen.test.simple.TodoApplication) getApplication();
+        repository = (TodoRepo) app.getRepository(Todo.class);
     }
 
     public Todo getEntity() {
-        return app.getTodoRepository().findOne(getAttribute("id"));
+        return repository.findOne(getAttribute("id"));
     }
 
     public SkysailResponse<Todo> updateEntity(Todo entity) {
-        app.getTodoRepository().update(getAttribute("id"), entity);
+        repository.update(getAttribute("id"), entity);
         return new SkysailResponse<>();
     }
 

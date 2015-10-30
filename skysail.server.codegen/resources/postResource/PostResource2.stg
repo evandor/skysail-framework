@@ -13,6 +13,7 @@ import de.twenty11.skysail.server.core.restlet.ResourceContextId;
 public class Post$name$Resource extends PostEntityServerResource<$name$> {
 
 	private $appName$ app;
+    private $name$Repo repository;
 
 	public Post$name$Resource() {
 	    addToContext(ResourceContextId.LINK_TITLE, "Create new $name$");
@@ -21,6 +22,7 @@ public class Post$name$Resource extends PostEntityServerResource<$name$> {
     @Override
 	protected void doInit() {
 		app = ($appName$)getApplication();
+        repository = ($name$Repo) app.getRepository($name$.class);
 	}
 
 	@Override
@@ -30,7 +32,7 @@ public class Post$name$Resource extends PostEntityServerResource<$name$> {
 
     @Override
     public SkysailResponse<$name$> addEntity($name$ entity) {
-        String id = app.get$name$Repository().save(entity).toString();
+        String id = repository.save(entity).toString();
         entity.setId(id);
         return new SkysailResponse<>(entity);
     }

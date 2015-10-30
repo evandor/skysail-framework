@@ -9,6 +9,7 @@ import de.twenty11.skysail.server.core.restlet.ResourceContextId;
 public class PlacesResource extends ListServerResource<Place> {
 
     private io.skysail.server.app.tap.TabApplication app;
+    private PlaceRepo repository;
 
     public PlacesResource() {
         super(PlaceResource.class);
@@ -18,11 +19,12 @@ public class PlacesResource extends ListServerResource<Place> {
     protected void doInit() {
         super.doInit();
         app = (io.skysail.server.app.tap.TabApplication)getApplication();
+        repository = (PlaceRepo) app.getRepository(Place.class);
     }
 
     @Override
     public List<Place> getEntity() {
-        return app.getPlaceRepository().find(new Filter());
+        return repository.find(new Filter());
     }
 
     @Override

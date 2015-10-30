@@ -32,7 +32,7 @@ public class DbClassesResource extends ListServerResource<DbClass> {
     @Override
     public List<DbClass> getEntity() {
         List<DbClass> verticesNames = new ArrayList<>();//app.queryDb(connection, "SELECT expand(classes) FROM metadata:schema");
-        Connection connection = app.getConnectionRepository().findOne(getAttribute("id"));
+        Connection connection = (Connection) app.getRepository(Connection.class).findOne(getAttribute("id"));
 
         OrientGraph graph = new OrientGraph(connection.getUrl(), connection.getUsername(), connection.getPassword());
         try {

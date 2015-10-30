@@ -14,14 +14,16 @@ import io.skysail.server.restlet.resources.EntityServerResource;
 public class PlaceResource extends EntityServerResource<Place> {
 
     private io.skysail.server.app.tap.TabApplication app;
+    private PlaceRepo repository;
 
     protected void doInit() {
         super.doInit();
         app = (io.skysail.server.app.tap.TabApplication)getApplication();
+        repository = (PlaceRepo) app.getRepository(Place.class);
     }
 
     public Place getEntity() {
-        return app.getPlaceRepository().findOne(getAttribute("id"));
+        return repository.findOne(getAttribute("id"));
     }
 
     public List<Link> getLinks() {
@@ -29,7 +31,7 @@ public class PlaceResource extends EntityServerResource<Place> {
     }
 
     public SkysailResponse<Place> eraseEntity() {
-        app.getPlaceRepository().delete(getAttribute("id"));
+        repository.delete(getAttribute("id"));
         return new SkysailResponse<>();
     }
 

@@ -9,18 +9,20 @@ import io.skysail.server.restlet.resources.PutEntityServerResource;
 public class PutConnectionResource extends PutEntityServerResource<Connection> {
 
     private io.skysail.server.app.dbviewer.DbviewerApplication app;
+    private ConnectionRepo repository;
 
 	protected void doInit() {
         super.doInit();
         app = (io.skysail.server.app.dbviewer.DbviewerApplication) getApplication();
+        repository = (ConnectionRepo) app.getRepository(Connection.class);
     }
 
     public Connection getEntity() {
-        return app.getConnectionRepository().findOne(getAttribute("id"));
+        return repository.findOne(getAttribute("id"));
     }
 
     public SkysailResponse<Connection> updateEntity(Connection entity) {
-        app.getConnectionRepository().update(getAttribute("id"), entity);
+        repository.update(getAttribute("id"), entity);
         return new SkysailResponse<>();
     }
 

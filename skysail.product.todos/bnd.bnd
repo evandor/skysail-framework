@@ -11,11 +11,11 @@ Private-Package:  \
 	skysail.api.peers;version=${skysail.api.peers.version},\
 	skysail.api.um;version=${skysail.api.um.version},\
 	skysail.api.validation;version=${skysail.api.validation.version},\
+	skysail.server.converter;version=${skysail.server.converter.version},\
 	skysail.server.db;version=${skysail.server.db.version},\
 	skysail.server.app.todos;version=latest,\
 	skysail.server.app.bookmarks;version=latest,\
 	skysail.server.static;version=${skysail.server.static.version},\
-	skysail.server.converter;version=${skysail.server.converter.version},\
 	skysail.server.ext.browser;version=latest,\
 	skysail.server.ext.sse;version=latest,\
 	skysail.server.ext.initconfig;version=latest,\
@@ -115,7 +115,8 @@ runbundles:\
     skysail.server.app.svgedit;version=latest,\
     skysail.server.app.tap;version=latest,\
     skysail.server.app.twitter4j;version=latest,\
-    skysail.server.app.todos;version=latest
+    skysail.server.app.todos;version=latest,\
+    skysail.server.designer.matrix;version=latest
 
 
     ### Pool #############################

@@ -10,6 +10,7 @@ import de.twenty11.skysail.server.core.restlet.ResourceContextId;
 public class $name$sResource extends ListServerResource<$name$> {
 
     private $appName$ app;
+    private $name$Repo repository;
 
     public $name$sResource() {
         super($name$Resource.class);
@@ -19,11 +20,12 @@ public class $name$sResource extends ListServerResource<$name$> {
     protected void doInit() {
         super.doInit();
         app = ($appName$)getApplication();
+        repository = ($name$Repo) app.getRepository($name$.class);
     }
 
     @Override
     public List<$name$> getEntity() {
-        return app.get$name$Repository().find(new Filter());
+        return repository.find(new Filter());
     }
 
     @Override

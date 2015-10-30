@@ -9,18 +9,20 @@ import io.skysail.server.restlet.resources.PutEntityServerResource;
 public class PutThingResource extends PutEntityServerResource<Thing> {
 
     private io.skysail.server.app.tap.TabApplication app;
+    private ThingRepo repository;
 
 	protected void doInit() {
         super.doInit();
         app = (io.skysail.server.app.tap.TabApplication) getApplication();
+        repository = (ThingRepo) app.getRepository(Thing.class);
     }
 
     public Thing getEntity() {
-        return app.getThingRepository().findOne(getAttribute("id"));
+        return repository.findOne(getAttribute("id"));
     }
 
     public SkysailResponse<Thing> updateEntity(Thing entity) {
-        app.getThingRepository().update(getAttribute("id"), entity);
+        repository.update(getAttribute("id"), entity);
         return new SkysailResponse<>();
     }
 

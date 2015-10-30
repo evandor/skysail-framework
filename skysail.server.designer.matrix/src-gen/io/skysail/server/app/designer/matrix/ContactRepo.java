@@ -1,4 +1,4 @@
-package io.skysail.server.app.tap;
+package io.skysail.server.app.designer.matrix;
 
 
 import javax.annotation.Generated;
@@ -9,14 +9,14 @@ import lombok.extern.slf4j.Slf4j;
 import aQute.bnd.annotation.component.*;
 import io.skysail.server.db.*;
 
-@Component(immediate = true, properties = "name=ThingRepository")
+@Component(immediate = true, properties = "name=ContactRepository")
 @Slf4j
 @Generated("io.skysail.server.codegen.apt.processors.EntityProcessor")
-public class ThingRepo extends GraphDbRepository<Thing> implements DbRepository {
+public class ContactRepo extends GraphDbRepository<Contact> implements DbRepository {
 
     @Activate
     public void activate() {
-        super.activate(Thing.class);
+        super.activate(Contact.class);
     }
 
     @Reference

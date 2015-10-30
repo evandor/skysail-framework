@@ -10,18 +10,20 @@ import io.skysail.server.restlet.resources.PutEntityServerResource;
 public class Put$name$Resource extends PutEntityServerResource<$name$> {
 
     private $appName$ app;
+    private $name$Repo repository;
 
 	protected void doInit() {
         super.doInit();
         app = ($appName$) getApplication();
+        repository = ($name$Repo) app.getRepository($name$.class);
     }
 
     public $name$ getEntity() {
-        return app.get$name$Repository().findOne(getAttribute("id"));
+        return repository.findOne(getAttribute("id"));
     }
 
     public SkysailResponse<$name$> updateEntity($name$ entity) {
-        app.get$name$Repository().update(getAttribute("id"), entity);
+        repository.update(getAttribute("id"), entity);
         return new SkysailResponse<>();
     }
 

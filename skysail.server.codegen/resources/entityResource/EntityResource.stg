@@ -16,14 +16,16 @@ import io.skysail.server.restlet.resources.EntityServerResource;
 public class $name$Resource extends EntityServerResource<$name$> {
 
     private $appName$ app;
+    private $name$Repo repository;
 
     protected void doInit() {
         super.doInit();
         app = ($appName$)getApplication();
+        repository = ($name$Repo) app.getRepository($name$.class);
     }
 
     public $name$ getEntity() {
-        return app.get$name$Repository().findOne(getAttribute("id"));
+        return repository.findOne(getAttribute("id"));
     }
 
     public List<Link> getLinks() {
@@ -31,7 +33,7 @@ public class $name$Resource extends EntityServerResource<$name$> {
     }
 
     public SkysailResponse<$name$> eraseEntity() {
-        app.get$name$Repository().delete(getAttribute("id"));
+        repository.delete(getAttribute("id"));
         return new SkysailResponse<>();
     }
 

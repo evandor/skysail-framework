@@ -14,14 +14,16 @@ import io.skysail.server.restlet.resources.EntityServerResource;
 public class TodoResource extends EntityServerResource<Todo> {
 
     private io.skysail.server.codegen.test.simple.TodoApplication app;
+    private TodoRepo repository;
 
     protected void doInit() {
         super.doInit();
         app = (io.skysail.server.codegen.test.simple.TodoApplication)getApplication();
+        repository = (TodoRepo) app.getRepository(Todo.class);
     }
 
     public Todo getEntity() {
-        return app.getTodoRepository().findOne(getAttribute("id"));
+        return repository.findOne(getAttribute("id"));
     }
 
     public List<Link> getLinks() {
@@ -29,7 +31,7 @@ public class TodoResource extends EntityServerResource<Todo> {
     }
 
     public SkysailResponse<Todo> eraseEntity() {
-        app.getTodoRepository().delete(getAttribute("id"));
+        repository.delete(getAttribute("id"));
         return new SkysailResponse<>();
     }
 

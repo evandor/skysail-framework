@@ -9,6 +9,7 @@ import de.twenty11.skysail.server.core.restlet.ResourceContextId;
 public class TodosResource extends ListServerResource<Todo> {
 
     private io.skysail.server.codegen.test.simple.TodoApplication app;
+    private TodoRepo repository;
 
     public TodosResource() {
         super(TodoResource.class);
@@ -18,11 +19,12 @@ public class TodosResource extends ListServerResource<Todo> {
     protected void doInit() {
         super.doInit();
         app = (io.skysail.server.codegen.test.simple.TodoApplication)getApplication();
+        repository = (TodoRepo) app.getRepository(Todo.class);
     }
 
     @Override
     public List<Todo> getEntity() {
-        return app.getTodoRepository().find(new Filter());
+        return repository.find(new Filter());
     }
 
     @Override

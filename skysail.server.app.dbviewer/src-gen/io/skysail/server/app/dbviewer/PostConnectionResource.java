@@ -13,6 +13,7 @@ import de.twenty11.skysail.server.core.restlet.ResourceContextId;
 public class PostConnectionResource extends PostEntityServerResource<Connection> {
 
 	private io.skysail.server.app.dbviewer.DbviewerApplication app;
+    private ConnectionRepo repository;
 
 	public PostConnectionResource() {
 	    addToContext(ResourceContextId.LINK_TITLE, "Create new Connection");
@@ -21,6 +22,7 @@ public class PostConnectionResource extends PostEntityServerResource<Connection>
     @Override
 	protected void doInit() {
 		app = (io.skysail.server.app.dbviewer.DbviewerApplication)getApplication();
+        repository = (ConnectionRepo) app.getRepository(Connection.class);
 	}
 
 	@Override
@@ -30,7 +32,7 @@ public class PostConnectionResource extends PostEntityServerResource<Connection>
 
     @Override
     public SkysailResponse<Connection> addEntity(Connection entity) {
-        String id = app.getConnectionRepository().save(entity).toString();
+        String id = repository.save(entity).toString();
         entity.setId(id);
         return new SkysailResponse<>(entity);
     }

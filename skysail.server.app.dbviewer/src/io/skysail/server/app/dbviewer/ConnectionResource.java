@@ -2,6 +2,7 @@ package io.skysail.server.app.dbviewer;
 
 import io.skysail.api.links.Link;
 import io.skysail.api.responses.SkysailResponse;
+import io.skysail.server.app.dbviewer.dbclasses.DbClassesResource;
 import io.skysail.server.restlet.resources.EntityServerResource;
 
 import java.util.List;
@@ -17,15 +18,15 @@ public class ConnectionResource extends EntityServerResource<Connection> {
     protected void doInit() {
         super.doInit();
         app = (io.skysail.server.app.dbviewer.DbviewerApplication)getApplication();
-        repository = (ConnectionRepo) app.getRepository(Connection.class);
+        repository = (ConnectionRepo)app.getRepository(Connection.class);
     }
 
     public Connection getEntity() {
-        return (Connection)app.getRepository(Connection.class).findOne(getAttribute("id"));
+        return repository.findOne(getAttribute("id"));
     }
 
     public List<Link> getLinks() {
-        return super.getLinks(PutConnectionResource.class);
+        return super.getLinks(PutConnectionResource.class, DbClassesResource.class);
     }
 
     public SkysailResponse<Connection> eraseEntity() {

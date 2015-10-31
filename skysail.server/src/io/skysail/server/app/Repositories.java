@@ -1,6 +1,6 @@
 package io.skysail.server.app;
 
-import io.skysail.api.repos.DbRepository;
+import io.skysail.api.repos.*;
 
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
@@ -24,19 +24,26 @@ public class Repositories {
         if (identifier == null) {
             throw new IllegalStateException("cannot set repository, name is missing");
         }
-        log.info("adding repository with name '{}'", identifier);
-        DbRepository put = repositories.put(identifier, repo);
-        System.out.println(put);
+        repositories.put(identifier, repo);
+        log.info("adding repository (#{}) with name '{}'", repositories.size(),identifier);
     }
 
     public void unsetRepository(DbRepository repo) {
         String identifier = repo.getRootEntity().getName();
-        log.info("removing repository with name '{}'", identifier);
         repositories.remove(identifier);
+        log.info("removing repository with name '{}', count is {} now", identifier, repositories.size());
     }
 
     public synchronized Map<String, DbRepository> getRepositories() {
         return Collections.unmodifiableMap(repositories);
+    }
+
+    public Repository get(String identifier) {
+        return repositories.get(identifier);
+    }
+
+    public Collection<String> getRepositoryIdentifiers() {
+        return repositories.keySet();
     }
 
 }

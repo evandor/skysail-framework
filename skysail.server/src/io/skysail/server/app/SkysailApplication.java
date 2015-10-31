@@ -686,9 +686,10 @@ public abstract class SkysailApplication extends RamlApplication implements Appl
     }
 
     public void setRepositories(Repositories repos) {
-        repos.getRepositories().entrySet().stream().forEach(entry -> {
-            applicationModel.addRepository(entry.getKey(),entry.getValue());
-        });
+        applicationModel.setRepositories(repos);
+//        repos.getRepositories().entrySet().stream().forEach(entry -> {
+//            applicationModel.addRepository(entry.getKey(),entry.getValue());
+//        });
         //this.repos = repos;
         //entityClasses.forEach(cls -> applicationModel.add(new RepositoryHolder(cls)));
 

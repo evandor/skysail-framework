@@ -45,8 +45,6 @@ public class ApplicationResource extends EntityServerResource<Application> {
     @Override
     public Application getEntity() {
         Application application = app.getRepository().getById(Application.class, id);
-//        System.out.println(application);
-//        System.out.println(application.getEntities());
         return application;
     }
 

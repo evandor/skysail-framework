@@ -67,7 +67,6 @@ public class CellRendererHelper {
         if (ff.getType().isEnum()) {
             @SuppressWarnings("unchecked")
             Enum valueOf = Enum.valueOf((Class) ff.getType(), string);
-            // System.out.println(valueOf);
             try {
                 Method getColorMethod = valueOf.getDeclaringClass().getMethod(
                         "get" + colorize.substring(0, 1).toUpperCase() + colorize.substring(1));

@@ -1,0 +1,19 @@
+2015-10-31 17:24:31,120 WARN  [o.e.j.server.handler.RequestLogHandler       ] - !RequestLog
+2015-10-31 17:25:31,769 WARN  [d.t.s.server.core.restlet.SkysailRouter      ] - please use a RouteBuilder to attach this resource: class de.twenty11.skysail.server.resources.DefaultResource
+2015-10-31 17:25:31,772 WARN  [d.t.s.server.core.restlet.SkysailRouter      ] - please use a RouteBuilder to attach this resource: class de.twenty11.skysail.server.resources.LoginResource
+2015-10-31 17:25:31,774 WARN  [d.t.s.server.core.restlet.SkysailRouter      ] - please use a RouteBuilder to attach this resource: class de.twenty11.skysail.server.resources.DemoLoginResource
+2015-10-31 17:25:31,778 WARN  [d.t.s.server.core.restlet.SkysailRouter      ] - please use a RouteBuilder to attach this resource: class de.twenty11.skysail.server.resources.RemoteLoginResource
+2015-10-31 17:25:31,792 WARN  [io.skysail.server.app.SkysailApplication     ] - there are no entities defined for the applicationModel Application(id=OSGi, entities=[], repositories={})
+2015-10-31 17:25:31,822 WARN  [io.skysail.server.app.SkysailApplication     ] - there are no entities defined for the applicationModel Application(id=Performance, entities=[], repositories={})
+2015-10-31 17:25:31,840 WARN  [io.skysail.server.app.SkysailApplication     ] - there are no entities defined for the applicationModel Application(id=usermanagement, entities=[], repositories={})
+2015-10-31 17:25:31,842 WARN  [d.t.s.server.core.restlet.SkysailRouter      ] - please use a RouteBuilder to attach this resource: class io.skysail.server.um.simple.app.users.resources.CurrentUserResource
+2015-10-31 17:25:31,846 WARN  [io.skysail.server.app.SkysailApplication     ] - there are no entities defined for the applicationModel Application(id=um, entities=[], repositories={})
+2015-10-31 17:25:31,879 WARN  [io.skysail.server.app.SkysailApplication     ] - there are no entities defined for the applicationModel Application(id=Bookmarks, entities=[], repositories={})
+2015-10-31 17:25:31,916 WARN  [io.skysail.server.app.SkysailApplication     ] - there are no entities defined for the applicationModel Application(id=svgedit, entities=[], repositories={})
+2015-10-31 17:25:31,994 WARN  [io.skysail.server.app.SkysailApplication     ] - there are no entities defined for the applicationModel Application(id=Twitter, entities=[], repositories={})
+2015-10-31 17:25:32,014 WARN  [io.skysail.server.app.SkysailApplication     ] - there are no entities defined for the applicationModel Application(id=AppDesigner, entities=[], repositories={})
+2015-10-31 17:25:34,431 ERROR [i.s.s.a.d.codegen.InMemoryJavaCompiler       ] - io.skysail.server.app.designer.codegen.SourceCode[string:///io/skysail/server/app/designer/matrix/MatrixApplication.java]
+2015-10-31 17:25:34,437 ERROR [i.s.s.a.d.codegen.InMemoryJavaCompiler       ] - cannot access org.restlet.ext.raml.RamlApplication
+  class file for org.restlet.ext.raml.RamlApplication not found
+2015-10-31 17:25:34,438 ERROR [i.s.s.a.d.codegen.InMemoryJavaCompiler       ] - Non-compiling source: 
+2015-10-31 17:25:34,438 ERROR [i.s.s.a.d.codegen.InMemoryJavaCompiler       ] - xxx

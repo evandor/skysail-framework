@@ -1,12 +1,14 @@
 package io.skysail.server.app.designer.matrix;
 
+import java.util.List;
+import javax.annotation.Generated;
+
+import org.restlet.resource.ResourceException;
+
+
 import io.skysail.api.links.Link;
 import io.skysail.api.responses.SkysailResponse;
 import io.skysail.server.restlet.resources.EntityServerResource;
-
-import java.util.List;
-
-import javax.annotation.Generated;
 
 @Generated("io.skysail.server.codegen.apt.processors.EntityProcessor")
 public class ContactResource extends EntityServerResource<Contact> {

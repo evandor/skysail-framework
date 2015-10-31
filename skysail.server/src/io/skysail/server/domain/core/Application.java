@@ -1,7 +1,8 @@
 package io.skysail.server.domain.core;
 
 import io.skysail.api.domain.Identifiable;
-import io.skysail.api.repos.*;
+import io.skysail.api.repos.Repository;
+import io.skysail.server.app.Repositories;
 
 import java.util.*;
 
@@ -17,7 +18,8 @@ public class Application implements Identifiable {
     private String id;
 
     private List<Entity> entities = new ArrayList<>();
-    private Map<String, Repository> repositories = new HashMap<>();
+
+    private Repositories repositories;
 
     public Application(String id) {
         this.id = id;
@@ -36,13 +38,12 @@ public class Application implements Identifiable {
         return repositories.get(identifier);
     }
 
-    public void addRepository(String key, DbRepository value) {
-        log.info("adding repository '{}' -> {}", key, value);
-        repositories.put(key, value);
+    public Collection<String> getRepositoryIdentifiers() {
+        return repositories.getRepositoryIdentifiers();
     }
 
-    public Collection<String> getRepositoryIdentifiers() {
-        return repositories.keySet();
+    public void setRepositories(Repositories repos) {
+        this.repositories = repos;
     }
 
 }

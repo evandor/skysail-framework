@@ -18,15 +18,4 @@ public class Contact implements Identifiable {
 
     @Field
     private String title, firstName, lastName, pic, location, room, department, telephone, account, description;
-
-//    "lastName": "Dietz",
-//    "pic": "kv/Dietz_Markus.png",
-//    "location": "München",
-//    "room": "R1420",
-//    "department": "EHS",
-//    "telephone": "2633",
-//    "account": "dietzma",
-//    "description": "SNK, KV-SafeNet, KV-FlexNet, KV Baden-Württemberg, mobile, Cura Campus, KV-Connect"
-
-
 }

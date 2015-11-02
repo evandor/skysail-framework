@@ -1,12 +1,11 @@
 package io.skysail.server.utils;
 
-import io.skysail.api.domain.Identifiable;
 import io.skysail.api.links.*;
-import io.skysail.api.utils.StringParserUtils;
 import io.skysail.server.app.SkysailApplication;
 import io.skysail.server.restlet.resources.*;
 
 import java.util.*;
+import java.util.Map.Entry;
 import java.util.function.Function;
 import java.util.regex.*;
 import java.util.stream.Collectors;
@@ -144,7 +143,8 @@ public class LinkUtils {
         return "/" + app.getName() + routeBuilder.getPathTemplate(app.getApiVersion());
     }
 
-    private static String determineUri2(SkysailServerResource<?> skysailServerResource,Class<? extends SkysailServerResource<?>> resourceClass, RouteBuilder routeBuilder) {
+    private static String determineUri2(SkysailServerResource<?> skysailServerResource,
+            Class<? extends SkysailServerResource<?>> resourceClass, RouteBuilder routeBuilder) {
         SkysailApplication app = skysailServerResource.getApplication();
         String result = "/" + app.getName() + routeBuilder.getPathTemplate(app.getApiVersion());
         try {
@@ -196,10 +196,11 @@ public class LinkUtils {
             for (SkysailServerResource<?> esr : esrs) {
                 List<Link> entityLinkTemplates = esr.getAuthorizedLinks();
                 for (Object object : (List<?>) entity) {
-                    String id = guessId(object);
+                    //String id = guessId(object);
+                    //Map<String, String> substitutions = PathUtils.getSubstitutions(object, skysailServerResource);
                     entityLinkTemplates.stream().filter(lh -> {
                         return lh.getRole().equals(LinkRole.DEFAULT);
-                    }).forEach(link -> addLink(link, esr, id, listServerResource, result));
+                    }).forEach(link -> addLink(link, esr, object, listServerResource, result));
                 }
             }
         }
@@ -207,41 +208,46 @@ public class LinkUtils {
 
     }
 
-    private static String guessId(Object object) {
-        if (object instanceof Identifiable) {
-            Identifiable identifiable = (Identifiable) object;
-            if (identifiable.getId() != null) {
-                return identifiable.getId().replace("#", "");
-            }
-        }
-        if (object instanceof Map) {
-            Map<String, Object> map = (Map) object;
-            if (map.get("@rid") != null) {
-                return map.get("@rid").toString().replace("#", "");
-            }
-            if (map.get("id") != null) {
-                return map.get("id").toString().replace("#", "");
-            }
-        }
-        log.warn("not able to determine id");
-        return "NO_ID";
-    }
+//    private static String guessId(Object object) {
+//        if (object instanceof Identifiable) {
+//            Identifiable identifiable = (Identifiable) object;
+//            if (identifiable.getId() != null) {
+//                return identifiable.getId().replace("#", "");
+//            }
+//        }
+//        if (object instanceof Map) {
+//            Map<String, Object> map = (Map) object;
+//            if (map.get("@rid") != null) {
+//                return map.get("@rid").toString().replace("#", "");
+//            }
+//            if (map.get("id") != null) {
+//                return map.get("id").toString().replace("#", "");
+//            }
+//        }
+//        log.warn("not able to determine id");
+//        return "NO_ID";
+//    }
 
-    private static void addLink(Link linkTemplate, Resource entityResource, String id, ListServerResource<?> resource,
+    private static void addLink(Link linkTemplate, Resource entityResource, Object object, ListServerResource<?> resource,
             List<Link> result) {
         String path = linkTemplate.getUri();
-
-        // String href = StringParserUtils.substitutePlaceholders(path,
-        // entityResource);
+        Map<String, String> substitutions = PathUtils.getSubstitutions(object, resource);
         String href = path;
-        // hmmm... last resort
-        if (id != null && path.contains("{") && path.contains("}")) {
-            href = href.replaceFirst(StringParserUtils.placeholderPattern.toString(), id);
-        }
 
-        Link newLink = new Link.Builder(linkTemplate)// .uri()
-                .uri(href).role(LinkRole.LIST_VIEW).relation(LinkRelation.ITEM).refId(id).build();
-        // substituePlaceholders(entityResource, id).build()
+        for (Entry<String, String> entry : substitutions.entrySet()) {
+            String substitutable = new StringBuilder("{").append(entry.getKey()).append("}").toString();
+            if (path.contains(substitutable)) {
+                href = href.replace(substitutable, entry.getValue());
+            }
+        }
+//
+//        if (substitutions.get("id") != null && path.contains("{") && path.contains("}")) {
+//            href = href.replaceFirst(StringParserUtils.placeholderPattern.toString(), substitutions.get("id"));
+//        }
+
+        String refId = substitutions.values().stream().collect(Collectors.joining("|"));
+        Link newLink = new Link.Builder(linkTemplate)
+                .uri(href).role(LinkRole.LIST_VIEW).relation(LinkRelation.ITEM).refId(refId).build();
         result.add(newLink);
     }
 }

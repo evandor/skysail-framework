@@ -28,7 +28,7 @@ public class GraphDbRepository<T extends Identifiable> implements DbRepository {
     }
 
     public void activate(Class<?>... classes) {
-        log.info("activating repository for class(es) {}", Arrays.stream(classes).map(Class::getName).collect(Collectors.joining(",")));
+        log.debug("activating repository for class(es) {}", Arrays.stream(classes).map(Class::getName).collect(Collectors.joining(",")));
         Arrays.stream(classes).forEach(cls -> {
             try {
                 dbService.createWithSuperClass("V", cls.getSimpleName());

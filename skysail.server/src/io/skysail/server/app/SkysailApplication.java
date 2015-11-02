@@ -301,7 +301,7 @@ public abstract class SkysailApplication extends RamlApplication implements Appl
     }
 
     @Override
-    public Restlet createInboundRoot() {
+    public synchronized Restlet createInboundRoot() {
 
         log.info("creating new Router in {}", this.getClass().getName());
         router = new SkysailRouter(getContext());
@@ -380,6 +380,19 @@ public abstract class SkysailApplication extends RamlApplication implements Appl
             authenticationGuard.setNext(originalRequestFilter);
         }
         tracer.setNext(authenticationGuard);
+
+
+//        RoleAuthorizer roleAuthorizer = new RoleAuthorizer();
+//        roleAuthorizer.setAuthorizedRoles(Scopes.toRoles("status"));
+//        roleAuthorizer.setNext(router);
+//
+//        ChallengeAuthenticator bearerAuthenticator = new ChallengeAuthenticator(getContext(),
+//                ChallengeScheme.HTTP_OAUTH_BEARER, "Application");
+//
+//        bearerAuthenticator.setVerifier(new TokenVerifier(new org.restlet.data.Reference("yourTokenAuthURI")));
+//        bearerAuthenticator.setNext(roleAuthorizer);
+
+
         return tracer;
     }
 

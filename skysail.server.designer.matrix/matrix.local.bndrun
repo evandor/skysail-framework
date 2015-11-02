@@ -1,14 +1,24 @@
--runfw: org.apache.felix.framework;version='[4,5)'
--runee: JavaSE-1.7
--runsystemcapabilities: ${native_capability}
+########################################################################################
+### --- general settings, do not change unless you know what you are doing --------- ###
+########################################################################################
 
 -resolve.effective: active;skip:="osgi.service"
+-runbundles: ${runbundles}
+-runee: JavaSE-1.8
+-runfw: org.apache.felix.framework;version=${org.apache.felix.framework.version}
+-runproperties: org.osgi.service.http.port=8081,\
+    ds.loglevel=debug,\
+    ${runproperties}
+-runrepos: ${runrepos}
+-runsystemcapabilities: ${native_capability}
+-runsystempackages: ${runsystempackages}
+-runtrace: false
+-runvm: -ea
+#, -XX:+UnlockCommercialFeatures,-XX:+FlightRecorder,-XX:StartFlightRecording="duration=120m,filename=etc/todos.jfr"
 
--runbundles:\
-	org.apache.felix.gogo.runtime,\
-	org.apache.felix.gogo.shell,\
-	org.apache.felix.gogo.command
+########################################################################################
+### --- run-file-specific settings ------------------------------------------------- ###
+########################################################################################
 
--runrequires:\
-	osgi.identity;filter:='(osgi.identity=org.apache.felix.gogo.shell)',\
-	osgi.identity;filter:='(osgi.identity=org.apache.felix.gogo.command)'
+skysail.config.path            = config/common,config/local
+logback.configurationFile.path = config/common

@@ -1,0 +1,547 @@
+2015-11-02 14:16:31,703 DEBUG io.skysail.server.app.SkysailApplication - Instanciating new Skysail Application 'SkysailRootApplication'
+2015-11-02 14:16:31,749 DEBUG de.twenty11.skysail.server.app.SkysailRootApplication - Currently installed bundles:
+2015-11-02 14:16:31,749 DEBUG de.twenty11.skysail.server.app.SkysailRootApplication - ----------------------------
+2015-11-02 14:16:31,749 DEBUG de.twenty11.skysail.server.app.SkysailRootApplication - 
+2015-11-02 14:16:31,752 DEBUG de.twenty11.skysail.server.app.SkysailRootApplication - org.apache.felix.framework [4.6.1] state 32
+2015-11-02 14:16:31,752 DEBUG de.twenty11.skysail.server.app.SkysailRootApplication - osgi.core [5.0.0.201203141902] state 32
+2015-11-02 14:16:31,752 DEBUG de.twenty11.skysail.server.app.SkysailRootApplication - osgi.cmpn [5.0.0.201305092017] state 32
+2015-11-02 14:16:31,752 DEBUG de.twenty11.skysail.server.app.SkysailRootApplication - osgi.enterprise [5.0.0.201203141834] state 32
+2015-11-02 14:16:31,752 DEBUG de.twenty11.skysail.server.app.SkysailRootApplication - me.moocar.logback-gelf [0.2.0] state 4
+2015-11-02 14:16:31,752 DEBUG de.twenty11.skysail.server.app.SkysailRootApplication - com.google.gson [2.4.0] state 32
+2015-11-02 14:16:31,752 DEBUG de.twenty11.skysail.server.app.SkysailRootApplication - biz.aQute.bnd.annotation [3.0.0.201509101327] state 32
+2015-11-02 14:16:31,752 DEBUG de.twenty11.skysail.server.app.SkysailRootApplication - biz.aQute.bndlib [3.0.0.201509101326] state 32
+2015-11-02 14:16:31,752 DEBUG de.twenty11.skysail.server.app.SkysailRootApplication - etm.core [1.2.3.1] state 32
+2015-11-02 14:16:31,752 DEBUG de.twenty11.skysail.server.app.SkysailRootApplication - etm.contrib [1.2.3.1] state 32
+2015-11-02 14:16:31,752 DEBUG de.twenty11.skysail.server.app.SkysailRootApplication - javax.el-api [3.0.0] state 32
+2015-11-02 14:16:31,752 DEBUG de.twenty11.skysail.server.app.SkysailRootApplication - javax.persistence [2.1.0.v201304241213] state 32
+2015-11-02 14:16:31,752 DEBUG de.twenty11.skysail.server.app.SkysailRootApplication - javax.servlet [3.0.0.v201103241009] state 32
+2015-11-02 14:16:31,752 DEBUG de.twenty11.skysail.server.app.SkysailRootApplication - javax.validation.api [1.1.0.Final] state 32
+2015-11-02 14:16:31,752 DEBUG de.twenty11.skysail.server.app.SkysailRootApplication - javax.inject [1.0.0] state 32
+2015-11-02 14:16:31,752 DEBUG de.twenty11.skysail.server.app.SkysailRootApplication - org.apache.commons.beanutils [1.9.2] state 32
+2015-11-02 14:16:31,752 DEBUG de.twenty11.skysail.server.app.SkysailRootApplication - org.apache.commons.collections [3.2.1] state 32
+2015-11-02 14:16:31,752 DEBUG de.twenty11.skysail.server.app.SkysailRootApplication - org.apache.commons.configuration [1.10.0] state 32
+2015-11-02 14:16:31,752 DEBUG de.twenty11.skysail.server.app.SkysailRootApplication - org.apache.commons.lang [2.6.0] state 32
+2015-11-02 14:16:31,752 DEBUG de.twenty11.skysail.server.app.SkysailRootApplication - org.apache.commons.lang3 [3.3.2] state 32
+2015-11-02 14:16:31,752 DEBUG de.twenty11.skysail.server.app.SkysailRootApplication - org.apache.commons.logging [1.1.3] state 32
+2015-11-02 14:16:31,752 DEBUG de.twenty11.skysail.server.app.SkysailRootApplication - org.apache.felix.bundlerepository [2.0.2] state 32
+2015-11-02 14:16:31,753 DEBUG de.twenty11.skysail.server.app.SkysailRootApplication - org.apache.felix.configadmin [1.8.0] state 32
+2015-11-02 14:16:31,753 DEBUG de.twenty11.skysail.server.app.SkysailRootApplication - org.apache.felix.fileinstall [3.4.0] state 32
+2015-11-02 14:16:31,753 DEBUG de.twenty11.skysail.server.app.SkysailRootApplication - org.apache.felix.eventadmin [1.4.4] state 32
+2015-11-02 14:16:31,753 DEBUG de.twenty11.skysail.server.app.SkysailRootApplication - org.apache.felix.gogo.command [0.14.0] state 32
+2015-11-02 14:16:31,753 DEBUG de.twenty11.skysail.server.app.SkysailRootApplication - org.apache.felix.gogo.runtime [0.12.1] state 32
+2015-11-02 14:16:31,753 DEBUG de.twenty11.skysail.server.app.SkysailRootApplication - org.apache.felix.gogo.shell [0.10.0] state 32
+2015-11-02 14:16:31,753 DEBUG de.twenty11.skysail.server.app.SkysailRootApplication - org.apache.felix.log [1.0.1] state 32
+2015-11-02 14:16:31,753 DEBUG de.twenty11.skysail.server.app.SkysailRootApplication - org.apache.felix.prefs [1.0.6] state 32
+2015-11-02 14:16:31,753 DEBUG de.twenty11.skysail.server.app.SkysailRootApplication - org.apache.felix.scr [1.8.2] state 32
+2015-11-02 14:16:31,753 DEBUG de.twenty11.skysail.server.app.SkysailRootApplication - org.apache.felix.shell.remote [1.1.2] state 32
+2015-11-02 14:16:31,753 DEBUG de.twenty11.skysail.server.app.SkysailRootApplication - com.fasterxml.jackson.core.jackson-annotations [2.5.1] state 32
+2015-11-02 14:16:31,753 DEBUG de.twenty11.skysail.server.app.SkysailRootApplication - com.fasterxml.jackson.core.jackson-core [2.5.1] state 32
+2015-11-02 14:16:31,753 DEBUG de.twenty11.skysail.server.app.SkysailRootApplication - com.fasterxml.jackson.core.jackson-databind [2.5.1] state 32
+2015-11-02 14:16:31,753 DEBUG de.twenty11.skysail.server.app.SkysailRootApplication - com.fasterxml.jackson.dataformat.jackson-dataformat-xml [2.5.1] state 32
+2015-11-02 14:16:31,753 DEBUG de.twenty11.skysail.server.app.SkysailRootApplication - com.fasterxml.jackson.dataformat.jackson-dataformat-smile [2.5.1] state 32
+2015-11-02 14:16:31,753 DEBUG de.twenty11.skysail.server.app.SkysailRootApplication - com.fasterxml.jackson.dataformat.jackson-dataformat-yaml [2.5.1] state 32
+2015-11-02 14:16:31,753 DEBUG de.twenty11.skysail.server.app.SkysailRootApplication - com.fasterxml.jackson.dataformat.jackson-dataformat-csv [2.5.1] state 32
+2015-11-02 14:16:31,753 DEBUG de.twenty11.skysail.server.app.SkysailRootApplication - com.fasterxml.jackson.module.jackson-module-jaxb-annotations [2.5.1] state 32
+2015-11-02 14:16:31,753 DEBUG de.twenty11.skysail.server.app.SkysailRootApplication - com.fasterxml.jackson.module.jackson-module-jsonSchema [2.5.1] state 32
+2015-11-02 14:16:31,753 DEBUG de.twenty11.skysail.server.app.SkysailRootApplication - classmate [1.0.0] state 32
+2015-11-02 14:16:31,753 DEBUG de.twenty11.skysail.server.app.SkysailRootApplication - stax2-api [3.1.4] state 32
+2015-11-02 14:16:31,753 DEBUG de.twenty11.skysail.server.app.SkysailRootApplication - javassist [3.18.1.GA] state 32
+2015-11-02 14:16:31,753 DEBUG de.twenty11.skysail.server.app.SkysailRootApplication - org.codehaus.jettison.jettison [1.3.7] state 32
+2015-11-02 14:16:31,753 DEBUG de.twenty11.skysail.server.app.SkysailRootApplication - com.googlecode.concurrentlinkedhashmap.lru [1.4.0] state 32
+2015-11-02 14:16:31,753 DEBUG de.twenty11.skysail.server.app.SkysailRootApplication - com.orientechnologies.orientdb-client [2.1.3] state 32
+2015-11-02 14:16:31,754 DEBUG de.twenty11.skysail.server.app.SkysailRootApplication - com.orientechnologies.orientdb-core [2.1.3] state 32
+2015-11-02 14:16:31,754 DEBUG de.twenty11.skysail.server.app.SkysailRootApplication - com.orientechnologies.orientdb-enterprise [2.1.3] state 32
+2015-11-02 14:16:31,754 DEBUG de.twenty11.skysail.server.app.SkysailRootApplication - com.orientechnologies.orientdb-graphdb [2.1.3] state 32
+2015-11-02 14:16:31,754 DEBUG de.twenty11.skysail.server.app.SkysailRootApplication - com.orientechnologies.orientdb-object [2.1.3] state 32
+2015-11-02 14:16:31,754 DEBUG de.twenty11.skysail.server.app.SkysailRootApplication - com.orientechnologies.orientdb-server [2.1.3] state 32
+2015-11-02 14:16:31,754 DEBUG de.twenty11.skysail.server.app.SkysailRootApplication - com.orientechnologies.orientdb-tools [2.1.3] state 32
+2015-11-02 14:16:31,754 DEBUG de.twenty11.skysail.server.app.SkysailRootApplication - org.xerial.snappy.snappy-java [1.1.1.3] state 8
+2015-11-02 14:16:31,754 DEBUG de.twenty11.skysail.server.app.SkysailRootApplication - io.skysail.bundled.tinkerpop.blueprints-core [2.6.0] state 32
+2015-11-02 14:16:31,754 DEBUG de.twenty11.skysail.server.app.SkysailRootApplication - io.skysail.bundled.tinkerpop.blueprints-orient-graph [2.4.0] state 32
+2015-11-02 14:16:31,754 DEBUG de.twenty11.skysail.server.app.SkysailRootApplication - com.sun.jna [4.2.0] state 8
+2015-11-02 14:16:31,754 DEBUG de.twenty11.skysail.server.app.SkysailRootApplication - com.sun.jna.platform [4.2.0] state 32
+2015-11-02 14:16:31,754 DEBUG de.twenty11.skysail.server.app.SkysailRootApplication - org.eclipse.jetty.util [9.2.11.v20150529] state 32
+2015-11-02 14:16:31,754 DEBUG de.twenty11.skysail.server.app.SkysailRootApplication - org.eclipse.jetty.http [9.2.11.v20150529] state 32
+2015-11-02 14:16:31,754 DEBUG de.twenty11.skysail.server.app.SkysailRootApplication - org.eclipse.jetty.io [9.2.11.v20150529] state 32
+2015-11-02 14:16:31,754 DEBUG de.twenty11.skysail.server.app.SkysailRootApplication - org.eclipse.jetty.security [9.2.11.v20150529] state 32
+2015-11-02 14:16:31,754 DEBUG de.twenty11.skysail.server.app.SkysailRootApplication - org.eclipse.jetty.server [9.2.11.v20150529] state 32
+2015-11-02 14:16:31,754 DEBUG de.twenty11.skysail.server.app.SkysailRootApplication - org.eclipse.jetty.servlet [9.2.11.v20150529] state 32
+2015-11-02 14:16:31,754 DEBUG de.twenty11.skysail.server.app.SkysailRootApplication - org.eclipse.jetty.webapp [9.2.11.v20150529] state 32
+2015-11-02 14:16:31,754 DEBUG de.twenty11.skysail.server.app.SkysailRootApplication - org.eclipse.jetty.deploy [9.2.11.v20150529] state 32
+2015-11-02 14:16:31,754 DEBUG de.twenty11.skysail.server.app.SkysailRootApplication - org.eclipse.jetty.xml [9.2.11.v20150529] state 32
+2015-11-02 14:16:31,754 DEBUG de.twenty11.skysail.server.app.SkysailRootApplication - org.eclipse.jetty.osgi-servlet-api [3.1.0.M3] state 32
+2015-11-02 14:16:31,754 DEBUG de.twenty11.skysail.server.app.SkysailRootApplication - org.eclipse.jetty.client [9.2.11.v20150529] state 32
+2015-11-02 14:16:31,754 DEBUG de.twenty11.skysail.server.app.SkysailRootApplication - org.apache.shiro.core [1.2.2] state 32
+2015-11-02 14:16:31,754 DEBUG de.twenty11.skysail.server.app.SkysailRootApplication - org.apache.shiro.web [1.2.2] state 32
+2015-11-02 14:16:31,754 DEBUG de.twenty11.skysail.server.app.SkysailRootApplication - org.yaml.snakeyaml [1.15.0] state 32
+2015-11-02 14:16:31,754 DEBUG de.twenty11.skysail.server.app.SkysailRootApplication - de.twentyeleven.skysail.org.json-osgi [20080701.0.0] state 32
+2015-11-02 14:16:31,754 DEBUG de.twenty11.skysail.server.app.SkysailRootApplication - org.restlet [2.3.4.v20150716-1217] state 32
+2015-11-02 14:16:31,754 DEBUG de.twenty11.skysail.server.app.SkysailRootApplication - org.restlet.ext.apispark [2.3.4.v20150716-1217] state 32
+2015-11-02 14:16:31,754 DEBUG de.twenty11.skysail.server.app.SkysailRootApplication - org.restlet.ext.crypto [2.3.4.v20150716-1217] state 32
+2015-11-02 14:16:31,754 DEBUG de.twenty11.skysail.server.app.SkysailRootApplication - org.restlet.ext.jackson [2.3.4.v20150716-1217] state 32
+2015-11-02 14:16:31,754 DEBUG de.twenty11.skysail.server.app.SkysailRootApplication - org.restlet.ext.jetty [2.3.4.v20150716-1217] state 32
+2015-11-02 14:16:31,754 DEBUG de.twenty11.skysail.server.app.SkysailRootApplication - org.restlet.ext.json [2.3.4.v20150716-1217] state 32
+2015-11-02 14:16:31,754 DEBUG de.twenty11.skysail.server.app.SkysailRootApplication - org.restlet.ext.oauth [2.3.4.v20150716-1217] state 32
+2015-11-02 14:16:31,754 DEBUG de.twenty11.skysail.server.app.SkysailRootApplication - org.restlet.ext.slf4j [2.3.4.v20150716-1217] state 32
+2015-11-02 14:16:31,754 DEBUG de.twenty11.skysail.server.app.SkysailRootApplication - org.restlet.ext.raml [2.3.4.v20150716-1217] state 32
+2015-11-02 14:16:31,754 DEBUG de.twenty11.skysail.server.app.SkysailRootApplication - org.restlet.ext.servlet [2.3.4.v20150716-1217] state 32
+2015-11-02 14:16:31,754 DEBUG de.twenty11.skysail.server.app.SkysailRootApplication - io.skysail.bundled.raml-parser [0.8.12] state 32
+2015-11-02 14:16:31,754 DEBUG de.twenty11.skysail.server.app.SkysailRootApplication - org.restlet.ext.freemarker [2.3.4.v20150716-1217] state 32
+2015-11-02 14:16:31,755 DEBUG de.twenty11.skysail.server.app.SkysailRootApplication - com.google.guava [16.0.1] state 32
+2015-11-02 14:16:31,755 DEBUG de.twenty11.skysail.server.app.SkysailRootApplication - org.jboss.logging.jboss-logging [3.1.4.GA] state 32
+2015-11-02 14:16:31,755 DEBUG de.twenty11.skysail.server.app.SkysailRootApplication - org.hibernate.validator [5.1.2.Final] state 32
+2015-11-02 14:16:31,755 DEBUG de.twenty11.skysail.server.app.SkysailRootApplication - ch.qos.logback.classic [1.1.2] state 32
+2015-11-02 14:16:31,755 DEBUG de.twenty11.skysail.server.app.SkysailRootApplication - ch.qos.logback.core [1.1.2] state 32
+2015-11-02 14:16:31,755 DEBUG de.twenty11.skysail.server.app.SkysailRootApplication - slf4j.api [1.7.7] state 32
+2015-11-02 14:16:31,755 DEBUG de.twenty11.skysail.server.app.SkysailRootApplication - skysail.api [10.0.0.201511021151] state 32
+2015-11-02 14:16:31,755 DEBUG de.twenty11.skysail.server.app.SkysailRootApplication - skysail.api.um [0.2.1.201507121837] state 32
+2015-11-02 14:16:31,755 DEBUG de.twenty11.skysail.server.app.SkysailRootApplication - skysail.api.peers [0.1.1.201508011448] state 32
+2015-11-02 14:16:31,755 DEBUG de.twenty11.skysail.server.app.SkysailRootApplication - skysail.api.search [0.1.0.201509111831] state 32
+2015-11-02 14:16:31,755 DEBUG de.twenty11.skysail.server.app.SkysailRootApplication - skysail.api.text [2.0.0.201509110729] state 32
+2015-11-02 14:16:31,755 DEBUG de.twenty11.skysail.server.app.SkysailRootApplication - skysail.api.validation [0.2.1.201507140555] state 32
+2015-11-02 14:16:31,755 DEBUG de.twenty11.skysail.server.app.SkysailRootApplication - skysail.api.features [0.1.2.201508011427] state 32
+2015-11-02 14:16:31,755 DEBUG de.twenty11.skysail.server.app.SkysailRootApplication - com.sun.el [2.2.0.v201303151357] state 32
+2015-11-02 14:16:31,755 DEBUG de.twenty11.skysail.server.app.SkysailRootApplication - de.twenty11.owasp-java-html-sanitizer [239.0.0] state 32
+2015-11-02 14:16:31,755 DEBUG de.twenty11.skysail.server.app.SkysailRootApplication - de.twentyeleven.skysail.org.antlr.stringtemplate-osgi [4.0.8] state 32
+2015-11-02 14:16:31,755 DEBUG de.twenty11.skysail.server.app.SkysailRootApplication - skysail.server [13.0.0.201511021246] state 32
+2015-11-02 14:16:31,755 DEBUG de.twenty11.skysail.server.app.SkysailRootApplication - skysail.server.converter [3.0.2.201511021246] state 4
+2015-11-02 14:16:31,755 DEBUG de.twenty11.skysail.server.app.SkysailRootApplication - skysail.server.db [5.0.0.201511021246] state 4
+2015-11-02 14:16:31,755 DEBUG de.twenty11.skysail.server.app.SkysailRootApplication - skysail.server.http [4.0.4.201511021246] state 4
+2015-11-02 14:16:31,755 DEBUG de.twenty11.skysail.server.app.SkysailRootApplication - skysail.server.osgi [0.0.22.201511021246] state 4
+2015-11-02 14:16:31,755 DEBUG de.twenty11.skysail.server.app.SkysailRootApplication - skysail.server.queryfilter [0.4.3.201511021246] state 4
+2015-11-02 14:16:31,755 DEBUG de.twenty11.skysail.server.app.SkysailRootApplication - skysail.server.performance.etm [0.1.1.201511021246] state 4
+2015-11-02 14:16:31,755 DEBUG de.twenty11.skysail.server.app.SkysailRootApplication - skysail.server.static [1.0.5.201511021246] state 4
+2015-11-02 14:16:31,755 DEBUG de.twenty11.skysail.server.app.SkysailRootApplication - skysail.server.text.markdown [0.1.1.201509190553] state 4
+2015-11-02 14:16:31,755 DEBUG de.twenty11.skysail.server.app.SkysailRootApplication - skysail.server.text.store.bundleresource [0.1.3.201511021246] state 4
+2015-11-02 14:16:31,755 DEBUG de.twenty11.skysail.server.app.SkysailRootApplication - skysail.server.text.store.git [0.1.3.201511021246] state 4
+2015-11-02 14:16:31,755 DEBUG de.twenty11.skysail.server.app.SkysailRootApplication - skysail.server.um [0.2.1.201511021246] state 4
+2015-11-02 14:16:31,755 DEBUG de.twenty11.skysail.server.app.SkysailRootApplication - skysail.server.um.simple [0.1.6.201511021246] state 4
+2015-11-02 14:16:31,755 DEBUG de.twenty11.skysail.server.app.SkysailRootApplication - com.google.inject [4.0.0] state 4
+2015-11-02 14:16:31,755 DEBUG de.twenty11.skysail.server.app.SkysailRootApplication - org.apache.servicemix.bundles.aopalliance [1.0.0.6] state 4
+2015-11-02 14:16:31,755 DEBUG de.twenty11.skysail.server.app.SkysailRootApplication - com.sun.mail.javax.mail [1.5.1] state 4
+2015-11-02 14:16:31,755 DEBUG de.twenty11.skysail.server.app.SkysailRootApplication - org.quartz-scheduler.quartz [2.2.1] state 4
+2015-11-02 14:16:31,755 DEBUG de.twenty11.skysail.server.app.SkysailRootApplication - org.apache.servicemix.bundles.c3p0 [0.9.1.2_1] state 4
+2015-11-02 14:16:31,755 DEBUG de.twenty11.skysail.server.app.SkysailRootApplication - org.apache.servicemix.bundles.jakarta-regexp [1.4.0.1] state 4
+2015-11-02 14:16:31,755 DEBUG de.twenty11.skysail.server.app.SkysailRootApplication - skysail.server.http.javamelody [0.1.0.201511021246] state 4
+2015-11-02 14:16:31,756 DEBUG de.twenty11.skysail.server.app.SkysailRootApplication - org.jsoup [1.8.1] state 4
+2015-11-02 14:16:31,756 DEBUG de.twenty11.skysail.server.app.SkysailRootApplication - skysail.server.codegen [1.0.0.201511021246] state 4
+2015-11-02 14:16:31,756 DEBUG de.twenty11.skysail.server.app.SkysailRootApplication - skysail.server.designer.matrix [0.1.0.201511021305] state 4
+2015-11-02 14:16:31,756 DEBUG de.twenty11.skysail.server.app.SkysailRootApplication - OAuthSampleServer [0.1.0.201511021315] state 4
+2015-11-02 14:16:31,756 DEBUG de.twenty11.skysail.server.app.SkysailRootApplication - org.freemarker.freemarker [2.3.23.stable] state 4
+2015-11-02 14:16:31,776 INFO  io.skysail.server.app.ApplicationList - (+) Adding application 'root'
+2015-11-02 14:16:31,790 INFO  io.skysail.server.services.ServerLoad - activating ServerLoad task
+2015-11-02 14:16:31,795 INFO  io.skysail.server.services.ServerTime - activating ServerTime task
+2015-11-02 14:16:31,814 DEBUG io.skysail.server.app.SkysailApplication - Instanciating new Skysail Application 'WebappApplication'
+2015-11-02 14:16:31,818 DEBUG io.skysail.server.app.SkysailApplication - Activating Application io.skysail.server.converter.WebappApplication
+2015-11-02 14:16:31,818 INFO  io.skysail.server.app.ApplicationList - (+) Adding application 'webapp'
+2015-11-02 14:16:31,839 INFO  io.skysail.server.db.DbConfigurations - activating DbConfigurations with config DbConfig(name=skysailgraph, driver=, url=memory:testapp, username=admin)
+2015-11-02 14:16:31,974 INFO  io.skysail.server.db.OrientGraphDbService - about to start db
+2015-11-02 14:16:32,676 INFO  io.skysail.server.db.OrientGraphDbService - created new in-memory database com.orientechnologies.orient.core.db.document.ODatabaseDocumentTx@5b0dbfb
+2015-11-02 14:16:32,681 INFO  io.skysail.server.db.OrientGraphDbService - testing graph factory connection
+2015-11-02 14:16:32,725 INFO  io.skysail.server.db.OrientGraphDbService - setting lazy loading to false
+2015-11-02 14:16:32,727 DEBUG io.skysail.server.db.OrientGraphDbService - activating io.skysail.server.db.OrientGraphDbService
+2015-11-02 14:16:32,740 DEBUG io.skysail.server.db.OrientGraphDbService - ODB graph function [ine] is registered: [Syntax error: inE([<labels>])]
+2015-11-02 14:16:32,740 DEBUG io.skysail.server.db.OrientGraphDbService - ODB graph function [oute] is registered: [Syntax error: outE([<labels>])]
+2015-11-02 14:16:32,740 DEBUG io.skysail.server.db.OrientGraphDbService - ODB graph function [in] is registered: [Syntax error: in([<labels>])]
+2015-11-02 14:16:32,740 DEBUG io.skysail.server.db.OrientGraphDbService - ODB graph function [dijkstra] is registered: [dijkstra(<sourceVertex>, <destinationVertex>, <weightEdgeFieldName>, [<direction>])]
+2015-11-02 14:16:32,740 DEBUG io.skysail.server.db.OrientGraphDbService - ODB graph function [label] is registered: [Syntax error: label()]
+2015-11-02 14:16:32,740 DEBUG io.skysail.server.db.OrientGraphDbService - ODB graph function [bothv] is registered: [Syntax error: bothV([<labels>])]
+2015-11-02 14:16:32,740 DEBUG io.skysail.server.db.OrientGraphDbService - ODB graph function [out] is registered: [Syntax error: out([<labels>])]
+2015-11-02 14:16:32,740 DEBUG io.skysail.server.db.OrientGraphDbService - ODB graph function [both] is registered: [Syntax error: both([<labels>])]
+2015-11-02 14:16:32,740 DEBUG io.skysail.server.db.OrientGraphDbService - ODB graph function [inv] is registered: [Syntax error: inV([<labels>])]
+2015-11-02 14:16:32,740 DEBUG io.skysail.server.db.OrientGraphDbService - ODB graph function [gremlin] is registered: [gremlin(<gremlin-expression>)]
+2015-11-02 14:16:32,740 DEBUG io.skysail.server.db.OrientGraphDbService - ODB graph function [shortestpath] is registered: [shortestPath(<sourceVertex>, <destinationVertex>, [<direction>, [ <edgeTypeAsString> ]])]
+2015-11-02 14:16:32,741 DEBUG io.skysail.server.db.OrientGraphDbService - ODB graph function [outv] is registered: [Syntax error: outV([<labels>])]
+2015-11-02 14:16:32,741 DEBUG io.skysail.server.db.OrientGraphDbService - ODB graph function [bothe] is registered: [Syntax error: bothE([<labels>])]
+2015-11-02 14:16:32,749 INFO  io.skysail.server.db.versions.impl.VersionsRepository - activating VersionsRepository
+2015-11-02 14:16:32,764 DEBUG io.skysail.server.db.OrientGraphDbService - registering class 'class io.skysail.server.db.versions.impl.ComponentDbVersion' @ orientDB
+2015-11-02 14:16:32,771 INFO  io.skysail.server.app.Repositories - adding repository (#1) with name 'io.skysail.server.db.versions.impl.ComponentDbVersion'
+2015-11-02 14:16:32,810 INFO  io.skysail.server.http.HttpServer - Activating io.skysail.server.http.HttpServer
+2015-11-02 14:16:32,816 INFO  de.twenty11.skysail.server.SkysailComponent - Creating Restlet Component: de.twenty11.skysail.server.SkysailComponent
+2015-11-02 14:16:32,836 DEBUG io.skysail.server.app.SkysailApplication - Instanciating new Skysail Application 'OsgiMonitorViewerApplication'
+2015-11-02 14:16:32,837 DEBUG io.skysail.server.app.SkysailApplication - Activating Application de.twenty11.skysail.server.osgi.OsgiMonitorViewerApplication
+2015-11-02 14:16:32,838 INFO  io.skysail.server.app.ApplicationList - (+) Adding application 'OSGi'
+2015-11-02 14:16:32,845 DEBUG io.skysail.server.performance.etm.EtmPerformanceMonitor - starting etm performance monitor
+2015-11-02 14:16:32,854 DEBUG io.skysail.server.app.SkysailApplication - Instanciating new Skysail Application 'PerformanceApplication'
+2015-11-02 14:16:32,855 DEBUG io.skysail.server.app.SkysailApplication - Activating Application io.skysail.server.performance.etm.impl.PerformanceApplication
+2015-11-02 14:16:32,857 INFO  io.skysail.server.app.ApplicationList - (+) Adding application 'Performance'
+2015-11-02 14:16:32,865 DEBUG io.skysail.server.app.SkysailApplication - Instanciating new Skysail Application 'WebappApplication'
+2015-11-02 14:16:32,865 DEBUG io.skysail.server.app.SkysailApplication - Activating Application de.twenty11.skysail.server.webapp.internal.WebappApplication
+2015-11-02 14:16:32,865 INFO  io.skysail.server.app.ApplicationList - (+) Adding application 'static'
+2015-11-02 14:16:32,886 DEBUG io.skysail.server.app.SkysailApplication - Instanciating new Skysail Application 'I18nApplication'
+2015-11-02 14:16:32,888 DEBUG io.skysail.server.app.SkysailApplication - Activating Application io.skysail.server.text.store.bundleresource.impl.I18nApplication
+2015-11-02 14:16:32,890 INFO  io.skysail.server.app.ApplicationList - (+) Adding application 'i18n'
+2015-11-02 14:16:32,916 INFO  io.skysail.server.um.security.shiro.ShiroServices - creating new SkysailAuthorizingRealm...
+2015-11-02 14:16:32,922 INFO  io.skysail.server.um.security.shiro.ShiroServices - Setting new SkysailWebSecurityManager as Shiros SecurityManager
+2015-11-02 14:16:32,942 INFO  i.s.s.u.s.shiro.session.mgt.SkysailWebSessionManager - creating new SkysailWebSessionManager
+2015-11-02 14:16:32,957 DEBUG io.skysail.server.app.SkysailApplication - Instanciating new Skysail Application 'SimpleUserManagementApplication'
+2015-11-02 14:16:32,957 DEBUG io.skysail.server.app.SkysailApplication - Activating Application io.skysail.server.um.simple.app.SimpleUserManagementApplication
+2015-11-02 14:16:32,959 INFO  io.skysail.server.app.ApplicationList - (+) Adding application 'usermanagement'
+2015-11-02 14:16:32,965 WARN  i.s.server.um.simple.FileBasedUserManagementProvider - creating default configuration for usermanagement as no configuration was provided (yet)!
+2015-11-02 14:16:33,062 DEBUG i.s.s.u.s.a.SkysailHashedCredentialsMatcher - cacheManager set in io.skysail.server.um.simple.authentication.SkysailHashedCredentialsMatcher
+2015-11-02 14:16:33,064 DEBUG org.apache.shiro.realm.AuthorizingRealm - No authorizationCache instance set.  Checking for a cacheManager...
+2015-11-02 14:16:33,064 DEBUG org.apache.shiro.realm.AuthorizingRealm - CacheManager [MemoryConstrainedCacheManager with 0 cache(s)): []] has been configured.  Building authorization cache named [io.skysail.server.um.simple.authorization.SimpleAuthorizingRealm.authorizationCache.1]
+2015-11-02 14:16:33,098 DEBUG io.skysail.server.app.designer.matrix.ContactRepo - setting dbService
+2015-11-02 14:16:33,100 DEBUG io.skysail.server.db.GraphDbRepository - activating repository for class(es) io.skysail.server.app.designer.matrix.Contact
+2015-11-02 14:16:33,112 DEBUG io.skysail.server.db.OrientGraphDbService - registering class 'class io.skysail.server.app.designer.matrix.Contact' @ orientDB
+2015-11-02 14:16:33,119 INFO  io.skysail.server.app.Repositories - adding repository (#2) with name 'io.skysail.server.app.designer.matrix.Contact'
+2015-11-02 14:16:33,125 DEBUG io.skysail.server.app.SkysailApplication - Instanciating new Skysail Application 'MatrixApplication'
+2015-11-02 14:16:33,126 DEBUG io.skysail.server.app.SkysailApplication - Activating Application io.skysail.server.app.designer.matrix.MatrixApplication
+2015-11-02 14:16:33,127 INFO  io.skysail.server.app.ApplicationList - (+) Adding application 'Matrix'
+2015-11-02 14:16:33,138 DEBUG io.skysail.server.app.SkysailApplication - Activating Application de.kvb.argus.oauth.server.OAuth2ServerApplication
+2015-11-02 14:16:33,139 INFO  io.skysail.server.app.ApplicationList - (+) Adding application 'OAuth2ServerApplication (SkysailApplication)
+Home: null, 
+Router: null
+'
+2015-11-02 14:16:37,818 INFO  io.skysail.server.http.HttpServer - creating default configuration after waiting for 5000ms for provided configuration
+2015-11-02 14:16:37,830 INFO  io.skysail.server.app.ApplicationList -  >>> unsetting ServerConfiguration
+2015-11-02 14:16:37,830 INFO  io.skysail.server.app.ApplicationList -  >>> attaching skysailApplication '/root' to defaultHost
+2015-11-02 14:16:37,830 INFO  io.skysail.server.app.ApplicationList -  >>> unsetting ServerConfiguration
+2015-11-02 14:16:37,830 INFO  io.skysail.server.app.ApplicationList -  >>> attaching skysailApplication '/webapp' to defaultHost
+2015-11-02 14:16:37,830 INFO  io.skysail.server.app.ApplicationList -  >>> unsetting ServerConfiguration
+2015-11-02 14:16:37,830 INFO  io.skysail.server.app.ApplicationList -  >>> attaching skysailApplication '/OSGi' to defaultHost
+2015-11-02 14:16:37,830 INFO  io.skysail.server.app.ApplicationList -  >>> unsetting ServerConfiguration
+2015-11-02 14:16:37,830 INFO  io.skysail.server.app.ApplicationList -  >>> attaching skysailApplication '/Performance' to defaultHost
+2015-11-02 14:16:37,830 INFO  io.skysail.server.app.ApplicationList -  >>> unsetting ServerConfiguration
+2015-11-02 14:16:37,831 INFO  io.skysail.server.app.ApplicationList -  >>> attaching skysailApplication '/static' to defaultHost
+2015-11-02 14:16:37,831 INFO  io.skysail.server.app.ApplicationList -  >>> unsetting ServerConfiguration
+2015-11-02 14:16:37,831 INFO  io.skysail.server.app.ApplicationList -  >>> attaching skysailApplication '/i18n' to defaultHost
+2015-11-02 14:16:37,831 INFO  io.skysail.server.app.ApplicationList -  >>> unsetting ServerConfiguration
+2015-11-02 14:16:37,831 INFO  io.skysail.server.app.ApplicationList -  >>> attaching skysailApplication '/usermanagement' to defaultHost
+2015-11-02 14:16:37,831 INFO  io.skysail.server.app.ApplicationList -  >>> unsetting ServerConfiguration
+2015-11-02 14:16:37,831 INFO  io.skysail.server.app.ApplicationList -  >>> attaching skysailApplication '/Matrix' to defaultHost
+2015-11-02 14:16:37,831 INFO  io.skysail.server.app.ApplicationList -  >>> unsetting ServerConfiguration
+2015-11-02 14:16:37,831 INFO  io.skysail.server.app.ApplicationList -  >>> attaching skysailApplication '/OAuth2ServerApplication (SkysailApplication)
+Home: null, 
+Router: null
+' to defaultHost
+2015-11-02 14:16:37,831 INFO  io.skysail.server.http.HttpServer - Deactivating io.skysail.server.http.HttpServer
+2015-11-02 14:16:37,851 INFO  io.skysail.server.http.HttpServer - Activating io.skysail.server.http.HttpServer
+2015-11-02 14:16:37,852 INFO  io.skysail.server.http.HttpServer - configuration was provided
+2015-11-02 14:16:37,852 INFO  io.skysail.server.http.HttpServer - 
+2015-11-02 14:16:37,852 INFO  io.skysail.server.http.HttpServer - ====================================
+2015-11-02 14:16:37,852 INFO  io.skysail.server.http.HttpServer - Starting skysail server on port 2015
+2015-11-02 14:16:37,852 INFO  io.skysail.server.http.HttpServer - ====================================
+2015-11-02 14:16:37,852 INFO  io.skysail.server.http.HttpServer - 
+2015-11-02 14:16:37,858 DEBUG org.eclipse.jetty.util.log - Logging to Logger[org.eclipse.jetty.util.log] via org.eclipse.jetty.util.log.Slf4jLog
+2015-11-02 14:16:37,859 INFO  org.eclipse.jetty.util.log - Logging initialized @9032ms
+2015-11-02 14:16:37,866 DEBUG org.eclipse.jetty.util.component.ContainerLifeCycle - org.restlet.ext.jetty.JettyServerHelper$WrappedServer@3394e7bb added {qtp1610783250{STOPPED,8<=0<=200,i=0,q=0},AUTO}
+2015-11-02 14:16:37,872 DEBUG org.eclipse.jetty.util.component.ContainerLifeCycle - HttpConnectionFactory@73c9f502{HTTP/1.1} added {HttpConfiguration@34abe2c1{32768/8192,8192/8192,https://:0,[]},POJO}
+2015-11-02 14:16:37,875 DEBUG org.eclipse.jetty.util.component.ContainerLifeCycle - ServerConnector@4ebbd5c5{null}{0.0.0.0:0} added {org.restlet.ext.jetty.JettyServerHelper$WrappedServer@3394e7bb,UNMANAGED}
+2015-11-02 14:16:37,876 DEBUG org.eclipse.jetty.util.component.ContainerLifeCycle - ServerConnector@4ebbd5c5{null}{0.0.0.0:0} added {qtp1610783250{STOPPED,8<=0<=200,i=0,q=0},AUTO}
+2015-11-02 14:16:37,876 DEBUG org.eclipse.jetty.util.component.ContainerLifeCycle - ServerConnector@4ebbd5c5{null}{0.0.0.0:0} added {org.eclipse.jetty.util.thread.ScheduledExecutorScheduler@1c9839b7,AUTO}
+2015-11-02 14:16:37,876 DEBUG org.eclipse.jetty.util.component.ContainerLifeCycle - ServerConnector@4ebbd5c5{null}{0.0.0.0:0} added {org.eclipse.jetty.io.ArrayByteBufferPool@611b89f4,POJO}
+2015-11-02 14:16:37,876 DEBUG org.eclipse.jetty.util.component.ContainerLifeCycle - ServerConnector@4ebbd5c5{null}{0.0.0.0:0} added {HttpConnectionFactory@73c9f502{HTTP/1.1},AUTO}
+2015-11-02 14:16:37,877 DEBUG org.eclipse.jetty.util.component.ContainerLifeCycle - ServerConnector@4ebbd5c5{HTTP/1.1}{0.0.0.0:0} added {org.eclipse.jetty.server.ServerConnector$ServerConnectorManager@33e54cbf,MANAGED}
+2015-11-02 14:16:37,878 DEBUG org.eclipse.jetty.util.component.ContainerLifeCycle - org.restlet.ext.jetty.JettyServerHelper$WrappedServer@3394e7bb added {ServerConnector@4ebbd5c5{HTTP/1.1}{0.0.0.0:2015},AUTO}
+2015-11-02 14:16:37,878 DEBUG org.eclipse.jetty.util.component.ContainerLifeCycle - org.restlet.ext.jetty.JettyServerHelper$WrappedServer@3394e7bb added {org.eclipse.jetty.server.LowResourceMonitor@5b9c813c,AUTO}
+2015-11-02 14:16:37,879 INFO  org.restlet - Starting the Jetty [HTTP/1.1] server on port 2015
+2015-11-02 14:16:37,879 DEBUG org.eclipse.jetty.util.component.AbstractLifeCycle - starting org.restlet.ext.jetty.JettyServerHelper$WrappedServer@3394e7bb
+2015-11-02 14:16:37,880 INFO  org.eclipse.jetty.server.Server - jetty-9.2.11.v20150529
+2015-11-02 14:16:37,889 DEBUG org.eclipse.jetty.server.handler.AbstractHandler - starting org.restlet.ext.jetty.JettyServerHelper$WrappedServer@3394e7bb
+2015-11-02 14:16:37,889 DEBUG org.eclipse.jetty.util.component.AbstractLifeCycle - starting qtp1610783250{STOPPED,8<=0<=200,i=0,q=0}
+2015-11-02 14:16:37,890 DEBUG org.eclipse.jetty.util.component.AbstractLifeCycle - STARTED @9063ms qtp1610783250{STARTED,8<=8<=200,i=6,q=0}
+2015-11-02 14:16:37,890 DEBUG org.eclipse.jetty.util.component.AbstractLifeCycle - starting org.eclipse.jetty.server.LowResourceMonitor@5b9c813c
+2015-11-02 14:16:37,891 DEBUG org.eclipse.jetty.util.component.AbstractLifeCycle - starting org.eclipse.jetty.server.LowResourceMonitor$LRMScheduler@4d062ccb
+2015-11-02 14:16:37,892 DEBUG org.eclipse.jetty.util.component.AbstractLifeCycle - STARTED @9065ms org.eclipse.jetty.server.LowResourceMonitor$LRMScheduler@4d062ccb
+2015-11-02 14:16:37,894 DEBUG org.eclipse.jetty.util.component.AbstractLifeCycle - STARTED @9066ms org.eclipse.jetty.server.LowResourceMonitor@5b9c813c
+2015-11-02 14:16:37,894 DEBUG org.eclipse.jetty.util.component.AbstractLifeCycle - starting ServerConnector@4ebbd5c5{HTTP/1.1}{0.0.0.0:2015}
+2015-11-02 14:16:37,897 DEBUG org.eclipse.jetty.util.component.ContainerLifeCycle - ServerConnector@4ebbd5c5{HTTP/1.1}{0.0.0.0:2015} added {sun.nio.ch.ServerSocketChannelImpl[/0:0:0:0:0:0:0:0:2015],POJO}
+2015-11-02 14:16:37,897 DEBUG org.eclipse.jetty.util.component.AbstractLifeCycle - starting org.eclipse.jetty.util.thread.ScheduledExecutorScheduler@1c9839b7
+2015-11-02 14:16:37,897 DEBUG org.eclipse.jetty.util.component.AbstractLifeCycle - STARTED @9069ms org.eclipse.jetty.util.thread.ScheduledExecutorScheduler@1c9839b7
+2015-11-02 14:16:37,897 DEBUG org.eclipse.jetty.util.component.AbstractLifeCycle - starting HttpConnectionFactory@73c9f502{HTTP/1.1}
+2015-11-02 14:16:37,897 DEBUG org.eclipse.jetty.util.component.AbstractLifeCycle - STARTED @9069ms HttpConnectionFactory@73c9f502{HTTP/1.1}
+2015-11-02 14:16:37,897 DEBUG org.eclipse.jetty.util.component.AbstractLifeCycle - starting org.eclipse.jetty.server.ServerConnector$ServerConnectorManager@33e54cbf
+2015-11-02 14:16:37,899 DEBUG org.eclipse.jetty.util.component.AbstractLifeCycle - starting org.eclipse.jetty.io.SelectorManager$ManagedSelector@5a0bf3d9 keys=-1 selected=-1
+2015-11-02 14:16:37,905 DEBUG org.eclipse.jetty.util.component.AbstractLifeCycle - STARTED @9077ms org.eclipse.jetty.io.SelectorManager$ManagedSelector@5a0bf3d9 keys=0 selected=0
+2015-11-02 14:16:37,905 DEBUG org.eclipse.jetty.util.component.AbstractLifeCycle - starting org.eclipse.jetty.io.SelectorManager$ManagedSelector@1bbe6a1f keys=-1 selected=-1
+2015-11-02 14:16:37,906 DEBUG org.eclipse.jetty.io.SelectorManager - Starting Thread[qtp1610783250-63-selector-ServerConnectorManager@33e54cbf/0,5,Configuration Admin Service] on org.eclipse.jetty.io.SelectorManager$ManagedSelector@5a0bf3d9 keys=0 selected=0
+2015-11-02 14:16:37,906 DEBUG org.eclipse.jetty.util.component.AbstractLifeCycle - STARTED @9079ms org.eclipse.jetty.io.SelectorManager$ManagedSelector@1bbe6a1f keys=0 selected=0
+2015-11-02 14:16:37,906 DEBUG org.eclipse.jetty.io.SelectorManager - Selector loop waiting on select
+2015-11-02 14:16:37,906 DEBUG org.eclipse.jetty.util.component.AbstractLifeCycle - starting org.eclipse.jetty.io.SelectorManager$ManagedSelector@1788dc24 keys=-1 selected=-1
+2015-11-02 14:16:37,907 DEBUG org.eclipse.jetty.io.SelectorManager - Starting Thread[qtp1610783250-64-selector-ServerConnectorManager@33e54cbf/1,5,Configuration Admin Service] on org.eclipse.jetty.io.SelectorManager$ManagedSelector@1bbe6a1f keys=0 selected=0
+2015-11-02 14:16:37,907 DEBUG org.eclipse.jetty.io.SelectorManager - Selector loop waiting on select
+2015-11-02 14:16:37,907 DEBUG org.eclipse.jetty.util.component.AbstractLifeCycle - STARTED @9080ms org.eclipse.jetty.io.SelectorManager$ManagedSelector@1788dc24 keys=0 selected=0
+2015-11-02 14:16:37,907 DEBUG org.eclipse.jetty.util.component.AbstractLifeCycle - starting org.eclipse.jetty.io.SelectorManager$ManagedSelector@2b6750f7 keys=-1 selected=-1
+2015-11-02 14:16:37,907 DEBUG org.eclipse.jetty.io.SelectorManager - Starting Thread[qtp1610783250-62-selector-ServerConnectorManager@33e54cbf/2,5,Configuration Admin Service] on org.eclipse.jetty.io.SelectorManager$ManagedSelector@1788dc24 keys=0 selected=0
+2015-11-02 14:16:37,908 DEBUG org.eclipse.jetty.io.SelectorManager - Selector loop waiting on select
+2015-11-02 14:16:37,908 DEBUG org.eclipse.jetty.util.component.AbstractLifeCycle - STARTED @9080ms org.eclipse.jetty.io.SelectorManager$ManagedSelector@2b6750f7 keys=0 selected=0
+2015-11-02 14:16:37,908 DEBUG org.eclipse.jetty.util.component.AbstractLifeCycle - STARTED @9080ms org.eclipse.jetty.server.ServerConnector$ServerConnectorManager@33e54cbf
+2015-11-02 14:16:37,908 DEBUG org.eclipse.jetty.io.SelectorManager - Starting Thread[qtp1610783250-66-selector-ServerConnectorManager@33e54cbf/3,5,Configuration Admin Service] on org.eclipse.jetty.io.SelectorManager$ManagedSelector@2b6750f7 keys=0 selected=0
+2015-11-02 14:16:37,908 DEBUG org.eclipse.jetty.io.SelectorManager - Selector loop waiting on select
+2015-11-02 14:16:37,909 DEBUG org.eclipse.jetty.util.component.ContainerLifeCycle - ServerConnector@4ebbd5c5{HTTP/1.1}{0.0.0.0:2015} added {acceptor-0@4aac9aa0,POJO}
+2015-11-02 14:16:37,909 INFO  org.eclipse.jetty.server.ServerConnector - Started ServerConnector@4ebbd5c5{HTTP/1.1}{0.0.0.0:2015}
+2015-11-02 14:16:37,910 DEBUG org.eclipse.jetty.util.component.AbstractLifeCycle - STARTED @9082ms ServerConnector@4ebbd5c5{HTTP/1.1}{0.0.0.0:2015}
+2015-11-02 14:16:37,910 INFO  org.eclipse.jetty.server.Server - Started @9082ms
+2015-11-02 14:16:37,910 DEBUG org.eclipse.jetty.util.component.AbstractLifeCycle - STARTED @9082ms org.restlet.ext.jetty.JettyServerHelper$WrappedServer@3394e7bb
+2015-11-02 14:16:38,733 DEBUG org.eclipse.jetty.io.SelectorManager - Queued change org.eclipse.jetty.io.SelectorManager$ManagedSelector$Accept@296d1962
+2015-11-02 14:16:38,734 DEBUG org.eclipse.jetty.io.SelectorManager - Selector loop woken up from select, 0/0 selected
+2015-11-02 14:16:38,734 DEBUG org.eclipse.jetty.io.SelectorManager - Running change org.eclipse.jetty.io.SelectorManager$ManagedSelector$Accept@296d1962
+2015-11-02 14:16:38,740 DEBUG org.eclipse.jetty.io.AbstractEndPoint - onOpen SelectChannelEndPoint@cca1e37{/0:0:0:0:0:0:0:1:58300<->2015,Open,in,out,-,-,3/30000,null}{io=0,kio=0,kro=0}
+2015-11-02 14:16:38,740 DEBUG org.eclipse.jetty.io.IdleTimeout - SelectChannelEndPoint@cca1e37{/0:0:0:0:0:0:0:1:58300<->2015,Open,in,out,-,-,3/30000,null}{io=0,kio=0,kro=0} idle timeout check, elapsed: 3 ms, remaining: 29997 ms
+2015-11-02 14:16:38,763 DEBUG org.eclipse.jetty.server.HttpChannel - new HttpChannelOverHttp@7d1e994f{r=0,c=false,a=IDLE,uri=-} -> SelectChannelEndPoint@cca1e37{/0:0:0:0:0:0:0:1:58300<->2015,Open,in,out,-,-,26/30000,null}{io=0,kio=0,kro=0},null,HttpChannelState@23844a2d{s=IDLE i=true a=null}
+2015-11-02 14:16:38,853 DEBUG org.eclipse.jetty.server.HttpConnection - New HTTP Connection HttpConnection@51ae40d0{IDLE}
+2015-11-02 14:16:38,853 DEBUG org.eclipse.jetty.io.AbstractConnection - onOpen HttpConnection@51ae40d0{IDLE}
+2015-11-02 14:16:38,854 DEBUG org.eclipse.jetty.io.AbstractConnection - fillInterested HttpConnection@51ae40d0{IDLE}
+2015-11-02 14:16:38,854 DEBUG org.eclipse.jetty.io.AbstractConnection - IDLE-->FILL_INTERESTED HttpConnection@51ae40d0{FILL_INTERESTED}
+2015-11-02 14:16:38,854 DEBUG org.eclipse.jetty.io.SelectChannelEndPoint - Local interests updating 0 -> 1 for SelectChannelEndPoint@cca1e37{/0:0:0:0:0:0:0:1:58300<->2015,Open,in,out,R,-,0/30000,HttpConnection}{io=1,kio=0,kro=0}
+2015-11-02 14:16:38,854 DEBUG org.eclipse.jetty.io.SelectorManager - Queued change org.eclipse.jetty.io.SelectChannelEndPoint$1@79f00194
+2015-11-02 14:16:38,854 DEBUG org.eclipse.jetty.io.SelectorManager - Created SelectChannelEndPoint@cca1e37{/0:0:0:0:0:0:0:1:58300<->2015,Open,in,out,R,-,0/30000,HttpConnection}{io=1,kio=0,kro=0}
+2015-11-02 14:16:38,854 DEBUG org.eclipse.jetty.io.SelectorManager - Running change org.eclipse.jetty.io.SelectChannelEndPoint$1@79f00194
+2015-11-02 14:16:38,854 DEBUG org.eclipse.jetty.io.SelectChannelEndPoint - Key interests updated 0 -> 1 on SelectChannelEndPoint@cca1e37{/0:0:0:0:0:0:0:1:58300<->2015,Open,in,out,R,-,0/30000,HttpConnection}{io=1,kio=1,kro=0}
+2015-11-02 14:16:38,854 DEBUG org.eclipse.jetty.io.SelectorManager - Selector loop waiting on select
+2015-11-02 14:16:38,855 DEBUG org.eclipse.jetty.io.SelectorManager - Selector loop woken up from select, 1/1 selected
+2015-11-02 14:16:38,855 DEBUG org.eclipse.jetty.io.SelectChannelEndPoint - Key interests updated 1 -> 0 on SelectChannelEndPoint@cca1e37{/0:0:0:0:0:0:0:1:58300<->2015,Open,in,out,R,-,1/30000,HttpConnection}{io=1,kio=0,kro=1}
+2015-11-02 14:16:38,856 DEBUG org.eclipse.jetty.io.SelectChannelEndPoint - Local interests updating 1 -> 0 for SelectChannelEndPoint@cca1e37{/0:0:0:0:0:0:0:1:58300<->2015,Open,in,out,R,-,1/30000,HttpConnection}{io=0,kio=0,kro=1}
+2015-11-02 14:16:38,856 DEBUG org.eclipse.jetty.io.SelectorManager - Queued change org.eclipse.jetty.io.SelectChannelEndPoint$1@79f00194
+2015-11-02 14:16:38,856 DEBUG org.eclipse.jetty.io.AbstractConnection - FILL_INTERESTED-->FILLING HttpConnection@51ae40d0{FILLING}
+2015-11-02 14:16:38,856 DEBUG org.eclipse.jetty.io.SelectorManager - Running change org.eclipse.jetty.io.SelectChannelEndPoint$1@79f00194
+2015-11-02 14:16:38,856 DEBUG org.eclipse.jetty.io.SelectorManager - Selector loop waiting on select
+2015-11-02 14:16:38,856 DEBUG org.eclipse.jetty.server.HttpConnection - HttpConnection@51ae40d0{FILLING} onFillable HttpChannelState@23844a2d{s=IDLE i=true a=null}
+2015-11-02 14:16:38,856 DEBUG org.eclipse.jetty.io.ChannelEndPoint - filled 442 SelectChannelEndPoint@cca1e37{/0:0:0:0:0:0:0:1:58300<->2015,Open,in,out,-,-,2/30000,HttpConnection}{io=0,kio=0,kro=1}
+2015-11-02 14:16:38,859 DEBUG org.eclipse.jetty.http.HttpParser - parseNext s=START HeapByteBuffer@6cd77c33[p=0,l=442,c=8192,r=442]={<<<GET / HTTP/1.1\r\nH...rsten.graef\r\n\r\n>>>\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00...\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00}
+2015-11-02 14:16:38,860 DEBUG org.eclipse.jetty.http.HttpParser - START --> SPACE1
+2015-11-02 14:16:38,860 DEBUG org.eclipse.jetty.http.HttpParser - SPACE1 --> URI
+2015-11-02 14:16:38,861 DEBUG org.eclipse.jetty.http.HttpParser - URI --> SPACE2
+2015-11-02 14:16:38,861 DEBUG org.eclipse.jetty.http.HttpParser - SPACE2 --> REQUEST_VERSION
+2015-11-02 14:16:38,861 DEBUG org.eclipse.jetty.http.HttpParser - REQUEST_VERSION --> HEADER
+2015-11-02 14:16:38,861 DEBUG org.eclipse.jetty.http.HttpParser - HEADER --> HEADER_VALUE
+2015-11-02 14:16:38,861 DEBUG org.eclipse.jetty.http.HttpParser - HEADER_VALUE --> HEADER_IN_VALUE
+2015-11-02 14:16:38,861 DEBUG org.eclipse.jetty.http.HttpParser - HEADER_IN_VALUE --> HEADER
+2015-11-02 14:16:38,862 DEBUG org.eclipse.jetty.http.HttpParser - HEADER --> HEADER_IN_VALUE
+2015-11-02 14:16:38,862 DEBUG org.eclipse.jetty.http.HttpParser - HEADER_IN_VALUE --> HEADER
+2015-11-02 14:16:38,862 DEBUG org.eclipse.jetty.http.HttpParser - HEADER --> HEADER_VALUE
+2015-11-02 14:16:38,862 DEBUG org.eclipse.jetty.http.HttpParser - HEADER_VALUE --> HEADER_IN_VALUE
+2015-11-02 14:16:38,862 DEBUG org.eclipse.jetty.http.HttpParser - HEADER_IN_VALUE --> HEADER
+2015-11-02 14:16:38,862 DEBUG org.eclipse.jetty.http.HttpParser - HEADER --> HEADER_VALUE
+2015-11-02 14:16:38,862 DEBUG org.eclipse.jetty.http.HttpParser - HEADER_VALUE --> HEADER_IN_VALUE
+2015-11-02 14:16:38,863 DEBUG org.eclipse.jetty.http.HttpParser - HEADER_IN_VALUE --> HEADER
+2015-11-02 14:16:38,863 DEBUG org.eclipse.jetty.http.HttpParser - HEADER --> HEADER_IN_NAME
+2015-11-02 14:16:38,863 DEBUG org.eclipse.jetty.http.HttpParser - HEADER_IN_NAME --> HEADER_VALUE
+2015-11-02 14:16:38,863 DEBUG org.eclipse.jetty.http.HttpParser - HEADER_VALUE --> HEADER_IN_VALUE
+2015-11-02 14:16:38,863 DEBUG org.eclipse.jetty.http.HttpParser - HEADER_IN_VALUE --> HEADER
+2015-11-02 14:16:38,863 DEBUG org.eclipse.jetty.http.HttpParser - HEADER --> HEADER_VALUE
+2015-11-02 14:16:38,863 DEBUG org.eclipse.jetty.http.HttpParser - HEADER_VALUE --> HEADER_IN_VALUE
+2015-11-02 14:16:38,863 DEBUG org.eclipse.jetty.http.HttpParser - HEADER_IN_VALUE --> HEADER
+2015-11-02 14:16:38,863 DEBUG org.eclipse.jetty.http.HttpParser - HEADER --> HEADER_IN_VALUE
+2015-11-02 14:16:38,863 DEBUG org.eclipse.jetty.http.HttpParser - HEADER_IN_VALUE --> HEADER
+2015-11-02 14:16:38,863 DEBUG org.eclipse.jetty.http.HttpParser - HEADER --> HEADER_VALUE
+2015-11-02 14:16:38,863 DEBUG org.eclipse.jetty.http.HttpParser - HEADER_VALUE --> HEADER_IN_VALUE
+2015-11-02 14:16:38,863 DEBUG org.eclipse.jetty.http.HttpParser - HEADER_IN_VALUE --> HEADER
+2015-11-02 14:16:38,863 DEBUG org.eclipse.jetty.http.HttpParser - HEADER --> HEADER_IN_NAME
+2015-11-02 14:16:38,863 DEBUG org.eclipse.jetty.http.HttpParser - HEADER_IN_NAME --> HEADER_VALUE
+2015-11-02 14:16:38,863 DEBUG org.eclipse.jetty.http.HttpParser - HEADER_VALUE --> HEADER_IN_VALUE
+2015-11-02 14:16:38,863 DEBUG org.eclipse.jetty.http.HttpParser - HEADER_IN_VALUE --> HEADER
+2015-11-02 14:16:38,864 DEBUG org.eclipse.jetty.http.HttpParser - HEADER --> END
+2015-11-02 14:16:38,864 DEBUG org.eclipse.jetty.server.HttpChannel - HttpChannelOverHttp@7d1e994f{r=1,c=false,a=IDLE,uri=-} messageComplete
+2015-11-02 14:16:38,865 DEBUG org.eclipse.jetty.server.HttpInput - HttpInputOverHTTP@4ff84ea EOF
+2015-11-02 14:16:38,865 DEBUG org.eclipse.jetty.server.HttpChannel - HttpChannelOverHttp@7d1e994f{r=1,c=false,a=IDLE,uri=-} handle enter
+2015-11-02 14:16:38,865 DEBUG org.eclipse.jetty.server.HttpChannelState - HttpChannelState@23844a2d{s=IDLE i=true a=null} handling IDLE
+2015-11-02 14:16:38,866 DEBUG org.eclipse.jetty.server.HttpChannel - HttpChannelOverHttp@7d1e994f{r=1,c=false,a=DISPATCHED,uri=/} action REQUEST_DISPATCH
+2015-11-02 14:16:38,975 DEBUG org.eclipse.jetty.util.component.AbstractLifeCycle - starting org.eclipse.jetty.client.HttpClient@43a36ce9
+2015-11-02 14:16:38,976 DEBUG org.eclipse.jetty.util.component.ContainerLifeCycle - org.eclipse.jetty.client.HttpClient@43a36ce9 added {RestletSslContextFactory@7c2a2e51(null,null),AUTO}
+2015-11-02 14:16:38,976 DEBUG org.eclipse.jetty.util.component.ContainerLifeCycle - org.eclipse.jetty.client.HttpClient@43a36ce9 added {HttpClient@1134783721{STOPPED,8<=0<=200,i=0,q=0},AUTO}
+2015-11-02 14:16:38,977 DEBUG org.eclipse.jetty.util.component.ContainerLifeCycle - org.eclipse.jetty.client.HttpClient@43a36ce9 added {org.eclipse.jetty.io.MappedByteBufferPool@15f662c8,POJO}
+2015-11-02 14:16:38,977 DEBUG org.eclipse.jetty.util.component.ContainerLifeCycle - org.eclipse.jetty.client.HttpClient@43a36ce9 added {org.eclipse.jetty.util.thread.ScheduledExecutorScheduler@743bfc87,AUTO}
+2015-11-02 14:16:38,977 DEBUG org.eclipse.jetty.util.component.ContainerLifeCycle - org.eclipse.jetty.client.HttpClient@43a36ce9 added {org.eclipse.jetty.client.http.HttpClientTransportOverHTTP@2a4306c3,AUTO}
+2015-11-02 14:16:38,983 DEBUG org.eclipse.jetty.util.component.AbstractLifeCycle - starting RestletSslContextFactory@7c2a2e51(null,null)
+2015-11-02 14:16:38,983 DEBUG org.eclipse.jetty.util.component.AbstractLifeCycle - STARTED @10155ms RestletSslContextFactory@7c2a2e51(null,null)
+2015-11-02 14:16:38,983 DEBUG org.eclipse.jetty.util.component.AbstractLifeCycle - starting HttpClient@1134783721{STOPPED,8<=0<=200,i=0,q=0}
+2015-11-02 14:16:38,987 DEBUG org.eclipse.jetty.util.component.AbstractLifeCycle - STARTED @10159ms HttpClient@1134783721{STARTED,8<=8<=200,i=8,q=0}
+2015-11-02 14:16:38,987 DEBUG org.eclipse.jetty.util.component.AbstractLifeCycle - starting org.eclipse.jetty.util.thread.ScheduledExecutorScheduler@743bfc87
+2015-11-02 14:16:38,987 DEBUG org.eclipse.jetty.util.component.AbstractLifeCycle - STARTED @10160ms org.eclipse.jetty.util.thread.ScheduledExecutorScheduler@743bfc87
+2015-11-02 14:16:38,987 DEBUG org.eclipse.jetty.util.component.AbstractLifeCycle - starting org.eclipse.jetty.client.http.HttpClientTransportOverHTTP@2a4306c3
+2015-11-02 14:16:38,988 DEBUG org.eclipse.jetty.util.component.ContainerLifeCycle - org.eclipse.jetty.client.http.HttpClientTransportOverHTTP@2a4306c3 added {org.eclipse.jetty.client.AbstractHttpClientTransport$ClientSelectorManager@402b45a3,AUTO}
+2015-11-02 14:16:38,988 DEBUG org.eclipse.jetty.util.component.AbstractLifeCycle - starting org.eclipse.jetty.client.AbstractHttpClientTransport$ClientSelectorManager@402b45a3
+2015-11-02 14:16:38,988 DEBUG org.eclipse.jetty.util.component.AbstractLifeCycle - starting org.eclipse.jetty.io.SelectorManager$ManagedSelector@613ecdbe keys=-1 selected=-1
+2015-11-02 14:16:38,989 DEBUG org.eclipse.jetty.util.component.AbstractLifeCycle - STARTED @10161ms org.eclipse.jetty.io.SelectorManager$ManagedSelector@613ecdbe keys=0 selected=0
+2015-11-02 14:16:38,989 DEBUG org.eclipse.jetty.util.component.AbstractLifeCycle - starting org.eclipse.jetty.io.SelectorManager$ManagedSelector@1aeaae9f keys=-1 selected=-1
+2015-11-02 14:16:38,990 DEBUG org.eclipse.jetty.util.component.AbstractLifeCycle - STARTED @10163ms org.eclipse.jetty.io.SelectorManager$ManagedSelector@1aeaae9f keys=0 selected=0
+2015-11-02 14:16:38,990 DEBUG org.eclipse.jetty.util.component.AbstractLifeCycle - starting org.eclipse.jetty.io.SelectorManager$ManagedSelector@79b06661 keys=-1 selected=-1
+2015-11-02 14:16:38,991 DEBUG org.eclipse.jetty.io.SelectorManager - Starting Thread[HttpClient@1134783721-72-selector-ClientSelectorManager@402b45a3/0,5,Configuration Admin Service] on org.eclipse.jetty.io.SelectorManager$ManagedSelector@613ecdbe keys=0 selected=0
+2015-11-02 14:16:38,991 DEBUG org.eclipse.jetty.io.SelectorManager - Selector loop waiting on select
+2015-11-02 14:16:38,992 DEBUG org.eclipse.jetty.util.component.AbstractLifeCycle - STARTED @10164ms org.eclipse.jetty.io.SelectorManager$ManagedSelector@79b06661 keys=0 selected=0
+2015-11-02 14:16:38,992 DEBUG org.eclipse.jetty.util.component.AbstractLifeCycle - starting org.eclipse.jetty.io.SelectorManager$ManagedSelector@632c32a9 keys=-1 selected=-1
+2015-11-02 14:16:38,992 DEBUG org.eclipse.jetty.io.SelectorManager - Starting Thread[HttpClient@1134783721-73-selector-ClientSelectorManager@402b45a3/1,5,Configuration Admin Service] on org.eclipse.jetty.io.SelectorManager$ManagedSelector@1aeaae9f keys=0 selected=0
+2015-11-02 14:16:38,992 DEBUG org.eclipse.jetty.io.SelectorManager - Selector loop waiting on select
+2015-11-02 14:16:38,992 DEBUG org.eclipse.jetty.io.SelectorManager - Starting Thread[HttpClient@1134783721-74-selector-ClientSelectorManager@402b45a3/2,5,Configuration Admin Service] on org.eclipse.jetty.io.SelectorManager$ManagedSelector@79b06661 keys=0 selected=0
+2015-11-02 14:16:38,992 DEBUG org.eclipse.jetty.io.SelectorManager - Selector loop waiting on select
+2015-11-02 14:16:38,993 DEBUG org.eclipse.jetty.util.component.AbstractLifeCycle - STARTED @10165ms org.eclipse.jetty.io.SelectorManager$ManagedSelector@632c32a9 keys=0 selected=0
+2015-11-02 14:16:38,993 DEBUG org.eclipse.jetty.util.component.AbstractLifeCycle - STARTED @10165ms org.eclipse.jetty.client.AbstractHttpClientTransport$ClientSelectorManager@402b45a3
+2015-11-02 14:16:38,993 DEBUG org.eclipse.jetty.util.component.AbstractLifeCycle - STARTED @10165ms org.eclipse.jetty.client.http.HttpClientTransportOverHTTP@2a4306c3
+2015-11-02 14:16:38,993 DEBUG org.eclipse.jetty.util.component.AbstractLifeCycle - STARTED @10165ms org.eclipse.jetty.client.HttpClient@43a36ce9
+2015-11-02 14:16:38,993 DEBUG org.eclipse.jetty.io.SelectorManager - Starting Thread[HttpClient@1134783721-75-selector-ClientSelectorManager@402b45a3/3,5,Configuration Admin Service] on org.eclipse.jetty.io.SelectorManager$ManagedSelector@632c32a9 keys=0 selected=0
+2015-11-02 14:16:38,993 DEBUG org.eclipse.jetty.io.SelectorManager - Selector loop waiting on select
+2015-11-02 14:16:39,001 DEBUG org.eclipse.jetty.util.component.AbstractLifeCycle - starting org.eclipse.jetty.client.HttpClient@7468404f
+2015-11-02 14:16:39,001 DEBUG org.eclipse.jetty.util.component.ContainerLifeCycle - org.eclipse.jetty.client.HttpClient@7468404f added {RestletSslContextFactory@3b39960b(null,null),AUTO}
+2015-11-02 14:16:39,001 DEBUG org.eclipse.jetty.util.component.ContainerLifeCycle - org.eclipse.jetty.client.HttpClient@7468404f added {HttpClient@1952989263{STOPPED,8<=0<=200,i=0,q=0},AUTO}
+2015-11-02 14:16:39,001 DEBUG org.eclipse.jetty.util.component.ContainerLifeCycle - org.eclipse.jetty.client.HttpClient@7468404f added {org.eclipse.jetty.io.MappedByteBufferPool@437ba798,POJO}
+2015-11-02 14:16:39,001 DEBUG org.eclipse.jetty.util.component.ContainerLifeCycle - org.eclipse.jetty.client.HttpClient@7468404f added {org.eclipse.jetty.util.thread.ScheduledExecutorScheduler@75a7fd80,AUTO}
+2015-11-02 14:16:39,001 DEBUG org.eclipse.jetty.util.component.ContainerLifeCycle - org.eclipse.jetty.client.HttpClient@7468404f added {org.eclipse.jetty.client.http.HttpClientTransportOverHTTP@2d9a4f1,AUTO}
+2015-11-02 14:16:39,001 DEBUG org.eclipse.jetty.util.component.AbstractLifeCycle - starting RestletSslContextFactory@3b39960b(null,null)
+2015-11-02 14:16:39,002 DEBUG org.eclipse.jetty.util.component.AbstractLifeCycle - STARTED @10174ms RestletSslContextFactory@3b39960b(null,null)
+2015-11-02 14:16:39,002 DEBUG org.eclipse.jetty.util.component.AbstractLifeCycle - starting HttpClient@1952989263{STOPPED,8<=0<=200,i=0,q=0}
+2015-11-02 14:16:39,003 DEBUG org.eclipse.jetty.util.component.AbstractLifeCycle - STARTED @10175ms HttpClient@1952989263{STARTED,8<=8<=200,i=5,q=0}
+2015-11-02 14:16:39,003 DEBUG org.eclipse.jetty.util.component.AbstractLifeCycle - starting org.eclipse.jetty.util.thread.ScheduledExecutorScheduler@75a7fd80
+2015-11-02 14:16:39,003 DEBUG org.eclipse.jetty.util.component.AbstractLifeCycle - STARTED @10175ms org.eclipse.jetty.util.thread.ScheduledExecutorScheduler@75a7fd80
+2015-11-02 14:16:39,003 DEBUG org.eclipse.jetty.util.component.AbstractLifeCycle - starting org.eclipse.jetty.client.http.HttpClientTransportOverHTTP@2d9a4f1
+2015-11-02 14:16:39,003 DEBUG org.eclipse.jetty.util.component.ContainerLifeCycle - org.eclipse.jetty.client.http.HttpClientTransportOverHTTP@2d9a4f1 added {org.eclipse.jetty.client.AbstractHttpClientTransport$ClientSelectorManager@40b863ad,AUTO}
+2015-11-02 14:16:39,003 DEBUG org.eclipse.jetty.util.component.AbstractLifeCycle - starting org.eclipse.jetty.client.AbstractHttpClientTransport$ClientSelectorManager@40b863ad
+2015-11-02 14:16:39,003 DEBUG org.eclipse.jetty.util.component.AbstractLifeCycle - starting org.eclipse.jetty.io.SelectorManager$ManagedSelector@5e615b45 keys=-1 selected=-1
+2015-11-02 14:16:39,004 DEBUG org.eclipse.jetty.util.component.AbstractLifeCycle - STARTED @10177ms org.eclipse.jetty.io.SelectorManager$ManagedSelector@5e615b45 keys=0 selected=0
+2015-11-02 14:16:39,005 DEBUG org.eclipse.jetty.util.component.AbstractLifeCycle - starting org.eclipse.jetty.io.SelectorManager$ManagedSelector@14e0e6f4 keys=-1 selected=-1
+2015-11-02 14:16:39,005 DEBUG org.eclipse.jetty.io.SelectorManager - Starting Thread[HttpClient@1952989263-80-selector-ClientSelectorManager@40b863ad/0,5,Configuration Admin Service] on org.eclipse.jetty.io.SelectorManager$ManagedSelector@5e615b45 keys=0 selected=0
+2015-11-02 14:16:39,005 DEBUG org.eclipse.jetty.io.SelectorManager - Selector loop waiting on select
+2015-11-02 14:16:39,006 DEBUG org.eclipse.jetty.util.component.AbstractLifeCycle - STARTED @10178ms org.eclipse.jetty.io.SelectorManager$ManagedSelector@14e0e6f4 keys=0 selected=0
+2015-11-02 14:16:39,006 DEBUG org.eclipse.jetty.util.component.AbstractLifeCycle - starting org.eclipse.jetty.io.SelectorManager$ManagedSelector@5bd126b5 keys=-1 selected=-1
+2015-11-02 14:16:39,006 DEBUG org.eclipse.jetty.io.SelectorManager - Starting Thread[HttpClient@1952989263-81-selector-ClientSelectorManager@40b863ad/1,5,Configuration Admin Service] on org.eclipse.jetty.io.SelectorManager$ManagedSelector@14e0e6f4 keys=0 selected=0
+2015-11-02 14:16:39,006 DEBUG org.eclipse.jetty.io.SelectorManager - Selector loop waiting on select
+2015-11-02 14:16:39,007 DEBUG org.eclipse.jetty.util.component.AbstractLifeCycle - STARTED @10179ms org.eclipse.jetty.io.SelectorManager$ManagedSelector@5bd126b5 keys=0 selected=0
+2015-11-02 14:16:39,007 DEBUG org.eclipse.jetty.util.component.AbstractLifeCycle - starting org.eclipse.jetty.io.SelectorManager$ManagedSelector@58778369 keys=-1 selected=-1
+2015-11-02 14:16:39,007 DEBUG org.eclipse.jetty.io.SelectorManager - Starting Thread[HttpClient@1952989263-82-selector-ClientSelectorManager@40b863ad/2,5,Configuration Admin Service] on org.eclipse.jetty.io.SelectorManager$ManagedSelector@5bd126b5 keys=0 selected=0
+2015-11-02 14:16:39,007 DEBUG org.eclipse.jetty.io.SelectorManager - Selector loop waiting on select
+2015-11-02 14:16:39,008 DEBUG org.eclipse.jetty.util.component.AbstractLifeCycle - STARTED @10180ms org.eclipse.jetty.io.SelectorManager$ManagedSelector@58778369 keys=0 selected=0
+2015-11-02 14:16:39,008 DEBUG org.eclipse.jetty.util.component.AbstractLifeCycle - STARTED @10180ms org.eclipse.jetty.client.AbstractHttpClientTransport$ClientSelectorManager@40b863ad
+2015-11-02 14:16:39,008 DEBUG org.eclipse.jetty.util.component.AbstractLifeCycle - STARTED @10180ms org.eclipse.jetty.client.http.HttpClientTransportOverHTTP@2d9a4f1
+2015-11-02 14:16:39,008 DEBUG org.eclipse.jetty.io.SelectorManager - Starting Thread[HttpClient@1952989263-83-selector-ClientSelectorManager@40b863ad/3,5,Configuration Admin Service] on org.eclipse.jetty.io.SelectorManager$ManagedSelector@58778369 keys=0 selected=0
+2015-11-02 14:16:39,008 DEBUG org.eclipse.jetty.util.component.AbstractLifeCycle - STARTED @10181ms org.eclipse.jetty.client.HttpClient@7468404f
+2015-11-02 14:16:39,008 DEBUG org.eclipse.jetty.io.SelectorManager - Selector loop waiting on select
+2015-11-02 14:16:39,009 INFO  org.restlet.SkysailComponent.SkysailRootApplication - Starting de.twenty11.skysail.server.app.SkysailRootApplication application
+2015-11-02 14:16:41,798 DEBUG org.apache.shiro.web.mgt.CookieRememberMeManager - SubjectContext argument is not an HTTP-aware instance.  This is required to obtain a servlet request and response in order to retrieve the rememberMe cookie. Returning immediately and ignoring rememberMe operation.
+2015-11-02 14:16:41,798 DEBUG org.apache.shiro.web.mgt.CookieRememberMeManager - SubjectContext argument is not an HTTP-aware instance.  This is required to obtain a servlet request and response in order to retrieve the rememberMe cookie. Returning immediately and ignoring rememberMe operation.
+2015-11-02 14:16:42,300 DEBUG de.twenty11.skysail.server.core.osgi.EventHelper - about to post event org.osgi.service.event.Event [topic=GUI/message/info]: -1.0
+2015-11-02 14:16:42,300 DEBUG de.twenty11.skysail.server.core.osgi.EventHelper - about to post event org.osgi.service.event.Event [topic=GUI/message/info]: 14:16
+2015-11-02 14:16:46,217 INFO  io.skysail.server.app.SkysailApplication - creating new Router in de.twenty11.skysail.server.app.SkysailRootApplication
+2015-11-02 14:16:46,219 INFO  io.skysail.server.app.SkysailApplication - adding extensions to metadata service
+2015-11-02 14:16:46,219 INFO  io.skysail.server.app.SkysailApplication - adding protocols
+2015-11-02 14:16:46,221 DEBUG io.skysail.server.app.SkysailApplication - attaching application-specific routes
+2015-11-02 14:16:46,222 INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/!meta' -> 'RolesPredicateAuthorizer' -> 'de.twenty11.skysail.server.resources.DefaultResource'
+2015-11-02 14:16:46,223 INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/' -> 'de.twenty11.skysail.server.resources.DefaultResource'
+2015-11-02 14:16:46,223 WARN  de.twenty11.skysail.server.core.restlet.SkysailRouter - please use a RouteBuilder to attach this resource: class de.twenty11.skysail.server.resources.DefaultResource
+2015-11-02 14:16:46,223 INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/_login' -> 'de.twenty11.skysail.server.resources.LoginResource'
+2015-11-02 14:16:46,223 WARN  de.twenty11.skysail.server.core.restlet.SkysailRouter - please use a RouteBuilder to attach this resource: class de.twenty11.skysail.server.resources.LoginResource
+2015-11-02 14:16:46,224 INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/_demologin' -> 'de.twenty11.skysail.server.resources.DemoLoginResource'
+2015-11-02 14:16:46,224 WARN  de.twenty11.skysail.server.core.restlet.SkysailRouter - please use a RouteBuilder to attach this resource: class de.twenty11.skysail.server.resources.DemoLoginResource
+2015-11-02 14:16:46,224 INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/_profile' -> 'RolesPredicateAuthorizer' -> 'de.twenty11.skysail.server.app.profile.ProfileResource'
+2015-11-02 14:16:46,225 INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/_profile/password/' -> 'RolesPredicateAuthorizer' -> 'de.twenty11.skysail.server.app.profile.PutPasswordResource'
+2015-11-02 14:16:46,225 INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/_remotelogin' -> 'de.twenty11.skysail.server.resources.RemoteLoginResource'
+2015-11-02 14:16:46,225 WARN  de.twenty11.skysail.server.core.restlet.SkysailRouter - please use a RouteBuilder to attach this resource: class de.twenty11.skysail.server.resources.RemoteLoginResource
+2015-11-02 14:16:46,225 DEBUG io.skysail.server.app.SkysailApplication - creating tracer...
+2015-11-02 14:16:46,225 DEBUG io.skysail.server.app.SkysailApplication - creating original request filter...
+2015-11-02 14:16:46,225 DEBUG io.skysail.server.app.SkysailApplication - determining authentication service...
+2015-11-02 14:16:46,225 DEBUG io.skysail.server.app.SkysailApplication - setting authenticationGuard from authentication service
+2015-11-02 14:16:46,231 INFO  org.restlet.SkysailComponent.SkysailRootApplication - Starting io.skysail.server.converter.WebappApplication application
+2015-11-02 14:16:46,233 INFO  org.restlet.SkysailComponent.SkysailRootApplication - Starting de.twenty11.skysail.server.osgi.OsgiMonitorViewerApplication application
+2015-11-02 14:16:49,953 INFO  io.skysail.server.app.SkysailApplication - creating new Router in de.twenty11.skysail.server.osgi.OsgiMonitorViewerApplication
+2015-11-02 14:16:49,953 INFO  io.skysail.server.app.SkysailApplication - adding extensions to metadata service
+2015-11-02 14:16:49,953 INFO  io.skysail.server.app.SkysailApplication - adding protocols
+2015-11-02 14:16:49,953 DEBUG io.skysail.server.app.SkysailApplication - attaching application-specific routes
+2015-11-02 14:16:49,954 WARN  io.skysail.server.app.SkysailApplication - there are no entities defined for the applicationModel Application(id=OSGi, entities=[], repositories=null)
+2015-11-02 14:16:49,955 INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/v1!meta' -> 'RolesPredicateAuthorizer' -> 'de.twenty11.skysail.server.osgi.osgimonitor.resources.OsgiMonitorRootResource'
+2015-11-02 14:16:49,955 INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/v1' -> 'RolesPredicateAuthorizer' -> 'de.twenty11.skysail.server.osgi.osgimonitor.resources.OsgiMonitorRootResource'
+2015-11-02 14:16:49,955 INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/v1/!meta' -> 'RolesPredicateAuthorizer' -> 'de.twenty11.skysail.server.osgi.osgimonitor.resources.OsgiMonitorRootResource'
+2015-11-02 14:16:49,955 INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/v1/' -> 'RolesPredicateAuthorizer' -> 'de.twenty11.skysail.server.osgi.osgimonitor.resources.OsgiMonitorRootResource'
+2015-11-02 14:16:49,961 INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/v1/bundles!meta' -> 'RolesPredicateAuthorizer' -> 'de.twenty11.skysail.server.osgi.osgimonitor.resources.BundlesResource'
+2015-11-02 14:16:49,961 INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/v1/bundles' -> 'RolesPredicateAuthorizer' -> 'de.twenty11.skysail.server.osgi.osgimonitor.resources.BundlesResource'
+2015-11-02 14:16:49,962 INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/v1/bundlesgraph!meta' -> 'RolesPredicateAuthorizer' -> 'de.twenty11.skysail.server.osgi.osgimonitor.resources.BundlesGraphResource'
+2015-11-02 14:16:49,962 INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/v1/bundlesgraph' -> 'RolesPredicateAuthorizer' -> 'de.twenty11.skysail.server.osgi.osgimonitor.resources.BundlesGraphResource'
+2015-11-02 14:16:49,963 INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/v1/bundles/details/{bundleId}' -> 'RolesPredicateAuthorizer' -> 'de.twenty11.skysail.server.osgi.osgimonitor.resources.BundleResource'
+2015-11-02 14:16:49,963 INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/v1/bundles/details/{bundleId}/action' -> 'RolesPredicateAuthorizer' -> 'de.twenty11.skysail.server.osgi.osgimonitor.resources.BundleResource'
+2015-11-02 14:16:49,963 INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/v1/services!meta' -> 'RolesPredicateAuthorizer' -> 'de.twenty11.skysail.server.osgi.osgimonitor.resources.ServicesResource'
+2015-11-02 14:16:49,963 INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/v1/services' -> 'RolesPredicateAuthorizer' -> 'de.twenty11.skysail.server.osgi.osgimonitor.resources.ServicesResource'
+2015-11-02 14:16:49,964 INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/v1/services/{serviceId}' -> 'RolesPredicateAuthorizer' -> 'de.twenty11.skysail.server.osgi.osgimonitor.resources.ServiceResource'
+2015-11-02 14:16:49,964 INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/v1/requirements!meta' -> 'RolesPredicateAuthorizer' -> 'de.twenty11.skysail.server.osgi.osgimonitor.resources.RequirementsResource'
+2015-11-02 14:16:49,964 INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/v1/requirements' -> 'RolesPredicateAuthorizer' -> 'de.twenty11.skysail.server.osgi.osgimonitor.resources.RequirementsResource'
+2015-11-02 14:16:49,964 DEBUG io.skysail.server.app.SkysailApplication - creating tracer...
+2015-11-02 14:16:49,964 DEBUG io.skysail.server.app.SkysailApplication - creating original request filter...
+2015-11-02 14:16:49,964 DEBUG io.skysail.server.app.SkysailApplication - determining authentication service...
+2015-11-02 14:16:49,964 DEBUG io.skysail.server.app.SkysailApplication - setting authenticationGuard from authentication service
+2015-11-02 14:16:49,964 DEBUG io.skysail.server.app.SkysailApplication - setting authorization guard: new SkysailRolesAuthorizer
+2015-11-02 14:16:49,964 INFO  org.restlet.SkysailComponent.SkysailRootApplication - Starting io.skysail.server.performance.etm.impl.PerformanceApplication application
+2015-11-02 14:16:49,965 INFO  io.skysail.server.app.SkysailApplication - creating new Router in io.skysail.server.performance.etm.impl.PerformanceApplication
+2015-11-02 14:16:49,965 INFO  io.skysail.server.app.SkysailApplication - adding extensions to metadata service
+2015-11-02 14:16:49,965 INFO  io.skysail.server.app.SkysailApplication - adding protocols
+2015-11-02 14:16:49,965 DEBUG io.skysail.server.app.SkysailApplication - attaching application-specific routes
+2015-11-02 14:16:49,965 WARN  io.skysail.server.app.SkysailApplication - there are no entities defined for the applicationModel Application(id=Performance, entities=[], repositories=null)
+2015-11-02 14:16:49,965 INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/v1' -> 'RolesPredicateAuthorizer' -> 'io.skysail.server.performance.etm.impl.PerformanceResource'
+2015-11-02 14:16:49,965 DEBUG io.skysail.server.app.SkysailApplication - creating tracer...
+2015-11-02 14:16:49,965 DEBUG io.skysail.server.app.SkysailApplication - creating original request filter...
+2015-11-02 14:16:49,965 DEBUG io.skysail.server.app.SkysailApplication - determining authentication service...
+2015-11-02 14:16:49,965 DEBUG io.skysail.server.app.SkysailApplication - setting authenticationGuard from authentication service
+2015-11-02 14:16:49,965 INFO  org.restlet.SkysailComponent.SkysailRootApplication - Starting de.twenty11.skysail.server.webapp.internal.WebappApplication application
+2015-11-02 14:16:49,966 INFO  org.restlet.SkysailComponent.SkysailRootApplication - Starting io.skysail.server.text.store.bundleresource.impl.I18nApplication application
+2015-11-02 14:16:49,966 INFO  io.skysail.server.app.SkysailApplication - creating new Router in io.skysail.server.text.store.bundleresource.impl.I18nApplication
+2015-11-02 14:16:49,966 INFO  io.skysail.server.app.SkysailApplication - adding extensions to metadata service
+2015-11-02 14:16:49,966 INFO  io.skysail.server.app.SkysailApplication - adding protocols
+2015-11-02 14:16:49,966 DEBUG io.skysail.server.app.SkysailApplication - attaching application-specific routes
+2015-11-02 14:16:49,966 INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/v1!meta' -> 'RolesPredicateAuthorizer' -> 'io.skysail.server.text.store.bundleresource.impl.I18nRootResource'
+2015-11-02 14:16:49,967 INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/v1' -> 'RolesPredicateAuthorizer' -> 'io.skysail.server.text.store.bundleresource.impl.I18nRootResource'
+2015-11-02 14:16:49,967 INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/v1/messages/!meta' -> 'RolesPredicateAuthorizer' -> 'io.skysail.server.text.store.bundleresource.impl.MessagesResource'
+2015-11-02 14:16:49,967 INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/v1/messages/' -> 'RolesPredicateAuthorizer' -> 'io.skysail.server.text.store.bundleresource.impl.MessagesResource'
+2015-11-02 14:16:49,967 INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/v1/messages/{key}' -> 'RolesPredicateAuthorizer' -> 'io.skysail.server.text.store.bundleresource.impl.MessageResource'
+2015-11-02 14:16:49,967 INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/v1/messages/{key}/' -> 'RolesPredicateAuthorizer' -> 'io.skysail.server.text.store.bundleresource.impl.PutMessageResource'
+2015-11-02 14:16:49,967 DEBUG io.skysail.server.app.SkysailApplication - creating tracer...
+2015-11-02 14:16:49,968 DEBUG io.skysail.server.app.SkysailApplication - creating original request filter...
+2015-11-02 14:16:49,968 DEBUG io.skysail.server.app.SkysailApplication - determining authentication service...
+2015-11-02 14:16:49,968 DEBUG io.skysail.server.app.SkysailApplication - setting authenticationGuard from authentication service
+2015-11-02 14:16:49,968 INFO  org.restlet.SkysailComponent.SkysailRootApplication - Starting io.skysail.server.um.simple.app.SimpleUserManagementApplication application
+2015-11-02 14:16:49,968 INFO  io.skysail.server.app.SkysailApplication - creating new Router in io.skysail.server.um.simple.app.SimpleUserManagementApplication
+2015-11-02 14:16:49,968 INFO  io.skysail.server.app.SkysailApplication - adding extensions to metadata service
+2015-11-02 14:16:49,968 INFO  io.skysail.server.app.SkysailApplication - adding protocols
+2015-11-02 14:16:49,968 DEBUG io.skysail.server.app.SkysailApplication - attaching application-specific routes
+2015-11-02 14:16:49,968 WARN  io.skysail.server.app.SkysailApplication - there are no entities defined for the applicationModel Application(id=usermanagement, entities=[], repositories=null)
+2015-11-02 14:16:49,968 DEBUG i.s.s.um.simple.app.SimpleUserManagementApplication - attaching routes to UserManagementApplication #1671200668
+2015-11-02 14:16:49,968 INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/v1/currentUser' -> 'io.skysail.server.um.simple.app.users.resources.CurrentUserResource'
+2015-11-02 14:16:49,969 WARN  de.twenty11.skysail.server.core.restlet.SkysailRouter - please use a RouteBuilder to attach this resource: class io.skysail.server.um.simple.app.users.resources.CurrentUserResource
+2015-11-02 14:16:49,969 DEBUG io.skysail.server.app.SkysailApplication - creating tracer...
+2015-11-02 14:16:49,969 DEBUG io.skysail.server.app.SkysailApplication - creating original request filter...
+2015-11-02 14:16:49,969 DEBUG io.skysail.server.app.SkysailApplication - determining authentication service...
+2015-11-02 14:16:49,969 DEBUG io.skysail.server.app.SkysailApplication - setting authenticationGuard from authentication service
+2015-11-02 14:16:49,969 INFO  org.restlet.SkysailComponent.SkysailRootApplication - Starting io.skysail.server.app.designer.matrix.MatrixApplication application
+2015-11-02 14:16:49,969 INFO  io.skysail.server.app.SkysailApplication - creating new Router in io.skysail.server.app.designer.matrix.MatrixApplication
+2015-11-02 14:16:49,969 INFO  io.skysail.server.app.SkysailApplication - adding extensions to metadata service
+2015-11-02 14:16:49,969 INFO  io.skysail.server.app.SkysailApplication - adding protocols
+2015-11-02 14:16:49,969 DEBUG io.skysail.server.app.SkysailApplication - attaching application-specific routes
+2015-11-02 14:16:52,294 DEBUG de.twenty11.skysail.server.core.osgi.EventHelper - about to post event org.osgi.service.event.Event [topic=GUI/message/info]: -1.0
+2015-11-02 14:16:53,738 INFO  io.skysail.server.domain.core.Entity - searching for class 'io.skysail.server.app.designer.matrix.ContactsResource'
+2015-11-02 14:16:53,739 INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/v1!meta' -> 'RolesPredicateAuthorizer' -> 'io.skysail.server.app.designer.matrix.ContactsResource'
+2015-11-02 14:16:53,740 INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/v1' -> 'RolesPredicateAuthorizer' -> 'io.skysail.server.app.designer.matrix.ContactsResource'
+2015-11-02 14:16:53,740 INFO  io.skysail.server.domain.core.Entity - searching for class 'io.skysail.server.app.designer.matrix.ContactsResource'
+2015-11-02 14:16:53,740 INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/v1/!meta' -> 'RolesPredicateAuthorizer' -> 'io.skysail.server.app.designer.matrix.ContactsResource'
+2015-11-02 14:16:53,740 INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/v1/' -> 'RolesPredicateAuthorizer' -> 'io.skysail.server.app.designer.matrix.ContactsResource'
+2015-11-02 14:16:53,742 INFO  io.skysail.server.domain.core.Entity - searching for class 'io.skysail.server.app.designer.matrix.ContactsResource'
+2015-11-02 14:16:53,742 INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/v1/Contact!meta' -> 'RolesPredicateAuthorizer' -> 'io.skysail.server.app.designer.matrix.ContactsResource'
+2015-11-02 14:16:53,742 INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/v1/Contact' -> 'RolesPredicateAuthorizer' -> 'io.skysail.server.app.designer.matrix.ContactsResource'
+2015-11-02 14:16:53,742 INFO  io.skysail.server.domain.core.Entity - searching for class 'io.skysail.server.app.designer.matrix.PostContactResource'
+2015-11-02 14:16:53,742 INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/v1/Contact/' -> 'RolesPredicateAuthorizer' -> 'io.skysail.server.app.designer.matrix.PostContactResource'
+2015-11-02 14:16:53,742 INFO  io.skysail.server.domain.core.Entity - searching for class 'io.skysail.server.app.designer.matrix.ContactResource'
+2015-11-02 14:16:53,743 INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/v1/Contact/{id}' -> 'RolesPredicateAuthorizer' -> 'io.skysail.server.app.designer.matrix.ContactResource'
+2015-11-02 14:16:53,743 INFO  io.skysail.server.domain.core.Entity - searching for class 'io.skysail.server.app.designer.matrix.PutContactResource'
+2015-11-02 14:16:53,743 INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/v1/Contact/{id}/' -> 'RolesPredicateAuthorizer' -> 'io.skysail.server.app.designer.matrix.PutContactResource'
+2015-11-02 14:16:53,749 DEBUG io.skysail.server.app.SkysailApplication - creating tracer...
+2015-11-02 14:16:53,749 DEBUG io.skysail.server.app.SkysailApplication - creating original request filter...
+2015-11-02 14:16:53,749 DEBUG io.skysail.server.app.SkysailApplication - determining authentication service...
+2015-11-02 14:16:53,749 DEBUG io.skysail.server.app.SkysailApplication - setting authenticationGuard from authentication service
+2015-11-02 14:16:53,749 INFO  org.restlet.SkysailComponent.SkysailRootApplication - Starting de.kvb.argus.oauth.server.OAuth2ServerApplication application
+2015-11-02 14:17:02,294 DEBUG de.twenty11.skysail.server.core.osgi.EventHelper - about to post event org.osgi.service.event.Event [topic=GUI/message/info]: -1.0
+2015-11-02 14:17:02,296 DEBUG de.twenty11.skysail.server.core.osgi.EventHelper - about to post event org.osgi.service.event.Event [topic=GUI/message/info]: 14:17
+2015-11-02 14:17:08,740 DEBUG org.eclipse.jetty.io.IdleTimeout - SelectChannelEndPoint@cca1e37{/0:0:0:0:0:0:0:1:58300<->2015,Open,in,out,-,-,29884/30000,HttpConnection}{io=0,kio=0,kro=1} idle timeout check, elapsed: 29884 ms, remaining: 116 ms
+2015-11-02 14:17:08,857 DEBUG org.eclipse.jetty.io.IdleTimeout - SelectChannelEndPoint@cca1e37{/0:0:0:0:0:0:0:1:58300<->2015,Open,in,out,-,-,30001/30000,HttpConnection}{io=0,kio=0,kro=1} idle timeout check, elapsed: 30001 ms, remaining: -1 ms
+2015-11-02 14:17:08,857 DEBUG org.eclipse.jetty.io.IdleTimeout - SelectChannelEndPoint@cca1e37{/0:0:0:0:0:0:0:1:58300<->2015,Open,in,out,-,-,30001/30000,HttpConnection}{io=0,kio=0,kro=1} idle timeout expired
+2015-11-02 14:17:08,857 DEBUG org.eclipse.jetty.io.WriteFlusher - ignored: WriteFlusher@1a687dac{IDLE} java.util.concurrent.TimeoutException: Idle timeout expired: 30001/30000 ms
+2015-11-02 14:17:08,857 DEBUG org.eclipse.jetty.io.AbstractEndPoint - Ignored idle endpoint SelectChannelEndPoint@cca1e37{/0:0:0:0:0:0:0:1:58300<->2015,Open,in,out,-,-,30001/30000,HttpConnection}{io=0,kio=0,kro=1}
+2015-11-02 14:17:12,294 DEBUG de.twenty11.skysail.server.core.osgi.EventHelper - about to post event org.osgi.service.event.Event [topic=GUI/message/info]: -1.0
+2015-11-02 14:17:22,294 DEBUG de.twenty11.skysail.server.core.osgi.EventHelper - about to post event org.osgi.service.event.Event [topic=GUI/message/info]: -1.0
+2015-11-02 14:17:32,294 DEBUG de.twenty11.skysail.server.core.osgi.EventHelper - about to post event org.osgi.service.event.Event [topic=GUI/message/info]: -1.0
+2015-11-02 14:17:38,860 DEBUG org.eclipse.jetty.io.IdleTimeout - SelectChannelEndPoint@cca1e37{/0:0:0:0:0:0:0:1:58300<->2015,Open,in,out,-,-,30003/30000,HttpConnection}{io=0,kio=0,kro=1} idle timeout check, elapsed: 30003 ms, remaining: -3 ms
+2015-11-02 14:17:38,860 DEBUG org.eclipse.jetty.io.IdleTimeout - SelectChannelEndPoint@cca1e37{/0:0:0:0:0:0:0:1:58300<->2015,Open,in,out,-,-,30003/30000,HttpConnection}{io=0,kio=0,kro=1} idle timeout expired
+2015-11-02 14:17:38,860 DEBUG org.eclipse.jetty.io.WriteFlusher - ignored: WriteFlusher@1a687dac{IDLE} java.util.concurrent.TimeoutException: Idle timeout expired: 30003/30000 ms
+2015-11-02 14:17:38,861 DEBUG org.eclipse.jetty.io.AbstractEndPoint - Ignored idle endpoint SelectChannelEndPoint@cca1e37{/0:0:0:0:0:0:0:1:58300<->2015,Open,in,out,-,-,30003/30000,HttpConnection}{io=0,kio=0,kro=1}
+2015-11-02 14:17:42,294 DEBUG de.twenty11.skysail.server.core.osgi.EventHelper - about to post event org.osgi.service.event.Event [topic=GUI/message/info]: -1.0
+2015-11-02 14:17:52,294 DEBUG de.twenty11.skysail.server.core.osgi.EventHelper - about to post event org.osgi.service.event.Event [topic=GUI/message/info]: -1.0
+2015-11-02 14:18:02,294 DEBUG de.twenty11.skysail.server.core.osgi.EventHelper - about to post event org.osgi.service.event.Event [topic=GUI/message/info]: -1.0
+2015-11-02 14:18:02,296 DEBUG de.twenty11.skysail.server.core.osgi.EventHelper - about to post event org.osgi.service.event.Event [topic=GUI/message/info]: 14:18
+2015-11-02 14:18:08,863 DEBUG org.eclipse.jetty.io.IdleTimeout - SelectChannelEndPoint@cca1e37{/0:0:0:0:0:0:0:1:58300<->2015,Open,in,out,-,-,30002/30000,HttpConnection}{io=0,kio=0,kro=1} idle timeout check, elapsed: 30002 ms, remaining: -2 ms
+2015-11-02 14:18:08,863 DEBUG org.eclipse.jetty.io.IdleTimeout - SelectChannelEndPoint@cca1e37{/0:0:0:0:0:0:0:1:58300<->2015,Open,in,out,-,-,30002/30000,HttpConnection}{io=0,kio=0,kro=1} idle timeout expired
+2015-11-02 14:18:08,863 DEBUG org.eclipse.jetty.io.WriteFlusher - ignored: WriteFlusher@1a687dac{IDLE} java.util.concurrent.TimeoutException: Idle timeout expired: 30002/30000 ms
+2015-11-02 14:18:08,863 DEBUG org.eclipse.jetty.io.AbstractEndPoint - Ignored idle endpoint SelectChannelEndPoint@cca1e37{/0:0:0:0:0:0:0:1:58300<->2015,Open,in,out,-,-,30002/30000,HttpConnection}{io=0,kio=0,kro=1}

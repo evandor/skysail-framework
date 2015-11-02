@@ -7,19 +7,22 @@ import io.skysail.server.restlet.resources.EntityServerResource;
 public class ClipResource extends EntityServerResource<Clip> {
 
     private ClipApplication app;
+    private ClipRepository repository;
 
     protected void doInit() {
         app = (ClipApplication) getApplication();
+        repository = (ClipRepository) app.getRepository(Clip.class);
     }
+
     @Override
     public SkysailResponse<?> eraseEntity() {
-        app.getRepository().delete(getAttribute("id"));
+        repository.delete(getAttribute("id"));
         return new SkysailResponse<>();
     }
 
     @Override
     public Clip getEntity() {
-        return app.getRepository().findOne(getAttribute("id"));
+        return repository.findOne(getAttribute("id"));
     }
 
 }

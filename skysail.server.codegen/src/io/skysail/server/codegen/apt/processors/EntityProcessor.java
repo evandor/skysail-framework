@@ -119,6 +119,9 @@ public class EntityProcessor extends Processors {
             throws Exception {
 
         GenerateResources annotation = entityElement.getAnnotation(GenerateResources.class);
+        if (methodExcluded(annotation, ResourceType.GET)) {
+            return;
+        }
         String application = annotation.application();
 
         String linkheader = "";// Arrays.stream(annotation.linkheader()).map(lh
@@ -153,6 +156,10 @@ public class EntityProcessor extends Processors {
     private void createListResource(RoundEnvironment roundEnv, EntityGraph graph, Element entityElement) throws IOException {
 
         GenerateResources annotation = entityElement.getAnnotation(GenerateResources.class);
+        if (methodExcluded(annotation, ResourceType.LIST)) {
+            return;
+        }
+
         String application = annotation.application();
 
         JavaFileObject jfo = createSourceFile(getTypeName(entityElement) + "sResource");
@@ -183,7 +190,7 @@ public class EntityProcessor extends Processors {
 
         GenerateResources annotation = entityElement.getAnnotation(GenerateResources.class);
         String application = annotation.application();
-        if (Arrays.asList(annotation.exclude()).contains(ResourceType.POST)) {
+        if (methodExcluded(annotation, ResourceType.POST)) {
             return;
         }
 
@@ -214,6 +221,10 @@ public class EntityProcessor extends Processors {
     private void createPutResource(RoundEnvironment roundEnv, EntityGraph graph, Element entityElement)
             throws IOException {
         GenerateResources annotation = entityElement.getAnnotation(GenerateResources.class);
+        if (methodExcluded(annotation, ResourceType.PUT)) {
+            return;
+        }
+
         String application = annotation.application();
 
         JavaFileObject jfo = createSourceFile(entityElement.getEnclosingElement().toString() + ".Put"
@@ -315,4 +326,10 @@ public class EntityProcessor extends Processors {
         printMessage(StringUtils.repeat("-", msg.length()));
         printMessage("");
     }
+
+    private boolean methodExcluded(GenerateResources annotation, ResourceType resourceType) {
+        return Arrays.asList(annotation.exclude()).contains(resourceType);
+    }
+
+
 }

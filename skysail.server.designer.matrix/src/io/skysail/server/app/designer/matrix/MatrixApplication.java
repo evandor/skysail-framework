@@ -6,6 +6,11 @@ import io.skysail.server.menus.MenuItemProvider;
 
 import java.util.Arrays;
 
+import org.restlet.data.ChallengeScheme;
+import org.restlet.ext.oauth.TokenVerifier;
+import org.restlet.ext.oauth.internal.Scopes;
+import org.restlet.security.*;
+
 import aQute.bnd.annotation.component.*;
 import de.twenty11.skysail.server.app.ApplicationProvider;
 import de.twenty11.skysail.server.core.restlet.ApplicationContextId;
@@ -31,4 +36,23 @@ public class MatrixApplication extends SkysailApplication implements Application
         super.setRepositories(null);
     }
 
+    @Override
+    protected void attach() {
+        super.attach();
+
+        // OAuthAuthorizer auth = new
+        // OAuthAuthorizer("http://localhost:8080/OAuth2Provider/validate");
+        // auth.setNext(ContactsResource2.class);
+        // router.attach(new RouteBuilder("/contacts2", auth));
+
+        RoleAuthorizer roleAuthorizer = new RoleAuthorizer();
+        roleAuthorizer.setAuthorizedRoles(Scopes.toRoles("status"));
+        roleAuthorizer.setNext(router);
+
+        ChallengeAuthenticator bearerAuthenticator = new ChallengeAuthenticator(getContext(),
+                ChallengeScheme.HTTP_OAUTH_BEARER, "Application");
+
+        bearerAuthenticator.setVerifier(new TokenVerifier(new org.restlet.data.Reference("yourTokenAuthURI")));
+        bearerAuthenticator.setNext(roleAuthorizer);
+    }
 }

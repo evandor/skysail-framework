@@ -5,9 +5,7 @@
 			<level>INFO</level>
 		</filter>
 		<encoder>
-			<!--%d{mm:ss.SSS} [%thread]-->
-			<pattern>%date{ISO8601}  %-5level [%-45logger{40}] - %msg %n
-			</pattern>
+			<pattern>%date{ISO8601}  %-5level [%-45logger{40}] - %msg %n</pattern>
 		</encoder>
 	</appender>
 
@@ -46,7 +44,7 @@
 			</pattern>
 		</encoder>
 	</appender>
-	
+
 	<root>
 		<appender-ref ref="STDOUT" />
 		<appender-ref ref="INFO_FILE" />
@@ -54,5 +52,5 @@
 		<appender-ref ref="WARN_FILE" />
 		<!-- <appender-ref ref="memory" /> -->
 	</root>
-	
+
 </configuration>

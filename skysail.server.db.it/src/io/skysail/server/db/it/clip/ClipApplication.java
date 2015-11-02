@@ -1,7 +1,10 @@
 package io.skysail.server.db.it.clip;
 
 import io.skysail.api.repos.DbRepository;
-import io.skysail.server.app.SkysailApplication;
+import io.skysail.server.app.*;
+
+import java.util.Arrays;
+
 import aQute.bnd.annotation.component.*;
 import de.twenty11.skysail.server.app.ApplicationProvider;
 
@@ -9,28 +12,22 @@ import de.twenty11.skysail.server.app.ApplicationProvider;
 public class ClipApplication extends SkysailApplication implements ApplicationProvider {
 
     private static final String APP_NAME = "ClipApp";
-
     private static ClipApplication instance;
 
-    private DbRepository myRepository;
-
     public ClipApplication() {
-        super(APP_NAME);
+        super(APP_NAME, new ApiVersion(1),Arrays.asList(Clip.class));
         instance = this;
     }
 
-    @Reference(dynamic = true, multiple = false, optional = false, target = "(name=ClipRepository)")
-    public void setRepository(DbRepository repo) {
-        this.myRepository = (ClipRepository) repo;
+    @Reference(dynamic = true, multiple = false, optional = false)
+    public void setRepositories(Repositories repos) {
+       super.setRepositories(repos);
     }
 
-    public void unsetRepository(DbRepository repo) {
-        this.myRepository = null;
+    public void unsetRepositories(DbRepository repo) {
+        super.setRepositories(null);
     }
 
-    public ClipRepository getRepository() {
-        return (ClipRepository) myRepository;
-    }
 
     public static ClipApplication getInstance() {
         return instance;

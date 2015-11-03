@@ -30,9 +30,8 @@ notifications(notificationList) ::= <<
     	    },
     	    buttons: false // an array of buttons
         };
-        
-    $notificationList: {notification | $notify(notification)$}$
 
+    $notificationList: {notification | $notify(notification)$}$
     </script>
 >>
 

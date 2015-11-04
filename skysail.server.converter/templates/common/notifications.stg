@@ -4,23 +4,23 @@ notifications(notificationList) ::= <<
     <script>
     \$.noty.defaults = {
     		layout: 'skysail',
-    	    theme: 'bootstrapTheme', // or 'relax'
+    	    theme: 'bootstrapTheme',
     	    type: 'success',
-    	    text: '', // can be html or string
-    	    dismissQueue: true, // If you want to use queue feature set this true
+    	    text: '',
+    	    dismissQueue: true,
     	    template: '<div class="noty_message"><span class="noty_text"></span><div class="noty_close"></div></div>',
     	    animation: {
-    	        open: 'animated fadeIn', // Animate.css class names
-    	        close: 'animated fadeOut', // Animate.css class names
-    	        easing: 'swing', // unavailable - no need
-    	        speed: 500 // unavailable - no need
+    	        open: 'animated fadeIn',
+    	        close: 'animated fadeOut',
+    	        easing: 'swing',
+    	        speed: 500
     	    },
-    	    timeout: 2500, // delay for closing event. Set false for sticky notifications
-    	    force: false, // adds notification to the beginning of queue when set to true
+    	    timeout: 2500,
+    	    force: false,
     	    modal: false,
-    	    maxVisible: 5, // you can set max visible notification for dismissQueue true option,
-    	    killer: false, // for close all notifications before show
-    	    closeWith: ['click'], // ['click', 'button', 'hover', 'backdrop'] // backdrop click will close all notifications
+    	    maxVisible: 5,
+    	    killer: false,
+    	    closeWith: ['click'],
     	    callback: {
     	        onShow: function() {},
     	        afterShow: function() {},
@@ -28,7 +28,7 @@ notifications(notificationList) ::= <<
     	        afterClose: function() {},
     	        onCloseClick: function() {},
     	    },
-    	    buttons: false // an array of buttons
+    	    buttons: false
         };
 
     $notificationList: {notification | $notify(notification)$}$

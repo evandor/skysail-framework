@@ -1,15 +1,13 @@
 $.noty.layouts.skysail = {
     name     : 'skysail',
-    options  : { // overrides options
-
-    },
+    options  : {},
     container: {
         object  : '<ul id="noty_skysail_layout_container" />',
         selector: 'ul#noty_skysail_layout_container',
         style   : function() {
             $(this).css({
-                top          : 104,
-                right        : 15,
+                top          : 10,
+                left         : 0,
                 position     : 'fixed',
                 width        : '310px',
                 height       : 'auto',
@@ -19,11 +17,9 @@ $.noty.layouts.skysail = {
                 zIndex       : 10000000
             });
 
-            if(window.innerWidth < 600) {
-                $(this).css({
-                    right: 5
-                });
-            }
+            $(this).css({
+                left: ($(window).width() - $(this).outerWidth(false)) / 2 + 'px'
+            });
         }
     },
     parent   : {

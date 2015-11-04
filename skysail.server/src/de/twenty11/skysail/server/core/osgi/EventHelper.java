@@ -27,7 +27,9 @@ public class EventHelper {
     public static final String EVENT_PROPERTY_ENTITY = "entity";
     public static final String EVENT_PROPERTY_PATH = "path";
 
+    public static final String GUI = "GUI";
     public static final String GUI_MSG = "GUI/message";
+    public static final String GUI_PEITY_BAR = "GUI/peitybar";
 
     private volatile EventAdmin eventAdmin;
 

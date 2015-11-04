@@ -34,7 +34,7 @@ import etm.core.monitor.*;
  * TODO get rid of shiro dependency TODO package structure
  *
  */
-@Component(immediate = true, properties = { "event.topics=" + EventHelper.GUI_MSG + "/*" })
+@Component(immediate = true, properties = { "event.topics=" + EventHelper.GUI +"/*"})
 @Slf4j
 public class HtmlConverter extends ConverterHelper implements OsgiConverterHelper, EventHandler {
 
@@ -45,6 +45,7 @@ public class HtmlConverter extends ConverterHelper implements OsgiConverterHelpe
 
     private String templateNameFromCookie;
     private List<Event> events = new CopyOnWriteArrayList<>();
+    private List<Event> peityBarEvents= new CopyOnWriteArrayList<>();
 
     private volatile Set<MenuItemProvider> menuProviders = new HashSet<>();
     private volatile PeersProvider peersProvider;
@@ -181,7 +182,11 @@ public class HtmlConverter extends ConverterHelper implements OsgiConverterHelpe
 
     @Override
     public void handleEvent(Event event) {
-        events.add(event);
+        if (event.getTopic().startsWith(EventHelper.GUI_MSG)) {
+            events.add(event);
+        } else if (event.getTopic().startsWith(EventHelper.GUI_PEITY_BAR)) {
+            peityBarEvents.add(event);
+        }
     }
 
     public List<Notification> getNotifications() {
@@ -195,6 +200,16 @@ public class HtmlConverter extends ConverterHelper implements OsgiConverterHelpe
             String type = (String) e.getProperty("type");
             result.add(new Notification(msg, type));
             events.remove(e);
+        });
+        return result;
+    }
+
+    public List<String> getPeitybars() {
+        List<String> result = new ArrayList<>();
+        peityBarEvents.stream().forEach(e -> {
+            String msg = (String) e.getProperty("msg");
+            result.add(msg);
+            //events.remove(e);
         });
         return result;
     }

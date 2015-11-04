@@ -166,6 +166,10 @@ public class StringTemplateRenderer {
         return htmlConverter.getNotifications();
     }
 
+    public List<String> getPeitybars() {
+        return htmlConverter.getPeitybars();
+    }
+
     private void importTemplate(String symbolicName, Resource resource, Bundle appBundle, String resourcePath,
             STGroupBundleDir stGroup, String mediaType) {
         Optional<Bundle> theBundle = findBundle(appBundle, symbolicName);

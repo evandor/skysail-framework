@@ -12,6 +12,7 @@ index(user, messages, converter, model) ::= <<
     <link rel="shortcut icon" href="/webapp/favicon.ico" type="image/x-icon" >
 
     $pace()$
+    $peity()$
     $jquery()$
     $bootstrap()$
     $select2(model.formfields)$
@@ -40,11 +41,16 @@ index(user, messages, converter, model) ::= <<
         $debug(messages, model)$
       $endif$
 
+
     </div>
 
     <footer class="footer">
-      <div class="container4footer" style="border-top: 1px dotted #a0a0a0;">
-        <div id="output"></div>
+      <div class="container4footer" style="border-top: 1px dotted #a0a0a0; margin-right: 18px;">
+        <div class="row">
+          <div class="col-md-8" id="output"></div>
+          <div class="col-md-3"></div>
+          <div class="col-md-1" style="margin-top:10px; text-align: right">$peityBars(converter.peitybars)$</div>
+         </div>
       </div>
     </footer>
 
@@ -70,14 +76,14 @@ index(user, messages, converter, model) ::= <<
             output.innerHTML = "<!-- SSE not supported -->";
         }
     </script>
-
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
     <script src="/webapp/js/bootstrap.min.js"></script>
     $notifications(converter.notifications)$
+
     $select2JsEndOfBody(model.formfields)$
 
+    <script type="text/javascript">
+        \$(".bar").peity("bar")
+    </script>
 
   </body>
 </html>

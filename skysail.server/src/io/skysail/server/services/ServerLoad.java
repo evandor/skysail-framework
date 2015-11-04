@@ -1,19 +1,14 @@
 package io.skysail.server.services;
 
-import java.lang.management.ManagementFactory;
-import java.lang.management.OperatingSystemMXBean;
-import java.util.Timer;
-import java.util.TimerTask;
+import java.lang.management.*;
+import java.util.*;
 import java.util.concurrent.atomic.AtomicReference;
 
 import lombok.extern.slf4j.Slf4j;
 
 import org.osgi.service.event.EventAdmin;
 
-import aQute.bnd.annotation.component.Activate;
-import aQute.bnd.annotation.component.Component;
-import aQute.bnd.annotation.component.Deactivate;
-import aQute.bnd.annotation.component.Reference;
+import aQute.bnd.annotation.component.*;
 import de.twenty11.skysail.server.core.osgi.EventHelper;
 
 @Component(immediate = true)
@@ -37,7 +32,8 @@ public class ServerLoad {
         @Override
         public void run() {
             double serverLoad = operatingSystemMXBean.getSystemLoadAverage();
-            eventHelper.channel(EventHelper.GUI_MSG).info(Double.toString(serverLoad)).fire();
+            //eventHelper.channel(EventHelper.GUI_MSG).info(Double.toString(serverLoad)).fire();
+            eventHelper.channel(EventHelper.GUI_PEITY_BAR).info(Double.toString(serverLoad)).fire();
         }
     }
 

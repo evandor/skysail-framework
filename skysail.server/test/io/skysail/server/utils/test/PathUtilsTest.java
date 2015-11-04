@@ -34,14 +34,14 @@ public class PathUtilsTest {
 
     @Test
     public void ordinary_object_will_get_unknown_id() {
-        Map<String, String> substitutions = PathUtils.getSubstitutions(new String(), resource);
+        Map<String, String> substitutions = PathUtils.getSubstitutions(new String(), resource.getRequestAttributes(), null);
         assertThat(substitutions.size(),is(1));
         assertThat(substitutions.get("id"),is("UNKNOWN_ID"));
     }
 
     @Test
     public void identifiable_has_id_as_substitution_id() {
-        Map<String, String> substitutions = PathUtils.getSubstitutions(identifiable, resource);
+        Map<String, String> substitutions = PathUtils.getSubstitutions(identifiable, resource.getRequestAttributes(), null);
         assertThat(substitutions.size(),is(1));
         assertThat(substitutions.get("id"),is("42"));
     }
@@ -50,7 +50,7 @@ public class PathUtilsTest {
     public void testName() {
         attributes.put("id", "something else");
         attributes.put("name", "theName");
-        Map<String, String> substitutions = PathUtils.getSubstitutions(identifiable, resource);
+        Map<String, String> substitutions = PathUtils.getSubstitutions(identifiable, resource.getRequestAttributes(), null);
         assertThat(substitutions.size(),is(2));
         assertThat(substitutions.get("id"),is("42"));
         assertThat(substitutions.get("name"),is("theName"));

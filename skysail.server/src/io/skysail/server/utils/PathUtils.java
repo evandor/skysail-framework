@@ -1,7 +1,6 @@
 package io.skysail.server.utils;
 
 import io.skysail.api.domain.Identifiable;
-import io.skysail.server.restlet.resources.SkysailServerResource;
 
 import java.util.*;
 
@@ -9,15 +8,24 @@ import lombok.NonNull;
 
 import org.restlet.data.Reference;
 
+import de.twenty11.skysail.server.core.restlet.RouteBuilder;
+
 public class PathUtils {
 
-    public static Map<String, String> getSubstitutions(@NonNull Object object, @NonNull SkysailServerResource<?> resource) {
+    public static Map<String, String> getSubstitutions(@NonNull Object object, @NonNull Map<String, Object> requestAttributes, List<RouteBuilder> routeBuilders) {
         Map<String, String> result = new HashMap<>();
         result.put("id", "UNKNOWN_ID");
-        resource.getRequestAttributes().entrySet().stream().forEach(entry -> {
+        requestAttributes.entrySet().stream().forEach(entry -> {
             if (entry.getValue() instanceof String) {
                 result.put(entry.getKey(), Reference.decode((String)entry.getValue()));
             }
+        });
+        routeBuilders.stream().forEach(routeBuilder -> {
+            routeBuilder.getPathVariables().stream().forEach(pathVariable -> {
+                if (requestAttributes.get(pathVariable) != null) {
+                    result.put(pathVariable, (String)requestAttributes.get(pathVariable));
+                }
+            });
         });
         if (object instanceof Identifiable) {
             Identifiable identifiable = (Identifiable) object;
@@ -27,13 +35,6 @@ public class PathUtils {
         }
         if (object instanceof Map) {
             throw new IllegalStateException("logic not supported any more");
-//            Map<String, Object> map = (Map) object;
-//            if (map.get("@rid") != null) {
-//                result.put("id",map.get("@rid").toString().replace("#", ""));
-//            }
-//            if (map.get("id") != null) {
-//                result.put("id", map.get("id").toString().replace("#", ""));
-//            }
         }
         return result;
     }

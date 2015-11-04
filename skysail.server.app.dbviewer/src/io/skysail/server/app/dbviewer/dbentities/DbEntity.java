@@ -1,12 +1,18 @@
 package io.skysail.server.app.dbviewer.dbentities;
 
-import io.skysail.api.domain.Identifiable;
+import io.skysail.server.model.DynamicBean;
+
+import java.util.Map;
+
 import lombok.*;
 
+@SuppressWarnings("serial")
 @Getter
 @Setter
-public class DbEntity implements Identifiable {
+public class DbEntity extends DynamicBean {
 
-    private String id;
+    public DbEntity(String name, Map<String, Object> map) {
+        super(name, map);
+    }
 
 }

@@ -18,8 +18,6 @@ public class DbClassResource extends EntityServerResource<DbClass> {
     protected void doInit() throws ResourceException {
         super.doInit();
         app = (DbviewerApplication) getApplication();
-        getAttribute("id");
-        getAttribute("name");
     }
 
     @Override

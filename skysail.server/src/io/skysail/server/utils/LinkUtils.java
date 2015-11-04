@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 import lombok.extern.slf4j.Slf4j;
 
 import org.restlet.data.*;
-import org.restlet.resource.Resource;
+import org.restlet.resource.*;
 
 import de.twenty11.skysail.server.core.restlet.*;
 
@@ -208,30 +208,12 @@ public class LinkUtils {
 
     }
 
-//    private static String guessId(Object object) {
-//        if (object instanceof Identifiable) {
-//            Identifiable identifiable = (Identifiable) object;
-//            if (identifiable.getId() != null) {
-//                return identifiable.getId().replace("#", "");
-//            }
-//        }
-//        if (object instanceof Map) {
-//            Map<String, Object> map = (Map) object;
-//            if (map.get("@rid") != null) {
-//                return map.get("@rid").toString().replace("#", "");
-//            }
-//            if (map.get("id") != null) {
-//                return map.get("id").toString().replace("#", "");
-//            }
-//        }
-//        log.warn("not able to determine id");
-//        return "NO_ID";
-//    }
-
     private static void addLink(Link linkTemplate, Resource entityResource, Object object, ListServerResource<?> resource,
             List<Link> result) {
         String path = linkTemplate.getUri();
-        Map<String, String> substitutions = PathUtils.getSubstitutions(object, resource);
+        Class<? extends ServerResource> linkedResourceClass = (Class<? extends ServerResource>) linkTemplate.getCls();
+        List<RouteBuilder> routeBuilders = resource.getApplication().getRouteBuildersForResource(linkedResourceClass);
+        Map<String, String> substitutions = PathUtils.getSubstitutions(object, resource.getRequestAttributes(), routeBuilders);
         String href = path;
 
         for (Entry<String, String> entry : substitutions.entrySet()) {
@@ -240,14 +222,10 @@ public class LinkUtils {
                 href = href.replace(substitutable, entry.getValue());
             }
         }
-//
-//        if (substitutions.get("id") != null && path.contains("{") && path.contains("}")) {
-//            href = href.replaceFirst(StringParserUtils.placeholderPattern.toString(), substitutions.get("id"));
-//        }
 
         String refId = substitutions.values().stream().collect(Collectors.joining("|"));
         Link newLink = new Link.Builder(linkTemplate)
-                .uri(href).role(LinkRole.LIST_VIEW).relation(LinkRelation.ITEM).refId(refId).build();
+                .uri(href).role(LinkRole.LIST_VIEW).relation(LinkRelation.ITEM).refId(substitutions.get("id")).build();
         result.add(newLink);
     }
 }

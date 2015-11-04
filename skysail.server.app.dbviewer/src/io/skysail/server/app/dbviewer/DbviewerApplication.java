@@ -35,19 +35,19 @@ public class DbviewerApplication extends SkysailApplication implements Applicati
 
     @Override
     protected void attach() {
-       super.attach();
-//       router.attach(new RouteBuilder("", ConnectionsResource.class));
-//       router.attach(new RouteBuilder("/connections", ConnectionsResource.class));
+      // super.attach();
+       router.attach(new RouteBuilder("", ConnectionsResource.class));
+       router.attach(new RouteBuilder("/connections", ConnectionsResource.class));
+       router.attach(new RouteBuilder("/connections/", PostConnectionResource.class));
+       router.attach(new RouteBuilder("/connections/{connectionId}", ConnectionResource.class));
+       router.attach(new RouteBuilder("/connections/{connectionId}/", PutConnectionResource.class));
+
+       router.attach(new RouteBuilder("/connections/{connectionId}/vertices", DbClassesResource.class));
 //       router.attach(new RouteBuilder("/connections/", PostConnectionResource.class));
-//       router.attach(new RouteBuilder("/connections/{id}", ConnectionResource1.class));
+       router.attach(new RouteBuilder("/connections/{connectionId}/vertices/{id}", DbClassResource.class));
 //       router.attach(new RouteBuilder("/connections/{id}/", PutConnectionResource.class));
 
-       router.attach(new RouteBuilder("/connections/{id}/vertices", DbClassesResource.class));
-//       router.attach(new RouteBuilder("/connections/", PostConnectionResource.class));
-       router.attach(new RouteBuilder("/connections/{id}/vertices/{name}", DbClassResource.class));
-//       router.attach(new RouteBuilder("/connections/{id}/", PutConnectionResource.class));
-
-       router.attach(new RouteBuilder("/connections/{id}/vertices/{name}/entities", DbEntitiesResource.class));
+       router.attach(new RouteBuilder("/connections/{connectionId}/vertices/{id}/entities", DbEntitiesResource.class));
 
     }
 

@@ -424,6 +424,11 @@ public abstract class SkysailApplication extends RamlApplication implements Appl
         return router.getRouteBuilders();
     }
 
+    public List<RouteBuilder> getRouteBuildersForResource(Class<? extends ServerResource> cls) {
+        return router.getRouteBuildersForResource(cls);
+    }
+
+
     @Override
     public SkysailApplication getApplication() {
         return this;
@@ -713,5 +718,6 @@ public abstract class SkysailApplication extends RamlApplication implements Appl
         appMenu.setCategory(MenuItem.Category.APPLICATION_MAIN_MENU);
         return Arrays.asList(appMenu);
     }
+
 
 }

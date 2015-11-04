@@ -81,6 +81,14 @@ public class FormField {
         violationMessage = validationMessage.orElse(null);
     }
 
+    public FormField(io.skysail.server.domain.core.Field field, SkysailServerResource<?> theResource) {
+        name = field.getId();
+        type = String.class;//field.getType();
+        inputType = null;//getFromFieldAnnotation(field);
+//        setAnnotations(field);
+        this.resource = theResource;
+    }
+
     private void setAnnotations(Field field) {
         referenceAnnotation = field.getAnnotation(Reference.class);
         formFieldAnnotation = field.getAnnotation(io.skysail.api.forms.Field.class);

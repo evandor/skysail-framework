@@ -5,6 +5,7 @@ import io.skysail.api.links.*;
 import io.skysail.api.responses.*;
 import io.skysail.api.search.*;
 import io.skysail.server.app.SkysailApplication;
+import io.skysail.server.domain.core.Field;
 import io.skysail.server.forms.FormField;
 import io.skysail.server.menus.MenuItemProvider;
 import io.skysail.server.restlet.resources.*;
@@ -17,6 +18,7 @@ import java.util.stream.Collectors;
 import lombok.*;
 import lombok.extern.slf4j.Slf4j;
 
+import org.apache.commons.beanutils.*;
 import org.apache.commons.lang.StringUtils;
 import org.restlet.data.*;
 import org.restlet.engine.resource.VariantInfo;
@@ -77,6 +79,8 @@ public class ResourceModel<R extends SkysailServerResource<T>, T> {
 
     private SearchService searchService;
 
+    private Map<String, FormField> dynaFields = new HashMap<>();
+
     public ResourceModel(R resource, SkysailResponse<?> response) {
         this(resource, response, new VariantInfo(MediaType.TEXT_HTML));
     }
@@ -89,7 +93,7 @@ public class ResourceModel<R extends SkysailServerResource<T>, T> {
         mapper.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, true);
         mapper.configure(SerializationFeature.FAIL_ON_EMPTY_BEANS, false);
 
-        rawData = getData(skysailResponse);
+        rawData = getData(skysailResponse, resource);
 
         this.resource = resource;
         this.response = skysailResponse;
@@ -98,6 +102,9 @@ public class ResourceModel<R extends SkysailServerResource<T>, T> {
         parameterizedType = resource.getParameterizedType();
 
         fields = FormfieldUtils.determineFormfields(response, resource);
+        if (fields.size() == 0) {
+            fields = dynaFields;
+        }
 
         rootEntity = new EntityModel<R>(response.getEntity(), resource);
 
@@ -109,7 +116,7 @@ public class ResourceModel<R extends SkysailServerResource<T>, T> {
     }
 
     @SuppressWarnings("unchecked")
-    private List<Map<String, Object>> getData(Object source) {
+    private List<Map<String, Object>> getData(Object source, R theResource) {
         List<Map<String, Object>> result = new ArrayList<>();
         if (source instanceof ListServerResponse) {
             List<?> list = ((ListServerResponse<?>) source).getEntity();
@@ -117,6 +124,17 @@ public class ResourceModel<R extends SkysailServerResource<T>, T> {
                 for (Object object : list) {
                     if (object instanceof Document) {
                         result.add(((Document)object).getDocMap());
+                    } else if(object instanceof DynamicBean) {
+                        DynamicBean dynaClass = (DynamicBean) object;
+                        DynaBean bean = dynaClass.getBean();
+                        Map<String,Object> map = new HashMap<>();
+                        for (DynaProperty prop : dynaClass.getDynaProperties()) {
+                            map.put(prop.getName(), bean.get(prop.getName()));
+                            if (dynaFields.get(prop.getName()) == null) {
+                                dynaFields.put(prop.getName(), new FormField(new Field(prop.getName()), theResource));
+                            }
+                        }
+                        result.add(map);
                     } else {
                         result.add((Map<String, Object>) mapper.convertValue(object, LinkedHashMap.class));
                     }

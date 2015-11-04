@@ -2,6 +2,9 @@ package de.twenty11.skysail.server.core.restlet;
 
 import io.skysail.server.app.ApiVersion;
 
+import java.util.*;
+import java.util.regex.*;
+
 import org.apache.commons.lang.Validate;
 import org.restlet.Restlet;
 import org.restlet.resource.ServerResource;
@@ -16,12 +19,16 @@ public class RouteBuilder {
 
 	private boolean needsAuthentication = true; // default
 	private Predicate<String[]> rolesForAuthorization;
+    private List<String> pathVariables = new ArrayList<>();
+
+    private Pattern pathVariablesPattern = Pattern.compile("\\{([^\\}])*\\}");
 
     public RouteBuilder(String pathTemplate, Class<? extends ServerResource> targetClass) {
         Validate.notNull(pathTemplate, "pathTemplate may not be null");
         Validate.notNull(targetClass, "targetClass may not be null");
         this.pathTemplate = pathTemplate;
         this.targetClass = targetClass;
+        pathVariables = extractPathVariables(pathTemplate);
     }
 
     public RouteBuilder(String pathTemplate, Restlet restlet) {
@@ -78,5 +85,19 @@ public class RouteBuilder {
 		this.needsAuthentication = false;
 		return this;
 	}
+
+    public List<String> getPathVariables() {
+        return pathVariables;
+    }
+
+    private List<String> extractPathVariables(String input) {
+        List<String> result = new ArrayList<>();
+        Matcher m = pathVariablesPattern.matcher(input);
+        while (m.find()) {
+            result.add(m.group(0).replace("}", "").replace("{", ""));
+        }
+        return result;
+    }
+
 
 }

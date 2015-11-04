@@ -9,6 +9,7 @@ import com.tinkerpop.blueprints.impls.orient.OrientVertex;
 
 @Getter
 @Setter
+@ToString
 public class DbClass implements Identifiable, Comparable<DbClass> {
 
     public DbClass(OrientVertex v) {

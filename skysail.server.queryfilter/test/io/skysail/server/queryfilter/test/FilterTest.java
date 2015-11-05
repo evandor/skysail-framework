@@ -93,10 +93,18 @@ public class FilterTest {
     }
 
     @Test
-    public void element_of_is_valid_expression() {
+    public void element_of_out_edge_is_valid_expression() {
         Filter filter = new Filter("(#17:0 ∈ out['parent'])");
         assertThat(filter.isValid(),is(true));
         assertThat(filter.getPreparedStatement(),equalTo("#17:0 IN out('parent')"));
+        assertThat(filter.getParams().size(),is(0));
+    }
+
+    @Test
+    public void element_of_in_edge_is_valid_expression() {
+        Filter filter = new Filter("(#17:0 ∈ in['todos'])");
+        assertThat(filter.isValid(),is(true));
+        assertThat(filter.getPreparedStatement(),equalTo("#17:0 IN in('todos')"));
         assertThat(filter.getParams().size(),is(0));
     }
 }

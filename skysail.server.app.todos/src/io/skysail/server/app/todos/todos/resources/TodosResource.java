@@ -48,6 +48,7 @@ public class TodosResource extends ListServerResource<Todo> {
         Filter filter = new Filter(getRequest(), DEFAULT_FILTER_EXPRESSION);
         filter.add("owner", SecurityUtils.getSubject().getPrincipal().toString());
         //filter.addEdgeOut("parent", "#" + listId);
+        filter.addEdgeIn("todos", "#" + listId);
 
         Pagination pagination = new Pagination(getRequest(), getResponse(), app.getTodosRepo().getTodosCount(listId,
                 filter));

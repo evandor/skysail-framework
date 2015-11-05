@@ -11,6 +11,8 @@ import java.util.*;
 import org.junit.*;
 import org.mockito.Mockito;
 
+import de.twenty11.skysail.server.core.restlet.RouteBuilder;
+
 public class PathUtilsTest {
 
     private class MyIdentifiable implements Identifiable {
@@ -47,12 +49,26 @@ public class PathUtilsTest {
     }
 
     @Test
-    public void testName() {
+    public void substitutes_from_attributes() {
         attributes.put("id", "something else");
         attributes.put("name", "theName");
         Map<String, String> substitutions = PathUtils.getSubstitutions(identifiable, resource.getRequestAttributes(), Collections.emptyList());
         assertThat(substitutions.size(),is(2));
         assertThat(substitutions.get("id"),is("42"));
+        assertThat(substitutions.get("name"),is("theName"));
+    }
+
+    @Test
+    public void substitutes_from_attributes_with_id_as_missing_pathvariable() {
+        //attributes.put("id", "something else");
+        attributes.put("name", "theName");
+        List<RouteBuilder> routes = new ArrayList<>();
+        RouteBuilder routeBuilder = Mockito.mock(RouteBuilder.class);
+        routes.add(routeBuilder);
+        Mockito.when(routeBuilder.getPathVariables()).thenReturn(Arrays.asList("name", "connectionId"));
+        Map<String, String> substitutions = PathUtils.getSubstitutions(identifiable, resource.getRequestAttributes(), routes);
+        assertThat(substitutions.size(),is(2));
+        assertThat(substitutions.get("connectionId"),is("42"));
         assertThat(substitutions.get("name"),is("theName"));
     }
 }

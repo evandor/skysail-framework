@@ -213,7 +213,8 @@ public class LinkUtils {
         String path = linkTemplate.getUri();
         Class<? extends ServerResource> linkedResourceClass = (Class<? extends ServerResource>) linkTemplate.getCls();
         List<RouteBuilder> routeBuilders = resource.getApplication().getRouteBuildersForResource(linkedResourceClass);
-        Map<String, String> substitutions = PathUtils.getSubstitutions(object, resource.getRequestAttributes(), routeBuilders);
+        PathUtils pathUtils = new PathUtils(resource.getRequestAttributes(), routeBuilders);
+        Map<String, String> substitutions = pathUtils.getSubstitutions(object);//PathUtils.getSubstitutions(object, resource.getRequestAttributes(), routeBuilders);
         String href = path;
 
         for (Entry<String, String> entry : substitutions.entrySet()) {
@@ -223,9 +224,8 @@ public class LinkUtils {
             }
         }
 
-        String refId = substitutions.values().stream().collect(Collectors.joining("|"));
         Link newLink = new Link.Builder(linkTemplate)
-                .uri(href).role(LinkRole.LIST_VIEW).relation(LinkRelation.ITEM).refId(substitutions.get("id")).build();
+                .uri(href).role(LinkRole.LIST_VIEW).relation(LinkRelation.ITEM).refId(substitutions.get(pathUtils.getIdVariable())).build();
         result.add(newLink);
     }
 }

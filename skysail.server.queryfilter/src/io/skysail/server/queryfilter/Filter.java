@@ -80,6 +80,11 @@ public class Filter {
         evaluate();
     }
 
+    public void addEdgeIn(String name, String value) {
+        and("("+value+" ∈ in['"+name+"'] " +")");
+        evaluate();
+    }
+
     private void evaluate() {
         if (filterExpressionFromQuery == null) {
             return;

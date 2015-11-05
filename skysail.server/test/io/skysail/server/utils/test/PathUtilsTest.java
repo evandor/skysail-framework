@@ -37,8 +37,7 @@ public class PathUtilsTest {
     @Test
     public void ordinary_object_will_get_unknown_id() {
         Map<String, String> substitutions = PathUtils.getSubstitutions(new String(), resource.getRequestAttributes(), Collections.emptyList());
-        assertThat(substitutions.size(),is(1));
-        assertThat(substitutions.get("id"),is("UNKNOWN_ID"));
+        assertThat(substitutions.size(),is(0));
     }
 
     @Test

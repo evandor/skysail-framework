@@ -14,7 +14,7 @@ renderRow(fields, row,i) ::= <<
 
 renderHeader(fields, converter) ::= <<
   $if(converter.edit)$
-    $fields: { field | <th><a href='/i18n/messages/$field.nameKey$/'>$helpmessage(messages, field.nameKey)$</a></th>}$
+    $fields: { field | <th><a href='/i18n/v1/messages/$field.nameKey$/'>$helpmessage(messages, field.nameKey)$</a></th>}$
   $else$
     $fields: { field | <th>$helpmessage(messages, field.nameKey)$</th>}$
   $endif$

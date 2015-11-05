@@ -108,6 +108,7 @@ public class TodoApplication extends SkysailApplication implements ApplicationPr
         router.attach(new RouteBuilder("/TodosTimeline", TodosTimelineResource.class));
 
         router.attach(new RouteBuilder("/Todos/_columns", ListAsColumnsResource.class));
+        router.attach(new RouteBuilder("/Todos/_all", TodosWithoutListResource.class));
 
         router.attach(new RouteBuilder("/Todos/{"+TODO_ID+"}", TodoResource.class));
         router.attach(new RouteBuilder("/Todos/{"+TODO_ID+"}/", PutTodoResource.class));

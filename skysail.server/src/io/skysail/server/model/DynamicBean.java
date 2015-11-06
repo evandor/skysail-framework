@@ -31,7 +31,13 @@ public class DynamicBean extends BasicDynaClass implements Identifiable{
     private static DynaProperty[] getProperties(Map<String, Object> map) {
         List<DynaProperty> props = new ArrayList<>();
         for (Entry<String, Object> entry : map.entrySet()) {
-            props.add(new DynaProperty(entry.getKey(), entry.getValue().getClass()));
+            Object value = entry.getValue();
+            String key = entry.getKey();
+            if (value != null) {
+                props.add(new DynaProperty(key, value.getClass()));
+            } else {
+                props.add(new DynaProperty(key, String.class));
+            }
         }
         return props.toArray(new DynaProperty[props.size()]);
     }

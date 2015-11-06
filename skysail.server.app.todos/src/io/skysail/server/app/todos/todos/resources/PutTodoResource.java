@@ -9,6 +9,7 @@ import io.skysail.server.app.todos.todos.Todo;
 import io.skysail.server.restlet.resources.*;
 
 import java.util.*;
+import java.util.stream.IntStream;
 
 import org.restlet.resource.ResourceException;
 
@@ -45,7 +46,20 @@ public class PutTodoResource extends PutEntityServerResource<Todo> {
         }
         //app.getTodosRepo().update(getAttribute(TodoApplication.LIST_ID), entityToBeUpdated, "todos");
 
-        //list.getTodos().stream().map(todo -> todo.getId()).filter(id -> id.equals(entityToBeUpdated.getId())).findFirst().ifPresent(list.getTodos());
+//        Optional<String> optionalId = list.getTodos().stream().map(todo -> todo.getId()).filter(id -> id.equals(entityToBeUpdated.getId())).findFirst();
+//        if (optionalId.isPresent()) {
+//            list.getTodos().se
+//        } else {
+//
+//        }
+        OptionalInt indexIfExisting = IntStream.range(0, list.getTodos().size()).filter(index -> {
+            return list.getTodos().get(index).getId().equals(entityToBeUpdated.getId());
+        }).findFirst();
+        if (indexIfExisting.isPresent()) {
+            list.getTodos().set(indexIfExisting.getAsInt(), entityToBeUpdated);
+        } else {
+            list.getTodos().add(entityToBeUpdated);
+        }
 
         app.getListRepo().update(list.getId(), list, "todos");
 

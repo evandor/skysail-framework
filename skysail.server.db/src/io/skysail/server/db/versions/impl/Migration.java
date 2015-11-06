@@ -6,6 +6,7 @@ import java.util.regex.*;
 import lombok.*;
 
 @Getter
+@ToString(of = {"version", "title", "migrationType"})
 public class Migration implements Comparable<Migration> {
 
     private enum MIG_TYPE {

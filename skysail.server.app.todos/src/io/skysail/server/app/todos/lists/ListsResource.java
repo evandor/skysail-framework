@@ -40,7 +40,7 @@ public class ListsResource extends ListServerResource<TodoList> implements I18nA
                 .nameProperty("title")
                 .identifier("id")
                 .build());
-        listService = (ListService) getContext().getAttributes().get(ListService.class.getName());
+        listService = getService(ListService.class);
     }
 
     private String getTarget() {

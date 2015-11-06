@@ -393,4 +393,7 @@ public abstract class SkysailServerResource<T> extends ServerResource {
         return result;
     }
 
+    protected <S> S getService(Class<S> cls) {
+        return cls.cast(getContext().getAttributes().get(cls.getName()));
+    }
 }

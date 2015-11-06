@@ -26,6 +26,10 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 @StartDateBeforeDueDate
 public class Todo implements Identifiable {
 
+    private static final long MILLIS_PER_DAY = 1000*60*60*24l;
+
+    private static final int DEFAULT_ELAPSE_TIME = 3;
+
     @Id
     private String id;
 
@@ -55,7 +59,7 @@ public class Todo implements Identifiable {
 
     @Field(inputType = InputType.READONLY)
     @ListView(hide = true)
-    private Integer elapseTime = 3;
+    private Integer elapseTime = DEFAULT_ELAPSE_TIME;
 
     @Field(inputType = InputType.READONLY)
     private Date created;
@@ -99,14 +103,11 @@ public class Todo implements Identifiable {
         if (query == null) {
             return;
         }
-        // to add new entity via get URL
         this.title = query.getFirstValue("title");
         this.desc = query.getFirstValue("desc");
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy", locale);
         try {
             String dueDate = query.getFirstValue("due");
-//            DateFormat dateInstance = DateFormat.getDateInstance(DateFormat.FULL, locale);
-//            this.due = dateInstance.parse(dueDate);
             this.due = sdf.parse(dueDate);
         } catch (Exception e) {
             // ignore
@@ -119,7 +120,7 @@ public class Todo implements Identifiable {
 
     public Integer getElapseTime() {
         if (due != null && startDate != null) {
-            return (int)((due.getTime() - startDate.getTime()) / (1000*60*60*24l));
+            return (int)((due.getTime() - startDate.getTime()) / MILLIS_PER_DAY);
         }
         return null;
     }

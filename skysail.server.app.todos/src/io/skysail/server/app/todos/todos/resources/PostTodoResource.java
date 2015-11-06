@@ -48,20 +48,18 @@ public class PostTodoResource extends PostEntityServerResource<Todo> {
 
         Locale locale = ResourceUtils.determineLocale(this);
         Calendar cal = Calendar.getInstance(TimeZone.getTimeZone("GMT"),locale);
-        entity.setCreated(cal.getTime());new Date();
+        entity.setCreated(cal.getTime());
         Subject subject = SecurityUtils.getSubject();
         entity.setOwner(subject.getPrincipal().toString());
         entity.setStatus(Status.NEW);
         entity.setRank(1);
-        //entity.setParent(getAttribute(TodoApplication.LIST_ID));
         if (entity.getImportance() == null) {
             entity.setImportance(50);
         }
         entity.setUrgency(Ranker.calcUrgency(entity));
 
         list.getTodos().add(entity);
-        String id = app.getListRepo().update(list.getId(), list, "todos").toString();
-        //entity.setId(id);
+        app.getListRepo().update(list.getId(), list, "todos").toString();
         return new SkysailResponse<>();
     }
 

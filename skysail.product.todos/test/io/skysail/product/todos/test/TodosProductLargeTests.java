@@ -21,8 +21,8 @@ public class TodosProductLargeTests {
     @Managed(driver = "firefox")
     private static WebDriver driver;
 
-    @Rule
-    public final SkysailServerRule serverRule = new SkysailServerRule("todos.largetest.bndrun" );
+    @ClassRule
+    public static final SkysailServerRule serverRule = new SkysailServerRule("todos.largetest.bndrun" );
 
     @Steps
     BrowserSteps browserSteps;

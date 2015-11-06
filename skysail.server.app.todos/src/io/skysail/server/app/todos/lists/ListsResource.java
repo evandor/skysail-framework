@@ -3,15 +3,13 @@ package io.skysail.server.app.todos.lists;
 import io.skysail.api.links.Link;
 import io.skysail.api.text.*;
 import io.skysail.server.app.todos.*;
+import io.skysail.server.app.todos.services.ListService;
 import io.skysail.server.app.todos.todos.resources.*;
-import io.skysail.server.queryfilter.Filter;
-import io.skysail.server.queryfilter.pagination.Pagination;
 import io.skysail.server.restlet.resources.*;
 import io.skysail.server.utils.LinkUtils;
 
 import java.util.List;
 
-import org.apache.shiro.SecurityUtils;
 import org.restlet.data.MediaType;
 import org.restlet.resource.ClientResource;
 
@@ -20,6 +18,8 @@ import de.twenty11.skysail.server.core.restlet.ResourceContextId;
 public class ListsResource extends ListServerResource<TodoList> implements I18nArgumentsProvider {
 
     private TodoApplication app;
+
+    private ListService listService;
 
     public ListsResource() {
         super(ListResource.class);
@@ -40,6 +40,7 @@ public class ListsResource extends ListServerResource<TodoList> implements I18nA
                 .nameProperty("title")
                 .identifier("id")
                 .build());
+        listService = (ListService) getContext().getAttributes().get(ListService.class.getName());
     }
 
     private String getTarget() {
@@ -49,10 +50,7 @@ public class ListsResource extends ListServerResource<TodoList> implements I18nA
 
     @Override
     public List<TodoList> getEntity() {
-        Filter filter = new Filter(getRequest());
-        filter.add("owner", SecurityUtils.getSubject().getPrincipal().toString());
-        Pagination pagination = new Pagination(getRequest(), getResponse(), app.getListRepo().getListsCount(filter));
-        return app.getListRepo().findAllLists(filter, pagination);
+        return listService.getLists(this);
     }
 
     @Override

@@ -85,6 +85,7 @@ Import-Package: org.osgi.framework,\
 	*
 Private-Package:  \
 	io.skysail.server.app.todos.todos.resources,\
+	io.skysail.server.app.todos.services,\
 	io.skysail.server.app.todos.lists,\
 	io.skysail.server.app.todos.todos,\
 	io.skysail.server.app.todos.repo,\

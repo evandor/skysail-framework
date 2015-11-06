@@ -110,7 +110,7 @@ public class Todo implements Identifiable {
             String dueDate = query.getFirstValue("due");
             this.due = sdf.parse(dueDate);
         } catch (Exception e) {
-            // ignore
+            // ignore // NOSONAR
         }
         this.parent = listId;
         if (listId == null) {

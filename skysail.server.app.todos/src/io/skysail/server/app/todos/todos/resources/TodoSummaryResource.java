@@ -40,7 +40,7 @@ public abstract class TodoSummaryResource extends ListServerResource<TodoSummary
 
     @Override
     public String redirectTo() {
-        if (todosSummary.size() == 0) {
+        if (todosSummary.isEmpty()) {
             return super.redirectTo(PostListResource.class);
         }
         return null;

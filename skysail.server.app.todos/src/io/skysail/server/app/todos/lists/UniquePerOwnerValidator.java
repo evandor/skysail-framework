@@ -3,23 +3,19 @@ package io.skysail.server.app.todos.lists;
 import io.skysail.server.app.todos.TodoList;
 import io.skysail.server.db.DbService;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
-import javax.validation.ConstraintValidator;
-import javax.validation.ConstraintValidatorContext;
+import javax.validation.*;
 
 import org.apache.shiro.SecurityUtils;
 
-import aQute.bnd.annotation.component.Component;
-import aQute.bnd.annotation.component.Reference;
+import aQute.bnd.annotation.component.*;
 
 @Component(immediate = true)
 public class UniquePerOwnerValidator implements ConstraintValidator<UniquePerOwner, TodoList> {
 
     private static DbService dbService;
-    
+
     @Override
     public void initialize(UniquePerOwner uniquePerOwner) {
     }
@@ -37,7 +33,7 @@ public class UniquePerOwnerValidator implements ConstraintValidator<UniquePerOwn
         params.put("id", todoList.getId());
         params.put("owner", SecurityUtils.getSubject().getPrincipal().toString());
         List<Object> findObjects = dbService.findObjects(sql, params);
-        return findObjects.size() == 0;
+        return findObjects.isEmpty();
     }
 
     @Reference(dynamic = true, multiple = false, optional = false)

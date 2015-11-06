@@ -37,7 +37,7 @@ public class PostListResource extends PostEntityServerResource<TodoList> {
     @Override
     public SkysailResponse<TodoList> addEntity(TodoList entity) {
         List<TodoList> usersDefaultLists = app.getUsersDefaultLists(getRequest());
-        if (usersDefaultLists.size() == 0) {
+        if (usersDefaultLists.isEmpty()) {
             entity.setDefaultList(true);
         } else {
             app.removeDefaultFlag(usersDefaultLists);

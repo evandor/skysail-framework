@@ -141,7 +141,7 @@ public class TodoApplication extends SkysailApplication implements ApplicationPr
 
     public String getDefaultList(Request request) {
         List<TodoList> usersDefaultLists = getUsersDefaultLists(request);
-        if (usersDefaultLists.size() > 0) {
+        if (!usersDefaultLists.isEmpty()) {
             return usersDefaultLists.get(0).getId();
         }
         return null;

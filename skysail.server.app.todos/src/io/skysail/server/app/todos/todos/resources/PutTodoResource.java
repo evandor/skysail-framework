@@ -44,14 +44,7 @@ public class PutTodoResource extends PutEntityServerResource<Todo> {
         if (views == null) {
             entityToBeUpdated.setViews(1);
         }
-        //app.getTodosRepo().update(getAttribute(TodoApplication.LIST_ID), entityToBeUpdated, "todos");
 
-//        Optional<String> optionalId = list.getTodos().stream().map(todo -> todo.getId()).filter(id -> id.equals(entityToBeUpdated.getId())).findFirst();
-//        if (optionalId.isPresent()) {
-//            list.getTodos().se
-//        } else {
-//
-//        }
         OptionalInt indexIfExisting = IntStream.range(0, list.getTodos().size()).filter(index -> {
             return list.getTodos().get(index).getId().equals(entityToBeUpdated.getId());
         }).findFirst();

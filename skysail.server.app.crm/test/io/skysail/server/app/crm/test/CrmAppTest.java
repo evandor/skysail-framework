@@ -25,7 +25,7 @@ public class CrmAppTest extends AbstractShiroTest {
 
     protected DbService dbService;
 
-    public void setUp() throws Exception {
+    public void setUp() {
         super.setUp();
         crmRepository = new CrmRepository();
         dbService = null;//new InMemoryDbService();

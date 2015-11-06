@@ -39,5 +39,9 @@ public class TimelineTodo implements Identifiable {
         this.type = "point";
     }
 
+    @Override
+    public void setId(String id) {
+    }
+
 
 }

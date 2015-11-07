@@ -80,7 +80,6 @@ public class TodoApplication extends SkysailApplication implements ApplicationPr
         if (versioningService != null) {
             versioningService.register(componentContext.getBundleContext().getBundle());
         }
-        getContext().getAttributes().put(ListService.class.getName(), new ListService(listRepo));
     }
 
     public void unsetVersioningService(VersioningService service) {
@@ -90,6 +89,9 @@ public class TodoApplication extends SkysailApplication implements ApplicationPr
     @Override
     protected void attach() {
         super.attach();
+
+        getContext().getAttributes().put(ListService.class.getName(), new ListService(listRepo));
+
 
         router.attach(new RouteBuilder("", Top10TodosResource.class));
 

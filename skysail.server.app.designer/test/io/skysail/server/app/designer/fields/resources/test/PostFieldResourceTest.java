@@ -14,6 +14,7 @@ import java.util.HashMap;
 import org.apache.shiro.subject.SimplePrincipalMap;
 import org.junit.*;
 import org.mockito.*;
+import org.restlet.Context;
 import org.restlet.data.*;
 import org.restlet.engine.resource.VariantInfo;
 
@@ -29,8 +30,8 @@ public class PostFieldResourceTest extends ResourceTestBase {
     public void setUp() throws Exception {
         super.setUpFixture();
 
-        super.setUpApplication(Mockito.mock(DesignerApplication.class));
-        super.setUpResource(resource);
+        Context context = super.setUpApplication(Mockito.mock(DesignerApplication.class));
+        super.setUpResource(resource, context);
 
 
         repo = new DesignerRepository();

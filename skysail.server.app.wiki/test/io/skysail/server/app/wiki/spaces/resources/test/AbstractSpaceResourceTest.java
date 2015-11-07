@@ -15,6 +15,7 @@ import java.util.HashMap;
 import org.apache.shiro.subject.SimplePrincipalMap;
 import org.junit.Before;
 import org.mockito.*;
+import org.restlet.Context;
 import org.restlet.data.Status;
 
 public abstract class AbstractSpaceResourceTest  extends ResourceTestBase {
@@ -41,11 +42,11 @@ public abstract class AbstractSpaceResourceTest  extends ResourceTestBase {
     public void setUp() throws Exception {
         super.setUpFixture();
 
-        super.setUpApplication(application);//Mockito.mock(TodoApplication.class));
-        super.setUpResource(spaceResource);
-        super.setUpResource(spacesResource);
-        super.setUpResource(putSpaceResource);
-        super.setUpResource(postSpaceResource);
+        Context context = super.setUpApplication(application);
+        super.setUpResource(spaceResource, context);
+        super.setUpResource(spacesResource, context);
+        super.setUpResource(putSpaceResource, context);
+        super.setUpResource(postSpaceResource, context);
         setUpSpacesRepository(new SpacesRepository());
         setUpPagesRepository(new PagesRepository());
         setUpSubject("admin");

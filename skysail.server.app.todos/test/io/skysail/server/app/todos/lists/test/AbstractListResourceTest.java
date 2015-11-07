@@ -14,6 +14,7 @@ import java.util.HashMap;
 import org.apache.shiro.subject.SimplePrincipalMap;
 import org.junit.Before;
 import org.mockito.*;
+import org.restlet.Context;
 import org.restlet.data.Status;
 
 public abstract class AbstractListResourceTest extends ResourceTestBase {
@@ -40,11 +41,11 @@ public abstract class AbstractListResourceTest extends ResourceTestBase {
     public void setUp() throws Exception {
         super.setUpFixture();
 
-        super.setUpApplication(application);//Mockito.mock(TodoApplication.class));
-        super.setUpResource(listResource);
-        super.setUpResource(listsResource);
-        super.setUpResource(putListResource);
-        super.setUpResource(postListresource);
+        Context context = super.setUpApplication(application);
+        super.setUpResource(listResource,context);
+        super.setUpResource(listsResource,context);
+        super.setUpResource(putListResource,context);
+        super.setUpResource(postListresource,context);
         setUpTodosRepository(new TodosRepository());
         setUpListRepository(new ListsRepository());
         setUpSubject("admin");

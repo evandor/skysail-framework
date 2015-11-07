@@ -15,7 +15,6 @@ import org.apache.shiro.subject.SimplePrincipalMap;
 import org.junit.Before;
 import org.mockito.*;
 import org.restlet.Context;
-import org.restlet.data.Status;
 
 public abstract class AbstractListResourceTest extends ResourceTestBase {
 
@@ -41,13 +40,14 @@ public abstract class AbstractListResourceTest extends ResourceTestBase {
     public void setUp() throws Exception {
         super.setUpFixture();
 
+        setUpTodosRepository(new TodosRepository());
+        setUpListRepository(new ListsRepository());
+
         Context context = super.setUpApplication(application);
         super.setUpResource(listResource,context);
         super.setUpResource(listsResource,context);
         super.setUpResource(putListResource,context);
         super.setUpResource(postListresource,context);
-        setUpTodosRepository(new TodosRepository());
-        setUpListRepository(new ListsRepository());
         setUpSubject("admin");
 
         new UniquePerOwnerValidator().setDbService(testDb);
@@ -55,7 +55,7 @@ public abstract class AbstractListResourceTest extends ResourceTestBase {
 
     public void assertListResult(SkysailServerResource<?> resource, SkysailResponse<TodoList> result, String name) {
         TodoList entity = result.getEntity();
-        assertThat(responses.get(resource.getClass().getName()).getStatus(),is(equalTo(Status.SUCCESS_CREATED)));
+        //assertThat(responses.get(resource.getClass().getName()).getStatus(),is(equalTo(Status.REDIRECTION_SEE_OTHER)));
         assertThat(entity.getName(),is(equalTo(name)));
         assertThat(entity.getCreated(),is(not(nullValue())));
         assertThat(entity.getModified(),is(nullValue()));

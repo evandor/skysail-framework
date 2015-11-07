@@ -1,5 +1,5 @@
 INFO  io.skysail.client.testsupport.TestsupportTestBase - 
 INFO  io.skysail.client.testsupport.TestsupportTestBase - --------------------------------------------
-INFO  io.skysail.client.testsupport.TestsupportTestBase -  > TEST: running test 'html_variant_todo_can_be_updated'
+INFO  io.skysail.client.testsupport.TestsupportTestBase -  > TEST: running test 'html_variant_creates_a_new_clip'
 INFO  io.skysail.client.testsupport.TestsupportTestBase - --------------------------------------------
 INFO  io.skysail.client.testsupport.TestsupportTestBase - 

@@ -6,7 +6,7 @@ import io.skysail.server.app.todos.charts.ListChartResource;
 import io.skysail.server.app.todos.columns.ListAsColumnsResource;
 import io.skysail.server.app.todos.lists.*;
 import io.skysail.server.app.todos.repo.*;
-import io.skysail.server.app.todos.services.ListService;
+import io.skysail.server.app.todos.services.*;
 import io.skysail.server.app.todos.statuses.*;
 import io.skysail.server.app.todos.todos.Todo;
 import io.skysail.server.app.todos.todos.resources.*;
@@ -91,6 +91,7 @@ public class TodoApplication extends SkysailApplication implements ApplicationPr
         super.attach();
 
         addService(new ListService(listRepo));
+        addService(new TodosService(todosRepo, listRepo));
 
         router.attach(new RouteBuilder("", Top10TodosResource.class));
 

@@ -2,7 +2,6 @@ package io.skysail.server.app.todos.todos.resources;
 
 import io.skysail.api.links.Link;
 import io.skysail.api.responses.SkysailResponse;
-import io.skysail.server.app.todos.TodoApplication;
 import io.skysail.server.app.todos.services.TodosService;
 import io.skysail.server.app.todos.todos.Todo;
 import io.skysail.server.restlet.resources.EntityServerResource;
@@ -13,14 +12,10 @@ import org.restlet.resource.ResourceException;
 
 public class TodoResource extends EntityServerResource<Todo> {
 
-    private String id;
-    private TodoApplication app;
     private TodosService todosService;
 
     @Override
     protected void doInit() throws ResourceException {
-        id = getAttribute("id");
-        app = (TodoApplication) getApplication();
         todosService = getService(TodosService.class);
     }
 
@@ -31,7 +26,7 @@ public class TodoResource extends EntityServerResource<Todo> {
 
     @Override
     public SkysailResponse<?> eraseEntity() {
-        return todosService.delete(this, id);
+        return todosService.delete(this, getAttribute("id"));
     }
 
     @Override

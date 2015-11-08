@@ -4,12 +4,12 @@ import io.skysail.api.links.Link;
 import io.skysail.api.responses.SkysailResponse;
 import io.skysail.server.app.todos.*;
 import io.skysail.server.app.todos.charts.ListChartResource;
+import io.skysail.server.app.todos.services.ListService;
 import io.skysail.server.app.todos.todos.resources.TodosResource;
 import io.skysail.server.restlet.resources.EntityServerResource;
 
 import java.util.List;
 
-import org.restlet.data.Status;
 import org.restlet.resource.ClientResource;
 
 import de.twenty11.skysail.server.core.restlet.ResourceContextId;
@@ -18,6 +18,7 @@ public class ListResource extends EntityServerResource<TodoList> {
 
     private String listId;
     private TodoApplication app;
+    private ListService listService;
 
     public ListResource() {
         addToContext(ResourceContextId.LINK_TITLE, "details");
@@ -30,23 +31,17 @@ public class ListResource extends EntityServerResource<TodoList> {
         listId = getAttribute(TodoApplication.LIST_ID);
         app = (TodoApplication) getApplication();
         getResourceContext().addAjaxNavigation(getResourceContext().getAjaxBuilder("ajax", "Lists:", ListsResource.class, TodosResource.class).identifier("id").build());
+        listService = getService(ListService.class);
     }
 
     @Override
     public SkysailResponse<?> eraseEntity() {
-        TodoList todoList = app.getListRepo().getById(TodoList.class, listId);
-        if (todoList.getTodosCount() > 0) {
-            getResponse().setStatus(Status.CLIENT_ERROR_BAD_REQUEST, new IllegalStateException(),
-                    "cannot delete list as it is not empty");
-            return new SkysailResponse<String>();
-        }
-        app.getListRepo().delete(listId);
-        return new SkysailResponse<String>();
+        return listService.delete(this, listId);
     }
 
     @Override
     public TodoList getEntity() {
-        return app.getListRepo().getById(TodoList.class, listId);
+        return listService.getList(this, getAttribute(TodoApplication.LIST_ID));
     }
 
     @Override
@@ -58,7 +53,6 @@ public class ListResource extends EntityServerResource<TodoList> {
         String peersCredentials = getRequest().getCookies().getFirstValue(peersCredentialsName);
 
         String path = app.getRemotePath(installation, "/Todos/Lists/" + listId);
-        //String uri = path + "/Todos/Lists";
 
         if (peersCredentials == null) {
             getResponse().redirectSeeOther("/_remotelogin");
@@ -66,8 +60,6 @@ public class ListResource extends EntityServerResource<TodoList> {
         }
         ClientResource cr = new ClientResource(path);
         cr.getCookies().add("Credentials", peersCredentials);
-        //cr.get(MediaType.APPLICATION_JSON);
-
         return cr.get(TodoList.class);
     }
 

@@ -706,18 +706,16 @@ public abstract class SkysailApplication extends RamlApplication implements Appl
 
     public void setRepositories(Repositories repos) {
         applicationModel.setRepositories(repos);
-//        repos.getRepositories().entrySet().stream().forEach(entry -> {
-//            applicationModel.addRepository(entry.getKey(),entry.getValue());
-//        });
-        //this.repos = repos;
-        //entityClasses.forEach(cls -> applicationModel.add(new RepositoryHolder(cls)));
-
     }
 
     public List<MenuItem> getMenuEntries() {
         MenuItem appMenu = new MenuItem(getName(), "/" + getName() + getApiVersion().getVersionPath());
         appMenu.setCategory(MenuItem.Category.APPLICATION_MAIN_MENU);
         return Arrays.asList(appMenu);
+    }
+
+    protected void addService(Object service) {
+        getContext().getAttributes().put(service.getClass().getName(), service);
     }
 
 

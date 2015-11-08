@@ -90,8 +90,7 @@ public class TodoApplication extends SkysailApplication implements ApplicationPr
     protected void attach() {
         super.attach();
 
-        getContext().getAttributes().put(ListService.class.getName(), new ListService(listRepo));
-
+        addService(new ListService(listRepo));
 
         router.attach(new RouteBuilder("", Top10TodosResource.class));
 

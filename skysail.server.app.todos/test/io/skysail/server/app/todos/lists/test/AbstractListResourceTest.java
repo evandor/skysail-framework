@@ -96,7 +96,7 @@ public abstract class AbstractListResourceTest extends ResourceTestBase {
     }
 
     protected void init(SkysailServerResource<?> resource) {
-        resource.init(null, request, responses.get(resource.getClass().getName()));
+        resource.init(resource.getContext(), request, responses.get(resource.getClass().getName()));
     }
 
     protected void setAttributes(String name, String id) {

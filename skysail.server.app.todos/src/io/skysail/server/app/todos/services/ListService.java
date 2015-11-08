@@ -61,10 +61,10 @@ public class ListService {
         return new SkysailResponse<>();
     }
 
-    public SkysailResponse<?> delete(SkysailServerResource<?> resource, String listId) {
+    public SkysailResponse delete(SkysailServerResource<?> resource, String listId) {
         TodoApplication app = (TodoApplication) resource.getApplication();
         TodoList todoList = app.getListRepo().findOne(listId);
-        if (todoList.getTodos().size() > 0) {
+        if (!todoList.getTodos().isEmpty()) {
             resource.getResponse().setStatus(Status.CLIENT_ERROR_BAD_REQUEST, new IllegalStateException(),
                     "cannot delete list as it is not empty");
             return new SkysailResponse<String>();

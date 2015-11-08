@@ -51,6 +51,7 @@ public class ListsRepository extends GraphDbRepository<TodoList> implements DbRe
         return lists;
     }
 
+    @Deprecated // not needed any more
     private void addCount(TodoList list) {
         String sql;
         Map<String, Object> params;
@@ -59,16 +60,17 @@ public class ListsRepository extends GraphDbRepository<TodoList> implements DbRe
         params = new HashMap<String, Object>();
         params.put("rid", list.getId());
         long cnt = dbService.getCount(sql, params);
-        list.setTodosCount(cnt);
+        //list.setTodosCount(cnt);
     }
 
+    @Deprecated // not needed any more
     private void addCount(Filter filter, TodoList list) {
         String sql = "SELECT COUNT(*) as count from " + Todo.class.getSimpleName()
                 + " WHERE "+list.getId()+" IN out('parent') AND status <> '"+Status.DONE+"' AND "+filter.getPreparedStatement();
         Map<String, Object> params = filter.getParams();
         params.put("list", list.getId().replace("#",""));
         long cnt = dbService.getCount(sql, params);
-        list.setTodosCount(cnt);
+        //list.setTodosCount(cnt);
     }
 
     public <T> T getById(Class<?> cls, String id) {

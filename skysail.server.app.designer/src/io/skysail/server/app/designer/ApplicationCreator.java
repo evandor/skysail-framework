@@ -133,6 +133,10 @@ public class ApplicationCreator {
         bndrun.add("projectname", applicationModel.getProjectName());
         Files.write(Paths.get(path + "/bndrun.bnd"), bndrun.render().getBytes());
 
+        ST gradle = getStringTemplateIndex("gradle");
+        //gradle.add("projectname", applicationModel.getProjectName());
+        Files.write(Paths.get(path + "/build.gradle"), gradle.render().getBytes());
+
         new File(Paths.get(path + "/test").toString()).mkdir();
         new File(Paths.get(path + "/src-gen").toString()).mkdir();
         new File(Paths.get(path + "/resources").toString()).mkdir();

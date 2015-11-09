@@ -77,7 +77,7 @@ public class StaticServiceAnalysisCommand { // NO_UCD (unused code)
 
             Matcher referenceMatcher = referencesPattern.matcher(file);
             while(referenceMatcher.find()) {
-                String referencing = referenceMatcher.group(1);
+                String referencing = referenceMatcher.group(2);
                 System.out.println(" >>> " + referencing);
                 if (mapping.get(group) == null) {
                     List<String> newList = new ArrayList<>();

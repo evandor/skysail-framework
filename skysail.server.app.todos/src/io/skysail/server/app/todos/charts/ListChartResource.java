@@ -53,9 +53,4 @@ public class ListChartResource extends ListServerResource<TodoChart> {
         return app.getTodosRepo().findAllTodos(filter, pagination).stream().map(t -> new TodoChart(t)).collect(Collectors.toList());
     }
 
-//    @Override
-//    public List<Link> getLinks() {
-//        return super.getLinks(PostTodoResource.class, ArchivedTodosResource.class);
-//    }
-
 }

@@ -218,24 +218,6 @@ public class ServiceList implements ServiceListProvider {
         this.configurationAdmin.compareAndSet(service, null);
     }
 
-    /** === Hooks Service ============================== */
-
-//    @Reference(optional = true, dynamic = true, multiple = true)
-//    public synchronized <R extends SkysailServerResource<T>, T> void addHookFilter(HookFilter<R, T> filter) {
-//        hookFilters.add(filter);
-////        getSkysailApps().forEach(app -> app.addFilter(filter));
-//    }
-//
-//    public synchronized <R extends SkysailServerResource<T>, T> void removeHookFilter(HookFilter<R, T> filter) {
-//        hookFilters.remove(filter);
-////        getSkysailApps().forEach(app -> app.removeFilter(filter));
-//    }
-//
-//    @Override
-//    public Set<HookFilter> getHookFilters() {
-//        return hookFilters;
-//    }
-
     /** === Performance Monitor Service ============================== */
 
     @Reference(optional = true, dynamic = true, multiple = true)

@@ -7,6 +7,8 @@ import io.skysail.server.app.todos.repo.*;
 import io.skysail.server.app.todos.todos.Todo;
 import io.skysail.server.app.todos.todos.resources.*;
 import io.skysail.server.app.todos.todos.status.Status;
+import io.skysail.server.queryfilter.Filter;
+import io.skysail.server.queryfilter.pagination.Pagination;
 import io.skysail.server.restlet.resources.SkysailServerResource;
 import io.skysail.server.utils.ResourceUtils;
 
@@ -17,6 +19,8 @@ import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
 
 public class TodosService {
+
+    public static final String DEFAULT_FILTER_EXPRESSION = "(!(status=" + Status.DONE + "))";
 
     private ListsRepository listRepo;
     private TodosRepository todosRepo;
@@ -85,5 +89,16 @@ public class TodosService {
         app.getTodosRepo().delete(id);
         return new SkysailResponse<String>();
 
+    }
+
+    public List<Todo> getTodos(TodosResource resource, String listId) {
+        Filter filter = new Filter(resource.getRequest(), DEFAULT_FILTER_EXPRESSION);
+        filter.add("owner", SecurityUtils.getSubject().getPrincipal().toString());
+        //filter.addEdgeOut("parent", "#" + listId);
+        filter.addEdgeIn("todos", "#" + listId);
+
+        Pagination pagination = new Pagination(resource.getRequest(), resource.getResponse(), todosRepo.getTodosCount(listId,
+                filter));
+        return todosRepo.findAllTodos(filter, pagination);
     }
 }

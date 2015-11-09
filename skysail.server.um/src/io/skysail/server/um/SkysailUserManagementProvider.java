@@ -1,25 +1,16 @@
 package io.skysail.server.um;
 
-import io.skysail.api.um.AuthenticationService;
-import io.skysail.api.um.AuthorizationService;
-import io.skysail.api.um.UserManagementProvider;
+import io.skysail.api.um.*;
 import io.skysail.server.db.DbService;
-import io.skysail.server.um.security.shiro.DefaultAuthorizationService;
-import io.skysail.server.um.security.shiro.ShiroServices;
-import io.skysail.server.um.security.shiro.UserRepository;
+import io.skysail.server.um.security.shiro.*;
 
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
-import aQute.bnd.annotation.component.Activate;
-import aQute.bnd.annotation.component.Component;
-import aQute.bnd.annotation.component.Deactivate;
-import aQute.bnd.annotation.component.Reference;
+import aQute.bnd.annotation.component.*;
 import de.twenty11.skysail.server.services.UserManager;
-import de.twenty11.skysail.server.um.domain.SkysailGroup;
-import de.twenty11.skysail.server.um.domain.SkysailUser;
+import de.twenty11.skysail.server.um.domain.*;
 
-@Component(immediate = true)
+//@Component(immediate = true)
 public class SkysailUserManagementProvider implements UserManagementProvider, UserManager {
 
     private ShiroServices authenticationService;
@@ -31,6 +22,7 @@ public class SkysailUserManagementProvider implements UserManagementProvider, Us
     public void activate() {
         authenticationService = new ShiroServices(dbService);
         authorizationService = new DefaultAuthorizationService();
+        authorizationService.setDbService(dbService);
     }
 
     @Deactivate

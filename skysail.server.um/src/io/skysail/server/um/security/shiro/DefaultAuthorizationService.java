@@ -36,7 +36,7 @@ public class DefaultAuthorizationService implements AuthorizationService, Enrole
     public Set<Role> getRolesFor(String username) {
         SkysailUser user = getUserRepository().getByName(username);
         if (user == null) {
-            log.warn("User '" + username + "' could not be found in the Repository");
+            log.warn("User '" + username + "' could not be found in the Repository - the user is authenticated, but no roles have been assigned.");
             return Collections.emptySet();
         }
         return user.getRoles().stream().map(r -> getOrCreateRole(r)).collect(Collectors.toSet());

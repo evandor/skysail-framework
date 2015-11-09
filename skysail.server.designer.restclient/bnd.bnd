@@ -1,0 +1,39 @@
+Bundle-Version: 0.1.0.${tstamp}
+
+Bundle-Description: generated code from the application designer bundle
+
+testsrc: src-gen
+testbin: bin
+
+Service-Component: *
+
+Import-Package: org.osgi.framework,\
+    javassist.util.proxy,\
+    *
+
+Service-Component: *
+
+Include-Resource: resources, templates=src;recursive:=true;filter:=*.st|*.stg
+
+-buildpath:  \
+    ${osgi},\
+    biz.aQute.bnd.annotation,\
+    ${restlet},\
+    lombok;version=1.16.2,\
+    skysail.api;version=${skysail.api.version},\
+    skysail.api.validation;version=${skysail.api.validation.version},\
+    skysail.api.search;version=${skysail.api.search.version},\
+    skysail.api.text;version=${skysail.api.text.version},\
+    skysail.api.um;version=${skysail.api.um.version},\
+    skysail.server;version=${skysail.server.version},\
+    skysail.server.codegen;version=${skysail.server.codegen.version},\
+    skysail.server.queryfilter;version=${skysail.server.queryfilter.version},\
+    skysail.server.db;version=${skysail.server.db.version},\
+    ${logging},\
+    ${commons},\
+    ${javax},\
+    de.twentyeleven.skysail.org.antlr.stringtemplate-osgi;version=4.0.8
+
+
+Private-Package: \
+    io.skysail.server.app.designer.restclient

@@ -8,14 +8,14 @@ import java.util.*;
 
 import aQute.bnd.annotation.component.*;
 import de.twenty11.skysail.server.app.ApplicationProvider;
-import de.twenty11.skysail.server.core.restlet.ApplicationContextId;
+import de.twenty11.skysail.server.core.restlet.*;
 
 @Component(immediate = true)
 public class RestclientApplication extends SkysailApplication implements ApplicationProvider, MenuItemProvider {
 
     public static final String LIST_ID = "lid";
     public static final String TODO_ID = "id";
-    public static final String APP_NAME = "restclient";
+    public static final String APP_NAME = "Restclient";
 
     private RestclientRepository repo;
 
@@ -31,6 +31,10 @@ public class RestclientApplication extends SkysailApplication implements Applica
 
     public void unsetRepository(DbRepository repo) {
         this.repo = null;
+    }
+
+    public RestclientRepository getRepository() {
+        return repo;
     }
 
     @Override

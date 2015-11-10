@@ -6,17 +6,32 @@ import java.util.*;
 import java.util.regex.*;
 import java.util.stream.Collectors;
 
+import lombok.Getter;
+
 import org.apache.felix.service.command.CommandProcessor;
 import org.osgi.framework.Bundle;
 import org.osgi.service.component.ComponentContext;
 
 import aQute.bnd.annotation.component.*;
 
-@Component(properties = {
-        CommandProcessor.COMMAND_SCOPE + ":String=skysail",
-        CommandProcessor.COMMAND_FUNCTION + ":String=analysis", },
-    provide = Object.class)
+@Component(properties = { CommandProcessor.COMMAND_SCOPE + ":String=skysail",
+        CommandProcessor.COMMAND_FUNCTION + ":String=analysis", }, provide = Object.class)
 public class StaticServiceAnalysisCommand { // NO_UCD (unused code)
+
+    @Getter
+    public class Ref {
+
+        private String source;
+        private String target;
+        private String group;
+
+        public Ref(String source, String target, String group) {
+            this.source = source.substring(source.lastIndexOf(".")+1);
+            this.target = target.substring(target.lastIndexOf(".")+1);
+            this.group = group.substring(group.lastIndexOf(".")+1);
+        }
+
+    }
 
     private ComponentContext ctx;
 
@@ -24,7 +39,7 @@ public class StaticServiceAnalysisCommand { // NO_UCD (unused code)
     private Pattern interfacesPattern = Pattern.compile("provide interface=\"(.*)\"");
     private Pattern referencesPattern = Pattern.compile("reference (.)*interface=\"([^\"]*)\"");
 
-    private Map<String, List<String>> mapping = new HashMap<>();
+    private List<Ref> refs = new ArrayList<>();
 
     @Activate
     public void activate(ComponentContext ctx) {
@@ -41,15 +56,12 @@ public class StaticServiceAnalysisCommand { // NO_UCD (unused code)
         System.out.println("===================================");
         Arrays.stream(ctx.getBundleContext().getBundles()).forEach(b -> {
             List<String> files = getDSFiles(b);
-            files.stream().forEach(
-                    file -> parse(file)
-            );
+            files.stream().forEach(file -> parse(file));
         });
         System.out.println("digraph {");
-        mapping.keySet().stream().forEach(key -> {
-            mapping.get(key).stream().forEach(line -> {
-                System.out.println(key.replace(".","") + " -> " + line.replace(".","") + "[label=\"test\"];");
-            });
+        refs.forEach(ref -> {
+            System.out.println(ref.getSource().replace(".", "") + " -> " + ref.getTarget().replace(".", "")
+                    + "[label=\"" + ref.getGroup() + "\"];");
         });
         System.out.println("}");
 
@@ -57,37 +69,34 @@ public class StaticServiceAnalysisCommand { // NO_UCD (unused code)
 
     private Object parse(String file) {
         Matcher matcher = implementationPattern.matcher(file);
-        while(matcher.find()) {
+        while (matcher.find()) {
             String group = matcher.group(1);
             System.out.println(group);
 
+            List<String> targets = new ArrayList<>();
+            List<String> sources = new ArrayList<>();
+
             Matcher interfacesMatcher = interfacesPattern.matcher(file);
-            while(interfacesMatcher.find()) {
+            while (interfacesMatcher.find()) {
                 String implementing = interfacesMatcher.group(1);
                 System.out.println(" > " + implementing);
-                if (mapping.get(group) == null) {
-                    List<String> newList = new ArrayList<>();
-                    newList.add(implementing);
-                    mapping.put(group, newList);
-                } else {
-                    List<String> list = mapping.get(group);
-                    list.add(implementing);
-                }
+                targets.add(implementing);
             }
 
             Matcher referenceMatcher = referencesPattern.matcher(file);
-            while(referenceMatcher.find()) {
+            while (referenceMatcher.find()) {
                 String referencing = referenceMatcher.group(2);
+                sources.add(referencing);
                 System.out.println(" >>> " + referencing);
-                if (mapping.get(group) == null) {
-                    List<String> newList = new ArrayList<>();
-                    newList.add(referencing);
-                    mapping.put(group, newList);
-                } else {
-                    List<String> list = mapping.get(group);
-                    list.add(referencing);
-                }
             }
+
+            sources.stream().forEach(source -> {
+                targets.stream().forEach(target -> {
+                    if (source.contains("skysail") && target.contains("skysail")) {
+                        refs.add(new Ref(source, target, group));
+                    }
+                });
+            });
 
         }
         return null;
@@ -99,10 +108,8 @@ public class StaticServiceAnalysisCommand { // NO_UCD (unused code)
             return Collections.emptyList();
         }
         List<String> entryPaths = Collections.list(entryPathsEnumeration);
-        return entryPaths.stream()
-            .filter(path -> path.endsWith(".xml"))
-            .map(path -> readBundleFile(bundle, path))
-            .collect(Collectors.toList());
+        return entryPaths.stream().filter(path -> path.endsWith(".xml")).map(path -> readBundleFile(bundle, path))
+                .collect(Collectors.toList());
     }
 
     private String readBundleFile(Bundle bundle, String path) {

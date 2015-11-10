@@ -8,7 +8,7 @@ import java.util.*;
 
 import aQute.bnd.annotation.component.*;
 import de.twenty11.skysail.server.app.ApplicationProvider;
-import de.twenty11.skysail.server.core.restlet.ApplicationContextId;
+import de.twenty11.skysail.server.core.restlet.*;
 
 @Component(immediate = true)
 public class MatrixApplication extends SkysailApplication implements ApplicationProvider, MenuItemProvider {
@@ -17,7 +17,7 @@ public class MatrixApplication extends SkysailApplication implements Application
     public static final String TODO_ID = "id";
     public static final String APP_NAME = "Matrix";
 
-    private ContactRepo repo;
+    private MatrixRepository repo;
 
     public MatrixApplication() {
         super(APP_NAME);
@@ -26,11 +26,15 @@ public class MatrixApplication extends SkysailApplication implements Application
 
     @Reference(dynamic = true, multiple = false, optional = false, target = "(name=MatrixRepository)")
     public void setRepository(DbRepository repo) {
-        this.repo = (ContactRepo) repo;
+        this.repo = (MatrixRepository) repo;
     }
 
     public void unsetRepository(DbRepository repo) {
         this.repo = null;
+    }
+
+    public MatrixRepository getRepository() {
+        return repo;
     }
 
     @Override

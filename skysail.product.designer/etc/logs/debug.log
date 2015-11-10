@@ -1,327 +1,327 @@
-2015-11-10 15:00:26,708 DEBUG [io.skysail.server.app.SkysailApplication     ] - Instanciating new Skysail Application 'SkysailRootApplication'
-2015-11-10 15:00:26,755 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - Currently installed bundles:
-2015-11-10 15:00:26,756 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - ----------------------------
-2015-11-10 15:00:26,756 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - 
-2015-11-10 15:00:26,759 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - org.apache.felix.framework [4.6.1] state 32
-2015-11-10 15:00:26,759 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - osgi.core [5.0.0.201203141902] state 32
-2015-11-10 15:00:26,760 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - osgi.cmpn [5.0.0.201305092017] state 32
-2015-11-10 15:00:26,760 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - osgi.enterprise [5.0.0.201203141834] state 32
-2015-11-10 15:00:26,760 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - me.moocar.logback-gelf [0.2.0] state 4
-2015-11-10 15:00:26,760 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - com.google.gson [2.4.0] state 32
-2015-11-10 15:00:26,760 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - biz.aQute.bnd.annotation [3.0.0.201509101327] state 32
-2015-11-10 15:00:26,761 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - biz.aQute.bndlib [3.0.0.201509101326] state 32
-2015-11-10 15:00:26,761 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - etm.core [1.2.3.1] state 32
-2015-11-10 15:00:26,761 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - etm.contrib [1.2.3.1] state 32
-2015-11-10 15:00:26,761 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - javax.el-api [3.0.0] state 32
-2015-11-10 15:00:26,761 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - javax.persistence [2.1.0.v201304241213] state 32
-2015-11-10 15:00:26,761 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - javax.servlet [3.0.0.v201103241009] state 32
-2015-11-10 15:00:26,762 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - javax.validation.api [1.1.0.Final] state 32
-2015-11-10 15:00:26,762 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - javax.inject [1.0.0] state 32
-2015-11-10 15:00:26,762 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - org.apache.commons.beanutils [1.9.2] state 32
-2015-11-10 15:00:26,762 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - org.apache.commons.collections [3.2.1] state 32
-2015-11-10 15:00:26,762 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - org.apache.commons.configuration [1.10.0] state 32
-2015-11-10 15:00:26,762 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - org.apache.commons.lang [2.6.0] state 32
-2015-11-10 15:00:26,763 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - org.apache.commons.lang3 [3.3.2] state 32
-2015-11-10 15:00:26,763 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - org.apache.commons.logging [1.1.3] state 32
-2015-11-10 15:00:26,763 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - org.apache.felix.bundlerepository [2.0.2] state 32
-2015-11-10 15:00:26,763 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - org.apache.felix.configadmin [1.8.0] state 32
-2015-11-10 15:00:26,763 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - org.apache.felix.fileinstall [3.4.0] state 32
-2015-11-10 15:00:26,763 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - org.apache.felix.eventadmin [1.4.4] state 32
-2015-11-10 15:00:26,764 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - org.apache.felix.gogo.command [0.14.0] state 32
-2015-11-10 15:00:26,764 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - org.apache.felix.gogo.runtime [0.12.1] state 32
-2015-11-10 15:00:26,764 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - org.apache.felix.gogo.shell [0.10.0] state 32
-2015-11-10 15:00:26,764 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - org.apache.felix.log [1.0.1] state 32
-2015-11-10 15:00:26,764 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - org.apache.felix.prefs [1.0.6] state 32
-2015-11-10 15:00:26,764 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - org.apache.felix.scr [1.8.2] state 32
-2015-11-10 15:00:26,764 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - org.apache.felix.shell.remote [1.1.2] state 32
-2015-11-10 15:00:26,765 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - com.fasterxml.jackson.core.jackson-annotations [2.5.1] state 32
-2015-11-10 15:00:26,765 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - com.fasterxml.jackson.core.jackson-core [2.5.1] state 32
-2015-11-10 15:00:26,765 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - com.fasterxml.jackson.core.jackson-databind [2.5.1] state 32
-2015-11-10 15:00:26,765 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - com.fasterxml.jackson.dataformat.jackson-dataformat-xml [2.5.1] state 32
-2015-11-10 15:00:26,765 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - com.fasterxml.jackson.dataformat.jackson-dataformat-smile [2.5.1] state 32
-2015-11-10 15:00:26,765 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - com.fasterxml.jackson.dataformat.jackson-dataformat-yaml [2.5.1] state 32
-2015-11-10 15:00:26,766 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - com.fasterxml.jackson.dataformat.jackson-dataformat-csv [2.5.1] state 32
-2015-11-10 15:00:26,766 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - com.fasterxml.jackson.module.jackson-module-jaxb-annotations [2.5.1] state 32
-2015-11-10 15:00:26,766 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - com.fasterxml.jackson.module.jackson-module-jsonSchema [2.5.1] state 32
-2015-11-10 15:00:26,766 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - classmate [1.0.0] state 32
-2015-11-10 15:00:26,766 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - stax2-api [3.1.4] state 32
-2015-11-10 15:00:26,766 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - javassist [3.18.1.GA] state 32
-2015-11-10 15:00:26,766 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - org.codehaus.jettison.jettison [1.3.7] state 32
-2015-11-10 15:00:26,767 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - com.googlecode.concurrentlinkedhashmap.lru [1.4.0] state 32
-2015-11-10 15:00:26,767 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - com.orientechnologies.orientdb-client [2.1.3] state 32
-2015-11-10 15:00:26,767 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - com.orientechnologies.orientdb-core [2.1.3] state 32
-2015-11-10 15:00:26,767 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - com.orientechnologies.orientdb-enterprise [2.1.3] state 32
-2015-11-10 15:00:26,767 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - com.orientechnologies.orientdb-graphdb [2.1.3] state 32
-2015-11-10 15:00:26,767 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - com.orientechnologies.orientdb-object [2.1.3] state 32
-2015-11-10 15:00:26,767 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - com.orientechnologies.orientdb-server [2.1.3] state 32
-2015-11-10 15:00:26,768 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - com.orientechnologies.orientdb-tools [2.1.3] state 32
-2015-11-10 15:00:26,768 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - org.xerial.snappy.snappy-java [1.1.1.3] state 8
-2015-11-10 15:00:26,768 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - io.skysail.bundled.tinkerpop.blueprints-core [2.6.0] state 32
-2015-11-10 15:00:26,768 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - io.skysail.bundled.tinkerpop.blueprints-orient-graph [2.4.0] state 32
-2015-11-10 15:00:26,768 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - com.sun.jna [4.2.0] state 8
-2015-11-10 15:00:26,768 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - com.sun.jna.platform [4.2.0] state 32
-2015-11-10 15:00:26,769 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - org.eclipse.jetty.util [9.2.11.v20150529] state 32
-2015-11-10 15:00:26,769 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - org.eclipse.jetty.http [9.2.11.v20150529] state 32
-2015-11-10 15:00:26,769 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - org.eclipse.jetty.io [9.2.11.v20150529] state 32
-2015-11-10 15:00:26,769 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - org.eclipse.jetty.security [9.2.11.v20150529] state 32
-2015-11-10 15:00:26,769 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - org.eclipse.jetty.server [9.2.11.v20150529] state 32
-2015-11-10 15:00:26,769 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - org.eclipse.jetty.servlet [9.2.11.v20150529] state 32
-2015-11-10 15:00:26,769 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - org.eclipse.jetty.webapp [9.2.11.v20150529] state 32
-2015-11-10 15:00:26,770 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - org.eclipse.jetty.deploy [9.2.11.v20150529] state 32
-2015-11-10 15:00:26,770 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - org.eclipse.jetty.xml [9.2.11.v20150529] state 32
-2015-11-10 15:00:26,770 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - org.eclipse.jetty.osgi-servlet-api [3.1.0.M3] state 32
-2015-11-10 15:00:26,770 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - org.eclipse.jetty.client [9.2.11.v20150529] state 32
-2015-11-10 15:00:26,770 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - org.apache.shiro.core [1.2.2] state 32
-2015-11-10 15:00:26,770 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - org.apache.shiro.web [1.2.2] state 32
-2015-11-10 15:00:26,771 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - org.yaml.snakeyaml [1.15.0] state 32
-2015-11-10 15:00:26,771 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - de.twentyeleven.skysail.org.json-osgi [20080701.0.0] state 32
-2015-11-10 15:00:26,771 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - org.restlet [2.3.4.v20150716-1217] state 32
-2015-11-10 15:00:26,771 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - org.restlet.ext.apispark [2.3.4.v20150716-1217] state 32
-2015-11-10 15:00:26,771 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - org.restlet.ext.crypto [2.3.4.v20150716-1217] state 32
-2015-11-10 15:00:26,771 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - org.restlet.ext.jackson [2.3.4.v20150716-1217] state 32
-2015-11-10 15:00:26,771 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - org.restlet.ext.jetty [2.3.4.v20150716-1217] state 32
-2015-11-10 15:00:26,772 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - org.restlet.ext.json [2.3.4.v20150716-1217] state 32
-2015-11-10 15:00:26,772 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - org.restlet.ext.oauth [2.3.4.v20150716-1217] state 32
-2015-11-10 15:00:26,772 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - org.restlet.ext.slf4j [2.3.4.v20150716-1217] state 32
-2015-11-10 15:00:26,772 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - org.restlet.ext.raml [2.3.4.v20150716-1217] state 32
-2015-11-10 15:00:26,772 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - org.restlet.ext.servlet [2.3.4.v20150716-1217] state 32
-2015-11-10 15:00:26,772 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - io.skysail.bundled.raml-parser [0.8.12] state 32
-2015-11-10 15:00:26,772 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - com.google.guava [16.0.1] state 32
-2015-11-10 15:00:26,773 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - org.jboss.logging.jboss-logging [3.1.4.GA] state 32
-2015-11-10 15:00:26,773 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - org.hibernate.validator [5.1.2.Final] state 32
-2015-11-10 15:00:26,773 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - ch.qos.logback.classic [1.1.2] state 32
-2015-11-10 15:00:26,773 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - ch.qos.logback.core [1.1.2] state 32
-2015-11-10 15:00:26,773 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - slf4j.api [1.7.7] state 32
-2015-11-10 15:00:26,773 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - skysail.api [10.0.0.201511101355] state 32
-2015-11-10 15:00:26,773 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - skysail.api.um [0.2.1.201507121837] state 32
-2015-11-10 15:00:26,774 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - skysail.api.peers [0.1.1.201508011448] state 32
-2015-11-10 15:00:26,774 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - skysail.api.search [0.1.0.201509111831] state 32
-2015-11-10 15:00:26,774 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - skysail.api.text [2.0.0.201509110729] state 32
-2015-11-10 15:00:26,774 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - skysail.api.validation [0.2.1.201507140555] state 32
-2015-11-10 15:00:26,774 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - skysail.api.features [0.1.2.201508011427] state 32
-2015-11-10 15:00:26,774 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - com.sun.el [2.2.0.v201303151357] state 32
-2015-11-10 15:00:26,774 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - de.twenty11.owasp-java-html-sanitizer [239.0.0] state 32
-2015-11-10 15:00:26,775 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - de.twentyeleven.skysail.org.antlr.stringtemplate-osgi [4.0.8] state 32
-2015-11-10 15:00:26,775 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - skysail.server [13.0.0.201511101356] state 32
-2015-11-10 15:00:26,775 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - skysail.server.converter [3.1.0.201511101356] state 4
-2015-11-10 15:00:26,775 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - skysail.server.db [5.0.0.201511101356] state 4
-2015-11-10 15:00:26,775 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - skysail.server.http [4.0.4.201511101356] state 4
-2015-11-10 15:00:26,775 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - skysail.server.osgi [0.0.22.201511101356] state 4
-2015-11-10 15:00:26,775 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - skysail.server.queryfilter [0.5.0.201511101356] state 4
-2015-11-10 15:00:26,775 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - skysail.server.performance.etm [0.1.1.201511101356] state 4
-2015-11-10 15:00:26,776 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - skysail.server.static [1.0.5.201511101356] state 4
-2015-11-10 15:00:26,776 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - skysail.server.text.markdown [0.1.1.201509190553] state 4
-2015-11-10 15:00:26,776 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - skysail.server.text.store.bundleresource [0.1.3.201511101356] state 4
-2015-11-10 15:00:26,776 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - skysail.server.text.store.git [0.1.3.201511101356] state 4
-2015-11-10 15:00:26,776 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - skysail.server.um [0.2.1.201511101356] state 4
-2015-11-10 15:00:26,776 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - skysail.server.um.simple [0.1.6.201511101356] state 4
-2015-11-10 15:00:26,776 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - com.google.inject [4.0.0] state 4
-2015-11-10 15:00:26,776 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - org.apache.servicemix.bundles.aopalliance [1.0.0.6] state 4
-2015-11-10 15:00:26,777 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - com.sun.mail.javax.mail [1.5.1] state 4
-2015-11-10 15:00:26,777 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - org.quartz-scheduler.quartz [2.2.1] state 4
-2015-11-10 15:00:26,777 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - org.apache.servicemix.bundles.c3p0 [0.9.1.2_1] state 4
-2015-11-10 15:00:26,778 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - org.apache.servicemix.bundles.jakarta-regexp [1.4.0.1] state 4
-2015-11-10 15:00:26,778 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - skysail.server.http.javamelody [0.1.0.201511101356] state 4
-2015-11-10 15:00:26,778 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - org.jsoup [1.8.1] state 4
-2015-11-10 15:00:26,778 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - skysail.server.codegen [1.0.0.201511101356] state 4
-2015-11-10 15:00:26,778 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - skysail.server.app.bookmarks [0.1.0.201511101356] state 4
-2015-11-10 15:00:26,778 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - skysail.server.app.dbviewer [0.1.0.201511101356] state 4
-2015-11-10 15:00:26,779 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - skysail.server.app.svgedit [0.1.1.201511101356] state 4
-2015-11-10 15:00:26,779 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - skysail.server.app.tap [0.1.0.201511101356] state 4
-2015-11-10 15:00:26,779 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - skysail.server.app.twitter4j [0.1.0.201511101356] state 4
-2015-11-10 15:00:26,779 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - skysail.server.app.designer [0.1.0.201511101356] state 4
-2015-11-10 15:00:26,794 INFO  [io.skysail.server.app.ApplicationList        ] - (+) Adding application 'root'
-2015-11-10 15:00:26,803 INFO  [i.s.s.f.r.ConfigAdminFeatureStateRepository  ] - activating ConfigAdminFeatureStateRepository with config {USE_CREDENTIALS_CACHE_FEATURE=true, service.pid=io.skysail.server.features.repositories.ConfigAdminFeatureStateRepository, de.twenty11.skysail.server.core.restlet.SecurityFeatures.ALLOW_ORIGIN_FEATURE=true, component.name=io.skysail.server.features.repositories.ConfigAdminFeatureStateRepository, felix.fileinstall.filename=file:/C:/git/skysail-framework/skysail.product.designer/config/common/io.skysail.server.features.repositories.ConfigAdminFeatureStateRepository.cfg, component.id=12}
-2015-11-10 15:00:26,807 INFO  [io.skysail.server.services.ServerLoad        ] - activating ServerLoad task
-2015-11-10 15:00:26,810 INFO  [io.skysail.server.services.ServerTime        ] - activating ServerTime task
-2015-11-10 15:00:26,825 DEBUG [io.skysail.server.app.SkysailApplication     ] - Instanciating new Skysail Application 'WebappApplication'
-2015-11-10 15:00:26,829 DEBUG [io.skysail.server.app.SkysailApplication     ] - Activating Application io.skysail.server.converter.WebappApplication
-2015-11-10 15:00:26,829 INFO  [io.skysail.server.app.ApplicationList        ] - (+) Adding application 'webapp'
-2015-11-10 15:00:26,862 INFO  [io.skysail.server.db.DbConfigurations        ] - activating DbConfigurations with config DbConfig(name=skysailgraph, driver=, url=remote:localhost/skysailcrm, username=admin)
-2015-11-10 15:00:26,954 INFO  [i.skysail.server.db.OrientGraphDbService     ] - about to start db
-2015-11-10 15:00:26,955 INFO  [i.skysail.server.db.OrientGraphDbService     ] - registering remote engine
-2015-11-10 15:00:27,675 INFO  [i.skysail.server.db.OrientGraphDbService     ] - setting lazy loading to false
-2015-11-10 15:00:27,676 DEBUG [i.skysail.server.db.OrientGraphDbService     ] - activating io.skysail.server.db.OrientGraphDbService
-2015-11-10 15:00:27,690 DEBUG [i.skysail.server.db.OrientGraphDbService     ] - ODB graph function [ine] is registered: [Syntax error: inE([<labels>])]
-2015-11-10 15:00:27,690 DEBUG [i.skysail.server.db.OrientGraphDbService     ] - ODB graph function [oute] is registered: [Syntax error: outE([<labels>])]
-2015-11-10 15:00:27,690 DEBUG [i.skysail.server.db.OrientGraphDbService     ] - ODB graph function [in] is registered: [Syntax error: in([<labels>])]
-2015-11-10 15:00:27,690 DEBUG [i.skysail.server.db.OrientGraphDbService     ] - ODB graph function [dijkstra] is registered: [dijkstra(<sourceVertex>, <destinationVertex>, <weightEdgeFieldName>, [<direction>])]
-2015-11-10 15:00:27,690 DEBUG [i.skysail.server.db.OrientGraphDbService     ] - ODB graph function [label] is registered: [Syntax error: label()]
-2015-11-10 15:00:27,691 DEBUG [i.skysail.server.db.OrientGraphDbService     ] - ODB graph function [bothv] is registered: [Syntax error: bothV([<labels>])]
-2015-11-10 15:00:27,691 DEBUG [i.skysail.server.db.OrientGraphDbService     ] - ODB graph function [out] is registered: [Syntax error: out([<labels>])]
-2015-11-10 15:00:27,691 DEBUG [i.skysail.server.db.OrientGraphDbService     ] - ODB graph function [both] is registered: [Syntax error: both([<labels>])]
-2015-11-10 15:00:27,691 DEBUG [i.skysail.server.db.OrientGraphDbService     ] - ODB graph function [inv] is registered: [Syntax error: inV([<labels>])]
-2015-11-10 15:00:27,691 DEBUG [i.skysail.server.db.OrientGraphDbService     ] - ODB graph function [gremlin] is registered: [gremlin(<gremlin-expression>)]
-2015-11-10 15:00:27,691 DEBUG [i.skysail.server.db.OrientGraphDbService     ] - ODB graph function [shortestpath] is registered: [shortestPath(<sourceVertex>, <destinationVertex>, [<direction>, [ <edgeTypeAsString> ]])]
-2015-11-10 15:00:27,692 DEBUG [i.skysail.server.db.OrientGraphDbService     ] - ODB graph function [outv] is registered: [Syntax error: outV([<labels>])]
-2015-11-10 15:00:27,692 DEBUG [i.skysail.server.db.OrientGraphDbService     ] - ODB graph function [bothe] is registered: [Syntax error: bothE([<labels>])]
-2015-11-10 15:00:27,694 INFO  [i.s.s.d.versions.impl.VersionsRepository     ] - activating VersionsRepository
-2015-11-10 15:00:27,708 DEBUG [i.skysail.server.db.OrientGraphDbService     ] - registering class 'class io.skysail.server.db.versions.impl.ComponentDbVersion' @ orientDB
-2015-11-10 15:00:27,713 INFO  [io.skysail.server.app.Repositories           ] - adding repository (#1) with name 'io.skysail.server.db.versions.impl.ComponentDbVersion'
-2015-11-10 15:00:27,749 INFO  [io.skysail.server.http.HttpServer            ] - Activating io.skysail.server.http.HttpServer
-2015-11-10 15:00:27,754 INFO  [d.t.skysail.server.SkysailComponent          ] - Creating Restlet Component: de.twenty11.skysail.server.SkysailComponent
-2015-11-10 15:00:27,768 INFO  [io.skysail.server.http.HttpServer            ] - configuration was provided
-2015-11-10 15:00:27,769 INFO  [io.skysail.server.http.HttpServer            ] - 
-2015-11-10 15:00:27,769 INFO  [io.skysail.server.http.HttpServer            ] - ====================================
-2015-11-10 15:00:27,769 INFO  [io.skysail.server.http.HttpServer            ] - Starting skysail server on port 2015
-2015-11-10 15:00:27,770 INFO  [io.skysail.server.http.HttpServer            ] - ====================================
-2015-11-10 15:00:27,770 INFO  [io.skysail.server.http.HttpServer            ] - 
-2015-11-10 15:00:27,774 DEBUG [io.skysail.server.app.SkysailApplication     ] - Instanciating new Skysail Application 'OsgiMonitorViewerApplication'
-2015-11-10 15:00:27,775 DEBUG [io.skysail.server.app.SkysailApplication     ] - Activating Application de.twenty11.skysail.server.osgi.OsgiMonitorViewerApplication
-2015-11-10 15:00:27,775 DEBUG [org.eclipse.jetty.util.log                   ] - Logging to Logger[org.eclipse.jetty.util.log] via org.eclipse.jetty.util.log.Slf4jLog
-2015-11-10 15:00:27,775 INFO  [io.skysail.server.app.ApplicationList        ] - (+) Adding application 'OSGi'
-2015-11-10 15:00:27,776 INFO  [org.eclipse.jetty.util.log                   ] - Logging initialized @4618ms
-2015-11-10 15:00:27,782 DEBUG [i.s.s.p.etm.EtmPerformanceMonitor            ] - starting etm performance monitor
-2015-11-10 15:00:27,783 DEBUG [o.e.j.util.component.ContainerLifeCycle      ] - org.restlet.ext.jetty.JettyServerHelper$WrappedServer@6c0480ae added {qtp914568962{STOPPED,8<=0<=200,i=0,q=0},AUTO}
-2015-11-10 15:00:27,790 DEBUG [io.skysail.server.app.SkysailApplication     ] - Instanciating new Skysail Application 'PerformanceApplication'
-2015-11-10 15:00:27,790 DEBUG [io.skysail.server.app.SkysailApplication     ] - Activating Application io.skysail.server.performance.etm.impl.PerformanceApplication
-2015-11-10 15:00:27,791 DEBUG [o.e.j.util.component.ContainerLifeCycle      ] - HttpConnectionFactory@214cfafb{HTTP/1.1} added {HttpConfiguration@49301e34{32768/8192,8192/8192,https://:0,[]},POJO}
-2015-11-10 15:00:27,791 INFO  [io.skysail.server.app.ApplicationList        ] - (+) Adding application 'Performance'
-2015-11-10 15:00:27,794 DEBUG [o.e.j.util.component.ContainerLifeCycle      ] - ServerConnector@53d19bd3{null}{0.0.0.0:0} added {org.restlet.ext.jetty.JettyServerHelper$WrappedServer@6c0480ae,UNMANAGED}
-2015-11-10 15:00:27,795 DEBUG [o.e.j.util.component.ContainerLifeCycle      ] - ServerConnector@53d19bd3{null}{0.0.0.0:0} added {qtp914568962{STOPPED,8<=0<=200,i=0,q=0},AUTO}
-2015-11-10 15:00:27,795 DEBUG [o.e.j.util.component.ContainerLifeCycle      ] - ServerConnector@53d19bd3{null}{0.0.0.0:0} added {org.eclipse.jetty.util.thread.ScheduledExecutorScheduler@3939d0f2,AUTO}
-2015-11-10 15:00:27,795 DEBUG [o.e.j.util.component.ContainerLifeCycle      ] - ServerConnector@53d19bd3{null}{0.0.0.0:0} added {org.eclipse.jetty.io.ArrayByteBufferPool@6ba33a,POJO}
-2015-11-10 15:00:27,796 DEBUG [o.e.j.util.component.ContainerLifeCycle      ] - ServerConnector@53d19bd3{null}{0.0.0.0:0} added {HttpConnectionFactory@214cfafb{HTTP/1.1},AUTO}
-2015-11-10 15:00:27,798 DEBUG [o.e.j.util.component.ContainerLifeCycle      ] - ServerConnector@53d19bd3{HTTP/1.1}{0.0.0.0:0} added {org.eclipse.jetty.server.ServerConnector$ServerConnectorManager@c174055,MANAGED}
-2015-11-10 15:00:27,798 DEBUG [o.e.j.util.component.ContainerLifeCycle      ] - org.restlet.ext.jetty.JettyServerHelper$WrappedServer@6c0480ae added {ServerConnector@53d19bd3{HTTP/1.1}{0.0.0.0:2015},AUTO}
-2015-11-10 15:00:27,799 DEBUG [o.e.j.util.component.ContainerLifeCycle      ] - org.restlet.ext.jetty.JettyServerHelper$WrappedServer@6c0480ae added {org.eclipse.jetty.server.LowResourceMonitor@59243b83,AUTO}
-2015-11-10 15:00:27,799 INFO  [org.restlet                                  ] - Starting the Jetty [HTTP/1.1] server on port 2015
-2015-11-10 15:00:27,800 DEBUG [o.e.j.util.component.AbstractLifeCycle       ] - starting org.restlet.ext.jetty.JettyServerHelper$WrappedServer@6c0480ae
-2015-11-10 15:00:27,801 INFO  [org.eclipse.jetty.server.Server              ] - jetty-9.2.11.v20150529
-2015-11-10 15:00:27,802 DEBUG [io.skysail.server.app.SkysailApplication     ] - Instanciating new Skysail Application 'WebappApplication'
-2015-11-10 15:00:27,802 DEBUG [io.skysail.server.app.SkysailApplication     ] - Activating Application de.twenty11.skysail.server.webapp.internal.WebappApplication
-2015-11-10 15:00:27,802 INFO  [io.skysail.server.app.ApplicationList        ] - (+) Adding application 'static'
-2015-11-10 15:00:27,812 DEBUG [o.e.jetty.server.handler.AbstractHandler     ] - starting org.restlet.ext.jetty.JettyServerHelper$WrappedServer@6c0480ae
-2015-11-10 15:00:27,813 DEBUG [o.e.j.util.component.AbstractLifeCycle       ] - starting qtp914568962{STOPPED,8<=0<=200,i=0,q=0}
-2015-11-10 15:00:27,817 DEBUG [o.e.j.util.component.AbstractLifeCycle       ] - STARTED @4657ms qtp914568962{STARTED,8<=8<=200,i=3,q=0}
-2015-11-10 15:00:27,818 DEBUG [o.e.j.util.component.AbstractLifeCycle       ] - starting org.eclipse.jetty.server.LowResourceMonitor@59243b83
-2015-11-10 15:00:27,818 DEBUG [o.e.j.util.component.AbstractLifeCycle       ] - starting org.eclipse.jetty.server.LowResourceMonitor$LRMScheduler@207202c8
-2015-11-10 15:00:27,819 DEBUG [o.e.j.util.component.AbstractLifeCycle       ] - STARTED @4660ms org.eclipse.jetty.server.LowResourceMonitor$LRMScheduler@207202c8
-2015-11-10 15:00:27,820 DEBUG [o.e.j.util.component.AbstractLifeCycle       ] - STARTED @4661ms org.eclipse.jetty.server.LowResourceMonitor@59243b83
-2015-11-10 15:00:27,820 DEBUG [o.e.j.util.component.AbstractLifeCycle       ] - starting ServerConnector@53d19bd3{HTTP/1.1}{0.0.0.0:2015}
-2015-11-10 15:00:27,824 DEBUG [o.e.j.util.component.ContainerLifeCycle      ] - ServerConnector@53d19bd3{HTTP/1.1}{0.0.0.0:2015} added {sun.nio.ch.ServerSocketChannelImpl[/0:0:0:0:0:0:0:0:2015],POJO}
-2015-11-10 15:00:27,824 DEBUG [o.e.j.util.component.AbstractLifeCycle       ] - starting org.eclipse.jetty.util.thread.ScheduledExecutorScheduler@3939d0f2
-2015-11-10 15:00:27,824 DEBUG [o.e.j.util.component.AbstractLifeCycle       ] - STARTED @4666ms org.eclipse.jetty.util.thread.ScheduledExecutorScheduler@3939d0f2
-2015-11-10 15:00:27,824 DEBUG [o.e.j.util.component.AbstractLifeCycle       ] - starting HttpConnectionFactory@214cfafb{HTTP/1.1}
-2015-11-10 15:00:27,825 DEBUG [o.e.j.util.component.AbstractLifeCycle       ] - STARTED @4666ms HttpConnectionFactory@214cfafb{HTTP/1.1}
-2015-11-10 15:00:27,825 DEBUG [o.e.j.util.component.AbstractLifeCycle       ] - starting org.eclipse.jetty.server.ServerConnector$ServerConnectorManager@c174055
-2015-11-10 15:00:27,829 DEBUG [o.e.j.util.component.AbstractLifeCycle       ] - starting org.eclipse.jetty.io.SelectorManager$ManagedSelector@331eeb76 keys=-1 selected=-1
-2015-11-10 15:00:27,831 DEBUG [io.skysail.server.app.SkysailApplication     ] - Instanciating new Skysail Application 'I18nApplication'
-2015-11-10 15:00:27,833 DEBUG [io.skysail.server.app.SkysailApplication     ] - Activating Application io.skysail.server.text.store.bundleresource.impl.I18nApplication
-2015-11-10 15:00:27,833 INFO  [io.skysail.server.app.ApplicationList        ] - (+) Adding application 'i18n'
-2015-11-10 15:00:27,838 DEBUG [o.e.j.util.component.AbstractLifeCycle       ] - STARTED @4680ms org.eclipse.jetty.io.SelectorManager$ManagedSelector@331eeb76 keys=0 selected=0
-2015-11-10 15:00:27,839 DEBUG [o.e.j.util.component.AbstractLifeCycle       ] - starting org.eclipse.jetty.io.SelectorManager$ManagedSelector@1639d04b keys=-1 selected=-1
-2015-11-10 15:00:27,841 DEBUG [o.e.j.util.component.AbstractLifeCycle       ] - STARTED @4682ms org.eclipse.jetty.io.SelectorManager$ManagedSelector@1639d04b keys=0 selected=0
-2015-11-10 15:00:27,841 DEBUG [org.eclipse.jetty.io.SelectorManager         ] - Starting Thread[qtp914568962-62-selector-ServerConnectorManager@c174055/0,5,Configuration Admin Service] on org.eclipse.jetty.io.SelectorManager$ManagedSelector@331eeb76 keys=0 selected=0
-2015-11-10 15:00:27,841 DEBUG [o.e.j.util.component.AbstractLifeCycle       ] - starting org.eclipse.jetty.io.SelectorManager$ManagedSelector@1dd8aa98 keys=-1 selected=-1
-2015-11-10 15:00:27,842 DEBUG [org.eclipse.jetty.io.SelectorManager         ] - Starting Thread[qtp914568962-65-selector-ServerConnectorManager@c174055/1,5,Configuration Admin Service] on org.eclipse.jetty.io.SelectorManager$ManagedSelector@1639d04b keys=0 selected=0
-2015-11-10 15:00:27,842 DEBUG [org.eclipse.jetty.io.SelectorManager         ] - Selector loop waiting on select
-2015-11-10 15:00:27,842 DEBUG [org.eclipse.jetty.io.SelectorManager         ] - Selector loop waiting on select
-2015-11-10 15:00:27,843 DEBUG [o.e.j.util.component.AbstractLifeCycle       ] - STARTED @4685ms org.eclipse.jetty.io.SelectorManager$ManagedSelector@1dd8aa98 keys=0 selected=0
-2015-11-10 15:00:27,843 DEBUG [o.e.j.util.component.AbstractLifeCycle       ] - starting org.eclipse.jetty.io.SelectorManager$ManagedSelector@4a84cc18 keys=-1 selected=-1
-2015-11-10 15:00:27,843 DEBUG [org.eclipse.jetty.io.SelectorManager         ] - Starting Thread[qtp914568962-67-selector-ServerConnectorManager@c174055/2,5,Configuration Admin Service] on org.eclipse.jetty.io.SelectorManager$ManagedSelector@1dd8aa98 keys=0 selected=0
-2015-11-10 15:00:27,844 DEBUG [org.eclipse.jetty.io.SelectorManager         ] - Selector loop waiting on select
-2015-11-10 15:00:27,844 DEBUG [o.e.j.util.component.AbstractLifeCycle       ] - STARTED @4686ms org.eclipse.jetty.io.SelectorManager$ManagedSelector@4a84cc18 keys=0 selected=0
-2015-11-10 15:00:27,845 DEBUG [o.e.j.util.component.AbstractLifeCycle       ] - STARTED @4687ms org.eclipse.jetty.server.ServerConnector$ServerConnectorManager@c174055
-2015-11-10 15:00:27,846 DEBUG [o.e.j.util.component.ContainerLifeCycle      ] - ServerConnector@53d19bd3{HTTP/1.1}{0.0.0.0:2015} added {acceptor-0@2f4a8038,POJO}
-2015-11-10 15:00:27,846 INFO  [org.eclipse.jetty.server.ServerConnector     ] - Started ServerConnector@53d19bd3{HTTP/1.1}{0.0.0.0:2015}
-2015-11-10 15:00:27,847 DEBUG [org.eclipse.jetty.io.SelectorManager         ] - Starting Thread[qtp914568962-63-selector-ServerConnectorManager@c174055/3,5,Configuration Admin Service] on org.eclipse.jetty.io.SelectorManager$ManagedSelector@4a84cc18 keys=0 selected=0
-2015-11-10 15:00:27,847 DEBUG [o.e.j.util.component.AbstractLifeCycle       ] - STARTED @4689ms ServerConnector@53d19bd3{HTTP/1.1}{0.0.0.0:2015}
-2015-11-10 15:00:27,847 DEBUG [org.eclipse.jetty.io.SelectorManager         ] - Selector loop waiting on select
-2015-11-10 15:00:27,847 INFO  [org.eclipse.jetty.server.Server              ] - Started @4689ms
-2015-11-10 15:00:27,848 DEBUG [o.e.j.util.component.AbstractLifeCycle       ] - STARTED @4690ms org.restlet.ext.jetty.JettyServerHelper$WrappedServer@6c0480ae
-2015-11-10 15:00:27,857 DEBUG [io.skysail.server.app.SkysailApplication     ] - Instanciating new Skysail Application 'SimpleUserManagementApplication'
-2015-11-10 15:00:27,858 DEBUG [io.skysail.server.app.SkysailApplication     ] - Activating Application io.skysail.server.um.simple.app.SimpleUserManagementApplication
-2015-11-10 15:00:27,858 INFO  [io.skysail.server.app.ApplicationList        ] - (+) Adding application 'usermanagement'
-2015-11-10 15:00:27,869 DEBUG [i.s.s.u.s.a.SkysailHashedCredentialsMatcher  ] - cacheManager set in io.skysail.server.um.simple.authentication.SkysailHashedCredentialsMatcher
-2015-11-10 15:00:27,891 DEBUG [org.apache.shiro.realm.AuthorizingRealm      ] - No authorizationCache instance set.  Checking for a cacheManager...
-2015-11-10 15:00:27,892 DEBUG [org.apache.shiro.realm.AuthorizingRealm      ] - CacheManager [MemoryConstrainedCacheManager with 0 cache(s)): []] has been configured.  Building authorization cache named [io.skysail.server.um.simple.authorization.SimpleAuthorizingRealm.authorizationCache]
-2015-11-10 15:00:27,936 DEBUG [o.e.j.util.component.ContainerLifeCycle      ] - org.eclipse.jetty.server.Server@278fe428 added {qtp1334204880{STOPPED,8<=0<=200,i=0,q=0},AUTO}
-2015-11-10 15:00:27,936 DEBUG [o.e.j.util.component.ContainerLifeCycle      ] - HttpConnectionFactory@3b4bd341{HTTP/1.1} added {HttpConfiguration@1d4cc7{32768/8192,8192/8192,https://:0,[]},POJO}
-2015-11-10 15:00:27,937 DEBUG [o.e.j.util.component.ContainerLifeCycle      ] - ServerConnector@255ed8e4{null}{0.0.0.0:0} added {org.eclipse.jetty.server.Server@278fe428,UNMANAGED}
-2015-11-10 15:00:27,937 DEBUG [o.e.j.util.component.ContainerLifeCycle      ] - ServerConnector@255ed8e4{null}{0.0.0.0:0} added {qtp1334204880{STOPPED,8<=0<=200,i=0,q=0},AUTO}
-2015-11-10 15:00:27,937 DEBUG [o.e.j.util.component.ContainerLifeCycle      ] - ServerConnector@255ed8e4{null}{0.0.0.0:0} added {org.eclipse.jetty.util.thread.ScheduledExecutorScheduler@7d28cdcd,AUTO}
-2015-11-10 15:00:27,938 DEBUG [o.e.j.util.component.ContainerLifeCycle      ] - ServerConnector@255ed8e4{null}{0.0.0.0:0} added {org.eclipse.jetty.io.ArrayByteBufferPool@406ad6d5,POJO}
-2015-11-10 15:00:27,938 DEBUG [o.e.j.util.component.ContainerLifeCycle      ] - ServerConnector@255ed8e4{null}{0.0.0.0:0} added {HttpConnectionFactory@3b4bd341{HTTP/1.1},AUTO}
-2015-11-10 15:00:27,938 DEBUG [o.e.j.util.component.ContainerLifeCycle      ] - ServerConnector@255ed8e4{HTTP/1.1}{0.0.0.0:0} added {org.eclipse.jetty.server.ServerConnector$ServerConnectorManager@2a7bc16b,MANAGED}
-2015-11-10 15:00:27,938 DEBUG [o.e.j.util.component.ContainerLifeCycle      ] - org.eclipse.jetty.server.Server@278fe428 added {ServerConnector@255ed8e4{HTTP/1.1}{0.0.0.0:8090},AUTO}
-2015-11-10 15:00:27,949 DEBUG [o.e.j.util.component.ContainerLifeCycle      ] - org.eclipse.jetty.server.handler.ContextHandlerCollection@18dd7767[o.e.j.s.ServletContextHandler@9205c0a{/,null,null}] added {o.e.j.s.ServletContextHandler@9205c0a{/,null,null},AUTO}
-2015-11-10 15:00:27,954 DEBUG [o.e.j.util.component.ContainerLifeCycle      ] - org.eclipse.jetty.server.session.SessionHandler@5408d4b3 added {org.eclipse.jetty.server.session.HashSessionManager@eded048,AUTO}
-2015-11-10 15:00:27,954 DEBUG [o.e.j.util.component.ContainerLifeCycle      ] - o.e.j.s.ServletContextHandler@9205c0a{/,null,null} added {org.eclipse.jetty.server.session.SessionHandler@5408d4b3,AUTO}
-2015-11-10 15:00:27,957 DEBUG [o.e.j.util.component.ContainerLifeCycle      ] - org.eclipse.jetty.server.session.SessionHandler@5408d4b3 added {org.eclipse.jetty.servlet.ServletHandler@6f24ce45,AUTO}
-2015-11-10 15:00:27,962 INFO  [i.s.s.http.javamelody.EmbeddedServer         ] - setting 'storage-directory' to 'C:/tmp/javamelody'
-2015-11-10 15:00:27,962 INFO  [i.s.s.http.javamelody.EmbeddedServer         ] - setting 'authorized-users' to 'admin:pwd'
-2015-11-10 15:00:27,963 INFO  [i.s.s.http.javamelody.EmbeddedServer         ] - setting 'sampling-seconds' to '1.0'
-2015-11-10 15:00:27,963 INFO  [i.s.s.http.javamelody.EmbeddedServer         ] - setting 'monitoring-path' to '/'
-2015-11-10 15:00:27,964 DEBUG [o.e.j.util.component.ContainerLifeCycle      ] - org.eclipse.jetty.servlet.ServletHandler@6f24ce45 added {net.bull.javamelody.MonitoringFilter-595814a1,AUTO}
-2015-11-10 15:00:27,966 DEBUG [o.e.j.util.component.ContainerLifeCycle      ] - org.eclipse.jetty.servlet.ServletHandler@6f24ce45 added {[/*]/[]==5=>net.bull.javamelody.MonitoringFilter-595814a1,POJO}
-2015-11-10 15:00:27,967 DEBUG [o.e.j.util.component.ContainerLifeCycle      ] - org.eclipse.jetty.server.handler.ContextHandlerCollection@18dd7767[o.e.j.s.ServletContextHandler@9205c0a{/,null,null}, org.eclipse.jetty.server.handler.RequestLogHandler@50df37eb] added {org.eclipse.jetty.server.handler.RequestLogHandler@50df37eb,AUTO}
-2015-11-10 15:00:27,968 DEBUG [o.e.j.util.component.ContainerLifeCycle      ] - org.eclipse.jetty.server.handler.HandlerCollection@4b508371[org.eclipse.jetty.server.handler.ContextHandlerCollection@18dd7767[o.e.j.s.ServletContextHandler@9205c0a{/,null,null}, org.eclipse.jetty.server.handler.RequestLogHandler@50df37eb]] added {org.eclipse.jetty.server.handler.ContextHandlerCollection@18dd7767[o.e.j.s.ServletContextHandler@9205c0a{/,null,null}, org.eclipse.jetty.server.handler.RequestLogHandler@50df37eb],AUTO}
-2015-11-10 15:00:27,968 DEBUG [o.e.j.util.component.ContainerLifeCycle      ] - org.eclipse.jetty.server.Server@278fe428 added {org.eclipse.jetty.server.handler.HandlerCollection@4b508371[org.eclipse.jetty.server.handler.ContextHandlerCollection@18dd7767[o.e.j.s.ServletContextHandler@9205c0a{/,null,null}, org.eclipse.jetty.server.handler.RequestLogHandler@50df37eb]],AUTO}
-2015-11-10 15:00:27,968 DEBUG [o.e.j.util.component.AbstractLifeCycle       ] - starting org.eclipse.jetty.server.Server@278fe428
-2015-11-10 15:00:27,969 INFO  [org.eclipse.jetty.server.Server              ] - jetty-9.2.11.v20150529
-2015-11-10 15:00:27,969 DEBUG [o.e.jetty.server.handler.AbstractHandler     ] - starting org.eclipse.jetty.server.Server@278fe428
-2015-11-10 15:00:27,969 DEBUG [o.e.j.util.component.AbstractLifeCycle       ] - starting qtp1334204880{STOPPED,8<=0<=200,i=0,q=0}
-2015-11-10 15:00:27,970 DEBUG [o.e.j.util.component.AbstractLifeCycle       ] - STARTED @4812ms qtp1334204880{STARTED,8<=8<=200,i=7,q=0}
-2015-11-10 15:00:27,971 DEBUG [o.e.j.util.component.AbstractLifeCycle       ] - starting org.eclipse.jetty.server.handler.HandlerCollection@4b508371[org.eclipse.jetty.server.handler.ContextHandlerCollection@18dd7767[o.e.j.s.ServletContextHandler@9205c0a{/,null,null}, org.eclipse.jetty.server.handler.RequestLogHandler@50df37eb]]
-2015-11-10 15:00:27,971 DEBUG [o.e.jetty.server.handler.AbstractHandler     ] - starting org.eclipse.jetty.server.handler.HandlerCollection@4b508371[org.eclipse.jetty.server.handler.ContextHandlerCollection@18dd7767[o.e.j.s.ServletContextHandler@9205c0a{/,null,null}, org.eclipse.jetty.server.handler.RequestLogHandler@50df37eb]]
-2015-11-10 15:00:27,972 DEBUG [o.e.j.util.component.AbstractLifeCycle       ] - starting org.eclipse.jetty.server.handler.ContextHandlerCollection@18dd7767[o.e.j.s.ServletContextHandler@9205c0a{/,null,null}, org.eclipse.jetty.server.handler.RequestLogHandler@50df37eb]
-2015-11-10 15:00:27,973 DEBUG [o.e.j.s.handler.ContextHandlerCollection     ] - ->[{o.e.j.s.ServletContextHandler@9205c0a{/,null,null},[o.e.j.s.ServletContextHandler@9205c0a{/,null,null}]}]
-2015-11-10 15:00:27,973 DEBUG [o.e.jetty.server.handler.AbstractHandler     ] - starting org.eclipse.jetty.server.handler.ContextHandlerCollection@18dd7767[o.e.j.s.ServletContextHandler@9205c0a{/,null,null}, org.eclipse.jetty.server.handler.RequestLogHandler@50df37eb]
-2015-11-10 15:00:27,974 DEBUG [o.e.j.util.component.AbstractLifeCycle       ] - starting o.e.j.s.ServletContextHandler@9205c0a{/,null,null}
-2015-11-10 15:00:27,981 DEBUG [o.e.jetty.server.handler.AbstractHandler     ] - starting o.e.j.s.ServletContextHandler@9205c0a{/,null,STARTING}
-2015-11-10 15:00:27,982 DEBUG [o.e.j.util.component.AbstractLifeCycle       ] - starting org.eclipse.jetty.server.session.SessionHandler@5408d4b3
-2015-11-10 15:00:27,982 DEBUG [o.e.jetty.server.handler.AbstractHandler     ] - starting org.eclipse.jetty.server.session.SessionHandler@5408d4b3
-2015-11-10 15:00:27,982 DEBUG [o.e.j.util.component.AbstractLifeCycle       ] - starting org.eclipse.jetty.server.session.HashSessionManager@eded048
-2015-11-10 15:00:27,982 DEBUG [o.e.j.util.component.ContainerLifeCycle      ] - org.eclipse.jetty.server.session.HashSessionManager@eded048 added {org.eclipse.jetty.util.thread.ScheduledExecutorScheduler@56d822dc,MANAGED}
-2015-11-10 15:00:27,983 DEBUG [o.e.j.util.component.AbstractLifeCycle       ] - starting org.eclipse.jetty.server.session.HashSessionIdManager@52b30054
-2015-11-10 15:00:27,984 DEBUG [o.e.j.util.component.AbstractLifeCycle       ] - STARTED @4826ms org.eclipse.jetty.server.session.HashSessionIdManager@52b30054
-2015-11-10 15:00:27,984 DEBUG [o.e.j.util.component.ContainerLifeCycle      ] - org.eclipse.jetty.server.Server@278fe428 added {org.eclipse.jetty.server.session.HashSessionIdManager@52b30054,MANAGED}
-2015-11-10 15:00:27,985 DEBUG [o.e.j.util.component.ContainerLifeCycle      ] - org.eclipse.jetty.server.session.HashSessionManager@eded048 added {org.eclipse.jetty.server.session.HashSessionIdManager@52b30054,UNMANAGED}
-2015-11-10 15:00:27,985 DEBUG [o.e.j.util.component.AbstractLifeCycle       ] - starting org.eclipse.jetty.util.thread.ScheduledExecutorScheduler@56d822dc
-2015-11-10 15:00:27,985 DEBUG [o.e.j.util.component.AbstractLifeCycle       ] - STARTED @4827ms org.eclipse.jetty.util.thread.ScheduledExecutorScheduler@56d822dc
-2015-11-10 15:00:27,985 DEBUG [o.e.j.util.component.AbstractLifeCycle       ] - STARTED @4827ms org.eclipse.jetty.server.session.HashSessionManager@eded048
-2015-11-10 15:00:27,986 DEBUG [o.e.j.util.component.AbstractLifeCycle       ] - starting org.eclipse.jetty.servlet.ServletHandler@6f24ce45
-2015-11-10 15:00:27,987 DEBUG [org.eclipse.jetty.servlet.ServletHandler     ] - filterNameMap={net.bull.javamelody.MonitoringFilter-595814a1=net.bull.javamelody.MonitoringFilter-595814a1}
-2015-11-10 15:00:27,987 DEBUG [org.eclipse.jetty.servlet.ServletHandler     ] - pathFilters=[[/*]/[]==5=>net.bull.javamelody.MonitoringFilter-595814a1]
-2015-11-10 15:00:27,988 DEBUG [org.eclipse.jetty.servlet.ServletHandler     ] - servletFilterMap={}
-2015-11-10 15:00:27,988 DEBUG [org.eclipse.jetty.servlet.ServletHandler     ] - servletPathMap=null
-2015-11-10 15:00:27,988 DEBUG [org.eclipse.jetty.servlet.ServletHandler     ] - servletNameMap={}
-2015-11-10 15:00:27,988 DEBUG [org.eclipse.jetty.servlet.ServletHandler     ] - Adding Default404Servlet to org.eclipse.jetty.servlet.ServletHandler@6f24ce45
-2015-11-10 15:00:27,991 DEBUG [o.e.j.util.component.ContainerLifeCycle      ] - org.eclipse.jetty.servlet.ServletHandler@6f24ce45 added {org.eclipse.jetty.servlet.ServletHandler$Default404Servlet-5df64b2a@39d69750==org.eclipse.jetty.servlet.ServletHandler$Default404Servlet,-1,false,AUTO}
-2015-11-10 15:00:27,992 DEBUG [o.e.j.util.component.ContainerLifeCycle      ] - org.eclipse.jetty.servlet.ServletHandler@6f24ce45 added {[/]=>org.eclipse.jetty.servlet.ServletHandler$Default404Servlet-5df64b2a,POJO}
-2015-11-10 15:00:27,993 DEBUG [org.eclipse.jetty.servlet.ServletHandler     ] - Chose path=/ mapped to servlet=org.eclipse.jetty.servlet.ServletHandler$Default404Servlet-5df64b2a from default=false
-2015-11-10 15:00:27,993 DEBUG [org.eclipse.jetty.servlet.ServletHandler     ] - filterNameMap={net.bull.javamelody.MonitoringFilter-595814a1=net.bull.javamelody.MonitoringFilter-595814a1}
-2015-11-10 15:00:27,993 DEBUG [org.eclipse.jetty.servlet.ServletHandler     ] - pathFilters=[[/*]/[]==5=>net.bull.javamelody.MonitoringFilter-595814a1]
-2015-11-10 15:00:27,993 DEBUG [org.eclipse.jetty.servlet.ServletHandler     ] - servletFilterMap={}
-2015-11-10 15:00:27,994 DEBUG [org.eclipse.jetty.servlet.ServletHandler     ] - servletPathMap={/=org.eclipse.jetty.servlet.ServletHandler$Default404Servlet-5df64b2a@39d69750==org.eclipse.jetty.servlet.ServletHandler$Default404Servlet,-1,false}
-2015-11-10 15:00:27,994 DEBUG [org.eclipse.jetty.servlet.ServletHandler     ] - servletNameMap={org.eclipse.jetty.servlet.ServletHandler$Default404Servlet-5df64b2a=org.eclipse.jetty.servlet.ServletHandler$Default404Servlet-5df64b2a@39d69750==org.eclipse.jetty.servlet.ServletHandler$Default404Servlet,-1,false}
-2015-11-10 15:00:27,994 DEBUG [o.e.jetty.server.handler.AbstractHandler     ] - starting org.eclipse.jetty.servlet.ServletHandler@6f24ce45
-2015-11-10 15:00:27,994 DEBUG [o.e.j.util.component.AbstractLifeCycle       ] - STARTED @4836ms org.eclipse.jetty.servlet.ServletHandler@6f24ce45
-2015-11-10 15:00:27,994 DEBUG [o.e.j.util.component.AbstractLifeCycle       ] - STARTED @4836ms org.eclipse.jetty.server.session.SessionHandler@5408d4b3
-2015-11-10 15:00:27,995 DEBUG [o.e.j.util.component.AbstractLifeCycle       ] - starting net.bull.javamelody.MonitoringFilter-595814a1
-2015-11-10 15:00:27,995 DEBUG [o.e.j.util.component.AbstractLifeCycle       ] - STARTED @4837ms net.bull.javamelody.MonitoringFilter-595814a1
-2015-11-10 15:00:27,995 DEBUG [org.eclipse.jetty.servlet.FilterHolder       ] - Filter.init net.bull.javamelody.MonitoringFilter@1d1c37d5
-2015-11-10 15:00:27,999 DEBUG [net.bull.javamelody                          ] - JavaMelody filter init started
-2015-11-10 15:00:28,005 DEBUG [net.bull.javamelody                          ] - OS: Windows 7 Service Pack 1, amd64/64
-2015-11-10 15:00:28,006 DEBUG [net.bull.javamelody                          ] - Java: Java(TM) SE Runtime Environment, 1.8.0_51-b16
-2015-11-10 15:00:28,006 DEBUG [net.bull.javamelody                          ] - Server: jetty/9.2.11.v20150529
-2015-11-10 15:00:28,006 DEBUG [net.bull.javamelody                          ] - Webapp context: 
-2015-11-10 15:00:28,006 DEBUG [net.bull.javamelody                          ] - JavaMelody version: 1.57.0
-2015-11-10 15:00:28,006 DEBUG [net.bull.javamelody                          ] - JavaMelody classes loaded from: file:/C:/git/skysail-framework/skysail.server.http.javamelody/generated/skysail.server.http.javamelody.jar
-2015-11-10 15:00:28,007 DEBUG [net.bull.javamelody                          ] - Host: PC-KVB-WIN74459@172.31.21.74
-2015-11-10 15:00:28,007 DEBUG [net.bull.javamelody                          ] - parameter defined: sampling-seconds=1.0
-2015-11-10 15:00:28,007 DEBUG [net.bull.javamelody                          ] - parameter defined: storage-directory=C:/tmp/javamelody
-2015-11-10 15:00:28,008 DEBUG [net.bull.javamelody                          ] - parameter defined: authorized-users=admin:pwd
-2015-11-10 15:00:28,008 DEBUG [net.bull.javamelody                          ] - parameter defined: monitoring-path=/
-2015-11-10 15:00:28,010 DEBUG [net.bull.javamelody                          ] - log listeners initialized
-2015-11-10 15:00:28,016 DEBUG [net.bull.javamelody                          ] - datasources found in JNDI: []
-2015-11-10 15:00:28,039 INFO  [org.quartz.impl.StdSchedulerFactory          ] - Using default implementation for ThreadExecutor
-2015-11-10 15:00:28,041 INFO  [org.quartz.simpl.SimpleThreadPool            ] - Job execution threads will use class loader of thread: main
-2015-11-10 15:00:28,055 INFO  [org.quartz.core.SchedulerSignalerImpl        ] - Initialized Scheduler Signaller of type: class org.quartz.core.SchedulerSignalerImpl
-2015-11-10 15:00:28,056 INFO  [org.quartz.core.QuartzScheduler              ] - Quartz Scheduler v.2.2.1 created.
-2015-11-10 15:00:28,057 INFO  [org.quartz.simpl.RAMJobStore                 ] - RAMJobStore initialized.
-2015-11-10 15:00:28,059 INFO  [org.quartz.core.QuartzScheduler              ] - Scheduler meta-data: Quartz Scheduler (v2.2.1) 'DefaultQuartzScheduler' with instanceId 'NON_CLUSTERED'
+2015-11-10 16:54:30,093 DEBUG [io.skysail.server.app.SkysailApplication     ] - Instanciating new Skysail Application 'SkysailRootApplication'
+2015-11-10 16:54:30,142 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - Currently installed bundles:
+2015-11-10 16:54:30,143 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - ----------------------------
+2015-11-10 16:54:30,143 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - 
+2015-11-10 16:54:30,147 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - org.apache.felix.framework [4.6.1] state 32
+2015-11-10 16:54:30,147 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - osgi.core [5.0.0.201203141902] state 32
+2015-11-10 16:54:30,148 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - osgi.cmpn [5.0.0.201305092017] state 32
+2015-11-10 16:54:30,148 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - osgi.enterprise [5.0.0.201203141834] state 32
+2015-11-10 16:54:30,148 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - me.moocar.logback-gelf [0.2.0] state 4
+2015-11-10 16:54:30,148 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - com.google.gson [2.4.0] state 32
+2015-11-10 16:54:30,149 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - biz.aQute.bnd.annotation [3.0.0.201509101327] state 32
+2015-11-10 16:54:30,149 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - biz.aQute.bndlib [3.0.0.201509101326] state 32
+2015-11-10 16:54:30,149 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - etm.core [1.2.3.1] state 32
+2015-11-10 16:54:30,149 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - etm.contrib [1.2.3.1] state 32
+2015-11-10 16:54:30,150 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - javax.el-api [3.0.0] state 32
+2015-11-10 16:54:30,150 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - javax.persistence [2.1.0.v201304241213] state 32
+2015-11-10 16:54:30,150 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - javax.servlet [3.0.0.v201103241009] state 32
+2015-11-10 16:54:30,150 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - javax.validation.api [1.1.0.Final] state 32
+2015-11-10 16:54:30,150 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - javax.inject [1.0.0] state 32
+2015-11-10 16:54:30,151 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - org.apache.commons.beanutils [1.9.2] state 32
+2015-11-10 16:54:30,151 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - org.apache.commons.collections [3.2.1] state 32
+2015-11-10 16:54:30,151 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - org.apache.commons.configuration [1.10.0] state 32
+2015-11-10 16:54:30,151 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - org.apache.commons.lang [2.6.0] state 32
+2015-11-10 16:54:30,151 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - org.apache.commons.lang3 [3.3.2] state 32
+2015-11-10 16:54:30,151 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - org.apache.commons.logging [1.1.3] state 32
+2015-11-10 16:54:30,152 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - org.apache.felix.bundlerepository [2.0.2] state 32
+2015-11-10 16:54:30,152 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - org.apache.felix.configadmin [1.8.0] state 32
+2015-11-10 16:54:30,152 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - org.apache.felix.fileinstall [3.4.0] state 32
+2015-11-10 16:54:30,152 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - org.apache.felix.eventadmin [1.4.4] state 32
+2015-11-10 16:54:30,152 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - org.apache.felix.gogo.command [0.14.0] state 32
+2015-11-10 16:54:30,152 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - org.apache.felix.gogo.runtime [0.12.1] state 32
+2015-11-10 16:54:30,153 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - org.apache.felix.gogo.shell [0.10.0] state 32
+2015-11-10 16:54:30,153 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - org.apache.felix.log [1.0.1] state 32
+2015-11-10 16:54:30,153 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - org.apache.felix.prefs [1.0.6] state 32
+2015-11-10 16:54:30,153 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - org.apache.felix.scr [1.8.2] state 32
+2015-11-10 16:54:30,153 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - org.apache.felix.shell.remote [1.1.2] state 32
+2015-11-10 16:54:30,154 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - com.fasterxml.jackson.core.jackson-annotations [2.5.1] state 32
+2015-11-10 16:54:30,154 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - com.fasterxml.jackson.core.jackson-core [2.5.1] state 32
+2015-11-10 16:54:30,154 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - com.fasterxml.jackson.core.jackson-databind [2.5.1] state 32
+2015-11-10 16:54:30,154 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - com.fasterxml.jackson.dataformat.jackson-dataformat-xml [2.5.1] state 32
+2015-11-10 16:54:30,154 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - com.fasterxml.jackson.dataformat.jackson-dataformat-smile [2.5.1] state 32
+2015-11-10 16:54:30,155 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - com.fasterxml.jackson.dataformat.jackson-dataformat-yaml [2.5.1] state 32
+2015-11-10 16:54:30,155 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - com.fasterxml.jackson.dataformat.jackson-dataformat-csv [2.5.1] state 32
+2015-11-10 16:54:30,155 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - com.fasterxml.jackson.module.jackson-module-jaxb-annotations [2.5.1] state 32
+2015-11-10 16:54:30,155 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - com.fasterxml.jackson.module.jackson-module-jsonSchema [2.5.1] state 32
+2015-11-10 16:54:30,155 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - classmate [1.0.0] state 32
+2015-11-10 16:54:30,156 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - stax2-api [3.1.4] state 32
+2015-11-10 16:54:30,156 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - javassist [3.18.1.GA] state 32
+2015-11-10 16:54:30,156 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - org.codehaus.jettison.jettison [1.3.7] state 32
+2015-11-10 16:54:30,156 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - com.googlecode.concurrentlinkedhashmap.lru [1.4.0] state 32
+2015-11-10 16:54:30,156 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - com.orientechnologies.orientdb-client [2.1.3] state 32
+2015-11-10 16:54:30,157 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - com.orientechnologies.orientdb-core [2.1.3] state 32
+2015-11-10 16:54:30,157 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - com.orientechnologies.orientdb-enterprise [2.1.3] state 32
+2015-11-10 16:54:30,157 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - com.orientechnologies.orientdb-graphdb [2.1.3] state 32
+2015-11-10 16:54:30,157 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - com.orientechnologies.orientdb-object [2.1.3] state 32
+2015-11-10 16:54:30,158 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - com.orientechnologies.orientdb-server [2.1.3] state 32
+2015-11-10 16:54:30,158 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - com.orientechnologies.orientdb-tools [2.1.3] state 32
+2015-11-10 16:54:30,158 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - org.xerial.snappy.snappy-java [1.1.1.3] state 8
+2015-11-10 16:54:30,158 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - io.skysail.bundled.tinkerpop.blueprints-core [2.6.0] state 32
+2015-11-10 16:54:30,158 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - io.skysail.bundled.tinkerpop.blueprints-orient-graph [2.4.0] state 32
+2015-11-10 16:54:30,159 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - com.sun.jna [4.2.0] state 8
+2015-11-10 16:54:30,159 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - com.sun.jna.platform [4.2.0] state 32
+2015-11-10 16:54:30,159 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - org.eclipse.jetty.util [9.2.11.v20150529] state 32
+2015-11-10 16:54:30,159 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - org.eclipse.jetty.http [9.2.11.v20150529] state 32
+2015-11-10 16:54:30,159 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - org.eclipse.jetty.io [9.2.11.v20150529] state 32
+2015-11-10 16:54:30,160 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - org.eclipse.jetty.security [9.2.11.v20150529] state 32
+2015-11-10 16:54:30,160 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - org.eclipse.jetty.server [9.2.11.v20150529] state 32
+2015-11-10 16:54:30,160 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - org.eclipse.jetty.servlet [9.2.11.v20150529] state 32
+2015-11-10 16:54:30,160 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - org.eclipse.jetty.webapp [9.2.11.v20150529] state 32
+2015-11-10 16:54:30,160 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - org.eclipse.jetty.deploy [9.2.11.v20150529] state 32
+2015-11-10 16:54:30,161 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - org.eclipse.jetty.xml [9.2.11.v20150529] state 32
+2015-11-10 16:54:30,161 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - org.eclipse.jetty.osgi-servlet-api [3.1.0.M3] state 32
+2015-11-10 16:54:30,161 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - org.eclipse.jetty.client [9.2.11.v20150529] state 32
+2015-11-10 16:54:30,161 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - org.apache.shiro.core [1.2.2] state 32
+2015-11-10 16:54:30,161 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - org.apache.shiro.web [1.2.2] state 32
+2015-11-10 16:54:30,161 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - org.yaml.snakeyaml [1.15.0] state 32
+2015-11-10 16:54:30,161 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - de.twentyeleven.skysail.org.json-osgi [20080701.0.0] state 32
+2015-11-10 16:54:30,162 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - org.restlet [2.3.4.v20150716-1217] state 32
+2015-11-10 16:54:30,162 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - org.restlet.ext.apispark [2.3.4.v20150716-1217] state 32
+2015-11-10 16:54:30,162 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - org.restlet.ext.crypto [2.3.4.v20150716-1217] state 32
+2015-11-10 16:54:30,162 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - org.restlet.ext.jackson [2.3.4.v20150716-1217] state 32
+2015-11-10 16:54:30,162 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - org.restlet.ext.jetty [2.3.4.v20150716-1217] state 32
+2015-11-10 16:54:30,162 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - org.restlet.ext.json [2.3.4.v20150716-1217] state 32
+2015-11-10 16:54:30,162 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - org.restlet.ext.oauth [2.3.4.v20150716-1217] state 32
+2015-11-10 16:54:30,163 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - org.restlet.ext.slf4j [2.3.4.v20150716-1217] state 32
+2015-11-10 16:54:30,163 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - org.restlet.ext.raml [2.3.4.v20150716-1217] state 32
+2015-11-10 16:54:30,163 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - org.restlet.ext.servlet [2.3.4.v20150716-1217] state 32
+2015-11-10 16:54:30,163 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - io.skysail.bundled.raml-parser [0.8.12] state 32
+2015-11-10 16:54:30,163 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - com.google.guava [16.0.1] state 32
+2015-11-10 16:54:30,163 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - org.jboss.logging.jboss-logging [3.1.4.GA] state 32
+2015-11-10 16:54:30,163 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - org.hibernate.validator [5.1.2.Final] state 32
+2015-11-10 16:54:30,164 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - ch.qos.logback.classic [1.1.2] state 32
+2015-11-10 16:54:30,164 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - ch.qos.logback.core [1.1.2] state 32
+2015-11-10 16:54:30,164 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - slf4j.api [1.7.7] state 32
+2015-11-10 16:54:30,164 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - skysail.api [10.0.0.201511101437] state 32
+2015-11-10 16:54:30,164 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - skysail.api.um [0.2.1.201507121837] state 32
+2015-11-10 16:54:30,164 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - skysail.api.peers [0.1.1.201508011448] state 32
+2015-11-10 16:54:30,164 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - skysail.api.search [0.1.0.201509111831] state 32
+2015-11-10 16:54:30,164 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - skysail.api.text [2.0.0.201509110729] state 32
+2015-11-10 16:54:30,165 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - skysail.api.validation [0.2.1.201507140555] state 32
+2015-11-10 16:54:30,165 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - skysail.api.features [0.1.2.201508011427] state 32
+2015-11-10 16:54:30,165 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - com.sun.el [2.2.0.v201303151357] state 32
+2015-11-10 16:54:30,165 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - de.twenty11.owasp-java-html-sanitizer [239.0.0] state 32
+2015-11-10 16:54:30,165 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - de.twentyeleven.skysail.org.antlr.stringtemplate-osgi [4.0.8] state 32
+2015-11-10 16:54:30,165 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - skysail.server [13.0.0.201511101553] state 32
+2015-11-10 16:54:30,165 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - skysail.server.converter [3.1.0.201511101553] state 4
+2015-11-10 16:54:30,165 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - skysail.server.db [5.0.0.201511101553] state 4
+2015-11-10 16:54:30,166 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - skysail.server.http [4.0.4.201511101553] state 4
+2015-11-10 16:54:30,166 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - skysail.server.osgi [0.0.22.201511101553] state 4
+2015-11-10 16:54:30,166 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - skysail.server.queryfilter [0.5.0.201511101553] state 4
+2015-11-10 16:54:30,166 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - skysail.server.performance.etm [0.1.1.201511101553] state 4
+2015-11-10 16:54:30,166 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - skysail.server.static [1.0.5.201511101553] state 4
+2015-11-10 16:54:30,166 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - skysail.server.text.markdown [0.1.1.201509190553] state 4
+2015-11-10 16:54:30,166 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - skysail.server.text.store.bundleresource [0.1.3.201511101554] state 4
+2015-11-10 16:54:30,166 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - skysail.server.text.store.git [0.1.3.201511101554] state 4
+2015-11-10 16:54:30,166 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - skysail.server.um [0.2.1.201511101554] state 4
+2015-11-10 16:54:30,167 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - skysail.server.um.simple [0.1.6.201511101554] state 4
+2015-11-10 16:54:30,167 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - com.google.inject [4.0.0] state 4
+2015-11-10 16:54:30,167 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - org.apache.servicemix.bundles.aopalliance [1.0.0.6] state 4
+2015-11-10 16:54:30,167 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - com.sun.mail.javax.mail [1.5.1] state 4
+2015-11-10 16:54:30,167 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - org.quartz-scheduler.quartz [2.2.1] state 4
+2015-11-10 16:54:30,167 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - org.apache.servicemix.bundles.c3p0 [0.9.1.2_1] state 4
+2015-11-10 16:54:30,168 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - org.apache.servicemix.bundles.jakarta-regexp [1.4.0.1] state 4
+2015-11-10 16:54:30,168 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - skysail.server.http.javamelody [0.1.0.201511101553] state 4
+2015-11-10 16:54:30,168 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - org.jsoup [1.8.1] state 4
+2015-11-10 16:54:30,168 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - skysail.server.codegen [1.0.0.201511101553] state 4
+2015-11-10 16:54:30,169 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - skysail.server.app.bookmarks [0.1.0.201511101553] state 4
+2015-11-10 16:54:30,169 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - skysail.server.app.dbviewer [0.1.0.201511101553] state 4
+2015-11-10 16:54:30,169 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - skysail.server.app.svgedit [0.1.1.201511101553] state 4
+2015-11-10 16:54:30,169 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - skysail.server.app.tap [0.1.0.201511101553] state 4
+2015-11-10 16:54:30,170 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - skysail.server.app.twitter4j [0.1.0.201511101553] state 4
+2015-11-10 16:54:30,170 DEBUG [d.t.s.server.app.SkysailRootApplication      ] - skysail.server.app.designer [0.1.0.201511101553] state 4
+2015-11-10 16:54:30,181 INFO  [io.skysail.server.app.ApplicationList        ] - (+) Adding application 'root'
+2015-11-10 16:54:30,192 INFO  [i.s.s.f.r.ConfigAdminFeatureStateRepository  ] - activating ConfigAdminFeatureStateRepository with config {USE_CREDENTIALS_CACHE_FEATURE=true, service.pid=io.skysail.server.features.repositories.ConfigAdminFeatureStateRepository, de.twenty11.skysail.server.core.restlet.SecurityFeatures.ALLOW_ORIGIN_FEATURE=true, component.name=io.skysail.server.features.repositories.ConfigAdminFeatureStateRepository, felix.fileinstall.filename=file:/C:/git/skysail-framework/skysail.product.designer/config/common/io.skysail.server.features.repositories.ConfigAdminFeatureStateRepository.cfg, component.id=12}
+2015-11-10 16:54:30,194 INFO  [io.skysail.server.services.ServerLoad        ] - activating ServerLoad task
+2015-11-10 16:54:30,197 INFO  [io.skysail.server.services.ServerTime        ] - activating ServerTime task
+2015-11-10 16:54:30,211 DEBUG [io.skysail.server.app.SkysailApplication     ] - Instanciating new Skysail Application 'WebappApplication'
+2015-11-10 16:54:30,214 DEBUG [io.skysail.server.app.SkysailApplication     ] - Activating Application io.skysail.server.converter.WebappApplication
+2015-11-10 16:54:30,215 INFO  [io.skysail.server.app.ApplicationList        ] - (+) Adding application 'webapp'
+2015-11-10 16:54:30,242 INFO  [io.skysail.server.db.DbConfigurations        ] - activating DbConfigurations with config DbConfig(name=skysailgraph, driver=, url=remote:localhost/skysailcrm, username=admin)
+2015-11-10 16:54:30,338 INFO  [i.skysail.server.db.OrientGraphDbService     ] - about to start db
+2015-11-10 16:54:30,338 INFO  [i.skysail.server.db.OrientGraphDbService     ] - registering remote engine
+2015-11-10 16:54:30,978 INFO  [i.skysail.server.db.OrientGraphDbService     ] - setting lazy loading to false
+2015-11-10 16:54:30,979 DEBUG [i.skysail.server.db.OrientGraphDbService     ] - activating io.skysail.server.db.OrientGraphDbService
+2015-11-10 16:54:30,994 DEBUG [i.skysail.server.db.OrientGraphDbService     ] - ODB graph function [ine] is registered: [Syntax error: inE([<labels>])]
+2015-11-10 16:54:30,994 DEBUG [i.skysail.server.db.OrientGraphDbService     ] - ODB graph function [oute] is registered: [Syntax error: outE([<labels>])]
+2015-11-10 16:54:30,994 DEBUG [i.skysail.server.db.OrientGraphDbService     ] - ODB graph function [in] is registered: [Syntax error: in([<labels>])]
+2015-11-10 16:54:30,995 DEBUG [i.skysail.server.db.OrientGraphDbService     ] - ODB graph function [dijkstra] is registered: [dijkstra(<sourceVertex>, <destinationVertex>, <weightEdgeFieldName>, [<direction>])]
+2015-11-10 16:54:30,995 DEBUG [i.skysail.server.db.OrientGraphDbService     ] - ODB graph function [label] is registered: [Syntax error: label()]
+2015-11-10 16:54:30,995 DEBUG [i.skysail.server.db.OrientGraphDbService     ] - ODB graph function [bothv] is registered: [Syntax error: bothV([<labels>])]
+2015-11-10 16:54:30,995 DEBUG [i.skysail.server.db.OrientGraphDbService     ] - ODB graph function [out] is registered: [Syntax error: out([<labels>])]
+2015-11-10 16:54:30,996 DEBUG [i.skysail.server.db.OrientGraphDbService     ] - ODB graph function [both] is registered: [Syntax error: both([<labels>])]
+2015-11-10 16:54:30,996 DEBUG [i.skysail.server.db.OrientGraphDbService     ] - ODB graph function [inv] is registered: [Syntax error: inV([<labels>])]
+2015-11-10 16:54:30,996 DEBUG [i.skysail.server.db.OrientGraphDbService     ] - ODB graph function [gremlin] is registered: [gremlin(<gremlin-expression>)]
+2015-11-10 16:54:30,997 DEBUG [i.skysail.server.db.OrientGraphDbService     ] - ODB graph function [shortestpath] is registered: [shortestPath(<sourceVertex>, <destinationVertex>, [<direction>, [ <edgeTypeAsString> ]])]
+2015-11-10 16:54:30,997 DEBUG [i.skysail.server.db.OrientGraphDbService     ] - ODB graph function [outv] is registered: [Syntax error: outV([<labels>])]
+2015-11-10 16:54:30,997 DEBUG [i.skysail.server.db.OrientGraphDbService     ] - ODB graph function [bothe] is registered: [Syntax error: bothE([<labels>])]
+2015-11-10 16:54:31,000 INFO  [i.s.s.d.versions.impl.VersionsRepository     ] - activating VersionsRepository
+2015-11-10 16:54:31,011 DEBUG [i.skysail.server.db.OrientGraphDbService     ] - registering class 'class io.skysail.server.db.versions.impl.ComponentDbVersion' @ orientDB
+2015-11-10 16:54:31,017 INFO  [io.skysail.server.app.Repositories           ] - adding repository (#1) with name 'io.skysail.server.db.versions.impl.ComponentDbVersion'
+2015-11-10 16:54:31,043 INFO  [io.skysail.server.http.HttpServer            ] - Activating io.skysail.server.http.HttpServer
+2015-11-10 16:54:31,048 INFO  [d.t.skysail.server.SkysailComponent          ] - Creating Restlet Component: de.twenty11.skysail.server.SkysailComponent
+2015-11-10 16:54:31,050 INFO  [io.skysail.server.http.HttpServer            ] - configuration was provided
+2015-11-10 16:54:31,051 INFO  [io.skysail.server.http.HttpServer            ] - 
+2015-11-10 16:54:31,051 INFO  [io.skysail.server.http.HttpServer            ] - ====================================
+2015-11-10 16:54:31,051 INFO  [io.skysail.server.http.HttpServer            ] - Starting skysail server on port 2015
+2015-11-10 16:54:31,051 INFO  [io.skysail.server.http.HttpServer            ] - ====================================
+2015-11-10 16:54:31,051 INFO  [io.skysail.server.http.HttpServer            ] - 
+2015-11-10 16:54:31,057 DEBUG [io.skysail.server.app.SkysailApplication     ] - Instanciating new Skysail Application 'OsgiMonitorViewerApplication'
+2015-11-10 16:54:31,058 DEBUG [org.eclipse.jetty.util.log                   ] - Logging to Logger[org.eclipse.jetty.util.log] via org.eclipse.jetty.util.log.Slf4jLog
+2015-11-10 16:54:31,058 DEBUG [io.skysail.server.app.SkysailApplication     ] - Activating Application de.twenty11.skysail.server.osgi.OsgiMonitorViewerApplication
+2015-11-10 16:54:31,059 INFO  [io.skysail.server.app.ApplicationList        ] - (+) Adding application 'OSGi'
+2015-11-10 16:54:31,059 INFO  [org.eclipse.jetty.util.log                   ] - Logging initialized @3474ms
+2015-11-10 16:54:31,067 DEBUG [i.s.s.p.etm.EtmPerformanceMonitor            ] - starting etm performance monitor
+2015-11-10 16:54:31,067 DEBUG [o.e.j.util.component.ContainerLifeCycle      ] - org.restlet.ext.jetty.JettyServerHelper$WrappedServer@6028f01f added {qtp1390692431{STOPPED,8<=0<=200,i=0,q=0},AUTO}
+2015-11-10 16:54:31,075 DEBUG [o.e.j.util.component.ContainerLifeCycle      ] - HttpConnectionFactory@59b3a92d{HTTP/1.1} added {HttpConfiguration@56507d0{32768/8192,8192/8192,https://:0,[]},POJO}
+2015-11-10 16:54:31,076 DEBUG [io.skysail.server.app.SkysailApplication     ] - Instanciating new Skysail Application 'PerformanceApplication'
+2015-11-10 16:54:31,076 DEBUG [io.skysail.server.app.SkysailApplication     ] - Activating Application io.skysail.server.performance.etm.impl.PerformanceApplication
+2015-11-10 16:54:31,077 INFO  [io.skysail.server.app.ApplicationList        ] - (+) Adding application 'Performance'
+2015-11-10 16:54:31,080 DEBUG [o.e.j.util.component.ContainerLifeCycle      ] - ServerConnector@2a11e91e{null}{0.0.0.0:0} added {org.restlet.ext.jetty.JettyServerHelper$WrappedServer@6028f01f,UNMANAGED}
+2015-11-10 16:54:31,080 DEBUG [o.e.j.util.component.ContainerLifeCycle      ] - ServerConnector@2a11e91e{null}{0.0.0.0:0} added {qtp1390692431{STOPPED,8<=0<=200,i=0,q=0},AUTO}
+2015-11-10 16:54:31,080 DEBUG [o.e.j.util.component.ContainerLifeCycle      ] - ServerConnector@2a11e91e{null}{0.0.0.0:0} added {org.eclipse.jetty.util.thread.ScheduledExecutorScheduler@52989ccc,AUTO}
+2015-11-10 16:54:31,080 DEBUG [o.e.j.util.component.ContainerLifeCycle      ] - ServerConnector@2a11e91e{null}{0.0.0.0:0} added {org.eclipse.jetty.io.ArrayByteBufferPool@3379e5ae,POJO}
+2015-11-10 16:54:31,081 DEBUG [o.e.j.util.component.ContainerLifeCycle      ] - ServerConnector@2a11e91e{null}{0.0.0.0:0} added {HttpConnectionFactory@59b3a92d{HTTP/1.1},AUTO}
+2015-11-10 16:54:31,082 DEBUG [o.e.j.util.component.ContainerLifeCycle      ] - ServerConnector@2a11e91e{HTTP/1.1}{0.0.0.0:0} added {org.eclipse.jetty.server.ServerConnector$ServerConnectorManager@465cd42f,MANAGED}
+2015-11-10 16:54:31,082 DEBUG [o.e.j.util.component.ContainerLifeCycle      ] - org.restlet.ext.jetty.JettyServerHelper$WrappedServer@6028f01f added {ServerConnector@2a11e91e{HTTP/1.1}{0.0.0.0:2015},AUTO}
+2015-11-10 16:54:31,083 DEBUG [o.e.j.util.component.ContainerLifeCycle      ] - org.restlet.ext.jetty.JettyServerHelper$WrappedServer@6028f01f added {org.eclipse.jetty.server.LowResourceMonitor@46111ffd,AUTO}
+2015-11-10 16:54:31,084 INFO  [org.restlet                                  ] - Starting the Jetty [HTTP/1.1] server on port 2015
+2015-11-10 16:54:31,084 DEBUG [o.e.j.util.component.AbstractLifeCycle       ] - starting org.restlet.ext.jetty.JettyServerHelper$WrappedServer@6028f01f
+2015-11-10 16:54:31,086 INFO  [org.eclipse.jetty.server.Server              ] - jetty-9.2.11.v20150529
+2015-11-10 16:54:31,086 DEBUG [io.skysail.server.app.SkysailApplication     ] - Instanciating new Skysail Application 'WebappApplication'
+2015-11-10 16:54:31,087 DEBUG [io.skysail.server.app.SkysailApplication     ] - Activating Application de.twenty11.skysail.server.webapp.internal.WebappApplication
+2015-11-10 16:54:31,087 INFO  [io.skysail.server.app.ApplicationList        ] - (+) Adding application 'static'
+2015-11-10 16:54:31,098 DEBUG [o.e.jetty.server.handler.AbstractHandler     ] - starting org.restlet.ext.jetty.JettyServerHelper$WrappedServer@6028f01f
+2015-11-10 16:54:31,099 DEBUG [o.e.j.util.component.AbstractLifeCycle       ] - starting qtp1390692431{STOPPED,8<=0<=200,i=0,q=0}
+2015-11-10 16:54:31,100 DEBUG [o.e.j.util.component.AbstractLifeCycle       ] - STARTED @3515ms qtp1390692431{STARTED,8<=8<=200,i=6,q=0}
+2015-11-10 16:54:31,100 DEBUG [o.e.j.util.component.AbstractLifeCycle       ] - starting org.eclipse.jetty.server.LowResourceMonitor@46111ffd
+2015-11-10 16:54:31,101 DEBUG [o.e.j.util.component.AbstractLifeCycle       ] - starting org.eclipse.jetty.server.LowResourceMonitor$LRMScheduler@16096741
+2015-11-10 16:54:31,101 DEBUG [o.e.j.util.component.AbstractLifeCycle       ] - STARTED @3516ms org.eclipse.jetty.server.LowResourceMonitor$LRMScheduler@16096741
+2015-11-10 16:54:31,102 DEBUG [o.e.j.util.component.AbstractLifeCycle       ] - STARTED @3517ms org.eclipse.jetty.server.LowResourceMonitor@46111ffd
+2015-11-10 16:54:31,103 DEBUG [o.e.j.util.component.AbstractLifeCycle       ] - starting ServerConnector@2a11e91e{HTTP/1.1}{0.0.0.0:2015}
+2015-11-10 16:54:31,107 DEBUG [o.e.j.util.component.ContainerLifeCycle      ] - ServerConnector@2a11e91e{HTTP/1.1}{0.0.0.0:2015} added {sun.nio.ch.ServerSocketChannelImpl[/0:0:0:0:0:0:0:0:2015],POJO}
+2015-11-10 16:54:31,107 DEBUG [io.skysail.server.app.SkysailApplication     ] - Instanciating new Skysail Application 'I18nApplication'
+2015-11-10 16:54:31,107 DEBUG [o.e.j.util.component.AbstractLifeCycle       ] - starting org.eclipse.jetty.util.thread.ScheduledExecutorScheduler@52989ccc
+2015-11-10 16:54:31,107 DEBUG [o.e.j.util.component.AbstractLifeCycle       ] - STARTED @3522ms org.eclipse.jetty.util.thread.ScheduledExecutorScheduler@52989ccc
+2015-11-10 16:54:31,108 DEBUG [o.e.j.util.component.AbstractLifeCycle       ] - starting HttpConnectionFactory@59b3a92d{HTTP/1.1}
+2015-11-10 16:54:31,108 DEBUG [o.e.j.util.component.AbstractLifeCycle       ] - STARTED @3523ms HttpConnectionFactory@59b3a92d{HTTP/1.1}
+2015-11-10 16:54:31,108 DEBUG [o.e.j.util.component.AbstractLifeCycle       ] - starting org.eclipse.jetty.server.ServerConnector$ServerConnectorManager@465cd42f
+2015-11-10 16:54:31,109 DEBUG [io.skysail.server.app.SkysailApplication     ] - Activating Application io.skysail.server.text.store.bundleresource.impl.I18nApplication
+2015-11-10 16:54:31,109 INFO  [io.skysail.server.app.ApplicationList        ] - (+) Adding application 'i18n'
+2015-11-10 16:54:31,112 DEBUG [o.e.j.util.component.AbstractLifeCycle       ] - starting org.eclipse.jetty.io.SelectorManager$ManagedSelector@59574d9b keys=-1 selected=-1
+2015-11-10 16:54:31,123 DEBUG [o.e.j.util.component.AbstractLifeCycle       ] - STARTED @3538ms org.eclipse.jetty.io.SelectorManager$ManagedSelector@59574d9b keys=0 selected=0
+2015-11-10 16:54:31,124 DEBUG [o.e.j.util.component.AbstractLifeCycle       ] - starting org.eclipse.jetty.io.SelectorManager$ManagedSelector@1876c44d keys=-1 selected=-1
+2015-11-10 16:54:31,125 DEBUG [org.eclipse.jetty.io.SelectorManager         ] - Starting Thread[qtp1390692431-62-selector-ServerConnectorManager@465cd42f/0,5,Configuration Admin Service] on org.eclipse.jetty.io.SelectorManager$ManagedSelector@59574d9b keys=0 selected=0
+2015-11-10 16:54:31,125 DEBUG [o.e.j.util.component.AbstractLifeCycle       ] - STARTED @3540ms org.eclipse.jetty.io.SelectorManager$ManagedSelector@1876c44d keys=0 selected=0
+2015-11-10 16:54:31,127 DEBUG [org.eclipse.jetty.io.SelectorManager         ] - Selector loop waiting on select
+2015-11-10 16:54:31,127 DEBUG [o.e.j.util.component.AbstractLifeCycle       ] - starting org.eclipse.jetty.io.SelectorManager$ManagedSelector@6144463b keys=-1 selected=-1
+2015-11-10 16:54:31,127 DEBUG [org.eclipse.jetty.io.SelectorManager         ] - Starting Thread[qtp1390692431-66-selector-ServerConnectorManager@465cd42f/1,5,Configuration Admin Service] on org.eclipse.jetty.io.SelectorManager$ManagedSelector@1876c44d keys=0 selected=0
+2015-11-10 16:54:31,127 DEBUG [org.eclipse.jetty.io.SelectorManager         ] - Selector loop waiting on select
+2015-11-10 16:54:31,128 DEBUG [o.e.j.util.component.AbstractLifeCycle       ] - STARTED @3543ms org.eclipse.jetty.io.SelectorManager$ManagedSelector@6144463b keys=0 selected=0
+2015-11-10 16:54:31,128 DEBUG [o.e.j.util.component.AbstractLifeCycle       ] - starting org.eclipse.jetty.io.SelectorManager$ManagedSelector@28324a53 keys=-1 selected=-1
+2015-11-10 16:54:31,129 DEBUG [o.e.j.util.component.AbstractLifeCycle       ] - STARTED @3544ms org.eclipse.jetty.io.SelectorManager$ManagedSelector@28324a53 keys=0 selected=0
+2015-11-10 16:54:31,130 DEBUG [o.e.j.util.component.AbstractLifeCycle       ] - STARTED @3545ms org.eclipse.jetty.server.ServerConnector$ServerConnectorManager@465cd42f
+2015-11-10 16:54:31,131 DEBUG [o.e.j.util.component.ContainerLifeCycle      ] - ServerConnector@2a11e91e{HTTP/1.1}{0.0.0.0:2015} added {acceptor-0@61fba6d2,POJO}
+2015-11-10 16:54:31,131 INFO  [org.eclipse.jetty.server.ServerConnector     ] - Started ServerConnector@2a11e91e{HTTP/1.1}{0.0.0.0:2015}
+2015-11-10 16:54:31,131 DEBUG [o.e.j.util.component.AbstractLifeCycle       ] - STARTED @3546ms ServerConnector@2a11e91e{HTTP/1.1}{0.0.0.0:2015}
+2015-11-10 16:54:31,132 INFO  [org.eclipse.jetty.server.Server              ] - Started @3547ms
+2015-11-10 16:54:31,132 DEBUG [o.e.j.util.component.AbstractLifeCycle       ] - STARTED @3547ms org.restlet.ext.jetty.JettyServerHelper$WrappedServer@6028f01f
+2015-11-10 16:54:31,133 DEBUG [org.eclipse.jetty.io.SelectorManager         ] - Starting Thread[qtp1390692431-63-selector-ServerConnectorManager@465cd42f/2,5,Configuration Admin Service] on org.eclipse.jetty.io.SelectorManager$ManagedSelector@6144463b keys=0 selected=0
+2015-11-10 16:54:31,134 DEBUG [org.eclipse.jetty.io.SelectorManager         ] - Selector loop waiting on select
+2015-11-10 16:54:31,135 DEBUG [org.eclipse.jetty.io.SelectorManager         ] - Starting Thread[qtp1390692431-64-selector-ServerConnectorManager@465cd42f/3,5,Configuration Admin Service] on org.eclipse.jetty.io.SelectorManager$ManagedSelector@28324a53 keys=0 selected=0
+2015-11-10 16:54:31,135 DEBUG [org.eclipse.jetty.io.SelectorManager         ] - Selector loop waiting on select
+2015-11-10 16:54:31,149 DEBUG [io.skysail.server.app.SkysailApplication     ] - Instanciating new Skysail Application 'SimpleUserManagementApplication'
+2015-11-10 16:54:31,149 DEBUG [io.skysail.server.app.SkysailApplication     ] - Activating Application io.skysail.server.um.simple.app.SimpleUserManagementApplication
+2015-11-10 16:54:31,157 DEBUG [i.s.s.u.s.a.SkysailHashedCredentialsMatcher  ] - cacheManager set in io.skysail.server.um.simple.authentication.SkysailHashedCredentialsMatcher
+2015-11-10 16:54:31,177 DEBUG [org.apache.shiro.realm.AuthorizingRealm      ] - No authorizationCache instance set.  Checking for a cacheManager...
+2015-11-10 16:54:31,178 DEBUG [org.apache.shiro.realm.AuthorizingRealm      ] - CacheManager [MemoryConstrainedCacheManager with 0 cache(s)): []] has been configured.  Building authorization cache named [io.skysail.server.um.simple.authorization.SimpleAuthorizingRealm.authorizationCache]
+2015-11-10 16:54:31,185 INFO  [io.skysail.server.app.ApplicationList        ] - (+) Adding application 'usermanagement'
+2015-11-10 16:54:31,223 DEBUG [o.e.j.util.component.ContainerLifeCycle      ] - org.eclipse.jetty.server.Server@56cfe6be added {qtp35826861{STOPPED,8<=0<=200,i=0,q=0},AUTO}
+2015-11-10 16:54:31,224 DEBUG [o.e.j.util.component.ContainerLifeCycle      ] - HttpConnectionFactory@7f0d8eff{HTTP/1.1} added {HttpConfiguration@149aa7b2{32768/8192,8192/8192,https://:0,[]},POJO}
+2015-11-10 16:54:31,224 DEBUG [o.e.j.util.component.ContainerLifeCycle      ] - ServerConnector@2a99ca99{null}{0.0.0.0:0} added {org.eclipse.jetty.server.Server@56cfe6be,UNMANAGED}
+2015-11-10 16:54:31,224 DEBUG [o.e.j.util.component.ContainerLifeCycle      ] - ServerConnector@2a99ca99{null}{0.0.0.0:0} added {qtp35826861{STOPPED,8<=0<=200,i=0,q=0},AUTO}
+2015-11-10 16:54:31,225 DEBUG [o.e.j.util.component.ContainerLifeCycle      ] - ServerConnector@2a99ca99{null}{0.0.0.0:0} added {org.eclipse.jetty.util.thread.ScheduledExecutorScheduler@3ca3648,AUTO}
+2015-11-10 16:54:31,225 DEBUG [o.e.j.util.component.ContainerLifeCycle      ] - ServerConnector@2a99ca99{null}{0.0.0.0:0} added {org.eclipse.jetty.io.ArrayByteBufferPool@39f0c343,POJO}
+2015-11-10 16:54:31,225 DEBUG [o.e.j.util.component.ContainerLifeCycle      ] - ServerConnector@2a99ca99{null}{0.0.0.0:0} added {HttpConnectionFactory@7f0d8eff{HTTP/1.1},AUTO}
+2015-11-10 16:54:31,225 DEBUG [o.e.j.util.component.ContainerLifeCycle      ] - ServerConnector@2a99ca99{HTTP/1.1}{0.0.0.0:0} added {org.eclipse.jetty.server.ServerConnector$ServerConnectorManager@781654f8,MANAGED}
+2015-11-10 16:54:31,226 DEBUG [o.e.j.util.component.ContainerLifeCycle      ] - org.eclipse.jetty.server.Server@56cfe6be added {ServerConnector@2a99ca99{HTTP/1.1}{0.0.0.0:8090},AUTO}
+2015-11-10 16:54:31,237 DEBUG [o.e.j.util.component.ContainerLifeCycle      ] - org.eclipse.jetty.server.handler.ContextHandlerCollection@49491770[o.e.j.s.ServletContextHandler@5bec3e0{/,null,null}] added {o.e.j.s.ServletContextHandler@5bec3e0{/,null,null},AUTO}
+2015-11-10 16:54:31,243 DEBUG [o.e.j.util.component.ContainerLifeCycle      ] - org.eclipse.jetty.server.session.SessionHandler@96abc76 added {org.eclipse.jetty.server.session.HashSessionManager@4d69d288,AUTO}
+2015-11-10 16:54:31,244 DEBUG [o.e.j.util.component.ContainerLifeCycle      ] - o.e.j.s.ServletContextHandler@5bec3e0{/,null,null} added {org.eclipse.jetty.server.session.SessionHandler@96abc76,AUTO}
+2015-11-10 16:54:31,247 DEBUG [o.e.j.util.component.ContainerLifeCycle      ] - org.eclipse.jetty.server.session.SessionHandler@96abc76 added {org.eclipse.jetty.servlet.ServletHandler@359ceb13,AUTO}
+2015-11-10 16:54:31,250 INFO  [i.s.s.http.javamelody.EmbeddedServer         ] - setting 'storage-directory' to 'C:/tmp/javamelody'
+2015-11-10 16:54:31,251 INFO  [i.s.s.http.javamelody.EmbeddedServer         ] - setting 'authorized-users' to 'admin:pwd'
+2015-11-10 16:54:31,252 INFO  [i.s.s.http.javamelody.EmbeddedServer         ] - setting 'sampling-seconds' to '1.0'
+2015-11-10 16:54:31,252 INFO  [i.s.s.http.javamelody.EmbeddedServer         ] - setting 'monitoring-path' to '/'
+2015-11-10 16:54:31,252 DEBUG [o.e.j.util.component.ContainerLifeCycle      ] - org.eclipse.jetty.servlet.ServletHandler@359ceb13 added {net.bull.javamelody.MonitoringFilter-66756662,AUTO}
+2015-11-10 16:54:31,255 DEBUG [o.e.j.util.component.ContainerLifeCycle      ] - org.eclipse.jetty.servlet.ServletHandler@359ceb13 added {[/*]/[]==5=>net.bull.javamelody.MonitoringFilter-66756662,POJO}
+2015-11-10 16:54:31,256 DEBUG [o.e.j.util.component.ContainerLifeCycle      ] - org.eclipse.jetty.server.handler.ContextHandlerCollection@49491770[o.e.j.s.ServletContextHandler@5bec3e0{/,null,null}, org.eclipse.jetty.server.handler.RequestLogHandler@4db0ba1c] added {org.eclipse.jetty.server.handler.RequestLogHandler@4db0ba1c,AUTO}
+2015-11-10 16:54:31,256 DEBUG [o.e.j.util.component.ContainerLifeCycle      ] - org.eclipse.jetty.server.handler.HandlerCollection@1d91fa02[org.eclipse.jetty.server.handler.ContextHandlerCollection@49491770[o.e.j.s.ServletContextHandler@5bec3e0{/,null,null}, org.eclipse.jetty.server.handler.RequestLogHandler@4db0ba1c]] added {org.eclipse.jetty.server.handler.ContextHandlerCollection@49491770[o.e.j.s.ServletContextHandler@5bec3e0{/,null,null}, org.eclipse.jetty.server.handler.RequestLogHandler@4db0ba1c],AUTO}
+2015-11-10 16:54:31,256 DEBUG [o.e.j.util.component.ContainerLifeCycle      ] - org.eclipse.jetty.server.Server@56cfe6be added {org.eclipse.jetty.server.handler.HandlerCollection@1d91fa02[org.eclipse.jetty.server.handler.ContextHandlerCollection@49491770[o.e.j.s.ServletContextHandler@5bec3e0{/,null,null}, org.eclipse.jetty.server.handler.RequestLogHandler@4db0ba1c]],AUTO}
+2015-11-10 16:54:31,256 DEBUG [o.e.j.util.component.AbstractLifeCycle       ] - starting org.eclipse.jetty.server.Server@56cfe6be
+2015-11-10 16:54:31,257 INFO  [org.eclipse.jetty.server.Server              ] - jetty-9.2.11.v20150529
+2015-11-10 16:54:31,257 DEBUG [o.e.jetty.server.handler.AbstractHandler     ] - starting org.eclipse.jetty.server.Server@56cfe6be
+2015-11-10 16:54:31,257 DEBUG [o.e.j.util.component.AbstractLifeCycle       ] - starting qtp35826861{STOPPED,8<=0<=200,i=0,q=0}
+2015-11-10 16:54:31,258 DEBUG [o.e.j.util.component.AbstractLifeCycle       ] - STARTED @3673ms qtp35826861{STARTED,8<=8<=200,i=6,q=0}
+2015-11-10 16:54:31,259 DEBUG [o.e.j.util.component.AbstractLifeCycle       ] - starting org.eclipse.jetty.server.handler.HandlerCollection@1d91fa02[org.eclipse.jetty.server.handler.ContextHandlerCollection@49491770[o.e.j.s.ServletContextHandler@5bec3e0{/,null,null}, org.eclipse.jetty.server.handler.RequestLogHandler@4db0ba1c]]
+2015-11-10 16:54:31,259 DEBUG [o.e.jetty.server.handler.AbstractHandler     ] - starting org.eclipse.jetty.server.handler.HandlerCollection@1d91fa02[org.eclipse.jetty.server.handler.ContextHandlerCollection@49491770[o.e.j.s.ServletContextHandler@5bec3e0{/,null,null}, org.eclipse.jetty.server.handler.RequestLogHandler@4db0ba1c]]
+2015-11-10 16:54:31,259 DEBUG [o.e.j.util.component.AbstractLifeCycle       ] - starting org.eclipse.jetty.server.handler.ContextHandlerCollection@49491770[o.e.j.s.ServletContextHandler@5bec3e0{/,null,null}, org.eclipse.jetty.server.handler.RequestLogHandler@4db0ba1c]
+2015-11-10 16:54:31,260 DEBUG [o.e.j.s.handler.ContextHandlerCollection     ] - ->[{o.e.j.s.ServletContextHandler@5bec3e0{/,null,null},[o.e.j.s.ServletContextHandler@5bec3e0{/,null,null}]}]
+2015-11-10 16:54:31,260 DEBUG [o.e.jetty.server.handler.AbstractHandler     ] - starting org.eclipse.jetty.server.handler.ContextHandlerCollection@49491770[o.e.j.s.ServletContextHandler@5bec3e0{/,null,null}, org.eclipse.jetty.server.handler.RequestLogHandler@4db0ba1c]
+2015-11-10 16:54:31,261 DEBUG [o.e.j.util.component.AbstractLifeCycle       ] - starting o.e.j.s.ServletContextHandler@5bec3e0{/,null,null}
+2015-11-10 16:54:31,267 DEBUG [o.e.jetty.server.handler.AbstractHandler     ] - starting o.e.j.s.ServletContextHandler@5bec3e0{/,null,STARTING}
+2015-11-10 16:54:31,267 DEBUG [o.e.j.util.component.AbstractLifeCycle       ] - starting org.eclipse.jetty.server.session.SessionHandler@96abc76
+2015-11-10 16:54:31,268 DEBUG [o.e.jetty.server.handler.AbstractHandler     ] - starting org.eclipse.jetty.server.session.SessionHandler@96abc76
+2015-11-10 16:54:31,268 DEBUG [o.e.j.util.component.AbstractLifeCycle       ] - starting org.eclipse.jetty.server.session.HashSessionManager@4d69d288
+2015-11-10 16:54:31,268 DEBUG [o.e.j.util.component.ContainerLifeCycle      ] - org.eclipse.jetty.server.session.HashSessionManager@4d69d288 added {org.eclipse.jetty.util.thread.ScheduledExecutorScheduler@3dfd7eaa,MANAGED}
+2015-11-10 16:54:31,269 DEBUG [o.e.j.util.component.AbstractLifeCycle       ] - starting org.eclipse.jetty.server.session.HashSessionIdManager@3e6748ae
+2015-11-10 16:54:31,270 DEBUG [o.e.j.util.component.AbstractLifeCycle       ] - STARTED @3685ms org.eclipse.jetty.server.session.HashSessionIdManager@3e6748ae
+2015-11-10 16:54:31,270 DEBUG [o.e.j.util.component.ContainerLifeCycle      ] - org.eclipse.jetty.server.Server@56cfe6be added {org.eclipse.jetty.server.session.HashSessionIdManager@3e6748ae,MANAGED}
+2015-11-10 16:54:31,270 DEBUG [o.e.j.util.component.ContainerLifeCycle      ] - org.eclipse.jetty.server.session.HashSessionManager@4d69d288 added {org.eclipse.jetty.server.session.HashSessionIdManager@3e6748ae,UNMANAGED}
+2015-11-10 16:54:31,270 DEBUG [o.e.j.util.component.AbstractLifeCycle       ] - starting org.eclipse.jetty.util.thread.ScheduledExecutorScheduler@3dfd7eaa
+2015-11-10 16:54:31,270 DEBUG [o.e.j.util.component.AbstractLifeCycle       ] - STARTED @3685ms org.eclipse.jetty.util.thread.ScheduledExecutorScheduler@3dfd7eaa
+2015-11-10 16:54:31,271 DEBUG [o.e.j.util.component.AbstractLifeCycle       ] - STARTED @3686ms org.eclipse.jetty.server.session.HashSessionManager@4d69d288
+2015-11-10 16:54:31,271 DEBUG [o.e.j.util.component.AbstractLifeCycle       ] - starting org.eclipse.jetty.servlet.ServletHandler@359ceb13
+2015-11-10 16:54:31,272 DEBUG [org.eclipse.jetty.servlet.ServletHandler     ] - filterNameMap={net.bull.javamelody.MonitoringFilter-66756662=net.bull.javamelody.MonitoringFilter-66756662}
+2015-11-10 16:54:31,272 DEBUG [org.eclipse.jetty.servlet.ServletHandler     ] - pathFilters=[[/*]/[]==5=>net.bull.javamelody.MonitoringFilter-66756662]
+2015-11-10 16:54:31,272 DEBUG [org.eclipse.jetty.servlet.ServletHandler     ] - servletFilterMap={}
+2015-11-10 16:54:31,272 DEBUG [org.eclipse.jetty.servlet.ServletHandler     ] - servletPathMap=null
+2015-11-10 16:54:31,273 DEBUG [org.eclipse.jetty.servlet.ServletHandler     ] - servletNameMap={}
+2015-11-10 16:54:31,273 DEBUG [org.eclipse.jetty.servlet.ServletHandler     ] - Adding Default404Servlet to org.eclipse.jetty.servlet.ServletHandler@359ceb13
+2015-11-10 16:54:31,275 DEBUG [o.e.j.util.component.ContainerLifeCycle      ] - org.eclipse.jetty.servlet.ServletHandler@359ceb13 added {org.eclipse.jetty.servlet.ServletHandler$Default404Servlet-722531ab@5bd61ff1==org.eclipse.jetty.servlet.ServletHandler$Default404Servlet,-1,false,AUTO}
+2015-11-10 16:54:31,275 DEBUG [o.e.j.util.component.ContainerLifeCycle      ] - org.eclipse.jetty.servlet.ServletHandler@359ceb13 added {[/]=>org.eclipse.jetty.servlet.ServletHandler$Default404Servlet-722531ab,POJO}
+2015-11-10 16:54:31,276 DEBUG [org.eclipse.jetty.servlet.ServletHandler     ] - Chose path=/ mapped to servlet=org.eclipse.jetty.servlet.ServletHandler$Default404Servlet-722531ab from default=false
+2015-11-10 16:54:31,276 DEBUG [org.eclipse.jetty.servlet.ServletHandler     ] - filterNameMap={net.bull.javamelody.MonitoringFilter-66756662=net.bull.javamelody.MonitoringFilter-66756662}
+2015-11-10 16:54:31,276 DEBUG [org.eclipse.jetty.servlet.ServletHandler     ] - pathFilters=[[/*]/[]==5=>net.bull.javamelody.MonitoringFilter-66756662]
+2015-11-10 16:54:31,277 DEBUG [org.eclipse.jetty.servlet.ServletHandler     ] - servletFilterMap={}
+2015-11-10 16:54:31,277 DEBUG [org.eclipse.jetty.servlet.ServletHandler     ] - servletPathMap={/=org.eclipse.jetty.servlet.ServletHandler$Default404Servlet-722531ab@5bd61ff1==org.eclipse.jetty.servlet.ServletHandler$Default404Servlet,-1,false}
+2015-11-10 16:54:31,277 DEBUG [org.eclipse.jetty.servlet.ServletHandler     ] - servletNameMap={org.eclipse.jetty.servlet.ServletHandler$Default404Servlet-722531ab=org.eclipse.jetty.servlet.ServletHandler$Default404Servlet-722531ab@5bd61ff1==org.eclipse.jetty.servlet.ServletHandler$Default404Servlet,-1,false}
+2015-11-10 16:54:31,277 DEBUG [o.e.jetty.server.handler.AbstractHandler     ] - starting org.eclipse.jetty.servlet.ServletHandler@359ceb13
+2015-11-10 16:54:31,277 DEBUG [o.e.j.util.component.AbstractLifeCycle       ] - STARTED @3692ms org.eclipse.jetty.servlet.ServletHandler@359ceb13
+2015-11-10 16:54:31,277 DEBUG [o.e.j.util.component.AbstractLifeCycle       ] - STARTED @3692ms org.eclipse.jetty.server.session.SessionHandler@96abc76
+2015-11-10 16:54:31,278 DEBUG [o.e.j.util.component.AbstractLifeCycle       ] - starting net.bull.javamelody.MonitoringFilter-66756662
+2015-11-10 16:54:31,278 DEBUG [o.e.j.util.component.AbstractLifeCycle       ] - STARTED @3693ms net.bull.javamelody.MonitoringFilter-66756662
+2015-11-10 16:54:31,278 DEBUG [org.eclipse.jetty.servlet.FilterHolder       ] - Filter.init net.bull.javamelody.MonitoringFilter@10618775
+2015-11-10 16:54:31,280 DEBUG [net.bull.javamelody                          ] - JavaMelody filter init started
+2015-11-10 16:54:31,287 DEBUG [net.bull.javamelody                          ] - OS: Windows 7 Service Pack 1, amd64/64
+2015-11-10 16:54:31,287 DEBUG [net.bull.javamelody                          ] - Java: Java(TM) SE Runtime Environment, 1.8.0_51-b16
+2015-11-10 16:54:31,288 DEBUG [net.bull.javamelody                          ] - Server: jetty/9.2.11.v20150529
+2015-11-10 16:54:31,288 DEBUG [net.bull.javamelody                          ] - Webapp context: 
+2015-11-10 16:54:31,288 DEBUG [net.bull.javamelody                          ] - JavaMelody version: 1.57.0
+2015-11-10 16:54:31,288 DEBUG [net.bull.javamelody                          ] - JavaMelody classes loaded from: file:/C:/git/skysail-framework/skysail.server.http.javamelody/generated/skysail.server.http.javamelody.jar
+2015-11-10 16:54:31,289 DEBUG [net.bull.javamelody                          ] - Host: PC-KVB-WIN74459@172.31.21.74
+2015-11-10 16:54:31,289 DEBUG [net.bull.javamelody                          ] - parameter defined: sampling-seconds=1.0
+2015-11-10 16:54:31,289 DEBUG [net.bull.javamelody                          ] - parameter defined: storage-directory=C:/tmp/javamelody
+2015-11-10 16:54:31,289 DEBUG [net.bull.javamelody                          ] - parameter defined: authorized-users=admin:pwd
+2015-11-10 16:54:31,289 DEBUG [net.bull.javamelody                          ] - parameter defined: monitoring-path=/
+2015-11-10 16:54:31,292 DEBUG [net.bull.javamelody                          ] - log listeners initialized
+2015-11-10 16:54:31,296 DEBUG [net.bull.javamelody                          ] - datasources found in JNDI: []
+2015-11-10 16:54:31,318 INFO  [org.quartz.impl.StdSchedulerFactory          ] - Using default implementation for ThreadExecutor
+2015-11-10 16:54:31,320 INFO  [org.quartz.simpl.SimpleThreadPool            ] - Job execution threads will use class loader of thread: main
+2015-11-10 16:54:31,333 INFO  [org.quartz.core.SchedulerSignalerImpl        ] - Initialized Scheduler Signaller of type: class org.quartz.core.SchedulerSignalerImpl
+2015-11-10 16:54:31,334 INFO  [org.quartz.core.QuartzScheduler              ] - Quartz Scheduler v.2.2.1 created.
+2015-11-10 16:54:31,335 INFO  [org.quartz.simpl.RAMJobStore                 ] - RAMJobStore initialized.
+2015-11-10 16:54:31,336 INFO  [org.quartz.core.QuartzScheduler              ] - Scheduler meta-data: Quartz Scheduler (v2.2.1) 'DefaultQuartzScheduler' with instanceId 'NON_CLUSTERED'
   Scheduler class: 'org.quartz.core.QuartzScheduler' - running locally.
   NOT STARTED.
   Currently in standby mode.
@@ -329,103 +329,168 @@
   Using thread pool 'org.quartz.simpl.SimpleThreadPool' - with 10 threads.
   Using job-store 'org.quartz.simpl.RAMJobStore' - which does not support persistence. and is not clustered.
 
-2015-11-10 15:00:28,059 INFO  [org.quartz.impl.StdSchedulerFactory          ] - Quartz scheduler 'DefaultQuartzScheduler' initialized from default resource file in Quartz package: 'quartz.properties'
-2015-11-10 15:00:28,060 INFO  [org.quartz.impl.StdSchedulerFactory          ] - Quartz scheduler version: 2.2.1
-2015-11-10 15:00:28,060 DEBUG [net.bull.javamelody                          ] - job global listener initialized
-2015-11-10 15:00:28,061 DEBUG [net.bull.javamelody                          ] - hotspots sampling initialized
-2015-11-10 15:00:28,063 DEBUG [net.bull.javamelody                          ] - counters initialized
-2015-11-10 15:00:28,092 DEBUG [net.bull.javamelody                          ] - counters data read from files in C:\tmp\javamelody\_PC-KVB-WIN74459
-2015-11-10 15:00:28,130 DEBUG [net.bull.javamelody                          ] - collect task scheduled every 60s
-2015-11-10 15:00:28,261 DEBUG [net.bull.javamelody                          ] - first collect of data done
-2015-11-10 15:00:28,262 DEBUG [net.bull.javamelody                          ] - Authorized user: admin
-2015-11-10 15:00:28,262 DEBUG [net.bull.javamelody                          ] - JavaMelody filter init done in 266 ms
-2015-11-10 15:00:28,262 DEBUG [o.e.j.util.component.AbstractLifeCycle       ] - starting org.eclipse.jetty.servlet.ServletHandler$Default404Servlet-5df64b2a@39d69750==org.eclipse.jetty.servlet.ServletHandler$Default404Servlet,-1,false
-2015-11-10 15:00:28,263 DEBUG [o.e.j.util.component.AbstractLifeCycle       ] - STARTED @5105ms org.eclipse.jetty.servlet.ServletHandler$Default404Servlet-5df64b2a@39d69750==org.eclipse.jetty.servlet.ServletHandler$Default404Servlet,-1,false
-2015-11-10 15:00:28,263 INFO  [o.e.jetty.server.handler.ContextHandler      ] - Started o.e.j.s.ServletContextHandler@9205c0a{/,null,AVAILABLE}
-2015-11-10 15:00:28,263 DEBUG [o.e.j.util.component.AbstractLifeCycle       ] - STARTED @5105ms o.e.j.s.ServletContextHandler@9205c0a{/,null,AVAILABLE}
-2015-11-10 15:00:28,264 DEBUG [o.e.j.util.component.AbstractLifeCycle       ] - starting org.eclipse.jetty.server.handler.RequestLogHandler@50df37eb
-2015-11-10 15:00:28,264 WARN  [o.e.j.server.handler.RequestLogHandler       ] - !RequestLog
-2015-11-10 15:00:28,264 DEBUG [o.e.jetty.server.handler.AbstractHandler     ] - starting org.eclipse.jetty.server.handler.RequestLogHandler@50df37eb
-2015-11-10 15:00:28,264 DEBUG [o.e.j.util.component.AbstractLifeCycle       ] - STARTED @5106ms org.eclipse.jetty.server.handler.RequestLogHandler@50df37eb
-2015-11-10 15:00:28,264 DEBUG [o.e.j.util.component.AbstractLifeCycle       ] - STARTED @5106ms org.eclipse.jetty.server.handler.ContextHandlerCollection@18dd7767[o.e.j.s.ServletContextHandler@9205c0a{/,null,AVAILABLE}, org.eclipse.jetty.server.handler.RequestLogHandler@50df37eb]
-2015-11-10 15:00:28,265 DEBUG [o.e.j.util.component.AbstractLifeCycle       ] - STARTED @5106ms org.eclipse.jetty.server.handler.HandlerCollection@4b508371[org.eclipse.jetty.server.handler.ContextHandlerCollection@18dd7767[o.e.j.s.ServletContextHandler@9205c0a{/,null,AVAILABLE}, org.eclipse.jetty.server.handler.RequestLogHandler@50df37eb]]
-2015-11-10 15:00:28,265 DEBUG [o.e.j.util.component.AbstractLifeCycle       ] - starting ServerConnector@255ed8e4{HTTP/1.1}{0.0.0.0:8090}
-2015-11-10 15:00:28,265 DEBUG [o.e.j.util.component.ContainerLifeCycle      ] - ServerConnector@255ed8e4{HTTP/1.1}{0.0.0.0:8090} added {sun.nio.ch.ServerSocketChannelImpl[/0:0:0:0:0:0:0:0:8090],POJO}
-2015-11-10 15:00:28,265 DEBUG [o.e.j.util.component.AbstractLifeCycle       ] - starting org.eclipse.jetty.util.thread.ScheduledExecutorScheduler@7d28cdcd
-2015-11-10 15:00:28,265 DEBUG [o.e.j.util.component.AbstractLifeCycle       ] - STARTED @5107ms org.eclipse.jetty.util.thread.ScheduledExecutorScheduler@7d28cdcd
-2015-11-10 15:00:28,266 DEBUG [o.e.j.util.component.AbstractLifeCycle       ] - starting HttpConnectionFactory@3b4bd341{HTTP/1.1}
-2015-11-10 15:00:28,266 DEBUG [o.e.j.util.component.AbstractLifeCycle       ] - STARTED @5108ms HttpConnectionFactory@3b4bd341{HTTP/1.1}
-2015-11-10 15:00:28,266 DEBUG [o.e.j.util.component.AbstractLifeCycle       ] - starting org.eclipse.jetty.server.ServerConnector$ServerConnectorManager@2a7bc16b
-2015-11-10 15:00:28,266 DEBUG [o.e.j.util.component.AbstractLifeCycle       ] - starting org.eclipse.jetty.io.SelectorManager$ManagedSelector@13dd7887 keys=-1 selected=-1
-2015-11-10 15:00:28,267 DEBUG [o.e.j.util.component.AbstractLifeCycle       ] - STARTED @5109ms org.eclipse.jetty.io.SelectorManager$ManagedSelector@13dd7887 keys=0 selected=0
-2015-11-10 15:00:28,267 DEBUG [o.e.j.util.component.AbstractLifeCycle       ] - starting org.eclipse.jetty.io.SelectorManager$ManagedSelector@780129bc keys=-1 selected=-1
-2015-11-10 15:00:28,267 DEBUG [org.eclipse.jetty.io.SelectorManager         ] - Starting Thread[qtp1334204880-72-selector-ServerConnectorManager@2a7bc16b/0,5,main] on org.eclipse.jetty.io.SelectorManager$ManagedSelector@13dd7887 keys=0 selected=0
-2015-11-10 15:00:28,267 DEBUG [org.eclipse.jetty.io.SelectorManager         ] - Selector loop waiting on select
-2015-11-10 15:00:28,268 DEBUG [o.e.j.util.component.AbstractLifeCycle       ] - STARTED @5109ms org.eclipse.jetty.io.SelectorManager$ManagedSelector@780129bc keys=0 selected=0
-2015-11-10 15:00:28,268 DEBUG [o.e.j.util.component.AbstractLifeCycle       ] - starting org.eclipse.jetty.io.SelectorManager$ManagedSelector@3e2c4d4b keys=-1 selected=-1
-2015-11-10 15:00:28,268 DEBUG [org.eclipse.jetty.io.SelectorManager         ] - Starting Thread[qtp1334204880-73-selector-ServerConnectorManager@2a7bc16b/1,5,main] on org.eclipse.jetty.io.SelectorManager$ManagedSelector@780129bc keys=0 selected=0
-2015-11-10 15:00:28,268 DEBUG [org.eclipse.jetty.io.SelectorManager         ] - Selector loop waiting on select
-2015-11-10 15:00:28,268 DEBUG [o.e.j.util.component.AbstractLifeCycle       ] - STARTED @5110ms org.eclipse.jetty.io.SelectorManager$ManagedSelector@3e2c4d4b keys=0 selected=0
-2015-11-10 15:00:28,268 DEBUG [o.e.j.util.component.AbstractLifeCycle       ] - starting org.eclipse.jetty.io.SelectorManager$ManagedSelector@44de8e00 keys=-1 selected=-1
-2015-11-10 15:00:28,269 DEBUG [org.eclipse.jetty.io.SelectorManager         ] - Starting Thread[qtp1334204880-74-selector-ServerConnectorManager@2a7bc16b/2,5,main] on org.eclipse.jetty.io.SelectorManager$ManagedSelector@3e2c4d4b keys=0 selected=0
-2015-11-10 15:00:28,269 DEBUG [org.eclipse.jetty.io.SelectorManager         ] - Selector loop waiting on select
-2015-11-10 15:00:28,269 DEBUG [o.e.j.util.component.AbstractLifeCycle       ] - STARTED @5111ms org.eclipse.jetty.io.SelectorManager$ManagedSelector@44de8e00 keys=0 selected=0
-2015-11-10 15:00:28,269 DEBUG [o.e.j.util.component.AbstractLifeCycle       ] - STARTED @5111ms org.eclipse.jetty.server.ServerConnector$ServerConnectorManager@2a7bc16b
-2015-11-10 15:00:28,269 DEBUG [org.eclipse.jetty.io.SelectorManager         ] - Starting Thread[qtp1334204880-75-selector-ServerConnectorManager@2a7bc16b/3,5,main] on org.eclipse.jetty.io.SelectorManager$ManagedSelector@44de8e00 keys=0 selected=0
-2015-11-10 15:00:28,269 DEBUG [o.e.j.util.component.ContainerLifeCycle      ] - ServerConnector@255ed8e4{HTTP/1.1}{0.0.0.0:8090} added {acceptor-0@3cbfdf5c,POJO}
-2015-11-10 15:00:28,269 DEBUG [org.eclipse.jetty.io.SelectorManager         ] - Selector loop waiting on select
-2015-11-10 15:00:28,270 INFO  [org.eclipse.jetty.server.ServerConnector     ] - Started ServerConnector@255ed8e4{HTTP/1.1}{0.0.0.0:8090}
-2015-11-10 15:00:28,270 DEBUG [o.e.j.util.component.AbstractLifeCycle       ] - STARTED @5112ms ServerConnector@255ed8e4{HTTP/1.1}{0.0.0.0:8090}
-2015-11-10 15:00:28,270 INFO  [org.eclipse.jetty.server.Server              ] - Started @5112ms
-2015-11-10 15:00:28,270 DEBUG [o.e.j.util.component.AbstractLifeCycle       ] - STARTED @5112ms org.eclipse.jetty.server.Server@278fe428
-2015-11-10 15:00:28,276 INFO  [i.s.s.a.b.repo.BookmarksRepository           ] - activating VersionsRepository
-2015-11-10 15:00:28,284 DEBUG [i.skysail.server.db.OrientGraphDbService     ] - registering class 'class io.skysail.server.app.bookmarks.Bookmark' @ orientDB
-2015-11-10 15:00:28,292 INFO  [io.skysail.server.app.Repositories           ] - adding repository (#2) with name 'io.skysail.server.app.bookmarks.Bookmark'
-2015-11-10 15:00:28,294 DEBUG [io.skysail.server.app.SkysailApplication     ] - Instanciating new Skysail Application 'BookmarksApplication'
-2015-11-10 15:00:28,295 DEBUG [io.skysail.server.app.SkysailApplication     ] - Activating Application io.skysail.server.app.bookmarks.BookmarksApplication
-2015-11-10 15:00:28,295 INFO  [io.skysail.server.app.ApplicationList        ] - (+) Adding application 'Bookmarks'
-2015-11-10 15:00:28,300 DEBUG [i.s.server.app.dbviewer.ConnectionRepo       ] - setting dbService
-2015-11-10 15:00:28,302 DEBUG [io.skysail.server.db.GraphDbRepository       ] - activating repository for class(es) io.skysail.server.app.dbviewer.Connection
-2015-11-10 15:00:28,310 DEBUG [i.skysail.server.db.OrientGraphDbService     ] - registering class 'class io.skysail.server.app.dbviewer.Connection' @ orientDB
-2015-11-10 15:00:28,314 INFO  [io.skysail.server.app.Repositories           ] - adding repository (#3) with name 'io.skysail.server.app.dbviewer.Connection'
-2015-11-10 15:00:28,317 DEBUG [io.skysail.server.app.SkysailApplication     ] - Instanciating new Skysail Application 'DbviewerApplication'
-2015-11-10 15:00:28,318 DEBUG [io.skysail.server.app.SkysailApplication     ] - Activating Application io.skysail.server.app.dbviewer.DbviewerApplication
-2015-11-10 15:00:28,318 INFO  [io.skysail.server.app.ApplicationList        ] - (+) Adding application 'dbviewer'
-2015-11-10 15:00:28,323 DEBUG [io.skysail.server.app.SkysailApplication     ] - Instanciating new Skysail Application 'SvgEditApplication'
-2015-11-10 15:00:28,324 DEBUG [io.skysail.server.app.SkysailApplication     ] - Activating Application io.skysail.server.app.svgedit.SvgEditApplication
-2015-11-10 15:00:28,324 INFO  [io.skysail.server.app.ApplicationList        ] - (+) Adding application 'svgedit'
-2015-11-10 15:00:28,331 DEBUG [io.skysail.server.app.tap.PlaceRepo          ] - setting dbService
-2015-11-10 15:00:28,331 DEBUG [io.skysail.server.db.GraphDbRepository       ] - activating repository for class(es) io.skysail.server.app.tap.Place
-2015-11-10 15:00:28,342 DEBUG [i.skysail.server.db.OrientGraphDbService     ] - registering class 'class io.skysail.server.app.tap.Place' @ orientDB
-2015-11-10 15:00:28,347 INFO  [io.skysail.server.app.Repositories           ] - adding repository (#4) with name 'io.skysail.server.app.tap.Place'
-2015-11-10 15:00:28,349 DEBUG [io.skysail.server.app.SkysailApplication     ] - Instanciating new Skysail Application 'TabApplication'
-2015-11-10 15:00:28,350 DEBUG [io.skysail.server.app.SkysailApplication     ] - Activating Application io.skysail.server.app.tap.TabApplication
-2015-11-10 15:00:28,350 INFO  [io.skysail.server.app.ApplicationList        ] - (+) Adding application 'TapApplication'
-2015-11-10 15:00:28,352 DEBUG [io.skysail.server.app.tap.ThingRepo          ] - setting dbService
-2015-11-10 15:00:28,352 DEBUG [io.skysail.server.db.GraphDbRepository       ] - activating repository for class(es) io.skysail.server.app.tap.Thing
-2015-11-10 15:00:28,362 DEBUG [i.skysail.server.db.OrientGraphDbService     ] - registering class 'class io.skysail.server.app.tap.Thing' @ orientDB
-2015-11-10 15:00:28,365 INFO  [io.skysail.server.app.Repositories           ] - adding repository (#5) with name 'io.skysail.server.app.tap.Thing'
-2015-11-10 15:00:28,383 DEBUG [io.skysail.server.app.SkysailApplication     ] - Instanciating new Skysail Application 'TwitterApplication'
-2015-11-10 15:00:28,386 DEBUG [io.skysail.server.app.SkysailApplication     ] - Activating Application io.skysail.server.app.twitter4j.TwitterApplication
-2015-11-10 15:00:28,387 INFO  [io.skysail.server.app.ApplicationList        ] - (+) Adding application 'Twitter'
-2015-11-10 15:00:28,406 DEBUG [i.skysail.server.db.OrientGraphDbService     ] - registering class 'class io.skysail.server.app.designer.application.Application' @ orientDB
-2015-11-10 15:00:28,414 DEBUG [i.skysail.server.db.OrientGraphDbService     ] - registering class 'class io.skysail.server.app.designer.entities.Entity' @ orientDB
-2015-11-10 15:00:28,417 DEBUG [i.skysail.server.db.OrientGraphDbService     ] - registering class 'class io.skysail.server.app.designer.fields.EntityField' @ orientDB
-2015-11-10 15:00:28,422 DEBUG [i.skysail.server.db.OrientGraphDbService     ] - registering class 'class io.skysail.server.app.designer.fields.ActionEntityField' @ orientDB
-2015-11-10 15:00:28,431 DEBUG [io.skysail.server.app.SkysailApplication     ] - Instanciating new Skysail Application 'DesignerApplication'
-2015-11-10 15:00:28,431 DEBUG [io.skysail.server.app.SkysailApplication     ] - Activating Application io.skysail.server.app.designer.DesignerApplication
-2015-11-10 15:00:28,432 INFO  [io.skysail.server.app.ApplicationList        ] - (+) Adding application 'AppDesigner'
-2015-11-10 15:00:29,056 DEBUG [org.quartz.utils.UpdateChecker               ] - Checking for available updated version of Quartz...
-2015-11-10 15:00:36,814 DEBUG [o.a.s.web.mgt.CookieRememberMeManager        ] - SubjectContext argument is not an HTTP-aware instance.  This is required to obtain a servlet request and response in order to retrieve the rememberMe cookie. Returning immediately and ignoring rememberMe operation.
-2015-11-10 15:00:36,814 DEBUG [o.a.s.web.mgt.CookieRememberMeManager        ] - SubjectContext argument is not an HTTP-aware instance.  This is required to obtain a servlet request and response in order to retrieve the rememberMe cookie. Returning immediately and ignoring rememberMe operation.
-2015-11-10 15:00:37,316 DEBUG [d.t.skysail.server.core.osgi.EventHelper     ] - about to post event org.osgi.service.event.Event [topic=GUI/peitybar/info]: -1.0
-2015-11-10 15:00:37,316 DEBUG [d.t.skysail.server.core.osgi.EventHelper     ] - about to post event org.osgi.service.event.Event [topic=GUI/message/info]: 15:00
-2015-11-10 15:00:38,312 DEBUG [org.quartz.utils.UpdateChecker               ] - Quartz version update check failed: www.terracotta.org
-2015-11-10 15:00:47,310 DEBUG [d.t.skysail.server.core.osgi.EventHelper     ] - about to post event org.osgi.service.event.Event [topic=GUI/peitybar/info]: -1.0
-2015-11-10 15:00:57,310 DEBUG [d.t.skysail.server.core.osgi.EventHelper     ] - about to post event org.osgi.service.event.Event [topic=GUI/peitybar/info]: -1.0
-2015-11-10 15:00:57,989 DEBUG [org.eclipse.jetty.server.session             ] - Scavenging sessions at 1447164057989
-2015-11-10 15:01:07,310 DEBUG [d.t.skysail.server.core.osgi.EventHelper     ] - about to post event org.osgi.service.event.Event [topic=GUI/peitybar/info]: -1.0
-2015-11-10 15:01:07,312 DEBUG [d.t.skysail.server.core.osgi.EventHelper     ] - about to post event org.osgi.service.event.Event [topic=GUI/message/info]: 15:01
-2015-11-10 15:01:17,310 DEBUG [d.t.skysail.server.core.osgi.EventHelper     ] - about to post event org.osgi.service.event.Event [topic=GUI/peitybar/info]: -1.0
-2015-11-10 15:01:27,310 DEBUG [d.t.skysail.server.core.osgi.EventHelper     ] - about to post event org.osgi.service.event.Event [topic=GUI/peitybar/info]: -1.0
-2015-11-10 15:01:27,993 DEBUG [org.eclipse.jetty.server.session             ] - Scavenging sessions at 1447164087993
+2015-11-10 16:54:31,336 INFO  [org.quartz.impl.StdSchedulerFactory          ] - Quartz scheduler 'DefaultQuartzScheduler' initialized from default resource file in Quartz package: 'quartz.properties'
+2015-11-10 16:54:31,336 INFO  [org.quartz.impl.StdSchedulerFactory          ] - Quartz scheduler version: 2.2.1
+2015-11-10 16:54:31,336 DEBUG [net.bull.javamelody                          ] - job global listener initialized
+2015-11-10 16:54:31,337 DEBUG [net.bull.javamelody                          ] - hotspots sampling initialized
+2015-11-10 16:54:31,339 DEBUG [net.bull.javamelody                          ] - counters initialized
+2015-11-10 16:54:31,376 DEBUG [net.bull.javamelody                          ] - counters data read from files in C:\tmp\javamelody\_PC-KVB-WIN74459
+2015-11-10 16:54:31,388 DEBUG [net.bull.javamelody                          ] - collect task scheduled every 60s
+2015-11-10 16:54:31,525 DEBUG [net.bull.javamelody                          ] - first collect of data done
+2015-11-10 16:54:31,525 DEBUG [net.bull.javamelody                          ] - Authorized user: admin
+2015-11-10 16:54:31,526 DEBUG [net.bull.javamelody                          ] - JavaMelody filter init done in 248 ms
+2015-11-10 16:54:31,526 DEBUG [o.e.j.util.component.AbstractLifeCycle       ] - starting org.eclipse.jetty.servlet.ServletHandler$Default404Servlet-722531ab@5bd61ff1==org.eclipse.jetty.servlet.ServletHandler$Default404Servlet,-1,false
+2015-11-10 16:54:31,527 DEBUG [o.e.j.util.component.AbstractLifeCycle       ] - STARTED @3942ms org.eclipse.jetty.servlet.ServletHandler$Default404Servlet-722531ab@5bd61ff1==org.eclipse.jetty.servlet.ServletHandler$Default404Servlet,-1,false
+2015-11-10 16:54:31,527 INFO  [o.e.jetty.server.handler.ContextHandler      ] - Started o.e.j.s.ServletContextHandler@5bec3e0{/,null,AVAILABLE}
+2015-11-10 16:54:31,527 DEBUG [o.e.j.util.component.AbstractLifeCycle       ] - STARTED @3942ms o.e.j.s.ServletContextHandler@5bec3e0{/,null,AVAILABLE}
+2015-11-10 16:54:31,527 DEBUG [o.e.j.util.component.AbstractLifeCycle       ] - starting org.eclipse.jetty.server.handler.RequestLogHandler@4db0ba1c
+2015-11-10 16:54:31,527 WARN  [o.e.j.server.handler.RequestLogHandler       ] - !RequestLog
+2015-11-10 16:54:31,528 DEBUG [o.e.jetty.server.handler.AbstractHandler     ] - starting org.eclipse.jetty.server.handler.RequestLogHandler@4db0ba1c
+2015-11-10 16:54:31,528 DEBUG [o.e.j.util.component.AbstractLifeCycle       ] - STARTED @3943ms org.eclipse.jetty.server.handler.RequestLogHandler@4db0ba1c
+2015-11-10 16:54:31,528 DEBUG [o.e.j.util.component.AbstractLifeCycle       ] - STARTED @3943ms org.eclipse.jetty.server.handler.ContextHandlerCollection@49491770[o.e.j.s.ServletContextHandler@5bec3e0{/,null,AVAILABLE}, org.eclipse.jetty.server.handler.RequestLogHandler@4db0ba1c]
+2015-11-10 16:54:31,528 DEBUG [o.e.j.util.component.AbstractLifeCycle       ] - STARTED @3943ms org.eclipse.jetty.server.handler.HandlerCollection@1d91fa02[org.eclipse.jetty.server.handler.ContextHandlerCollection@49491770[o.e.j.s.ServletContextHandler@5bec3e0{/,null,AVAILABLE}, org.eclipse.jetty.server.handler.RequestLogHandler@4db0ba1c]]
+2015-11-10 16:54:31,529 DEBUG [o.e.j.util.component.AbstractLifeCycle       ] - starting ServerConnector@2a99ca99{HTTP/1.1}{0.0.0.0:8090}
+2015-11-10 16:54:31,529 DEBUG [o.e.j.util.component.ContainerLifeCycle      ] - ServerConnector@2a99ca99{HTTP/1.1}{0.0.0.0:8090} added {sun.nio.ch.ServerSocketChannelImpl[/0:0:0:0:0:0:0:0:8090],POJO}
+2015-11-10 16:54:31,529 DEBUG [o.e.j.util.component.AbstractLifeCycle       ] - starting org.eclipse.jetty.util.thread.ScheduledExecutorScheduler@3ca3648
+2015-11-10 16:54:31,529 DEBUG [o.e.j.util.component.AbstractLifeCycle       ] - STARTED @3944ms org.eclipse.jetty.util.thread.ScheduledExecutorScheduler@3ca3648
+2015-11-10 16:54:31,529 DEBUG [o.e.j.util.component.AbstractLifeCycle       ] - starting HttpConnectionFactory@7f0d8eff{HTTP/1.1}
+2015-11-10 16:54:31,530 DEBUG [o.e.j.util.component.AbstractLifeCycle       ] - STARTED @3945ms HttpConnectionFactory@7f0d8eff{HTTP/1.1}
+2015-11-10 16:54:31,530 DEBUG [o.e.j.util.component.AbstractLifeCycle       ] - starting org.eclipse.jetty.server.ServerConnector$ServerConnectorManager@781654f8
+2015-11-10 16:54:31,530 DEBUG [o.e.j.util.component.AbstractLifeCycle       ] - starting org.eclipse.jetty.io.SelectorManager$ManagedSelector@793cef95 keys=-1 selected=-1
+2015-11-10 16:54:31,531 DEBUG [o.e.j.util.component.AbstractLifeCycle       ] - STARTED @3946ms org.eclipse.jetty.io.SelectorManager$ManagedSelector@793cef95 keys=0 selected=0
+2015-11-10 16:54:31,531 DEBUG [o.e.j.util.component.AbstractLifeCycle       ] - starting org.eclipse.jetty.io.SelectorManager$ManagedSelector@38f502fc keys=-1 selected=-1
+2015-11-10 16:54:31,531 DEBUG [org.eclipse.jetty.io.SelectorManager         ] - Starting Thread[qtp35826861-72-selector-ServerConnectorManager@781654f8/0,5,main] on org.eclipse.jetty.io.SelectorManager$ManagedSelector@793cef95 keys=0 selected=0
+2015-11-10 16:54:31,531 DEBUG [org.eclipse.jetty.io.SelectorManager         ] - Selector loop waiting on select
+2015-11-10 16:54:31,532 DEBUG [o.e.j.util.component.AbstractLifeCycle       ] - STARTED @3947ms org.eclipse.jetty.io.SelectorManager$ManagedSelector@38f502fc keys=0 selected=0
+2015-11-10 16:54:31,532 DEBUG [o.e.j.util.component.AbstractLifeCycle       ] - starting org.eclipse.jetty.io.SelectorManager$ManagedSelector@67c21bf keys=-1 selected=-1
+2015-11-10 16:54:31,532 DEBUG [org.eclipse.jetty.io.SelectorManager         ] - Starting Thread[qtp35826861-73-selector-ServerConnectorManager@781654f8/1,5,main] on org.eclipse.jetty.io.SelectorManager$ManagedSelector@38f502fc keys=0 selected=0
+2015-11-10 16:54:31,532 DEBUG [org.eclipse.jetty.io.SelectorManager         ] - Selector loop waiting on select
+2015-11-10 16:54:31,533 DEBUG [o.e.j.util.component.AbstractLifeCycle       ] - STARTED @3948ms org.eclipse.jetty.io.SelectorManager$ManagedSelector@67c21bf keys=0 selected=0
+2015-11-10 16:54:31,533 DEBUG [o.e.j.util.component.AbstractLifeCycle       ] - starting org.eclipse.jetty.io.SelectorManager$ManagedSelector@67afe909 keys=-1 selected=-1
+2015-11-10 16:54:31,533 DEBUG [org.eclipse.jetty.io.SelectorManager         ] - Starting Thread[qtp35826861-74-selector-ServerConnectorManager@781654f8/2,5,main] on org.eclipse.jetty.io.SelectorManager$ManagedSelector@67c21bf keys=0 selected=0
+2015-11-10 16:54:31,533 DEBUG [org.eclipse.jetty.io.SelectorManager         ] - Selector loop waiting on select
+2015-11-10 16:54:31,533 DEBUG [o.e.j.util.component.AbstractLifeCycle       ] - STARTED @3948ms org.eclipse.jetty.io.SelectorManager$ManagedSelector@67afe909 keys=0 selected=0
+2015-11-10 16:54:31,534 DEBUG [o.e.j.util.component.AbstractLifeCycle       ] - STARTED @3949ms org.eclipse.jetty.server.ServerConnector$ServerConnectorManager@781654f8
+2015-11-10 16:54:31,534 DEBUG [org.eclipse.jetty.io.SelectorManager         ] - Starting Thread[qtp35826861-75-selector-ServerConnectorManager@781654f8/3,5,main] on org.eclipse.jetty.io.SelectorManager$ManagedSelector@67afe909 keys=0 selected=0
+2015-11-10 16:54:31,534 DEBUG [o.e.j.util.component.ContainerLifeCycle      ] - ServerConnector@2a99ca99{HTTP/1.1}{0.0.0.0:8090} added {acceptor-0@79f1e22e,POJO}
+2015-11-10 16:54:31,534 DEBUG [org.eclipse.jetty.io.SelectorManager         ] - Selector loop waiting on select
+2015-11-10 16:54:31,534 INFO  [org.eclipse.jetty.server.ServerConnector     ] - Started ServerConnector@2a99ca99{HTTP/1.1}{0.0.0.0:8090}
+2015-11-10 16:54:31,534 DEBUG [o.e.j.util.component.AbstractLifeCycle       ] - STARTED @3949ms ServerConnector@2a99ca99{HTTP/1.1}{0.0.0.0:8090}
+2015-11-10 16:54:31,534 INFO  [org.eclipse.jetty.server.Server              ] - Started @3949ms
+2015-11-10 16:54:31,534 DEBUG [o.e.j.util.component.AbstractLifeCycle       ] - STARTED @3949ms org.eclipse.jetty.server.Server@56cfe6be
+2015-11-10 16:54:31,542 INFO  [i.s.s.a.b.repo.BookmarksRepository           ] - activating VersionsRepository
+2015-11-10 16:54:31,547 DEBUG [i.skysail.server.db.OrientGraphDbService     ] - registering class 'class io.skysail.server.app.bookmarks.Bookmark' @ orientDB
+2015-11-10 16:54:31,555 DEBUG [io.skysail.server.app.SkysailApplication     ] - Instanciating new Skysail Application 'BookmarksApplication'
+2015-11-10 16:54:31,555 DEBUG [io.skysail.server.app.SkysailApplication     ] - Activating Application io.skysail.server.app.bookmarks.BookmarksApplication
+2015-11-10 16:54:31,555 INFO  [io.skysail.server.app.ApplicationList        ] - (+) Adding application 'Bookmarks'
+2015-11-10 16:54:31,556 INFO  [io.skysail.server.app.Repositories           ] - adding repository (#2) with name 'io.skysail.server.app.bookmarks.Bookmark'
+2015-11-10 16:54:31,561 DEBUG [i.s.server.app.dbviewer.ConnectionRepo       ] - setting dbService
+2015-11-10 16:54:31,562 DEBUG [io.skysail.server.db.GraphDbRepository       ] - activating repository for class(es) io.skysail.server.app.dbviewer.Connection
+2015-11-10 16:54:31,568 DEBUG [i.skysail.server.db.OrientGraphDbService     ] - registering class 'class io.skysail.server.app.dbviewer.Connection' @ orientDB
+2015-11-10 16:54:31,572 INFO  [io.skysail.server.app.Repositories           ] - adding repository (#3) with name 'io.skysail.server.app.dbviewer.Connection'
+2015-11-10 16:54:31,574 DEBUG [io.skysail.server.app.SkysailApplication     ] - Instanciating new Skysail Application 'DbviewerApplication'
+2015-11-10 16:54:31,575 DEBUG [io.skysail.server.app.SkysailApplication     ] - Activating Application io.skysail.server.app.dbviewer.DbviewerApplication
+2015-11-10 16:54:31,575 INFO  [io.skysail.server.app.ApplicationList        ] - (+) Adding application 'dbviewer'
+2015-11-10 16:54:31,581 DEBUG [io.skysail.server.app.SkysailApplication     ] - Instanciating new Skysail Application 'SvgEditApplication'
+2015-11-10 16:54:31,581 DEBUG [io.skysail.server.app.SkysailApplication     ] - Activating Application io.skysail.server.app.svgedit.SvgEditApplication
+2015-11-10 16:54:31,582 INFO  [io.skysail.server.app.ApplicationList        ] - (+) Adding application 'svgedit'
+2015-11-10 16:54:31,588 DEBUG [io.skysail.server.app.tap.PlaceRepo          ] - setting dbService
+2015-11-10 16:54:31,589 DEBUG [io.skysail.server.db.GraphDbRepository       ] - activating repository for class(es) io.skysail.server.app.tap.Place
+2015-11-10 16:54:31,594 DEBUG [i.skysail.server.db.OrientGraphDbService     ] - registering class 'class io.skysail.server.app.tap.Place' @ orientDB
+2015-11-10 16:54:31,597 INFO  [io.skysail.server.app.Repositories           ] - adding repository (#4) with name 'io.skysail.server.app.tap.Place'
+2015-11-10 16:54:31,600 DEBUG [io.skysail.server.app.SkysailApplication     ] - Instanciating new Skysail Application 'TabApplication'
+2015-11-10 16:54:31,600 DEBUG [io.skysail.server.app.SkysailApplication     ] - Activating Application io.skysail.server.app.tap.TabApplication
+2015-11-10 16:54:31,601 INFO  [io.skysail.server.app.ApplicationList        ] - (+) Adding application 'TapApplication'
+2015-11-10 16:54:31,602 DEBUG [io.skysail.server.app.tap.ThingRepo          ] - setting dbService
+2015-11-10 16:54:31,603 DEBUG [io.skysail.server.db.GraphDbRepository       ] - activating repository for class(es) io.skysail.server.app.tap.Thing
+2015-11-10 16:54:31,609 DEBUG [i.skysail.server.db.OrientGraphDbService     ] - registering class 'class io.skysail.server.app.tap.Thing' @ orientDB
+2015-11-10 16:54:31,611 INFO  [io.skysail.server.app.Repositories           ] - adding repository (#5) with name 'io.skysail.server.app.tap.Thing'
+2015-11-10 16:54:31,627 DEBUG [io.skysail.server.app.SkysailApplication     ] - Instanciating new Skysail Application 'TwitterApplication'
+2015-11-10 16:54:31,630 DEBUG [io.skysail.server.app.SkysailApplication     ] - Activating Application io.skysail.server.app.twitter4j.TwitterApplication
+2015-11-10 16:54:31,630 INFO  [io.skysail.server.app.ApplicationList        ] - (+) Adding application 'Twitter'
+2015-11-10 16:54:31,644 DEBUG [i.skysail.server.db.OrientGraphDbService     ] - registering class 'class io.skysail.server.app.designer.application.Application' @ orientDB
+2015-11-10 16:54:31,651 DEBUG [i.skysail.server.db.OrientGraphDbService     ] - registering class 'class io.skysail.server.app.designer.entities.Entity' @ orientDB
+2015-11-10 16:54:31,654 DEBUG [i.skysail.server.db.OrientGraphDbService     ] - registering class 'class io.skysail.server.app.designer.fields.EntityField' @ orientDB
+2015-11-10 16:54:31,657 DEBUG [i.skysail.server.db.OrientGraphDbService     ] - registering class 'class io.skysail.server.app.designer.fields.ActionEntityField' @ orientDB
+2015-11-10 16:54:31,666 DEBUG [io.skysail.server.app.SkysailApplication     ] - Instanciating new Skysail Application 'DesignerApplication'
+2015-11-10 16:54:31,666 DEBUG [io.skysail.server.app.SkysailApplication     ] - Activating Application io.skysail.server.app.designer.DesignerApplication
+2015-11-10 16:54:31,667 INFO  [io.skysail.server.app.ApplicationList        ] - (+) Adding application 'AppDesigner'
+2015-11-10 16:54:32,334 DEBUG [org.quartz.utils.UpdateChecker               ] - Checking for available updated version of Quartz...
+2015-11-10 16:54:40,201 DEBUG [o.a.s.web.mgt.CookieRememberMeManager        ] - SubjectContext argument is not an HTTP-aware instance.  This is required to obtain a servlet request and response in order to retrieve the rememberMe cookie. Returning immediately and ignoring rememberMe operation.
+2015-11-10 16:54:40,201 DEBUG [o.a.s.web.mgt.CookieRememberMeManager        ] - SubjectContext argument is not an HTTP-aware instance.  This is required to obtain a servlet request and response in order to retrieve the rememberMe cookie. Returning immediately and ignoring rememberMe operation.
+2015-11-10 16:54:40,703 DEBUG [d.t.skysail.server.core.osgi.EventHelper     ] - about to post event org.osgi.service.event.Event [topic=GUI/message/info]: 16:54
+2015-11-10 16:54:40,703 DEBUG [d.t.skysail.server.core.osgi.EventHelper     ] - about to post event org.osgi.service.event.Event [topic=GUI/peitybar/info]: -1.0
+2015-11-10 16:54:44,334 DEBUG [org.quartz.utils.UpdateChecker               ] - Quartz version update check failed: www.terracotta.org
+2015-11-10 16:54:50,697 DEBUG [d.t.skysail.server.core.osgi.EventHelper     ] - about to post event org.osgi.service.event.Event [topic=GUI/peitybar/info]: -1.0
+2015-11-10 16:55:00,697 DEBUG [d.t.skysail.server.core.osgi.EventHelper     ] - about to post event org.osgi.service.event.Event [topic=GUI/peitybar/info]: -1.0
+2015-11-10 16:55:00,699 DEBUG [d.t.skysail.server.core.osgi.EventHelper     ] - about to post event org.osgi.service.event.Event [topic=GUI/message/info]: 16:55
+2015-11-10 16:55:01,274 DEBUG [org.eclipse.jetty.server.session             ] - Scavenging sessions at 1447170901274
+2015-11-10 16:55:10,697 DEBUG [d.t.skysail.server.core.osgi.EventHelper     ] - about to post event org.osgi.service.event.Event [topic=GUI/peitybar/info]: -1.0
+2015-11-10 16:55:20,697 DEBUG [d.t.skysail.server.core.osgi.EventHelper     ] - about to post event org.osgi.service.event.Event [topic=GUI/peitybar/info]: -1.0
+2015-11-10 16:55:30,697 DEBUG [d.t.skysail.server.core.osgi.EventHelper     ] - about to post event org.osgi.service.event.Event [topic=GUI/peitybar/info]: -1.0
+2015-11-10 16:55:31,278 DEBUG [org.eclipse.jetty.server.session             ] - Scavenging sessions at 1447170931278
+2015-11-10 16:55:40,697 DEBUG [d.t.skysail.server.core.osgi.EventHelper     ] - about to post event org.osgi.service.event.Event [topic=GUI/peitybar/info]: -1.0
+2015-11-10 16:55:50,697 DEBUG [d.t.skysail.server.core.osgi.EventHelper     ] - about to post event org.osgi.service.event.Event [topic=GUI/peitybar/info]: -1.0
+2015-11-10 16:56:00,697 DEBUG [d.t.skysail.server.core.osgi.EventHelper     ] - about to post event org.osgi.service.event.Event [topic=GUI/peitybar/info]: -1.0
+2015-11-10 16:56:00,699 DEBUG [d.t.skysail.server.core.osgi.EventHelper     ] - about to post event org.osgi.service.event.Event [topic=GUI/message/info]: 16:56
+2015-11-10 16:56:01,282 DEBUG [org.eclipse.jetty.server.session             ] - Scavenging sessions at 1447170961282
+2015-11-10 16:56:10,697 DEBUG [d.t.skysail.server.core.osgi.EventHelper     ] - about to post event org.osgi.service.event.Event [topic=GUI/peitybar/info]: -1.0
+2015-11-10 16:56:20,697 DEBUG [d.t.skysail.server.core.osgi.EventHelper     ] - about to post event org.osgi.service.event.Event [topic=GUI/peitybar/info]: -1.0
+2015-11-10 16:56:30,697 DEBUG [d.t.skysail.server.core.osgi.EventHelper     ] - about to post event org.osgi.service.event.Event [topic=GUI/peitybar/info]: -1.0
+2015-11-10 16:56:31,286 DEBUG [org.eclipse.jetty.server.session             ] - Scavenging sessions at 1447170991286
+2015-11-10 16:56:40,697 DEBUG [d.t.skysail.server.core.osgi.EventHelper     ] - about to post event org.osgi.service.event.Event [topic=GUI/peitybar/info]: -1.0
+2015-11-10 16:56:50,697 DEBUG [d.t.skysail.server.core.osgi.EventHelper     ] - about to post event org.osgi.service.event.Event [topic=GUI/peitybar/info]: -1.0
+2015-11-10 16:57:00,697 DEBUG [d.t.skysail.server.core.osgi.EventHelper     ] - about to post event org.osgi.service.event.Event [topic=GUI/peitybar/info]: -1.0
+2015-11-10 16:57:00,699 DEBUG [d.t.skysail.server.core.osgi.EventHelper     ] - about to post event org.osgi.service.event.Event [topic=GUI/message/info]: 16:57
+2015-11-10 16:57:01,290 DEBUG [org.eclipse.jetty.server.session             ] - Scavenging sessions at 1447171021290
+2015-11-10 16:57:10,697 DEBUG [d.t.skysail.server.core.osgi.EventHelper     ] - about to post event org.osgi.service.event.Event [topic=GUI/peitybar/info]: -1.0
+2015-11-10 16:57:20,697 DEBUG [d.t.skysail.server.core.osgi.EventHelper     ] - about to post event org.osgi.service.event.Event [topic=GUI/peitybar/info]: -1.0
+2015-11-10 16:57:30,697 DEBUG [d.t.skysail.server.core.osgi.EventHelper     ] - about to post event org.osgi.service.event.Event [topic=GUI/peitybar/info]: -1.0
+2015-11-10 16:57:31,294 DEBUG [org.eclipse.jetty.server.session             ] - Scavenging sessions at 1447171051294
+2015-11-10 16:57:40,697 DEBUG [d.t.skysail.server.core.osgi.EventHelper     ] - about to post event org.osgi.service.event.Event [topic=GUI/peitybar/info]: -1.0
+2015-11-10 16:57:50,697 DEBUG [d.t.skysail.server.core.osgi.EventHelper     ] - about to post event org.osgi.service.event.Event [topic=GUI/peitybar/info]: -1.0
+2015-11-10 16:58:00,697 DEBUG [d.t.skysail.server.core.osgi.EventHelper     ] - about to post event org.osgi.service.event.Event [topic=GUI/peitybar/info]: -1.0
+2015-11-10 16:58:00,699 DEBUG [d.t.skysail.server.core.osgi.EventHelper     ] - about to post event org.osgi.service.event.Event [topic=GUI/message/info]: 16:58
+2015-11-10 16:58:01,298 DEBUG [org.eclipse.jetty.server.session             ] - Scavenging sessions at 1447171081298
+2015-11-10 16:58:10,697 DEBUG [d.t.skysail.server.core.osgi.EventHelper     ] - about to post event org.osgi.service.event.Event [topic=GUI/peitybar/info]: -1.0
+2015-11-10 16:58:20,697 DEBUG [d.t.skysail.server.core.osgi.EventHelper     ] - about to post event org.osgi.service.event.Event [topic=GUI/peitybar/info]: -1.0
+2015-11-10 16:58:30,697 DEBUG [d.t.skysail.server.core.osgi.EventHelper     ] - about to post event org.osgi.service.event.Event [topic=GUI/peitybar/info]: -1.0
+2015-11-10 16:58:31,302 DEBUG [org.eclipse.jetty.server.session             ] - Scavenging sessions at 1447171111302
+2015-11-10 16:58:40,697 DEBUG [d.t.skysail.server.core.osgi.EventHelper     ] - about to post event org.osgi.service.event.Event [topic=GUI/peitybar/info]: -1.0
+2015-11-10 16:58:50,697 DEBUG [d.t.skysail.server.core.osgi.EventHelper     ] - about to post event org.osgi.service.event.Event [topic=GUI/peitybar/info]: -1.0
+2015-11-10 16:59:00,697 DEBUG [d.t.skysail.server.core.osgi.EventHelper     ] - about to post event org.osgi.service.event.Event [topic=GUI/peitybar/info]: -1.0
+2015-11-10 16:59:00,699 DEBUG [d.t.skysail.server.core.osgi.EventHelper     ] - about to post event org.osgi.service.event.Event [topic=GUI/message/info]: 16:59
+2015-11-10 16:59:01,306 DEBUG [org.eclipse.jetty.server.session             ] - Scavenging sessions at 1447171141306
+2015-11-10 16:59:10,697 DEBUG [d.t.skysail.server.core.osgi.EventHelper     ] - about to post event org.osgi.service.event.Event [topic=GUI/peitybar/info]: -1.0
+2015-11-10 16:59:20,697 DEBUG [d.t.skysail.server.core.osgi.EventHelper     ] - about to post event org.osgi.service.event.Event [topic=GUI/peitybar/info]: -1.0
+2015-11-10 16:59:30,697 DEBUG [d.t.skysail.server.core.osgi.EventHelper     ] - about to post event org.osgi.service.event.Event [topic=GUI/peitybar/info]: -1.0
+2015-11-10 16:59:31,310 DEBUG [org.eclipse.jetty.server.session             ] - Scavenging sessions at 1447171171310
+2015-11-10 16:59:40,697 DEBUG [d.t.skysail.server.core.osgi.EventHelper     ] - about to post event org.osgi.service.event.Event [topic=GUI/peitybar/info]: -1.0
+2015-11-10 16:59:50,697 DEBUG [d.t.skysail.server.core.osgi.EventHelper     ] - about to post event org.osgi.service.event.Event [topic=GUI/peitybar/info]: -1.0
+2015-11-10 17:00:00,697 DEBUG [d.t.skysail.server.core.osgi.EventHelper     ] - about to post event org.osgi.service.event.Event [topic=GUI/peitybar/info]: -1.0
+2015-11-10 17:00:00,699 DEBUG [d.t.skysail.server.core.osgi.EventHelper     ] - about to post event org.osgi.service.event.Event [topic=GUI/message/info]: 17:00
+2015-11-10 17:00:01,314 DEBUG [org.eclipse.jetty.server.session             ] - Scavenging sessions at 1447171201314
+2015-11-10 17:00:10,697 DEBUG [d.t.skysail.server.core.osgi.EventHelper     ] - about to post event org.osgi.service.event.Event [topic=GUI/peitybar/info]: -1.0
+2015-11-10 17:00:20,697 DEBUG [d.t.skysail.server.core.osgi.EventHelper     ] - about to post event org.osgi.service.event.Event [topic=GUI/peitybar/info]: -1.0
+2015-11-10 17:00:30,697 DEBUG [d.t.skysail.server.core.osgi.EventHelper     ] - about to post event org.osgi.service.event.Event [topic=GUI/peitybar/info]: -1.0
+2015-11-10 17:00:31,318 DEBUG [org.eclipse.jetty.server.session             ] - Scavenging sessions at 1447171231318
+2015-11-10 17:00:40,697 DEBUG [d.t.skysail.server.core.osgi.EventHelper     ] - about to post event org.osgi.service.event.Event [topic=GUI/peitybar/info]: -1.0
+2015-11-10 17:00:50,697 DEBUG [d.t.skysail.server.core.osgi.EventHelper     ] - about to post event org.osgi.service.event.Event [topic=GUI/peitybar/info]: -1.0
+2015-11-10 17:01:00,697 DEBUG [d.t.skysail.server.core.osgi.EventHelper     ] - about to post event org.osgi.service.event.Event [topic=GUI/peitybar/info]: -1.0
+2015-11-10 17:01:00,699 DEBUG [d.t.skysail.server.core.osgi.EventHelper     ] - about to post event org.osgi.service.event.Event [topic=GUI/message/info]: 17:01
+2015-11-10 17:01:01,322 DEBUG [org.eclipse.jetty.server.session             ] - Scavenging sessions at 1447171261322
+2015-11-10 17:01:10,697 DEBUG [d.t.skysail.server.core.osgi.EventHelper     ] - about to post event org.osgi.service.event.Event [topic=GUI/peitybar/info]: -1.0
+2015-11-10 17:01:20,697 DEBUG [d.t.skysail.server.core.osgi.EventHelper     ] - about to post event org.osgi.service.event.Event [topic=GUI/peitybar/info]: -1.0
+2015-11-10 17:01:30,697 DEBUG [d.t.skysail.server.core.osgi.EventHelper     ] - about to post event org.osgi.service.event.Event [topic=GUI/peitybar/info]: -1.0
+2015-11-10 17:01:31,326 DEBUG [org.eclipse.jetty.server.session             ] - Scavenging sessions at 1447171291326
+2015-11-10 17:01:40,697 DEBUG [d.t.skysail.server.core.osgi.EventHelper     ] - about to post event org.osgi.service.event.Event [topic=GUI/peitybar/info]: -1.0
+2015-11-10 17:01:50,697 DEBUG [d.t.skysail.server.core.osgi.EventHelper     ] - about to post event org.osgi.service.event.Event [topic=GUI/peitybar/info]: -1.0
+2015-11-10 17:02:00,697 DEBUG [d.t.skysail.server.core.osgi.EventHelper     ] - about to post event org.osgi.service.event.Event [topic=GUI/peitybar/info]: -1.0
+2015-11-10 17:02:00,699 DEBUG [d.t.skysail.server.core.osgi.EventHelper     ] - about to post event org.osgi.service.event.Event [topic=GUI/message/info]: 17:02
+2015-11-10 17:02:01,330 DEBUG [org.eclipse.jetty.server.session             ] - Scavenging sessions at 1447171321330
+2015-11-10 17:02:10,697 DEBUG [d.t.skysail.server.core.osgi.EventHelper     ] - about to post event org.osgi.service.event.Event [topic=GUI/peitybar/info]: -1.0
+2015-11-10 17:02:20,697 DEBUG [d.t.skysail.server.core.osgi.EventHelper     ] - about to post event org.osgi.service.event.Event [topic=GUI/peitybar/info]: -1.0
+2015-11-10 17:02:30,697 DEBUG [d.t.skysail.server.core.osgi.EventHelper     ] - about to post event org.osgi.service.event.Event [topic=GUI/peitybar/info]: -1.0
+2015-11-10 17:02:31,334 DEBUG [org.eclipse.jetty.server.session             ] - Scavenging sessions at 1447171351334
+2015-11-10 17:02:40,697 DEBUG [d.t.skysail.server.core.osgi.EventHelper     ] - about to post event org.osgi.service.event.Event [topic=GUI/peitybar/info]: -1.0
+2015-11-10 17:02:50,697 DEBUG [d.t.skysail.server.core.osgi.EventHelper     ] - about to post event org.osgi.service.event.Event [topic=GUI/peitybar/info]: -1.0

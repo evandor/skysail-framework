@@ -21,9 +21,9 @@ public class TodosWithoutListResource extends TodosResource {
 
     @Override
     public List<Todo> getEntity() {
-        Filter filter = new Filter(getRequest());
+        Filter filter = new Filter(getRequest(), "(!(in_todos=*))");
         filter.add("owner",  SecurityUtils.getSubject().getPrincipal().toString());
-        //filter.add("status", Status.DONE.name());
+        //filter.add("in_todos", "null");
 
         Pagination pagination = new Pagination(getRequest(), getResponse(), app.getTodosRepo().getTodosCount(listId, filter));
         return app.getTodosRepo().findAllTodos(filter, pagination);

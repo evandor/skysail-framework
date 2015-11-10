@@ -30,8 +30,7 @@ public class Top10TodosResource extends TodoSummaryResource {
 
         Pagination pagination = new Pagination(getRequest(), getResponse(), 10);
         List<Todo> todos = app.getTodosRepo().findAllTodos(filter, pagination);
-        todosSummary = todos.stream().map(todo -> new TodoSummary(todo)).collect(Collectors.toList());
-        return todosSummary;
+        return todos.stream().map(todo -> new TodoSummary(todo)).collect(Collectors.toList());
     }
 
 }

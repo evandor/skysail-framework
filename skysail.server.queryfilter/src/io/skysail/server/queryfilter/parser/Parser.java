@@ -162,7 +162,7 @@ public class Parser {
                 pos += 2;
                 skipWhiteSpace();
                 if (filterChars[pos] == ')') {
-                    return null;// new ExprNode(Operation.PRESENT, attr, null);
+                    return new PresentNode(attr, null);
                 }
                 pos = oldpos;
             }

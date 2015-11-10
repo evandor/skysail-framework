@@ -6,7 +6,6 @@ import io.skysail.server.app.todos.todos.resources.*;
 import io.skysail.server.app.todos.todos.status.*;
 import io.skysail.server.forms.*;
 
-import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Id;
@@ -19,9 +18,7 @@ import lombok.*;
 @ToString(of = { "title" })
 @NoArgsConstructor
 @StartDateBeforeDueDate
-public class TodoSummary implements Serializable, Identifiable {
-
-    private static final long serialVersionUID = -6320289870876900108L;
+public class TodoSummary implements Identifiable {
 
     @Id
     private String id;

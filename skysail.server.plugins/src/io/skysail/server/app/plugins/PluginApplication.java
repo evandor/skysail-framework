@@ -44,8 +44,8 @@ public class PluginApplication extends SkysailApplication implements Application
 
        // router.setAuthorizationDefaults(anyOf("admin"));
 
-        router.attach(new RouteBuilder("", PluginRootResource.class));//.authorizeWith(anyOf("admin")));
-        router.attach(new RouteBuilder("/", PluginRootResource.class));//.authorizeWith(anyOf("admin")));
+        router.attach(new RouteBuilder("", PluginRootResource.class).authorizeWith(anyOf("admin")));
+        router.attach(new RouteBuilder("/", PluginRootResource.class).authorizeWith(anyOf("admin")));
         router.attach(new RouteBuilder("/features/", FeaturesResource.class));
         router.attach(new RouteBuilder("/features/{id}/installations/", PostInstallationResource.class));
 

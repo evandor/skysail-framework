@@ -23,10 +23,6 @@ public enum Status implements Identifiable{
 
     private String color;
 
-    Status() {
-        nexts = Collections.emptyList();
-    }
-
     Status(String name, String color, String... nextStatuses) {
         this.color = color;
         nexts.add(name);

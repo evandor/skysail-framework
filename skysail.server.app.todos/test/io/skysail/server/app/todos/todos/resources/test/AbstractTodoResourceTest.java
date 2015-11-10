@@ -16,6 +16,7 @@ import java.util.HashMap;
 import org.apache.shiro.subject.SimplePrincipalMap;
 import org.junit.Before;
 import org.mockito.*;
+import org.restlet.Context;
 import org.restlet.data.Status;
 
 public abstract class AbstractTodoResourceTest extends ResourceTestBase {
@@ -44,14 +45,17 @@ public abstract class AbstractTodoResourceTest extends ResourceTestBase {
     @Before
     public void setUp() throws Exception {
         super.setUpFixture();
-        super.setUpApplication(application);
-        super.setUpResource(todoResource);
-        super.setUpResource(todosResource);
-        super.setUpResource(putTodoResource);
-        super.setUpResource(postTodoResource);
-        super.setUpResource(postListResource);
+
         setUpTodosRepository(new TodosRepository());
         setUpListRepository(new ListsRepository());
+
+        Context context = super.setUpApplication(application);
+        super.setUpResource(todoResource,context);
+        super.setUpResource(todosResource,context);
+        super.setUpResource(putTodoResource,context);
+        super.setUpResource(postTodoResource,context);
+        super.setUpResource(postListResource,context);
+        //Mockito.when(postListResource.getService(ListService.class)).thenReturn(new ListService(null));
         setUpSubject("admin");
 
         new UniquePerOwnerValidator().setDbService(testDb);

@@ -18,9 +18,7 @@
 package de.twenty11.skysail.server.osgi;
 
 import io.skysail.server.app.SkysailApplication;
-import io.skysail.server.menus.*;
-
-import java.util.*;
+import io.skysail.server.menus.MenuItemProvider;
 
 import org.osgi.service.cm.ConfigurationAdmin;
 import org.restlet.security.Role;
@@ -29,7 +27,6 @@ import aQute.bnd.annotation.component.Component;
 import de.twenty11.skysail.server.app.ApplicationProvider;
 import de.twenty11.skysail.server.core.restlet.*;
 import de.twenty11.skysail.server.osgi.osgimonitor.resources.*;
-import de.twenty11.skysail.server.services.*;
 
 @Component
 public class OsgiMonitorViewerApplication extends SkysailApplication implements ApplicationProvider, MenuItemProvider {
@@ -52,9 +49,9 @@ public class OsgiMonitorViewerApplication extends SkysailApplication implements 
         router.attach(new RouteBuilder("/", OsgiMonitorRootResource.class));
         Role admin = getFrameworkRole("admin");
         router.attach(new RouteBuilder("/bundles", BundlesResource.class).authorizeWith(anyOf("admin")));
-        
+
         router.attach(new RouteBuilder("/bundlesgraph", BundlesGraphResource.class).authorizeWith(anyOf("admin")));
-        
+
      //   router.attach(new RouteBuilder("/bundles/asGraph", IFrameResource.class).setText("Bundles as visualized Graph"));
         //router.attach(new RouteBuilder("/bundles/asGraph/", BundlesAsGraphResource.class).setText("Json Graph representation"));
      //   router.attach(new RouteBuilder("/bundles/asGraph/d3Simple", BundlesAsD3GraphResource.class));
@@ -75,12 +72,7 @@ public class OsgiMonitorViewerApplication extends SkysailApplication implements 
         // @formatter:on
     }
 
-    @Override
-    public List<MenuItem> getMenuEntries() {
-        MenuItem appMenu = new MenuItem("OSGi", "/OSGi" + getApiVersion().getVersionPath(), this);
-    	appMenu.setCategory(MenuItem.Category.APPLICATION_MAIN_MENU);
-        return Arrays.asList(appMenu);
-    }
+
 
     public synchronized void setConfigAdmin(ConfigurationAdmin configadmin) {
         // logger.info("setting configadmin in Skysail Configuration");

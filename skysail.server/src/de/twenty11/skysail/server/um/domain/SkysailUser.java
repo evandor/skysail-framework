@@ -90,6 +90,6 @@ public class SkysailUser implements Identifiable {
     }
 
     @Override
-    public void setId(String id) {
+    public void setId(String id) { // NOSONAR
     }
 }

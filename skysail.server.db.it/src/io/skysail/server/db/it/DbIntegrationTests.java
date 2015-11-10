@@ -14,6 +14,8 @@ import aQute.bnd.annotation.component.*;
  * Integration test starting OSGi, including database and (not-mocked) resources
  * (but no Browser) to verify the correct behavior of the bean-to-vertex and
  * vertex-to-bean chains.
+ *
+ * Run as Bnd OSGi Test Launcher
  */
 @Component(immediate = true)
 public class DbIntegrationTests extends IntegrationTests {

@@ -24,6 +24,7 @@ import org.junit.rules.ExpectedException;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
+import org.osgi.service.event.EventAdmin;
 import org.restlet.*;
 import org.restlet.data.*;
 import org.restlet.engine.resource.VariantInfo;
@@ -106,10 +107,12 @@ public class ResourceTestBase {
 
     }
 
-    public void setUpApplication(SkysailApplication app) {
+    public Context setUpApplication(SkysailApplication app) {
         this.application = app;
 
         ServiceListProvider service = Mockito.mock(ServiceListProvider.class);
+        AtomicReference<EventAdmin> eventAdmin = new AtomicReference<>();
+        Mockito.when(service.getEventAdmin()).thenReturn(eventAdmin);
         app.setServiceListProvider(service);
 
         validatorServiceRef = new AtomicReference<>();
@@ -122,17 +125,20 @@ public class ResourceTestBase {
         Mockito.doReturn(validatorServiceRef).when(app).getValidatorService();
         Mockito.doReturn(encryptorServiceRef).when(app).getEncryptorService();
 
-       // Mockito.when(app.startPerformanceMonitoring(Mockito.anyString())).thenReturn(Collections.emptySet());
         Mockito.doReturn(Collections.emptySet()).when(app).startPerformanceMonitoring(Mockito.anyString());
+
+        app.createInboundRoot();
+
+        return app.getContext();
     }
 
-    public void setUpResource(Resource resource) throws Exception {
+    public void setUpResource(Resource resource, Context context) throws Exception {
         Mockito.doReturn(application).when(resource).getApplication();
         Mockito.doReturn(query).when(resource).getQuery();
 
         Response response = new Response(request);
         responses.put(resource.getClass().getName(), response);
-        resource.init(null, request, response);
+        resource.init(context, request, response);
     }
 
     @After
@@ -147,10 +153,7 @@ public class ResourceTestBase {
             org.apache.shiro.mgt.SecurityManager securityManager = getSecurityManager();
             LifecycleUtils.destroy(securityManager);
         } catch (UnavailableSecurityManagerException e) {
-            // we don't care about this when cleaning up the test environment
-            // (for example, maybe the subclass is a unit test and it didn't
-            // need a SecurityManager instance because it was using only
-            // mock Subject instances)
+            // NOSONAR no problem
         }
         setSecurityManager(null);
     }

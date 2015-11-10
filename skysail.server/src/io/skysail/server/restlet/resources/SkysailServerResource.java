@@ -328,7 +328,7 @@ public abstract class SkysailServerResource<T> extends ServerResource {
         }
     }
 
-    protected void copyProperties(T dest, T orig) {
+    public void copyProperties(T dest, T orig) {
         try {
             SkysailBeanUtils beanUtilsBean = new SkysailBeanUtils(orig, ResourceUtils.determineLocale(this));
             beanUtilsBean.copyProperties(dest, orig, this);
@@ -393,4 +393,7 @@ public abstract class SkysailServerResource<T> extends ServerResource {
         return result;
     }
 
+    public <S> S getService(Class<S> cls) {
+        return cls.cast(getContext().getAttributes().get(cls.getName()));
+    }
 }

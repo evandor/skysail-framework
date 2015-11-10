@@ -38,9 +38,6 @@ public class TodoList implements Serializable, Identifiable {
     @ListView(link = TodosResource.class, truncate = 20)
     private String name;
 
-    @Field(inputType=InputType.READONLY)
-    private Long todosCount;
-
     @Field(inputType = InputType.TEXTAREA)
     private String desc;
 
@@ -57,16 +54,10 @@ public class TodoList implements Serializable, Identifiable {
     @ListView(hide = true)
     private String owner;
 
-    //@Field(inputType = InputType.MULTISELECT, repository = RoleRepository.class, selectionProvider = RolesSelectionProvider.class)
-    //private List<Role> roles = new ArrayList<>();
     @Field(repository = TodosRepository.class)
     @PostView(visibility = Visibility.HIDE)
     @PutView(visibility = Visibility.HIDE)
     private List<Todo> todos = new ArrayList<>();
-
-    public long todosCount() { // NO_UCD
-        return todosCount;
-    }
 
     public TodoList(String name) {
         this.name = name;

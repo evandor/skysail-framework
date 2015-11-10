@@ -21,8 +21,8 @@ public class TodosProductLargeTests {
     @Managed(driver = "firefox")
     private static WebDriver driver;
 
-    @Rule
-    public final SkysailServerRule serverRule = new SkysailServerRule("todos.largetest.bndrun" );
+    @ClassRule
+    public static final SkysailServerRule serverRule = new SkysailServerRule("todos.largetest.bndrun" );
 
     @Steps
     BrowserSteps browserSteps;
@@ -54,6 +54,7 @@ public class TodosProductLargeTests {
     }
 
     @Test
+    @Ignore
     public void admin_cannot_login_with_wrong_credentials() {
         browserSteps.loginAs("admin","xxx");
         assertThat(driver.getPageSource(), not(containsString("/Todos/v2")));

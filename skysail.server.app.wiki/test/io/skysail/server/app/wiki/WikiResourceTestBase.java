@@ -9,6 +9,7 @@ import java.util.HashMap;
 
 import org.apache.shiro.subject.SimplePrincipalMap;
 import org.mockito.Mockito;
+import org.restlet.Context;
 
 public abstract class WikiResourceTestBase extends ResourceTestBase {
 
@@ -17,8 +18,8 @@ public abstract class WikiResourceTestBase extends ResourceTestBase {
     public void setUp(SkysailServerResource<?> resource) throws Exception {
         super.setUpFixture();
 
-        super.setUpApplication(Mockito.mock(WikiApplication.class));
-        super.setUpResource(resource);
+        Context context = super.setUpApplication(Mockito.mock(WikiApplication.class));
+        super.setUpResource(resource, context);
 
         spacesRepo = new SpacesRepository();
         spacesRepo.setDbService(testDb);

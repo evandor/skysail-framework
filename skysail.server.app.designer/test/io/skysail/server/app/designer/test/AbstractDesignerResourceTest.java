@@ -15,6 +15,7 @@ import java.util.HashMap;
 import org.apache.shiro.subject.SimplePrincipalMap;
 import org.junit.Before;
 import org.mockito.*;
+import org.restlet.Context;
 
 public abstract class AbstractDesignerResourceTest extends ResourceTestBase {
 
@@ -49,15 +50,15 @@ public abstract class AbstractDesignerResourceTest extends ResourceTestBase {
     public void setUp() throws Exception {
         super.setUpFixture();
 
-        super.setUpApplication(Mockito.mock(DesignerApplication.class));
-        super.setUpResource(applicationResource);
-        super.setUpResource(applicationsResource);
-        super.setUpResource(putApplicationResource);
-        super.setUpResource(postApplicationResource);
-        super.setUpResource(entityResource);
-        super.setUpResource(entitiesResource);
-        super.setUpResource(putEntityResource);
-        super.setUpResource(postEntityResource);
+        Context context = super.setUpApplication(Mockito.mock(DesignerApplication.class));
+        super.setUpResource(applicationResource, context);
+        super.setUpResource(applicationsResource, context);
+        super.setUpResource(putApplicationResource, context);
+        super.setUpResource(postApplicationResource, context);
+        super.setUpResource(entityResource, context);
+        super.setUpResource(entitiesResource, context);
+        super.setUpResource(putEntityResource, context);
+        super.setUpResource(postEntityResource, context);
         setUpRepository(new DesignerRepository());
         setUpSubject("admin");
     }

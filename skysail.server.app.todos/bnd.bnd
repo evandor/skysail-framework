@@ -77,14 +77,16 @@ Include-Resource: resources, templates=src;recursive:=true;filter:=*.st|*.stg
 	io.skysail.bundled.lambdaj;version=2.3,\
 	org.apache.servicemix.bundles.cglib;version=3.1,\
 	io.skysail.bundled.tinkerpop.blueprints-core;version=2.6,\
-    com.sun.jna;version=4.2,\
-	com.sun.jna.platform;version=4.2
+	com.sun.jna;version=4.2,\
+	com.sun.jna.platform;version=4.2,\
+	${jetty}
 
 Import-Package: org.osgi.framework,\
 	javassist.util.proxy,\
 	*
 Private-Package:  \
 	io.skysail.server.app.todos.todos.resources,\
+	io.skysail.server.app.todos.services,\
 	io.skysail.server.app.todos.lists,\
 	io.skysail.server.app.todos.todos,\
 	io.skysail.server.app.todos.repo,\

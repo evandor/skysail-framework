@@ -2,7 +2,7 @@ package io.skysail.server.app.todos.todos.resources;
 
 import io.skysail.api.links.Link;
 import io.skysail.api.responses.SkysailResponse;
-import io.skysail.server.app.todos.TodoApplication;
+import io.skysail.server.app.todos.services.TodosService;
 import io.skysail.server.app.todos.todos.Todo;
 import io.skysail.server.restlet.resources.EntityServerResource;
 
@@ -12,35 +12,21 @@ import org.restlet.resource.ResourceException;
 
 public class TodoResource extends EntityServerResource<Todo> {
 
-    private String id;
-    private TodoApplication app;
-    private String listId;
+    private TodosService todosService;
 
     @Override
     protected void doInit() throws ResourceException {
-        id = getAttribute("id");
-        listId = getAttribute(TodoApplication.LIST_ID);
-        app = (TodoApplication) getApplication();
+        todosService = getService(TodosService.class);
     }
 
     @Override
     public Todo getEntity() {
-        Todo todo = app.getTodosRepo().getById(id);
-        Integer views = todo.getViews();
-        todo.setViews(views == null ? 1 : views + 1);
-        app.getTodosRepo().update(todo.getId(), todo);
-        return todo;
-    }
-
-    @Override
-    public String getId() {
-        return null;
+        return todosService.getTodo(this, getAttribute("id"));
     }
 
     @Override
     public SkysailResponse<?> eraseEntity() {
-        app.getTodosRepo().delete(id);
-        return new SkysailResponse<String>();
+        return todosService.delete(this, getAttribute("id"));
     }
 
     @Override
@@ -52,12 +38,5 @@ public class TodoResource extends EntityServerResource<Todo> {
     public String redirectTo() {
         return super.redirectTo(TodosResource.class);
     }
-
-//    @Override
-//    public Consumer<? super Link> getPathSubstitutions() {
-//        return l -> {
-//            l.substitute(TodoApplication.LIST_ID, listId);
-//        };
-//    }
 
 }

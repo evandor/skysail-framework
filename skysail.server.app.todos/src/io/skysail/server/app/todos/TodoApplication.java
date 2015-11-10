@@ -6,6 +6,7 @@ import io.skysail.server.app.todos.charts.ListChartResource;
 import io.skysail.server.app.todos.columns.ListAsColumnsResource;
 import io.skysail.server.app.todos.lists.*;
 import io.skysail.server.app.todos.repo.*;
+import io.skysail.server.app.todos.services.*;
 import io.skysail.server.app.todos.statuses.*;
 import io.skysail.server.app.todos.todos.Todo;
 import io.skysail.server.app.todos.todos.resources.*;
@@ -89,6 +90,9 @@ public class TodoApplication extends SkysailApplication implements ApplicationPr
     protected void attach() {
         super.attach();
 
+        addService(new ListService(listRepo));
+        addService(new TodosService(listRepo, todosRepo));
+
         router.attach(new RouteBuilder("", Top10TodosResource.class));
 
         router.attach(new RouteBuilder("/Statuses", StatusesResource.class));
@@ -108,6 +112,7 @@ public class TodoApplication extends SkysailApplication implements ApplicationPr
         router.attach(new RouteBuilder("/TodosTimeline", TodosTimelineResource.class));
 
         router.attach(new RouteBuilder("/Todos/_columns", ListAsColumnsResource.class));
+        router.attach(new RouteBuilder("/Todos/_all", TodosWithoutListResource.class));
 
         router.attach(new RouteBuilder("/Todos/{"+TODO_ID+"}", TodoResource.class));
         router.attach(new RouteBuilder("/Todos/{"+TODO_ID+"}/", PutTodoResource.class));
@@ -140,7 +145,7 @@ public class TodoApplication extends SkysailApplication implements ApplicationPr
 
     public String getDefaultList(Request request) {
         List<TodoList> usersDefaultLists = getUsersDefaultLists(request);
-        if (usersDefaultLists.size() > 0) {
+        if (!usersDefaultLists.isEmpty()) {
             return usersDefaultLists.get(0).getId();
         }
         return null;

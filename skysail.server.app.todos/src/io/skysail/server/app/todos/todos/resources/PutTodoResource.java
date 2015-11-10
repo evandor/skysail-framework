@@ -4,45 +4,34 @@ import io.skysail.api.links.Link;
 import io.skysail.api.responses.SkysailResponse;
 import io.skysail.server.app.todos.TodoApplication;
 import io.skysail.server.app.todos.lists.ListsResource;
-import io.skysail.server.app.todos.ranking.Ranker;
+import io.skysail.server.app.todos.services.TodosService;
 import io.skysail.server.app.todos.todos.Todo;
 import io.skysail.server.restlet.resources.*;
 
-import java.util.*;
+import java.util.List;
 
 import org.restlet.resource.ResourceException;
 
 public class PutTodoResource extends PutEntityServerResource<Todo> {
 
     private TodoApplication app;
+    private TodosService todosService;
 
     @Override
     protected void doInit() throws ResourceException {
         super.doInit();
         app = (TodoApplication) getApplication();
+        todosService = getService(TodosService.class);
     }
 
     @Override
     public Todo getEntity() {
-         Todo todo = app.getTodosRepo().findOne(getAttribute(TodoApplication.TODO_ID));
-         todo.setViews(todo.getViews() != null ? 1 + todo.getViews() : 1);
-         app.getTodosRepo().update(todo.getId(), todo, "todos");
-         return todo;
+        return todosService.getTodo(this, getAttribute(TodoApplication.TODO_ID));
     }
 
     @Override
     public SkysailResponse<Todo> updateEntity(Todo entityFromTheWire) {
-        Todo entityToBeUpdated = getEntity(null);
-        copyProperties(entityToBeUpdated,entityFromTheWire);
-        entityToBeUpdated.setModified(new Date());
-        entityToBeUpdated.setUrgency(Ranker.calcUrgency(entityToBeUpdated));
-        //original.setParent(null);
-        Integer views = entityToBeUpdated.getViews();
-        if (views == null) {
-            entityToBeUpdated.setViews(1);
-        }
-        app.getTodosRepo().update(getAttribute(TodoApplication.LIST_ID), entityToBeUpdated, "todos");
-        return new SkysailResponse<>(entityToBeUpdated);
+        return todosService.update(this, entityFromTheWire);
     }
 
     @Override

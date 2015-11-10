@@ -13,23 +13,23 @@ index(user, messages, source, converter, services, resource, fields, target) ::=
 
     <!-- jQuery -->
     <script type="text/javascript" src="/webapp/js/jquery-1.11.1.js"></script>
-        
+
     <link href="/webapp/css/bootstrap.min.css" rel="stylesheet">
     <link href="/webapp/css/bootstrap-theme.min.css" rel="stylesheet">
-    
+
     <!-- <link rel="stylesheet" href="//ivaynberg.github.io/select2/select2-3.5.2/select2.css"> -->
     <link rel="stylesheet" href="/webapp/css/select2.css">
     <link rel="stylesheet" href="/webapp/css/select2-bootstrap.css">
-    
+
     <!-- jstree -->
     <link rel="stylesheet" href="/static/themes/jstree/style.min.css" />
     <script src="/static/js/jstree/jstree.min.js"></script>
-    
+
     <script type="text/javascript" src="/webapp/js/select2.js"></script>
-    $select2JsHead(fields)$    
+    $select2JsHead(fields)$
     <script type="text/javascript" src="/webapp/js/moment.js"></script>
     $endOfHeaderJS()$
-    
+
     <style>
         #container { min-width:320px; margin:0px auto 0 auto; background:white; border-radius:0px; padding:0px; overflow:hidden; }
         #tree { float:left; min-width:319px; border-right:1px solid silver; overflow:auto; padding:0px 0; }
@@ -62,7 +62,7 @@ index(user, messages, source, converter, services, resource, fields, target) ::=
         #tree .file-css { background-position: -144px -0px }
         #tree .file-fla { background-position: -398px -0px }
     </style>
-        
+
   </head>
 
   <body role="document">
@@ -109,9 +109,9 @@ index(user, messages, source, converter, services, resource, fields, target) ::=
     </div>
 
     <br><br><br>
-    
+
     <div class="container-fluid">
-      <div class="col-md-1">&nbsp;</div>    
+      <div class="col-md-1">&nbsp;</div>
       <div class="col-md-10">
         <div class="row">
             $breadcrumb(resource)$
@@ -124,14 +124,14 @@ index(user, messages, source, converter, services, resource, fields, target) ::=
         </div>
         <div class="row">
             $if(converter.edit)$
-              <a href='/i18n/messages/$resource.classname$.message/'>edit</a>
+              <a href='/i18n/v1/messages/$resource.classname$.message/'>edit</a>
               $contentHeader(messages)$
             $else$
               $contentHeader(messages)$
             $endif$
         </div>
         <div class="row">
-          
+
          <div id="jstree">
            <ul>
             <li>Application
@@ -153,11 +153,11 @@ index(user, messages, source, converter, services, resource, fields, target) ::=
             <div class="content image" style="display:none; position:relative;"><img src="" alt="" style="display:block; position:absolute; left:50%; top:50%; padding:0; max-height:90%; max-width:90%;" /></div>
             <div class="content default" style="text-align:center;">Select a file from the tree.</div>
         </div>
-         
+
         </div>
         $if(converter.debug)$
             $debug(resource, source, target, messages)$
-        $endif$ 
+        $endif$
       </div>
       <div class="col-md-1">&nbsp;</div>
     </div>
@@ -168,8 +168,8 @@ index(user, messages, source, converter, services, resource, fields, target) ::=
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="/webapp/js/bootstrap.min.js"></script>
     $notifications(converter.notifications)$
-    $select2JsEndOfBody(fields)$ 
-    
+    $select2JsEndOfBody(fields)$
+
     <script>
     \$(function () {
 		/*\$(window).resize(function () {

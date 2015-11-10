@@ -57,7 +57,7 @@ public class PostListResourceTest extends AbstractListResourceTest {
         form.add("defaultList", "on");
         SkysailResponse<TodoList> result = postListresource.post(form, HTML_VARIANT);
 
-        assertThat(responses.get(postListresource.getClass().getName()).getStatus(),is(Status.SUCCESS_CREATED));
+        assertThat(responses.get(postListresource.getClass().getName()).getStatus(),is(Status.REDIRECTION_SEE_OTHER));
         assertThat(result.getEntity().isDefaultList(),is(true));
     }
 
@@ -67,7 +67,7 @@ public class PostListResourceTest extends AbstractListResourceTest {
         form.add("name", "name_users_first_list_becomes_default_even_if_not_flagged_as_such");
         SkysailResponse<TodoList> result = postListresource.post(form, HTML_VARIANT);
 
-        assertThat(responses.get(postListresource.getClass().getName()).getStatus(),is(Status.SUCCESS_CREATED));
+        assertThat(responses.get(postListresource.getClass().getName()).getStatus(),is(Status.REDIRECTION_SEE_OTHER));
         assertThat(result.getEntity().isDefaultList(),is(true));
     }
 

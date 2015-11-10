@@ -1,0 +1,64 @@
+2015-11-10 15:00:26,794 INFO  [io.skysail.server.app.ApplicationList        ] - (+) Adding application 'root'
+2015-11-10 15:00:26,803 INFO  [i.s.s.f.r.ConfigAdminFeatureStateRepository  ] - activating ConfigAdminFeatureStateRepository with config {USE_CREDENTIALS_CACHE_FEATURE=true, service.pid=io.skysail.server.features.repositories.ConfigAdminFeatureStateRepository, de.twenty11.skysail.server.core.restlet.SecurityFeatures.ALLOW_ORIGIN_FEATURE=true, component.name=io.skysail.server.features.repositories.ConfigAdminFeatureStateRepository, felix.fileinstall.filename=file:/C:/git/skysail-framework/skysail.product.designer/config/common/io.skysail.server.features.repositories.ConfigAdminFeatureStateRepository.cfg, component.id=12}
+2015-11-10 15:00:26,807 INFO  [io.skysail.server.services.ServerLoad        ] - activating ServerLoad task
+2015-11-10 15:00:26,810 INFO  [io.skysail.server.services.ServerTime        ] - activating ServerTime task
+2015-11-10 15:00:26,829 INFO  [io.skysail.server.app.ApplicationList        ] - (+) Adding application 'webapp'
+2015-11-10 15:00:26,862 INFO  [io.skysail.server.db.DbConfigurations        ] - activating DbConfigurations with config DbConfig(name=skysailgraph, driver=, url=remote:localhost/skysailcrm, username=admin)
+2015-11-10 15:00:26,954 INFO  [i.skysail.server.db.OrientGraphDbService     ] - about to start db
+2015-11-10 15:00:26,955 INFO  [i.skysail.server.db.OrientGraphDbService     ] - registering remote engine
+2015-11-10 15:00:27,675 INFO  [i.skysail.server.db.OrientGraphDbService     ] - setting lazy loading to false
+2015-11-10 15:00:27,694 INFO  [i.s.s.d.versions.impl.VersionsRepository     ] - activating VersionsRepository
+2015-11-10 15:00:27,713 INFO  [io.skysail.server.app.Repositories           ] - adding repository (#1) with name 'io.skysail.server.db.versions.impl.ComponentDbVersion'
+2015-11-10 15:00:27,749 INFO  [io.skysail.server.http.HttpServer            ] - Activating io.skysail.server.http.HttpServer
+2015-11-10 15:00:27,754 INFO  [d.t.skysail.server.SkysailComponent          ] - Creating Restlet Component: de.twenty11.skysail.server.SkysailComponent
+2015-11-10 15:00:27,768 INFO  [io.skysail.server.http.HttpServer            ] - configuration was provided
+2015-11-10 15:00:27,769 INFO  [io.skysail.server.http.HttpServer            ] - 
+2015-11-10 15:00:27,769 INFO  [io.skysail.server.http.HttpServer            ] - ====================================
+2015-11-10 15:00:27,769 INFO  [io.skysail.server.http.HttpServer            ] - Starting skysail server on port 2015
+2015-11-10 15:00:27,770 INFO  [io.skysail.server.http.HttpServer            ] - ====================================
+2015-11-10 15:00:27,770 INFO  [io.skysail.server.http.HttpServer            ] - 
+2015-11-10 15:00:27,775 INFO  [io.skysail.server.app.ApplicationList        ] - (+) Adding application 'OSGi'
+2015-11-10 15:00:27,776 INFO  [org.eclipse.jetty.util.log                   ] - Logging initialized @4618ms
+2015-11-10 15:00:27,791 INFO  [io.skysail.server.app.ApplicationList        ] - (+) Adding application 'Performance'
+2015-11-10 15:00:27,799 INFO  [org.restlet                                  ] - Starting the Jetty [HTTP/1.1] server on port 2015
+2015-11-10 15:00:27,801 INFO  [org.eclipse.jetty.server.Server              ] - jetty-9.2.11.v20150529
+2015-11-10 15:00:27,802 INFO  [io.skysail.server.app.ApplicationList        ] - (+) Adding application 'static'
+2015-11-10 15:00:27,833 INFO  [io.skysail.server.app.ApplicationList        ] - (+) Adding application 'i18n'
+2015-11-10 15:00:27,846 INFO  [org.eclipse.jetty.server.ServerConnector     ] - Started ServerConnector@53d19bd3{HTTP/1.1}{0.0.0.0:2015}
+2015-11-10 15:00:27,847 INFO  [org.eclipse.jetty.server.Server              ] - Started @4689ms
+2015-11-10 15:00:27,858 INFO  [io.skysail.server.app.ApplicationList        ] - (+) Adding application 'usermanagement'
+2015-11-10 15:00:27,962 INFO  [i.s.s.http.javamelody.EmbeddedServer         ] - setting 'storage-directory' to 'C:/tmp/javamelody'
+2015-11-10 15:00:27,962 INFO  [i.s.s.http.javamelody.EmbeddedServer         ] - setting 'authorized-users' to 'admin:pwd'
+2015-11-10 15:00:27,963 INFO  [i.s.s.http.javamelody.EmbeddedServer         ] - setting 'sampling-seconds' to '1.0'
+2015-11-10 15:00:27,963 INFO  [i.s.s.http.javamelody.EmbeddedServer         ] - setting 'monitoring-path' to '/'
+2015-11-10 15:00:27,969 INFO  [org.eclipse.jetty.server.Server              ] - jetty-9.2.11.v20150529
+2015-11-10 15:00:28,039 INFO  [org.quartz.impl.StdSchedulerFactory          ] - Using default implementation for ThreadExecutor
+2015-11-10 15:00:28,041 INFO  [org.quartz.simpl.SimpleThreadPool            ] - Job execution threads will use class loader of thread: main
+2015-11-10 15:00:28,055 INFO  [org.quartz.core.SchedulerSignalerImpl        ] - Initialized Scheduler Signaller of type: class org.quartz.core.SchedulerSignalerImpl
+2015-11-10 15:00:28,056 INFO  [org.quartz.core.QuartzScheduler              ] - Quartz Scheduler v.2.2.1 created.
+2015-11-10 15:00:28,057 INFO  [org.quartz.simpl.RAMJobStore                 ] - RAMJobStore initialized.
+2015-11-10 15:00:28,059 INFO  [org.quartz.core.QuartzScheduler              ] - Scheduler meta-data: Quartz Scheduler (v2.2.1) 'DefaultQuartzScheduler' with instanceId 'NON_CLUSTERED'
+  Scheduler class: 'org.quartz.core.QuartzScheduler' - running locally.
+  NOT STARTED.
+  Currently in standby mode.
+  Number of jobs executed: 0
+  Using thread pool 'org.quartz.simpl.SimpleThreadPool' - with 10 threads.
+  Using job-store 'org.quartz.simpl.RAMJobStore' - which does not support persistence. and is not clustered.
+
+2015-11-10 15:00:28,059 INFO  [org.quartz.impl.StdSchedulerFactory          ] - Quartz scheduler 'DefaultQuartzScheduler' initialized from default resource file in Quartz package: 'quartz.properties'
+2015-11-10 15:00:28,060 INFO  [org.quartz.impl.StdSchedulerFactory          ] - Quartz scheduler version: 2.2.1
+2015-11-10 15:00:28,263 INFO  [o.e.jetty.server.handler.ContextHandler      ] - Started o.e.j.s.ServletContextHandler@9205c0a{/,null,AVAILABLE}
+2015-11-10 15:00:28,264 WARN  [o.e.j.server.handler.RequestLogHandler       ] - !RequestLog
+2015-11-10 15:00:28,270 INFO  [org.eclipse.jetty.server.ServerConnector     ] - Started ServerConnector@255ed8e4{HTTP/1.1}{0.0.0.0:8090}
+2015-11-10 15:00:28,270 INFO  [org.eclipse.jetty.server.Server              ] - Started @5112ms
+2015-11-10 15:00:28,276 INFO  [i.s.s.a.b.repo.BookmarksRepository           ] - activating VersionsRepository
+2015-11-10 15:00:28,292 INFO  [io.skysail.server.app.Repositories           ] - adding repository (#2) with name 'io.skysail.server.app.bookmarks.Bookmark'
+2015-11-10 15:00:28,295 INFO  [io.skysail.server.app.ApplicationList        ] - (+) Adding application 'Bookmarks'
+2015-11-10 15:00:28,314 INFO  [io.skysail.server.app.Repositories           ] - adding repository (#3) with name 'io.skysail.server.app.dbviewer.Connection'
+2015-11-10 15:00:28,318 INFO  [io.skysail.server.app.ApplicationList        ] - (+) Adding application 'dbviewer'
+2015-11-10 15:00:28,324 INFO  [io.skysail.server.app.ApplicationList        ] - (+) Adding application 'svgedit'
+2015-11-10 15:00:28,347 INFO  [io.skysail.server.app.Repositories           ] - adding repository (#4) with name 'io.skysail.server.app.tap.Place'
+2015-11-10 15:00:28,350 INFO  [io.skysail.server.app.ApplicationList        ] - (+) Adding application 'TapApplication'
+2015-11-10 15:00:28,365 INFO  [io.skysail.server.app.Repositories           ] - adding repository (#5) with name 'io.skysail.server.app.tap.Thing'
+2015-11-10 15:00:28,387 INFO  [io.skysail.server.app.ApplicationList        ] - (+) Adding application 'Twitter'
+2015-11-10 15:00:28,432 INFO  [io.skysail.server.app.ApplicationList        ] - (+) Adding application 'AppDesigner'

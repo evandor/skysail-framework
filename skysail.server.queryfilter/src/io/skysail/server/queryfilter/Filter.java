@@ -150,6 +150,10 @@ public class Filter {
                     ps.put(node.getAttribute(), node.getValue());
                 }
                 return ps;
+            } else if (arg0 instanceof PresentNode) {
+                PresentNode node = (PresentNode) arg0;
+                ps.append(node.getAttribute()).append(" is ").append(" NOT NULL");
+                return ps;
             } else {
                 throw new IllegalStateException("cannot visit node of type " + arg0.getClass());
             }

@@ -16,6 +16,10 @@ import org.junit.Before;
 import org.mockito.*;
 import org.restlet.Context;
 
+/**
+ * creates spies for all list resources and wires up the list test cases.
+ *
+ */
 public abstract class AbstractListResourceTest extends ResourceTestBase {
 
     @Spy

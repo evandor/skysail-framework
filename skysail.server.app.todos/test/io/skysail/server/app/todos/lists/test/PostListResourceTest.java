@@ -16,25 +16,6 @@ import com.tinkerpop.blueprints.impls.orient.OrientVertex;
 public class PostListResourceTest extends AbstractListResourceTest {
 
     @Test
-    public void empty_form_data_yields_validation_failure() {
-        ConstraintViolationsResponse<?> post = (ConstraintViolationsResponse<?>) postListresource.post(form, HTML_VARIANT);
-        assertSingleValidationFailure(postListresource, post,  "name", "may not be null");
-    }
-
-    @Test
-    public void empty_json_data_yields_validation_failure() {
-        ConstraintViolationsResponse<?> post = (ConstraintViolationsResponse<?>) postListresource.post(new TodoList(), JSON_VARIANT);
-        assertSingleValidationFailure(postListresource, post, "name", "may not be null");
-    }
-
-    @Test
-    public void valid_form_data_yields_new_entity() {
-        form.add("name", "list1");
-        SkysailResponse<TodoList> result = postListresource.post(form, HTML_VARIANT);
-        assertListResult(postListresource, result, "list1");
-    }
-
-    @Test
     public void valid_json_data_yields_new_entity() {
         SkysailResponse<TodoList> result = postListresource.post(new TodoList("jsonList1"), JSON_VARIANT);
         assertThat(responses.get(postListresource.getClass().getName()).getStatus(),is(equalTo(Status.SUCCESS_CREATED)));
@@ -89,14 +70,6 @@ public class PostListResourceTest extends AbstractListResourceTest {
 
         assertThat(vertexById1.getProperty("defaultList"), is(false));
         assertThat(vertexById2.getProperty("defaultList"), is(true));
-//
-//
-//
-//        List<TodoList> lists = listsResource.getEntity();
-//
-//        assertThat(lists.size(),is(2));
-//        assertThat(lists.stream().filter(l -> l.getId().equals(id1)).findFirst().orElseThrow(IllegalStateException::new).isDefaultList(),is(false));
-//        assertThat(lists.stream().filter(l -> l.getId().equals(id2)).findFirst().orElseThrow(IllegalStateException::new).isDefaultList(),is(true));
     }
 
 }

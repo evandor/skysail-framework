@@ -11,11 +11,12 @@ import org.junit.experimental.categories.Category;
 import org.junit.runner.RunWith;
 import org.mockito.MockitoAnnotations;
 
-@Narrative(text={
-        "In order to manage todos",
-        "As a user",
-        "I want to be able to organize them in lists"})
-
+/**
+ * Seems I cannot run/debug this from inside the IDE...
+ * on console run in folder skysail.server.app.todos:  "g2 clean mediumTest aggregate".
+ * To attach debugger, use: export GRADLE_OPTS="-Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=y,address=5006"
+ */
+@Narrative(text = { "In order to manage todos", "As a user", "I want to be able to organize them in lists" })
 @RunWith(SerenityRunner.class)
 @Category(MediumTests.class)
 public class TodoListTests extends AbstractListResourceTest {
@@ -33,6 +34,12 @@ public class TodoListTests extends AbstractListResourceTest {
     @Test
     public void posting_empty_form_should_result_in_http_status_400() {
         listSteps.post("");
+        listSteps.hasSingleValidationFailure("name", "may not be null");
+    }
+
+    @Test
+    public void empty_json_data_yields_validation_failure() {
+        listSteps.post(new TodoList());
         listSteps.hasSingleValidationFailure("name", "may not be null");
     }
 

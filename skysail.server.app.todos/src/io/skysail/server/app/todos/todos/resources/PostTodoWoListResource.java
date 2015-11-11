@@ -23,8 +23,8 @@ public class PostTodoWoListResource extends PostTodoResource {
         entity.setOwner(subject.getPrincipal().toString());
         entity.setStatus(Status.NEW);
         entity.setRank(1);
-        listIdFromEntity = entity.getParent().replace("#","");
-        entity.setParent(listIdFromEntity);
+//        listIdFromEntity = entity.getParent().replace("#","");
+//        entity.setParent(listIdFromEntity);
         //String id = app.getRepository().add(entity).toString();
         String id = app.getTodosRepo().save(entity, "parent").toString();
         entity.setId(id);

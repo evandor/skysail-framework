@@ -23,6 +23,20 @@ public class ParserTest {
     }
 
     @Test
+    public void isNotNull() throws InvalidSyntaxException {
+        ExprNode parsed = new Parser("(status=*)").parse();
+        assertThat(parsed.getOperation(), is(equalTo(Operation.PRESENT)));
+        assertThat(parsed.isLeaf(), is(true));
+    }
+
+    @Test
+    public void isNull() throws InvalidSyntaxException {
+        ExprNode parsed = new Parser("(!(status=*))").parse();
+        assertThat(parsed.getOperation(), is(equalTo(Operation.NOT)));
+        assertThat(parsed.isLeaf(), is(false));
+    }
+
+    @Test
     public void not() throws InvalidSyntaxException {
         ExprNode parsed = new Parser("(!(status=ARCHIVED))").parse();
         assertThat(parsed.getOperation(), is(equalTo(Operation.NOT)));

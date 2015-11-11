@@ -107,7 +107,7 @@ public abstract class AbstractTodoResourceTest extends ResourceTestBase {
     protected Todo createTodo(TodoList list) {
         Todo aTodo = new Todo();
         aTodo.setTitle("todo_" + randomString());
-        aTodo.setParent(list.getId());
+       // aTodo.setParent(list.getId());
         SkysailResponse<Todo> post = postTodoResource.post(aTodo, JSON_VARIANT);
         getAttributes().clear();
 

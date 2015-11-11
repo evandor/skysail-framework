@@ -59,8 +59,8 @@ public class TodosService {
         return todo;
     }
 
-    public SkysailResponse<Todo> update(PutTodoResource resource, Todo entityFromTheWire) {
-        TodoList list = listRepo.findOne(entityFromTheWire.getParent());
+    public SkysailResponse<Todo> update(PutTodoResource resource, Todo entityFromTheWire, String listId) {
+        TodoList list = listRepo.findOne(listId);
 
         Todo entityToBeUpdated = resource.getEntity(null);
         resource.copyProperties(entityToBeUpdated, entityFromTheWire);

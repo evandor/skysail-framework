@@ -31,7 +31,7 @@ public class PutTodoResource extends PutEntityServerResource<Todo> {
 
     @Override
     public SkysailResponse<Todo> updateEntity(Todo entityFromTheWire) {
-        return todosService.update(this, entityFromTheWire);
+        return todosService.update(this, entityFromTheWire, getAttribute(TodoApplication.LIST_ID));
     }
 
     @Override

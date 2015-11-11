@@ -2,7 +2,7 @@ package io.skysail.server.app.todos.todos;
 
 import io.skysail.api.domain.Identifiable;
 import io.skysail.api.forms.*;
-import io.skysail.server.app.todos.todos.resources.*;
+import io.skysail.server.app.todos.todos.resources.PutTodoResource;
 import io.skysail.server.app.todos.todos.status.*;
 import io.skysail.server.forms.*;
 
@@ -20,7 +20,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @Getter
 @Setter
-@ToString(of = { "id", "title", "parent", "owner" })
+@ToString(of = { "id", "title", "owner" })
 @JsonPropertyOrder({ "title", "desc" })
 @NoArgsConstructor
 @StartDateBeforeDueDate
@@ -33,11 +33,11 @@ public class Todo implements Identifiable {
     @Id
     private String id;
 
-    @Reference(selectionProvider = ListSelectionProvider.class)
-    @PostView(visibility = Visibility.SHOW_IF_NULL)
-    @ListView(hide = true)
-    @ValidListId
-    private String parent;
+//    @Reference(selectionProvider = ListSelectionProvider.class)
+//    @PostView(visibility = Visibility.SHOW_IF_NULL)
+//    @ListView(hide = true)
+//    @ValidListId
+//    private String parent;
 
     @Field
     @ListView(truncate = 30, link = PutTodoResource.class)
@@ -111,10 +111,6 @@ public class Todo implements Identifiable {
             this.due = sdf.parse(dueDate);
         } catch (Exception e) {
             // ignore // NOSONAR
-        }
-        this.parent = listId;
-        if (listId == null) {
-            this.parent = query.getFirstValue("list");
         }
     }
 

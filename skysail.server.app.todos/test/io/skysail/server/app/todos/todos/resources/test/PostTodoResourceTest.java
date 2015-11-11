@@ -3,7 +3,7 @@ package io.skysail.server.app.todos.todos.resources.test;
 import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.Matchers.greaterThan;
 import static org.junit.Assert.assertThat;
-import io.skysail.api.responses.*;
+import io.skysail.api.responses.SkysailResponse;
 import io.skysail.server.app.todos.*;
 import io.skysail.server.app.todos.todos.Todo;
 
@@ -31,16 +31,6 @@ public class PostTodoResourceTest extends AbstractTodoResourceTest {
         form.add("list", aList.getId());
         SkysailResponse<Todo> post = postTodoResource.post(form, HTML_VARIANT);
         assertSingleValidationFailure(postTodoResource, post, "title", "size must be between");
-    }
-
-    @Test
-    public void wrong_list_yields_validation_failure() {
-        form.add("title", "title_" + randomString());
-        form.add("parent", "list_" + randomString());
-        getAttributes().clear();
-        ConstraintViolationsResponse<?> post = (ConstraintViolationsResponse<?>) postTodoResource.post(form,
-                HTML_VARIANT);
-        assertSingleValidationFailure(postTodoResource, post, "parent", "This list does not exist or has another owner");
     }
 
     @Test
@@ -72,7 +62,7 @@ public class PostTodoResourceTest extends AbstractTodoResourceTest {
     public void valid_json_data_yields_new_entity() {
         String title = "title_" + randomString();
         Todo todo = new Todo(title);
-        todo.setParent(aList.getId());
+        //todo.setParent(aList.getId());
         todo.setDue(Date.from(LocalDate.now().plusMonths(1).atStartOfDay().atZone(ZoneId.systemDefault()).toInstant()));
         SkysailResponse<Todo> result = postTodoResource.post(todo, HTML_VARIANT);
 

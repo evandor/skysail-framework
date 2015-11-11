@@ -3,12 +3,12 @@ Bundle-Name: SKYSAIL :: server :: codegen
 Bundle-Description: Annotation processing tool to generate skysail resources from model annotations
 
 Private-Package:  \
-	de.twenty11.skysail.server.ext.apt,\
-	de.twenty11.skysail.server.ext.apt.processors,\
 	io.skysail.server.ext.apt.model.entities,\
 	io.skysail.server.ext.apt.model.types,\
 	io.skysail.server.codegen.apt.processors,\
-	io.skysail.server.codegen.apt.stringtemplate
+	io.skysail.server.codegen.apt.stringtemplate,\
+	io.skysail.server.codegen.model.entities,\
+	io.skysail.server.codegen.model.types
 
 Include-Resource: resources
 
@@ -16,8 +16,10 @@ Import-Package:  \
 	com.sun.tools.javac.code.*,\
 	*
 Export-Package:  \
-	de.twenty11.skysail.server.ext.apt.annotations,\
-	io.skysail.server.ext.apt.annotations
+	io.skysail.server.ext.apt.annotations,\
+	io.skysail.server.ext.apt,\
+	io.skysail.server.codegen.annotations,\
+	io.skysail.server.codegen
 
 -buildpath:  \
 	de.twentyeleven.skysail.org.antlr.stringtemplate-osgi;version=4.0.8,\

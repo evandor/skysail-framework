@@ -1,9 +1,11 @@
 package io.skysail.server.codegen.apt.processors;
 
+import io.skysail.server.codegen.ResourceType;
+import io.skysail.server.codegen.annotations.GenerateResources;
 import io.skysail.server.codegen.apt.stringtemplate.MySTGroupFile;
-import io.skysail.server.ext.apt.annotations.GenerateResources;
+import io.skysail.server.codegen.model.entities.*;
+import io.skysail.server.codegen.model.types.TypeModel2;
 import io.skysail.server.ext.apt.model.entities.*;
-import io.skysail.server.ext.apt.model.types.TypeModel2;
 
 import java.io.*;
 import java.net.URL;
@@ -20,8 +22,6 @@ import lombok.extern.slf4j.Slf4j;
 
 import org.apache.commons.lang3.StringUtils;
 import org.stringtemplate.v4.*;
-
-import de.twenty11.skysail.server.ext.apt.annotations.ResourceType;
 
 @SupportedAnnotationTypes("io.skysail.server.ext.apt.annotations.GenerateResources")
 @SupportedSourceVersion(javax.lang.model.SourceVersion.RELEASE_8)

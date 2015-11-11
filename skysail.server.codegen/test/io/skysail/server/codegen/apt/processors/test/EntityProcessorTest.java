@@ -2,8 +2,8 @@ package io.skysail.server.codegen.apt.processors.test;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
+import io.skysail.server.codegen.annotations.GenerateResources;
 import io.skysail.server.codegen.apt.processors.*;
-import io.skysail.server.ext.apt.annotations.GenerateResources;
 
 import java.util.*;
 

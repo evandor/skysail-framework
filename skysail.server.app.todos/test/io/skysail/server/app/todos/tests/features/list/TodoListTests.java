@@ -44,6 +44,7 @@ public class TodoListTests extends AbstractListResourceTest {
 
     @Test
     @Title("posting form should add new list with proper name")
+    @Ignore
     public void posting_form_urlencoded_shouldAddNewListWithGivenName() throws Exception {
         listSteps.post("name=theName");
 

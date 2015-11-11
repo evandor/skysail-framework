@@ -13,7 +13,8 @@ import org.mockito.MockitoAnnotations;
 
 /**
  * Seems I cannot run/debug this from inside the IDE...
- * on console run in folder skysail.server.app.todos:  "g2 clean mediumTest aggregate"
+ * on console run in folder skysail.server.app.todos:  "g2 clean mediumTest aggregate".
+ * To attach debugger, use: export GRADLE_OPTS="-Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=y,address=5006"
  */
 @Narrative(text = { "In order to manage todos", "As a user", "I want to be able to organize them in lists" })
 @RunWith(SerenityRunner.class)
@@ -44,7 +45,6 @@ public class TodoListTests extends AbstractListResourceTest {
 
     @Test
     @Title("posting form should add new list with proper name")
-    @Ignore
     public void posting_form_urlencoded_shouldAddNewListWithGivenName() throws Exception {
         listSteps.post("name=theName");
 

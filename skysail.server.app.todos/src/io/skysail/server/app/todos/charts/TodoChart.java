@@ -19,7 +19,7 @@ public class TodoChart implements Identifiable {
         this.id = t.getId();
         this.importance = t.getImportance();
         this.urgency = t.getUrgency();
-        this.list = t.getParent();
+        //this.list = t.getParent();
     }
 
 }

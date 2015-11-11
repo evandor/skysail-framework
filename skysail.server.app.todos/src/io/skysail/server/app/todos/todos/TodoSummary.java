@@ -57,7 +57,6 @@ public class TodoSummary implements Identifiable {
     public TodoSummary(Todo todo) {
         this.id = todo.getId();
         this.due = todo.getDue();
-        this.list = todo.getParent().replace("[", "").replace("]","").replace("#", "");
         this.startDate = todo.getStartDate();
         this.status = todo.getStatus();
         this.title = todo.getTitle();

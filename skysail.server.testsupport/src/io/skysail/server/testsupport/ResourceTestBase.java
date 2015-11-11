@@ -35,6 +35,12 @@ import de.twenty11.skysail.server.app.ServiceListProvider;
 import de.twenty11.skysail.server.services.*;
 import de.twenty11.skysail.server.um.domain.SkysailUser;
 
+/**
+ * Base class for resource class testing with a (real) in-memory database.
+ *
+ * Requests, various services and the userManager are mocked.
+ *
+ */
 @RunWith(MockitoJUnitRunner.class)
 public class ResourceTestBase {
 

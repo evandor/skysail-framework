@@ -11,11 +11,11 @@ import org.junit.experimental.categories.Category;
 import org.junit.runner.RunWith;
 import org.mockito.MockitoAnnotations;
 
-@Narrative(text={
-        "In order to manage todos",
-        "As a user",
-        "I want to be able to organize them in lists"})
-
+/**
+ * Seems I cannot run/debug this from inside the IDE...
+ * on console run: skysail.server.app.todos carsten$ g2 clean mediumTest aggregate
+ */
+@Narrative(text = { "In order to manage todos", "As a user", "I want to be able to organize them in lists" })
 @RunWith(SerenityRunner.class)
 @Category(MediumTests.class)
 public class TodoListTests extends AbstractListResourceTest {
@@ -37,7 +37,14 @@ public class TodoListTests extends AbstractListResourceTest {
     }
 
     @Test
+    public void empty_json_data_yields_validation_failure() {
+        listSteps.post(new TodoList());
+        listSteps.hasSingleValidationFailure("name", "may not be null");
+    }
+
+    @Test
     @Title("posting form should add new list with proper name")
+    @Ignore
     public void posting_form_urlencoded_shouldAddNewListWithGivenName() throws Exception {
         listSteps.post("name=theName");
 

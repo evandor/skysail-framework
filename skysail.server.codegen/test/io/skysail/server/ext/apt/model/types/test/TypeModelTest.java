@@ -26,7 +26,7 @@
 //
 //	@Before
 //	public void setUp() throws Exception {
-//		Set<Entity> nodes = new HashSet<>();
+//		Set<AptEntity> nodes = new HashSet<>();
 //		Set<Reference> edges = new HashSet<>();
 //		graph = new EntityGraph(nodes, edges);
 //		skysailApplicationElement = Mockito.mock(Element.class);

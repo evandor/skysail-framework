@@ -1,7 +1,5 @@
-repository(package, name, repo, linkedClasses, imports) ::= <<
+repository(package, name) ::= <<
 package $package$;
-
-$imports$
 
 import javax.annotation.Generated;
 

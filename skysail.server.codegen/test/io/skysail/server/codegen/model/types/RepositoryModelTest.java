@@ -13,7 +13,7 @@ public class RepositoryModelTest extends ModelTestBase {
     @Test
     public void testToString() {
         Mockito.when(name.toString()).thenReturn("Contact");
-        Entity entity = new Entity(element);
+        AptEntity entity = new AptEntity(element);
 
         EntityGraph graph = Mockito.mock(EntityGraph.class);
         JavaModel rootResourceModel = new RepositoryModel(entity, graph);

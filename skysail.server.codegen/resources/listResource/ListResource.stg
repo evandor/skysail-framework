@@ -7,6 +7,9 @@ import io.skysail.server.queryfilter.Filter;
 import io.skysail.server.restlet.resources.ListServerResource;
 import de.twenty11.skysail.server.core.restlet.ResourceContextId;
 
+import javax.annotation.Generated;
+
+@Generated("io.skysail.server.codegen.apt.processors.EntityProcessor")
 public class $name$sResource extends ListServerResource<$name$> {
 
     private $appName$ app;

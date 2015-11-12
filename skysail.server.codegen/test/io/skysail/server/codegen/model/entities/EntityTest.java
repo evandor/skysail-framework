@@ -5,7 +5,7 @@ import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.not;
 import static org.hamcrest.Matchers.nullValue;
 import static org.junit.Assert.assertThat;
-import io.skysail.server.codegen.model.entities.Entity;
+import io.skysail.server.codegen.model.entities.AptEntity;
 
 import javax.lang.model.element.Element;
 import javax.lang.model.element.Name;
@@ -19,11 +19,11 @@ import org.mockito.runners.MockitoJUnitRunner;
 @RunWith(MockitoJUnitRunner.class)
 public class EntityTest {
 
-    private Entity entity;
+    private AptEntity entity;
 
     @Before
     public void setUp() {
-        entity = new Entity("packageName", "simpleName");
+        entity = new AptEntity("packageName", "simpleName");
     }
 
     @Test
@@ -34,16 +34,16 @@ public class EntityTest {
 
     @Test
     public void two_entities_are_equal_if_they_have_the_same_package_and_simpleName() {
-        Entity entity2 = new Entity("packageName", "simpleName");
+        AptEntity entity2 = new AptEntity("packageName", "simpleName");
         assertThat(entity, is(equalTo(entity2)));
         assertThat(entity.hashCode(), is(equalTo(entity2.hashCode())));
     }
 
     @Test
     public void two_entities_are_not_equal_if_they_have_different_packages_or_simpleNames() {
-        Entity entity2 = new Entity("packageName", "simpleName2");
+        AptEntity entity2 = new AptEntity("packageName", "simpleName2");
         assertThat(entity, is(not(equalTo(entity2))));
-        Entity entity3 = new Entity("other", "simpleName");
+        AptEntity entity3 = new AptEntity("other", "simpleName");
         assertThat(entity, is(not(equalTo(entity3))));
     }
 
@@ -58,14 +58,14 @@ public class EntityTest {
         Mockito.when(enclosingElement.toString()).thenReturn("packageName");
         Mockito.when(element.getEnclosingElement()).thenReturn(enclosingElement);
 
-        Entity entity = new Entity(element);
+        AptEntity entity = new AptEntity(element);
         assertThat(entity.getSimpleName(), is(equalTo("simpleName")));
         assertThat(entity.getPackageName(), is(equalTo("packageName")));
     }
 
     @Test
     public void toString_contains_Package_and_simpleName() {
-        assertThat(entity.toString(), is(equalTo("Entity(packageName, simpleName)")));
+        assertThat(entity.toString(), is(equalTo("AptEntity(packageName, simpleName)")));
     }
 
     @Test

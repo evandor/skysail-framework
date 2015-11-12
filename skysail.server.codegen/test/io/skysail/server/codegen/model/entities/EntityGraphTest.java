@@ -13,14 +13,14 @@ import org.mockito.Mockito;
 
 public class EntityGraphTest {
 
-	private HashSet<Entity> nodes;
+	private HashSet<AptEntity> nodes;
 	private HashSet<Reference> edges;
-	private Entity n1, n2;
+	private AptEntity n1, n2;
 
 	@Before
 	public void setUp() throws Exception {
-		n1 = new Entity("p", "n1");
-        n2 = new Entity("p", "n2");
+		n1 = new AptEntity("p", "n1");
+        n2 = new AptEntity("p", "n2");
 		nodes = new HashSet<>();
 		edges = new HashSet<>();
 		nodes.add(n1);

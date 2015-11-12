@@ -9,7 +9,7 @@ public class RepositoryModel extends JavaModel {
 
     private List<Reference> outgoingEdges;
 
-    public RepositoryModel(Entity entity, EntityGraph graph) {
+    public RepositoryModel(AptEntity entity, EntityGraph graph) {
         typeName = entity.getSimpleName() + "sRepository";
         entityName = entity.getSimpleName();
         packageName = entity.getPackageName();// + "." +

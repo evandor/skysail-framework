@@ -1,4 +1,4 @@
-package io.skysail.server.codegen;
+package io.skysail.server.codegen.annotations;
 
 
 public @interface SkysailApplication {

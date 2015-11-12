@@ -4,8 +4,8 @@ import io.skysail.server.codegen.ResourceType;
 import io.skysail.server.codegen.annotations.GenerateResources;
 import io.skysail.server.codegen.apt.stringtemplate.MySTGroupFile;
 import io.skysail.server.codegen.model.entities.*;
-import io.skysail.server.codegen.model.types.TypeModel2;
-import io.skysail.server.ext.apt.model.entities.*;
+import io.skysail.server.codegen.model.types.*;
+import io.skysail.server.domain.core.Entity;
 
 import java.io.*;
 import java.net.URL;
@@ -23,34 +23,51 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.stringtemplate.v4.*;
 
-@SupportedAnnotationTypes("io.skysail.server.ext.apt.annotations.GenerateResources")
+@SupportedAnnotationTypes("io.skysail.server.codegen.annotations.GenerateResources")
 @SupportedSourceVersion(javax.lang.model.SourceVersion.RELEASE_8)
 @Slf4j
 public class EntityProcessor extends Processors {
 
-    private static final String GENERATED_ANNOTATION = "@Generated(\"io.skysail.server.codegen.apt.processors.EntityProcessor\")";
+    private static final String GENERATED_ANNOTATION = "@Generated(\""+EntityProcessor.class.getName()+"\")";
 
     @Override
     public boolean doProcess(Set<? extends TypeElement> annotations, RoundEnvironment roundEnv) throws Exception {
         Set<? extends Element> generateResourceElements = roundEnv.getElementsAnnotatedWith(GenerateResources.class);
-        graph = analyse(roundEnv, generateResourceElements);
-        typeModel2 = new TypeModel2(graph);
-        generateResourceElements.stream().forEach(entity -> {
+        String applicationName = getOneAndOnlyApplicationName(generateResourceElements);
+        JavaApplication application = new JavaApplication(applicationName);
+        graph = analyse(application, roundEnv, generateResourceElements);
+        typeModel = new TypeModel(graph);
+        application.getEntities().stream().forEach(entity -> {
             try {
-                createRepository(entity);
-                createEntityResource(roundEnv, graph, entity);
-                createListResource(roundEnv, graph, entity);
-                createPostResource(roundEnv, graph, entity);
-                createPutResource(roundEnv, graph, entity);
+                createRepository2(entity);
+                createEntityResource(roundEnv, graph, (JavaEntity)entity);
+                createListResource(roundEnv, graph, (JavaEntity)entity);
+                createPostResource(roundEnv, graph, (JavaEntity)entity);
+                createPutResource(roundEnv, graph, (JavaEntity)entity);
             } catch (Exception e) {
                 log.error(e.getMessage(), e);
             }
         });
+
         return true;
     }
 
-    private EntityGraph analyse(RoundEnvironment roundEnv, Set<? extends Element> generateResourceElements) {
-        Set<Entity> nodes = new HashSet<>();
+    private String getOneAndOnlyApplicationName(Set<? extends Element> elements) {
+        if (elements == null || elements.size() == 0) {
+            throw new IllegalStateException("no elements found for code generation");
+        }
+        Set<String> result = new HashSet<>();
+        elements.stream().forEach(element -> {
+            result.add(element.getAnnotation(GenerateResources.class).application());
+        });
+        if (result.size() != 1) {
+            throw new IllegalStateException("two many (" + result.size() + ") applications defined");
+        }
+        return result.iterator().next();
+    }
+
+    private EntityGraph analyse(JavaApplication application, RoundEnvironment roundEnv, Set<? extends Element> generateResourceElements) {
+        Set<AptEntity> nodes = new HashSet<>();
         Set<Reference> edges = new HashSet<>();
 
         printHeadline("Analysing project for code generation");
@@ -58,7 +75,8 @@ public class EntityProcessor extends Processors {
         // create nodes
         for (Element entityElement : generateResourceElements) {
             printMessage("adding entity: " + entityElement.toString());
-            nodes.add(new Entity(entityElement));
+            nodes.add(new AptEntity(entityElement));
+            application.add(new JavaEntity(application, entityElement));
         }
 
         printMessage("");
@@ -74,11 +92,11 @@ public class EntityProcessor extends Processors {
                     String targetMemberName = typeMirror.toString().substring("java.util.List".length() + 1,
                             typeMirror.toString().length() - 1);
 
-                    Entity source = nodes.stream().filter(e -> {
+                    AptEntity source = nodes.stream().filter(e -> {
                         return e.getElementName().equals(entity.toString());
                     }).findFirst().orElseThrow(IllegalStateException::new);
 
-                    Entity target = nodes.stream().filter(e -> {
+                    AptEntity target = nodes.stream().filter(e -> {
                         return e.getElementName().equals(targetMemberName);
                     }).findFirst().orElseThrow(IllegalStateException::new);
 
@@ -93,20 +111,17 @@ public class EntityProcessor extends Processors {
 
     }
 
-    private void createRepository(Element entityElement) {
+    private void createRepository2(Entity entity) {
         JavaFileObject jfo;
         try {
-            jfo = createSourceFile(getTypeName(entityElement) + "Repo");
+            jfo = createSourceFile(entity.getId() + "Repo");
 
             Writer writer = jfo.openWriter();
             STGroup group = new MySTGroupFile("repository/Repository.stg", '$', '$');
 
             ST st = group.getInstanceOf("repository");
-            st.add("package", entityElement.getEnclosingElement().toString());
-            st.add("name", entityElement.getSimpleName());
-            st.add("repo", ""); // repo
-            st.add("linkedClasses", "");// repo.getLinkedClasses());
-            st.add("imports", "");// repo.getImports());
+            st.add("package", ((JavaEntity)entity).getPackageName());
+            st.add("name", ((JavaEntity)entity).getSimpleName());
             String result = st.render();
             writer.append(result);
             writer.close();
@@ -115,27 +130,12 @@ public class EntityProcessor extends Processors {
         }
     }
 
-    private void createEntityResource(RoundEnvironment roundEnv, EntityGraph graph, Element entityElement)
-            throws Exception {
-
-        GenerateResources annotation = entityElement.getAnnotation(GenerateResources.class);
-        if (methodExcluded(annotation, ResourceType.GET)) {
+    private void createEntityResource(RoundEnvironment roundEnv, EntityGraph graph, JavaEntity entity) throws Exception {
+        if (methodExcluded(entity.getGenerateResourcesAnnotation(), ResourceType.GET)) {
             return;
         }
-        String application = annotation.application();
 
-        String linkheader = "";// Arrays.stream(annotation.linkheader()).map(lh
-                               // -> lh + ".class")
-
-        Entity entity = toEntity(graph, entityElement);
-
-        List<Reference> references = graph.getOutgoingEdges(entity);
-        linkheader = calcLinkheader(references, entity);
-        String imports = references.stream().map(r -> {
-            return "import " + r.getTo().getPackageName() + ".*;\n";
-        }).collect(Collectors.joining());
-
-        JavaFileObject jfo = createSourceFile(getTypeName(entityElement) + "Resource");
+        JavaFileObject jfo = createSourceFile(entity.getId() + "Resource");
         Writer writer = jfo.openWriter();
 
         URL url = getURL("entityResource/EntityResource.stg");
@@ -143,36 +143,32 @@ public class EntityProcessor extends Processors {
 
         STGroup group = new MySTGroupFile("entityResource/EntityResource.stg", '$', '$');
         ST st = group.getInstanceOf("entity");
-        st.add("package", entityElement.getEnclosingElement().toString());
-        st.add("appName", application);
-        st.add("name", entityElement.getSimpleName());
-        st.add("linkheader", linkheader);
-        st.add("imports", imports);
+        st.add("package", entity.getPackageName());
+        st.add("appName", entity.getApplicationName());
+        st.add("name", entity.getSimpleName());
+        st.add("linkheader", "");
+        st.add("imports", "");
         writer.append(st.render());
         writer.close();
-
     }
 
-    private void createListResource(RoundEnvironment roundEnv, EntityGraph graph, Element entityElement) throws IOException {
-
-        GenerateResources annotation = entityElement.getAnnotation(GenerateResources.class);
+    private void createListResource(RoundEnvironment roundEnv, EntityGraph graph, JavaEntity entity) throws Exception {
+        GenerateResources annotation = entity.getGenerateResourcesAnnotation();
         if (methodExcluded(annotation, ResourceType.LIST)) {
             return;
         }
 
-        String application = annotation.application();
-
-        JavaFileObject jfo = createSourceFile(getTypeName(entityElement) + "sResource");
+        JavaFileObject jfo = createSourceFile(entity.getId() + "sResource");
 
         Writer writer = jfo.openWriter();
 
         STGroup group = new MySTGroupFile("listResource/ListResource.stg", '$', '$');
         ST st = group.getInstanceOf("list");
-        st.add("name", entityElement.getSimpleName());
-        st.add("appName", application);
-        st.add("package", entityElement.getEnclosingElement().toString());
-        st.add("imports", getImports(entityElement, graph));
-        st.add("linkedResources", getLinksForListResource(entityElement.getSimpleName(), graph));
+        st.add("name", entity.getSimpleName());
+        st.add("appName", entity.getApplicationName());
+        st.add("package", entity.getPackageName());
+        st.add("imports", "");
+        st.add("linkedResources", "");//getLinksForListResource(entityElement.getSimpleName(), graph));
         st.add("getData", "");
         String result = st.render();
         writer.append(result);
@@ -180,70 +176,59 @@ public class EntityProcessor extends Processors {
         writer.close();
     }
 
-    private String getLinksForListResource(Name entityName, EntityGraph graph) {
-        String collection = graph.getNodes().stream().map(n -> n.getSimpleName()).map(name -> name + "sResource.class").collect(Collectors.joining(", "));
-        return "Post" + entityName + "Resource.class, " + collection;
-    }
-
-    private void createPostResource(RoundEnvironment roundEnv, EntityGraph graph, Element entityElement)
-            throws IOException {
-
-        GenerateResources annotation = entityElement.getAnnotation(GenerateResources.class);
-        String application = annotation.application();
+    private void createPostResource(RoundEnvironment roundEnv, EntityGraph graph, JavaEntity entity) throws Exception {
+        GenerateResources annotation = entity.getGenerateResourcesAnnotation();
         if (methodExcluded(annotation, ResourceType.POST)) {
             return;
         }
 
-        String typeName = entityElement.getEnclosingElement().toString() + ".Post" + entityElement.getSimpleName()
+        String typeName = entity.getPackageName() + ".Post" + entity.getSimpleName()
                 + "Resource";
-        // if (skipGeneration(typeName)) {
-        // return;
-        // }
+
         JavaFileObject jfo = createSourceFile(typeName);
 
         Writer writer = jfo.openWriter();
 
         STGroup group = new MySTGroupFile("postResource/PostResource2.stg", '$', '$');
         ST st = group.getInstanceOf("post");
-        st.add("name", entityElement.getSimpleName());
-        st.add("package", entityElement.getEnclosingElement().toString());
-        st.add("appName", application);
-        st.add("appPkg", typeModel2.getApplication().getPackageName());
-        st.add("addEntity", addEntity(entityElement, graph));
-        st.add("imports", getImports(entityElement, graph));
+        st.add("name", entity.getSimpleName());
+        st.add("package", entity.getPackageName());
+        st.add("appName", entity.getApplicationName());
+        st.add("appPkg", typeModel.getApplication().getPackageName());
+        st.add("addEntity", "");//addEntity(entityElement, graph));
+        st.add("imports", "");//getImports(entityElement, graph));
         String result = st.render();
         writer.append(result);
 
         writer.close();
-
     }
 
-    private void createPutResource(RoundEnvironment roundEnv, EntityGraph graph, Element entityElement)
-            throws IOException {
-        GenerateResources annotation = entityElement.getAnnotation(GenerateResources.class);
+    private void createPutResource(RoundEnvironment roundEnv, EntityGraph graph, JavaEntity entity) throws Exception {
+        GenerateResources annotation = entity.getGenerateResourcesAnnotation();
         if (methodExcluded(annotation, ResourceType.PUT)) {
             return;
         }
 
-        String application = annotation.application();
+        String typeName = entity.getPackageName() + ".Put" + entity.getSimpleName()
+                + "Resource";
 
-        JavaFileObject jfo = createSourceFile(entityElement.getEnclosingElement().toString() + ".Put"
-                + entityElement.getSimpleName() + "Resource");
+        JavaFileObject jfo = createSourceFile(typeName);
 
         Writer writer = jfo.openWriter();
         STGroup group = new MySTGroupFile("putResource/PutResource.stg", '$', '$');
         ST st = group.getInstanceOf("put");
-        st.add("name", entityElement.getSimpleName());
-        st.add("package", entityElement.getEnclosingElement().toString());
-        st.add("appName", application);
-        st.add("appPkg", typeModel2.getApplication().getPackageName());
+        st.add("name", entity.getSimpleName());
+        st.add("package", entity.getPackageName());
+        st.add("appName", entity.getApplicationName());
+        st.add("appPkg", typeModel.getApplication().getPackageName());
         String result = st.render();
         writer.append(result);
         writer.close();
     }
 
+
     private String addEntity(Element entityElement, EntityGraph graph) {
-        Entity entity = toEntity(graph, entityElement);
+        AptEntity entity = toEntity(graph, entityElement);
         List<Reference> incomingEdges = graph.getIncomingEdges(entity);
         if (incomingEdges.size() == 0) {
             String simpleName = entityElement.getSimpleName().toString();
@@ -269,7 +254,7 @@ public class EntityProcessor extends Processors {
         return sb.toString();
     }
 
-    private String calcLinkheader(List<Reference> references, Entity entity) {
+    private String calcLinkheader(List<Reference> references, AptEntity entity) {
         String linkheader;
         linkheader = references.stream().map(r -> {
             String simpleName = r.getTo().getSimpleName();
@@ -283,7 +268,7 @@ public class EntityProcessor extends Processors {
         return linkheader;
     }
 
-    private Entity toEntity(EntityGraph graph, Element entityElement) {
+    private AptEntity toEntity(EntityGraph graph, Element entityElement) {
         return graph.getNode(entityElement.getEnclosingElement().toString(), entityElement.getSimpleName().toString());
     }
 

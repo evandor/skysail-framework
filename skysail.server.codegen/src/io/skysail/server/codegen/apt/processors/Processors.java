@@ -1,9 +1,8 @@
 package io.skysail.server.codegen.apt.processors;
 
-import io.skysail.server.codegen.SkysailApplication;
+import io.skysail.server.codegen.annotations.SkysailApplication;
 import io.skysail.server.codegen.model.entities.EntityGraph;
-import io.skysail.server.codegen.model.types.*;
-import io.skysail.server.ext.apt.model.types.*;
+import io.skysail.server.codegen.model.types.TypeModel;
 
 import java.io.IOException;
 import java.lang.annotation.Annotation;
@@ -17,9 +16,7 @@ public abstract class Processors extends AbstractProcessor {
 
 	protected static EntityGraph graph;
 
-	protected static TypeModel typeModel;
-
-    protected static TypeModel2 typeModel2;
+    protected static TypeModel typeModel;
 
 	public abstract boolean doProcess(Set<? extends TypeElement> annotations, RoundEnvironment roundEnv)
 	        throws Exception;
@@ -60,10 +57,6 @@ public abstract class Processors extends AbstractProcessor {
 
 	protected Set<? extends Element> getSubElements(RoundEnvironment roundEnv, Class<? extends Annotation> gpr,
 	        Element skysailApplicationElement) {
-	    // trying to work around https://bugs.openjdk.java.net/browse/JDK-8051443
-		/*return roundEnv.getElementsAnnotatedWith(gpr).stream().filter(e -> {
-			return entityIsInSubpackgeOfApplication(e, skysailApplicationElement);
-		}).collect(Collectors.toSet());*/
 	    Set<Element> result = new HashSet<>();
 	    for (Element element : roundEnv.getElementsAnnotatedWith(gpr)) {
 	        if (entityIsInSubpackgeOfApplication(element, skysailApplicationElement)) {

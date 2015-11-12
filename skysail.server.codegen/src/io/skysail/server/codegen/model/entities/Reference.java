@@ -4,7 +4,7 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 
 /**
- * Instances of this class connect two {@link Entity}s with a link "from -> to".
+ * Instances of this class connect two {@link AptEntity}s with a link "from -> to".
  * 
  * The semantic is that the from entity "has a member which is a collection of 'to'-Entities". 
  *
@@ -13,12 +13,12 @@ import lombok.Getter;
 @Getter
 public class Reference {
 
-	private Entity from;
+	private AptEntity from;
 	private String fromName;
-	private Entity to;
+	private AptEntity to;
 	private String toName;
 
-	public Reference(Entity from, Entity to) {
+	public Reference(AptEntity from, AptEntity to) {
 		this.from = from;
 		this.fromName = from.toString();
 		this.to = to;

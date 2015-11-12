@@ -1,7 +1,6 @@
 package io.skysail.server.codegen.apt.processors;
 
 import io.skysail.server.codegen.model.entities.*;
-import io.skysail.server.ext.apt.model.entities.*;
 
 import java.lang.annotation.Annotation;
 
@@ -25,13 +24,13 @@ public class STElement {
 	}
 
 	public String getPath() {
-		Entity entity = new Entity(enclosingElement.toString(), simpleName);
+		AptEntity entity = new AptEntity(enclosingElement.toString(), simpleName);
 		String path = getPathTemplate(simpleName);
 		if (graph.getNodesWithNoIncomingEdge().contains(entity)) {
 			return path;
 		} else {
 			Reference firstIncomingEdge = graph.getIncomingEdges(entity).get(0);
-			Entity from = firstIncomingEdge.getFrom();
+			AptEntity from = firstIncomingEdge.getFrom();
 			return "/" + from.getSimpleName() + "s/{id}" + path;
 		}
 	}
@@ -41,15 +40,6 @@ public class STElement {
 	}
 
 	private String getPathTemplate(String simpleName) {
-//		if (gpr.isAssignableFrom(GeneratePostResource.class)) {
-//			return "/" + simpleName + "s/";
-//		}
-////		if (gpr.isAssignableFrom(GenerateEntityResource.class)) {
-////            return "/" + simpleName + "s/{id}";
-////        }
-//        if (gpr.isAssignableFrom(GeneratePutResource.class)) {
-//            return "/" + simpleName + "s/{id}/";
-//        }
 		return "/" + simpleName + "s";
 	}
 

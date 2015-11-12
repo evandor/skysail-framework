@@ -10,9 +10,6 @@ import st4hidden.org.antlr.runtime.*;
 
 public class MySTGroupFile extends STGroupFile {
 
-    private static final int INITIAL_BUFFER_SIZE = 1024;
-    private static final int READ_BUFFER_SIZE = 1024;
-
     protected char[] data;
     protected int n;
 

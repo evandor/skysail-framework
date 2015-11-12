@@ -1,6 +1,5 @@
 package io.skysail.server.codegen.test.simple.todos;
 
-
 import javax.annotation.Generated;
 
 import io.skysail.api.repos.DbRepository;

@@ -7,8 +7,7 @@ Private-Package:  \
 	io.skysail.server.ext.apt.model.types,\
 	io.skysail.server.codegen.apt.processors,\
 	io.skysail.server.codegen.apt.stringtemplate,\
-	io.skysail.server.codegen.model.entities,\
-	io.skysail.server.codegen.model.types
+	io.skysail.server.codegen.model
 
 Include-Resource: resources
 

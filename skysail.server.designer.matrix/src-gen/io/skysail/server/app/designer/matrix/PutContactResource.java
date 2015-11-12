@@ -8,12 +8,12 @@ import io.skysail.server.restlet.resources.PutEntityServerResource;
 @Generated("io.skysail.server.codegen.apt.processors.EntityProcessor")
 public class PutContactResource extends PutEntityServerResource<Contact> {
 
-    private io.skysail.server.app.designer.matrix.MatrixApplication app;
+    private MatrixApplication app;
     private ContactRepo repository;
 
 	protected void doInit() {
         super.doInit();
-        app = (io.skysail.server.app.designer.matrix.MatrixApplication) getApplication();
+        app = (MatrixApplication) getApplication();
         repository = (ContactRepo) app.getRepository(Contact.class);
     }
 

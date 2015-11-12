@@ -6,9 +6,12 @@ import io.skysail.server.queryfilter.Filter;
 import io.skysail.server.restlet.resources.ListServerResource;
 import de.twenty11.skysail.server.core.restlet.ResourceContextId;
 
+import javax.annotation.Generated;
+
+@Generated("io.skysail.server.codegen.apt.processors.EntityProcessor")
 public class PlacesResource extends ListServerResource<Place> {
 
-    private io.skysail.server.app.tap.TabApplication app;
+    private TabApplication app;
     private PlaceRepo repository;
 
     public PlacesResource() {
@@ -18,7 +21,7 @@ public class PlacesResource extends ListServerResource<Place> {
 
     protected void doInit() {
         super.doInit();
-        app = (io.skysail.server.app.tap.TabApplication)getApplication();
+        app = (TabApplication)getApplication();
         repository = (PlaceRepo) app.getRepository(Place.class);
     }
 
@@ -29,6 +32,6 @@ public class PlacesResource extends ListServerResource<Place> {
 
     @Override
     public List<Link> getLinks() {
-        return super.getLinks(PostPlaceResource.class, PlacesResource.class, ThingsResource.class);
+        return super.getLinks();
     }
 }

@@ -1,38 +1,36 @@
-entity(package, name, element, entityResources, appName, imports, linkheader) ::= <<
-package $package$;
+entity(entity) ::= <<
+package $entity.packageName$;
 
 import java.util.List;
 import javax.annotation.Generated;
 
 import org.restlet.resource.ResourceException;
 
-$imports$
-
 import io.skysail.api.links.Link;
 import io.skysail.api.responses.SkysailResponse;
 import io.skysail.server.restlet.resources.EntityServerResource;
 
-@Generated("io.skysail.server.codegen.apt.processors.EntityProcessor")
-public class $name$Resource extends EntityServerResource<$name$> {
+$entity.classAnnotations$
+public class $entity.simpleName$Resource extends EntityServerResource<$entity.simpleName$> {
 
-    private $appName$ app;
-    private $name$Repo repository;
+    private $entity.applicationName$ app;
+    private $entity.simpleName$Repo repository;
 
     protected void doInit() {
         super.doInit();
-        app = ($appName$)getApplication();
-        repository = ($name$Repo) app.getRepository($name$.class);
+        app = ($entity.applicationName$)getApplication();
+        repository = ($entity.simpleName$Repo) app.getRepository($entity.simpleName$.class);
     }
 
-    public $name$ getEntity() {
+    public $entity.simpleName$ getEntity() {
         return repository.findOne(getAttribute("id"));
     }
 
     public List<Link> getLinks() {
-        return super.getLinks(Put$name$Resource.class);
+        return super.getLinks(Put$entity.simpleName$Resource.class);
     }
 
-    public SkysailResponse<$name$> eraseEntity() {
+    public SkysailResponse<$entity.simpleName$> eraseEntity() {
         repository.delete(getAttribute("id"));
         return new SkysailResponse<>();
     }

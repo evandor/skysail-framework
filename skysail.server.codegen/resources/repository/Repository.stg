@@ -1,5 +1,5 @@
-repository(package, name) ::= <<
-package $package$;
+repository(entity) ::= <<
+package $entity.packageName$;
 
 import javax.annotation.Generated;
 
@@ -9,14 +9,14 @@ import lombok.extern.slf4j.Slf4j;
 import aQute.bnd.annotation.component.*;
 import io.skysail.server.db.*;
 
-@Component(immediate = true, properties = "name=$name$Repository")
+@Component(immediate = true, properties = "name=$entity.simpleName$Repository")
 @Slf4j
-@Generated("io.skysail.server.codegen.apt.processors.EntityProcessor")
-public class $name$Repo extends GraphDbRepository<$name$> implements DbRepository {
+$entity.classAnnotations$
+public class $entity.simpleName$Repo extends GraphDbRepository<$entity.simpleName$> implements DbRepository {
 
     @Activate
     public void activate() {
-        super.activate($name$.class);
+        super.activate($entity.simpleName$.class);
     }
 
     @Reference

@@ -13,12 +13,12 @@ import io.skysail.server.restlet.resources.EntityServerResource;
 @Generated("io.skysail.server.codegen.apt.processors.EntityProcessor")
 public class ThingResource extends EntityServerResource<Thing> {
 
-    private io.skysail.server.app.tap.TabApplication app;
+    private TabApplication app;
     private ThingRepo repository;
 
     protected void doInit() {
         super.doInit();
-        app = (io.skysail.server.app.tap.TabApplication)getApplication();
+        app = (TabApplication)getApplication();
         repository = (ThingRepo) app.getRepository(Thing.class);
     }
 
@@ -37,6 +37,6 @@ public class ThingResource extends EntityServerResource<Thing> {
 
     @Override
     public String redirectTo() {
-        return null;//super.getLinkheader(PutThingResource.class);
+        return null;//super.getLinkheader();
     }
 }

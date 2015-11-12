@@ -10,7 +10,7 @@ import java.util.List;
 import javax.annotation.Generated;
 
 @Generated("io.skysail.server.codegen.apt.processors.EntityProcessor")
-public class ConnectionResource extends EntityServerResource<Connection> {
+public class ConnectionResource2 extends EntityServerResource<Connection> {
 
     private io.skysail.server.app.dbviewer.DbviewerApplication app;
     private ConnectionRepo repository;

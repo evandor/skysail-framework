@@ -1,6 +1,5 @@
 package io.skysail.server.app.designer.restclient;
 
-
 import javax.annotation.Generated;
 
 import io.skysail.api.repos.DbRepository;

@@ -1,9 +1,5 @@
 package io.skysail.server.codegen.apt.processors;
 
-import io.skysail.server.codegen.annotations.SkysailApplication;
-import io.skysail.server.codegen.model.entities.EntityGraph;
-import io.skysail.server.codegen.model.types.TypeModel;
-
 import java.io.IOException;
 import java.lang.annotation.Annotation;
 import java.util.*;
@@ -13,10 +9,6 @@ import javax.lang.model.element.*;
 import javax.tools.JavaFileObject;
 
 public abstract class Processors extends AbstractProcessor {
-
-	protected static EntityGraph graph;
-
-    protected static TypeModel typeModel;
 
 	public abstract boolean doProcess(Set<? extends TypeElement> annotations, RoundEnvironment roundEnv)
 	        throws Exception;
@@ -33,22 +25,6 @@ public abstract class Processors extends AbstractProcessor {
 			e.printStackTrace();
 			return false;
 		}
-	}
-
-	protected Element getElement(RoundEnvironment roundEnv, Class<SkysailApplication> annotationClass) {
-		Set<? extends Element> skysailApplications = roundEnv.getElementsAnnotatedWith(annotationClass);
-		if (skysailApplications == null || skysailApplications.size() == 0) {
-			processingEnv.getMessager().printMessage(javax.tools.Diagnostic.Kind.ERROR,
-			        "could not generate PostResource as there was no @SkysailApplication annotation.");
-			return null;
-		}
-		if (skysailApplications.size() > 1) {
-			processingEnv.getMessager().printMessage(javax.tools.Diagnostic.Kind.WARNING,
-			        "there was more than one @SkysailApplication annotation.");
-			return skysailApplications.iterator().next();
-		}
-
-		return skysailApplications.iterator().next();
 	}
 
 	protected Set<? extends Element> getElements(RoundEnvironment roundEnv, Class<? extends Annotation> gpr) {
@@ -71,16 +47,6 @@ public abstract class Processors extends AbstractProcessor {
 		String appPackage = skysailApplicationElement.getEnclosingElement().toString();
 		printMessage(" +++ " + entityPackage + "/" + appPackage + ": " + entityPackage.startsWith(appPackage));
 		return entityPackage.startsWith(appPackage);
-	}
-
-	protected Set<STElement> getElements2(RoundEnvironment roundEnv, Class<? extends Annotation> gpr, EntityGraph graph) {
-		Set<? extends Element> elementsAnnotatedWith = roundEnv.getElementsAnnotatedWith(gpr);
-		printMessage("Here!: " + elementsAnnotatedWith + " " + gpr);
-		Set<STElement> result = new HashSet<>();
-		for (Element element : elementsAnnotatedWith) {
-			result.add(new STElement(element, graph, gpr));
-		}
-		return result;
 	}
 
 	protected void printMessage(String msg) {

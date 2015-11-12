@@ -6,9 +6,12 @@ import io.skysail.server.queryfilter.Filter;
 import io.skysail.server.restlet.resources.ListServerResource;
 import de.twenty11.skysail.server.core.restlet.ResourceContextId;
 
+import javax.annotation.Generated;
+
+@Generated("io.skysail.server.codegen.apt.processors.EntityProcessor")
 public class TodosResource extends ListServerResource<Todo> {
 
-    private io.skysail.server.codegen.test.simple.TodoApplication app;
+    private TodoApplication app;
     private TodoRepo repository;
 
     public TodosResource() {
@@ -18,7 +21,7 @@ public class TodosResource extends ListServerResource<Todo> {
 
     protected void doInit() {
         super.doInit();
-        app = (io.skysail.server.codegen.test.simple.TodoApplication)getApplication();
+        app = (TodoApplication)getApplication();
         repository = (TodoRepo) app.getRepository(Todo.class);
     }
 
@@ -29,6 +32,6 @@ public class TodosResource extends ListServerResource<Todo> {
 
     @Override
     public List<Link> getLinks() {
-        return super.getLinks(PostTodoResource.class, TodosResource.class);
+        return super.getLinks();
     }
 }

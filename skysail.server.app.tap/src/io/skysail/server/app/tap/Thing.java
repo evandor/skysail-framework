@@ -2,7 +2,7 @@ package io.skysail.server.app.tap;
 
 import io.skysail.api.domain.Identifiable;
 import io.skysail.api.forms.Field;
-import io.skysail.server.ext.apt.annotations.GenerateResources;
+import io.skysail.server.codegen.annotations.GenerateResources;
 
 import javax.persistence.Id;
 

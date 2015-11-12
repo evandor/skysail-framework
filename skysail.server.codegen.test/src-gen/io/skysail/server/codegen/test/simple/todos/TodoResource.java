@@ -13,12 +13,12 @@ import io.skysail.server.restlet.resources.EntityServerResource;
 @Generated("io.skysail.server.codegen.apt.processors.EntityProcessor")
 public class TodoResource extends EntityServerResource<Todo> {
 
-    private io.skysail.server.codegen.test.simple.TodoApplication app;
+    private TodoApplication app;
     private TodoRepo repository;
 
     protected void doInit() {
         super.doInit();
-        app = (io.skysail.server.codegen.test.simple.TodoApplication)getApplication();
+        app = (TodoApplication)getApplication();
         repository = (TodoRepo) app.getRepository(Todo.class);
     }
 
@@ -37,6 +37,6 @@ public class TodoResource extends EntityServerResource<Todo> {
 
     @Override
     public String redirectTo() {
-        return null;//super.getLinkheader(PutTodoResource.class);
+        return null;//super.getLinkheader();
     }
 }

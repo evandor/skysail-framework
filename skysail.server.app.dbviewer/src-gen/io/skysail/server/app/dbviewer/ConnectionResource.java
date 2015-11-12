@@ -1,36 +1,35 @@
-package io.skysail.server.app.designer.matrix;
+package io.skysail.server.app.dbviewer;
 
 import java.util.List;
 import javax.annotation.Generated;
 
 import org.restlet.resource.ResourceException;
 
-
 import io.skysail.api.links.Link;
 import io.skysail.api.responses.SkysailResponse;
 import io.skysail.server.restlet.resources.EntityServerResource;
 
 @Generated("io.skysail.server.codegen.apt.processors.EntityProcessor")
-public class ContactResource extends EntityServerResource<Contact> {
+public class ConnectionResource extends EntityServerResource<Connection> {
 
-    private MatrixApplication app;
-    private ContactRepo repository;
+    private DbviewerApplication app;
+    private ConnectionRepo repository;
 
     protected void doInit() {
         super.doInit();
-        app = (MatrixApplication)getApplication();
-        repository = (ContactRepo) app.getRepository(Contact.class);
+        app = (DbviewerApplication)getApplication();
+        repository = (ConnectionRepo) app.getRepository(Connection.class);
     }
 
-    public Contact getEntity() {
+    public Connection getEntity() {
         return repository.findOne(getAttribute("id"));
     }
 
     public List<Link> getLinks() {
-        return super.getLinks(PutContactResource.class);
+        return super.getLinks(PutConnectionResource.class);
     }
 
-    public SkysailResponse<Contact> eraseEntity() {
+    public SkysailResponse<Connection> eraseEntity() {
         repository.delete(getAttribute("id"));
         return new SkysailResponse<>();
     }

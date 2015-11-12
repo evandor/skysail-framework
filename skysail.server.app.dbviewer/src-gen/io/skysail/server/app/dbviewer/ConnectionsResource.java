@@ -6,9 +6,12 @@ import io.skysail.server.queryfilter.Filter;
 import io.skysail.server.restlet.resources.ListServerResource;
 import de.twenty11.skysail.server.core.restlet.ResourceContextId;
 
+import javax.annotation.Generated;
+
+@Generated("io.skysail.server.codegen.apt.processors.EntityProcessor")
 public class ConnectionsResource extends ListServerResource<Connection> {
 
-    private io.skysail.server.app.dbviewer.DbviewerApplication app;
+    private DbviewerApplication app;
     private ConnectionRepo repository;
 
     public ConnectionsResource() {
@@ -18,7 +21,7 @@ public class ConnectionsResource extends ListServerResource<Connection> {
 
     protected void doInit() {
         super.doInit();
-        app = (io.skysail.server.app.dbviewer.DbviewerApplication)getApplication();
+        app = (DbviewerApplication)getApplication();
         repository = (ConnectionRepo) app.getRepository(Connection.class);
     }
 
@@ -29,6 +32,6 @@ public class ConnectionsResource extends ListServerResource<Connection> {
 
     @Override
     public List<Link> getLinks() {
-        return super.getLinks(PostConnectionResource.class, ConnectionsResource.class);
+        return super.getLinks();
     }
 }

@@ -8,12 +8,12 @@ import io.skysail.server.restlet.resources.PutEntityServerResource;
 @Generated("io.skysail.server.codegen.apt.processors.EntityProcessor")
 public class PutClientApplicationResource extends PutEntityServerResource<ClientApplication> {
 
-    private io.skysail.server.app.designer.restclient.RestclientApplication app;
+    private RestclientApplication app;
     private ClientApplicationRepo repository;
 
 	protected void doInit() {
         super.doInit();
-        app = (io.skysail.server.app.designer.restclient.RestclientApplication) getApplication();
+        app = (RestclientApplication) getApplication();
         repository = (ClientApplicationRepo) app.getRepository(ClientApplication.class);
     }
 

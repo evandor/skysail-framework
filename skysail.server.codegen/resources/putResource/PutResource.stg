@@ -1,35 +1,35 @@
-put(name, package, appName, appPkg) ::= <<
-package $package$;
+put(entity) ::= <<
+package $entity.packageName$;
 
 import javax.annotation.Generated;
 
 import io.skysail.api.responses.SkysailResponse;
 import io.skysail.server.restlet.resources.PutEntityServerResource;
 
-@Generated("io.skysail.server.codegen.apt.processors.EntityProcessor")
-public class Put$name$Resource extends PutEntityServerResource<$name$> {
+$entity.classAnnotations$
+public class Put$entity.simpleName$Resource extends PutEntityServerResource<$entity.simpleName$> {
 
-    private $appName$ app;
-    private $name$Repo repository;
+    private $entity.applicationName$ app;
+    private $entity.simpleName$Repo repository;
 
 	protected void doInit() {
         super.doInit();
-        app = ($appName$) getApplication();
-        repository = ($name$Repo) app.getRepository($name$.class);
+        app = ($entity.applicationName$) getApplication();
+        repository = ($entity.simpleName$Repo) app.getRepository($entity.simpleName$.class);
     }
 
-    public $name$ getEntity() {
+    public $entity.simpleName$ getEntity() {
         return repository.findOne(getAttribute("id"));
     }
 
-    public SkysailResponse<$name$> updateEntity($name$ entity) {
+    public SkysailResponse<$entity.simpleName$> updateEntity($entity.simpleName$ entity) {
         repository.update(getAttribute("id"), entity);
         return new SkysailResponse<>();
     }
 
     @Override
     public String redirectTo() {
-        return super.redirectTo($name$sResource.class);
+        return super.redirectTo($entity.simpleName$sResource.class);
     }
 }
 

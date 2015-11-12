@@ -2,8 +2,7 @@ package io.skysail.server.app.designer.matrix;
 
 import javax.annotation.Generated;
 
-//import io.skysail.server.app.designer.matrix.*;
-
+//
 
 import io.skysail.api.responses.SkysailResponse;
 import io.skysail.server.restlet.resources.PostEntityServerResource;
@@ -12,7 +11,7 @@ import de.twenty11.skysail.server.core.restlet.ResourceContextId;
 @Generated("io.skysail.server.codegen.apt.processors.EntityProcessor")
 public class PostContactResource extends PostEntityServerResource<Contact> {
 
-	private io.skysail.server.app.designer.matrix.MatrixApplication app;
+	private MatrixApplication app;
     private ContactRepo repository;
 
 	public PostContactResource() {
@@ -21,7 +20,7 @@ public class PostContactResource extends PostEntityServerResource<Contact> {
 
     @Override
 	protected void doInit() {
-		app = (io.skysail.server.app.designer.matrix.MatrixApplication)getApplication();
+		app = (MatrixApplication)getApplication();
         repository = (ContactRepo) app.getRepository(Contact.class);
 	}
 

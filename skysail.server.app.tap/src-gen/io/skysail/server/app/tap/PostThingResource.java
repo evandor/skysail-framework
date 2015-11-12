@@ -2,8 +2,7 @@ package io.skysail.server.app.tap;
 
 import javax.annotation.Generated;
 
-//import io.skysail.server.app.tap.*;
-
+//
 
 import io.skysail.api.responses.SkysailResponse;
 import io.skysail.server.restlet.resources.PostEntityServerResource;
@@ -12,7 +11,7 @@ import de.twenty11.skysail.server.core.restlet.ResourceContextId;
 @Generated("io.skysail.server.codegen.apt.processors.EntityProcessor")
 public class PostThingResource extends PostEntityServerResource<Thing> {
 
-	private io.skysail.server.app.tap.TabApplication app;
+	private TabApplication app;
     private ThingRepo repository;
 
 	public PostThingResource() {
@@ -21,7 +20,7 @@ public class PostThingResource extends PostEntityServerResource<Thing> {
 
     @Override
 	protected void doInit() {
-		app = (io.skysail.server.app.tap.TabApplication)getApplication();
+		app = (TabApplication)getApplication();
         repository = (ThingRepo) app.getRepository(Thing.class);
 	}
 

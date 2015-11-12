@@ -1,5 +1,5 @@
-post(name, package, appName, appPkg, addEntity, imports) ::= <<
-package $package$;
+post(entity, name, package, appName, appPkg, addEntity, imports) ::= <<
+package $entity.packageName$;
 
 import javax.annotation.Generated;
 
@@ -9,29 +9,29 @@ import io.skysail.api.responses.SkysailResponse;
 import io.skysail.server.restlet.resources.PostEntityServerResource;
 import de.twenty11.skysail.server.core.restlet.ResourceContextId;
 
-@Generated("io.skysail.server.codegen.apt.processors.EntityProcessor")
-public class Post$name$Resource extends PostEntityServerResource<$name$> {
+$entity.classAnnotations$
+public class Post$entity.simpleName$Resource extends PostEntityServerResource<$entity.simpleName$> {
 
-	private $appName$ app;
-    private $name$Repo repository;
+	private $entity.applicationName$ app;
+    private $entity.simpleName$Repo repository;
 
-	public Post$name$Resource() {
-	    addToContext(ResourceContextId.LINK_TITLE, "Create new $name$");
+	public Post$entity.simpleName$Resource() {
+	    addToContext(ResourceContextId.LINK_TITLE, "Create new $entity.simpleName$");
     }
 
     @Override
 	protected void doInit() {
-		app = ($appName$)getApplication();
-        repository = ($name$Repo) app.getRepository($name$.class);
+		app = ($entity.applicationName$)getApplication();
+        repository = ($entity.simpleName$Repo) app.getRepository($entity.simpleName$.class);
 	}
 
 	@Override
-    public $name$ createEntityTemplate() {
-	    return new $name$();
+    public $entity.simpleName$ createEntityTemplate() {
+	    return new $entity.simpleName$();
     }
 
     @Override
-    public SkysailResponse<$name$> addEntity($name$ entity) {
+    public SkysailResponse<$entity.simpleName$> addEntity($entity.simpleName$ entity) {
         String id = repository.save(entity).toString();
         entity.setId(id);
         return new SkysailResponse<>(entity);
@@ -39,7 +39,7 @@ public class Post$name$Resource extends PostEntityServerResource<$name$> {
 
 	@Override
 	public String redirectTo() {
-	    return super.redirectTo($name$sResource.class);
+	    return super.redirectTo($entity.simpleName$sResource.class);
 	}
 }
 >>

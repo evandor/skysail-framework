@@ -6,9 +6,12 @@ import io.skysail.server.queryfilter.Filter;
 import io.skysail.server.restlet.resources.ListServerResource;
 import de.twenty11.skysail.server.core.restlet.ResourceContextId;
 
+import javax.annotation.Generated;
+
+@Generated("io.skysail.server.codegen.apt.processors.EntityProcessor")
 public class ContactsResource extends ListServerResource<Contact> {
 
-    private io.skysail.server.app.designer.matrix.MatrixApplication app;
+    private MatrixApplication app;
     private ContactRepo repository;
 
     public ContactsResource() {
@@ -18,7 +21,7 @@ public class ContactsResource extends ListServerResource<Contact> {
 
     protected void doInit() {
         super.doInit();
-        app = (io.skysail.server.app.designer.matrix.MatrixApplication)getApplication();
+        app = (MatrixApplication)getApplication();
         repository = (ContactRepo) app.getRepository(Contact.class);
     }
 
@@ -29,6 +32,6 @@ public class ContactsResource extends ListServerResource<Contact> {
 
     @Override
     public List<Link> getLinks() {
-        return super.getLinks(PostContactResource.class, ContactsResource.class);
+        return super.getLinks();
     }
 }

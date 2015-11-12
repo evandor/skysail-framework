@@ -1,5 +1,5 @@
-list(name, appName, package, imports, linkedResources,getData) ::= <<
-package $package$;
+list(entity) ::= <<
+package $entity.packageName$;
 
 import java.util.List;
 import io.skysail.api.links.Link;
@@ -9,25 +9,25 @@ import de.twenty11.skysail.server.core.restlet.ResourceContextId;
 
 import javax.annotation.Generated;
 
-@Generated("io.skysail.server.codegen.apt.processors.EntityProcessor")
-public class $name$sResource extends ListServerResource<$name$> {
+$entity.classAnnotations$
+public class $entity.simpleName$sResource extends ListServerResource<$entity.simpleName$> {
 
-    private $appName$ app;
-    private $name$Repo repository;
+    private $entity.applicationName$ app;
+    private $entity.simpleName$Repo repository;
 
-    public $name$sResource() {
-        super($name$Resource.class);
-        addToContext(ResourceContextId.LINK_TITLE, "List of $name$s");
+    public $entity.simpleName$sResource() {
+        super($entity.simpleName$Resource.class);
+        addToContext(ResourceContextId.LINK_TITLE, "List of $entity.simpleName$s");
     }
 
     protected void doInit() {
         super.doInit();
-        app = ($appName$)getApplication();
-        repository = ($name$Repo) app.getRepository($name$.class);
+        app = ($entity.applicationName$)getApplication();
+        repository = ($entity.simpleName$Repo) app.getRepository($entity.simpleName$.class);
     }
 
     @Override
-    public List<$name$> getEntity() {
+    public List<$entity.simpleName$> getEntity() {
         return repository.find(new Filter());
     }
 

@@ -19,6 +19,7 @@ public class UpdateEntityFilter<R extends PutEntityServerResource<T>, T extends 
         if (entity != null) {
             SkysailResponse<T> response = resource.updateEntity((T)entity);
             responseWrapper.setEntity((T)(response.getEntity()));
+            resource.setCurrentEntity(response.getEntity());
         }
         super.doHandle(resource, responseWrapper);
         return FilterResult.CONTINUE;

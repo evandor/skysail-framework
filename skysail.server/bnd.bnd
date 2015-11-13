@@ -110,4 +110,5 @@ Service-Component: *
 	com.fasterxml.jackson.dataformat.jackson-dataformat-csv;version=2.5,\
 	de.twentyeleven.skysail.org.json-osgi;version=20080701.0,\
 	org.apache.commons.lang3;version=3.3,\
-	org.objenesis;version=2.1
+	org.objenesis;version=2.1,\
+	${jetty}

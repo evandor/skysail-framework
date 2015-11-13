@@ -91,7 +91,7 @@ public class Persister {
             throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
         Method method = entity.getClass().getMethod(getMethodName(prefix, key));
         Object result = method.invoke(entity);
-        log.info("setting {}={} [{}]", new Object[] { key, result, result.getClass() });
+        //log.info("setting {}={} [{}]", new Object[] { key, result, result.getClass() });
         vertex.setProperty(key, result);
     }
 

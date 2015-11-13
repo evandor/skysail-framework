@@ -8,14 +8,30 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.*;
 import org.mockito.runners.MockitoJUnitRunner;
-import org.restlet.Context;
+import org.restlet.*;
+import org.restlet.resource.*;
+import org.restlet.routing.Filter;
 
 import de.twenty11.skysail.server.core.restlet.*;
 
 @RunWith(MockitoJUnitRunner.class)
 public class SkysailRouterTest {
 
-	@InjectMocks
+	public class AFinder extends Finder {
+	    @Override
+	    public Class<? extends ServerResource> getTargetClass() {
+	        return TestServerResource.class;
+	    }
+    }
+
+    public class AFilter extends Filter {
+	    @Override
+	    public Restlet getNext() {
+	        return new AFinder();
+	    }
+    }
+
+    @InjectMocks
 	private SkysailRouter skysailRouter;
 
 	@Mock
@@ -30,5 +46,15 @@ public class SkysailRouterTest {
 	    assertThat(skysailRouter.getRouteBuilders().size(), is(1));
 	    assertThat(skysailRouter.getRouteBuildersForResource(TestServerResource.class).get(0),is(routeBuilder));
 	    assertThat(skysailRouter.getTemplatePathForResource(TestServerResource.class).get(0), is("/path"));
+    }
+
+	@Test
+    public void testName() {
+	    Filter myFilter = new AFilter();
+        RouteBuilder routeBuilder = new RouteBuilder("/path", myFilter);
+        skysailRouter.attach(routeBuilder);
+
+        assertThat(skysailRouter.getRouteBuildersForResource(TestServerResource.class).get(0),is(routeBuilder));
+
     }
 }

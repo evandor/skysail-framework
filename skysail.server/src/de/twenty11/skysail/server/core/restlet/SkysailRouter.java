@@ -9,8 +9,8 @@ import java.util.concurrent.ConcurrentHashMap;
 
 import lombok.extern.slf4j.Slf4j;
 
-import org.restlet.Context;
-import org.restlet.resource.ServerResource;
+import org.restlet.*;
+import org.restlet.resource.*;
 import org.restlet.routing.*;
 import org.restlet.security.Authorizer;
 
@@ -96,17 +96,50 @@ public class SkysailRouter extends Router {
         return result;
     }
 
-    public List<RouteBuilder> getRouteBuildersForResource(Class<? extends ServerResource> cls) {
+    public List<RouteBuilder> getRouteBuildersForResource(Class<?> cls) {
         List<RouteBuilder> result = new ArrayList<>();
-        for (Entry<String, RouteBuilder> entries : pathRouteBuilderMap.entrySet()) {
-            if (entries.getValue() == null || entries.getValue().getTargetClass() == null) {
+        for (Entry<String, RouteBuilder> entry : pathRouteBuilderMap.entrySet()) {
+            if (entry.getValue() == null) {
                 continue;
             }
-            if (entries.getValue().getTargetClass().equals(cls)) {
-                result.add(entries.getValue());
+            if (entry.getValue().getTargetClass() == null) {
+                Restlet restlet = entry.getValue().getRestlet();
+                if (restlet == null) {
+                    continue;
+                }
+                handleRestlet(cls, result, entry, restlet);
+                continue;
+            }
+            if (entry.getValue().getTargetClass().equals(cls)) {
+                result.add(entry.getValue());
             }
         }
         return result;
+    }
+
+    private void handleRestlet(Class<?> cls, List<RouteBuilder> result, Entry<String, RouteBuilder> entries,
+            Restlet restlet) {
+        if (restlet instanceof Filter) {
+            Restlet next = ((Filter) restlet).getNext();
+            if (next == null) {
+                return;
+            }
+            if (next.getClass().equals(cls)) {
+                result.add(entries.getValue());
+                return;
+            }
+            handleRestlet(cls, result, entries, next);
+        } else if (restlet instanceof Finder) {
+            Class<? extends ServerResource> targetClass = ((Finder) restlet).getTargetClass();
+            if (targetClass == null) {
+                return;
+            }
+            if (targetClass.equals(cls)) {
+                result.add(entries.getValue());
+                return;
+            }
+
+        }
     }
 
     public Map<String, RouteBuilder> getRoutesMap() {
@@ -149,12 +182,13 @@ public class SkysailRouter extends Router {
     }
 
     private void attachForTargetClassNull(RouteBuilder routeBuilder) {
-        if (routeBuilder.getRestlet() == null) {
+        Restlet restlet = routeBuilder.getRestlet();
+        if (restlet == null) {
             throw new IllegalStateException("RouteBuilder with neither TargetClass nor Restlet defined!");
         }
-        log.info("routing path '{}' -> Restlet '{}'", routeBuilder.getPathTemplate(apiVersion), routeBuilder
-                .getRestlet().getClass().getSimpleName());
-        attach(routeBuilder.getPathTemplate(apiVersion), routeBuilder.getRestlet());
+        log.info("routing path '{}' -> Restlet '{}'", routeBuilder.getPathTemplate(apiVersion), restlet.getClass().getSimpleName());
+        restlet.setContext(getContext());
+        attach(routeBuilder.getPathTemplate(apiVersion), restlet);
     }
 
     public void setApiVersion(ApiVersion apiVersion) {

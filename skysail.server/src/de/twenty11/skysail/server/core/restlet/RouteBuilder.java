@@ -5,7 +5,8 @@ import io.skysail.server.app.ApiVersion;
 import java.util.*;
 import java.util.regex.*;
 
-import org.apache.commons.lang.Validate;
+import lombok.NonNull;
+
 import org.restlet.Restlet;
 import org.restlet.resource.ServerResource;
 
@@ -23,19 +24,16 @@ public class RouteBuilder {
 
     private Pattern pathVariablesPattern = Pattern.compile("\\{([^\\}])*\\}");
 
-    public RouteBuilder(String pathTemplate, Class<? extends ServerResource> targetClass) {
-        Validate.notNull(pathTemplate, "pathTemplate may not be null");
-        Validate.notNull(targetClass, "targetClass may not be null");
+    public RouteBuilder(@NonNull String pathTemplate, @NonNull Class<? extends ServerResource> targetClass) {
         this.pathTemplate = pathTemplate;
         this.targetClass = targetClass;
         pathVariables = extractPathVariables(pathTemplate);
     }
 
-    public RouteBuilder(String pathTemplate, Restlet restlet) {
-        Validate.notNull(pathTemplate, "pathTemplate may not be null");
-        Validate.notNull(restlet, "target may not be null");
+    public RouteBuilder(@NonNull String pathTemplate, @NonNull Restlet restlet) {
         this.pathTemplate = pathTemplate;
         this.restlet = restlet;
+        pathVariables = extractPathVariables(pathTemplate);
     }
 
     public RouteBuilder setText(String text) {
@@ -44,9 +42,15 @@ public class RouteBuilder {
 
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(pathTemplate).append(" -> ").append(targetClass);
-        sb.append(")");
+        StringBuilder sb = new StringBuilder("RouteBuilder: ['");
+        sb.append(pathTemplate).append("' -> ");
+        if (targetClass != null) {
+            sb.append(targetClass);
+        }
+        if (restlet != null) {
+            sb.append(restlet);
+        }
+        sb.append("]");
         return sb.toString();
     }
 

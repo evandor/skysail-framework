@@ -1,6 +1,5 @@
 package io.skysail.server.app.todos.todos.resources;
 
-import io.skysail.server.app.todos.lists.PostListResource;
 import io.skysail.server.app.todos.services.ListService;
 import io.skysail.server.app.todos.todos.*;
 import io.skysail.server.app.todos.todos.status.Status;
@@ -11,7 +10,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.apache.shiro.SecurityUtils;
-import org.restlet.resource.ResourceException;
 
 import de.twenty11.skysail.server.core.restlet.ResourceContextId;
 
@@ -36,7 +34,7 @@ public class Top10TodosResource extends TodoSummaryResource {
     }
 
     @Override
-    protected void doInit() throws ResourceException {
+    protected void doInit() {
         super.doInit();
         service = getService(ListService.class);
     }
@@ -49,14 +47,6 @@ public class Top10TodosResource extends TodoSummaryResource {
         Pagination pagination = new Pagination(getRequest(), getResponse(), 10);
         List<Todo> todos = app.getTodosRepo().findAllTodos(filter, pagination);
         return todos.stream().map(todo -> new TodoSummary(todo)).collect(Collectors.toList());
-    }
-
-    @Override
-    public String redirectTo() {
-        if (service.getLists(this).isEmpty()) {
-            return super.redirectTo(PostListResource.class);
-        }
-        return null;
     }
 
 }

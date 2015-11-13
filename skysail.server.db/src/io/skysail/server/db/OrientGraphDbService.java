@@ -136,10 +136,8 @@ public class OrientGraphDbService extends AbstractOrientDbService implements DbS
         Iterator<OrientVertex> iterator = execute.iterator();
         while (iterator.hasNext()) {
             OrientVertex next = iterator.next();
-            // T newOne = objectDb.detachAll(t, true);
             OrientElement detached = next.detach();
             detachedEntities.add((T) detached);
-            // System.out.println(next);
         }
         return detachedEntities;
     }
@@ -180,7 +178,6 @@ public class OrientGraphDbService extends AbstractOrientDbService implements DbS
                     e -> {
                         String edgeName = e.getLabel();
                         OrientVertex vertexFromEdge = (OrientVertex) e.getVertex(Direction.IN);
-                        System.out.println(vertexFromEdge);
                         try {
                             Class<?> vertexClass = getRegisteredClass(vertexFromEdge.getRecord().getClassName());
                             Identifiable beanFromVertex = vertexToBean(vertexFromEdge, vertexClass);

@@ -34,7 +34,7 @@ import de.twenty11.skysail.server.core.restlet.*;
 public class TodoApplication extends SkysailApplication implements ApplicationProvider, MenuItemProvider {
 
     public static final String LIST_ID = "id";
-    public static final String TODO_ID = "id";
+    public static final String TODO_ID = "todoId";
     public static final String APP_NAME = "Todos";
 
     @Getter
@@ -95,30 +95,30 @@ public class TodoApplication extends SkysailApplication implements ApplicationPr
 
         router.attach(new RouteBuilder("", Top10TodosResource.class));
 
-        router.attach(new RouteBuilder("/Statuses", StatusesResource.class));
-        router.attach(new RouteBuilder("/Statuses/{statusname}", NextStatusesResource.class));
+        router.attach(new TodoRouteBuilder(this,"/Statuses", StatusesResource.class));
+        router.attach(new TodoRouteBuilder(this,"/Statuses/{statusname}", NextStatusesResource.class));
 
-        router.attach(new RouteBuilder("/Lists", ListsResource.class));
-        router.attach(new RouteBuilder("/Lists/", PostListResource.class).authorizeWith(anyOf("skysail.server.app.todos.user")));
+        router.attach(new TodoRouteBuilder(this,"/Lists", ListsResource.class));
+        router.attach(new TodoRouteBuilder(this,"/Lists/", PostListResource.class).authorizeWith(anyOf("skysail.server.app.todos.user")));
 
-        router.attach(new RouteBuilder("/Lists/{"+LIST_ID+"}", ListResource.class));
-        router.attach(new RouteBuilder("/Lists/{"+LIST_ID+"}/", PutListResource.class));
-        router.attach(new RouteBuilder("/Lists/{"+LIST_ID+"}/_stats", ListChartResource.class));
-        router.attach(new RouteBuilder("/Lists/parent:null/Todos/", PostTodoWoListResource.class));
-        router.attach(new RouteBuilder("/Lists/{"+LIST_ID+"}/Todos/", PostTodoResource.class));
-        router.attach(new RouteBuilder("/Lists/{"+LIST_ID+"}/Todos", TodosResource.class));
-        router.attach(new RouteBuilder("/Lists/{"+LIST_ID+"}/Todos/{"+TODO_ID+"}/", PutTodoResource.class));
-        router.attach(new RouteBuilder("/Lists/{"+LIST_ID+"}/ArchivedTodos", ArchivedTodosResource.class));
+        router.attach(new TodoRouteBuilder(this,"/Lists/{"+LIST_ID+"}", ListResource.class));
+        router.attach(new TodoRouteBuilder(this,"/Lists/{"+LIST_ID+"}/", PutListResource.class));
+        router.attach(new TodoRouteBuilder(this,"/Lists/{"+LIST_ID+"}/_stats", ListChartResource.class));
+        router.attach(new TodoRouteBuilder(this,"/Lists/parent:null/Todos/", PostTodoWoListResource.class));
+        router.attach(new TodoRouteBuilder(this,"/Lists/{"+LIST_ID+"}/Todos/", PostTodoResource.class));
+        router.attach(new TodoRouteBuilder(this,"/Lists/{"+LIST_ID+"}/Todos", TodosResource.class));
+        router.attach(new TodoRouteBuilder(this,"/Lists/{"+LIST_ID+"}/Todos/{"+TODO_ID+"}/", PutTodoResource.class));
+        router.attach(new TodoRouteBuilder(this,"/Lists/{"+LIST_ID+"}/ArchivedTodos", ArchivedTodosResource.class));
 
-        router.attach(new RouteBuilder("/OverdueTodos", OverdueTodosResource.class));
-        router.attach(new RouteBuilder("/TodosTimeline", TodosTimelineResource.class));
+        router.attach(new TodoRouteBuilder(this,"/OverdueTodos", OverdueTodosResource.class));
+        router.attach(new TodoRouteBuilder(this,"/TodosTimeline", TodosTimelineResource.class));
 
-        router.attach(new RouteBuilder("/Todos/_columns", ListAsColumnsResource.class));
-        router.attach(new RouteBuilder("/Todos/_withoutlist", TodosWithoutListResource.class));
+        router.attach(new TodoRouteBuilder(this,"/Todos/_columns", ListAsColumnsResource.class));
+        router.attach(new TodoRouteBuilder(this,"/Todos/_withoutlist", TodosWithoutListResource.class));
 
-        router.attach(new RouteBuilder("/Todos/{"+TODO_ID+"}", TodoResource.class));
+        router.attach(new TodoRouteBuilder(this,"/Todos/{"+TODO_ID+"}", TodoResource.class));
 
-        router.attach(new RouteBuilder("/_documents/", DocumentsResource.class));
+        router.attach(new TodoRouteBuilder(this,"/_documents/", DocumentsResource.class));
 
     }
 

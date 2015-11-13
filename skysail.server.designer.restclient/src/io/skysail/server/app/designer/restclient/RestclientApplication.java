@@ -1,14 +1,14 @@
 package io.skysail.server.app.designer.restclient;
 
-import io.skysail.api.repos.*;
-import io.skysail.server.app.SkysailApplication;
+import io.skysail.api.repos.DbRepository;
+import io.skysail.server.app.*;
 import io.skysail.server.menus.*;
 
 import java.util.*;
 
 import aQute.bnd.annotation.component.*;
 import de.twenty11.skysail.server.app.ApplicationProvider;
-import de.twenty11.skysail.server.core.restlet.ApplicationContextId;
+import de.twenty11.skysail.server.core.restlet.*;
 
 @Component(immediate = true)
 public class RestclientApplication extends SkysailApplication implements ApplicationProvider, MenuItemProvider {
@@ -17,29 +17,24 @@ public class RestclientApplication extends SkysailApplication implements Applica
     public static final String TODO_ID = "id";
     public static final String APP_NAME = "Restclient";
 
-    private ClientApplicationRepo repo;
-
     public RestclientApplication() {
-        super(APP_NAME);
+        super(APP_NAME, new ApiVersion(1), Arrays.asList(ClientApplication.class));
         addToAppContext(ApplicationContextId.IMG, "/static/img/silk/page_link.png");
     }
 
-    @Reference(dynamic = true, multiple = false, optional = false, target = "(name=ClientApplicationRepository)")
-    public void setRepository(DbRepository repo) {
-        this.repo = (ClientApplicationRepo) repo;
+    @Reference(dynamic = true, multiple = false, optional = false)
+    public void setRepositories(Repositories repos) {
+       super.setRepositories(repos);
     }
 
-    public void unsetRepository(DbRepository repo) {
-        this.repo = null;
-    }
-
-    public Repository getRepository() {
-        return repo;
+    public void unsetRepositories(DbRepository repo) {
+        super.setRepositories(null);
     }
 
     @Override
     protected void attach() {
         super.attach();
+        router.attach(new RouteBuilder("/ClientApplication/{id}/execution", ExecutionResource.class));
 
     }
 

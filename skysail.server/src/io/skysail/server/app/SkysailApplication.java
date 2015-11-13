@@ -7,7 +7,7 @@ import io.skysail.api.repos.Repository;
 import io.skysail.api.text.Translation;
 import io.skysail.api.um.*;
 import io.skysail.api.validation.ValidatorService;
-import io.skysail.server.domain.core.Entity;
+import io.skysail.server.domain.core.ClassEntity;
 import io.skysail.server.menus.MenuItem;
 import io.skysail.server.restlet.filter.*;
 import io.skysail.server.restlet.resources.SkysailServerResource;
@@ -33,7 +33,7 @@ import org.restlet.*;
 import org.restlet.data.*;
 import org.restlet.data.Reference;
 import org.restlet.ext.raml.*;
-import org.restlet.resource.*;
+import org.restlet.resource.ServerResource;
 import org.restlet.routing.Filter;
 import org.restlet.security.*;
 import org.restlet.util.RouteList;
@@ -160,8 +160,7 @@ public abstract class SkysailApplication extends RamlApplication implements Appl
         setName(appName);
         this.apiVersion = apiVersion;
         applicationModel = new io.skysail.server.domain.core.Application(appName);
-        entityClasses.forEach(cls -> applicationModel.add(new Entity(cls)));
-        //entityClasses.forEach(cls -> applicationModel.add(new RepositoryHolder(cls)));
+        entityClasses.forEach(cls -> applicationModel.add(new ClassEntity(cls)));
         setContext(new Context());
     }
 
@@ -196,16 +195,18 @@ public abstract class SkysailApplication extends RamlApplication implements Appl
             log.warn("there are no entities defined for the applicationModel {}", applicationModel);
             return;
         }
+        ClassEntity firstClassEntity = (ClassEntity) applicationModel.getEntities().get(0);
+        router.attach(new RouteBuilder("" , firstClassEntity.getListResourceClass()));
+        router.attach(new RouteBuilder("/" , firstClassEntity.getListResourceClass()));
 
-        router.attach(new RouteBuilder("" , applicationModel.getEntities().get(0).getListResourceClass()));
-        router.attach(new RouteBuilder("/" , applicationModel.getEntities().get(0).getListResourceClass()));
-
-        applicationModel.getEntities().stream().forEach(entity -> {
-            router.attach(new RouteBuilder("/" + entity.getId(), entity.getListResourceClass()));
-            router.attach(new RouteBuilder("/" + entity.getId() + "/", entity.getPostResourceClass()));
-            router.attach(new RouteBuilder("/" + entity.getId() + "/{id}", entity.getEntityResourceClass()));
-            router.attach(new RouteBuilder("/" + entity.getId() + "/{id}/", entity.getPutResourceClass()));
-        });
+        applicationModel.getEntities().stream()
+            .map(ClassEntity.class::cast)
+            .forEach(entity -> {
+                router.attach(new RouteBuilder("/" + entity.getId(), entity.getListResourceClass()));
+                router.attach(new RouteBuilder("/" + entity.getId() + "/", entity.getPostResourceClass()));
+                router.attach(new RouteBuilder("/" + entity.getId() + "/{id}", entity.getEntityResourceClass()));
+                router.attach(new RouteBuilder("/" + entity.getId() + "/{id}/", entity.getPutResourceClass()));
+            });
     }
 
     /**

@@ -32,6 +32,6 @@ public class ConnectionsResource extends ListServerResource<Connection> {
 
     @Override
     public List<Link> getLinks() {
-        return super.getLinks();
+        return super.getLinks(io.skysail.server.app.dbviewer.PostConnectionResource.class);
     }
 }

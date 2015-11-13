@@ -21,7 +21,7 @@
   </class>  
   <class id="3" language="java" name="io.skysail.server.domain.core.Field" project="skysail.server" 
     file="/skysail.server/src/io/skysail/server/domain/core/Field.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="813" y="128"/>    
+    <position height="-1" width="-1" x="984" y="130"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="false" static="true"/>      
@@ -39,7 +39,7 @@
   </class>  
   <class id="5" language="java" name="io.skysail.server.domain.core.ListResource" project="skysail.server" 
     file="/skysail.server/src/io/skysail/server/domain/core/ListResource.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="150" y="503"/>    
+    <position height="-1" width="-1" x="196" y="369"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="false" static="true"/>      
@@ -48,7 +48,7 @@
   </class>  
   <class id="6" language="java" name="io.skysail.server.domain.core.PostResource" project="skysail.server" 
     file="/skysail.server/src/io/skysail/server/domain/core/PostResource.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="350" y="437"/>    
+    <position height="-1" width="-1" x="378" y="406"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="false" static="true"/>      
@@ -57,7 +57,7 @@
   </class>  
   <class id="7" language="java" name="io.skysail.server.domain.core.PutResource" project="skysail.server" 
     file="/skysail.server/src/io/skysail/server/domain/core/PutResource.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="567" y="439"/>    
+    <position height="-1" width="-1" x="537" y="408"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="false" static="true"/>      
@@ -66,7 +66,7 @@
   </class>  
   <class id="8" language="java" name="io.skysail.server.domain.core.EntityResource" project="skysail.server" 
     file="/skysail.server/src/io/skysail/server/domain/core/EntityResource.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="865" y="443"/>    
+    <position height="-1" width="-1" x="756" y="442"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="false" static="true"/>      
@@ -84,93 +84,126 @@
   </class>  
   <interface id="10" language="java" name="io.skysail.api.repos.Repository" project="skysail.api" 
     file="/skysail.api/src/io/skysail/api/repos/Repository.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="135" y="313"/>    
+    <position height="-1" width="-1" x="162" y="638"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="false" static="true"/>      
       <operations public="true" package="true" protected="true" private="false" static="true"/>    
     </display>  
   </interface>  
-  <association id="11">    
+  <class id="11" language="java" name="io.skysail.server.domain.core.ClassEntity" project="skysail.server" 
+    file="/skysail.server/src/io/skysail/server/domain/core/ClassEntity.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="887" y="283"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="false" static="true"/>      
+      <operations public="true" package="true" protected="true" private="false" static="true"/>    
+    </display>  
+  </class>  
+  <association id="12">    
     <end type="SOURCE" refId="2" navigable="false">      
-      <attribute id="12" name="postResource"/>      
-      <multiplicity id="13" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="6" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="14">    
-    <end type="SOURCE" refId="2" navigable="false">      
-      <attribute id="15" name="listResource"/>      
-      <multiplicity id="16" minimum="0" maximum="1"/>    
+      <attribute id="13" name="listResource">        
+        <position height="0" width="0" x="46" y="-134"/>      
+      </attribute>      
+      <multiplicity id="14" minimum="0" maximum="1">        
+        <position height="0" width="0" x="46" y="-134"/>      
+      </multiplicity>    
     </end>    
     <end type="TARGET" refId="5" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="17">    
+  <association id="15">    
     <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="18" name="repositories"/>      
-      <multiplicity id="19" minimum="0" maximum="2147483647"/>    
+      <attribute id="16" name="entities">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="17" minimum="0" maximum="2147483647">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
     </end>    
-    <end type="TARGET" refId="10" navigable="true"/>    
+    <end type="TARGET" refId="2" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <generalization id="20">    
-    <end type="SOURCE" refId="6"/>    
-    <end type="TARGET" refId="4"/>  
-  </generalization>  
-  <association id="21">    
+  <association id="18">    
     <end type="SOURCE" refId="2" navigable="false">      
-      <attribute id="22" name="fields"/>      
-      <multiplicity id="23" minimum="0" maximum="2147483647"/>    
-    </end>    
-    <end type="TARGET" refId="3" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <generalization id="24">    
-    <end type="SOURCE" refId="8"/>    
-    <end type="TARGET" refId="4"/>  
-  </generalization>  
-  <generalization id="25">    
-    <end type="SOURCE" refId="5"/>    
-    <end type="TARGET" refId="4"/>  
-  </generalization>  
-  <association id="26">    
-    <end type="SOURCE" refId="2" navigable="false">      
-      <attribute id="27" name="putResource"/>      
-      <multiplicity id="28" minimum="0" maximum="1"/>    
+      <attribute id="19" name="putResource">        
+        <position height="0" width="0" x="-30" y="-31"/>      
+      </attribute>      
+      <multiplicity id="20" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-30" y="-31"/>      
+      </multiplicity>    
     </end>    
     <end type="TARGET" refId="7" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
+  <association id="21">    
+    <end type="SOURCE" refId="4" navigable="false">      
+      <attribute id="22" name="links">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="23" minimum="0" maximum="2147483647">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="9" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="24">    
+    <end type="SOURCE" refId="2" navigable="false">      
+      <attribute id="25" name="postResource">        
+        <position height="0" width="0" x="28" y="-31"/>      
+      </attribute>      
+      <multiplicity id="26" minimum="0" maximum="1">        
+        <position height="0" width="0" x="28" y="-31"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="6" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="27">    
+    <end type="SOURCE" refId="6"/>    
+    <end type="TARGET" refId="4"/>  
+  </generalization>  
+  <generalization id="28">    
+    <end type="SOURCE" refId="7"/>    
+    <end type="TARGET" refId="4"/>  
+  </generalization>  
   <association id="29">    
     <end type="SOURCE" refId="2" navigable="false">      
-      <attribute id="30" name="entityResource"/>      
-      <multiplicity id="31" minimum="0" maximum="1"/>    
+      <attribute id="30" name="entityResource">        
+        <position height="0" width="0" x="-109" y="-1"/>      
+      </attribute>      
+      <multiplicity id="31" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-109" y="-1"/>      
+      </multiplicity>    
     </end>    
     <end type="TARGET" refId="8" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <association id="32">    
-    <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="33" name="entities"/>      
-      <multiplicity id="34" minimum="0" maximum="2147483647"/>    
+    <end type="SOURCE" refId="2" navigable="false">      
+      <attribute id="33" name="fields">        
+        <position height="0" width="0" x="171" y="2"/>      
+      </attribute>      
+      <multiplicity id="34" minimum="0" maximum="2147483647">        
+        <position height="0" width="0" x="171" y="2"/>      
+      </multiplicity>    
     </end>    
-    <end type="TARGET" refId="2" navigable="true"/>    
+    <end type="TARGET" refId="3" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <generalization id="35">    
-    <end type="SOURCE" refId="7"/>    
+    <end type="SOURCE" refId="5"/>    
     <end type="TARGET" refId="4"/>  
   </generalization>  
-  <association id="36">    
-    <end type="SOURCE" refId="4" navigable="false">      
-      <attribute id="37" name="links"/>      
-      <multiplicity id="38" minimum="0" maximum="2147483647"/>    
-    </end>    
-    <end type="TARGET" refId="9" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
+  <generalization id="36">    
+    <end type="SOURCE" refId="11"/>    
+    <end type="TARGET" refId="2"/>  
+  </generalization>  
+  <generalization id="37">    
+    <end type="SOURCE" refId="8"/>    
+    <end type="TARGET" refId="4"/>  
+  </generalization>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
     sort-features="false" accessors="true" visibility="true">    
     <attributes public="true" package="true" protected="true" private="false" static="true"/>    

@@ -1,4 +1,4 @@
-repository(entity) ::= <<
+template(entity) ::= <<
 package $entity.packageName$;
 
 import javax.annotation.Generated;

@@ -13,12 +13,6 @@ public class JavaEntity extends Entity implements JavaModel {
     @Getter
     private String elementName;
 
-    @Getter
-    private String simpleName;
-
-    @Getter
-    private String packageName;
-
     private Element element;
 
     @Getter
@@ -31,15 +25,8 @@ public class JavaEntity extends Entity implements JavaModel {
         super(element.toString());
         this.element = element;
         this.elementName = element.toString();
-        this.simpleName = toSimpleName(element.toString());
-        this.packageName = getPackageFromName(element.toString());
         this.applicationName = application.getId();
         this.applicationPackage = application.getPackageName();
-    }
-
-    @Override
-    public String getTypeName() {
-        return null;
     }
 
     public GenerateResources getGenerateResourcesAnnotation() {
@@ -48,6 +35,10 @@ public class JavaEntity extends Entity implements JavaModel {
 
     public String getClassAnnotations() {
         return EntityProcessor.GENERATED_ANNOTATION;
+    }
+
+    public String getLinkedResources() {
+        return getPostResourceClassName() + ".class";
     }
 
 }

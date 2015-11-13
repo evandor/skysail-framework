@@ -2,7 +2,7 @@ package io.skysail.server.codegen.apt.processors;
 
 import java.io.IOException;
 import java.lang.annotation.Annotation;
-import java.util.*;
+import java.util.Set;
 
 import javax.annotation.processing.*;
 import javax.lang.model.element.*;
@@ -29,24 +29,6 @@ public abstract class Processors extends AbstractProcessor {
 
 	protected Set<? extends Element> getElements(RoundEnvironment roundEnv, Class<? extends Annotation> gpr) {
 		return roundEnv.getElementsAnnotatedWith(gpr);
-	}
-
-	protected Set<? extends Element> getSubElements(RoundEnvironment roundEnv, Class<? extends Annotation> gpr,
-	        Element skysailApplicationElement) {
-	    Set<Element> result = new HashSet<>();
-	    for (Element element : roundEnv.getElementsAnnotatedWith(gpr)) {
-	        if (entityIsInSubpackgeOfApplication(element, skysailApplicationElement)) {
-	            result.add(element);
-	        }
-	    }
-	    return result;
-	}
-
-	private boolean entityIsInSubpackgeOfApplication(Element e, Element skysailApplicationElement) {
-		String entityPackage = e.getEnclosingElement().toString();
-		String appPackage = skysailApplicationElement.getEnclosingElement().toString();
-		printMessage(" +++ " + entityPackage + "/" + appPackage + ": " + entityPackage.startsWith(appPackage));
-		return entityPackage.startsWith(appPackage);
 	}
 
 	protected void printMessage(String msg) {

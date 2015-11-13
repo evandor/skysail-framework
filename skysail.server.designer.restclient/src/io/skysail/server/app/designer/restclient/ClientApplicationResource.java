@@ -1,14 +1,12 @@
 package io.skysail.server.app.designer.restclient;
 
-import java.util.List;
-import javax.annotation.Generated;
-
-import org.restlet.resource.ResourceException;
-
-
 import io.skysail.api.links.Link;
 import io.skysail.api.responses.SkysailResponse;
 import io.skysail.server.restlet.resources.EntityServerResource;
+
+import java.util.List;
+
+import javax.annotation.Generated;
 
 @Generated("io.skysail.server.codegen.apt.processors.EntityProcessor")
 public class ClientApplicationResource extends EntityServerResource<ClientApplication> {
@@ -27,7 +25,7 @@ public class ClientApplicationResource extends EntityServerResource<ClientApplic
     }
 
     public List<Link> getLinks() {
-        return super.getLinks(PutClientApplicationResource.class);
+        return super.getLinks(PutClientApplicationResource.class);//, ExecutionResource.class);
     }
 
     public SkysailResponse<ClientApplication> eraseEntity() {

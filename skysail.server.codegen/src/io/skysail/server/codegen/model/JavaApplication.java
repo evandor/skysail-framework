@@ -10,12 +10,7 @@ public class JavaApplication extends Application implements JavaModel {
 
     public JavaApplication(String id) {
         super(id.substring(id.lastIndexOf(".")+1));
-        this.packageName = getPackageFromName(id);
-    }
-
-    @Override
-    public String getTypeName() {
-        return "typeName";
+        this.packageName = "pkgName";//getPackageFromName(id);
     }
 
 }

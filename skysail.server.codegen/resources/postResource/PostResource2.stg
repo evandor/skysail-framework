@@ -1,4 +1,4 @@
-post(entity, name, package, appName, appPkg, addEntity, imports) ::= <<
+template(entity, name, package, appName, appPkg, addEntity, imports) ::= <<
 package $entity.packageName$;
 
 import javax.annotation.Generated;

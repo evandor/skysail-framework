@@ -1,0 +1,231 @@
+INFO  io.skysail.server.app.ApplicationList - (+) Adding application 'root'
+INFO  io.skysail.server.services.ServerLoad - activating ServerLoad task
+INFO  io.skysail.server.services.ServerTime - activating ServerTime task
+INFO  io.skysail.server.app.ApplicationList - (+) Adding application 'webapp'
+INFO  io.skysail.server.db.DbConfigurations - activating DbConfigurations with config DbConfig(name=skysailgraph, driver=, url=remote:localhost/skysailcrm, username=admin)
+INFO  io.skysail.server.db.OrientGraphDbService - about to start db
+INFO  io.skysail.server.db.OrientGraphDbService - registering remote engine
+INFO  io.skysail.server.db.OrientGraphDbService - setting lazy loading to false
+INFO  io.skysail.server.db.versions.impl.VersionsRepository - activating VersionsRepository
+INFO  io.skysail.server.app.Repositories - adding repository (#1) with name 'io.skysail.server.db.versions.impl.ComponentDbVersion'
+INFO  io.skysail.server.http.HttpServer - Activating io.skysail.server.http.HttpServer
+INFO  de.twenty11.skysail.server.SkysailComponent - Creating Restlet Component: de.twenty11.skysail.server.SkysailComponent
+INFO  io.skysail.server.http.HttpServer - configuration was provided
+INFO  io.skysail.server.http.HttpServer - 
+INFO  io.skysail.server.http.HttpServer - ====================================
+INFO  io.skysail.server.http.HttpServer - Starting skysail server on port 2015
+INFO  io.skysail.server.http.HttpServer - ====================================
+INFO  io.skysail.server.http.HttpServer - 
+INFO  org.eclipse.jetty.util.log - Logging initialized @3498ms
+INFO  io.skysail.server.app.ApplicationList - (+) Adding application 'OSGi'
+INFO  io.skysail.server.app.ApplicationList - (+) Adding application 'Performance'
+INFO  org.restlet - Starting the Jetty [HTTP/1.1] server on port 2015
+INFO  org.eclipse.jetty.server.Server - jetty-9.2.11.v20150529
+INFO  io.skysail.server.app.ApplicationList - (+) Adding application 'static'
+INFO  io.skysail.server.app.ApplicationList - (+) Adding application 'i18n'
+INFO  org.eclipse.jetty.server.ServerConnector - Started ServerConnector@409e32ff{HTTP/1.1}{0.0.0.0:2015}
+INFO  org.eclipse.jetty.server.Server - Started @3560ms
+WARN  i.s.server.um.simple.FileBasedUserManagementProvider - creating default configuration for usermanagement as no configuration was provided (yet)!
+INFO  io.skysail.server.app.ApplicationList - (+) Adding application 'usermanagement'
+INFO  io.skysail.server.app.ApplicationList -  >>> unsetting ServerConfiguration
+INFO  io.skysail.server.app.ApplicationList -  >>> attaching skysailApplication '/root' to defaultHost
+INFO  io.skysail.server.app.ApplicationList -  >>> unsetting ServerConfiguration
+INFO  io.skysail.server.app.ApplicationList -  >>> attaching skysailApplication '/webapp' to defaultHost
+INFO  io.skysail.server.app.ApplicationList -  >>> unsetting ServerConfiguration
+INFO  io.skysail.server.app.ApplicationList -  >>> attaching skysailApplication '/OSGi' to defaultHost
+INFO  io.skysail.server.app.ApplicationList -  >>> unsetting ServerConfiguration
+INFO  io.skysail.server.app.ApplicationList -  >>> attaching skysailApplication '/Performance' to defaultHost
+INFO  io.skysail.server.app.ApplicationList -  >>> unsetting ServerConfiguration
+INFO  io.skysail.server.app.ApplicationList -  >>> attaching skysailApplication '/static' to defaultHost
+INFO  io.skysail.server.app.ApplicationList -  >>> unsetting ServerConfiguration
+INFO  io.skysail.server.app.ApplicationList -  >>> attaching skysailApplication '/i18n' to defaultHost
+INFO  io.skysail.server.app.ApplicationList -  >>> unsetting ServerConfiguration
+INFO  io.skysail.server.app.ApplicationList -  >>> attaching skysailApplication '/usermanagement' to defaultHost
+INFO  skysail.server.ext.initconfig.ConfigMover - determined product bundle to be 'skysail.server.designer.restclient'
+INFO  skysail.server.ext.initconfig.ConfigMover - checking directories 'config/common,config/local' in bundle skysail.server.designer.restclient for configurations
+INFO  skysail.server.ext.initconfig.ConfigMover - no configuration found in bundle skysail.server.designer.restclient
+INFO  io.skysail.server.app.Repositories - adding repository (#2) with name 'io.skysail.server.app.um.db.domain.Group'
+INFO  io.skysail.server.app.Repositories - adding repository (#3) with name 'io.skysail.server.app.um.db.domain.Permission'
+INFO  io.skysail.server.app.Repositories - adding repository (#4) with name 'io.skysail.server.app.um.db.domain.Role'
+INFO  io.skysail.server.app.ApplicationList - (+) Adding application 'um'
+INFO  io.skysail.server.app.Repositories - adding repository (#5) with name 'io.skysail.server.app.um.db.domain.User'
+INFO  io.skysail.server.app.Repositories - adding repository (#6) with name 'io.skysail.server.app.designer.restclient.ClientApplication'
+INFO  io.skysail.server.app.ApplicationList - (+) Adding application 'Restclient'
+INFO  org.restlet.SkysailComponent.SkysailRootApplication - Starting de.twenty11.skysail.server.app.SkysailRootApplication application
+INFO  io.skysail.server.app.SkysailApplication - creating new Router in de.twenty11.skysail.server.app.SkysailRootApplication
+INFO  io.skysail.server.app.SkysailApplication - adding extensions to metadata service
+INFO  io.skysail.server.app.SkysailApplication - adding protocols
+INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/!meta' -> 'RolesPredicateAuthorizer' -> 'de.twenty11.skysail.server.resources.DefaultResource'
+INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/' -> 'de.twenty11.skysail.server.resources.DefaultResource'
+WARN  de.twenty11.skysail.server.core.restlet.SkysailRouter - please use a RouteBuilder to attach this resource: class de.twenty11.skysail.server.resources.DefaultResource
+INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/_login' -> 'de.twenty11.skysail.server.resources.LoginResource'
+WARN  de.twenty11.skysail.server.core.restlet.SkysailRouter - please use a RouteBuilder to attach this resource: class de.twenty11.skysail.server.resources.LoginResource
+INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/_demologin' -> 'de.twenty11.skysail.server.resources.DemoLoginResource'
+WARN  de.twenty11.skysail.server.core.restlet.SkysailRouter - please use a RouteBuilder to attach this resource: class de.twenty11.skysail.server.resources.DemoLoginResource
+INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/_profile' -> 'RolesPredicateAuthorizer' -> 'de.twenty11.skysail.server.app.profile.ProfileResource'
+INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/_profile/password/' -> 'RolesPredicateAuthorizer' -> 'de.twenty11.skysail.server.app.profile.PutPasswordResource'
+INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/_remotelogin' -> 'de.twenty11.skysail.server.resources.RemoteLoginResource'
+WARN  de.twenty11.skysail.server.core.restlet.SkysailRouter - please use a RouteBuilder to attach this resource: class de.twenty11.skysail.server.resources.RemoteLoginResource
+INFO  org.restlet.SkysailComponent.SkysailRootApplication - Starting io.skysail.server.converter.WebappApplication application
+INFO  org.restlet.SkysailComponent.SkysailRootApplication - Starting de.twenty11.skysail.server.osgi.OsgiMonitorViewerApplication application
+INFO  io.skysail.server.app.SkysailApplication - creating new Router in de.twenty11.skysail.server.osgi.OsgiMonitorViewerApplication
+INFO  io.skysail.server.app.SkysailApplication - adding extensions to metadata service
+INFO  io.skysail.server.app.SkysailApplication - adding protocols
+WARN  io.skysail.server.app.SkysailApplication - there are no entities defined for the applicationModel Application(id=OSGi, entities=[], repositories=null)
+INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/v1!meta' -> 'RolesPredicateAuthorizer' -> 'de.twenty11.skysail.server.osgi.osgimonitor.resources.OsgiMonitorRootResource'
+INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/v1' -> 'RolesPredicateAuthorizer' -> 'de.twenty11.skysail.server.osgi.osgimonitor.resources.OsgiMonitorRootResource'
+INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/v1/!meta' -> 'RolesPredicateAuthorizer' -> 'de.twenty11.skysail.server.osgi.osgimonitor.resources.OsgiMonitorRootResource'
+INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/v1/' -> 'RolesPredicateAuthorizer' -> 'de.twenty11.skysail.server.osgi.osgimonitor.resources.OsgiMonitorRootResource'
+INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/v1/bundles!meta' -> 'RolesPredicateAuthorizer' -> 'de.twenty11.skysail.server.osgi.osgimonitor.resources.BundlesResource'
+INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/v1/bundles' -> 'RolesPredicateAuthorizer' -> 'de.twenty11.skysail.server.osgi.osgimonitor.resources.BundlesResource'
+INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/v1/bundlesgraph!meta' -> 'RolesPredicateAuthorizer' -> 'de.twenty11.skysail.server.osgi.osgimonitor.resources.BundlesGraphResource'
+INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/v1/bundlesgraph' -> 'RolesPredicateAuthorizer' -> 'de.twenty11.skysail.server.osgi.osgimonitor.resources.BundlesGraphResource'
+INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/v1/bundles/details/{bundleId}' -> 'RolesPredicateAuthorizer' -> 'de.twenty11.skysail.server.osgi.osgimonitor.resources.BundleResource'
+INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/v1/bundles/details/{bundleId}/action' -> 'RolesPredicateAuthorizer' -> 'de.twenty11.skysail.server.osgi.osgimonitor.resources.BundleResource'
+INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/v1/services!meta' -> 'RolesPredicateAuthorizer' -> 'de.twenty11.skysail.server.osgi.osgimonitor.resources.ServicesResource'
+INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/v1/services' -> 'RolesPredicateAuthorizer' -> 'de.twenty11.skysail.server.osgi.osgimonitor.resources.ServicesResource'
+INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/v1/services/{serviceId}' -> 'RolesPredicateAuthorizer' -> 'de.twenty11.skysail.server.osgi.osgimonitor.resources.ServiceResource'
+INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/v1/requirements!meta' -> 'RolesPredicateAuthorizer' -> 'de.twenty11.skysail.server.osgi.osgimonitor.resources.RequirementsResource'
+INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/v1/requirements' -> 'RolesPredicateAuthorizer' -> 'de.twenty11.skysail.server.osgi.osgimonitor.resources.RequirementsResource'
+INFO  org.restlet.SkysailComponent.SkysailRootApplication - Starting io.skysail.server.performance.etm.impl.PerformanceApplication application
+INFO  io.skysail.server.app.SkysailApplication - creating new Router in io.skysail.server.performance.etm.impl.PerformanceApplication
+INFO  io.skysail.server.app.SkysailApplication - adding extensions to metadata service
+INFO  io.skysail.server.app.SkysailApplication - adding protocols
+WARN  io.skysail.server.app.SkysailApplication - there are no entities defined for the applicationModel Application(id=Performance, entities=[], repositories=null)
+INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/v1' -> 'RolesPredicateAuthorizer' -> 'io.skysail.server.performance.etm.impl.PerformanceResource'
+INFO  org.restlet.SkysailComponent.SkysailRootApplication - Starting de.twenty11.skysail.server.webapp.internal.WebappApplication application
+INFO  org.restlet.SkysailComponent.SkysailRootApplication - Starting io.skysail.server.text.store.bundleresource.impl.I18nApplication application
+INFO  io.skysail.server.app.SkysailApplication - creating new Router in io.skysail.server.text.store.bundleresource.impl.I18nApplication
+INFO  io.skysail.server.app.SkysailApplication - adding extensions to metadata service
+INFO  io.skysail.server.app.SkysailApplication - adding protocols
+INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/v1!meta' -> 'RolesPredicateAuthorizer' -> 'io.skysail.server.text.store.bundleresource.impl.I18nRootResource'
+INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/v1' -> 'RolesPredicateAuthorizer' -> 'io.skysail.server.text.store.bundleresource.impl.I18nRootResource'
+INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/v1/messages/!meta' -> 'RolesPredicateAuthorizer' -> 'io.skysail.server.text.store.bundleresource.impl.MessagesResource'
+INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/v1/messages/' -> 'RolesPredicateAuthorizer' -> 'io.skysail.server.text.store.bundleresource.impl.MessagesResource'
+INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/v1/messages/{key}' -> 'RolesPredicateAuthorizer' -> 'io.skysail.server.text.store.bundleresource.impl.MessageResource'
+INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/v1/messages/{key}/' -> 'RolesPredicateAuthorizer' -> 'io.skysail.server.text.store.bundleresource.impl.PutMessageResource'
+INFO  org.restlet.SkysailComponent.SkysailRootApplication - Starting io.skysail.server.um.simple.app.SimpleUserManagementApplication application
+INFO  io.skysail.server.app.SkysailApplication - creating new Router in io.skysail.server.um.simple.app.SimpleUserManagementApplication
+INFO  io.skysail.server.app.SkysailApplication - adding extensions to metadata service
+INFO  io.skysail.server.app.SkysailApplication - adding protocols
+WARN  io.skysail.server.app.SkysailApplication - there are no entities defined for the applicationModel Application(id=usermanagement, entities=[], repositories=null)
+INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/v1/currentUser' -> 'io.skysail.server.um.simple.app.users.resources.CurrentUserResource'
+WARN  de.twenty11.skysail.server.core.restlet.SkysailRouter - please use a RouteBuilder to attach this resource: class io.skysail.server.um.simple.app.users.resources.CurrentUserResource
+INFO  org.restlet - Starting io.skysail.server.app.um.db.UmApplication application
+INFO  io.skysail.server.app.SkysailApplication - creating new Router in io.skysail.server.app.um.db.UmApplication
+INFO  io.skysail.server.app.SkysailApplication - adding extensions to metadata service
+INFO  io.skysail.server.app.SkysailApplication - adding protocols
+WARN  io.skysail.server.app.SkysailApplication - there are no entities defined for the applicationModel Application(id=um, entities=[], repositories=null)
+INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/v1!meta' -> 'RolesPredicateAuthorizer' -> 'io.skysail.server.app.um.db.users.resources.UsersResource'
+INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/v1' -> 'RolesPredicateAuthorizer' -> 'io.skysail.server.app.um.db.users.resources.UsersResource'
+INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/v1/users!meta' -> 'RolesPredicateAuthorizer' -> 'io.skysail.server.app.um.db.users.resources.UsersResource'
+INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/v1/users' -> 'RolesPredicateAuthorizer' -> 'io.skysail.server.app.um.db.users.resources.UsersResource'
+INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/v1/users/' -> 'RolesPredicateAuthorizer' -> 'io.skysail.server.app.um.db.users.resources.PostUserResource'
+INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/v1/users/{id}' -> 'RolesPredicateAuthorizer' -> 'io.skysail.server.app.um.db.users.resources.UserResource'
+INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/v1/users/{id}/' -> 'RolesPredicateAuthorizer' -> 'io.skysail.server.app.um.db.users.resources.PutUserResource'
+INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/v1/roles!meta' -> 'RolesPredicateAuthorizer' -> 'io.skysail.server.app.um.db.roles.resources.RolesResource'
+INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/v1/roles' -> 'RolesPredicateAuthorizer' -> 'io.skysail.server.app.um.db.roles.resources.RolesResource'
+INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/v1/roles/' -> 'RolesPredicateAuthorizer' -> 'io.skysail.server.app.um.db.roles.resources.PostRoleResource'
+INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/v1/roles/{id}' -> 'RolesPredicateAuthorizer' -> 'io.skysail.server.app.um.db.roles.resources.RoleResource'
+INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/v1/roles/{id}/' -> 'RolesPredicateAuthorizer' -> 'io.skysail.server.app.um.db.roles.resources.PutRoleResource'
+INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/v1/permissions!meta' -> 'RolesPredicateAuthorizer' -> 'io.skysail.server.app.um.db.permissions.resources.PermissionsResource'
+INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/v1/permissions' -> 'RolesPredicateAuthorizer' -> 'io.skysail.server.app.um.db.permissions.resources.PermissionsResource'
+INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/v1/permissions/' -> 'RolesPredicateAuthorizer' -> 'io.skysail.server.app.um.db.permissions.resources.PostPermissionResource'
+INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/v1/permissions/{id}' -> 'RolesPredicateAuthorizer' -> 'io.skysail.server.app.um.db.permissions.resources.PermissionResource'
+INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/v1/permissions/{id}/' -> 'RolesPredicateAuthorizer' -> 'io.skysail.server.app.um.db.permissions.resources.PutPermissionResource'
+INFO  org.restlet - Starting io.skysail.server.app.designer.restclient.RestclientApplication application
+INFO  io.skysail.server.app.SkysailApplication - creating new Router in io.skysail.server.app.designer.restclient.RestclientApplication
+INFO  io.skysail.server.app.SkysailApplication - adding extensions to metadata service
+INFO  io.skysail.server.app.SkysailApplication - adding protocols
+INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/v1!meta' -> 'RolesPredicateAuthorizer' -> 'io.skysail.server.app.designer.restclient.ClientApplicationsResource'
+INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/v1' -> 'RolesPredicateAuthorizer' -> 'io.skysail.server.app.designer.restclient.ClientApplicationsResource'
+INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/v1/!meta' -> 'RolesPredicateAuthorizer' -> 'io.skysail.server.app.designer.restclient.ClientApplicationsResource'
+INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/v1/' -> 'RolesPredicateAuthorizer' -> 'io.skysail.server.app.designer.restclient.ClientApplicationsResource'
+INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/v1/ClientApplication!meta' -> 'RolesPredicateAuthorizer' -> 'io.skysail.server.app.designer.restclient.ClientApplicationsResource'
+INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/v1/ClientApplication' -> 'RolesPredicateAuthorizer' -> 'io.skysail.server.app.designer.restclient.ClientApplicationsResource'
+INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/v1/ClientApplication/' -> 'RolesPredicateAuthorizer' -> 'io.skysail.server.app.designer.restclient.PostClientApplicationResource'
+INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/v1/ClientApplication/{id}' -> 'RolesPredicateAuthorizer' -> 'io.skysail.server.app.designer.restclient.ClientApplicationResource'
+INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/v1/ClientApplication/{id}/' -> 'RolesPredicateAuthorizer' -> 'io.skysail.server.app.designer.restclient.PutClientApplicationResource'
+INFO  io.skysail.server.restlet.resources.ListServerResource - Request entry point: ClientApplicationsResource @Get('html|json|yaml|xml') with variant [text/html]
+WARN  io.skysail.server.utils.LinkUtils - problem with linkheader for resource ExecutionResource; no routeBuilder was found.
+INFO  LogService - 2015-11-13	15:05:58	127.0.0.1	admin	127.0.0.1	2015	GET	/Restclient/v1	-	200	-	0	943	http://127.0.0.1:2015	Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.80 Safari/537.36	http://127.0.0.1:2015/Restclient/v1/
+INFO  io.skysail.server.restlet.resources.ListServerResource - Request entry point: ClientApplicationsResource @Get('html|json|yaml|xml') with variant [text/html]
+WARN  io.skysail.server.utils.LinkUtils - problem with linkheader for resource ExecutionResource; no routeBuilder was found.
+INFO  LogService - 2015-11-13	15:06:02	127.0.0.1	admin	127.0.0.1	2015	GET	/Restclient/v1	-	200	-	0	503	http://127.0.0.1:2015	Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.80 Safari/537.36	http://127.0.0.1:2015/Restclient/v1
+INFO  i.s.server.restlet.resources.PutEntityServerResource - Request entry point: PutEntityServerResource @Get('htmlform|html|json') createForm with variant [text/html]
+INFO  LogService - 2015-11-13	15:06:50	127.0.0.1	admin	127.0.0.1	2015	GET	/v1/ClientApplication/34:0	-	200	-	0	562	http://127.0.0.1:2015	Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.80 Safari/537.36	http://127.0.0.1:2015/Restclient/v1
+INFO  io.skysail.server.app.Repositories - removing repository with name 'io.skysail.server.app.designer.restclient.ClientApplication', count is 5 now
+INFO  io.skysail.server.app.ApplicationList - (-) Removing application 'Restclient'
+INFO  io.skysail.server.app.Repositories - adding repository (#6) with name 'io.skysail.server.app.designer.restclient.ClientApplication'
+INFO  io.skysail.server.app.ApplicationList - (+) Adding application 'Restclient'
+INFO  io.skysail.server.app.Repositories - removing repository with name 'io.skysail.server.app.designer.restclient.ClientApplication', count is 5 now
+INFO  io.skysail.server.app.ApplicationList - (-) Removing application 'Restclient'
+INFO  io.skysail.server.app.Repositories - adding repository (#6) with name 'io.skysail.server.app.designer.restclient.ClientApplication'
+INFO  io.skysail.server.app.ApplicationList - (+) Adding application 'Restclient'
+INFO  org.restlet - Starting io.skysail.server.app.designer.restclient.RestclientApplication application
+INFO  io.skysail.server.app.SkysailApplication - creating new Router in io.skysail.server.app.designer.restclient.RestclientApplication
+INFO  io.skysail.server.app.SkysailApplication - adding extensions to metadata service
+INFO  io.skysail.server.app.SkysailApplication - adding protocols
+INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/v1!meta' -> 'RolesPredicateAuthorizer' -> 'io.skysail.server.app.designer.restclient.ClientApplicationsResource'
+INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/v1' -> 'RolesPredicateAuthorizer' -> 'io.skysail.server.app.designer.restclient.ClientApplicationsResource'
+INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/v1/!meta' -> 'RolesPredicateAuthorizer' -> 'io.skysail.server.app.designer.restclient.ClientApplicationsResource'
+INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/v1/' -> 'RolesPredicateAuthorizer' -> 'io.skysail.server.app.designer.restclient.ClientApplicationsResource'
+INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/v1/ClientApplication!meta' -> 'RolesPredicateAuthorizer' -> 'io.skysail.server.app.designer.restclient.ClientApplicationsResource'
+INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/v1/ClientApplication' -> 'RolesPredicateAuthorizer' -> 'io.skysail.server.app.designer.restclient.ClientApplicationsResource'
+INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/v1/ClientApplication/' -> 'RolesPredicateAuthorizer' -> 'io.skysail.server.app.designer.restclient.PostClientApplicationResource'
+INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/v1/ClientApplication/{id}' -> 'RolesPredicateAuthorizer' -> 'io.skysail.server.app.designer.restclient.ClientApplicationResource'
+INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/v1/ClientApplication/{id}/' -> 'RolesPredicateAuthorizer' -> 'io.skysail.server.app.designer.restclient.PutClientApplicationResource'
+INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/v1/ClientApplication/{id}/execution!meta' -> 'RolesPredicateAuthorizer' -> 'io.skysail.server.app.designer.restclient.ExecutionResource'
+INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/v1/ClientApplication/{id}/execution' -> 'RolesPredicateAuthorizer' -> 'io.skysail.server.app.designer.restclient.ExecutionResource'
+INFO  io.skysail.server.restlet.resources.ListServerResource - Request entry point: ClientApplicationsResource @Get('html|json|yaml|xml') with variant [text/html]
+INFO  LogService - 2015-11-13	15:07:23	127.0.0.1	admin	127.0.0.1	2015	GET	/Restclient/v1	-	200	-	0	471	http://127.0.0.1:2015	Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.80 Safari/537.36	http://127.0.0.1:2015/Restclient/v1/ClientApplication/34:0/
+INFO  io.skysail.server.app.Repositories - removing repository with name 'io.skysail.server.app.designer.restclient.ClientApplication', count is 5 now
+INFO  io.skysail.server.app.ApplicationList - (-) Removing application 'Restclient'
+INFO  io.skysail.server.app.Repositories - adding repository (#6) with name 'io.skysail.server.app.designer.restclient.ClientApplication'
+INFO  io.skysail.server.app.ApplicationList - (+) Adding application 'Restclient'
+INFO  org.restlet - Starting io.skysail.server.app.designer.restclient.RestclientApplication application
+INFO  io.skysail.server.app.SkysailApplication - creating new Router in io.skysail.server.app.designer.restclient.RestclientApplication
+INFO  io.skysail.server.app.SkysailApplication - adding extensions to metadata service
+INFO  io.skysail.server.app.SkysailApplication - adding protocols
+INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/v1!meta' -> 'RolesPredicateAuthorizer' -> 'io.skysail.server.app.designer.restclient.ClientApplicationsResource'
+INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/v1' -> 'RolesPredicateAuthorizer' -> 'io.skysail.server.app.designer.restclient.ClientApplicationsResource'
+INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/v1/!meta' -> 'RolesPredicateAuthorizer' -> 'io.skysail.server.app.designer.restclient.ClientApplicationsResource'
+INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/v1/' -> 'RolesPredicateAuthorizer' -> 'io.skysail.server.app.designer.restclient.ClientApplicationsResource'
+INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/v1/ClientApplication!meta' -> 'RolesPredicateAuthorizer' -> 'io.skysail.server.app.designer.restclient.ClientApplicationsResource'
+INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/v1/ClientApplication' -> 'RolesPredicateAuthorizer' -> 'io.skysail.server.app.designer.restclient.ClientApplicationsResource'
+INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/v1/ClientApplication/' -> 'RolesPredicateAuthorizer' -> 'io.skysail.server.app.designer.restclient.PostClientApplicationResource'
+INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/v1/ClientApplication/{id}' -> 'RolesPredicateAuthorizer' -> 'io.skysail.server.app.designer.restclient.ClientApplicationResource'
+INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/v1/ClientApplication/{id}/' -> 'RolesPredicateAuthorizer' -> 'io.skysail.server.app.designer.restclient.PutClientApplicationResource'
+INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/v1/ClientApplication/{id}/execution!meta' -> 'RolesPredicateAuthorizer' -> 'io.skysail.server.app.designer.restclient.ExecutionResource'
+INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/v1/ClientApplication/{id}/execution' -> 'RolesPredicateAuthorizer' -> 'io.skysail.server.app.designer.restclient.ExecutionResource'
+INFO  io.skysail.server.restlet.resources.ListServerResource - Request entry point: ClientApplicationsResource @Get('html|json|yaml|xml') with variant [text/html]
+INFO  LogService - 2015-11-13	15:07:53	127.0.0.1	admin	127.0.0.1	2015	GET	/Restclient/v1	-	200	-	0	480	http://127.0.0.1:2015	Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.80 Safari/537.36	http://127.0.0.1:2015/Restclient/v1/ClientApplication/34:0/
+INFO  LogService - 2015-11-13	15:07:53	127.0.0.1	-	127.0.0.1	2015	GET	/webapp/js/jquery-1.11.1.js	-	200	-	0	9	http://127.0.0.1:2015	Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.80 Safari/537.36	http://127.0.0.1:2015/Restclient/v1
+INFO  LogService - 2015-11-13	15:07:53	127.0.0.1	-	127.0.0.1	2015	GET	/webapp/css/bootstrap-theme.min.css	-	200	-	0	1	http://127.0.0.1:2015	Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.80 Safari/537.36	http://127.0.0.1:2015/Restclient/v1
+INFO  LogService - 2015-11-13	15:07:53	127.0.0.1	-	127.0.0.1	2015	GET	/webapp/js/pace/pace-1.0.0.min.js	-	200	-	0	9	http://127.0.0.1:2015	Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.80 Safari/537.36	http://127.0.0.1:2015/Restclient/v1
+INFO  LogService - 2015-11-13	15:07:53	127.0.0.1	-	127.0.0.1	2015	GET	/webapp/css/pace/pace-minimal.css	-	200	-	0	37	http://127.0.0.1:2015	Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.80 Safari/537.36	http://127.0.0.1:2015/Restclient/v1
+INFO  LogService - 2015-11-13	15:07:53	127.0.0.1	-	127.0.0.1	2015	GET	/webapp/css/bootstrap.min.css	-	200	-	0	38	http://127.0.0.1:2015	Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.80 Safari/537.36	http://127.0.0.1:2015/Restclient/v1
+INFO  LogService - 2015-11-13	15:07:53	127.0.0.1	-	127.0.0.1	2015	GET	/webapp/css/stickyfooter.css	-	200	-	0	5	http://127.0.0.1:2015	Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.80 Safari/537.36	http://127.0.0.1:2015/Restclient/v1
+INFO  LogService - 2015-11-13	15:07:53	127.0.0.1	-	127.0.0.1	2015	GET	/webapp/css/bootstrap-plugins/multiselect/bootstrap-multiselect.css	-	200	-	0	10	http://127.0.0.1:2015	Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.80 Safari/537.36	http://127.0.0.1:2015/Restclient/v1
+INFO  LogService - 2015-11-13	15:07:54	127.0.0.1	-	127.0.0.1	2015	GET	/webapp/js/animate/animate.css	-	200	-	0	10	http://127.0.0.1:2015	Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.80 Safari/537.36	http://127.0.0.1:2015/Restclient/v1
+INFO  LogService - 2015-11-13	15:07:54	127.0.0.1	-	127.0.0.1	2015	GET	/webapp/css/select2.css	-	200	-	0	3	http://127.0.0.1:2015	Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.80 Safari/537.36	http://127.0.0.1:2015/Restclient/v1
+INFO  LogService - 2015-11-13	15:07:54	127.0.0.1	-	127.0.0.1	2015	GET	/webapp/css/select2-bootstrap.css	-	200	-	0	2	http://127.0.0.1:2015	Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.80 Safari/537.36	http://127.0.0.1:2015/Restclient/v1
+INFO  LogService - 2015-11-13	15:07:54	127.0.0.1	-	127.0.0.1	2015	GET	/static/themes/jstree/style.min.css	-	200	-	0	4	http://127.0.0.1:2015	Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.80 Safari/537.36	http://127.0.0.1:2015/Restclient/v1
+INFO  LogService - 2015-11-13	15:07:54	127.0.0.1	-	127.0.0.1	2015	GET	/webapp/js/bootstrap-plugins/multiselect/bootstrap-multiselect.js	-	200	-	0	5	http://127.0.0.1:2015	Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.80 Safari/537.36	http://127.0.0.1:2015/Restclient/v1
+INFO  LogService - 2015-11-13	15:07:54	127.0.0.1	-	127.0.0.1	2015	GET	/static/js/mousetrap/mousetrap.min.js	-	200	-	0	7	http://127.0.0.1:2015	Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.80 Safari/537.36	http://127.0.0.1:2015/Restclient/v1
+INFO  LogService - 2015-11-13	15:07:54	127.0.0.1	-	127.0.0.1	2015	GET	/webapp/js/bootstrap.min.js	-	200	-	0	6	http://127.0.0.1:2015	Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.80 Safari/537.36	http://127.0.0.1:2015/Restclient/v1
+INFO  LogService - 2015-11-13	15:07:54	127.0.0.1	-	127.0.0.1	2015	GET	/webapp/js/noty/packaged/jquery.noty.packaged.min.js	-	200	-	0	5	http://127.0.0.1:2015	Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.80 Safari/537.36	http://127.0.0.1:2015/Restclient/v1
+INFO  LogService - 2015-11-13	15:07:54	127.0.0.1	-	127.0.0.1	2015	GET	/webapp/js/noty/layouts/skysail.js	-	200	-	0	5	http://127.0.0.1:2015	Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.80 Safari/537.36	http://127.0.0.1:2015/Restclient/v1
+INFO  LogService - 2015-11-13	15:07:54	127.0.0.1	-	127.0.0.1	2015	GET	/static/img/silk/tag_yellow.png	-	200	-	0	4	http://127.0.0.1:2015	Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.80 Safari/537.36	http://127.0.0.1:2015/Restclient/v1
+INFO  LogService - 2015-11-13	15:07:54	127.0.0.1	-	127.0.0.1	2015	GET	/webapp/skysail-logo-white-bg.png	-	200	-	0	3	http://127.0.0.1:2015	Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.80 Safari/537.36	http://127.0.0.1:2015/Restclient/v1
+INFO  LogService - 2015-11-13	15:07:54	127.0.0.1	-	127.0.0.1	2015	GET	/webapp/js/select2.js	-	200	-	0	10	http://127.0.0.1:2015	Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.80 Safari/537.36	http://127.0.0.1:2015/Restclient/v1
+INFO  LogService - 2015-11-13	15:07:54	127.0.0.1	-	127.0.0.1	2015	GET	/webapp/js/moment.js	-	200	-	0	6	http://127.0.0.1:2015	Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.80 Safari/537.36	http://127.0.0.1:2015/Restclient/v1
+INFO  LogService - 2015-11-13	15:07:54	127.0.0.1	-	127.0.0.1	2015	GET	/webapp/js/peity/jquery.peity.min.js	-	200	-	0	9	http://127.0.0.1:2015	Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.80 Safari/537.36	http://127.0.0.1:2015/Restclient/v1
+INFO  LogService - 2015-11-13	15:07:54	127.0.0.1	-	127.0.0.1	2015	GET	/static/js/jstree/jstree.min.js	-	200	-	0	10	http://127.0.0.1:2015	Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.80 Safari/537.36	http://127.0.0.1:2015/Restclient/v1
+INFO  LogService - 2015-11-13	15:07:54	127.0.0.1	-	127.0.0.1	2015	GET	/static/img/silk/book_open.png	-	200	-	0	2	http://127.0.0.1:2015	Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.80 Safari/537.36	http://127.0.0.1:2015/Restclient/v1
+INFO  LogService - 2015-11-13	15:07:54	127.0.0.1	-	127.0.0.1	2015	GET	/static/img/silk/page_link.png	-	200	-	0	2	http://127.0.0.1:2015	Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.80 Safari/537.36	http://127.0.0.1:2015/Restclient/v1
+INFO  LogService - 2015-11-13	15:07:54	127.0.0.1	-	127.0.0.1	2015	GET	/webapp/fonts/glyphicons-halflings-regular.woff	-	200	-	0	4	http://127.0.0.1:2015	Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.80 Safari/537.36	http://127.0.0.1:2015/webapp/css/bootstrap.min.css
+INFO  LogService - 2015-11-13	15:07:54	127.0.0.1	-	127.0.0.1	2015	GET	/static/img/silk/user.png	-	200	-	0	2	http://127.0.0.1:2015	Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.80 Safari/537.36	http://127.0.0.1:2015/Restclient/v1
+INFO  LogService - 2015-11-13	15:07:54	127.0.0.1	-	127.0.0.1	2015	GET	/webapp/favicon.ico	-	200	-	0	2	http://127.0.0.1:2015	Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.80 Safari/537.36	http://127.0.0.1:2015/Restclient/v1
+INFO  io.skysail.server.restlet.resources.ListServerResource - Request entry point: ExecutionResource @Get('html|json|yaml|xml') with variant [text/html]
+INFO  LogService - 2015-11-13	15:08:00	127.0.0.1	admin	127.0.0.1	2015	GET	/v1/ClientApplication/34:0/execution	-	200	-	0	547	http://127.0.0.1:2015	Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.80 Safari/537.36	http://127.0.0.1:2015/Restclient/v1

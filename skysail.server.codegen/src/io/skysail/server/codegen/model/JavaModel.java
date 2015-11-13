@@ -5,9 +5,7 @@ public interface JavaModel {
 
     String getPackageName();
 
-    String getTypeName();
-
-    default String getPackageFromName(String name) {
+    /*default String getPackageFromName(String name) {
         int indexOfLastDot = name.lastIndexOf(".");
         if (indexOfLastDot < 0) {
             return "";
@@ -21,6 +19,6 @@ public interface JavaModel {
             return fullQualifiedClassName;
         }
         return fullQualifiedClassName.substring(indexOfLastDot+1);
-    }
+    }*/
 
 }

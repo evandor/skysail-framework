@@ -18,7 +18,7 @@
 ########################################################################################
 
 skysail.config.path            = config/common,config/local
-logback.configurationFile.path = config/common
+logback.configurationFile.path = config/local
 
 runbundles:\
     ${osgi},\
@@ -54,4 +54,4 @@ runbundles:\
     skysail.server.app.um.db;version=latest,\
     org.jsoup;version=1.8.1,\
     skysail.server.codegen;version=latest,\
-    skysail.server.app.dbviewer;version=latest
+    skysail.server.designer.restclient;version=latest

@@ -1,4 +1,4 @@
-entity(entity) ::= <<
+template(entity) ::= <<
 package $entity.packageName$;
 
 import java.util.List;

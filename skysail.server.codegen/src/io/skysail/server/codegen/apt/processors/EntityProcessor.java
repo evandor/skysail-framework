@@ -6,7 +6,6 @@ import io.skysail.server.codegen.apt.stringtemplate.MySTGroupFile;
 import io.skysail.server.codegen.model.*;
 
 import java.io.*;
-import java.net.URL;
 import java.util.*;
 
 import javax.annotation.processing.*;
@@ -42,7 +41,6 @@ public class EntityProcessor extends Processors {
                 log.error(e.getMessage(), e);
             }
         });
-
         return true;
     }
 
@@ -62,7 +60,6 @@ public class EntityProcessor extends Processors {
 
     private void analyse(JavaApplication application, RoundEnvironment roundEnv,
             Set<? extends Element> generateResourceElements) {
-
         printHeadline("Analysing project for code generation");
         for (Element entityElement : generateResourceElements) {
             printMessage("adding entity: " + entityElement.toString());
@@ -72,77 +69,39 @@ public class EntityProcessor extends Processors {
     }
 
     private void createRepository(JavaEntity entity) throws IOException {
-        JavaFileObject jfo = createSourceFile(entity.getId() + "Repo");
-        Writer writer = jfo.openWriter();
-        STGroup group = new MySTGroupFile("repository/Repository.stg", '$', '$');
-        writer.append(group.getInstanceOf("repository").add("entity", entity).render());
-        writer.close();
+        String repositoryName = entity.getId() + "Repo";
+        String templateFile = "repository/Repository.stg";
+        create(entity, repositoryName, templateFile);
     }
 
     private void createEntityResource(RoundEnvironment roundEnv, JavaEntity entity) throws Exception {
-        if (methodExcluded(entity.getGenerateResourcesAnnotation(), ResourceType.GET)) {
-            return;
+        if (methodIncluded(entity.getGenerateResourcesAnnotation(), ResourceType.GET)) {
+            String resourceName = entity.getId() + "Resource";
+            String templateName = "entityResource/EntityResource.stg";
+            create(entity, resourceName, templateName);
         }
-
-        JavaFileObject jfo = createSourceFile(entity.getId() + "Resource");
-        Writer writer = jfo.openWriter();
-        URL url = getURL("entityResource/EntityResource.stg");
-        printMessage("URL " + url.toString());
-        STGroup group = new MySTGroupFile("entityResource/EntityResource.stg", '$', '$');
-        writer.append(group.getInstanceOf("entity").add("entity", entity).render());
-        writer.close();
     }
 
     private void createListResource(RoundEnvironment roundEnv, JavaEntity entity) throws Exception {
-        GenerateResources annotation = entity.getGenerateResourcesAnnotation();
-        if (methodExcluded(annotation, ResourceType.LIST)) {
-            return;
+        if (methodIncluded(entity.getGenerateResourcesAnnotation(), ResourceType.LIST)) {
+            create(entity, entity.getId() + "sResource", "listResource/ListResource.stg");
         }
-
-        JavaFileObject jfo = createSourceFile(entity.getId() + "sResource");
-        Writer writer = jfo.openWriter();
-        STGroup group = new MySTGroupFile("listResource/ListResource.stg", '$', '$');
-        writer.append(group.getInstanceOf("list").add("entity", entity).render());
-        writer.close();
     }
 
     private void createPostResource(RoundEnvironment roundEnv, JavaEntity entity) throws Exception {
-        GenerateResources annotation = entity.getGenerateResourcesAnnotation();
-        if (methodExcluded(annotation, ResourceType.POST)) {
-            return;
+        if (methodIncluded(entity.getGenerateResourcesAnnotation(), ResourceType.POST)) {
+            String resourceName = entity.getPackageName() + ".Post" + entity.getSimpleName() + "Resource";
+            String templateName = "postResource/PostResource2.stg";
+            create(entity, resourceName, templateName);
         }
-
-        String typeName = entity.getPackageName() + ".Post" + entity.getSimpleName() + "Resource";
-        JavaFileObject jfo = createSourceFile(typeName);
-        Writer writer = jfo.openWriter();
-        STGroup group = new MySTGroupFile("postResource/PostResource2.stg", '$', '$');
-        writer.append(group.getInstanceOf("post").add("entity", entity).render());
-        writer.close();
     }
 
     private void createPutResource(RoundEnvironment roundEnv, JavaEntity entity) throws Exception {
-        GenerateResources annotation = entity.getGenerateResourcesAnnotation();
-        if (methodExcluded(annotation, ResourceType.PUT)) {
-            return;
+        if (methodIncluded(entity.getGenerateResourcesAnnotation(), ResourceType.PUT)) {
+            String resourceName = entity.getPackageName() + ".Put" + entity.getSimpleName() + "Resource";
+            String templateName = "putResource/PutResource.stg";
+            create(entity, resourceName, templateName);
         }
-
-        String typeName = entity.getPackageName() + ".Put" + entity.getSimpleName() + "Resource";
-        JavaFileObject jfo = createSourceFile(typeName);
-        Writer writer = jfo.openWriter();
-        STGroup group = new MySTGroupFile("putResource/PutResource.stg", '$', '$');
-        writer.append(group.getInstanceOf("put").add("entity", entity).render());
-        writer.close();
-    }
-
-    private URL getURL(String fileName) {
-        URL url;
-        ClassLoader cl = Thread.currentThread().getContextClassLoader();
-        url = cl.getResource(fileName);
-        if (url == null) {
-            cl = this.getClass().getClassLoader();
-            url = cl.getResource(fileName);
-        }
-        return url;
     }
 
     private void printHeadline(String msg) {
@@ -152,8 +111,16 @@ public class EntityProcessor extends Processors {
         printMessage("");
     }
 
-    private boolean methodExcluded(GenerateResources annotation, ResourceType resourceType) {
-        return Arrays.asList(annotation.exclude()).contains(resourceType);
+    private void create(JavaEntity entity, String resourceName, String templateName) throws IOException {
+        JavaFileObject jfo = createSourceFile(resourceName);
+        Writer writer = jfo.openWriter();
+        STGroup group = new MySTGroupFile(templateName, '$', '$');
+        writer.append(group.getInstanceOf("template").add("entity", entity).render());
+        writer.close();
+    }
+
+    private boolean methodIncluded(GenerateResources annotation, ResourceType resourceType) {
+        return !Arrays.asList(annotation.exclude()).contains(resourceType);
     }
 
 }

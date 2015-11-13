@@ -1,4 +1,4 @@
-list(entity) ::= <<
+template(entity) ::= <<
 package $entity.packageName$;
 
 import java.util.List;
@@ -33,7 +33,7 @@ public class $entity.simpleName$sResource extends ListServerResource<$entity.sim
 
     @Override
     public List<Link> getLinks() {
-        return super.getLinks($linkedResources$);
+        return super.getLinks($entity.linkedResources$);
     }
 }
 

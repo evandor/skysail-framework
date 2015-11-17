@@ -32,6 +32,6 @@ public class TodosResource extends ListServerResource<Todo> {
 
     @Override
     public List<Link> getLinks() {
-        return super.getLinks();
+        return super.getLinks(io.skysail.server.codegen.test.simple.todos.PostTodoResource.class);
     }
 }

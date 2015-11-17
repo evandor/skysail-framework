@@ -32,6 +32,6 @@ public class ThingsResource extends ListServerResource<Thing> {
 
     @Override
     public List<Link> getLinks() {
-        return super.getLinks();
+        return super.getLinks(io.skysail.server.app.tap.PostThingResource.class);
     }
 }

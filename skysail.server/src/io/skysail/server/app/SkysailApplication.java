@@ -410,6 +410,10 @@ public abstract class SkysailApplication extends RamlApplication implements Appl
         router.attach(key, executor);
     }
 
+    public void attachToRouter(String key, Restlet restlet) {
+        router.attach(key, restlet);
+    }
+
     public void detachFromRouter(Class<?> executor) {
         router.detach(executor);
     }

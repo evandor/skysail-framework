@@ -4,7 +4,6 @@ import io.skysail.api.domain.Identifiable;
 import io.skysail.api.forms.*;
 import io.skysail.server.codegen.ResourceType;
 import io.skysail.server.codegen.annotations.GenerateResources;
-import io.skysail.server.forms.ListView;
 
 import javax.persistence.Id;
 
@@ -24,11 +23,7 @@ public class ClientApplication implements Identifiable {
     @Field(inputType = InputType.URL)
     private String url;
 
-    @Field
-    private String username;
-
-    @Field(inputType = InputType.PASSWORD)
-    @ListView(hide = true)
-    private String password;
+    @Field(selectionProvider = AuthenticationSelectionProvider.class)
+    private String authentication;
 
 }

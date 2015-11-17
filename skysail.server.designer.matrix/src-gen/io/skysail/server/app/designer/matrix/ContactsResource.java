@@ -32,6 +32,6 @@ public class ContactsResource extends ListServerResource<Contact> {
 
     @Override
     public List<Link> getLinks() {
-        return super.getLinks();
+        return super.getLinks(io.skysail.server.app.designer.matrix.PostContactResource.class);
     }
 }

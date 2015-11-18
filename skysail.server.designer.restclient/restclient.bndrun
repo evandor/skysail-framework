@@ -55,4 +55,6 @@ runbundles:\
     skysail.server.app.um.db;version=latest,\
     org.jsoup;version=1.8.1,\
     skysail.server.codegen;version=latest,\
-    skysail.server.designer.restclient;version=latest
+    skysail.server.designer.restclient;version=latest,\
+    org.apache.httpcomponents.httpcore;version=4.4,\
+    org.apache.httpcomponents.httpclient;version=4.4

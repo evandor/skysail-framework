@@ -36,5 +36,6 @@ Include-Resource: resources, templates=src;recursive:=true;filter:=*.st|*.stg
 	de.twentyeleven.skysail.org.json-osgi;version=20080701.0
 
 
+
 Private-Package: \
     io.skysail.server.app.designer.restclient

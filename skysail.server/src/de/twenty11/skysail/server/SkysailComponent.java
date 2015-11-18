@@ -18,12 +18,16 @@ public class SkysailComponent extends Component {
         getClients().add(Protocol.HTTPS);
         getClients().add(Protocol.FILE);
 
+
+        //        parameters.add("http.proxyHost", "192.168.11.140");
+        //        parameters.add("http.proxyPort", "8080");
+
         // setStatusService(new SkysailStatusService());
         Engine.getInstance().setLoggerFacade(new Slf4jLoggerFacade());
         // Engine.setRestletLogLevel(Level.FINEST);
         // Engine.setLogLevel(Level.FINEST);
         // getServices().add(new EnrolerService());
-        
+
         //log.info("available servers: {}", getServers());
     }
 }

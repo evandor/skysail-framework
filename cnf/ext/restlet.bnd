@@ -2,6 +2,7 @@ restlet:\
     org.restlet;version=${restlet.version},\
     org.restlet.ext.apispark;version=${restlet.version},\
     org.restlet.ext.crypto;version=${restlet.version},\
+    org.restlet.ext.httpclient;version=${restlet.version},\
     org.restlet.ext.jackson;version=${restlet.version},\
     org.restlet.ext.jetty;version=${restlet.version},\
     org.restlet.ext.json;version=${restlet.version},\

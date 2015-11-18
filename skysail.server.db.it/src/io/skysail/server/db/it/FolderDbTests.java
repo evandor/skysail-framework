@@ -2,6 +2,7 @@ package io.skysail.server.db.it;
 
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.assertThat;
+import io.skysail.server.db.OutEdges;
 import io.skysail.server.db.it.folder.*;
 import io.skysail.server.db.it.folder.resources.*;
 import io.skysail.server.testsupport.categories.LargeTests;
@@ -12,6 +13,9 @@ import org.junit.*;
 import org.junit.experimental.categories.Category;
 import org.restlet.representation.Variant;
 
+/**
+ * Testing an entity with a recursive relation (a folder with subfolders with subfolders...).
+ */
 @Category(LargeTests.class)
 public class FolderDbTests extends DbIntegrationTests {
 
@@ -71,7 +75,9 @@ public class FolderDbTests extends DbIntegrationTests {
         Folder mainFolder = new Folder(title);
         Arrays.asList(subfolderTitles).forEach(subfolderTitle -> {
             Folder subFolder = new Folder(subfolderTitle);
-            mainFolder.setSubfolders(Arrays.asList(subFolder));
+            OutEdges<Folder> outEdges = new OutEdges<>();
+            outEdges.add(subFolder);
+            mainFolder.setSubfolders(outEdges);
         });
         return mainFolder;
     }

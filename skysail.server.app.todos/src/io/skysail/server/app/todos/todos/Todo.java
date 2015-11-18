@@ -2,8 +2,10 @@ package io.skysail.server.app.todos.todos;
 
 import io.skysail.api.domain.Identifiable;
 import io.skysail.api.forms.*;
+import io.skysail.server.app.todos.TodoList;
 import io.skysail.server.app.todos.todos.resources.PutTodoResource;
 import io.skysail.server.app.todos.todos.status.*;
+import io.skysail.server.db.InEdge;
 import io.skysail.server.forms.*;
 
 import java.text.SimpleDateFormat;
@@ -16,7 +18,7 @@ import lombok.*;
 
 import org.restlet.data.Form;
 
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.*;
 
 @Getter
 @Setter
@@ -24,6 +26,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 @JsonPropertyOrder({ "title", "desc" })
 @NoArgsConstructor
 @StartDateBeforeDueDate
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Todo implements Identifiable {
 
     private static final long MILLIS_PER_DAY = 1000*60*60*24l;
@@ -33,11 +36,11 @@ public class Todo implements Identifiable {
     @Id
     private String id;
 
-//    @Reference(selectionProvider = ListSelectionProvider.class)
-//    @PostView(visibility = Visibility.SHOW_IF_NULL)
-//    @ListView(hide = true)
-//    @ValidListId
-//    private String parent;
+    //    @Reference(selectionProvider = ListSelectionProvider.class)
+    //    @PostView(visibility = Visibility.SHOW_IF_NULL)
+    //    @ListView(hide = true)
+    //    @ValidListId
+    private InEdge<TodoList> todos = new InEdge<>();
 
     @Field
     @ListView(truncate = 30, link = PutTodoResource.class)

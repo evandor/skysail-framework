@@ -27,6 +27,7 @@ public class GraphDbRepository<T extends Identifiable> implements DbRepository {
         //entityType = ReflectionUtils.getParameterizedType(getClass());
     }
 
+    @Deprecated // use long name
     public void activate(Class<?>... classes) {
         log.debug("activating repository for class(es) {}", Arrays.stream(classes).map(Class::getName).collect(Collectors.joining(",")));
         Arrays.stream(classes).forEach(cls -> {
@@ -38,6 +39,19 @@ public class GraphDbRepository<T extends Identifiable> implements DbRepository {
             }
         });
     }
+
+    public void activateWithLongName(Class<?>... classes) {
+        log.debug("activating repository for class(es) {}", Arrays.stream(classes).map(Class::getName).collect(Collectors.joining(",")));
+        Arrays.stream(classes).forEach(cls -> {
+            try {
+                dbService.createWithSuperClass("V", cls.getName().replace(".", "_"));
+                dbService.register(cls);
+            } catch (Exception e) {
+                log.error(e.getMessage(), e);
+            }
+        });
+    }
+
 
     @Override
     public Class<Identifiable> getRootEntity() {
@@ -65,6 +79,10 @@ public class GraphDbRepository<T extends Identifiable> implements DbRepository {
         dbService.delete(entityType, id);
     }
 
+    public void deleteGraph(String id) {
+        dbService.deleteGraph(entityType, id);
+    }
+
     public void deleteVertex(String id) {
         dbService.deleteVertex(id);
     }
@@ -80,7 +98,14 @@ public class GraphDbRepository<T extends Identifiable> implements DbRepository {
     }
 
     public Object getVertexById(String id) {
-        return dbService.findGraphs("SELECT FROM "+entityType.getSimpleName()+" WHERE @rid="+id);
+         List<Object> found = dbService.findGraphs(entityType, "SELECT FROM "+entityType.getName().replace(".",  "_") +" WHERE @rid="+id);
+         if (found.isEmpty()) {
+             return null;
+         }
+         if (found.size() > 1) {
+             throw new IllegalStateException();
+         }
+         return found.get(0);
     }
 
     public List<T> find(Filter filter) {
@@ -103,7 +128,7 @@ public class GraphDbRepository<T extends Identifiable> implements DbRepository {
         String sql = "SELECT * from " + entityType.getSimpleName() +
                 (!StringUtils.isNullOrEmpty(filter.getPreparedStatement()) ? " WHERE "+filter.getPreparedStatement() : "") + " " +
                 limitClause(pagination);
-        List<Object> entities = dbService.findGraphs(sql, filter.getParams());
+        List<Object> entities = dbService.findGraphs(entityType.getClass(), sql, filter.getParams());
         List<T> result = new ArrayList<>();
         entities.stream().map(OrientVertex.class::cast).forEach(vertex -> {
             result.add(((OrientGraphDbService)dbService).vertexToBean(vertex, entityType));
@@ -143,4 +168,5 @@ public class GraphDbRepository<T extends Identifiable> implements DbRepository {
         }
         return getParameterizedType(cls.getSuperclass());
     }
+
 }

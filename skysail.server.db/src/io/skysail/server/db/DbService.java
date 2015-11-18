@@ -37,10 +37,10 @@ public interface DbService {
     <T> T findById(Class<?> cls, String id);
     <T> List<T> findObjects(String sql);
     List<Map<String,Object>> findDocuments(String sql);
-    <T> List<T> findGraphs(String sql);
     <T> List<T> findObjects(String sql, Map<String, Object> params);
     List<Map<String,Object>> findDocuments(String sql, Map<String, Object> params);
-    <T> List<T> findGraphs(String sql, Map<String, Object> params);
+    <T> List<T> findGraphs(Class<?> cls, String sql);
+    <T> List<T> findGraphs(Class<?> cls, String sql, Map<String, Object> params);
     <T> List<T> findWithGraph(String sql, Class<?> cls, Map<String, Object> params);
 
 
@@ -57,6 +57,8 @@ public interface DbService {
     Class<?> getRegisteredClass(String classname);
 
     void delete(Class<?> cls, String id);
+    void deleteGraph(Class<?> cls, String id);
+
     void deleteVertex(String id);
 
     void createProperty(String simpleName, String string, OType date);

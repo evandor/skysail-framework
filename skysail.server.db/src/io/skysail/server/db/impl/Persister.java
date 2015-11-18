@@ -17,13 +17,17 @@ import com.tinkerpop.blueprints.impls.orient.*;
 public class Persister {
 
     protected OrientGraph db;
-    protected List<String> edges;
+    protected List<String> edges = new ArrayList<>();
     protected EdgeHandler edgeHandler;
 
     private ObjectMapper mapper = new ObjectMapper();
 
-    public Persister(OrientGraph db, String[] edges) {
-        this.edges = Arrays.asList(edges);
+    public Persister(OrientGraph db, String[] edgesArray) {
+        Arrays.stream(edgesArray).forEach(edge -> {
+            edges.add(edge);
+            edges.add("out_" + edge);
+            edges.add("in_" + edge);
+        });
         this.db = db;
         edgeHandler = new EdgeHandler((identifiable) -> (OrientVertex) execute(identifiable), db);
     }
@@ -70,7 +74,11 @@ public class Persister {
         if (entity.getId() != null) {
             vertex = db.getVertex(entity.getId());
         } else {
-            vertex = db.addVertex("class:" + entity.getClass().getSimpleName());
+            try {
+                vertex = db.addVertex("class:" + entity.getClass().getSimpleName());
+            } catch (IllegalArgumentException iae) {
+                vertex = db.addVertex("class:" + entity.getClass().getName().replace(".", "_"));
+            }
         }
         return vertex;
     }

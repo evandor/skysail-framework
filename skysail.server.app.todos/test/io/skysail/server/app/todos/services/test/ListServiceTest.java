@@ -15,7 +15,7 @@ import io.skysail.server.queryfilter.pagination.Pagination;
 import io.skysail.server.restlet.resources.SkysailServerResource;
 import io.skysail.server.testsupport.AbstractShiroTest;
 
-import java.util.*;
+import java.util.List;
 
 import org.apache.shiro.subject.Subject;
 import org.junit.*;
@@ -97,7 +97,7 @@ public class ListServiceTest extends AbstractShiroTest {
 
         listService.updateList(resource , entity);
 
-        verify(listRepo).update("#12:0", entity);
+        verify(listRepo).update("#12:0", entity, "todos");
     }
 
     @Test
@@ -115,7 +115,7 @@ public class ListServiceTest extends AbstractShiroTest {
     @Test
     public void delete_does_not_delegate_to_repository_delete_if_list_does_have_associated_todos() {
         TodoList entity = new TodoList("title");
-        entity.setTodos(Arrays.asList(new Todo("hi")));
+        entity.getTodos().add(new Todo("hi"));
         SkysailServerResource<?> resource = mock(SkysailServerResource.class);
         when(resource.getApplication()).thenReturn(application);
         when(listRepo.findOne("listId")).thenReturn(entity);

@@ -6,10 +6,11 @@ import io.skysail.server.app.todos.lists.UniquePerOwner;
 import io.skysail.server.app.todos.repo.TodosRepository;
 import io.skysail.server.app.todos.todos.Todo;
 import io.skysail.server.app.todos.todos.resources.TodosResource;
+import io.skysail.server.db.OutEdges;
 import io.skysail.server.forms.*;
 
 import java.io.Serializable;
-import java.util.*;
+import java.util.Date;
 
 import javax.persistence.Id;
 import javax.validation.constraints.*;
@@ -57,7 +58,8 @@ public class TodoList implements Serializable, Identifiable {
     @Field(repository = TodosRepository.class)
     @PostView(visibility = Visibility.HIDE)
     @PutView(visibility = Visibility.HIDE)
-    private List<Todo> todos = new ArrayList<>();
+    @JsonProperty("out_todos")
+    private OutEdges<Todo> todos = new OutEdges<>();
 
     public TodoList(String name) {
         this.name = name;

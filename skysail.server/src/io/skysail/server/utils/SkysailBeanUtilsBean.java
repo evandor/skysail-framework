@@ -16,6 +16,8 @@ import org.apache.commons.beanutils.*;
 import org.apache.commons.beanutils.expression.Resolver;
 import org.apache.commons.lang3.StringUtils;
 
+import com.orientechnologies.orient.core.db.record.*;
+
 @Slf4j
 public class SkysailBeanUtilsBean extends BeanUtilsBean {
 
@@ -141,6 +143,17 @@ public class SkysailBeanUtilsBean extends BeanUtilsBean {
                 newValue = getConvertUtils().convert((String) value, type);
             } else if (value instanceof String[]) {
                 newValue = getConvertUtils().convert(((String[]) value)[0], type);
+            } else if (value instanceof ORecordLazyList) {
+                try {
+                    Method method = bean.getClass().getMethod("getParent");
+                    newValue = method.invoke(bean);
+                } catch (NoSuchMethodException | SecurityException e) {
+                    e.printStackTrace();
+                }
+
+            } else if (value instanceof ORecordTrackedList) {
+                ORecordTrackedList recordList = (ORecordTrackedList)value;
+                newValue = recordList.get(0).getIdentity().toString();
             } else {
                 newValue = convert(value, type);
             }

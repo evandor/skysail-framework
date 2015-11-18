@@ -32,6 +32,6 @@ public class PlacesResource extends ListServerResource<Place> {
 
     @Override
     public List<Link> getLinks() {
-        return super.getLinks(PostPlaceResource.class);
+        return super.getLinks();
     }
 }

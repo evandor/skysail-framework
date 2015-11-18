@@ -5,11 +5,7 @@ import static org.junit.Assert.assertThat;
 import io.skysail.api.responses.SkysailResponse;
 import io.skysail.server.app.todos.*;
 
-import java.util.List;
-
 import org.junit.Test;
-
-import com.tinkerpop.blueprints.impls.orient.OrientVertex;
 
 public class PutListResourceTest extends AbstractListResourceTest {
 
@@ -50,13 +46,12 @@ public class PutListResourceTest extends AbstractListResourceTest {
 
         putListResource.put(form, HTML_VARIANT);
 
-        List<OrientVertex> vertexById2 = (List<OrientVertex>) listRepo.getVertexById(aList.getId());
-        OrientVertex vertexById = vertexById2.get(0);
+        TodoList vertexById = (TodoList) listRepo.getVertexById(aList.getId());
 
-        assertThat(vertexById.getProperty("modified"), is(not(nullValue())));
-        assertThat(vertexById.getProperty("created"), is(not(nullValue())));
-        assertThat(vertexById.getProperty("name"), is(equalTo("updated_list")));
-        assertThat(vertexById.getProperty("desc"), is(equalTo("description")));
+        assertThat(vertexById.getModified(), is(not(nullValue())));
+        assertThat(vertexById.getCreated(), is(not(nullValue())));
+        assertThat(vertexById.getName(), is(equalTo("updated_list")));
+        assertThat(vertexById.getDesc(), is(equalTo("description")));
     }
 
     @Test
@@ -72,11 +67,10 @@ public class PutListResourceTest extends AbstractListResourceTest {
 
         putListResource.put(form, HTML_VARIANT);
 
-        List<OrientVertex> vertexById2 = (List<OrientVertex>) listRepo.getVertexById(aList.getId());
-        OrientVertex vertexById = vertexById2.get(0);
+        TodoList vertexById = (TodoList) listRepo.getVertexById(aList.getId());
 
-        assertThat(vertexById.getProperty("name"), is(equalTo("updated_list_with_default_flag_becomes_default")));
-        assertThat(vertexById.getProperty("defaultList"), is(true));
+        assertThat(vertexById.getName(), is("updated_list_with_default_flag_becomes_default"));
+        assertThat(vertexById.isDefaultList(), is(true));
 
     }
 }

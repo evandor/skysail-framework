@@ -11,86 +11,70 @@ import org.restlet.data.Reference;
 
 import de.twenty11.skysail.server.core.restlet.RouteBuilder;
 
+/**
+ * Initialized with the request attributes list and the list of routeBuilders, this utility
+ * class will help you determine a map of substitutions for the url placeholders for a given
+ * object.
+ *
+ * For example, lets say we have a resource mounted at /v2/Lists/{id}/Todos/{todoId}.
+ *
+ */
 public class PathUtils {
 
-    private Map<String, Object> requestAttributes;
-    private List<RouteBuilder> routeBuilders;
+    /** e.g. id=#15:5, listId=#16:3, headers=[...] */
+    final private Map<String, Object> requestAttributes;
+
+    final private List<RouteBuilder> routeBuilders;
+
     @Getter
     private String idVariable = "id";
 
-    public PathUtils(Map<String, Object> requestAttributes, List<RouteBuilder> routeBuilders) {
+    public PathUtils(@NonNull Map<String, Object> requestAttributes, @NonNull List<RouteBuilder> routeBuilders) {
         this.requestAttributes = requestAttributes;
         this.routeBuilders = routeBuilders;
     }
 
-    @Deprecated
-    public static Map<String, String> getSubstitutions(@NonNull Object object, @NonNull Map<String, Object> requestAttributes, List<RouteBuilder> routeBuilders) {
-        Map<String, String> result = new HashMap<>();
-        requestAttributes.entrySet().stream().forEach(entry -> {
-            if (entry.getValue() instanceof String) {
-                result.put(entry.getKey(), Reference.decode((String)entry.getValue()));
-            }
-        });
-        List<String> pathVariables = routeBuilders.stream().map(builder -> builder.getPathVariables()).flatMap(pv -> pv.stream()).collect(Collectors.toList());
-        for (String pathVariable : pathVariables) {
-            if (requestAttributes.get(pathVariable) != null) {
-                result.put(pathVariable, (String)requestAttributes.get(pathVariable));
-                pathVariables.remove(pathVariable);
-            }
-        }
-
-        if (object instanceof Identifiable) {
-            Identifiable identifiable = (Identifiable) object;
-            if (identifiable.getId() != null) {
-                if (pathVariables.size() == 1) {
-                    result.put(pathVariables.get(0), identifiable.getId().replace("#", ""));
-                } else {
-                    result.put("id", identifiable.getId().replace("#", ""));
-                }
-            }
-        }
-        if (object instanceof Map) {
-            throw new IllegalStateException("logic not supported any more");
-        }
-        return result;
-    }
-
+    /**
+     * Tries to determine the path substitutions from
+     *
+     * 1.) the request attributes: each string value is put on the list
+     * 2.) the route builders path variables:
+     * 3.) the objects id, if existent
+     *
+     */
     public Map<String, String> getSubstitutions(Object object) {
         Map<String, String> result = new HashMap<>();
         requestAttributes.entrySet().stream().forEach(entry -> {
             if (entry.getValue() instanceof String) {
-                result.put(entry.getKey(), Reference.decode((String)entry.getValue()));
+                result.put(entry.getKey(), sanitize(Reference.decode((String)entry.getValue())));
             }
         });
-        List<String> pathVariables = routeBuilders.stream().map(builder -> builder.getPathVariables()).flatMap(pv -> pv.stream()).collect(Collectors.toList());
 
+        List<String> pathVariables = routeBuilders.stream().map(builder -> builder.getPathVariables()).flatMap(pv -> pv.stream()).collect(Collectors.toList());
         pathVariables.removeIf(pathVariable -> {
             if (requestAttributes.get(pathVariable) != null) {
-                result.put(pathVariable, (String)requestAttributes.get(pathVariable));
+                result.put(pathVariable, sanitize((String)requestAttributes.get(pathVariable)));
                 return true;
             }
             return false;
         });
-
-//        for (String pathVariable : pathVariables) {
-//            if (requestAttributes.get(pathVariable) != null) {
-//                result.put(pathVariable, (String)requestAttributes.get(pathVariable));
-//                pathVariables.remove(pathVariable);
-//            }
-//        }
 
         if (object instanceof Identifiable) {
             Identifiable identifiable = (Identifiable) object;
             if (identifiable.getId() != null) {
                 if (pathVariables.size() == 1) {
                     idVariable = pathVariables.get(0);
-                    result.put(idVariable, identifiable.getId().replace("#", ""));
+                    result.put(idVariable, sanitize(identifiable.getId()));
                 } else {
-                    result.put("id", identifiable.getId().replace("#", ""));
+                    result.put("id", sanitize(identifiable.getId()));
                 }
             }
         }
         return result;
+    }
+
+    private String sanitize(String id) {
+        return id.replace("#", "");
     }
 
 

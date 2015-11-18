@@ -46,6 +46,7 @@ public class TodosService {
         }
         entity.setUrgency(Ranker.calcUrgency(entity));
 
+        //list.getOut_todos().add(new OutEdges<Todo>(entity));
         list.getTodos().add(entity);
         listRepo.update(list.getId(), list, "todos").toString();
         return new SkysailResponse<>();
@@ -55,7 +56,7 @@ public class TodosService {
         TodoApplication app = (TodoApplication) resource.getApplication();
         Todo todo = todosRepo.findOne(todoId);
         todo.setViews(todo.getViews() != null ? 1 + todo.getViews() : 1);
-        app.getTodosRepo().update(todo.getId(), todo, "todos");
+        //app.getTodosRepo().update(todo.getId(), todo, "todos");
         return todo;
     }
 

@@ -2,8 +2,10 @@ package io.skysail.server.app.todos.todos;
 
 import io.skysail.api.domain.Identifiable;
 import io.skysail.api.forms.*;
+import io.skysail.server.app.todos.TodoList;
 import io.skysail.server.app.todos.todos.resources.*;
 import io.skysail.server.app.todos.todos.status.*;
+import io.skysail.server.db.InEdge;
 import io.skysail.server.forms.*;
 
 import java.util.Date;
@@ -54,6 +56,9 @@ public class TodoSummary implements Identifiable {
     @ListView(hide = true)
     private Integer views;
 
+    @Field
+    private InEdge<TodoList> listId;
+
     public TodoSummary(Todo todo) {
         this.id = todo.getId();
         this.due = todo.getDue();
@@ -61,6 +66,7 @@ public class TodoSummary implements Identifiable {
         this.status = todo.getStatus();
         this.title = todo.getTitle();
         this.views = todo.getViews();
+        this.listId = todo.getTodos();
     }
 
 }

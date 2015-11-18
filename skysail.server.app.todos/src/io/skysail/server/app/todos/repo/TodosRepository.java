@@ -18,7 +18,7 @@ public class TodosRepository extends GraphDbRepository<Todo>  implements DbRepos
 
     @Activate
     public void activate() { // NO_UCD
-        super.activate(Todo.class);
+        super.activateWithLongName(Todo.class);
     }
 
     @Reference
@@ -38,13 +38,13 @@ public class TodosRepository extends GraphDbRepository<Todo>  implements DbRepos
 
     public List<Todo> findAllTodos(Filter filter, Pagination pagination) {
         String sql =
-                "SELECT *, SUM(urgency,importance, views) as rank, out('parent') as parent from " + Todo.class.getSimpleName() +
+                "SELECT *, SUM(urgency,importance, views) as rank from " + Todo.class.getName().replace(".", "_") +
                 " WHERE "+filter.getPreparedStatement()+
                 " ORDER BY rank DESC "
-                + limitClause(pagination);
-
-        //sql = "SELECT *, SUM(urgency,importance) as rank from Todo WHERE NOT (status=:status) AND owner=:owner AND #17:0 IN out('parent') ORDER BY rank DESC SKIP 0 LIMIT 10";
-        return dbService.findObjects(sql, filter.getParams());
+                + limitClause(pagination)
+                //+ " FETCHPLAN *:-1"
+                ;
+        return dbService.findGraphs(Todo.class, sql, filter.getParams());
     }
 
     @Override

@@ -9,6 +9,7 @@
 -runproperties: org.osgi.service.http.port=8081,\
     ds.loglevel=debug,\
     ${runproperties}
+#    network.binary.debug=true,\
 -runrepos: ${runrepos}
 -runsystemcapabilities: ${native_capability}
 -runsystempackages: ${runsystempackages}

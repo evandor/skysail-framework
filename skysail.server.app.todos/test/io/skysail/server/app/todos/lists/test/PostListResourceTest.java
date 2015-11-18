@@ -5,13 +5,9 @@ import static org.junit.Assert.assertThat;
 import io.skysail.api.responses.*;
 import io.skysail.server.app.todos.TodoList;
 
-import java.util.List;
-
 import org.junit.Test;
 import org.restlet.data.*;
 import org.restlet.engine.resource.VariantInfo;
-
-import com.tinkerpop.blueprints.impls.orient.OrientVertex;
 
 public class PostListResourceTest extends AbstractListResourceTest {
 
@@ -65,11 +61,11 @@ public class PostListResourceTest extends AbstractListResourceTest {
         form.add("defaultList", "on");
         String id2 = postListresource.post(form, HTML_VARIANT).getEntity().getId();
 
-        OrientVertex vertexById1 = ((List<OrientVertex>) listRepo.getVertexById(id1)).get(0);
-        OrientVertex vertexById2 = ((List<OrientVertex>) listRepo.getVertexById(id2)).get(0);
+        TodoList id1TodoList = (TodoList) listRepo.getVertexById(id1);
+        TodoList is2TodoList = (TodoList) listRepo.getVertexById(id2);
 
-        assertThat(vertexById1.getProperty("defaultList"), is(false));
-        assertThat(vertexById2.getProperty("defaultList"), is(true));
+        assertThat(id1TodoList.isDefaultList(), is(false));
+        assertThat(is2TodoList.isDefaultList(), is(true));
     }
 
 }

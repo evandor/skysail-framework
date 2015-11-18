@@ -85,7 +85,7 @@ public class DesignerRepository implements DbRepository {
     }
 
     public Object getVertexById(Class<Application> cls, String id) {
-        return dbService.findGraphs("SELECT FROM "+cls.getSimpleName()+" WHERE @rid="+id);
+        return dbService.findGraphs(cls, "SELECT FROM "+cls.getSimpleName()+" WHERE @rid="+id);
     }
 
     @Override

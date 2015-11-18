@@ -81,7 +81,6 @@ Service-Component: *
 	${restlet},\
 	biz.aQute.bnd.annotation,\
 	org.apache.commons.lang,\
-	com.fasterxml.jackson.core.jackson-annotations,\
 	org.apache.shiro.core,\
 	org.hibernate.validator;version=5.0;resolution:=optional,\
 	javax.validation.api;version=1.1,\
@@ -95,8 +94,7 @@ Service-Component: *
 	org.jboss.logging.jboss-logging;version=3.1,\
 	classmate;version=1.0,\
 	com.google.guava;version=${guava.version},\
-	com.fasterxml.jackson.core.jackson-core;version=2.2,\
-	com.fasterxml.jackson.core.jackson-databind;version=2.2,\
+	${fasterxml},\
 	com.orientechnologies.orientdb-object;version=${com.orientechnologies.orientdb.version},\
 	com.orientechnologies.orientdb-core;version=${com.orientechnologies.orientdb.version},\
 	org.apache.commons.beanutils;version=1.9,\
@@ -107,7 +105,6 @@ Service-Component: *
 	ch.qos.logback.core;version=1.0,\
 	com.googlecode.json-simple;version=1.1,\
 	org.codehaus.jettison.jettison;version=1.3,\
-	com.fasterxml.jackson.dataformat.jackson-dataformat-csv;version=2.5,\
 	de.twentyeleven.skysail.org.json-osgi;version=20080701.0,\
 	org.apache.commons.lang3;version=3.3,\
 	org.objenesis;version=2.1,\

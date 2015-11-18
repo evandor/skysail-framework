@@ -4,9 +4,12 @@ import io.skysail.api.domain.Identifiable;
 import io.skysail.server.db.impl.*;
 import io.skysail.server.utils.SkysailBeanUtils;
 
+import java.io.IOException;
 import java.lang.reflect.Method;
+import java.text.*;
 import java.util.*;
 
+import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
 
 import org.osgi.service.component.ComponentContext;
@@ -16,7 +19,6 @@ import aQute.bnd.annotation.component.*;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.orientechnologies.orient.client.remote.OEngineRemote;
 import com.orientechnologies.orient.core.Orient;
-import com.orientechnologies.orient.core.command.OCommandRequest;
 import com.orientechnologies.orient.core.db.*;
 import com.orientechnologies.orient.core.db.document.ODatabaseDocumentTx;
 import com.orientechnologies.orient.core.id.ORecordId;
@@ -97,8 +99,8 @@ public class OrientGraphDbService extends AbstractOrientDbService implements DbS
     }
 
     @Override
-    public <T> List<T> findGraphs(String sql) {
-        return findGraphs(sql, new HashMap<>());
+    public <T> List<T> findGraphs(Class<?> cls, String sql) {
+        return findGraphs(cls, sql, new HashMap<>());
     }
 
     @Override
@@ -127,19 +129,13 @@ public class OrientGraphDbService extends AbstractOrientDbService implements DbS
     }
 
     @Override
-    public <T> List<T> findGraphs(String sql, Map<String, Object> params) {
-        OrientGraph graph = getDb();
-        OCommandRequest oCommand = new OCommandSQL(sql);
-        Iterable<OrientVertex> execute = graph.command(oCommand).execute(params);
-
-        List<T> detachedEntities = new ArrayList<>();
-        Iterator<OrientVertex> iterator = execute.iterator();
-        while (iterator.hasNext()) {
-            OrientVertex next = iterator.next();
-            OrientElement detached = next.detach();
-            detachedEntities.add((T) detached);
+    public <T> List<T> findGraphs(Class<?> cls, String sql, Map<String, Object> params) {
+        List<T> result = new ArrayList<>();
+        Iterable<OrientVertex> execute = getDb().command(new OCommandSQL(sql)).execute(params);
+        while (execute.iterator().hasNext()) {
+            result.add(vertexToBean2(execute.iterator().next(), cls));
         }
-        return detachedEntities;
+        return result;
     }
 
     @Override
@@ -154,7 +150,7 @@ public class OrientGraphDbService extends AbstractOrientDbService implements DbS
     public <T> T findById(Class<?> cls, String id) {
         OrientGraph graphDb = getDb();
         OrientVertex vertex = graphDb.getVertex(new ORecordId(id));
-        return vertexToBean(vertex, cls);
+        return vertex == null ? null : vertexToBean2(vertex, cls);
     }
 
     @SuppressWarnings("unchecked")
@@ -201,6 +197,20 @@ public class OrientGraphDbService extends AbstractOrientDbService implements DbS
                     });
             return bean;
         } catch (Exception e) {
+            log.error(e.getMessage(), e);
+        }
+        return null;
+    }
+
+    @SuppressWarnings("unchecked")
+    private <T extends Identifiable> T vertexToBean2(@NonNull OrientVertex vertex, @NonNull Class<?> beanType) {
+        String entityMap = vertex.getRecord().toJSON("rid,alwaysFetchEmbedded,fetchPlan:*:-1").replace("@rid", "id").replace("\"out_", "\"").replace("\"in_", "\"");
+        try {
+            DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            mapper.setDateFormat(df);
+            T bean = (T) beanType.newInstance();
+            return (T) mapper.readValue(entityMap, bean.getClass());
+        } catch (InstantiationException | IOException | IllegalAccessException e) {
             log.error(e.getMessage(), e);
         }
         return null;
@@ -267,6 +277,15 @@ public class OrientGraphDbService extends AbstractOrientDbService implements DbS
     }
 
     @Override
+    public void deleteGraph(Class<?> cls, String id) {
+        OrientGraph graphDb = getDb();
+        //objectDb.getEntityManager().registerEntityClass(cls);
+        //ORecordId recordId = new ORecordId(id);
+        OrientVertex vertex = graphDb.getVertex(new ORecordId(id));
+        graphDb.removeVertex(vertex);
+    }
+
+    @Override
     public void deleteVertex(String id) {
         OrientGraph db = getDb();
         ORecordId recordId = new ORecordId(id);
@@ -315,11 +334,12 @@ public class OrientGraphDbService extends AbstractOrientDbService implements DbS
 
             OrientGraph graph = new OrientGraph(dbUrl, getDbUsername(), getDbPassword());
 
-//            final OrientGraphFactory factory = new OrientGraphFactory(dbUrl, getDbUsername(), getDbPassword())
-//                    .setupPool(1, 10);
+            // final OrientGraphFactory factory = new OrientGraphFactory(dbUrl,
+            // getDbUsername(), getDbPassword())
+            // .setupPool(1, 10);
             try {
                 log.info("testing graph factory connection");
-//                graph.getTx();
+                // graph.getTx();
             } catch (Exception e) {
                 log.error(e.getMessage(), e);
             } finally {

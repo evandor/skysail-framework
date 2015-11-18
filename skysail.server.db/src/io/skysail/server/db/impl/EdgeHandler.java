@@ -26,7 +26,12 @@ public class EdgeHandler {
     public void handleEdges(Object entity, Vertex vertex, Map<String, Object> properties, String key)
             throws NoSuchFieldException, SecurityException, NoSuchMethodException, IllegalAccessException,
             IllegalArgumentException, InvocationTargetException {
-
+        if (key.startsWith("out_")) {
+            key = key.substring(4);
+        }
+        if (key.startsWith("in_")) {
+            key = key.substring(3);
+        }
         Field field = entity.getClass().getDeclaredField(key);
         Class<?> type = field.getType();
         Object edges = properties.get(key);

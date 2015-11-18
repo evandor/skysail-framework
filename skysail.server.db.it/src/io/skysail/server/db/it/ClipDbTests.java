@@ -14,6 +14,9 @@ import org.junit.experimental.categories.Category;
 import org.restlet.data.Form;
 import org.restlet.representation.Variant;
 
+/**
+ * Testing a simple entity without relations.
+ */
 @Category(LargeTests.class)
 public class ClipDbTests extends DbIntegrationTests {
 

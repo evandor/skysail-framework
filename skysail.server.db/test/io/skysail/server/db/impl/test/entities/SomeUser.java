@@ -2,9 +2,7 @@ package io.skysail.server.db.impl.test.entities;
 
 import io.skysail.api.domain.Identifiable;
 import io.skysail.api.forms.*;
-
-import java.util.*;
-
+import io.skysail.server.db.OutEdges;
 import lombok.*;
 
 @Data
@@ -13,7 +11,7 @@ public class SomeUser implements Identifiable {
     private String id;
 
     @Field(inputType = InputType.MULTISELECT)
-    private List<SomeRole> roles = new ArrayList<>();
+    private OutEdges<SomeRole> roles = new OutEdges<>();
 
     private String username;
 

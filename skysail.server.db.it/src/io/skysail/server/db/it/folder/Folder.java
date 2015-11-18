@@ -2,12 +2,15 @@ package io.skysail.server.db.it.folder;
 
 import io.skysail.api.domain.Identifiable;
 import io.skysail.api.forms.*;
+import io.skysail.server.db.OutEdges;
 
-import java.util.*;
+import java.util.Date;
 
 import javax.persistence.Id;
 
 import lombok.*;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 /**
  * A recursive folder structure.
@@ -16,6 +19,7 @@ import lombok.*;
 @Setter
 @NoArgsConstructor
 @ToString
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Folder implements Identifiable {
 
     public Folder(String name) {
@@ -35,5 +39,6 @@ public class Folder implements Identifiable {
     private Date modified;
 
     @Field(inputType = InputType.HIDDEN)
-    private List<Folder> subfolders = new ArrayList<>();
+    private OutEdges<Folder> subfolders = new OutEdges<>();
+
 }

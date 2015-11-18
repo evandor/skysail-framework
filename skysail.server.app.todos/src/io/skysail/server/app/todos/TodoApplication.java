@@ -108,6 +108,7 @@ public class TodoApplication extends SkysailApplication implements ApplicationPr
         router.attach(new TodoRouteBuilder(this,"/Lists/{"+LIST_ID+"}/Todos/", PostTodoResource.class));
         router.attach(new TodoRouteBuilder(this,"/Lists/{"+LIST_ID+"}/Todos", TodosResource.class));
         router.attach(new TodoRouteBuilder(this,"/Lists/{"+LIST_ID+"}/Todos/{"+TODO_ID+"}/", PutTodoResource.class));
+        //router.attach(new TodoRouteBuilder(this,"/Todos/{"+TODO_ID+"}/", PutTodoResource.class));
         router.attach(new TodoRouteBuilder(this,"/Lists/{"+LIST_ID+"}/ArchivedTodos", ArchivedTodosResource.class));
 
         router.attach(new TodoRouteBuilder(this,"/OverdueTodos", OverdueTodosResource.class));
@@ -140,7 +141,7 @@ public class TodoApplication extends SkysailApplication implements ApplicationPr
         for (TodoList todoList : usersDefaultLists) {
             todoList.setDefaultList(false);
             log.info("removing default-List Flag from todo list with id '{}'", todoList.getId());
-            getListRepo().update(todoList.getId(), todoList);
+            getListRepo().update(todoList.getId(), todoList, "todos");
         }
     }
 

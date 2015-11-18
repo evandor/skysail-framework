@@ -1,5 +1,5 @@
 INFO  io.skysail.client.testsupport.TestsupportTestBase - 
 INFO  io.skysail.client.testsupport.TestsupportTestBase - --------------------------------------------
-INFO  io.skysail.client.testsupport.TestsupportTestBase -  > TEST: running test 'html_variant_creates_a_new_clip'
+INFO  io.skysail.client.testsupport.TestsupportTestBase -  > TEST: running test 'html_variant_deletes_todo_including_comment'
 INFO  io.skysail.client.testsupport.TestsupportTestBase - --------------------------------------------
 INFO  io.skysail.client.testsupport.TestsupportTestBase - 

@@ -23,7 +23,7 @@ import org.restlet.Context;
 public abstract class AbstractListResourceTest extends ResourceTestBase {
 
     @Spy
-    public PostListResource postListresource;
+    public PostListResource postListResource;
 
     @Spy
     public PutListResource putListResource;
@@ -51,7 +51,7 @@ public abstract class AbstractListResourceTest extends ResourceTestBase {
         super.setUpResource(listResource,context);
         super.setUpResource(listsResource,context);
         super.setUpResource(putListResource,context);
-        super.setUpResource(postListresource,context);
+        super.setUpResource(postListResource,context);
         setUpSubject("admin");
 
         new UniquePerOwnerValidator().setDbService(testDb);
@@ -93,7 +93,7 @@ public abstract class AbstractListResourceTest extends ResourceTestBase {
     protected TodoList createList() {
         TodoList aList = new TodoList();
         aList.setName("list_" + randomString());
-        SkysailResponse<TodoList> post = postListresource.post(aList,JSON_VARIANT);
+        SkysailResponse<TodoList> post = postListResource.post(aList,JSON_VARIANT);
         getAttributes().clear();
 
         return post.getEntity();

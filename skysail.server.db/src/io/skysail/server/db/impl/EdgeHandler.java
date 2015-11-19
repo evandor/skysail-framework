@@ -30,6 +30,9 @@ public class EdgeHandler {
         Field field = entity.getClass().getDeclaredField(key);
         Class<?> type = field.getType();
         Object edges = properties.get(key);
+        if (edges == null) {
+            return;
+        }
         if (Collection.class.isAssignableFrom(type)) {
             Method method = entity.getClass().getMethod("get" + key.substring(0, 1).toUpperCase() + key.substring(1));
             @SuppressWarnings("unchecked")

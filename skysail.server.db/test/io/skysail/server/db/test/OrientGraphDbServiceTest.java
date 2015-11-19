@@ -3,12 +3,12 @@ package io.skysail.server.db.test;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.Matchers.notNullValue;
 import static org.junit.Assert.assertThat;
-import io.skysail.server.db.OrientGraphDbService;
+import io.skysail.server.db.*;
 import io.skysail.server.db.test.entities.folders.Folder;
 import io.skysail.server.db.test.entities.one2many.*;
 import io.skysail.server.db.test.entities.simple.SimpleEntity;
 
-import java.util.Arrays;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import org.junit.*;
@@ -22,6 +22,22 @@ public class OrientGraphDbServiceTest {
     @Before
     public void setUp() throws Exception {
         dbService = new OrientGraphDbService();
+        DbConfigurationProvider provider = new DbConfigurationProvider() {
+            @Override
+            public DbConfig getConfig() {
+                HashMap<String, String> configMap = new HashMap<String, String>() {
+                    {
+                        put("name", "skysailgraph");
+                        put("url", "remote:localhost/skysailcrm");
+                        put("username", "admin");
+                        put("password", "admin");
+                    }
+                };
+                DbConfig dbConfig = new DbConfig(configMap);
+                return dbConfig;
+            }
+        };
+       // dbService.setDbConfigurationProvider(provider);
         dbService.activate();
     }
 
@@ -98,6 +114,15 @@ public class OrientGraphDbServiceTest {
     @Test
     public void graphApi_can_retrieve_one2many_entity_with_a_element_in_list() {
         ORecordId persisted = (ORecordId) persistOneToManyEntity("oneToMany", "toMany");
+        dbService.register(OneToManyEntity.class);
+
+//        List<OneToManyEntity> query = dbService.getObjectDb().query(new OSQLSynchQuery<OneToManyEntity>("select from " + persisted.toString()));
+//
+//        query.stream().forEach(e -> {
+//            System.out.println(e.getName());
+//            System.out.println(e.getToManies());
+//        });
+
         OneToManyEntity entity = dbService.findById2(OneToManyEntity.class, persisted.toString());
         assertThat(entity.getId(), is(persisted.toString()));
         assertThat(entity.getName(), is("oneToMany"));

@@ -6,6 +6,7 @@ import io.skysail.server.utils.SkysailBeanUtils;
 
 import java.lang.reflect.Method;
 import java.util.*;
+import java.util.stream.Collectors;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -17,13 +18,17 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.orientechnologies.orient.client.remote.OEngineRemote;
 import com.orientechnologies.orient.core.Orient;
 import com.orientechnologies.orient.core.command.OCommandRequest;
+import com.orientechnologies.orient.core.command.traverse.OTraverse;
 import com.orientechnologies.orient.core.db.*;
 import com.orientechnologies.orient.core.db.document.ODatabaseDocumentTx;
+import com.orientechnologies.orient.core.db.record.OIdentifiable;
+import com.orientechnologies.orient.core.db.record.ridbag.ORidBag;
 import com.orientechnologies.orient.core.id.ORecordId;
 import com.orientechnologies.orient.core.metadata.schema.*;
 import com.orientechnologies.orient.core.metadata.schema.OClass.INDEX_TYPE;
 import com.orientechnologies.orient.core.record.impl.ODocument;
 import com.orientechnologies.orient.core.sql.*;
+import com.orientechnologies.orient.core.sql.filter.OSQLPredicate;
 import com.orientechnologies.orient.core.sql.functions.OSQLFunction;
 import com.orientechnologies.orient.core.sql.query.OSQLSynchQuery;
 import com.orientechnologies.orient.graph.sql.functions.OGraphFunctionFactory;
@@ -159,23 +164,23 @@ public class OrientGraphDbService extends AbstractOrientDbService implements DbS
 
     @Override
     public <T> T findById2(Class<?> cls, String id) {
-        OrientGraph graphDb = getGraphDb();
-        String sql = "SELECT name, EXPAND ( OUT('toManies') ) FROM " + cls.getSimpleName() + " WHERE @rid=:id";
-        Map<String, Object> params = new HashMap<>();
-        params.put("id", id);
-        Iterable<?> executed = graphDb.command(new OCommandSQL(sql)).execute(params);
-        System.out.println(executed);
-        Iterator<?> iterator = executed.iterator();
-        if (iterator.hasNext()) {
-            OrientVertex next = (OrientVertex) iterator.next();
-            System.out.println(next);
-            if (iterator.hasNext()) {
-                throw new IllegalStateException("too many results found for a single ID ("+id+")");
-            }
-        } else {
-            return null;
-        }
-        return null;
+        ODatabaseDocumentInternal db = getObjectDb().getUnderlying();
+        ODatabaseRecordThreadLocal.INSTANCE.set(db);
+
+        // String sql = "SELECT FROM (TRAVERSE OUT() FROM " + id + ")";
+        // Map<String, String> params = new HashMap<>();
+        OTraverse predicate = new OTraverse().target(new ORecordId(id)).fields("out", "int").limit(1)
+                .predicate(new OSQLPredicate("$depth <= 3"));
+        OIdentifiable next = predicate.iterator().next();
+        ODocument document = (ODocument) next;
+        return documentToBean(document, cls);
+
+        // Iterable executed = getGraphDb().command(new
+        // OCommandSQL(sql)).execute(params );
+        // Object next = executed.iterator().next();
+        // System.out.println(next);
+
+        // return null;
     }
 
     @SuppressWarnings("unchecked")
@@ -220,6 +225,82 @@ public class OrientGraphDbService extends AbstractOrientDbService implements DbS
                         }
 
                     });
+            return bean;
+        } catch (Exception e) {
+            log.error(e.getMessage(), e);
+        }
+        return null;
+    }
+
+    private <T extends Identifiable> T documentToBean(ODocument document, Class<?> beanType) {
+        Map<String, Object> entityMap = document.toMap();
+        T bean;
+        try {
+            bean = (T) beanType.newInstance();
+            SkysailBeanUtils beanUtilsBean = new SkysailBeanUtils(bean, Locale.getDefault());
+            beanUtilsBean.populate(bean, entityMap);
+            if (entityMap.get("@rid") != null && bean.getId() == null) {
+                bean.setId(entityMap.get("@rid").toString());
+            }
+
+            List<String> outFields = Arrays.stream(document.fieldNames())
+                    .filter(fieldname -> fieldname.startsWith("out_")).collect(Collectors.toList());
+            System.out.println(document);
+            outFields.forEach(edgeName -> {
+                System.out.println(edgeName);
+                ORidBag field = document.field(edgeName);
+                field.setAutoConvertToRecord(true);
+                field.convertLinks2Records();
+
+                ORidBag field2 = document.field(edgeName);
+                Iterator<OIdentifiable> iterator = field2.iterator();
+                while (iterator.hasNext()) {
+                    ODocument edge = (ODocument) iterator.next();
+                    System.out.println(edge);
+                    ODocument field3 = edge.field("in");
+                    System.out.println(field3);
+
+                }
+                String fieldName = edgeName.replace("out_", "");
+                String getterName = "get" + fieldName.substring(0,1).toUpperCase() + fieldName.substring(1);
+                try {
+                    Object invoked = bean.getClass().getMethod(getterName).invoke(bean);
+                    System.out.println(invoked);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+
+//                ORecord load = document.load();
+//
+//                System.out.println(load);
+                // OrientVertex vertexFromEdge = (OrientVertex)
+                // e.getVertex(Direction.IN);
+                // try {
+                // Class<?> vertexClass =
+                // getRegisteredClass(vertexFromEdge.getRecord().getClassName());
+                // Identifiable beanFromVertex = vertexToBean(vertexFromEdge,
+                // vertexClass);
+                // Class<?> fieldType =
+                // bean.getClass().getDeclaredField(edgeName).getType();
+                // if (Collection.class.isAssignableFrom(fieldType)) {
+                // Method collectionGetter = bean.getClass().getMethod(
+                // "get" + edgeName.substring(0, 1).toUpperCase() +
+                // edgeName.substring(1));
+                // Collection<Identifiable> collection =
+                // (Collection<Identifiable>) collectionGetter.invoke(bean);
+                // if (collection == null) {
+                // throw new IllegalStateException(
+                // "could not add to collection object; please make sure your beans field '"
+                // + edgeName + "' is initialized");
+                // }
+                // collection.add(beanFromVertex);
+                // }
+                // } catch (Exception e1) {
+                // log.error(e1.getMessage(), e1);
+                // }
+
+                });
             return bean;
         } catch (Exception e) {
             log.error(e.getMessage(), e);
@@ -336,11 +417,12 @@ public class OrientGraphDbService extends AbstractOrientDbService implements DbS
 
             OrientGraph graph = new OrientGraph(dbUrl, getDbUsername(), getDbPassword());
 
-//            final OrientGraphFactory factory = new OrientGraphFactory(dbUrl, getDbUsername(), getDbPassword())
-//                    .setupPool(1, 10);
+            // final OrientGraphFactory factory = new OrientGraphFactory(dbUrl,
+            // getDbUsername(), getDbPassword())
+            // .setupPool(1, 10);
             try {
                 log.info("testing graph factory connection");
-//                graph.getTx();
+                // graph.getTx();
             } catch (Exception e) {
                 log.error(e.getMessage(), e);
             } finally {
@@ -455,12 +537,7 @@ public class OrientGraphDbService extends AbstractOrientDbService implements DbS
         return db;
     }
 
-    private OObjectDatabaseTx getObjectDb() {
-
-        // OObjectDatabaseTx opDatabasePool=
-        // OObjectDatabasePool.global().acquire(getDbUrl(), getDbUsername(),
-        // getDbPassword());
-        // return opDatabasePool;
+    public OObjectDatabaseTx getObjectDb() {
         OPartitionedDatabasePool opDatabasePool = new OPartitionedDatabasePool(getDbUrl(), getDbUsername(),
                 getDbPassword());
         ODatabaseDocumentTx oDatabaseDocumentTx = opDatabasePool.acquire();

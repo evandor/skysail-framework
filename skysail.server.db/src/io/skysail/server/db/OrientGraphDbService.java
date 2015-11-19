@@ -78,12 +78,12 @@ public class OrientGraphDbService extends AbstractOrientDbService implements DbS
 
     @Override
     public Object persist(Identifiable entity, String... edges) {
-        return new Persister(getDb(), edges).persist(entity);
+        return new Persister(getGraphDb(), edges).persist(entity);
     }
 
     @Override
     public Object update(Object id, Identifiable entity, String... edges) {
-        return new Updater(getDb(), edges).persist(entity);
+        return new Updater(getGraphDb(), edges).persist(entity);
     }
 
     @Override
@@ -128,7 +128,7 @@ public class OrientGraphDbService extends AbstractOrientDbService implements DbS
 
     @Override
     public <T> List<T> findGraphs(String sql, Map<String, Object> params) {
-        OrientGraph graph = getDb();
+        OrientGraph graph = getGraphDb();
         OCommandRequest oCommand = new OCommandSQL(sql);
         Iterable<OrientVertex> execute = graph.command(oCommand).execute(params);
 
@@ -152,9 +152,30 @@ public class OrientGraphDbService extends AbstractOrientDbService implements DbS
 
     @Override
     public <T> T findById(Class<?> cls, String id) {
-        OrientGraph graphDb = getDb();
+        OrientGraph graphDb = getGraphDb();
         OrientVertex vertex = graphDb.getVertex(new ORecordId(id));
         return vertexToBean(vertex, cls);
+    }
+
+    @Override
+    public <T> T findById2(Class<?> cls, String id) {
+        OrientGraph graphDb = getGraphDb();
+        String sql = "SELECT name, EXPAND ( OUT('toManies') ) FROM " + cls.getSimpleName() + " WHERE @rid=:id";
+        Map<String, Object> params = new HashMap<>();
+        params.put("id", id);
+        Iterable<?> executed = graphDb.command(new OCommandSQL(sql)).execute(params);
+        System.out.println(executed);
+        Iterator<?> iterator = executed.iterator();
+        if (iterator.hasNext()) {
+            OrientVertex next = (OrientVertex) iterator.next();
+            System.out.println(next);
+            if (iterator.hasNext()) {
+                throw new IllegalStateException("too many results found for a single ID ("+id+")");
+            }
+        } else {
+            return null;
+        }
+        return null;
     }
 
     @SuppressWarnings("unchecked")
@@ -208,7 +229,7 @@ public class OrientGraphDbService extends AbstractOrientDbService implements DbS
 
     @Override
     public <T> List<T> findWithGraph(String sql, Class<?> cls, Map<String, Object> params) {
-        OrientGraph db = getDb();
+        OrientGraph db = getGraphDb();
         List<T> result = new ArrayList<>();
         Iterable<Vertex> query = (Iterable<Vertex>) db.getVerticesOfClass("Page");
         for (Vertex vertex : query) {
@@ -251,7 +272,7 @@ public class OrientGraphDbService extends AbstractOrientDbService implements DbS
 
     @Override
     public Object executeUpdateVertex(String sql, Map<String, Object> params) {
-        OrientGraph graphDb = getDb();
+        OrientGraph graphDb = getGraphDb();
         Object executed = graphDb.command(new OCommandSQL(sql)).execute(params);
         graphDb.commit();
         return executed;
@@ -268,7 +289,7 @@ public class OrientGraphDbService extends AbstractOrientDbService implements DbS
 
     @Override
     public void deleteVertex(String id) {
-        OrientGraph db = getDb();
+        OrientGraph db = getGraphDb();
         ORecordId recordId = new ORecordId(id);
         OrientVertex vertex = db.getVertex(recordId);
         db.removeVertex(vertex);
@@ -424,7 +445,7 @@ public class OrientGraphDbService extends AbstractOrientDbService implements DbS
 
     }
 
-    private OrientGraph getDb() {
+    private OrientGraph getGraphDb() {
         return graphDbFactory.getTx();
     }
 

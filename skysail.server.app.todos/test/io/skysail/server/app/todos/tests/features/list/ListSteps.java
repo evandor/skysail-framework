@@ -19,17 +19,17 @@ public class ListSteps extends AbstractSteps {
 
     @Step("posting todolist form with '{0}'")
     public void post(String input) {
-        result = listTests.postListresource.post(createForm(input), new VariantInfo(MediaType.TEXT_HTML));
+        result = listTests.postListResource.post(createForm(input), new VariantInfo(MediaType.TEXT_HTML));
     }
 
     @Step("posting todolist form with '{0}'")
     public void post(TodoList list) {
-        result = listTests.postListresource.post(list, new VariantInfo(MediaType.APPLICATION_JSON));
+        result = listTests.postListResource.post(list, new VariantInfo(MediaType.APPLICATION_JSON));
     }
 
     @Step("yields new list with name '{0}'")
     public void new_list_should_have_the_name(String name) {
-        listTests.assertListResult(listTests.postListresource, result, name);
+        listTests.assertListResult(listTests.postListResource, result, name);
     }
 
     public void setTestClass(TodoListTests listTests) {
@@ -38,7 +38,7 @@ public class ListSteps extends AbstractSteps {
 
     @Step("asserting single validation failure for '{0}' with message '{1}'")
     public void hasSingleValidationFailure(String key, String msg) {
-        listTests.assertSingleValidationFailure(listTests.postListresource, ( io.skysail.api.responses.ConstraintViolationsResponse<?>)result,  key, msg);
+        listTests.assertSingleValidationFailure(listTests.postListResource, ( io.skysail.api.responses.ConstraintViolationsResponse<?>)result,  key, msg);
     }
 
     @Step("asserting that '{0}' is not null")

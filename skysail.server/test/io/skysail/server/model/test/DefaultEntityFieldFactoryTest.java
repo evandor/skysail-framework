@@ -10,7 +10,6 @@ import java.util.Map;
 import org.junit.*;
 import org.mockito.Mockito;
 
-@Ignore
 public class DefaultEntityFieldFactoryTest extends ModelTests {
 
     private DefaultEntityFieldFactory defaultEntityFieldFactory;

@@ -5,13 +5,9 @@ import static org.junit.Assert.assertThat;
 import io.skysail.api.responses.*;
 import io.skysail.server.app.todos.TodoList;
 
-import java.util.List;
-
-import org.junit.*;
+import org.junit.Test;
 import org.restlet.data.*;
 import org.restlet.engine.resource.VariantInfo;
-
-import com.tinkerpop.blueprints.impls.orient.OrientVertex;
 
 public class PostListResourceTest extends AbstractListResourceTest {
 
@@ -25,7 +21,6 @@ public class PostListResourceTest extends AbstractListResourceTest {
     }
 
     @Test
-    @Ignore
     public void two_entries_with_same_name_yields_failure() {
         form.add("name", "two_entries_with_same_name_yields_failure");
         postListResource.post(form, new VariantInfo(MediaType.TEXT_HTML));
@@ -34,7 +29,6 @@ public class PostListResourceTest extends AbstractListResourceTest {
     }
 
     @Test
-    @Ignore
     public void new_list_with_default_flag_becomes_default() {
         form.add("name", "new_list_with_default_flag_becomes_default");
         form.add("defaultList", "on");
@@ -55,7 +49,6 @@ public class PostListResourceTest extends AbstractListResourceTest {
     }
 
     @Test
-    @Ignore
     public void second_list_with_default_flag_toggles_first_one() {
         setUpSubject("user_second_list_with_default_flag_toggles_first_one");
 
@@ -68,11 +61,11 @@ public class PostListResourceTest extends AbstractListResourceTest {
         form.add("defaultList", "on");
         String id2 = postListResource.post(form, HTML_VARIANT).getEntity().getId();
 
-        OrientVertex vertexById1 = ((List<OrientVertex>) listRepo.getVertexById(id1)).get(0);
-        OrientVertex vertexById2 = ((List<OrientVertex>) listRepo.getVertexById(id2)).get(0);
+        TodoList findOne = listRepo.findOne(id1);
+        TodoList findTwo = listRepo.findOne(id2);
 
-        assertThat(vertexById1.getProperty("defaultList"), is(false));
-        assertThat(vertexById2.getProperty("defaultList"), is(true));
+        assertThat(findOne.isDefaultList(), is(false));
+        assertThat(findTwo.isDefaultList(), is(true));
     }
 
 }

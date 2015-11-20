@@ -45,7 +45,6 @@ public class PostTodoResourceTest extends AbstractTodoResourceTest {
     }
 
     @Test
-    @Ignore
     public void valid_form_data_yields_new_entity() {
         String title = "title_" + randomString();
         form.add("title", title);
@@ -58,7 +57,6 @@ public class PostTodoResourceTest extends AbstractTodoResourceTest {
     }
 
     @Test
-    @Ignore
     public void valid_json_data_yields_new_entity() {
         String title = "title_" + randomString();
         Todo todo = new Todo(title);
@@ -70,7 +68,6 @@ public class PostTodoResourceTest extends AbstractTodoResourceTest {
     }
 
     @Test
-    @Ignore
     public void urgency_is_calculated() {
         //TodoList aList = createList();
         form.add("title", "title_" + randomString());
@@ -80,7 +77,7 @@ public class PostTodoResourceTest extends AbstractTodoResourceTest {
         form.add("startDate", sdf.format(nowPlusWeeksAndDays(-1, -1)));
         form.add("due", sdf.format(nowPlusWeeks(1)));
         SkysailResponse<Todo> post = postTodoResource.post(form, HTML_VARIANT);
-        assertThat(responses.get(postTodoResource.getClass().getName()).getStatus(), is(equalTo(Status.SUCCESS_CREATED)));
+        assertThat(responses.get(postTodoResource.getClass().getName()).getStatus(), is(equalTo(Status.REDIRECTION_SEE_OTHER)));
         assertThat(post.getEntity().getUrgency(), greaterThan(0));
         assertThat(post.getEntity().getUrgency(), not(greaterThan(100)));
     }

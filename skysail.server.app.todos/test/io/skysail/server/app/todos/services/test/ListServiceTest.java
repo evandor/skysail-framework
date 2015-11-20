@@ -88,7 +88,6 @@ public class ListServiceTest extends AbstractShiroTest {
     }
 
     @Test
-    @Ignore
     public void updateList_delegates_to_repo_update() {
         TodoList entity = new TodoList("title");
         SkysailServerResource<?> resource = mock(SkysailServerResource.class);
@@ -98,7 +97,7 @@ public class ListServiceTest extends AbstractShiroTest {
 
         listService.updateList(resource , entity);
 
-        verify(listRepo).update("#12:0", entity);
+        verify(listRepo).update("#12:0", entity, "todos");
     }
 
     @Test

@@ -5,7 +5,7 @@ import static org.junit.Assert.assertThat;
 import io.skysail.api.responses.SkysailResponse;
 import io.skysail.server.app.todos.*;
 
-import org.junit.*;
+import org.junit.Test;
 import org.restlet.data.Status;
 
 public class ListResourceTest extends AbstractListResourceTest {
@@ -25,7 +25,6 @@ public class ListResourceTest extends AbstractListResourceTest {
     }
 
     @Test
-    @Ignore
     public void deletes_list_resource_if_empty() {
         TodoList aList = createList();
 
@@ -33,7 +32,7 @@ public class ListResourceTest extends AbstractListResourceTest {
         init(listResource);
 
         listResource.deleteEntity(HTML_VARIANT);
-        assertThat(responses.get(listResource.getClass().getName()).getStatus(), is(equalTo(Status.SUCCESS_OK)));
+        assertThat(responses.get(listResource.getClass().getName()).getStatus(), is(equalTo(Status.REDIRECTION_SEE_OTHER)));
 
         Object byId = todoRepo.findOne(aList.getId());
         assertThat(byId, is(nullValue()));

@@ -4,9 +4,6 @@ import io.skysail.api.domain.Identifiable;
 
 import java.io.Serializable;
 
-import org.junit.Ignore;
-
-@Ignore
 public class Entity implements Identifiable, Serializable {
 
     private static final long serialVersionUID = 917647823437327405L;

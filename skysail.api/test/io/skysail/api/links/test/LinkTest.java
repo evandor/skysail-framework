@@ -95,26 +95,4 @@ public class LinkTest {
         assertThat(Link.valueOf(linkheader).getVerbs(), contains(Method.POST));
     }
 
-    @Test
-    @Ignore
-    public void matches_id_from_request_with_trailing_slash() throws Exception {
-        Link linkheader = new Link.Builder("/wiki/spaces/{spaceId}/pages/").relation(LinkRelation.CREATE_FORM).build();
-        Mockito.when(resourceRef.getPath(true)).thenReturn("/wiki/spaces/15:0");
-
-        String link = linkheader.toString(request, "");
-
-        assertThat(link, is(equalTo("</wiki/spaces/15:0/pages/>; rel=\"create-form\"; title=\"create-form\"; verbs=\"GET\"")));
-    }
-
-    @Test
-    @Ignore
-    public void matches_id_from_request_without_trailing_slash() throws Exception {
-        Link linkheader = new Link.Builder("/wiki/spaces/{spaceId}/pages").relation(LinkRelation.CREATE_FORM).build();
-        Mockito.when(resourceRef.getPath(true)).thenReturn("/wiki/spaces/15:0");
-
-        String link = linkheader.toString(request, "");
-
-        assertThat(link, is(equalTo("</wiki/spaces/15:0/pages>; rel=\"create-form\"; title=\"create-form\"; verbs=\"GET\"")));
-    }
-
 }

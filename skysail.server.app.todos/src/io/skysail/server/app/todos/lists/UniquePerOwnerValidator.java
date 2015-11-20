@@ -32,7 +32,7 @@ public class UniquePerOwnerValidator implements ConstraintValidator<UniquePerOwn
         params.put("name", todoList.getName());
         params.put("id", todoList.getId());
         params.put("owner", SecurityUtils.getSubject().getPrincipal().toString());
-        List<Object> findObjects = dbService.findObjects(sql, params);
+        List<TodoList> findObjects = dbService.findGraphs(TodoList.class, sql, params);
         return findObjects.isEmpty();
     }
 

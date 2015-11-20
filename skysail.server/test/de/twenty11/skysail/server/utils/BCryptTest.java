@@ -1,20 +1,17 @@
 package de.twenty11.skysail.server.utils;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 import io.skysail.server.utils.BCrypt;
 
-import org.junit.Ignore;
 import org.junit.Test;
 
-@Ignore
+//@Ignore
 // runs, but takes quite some time (which is the intention with BCrypt)
 // excluding the tests as it is imported library code
 public class BCryptTest {
 
     String test_vectors[][] = {
-            { "", 
+            { "",
             "$2a$06$DCq7YPn5Rq63x1Lad4cll.",
             "$2a$06$DCq7YPn5Rq63x1Lad4cll.TV4S6ytwfsfvkgY8jIucDrjc8deX1s." },
             { "",
@@ -29,7 +26,7 @@ public class BCryptTest {
             { "a",
             "$2a$06$m0CrhHm10qJ3lXRY.5zDGO",
             "$2a$06$m0CrhHm10qJ3lXRY.5zDGO3rS2KdeeWLuGmsfGlMfOxih58VYVfxe" },
-            { "a", 
+            { "a",
             "$2a$08$cfcvVd2aQ8CMvoMpP2EBfe",
             "$2a$08$cfcvVd2aQ8CMvoMpP2EBfeodLEkkFJ9umNEfPD18.hUF62qqlC/V." },
             { "a",

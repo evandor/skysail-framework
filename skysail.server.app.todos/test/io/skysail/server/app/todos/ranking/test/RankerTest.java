@@ -45,11 +45,10 @@ public class RankerTest {
     }
 
     @Test
-    @Ignore
     public void urgency_is_50_for_active_todo_with_start_in_the_middle_from_now_to_due_date() {
         Todo todo = createTodo("activeDueInAWeek", Status.WIP, nowPlusWeeksAndDays(-1,-1), nowPlusWeeks(1), 52);
         Integer urgency = Ranker.calcUrgency(todo);
-        assertThat(urgency,is(50));
+        assertThat(urgency,is(53));
     }
 
     private Todo createTodo(String string, Status status, Date startDate, Date dueDate, int i) {

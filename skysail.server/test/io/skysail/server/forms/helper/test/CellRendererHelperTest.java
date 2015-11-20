@@ -35,10 +35,9 @@ public class CellRendererHelperTest {
     }
 
     @Test
-    @Ignore
     public void list_input_is_formatted_as_lists_size() {
         Object formatted = new CellRendererHelper(null, null).render(Arrays.asList("1","2","3"), "id");
-        assertThat(formatted, is("3"));
+        assertThat(formatted, is("#3"));
     }
 
     @Test

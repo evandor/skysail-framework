@@ -64,7 +64,7 @@ public abstract class AbstractTodoResourceTest extends ResourceTestBase {
 
     protected void assertTodoResult(SkysailServerResource<?> resource, SkysailResponse<Todo> result, String name) {
         Todo entity = result.getEntity();
-        assertThat(responses.get(resource.getClass().getName()).getStatus(),is(equalTo(Status.SUCCESS_CREATED)));
+        assertThat(responses.get(resource.getClass().getName()).getStatus(),is(equalTo(Status.REDIRECTION_SEE_OTHER)));
         assertThat(entity.getTitle(),is(equalTo(name)));
         assertThat(entity.getCreated(),is(not(nullValue())));
         assertThat(entity.getModified(),is(nullValue()));

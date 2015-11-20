@@ -23,7 +23,6 @@ public class PutTodoResourceTest extends AbstractTodoResourceTest {
     }
 
     @Test
-    @Ignore
     public void rejects_updating_password_if_old_password_is_null() throws Exception {
         Mockito.when(subjectUnderTest.getPrincipal()).thenReturn("admin");
         setSubject(subjectUnderTest);
@@ -41,7 +40,7 @@ public class PutTodoResourceTest extends AbstractTodoResourceTest {
         form.add("id", todo.getId());
         form.add("parent", aList.getId());
         setAttributes(TodoApplication.LIST_ID, aList.getId());
-        setAttributes(TodoApplication.TODO_ID, todo.getId());
+        //setAttributes(TodoApplication.TODO_ID, todo.getId());
         init(putTodoResource);
 
         SkysailResponse<Todo> response = putTodoResource.put(form, new VariantInfo(MediaType.TEXT_HTML));
@@ -64,7 +63,7 @@ public class PutTodoResourceTest extends AbstractTodoResourceTest {
         form.add("parent", aList.getId());
         form.add("owner", "me");
         setAttributes(TodoApplication.LIST_ID, aList.getId());
-        setAttributes(TodoApplication.TODO_ID, todo.getId());
+//        setAttributes(TodoApplication.TODO_ID, todo.getId());
         init(putTodoResource);
 
         SkysailResponse<Todo> response = putTodoResource.put(form, new VariantInfo(MediaType.TEXT_HTML));

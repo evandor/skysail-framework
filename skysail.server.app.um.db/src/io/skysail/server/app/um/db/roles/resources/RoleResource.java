@@ -17,7 +17,7 @@ public class RoleResource extends EntityServerResource<Role> {
     }
 
     public Role getEntity() {
-        return app.getRoleRepo().getById(getAttribute("id"));
+        return app.getRoleRepo().findOne(getAttribute("id"));
     }
 
     public List<Link> getLinks() {

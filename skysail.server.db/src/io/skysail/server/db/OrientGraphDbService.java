@@ -4,7 +4,7 @@ import io.skysail.api.domain.Identifiable;
 import io.skysail.server.db.impl.*;
 import io.skysail.server.utils.SkysailBeanUtils;
 
-import java.lang.reflect.Method;
+import java.lang.reflect.InvocationTargetException;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -14,7 +14,6 @@ import org.osgi.service.component.ComponentContext;
 
 import aQute.bnd.annotation.component.*;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.orientechnologies.orient.client.remote.OEngineRemote;
 import com.orientechnologies.orient.core.Orient;
 import com.orientechnologies.orient.core.command.OCommandRequest;
@@ -34,7 +33,6 @@ import com.orientechnologies.orient.core.sql.query.OSQLSynchQuery;
 import com.orientechnologies.orient.graph.sql.functions.OGraphFunctionFactory;
 import com.orientechnologies.orient.object.db.OObjectDatabaseTx;
 import com.orientechnologies.orient.object.metadata.schema.OSchemaProxyObject;
-import com.tinkerpop.blueprints.*;
 import com.tinkerpop.blueprints.impls.orient.*;
 
 import de.twenty11.skysail.server.core.osgi.EventHelper;
@@ -45,7 +43,6 @@ import de.twenty11.skysail.server.events.EventHandler;
 public class OrientGraphDbService extends AbstractOrientDbService implements DbService {
 
     private OrientGraphFactory graphDbFactory;
-    private ObjectMapper mapper = new ObjectMapper();
 
     @Activate
     public void activate() {
@@ -96,10 +93,10 @@ public class OrientGraphDbService extends AbstractOrientDbService implements DbS
         return findObjects(sql, new HashMap<>());
     }
 
-    @Override
-    public List<Map<String, Object>> findDocuments(String sql) {
-        return findDocuments(sql, new HashMap<>());
-    }
+//    @Override
+//    public List<Map<String, Object>> findDocuments(String sql) {
+//        return findDocuments(sql, new HashMap<>());
+//    }
 
     @Override
     public <T> List<T> findGraphs(String sql) {
@@ -119,17 +116,17 @@ public class OrientGraphDbService extends AbstractOrientDbService implements DbS
         return detachedEntities;
     }
 
-    @Override
-    public List<Map<String, Object>> findDocuments(String sql, Map<String, Object> params) {
-        ODatabaseDocumentTx objectDb = getDocumentDb();
-        List<ODocument> query = objectDb.query(new OSQLSynchQuery<ODocument>(sql), params);
-
-        List<Map<String, Object>> result = new ArrayList<>();
-        for (ODocument t : query) {
-            result.add(t.toMap());
-        }
-        return result;
-    }
+//    @Override
+//    public List<Map<String, Object>> findDocuments(String sql, Map<String, Object> params) {
+//        ODatabaseDocumentTx objectDb = getDocumentDb();
+//        List<ODocument> query = objectDb.query(new OSQLSynchQuery<ODocument>(sql), params);
+//
+//        List<Map<String, Object>> result = new ArrayList<>();
+//        for (ODocument t : query) {
+//            result.add(t.toMap());
+//        }
+//        return result;
+//    }
 
     @Override
     public <T> List<T> findGraphs(String sql, Map<String, Object> params) {
@@ -155,152 +152,80 @@ public class OrientGraphDbService extends AbstractOrientDbService implements DbS
         return objectDb.detachAll(load, true);
     }
 
-    @Override
-    public <T> T findById(Class<?> cls, String id) {
-        OrientGraph graphDb = getGraphDb();
-        OrientVertex vertex = graphDb.getVertex(new ORecordId(id));
-        return vertexToBean(vertex, cls);
-    }
+//    @Override
+//    @Deprecated // use findbyId2
+//    public <T> T findById(Class<?> cls, String id) {
+//        OrientGraph graphDb = getGraphDb();
+//        OrientVertex vertex = graphDb.getVertex(new ORecordId(id));
+//        return vertexToBean(vertex, cls);
+//    }
 
     @Override
     public <T> T findById2(Class<?> cls, String id) {
         ODatabaseDocumentInternal db = getObjectDb().getUnderlying();
         ODatabaseRecordThreadLocal.INSTANCE.set(db);
-
-        // String sql = "SELECT FROM (TRAVERSE OUT() FROM " + id + ")";
-        // Map<String, String> params = new HashMap<>();
         OTraverse predicate = new OTraverse().target(new ORecordId(id)).fields("out", "int").limit(1)
                 .predicate(new OSQLPredicate("$depth <= 3"));
         OIdentifiable next = predicate.iterator().next();
         ODocument document = (ODocument) next;
         return documentToBean(document, cls);
-
-        // Iterable executed = getGraphDb().command(new
-        // OCommandSQL(sql)).execute(params );
-        // Object next = executed.iterator().next();
-        // System.out.println(next);
-
-        // return null;
     }
+
+//    @SuppressWarnings("unchecked")
+//    public <T extends Identifiable> T vertexToBean(OrientVertex vertex, Class<?> beanType) {
+//        if (vertex == null) {
+//            return null;
+//        }
+//        ODocument record = vertex.getRecord();
+//        Map<String, Object> entityMap = record.toMap();
+//        T bean;
+//        try {
+//            bean = (T) beanType.newInstance();
+//            SkysailBeanUtils beanUtilsBean = new SkysailBeanUtils(bean, Locale.getDefault());
+//            beanUtilsBean.populate(bean, entityMap);
+//            if (entityMap.get("@rid") != null && bean.getId() == null) {
+//                bean.setId(entityMap.get("@rid").toString());
+//            }
+//
+//            Iterable<Edge> edges = vertex.getEdges(Direction.OUT);
+//            edges.spliterator().forEachRemaining(
+//                    e -> {
+//                        String edgeName = e.getLabel();
+//                        OrientVertex vertexFromEdge = (OrientVertex) e.getVertex(Direction.IN);
+//                        try {
+//                            Class<?> vertexClass = getRegisteredClass(vertexFromEdge.getRecord().getClassName());
+//                            Identifiable beanFromVertex = vertexToBean(vertexFromEdge, vertexClass);
+//                            Class<?> fieldType = bean.getClass().getDeclaredField(edgeName).getType();
+//                            if (Collection.class.isAssignableFrom(fieldType)) {
+//                                Method collectionGetter = bean.getClass().getMethod(
+//                                        "get" + edgeName.substring(0, 1).toUpperCase() + edgeName.substring(1));
+//                                Collection<Identifiable> collection = (Collection<Identifiable>) collectionGetter
+//                                        .invoke(bean);
+//                                if (collection == null) {
+//                                    throw new IllegalStateException(
+//                                            "could not add to collection object; please make sure your beans field '"
+//                                                    + edgeName + "' is initialized");
+//                                }
+//                                collection.add(beanFromVertex);
+//                            }
+//                        } catch (Exception e1) {
+//                            log.error(e1.getMessage(), e1);
+//                        }
+//
+//                    });
+//            return bean;
+//        } catch (Exception e) {
+//            log.error(e.getMessage(), e);
+//        }
+//        return null;
+//    }
 
     @SuppressWarnings("unchecked")
-    public <T extends Identifiable> T vertexToBean(OrientVertex vertex, Class<?> beanType) {
-        if (vertex == null) {
-            return null;
-        }
-        ODocument record = vertex.getRecord();
-        Map<String, Object> entityMap = record.toMap();
-        T bean;
-        try {
-            bean = (T) beanType.newInstance();
-            SkysailBeanUtils beanUtilsBean = new SkysailBeanUtils(bean, Locale.getDefault());
-            beanUtilsBean.populate(bean, entityMap);
-            if (entityMap.get("@rid") != null && bean.getId() == null) {
-                bean.setId(entityMap.get("@rid").toString());
-            }
-
-            Iterable<Edge> edges = vertex.getEdges(Direction.OUT);
-            edges.spliterator().forEachRemaining(
-                    e -> {
-                        String edgeName = e.getLabel();
-                        OrientVertex vertexFromEdge = (OrientVertex) e.getVertex(Direction.IN);
-                        try {
-                            Class<?> vertexClass = getRegisteredClass(vertexFromEdge.getRecord().getClassName());
-                            Identifiable beanFromVertex = vertexToBean(vertexFromEdge, vertexClass);
-                            Class<?> fieldType = bean.getClass().getDeclaredField(edgeName).getType();
-                            if (Collection.class.isAssignableFrom(fieldType)) {
-                                Method collectionGetter = bean.getClass().getMethod(
-                                        "get" + edgeName.substring(0, 1).toUpperCase() + edgeName.substring(1));
-                                Collection<Identifiable> collection = (Collection<Identifiable>) collectionGetter
-                                        .invoke(bean);
-                                if (collection == null) {
-                                    throw new IllegalStateException(
-                                            "could not add to collection object; please make sure your beans field '"
-                                                    + edgeName + "' is initialized");
-                                }
-                                collection.add(beanFromVertex);
-                            }
-                        } catch (Exception e1) {
-                            log.error(e1.getMessage(), e1);
-                        }
-
-                    });
-            return bean;
-        } catch (Exception e) {
-            log.error(e.getMessage(), e);
-        }
-        return null;
-    }
-
     private <T extends Identifiable> T documentToBean(ODocument document, Class<?> beanType) {
-        Map<String, Object> entityMap = document.toMap();
-        T bean;
         try {
-            bean = (T) beanType.newInstance();
-            SkysailBeanUtils beanUtilsBean = new SkysailBeanUtils(bean, Locale.getDefault());
-            beanUtilsBean.populate(bean, entityMap);
-            if (entityMap.get("@rid") != null && bean.getId() == null) {
-                bean.setId(entityMap.get("@rid").toString());
-            }
-
-            List<String> outFields = Arrays.stream(document.fieldNames())
-                    .filter(fieldname -> fieldname.startsWith("out_")).collect(Collectors.toList());
-            System.out.println(document);
-            outFields.forEach(edgeName -> {
-                System.out.println(edgeName);
-                ORidBag field = document.field(edgeName);
-                field.setAutoConvertToRecord(true);
-                field.convertLinks2Records();
-
-                ORidBag field2 = document.field(edgeName);
-                Iterator<OIdentifiable> iterator = field2.iterator();
-                while (iterator.hasNext()) {
-                    ODocument edge = (ODocument) iterator.next();
-                    System.out.println(edge);
-                    ODocument field3 = edge.field("in");
-                    System.out.println(field3);
-
-                }
-                String fieldName = edgeName.replace("out_", "");
-                String getterName = "get" + fieldName.substring(0,1).toUpperCase() + fieldName.substring(1);
-                try {
-                    Object invoked = bean.getClass().getMethod(getterName).invoke(bean);
-                    System.out.println(invoked);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-
-
-//                ORecord load = document.load();
-//
-//                System.out.println(load);
-                // OrientVertex vertexFromEdge = (OrientVertex)
-                // e.getVertex(Direction.IN);
-                // try {
-                // Class<?> vertexClass =
-                // getRegisteredClass(vertexFromEdge.getRecord().getClassName());
-                // Identifiable beanFromVertex = vertexToBean(vertexFromEdge,
-                // vertexClass);
-                // Class<?> fieldType =
-                // bean.getClass().getDeclaredField(edgeName).getType();
-                // if (Collection.class.isAssignableFrom(fieldType)) {
-                // Method collectionGetter = bean.getClass().getMethod(
-                // "get" + edgeName.substring(0, 1).toUpperCase() +
-                // edgeName.substring(1));
-                // Collection<Identifiable> collection =
-                // (Collection<Identifiable>) collectionGetter.invoke(bean);
-                // if (collection == null) {
-                // throw new IllegalStateException(
-                // "could not add to collection object; please make sure your beans field '"
-                // + edgeName + "' is initialized");
-                // }
-                // collection.add(beanFromVertex);
-                // }
-                // } catch (Exception e1) {
-                // log.error(e1.getMessage(), e1);
-                // }
-
-                });
+            T bean = (T) beanType.newInstance();
+            populateProperties(document.toMap(), bean, new SkysailBeanUtils(bean, Locale.getDefault()));
+            populateOutgoingEdges(document, bean);
             return bean;
         } catch (Exception e) {
             log.error(e.getMessage(), e);
@@ -308,26 +233,66 @@ public class OrientGraphDbService extends AbstractOrientDbService implements DbS
         return null;
     }
 
-    @Override
-    public <T> List<T> findWithGraph(String sql, Class<?> cls, Map<String, Object> params) {
-        OrientGraph db = getGraphDb();
-        List<T> result = new ArrayList<>();
-        Iterable<Vertex> query = (Iterable<Vertex>) db.getVerticesOfClass("Page");
-        for (Vertex vertex : query) {
-            OrientVertex ov = (OrientVertex) vertex;
-            Map<String, Object> record = ov.getRecord().toMap();
-            ORecordId id = (ORecordId) record.get("@rid");
-            record.put("id", id.toString());
-            record.remove("@rid");
-            record.remove("@class");
-            record.remove("versions");
-            @SuppressWarnings("unchecked")
-            T convertedValue = (T) mapper.convertValue(record, cls);
-            result.add(convertedValue);
-        }
+    private <T extends Identifiable> void populateOutgoingEdges(ODocument document, T bean) {
+        List<String> outFields = getOutgoingFieldNames(document);
+        outFields.forEach(edgeName -> {
+            ORidBag field = document.field(edgeName);
+            field.setAutoConvertToRecord(true);
+            field.convertLinks2Records();
 
-        return result;
+            ORidBag edgeIdBag = document.field(edgeName);
+            Iterator<OIdentifiable> iterator = edgeIdBag.iterator();
+            List<Identifiable> identifiables = new ArrayList<>();
+            while (iterator.hasNext()) {
+                ODocument edge = (ODocument) iterator.next();
+                ODocument inDocumentFromEdge = edge.field("in");
+                String targetClassName = inDocumentFromEdge.getClassName().substring(inDocumentFromEdge.getClassName().lastIndexOf("_")+1);
+                Class<?> targetClass = getObjectDb().getEntityManager().getEntityClass(targetClassName);
+                identifiables.add(documentToBean(inDocumentFromEdge, targetClass));
+            }
+            String fieldName = edgeName.replace("out_", "");
+            String setterName = "set" + fieldName.substring(0, 1).toUpperCase() + fieldName.substring(1);
+            try {
+                bean.getClass().getMethod(setterName, List.class).invoke(bean, identifiables);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
     }
+
+    private List<String> getOutgoingFieldNames(ODocument document) {
+        return Arrays.stream(document.fieldNames()).filter(fieldname -> fieldname.startsWith("out_"))
+                .collect(Collectors.toList());
+    }
+
+    private <T extends Identifiable> void populateProperties(Map<String, Object> entityMap, T bean,
+            SkysailBeanUtils beanUtilsBean) throws IllegalAccessException, InvocationTargetException {
+        beanUtilsBean.populate(bean, entityMap);
+        if (entityMap.get("@rid") != null && bean.getId() == null) {
+            bean.setId(entityMap.get("@rid").toString());
+        }
+    }
+
+//    @Override
+//    public <T> List<T> findWithGraph(String sql, Class<?> cls, Map<String, Object> params) {
+//        OrientGraph db = getGraphDb();
+//        List<T> result = new ArrayList<>();
+//        Iterable<Vertex> query = (Iterable<Vertex>) db.getVerticesOfClass("Page");
+//        for (Vertex vertex : query) {
+//            OrientVertex ov = (OrientVertex) vertex;
+//            Map<String, Object> record = ov.getRecord().toMap();
+//            ORecordId id = (ORecordId) record.get("@rid");
+//            record.put("id", id.toString());
+//            record.remove("@rid");
+//            record.remove("@class");
+//            record.remove("versions");
+//            @SuppressWarnings("unchecked")
+//            T convertedValue = (T) mapper.convertValue(record, cls);
+//            result.add(convertedValue);
+//        }
+//
+//        return result;
+//    }
 
     @Override
     public long getCount(String sql, Map<String, Object> params) {
@@ -416,13 +381,8 @@ public class OrientGraphDbService extends AbstractOrientDbService implements DbS
         } else if (dbUrl.startsWith("plocal")) {
 
             OrientGraph graph = new OrientGraph(dbUrl, getDbUsername(), getDbPassword());
-
-            // final OrientGraphFactory factory = new OrientGraphFactory(dbUrl,
-            // getDbUsername(), getDbPassword())
-            // .setupPool(1, 10);
             try {
                 log.info("testing graph factory connection");
-                // graph.getTx();
             } catch (Exception e) {
                 log.error(e.getMessage(), e);
             } finally {

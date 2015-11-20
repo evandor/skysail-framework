@@ -178,7 +178,7 @@ public class OneToManyDbTests extends DbIntegrationTests {
         Todo todoFromDb = todoResource.getEntity();
         assertThat(todoFromDb, is(nullValue()));
 
-        assertThat(dbService.findById(Comment.class, commentId), is(nullValue()));
+        assertThat(dbService.findById2(Comment.class, commentId), is(nullValue()));
     }
 
     private Todo createTodoWithComments(String name, Comment... comments) {

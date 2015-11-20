@@ -15,7 +15,7 @@ public class PutPermissionResource extends PutEntityServerResource<Permission> {
     }
 
     public Permission getEntity() {
-        return app.getPermissionRepo().getById(getAttribute("id"));
+        return app.getPermissionRepo().findOne(getAttribute("id"));
     }
 
     public SkysailResponse<Permission> updateEntity(Permission entity) {

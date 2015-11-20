@@ -17,7 +17,7 @@ public class UserResource extends EntityServerResource<User> {
     }
 
     public User getEntity() {
-        return app.getUserRepository().getById(getAttribute("id"));
+        return app.getUserRepository().findOne(getAttribute("id"));
     }
 
     public List<Link> getLinks() {

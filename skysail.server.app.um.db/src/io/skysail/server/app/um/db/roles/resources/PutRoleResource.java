@@ -15,7 +15,7 @@ public class PutRoleResource extends PutEntityServerResource<Role> {
     }
 
     public Role getEntity() {
-        return app.getRoleRepo().getById(getAttribute("id"));
+        return app.getRoleRepo().findOne(getAttribute("id"));
     }
 
     public SkysailResponse<Role> updateEntity(Role entity) {

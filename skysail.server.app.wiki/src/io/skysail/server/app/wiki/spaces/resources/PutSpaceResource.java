@@ -18,7 +18,7 @@ public class PutSpaceResource extends PutEntityServerResource<Space> {
 
     @Override
     public Space getEntity() {
-        return app.getSpacesRepo().getById(id);
+        return app.getSpacesRepo().findOne(id);
     }
 
     @Override

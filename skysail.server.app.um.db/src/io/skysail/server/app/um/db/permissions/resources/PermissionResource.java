@@ -17,7 +17,7 @@ public class PermissionResource extends EntityServerResource<Permission> {
     }
 
     public Permission getEntity() {
-        return app.getPermissionRepo().getById(getAttribute("id"));
+        return app.getPermissionRepo().findOne(getAttribute("id"));
     }
 
     public List<Link> getLinks() {

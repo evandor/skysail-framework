@@ -13,8 +13,6 @@ import lombok.extern.slf4j.Slf4j;
 
 import org.restlet.engine.util.StringUtils;
 
-import com.tinkerpop.blueprints.impls.orient.OrientVertex;
-
 @Slf4j
 public class GraphDbRepository<T extends Identifiable> implements DbRepository {
 
@@ -71,12 +69,7 @@ public class GraphDbRepository<T extends Identifiable> implements DbRepository {
 
     @Override
     public T findOne(String id) {
-        return dbService.findById(entityType, id);
-    }
-
-    @Deprecated // use findOne
-    public T getById(String id) {
-        return dbService.findById(entityType, id);
+        return dbService.findById2(entityType, id);
     }
 
     public Object getVertexById(String id) {
@@ -95,21 +88,21 @@ public class GraphDbRepository<T extends Identifiable> implements DbRepository {
         return dbService.findObjects(sql, filter.getParams());
     }
 
-    public List<T> findVertex(Filter filter) {
-        return findVertex(filter, new Pagination());
-    }
+//    public List<T> findVertex(Filter filter) {
+//        return findVertex(filter, new Pagination());
+//    }
 
-    public List<T> findVertex(Filter filter, Pagination pagination) {
-        String sql = "SELECT * from " + entityType.getSimpleName() +
-                (!StringUtils.isNullOrEmpty(filter.getPreparedStatement()) ? " WHERE "+filter.getPreparedStatement() : "") + " " +
-                limitClause(pagination);
-        List<Object> entities = dbService.findGraphs(sql, filter.getParams());
-        List<T> result = new ArrayList<>();
-        entities.stream().map(OrientVertex.class::cast).forEach(vertex -> {
-            result.add(((OrientGraphDbService)dbService).vertexToBean(vertex, entityType));
-        });
-        return result;
-    }
+//    public List<T> findVertex(Filter filter, Pagination pagination) {
+//        String sql = "SELECT * from " + entityType.getSimpleName() +
+//                (!StringUtils.isNullOrEmpty(filter.getPreparedStatement()) ? " WHERE "+filter.getPreparedStatement() : "") + " " +
+//                limitClause(pagination);
+//        List<Object> entities = dbService.findGraphs(sql, filter.getParams());
+//        List<T> result = new ArrayList<>();
+//        entities.stream().map(OrientVertex.class::cast).forEach(vertex -> {
+//            result.add(((OrientGraphDbService)dbService).vertexToBean(vertex, entityType));
+//        });
+//        return result;
+//    }
 
 
 

@@ -25,7 +25,7 @@ public class SpaceResource extends EntityServerResource<Space> {
 
     @Override
     public SkysailResponse<?> eraseEntity() {
-        Space space = app.getSpacesRepo().getById(id);
+        Space space = app.getSpacesRepo().findOne(id);
         if (space.getPages().size() > 0) {
             throw new IllegalArgumentException("a space with at least one page cannot be deleted");
         }
@@ -35,7 +35,7 @@ public class SpaceResource extends EntityServerResource<Space> {
 
     @Override
     public Space getEntity() {
-         Space space = app.getSpacesRepo().getById(id);
+         Space space = app.getSpacesRepo().findOne(id);
          String username = SecurityUtils.getSubject().getPrincipal().toString();
          if (!space.getOwner().equals(username)) {
              getResponse().setStatus(Status.CLIENT_ERROR_FORBIDDEN);

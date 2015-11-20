@@ -1,8 +1,9 @@
 package io.skysail.server.db.test.entities.folders;
 
-import java.util.List;
-
 import io.skysail.api.domain.Identifiable;
+
+import java.util.*;
+
 import lombok.*;
 
 @Getter
@@ -15,7 +16,7 @@ public class Folder implements Identifiable {
 
     private String name;
 
-    private List<Folder> subfolder;
+    private List<Folder> subfolder = new ArrayList<>();
 
     public Folder(String name) {
         this.name = name;

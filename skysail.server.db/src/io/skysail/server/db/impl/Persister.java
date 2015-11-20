@@ -70,7 +70,7 @@ public class Persister {
         if (entity.getId() != null) {
             vertex = db.getVertex(entity.getId());
         } else {
-            vertex = db.addVertex("class:" + entity.getClass().getSimpleName());
+            vertex = db.addVertex("class:" + entity.getClass().getName().replace(".", "_"));
         }
         return vertex;
     }

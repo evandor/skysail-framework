@@ -31,9 +31,9 @@ public interface DbService {
     Object persist(Identifiable entity, String... edges);
     <T> List<T> findGraphs(String sql);
     <T> List<T> findGraphs(String sql, Map<String, Object> params);
-    <T> List<T> findWithGraph(String sql, Class<?> cls, Map<String, Object> params);
+    //<T> List<T> findWithGraph(String sql, Class<?> cls, Map<String, Object> params);
     void deleteVertex(String id);
-    <T> T findById(Class<?> cls, String id);
+    //<T> T findById(Class<?> cls, String id);
     <T> T findById2(Class<?> cls, String id);
 
     void delete(Class<?> cls, String id);
@@ -42,8 +42,8 @@ public interface DbService {
     Object executeUpdateVertex(String sql, Map<String, Object> params);
 
     void update(Map<String, Object> space);
-    List<Map<String,Object>> findDocuments(String sql);
-    List<Map<String,Object>> findDocuments(String sql, Map<String, Object> params);
+//    List<Map<String,Object>> findDocuments(String sql);
+//    List<Map<String,Object>> findDocuments(String sql, Map<String, Object> params);
     long getCount(String sql, Map<String, Object> params);
 
 }

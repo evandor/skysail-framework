@@ -27,7 +27,7 @@ public class PostSubPageResource extends PostPageResource {
         page.setContent(null);
         //page.addVersion(version);
 
-        Page parentPage = app.getPagesRepo().getById(getAttribute("pageId"));
+        Page parentPage = app.getPagesRepo().findOne(getAttribute("pageId"));
         page.setOwner(subject.getPrincipal().toString());
        // parentPage.addPage(page);
         app.getPagesRepo().update(getAttribute("id"), parentPage);

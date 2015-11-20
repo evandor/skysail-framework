@@ -13,18 +13,3 @@ INFO  net.serenitybdd.core.Serenity -
 |_______/    |_______|| _| `._____||_______||__| \__| |__|     |__|         |__|    
 -------------------------------------------------------------------------------------
 
-DEBUG net.serenitybdd.junit.runners.RetryFilteringRunNotifier - Test started: logged_in_admin_can_create_new_list(io.skysail.product.todos.test.TodosProductLargeTests)
-DEBUG net.thucydides.core.steps.StepEventBus - Test suite started for class io.skysail.product.todos.test.TodosProductLargeTests
-INFO  net.serenitybdd.core.Serenity - Test Suite Started: Todos product large tests
-INFO  net.serenitybdd.core.Serenity - 
-  _____ _____ ____ _____   ____ _____  _    ____ _____ _____ ____  
- |_   _| ____/ ___|_   _| / ___|_   _|/ \  |  _ \_   _| ____|  _ \ 
-   | | |  _| \___ \ | |   \___ \ | | / _ \ | |_) || | |  _| | | | |
-   | | | |___ ___) || |    ___) || |/ ___ \|  _ < | | | |___| |_| |
-   |_| |_____|____/ |_|   |____/ |_/_/   \_\_| \_\|_| |_____|____/ 
-                                                                   
-
-TEST STARTED: logged_in_admin_can_create_new_list
---------------------------------------------------------------------
-INFO  net.serenitybdd.core.Serenity - TEST NUMBER: 1
-INFO  net.thucydides.core.steps.StepInterceptor - STARTING STEP: TodosProductLargeTests.logged_in_admin_can_create_new_list - logging in as user '{0}' with password '{1}'

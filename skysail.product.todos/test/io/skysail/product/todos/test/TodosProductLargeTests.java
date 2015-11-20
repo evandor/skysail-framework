@@ -48,13 +48,9 @@ public class TodosProductLargeTests {
 
         browserSteps.logout();
         assertThat(driver.getPageSource(), not(containsString("/Todos/v2")));
-
-//        driver.findElement(By.linkText("Todos")).click();
-//        System.out.println(driver.getPageSource());
     }
 
     @Test
-    @Ignore
     public void admin_cannot_login_with_wrong_credentials() {
         browserSteps.loginAs("admin","xxx");
         assertThat(driver.getPageSource(), not(containsString("/Todos/v2")));

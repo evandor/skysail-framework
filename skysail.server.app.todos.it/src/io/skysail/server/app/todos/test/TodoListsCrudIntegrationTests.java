@@ -40,7 +40,6 @@ public class TodoListsCrudIntegrationTests extends BrowserTests<TodoListBrowser,
 
     @Test
     // delete
-    @Ignore
     public void new_todolist_can_be_deleted_by_owner() throws Exception {
         String id = browser.createTodoList(todoList);
         browser.deleteTodoList(id);

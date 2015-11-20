@@ -29,7 +29,7 @@ public class GraphDbRepository<T extends Identifiable> implements DbRepository {
         log.debug("activating repository for class(es) {}", Arrays.stream(classes).map(Class::getName).collect(Collectors.joining(",")));
         Arrays.stream(classes).forEach(cls -> {
             try {
-                dbService.createWithSuperClass("V", cls.getSimpleName());
+                dbService.createWithSuperClass("V", DbClassName.of(cls));
                 dbService.register(cls);
             } catch (Exception e) {
                 log.error(e.getMessage(), e);
@@ -60,7 +60,7 @@ public class GraphDbRepository<T extends Identifiable> implements DbRepository {
     }
 
     public void delete(String id) {
-        dbService.delete(entityType, id);
+        dbService.delete2(entityType, id);
     }
 
     public void deleteVertex(String id) {
@@ -73,7 +73,7 @@ public class GraphDbRepository<T extends Identifiable> implements DbRepository {
     }
 
     public Object getVertexById(String id) {
-        return dbService.findGraphs("SELECT FROM "+entityType.getSimpleName()+" WHERE @rid="+id);
+        return dbService.findGraphs(entityType.getClass(), "SELECT FROM "+entityType.getSimpleName()+" WHERE @rid="+id);
     }
 
     public List<T> find(Filter filter) {

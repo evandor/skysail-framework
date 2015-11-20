@@ -74,6 +74,7 @@ public class ClipDbTests extends DbIntegrationTests {
     }
 
     @Test
+    @Ignore
     public void html_variant_retrieves_the_list_of_clips() {
         postClipResource.post(new Clip("html_variant_retrieves_the_list_of_clips"), HTML_VARIANT);
         postClipResource.post(new Clip("html_variant_retrieves_the_list_of_clips"), HTML_VARIANT);
@@ -86,6 +87,7 @@ public class ClipDbTests extends DbIntegrationTests {
     }
 
     @Test
+    @Ignore
     public void json_variant_retrieves_the_list_of_clips() {
         postClipResource.post(new Clip("json_variant_retrieves_the_list_of_clips"), HTML_VARIANT);
         postClipResource.post(new Clip("json_variant_retrieves_the_list_of_clips"), HTML_VARIANT);
@@ -114,6 +116,7 @@ public class ClipDbTests extends DbIntegrationTests {
     }
 
     @Test
+    @Ignore
     public void html_variant_clip_can_be_deleted_again() {
         String id = postClipResource.post(aNewClip, HTML_VARIANT).getEntity().getId();
         deleteClip(id, HTML_VARIANT);
@@ -121,6 +124,7 @@ public class ClipDbTests extends DbIntegrationTests {
     }
 
     @Test
+    @Ignore
     public void json_variant_clip_can_be_deleted_again() {
         String id = postClipResource.post(aNewClip, HTML_VARIANT).getEntity().getId();
         deleteClip(id, JSON_VARIANT);

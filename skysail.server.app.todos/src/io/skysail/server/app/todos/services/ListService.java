@@ -57,7 +57,7 @@ public class ListService {
         original.setDesc(entity.getDesc());
         original.setDefaultList(entity.isDefaultList());
         original.setModified(new Date());
-        app.getListRepo().update(resource.getAttribute(TodoApplication.LIST_ID), original);
+        app.getListRepo().update(resource.getAttribute(TodoApplication.LIST_ID), original, "todos");
         return new SkysailResponse<>();
     }
 

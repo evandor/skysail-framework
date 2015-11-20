@@ -1,7 +1,7 @@
 package io.skysail.server.app.todos.lists;
 
 import io.skysail.server.app.todos.TodoList;
-import io.skysail.server.db.DbService;
+import io.skysail.server.db.*;
 
 import java.util.*;
 
@@ -24,9 +24,9 @@ public class UniquePerOwnerValidator implements ConstraintValidator<UniquePerOwn
     public boolean isValid(TodoList todoList, ConstraintValidatorContext context) {
         String sql;
         if (todoList.getId() != null) {
-            sql = "SELECT from TodoList WHERE owner= :owner AND name= :name AND id <> :id";
+            sql = "SELECT from " + DbClassName.of(TodoList.class) + " WHERE owner=:owner AND name=:name AND id <> :id";
         } else {
-            sql = "SELECT from TodoList WHERE owner= :owner AND name= :name";
+            sql = "SELECT from " + DbClassName.of(TodoList.class) + " WHERE owner=:owner AND name=:name";
         }
         Map<String,Object> params = new HashMap<>();
         params.put("name", todoList.getName());

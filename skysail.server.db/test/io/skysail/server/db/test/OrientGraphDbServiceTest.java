@@ -22,7 +22,7 @@ public class OrientGraphDbServiceTest {
     @Before
     public void setUp() throws Exception {
         dbService = new OrientGraphDbService();
-        // dbService.setDbConfigurationProvider(defineConfigProvider());
+        //dbService.setDbConfigurationProvider(defineConfigProvider());
         dbService.activate();
     }
 
@@ -77,7 +77,7 @@ public class OrientGraphDbServiceTest {
         assertThat(dbService.persist(rootFolder, "subfolder"), is(notNullValue()));
     }
 
-    // === GraphAPI Retrieval Tests ==========================================
+    // === GraphAPI Retrieval Tests (Single Entity)====================================
 
     @Test
     public void graphApi_can_retrieve_simple_entity() {
@@ -170,6 +170,19 @@ public class OrientGraphDbServiceTest {
         assertSubfolders(foundEntity, "subFolderLevel1");
 
     }
+
+    // === GraphAPI Retrieval Tests (Entity List) ====================================
+
+    @Test
+    public void graphApi_can_retrieve_simple_entities() {
+        persistSimpleEntity("nameA");
+        persistSimpleEntity("nameB");
+        dbService.register(SimpleEntity.class);
+        String sql = "SELECT FROM " + DbClassName.of(SimpleEntity.class);
+        List<SimpleEntity> entities = dbService.<SimpleEntity> findGraphs(SimpleEntity.class, sql,  new HashMap<String, Object>());
+        assertThat(entities.stream().map(SimpleEntity::getName).collect(Collectors.toList()), contains("nameA", "nameB"));
+    }
+
 
     // === GraphAPI Updating Tests ==========================================
     //

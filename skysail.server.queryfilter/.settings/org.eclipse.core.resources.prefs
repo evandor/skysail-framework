@@ -1,4 +1,5 @@
 eclipse.preferences.version=1
+encoding//src/io/skysail/server/queryfilter/Filter.java=UTF-8
 encoding//src/io/skysail/server/queryfilter/parser/Parser.java=UTF-8
 encoding//test/io/skysail/server/queryfilter/parser/test/ParserTest.java=UTF-8
 encoding//test/io/skysail/server/queryfilter/test/FilterTest.java=UTF-8

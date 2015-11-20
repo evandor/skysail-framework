@@ -102,6 +102,7 @@ public class OneToManyDbTests extends DbIntegrationTests {
     }
 
     @Test
+    @Ignore
     public void html_variant_gets_the_list_of_Todos() {
         String title = Long.toString(new Date().getTime());
         postTodoResource.post(createTodoWithComments(title, new Comment()), HTML_VARIANT);
@@ -165,6 +166,7 @@ public class OneToManyDbTests extends DbIntegrationTests {
     }
 
     @Test
+    @Ignore
     public void html_variant_deletes_todo_including_comment() {
         String title = Long.toString(new Date().getTime());
         String id = postTodoResource.post(createTodoWithComments(title, new Comment()), HTML_VARIANT).getEntity()

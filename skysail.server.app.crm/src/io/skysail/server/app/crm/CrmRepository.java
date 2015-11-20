@@ -19,16 +19,6 @@ public class CrmRepository implements DbRepository {
     public void activate() {
         dbService.createWithSuperClass("V", CrmEntity.class.getSimpleName(), Company.class.getSimpleName(), Contact.class.getSimpleName());
         dbService.register(CrmEntity.class, Company.class, Contact.class);
-//        // dbService.createProperty(CrmEntity.class.getSimpleName(), "created",
-//        // OType.DATE);
-//        // dbService.createProperty(CrmEntity.class.getSimpleName(), "changed",
-//        // OType.DATE);
-//        // List<EmailRelation> emailRelations = findAll(EmailRelation.class);
-//        // if (emailRelations.size() == 0) {
-//        // EmailRelation.initialData().stream().forEach(data -> {
-//        // add(data);
-//        // });
-        // }
     }
 
     @Reference
@@ -49,7 +39,7 @@ public class CrmRepository implements DbRepository {
     }
 
     public <T> T getById(Class<?> cls, String id) {
-        return dbService.findObjectById(cls, id);
+        return dbService.findById2(cls, id);
     }
 
     public Object update(String id, Identifiable entity, String... edges) {

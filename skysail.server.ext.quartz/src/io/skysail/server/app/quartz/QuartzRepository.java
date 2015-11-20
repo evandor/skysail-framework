@@ -41,7 +41,7 @@ public class QuartzRepository implements DbRepository {
     }
 
     public <T> T getById(Class<?> cls, String id) {
-        return dbService.findObjectById(cls, id);
+        return dbService.findById2(cls, id);
     }
 
     // public List<Todo> findAllTodos(Filter filter, Pagination pagination) {

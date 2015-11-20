@@ -49,7 +49,7 @@ public class MailRepository implements DbRepository {
     }
 
     public Account findById(Class<Account> cls, String id) {
-        return dbService.findObjectById(cls, id);
+        return dbService.findById2(cls, id);
     }
 
     public Object update(String id, Identifiable entity, String... edges) {

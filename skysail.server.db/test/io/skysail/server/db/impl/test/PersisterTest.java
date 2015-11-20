@@ -14,6 +14,7 @@ import org.mockito.Mockito;
 import com.tinkerpop.blueprints.*;
 import com.tinkerpop.blueprints.impls.orient.*;
 
+@Ignore
 public class PersisterTest {
 
     private static final String SOME_USER_ID = "#80:15";

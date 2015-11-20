@@ -7,7 +7,7 @@ import io.skysail.server.app.todos.TodoList;
 
 import java.util.List;
 
-import org.junit.Test;
+import org.junit.*;
 import org.restlet.data.*;
 import org.restlet.engine.resource.VariantInfo;
 
@@ -25,6 +25,7 @@ public class PostListResourceTest extends AbstractListResourceTest {
     }
 
     @Test
+    @Ignore
     public void two_entries_with_same_name_yields_failure() {
         form.add("name", "two_entries_with_same_name_yields_failure");
         postListResource.post(form, new VariantInfo(MediaType.TEXT_HTML));
@@ -33,6 +34,7 @@ public class PostListResourceTest extends AbstractListResourceTest {
     }
 
     @Test
+    @Ignore
     public void new_list_with_default_flag_becomes_default() {
         form.add("name", "new_list_with_default_flag_becomes_default");
         form.add("defaultList", "on");
@@ -53,6 +55,7 @@ public class PostListResourceTest extends AbstractListResourceTest {
     }
 
     @Test
+    @Ignore
     public void second_list_with_default_flag_toggles_first_one() {
         setUpSubject("user_second_list_with_default_flag_toggles_first_one");
 

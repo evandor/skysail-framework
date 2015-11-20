@@ -19,7 +19,7 @@ public class ListsRepository extends GraphDbRepository<TodoList> implements DbRe
     @Activate
     public void activate() { // NO_UCD
         log.debug("activating Repository");
-        dbService.createWithSuperClass("V", TodoList.class.getSimpleName());
+        dbService.createWithSuperClass("V", DbClassName.of(TodoList.class));
         dbService.register(TodoList.class);
         dbService.createUniqueIndex(TodoList.class, "name", "owner");
     }
@@ -40,24 +40,27 @@ public class ListsRepository extends GraphDbRepository<TodoList> implements DbRe
     }
 
     public List<TodoList> findAllLists(Filter filter, Pagination pagination) {
-        String sql = "SELECT from " + TodoList.class.getSimpleName() + " WHERE "+filter.getPreparedStatement()+" ORDER BY name "
-                + limitClause(pagination);
-        return dbService.findObjects(sql, filter.getParams());
+        String sql =
+                "SELECT from " + DbClassName.of(TodoList.class) +
+                "  WHERE "+filter.getPreparedStatement() +
+                "  ORDER BY name "
+                +  limitClause(pagination);
+        return dbService.<TodoList> findGraphs(TodoList.class, sql, filter.getParams());
     }
 
 
     public <T> T getById(Class<?> cls, String id) {
-        return dbService.findObjectById(cls, id);
+        return dbService.findById2(cls, id);
     }
 
     public long getTodosCount(String listId, Filter filter) {
-        String sql = "select COUNT(*) as count from " + Todo.class.getSimpleName() + " WHERE "
+        String sql = "select COUNT(*) as count from " + Todo.class.getName().replace(".","_") + " WHERE "
                 + filter.getPreparedStatement();
         return dbService.getCount(sql, filter.getParams());
     }
 
     public long getListsCount(Filter filter) {
-        String sql = "select COUNT(*) as count from " + TodoList.class.getSimpleName() + " WHERE " + filter.getPreparedStatement();
+        String sql = "select COUNT(*) as count from " + TodoList.class.getName().replace(".","_") + " WHERE " + filter.getPreparedStatement();
         return dbService.getCount(sql, filter.getParams());
     }
 }

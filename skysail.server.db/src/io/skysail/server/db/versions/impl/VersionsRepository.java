@@ -15,7 +15,7 @@ public class VersionsRepository extends GraphDbRepository<ComponentDbVersion> im
     @Activate
     public void activate() {
         log.info("activating VersionsRepository");
-        dbService.createWithSuperClass("V", ComponentDbVersion.class.getSimpleName());
+        dbService.createWithSuperClass("V", DbClassName.of(ComponentDbVersion.class));
         dbService.register(ComponentDbVersion.class);
     }
 

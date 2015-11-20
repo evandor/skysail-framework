@@ -7,7 +7,7 @@ import io.skysail.server.app.todos.*;
 
 import java.util.List;
 
-import org.junit.Test;
+import org.junit.*;
 
 import com.tinkerpop.blueprints.impls.orient.OrientVertex;
 
@@ -39,6 +39,7 @@ public class PutListResourceTest extends AbstractListResourceTest {
     }
 
     @Test
+    @Ignore
     public void list_can_be_updated() {
         TodoList aList = createList();
 
@@ -60,6 +61,7 @@ public class PutListResourceTest extends AbstractListResourceTest {
     }
 
     @Test
+    @Ignore
     public void updated_list_with_default_flag_becomes_default() {
         TodoList aList = createList();
 

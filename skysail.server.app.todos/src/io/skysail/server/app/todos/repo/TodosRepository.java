@@ -38,7 +38,7 @@ public class TodosRepository extends GraphDbRepository<Todo>  implements DbRepos
 
     public List<Todo> findAllTodos(Filter filter, Pagination pagination) {
         String sql =
-                "SELECT *, SUM(urgency,importance, views) as rank, out('parent') as parent from " + Todo.class.getSimpleName() +
+                "SELECT *, SUM(urgency,importance, views) as rank, out('parent') as parent from " + DbClassName.of(Todo.class) +
                 " WHERE "+filter.getPreparedStatement()+
                 " ORDER BY rank DESC "
                 + limitClause(pagination);
@@ -55,7 +55,7 @@ public class TodosRepository extends GraphDbRepository<Todo>  implements DbRepos
     }
 
     private void increaseOtherTodosRank(Todo entity) {
-        String sql = "update " + Todo.class.getSimpleName()
+        String sql = "update " + DbClassName.of(Todo.class)
                 + " INCREMENT rank = 1 WHERE owner = :username AND rank >= :referenceRank";
         Map<String, Object> params = new HashMap<String, Object>();
         params.put("username", entity.getOwner());
@@ -64,13 +64,13 @@ public class TodosRepository extends GraphDbRepository<Todo>  implements DbRepos
     }
 
     public long getTodosCount(String listId, Filter filter) {
-        String sql = "select COUNT(*) as count from " + Todo.class.getSimpleName() + " WHERE "
+        String sql = "select COUNT(*) as count from " + DbClassName.of(Todo.class) + " WHERE "
                 + filter.getPreparedStatement();
         return dbService.getCount(sql, filter.getParams());
     }
 
     public long getListsCount(Filter filter) {
-        String sql = "select COUNT(*) as count from " + TodoList.class.getSimpleName() + " WHERE " + filter.getPreparedStatement();
+        String sql = "select COUNT(*) as count from " + DbClassName.of(TodoList.class) + " WHERE " + filter.getPreparedStatement();
         return dbService.getCount(sql, filter.getParams());
     }
 

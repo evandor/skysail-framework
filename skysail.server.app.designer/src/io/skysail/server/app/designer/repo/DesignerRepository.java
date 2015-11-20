@@ -53,7 +53,7 @@ public class DesignerRepository implements DbRepository {
     }
 
     public <T> T getById(Class<?> cls, String id) {
-        return dbService.findObjectById(cls, id);
+        return dbService.findById2(cls, id);
     }
 
     public Object update(Application entity, String... edges) {
@@ -85,7 +85,7 @@ public class DesignerRepository implements DbRepository {
     }
 
     public Object getVertexById(Class<Application> cls, String id) {
-        return dbService.findGraphs("SELECT FROM "+cls.getSimpleName()+" WHERE @rid="+id);
+        return dbService.findGraphs(cls.getClass(), "SELECT FROM "+cls.getSimpleName()+" WHERE @rid="+id);
     }
 
     @Override

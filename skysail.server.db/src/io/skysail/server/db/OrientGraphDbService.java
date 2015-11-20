@@ -93,14 +93,14 @@ public class OrientGraphDbService extends AbstractOrientDbService implements DbS
         return findObjects(sql, new HashMap<>());
     }
 
-//    @Override
-//    public List<Map<String, Object>> findDocuments(String sql) {
-//        return findDocuments(sql, new HashMap<>());
-//    }
+    // @Override
+    // public List<Map<String, Object>> findDocuments(String sql) {
+    // return findDocuments(sql, new HashMap<>());
+    // }
 
     @Override
-    public <T> List<T> findGraphs(String sql) {
-        return findGraphs(sql, new HashMap<>());
+    public <T> List<T> findGraphs(Class<T> cls, String sql) {
+        return findGraphs(cls, sql, new HashMap<>());
     }
 
     @Override
@@ -116,49 +116,30 @@ public class OrientGraphDbService extends AbstractOrientDbService implements DbS
         return detachedEntities;
     }
 
-//    @Override
-//    public List<Map<String, Object>> findDocuments(String sql, Map<String, Object> params) {
-//        ODatabaseDocumentTx objectDb = getDocumentDb();
-//        List<ODocument> query = objectDb.query(new OSQLSynchQuery<ODocument>(sql), params);
-//
-//        List<Map<String, Object>> result = new ArrayList<>();
-//        for (ODocument t : query) {
-//            result.add(t.toMap());
-//        }
-//        return result;
-//    }
-
     @Override
-    public <T> List<T> findGraphs(String sql, Map<String, Object> params) {
+    public <T> List<T> findGraphs(Class<T> cls, String sql, Map<String, Object> params) {
         OrientGraph graph = getGraphDb();
         OCommandRequest oCommand = new OCommandSQL(sql);
         Iterable<OrientVertex> execute = graph.command(oCommand).execute(params);
 
-        List<T> detachedEntities = new ArrayList<>();
+        List<T> result = new ArrayList<>();
         Iterator<OrientVertex> iterator = execute.iterator();
         while (iterator.hasNext()) {
             OrientVertex next = iterator.next();
-            OrientElement detached = next.detach();
-            detachedEntities.add((T) detached);
+            // OrientElement detached = next.detach();
+            // detachedEntities.add((T) detached);
+            result.add(documentToBean(next.getRecord(), cls));
         }
-        return detachedEntities;
+        return result;
     }
 
-    @Override
-    public <T> T findObjectById(Class<?> cls, String id) {
-        OObjectDatabaseTx objectDb = getObjectDb();
-        objectDb.getEntityManager().registerEntityClass(cls);
-        T load = objectDb.load(new ORecordId(id), "*:-1");
-        return objectDb.detachAll(load, true);
-    }
-
-//    @Override
-//    @Deprecated // use findbyId2
-//    public <T> T findById(Class<?> cls, String id) {
-//        OrientGraph graphDb = getGraphDb();
-//        OrientVertex vertex = graphDb.getVertex(new ORecordId(id));
-//        return vertexToBean(vertex, cls);
-//    }
+    // @Override
+    // public <T> T findObjectById(Class<?> cls, String id) {
+    // OObjectDatabaseTx objectDb = getObjectDb();
+    // objectDb.getEntityManager().registerEntityClass(cls);
+    // T load = objectDb.load(new ORecordId(id), "*:-1");
+    // return objectDb.detachAll(load, true);
+    // }
 
     @Override
     public <T> T findById2(Class<?> cls, String id) {
@@ -170,55 +151,6 @@ public class OrientGraphDbService extends AbstractOrientDbService implements DbS
         ODocument document = (ODocument) next;
         return documentToBean(document, cls);
     }
-
-//    @SuppressWarnings("unchecked")
-//    public <T extends Identifiable> T vertexToBean(OrientVertex vertex, Class<?> beanType) {
-//        if (vertex == null) {
-//            return null;
-//        }
-//        ODocument record = vertex.getRecord();
-//        Map<String, Object> entityMap = record.toMap();
-//        T bean;
-//        try {
-//            bean = (T) beanType.newInstance();
-//            SkysailBeanUtils beanUtilsBean = new SkysailBeanUtils(bean, Locale.getDefault());
-//            beanUtilsBean.populate(bean, entityMap);
-//            if (entityMap.get("@rid") != null && bean.getId() == null) {
-//                bean.setId(entityMap.get("@rid").toString());
-//            }
-//
-//            Iterable<Edge> edges = vertex.getEdges(Direction.OUT);
-//            edges.spliterator().forEachRemaining(
-//                    e -> {
-//                        String edgeName = e.getLabel();
-//                        OrientVertex vertexFromEdge = (OrientVertex) e.getVertex(Direction.IN);
-//                        try {
-//                            Class<?> vertexClass = getRegisteredClass(vertexFromEdge.getRecord().getClassName());
-//                            Identifiable beanFromVertex = vertexToBean(vertexFromEdge, vertexClass);
-//                            Class<?> fieldType = bean.getClass().getDeclaredField(edgeName).getType();
-//                            if (Collection.class.isAssignableFrom(fieldType)) {
-//                                Method collectionGetter = bean.getClass().getMethod(
-//                                        "get" + edgeName.substring(0, 1).toUpperCase() + edgeName.substring(1));
-//                                Collection<Identifiable> collection = (Collection<Identifiable>) collectionGetter
-//                                        .invoke(bean);
-//                                if (collection == null) {
-//                                    throw new IllegalStateException(
-//                                            "could not add to collection object; please make sure your beans field '"
-//                                                    + edgeName + "' is initialized");
-//                                }
-//                                collection.add(beanFromVertex);
-//                            }
-//                        } catch (Exception e1) {
-//                            log.error(e1.getMessage(), e1);
-//                        }
-//
-//                    });
-//            return bean;
-//        } catch (Exception e) {
-//            log.error(e.getMessage(), e);
-//        }
-//        return null;
-//    }
 
     @SuppressWarnings("unchecked")
     private <T extends Identifiable> T documentToBean(ODocument document, Class<?> beanType) {
@@ -246,7 +178,8 @@ public class OrientGraphDbService extends AbstractOrientDbService implements DbS
             while (iterator.hasNext()) {
                 ODocument edge = (ODocument) iterator.next();
                 ODocument inDocumentFromEdge = edge.field("in");
-                String targetClassName = inDocumentFromEdge.getClassName().substring(inDocumentFromEdge.getClassName().lastIndexOf("_")+1);
+                String targetClassName = inDocumentFromEdge.getClassName().substring(
+                        inDocumentFromEdge.getClassName().lastIndexOf("_") + 1);
                 Class<?> targetClass = getObjectDb().getEntityManager().getEntityClass(targetClassName);
                 identifiables.add(documentToBean(inDocumentFromEdge, targetClass));
             }
@@ -273,26 +206,28 @@ public class OrientGraphDbService extends AbstractOrientDbService implements DbS
         }
     }
 
-//    @Override
-//    public <T> List<T> findWithGraph(String sql, Class<?> cls, Map<String, Object> params) {
-//        OrientGraph db = getGraphDb();
-//        List<T> result = new ArrayList<>();
-//        Iterable<Vertex> query = (Iterable<Vertex>) db.getVerticesOfClass("Page");
-//        for (Vertex vertex : query) {
-//            OrientVertex ov = (OrientVertex) vertex;
-//            Map<String, Object> record = ov.getRecord().toMap();
-//            ORecordId id = (ORecordId) record.get("@rid");
-//            record.put("id", id.toString());
-//            record.remove("@rid");
-//            record.remove("@class");
-//            record.remove("versions");
-//            @SuppressWarnings("unchecked")
-//            T convertedValue = (T) mapper.convertValue(record, cls);
-//            result.add(convertedValue);
-//        }
-//
-//        return result;
-//    }
+    // @Override
+    // public <T> List<T> findWithGraph(String sql, Class<?> cls, Map<String,
+    // Object> params) {
+    // OrientGraph db = getGraphDb();
+    // List<T> result = new ArrayList<>();
+    // Iterable<Vertex> query = (Iterable<Vertex>)
+    // db.getVerticesOfClass("Page");
+    // for (Vertex vertex : query) {
+    // OrientVertex ov = (OrientVertex) vertex;
+    // Map<String, Object> record = ov.getRecord().toMap();
+    // ORecordId id = (ORecordId) record.get("@rid");
+    // record.put("id", id.toString());
+    // record.remove("@rid");
+    // record.remove("@class");
+    // record.remove("versions");
+    // @SuppressWarnings("unchecked")
+    // T convertedValue = (T) mapper.convertValue(record, cls);
+    // result.add(convertedValue);
+    // }
+    //
+    // return result;
+    // }
 
     @Override
     public long getCount(String sql, Map<String, Object> params) {
@@ -325,12 +260,27 @@ public class OrientGraphDbService extends AbstractOrientDbService implements DbS
     }
 
     @Override
+    @Deprecated
     public void delete(Class<?> cls, String id) {
         OObjectDatabaseTx objectDb = getObjectDb();
         objectDb.getEntityManager().registerEntityClass(cls);
         ORecordId recordId = new ORecordId(id);
         Object loaded = objectDb.load(recordId);
         objectDb.delete(recordId);
+    }
+
+    @Override
+    public void delete2(Class<?> cls, String id) {
+        OrientGraph graphDb = getGraphDb();
+        ORecordId recordId = new ORecordId(id);
+        OrientVertex loaded = graphDb.getVertex(recordId);
+        if (loaded.getLabel().equals(DbClassName.of(cls))) {
+            String sql = "DELETE VERTEX " + (id.contains("#") ? id : "#" + id);
+            graphDb.command(new OCommandSQL(sql)).execute();
+            graphDb.commit();
+        } else {
+            // TODO
+        }
     }
 
     @Override
@@ -449,7 +399,7 @@ public class OrientGraphDbService extends AbstractOrientDbService implements DbS
         OObjectDatabaseTx db = getObjectDb();
         try {
             Arrays.stream(entities).forEach(entity -> {
-                log.debug("registering class '{}' @ orientDB", entity);
+                log.info("registering class '{}' @ orientDB", entity);
                 db.getEntityManager().registerEntityClass(entity);
             });
         } finally {
@@ -516,13 +466,13 @@ public class OrientGraphDbService extends AbstractOrientDbService implements DbS
         }
     }
 
-    @Override
-    public void update(Map<String, Object> map) {
-        ODatabaseDocumentTx documentDb = getDocumentDb();
-        ODocument doc = new ODocument().fromMap(map);
-        documentDb.save(doc);
-        documentDb.commit();
-    }
+    // @Override
+    // public void update(Map<String, Object> map) {
+    // ODatabaseDocumentTx documentDb = getDocumentDb();
+    // ODocument doc = new ODocument().fromMap(map);
+    // documentDb.save(doc);
+    // documentDb.commit();
+    // }
 
     @Override
     public void update(ODocument doc) {

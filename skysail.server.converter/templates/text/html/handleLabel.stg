@@ -1,0 +1,10 @@
+handleLabel(field) ::= <<
+  <label for='$field.name$' class='col-sm-2 control-label'>
+    $if(converter.edit)$
+      <a href='/i18n/v1/messages/$model.entityname$.$field.name$/'>&nbsp;$messages.(field.nameKey).translated$</a>
+    $else$
+      $messages.(field.nameKey).translated$
+    $endif$
+    $renderDescription2(field,converter)$
+  </label>
+>>

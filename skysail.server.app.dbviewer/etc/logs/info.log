@@ -1,0 +1,180 @@
+2015-10-30 18:40:28,631 INFO  [io.skysail.server.app.ApplicationList        ] - (+) Adding application 'root'
+2015-10-30 18:40:28,662 INFO  [io.skysail.server.services.ServerLoad        ] - activating ServerLoad task
+2015-10-30 18:40:28,679 INFO  [io.skysail.server.services.ServerTime        ] - activating ServerTime task
+2015-10-30 18:40:28,715 INFO  [io.skysail.server.app.ApplicationList        ] - (+) Adding application 'webapp'
+2015-10-30 18:40:28,736 INFO  [io.skysail.server.db.DbConfigurations        ] - activating DbConfigurations with config DbConfig(name=skysailgraph, driver=, url=remote:localhost/skysailcrm, username=admin)
+2015-10-30 18:40:28,932 INFO  [i.skysail.server.db.OrientGraphDbService     ] - about to start db
+2015-10-30 18:40:28,933 INFO  [i.skysail.server.db.OrientGraphDbService     ] - registering remote engine
+2015-10-30 18:40:30,620 INFO  [i.skysail.server.db.OrientGraphDbService     ] - setting lazy loading to false
+2015-10-30 18:40:30,724 INFO  [i.s.s.d.versions.impl.VersionsRepository     ] - activating VersionsRepository
+2015-10-30 18:40:30,766 INFO  [io.skysail.server.app.Repositories           ] - adding repository with name 'io.skysail.server.db.versions.impl.ComponentDbVersion'
+2015-10-30 18:40:30,797 INFO  [io.skysail.server.http.HttpServer            ] - Activating io.skysail.server.http.HttpServer
+2015-10-30 18:40:30,813 INFO  [d.t.skysail.server.SkysailComponent          ] - Creating Restlet Component: de.twenty11.skysail.server.SkysailComponent
+2015-10-30 18:40:30,818 INFO  [io.skysail.server.http.HttpServer            ] - configuration was provided
+2015-10-30 18:40:30,818 INFO  [io.skysail.server.http.HttpServer            ] - 
+2015-10-30 18:40:30,819 INFO  [io.skysail.server.http.HttpServer            ] - ====================================
+2015-10-30 18:40:30,819 INFO  [io.skysail.server.http.HttpServer            ] - Starting skysail server on port 2015
+2015-10-30 18:40:30,819 INFO  [io.skysail.server.http.HttpServer            ] - ====================================
+2015-10-30 18:40:30,820 INFO  [io.skysail.server.http.HttpServer            ] - 
+2015-10-30 18:40:30,833 INFO  [org.eclipse.jetty.util.log                   ] - Logging initialized @5292ms
+2015-10-30 18:40:30,908 INFO  [org.restlet                                  ] - Starting the Jetty [HTTP/1.1] server on port 2015
+2015-10-30 18:40:30,913 INFO  [io.skysail.server.app.ApplicationList        ] - (+) Adding application 'OSGi'
+2015-10-30 18:40:30,924 INFO  [org.eclipse.jetty.server.Server              ] - jetty-9.2.11.v20150529
+2015-10-30 18:40:30,985 INFO  [io.skysail.server.app.ApplicationList        ] - (+) Adding application 'Performance'
+2015-10-30 18:40:31,000 INFO  [org.eclipse.jetty.server.ServerConnector     ] - Started ServerConnector@5355adc2{HTTP/1.1}{0.0.0.0:2015}
+2015-10-30 18:40:31,002 INFO  [org.eclipse.jetty.server.Server              ] - Started @5461ms
+2015-10-30 18:40:31,011 INFO  [io.skysail.server.app.ApplicationList        ] - (+) Adding application 'static'
+2015-10-30 18:40:31,089 INFO  [io.skysail.server.app.ApplicationList        ] - (+) Adding application 'i18n'
+2015-10-30 18:40:31,136 INFO  [i.s.s.um.security.shiro.ShiroServices        ] - creating new SkysailAuthorizingRealm...
+2015-10-30 18:40:31,198 INFO  [i.s.s.um.security.shiro.ShiroServices        ] - Setting new SkysailWebSecurityManager as Shiros SecurityManager
+2015-10-30 18:40:31,253 INFO  [i.s.s.u.s.s.s.m.SkysailWebSessionManager     ] - creating new SkysailWebSessionManager
+2015-10-30 18:40:31,367 INFO  [io.skysail.server.app.ApplicationList        ] - (+) Adding application 'usermanagement'
+2015-10-30 18:40:31,409 INFO  [s.server.ext.initconfig.ConfigMover          ] - determined product bundle to be 'skysail.server.app.dbviewer'
+2015-10-30 18:40:31,413 INFO  [s.server.ext.initconfig.ConfigMover          ] - checking directories 'config/common,config/local' in bundle skysail.server.app.dbviewer for configurations
+2015-10-30 18:40:31,414 INFO  [s.server.ext.initconfig.ConfigMover          ] - will try to create directory '/Users/carsten/git/skysail-framework/skysail.server.app.dbviewer/./config/common' if it not exists
+2015-10-30 18:40:31,419 INFO  [s.server.ext.initconfig.ConfigMover          ] - will try to create directory '/Users/carsten/git/skysail-framework/skysail.server.app.dbviewer/./config/local' if it not exists
+2015-10-30 18:40:31,504 INFO  [io.skysail.server.db.GraphDbRepository       ] - activating repository for class(es) io.skysail.server.app.um.db.domain.Group
+2015-10-30 18:40:31,617 INFO  [io.skysail.server.app.Repositories           ] - adding repository with name 'io.skysail.server.app.um.db.domain.Group'
+2015-10-30 18:40:31,631 INFO  [io.skysail.server.db.GraphDbRepository       ] - activating repository for class(es) io.skysail.server.app.um.db.domain.Permission
+2015-10-30 18:40:31,659 INFO  [io.skysail.server.app.Repositories           ] - adding repository with name 'io.skysail.server.app.um.db.domain.Permission'
+2015-10-30 18:40:31,663 INFO  [io.skysail.server.db.GraphDbRepository       ] - activating repository for class(es) io.skysail.server.app.um.db.domain.Role
+2015-10-30 18:40:31,686 INFO  [io.skysail.server.app.Repositories           ] - adding repository with name 'io.skysail.server.app.um.db.domain.Role'
+2015-10-30 18:40:31,696 INFO  [io.skysail.server.db.GraphDbRepository       ] - activating repository for class(es) io.skysail.server.app.um.db.domain.User
+2015-10-30 18:40:31,714 INFO  [io.skysail.server.app.Repositories           ] - adding repository with name 'io.skysail.server.app.um.db.domain.User'
+2015-10-30 18:40:31,795 INFO  [io.skysail.server.app.ApplicationList        ] - (+) Adding application 'um'
+2015-10-30 18:40:31,820 INFO  [io.skysail.server.db.GraphDbRepository       ] - activating repository for class(es) io.skysail.server.app.dbviewer.Connection
+2015-10-30 18:40:31,840 INFO  [io.skysail.server.app.Repositories           ] - adding repository with name 'io.skysail.server.app.dbviewer.Connection'
+2015-10-30 18:40:31,849 INFO  [i.skysail.server.domain.core.Application     ] - adding repository 'io.skysail.server.app.dbviewer.Connection' -> io.skysail.server.app.dbviewer.ConnectionRepo@724bf25f
+2015-10-30 18:40:31,850 INFO  [i.skysail.server.domain.core.Application     ] - adding repository 'io.skysail.server.app.um.db.domain.User' -> io.skysail.server.app.um.db.repo.UserRepository@2abafa97
+2015-10-30 18:40:31,850 INFO  [i.skysail.server.domain.core.Application     ] - adding repository 'io.skysail.server.db.versions.impl.ComponentDbVersion' -> io.skysail.server.db.versions.impl.VersionsRepository@6f6cc7da
+2015-10-30 18:40:31,850 INFO  [i.skysail.server.domain.core.Application     ] - adding repository 'io.skysail.server.app.um.db.domain.Role' -> io.skysail.server.app.um.db.repo.RoleRepository@40717ed
+2015-10-30 18:40:31,851 INFO  [i.skysail.server.domain.core.Application     ] - adding repository 'io.skysail.server.app.um.db.domain.Group' -> io.skysail.server.app.um.db.repo.GroupRepository@29f3c438
+2015-10-30 18:40:31,851 INFO  [i.skysail.server.domain.core.Application     ] - adding repository 'io.skysail.server.app.um.db.domain.Permission' -> io.skysail.server.app.um.db.repo.PermissionRepository@5460edd3
+2015-10-30 18:40:31,852 INFO  [io.skysail.server.app.ApplicationList        ] - (+) Adding application 'dbviewer'
+2015-10-30 18:40:36,937 INFO  [o.r.S.SkysailRootApplication                 ] - Starting de.twenty11.skysail.server.app.SkysailRootApplication application
+2015-10-30 18:40:36,943 INFO  [io.skysail.server.app.SkysailApplication     ] - creating new Router in de.twenty11.skysail.server.app.SkysailRootApplication
+2015-10-30 18:40:36,945 INFO  [io.skysail.server.app.SkysailApplication     ] - adding extensions to metadata service
+2015-10-30 18:40:36,946 INFO  [io.skysail.server.app.SkysailApplication     ] - adding protocols
+2015-10-30 18:40:36,950 INFO  [d.t.s.server.core.restlet.SkysailRouter      ] - routing path '/!meta' -> 'RolesPredicateAuthorizer' -> 'de.twenty11.skysail.server.resources.DefaultResource'
+2015-10-30 18:40:36,953 INFO  [d.t.s.server.core.restlet.SkysailRouter      ] - routing path '/' -> 'de.twenty11.skysail.server.resources.DefaultResource'
+2015-10-30 18:40:36,953 WARN  [d.t.s.server.core.restlet.SkysailRouter      ] - please use a RouteBuilder to attach this resource: class de.twenty11.skysail.server.resources.DefaultResource
+2015-10-30 18:40:36,955 INFO  [d.t.s.server.core.restlet.SkysailRouter      ] - routing path '/_login' -> 'de.twenty11.skysail.server.resources.LoginResource'
+2015-10-30 18:40:36,963 WARN  [d.t.s.server.core.restlet.SkysailRouter      ] - please use a RouteBuilder to attach this resource: class de.twenty11.skysail.server.resources.LoginResource
+2015-10-30 18:40:36,964 INFO  [d.t.s.server.core.restlet.SkysailRouter      ] - routing path '/_demologin' -> 'de.twenty11.skysail.server.resources.DemoLoginResource'
+2015-10-30 18:40:36,964 WARN  [d.t.s.server.core.restlet.SkysailRouter      ] - please use a RouteBuilder to attach this resource: class de.twenty11.skysail.server.resources.DemoLoginResource
+2015-10-30 18:40:36,965 INFO  [d.t.s.server.core.restlet.SkysailRouter      ] - routing path '/_profile' -> 'RolesPredicateAuthorizer' -> 'de.twenty11.skysail.server.app.profile.ProfileResource'
+2015-10-30 18:40:36,967 INFO  [d.t.s.server.core.restlet.SkysailRouter      ] - routing path '/_profile/password/' -> 'RolesPredicateAuthorizer' -> 'de.twenty11.skysail.server.app.profile.PutPasswordResource'
+2015-10-30 18:40:36,967 INFO  [d.t.s.server.core.restlet.SkysailRouter      ] - routing path '/_remotelogin' -> 'de.twenty11.skysail.server.resources.RemoteLoginResource'
+2015-10-30 18:40:36,968 WARN  [d.t.s.server.core.restlet.SkysailRouter      ] - please use a RouteBuilder to attach this resource: class de.twenty11.skysail.server.resources.RemoteLoginResource
+2015-10-30 18:40:36,979 INFO  [o.r.S.SkysailRootApplication                 ] - Starting io.skysail.server.converter.WebappApplication application
+2015-10-30 18:40:36,985 INFO  [o.r.S.SkysailRootApplication                 ] - Starting de.twenty11.skysail.server.osgi.OsgiMonitorViewerApplication application
+2015-10-30 18:40:36,986 INFO  [io.skysail.server.app.SkysailApplication     ] - creating new Router in de.twenty11.skysail.server.osgi.OsgiMonitorViewerApplication
+2015-10-30 18:40:36,987 INFO  [io.skysail.server.app.SkysailApplication     ] - adding extensions to metadata service
+2015-10-30 18:40:36,987 INFO  [io.skysail.server.app.SkysailApplication     ] - adding protocols
+2015-10-30 18:40:36,987 WARN  [io.skysail.server.app.SkysailApplication     ] - there are no entities defined for the applicationModel Application(id=OSGi, entities=[], repositories={})
+2015-10-30 18:40:36,989 INFO  [d.t.s.server.core.restlet.SkysailRouter      ] - routing path '/v1!meta' -> 'RolesPredicateAuthorizer' -> 'de.twenty11.skysail.server.osgi.osgimonitor.resources.OsgiMonitorRootResource'
+2015-10-30 18:40:36,989 INFO  [d.t.s.server.core.restlet.SkysailRouter      ] - routing path '/v1' -> 'RolesPredicateAuthorizer' -> 'de.twenty11.skysail.server.osgi.osgimonitor.resources.OsgiMonitorRootResource'
+2015-10-30 18:40:36,989 INFO  [d.t.s.server.core.restlet.SkysailRouter      ] - routing path '/v1/!meta' -> 'RolesPredicateAuthorizer' -> 'de.twenty11.skysail.server.osgi.osgimonitor.resources.OsgiMonitorRootResource'
+2015-10-30 18:40:36,990 INFO  [d.t.s.server.core.restlet.SkysailRouter      ] - routing path '/v1/' -> 'RolesPredicateAuthorizer' -> 'de.twenty11.skysail.server.osgi.osgimonitor.resources.OsgiMonitorRootResource'
+2015-10-30 18:40:36,995 INFO  [d.t.s.server.core.restlet.SkysailRouter      ] - routing path '/v1/bundles!meta' -> 'RolesPredicateAuthorizer' -> 'de.twenty11.skysail.server.osgi.osgimonitor.resources.BundlesResource'
+2015-10-30 18:40:36,995 INFO  [d.t.s.server.core.restlet.SkysailRouter      ] - routing path '/v1/bundles' -> 'RolesPredicateAuthorizer' -> 'de.twenty11.skysail.server.osgi.osgimonitor.resources.BundlesResource'
+2015-10-30 18:40:36,997 INFO  [d.t.s.server.core.restlet.SkysailRouter      ] - routing path '/v1/bundlesgraph!meta' -> 'RolesPredicateAuthorizer' -> 'de.twenty11.skysail.server.osgi.osgimonitor.resources.BundlesGraphResource'
+2015-10-30 18:40:36,998 INFO  [d.t.s.server.core.restlet.SkysailRouter      ] - routing path '/v1/bundlesgraph' -> 'RolesPredicateAuthorizer' -> 'de.twenty11.skysail.server.osgi.osgimonitor.resources.BundlesGraphResource'
+2015-10-30 18:40:37,000 INFO  [d.t.s.server.core.restlet.SkysailRouter      ] - routing path '/v1/bundles/details/{bundleId}' -> 'RolesPredicateAuthorizer' -> 'de.twenty11.skysail.server.osgi.osgimonitor.resources.BundleResource'
+2015-10-30 18:40:37,001 INFO  [d.t.s.server.core.restlet.SkysailRouter      ] - routing path '/v1/bundles/details/{bundleId}/action' -> 'RolesPredicateAuthorizer' -> 'de.twenty11.skysail.server.osgi.osgimonitor.resources.BundleResource'
+2015-10-30 18:40:37,002 INFO  [d.t.s.server.core.restlet.SkysailRouter      ] - routing path '/v1/services!meta' -> 'RolesPredicateAuthorizer' -> 'de.twenty11.skysail.server.osgi.osgimonitor.resources.ServicesResource'
+2015-10-30 18:40:37,003 INFO  [d.t.s.server.core.restlet.SkysailRouter      ] - routing path '/v1/services' -> 'RolesPredicateAuthorizer' -> 'de.twenty11.skysail.server.osgi.osgimonitor.resources.ServicesResource'
+2015-10-30 18:40:37,004 INFO  [d.t.s.server.core.restlet.SkysailRouter      ] - routing path '/v1/services/{serviceId}' -> 'RolesPredicateAuthorizer' -> 'de.twenty11.skysail.server.osgi.osgimonitor.resources.ServiceResource'
+2015-10-30 18:40:37,004 INFO  [d.t.s.server.core.restlet.SkysailRouter      ] - routing path '/v1/requirements!meta' -> 'RolesPredicateAuthorizer' -> 'de.twenty11.skysail.server.osgi.osgimonitor.resources.RequirementsResource'
+2015-10-30 18:40:37,005 INFO  [d.t.s.server.core.restlet.SkysailRouter      ] - routing path '/v1/requirements' -> 'RolesPredicateAuthorizer' -> 'de.twenty11.skysail.server.osgi.osgimonitor.resources.RequirementsResource'
+2015-10-30 18:40:37,006 INFO  [o.r.S.SkysailRootApplication                 ] - Starting io.skysail.server.performance.etm.impl.PerformanceApplication application
+2015-10-30 18:40:37,008 INFO  [io.skysail.server.app.SkysailApplication     ] - creating new Router in io.skysail.server.performance.etm.impl.PerformanceApplication
+2015-10-30 18:40:37,008 INFO  [io.skysail.server.app.SkysailApplication     ] - adding extensions to metadata service
+2015-10-30 18:40:37,009 INFO  [io.skysail.server.app.SkysailApplication     ] - adding protocols
+2015-10-30 18:40:37,009 WARN  [io.skysail.server.app.SkysailApplication     ] - there are no entities defined for the applicationModel Application(id=Performance, entities=[], repositories={})
+2015-10-30 18:40:37,013 INFO  [d.t.s.server.core.restlet.SkysailRouter      ] - routing path '/v1' -> 'RolesPredicateAuthorizer' -> 'io.skysail.server.performance.etm.impl.PerformanceResource'
+2015-10-30 18:40:37,014 INFO  [o.r.S.SkysailRootApplication                 ] - Starting de.twenty11.skysail.server.webapp.internal.WebappApplication application
+2015-10-30 18:40:37,016 INFO  [o.r.S.SkysailRootApplication                 ] - Starting io.skysail.server.text.store.bundleresource.impl.I18nApplication application
+2015-10-30 18:40:37,018 INFO  [io.skysail.server.app.SkysailApplication     ] - creating new Router in io.skysail.server.text.store.bundleresource.impl.I18nApplication
+2015-10-30 18:40:37,019 INFO  [io.skysail.server.app.SkysailApplication     ] - adding extensions to metadata service
+2015-10-30 18:40:37,019 INFO  [io.skysail.server.app.SkysailApplication     ] - adding protocols
+2015-10-30 18:40:37,022 INFO  [d.t.s.server.core.restlet.SkysailRouter      ] - routing path '/v1!meta' -> 'RolesPredicateAuthorizer' -> 'io.skysail.server.text.store.bundleresource.impl.I18nRootResource'
+2015-10-30 18:40:37,022 INFO  [d.t.s.server.core.restlet.SkysailRouter      ] - routing path '/v1' -> 'RolesPredicateAuthorizer' -> 'io.skysail.server.text.store.bundleresource.impl.I18nRootResource'
+2015-10-30 18:40:37,024 INFO  [d.t.s.server.core.restlet.SkysailRouter      ] - routing path '/v1/messages/!meta' -> 'RolesPredicateAuthorizer' -> 'io.skysail.server.text.store.bundleresource.impl.MessagesResource'
+2015-10-30 18:40:37,025 INFO  [d.t.s.server.core.restlet.SkysailRouter      ] - routing path '/v1/messages/' -> 'RolesPredicateAuthorizer' -> 'io.skysail.server.text.store.bundleresource.impl.MessagesResource'
+2015-10-30 18:40:37,028 INFO  [d.t.s.server.core.restlet.SkysailRouter      ] - routing path '/v1/messages/{key}' -> 'RolesPredicateAuthorizer' -> 'io.skysail.server.text.store.bundleresource.impl.MessageResource'
+2015-10-30 18:40:37,029 INFO  [d.t.s.server.core.restlet.SkysailRouter      ] - routing path '/v1/messages/{key}/' -> 'RolesPredicateAuthorizer' -> 'io.skysail.server.text.store.bundleresource.impl.PutMessageResource'
+2015-10-30 18:40:37,030 INFO  [o.r.S.I.SimpleUserManagementApplication      ] - Starting io.skysail.server.um.simple.app.SimpleUserManagementApplication application
+2015-10-30 18:40:37,032 INFO  [io.skysail.server.app.SkysailApplication     ] - creating new Router in io.skysail.server.um.simple.app.SimpleUserManagementApplication
+2015-10-30 18:40:37,032 INFO  [io.skysail.server.app.SkysailApplication     ] - adding extensions to metadata service
+2015-10-30 18:40:37,032 INFO  [io.skysail.server.app.SkysailApplication     ] - adding protocols
+2015-10-30 18:40:37,033 WARN  [io.skysail.server.app.SkysailApplication     ] - there are no entities defined for the applicationModel Application(id=usermanagement, entities=[], repositories={})
+2015-10-30 18:40:37,034 INFO  [d.t.s.server.core.restlet.SkysailRouter      ] - routing path '/v1/currentUser' -> 'io.skysail.server.um.simple.app.users.resources.CurrentUserResource'
+2015-10-30 18:40:37,035 WARN  [d.t.s.server.core.restlet.SkysailRouter      ] - please use a RouteBuilder to attach this resource: class io.skysail.server.um.simple.app.users.resources.CurrentUserResource
+2015-10-30 18:40:37,036 INFO  [o.r.S.InternalRouter.UmApplication           ] - Starting io.skysail.server.app.um.db.UmApplication application
+2015-10-30 18:40:37,037 INFO  [io.skysail.server.app.SkysailApplication     ] - creating new Router in io.skysail.server.app.um.db.UmApplication
+2015-10-30 18:40:37,038 INFO  [io.skysail.server.app.SkysailApplication     ] - adding extensions to metadata service
+2015-10-30 18:40:37,038 INFO  [io.skysail.server.app.SkysailApplication     ] - adding protocols
+2015-10-30 18:40:37,038 WARN  [io.skysail.server.app.SkysailApplication     ] - there are no entities defined for the applicationModel Application(id=um, entities=[], repositories={})
+2015-10-30 18:40:37,041 INFO  [d.t.s.server.core.restlet.SkysailRouter      ] - routing path '/v1!meta' -> 'RolesPredicateAuthorizer' -> 'io.skysail.server.app.um.db.users.resources.UsersResource'
+2015-10-30 18:40:37,041 INFO  [d.t.s.server.core.restlet.SkysailRouter      ] - routing path '/v1' -> 'RolesPredicateAuthorizer' -> 'io.skysail.server.app.um.db.users.resources.UsersResource'
+2015-10-30 18:40:37,041 INFO  [d.t.s.server.core.restlet.SkysailRouter      ] - routing path '/v1/users!meta' -> 'RolesPredicateAuthorizer' -> 'io.skysail.server.app.um.db.users.resources.UsersResource'
+2015-10-30 18:40:37,042 INFO  [d.t.s.server.core.restlet.SkysailRouter      ] - routing path '/v1/users' -> 'RolesPredicateAuthorizer' -> 'io.skysail.server.app.um.db.users.resources.UsersResource'
+2015-10-30 18:40:37,043 INFO  [d.t.s.server.core.restlet.SkysailRouter      ] - routing path '/v1/users/' -> 'RolesPredicateAuthorizer' -> 'io.skysail.server.app.um.db.users.resources.PostUserResource'
+2015-10-30 18:40:37,044 INFO  [d.t.s.server.core.restlet.SkysailRouter      ] - routing path '/v1/users/{id}' -> 'RolesPredicateAuthorizer' -> 'io.skysail.server.app.um.db.users.resources.UserResource'
+2015-10-30 18:40:37,045 INFO  [d.t.s.server.core.restlet.SkysailRouter      ] - routing path '/v1/users/{id}/' -> 'RolesPredicateAuthorizer' -> 'io.skysail.server.app.um.db.users.resources.PutUserResource'
+2015-10-30 18:40:37,048 INFO  [d.t.s.server.core.restlet.SkysailRouter      ] - routing path '/v1/roles!meta' -> 'RolesPredicateAuthorizer' -> 'io.skysail.server.app.um.db.roles.resources.RolesResource'
+2015-10-30 18:40:37,050 INFO  [d.t.s.server.core.restlet.SkysailRouter      ] - routing path '/v1/roles' -> 'RolesPredicateAuthorizer' -> 'io.skysail.server.app.um.db.roles.resources.RolesResource'
+2015-10-30 18:40:37,054 INFO  [d.t.s.server.core.restlet.SkysailRouter      ] - routing path '/v1/roles/' -> 'RolesPredicateAuthorizer' -> 'io.skysail.server.app.um.db.roles.resources.PostRoleResource'
+2015-10-30 18:40:37,056 INFO  [d.t.s.server.core.restlet.SkysailRouter      ] - routing path '/v1/roles/{id}' -> 'RolesPredicateAuthorizer' -> 'io.skysail.server.app.um.db.roles.resources.RoleResource'
+2015-10-30 18:40:37,059 INFO  [d.t.s.server.core.restlet.SkysailRouter      ] - routing path '/v1/roles/{id}/' -> 'RolesPredicateAuthorizer' -> 'io.skysail.server.app.um.db.roles.resources.PutRoleResource'
+2015-10-30 18:40:37,060 INFO  [d.t.s.server.core.restlet.SkysailRouter      ] - routing path '/v1/permissions!meta' -> 'RolesPredicateAuthorizer' -> 'io.skysail.server.app.um.db.permissions.resources.PermissionsResource'
+2015-10-30 18:40:37,060 INFO  [d.t.s.server.core.restlet.SkysailRouter      ] - routing path '/v1/permissions' -> 'RolesPredicateAuthorizer' -> 'io.skysail.server.app.um.db.permissions.resources.PermissionsResource'
+2015-10-30 18:40:37,062 INFO  [d.t.s.server.core.restlet.SkysailRouter      ] - routing path '/v1/permissions/' -> 'RolesPredicateAuthorizer' -> 'io.skysail.server.app.um.db.permissions.resources.PostPermissionResource'
+2015-10-30 18:40:37,064 INFO  [d.t.s.server.core.restlet.SkysailRouter      ] - routing path '/v1/permissions/{id}' -> 'RolesPredicateAuthorizer' -> 'io.skysail.server.app.um.db.permissions.resources.PermissionResource'
+2015-10-30 18:40:37,064 INFO  [d.t.s.server.core.restlet.SkysailRouter      ] - routing path '/v1/permissions/{id}/' -> 'RolesPredicateAuthorizer' -> 'io.skysail.server.app.um.db.permissions.resources.PutPermissionResource'
+2015-10-30 18:40:37,066 INFO  [o.r.S.InternalRouter.DbviewerApplication     ] - Starting io.skysail.server.app.dbviewer.DbviewerApplication application
+2015-10-30 18:40:37,067 INFO  [io.skysail.server.app.SkysailApplication     ] - creating new Router in io.skysail.server.app.dbviewer.DbviewerApplication
+2015-10-30 18:40:37,068 INFO  [io.skysail.server.app.SkysailApplication     ] - adding extensions to metadata service
+2015-10-30 18:40:37,068 INFO  [io.skysail.server.app.SkysailApplication     ] - adding protocols
+2015-10-30 18:40:37,069 INFO  [io.skysail.server.domain.core.Entity         ] - searching for class 'io.skysail.server.app.dbviewer.ConnectionsResource'
+2015-10-30 18:40:37,070 INFO  [d.t.s.server.core.restlet.SkysailRouter      ] - routing path '/v1!meta' -> 'RolesPredicateAuthorizer' -> 'io.skysail.server.app.dbviewer.ConnectionsResource'
+2015-10-30 18:40:37,072 INFO  [d.t.s.server.core.restlet.SkysailRouter      ] - routing path '/v1' -> 'RolesPredicateAuthorizer' -> 'io.skysail.server.app.dbviewer.ConnectionsResource'
+2015-10-30 18:40:37,075 INFO  [io.skysail.server.domain.core.Entity         ] - searching for class 'io.skysail.server.app.dbviewer.ConnectionsResource'
+2015-10-30 18:40:37,081 INFO  [d.t.s.server.core.restlet.SkysailRouter      ] - routing path '/v1/!meta' -> 'RolesPredicateAuthorizer' -> 'io.skysail.server.app.dbviewer.ConnectionsResource'
+2015-10-30 18:40:37,081 INFO  [d.t.s.server.core.restlet.SkysailRouter      ] - routing path '/v1/' -> 'RolesPredicateAuthorizer' -> 'io.skysail.server.app.dbviewer.ConnectionsResource'
+2015-10-30 18:40:37,083 INFO  [io.skysail.server.domain.core.Entity         ] - searching for class 'io.skysail.server.app.dbviewer.ConnectionsResource'
+2015-10-30 18:40:37,100 INFO  [d.t.s.server.core.restlet.SkysailRouter      ] - routing path '/v1/Connection!meta' -> 'RolesPredicateAuthorizer' -> 'io.skysail.server.app.dbviewer.ConnectionsResource'
+2015-10-30 18:40:37,101 INFO  [d.t.s.server.core.restlet.SkysailRouter      ] - routing path '/v1/Connection' -> 'RolesPredicateAuthorizer' -> 'io.skysail.server.app.dbviewer.ConnectionsResource'
+2015-10-30 18:40:37,103 INFO  [io.skysail.server.domain.core.Entity         ] - searching for class 'io.skysail.server.app.dbviewer.PostConnectionResource'
+2015-10-30 18:40:37,120 INFO  [d.t.s.server.core.restlet.SkysailRouter      ] - routing path '/v1/Connection/' -> 'RolesPredicateAuthorizer' -> 'io.skysail.server.app.dbviewer.PostConnectionResource'
+2015-10-30 18:40:37,122 INFO  [io.skysail.server.domain.core.Entity         ] - searching for class 'io.skysail.server.app.dbviewer.ConnectionResource'
+2015-10-30 18:40:37,122 INFO  [d.t.s.server.core.restlet.SkysailRouter      ] - routing path '/v1/Connection/{id}' -> 'RolesPredicateAuthorizer' -> 'io.skysail.server.app.dbviewer.ConnectionResource'
+2015-10-30 18:40:37,123 INFO  [io.skysail.server.domain.core.Entity         ] - searching for class 'io.skysail.server.app.dbviewer.PutConnectionResource'
+2015-10-30 18:40:37,124 INFO  [d.t.s.server.core.restlet.SkysailRouter      ] - routing path '/v1/Connection/{id}/' -> 'RolesPredicateAuthorizer' -> 'io.skysail.server.app.dbviewer.PutConnectionResource'
+2015-10-30 18:40:37,125 INFO  [d.t.s.server.core.restlet.SkysailRouter      ] - routing path '/v1/connections/{id}/vertices!meta' -> 'RolesPredicateAuthorizer' -> 'io.skysail.server.app.dbviewer.dbclasses.DbClassesResource'
+2015-10-30 18:40:37,126 INFO  [d.t.s.server.core.restlet.SkysailRouter      ] - routing path '/v1/connections/{id}/vertices' -> 'RolesPredicateAuthorizer' -> 'io.skysail.server.app.dbviewer.dbclasses.DbClassesResource'
+2015-10-30 18:40:37,127 INFO  [d.t.s.server.core.restlet.SkysailRouter      ] - routing path '/v1/connections/{id}/vertices/{name}' -> 'RolesPredicateAuthorizer' -> 'io.skysail.server.app.dbviewer.dbclasses.DbClassResource'
+2015-10-30 18:40:37,128 INFO  [d.t.s.server.core.restlet.SkysailRouter      ] - routing path '/v1/connections/{id}/vertices/{name}/entities!meta' -> 'RolesPredicateAuthorizer' -> 'io.skysail.server.app.dbviewer.dbentities.DbEntitiesResource'
+2015-10-30 18:40:37,129 INFO  [d.t.s.server.core.restlet.SkysailRouter      ] - routing path '/v1/connections/{id}/vertices/{name}/entities' -> 'RolesPredicateAuthorizer' -> 'io.skysail.server.app.dbviewer.dbentities.DbEntitiesResource'
+2015-10-30 18:40:37,382 INFO  [i.s.s.u.s.s.r.ShiroDelegatingVerifier        ] - login event for user 'admin'
+2015-10-30 18:40:37,860 INFO  [i.s.s.u.s.s.r.ShiroDelegatingVerifier        ] - login event for user 'admin' successful
+2015-10-30 18:40:37,867 WARN  [i.s.s.u.s.s.DefaultAuthorizationService      ] - User '#1' could not be found in the Repository
+2015-10-30 18:40:37,983 INFO  [i.s.s.r.resources.ListServerResource         ] - Request entry point: DefaultResource @Get('html|json|yaml|xml') with variant [text/html]
+2015-10-30 18:40:38,638 INFO  [LogService                                   ] - 2015-10-30	18:40:38	0:0:0:0:0:0:0:1	admin	0:0:0:0:0:0:0:1	2015	GET	/	-	200	-	0	1504	http://localhost:2015	Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.80 Safari/537.36	http://localhost:2015/dbviewer/v1
+2015-10-30 18:40:38,846 INFO  [LogService                                   ] - 2015-10-30	18:40:38	0:0:0:0:0:0:0:1	-	0:0:0:0:0:0:0:1	2015	GET	/static/js/mousetrap/mousetrap.min.js	-	200	-	0	10	http://localhost:2015	Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.80 Safari/537.36	http://localhost:2015/
+2015-10-30 18:40:38,846 INFO  [LogService                                   ] - 2015-10-30	18:40:38	0:0:0:0:0:0:0:1	-	0:0:0:0:0:0:0:1	2015	GET	/static/themes/jstree/style.min.css	-	200	-	0	10	http://localhost:2015	Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.80 Safari/537.36	http://localhost:2015/
+2015-10-30 18:40:38,846 INFO  [LogService                                   ] - 2015-10-30	18:40:38	0:0:0:0:0:0:0:1	-	0:0:0:0:0:0:0:1	2015	GET	/static/js/jstree/jstree.min.js	-	200	-	0	7	http://localhost:2015	Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.80 Safari/537.36	http://localhost:2015/
+2015-10-30 18:40:38,903 INFO  [LogService                                   ] - 2015-10-30	18:40:38	0:0:0:0:0:0:0:1	-	0:0:0:0:0:0:0:1	2015	GET	/static/img/silk/book_open.png	-	200	-	0	6	http://localhost:2015	Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.80 Safari/537.36	http://localhost:2015/
+2015-10-30 18:40:38,935 INFO  [LogService                                   ] - 2015-10-30	18:40:38	0:0:0:0:0:0:0:1	-	0:0:0:0:0:0:0:1	2015	GET	/static/img/silk/server_connect.png	-	200	-	0	5	http://localhost:2015	Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.80 Safari/537.36	http://localhost:2015/
+2015-10-30 18:40:39,030 INFO  [LogService                                   ] - 2015-10-30	18:40:39	0:0:0:0:0:0:0:1	-	0:0:0:0:0:0:0:1	2015	GET	/static/img/silk/page_link.png	-	200	-	0	23	http://localhost:2015	Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.80 Safari/537.36	http://localhost:2015/
+2015-10-30 18:40:39,030 INFO  [LogService                                   ] - 2015-10-30	18:40:39	0:0:0:0:0:0:0:1	-	0:0:0:0:0:0:0:1	2015	GET	/static/img/silk/page_white_swoosh.png	-	200	-	0	16	http://localhost:2015	Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.80 Safari/537.36	http://localhost:2015/
+2015-10-30 18:40:39,038 INFO  [LogService                                   ] - 2015-10-30	18:40:39	0:0:0:0:0:0:0:1	-	0:0:0:0:0:0:0:1	2015	GET	/static/img/silk/user.png	-	200	-	0	22	http://localhost:2015	Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.80 Safari/537.36	http://localhost:2015/
+2015-10-30 18:40:39,051 INFO  [LogService                                   ] - 2015-10-30	18:40:39	0:0:0:0:0:0:0:1	-	0:0:0:0:0:0:0:1	2015	GET	/static/img/silk/tag_yellow.png	-	200	-	0	26	http://localhost:2015	Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.80 Safari/537.36	http://localhost:2015/
+2015-10-30 18:41:00,470 INFO  [io.skysail.server.app.Repositories           ] - removing repository with name 'io.skysail.server.app.dbviewer.Connection'
+2015-10-30 18:41:00,483 INFO  [io.skysail.server.app.ApplicationList        ] - (-) Removing application 'dbviewer'
+2015-10-30 18:41:00,501 INFO  [io.skysail.server.app.ApplicationList        ] - (-) Removing application 'um'
+2015-10-30 18:41:00,515 INFO  [io.skysail.server.app.Repositories           ] - removing repository with name 'io.skysail.server.app.um.db.domain.Group'
+2015-10-30 18:41:00,519 INFO  [io.skysail.server.app.Repositories           ] - removing repository with name 'io.skysail.server.app.um.db.domain.Permission'
+2015-10-30 18:41:00,521 INFO  [io.skysail.server.app.Repositories           ] - removing repository with name 'io.skysail.server.app.um.db.domain.Role'
+2015-10-30 18:41:00,525 INFO  [io.skysail.server.app.Repositories           ] - removing repository with name 'io.skysail.server.app.um.db.domain.User'

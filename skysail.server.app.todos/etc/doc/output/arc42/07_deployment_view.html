@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <title>Project Structure</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta name="keywords" content="">
+    <meta name="generator" content="JBake">
+
+    <!-- Le styles -->
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/asciidoctor.css" rel="stylesheet">
+    <link href="../css/base.css" rel="stylesheet">
+    <link href="../css/prettify.css" rel="stylesheet">
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+
+    <!-- Fav and touch icons -->
+    <!--<link rel="apple-touch-icon-precomposed" sizes="144x144" href="../assets/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../assets/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">-->
+    <link rel="shortcut icon" href="../favicon.ico">
+  </head>
+  <body onload="prettyPrint()">
+    <div id="wrap">
+
+	<!-- Fixed navbar -->
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="../">JBake</a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="../about.html">About</a></li>
+            <li><a href="../code.html">Code</a></li>
+            <li><a href="../feed.xml">Subscribe</a></li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><a href="#">Action</a></li>
+                <li><a href="#">Another action</a></li>
+                <li><a href="#">Something else here</a></li>
+                <li class="divider"></li>
+                <li class="dropdown-header">Nav header</li>
+                <li><a href="#">Separated link</a></li>
+                <li><a href="#">One more separated link</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+    <div class="container">	
+	<div class="page-header">
+		<h1>Project Structure</h1>
+	</div>
+
+	<p><em>17 October 2013</em></p>
+
+	<p><div class="sect1">
+<h2 id="section-deployment-view">Deployment View</h2>
+<div class="sectionbody">
+<div class="sidebarblock arc42help">
+<div class="content">
+<div class="paragraph">
+<div class="title">Contents</div>
+<p>This view describes the environment within which the system is executed. It describes the geographic distribution of the system or the structure of the hardware components that execute the software. It documents workstations, processors, network topologies and channels, as well as other elements of the physical system environment. The deployment view shows the system from the operator’s point of view.
+Please explain how the systems’ building blocks are aggregated or packaged into deployment artifacts or deployment units.</p>
+</div>
+<div class="paragraph">
+<div class="title">Motivation</div>
+<p>Software is not much use without hardware. The minimum that is needed by you as a software architect is sufficient detail of the underlying (hardware) deployment so that you can assign each software building block that is relevant for the system’s operations to some hardware element. (This also holds for any COTS that is a prerequisite for the operations of the overall system.) These models should enable the operator to properly install the software.</p>
+</div>
+<div class="paragraph">
+<div class="title">Form</div>
+<p>The UML provides deployment diagrams for describing this view. Use these – possibly in a nested manner if necessary. (The top level deployment diagram should already be part of your context view, showing your infrastructure as a single black box (cf. chapter 3.2). Here you are zooming into this black box with additional deployment diagrams.)
+Diagrams by your hardware-oriented colleagues who describe processors and channels are also usable. You should abstract these to aspects relevant for software deployment.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_infrastructure_level_1">Infrastructure Level 1</h3>
+<div class="sect3">
+<h4 id="_deployment_diagram_level_1">Deployment Diagram Level 1</h4>
+<div class="sidebarblock arc42help">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Shows the deployment of the overall system to 1 – n processors or sites as well as the physical connections among these elements.</p>
+</li>
+<li>
+<p>Lists the most important reasons that led to this deployment structure, i.e. the specific selection of nodes and channels.</p>
+</li>
+<li>
+<p>Should also mention rejected alternatives incl. reasons for their rejection.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_processor_1">Processor 1</h4>
+<div class="paragraph">
+<p>&lt;insert node template here&gt;</p>
+</div>
+<div class="sidebarblock arc42help">
+<div class="content">
+<div class="paragraph">
+<p><strong>Node Template:</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Description</p>
+</li>
+<li>
+<p>Deployed software building blocks</p>
+</li>
+<li>
+<p>Quality attributes (performance, constraints, &#8230;&#8203;)</p>
+</li>
+<li>
+<p>Other administrative information</p>
+</li>
+<li>
+<p>Open issues</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_processor_2">Processor 2</h4>
+<div class="paragraph">
+<p>&lt;insert node template here&gt;</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_">&#8230;&#8203;</h4>
+
+</div>
+<div class="sect3">
+<h4 id="_processor_n">Processor n</h4>
+<div class="paragraph">
+<p>&lt;insert node template here&gt;</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_channel_1">Channel 1</h4>
+<div class="sidebarblock arc42help">
+<div class="content">
+<div class="paragraph">
+<div class="title">Contents</div>
+<p>Specification of the channel’s attributes, as relevant for software architecture.</p>
+</div>
+<div class="paragraph">
+<div class="title">Motivation</div>
+<p>Specify at least those attributes of the communications channels that you need for proving fulfillment of non-functional requirements such as maximal throughput, probability for faults, etc.</p>
+</div>
+<div class="paragraph">
+<div class="title">Form</div>
+<p>Often you will refer to a standard (e.g. CAN-Bus, 10Mbit Ethernet, IEEE 1394, &#8230;&#8203;).</p>
+</div>
+<div class="paragraph">
+<p>If you need more information use a structure similar to the node template (especially to document quality aspects of channels like throughput, error rates, &#8230;&#8203;)</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_channel_2">Channel 2</h4>
+
+</div>
+<div class="sect3">
+<h4 id="__2">&#8230;&#8203;</h4>
+
+</div>
+<div class="sect3">
+<h4 id="_channel_m">Channel m</h4>
+
+</div>
+</div>
+<div class="sect2">
+<h3 id="_infrastructure_level_2">Infrastructure Level 2</h3>
+<div class="sidebarblock arc42help">
+<div class="content">
+<div class="paragraph">
+<div class="title">Contents</div>
+<p>Additional deployment diagrams with similar structure as above, refining each node of infrastructure level 1 that needs more details to map the software blocks.</p>
+</div>
+<div class="paragraph">
+<div class="title">Motivation</div>
+<p>To describe additional details of the infrastructure, as needed by software deployment.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div></p>
+
+	<hr />
+
+		</div>
+		<div id="push"></div>
+    </div>
+    
+    <div id="footer">
+      <div class="container">
+        <p class="muted credit">&copy; 2011 - 2015 | Mixed with <a href="http://getbootstrap.com/">Bootstrap v3.1.1</a> | Baked with <a href="http://jbake.org">JBake v2.4.0</a></p>
+      </div>
+    </div>
+    
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="../js/jquery-1.11.1.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/prettify.js"></script>
+    
+  </body>
+</html>

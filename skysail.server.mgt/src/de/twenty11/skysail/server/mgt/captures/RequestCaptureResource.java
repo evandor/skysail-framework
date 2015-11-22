@@ -16,11 +16,11 @@ public class RequestCaptureResource extends ListServerResource<RequestCapture> {
 
     @Override
     protected void doInit() throws ResourceException {
-        requestcapture = RequestCapturer.getRequestcapture();
+        requestcapture = null;//RequestCapturer.getRequestcapture();
     }
 
     @Override
-    public List<RequestCapture> getData() {
+    public List<RequestCapture> getEntity() {
         if (requestcapture == null) {
             return Collections.emptyList();
         }

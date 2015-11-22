@@ -1,21 +1,13 @@
 package de.twenty11.skysail.server.mgt.log;
 
-import java.util.ArrayList;
-import java.util.Enumeration;
-import java.util.List;
+import io.skysail.server.restlet.resources.ListServerResource;
+
+import java.util.*;
 
 import org.osgi.service.log.LogReaderService;
 import org.restlet.resource.ResourceException;
 
-import de.twenty11.skysail.api.responses.Linkheader;
-import de.twenty11.skysail.server.core.restlet.ListServerResource;
 import de.twenty11.skysail.server.core.restlet.ResourceContextId;
-import de.twenty11.skysail.server.mgt.apps.ApplicationsResource;
-import de.twenty11.skysail.server.mgt.events.EventsResource;
-import de.twenty11.skysail.server.mgt.jmx.HeapStatsResource;
-import de.twenty11.skysail.server.mgt.load.ServerLoadResource;
-import de.twenty11.skysail.server.mgt.peers.PeersResource;
-import de.twenty11.skysail.server.mgt.time.ServerTimeResource;
 
 public class LogResource extends ListServerResource<LogEntry> {
 
@@ -33,7 +25,7 @@ public class LogResource extends ListServerResource<LogEntry> {
 
     @SuppressWarnings("unchecked")
     @Override
-    public List<LogEntry> getData() {
+    public List<LogEntry> getEntity() {
         List<LogEntry> result = new ArrayList<LogEntry>();
         if (logReaderService != null) {
             Enumeration<org.osgi.service.log.LogEntry> log = logReaderService.getLog();
@@ -47,11 +39,11 @@ public class LogResource extends ListServerResource<LogEntry> {
         return result;
     }
 
-    @Override
-    public List<Linkheader> getLinkheader() {
-        return super.getLinkheader(PeersResource.class, EventsResource.class, HeapStatsResource.class,
-                ServerLoadResource.class, ServerTimeResource.class, ApplicationsResource.class);
-    }
+//    @Override
+//    public List<Linkheader> getLinkheader() {
+//        return super.getLinkheader(PeersResource.class, EventsResource.class, HeapStatsResource.class,
+//                ServerLoadResource.class, ServerTimeResource.class, ApplicationsResource.class);
+//    }
 
 
 }

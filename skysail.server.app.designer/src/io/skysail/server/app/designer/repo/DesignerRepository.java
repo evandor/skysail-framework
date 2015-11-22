@@ -5,7 +5,7 @@ import io.skysail.api.repos.DbRepository;
 import io.skysail.server.app.designer.application.Application;
 import io.skysail.server.app.designer.entities.Entity;
 import io.skysail.server.app.designer.fields.*;
-import io.skysail.server.db.DbService;
+import io.skysail.server.db.*;
 
 import java.util.*;
 
@@ -20,8 +20,8 @@ public class DesignerRepository implements DbRepository {
 
     @Activate
     public void activate() {
-        dbService.createWithSuperClass("V", Application.class.getSimpleName(), Entity.class.getSimpleName(),
-                EntityField.class.getSimpleName(), ActionEntityField.class.getSimpleName());
+        dbService.createWithSuperClass("V", DbClassName.of(Application.class), DbClassName.of(Entity.class),
+                DbClassName.of(EntityField.class), DbClassName.of(ActionEntityField.class));
         dbService.register(Application.class, Entity.class, EntityField.class, ActionEntityField.class);
         dbService.createEdges("entities", "fields");
     }

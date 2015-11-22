@@ -3,6 +3,7 @@ package io.skysail.server.app.bookmarks.resources;
 import io.skysail.api.links.Link;
 import io.skysail.server.app.bookmarks.*;
 import io.skysail.server.app.bookmarks.repo.BookmarksRepository;
+import io.skysail.server.queryfilter.Filter;
 import io.skysail.server.restlet.resources.ListServerResource;
 
 import java.util.List;
@@ -24,7 +25,7 @@ public class BookmarksResource extends ListServerResource<Bookmark> {
 
     @Override
     public List<Bookmark> getEntity() {
-       return null;//repository.find("ORDER BY name DESC");
+       return repository.find(new Filter(getRequest())); //find("ORDER BY name DESC");
     }
 
     @Override

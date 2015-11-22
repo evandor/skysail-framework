@@ -16,7 +16,6 @@ Private-Package:  \
 	skysail.server.app.todos;version=latest,\
 	skysail.server.app.bookmarks;version=latest,\
 	skysail.server.static;version=${skysail.server.static.version},\
-	skysail.server.ext.browser;version=latest,\
 	skysail.server.ext.sse;version=latest,\
 	skysail.server.ext.initconfig;version=latest,\
 	skysail.server.http;version=${skysail.server.http.version},\
@@ -108,6 +107,7 @@ runbundles:\
     ${skysail.server},\
     skysail.server.app.um.db;version=latest,\
     org.jsoup;version=1.8.1,\
+    skysail.server.mgt;version=latest,\
     skysail.server.codegen;version=latest,\
     skysail.server.app.bookmarks;version=latest,\
     skysail.server.app.dbviewer;version=latest,\
@@ -116,6 +116,7 @@ runbundles:\
     skysail.server.app.twitter4j;version=latest,\
     skysail.server.app.todos;version=latest,\
     skysail.server.designer.matrix;version=latest,\
+    skysail.server.app.designer;version=latest,\
     skysail.server.designer.restclient;version=latest
 
 

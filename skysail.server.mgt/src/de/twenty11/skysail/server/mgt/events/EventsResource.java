@@ -7,12 +7,6 @@ import java.util.*;
 import org.osgi.service.event.Event;
 
 import de.twenty11.skysail.server.core.restlet.ResourceContextId;
-import de.twenty11.skysail.server.mgt.apps.ApplicationsResource;
-import de.twenty11.skysail.server.mgt.jmx.HeapStatsResource;
-import de.twenty11.skysail.server.mgt.load.ServerLoadResource;
-import de.twenty11.skysail.server.mgt.log.LogResource;
-import de.twenty11.skysail.server.mgt.peers.PeersResource;
-import de.twenty11.skysail.server.mgt.time.ServerTimeResource;
 
 public class EventsResource extends ListServerResource<EventDescriptor> {
 
@@ -22,7 +16,7 @@ public class EventsResource extends ListServerResource<EventDescriptor> {
     }
 
     @Override
-    public List<EventDescriptor> getData() {
+    public List<EventDescriptor> getEntity() {
         List<EventDescriptor> result = new ArrayList<EventDescriptor>();
         List<Event> events = EventServiceProvider.getEvents();
         for (Event event : events) {
@@ -30,10 +24,10 @@ public class EventsResource extends ListServerResource<EventDescriptor> {
         }
         return result;
     }
-    @Override
-    public List<Linkheader> getLinkheader() {
-        return super.getLinkheader(LogResource.class, PeersResource.class, HeapStatsResource.class,
-                ServerLoadResource.class, ServerTimeResource.class, ApplicationsResource.class);
-    }
+//    @Override
+//    public List<Link> getLinks() {
+//        return super.getLinks(LogResource.class, PeersResource.class, HeapStatsResource.class,
+//                ServerLoadResource.class, ServerTimeResource.class, ApplicationsResource.class);
+//    }
 
 }

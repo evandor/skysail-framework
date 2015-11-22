@@ -12,7 +12,6 @@ import org.restlet.routing.Router;
 import aQute.bnd.annotation.component.Component;
 import de.twenty11.skysail.server.app.ApplicationProvider;
 import de.twenty11.skysail.server.core.restlet.RouteBuilder;
-import de.twenty11.skysail.server.services.*;
 
 @Component
 // http://localhost:2015/svgedit/svg-editor.html

@@ -13,7 +13,7 @@ public class BookmarksRepository extends GraphDbRepository<Bookmark> implements 
     @Activate
     public void activate() {
         log.debug("activating VersionsRepository");
-        dbService.createWithSuperClass("V", Bookmark.class.getSimpleName());
+        dbService.createWithSuperClass("V", DbClassName.of(Bookmark.class));
         dbService.register(Bookmark.class);
     }
 

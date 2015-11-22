@@ -24,8 +24,8 @@ public class Bookmark implements Identifiable {
     private String id;
 
     @Field(inputType = InputType.URL)
-    // , listView = { ListViewEnum.TRUNCATE, ListViewEnum.LINK })
     @ListView(truncate = 20, link = BookmarkResource.class, prefix = "urlPrefix")
+    @NonNull
     private URL url;
 
     @Field
@@ -33,16 +33,18 @@ public class Bookmark implements Identifiable {
     private String name;
 
     @Field(inputType = InputType.TEXTAREA)
-    @ListView(truncate = 10)
+    @ListView(hide = true)
     private String desc;
 
-    @Field(inputType = InputType.TAGS)
-    private String tags;
+//    @Field(inputType = InputType.TAGS)
+//    private String tags;
 
     @Field(inputType = InputType.READONLY)
+    @ListView(hide = true)
     private Date created;
 
     @Field(inputType = InputType.READONLY)
+    @ListView(hide = true)
     private Date modified;
 
     @Field(inputType = InputType.READONLY)
@@ -54,7 +56,7 @@ public class Bookmark implements Identifiable {
     private String favicon;
 
     @Field(inputType = InputType.READONLY)
-    @ListView(hide = true)
+    @ListView(truncate = 50)
     private String metaDescription;
 
     public Bookmark(String url, String name) throws MalformedURLException {
@@ -69,9 +71,9 @@ public class Bookmark implements Identifiable {
         try {
             URI uri = new URI(favicon);
             if (uri.isAbsolute()) {
-                return "<img src='" + favicon + "'>";
+                return "<img src='" + favicon + "' width='16'>";
             } else {
-                return "<img src='" + url + "/" + favicon + "'>";
+                return "<img src='" + url + "/" + favicon + "' width='16'>";
             }
         } catch (URISyntaxException e) {
             return "";

@@ -1,11 +1,18 @@
 package de.twenty11.skysail.server.mgt.log;
 
+import io.skysail.api.domain.Identifiable;
+
 import java.text.SimpleDateFormat;
+
+import lombok.*;
 
 import org.osgi.service.log.LogService;
 
-public class LogEntry {
+@Getter
+public class LogEntry implements Identifiable {
 
+    @Setter
+    private String id;
     private String msg;
     private String level;
     private String time;
@@ -25,18 +32,6 @@ public class LogEntry {
     private String formatTime(long timestamp) {
         SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss");
         return sdf.format(timestamp);
-    }
-
-    public String getLevel() {
-        return level;
-    }
-
-    public String getTime() {
-        return time;
-    }
-
-    public String getMsg() {
-        return msg;
     }
 
     public boolean isDebug() {

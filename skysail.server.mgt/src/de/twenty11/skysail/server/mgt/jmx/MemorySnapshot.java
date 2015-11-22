@@ -1,10 +1,18 @@
 package de.twenty11.skysail.server.mgt.jmx;
 
+import io.skysail.api.domain.Identifiable;
+
 import java.lang.management.MemoryUsage;
 
-public class MemorySnapshot {
+import lombok.*;
+
+@Getter
+public class MemorySnapshot implements Identifiable {
 
     private static final int FACTOR = 1024 * 1024; // MByte
+
+    @Setter
+    private String id;
     private long now;
     private long init;
     private long max;
@@ -19,24 +27,5 @@ public class MemorySnapshot {
         committed = Math.round(mu.getCommitted() / FACTOR);
     }
 
-    public long getInit() {
-        return init;
-    }
-
-    public long getMax() {
-        return max;
-    }
-
-    public long getUsed() {
-        return used;
-    }
-
-    public long getCommitted() {
-        return committed;
-    }
-
-    public long getNow() {
-        return now;
-    }
 
 }

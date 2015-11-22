@@ -1,10 +1,16 @@
 package de.twenty11.skysail.server.mgt.apps;
 
+import io.skysail.api.domain.Identifiable;
 import io.skysail.server.app.SkysailApplication;
+import lombok.*;
 
 import org.restlet.Application;
 
-public class ApplicationDescriptor {
+@Getter
+@Setter
+public class ApplicationDescriptor implements Identifiable {
+
+    private String id;
 
     private String name;
 
@@ -13,10 +19,6 @@ public class ApplicationDescriptor {
             SkysailApplication skysailApp = (SkysailApplication) app;
             name = app.getName();
         }
-    }
-
-    public String getName() {
-        return name;
     }
 
 }

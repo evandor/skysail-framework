@@ -4,19 +4,22 @@ Include-Resource: resources, templates=src;recursive:=true;filter:=*.st|*.stg
 	osgi.cmpn;version=5.0,\
 	osgi.core;version=5.0,\
 	skysail.api;version=${skysail.api.version},\
+	skysail.api.text;version=${skysail.api.text.version},\
 	skysail.server;version=${skysail.server.version},\
 	de.twentyeleven.skysail.org.hamcrest.hamcrest-all-osgi;version=1.3,\
 	org.restlet;version=${restlet.version},\
+	org.restlet.ext.raml;version=${restlet.version},\
 	slf4j.api;version=1.7.7,\
 	biz.aQute.bnd.annotation;version=2.3,\
 	com.springsource.org.junit;version=4.11,\
 	org.apache.commons.collections;version=3.2,\
 	javax.validation.api;version=1.1,\
 	org.mockito.mockito-core,\
-	com.google.guava;version=15.0,\
+	com.google.guava;version=16.0,\
 	etm.core;version=1.2,\
 	etm.contrib;version=1.2,\
-	org.apache.commons.beanutils;version=1.9
+	org.apache.commons.beanutils;version=1.9,\
+	lombok;version=1.16
 Service-Component: *
 Private-Package:  \
 	de.twenty11.skysail.server.mgt.peers,\

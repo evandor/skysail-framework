@@ -18,7 +18,7 @@ public class ApplicationsResource extends ListServerResource<ApplicationDescript
     }
 
     @Override
-    public List<ApplicationDescriptor> getData() {
+    public List<ApplicationDescriptor> getEntity() {
         List<ApplicationDescriptor> result = new ArrayList<ApplicationDescriptor>();
 //        OsgiServicesProvider osgiServicesProvider = app.getOsgiServicesProvider();
 //        if (osgiServicesProvider == null) {

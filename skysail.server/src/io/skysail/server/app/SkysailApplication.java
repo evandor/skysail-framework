@@ -161,7 +161,7 @@ public abstract class SkysailApplication extends RamlApplication implements Appl
         this.apiVersion = apiVersion;
         applicationModel = new io.skysail.server.domain.core.Application(appName);
         entityClasses.forEach(cls -> applicationModel.add(new ClassEntity(cls)));
-        setContext(new Context());
+        //setContext(new Context());
     }
 
 

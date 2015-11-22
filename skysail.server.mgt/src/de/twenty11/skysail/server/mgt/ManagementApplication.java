@@ -1,9 +1,9 @@
 package de.twenty11.skysail.server.mgt;
 
 import io.skysail.server.app.SkysailApplication;
+import io.skysail.server.menus.MenuItemProvider;
 
 import java.lang.instrument.Instrumentation;
-import java.util.*;
 
 import org.osgi.service.cm.ConfigurationException;
 import org.osgi.service.component.ComponentContext;
@@ -15,16 +15,11 @@ import de.twenty11.skysail.server.core.restlet.*;
 import de.twenty11.skysail.server.mgt.apps.ApplicationsResource;
 import de.twenty11.skysail.server.mgt.captures.RequestCaptureResource;
 import de.twenty11.skysail.server.mgt.events.EventsResource;
-import de.twenty11.skysail.server.mgt.jmx.*;
-import de.twenty11.skysail.server.mgt.load.ServerLoadResource;
-import de.twenty11.skysail.server.mgt.log.LogResource;
-import de.twenty11.skysail.server.mgt.peers.PeersResource;
+import de.twenty11.skysail.server.mgt.jmx.JmxMonitor;
 import de.twenty11.skysail.server.mgt.performance.PerformanceResource;
-import de.twenty11.skysail.server.mgt.requests.*;
-import de.twenty11.skysail.server.mgt.time.ServerTimeResource;
-import de.twenty11.skysail.server.services.*;
 import etm.core.configuration.*;
 import etm.core.monitor.EtmMonitor;
+
 
 @Component
 public class ManagementApplication extends SkysailApplication implements ApplicationProvider, MenuItemProvider {
@@ -59,7 +54,7 @@ public class ManagementApplication extends SkysailApplication implements Applica
         BasicEtmConfigurator.configure();
         monitor = EtmManager.getEtmMonitor();
         monitor.start();
-        
+
 //        performanceMonitorServer = new HttpConsoleServer(monitor);
 //        performanceMonitorServer.setListenPort(2017);
 //        performanceMonitorServer.start();
@@ -78,16 +73,18 @@ public class ManagementApplication extends SkysailApplication implements Applica
     protected void attach() {
         router.setAuthorizationDefaults(anyOf("admin"));
 
-        router.attach(new RouteBuilder("", PeersResource.class).authorizeWith(anyOf("admin")));
-        router.attach(new RouteBuilder("/", PeersResource.class).authorizeWith(anyOf("admin")));
-        router.attach(new RouteBuilder("/log", LogResource.class));
+        router.attach(new RouteBuilder("", PerformanceResource.class));
+
+//        router.attach(new RouteBuilder("", PeersResource.class).authorizeWith(anyOf("admin")));
+//        router.attach(new RouteBuilder("/", PeersResource.class).authorizeWith(anyOf("admin")));
+//        router.attach(new RouteBuilder("/log", LogResource.class));
         router.attach(new RouteBuilder("/events", EventsResource.class));
         router.attach(new RouteBuilder("/captures/request", RequestCaptureResource.class));
-        router.attach(new RouteBuilder("/requests/{id}", RequestResource.class));
-        router.attach(new RouteBuilder("/responses/{id}", ResponseResource.class));
-        router.attach(new RouteBuilder("/status/heap", HeapStatsResource.class));
-        router.attach(new RouteBuilder("/serverLoad", ServerLoadResource.class));
-        router.attach(new RouteBuilder("/serverTime", ServerTimeResource.class));
+//        router.attach(new RouteBuilder("/requests/{id}", RequestResource.class));
+//        router.attach(new RouteBuilder("/responses/{id}", ResponseResource.class));
+//        router.attach(new RouteBuilder("/status/heap", HeapStatsResource.class));
+//        router.attach(new RouteBuilder("/serverLoad", ServerLoadResource.class));
+//        router.attach(new RouteBuilder("/serverTime", ServerTimeResource.class));
         router.attach(new RouteBuilder("/applications", ApplicationsResource.class));
         router.attach(new RouteBuilder("/performance", PerformanceResource.class));
     }
@@ -102,14 +99,6 @@ public class ManagementApplication extends SkysailApplication implements Applica
         this.instrumentation = null;
     }
 
-    @Override
-    public List<MenuItem> getMenuEntries() {
-        MenuItem menuItem = new MenuItem("/management", APP_NAME, this);//, PeersResource.class);
-        menuItem.setCategory(MenuItem.Category.ADMIN_MENU);
-        //new MenuItem(menuItem, "add new application", "application?media=htmlform");
-        return Arrays.asList(menuItem);
-    }
-
     public JmxMonitor getJmxMonitor() {
         return jmxMonitor;
     }
@@ -117,7 +106,7 @@ public class ManagementApplication extends SkysailApplication implements Applica
 	public MediaType getEventStreamMediaType() {
 	    return eventStream;
     }
-	
+
 	public EtmMonitor getMonitor() {
 	    return monitor;
     }

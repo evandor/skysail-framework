@@ -26,7 +26,9 @@ public class EmbeddedServer {
             return;
         }
 
-        server = new Server(Integer.parseInt(config.get("server-port")));
+        String javamelodyPort = config.get("server-port");
+        log.info("about to start javamelody on port '{}'", javamelodyPort);
+        server = new Server(Integer.parseInt(javamelodyPort));
         init(config);
         start();
     }

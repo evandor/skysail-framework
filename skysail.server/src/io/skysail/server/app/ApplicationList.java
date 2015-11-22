@@ -3,10 +3,11 @@ package io.skysail.server.app;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicReference;
 
+import lombok.extern.slf4j.Slf4j;
+
 import org.apache.commons.lang.Validate;
 import org.restlet.*;
 import org.restlet.data.Protocol;
-import org.slf4j.*;
 
 import aQute.bnd.annotation.component.*;
 import aQute.bnd.annotation.component.Component;
@@ -16,22 +17,21 @@ import de.twenty11.skysail.server.app.*;
 /**
  * This class keeps track of all available skysail applications and injects the
  * default services.
- * 
+ *
  * Once a new application provider is registered, it is queried for its
  * application and - if the serviceListProvider is already available - it will
  * be used to inject all default services into the new application.
- * 
+ *
  * When an application becomes unavailable, it is removed from the list again.
- * 
+ *
  * This class is connected to the @link {@link ServiceList}, which implements
  * the @link {@link ServiceListProvider} interface.
- * 
+ *
  *
  */
 @Component(immediate = true)
+@Slf4j
 public class ApplicationList implements ApplicationListProvider { // NO_UCD (unused code)
-
-    private static Logger logger = LoggerFactory.getLogger(ApplicationList.class);
 
     private volatile List<SkysailApplication> applications = new ArrayList<>();
     private AtomicReference<ServiceListProvider> serviceListProviderRef = new AtomicReference<>();
@@ -42,18 +42,17 @@ public class ApplicationList implements ApplicationListProvider { // NO_UCD (unu
     @Reference(multiple = true, optional = true, dynamic = true)
     public synchronized void addApplicationProvider(ApplicationProvider provider) {
         SkysailApplication application = getApplication(provider);
-        logger.info("(+) Adding application '{}'", application.getName());
-
         application.setStatusService(new SkysailStatusService());
         applications.add(application);
         attachToComponent(application);
+        log.info("(+ Application) (#{}) with name '{}'", applications.size(), application.getName());
     }
 
     public synchronized void removeApplicationProvider(ApplicationProvider provider) {
         SkysailApplication application = getApplication(provider);
-        logger.info("(-) Removing application '{}'", application.getName());
         detachFromComponent(application);
         applications.remove(application);
+        log.info("(- Application) name '{}', count is {} now", application.getName(), applications.size());
     }
 
     /** === The service list =================================== */
@@ -130,10 +129,10 @@ public class ApplicationList implements ApplicationListProvider { // NO_UCD (unu
 
         SkysailApplication skysailApplication = (SkysailApplication) app;
 
-        logger.info(" >>> unsetting ServerConfiguration");
+        log.debug(" >>> unsetting ServerConfiguration");
 
         // TODO make nicer
-        logger.info(" >>> attaching skysailApplication '{}' to defaultHost", "/" + skysailApplication.getName());
+        log.debug(" >>> attaching skysailApplication '{}' to defaultHost", "/" + skysailApplication.getName());
         if (skysailApplication.getHome() != null) {
             // http://stackoverflow.com/questions/6810128/restlet-riap-protocol-deployed-in-java-app-server
             restletComponent.getDefaultHost().detach(app);

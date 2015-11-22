@@ -28,7 +28,6 @@ import de.twenty11.skysail.server.um.domain.SkysailUser;
  * A FormField is constructed from a java.lang.reflect.Field, together with a
  * SkysailServerResource; only {@link Field}s and {@link Reference}s should be
  * taken into account.
- *
  * </p>
  *
  * <p>
@@ -37,7 +36,6 @@ import de.twenty11.skysail.server.um.domain.SkysailUser;
  * </p>
  *
  */
-// TODO make Field annotation nested
 @Slf4j
 @ToString(of = { "name", "type", "inputType" })
 @Getter
@@ -286,6 +284,10 @@ public class FormField {
             }
         }
         return false;
+    }
+
+    public String getDescriptionFromResource() {
+        return new StringBuilder(resource.getClass().getName()).append(".").append(name).append(".desc").toString();
     }
 
     public String process(SkysailResponse<?> response, Map<String, Object> dataRow, String columnName, Object id) {

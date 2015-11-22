@@ -39,7 +39,7 @@ public class ServerLoad {
 
     @Activate
     public void activate() {
-        log.info("activating ServerLoad task");
+        log.debug("activating ServerLoad task");
         timerTask = new ServerLoadTimerTask(eventAdminRef);
         Timer timer = new Timer(true);
         timer.scheduleAtFixedRate(timerTask, 10000, 10 * 1000);

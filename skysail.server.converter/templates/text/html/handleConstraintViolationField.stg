@@ -24,14 +24,12 @@ handleConstraintViolationField(source, formField, messages,i,autofocus) ::= <<
         </div>
     $else$
         <div class='form-group has-error has-feedback'>
-          $label("", formField)$
+          $handleDefault(field)$
+          <div class='col-sm-2'>&nbsp;</div>
           <div class='col-sm-10'>
-            <input type="$formField.inputType$" class='form-control' name='$formField.name$' placeholder='' value='$formField.value$' tabindex="$i$">
-            <span class='glyphicon glyphicon-remove form-control-feedback' aria-hidden='true'></span>
-            <small style='' class='help-block' data-bv-validator='notEmpty' data-bv-for='title' data-bv-result='INVALID'>
-                $formField.violationMessage$
+            <small class='help-block' data-bv-validator='notEmpty' data-bv-for='title' data-bv-result='INVALID'>
+              $formField.violationMessage$
             </small>
-            $renderDescription(field,converter)$
           </div>
         </div>
     $endif$

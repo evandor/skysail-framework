@@ -293,6 +293,10 @@ public class ResourceModel<R extends SkysailServerResource<T>, T> {
         return resource.getClass().getName();
     }
 
+    public String getEntityname() {
+        return parameterizedType.getName();
+    }
+
     public String getContextPath() {
         SkysailApplication application = resource.getApplication();
         return new StringBuilder("/").append(application.getName())

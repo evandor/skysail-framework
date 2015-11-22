@@ -12,7 +12,6 @@ index(user, messages, converter, model) ::= <<
     <link rel="shortcut icon" href="/webapp/favicon.ico" type="image/x-icon" >
 
     $pace()$
-    $peity()$
     $jquery()$
     $bootstrap()$
     $select2(model.formfields)$
@@ -23,6 +22,15 @@ index(user, messages, converter, model) ::= <<
     $moment()$
     $cookieConsent()$
     $endOfHeaderJS(model.formfields)$
+
+    <style>
+      .form-group.required .control-label:before{
+        color: red;
+        content: "*";
+        position: absolute;
+        margin-left: -15px;
+      }
+    </style>
 
   </head>
 
@@ -81,9 +89,16 @@ index(user, messages, converter, model) ::= <<
 
     $select2JsEndOfBody(model.formfields)$
 
+    $peity()$
     <script type="text/javascript">
-        \$(".bar").peity("bar")
+        \$(".bar").peity("bar");
+
+        \$(function () {
+        	  \$('[data-toggle="tooltip"]').tooltip()
+        });
+
     </script>
+
 
   </body>
 </html>

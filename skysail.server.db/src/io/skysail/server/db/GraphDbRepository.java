@@ -18,7 +18,7 @@ public class GraphDbRepository<T extends Identifiable> implements DbRepository {
 
     protected DbService dbService;
 
-    private Class<?> entityType;
+    private Class<T> entityType;
 
     public GraphDbRepository() {
         entityType = getParameterizedType();
@@ -82,10 +82,11 @@ public class GraphDbRepository<T extends Identifiable> implements DbRepository {
 
     public List<T> find(Filter filter, Pagination pagination) {
         String sql =
-                "SELECT * from " + entityType.getSimpleName() +
+                "SELECT * from " + DbClassName.of(entityType) +
                 (!StringUtils.isNullOrEmpty(filter.getPreparedStatement()) ? " WHERE "+filter.getPreparedStatement() : "") + " " +
                 limitClause(pagination);
-        return dbService.findObjects(sql, filter.getParams());
+
+        return dbService.findGraphs(entityType, sql, filter.getParams());
     }
 
 //    public List<T> findVertex(Filter filter) {
@@ -120,13 +121,13 @@ public class GraphDbRepository<T extends Identifiable> implements DbRepository {
     }
 
 
-    private Class<?> getParameterizedType() {
+    private Class<T> getParameterizedType() {
         ParameterizedType parameterizedType = getParameterizedType(getClass());
         Type firstActualTypeArgument = parameterizedType.getActualTypeArguments()[0];
-        if (firstActualTypeArgument.getTypeName().startsWith("java.util.Map")) {
-            return Map.class;
-        }
-        return (Class<?>) firstActualTypeArgument;
+//        if (firstActualTypeArgument.getTypeName().startsWith("java.util.Map")) {
+//            return Map.class;
+//        }
+        return (Class<T>) firstActualTypeArgument;
     }
 
     private ParameterizedType getParameterizedType(Class<?> cls) {

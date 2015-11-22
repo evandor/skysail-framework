@@ -106,7 +106,6 @@ runbundles:\
     de.twenty11.owasp-java-html-sanitizer;version='[239.0.0,239.0.1)',\
     de.twentyeleven.skysail.org.antlr.stringtemplate-osgi;version=4.0.8,\
     ${skysail.server},\
-    ${javamelody},\
     skysail.server.app.um.db;version=latest,\
     org.jsoup;version=1.8.1,\
     skysail.server.codegen;version=latest,\
@@ -116,11 +115,13 @@ runbundles:\
     skysail.server.app.tap;version=latest,\
     skysail.server.app.twitter4j;version=latest,\
     skysail.server.app.todos;version=latest,\
-    skysail.server.designer.matrix;version=latest
+    skysail.server.designer.matrix;version=latest,\
+    skysail.server.designer.restclient;version=latest
 
 
     ### Pool #############################
 
+    ${javamelody},\
     skysail.product.todos;version=latest,\
     skysail.server.peers.adminconfig;version=${skysail.server.peers.adminconfig.version},\
     skysail.server.polymer;version=${skysail.server.polymer.version},\

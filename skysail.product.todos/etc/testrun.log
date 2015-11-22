@@ -13,3 +13,47 @@ INFO  net.serenitybdd.core.Serenity -
 |_______/    |_______|| _| `._____||_______||__| \__| |__|     |__|         |__|    
 -------------------------------------------------------------------------------------
 
+DEBUG net.serenitybdd.junit.runners.RetryFilteringRunNotifier - Test started: logged_in_admin_can_create_new_list(io.skysail.product.todos.test.TodosProductLargeTests)
+DEBUG net.thucydides.core.steps.StepEventBus - Test suite started for class io.skysail.product.todos.test.TodosProductLargeTests
+INFO  net.serenitybdd.core.Serenity - Test Suite Started: Todos product large tests
+INFO  net.serenitybdd.core.Serenity - 
+  _____ _____ ____ _____   ____ _____  _    ____ _____ _____ ____  
+ |_   _| ____/ ___|_   _| / ___|_   _|/ \  |  _ \_   _| ____|  _ \ 
+   | | |  _| \___ \ | |   \___ \ | | / _ \ | |_) || | |  _| | | | |
+   | | | |___ ___) || |    ___) || |/ ___ \|  _ < | | | |___| |_| |
+   |_| |_____|____/ |_|   |____/ |_/_/   \_\_| \_\|_| |_____|____/ 
+                                                                   
+
+TEST STARTED: logged_in_admin_can_create_new_list
+--------------------------------------------------------------------
+INFO  net.serenitybdd.core.Serenity - TEST NUMBER: 1
+INFO  net.thucydides.core.steps.StepInterceptor - STARTING STEP: TodosProductLargeTests.logged_in_admin_can_create_new_list - logging in as user '{0}' with password '{1}'
+INFO  n.t.core.screenshots.SingleThreadScreenshotProcessor - Processing screenshot: /var/folders/6h/l_z7dfrn5ngbm0lf8__3zhvm0000gn/T/screenshot4682041458606456742
+INFO  net.thucydides.core.steps.StepInterceptor - STEP DONE: logging in as user '{0}' with password '{1}'
+INFO  n.t.core.screenshots.SingleThreadScreenshotProcessor - Processing screenshot completed
+DEBUG net.serenitybdd.junit.runners.RetryFilteringRunNotifier - Test finished: logged_in_admin_can_create_new_list(io.skysail.product.todos.test.TodosProductLargeTests)
+INFO  net.serenitybdd.core.Serenity - 
+        __    _____ _____ ____ _____   ____   _    ____  ____  _____ ____  
+  _     \ \  |_   _| ____/ ___|_   _| |  _ \ / \  / ___|/ ___|| ____|  _ \ 
+ (_)_____| |   | | |  _| \___ \ | |   | |_) / _ \ \___ \\___ \|  _| | | | |
+  _|_____| |   | | | |___ ___) || |   |  __/ ___ \ ___) |___) | |___| |_| |
+ (_)     | |   |_| |_____|____/ |_|   |_| /_/   \_\____/|____/|_____|____/ 
+        /_/                                                                
+
+TEST PASSED: Logged in admin can create new list
+----------------------------------------------------------------------------
+DEBUG net.serenitybdd.junit.runners.RetryFilteringRunNotifier - Flushing notifications
+DEBUG net.serenitybdd.junit.runners.RetryFilteringRunNotifier - Test started: admin_cannot_login_with_wrong_credentials(io.skysail.product.todos.test.TodosProductLargeTests)
+DEBUG net.thucydides.core.steps.StepEventBus - Test suite started for class io.skysail.product.todos.test.TodosProductLargeTests
+INFO  net.serenitybdd.core.Serenity - Test Suite Started: Todos product large tests
+INFO  net.serenitybdd.core.Serenity - 
+  _____ _____ ____ _____   ____ _____  _    ____ _____ _____ ____  
+ |_   _| ____/ ___|_   _| / ___|_   _|/ \  |  _ \_   _| ____|  _ \ 
+   | | |  _| \___ \ | |   \___ \ | | / _ \ | |_) || | |  _| | | | |
+   | | | |___ ___) || |    ___) || |/ ___ \|  _ < | | | |___| |_| |
+   |_| |_____|____/ |_|   |____/ |_/_/   \_\_| \_\|_| |_____|____/ 
+                                                                   
+
+TEST STARTED: admin_cannot_login_with_wrong_credentials
+--------------------------------------------------------------------
+INFO  net.serenitybdd.core.Serenity - TEST NUMBER: 2

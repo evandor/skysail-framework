@@ -25,13 +25,13 @@ public class Repositories {
             throw new IllegalStateException("cannot set repository, name is missing");
         }
         repositories.put(identifier, repo);
-        log.info("adding repository (#{}) with name '{}'", repositories.size(),identifier);
+        log.info("(+ Repository)  (#{}) with name '{}'", repositories.size(),identifier);
     }
 
     public void unsetRepository(DbRepository repo) {
         String identifier = repo.getRootEntity().getName();
         repositories.remove(identifier);
-        log.info("removing repository with name '{}', count is {} now", identifier, repositories.size());
+        log.info("(- Repository)  name '{}', count is {} now", identifier, repositories.size());
     }
 
     public synchronized Map<String, DbRepository> getRepositories() {

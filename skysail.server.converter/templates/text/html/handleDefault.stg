@@ -1,0 +1,13 @@
+handleDefault(field) ::= <<
+<label for='$field.name$' class='col-sm-2 control-label'>
+  $if(converter.edit)$
+    <a href='/i18n/v1/messages/$model.entityname$.$field.name$/'>$messages.(field.nameKey).translated$</a>
+  $else$
+    $messages.(field.nameKey).translated$
+  $endif$
+  $renderDescription2(field,converter)$
+</label>
+<div class='col-sm-10'>
+  <input type="$field.inputType$" class='form-control' name='$field.name$' id='$field.name$' placeholder='$helpmessage(messages, field.placeholderKey)$' value='$data.(field.name)$' tabindex="$i$" $autofocus$ title="$helpmessage(messages, field.placeholderKey)$">
+</div>
+>>

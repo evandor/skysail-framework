@@ -81,7 +81,7 @@ public class HttpServer extends ServerResource implements RestletServicesProvide
             .sorted((e1,e2) -> e1.getKey().toString().compareTo(e2.getKey().toString()))
             .forEach(entry -> {
                 Object value = entry.getValue();
-                log.info("  {} => '{}'", entry.getKey(), value == null ? "<null>" : value.toString());
+                log.debug("  {} => '{}'", entry.getKey(), value == null ? "<null>" : value.toString());
             });
     }
 

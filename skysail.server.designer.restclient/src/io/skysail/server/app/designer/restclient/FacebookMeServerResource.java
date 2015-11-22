@@ -17,7 +17,7 @@ public class FacebookMeServerResource extends ServerResource {
             return new StringRepresentation("Token not found!");
         }
 
-        ProtectedClientResource me = new ProtectedClientResource("https://graph.facebook.com/me");
+        ProtectedClientResource me = new ProtectedClientResource("http://graph.facebook.com/me");
         me.setUseBodyMethod(true);
         me.setToken(token);
 

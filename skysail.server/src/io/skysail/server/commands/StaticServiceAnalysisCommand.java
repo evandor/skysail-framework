@@ -52,8 +52,10 @@ public class StaticServiceAnalysisCommand { // NO_UCD (unused code)
     }
 
     public void analysis() {
-        System.out.println("Running static services analysis ");
-        System.out.println("===================================");
+        System.out.println("Running static services analysis... ");
+        System.out.println("========================================================");
+        System.out.println("(past the following to e.g. http://www.webgraphviz.com/)");
+        System.out.println();
         Arrays.stream(ctx.getBundleContext().getBundles()).forEach(b -> {
             List<String> files = getDSFiles(b);
             files.stream().forEach(file -> parse(file));
@@ -71,7 +73,7 @@ public class StaticServiceAnalysisCommand { // NO_UCD (unused code)
         Matcher matcher = implementationPattern.matcher(file);
         while (matcher.find()) {
             String group = matcher.group(1);
-            System.out.println(group);
+            //System.out.println(group);
 
             List<String> targets = new ArrayList<>();
             List<String> sources = new ArrayList<>();
@@ -79,7 +81,7 @@ public class StaticServiceAnalysisCommand { // NO_UCD (unused code)
             Matcher interfacesMatcher = interfacesPattern.matcher(file);
             while (interfacesMatcher.find()) {
                 String implementing = interfacesMatcher.group(1);
-                System.out.println(" > " + implementing);
+                //System.out.println(" > " + implementing);
                 targets.add(implementing);
             }
 
@@ -87,7 +89,7 @@ public class StaticServiceAnalysisCommand { // NO_UCD (unused code)
             while (referenceMatcher.find()) {
                 String referencing = referenceMatcher.group(2);
                 sources.add(referencing);
-                System.out.println(" >>> " + referencing);
+                //System.out.println(" >>> " + referencing);
             }
 
             sources.stream().forEach(source -> {

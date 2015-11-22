@@ -399,7 +399,7 @@ public class OrientGraphDbService extends AbstractOrientDbService implements DbS
         OObjectDatabaseTx db = getObjectDb();
         try {
             Arrays.stream(entities).forEach(entity -> {
-                log.info("registering class '{}' @ orientDB", entity);
+                log.debug("registering class '{}' @ orientDB", entity);
                 db.getEntityManager().registerEntityClass(entity);
             });
         } finally {

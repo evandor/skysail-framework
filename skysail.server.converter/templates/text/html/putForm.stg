@@ -17,9 +17,22 @@ submitPut(label, o1,o2,tabindex) ::= <<
 
 renderDescription(field,converter) ::= <<
   $if(messages.(field.messageKey))$
-    <small class="help-block">$helpmessage(messages, field.messageKey)$ $editTextLink(field,converter)$</small>
+    <small class="help-block">$helpmessage(messages, field.descriptionFromResource)$ $editTextLink(field,converter)$</small>
   $else$
     $editTextLink(field,converter)$
+  $endif$
+>>
+
+renderDescription2(field,converter) ::= <<
+  $if(messages.(field.descriptionFromResource))$
+    &nbsp;
+    <span class="glyphicon glyphicon-question-sign text-muted" aria-hidden="true"
+        data-toggle="tooltip" data-placement="right" data-html="true" data-title="Info"
+        title="$helpmessage(messages, field.descriptionFromResource)$">
+    </span>
+  $endif$
+  $if(converter.edit)$
+      <a href='/i18n/v1/messages/$field.descriptionFromResource$/'><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>
   $endif$
 >>
 

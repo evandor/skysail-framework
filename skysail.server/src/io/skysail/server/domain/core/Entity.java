@@ -6,8 +6,12 @@ import java.util.*;
 
 import lombok.*;
 
-//@ToString
-//@Slf4j
+/**
+ * A central class of skysail's core domain: An entity belongs to exaclty one application
+ * and aggregates a list of fields describing the entities state along with a couple of
+ * resource classes dealing with creation, alteration, reading and deleting this state.
+ *
+ */
 @Getter
 @Setter
 public class Entity implements Identifiable {

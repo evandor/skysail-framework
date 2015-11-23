@@ -7,10 +7,17 @@ import io.skysail.server.app.Repositories;
 import java.util.*;
 
 import lombok.*;
-import lombok.extern.slf4j.Slf4j;
 
+/**
+ * This is the root class of skysail's core domain, describing an application, which aggregates
+ * a list of entities and keeps track of repositories to persist those entities.
+ *
+ * According to specific needs, the core domain can be adapted by extending the corresponding
+ * classes. For example, there's a domain extension dealing with the creation of java source
+ * files and classes according to a specific core domain model.
+ *
+ */
 @ToString
-@Slf4j
 public class Application implements Identifiable {
 
     @Getter

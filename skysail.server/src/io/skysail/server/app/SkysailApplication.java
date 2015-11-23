@@ -136,7 +136,8 @@ public abstract class SkysailApplication extends RamlApplication implements Appl
 
     /**
      * The core domain: a model defining an application with its entities, repositories,
-     * entities fields, relations and so on.
+     * entities fields, relations and so on. SkysailApplication itself cannot extend this
+     * class as it has to be derived from a restlet application.
      */
     private io.skysail.server.domain.core.Application applicationModel;
 
@@ -161,7 +162,6 @@ public abstract class SkysailApplication extends RamlApplication implements Appl
         this.apiVersion = apiVersion;
         applicationModel = new io.skysail.server.domain.core.Application(appName);
         entityClasses.forEach(cls -> applicationModel.add(new ClassEntity(cls)));
-        //setContext(new Context());
     }
 
 

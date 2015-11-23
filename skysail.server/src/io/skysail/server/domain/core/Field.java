@@ -3,6 +3,10 @@ package io.skysail.server.domain.core;
 import io.skysail.api.domain.Identifiable;
 import lombok.*;
 
+/**
+ * Part of skysail's core domain: A Field belongs to an entity which belongs to an application.
+ *
+ */
 @Getter
 @Setter
 @ToString

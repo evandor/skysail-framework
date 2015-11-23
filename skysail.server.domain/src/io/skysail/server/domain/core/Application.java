@@ -2,7 +2,6 @@ package io.skysail.server.domain.core;
 
 import io.skysail.api.domain.Identifiable;
 import io.skysail.api.repos.Repository;
-import io.skysail.server.app.Repositories;
 
 import java.util.*;
 

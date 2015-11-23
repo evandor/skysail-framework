@@ -1,9 +1,8 @@
-package io.skysail.server.utils;
+package io.skysail.server.domain.utils;
 
 import java.lang.reflect.*;
 import java.util.*;
 
-@Deprecated // use io.skysail.server.domain.core.ReflectionUtils
 public class ReflectionUtils {
 
     public static List<java.lang.reflect.Field> getInheritedFields(Class<?> type) {

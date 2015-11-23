@@ -1,7 +1,7 @@
 package io.skysail.server.domain.core;
 
 import io.skysail.api.domain.Identifiable;
-import io.skysail.server.utils.*;
+import io.skysail.server.domain.utils.*;
 
 import java.lang.reflect.Field;
 import java.util.function.Function;

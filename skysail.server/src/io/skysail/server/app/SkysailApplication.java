@@ -199,7 +199,7 @@ public abstract class SkysailApplication extends RamlApplication implements Appl
         router.attach(new RouteBuilder("" , firstClassEntity.getListResourceClass()));
         router.attach(new RouteBuilder("/" , firstClassEntity.getListResourceClass()));
 
-        applicationModel.getEntities().stream()
+        applicationModel.getEntities().values().stream()
             .map(ClassEntity.class::cast)
             .forEach(entity -> {
                 router.attach(new RouteBuilder("/" + entity.getId(), entity.getListResourceClass()));

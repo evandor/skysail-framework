@@ -32,30 +32,6 @@ public class ClassEntityTest {
     }
 
     @Test
-    public void post_resource_is_found() {
-        ClassEntity entity = new ClassEntity(identifiableClass);
-        assertThat(entity.getPostResourceClass().toString(),is(PostAThingResource.class.toString()));
-    }
-
-    @Test
-    public void put_resource_is_found() {
-        ClassEntity entity = new ClassEntity(identifiableClass);
-        assertThat(entity.getPutResourceClass().toString(),is(PutAThingResource.class.toString()));
-    }
-
-    @Test
-    public void list_resource_is_found() {
-        ClassEntity entity = new ClassEntity(identifiableClass);
-        assertThat(entity.getListResourceClass().toString(),is(AThingsResource.class.toString()));
-    }
-
-    @Test
-    public void entity_resource_is_found() {
-        ClassEntity entity = new ClassEntity(identifiableClass);
-        assertThat(entity.getEntityResourceClass().toString(),is(AThingResource.class.toString()));
-    }
-
-    @Test
     public void simple_stringField_is_detected_correctly() throws Exception {
         ClassEntity entity = new ClassEntity(identifiableClass);
         assertThat(entity.getFields().size(), is(1));

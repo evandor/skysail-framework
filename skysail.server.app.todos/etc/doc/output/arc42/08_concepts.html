@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <title>Project Structure</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta name="keywords" content="">
+    <meta name="generator" content="JBake">
+
+    <!-- Le styles -->
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/asciidoctor.css" rel="stylesheet">
+    <link href="../css/base.css" rel="stylesheet">
+    <link href="../css/prettify.css" rel="stylesheet">
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+
+    <!-- Fav and touch icons -->
+    <!--<link rel="apple-touch-icon-precomposed" sizes="144x144" href="../assets/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../assets/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">-->
+    <link rel="shortcut icon" href="../favicon.ico">
+  </head>
+  <body onload="prettyPrint()">
+    <div id="wrap">
+
+	<!-- Fixed navbar -->
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="../">JBake</a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="../about.html">About</a></li>
+            <li><a href="../code.html">Code</a></li>
+            <li><a href="../feed.xml">Subscribe</a></li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><a href="#">Action</a></li>
+                <li><a href="#">Another action</a></li>
+                <li><a href="#">Something else here</a></li>
+                <li class="divider"></li>
+                <li class="dropdown-header">Nav header</li>
+                <li><a href="#">Separated link</a></li>
+                <li><a href="#">One more separated link</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+    <div class="container">	
+	<div class="page-header">
+		<h1>Project Structure</h1>
+	</div>
+
+	<p><em>17 October 2013</em></p>
+
+	<p><div class="sect1">
+<h2 id="section-concepts">Concepts</h2>
+<div class="sectionbody">
+<div class="sidebarblock arc42help">
+<div class="content">
+<div class="paragraph">
+<div class="title">Contents</div>
+<p>The following chapters cover examples of frequent cross-cutting concerns (a.k.a. aspects in some programming languages)
+Fill in these chapters if there is <strong>NO</strong> building block that covers this aspect. If some of the concepts are not relevant for your project mention this fact instead of removing the section.</p>
+</div>
+<div class="paragraph">
+<div class="title">Motivation</div>
+<p>Some concept cannot be â€œfactoredâ€� into a separate building block of the architecture (e.g. the topic â€œsecurityâ€�). This section of the template is the location where you can describe all decision for such a cross cutting topic in one central place. Nevertheless, you have to make sure that all your building blocks conform to such decisions.</p>
+</div>
+<div class="paragraph">
+<div class="title">Form</div>
+<p>The form can be varied. Some concepts are plain natural language text with a freely chosen structure, some others may include models/scenarios using notations that are also applied in architecture views.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_domain_models">Domain Models</h3>
+<div class="sidebarblock arc42help">
+<div class="content">
+<div class="paragraph">
+<div class="title">Contents</div>
+<p>Business (or logical) models, domain models - they all describe subject-specific, business aspects, without relation to technology.
+Often these structures or concepts are re-used at many places within an architecture, especially within chapter [Building Block View]â€¦</p>
+</div>
+<div class="paragraph">
+<div class="title">Motivation</div>
+<p>Often parts of these models reappear in the building block view, but in order to â€žkeep them clean from technnologyâ€œ  they can be captured as a concept.</p>
+</div>
+<div class="paragraph">
+<div class="title">Form</div>
+<p>Usually either ER-Models (Entity-Relationship Models) or UML class diagrams (mainly containing entity classes) are used to document domain models.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_recurring_or_generic_structures_and_patterns">Recurring or Generic Structures and Patterns</h3>
+<div class="sidebarblock arc42help">
+<div class="content">
+<div class="paragraph">
+<div class="title">Motivation</div>
+<p>Sometimes a hierarchical decomposition of building blocks is insufficient for giving an overview of detailed interdependencies between individual building blocks. The following sections are intended to describe generic or specific dependencies among any set of building blocks â€“ possibly even across different levels.
+We call a dependency <strong>generic</strong> if it appears more than once in the architecture, and *specific*if it is unique.</p>
+</div>
+<div class="paragraph">
+<div class="title">Form</div>
+<p>Use building block models (class diagrams, package diagrams, component diagrams, etc.) and related descriptions in the same way as in the hierarchical decomposition.
+Often it is practical to support understandability by adding specific
+runtime views to explain these recurring structures.</p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_recurring_or_generic_structure_1">Recurring or Generic Structure 1</h4>
+<div class="paragraph">
+<p>&lt;insert diagram and descriptions here&gt;</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_recurring_or_generic_structure_2">Recurring or Generic Structure 2</h4>
+<div class="paragraph">
+<p>&lt;insert diagram and descriptions here&gt;</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_persistency">Persistency</h3>
+<div class="sidebarblock arc42help">
+<div class="content">
+<div class="paragraph">
+<p>Persistency means moving data from (volatile) memory to a durable storage medium (and back).</p>
+</div>
+<div class="paragraph">
+<p>Some of the data that a software system is processing must be written to and read from persistent storage media.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Volatile storage media (main memory or cache) are not designed for permanent storage. Data is lost if the hardware is switched off.</p>
+</li>
+<li>
+<p>The amount of data processed by commercial software systems normally exceeds the capacity of main memory.</p>
+</li>
+<li>
+<p>Hard disks, optical media and tapes often contain large amounts of existing business data that represent a significant investment.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Persistency is a technical issue that normally does not appear as part of the actual business functionality. An architect must deal with this issue nevertheless because most software systems require efficient access to persistently stored data. This is relevant for essentially all commercial and most technical systems; embedded systems on the other hand often differ in their data management requirements.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_user_interface">User Interface</h3>
+<div class="sidebarblock arc42help">
+<div class="content">
+<div class="paragraph">
+<p>Software systems that are used interactively by (human) users require a user interface. These can be graphical, textual, or voice user interfaces.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_ergonomics">Ergonomics</h3>
+<div class="sidebarblock arc42help">
+<div class="content">
+<div class="paragraph">
+<p>Ergonomics of software systems deals with the improvement (optimization) of their usability with respect to objective and subjective factors. Key ergonomic factors are user interface, reactivity (subjective performance) as well as availability and robustness of the system.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_flow_of_control">Flow of Control</h3>
+<div class="sidebarblock arc42help">
+<div class="content">
+<div class="paragraph">
+<p>Flow of control for software systems is related to visible flows (on the - graphical - user interface) as well as the flow of background activities. Therefore this section should cover control of the user interface as well as control of workflows.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_transaction_processing">Transaction Processing</h3>
+<div class="sidebarblock arc42help">
+<div class="content">
+<div class="paragraph">
+<p>A transaction is a sets of operations or activities that must be processed either in its entirety or not at all. The term is especially relevant in the database area with the important notion of ACID-transactions (atomic, consistent, isolated, durable).</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_session_handling">Session Handling</h3>
+<div class="sidebarblock arc42help">
+<div class="content">
+<div class="paragraph">
+<p>A session identifies an active connection between a client and a server. The session state must be preserved, which is esp. important if stateless protocols such as HTTP are used for communications. Session handling is a critical challenge esp. for intra- and internet-systems and can strongly influence the performance of a system.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_security">Security</h3>
+<div class="sidebarblock arc42help">
+<div class="content">
+<div class="paragraph">
+<p>The security of software systems deals with mechanisms that ensure data confidentiality, integrity, and availability.</p>
+</div>
+<div class="paragraph">
+<p>Typical issues are:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>How can data be protected during transport (e.g. via open networks such as the internet)?</p>
+</li>
+<li>
+<p>How can communicating entities ensure mutual trust?</p>
+</li>
+<li>
+<p>How can communicating entities identify each other and be protected against faked identities?</p>
+</li>
+<li>
+<p>How can communicating entities prove data provenience or certify validity of data?</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The topic of IT-security often touches upon legal aspects, sometimes even international law.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_safety">Safety</h3>
+<div class="sidebarblock arc42help">
+<div class="content">
+<div class="paragraph">
+<p>The safety of software systems deals with mechanisms that ensure that human life or our environment is not endangered.
+Describe your concept here: identify those parts of the system that might endanger life and describe mechanism to ensure proper safety.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_communications_and_integration">Communications and Integration</h3>
+<div class="sidebarblock arc42help">
+<div class="content">
+<div class="paragraph">
+<p><strong>Communication</strong>: Exchange of data between system components. Covers communications within one process or address space, between different processes (inter-process communication â€“ IPC), and between different systems.</p>
+</div>
+<div class="paragraph">
+<p><strong>Integration</strong>: Combination of existing systems in a new context. Also known as: (Legacy) Wrapper, Gateway, Enterprise Application Integration (EAI).</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_distribution">Distribution</h3>
+<div class="sidebarblock arc42help">
+<div class="content">
+<div class="paragraph">
+<p><strong>Distribution</strong>: Design of software systems whose parts are executed on different â€“ physically separated â€“ hardware systems.</p>
+</div>
+<div class="paragraph">
+<p>Distribution covers issues such as calling methods on remote systems (remote procedure call â€“ RPC or remote method invocation â€“ RMI), the transfer of data or documents among distributed parties, the choice of optimal modes of interaction or communications patterns (such as synchronous / asynchronous, publish-subscribe, peer-to-peer).</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_plausibility_and_validity_checks">Plausibility and Validity Checks</h3>
+<div class="sidebarblock arc42help">
+<div class="content">
+<div class="paragraph">
+<p>How and where do you check plausibility and validity of (input) data, esp. user inputs?</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_exception_error_handling">Exception/Error Handling</h3>
+<div class="sidebarblock arc42help">
+<div class="content">
+<div class="paragraph">
+<p>How are exceptions and errors handled systematically and consistently?</p>
+</div>
+<div class="paragraph">
+<p>How can the system reach a consistent state after an error? Is this done automatically or is manual interaction required?</p>
+</div>
+<div class="paragraph">
+<p>This aspect is also related to logging and tracing,</p>
+</div>
+<div class="paragraph">
+<p>Which kind of exceptions and errors are handled by the system? Which kinds of errors are forwarded to which external interface and which are handled fully internally?</p>
+</div>
+<div class="paragraph">
+<p>How do you use the exception handling mechanisms of your programming language? Do you use checked or unchecked exceptions?</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_system_management_and_administration">System Management and Administration</h3>
+<div class="sidebarblock arc42help">
+<div class="content">
+<div class="paragraph">
+<p>Larger software systems are often executed in controlled environments (data centers) under oversight of operators or administrators. These stakeholders require specific information on the applicationsâ€™ states during runtime as well as special means of control and configuration.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_logging_tracing">Logging, Tracing</h3>
+<div class="sidebarblock arc42help">
+<div class="content">
+<div class="paragraph">
+<p>There are two ways of documenting an applicationâ€™s status during runtime: <strong>Logging</strong> and <strong>Tracing</strong>. In both cases the application is extended with function or method calls that write state information, but there is a difference in their usage:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Logging can cover business or technical aspects or any combination of both.</p>
+</li>
+<li>
+<p>Business logs are normally prepared for end users, administrators or operators. They contain information on the business processes that are executed by the application. This kind of logging may also be related to auditing.</p>
+</li>
+<li>
+<p>Technical logs contain information for operators or developers. These are used for error detection and system optimization.</p>
+</li>
+<li>
+<p>Tracing is intended to provide debugging information for developers or support personnel. It is primarily used for error detection and analysis.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_business_rules">Business Rules</h3>
+<div class="sidebarblock arc42help">
+<div class="content">
+<div class="paragraph">
+<p>How do you deal with business logic and business rules? Is business logic implemented in the corresponding business classes or is it handled in a central component? Do you use a rule engine for the interpretation of business rules (production system, forward-/backward-chaining)?</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_configurability">Configurability</h3>
+<div class="sidebarblock arc42help">
+<div class="content">
+<div class="paragraph">
+<p>The flexibility of a software system is influenced by its configurability, i.e. the possibility to make certain decisions about usage of the system at a late point in time.</p>
+</div>
+<div class="paragraph">
+<p>Configurability can occur at the following events:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>During development: For example server, file, or directory names could be stored directly in the code (â€œhard-codedâ€�).</p>
+</li>
+<li>
+<p>During deployment or installation: Configuration information for a specific installation (such as the installation path) can be given.</p>
+</li>
+<li>
+<p>At system startup: Information can be read dynamically before or during system startup.</p>
+</li>
+<li>
+<p>During application execution: Configuration information is queried or read during runtime.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_parallelization_and_threading">Parallelization and Threading</h3>
+<div class="sidebarblock arc42help">
+<div class="content">
+<div class="paragraph">
+<p>Applications can be executed in parallel processes or threads. This creates a need for synchronization points. The theory of parallel processing serves as a foundation for this aspect. The architecture and implementation of parallel systems needs to consider many technical details such as address spaces, applied mechanisms for synchronization â€“
+guards, semaphores, etc. â€“ processes and threads, parallelism in the operating system, parallelism in virtual machines. etc.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_internationalization">Internationalization</h3>
+<div class="sidebarblock arc42help">
+<div class="content">
+<div class="paragraph">
+<p>This section covers support for usage of the system in different countries, i.e. adjusting the system to country specific attributes. Internationalization (often abbreviated as â€œi18nâ€� where â€œ18â€� refers to the eighteen characters between the I and the n) covers translation of text, usage of character encodings, display of fonts, writing of numbers and dates, and other (external) aspects.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_migration">Migration</h3>
+<div class="sidebarblock arc42help">
+<div class="content">
+<div class="paragraph">
+<p>In many cases a new software system is intended to replace an existing legacy system. As an architect you should not only consider your shiny new architecture but also all organizational and technical aspects that must be considered for the introduction or migration of the architecture.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Concept, process, or tools for data transfer and initial data creation.</p>
+</li>
+<li>
+<p>Concept for system introduction or temporary parallel operations of legacy system and new system.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Is it necessary to migrate existing data? How do you execute any needed syntactic or semantic transformations?</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_testability">Testability</h3>
+<div class="sidebarblock arc42help">
+<div class="content">
+<div class="paragraph">
+<p>Support for simple (and if possible automated) tests. This aspect is the basis for the important implementation pattern of â€œcontinuous integrationâ€�. Projects should support at least daily build-and-test cycles. Important keywords for this aspect are unit tests and mock objects.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_scaling_clustering">Scaling, Clustering</h3>
+<div class="sidebarblock arc42help">
+<div class="content">
+<div class="paragraph">
+<p>How can your system grow in a way that can cope with more load or a larger number of users and still keep up performance and throughput.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_high_availability">High Availability</h3>
+<div class="sidebarblock arc42help">
+<div class="content">
+<div class="paragraph">
+<p>How can you achieve high availability of your system? Do you use redundancy of major parts? Or do you distribute your system to different processors or locations. Are you running standby- systems?</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_code_generation">Code Generation</h3>
+<div class="sidebarblock arc42help">
+<div class="content">
+<div class="paragraph">
+<p>How and where do you use code generators to create parts of the system from models or domain specific languages (DSLâ€™s)?</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_build_management">Build-Management</h3>
+<div class="sidebarblock arc42help">
+<div class="content">
+<div class="paragraph">
+<p>How is the overall system created from is (source code) building blocks? Which repositories contain source code, where are configuration files, test cases, test data and build scripts (make, ant, maven) stored?</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div></p>
+
+	<hr />
+
+		</div>
+		<div id="push"></div>
+    </div>
+    
+    <div id="footer">
+      <div class="container">
+        <p class="muted credit">&copy; 2011 - 2015 | Mixed with <a href="http://getbootstrap.com/">Bootstrap v3.1.1</a> | Baked with <a href="http://jbake.org">JBake v2.4.0</a></p>
+      </div>
+    </div>
+    
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="../js/jquery-1.11.1.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/prettify.js"></script>
+    
+  </body>
+</html>

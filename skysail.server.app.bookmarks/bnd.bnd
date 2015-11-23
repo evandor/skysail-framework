@@ -21,29 +21,26 @@ Import-Package: org.osgi.framework,\
 	*
 
 -buildpath:  \
+	osgi.core;version=5.0,\
+	osgi.cmpn;version=5.0,\
 	org.restlet;version=${restlet.version},\
 	org.restlet.ext.raml;version=${restlet.version},\
 	lombok;version=1.16,\
 	slf4j.api;version=1.7,\
+	skysail.api;version=${skysail.api.version},\
     skysail.api.search;version=${skysail.api.search.version},\
     skysail.api.text;version=${skysail.api.text.version},\
 	skysail.server;version=${skysail.server.version},\
 	skysail.server.db;version=${skysail.server.db.version},\
+    skysail.server.queryfilter;version=${skysail.server.queryfilter.version},\
 	skysail.client.testsupport;version=latest,\
-	osgi.core;version=5.0,\
-	osgi.cmpn;version=5.0,\
 	com.springsource.org.junit;version=4.11,\
 	biz.aQute.bnd.annotation;version=2.4,\
-    skysail.api.text;version=${skysail.api.text.version},\
-    skysail.api.search;version=${skysail.api.search.version},\
-	skysail.server;version=${skysail.server.version},\
-	skysail.server.db;version=${skysail.server.db.version},\
 	javax.validation.api;version=1.1,\
 	org.apache.commons.beanutils;version=1.9,\
 	org.apache.shiro.core;version=1.2,\
 	javax.persistence;version=2.1,\
 	javassist;version=3.18,\
-	skysail.api;version=${skysail.api.version},\
 	org.jsoup;version=1.8,\
 	org.apache.commons.lang3;version=3.3,\
 	com.orientechnologies.orientdb-core;version=2.0

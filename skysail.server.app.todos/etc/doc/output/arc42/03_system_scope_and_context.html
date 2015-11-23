@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <title>Project Structure</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta name="keywords" content="">
+    <meta name="generator" content="JBake">
+
+    <!-- Le styles -->
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/asciidoctor.css" rel="stylesheet">
+    <link href="../css/base.css" rel="stylesheet">
+    <link href="../css/prettify.css" rel="stylesheet">
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+
+    <!-- Fav and touch icons -->
+    <!--<link rel="apple-touch-icon-precomposed" sizes="144x144" href="../assets/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../assets/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">-->
+    <link rel="shortcut icon" href="../favicon.ico">
+  </head>
+  <body onload="prettyPrint()">
+    <div id="wrap">
+
+	<!-- Fixed navbar -->
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="../">JBake</a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="../about.html">About</a></li>
+            <li><a href="../code.html">Code</a></li>
+            <li><a href="../feed.xml">Subscribe</a></li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><a href="#">Action</a></li>
+                <li><a href="#">Another action</a></li>
+                <li><a href="#">Something else here</a></li>
+                <li class="divider"></li>
+                <li class="dropdown-header">Nav header</li>
+                <li><a href="#">Separated link</a></li>
+                <li><a href="#">One more separated link</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+    <div class="container">	
+	<div class="page-header">
+		<h1>Project Structure</h1>
+	</div>
+
+	<p><em>17 October 2013</em></p>
+
+	<p><div class="sect1">
+<h2 id="section-system-scope-and-context">System Scope and Context</h2>
+<div class="sectionbody">
+<div class="sidebarblock arc42help">
+<div class="content">
+<div class="paragraph">
+<div class="title">Contents</div>
+<p>The context view defines the boundaries of the system under development to distinguish it from neighboring systems. It thereby identifies the system’s relevant external interfaces.
+Make sure that the interfaces are specified with all their relevant aspects (what is communicated, in which format is it communicated, what is the transport medium, …), even though some popular diagrams (such as the UML use case diagram) represent only a few aspects of the interface.</p>
+</div>
+<div class="paragraph">
+<div class="title">Motivation</div>
+<p>The interfaces to neighboring systems are among most critical and risky aspects of a project. Ensure early on that you have understood them in their entirety.</p>
+</div>
+<div class="ulist">
+<div class="title">Form</div>
+<ul>
+<li>
+<p>Various context diagram (see below)</p>
+</li>
+<li>
+<p>Lists of neighboring systems and their interfaces.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_business_context">Business Context</h3>
+<div class="sidebarblock arc42help">
+<div class="content">
+<div class="paragraph">
+<div class="title">Contents</div>
+<p>Identify <strong>all</strong>[^all_neighboring_systems] neighboring systems and specify all logical business data that is exchanged with the system under development. Add data formats and communication protocols with neighboring systems and the general environment if these are not specified in detail with the relevant components.</p>
+</div>
+<div class="paragraph">
+<p>[^all_neighboring_systems]: We often tend to a pragmatic approach – but here we <strong>insist</strong> on a list of all (a-l-l) neighboring systems. Too many projects have failed because they were not aware of their neighbors. :-(</p>
+</div>
+<div class="paragraph">
+<div class="title">Motivation</div>
+<p>Understanding the information exchange with neighboring systems (i.e. all input flows and all output flows).</p>
+</div>
+<div class="paragraph">
+<div class="title">Form</div>
+<p>Logical context diagram.
+In UML this can be simulated e.g. by class diagrams, use case diagrams, communications diagrams – i.e. all diagrams that represent the system as a black box and explain its interfaces to neighboring systems (in varying degrees of detail).
+If there are many neighboring systems you can substitute the context diagram with a table, including all the neighboring systems, their inputs and their outputs.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_technical_context">Technical Context</h3>
+<div class="sidebarblock arc42help">
+<div class="content">
+<div class="paragraph">
+<div class="title">Contents</div>
+<p>Specification of the communication channels linking your system to neighboring systems and the environment.</p>
+</div>
+<div class="paragraph">
+<div class="title">Motivation</div>
+<p>Understanding of the media used for information exchange with neighboring systems, and the environment.</p>
+</div>
+<div class="paragraph">
+<div class="title">Form</div>
+<p>E.g. UML deployment diagram describing channels to neighboring systems, together with a mapping table of logical input and output flows of the logical context diagram (3.1) to the channels.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_external_interfaces">External Interfaces</h3>
+<div class="sidebarblock arc42help">
+<div class="content">
+<div class="paragraph">
+<p>For many building blocks you can describe its interfaces directly in the black box template of the building block. For complex interfaces – and external interfaces are normally very complex – it is worth while to describe them in separate sections. Use the following interface template to guide you towards many questions that might be relevant for the interface.</p>
+</div>
+<div class="paragraph">
+<div class="title">Interface Template</div>
+<p>.</p>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<caption class="title">Table 1. Interface Template</caption>
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 75%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top" colspan="2">Interface ID</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Name</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Name of the Interface</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Version</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Changes w.r.t. previous release</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Who changed it and why?</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Contact person(s) or organization</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<div class="title">Business Context of the Interface</div>
+<p>.</p>
+</div>
+<div class="paragraph">
+<div class="title">Business Processes</div>
+<p>&lt;Diagram or desciption of business processes relevant for this interface&gt;</p>
+</div>
+<div class="paragraph">
+<div class="title">Interface Data</div>
+<p>&lt;Description of interface data&gt;</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Technical Context</p>
+</li>
+<li>
+<p>Form of interaction</p>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<div class="title">Requirements for the Interface</div>
+<ul>
+<li>
+<p>&#8230;&#8203;</p>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<div class="title">Security Aspects</div>
+<ul>
+<li>
+<p>&#8230;&#8203;</p>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<div class="title">Quantities</div>
+<ul>
+<li>
+<p>Runtime</p>
+</li>
+<li>
+<p>Throughput/Volume</p>
+</li>
+<li>
+<p>Availability</p>
+</li>
+<li>
+<p>Logging</p>
+</li>
+<li>
+<p>Archiving</p>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<div class="title">Participating Resources</div>
+<ul>
+<li>
+<p>&#8230;&#8203;</p>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<div class="title">Syntax: Data and Formats</div>
+<ul>
+<li>
+<p>Data Formats</p>
+</li>
+<li>
+<p>Validity &amp; Plausibility Rules</p>
+</li>
+<li>
+<p>Encoding, Character Sets</p>
+</li>
+<li>
+<p>Configuration data</p>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<div class="title">Syntax: Methods/Functions</div>
+<ul>
+<li>
+<p>Check data</p>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<div class="title">Interface Process</div>
+<ul>
+<li>
+<p>Logical and technical processes</p>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<div class="title">Semantics</div>
+<ul>
+<li>
+<p>Side effects, consequences</p>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<div class="title">Technical Infrastructure</div>
+<ul>
+<li>
+<p>Technical protocols</p>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<div class="title">Error and Exception Handling</div>
+<ul>
+<li>
+<p>&#8230;&#8203;</p>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<div class="title">Constraints and Assumptions</div>
+<ul>
+<li>
+<p>Access Rights</p>
+</li>
+<li>
+<p>Temporal constraints</p>
+</li>
+<li>
+<p>Parallel Access</p>
+</li>
+<li>
+<p>Preconditions for using the interface</p>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<div class="title">Operating the Interface</div>
+<ul>
+<li>
+<p>&#8230;&#8203;</p>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<div class="title">Meta Information for the Interface</div>
+<ul>
+<li>
+<p>Person in charge</p>
+</li>
+<li>
+<p>Costs of using the interface</p>
+</li>
+<li>
+<p>Organizational Issues</p>
+</li>
+<li>
+<p>Versioning</p>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<div class="title">Examples of Using the Interface</div>
+<ul>
+<li>
+<p>Sample data</p>
+</li>
+<li>
+<p>Sample flows and interactions</p>
+</li>
+<li>
+<p>Programming Examples</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<div class="title">External Interface 2</div>
+<p>&lt;insert interface template&gt;</p>
+</div>
+<div class="paragraph">
+<div class="title">External Interface 3</div>
+<p>&lt;insert interface template&gt;</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>&#8230;&#8203;</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<div class="title">External Interface n</div>
+<p>&lt;insert interface template&gt;</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div></p>
+
+	<hr />
+
+		</div>
+		<div id="push"></div>
+    </div>
+    
+    <div id="footer">
+      <div class="container">
+        <p class="muted credit">&copy; 2011 - 2015 | Mixed with <a href="http://getbootstrap.com/">Bootstrap v3.1.1</a> | Baked with <a href="http://jbake.org">JBake v2.4.0</a></p>
+      </div>
+    </div>
+    
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="../js/jquery-1.11.1.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/prettify.js"></script>
+    
+  </body>
+</html>

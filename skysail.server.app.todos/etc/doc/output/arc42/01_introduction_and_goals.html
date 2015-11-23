@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <title>Project Structure</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta name="keywords" content="">
+    <meta name="generator" content="JBake">
+
+    <!-- Le styles -->
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/asciidoctor.css" rel="stylesheet">
+    <link href="../css/base.css" rel="stylesheet">
+    <link href="../css/prettify.css" rel="stylesheet">
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+
+    <!-- Fav and touch icons -->
+    <!--<link rel="apple-touch-icon-precomposed" sizes="144x144" href="../assets/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../assets/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">-->
+    <link rel="shortcut icon" href="../favicon.ico">
+  </head>
+  <body onload="prettyPrint()">
+    <div id="wrap">
+
+	<!-- Fixed navbar -->
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="../">JBake</a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="../about.html">About</a></li>
+            <li><a href="../code.html">Code</a></li>
+            <li><a href="../feed.xml">Subscribe</a></li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><a href="#">Action</a></li>
+                <li><a href="#">Another action</a></li>
+                <li><a href="#">Something else here</a></li>
+                <li class="divider"></li>
+                <li class="dropdown-header">Nav header</li>
+                <li><a href="#">Separated link</a></li>
+                <li><a href="#">One more separated link</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+    <div class="container">	
+	<div class="page-header">
+		<h1>Project Structure</h1>
+	</div>
+
+	<p><em>17 October 2013</em></p>
+
+	<p><div class="sect1">
+<h2 id="section-introduction-and-goals">Introduction and Goals</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>This project&#8217;s goal is to provide a modular, domain-centric and RESTful Backend as a Service (<a href="https://en.wikipedia.org/wiki/Mobile_Backend_as_a_service">BaaS</a>).</p>
+</div>
+<div class="sect2">
+<h3 id="_requirements_overview">Requirements Overview</h3>
+<div class="sidebarblock arc42help">
+<div class="content">
+<div class="paragraph">
+<p>Short description of the functional requirements.
+Digest (or abstract) of the requirements documents.
+Reference to complete requirements documents (incl. version identification and location).</p>
+</div>
+<div class="paragraph">
+<div class="title">Contents</div>
+<p>A compact summary of the functional environment of the system. Answers the following questions (at least approximately):</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>What happens in the system&#8217;s environment?</p>
+</li>
+<li>
+<p>Why should the system exist?</p>
+</li>
+<li>
+<p>Why is the system valuable or important?</p>
+</li>
+<li>
+<p>Which problems does the system solve?</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<div class="title">Motivation</div>
+<p>From the point of view of the end users a system is created or modified to improve execution of a business activity.
+This essential architecture driver must not be neglected even though the quality of an architecture is mostly judged by its level of fulfillment of non-functional requirements.</p>
+</div>
+<div class="paragraph">
+<div class="title">Form</div>
+<p>Short textual description, probably in tabular use-case format.
+The business context should in any case refer to the corresponding requirements documents.</p>
+</div>
+<div class="paragraph">
+<div class="title">Examples</div>
+<p>Short descriptions of the most important:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>business processes</p>
+</li>
+<li>
+<p>functional requirements</p>
+</li>
+<li>
+<p>non-functional requirements and other constraints (the most important ones must be covered as architecture goals or are listed in the â€œConstraintsâ€� section), and/or</p>
+</li>
+<li>
+<p>quantity structures</p>
+</li>
+<li>
+<p>background information</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Here you can reuse parts of the requirements documents â€“ but keep these
+excerpts short and balance readability against avoidance of redundancy.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_quality_goals">Quality Goals</h3>
+<div class="sidebarblock arc42help">
+<div class="content">
+<div class="paragraph">
+<div class="title">Contents</div>
+<p>The top three (max five) goals for the architecture and/or constraints whose fulfillment is of highest importance to the major stakeholders. Goals that define the architectureâ€™s quality could be:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>availability</p>
+</li>
+<li>
+<p>modifiability</p>
+</li>
+<li>
+<p>performance</p>
+</li>
+<li>
+<p>security</p>
+</li>
+<li>
+<p>testability</p>
+</li>
+<li>
+<p>usability</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<div class="title">Motivation</div>
+<p>If you as an architect do not know how the quality of your work can be judged â€¦</p>
+</div>
+<div class="paragraph">
+<div class="title">Form</div>
+<p>Simple tabular representation, ordered by priorities</p>
+</div>
+<div class="paragraph">
+<div class="title">Background Information</div>
+<p><strong>NEVER</strong> start developing an architecture if these goals have not been put into writing and have not been signed by the major stakeholders.</p>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Warning</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>We have endured projects lacking defined quality goals much too often.
+We do not like to suffer, therefore we are by now highly convinced that
+the few hours spent on collecting quality goals are well invested.
+PH &amp; GS.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<div class="title">Sources</div>
+<p>The DIN/ISO 92000 Standard contains an extensive set of possible quality goals.Or use chapters 10 â€“ 17 of the <a href="http://www.volere.co.uk">VOLERE template</a> as a starting point .
+PH</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_stakeholders">Stakeholders</h3>
+<div class="sidebarblock arc42help">
+<div class="content">
+<div class="paragraph">
+<div class="title">Contents</div>
+<p>A list of the most important persons or organizations that are affected by can contribute to the architecture.</p>
+</div>
+<div class="paragraph">
+<div class="title">Motivation</div>
+<p>If you do not know the persons participating in or concerned with the project you may get nasty surprises later in the development process. Should your project manager maintain this list, make sure that all the people influencing the architecture are part of it.</p>
+</div>
+<div class="paragraph">
+<div class="title">Form</div>
+<p>Simple table with role names, person names, their knowledge as pertaining to architecture, their availability, etc.
+.Stakeholders</p>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 33%;">
+<col style="width: 66%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Role/Name</th>
+<th class="tableblock halign-left valign-top">Goal/Boundaries</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Expected Participation and Contribution</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The name or role of a stakeholder</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Why will this stakeholder have an interest in the architecture?</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">what do you expect as a contribution</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div></p>
+
+	<hr />
+
+		</div>
+		<div id="push"></div>
+    </div>
+    
+    <div id="footer">
+      <div class="container">
+        <p class="muted credit">&copy; 2011 - 2015 | Mixed with <a href="http://getbootstrap.com/">Bootstrap v3.1.1</a> | Baked with <a href="http://jbake.org">JBake v2.4.0</a></p>
+      </div>
+    </div>
+    
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="../js/jquery-1.11.1.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/prettify.js"></script>
+    
+  </body>
+</html>

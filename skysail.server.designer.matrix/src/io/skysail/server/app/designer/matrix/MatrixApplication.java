@@ -8,7 +8,7 @@ import java.util.*;
 
 import aQute.bnd.annotation.component.*;
 import de.twenty11.skysail.server.app.ApplicationProvider;
-import de.twenty11.skysail.server.core.restlet.*;
+import de.twenty11.skysail.server.core.restlet.ApplicationContextId;
 
 @Component(immediate = true)
 public class MatrixApplication extends SkysailApplication implements ApplicationProvider, MenuItemProvider {
@@ -33,9 +33,9 @@ public class MatrixApplication extends SkysailApplication implements Application
         this.repo = null;
     }
 
-    public MatrixRepository getRepository() {
-        return repo;
-    }
+//    public MatrixRepository getRepository() {
+//        return repo;
+//    }
 
     @Override
     protected void attach() {

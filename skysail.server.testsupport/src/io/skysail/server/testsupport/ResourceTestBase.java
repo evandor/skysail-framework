@@ -133,6 +133,8 @@ public class ResourceTestBase {
 
         Mockito.doReturn(Collections.emptySet()).when(app).startPerformanceMonitoring(Mockito.anyString());
 
+        app.setContext(new Context());
+
         app.createInboundRoot();
 
         return app.getContext();

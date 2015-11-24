@@ -34,7 +34,7 @@ public class RestclientApplication extends SkysailApplication implements Applica
     }
 
     public Repository getRepository() {
-        return (Repository) repo;
+        return (Repository)repo;
     }
 
     @Override

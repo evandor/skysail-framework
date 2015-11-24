@@ -10,7 +10,7 @@ import lombok.*;
  */
 @Getter
 @Setter
-@ToString
+@ToString(of = {"id", "type", "inputType"})
 public class Field implements Identifiable {
 
     /** the fields name or identifier, e.g. "title" */
@@ -27,6 +27,9 @@ public class Field implements Identifiable {
 
     /** text, textarea, radio, checkbox etc... */
     private InputType inputType;
+
+    /** if set for a Field of type String, indicates that the rendered value should be truncated */
+    private Integer truncateTo;
 
     public Field(String name) {
         this.id = name;

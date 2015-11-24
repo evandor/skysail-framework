@@ -1,7 +1,7 @@
 application(application,routercode) ::= <<
 package $application.packageName$;
 
-import io.skysail.api.repos.DbRepository;
+import io.skysail.api.repos.*;
 import io.skysail.server.app.SkysailApplication;
 import io.skysail.server.menus.*;
 
@@ -35,7 +35,7 @@ public class $application.applicationName$Application extends SkysailApplication
     }
 
     public Repository getRepository() {
-        return ($application.applicationName$)repo;
+        return (Repository) repo;
     }
 
     @Override

@@ -2,6 +2,7 @@ package io.skysail.server.forms.helper;
 
 import io.skysail.api.links.Link;
 import io.skysail.api.responses.*;
+import io.skysail.server.domain.core.Field;
 import io.skysail.server.forms.*;
 import io.skysail.server.restlet.resources.SkysailServerResource;
 
@@ -21,11 +22,19 @@ import java.util.*;
  */
 public class CellRendererHelper {
 
+    @Deprecated
     private FormField formField;
     private SkysailResponse<?> response;
+    private Field field;
 
+    @Deprecated
     public CellRendererHelper(FormField formField, SkysailResponse<?> response) {
         this.formField = formField;
+        this.response = response;
+    }
+
+    public CellRendererHelper(Field field, SkysailResponse<?> response) {
+        this.field = field;
         this.response = response;
     }
 
@@ -34,12 +43,29 @@ public class CellRendererHelper {
             return "";
         }
         String string = toString(cellData);
-        if (response instanceof ListServerResponse) {
+        if (response instanceof ListServerResponse && field == null) {
             return handleListView(string, formField, identifier);
+        }
+        if (response instanceof ListServerResponse) {
+            return handleListView(string, field, identifier);
         }
         return string;
     }
 
+    private String handleListView(String string, Field f, Object identifier) {
+        if (URL.class.equals(f.getType())) {
+            string = "<a href='" + string + "' target=\"_blank\">" + truncate(f, string, true) + "</a>";
+//        } else if (hasListViewLink(f)) {
+//            string = renderListViewLink(string, f, identifier);
+//        } else if (hasListViewColorize(f)) {
+//            string = renderListViewColorize(string, f);
+        } else {
+            string = truncate(f, string, false);
+        }
+        return string;
+    }
+
+    @Deprecated
     private String handleListView(String string, FormField ff, Object identifier) {
         if (URL.class.equals(ff.getType())) {
             string = "<a href='" + string + "' target=\"_blank\">" + truncate(ff, string, true) + "</a>";
@@ -57,6 +83,7 @@ public class CellRendererHelper {
         return ff.getListViewAnnotation() != null && !ff.getListViewAnnotation().colorize().equals("");
     }
 
+    @Deprecated
     private boolean hasListViewLink(FormField ff) {
         return ff.getListViewAnnotation() != null
                 && !ff.getListViewAnnotation().link().equals(ListView.DEFAULT.class);
@@ -106,6 +133,23 @@ public class CellRendererHelper {
                 }
                 return "<span title='" + oldValue + "'>"
                         + oldValue.substring(0, ff.getListViewAnnotation().truncate() - 3) + "...</span>";
+            }
+        }
+        return string;
+    }
+
+    private static String truncate(Field f, String string, boolean withoutHtml) {
+        if (f.getTruncateTo() == null) {
+            return string;
+        }
+        if (f.getTruncateTo() > 3) {
+            String oldValue = string;
+            if (string != null && string.length() > f.getTruncateTo()) {
+                if (withoutHtml) {
+                    return oldValue.substring(0, f.getTruncateTo() - 3) + "...";
+                }
+                return "<span title='" + oldValue + "'>"
+                        + oldValue.substring(0, f.getTruncateTo() - 3) + "...</span>";
             }
         }
         return string;

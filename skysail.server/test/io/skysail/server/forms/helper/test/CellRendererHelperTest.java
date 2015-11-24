@@ -30,38 +30,44 @@ public class CellRendererHelperTest {
 
     @Test
     public void null_input_is_formatted_as_empty_String() {
-        Object formatted = new CellRendererHelper(null,null).render(null, "id");
+        FormField ff = null;
+        Object formatted = new CellRendererHelper(ff,null).render(null, "id");
         assertThat(formatted, is(""));
     }
 
     @Test
     public void list_input_is_formatted_as_lists_size() {
-        Object formatted = new CellRendererHelper(null, null).render(Arrays.asList("1","2","3"), "id");
+        FormField ff = null;
+        Object formatted = new CellRendererHelper(ff, null).render(Arrays.asList("1","2","3"), "id");
         assertThat(formatted, is("#3"));
     }
 
     @Test
     public void set_input_is_formatted_as_sets_size() {
         @SuppressWarnings({ "rawtypes", "unchecked", "serial" })
-        Object formatted = new CellRendererHelper(null, null).render(new HashSet() {{ add("1"); add("2"); }}, "id");
+        FormField ff = null;
+        Object formatted = new CellRendererHelper(ff, null).render(new HashSet() {{ add("1"); add("2"); }}, "id");
         assertThat(formatted, is("2"));
     }
 
     @Test
     public void huge_long_is_interpreted_as_date_and_formatted() {
-        Object formatted = new CellRendererHelper(null, null).render(1100000000L, "id");
+        FormField ff = null;
+        Object formatted = new CellRendererHelper(ff, null).render(1100000000L, "id");
         assertThat(((String)formatted), is("1970-01-13"));
     }
 
     @Test
     public void other_non_string_objects_are_formatted_to_their_string_representation() {
-        Object formatted = new CellRendererHelper(null, null).render(new Date(1100000000L), "id");
+        FormField ff = null;
+        Object formatted = new CellRendererHelper(ff, null).render(new Date(1100000000L), "id");
         assertThat(((String)formatted), is("Tue Jan 13 18:33:20 CET 1970"));
     }
 
     @Test
     public void strings_newlines() {
-        Object formatted = new CellRendererHelper(null, null).render("a\rb\nc", "id");
+        FormField ff = null;
+        Object formatted = new CellRendererHelper(ff, null).render("a\rb\nc", "id");
         assertThat(((String)formatted), is("a&#13;b&#10;c"));
     }
 

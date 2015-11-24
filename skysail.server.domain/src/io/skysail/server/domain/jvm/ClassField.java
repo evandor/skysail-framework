@@ -20,6 +20,7 @@ public class ClassField extends io.skysail.server.domain.core.Field {
         setInputType(determineInputType(f));
         setMandatory(determineIfMandatory(f));
         setReadonly(false);
+        setTruncateTo(determineTruncation(f));
         setType(f.getType());
     }
 
@@ -41,4 +42,14 @@ public class ClassField extends io.skysail.server.domain.core.Field {
         }
         return false;
     }
+
+    private Integer determineTruncation(Field f) {
+        //ListView listViewAnnotation = f.getAnnotation(ListView.class);
+        return null;
+    }
+
+//    private boolean hasListViewLink(FormField ff) {
+//        return ff.getListViewAnnotation() != null
+//                && !ff.getListViewAnnotation().link().equals(ListView.DEFAULT.class);
+//    }
 }

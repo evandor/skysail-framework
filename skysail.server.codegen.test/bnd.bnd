@@ -36,7 +36,8 @@ Private-Package:  \
 	skysail.api.search;version=${skysail.api.search.version},\
 	skysail.api.text;version=${skysail.api.text.version},\
 	skysail.api.um;version=${skysail.api.um.version},\
-	skysail.server;version=${skysail.server.version},\
+    skysail.server.domain;version=${skysail.server.domain.version},\
+   	skysail.server;version=${skysail.server.version},\
 	skysail.server.codegen;version=latest,\
     skysail.server.queryfilter;version=${skysail.server.queryfilter.version},\
 	skysail.server.db;version=${skysail.server.db.version},\

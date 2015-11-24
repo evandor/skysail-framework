@@ -2,6 +2,7 @@ package io.skysail.server.app.tap;
 
 import io.skysail.api.repos.DbRepository;
 import io.skysail.server.app.*;
+import io.skysail.server.domain.core.Repositories;
 import io.skysail.server.menus.MenuItemProvider;
 
 import java.util.Arrays;

@@ -2,6 +2,7 @@ package io.skysail.server.db.it.clip;
 
 import io.skysail.api.repos.DbRepository;
 import io.skysail.server.app.*;
+import io.skysail.server.domain.core.Repositories;
 
 import java.util.Arrays;
 

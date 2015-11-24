@@ -36,6 +36,7 @@ Include-Resource: config=config, resources, templates=src;recursive:=true;filter
     skysail.api.search;version=${skysail.api.search.version},\
     skysail.api.text;version=${skysail.api.text.version},\
     skysail.api.um;version=${skysail.api.um.version},\
+    skysail.server.domain;version=${skysail.server.domain.version},\
     skysail.server;version=${skysail.server.version},\
     skysail.server.codegen;version=${skysail.server.codegen.version},\
     skysail.server.queryfilter;version=${skysail.server.queryfilter.version},\

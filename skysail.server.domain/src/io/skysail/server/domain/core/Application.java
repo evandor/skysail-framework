@@ -36,8 +36,8 @@ public class Application implements Identifiable {
         return this;
     }
 
-    public Map<String, Entity> getEntities() {
-        return Collections.unmodifiableMap(entities);
+    public Set<String> getEntityNames() {
+        return entities.keySet();
     }
 
     public Entity getEntity(String identifier) {

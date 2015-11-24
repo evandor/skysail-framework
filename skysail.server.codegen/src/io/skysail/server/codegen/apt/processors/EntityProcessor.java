@@ -30,7 +30,9 @@ public class EntityProcessor extends Processors {
         String applicationName = getOneAndOnlyApplicationName(generateResourceElements);
         JavaApplication application = new JavaApplication(applicationName);
         analyse(application, roundEnv, generateResourceElements);
-        application.getEntities().values().stream().forEach(entity -> {
+        application.getEntityNames().stream()
+            .map(e -> application.getEntity(e))
+            .forEach(entity -> {
             try {
                 createRepository((JavaEntity) entity);
                 createEntityResource(roundEnv, (JavaEntity) entity);

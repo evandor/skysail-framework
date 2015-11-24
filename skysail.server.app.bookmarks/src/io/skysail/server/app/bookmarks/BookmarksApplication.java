@@ -1,9 +1,9 @@
 package io.skysail.server.app.bookmarks;
 
 import io.skysail.api.repos.DbRepository;
-import io.skysail.server.app.*;
-import io.skysail.server.app.bookmarks.repo.BookmarksRepository;
+import io.skysail.server.app.SkysailApplication;
 import io.skysail.server.app.bookmarks.resources.*;
+import io.skysail.server.domain.core.Repositories;
 import io.skysail.server.menus.MenuItemProvider;
 import aQute.bnd.annotation.component.*;
 import de.twenty11.skysail.server.app.ApplicationProvider;

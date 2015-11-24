@@ -1,4 +1,5 @@
-package io.skysail.server.domain.core;
+package io.skysail.server.domain.jvm;
+
 
 
 public class ClassField extends io.skysail.server.domain.core.Field {

@@ -1,4 +1,4 @@
-package io.skysail.server.domain.core;
+package io.skysail.server.domain.core.resources;
 
 import io.skysail.api.domain.Identifiable;
 

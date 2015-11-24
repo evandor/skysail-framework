@@ -1,6 +1,7 @@
 package io.skysail.server.domain.core;
 
 import io.skysail.api.domain.Identifiable;
+import io.skysail.server.domain.core.resources.*;
 
 import java.util.*;
 
@@ -17,6 +18,8 @@ import lombok.*;
 public class Entity implements Identifiable {
 
     private String id;
+    private String packageName;
+    private String simpleName;
 
     private Map<String, Field> fields = new HashMap<>();
 
@@ -24,9 +27,6 @@ public class Entity implements Identifiable {
     private PutResource<Entity> putResource;
     private ListResource<Entity> listResource;
     private EntityResource<Entity> entityResource;
-
-    private String packageName;
-    private String simpleName;
 
     public Entity(String fullQualifiedClassName) {
         this.id = fullQualifiedClassName;
@@ -43,9 +43,14 @@ public class Entity implements Identifiable {
         return this;
     }
 
-    public Map<String, Field> getFields() {
-        return Collections.unmodifiableMap(fields);
+    public Set<String> getFieldNames() {
+        return fields.keySet();
     }
+
+    public Field getField(String identifier) {
+        return fields.get(identifier);
+    }
+
 
     public String getPostResourceClassName() {
         return packageName + ".Post" + simpleName + "Resource";
@@ -66,4 +71,5 @@ public class Entity implements Identifiable {
         }
         return fullQualifiedClassName.substring(indexOfLastDot+1);
     }
+
 }

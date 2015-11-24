@@ -4,7 +4,6 @@ X-Api-Version: 1
 Export-Package:  \
 	de.twenty11.skysail.server.metrics,\
 	io.skysail.server.services,\
-	io.skysail.server.domain.core,\
 	io.skysail.server.forms,\
 	de.twenty11.skysail.server.help,\
 	io.skysail.server.menus,\
@@ -74,6 +73,7 @@ Service-Component: *
 	skysail.api.text;version=${skysail.api.text.version},\
 	skysail.api.um;version=${skysail.api.um.version},\
 	skysail.api.validation;version=${skysail.api.validation.version},\
+    skysail.server.domain;version=${skysail.server.domain.version},\
 	de.twentyeleven.skysail.org.antlr.stringtemplate-osgi;version=4.0.8,\
 	de.twenty11.owasp-java-html-sanitizer;version=239.0,\
 	javax.persistence,\

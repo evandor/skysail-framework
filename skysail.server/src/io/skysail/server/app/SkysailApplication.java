@@ -7,7 +7,8 @@ import io.skysail.api.repos.Repository;
 import io.skysail.api.text.Translation;
 import io.skysail.api.um.*;
 import io.skysail.api.validation.ValidatorService;
-import io.skysail.server.domain.core.ClassEntity;
+import io.skysail.server.domain.core.Repositories;
+import io.skysail.server.domain.jvm.ClassEntity;
 import io.skysail.server.menus.MenuItem;
 import io.skysail.server.restlet.filter.*;
 import io.skysail.server.restlet.resources.SkysailServerResource;
@@ -139,7 +140,8 @@ public abstract class SkysailApplication extends RamlApplication implements Appl
      * entities fields, relations and so on. SkysailApplication itself cannot extend this
      * class as it has to be derived from a restlet application.
      */
-    private io.skysail.server.domain.core.Application applicationModel;
+    @Getter
+    private  io.skysail.server.domain.core.Application applicationModel;
 
     public SkysailApplication() {
         getEncoderService().getIgnoredMediaTypes().add(SkysailApplication.SKYSAIL_SERVER_SENT_EVENTS);
@@ -161,7 +163,7 @@ public abstract class SkysailApplication extends RamlApplication implements Appl
         setName(appName);
         this.apiVersion = apiVersion;
         applicationModel = new io.skysail.server.domain.core.Application(appName);
-        entityClasses.forEach(cls -> applicationModel.add(new ClassEntity(cls)));
+        entityClasses.forEach(cls -> applicationModel.add(new io.skysail.server.domain.jvm.ClassEntity(cls)));
     }
 
 
@@ -191,15 +193,16 @@ public abstract class SkysailApplication extends RamlApplication implements Appl
      * </p>
      */
     protected void attach() {
-        if (applicationModel.getEntities() == null || applicationModel.getEntities().size() == 0) {
+        if (applicationModel.getEntityNames().isEmpty()) {
             log.warn("there are no entities defined for the applicationModel {}", applicationModel);
             return;
         }
-        ClassEntity firstClassEntity = (ClassEntity) applicationModel.getEntities().get(0);
+        ClassEntity firstClassEntity = (ClassEntity) applicationModel.getEntity(applicationModel.getEntityNames().iterator().next());
         router.attach(new RouteBuilder("" , firstClassEntity.getListResourceClass()));
         router.attach(new RouteBuilder("/" , firstClassEntity.getListResourceClass()));
 
-        applicationModel.getEntities().values().stream()
+        applicationModel.getEntityNames().stream()
+            .map(key -> applicationModel.getEntity(key))
             .map(ClassEntity.class::cast)
             .forEach(entity -> {
                 router.attach(new RouteBuilder("/" + entity.getId(), entity.getListResourceClass()));

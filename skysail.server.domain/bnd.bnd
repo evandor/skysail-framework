@@ -21,7 +21,9 @@ Bundle-License: http://www.apache.org/licenses/LICENSE-2.0.txt
     org.codehaus.jettison.jettison;version=1.3
 Bundle-ActivationPolicy: lazy
 Export-Package:  \
-	io.skysail.server.domain.core
+	io.skysail.server.domain.core,\
+	io.skysail.server.domain.jvm,\
+	io.skysail.server.domain.core.resources
 Service-Component: *
 
 Private-Package:  \

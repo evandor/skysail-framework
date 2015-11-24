@@ -1,9 +1,11 @@
-package io.skysail.server.domain.core.test;
+package io.skysail.server.domain.jvm;
 
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
 import io.skysail.api.domain.Identifiable;
 import io.skysail.server.domain.core.*;
+import io.skysail.server.domain.core.test.AThing;
+import io.skysail.server.domain.jvm.ClassEntity;
 
 import org.junit.*;
 
@@ -29,30 +31,6 @@ public class ClassEntityTest {
         Class<? extends Identifiable> cls = AThing.class;
         ClassEntity entity = new ClassEntity(cls);
         assertThat(entity.getId(),is("AThing"));
-    }
-
-    @Test
-    public void post_resource_is_found() {
-        ClassEntity entity = new ClassEntity(identifiableClass);
-        assertThat(entity.getPostResourceClass().toString(),is(PostAThingResource.class.toString()));
-    }
-
-    @Test
-    public void put_resource_is_found() {
-        ClassEntity entity = new ClassEntity(identifiableClass);
-        assertThat(entity.getPutResourceClass().toString(),is(PutAThingResource.class.toString()));
-    }
-
-    @Test
-    public void list_resource_is_found() {
-        ClassEntity entity = new ClassEntity(identifiableClass);
-        assertThat(entity.getListResourceClass().toString(),is(AThingsResource.class.toString()));
-    }
-
-    @Test
-    public void entity_resource_is_found() {
-        ClassEntity entity = new ClassEntity(identifiableClass);
-        assertThat(entity.getEntityResourceClass().toString(),is(AThingResource.class.toString()));
     }
 
     @Test

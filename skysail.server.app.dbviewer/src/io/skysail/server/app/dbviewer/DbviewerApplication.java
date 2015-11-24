@@ -4,6 +4,7 @@ import io.skysail.api.repos.DbRepository;
 import io.skysail.server.app.*;
 import io.skysail.server.app.dbviewer.dbclasses.*;
 import io.skysail.server.app.dbviewer.dbentities.DbEntitiesResource;
+import io.skysail.server.domain.core.Repositories;
 import io.skysail.server.menus.MenuItemProvider;
 
 import java.util.Arrays;

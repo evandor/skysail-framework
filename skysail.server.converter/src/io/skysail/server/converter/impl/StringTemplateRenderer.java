@@ -8,7 +8,6 @@ import io.skysail.server.app.SkysailApplication;
 import io.skysail.server.converter.HtmlConverter;
 import io.skysail.server.converter.stringtemplate.STGroupBundleDir;
 import io.skysail.server.converter.wrapper.STUserWrapper;
-import io.skysail.server.domain.core.Application;
 import io.skysail.server.menus.MenuItemProvider;
 import io.skysail.server.model.ResourceModel;
 import io.skysail.server.restlet.resources.SkysailServerResource;
@@ -50,9 +49,6 @@ public class StringTemplateRenderer {
 
     public StringRepresentation createRepresenation(Object entity, Variant target,
             SkysailServerResource<?> resource) {
-
-        Application applicationModel = resource.getApplication().getApplicationModel();
-        applicationModel.toString();
 
         @SuppressWarnings({ "rawtypes", "unchecked" })
         ResourceModel<SkysailServerResource<?>,?> resourceModel = new ResourceModel(resource, (SkysailResponse<?>)entity, target);

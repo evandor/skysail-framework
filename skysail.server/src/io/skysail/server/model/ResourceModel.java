@@ -1,11 +1,11 @@
 package io.skysail.server.model;
 
 import io.skysail.api.domain.Identifiable;
-import io.skysail.api.links.*;
+import io.skysail.api.links.LinkRelation;
 import io.skysail.api.responses.*;
 import io.skysail.api.search.*;
 import io.skysail.server.app.SkysailApplication;
-import io.skysail.server.domain.core.Field;
+import io.skysail.server.domain.core.*;
 import io.skysail.server.forms.FormField;
 import io.skysail.server.menus.MenuItemProvider;
 import io.skysail.server.restlet.resources.*;
@@ -16,9 +16,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 import lombok.*;
-import lombok.extern.slf4j.Slf4j;
 
-import org.apache.commons.beanutils.*;
 import org.apache.commons.lang.StringUtils;
 import org.restlet.data.*;
 import org.restlet.engine.resource.VariantInfo;
@@ -50,7 +48,6 @@ import de.twenty11.skysail.server.core.restlet.ResourceContextId;
  * @param <R>
  * @param <T>
  */
-@Slf4j
 @Getter
 @ToString
 public class ResourceModel<R extends SkysailServerResource<T>, T> {
@@ -102,9 +99,6 @@ public class ResourceModel<R extends SkysailServerResource<T>, T> {
         parameterizedType = resource.getParameterizedType();
 
         fields = FormfieldUtils.determineFormfields(response, resource);
-        if (fields.size() == 0) {
-            fields = dynaFields;
-        }
 
         rootEntity = new EntityModel<R>(response.getEntity(), resource);
 
@@ -125,16 +119,16 @@ public class ResourceModel<R extends SkysailServerResource<T>, T> {
                     if (object instanceof Document) {
                         result.add(((Document)object).getDocMap());
                     } else if(object instanceof DynamicBean) {
-                        DynamicBean dynaClass = (DynamicBean) object;
-                        DynaBean bean = dynaClass.getBean();
-                        Map<String,Object> map = new HashMap<>();
-                        for (DynaProperty prop : dynaClass.getDynaProperties()) {
-                            map.put(prop.getName(), bean.get(prop.getName()));
-                            if (dynaFields.get(prop.getName()) == null) {
-                                dynaFields.put(prop.getName(), new FormField(new Field(prop.getName()), theResource));
-                            }
-                        }
-                        result.add(map);
+//                        DynamicBean dynaClass = (DynamicBean) object;
+//                        DynaBean bean = dynaClass.getBean();
+//                        Map<String,Object> map = new HashMap<>();
+//                        for (DynaProperty prop : dynaClass.getDynaProperties()) {
+//                            map.put(prop.getName(), bean.get(prop.getName()));
+//                            if (dynaFields.get(prop.getName()) == null) {
+//                                dynaFields.put(prop.getName(), new FormField(new Field(prop.getName()), theResource));
+//                            }
+//                        }
+//                        result.add(map);
                     } else {
                         result.add((Map<String, Object>) mapper.convertValue(object, LinkedHashMap.class));
                     }
@@ -174,10 +168,20 @@ public class ResourceModel<R extends SkysailServerResource<T>, T> {
     }
 
     private void apply(Map<String, Object> newRow, Map<String, Object> dataRow, String columnName, Object id) {
-        FormField formField = fields.get(columnName);
-        newRow.put(columnName, calc(formField, dataRow, columnName, id));
+
+        Application applicationModel = resource.getApplication().getApplicationModel();
+        Entity entity = applicationModel.getEntity(parameterizedType.getName());
+        Field field = entity.getField(columnName);
+//        if (field != null) {
+//            newRow.put(columnName, calc(field, dataRow, columnName, id));
+//        } else { // deprecated old style
+            FormField formField = fields.get(columnName);
+            newRow.put(columnName, calc(formField, dataRow, columnName, id));
+//        }
+
     }
 
+    @Deprecated
     private String calc(FormField formField, Map<String, Object> dataRow, String columnName, Object id) {
         if (formField != null) {
             String processed = formField.process(response, dataRow, columnName, id);
@@ -187,6 +191,16 @@ public class ResourceModel<R extends SkysailServerResource<T>, T> {
         }
         return dataRow.get(columnName) != null ? dataRow.get(columnName).toString() : "";
     }
+
+//    private String calc(Field field, Map<String, Object> dataRow, String columnName, Object id) {
+//        if (field != null) {
+//            String processed = field.process(response, dataRow, columnName, id);
+//            processed = checkPrefix(field, dataRow, processed, id);
+//            processed = checkPostfix(field, dataRow, processed, id);
+//            return processed;
+//        }
+//        return dataRow.get(columnName) != null ? dataRow.get(columnName).toString() : "";
+//    }
 
     public List<Breadcrumb> getBreadcrumbs() {
         return new Breadcrumbs().create(resource);
@@ -201,21 +215,21 @@ public class ResourceModel<R extends SkysailServerResource<T>, T> {
         }).collect(Collectors.toList());
     }
 
-    public List<Link> getLinks() throws Exception {
+    public List<io.skysail.api.links.Link> getLinks() throws Exception {
         return resource.getAuthorizedLinks();
     }
 
-    public List<Link> getCollectionLinks() throws Exception {
+    public List<io.skysail.api.links.Link> getCollectionLinks() throws Exception {
         return resource.getAuthorizedLinks().stream().filter(l -> LinkRelation.COLLECTION.equals(l.getRel()) || LinkRelation.SELF.equals(l.getRel()))
                 .collect(Collectors.toList());
     }
 
-    public List<Link> getCreateFormLinks() throws Exception {
+    public List<io.skysail.api.links.Link> getCreateFormLinks() throws Exception {
         return resource.getAuthorizedLinks().stream().filter(l -> LinkRelation.CREATE_FORM.equals(l.getRel()))
                 .collect(Collectors.toList());
     }
 
-    public List<Link> getResourceLinks() throws Exception {
+    public List<io.skysail.api.links.Link> getResourceLinks() throws Exception {
         return resource.getAuthorizedLinks().stream().filter(l -> l.isShowAsButtonInHtml())
                 .collect(Collectors.toList());
     }
@@ -348,6 +362,9 @@ public class ResourceModel<R extends SkysailServerResource<T>, T> {
     }
 
     public boolean isSubmitButtonNeeded() {
+        Application applicationModel = resource.getApplication().getApplicationModel();
+        Entity entity = applicationModel.getEntity(parameterizedType.getName());
+
         return !fields.values().stream().filter(f -> {
             return f.isSubmitField();
         }).findFirst().isPresent();
@@ -366,7 +383,7 @@ public class ResourceModel<R extends SkysailServerResource<T>, T> {
             return;
         }
         ListServerResource<?> listServerResource = (ListServerResource<?>) getResource();
-        List<Link> links = listServerResource.getLinks();
+        List<io.skysail.api.links.Link> links = listServerResource.getLinks();
         List<Class<? extends SkysailServerResource<?>>> entityResourceClass = listServerResource
                 .getAssociatedServerResources();
         if (entityResourceClass != null) {
@@ -377,7 +394,7 @@ public class ResourceModel<R extends SkysailServerResource<T>, T> {
         }
     }
 
-    private void addLinks(List<Link> links, Map<String, Object> dataRow) {
+    private void addLinks(List<io.skysail.api.links.Link> links, Map<String, Object> dataRow) {
         String id = guessId(dataRow);
         if (id == null) {
             return;
@@ -426,6 +443,9 @@ public class ResourceModel<R extends SkysailServerResource<T>, T> {
     }
 
     public List<FormField> getFormfields() {
+        Application applicationModel = resource.getApplication().getApplicationModel();
+        Entity entity = applicationModel.getEntity(parameterizedType.getName());
+
         return new ArrayList<FormField>(fields.values());
     }
 
@@ -484,6 +504,9 @@ public class ResourceModel<R extends SkysailServerResource<T>, T> {
     }
 
     private String checkPrefix(FormField formField, Map<String, Object> dataRow, String processed, Object id) {
+        Application applicationModel = resource.getApplication().getApplicationModel();
+        Entity entity = applicationModel.getEntity(parameterizedType.getName());
+
         if (this.resource instanceof ListServerResource) {
             if (formField.getListViewAnnotation() != null && !formField.getListViewAnnotation().prefix().equals("")) {
                 Object prefix = calc(fields.get(formField.getListViewAnnotation().prefix()), dataRow, formField

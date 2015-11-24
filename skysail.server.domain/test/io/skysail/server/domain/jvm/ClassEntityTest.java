@@ -3,9 +3,8 @@ package io.skysail.server.domain.jvm;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
 import io.skysail.api.domain.Identifiable;
-import io.skysail.server.domain.core.*;
+import io.skysail.server.domain.core.Entity;
 import io.skysail.server.domain.core.test.AThing;
-import io.skysail.server.domain.jvm.ClassEntity;
 
 import org.junit.*;
 
@@ -30,7 +29,7 @@ public class ClassEntityTest {
     public void id_is_set_in_class_constructor() {
         Class<? extends Identifiable> cls = AThing.class;
         ClassEntity entity = new ClassEntity(cls);
-        assertThat(entity.getId(),is("AThing"));
+        assertThat(entity.getId(),is(AThing.class.getName()));
     }
 
     @Test

@@ -31,7 +31,8 @@ Import-Package: org.osgi.framework,\
     skysail.api.search;version=${skysail.api.search.version},\
     skysail.api.text;version=${skysail.api.text.version},\
 	skysail.server;version=${skysail.server.version},\
-	skysail.server.db;version=${skysail.server.db.version},\
+	skysail.server.domain;version=${skysail.server.domain.version},\
+    skysail.server.db;version=${skysail.server.db.version},\
     skysail.server.queryfilter;version=${skysail.server.queryfilter.version},\
 	skysail.client.testsupport;version=latest,\
 	com.springsource.org.junit;version=4.11,\

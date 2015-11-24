@@ -34,8 +34,8 @@ public class $application.applicationName$Application extends SkysailApplication
         this.repo = null;
     }
 
-    public $application.applicationName$Repository getRepository() {
-        return repo;
+    public Repository getRepository() {
+        return ($application.applicationName$)repo;
     }
 
     @Override

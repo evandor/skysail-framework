@@ -19,25 +19,25 @@ public class ClassEntity extends Entity {
     protected Class<? extends Identifiable> identifiableClass;
 
     public ClassEntity(Class<? extends Identifiable> identifiableClass) {
-        super(identifiableClass.getSimpleName());
+        super(identifiableClass.getName());
         this.identifiableClass = identifiableClass;
         deriveFields(identifiableClass);
     }
 
     public Class<? extends ServerResource> getPostResourceClass() {
-        return getClass(identifiableClass.getPackage().getName() + ".Post" + getId() + "Resource");
+        return getClass(identifiableClass.getPackage().getName() + ".Post" + identifiableClass.getSimpleName() + "Resource");
     }
 
     public Class<? extends ServerResource> getPutResourceClass() {
-        return getClass(identifiableClass.getPackage().getName() + ".Put" + getId() + "Resource");
+        return getClass(identifiableClass.getPackage().getName() + ".Put" + identifiableClass.getSimpleName() + "Resource");
     }
 
     public Class<? extends ServerResource> getListResourceClass() {
-        return getClass(identifiableClass.getPackage().getName() + "." + getId() + "sResource");
+        return getClass(identifiableClass.getPackage().getName() + "." + identifiableClass.getSimpleName() + "sResource");
     }
 
     public Class<? extends ServerResource> getEntityResourceClass() {
-        return getClass(identifiableClass.getPackage().getName() + "." + getId() + "Resource");
+        return getClass(identifiableClass.getPackage().getName() + "." + identifiableClass.getSimpleName() + "Resource");
     }
 
     @SuppressWarnings("unchecked")

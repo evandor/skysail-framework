@@ -1,14 +1,16 @@
 package io.skysail.server.domain.jvm;
 
 import io.skysail.api.forms.InputType;
+import io.skysail.server.forms.ListView;
 
 import java.lang.reflect.Field;
 
 import javax.validation.constraints.*;
 
-import lombok.ToString;
+import lombok.*;
 
-@ToString(callSuper = true)
+@Value
+@EqualsAndHashCode(callSuper=true)
 public class ClassField extends io.skysail.server.domain.core.Field {
 
     public ClassField(String id) {
@@ -44,12 +46,10 @@ public class ClassField extends io.skysail.server.domain.core.Field {
     }
 
     private Integer determineTruncation(Field f) {
-        //ListView listViewAnnotation = f.getAnnotation(ListView.class);
+        ListView listViewAnnotation = f.getAnnotation(ListView.class);
+        if (listViewAnnotation != null && !listViewAnnotation.link().equals(ListView.DEFAULT.class)) {
+            return null;
+        }
         return null;
     }
-
-//    private boolean hasListViewLink(FormField ff) {
-//        return ff.getListViewAnnotation() != null
-//                && !ff.getListViewAnnotation().link().equals(ListView.DEFAULT.class);
-//    }
 }

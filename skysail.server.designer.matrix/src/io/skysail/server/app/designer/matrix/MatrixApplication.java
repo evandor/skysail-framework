@@ -1,6 +1,6 @@
 package io.skysail.server.app.designer.matrix;
 
-import io.skysail.api.repos.DbRepository;
+import io.skysail.api.repos.*;
 import io.skysail.server.app.SkysailApplication;
 import io.skysail.server.menus.*;
 
@@ -33,9 +33,9 @@ public class MatrixApplication extends SkysailApplication implements Application
         this.repo = null;
     }
 
-//    public MatrixRepository getRepository() {
-//        return repo;
-//    }
+    public Repository getRepository() {
+        return (Repository) repo;
+    }
 
     @Override
     protected void attach() {

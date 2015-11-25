@@ -1,7 +1,8 @@
 package io.skysail.server.designer.presentation;
 
-import io.skysail.api.repos.*;
+import io.skysail.api.repos.DbRepository;
 import io.skysail.server.app.*;
+import io.skysail.server.domain.core.Repositories;
 import io.skysail.server.menus.MenuItemProvider;
 
 import java.util.Arrays;
@@ -17,25 +18,20 @@ public class InteractivePresentationApplication extends SkysailApplication imple
     public static final String TODO_ID = "id";
     public static final String APP_NAME = "InteractivePresentation";
 
-    private TopicRepo repo;
-
     public InteractivePresentationApplication() {
         super(APP_NAME, new ApiVersion(1), Arrays.asList(Topic.class));
         addToAppContext(ApplicationContextId.IMG, "/static/img/silk/page_link.png");
     }
 
-    @Reference(dynamic = true, multiple = false, optional = false, target = "(name=TopicRepository)")
-    public void setRepository(DbRepository repo) {
-        this.repo = (TopicRepo) repo;
+    @Reference(dynamic = true, multiple = false, optional = false)
+    public void setRepositories(Repositories repos) {
+        super.setRepositories(repos);
     }
 
-    public void unsetRepository(DbRepository repo) {
-        this.repo = null;
+    public void unsetRepositories(DbRepository repo) {
+        super.setRepositories(null);
     }
 
-    public Repository getRepository() {
-        return (Repository) repo;
-    }
 
     @Override
     protected void attach() {

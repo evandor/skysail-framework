@@ -155,6 +155,10 @@ public class FormField {
         return isOfInputType(InputType.MARKDOWN_EDITOR);
     }
 
+    public boolean isTrixEditorInputType() {
+        return isOfInputType(InputType.TRIX_EDITOR);
+    }
+
     public boolean isTextareaInputType() {
         return isOfInputType(InputType.TEXTAREA);
     }

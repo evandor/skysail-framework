@@ -20,6 +20,10 @@ handleInputField(data, field, messages,i,autofocus) ::= <<
             $renderDescription(field,converter)$
           </div>
         </div>
+      $elseif(field.trixEditorInputType)$
+        <div class='form-group $if(field.mandatory)$required$endif$'>
+          $handleTrixEditor(field)$
+        </div>
       $elseif(field.selectionProvider && field.multiselectInputType)$
         <div class='form-group $if(field.mandatory)$required$endif$'>
           <label for='$field.name$' class='col-sm-2 control-label' style="text-align: left;">$helpmessage(messages, field.nameKey)$  $if(converter.edit)$<a href='/i18n/v1/messages/$data.entity.entity.class.name$.$field.name$/'><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>$endif$</label>
@@ -48,22 +52,22 @@ handleInputField(data, field, messages,i,autofocus) ::= <<
             $renderDescription(field,converter)$
           </div>
         </div>
-      $elseif(field.checkbox)$
-        <div class='form-group $if(field.mandatory)$required$endif$'>
-          $handleCheckbox(field)$
-        </div>
-      $elseif(field.date)$
-        <div class='form-group $if(field.mandatory)$required$endif$'>
-          $handleDateType(field)$
-        </div>
-      $elseif(field.range)$
-        <div class='form-group $if(field.mandatory)$required$endif$'>
-          $handleRange(field)$
-        </div>
-      $else$
-        <div class='form-group $if(field.mandatory)$required$endif$'>
-          $handleDefault(field)$
-        </div>
-      $endif$
+    $elseif(field.checkbox)$
+      <div class='form-group $if(field.mandatory)$required$endif$'>
+        $handleCheckbox(field)$
+      </div>
+    $elseif(field.date)$
+      <div class='form-group $if(field.mandatory)$required$endif$'>
+        $handleDateType(field)$
+      </div>
+    $elseif(field.range)$
+      <div class='form-group $if(field.mandatory)$required$endif$'>
+        $handleRange(field)$
+      </div>
+    $else$
+      <div class='form-group $if(field.mandatory)$required$endif$'>
+        $handleDefault(field)$
+      </div>
+    $endif$
   $endif$
 >>

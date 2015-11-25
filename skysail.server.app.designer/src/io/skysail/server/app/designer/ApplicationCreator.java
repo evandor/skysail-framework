@@ -142,6 +142,8 @@ public class ApplicationCreator {
         new File(Paths.get(path + "/resources").toString()).mkdir();
         new File(Paths.get(path + "/config/local").toString()).mkdirs();
 
+        Files.write(Paths.get(path + "/resources/.gitignore"), "".getBytes());
+
         copy(Paths.get(path), "io.skysail.server.db.DbConfigurations-skysailgraph.cfg");
         copy(Paths.get(path), "logback.xml");
     }

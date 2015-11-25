@@ -24,7 +24,6 @@ import org.osgi.framework.BundleException;
 import aQute.bnd.annotation.component.*;
 import de.twenty11.skysail.server.app.ApplicationProvider;
 import de.twenty11.skysail.server.core.restlet.*;
-import de.twenty11.skysail.server.services.*;
 
 @Component(immediate = true)
 @Slf4j
@@ -71,7 +70,7 @@ public class DesignerApplication extends SkysailApplication implements MenuItemP
 
         router.attach(new RouteBuilder("/entities/{" + ENTITY_ID + "}/actionfields/", PostActionFieldResource.class));
 
-        compileApplications();
+        //compileApplications();
     }
 
     @Reference(dynamic = true, multiple = false, optional = false, target = "(name=DesignerRepository)")

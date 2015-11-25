@@ -12,6 +12,7 @@ index(user, messages, converter, model) ::= <<
     <link rel="shortcut icon" href="/webapp/favicon.ico" type="image/x-icon" >
 
     $pace()$
+    $trix()$
     $jquery()$
     $bootstrap()$
     $select2(model.formfields)$

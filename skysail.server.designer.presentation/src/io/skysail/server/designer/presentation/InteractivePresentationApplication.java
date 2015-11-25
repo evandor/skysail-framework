@@ -2,13 +2,10 @@ package io.skysail.server.designer.presentation;
 
 import io.skysail.api.repos.*;
 import io.skysail.server.app.SkysailApplication;
-import io.skysail.server.menus.*;
-
-import java.util.*;
-
+import io.skysail.server.menus.MenuItemProvider;
 import aQute.bnd.annotation.component.*;
 import de.twenty11.skysail.server.app.ApplicationProvider;
-import de.twenty11.skysail.server.core.restlet.*;
+import de.twenty11.skysail.server.core.restlet.ApplicationContextId;
 
 @Component(immediate = true)
 public class InteractivePresentationApplication extends SkysailApplication implements ApplicationProvider, MenuItemProvider {
@@ -42,12 +39,5 @@ public class InteractivePresentationApplication extends SkysailApplication imple
         super.attach();
 
     }
-
-    public List<MenuItem> getMenuEntries() {
-        MenuItem appMenu = new MenuItem(APP_NAME, "/" + APP_NAME, this);
-        appMenu.setCategory(MenuItem.Category.APPLICATION_MAIN_MENU);
-        return Arrays.asList(appMenu);
-    }
-
 
 }

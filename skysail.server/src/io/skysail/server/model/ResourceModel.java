@@ -364,14 +364,14 @@ public class ResourceModel<R extends SkysailServerResource<T>, T> {
         return resource instanceof PutEntityServerResource;
     }
 
-//    public boolean isSubmitButtonNeeded() {
-//        Application applicationModel = resource.getApplication().getApplicationModel();
-//        Entity entity = applicationModel.getEntity(parameterizedType.getName());
-//
-//        return !fields.values().stream().filter(f -> {
-//            return f.isSubmitField();
-//        }).findFirst().isPresent();
-//    }
+    public boolean isSubmitButtonNeeded() {
+        Application applicationModel = resource.getApplication().getApplicationModel();
+        Entity entity = applicationModel.getEntity(parameterizedType.getName());
+
+        return !fields.values().stream().filter(f -> {
+            return f.isSubmitField();
+        }).findFirst().isPresent();
+    }
 
     public void setSearchService(SearchService searchService) {
         this.searchService = searchService;
@@ -501,7 +501,8 @@ public class ResourceModel<R extends SkysailServerResource<T>, T> {
 
     public String getDateFormat() {
         if (dateFormat != null && dateFormat instanceof SimpleDateFormat) {
-            return ((SimpleDateFormat) dateFormat).toPattern().replace("d", "D").replace("y", "Y");
+            //return ((SimpleDateFormat) dateFormat).toPattern().replace("d", "D").replace("y", "Y");
+            return "YYYY-MM-DD";
         }
         return "";
     }

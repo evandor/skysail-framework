@@ -117,7 +117,8 @@ runbundles:\
     skysail.server.app.todos;version=latest,\
     skysail.server.designer.matrix;version=latest,\
     skysail.server.app.designer;version=latest,\
-    skysail.server.designer.restclient;version=latest
+    skysail.server.designer.restclient;version=latest,\
+    skysail.server.designer.presentation;version=latest
 
 
     ### Pool #############################

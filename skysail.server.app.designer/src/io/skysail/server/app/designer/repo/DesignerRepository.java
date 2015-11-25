@@ -37,7 +37,8 @@ public class DesignerRepository implements DbRepository {
 
     public <T> List<T> findAll(Class<T> cls) {
         try {
-            return dbService.findObjects("select from " + cls.getSimpleName());
+
+            return dbService.findGraphs(cls, "select from " + DbClassName.of(cls));
         } catch (Exception e) {
             log.error(e.getMessage(),e);
             return Collections.emptyList();

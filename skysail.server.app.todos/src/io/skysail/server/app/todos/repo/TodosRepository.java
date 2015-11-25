@@ -44,7 +44,7 @@ public class TodosRepository extends GraphDbRepository<Todo>  implements DbRepos
                 + limitClause(pagination);
 
         //sql = "SELECT *, SUM(urgency,importance) as rank from Todo WHERE NOT (status=:status) AND owner=:owner AND #17:0 IN out('parent') ORDER BY rank DESC SKIP 0 LIMIT 10";
-        return dbService.findObjects(sql, filter.getParams());
+        return dbService.findGraphs(Todo.class, sql, filter.getParams());
     }
 
     @Override

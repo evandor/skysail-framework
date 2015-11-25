@@ -1,6 +1,7 @@
 package io.skysail.server.utils;
 
 import io.skysail.api.domain.Identifiable;
+import io.skysail.api.repos.DbRepository;
 
 import java.beans.*;
 import java.lang.reflect.*;
@@ -133,7 +134,9 @@ public class SkysailBeanUtilsBean extends BeanUtilsBean {
                 try {
                     newValue = new ArrayList<Identifiable>();
                     Class<?> parameterizedType = getParameterizedType(bean, name);
-                    createAndSetNewIdentifiables((Collection<?>)value, newValue, parameterizedType);
+                    if (parameterizedType != null) {
+                        createAndSetNewIdentifiables((Collection<?>) value, newValue, parameterizedType);
+                    }
                 } catch (NoSuchFieldException | SecurityException e) {
                     log.error(e.getMessage(), e);
                 }
@@ -165,9 +168,13 @@ public class SkysailBeanUtilsBean extends BeanUtilsBean {
     }
 
     private Class<?> getParameterizedType(Object bean, String name) throws NoSuchFieldException {
-        Class<?> parameterizedType = ReflectionUtils.getParameterizedType(bean.getClass().getDeclaredField(name)
-                .getAnnotation(io.skysail.api.forms.Field.class).repository());
-        return parameterizedType;
+        Field declaredField = bean.getClass().getDeclaredField(name);
+        io.skysail.api.forms.Field fieldAnnotation = declaredField.getAnnotation(io.skysail.api.forms.Field.class);
+        if (fieldAnnotation == null) {
+            return null;
+        }
+        Class<? extends DbRepository> repository = fieldAnnotation.repository();
+        return ReflectionUtils.getParameterizedType(repository);
     }
 
     @SuppressWarnings("unchecked")

@@ -8,12 +8,12 @@ renderEntityInfo(fields, messages, model) ::= <<
       </div>
     </form>
     <hr>
-    $fields:{ field | $handleReadonlyInputField(model, first(model.data), field, messages)$}$
+    $fields:{ field | $handleReadonlyInputField(model, first(model.data), first(model.rawData), field, messages)$}$
   $endif$
 
 >>
 
-handleReadonlyInputField(model, source, field, messages) ::= <<
+handleReadonlyInputField(model, source, raw, field, messages) ::= <<
   $if(field.readonlyInputType)$
       $if(field.tagsInputType)$
         <div class='form-group'>

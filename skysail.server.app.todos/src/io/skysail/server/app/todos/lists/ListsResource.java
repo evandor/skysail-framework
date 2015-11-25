@@ -21,6 +21,8 @@ public class ListsResource extends ListServerResource<TodoList> implements I18nA
 
     private ListService listService;
 
+    private MessageArguments messageArgs;
+
     public ListsResource() {
         super(ListResource.class);
         addToContext(ResourceContextId.LINK_TITLE, "Show Todo-Lists");
@@ -31,15 +33,13 @@ public class ListsResource extends ListServerResource<TodoList> implements I18nA
     protected void doInit() {
         super.doInit();
         app = (TodoApplication) getApplication();
-        getResourceContext().addAjaxNavigation(getResourceContext().getAjaxBuilder("lists-nav", "Lists:", ListsResource.class, TodosResource.class)
-                .identifier("id")
-                .createLabel("new list")
-                .createTarget(getTarget())
-                .build());
-        getResourceContext().addAjaxNavigation(getResourceContext().getAjaxBuilder("top10-nav", "Top 10:", Top10TodosResource.class, TodosResource.class)
-                .nameProperty("title")
-                .identifier("id")
-                .build());
+        getResourceContext().addAjaxNavigation(
+                getResourceContext().getAjaxBuilder("lists-nav", "Lists:", ListsResource.class, TodosResource.class)
+                        .identifier("id").createLabel("new list").createTarget(getTarget()).build());
+        getResourceContext().addAjaxNavigation(
+                getResourceContext()
+                        .getAjaxBuilder("top10-nav", "Top 10:", Top10TodosResource.class, TodosResource.class)
+                        .nameProperty("title").identifier("id").build());
         listService = getService(ListService.class);
     }
 
@@ -82,12 +82,14 @@ public class ListsResource extends ListServerResource<TodoList> implements I18nA
     }
 
     @Override
-    public MessageArguments getMessageArguments() {
-        return new MessageArguments(this.getClass())
-            .add("count of all lists of the current user", app.getListCount(getRequest()))
-            .add("count of all todos of the current user", app.getTodosCount(getRequest()))
-            .setNewIdentifier("testname")
-            .add("1", "b");
+    public synchronized MessageArguments getMessageArguments() {
+        if (messageArgs == null) {
+            messageArgs = new MessageArguments(this.getClass())
+                    .add("count of all lists of the current user", app.getListCount(getRequest()))
+                    .add("count of all todos of the current user", app.getTodosCount(getRequest()))
+                    .setNewIdentifier("testname").add("1", "b");
+        }
+        return messageArgs;
     }
 
 }

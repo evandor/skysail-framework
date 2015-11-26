@@ -114,18 +114,18 @@ runbundles:\
     skysail.server.app.bookmarks;version=latest,\
     skysail.server.app.dbviewer;version=latest,\
     skysail.server.app.svgedit;version=latest,\
-    skysail.server.app.tap;version=latest,\
     skysail.server.app.twitter4j;version=latest,\
     skysail.server.app.todos;version=latest,\
-    skysail.server.designer.matrix;version=latest,\
-    skysail.server.app.designer;version=latest,\
-    skysail.server.designer.restclient;version=latest,\
     skysail.server.designer.presentation;version=latest
 
 
     ### Pool #############################
 
     ${javamelody},\
+    skysail.server.designer.matrix;version=latest,\
+    skysail.server.app.designer;version=latest,\
+    skysail.server.designer.restclient;version=latest,\
+    skysail.server.app.tap;version=latest,\
     skysail.product.todos;version=latest,\
     skysail.server.peers.adminconfig;version=${skysail.server.peers.adminconfig.version},\
     skysail.server.polymer;version=${skysail.server.polymer.version},\

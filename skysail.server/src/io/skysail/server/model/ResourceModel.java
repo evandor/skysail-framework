@@ -435,6 +435,9 @@ public class ResourceModel<R extends SkysailServerResource<T>, T> {
     private Optional<Field> getDomainField(String columnName) {
         Application applicationModel = resource.getApplication().getApplicationModel();
         Entity entity = applicationModel.getEntity(parameterizedType.getName());
+        if (entity == null) {
+            return Optional.empty();
+        }
         return Optional.ofNullable(entity.getField(columnName));
     }
 

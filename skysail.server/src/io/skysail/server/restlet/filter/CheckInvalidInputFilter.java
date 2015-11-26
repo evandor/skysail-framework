@@ -128,7 +128,7 @@ public class CheckInvalidInputFilter<R extends SkysailServerResource<?>, T exten
         for (AllowedAttribute att : allowedAttributes) {
             htmlPolicyBuilder.allowAttributes(att.getName()).onElements(att.getForElements());
         }
-        htmlPolicyBuilder.allowUrlProtocols("http", "https");
+        htmlPolicyBuilder.allowUrlProtocols("http", "https", "file");
         return htmlPolicyBuilder;
     }
 
@@ -147,7 +147,7 @@ public class CheckInvalidInputFilter<R extends SkysailServerResource<?>, T exten
         Optional<Field> found = fields.stream().filter(f -> f.getName().equals(parameter.getName())).findFirst();
         if (found.isPresent()) {
             io.skysail.api.forms.Field fieldAnnotation = found.get().getAnnotation(io.skysail.api.forms.Field.class);
-            if (fieldAnnotation.htmlPolicy() != null) {
+            if (fieldAnnotation != null && fieldAnnotation.htmlPolicy() != null) {
                 htmlPolicyBuilder = createHtmlPolicyBuilder(fieldAnnotation.htmlPolicy());
             }
         }

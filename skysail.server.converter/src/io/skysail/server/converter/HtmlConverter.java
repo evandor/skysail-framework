@@ -4,7 +4,6 @@ import io.skysail.api.peers.PeersProvider;
 import io.skysail.api.search.SearchService;
 import io.skysail.server.app.SkysailApplication;
 import io.skysail.server.converter.impl.*;
-import io.skysail.server.http.InstallationProvider;
 import io.skysail.server.menus.MenuItemProvider;
 import io.skysail.server.restlet.resources.SkysailServerResource;
 
@@ -50,7 +49,7 @@ public class HtmlConverter extends ConverterHelper implements OsgiConverterHelpe
     private volatile Set<MenuItemProvider> menuProviders = new HashSet<>();
     private volatile PeersProvider peersProvider;
 
-    private InstallationProvider installationProvider;
+    //private InstallationProvider installationProvider;
 
     private SearchService searchService;
 
@@ -104,14 +103,14 @@ public class HtmlConverter extends ConverterHelper implements OsgiConverterHelpe
 
     // --- HttpServer Service ------------------------------------------------
 
-    @Reference(multiple = false, optional = false, dynamic = true)
-    public void setInstallationProvider(InstallationProvider service) {
-        this.installationProvider = service;
-    }
-
-    public void unsetInstallationProvider(InstallationProvider service) {
-        this.installationProvider = null;
-    }
+//    @Reference(multiple = false, optional = false, dynamic = true)
+//    public void setInstallationProvider(InstallationProvider service) {
+//        this.installationProvider = service;
+//    }
+//
+//    public void unsetInstallationProvider(InstallationProvider service) {
+//        this.installationProvider = null;
+//    }
 
 
     @Override
@@ -215,7 +214,7 @@ public class HtmlConverter extends ConverterHelper implements OsgiConverterHelpe
     }
 
     public String getProductName() {
-        return installationProvider != null ? installationProvider.getProductName() : "Skysail";
+        return "Skysail";
     }
 
 }

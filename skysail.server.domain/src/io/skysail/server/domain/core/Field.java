@@ -31,6 +31,10 @@ public class Field implements Identifiable {
     /** if set for a Field of type String, indicates that the rendered value should be truncated */
     private Integer truncateTo;
 
+    /** if set to true, the field will be rendered in such a way that the form will be submitted when clicking */
+    // TODO move GUI-specific stuff to model extension?
+    private boolean submitField;
+
     public Field(String name) {
         this.id = name;
     }

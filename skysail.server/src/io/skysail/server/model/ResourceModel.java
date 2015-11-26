@@ -174,16 +174,13 @@ public class ResourceModel<R extends SkysailServerResource<T>, T> {
 
     private void apply(Map<String, Object> newRow, Map<String, Object> dataRow, String columnName, Object id) {
 
-        Application applicationModel = resource.getApplication().getApplicationModel();
-        Entity entity = applicationModel.getEntity(parameterizedType.getName());
-        Field field = entity != null ? entity.getField(columnName) : null;
-        if (field != null) {
-            newRow.put(columnName, calc(field, dataRow, columnName, id));
+        Optional<Field> field = getDomainField(columnName);
+        if (field.isPresent()) {
+            newRow.put(columnName, calc(field.get(), dataRow, columnName, id));
         } else { // deprecated old style
             FormField formField = fields.get(columnName);
             newRow.put(columnName, calc(formField, dataRow, columnName, id));
         }
-
     }
 
     @Deprecated
@@ -367,7 +364,15 @@ public class ResourceModel<R extends SkysailServerResource<T>, T> {
     public boolean isSubmitButtonNeeded() {
         Application applicationModel = resource.getApplication().getApplicationModel();
         Entity entity = applicationModel.getEntity(parameterizedType.getName());
+        if (entity != null) {
+            if (entity.getFieldNames().stream().filter(f -> {
+                return entity.getField(f).isSubmitField();
+            }).findFirst().isPresent()) {
+                return true;
+            }
+        }
 
+        // old style, to be deprecated
         return !fields.values().stream().filter(f -> {
             return f.isSubmitField();
         }).findFirst().isPresent();
@@ -425,6 +430,12 @@ public class ResourceModel<R extends SkysailServerResource<T>, T> {
                 }).collect(Collectors.joining("&nbsp;&nbsp;"));
 
         dataRow.put("_links", linkshtml);
+    }
+
+    private Optional<Field> getDomainField(String columnName) {
+        Application applicationModel = resource.getApplication().getApplicationModel();
+        Entity entity = applicationModel.getEntity(parameterizedType.getName());
+        return Optional.ofNullable(entity.getField(columnName));
     }
 
     private String guessId(Object object) {

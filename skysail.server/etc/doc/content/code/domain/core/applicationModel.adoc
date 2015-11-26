@@ -15,3 +15,10 @@ hold multiple *fields* (describing their properties), and, each of them, *four r
 
 
 image::../../../img/applications.png[]
+
+== Example
+
+Let's say you want to define an bank account tracking application. You'd start with an application (called AccountsApplication) and define
+two Entities: Account and Transaction. An account (with a name, a bank identifier and the like) serves as a container for transactions (having
+an amount, a date, a comment etc). As a transaction always belongs to an account, you'd need one (aggregate root) repository only, the one
+for accounts.

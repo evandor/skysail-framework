@@ -5,11 +5,12 @@ import static org.junit.Assert.assertThat;
 import io.skysail.api.responses.SkysailResponse;
 import io.skysail.server.app.todos.*;
 
-import org.junit.Test;
+import org.junit.*;
 
 public class PutListResourceTest extends AbstractListResourceTest {
 
     @Test
+    @Ignore
     public void empty_form_data_yields_validation_failure() {
         TodoList aList = createList();
 

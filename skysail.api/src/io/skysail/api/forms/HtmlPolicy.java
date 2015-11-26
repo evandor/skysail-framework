@@ -9,9 +9,17 @@ import java.util.*;
  */
 public enum HtmlPolicy {
 
-    NO_HTML(Collections.<String> emptyList(), Collections.<AllowedAttribute> emptyList()), DEFAULT_HTML(Arrays.asList( // NO_UCD (test only)
-            "a", "b", "p", "ul", "li", "i", "strong", "em", "h1", "h2", "h3", "h4", "h5", "h6", "span", "div", "blockquote",
-            "pre", "sup", "sub"), Arrays.asList(new AllowedAttribute("style").onElements("span", "div", "p")));
+    NO_HTML(
+            Collections.<String> emptyList(), Collections.<AllowedAttribute> emptyList()
+           ),
+    DEFAULT_HTML(
+            Arrays.asList(
+                "a", "b", "p", "ul", "li", "i", "strong", "em", "h1", "h2", "h3", "h4", "h5", "h6",
+                "span", "div", "blockquote", "pre", "sup", "sub"),
+            Arrays.asList(
+                new AllowedAttribute("style").onElements("span", "div", "p"),
+                new AllowedAttribute("href").onElements("a"))
+           );
 
     private List<String> allowedElements;
     private List<AllowedAttribute> allowedAttributes;

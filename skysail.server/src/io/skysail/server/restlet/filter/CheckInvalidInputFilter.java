@@ -7,7 +7,7 @@ import io.skysail.server.restlet.resources.*;
 import io.skysail.server.utils.ReflectionUtils;
 
 import java.lang.reflect.Field;
-import java.util.List;
+import java.util.*;
 
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -96,11 +96,15 @@ public class CheckInvalidInputFilter<R extends SkysailServerResource<?>, T exten
             }
             return false;
         }
+
+        List<Field> fields = ReflectionUtils.getInheritedFields(resource.getParameterizedType());
+
         for (int i = 0; i < form.size(); i++) {
             Parameter parameter = form.get(i);
             String originalValue = parameter.getValue();
 
-            HtmlPolicyBuilder htmlPolicyBuilder = detectHtmlPolicyBuilder(resource, parameter);
+
+            HtmlPolicyBuilder htmlPolicyBuilder = detectHtmlPolicyBuilder(resource, parameter, fields);
 
             StringBuilder sb = new StringBuilder();
             // http://stackoverflow.com/questions/12558471/how-to-allow-specific-characters-with-owasp-html-sanitizer
@@ -124,6 +128,7 @@ public class CheckInvalidInputFilter<R extends SkysailServerResource<?>, T exten
         for (AllowedAttribute att : allowedAttributes) {
             htmlPolicyBuilder.allowAttributes(att.getName()).onElements(att.getForElements());
         }
+        htmlPolicyBuilder.allowUrlProtocols("http", "https");
         return htmlPolicyBuilder;
     }
 
@@ -137,14 +142,14 @@ public class CheckInvalidInputFilter<R extends SkysailServerResource<?>, T exten
         return policy;
     }
 
-    private HtmlPolicyBuilder detectHtmlPolicyBuilder(R resource, Parameter parameter) {
+    private HtmlPolicyBuilder detectHtmlPolicyBuilder(R resource, Parameter parameter, List<Field> fields) {
         HtmlPolicyBuilder htmlPolicyBuilder = noHtmlPolicyBuilder;
-
-        if (application != null && resource instanceof EntityServerResource) {
-            Class<? extends Object> cls = ((EntityServerResource<T>) resource).getEntity().getClass();
-            cls = resource.getParameterizedType();
-            throw new IllegalAccessError();
-            //htmlPolicyBuilder = application.getHtmlPolicy(cls, parameter.getName());
+        Optional<Field> found = fields.stream().filter(f -> f.getName().equals(parameter.getName())).findFirst();
+        if (found.isPresent()) {
+            io.skysail.api.forms.Field fieldAnnotation = found.get().getAnnotation(io.skysail.api.forms.Field.class);
+            if (fieldAnnotation.htmlPolicy() != null) {
+                htmlPolicyBuilder = createHtmlPolicyBuilder(fieldAnnotation.htmlPolicy());
+            }
         }
         return htmlPolicyBuilder;
     }

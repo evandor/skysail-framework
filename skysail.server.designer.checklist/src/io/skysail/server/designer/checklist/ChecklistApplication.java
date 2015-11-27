@@ -1,4 +1,4 @@
-package io.skysail.server.designer.presentation;
+package io.skysail.server.designer.checklist;
 
 import io.skysail.api.repos.*;
 import io.skysail.server.app.SkysailApplication;
@@ -11,22 +11,22 @@ import de.twenty11.skysail.server.app.ApplicationProvider;
 import de.twenty11.skysail.server.core.restlet.*;
 
 @Component(immediate = true)
-public class InteractivePresentationApplication extends SkysailApplication implements ApplicationProvider, MenuItemProvider {
+public class ChecklistApplication extends SkysailApplication implements ApplicationProvider, MenuItemProvider {
 
     public static final String LIST_ID = "lid";
     public static final String TODO_ID = "id";
-    public static final String APP_NAME = "InteractivePresentation";
+    public static final String APP_NAME = "Checklist";
 
-    private InteractivePresentationRepository repo;
+    private ChecklistRepository repo;
 
-    public InteractivePresentationApplication() {
+    public ChecklistApplication() {
         super(APP_NAME);
         addToAppContext(ApplicationContextId.IMG, "/static/img/silk/page_link.png");
     }
 
-    @Reference(dynamic = true, multiple = false, optional = false, target = "(name=InteractivePresentationRepository)")
+    @Reference(dynamic = true, multiple = false, optional = false, target = "(name=ChecklistRepository)")
     public void setRepository(DbRepository repo) {
-        this.repo = (InteractivePresentationRepository) repo;
+        this.repo = (ChecklistRepository) repo;
     }
 
     public void unsetRepository(DbRepository repo) {

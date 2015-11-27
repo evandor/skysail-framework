@@ -4,6 +4,7 @@ import io.skysail.api.links.Link;
 import io.skysail.api.responses.SkysailResponse;
 import io.skysail.server.app.designer.DesignerApplication;
 import io.skysail.server.app.designer.application.Application;
+import io.skysail.server.app.designer.codegen.PostCompilationResource;
 import io.skysail.server.app.designer.entities.resources.*;
 import io.skysail.server.restlet.resources.*;
 
@@ -51,7 +52,7 @@ public class ApplicationResource extends EntityServerResource<Application> {
     @Override
     public List<Link> getLinks() {
         return super.getLinks(PutApplicationResource.class, ApplicationResource.class, PostEntityResource.class,
-                EntitiesResource.class);
+                EntitiesResource.class, PostCompilationResource.class);
     }
 
     @Override

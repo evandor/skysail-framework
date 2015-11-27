@@ -7,29 +7,18 @@ import io.skysail.server.utils.CompositeClassLoader;
 
 import java.io.File;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
-import javax.tools.Diagnostic;
+import javax.tools.*;
 import javax.tools.Diagnostic.Kind;
-import javax.tools.DiagnosticCollector;
-import javax.tools.JavaCompiler;
-import javax.tools.JavaFileObject;
-import javax.tools.ToolProvider;
 import javax.validation.ConstraintViolation;
 
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 
 import org.apache.commons.beanutils.DynaProperty;
-import org.osgi.framework.Bundle;
-import org.osgi.framework.BundleContext;
+import org.osgi.framework.*;
 import org.restlet.resource.ServerResource;
 
 @Slf4j
@@ -40,10 +29,10 @@ public class InMemoryJavaCompiler {
     private static List<JavaFileObject> sourceCodes = new ArrayList<>();
     private static Map<String, CompiledCode> compiledCodes = new HashMap<>();
     private static CompiledCodeTrackingJavaFileManager fileManager = new CompiledCodeTrackingJavaFileManager(compiledCodes);
-    
+
     @Getter
     private static boolean compiledSuccessfully = true;
-    
+
     static {
         CompositeClassLoader customCL = new CompositeClassLoader();
         customCL.addClassLoader(Thread.currentThread().getContextClassLoader());
@@ -55,7 +44,7 @@ public class InMemoryJavaCompiler {
         dcl = new DynamicClassLoader(customCL);
         fileManager.setClassLoader(dcl);
     }
-    
+
     public static void collect(String className, String sourceCodeInText) throws Exception {
 
         SourceCode sourceCode = new SourceCode(className, sourceCodeInText);
@@ -69,7 +58,7 @@ public class InMemoryJavaCompiler {
         sourceCodes.clear();
         fileManager.clearCompiledCode();
     }
-    
+
     public static void compile(BundleContext bundleContext)//, String className, String sourceCodeInText)
             throws Exception {
 
@@ -87,6 +76,7 @@ public class InMemoryJavaCompiler {
         getBundleLocationFor(javax.persistence.Id.class, bundleLocations, bundles);
         getBundleLocationFor(com.fasterxml.jackson.annotation.JacksonAnnotation.class, bundleLocations, bundles);
         getBundleLocationFor(aQute.bnd.annotation.component.Component.class, bundleLocations, bundles);
+        getBundleLocationFor(org.restlet.ext.raml.RamlApplication.class, bundleLocations, bundles);
 
         String locs = bundleLocations.stream().map(l -> {
                 return l.replace("reference:", "").replace("file:/", "/").replace("%25", "%"); // replace("/","\\").

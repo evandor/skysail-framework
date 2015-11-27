@@ -17,8 +17,6 @@ import java.util.*;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
-import lombok.extern.slf4j.Slf4j;
-
 import org.osgi.framework.BundleException;
 
 import aQute.bnd.annotation.component.*;
@@ -26,7 +24,6 @@ import de.twenty11.skysail.server.app.ApplicationProvider;
 import de.twenty11.skysail.server.core.restlet.*;
 
 @Component(immediate = true)
-@Slf4j
 public class DesignerApplication extends SkysailApplication implements MenuItemProvider, ApplicationProvider {
 
     public static final String APP_NAME = "AppDesigner";
@@ -46,12 +43,12 @@ public class DesignerApplication extends SkysailApplication implements MenuItemP
         super.attach();
         router.attach(new RouteBuilder("", ApplicationsResource.class));
 
-        router.attach(new RouteBuilder("/compilations/", PostCompilationResource.class));
-
         router.attach(new RouteBuilder("/application/", PostApplicationResource.class));
         router.attach(new RouteBuilder("/applications", ApplicationsResource.class));
         router.attach(new RouteBuilder("/applications/{id}", ApplicationResource.class));
         router.attach(new RouteBuilder("/applications/{id}/", PutApplicationResource.class));
+
+        router.attach(new RouteBuilder("/applications/{id}/compilations/", PostCompilationResource.class));
 
         router.attach(new RouteBuilder("/applications/{id}/entities", EntitiesResource.class));
         router.attach(new RouteBuilder("/applications/{id}/entities/", PostEntityResource.class));
@@ -108,15 +105,11 @@ public class DesignerApplication extends SkysailApplication implements MenuItemP
         return menuItems;
     }
 
-    public void compileApplications() {
-        getRepository().findAll(Application.class).stream().forEach(app -> {
-            try {
-                ApplicationCreator applicationCreator = new ApplicationCreator(app, router, repo, getBundle());
-                if (applicationCreator.create(getEventAdmin())) {
-                    applicationCreator.setupInMemoryBundle(dbService, getComponentContext());
-                }
-            } catch (IllegalStateException ise) {
-                log.error(ise.getMessage(), ise);
+    public void compileApplication(String appId) {
+        getRepository().findAll(Application.class).stream().filter(app -> app.getId().equals("#"+appId)).findFirst().ifPresent(app -> {
+            ApplicationCreator applicationCreator = new ApplicationCreator(app, router, repo, getBundle());
+            if (applicationCreator.create(getEventAdmin())) {
+                applicationCreator.setupInMemoryBundle(dbService, getComponentContext());
             }
         });
     }

@@ -45,8 +45,12 @@ public class DesignerRepository implements DbRepository {
         }
     }
 
-    public <T> List<T> findAll(String sql) {
-        return dbService.findObjects(sql);
+    public List<Application> findApplications(String sql) {
+        return dbService.findGraphs(Application.class, sql);
+    }
+
+    public List<Entity> findEntities(String sql) {
+        return dbService.findGraphs(Entity.class, sql);
     }
 
     public static Object add(Identifiable entity, String... edges) {
@@ -96,7 +100,7 @@ public class DesignerRepository implements DbRepository {
 
     @Override
     public Identifiable findOne(String id) {
-        return null;
+        return dbService.findById2(Application.class, id);
     }
 
     @Override

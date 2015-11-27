@@ -30,8 +30,8 @@ public class PostCompilationResource extends PostEntityServerResource<Empty> {
     @Override
     public SkysailResponse<Empty> addEntity(Empty entity) {
         //InMemoryJavaCompiler.resetClassloader();
-        app.updateBundle();
-        //app.compileApplications();
+        //app.updateBundle();
+        app.compileApplication(getAttribute("id"));
         return new SkysailResponse<>();
     }
 

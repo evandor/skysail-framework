@@ -4,6 +4,7 @@ import io.skysail.api.links.Link;
 import io.skysail.server.app.designer.DesignerApplication;
 import io.skysail.server.app.designer.application.Application;
 import io.skysail.server.app.designer.entities.Entity;
+import io.skysail.server.db.DbClassName;
 import io.skysail.server.restlet.resources.ListServerResource;
 
 import java.util.*;
@@ -33,8 +34,8 @@ public class EntitiesResource extends ListServerResource<Entity> {
 
     @Override
     public List<Entity> getEntity() {
-        String sql = "SELECT * from " + Entity.class.getSimpleName() + " WHERE #"+id+" IN in('entities')";
-        return app.getRepository().findAll(sql);
+        String sql = "SELECT from " + DbClassName.of(Entity.class) + " WHERE #"+id+" IN in('entities')";
+        return app.getRepository().findEntities(sql);
     }
 
     @Override

@@ -1,12 +1,11 @@
-repository(application, entity, activationcode) ::= <<
-package $application.packageName$;
+package io.skysail.server.designer.checklist;
 
 import aQute.bnd.annotation.component.*;
 import io.skysail.api.domain.Identifiable;
 import io.skysail.api.repos.DbRepository;
 import io.skysail.server.db.DbService;
 
-public class $application.applicationName$Repository implements DbRepository {
+public class ChecklistRepository implements DbRepository {
 
     private DbService dbService;
 
@@ -46,4 +45,3 @@ public class $application.applicationName$Repository implements DbRepository {
         return null;
     }
 }
->>

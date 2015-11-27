@@ -2,6 +2,7 @@ package io.skysail.server.app.designer.application;
 
 import io.skysail.api.domain.Identifiable;
 import io.skysail.api.forms.*;
+import io.skysail.server.app.designer.entities.Entity;
 import io.skysail.server.forms.ListView;
 
 import java.util.*;
@@ -49,7 +50,7 @@ public class Application implements Identifiable {
     private String owner;
 
     //@Reference(cls = Entity.class)
-    private List<String> entities;
+    private List<Entity> entities = new ArrayList<>();
 
     /**
      * A builder which sets the mandatory attributes
@@ -60,13 +61,6 @@ public class Application implements Identifiable {
         this.packageName = packageName;
         this.path = path;
         this.projectName = projectName;
-    }
-
-    public List<String> getEntities() {
-        if (entities == null) {
-            entities = new ArrayList<>();
-        }
-        return entities;
     }
 
 }

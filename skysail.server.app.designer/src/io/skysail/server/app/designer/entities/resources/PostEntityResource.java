@@ -5,14 +5,11 @@ import io.skysail.api.responses.SkysailResponse;
 import io.skysail.server.app.designer.DesignerApplication;
 import io.skysail.server.app.designer.application.Application;
 import io.skysail.server.app.designer.entities.Entity;
-import io.skysail.server.app.designer.repo.DesignerRepository;
 import io.skysail.server.restlet.resources.PostEntityServerResource;
 
 import java.util.function.Consumer;
 
 import org.restlet.resource.ResourceException;
-
-import com.orientechnologies.orient.core.id.ORecordId;
 
 import de.twenty11.skysail.server.core.restlet.ResourceContextId;
 
@@ -40,11 +37,13 @@ public class PostEntityResource extends PostEntityServerResource<Entity> {
     @Override
     public SkysailResponse<Entity> addEntity(Entity entity) {
 
-        ORecordId added = (ORecordId) DesignerRepository.add(entity);
-
-        Application application = app.getRepository().getById(Application.class, id);
-        application.getEntities().add(added.getIdentity().toString());
-        app.getRepository().update(application, "entities");
+        Application theApplication = (Application) app.getRepository().findOne(getAttribute("id"));
+//        ORecordId added = (ORecordId) DesignerRepository.add(entity);
+//
+//        Application application = app.getRepository().getById(Application.class, id);
+//        application.getEntities().add(added.getIdentity().toString());
+        theApplication.getEntities().add(entity);
+        app.getRepository().update(theApplication, "entities");
         return new SkysailResponse<>();
     }
 

@@ -2,7 +2,7 @@ package io.skysail.server.app.designer.entities;
 
 import io.skysail.api.domain.Identifiable;
 import io.skysail.api.forms.*;
-import io.skysail.server.app.designer.fields.ActionEntityField;
+import io.skysail.server.app.designer.fields.*;
 
 import java.util.*;
 
@@ -25,14 +25,7 @@ public class Entity implements Identifiable {
     @Field(inputType = InputType.CHECKBOX)
     private boolean rootEntity;
 
-    private List<String> fields;
-
-    public List<String> getFields() {
-        if (fields == null) {
-            fields = new ArrayList<>();
-        }
-        return fields;
-    }
+    private List<EntityField> fields = new ArrayList<>();
 
     private List<ActionEntityField> actionFields;
 

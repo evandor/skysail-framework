@@ -2,7 +2,6 @@ package io.skysail.server.domain.core.test;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
-import io.skysail.server.domain.*;
 import io.skysail.server.domain.core.*;
 
 import org.junit.*;

@@ -37,19 +37,8 @@ import de.twenty11.skysail.server.um.domain.SkysailUser;
  *
  */
 @Slf4j
-@ToString(of = { "name", "type", "inputType" }, callSuper = true)
+@ToString(callSuper = true)
 public class FormField extends io.skysail.server.domain.core.Field {
-
-//    /** the fields name or identifier, e.g. "title" */
-//    @Getter
-//    private final String name;
-
-//    /** the fields (java) type, e.g. java.lang.String */
-//    @Getter
-//    private final Class<?> type;
-//
-//    /** text, textarea, radio, checkbox etc... */
-//    private final InputType inputType; // optional for a reference
 
     @Getter
     private ListView listViewAnnotation;

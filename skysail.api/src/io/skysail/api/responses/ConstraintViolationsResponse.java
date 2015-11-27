@@ -24,10 +24,6 @@ public class ConstraintViolationsResponse<T> extends SkysailResponse<T> {
     @JsonIgnore
     private Reference actionReference;
 
-//    public ConstraintViolationsResponse(T entity) {
-//        super(entity);
-//    }
-
     /**
      * Constructor.
      *

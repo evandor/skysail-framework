@@ -5,7 +5,6 @@ import static org.hamcrest.Matchers.contains;
 import static org.junit.Assert.assertThat;
 import io.skysail.api.domain.Identifiable;
 import io.skysail.api.repos.DbRepository;
-import io.skysail.server.domain.*;
 import io.skysail.server.domain.core.*;
 
 import org.junit.*;

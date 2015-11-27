@@ -12,6 +12,6 @@ import lombok.*;
 @ToString
 public abstract class Resource<T extends Identifiable>  {
 
-    private List<Link> links;
+    private List<Link<?>> links;
 
 }

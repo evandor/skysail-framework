@@ -19,8 +19,6 @@ public class SkysailResponse<T> {
 
     private T entity;
 
-    private Class<?> cls;
-
     /**
      * constructor.
      *
@@ -49,7 +47,4 @@ public class SkysailResponse<T> {
         return entity;
     }
 
-    public Class<?> getCls() {
-        return cls;
-    }
 }

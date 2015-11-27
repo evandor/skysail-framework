@@ -37,36 +37,45 @@ import de.twenty11.skysail.server.um.domain.SkysailUser;
  *
  */
 @Slf4j
-@ToString(of = { "name", "type", "inputType" })
-@Getter
-public class FormField {
+@ToString(of = { "name", "type", "inputType" }, callSuper = true)
+public class FormField extends io.skysail.server.domain.core.Field {
 
-    /** the fields name or identifier, e.g. "title" */
-    private final String name;
+//    /** the fields name or identifier, e.g. "title" */
+//    @Getter
+//    private final String name;
 
-    /** the fields (java) type, e.g. java.lang.String */
-    private final Class<?> type;
+//    /** the fields (java) type, e.g. java.lang.String */
+//    @Getter
+//    private final Class<?> type;
+//
+//    /** text, textarea, radio, checkbox etc... */
+//    private final InputType inputType; // optional for a reference
 
-    /** text, textarea, radio, checkbox etc... */
-    private final InputType inputType; // optional for a reference
+    @Getter
+    private ListView listViewAnnotation;
+
+    @Getter
+    private SkysailServerResource<?> resource;
+
+    @Getter
+    private String violationMessage;
+
+    /** if set to true, the field will be rendered in such a way that the form will be submitted when clicking */
+    @Setter
+    private boolean submitField;
 
     private Reference referenceAnnotation;
     private io.skysail.api.forms.Field formFieldAnnotation;
     private Submit submitAnnotation;
     private NotNull notNullAnnotation;
     private Size sizeAnnotation;
-    private ListView listViewAnnotation;
-
-    private SkysailServerResource<?> resource;
     private List<Option> selectionOptions;
 
-    @Getter
-    private String violationMessage;
-
     public FormField(Field field, SkysailServerResource<?> resource) {
-        name = field.getName();
-        type = field.getType();
-        inputType = getFromFieldAnnotation(field);
+        super(field.getName());
+        //setName(field.getName());
+        setType(field.getType());
+        setInputType(getFromFieldAnnotation(field));
         setAnnotations(field);
         this.resource = resource;
     }
@@ -80,9 +89,10 @@ public class FormField {
     }
 
     public FormField(io.skysail.server.domain.core.Field field, SkysailServerResource<?> theResource) {
-        name = field.getId();
-        type = String.class;//field.getType();
-        inputType = null;//getFromFieldAnnotation(field);
+        super(field.getId());
+        //name = field.getId();
+        setType(String.class);
+        setInputType(null);//getFromFieldAnnotation(field);
 //        setAnnotations(field);
         this.resource = theResource;
     }
@@ -96,10 +106,6 @@ public class FormField {
         sizeAnnotation = field.getAnnotation(Size.class);
     }
 
-    public String getInputType() {
-        return inputType != null ? inputType.name().toLowerCase() : "";
-    }
-
     public String getMessageKey() {
         return MessagesUtils.getBaseKey(resource.getCurrentEntity().getClass(), this) + ".desc";
     }
@@ -107,13 +113,14 @@ public class FormField {
     public String getNameKey() {
         Object entity = resource.getCurrentEntity();
         if (entity == null) {
-            return name;
+            return getId();
         }
         if (entity instanceof List && ((List<?>) entity).size() > 0) {
             return MessagesUtils.getBaseKey(((List<?>) entity).get(0).getClass(), this);
         }
         return MessagesUtils.getBaseKey(entity.getClass(), this);
     }
+
 
     public String getPlaceholderKey() {
         return MessagesUtils.getBaseKey(resource.getCurrentEntity().getClass(), this) + ".placeholder";
@@ -268,7 +275,7 @@ public class FormField {
         String value = "";
         if (currentEntity != null) {
             Method method2 = currentEntity.getClass().getMethod(
-                    "get" + getName().substring(0, 1).toUpperCase() + getName().substring(1));
+                    "get" + getId().substring(0, 1).toUpperCase() + getId().substring(1));
             Object methodCall = method2.invoke(currentEntity);
             if (methodCall != null) {
                 value = methodCall.toString();
@@ -291,7 +298,7 @@ public class FormField {
     }
 
     public String getDescriptionFromResource() {
-        return new StringBuilder(resource.getClass().getName()).append(".").append(name).append(".desc").toString();
+        return new StringBuilder(resource.getClass().getName()).append(".").append(getId()).append(".desc").toString();
     }
 
     public String process(SkysailResponse<?> response, Map<String, Object> dataRow, String columnName, Object id) {

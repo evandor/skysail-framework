@@ -15,6 +15,7 @@ import lombok.*;
  */
 @Getter
 @Setter
+@ToString
 public class Entity implements Identifiable {
 
     private String id;

@@ -16,7 +16,7 @@ public class DefaultListFieldFactory extends FieldFactory {
                 .filter(f -> test(resource, f))
                 .sorted((f1, f2) -> sort(resource, f1, f2))
                 .map(f -> new FormField(f, resource))
-                .collect(MyCollectors.toLinkedMap(FormField::getName, Function.identity()));
+                .collect(MyCollectors.toLinkedMap(FormField::getId, Function.identity()));
 
     }
 

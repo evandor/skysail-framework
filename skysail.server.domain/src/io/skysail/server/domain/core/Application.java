@@ -6,6 +6,7 @@ import io.skysail.api.repos.Repository;
 import java.util.*;
 
 import lombok.*;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * This is the root class of skysail's core domain, describing an application, which aggregates
@@ -17,6 +18,7 @@ import lombok.*;
  *
  */
 @ToString
+@Slf4j
 public class Application implements Identifiable {
 
     @Getter
@@ -25,13 +27,17 @@ public class Application implements Identifiable {
 
     private Map<String, Entity> entities = new HashMap<>();
 
-    private Repositories repositories;
+    private Repositories repositories = new Repositories();
 
     public Application(String id) {
         this.id = id;
     }
 
     public Application add(@NonNull Entity entity) {
+        if (entities.get(entity.getId()) != null) {
+            log.warn("entity {} already exists - not adding to application {}", entity.getId(), this.getId());
+            return this;
+        }
         entities.put(entity.getId(), entity);
         return this;
     }
@@ -42,6 +48,10 @@ public class Application implements Identifiable {
 
     public Entity getEntity(String identifier) {
         return entities.get(identifier);
+    }
+
+    public Collection<Entity> getEntities() {
+        return entities.values();
     }
 
     public Repository getRepository(String identifier) {

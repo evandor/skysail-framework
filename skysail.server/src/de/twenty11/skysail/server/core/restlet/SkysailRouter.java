@@ -1,7 +1,9 @@
 package de.twenty11.skysail.server.core.restlet;
 
-import io.skysail.server.app.ApiVersion;
-import io.skysail.server.restlet.resources.ListServerResource;
+import io.skysail.api.domain.Identifiable;
+import io.skysail.server.app.*;
+import io.skysail.server.domain.core.Application;
+import io.skysail.server.restlet.resources.*;
 
 import java.util.*;
 import java.util.Map.Entry;
@@ -9,7 +11,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 import lombok.extern.slf4j.Slf4j;
 
-import org.restlet.*;
+import org.restlet.Restlet;
 import org.restlet.resource.*;
 import org.restlet.routing.*;
 import org.restlet.security.Authorizer;
@@ -27,8 +29,11 @@ public class SkysailRouter extends Router {
 
     private ApiVersion apiVersion;
 
-    public SkysailRouter(Context context) {
-        super(context);
+    private SkysailApplication skysailApplication;
+
+    public SkysailRouter(SkysailApplication skysailApplication) {
+        super(skysailApplication.getContext());
+        this.skysailApplication = skysailApplication;
     }
 
     public TemplateRoute attach(String pathTemplate, Class<? extends ServerResource> targetClass) {
@@ -48,8 +53,8 @@ public class SkysailRouter extends Router {
         if (ListServerResource.class.isAssignableFrom(routeBuilder.getTargetClass())) {
             String metadataPath = pathTemplate + "!meta";
             RouteBuilder metaRouteBuilder = new RouteBuilder(metadataPath, routeBuilder.getTargetClass());
-            log.info("routing path '{}' -> '{}' -> '{}'", metadataPath, "RolesPredicateAuthorizer",
-                    metaRouteBuilder.getTargetClass().getName());
+            log.info("routing path '{}' -> '{}' -> '{}'", metadataPath, "RolesPredicateAuthorizer", metaRouteBuilder
+                    .getTargetClass().getName());
             attach(metadataPath, createIsAuthenticatedAuthorizer(metaRouteBuilder));
         }
 
@@ -61,6 +66,26 @@ public class SkysailRouter extends Router {
         log.info("routing path '{}' -> '{}' -> '{}'", pathTemplate, "RolesPredicateAuthorizer", routeBuilder
                 .getTargetClass().getName());
         attach(pathTemplate, isAuthenticatedAuthorizer);
+
+        updateApplicationModel(routeBuilder);
+    }
+
+    private void updateApplicationModel(RouteBuilder routeBuilder) {
+        Application applicationModel = skysailApplication.getApplicationModel();
+
+        Class<? extends ServerResource> targetClass = routeBuilder.getTargetClass();
+        if (targetClass != null) {
+            try {
+                SkysailServerResource<?> newInstance = (SkysailServerResource<?>) targetClass.newInstance();
+                Class<? extends Identifiable> parameterizedType = (Class<? extends Identifiable>) newInstance.getParameterizedType();
+                applicationModel.add(EntityFactory.createFrom(parameterizedType));
+
+            } catch (InstantiationException | IllegalAccessException e) {
+                e.printStackTrace();
+            }
+        } else {
+            log.warn("targetClass was null");
+        }
     }
 
     public void detachAll() {
@@ -186,9 +211,12 @@ public class SkysailRouter extends Router {
         if (restlet == null) {
             throw new IllegalStateException("RouteBuilder with neither TargetClass nor Restlet defined!");
         }
-        log.info("routing path '{}' -> Restlet '{}'", routeBuilder.getPathTemplate(apiVersion), restlet.getClass().getSimpleName());
+        log.info("routing path '{}' -> Restlet '{}'", routeBuilder.getPathTemplate(apiVersion), restlet.getClass()
+                .getSimpleName());
         restlet.setContext(getContext());
         attach(routeBuilder.getPathTemplate(apiVersion), restlet);
+        updateApplicationModel(routeBuilder);
+
     }
 
     public void setApiVersion(ApiVersion apiVersion) {

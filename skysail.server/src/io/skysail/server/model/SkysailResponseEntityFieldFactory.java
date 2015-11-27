@@ -30,7 +30,7 @@ public class SkysailResponseEntityFieldFactory extends FieldFactory {
         return ReflectionUtils.getInheritedFields(cls).stream()
                 .filter(f -> test(resource, f))
                 .map(f -> new FormField(f, resource, source))
-                .collect(MyCollectors.toLinkedMap(FormField::getName, Function.identity()));
+                .collect(MyCollectors.toLinkedMap(FormField::getId, Function.identity()));
     }
 
 }

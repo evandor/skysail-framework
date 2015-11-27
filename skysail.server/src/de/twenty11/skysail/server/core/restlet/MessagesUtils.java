@@ -11,11 +11,11 @@ public class MessagesUtils {
         if (entityClass.getName().contains("_$$_")) {
             entityClass = entityClass.getSuperclass();
         }
-        return entityClass.getName() + "." + f.getName();
+        return entityClass.getName() + "." + f.getId();
     }
 
     public static String getSimpleName(FormField f) {
-        return f.getName();
+        return f.getId();
     }
 
 }

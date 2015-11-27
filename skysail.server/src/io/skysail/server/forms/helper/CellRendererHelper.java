@@ -98,7 +98,7 @@ public class CellRendererHelper {
                 Method getColorMethod = valueOf.getDeclaringClass().getMethod(
                         "get" + colorize.substring(0, 1).toUpperCase() + colorize.substring(1));
                 String theColor = (String) getColorMethod.invoke(valueOf);
-                string = "<span class='ui-li-icon' style='border: 1px solid gray; background-color:"+theColor+"' title='"+ff.getName()+": "+ string +"'>&nbsp;&nbsp;</span>";
+                string = "<span class='ui-li-icon' style='border: 1px solid gray; background-color:"+theColor+"' title='"+ff.getId()+": "+ string +"'>&nbsp;&nbsp;</span>";
             } catch (Exception e) {
                 e.printStackTrace();
             }

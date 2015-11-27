@@ -362,17 +362,16 @@ public class ResourceModel<R extends SkysailServerResource<T>, T> {
     }
 
     public boolean isSubmitButtonNeeded() {
-        Application applicationModel = resource.getApplication().getApplicationModel();
-        Entity entity = applicationModel.getEntity(parameterizedType.getName());
-        if (entity != null) {
-            if (entity.getFieldNames().stream().filter(f -> {
-                return entity.getField(f).isSubmitField();
-            }).findFirst().isPresent()) {
-                return true;
-            }
-        }
-
-        // old style, to be deprecated
+//        Application applicationModel = resource.getApplication().getApplicationModel();
+//        Entity entity = applicationModel.getEntity(parameterizedType.getName());
+//        if (entity != null) {
+//            if (entity.getFieldNames().stream().filter(f -> {
+//                return entity.getField(f).isSubmitField();
+//            }).findFirst().isPresent()) {
+//                return true;
+//            }
+//        }
+//        return false;
         return !fields.values().stream().filter(f -> {
             return f.isSubmitField();
         }).findFirst().isPresent();
@@ -465,6 +464,12 @@ public class ResourceModel<R extends SkysailServerResource<T>, T> {
 
         return new ArrayList<FormField>(fields.values());
     }
+
+//    public List<Field> getFields() {
+//        Application applicationModel = resource.getApplication().getApplicationModel();
+//        Entity entity = applicationModel.getEntity(parameterizedType.getName());
+//        return new ArrayList<Field>(entity.getFields().values());
+//    }
 
     public boolean isConstraintViolationsResponse() {
         return response instanceof ConstraintViolationsResponse;

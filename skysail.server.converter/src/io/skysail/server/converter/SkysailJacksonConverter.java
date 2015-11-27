@@ -35,13 +35,13 @@ public class SkysailJacksonConverter extends JacksonConverter implements OsgiCon
                 HeadersUtils.getHeaders(resource.getResponse()).add("X-Resource-Description", descrition.getTranslated());
 
                 String columnNames = resourceModel.getFormfields().stream().map(f -> {
-                    return "\"" + f.getName() + "\": \"" + messages.get(f.getNameKey()) + "\"";
+                    return "\"" + f.getId() + "\": \"" + messages.get(f.getNameKey()) + "\"";
                 }).collect(Collectors.joining(","));
                 HeadersUtils.getHeaders(resource.getResponse()).add("X-Resource-ColumnNames", "{" + columnNames + ",\"_links\": \"Actions\"}");
 
 
                 String columns = resourceModel.getFormfields().stream().map(f -> {
-                    return "\"" + f.getName() + "\"";
+                    return "\"" + f.getId() + "\"";
                 }).collect(Collectors.joining(","));
                 HeadersUtils.getHeaders(resource.getResponse()).add("X-Resource-Columns", "[" + columns + ",\"_links\"]");
 

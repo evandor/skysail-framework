@@ -46,7 +46,7 @@ public class ClassEntity extends Entity {
             log.debug("searching for class '{}'", classname);
             return (Class<? extends ServerResource>) Class.forName(classname,false,identifiableClass.getClassLoader());
         } catch (ClassNotFoundException e) {
-            log.error(e.getMessage(),e);
+            log.info(e.getMessage());
             return null;
         }
     }

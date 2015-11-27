@@ -5,7 +5,7 @@ import io.skysail.server.app.ApiVersion;
 import java.util.*;
 import java.util.regex.*;
 
-import lombok.NonNull;
+import lombok.*;
 
 import org.restlet.Restlet;
 import org.restlet.resource.ServerResource;
@@ -15,6 +15,7 @@ import com.google.common.base.Predicate;
 public class RouteBuilder {
 
     private final String pathTemplate;
+    @Setter
     private Class<? extends ServerResource> targetClass;
     private Restlet restlet;
 

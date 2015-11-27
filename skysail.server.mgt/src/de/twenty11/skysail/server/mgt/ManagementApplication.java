@@ -4,6 +4,10 @@ import io.skysail.server.app.SkysailApplication;
 import io.skysail.server.menus.MenuItemProvider;
 
 import java.lang.instrument.Instrumentation;
+import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
+
+import lombok.Getter;
 
 import org.osgi.service.cm.ConfigurationException;
 import org.osgi.service.component.ComponentContext;
@@ -12,7 +16,7 @@ import org.restlet.data.MediaType;
 import aQute.bnd.annotation.component.*;
 import de.twenty11.skysail.server.app.ApplicationProvider;
 import de.twenty11.skysail.server.core.restlet.*;
-import de.twenty11.skysail.server.mgt.apps.ApplicationsResource;
+import de.twenty11.skysail.server.mgt.apps.*;
 import de.twenty11.skysail.server.mgt.captures.RequestCaptureResource;
 import de.twenty11.skysail.server.mgt.events.EventsResource;
 import de.twenty11.skysail.server.mgt.jmx.JmxMonitor;
@@ -33,6 +37,9 @@ public class ManagementApplication extends SkysailApplication implements Applica
 	private MediaType eventStream;
 
 	private EtmMonitor monitor;
+
+	@Getter
+    private volatile List<ApplicationProvider> applicationProviders = new CopyOnWriteArrayList<>();
 
     public ManagementApplication() {
         super(APP_NAME);
@@ -69,6 +76,15 @@ public class ManagementApplication extends SkysailApplication implements Applica
 //        performanceMonitorServer.stop();
     }
 
+    @Reference(dynamic = true, multiple = true, optional = true)
+    public void setTodoRepository(ApplicationProvider application) {
+        applicationProviders.add(application);
+    }
+
+    public void unsetTodoRepository(ApplicationProvider application) {
+        applicationProviders.remove(application);
+    }
+
     @Override
     protected void attach() {
         router.setAuthorizationDefaults(anyOf("admin"));
@@ -86,7 +102,9 @@ public class ManagementApplication extends SkysailApplication implements Applica
 //        router.attach(new RouteBuilder("/serverLoad", ServerLoadResource.class));
 //        router.attach(new RouteBuilder("/serverTime", ServerTimeResource.class));
         router.attach(new RouteBuilder("/applications", ApplicationsResource.class));
+        router.attach(new RouteBuilder("/applications/{id}", ApplicationResource.class));
         router.attach(new RouteBuilder("/performance", PerformanceResource.class));
+
     }
 
     @Reference(dynamic = true, multiple = false, optional = true)

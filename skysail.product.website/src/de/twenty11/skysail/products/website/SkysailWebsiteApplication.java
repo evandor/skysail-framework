@@ -12,7 +12,6 @@ import org.restlet.routing.Router;
 
 import de.twenty11.skysail.server.app.ApplicationProvider;
 import de.twenty11.skysail.server.core.restlet.*;
-import de.twenty11.skysail.server.services.*;
 
 
 @aQute.bnd.annotation.component.Component(immediate = true)
@@ -42,7 +41,7 @@ public class SkysailWebsiteApplication extends SkysailApplication implements App
 
         ClassLoaderDirectory staticDirectory = new ClassLoaderDirectory(getContext(), localReference, customCL);
 
-        router = new SkysailRouter(getContext());
+        router = new SkysailRouter(this);
         router.attachDefault(staticDirectory);
 
         attach();

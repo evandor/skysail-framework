@@ -166,9 +166,6 @@ public abstract class SkysailApplication extends RamlApplication implements Appl
         entityClasses.forEach(cls -> applicationModel.add(EntityFactory.createFrom(cls)));
     }
 
-
-
-
     /**
      * probably you want to do something like
      * "router.attach(new RouteBuilder("", RootResource.class))".
@@ -309,7 +306,7 @@ public abstract class SkysailApplication extends RamlApplication implements Appl
     public synchronized Restlet createInboundRoot() {
 
         log.info("creating new Router in {}", this.getClass().getName());
-        router = new SkysailRouter(getContext());
+        router = new SkysailRouter(this);
         router.setApiVersion(apiVersion);
         // router.setDefaultMatchingQuery(true);
 

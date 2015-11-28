@@ -1,13 +1,9 @@
 package io.skysail.server.http.impl;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 
 /**
- * @see http
- *      ://collaboration.cmc.ec.gc.ca/science/rpn/biblio/ddj/Website/articles
+ * http://collaboration.cmc.ec.gc.ca/science/rpn/biblio/ddj/Website/articles
  *      /DDJ/2006/0609/060801og01/060801og01.html
  *
  */

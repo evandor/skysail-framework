@@ -23,10 +23,6 @@ public class SvgEditApplication extends SkysailApplication implements Applicatio
         this("webapp serving static files");
     }
 
-    /**
-     * @param staticPathTemplate
-     * @param bundleContext
-     */
     public SvgEditApplication(String staticPathTemplate) {
         super(APP_NAME);
         setName("svgedit");

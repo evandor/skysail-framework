@@ -48,12 +48,12 @@ import de.twenty11.skysail.server.core.restlet.*;
  *    }
  *
  *    {@literal @}Override
- *    public List<Company> getEntity() {
+ *    public List&lt;Company&gt; getEntity() {
  *      return app.getRepository().find(new Filter(getRequest()));
  *    }
  *
  *    {@literal @}Override
- *    public List<Link> getLinks() {
+ *    public List&lt;Link&gt; getLinks() {
  *       return super.getLinks(PostCompanyResource.class);
  *    }
  * </code>

@@ -52,9 +52,9 @@ import de.twenty11.skysail.server.core.restlet.*;
  *        return app.getRepository().getById(id)
  *     }
  *
- *     public SkysailResponse<?> updateEntity(T entity) {
+ *     public SkysailResponse&lt;?&gt; updateEntity(T entity) {
  *        app.getRepository().update(entity);
- *        return new SkysailResponse<String>();
+ *        return new SkysailResponse&lt;String&gt;();
  *     }
  * }
  * </code>

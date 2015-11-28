@@ -36,9 +36,6 @@ public abstract class AbstractListResourceFilter<R extends SkysailServerResource
     /**
      * The entry point when using Resource Filters.
      *
-     * @param resource
-     *            a {@link SkysailServerResource} object
-     * @return the result of the processing
      */
     public final ResponseWrapper<T> handle(R resource, Response response) {
         ResponseWrapper<T> responseWrapper = new ResponseWrapper<T>(response);
@@ -50,12 +47,6 @@ public abstract class AbstractListResourceFilter<R extends SkysailServerResource
      * pre-processing logic, called before the control is passed to the doHandle
      * Method.
      *
-     * @param resource
-     *            a {@link SkysailServerResource} object
-     * @param response
-     *            the response to update
-     * @return the {@link FilterResult} of the processing, indicating whether to
-     *         Continue, Skip or Stop.
      */
     protected FilterResult beforeHandle(R resource, ResponseWrapper<T> responseWrapper) {
         return FilterResult.CONTINUE;
@@ -64,12 +55,6 @@ public abstract class AbstractListResourceFilter<R extends SkysailServerResource
     /**
      * the main processing logic
      *
-     * @param resource
-     *            a {@link SkysailServerResource} object
-     * @param responseWrapper
-     *            the response to update
-     * @return the {@link FilterResult} of the processing, indicating whether to
-     *         Continue, Skip or Stop.
      */
     protected FilterResult doHandle(R resource, ResponseWrapper<T> responseWrapper) {
         AbstractListResourceFilter<R, T, S> next = getNext();
@@ -84,10 +69,6 @@ public abstract class AbstractListResourceFilter<R extends SkysailServerResource
      * post-processing logic, called before the control is passed to the
      * doHandle Method.
      *
-     * @param resource
-     *            a {@link SkysailServerResource} object
-     * @param response
-     *            the response to update
      */
     protected void afterHandle(R resource, ResponseWrapper<T> responseWrapper) {
         // default implementation doesn't do anything

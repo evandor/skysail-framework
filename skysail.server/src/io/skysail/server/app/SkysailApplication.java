@@ -83,8 +83,6 @@ import de.twenty11.skysail.server.services.*;
  *
  * A {@link SkysailApplication} is a {@link Application}, which
  *
- * - has a number of {@link Resource}s attached to it
- *
  * - handles access to its resources issues via its {@link AuthenticationService} and {@link AuthorizationService}
  *
  * - knows about the OSGi {@link ComponentContext}

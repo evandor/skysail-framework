@@ -8,7 +8,7 @@ package io.skysail.api.repos;
  *    {@literal @}Component(immediate = true, property = "name=TheRepository")
  *    public class XYZRepository implements DbRepository {
  *
- *        {@ literal} Reference
+ *        {@literal @}Reference
  *        private DbService dbService;
  *
  *        (...)

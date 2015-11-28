@@ -17,7 +17,6 @@ import org.osgi.framework.wiring.BundleWiring;
 import aQute.bnd.annotation.component.*;
 import de.twenty11.skysail.server.app.*;
 import de.twenty11.skysail.server.core.restlet.*;
-import de.twenty11.skysail.server.services.*;
 
 @Component(immediate = true)
 public class I18nApplication extends SkysailApplication implements ApplicationProvider, MenuItemProvider {
@@ -114,8 +113,6 @@ public class I18nApplication extends SkysailApplication implements ApplicationPr
      * The property file has to exist.
      *
      * @param message
-     * @return If successful, this method will return the file path of the file
-     *         which was altered, otherwise null.
      */
     public void setMessage(Message message) {
         translationStoreHolders.stream().forEach(storeHolder -> {

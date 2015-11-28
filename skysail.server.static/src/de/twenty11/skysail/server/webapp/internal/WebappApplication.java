@@ -12,14 +12,13 @@
  *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
- * 
+ *
  */
 
 package de.twenty11.skysail.server.webapp.internal;
 
 import io.skysail.server.app.SkysailApplication;
-import io.skysail.server.utils.ClassLoaderDirectory;
-import io.skysail.server.utils.CompositeClassLoader;
+import io.skysail.server.utils.*;
 
 import org.osgi.framework.FrameworkUtil;
 import org.restlet.Restlet;
@@ -31,7 +30,7 @@ import de.twenty11.skysail.server.app.ApplicationProvider;
 
 /**
  * @author carsten
- * 
+ *
  */
 @Component
 public class WebappApplication extends SkysailApplication implements ApplicationProvider {
@@ -41,10 +40,6 @@ public class WebappApplication extends SkysailApplication implements Application
         this("dummy");
     }
 
-    /**
-     * @param staticPathTemplate
-     * @param bundleContext
-     */
     public WebappApplication(String staticPathTemplate) {
         super("static");
         setDescription("Static webapp bundle");

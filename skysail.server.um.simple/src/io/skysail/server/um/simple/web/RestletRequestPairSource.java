@@ -1,13 +1,11 @@
 package io.skysail.server.um.simple.web;
 
-import org.restlet.Request;
-import org.restlet.Response;
+import org.restlet.*;
 
 /**
  * A {@code RestletRequestPairSource} is a provider of a {@link Request Request}
  * and {@link Response Response} pair associated with a currently executing
- * request. This is a similar interface to {@link RequestPairResource} for
- * restlet environments.
+ * request.
  *
  * @since 1.0
  */

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<repository increment="1448222346068" name="Local" xmlns="http://www.osgi.org/xmlns/repository/v1.0.0">
+<repository increment="1448221919000" name="Local" xmlns="http://www.osgi.org/xmlns/repository/v1.0.0">
   <resource>
     <capability namespace="osgi.identity">
       <attribute name="osgi.identity" value="bcprov"/>
@@ -3381,6 +3381,29 @@
     </requirement>
   </resource>
   <resource>
+    <!-- Error calling analyzer "org.osgi.service.indexer.impl.BundleAnalyzer" on resource /Users/carsten/git/skysail-framework/cnf/localrepo/io.netty.buffer/io.netty.buffer-4.0.25.jar with message java.lang.IllegalArgumentException: invalid version "[1,)": non-numeric "[1,)" and stack: java.lang.IllegalArgumentException: invalid version "[1,)": non-numeric "[1,)"
+	at org.osgi.framework.Version.parseInt(Version.java:170)
+	at org.osgi.framework.Version.&lt;init&gt;(Version.java:126)
+	at org.osgi.service.indexer.impl.types.VersionRange.&lt;init&gt;(VersionRange.java:58)
+	at org.osgi.service.indexer.impl.BundleAnalyzer.doImports(BundleAnalyzer.java:320)
+	at org.osgi.service.indexer.impl.BundleAnalyzer.analyzeResource(BundleAnalyzer.java:68)
+	at org.osgi.service.indexer.impl.RepoIndex.generateResource(RepoIndex.java:272)
+	at org.osgi.service.indexer.impl.RepoIndex.index(RepoIndex.java:190)
+	at aQute.bnd.deployer.repository.providers.R5RepoContentProvider.generateIndex(R5RepoContentProvider.java:291)
+	at aQute.bnd.deployer.repository.LocalIndexedRepo.generateIndex(LocalIndexedRepo.java:148)
+	at aQute.bnd.deployer.repository.LocalIndexedRepo.regenerateAllIndexes(LocalIndexedRepo.java:121)
+	at aQute.bnd.deployer.repository.LocalIndexedRepo.refresh(LocalIndexedRepo.java:381)
+	at bndtools.central.Central.refreshPlugins(Central.java:492)
+	at bndtools.views.repository.RepositoriesView$DoRefresh2.runInWorkspace(RepositoriesView.java:677)
+	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:38)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+Caused by: java.lang.NumberFormatException: For input string: "[1,)"
+	at java.lang.NumberFormatException.forInputString(NumberFormatException.java:65)
+	at java.lang.Integer.parseInt(Integer.java:580)
+	at java.lang.Integer.parseInt(Integer.java:615)
+	at org.osgi.framework.Version.parseInt(Version.java:168)
+	... 14 more
+ -->
     <capability namespace="osgi.identity">
       <attribute name="osgi.identity" value="io.netty.buffer"/>
       <attribute name="type" value="osgi.bundle"/>
@@ -3421,6 +3444,29 @@
     </requirement>
   </resource>
   <resource>
+    <!-- Error calling analyzer "org.osgi.service.indexer.impl.BundleAnalyzer" on resource /Users/carsten/git/skysail-framework/cnf/localrepo/io.netty.common/io.netty.common-4.0.25.jar with message java.lang.IllegalArgumentException: invalid version "[1,)": non-numeric "[1,)" and stack: java.lang.IllegalArgumentException: invalid version "[1,)": non-numeric "[1,)"
+	at org.osgi.framework.Version.parseInt(Version.java:170)
+	at org.osgi.framework.Version.&lt;init&gt;(Version.java:126)
+	at org.osgi.service.indexer.impl.types.VersionRange.&lt;init&gt;(VersionRange.java:58)
+	at org.osgi.service.indexer.impl.BundleAnalyzer.doImports(BundleAnalyzer.java:320)
+	at org.osgi.service.indexer.impl.BundleAnalyzer.analyzeResource(BundleAnalyzer.java:68)
+	at org.osgi.service.indexer.impl.RepoIndex.generateResource(RepoIndex.java:272)
+	at org.osgi.service.indexer.impl.RepoIndex.index(RepoIndex.java:190)
+	at aQute.bnd.deployer.repository.providers.R5RepoContentProvider.generateIndex(R5RepoContentProvider.java:291)
+	at aQute.bnd.deployer.repository.LocalIndexedRepo.generateIndex(LocalIndexedRepo.java:148)
+	at aQute.bnd.deployer.repository.LocalIndexedRepo.regenerateAllIndexes(LocalIndexedRepo.java:121)
+	at aQute.bnd.deployer.repository.LocalIndexedRepo.refresh(LocalIndexedRepo.java:381)
+	at bndtools.central.Central.refreshPlugins(Central.java:492)
+	at bndtools.views.repository.RepositoriesView$DoRefresh2.runInWorkspace(RepositoriesView.java:677)
+	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:38)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+Caused by: java.lang.NumberFormatException: For input string: "[1,)"
+	at java.lang.NumberFormatException.forInputString(NumberFormatException.java:65)
+	at java.lang.Integer.parseInt(Integer.java:580)
+	at java.lang.Integer.parseInt(Integer.java:615)
+	at org.osgi.framework.Version.parseInt(Version.java:168)
+	... 14 more
+ -->
     <capability namespace="osgi.identity">
       <attribute name="osgi.identity" value="io.netty.common"/>
       <attribute name="type" value="osgi.bundle"/>
@@ -3504,6 +3550,29 @@
     </requirement>
   </resource>
   <resource>
+    <!-- Error calling analyzer "org.osgi.service.indexer.impl.BundleAnalyzer" on resource /Users/carsten/git/skysail-framework/cnf/localrepo/io.netty.transport/io.netty.transport-4.0.25.jar with message java.lang.IllegalArgumentException: invalid version "[1,)": non-numeric "[1,)" and stack: java.lang.IllegalArgumentException: invalid version "[1,)": non-numeric "[1,)"
+	at org.osgi.framework.Version.parseInt(Version.java:170)
+	at org.osgi.framework.Version.&lt;init&gt;(Version.java:126)
+	at org.osgi.service.indexer.impl.types.VersionRange.&lt;init&gt;(VersionRange.java:58)
+	at org.osgi.service.indexer.impl.BundleAnalyzer.doImports(BundleAnalyzer.java:320)
+	at org.osgi.service.indexer.impl.BundleAnalyzer.analyzeResource(BundleAnalyzer.java:68)
+	at org.osgi.service.indexer.impl.RepoIndex.generateResource(RepoIndex.java:272)
+	at org.osgi.service.indexer.impl.RepoIndex.index(RepoIndex.java:190)
+	at aQute.bnd.deployer.repository.providers.R5RepoContentProvider.generateIndex(R5RepoContentProvider.java:291)
+	at aQute.bnd.deployer.repository.LocalIndexedRepo.generateIndex(LocalIndexedRepo.java:148)
+	at aQute.bnd.deployer.repository.LocalIndexedRepo.regenerateAllIndexes(LocalIndexedRepo.java:121)
+	at aQute.bnd.deployer.repository.LocalIndexedRepo.refresh(LocalIndexedRepo.java:381)
+	at bndtools.central.Central.refreshPlugins(Central.java:492)
+	at bndtools.views.repository.RepositoriesView$DoRefresh2.runInWorkspace(RepositoriesView.java:677)
+	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:38)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+Caused by: java.lang.NumberFormatException: For input string: "[1,)"
+	at java.lang.NumberFormatException.forInputString(NumberFormatException.java:65)
+	at java.lang.Integer.parseInt(Integer.java:580)
+	at java.lang.Integer.parseInt(Integer.java:615)
+	at org.osgi.framework.Version.parseInt(Version.java:168)
+	... 14 more
+ -->
     <capability namespace="osgi.identity">
       <attribute name="osgi.identity" value="io.netty.transport"/>
       <attribute name="type" value="osgi.bundle"/>

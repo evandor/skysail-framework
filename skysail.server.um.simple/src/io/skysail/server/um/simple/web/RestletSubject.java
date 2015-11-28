@@ -4,12 +4,10 @@ import io.skysail.server.um.simple.web.impl.SkysailWebSubjectContext;
 
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.mgt.SecurityManager;
-import org.apache.shiro.subject.Subject;
-import org.apache.shiro.subject.SubjectContext;
+import org.apache.shiro.subject.*;
 import org.apache.shiro.web.subject.WebSubject;
 import org.apache.shiro.web.subject.support.DefaultWebSubjectContext;
-import org.restlet.Request;
-import org.restlet.Response;
+import org.restlet.*;
 
 /**
  * A {@code RestletSubject} represents a Subject instance that was acquired as a
@@ -35,10 +33,7 @@ public interface RestletSubject extends Subject, RestletRequestPairSource {
          * Constructs a new {@code Restlet.Builder} instance using the
          * {@link SecurityManager SecurityManager} obtained by calling
          * {@code SecurityUtils.}{@link SecurityUtils#getSecurityManager()
-         * getSecurityManager()}. If you want to specify your own
-         * SecurityManager instance, use the
-         * {@link #Builder(SecurityManager, ServletRequest, ServletResponse)}
-         * constructor instead.
+         * getSecurityManager()}.
          *
          * @param request
          *            the incoming ServletRequest that will be associated with

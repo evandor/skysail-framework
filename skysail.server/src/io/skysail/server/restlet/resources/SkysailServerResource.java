@@ -89,7 +89,6 @@ public abstract class SkysailServerResource<T> extends ServerResource {
     /**
      * Typically you will query some kind of repository here and return the
      * result (of type T, where T could be a List).
-     * @param subject
      *
      * @return entity of Type T (can be a list as well)
      */

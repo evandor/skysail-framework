@@ -12,8 +12,6 @@ import java.util.Set;
 
 import javax.validation.*;
 
-import lombok.extern.slf4j.Slf4j;
-
 import org.restlet.data.*;
 import org.restlet.representation.Variant;
 import org.restlet.resource.*;
@@ -54,7 +52,7 @@ import de.twenty11.skysail.server.core.restlet.*;
  *          return super.getLinkheader(PutMyEntityResource.class);
  *     }
  *
- *     public SkysailResponse<?> eraseEntity() {
+ *     public SkysailResponse&lt;?&gt; eraseEntity() {
  *         return null;
  *     }
  *
@@ -65,7 +63,6 @@ import de.twenty11.skysail.server.core.restlet.*;
  * @param <T>
  *            the entity
  */
-@Slf4j
 public abstract class EntityServerResource<T extends Identifiable> extends SkysailServerResource<T> {
 
     private static final Logger logger = LoggerFactory.getLogger(EntityServerResource.class);

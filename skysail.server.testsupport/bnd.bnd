@@ -3,8 +3,8 @@ Bundle-Name: SKYSAIL :: server :: testsupport
 Export-Package:  \
 	io.skysail.server.testsupport,\
 	io.skysail.server.testsupport.categories
--buildpath:  \
-    ${osgi},\
+-buildpath: \
+	${osgi},\
 	skysail.api.validation;version=${skysail.api.validation.version},\
 	skysail.api;version=${skysail.api.version},\
 	skysail.server;version=${skysail.server.version},\
@@ -21,9 +21,11 @@ Export-Package:  \
 	org.apache.commons.beanutils;version=1.9,\
 	com.orientechnologies.orientdb-core;version=${com.orientechnologies.orientdb.version},\
 	com.orientechnologies.orientdb-graphdb;version=${com.orientechnologies.orientdb.version},\
+    com.orientechnologies.orientdb-object;version=${com.orientechnologies.orientdb.version},\
 	lombok;version=1.16,\
 	slf4j.api;version=1.7,\
-	biz.aQute.bnd;version=2.4
+	biz.aQute.bnd;version=2.4,\
+	org.objenesis;version=2.1
 
 Import-Package: \
     !aQute.*,\

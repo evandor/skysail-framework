@@ -21,10 +21,6 @@ import de.twenty11.skysail.server.core.restlet.*;
  * {@link Request} and the outgoing (wrapped) response.
  *
  *
- * @param <R>
- *            a {@link SkysailServerResource} with T as Type Parameter
- * @param <T>
- *            a type representing an Entity
  */
 public abstract class AbstractResourceFilter<R extends SkysailServerResource<?>, T extends Identifiable> {
 
@@ -35,9 +31,6 @@ public abstract class AbstractResourceFilter<R extends SkysailServerResource<?>,
     /**
      * The entry point when using Resource Filters.
      *
-     * @param resource
-     *            a {@link SkysailServerResource} object
-     * @return the result of the processing
      */
     public final ResponseWrapper<T> handle(R resource, Response response) {
         ResponseWrapper<T> responseWrapper = new ResponseWrapper<T>(response);
@@ -57,8 +50,6 @@ public abstract class AbstractResourceFilter<R extends SkysailServerResource<?>,
      *
      * @param resource
      *            a {@link SkysailServerResource} object
-     * @param response
-     *            the response to update
      * @return the {@link FilterResult} of the processing, indicating whether to
      *         Continue, Skip or Stop.
      */
@@ -89,10 +80,6 @@ public abstract class AbstractResourceFilter<R extends SkysailServerResource<?>,
      * post-processing logic, called before the control is passed to the
      * doHandle Method.
      *
-     * @param resource
-     *            a {@link SkysailServerResource} object
-     * @param response
-     *            the response to update
      */
     protected void afterHandle(R resource, Wrapper responseWrapper) {
         // default implementation doesn't do anything

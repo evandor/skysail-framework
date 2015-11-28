@@ -175,7 +175,7 @@ public class Parser {
             }
             return null;// new ExprNode(Operation.SUBSTRING, attr, string);
         }
-        case 'e': { // "element of", "is in" not standard LDAP syntax!
+        case '∈': { // "element of", "is in" \u2208, not standard LDAP syntax!
             pos++;
             Object string = parse_substring();
 
@@ -197,7 +197,7 @@ public class Parser {
 
         char c = filterChars[pos];
 
-        while (c != '~' && c != 'e' && c != '<' && c != '>' && c != '=' && c != '(' && c != ')') {
+        while (c != '~' && c != '∈' && c != '<' && c != '>' && c != '=' && c != '(' && c != ')') {
             pos++;
 
             if (!Character.isWhitespace(c)) {

@@ -15,7 +15,6 @@ Bundle-Name: SKYSAIL :: products :: website
     skysail.server.app.todos;version=latest,\
     skysail.server.app.tutorial.model2rest;version=latest,\
     skysail.server.converter;version=${skysail.server.converter.version},\
-    skysail.server.ext.browser;version=latest,\
     skysail.server.ext.sse;version=latest,\
     skysail.server.http;version=${skysail.server.http.version},\
     skysail.server.plugins;version=${skysail.server.plugins.version},\

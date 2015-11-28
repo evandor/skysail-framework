@@ -16,7 +16,6 @@ Private-Package:  \
 	skysail.server.app.bookmarks;version=latest,\
 	skysail.server.static;version=${skysail.server.static.version},\
 	skysail.server.converter;version=${skysail.server.converter.version},\
-	skysail.server.ext.browser;version=latest,\
 	skysail.server.ext.sse;version=latest,\
 	skysail.server.ext.initconfig;version=latest,\
 	skysail.server.http;version=${skysail.server.http.version},\

@@ -1,17 +1,16 @@
 package io.skysail.server.queryfilter;
 
-import io.skysail.server.queryfilter.nodes.*;
-import io.skysail.server.queryfilter.parser.Parser;
-import io.skysail.server.restlet.resources.SkysailServerResource;
-
 import java.util.*;
 import java.util.stream.Collectors;
 
-import lombok.*;
-import lombok.extern.slf4j.Slf4j;
-
 import org.osgi.framework.InvalidSyntaxException;
 import org.restlet.Request;
+
+import io.skysail.server.queryfilter.nodes.*;
+import io.skysail.server.queryfilter.parser.Parser;
+import io.skysail.server.restlet.resources.SkysailServerResource;
+import lombok.*;
+import lombok.extern.slf4j.Slf4j;
 
 @Getter
 @Slf4j
@@ -76,12 +75,12 @@ public class Filter {
     }
 
     public void addEdgeOut(String name, String value) {
-        and("("+value+" e out['"+name+"'] " +")");
+        and("("+value+" ∈ out['"+name+"'] " +")");
         evaluate();
     }
 
     public void addEdgeIn(String name, String value) {
-        and("("+value+" e in['"+name+"'] " +")");
+        and("("+value+" ∈ in['"+name+"'] " +")");
         evaluate();
     }
 

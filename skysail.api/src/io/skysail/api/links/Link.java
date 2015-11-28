@@ -236,7 +236,7 @@ public class Link {
     /**
      * toString conversion with path.
      */
-    public String toString(Request request, String path) {
+    public String toString(String path) {
         StringBuilder sb = new StringBuilder().append("<").append(path + getUri()).append(">");
         if (getRel() != null) {
             sb.append("; rel=\"").append(getRel().getName()).append("\"");
@@ -301,7 +301,7 @@ public class Link {
     }
 
     public Link checkSelfRelation(Request request) {
-        if (request.getResourceRef().getPath().toString().equals(this.uri)) {
+        if (request.getResourceRef().getPath().equals(this.uri)) {
             this.rel = LinkRelation.SELF;
         }
         return this;

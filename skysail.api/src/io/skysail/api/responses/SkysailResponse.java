@@ -1,5 +1,7 @@
 package io.skysail.api.responses;
 
+import lombok.NoArgsConstructor;
+
 
 /**
  * A skysail server installation responds to (RESTful) Http-Requests by creating
@@ -15,6 +17,7 @@ package io.skysail.api.responses;
  * @param <T>
  *            The type of the generic entity
  */
+@NoArgsConstructor
 public class SkysailResponse<T> {
 
     private T entity;
@@ -29,9 +32,6 @@ public class SkysailResponse<T> {
         this.entity = entity;
     }
 
-    public SkysailResponse() {
-    }
-
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -40,7 +40,7 @@ public class SkysailResponse<T> {
     }
 
     public boolean isForm() {
-        return (this instanceof FormResponse || this instanceof ConstraintViolationsResponse);
+        return this instanceof FormResponse || this instanceof ConstraintViolationsResponse;
     }
 
     public T getEntity() {

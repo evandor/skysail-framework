@@ -69,13 +69,13 @@ public class LinkTest {
     @Test
     public void creates_a_linkheader_segment_for_a_create_form_relation() {
         Link linkheader = new Link.Builder("uri").relation(LinkRelation.CREATE_FORM).build();
-        assertThat(linkheader.toString(null, "path"), is(equalTo("<pathuri>; rel=\"create-form\"; title=\"create-form\"; verbs=\"GET\"")));
+        assertThat(linkheader.toString("path"), is(equalTo("<pathuri>; rel=\"create-form\"; title=\"create-form\"; verbs=\"GET\"")));
     }
 
     @Test
     public void testName() {
         Link link = new Link.Builder("uri").refId("refid").build();
-        assertThat(link.toString(null, "path"),is (equalTo("<pathuri>; rel=\"item\"; title=\"item\"; refId=\"refid\"; verbs=\"GET\"")));
+        assertThat(link.toString("path"),is (equalTo("<pathuri>; rel=\"item\"; title=\"item\"; refId=\"refid\"; verbs=\"GET\"")));
     }
 
     @Test

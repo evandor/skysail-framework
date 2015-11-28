@@ -1,7 +1,6 @@
 package io.skysail.api.forms;
 
-import java.util.Collections;
-import java.util.Map;
+import java.util.*;
 
 import org.restlet.resource.Resource;
 
@@ -14,10 +13,12 @@ public class IgnoreSelectionProvider implements SelectionProvider {
 
     @Override
     public void setConfiguration(Object osgiServicesProvider) {
+        // nothing to be done
     }
 
     @Override
     public void setResource(Resource resource) {
+        // nothing to be done
     }
 
 }

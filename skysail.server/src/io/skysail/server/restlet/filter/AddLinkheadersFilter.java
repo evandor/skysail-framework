@@ -25,7 +25,7 @@ public class AddLinkheadersFilter<R extends SkysailServerResource<?>, T extends 
             Series<Header> responseHeaders = HeadersUtils.getHeaders(resource.getResponse());
             List<Link> linkheaderAuthorized = ssr.getAuthorizedLinks();
             linkheaderAuthorized.forEach(getPathSubstitutions(resource));
-            String links = linkheaderAuthorized.stream().map(link -> link.toString(response.getRequest(), ""))
+            String links = linkheaderAuthorized.stream().map(link -> link.toString(""))
                     .collect(Collectors.joining(","));
             responseHeaders.add(new Header("Link", links));
         }

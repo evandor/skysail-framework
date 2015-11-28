@@ -1,5 +1,7 @@
 package io.skysail.api.forms;
 
+import java.io.Serializable;
+
 import lombok.NonNull;
 
 /**
@@ -9,9 +11,10 @@ import lombok.NonNull;
  * <p>
  * This is used for defining HtmlPolicies to prevent XSS attacks.
  * </p>
- * 
+ *
  */
-public class AllowedAttribute {
+@SuppressWarnings("serial")
+public class AllowedAttribute implements Serializable {
 
     private String name;
     private String[] elements;

@@ -32,7 +32,3 @@ subprojects {
     plugins.apply 'biz.aQute.bnd'
   }
 }
-
-task wrapper(type: Wrapper) {
-    gradleVersion = '2.7'
-}

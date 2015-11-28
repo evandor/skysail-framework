@@ -87,8 +87,8 @@ Test-Cases: \
 	com.google.guava;version='[16.0,16.1)',\
 	com.googlecode.concurrentlinkedhashmap.lru;version='[1.4.0,1.4.1)',\
 	${orientdb},\
-	junit;version=4.11,\
-	com.sun.el;version='[2.2.0,2.2.1)',\
+    com.springsource.org.junit;version=4.11,\
+   	com.sun.el;version='[2.2.0,2.2.1)',\
 	de.twenty11.owasp-java-html-sanitizer;version='[239.0.0,239.0.1)',\
 	de.twentyeleven.skysail.org.json-osgi;version=latest,\
 	etm.core;version='[1.2.3,1.2.4)',\

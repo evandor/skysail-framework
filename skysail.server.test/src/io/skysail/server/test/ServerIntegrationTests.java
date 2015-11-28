@@ -1,18 +1,16 @@
 package io.skysail.server.test;
 
-import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
-import io.skysail.server.app.ApplicationList;
 
 import java.util.*;
-
-import lombok.extern.slf4j.Slf4j;
 
 import org.junit.*;
 import org.osgi.framework.*;
 import org.osgi.service.cm.ConfigurationAdmin;
 
 import de.twenty11.skysail.server.app.ApplicationListProvider;
+import io.skysail.server.app.ApplicationList;
+import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Ignore
@@ -43,7 +41,7 @@ public class ServerIntegrationTests {
         // configAdmin.createFactoryConfiguration(DbConfigurations.class.getSimpleName()
         // + "-test");
         // dbConfiguration.update();
-        assertThat(configAdmin, is(org.hamcrest.CoreMatchers.notNullValue()));
+        //assertThat(configAdmin, is(org.hamcrest.CoreMatchers.notNullValue()));
     }
 
 //    @Test

@@ -1,0 +1,31 @@
+-runfw: org.apache.felix.framework;version=${org.apache.felix.framework.version}
+-runee: JavaSE-1.8
+-runsystemcapabilities: ${native_capability}
+-runsystempackages: ${runsystempackages}
+
+-resolve.effective: active;skip:="osgi.service"
+
+-runbundles:\
+    ${osgi},\
+	org.apache.felix.gogo.runtime,\
+	org.apache.felix.gogo.shell,\
+	org.apache.felix.gogo.command
+
+-runrequires:\
+	osgi.identity;filter:='(osgi.identity=org.apache.felix.gogo.shell)',\
+	osgi.identity;filter:='(osgi.identity=org.apache.felix.gogo.command)'
+
+-runtrace: false
+-runvm: -ea
+
+-runproperties: ${runproperties}
+-runrepos: ${runrepos}
+
+########################################################################################
+### --- run-file-specific settings ------------------------------------------------- ###
+########################################################################################
+
+skysail.config.path            = config/common,config/local
+logback.configurationFile.path = config/common
+
+	

@@ -95,4 +95,16 @@ public class LinkTest {
         assertThat(Link.valueOf(linkheader).getVerbs(), contains(Method.POST));
     }
 
+    @Test
+    public void createsBuilder_from_link() {
+        Link linkTemplate = new Link.Builder("uri")
+            .relation(LinkRelation.CREATE_FORM)
+            .refId("refId")
+            .build();
+        Link linkFromTemplate = new Link.Builder(linkTemplate).build();
+        assertThat(linkFromTemplate.getUri(),is("uri"));
+        assertThat(linkFromTemplate.getRel(),is(LinkRelation.CREATE_FORM));
+        assertThat(linkFromTemplate.getRefId(),is("refId"));
+    }
+
 }

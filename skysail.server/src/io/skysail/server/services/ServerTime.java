@@ -4,12 +4,11 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicReference;
 
-import lombok.extern.slf4j.Slf4j;
-
+import org.osgi.service.component.annotations.*;
 import org.osgi.service.event.EventAdmin;
 
-import aQute.bnd.annotation.component.*;
 import de.twenty11.skysail.server.core.osgi.EventHelper;
+import lombok.extern.slf4j.Slf4j;
 
 @Component(immediate = true)
 @Slf4j
@@ -54,7 +53,7 @@ public class ServerTime {
         timerTask = null;
     }
 
-    @Reference(dynamic = true, multiple = false, optional = false)
+    @Reference(policy = ReferencePolicy.DYNAMIC, cardinality = ReferenceCardinality.MANDATORY)
     public void setEventAdmin(EventAdmin eventAdmin) {
         this.eventAdminRef = new AtomicReference<EventAdmin>(eventAdmin);
     }

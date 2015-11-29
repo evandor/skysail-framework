@@ -2,7 +2,7 @@ package de.twenty11.skysail.server.services;
 
 import java.util.concurrent.Callable;
 
-import aQute.bnd.annotation.ProviderType;
+import org.osgi.annotation.versioning.ProviderType;
 
 @ProviderType
 public interface SkysailThreadPool {

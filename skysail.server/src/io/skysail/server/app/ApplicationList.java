@@ -5,11 +5,11 @@ import java.util.*;
 import java.util.concurrent.atomic.AtomicReference;
 
 import org.apache.commons.lang.Validate;
+import org.osgi.service.component.annotations.*;
+import org.osgi.service.component.annotations.Component;
 import org.restlet.*;
 import org.restlet.data.Protocol;
 
-import aQute.bnd.annotation.component.Component;
-import aQute.bnd.annotation.component.Reference;
 import de.twenty11.skysail.server.*;
 import de.twenty11.skysail.server.app.*;
 import lombok.NonNull;
@@ -40,7 +40,7 @@ public class ApplicationList implements ApplicationListProvider { // NO_UCD (unu
     private Server riapServer = new Server(Protocol.RIAP);
     private SkysailComponent skysailComponent;
 
-    @Reference(multiple = true, optional = true, dynamic = true)
+    @Reference(policy = ReferencePolicy.DYNAMIC, cardinality = ReferenceCardinality.MULTIPLE)
     public synchronized void addApplicationProvider(ApplicationProvider provider) {
         SkysailApplication application = getApplication(provider);
         application.setStatusService(new SkysailStatusService());
@@ -58,7 +58,7 @@ public class ApplicationList implements ApplicationListProvider { // NO_UCD (unu
 
     /** === The service list =================================== */
 
-    @Reference(optional = true, multiple = false, dynamic = true)
+    @Reference(policy = ReferencePolicy.DYNAMIC, cardinality = ReferenceCardinality.OPTIONAL)
     public void setServiceListProvider(ServiceListProvider serviceListProvider) {
         this.serviceListProviderRef.set(serviceListProvider);
     }

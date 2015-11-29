@@ -1,13 +1,11 @@
 package de.twenty11.skysail.server.app;
 
+import java.util.List;
+
 import io.skysail.server.app.SkysailApplication;
 import io.skysail.server.restlet.resources.SkysailServerResource;
 
-import java.util.List;
-
-import aQute.bnd.annotation.ConsumerType;
-
-@ConsumerType
+@org.osgi.annotation.versioning.ConsumerType
 public interface ApplicationProvider extends Comparable<ApplicationProvider> {
 
     SkysailApplication getApplication();

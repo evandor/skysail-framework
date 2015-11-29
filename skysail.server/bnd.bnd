@@ -66,7 +66,8 @@ Service-Component: *
 	lib/markdown4j-2.2.jar;version=file,\
 	osgi.core;version=${osgi.version},\
 	osgi.enterprise;version=${osgi.version},\
-	skysail.api;version=${skysail.api.version},\
+    osgi.annotation;version=${osgi.annotation.version},\
+   	skysail.api;version=${skysail.api.version},\
 	skysail.api.peers;version=${skysail.api.peers.version},\
 	skysail.api.features;version=${skysail.api.features.version},\
     skysail.api.search;version=${skysail.api.search.version},\
@@ -79,7 +80,6 @@ Service-Component: *
 	javax.persistence,\
 	slf4j.api;version=1.7.7,\
 	${restlet},\
-	biz.aQute.bnd.annotation,\
 	org.apache.commons.lang,\
 	com.fasterxml.jackson.core.jackson-annotations,\
 	org.apache.shiro.core,\

@@ -1,12 +1,11 @@
 package de.twenty11.skysail.server.services;
 
-import io.skysail.api.domain.Identifiable;
-
 import java.util.List;
 
+import org.osgi.annotation.versioning.ProviderType;
 import org.restlet.Request;
 
-import aQute.bnd.annotation.ProviderType;
+import io.skysail.api.domain.Identifiable;
 
 /**
  * The Syncing interface provides a common scheme to sync entities between different systems.

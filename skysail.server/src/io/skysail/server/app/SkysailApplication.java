@@ -1,5 +1,32 @@
 package io.skysail.server.app;
 
+import java.util.*;
+import java.util.concurrent.*;
+import java.util.concurrent.atomic.AtomicReference;
+import java.util.stream.Collectors;
+
+import org.apache.commons.lang.Validate;
+import org.osgi.framework.*;
+import org.osgi.service.cm.ConfigurationException;
+import org.osgi.service.component.ComponentContext;
+import org.osgi.service.component.annotations.*;
+import org.osgi.service.event.EventAdmin;
+import org.owasp.html.HtmlPolicyBuilder;
+import org.restlet.*;
+import org.restlet.data.*;
+import org.restlet.data.Reference;
+import org.restlet.ext.raml.*;
+import org.restlet.resource.ServerResource;
+import org.restlet.routing.Filter;
+import org.restlet.security.*;
+import org.restlet.util.RouteList;
+
+import com.google.common.base.Predicate;
+
+import de.twenty11.skysail.server.app.*;
+import de.twenty11.skysail.server.core.restlet.*;
+import de.twenty11.skysail.server.security.*;
+import de.twenty11.skysail.server.services.*;
 import io.skysail.api.domain.Identifiable;
 import io.skysail.api.forms.*;
 import io.skysail.api.peers.PeersProvider;
@@ -15,38 +42,8 @@ import io.skysail.server.restlet.resources.SkysailServerResource;
 import io.skysail.server.services.*;
 import io.skysail.server.text.TranslationStoreHolder;
 import io.skysail.server.utils.*;
-
-import java.util.*;
-import java.util.concurrent.*;
-import java.util.concurrent.atomic.AtomicReference;
-import java.util.stream.Collectors;
-
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
-
-import org.apache.commons.lang.Validate;
-import org.osgi.framework.*;
-import org.osgi.service.cm.ConfigurationException;
-import org.osgi.service.component.ComponentContext;
-import org.osgi.service.event.EventAdmin;
-import org.owasp.html.HtmlPolicyBuilder;
-import org.restlet.*;
-import org.restlet.data.*;
-import org.restlet.data.Reference;
-import org.restlet.ext.raml.*;
-import org.restlet.resource.ServerResource;
-import org.restlet.routing.Filter;
-import org.restlet.security.*;
-import org.restlet.util.RouteList;
-
-import aQute.bnd.annotation.component.*;
-
-import com.google.common.base.Predicate;
-
-import de.twenty11.skysail.server.app.*;
-import de.twenty11.skysail.server.core.restlet.*;
-import de.twenty11.skysail.server.security.*;
-import de.twenty11.skysail.server.services.*;
 
 /**
  * A skysail application is the entry point to provide additional functionality

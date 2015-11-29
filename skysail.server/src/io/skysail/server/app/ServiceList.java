@@ -1,5 +1,17 @@
 package io.skysail.server.app;
 
+import java.util.*;
+import java.util.concurrent.atomic.AtomicReference;
+import java.util.stream.Stream;
+
+import org.osgi.service.cm.ConfigurationAdmin;
+import org.osgi.service.component.annotations.*;
+import org.osgi.service.event.EventAdmin;
+import org.restlet.Context;
+
+import de.twenty11.skysail.server.SkysailComponent;
+import de.twenty11.skysail.server.app.*;
+import de.twenty11.skysail.server.services.EncryptorService;
 import io.skysail.api.peers.PeersProvider;
 import io.skysail.api.text.*;
 import io.skysail.api.um.*;
@@ -8,22 +20,8 @@ import io.skysail.server.restlet.filter.HookFilter;
 import io.skysail.server.restlet.resources.SkysailServerResource;
 import io.skysail.server.services.PerformanceMonitor;
 import io.skysail.server.text.TranslationStoreHolder;
-
-import java.util.*;
-import java.util.concurrent.atomic.AtomicReference;
-import java.util.stream.Stream;
-
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
-
-import org.osgi.service.cm.ConfigurationAdmin;
-import org.osgi.service.event.EventAdmin;
-import org.restlet.Context;
-
-import aQute.bnd.annotation.component.*;
-import de.twenty11.skysail.server.SkysailComponent;
-import de.twenty11.skysail.server.app.*;
-import de.twenty11.skysail.server.services.EncryptorService;
 
 /**
  * manages the list of default services which will be injected into all
@@ -70,7 +68,7 @@ public class ServiceList implements ServiceListProvider {
 
     /** === UserManagementProvider Service ============================== */
 
-    @Reference(optional = false, dynamic = true, multiple = false)
+    @Reference(policy = ReferencePolicy.DYNAMIC, cardinality = ReferenceCardinality.MANDATORY)
     public synchronized void setUserManagementProvider(UserManagementProvider provider) {
         this.authenticationService = provider.getAuthenticationService();
         this.authorizationService = provider.getAuthorizationService();
@@ -93,7 +91,7 @@ public class ServiceList implements ServiceListProvider {
 
     /** === ApplicationListProvider Service ============================== */
 
-    @Reference(optional = true, dynamic = true, multiple = false)
+    @Reference(policy = ReferencePolicy.DYNAMIC, cardinality = ReferenceCardinality.OPTIONAL)
     public synchronized void setApplicationListProvider(ApplicationListProvider applicationProvider) {
         this.applicationListProvider.set(applicationProvider);
     }
@@ -104,7 +102,7 @@ public class ServiceList implements ServiceListProvider {
 
     /** === ConfigAdmin Service ============================== */
 
-    @Reference(optional = true, dynamic = true, multiple = false)
+    @Reference(policy = ReferencePolicy.DYNAMIC, cardinality = ReferenceCardinality.OPTIONAL)
     public synchronized void setSkysailComponentProvider(SkysailComponentProvider service) {
         skysailComponentProviderRef.set(service);
         if (skysailComponentProviderRef.get() == null) {
@@ -128,7 +126,7 @@ public class ServiceList implements ServiceListProvider {
 
     /** === PeersProvider Service ============================== */
 
-    @Reference(optional = true, dynamic = true, multiple = false)
+    @Reference(policy = ReferencePolicy.DYNAMIC, cardinality = ReferenceCardinality.OPTIONAL)
     public synchronized void setPeersProvider(PeersProvider service) {
         this.peersProvider.set(service);
         //getSkysailApps().forEach(app -> app.setPeersProvider(service));
@@ -146,7 +144,7 @@ public class ServiceList implements ServiceListProvider {
 
     /** === TranslationRenderService ============================== */
 
-    @Reference(optional = true, dynamic = true, multiple = true)
+    @Reference(policy = ReferencePolicy.DYNAMIC, cardinality = ReferenceCardinality.MULTIPLE)
     public synchronized void addTranslationRenderService(TranslationRenderService service, Map<String, String> props) {
         TranslationRenderServiceHolder holder = new TranslationRenderServiceHolder(service, props);
         this.translationRenderServices.add(holder);
@@ -160,7 +158,7 @@ public class ServiceList implements ServiceListProvider {
 
     /** === TranslationStoresService ============================== */
 
-    @Reference(optional = true, dynamic = true, multiple = true)
+    @Reference(policy = ReferencePolicy.DYNAMIC, cardinality = ReferenceCardinality.MULTIPLE)
     public synchronized void addTranslationStore(TranslationStore service, Map<String, String> props) {
         TranslationStoreHolder holder = new TranslationStoreHolder(service, props);
         this.translationStores.add(holder);
@@ -173,7 +171,7 @@ public class ServiceList implements ServiceListProvider {
 
     /** === Encryptor Service ============================== */
 
-    @Reference(optional = true, dynamic = true, multiple = false)
+    @Reference(policy = ReferencePolicy.DYNAMIC, cardinality = ReferenceCardinality.OPTIONAL)
     public synchronized void setEncryptorService(EncryptorService service) {
         this.encryptorService.set(service);
     }
@@ -193,7 +191,7 @@ public class ServiceList implements ServiceListProvider {
 
     /** === EventAdmin Service ============================== */
 
-    @Reference(optional = true, dynamic = true, multiple = false)
+    @Reference(policy = ReferencePolicy.DYNAMIC, cardinality = ReferenceCardinality.OPTIONAL)
     public void setEventAdminService(EventAdmin service) {
         this.eventAdmin.set(service);
     }
@@ -209,7 +207,7 @@ public class ServiceList implements ServiceListProvider {
 
     /** === ConfigAdmin Service ============================== */
 
-    @Reference(optional = true, dynamic = true, multiple = false)
+    @Reference(policy = ReferencePolicy.DYNAMIC, cardinality = ReferenceCardinality.OPTIONAL)
     public synchronized void setConfigurationAdminService(ConfigurationAdmin service) {
         this.configurationAdmin.set(service);
     }
@@ -220,7 +218,7 @@ public class ServiceList implements ServiceListProvider {
 
     /** === Performance Monitor Service ============================== */
 
-    @Reference(optional = true, dynamic = true, multiple = true)
+    @Reference(policy = ReferencePolicy.DYNAMIC, cardinality = ReferenceCardinality.MULTIPLE)
     public synchronized <R extends SkysailServerResource<T>, T> void addPerformanceMonitor(PerformanceMonitor monitor) {
         performanceMonitors.add(monitor);
 //        getSkysailApps().forEach(app -> app.addMonitor(monitor));
@@ -238,7 +236,7 @@ public class ServiceList implements ServiceListProvider {
 
     /** === Validation Provider ============================== */
 
-    @Reference(optional = true, dynamic = true, multiple = false)
+    @Reference(policy = ReferencePolicy.DYNAMIC, cardinality = ReferenceCardinality.OPTIONAL)
     public synchronized void setValidatorService(ValidatorService service) {
         this.validatorService.set(service);
 //        getSkysailApps().forEach(app -> app.setValidatorService(service));

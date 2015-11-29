@@ -3,16 +3,15 @@ package de.twenty11.skysail.server.events;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicReference;
 
+import org.osgi.service.component.annotations.*;
 import org.osgi.service.event.*;
-
-import aQute.bnd.annotation.component.*;
 
 @Component
 public class EventHandler {
 
     private static AtomicReference<EventAdmin> eventAdminRef = new AtomicReference<>();
 
-    @Reference(dynamic = true, multiple = false, optional = true)
+    @Reference(policy = ReferencePolicy.DYNAMIC, cardinality = ReferenceCardinality.OPTIONAL)
     public void setEventAdmin(EventAdmin eventAdmin) {
         EventHandler.eventAdminRef.set(eventAdmin);
     }

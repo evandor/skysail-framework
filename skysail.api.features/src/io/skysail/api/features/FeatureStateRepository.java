@@ -1,6 +1,6 @@
 package io.skysail.api.features;
 
-import aQute.bnd.annotation.ProviderType;
+import org.osgi.annotation.versioning.ProviderType;
 
 /**
  * Implementors retrieve or update the current featureState for a feature based

@@ -1,29 +1,27 @@
 package de.twenty11.skysail.server.app;
 
-import io.skysail.server.app.SkysailApplication;
-import io.skysail.server.menus.*;
-import io.skysail.server.menus.MenuItem.Category;
-import io.skysail.server.utils.MenuItemUtils;
-
 import java.util.*;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.stream.Collectors;
-
-import lombok.extern.slf4j.Slf4j;
 
 import org.apache.shiro.SecurityUtils;
 import org.osgi.framework.Bundle;
 import org.osgi.service.cm.*;
 import org.osgi.service.component.ComponentContext;
+import org.osgi.service.component.annotations.*;
 import org.restlet.Request;
 
-import aQute.bnd.annotation.component.*;
 import de.twenty11.skysail.server.app.profile.*;
 import de.twenty11.skysail.server.core.restlet.RouteBuilder;
 import de.twenty11.skysail.server.resources.*;
 import de.twenty11.skysail.server.services.ResourceBundleProvider;
+import io.skysail.server.app.SkysailApplication;
+import io.skysail.server.menus.*;
+import io.skysail.server.menus.MenuItem.Category;
+import io.skysail.server.utils.MenuItemUtils;
+import lombok.extern.slf4j.Slf4j;
 
-@Component(immediate = true, properties = { "service.pid=landingpages" })
+@Component(immediate = true, property = { "service.pid=landingpages" })
 @Slf4j
 public class SkysailRootApplication extends SkysailApplication implements ApplicationProvider, ResourceBundleProvider,
         ManagedService {
@@ -72,7 +70,7 @@ public class SkysailRootApplication extends SkysailApplication implements Applic
         setComponentContext(null);
     }
 
-    @aQute.bnd.annotation.component.Reference(optional = true, dynamic = true, multiple = false)
+    @Reference(policy = ReferencePolicy.DYNAMIC, cardinality = ReferenceCardinality.OPTIONAL)
     public void setApplicationListProvider(ServiceListProvider service) {
         super.setServiceListProvider(service);
     }
@@ -107,7 +105,7 @@ public class SkysailRootApplication extends SkysailApplication implements Applic
     }
 
 
-    @Reference(multiple = true, optional = true, dynamic = true)
+    @Reference(policy = ReferencePolicy.DYNAMIC, cardinality = ReferenceCardinality.MULTIPLE)
     public void addMenuProvider(MenuItemProvider provider) {
         AtomicReference<MenuItemProvider> providerRef = new AtomicReference<MenuItemProvider>(provider);
         menuProviders.add(providerRef);

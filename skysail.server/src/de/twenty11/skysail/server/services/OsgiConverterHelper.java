@@ -1,6 +1,6 @@
 package de.twenty11.skysail.server.services;
 
-import aQute.bnd.annotation.ProviderType;
+import org.osgi.annotation.versioning.ProviderType;
 
 
 

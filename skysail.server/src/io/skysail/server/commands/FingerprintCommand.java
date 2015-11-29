@@ -4,13 +4,12 @@ import java.util.Arrays;
 
 import org.apache.felix.service.command.CommandProcessor;
 import org.osgi.service.component.ComponentContext;
+import org.osgi.service.component.annotations.*;
 
-import aQute.bnd.annotation.component.*;
-
-@Component(properties = {
+@Component(property = {
         CommandProcessor.COMMAND_SCOPE + ":String=skysail",
         CommandProcessor.COMMAND_FUNCTION + ":String=fingerprint",
-}, provide = Object.class)
+}, service = Object.class)
 public class FingerprintCommand { // NO_UCD (unused code)
 
     private ComponentContext ctx;

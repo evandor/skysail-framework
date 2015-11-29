@@ -1,21 +1,19 @@
 package io.skysail.server.commands;
 
-import io.skysail.server.utils.BundleUtils;
-
 import java.util.*;
 import java.util.regex.*;
 import java.util.stream.Collectors;
 
-import lombok.Getter;
-
 import org.apache.felix.service.command.CommandProcessor;
 import org.osgi.framework.Bundle;
 import org.osgi.service.component.ComponentContext;
+import org.osgi.service.component.annotations.*;
 
-import aQute.bnd.annotation.component.*;
+import io.skysail.server.utils.BundleUtils;
+import lombok.Getter;
 
-@Component(properties = { CommandProcessor.COMMAND_SCOPE + ":String=skysail",
-        CommandProcessor.COMMAND_FUNCTION + ":String=analysis", }, provide = Object.class)
+@Component(property = { CommandProcessor.COMMAND_SCOPE + ":String=skysail",
+        CommandProcessor.COMMAND_FUNCTION + ":String=analysis", }, service = Object.class)
 public class StaticServiceAnalysisCommand { // NO_UCD (unused code)
 
     @Getter

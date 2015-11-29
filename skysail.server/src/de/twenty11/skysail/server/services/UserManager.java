@@ -2,9 +2,9 @@ package de.twenty11.skysail.server.services;
 
 import java.util.List;
 
-import aQute.bnd.annotation.ProviderType;
-import de.twenty11.skysail.server.um.domain.SkysailGroup;
-import de.twenty11.skysail.server.um.domain.SkysailUser;
+import org.osgi.annotation.versioning.ProviderType;
+
+import de.twenty11.skysail.server.um.domain.*;
 
 @ProviderType
 public interface UserManager {

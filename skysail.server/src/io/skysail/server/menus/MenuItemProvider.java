@@ -2,7 +2,7 @@ package io.skysail.server.menus;
 
 import java.util.List;
 
-import aQute.bnd.annotation.ProviderType;
+import org.osgi.annotation.versioning.ProviderType;
 
 @ProviderType
 public interface MenuItemProvider {

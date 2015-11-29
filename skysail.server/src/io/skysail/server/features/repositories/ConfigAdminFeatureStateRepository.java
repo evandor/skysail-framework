@@ -1,11 +1,11 @@
 package io.skysail.server.features.repositories;
 
-import io.skysail.api.features.*;
-
 import java.util.*;
 
+import org.osgi.service.component.annotations.*;
+
+import io.skysail.api.features.*;
 import lombok.extern.slf4j.Slf4j;
-import aQute.bnd.annotation.component.*;
 
 /**
  * an implementation using the (file based) configuration provided by the
@@ -15,7 +15,7 @@ import aQute.bnd.annotation.component.*;
  * name of this class, postfixed with ".cfg", in the config folder.
  *
  */
-@Component(immediate = true, configurationPolicy = ConfigurationPolicy.require)
+@Component(immediate = true, configurationPolicy = ConfigurationPolicy.REQUIRE)
 @Slf4j
 public class ConfigAdminFeatureStateRepository implements FeatureStateRepository {
 

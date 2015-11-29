@@ -1,21 +1,19 @@
 package de.twenty11.skysail.server.core.restlet.converter;
 
-import io.skysail.server.app.SkysailApplication;
-
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
-import lombok.extern.slf4j.Slf4j;
-
+import org.osgi.service.component.annotations.Component;
 import org.restlet.data.*;
 import org.restlet.engine.converter.ConverterHelper;
 import org.restlet.engine.resource.VariantInfo;
 import org.restlet.representation.*;
 import org.restlet.resource.Resource;
 
-import aQute.bnd.annotation.component.Component;
 import de.twenty11.skysail.server.services.OsgiConverterHelper;
+import io.skysail.server.app.SkysailApplication;
+import lombok.extern.slf4j.Slf4j;
 
 @Component(immediate = true)
 @Slf4j

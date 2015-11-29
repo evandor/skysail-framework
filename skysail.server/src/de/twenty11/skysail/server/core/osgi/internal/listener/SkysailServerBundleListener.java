@@ -19,14 +19,13 @@ package de.twenty11.skysail.server.core.osgi.internal.listener;
 
 import java.util.concurrent.atomic.AtomicReference;
 
-import lombok.extern.slf4j.Slf4j;
-
 import org.osgi.framework.*;
 import org.osgi.service.cm.ConfigurationException;
 import org.osgi.service.component.ComponentContext;
+import org.osgi.service.component.annotations.*;
 
-import aQute.bnd.annotation.component.*;
 import de.twenty11.skysail.server.services.SocketIoBroadcasting;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * listener for bundle events.
@@ -50,7 +49,7 @@ public class SkysailServerBundleListener implements BundleListener {// NO_UCD
         }
     }
 
-    @Reference(dynamic = true, multiple = false, optional = true)
+    @Reference(policy = ReferencePolicy.DYNAMIC, cardinality = ReferenceCardinality.OPTIONAL)
     public void setSocketIoBroadcasting(SocketIoBroadcasting socketIoBroadcasting) {
         this.socketIoBroadcastingRef.set(socketIoBroadcasting);
     }

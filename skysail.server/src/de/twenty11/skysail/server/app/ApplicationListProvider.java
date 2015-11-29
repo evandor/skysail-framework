@@ -1,13 +1,11 @@
 package de.twenty11.skysail.server.app;
 
-import io.skysail.server.app.SkysailApplication;
-
 import java.util.List;
 
-import aQute.bnd.annotation.ProviderType;
 import de.twenty11.skysail.server.SkysailComponent;
+import io.skysail.server.app.SkysailApplication;
 
-@ProviderType
+@org.osgi.annotation.versioning.ProviderType
 public interface ApplicationListProvider {
 
     List<SkysailApplication> getApplications();

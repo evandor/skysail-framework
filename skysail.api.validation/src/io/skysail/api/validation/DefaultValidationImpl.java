@@ -1,13 +1,11 @@
 package io.skysail.api.validation;
 
-import io.skysail.api.validation.hibernate.OSGiServiceDiscoverer;
-
-import javax.validation.Validation;
-import javax.validation.Validator;
-import javax.validation.ValidatorFactory;
+import javax.validation.*;
 import javax.validation.bootstrap.GenericBootstrap;
 
-import aQute.bnd.annotation.component.Component;
+import org.osgi.service.component.annotations.Component;
+
+import io.skysail.api.validation.hibernate.OSGiServiceDiscoverer;
 
 @Component(immediate = true)
 public class DefaultValidationImpl implements ValidatorService {

@@ -2,7 +2,7 @@ package io.skysail.api.features;
 
 import java.util.*;
 
-import aQute.bnd.annotation.component.*;
+import org.osgi.service.component.annotations.*;
 
 @Component(immediate = true)
 public class FeatureContext {
@@ -12,7 +12,7 @@ public class FeatureContext {
     // for now: the one and only featureManager 
     private static FeatureManager manager;
 
-    @Reference(multiple = true, dynamic = true, optional = true)
+    @Reference(policy = ReferencePolicy.DYNAMIC, cardinality = ReferenceCardinality.MULTIPLE)
     public void addFeaturesStateRepository(FeatureStateRepository repo) {
         featureRepositories.add(repo);
     }

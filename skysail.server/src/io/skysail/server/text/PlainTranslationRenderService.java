@@ -1,7 +1,8 @@
 package io.skysail.server.text;
 
+import org.osgi.service.component.annotations.Component;
+
 import io.skysail.api.text.*;
-import aQute.bnd.annotation.component.Component;
 
 /**
  * Using a low service ranking makes sure that this (default) service will
@@ -9,7 +10,7 @@ import aQute.bnd.annotation.component.Component;
  * any logic and will return the translation from some TranslationStore "as is",
  * without any substitutions.
  */
-@Component(immediate = true, properties = { org.osgi.framework.Constants.SERVICE_RANKING + "=" + PlainTranslationRenderService.SERVICE_RANKING})
+@Component(immediate = true, property = { org.osgi.framework.Constants.SERVICE_RANKING + "=" + PlainTranslationRenderService.SERVICE_RANKING})
 public class PlainTranslationRenderService implements TranslationRenderService {
 
     public static final String SERVICE_RANKING = "-1";

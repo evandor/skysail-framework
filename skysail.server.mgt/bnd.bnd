@@ -1,8 +1,8 @@
 Bundle-Version: 0.1.20.${tstamp}
 Include-Resource: resources, templates=src;recursive:=true;filter:=*.st|*.stg
 -buildpath:  \
-	osgi.cmpn;version=5.0,\
-	osgi.core;version=5.0,\
+	osgi.core;version=${osgi.version},\
+	osgi.cmpn;version=${osgi.version},\
 	skysail.api;version=${skysail.api.version},\
 	skysail.api.text;version=${skysail.api.text.version},\
 	skysail.server;version=${skysail.server.version},\

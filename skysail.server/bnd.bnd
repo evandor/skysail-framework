@@ -64,9 +64,8 @@ Service-Component: *
 -buildpath:  \
 	lib/jsr305.jar;version=file,\
 	lib/markdown4j-2.2.jar;version=file,\
-	osgi.core;version=5.0,\
-	osgi.cmpn;version=5.0,\
-	osgi.enterprise;version=5.0,\
+	osgi.core;version=${osgi.version},\
+	osgi.enterprise;version=${osgi.version},\
 	skysail.api;version=${skysail.api.version},\
 	skysail.api.peers;version=${skysail.api.peers.version},\
 	skysail.api.features;version=${skysail.api.features.version},\

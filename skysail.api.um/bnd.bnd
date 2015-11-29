@@ -10,7 +10,7 @@ Bundle-Description: an incubator bundle for the skysail usermanagement API  (whi
 	com.springsource.org.junit;version=4.11,\
 	org.jboss.logging.jboss-logging;version=3.1,\
 	classmate;version=1.0,\
-	osgi.core;version=5.0,\
+	osgi.core;version=${osgi.version},\
 	org.restlet;version=${restlet.version},\
 	lombok;version=1.16,\
 	org.mockito.mockito-all;version=1.9
@@ -49,7 +49,7 @@ Service-Component:  \
 	org.apache.felix.log;version='[1.0.1,1.0.2)',\
 	org.apache.felix.scr;version='[2.0.0,2.0.1)',\
 	org.restlet;version='[2.3.4,2.3.5)',\
-	skysail.api.um;version='[0.2.2,0.2.3)',\
+	skysail.api.um;version=snapshot,\
 	slf4j.api;version='[1.7.12,1.7.13)'
 Export-Package:  \
 	io.skysail.api.um

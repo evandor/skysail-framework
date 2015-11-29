@@ -9,7 +9,7 @@ Bundle-Description: an incubator bundle for the skysail validation API  (which w
 	com.springsource.org.junit;version=4.11,\
 	org.jboss.logging.jboss-logging;version=3.1,\
 	classmate;version=1.0,\
-	osgi.core;version=5.0
+	osgi.core;version=${osgi.version}
 Export-Package:  \
 	io.skysail.api.validation
 Private-Package:  \

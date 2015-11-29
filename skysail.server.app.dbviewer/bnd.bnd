@@ -16,8 +16,8 @@ Import-Package: org.osgi.framework,\
 Include-Resource: config=config, resources, templates=src;recursive:=true;filter:=*.st|*.stg
 
 -buildpath:  \
-    osgi.core;version=5.0,\
-    osgi.cmpn;version=5.0,\
+    osgi.core;version=${osgi.version},\
+    osgi.cmpn;version=${osgi.version},\
     biz.aQute.bnd.annotation,\
     com.orientechnologies.orientdb-client;version=${com.orientechnologies.orientdb.version},\
     com.orientechnologies.orientdb-core;version=${com.orientechnologies.orientdb.version},\

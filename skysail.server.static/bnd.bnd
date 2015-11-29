@@ -1,6 +1,6 @@
 Bundle-Version: 1.0.5.${tstamp}
 -buildpath:  \
-	osgi.core;version=4.3,\
+	osgi.core;version=${osgi.version},\
 	skysail.api;version=${skysail.api.version},\
 	skysail.server;version=${skysail.server.version},\
 	biz.aQute.bnd.annotation;version=1.52,\

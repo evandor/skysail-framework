@@ -15,8 +15,8 @@ Bundle-Version: 1.0.4.${tstamp}
 -resolve.effective: active;skip:="osgi.service"
 
 -buildpath:  \
-	osgi.core;version=5.0,\
-	osgi.cmpn;version=5.0,\
+	osgi.core;version=${osgi.version},\
+	osgi.cmpn;version=${osgi.version},\
 	${junit},\
 	org.mockito.mockito-all,\
 	skysail.api;version=${skysail.api.version},\
@@ -85,8 +85,8 @@ Test-Cases:  \
     org.restlet.ext.raml;version=${restlet.version},\
 	org.restlet.ext.slf4j;version=${restlet.version},\
 	org.xerial.snappy.snappy-java;version='[1.1.1,1.1.2)',\
-	osgi.cmpn;version='[5.0.0,5.0.1)',\
-	osgi.enterprise;version='[4.2.0,4.2.1)',\
+	osgi.cmpn;version=${osgi.version},\
+	osgi.enterprise;version=${osgi.version},\
 	skysail.api;version=${skysail.api.version},\
 	skysail.api.features;version=latest,\
 	skysail.api.search;version=latest,\

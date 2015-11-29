@@ -11,8 +11,8 @@ Bundle-Description: javamelody integration
 -buildpath:  \
     lib/javamelody.jar;version=file,\
     lib/jrobin-1.5.9.1.jar;version=file,\
-    osgi.core;version=5.0,\
-    osgi.cmpn;version=5.0,\
+    osgi.core;version=${osgi.version},\
+    osgi.cmpn;version=${osgi.version},\
     skysail.api;version=${skysail.api.version},\
     skysail.server;version=${skysail.server.version},\
     biz.aQute.bnd.annotation;version=2.3,\

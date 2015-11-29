@@ -2,6 +2,7 @@ Bundle-Version: 0.2.1.${tstamp}
 Bundle-Name: SKYSAIL :: server :: um
 Bundle-Description: Default Usermanagement Implementation
 -buildpath:  \
+	osgi.core;version=${osgi.version},\
     skysail.api;version=${skysail.api.version},\
     skysail.api.features;version=${skysail.api.features.version},\
 	skysail.api.um;version=${skysail.api.um.version},\
@@ -16,7 +17,6 @@ Bundle-Description: Default Usermanagement Implementation
 	org.apache.shiro.web;version=1.2,\
 	javax.servlet;version=3.0,\
 	org.restlet.ext.crypto;version=${restlet.version},\
-	osgi.core;version=5.0,\
 	org.mockito.mockito-all;version=1.10,\
 	com.springsource.org.junit;version=4.11,\
 	com.orientechnologies.orientdb-core;version=2.0

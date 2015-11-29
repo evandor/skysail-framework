@@ -14,8 +14,8 @@ Bundle-ClassPath: .,lib/twitter4j-core-4.0.3.jar
 	slf4j.api;version=1.7,\
 	org.apache.commons.beanutils;version=1.9,\
 	lombok;version=1.16,\
-	osgi.cmpn;version=5.0,\
-	osgi.core;version=5.0,\
+	osgi.core;version=${osgi.version},\
+	osgi.cmpn;version=${osgi.version},\
 	ch.qos.logback.core;version=1.1,\
 	ch.qos.logback.classic;version=1.1
 Service-Component:  \

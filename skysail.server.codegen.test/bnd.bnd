@@ -28,8 +28,8 @@ Private-Package:  \
 	io.skysail.server.codegen.test.withlist.companies
 
 -buildpath:  \
-	osgi.core;version=5.0,\
-	osgi.cmpn;version=5.0,\
+	osgi.core;version=${osgi.version},\
+	osgi.cmpn;version=${osgi.version},\
 	biz.aQute.bnd.annotation,\
 	skysail.api;version=${skysail.api.version},\
 	skysail.api.validation;version=${skysail.api.validation.version},\

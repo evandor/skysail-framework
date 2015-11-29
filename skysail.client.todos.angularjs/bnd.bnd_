@@ -6,7 +6,7 @@ Include-Resource: webapp
 	skysail.api;version=${skysail.api.version},\
 	skysail.server;version=${skysail.server.version},\
 	slf4j.api;version=1.7.7,\
-	osgi.core;version=4.3,\
+	osgi.core;version=${osgi.version},\
 	org.restlet;version=${restlet.version},\
 	org.restlet.ext.raml;version=${restlet.version},\
 	biz.aQute.bnd.annotation;version=1.52

@@ -18,8 +18,8 @@ Service-Component: *
 	lib/tomp2p-replication-5.0-Beta5.jar;version=file,\
 	lib/tomp2p-dht-5.0-Beta5.jar;version=file,\
 	lib/org.hive2hive.processframework-1.1.jar;version=file,\
-	osgi.core;version=5.0,\
-	osgi.cmpn;version=5.0,\
+	osgi.core;version=${osgi.version},\
+	osgi.cmpn;version=${osgi.version},\
 	org.mockito.mockito-core;version=1.10,\
 	com.springsource.org.junit;version=4.11,\
 	de.twentyeleven.skysail.org.hamcrest.hamcrest-all-osgi;version=1.3,\

@@ -11,8 +11,8 @@ Include-Resource: lib=lib,resources=resources
 	skysail.server;version=${skysail.server.version},\
 	skysail.server.queryfilter;version=${skysail.server.queryfilter.version},\
 	biz.aQute.bnd.annotation;version=2.3,\
-	osgi.cmpn;version=5.0,\
-	osgi.core;version=5.0,\
+	osgi.core;version=${osgi.version},\
+	osgi.cmpn;version=${osgi.version},\
 	${orientdb},\
 	org.restlet;version=${restlet.version},\
 	org.mockito.mockito-core;version=1.10,\

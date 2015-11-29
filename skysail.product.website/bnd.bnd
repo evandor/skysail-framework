@@ -4,7 +4,7 @@ Service-Component: *
 Include-Resource: resources, webapp, templates=src;recursive:=true;filter:=*.st|*.stg
 Bundle-Name: SKYSAIL :: products :: website
 -buildpath:  \
-	osgi.core;version=5.0,\
+	osgi.core;version=${osgi.version},\
 	skysail.api;version=${skysail.api.version},\
     skysail.api.search;version=${skysail.api.search.version},\
     skysail.api.text;version=${skysail.api.text.version},\

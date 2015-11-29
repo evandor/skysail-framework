@@ -3,8 +3,8 @@ Bundle-Name: SKYSAIL :: server :: ext :: mailer
 Service-Component:  \
 	*
 -buildpath: \
-	osgi.core;version=5.0,\
-	osgi.cmpn;version=5.0,\
+	osgi.core;version=${osgi.version},\
+	osgi.cmpn;version=${osgi.version},\
 	skysail.server;version=${skysail.server.version},\
 	biz.aQute.bnd.annotation;version=2.3,\
 	com.sun.mail.javax.mail;version=1.5,\

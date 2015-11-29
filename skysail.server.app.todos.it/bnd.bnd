@@ -23,7 +23,7 @@ Private-Package:  \
 	skysail.server.db;version=${skysail.server.db.version},\
 	skysail.server.testsupport;version=${skysail.server.testsupport.version},\
 	skysail.server.um.internal;version=0.0,\
-	osgi.core;version=5.0,\
+	osgi.core;version=${osgi.version},\
 	com.springsource.org.junit;version=4.11,\
 	org.restlet;version=${restlet.version},\
 	de.twentyeleven.skysail.org.json-osgi;version=latest,\

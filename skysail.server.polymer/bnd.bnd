@@ -11,8 +11,8 @@ Export-Package:  \
 Include-Resource: _polymer=_polymer
 
 -buildpath:  \
-	osgi.core;version=5.0,\
-	osgi.cmpn;version=5.0,\
+	osgi.core;version=${osgi.version},\
+	osgi.cmpn;version=${osgi.version},\
 	skysail.api;version=${skysail.api.version},\
 	skysail.api.peers;version=${skysail.api.peers.version},\
 	skysail.api.text;version=${skysail.api.text.version},\

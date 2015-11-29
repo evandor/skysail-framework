@@ -4,6 +4,8 @@ Bundle-Description: Asciidoc Renderer
 Bundle-ClassPath: .,lib/asciidoctorj-1.5.2.jar
 Include-Resource: lib=lib,resources
 -buildpath:  \
+	osgi.core;version=${osgi.version},\
+	osgi.cmpn;version=${osgi.version},\
 	skysail.server;version=${skysail.server.version},\
 	skysail.api.text;version=${skysail.api.text.version},\
 	com.springsource.org.junit;version=4.11,\
@@ -15,9 +17,7 @@ Include-Resource: lib=lib,resources
 	org.restlet;version=${restlet.version},\
 	org.apache.commons.lang3;version=3.1,\
 	slf4j.api;version=1.7,\
-	osgi.core;version=5.0,\
-	org.jruby.jruby;version=1.7,\
-	osgi.cmpn;version=5.0
+	org.jruby.jruby;version=1.7
 Private-Package:  \
 	io.skysail.server.text.asciidoc
 Service-Component:  \

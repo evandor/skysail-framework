@@ -5,6 +5,8 @@ Bundle-Name: SKYSAIL :: server :: text :: store :: bundleresource
 Bundle-Description: TranslationStore based on java bundle resources
 Include-Resource: resources, templates=src;recursive:=true;filter:=*.st|*.stg
 -buildpath:  \
+	osgi.core;version=${osgi.version},\
+	osgi.cmpn;version=${osgi.version},\
 	skysail.api;version=${skysail.api.version},\
 	skysail.api.text;version=${skysail.api.text.version},\
 	skysail.server;version=${skysail.server.version},\
@@ -13,14 +15,12 @@ Include-Resource: resources, templates=src;recursive:=true;filter:=*.st|*.stg
 	org.restlet;version=${restlet.version},\
 	org.restlet.ext.raml;version=${restlet.version},\
 	lombok;version=1.16,\
-	osgi.core;version=5.0,\
 	org.apache.commons.lang;version=2.6,\
 	javax.validation.api;version=1.1,\
 	org.apache.commons.configuration;version=1.10,\
 	org.codehaus.jettison.jettison;version=1.3,\
 	org.apache.commons.beanutils;version=1.9,\
 	com.google.guava;version=16.0,\
-	osgi.cmpn;version=5.0,\
 	com.fasterxml.jackson.core.jackson-annotations;version=2.5,\
 	org.apache.shiro.core;version=1.2
 Private-Package:  \

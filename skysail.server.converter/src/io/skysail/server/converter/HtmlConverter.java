@@ -1,16 +1,7 @@
 package io.skysail.server.converter;
 
-import io.skysail.api.peers.PeersProvider;
-import io.skysail.api.search.SearchService;
-import io.skysail.server.app.SkysailApplication;
-import io.skysail.server.converter.impl.*;
-import io.skysail.server.menus.MenuItemProvider;
-import io.skysail.server.restlet.resources.SkysailServerResource;
-
 import java.util.*;
 import java.util.concurrent.CopyOnWriteArrayList;
-
-import lombok.extern.slf4j.Slf4j;
 
 import org.apache.shiro.SecurityUtils;
 import org.osgi.service.event.*;
@@ -25,6 +16,13 @@ import de.twenty11.skysail.server.core.osgi.EventHelper;
 import de.twenty11.skysail.server.services.OsgiConverterHelper;
 import etm.core.configuration.EtmManager;
 import etm.core.monitor.*;
+import io.skysail.api.peers.PeersProvider;
+import io.skysail.api.search.SearchService;
+import io.skysail.server.app.SkysailApplication;
+import io.skysail.server.converter.impl.*;
+import io.skysail.server.menus.MenuItemProvider;
+import io.skysail.server.restlet.resources.SkysailServerResource;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * A component providing converting functionality via the StringTemplate
@@ -100,18 +98,6 @@ public class HtmlConverter extends ConverterHelper implements OsgiConverterHelpe
     public void unsetPeersProvider(PeersProvider service) {
         this.peersProvider = null;
     }
-
-    // --- HttpServer Service ------------------------------------------------
-
-//    @Reference(multiple = false, optional = false, dynamic = true)
-//    public void setInstallationProvider(InstallationProvider service) {
-//        this.installationProvider = service;
-//    }
-//
-//    public void unsetInstallationProvider(InstallationProvider service) {
-//        this.installationProvider = null;
-//    }
-
 
     @Override
     public List<Class<?>> getObjectClasses(Variant source) {

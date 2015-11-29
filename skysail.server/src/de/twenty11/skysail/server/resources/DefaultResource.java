@@ -1,18 +1,16 @@
 package de.twenty11.skysail.server.resources;
 
-import io.skysail.api.links.*;
-import io.skysail.server.menus.MenuItem;
-import io.skysail.server.restlet.resources.ListServerResource;
-
 import java.util.*;
 import java.util.stream.Collectors;
 
 import org.apache.shiro.SecurityUtils;
-import org.restlet.resource.ResourceException;
 
 import com.google.common.base.Predicate;
 
 import de.twenty11.skysail.server.app.SkysailRootApplication;
+import io.skysail.api.links.*;
+import io.skysail.server.menus.MenuItem;
+import io.skysail.server.restlet.resources.ListServerResource;
 
 /**
  * Default resource, attached to path "/".
@@ -21,7 +19,7 @@ import de.twenty11.skysail.server.app.SkysailRootApplication;
 public class DefaultResource extends ListServerResource<MenuItemDescriptor> {
 
     @Override
-    protected void doInit() throws ResourceException {
+    protected void doInit() {
         super.doInit();
         getResourceContext().addAjaxNavigation("ajax", "Skysail Applications", DefaultResource.class, DefaultResource.class, "url");
     }

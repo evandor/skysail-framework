@@ -47,7 +47,7 @@ Service-Component:  \
 	org.apache.felix.gogo.runtime;version='[0.16.2,0.16.3)',\
 	org.apache.felix.gogo.shell;version='[0.10.0,0.10.1)',\
 	org.apache.felix.log;version='[1.0.1,1.0.2)',\
-	org.apache.felix.scr;version='[2.0.0,2.0.1)',\
+	org.apache.felix.scr;version='[2.0.2,2.0.3)',\
 	org.restlet;version='[2.3.4,2.3.5)',\
 	skysail.api.um;version=snapshot,\
 	slf4j.api;version='[1.7.12,1.7.13)'

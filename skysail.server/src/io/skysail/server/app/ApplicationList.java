@@ -1,18 +1,19 @@
 package io.skysail.server.app;
 
+import java.text.DecimalFormat;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicReference;
-
-import lombok.extern.slf4j.Slf4j;
 
 import org.apache.commons.lang.Validate;
 import org.restlet.*;
 import org.restlet.data.Protocol;
 
-import aQute.bnd.annotation.component.*;
 import aQute.bnd.annotation.component.Component;
+import aQute.bnd.annotation.component.Reference;
 import de.twenty11.skysail.server.*;
 import de.twenty11.skysail.server.app.*;
+import lombok.NonNull;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * This class keeps track of all available skysail applications and injects the
@@ -45,14 +46,14 @@ public class ApplicationList implements ApplicationListProvider { // NO_UCD (unu
         application.setStatusService(new SkysailStatusService());
         applications.add(application);
         attachToComponent(application);
-        log.info("(+ Application) (#{}) with name '{}'", applications.size(), application.getName());
+        log.info("(+ Application) (#{}) with name '{}'", formatSize(applications), application.getName());
     }
 
     public synchronized void removeApplicationProvider(ApplicationProvider provider) {
         SkysailApplication application = getApplication(provider);
         detachFromComponent(application);
         applications.remove(application);
-        log.info("(- Application) name '{}', count is {} now", application.getName(), applications.size());
+        log.info("(- Application) name '{}', count is {} now", application.getName(), formatSize(applications));
     }
 
     /** === The service list =================================== */
@@ -150,5 +151,10 @@ public class ApplicationList implements ApplicationListProvider { // NO_UCD (unu
         Validate.notNull(application, "application from applicationProvider may not be null");
         return application;
     }
+    
+    private static String formatSize(@NonNull List<?> list) {
+        return new DecimalFormat("00").format(list.size());
+    }
+
 
 }

@@ -2,18 +2,12 @@ package io.skysail.server.testsupport;
 
 import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.assertThat;
-import io.skysail.api.responses.*;
-import io.skysail.api.validation.*;
-import io.skysail.server.app.*;
-import io.skysail.server.restlet.resources.SkysailServerResource;
 
 import java.math.BigInteger;
 import java.security.SecureRandom;
 import java.util.*;
 import java.util.concurrent.*;
 import java.util.concurrent.atomic.AtomicReference;
-
-import lombok.Getter;
 
 import org.apache.shiro.*;
 import org.apache.shiro.subject.Subject;
@@ -34,6 +28,11 @@ import org.restlet.resource.Resource;
 import de.twenty11.skysail.server.app.ServiceListProvider;
 import de.twenty11.skysail.server.services.*;
 import de.twenty11.skysail.server.um.domain.SkysailUser;
+import io.skysail.api.responses.*;
+import io.skysail.api.validation.*;
+import io.skysail.server.app.*;
+import io.skysail.server.restlet.resources.SkysailServerResource;
+import lombok.Getter;
 
 /**
  * Base class for resource class testing with a (real) in-memory database.

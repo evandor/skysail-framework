@@ -2,16 +2,14 @@ package io.skysail.server.http;
 
 import java.io.IOException;
 import java.net.ServerSocket;
+import java.text.DecimalFormat;
 import java.util.*;
 import java.util.logging.Level;
 import java.util.stream.Collectors;
 
-import javax.naming.ConfigurationException;
-
-import lombok.extern.slf4j.Slf4j;
-
 import org.osgi.service.cm.*;
 import org.osgi.service.component.*;
+import org.osgi.service.component.annotations.*;
 import org.restlet.*;
 import org.restlet.data.Protocol;
 import org.restlet.engine.Engine;
@@ -20,13 +18,16 @@ import org.restlet.ext.jackson.JacksonConverter;
 import org.restlet.resource.ServerResource;
 import org.restlet.service.ConverterService;
 
-import aQute.bnd.annotation.component.*;
-import aQute.bnd.annotation.component.Component;
 import de.twenty11.skysail.server.SkysailComponent;
 import de.twenty11.skysail.server.app.*;
 import de.twenty11.skysail.server.services.*;
+import lombok.NonNull;
+import lombok.extern.slf4j.Slf4j;
 
-@Component(immediate = true, configurationPolicy = ConfigurationPolicy.optional, properties = { "event.topics=de/twenty11/skysail/server/configuration/UPDATED" })
+@org.osgi.service.component.annotations.Component(
+        immediate = true, 
+        configurationPolicy = ConfigurationPolicy.OPTIONAL,
+        property = { "event.topics=de/twenty11/skysail/server/configuration/UPDATED" })
 @Slf4j
 public class HttpServer extends ServerResource implements RestletServicesProvider, SkysailComponentProvider,
         ManagedService, InstallationProvider {
@@ -66,7 +67,7 @@ public class HttpServer extends ServerResource implements RestletServicesProvide
     }
 
     @Activate
-    public synchronized void activate(ComponentContext componentContext) throws ConfigurationException {
+    public void activate(ComponentContext componentContext) {
         log.info("Activating {}", this.getClass().getName());
         this.componentContext = componentContext;
         if (restletComponent == null) {
@@ -112,8 +113,7 @@ public class HttpServer extends ServerResource implements RestletServicesProvide
     }
 
     // --- ConfigurationAdmin ------------------------------------------------
-
-    @Reference(dynamic = true, optional = false, multiple = false)
+    @Reference(cardinality = ReferenceCardinality.MANDATORY, policy = ReferencePolicy.DYNAMIC)
     public void setConfigurationAdmin(ConfigurationAdmin configurationAdmin) {
         this.configurationAdmin = configurationAdmin;
     }
@@ -125,16 +125,22 @@ public class HttpServer extends ServerResource implements RestletServicesProvide
     // --- OsgiConverterHelper
     // ------------------------------------------------------
 
-    @Reference(optional = true, dynamic = true, multiple = true)
+    @Reference(cardinality = ReferenceCardinality.MULTIPLE, policy = ReferencePolicy.DYNAMIC)
     public synchronized void addConverterHelper(OsgiConverterHelper converterHelper) {
         if (converterHelper instanceof ConverterHelper) {
             this.registeredConverters.add((ConverterHelper) converterHelper);
+            log.info("(+ Converter)   (#{}) with name '{}'",  
+                    formatSize(registeredConverters), 
+                    converterHelper.getClass().getName());
         }
     }
 
     public synchronized void removeConverterHelper(OsgiConverterHelper converterHelper) {
         if (converterHelper instanceof ConverterHelper) {
             this.registeredConverters.remove(converterHelper);
+            log.info("(- Converter)   name '{}', count is {} now",
+                    registeredConverters.getClass().getName(), 
+                    formatSize(registeredConverters));
         }
     }
 
@@ -269,6 +275,10 @@ public class HttpServer extends ServerResource implements RestletServicesProvide
 
         serverActive = true;
 
+    }
+
+    private String formatSize(@NonNull List<?> list) {
+        return new DecimalFormat("00").format(list.size());
     }
 
 }

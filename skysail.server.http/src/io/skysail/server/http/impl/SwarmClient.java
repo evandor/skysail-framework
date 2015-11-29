@@ -1,23 +1,16 @@
 package io.skysail.server.http.impl;
 
-import java.util.Collections;
-import java.util.Dictionary;
-import java.util.HashSet;
-import java.util.Set;
-
-import lombok.extern.slf4j.Slf4j;
+import java.util.*;
 
 import org.apache.commons.lang.StringUtils;
-import org.osgi.service.cm.ConfigurationException;
-import org.osgi.service.cm.ManagedService;
+import org.osgi.service.cm.*;
+import org.osgi.service.component.annotations.*;
 import org.restlet.representation.Representation;
 import org.restlet.resource.ClientResource;
 
-import aQute.bnd.annotation.component.Activate;
-import aQute.bnd.annotation.component.Component;
-import aQute.bnd.annotation.component.Deactivate;
+import lombok.extern.slf4j.Slf4j;
 
-@Component(immediate = true, properties = { "service.pid=peers" })
+@org.osgi.service.component.annotations.Component(immediate = true, property = { "service.pid=peers" })
 @Slf4j
 public class SwarmClient implements ManagedService {
 

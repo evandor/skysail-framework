@@ -1,13 +1,13 @@
 package io.skysail.server.domain.core;
 
-import io.skysail.api.repos.*;
-
+import java.text.DecimalFormat;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
+import aQute.bnd.annotation.component.Component;
+import io.skysail.api.repos.*;
 import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
-import aQute.bnd.annotation.component.Component;
 
 @Component(immediate = true, provide = Repositories.class)
 @Slf4j
@@ -26,13 +26,13 @@ public class Repositories {
             throw new IllegalStateException("cannot set repository, name is missing");
         }
         repositories.put(identifier, repo);
-        log.info("(+ Repository)  (#{}) with name '{}'", repositories.size(),identifier);
+        log.info("(+ Repository)  (#{}) with name '{}'", formatSize(repositories.keySet()),identifier);
     }
 
     public void unsetRepository(DbRepository repo) {
         String identifier = repo.getRootEntity().getName();
         repositories.remove(identifier);
-        log.info("(- Repository)  name '{}', count is {} now", identifier, repositories.size());
+        log.info("(- Repository)  name '{}', count is {} now", identifier, formatSize(repositories.keySet()));
     }
 
     public synchronized Map<String, DbRepository> getRepositories() {
@@ -45,6 +45,10 @@ public class Repositories {
 
     public Collection<String> getRepositoryIdentifiers() {
         return repositories.keySet();
+    }
+
+    private static String formatSize(@NonNull Collection<?> list) {
+        return new DecimalFormat("00").format(list.size());
     }
 
 }

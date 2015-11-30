@@ -1,6 +1,7 @@
 package io.skysail.server.designer.checklist;
 
-import aQute.bnd.annotation.component.*;
+import org.osgi.service.component.annotations.*;
+
 import io.skysail.api.domain.Identifiable;
 import io.skysail.api.repos.DbRepository;
 import io.skysail.server.db.DbService;

@@ -2,13 +2,13 @@ package io.skysail.server.app.designer.restclient;
 
 import javax.annotation.Generated;
 
+import org.osgi.service.component.annotations.*;
+
 import io.skysail.api.repos.DbRepository;
-
-import lombok.extern.slf4j.Slf4j;
-import aQute.bnd.annotation.component.*;
 import io.skysail.server.db.*;
+import lombok.extern.slf4j.Slf4j;
 
-@Component(immediate = true, properties = "name=ClientApplicationRepository")
+@Component(immediate = true, property = "name=ClientApplicationRepository")
 @Slf4j
 @Generated("io.skysail.server.codegen.apt.processors.EntityProcessor")
 public class ClientApplicationRepo extends GraphDbRepository<ClientApplication> implements DbRepository {

@@ -2,13 +2,13 @@ package io.skysail.server.designer.presentation;
 
 import javax.annotation.Generated;
 
+import org.osgi.service.component.annotations.*;
+
 import io.skysail.api.repos.DbRepository;
-
-import lombok.extern.slf4j.Slf4j;
-import aQute.bnd.annotation.component.*;
 import io.skysail.server.db.*;
+import lombok.extern.slf4j.Slf4j;
 
-@Component(immediate = true, properties = "name=TopicRepository")
+@Component(immediate = true, property = "name=TopicRepository")
 @Slf4j
 @Generated("io.skysail.server.codegen.apt.processors.EntityProcessor")
 public class TopicRepo extends GraphDbRepository<Topic> implements DbRepository {

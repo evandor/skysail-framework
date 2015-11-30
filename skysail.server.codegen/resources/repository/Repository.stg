@@ -3,13 +3,13 @@ package $entity.packageName$;
 
 import javax.annotation.Generated;
 
+import org.osgi.service.component.annotations.*;
+
 import io.skysail.api.repos.DbRepository;
-
-import lombok.extern.slf4j.Slf4j;
-import aQute.bnd.annotation.component.*;
 import io.skysail.server.db.*;
+import lombok.extern.slf4j.Slf4j;
 
-@Component(immediate = true, properties = "name=$entity.simpleName$Repository")
+@Component(immediate = true, property = "name=$entity.simpleName$Repository")
 @Slf4j
 $entity.classAnnotations$
 public class $entity.simpleName$Repo extends GraphDbRepository<$entity.simpleName$> implements DbRepository {

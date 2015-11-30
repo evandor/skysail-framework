@@ -1,8 +1,8 @@
 package io.skysail.server.app.designer;
 
 import io.skysail.server.app.designer.codegen.SkysailEntityCompiler2;
-import io.skysail.server.app.designer.model.ApplicationModel;
-import io.skysail.server.app.designer.model.EntityModel;
+import io.skysail.server.app.designer.model.CodegenApplicationModel;
+import io.skysail.server.app.designer.model.CodegenEntityModel;
 import io.skysail.server.app.designer.model.RouteModel;
 
 import java.util.ArrayList;
@@ -10,11 +10,11 @@ import java.util.List;
 
 public class EntityCreator {
 
-    private ApplicationModel applicationModel;
+    private CodegenApplicationModel applicationModel;
 
     private List<RouteModel> routeModels = new ArrayList<>();
 
-    public EntityCreator(ApplicationModel applicationModel) {
+    public EntityCreator(CodegenApplicationModel applicationModel) {
         this.applicationModel = applicationModel;
     }
 
@@ -27,7 +27,7 @@ public class EntityCreator {
         return routeModels;
     }
 
-    private List<RouteModel> compileEntity(EntityModel entityModel, STGroupBundleDir stGroup) {
+    private List<RouteModel> compileEntity(CodegenEntityModel entityModel, STGroupBundleDir stGroup) {
         SkysailEntityCompiler2 entityCompiler = new SkysailEntityCompiler2(applicationModel, stGroup);
         entityCompiler.createEntity(entityModel);
         entityCompiler.createResources(entityModel);

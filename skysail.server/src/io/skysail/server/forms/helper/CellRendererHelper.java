@@ -2,7 +2,7 @@ package io.skysail.server.forms.helper;
 
 import io.skysail.api.links.Link;
 import io.skysail.api.responses.*;
-import io.skysail.server.domain.core.Field;
+import io.skysail.server.domain.core.FieldModel;
 import io.skysail.server.forms.*;
 import io.skysail.server.restlet.resources.SkysailServerResource;
 
@@ -25,7 +25,7 @@ public class CellRendererHelper {
     @Deprecated
     private FormField formField;
     private SkysailResponse<?> response;
-    private Field field;
+    private FieldModel field;
 
     @Deprecated
     public CellRendererHelper(FormField formField, SkysailResponse<?> response) {
@@ -33,7 +33,7 @@ public class CellRendererHelper {
         this.response = response;
     }
 
-    public CellRendererHelper(Field field, SkysailResponse<?> response) {
+    public CellRendererHelper(FieldModel field, SkysailResponse<?> response) {
         this.field = field;
         this.response = response;
     }
@@ -52,7 +52,7 @@ public class CellRendererHelper {
         return string;
     }
 
-    private String handleListView(String string, Field f, Object identifier) {
+    private String handleListView(String string, FieldModel f, Object identifier) {
         if (URL.class.equals(f.getType())) {
             string = "<a href='" + string + "' target=\"_blank\">" + truncate(f, string, true) + "</a>";
 //        } else if (hasListViewLink(f)) {
@@ -138,7 +138,7 @@ public class CellRendererHelper {
         return string;
     }
 
-    private static String truncate(Field f, String string, boolean withoutHtml) {
+    private static String truncate(FieldModel f, String string, boolean withoutHtml) {
         if (f.getTruncateTo() == null) {
             return string;
         }

@@ -72,7 +72,7 @@ public class StringTemplateRenderer {
         SkysailApplication currentApplication = (SkysailApplication) resource.getApplication();
         Bundle appBundle = currentApplication.getBundle();
         if (appBundle == null) {
-            log.warn("could not determine bundle of current Application {}, follow-up errors might occur", currentApplication.getName());
+            log.warn("could not determine bundle of current ApplicationModel {}, follow-up errors might occur", currentApplication.getName());
         }
         //String resourcePath = ("/templates/" + mediaType).replace("/*", "");
         //log.debug("reading templates from resource path '{}'", resourcePath);

@@ -17,7 +17,7 @@ import javax.validation.constraints.Size;
 
 public class SkysailRole {
 
-    // @Field
+    // @FieldModel
     @Size(min = 3, message = "name must have at least three characters")
     private String name;
 

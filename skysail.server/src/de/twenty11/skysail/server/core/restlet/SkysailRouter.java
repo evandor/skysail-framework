@@ -2,7 +2,7 @@ package de.twenty11.skysail.server.core.restlet;
 
 import io.skysail.api.domain.Identifiable;
 import io.skysail.server.app.*;
-import io.skysail.server.domain.core.Application;
+import io.skysail.server.domain.core.ApplicationModel;
 import io.skysail.server.restlet.resources.*;
 
 import java.util.*;
@@ -71,7 +71,7 @@ public class SkysailRouter extends Router {
     }
 
     private void updateApplicationModel(RouteBuilder routeBuilder) {
-        Application applicationModel = skysailApplication.getApplicationModel();
+        ApplicationModel applicationModel = skysailApplication.getApplicationModel();
 
         Class<? extends ServerResource> targetClass = routeBuilder.getTargetClass();
         if (targetClass != null) {

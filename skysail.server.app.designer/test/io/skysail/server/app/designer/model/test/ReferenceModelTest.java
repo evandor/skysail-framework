@@ -4,7 +4,7 @@ import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
 import io.skysail.server.app.designer.entities.Entity;
-import io.skysail.server.app.designer.model.EntityModel;
+import io.skysail.server.app.designer.model.CodegenEntityModel;
 import io.skysail.server.app.designer.model.ReferenceModel;
 
 import org.junit.Before;
@@ -17,7 +17,7 @@ public class ReferenceModelTest {
     @Before
     public void setUp()  {
         Entity entity = new Entity("entityName");
-        EntityModel entityModel = new EntityModel(entity);
+        CodegenEntityModel entityModel = new CodegenEntityModel(entity);
         referenceModel = new ReferenceModel(entityModel, entity);
     }
 

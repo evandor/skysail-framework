@@ -9,7 +9,7 @@ import io.skysail.server.domain.core.*;
 
 import org.junit.*;
 
-public class ApplicationTest {
+public class ApplicationModelTest {
 
     @Before
     public void setUp() throws Exception {
@@ -17,10 +17,10 @@ public class ApplicationTest {
 
     @Test
     public void simple_application_structure_can_be_created() {
-        Application app = new Application("app17")
-            .add(new Entity("e23")
-                    .add(new Field("f23")))
-            .add(new Entity("e24"));
+        ApplicationModel app = new ApplicationModel("app17")
+            .add(new EntityModel("e23")
+                    .add(new FieldModel("f23")))
+            .add(new EntityModel("e24"));
 
         assertThat(app.getId(),is("app17"));
         assertThat(app.getEntityNames().size(),is(2));
@@ -30,7 +30,7 @@ public class ApplicationTest {
 
     @Test
     public void repositories_can_be_set_and_retrieved() {
-        Application app = new Application("app56");
+        ApplicationModel app = new ApplicationModel("app56");
         Repositories repos = new Repositories();
         DbRepository aRepository = new DbRepository() {
 
@@ -63,7 +63,7 @@ public class ApplicationTest {
 
     @Test
     public void toString_contains_main_details() {
-        Application app = new Application("app56");
+        ApplicationModel app = new ApplicationModel("app56");
         assertThat(app.toString(), containsString("app56"));
     }
 }

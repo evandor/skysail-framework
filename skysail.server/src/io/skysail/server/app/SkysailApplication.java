@@ -78,7 +78,7 @@ import lombok.extern.slf4j.Slf4j;
  *
  * Important:
  *
- * A {@link SkysailApplication} is a {@link Application}, which
+ * A {@link SkysailApplication} is a {@link ApplicationModel}, which
  *
  * - handles access to its resources issues via its {@link AuthenticationService} and {@link AuthorizationService}
  *
@@ -136,7 +136,7 @@ public abstract class SkysailApplication extends RamlApplication implements Appl
      * class as it has to be derived from a restlet application.
      */
     @Getter
-    private  io.skysail.server.domain.core.Application applicationModel;
+    private  io.skysail.server.domain.core.ApplicationModel applicationModel;
 
     public SkysailApplication() {
         getEncoderService().getIgnoredMediaTypes().add(SkysailApplication.SKYSAIL_SERVER_SENT_EVENTS);
@@ -153,11 +153,11 @@ public abstract class SkysailApplication extends RamlApplication implements Appl
 
     public SkysailApplication(String appName, ApiVersion apiVersion, List<Class<? extends Identifiable>> entityClasses) {
         this();
-        log.debug("Instanciating new Skysail Application '{}'", this.getClass().getSimpleName());
+        log.debug("Instanciating new Skysail ApplicationModel '{}'", this.getClass().getSimpleName());
         this.home = appName;
         setName(appName);
         this.apiVersion = apiVersion;
-        applicationModel = new io.skysail.server.domain.core.Application(appName);
+        applicationModel = new io.skysail.server.domain.core.ApplicationModel(appName);
         entityClasses.forEach(cls -> applicationModel.add(EntityFactory.createFrom(cls)));
     }
 
@@ -212,13 +212,13 @@ public abstract class SkysailApplication extends RamlApplication implements Appl
      */
     @Activate
     protected void activate(ComponentContext componentContext) throws ConfigurationException {
-        log.debug("Activating Application {}", this.getClass().getName());
+        log.debug("Activating ApplicationModel {}", this.getClass().getName());
         this.componentContext = componentContext;
     }
 
     @Deactivate
     protected void deactivate(ComponentContext componentContext) {
-        log.debug("Deactivating Application {}", this.getClass().getName());
+        log.debug("Deactivating ApplicationModel {}", this.getClass().getName());
         this.componentContext = null;
         this.bundleContext = null;
         if (router != null) {
@@ -386,7 +386,7 @@ public abstract class SkysailApplication extends RamlApplication implements Appl
 //        roleAuthorizer.setNext(router);
 //
 //        ChallengeAuthenticator bearerAuthenticator = new ChallengeAuthenticator(getContext(),
-//                ChallengeScheme.HTTP_OAUTH_BEARER, "Application");
+//                ChallengeScheme.HTTP_OAUTH_BEARER, "ApplicationModel");
 //
 //        bearerAuthenticator.setVerifier(new TokenVerifier(new org.restlet.data.Reference("yourTokenAuthURI")));
 //        bearerAuthenticator.setNext(roleAuthorizer);

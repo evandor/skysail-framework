@@ -1,54 +1,50 @@
 package io.skysail.server.app.designer.model;
 
+import java.util.*;
+
 import io.skysail.server.app.designer.entities.Entity;
-import io.skysail.server.app.designer.fields.ActionEntityField;
-import io.skysail.server.app.designer.fields.EntityField;
-
-import java.util.HashSet;
-import java.util.Optional;
-import java.util.Set;
-
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NonNull;
-import lombok.ToString;
+import io.skysail.server.app.designer.fields.*;
+import io.skysail.server.domain.core.*;
+import lombok.*;
 import lombok.extern.slf4j.Slf4j;
 
 @Getter
 @EqualsAndHashCode(of = { "entityName" })
 @ToString(of = {"entityName"})
 @Slf4j
-public class EntityModel {
+public class CodegenEntityModel extends EntityModel {
 
     private final String entityName;
-    private final Set<FieldModel> fields = new HashSet<>();
+    private final Map<String, FieldModel> fields = new HashMap<>();
     private final Set<ActionFieldModel> actionFields = new HashSet<>();
     private final Set<ReferenceModel> references = new HashSet<>();
     private String className;
     private boolean rootEntity;
-    private Optional<EntityModel> referencedBy;
+    private Optional<CodegenEntityModel> referencedBy;
 
-    public EntityModel(@NonNull Entity entity) {
+    public CodegenEntityModel(Entity entity) {
+        super(entity.getName());
         this.entityName = entity.getName();
         rootEntity = entity.isRootEntity();
     }
 
     public void addField(EntityField f) {
-        log.info("EntityModel:      adding Field '{}' to Entity '{}'", f.getName(), entityName);
-        if (!fields.add(new FieldModel(f))) {
+        log.info("CodegenEntityModel:      adding Field '{}' to Entity '{}'", f.getName(), entityName);
+        if (fields.get(f.getName()) != null) {
             throw new IllegalStateException("field '" + f.getName() + "' already exists!");
         }
+        fields.put(f.getName(), new CodegenFieldModel(f));
     }
 
     public void addActionField(ActionEntityField f) {
-        log.info("EntityModel:      adding ActionField '{}' to Entity '{}'", f.getName(), entityName);
+        log.info("CodegenEntityModel:      adding ActionField '{}' to Entity '{}'", f.getName(), entityName);
         if (!actionFields.add(new ActionFieldModel(f))) {
             throw new IllegalStateException("actionField '" + f.getName() + "' already exists!");
         }
     }
 
     public void addReference(Entity referencedEntity) {
-        log.info("EntityModel:      adding Reference from Entity '{}' to Entity '{}'", entityName,
+        log.info("CodegenEntityModel:      adding Reference from Entity '{}' to Entity '{}'", entityName,
                 referencedEntity.getName());
         if (!references.add(new ReferenceModel(this, referencedEntity))) {
             throw new IllegalStateException("reference '" + referencedEntity.getName() + "' already exists!");
@@ -63,7 +59,7 @@ public class EntityModel {
         return rootEntity;
     }
 
-    public void setReferencedBy(@NonNull EntityModel entityModel) {
+    public void setReferencedBy(@NonNull CodegenEntityModel entityModel) {
         if (referencedBy != null && referencedBy.get() != null) {
             throw new IllegalStateException("setReferencedBy was called before on this object");
         }

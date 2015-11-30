@@ -1,16 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<class-diagram version="1.1.8" icons="true" automaticImage="PNG" always-add-relationships="false" generalizations="true" 
-  realizations="true" associations="true" dependencies="false" nesting-relationships="true">  
-  <class id="1" language="java" name="io.skysail.server.domain.core.Field" project="skysail.server.domain" 
-    file="/skysail.server.domain/src/io/skysail/server/domain/core/Field.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="459" y="371"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="false" package="false" protected="false" private="false" static="false"/>    
-    </display>  
-  </class>  
-  <class id="2" language="java" name="io.skysail.server.domain.core.Link" project="skysail.server.domain" 
+<class-diagram version="1.1.9" icons="true" automaticImage="PNG" always-add-relationships="false" generalizations="true" 
+  realizations="true" associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
+  <class id="1" language="java" name="io.skysail.server.domain.core.Link" project="skysail.server.domain" 
     file="/skysail.server.domain/src/io/skysail/server/domain/core/Link.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="1116" y="75"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -19,7 +10,7 @@
       <operations public="false" package="false" protected="false" private="false" static="false"/>    
     </display>  
   </class>  
-  <class id="3" language="java" name="io.skysail.server.domain.core.Repositories" project="skysail.server.domain" 
+  <class id="2" language="java" name="io.skysail.server.domain.core.Repositories" project="skysail.server.domain" 
     file="/skysail.server.domain/src/io/skysail/server/domain/core/Repositories.java" binary="false" 
     corner="BOTTOM_RIGHT">    
     <position height="150" width="244" x="36" y="296"/>    
@@ -29,26 +20,7 @@
       <operations public="false" package="false" protected="false" private="false" static="false"/>    
     </display>  
   </class>  
-  <class id="4" language="java" name="io.skysail.server.domain.core.Entity" project="skysail.server.domain" 
-    file="/skysail.server.domain/src/io/skysail/server/domain/core/Entity.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="463" y="72"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="false" package="false" protected="false" private="false" static="false"/>    
-    </display>  
-  </class>  
-  <class id="5" language="java" name="io.skysail.server.domain.core.Application" project="skysail.server.domain" 
-    file="/skysail.server.domain/src/io/skysail/server/domain/core/Application.java" binary="false" 
-    corner="BOTTOM_RIGHT">    
-    <position height="113" width="243" x="36" y="15"/>    
-    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="false" package="false" protected="false" private="false" static="false"/>    
-    </display>  
-  </class>  
-  <class id="6" language="java" name="io.skysail.server.domain.core.resources.ListResource" 
+  <class id="3" language="java" name="io.skysail.server.domain.core.resources.ListResource" 
     project="skysail.server.domain" 
     file="/skysail.server.domain/src/io/skysail/server/domain/core/resources/ListResource.java" binary="false" 
     corner="BOTTOM_RIGHT">    
@@ -59,7 +31,7 @@
       <operations public="false" package="false" protected="false" private="false" static="false"/>    
     </display>  
   </class>  
-  <class id="7" language="java" name="io.skysail.server.domain.core.resources.PutResource" 
+  <class id="4" language="java" name="io.skysail.server.domain.core.resources.PutResource" 
     project="skysail.server.domain" 
     file="/skysail.server.domain/src/io/skysail/server/domain/core/resources/PutResource.java" binary="false" 
     corner="BOTTOM_RIGHT">    
@@ -70,7 +42,7 @@
       <operations public="false" package="false" protected="false" private="false" static="false"/>    
     </display>  
   </class>  
-  <class id="8" language="java" name="io.skysail.server.domain.core.resources.Resource" project="skysail.server.domain" 
+  <class id="5" language="java" name="io.skysail.server.domain.core.resources.Resource" project="skysail.server.domain" 
     file="/skysail.server.domain/src/io/skysail/server/domain/core/resources/Resource.java" binary="false" 
     corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="1111" y="282"/>    
@@ -80,7 +52,7 @@
       <operations public="false" package="false" protected="false" private="false" static="false"/>    
     </display>  
   </class>  
-  <class id="9" language="java" name="io.skysail.server.domain.core.resources.PostResource" 
+  <class id="6" language="java" name="io.skysail.server.domain.core.resources.PostResource" 
     project="skysail.server.domain" 
     file="/skysail.server.domain/src/io/skysail/server/domain/core/resources/PostResource.java" binary="false" 
     corner="BOTTOM_RIGHT">    
@@ -91,7 +63,7 @@
       <operations public="false" package="false" protected="false" private="false" static="false"/>    
     </display>  
   </class>  
-  <class id="10" language="java" name="io.skysail.server.domain.core.resources.EntityResource" 
+  <class id="7" language="java" name="io.skysail.server.domain.core.resources.EntityResource" 
     project="skysail.server.domain" 
     file="/skysail.server.domain/src/io/skysail/server/domain/core/resources/EntityResource.java" binary="false" 
     corner="BOTTOM_RIGHT">    
@@ -102,91 +74,121 @@
       <operations public="false" package="false" protected="false" private="false" static="false"/>    
     </display>  
   </class>  
+  <class id="8" language="java" name="io.skysail.server.domain.core.ApplicationModel" project="skysail.server.domain" 
+    file="/skysail.server.domain/src/io/skysail/server/domain/core/ApplicationModel.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="274" y="116"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="false" package="false" protected="false" private="false" static="false"/>    
+    </display>  
+  </class>  
+  <class id="9" language="java" name="io.skysail.server.domain.core.EntityModel" project="skysail.server.domain" 
+    file="/skysail.server.domain/src/io/skysail/server/domain/core/EntityModel.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="450" y="119"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="false" package="false" protected="false" private="false" static="false"/>    
+    </display>  
+  </class>  
+  <class id="10" language="java" name="io.skysail.server.domain.core.FieldModel" project="skysail.server.domain" 
+    file="/skysail.server.domain/src/io/skysail/server/domain/core/FieldModel.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="457" y="353"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="false" package="false" protected="false" private="false" static="false"/>    
+    </display>  
+  </class>  
   <association id="11">    
-    <bendpoint x="594" y="343"/>    
-    <end type="SOURCE" refId="4" navigable="false">      
-      <attribute id="12" name="entityResource"/>      
-      <multiplicity id="13" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="10" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="14">    
-    <bendpoint x="636" y="256"/>    
-    <end type="SOURCE" refId="4" navigable="false">      
-      <attribute id="15" name="postResource"/>      
-      <multiplicity id="16" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="9" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <generalization id="17">    
-    <bendpoint x="928" y="158"/>    
-    <end type="SOURCE" refId="6"/>    
-    <end type="TARGET" refId="8"/>  
-  </generalization>  
-  <association id="18">    
-    <end type="SOURCE" refId="4" navigable="false">      
-      <attribute id="19" name="fields"/>      
-      <multiplicity id="20" minimum="0" maximum="2147483647"/>    
+    <end type="SOURCE" refId="5" navigable="false">      
+      <attribute id="12" name="links">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="13" minimum="0" maximum="2147483647">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
     </end>    
     <end type="TARGET" refId="1" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="21">    
-    <end type="SOURCE" refId="4" navigable="false">      
-      <attribute id="22" name="putResource"/>      
-      <multiplicity id="23" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="7" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <generalization id="24">    
+  <generalization id="14">    
     <bendpoint x="947" y="77"/>    
-    <end type="SOURCE" refId="7"/>    
-    <end type="TARGET" refId="8"/>  
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="5"/>  
   </generalization>  
-  <association id="25">    
-    <end type="SOURCE" refId="8" navigable="false">      
-      <attribute id="26" name="links"/>      
-      <multiplicity id="27" minimum="0" maximum="2147483647"/>    
-    </end>    
-    <end type="TARGET" refId="2" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="28">    
-    <bendpoint x="611" y="158"/>    
-    <end type="SOURCE" refId="4" navigable="false">      
-      <attribute id="29" name="listResource"/>      
-      <multiplicity id="30" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="6" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <generalization id="31">    
-    <end type="SOURCE" refId="10"/>    
-    <end type="TARGET" refId="8"/>  
-  </generalization>  
-  <association id="32">    
-    <end type="SOURCE" refId="5" navigable="false">      
-      <attribute id="33" name="entities"/>      
-      <multiplicity id="34" minimum="0" maximum="2147483647"/>    
+  <association id="15">    
+    <end type="SOURCE" refId="9" navigable="false">      
+      <attribute id="16" name="putResource"/>      
+      <multiplicity id="17" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="4" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="35">    
-    <end type="SOURCE" refId="5" navigable="false">      
-      <attribute id="36" name="repositories"/>      
-      <multiplicity id="37" minimum="0" maximum="1"/>    
+  <association id="18">    
+    <end type="SOURCE" refId="8" navigable="false">      
+      <attribute id="19" name="entities"/>      
+      <multiplicity id="20" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="9" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="21">    
+    <end type="SOURCE" refId="9" navigable="false">      
+      <attribute id="22" name="fields"/>      
+      <multiplicity id="23" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="10" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="24">    
+    <bendpoint x="928" y="158"/>    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="5"/>  
+  </generalization>  
+  <association id="25">    
+    <end type="SOURCE" refId="9" navigable="false">      
+      <attribute id="26" name="listResource"/>      
+      <multiplicity id="27" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="3" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <generalization id="38">    
-    <end type="SOURCE" refId="9"/>    
-    <end type="TARGET" refId="8"/>  
+  <generalization id="28">    
+    <end type="SOURCE" refId="7"/>    
+    <end type="TARGET" refId="5"/>  
   </generalization>  
+  <association id="29">    
+    <end type="SOURCE" refId="9" navigable="false">      
+      <attribute id="30" name="entityResource"/>      
+      <multiplicity id="31" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="7" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="32">    
+    <end type="SOURCE" refId="6"/>    
+    <end type="TARGET" refId="5"/>  
+  </generalization>  
+  <association id="33">    
+    <end type="SOURCE" refId="9" navigable="false">      
+      <attribute id="34" name="postResource"/>      
+      <multiplicity id="35" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="6" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="36">    
+    <end type="SOURCE" refId="8" navigable="false">      
+      <attribute id="37" name="repositories"/>      
+      <multiplicity id="38" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="2" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
     sort-features="false" accessors="true" visibility="true">    
     <attributes public="true" package="true" protected="true" private="true" static="true"/>    

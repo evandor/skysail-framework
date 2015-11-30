@@ -36,7 +36,7 @@ public class Bookmark implements Identifiable {
     @ListView(hide = true)
     private String desc;
 
-//    @Field(inputType = InputType.TAGS)
+//    @FieldModel(inputType = InputType.TAGS)
 //    private String tags;
 
     @Field(inputType = InputType.READONLY)

@@ -1,8 +1,8 @@
 package io.skysail.server.app.designer.codegen;
 
 import io.skysail.server.app.designer.STGroupBundleDir;
-import io.skysail.server.app.designer.model.ApplicationModel;
-import io.skysail.server.app.designer.model.EntityModel;
+import io.skysail.server.app.designer.model.CodegenApplicationModel;
+import io.skysail.server.app.designer.model.CodegenEntityModel;
 import io.skysail.server.app.designer.model.RouteModel;
 
 import java.util.ArrayList;
@@ -22,18 +22,18 @@ public class SkysailEntityCompiler2 extends SkysailCompiler2 {
 
     private List<RouteModel> routes = new ArrayList<>();
 
-    public SkysailEntityCompiler2(ApplicationModel applicationModel, STGroupBundleDir stGroup) {
+    public SkysailEntityCompiler2(CodegenApplicationModel applicationModel, STGroupBundleDir stGroup) {
         super(applicationModel, stGroup);
         this.stGroupDir = stGroup;
     }
 
-    public void createEntity(EntityModel entityModel) {
+    public void createEntity(CodegenEntityModel entityModel) {
         ST template = getStringTemplateIndex("javafile");
         entityClassName = setupEntityForCompilation(template, applicationModel, entityModel);
         entityModel.setClassName(entityClassName);
     }
 
-    public void createResources(EntityModel entityModel) {
+    public void createResources(CodegenEntityModel entityModel) {
         ST template = getStringTemplateIndex("entityResource");
         entityResourceClassName = setupEntityResourceForCompilation(template, applicationModel, entityModel);
 
@@ -43,7 +43,7 @@ public class SkysailEntityCompiler2 extends SkysailCompiler2 {
         if (entityModel.isRootEntity()) {
             routes.add(new RouteModel("/" + entityModel.getEntityName() + "s/", postResourceClassName));
         } else {
-            EntityModel parentEntityModel = entityModel.getReferencedBy().get();
+            CodegenEntityModel parentEntityModel = entityModel.getReferencedBy().get();
             routes.add(new RouteModel("/" + parentEntityModel.getEntityName() + "/{id}/" + entityModel.getEntityName() + "s/", postResourceClassName));
         }
         ST putResourceTemplate = getStringTemplateIndex("putResource");
@@ -60,7 +60,7 @@ public class SkysailEntityCompiler2 extends SkysailCompiler2 {
         }
     }
 
-    private String setupEntityForCompilation(ST template, ApplicationModel applicationModel, EntityModel entityModel) {
+    private String setupEntityForCompilation(ST template, CodegenApplicationModel applicationModel, CodegenEntityModel entityModel) {
         template.remove("entity");
         template.add("entity", entityModel);
         String entityCode = template.render();
@@ -69,8 +69,8 @@ public class SkysailEntityCompiler2 extends SkysailCompiler2 {
         return entityClassName;
     }
 
-    private String setupEntityResourceForCompilation(ST template, ApplicationModel applicationModel,
-            EntityModel entityModel) {
+    private String setupEntityResourceForCompilation(ST template, CodegenApplicationModel applicationModel,
+            CodegenEntityModel entityModel) {
         template.remove("entity");
         template.add("entity", entityModel);
         List<String> linkedClasses = new ArrayList<>();
@@ -88,8 +88,8 @@ public class SkysailEntityCompiler2 extends SkysailCompiler2 {
         return entityClassName;
     }
 
-    private String setupPostResourceForCompilation(ST template, ApplicationModel applicationModel,
-            EntityModel entityModel) {
+    private String setupPostResourceForCompilation(ST template, CodegenApplicationModel applicationModel,
+            CodegenEntityModel entityModel) {
         final String simpleClassName = "Post" + entityModel.getEntityName() + "Resource";
         template.remove("entity");
         template.add("entity", entityModel);
@@ -103,7 +103,7 @@ public class SkysailEntityCompiler2 extends SkysailCompiler2 {
             addEntityCode.append("String id = app.getRepository().add(entity).toString();\n");
             addEntityCode.append("entity.setId(id);\n");
         } else {
-            EntityModel parent = entityModel.getReferencedBy().get();
+            CodegenEntityModel parent = entityModel.getReferencedBy().get();
             addEntityCode.append(parent.getEntityName() + " root = app.getRepository().getById("+parent.getEntityName()+".class, getAttribute(\"id\"));\n");
             addEntityCode.append("root.add"+entityModel.getEntityName()+"(entity);\n");
             addEntityCode.append("app.getRepository().update(getAttribute(\"id\"), root);\n");
@@ -116,8 +116,8 @@ public class SkysailEntityCompiler2 extends SkysailCompiler2 {
         return entityClassName;
     }
 
-    private String setupPutResourceForCompilation(ST template, ApplicationModel applicationModel,
-            EntityModel entityModel) {
+    private String setupPutResourceForCompilation(ST template, CodegenApplicationModel applicationModel,
+            CodegenEntityModel entityModel) {
         final String simpleClassName = "Put" + entityModel.getEntityName() + "Resource";
         template.remove("entity");
         template.add("entity", entityModel);
@@ -130,8 +130,8 @@ public class SkysailEntityCompiler2 extends SkysailCompiler2 {
         return entityClassName;
     }
 
-    private String setupListResourceForCompilation(ST template, ApplicationModel applicationModel,
-            EntityModel entityModel) {
+    private String setupListResourceForCompilation(ST template, CodegenApplicationModel applicationModel,
+            CodegenEntityModel entityModel) {
         final String simpleClassName = entityModel.getEntityName() + "sResource";
         template.remove("entity");
         template.add("entity", entityModel);

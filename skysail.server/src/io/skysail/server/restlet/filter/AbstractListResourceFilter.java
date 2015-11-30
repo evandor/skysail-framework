@@ -25,7 +25,7 @@ import de.twenty11.skysail.server.core.restlet.ResponseWrapper;
  * @param <R>
  *            a {@link SkysailServerResource} with T as Type Parameter
  * @param <T>
- *            a type representing an Entity
+ *            a type representing an EntityModel
  */
 public abstract class AbstractListResourceFilter<R extends SkysailServerResource<?>, T extends Identifiable, S extends List<T>> {
 

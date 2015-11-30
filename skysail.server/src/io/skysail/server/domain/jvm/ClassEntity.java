@@ -1,7 +1,7 @@
 package io.skysail.server.domain.jvm;
 
 import io.skysail.api.domain.Identifiable;
-import io.skysail.server.domain.core.Entity;
+import io.skysail.server.domain.core.EntityModel;
 import io.skysail.server.utils.*;
 
 import java.lang.reflect.Field;
@@ -14,7 +14,7 @@ import org.restlet.resource.ServerResource;
 
 @Slf4j
 @ToString
-public class ClassEntity extends Entity {
+public class ClassEntity extends EntityModel {
 
     protected Class<? extends Identifiable> identifiableClass;
 

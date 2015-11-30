@@ -1,13 +1,13 @@
 package io.skysail.server.app.designer;
 
 import io.skysail.server.app.designer.codegen.SkysailRepositoryCompiler2;
-import io.skysail.server.app.designer.model.ApplicationModel;
+import io.skysail.server.app.designer.model.CodegenApplicationModel;
 
 public class RepositoryCreator {
 
-    private ApplicationModel applicationModel;
+    private CodegenApplicationModel applicationModel;
 
-    public RepositoryCreator(ApplicationModel applicationModel) {
+    public RepositoryCreator(CodegenApplicationModel applicationModel) {
         this.applicationModel = applicationModel;
     }
 

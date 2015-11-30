@@ -36,11 +36,11 @@ public class ApplicationCreator {
     private String repositoryClassName;
 
     @Getter
-    private ApplicationModel applicationModel;
+    private CodegenApplicationModel applicationModel;
 
     public ApplicationCreator(Application application, SkysailRouter router, DesignerRepository repo, Bundle bundle) {
         this.bundle = bundle;
-        this.applicationModel = new ApplicationModel(application, repo);
+        this.applicationModel = new CodegenApplicationModel(application, repo);
         stGroup = new STGroupBundleDir(bundle, "/code2");
     }
 
@@ -56,8 +56,8 @@ public class ApplicationCreator {
 
         List<RouteModel> routeModels = new EntityCreator(applicationModel).create(stGroup);
 
-        entityClassNames.addAll(applicationModel.getEntityModels().stream().map(EntityModel::getClassName).collect(Collectors.toList()));
-        entityNames.addAll(applicationModel.getEntityModels().stream().map(EntityModel::getEntityName).collect(Collectors.toList()));
+        entityClassNames.addAll(applicationModel.getEntityModels().stream().map(CodegenEntityModel::getClassName).collect(Collectors.toList()));
+        entityNames.addAll(applicationModel.getEntityModels().stream().map(CodegenEntityModel::getEntityName).collect(Collectors.toList()));
 
         repositoryClassName = new RepositoryCreator(applicationModel).create(stGroup);
 

@@ -9,27 +9,27 @@ import lombok.*;
 
 /**
  * A central class of skysail's core domain: An entity belongs to exactly one application
- * and aggregates {@link Field}s describing the entities state along with a couple of
+ * and aggregates {@link FieldModel}s describing the entities state along with a couple of
  * resource classes dealing with creation, alteration, reading and deleting this state.
  *
  */
 @Getter
 @Setter
 @ToString
-public class Entity implements Identifiable {
+public class EntityModel implements Identifiable {
 
     private String id;
     private String packageName;
     private String simpleName;
 
-    private Map<String, Field> fields = new HashMap<>();
+    private Map<String, FieldModel> fields = new HashMap<>();
 
-    private PostResource<Entity> postResource;
-    private PutResource<Entity> putResource;
-    private ListResource<Entity> listResource;
-    private EntityResource<Entity> entityResource;
+    private PostResource<EntityModel> postResource;
+    private PutResource<EntityModel> putResource;
+    private ListResource<EntityModel> listResource;
+    private EntityResource<EntityModel> entityResource;
 
-    public Entity(String fullQualifiedClassName) {
+    public EntityModel(String fullQualifiedClassName) {
         this.id = fullQualifiedClassName;
         this.packageName = getPackageFromName(fullQualifiedClassName);
         this.simpleName = toSimpleName(fullQualifiedClassName);
@@ -39,7 +39,7 @@ public class Entity implements Identifiable {
         entityResource = new EntityResource<>();
     }
 
-    public Entity add(Field field) {
+    public EntityModel add(FieldModel field) {
         this.fields.put(field.getId(), field);
         return this;
     }
@@ -48,7 +48,7 @@ public class Entity implements Identifiable {
         return fields.keySet();
     }
 
-    public Field getField(String identifier) {
+    public FieldModel getField(String identifier) {
         return fields.get(identifier);
     }
 

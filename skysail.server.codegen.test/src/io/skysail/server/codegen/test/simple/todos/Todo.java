@@ -10,7 +10,7 @@ import javax.persistence.Id;
 import lombok.*;
 
 /**
- * A simple Model containing one simple Entity.
+ * A simple Model containing one simple EntityModel.
  *
  */
 @Getter

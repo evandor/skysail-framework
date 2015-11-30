@@ -1,13 +1,10 @@
 package io.skysail.server.app.designer.codegen;
 
+import de.twenty11.skysail.server.core.restlet.ResourceContextId;
 import io.skysail.api.responses.SkysailResponse;
 import io.skysail.server.app.designer.DesignerApplication;
 import io.skysail.server.app.designer.application.resources.ApplicationsResource;
 import io.skysail.server.restlet.resources.PostEntityServerResource;
-
-import org.restlet.resource.ResourceException;
-
-import de.twenty11.skysail.server.core.restlet.ResourceContextId;
 
 public class PostCompilationResource extends PostEntityServerResource<Empty> {
 
@@ -18,7 +15,7 @@ public class PostCompilationResource extends PostEntityServerResource<Empty> {
     }
 
     @Override
-    protected void doInit() throws ResourceException {
+    protected void doInit() {
         app = (DesignerApplication)getApplication();
     }
 

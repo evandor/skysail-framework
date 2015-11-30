@@ -1,7 +1,7 @@
 package io.skysail.server.app.designer.codegen;
 
 import io.skysail.server.app.designer.STGroupBundleDir;
-import io.skysail.server.app.designer.model.ApplicationModel;
+import io.skysail.server.app.designer.model.CodegenApplicationModel;
 
 import java.io.File;
 import java.io.IOException;
@@ -25,10 +25,10 @@ public class SkysailCompiler2 {
 
     @Getter
     protected boolean compiledSuccessfully = true;
-    protected ApplicationModel applicationModel;
+    protected CodegenApplicationModel applicationModel;
     protected STGroupDir stGroupDir;
 
-    public SkysailCompiler2(ApplicationModel applicationModel, STGroupBundleDir stGroup) {
+    public SkysailCompiler2(CodegenApplicationModel applicationModel, STGroupBundleDir stGroup) {
         this.applicationModel = applicationModel;
         this.stGroupDir = stGroup;
     }

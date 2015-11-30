@@ -3,7 +3,7 @@ package io.skysail.server.domain.jvm.test;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
 import io.skysail.api.domain.Identifiable;
-import io.skysail.server.domain.core.Entity;
+import io.skysail.server.domain.core.EntityModel;
 import io.skysail.server.domain.jvm.ClassEntity;
 
 import org.junit.*;
@@ -21,7 +21,7 @@ public class ClassEntityTest {
 
     @Test
     public void id_is_set_in_string_constructor() {
-        Entity entity = new Entity(aThing.getClass().getSimpleName());
+        EntityModel entity = new EntityModel(aThing.getClass().getSimpleName());
         assertThat(entity.getId(),is("AThing"));
     }
 

@@ -5,13 +5,13 @@ import io.skysail.api.forms.InputType;
 import lombok.*;
 
 /**
- * Part of skysail's core domain: A Field belongs to an entity which belongs to an application.
+ * Part of skysail's core domain: A FieldModel belongs to an entity which belongs to an application.
  *
  */
 @Getter
 @Setter
 @ToString(of = {"id", "type", "inputType"})
-public class Field implements Identifiable {
+public class FieldModel implements Identifiable {
 
     /** the fields name or identifier, e.g. "title" */
     private String id;
@@ -28,10 +28,10 @@ public class Field implements Identifiable {
     /** text, textarea, radio, checkbox etc... */
     protected InputType inputType;
 
-    /** if set for a Field of type String, indicates that the rendered value should be truncated */
+    /** if set for a FieldModel of type String, indicates that the rendered value should be truncated */
     private Integer truncateTo;
 
-    public Field(String name) {
+    public FieldModel(String name) {
         this.id = name;
     }
 

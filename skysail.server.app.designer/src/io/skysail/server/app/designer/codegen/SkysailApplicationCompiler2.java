@@ -1,7 +1,7 @@
 package io.skysail.server.app.designer.codegen;
 
 import io.skysail.server.app.designer.STGroupBundleDir;
-import io.skysail.server.app.designer.model.ApplicationModel;
+import io.skysail.server.app.designer.model.CodegenApplicationModel;
 import io.skysail.server.app.designer.model.RouteModel;
 
 import java.util.List;
@@ -12,7 +12,7 @@ public class SkysailApplicationCompiler2 extends SkysailCompiler2 {
 
     private String applicationClassName;
 
-    public SkysailApplicationCompiler2(ApplicationModel applicationModel, STGroupBundleDir stGroup) {
+    public SkysailApplicationCompiler2(CodegenApplicationModel applicationModel, STGroupBundleDir stGroup) {
         super(applicationModel, stGroup);
     }
 
@@ -21,7 +21,7 @@ public class SkysailApplicationCompiler2 extends SkysailCompiler2 {
         setupApplicationForCompilation(template, applicationModel, routeModels);
     }
    
-    private String setupApplicationForCompilation(ST template, ApplicationModel applicationModel, List<RouteModel> routeModels) {
+    private String setupApplicationForCompilation(ST template, CodegenApplicationModel applicationModel, List<RouteModel> routeModels) {
         template.add("routercode", routerCode(routeModels));
         String entityCode = template.render();
         applicationClassName = applicationModel.getPackageName() + "." + applicationModel.getApplicationName() + "Application";

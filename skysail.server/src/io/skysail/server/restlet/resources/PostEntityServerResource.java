@@ -1,20 +1,9 @@
 package io.skysail.server.restlet.resources;
 
-import io.skysail.api.domain.Identifiable;
-import io.skysail.api.links.*;
-import io.skysail.api.responses.*;
-import io.skysail.api.search.SearchService;
-import io.skysail.server.app.SkysailApplication;
-import io.skysail.server.restlet.RequestHandler;
-import io.skysail.server.restlet.filter.*;
-import io.skysail.server.services.PerformanceTimer;
-
 import java.io.IOException;
 import java.util.*;
 
 import javax.validation.ConstraintViolation;
-
-import lombok.extern.slf4j.Slf4j;
 
 import org.apache.shiro.SecurityUtils;
 import org.restlet.data.*;
@@ -23,6 +12,15 @@ import org.restlet.representation.Variant;
 import org.restlet.resource.*;
 
 import de.twenty11.skysail.server.core.restlet.*;
+import io.skysail.api.domain.Identifiable;
+import io.skysail.api.links.*;
+import io.skysail.api.responses.*;
+import io.skysail.api.search.SearchService;
+import io.skysail.server.app.SkysailApplication;
+import io.skysail.server.restlet.RequestHandler;
+import io.skysail.server.restlet.filter.*;
+import io.skysail.server.services.PerformanceTimer;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * An abstract resource template dealing with POST requests (see
@@ -88,7 +86,7 @@ public abstract class PostEntityServerResource<T extends Identifiable> extends S
      *
      */
     @Override
-    protected void doInit() throws ResourceException {
+    protected void doInit() {
         super.doInit();
     };
 

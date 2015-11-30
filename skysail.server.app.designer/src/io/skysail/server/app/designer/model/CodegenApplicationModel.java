@@ -1,29 +1,30 @@
 package io.skysail.server.app.designer.model;
 
+import java.util.*;
+import java.util.stream.Collectors;
+
 import io.skysail.server.app.designer.application.Application;
 import io.skysail.server.app.designer.entities.Entity;
 import io.skysail.server.app.designer.fields.*;
 import io.skysail.server.app.designer.repo.DesignerRepository;
-
-import java.util.*;
-import java.util.stream.Collectors;
-
+import io.skysail.server.domain.core.ApplicationModel;
 import lombok.*;
 import lombok.extern.slf4j.Slf4j;
 
 @Getter
 @ToString
 @Slf4j
-public class ApplicationModel {
+public class CodegenApplicationModel extends ApplicationModel {
 
     private final String applicationName;
-    private final Set<EntityModel> entityModels = new HashSet<>();
+    private final Set<CodegenEntityModel> entityModels = new HashSet<>();
     private final String packageName;
 
     private String path;
     private String projectName;
 
-    public ApplicationModel(@NonNull Application application, DesignerRepository repo) {
+    public CodegenApplicationModel(Application application, DesignerRepository repo) {
+        super(application.getName());
         this.applicationName = application.getName();
         this.packageName = application.getPackageName();
         path = application.getPath();
@@ -39,10 +40,10 @@ public class ApplicationModel {
 
     private void createEnityModels(Application application, DesignerRepository repo) {
         application.getEntities().stream().forEach(entity -> {
-//            createEntityModel(application, repo, entity);
-//            for (Entity subEntity : entity.getSubEntities()) {
-//                createEntityModel(application, repo, subEntity);
-//            }
+            createEntityModel(application, repo, entity);
+            for (Entity subEntity : entity.getSubEntities()) {
+                createEntityModel(application, repo, subEntity);
+            }
         });
     }
 
@@ -57,14 +58,14 @@ public class ApplicationModel {
 
  }
 
-    private EntityModel getEntityModel(Entity entity) {
+    private CodegenEntityModel getEntityModel(Entity entity) {
         return getEntityModels().stream().filter(em -> {
             return em.getEntityName().equals(entity.getName());
         }).findFirst().orElseThrow(IllegalStateException::new);
     }
 
     private void createEntityModel(Application application, DesignerRepository repo, Entity entity) {
-        EntityModel entityModel = addEntity(entity);
+        CodegenEntityModel entityModel = addEntity(entity);
 
         List<EntityField> fields = getFields(repo, entity.getName(), application.getId());
         fields.stream().forEach(f -> {
@@ -78,11 +79,11 @@ public class ApplicationModel {
 
     }
 
-    public EntityModel addEntity(Entity entity) {
-        log.info("ApplicationModel: adding Entity '{}'", entity);
-        EntityModel entityModel = new EntityModel(entity);
+    public CodegenEntityModel addEntity(Entity entity) {
+        log.info("CodegenApplicationModel: adding Entity '{}'", entity);
+        CodegenEntityModel entityModel = new CodegenEntityModel(entity);
         if (!entityModels.add(entityModel)) {
-            log.warn("EntityModel '{}' already exists!", entity);
+            log.warn("CodegenEntityModel '{}' already exists!", entity);
         }
         return entityModel;
     }
@@ -92,7 +93,7 @@ public class ApplicationModel {
     }
 
     private void eachEntitiesReferencesMustPointToExistingEntity() {
-        List<String> entityNames = entityModels.stream().map(EntityModel::getEntityName).collect(Collectors.toList());
+        List<String> entityNames = entityModels.stream().map(CodegenEntityModel::getEntityName).collect(Collectors.toList());
         entityModels.stream().forEach(entity -> {
             entity.getReferences().stream().forEach(reference -> {
                 validateReference(reference, entityNames);
@@ -109,25 +110,24 @@ public class ApplicationModel {
 
     private List<EntityField> getFields(DesignerRepository repo2, String beanName, String appIdentifier) {
         Application designerApplication = repo2.getById(Application.class, appIdentifier.replace("#", ""));
-        List<Entity> entities = null;// designerApplication.getEntities();
+        List<Entity> entities = designerApplication.getEntities();
         return findFields(repo2, beanName, appIdentifier, entities);
     }
 
     private List<ActionEntityField> getActionFields(DesignerRepository repo2, String beanName, String appIdentifier) {
         Application designerApplication = repo2.getById(Application.class, appIdentifier.replace("#", ""));
-        List<Entity> entities = null;//designerApplication.getEntities();
+        List<Entity> entities = designerApplication.getEntities();
         return findActionFields(repo2, beanName, appIdentifier, entities);
     }
 
     private List<EntityField> findFields(DesignerRepository repo2, String beanName, String appIdentifier,
             List<Entity> entities) {
-        // streams dont't seem to work here ?!?! (with orientdb objects)
         for (Entity entity : entities) {
             if (beanName.equals(entity.getName())) {
-                return Collections.emptyList();//entity.getFields();
+                return entity.getFields();
             }
             List<EntityField> fieldsFromSubEntity = findFields(repo2, beanName, appIdentifier, entity.getSubEntities());
-            if (fieldsFromSubEntity.size() > 0) {
+            if (!fieldsFromSubEntity.isEmpty()) {
                 return fieldsFromSubEntity;
             }
         }
@@ -166,7 +166,7 @@ public class ApplicationModel {
         return Collections.emptyList();
     }
 
-    public EntityModel getEntityModel(ReferenceModel referenceModel) {
+    public CodegenEntityModel getEntityModel(ReferenceModel referenceModel) {
         return entityModels.stream().filter(e -> {
             return referenceModel.getReferencedEntityName().equals(e.getEntityName());
         }).findFirst().orElseThrow(IllegalStateException::new);

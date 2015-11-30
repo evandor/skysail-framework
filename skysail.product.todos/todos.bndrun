@@ -59,6 +59,8 @@ logback.configurationFile.path = config/common
     skysail.server.app.bookmarks;version=latest,\
     skysail.server.app.dbviewer;version=latest,\
     skysail.server.app.svgedit;version=latest,\
+    skysail.server.app.designer;version=latest,\
+    io.skysail.bundled.org.osgi.service.component.annotations-runtime;version=latest,\
     skysail.server.app.todos;version=latest
         
 
@@ -66,7 +68,6 @@ logback.configurationFile.path = config/common
 
     skysail.server.app.twitter4j;version=latest,\
     skysail.server.designer.presentation;version=latest,\
-    skysail.server.app.designer;version=latest,\
     ${javamelody},\
     skysail.server.mgt;version=latest,\
     skysail.server.designer.matrix;version=latest,\

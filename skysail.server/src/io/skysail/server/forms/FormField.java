@@ -26,7 +26,7 @@ import de.twenty11.skysail.server.um.domain.SkysailUser;
  *
  * <p>
  * A FormField is constructed from a java.lang.reflect.Field, together with a
- * SkysailServerResource; only {@link Field}s and {@link Reference}s should be
+ * SkysailServerResource; only {@link FieldModel}s and {@link Reference}s should be
  * taken into account.
  * </p>
  *
@@ -38,7 +38,7 @@ import de.twenty11.skysail.server.um.domain.SkysailUser;
  */
 @Slf4j
 @ToString(callSuper = true)
-public class FormField extends io.skysail.server.domain.core.Field {
+public class FormField extends io.skysail.server.domain.core.FieldModel {
 
     @Getter
     private ListView listViewAnnotation;
@@ -77,7 +77,7 @@ public class FormField extends io.skysail.server.domain.core.Field {
         violationMessage = validationMessage.orElse(null);
     }
 
-    public FormField(io.skysail.server.domain.core.Field field, SkysailServerResource<?> theResource) {
+    public FormField(io.skysail.server.domain.core.FieldModel field, SkysailServerResource<?> theResource) {
         super(field.getId());
         //name = field.getId();
         setType(String.class);

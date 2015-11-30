@@ -12,9 +12,9 @@ import lombok.ToString;
 public class ReferenceModel {
 
     private final String referencedEntityName;
-    private EntityModel referencedBy;
+    private CodegenEntityModel referencedBy;
 
-    public ReferenceModel(@NonNull EntityModel entityModel, @NonNull Entity referencedEntity) {
+    public ReferenceModel(@NonNull CodegenEntityModel entityModel, @NonNull Entity referencedEntity) {
         this.referencedEntityName = referencedEntity.getName();
         this.referencedBy = entityModel;
     }

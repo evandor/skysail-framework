@@ -1,22 +1,8 @@
 package io.skysail.server.model;
 
-import io.skysail.api.domain.Identifiable;
-import io.skysail.api.links.LinkRelation;
-import io.skysail.api.responses.*;
-import io.skysail.api.search.*;
-import io.skysail.server.app.SkysailApplication;
-import io.skysail.server.domain.core.*;
-import io.skysail.server.forms.FormField;
-import io.skysail.server.forms.helper.CellRendererHelper;
-import io.skysail.server.menus.MenuItemProvider;
-import io.skysail.server.restlet.resources.*;
-import io.skysail.server.utils.*;
-
 import java.text.*;
 import java.util.*;
 import java.util.stream.Collectors;
-
-import lombok.*;
 
 import org.apache.commons.beanutils.*;
 import org.apache.commons.lang.StringUtils;
@@ -28,6 +14,18 @@ import org.restlet.util.Series;
 import com.fasterxml.jackson.databind.*;
 
 import de.twenty11.skysail.server.core.restlet.ResourceContextId;
+import io.skysail.api.domain.Identifiable;
+import io.skysail.api.links.LinkRelation;
+import io.skysail.api.responses.*;
+import io.skysail.api.search.*;
+import io.skysail.server.app.SkysailApplication;
+import io.skysail.server.domain.core.*;
+import io.skysail.server.forms.FormField;
+import io.skysail.server.forms.helper.CellRendererHelper;
+import io.skysail.server.menus.MenuItemProvider;
+import io.skysail.server.restlet.resources.*;
+import io.skysail.server.utils.*;
+import lombok.*;
 
 /**
  * The model of the resource from which the html representation is derived.
@@ -130,7 +128,7 @@ public class ResourceModel<R extends SkysailServerResource<T>, T> {
                         for (DynaProperty prop : dynaClass.getDynaProperties()) {
                             map.put(prop.getName(), bean.get(prop.getName()));
                             if (dynaFields.get(prop.getName()) == null) {
-                                dynaFields.put(prop.getName(), new FormField(new Field(prop.getName()), theResource));
+                                dynaFields.put(prop.getName(), new FormField(new FieldModel(prop.getName()), theResource));
                             }
                         }
                         result.add(map);
@@ -174,7 +172,7 @@ public class ResourceModel<R extends SkysailServerResource<T>, T> {
 
     private void apply(Map<String, Object> newRow, Map<String, Object> dataRow, String columnName, Object id) {
 
-        Optional<Field> field = getDomainField(columnName);
+        Optional<FieldModel> field = getDomainField(columnName);
         if (field.isPresent()) {
             newRow.put(columnName, calc(field.get(), dataRow, columnName, id));
         } else { // deprecated old style
@@ -194,7 +192,7 @@ public class ResourceModel<R extends SkysailServerResource<T>, T> {
         return dataRow.get(columnName) != null ? dataRow.get(columnName).toString() : "";
     }
 
-    private String calc(@NonNull Field field, Map<String, Object> dataRow, String columnName, Object id) {
+    private String calc(@NonNull FieldModel field, Map<String, Object> dataRow, String columnName, Object id) {
         String processed = new CellRendererHelper(field, response).render(dataRow.get(columnName), id);
         //processed = checkPrefix(field, dataRow, processed, id);
         //processed = checkPostfix(field, dataRow, processed, id);
@@ -362,8 +360,8 @@ public class ResourceModel<R extends SkysailServerResource<T>, T> {
     }
 
     public boolean isSubmitButtonNeeded() {
-//        Application applicationModel = resource.getApplication().getApplicationModel();
-//        Entity entity = applicationModel.getEntity(parameterizedType.getName());
+//        ApplicationModel applicationModel = resource.getApplication().getApplicationModel();
+//        EntityModel entity = applicationModel.getEntity(parameterizedType.getName());
 //        if (entity != null) {
 //            if (entity.getFieldNames().stream().filter(f -> {
 //                return entity.getField(f).isSubmitField();
@@ -431,9 +429,9 @@ public class ResourceModel<R extends SkysailServerResource<T>, T> {
         dataRow.put("_links", linkshtml);
     }
 
-    private Optional<Field> getDomainField(String columnName) {
-        Application applicationModel = resource.getApplication().getApplicationModel();
-        Entity entity = applicationModel.getEntity(parameterizedType.getName());
+    private Optional<FieldModel> getDomainField(String columnName) {
+        ApplicationModel applicationModel = resource.getApplication().getApplicationModel();
+        io.skysail.server.domain.core.EntityModel entity = applicationModel.getEntity(parameterizedType.getName());
         if (entity == null) {
             return Optional.empty();
         }
@@ -459,16 +457,16 @@ public class ResourceModel<R extends SkysailServerResource<T>, T> {
     }
 
     public List<FormField> getFormfields() {
-        Application applicationModel = resource.getApplication().getApplicationModel();
-        Entity entity = applicationModel.getEntity(parameterizedType.getName());
+        ApplicationModel applicationModel = resource.getApplication().getApplicationModel();
+        io.skysail.server.domain.core.EntityModel entity = applicationModel.getEntity(parameterizedType.getName());
 
         return new ArrayList<FormField>(fields.values());
     }
 
-//    public List<Field> getFields() {
-//        Application applicationModel = resource.getApplication().getApplicationModel();
-//        Entity entity = applicationModel.getEntity(parameterizedType.getName());
-//        return new ArrayList<Field>(entity.getFields().values());
+//    public List<FieldModel> getFields() {
+//        ApplicationModel applicationModel = resource.getApplication().getApplicationModel();
+//        EntityModel entity = applicationModel.getEntity(parameterizedType.getName());
+//        return new ArrayList<FieldModel>(entity.getFields().values());
 //    }
 
     public boolean isConstraintViolationsResponse() {
@@ -527,8 +525,8 @@ public class ResourceModel<R extends SkysailServerResource<T>, T> {
     }
 
     private String checkPrefix(FormField formField, Map<String, Object> dataRow, String processed, Object id) {
-        Application applicationModel = resource.getApplication().getApplicationModel();
-        Entity entity = applicationModel.getEntity(parameterizedType.getName());
+        ApplicationModel applicationModel = resource.getApplication().getApplicationModel();
+        io.skysail.server.domain.core.EntityModel entity = applicationModel.getEntity(parameterizedType.getName());
 
         if (this.resource instanceof ListServerResource) {
             if (formField.getListViewAnnotation() != null && !formField.getListViewAnnotation().prefix().equals("")) {

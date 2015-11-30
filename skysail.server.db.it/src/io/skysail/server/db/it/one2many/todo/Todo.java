@@ -36,7 +36,7 @@ public class Todo implements Identifiable {
     @Field
     private Date modified;
 
-    //    @Field(inputType = InputType.MULTISELECT, repository = RoleRepository.class, selectionProvider = RolesSelectionProvider.class)
+    //    @FieldModel(inputType = InputType.MULTISELECT, repository = RoleRepository.class, selectionProvider = RolesSelectionProvider.class)
     @Field(inputType = InputType.HIDDEN)
     private List<Comment> comments = new ArrayList<>();
 

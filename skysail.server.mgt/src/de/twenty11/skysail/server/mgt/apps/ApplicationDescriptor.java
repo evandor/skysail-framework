@@ -1,10 +1,10 @@
 package de.twenty11.skysail.server.mgt.apps;
 
+import de.twenty11.skysail.server.app.ApplicationProvider;
 import io.skysail.api.domain.Identifiable;
 import io.skysail.api.forms.Field;
-import io.skysail.server.domain.core.Application;
+import io.skysail.server.domain.core.ApplicationModel;
 import lombok.*;
-import de.twenty11.skysail.server.app.ApplicationProvider;
 
 @Setter
 public class ApplicationDescriptor implements Identifiable {
@@ -17,7 +17,7 @@ public class ApplicationDescriptor implements Identifiable {
     private String name;
 
     @Getter
-    private Application applicationModel;
+    private ApplicationModel applicationModel;
 
     public ApplicationDescriptor(ApplicationProvider provider) {
         applicationModel = provider.getApplication().getApplicationModel();

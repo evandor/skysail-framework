@@ -76,6 +76,7 @@ public class InMemoryJavaCompiler {
         getBundleLocationFor(javax.persistence.Id.class, bundleLocations, bundles);
         getBundleLocationFor(com.fasterxml.jackson.annotation.JacksonAnnotation.class, bundleLocations, bundles);
         getBundleLocationFor(Component.class, bundleLocations, bundles);
+        getBundleLocationFor(org.osgi.service.event.Event.class, bundleLocations, bundles);
         getBundleLocationFor(org.restlet.ext.raml.RamlApplication.class, bundleLocations, bundles);
 
         String locs = bundleLocations.stream().map(l -> {

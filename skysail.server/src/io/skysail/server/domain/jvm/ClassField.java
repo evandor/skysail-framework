@@ -11,7 +11,7 @@ import lombok.*;
 
 @Value
 @EqualsAndHashCode(callSuper=true)
-public class ClassField extends io.skysail.server.domain.core.Field {
+public class ClassField extends io.skysail.server.domain.core.FieldModel {
 
     public ClassField(String id) {
         super(id);

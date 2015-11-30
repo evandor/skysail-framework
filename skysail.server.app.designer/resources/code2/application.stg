@@ -6,8 +6,10 @@ import io.skysail.server.app.SkysailApplication;
 import io.skysail.server.menus.*;
 
 import java.util.*;
+import org.osgi.service.component.annotations.*;
 
-import aQute.bnd.annotation.component.*;
+import org.osgi.service.event.EventAdmin;
+
 import de.twenty11.skysail.server.app.ApplicationProvider;
 import de.twenty11.skysail.server.core.restlet.*;
 
@@ -19,13 +21,16 @@ public class $application.applicationName$Application extends SkysailApplication
     public static final String APP_NAME = "$application.applicationName$";
 
     private $application.applicationName$Repository repo;
+    
+    @Reference(cardinality = ReferenceCardinality.OPTIONAL)
+    private volatile EventAdmin eventAdmin;
 
     public $application.applicationName$Application() {
         super(APP_NAME);
         addToAppContext(ApplicationContextId.IMG, "/static/img/silk/page_link.png");
     }
 
-    @Reference(dynamic = true, multiple = false, optional = false, target = "(name=$application.applicationName$Repository)")
+    @Reference(policy = ReferencePolicy.DYNAMIC, cardinality = ReferenceCardinality.MANDATORY, target = "(name=$application.applicationName$Repository)")
     public void setRepository(DbRepository repo) {
         this.repo = ($application.applicationName$Repository) repo;
     }
@@ -43,6 +48,10 @@ public class $application.applicationName$Application extends SkysailApplication
         super.attach();
 $routercode$
 
+    }
+    
+    public EventAdmin getEventAdmin() {
+        return eventAdmin;
     }
 
     public List<MenuItem> getMenuEntries() {

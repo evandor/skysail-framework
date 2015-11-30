@@ -19,21 +19,21 @@ import lombok.extern.slf4j.Slf4j;
  */
 @ToString
 @Slf4j
-public class Application implements Identifiable {
+public class ApplicationModel implements Identifiable {
 
     @Getter
     @Setter
     private String id;
 
-    private Map<String, Entity> entities = new HashMap<>();
+    private Map<String, EntityModel> entities = new HashMap<>();
 
     private Repositories repositories = new Repositories();
 
-    public Application(String id) {
+    public ApplicationModel(String id) {
         this.id = id;
     }
 
-    public Application add(@NonNull Entity entity) {
+    public ApplicationModel add(@NonNull EntityModel entity) {
         if (entities.get(entity.getId()) != null) {
             log.warn("entity {} already exists - not adding to application {}", entity.getId(), this.getId());
             return this;
@@ -46,11 +46,11 @@ public class Application implements Identifiable {
         return entities.keySet();
     }
 
-    public Entity getEntity(String identifier) {
+    public EntityModel getEntity(String identifier) {
         return entities.get(identifier);
     }
 
-    public Collection<Entity> getEntities() {
+    public Collection<EntityModel> getEntities() {
         return entities.values();
     }
 

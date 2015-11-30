@@ -1,19 +1,18 @@
 package io.skysail.server.app.designer.model;
 
 import io.skysail.server.app.designer.fields.EntityField;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NonNull;
-import lombok.ToString;
+import io.skysail.server.domain.core.FieldModel;
+import lombok.*;
 
 @Getter
 @EqualsAndHashCode(of = "name")
 @ToString
-public class FieldModel {
+public class CodegenFieldModel extends FieldModel {
 
     private final String name;
 
-    public FieldModel(@NonNull EntityField f) {
+    public CodegenFieldModel(EntityField f) {
+        super(f.getName());
         this.name = f.getName();
     }
     

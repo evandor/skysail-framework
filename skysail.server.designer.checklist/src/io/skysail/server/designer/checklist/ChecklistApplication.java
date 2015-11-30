@@ -1,16 +1,16 @@
 package io.skysail.server.designer.checklist;
 
-import java.util.*;
-
-import org.osgi.service.component.annotations.*;
-import org.osgi.service.event.EventAdmin;
-
-import de.twenty11.skysail.server.app.ApplicationProvider;
-import de.twenty11.skysail.server.core.restlet.ApplicationContextId;
 import io.skysail.api.repos.*;
 import io.skysail.server.app.SkysailApplication;
 import io.skysail.server.menus.*;
-import lombok.Getter;
+
+import java.util.*;
+import org.osgi.service.component.annotations.*;
+
+import org.osgi.service.event.EventAdmin;
+
+import de.twenty11.skysail.server.app.ApplicationProvider;
+import de.twenty11.skysail.server.core.restlet.*;
 
 @Component(immediate = true)
 public class ChecklistApplication extends SkysailApplication implements ApplicationProvider, MenuItemProvider {
@@ -22,7 +22,6 @@ public class ChecklistApplication extends SkysailApplication implements Applicat
     private ChecklistRepository repo;
 
     @Reference(cardinality = ReferenceCardinality.OPTIONAL)
-    @Getter
     private volatile EventAdmin eventAdmin;
 
     public ChecklistApplication() {
@@ -47,6 +46,10 @@ public class ChecklistApplication extends SkysailApplication implements Applicat
     protected void attach() {
         super.attach();
 
+    }
+
+    public EventAdmin getEventAdmin() {
+        return eventAdmin;
     }
 
     public List<MenuItem> getMenuEntries() {

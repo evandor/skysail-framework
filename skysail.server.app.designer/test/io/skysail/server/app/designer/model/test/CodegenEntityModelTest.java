@@ -5,23 +5,23 @@ import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
 import io.skysail.server.app.designer.entities.Entity;
 import io.skysail.server.app.designer.fields.EntityField;
-import io.skysail.server.app.designer.model.EntityModel;
+import io.skysail.server.app.designer.model.CodegenEntityModel;
 
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
-public class EntityModelTest {
+public class CodegenEntityModelTest {
 
     @Rule
     public ExpectedException thrown = ExpectedException.none();
     
-    private EntityModel entityModel;
+    private CodegenEntityModel entityModel;
 
     @Before
     public void setUp() throws Exception {
-        entityModel = new EntityModel(new Entity("name"));
+        entityModel = new CodegenEntityModel(new Entity("name"));
     }
 
     @Test

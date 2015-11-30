@@ -1,9 +1,9 @@
 package io.skysail.server.codegen.model;
 
-import io.skysail.server.domain.core.Application;
+import io.skysail.server.domain.core.ApplicationModel;
 import lombok.Getter;
 
-public class JavaApplication extends Application implements JavaModel {
+public class JavaApplication extends ApplicationModel implements JavaModel {
 
     @Getter
     private String packageName;

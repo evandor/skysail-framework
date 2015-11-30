@@ -46,14 +46,14 @@ public class ApplicationList implements ApplicationListProvider { // NO_UCD (unu
         application.setStatusService(new SkysailStatusService());
         applications.add(application);
         attachToComponent(application);
-        log.info("(+ Application) (#{}) with name '{}'", formatSize(applications), application.getName());
+        log.info("(+ ApplicationModel) (#{}) with name '{}'", formatSize(applications), application.getName());
     }
 
     public synchronized void removeApplicationProvider(ApplicationProvider provider) {
         SkysailApplication application = getApplication(provider);
         detachFromComponent(application);
         applications.remove(application);
-        log.info("(- Application) name '{}', count is {} now", application.getName(), formatSize(applications));
+        log.info("(- ApplicationModel) name '{}', count is {} now", application.getName(), formatSize(applications));
     }
 
     /** === The service list =================================== */

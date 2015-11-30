@@ -10,11 +10,13 @@ Include-Resource: resources, templates=src;recursive:=true;filter:=*.st|*.stg
 -buildpath:  \
 	osgi.core;version=${osgi.version},\
 	osgi.cmpn;version=${osgi.version},\
+    org.osgi.service.event;version=1.3.0,\
 	skysail.api;version=${skysail.api.version},\
 	skysail.api.um;version=${skysail.api.um.version},\
 	skysail.api.search;version=${skysail.api.search.version},\
 	skysail.api.text;version=${skysail.api.text.version},\
 	skysail.api.validation;version=${skysail.api.validation.version},\
+    skysail.server.domain;version=${skysail.server.domain.version},\
 	skysail.server;version=${skysail.server.version},\
 	skysail.server.codegen;version=${skysail.server.codegen.version},\
 	skysail.server.db;version=${skysail.server.db.version},\

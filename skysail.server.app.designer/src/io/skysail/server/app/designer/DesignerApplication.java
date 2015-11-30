@@ -34,7 +34,7 @@ public class DesignerApplication extends SkysailApplication implements MenuItemP
     private DesignerRepository repo;
     private DbService dbService;
     
-    @Reference(cardinality = ReferenceCardinality.OPTIONAL)
+    @org.osgi.service.component.annotations.Reference(cardinality = ReferenceCardinality.OPTIONAL)
     @Getter
     private volatile EventAdmin eventAdmin;
 
@@ -73,7 +73,7 @@ public class DesignerApplication extends SkysailApplication implements MenuItemP
         router.attach(new RouteBuilder("/entities/{" + ENTITY_ID + "}/actionfields/", PostActionFieldResource.class));
     }
 
-    @Reference(policy = ReferencePolicy.DYNAMIC, cardinality = ReferenceCardinality.MANDATORY, target = "(name=DesignerRepository)")
+    @org.osgi.service.component.annotations.Reference(policy = ReferencePolicy.DYNAMIC, cardinality = ReferenceCardinality.MANDATORY, target = "(name=DesignerRepository)")
     public void setDesignerRepository(DbRepository repo) {
         this.repo = (DesignerRepository) repo;
     }
@@ -82,7 +82,7 @@ public class DesignerApplication extends SkysailApplication implements MenuItemP
         this.repo = null;
     }
 
-    @Reference(policy = ReferencePolicy.DYNAMIC, cardinality = ReferenceCardinality.MANDATORY)
+    @org.osgi.service.component.annotations.Reference(policy = ReferencePolicy.DYNAMIC, cardinality = ReferenceCardinality.MANDATORY)
     public void setDbService(DbService dbService) {
         this.dbService = dbService;
     }

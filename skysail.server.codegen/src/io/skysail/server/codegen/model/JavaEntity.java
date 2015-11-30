@@ -2,13 +2,13 @@ package io.skysail.server.codegen.model;
 
 import io.skysail.server.codegen.annotations.GenerateResources;
 import io.skysail.server.codegen.apt.processors.EntityProcessor;
-import io.skysail.server.domain.core.Entity;
+import io.skysail.server.domain.core.EntityModel;
 
 import javax.lang.model.element.Element;
 
 import lombok.Getter;
 
-public class JavaEntity extends Entity implements JavaModel {
+public class JavaEntity extends EntityModel implements JavaModel {
 
     @Getter
     private String elementName;

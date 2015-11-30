@@ -1,21 +1,9 @@
 package io.skysail.server.restlet.resources;
 
-import io.skysail.api.links.*;
-import io.skysail.api.responses.SkysailResponse;
-import io.skysail.api.text.Translation;
-import io.skysail.server.app.SkysailApplication;
-import io.skysail.server.forms.FormField;
-import io.skysail.server.menus.MenuItem;
-import io.skysail.server.services.PerformanceTimer;
-import io.skysail.server.utils.*;
-
 import java.lang.reflect.*;
 import java.util.*;
 import java.util.function.Consumer;
 import java.util.stream.Collectors;
-
-import lombok.*;
-import lombok.extern.slf4j.Slf4j;
 
 import org.apache.commons.beanutils.*;
 import org.apache.commons.beanutils.converters.*;
@@ -29,6 +17,16 @@ import org.restlet.security.Role;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import de.twenty11.skysail.server.core.restlet.*;
+import io.skysail.api.links.*;
+import io.skysail.api.responses.SkysailResponse;
+import io.skysail.api.text.Translation;
+import io.skysail.server.app.SkysailApplication;
+import io.skysail.server.forms.FormField;
+import io.skysail.server.menus.MenuItem;
+import io.skysail.server.services.PerformanceTimer;
+import io.skysail.server.utils.*;
+import lombok.*;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Abstract base class for all skysail resources, parameterized with T, the type
@@ -76,7 +74,7 @@ public abstract class SkysailServerResource<T> extends ServerResource {
      * when overriding this method, don't forget to call <pre>super.doInit();</pre>.
      */
     @Override
-    protected void doInit() throws ResourceException {
+    protected void doInit() {
         resourceContext = new ResourceContext(getApplication(), this);
     }
 

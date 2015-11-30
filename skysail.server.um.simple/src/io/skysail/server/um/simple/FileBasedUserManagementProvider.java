@@ -1,32 +1,22 @@
 package io.skysail.server.um.simple;
 
-import io.skysail.api.um.RestletRolesProvider;
-import io.skysail.api.um.UserManagementProvider;
+import java.io.IOException;
+import java.util.*;
+
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.cache.*;
+import org.osgi.service.cm.*;
+import org.osgi.service.component.annotations.*;
+import org.osgi.service.event.EventAdmin;
+
+import de.twenty11.skysail.server.um.domain.SkysailUser;
+import io.skysail.api.um.*;
 import io.skysail.server.um.simple.authentication.SimpleAuthenticationService;
 import io.skysail.server.um.simple.authorization.SimpleAuthorizationService;
 import io.skysail.server.um.simple.repository.UserManagementRepository;
 import io.skysail.server.um.simple.web.impl.SkysailWebSecurityManager;
-
-import java.io.IOException;
-import java.util.Dictionary;
-import java.util.Hashtable;
-import java.util.Map;
-
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
-
-import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.cache.CacheManager;
-import org.apache.shiro.cache.MemoryConstrainedCacheManager;
-import org.osgi.service.cm.Configuration;
-import org.osgi.service.cm.ConfigurationAdmin;
-
-import aQute.bnd.annotation.component.Activate;
-import aQute.bnd.annotation.component.Component;
-import aQute.bnd.annotation.component.ConfigurationPolicy;
-import aQute.bnd.annotation.component.Deactivate;
-import aQute.bnd.annotation.component.Reference;
-import de.twenty11.skysail.server.um.domain.SkysailUser;
 
 /**
  * A UserManagerProvider based on a configuration file (containing information
@@ -38,9 +28,13 @@ import de.twenty11.skysail.server.um.domain.SkysailUser;
  * </p>
  *
  */
-@Component(immediate = true, configurationPolicy = ConfigurationPolicy.optional)
+@Component(immediate = true, configurationPolicy = ConfigurationPolicy.OPTIONAL)
 @Slf4j
 public class FileBasedUserManagementProvider implements UserManagementProvider {
+
+    @Reference(cardinality = ReferenceCardinality.OPTIONAL)
+    @Getter
+    private volatile EventAdmin eventAdmin;
 
     @Getter
     private volatile SimpleAuthenticationService authenticationService;
@@ -79,7 +73,7 @@ public class FileBasedUserManagementProvider implements UserManagementProvider {
     }
 
     // --- ConfigurationAdmin ------------------------------------------------
-    @Reference(dynamic = true, optional = false, multiple = false)
+    @Reference(policy =  ReferencePolicy.DYNAMIC, cardinality = ReferenceCardinality.MANDATORY)
     public void setConfigurationAdmin(ConfigurationAdmin configurationAdmin) {
         this.configurationAdmin = configurationAdmin;
     }
@@ -89,7 +83,7 @@ public class FileBasedUserManagementProvider implements UserManagementProvider {
     }
 
     // --- RestletRolesProvider -----------------------------------------------
-    @Reference(dynamic = true, optional = false, multiple = false)
+    @Reference(policy =  ReferencePolicy.DYNAMIC, cardinality = ReferenceCardinality.MANDATORY)
     public void setRestletRolesProvider(RestletRolesProvider restletRolesProvider) {
         this.restletRolesProvider = restletRolesProvider;
     }

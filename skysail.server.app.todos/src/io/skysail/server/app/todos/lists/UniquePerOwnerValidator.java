@@ -1,15 +1,14 @@
 package io.skysail.server.app.todos.lists;
 
-import io.skysail.server.app.todos.TodoList;
-import io.skysail.server.db.*;
-
 import java.util.*;
 
 import javax.validation.*;
 
 import org.apache.shiro.SecurityUtils;
+import org.osgi.service.component.annotations.*;
 
-import aQute.bnd.annotation.component.*;
+import io.skysail.server.app.todos.TodoList;
+import io.skysail.server.db.*;
 
 @Component(immediate = true)
 public class UniquePerOwnerValidator implements ConstraintValidator<UniquePerOwner, TodoList> {
@@ -36,7 +35,7 @@ public class UniquePerOwnerValidator implements ConstraintValidator<UniquePerOwn
         return findObjects.isEmpty();
     }
 
-    @Reference(dynamic = true, multiple = false, optional = false)
+    @Reference(policy = ReferencePolicy.DYNAMIC, cardinality = ReferenceCardinality.MANDATORY)
     public void setDbService(DbService dbService) {
         UniquePerOwnerValidator.dbService = dbService;
     }

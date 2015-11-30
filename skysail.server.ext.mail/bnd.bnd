@@ -1,5 +1,7 @@
 Bundle-Version: 1.0.5.${tstamp}
 -buildpath:  \
+	osgi.core;version=${osgi.version},\
+	osgi.cmpn;version=${osgi.version},\
 	skysail.api;version=${skysail.api.version},\
     skysail.api.search;version=${skysail.api.search.version},\
     skysail.api.text;version=${skysail.api.text.version},\
@@ -7,13 +9,10 @@ Bundle-Version: 1.0.5.${tstamp}
 	skysail.server;version=${skysail.server.version},\
     skysail.server.db;version=${skysail.server.db.version},\
 	com.sun.mail.javax.mail;version=1.5,\
-	biz.aQute.bnd.annotation;version=1.52,\
 	javax.validation.api;version=1.1,\
 	org.restlet;version=${restlet.version},\
 	org.restlet.ext.raml;version=${restlet.version},\
 	slf4j.api;version=1.7.7,\
-	osgi.core;version=${osgi.version},\
-	osgi.cmpn;version=${osgi.version},\
 	javax.persistence;version=2.0,\
 	de.twentyeleven.skysail.org.hamcrest.hamcrest-all-osgi;version=1.3,\
 	org.apache.commons.lang,\

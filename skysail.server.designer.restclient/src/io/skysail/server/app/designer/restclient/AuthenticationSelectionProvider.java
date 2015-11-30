@@ -1,12 +1,12 @@
 package io.skysail.server.app.designer.restclient;
 
-import io.skysail.api.forms.SelectionProvider;
-import io.skysail.server.queryfilter.Filter;
-import io.skysail.server.restlet.resources.SkysailServerResource;
-
 import java.util.*;
 
 import org.restlet.resource.Resource;
+
+import io.skysail.api.forms.SelectionProvider;
+import io.skysail.server.queryfilter.Filter;
+import io.skysail.server.restlet.resources.SkysailServerResource;
 
 public class AuthenticationSelectionProvider implements SelectionProvider {
 

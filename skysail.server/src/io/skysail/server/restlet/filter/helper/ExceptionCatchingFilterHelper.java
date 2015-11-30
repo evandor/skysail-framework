@@ -1,14 +1,13 @@
 package io.skysail.server.restlet.filter.helper;
 
-import io.skysail.server.app.SkysailApplication;
-import lombok.extern.slf4j.Slf4j;
-
 import org.osgi.service.event.EventAdmin;
 import org.restlet.Response;
 import org.restlet.data.Status;
 
 import de.twenty11.skysail.server.core.osgi.EventHelper;
 import de.twenty11.skysail.server.core.restlet.Wrapper;
+import io.skysail.server.app.SkysailApplication;
+import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public class ExceptionCatchingFilterHelper {
@@ -22,7 +21,7 @@ public class ExceptionCatchingFilterHelper {
             return;
         }
 
-        EventAdmin eventAdmin = application.getEventAdmin() != null ? application.getEventAdmin().get() : null;
+        EventAdmin eventAdmin = application.getEventAdmin() != null ? application.getEventAdmin() : null;
         if (eventAdmin != null) {
             new EventHelper(eventAdmin)//
                     .channel(EventHelper.GUI_MSG)//

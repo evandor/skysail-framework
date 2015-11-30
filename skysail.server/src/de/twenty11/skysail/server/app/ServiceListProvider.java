@@ -3,8 +3,6 @@ package de.twenty11.skysail.server.app;
 import java.util.Set;
 import java.util.concurrent.atomic.AtomicReference;
 
-import org.osgi.service.event.EventAdmin;
-
 import de.twenty11.skysail.server.SkysailComponent;
 import de.twenty11.skysail.server.services.EncryptorService;
 import io.skysail.api.peers.PeersProvider;
@@ -23,8 +21,6 @@ public interface ServiceListProvider {
     AuthenticationService getAuthenticationService();
 
     AtomicReference<EncryptorService> getEncryptorService();
-
-    AtomicReference<EventAdmin> getEventAdmin();
 
     SkysailComponent getSkysailComponent();
 

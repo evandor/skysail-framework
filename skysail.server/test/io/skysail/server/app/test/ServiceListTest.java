@@ -2,8 +2,6 @@ package io.skysail.server.app.test;
 
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
-import io.skysail.api.text.*;
-import io.skysail.server.app.*;
 
 import java.util.*;
 
@@ -12,9 +10,12 @@ import org.junit.runner.RunWith;
 import org.mockito.*;
 import org.mockito.runners.MockitoJUnitRunner;
 import org.osgi.framework.BundleContext;
+import org.osgi.service.event.EventAdmin;
 import org.restlet.Request;
 
 import de.twenty11.skysail.server.app.ApplicationListProvider;
+import io.skysail.api.text.*;
+import io.skysail.server.app.*;
 
 @RunWith(MockitoJUnitRunner.class)
 public class ServiceListTest {
@@ -34,7 +35,12 @@ public class ServiceListTest {
     @Before
     public void setUp() throws Exception {
         List<SkysailApplication> applications = new ArrayList<>();
-        application = new SkysailApplication() {};
+        application = new SkysailApplication() {
+
+            @Override
+            public EventAdmin getEventAdmin() {
+                return null;
+            }};
         applications.add(application);
         serviceList.setApplicationListProvider(applicationListProvider);
         Mockito.when(applicationListProvider.getApplications()).thenReturn(applications);

@@ -1,23 +1,11 @@
 package io.skysail.server.app.designer;
 
-import io.skysail.api.repos.DbRepository;
-import io.skysail.server.app.SkysailApplication;
-import io.skysail.server.app.designer.application.Application;
-import io.skysail.server.app.designer.codegen.*;
-import io.skysail.server.app.designer.model.*;
-import io.skysail.server.app.designer.repo.DesignerRepository;
-import io.skysail.server.db.DbService;
-import io.skysail.server.menus.MenuItemProvider;
-import io.skysail.server.utils.BundleUtils;
-
 import java.io.*;
 import java.lang.reflect.Method;
 import java.nio.file.*;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.stream.Collectors;
-
-import lombok.Getter;
 
 import org.osgi.framework.Bundle;
 import org.osgi.service.component.ComponentContext;
@@ -27,6 +15,16 @@ import org.stringtemplate.v4.ST;
 import de.twenty11.skysail.server.app.ApplicationProvider;
 import de.twenty11.skysail.server.core.osgi.EventHelper;
 import de.twenty11.skysail.server.core.restlet.SkysailRouter;
+import io.skysail.api.repos.DbRepository;
+import io.skysail.server.app.SkysailApplication;
+import io.skysail.server.app.designer.application.Application;
+import io.skysail.server.app.designer.codegen.*;
+import io.skysail.server.app.designer.model.*;
+import io.skysail.server.app.designer.repo.DesignerRepository;
+import io.skysail.server.db.DbService;
+import io.skysail.server.menus.MenuItemProvider;
+import io.skysail.server.utils.BundleUtils;
+import lombok.Getter;
 
 public class ApplicationCreator {
 
@@ -46,7 +44,7 @@ public class ApplicationCreator {
         stGroup = new STGroupBundleDir(bundle, "/code2");
     }
 
-    public boolean create(AtomicReference<EventAdmin> eventAdminRef) {
+    public boolean create(EventAdmin eventAdminRef) {
 
         try {
             createProjectIfNeeded();

@@ -1,16 +1,16 @@
 package io.skysail.server.app.crm;
 
+import java.util.List;
+
+import org.osgi.service.component.annotations.*;
+
 import io.skysail.api.domain.Identifiable;
 import io.skysail.api.repos.DbRepository;
 import io.skysail.server.app.crm.companies.Company;
 import io.skysail.server.app.crm.contacts.Contact;
 import io.skysail.server.db.DbService;
 
-import java.util.List;
-
-import aQute.bnd.annotation.component.*;
-
-@Component(immediate = true, properties = "name=CrmRepository")
+@Component(immediate = true, property = "name=CrmRepository")
 public class CrmRepository implements DbRepository {
 
     private static DbService dbService;

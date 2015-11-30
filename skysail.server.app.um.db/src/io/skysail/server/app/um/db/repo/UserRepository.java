@@ -1,12 +1,13 @@
 package io.skysail.server.app.um.db.repo;
 
+import org.osgi.service.component.annotations.*;
+
 import io.skysail.api.repos.DbRepository;
 import io.skysail.server.app.um.db.domain.User;
 import io.skysail.server.db.*;
 import lombok.extern.slf4j.Slf4j;
-import aQute.bnd.annotation.component.*;
 
-@Component(immediate = true, properties = "name=UserRepository")
+@Component(immediate = true, property = "name=UserRepository")
 @Slf4j
 public class UserRepository extends GraphDbRepository<User>  implements DbRepository {
 

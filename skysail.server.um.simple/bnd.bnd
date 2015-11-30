@@ -1,5 +1,6 @@
 Bundle-Version: 0.1.6.${tstamp}
 -buildpath:  \
+    osgi.cmpn;version=${osgi.version},\
 	skysail.api;version=${skysail.api.version},\
 	skysail.api.features;version=${skysail.api.features.version},\
     skysail.api.text;version=${skysail.api.text.version},\
@@ -7,7 +8,6 @@ Bundle-Version: 0.1.6.${tstamp}
 	skysail.server;version=${skysail.server.version},\
     skysail.server.um;version=${skysail.server.um.version},\
 	skysail.server.testsupport;version=${skysail.server.testsupport.version},\
-	biz.aQute.bnd.annotation;version=2.4,\
 	slf4j.api;version=1.7,\
 	lombok;version=1.16,\
 	org.restlet;version=${restlet.version},\

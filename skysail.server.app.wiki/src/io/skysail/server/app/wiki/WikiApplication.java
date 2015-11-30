@@ -1,5 +1,13 @@
 package io.skysail.server.app.wiki;
 
+import java.util.*;
+import java.util.concurrent.atomic.AtomicReference;
+
+import org.osgi.service.component.annotations.*;
+import org.osgi.service.event.EventAdmin;
+
+import de.twenty11.skysail.server.app.ApplicationProvider;
+import de.twenty11.skysail.server.core.restlet.*;
 import io.skysail.api.repos.DbRepository;
 import io.skysail.api.text.TranslationRenderService;
 import io.skysail.server.app.SkysailApplication;
@@ -8,20 +16,16 @@ import io.skysail.server.app.wiki.pages.resources.*;
 import io.skysail.server.app.wiki.repository.*;
 import io.skysail.server.app.wiki.spaces.resources.*;
 import io.skysail.server.menus.*;
-
-import java.util.*;
-import java.util.concurrent.atomic.AtomicReference;
-
 import lombok.Getter;
-import aQute.bnd.annotation.component.*;
-import de.twenty11.skysail.server.app.ApplicationProvider;
-import de.twenty11.skysail.server.core.restlet.*;
-import de.twenty11.skysail.server.services.*;
 
 @Component(immediate = true)
 public class WikiApplication extends SkysailApplication implements MenuItemProvider, ApplicationProvider {
 
     public static final String APP_NAME = "Wiki";
+    
+    @Reference(cardinality = ReferenceCardinality.OPTIONAL)
+    @Getter
+    private volatile EventAdmin eventAdmin;
 
     private DesignerRepository designerRepo;
 
@@ -66,7 +70,7 @@ public class WikiApplication extends SkysailApplication implements MenuItemProvi
 
     }
 
-    @Reference(dynamic = true, multiple = false, optional = false, target = "(name=PagesRepository)")
+    @Reference(policy = ReferencePolicy.DYNAMIC, cardinality = ReferenceCardinality.MANDATORY, target = "(name=PagesRepository)")
     public void setPagesRepository(DbRepository repo) {
         this.pagesRepo = (PagesRepository) repo;
     }
@@ -75,7 +79,7 @@ public class WikiApplication extends SkysailApplication implements MenuItemProvi
         this.pagesRepo = null;
     }
 
-    @Reference(dynamic = true, multiple = false, optional = false, target = "(name=SpacesRepository)")
+    @Reference(policy = ReferencePolicy.DYNAMIC, cardinality = ReferenceCardinality.MANDATORY, target = "(name=SpacesRepository)")
     public void setSpacesRepository(DbRepository repo) {
         this.spacesRepo = (SpacesRepository) repo;
     }
@@ -84,7 +88,7 @@ public class WikiApplication extends SkysailApplication implements MenuItemProvi
         this.spacesRepo = null;
     }
 
-    @Reference(dynamic = true, multiple = true, optional = false)
+    @Reference(policy = ReferencePolicy.DYNAMIC, cardinality = ReferenceCardinality.AT_LEAST_ONE)
     public void addTranslationRenderService(TranslationRenderService service) {
         rendererServices.add(new AtomicReference<TranslationRenderService>(service));
     }

@@ -2,18 +2,11 @@ package io.skysail.server.restlet.filter;
 
 import java.util.concurrent.atomic.AtomicBoolean;
 
-import org.osgi.service.event.EventAdmin;
-import org.restlet.Context;
-import org.restlet.Request;
-import org.restlet.Response;
-import org.restlet.data.Cookie;
-import org.restlet.data.Form;
+import org.restlet.*;
+import org.restlet.data.*;
 import org.restlet.routing.Filter;
 import org.restlet.util.Series;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import de.twenty11.skysail.server.core.osgi.EventHelper;
+import org.slf4j.*;
 
 /**
  * traces information when the request contains the debug=true parameter.
@@ -27,16 +20,14 @@ public class TracerFilter extends Filter {
 
     private AtomicBoolean doTrace = new AtomicBoolean(false);
 
-    private EventHelper eventHelper;
 
-    public TracerFilter(Context context, EventAdmin eventAdmin) {
+    public TracerFilter(Context context) {
         super(context);
-        eventHelper = new EventHelper(eventAdmin);
     }
 
     @Override
     protected int beforeHandle(Request request, Response response) {
-        eventHelper.fireEvent(request);
+        //eventHelper.fireEvent(request);
         checkRequest(request);
         traceRequest(request);
         return CONTINUE;

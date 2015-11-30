@@ -1,23 +1,29 @@
 package de.twenty11.skysail.products.website;
 
-import io.skysail.server.app.SkysailApplication;
-import io.skysail.server.menus.*;
-import io.skysail.server.utils.*;
-
 import java.util.*;
 
+import org.osgi.service.component.annotations.*;
+import org.osgi.service.event.EventAdmin;
 import org.restlet.Restlet;
 import org.restlet.data.LocalReference;
 import org.restlet.routing.Router;
 
 import de.twenty11.skysail.server.app.ApplicationProvider;
 import de.twenty11.skysail.server.core.restlet.*;
+import io.skysail.server.app.SkysailApplication;
+import io.skysail.server.menus.*;
+import io.skysail.server.utils.*;
+import lombok.Getter;
 
 
 @aQute.bnd.annotation.component.Component(immediate = true)
 public class SkysailWebsiteApplication extends SkysailApplication implements ApplicationProvider, MenuItemProvider {
 
     private static final String APP_NAME = "website";
+
+    @Reference(cardinality = ReferenceCardinality.OPTIONAL)
+    @Getter
+    private volatile EventAdmin eventAdmin;
 
     public SkysailWebsiteApplication() {
          super(APP_NAME);

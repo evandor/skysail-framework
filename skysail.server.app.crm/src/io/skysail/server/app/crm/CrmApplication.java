@@ -1,17 +1,18 @@
 package io.skysail.server.app.crm;
 
+import java.util.*;
+
+import org.osgi.service.component.annotations.*;
+import org.osgi.service.event.EventAdmin;
+
+import de.twenty11.skysail.server.app.ApplicationProvider;
+import de.twenty11.skysail.server.core.restlet.*;
 import io.skysail.api.repos.DbRepository;
 import io.skysail.server.app.SkysailApplication;
 import io.skysail.server.app.crm.companies.resources.*;
 import io.skysail.server.app.crm.contacts.*;
 import io.skysail.server.menus.*;
-
-import java.util.*;
-
-import aQute.bnd.annotation.component.*;
-import de.twenty11.skysail.server.app.ApplicationProvider;
-import de.twenty11.skysail.server.core.restlet.*;
-import de.twenty11.skysail.server.services.*;
+import lombok.Getter;
 
 @Component(immediate = true)
 public class CrmApplication extends SkysailApplication implements MenuItemProvider, ApplicationProvider {
@@ -20,12 +21,16 @@ public class CrmApplication extends SkysailApplication implements MenuItemProvid
 
     private CrmRepository crmRepo;
 
+    @Reference(cardinality = ReferenceCardinality.OPTIONAL)
+    @Getter
+    private volatile EventAdmin eventAdmin;
+
     public CrmApplication() {
         super(APP_NAME);
         addToAppContext(ApplicationContextId.IMG, "/static/img/silk/vcard.png");
     }
 
-    @Reference(dynamic = true, multiple = false, optional = false, target = "(name=CrmRepository)")
+    @Reference(policy = ReferencePolicy.DYNAMIC, cardinality = ReferenceCardinality.MANDATORY, target = "(name=CrmRepository)")
     public void setCrmRepository(DbRepository repo) {
         this.crmRepo = (CrmRepository) repo;
     }

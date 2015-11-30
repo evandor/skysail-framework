@@ -1,30 +1,34 @@
 package io.skysail.server.text.store.bundleresource.impl;
 
-import io.skysail.api.text.TranslationStore;
-import io.skysail.server.utils.HeadersUtils;
-
 import java.nio.file.*;
 import java.util.*;
-
-import lombok.extern.slf4j.Slf4j;
 
 import org.apache.commons.configuration.*;
 import org.apache.commons.lang.StringUtils;
 import org.osgi.framework.*;
 import org.osgi.framework.wiring.BundleWiring;
 import org.osgi.service.component.ComponentContext;
+import org.osgi.service.component.annotations.*;
+import org.osgi.service.event.EventAdmin;
 import org.restlet.Request;
 import org.restlet.util.Series;
 
-import aQute.bnd.annotation.component.*;
+import io.skysail.api.text.TranslationStore;
+import io.skysail.server.utils.HeadersUtils;
+import lombok.Getter;
+import lombok.extern.slf4j.Slf4j;
 
-@Component(immediate = true, properties = { org.osgi.framework.Constants.SERVICE_RANKING + "=100" })
+@Component(immediate = true, property = { org.osgi.framework.Constants.SERVICE_RANKING + "=100" })
 @Slf4j
 // http://viralpatel.net/blogs/eclipse-resource-is-out-of-sync-with-the-filesystem/
 public class ResourceBundleStore implements TranslationStore {
     
     private static final int MIN_MATCH_LENGTH = 20;
     private ComponentContext ctx;
+    
+    @Reference(cardinality = ReferenceCardinality.OPTIONAL)
+    @Getter
+    private volatile EventAdmin eventAdmin;
     
     @Activate
     private void activate(ComponentContext ctx) {

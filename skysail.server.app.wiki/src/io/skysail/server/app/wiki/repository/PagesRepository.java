@@ -1,12 +1,13 @@
 package io.skysail.server.app.wiki.repository;
 
+import org.osgi.service.component.annotations.*;
+
 import io.skysail.api.repos.DbRepository;
 import io.skysail.server.app.wiki.pages.Page;
 import io.skysail.server.app.wiki.versions.Version;
 import io.skysail.server.db.*;
-import aQute.bnd.annotation.component.*;
 
-@Component(immediate = true, properties = "name=PagesRepository")
+@Component(immediate = true, property = "name=PagesRepository")
 public class PagesRepository extends GraphDbRepository<Page> implements DbRepository {
 
     @Activate

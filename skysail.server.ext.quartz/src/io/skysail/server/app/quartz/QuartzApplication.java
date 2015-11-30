@@ -1,5 +1,20 @@
 package io.skysail.server.app.quartz;
 
+import java.util.*;
+import java.util.function.Function;
+import java.util.stream.Collectors;
+
+import org.osgi.service.cm.ConfigurationException;
+import org.osgi.service.component.ComponentContext;
+import org.osgi.service.component.annotations.*;
+import org.osgi.service.event.EventAdmin;
+import org.quartz.*;
+import org.quartz.impl.StdSchedulerFactory;
+import org.quartz.impl.matchers.GroupMatcher;
+import org.quartz.simpl.CascadingClassLoadHelper;
+
+import de.twenty11.skysail.server.app.ApplicationProvider;
+import de.twenty11.skysail.server.core.restlet.*;
 import io.skysail.api.repos.DbRepository;
 import io.skysail.server.app.*;
 import io.skysail.server.app.quartz.groups.resources.*;
@@ -10,30 +25,18 @@ import io.skysail.server.app.quartz.schedules.*;
 import io.skysail.server.app.quartz.triggers.resources.*;
 import io.skysail.server.menus.*;
 import io.skysail.server.restlet.resources.SkysailServerResource;
-
-import java.util.*;
-import java.util.function.Function;
-import java.util.stream.Collectors;
-
+import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
-
-import org.osgi.service.cm.ConfigurationException;
-import org.osgi.service.component.ComponentContext;
-import org.quartz.*;
-import org.quartz.impl.StdSchedulerFactory;
-import org.quartz.impl.matchers.GroupMatcher;
-import org.quartz.simpl.CascadingClassLoadHelper;
-
-import aQute.bnd.annotation.component.*;
-import de.twenty11.skysail.server.app.ApplicationProvider;
-import de.twenty11.skysail.server.core.restlet.*;
-import de.twenty11.skysail.server.services.*;
 
 @Slf4j
 @Component(immediate = true)
 public class QuartzApplication extends SkysailApplication implements ApplicationProvider, MenuItemProvider {
 
     private static final String APP_NAME = "Quartz";
+
+    @Reference(cardinality = ReferenceCardinality.OPTIONAL)
+    @Getter
+    private volatile EventAdmin eventAdmin;
 
     private Scheduler scheduler;
     private QuartzRepository repository;
@@ -59,7 +62,7 @@ public class QuartzApplication extends SkysailApplication implements Application
         this.config = null;
     }
 
-    @Reference(dynamic = true, multiple = false, optional = false, target = "(name=QuartzRepository)")
+    @Reference(policy = ReferencePolicy.DYNAMIC, cardinality = ReferenceCardinality.MANDATORY, target = "(name=QuartzRepository)")
     public void setRepository(DbRepository repo) {
         this.repository = (QuartzRepository) repo;
     }

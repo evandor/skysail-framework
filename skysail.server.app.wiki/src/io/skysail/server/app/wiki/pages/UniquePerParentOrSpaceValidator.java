@@ -1,10 +1,10 @@
 package io.skysail.server.app.wiki.pages;
 
-import io.skysail.server.db.DbService;
-
 import javax.validation.*;
 
-import aQute.bnd.annotation.component.*;
+import org.osgi.service.component.annotations.*;
+
+import io.skysail.server.db.DbService;
 
 @Component(immediate = true)
 public class UniquePerParentOrSpaceValidator implements ConstraintValidator<UniquePerParentOrSpace, Page> {
@@ -32,7 +32,7 @@ public class UniquePerParentOrSpaceValidator implements ConstraintValidator<Uniq
         return true;
     }
 
-    @Reference(dynamic = true, multiple = false, optional = false)
+    @Reference(policy = ReferencePolicy.DYNAMIC, cardinality = ReferenceCardinality.MANDATORY)
     public void setDbService(DbService dbService) {
         UniquePerParentOrSpaceValidator.dbService = dbService;
     }

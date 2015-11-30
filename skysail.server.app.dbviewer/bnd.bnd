@@ -18,7 +18,6 @@ Include-Resource: config=config, resources, templates=src;recursive:=true;filter
 -buildpath:  \
     osgi.core;version=${osgi.version},\
     osgi.cmpn;version=${osgi.version},\
-    biz.aQute.bnd.annotation,\
     com.orientechnologies.orientdb-client;version=${com.orientechnologies.orientdb.version},\
     com.orientechnologies.orientdb-core;version=${com.orientechnologies.orientdb.version},\
     com.orientechnologies.orientdb-enterprise;version=${com.orientechnologies.orientdb.version},\

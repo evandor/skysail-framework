@@ -1,22 +1,23 @@
 package de.twenty11.skysail.server.ext.mail;
 
-import io.skysail.api.repos.DbRepository;
-import io.skysail.server.app.SkysailApplication;
-import io.skysail.server.menus.*;
-
 import java.util.*;
 
 import javax.mail.*;
 import javax.mail.Message;
 import javax.mail.internet.*;
 
-import aQute.bnd.annotation.component.*;
+import org.osgi.service.component.annotations.*;
+import org.osgi.service.event.EventAdmin;
+
 import de.twenty11.skysail.server.app.ApplicationProvider;
 import de.twenty11.skysail.server.core.restlet.RouteBuilder;
 import de.twenty11.skysail.server.ext.mail.accounts.impl.*;
 import de.twenty11.skysail.server.ext.mail.folders.*;
 import de.twenty11.skysail.server.ext.mail.mails.*;
-import de.twenty11.skysail.server.services.*;
+import io.skysail.api.repos.DbRepository;
+import io.skysail.server.app.SkysailApplication;
+import io.skysail.server.menus.*;
+import lombok.Getter;
 
 @Component(immediate = true)
 public class MailApplication extends SkysailApplication implements ApplicationProvider, MenuItemProvider {
@@ -24,11 +25,15 @@ public class MailApplication extends SkysailApplication implements ApplicationPr
 	private static final String APP_NAME = "mail";
     private MailRepository repo;
 
+    @Reference(cardinality = ReferenceCardinality.OPTIONAL)
+    @Getter
+    private volatile EventAdmin eventAdmin;
+
 	public MailApplication() {
 		super(APP_NAME);
 	}
 
-    @Reference(dynamic = true, multiple = false, optional = false, target = "(name=MailRepository)")
+	@Reference(policy = ReferencePolicy.DYNAMIC, cardinality = ReferenceCardinality.MANDATORY, target = "(name=MailRepository)")
     public void setRepository(DbRepository repo) {
         this.repo = (MailRepository) repo;
     }

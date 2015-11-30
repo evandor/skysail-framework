@@ -1,15 +1,14 @@
 package io.skysail.server.app.todos.todos;
 
-import io.skysail.server.app.todos.TodoList;
-import io.skysail.server.db.DbService;
-
 import java.util.*;
 
 import javax.validation.*;
 
 import org.apache.shiro.SecurityUtils;
+import org.osgi.service.component.annotations.*;
 
-import aQute.bnd.annotation.component.*;
+import io.skysail.server.app.todos.TodoList;
+import io.skysail.server.db.DbService;
 
 @Component(immediate = true)
 public class ValidListIdValidator implements ConstraintValidator<ValidListId, String> {
@@ -33,7 +32,7 @@ public class ValidListIdValidator implements ConstraintValidator<ValidListId, St
         return findObjects.size() == 1 && findObjects.get(0).getOwner().equals(owner);
     }
 
-    @Reference(dynamic = true, multiple = false, optional = false)
+    @Reference(policy = ReferencePolicy.DYNAMIC, cardinality = ReferenceCardinality.MANDATORY)
     public void setDbService(DbService dbService) {
         ValidListIdValidator.dbService = dbService;
     }

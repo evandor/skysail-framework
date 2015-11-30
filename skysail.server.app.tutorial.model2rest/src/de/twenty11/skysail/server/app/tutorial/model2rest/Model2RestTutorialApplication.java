@@ -1,12 +1,9 @@
 package de.twenty11.skysail.server.app.tutorial.model2rest;
 
-import io.skysail.api.links.Link;
-import io.skysail.server.app.SkysailApplication;
-import io.skysail.server.menus.*;
-import io.skysail.server.restlet.resources.SkysailServerResource;
-import io.skysail.server.utils.LinkUtils;
-
 import java.util.*;
+
+import org.osgi.service.component.annotations.*;
+import org.osgi.service.event.EventAdmin;
 
 import de.twenty11.skysail.server.app.ApplicationProvider;
 import de.twenty11.skysail.server.app.tutorial.model2rest.conclusion.ConclusionResource;
@@ -16,10 +13,19 @@ import de.twenty11.skysail.server.app.tutorial.model2rest.step4.Step4DemoResourc
 import de.twenty11.skysail.server.app.tutorial.model2rest.step5.*;
 import de.twenty11.skysail.server.app.tutorial.model2rest.step6.StepDemoResource;
 import de.twenty11.skysail.server.core.restlet.*;
-import de.twenty11.skysail.server.services.*;
+import io.skysail.api.links.Link;
+import io.skysail.server.app.SkysailApplication;
+import io.skysail.server.menus.*;
+import io.skysail.server.restlet.resources.SkysailServerResource;
+import io.skysail.server.utils.LinkUtils;
+import lombok.Getter;
 
-@aQute.bnd.annotation.component.Component(immediate = true)
+@Component(immediate = true)
 public class Model2RestTutorialApplication extends SkysailApplication implements ApplicationProvider, MenuItemProvider {
+
+    @Reference(cardinality = ReferenceCardinality.OPTIONAL)
+    @Getter
+    private volatile EventAdmin eventAdmin;
 
     private static final String APP_NAME = "tutorialM2R";
 

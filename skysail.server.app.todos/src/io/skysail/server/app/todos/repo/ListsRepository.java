@@ -1,18 +1,18 @@
 package io.skysail.server.app.todos.repo;
 
+import java.util.List;
+
+import org.osgi.service.component.annotations.*;
+
 import io.skysail.api.repos.DbRepository;
 import io.skysail.server.app.todos.TodoList;
 import io.skysail.server.app.todos.todos.Todo;
 import io.skysail.server.db.*;
 import io.skysail.server.queryfilter.Filter;
 import io.skysail.server.queryfilter.pagination.Pagination;
-
-import java.util.List;
-
 import lombok.extern.slf4j.Slf4j;
-import aQute.bnd.annotation.component.*;
 
-@Component(immediate = true, properties = "name=ListsRepository")
+@Component(immediate = true, property = "name=ListsRepository")
 @Slf4j
 public class ListsRepository extends GraphDbRepository<TodoList> implements DbRepository {
 

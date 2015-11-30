@@ -1,14 +1,22 @@
 package io.skysail.server.db.it.folder;
 
+import org.osgi.service.component.annotations.*;
+import org.osgi.service.event.EventAdmin;
+
+import de.twenty11.skysail.server.app.ApplicationProvider;
 import io.skysail.api.repos.DbRepository;
 import io.skysail.server.app.SkysailApplication;
-import aQute.bnd.annotation.component.*;
-import de.twenty11.skysail.server.app.ApplicationProvider;
+import lombok.Getter;
 
 @Component(immediate = true)
 public class FolderApplication extends SkysailApplication implements ApplicationProvider {
 
     private static final String APP_NAME = "FolderApp";
+    
+    @Reference(cardinality = ReferenceCardinality.OPTIONAL)
+    @Getter
+    private volatile EventAdmin eventAdmin;
+
 
     private static FolderApplication instance;
 
@@ -19,7 +27,7 @@ public class FolderApplication extends SkysailApplication implements Application
         instance = this;
     }
 
-    @Reference(dynamic = true, multiple = false, optional = false, target = "(name=FolderRepository)")
+    @Reference(policy = ReferencePolicy.DYNAMIC, cardinality = ReferenceCardinality.MANDATORY, target = "(name=FolderRepository)")
     public void setRepository(DbRepository repo) {
         this.myRepository = (FolderRepository) repo;
     }

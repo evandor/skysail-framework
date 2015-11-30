@@ -1,5 +1,12 @@
 package io.skysail.server.app.um.db;
 
+import java.util.*;
+
+import org.osgi.service.component.annotations.*;
+import org.osgi.service.event.EventAdmin;
+
+import de.twenty11.skysail.server.app.ApplicationProvider;
+import de.twenty11.skysail.server.core.restlet.*;
 import io.skysail.api.repos.DbRepository;
 import io.skysail.server.app.SkysailApplication;
 import io.skysail.server.app.um.db.permissions.resources.*;
@@ -8,18 +15,16 @@ import io.skysail.server.app.um.db.roles.resources.*;
 import io.skysail.server.app.um.db.users.resources.*;
 import io.skysail.server.menus.*;
 import io.skysail.server.restlet.resources.SkysailServerResource;
-
-import java.util.*;
-
 import lombok.Getter;
-import aQute.bnd.annotation.component.*;
-import de.twenty11.skysail.server.app.ApplicationProvider;
-import de.twenty11.skysail.server.core.restlet.*;
 
 @Component(immediate = true)
 public class UmApplication extends SkysailApplication implements ApplicationProvider, MenuItemProvider {
 
     private static final String APP_NAME = "um";
+
+    @Reference(cardinality = ReferenceCardinality.OPTIONAL)
+    @Getter
+    private volatile EventAdmin eventAdmin;
 
     @Getter
     private UserRepository userRepo;
@@ -35,7 +40,7 @@ public class UmApplication extends SkysailApplication implements ApplicationProv
         addToAppContext(ApplicationContextId.IMG, "/static/img/silk/tag_yellow.png");
     }
 
-    @Reference(dynamic = true, multiple = false, optional = false, target = "(name=UserRepository)")
+    @Reference(policy = ReferencePolicy.DYNAMIC, cardinality = ReferenceCardinality.MANDATORY, target = "(name=UserRepository)")
     public void setUserRepository(DbRepository repo) {
         this.userRepo = (UserRepository) repo;
     }
@@ -44,7 +49,7 @@ public class UmApplication extends SkysailApplication implements ApplicationProv
         this.userRepo = null;
     }
 
-    @Reference(dynamic = true, multiple = false, optional = false, target = "(name=RoleRepository)")
+    @Reference(policy = ReferencePolicy.DYNAMIC, cardinality = ReferenceCardinality.MANDATORY, target = "(name=RoleRepository)")
     public void setRoleRepository(DbRepository repo) {
         this.roleRepo = (RoleRepository) repo;
     }
@@ -53,7 +58,7 @@ public class UmApplication extends SkysailApplication implements ApplicationProv
         this.roleRepo = null;
     }
 
-    @Reference(dynamic = true, multiple = false, optional = false, target = "(name=PermissionRepository)")
+    @Reference(policy = ReferencePolicy.DYNAMIC, cardinality = ReferenceCardinality.MANDATORY, target = "(name=PermissionRepository)")
     public void setPermissionRepository(DbRepository repo) {
         this.permissionRepo = (PermissionRepository) repo;
     }

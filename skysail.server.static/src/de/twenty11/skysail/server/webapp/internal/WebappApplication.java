@@ -17,16 +17,17 @@
 
 package de.twenty11.skysail.server.webapp.internal;
 
-import io.skysail.server.app.SkysailApplication;
-import io.skysail.server.utils.*;
-
 import org.osgi.framework.FrameworkUtil;
+import org.osgi.service.component.annotations.*;
+import org.osgi.service.event.EventAdmin;
 import org.restlet.Restlet;
 import org.restlet.data.LocalReference;
 import org.restlet.routing.Router;
 
-import aQute.bnd.annotation.component.Component;
 import de.twenty11.skysail.server.app.ApplicationProvider;
+import io.skysail.server.app.SkysailApplication;
+import io.skysail.server.utils.*;
+import lombok.Getter;
 
 /**
  * @author carsten
@@ -34,6 +35,10 @@ import de.twenty11.skysail.server.app.ApplicationProvider;
  */
 @Component
 public class WebappApplication extends SkysailApplication implements ApplicationProvider {
+
+    @Reference(cardinality = ReferenceCardinality.OPTIONAL)
+    @Getter
+    private volatile EventAdmin eventAdmin;
 
     // non-arg constructor needed for scr
     public WebappApplication() {

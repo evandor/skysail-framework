@@ -1,5 +1,15 @@
 package io.skysail.server.app.designer;
 
+import java.util.*;
+import java.util.concurrent.TimeUnit;
+import java.util.stream.Collectors;
+
+import org.osgi.framework.BundleException;
+import org.osgi.service.component.annotations.*;
+import org.osgi.service.event.EventAdmin;
+
+import de.twenty11.skysail.server.app.ApplicationProvider;
+import de.twenty11.skysail.server.core.restlet.*;
 import io.skysail.api.repos.DbRepository;
 import io.skysail.server.app.SkysailApplication;
 import io.skysail.server.app.designer.application.Application;
@@ -12,16 +22,7 @@ import io.skysail.server.app.designer.fields.resources.*;
 import io.skysail.server.app.designer.repo.DesignerRepository;
 import io.skysail.server.db.DbService;
 import io.skysail.server.menus.*;
-
-import java.util.*;
-import java.util.concurrent.TimeUnit;
-import java.util.stream.Collectors;
-
-import org.osgi.framework.BundleException;
-
-import aQute.bnd.annotation.component.*;
-import de.twenty11.skysail.server.app.ApplicationProvider;
-import de.twenty11.skysail.server.core.restlet.*;
+import lombok.Getter;
 
 @Component(immediate = true)
 public class DesignerApplication extends SkysailApplication implements MenuItemProvider, ApplicationProvider {
@@ -32,6 +33,10 @@ public class DesignerApplication extends SkysailApplication implements MenuItemP
 
     private DesignerRepository repo;
     private DbService dbService;
+    
+    @Reference(cardinality = ReferenceCardinality.OPTIONAL)
+    @Getter
+    private volatile EventAdmin eventAdmin;
 
     public DesignerApplication() {
         super(APP_NAME);
@@ -66,11 +71,9 @@ public class DesignerApplication extends SkysailApplication implements MenuItemP
         router.attach(new RouteBuilder("/entities/{" + ENTITY_ID + "}/fields/{" + FIELD_ID + "}/",PutFieldResource.class));
 
         router.attach(new RouteBuilder("/entities/{" + ENTITY_ID + "}/actionfields/", PostActionFieldResource.class));
-
-        //compileApplications();
     }
 
-    @Reference(dynamic = true, multiple = false, optional = false, target = "(name=DesignerRepository)")
+    @Reference(policy = ReferencePolicy.DYNAMIC, cardinality = ReferenceCardinality.MANDATORY, target = "(name=DesignerRepository)")
     public void setDesignerRepository(DbRepository repo) {
         this.repo = (DesignerRepository) repo;
     }
@@ -79,7 +82,7 @@ public class DesignerApplication extends SkysailApplication implements MenuItemP
         this.repo = null;
     }
 
-    @Reference(dynamic = true, multiple = false, optional = false)
+    @Reference(policy = ReferencePolicy.DYNAMIC, cardinality = ReferenceCardinality.MANDATORY)
     public void setDbService(DbService dbService) {
         this.dbService = dbService;
     }

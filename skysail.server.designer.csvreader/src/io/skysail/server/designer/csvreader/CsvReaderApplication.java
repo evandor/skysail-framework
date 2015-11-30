@@ -1,14 +1,16 @@
 package io.skysail.server.designer.csvreader;
 
+import java.util.*;
+
+import org.osgi.service.component.annotations.*;
+import org.osgi.service.event.EventAdmin;
+
+import de.twenty11.skysail.server.app.ApplicationProvider;
+import de.twenty11.skysail.server.core.restlet.ApplicationContextId;
 import io.skysail.api.repos.*;
 import io.skysail.server.app.SkysailApplication;
 import io.skysail.server.menus.*;
-
-import java.util.*;
-
-import aQute.bnd.annotation.component.*;
-import de.twenty11.skysail.server.app.ApplicationProvider;
-import de.twenty11.skysail.server.core.restlet.*;
+import lombok.Getter;
 
 @Component(immediate = true)
 public class CsvReaderApplication extends SkysailApplication implements ApplicationProvider, MenuItemProvider {
@@ -19,12 +21,15 @@ public class CsvReaderApplication extends SkysailApplication implements Applicat
 
     private CsvReaderRepository repo;
 
+    @Getter
+    private EventAdmin eventAdmin;
+    
     public CsvReaderApplication() {
         super(APP_NAME);
         addToAppContext(ApplicationContextId.IMG, "/static/img/silk/page_link.png");
     }
 
-    @Reference(dynamic = true, multiple = false, optional = false, target = "(name=CsvReaderRepository)")
+    @org.osgi.service.component.annotations.Reference(policy = ReferencePolicy.DYNAMIC, cardinality = ReferenceCardinality.MANDATORY, target = "(name=CsvReaderRepository)")
     public void setRepository(DbRepository repo) {
         this.repo = (CsvReaderRepository) repo;
     }

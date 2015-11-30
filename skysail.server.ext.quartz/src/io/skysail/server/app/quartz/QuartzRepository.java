@@ -1,5 +1,9 @@
 package io.skysail.server.app.quartz;
 
+import java.util.List;
+
+import org.osgi.service.component.annotations.*;
+
 import io.skysail.api.domain.Identifiable;
 import io.skysail.api.repos.DbRepository;
 import io.skysail.server.app.quartz.groups.Group;
@@ -7,11 +11,7 @@ import io.skysail.server.db.DbService;
 import io.skysail.server.queryfilter.Filter;
 import io.skysail.server.queryfilter.pagination.Pagination;
 
-import java.util.List;
-
-import aQute.bnd.annotation.component.*;
-
-@Component(immediate = true, properties = "name=QuartzRepository")
+@Component(immediate = true, property = "name=QuartzRepository")
 public class QuartzRepository implements DbRepository {
 
     private static DbService dbService;

@@ -18,7 +18,6 @@ Include-Resource: resources, templates=src;recursive:=true;filter:=*.st|*.stg
 -buildpath:  \
 	osgi.core;version=${osgi.version},\
 	osgi.cmpn;version=${osgi.version},\
-	biz.aQute.bnd.annotation,\
 	skysail.api;version=${skysail.api.version},\
 	skysail.api.validation;version=${skysail.api.validation.version},\
 	skysail.api.search;version=${skysail.api.search.version},\

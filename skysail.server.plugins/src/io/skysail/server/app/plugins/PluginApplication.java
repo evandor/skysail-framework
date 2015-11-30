@@ -1,5 +1,17 @@
 package io.skysail.server.app.plugins;
 
+import java.util.*;
+import java.util.concurrent.atomic.AtomicReference;
+import java.util.stream.Collectors;
+
+import org.apache.felix.bundlerepository.RepositoryAdmin;
+import org.apache.felix.bundlerepository.Resource;
+import org.osgi.framework.*;
+import org.osgi.service.component.annotations.*;
+import org.osgi.service.event.EventAdmin;
+
+import de.twenty11.skysail.server.app.ApplicationProvider;
+import de.twenty11.skysail.server.core.restlet.*;
 import io.skysail.server.app.SkysailApplication;
 import io.skysail.server.app.plugins.features.*;
 import io.skysail.server.app.plugins.installations.PostInstallationResource;
@@ -8,22 +20,10 @@ import io.skysail.server.app.plugins.query.PostQueryResource;
 import io.skysail.server.app.plugins.resources.*;
 import io.skysail.server.menus.*;
 import io.skysail.server.restlet.resources.SkysailServerResource;
-
-import java.util.*;
-import java.util.concurrent.atomic.AtomicReference;
-import java.util.stream.Collectors;
-
+import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 
-import org.apache.felix.bundlerepository.*;
-import org.apache.felix.bundlerepository.Resource;
-import org.osgi.framework.*;
-
-import aQute.bnd.annotation.component.Reference;
-import de.twenty11.skysail.server.app.ApplicationProvider;
-import de.twenty11.skysail.server.core.restlet.*;
-
-@aQute.bnd.annotation.component.Component(immediate = true)
+@Component(immediate = true)
 @Slf4j
 public class PluginApplication extends SkysailApplication implements ApplicationProvider, MenuItemProvider {
 
@@ -32,6 +32,10 @@ public class PluginApplication extends SkysailApplication implements Application
 
     private FeaturesRepository featuresRepository;
     private AtomicReference<RepositoryAdmin> repositoryAdmin = new AtomicReference<>();
+
+    @Reference(cardinality = ReferenceCardinality.OPTIONAL)
+    @Getter
+    private volatile EventAdmin eventAdmin;
 
     public PluginApplication() {
         super(PLUGINS);
@@ -70,7 +74,7 @@ public class PluginApplication extends SkysailApplication implements Application
         return Arrays.asList(menuItem);
     }
 
-    @Reference(dynamic = true, multiple = false, optional = true)
+    @Reference(policy = ReferencePolicy.DYNAMIC, cardinality = ReferenceCardinality.OPTIONAL)
     public void setRepositoryAdmin(RepositoryAdmin repositoryAdmin) {
         this.repositoryAdmin.set(repositoryAdmin);
     }

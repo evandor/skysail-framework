@@ -18,7 +18,6 @@ import org.junit.rules.ExpectedException;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
-import org.osgi.service.event.EventAdmin;
 import org.restlet.*;
 import org.restlet.data.*;
 import org.restlet.engine.resource.VariantInfo;
@@ -116,8 +115,8 @@ public class ResourceTestBase {
         this.application = app;
 
         ServiceListProvider service = Mockito.mock(ServiceListProvider.class);
-        AtomicReference<EventAdmin> eventAdmin = new AtomicReference<>();
-        Mockito.when(service.getEventAdmin()).thenReturn(eventAdmin);
+        //EventAdmin eventAdmin = Mockito.mock(EventAdmin.class);
+        //Mockito.when(service.getEventAdmin()).thenReturn(eventAdmin);
         app.setServiceListProvider(service);
 
         validatorServiceRef = new AtomicReference<>();

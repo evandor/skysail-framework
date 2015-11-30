@@ -1,20 +1,19 @@
 package io.skysail.server.converter;
 
+import java.util.Map;
+import java.util.stream.Collectors;
+
+import org.osgi.service.component.annotations.Component;
+import org.restlet.ext.jackson.JacksonConverter;
+import org.restlet.representation.*;
+import org.restlet.resource.Resource;
+
+import de.twenty11.skysail.server.services.OsgiConverterHelper;
 import io.skysail.api.responses.SkysailResponse;
 import io.skysail.api.text.Translation;
 import io.skysail.server.model.ResourceModel;
 import io.skysail.server.restlet.resources.SkysailServerResource;
 import io.skysail.server.utils.HeadersUtils;
-
-import java.util.Map;
-import java.util.stream.Collectors;
-
-import org.restlet.ext.jackson.JacksonConverter;
-import org.restlet.representation.*;
-import org.restlet.resource.Resource;
-
-import aQute.bnd.annotation.component.Component;
-import de.twenty11.skysail.server.services.OsgiConverterHelper;
 
 @Component(immediate = true)
 public class SkysailJacksonConverter extends JacksonConverter implements OsgiConverterHelper { // NO_UCD

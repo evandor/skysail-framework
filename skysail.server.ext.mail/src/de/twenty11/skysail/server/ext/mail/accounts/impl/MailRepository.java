@@ -1,18 +1,17 @@
 package de.twenty11.skysail.server.ext.mail.accounts.impl;
 
+import java.util.*;
+
+import org.apache.shiro.SecurityUtils;
+import org.osgi.service.component.annotations.*;
+
+import de.twenty11.skysail.server.ext.mail.accounts.Account;
+import de.twenty11.skysail.server.ext.mail.mails.Mail;
 import io.skysail.api.domain.Identifiable;
 import io.skysail.api.repos.DbRepository;
 import io.skysail.server.db.DbService;
 
-import java.util.*;
-
-import org.apache.shiro.SecurityUtils;
-
-import aQute.bnd.annotation.component.*;
-import de.twenty11.skysail.server.ext.mail.accounts.Account;
-import de.twenty11.skysail.server.ext.mail.mails.Mail;
-
-@Component(immediate = true, properties = "name=MailRepository")
+@Component(immediate = true, property = "name=MailRepository")
 public class MailRepository implements DbRepository {
 
     private static DbService dbService;

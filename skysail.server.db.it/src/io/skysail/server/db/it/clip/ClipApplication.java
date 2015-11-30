@@ -1,16 +1,21 @@
 package io.skysail.server.db.it.clip;
 
-import io.skysail.api.repos.DbRepository;
-import io.skysail.server.app.*;
-import io.skysail.server.domain.core.Repositories;
-
 import java.util.Arrays;
 
-import aQute.bnd.annotation.component.*;
+import org.osgi.service.component.annotations.*;
+import org.osgi.service.event.EventAdmin;
+
 import de.twenty11.skysail.server.app.ApplicationProvider;
+import io.skysail.server.app.*;
+import io.skysail.server.domain.core.Repositories;
+import lombok.Getter;
 
 @Component(immediate = true)
 public class ClipApplication extends SkysailApplication implements ApplicationProvider {
+    
+    @Reference(cardinality = ReferenceCardinality.OPTIONAL)
+    @Getter
+    private volatile EventAdmin eventAdmin;
 
     private static final String APP_NAME = "ClipApp";
     private static ClipApplication instance;
@@ -20,12 +25,12 @@ public class ClipApplication extends SkysailApplication implements ApplicationPr
         instance = this;
     }
 
-    @Reference(dynamic = true, multiple = false, optional = false)
+    @Reference(policy = ReferencePolicy.DYNAMIC, cardinality = ReferenceCardinality.MANDATORY)
     public void setRepositories(Repositories repos) {
        super.setRepositories(repos);
     }
 
-    public void unsetRepositories(DbRepository repo) {
+    public void unsetRepositories(Repositories repo) {
         super.setRepositories(null);
     }
 

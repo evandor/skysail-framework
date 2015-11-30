@@ -1,23 +1,28 @@
 package io.skysail.server.um.simple.app;
 
+import java.util.*;
+
+import org.osgi.service.component.annotations.*;
+import org.osgi.service.event.EventAdmin;
+
+import de.twenty11.skysail.server.app.ApplicationProvider;
+import de.twenty11.skysail.server.core.restlet.*;
 import io.skysail.api.um.RestletRolesProvider;
 import io.skysail.server.app.SkysailApplication;
 import io.skysail.server.menus.*;
 import io.skysail.server.um.simple.app.users.resources.CurrentUserResource;
-
-import java.util.*;
-
+import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
-import aQute.bnd.annotation.component.Component;
-import de.twenty11.skysail.server.app.ApplicationProvider;
-import de.twenty11.skysail.server.core.restlet.*;
-import de.twenty11.skysail.server.services.*;
 
 @Component(immediate = true)
 @Slf4j
 public class SimpleUserManagementApplication extends SkysailApplication implements RestletRolesProvider, ApplicationProvider, MenuItemProvider {
 
     private static final String APP_NAME = "usermanagement";
+    
+    @Reference(cardinality = ReferenceCardinality.OPTIONAL)
+    @Getter
+    private volatile EventAdmin eventAdmin;
 
     public SimpleUserManagementApplication() {
         super(APP_NAME);

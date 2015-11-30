@@ -1,8 +1,7 @@
 package io.skysail.server.app.quartz.jobs;
 
+import org.osgi.service.component.annotations.Component;
 import org.quartz.*;
-
-import aQute.bnd.annotation.component.Component;
 
 @Component(immediate = true)
 public class ConsoleTimePrinterJob implements org.quartz.Job {

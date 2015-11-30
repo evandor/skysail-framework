@@ -1,14 +1,13 @@
 package io.skysail.server.db.it;
 
+import org.osgi.service.component.annotations.*;
+import org.restlet.Response;
+
 import io.skysail.client.testsupport.IntegrationTests;
 import io.skysail.server.app.SkysailApplication;
 import io.skysail.server.db.DbService;
 import io.skysail.server.db.it.support.*;
 import io.skysail.server.restlet.resources.SkysailServerResource;
-
-import org.restlet.Response;
-
-import aQute.bnd.annotation.component.*;
 
 /**
  * Integration test starting OSGi, including database and (not-mocked) resources

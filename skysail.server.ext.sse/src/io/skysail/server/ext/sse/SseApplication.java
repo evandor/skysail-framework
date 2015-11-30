@@ -1,21 +1,26 @@
 package io.skysail.server.ext.sse;
 
-import io.skysail.server.app.SkysailApplication;
-import io.skysail.server.ext.sse.resources.GuiMessageResource;
-
 import java.util.List;
 
+import org.osgi.service.component.annotations.*;
 import org.osgi.service.event.*;
 
-import aQute.bnd.annotation.component.Component;
 import de.twenty11.skysail.server.app.ApplicationProvider;
 import de.twenty11.skysail.server.core.osgi.EventHelper;
 import de.twenty11.skysail.server.core.restlet.RouteBuilder;
+import io.skysail.server.app.SkysailApplication;
+import io.skysail.server.ext.sse.resources.GuiMessageResource;
+import lombok.Getter;
 
-@Component(immediate = true, properties = { "event.topics=" + EventHelper.GUI_MSG + "/*" })
+@Component(immediate = true, property = { "event.topics=" + EventHelper.GUI_MSG + "/*" })
 public class SseApplication extends SkysailApplication implements ApplicationProvider, EventHandler {
 
     private static final String APP_NAME = "SSE";
+    
+    @Reference(cardinality = ReferenceCardinality.OPTIONAL)
+    @Getter
+    private volatile EventAdmin eventAdmin;
+
 
     private EventsQueue events = new EventsQueue();
 

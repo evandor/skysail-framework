@@ -11,7 +11,6 @@ Include-Resource: resources, templates=src;recursive:=true;filter:=*.st|*.stg
 	org.restlet;version=${restlet.version},\
 	org.restlet.ext.raml;version=${restlet.version},\
 	slf4j.api;version=1.7.7,\
-	biz.aQute.bnd.annotation;version=2.3,\
 	com.springsource.org.junit;version=4.11,\
 	org.apache.commons.collections;version=3.2,\
 	javax.validation.api;version=1.1,\

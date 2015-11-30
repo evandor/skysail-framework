@@ -4,7 +4,8 @@ Bundle-Description: quartz scheduler integration
 Service-Component: *
 Include-Resource: resources, templates=src;recursive:=true;filter:=*.st|*.stg
 -buildpath:  \
-	biz.aQute.bnd.annotation,\
+	osgi.core;version=${osgi.version},\
+	osgi.cmpn;version=${osgi.version},\
 	skysail.api;version=${skysail.api.version},\
 	skysail.api.peers;version=${skysail.api.peers.version},\
     skysail.api.search;version=${skysail.api.search.version},\
@@ -33,8 +34,6 @@ Include-Resource: resources, templates=src;recursive:=true;filter:=*.st|*.stg
 	com.fasterxml.jackson.core.jackson-annotations;version=2.4,\
 	org.codehaus.jettison.jettison;version=1.3,\
 	org.apache.commons.beanutils;version=1.9,\
-	osgi.core;version=${osgi.version},\
-	osgi.cmpn;version=${osgi.version},\
 	com.google.guava;version=${guava.version},\
 	org.apache.commons.logging;version=1.1,\
 	org.hibernate.validator;version=5.1,\

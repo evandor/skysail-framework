@@ -1,10 +1,5 @@
 package io.skysail.server.app.designer.codegen;
 
-import io.skysail.api.links.Link;
-import io.skysail.server.app.designer.DesignerApplication;
-import io.skysail.server.restlet.resources.ListServerResource;
-import io.skysail.server.utils.CompositeClassLoader;
-
 import java.io.File;
 import java.net.URL;
 import java.util.*;
@@ -14,12 +9,17 @@ import javax.tools.*;
 import javax.tools.Diagnostic.Kind;
 import javax.validation.ConstraintViolation;
 
-import lombok.Getter;
-import lombok.extern.slf4j.Slf4j;
-
 import org.apache.commons.beanutils.DynaProperty;
 import org.osgi.framework.*;
+import org.osgi.service.component.annotations.Component;
 import org.restlet.resource.ServerResource;
+
+import io.skysail.api.links.Link;
+import io.skysail.server.app.designer.DesignerApplication;
+import io.skysail.server.restlet.resources.ListServerResource;
+import io.skysail.server.utils.CompositeClassLoader;
+import lombok.Getter;
+import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public class InMemoryJavaCompiler {
@@ -75,7 +75,7 @@ public class InMemoryJavaCompiler {
         getBundleLocationFor(Link.class, bundleLocations, bundles);
         getBundleLocationFor(javax.persistence.Id.class, bundleLocations, bundles);
         getBundleLocationFor(com.fasterxml.jackson.annotation.JacksonAnnotation.class, bundleLocations, bundles);
-        getBundleLocationFor(aQute.bnd.annotation.component.Component.class, bundleLocations, bundles);
+        getBundleLocationFor(Component.class, bundleLocations, bundles);
         getBundleLocationFor(org.restlet.ext.raml.RamlApplication.class, bundleLocations, bundles);
 
         String locs = bundleLocations.stream().map(l -> {

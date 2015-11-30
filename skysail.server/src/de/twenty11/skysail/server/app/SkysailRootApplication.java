@@ -9,6 +9,7 @@ import org.osgi.framework.Bundle;
 import org.osgi.service.cm.*;
 import org.osgi.service.component.ComponentContext;
 import org.osgi.service.component.annotations.*;
+import org.osgi.service.event.EventAdmin;
 import org.restlet.Request;
 
 import de.twenty11.skysail.server.app.profile.*;
@@ -19,6 +20,7 @@ import io.skysail.server.app.SkysailApplication;
 import io.skysail.server.menus.*;
 import io.skysail.server.menus.MenuItem.Category;
 import io.skysail.server.utils.MenuItemUtils;
+import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 
 @Component(immediate = true, property = { "service.pid=landingpages" })
@@ -53,6 +55,10 @@ public class SkysailRootApplication extends SkysailApplication implements Applic
     public SkysailRootApplication() {
         super(ROOT_APPLICATION_NAME);
     }
+    
+    @Reference(cardinality = ReferenceCardinality.OPTIONAL)
+    @Getter
+    private volatile EventAdmin eventAdmin;
 
     @Override
     @Activate

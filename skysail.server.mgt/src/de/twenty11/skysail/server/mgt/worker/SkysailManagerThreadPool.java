@@ -1,15 +1,10 @@
 package de.twenty11.skysail.server.mgt.worker;
 
-import java.util.concurrent.Callable;
-import java.util.concurrent.CompletionService;
-import java.util.concurrent.ExecutorCompletionService;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
+import java.util.concurrent.*;
 
-import aQute.bnd.annotation.component.Component;
-import aQute.bnd.annotation.component.Reference;
-import de.twenty11.skysail.server.services.SkysailThreadPool;
-import de.twenty11.skysail.server.services.SocketIoBroadcasting;
+import org.osgi.service.component.annotations.*;
+
+import de.twenty11.skysail.server.services.*;
 
 @Component(immediate = true)
 public class SkysailManagerThreadPool implements SkysailThreadPool {
@@ -56,7 +51,7 @@ public class SkysailManagerThreadPool implements SkysailThreadPool {
         }
     }
 
-    @Reference(optional = true, multiple = false, dynamic = true)
+    @Reference(policy = ReferencePolicy.DYNAMIC, cardinality = ReferenceCardinality.OPTIONAL)
     public void setSocketIoBroadcasting(SocketIoBroadcasting socketIoBroadcasting) {
         this.socketIoBroadcasting = socketIoBroadcasting;
     }

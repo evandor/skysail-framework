@@ -1,12 +1,13 @@
 package io.skysail.server.app.um.db.repo;
 
+import org.osgi.service.component.annotations.*;
+
 import io.skysail.api.repos.DbRepository;
 import io.skysail.server.app.um.db.domain.Group;
 import io.skysail.server.db.*;
 import lombok.extern.slf4j.Slf4j;
-import aQute.bnd.annotation.component.*;
 
-@Component(immediate = true, properties = "name=GroupRepository")
+@Component(immediate = true, property = "name=GroupRepository")
 @Slf4j
 public class GroupRepository extends GraphDbRepository<Group>  implements DbRepository {
 

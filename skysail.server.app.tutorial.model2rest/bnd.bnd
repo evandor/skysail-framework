@@ -3,12 +3,12 @@ Bundle-Version: 0.0.5.${tstamp}
 Service-Component: *
 Include-Resource: resources, templates=src;recursive:=true;filter:=*.st|*.stg
 -buildpath:  \
+    osgi.cmpn;version=${osgi.version},\
 	skysail.api;version=${skysail.api.version},\
     skysail.api.search;version=${skysail.api.search.version},\
     skysail.api.text;version=${skysail.api.text.version},\
     skysail.server;version=${skysail.server.version},\
 	de.twentyeleven.skysail.org.hamcrest.hamcrest-all-osgi;version=1.3,\
-	biz.aQute.bnd.annotation,\
 	slf4j.api;version=1.7.7,\
 	org.restlet;version=${restlet.version},\
     org.restlet.ext.raml;version=${restlet.version},\

@@ -4,9 +4,7 @@ import java.util.*;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.stream.Stream;
 
-import org.osgi.service.cm.ConfigurationAdmin;
 import org.osgi.service.component.annotations.*;
-import org.osgi.service.event.EventAdmin;
 import org.restlet.Context;
 
 import de.twenty11.skysail.server.SkysailComponent;
@@ -59,9 +57,9 @@ public class ServiceList implements ServiceListProvider {
 
     //http://stackoverflow.com/questions/30061032/best-way-to-handle-dynamic-osgi-service-dependencies
     private AtomicReference<ApplicationListProvider> applicationListProvider = new AtomicReference<>();
-    private AtomicReference<ConfigurationAdmin> configurationAdmin = new AtomicReference<>();
+    //private AtomicReference<ConfigurationAdmin> configurationAdmin = new AtomicReference<>();
     private AtomicReference<SkysailComponentProvider> skysailComponentProviderRef = new AtomicReference<>();
-    private AtomicReference<EventAdmin> eventAdmin = new AtomicReference<>();
+    //private AtomicReference<EventAdmin> eventAdmin = new AtomicReference<>();
     private AtomicReference<EncryptorService> encryptorService = new AtomicReference<>();
     private AtomicReference<ValidatorService> validatorService = new AtomicReference<>();
     private AtomicReference<PeersProvider> peersProvider = new AtomicReference<>();
@@ -185,36 +183,32 @@ public class ServiceList implements ServiceListProvider {
         return encryptorService;
     }
 
-    /** === EntityChangedHookService Service ============================== */
-
-    // removed, there was no use case yet
-
-    /** === EventAdmin Service ============================== */
-
-    @Reference(policy = ReferencePolicy.DYNAMIC, cardinality = ReferenceCardinality.OPTIONAL)
-    public void setEventAdminService(EventAdmin service) {
-        this.eventAdmin.set(service);
-    }
-
-    public void unsetEventAdminService(EventAdmin service) {
-        this.eventAdmin.compareAndSet(service, null);
-    }
-
-    @Override
-    public AtomicReference<EventAdmin> getEventAdmin() {
-        return eventAdmin;
-    }
+//    /** === EventAdmin Service ============================== */
+//
+//    @Reference(policy = ReferencePolicy.DYNAMIC, cardinality = ReferenceCardinality.OPTIONAL)
+//    public void setEventAdminService(EventAdmin service) {
+//        this.eventAdmin.set(service);
+//    }
+//
+//    public void unsetEventAdminService(EventAdmin service) {
+//        this.eventAdmin.compareAndSet(service, null);
+//    }
+//
+//    @Override
+//    public AtomicReference<EventAdmin> getEventAdmin() {
+//        return eventAdmin;
+//    }
 
     /** === ConfigAdmin Service ============================== */
 
-    @Reference(policy = ReferencePolicy.DYNAMIC, cardinality = ReferenceCardinality.OPTIONAL)
-    public synchronized void setConfigurationAdminService(ConfigurationAdmin service) {
-        this.configurationAdmin.set(service);
-    }
-
-    public synchronized void unsetConfigurationAdminService(ConfigurationAdmin service) {
-        this.configurationAdmin.compareAndSet(service, null);
-    }
+//    @Reference(policy = ReferencePolicy.DYNAMIC, cardinality = ReferenceCardinality.OPTIONAL)
+//    public synchronized void setConfigurationAdminService(ConfigurationAdmin service) {
+//        this.configurationAdmin.set(service);
+//    }
+//
+//    public synchronized void unsetConfigurationAdminService(ConfigurationAdmin service) {
+//        this.configurationAdmin.compareAndSet(service, null);
+//    }
 
     /** === Performance Monitor Service ============================== */
 

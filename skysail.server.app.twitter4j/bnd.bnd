@@ -2,20 +2,19 @@ Bundle-Version: 0.1.0.${tstamp}
 Bundle-ClassPath: .,lib/twitter4j-core-4.0.3.jar
 -buildpath:  \
 	lib/twitter4j-core-4.0.3.jar;version=file,\
+	osgi.core;version=${osgi.version},\
+	osgi.cmpn;version=${osgi.version},\
 	skysail.api;version=${skysail.api.version},\
     skysail.api.search;version=${skysail.api.search.version},\
     skysail.api.text;version=${skysail.api.text.version},\
 	skysail.server;version=${skysail.server.version},\
 	com.springsource.org.junit;version=4.11,\
-	biz.aQute.bnd.annotation;version=2.4,\
 	org.restlet;version=${restlet.version},\
 	org.restlet.ext.raml;version=${restlet.version},\
 	javax.validation.api;version=1.1,\
 	slf4j.api;version=1.7,\
 	org.apache.commons.beanutils;version=1.9,\
 	lombok;version=1.16,\
-	osgi.core;version=${osgi.version},\
-	osgi.cmpn;version=${osgi.version},\
 	ch.qos.logback.core;version=1.1,\
 	ch.qos.logback.classic;version=1.1
 Service-Component:  \

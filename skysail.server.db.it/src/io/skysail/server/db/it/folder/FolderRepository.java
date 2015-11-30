@@ -1,14 +1,14 @@
 package io.skysail.server.db.it.folder;
 
-import io.skysail.api.repos.DbRepository;
-import io.skysail.server.db.*;
-
 import java.util.Collections;
 
-import lombok.extern.slf4j.Slf4j;
-import aQute.bnd.annotation.component.*;
+import org.osgi.service.component.annotations.*;
 
-@Component(immediate = true, properties = "name=FolderRepository")
+import io.skysail.api.repos.DbRepository;
+import io.skysail.server.db.*;
+import lombok.extern.slf4j.Slf4j;
+
+@Component(immediate = true, property = "name=FolderRepository")
 @Slf4j
 public class FolderRepository extends GraphDbRepository<Folder> implements DbRepository {
 

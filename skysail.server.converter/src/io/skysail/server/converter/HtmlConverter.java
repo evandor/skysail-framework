@@ -4,6 +4,7 @@ import java.util.*;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 import org.apache.shiro.SecurityUtils;
+import org.osgi.service.component.annotations.*;
 import org.osgi.service.event.*;
 import org.restlet.data.MediaType;
 import org.restlet.engine.converter.ConverterHelper;
@@ -11,7 +12,6 @@ import org.restlet.engine.resource.VariantInfo;
 import org.restlet.representation.*;
 import org.restlet.resource.Resource;
 
-import aQute.bnd.annotation.component.*;
 import de.twenty11.skysail.server.core.osgi.EventHelper;
 import de.twenty11.skysail.server.services.OsgiConverterHelper;
 import etm.core.configuration.EtmManager;
@@ -31,7 +31,7 @@ import lombok.extern.slf4j.Slf4j;
  * TODO get rid of shiro dependency TODO package structure
  *
  */
-@Component(immediate = true, properties = { "event.topics=" + EventHelper.GUI +"/*"})
+@Component(immediate = true, property = { "event.topics=" + EventHelper.GUI +"/*"})
 @Slf4j
 public class HtmlConverter extends ConverterHelper implements OsgiConverterHelper, EventHandler {
 
@@ -60,7 +60,7 @@ public class HtmlConverter extends ConverterHelper implements OsgiConverterHelpe
 
     // --- Menu Providers ------------------------------------------------
 
-    @Reference(multiple = true, optional = true, dynamic = true)
+    @Reference(policy = ReferencePolicy.DYNAMIC, cardinality = ReferenceCardinality.MULTIPLE)
     public void addMenuProvider(MenuItemProvider provider) {
         if (provider == null) { // || provider.getMenuEntries() == null) {
             return;
@@ -79,7 +79,7 @@ public class HtmlConverter extends ConverterHelper implements OsgiConverterHelpe
 
     // --- Search Service ------------------------------------------------
 
-    @Reference(multiple = false, optional = true, dynamic = true)
+    @Reference(policy = ReferencePolicy.DYNAMIC, cardinality = ReferenceCardinality.OPTIONAL)
     public void setSearchService(SearchService service) {
         this.searchService = service;
     }
@@ -90,7 +90,7 @@ public class HtmlConverter extends ConverterHelper implements OsgiConverterHelpe
 
     // --- Peers Provider Service ------------------------------------------------
 
-    @Reference(multiple = false, optional = true, dynamic = true)
+    @Reference(policy = ReferencePolicy.DYNAMIC, cardinality = ReferenceCardinality.OPTIONAL)
     public void setPeersProvider(PeersProvider service) {
         this.peersProvider = service;
     }

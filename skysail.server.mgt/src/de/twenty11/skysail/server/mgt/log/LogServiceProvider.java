@@ -1,16 +1,14 @@
 package de.twenty11.skysail.server.mgt.log;
 
+import org.osgi.service.component.annotations.*;
 import org.osgi.service.log.LogReaderService;
-
-import aQute.bnd.annotation.component.Component;
-import aQute.bnd.annotation.component.Reference;
 
 @Component
 public class LogServiceProvider {
 
     private static volatile LogReaderService service;
 
-    @Reference(dynamic = true, optional = true)
+    @Reference(policy = ReferencePolicy.DYNAMIC, cardinality = ReferenceCardinality.OPTIONAL)
     public void setLogReaderService(LogReaderService service) {
         LogServiceProvider.service = service;
     }

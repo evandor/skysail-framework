@@ -1,14 +1,14 @@
 package io.skysail.server.db.it.clip;
 
-import io.skysail.api.repos.DbRepository;
-import io.skysail.server.db.*;
-
 import java.util.Collections;
 
-import lombok.extern.slf4j.Slf4j;
-import aQute.bnd.annotation.component.*;
+import org.osgi.service.component.annotations.*;
 
-@Component(immediate = true, properties = "name=ClipRepository")
+import io.skysail.api.repos.DbRepository;
+import io.skysail.server.db.*;
+import lombok.extern.slf4j.Slf4j;
+
+@Component(immediate = true, property = "name=ClipRepository")
 @Slf4j
 public class ClipRepository extends GraphDbRepository<Clip> implements DbRepository {
 

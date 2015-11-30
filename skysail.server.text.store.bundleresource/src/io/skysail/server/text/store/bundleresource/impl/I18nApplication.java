@@ -1,27 +1,32 @@
 package io.skysail.server.text.store.bundleresource.impl;
 
-import io.skysail.api.text.*;
-import io.skysail.server.app.SkysailApplication;
-import io.skysail.server.menus.*;
-import io.skysail.server.restlet.resources.SkysailServerResource;
-import io.skysail.server.text.TranslationStoreHolder;
-import io.skysail.server.utils.TranslationUtils;
-
 import java.lang.ref.WeakReference;
 import java.util.*;
 import java.util.stream.Collectors;
 
 import org.osgi.framework.Bundle;
 import org.osgi.framework.wiring.BundleWiring;
+import org.osgi.service.component.annotations.*;
+import org.osgi.service.event.EventAdmin;
 
-import aQute.bnd.annotation.component.*;
 import de.twenty11.skysail.server.app.*;
 import de.twenty11.skysail.server.core.restlet.*;
+import io.skysail.api.text.*;
+import io.skysail.server.app.SkysailApplication;
+import io.skysail.server.menus.*;
+import io.skysail.server.restlet.resources.SkysailServerResource;
+import io.skysail.server.text.TranslationStoreHolder;
+import io.skysail.server.utils.TranslationUtils;
+import lombok.Getter;
 
 @Component(immediate = true)
 public class I18nApplication extends SkysailApplication implements ApplicationProvider, MenuItemProvider {
 
     private List<TranslationStoreHolder> translationStoreHolders = new ArrayList<>();
+
+    @Reference(cardinality = ReferenceCardinality.OPTIONAL)
+    @Getter
+    private volatile EventAdmin eventAdmin;
 
     public I18nApplication() {
         super("i18n");
@@ -43,7 +48,7 @@ public class I18nApplication extends SkysailApplication implements ApplicationPr
         return Arrays.asList(appMenu);
     }
 
-    @Reference(optional = true, dynamic = true, multiple = true)
+    @Reference(policy = ReferencePolicy.DYNAMIC, cardinality = ReferenceCardinality.MULTIPLE)
     public void addTranslationStoreHolder(TranslationStore service) {
         TranslationStoreHolder holder = new TranslationStoreHolder(service, new HashMap<String, String>());
         this.translationStoreHolders.add(holder);

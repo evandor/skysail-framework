@@ -2,18 +2,20 @@ package io.skysail.server.model.test;
 
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
-import io.skysail.server.app.SkysailApplication;
-import io.skysail.server.model.*;
-import io.skysail.server.restlet.resources.SkysailServerResource;
 
 import java.util.*;
 
 import org.junit.*;
 import org.mockito.Mockito;
+import org.osgi.service.event.EventAdmin;
 import org.restlet.Request;
 import org.restlet.data.Reference;
 import org.restlet.routing.Route;
 import org.restlet.util.RouteList;
+
+import io.skysail.server.app.SkysailApplication;
+import io.skysail.server.model.*;
+import io.skysail.server.restlet.resources.SkysailServerResource;
 
 public class BreadcrumbsTest {
 
@@ -36,6 +38,11 @@ public class BreadcrumbsTest {
             @Override
             public RouteList getRoutes() {
                 return routes;
+            }
+
+            @Override
+            public EventAdmin getEventAdmin() {
+                return null;
             }
         });
     }

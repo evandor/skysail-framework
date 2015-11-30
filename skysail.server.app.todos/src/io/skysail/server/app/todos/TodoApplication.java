@@ -1,5 +1,16 @@
 package io.skysail.server.app.todos;
 
+import java.util.*;
+
+import org.apache.shiro.SecurityUtils;
+import org.osgi.service.cm.ConfigurationException;
+import org.osgi.service.component.ComponentContext;
+import org.osgi.service.component.annotations.*;
+import org.osgi.service.event.EventAdmin;
+import org.restlet.Request;
+
+import de.twenty11.skysail.server.app.ApplicationProvider;
+import de.twenty11.skysail.server.core.restlet.*;
 import io.skysail.api.repos.DbRepository;
 import io.skysail.server.app.*;
 import io.skysail.server.app.todos.charts.ListChartResource;
@@ -14,20 +25,8 @@ import io.skysail.server.db.versions.VersioningService;
 import io.skysail.server.menus.*;
 import io.skysail.server.queryfilter.Filter;
 import io.skysail.server.restlet.resources.SkysailServerResource;
-
-import java.util.*;
-
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
-
-import org.apache.shiro.SecurityUtils;
-import org.osgi.service.cm.ConfigurationException;
-import org.osgi.service.component.ComponentContext;
-import org.restlet.Request;
-
-import aQute.bnd.annotation.component.*;
-import de.twenty11.skysail.server.app.ApplicationProvider;
-import de.twenty11.skysail.server.core.restlet.*;
 
 @Component(immediate = true)
 @Slf4j
@@ -44,6 +43,10 @@ public class TodoApplication extends SkysailApplication implements ApplicationPr
     private ListsRepository listRepo;
 
     private VersioningService versioningService;
+    
+    @Reference(cardinality = ReferenceCardinality.OPTIONAL)
+    @Getter
+    private volatile EventAdmin eventAdmin;
 
     public TodoApplication() {
         super(APP_NAME, new ApiVersion(2));
@@ -51,7 +54,7 @@ public class TodoApplication extends SkysailApplication implements ApplicationPr
         addToAppContext(ApplicationContextId.IMG, "/static/img/silk/tag_yellow.png");
     }
 
-    @Reference(dynamic = true, multiple = false, optional = false, target = "(name=TodosRepository)")
+    @Reference(policy = ReferencePolicy.DYNAMIC, cardinality = ReferenceCardinality.MANDATORY, target = "(name=TodosRepository)")
     public void setTodoRepository(DbRepository repo) {
         this.todosRepo = (TodosRepository) repo;
     }
@@ -60,7 +63,7 @@ public class TodoApplication extends SkysailApplication implements ApplicationPr
         this.todosRepo = null;
     }
 
-    @Reference(dynamic = true, multiple = false, optional = false, target = "(name=ListsRepository)")
+    @Reference(policy = ReferencePolicy.DYNAMIC, cardinality = ReferenceCardinality.MANDATORY, target = "(name=ListsRepository)")
     public void setTodoListRepository(DbRepository repo) {
         this.listRepo = (ListsRepository) repo;
     }
@@ -69,7 +72,7 @@ public class TodoApplication extends SkysailApplication implements ApplicationPr
         this.listRepo = null;
     }
 
-    @Reference(dynamic = true, multiple = false, optional = true)
+    @Reference(policy = ReferencePolicy.DYNAMIC, cardinality = ReferenceCardinality.OPTIONAL)
     public void setVersioningService(VersioningService service) {
         this.versioningService = (VersioningService) service;
     }

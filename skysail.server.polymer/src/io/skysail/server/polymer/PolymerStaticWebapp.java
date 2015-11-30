@@ -1,19 +1,24 @@
 package io.skysail.server.polymer;
 
-import io.skysail.server.app.SkysailApplication;
-import io.skysail.server.utils.*;
-
 import java.util.*;
 
+import org.osgi.service.component.annotations.ReferenceCardinality;
+import org.osgi.service.event.EventAdmin;
 import org.restlet.*;
 import org.restlet.data.*;
 import org.restlet.routing.*;
 
-import aQute.bnd.annotation.component.Component;
 import de.twenty11.skysail.server.app.ApplicationProvider;
+import io.skysail.server.app.SkysailApplication;
+import io.skysail.server.utils.*;
+import lombok.Getter;
 
-@Component
+@org.osgi.service.component.annotations.Component
 public class PolymerStaticWebapp extends SkysailApplication implements ApplicationProvider {
+
+    @org.osgi.service.component.annotations.Reference(cardinality = ReferenceCardinality.OPTIONAL)
+    @Getter
+    private volatile EventAdmin eventAdmin;
 
     public PolymerStaticWebapp() {
         this("webapp serving polymer files");

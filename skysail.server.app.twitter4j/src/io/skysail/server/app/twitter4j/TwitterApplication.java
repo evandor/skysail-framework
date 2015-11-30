@@ -1,26 +1,30 @@
 package io.skysail.server.app.twitter4j;
 
-import io.skysail.server.app.SkysailApplication;
-import io.skysail.server.app.twitter4j.resources.*;
-import io.skysail.server.menus.*;
-
 import java.util.*;
 
 import org.osgi.service.cm.ConfigurationException;
 import org.osgi.service.component.ComponentContext;
+import org.osgi.service.component.annotations.*;
+import org.osgi.service.event.EventAdmin;
 
-import twitter4j.*;
-import twitter4j.conf.ConfigurationBuilder;
-import aQute.bnd.annotation.component.*;
 import de.twenty11.skysail.server.app.ApplicationProvider;
 import de.twenty11.skysail.server.core.restlet.*;
-import de.twenty11.skysail.server.services.*;
+import io.skysail.server.app.SkysailApplication;
+import io.skysail.server.app.twitter4j.resources.*;
+import io.skysail.server.menus.*;
+import lombok.Getter;
+import twitter4j.*;
+import twitter4j.conf.ConfigurationBuilder;
 
-@Component(immediate = true, configurationPolicy = ConfigurationPolicy.require)
+@Component(immediate = true, configurationPolicy = ConfigurationPolicy.REQUIRE)
 public class TwitterApplication extends SkysailApplication implements ApplicationProvider, MenuItemProvider {
 
     private static final String APP_NAME = "Twitter";
     private Map<String, String> config;
+
+    @Reference(cardinality = ReferenceCardinality.OPTIONAL)
+    @Getter
+    private volatile EventAdmin eventAdmin;
 
     public TwitterApplication() {
         super(APP_NAME);

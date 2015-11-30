@@ -17,7 +17,7 @@ Include-Resource: resources, templates=src;recursive:=true;filter:=*.st|*.stg
 
 -buildpath:  \
     ${osgi},\
-    biz.aQute.bnd.annotation,\
+    osgi.cmpn;version=${osgi.version},\
     ${restlet},\
     lombok;version=1.16.2,\
     skysail.api;version=${skysail.api.version},\

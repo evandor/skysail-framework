@@ -1,19 +1,15 @@
 package de.twenty11.skysail.server.mgt;
 
-import io.skysail.server.app.SkysailApplication;
-import io.skysail.server.menus.MenuItemProvider;
-
 import java.lang.instrument.Instrumentation;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
-import lombok.Getter;
-
 import org.osgi.service.cm.ConfigurationException;
 import org.osgi.service.component.ComponentContext;
+import org.osgi.service.component.annotations.*;
+import org.osgi.service.event.EventAdmin;
 import org.restlet.data.MediaType;
 
-import aQute.bnd.annotation.component.*;
 import de.twenty11.skysail.server.app.ApplicationProvider;
 import de.twenty11.skysail.server.core.restlet.*;
 import de.twenty11.skysail.server.mgt.apps.*;
@@ -23,6 +19,9 @@ import de.twenty11.skysail.server.mgt.jmx.JmxMonitor;
 import de.twenty11.skysail.server.mgt.performance.PerformanceResource;
 import etm.core.configuration.*;
 import etm.core.monitor.EtmMonitor;
+import io.skysail.server.app.SkysailApplication;
+import io.skysail.server.menus.MenuItemProvider;
+import lombok.Getter;
 
 
 @Component
@@ -38,6 +37,10 @@ public class ManagementApplication extends SkysailApplication implements Applica
 
 	private EtmMonitor monitor;
 
+	@Reference(cardinality = ReferenceCardinality.OPTIONAL)
+	@Getter
+	private volatile EventAdmin eventAdmin;
+	
 	@Getter
     private volatile List<ApplicationProvider> applicationProviders = new CopyOnWriteArrayList<>();
 
@@ -76,7 +79,7 @@ public class ManagementApplication extends SkysailApplication implements Applica
 //        performanceMonitorServer.stop();
     }
 
-    @Reference(dynamic = true, multiple = true, optional = true)
+    @Reference(policy = ReferencePolicy.DYNAMIC, cardinality = ReferenceCardinality.MULTIPLE)
     public void setTodoRepository(ApplicationProvider application) {
         applicationProviders.add(application);
     }
@@ -107,7 +110,7 @@ public class ManagementApplication extends SkysailApplication implements Applica
 
     }
 
-    @Reference(dynamic = true, multiple = false, optional = true)
+    @Reference(policy = ReferencePolicy.DYNAMIC, cardinality = ReferenceCardinality.OPTIONAL)
     public void setInstrumentation(Instrumentation instrumentation) {
         this.instrumentation = instrumentation;
         //Agent.premain("", instrumentation);

@@ -1,13 +1,12 @@
 package io.skysail.server.app.quartz.triggers;
 
-import io.skysail.server.app.quartz.QuartzApplication;
-import io.skysail.server.app.quartz.jobs.Job;
-
 import java.util.*;
 
+import org.osgi.service.component.annotations.*;
 import org.restlet.resource.Resource;
 
-import aQute.bnd.annotation.component.*;
+import io.skysail.server.app.quartz.QuartzApplication;
+import io.skysail.server.app.quartz.jobs.Job;
 
 @Component(immediate = true)
 public class JobsSelectionProvider implements io.skysail.api.forms.SelectionProvider {

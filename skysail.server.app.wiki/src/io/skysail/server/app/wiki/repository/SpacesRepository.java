@@ -1,11 +1,12 @@
 package io.skysail.server.app.wiki.repository;
 
+import org.osgi.service.component.annotations.*;
+
 import io.skysail.api.repos.DbRepository;
 import io.skysail.server.app.wiki.spaces.Space;
 import io.skysail.server.db.*;
-import aQute.bnd.annotation.component.*;
 
-@Component(immediate = true, properties = "name=SpacesRepository")
+@Component(immediate = true, property = "name=SpacesRepository")
 public class SpacesRepository extends GraphDbRepository<Space> implements DbRepository {
 
     @Activate

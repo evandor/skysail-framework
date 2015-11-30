@@ -1,15 +1,12 @@
 package io.skysail.server.performance.etm;
 
-import io.skysail.server.services.PerformanceMonitor;
-import io.skysail.server.services.PerformanceTimer;
+import org.osgi.service.component.annotations.*;
+
+import etm.core.configuration.*;
+import etm.core.monitor.EtmMonitor;
+import io.skysail.server.services.*;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
-import aQute.bnd.annotation.component.Activate;
-import aQute.bnd.annotation.component.Component;
-import aQute.bnd.annotation.component.Deactivate;
-import etm.core.configuration.BasicEtmConfigurator;
-import etm.core.configuration.EtmManager;
-import etm.core.monitor.EtmMonitor;
 
 @Component(immediate = true)
 @Getter

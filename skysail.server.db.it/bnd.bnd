@@ -9,8 +9,9 @@ Test-Cases: \
    io.skysail.server.db.it.FolderDbTests
 
 -buildpath:  \
-	biz.aQute.bnd.annotation;version=2.4,\
-	skysail.api;version=${skysail.api.version},\
+	osgi.core;version=${osgi.version},\
+    osgi.cmpn;version=${osgi.version},\
+   	skysail.api;version=${skysail.api.version},\
     skysail.api.search;version=${skysail.api.search.version},\
     skysail.api.text;version=${skysail.api.text.version},\
 	skysail.api.um;version=${skysail.api.um.version},\
@@ -22,7 +23,6 @@ Test-Cases: \
     skysail.server.testsupport;version=${skysail.server.testsupport.version},\
 	skysail.server.um;version=${skysail.server.um.version},\
 	skysail.server.um.simple;version=${skysail.server.um.simple.version},\
-	osgi.core;version=${osgi.version},\
     org.mockito.mockito-core;version=1.10,\
     com.springsource.org.junit;version=4.11,\
 	org.restlet;version=${restlet.version},\

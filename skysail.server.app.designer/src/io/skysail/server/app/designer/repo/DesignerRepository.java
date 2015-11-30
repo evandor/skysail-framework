@@ -1,18 +1,18 @@
 package io.skysail.server.app.designer.repo;
 
+import java.util.*;
+
+import org.osgi.service.component.annotations.*;
+
 import io.skysail.api.domain.Identifiable;
 import io.skysail.api.repos.DbRepository;
 import io.skysail.server.app.designer.application.Application;
 import io.skysail.server.app.designer.entities.Entity;
 import io.skysail.server.app.designer.fields.*;
 import io.skysail.server.db.*;
-
-import java.util.*;
-
 import lombok.extern.slf4j.Slf4j;
-import aQute.bnd.annotation.component.*;
 
-@Component(immediate = true, properties = "name=DesignerRepository")
+@Component(immediate = true, property = "name=DesignerRepository")
 @Slf4j
 public class DesignerRepository implements DbRepository {
 

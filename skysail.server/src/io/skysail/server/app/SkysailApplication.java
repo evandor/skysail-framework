@@ -257,6 +257,8 @@ public abstract class SkysailApplication extends RamlApplication implements Appl
             documentedEntities .put(e.getClass().getName(), e);
         });
     }
+    
+    public abstract EventAdmin getEventAdmin();
 
     public void setServiceListProvider(ServiceListProvider service) {
         SkysailApplication.serviceListProviderRef.set(service);
@@ -340,7 +342,7 @@ public abstract class SkysailApplication extends RamlApplication implements Appl
         attach();
 
         log.debug("creating tracer...");
-        TracerFilter tracer = new TracerFilter(getContext(), serviceListProviderRef.get().getEventAdmin().get());
+        TracerFilter tracer = new TracerFilter(getContext());
 
         log.debug("creating original request filter...");
         OriginalRequestFilter originalRequestFilter = new OriginalRequestFilter(getContext());
@@ -512,10 +514,6 @@ public abstract class SkysailApplication extends RamlApplication implements Appl
 
     public AuthenticationService getAuthenticationService() {
         return serviceListProviderRef.get().getAuthenticationService();
-    }
-
-    public AtomicReference<EventAdmin> getEventAdmin() {
-        return serviceListProviderRef.get().getEventAdmin();
     }
 
     public AuthorizationService getAuthorizationService() {

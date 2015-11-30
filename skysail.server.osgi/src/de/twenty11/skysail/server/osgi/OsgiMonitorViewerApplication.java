@@ -17,21 +17,26 @@
 
 package de.twenty11.skysail.server.osgi;
 
-import io.skysail.server.app.SkysailApplication;
-import io.skysail.server.menus.MenuItemProvider;
-
 import org.osgi.service.cm.ConfigurationAdmin;
+import org.osgi.service.component.annotations.*;
+import org.osgi.service.event.EventAdmin;
 import org.restlet.security.Role;
 
-import aQute.bnd.annotation.component.Component;
 import de.twenty11.skysail.server.app.ApplicationProvider;
 import de.twenty11.skysail.server.core.restlet.*;
 import de.twenty11.skysail.server.osgi.osgimonitor.resources.*;
+import io.skysail.server.app.SkysailApplication;
+import io.skysail.server.menus.MenuItemProvider;
+import lombok.Getter;
 
 @Component
 public class OsgiMonitorViewerApplication extends SkysailApplication implements ApplicationProvider, MenuItemProvider {
 
     private ConfigurationAdmin configadmin;
+    
+    @Reference(cardinality = ReferenceCardinality.OPTIONAL)
+    @Getter
+    private volatile EventAdmin eventAdmin;
 
     public OsgiMonitorViewerApplication() {
         super("OSGi");
@@ -41,6 +46,8 @@ public class OsgiMonitorViewerApplication extends SkysailApplication implements 
         setSecuredByRoles("admin");
         addToAppContext(ApplicationContextId.IMG, "/static/img/silk/server_connect.png");
     }
+    
+    
 
     @Override
     protected void attach() {

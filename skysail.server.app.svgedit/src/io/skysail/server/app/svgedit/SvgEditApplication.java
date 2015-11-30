@@ -1,23 +1,29 @@
 package io.skysail.server.app.svgedit;
 
-import io.skysail.server.app.SkysailApplication;
-import io.skysail.server.menus.*;
-import io.skysail.server.utils.*;
-
 import java.util.*;
 
+import org.osgi.service.component.annotations.*;
+import org.osgi.service.event.EventAdmin;
 import org.restlet.data.LocalReference;
 import org.restlet.routing.Router;
 
-import aQute.bnd.annotation.component.Component;
 import de.twenty11.skysail.server.app.ApplicationProvider;
 import de.twenty11.skysail.server.core.restlet.RouteBuilder;
+import io.skysail.server.app.SkysailApplication;
+import io.skysail.server.menus.*;
+import io.skysail.server.utils.*;
+import lombok.Getter;
 
 @Component
 // http://localhost:2015/svgedit/svg-editor.html
 public class SvgEditApplication extends SkysailApplication implements ApplicationProvider, MenuItemProvider {
 
     private static final String APP_NAME = "svgedit";
+    
+    @Reference(cardinality = ReferenceCardinality.OPTIONAL)
+    @Getter
+    private volatile EventAdmin eventAdmin;
+
 
     public SvgEditApplication() {
         this("webapp serving static files");

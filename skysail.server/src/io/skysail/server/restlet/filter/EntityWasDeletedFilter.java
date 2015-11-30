@@ -1,11 +1,11 @@
 package io.skysail.server.restlet.filter;
 
+import de.twenty11.skysail.server.core.osgi.EventHelper;
+import de.twenty11.skysail.server.core.restlet.Wrapper;
 import io.skysail.api.domain.Identifiable;
 import io.skysail.server.app.SkysailApplication;
 import io.skysail.server.restlet.resources.SkysailServerResource;
 import lombok.extern.slf4j.Slf4j;
-import de.twenty11.skysail.server.core.osgi.EventHelper;
-import de.twenty11.skysail.server.core.restlet.Wrapper;
 
 @Slf4j
 public class EntityWasDeletedFilter<R extends SkysailServerResource<T>, T extends Identifiable> extends AbstractResourceFilter<R, T> {
@@ -21,7 +21,7 @@ public class EntityWasDeletedFilter<R extends SkysailServerResource<T>, T extend
         log.debug("entering {}#doHandle", this.getClass().getSimpleName());
 
         if (application.getEventAdmin() != null) {
-            new EventHelper(application.getEventAdmin().get())//
+            new EventHelper(application.getEventAdmin())//
             .channel(EventHelper.GUI_MSG)//
             .info(resource.getClass().getSimpleName() + ".deleted.success")//
             .fire();

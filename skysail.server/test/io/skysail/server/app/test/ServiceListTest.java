@@ -42,7 +42,7 @@ public class ServiceListTest {
                 return null;
             }};
         applications.add(application);
-        serviceList.setApplicationListProvider(applicationListProvider);
+        //serviceList.setApplicationListProvider(applicationListProvider);
         Mockito.when(applicationListProvider.getApplications()).thenReturn(applications);
         translationStore = Mockito.mock(TranslationStore.class);
         renderService = Mockito.mock(TranslationRenderService.class);

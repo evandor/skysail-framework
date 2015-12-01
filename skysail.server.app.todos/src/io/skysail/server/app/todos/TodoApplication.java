@@ -11,6 +11,7 @@ import org.restlet.Request;
 
 import de.twenty11.skysail.server.app.ApplicationProvider;
 import de.twenty11.skysail.server.core.restlet.*;
+import io.skysail.api.peers.PeersProvider;
 import io.skysail.api.repos.DbRepository;
 import io.skysail.server.app.*;
 import io.skysail.server.app.todos.charts.ListChartResource;
@@ -47,6 +48,9 @@ public class TodoApplication extends SkysailApplication implements ApplicationPr
     @Reference(cardinality = ReferenceCardinality.OPTIONAL)
     @Getter
     private volatile EventAdmin eventAdmin;
+    
+    @Reference(cardinality = ReferenceCardinality.OPTIONAL)
+    private volatile PeersProvider peersProvider;
 
     public TodoApplication() {
         super(APP_NAME, new ApiVersion(2));
@@ -176,6 +180,10 @@ public class TodoApplication extends SkysailApplication implements ApplicationPr
         result.add(OverdueTodosResource.class);
         result.add(TodosTimelineResource.class);
         return result;
+    }
+
+    public String getRemotePath(String installation, String subpath) {
+      return peersProvider.getPath(installation) + subpath;
     }
 
 }

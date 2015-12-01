@@ -9,12 +9,9 @@ import org.restlet.Context;
 
 import de.twenty11.skysail.server.SkysailComponent;
 import de.twenty11.skysail.server.app.*;
-import de.twenty11.skysail.server.services.EncryptorService;
-import io.skysail.api.peers.PeersProvider;
 import io.skysail.api.text.*;
 import io.skysail.api.um.*;
 import io.skysail.api.validation.ValidatorService;
-import io.skysail.server.restlet.filter.HookFilter;
 import io.skysail.server.restlet.resources.SkysailServerResource;
 import io.skysail.server.services.PerformanceMonitor;
 import io.skysail.server.text.TranslationStoreHolder;
@@ -43,6 +40,14 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class ServiceList implements ServiceListProvider {
 
+    @Reference(cardinality = ReferenceCardinality.MANDATORY)
+    @Getter
+    public volatile ValidatorService validatorService;
+
+    @Reference(cardinality = ReferenceCardinality.OPTIONAL)
+    @Getter
+    private volatile ApplicationListProvider applicationListProvider;
+
     private volatile AuthorizationService authorizationService;
     private volatile AuthenticationService authenticationService;
 
@@ -52,17 +57,10 @@ public class ServiceList implements ServiceListProvider {
 
     @Getter
     private volatile Set<TranslationStoreHolder> translationStores = Collections.synchronizedSet(new HashSet<>());
-    private volatile Set<HookFilter> hookFilters = Collections.synchronizedSet(new HashSet<>());
     private volatile Set<PerformanceMonitor> performanceMonitors = Collections.synchronizedSet(new HashSet<>());
 
-    //http://stackoverflow.com/questions/30061032/best-way-to-handle-dynamic-osgi-service-dependencies
-    private AtomicReference<ApplicationListProvider> applicationListProvider = new AtomicReference<>();
-    //private AtomicReference<ConfigurationAdmin> configurationAdmin = new AtomicReference<>();
     private AtomicReference<SkysailComponentProvider> skysailComponentProviderRef = new AtomicReference<>();
-    //private AtomicReference<EventAdmin> eventAdmin = new AtomicReference<>();
-    private AtomicReference<EncryptorService> encryptorService = new AtomicReference<>();
-    private AtomicReference<ValidatorService> validatorService = new AtomicReference<>();
-    private AtomicReference<PeersProvider> peersProvider = new AtomicReference<>();
+
 
     /** === UserManagementProvider Service ============================== */
 
@@ -89,16 +87,6 @@ public class ServiceList implements ServiceListProvider {
 
     /** === ApplicationListProvider Service ============================== */
 
-    @Reference(policy = ReferencePolicy.DYNAMIC, cardinality = ReferenceCardinality.OPTIONAL)
-    public synchronized void setApplicationListProvider(ApplicationListProvider applicationProvider) {
-        this.applicationListProvider.set(applicationProvider);
-    }
-
-    public void unsetApplicationListProvider(ApplicationListProvider service) {
-        this.applicationListProvider.compareAndSet(service, null);
-    }
-
-    /** === ConfigAdmin Service ============================== */
 
     @Reference(policy = ReferencePolicy.DYNAMIC, cardinality = ReferenceCardinality.OPTIONAL)
     public synchronized void setSkysailComponentProvider(SkysailComponentProvider service) {
@@ -108,36 +96,18 @@ public class ServiceList implements ServiceListProvider {
         }
         Context appContext = skysailComponentProviderRef.get().getSkysailComponent().getContext().createChildContext();
         getSkysailApps().forEach(app -> app.setContext(appContext));
-        applicationListProvider.get().attach(skysailComponentProviderRef.get().getSkysailComponent());
+        applicationListProvider.attach(skysailComponentProviderRef.get().getSkysailComponent());
     }
 
     public synchronized void unsetSkysailComponentProvider(SkysailComponentProvider service) {
         this.skysailComponentProviderRef.compareAndSet(service, null);
         getSkysailApps().forEach(a -> a.setContext(null));
-        applicationListProvider.get().detach(service.getSkysailComponent());
+        applicationListProvider.detach(service.getSkysailComponent());
     }
 
     @Override
     public SkysailComponent getSkysailComponent() {
         return skysailComponentProviderRef.get().getSkysailComponent();
-    }
-
-    /** === PeersProvider Service ============================== */
-
-    @Reference(policy = ReferencePolicy.DYNAMIC, cardinality = ReferenceCardinality.OPTIONAL)
-    public synchronized void setPeersProvider(PeersProvider service) {
-        this.peersProvider.set(service);
-        //getSkysailApps().forEach(app -> app.setPeersProvider(service));
-    }
-
-    public synchronized void unsetPeersProvider(PeersProvider service) {
-        this.peersProvider.compareAndSet(service, null);
-        //getSkysailApps().forEach(a -> a.setPeersProvider(null));
-    }
-
-    @Override
-    public AtomicReference<PeersProvider> getPeersProvider() {
-        return peersProvider;
     }
 
     /** === TranslationRenderService ============================== */
@@ -167,60 +137,15 @@ public class ServiceList implements ServiceListProvider {
         this.translationStores.remove(holder);
     }
 
-    /** === Encryptor Service ============================== */
-
-    @Reference(policy = ReferencePolicy.DYNAMIC, cardinality = ReferenceCardinality.OPTIONAL)
-    public synchronized void setEncryptorService(EncryptorService service) {
-        this.encryptorService.set(service);
-    }
-
-    public synchronized void unsetEncryptorService(EncryptorService service) {
-        this.encryptorService.compareAndSet(service, null);
-    }
-
-    @Override
-    public AtomicReference<EncryptorService> getEncryptorService() {
-        return encryptorService;
-    }
-
-//    /** === EventAdmin Service ============================== */
-//
-//    @Reference(policy = ReferencePolicy.DYNAMIC, cardinality = ReferenceCardinality.OPTIONAL)
-//    public void setEventAdminService(EventAdmin service) {
-//        this.eventAdmin.set(service);
-//    }
-//
-//    public void unsetEventAdminService(EventAdmin service) {
-//        this.eventAdmin.compareAndSet(service, null);
-//    }
-//
-//    @Override
-//    public AtomicReference<EventAdmin> getEventAdmin() {
-//        return eventAdmin;
-//    }
-
-    /** === ConfigAdmin Service ============================== */
-
-//    @Reference(policy = ReferencePolicy.DYNAMIC, cardinality = ReferenceCardinality.OPTIONAL)
-//    public synchronized void setConfigurationAdminService(ConfigurationAdmin service) {
-//        this.configurationAdmin.set(service);
-//    }
-//
-//    public synchronized void unsetConfigurationAdminService(ConfigurationAdmin service) {
-//        this.configurationAdmin.compareAndSet(service, null);
-//    }
-
     /** === Performance Monitor Service ============================== */
 
     @Reference(policy = ReferencePolicy.DYNAMIC, cardinality = ReferenceCardinality.MULTIPLE)
     public synchronized <R extends SkysailServerResource<T>, T> void addPerformanceMonitor(PerformanceMonitor monitor) {
         performanceMonitors.add(monitor);
-//        getSkysailApps().forEach(app -> app.addMonitor(monitor));
     }
 
     public synchronized <R extends SkysailServerResource<T>, T> void removePerformanceMonitor(PerformanceMonitor monitor) {
         performanceMonitors.remove(monitor);
-//        getSkysailApps().forEach(app -> app.removeMonitor(monitor));
     }
 
     @Override
@@ -230,27 +155,13 @@ public class ServiceList implements ServiceListProvider {
 
     /** === Validation Provider ============================== */
 
-    @Reference(policy = ReferencePolicy.DYNAMIC, cardinality = ReferenceCardinality.OPTIONAL)
-    public synchronized void setValidatorService(ValidatorService service) {
-        this.validatorService.set(service);
-//        getSkysailApps().forEach(app -> app.setValidatorService(service));
-    }
-
-    public synchronized void unsetValidatorService(ValidatorService service) {
-        this.validatorService.compareAndSet(service, null);
-//        getSkysailApps().forEach(a -> a.setValidatorService(null));
-    }
-
-    @Override
-    public AtomicReference<ValidatorService> getValidatorService() {
-        return validatorService;
-    }
+   
 
     private Stream<SkysailApplication> getSkysailApps() {
-        if (applicationListProvider.get() == null) {
+        if (applicationListProvider == null) {
             return Stream.empty();
         }
-        return applicationListProvider.get().getApplications().stream();
+        return applicationListProvider.getApplications().stream();
     }
 
 }

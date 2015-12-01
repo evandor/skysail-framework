@@ -119,15 +119,15 @@ public class ResourceTestBase {
         //Mockito.when(service.getEventAdmin()).thenReturn(eventAdmin);
         app.setServiceListProvider(service);
 
-        validatorServiceRef = new AtomicReference<>();
-        encryptorServiceRef = new AtomicReference<>();
-        serviceListProviderRef = new AtomicReference<>();
+//        validatorServiceRef = new AtomicReference<>();
+//        encryptorServiceRef = new AtomicReference<>();
+//        serviceListProviderRef = new AtomicReference<>();
 
         ValidatorService validatorService = new DefaultValidationImpl();
-        validatorServiceRef.set(validatorService);
+        //validatorServiceRef.set(validatorService);
 
-        Mockito.doReturn(validatorServiceRef).when(app).getValidatorService();
-        Mockito.doReturn(encryptorServiceRef).when(app).getEncryptorService();
+        Mockito.doReturn(validatorService).when(app).getValidatorService();
+        //Mockito.doReturn(encryptorService).when(app).getEncryptorService();
 
         Mockito.doReturn(Collections.emptySet()).when(app).startPerformanceMonitoring(Mockito.anyString());
 

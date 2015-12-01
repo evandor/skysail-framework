@@ -2,7 +2,6 @@ package io.skysail.server.app;
 
 import java.util.*;
 import java.util.concurrent.*;
-import java.util.concurrent.atomic.AtomicReference;
 import java.util.stream.Collectors;
 
 import org.apache.commons.lang.Validate;
@@ -29,7 +28,6 @@ import de.twenty11.skysail.server.security.*;
 import de.twenty11.skysail.server.services.*;
 import io.skysail.api.domain.Identifiable;
 import io.skysail.api.forms.*;
-import io.skysail.api.peers.PeersProvider;
 import io.skysail.api.repos.Repository;
 import io.skysail.api.text.Translation;
 import io.skysail.api.um.*;
@@ -108,7 +106,7 @@ public abstract class SkysailApplication extends RamlApplication implements Appl
     public static final MediaType SKYSAIL_MAILTO_MEDIATYPE = MediaType.register("mailto", "href mailto target");
     public static final MediaType SKYSAIL_TIMELINE_MEDIATYPE = MediaType.register("timeline", "vis.js timeline representation");
 
-    protected static AtomicReference<ServiceListProvider> serviceListProviderRef = new AtomicReference<>();
+    protected static volatile ServiceListProvider serviceListProvider;
 
     /** the restlet router. */
     protected volatile SkysailRouter router;
@@ -137,6 +135,9 @@ public abstract class SkysailApplication extends RamlApplication implements Appl
      */
     @Getter
     private  io.skysail.server.domain.core.ApplicationModel applicationModel;
+
+    @Getter
+    private  EncryptorService encryptorService;
 
     public SkysailApplication() {
         getEncoderService().getIgnoredMediaTypes().add(SkysailApplication.SKYSAIL_SERVER_SENT_EVENTS);
@@ -261,22 +262,22 @@ public abstract class SkysailApplication extends RamlApplication implements Appl
     public abstract EventAdmin getEventAdmin();
 
     public void setServiceListProvider(ServiceListProvider service) {
-        SkysailApplication.serviceListProviderRef.set(service);
+        serviceListProvider = service;
     }
 
     protected void unsetServiceListProvider(ServiceListProvider service) {
-        SkysailApplication.serviceListProviderRef.compareAndSet(service, null);
+        serviceListProvider = null;
     }
 
     public Translation translate(String key, String defaultMsg, SkysailServerResource<?> resource) {
 
-        Set<TranslationStoreHolder> translationStores = serviceListProviderRef.get().getTranslationStores();
+        Set<TranslationStoreHolder> translationStores = serviceListProvider.getTranslationStores();
         Optional<Translation> bestTranslationFromAStore = TranslationUtils.getBestTranslation(translationStores, key,
                 resource);
         if (!bestTranslationFromAStore.isPresent()) {
             return new Translation(defaultMsg, null, Collections.emptySet());
         }
-        Set<TranslationRenderServiceHolder> translationRenderServices = serviceListProviderRef.get().getTranslationRenderServices();
+        Set<TranslationRenderServiceHolder> translationRenderServices = serviceListProvider.getTranslationRenderServices();
         return TranslationUtils.render(translationRenderServices, bestTranslationFromAStore.get());
     }
 
@@ -324,7 +325,7 @@ public abstract class SkysailApplication extends RamlApplication implements Appl
 
         // here or somewhere else? ServiceList?
         // enrolerService.setAuthorizationService(authorizationService);
-        getContext().setDefaultEnroler((Enroler) serviceListProviderRef.get().getAuthorizationService());
+        getContext().setDefaultEnroler((Enroler) serviceListProvider.getAuthorizationService());
 
         final class MyVerifier extends SecretVerifier {
 
@@ -513,11 +514,11 @@ public abstract class SkysailApplication extends RamlApplication implements Appl
     }
 
     public AuthenticationService getAuthenticationService() {
-        return serviceListProviderRef.get().getAuthenticationService();
+        return serviceListProvider.getAuthenticationService();
     }
 
     public AuthorizationService getAuthorizationService() {
-        return serviceListProviderRef.get().getAuthorizationService();
+        return serviceListProvider.getAuthorizationService();
     }
 
     public void handleParameters(List<String> parametersToHandle) {
@@ -585,10 +586,6 @@ public abstract class SkysailApplication extends RamlApplication implements Appl
         return Collections.unmodifiableList(securedByAllRoles);
     }
 
-    public AtomicReference<EncryptorService> getEncryptorService() {
-        return serviceListProviderRef.get().getEncryptorService();
-    }
-
     @Override
     public int compareTo(ApplicationProvider o) {
         return this.getApplication().getName().compareTo(o.getApplication().getName());
@@ -598,8 +595,6 @@ public abstract class SkysailApplication extends RamlApplication implements Appl
     public String toString() {
         StringBuilder sb = new StringBuilder(getClass().getSimpleName()).append(" (SkysailApplication)\n");
         sb.append("Home: ").append(home).append(", \nRouter: ").append(router).append("\n");
-        //sb.append("AuthenticationService: ").append(authenticationService).append("\n");
-        // sb.append("AuthorizationService: ").append(authorizationService).append("\n");
         return sb.toString();
     }
 
@@ -644,17 +639,8 @@ public abstract class SkysailApplication extends RamlApplication implements Appl
         return com.google.common.base.Predicates.and(predicates);
     }
 
-    private void logServiceWasSet(String name, Object service) {
-        if (service == null) {
-            log.trace("{} service was set to null for application '{}'", name, getName());
-        } else {
-            log.trace("{} service was set to '{}' for application '{}'", new Object[] { name,
-                    service.getClass().getSimpleName(), getName() });
-        }
-    }
-
     public Set<PerformanceMonitor> getPerformanceMonitors() {
-        Set<PerformanceMonitor> performanceMonitors = serviceListProviderRef.get().getPerformanceMonitors();
+        Set<PerformanceMonitor> performanceMonitors = serviceListProvider.getPerformanceMonitors();
         return Collections.unmodifiableSet(performanceMonitors);
     }
 
@@ -666,13 +652,13 @@ public abstract class SkysailApplication extends RamlApplication implements Appl
         return stringContextMap.get(id);
     }
 
-    public AtomicReference<ValidatorService> getValidatorService() {
-        return serviceListProviderRef.get().getValidatorService();
+    public ValidatorService getValidatorService() {
+        return serviceListProvider.getValidatorService();
     }
 
 
     public Set<PerformanceTimer> startPerformanceMonitoring(String identifier) {
-        Collection<PerformanceMonitor> performanceMonitors = serviceListProviderRef.get().getPerformanceMonitors();
+        Collection<PerformanceMonitor> performanceMonitors = serviceListProvider.getPerformanceMonitors();
         return performanceMonitors.stream().map(monitor -> {
             return monitor.start(identifier);
         }).collect(Collectors.toSet());
@@ -680,11 +666,6 @@ public abstract class SkysailApplication extends RamlApplication implements Appl
 
     public void stopPerformanceMonitoring(Set<PerformanceTimer> perfTimer) {
         perfTimer.stream().forEach(timer -> timer.stop());
-    }
-
-    public String getRemotePath(String installation, String subpath) {
-        PeersProvider peersProvider = serviceListProviderRef.get().getPeersProvider().get();
-        return peersProvider.getPath(installation) + subpath;
     }
 
     public List<MenuItem> getMenuEntriesWithCache() {

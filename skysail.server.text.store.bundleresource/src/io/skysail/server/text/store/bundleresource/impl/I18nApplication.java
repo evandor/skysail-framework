@@ -85,8 +85,8 @@ public class I18nApplication extends SkysailApplication implements ApplicationPr
      * @param selectedStore
      */
     public Message getMessage(String key, String selectedStore, SkysailServerResource<?> resource) {
-        Set<TranslationStoreHolder> translationStores = serviceListProviderRef.get().getTranslationStores();
-        Set<TranslationRenderServiceHolder> rendererServices = serviceListProviderRef.get().getTranslationRenderServices();
+        Set<TranslationStoreHolder> translationStores = serviceListProvider.getTranslationStores();
+        Set<TranslationRenderServiceHolder> rendererServices = serviceListProvider.getTranslationRenderServices();
         if (selectedStore != null) {
             Translation translation = TranslationUtils.getTranslation(key, translationStores, selectedStore, resource);
             if (translation != null) {

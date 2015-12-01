@@ -44,7 +44,7 @@ public class ServiceList implements ServiceListProvider {
     @Getter
     public volatile ValidatorService validatorService;
 
-    @Reference(cardinality = ReferenceCardinality.OPTIONAL)
+    @Reference(cardinality = ReferenceCardinality.MANDATORY)
     @Getter
     private volatile ApplicationListProvider applicationListProvider;
 
@@ -61,7 +61,17 @@ public class ServiceList implements ServiceListProvider {
 
     private AtomicReference<SkysailComponentProvider> skysailComponentProviderRef = new AtomicReference<>();
 
+    
+    @Activate
+    public void activate() {
+        applicationListProvider.attach(skysailComponentProviderRef.get().getSkysailComponent());
+    }
 
+    @Deactivate
+    public void deactivate() {
+       // applicationListProvider.detach(service.getSkysailComponent());
+    }
+    
     /** === UserManagementProvider Service ============================== */
 
     @Reference(policy = ReferencePolicy.DYNAMIC, cardinality = ReferenceCardinality.MANDATORY)
@@ -96,13 +106,13 @@ public class ServiceList implements ServiceListProvider {
         }
         Context appContext = skysailComponentProviderRef.get().getSkysailComponent().getContext().createChildContext();
         getSkysailApps().forEach(app -> app.setContext(appContext));
-        applicationListProvider.attach(skysailComponentProviderRef.get().getSkysailComponent());
+//        applicationListProvider.attach(skysailComponentProviderRef.get().getSkysailComponent());
     }
 
     public synchronized void unsetSkysailComponentProvider(SkysailComponentProvider service) {
         this.skysailComponentProviderRef.compareAndSet(service, null);
         getSkysailApps().forEach(a -> a.setContext(null));
-        applicationListProvider.detach(service.getSkysailComponent());
+//        applicationListProvider.detach(service.getSkysailComponent());
     }
 
     @Override

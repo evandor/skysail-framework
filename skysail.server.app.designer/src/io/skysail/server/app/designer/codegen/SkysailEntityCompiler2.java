@@ -1,17 +1,13 @@
 package io.skysail.server.app.designer.codegen;
 
-import io.skysail.server.app.designer.STGroupBundleDir;
-import io.skysail.server.app.designer.model.CodegenApplicationModel;
-import io.skysail.server.app.designer.model.CodegenEntityModel;
-import io.skysail.server.app.designer.model.RouteModel;
-
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
-import lombok.Getter;
-
 import org.stringtemplate.v4.ST;
+
+import io.skysail.server.app.designer.STGroupBundleDir;
+import io.skysail.server.app.designer.model.*;
+import lombok.Getter;
 
 public class SkysailEntityCompiler2 extends SkysailCompiler2 {
 
@@ -41,19 +37,19 @@ public class SkysailEntityCompiler2 extends SkysailCompiler2 {
         String postResourceClassName = setupPostResourceForCompilation(postResourceTemplate, applicationModel,
                 entityModel);
         if (entityModel.isRootEntity()) {
-            routes.add(new RouteModel("/" + entityModel.getEntityName() + "s/", postResourceClassName));
+            routes.add(new RouteModel("/" + entityModel.getId() + "s/", postResourceClassName));
         } else {
             CodegenEntityModel parentEntityModel = entityModel.getReferencedBy().get();
-            routes.add(new RouteModel("/" + parentEntityModel.getEntityName() + "/{id}/" + entityModel.getEntityName() + "s/", postResourceClassName));
+            routes.add(new RouteModel("/" + parentEntityModel.getId() + "/{id}/" + entityModel.getId() + "s/", postResourceClassName));
         }
         ST putResourceTemplate = getStringTemplateIndex("putResource");
         String putResourceClassName = setupPutResourceForCompilation(putResourceTemplate, applicationModel, entityModel);
-        routes.add(new RouteModel("/" + entityModel.getEntityName() + "s/{id}", putResourceClassName));
+        routes.add(new RouteModel("/" + entityModel.getId() + "s/{id}", putResourceClassName));
 
         ST listResourceTemplate = getStringTemplateIndex("listResource");
         String listResourceClassName = setupListResourceForCompilation(listResourceTemplate, applicationModel,
                 entityModel);
-        routes.add(new RouteModel("/" + entityModel.getEntityName() + "s", listResourceClassName));
+        routes.add(new RouteModel("/" + entityModel.getId() + "s", listResourceClassName));
 
         if (entityModel.isRootEntity()) {
             routes.add(new RouteModel("", listResourceClassName));
@@ -64,7 +60,7 @@ public class SkysailEntityCompiler2 extends SkysailCompiler2 {
         template.remove("entity");
         template.add("entity", entityModel);
         String entityCode = template.render();
-        String entityClassName = applicationModel.getPackageName() + "." + entityModel.getEntityName();
+        String entityClassName = entityModel.getId();
         collect(entityClassName, entityCode);
         return entityClassName;
     }
@@ -74,7 +70,7 @@ public class SkysailEntityCompiler2 extends SkysailCompiler2 {
         template.remove("entity");
         template.add("entity", entityModel);
         List<String> linkedClasses = new ArrayList<>();
-        linkedClasses.add("Put" + entityModel.getEntityName() + "Resource.class");
+        linkedClasses.add("Put" + entityModel.getSimpleName() + "Resource.class");
 
         entityModel.getReferences().forEach(r -> {
             linkedClasses.add("Post" + r.getReferencedEntityName() + "Resource.class");
@@ -83,14 +79,14 @@ public class SkysailEntityCompiler2 extends SkysailCompiler2 {
         String getLinksCode = "return super.getLinks(" + linkedClasses.stream().collect(Collectors.joining(",")) + ");";
         template.add("links", getLinksCode);
         String entityCode = template.render();
-        String entityClassName = applicationModel.getPackageName() + "." + entityModel.getEntityName() + "Resource";
+        String entityClassName = entityModel.getId() + "Resource";
         collect(entityClassName, entityCode);
         return entityClassName;
     }
 
     private String setupPostResourceForCompilation(ST template, CodegenApplicationModel applicationModel,
             CodegenEntityModel entityModel) {
-        final String simpleClassName = "Post" + entityModel.getEntityName() + "Resource";
+        final String simpleClassName = "Post" + entityModel.getSimpleName() + "Resource";
         template.remove("entity");
         template.add("entity", entityModel);
 
@@ -104,39 +100,39 @@ public class SkysailEntityCompiler2 extends SkysailCompiler2 {
             addEntityCode.append("entity.setId(id);\n");
         } else {
             CodegenEntityModel parent = entityModel.getReferencedBy().get();
-            addEntityCode.append(parent.getEntityName() + " root = app.getRepository().getById("+parent.getEntityName()+".class, getAttribute(\"id\"));\n");
-            addEntityCode.append("root.add"+entityModel.getEntityName()+"(entity);\n");
+            addEntityCode.append(parent.getId() + " root = app.getRepository().getById("+parent.getId()+".class, getAttribute(\"id\"));\n");
+            addEntityCode.append("root.add"+entityModel.getId()+"(entity);\n");
             addEntityCode.append("app.getRepository().update(getAttribute(\"id\"), root);\n");
         }
         addEntityCode.append("return new SkysailResponse<String>();\n");
         template.add("addEntity", addEntityCode);
         String entityCode = template.render();
-        String entityClassName = applicationModel.getPackageName() + "." + simpleClassName;
+        String entityClassName = entityModel.getPackageName() + "." + simpleClassName;
         collect(entityClassName, entityCode);
         return entityClassName;
     }
 
     private String setupPutResourceForCompilation(ST template, CodegenApplicationModel applicationModel,
             CodegenEntityModel entityModel) {
-        final String simpleClassName = "Put" + entityModel.getEntityName() + "Resource";
+        final String simpleClassName = "Put" + entityModel.getSimpleName() + "Resource";
         template.remove("entity");
         template.add("entity", entityModel);
-        String updateEntityCode = entityModel.getEntityName() + " original = getEntity();\n";
+        String updateEntityCode = entityModel.getId() + " original = getEntity();\n";
         updateEntityCode += "copyProperties(original,entity);\n";
         template.add("updateEntity", updateEntityCode);
         String entityCode = template.render();
-        String entityClassName = applicationModel.getPackageName() + "." + simpleClassName;
+        String entityClassName = entityModel.getPackageName() + "." + simpleClassName;
         collect(entityClassName, entityCode);
         return entityClassName;
     }
 
     private String setupListResourceForCompilation(ST template, CodegenApplicationModel applicationModel,
             CodegenEntityModel entityModel) {
-        final String simpleClassName = entityModel.getEntityName() + "sResource";
+        final String simpleClassName = entityModel.getSimpleName() + "sResource";
         template.remove("entity");
         template.add("entity", entityModel);
         String entityCode = template.render();
-        String entityClassName = applicationModel.getPackageName() + "." + simpleClassName;
+        String entityClassName = entityModel.getPackageName() + "." + simpleClassName;
         collect(entityClassName, entityCode);
         return entityClassName;
     }

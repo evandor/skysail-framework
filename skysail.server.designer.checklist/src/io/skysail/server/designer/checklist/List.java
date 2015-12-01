@@ -1,5 +1,4 @@
-javafile(application, entity) ::= <<
-package $application.packageName$;
+package io.skysail.server.designer.checklist;
 
 import io.skysail.api.domain.Identifiable;
 import io.skysail.api.forms.*;
@@ -12,7 +11,7 @@ import javax.persistence.Id;
 
 import org.apache.commons.lang3.StringUtils;
 
-public class $entity.simpleName$ implements Identifiable {
+public class List implements Identifiable {
 
     @Id
     private String id;
@@ -26,13 +25,18 @@ public class $entity.simpleName$ implements Identifiable {
     public void setId(String id) {
         this.id = id;
     }
-    
-    $fields(entity.fields)$
 
-    $actionFields(entity.actionFields)$
-    
-    $references(entity.references)$
-    
+    @Field
+    private String listname;
+    public void setListname(String value) {
+        this.listname = value;
+    }
+
+    public String getListname() {
+        return this.listname;
+    }
+
+
+
 
 }
->>

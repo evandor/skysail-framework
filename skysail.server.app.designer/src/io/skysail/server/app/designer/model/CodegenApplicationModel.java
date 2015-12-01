@@ -35,7 +35,7 @@ public class CodegenApplicationModel extends ApplicationModel {
 
     private void setupModel(Application application, DesignerRepository repo) {
         createEnityModels(application, repo);
-        createReferences(application, repo);
+        //createReferences(application, repo);
     }
 
     private void createEnityModels(Application application, DesignerRepository repo) {
@@ -49,7 +49,7 @@ public class CodegenApplicationModel extends ApplicationModel {
 
     private void createReferences(Application application, DesignerRepository repo) {
         entityModels.stream().forEach(entityModel -> {
-            List<Entity> referencedEntities = getReferences(repo, entityModel.getEntityName(), application.getId());
+            List<Entity> referencedEntities = getReferences(repo, entityModel.getId(), application.getId());
             referencedEntities.stream().forEach(referencedEntity -> {
                 entityModel.addReference(referencedEntity);
                 getEntityModel(referencedEntity).setReferencedBy(entityModel);
@@ -60,7 +60,7 @@ public class CodegenApplicationModel extends ApplicationModel {
 
     private CodegenEntityModel getEntityModel(Entity entity) {
         return getEntityModels().stream().filter(em -> {
-            return em.getEntityName().equals(entity.getName());
+            return em.getId().equals(entity.getName());
         }).findFirst().orElseThrow(IllegalStateException::new);
     }
 
@@ -81,7 +81,7 @@ public class CodegenApplicationModel extends ApplicationModel {
 
     public CodegenEntityModel addEntity(Entity entity) {
         log.info("CodegenApplicationModel: adding Entity '{}'", entity);
-        CodegenEntityModel entityModel = new CodegenEntityModel(entity);
+        CodegenEntityModel entityModel = new CodegenEntityModel(entity, packageName);
         if (!entityModels.add(entityModel)) {
             log.warn("CodegenEntityModel '{}' already exists!", entity);
         }
@@ -93,7 +93,7 @@ public class CodegenApplicationModel extends ApplicationModel {
     }
 
     private void eachEntitiesReferencesMustPointToExistingEntity() {
-        List<String> entityNames = entityModels.stream().map(CodegenEntityModel::getEntityName).collect(Collectors.toList());
+        List<String> entityNames = entityModels.stream().map(CodegenEntityModel::getId).collect(Collectors.toList());
         entityModels.stream().forEach(entity -> {
             entity.getReferences().stream().forEach(reference -> {
                 validateReference(reference, entityNames);
@@ -168,7 +168,7 @@ public class CodegenApplicationModel extends ApplicationModel {
 
     public CodegenEntityModel getEntityModel(ReferenceModel referenceModel) {
         return entityModels.stream().filter(e -> {
-            return referenceModel.getReferencedEntityName().equals(e.getEntityName());
+            return referenceModel.getReferencedEntityName().equals(e.getId());
         }).findFirst().orElseThrow(IllegalStateException::new);
     }
 }

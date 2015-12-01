@@ -57,7 +57,7 @@ public class ApplicationCreator {
         List<RouteModel> routeModels = new EntityCreator(applicationModel).create(stGroup);
 
         entityClassNames.addAll(applicationModel.getEntityModels().stream().map(CodegenEntityModel::getClassName).collect(Collectors.toList()));
-        entityNames.addAll(applicationModel.getEntityModels().stream().map(CodegenEntityModel::getEntityName).collect(Collectors.toList()));
+        entityNames.addAll(applicationModel.getEntityModels().stream().map(CodegenEntityModel::getId).collect(Collectors.toList()));
 
         repositoryClassName = new RepositoryCreator(applicationModel).create(stGroup);
 

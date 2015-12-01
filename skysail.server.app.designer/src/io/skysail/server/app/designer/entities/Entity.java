@@ -1,13 +1,13 @@
 package io.skysail.server.app.designer.entities;
 
-import io.skysail.api.domain.Identifiable;
-import io.skysail.api.forms.*;
-import io.skysail.server.app.designer.fields.*;
-
 import java.util.*;
 
 import javax.persistence.Id;
+import javax.validation.constraints.*;
 
+import io.skysail.api.domain.Identifiable;
+import io.skysail.api.forms.*;
+import io.skysail.server.app.designer.fields.*;
 import lombok.*;
 
 @NoArgsConstructor
@@ -20,6 +20,11 @@ public class Entity implements Identifiable {
     private String id;
 
     @Field
+    //@CheckValidJavaIdentifier
+    @Pattern(regexp="[A-Z_$][a-zA-Z\\d_$]*", message = "Please start with an uppercase letter, and don't use any special characters.")
+    @NotNull
+    @Size(min=2)
+    
     private String name;
 
     @Field(inputType = InputType.CHECKBOX)

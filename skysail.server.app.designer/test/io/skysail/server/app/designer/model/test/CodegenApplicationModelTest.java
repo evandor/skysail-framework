@@ -59,7 +59,7 @@ public class CodegenApplicationModelTest {
     public void adding_entity_succeeds() {
         CodegenApplicationModel applicationModel = new CodegenApplicationModel(application, repo);
         CodegenEntityModel addedEntity = applicationModel.addEntity(new Entity("entityName"));
-        assertThat(addedEntity.getEntityName(), is(equalTo("entityName")));
+        assertThat(addedEntity.getId(), is(equalTo("entityName")));
     }
 
     @Test
@@ -107,7 +107,7 @@ public class CodegenApplicationModelTest {
         assertThat(applicationModel.getEntityModels().size(), is(1));
 
         CodegenEntityModel entityModel = applicationModel.getEntityModels().iterator().next();
-        assertThat(entityModel.getEntityName(), is(equalTo("Bank")));
+        assertThat(entityModel.getId(), is(equalTo("Bank")));
         assertThat(entityModel.getFields().size(), is(0));
         assertThat(entityModel.getReferences().size(), is(0));
     }
@@ -125,7 +125,7 @@ public class CodegenApplicationModelTest {
         assertThat(applicationModel.getApplicationName(), is(equalTo("testapp")));
 
         CodegenEntityModel entityModel = applicationModel.getEntityModels().iterator().next();
-        assertThat(entityModel.getEntityName(), is(equalTo("Bank")));
+        assertThat(entityModel.getId(), is(equalTo("Bank")));
         assertThat(entityModel.getFields().size(), is(1));
         assertThat(entityModel.getReferences().size(), is(0));
     }
@@ -141,7 +141,7 @@ public class CodegenApplicationModelTest {
         assertThat(applicationModel.getApplicationName(), is(equalTo("testapp")));
 
         CodegenEntityModel entityModel = applicationModel.getEntityModels().iterator().next();
-        assertThat(entityModel.getEntityName(), is(equalTo("Bank")));
+        assertThat(entityModel.getId(), is(equalTo("Bank")));
         assertThat(entityModel.getFields().size(), is(0));
         assertThat(entityModel.getReferences().size(), is(1));
     }
@@ -168,7 +168,7 @@ public class CodegenApplicationModelTest {
         assertThat(applicationModel.getApplicationName(), is(equalTo("testapp")));
 
         List<CodegenEntityModel> models = new ArrayList<>(applicationModel.getEntityModels());
-        List<String> entityModelNames = models.stream().map(CodegenEntityModel::getEntityName).collect(Collectors.toList());
+        List<String> entityModelNames = models.stream().map(CodegenEntityModel::getId).collect(Collectors.toList());
 
         assertThat(entityModelNames, hasItem("Bank"));
         assertThat(entityModelNames, hasItem("Account"));

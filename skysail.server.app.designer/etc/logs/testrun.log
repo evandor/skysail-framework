@@ -1,0 +1,68 @@
+INFO  io.skysail.server.db.OrientGraphDbService - about to start db
+INFO  io.skysail.server.db.OrientGraphDbService - created new in-memory database com.orientechnologies.orient.core.db.document.ODatabaseDocumentTx@5357c287
+INFO  io.skysail.server.db.OrientGraphDbService - testing graph factory connection
+INFO  io.skysail.server.db.OrientGraphDbService - setting lazy loading to false
+DEBUG io.skysail.server.db.OrientGraphDbService - activating io.skysail.server.testsupport.TestDb
+DEBUG io.skysail.server.db.OrientGraphDbService - ODB graph function [ine] is registered: [Syntax error: inE([<labels>])]
+DEBUG io.skysail.server.db.OrientGraphDbService - ODB graph function [oute] is registered: [Syntax error: outE([<labels>])]
+DEBUG io.skysail.server.db.OrientGraphDbService - ODB graph function [in] is registered: [Syntax error: in([<labels>])]
+DEBUG io.skysail.server.db.OrientGraphDbService - ODB graph function [dijkstra] is registered: [dijkstra(<sourceVertex>, <destinationVertex>, <weightEdgeFieldName>, [<direction>])]
+DEBUG io.skysail.server.db.OrientGraphDbService - ODB graph function [label] is registered: [Syntax error: label()]
+DEBUG io.skysail.server.db.OrientGraphDbService - ODB graph function [bothv] is registered: [Syntax error: bothV([<labels>])]
+DEBUG io.skysail.server.db.OrientGraphDbService - ODB graph function [out] is registered: [Syntax error: out([<labels>])]
+DEBUG io.skysail.server.db.OrientGraphDbService - ODB graph function [both] is registered: [Syntax error: both([<labels>])]
+DEBUG io.skysail.server.db.OrientGraphDbService - ODB graph function [inv] is registered: [Syntax error: inV([<labels>])]
+DEBUG io.skysail.server.db.OrientGraphDbService - ODB graph function [gremlin] is registered: [gremlin(<gremlin-expression>)]
+DEBUG io.skysail.server.db.OrientGraphDbService - ODB graph function [shortestpath] is registered: [shortestPath(<sourceVertex>, <destinationVertex>, [<direction>, [ <edgeTypeAsString> ]])]
+DEBUG io.skysail.server.db.OrientGraphDbService - ODB graph function [outv] is registered: [Syntax error: outV([<labels>])]
+DEBUG io.skysail.server.db.OrientGraphDbService - ODB graph function [bothe] is registered: [Syntax error: bothE([<labels>])]
+INFO  io.skysail.server.app.designer.model.CodegenEntityModel - CodegenEntityModel:      adding Field 'entityField' to Entity 'null'
+INFO  io.skysail.server.app.designer.model.CodegenEntityModel - CodegenEntityModel:      adding Field 'entityField' to Entity 'null'
+INFO  io.skysail.server.app.designer.model.CodegenEntityModel - CodegenEntityModel:      adding Field 'entityField' to Entity 'null'
+INFO  io.skysail.server.db.OrientGraphDbService - about to start db
+DEBUG io.skysail.server.db.OrientGraphDbService - activating io.skysail.server.testsupport.TestDb
+DEBUG io.skysail.server.db.OrientGraphDbService - ODB graph function [ine] is registered: [Syntax error: inE([<labels>])]
+DEBUG io.skysail.server.db.OrientGraphDbService - ODB graph function [oute] is registered: [Syntax error: outE([<labels>])]
+DEBUG io.skysail.server.db.OrientGraphDbService - ODB graph function [in] is registered: [Syntax error: in([<labels>])]
+DEBUG io.skysail.server.db.OrientGraphDbService - ODB graph function [dijkstra] is registered: [dijkstra(<sourceVertex>, <destinationVertex>, <weightEdgeFieldName>, [<direction>])]
+DEBUG io.skysail.server.db.OrientGraphDbService - ODB graph function [label] is registered: [Syntax error: label()]
+DEBUG io.skysail.server.db.OrientGraphDbService - ODB graph function [bothv] is registered: [Syntax error: bothV([<labels>])]
+DEBUG io.skysail.server.db.OrientGraphDbService - ODB graph function [out] is registered: [Syntax error: out([<labels>])]
+DEBUG io.skysail.server.db.OrientGraphDbService - ODB graph function [both] is registered: [Syntax error: both([<labels>])]
+DEBUG io.skysail.server.db.OrientGraphDbService - ODB graph function [inv] is registered: [Syntax error: inV([<labels>])]
+DEBUG io.skysail.server.db.OrientGraphDbService - ODB graph function [gremlin] is registered: [gremlin(<gremlin-expression>)]
+DEBUG io.skysail.server.db.OrientGraphDbService - ODB graph function [shortestpath] is registered: [shortestPath(<sourceVertex>, <destinationVertex>, [<direction>, [ <edgeTypeAsString> ]])]
+DEBUG io.skysail.server.db.OrientGraphDbService - ODB graph function [outv] is registered: [Syntax error: outV([<labels>])]
+DEBUG io.skysail.server.db.OrientGraphDbService - ODB graph function [bothe] is registered: [Syntax error: bothE([<labels>])]
+INFO  io.skysail.server.db.OrientGraphDbService - about to start db
+DEBUG io.skysail.server.db.OrientGraphDbService - activating io.skysail.server.testsupport.TestDb
+DEBUG io.skysail.server.db.OrientGraphDbService - ODB graph function [ine] is registered: [Syntax error: inE([<labels>])]
+DEBUG io.skysail.server.db.OrientGraphDbService - ODB graph function [oute] is registered: [Syntax error: outE([<labels>])]
+DEBUG io.skysail.server.db.OrientGraphDbService - ODB graph function [in] is registered: [Syntax error: in([<labels>])]
+DEBUG io.skysail.server.db.OrientGraphDbService - ODB graph function [dijkstra] is registered: [dijkstra(<sourceVertex>, <destinationVertex>, <weightEdgeFieldName>, [<direction>])]
+DEBUG io.skysail.server.db.OrientGraphDbService - ODB graph function [label] is registered: [Syntax error: label()]
+DEBUG io.skysail.server.db.OrientGraphDbService - ODB graph function [bothv] is registered: [Syntax error: bothV([<labels>])]
+DEBUG io.skysail.server.db.OrientGraphDbService - ODB graph function [out] is registered: [Syntax error: out([<labels>])]
+DEBUG io.skysail.server.db.OrientGraphDbService - ODB graph function [both] is registered: [Syntax error: both([<labels>])]
+DEBUG io.skysail.server.db.OrientGraphDbService - ODB graph function [inv] is registered: [Syntax error: inV([<labels>])]
+DEBUG io.skysail.server.db.OrientGraphDbService - ODB graph function [gremlin] is registered: [gremlin(<gremlin-expression>)]
+DEBUG io.skysail.server.db.OrientGraphDbService - ODB graph function [shortestpath] is registered: [shortestPath(<sourceVertex>, <destinationVertex>, [<direction>, [ <edgeTypeAsString> ]])]
+DEBUG io.skysail.server.db.OrientGraphDbService - ODB graph function [outv] is registered: [Syntax error: outV([<labels>])]
+DEBUG io.skysail.server.db.OrientGraphDbService - ODB graph function [bothe] is registered: [Syntax error: bothE([<labels>])]
+DEBUG io.skysail.server.app.designer.codegen.SourceCode - creating new SourceCode at string:///io/skysail/Classname.java
+DEBUG io.skysail.server.app.designer.codegen.SourceCode - creating new SourceCode at string:///io/skysail/Classname.java
+INFO  io.skysail.server.db.OrientGraphDbService - about to start db
+DEBUG io.skysail.server.db.OrientGraphDbService - activating io.skysail.server.testsupport.TestDb
+DEBUG io.skysail.server.db.OrientGraphDbService - ODB graph function [ine] is registered: [Syntax error: inE([<labels>])]
+DEBUG io.skysail.server.db.OrientGraphDbService - ODB graph function [oute] is registered: [Syntax error: outE([<labels>])]
+DEBUG io.skysail.server.db.OrientGraphDbService - ODB graph function [in] is registered: [Syntax error: in([<labels>])]
+DEBUG io.skysail.server.db.OrientGraphDbService - ODB graph function [dijkstra] is registered: [dijkstra(<sourceVertex>, <destinationVertex>, <weightEdgeFieldName>, [<direction>])]
+DEBUG io.skysail.server.db.OrientGraphDbService - ODB graph function [label] is registered: [Syntax error: label()]
+DEBUG io.skysail.server.db.OrientGraphDbService - ODB graph function [bothv] is registered: [Syntax error: bothV([<labels>])]
+DEBUG io.skysail.server.db.OrientGraphDbService - ODB graph function [out] is registered: [Syntax error: out([<labels>])]
+DEBUG io.skysail.server.db.OrientGraphDbService - ODB graph function [both] is registered: [Syntax error: both([<labels>])]
+DEBUG io.skysail.server.db.OrientGraphDbService - ODB graph function [inv] is registered: [Syntax error: inV([<labels>])]
+DEBUG io.skysail.server.db.OrientGraphDbService - ODB graph function [gremlin] is registered: [gremlin(<gremlin-expression>)]
+DEBUG io.skysail.server.db.OrientGraphDbService - ODB graph function [shortestpath] is registered: [shortestPath(<sourceVertex>, <destinationVertex>, [<direction>, [ <edgeTypeAsString> ]])]
+DEBUG io.skysail.server.db.OrientGraphDbService - ODB graph function [outv] is registered: [Syntax error: outV([<labels>])]
+DEBUG io.skysail.server.db.OrientGraphDbService - ODB graph function [bothe] is registered: [Syntax error: bothE([<labels>])]

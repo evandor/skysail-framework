@@ -11,7 +11,7 @@ import de.twenty11.skysail.server.core.restlet.ResourceContextId;
 @Generated("io.skysail.server.codegen.apt.processors.EntityProcessor")
 public class PostThingResource extends PostEntityServerResource<Thing> {
 
-	private TabApplication app;
+	private TapApplication app;
     private ThingRepo repository;
 
 	public PostThingResource() {
@@ -20,7 +20,7 @@ public class PostThingResource extends PostEntityServerResource<Thing> {
 
     @Override
 	protected void doInit() {
-		app = (TabApplication)getApplication();
+		app = (TapApplication)getApplication();
         repository = (ThingRepo) app.getRepository(Thing.class);
 	}
 

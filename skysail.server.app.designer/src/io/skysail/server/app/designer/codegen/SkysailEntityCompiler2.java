@@ -96,15 +96,15 @@ public class SkysailEntityCompiler2 extends SkysailCompiler2 {
             return actionField.getCode("postEntity#addEntity").replace("$Methodname$", withFirstCapital(actionField.getName()));
         }).collect(Collectors.joining("\n")));
         if (entityModel.isRootEntity()) {
-            addEntityCode.append("String id = app.getRepository().add(entity).toString();\n");
-            addEntityCode.append("entity.setId(id);\n");
+            addEntityCode.append("//String id = app.getRepository().add(entity).toString();\n");
+            addEntityCode.append("//entity.setId(id);\n");
         } else {
             CodegenEntityModel parent = entityModel.getReferencedBy().get();
             addEntityCode.append(parent.getId() + " root = app.getRepository().getById("+parent.getId()+".class, getAttribute(\"id\"));\n");
             addEntityCode.append("root.add"+entityModel.getId()+"(entity);\n");
             addEntityCode.append("app.getRepository().update(getAttribute(\"id\"), root);\n");
         }
-        addEntityCode.append("return new SkysailResponse<String>();\n");
+        addEntityCode.append("return new SkysailResponse<>();\n");
         template.add("addEntity", addEntityCode);
         String entityCode = template.render();
         String entityClassName = entityModel.getPackageName() + "." + simpleClassName;

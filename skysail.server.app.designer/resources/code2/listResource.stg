@@ -9,20 +9,20 @@ import java.util.Map;
 
 import de.twenty11.skysail.server.core.restlet.ResourceContextId;
 
-public class $entity.entityName$sResource extends ListServerResource<$entity.entityName$> {
+public class $entity.simpleName$sResource extends ListServerResource<$entity.id$> {
 
-    public $entity.entityName$sResource() {
-        super($entity.entityName$Resource.class);
-        addToContext(ResourceContextId.LINK_TITLE, "list $entity.entityName$s");
+    public $entity.simpleName$sResource() {
+        super($entity.simpleName$Resource.class);
+        addToContext(ResourceContextId.LINK_TITLE, "list $entity.simpleName$s");
     }
 
     @Override
-    public List<$entity.entityName$> getEntity() {
-        return (($application.applicationName$Application) getApplication()).getRepository().findAll("select from $entity.entityName$");
+    public List<$entity.id$> getEntity() {
+        return null;//(($application.applicationName$Application) getApplication()).getRepository().findAll("select from $entity.id$");
     \}
 
     public List<Link> getLinks() {
-       return super.getLinks(Post$entity.entityName$Resource.class);
+       return super.getLinks(Post$entity.simpleName$Resource.class);
     \}
 }
 >>

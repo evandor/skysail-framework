@@ -6,7 +6,7 @@ import io.skysail.server.restlet.resources.PutEntityServerResource;
 import java.util.Date;
 import org.restlet.resource.ResourceException;
 
-public class PutResource extends PutEntityServerResource<> {
+public class PutListResource extends PutEntityServerResource<io.skysail.server.designer.checklist.List> {
 
 
     private String id;
@@ -19,7 +19,7 @@ public class PutResource extends PutEntityServerResource<> {
     }
 
     @Override
-    public SkysailResponse<?> updateEntity(  entity) {
+    public SkysailResponse<io.skysail.server.designer.checklist.List> updateEntity(List  entity) {
         io.skysail.server.designer.checklist.List original = getEntity();
         copyProperties(original,entity);
 
@@ -28,12 +28,12 @@ public class PutResource extends PutEntityServerResource<> {
     }
 
     @Override
-    public  getEntity() {
-        return app.getRepository().getById(.class, id);
+    public io.skysail.server.designer.checklist.List getEntity() {
+        return (io.skysail.server.designer.checklist.List)app.getRepository().findOne(id);
     }
 
     @Override
     public String redirectTo() {
-        return super.redirectTo(sResource.class);
+        return super.redirectTo(ListsResource.class);
     }
 }

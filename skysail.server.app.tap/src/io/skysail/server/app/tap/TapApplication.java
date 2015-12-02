@@ -13,13 +13,13 @@ import io.skysail.server.menus.MenuItemProvider;
 import lombok.Getter;
 
 @Component(immediate = true)
-public class TabApplication extends SkysailApplication implements ApplicationProvider, MenuItemProvider {
+public class TapApplication extends SkysailApplication implements ApplicationProvider, MenuItemProvider {
 
     @Reference(cardinality = ReferenceCardinality.OPTIONAL)
     @Getter
     private volatile EventAdmin eventAdmin;
 
-    public TabApplication() {
+    public TapApplication() {
         super("TapApplication", new ApiVersion(1), Arrays.asList(Place.class, Thing.class));
     }
 

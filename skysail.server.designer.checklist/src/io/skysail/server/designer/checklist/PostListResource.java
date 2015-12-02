@@ -10,11 +10,11 @@ import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
 import org.restlet.resource.ResourceException;
 
-public class PostResource extends PostEntityServerResource<> {
+public class PostListResource extends PostEntityServerResource<io.skysail.server.designer.checklist.List> {
 
 	private ChecklistApplication app;
 
-    public PostResource() {
+    public PostListResource() {
         addToContext(ResourceContextId.LINK_TITLE, "Create new ");
     }
 
@@ -24,21 +24,21 @@ public class PostResource extends PostEntityServerResource<> {
     }
 
     @Override
-    public  createEntityTemplate() {
-        return new ();
+    public io.skysail.server.designer.checklist.List createEntityTemplate() {
+        return new List();
     }
 
     @Override
-    public SkysailResponse<?> addEntity( entity) {
+    public SkysailResponse<io.skysail.server.designer.checklist.List> addEntity(io.skysail.server.designer.checklist.List entity) {
         Subject subject = SecurityUtils.getSubject();
-        String id = app.getRepository().add(entity).toString();
-        entity.setId(id);
-        return new SkysailResponse<String>();
+        //String id = app.getRepository().add(entity).toString();
+        //entity.setId(id);
+        return new SkysailResponse<>();
 
     }
 
     @Override
     public String redirectTo() {
-        return super.redirectTo(sResource.class);
+        return super.redirectTo(ListsResource.class);
     }
 }

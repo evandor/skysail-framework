@@ -10,7 +10,7 @@ import lombok.*;
 
 @Getter
 @Setter
-@GenerateResources(application = "io.skysail.server.app.tap.TabApplication")
+@GenerateResources(application = "io.skysail.server.app.tap.TapApplication")
 public class Thing implements Identifiable {
 
     @Id

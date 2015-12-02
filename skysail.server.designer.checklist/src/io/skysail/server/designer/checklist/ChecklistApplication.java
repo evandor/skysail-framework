@@ -1,7 +1,8 @@
 package io.skysail.server.designer.checklist;
 
 import io.skysail.api.repos.*;
-import io.skysail.server.app.SkysailApplication;
+import io.skysail.server.app.*;
+import io.skysail.server.domain.core.Repositories;
 import io.skysail.server.menus.*;
 
 import java.util.*;
@@ -19,28 +20,29 @@ public class ChecklistApplication extends SkysailApplication implements Applicat
     public static final String TODO_ID = "id";
     public static final String APP_NAME = "Checklist";
 
-    private ChecklistRepository repo;
-
     @Reference(cardinality = ReferenceCardinality.OPTIONAL)
     private volatile EventAdmin eventAdmin;
 
     public ChecklistApplication() {
-        super(APP_NAME);
+        super("Checklist", new ApiVersion(1), Arrays.asList(io.skysail.server.designer.checklist.List.class));
         addToAppContext(ApplicationContextId.IMG, "/static/img/silk/page_link.png");
     }
 
-    @Reference(policy = ReferencePolicy.DYNAMIC, cardinality = ReferenceCardinality.MANDATORY, target = "(name=ChecklistRepository)")
-    public void setRepository(DbRepository repo) {
-        this.repo = (ChecklistRepository) repo;
+    @Reference(policy = ReferencePolicy.DYNAMIC, cardinality = ReferenceCardinality.MANDATORY)
+    public void setRepositories(Repositories repos) {
+        super.setRepositories(repos);
     }
 
-    public void unsetRepository(DbRepository repo) {
-        this.repo = null;
+    public void unsetRepositories(Repositories repo) {
+        super.setRepositories(null);
     }
 
-    public Repository getRepository() {
-        return (Repository) repo;
-    }
+    public ChecklistRepository getListRepository() {
+        return (ChecklistRepository) getRepository(io.skysail.server.designer.checklist.List.class);
+    }    
+
+
+
 
     @Override
     protected void attach() {
@@ -50,18 +52,10 @@ public class ChecklistApplication extends SkysailApplication implements Applicat
         router.attach(new RouteBuilder("/io.skysail.server.designer.checklist.Lists", io.skysail.server.designer.checklist.ListsResource.class));
         router.attach(new RouteBuilder("", io.skysail.server.designer.checklist.ListsResource.class));
 
-
     }
 
     public EventAdmin getEventAdmin() {
         return eventAdmin;
     }
-
-    public List<MenuItem> getMenuEntries() {
-        MenuItem appMenu = new MenuItem(APP_NAME, "/" + APP_NAME, this);
-        appMenu.setCategory(MenuItem.Category.APPLICATION_MAIN_MENU);
-        return Arrays.asList(appMenu);
-    }
-
 
 }

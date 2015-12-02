@@ -16,6 +16,7 @@ import org.restlet.resource.ServerResource;
 
 import io.skysail.api.links.Link;
 import io.skysail.server.app.designer.DesignerApplication;
+import io.skysail.server.domain.core.Repositories;
 import io.skysail.server.restlet.resources.ListServerResource;
 import io.skysail.server.utils.CompositeClassLoader;
 import lombok.Getter;
@@ -78,6 +79,8 @@ public class InMemoryJavaCompiler {
         getBundleLocationFor(Component.class, bundleLocations, bundles);
         getBundleLocationFor(org.osgi.service.event.Event.class, bundleLocations, bundles);
         getBundleLocationFor(org.restlet.ext.raml.RamlApplication.class, bundleLocations, bundles);
+        getBundleLocationFor(org.apache.commons.lang3.text.StrBuilder.class, bundleLocations, bundles);
+        getBundleLocationFor(Repositories.class, bundleLocations, bundles);
 
         String locs = bundleLocations.stream().map(l -> {
                 return l.replace("reference:", "").replace("file:/", "/").replace("%25", "%"); // replace("/","\\").

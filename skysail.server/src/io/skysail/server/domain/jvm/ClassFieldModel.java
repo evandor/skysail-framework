@@ -11,13 +11,13 @@ import lombok.*;
 
 @Value
 @EqualsAndHashCode(callSuper=true)
-public class ClassField extends io.skysail.server.domain.core.FieldModel {
+public class ClassFieldModel extends io.skysail.server.domain.core.FieldModel {
 
-    public ClassField(String id) {
+    public ClassFieldModel(String id) {
         super(id);
     }
 
-    public ClassField(java.lang.reflect.Field f) {
+    public ClassFieldModel(java.lang.reflect.Field f) {
         super(f.getName());
         setInputType(determineInputType(f));
         setMandatory(determineIfMandatory(f));

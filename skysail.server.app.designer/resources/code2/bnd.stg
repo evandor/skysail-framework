@@ -37,7 +37,8 @@ Include-Resource: resources, templates=src;recursive:=true;filter:=*.st|*.stg
     \${commons},\\
     \${javax},\\
     de.twentyeleven.skysail.org.antlr.stringtemplate-osgi;version=4.0.8,\
-    de.twentyeleven.skysail.org.json-osgi;version=20080701.0
+    de.twentyeleven.skysail.org.json-osgi;version=20080701.0,\
+    org.apache.shiro.core;version=1.2
 
 
 Private-Package: \\

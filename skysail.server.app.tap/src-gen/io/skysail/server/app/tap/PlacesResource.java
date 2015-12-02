@@ -11,7 +11,7 @@ import javax.annotation.Generated;
 @Generated("io.skysail.server.codegen.apt.processors.EntityProcessor")
 public class PlacesResource extends ListServerResource<Place> {
 
-    private TabApplication app;
+    private TapApplication app;
     private PlaceRepo repository;
 
     public PlacesResource() {
@@ -21,7 +21,7 @@ public class PlacesResource extends ListServerResource<Place> {
 
     protected void doInit() {
         super.doInit();
-        app = (TabApplication)getApplication();
+        app = (TapApplication)getApplication();
         repository = (PlaceRepo) app.getRepository(Place.class);
     }
 

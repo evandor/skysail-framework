@@ -12,12 +12,12 @@ import io.skysail.server.restlet.resources.EntityServerResource;
 @Generated("io.skysail.server.codegen.apt.processors.EntityProcessor")
 public class ThingResource extends EntityServerResource<Thing> {
 
-    private TabApplication app;
+    private TapApplication app;
     private ThingRepo repository;
 
     protected void doInit() {
         super.doInit();
-        app = (TabApplication)getApplication();
+        app = (TapApplication)getApplication();
         repository = (ThingRepo) app.getRepository(Thing.class);
     }
 

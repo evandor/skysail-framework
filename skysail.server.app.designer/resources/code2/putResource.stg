@@ -7,7 +7,7 @@ import io.skysail.server.restlet.resources.PutEntityServerResource;
 import java.util.Date;
 import org.restlet.resource.ResourceException;
 
-public class Put$entity.entityName$Resource extends PutEntityServerResource<$entity.entityName$> {
+public class Put$entity.simpleName$Resource extends PutEntityServerResource<$entity.id$> {
 
 
     private String id;
@@ -20,20 +20,20 @@ public class Put$entity.entityName$Resource extends PutEntityServerResource<$ent
     \}
     
     @Override
-    public SkysailResponse<?> updateEntity($entity.entityName$  entity) {
+    public SkysailResponse<$entity.id$> updateEntity($entity.simpleName$  entity) {
         $updateEntity$
         app.getRepository().update(id, original);
         return new SkysailResponse<>();
     \}
 
     @Override
-    public $entity.entityName$ getEntity() {
-        return app.getRepository().getById($entity.entityName$.class, id);
+    public $entity.id$ getEntity() {
+        return ($entity.id$)app.getRepository().findOne(id);
     \}
 
     @Override
     public String redirectTo() {
-        return super.redirectTo($entity.entityName$sResource.class);
+        return super.redirectTo($entity.simpleName$sResource.class);
     }
 }
 >>

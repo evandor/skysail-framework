@@ -11,11 +11,11 @@ import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
 import org.restlet.resource.ResourceException;
 
-public class Post$entity.entityName$Resource extends PostEntityServerResource<$entity.entityName$> {
+public class Post$entity.simpleName$Resource extends PostEntityServerResource<$entity.id$> {
 
 	private $application.applicationName$Application app;
 
-    public Post$entity.entityName$Resource() {
+    public Post$entity.simpleName$Resource() {
         addToContext(ResourceContextId.LINK_TITLE, "Create new $entity.entityName$");
     }
 
@@ -25,18 +25,18 @@ public class Post$entity.entityName$Resource extends PostEntityServerResource<$e
     }
 
     @Override
-    public $entity.entityName$ createEntityTemplate() {
-        return new $entity.entityName$();
+    public $entity.id$ createEntityTemplate() {
+        return new $entity.simpleName$();
     \}
 
     @Override
-    public SkysailResponse<?> addEntity($entity.entityName$ entity) {
+    public SkysailResponse<$entity.id$> addEntity($entity.id$ entity) {
         $addEntity$
     \}
 
     @Override
     public String redirectTo() {
-        return super.redirectTo($entity.entityName$sResource.class);
+        return super.redirectTo($entity.simpleName$sResource.class);
     \}
 }
 >>

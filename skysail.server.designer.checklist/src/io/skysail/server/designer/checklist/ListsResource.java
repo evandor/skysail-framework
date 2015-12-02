@@ -8,19 +8,19 @@ import java.util.Map;
 
 import de.twenty11.skysail.server.core.restlet.ResourceContextId;
 
-public class sResource extends ListServerResource<> {
+public class ListsResource extends ListServerResource<io.skysail.server.designer.checklist.List> {
 
-    public sResource() {
-        super(Resource.class);
-        addToContext(ResourceContextId.LINK_TITLE, "list s");
+    public ListsResource() {
+        super(ListResource.class);
+        addToContext(ResourceContextId.LINK_TITLE, "list Lists");
     }
 
     @Override
-    public List<> getEntity() {
-        return ((ChecklistApplication) getApplication()).getRepository().findAll("select from ");
+    public List<io.skysail.server.designer.checklist.List> getEntity() {
+        return null;//((ChecklistApplication) getApplication()).getRepository().findAll("select from io.skysail.server.designer.checklist.List");
     }
 
     public List<Link> getLinks() {
-       return super.getLinks(PostResource.class);
+       return super.getLinks(PostListResource.class);
     }
 }

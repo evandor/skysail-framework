@@ -81,9 +81,9 @@ public class ApplicationCreator {
                     new Class[] { DbService.class });
             setDbServiceMethod.invoke(dbRepoInstance, dbService);
 
-            Method setRepositoryMethod = applicationInstance.getClass().getMethod("setRepository",
-                    new Class[] { DbRepository.class });
-            setRepositoryMethod.invoke(applicationInstance, dbRepoInstance);
+//            Method setRepositoryMethod = applicationInstance.getClass().getMethod("setRepository",
+//                    new Class[] { DbRepository.class });
+//            setRepositoryMethod.invoke(applicationInstance, dbRepoInstance);
 
             Method setComponentContextMethod = applicationInstance.getClass().getMethod("setComponentContext",
                     new Class[] { ComponentContext.class });

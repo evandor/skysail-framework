@@ -33,7 +33,7 @@ import io.skysail.api.text.Translation;
 import io.skysail.api.um.*;
 import io.skysail.api.validation.ValidatorService;
 import io.skysail.server.domain.core.Repositories;
-import io.skysail.server.domain.jvm.ClassEntity;
+import io.skysail.server.domain.jvm.ClassEntityModel;
 import io.skysail.server.menus.MenuItem;
 import io.skysail.server.restlet.filter.*;
 import io.skysail.server.restlet.resources.SkysailServerResource;
@@ -190,13 +190,13 @@ public abstract class SkysailApplication extends RamlApplication implements Appl
             log.warn("there are no entities defined for the applicationModel {}", applicationModel);
             return;
         }
-        ClassEntity firstClassEntity = (ClassEntity) applicationModel.getEntity(applicationModel.getEntityNames().iterator().next());
+        ClassEntityModel firstClassEntity = (ClassEntityModel) applicationModel.getEntity(applicationModel.getEntityNames().iterator().next());
         router.attach(new RouteBuilder("" , firstClassEntity.getListResourceClass()));
         router.attach(new RouteBuilder("/" , firstClassEntity.getListResourceClass()));
 
         applicationModel.getEntityNames().stream()
             .map(key -> applicationModel.getEntity(key))
-            .map(ClassEntity.class::cast)
+            .map(ClassEntityModel.class::cast)
             .forEach(entity -> {
                 router.attach(new RouteBuilder("/" + entity.getId(), entity.getListResourceClass()));
                 router.attach(new RouteBuilder("/" + entity.getId() + "/", entity.getPostResourceClass()));

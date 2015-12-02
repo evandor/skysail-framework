@@ -4,11 +4,11 @@ import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
 import io.skysail.api.domain.Identifiable;
 import io.skysail.server.domain.core.EntityModel;
-import io.skysail.server.domain.jvm.ClassEntity;
+import io.skysail.server.domain.jvm.ClassEntityModel;
 
 import org.junit.*;
 
-public class ClassEntityTest {
+public class ClassEntityModelTest {
 
     private AThing aThing;
     private Class<? extends Identifiable> identifiableClass;
@@ -28,13 +28,13 @@ public class ClassEntityTest {
     @Test
     public void id_is_set_in_class_constructor() {
         Class<? extends Identifiable> cls = AThing.class;
-        ClassEntity entity = new ClassEntity(cls);
+        ClassEntityModel entity = new ClassEntityModel(cls);
         assertThat(entity.getId(),is(AThing.class.getName()));
     }
 
     @Test
     public void simple_stringField_is_detected_correctly() throws Exception {
-        ClassEntity entity = new ClassEntity(identifiableClass);
+        ClassEntityModel entity = new ClassEntityModel(identifiableClass);
         assertThat(entity.getFields().size(), is(1));
         assertThat(entity.getFields().get("stringField").getId(),is("stringField"));
     }

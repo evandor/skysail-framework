@@ -1,19 +1,18 @@
 package io.skysail.server.app.designer.codegen;
 
-import io.skysail.server.app.designer.STGroupBundleDir;
-import io.skysail.server.app.designer.model.CodegenApplicationModel;
-import io.skysail.server.app.designer.model.RouteModel;
-
 import java.util.List;
 
 import org.stringtemplate.v4.ST;
+
+import io.skysail.server.app.designer.STGroupBundleDir;
+import io.skysail.server.app.designer.model.*;
 
 public class SkysailApplicationCompiler extends SkysailCompiler {
 
     private String applicationClassName;
 
-    public SkysailApplicationCompiler(CodegenApplicationModel applicationModel, STGroupBundleDir stGroup) {
-        super(applicationModel, stGroup);
+    public SkysailApplicationCompiler(CodegenApplicationModel applicationModel, STGroupBundleDir stGroup, JavaCompiler compiler) {
+        super(applicationModel, stGroup, compiler);
     }
 
     public void createApplication(List<RouteModel> routeModels) {

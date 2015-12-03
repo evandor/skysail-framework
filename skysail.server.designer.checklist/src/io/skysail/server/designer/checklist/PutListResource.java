@@ -23,13 +23,13 @@ public class PutListResource extends PutEntityServerResource<io.skysail.server.d
         io.skysail.server.designer.checklist.List original = getEntity();
         copyProperties(original,entity);
 
-        app.getRepository().update(id, original);
+        app.getRepository(io.skysail.server.designer.checklist.List.class).update(id, original);
         return new SkysailResponse<>();
     }
 
     @Override
     public io.skysail.server.designer.checklist.List getEntity() {
-        return (io.skysail.server.designer.checklist.List)app.getRepository().findOne(id);
+        return (io.skysail.server.designer.checklist.List)app.getRepository(io.skysail.server.designer.checklist.List.class).findOne(id);
     }
 
     @Override

@@ -14,6 +14,7 @@ public class CodegenFieldModel extends FieldModel {
     public CodegenFieldModel(EntityField f) {
         super(f.getName());
         this.name = f.getName();
+        setInputType(f.getType());
     }
     
     public String getGetMethodName() {

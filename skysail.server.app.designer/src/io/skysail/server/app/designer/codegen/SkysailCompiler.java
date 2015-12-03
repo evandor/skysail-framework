@@ -1,23 +1,17 @@
 package io.skysail.server.app.designer.codegen;
 
-import io.skysail.server.app.designer.STGroupBundleDir;
-import io.skysail.server.app.designer.model.CodegenApplicationModel;
-
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.Arrays;
-import java.util.Map;
+import java.io.*;
+import java.nio.file.*;
+import java.util.*;
 import java.util.stream.Collectors;
 
+import org.osgi.framework.BundleContext;
+import org.stringtemplate.v4.*;
+
+import io.skysail.server.app.designer.STGroupBundleDir;
+import io.skysail.server.app.designer.model.CodegenApplicationModel;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
-
-import org.osgi.framework.BundleContext;
-import org.stringtemplate.v4.ST;
-import org.stringtemplate.v4.STGroupDir;
 
 @Slf4j
 @Getter
@@ -27,20 +21,16 @@ public class SkysailCompiler {
     protected boolean compiledSuccessfully = true;
     protected CodegenApplicationModel applicationModel;
     protected STGroupDir stGroupDir;
-
-    public SkysailCompiler(CodegenApplicationModel applicationModel, STGroupBundleDir stGroup) {
+    private JavaCompiler compiler;
+    
+    public SkysailCompiler(CodegenApplicationModel applicationModel, STGroupBundleDir stGroup, JavaCompiler compiler) {
         this.applicationModel = applicationModel;
         this.stGroupDir = stGroup;
+        this.compiler = compiler;
     }
 
     public void compile(BundleContext bundleContext) {
-        try {
-            InMemoryJavaCompiler.compile(bundleContext);
-            compiledSuccessfully = InMemoryJavaCompiler.isCompiledSuccessfully();
-        } catch (Exception e) {
-            log.error(e.getMessage(), e);
-            compiledSuccessfully = false;
-        }
+        compiledSuccessfully = compiler.compile(bundleContext);
     }
 
     protected String substitute(String template, Map<String, String> substitutionMap) {
@@ -54,7 +44,7 @@ public class SkysailCompiler {
 
     protected void collect(String className, String entityCode) {
         try {
-            InMemoryJavaCompiler.collect(className, entityCode);
+            compiler.collect(className, entityCode);
         } catch (Exception e) {
             log.error(e.getMessage(), e);
         }
@@ -72,7 +62,7 @@ public class SkysailCompiler {
     }
    
     public void reset() {
-        InMemoryJavaCompiler.reset();
+        compiler.reset();
     }
 
     protected String classNameToPath(String className) {
@@ -81,7 +71,7 @@ public class SkysailCompiler {
 
     public Class<?> getClass(String className) {
         try {
-            return InMemoryJavaCompiler.getClass(className);
+            return compiler.getClass(className);
         } catch (ClassNotFoundException e) {
             log.error(e.getMessage(), e);
             return null;

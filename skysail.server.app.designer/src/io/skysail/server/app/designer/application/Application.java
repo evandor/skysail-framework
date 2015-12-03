@@ -1,22 +1,20 @@
 package io.skysail.server.app.designer.application;
 
-import io.skysail.api.domain.Identifiable;
-import io.skysail.api.forms.*;
-import io.skysail.server.app.designer.entities.Entity;
-import io.skysail.server.forms.ListView;
-
 import java.util.*;
 
 import javax.persistence.Id;
 import javax.validation.constraints.*;
 
+import io.skysail.api.domain.Identifiable;
+import io.skysail.api.forms.*;
+import io.skysail.server.app.designer.entities.Entity;
+import io.skysail.server.forms.ListView;
 import lombok.*;
 
 @NoArgsConstructor
 @Getter
 @Setter
 @ToString(of = { "id", "name" })
-//@JsonPropertyOrder({ "title", "desc" })
 public class Application implements Identifiable {
 
     @Id
@@ -49,7 +47,6 @@ public class Application implements Identifiable {
     @ListView(hide = true)
     private String owner;
 
-    //@Reference(cls = Entity.class)
     private List<Entity> entities = new ArrayList<>();
 
     /**

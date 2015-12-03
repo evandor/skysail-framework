@@ -26,14 +26,28 @@ public class List implements Identifiable {
         this.id = id;
     }
 
-    @Field
+    // --- fields ---
+
+    @Field(inputType = InputType.TEXT)
     private String listname;
+
     public void setListname(String value) {
         this.listname = value;
     }
 
     public String getListname() {
         return this.listname;
+    }
+
+    @Field(inputType = InputType.TEXTAREA)
+    private String description;
+
+    public void setDescription(String value) {
+        this.description = value;
+    }
+
+    public String getDescription() {
+        return this.description;
     }
 
 

@@ -27,6 +27,7 @@ public class $entity.simpleName$ implements Identifiable {
         this.id = id;
     }
     
+    // --- fields ---
     $fields(entity.fields)$
 
     $actionFields(entity.actionFields)$

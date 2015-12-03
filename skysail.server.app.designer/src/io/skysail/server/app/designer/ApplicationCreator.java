@@ -20,8 +20,8 @@ import io.skysail.server.app.designer.repo.DesignerRepository;
 import io.skysail.server.db.DbService;
 import io.skysail.server.domain.core.Repositories;
 import io.skysail.server.menus.MenuItemProvider;
-import io.skysail.server.utils.BundleUtils;
-import lombok.Getter;
+import io.skysail.server.utils.*;
+import lombok.*;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -32,6 +32,12 @@ public class ApplicationCreator {
     private SkysailApplicationCompiler skysailApplicationCompiler;
     private List<String> repositoryClassNames;
 
+    @Setter
+    private BundleResourceReader bundleResourceReader = new DefaultBundleResourceReader();
+    
+    @Setter
+    private JavaCompiler javaCompiler = new DefaultJavaCompiler();
+    
     @Getter
     private CodegenApplicationModel applicationModel;
     private Repositories repos;
@@ -56,18 +62,18 @@ public class ApplicationCreator {
     private boolean createCode() {
         InMemoryJavaCompiler.reset();
 
-        List<RouteModel> routeModels = new EntityCreator(applicationModel).create(stGroup);
+        List<RouteModel> routeModels = new EntityCreator(applicationModel, javaCompiler).create(stGroup);
 
-        repositoryClassNames = new RepositoryCreator(applicationModel).create(stGroup);
+        repositoryClassNames = new RepositoryCreator(applicationModel, javaCompiler).create(stGroup);
 
-        skysailApplicationCompiler = new SkysailApplicationCompiler(applicationModel, stGroup);
+        skysailApplicationCompiler = new SkysailApplicationCompiler(applicationModel, stGroup, javaCompiler);
         skysailApplicationCompiler.createApplication(routeModels);
         skysailApplicationCompiler.compile(bundle.getBundleContext());
 
         return skysailApplicationCompiler.isCompiledSuccessfully();
     }
 
-    synchronized void setupInMemoryBundle(DbService dbService, ComponentContext componentContext) {
+    public synchronized void setupInMemoryBundle(DbService dbService, ComponentContext componentContext) {
         Class<?> applicationClass = skysailApplicationCompiler.getApplicationClass();
 
         List<Class<?>> repositoryClasses = repositoryClassNames.stream()
@@ -128,7 +134,9 @@ public class ApplicationCreator {
 
         ST project = getStringTemplateIndex("project");
         project.add("projectname", applicationModel.getProjectName());
-        Files.write(Paths.get(path + "/.project"), project.render().getBytes());
+        Path projectFilePath = Paths.get(path + "/.project");
+        log.info("creating file '{}'", projectFilePath.toAbsolutePath());
+        Files.write(projectFilePath, project.render().getBytes());
 
         ST classpath = getStringTemplateIndex("classpath");
         Files.write(Paths.get(path + "/.classpath"), classpath.render().getBytes());
@@ -156,7 +164,7 @@ public class ApplicationCreator {
     }
 
     private void copy(Path path, String filename) {
-        String cfgFile = BundleUtils.readResource(bundle, "config/" + filename);
+        String cfgFile = bundleResourceReader.readResource(bundle, "config/" + filename);
         try {
             Files.write(Paths.get(path + "/config/local/" + filename), cfgFile.getBytes());
         } catch (IOException e) {

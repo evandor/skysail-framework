@@ -18,8 +18,8 @@ public class SkysailEntityCompiler extends SkysailCompiler {
 
     private List<RouteModel> routes = new ArrayList<>();
 
-    public SkysailEntityCompiler(CodegenApplicationModel applicationModel, STGroupBundleDir stGroup) {
-        super(applicationModel, stGroup);
+    public SkysailEntityCompiler(CodegenApplicationModel applicationModel, STGroupBundleDir stGroup, JavaCompiler compiler) {
+        super(applicationModel, stGroup, compiler);
         this.stGroupDir = stGroup;
     }
 

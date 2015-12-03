@@ -25,7 +25,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class InMemoryJavaCompiler {
 
-    private static JavaCompiler javac = ToolProvider.getSystemJavaCompiler();
+    private static javax.tools.JavaCompiler javac = ToolProvider.getSystemJavaCompiler();
     private static DynamicClassLoader dcl;
     private static List<JavaFileObject> sourceCodes = new ArrayList<>();
     private static Map<String, CompiledCode> compiledCodes = new HashMap<>();
@@ -94,7 +94,7 @@ public class InMemoryJavaCompiler {
         log.info("classpath was set to {}", locs);
 
         DiagnosticCollector<JavaFileObject> diagnostics = new DiagnosticCollector<JavaFileObject>();
-        JavaCompiler.CompilationTask task = javac
+        javax.tools.JavaCompiler.CompilationTask task = javac
                 .getTask(null, fileManager, diagnostics, optionList, null, sourceCodes);
         task.call();
         boolean errorFound = dumpErrorsIfExistent(diagnostics, "xxx");

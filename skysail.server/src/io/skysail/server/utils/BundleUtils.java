@@ -4,9 +4,9 @@ import java.io.*;
 import java.net.URL;
 import java.util.Enumeration;
 
-import lombok.extern.slf4j.Slf4j;
-
 import org.osgi.framework.Bundle;
+
+import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public class BundleUtils {

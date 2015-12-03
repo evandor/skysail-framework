@@ -16,9 +16,7 @@ import lombok.extern.slf4j.Slf4j;
 public class CodegenApplicationModel extends ApplicationModel {
 
     private final String applicationName;
-    //private final Set<CodegenEntityModel> entityModels = new HashSet<>();
     private final String packageName;
-
     private String path;
     private String projectName;
 
@@ -45,16 +43,6 @@ public class CodegenApplicationModel extends ApplicationModel {
         });
     }
 
-//    @SuppressWarnings("unused")
-//    private CodegenEntityModel getEntityModel(Entity entity) {
-//        return getEntities().stream()
-//                .map(CodegenEntityModel.class::cast)
-//                .filter(em -> {
-//                    return em.getId().equals(entity.getName());
-//                })
-//                .findFirst().orElseThrow(IllegalStateException::new);
-//    }
-
     private void createEntityModel(Application application, DesignerRepository repo, Entity entity) {
         CodegenEntityModel entityModel = addEntity(entity);
 
@@ -79,25 +67,6 @@ public class CodegenApplicationModel extends ApplicationModel {
 
     public void validate() {
        // eachEntitiesReferencesMustPointToExistingEntity();
-    }
-
-//    private void eachEntitiesReferencesMustPointToExistingEntity() {
-//        List<String> entityNames = getEntities().stream()
-//                .map(CodegenEntityModel.class::cast)
-//                .map(CodegenEntityModel::getId)
-//                .collect(Collectors.toList());
-//        getEntities().stream().forEach(entity -> {
-//            entity.getReferences().stream().forEach(reference -> {
-//                validateReference(reference, entityNames);
-//            });
-//        });
-//    }
-
-    private void validateReference(ReferenceModel reference, List<String> entities) {
-        if (!entities.contains(reference.getReferencedEntityName())) {
-            throw new IllegalStateException("Reference '" + reference.getReferencedEntityName()
-                    + "' was not contained in the list of known entities: " + entities);
-        }
     }
 
     private List<EntityField> getFields(DesignerRepository repo2, String beanName, String appIdentifier) {
@@ -132,27 +101,6 @@ public class CodegenApplicationModel extends ApplicationModel {
         for (Entity entity : entities) {
             if (beanName.equals(entity.getName())) {
                 return entity.getActionFields();
-            }
-        }
-        return Collections.emptyList();
-    }
-
-    private List<Entity> getReferences(DesignerRepository repo2, String beanName, String appIdentifier) {
-        Application designerApplication = repo2.getById(Application.class, appIdentifier.replace("#", ""));
-        List<Entity> entities = null;//designerApplication.getEntities();
-        return findReferences(repo2, beanName, appIdentifier, entities);
-    }
-
-    private List<Entity> findReferences(DesignerRepository repo2, String beanName, String appIdentifier,
-            List<Entity> entities) {
-        // streams dont't seem to work here ?!?! (with orientdb objects)
-        for (Entity entity : entities) {
-            if (beanName.equals(entity.getName())) {
-                return entity.getSubEntities();
-            }
-            List<Entity> fieldsFromSubEntity = findReferences(repo2, beanName, appIdentifier, entity.getSubEntities());
-            if (fieldsFromSubEntity.size() > 0) {
-                return fieldsFromSubEntity;
             }
         }
         return Collections.emptyList();

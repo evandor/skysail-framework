@@ -1,8 +1,10 @@
 fields(fields) ::= <<
 
 $fields.keys: { key| 
-@Field
+
+@Field(inputType = InputType.$fields.(key).inputType$)
 private String $key$;
+
 public void $fields.(key).setMethodName$(String value) {
     this.$key$ = value;
 \}

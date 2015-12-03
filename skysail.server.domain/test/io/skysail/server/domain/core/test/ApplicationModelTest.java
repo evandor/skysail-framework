@@ -3,11 +3,12 @@ package io.skysail.server.domain.core.test;
 import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.Matchers.contains;
 import static org.junit.Assert.assertThat;
+
+import org.junit.*;
+
 import io.skysail.api.domain.Identifiable;
 import io.skysail.api.repos.DbRepository;
 import io.skysail.server.domain.core.*;
-
-import org.junit.*;
 
 public class ApplicationModelTest {
 
@@ -26,6 +27,17 @@ public class ApplicationModelTest {
         assertThat(app.getEntityIds().size(),is(2));
         assertThat(app.getEntity("e23").getId(),is("e23"));
         assertThat(app.getEntity("e24").getId(),is("e24"));
+    }
+    
+    @Test
+    public void same_entity_can_be_added_only_once() {
+        ApplicationModel app = new ApplicationModel("app17")
+            .add(new EntityModel("e23"))
+            .add(new EntityModel("e23"));
+
+        assertThat(app.getId(),is("app17"));
+        assertThat(app.getEntityIds().size(),is(1));
+        assertThat(app.getEntity("e23").getId(),is("e23"));
     }
 
     @Test

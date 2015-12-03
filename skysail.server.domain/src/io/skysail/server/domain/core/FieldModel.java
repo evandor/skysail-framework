@@ -36,7 +36,7 @@ public class FieldModel implements Identifiable {
     }
 
     public String getInputType() {
-        return inputType != null ? inputType.name().toLowerCase() : "";
+        return inputType != null ? inputType.name() : "";
     }
 
     public String getName() {

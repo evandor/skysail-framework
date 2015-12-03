@@ -13,8 +13,8 @@ public class SkysailRepositoryCompiler extends SkysailCompiler {
 
     private EntityModel entityModel;
 
-    public SkysailRepositoryCompiler(CodegenApplicationModel applicationModel, EntityModel entityModel, STGroupBundleDir stGroup) {
-        super(applicationModel, stGroup);
+    public SkysailRepositoryCompiler(CodegenApplicationModel applicationModel, EntityModel entityModel, STGroupBundleDir stGroup, JavaCompiler compiler) {
+        super(applicationModel, stGroup, compiler);
         this.entityModel = entityModel;
     }
 

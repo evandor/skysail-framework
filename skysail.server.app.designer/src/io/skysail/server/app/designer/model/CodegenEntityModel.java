@@ -4,7 +4,7 @@ import java.util.*;
 
 import io.skysail.server.app.designer.entities.Entity;
 import io.skysail.server.app.designer.fields.*;
-import io.skysail.server.domain.core.*;
+import io.skysail.server.domain.core.EntityModel;
 import lombok.*;
 import lombok.extern.slf4j.Slf4j;
 
@@ -12,11 +12,9 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class CodegenEntityModel extends EntityModel {
 
-    private final Map<String, FieldModel> fields = new HashMap<>();
     private final Set<ActionFieldModel> actionFields = new HashSet<>();
     private final Set<ReferenceModel> references = new HashSet<>();
     private String className;
-    //private boolean rootEntity;
     private Optional<CodegenEntityModel> referencedBy;
 
     public CodegenEntityModel(Entity entity, String packageName) {
@@ -26,10 +24,10 @@ public class CodegenEntityModel extends EntityModel {
 
     public void addField(EntityField f) {
         log.info("CodegenEntityModel:      adding Field '{}' to Entity '{}'", f.getName(), f.getId());
-        if (fields.get(f.getName()) != null) {
+        if (getFields().get(f.getName()) != null) {
             throw new IllegalStateException("field '" + f.getName() + "' already exists!");
         }
-        fields.put(f.getName(), new CodegenFieldModel(f));
+        getFields().put(f.getName(), new CodegenFieldModel(f));
     }
 
     public void addActionField(ActionEntityField f) {

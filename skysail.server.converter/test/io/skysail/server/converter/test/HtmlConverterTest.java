@@ -2,9 +2,6 @@ package io.skysail.server.converter.test;
 
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.assertThat;
-import io.skysail.server.converter.HtmlConverter;
-import io.skysail.server.menus.*;
-import io.skysail.server.restlet.resources.EntityServerResource;
 
 import java.util.*;
 
@@ -15,6 +12,10 @@ import org.restlet.data.MediaType;
 import org.restlet.engine.resource.VariantInfo;
 import org.restlet.representation.*;
 import org.restlet.resource.Resource;
+
+import io.skysail.server.converter.HtmlConverter;
+import io.skysail.server.menus.*;
+import io.skysail.server.restlet.resources.EntityServerResource;
 
 public class HtmlConverterTest {
 
@@ -33,22 +34,6 @@ public class HtmlConverterTest {
     @Before
     public void setUp() {
         htmlConverter = new HtmlConverter();
-    }
-
-    @Test
-    public void returns_added_menuItemProvider() throws Exception {
-        htmlConverter.addMenuProvider(menuItemProvider);
-        List<MenuItem> menuEntries = htmlConverter.getMenuProviders().iterator().next().getMenuEntries();
-        assertThat(htmlConverter.getMenuProviders().size(), is(1));
-        assertThat(menuEntries.size(), is(1));
-        assertThat(menuEntries.get(0).getLink(), is(equalTo("link")));
-    }
-
-    @Test
-    public void removed_menuItemProvider_is_not_available_anymore() throws Exception {
-        htmlConverter.addMenuProvider(menuItemProvider);
-        htmlConverter.removeMenuProvider(menuItemProvider);
-        assertThat(htmlConverter.getMenuProviders().size(), is(0));
     }
 
     @Test

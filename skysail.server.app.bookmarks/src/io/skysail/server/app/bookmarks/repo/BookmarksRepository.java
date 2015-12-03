@@ -11,6 +11,19 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class BookmarksRepository extends GraphDbRepository<Bookmark> implements DbRepository {
 
+//    @Reference
+//    private volatile DbService dbService;
+    
+    @Reference
+    public void setDbService(DbService dbService) {
+        log.debug("setting dbService");
+        this.dbService = dbService;
+    }
+
+    public void unsetDbService(DbService dbService) {
+        log.debug("unsetting dbService");
+        this.dbService = null;
+    }
     @Activate
     public void activate() {
         log.debug("activating VersionsRepository");
@@ -18,13 +31,6 @@ public class BookmarksRepository extends GraphDbRepository<Bookmark> implements 
         dbService.register(Bookmark.class);
     }
 
-    @Reference
-    public void setDbService(DbService dbService) {
-        this.dbService = dbService;
-    }
-
-    public void unsetDbService(DbService dbService) {
-        this.dbService = null;
-    }
+    
 
 }

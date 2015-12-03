@@ -1,17 +1,16 @@
 package io.skysail.server.db.impl;
 
-import io.skysail.api.domain.Identifiable;
-
 import java.lang.reflect.*;
 import java.util.*;
 import java.util.function.Consumer;
 
-import lombok.NonNull;
-import lombok.extern.slf4j.Slf4j;
-
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.tinkerpop.blueprints.Vertex;
 import com.tinkerpop.blueprints.impls.orient.*;
+
+import io.skysail.api.domain.Identifiable;
+import lombok.NonNull;
+import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public class Persister {
@@ -53,7 +52,7 @@ public class Persister {
             }
             if (!edges.contains(key)) {
                 if (properties.get(key) != null && !("class".equals(key))) {
-                    setProperty(entity, vertex, properties, key);
+                    setProperty(entity, vertex, key);
                 }
             } else {
                 try {
@@ -75,14 +74,15 @@ public class Persister {
         return vertex;
     }
 
-    private void setProperty(Object entity, Vertex vertex, Map<String, Object> properties, String key) {
+    private void setProperty(Object entity, Vertex vertex, String key) {
         try {
             setVertexProperty("get", entity, vertex, key);
         } catch (Exception e) {
+            // try "isXXX" instead of "getXXX"
             try {
                 setVertexProperty("is", entity, vertex, key);
             } catch (Exception e1) {
-                log.error(e.getMessage(), e);
+                log.error(e1.getMessage(), e1);
             }
         }
     }
@@ -91,11 +91,10 @@ public class Persister {
             throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
         Method method = entity.getClass().getMethod(getMethodName(prefix, key));
         Object result = method.invoke(entity);
-        //log.info("setting {}={} [{}]", new Object[] { key, result, result.getClass() });
         vertex.setProperty(key, result);
     }
 
-    private String getMethodName(String prefix, String key) {
+    private static String getMethodName(String prefix, String key) {
         return new StringBuilder(prefix).append(key.substring(0, 1).toUpperCase()).append(key.substring(1)).toString();
     }
 

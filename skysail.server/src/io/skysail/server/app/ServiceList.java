@@ -12,7 +12,6 @@ import de.twenty11.skysail.server.app.*;
 import io.skysail.api.text.*;
 import io.skysail.api.um.*;
 import io.skysail.api.validation.ValidatorService;
-import io.skysail.server.restlet.resources.SkysailServerResource;
 import io.skysail.server.services.PerformanceMonitor;
 import io.skysail.server.text.TranslationStoreHolder;
 import lombok.Getter;
@@ -29,23 +28,17 @@ import lombok.extern.slf4j.Slf4j;
  * new application becomes available.
  * </p>
  *
- * <p>
- * Non of the references should be defined as mandatory, as, otherwise, the
- * whole ServiceList will not be available. Clients themselves have to decide
- * how to deal with the absence of services.
- * </p>
- *
  */
 @Component(immediate = true)
 @Slf4j
 public class ServiceList implements ServiceListProvider {
 
-    @Reference(cardinality = ReferenceCardinality.MANDATORY)
     @Getter
+    @Reference(cardinality = ReferenceCardinality.MANDATORY)
     public volatile ValidatorService validatorService;
 
-    @Reference(cardinality = ReferenceCardinality.MANDATORY)
     @Getter
+    @Reference(cardinality = ReferenceCardinality.MANDATORY)
     private volatile ApplicationListProvider applicationListProvider;
 
     private volatile AuthorizationService authorizationService;
@@ -57,10 +50,15 @@ public class ServiceList implements ServiceListProvider {
 
     @Getter
     private volatile Set<TranslationStoreHolder> translationStores = Collections.synchronizedSet(new HashSet<>());
-    private volatile Set<PerformanceMonitor> performanceMonitors = Collections.synchronizedSet(new HashSet<>());
+    //private volatile Set<PerformanceMonitor> performanceMonitors = Collections.synchronizedSet(new HashSet<>());
 
     private AtomicReference<SkysailComponentProvider> skysailComponentProviderRef = new AtomicReference<>();
 
+    
+    @Getter
+    @Reference(policy = ReferencePolicy.DYNAMIC, cardinality = ReferenceCardinality.MULTIPLE)
+    public volatile Set<PerformanceMonitor> performanceMonitors = new HashSet<>();
+        
     
     @Activate
     public void activate() {
@@ -106,13 +104,11 @@ public class ServiceList implements ServiceListProvider {
         }
         Context appContext = skysailComponentProviderRef.get().getSkysailComponent().getContext().createChildContext();
         getSkysailApps().forEach(app -> app.setContext(appContext));
-//        applicationListProvider.attach(skysailComponentProviderRef.get().getSkysailComponent());
     }
 
     public synchronized void unsetSkysailComponentProvider(SkysailComponentProvider service) {
         this.skysailComponentProviderRef.compareAndSet(service, null);
         getSkysailApps().forEach(a -> a.setContext(null));
-//        applicationListProvider.detach(service.getSkysailComponent());
     }
 
     @Override
@@ -147,25 +143,6 @@ public class ServiceList implements ServiceListProvider {
         this.translationStores.remove(holder);
     }
 
-    /** === Performance Monitor Service ============================== */
-
-    @Reference(policy = ReferencePolicy.DYNAMIC, cardinality = ReferenceCardinality.MULTIPLE)
-    public synchronized <R extends SkysailServerResource<T>, T> void addPerformanceMonitor(PerformanceMonitor monitor) {
-        performanceMonitors.add(monitor);
-    }
-
-    public synchronized <R extends SkysailServerResource<T>, T> void removePerformanceMonitor(PerformanceMonitor monitor) {
-        performanceMonitors.remove(monitor);
-    }
-
-    @Override
-    public Set<PerformanceMonitor> getPerformanceMonitors() {
-        return performanceMonitors;
-    }
-
-    /** === Validation Provider ============================== */
-
-   
 
     private Stream<SkysailApplication> getSkysailApps() {
         if (applicationListProvider == null) {

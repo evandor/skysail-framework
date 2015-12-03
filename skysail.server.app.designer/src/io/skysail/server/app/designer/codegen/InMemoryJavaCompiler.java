@@ -81,6 +81,7 @@ public class InMemoryJavaCompiler {
         getBundleLocationFor(org.restlet.ext.raml.RamlApplication.class, bundleLocations, bundles);
         getBundleLocationFor(org.apache.commons.lang3.text.StrBuilder.class, bundleLocations, bundles);
         getBundleLocationFor(Repositories.class, bundleLocations, bundles);
+        getBundleLocationFor(io.skysail.server.queryfilter.Filter.class, bundleLocations, bundles);
 
         String locs = bundleLocations.stream().map(l -> {
                 return l.replace("reference:", "").replace("file:/", "/").replace("%25", "%"); // replace("/","\\").

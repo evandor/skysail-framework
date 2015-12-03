@@ -22,12 +22,16 @@ public class EntityModel implements Identifiable {
      */
     private String id;
 
+    /** the entities fields in a map with their id as key. */
     private Map<String, FieldModel> fields = new HashMap<>();
 
     private PostResource<EntityModel> postResource;
     private PutResource<EntityModel> putResource;
     private ListResource<EntityModel> listResource;
     private EntityResource<EntityModel> entityResource;
+    
+    /** should this entity be treated as "Aggregate" (DDD)" */
+    private boolean aggregate = true;
 
     public EntityModel(String fullQualifiedClassName) {
         this.id = fullQualifiedClassName;

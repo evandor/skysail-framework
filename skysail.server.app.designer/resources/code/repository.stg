@@ -1,0 +1,30 @@
+repository(application, entity, activationcode) ::= <<
+package $application.packageName$;
+
+
+import org.osgi.service.component.annotations.*;
+
+import io.skysail.api.repos.DbRepository;
+import io.skysail.server.db.*;
+
+@Component(immediate = true, property = "name=$entity.simpleName$sRepository")
+public class $entity.simpleName$Repository extends GraphDbRepository<$entity.id$> implements DbRepository {
+    
+    @Reference
+    public void setDbService(DbService dbService) {
+        this.dbService = dbService;
+    }
+
+    public void unsetDbService(DbService dbService) {
+        this.dbService = null;
+    }
+
+    @Activate
+    public void activate() {
+        //log.debug("activating $entity.id$" Repository);
+        dbService.createWithSuperClass("V", DbClassName.of($entity.id$.class));
+        dbService.register($entity.simpleName$.class);
+    }
+   
+}
+>>

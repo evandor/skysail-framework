@@ -1,23 +1,24 @@
 package io.skysail.server.app.bookmarks;
 
-import io.skysail.api.domain.Identifiable;
-import io.skysail.api.forms.*;
-import io.skysail.server.app.bookmarks.resources.BookmarkResource;
-import io.skysail.server.forms.ListView;
-
 import java.net.*;
 import java.util.Date;
 
 import javax.persistence.Id;
 
-import lombok.*;
-
 import org.apache.commons.lang3.StringUtils;
+
+import io.skysail.api.domain.Identifiable;
+import io.skysail.api.forms.*;
+import io.skysail.server.app.bookmarks.resources.BookmarkResource;
+import io.skysail.server.forms.ListView;
+import lombok.*;
+import lombok.extern.slf4j.Slf4j;
 
 @Getter
 @Setter
 @ToString(of = { "id", "name", "url" })
 @NoArgsConstructor
+@Slf4j
 public class Bookmark implements Identifiable {
 
     @Id
@@ -35,9 +36,6 @@ public class Bookmark implements Identifiable {
     @Field(inputType = InputType.TEXTAREA)
     @ListView(hide = true)
     private String desc;
-
-//    @FieldModel(inputType = InputType.TAGS)
-//    private String tags;
 
     @Field(inputType = InputType.READONLY)
     @ListView(hide = true)
@@ -76,6 +74,7 @@ public class Bookmark implements Identifiable {
                 return "<img src='" + url + "/" + favicon + "' width='16'>";
             }
         } catch (URISyntaxException e) {
+            log.error(e.getMessage(),e);
             return "";
         }
     }

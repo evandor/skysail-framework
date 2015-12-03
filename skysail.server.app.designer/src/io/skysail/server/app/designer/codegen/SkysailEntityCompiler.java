@@ -9,7 +9,7 @@ import io.skysail.server.app.designer.STGroupBundleDir;
 import io.skysail.server.app.designer.model.*;
 import lombok.Getter;
 
-public class SkysailEntityCompiler2 extends SkysailCompiler2 {
+public class SkysailEntityCompiler extends SkysailCompiler {
 
     protected String entityResourceClassName;
 
@@ -18,7 +18,7 @@ public class SkysailEntityCompiler2 extends SkysailCompiler2 {
 
     private List<RouteModel> routes = new ArrayList<>();
 
-    public SkysailEntityCompiler2(CodegenApplicationModel applicationModel, STGroupBundleDir stGroup) {
+    public SkysailEntityCompiler(CodegenApplicationModel applicationModel, STGroupBundleDir stGroup) {
         super(applicationModel, stGroup);
         this.stGroupDir = stGroup;
     }
@@ -36,7 +36,7 @@ public class SkysailEntityCompiler2 extends SkysailCompiler2 {
         ST postResourceTemplate = getStringTemplateIndex("postResource");
         String postResourceClassName = setupPostResourceForCompilation(postResourceTemplate, applicationModel,
                 entityModel);
-        if (entityModel.isRootEntity()) {
+        if (entityModel.isAggregate()) {
             routes.add(new RouteModel("/" + entityModel.getId() + "s/", postResourceClassName));
         } else {
             CodegenEntityModel parentEntityModel = entityModel.getReferencedBy().get();
@@ -51,7 +51,7 @@ public class SkysailEntityCompiler2 extends SkysailCompiler2 {
                 entityModel);
         routes.add(new RouteModel("/" + entityModel.getId() + "s", listResourceClassName));
 
-        if (entityModel.isRootEntity()) {
+        if (entityModel.isAggregate()) {
             routes.add(new RouteModel("", listResourceClassName));
         }
     }
@@ -95,9 +95,9 @@ public class SkysailEntityCompiler2 extends SkysailCompiler2 {
         addEntityCode.append(entityModel.getActionFields().stream().map(actionField -> {
             return actionField.getCode("postEntity#addEntity").replace("$Methodname$", withFirstCapital(actionField.getName()));
         }).collect(Collectors.joining("\n")));
-        if (entityModel.isRootEntity()) {
-            addEntityCode.append("//String id = app.getRepository().add(entity).toString();\n");
-            addEntityCode.append("//entity.setId(id);\n");
+        if (entityModel.isAggregate()) {
+            addEntityCode.append("String id = app.getRepository("+entityModel.getId()+".class).save(entity).toString();\n");
+            addEntityCode.append("entity.setId(id);\n");
         } else {
             CodegenEntityModel parent = entityModel.getReferencedBy().get();
             addEntityCode.append(parent.getId() + " root = app.getRepository().getById("+parent.getId()+".class, getAttribute(\"id\"));\n");

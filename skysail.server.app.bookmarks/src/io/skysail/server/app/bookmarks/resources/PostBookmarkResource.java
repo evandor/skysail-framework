@@ -1,14 +1,7 @@
 package io.skysail.server.app.bookmarks.resources;
 
-import io.skysail.api.responses.SkysailResponse;
-import io.skysail.server.app.bookmarks.*;
-import io.skysail.server.app.bookmarks.repo.BookmarksRepository;
-import io.skysail.server.restlet.resources.PostEntityServerResource;
-
 import java.io.IOException;
 import java.util.Date;
-
-import lombok.extern.slf4j.Slf4j;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.SecurityUtils;
@@ -17,15 +10,20 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.*;
 import org.jsoup.select.Elements;
 
+import io.skysail.api.responses.SkysailResponse;
+import io.skysail.server.app.bookmarks.*;
+import io.skysail.server.app.bookmarks.repo.BookmarksRepository;
+import io.skysail.server.restlet.resources.PostEntityServerResource;
+import lombok.extern.slf4j.Slf4j;
+
 @Slf4j
 public class PostBookmarkResource extends PostEntityServerResource<Bookmark> {
 
-    private BookmarksApplication app;
     private BookmarksRepository repository;
 
     @Override
     public void doInit() {
-        app = (BookmarksApplication) getApplication();
+        BookmarksApplication app = (BookmarksApplication) getApplication();
         repository = (BookmarksRepository) app.getRepository(Bookmark.class);
     }
 
@@ -66,7 +64,7 @@ public class PostBookmarkResource extends PostEntityServerResource<Bookmark> {
             }
             entity.setMetaDescription(getMetaTag(doc, "description"));
         } catch (IOException e) {
-            log.warn(e.getMessage());
+            log.error(e.getMessage());
         }
     }
 

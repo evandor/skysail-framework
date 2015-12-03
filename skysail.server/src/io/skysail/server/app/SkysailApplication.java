@@ -186,15 +186,15 @@ public abstract class SkysailApplication extends RamlApplication implements Appl
      * </p>
      */
     protected void attach() {
-        if (applicationModel.getEntityNames().isEmpty()) {
+        if (applicationModel.getEntityIds().isEmpty()) {
             log.warn("there are no entities defined for the applicationModel {}", applicationModel);
             return;
         }
-        ClassEntityModel firstClassEntity = (ClassEntityModel) applicationModel.getEntity(applicationModel.getEntityNames().iterator().next());
+        ClassEntityModel firstClassEntity = (ClassEntityModel) applicationModel.getEntity(applicationModel.getEntityIds().iterator().next());
         router.attach(new RouteBuilder("" , firstClassEntity.getListResourceClass()));
         router.attach(new RouteBuilder("/" , firstClassEntity.getListResourceClass()));
 
-        applicationModel.getEntityNames().stream()
+        applicationModel.getEntityIds().stream()
             .map(key -> applicationModel.getEntity(key))
             .map(ClassEntityModel.class::cast)
             .forEach(entity -> {
@@ -247,7 +247,7 @@ public abstract class SkysailApplication extends RamlApplication implements Appl
             return repository;
         }
         log.warn("trying to access repository for entity class {}, but failed...", entityClass.getName());
-        applicationModel.getRepositoryIdentifiers().stream().sorted().forEach(identifier -> {
+        applicationModel.getRepositoryIds().stream().sorted().forEach(identifier -> {
             log.info(" - available: {}", identifier);
         });
         return getRepository();

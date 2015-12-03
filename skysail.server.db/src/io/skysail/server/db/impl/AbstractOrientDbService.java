@@ -1,11 +1,11 @@
 package io.skysail.server.db.impl;
 
-import io.skysail.server.db.DbConfigurationProvider;
-import lombok.extern.slf4j.Slf4j;
-
 import org.restlet.engine.util.StringUtils;
 
 import com.orientechnologies.orient.core.exception.ODatabaseException;
+
+import io.skysail.server.db.DbConfigurationProvider;
+import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public abstract class AbstractOrientDbService {
@@ -29,13 +29,13 @@ public abstract class AbstractOrientDbService {
             startDb();
             registerShutdownHook();
         } catch (ODatabaseException e) {
-            if (!e.getMessage().startsWith(("Database instance has been released to the pool."))) {
+            if (!e.getMessage().startsWith("Database instance has been released to the pool.")) {
                 throw e;
             }
             try {
                 Thread.sleep(1000);
             } catch (InterruptedException e1) {
-                e1.printStackTrace();
+                log.error(e1.getMessage(), e1);
             }
         }
     }

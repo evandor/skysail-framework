@@ -4,6 +4,8 @@ mainContent(user, converter, messages, model) ::= <<
 
   <div class="row">
     <div class="col-md-2" style="
+        min-width:200px;
+        min-height:500px;
         text-align: center;
         padding-top:17px;
         margin-top:-21px;

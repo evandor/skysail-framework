@@ -28,7 +28,7 @@ public class $application.applicationName$Application extends SkysailApplication
         super("$application.applicationName$", new ApiVersion(1), Arrays.asList($entityClasses(application.entityModels)$));
         addToAppContext(ApplicationContextId.IMG, "/static/img/silk/page_link.png");
     }
-
+    
     @Reference(policy = ReferencePolicy.DYNAMIC, cardinality = ReferenceCardinality.MANDATORY)
     public void setRepositories(Repositories repos) {
         super.setRepositories(repos);

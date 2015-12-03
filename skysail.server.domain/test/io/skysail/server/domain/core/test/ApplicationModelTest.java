@@ -23,7 +23,7 @@ public class ApplicationModelTest {
             .add(new EntityModel("e24"));
 
         assertThat(app.getId(),is("app17"));
-        assertThat(app.getEntityNames().size(),is(2));
+        assertThat(app.getEntityIds().size(),is(2));
         assertThat(app.getEntity("e23").getId(),is("e23"));
         assertThat(app.getEntity("e24").getId(),is("e24"));
     }
@@ -57,7 +57,7 @@ public class ApplicationModelTest {
         repos.setRepository(aRepository);
         app.setRepositories(repos);
 
-        assertThat(app.getRepositoryIdentifiers(),contains("io.skysail.server.domain.core.test.AThing"));
+        assertThat(app.getRepositoryIds(),contains("io.skysail.server.domain.core.test.AThing"));
         assertThat(app.getRepository("io.skysail.server.domain.core.test.AThing"), is(aRepository));
     }
 

@@ -8,11 +8,11 @@ import java.util.List;
 
 import org.stringtemplate.v4.ST;
 
-public class SkysailApplicationCompiler2 extends SkysailCompiler2 {
+public class SkysailApplicationCompiler extends SkysailCompiler {
 
     private String applicationClassName;
 
-    public SkysailApplicationCompiler2(CodegenApplicationModel applicationModel, STGroupBundleDir stGroup) {
+    public SkysailApplicationCompiler(CodegenApplicationModel applicationModel, STGroupBundleDir stGroup) {
         super(applicationModel, stGroup);
     }
 

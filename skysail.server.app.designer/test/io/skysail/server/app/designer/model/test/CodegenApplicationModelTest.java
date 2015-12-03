@@ -19,6 +19,7 @@ import io.skysail.server.app.designer.entities.Entity;
 import io.skysail.server.app.designer.fields.EntityField;
 import io.skysail.server.app.designer.model.*;
 import io.skysail.server.app.designer.repo.DesignerRepository;
+import io.skysail.server.domain.core.EntityModel;
 
 @RunWith(MockitoJUnitRunner.class)
 @Ignore
@@ -94,7 +95,7 @@ public class CodegenApplicationModelTest {
     public void simplest_model_is_empty() throws Exception {
         CodegenApplicationModel applicationModel = new CodegenApplicationModel(application, repo);
         assertThat(applicationModel.getApplicationName(), is(equalTo("testapp")));
-        assertThat(applicationModel.getEntityModels().size(), is(0));
+        assertThat(applicationModel.getEntityValues().size(), is(0));
     }
 
     @Test
@@ -104,9 +105,9 @@ public class CodegenApplicationModelTest {
         CodegenApplicationModel applicationModel = new CodegenApplicationModel(application, repo);
 
         assertThat(applicationModel.getApplicationName(), is(equalTo("testapp")));
-        assertThat(applicationModel.getEntityModels().size(), is(1));
+        assertThat(applicationModel.getEntityValues().size(), is(1));
 
-        CodegenEntityModel entityModel = applicationModel.getEntityModels().iterator().next();
+        CodegenEntityModel entityModel = (CodegenEntityModel) applicationModel.getEntityValues().iterator().next();
         assertThat(entityModel.getId(), is(equalTo("Bank")));
         assertThat(entityModel.getFields().size(), is(0));
         assertThat(entityModel.getReferences().size(), is(0));
@@ -124,7 +125,7 @@ public class CodegenApplicationModelTest {
 
         assertThat(applicationModel.getApplicationName(), is(equalTo("testapp")));
 
-        CodegenEntityModel entityModel = applicationModel.getEntityModels().iterator().next();
+        CodegenEntityModel entityModel = (CodegenEntityModel) applicationModel.getEntityValues().iterator().next();
         assertThat(entityModel.getId(), is(equalTo("Bank")));
         assertThat(entityModel.getFields().size(), is(1));
         assertThat(entityModel.getReferences().size(), is(0));
@@ -140,7 +141,7 @@ public class CodegenApplicationModelTest {
 
         assertThat(applicationModel.getApplicationName(), is(equalTo("testapp")));
 
-        CodegenEntityModel entityModel = applicationModel.getEntityModels().iterator().next();
+        CodegenEntityModel entityModel = (CodegenEntityModel) applicationModel.getEntityValues().iterator().next();
         assertThat(entityModel.getId(), is(equalTo("Bank")));
         assertThat(entityModel.getFields().size(), is(0));
         assertThat(entityModel.getReferences().size(), is(1));
@@ -167,8 +168,10 @@ public class CodegenApplicationModelTest {
 
         assertThat(applicationModel.getApplicationName(), is(equalTo("testapp")));
 
-        List<CodegenEntityModel> models = new ArrayList<>(applicationModel.getEntityModels());
-        List<String> entityModelNames = models.stream().map(CodegenEntityModel::getId).collect(Collectors.toList());
+        List<EntityModel> models = new ArrayList<>(applicationModel.getEntityValues());
+        List<String> entityModelNames = models.stream()
+                .map(CodegenEntityModel.class::cast)
+                .map(CodegenEntityModel::getId).collect(Collectors.toList());
 
         assertThat(entityModelNames, hasItem("Bank"));
         assertThat(entityModelNames, hasItem("Account"));

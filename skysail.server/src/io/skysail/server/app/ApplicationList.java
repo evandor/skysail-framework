@@ -2,7 +2,6 @@ package io.skysail.server.app;
 
 import java.text.DecimalFormat;
 import java.util.*;
-import java.util.concurrent.atomic.AtomicReference;
 
 import org.apache.commons.lang.Validate;
 import org.osgi.service.component.annotations.*;
@@ -35,7 +34,6 @@ import lombok.extern.slf4j.Slf4j;
 public class ApplicationList implements ApplicationListProvider { // NO_UCD (unused code)
 
     private volatile List<SkysailApplication> applications = new ArrayList<>();
-    private AtomicReference<ServiceListProvider> serviceListProviderRef = new AtomicReference<>();
     private SkysailRootApplication rootApplication;
     private Server riapServer = new Server(Protocol.RIAP);
     private SkysailComponent skysailComponent;
@@ -54,17 +52,6 @@ public class ApplicationList implements ApplicationListProvider { // NO_UCD (unu
         detachFromComponent(application);
         applications.remove(application);
         log.info("(- ApplicationModel) name '{}', count is {} now", application.getName(), formatSize(applications));
-    }
-
-    /** === The service list =================================== */
-
-    @Reference(policy = ReferencePolicy.DYNAMIC, cardinality = ReferenceCardinality.OPTIONAL)
-    public void setServiceListProvider(ServiceListProvider serviceListProvider) {
-        this.serviceListProviderRef.set(serviceListProvider);
-    }
-
-    public void unsetServiceListProvider(ServiceListProvider serviceListProvider) {
-        this.serviceListProviderRef.compareAndSet(serviceListProvider, null);
     }
 
     @Override

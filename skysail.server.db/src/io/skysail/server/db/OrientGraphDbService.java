@@ -1,18 +1,10 @@
 package io.skysail.server.db;
 
-import io.skysail.api.domain.Identifiable;
-import io.skysail.server.db.impl.*;
-import io.skysail.server.utils.SkysailBeanUtils;
-
 import java.lang.reflect.InvocationTargetException;
 import java.util.*;
 import java.util.stream.Collectors;
 
-import lombok.extern.slf4j.Slf4j;
-
 import org.osgi.service.component.ComponentContext;
-
-import aQute.bnd.annotation.component.*;
 
 import com.orientechnologies.orient.client.remote.OEngineRemote;
 import com.orientechnologies.orient.core.Orient;
@@ -35,8 +27,13 @@ import com.orientechnologies.orient.object.db.OObjectDatabaseTx;
 import com.orientechnologies.orient.object.metadata.schema.OSchemaProxyObject;
 import com.tinkerpop.blueprints.impls.orient.*;
 
+import aQute.bnd.annotation.component.*;
 import de.twenty11.skysail.server.core.osgi.EventHelper;
 import de.twenty11.skysail.server.events.EventHandler;
+import io.skysail.api.domain.Identifiable;
+import io.skysail.server.db.impl.*;
+import io.skysail.server.utils.SkysailBeanUtils;
+import lombok.extern.slf4j.Slf4j;
 
 @Component(immediate = true)
 @Slf4j
@@ -188,7 +185,8 @@ public class OrientGraphDbService extends AbstractOrientDbService implements DbS
             try {
                 bean.getClass().getMethod(setterName, List.class).invoke(bean, identifiables);
             } catch (Exception e) {
-                e.printStackTrace();
+                log.error(e.getMessage(), e);
+
             }
         });
     }
@@ -315,7 +313,7 @@ public class OrientGraphDbService extends AbstractOrientDbService implements DbS
                         "warning");
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            log.error(e.getMessage(), e);
         }
     }
 

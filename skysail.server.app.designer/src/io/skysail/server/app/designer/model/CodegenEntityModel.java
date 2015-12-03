@@ -16,12 +16,12 @@ public class CodegenEntityModel extends EntityModel {
     private final Set<ActionFieldModel> actionFields = new HashSet<>();
     private final Set<ReferenceModel> references = new HashSet<>();
     private String className;
-    private boolean rootEntity;
+    //private boolean rootEntity;
     private Optional<CodegenEntityModel> referencedBy;
 
     public CodegenEntityModel(Entity entity, String packageName) {
         super(packageName + "." + entity.getName());
-        rootEntity = entity.isRootEntity();
+        setAggregate(entity.isRootEntity());
     }
 
     public void addField(EntityField f) {
@@ -50,11 +50,7 @@ public class CodegenEntityModel extends EntityModel {
     public void setClassName(String entityClassName) {
         this.className = entityClassName;
     }
-
-    public boolean isRootEntity() {
-        return rootEntity;
-    }
-
+    
     public void setReferencedBy(@NonNull CodegenEntityModel entityModel) {
         if (referencedBy != null && referencedBy.get() != null) {
             throw new IllegalStateException("setReferencedBy was called before on this object");

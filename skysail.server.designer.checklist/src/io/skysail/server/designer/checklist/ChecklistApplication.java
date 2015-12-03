@@ -24,7 +24,7 @@ public class ChecklistApplication extends SkysailApplication implements Applicat
     private volatile EventAdmin eventAdmin;
 
     public ChecklistApplication() {
-        super("Checklist", new ApiVersion(1), Arrays.asList(io.skysail.server.designer.checklist.List.class));
+        super("Checklist", new ApiVersion(1), Arrays.asList());
         addToAppContext(ApplicationContextId.IMG, "/static/img/silk/page_link.png");
     }
 
@@ -36,11 +36,6 @@ public class ChecklistApplication extends SkysailApplication implements Applicat
     public void unsetRepositories(Repositories repo) {
         super.setRepositories(null);
     }
-
-    public ChecklistRepository getListRepository() {
-        return (ChecklistRepository) getRepository(io.skysail.server.designer.checklist.List.class);
-    }    
-
 
 
 

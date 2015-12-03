@@ -1,17 +1,16 @@
 package io.skysail.server.db;
 
+import java.util.*;
+import java.util.stream.Collectors;
+
+import org.restlet.engine.util.StringUtils;
+
 import io.skysail.api.domain.Identifiable;
 import io.skysail.api.repos.DbRepository;
 import io.skysail.server.queryfilter.Filter;
 import io.skysail.server.queryfilter.pagination.Pagination;
-
-import java.lang.reflect.*;
-import java.util.*;
-import java.util.stream.Collectors;
-
+import io.skysail.server.utils.ReflectionUtils;
 import lombok.extern.slf4j.Slf4j;
-
-import org.restlet.engine.util.StringUtils;
 
 @Slf4j
 public class GraphDbRepository<T extends Identifiable> implements DbRepository {
@@ -20,9 +19,9 @@ public class GraphDbRepository<T extends Identifiable> implements DbRepository {
 
     private Class<T> entityType;
 
+    @SuppressWarnings("unchecked")
     public GraphDbRepository() {
-        entityType = getParameterizedType();
-        //entityType = ReflectionUtils.getParameterizedType(getClass());
+        entityType = (Class<T>) ReflectionUtils.getParameterizedType(getClass());
     }
 
     public void activate(Class<?>... classes) {
@@ -37,13 +36,10 @@ public class GraphDbRepository<T extends Identifiable> implements DbRepository {
         });
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     public Class<Identifiable> getRootEntity() {
         return (Class<Identifiable>)entityType;
-    }
-
-    public void unsetDbService(DbService dbService) {
-        this.dbService = null;
     }
 
     public Object save(T entity, String... edges) {
@@ -55,6 +51,7 @@ public class GraphDbRepository<T extends Identifiable> implements DbRepository {
         return dbService.persist(entity);
     }
 
+    @Override
     public Object update(String id, Identifiable entity, String... edges) {
         return dbService.update(id, entity, edges);
     }
@@ -89,24 +86,6 @@ public class GraphDbRepository<T extends Identifiable> implements DbRepository {
         return dbService.findGraphs(entityType, sql, filter.getParams());
     }
 
-//    public List<T> findVertex(Filter filter) {
-//        return findVertex(filter, new Pagination());
-//    }
-
-//    public List<T> findVertex(Filter filter, Pagination pagination) {
-//        String sql = "SELECT * from " + entityType.getSimpleName() +
-//                (!StringUtils.isNullOrEmpty(filter.getPreparedStatement()) ? " WHERE "+filter.getPreparedStatement() : "") + " " +
-//                limitClause(pagination);
-//        List<Object> entities = dbService.findGraphs(sql, filter.getParams());
-//        List<T> result = new ArrayList<>();
-//        entities.stream().map(OrientVertex.class::cast).forEach(vertex -> {
-//            result.add(((OrientGraphDbService)dbService).vertexToBean(vertex, entityType));
-//        });
-//        return result;
-//    }
-
-
-
     protected String limitClause(Pagination pagination) {
         if (pagination == null) {
             return "";
@@ -120,21 +99,4 @@ public class GraphDbRepository<T extends Identifiable> implements DbRepository {
         return sb.toString();
     }
 
-
-    private Class<T> getParameterizedType() {
-        ParameterizedType parameterizedType = getParameterizedType(getClass());
-        Type firstActualTypeArgument = parameterizedType.getActualTypeArguments()[0];
-//        if (firstActualTypeArgument.getTypeName().startsWith("java.util.Map")) {
-//            return Map.class;
-//        }
-        return (Class<T>) firstActualTypeArgument;
-    }
-
-    private ParameterizedType getParameterizedType(Class<?> cls) {
-        Type genericSuperclass = cls.getGenericSuperclass();
-        if (genericSuperclass instanceof ParameterizedType) {
-            return (ParameterizedType) genericSuperclass;
-        }
-        return getParameterizedType(cls.getSuperclass());
-    }
 }

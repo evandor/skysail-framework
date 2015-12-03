@@ -21,14 +21,14 @@ import org.stringtemplate.v4.STGroupDir;
 
 @Slf4j
 @Getter
-public class SkysailCompiler2 {
+public class SkysailCompiler {
 
     @Getter
     protected boolean compiledSuccessfully = true;
     protected CodegenApplicationModel applicationModel;
     protected STGroupDir stGroupDir;
 
-    public SkysailCompiler2(CodegenApplicationModel applicationModel, STGroupBundleDir stGroup) {
+    public SkysailCompiler(CodegenApplicationModel applicationModel, STGroupBundleDir stGroup) {
         this.applicationModel = applicationModel;
         this.stGroupDir = stGroup;
     }

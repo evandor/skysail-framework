@@ -1,20 +1,16 @@
 package io.skysail.server.app.designer;
 
 import java.io.*;
-import java.lang.reflect.Method;
+import java.lang.reflect.*;
 import java.nio.file.*;
-import java.util.*;
-import java.util.concurrent.atomic.AtomicReference;
+import java.util.List;
 import java.util.stream.Collectors;
 
 import org.osgi.framework.Bundle;
 import org.osgi.service.component.ComponentContext;
-import org.osgi.service.event.EventAdmin;
 import org.stringtemplate.v4.ST;
 
 import de.twenty11.skysail.server.app.ApplicationProvider;
-import de.twenty11.skysail.server.core.osgi.EventHelper;
-import de.twenty11.skysail.server.core.restlet.SkysailRouter;
 import io.skysail.api.repos.DbRepository;
 import io.skysail.server.app.SkysailApplication;
 import io.skysail.server.app.designer.application.Application;
@@ -22,46 +18,49 @@ import io.skysail.server.app.designer.codegen.*;
 import io.skysail.server.app.designer.model.*;
 import io.skysail.server.app.designer.repo.DesignerRepository;
 import io.skysail.server.db.DbService;
+import io.skysail.server.domain.core.Repositories;
 import io.skysail.server.menus.MenuItemProvider;
 import io.skysail.server.utils.BundleUtils;
 import lombok.Getter;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 public class ApplicationCreator {
 
     private Bundle bundle;
-    private List<String> entityNames = new ArrayList<>();
-    private List<String> entityClassNames = new ArrayList<>();
     private STGroupBundleDir stGroup;
-    private SkysailApplicationCompiler2 skysailApplicationCompiler;
-    private String repositoryClassName;
+    private SkysailApplicationCompiler skysailApplicationCompiler;
+    private List<String> repositoryClassNames;
 
     @Getter
     private CodegenApplicationModel applicationModel;
+    private Repositories repos;
 
-    public ApplicationCreator(Application application, SkysailRouter router, DesignerRepository repo, Bundle bundle) {
+    public ApplicationCreator(Application application, DesignerRepository designerRepository, Repositories repos, Bundle bundle) {
+        this.repos = repos;
         this.bundle = bundle;
-        this.applicationModel = new CodegenApplicationModel(application, repo);
-        stGroup = new STGroupBundleDir(bundle, "/code2");
+        this.applicationModel = new CodegenApplicationModel(application, designerRepository);
+        stGroup = new STGroupBundleDir(bundle, "/code");
     }
 
-    public boolean create(EventAdmin eventAdminRef) {
-
+    public boolean create() {
         try {
             createProjectIfNeeded();
+            return createCode();
         } catch (IOException e1) {
-            e1.printStackTrace();
+            log.error(e1.getMessage(), e1);
         }
+        return false;
+    }
 
+    private boolean createCode() {
         InMemoryJavaCompiler.reset();
 
         List<RouteModel> routeModels = new EntityCreator(applicationModel).create(stGroup);
 
-        entityClassNames.addAll(applicationModel.getEntityModels().stream().map(CodegenEntityModel::getClassName).collect(Collectors.toList()));
-        entityNames.addAll(applicationModel.getEntityModels().stream().map(CodegenEntityModel::getId).collect(Collectors.toList()));
+        repositoryClassNames = new RepositoryCreator(applicationModel).create(stGroup);
 
-        repositoryClassName = new RepositoryCreator(applicationModel).create(stGroup);
-
-        skysailApplicationCompiler = new SkysailApplicationCompiler2(applicationModel, stGroup);
+        skysailApplicationCompiler = new SkysailApplicationCompiler(applicationModel, stGroup);
         skysailApplicationCompiler.createApplication(routeModels);
         skysailApplicationCompiler.compile(bundle.getBundleContext());
 
@@ -70,45 +69,56 @@ public class ApplicationCreator {
 
     synchronized void setupInMemoryBundle(DbService dbService, ComponentContext componentContext) {
         Class<?> applicationClass = skysailApplicationCompiler.getApplicationClass();
-        Class<?> repositoryClass = skysailApplicationCompiler.getClass(repositoryClassName);
+
+        List<Class<?>> repositoryClasses = repositoryClassNames.stream()
+                .map(repoName -> skysailApplicationCompiler.getClass(repoName)).collect(Collectors.toList());
 
         try {
             SkysailApplication applicationInstance = (SkysailApplication) applicationClass.newInstance();
-            DbRepository dbRepoInstance = (DbRepository) repositoryClass.newInstance();
-            //System.out.println(applicationInstance);
 
-            Method setDbServiceMethod = dbRepoInstance.getClass().getMethod("setDbService",
-                    new Class[] { DbService.class });
-            setDbServiceMethod.invoke(dbRepoInstance, dbService);
-
-//            Method setRepositoryMethod = applicationInstance.getClass().getMethod("setRepository",
-//                    new Class[] { DbRepository.class });
-//            setRepositoryMethod.invoke(applicationInstance, dbRepoInstance);
+            repositoryClasses.stream().forEach(repositoryClass -> {
+                try {
+                    DbRepository dbRepoInstance = (DbRepository) repositoryClass.newInstance();
+                    setDbServiceInRepository(dbService, dbRepoInstance);
+                    repos.setRepository(dbRepoInstance);
+                    setRepositoriesInApplication(applicationInstance);
+                    activateRepository(dbRepoInstance);
+                } catch (Exception e) {
+                    log.error(e.getMessage(), e);
+                }
+            });
 
             Method setComponentContextMethod = applicationInstance.getClass().getMethod("setComponentContext",
                     new Class[] { ComponentContext.class });
             setComponentContextMethod.invoke(applicationInstance, new Object[] { componentContext });
-
-            Method activateRepoInstance = dbRepoInstance.getClass().getMethod("activate", new Class[] {});
-            activateRepoInstance.invoke(dbRepoInstance, new Object[] {});
 
             bundle.getBundleContext().registerService(
                     new String[] { ApplicationProvider.class.getName(), MenuItemProvider.class.getName() },
                     applicationInstance, null);
 
         } catch (Exception e1) {
-            e1.printStackTrace();
+            log.error(e1.getMessage(), e1);
         }
     }
 
-    private void fireEvent(AtomicReference<EventAdmin> eventAdminRef, String msg) {
-        if (eventAdminRef == null || eventAdminRef.get() == null) {
-            return;
-        }
-        new EventHelper(eventAdminRef.get())//
-                .channel(EventHelper.GUI_MSG)//
-                .info(msg)//
-                .fire();
+    private void activateRepository(DbRepository dbRepoInstance)
+            throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
+        Method activateRepoInstance = dbRepoInstance.getClass().getMethod("activate", new Class[] {});
+        activateRepoInstance.invoke(dbRepoInstance, new Object[] {});
+    }
+
+    private void setRepositoriesInApplication(SkysailApplication applicationInstance)
+            throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
+        Method setRepositoryMethod = applicationInstance.getClass().getMethod("setRepositories",
+                new Class[] { Repositories.class });
+        setRepositoryMethod.invoke(applicationInstance, repos);
+    }
+
+    private void setDbServiceInRepository(DbService dbService, DbRepository dbRepoInstance)
+            throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
+        Method setDbServiceMethod = dbRepoInstance.getClass().getMethod("setDbService",
+                new Class[] { DbService.class });
+        setDbServiceMethod.invoke(dbRepoInstance, dbService);
     }
 
     private void createProjectIfNeeded() throws IOException {
@@ -132,7 +142,6 @@ public class ApplicationCreator {
         Files.write(Paths.get(path + "/bndrun.bnd"), bndrun.render().getBytes());
 
         ST gradle = getStringTemplateIndex("gradle");
-        //gradle.add("projectname", applicationModel.getProjectName());
         Files.write(Paths.get(path + "/build.gradle"), gradle.render().getBytes());
 
         new File(Paths.get(path + "/test").toString()).mkdir();
@@ -151,15 +160,14 @@ public class ApplicationCreator {
         try {
             Files.write(Paths.get(path + "/config/local/" + filename), cfgFile.getBytes());
         } catch (IOException e) {
-            e.printStackTrace();
+            log.error(e.getMessage(), e);
         }
     }
 
     private ST getStringTemplateIndex(String root) {
         ST javafile = stGroup.getInstanceOf(root);
-        //javafile.add("application", applicationModel);
+        // javafile.add("application", applicationModel);
         return javafile;
     }
-
 
 }

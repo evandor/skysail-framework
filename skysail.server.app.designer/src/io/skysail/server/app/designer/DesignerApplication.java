@@ -21,6 +21,7 @@ import io.skysail.server.app.designer.fields.EntityField;
 import io.skysail.server.app.designer.fields.resources.*;
 import io.skysail.server.app.designer.repo.DesignerRepository;
 import io.skysail.server.db.DbService;
+import io.skysail.server.domain.core.Repositories;
 import io.skysail.server.menus.*;
 import lombok.Getter;
 
@@ -37,11 +38,23 @@ public class DesignerApplication extends SkysailApplication implements MenuItemP
     @org.osgi.service.component.annotations.Reference(cardinality = ReferenceCardinality.OPTIONAL)
     @Getter
     private volatile EventAdmin eventAdmin;
+    private Repositories repos;
 
     public DesignerApplication() {
         super(APP_NAME);
         addToAppContext(ApplicationContextId.IMG, "/static/img/silk/paintbrush.png");
     }
+    
+    @Override
+    @Reference(policy = ReferencePolicy.DYNAMIC, cardinality = ReferenceCardinality.MANDATORY, unbind = "unsetRepositories")
+    public void setRepositories(Repositories repos) {
+       this.repos = repos;
+    }
+
+    public void unsetRepositories(Repositories repo) {
+        this.repos = null;
+    }
+
 
     @Override
     protected void attach() {
@@ -110,8 +123,8 @@ public class DesignerApplication extends SkysailApplication implements MenuItemP
 
     public void compileApplication(String appId) {
         getRepository().findAll(Application.class).stream().filter(app -> app.getId().equals("#"+appId)).findFirst().ifPresent(app -> {
-            ApplicationCreator applicationCreator = new ApplicationCreator(app, router, repo, getBundle());
-            if (applicationCreator.create(getEventAdmin())) {
+            ApplicationCreator applicationCreator = new ApplicationCreator(app, repo, repos, getBundle());
+            if (applicationCreator.create()) {
                 applicationCreator.setupInMemoryBundle(dbService, getComponentContext());
             }
         });

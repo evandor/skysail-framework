@@ -30,7 +30,7 @@ public class EntityProcessor extends Processors {
         String applicationName = getOneAndOnlyApplicationName(generateResourceElements);
         JavaApplication application = new JavaApplication(applicationName);
         analyse(application, roundEnv, generateResourceElements);
-        application.getEntityNames().stream()
+        application.getEntityIds().stream()
             .map(e -> application.getEntity(e))
             .forEach(entity -> {
             try {

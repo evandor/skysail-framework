@@ -35,7 +35,8 @@ public class BookmarksApplication extends SkysailApplication implements Applicat
         router.attach(new RouteBuilder("/bookmarks/{id}", BookmarkResource.class));
         router.attach(new RouteBuilder("/bookmarks/{id}/", PutBookmarkResource.class));
     }
-
+    
+    @Override
     @Reference(policy = ReferencePolicy.DYNAMIC, cardinality = ReferenceCardinality.MANDATORY, unbind = "unsetRepositories")
     public void setRepositories(Repositories repos) {
        super.setRepositories(repos);

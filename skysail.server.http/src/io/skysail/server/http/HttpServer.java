@@ -3,13 +3,13 @@ package io.skysail.server.http;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.text.DecimalFormat;
-import java.util.*;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.stream.Collectors;
 
-import org.osgi.service.cm.*;
 import org.osgi.service.component.*;
 import org.osgi.service.component.annotations.*;
+import org.osgi.service.metatype.annotations.Designate;
 import org.restlet.*;
 import org.restlet.data.Protocol;
 import org.restlet.engine.Engine;
@@ -24,17 +24,13 @@ import de.twenty11.skysail.server.services.*;
 import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
 
-@org.osgi.service.component.annotations.Component(
-        immediate = true, 
-        configurationPolicy = ConfigurationPolicy.OPTIONAL,
-        property = { "event.topics=de/twenty11/skysail/server/configuration/UPDATED" })
+@org.osgi.service.component.annotations.Component(immediate = true, configurationPolicy = ConfigurationPolicy.OPTIONAL, configurationPid = "server", property = {
+        "event.topics=de/twenty11/skysail/server/configuration/UPDATED" })
+@Designate(ocd = ServerConfig.class)
 @Slf4j
-public class HttpServer extends ServerResource implements RestletServicesProvider, SkysailComponentProvider,
-        ManagedService, InstallationProvider {
+public class HttpServer extends ServerResource
+        implements RestletServicesProvider, SkysailComponentProvider, InstallationProvider {
 
-    private static final String DEFAULT_PORT = "2015";
-
-    private static Dictionary<String, ?> properties;
     private static SkysailComponent restletComponent;
     private static Server server;
 
@@ -42,12 +38,7 @@ public class HttpServer extends ServerResource implements RestletServicesProvide
     private volatile boolean serverActive = false;
     private volatile SkysailRootApplication defaultApplication;
     private volatile List<ConverterHelper> registeredConverters;
-    private volatile ConfigurationAdmin configurationAdmin;
-    private volatile boolean configurationProvided = false;
-
-    private Thread loggerThread;
-
-    private String runningOnPort;
+    private int runningOnPort;
 
     public HttpServer() {
         Engine.setRestletLogLevel(Level.ALL);
@@ -56,7 +47,8 @@ public class HttpServer extends ServerResource implements RestletServicesProvide
     }
 
     /**
-     * We add an overwritten implementation of the jackson converter, see @link {@link SkysailJacksonConverter}
+     * We add an overwritten implementation of the jackson converter, see @link
+     * {@link SkysailJacksonConverter}
      */
     private void removeDefaultJacksonConverter() {
         List<ConverterHelper> converters = Engine.getInstance().getRegisteredConverters().stream().filter(converter -> {
@@ -67,23 +59,20 @@ public class HttpServer extends ServerResource implements RestletServicesProvide
     }
 
     @Activate
-    public void activate(ComponentContext componentContext) {
+    public void activate(ServerConfig serverConfig, ComponentContext componentContext) {
         log.info("Activating {}", this.getClass().getName());
         this.componentContext = componentContext;
         if (restletComponent == null) {
             restletComponent = new SkysailComponent();
         }
-        if (properties == null) {
-            scheduleCreationOfDefaultConfiguration();
-        }
+        configure(serverConfig);
         log.debug("Started with system properties:");
         log.debug("===============================");
         System.getProperties().entrySet().stream()
-            .sorted((e1,e2) -> e1.getKey().toString().compareTo(e2.getKey().toString()))
-            .forEach(entry -> {
-                Object value = entry.getValue();
-                log.debug("  {} => '{}'", entry.getKey(), value == null ? "<null>" : value.toString());
-            });
+                .sorted((e1, e2) -> e1.getKey().toString().compareTo(e2.getKey().toString())).forEach(entry -> {
+                    Object value = entry.getValue();
+                    log.debug("  {} => '{}'", entry.getKey(), value == null ? "<null>" : value.toString());
+                });
     }
 
     @Deactivate
@@ -112,16 +101,6 @@ public class HttpServer extends ServerResource implements RestletServicesProvide
         this.componentContext = null;
     }
 
-    // --- ConfigurationAdmin ------------------------------------------------
-    @Reference(cardinality = ReferenceCardinality.MANDATORY, policy = ReferencePolicy.DYNAMIC)
-    public void setConfigurationAdmin(ConfigurationAdmin configurationAdmin) {
-        this.configurationAdmin = configurationAdmin;
-    }
-
-    public void unsetConfigurationAdmin(ConfigurationAdmin configurationAdmin) {
-        this.configurationAdmin = null;
-    }
-
     // --- OsgiConverterHelper
     // ------------------------------------------------------
 
@@ -129,8 +108,7 @@ public class HttpServer extends ServerResource implements RestletServicesProvide
     public synchronized void addConverterHelper(OsgiConverterHelper converterHelper) {
         if (converterHelper instanceof ConverterHelper) {
             this.registeredConverters.add((ConverterHelper) converterHelper);
-            log.info("(+ Converter)   (#{}) with name '{}'",  
-                    formatSize(registeredConverters), 
+            log.info("(+ Converter)   (#{}) with name '{}'", formatSize(registeredConverters),
                     converterHelper.getClass().getName());
         }
     }
@@ -138,8 +116,7 @@ public class HttpServer extends ServerResource implements RestletServicesProvide
     public synchronized void removeConverterHelper(OsgiConverterHelper converterHelper) {
         if (converterHelper instanceof ConverterHelper) {
             this.registeredConverters.remove(converterHelper);
-            log.info("(- Converter)   name '{}', count is {} now",
-                    registeredConverters.getClass().getName(), 
+            log.info("(- Converter)   name '{}', count is {} now", registeredConverters.getClass().getName(),
                     formatSize(registeredConverters));
         }
     }
@@ -156,41 +133,49 @@ public class HttpServer extends ServerResource implements RestletServicesProvide
         return defaultApplication.getConverterService();
     }
 
-    @Override
-    public void updated(Dictionary<String, ?> properties) {
-        HttpServer.properties = properties;
-        if (properties != null) {
-            log.info("configuration was provided");
-            configurationProvided = true;
-            runningOnPort = (String) properties.get("port");
-            if (!serverActive && runningOnPort != null) {
-                if (runningOnPort.equals("0")) {
-                    runningOnPort = findAvailablePort();
-                }
-                startHttpServer(runningOnPort);
+    private void configure(ServerConfig serverConfig) {
+        log.info("configuration was provided");
+        runningOnPort = serverConfig.port();
+        if (!serverActive) {
+            if (serverConfig.port() == 0) {
+                runningOnPort = findAvailablePort();
             }
+            startHttpServer(runningOnPort);
         }
+
     }
 
+    // @Override
+    // public void updated(Dictionary<String, ?> properties) {
+    // HttpServer.properties = properties;
+    // if (properties != null) {
+    // log.info("configuration was provided");
+    // configurationProvided = true;
+    // runningOnPort = (String) properties.get("port");
+    // if (!serverActive && runningOnPort != null) {
+    // if (runningOnPort.equals("0")) {
+    // runningOnPort = findAvailablePort();
+    // }
+    // startHttpServer(runningOnPort);
+    // }
+    // }
+    // }
+
     @Override
-    public String getPort() {
+    public int getPort() {
         return runningOnPort;
     }
 
     @Override
     public String getProductName() {
-        String productName = (String)properties.get("productName");
-        if (productName == null) {
-            productName = "Skysail";
-        }
-        return productName;
+        return "Skysail";
     }
 
-    private String findAvailablePort() {
+    private int findAvailablePort() {
         ServerSocket socket = null;
         try {
             socket = new ServerSocket(0);
-            return Integer.valueOf(socket.getLocalPort()).toString();
+            return socket.getLocalPort();
         } catch (IOException e) {
             log.error(e.getMessage(), e);
         } finally {
@@ -201,7 +186,7 @@ public class HttpServer extends ServerResource implements RestletServicesProvide
                 }
             }
         }
-        return null;
+        return 2015;
     }
 
     @Override
@@ -209,41 +194,41 @@ public class HttpServer extends ServerResource implements RestletServicesProvide
         return restletComponent;
     }
 
-    private void scheduleCreationOfDefaultConfiguration() {
+//    private void scheduleCreationOfDefaultConfiguration() {
+//
+//        Runnable runnable = () -> {
+//            createDefaultConfigAfterWaiting(5000);
+//        };
+//        loggerThread = new Thread(runnable);
+//        loggerThread.start();
+//    }
 
-        Runnable runnable = () -> {
-            createDefaultConfigAfterWaiting(5000);
-        };
-        loggerThread = new Thread(runnable);
-        loggerThread.start();
-    }
+//    private void createDefaultConfigAfterWaiting(int ms) {
+//        try {
+//            Thread.sleep(ms);
+//
+//            if (configurationProvided) {
+//                return;
+//            }
+//            log.info("creating default configuration after waiting for {}ms for provided configuration", ms);
+//
+//            Configuration config = configurationAdmin.getConfiguration(this.getClass().getName());
+//            Dictionary<String, Object> props = config.getProperties();
+//            if (props == null) {
+//                props = new Hashtable<String, Object>();
+//            }
+//            props.put("port", DEFAULT_PORT);
+//            props.put("service.pid", this.getClass().getName());
+//            config.update(props);
+//        } catch (IOException e) {
+//            log.error(e.getMessage(), e);
+//        } catch (InterruptedException e) {
+//            log.error(e.getMessage(), e);
+//        }
+//
+//    }
 
-    private void createDefaultConfigAfterWaiting(int ms) {
-        try {
-            Thread.sleep(ms);
-
-            if (configurationProvided) {
-                return;
-            }
-            log.info("creating default configuration after waiting for {}ms for provided configuration", ms);
-
-            Configuration config = configurationAdmin.getConfiguration(this.getClass().getName());
-            Dictionary<String, Object> props = config.getProperties();
-            if (props == null) {
-                props = new Hashtable<String, Object>();
-            }
-            props.put("port", DEFAULT_PORT);
-            props.put("service.pid", this.getClass().getName());
-            config.update(props);
-        } catch (IOException e) {
-            log.error(e.getMessage(), e);
-        } catch (InterruptedException e) {
-            log.error(e.getMessage(), e);
-        }
-
-    }
-
-    private void startHttpServer(String port) {
+    private void startHttpServer(int port) {
         log.info("");
         log.info("====================================");
         log.info("Starting skysail server on port {}", port);
@@ -254,9 +239,10 @@ public class HttpServer extends ServerResource implements RestletServicesProvide
             try {
                 server = new Server(new Context(), Protocol.HTTP, Integer.valueOf(port), restletComponent);
                 server.getContext().getParameters().add("useForwardedForHeader", "true");
-                //server.getContext().getParameters().add("spdy.version", "2");
-                //server.getContext().getParameters().add("spdy.pushStrategy", "referrer");
-                //server.getContext().getParameters().add("tracing", "true");
+                // server.getContext().getParameters().add("spdy.version", "2");
+                // server.getContext().getParameters().add("spdy.pushStrategy",
+                // "referrer");
+                // server.getContext().getParameters().add("tracing", "true");
 
                 server.start();
             } catch (Exception e) {

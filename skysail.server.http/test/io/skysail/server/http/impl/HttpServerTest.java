@@ -1,12 +1,12 @@
 package io.skysail.server.http.impl;
 
-import io.skysail.server.http.HttpServer;
+import java.lang.annotation.Annotation;
 
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.*;
 import org.mockito.Mockito;
 import org.osgi.service.component.ComponentContext;
+
+import io.skysail.server.http.*;
 
 public class HttpServerTest {
 
@@ -22,7 +22,18 @@ public class HttpServerTest {
     public void testName() throws Exception {
         HttpServer httpServer = new HttpServer();
         ComponentContext componentContext = Mockito.mock(ComponentContext.class);
-        httpServer.activate(componentContext);
+        httpServer.activate(new ServerConfig() {
+            
+            @Override
+            public Class<? extends Annotation> annotationType() {
+                return null;
+            }
+            
+            @Override
+            public int port() {
+                return 0;
+            }
+        }, componentContext);
     }
 
 }

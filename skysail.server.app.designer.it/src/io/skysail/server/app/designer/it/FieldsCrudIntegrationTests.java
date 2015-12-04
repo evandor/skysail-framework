@@ -2,15 +2,16 @@ package io.skysail.server.app.designer.it;
 
 import static org.hamcrest.CoreMatchers.containsString;
 import static org.junit.Assert.assertThat;
-import io.skysail.client.testsupport.BrowserTests;
-import io.skysail.server.app.designer.application.Application;
-import io.skysail.server.app.designer.fields.EntityField;
-import io.skysail.server.app.designer.it.browser.*;
 
 import java.math.BigInteger;
 
 import org.junit.*;
 import org.restlet.data.MediaType;
+
+import io.skysail.client.testsupport.BrowserTests;
+import io.skysail.server.app.designer.application.Application;
+import io.skysail.server.app.designer.fields.EntityField;
+import io.skysail.server.app.designer.it.browser.*;
 
 /**
  * Integration tests for creating, reading, updating, and deleting Entities.
@@ -26,7 +27,7 @@ public class FieldsCrudIntegrationTests extends BrowserTests<EntityFieldsBrowser
 
     @Before
     public void setUp() {
-        String port = determinePort();
+        int port = determinePort();
         browser = new EntityFieldsBrowser(MediaType.APPLICATION_JSON, port);
         browser.setUser("admin");
         field = browser.createRandomField();

@@ -2,7 +2,7 @@ package io.skysail.server.http;
 
 public interface InstallationProvider {
 
-    String getPort();
+    int getPort();
 
     String getProductName();
 }

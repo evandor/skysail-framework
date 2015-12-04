@@ -1,0 +1,9 @@
+Application: 
+    name        : checklist
+    packageName : io.skysail.simple
+    path        : generated
+    projectName : projectName
+    entities    :
+        list:
+            fields:
+                listname

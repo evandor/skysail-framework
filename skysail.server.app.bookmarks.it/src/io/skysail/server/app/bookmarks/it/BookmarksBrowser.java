@@ -1,21 +1,17 @@
 package io.skysail.server.app.bookmarks.it;
 
-import io.skysail.api.links.LinkRelation;
-import io.skysail.client.testsupport.ApplicationBrowser;
-import io.skysail.client.testsupport.ApplicationClient;
-import io.skysail.server.app.bookmarks.Bookmark;
-import io.skysail.server.app.bookmarks.BookmarksApplication;
-import lombok.extern.slf4j.Slf4j;
-
-import org.restlet.data.Form;
-import org.restlet.data.MediaType;
-import org.restlet.data.Reference;
+import org.restlet.data.*;
 import org.restlet.representation.Representation;
+
+import io.skysail.api.links.LinkRelation;
+import io.skysail.client.testsupport.*;
+import io.skysail.server.app.bookmarks.*;
+import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public class BookmarksBrowser extends ApplicationBrowser<BookmarksBrowser, Bookmark> {
 
-    public BookmarksBrowser(MediaType mediaType, String port) {
+    public BookmarksBrowser(MediaType mediaType, int port) {
         super(BookmarksApplication.APP_NAME, mediaType, port);
     }
 

@@ -1,20 +1,19 @@
 package io.skysail.server.app.designer.it.browser;
 
-import io.skysail.client.testsupport.*;
-import io.skysail.server.app.designer.DesignerApplication;
-import io.skysail.server.app.designer.entities.Entity;
-
 import java.math.BigInteger;
-
-import lombok.extern.slf4j.Slf4j;
 
 import org.restlet.data.*;
 import org.restlet.representation.Representation;
 
+import io.skysail.client.testsupport.*;
+import io.skysail.server.app.designer.DesignerApplication;
+import io.skysail.server.app.designer.entities.Entity;
+import lombok.extern.slf4j.Slf4j;
+
 @Slf4j
 public class EntitiesBrowser extends ApplicationBrowser<EntitiesBrowser, Entity> {
 
-    public EntitiesBrowser(MediaType mediaType, String port) {
+    public EntitiesBrowser(MediaType mediaType, int port) {
         super(DesignerApplication.APP_NAME, mediaType, port);
         parentEntityBrowser = new ApplicationsBrowser(MediaType.APPLICATION_JSON, port);
     }

@@ -2,10 +2,10 @@ package io.skysail.client.testsupport;
 
 import java.security.SecureRandom;
 
+import org.restlet.data.*;
+
 import lombok.*;
 import lombok.extern.slf4j.Slf4j;
-
-import org.restlet.data.*;
 
 @Slf4j
 public abstract class ApplicationBrowser<T extends ApplicationBrowser<?, U>, U> {
@@ -31,10 +31,10 @@ public abstract class ApplicationBrowser<T extends ApplicationBrowser<?, U>, U> 
     private String url;
 
     public ApplicationBrowser(String url) {
-        this(url, MediaType.TEXT_HTML, "2014");
+        this(url, MediaType.TEXT_HTML, 2014);
     }
 
-    public ApplicationBrowser(String appName, MediaType mediaType, String port) {
+    public ApplicationBrowser(String appName, MediaType mediaType, int port) {
         this.mediaType = mediaType;
         url = HOST + ":" + port;
         log.info("{}creating new browser client with url '{}' for Application '{}' and mediaType '{}'",

@@ -1,14 +1,10 @@
 package io.skysail.client.testsupport;
 
-import io.skysail.server.http.InstallationProvider;
-
 import java.io.*;
 import java.nio.file.*;
 import java.security.SecureRandom;
 import java.util.Arrays;
 import java.util.stream.Collectors;
-
-import lombok.extern.slf4j.Slf4j;
 
 import org.junit.Rule;
 import org.junit.rules.*;
@@ -17,6 +13,9 @@ import org.osgi.framework.*;
 import org.restlet.data.MediaType;
 import org.restlet.engine.resource.VariantInfo;
 import org.restlet.representation.Variant;
+
+import io.skysail.server.http.InstallationProvider;
+import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public class TestsupportTestBase {
@@ -42,7 +41,7 @@ public class TestsupportTestBase {
         }
     };
 
-    protected String determinePort() {
+    protected int determinePort() {
         log.info("setting up test case...");
         ServiceReference<InstallationProvider> serviceReference = this.thisBundle.getBundleContext().getServiceReference(InstallationProvider.class);
         InstallationProvider service = thisBundle.getBundleContext().getService(serviceReference);

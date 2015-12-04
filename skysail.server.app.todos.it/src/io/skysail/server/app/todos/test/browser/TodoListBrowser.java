@@ -2,18 +2,19 @@ package io.skysail.server.app.todos.test.browser;
 
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.assertThat;
-import io.skysail.client.testsupport.*;
-import io.skysail.server.app.todos.*;
-import lombok.extern.slf4j.Slf4j;
 
 import org.restlet.data.*;
 import org.restlet.representation.Representation;
 import org.restlet.util.Series;
 
+import io.skysail.client.testsupport.*;
+import io.skysail.server.app.todos.*;
+import lombok.extern.slf4j.Slf4j;
+
 @Slf4j
 public class TodoListBrowser extends ApplicationBrowser<TodoListBrowser, TodoList> {
 
-    public TodoListBrowser(MediaType mediaType, String port) {
+    public TodoListBrowser(MediaType mediaType, int port) {
         super(TodoApplication.APP_NAME, mediaType, port);
     }
 

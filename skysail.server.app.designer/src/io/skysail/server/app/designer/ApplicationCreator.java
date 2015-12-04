@@ -27,20 +27,22 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class ApplicationCreator {
 
-    private Bundle bundle;
-    private STGroupBundleDir stGroup;
+    private final Bundle bundle;
+    private final STGroupBundleDir stGroup;
+    private final Repositories repos;
+
     private SkysailApplicationCompiler skysailApplicationCompiler;
     private List<String> repositoryClassNames;
+
+    @Getter
+    private final CodegenApplicationModel applicationModel;
+
 
     @Setter
     private BundleResourceReader bundleResourceReader = new DefaultBundleResourceReader();
     
     @Setter
     private JavaCompiler javaCompiler = new DefaultJavaCompiler();
-    
-    @Getter
-    private CodegenApplicationModel applicationModel;
-    private Repositories repos;
 
     public ApplicationCreator(Application application, DesignerRepository designerRepository, Repositories repos, Bundle bundle) {
         this.repos = repos;
@@ -49,10 +51,12 @@ public class ApplicationCreator {
         stGroup = new STGroupBundleDir(bundle, "/code");
     }
 
-    public boolean create() {
+    public boolean createApplication(DbService dbService, ComponentContext componentContext) {
         try {
             createProjectIfNeeded();
-            return createCode();
+            if (createCode()) {
+                setupInMemoryBundle(dbService, componentContext);
+            }
         } catch (IOException e1) {
             log.error(e1.getMessage(), e1);
         }
@@ -60,7 +64,7 @@ public class ApplicationCreator {
     }
 
     private boolean createCode() {
-        InMemoryJavaCompiler.reset();
+        javaCompiler.reset();
 
         List<RouteModel> routeModels = new EntityCreator(applicationModel, javaCompiler).create(stGroup);
 
@@ -73,7 +77,7 @@ public class ApplicationCreator {
         return skysailApplicationCompiler.isCompiledSuccessfully();
     }
 
-    public synchronized void setupInMemoryBundle(DbService dbService, ComponentContext componentContext) {
+    private synchronized void setupInMemoryBundle(DbService dbService, ComponentContext componentContext) {
         Class<?> applicationClass = skysailApplicationCompiler.getApplicationClass();
 
         List<Class<?>> repositoryClasses = repositoryClassNames.stream()

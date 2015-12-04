@@ -7,7 +7,6 @@ import org.junit.*;
 import org.junit.rules.ExpectedException;
 
 import io.skysail.server.app.designer.entities.Entity;
-import io.skysail.server.app.designer.fields.EntityField;
 import io.skysail.server.app.designer.model.CodegenEntityModel;
 
 public class CodegenEntityModelTest {
@@ -27,20 +26,20 @@ public class CodegenEntityModelTest {
         assertThat(entityModel.getId(),is(equalTo("pkg.name")));
     }
 
-    @Test
-    public void adding_field_succeeds() {
-        EntityField entityField = new EntityField();
-        entityField.setName("entityField");
-        entityModel.addField(entityField);
-        assertThat(entityModel.getFields().size(),is(1));
-    }
-    
-    @Test
-    public void adding_field_twice_throws_exception() {
-        thrown.expect(IllegalStateException.class);
-        EntityField entityField = new EntityField();
-        entityField.setName("entityField");
-        entityModel.addField(entityField);
-        entityModel.addField(entityField);
-    }
+//    @Test
+//    public void adding_field_succeeds() {
+//        EntityField entityField = new EntityField();
+//        entityField.setName("entityField");
+//        entityModel.addField(entityField);
+//        assertThat(entityModel.getFields().size(),is(1));
+//    }
+//    
+//    @Test
+//    public void adding_field_twice_throws_exception() {
+//        thrown.expect(IllegalStateException.class);
+//        EntityField entityField = new EntityField();
+//        entityField.setName("entityField");
+//        entityModel.addField(entityField);
+//        entityModel.addField(entityField);
+//    }
 }

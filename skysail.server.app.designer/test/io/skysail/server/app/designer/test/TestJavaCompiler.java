@@ -8,7 +8,7 @@ public class TestJavaCompiler implements JavaCompiler {
 
     @Override
     public boolean compile(BundleContext bundleContext) {
-        return false;
+        return true;
     }
 
     @Override

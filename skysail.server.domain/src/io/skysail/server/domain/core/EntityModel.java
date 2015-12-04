@@ -53,6 +53,10 @@ public class EntityModel implements Identifiable {
     public FieldModel getField(String identifier) {
         return fields.get(identifier);
     }
+    
+    public Collection<FieldModel> getFieldValues() {
+        return fields.values();
+    }
 
     public String getPackageName() {
         int indexOfLastDot = id.lastIndexOf(".");

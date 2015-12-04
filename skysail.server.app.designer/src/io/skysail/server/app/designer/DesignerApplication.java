@@ -124,9 +124,7 @@ public class DesignerApplication extends SkysailApplication implements MenuItemP
     public void compileApplication(String appId) {
         getRepository().findAll(Application.class).stream().filter(app -> app.getId().equals("#"+appId)).findFirst().ifPresent(app -> {
             ApplicationCreator applicationCreator = new ApplicationCreator(app, repo, repos, getBundle());
-            if (applicationCreator.create()) {
-                applicationCreator.setupInMemoryBundle(dbService, getComponentContext());
-            }
+            applicationCreator.createApplication(dbService, getComponentContext());
         });
     }
 

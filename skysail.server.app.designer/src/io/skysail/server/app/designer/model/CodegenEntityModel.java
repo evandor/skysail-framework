@@ -17,17 +17,45 @@ public class CodegenEntityModel extends EntityModel {
     private String className;
     private Optional<CodegenEntityModel> referencedBy;
 
-    public CodegenEntityModel(Entity entity, String packageName) {
-        super(packageName + "." + entity.getName());
-        setAggregate(entity.isRootEntity());
+    public CodegenEntityModel(Entity entityFromDb, String packageName) {
+        super(packageName + "." + entityFromDb.getName());
+        setAggregate(entityFromDb.isRootEntity());
+        setupModel(entityFromDb);
     }
 
-    public void addField(EntityField f) {
-        log.info("CodegenEntityModel:      adding Field '{}' to Entity '{}'", f.getName(), f.getId());
-        if (getFields().get(f.getName()) != null) {
-            throw new IllegalStateException("field '" + f.getName() + "' already exists!");
-        }
-        getFields().put(f.getName(), new CodegenFieldModel(f));
+    private void setupModel(Entity entityFromDb) {
+        entityFromDb.getFields().stream().forEach(fieldFromDb -> {
+            createFieldModel(fieldFromDb);
+        });
+    }
+
+    private void createFieldModel(EntityField fieldFromDb) {
+        CodegenFieldModel fieldModel = addField(fieldFromDb);
+
+//        dbEntity.getFields().stream().forEach(f -> {
+//            entityModel.add(create(f));
+//        });
+//        
+//        Collection<FieldModel> fields = entityModel.getFieldValues();//getFields(repo, dbEntity.getName(), application.getId());
+//        
+//        for (FieldModel fieldModel : fields) {
+//            entityModel.addField(createEntityField(fieldModel));
+//        }
+    }
+
+//    public void addField(EntityField f) {
+//        log.info("CodegenEntityModel:      adding Field '{}' to Entity '{}'", f.getName(), f.getId());
+//        if (getFields().get(f.getName()) != null) {
+//            throw new IllegalStateException("field '" + f.getName() + "' already exists!");
+//        }
+//        getFields().put(f.getName(), new CodegenFieldModel(f));
+//    }
+
+    private CodegenFieldModel addField(EntityField fieldFromDb) {
+        log.info("CodegenApplicationModel: adding Field '{}'", fieldFromDb);
+        CodegenFieldModel fieldModel = new CodegenFieldModel(fieldFromDb);
+        add(fieldModel);
+        return fieldModel;
     }
 
     public void addActionField(ActionEntityField f) {

@@ -5,6 +5,7 @@ import static org.junit.Assert.assertThat;
 import static org.mockito.Mockito.when;
 
 import java.net.URL;
+import java.nio.file.Paths;
 
 import org.junit.*;
 import org.junit.runner.RunWith;
@@ -15,6 +16,7 @@ import org.osgi.service.component.ComponentContext;
 
 import io.skysail.server.app.designer.ApplicationCreator;
 import io.skysail.server.app.designer.application.Application;
+import io.skysail.server.app.designer.entities.Entity;
 import io.skysail.server.app.designer.model.CodegenApplicationModel;
 import io.skysail.server.app.designer.repo.DesignerRepository;
 import io.skysail.server.db.DbService;
@@ -43,14 +45,15 @@ public class ApplicationCreatorTest {
 
     @Before
     public void setUp() throws Exception {
-        when(bundle.getResource("/code")).thenReturn(new URL("file:///C:/git/skysail-framework/skysail.server.app.designer/resources/code"));
+        String currentDir = Paths.get(".", "resources", "code").toAbsolutePath().toString();
+        when(bundle.getResource("/code")).thenReturn(new URL("file:///" + currentDir));
     }
 
     @Test
-    public void createJavaApplication_from_DB_Application_Definition() {
+    public void creates_ApplicationModel_from_DB_Application_Definition() {
         setupApplicationCreator(new Application("simpleApp", "io.skysail.simple", "generated", "projectName"));
 
-        applicationCreator.create();
+        applicationCreator.createApplication(dbService, componentContext);
         
         CodegenApplicationModel applicationModel = applicationCreator.getApplicationModel();
         assertThat(applicationModel.getApplicationName(),is("simpleApp"));
@@ -58,15 +61,14 @@ public class ApplicationCreatorTest {
     }
     
     @Test
-    public void createInMemoryBundle_from_DB_Application_Definition() {
-        setupApplicationCreator(new Application("simpleApp", "io.skysail.simple", "generated", "projectName"));
+    public void creates_InMemoryBundle_from_DB_Application_Definition() {
+        Application application = new Application("simpleApp", "io.skysail.simple", "generated", "projectName");
+        application.getEntities().add(new Entity("anEntity"));
+        setupApplicationCreator(application);
 
-        applicationCreator.create();
-        applicationCreator.setupInMemoryBundle(dbService, componentContext);
+        applicationCreator.createApplication(dbService, componentContext);
         
         CodegenApplicationModel applicationModel = applicationCreator.getApplicationModel();
-        assertThat(applicationModel.getApplicationName(),is("simpleApp"));
-        assertThat(applicationModel.getPackageName(),is("io.skysail.simple"));
     }
 
     private void setupApplicationCreator(Application application) {

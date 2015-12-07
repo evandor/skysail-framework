@@ -84,7 +84,6 @@ public class ApplicationCreator {
 
         try {
             SkysailApplication applicationInstance = (SkysailApplication) applicationClass.newInstance();
-
             repositoryClasses.stream().forEach(repositoryClass -> {
                 try {
                     DbRepository dbRepoInstance = (DbRepository) repositoryClass.newInstance();
@@ -92,9 +91,8 @@ public class ApplicationCreator {
                     repos.setRepository(dbRepoInstance);
                     setRepositoriesInApplication(applicationInstance);
                     activateRepository(dbRepoInstance);
-                } catch (Exception e) {
-                    // TODO should be thrown... java8?
-                    log.error(e.getMessage(), e);
+                } catch (Exception e ) {
+                   throw new RuntimeException(e.getMessage(), e);
                 }
             });
 
@@ -177,9 +175,7 @@ public class ApplicationCreator {
     }
 
     private ST getStringTemplateIndex(String root) {
-        ST javafile = stGroup.getInstanceOf(root);
-        // javafile.add("application", applicationModel);
-        return javafile;
+        return stGroup.getInstanceOf(root);
     }
 
 }

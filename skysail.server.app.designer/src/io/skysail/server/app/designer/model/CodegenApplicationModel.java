@@ -24,7 +24,6 @@ public class CodegenApplicationModel extends ApplicationModel {
         path = appFromDb.getPath();
         projectName = appFromDb.getProjectName();
         setupModel(appFromDb, repo);
-        validate();
     }
 
     private void setupModel(Application application, DesignerRepository repo) {
@@ -51,16 +50,4 @@ public class CodegenApplicationModel extends ApplicationModel {
         return entityModel;
     }
 
-    public void validate() {
-       // eachEntitiesReferencesMustPointToExistingEntity();
-    }
-//
-//    public CodegenEntityModel getEntityModel(ReferenceModel referenceModel) {
-//        return getEntityValues().stream()
-//                .map(CodegenEntityModel.class::cast)
-//                .filter(e -> {
-//                    return referenceModel.getReferencedEntityName().equals(e.getId());
-//                })
-//                .findFirst().orElseThrow(IllegalStateException::new);
-//    }
 }

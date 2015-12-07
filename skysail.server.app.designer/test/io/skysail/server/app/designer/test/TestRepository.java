@@ -1,6 +1,6 @@
 package io.skysail.server.app.designer.test;
 
-import org.osgi.service.component.annotations.Reference;
+import org.osgi.service.component.annotations.*;
 
 import io.skysail.api.domain.Identifiable;
 import io.skysail.api.repos.DbRepository;
@@ -17,6 +17,10 @@ public class TestRepository implements DbRepository {
 
     public void unsetDbService(DbService dbService) {
         this.dbService = null;
+    }
+
+    @Activate
+    public void activate() {
     }
 
     @Override

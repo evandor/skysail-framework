@@ -2,8 +2,6 @@ package io.skysail.server.domain.core;
 
 import java.util.*;
 
-import io.skysail.api.domain.Identifiable;
-import io.skysail.server.domain.core.resources.*;
 import lombok.*;
 
 /**
@@ -13,32 +11,33 @@ import lombok.*;
  *
  */
 @Getter
-@Setter
 @ToString
-public class EntityModel implements Identifiable {
+public class EntityModel {
 
     /**
      * ID should be the full qualified java class name, i.e. io.skysail.entity.Customer
      */
-    private String id;
+    private final String id;
 
     /** the entities fields in a map with their id as key. */
+    @Setter
     private Map<String, FieldModel> fields = new HashMap<>();
 
-    private PostResource<EntityModel> postResource;
-    private PutResource<EntityModel> putResource;
-    private ListResource<EntityModel> listResource;
-    private EntityResource<EntityModel> entityResource;
+//    private PostResource<?> postResource;
+//    private PutResource<?> putResource;
+//    private ListResource<?> listResource;
+//    private EntityResource<?> entityResource;
     
     /** should this entity be treated as "Aggregate" (DDD)" */
+    @Setter
     private boolean aggregate = true;
 
-    public EntityModel(String fullQualifiedClassName) {
+    public EntityModel(@NonNull String fullQualifiedClassName) {
         this.id = fullQualifiedClassName;
-        postResource = new PostResource<>();
-        putResource = new PutResource<>();
-        listResource = new ListResource<>();
-        entityResource = new EntityResource<>();
+//        postResource = new PostResource<>();
+//        putResource = new PutResource<>();
+//        listResource = new ListResource<>();
+//        entityResource = new EntityResource<>();
     }
 
     public EntityModel add(FieldModel field) {

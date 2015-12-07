@@ -2,7 +2,6 @@ package io.skysail.server.domain.core;
 
 import java.util.*;
 
-import io.skysail.api.domain.Identifiable;
 import io.skysail.api.repos.Repository;
 import lombok.*;
 import lombok.extern.slf4j.Slf4j;
@@ -18,11 +17,10 @@ import lombok.extern.slf4j.Slf4j;
  */
 @ToString
 @Slf4j
-public class ApplicationModel implements Identifiable {
+public class ApplicationModel {
 
     @Getter
-    @Setter
-    private String id;
+    private final String id;
 
     /** the applications entities in a map with their id as key. */
     private Map<String, EntityModel> entities = new HashMap<>();

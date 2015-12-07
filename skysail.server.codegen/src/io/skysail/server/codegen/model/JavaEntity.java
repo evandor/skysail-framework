@@ -1,11 +1,10 @@
 package io.skysail.server.codegen.model;
 
+import javax.lang.model.element.Element;
+
 import io.skysail.server.codegen.annotations.GenerateResources;
 import io.skysail.server.codegen.apt.processors.EntityProcessor;
 import io.skysail.server.domain.core.EntityModel;
-
-import javax.lang.model.element.Element;
-
 import lombok.Getter;
 
 public class JavaEntity extends EntityModel implements JavaModel {
@@ -37,8 +36,8 @@ public class JavaEntity extends EntityModel implements JavaModel {
         return EntityProcessor.GENERATED_ANNOTATION;
     }
 
-    public String getLinkedResources() {
-        return getPostResourceClassName() + ".class";
-    }
+//    public String getLinkedResources() {
+//        return getPostResourceClassName() + ".class";
+//    }
 
 }

@@ -1,6 +1,5 @@
 package io.skysail.server.domain.core;
 
-import io.skysail.api.domain.Identifiable;
 import io.skysail.api.forms.InputType;
 import lombok.*;
 
@@ -11,10 +10,10 @@ import lombok.*;
 @Getter
 @Setter
 @ToString(of = {"id", "type", "inputType"})
-public class FieldModel implements Identifiable {
+public class FieldModel {
 
     /** the fields name or identifier, e.g. "title" */
-    private String id;
+    private final String id;
 
     /** a mandatory field must not be null or empty */
     private boolean mandatory;

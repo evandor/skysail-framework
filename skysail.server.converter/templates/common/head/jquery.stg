@@ -2,7 +2,8 @@ jquery() ::= <<
 
 <!-- jquery -->
 <script type="text/javascript" src="/webapp/js/jquery-1.11.1.js"></script>
-<script tpye="text/javascript" src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+<!-- <script type="text/javascript" src="/webapp/js/no-double-submit.js"></script> -->
+<script type="text/javascript" src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
 <link rel="stylesheet" type="text/css" href="https://code.jquery.com/ui/1.11.4/themes/ui-lightness/jquery-ui.css">
 
 >>

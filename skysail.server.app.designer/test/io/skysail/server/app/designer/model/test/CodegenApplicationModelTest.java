@@ -22,7 +22,6 @@ import io.skysail.server.app.designer.repo.DesignerRepository;
 import io.skysail.server.domain.core.EntityModel;
 
 @RunWith(MockitoJUnitRunner.class)
-@Ignore
 public class CodegenApplicationModelTest {
 
     @Rule
@@ -60,7 +59,7 @@ public class CodegenApplicationModelTest {
     public void adding_entity_succeeds() {
         CodegenApplicationModel applicationModel = new CodegenApplicationModel(application, repo);
         CodegenEntityModel addedEntity = applicationModel.addEntity(new Entity("entityName"));
-        assertThat(addedEntity.getId(), is(equalTo("entityName")));
+        assertThat(addedEntity.getId(), is(equalTo("pkgName.entityName")));
     }
 
     @Test
@@ -78,7 +77,6 @@ public class CodegenApplicationModelTest {
         CodegenEntityModel entity = applicationModel.addEntity(new Entity("entityName"));
         Entity unknownEntity = new Entity("entityName");
         entity.addReference(unknownEntity);
-        applicationModel.validate();
     }
 
     @Test
@@ -88,7 +86,6 @@ public class CodegenApplicationModelTest {
         CodegenEntityModel entity = applicationModel.addEntity(new Entity("entityName"));
         Entity unknownEntity = new Entity("unknown");
         entity.addReference(unknownEntity);
-        applicationModel.validate();
     }
 
     @Test

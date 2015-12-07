@@ -1,19 +1,5 @@
-INFO  i.s.server.app.designer.model.CodegenApplicationModel - CodegenApplicationModel: adding Entity 'Entity(id=#57:1, name=Transaction)'
-INFO  io.skysail.server.app.designer.model.CodegenEntityModel - CodegenApplicationModel: adding Field 'EntityField(id=#58:1, name=amount, type=TEXT, notNull=true, sizeMin=0, sizeMax=0)'
-INFO  io.skysail.server.app.designer.model.CodegenEntityModel - CodegenApplicationModel: adding Field 'EntityField(id=#58:2, name=day, type=DATE, notNull=true, sizeMin=0, sizeMax=0)'
-DEBUG io.skysail.server.app.designer.STGroupBundleDir - found resource in null [null]: file:////Users/carsten/git/skysail-framework/skysail.server.app.designer/resources/code/project.stg
-INFO  io.skysail.server.app.designer.ApplicationCreator - creating file '/Users/carsten/git/skysail-framework/skysail.server.app.designer/generated/transactions/skysail.server.designer.transactions/.project'
-DEBUG io.skysail.server.app.designer.STGroupBundleDir - found resource in null [null]: file:////Users/carsten/git/skysail-framework/skysail.server.app.designer/resources/code/classpath.stg
-DEBUG io.skysail.server.app.designer.STGroupBundleDir - found resource in null [null]: file:////Users/carsten/git/skysail-framework/skysail.server.app.designer/resources/code/bnd.stg
-DEBUG io.skysail.server.app.designer.STGroupBundleDir - found resource in null [null]: file:////Users/carsten/git/skysail-framework/skysail.server.app.designer/resources/code/bndrun.stg
-DEBUG io.skysail.server.app.designer.STGroupBundleDir - found resource in null [null]: file:////Users/carsten/git/skysail-framework/skysail.server.app.designer/resources/code/gradle.stg
-DEBUG io.skysail.server.app.designer.STGroupBundleDir - found resource in null [null]: file:////Users/carsten/git/skysail-framework/skysail.server.app.designer/resources/code/javafile.stg
-DEBUG io.skysail.server.app.designer.STGroupBundleDir - found resource in null [null]: file:////Users/carsten/git/skysail-framework/skysail.server.app.designer/resources/code/fields.stg
-DEBUG io.skysail.server.app.designer.STGroupBundleDir - found resource in null [null]: file:////Users/carsten/git/skysail-framework/skysail.server.app.designer/resources/code/actionFields.stg
-DEBUG io.skysail.server.app.designer.STGroupBundleDir - found resource in null [null]: file:////Users/carsten/git/skysail-framework/skysail.server.app.designer/resources/code/references.stg
-DEBUG io.skysail.server.app.designer.STGroupBundleDir - found resource in null [null]: file:////Users/carsten/git/skysail-framework/skysail.server.app.designer/resources/code/entityResource.stg
-DEBUG io.skysail.server.app.designer.STGroupBundleDir - found resource in null [null]: file:////Users/carsten/git/skysail-framework/skysail.server.app.designer/resources/code/postResource.stg
-DEBUG io.skysail.server.app.designer.STGroupBundleDir - found resource in null [null]: file:////Users/carsten/git/skysail-framework/skysail.server.app.designer/resources/code/putResource.stg
-DEBUG io.skysail.server.app.designer.STGroupBundleDir - found resource in null [null]: file:////Users/carsten/git/skysail-framework/skysail.server.app.designer/resources/code/listResource.stg
-DEBUG io.skysail.server.app.designer.STGroupBundleDir - found resource in null [null]: file:////Users/carsten/git/skysail-framework/skysail.server.app.designer/resources/code/repository.stg
-DEBUG io.skysail.server.app.designer.STGroupBundleDir - found resource in null [null]: file:////Users/carsten/git/skysail-framework/skysail.server.app.designer/resources/code/application.stg
+INFO  i.s.server.app.designer.model.CodegenApplicationModel - CodegenApplicationModel: adding Entity 'Entity(id=null, name=entityName)'
+INFO  i.s.server.app.designer.model.CodegenApplicationModel - CodegenApplicationModel: adding Entity 'Entity(id=null, name=entityName)'
+INFO  io.skysail.server.app.designer.model.CodegenEntityModel - CodegenEntityModel:      adding Reference from Entity 'null' to Entity 'entityName'
+INFO  i.s.server.app.designer.model.CodegenApplicationModel - CodegenApplicationModel: adding Entity 'Entity(id=null, name=entityName)'
+INFO  io.skysail.server.app.designer.model.CodegenEntityModel - CodegenEntityModel:      adding Reference from Entity 'null' to Entity 'unknown'

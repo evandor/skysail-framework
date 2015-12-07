@@ -1,5 +1,4 @@
 INFO  i.s.server.app.designer.model.CodegenApplicationModel - CodegenApplicationModel: adding Entity 'Entity(id=null, name=entityName)'
 INFO  i.s.server.app.designer.model.CodegenApplicationModel - CodegenApplicationModel: adding Entity 'Entity(id=null, name=entityName)'
 INFO  io.skysail.server.app.designer.model.CodegenEntityModel - CodegenEntityModel:      adding Reference from Entity 'null' to Entity 'entityName'
-INFO  i.s.server.app.designer.model.CodegenApplicationModel - CodegenApplicationModel: adding Entity 'Entity(id=null, name=entityName)'
-INFO  io.skysail.server.app.designer.model.CodegenEntityModel - CodegenEntityModel:      adding Reference from Entity 'null' to Entity 'unknown'
+INFO  i.s.server.app.designer.model.CodegenApplicationModel - CodegenApplicationModel: adding Entity 'Entity(id=null, name=Bank)'

@@ -32,6 +32,6 @@ public class ClientApplicationsResource extends ListServerResource<ClientApplica
 
     @Override
     public List<Link> getLinks() {
-        return super.getLinks(io.skysail.server.app.designer.restclient.PostClientApplicationResource.class);
+        return super.getLinks();
     }
 }

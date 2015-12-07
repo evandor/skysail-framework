@@ -32,6 +32,6 @@ public class TopicsResource extends ListServerResource<Topic> {
 
     @Override
     public List<Link> getLinks() {
-        return super.getLinks(io.skysail.server.designer.presentation.PostTopicResource.class);
+        return super.getLinks();
     }
 }

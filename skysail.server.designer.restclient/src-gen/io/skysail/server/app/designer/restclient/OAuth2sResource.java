@@ -32,6 +32,6 @@ public class OAuth2sResource extends ListServerResource<OAuth2> {
 
     @Override
     public List<Link> getLinks() {
-        return super.getLinks(io.skysail.server.app.designer.restclient.PostOAuth2Resource.class);
+        return super.getLinks();
     }
 }

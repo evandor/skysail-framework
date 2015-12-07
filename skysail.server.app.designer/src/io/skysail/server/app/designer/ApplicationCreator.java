@@ -37,7 +37,6 @@ public class ApplicationCreator {
     @Getter
     private final CodegenApplicationModel applicationModel;
 
-
     @Setter
     private BundleResourceReader bundleResourceReader = new DefaultBundleResourceReader();
     
@@ -94,6 +93,7 @@ public class ApplicationCreator {
                     setRepositoriesInApplication(applicationInstance);
                     activateRepository(dbRepoInstance);
                 } catch (Exception e) {
+                    // TODO should be thrown... java8?
                     log.error(e.getMessage(), e);
                 }
             });
@@ -134,7 +134,7 @@ public class ApplicationCreator {
     private void createProjectIfNeeded() throws IOException {
         String path = applicationModel.getPath() + "/" + applicationModel.getProjectName();
         path = path.replace("//", "/");
-        new File(Paths.get(path).toString()).mkdirs();
+        Paths.get(path).toFile().mkdirs();
 
         ST project = getStringTemplateIndex("project");
         project.add("projectname", applicationModel.getProjectName());

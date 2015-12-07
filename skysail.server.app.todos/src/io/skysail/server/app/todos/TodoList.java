@@ -1,5 +1,13 @@
 package io.skysail.server.app.todos;
 
+import java.io.Serializable;
+import java.util.*;
+
+import javax.persistence.Id;
+import javax.validation.constraints.*;
+
+import com.fasterxml.jackson.annotation.*;
+
 import io.skysail.api.domain.Identifiable;
 import io.skysail.api.forms.*;
 import io.skysail.server.app.todos.lists.UniquePerOwner;
@@ -7,16 +15,7 @@ import io.skysail.server.app.todos.repo.TodosRepository;
 import io.skysail.server.app.todos.todos.Todo;
 import io.skysail.server.app.todos.todos.resources.TodosResource;
 import io.skysail.server.forms.*;
-
-import java.io.Serializable;
-import java.util.*;
-
-import javax.persistence.Id;
-import javax.validation.constraints.*;
-
 import lombok.*;
-
-import com.fasterxml.jackson.annotation.*;
 
 @Getter
 @Setter

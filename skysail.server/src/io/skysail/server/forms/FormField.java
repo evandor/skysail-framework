@@ -1,23 +1,22 @@
 package io.skysail.server.forms;
 
-import io.skysail.api.forms.*;
-import io.skysail.api.responses.*;
-import io.skysail.server.forms.helper.CellRendererHelper;
-import io.skysail.server.restlet.resources.SkysailServerResource;
-
 import java.lang.reflect.*;
 import java.lang.reflect.Field;
 import java.util.*;
 
 import javax.validation.constraints.*;
 
-import lombok.*;
-import lombok.extern.slf4j.Slf4j;
-
 import org.restlet.resource.Resource;
 
 import de.twenty11.skysail.server.core.restlet.MessagesUtils;
 import de.twenty11.skysail.server.um.domain.SkysailUser;
+import io.skysail.api.forms.*;
+import io.skysail.api.responses.*;
+import io.skysail.server.domain.core.FieldModel;
+import io.skysail.server.forms.helper.CellRendererHelper;
+import io.skysail.server.restlet.resources.SkysailServerResource;
+import lombok.*;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * A FormField instance encapsulates (meta) information which can be used to
@@ -291,7 +290,7 @@ public class FormField extends io.skysail.server.domain.core.FieldModel {
     }
 
     public String process(SkysailResponse<?> response, Map<String, Object> dataRow, String columnName, Object id) {
-        return new CellRendererHelper(this, response).render(dataRow.get(columnName), id);
+        return new CellRendererHelper(this, response).render(dataRow.get(columnName), id, null);
     }
 
     private boolean isOfInputType(InputType inputType) {

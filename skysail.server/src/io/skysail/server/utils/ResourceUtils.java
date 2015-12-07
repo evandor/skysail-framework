@@ -1,11 +1,7 @@
 package io.skysail.server.utils;
 
-import io.skysail.server.restlet.resources.SkysailServerResource;
-
 import java.io.IOException;
 import java.util.*;
-
-import lombok.extern.slf4j.Slf4j;
 
 import org.restlet.data.*;
 import org.restlet.engine.Engine;
@@ -13,6 +9,9 @@ import org.restlet.engine.converter.ConverterHelper;
 import org.restlet.engine.resource.VariantInfo;
 import org.restlet.representation.Variant;
 import org.restlet.resource.*;
+
+import io.skysail.server.restlet.resources.SkysailServerResource;
+import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public class ResourceUtils {
@@ -78,7 +77,7 @@ public class ResourceUtils {
             String mediaTypeName = subType.equals("*") ? variantInfo.getMediaType().getMainType() : subType;
             if (resource.getRestrictedToMediaTypes().isEmpty()) {
                 if (resource.getDefaultMediaTypes().contains(mediaTypeName)) {
-                    mediaTypes.add(mediaTypeName);
+                    mediaTypes.add(mediaTypeName.replace("x-", ""));
                 }
             } else {
                 if (resource.getRestrictedToMediaTypes().contains(mediaTypeName)) {

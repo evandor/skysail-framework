@@ -94,6 +94,7 @@ skysail.server.um.simple.version                   '[0.1.6,0.1.7)'
 
 skysail.server.app.svgedit.version                 '[0.1.0,0.1.1)'
 
+com.fasterxml.jackson.version                      '[2.5.1,2.5.2)'
 restlet.version                                    2.3.4
 guava.version                                      16.0
 org.apache.felix.framework.version                 '[5.2,6)'

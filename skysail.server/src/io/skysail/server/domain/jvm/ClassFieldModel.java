@@ -1,20 +1,24 @@
 package io.skysail.server.domain.jvm;
 
-import io.skysail.api.forms.InputType;
-import io.skysail.server.forms.ListView;
-
 import java.lang.reflect.Field;
 
 import javax.validation.constraints.*;
 
+import io.skysail.api.forms.InputType;
+import io.skysail.server.forms.ListView;
+import io.skysail.server.restlet.resources.SkysailServerResource;
 import lombok.*;
 
 @Value
-@EqualsAndHashCode(callSuper=true)
+@EqualsAndHashCode(callSuper = true)
 public class ClassFieldModel extends io.skysail.server.domain.core.FieldModel {
+
+    @Getter
+    private Class<? extends SkysailServerResource<?>> listViewLink;
 
     public ClassFieldModel(String id) {
         super(id);
+        listViewLink = null;
     }
 
     public ClassFieldModel(java.lang.reflect.Field f) {
@@ -24,6 +28,16 @@ public class ClassFieldModel extends io.skysail.server.domain.core.FieldModel {
         setReadonly(false);
         setTruncateTo(determineTruncation(f));
         setType(f.getType());
+
+        listViewLink = determineListViewLink(f);
+    }
+
+    private Class<? extends SkysailServerResource<?>> determineListViewLink(Field f) {
+        ListView listViewAnnotation = f.getAnnotation(ListView.class);
+        if (listViewAnnotation != null && !listViewAnnotation.link().equals(ListView.DEFAULT.class)) {
+            return listViewAnnotation.link();
+        }
+        return null;
     }
 
     private InputType determineInputType(Field f) {
@@ -52,4 +66,6 @@ public class ClassFieldModel extends io.skysail.server.domain.core.FieldModel {
         }
         return null;
     }
+
+    
 }

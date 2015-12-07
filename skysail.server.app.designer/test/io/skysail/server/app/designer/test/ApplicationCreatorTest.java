@@ -2,105 +2,172 @@ package io.skysail.server.app.designer.test;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
-import static org.mockito.Mockito.when;
+import static org.mockito.Matchers.isNull;
+import static org.mockito.Mockito.*;
 
 import java.io.IOException;
 import java.net.URL;
 import java.nio.file.*;
-import java.util.Map;
+import java.util.*;
 
 import org.junit.*;
 import org.junit.runner.RunWith;
-import org.mockito.Mock;
+import org.mockito.*;
 import org.mockito.runners.MockitoJUnitRunner;
-import org.osgi.framework.Bundle;
+import org.osgi.framework.*;
 import org.osgi.service.component.ComponentContext;
 
-import com.fasterxml.jackson.dataformat.yaml.snakeyaml.Yaml;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
 
+import de.twenty11.skysail.server.app.ApplicationProvider;
+import io.skysail.server.app.SkysailApplication;
 import io.skysail.server.app.designer.ApplicationCreator;
 import io.skysail.server.app.designer.application.Application;
+import io.skysail.server.app.designer.codegen.JavaCompiler;
 import io.skysail.server.app.designer.model.CodegenApplicationModel;
 import io.skysail.server.app.designer.repo.DesignerRepository;
 import io.skysail.server.db.DbService;
 import io.skysail.server.domain.core.Repositories;
+import io.skysail.server.menus.MenuItemProvider;
 import io.skysail.server.utils.BundleResourceReader;
 
-@SuppressWarnings("restriction")
 @RunWith(MockitoJUnitRunner.class)
 public class ApplicationCreatorTest {
 
     @Mock
-    private Repositories repos;
+    private Repositories reposMock;
 
     @Mock
-    private Bundle bundle;
+    private Bundle bundleMock;
 
     @Mock
-    private DesignerRepository designerRepository;
+    private BundleContext bundleContextMock;
 
     @Mock
-    private DbService dbService;
+    private DesignerRepository designerRepositoryMock;
 
     @Mock
-    private ComponentContext componentContext;
+    private DbService dbServiceMock;
+
+    @Mock
+    private ComponentContext componentContextMock;
     
-    Yaml yaml = new Yaml();
+    @Spy
+    private JavaCompiler javaCompilerSpy = new TestJavaCompiler();
 
+    private ObjectMapper mapper = new ObjectMapper(new YAMLFactory());
+    
     @Before
     public void setUp() throws Exception {
-        String currentDir = Paths.get(".", "resources", "code").toAbsolutePath().toString();
-        when(bundle.getResource("/code")).thenReturn(new URL("file:///" + currentDir));
+        String currentDir = Paths.get("resources", "code").toAbsolutePath().toString();
+        when(bundleMock.getResource("/code")).thenReturn(new URL("file:///" + currentDir));
+        when(bundleMock.getBundleContext()).thenReturn(bundleContextMock);
     }
 
     @Test
-    public void creates_ApplicationModel_from_DB_Application_Definition() {
-        ApplicationCreator applicationCreator = setupApplicationCreator(new Application("simpleApp", "io.skysail.simple", "generated", "projectName"));
+    public void creates_InMemoryBundle_from_empty_application() throws IOException {
+        ApplicationCreator applicationCreator = setupApplicationCreator(readApplicationFromYamlFile("empty.yml"));
 
-        applicationCreator.createApplication(dbService, componentContext);
+        applicationCreator.createApplication(dbServiceMock, componentContextMock);
 
-        CodegenApplicationModel applicationModel = applicationCreator.getApplicationModel();
-        assertThat(applicationModel.getApplicationName(), is("simpleApp"));
-        assertThat(applicationModel.getPackageName(), is("io.skysail.simple"));
+        verifyCreatedApplication(applicationCreator);
+        Collection<String> repositoryIds = applicationCreator.getApplicationModel().getRepositoryIds();
+        assertThat(repositoryIds.size(),is(0));
     }
 
     @Test
-    public void creates_InMemoryBundle_from_DB_Application_Definition() throws IOException {
-        ApplicationCreator applicationCreator = setupApplicationCreator(readApplicationFromYamlFile("simpleApplication.yml"));
-        applicationCreator.createApplication(dbService, componentContext);
+    public void creates_InMemoryBundle_from_application_with_one_entity() throws IOException {
+        ApplicationCreator applicationCreator = setupApplicationCreator(readApplicationFromYamlFile("transactions.yml"));
 
-       // CodegenApplicationModel applicationModel = applicationCreator.getApplicationModel();
+        applicationCreator.createApplication(dbServiceMock, componentContextMock);
+
+        verifyCreatedApplication(applicationCreator);
+        Collection<String> repositoryIds = applicationCreator.getApplicationModel().getRepositoryIds();
+        assertThat(repositoryIds.size(),is(0));
     }
 
-    
     @Test
     public void creates_InMemoryBundle_from_DB_Application_Definition2() throws IOException {
         ApplicationCreator applicationCreator = setupApplicationCreator(readApplicationFromYamlFile("checklist.yml"));
-        applicationCreator.createApplication(dbService, componentContext);
+        applicationCreator.createApplication(dbServiceMock, componentContextMock);
 
        // CodegenApplicationModel applicationModel = applicationCreator.getApplicationModel();
     }
 
-    @SuppressWarnings({ "unchecked" })
+    private void verifyCreatedApplication(ApplicationCreator applicationCreator) {
+        verifyProjectFilesExist(applicationCreator.getApplicationModel());
+        verifyJavaCompilerCalls();
+        verifyJavaFilesExist(applicationCreator.getApplicationModel());
+        verifyApplicationServiceWasRegistered();
+    }
+    
     private Application readApplicationFromYamlFile(String testfile) throws IOException {
         Path path = Paths.get("resources", "testinput", testfile);
         StringBuilder sb = new StringBuilder();
         Files.lines(path).forEach(line -> sb.append(line).append("\n"));
-        Map<String,Object> list = (Map<String,Object>) yaml.load(sb.toString());
-        Map<String,Object> appFromYml = (Map<String, Object>) list.get("Application");
-        return new Application((String)appFromYml.get("name"), (String)appFromYml.get("packageName"), (String)appFromYml.get("path"), (String)appFromYml.get("projectName"));
+        return mapper.readValue(sb.toString(), Application.class);
     }
 
+    private void verifyJavaCompilerCalls() {
+        verify(javaCompilerSpy, times(1)).reset();
+    }
+    
     private ApplicationCreator setupApplicationCreator(Application application) {
-        applicationCreator = new ApplicationCreator(application, designerRepository, repos, bundle);
+        ApplicationCreator applicationCreator = new ApplicationCreator(application, designerRepositoryMock, reposMock, bundleMock);
         applicationCreator.setBundleResourceReader(new BundleResourceReader() {
             @Override
             public String readResource(Bundle bundle, String path) {
                 return "C:/git/skysail-framework/skysail.server.app.designer/";
             }
         });
-        applicationCreator.setJavaCompiler(new TestJavaCompiler());
+        applicationCreator.setJavaCompiler(javaCompilerSpy);
         return applicationCreator;
     }
+    
+    @SuppressWarnings("unchecked")
+    private void verifyApplicationServiceWasRegistered() {
+        verify(bundleContextMock).registerService(
+                org.mockito.Matchers.argThat(new ArgumentMatcher<String[]>() {
+                    @Override
+                    public boolean matches(Object argument) {
+                        String[] actualArgument = (String[]) argument;
+                        return actualArgument[0].equals(ApplicationProvider.class.getName()) &&
+                               actualArgument[1].equals(MenuItemProvider.class.getName());
+                    }
+                    
+                }),
+                org.mockito.Matchers.argThat(new ArgumentMatcher<Object>() {
 
+                    @Override
+                    public boolean matches(Object argument) {
+                        return argument instanceof SkysailApplication;
+                    }
+
+                }), isNull(Dictionary.class));
+    }
+    
+    private void verifyJavaFilesExist(CodegenApplicationModel appModel) {
+        String projectPath = "generated/" + appModel.getApplicationName() + "/" + appModel.getProjectName() + "/";
+        String applicationPath = projectPath + "src/" + appModel.getPackageName().replace(".", "/") + "/";
+        assertFileExists(applicationPath, appModel.getApplicationName() + "Application.java");
+    }
+
+    private void verifyProjectFilesExist(CodegenApplicationModel appModel) {
+        // "generated/empty/skysail.server.designer.empty"
+        String projectPath = "generated/" + appModel.getApplicationName() + "/" + appModel.getProjectName() + "/";
+        
+        assertFileExists(projectPath, ".project");
+        assertFileExists(projectPath, ".classpath");
+        assertFileExists(projectPath, "bnd.bnd");
+        //assertFileExists(path, "bnd.bndrun");
+        assertFileExists(projectPath, "build.gradle");
+        assertFileExists(projectPath, "resources/.gitignore");
+        assertFileExists(projectPath, "config/local/logback.xml");
+        assertFileExists(projectPath, "config/local/io.skysail.server.db.DbConfigurations-skysailgraph.cfg");
+    }
+
+    private void assertFileExists(String path, String filename) {
+        assertThat(Paths.get(path + "/" + filename).toFile().exists(), is(true));
+    }
 }

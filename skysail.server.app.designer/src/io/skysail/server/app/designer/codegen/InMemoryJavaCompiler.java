@@ -15,6 +15,7 @@ import org.osgi.service.component.annotations.Component;
 import org.restlet.resource.ServerResource;
 
 import io.skysail.api.links.Link;
+import io.skysail.server.app.SkysailApplication;
 import io.skysail.server.app.designer.DesignerApplication;
 import io.skysail.server.domain.core.Repositories;
 import io.skysail.server.restlet.resources.ListServerResource;
@@ -129,8 +130,8 @@ public class InMemoryJavaCompiler {
         });
     }
 
-    public static Class<?> getClass(String className) throws ClassNotFoundException {
-        return dcl.loadClass(className);
+    public static Class<? extends SkysailApplication> getClass(String className) throws ClassNotFoundException {
+        return (Class<? extends SkysailApplication>) dcl.loadClass(className);
     }
 
 }

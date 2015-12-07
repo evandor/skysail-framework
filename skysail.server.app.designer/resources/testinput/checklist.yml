@@ -1,9 +1,20 @@
-Application: 
-    name        : checklist
-    packageName : io.skysail.simple
-    path        : generated
-    projectName : projectName
-    entities    :
-        list:
-            fields:
-                listname
+---
+id: "56:2"
+name: "Checklist"
+projectName: "skysail.server.designer.checklist"
+packageName: "io.skysail.server.designer.checklist"
+path: "generated/checklist"
+owner: "#1"
+entities:
+- id: "#57:0"
+  name: "List"
+  rootEntity: true
+  fields:
+  - id: "#58:0"
+    name: "listname"
+    type: "TEXT"
+    notNull: true
+    sizeMin: 2
+    sizeMax: 0
+  actionFields: []
+  subEntities: []

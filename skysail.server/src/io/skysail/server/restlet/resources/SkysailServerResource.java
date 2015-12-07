@@ -50,6 +50,9 @@ public abstract class SkysailServerResource<T> extends ServerResource {
 
     public static final String NO_REDIRECTS = "noRedirects";
     public static final String INSPECT_PARAM_NAME = "_inspect";
+    
+    @Getter
+    private Set<String> defaultMediaTypes = new HashSet<>();
 
     @Setter
     @Getter
@@ -68,6 +71,12 @@ public abstract class SkysailServerResource<T> extends ServerResource {
         dateConverter.setUseLocaleFormat(true);
         ConvertUtils.deregister(Date.class);
         ConvertUtils.register(dateConverter, Date.class);
+        
+        defaultMediaTypes.add("xml");
+        defaultMediaTypes.add("json");
+        defaultMediaTypes.add("x-yaml");
+        defaultMediaTypes.add("csv");
+        defaultMediaTypes.add("mailto");
     }
 
     /**
@@ -384,16 +393,6 @@ public abstract class SkysailServerResource<T> extends ServerResource {
     public Set<String> getRestrictedToMediaTypes(String... supportedMediaTypes) {
         HashSet<String> result = new HashSet<String>();
         Arrays.stream(supportedMediaTypes).forEach(smt -> result.add(smt));
-        return result;
-    }
-
-    public Set<String> getDefaultMediaTypes() {
-        HashSet<String> result = new HashSet<>();
-        result.add("xml");
-        result.add("json");
-        result.add("x-yaml");
-        result.add("csv");
-        result.add("mailto");
         return result;
     }
 

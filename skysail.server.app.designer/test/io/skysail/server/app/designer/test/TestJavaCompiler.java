@@ -13,7 +13,12 @@ public class TestJavaCompiler implements JavaCompiler {
 
     @Override
     public Class<?> getClass(String className) throws ClassNotFoundException {
-        return TestSkysailApplication.class;
+        if (className.endsWith("Application")) {
+            return TestSkysailApplication.class;
+        } else if (className.endsWith("Repository")) {
+            return TestRepository.class;
+        }
+        throw new IllegalStateException();
     }
 
     @Override

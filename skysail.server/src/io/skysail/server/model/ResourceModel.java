@@ -20,6 +20,7 @@ import io.skysail.api.responses.*;
 import io.skysail.api.search.*;
 import io.skysail.server.app.SkysailApplication;
 import io.skysail.server.domain.core.*;
+import io.skysail.server.domain.jvm.ClassFieldModel;
 import io.skysail.server.forms.FormField;
 import io.skysail.server.forms.helper.CellRendererHelper;
 import io.skysail.server.menus.MenuItemProvider;
@@ -106,7 +107,7 @@ public class ResourceModel<R extends SkysailServerResource<T>, T> {
         rootEntity = new EntityModel<R>(response.getEntity(), resource);
 
         String identifierName = getIdentifierFormField(rawData);
-        data = convert(identifierName);
+        data = convert(identifierName, resource);
 
         addAssociatedLinks(data);
         addAssociatedLinks(rawData);
@@ -155,7 +156,7 @@ public class ResourceModel<R extends SkysailServerResource<T>, T> {
         return "id"; // for now
     }
 
-    private List<Map<String, Object>> convert(String identifierName) {
+    private List<Map<String, Object>> convert(String identifierName, R r) {
         List<Map<String, Object>> result = new ArrayList<>();
         rawData.stream().filter(row -> {
             return row != null;
@@ -164,17 +165,17 @@ public class ResourceModel<R extends SkysailServerResource<T>, T> {
             result.add(newRow);
             row.keySet().stream().forEach(columnName -> {
                 Object identifier = row.get(identifierName);
-                apply(newRow, row, columnName, identifier);
+                apply(newRow, row, columnName, identifier, r);
             });
         });
         return result;
     }
 
-    private void apply(Map<String, Object> newRow, Map<String, Object> dataRow, String columnName, Object id) {
+    private void apply(Map<String, Object> newRow, Map<String, Object> dataRow, String columnName, Object id, R r) {
 
         Optional<FieldModel> field = getDomainField(columnName);
         if (field.isPresent()) {
-            newRow.put(columnName, calc(field.get(), dataRow, columnName, id));
+            newRow.put(columnName, calc((ClassFieldModel)field.get(), dataRow, columnName, id, r));
         } else { // deprecated old style
             FormField formField = fields.get(columnName);
             newRow.put(columnName, calc(formField, dataRow, columnName, id));
@@ -192,8 +193,8 @@ public class ResourceModel<R extends SkysailServerResource<T>, T> {
         return dataRow.get(columnName) != null ? dataRow.get(columnName).toString() : "";
     }
 
-    private String calc(@NonNull FieldModel field, Map<String, Object> dataRow, String columnName, Object id) {
-        String processed = new CellRendererHelper(field, response).render(dataRow.get(columnName), id);
+    private String calc(@NonNull ClassFieldModel field, Map<String, Object> dataRow, String columnName, Object id, R r) {
+        String processed = new CellRendererHelper(field, response).render(dataRow.get(columnName), id, r);
         //processed = checkPrefix(field, dataRow, processed, id);
         //processed = checkPostfix(field, dataRow, processed, id);
         return processed;

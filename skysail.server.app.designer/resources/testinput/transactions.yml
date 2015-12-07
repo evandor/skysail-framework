@@ -1,0 +1,26 @@
+---
+id: "56:3"
+name: "Transactions"
+projectName: "skysail.server.designer.transactions"
+packageName: "io.skysail.server.designer.transactions"
+path: "generated/transactions"
+owner: "#1"
+entities:
+- id: "#57:1"
+  name: "Transaction"
+  rootEntity: true
+  fields:
+  - id: "#58:1"
+    name: "amount"
+    type: "TEXT"
+    notNull: true
+    sizeMin: 0
+    sizeMax: 0
+  - id: "#58:2"
+    name: "day"
+    type: "DATE"
+    notNull: true
+    sizeMin: 0
+    sizeMax: 0
+  actionFields: []
+  subEntities: []

@@ -6,7 +6,7 @@ Bundle-License: http://www.apache.org/licenses/LICENSE-2.0.txt
     osgi.core;version=${osgi.version},\
     osgi.cmpn;version=${osgi.version},\
     skysail.api;version=${skysail.api.version},\
-    com.fasterxml.jackson.core.jackson-annotations,\
+    com.fasterxml.jackson.core.jackson-annotations;version=${com.fasterxml.jackson.version},\
     org.apache.commons.lang,\
     org.restlet;version=${restlet.version},\
     slf4j.api;version=1.7.7,\

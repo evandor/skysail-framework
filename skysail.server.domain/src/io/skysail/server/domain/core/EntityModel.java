@@ -14,33 +14,22 @@ import lombok.*;
 @ToString
 public class EntityModel {
 
-    /**
-     * ID should be the full qualified java class name, i.e. io.skysail.entity.Customer
-     */
+    /** ID should be the full qualified java class name, i.e. io.skysail.entity.Customer */
     private final String id;
 
-    /** the entities fields in a map with their id as key. */
     @Setter
+    /** the entities fields in a map with their id as key. */
     private Map<String, FieldModel> fields = new HashMap<>();
 
-//    private PostResource<?> postResource;
-//    private PutResource<?> putResource;
-//    private ListResource<?> listResource;
-//    private EntityResource<?> entityResource;
-    
-    /** should this entity be treated as "Aggregate" (DDD)" */
     @Setter
+    /** should this entity be treated as "Aggregate" (DDD)" */
     private boolean aggregate = true;
 
     public EntityModel(@NonNull String fullQualifiedClassName) {
         this.id = fullQualifiedClassName;
-//        postResource = new PostResource<>();
-//        putResource = new PutResource<>();
-//        listResource = new ListResource<>();
-//        entityResource = new EntityResource<>();
     }
 
-    public EntityModel add(FieldModel field) {
+    public EntityModel add(@NonNull FieldModel field) {
         this.fields.put(field.getId(), field);
         return this;
     }
@@ -73,7 +62,7 @@ public class EntityModel {
         return id.substring(indexOfLastDot+1);
     }
     
-    public String getPostResourceClassName() {
-        return getPackageName() + ".Post" + getSimpleName() + "Resource";
-    }
+//    public String getPostResourceClassName() {
+//        return getPackageName() + ".Post" + getSimpleName() + "Resource";
+//    }
 }

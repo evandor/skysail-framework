@@ -20,26 +20,28 @@ import lombok.extern.slf4j.Slf4j;
 public class ApplicationModel {
 
     @Getter
-    private final String id;
+    /** an identifier, could be a full qualified class name. */
+    private final String name;
 
-    /** the applications entities in a map with their id as key. */
+    /** the applications entities in a map with their name as key. */
     private Map<String, EntityModel> entities = new HashMap<>();
 
     /** the applications aggregate repositories. */
+    @Setter
     private Repositories repositories = new Repositories();
 
-    /** an applications unique id, e.g. a full qualified java identifier. */
-    public ApplicationModel(String id) {
-        this.id = id;
+    /** an applications unique name; could be a full qualified java identifier. */
+    public ApplicationModel(String fullQualifiedClassName) {
+        this.name = fullQualifiedClassName;
     }
 
     /**
-     * adds an non-null entity model identified by its id. If an entity model with
-     * the same id exists already, a warning is issued.
+     * adds an non-null entity model identified by its name. If an entity model with
+     * the same name exists already, a warning is issued.
      */
     public ApplicationModel add(@NonNull EntityModel entity) {
         if (entities.get(entity.getId()) != null) {
-            log.warn("entity {} already exists - not adding to application {}", entity.getId(), this.getId());
+            log.warn("entity {} already exists - not adding to application {}", entity.getId(), this.getName());
             return this;
         }
         entities.put(entity.getId(), entity);
@@ -54,7 +56,7 @@ public class ApplicationModel {
     }
 
     /**
-     * returns the entity model for the given entity id, if existent.
+     * returns the entity model for the given entity name, if existent.
      */
     public EntityModel getEntity(String entityId) {
         return entities.get(entityId);
@@ -70,10 +72,6 @@ public class ApplicationModel {
 
     public Collection<String> getRepositoryIds() {
         return repositories.getRepositoryIdentifiers();
-    }
-
-    public void setRepositories(Repositories repos) {
-        this.repositories = repos;
     }
 
 }

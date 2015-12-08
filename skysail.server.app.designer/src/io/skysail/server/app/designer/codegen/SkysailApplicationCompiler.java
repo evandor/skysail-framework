@@ -23,7 +23,7 @@ public class SkysailApplicationCompiler extends SkysailCompiler {
     private String setupApplicationForCompilation(ST template, CodegenApplicationModel applicationModel, List<RouteModel> routeModels) {
         template.add("routercode", routerCode(routeModels));
         String entityCode = template.render();
-        applicationClassName = applicationModel.getPackageName() + "." + applicationModel.getApplicationName() + "Application";
+        applicationClassName = applicationModel.getPackageName() + "." + applicationModel.getName() + "Application";
         collect(applicationClassName, entityCode);
         return applicationClassName;
     }

@@ -24,7 +24,7 @@ public class JavaEntity extends EntityModel implements JavaModel {
         super(element.toString());
         this.element = element;
         this.elementName = element.toString();
-        this.applicationName = application.getId();
+        this.applicationName = application.getName();
         this.applicationPackage = application.getPackageName();
     }
 

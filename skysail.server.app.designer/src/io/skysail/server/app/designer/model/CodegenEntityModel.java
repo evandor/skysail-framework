@@ -8,6 +8,11 @@ import io.skysail.server.domain.core.EntityModel;
 import lombok.*;
 import lombok.extern.slf4j.Slf4j;
 
+/**
+ * Extension augmenting the core entity model with information to create
+ * java entities from the model.
+ *
+ */
 @Getter
 @Slf4j
 public class CodegenEntityModel extends EntityModel {
@@ -25,31 +30,9 @@ public class CodegenEntityModel extends EntityModel {
 
     private void setupModel(Entity entityFromDb) {
         entityFromDb.getFields().stream().forEach(fieldFromDb -> {
-            createFieldModel(fieldFromDb);
+            addField(fieldFromDb);
         });
     }
-
-    private void createFieldModel(EntityField fieldFromDb) {
-        CodegenFieldModel fieldModel = addField(fieldFromDb);
-
-//        dbEntity.getFields().stream().forEach(f -> {
-//            entityModel.add(create(f));
-//        });
-//        
-//        Collection<FieldModel> fields = entityModel.getFieldValues();//getFields(repo, dbEntity.getName(), application.getId());
-//        
-//        for (FieldModel fieldModel : fields) {
-//            entityModel.addField(createEntityField(fieldModel));
-//        }
-    }
-
-//    public void addField(EntityField f) {
-//        log.info("CodegenEntityModel:      adding Field '{}' to Entity '{}'", f.getName(), f.getId());
-//        if (getFields().get(f.getName()) != null) {
-//            throw new IllegalStateException("field '" + f.getName() + "' already exists!");
-//        }
-//        getFields().put(f.getName(), new CodegenFieldModel(f));
-//    }
 
     private CodegenFieldModel addField(EntityField fieldFromDb) {
         log.info("CodegenApplicationModel: adding Field '{}'", fieldFromDb);

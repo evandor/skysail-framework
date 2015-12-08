@@ -51,13 +51,13 @@ public class CodegenApplicationModelTest {
 
     @Test
     public void testName() {
-        CodegenApplicationModel applicationModel = new CodegenApplicationModel(application, repo);
-        assertThat(applicationModel.getApplicationName(), is(equalTo("testapp")));
+        CodegenApplicationModel applicationModel = new CodegenApplicationModel(application);
+        assertThat(applicationModel.getName(), is(equalTo("testapp")));
     }
 
     @Test
     public void adding_entity_succeeds() {
-        CodegenApplicationModel applicationModel = new CodegenApplicationModel(application, repo);
+        CodegenApplicationModel applicationModel = new CodegenApplicationModel(application);
         CodegenEntityModel addedEntity = applicationModel.addEntity(new Entity("entityName"));
         assertThat(addedEntity.getId(), is(equalTo("pkgName.entityName")));
     }
@@ -66,14 +66,14 @@ public class CodegenApplicationModelTest {
     @Ignore // FIX ME
     public void adding_entity_twice_throws_exception() {
         thrown.expect(IllegalStateException.class);
-        CodegenApplicationModel applicationModel = new CodegenApplicationModel(application, repo);
+        CodegenApplicationModel applicationModel = new CodegenApplicationModel(application);
         applicationModel.addEntity(new Entity("entityName"));
         applicationModel.addEntity(new Entity("entityName"));
     }
 
     @Test
     public void validation_succeeds_for_reference_with_known_entity() {
-        CodegenApplicationModel applicationModel = new CodegenApplicationModel(application, repo);
+        CodegenApplicationModel applicationModel = new CodegenApplicationModel(application);
         CodegenEntityModel entity = applicationModel.addEntity(new Entity("entityName"));
         Entity unknownEntity = new Entity("entityName");
         entity.addReference(unknownEntity);
@@ -83,7 +83,7 @@ public class CodegenApplicationModelTest {
     @Ignore
     public void validation_throws_expection_for_reference_with_unknown_entity() {
         thrown.expect(IllegalStateException.class);
-        CodegenApplicationModel applicationModel = new CodegenApplicationModel(application, repo);
+        CodegenApplicationModel applicationModel = new CodegenApplicationModel(application);
         CodegenEntityModel entity = applicationModel.addEntity(new Entity("entityName"));
         Entity unknownEntity = new Entity("unknown");
         entity.addReference(unknownEntity);
@@ -91,8 +91,8 @@ public class CodegenApplicationModelTest {
 
     @Test
     public void simplest_model_is_empty() throws Exception {
-        CodegenApplicationModel applicationModel = new CodegenApplicationModel(application, repo);
-        assertThat(applicationModel.getApplicationName(), is(equalTo("testapp")));
+        CodegenApplicationModel applicationModel = new CodegenApplicationModel(application);
+        assertThat(applicationModel.getName(), is(equalTo("testapp")));
         assertThat(applicationModel.getEntityValues().size(), is(0));
     }
 
@@ -100,9 +100,9 @@ public class CodegenApplicationModelTest {
     public void creates_model_for_simpleEntity() {
         entities.add(new Entity("Bank"));
 
-        CodegenApplicationModel applicationModel = new CodegenApplicationModel(application, repo);
+        CodegenApplicationModel applicationModel = new CodegenApplicationModel(application);
 
-        assertThat(applicationModel.getApplicationName(), is(equalTo("testapp")));
+        assertThat(applicationModel.getName(), is(equalTo("testapp")));
         assertThat(applicationModel.getEntityValues().size(), is(1));
 
         CodegenEntityModel entityModel = (CodegenEntityModel) applicationModel.getEntityValues().iterator().next();
@@ -120,9 +120,9 @@ public class CodegenApplicationModelTest {
         //entity.setFields(Arrays.asList(field));
         entities.add(entity);
 
-        CodegenApplicationModel applicationModel = new CodegenApplicationModel(application, repo);
+        CodegenApplicationModel applicationModel = new CodegenApplicationModel(application);
 
-        assertThat(applicationModel.getApplicationName(), is(equalTo("testapp")));
+        assertThat(applicationModel.getName(), is(equalTo("testapp")));
 
         CodegenEntityModel entityModel = (CodegenEntityModel) applicationModel.getEntityValues().iterator().next();
         assertThat(entityModel.getId(), is(equalTo("pkgName.Bank")));
@@ -137,9 +137,9 @@ public class CodegenApplicationModelTest {
         entity.setSubEntities(Arrays.asList(entity));
         entities.add(entity);
 
-        CodegenApplicationModel applicationModel = new CodegenApplicationModel(application, repo);
+        CodegenApplicationModel applicationModel = new CodegenApplicationModel(application);
 
-        assertThat(applicationModel.getApplicationName(), is(equalTo("testapp")));
+        assertThat(applicationModel.getName(), is(equalTo("testapp")));
 
         CodegenEntityModel entityModel = (CodegenEntityModel) applicationModel.getEntityValues().iterator().next();
         assertThat(entityModel.getId(), is(equalTo("pkgName.Bank")));
@@ -165,9 +165,9 @@ public class CodegenApplicationModelTest {
         entities.add(bankEntity);
         entities.add(accountEntity);
 
-        CodegenApplicationModel applicationModel = new CodegenApplicationModel(application, repo);
+        CodegenApplicationModel applicationModel = new CodegenApplicationModel(application);
 
-        assertThat(applicationModel.getApplicationName(), is(equalTo("testapp")));
+        assertThat(applicationModel.getName(), is(equalTo("testapp")));
 
         List<EntityModel> models = new ArrayList<>(applicationModel.getEntityValues());
         List<String> entityModelNames = models.stream()
@@ -189,7 +189,7 @@ public class CodegenApplicationModelTest {
 //
 //        CodegenApplicationModel applicationModel = new CodegenApplicationModel(application, repo);
 //
-//        assertThat(applicationModel.getApplicationName(), is(equalTo("testapp")));
+//        assertThat(applicationModel.getName(), is(equalTo("testapp")));
 //
 //        CodegenEntityModel entityModel = applicationModel.getEntities().iterator().next();
 //        assertThat(entityModel.getEntityName(), is(equalTo("Bank")));

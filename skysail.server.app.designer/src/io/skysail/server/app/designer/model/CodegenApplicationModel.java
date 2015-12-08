@@ -2,45 +2,30 @@ package io.skysail.server.app.designer.model;
 
 import io.skysail.server.app.designer.application.Application;
 import io.skysail.server.app.designer.entities.Entity;
-import io.skysail.server.app.designer.repo.DesignerRepository;
 import io.skysail.server.domain.core.ApplicationModel;
 import lombok.*;
 import lombok.extern.slf4j.Slf4j;
 
+/**
+ * Extension augmenting the core application model with information needed
+ * to create java classes from the model. 
+ *
+ */
 @Getter
 @ToString
 @Slf4j
 public class CodegenApplicationModel extends ApplicationModel {
 
-    private final String applicationName;
     private final String packageName;
     private String path;
     private String projectName;
 
-    public CodegenApplicationModel(Application appFromDb, DesignerRepository repo) {
+    public CodegenApplicationModel(Application appFromDb) {
         super(appFromDb.getName());
-        this.applicationName = appFromDb.getName();
         this.packageName = appFromDb.getPackageName();
-        path = appFromDb.getPath();
-        projectName = appFromDb.getProjectName();
-        setupModel(appFromDb, repo);
-    }
-
-    private void setupModel(Application application, DesignerRepository repo) {
-        createEnityModels(application, repo);
-    }
-
-    private void createEnityModels(Application application, DesignerRepository repo) {
-        application.getEntities().stream().forEach(entity -> {
-            createEntityModel(application, repo, entity);
-            for (Entity subEntity : entity.getSubEntities()) {
-                createEntityModel(application, repo, subEntity);
-            }
-        });
-    }
-
-    private void createEntityModel(Application application, DesignerRepository repo, Entity dbEntity) {
-        addEntity(dbEntity);
+        this.path = appFromDb.getPath();
+        this.projectName = appFromDb.getProjectName();
+        setupModel(appFromDb);
     }
 
     public CodegenEntityModel addEntity(Entity entity) {
@@ -49,5 +34,21 @@ public class CodegenApplicationModel extends ApplicationModel {
         add(entityModel);
         return entityModel;
     }
+
+    private void setupModel(Application application) {
+        application.getEntities().stream().forEach(entity -> {
+            createEntityModel(entity);
+            for (Entity subEntity : entity.getSubEntities()) {
+                createEntityModel(subEntity);
+            }
+        });
+    }
+
+    private void createEntityModel(Entity dbEntity) {
+        log.info("CodegenApplicationModel: adding Entity '{}'", dbEntity);
+        CodegenEntityModel entityModel = new CodegenEntityModel(dbEntity, packageName);
+        add(entityModel);
+    }
+
 
 }

@@ -11,12 +11,12 @@ public class Put$entity.simpleName$Resource extends PutEntityServerResource<$ent
 
 
     private String id;
-    private $application.applicationName$Application app;
+    private $application.name$Application app;
 
     @Override
     protected void doInit() throws ResourceException {
         id = getAttribute("id");
-        app = ($application.applicationName$Application)getApplication();
+        app = ($application.name$Application)getApplication();
     \}
     
     @Override

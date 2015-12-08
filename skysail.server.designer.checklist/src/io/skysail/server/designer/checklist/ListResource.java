@@ -11,6 +11,7 @@ public class ListResource extends EntityServerResource<io.skysail.server.designe
 
     private String id;
     private ChecklistApplication app;
+    private ListRepository repository;
 
     public ListResource() {
         addToContext(ResourceContextId.LINK_TITLE, "details");
@@ -21,12 +22,14 @@ public class ListResource extends EntityServerResource<io.skysail.server.designe
     protected void doInit() {
         id = getAttribute("id");
         app = (ChecklistApplication) getApplication();
+        repository = (ListRepository) app.getRepository(io.skysail.server.designer.checklist.List.class);
     }
 
 
     @Override
     public SkysailResponse<?> eraseEntity() {
-        return new SkysailResponse<String>();
+        repository.delete(id);
+        return new SkysailResponse<>();
     }
 
     @Override

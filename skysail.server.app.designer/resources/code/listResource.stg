@@ -12,7 +12,7 @@ import de.twenty11.skysail.server.core.restlet.ResourceContextId;
 
 public class $entity.simpleName$sResource extends ListServerResource<$entity.id$> {
 
-    private $application.applicationName$Application app;
+    private $application.name$Application app;
     private $entity.simpleName$Repository repository;
 
     public $entity.simpleName$sResource() {
@@ -22,7 +22,7 @@ public class $entity.simpleName$sResource extends ListServerResource<$entity.id$
 
     @Override
     protected void doInit() {
-        app = ($application.applicationName$Application) getApplication();
+        app = ($application.name$Application) getApplication();
         repository = ($entity.simpleName$Repository) app.getRepository($entity.id$.class);
     }
 

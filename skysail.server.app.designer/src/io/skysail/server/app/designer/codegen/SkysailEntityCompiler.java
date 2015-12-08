@@ -33,6 +33,8 @@ public class SkysailEntityCompiler extends SkysailCompiler {
         ST template = getStringTemplateIndex("entityResource");
         entityResourceClassName = setupEntityResourceForCompilation(template, applicationModel, entityModel);
 
+        routes.add(new RouteModel("/" + entityModel.getId() + "s/{id}", entityResourceClassName));
+        
         ST postResourceTemplate = getStringTemplateIndex("postResource");
         String postResourceClassName = setupPostResourceForCompilation(postResourceTemplate, applicationModel,
                 entityModel);
@@ -44,7 +46,7 @@ public class SkysailEntityCompiler extends SkysailCompiler {
         }
         ST putResourceTemplate = getStringTemplateIndex("putResource");
         String putResourceClassName = setupPutResourceForCompilation(putResourceTemplate, applicationModel, entityModel);
-        routes.add(new RouteModel("/" + entityModel.getId() + "s/{id}", putResourceClassName));
+        routes.add(new RouteModel("/" + entityModel.getId() + "s/{id}/", putResourceClassName));
 
         ST listResourceTemplate = getStringTemplateIndex("listResource");
         String listResourceClassName = setupListResourceForCompilation(listResourceTemplate, applicationModel,

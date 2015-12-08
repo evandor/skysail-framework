@@ -23,7 +23,7 @@ public class ApplicationModelTest {
                     .add(new FieldModel("f23")))
             .add(new EntityModel("e24"));
 
-        assertThat(app.getId(),is("app17"));
+        assertThat(app.getName(),is("app17"));
         assertThat(app.getEntityIds().size(),is(2));
         assertThat(app.getEntity("e23").getId(),is("e23"));
         assertThat(app.getEntity("e24").getId(),is("e24"));
@@ -35,7 +35,7 @@ public class ApplicationModelTest {
             .add(new EntityModel("e23"))
             .add(new EntityModel("e23"));
 
-        assertThat(app.getId(),is("app17"));
+        assertThat(app.getName(),is("app17"));
         assertThat(app.getEntityIds().size(),is(1));
         assertThat(app.getEntity("e23").getId(),is("e23"));
     }

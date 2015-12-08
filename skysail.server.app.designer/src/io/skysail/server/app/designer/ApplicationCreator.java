@@ -46,7 +46,7 @@ public class ApplicationCreator {
     public ApplicationCreator(Application application, DesignerRepository designerRepository, Repositories repos, Bundle bundle) {
         this.repos = repos;
         this.bundle = bundle;
-        this.applicationModel = new CodegenApplicationModel(application, designerRepository);
+        this.applicationModel = new CodegenApplicationModel(application);
         stGroup = new STGroupBundleDir(bundle, "/code");
     }
 

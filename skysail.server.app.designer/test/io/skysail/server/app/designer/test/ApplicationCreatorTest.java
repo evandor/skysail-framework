@@ -148,14 +148,14 @@ public class ApplicationCreatorTest {
     }
     
     private void verifyJavaFilesExist(CodegenApplicationModel appModel) {
-        String projectPath = "generated/" + appModel.getApplicationName() + "/" + appModel.getProjectName() + "/";
+        String projectPath = "generated/" + appModel.getName() + "/" + appModel.getProjectName() + "/";
         String applicationPath = projectPath + "src/" + appModel.getPackageName().replace(".", "/") + "/";
-        assertFileExists(applicationPath, appModel.getApplicationName() + "Application.java");
+        assertFileExists(applicationPath, appModel.getName() + "Application.java");
     }
 
     private void verifyProjectFilesExist(CodegenApplicationModel appModel) {
         // "generated/empty/skysail.server.designer.empty"
-        String projectPath = "generated/" + appModel.getApplicationName() + "/" + appModel.getProjectName() + "/";
+        String projectPath = "generated/" + appModel.getName() + "/" + appModel.getProjectName() + "/";
         
         assertFileExists(projectPath, ".project");
         assertFileExists(projectPath, ".classpath");

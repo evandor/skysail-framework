@@ -42,8 +42,9 @@ public class ChecklistApplication extends SkysailApplication implements Applicat
     @Override
     protected void attach() {
         super.attach();
+        router.attach(new RouteBuilder("/io.skysail.server.designer.checklist.Lists/{id}", io.skysail.server.designer.checklist.ListResource.class));
         router.attach(new RouteBuilder("/io.skysail.server.designer.checklist.Lists/", io.skysail.server.designer.checklist.PostListResource.class));
-        router.attach(new RouteBuilder("/io.skysail.server.designer.checklist.Lists/{id}", io.skysail.server.designer.checklist.PutListResource.class));
+        router.attach(new RouteBuilder("/io.skysail.server.designer.checklist.Lists/{id}/", io.skysail.server.designer.checklist.PutListResource.class));
         router.attach(new RouteBuilder("/io.skysail.server.designer.checklist.Lists", io.skysail.server.designer.checklist.ListsResource.class));
         router.attach(new RouteBuilder("", io.skysail.server.designer.checklist.ListsResource.class));
 

@@ -7,7 +7,7 @@ import javax.validation.constraints.*;
 
 import io.skysail.api.domain.Identifiable;
 import io.skysail.api.forms.*;
-import io.skysail.server.app.designer.entities.Entity;
+import io.skysail.server.app.designer.entities.DbEntity;
 import io.skysail.server.forms.ListView;
 import lombok.*;
 
@@ -15,7 +15,7 @@ import lombok.*;
 @Getter
 @Setter
 @ToString(of = { "id", "name" })
-public class Application implements Identifiable {
+public class DbApplication implements Identifiable {
 
     @Id
     private String id;
@@ -47,13 +47,13 @@ public class Application implements Identifiable {
     @ListView(hide = true)
     private String owner;
 
-    private List<Entity> entities = new ArrayList<>();
+    private List<DbEntity> entities = new ArrayList<>();
 
     /**
      * A builder which sets the mandatory attributes
      */
     @Builder
-    public Application(@NonNull String name, @NonNull String packageName, @NonNull String path, @NonNull String projectName) {
+    public DbApplication(@NonNull String name, @NonNull String packageName, @NonNull String path, @NonNull String projectName) {
         this.name = name;
         this.packageName = packageName;
         this.path = path;

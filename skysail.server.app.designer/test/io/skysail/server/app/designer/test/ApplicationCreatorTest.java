@@ -23,7 +23,7 @@ import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
 import de.twenty11.skysail.server.app.ApplicationProvider;
 import io.skysail.server.app.SkysailApplication;
 import io.skysail.server.app.designer.ApplicationCreator;
-import io.skysail.server.app.designer.application.Application;
+import io.skysail.server.app.designer.application.DbApplication;
 import io.skysail.server.app.designer.codegen.JavaCompiler;
 import io.skysail.server.app.designer.model.CodegenApplicationModel;
 import io.skysail.server.app.designer.repo.DesignerRepository;
@@ -102,18 +102,18 @@ public class ApplicationCreatorTest {
         verifyApplicationServiceWasRegistered();
     }
     
-    private Application readApplicationFromYamlFile(String testfile) throws IOException {
+    private DbApplication readApplicationFromYamlFile(String testfile) throws IOException {
         Path path = Paths.get("resources", "testinput", testfile);
         StringBuilder sb = new StringBuilder();
         Files.lines(path).forEach(line -> sb.append(line).append("\n"));
-        return mapper.readValue(sb.toString(), Application.class);
+        return mapper.readValue(sb.toString(), DbApplication.class);
     }
 
     private void verifyJavaCompilerCalls() {
         verify(javaCompilerSpy, times(1)).reset();
     }
     
-    private ApplicationCreator setupApplicationCreator(Application application) {
+    private ApplicationCreator setupApplicationCreator(DbApplication application) {
         ApplicationCreator applicationCreator = new ApplicationCreator(application, designerRepositoryMock, reposMock, bundleMock);
         applicationCreator.setBundleResourceReader(new BundleResourceReader() {
             @Override
@@ -150,7 +150,7 @@ public class ApplicationCreatorTest {
     private void verifyJavaFilesExist(CodegenApplicationModel appModel) {
         String projectPath = "generated/" + appModel.getName() + "/" + appModel.getProjectName() + "/";
         String applicationPath = projectPath + "src/" + appModel.getPackageName().replace(".", "/") + "/";
-        assertFileExists(applicationPath, appModel.getName() + "Application.java");
+        assertFileExists(applicationPath, appModel.getName() + "DbApplication.java");
     }
 
     private void verifyProjectFilesExist(CodegenApplicationModel appModel) {

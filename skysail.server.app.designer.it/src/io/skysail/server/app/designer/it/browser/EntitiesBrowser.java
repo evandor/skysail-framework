@@ -7,25 +7,25 @@ import org.restlet.representation.Representation;
 
 import io.skysail.client.testsupport.*;
 import io.skysail.server.app.designer.DesignerApplication;
-import io.skysail.server.app.designer.entities.Entity;
+import io.skysail.server.app.designer.entities.DbEntity;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-public class EntitiesBrowser extends ApplicationBrowser<EntitiesBrowser, Entity> {
+public class EntitiesBrowser extends ApplicationBrowser<EntitiesBrowser, DbEntity> {
 
     public EntitiesBrowser(MediaType mediaType, int port) {
         super(DesignerApplication.APP_NAME, mediaType, port);
         parentEntityBrowser = new ApplicationsBrowser(MediaType.APPLICATION_JSON, port);
     }
 
-    protected Form createForm(Entity entity) {
+    protected Form createForm(DbEntity entity) {
         Form form = new Form();
         form.add("name", entity.getName());
         return form;
     }
 
-    public Entity createRandomEntity() {
-        Entity e = new Entity();
+    public DbEntity createRandomEntity() {
+        DbEntity e = new DbEntity();
         e.setName("Entity_" + new BigInteger(130, random).toString(32));
         return e;
     }
@@ -34,9 +34,9 @@ public class EntitiesBrowser extends ApplicationBrowser<EntitiesBrowser, Entity>
         create(createRandomEntity());
     }
 
-    public void create(Entity entity) {
+    public void create(DbEntity entity) {
         ((ApplicationsBrowser) parentEntityBrowser).create();
-        log.info("{}creating new Entity {}", ApplicationClient.TESTTAG, entity);
+        log.info("{}creating new DbEntity {}", ApplicationClient.TESTTAG, entity);
         login();
         create(client, entity);
     }
@@ -49,42 +49,42 @@ public class EntitiesBrowser extends ApplicationBrowser<EntitiesBrowser, Entity>
     }
 
     public void deleteEntity(String appId, String entityId) {
-        log.info("{}deleting Entity #{}", ApplicationClient.TESTTAG, entityId);
+        log.info("{}deleting DbEntity #{}", ApplicationClient.TESTTAG, entityId);
         login();
         deleteEntity(client, appId, entityId);
     }
 
     public Representation getApplication(String id) {
-        log.info("{}retrieving Application #{}", ApplicationClient.TESTTAG, id);
+        log.info("{}retrieving DbApplication #{}", ApplicationClient.TESTTAG, id);
         login();
         getApplication(client, id);
         return client.getCurrentRepresentation();
     }
 
-    public void updateApplication(Entity entity) {
-        log.info("{}updating Entity #{}", ApplicationClient.TESTTAG, entity.getId());
+    public void updateApplication(DbEntity entity) {
+        log.info("{}updating DbEntity #{}", ApplicationClient.TESTTAG, entity.getId());
         login();
         updateEntity(client, entity);
     }
 
-    private void deleteEntity(ApplicationClient<Entity> client, String appId, String entityId) {
+    private void deleteEntity(ApplicationClient<DbEntity> client, String appId, String entityId) {
         client.gotoAppRoot()
                 //
                 .followLinkTitleAndRefId("list Entities", appId).followLinkTitleAndRefId("update", entityId)
                 .followLink(Method.DELETE, null);
     }
 
-    private void create(ApplicationClient<Entity> client, Entity entity) {
+    private void create(ApplicationClient<DbEntity> client, DbEntity entity) {
         navigateToPostEntity(client);
         client.post(createForm(entity));
         setId(client.getLocation().getLastSegment(true));
     }
 
-    private void navigateToPostEntity(ApplicationClient<Entity> client) {
-        client.gotoAppRoot().followLinkTitleAndRefId("Create new Entity", parentEntityBrowser.getId());
+    private void navigateToPostEntity(ApplicationClient<DbEntity> client) {
+        client.gotoAppRoot().followLinkTitleAndRefId("Create new DbEntity", parentEntityBrowser.getId());
     }
 
-    private void getEntities(ApplicationClient<Entity> client) {
+    private void getEntities(ApplicationClient<DbEntity> client) {
         client.gotoAppRoot();// .followLinkTitleAndRefId("List of Applications",
                              // id);
     }
@@ -93,7 +93,7 @@ public class EntitiesBrowser extends ApplicationBrowser<EntitiesBrowser, Entity>
         client.gotoRoot().followLinkTitle(DesignerApplication.APP_NAME);
     }
 
-    private void updateEntity(ApplicationClient<Entity> client, Entity entity) {
+    private void updateEntity(ApplicationClient<DbEntity> client, DbEntity entity) {
         client.gotoAppRoot().followLinkTitleAndRefId("update", entity.getId()).followLink(Method.PUT, entity);
     }
 

@@ -16,7 +16,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class EntityField implements Identifiable {
+public class DbEntityField implements Identifiable {
 
     @Id
     private String id;

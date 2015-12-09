@@ -2,9 +2,9 @@ package io.skysail.server.app.designer.test;
 
 import io.skysail.api.responses.SkysailResponse;
 import io.skysail.server.app.designer.DesignerApplication;
-import io.skysail.server.app.designer.application.Application;
+import io.skysail.server.app.designer.application.DbApplication;
 import io.skysail.server.app.designer.application.resources.*;
-import io.skysail.server.app.designer.entities.Entity;
+import io.skysail.server.app.designer.entities.DbEntity;
 import io.skysail.server.app.designer.entities.resources.*;
 import io.skysail.server.app.designer.repo.DesignerRepository;
 import io.skysail.server.restlet.resources.SkysailServerResource;
@@ -86,28 +86,28 @@ public abstract class AbstractDesignerResourceTest extends ResourceTestBase {
         getAttributes().put(name, id);
     }
 
-    protected Application createValidApplication() {
-        Application app = Application.builder()
+    protected DbApplication createValidApplication() {
+        DbApplication app = DbApplication.builder()
                 .name("app_name_" + randomString())
                 .packageName("app_packageName_" + randomString())
                 .path("../")
                 .projectName("projectName")
                 .build();
-//        Application app = new Application();
+//        DbApplication app = new DbApplication();
 //        app.setName("application_" + randomString());
 //        app.setPackageName("package");
 //        app.setPath("../");
 //        app.setProjectName("projectName");
-        SkysailResponse<Application> post = postApplicationResource.post(app,JSON_VARIANT);
+        SkysailResponse<DbApplication> post = postApplicationResource.post(app,JSON_VARIANT);
         getAttributes().clear();
 
         return post.getEntity();
     }
 
-    protected Entity createEntity() {
-        Entity app = new Entity();
+    protected DbEntity createEntity() {
+        DbEntity app = new DbEntity();
         app.setName("Entity_" + randomString());
-        SkysailResponse<Entity> post = postEntityResource.post(app,JSON_VARIANT);
+        SkysailResponse<DbEntity> post = postEntityResource.post(app,JSON_VARIANT);
         getAttributes().clear();
 
         return post.getEntity();

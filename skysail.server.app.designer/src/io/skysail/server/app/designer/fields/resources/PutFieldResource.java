@@ -2,10 +2,10 @@ package io.skysail.server.app.designer.fields.resources;
 
 import io.skysail.api.responses.SkysailResponse;
 import io.skysail.server.app.designer.DesignerApplication;
-import io.skysail.server.app.designer.fields.EntityField;
+import io.skysail.server.app.designer.fields.DbEntityField;
 import io.skysail.server.restlet.resources.PutEntityServerResource;
 
-public class PutFieldResource extends PutEntityServerResource<EntityField> {
+public class PutFieldResource extends PutEntityServerResource<DbEntityField> {
 
     private DesignerApplication app;
     private String appId;
@@ -20,11 +20,11 @@ public class PutFieldResource extends PutEntityServerResource<EntityField> {
         app = (DesignerApplication) getApplication();
     }
 
-    public EntityField getEntity() {
+    public DbEntityField getEntity() {
         return app.getEntityField(appId, entityId, fieldId);
     }
 
-    public SkysailResponse<EntityField> updateEntity(EntityField entity) {
+    public SkysailResponse<DbEntityField> updateEntity(DbEntityField entity) {
         app.getRepository().update(entity);
         return new SkysailResponse<>();
     }

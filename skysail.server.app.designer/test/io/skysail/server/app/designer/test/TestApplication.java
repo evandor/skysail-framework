@@ -1,6 +1,6 @@
 package io.skysail.server.app.designer.test;
 
-import io.skysail.server.app.designer.application.Application;
+import io.skysail.server.app.designer.application.DbApplication;
 import lombok.Builder;
 
 @Builder
@@ -8,7 +8,7 @@ public class TestApplication {
 
     private String name;
 
-    public Application create() {
+    public DbApplication create() {
         return null;
     }
 

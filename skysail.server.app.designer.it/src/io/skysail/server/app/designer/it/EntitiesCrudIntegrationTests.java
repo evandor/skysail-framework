@@ -12,8 +12,8 @@ import org.restlet.representation.Representation;
 import com.fasterxml.jackson.databind.*;
 
 import io.skysail.client.testsupport.BrowserTests;
-import io.skysail.server.app.designer.application.Application;
-import io.skysail.server.app.designer.entities.Entity;
+import io.skysail.server.app.designer.application.DbApplication;
+import io.skysail.server.app.designer.entities.DbEntity;
 import io.skysail.server.app.designer.it.browser.*;
 
 /**
@@ -22,9 +22,9 @@ import io.skysail.server.app.designer.it.browser.*;
  */
 @Ignore
 
-public class EntitiesCrudIntegrationTests extends BrowserTests<EntitiesBrowser, Entity> {
+public class EntitiesCrudIntegrationTests extends BrowserTests<EntitiesBrowser, DbEntity> {
 
-    private Entity entity;
+    private DbEntity entity;
 
     private ApplicationsBrowser appBrowser;
 
@@ -45,8 +45,8 @@ public class EntitiesCrudIntegrationTests extends BrowserTests<EntitiesBrowser, 
 
     @Test
     public void creating_entity_for_application_persists_them() throws Exception {
-       // String appId = appBrowser.create(new Application("PropMan"));
-        browser.create(new Entity("Campaign"));
+       // String appId = appBrowser.create(new DbApplication("PropMan"));
+        browser.create(new DbEntity("Campaign"));
         Representation rep = browser.getApplication(browser.getParentEntityBrowser().getId());
         assertThat(rep.getText(), containsString("Campaign"));
     }
@@ -55,7 +55,7 @@ public class EntitiesCrudIntegrationTests extends BrowserTests<EntitiesBrowser, 
     // delete
     public void new_entity_can_be_deleted() throws Exception {
 //        String appId = appBrowser.create(createRandomApplication());
-        Entity theEntity = browser.createRandomEntity();
+        DbEntity theEntity = browser.createRandomEntity();
         browser.create(theEntity);
 
         Representation application = appBrowser.getApplication(browser.getParentEntityBrowser().getId());
@@ -98,7 +98,7 @@ public class EntitiesCrudIntegrationTests extends BrowserTests<EntitiesBrowser, 
     // @Ignore
     // public void posting_new_application_with_name_and_path_persists_it()
     // throws Exception {
-    // Application application = new Application("app1");
+    // DbApplication application = new DbApplication("app1");
     // // application.setPath(".");
     // browser.create(application);
     // Representation applications = browser.getEntities();
@@ -112,7 +112,7 @@ public class EntitiesCrudIntegrationTests extends BrowserTests<EntitiesBrowser, 
     // throws Exception {
     // thrown.expect(ResourceException.class);
     // thrown.expectMessage("Bad Request");
-    // browser.createApplication(new Application("app1!"));
+    // browser.createApplication(new DbApplication("app1!"));
     // }
 
     // private void createListAndCheckAssertions() throws IOException {
@@ -121,8 +121,8 @@ public class EntitiesCrudIntegrationTests extends BrowserTests<EntitiesBrowser, 
     // assertThat(html, containsString(entity.getName()));
     // }
 
-    private Application createRandomApplication() {
-        Application e = new Application();
+    private DbApplication createRandomApplication() {
+        DbApplication e = new DbApplication();
         e.setName("Application_" + new BigInteger(130, random).toString(32));
         return e;
     }

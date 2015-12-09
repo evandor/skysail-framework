@@ -1,27 +1,26 @@
 package io.skysail.server.app.designer.entities.resources;
 
-import io.skysail.api.links.Link;
-import io.skysail.api.responses.SkysailResponse;
-import io.skysail.server.app.designer.DesignerApplication;
-import io.skysail.server.app.designer.application.Application;
-import io.skysail.server.app.designer.entities.Entity;
-import io.skysail.server.restlet.resources.PostEntityServerResource;
-
-import java.util.Optional;
 import java.util.function.Consumer;
-
-import lombok.extern.slf4j.Slf4j;
 
 import org.restlet.resource.ResourceException;
 
 import de.twenty11.skysail.server.core.restlet.ResourceContextId;
+import io.skysail.api.links.Link;
+import io.skysail.api.responses.SkysailResponse;
+import io.skysail.server.app.designer.DesignerApplication;
+import io.skysail.server.app.designer.application.DbApplication;
+import io.skysail.server.app.designer.entities.DbEntity;
+import io.skysail.server.app.designer.repo.DesignerRepository;
+import io.skysail.server.restlet.resources.PostEntityServerResource;
+import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-public class PostSubEntityResource extends PostEntityServerResource<Entity> {
+public class PostSubEntityResource extends PostEntityServerResource<DbEntity> {
 
     private DesignerApplication app;
     private String id;
     private String entityId;
+    private DesignerRepository repo;
 
     public PostSubEntityResource() {
         addToContext(ResourceContextId.LINK_TITLE, "Create 1:n Relation");
@@ -34,23 +33,19 @@ public class PostSubEntityResource extends PostEntityServerResource<Entity> {
         app = (DesignerApplication) getApplication();
         id = getAttribute("id");
         entityId = getAttribute(DesignerApplication.ENTITY_ID);
+        repo = (DesignerRepository) app.getRepository(DbApplication.class);
     }
 
     @Override
-    public Entity createEntityTemplate() {
-        return new Entity();
+    public DbEntity createEntityTemplate() {
+        return new DbEntity();
     }
 
     @Override
-    public SkysailResponse<Entity> addEntity(Entity entity) {
-        Application application = app.getRepository().getById(Application.class, id);
-        Optional<Entity> parentEntity = null;//app.getEntityFromApplication(application, entityId);
-        if(parentEntity.isPresent()) {
-            parentEntity.get().getSubEntities().add(entity);
-            app.getRepository().update(parentEntity.get());
-        } else {
-            log.warn("could not find entity with id '{}'", entity);
-        }
+    public SkysailResponse<DbEntity> addEntity(DbEntity entity) {
+        DbEntity parentEntity = repo.getById(DbEntity.class, entityId);
+        parentEntity.getSubEntities().add(entity);
+        repo.update(parentEntity, "subEntities");
         return new SkysailResponse<>();
     }
 

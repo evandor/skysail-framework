@@ -6,8 +6,8 @@ import org.osgi.service.component.annotations.*;
 
 import io.skysail.api.domain.Identifiable;
 import io.skysail.api.repos.DbRepository;
-import io.skysail.server.app.designer.application.Application;
-import io.skysail.server.app.designer.entities.Entity;
+import io.skysail.server.app.designer.application.DbApplication;
+import io.skysail.server.app.designer.entities.DbEntity;
 import io.skysail.server.app.designer.fields.*;
 import io.skysail.server.db.*;
 import lombok.extern.slf4j.Slf4j;
@@ -20,9 +20,9 @@ public class DesignerRepository implements DbRepository {
 
     @Activate
     public void activate() {
-        dbService.createWithSuperClass("V", DbClassName.of(Application.class), DbClassName.of(Entity.class),
-                DbClassName.of(EntityField.class), DbClassName.of(ActionEntityField.class));
-        dbService.register(Application.class, Entity.class, EntityField.class, ActionEntityField.class);
+        dbService.createWithSuperClass("V", DbClassName.of(DbApplication.class), DbClassName.of(DbEntity.class),
+                DbClassName.of(DbEntityField.class), DbClassName.of(ActionEntityField.class));
+        dbService.register(DbApplication.class, DbEntity.class, DbEntityField.class, ActionEntityField.class);
         dbService.createEdges("entities", "fields");
     }
 
@@ -45,12 +45,12 @@ public class DesignerRepository implements DbRepository {
         }
     }
 
-    public List<Application> findApplications(String sql) {
-        return dbService.findGraphs(Application.class, sql);
+    public List<DbApplication> findApplications(String sql) {
+        return dbService.findGraphs(DbApplication.class, sql);
     }
 
-    public List<Entity> findEntities(String sql) {
-        return dbService.findGraphs(Entity.class, sql);
+    public List<DbEntity> findEntities(String sql) {
+        return dbService.findGraphs(DbEntity.class, sql);
     }
 
     public static Object add(Identifiable entity, String... edges) {
@@ -61,20 +61,20 @@ public class DesignerRepository implements DbRepository {
         return dbService.findById2(cls, id);
     }
 
-    public Object update(Application entity, String... edges) {
+    public Object update(DbApplication entity, String... edges) {
         return dbService.update(entity.getId(), entity, edges);
     }
 
-    public Object update(Entity entity, String... edges) {
+    public Object update(DbEntity entity, String... edges) {
         return dbService.update(entity.getId(), entity, edges);
     }
 
-    public void update(EntityField field) {
+    public void update(DbEntityField field) {
         dbService.update(field.getId(), field);
     }
 
     public Object update(String id, Identifiable entity, String... edges) {
-        return dbService.update(id, entity);
+        return dbService.update(id, entity, edges);
     }
 
     public void register(Class<?>... classes) {
@@ -89,7 +89,7 @@ public class DesignerRepository implements DbRepository {
         dbService.createWithSuperClass(superClassName, entityClassName);
     }
 
-    public Object getVertexById(Class<Application> cls, String id) {
+    public Object getVertexById(Class<DbApplication> cls, String id) {
         return dbService.findGraphs(cls.getClass(), "SELECT FROM "+cls.getSimpleName()+" WHERE @rid="+id);
     }
 
@@ -100,7 +100,7 @@ public class DesignerRepository implements DbRepository {
 
     @Override
     public Identifiable findOne(String id) {
-        return dbService.findById2(Application.class, id);
+        return dbService.findById2(DbApplication.class, id);
     }
 
     @Override

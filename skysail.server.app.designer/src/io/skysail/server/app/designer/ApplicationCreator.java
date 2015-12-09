@@ -13,7 +13,7 @@ import org.stringtemplate.v4.ST;
 import de.twenty11.skysail.server.app.ApplicationProvider;
 import io.skysail.api.repos.DbRepository;
 import io.skysail.server.app.SkysailApplication;
-import io.skysail.server.app.designer.application.Application;
+import io.skysail.server.app.designer.application.DbApplication;
 import io.skysail.server.app.designer.codegen.*;
 import io.skysail.server.app.designer.model.*;
 import io.skysail.server.app.designer.repo.DesignerRepository;
@@ -43,7 +43,7 @@ public class ApplicationCreator {
     @Setter
     private JavaCompiler javaCompiler = new DefaultJavaCompiler();
 
-    public ApplicationCreator(Application application, DesignerRepository designerRepository, Repositories repos, Bundle bundle) {
+    public ApplicationCreator(DbApplication application, DesignerRepository designerRepository, Repositories repos, Bundle bundle) {
         this.repos = repos;
         this.bundle = bundle;
         this.applicationModel = new CodegenApplicationModel(application);

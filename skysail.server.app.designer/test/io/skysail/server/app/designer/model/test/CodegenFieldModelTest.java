@@ -2,7 +2,7 @@ package io.skysail.server.app.designer.model.test;
 
 import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.assertThat;
-import io.skysail.server.app.designer.fields.EntityField;
+import io.skysail.server.app.designer.fields.DbEntityField;
 import io.skysail.server.app.designer.model.CodegenFieldModel;
 
 import org.junit.*;
@@ -13,7 +13,7 @@ public class CodegenFieldModelTest {
 
     @Before
     public void setUp()  {
-        EntityField field = new EntityField();
+        DbEntityField field = new DbEntityField();
         field.setName("fieldName");
         fieldModel = new CodegenFieldModel(field);
     }

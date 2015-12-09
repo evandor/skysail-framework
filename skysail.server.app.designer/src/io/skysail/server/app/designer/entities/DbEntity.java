@@ -14,7 +14,7 @@ import lombok.*;
 @Getter
 @Setter
 @ToString(of = { "id", "name" })
-public class Entity implements Identifiable {
+public class DbEntity implements Identifiable {
 
     @Id
     private String id;
@@ -30,7 +30,7 @@ public class Entity implements Identifiable {
     @Field(inputType = InputType.CHECKBOX)
     private boolean rootEntity;
 
-    private List<EntityField> fields = new ArrayList<>();
+    private List<DbEntityField> fields = new ArrayList<>();
 
     private List<ActionEntityField> actionFields;
 
@@ -41,16 +41,16 @@ public class Entity implements Identifiable {
         return actionFields;
     }
 
-    private List<Entity> subEntities;
+    private List<DbEntity> subEntities;
 
-    public List<Entity> getSubEntities() { // = getReferences?
+    public List<DbEntity> getSubEntities() { // = getReferences?
         if (subEntities == null) {
             subEntities = new ArrayList<>();
         }
         return subEntities;
     }
 
-    public Entity(String name) {
+    public DbEntity(String name) {
         this.name = name;
     }
 

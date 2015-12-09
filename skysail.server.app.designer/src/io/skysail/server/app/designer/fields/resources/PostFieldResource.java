@@ -1,37 +1,40 @@
 package io.skysail.server.app.designer.fields.resources;
 
-import io.skysail.api.responses.SkysailResponse;
-import io.skysail.server.app.designer.DesignerApplication;
-import io.skysail.server.app.designer.entities.Entity;
-import io.skysail.server.app.designer.fields.EntityField;
-import io.skysail.server.restlet.resources.PostEntityServerResource;
-
 import org.restlet.resource.ResourceException;
 
 import de.twenty11.skysail.server.core.restlet.ResourceContextId;
+import io.skysail.api.responses.SkysailResponse;
+import io.skysail.server.app.designer.DesignerApplication;
+import io.skysail.server.app.designer.application.DbApplication;
+import io.skysail.server.app.designer.entities.DbEntity;
+import io.skysail.server.app.designer.fields.DbEntityField;
+import io.skysail.server.app.designer.repo.DesignerRepository;
+import io.skysail.server.restlet.resources.PostEntityServerResource;
 
-public class PostFieldResource extends PostEntityServerResource<EntityField> {
+public class PostFieldResource extends PostEntityServerResource<DbEntityField> {
 
     private DesignerApplication app;
+    private DesignerRepository repo;
 
     public PostFieldResource() {
-        addToContext(ResourceContextId.LINK_TITLE, "create new EntityField");
+        addToContext(ResourceContextId.LINK_TITLE, "create new DbEntityField");
     }
 
     @Override
     protected void doInit() throws ResourceException {
         super.doInit();
         app = (DesignerApplication) getApplication();
+        repo = (DesignerRepository) app.getRepository(DbApplication.class);
     }
 
     @Override
-    public EntityField createEntityTemplate() {
-        return new EntityField();
+    public DbEntityField createEntityTemplate() {
+        return new DbEntityField();
     }
 
     @Override
-    public SkysailResponse<EntityField> addEntity(EntityField field) {
-        Entity theEntity = app.getRepository().getById(Entity.class, getAttribute(DesignerApplication.ENTITY_ID));
+    public SkysailResponse<DbEntityField> addEntity(DbEntityField field) {
+        DbEntity theEntity = repo.getById(DbEntity.class, getAttribute(DesignerApplication.ENTITY_ID));
         theEntity.getFields().add(field);
         app.getRepository().update(theEntity, "fields");
         return new SkysailResponse<>();

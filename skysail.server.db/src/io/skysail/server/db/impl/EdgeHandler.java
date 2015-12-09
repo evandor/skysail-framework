@@ -1,37 +1,38 @@
 package io.skysail.server.db.impl;
 
-import io.skysail.api.domain.Identifiable;
-
 import java.lang.reflect.*;
 import java.util.*;
 import java.util.function.Function;
 import java.util.stream.*;
 
-import lombok.extern.slf4j.Slf4j;
-
 import com.tinkerpop.blueprints.*;
 import com.tinkerpop.blueprints.impls.orient.*;
+
+import io.skysail.api.domain.Identifiable;
+import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public class EdgeHandler {
 
     private OrientGraph db;
-    private Function<Identifiable, OrientVertex> fn;
+    private Function<Identifiable, VertexAndEdges> fn;
 
-    public EdgeHandler(Function<Identifiable, OrientVertex> fn, OrientGraph db) {
+    public EdgeHandler(Function<Identifiable, VertexAndEdges> fn, OrientGraph db) {
         this.fn = fn;
         this.db = db;
     }
 
-    public void handleEdges(Object entity, Vertex vertex, Map<String, Object> properties, String key)
+    public List<EdgeManipulation> handleEdges(Object entity, Vertex vertex, Map<String, Object> properties, String key)
             throws NoSuchFieldException, SecurityException, NoSuchMethodException, IllegalAccessException,
             IllegalArgumentException, InvocationTargetException {
+        
+        List<EdgeManipulation> edgeManipulations =new ArrayList<>();
 
         Field field = entity.getClass().getDeclaredField(key);
         Class<?> type = field.getType();
         Object edges = properties.get(key);
         if (edges == null) {
-            return;
+            return edgeManipulations;
         }
         if (Collection.class.isAssignableFrom(type)) {
             Method method = entity.getClass().getMethod("get" + key.substring(0, 1).toUpperCase() + key.substring(1));
@@ -51,16 +52,18 @@ public class EdgeHandler {
             edgesToDelete.stream().forEach(edge -> db.removeEdge(edge));
 
             for (Identifiable referencedObject : references) {
-                OrientVertex target = fn.apply(referencedObject);
+                VertexAndEdges target = fn.apply(referencedObject);
                 Iterable<Edge> existingEdges = vertex.getEdges(Direction.OUT, key);
                 if (edgeDoesNotExistYet(existingEdges, vertex, target, key)) {
-                    db.addEdge(null, vertex, target, key);
+                    db.addEdge(null, vertex, target.getVertex(), key);
+                    //edgeManipulations.add(new EdgeManipulation(EdgeManipulationType.NEW, vertex, target.getVertex(), key));
                 }
             }
         } else if (String.class.isAssignableFrom(type)) {
             removeOldReferences(vertex, key);
             addReference(vertex, properties, key, edges);
         }
+        return edgeManipulations;
     }
 
     private Optional<Edge> match(Vertex from, Vertex to, List<Edge> edgesToDelete, String key) {

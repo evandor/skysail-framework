@@ -2,8 +2,8 @@ package io.skysail.server.app.designer.entities.resources;
 
 import io.skysail.api.links.Link;
 import io.skysail.server.app.designer.DesignerApplication;
-import io.skysail.server.app.designer.application.Application;
-import io.skysail.server.app.designer.entities.Entity;
+import io.skysail.server.app.designer.application.DbApplication;
+import io.skysail.server.app.designer.entities.DbEntity;
 import io.skysail.server.restlet.resources.ListServerResource;
 
 import java.util.*;
@@ -11,7 +11,7 @@ import java.util.function.Consumer;
 
 import org.restlet.resource.ResourceException;
 
-public class SubEntitiesResource extends ListServerResource<Entity> {
+public class SubEntitiesResource extends ListServerResource<DbEntity> {
 
     private DesignerApplication app;
     private String id;
@@ -30,9 +30,9 @@ public class SubEntitiesResource extends ListServerResource<Entity> {
     }
 
     @Override
-    public List<Entity> getEntity() {
-        Application application = app.getRepository().getById(Application.class, id);
-        Optional<Entity> parentEntity = null;// app.getEntityFromApplication(application, entityId);
+    public List<DbEntity> getEntity() {
+        DbApplication application = app.getRepository().getById(DbApplication.class, id);
+        Optional<DbEntity> parentEntity = null;// app.getEntityFromApplication(application, entityId);
         if(parentEntity.isPresent()) {
             return parentEntity.get().getSubEntities();
         }

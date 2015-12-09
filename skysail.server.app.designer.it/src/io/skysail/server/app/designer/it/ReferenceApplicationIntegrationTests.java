@@ -1,7 +1,7 @@
 package io.skysail.server.app.designer.it;
 
 import io.skysail.client.testsupport.BrowserTests;
-import io.skysail.server.app.designer.application.Application;
+import io.skysail.server.app.designer.application.DbApplication;
 import io.skysail.server.app.designer.it.browser.ApplicationsBrowser;
 
 import org.junit.Before;
@@ -14,9 +14,9 @@ import org.restlet.data.MediaType;
  *
  */
 @Ignore
-public class ReferenceApplicationIntegrationTests extends BrowserTests<ApplicationsBrowser, Application> {
+public class ReferenceApplicationIntegrationTests extends BrowserTests<ApplicationsBrowser, DbApplication> {
 
-    private Application entity;
+    private DbApplication entity;
 
     @Before
     public void setUp() {
@@ -31,8 +31,8 @@ public class ReferenceApplicationIntegrationTests extends BrowserTests<Applicati
         //createListAndCheckAssertions();
     }
 
-    private Application createReferenceApplication() {
-        return new Application("CampaignManager", "pkgName", "../", "projectName");
+    private DbApplication createReferenceApplication() {
+        return new DbApplication("CampaignManager", "pkgName", "../", "projectName");
     }
 
 }

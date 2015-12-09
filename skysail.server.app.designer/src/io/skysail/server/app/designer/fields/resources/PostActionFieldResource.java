@@ -2,7 +2,7 @@ package io.skysail.server.app.designer.fields.resources;
 
 import io.skysail.api.responses.SkysailResponse;
 import io.skysail.server.app.designer.DesignerApplication;
-import io.skysail.server.app.designer.entities.Entity;
+import io.skysail.server.app.designer.entities.DbEntity;
 import io.skysail.server.app.designer.entities.resources.EntitiesResource;
 import io.skysail.server.app.designer.fields.ActionEntityField;
 import io.skysail.server.restlet.resources.PostEntityServerResource;
@@ -36,7 +36,7 @@ public class PostActionFieldResource extends PostEntityServerResource<ActionEnti
 
     @Override
     public SkysailResponse<ActionEntityField> addEntity(ActionEntityField field) {
-        Entity entity = app.getRepository().getById(Entity.class, entityId);
+        DbEntity entity = app.getRepository().getById(DbEntity.class, entityId);
         entity.getActionFields().add(field);
         app.getRepository().update(entity);
         return new SkysailResponse<>();

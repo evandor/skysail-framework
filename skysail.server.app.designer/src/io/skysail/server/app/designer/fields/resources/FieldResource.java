@@ -3,12 +3,12 @@ package io.skysail.server.app.designer.fields.resources;
 import io.skysail.api.links.Link;
 import io.skysail.api.responses.SkysailResponse;
 import io.skysail.server.app.designer.DesignerApplication;
-import io.skysail.server.app.designer.fields.EntityField;
+import io.skysail.server.app.designer.fields.DbEntityField;
 import io.skysail.server.restlet.resources.EntityServerResource;
 
 import java.util.List;
 
-public class FieldResource extends EntityServerResource<EntityField> {
+public class FieldResource extends EntityServerResource<DbEntityField> {
 
     private String appId;
     private String entityId;
@@ -23,7 +23,7 @@ public class FieldResource extends EntityServerResource<EntityField> {
         app = (DesignerApplication) getApplication();
     }
 
-    public EntityField getEntity() {
+    public DbEntityField getEntity() {
         return app.getEntityField(appId, entityId, fieldId);
     }
 

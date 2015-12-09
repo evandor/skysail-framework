@@ -9,8 +9,8 @@ import org.junit.*;
 import org.restlet.data.MediaType;
 
 import io.skysail.client.testsupport.BrowserTests;
-import io.skysail.server.app.designer.application.Application;
-import io.skysail.server.app.designer.fields.EntityField;
+import io.skysail.server.app.designer.application.DbApplication;
+import io.skysail.server.app.designer.fields.DbEntityField;
 import io.skysail.server.app.designer.it.browser.*;
 
 /**
@@ -18,9 +18,9 @@ import io.skysail.server.app.designer.it.browser.*;
  *
  */
 @Ignore
-public class FieldsCrudIntegrationTests extends BrowserTests<EntityFieldsBrowser, EntityField> {
+public class FieldsCrudIntegrationTests extends BrowserTests<EntityFieldsBrowser, DbEntityField> {
 
-    private EntityField field;
+    private DbEntityField field;
 
     private ApplicationsBrowser appBrowser;
 
@@ -46,7 +46,7 @@ public class FieldsCrudIntegrationTests extends BrowserTests<EntityFieldsBrowser
 //    // delete
 //    public void new_entity_can_be_deleted() throws Exception {
 //        String appId = appBrowser.create(createRandomApplication());
-//        Entity theEntity = createRandomEntity();
+//        DbEntity theEntity = createRandomEntity();
 //        browser.create(appId, theEntity);
 //
 //        Representation application = appBrowser.getApplication(appId);
@@ -89,7 +89,7 @@ public class FieldsCrudIntegrationTests extends BrowserTests<EntityFieldsBrowser
     // @Ignore
     // public void posting_new_application_with_name_and_path_persists_it()
     // throws Exception {
-    // Application application = new Application("app1");
+    // DbApplication application = new DbApplication("app1");
     // // application.setPath(".");
     // browser.create(application);
     // Representation applications = browser.getEntities();
@@ -103,7 +103,7 @@ public class FieldsCrudIntegrationTests extends BrowserTests<EntityFieldsBrowser
     // throws Exception {
     // thrown.expect(ResourceException.class);
     // thrown.expectMessage("Bad Request");
-    // browser.createApplication(new Application("app1!"));
+    // browser.createApplication(new DbApplication("app1!"));
     // }
 
     // private void createListAndCheckAssertions() throws IOException {
@@ -112,8 +112,8 @@ public class FieldsCrudIntegrationTests extends BrowserTests<EntityFieldsBrowser
     // assertThat(html, containsString(field.getName()));
     // }
 
-    private Application createRandomApplication() {
-        Application e = new Application();
+    private DbApplication createRandomApplication() {
+        DbApplication e = new DbApplication();
         e.setName("Application_" + new BigInteger(130, random).toString(32));
         return e;
     }

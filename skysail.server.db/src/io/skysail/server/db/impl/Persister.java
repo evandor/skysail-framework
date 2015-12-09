@@ -24,26 +24,48 @@ public class Persister {
     public Persister(OrientGraph db, String[] edges) {
         this.edges = Arrays.asList(edges);
         this.db = db;
-        edgeHandler = new EdgeHandler((identifiable) -> (OrientVertex) execute(identifiable), db);
+        edgeHandler = new EdgeHandler((identifiable) -> (VertexAndEdges) execute(identifiable), db);
     }
 
-    public <T extends Identifiable> Object persist(T entity) {
+    public <T extends Identifiable> VertexAndEdges persist(T entity) {
         return runInTransaction(entity);
     }
 
-    protected Object execute(@NonNull Identifiable entity) {
-        Vertex vertex = determineVertex(entity);
+    protected VertexAndEdges execute(@NonNull Identifiable entity) {
+        OrientVertex vertex = determineVertex(entity);
         try {
             @SuppressWarnings("unchecked")
             Map<String, Object> props = mapper.convertValue(entity, Map.class);
             props.keySet().stream().forEach(setPropertyOrCreateEdge(entity, vertex, props));
-            return vertex;
+//            List<EdgeManipulation> newEdges = props.keySet().stream().map(key -> {
+//                return setPropertyOrCreateEdge2(key, entity, vertex, props);
+//            }).flatMap(m -> m.stream()).collect(Collectors.toList());
+            return new VertexAndEdges(vertex, new ArrayList<EdgeManipulation>());
         } catch (Exception e) {
             log.error(e.getMessage(), e);
             throw new RuntimeException("Problem when persisting entity", e);
         }
     }
 
+    protected List<EdgeManipulation> setPropertyOrCreateEdge2(String key, Identifiable entity, Vertex vertex, Map<String, Object> properties) {
+        if ("id".equals(key)) {
+            return new ArrayList<>();
+        }
+        if (!edges.contains(key)) {
+            if (properties.get(key) != null && !("class".equals(key))) {
+                setProperty(entity, vertex, key);
+            }
+        } else {
+            try {
+                return edgeHandler.handleEdges(entity, vertex, properties, key);
+            } catch (Exception e) {
+                log.error(e.getMessage(), e);
+            }
+        }
+        return new ArrayList<>();
+    }
+
+    @Deprecated
     protected Consumer<? super String> setPropertyOrCreateEdge(Identifiable entity, Vertex vertex,
             Map<String, Object> properties) {
         return key -> {
@@ -64,8 +86,8 @@ public class Persister {
         };
     }
 
-    protected Vertex determineVertex(Identifiable entity) {
-        Vertex vertex;
+    protected OrientVertex determineVertex(Identifiable entity) {
+        OrientVertex vertex;
         if (entity.getId() != null) {
             vertex = db.getVertex(entity.getId());
         } else {
@@ -105,11 +127,11 @@ public class Persister {
      * @param entity
      * @return
      */
-    private <T> Object runInTransaction(Identifiable entity) {
+    private <T> VertexAndEdges runInTransaction(Identifiable entity) {
         try {
-            Vertex result = (Vertex) execute(entity);
+            VertexAndEdges result = execute(entity);
             db.commit();
-            return result.getId();
+            return result;
         } catch (Exception e) {
             db.rollback();
             throw new RuntimeException("Database Problem, rolled back transaction", e);

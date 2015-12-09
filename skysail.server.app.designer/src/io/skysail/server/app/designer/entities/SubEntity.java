@@ -2,7 +2,7 @@
 //
 //import lombok.Getter;
 //
-//public class SubEntity extends Entity {
+//public class SubEntity extends DbEntity {
 //
 //    @Getter
 //    private String parentId;

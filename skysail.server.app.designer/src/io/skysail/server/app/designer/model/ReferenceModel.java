@@ -1,6 +1,6 @@
 package io.skysail.server.app.designer.model;
 
-import io.skysail.server.app.designer.entities.Entity;
+import io.skysail.server.app.designer.entities.DbEntity;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NonNull;
@@ -14,7 +14,7 @@ public class ReferenceModel {
     private final String referencedEntityName;
     private CodegenEntityModel referencedBy;
 
-    public ReferenceModel(@NonNull CodegenEntityModel entityModel, @NonNull Entity referencedEntity) {
+    public ReferenceModel(@NonNull CodegenEntityModel entityModel, @NonNull DbEntity referencedEntity) {
         this.referencedEntityName = referencedEntity.getName();
         this.referencedBy = entityModel;
     }

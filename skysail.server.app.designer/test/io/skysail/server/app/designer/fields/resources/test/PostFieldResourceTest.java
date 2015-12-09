@@ -3,8 +3,8 @@ package io.skysail.server.app.designer.fields.resources.test;
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.assertThat;
 import io.skysail.server.app.designer.DesignerApplication;
-import io.skysail.server.app.designer.application.Application;
-import io.skysail.server.app.designer.entities.Entity;
+import io.skysail.server.app.designer.application.DbApplication;
+import io.skysail.server.app.designer.entities.DbEntity;
 import io.skysail.server.app.designer.fields.resources.PostFieldResource;
 import io.skysail.server.app.designer.repo.DesignerRepository;
 import io.skysail.server.testsupport.ResourceTestBase;
@@ -49,16 +49,16 @@ public class PostFieldResourceTest extends ResourceTestBase {
     @Ignore // TODO
     public void valid_data_yields_new_entity() {
 
-        Entity entity = new Entity() {{
+        DbEntity entity = new DbEntity() {{
             setName("namefield");
         }};
 
-        Application application = new Application();
+        DbApplication application = new DbApplication();
         application.setName("appForEntity2");
         //application.setEntities(Arrays.asList(entity));
         String id = DesignerRepository.add(application).toString();
 
-        application = repo.getById(Application.class, id);
+        application = repo.getById(DbApplication.class, id);
         //application.getEntities().add(entity);
         repo.update(application);
 

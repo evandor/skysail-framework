@@ -3,7 +3,7 @@ package io.skysail.server.app.designer.application.resources.test;
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.assertThat;
 import io.skysail.api.responses.*;
-import io.skysail.server.app.designer.application.Application;
+import io.skysail.server.app.designer.application.DbApplication;
 
 import org.junit.*;
 import org.restlet.data.*;
@@ -26,7 +26,7 @@ public class PostApplicationResourceTest extends AbstractApplicationResourceTest
     @Test
     public void empty_json_data_yields_validation_failure() {
         ConstraintViolationsResponse<?> post = (ConstraintViolationsResponse<?>) postApplicationResource.post(
-                new Application(), JSON_VARIANT);
+                new DbApplication(), JSON_VARIANT);
         assertValidationFailure(postApplicationResource, post);
     }
 
@@ -37,14 +37,14 @@ public class PostApplicationResourceTest extends AbstractApplicationResourceTest
         form.add("packageName", "io.skysail.testpackage");
         form.add("path", "../");
 
-        SkysailResponse<Application> result = postApplicationResource.post(form, HTML_VARIANT);
-        assertListResult(postApplicationResource, result, Application.builder().name("TestApp").projectName("TestProject").packageName("io.skysail.testpackage").path("../").build());
+        SkysailResponse<DbApplication> result = postApplicationResource.post(form, HTML_VARIANT);
+        assertListResult(postApplicationResource, result, DbApplication.builder().name("TestApp").projectName("TestProject").packageName("io.skysail.testpackage").path("../").build());
     }
 
     @Test
     public void valid_json_data_yields_new_entity() {
-        Application app = createValidApplication();
-        SkysailResponse<Application> result = postApplicationResource.post(app, JSON_VARIANT);
+        DbApplication app = createValidApplication();
+        SkysailResponse<DbApplication> result = postApplicationResource.post(app, JSON_VARIANT);
         assertThat(responses.get(postApplicationResource.getClass().getName()).getStatus(),
                 is(equalTo(Status.SUCCESS_CREATED)));
         assertListResult(postApplicationResource, result, app);

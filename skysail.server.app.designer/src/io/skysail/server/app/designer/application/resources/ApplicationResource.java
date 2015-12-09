@@ -3,7 +3,7 @@ package io.skysail.server.app.designer.application.resources;
 import io.skysail.api.links.Link;
 import io.skysail.api.responses.SkysailResponse;
 import io.skysail.server.app.designer.DesignerApplication;
-import io.skysail.server.app.designer.application.Application;
+import io.skysail.server.app.designer.application.DbApplication;
 import io.skysail.server.app.designer.codegen.PostCompilationResource;
 import io.skysail.server.app.designer.entities.resources.*;
 import io.skysail.server.restlet.resources.*;
@@ -15,7 +15,7 @@ import org.restlet.resource.ResourceException;
 
 import de.twenty11.skysail.server.core.restlet.ResourceContextId;
 
-public class ApplicationResource extends EntityServerResource<Application> {
+public class ApplicationResource extends EntityServerResource<DbApplication> {
 
     private String id;
     private DesignerApplication app;
@@ -39,13 +39,13 @@ public class ApplicationResource extends EntityServerResource<Application> {
     @Override
     public SkysailResponse<?> eraseEntity() {
         app.invalidateMenuCache();
-        app.getRepository().delete(Application.class, id);
+        app.getRepository().delete(DbApplication.class, id);
         return new SkysailResponse<>();
     }
 
     @Override
-    public Application getEntity() {
-        Application application = app.getRepository().getById(Application.class, id);
+    public DbApplication getEntity() {
+        DbApplication application = app.getRepository().getById(DbApplication.class, id);
         return application;
     }
 

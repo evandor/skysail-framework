@@ -1,18 +1,19 @@
 package io.skysail.server.domain.core.test;
 
-import org.junit.*;
+import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertThat;
 
-import io.skysail.server.domain.core.EntityRelation;
+import org.junit.Test;
+
+import io.skysail.server.domain.core.*;
 
 public class EntityRelationTest {
 
-    @Before
-    public void setUp() throws Exception {
-    }
-
     @Test
-    public void testName() {
-        EntiyModel entityModel;
-        new EntityRelation(entityModel, EntityRelation.TYPE.ONE_TO_MANY);
+    public void defaultConstructor_initializes_target_and_type() {
+        EntityModel entityModel = new EntityModel("theEntity");
+        EntityRelation entityRelation = new EntityRelation(entityModel, EntityRelationType.ONE_TO_MANY);
+        assertThat(entityRelation.getTargetEntityModel(),is(entityModel));
+        assertThat(entityRelation.getType(),is(EntityRelationType.ONE_TO_MANY));
     }
 }

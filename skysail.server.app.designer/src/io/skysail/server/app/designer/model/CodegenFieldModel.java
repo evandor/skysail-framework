@@ -1,6 +1,6 @@
 package io.skysail.server.app.designer.model;
 
-import io.skysail.server.app.designer.fields.EntityField;
+import io.skysail.server.app.designer.fields.DbEntityField;
 import io.skysail.server.domain.core.FieldModel;
 import lombok.*;
 
@@ -11,7 +11,7 @@ public class CodegenFieldModel extends FieldModel {
 
     private final String name;
 
-    public CodegenFieldModel(EntityField f) {
+    public CodegenFieldModel(DbEntityField f) {
         super(f.getName());
         this.name = f.getName();
         setInputType(f.getType());

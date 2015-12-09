@@ -1,7 +1,7 @@
 package io.skysail.server.app.designer.entities.resources.test;
 
 import io.skysail.api.responses.SkysailResponse;
-import io.skysail.server.app.designer.entities.Entity;
+import io.skysail.server.app.designer.entities.DbEntity;
 
 import org.junit.Ignore;
 import org.junit.Test;
@@ -15,7 +15,7 @@ public class PostEntityResourceTest extends AbstractEntityResourceTest {
         form.add("projectName", "TestProject");
         form.add("packageName", "io.skysail.testpackage");
         form.add("path", "../");
-        SkysailResponse<Entity> result = postEntityResource.post(form, HTML_VARIANT);
+        SkysailResponse<DbEntity> result = postEntityResource.post(form, HTML_VARIANT);
         assertListResult(postEntityResource, result, "TestApp");
     }
 

@@ -1,7 +1,7 @@
 package io.skysail.server.app.designer.model;
 
-import io.skysail.server.app.designer.application.Application;
-import io.skysail.server.app.designer.entities.Entity;
+import io.skysail.server.app.designer.application.DbApplication;
+import io.skysail.server.app.designer.entities.DbEntity;
 import io.skysail.server.domain.core.ApplicationModel;
 import lombok.*;
 import lombok.extern.slf4j.Slf4j;
@@ -20,7 +20,7 @@ public class CodegenApplicationModel extends ApplicationModel {
     private String path;
     private String projectName;
 
-    public CodegenApplicationModel(Application appFromDb) {
+    public CodegenApplicationModel(DbApplication appFromDb) {
         super(appFromDb.getName());
         this.packageName = appFromDb.getPackageName();
         this.path = appFromDb.getPath();
@@ -28,24 +28,24 @@ public class CodegenApplicationModel extends ApplicationModel {
         setupModel(appFromDb);
     }
 
-    public CodegenEntityModel addEntity(Entity entity) {
-        log.info("CodegenApplicationModel: adding Entity '{}'", entity);
+    public CodegenEntityModel addEntity(DbEntity entity) {
+        log.info("CodegenApplicationModel: adding DbEntity '{}'", entity);
         CodegenEntityModel entityModel = new CodegenEntityModel(entity, packageName);
         add(entityModel);
         return entityModel;
     }
 
-    private void setupModel(Application application) {
+    private void setupModel(DbApplication application) {
         application.getEntities().stream().forEach(entity -> {
             createEntityModel(entity);
-            for (Entity subEntity : entity.getSubEntities()) {
+            for (DbEntity subEntity : entity.getSubEntities()) {
                 createEntityModel(subEntity);
             }
         });
     }
 
-    private void createEntityModel(Entity dbEntity) {
-        log.info("CodegenApplicationModel: adding Entity '{}'", dbEntity);
+    private void createEntityModel(DbEntity dbEntity) {
+        log.info("CodegenApplicationModel: adding DbEntity '{}'", dbEntity);
         CodegenEntityModel entityModel = new CodegenEntityModel(dbEntity, packageName);
         add(entityModel);
     }

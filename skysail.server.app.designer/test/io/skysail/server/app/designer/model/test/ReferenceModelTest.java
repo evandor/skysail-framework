@@ -5,7 +5,7 @@ import static org.junit.Assert.assertThat;
 
 import org.junit.*;
 
-import io.skysail.server.app.designer.entities.Entity;
+import io.skysail.server.app.designer.entities.DbEntity;
 import io.skysail.server.app.designer.model.*;
 
 public class ReferenceModelTest {
@@ -14,7 +14,7 @@ public class ReferenceModelTest {
 
     @Before
     public void setUp()  {
-        Entity entity = new Entity("entityName");
+        DbEntity entity = new DbEntity("entityName");
         CodegenEntityModel entityModel = new CodegenEntityModel(entity, "pgk");
         referenceModel = new ReferenceModel(entityModel, entity);
     }

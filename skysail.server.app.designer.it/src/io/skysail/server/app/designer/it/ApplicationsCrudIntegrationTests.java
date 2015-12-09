@@ -3,7 +3,7 @@ package io.skysail.server.app.designer.it;
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.assertThat;
 import io.skysail.client.testsupport.BrowserTests;
-import io.skysail.server.app.designer.application.Application;
+import io.skysail.server.app.designer.application.DbApplication;
 import io.skysail.server.app.designer.it.browser.ApplicationsBrowser;
 import io.skysail.server.restlet.resources.SkysailServerResource;
 
@@ -20,9 +20,9 @@ import org.restlet.resource.ResourceException;
  *
  */
 @Ignore
-public class ApplicationsCrudIntegrationTests extends BrowserTests<ApplicationsBrowser, Application> {
+public class ApplicationsCrudIntegrationTests extends BrowserTests<ApplicationsBrowser, DbApplication> {
 
-    private Application entity;
+    private DbApplication entity;
 
     @Before
     public void setUp() {
@@ -73,7 +73,7 @@ public class ApplicationsCrudIntegrationTests extends BrowserTests<ApplicationsB
     @Test
     @Ignore
     public void posting_new_application_with_name_and_path_persists_it() throws Exception {
-        Application application = new Application("app1", "pkgName", "../", "projectName");
+        DbApplication application = new DbApplication("app1", "pkgName", "../", "projectName");
        // application.setPath(".");
         browser.create(application);
         Representation applications = browser.getApplications();
@@ -85,7 +85,7 @@ public class ApplicationsCrudIntegrationTests extends BrowserTests<ApplicationsB
     public void posting_new_application_with_name_containing_specialChar_yields_validation_violation() throws Exception {
         thrown.expect(ResourceException.class);
         thrown.expectMessage("Bad Request");
-        browser.create(new Application("app1!", "pkgName", "../", "projectName"));
+        browser.create(new DbApplication("app1!", "pkgName", "../", "projectName"));
     }
 
 }

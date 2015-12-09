@@ -12,12 +12,12 @@ import de.twenty11.skysail.server.app.ApplicationProvider;
 import de.twenty11.skysail.server.core.restlet.*;
 import io.skysail.api.repos.DbRepository;
 import io.skysail.server.app.SkysailApplication;
-import io.skysail.server.app.designer.application.Application;
+import io.skysail.server.app.designer.application.DbApplication;
 import io.skysail.server.app.designer.application.resources.*;
 import io.skysail.server.app.designer.codegen.PostCompilationResource;
-import io.skysail.server.app.designer.entities.Entity;
+import io.skysail.server.app.designer.entities.DbEntity;
 import io.skysail.server.app.designer.entities.resources.*;
-import io.skysail.server.app.designer.fields.EntityField;
+import io.skysail.server.app.designer.fields.DbEntityField;
 import io.skysail.server.app.designer.fields.resources.*;
 import io.skysail.server.app.designer.repo.DesignerRepository;
 import io.skysail.server.db.DbService;
@@ -122,14 +122,14 @@ public class DesignerApplication extends SkysailApplication implements MenuItemP
     }
 
     public void compileApplication(String appId) {
-        getRepository().findAll(Application.class).stream().filter(app -> app.getId().equals("#"+appId)).findFirst().ifPresent(app -> {
+        getRepository().findAll(DbApplication.class).stream().filter(app -> app.getId().equals("#"+appId)).findFirst().ifPresent(app -> {
             ApplicationCreator applicationCreator = new ApplicationCreator(app, repo, repos, getBundle());
             applicationCreator.createApplication(dbService, getComponentContext());
         });
     }
 
     private List<MenuItem> addDesignerAppMenuItems() {
-        List<Application> apps = getRepository().findAll(Application.class);
+        List<DbApplication> apps = getRepository().findAll(DbApplication.class);
         return apps.stream().map(a -> {
             MenuItem menu = new MenuItem(a.getName(), "/" + APP_NAME + "/preview/" + a.getName(), this);
             menu.setCategory(MenuItem.Category.DESIGNER_APP_MENU);
@@ -137,19 +137,19 @@ public class DesignerApplication extends SkysailApplication implements MenuItemP
         }).collect(Collectors.toList());
     }
 
-    public Entity getEntity(String entityId) {
-        return getRepository().getById(Entity.class, entityId);
+    public DbEntity getEntity(String entityId) {
+        return getRepository().getById(DbEntity.class, entityId);
     }
 
-    public Application getApplication(String id) {
-        return getRepository().getById(Application.class, id);
+    public DbApplication getApplication(String id) {
+        return getRepository().getById(DbApplication.class, id);
     }
 
-    public EntityField getEntityField(String appId, String entityId, String fieldId) {
-        Application application = getRepository().getById(Application.class, appId);
-        Optional<Entity> entityFromApplication = null;//getEntityFromApplication(application, entityId);
+    public DbEntityField getEntityField(String appId, String entityId, String fieldId) {
+        DbApplication application = getRepository().getById(DbApplication.class, appId);
+        Optional<DbEntity> entityFromApplication = null;//getEntityFromApplication(application, entityId);
         if (entityFromApplication.isPresent()) {
-            List<EntityField> fields = Collections.emptyList();//entityFromApplication.get().getFields();
+            List<DbEntityField> fields = Collections.emptyList();//entityFromApplication.get().getFields();
             return fields.stream().filter(f -> {
                 if (f == null || f.getId() == null) {
                     return false;
@@ -160,7 +160,7 @@ public class DesignerApplication extends SkysailApplication implements MenuItemP
         return null;
     }
 
-    public Optional<String> getEntityFromApplication(Application application, String entityId) {
+    public Optional<String> getEntityFromApplication(DbApplication application, String entityId) {
 //        return application.getEntities().stream().filter(e -> {
 ////            if (e == null || e.getId() == null) {
 ////                return false;

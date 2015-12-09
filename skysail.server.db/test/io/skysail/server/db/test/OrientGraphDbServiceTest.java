@@ -3,10 +3,6 @@ package io.skysail.server.db.test;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.assertThat;
-import io.skysail.server.db.*;
-import io.skysail.server.db.test.entities.folders.Folder;
-import io.skysail.server.db.test.entities.one2many.*;
-import io.skysail.server.db.test.entities.simple.SimpleEntity;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -14,6 +10,12 @@ import java.util.stream.Collectors;
 import org.junit.*;
 
 import com.orientechnologies.orient.core.id.ORecordId;
+
+import io.skysail.server.db.*;
+import io.skysail.server.db.impl.VertexAndEdges;
+import io.skysail.server.db.test.entities.folders.Folder;
+import io.skysail.server.db.test.entities.one2many.*;
+import io.skysail.server.db.test.entities.simple.SimpleEntity;
 
 public class OrientGraphDbServiceTest {
 
@@ -81,7 +83,8 @@ public class OrientGraphDbServiceTest {
 
     @Test
     public void graphApi_can_retrieve_simple_entity() {
-        ORecordId id = persistSimpleEntity("name");
+        VertexAndEdges vae = persistSimpleEntity("name");
+        Object id = vae.getVertex().getId();
         SimpleEntity entity = dbService.findById2(SimpleEntity.class, id.toString());
         assertThat(entity.getId(), is(id.toString()));
         assertThat(entity.getName(), is("name"));
@@ -234,8 +237,8 @@ public class OrientGraphDbServiceTest {
 
     // === Helpers ==========================================
 
-    private ORecordId persistSimpleEntity(String name) {
-        return (ORecordId) dbService.persist(new SimpleEntity(name));
+    private VertexAndEdges persistSimpleEntity(String name) {
+        return dbService.persist(new SimpleEntity(name));
     }
 
     private Object persistOneToManyEntity(String name, String... toManies) {

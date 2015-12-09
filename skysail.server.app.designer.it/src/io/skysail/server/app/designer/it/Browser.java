@@ -3,7 +3,7 @@ package io.skysail.server.app.designer.it;
 import io.skysail.api.links.LinkRelation;
 import io.skysail.client.testsupport.ApplicationClient;
 import io.skysail.server.app.designer.DesignerApplication;
-import io.skysail.server.app.designer.application.Application;
+import io.skysail.server.app.designer.application.DbApplication;
 import lombok.extern.slf4j.Slf4j;
 
 import org.restlet.data.Form;
@@ -44,13 +44,13 @@ public class Browser {
 //        return client.getCurrentRepresentation();
 //    }
     
-    public Reference createApplication(Application application) {
+    public Reference createApplication(DbApplication application) {
         navigateToPostApplicationAs(client);
         client.post(createForm(application));
         return client.getLocation();
     }
 
-    private Form createForm(Application application) {
+    private Form createForm(DbApplication application) {
         Form form = new Form();
         form.add("name", application.getName());
         return form;

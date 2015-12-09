@@ -1,9 +1,5 @@
 package io.skysail.server.db.impl.test;
 
-import io.skysail.api.domain.Identifiable;
-import io.skysail.server.db.impl.EdgeHandler;
-import io.skysail.server.db.impl.test.entities.*;
-
 import java.util.*;
 
 import org.junit.*;
@@ -11,6 +7,10 @@ import org.mockito.Mockito;
 
 import com.tinkerpop.blueprints.*;
 import com.tinkerpop.blueprints.impls.orient.*;
+
+import io.skysail.api.domain.Identifiable;
+import io.skysail.server.db.impl.*;
+import io.skysail.server.db.impl.test.entities.*;
 
 public class EdgeHandlerTest {
 
@@ -28,8 +28,8 @@ public class EdgeHandlerTest {
         theUser = new SomeUser("aUser");
         theRole = new SomeRole("aRole");
         theUser.getRoles().add(theRole);
-        persistEdgeHandler = new EdgeHandler((identifiable) -> (OrientVertex) executePersist(identifiable),db);
-        updateEdgeHandler = new EdgeHandler((identifiable) -> (OrientVertex) executeUpdate(identifiable),db);
+        persistEdgeHandler = new EdgeHandler((identifiable) -> (VertexAndEdges) executePersist(identifiable),db);
+        updateEdgeHandler = new EdgeHandler((identifiable) -> (VertexAndEdges) executeUpdate(identifiable),db);
     }
 
     private OrientVertex executeUpdate(Identifiable identifiable) {

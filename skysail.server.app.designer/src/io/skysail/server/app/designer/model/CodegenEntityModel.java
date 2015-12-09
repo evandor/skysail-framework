@@ -2,7 +2,7 @@ package io.skysail.server.app.designer.model;
 
 import java.util.*;
 
-import io.skysail.server.app.designer.entities.Entity;
+import io.skysail.server.app.designer.entities.DbEntity;
 import io.skysail.server.app.designer.fields.*;
 import io.skysail.server.domain.core.EntityModel;
 import lombok.*;
@@ -22,19 +22,19 @@ public class CodegenEntityModel extends EntityModel {
     private String className;
     private Optional<CodegenEntityModel> referencedBy;
 
-    public CodegenEntityModel(Entity entityFromDb, String packageName) {
+    public CodegenEntityModel(DbEntity entityFromDb, String packageName) {
         super(packageName + "." + entityFromDb.getName());
         setAggregate(entityFromDb.isRootEntity());
         setupModel(entityFromDb);
     }
 
-    private void setupModel(Entity entityFromDb) {
+    private void setupModel(DbEntity entityFromDb) {
         entityFromDb.getFields().stream().forEach(fieldFromDb -> {
             addField(fieldFromDb);
         });
     }
 
-    private CodegenFieldModel addField(EntityField fieldFromDb) {
+    private CodegenFieldModel addField(DbEntityField fieldFromDb) {
         log.info("CodegenApplicationModel: adding Field '{}'", fieldFromDb);
         CodegenFieldModel fieldModel = new CodegenFieldModel(fieldFromDb);
         add(fieldModel);
@@ -42,14 +42,14 @@ public class CodegenEntityModel extends EntityModel {
     }
 
     public void addActionField(ActionEntityField f) {
-        log.info("CodegenEntityModel:      adding ActionField '{}' to Entity '{}'", f.getName(), f.getId());
+        log.info("CodegenEntityModel:      adding ActionField '{}' to DbEntity '{}'", f.getName(), f.getId());
         if (!actionFields.add(new ActionFieldModel(f))) {
             throw new IllegalStateException("actionField '" + f.getName() + "' already exists!");
         }
     }
 
-    public void addReference(Entity referencedEntity) {
-        log.info("CodegenEntityModel:      adding Reference from Entity '{}' to Entity '{}'", referencedEntity.getId(),
+    public void addReference(DbEntity referencedEntity) {
+        log.info("CodegenEntityModel:      adding Reference from DbEntity '{}' to DbEntity '{}'", referencedEntity.getId(),
                 referencedEntity.getName());
         if (!references.add(new ReferenceModel(this, referencedEntity))) {
             throw new IllegalStateException("reference '" + referencedEntity.getName() + "' already exists!");

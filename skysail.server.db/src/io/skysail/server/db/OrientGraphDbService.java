@@ -76,12 +76,12 @@ public class OrientGraphDbService extends AbstractOrientDbService implements DbS
     }
 
     @Override
-    public Object persist(Identifiable entity, String... edges) {
+    public VertexAndEdges persist(Identifiable entity, String... edges) {
         return new Persister(getGraphDb(), edges).persist(entity);
     }
 
     @Override
-    public Object update(Object id, Identifiable entity, String... edges) {
+    public VertexAndEdges update(Object id, Identifiable entity, String... edges) {
         return new Updater(getGraphDb(), edges).persist(entity);
     }
 

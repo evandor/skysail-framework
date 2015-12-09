@@ -2,7 +2,7 @@ package io.skysail.server.app.designer.application.resources;
 
 import io.skysail.api.responses.SkysailResponse;
 import io.skysail.server.app.designer.DesignerApplication;
-import io.skysail.server.app.designer.application.Application;
+import io.skysail.server.app.designer.application.DbApplication;
 import io.skysail.server.app.designer.repo.DesignerRepository;
 import io.skysail.server.restlet.resources.PostEntityServerResource;
 
@@ -12,12 +12,12 @@ import org.restlet.resource.ResourceException;
 
 import de.twenty11.skysail.server.core.restlet.ResourceContextId;
 
-public class PostApplicationResource extends PostEntityServerResource<Application> {
+public class PostApplicationResource extends PostEntityServerResource<DbApplication> {
 
     private DesignerApplication app;
 
     public PostApplicationResource() {
-        addToContext(ResourceContextId.LINK_TITLE, "Create new Application");
+        addToContext(ResourceContextId.LINK_TITLE, "Create new DbApplication");
     }
 
     @Override
@@ -27,12 +27,12 @@ public class PostApplicationResource extends PostEntityServerResource<Applicatio
     }
 
     @Override
-    public Application createEntityTemplate() {
-        return new Application();
+    public DbApplication createEntityTemplate() {
+        return new DbApplication();
     }
 
     @Override
-    public SkysailResponse<Application> addEntity(Application entity) {
+    public SkysailResponse<DbApplication> addEntity(DbApplication entity) {
         app.invalidateMenuCache();
         Subject subject = SecurityUtils.getSubject();
         entity.setOwner(subject.getPrincipal().toString());

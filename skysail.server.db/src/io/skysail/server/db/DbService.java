@@ -1,13 +1,12 @@
 package io.skysail.server.db;
 
-import io.skysail.api.domain.Identifiable;
-
 import java.util.*;
-
-import aQute.bnd.annotation.ProviderType;
 
 import com.orientechnologies.orient.core.metadata.schema.OType;
 import com.orientechnologies.orient.core.record.impl.ODocument;
+
+import aQute.bnd.annotation.ProviderType;
+import io.skysail.api.domain.Identifiable;
 
 @ProviderType
 public interface DbService {

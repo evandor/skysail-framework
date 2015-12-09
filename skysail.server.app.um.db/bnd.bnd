@@ -38,7 +38,9 @@ Include-Resource: resources, templates=src;recursive:=true;filter:=*.st|*.stg
 	javax.el-api;version=3.0,\
 	classmate;version=1.0,\
 	io.skysail.bundled.tinkerpop.blueprints-core;version=2.6,\
-	io.skysail.bundled.tinkerpop.blueprints-orient-graph;version=2.4
+	io.skysail.bundled.tinkerpop.blueprints-orient-graph;version=2.4,\
+	com.orientechnologies.orientdb-core;version=${com.orientechnologies.orientdb.version},\
+    com.orientechnologies.orientdb-graphdb;version=${com.orientechnologies.orientdb.version}
 
 
 Import-Package: org.osgi.framework,\

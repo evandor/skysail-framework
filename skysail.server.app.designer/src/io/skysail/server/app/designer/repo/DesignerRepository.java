@@ -4,6 +4,8 @@ import java.util.*;
 
 import org.osgi.service.component.annotations.*;
 
+import com.tinkerpop.blueprints.impls.orient.OrientVertex;
+
 import io.skysail.api.domain.Identifiable;
 import io.skysail.api.repos.DbRepository;
 import io.skysail.server.app.designer.application.DbApplication;
@@ -23,7 +25,7 @@ public class DesignerRepository implements DbRepository {
         dbService.createWithSuperClass("V", DbClassName.of(DbApplication.class), DbClassName.of(DbEntity.class),
                 DbClassName.of(DbEntityField.class), DbClassName.of(ActionEntityField.class));
         dbService.register(DbApplication.class, DbEntity.class, DbEntityField.class, ActionEntityField.class);
-        dbService.createEdges("entities", "fields");
+        dbService.createEdges("entities", "fields", "subEntities");
     }
 
     @Reference
@@ -53,8 +55,8 @@ public class DesignerRepository implements DbRepository {
         return dbService.findGraphs(DbEntity.class, sql);
     }
 
-    public static Object add(Identifiable entity, String... edges) {
-        return dbService.persist(entity, edges);
+    public static OrientVertex add(Identifiable entity, String... edges) {
+        return (OrientVertex) dbService.persist(entity, edges);
     }
 
     public <T> T getById(Class<?> cls, String id) {
@@ -82,7 +84,7 @@ public class DesignerRepository implements DbRepository {
     }
 
     public void delete(Class<?> cls, String id) {
-        dbService.delete(cls, id);
+        dbService.delete2(cls, id);
     }
 
     public void createWithSuperClass(String superClassName, String entityClassName) {
@@ -101,6 +103,10 @@ public class DesignerRepository implements DbRepository {
     @Override
     public Identifiable findOne(String id) {
         return dbService.findById2(DbApplication.class, id);
+    }
+    
+    public DbEntity findEntity(String id) {
+        return dbService.findById2(DbEntity.class, id);
     }
 
     @Override

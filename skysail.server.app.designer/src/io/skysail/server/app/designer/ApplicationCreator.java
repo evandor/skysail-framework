@@ -59,7 +59,7 @@ public class ApplicationCreator {
         } catch (IOException e1) {
             log.error(e1.getMessage(), e1);
         }
-        return false;
+        return true;
     }
 
     private boolean createCode() {

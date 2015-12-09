@@ -14,7 +14,8 @@ import lombok.*;
 @NoArgsConstructor
 @Getter
 @Setter
-@ToString(of = { "id", "name" })
+@EqualsAndHashCode(of = "id")
+@ToString(of = { "id", "name", "entities" })
 public class DbApplication implements Identifiable {
 
     @Id

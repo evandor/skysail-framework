@@ -76,12 +76,12 @@ public class OrientGraphDbService extends AbstractOrientDbService implements DbS
     }
 
     @Override
-    public VertexAndEdges persist(Identifiable entity, String... edges) {
+    public OrientVertex persist(Identifiable entity, String... edges) {
         return new Persister(getGraphDb(), edges).persist(entity);
     }
 
     @Override
-    public VertexAndEdges update(Object id, Identifiable entity, String... edges) {
+    public OrientVertex update(Object id, Identifiable entity, String... edges) {
         return new Updater(getGraphDb(), edges).persist(entity);
     }
 
@@ -129,14 +129,6 @@ public class OrientGraphDbService extends AbstractOrientDbService implements DbS
         }
         return result;
     }
-
-    // @Override
-    // public <T> T findObjectById(Class<?> cls, String id) {
-    // OObjectDatabaseTx objectDb = getObjectDb();
-    // objectDb.getEntityManager().registerEntityClass(cls);
-    // T load = objectDb.load(new ORecordId(id), "*:-1");
-    // return objectDb.detachAll(load, true);
-    // }
 
     @Override
     public <T> T findById2(Class<?> cls, String id) {

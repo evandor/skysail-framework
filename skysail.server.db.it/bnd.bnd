@@ -34,7 +34,10 @@ Test-Cases: \
 	skysail.client.testsupport;version=latest,\
 	javax.persistence,\
 	slf4j.api;version=1.7,\
-	javax.validation.api;version=1.1
+	javax.validation.api;version=1.1,\
+    com.orientechnologies.orientdb-core;version=${com.orientechnologies.orientdb.version},\
+    com.orientechnologies.orientdb-graphdb;version=${com.orientechnologies.orientdb.version},\
+    io.skysail.bundled.tinkerpop.blueprints-core;version=2.6
 
 -runfw: org.apache.felix.framework;version=${org.apache.felix.framework.version}
 -runee: JavaSE-1.8

@@ -1,24 +1,25 @@
 package io.skysail.server.app.designer.application.resources;
 
-import io.skysail.api.links.Link;
-import io.skysail.api.responses.SkysailResponse;
-import io.skysail.server.app.designer.DesignerApplication;
-import io.skysail.server.app.designer.application.DbApplication;
-import io.skysail.server.app.designer.codegen.PostCompilationResource;
-import io.skysail.server.app.designer.entities.resources.*;
-import io.skysail.server.restlet.resources.*;
-
 import java.util.List;
 import java.util.function.Consumer;
 
 import org.restlet.resource.ResourceException;
 
 import de.twenty11.skysail.server.core.restlet.ResourceContextId;
+import io.skysail.api.links.Link;
+import io.skysail.api.responses.SkysailResponse;
+import io.skysail.server.app.designer.DesignerApplication;
+import io.skysail.server.app.designer.application.DbApplication;
+import io.skysail.server.app.designer.codegen.PostCompilationResource;
+import io.skysail.server.app.designer.entities.resources.*;
+import io.skysail.server.app.designer.repo.DesignerRepository;
+import io.skysail.server.restlet.resources.*;
 
 public class ApplicationResource extends EntityServerResource<DbApplication> {
 
     private String id;
     private DesignerApplication app;
+    private DesignerRepository repo;
 
     public ApplicationResource() {
         addToContext(ResourceContextId.LINK_TITLE, "show");
@@ -29,6 +30,7 @@ public class ApplicationResource extends EntityServerResource<DbApplication> {
         super.doInit();
         id = getAttribute("id");
         app = (DesignerApplication) getApplication();
+        repo = app.getRepository();
     }
 
     @Override
@@ -38,14 +40,14 @@ public class ApplicationResource extends EntityServerResource<DbApplication> {
 
     @Override
     public SkysailResponse<?> eraseEntity() {
-        app.invalidateMenuCache();
-        app.getRepository().delete(DbApplication.class, id);
+       // app.invalidateMenuCache();
+        repo.delete(DbApplication.class, id);
         return new SkysailResponse<>();
     }
 
     @Override
     public DbApplication getEntity() {
-        DbApplication application = app.getRepository().getById(DbApplication.class, id);
+        DbApplication application = repo.getById(DbApplication.class, id);
         return application;
     }
 

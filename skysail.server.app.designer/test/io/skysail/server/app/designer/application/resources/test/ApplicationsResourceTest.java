@@ -3,17 +3,17 @@ package io.skysail.server.app.designer.application.resources.test;
 import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.Matchers.greaterThanOrEqualTo;
 import static org.junit.Assert.assertThat;
-import io.skysail.server.app.designer.application.DbApplication;
 
 import java.util.List;
 
-import org.junit.*;
+import org.junit.Test;
 import org.restlet.data.Status;
+
+import io.skysail.server.app.designer.application.DbApplication;
 
 public class ApplicationsResourceTest extends AbstractApplicationResourceTest {
 
     @Test
-    @Ignore
     public void Application_contains_created_todo_list() {
         DbApplication app1 = createValidApplication();
 

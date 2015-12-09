@@ -15,24 +15,22 @@ import lombok.extern.slf4j.Slf4j;
 public class EdgeHandler {
 
     private OrientGraph db;
-    private Function<Identifiable, VertexAndEdges> fn;
+    private Function<Identifiable, OrientVertex> fn;
 
-    public EdgeHandler(Function<Identifiable, VertexAndEdges> fn, OrientGraph db) {
+    public EdgeHandler(Function<Identifiable, OrientVertex> fn, OrientGraph db) {
         this.fn = fn;
         this.db = db;
     }
 
-    public List<EdgeManipulation> handleEdges(Object entity, Vertex vertex, Map<String, Object> properties, String key)
+    public void handleEdges(Object entity, Vertex vertex, Map<String, Object> properties, String key)
             throws NoSuchFieldException, SecurityException, NoSuchMethodException, IllegalAccessException,
             IllegalArgumentException, InvocationTargetException {
         
-        List<EdgeManipulation> edgeManipulations =new ArrayList<>();
-
         Field field = entity.getClass().getDeclaredField(key);
         Class<?> type = field.getType();
         Object edges = properties.get(key);
         if (edges == null) {
-            return edgeManipulations;
+            return;
         }
         if (Collection.class.isAssignableFrom(type)) {
             Method method = entity.getClass().getMethod("get" + key.substring(0, 1).toUpperCase() + key.substring(1));
@@ -52,18 +50,16 @@ public class EdgeHandler {
             edgesToDelete.stream().forEach(edge -> db.removeEdge(edge));
 
             for (Identifiable referencedObject : references) {
-                VertexAndEdges target = fn.apply(referencedObject);
+                OrientVertex target = fn.apply(referencedObject);
                 Iterable<Edge> existingEdges = vertex.getEdges(Direction.OUT, key);
                 if (edgeDoesNotExistYet(existingEdges, vertex, target, key)) {
-                    db.addEdge(null, vertex, target.getVertex(), key);
-                    //edgeManipulations.add(new EdgeManipulation(EdgeManipulationType.NEW, vertex, target.getVertex(), key));
+                    db.addEdge(null, vertex, target, key);
                 }
             }
         } else if (String.class.isAssignableFrom(type)) {
             removeOldReferences(vertex, key);
             addReference(vertex, properties, key, edges);
         }
-        return edgeManipulations;
     }
 
     private Optional<Edge> match(Vertex from, Vertex to, List<Edge> edgesToDelete, String key) {

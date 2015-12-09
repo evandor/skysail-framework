@@ -29,7 +29,7 @@ import lombok.Getter;
 public class DesignerApplication extends SkysailApplication implements MenuItemProvider, ApplicationProvider {
 
     public static final String APP_NAME = "AppDesigner";
-    public static final String ENTITY_ID = "id";
+    public static final String ENTITY_ID = "eid";
     public static final String FIELD_ID = "fieldId";
 
     private DesignerRepository repo;
@@ -70,8 +70,8 @@ public class DesignerApplication extends SkysailApplication implements MenuItemP
 
         router.attach(new RouteBuilder("/applications/{id}/entities", EntitiesResource.class));
         router.attach(new RouteBuilder("/applications/{id}/entities/", PostEntityResource.class));
-        router.attach(new RouteBuilder("/entities/{" + ENTITY_ID + "}", EntityResource.class));
-        router.attach(new RouteBuilder("/entities/{" + ENTITY_ID + "}/", PutEntityResource.class));
+        router.attach(new RouteBuilder("/applications/{id}/entities/{eid}", EntityResource.class));
+        router.attach(new RouteBuilder("/applications/{id}/entities/{eid}/", PutEntityResource.class));
 
         router.attach(new RouteBuilder("/entities/{" + ENTITY_ID + "}/onetomany", SubEntitiesResource.class));
         router.attach(new RouteBuilder("/entities/{" + ENTITY_ID + "}/onetomany/{subEntityId}", SubEntityResource.class));

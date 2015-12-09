@@ -2,12 +2,6 @@ package io.skysail.server.app.designer.fields.resources.test;
 
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.assertThat;
-import io.skysail.server.app.designer.DesignerApplication;
-import io.skysail.server.app.designer.application.DbApplication;
-import io.skysail.server.app.designer.entities.DbEntity;
-import io.skysail.server.app.designer.fields.resources.PostFieldResource;
-import io.skysail.server.app.designer.repo.DesignerRepository;
-import io.skysail.server.testsupport.ResourceTestBase;
 
 import java.util.HashMap;
 
@@ -17,6 +11,13 @@ import org.mockito.*;
 import org.restlet.Context;
 import org.restlet.data.*;
 import org.restlet.engine.resource.VariantInfo;
+
+import io.skysail.server.app.designer.DesignerApplication;
+import io.skysail.server.app.designer.application.DbApplication;
+import io.skysail.server.app.designer.entities.DbEntity;
+import io.skysail.server.app.designer.fields.resources.PostFieldResource;
+import io.skysail.server.app.designer.repo.DesignerRepository;
+import io.skysail.server.testsupport.ResourceTestBase;
 
 public class PostFieldResourceTest extends ResourceTestBase {
 
@@ -56,7 +57,7 @@ public class PostFieldResourceTest extends ResourceTestBase {
         DbApplication application = new DbApplication();
         application.setName("appForEntity2");
         //application.setEntities(Arrays.asList(entity));
-        String id = DesignerRepository.add(application).toString();
+        String id = DesignerRepository.add(application).getId().toString();
 
         application = repo.getById(DbApplication.class, id);
         //application.getEntities().add(entity);

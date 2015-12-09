@@ -13,7 +13,8 @@ import lombok.*;
 @NoArgsConstructor
 @Getter
 @Setter
-@ToString(of = { "id", "name" })
+@EqualsAndHashCode(of = "id")
+@ToString(of = { "id", "name", "fields", "subEntities" })
 public class DbEntity implements Identifiable {
 
     @Id
@@ -41,14 +42,14 @@ public class DbEntity implements Identifiable {
         return actionFields;
     }
 
-    private List<DbEntity> subEntities;
+    private List<DbEntity> subEntities = new ArrayList<>();
 
-    public List<DbEntity> getSubEntities() { // = getReferences?
-        if (subEntities == null) {
-            subEntities = new ArrayList<>();
-        }
-        return subEntities;
-    }
+//    public List<DbEntity> getSubEntities() { // = getReferences?
+//        if (subEntities == null) {
+//            subEntities = new ArrayList<>();
+//        }
+//        return subEntities;
+//    }
 
     public DbEntity(String name) {
         this.name = name;

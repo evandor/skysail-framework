@@ -1,5 +1,11 @@
 package io.skysail.server.app.todos.services;
 
+import java.util.*;
+
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.subject.Subject;
+import org.restlet.data.Status;
+
 import io.skysail.api.responses.SkysailResponse;
 import io.skysail.server.app.todos.*;
 import io.skysail.server.app.todos.lists.PostListResource;
@@ -7,12 +13,6 @@ import io.skysail.server.app.todos.repo.ListsRepository;
 import io.skysail.server.queryfilter.Filter;
 import io.skysail.server.queryfilter.pagination.Pagination;
 import io.skysail.server.restlet.resources.SkysailServerResource;
-
-import java.util.*;
-
-import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.subject.Subject;
-import org.restlet.data.Status;
 
 public class ListService {
 
@@ -40,7 +40,7 @@ public class ListService {
         entity.setCreated(new Date());
         Subject subject = SecurityUtils.getSubject();
         entity.setOwner(subject.getPrincipal().toString());
-        String id = repo.save(entity, "todos").toString();
+        String id = repo.save(entity, "todos").getId().toString();
         entity.setId(id);
         return new SkysailResponse<>(entity);
     }

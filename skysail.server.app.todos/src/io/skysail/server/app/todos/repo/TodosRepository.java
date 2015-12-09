@@ -4,6 +4,8 @@ import java.util.*;
 
 import org.osgi.service.component.annotations.*;
 
+import com.tinkerpop.blueprints.impls.orient.OrientVertex;
+
 import io.skysail.api.repos.DbRepository;
 import io.skysail.server.app.todos.TodoList;
 import io.skysail.server.app.todos.todos.Todo;
@@ -48,8 +50,8 @@ public class TodosRepository extends GraphDbRepository<Todo>  implements DbRepos
     }
 
     @Override
-    public Object save(Todo entity, String... edges) {
-        Object result = super.save(entity, edges);
+    public OrientVertex save(Todo entity, String... edges) {
+        OrientVertex result = super.save(entity, edges);
         increaseOtherTodosRank(entity);
         return result;
     }

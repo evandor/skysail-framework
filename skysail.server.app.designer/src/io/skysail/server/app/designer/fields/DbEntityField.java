@@ -1,21 +1,17 @@
 package io.skysail.server.app.designer.fields;
 
-import io.skysail.api.domain.Identifiable;
-import io.skysail.api.forms.Field;
-import io.skysail.api.forms.InputType;
-import io.skysail.server.app.designer.fields.resources.InputTypeSelectionProvider;
-
 import javax.persistence.Id;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import io.skysail.api.domain.Identifiable;
+import io.skysail.api.forms.*;
+import io.skysail.server.app.designer.fields.resources.InputTypeSelectionProvider;
+import lombok.*;
 
 @Getter
 @Setter
 @ToString
+@EqualsAndHashCode(of = "id")
 public class DbEntityField implements Identifiable {
 
     @Id

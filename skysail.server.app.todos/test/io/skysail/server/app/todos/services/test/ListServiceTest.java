@@ -4,6 +4,18 @@ import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
 import static org.mockito.Matchers.argThat;
 import static org.mockito.Mockito.*;
+
+import java.util.*;
+
+import org.apache.shiro.subject.Subject;
+import org.junit.*;
+import org.junit.runner.RunWith;
+import org.mockito.*;
+import org.mockito.runners.MockitoJUnitRunner;
+import org.restlet.Response;
+
+import com.tinkerpop.blueprints.impls.orient.OrientVertex;
+
 import io.skysail.api.responses.SkysailResponse;
 import io.skysail.server.app.todos.*;
 import io.skysail.server.app.todos.lists.*;
@@ -14,15 +26,6 @@ import io.skysail.server.queryfilter.Filter;
 import io.skysail.server.queryfilter.pagination.Pagination;
 import io.skysail.server.restlet.resources.SkysailServerResource;
 import io.skysail.server.testsupport.AbstractShiroTest;
-
-import java.util.*;
-
-import org.apache.shiro.subject.Subject;
-import org.junit.*;
-import org.junit.runner.RunWith;
-import org.mockito.*;
-import org.mockito.runners.MockitoJUnitRunner;
-import org.restlet.Response;
 
 @RunWith(MockitoJUnitRunner.class)
 public class ListServiceTest extends AbstractShiroTest {
@@ -82,7 +85,9 @@ public class ListServiceTest extends AbstractShiroTest {
         TodoList entity = new TodoList("title");
         PostListResource resource = mock(PostListResource.class);
         when(resource.getApplication()).thenReturn(application);
-        when(listRepo.save(entity, "todos")).thenReturn("#12:0");
+        OrientVertex orientVertex = Mockito.mock(OrientVertex.class);
+        when(orientVertex.getId()).thenReturn("#12:0");
+        when(listRepo.save(entity, "todos")).thenReturn(orientVertex);
         SkysailResponse<TodoList> addedListResponse = listService.addList(resource, entity);
         assertThat(addedListResponse.getEntity().getId(),is("#12:0"));
     }

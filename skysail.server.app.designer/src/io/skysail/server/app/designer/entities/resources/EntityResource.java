@@ -1,5 +1,7 @@
 package io.skysail.server.app.designer.entities.resources;
 
+import java.util.List;
+
 import io.skysail.api.links.Link;
 import io.skysail.api.responses.SkysailResponse;
 import io.skysail.server.app.designer.DesignerApplication;
@@ -7,27 +9,26 @@ import io.skysail.server.app.designer.application.DbApplication;
 import io.skysail.server.app.designer.application.resources.ApplicationsResource;
 import io.skysail.server.app.designer.entities.DbEntity;
 import io.skysail.server.app.designer.fields.resources.*;
+import io.skysail.server.app.designer.repo.DesignerRepository;
 import io.skysail.server.restlet.resources.EntityServerResource;
-
-import java.util.List;
-import java.util.stream.Collectors;
 
 public class EntityResource extends EntityServerResource<DbEntity> {
 
     private String appId;
     private String entityId;
     private DesignerApplication app;
+    private DesignerRepository repo;
 
     protected void doInit() {
         super.doInit();
         appId = getAttribute("id");
-        entityId = getAttribute(DesignerApplication.ENTITY_ID);
+        entityId = getAttribute("eid");
         app = (DesignerApplication) getApplication();
+        repo = (DesignerRepository) app.getRepository(DbApplication.class);
     }
 
     public DbEntity getEntity() {
-        return app.getRepository().getById(DbEntity.class, appId);
-//        return app.getEntity(application, entityId);
+        return (DbEntity) repo.findEntity(entityId);
     }
 
     public List<Link> getLinks() {
@@ -38,11 +39,10 @@ public class EntityResource extends EntityServerResource<DbEntity> {
     @Override
     public SkysailResponse<?> eraseEntity() {
         // app.invalidateMenuCache();
-        DbApplication application = app.getRepository().getById(DbApplication.class, appId);
-        application.setEntities(application.getEntities().stream().filter(e -> {
-            return false;//!e.getId().equals("#" + entityId);
-        }).collect(Collectors.toList()));
-        app.getRepository().update(application);
+        DbApplication dbApplication = (DbApplication) repo.findOne(appId);
+        DbEntity entityToDelete = getEntity();
+        dbApplication.getEntities().remove(entityToDelete);
+        repo.update(dbApplication.getId(), dbApplication, "entities").toString();
         return new SkysailResponse<>();
     }
 

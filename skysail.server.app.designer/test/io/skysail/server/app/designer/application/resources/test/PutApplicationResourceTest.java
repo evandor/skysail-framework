@@ -2,9 +2,6 @@ package io.skysail.server.app.designer.application.resources.test;
 
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.assertThat;
-import io.skysail.api.responses.SkysailResponse;
-import io.skysail.server.app.designer.application.DbApplication;
-import io.skysail.server.app.designer.repo.DesignerRepository;
 
 import java.util.List;
 
@@ -12,7 +9,10 @@ import org.junit.*;
 
 import com.tinkerpop.blueprints.impls.orient.OrientVertex;
 
-@Ignore
+import io.skysail.api.responses.SkysailResponse;
+import io.skysail.server.app.designer.application.DbApplication;
+import io.skysail.server.app.designer.repo.DesignerRepository;
+
 public class PutApplicationResourceTest extends AbstractApplicationResourceTest {
 
     @Test
@@ -41,6 +41,7 @@ public class PutApplicationResourceTest extends AbstractApplicationResourceTest 
     }
 
     @Test
+    @Ignore
     public void list_can_be_updated() {
         DbApplication app = createValidApplication();
         form.add("name", "application3a");

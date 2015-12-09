@@ -5,6 +5,8 @@ import java.util.stream.Collectors;
 
 import org.restlet.engine.util.StringUtils;
 
+import com.tinkerpop.blueprints.impls.orient.OrientVertex;
+
 import io.skysail.api.domain.Identifiable;
 import io.skysail.api.repos.DbRepository;
 import io.skysail.server.queryfilter.Filter;
@@ -42,8 +44,8 @@ public class GraphDbRepository<T extends Identifiable> implements DbRepository {
         return (Class<Identifiable>)entityType;
     }
 
-    public Object save(T entity, String... edges) {
-        return dbService.persist(entity, edges);
+    public OrientVertex save(T entity, String... edges) {
+        return (OrientVertex) dbService.persist(entity, edges);
     }
 
     @Override

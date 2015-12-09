@@ -2,16 +2,16 @@ package io.skysail.server.app.designer.application.resources.test;
 
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.assertThat;
+
+import org.junit.Test;
+import org.restlet.data.Status;
+
 import io.skysail.api.responses.SkysailResponse;
 import io.skysail.server.app.designer.application.DbApplication;
-
-import org.junit.*;
-import org.restlet.data.Status;
 
 public class ApplicationResourceTest extends AbstractApplicationResourceTest {
 
     @Test
-    @Ignore
     public void gets_list_representation() {
         DbApplication aList = createValidApplication();
 
@@ -25,7 +25,6 @@ public class ApplicationResourceTest extends AbstractApplicationResourceTest {
     }
 
     @Test
-    @Ignore
     public void deletes_list_resource_if_empty() {
         DbApplication aList = createValidApplication();
 

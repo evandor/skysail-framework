@@ -2,16 +2,16 @@ package io.skysail.server.app.designer.application.resources.test;
 
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.assertThat;
-import io.skysail.api.responses.*;
-import io.skysail.server.app.designer.application.DbApplication;
 
-import org.junit.*;
+import org.junit.Test;
 import org.restlet.data.*;
 import org.restlet.engine.resource.VariantInfo;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-@Ignore
+import io.skysail.api.responses.*;
+import io.skysail.server.app.designer.application.DbApplication;
+
 public class PostApplicationResourceTest extends AbstractApplicationResourceTest {
 
     ObjectMapper mapper = new ObjectMapper();

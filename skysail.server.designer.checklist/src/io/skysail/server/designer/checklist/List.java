@@ -39,6 +39,17 @@ public class List implements Identifiable {
         return this.listname;
     }
 
+    @Field(inputType = InputType.TEXTAREA)
+    private String description;
+
+    public void setDescription(String value) {
+        this.description = value;
+    }
+
+    public String getDescription() {
+        return this.description;
+    }
+
 
 
 

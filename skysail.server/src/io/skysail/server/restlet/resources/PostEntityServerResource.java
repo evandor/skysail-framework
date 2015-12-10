@@ -116,7 +116,7 @@ public abstract class PostEntityServerResource<T extends Identifiable> extends S
      */
     public SkysailResponse<T> addEntity(T entity) {
         Class<? extends Identifiable> cls = createEntityTemplate().getClass();
-        Object vertex = getApplication().getRepository(cls).save(entity);
+        OrientVertex vertex = getApplication().getRepository(cls).save(entity);
         String id = vertex.getId().toString();
         entity.setId(id);
         return new SkysailResponse<>(entity);

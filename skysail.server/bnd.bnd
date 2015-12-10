@@ -61,20 +61,20 @@ Private-Package:  \
 ### markdown is moving to skysail.server.text.markdown;version=${skysail.server.text.markdown.version}, remove here when done
 Bundle-ClassPath: .,lib/jsr305.jar,lib/markdown4j-2.2.jar
 Service-Component: *
--buildpath:  \
+-buildpath: \
 	lib/jsr305.jar;version=file,\
 	lib/markdown4j-2.2.jar;version=file,\
 	osgi.core;version=${osgi.version},\
 	osgi.enterprise;version=${osgi.version},\
-    osgi.annotation;version=${osgi.annotation.version},\
-   	skysail.api;version=${skysail.api.version},\
+	osgi.annotation;version=${osgi.annotation.version},\
+	skysail.api;version=${skysail.api.version},\
 	skysail.api.peers;version=${skysail.api.peers.version},\
 	skysail.api.features;version=${skysail.api.features.version},\
-    skysail.api.search;version=${skysail.api.search.version},\
+	skysail.api.search;version=${skysail.api.search.version},\
 	skysail.api.text;version=${skysail.api.text.version},\
 	skysail.api.um;version=${skysail.api.um.version},\
 	skysail.api.validation;version=${skysail.api.validation.version},\
-    skysail.server.domain;version=${skysail.server.domain.version},\
+	skysail.server.domain;version=${skysail.server.domain.version},\
 	de.twentyeleven.skysail.org.antlr.stringtemplate-osgi;version=4.0.8,\
 	de.twenty11.owasp-java-html-sanitizer;version=239.0,\
 	javax.persistence,\
@@ -111,4 +111,5 @@ Service-Component: *
 	de.twentyeleven.skysail.org.json-osgi;version=20080701.0,\
 	org.apache.commons.lang3;version=3.3,\
 	org.objenesis;version=2.1,\
-	${jetty}
+	${jetty},\
+	io.skysail.bundled.tinkerpop.blueprints-core;version=2.6

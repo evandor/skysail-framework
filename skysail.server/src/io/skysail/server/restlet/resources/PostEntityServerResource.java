@@ -16,7 +16,6 @@ import io.skysail.api.domain.Identifiable;
 import io.skysail.api.links.*;
 import io.skysail.api.responses.*;
 import io.skysail.api.search.SearchService;
-import io.skysail.server.app.SkysailApplication;
 import io.skysail.server.restlet.RequestHandler;
 import io.skysail.server.restlet.filter.*;
 import io.skysail.server.services.PerformanceTimer;
@@ -117,7 +116,8 @@ public abstract class PostEntityServerResource<T extends Identifiable> extends S
      */
     public SkysailResponse<T> addEntity(T entity) {
         Class<? extends Identifiable> cls = createEntityTemplate().getClass();
-        String id = ((SkysailApplication)getApplication()).getRepository(cls).save(entity).toString();
+        Object vertex = getApplication().getRepository(cls).save(entity);
+        String id = vertex.getId().toString();
         entity.setId(id);
         return new SkysailResponse<>(entity);
     }

@@ -49,8 +49,8 @@ public class GraphDbRepository<T extends Identifiable> implements DbRepository {
     }
 
     @Override
-    public Object save(Identifiable entity) {
-        return dbService.persist(entity);
+    public OrientVertex save(Identifiable entity) {
+        return (OrientVertex) dbService.persist(entity);
     }
 
     @Override

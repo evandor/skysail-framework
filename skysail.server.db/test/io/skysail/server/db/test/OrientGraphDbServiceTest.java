@@ -16,8 +16,6 @@ import io.skysail.server.db.test.entities.folders.Folder;
 import io.skysail.server.db.test.entities.one2many.*;
 import io.skysail.server.db.test.entities.simple.SimpleEntity;
 
-@Ignore
-// FIX ME
 public class OrientGraphDbServiceTest {
 
     private OrientGraphDbService dbService;
@@ -95,9 +93,9 @@ public class OrientGraphDbServiceTest {
     public void graphApi_can_retrieve_one2many_entity_with_no_elements_in_list() {
         OrientVertex persisted = persistOneToManyEntity("oneToMany");
 
-        OneToManyEntity entity = dbService.findById2(OneToManyEntity.class, persisted.toString());
+        OneToManyEntity entity = dbService.findById2(OneToManyEntity.class, persisted.getId().toString());
 
-        assertThat(entity.getId(), is(persisted.toString()));
+        assertThat(entity.getId(), is(persisted.getId().toString()));
         assertThat(entity.getName(), is("oneToMany"));
         assertThat(entity.getToManies().size(), is(0));
     }
@@ -107,9 +105,9 @@ public class OrientGraphDbServiceTest {
         OrientVertex persisted = persistOneToManyEntity("oneToMany", "toMany");
         dbService.register(OneToManyEntity.class, ToMany.class);
 
-        OneToManyEntity foundEntity = dbService.findById2(OneToManyEntity.class, persisted.toString());
+        OneToManyEntity foundEntity = dbService.findById2(OneToManyEntity.class, persisted.getId().toString());
 
-        assertThat(foundEntity.getId(), is(persisted.toString()));
+        assertThat(foundEntity.getId(), is(persisted.getId().toString()));
         assertThat(foundEntity.getName(), is("oneToMany"));
         assertThat(foundEntity.getToManies().size(), is(1));
         assertThat(foundEntity.getToManies().get(0).getName(), is("toMany"));
@@ -120,9 +118,9 @@ public class OrientGraphDbServiceTest {
         OrientVertex persisted = persistOneToManyEntity("oneToMany", "toManyA", "toManyB");
         dbService.register(OneToManyEntity.class, ToMany.class);
 
-        OneToManyEntity entity = dbService.findById2(OneToManyEntity.class, persisted.toString());
+        OneToManyEntity entity = dbService.findById2(OneToManyEntity.class, persisted.getId().toString());
 
-        assertThat(entity.getId(), is(persisted.toString()));
+        assertThat(entity.getId(), is(persisted.getId().toString()));
         assertThat(entity.getName(), is("oneToMany"));
         assertThat(entity.getToManies().size(), is(2));
         assertThat(entity.getToManies().get(0).getName(), is("toManyA"));
@@ -131,32 +129,32 @@ public class OrientGraphDbServiceTest {
 
     @Test
     public void graphApi_can_retrieve_recursive_Structure_with_no_subelement() {
-        Object persisted = persistFolder("root");
+        OrientVertex persisted = persistFolder("root");
 
-        Folder foundEntity = dbService.findById2(Folder.class, persisted.toString());
+        Folder foundEntity = dbService.findById2(Folder.class, persisted.getId().toString());
 
-        assertFolder(foundEntity, persisted.toString(), "root");
+        assertFolder(foundEntity, persisted.getId().toString(), "root");
         assertThat(foundEntity.getSubfolder().size(), is(0));
     }
 
     @Test
     public void graphApi_can_retrieve_recursive_Structure_with_a_subelement() {
-        Object persisted = persistFolder("root", "sub");
+        OrientVertex persisted = persistFolder("root", "sub");
         dbService.register(Folder.class);
 
-        Folder foundEntity = dbService.findById2(Folder.class, persisted.toString());
+        Folder foundEntity = dbService.findById2(Folder.class, persisted.getId().toString());
 
-        assertFolder(foundEntity, persisted.toString(), "root");
+        assertFolder(foundEntity, persisted.getId().toString(), "root");
         assertSubfolders(foundEntity, "sub");
     }
 
     @Test
     public void graphApi_can_retrieve_recursive_Structure_with_two_subelements() {
-        Object persisted = persistFolder("root", "sub1", "sub2");
+        OrientVertex persisted = persistFolder("root", "sub1", "sub2");
 
-        Folder foundEntity = dbService.findById2(Folder.class, persisted.toString());
+        Folder foundEntity = dbService.findById2(Folder.class, persisted.getId().toString());
 
-        assertFolder(foundEntity, persisted.toString(), "root");
+        assertFolder(foundEntity, persisted.getId().toString(), "root");
         assertSubfolders(foundEntity, "sub1", "sub2");
     }
 
@@ -167,10 +165,10 @@ public class OrientGraphDbServiceTest {
         Folder subFolderLevel1 = new Folder("subFolderLevel1");
         subFolderLevel1.setSubfolder(Arrays.asList(new Folder("subFolderLevel2")));
         rootFolder.setSubfolder(Arrays.asList(subFolderLevel1));
-        Object persisted = dbService.persist(rootFolder, "subfolder");
+        OrientVertex persisted = dbService.persist(rootFolder, "subfolder");
 
-        Folder foundEntity = dbService.findById2(Folder.class, persisted.toString());
-        assertFolder(foundEntity, persisted.toString(), "root");
+        Folder foundEntity = dbService.findById2(Folder.class, persisted.getId().toString());
+        assertFolder(foundEntity, persisted.getId().toString(), "root");
         assertSubfolders(foundEntity, "subFolderLevel1");
 
     }
@@ -194,7 +192,7 @@ public class OrientGraphDbServiceTest {
 
     @Test
     public void graphApi_can_update_simple_entity() {
-        String id = persistSimpleEntity("name").toString();
+        String id = persistSimpleEntity("name").getId().toString();
         SimpleEntity entity = dbService.findById2(SimpleEntity.class, id);
         entity.setName("changed");
 
@@ -206,7 +204,7 @@ public class OrientGraphDbServiceTest {
 
     @Test
     public void graphApi_can_update_one2many_entity_with_no_elements_in_list() {
-        String id = persistOneToManyEntity("oneToMany").toString();
+        String id = persistOneToManyEntity("oneToMany").getId().toString();
         OneToManyEntity entity = dbService.findById2(OneToManyEntity.class, id);
         entity.setName("changed");
 
@@ -218,7 +216,7 @@ public class OrientGraphDbServiceTest {
 
     @Test
     public void graphApi_can_update_one2many_entity_with_one_element_in_list() {
-        String id = persistOneToManyEntity("oneToMany", "toMany").toString();
+        String id = persistOneToManyEntity("oneToMany", "toMany").getId().toString();
         dbService.register(OneToManyEntity.class, ToMany.class);
 
         OneToManyEntity entity = dbService.findById2(OneToManyEntity.class, id);
@@ -248,7 +246,7 @@ public class OrientGraphDbServiceTest {
         return dbService.persist(rootEntity, "toManies");
     }
 
-    private Object persistFolder(String name, String... subfolder) {
+    private OrientVertex persistFolder(String name, String... subfolder) {
         Folder rootFolder = new Folder(name);
         rootFolder.setSubfolder(Arrays.stream(subfolder).map(sub -> new Folder(sub)).collect(Collectors.toList()));
         return dbService.persist(rootFolder, "subfolder");

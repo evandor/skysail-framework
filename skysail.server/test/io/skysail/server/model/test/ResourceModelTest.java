@@ -2,11 +2,12 @@ package io.skysail.server.model.test;
 
 import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.assertThat;
-import io.skysail.api.responses.*;
-import io.skysail.server.model.ResourceModel;
 
 import org.junit.*;
 import org.mockito.Mockito;
+
+import io.skysail.api.responses.*;
+import io.skysail.server.model.ResourceModel;
 
 @Ignore
 public class ResourceModelTest extends ModelTests {
@@ -34,7 +35,7 @@ public class ResourceModelTest extends ModelTests {
     public void constructor_works_for_putResource() {
         Mockito.when(request.toString()).thenReturn("/parent:22/");
 
-        FormResponse<TestEntity> formResponse = new FormResponse<>(testEntity, ".");
+        FormResponse<TestEntity> formResponse = new FormResponse<>(null, testEntity, ".");
         ResourceModel<TestPutResource, TestEntity> resourceModel = new ResourceModel<>(testPutResource, formResponse);
         assertThat(resourceModel.getParameterizedType(),is(equalTo(TestEntity.class)));
         //assertThat(resourceModel.getFields().keySet(), hasItem("stringField"));
@@ -42,7 +43,7 @@ public class ResourceModelTest extends ModelTests {
 
     @Test
     public void constructor_works_for_postResource() {
-        FormResponse<TestEntity> formResponse = new FormResponse<>(testEntity, ".");
+        FormResponse<TestEntity> formResponse = new FormResponse<>(null, testEntity, ".");
         ResourceModel<TestPostResource, TestEntity> resourceModel = new ResourceModel<>(testPostResource, formResponse);
         assertThat(resourceModel.getParameterizedType(),is(equalTo(TestEntity.class)));
         assertThat(resourceModel.getFields().keySet(), hasItem("stringField"));
@@ -50,7 +51,7 @@ public class ResourceModelTest extends ModelTests {
 
     @Test
     public void constructor_works_for_entityResource() {
-        EntityServerResponse<TestEntity> entityResponse = new EntityServerResponse<>(testEntity);
+        EntityServerResponse<TestEntity> entityResponse = new EntityServerResponse<>(null, testEntity);
         ResourceModel<TestEntityResource, TestEntity> resourceModel = new ResourceModel<>(testEntityResource, entityResponse);
         assertThat(resourceModel.getParameterizedType(),is(equalTo(TestEntity.class)));
         assertThat(resourceModel.getFields().keySet(), hasItem("stringField"));

@@ -63,7 +63,7 @@ public class CodegenApplicationModelTest {
     }
 
     @Test
-    @Ignore // FIX ME
+    @Ignore //FIXME
     public void adding_entity_twice_throws_exception() {
         thrown.expect(IllegalStateException.class);
         CodegenApplicationModel applicationModel = new CodegenApplicationModel(application);

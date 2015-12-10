@@ -1,17 +1,15 @@
 package io.skysail.server.app.todos.todos.resources;
 
+import java.util.List;
+
+import de.twenty11.skysail.server.core.restlet.ResourceContextId;
 import io.skysail.api.links.Link;
-import io.skysail.api.responses.SkysailResponse;
 import io.skysail.server.app.todos.TodoApplication;
 import io.skysail.server.app.todos.lists.ListsResource;
 import io.skysail.server.app.todos.services.TodosService;
 import io.skysail.server.app.todos.todos.Todo;
 import io.skysail.server.restlet.resources.PostEntityServerResource;
 import io.skysail.server.utils.ResourceUtils;
-
-import java.util.List;
-
-import de.twenty11.skysail.server.core.restlet.ResourceContextId;
 
 public class PostTodoResource extends PostEntityServerResource<Todo> {
 
@@ -40,8 +38,8 @@ public class PostTodoResource extends PostEntityServerResource<Todo> {
     }
 
     @Override
-    public SkysailResponse<Todo> addEntity(Todo entity) {
-        return todosService.addTodo(this, entity);
+    public void addEntity(Todo entity) {
+        todosService.addTodo(this, entity);
     }
 
     @Override

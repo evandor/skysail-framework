@@ -33,8 +33,6 @@ import io.skysail.server.menus.MenuItemProvider;
 import io.skysail.server.utils.BundleResourceReader;
 
 @RunWith(MockitoJUnitRunner.class)
-@Ignore
-// FIX ME
 public class ApplicationCreatorTest {
 
     @Mock

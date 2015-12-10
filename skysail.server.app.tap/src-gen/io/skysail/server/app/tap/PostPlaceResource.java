@@ -30,10 +30,9 @@ public class PostPlaceResource extends PostEntityServerResource<Place> {
     }
 
     @Override
-    public SkysailResponse<Place> addEntity(Place entity) {
+    public void addEntity(Place entity) {
         String id = repository.save(entity).toString();
         entity.setId(id);
-        return new SkysailResponse<>(entity);
     }
 
 	@Override

@@ -1,17 +1,15 @@
 package io.skysail.server.app.quartz.triggers.resources;
 
-import io.skysail.api.links.Link;
-import io.skysail.api.responses.SkysailResponse;
-import io.skysail.server.app.quartz.QuartzApplication;
-import io.skysail.server.app.quartz.jobs.*;
-import io.skysail.server.app.quartz.triggers.Trigger;
-import io.skysail.server.restlet.resources.PostEntityServerResource;
-
 import java.util.List;
 
 import org.quartz.*;
 
 import de.twenty11.skysail.server.core.restlet.ResourceContextId;
+import io.skysail.api.links.Link;
+import io.skysail.server.app.quartz.QuartzApplication;
+import io.skysail.server.app.quartz.jobs.*;
+import io.skysail.server.app.quartz.triggers.Trigger;
+import io.skysail.server.restlet.resources.PostEntityServerResource;
 
 public class PostTriggerResource extends PostEntityServerResource<Trigger> {
 
@@ -28,7 +26,7 @@ public class PostTriggerResource extends PostEntityServerResource<Trigger> {
 	}
 
 	@Override
-	public SkysailResponse<Trigger> addEntity(Trigger entity) {
+	public void addEntity(Trigger entity) {
         org.quartz.Trigger trigger = TriggerBuilder.newTrigger()
                 .withIdentity(entity.getName())
                 .startNow()
@@ -53,7 +51,6 @@ public class PostTriggerResource extends PostEntityServerResource<Trigger> {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-        return new SkysailResponse<>();
 	}
 
 	@Override

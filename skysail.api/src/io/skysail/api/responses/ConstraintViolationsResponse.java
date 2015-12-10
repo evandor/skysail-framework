@@ -5,9 +5,12 @@ import java.util.*;
 import javax.validation.ConstraintViolation;
 
 import org.apache.commons.lang.Validate;
+import org.restlet.Response;
 import org.restlet.data.Reference;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import lombok.*;
 
 /**
  * Being a "business server", skysail has to deal with business requirements
@@ -19,45 +22,22 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
  */
 public class ConstraintViolationsResponse<T> extends SkysailResponse<T> {
 
+    @Getter
     private Set<ConstraintViolationDetails> violations = new HashSet<ConstraintViolationDetails>();
 
     @JsonIgnore
+    @Getter
     private Reference actionReference;
 
-    /**
-     * Constructor.
-     *
-     * @param actionReference
-     *            a reference
-     * @param entity
-     *            an entity
-     * @param contraintViolations
-     *            a set of violations
-     */
-    public ConstraintViolationsResponse(Reference actionReference, T entity,
-            Set<ConstraintViolation<T>> contraintViolations) {
-        super(entity);
-        Validate.notNull(contraintViolations);
+    public ConstraintViolationsResponse(Response response, T entity,
+            @NonNull Set<ConstraintViolation<T>> contraintViolations) {
+        super(response, entity);
         Validate.notEmpty(contraintViolations, "Cannot create ConstraintViolationResponse without violations");
-        this.actionReference = actionReference;
+        this.actionReference = response.getRequest().getOriginalRef();
         if (contraintViolations != null) {
             for (ConstraintViolation<T> constraintViolation : contraintViolations) {
                 violations.add(new ConstraintViolationDetails(constraintViolation));
             }
         }
     }
-
-    /**
-     * get violations.
-     *
-     * @return violations
-     */
-    public Set<ConstraintViolationDetails> getViolations() {
-        return violations;
-    }
-
-    public Reference getActionReference() {
-        return actionReference;
-    }
-
 }

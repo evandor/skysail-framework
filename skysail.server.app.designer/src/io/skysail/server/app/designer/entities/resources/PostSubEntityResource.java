@@ -6,7 +6,6 @@ import org.restlet.resource.ResourceException;
 
 import de.twenty11.skysail.server.core.restlet.ResourceContextId;
 import io.skysail.api.links.Link;
-import io.skysail.api.responses.SkysailResponse;
 import io.skysail.server.app.designer.DesignerApplication;
 import io.skysail.server.app.designer.application.DbApplication;
 import io.skysail.server.app.designer.entities.DbEntity;
@@ -42,11 +41,10 @@ public class PostSubEntityResource extends PostEntityServerResource<DbEntity> {
     }
 
     @Override
-    public SkysailResponse<DbEntity> addEntity(DbEntity entity) {
+    public void addEntity(DbEntity entity) {
         DbEntity parentEntity = repo.getById(DbEntity.class, entityId);
         parentEntity.getSubEntities().add(entity);
         repo.update(parentEntity, "subEntities");
-        return new SkysailResponse<>();
     }
 
     @Override

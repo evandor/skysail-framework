@@ -1,14 +1,13 @@
 package io.skysail.server.app.plugins.installations;
 
-import io.skysail.api.responses.SkysailResponse;
-import io.skysail.server.app.plugins.PluginApplication;
-import io.skysail.server.app.plugins.features.Feature;
-import io.skysail.server.restlet.resources.PostEntityServerResource;
-
 import java.util.Optional;
 
 import org.restlet.data.Form;
 import org.restlet.resource.ResourceException;
+
+import io.skysail.server.app.plugins.PluginApplication;
+import io.skysail.server.app.plugins.features.Feature;
+import io.skysail.server.restlet.resources.PostEntityServerResource;
 
 public class PostInstallationResource extends PostEntityServerResource<Installation> {
 
@@ -43,8 +42,7 @@ public class PostInstallationResource extends PostEntityServerResource<Installat
         return note;
     }
 
-    public SkysailResponse<Installation> addEntity(Installation installation) {
+    public void addEntity(Installation installation) {
         app.install(installation.getFeature());
-        return new SkysailResponse<Installation>();
     }
 }

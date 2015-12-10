@@ -1,15 +1,13 @@
 package io.skysail.server.app.designer.fields.resources;
 
-import io.skysail.api.responses.SkysailResponse;
+import org.restlet.resource.ResourceException;
+
+import de.twenty11.skysail.server.core.restlet.ResourceContextId;
 import io.skysail.server.app.designer.DesignerApplication;
 import io.skysail.server.app.designer.entities.DbEntity;
 import io.skysail.server.app.designer.entities.resources.EntitiesResource;
 import io.skysail.server.app.designer.fields.ActionEntityField;
 import io.skysail.server.restlet.resources.PostEntityServerResource;
-
-import org.restlet.resource.ResourceException;
-
-import de.twenty11.skysail.server.core.restlet.ResourceContextId;
 
 public class PostActionFieldResource extends PostEntityServerResource<ActionEntityField> {
 
@@ -35,11 +33,10 @@ public class PostActionFieldResource extends PostEntityServerResource<ActionEnti
     }
 
     @Override
-    public SkysailResponse<ActionEntityField> addEntity(ActionEntityField field) {
+    public void addEntity(ActionEntityField field) {
         DbEntity entity = app.getRepository().getById(DbEntity.class, entityId);
         entity.getActionFields().add(field);
         app.getRepository().update(entity);
-        return new SkysailResponse<>();
     }
 
     @Override

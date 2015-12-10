@@ -1,5 +1,12 @@
 package io.skysail.server.app.designer.test;
 
+import java.util.HashMap;
+
+import org.apache.shiro.subject.SimplePrincipalMap;
+import org.junit.Before;
+import org.mockito.*;
+import org.restlet.Context;
+
 import io.skysail.api.responses.SkysailResponse;
 import io.skysail.server.app.designer.DesignerApplication;
 import io.skysail.server.app.designer.application.DbApplication;
@@ -9,13 +16,6 @@ import io.skysail.server.app.designer.entities.resources.*;
 import io.skysail.server.app.designer.repo.DesignerRepository;
 import io.skysail.server.restlet.resources.SkysailServerResource;
 import io.skysail.server.testsupport.ResourceTestBase;
-
-import java.util.HashMap;
-
-import org.apache.shiro.subject.SimplePrincipalMap;
-import org.junit.Before;
-import org.mockito.*;
-import org.restlet.Context;
 
 public abstract class AbstractDesignerResourceTest extends ResourceTestBase {
 
@@ -43,14 +43,19 @@ public abstract class AbstractDesignerResourceTest extends ResourceTestBase {
     @Spy
     protected EntityResource entityResource;
 
-
+    @Spy
+    protected DesignerApplication application;
+    
     protected DesignerRepository repo;
 
     @Before
     public void setUp() throws Exception {
         super.setUpFixture();
 
-        Context context = super.setUpApplication(Mockito.mock(DesignerApplication.class));
+        Context context = super.setUpApplication(application);
+        
+        setUpRepository(new DesignerRepository());
+        
         super.setUpResource(applicationResource, context);
         super.setUpResource(applicationsResource, context);
         super.setUpResource(putApplicationResource, context);
@@ -59,12 +64,12 @@ public abstract class AbstractDesignerResourceTest extends ResourceTestBase {
         super.setUpResource(entitiesResource, context);
         super.setUpResource(putEntityResource, context);
         super.setUpResource(postEntityResource, context);
-        setUpRepository(new DesignerRepository());
+        
         setUpSubject("admin");
     }
 
-    public void setUpRepository(DesignerRepository todosRepository) {
-        repo = todosRepository;
+    public void setUpRepository(DesignerRepository designerRepository) {
+        repo = designerRepository;
         repo.setDbService(testDb);
         repo.activate();
         ((DesignerApplication)application).setDesignerRepository(repo);

@@ -38,7 +38,9 @@ public class PostApplicationResourceTest extends AbstractApplicationResourceTest
         form.add("path", "../");
 
         SkysailResponse<DbApplication> result = postApplicationResource.post(form, HTML_VARIANT);
-        assertListResult(postApplicationResource, result, DbApplication.builder().name("TestApp").projectName("TestProject").packageName("io.skysail.testpackage").path("../").build());
+        assertListResult(postApplicationResource, result, 
+                DbApplication.builder().name("TestApp").projectName("TestProject").packageName("io.skysail.testpackage").path("../").build(),
+                Status.REDIRECTION_SEE_OTHER);
     }
 
     @Test
@@ -47,7 +49,7 @@ public class PostApplicationResourceTest extends AbstractApplicationResourceTest
         SkysailResponse<DbApplication> result = postApplicationResource.post(app, JSON_VARIANT);
         assertThat(responses.get(postApplicationResource.getClass().getName()).getStatus(),
                 is(equalTo(Status.SUCCESS_CREATED)));
-        assertListResult(postApplicationResource, result, app);
+        assertListResult(postApplicationResource, result, app, Status.SUCCESS_CREATED);
     }
 
     @Test

@@ -1,21 +1,20 @@
 package de.twenty11.skysail.server.resources;
 
-import io.skysail.api.responses.*;
-import io.skysail.server.restlet.resources.PostEntityServerResource;
-import io.skysail.server.utils.CookiesUtils;
-
 import org.apache.shiro.SecurityUtils;
 import org.restlet.data.*;
 import org.restlet.resource.*;
 
 import de.twenty11.skysail.server.app.SkysailRootApplication;
 import de.twenty11.skysail.server.domain.Credentials;
+import io.skysail.api.responses.FormResponse;
+import io.skysail.server.restlet.resources.PostEntityServerResource;
+import io.skysail.server.utils.CookiesUtils;
 
 public class RemoteLoginResource extends PostEntityServerResource<Credentials> {
 
     @Get("htmlform")
     public FormResponse<Credentials> createForm() {
-        return new FormResponse<Credentials>(getEntity(), SkysailRootApplication.PEERS_LOGIN_PATH);
+        return new FormResponse<Credentials>(getResponse(), getEntity(), SkysailRootApplication.PEERS_LOGIN_PATH);
     }
 
     @Override
@@ -41,7 +40,7 @@ public class RemoteLoginResource extends PostEntityServerResource<Credentials> {
     }
 
     @Override
-    public SkysailResponse<Credentials> addEntity(Credentials entity) {
+    public void addEntity(Credentials entity) {
 
         String installation = CookiesUtils.getInstallationFromCookie(getRequest());
         String peersCredentialsName = "Credentials_" + installation;
@@ -59,7 +58,6 @@ public class RemoteLoginResource extends PostEntityServerResource<Credentials> {
         credentialsCookie.setPath("/");
         getResponse().getCookieSettings().add(credentialsCookie);
         // cr.getCookies().add("Credentials", credentials);
-        return null;
     }
 
     @Override

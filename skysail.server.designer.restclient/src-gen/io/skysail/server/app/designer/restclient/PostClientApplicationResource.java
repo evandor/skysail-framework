@@ -30,10 +30,9 @@ public class PostClientApplicationResource extends PostEntityServerResource<Clie
     }
 
     @Override
-    public SkysailResponse<ClientApplication> addEntity(ClientApplication entity) {
+    public void addEntity(ClientApplication entity) {
         String id = repository.save(entity).toString();
         entity.setId(id);
-        return new SkysailResponse<>(entity);
     }
 
 	@Override

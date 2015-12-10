@@ -1,5 +1,11 @@
 package io.skysail.server.app.todos.services;
 
+import java.util.*;
+import java.util.stream.IntStream;
+
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.subject.Subject;
+
 import io.skysail.api.responses.SkysailResponse;
 import io.skysail.server.app.todos.*;
 import io.skysail.server.app.todos.ranking.Ranker;
@@ -11,12 +17,6 @@ import io.skysail.server.queryfilter.Filter;
 import io.skysail.server.queryfilter.pagination.Pagination;
 import io.skysail.server.restlet.resources.SkysailServerResource;
 import io.skysail.server.utils.ResourceUtils;
-
-import java.util.*;
-import java.util.stream.IntStream;
-
-import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.subject.Subject;
 
 public class TodosService {
 
@@ -81,7 +81,7 @@ public class TodosService {
 
         listRepo.update(list.getId(), list, "todos");
 
-        return new SkysailResponse<>(entityToBeUpdated);
+        return new SkysailResponse<>(null, entityToBeUpdated);
     }
 
     public SkysailResponse<String> delete(TodoResource resource, String id) {

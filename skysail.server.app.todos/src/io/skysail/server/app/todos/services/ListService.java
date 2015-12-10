@@ -42,7 +42,7 @@ public class ListService {
         entity.setOwner(subject.getPrincipal().toString());
         String id = repo.save(entity, "todos").getId().toString();
         entity.setId(id);
-        return new SkysailResponse<>(entity);
+        return new SkysailResponse<>(null, entity);
     }
 
     public SkysailResponse<TodoList> updateList(SkysailServerResource<?> resource, TodoList entity) {

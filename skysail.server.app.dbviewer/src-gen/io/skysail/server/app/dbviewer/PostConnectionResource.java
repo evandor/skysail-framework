@@ -30,10 +30,9 @@ public class PostConnectionResource extends PostEntityServerResource<Connection>
     }
 
     @Override
-    public SkysailResponse<Connection> addEntity(Connection entity) {
+    public void addEntity(Connection entity) {
         String id = repository.save(entity).toString();
         entity.setId(id);
-        return new SkysailResponse<>(entity);
     }
 
 	@Override

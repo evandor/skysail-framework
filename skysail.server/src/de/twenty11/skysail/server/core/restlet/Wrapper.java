@@ -1,10 +1,11 @@
 package de.twenty11.skysail.server.core.restlet;
 
-import io.skysail.api.responses.ConstraintViolationsResponse;
-
 import org.restlet.Response;
 
-public interface Wrapper {
+import io.skysail.api.domain.Identifiable;
+import io.skysail.api.responses.ConstraintViolationsResponse;
+
+public interface Wrapper<T extends Identifiable> {
 
     Response getResponse();
 
@@ -12,6 +13,6 @@ public interface Wrapper {
 
     void setEntity(Object entity);
 
-    void setConstraintViolationResponse(ConstraintViolationsResponse reponse);
+    void setConstraintViolationResponse(ConstraintViolationsResponse<T> reponse);
 
 }

@@ -24,7 +24,7 @@ public class CellRendererHelperTest {
     @Before
     public void setUp() throws Exception {
         formField = Mockito.mock(FormField.class);
-        listResponse = new ListServerResponse<>(Arrays.asList("1","2","3") );
+        listResponse = new ListServerResponse<>(null, Arrays.asList("1","2","3") );
         resource = Mockito.mock(SkysailServerResource.class);
         Mockito.when(resource.getLinks()).thenReturn(Arrays.asList(new Link.Builder("uri").definingClass(ResourceWithLink.class).refId("id").build()));
     }

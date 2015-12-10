@@ -1,6 +1,8 @@
 package io.skysail.api.responses;
 
-import lombok.NoArgsConstructor;
+import org.restlet.Response;
+
+import lombok.*;
 
 
 /**
@@ -18,17 +20,14 @@ import lombok.NoArgsConstructor;
  *            The type of the generic entity
  */
 @NoArgsConstructor
+@Getter
 public class SkysailResponse<T> {
 
     private T entity;
+    private Response response;
 
-    /**
-     * constructor.
-     *
-     * @param entity
-     *            the parameterized entity
-     */
-    public SkysailResponse(T entity) {
+    public SkysailResponse(Response response, T entity) {
+        this.response = response;
         this.entity = entity;
     }
 
@@ -42,9 +41,4 @@ public class SkysailResponse<T> {
     public boolean isForm() {
         return this instanceof FormResponse || this instanceof ConstraintViolationsResponse;
     }
-
-    public T getEntity() {
-        return entity;
-    }
-
 }

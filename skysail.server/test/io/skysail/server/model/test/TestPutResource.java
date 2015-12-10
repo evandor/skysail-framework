@@ -1,10 +1,9 @@
 package io.skysail.server.model.test;
 
-import io.skysail.api.responses.SkysailResponse;
+import org.mockito.Mockito;
+
 import io.skysail.server.app.SkysailApplication;
 import io.skysail.server.restlet.resources.PostEntityServerResource;
-
-import org.mockito.Mockito;
 
 public class TestPutResource extends PostEntityServerResource<TestEntity>{
 
@@ -14,8 +13,7 @@ public class TestPutResource extends PostEntityServerResource<TestEntity>{
     }
 
     @Override
-    public SkysailResponse<TestEntity> addEntity(TestEntity entity) {
-        return null;
+    public void addEntity(TestEntity entity) {
     }
 
     @Override

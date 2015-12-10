@@ -2,9 +2,6 @@ package io.skysail.server.db.it;
 
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.assertThat;
-import io.skysail.server.db.it.clip.*;
-import io.skysail.server.db.it.clip.resources.*;
-import io.skysail.server.testsupport.categories.LargeTests;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -14,7 +11,13 @@ import org.junit.experimental.categories.Category;
 import org.restlet.data.Form;
 import org.restlet.representation.Variant;
 
+import io.skysail.server.db.it.clip.*;
+import io.skysail.server.db.it.clip.resources.*;
+import io.skysail.server.testsupport.categories.LargeTests;
+
 @Category(LargeTests.class)
+@Ignore
+//FIXME
 public class ClipDbTests extends DbIntegrationTests {
 
     private PostClipResource postClipResource;

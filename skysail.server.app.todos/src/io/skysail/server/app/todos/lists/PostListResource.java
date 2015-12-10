@@ -1,17 +1,15 @@
 package io.skysail.server.app.todos.lists;
 
-import io.skysail.api.links.Link;
-import io.skysail.api.responses.SkysailResponse;
-import io.skysail.server.app.todos.TodoList;
-import io.skysail.server.app.todos.services.ListService;
-import io.skysail.server.app.todos.todos.resources.Top10TodosResource;
-import io.skysail.server.restlet.resources.PostEntityServerResource;
-
 import java.util.List;
 
 import org.restlet.resource.ResourceException;
 
 import de.twenty11.skysail.server.core.restlet.ResourceContextId;
+import io.skysail.api.links.Link;
+import io.skysail.server.app.todos.TodoList;
+import io.skysail.server.app.todos.services.ListService;
+import io.skysail.server.app.todos.todos.resources.Top10TodosResource;
+import io.skysail.server.restlet.resources.PostEntityServerResource;
 
 public class PostListResource extends PostEntityServerResource<TodoList> {
 
@@ -34,8 +32,8 @@ public class PostListResource extends PostEntityServerResource<TodoList> {
     }
 
     @Override
-    public SkysailResponse<TodoList> addEntity(TodoList entity) {
-        return listService.addList(this,entity);
+    public void addEntity(TodoList entity) {
+        listService.addList(this,entity);
     }
 
     @Override

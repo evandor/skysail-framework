@@ -1,10 +1,10 @@
 package io.skysail.server.db.it.one2many.todo.resources;
 
+import java.util.Date;
+
 import io.skysail.api.responses.SkysailResponse;
 import io.skysail.server.db.it.one2many.todo.*;
 import io.skysail.server.restlet.resources.PutEntityServerResource;
-
-import java.util.Date;
 
 public class PutTodoResource extends PutEntityServerResource<Todo> {
 
@@ -24,7 +24,7 @@ public class PutTodoResource extends PutEntityServerResource<Todo> {
         copyProperties(entityToBeUpdated, entityFromTheWire);
         entityToBeUpdated.setModified(new Date());
         app.getRepository().update(getAttribute("id"), entityToBeUpdated, "comments");
-        return new SkysailResponse<>(entityToBeUpdated);
+        return new SkysailResponse<>(getResponse(), entityToBeUpdated);
     }
 
 }

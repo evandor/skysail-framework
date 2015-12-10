@@ -100,6 +100,7 @@ Service-Component: *
 	com.fasterxml.jackson.dataformat.jackson-dataformat-csv;version=${com.fasterxml.jackson.version},\
 	com.orientechnologies.orientdb-object;version=${com.orientechnologies.orientdb.version},\
 	com.orientechnologies.orientdb-core;version=${com.orientechnologies.orientdb.version},\
+    com.orientechnologies.orientdb-graphdb;version=${com.orientechnologies.orientdb.version},\
 	org.apache.commons.beanutils;version=1.9,\
 	lombok;version=1.16,\
 	org.apache.commons.logging;version=1.1,\

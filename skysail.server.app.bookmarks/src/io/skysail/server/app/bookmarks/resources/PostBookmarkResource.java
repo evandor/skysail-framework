@@ -10,7 +10,6 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.*;
 import org.jsoup.select.Elements;
 
-import io.skysail.api.responses.SkysailResponse;
 import io.skysail.server.app.bookmarks.*;
 import io.skysail.server.app.bookmarks.repo.BookmarksRepository;
 import io.skysail.server.restlet.resources.PostEntityServerResource;
@@ -33,7 +32,7 @@ public class PostBookmarkResource extends PostEntityServerResource<Bookmark> {
     }
 
     @Override
-    public SkysailResponse<Bookmark> addEntity(Bookmark entity) {
+    public void addEntity(Bookmark entity) {
 
         analyzeBookmarkUrl(entity);
 
@@ -42,8 +41,6 @@ public class PostBookmarkResource extends PostEntityServerResource<Bookmark> {
         entity.setOwner(subject.getPrincipal().toString());
         String id = repository.save(entity).toString();
         entity.setId(id);
-
-        return new SkysailResponse<>();
     }
 
     @Override

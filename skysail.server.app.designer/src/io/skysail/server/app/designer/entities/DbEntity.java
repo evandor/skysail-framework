@@ -29,7 +29,7 @@ public class DbEntity implements Identifiable {
     private String name;
 
     @Field(inputType = InputType.CHECKBOX)
-    private boolean rootEntity;
+    private boolean rootEntity = true;
 
     private List<DbEntityField> fields = new ArrayList<>();
 
@@ -44,15 +44,14 @@ public class DbEntity implements Identifiable {
 
     private List<DbEntity> subEntities = new ArrayList<>();
 
-//    public List<DbEntity> getSubEntities() { // = getReferences?
-//        if (subEntities == null) {
-//            subEntities = new ArrayList<>();
-//        }
-//        return subEntities;
-//    }
-
-    public DbEntity(String name) {
+    public DbEntity(@NonNull String name) {
         this.name = name;
+    }
+    
+    @Builder
+    public DbEntity(@NonNull String name, boolean rootEntity) {
+        this.name = name;
+        this.rootEntity = rootEntity;
     }
 
 }

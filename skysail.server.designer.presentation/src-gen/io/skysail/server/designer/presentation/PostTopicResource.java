@@ -2,13 +2,6 @@ package io.skysail.server.designer.presentation;
 
 import javax.annotation.Generated;
 
-import de.twenty11.skysail.server.core.restlet.ResourceContextId;
-
-//
-
-import io.skysail.api.responses.SkysailResponse;
-import io.skysail.server.restlet.resources.PostEntityServerResource;
-
 @Generated("io.skysail.server.codegen.apt.processors.EntityProcessor")
 public class PostTopicResource extends PostEntityServerResource<Topic> {
 
@@ -31,10 +24,9 @@ public class PostTopicResource extends PostEntityServerResource<Topic> {
     }
 
     @Override
-    public SkysailResponse<Topic> addEntity(Topic entity) {
+    public void addEntity(Topic entity) {
         String id = repository.save(entity).toString();
         entity.setId(id);
-        return new SkysailResponse<>(entity);
     }
 
 	@Override

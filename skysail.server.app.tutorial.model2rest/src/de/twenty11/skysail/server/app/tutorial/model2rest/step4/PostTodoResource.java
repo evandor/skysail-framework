@@ -1,8 +1,7 @@
 package de.twenty11.skysail.server.app.tutorial.model2rest.step4;
 
-import io.skysail.api.responses.SkysailResponse;
-import io.skysail.server.restlet.resources.PostEntityServerResource;
 import de.twenty11.skysail.server.core.restlet.ResourceContextId;
+import io.skysail.server.restlet.resources.PostEntityServerResource;
 
 public class PostTodoResource extends PostEntityServerResource<TodoModel4> {
 
@@ -16,9 +15,8 @@ public class PostTodoResource extends PostEntityServerResource<TodoModel4> {
     }
 
     @Override
-    public SkysailResponse<TodoModel4> addEntity(TodoModel4 entity) {
+    public void addEntity(TodoModel4 entity) {
         Step4ModelsRepository.getInstance().add(entity);
-        return new SkysailResponse<>();
     }
 
     @Override

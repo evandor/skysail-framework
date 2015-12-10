@@ -1,15 +1,6 @@
 package io.skysail.server.restlet.resources;
 
-import io.skysail.api.domain.Identifiable;
-import io.skysail.api.links.LinkRelation;
-import io.skysail.api.responses.*;
-import io.skysail.server.restlet.ListRequestHandler;
-import io.skysail.server.services.PerformanceTimer;
-
 import java.util.*;
-
-import lombok.ToString;
-import lombok.extern.slf4j.Slf4j;
 
 import org.restlet.Restlet;
 import org.restlet.data.Method;
@@ -17,6 +8,13 @@ import org.restlet.representation.Variant;
 import org.restlet.resource.*;
 
 import de.twenty11.skysail.server.core.restlet.*;
+import io.skysail.api.domain.Identifiable;
+import io.skysail.api.links.LinkRelation;
+import io.skysail.api.responses.*;
+import io.skysail.server.restlet.ListRequestHandler;
+import io.skysail.server.services.PerformanceTimer;
+import lombok.ToString;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * A ListServerResource implementation takes care of a List of Entities.
@@ -120,7 +118,7 @@ public abstract class ListServerResource<T extends Identifiable> extends Skysail
                 variant);
         List<T> response = (List<T>) listEntities();
         getApplication().stopPerformanceMonitoring(perfTimer);
-        return new ListServerResponse<T>(response);
+        return new ListServerResponse<T>(getResponse(), response);
 
         // if (SecurityFeatures.ALLOW_ORIGIN_FEATURE.isActive()) {
         // responseHeaders.add("Access-Control-Allow-Origin", "*");

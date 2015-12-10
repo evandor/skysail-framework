@@ -31,10 +31,9 @@ public class Post$entity.simpleName$Resource extends PostEntityServerResource<$e
     }
 
     @Override
-    public SkysailResponse<$entity.simpleName$> addEntity($entity.simpleName$ entity) {
+    public void addEntity($entity.simpleName$ entity) {
         String id = repository.save(entity).toString();
         entity.setId(id);
-        return new SkysailResponse<>(entity);
     }
 
 	@Override

@@ -1,13 +1,11 @@
 package io.skysail.server.app.plugins.query;
 
-import io.skysail.api.responses.SkysailResponse;
-import io.skysail.server.app.plugins.PluginApplication;
-import io.skysail.server.restlet.resources.PostEntityServerResource;
-
 import org.restlet.data.Form;
 import org.restlet.resource.ResourceException;
 
 import de.twenty11.skysail.server.core.restlet.ResourceContextId;
+import io.skysail.server.app.plugins.PluginApplication;
+import io.skysail.server.restlet.resources.PostEntityServerResource;
 
 public class PostQueryResource extends PostEntityServerResource<Query> {
 
@@ -31,10 +29,7 @@ public class PostQueryResource extends PostEntityServerResource<Query> {
         return populate(createEntityTemplate(), form);
     }
 
-    public SkysailResponse<Query> addEntity(Query entity) {
-        // Resolver discoverResources =
-        // app.discoverResources("(|(presentationname=*)(symbolicname=*))");
-        return new SkysailResponse<>();
+    public void addEntity(Query entity) {
     }
 
 }

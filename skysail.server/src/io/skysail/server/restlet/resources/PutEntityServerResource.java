@@ -1,5 +1,14 @@
 package io.skysail.server.restlet.resources;
 
+import java.util.*;
+
+import javax.validation.ConstraintViolation;
+
+import org.restlet.data.*;
+import org.restlet.representation.Variant;
+import org.restlet.resource.*;
+
+import de.twenty11.skysail.server.core.restlet.*;
 import io.skysail.api.domain.Identifiable;
 import io.skysail.api.links.*;
 import io.skysail.api.responses.*;
@@ -8,18 +17,7 @@ import io.skysail.server.restlet.RequestHandler;
 import io.skysail.server.restlet.filter.AbstractResourceFilter;
 import io.skysail.server.services.PerformanceTimer;
 import io.skysail.server.utils.ReflectionUtils;
-
-import java.util.*;
-
-import javax.validation.ConstraintViolation;
-
 import lombok.extern.slf4j.Slf4j;
-
-import org.restlet.data.*;
-import org.restlet.representation.Variant;
-import org.restlet.resource.*;
-
-import de.twenty11.skysail.server.core.restlet.*;
 
 /**
  * An abstract resource template dealing with PUT requests (see
@@ -134,7 +132,7 @@ public abstract class PutEntityServerResource<T extends Identifiable> extends Sk
         ResponseWrapper<T> wrapper = chain.handle(this, getResponse());
 
         getApplication().stopPerformanceMonitoring(perfTimer);
-        return new FormResponse<T>(wrapper.getEntity(), identifier, null, redirectBackTo());
+        return new FormResponse<T>(getResponse(), wrapper.getEntity(), identifier, null, redirectBackTo());
     }
 
     protected String redirectBackTo() {
@@ -154,7 +152,7 @@ public abstract class PutEntityServerResource<T extends Identifiable> extends Sk
         if (handledRequest.getConstraintViolationsResponse() != null) {
             return handledRequest.getConstraintViolationsResponse();
         }
-        return new FormResponse<T>(handledRequest.getEntity(),".");
+        return new FormResponse<T>(getResponse(), handledRequest.getEntity(),".");
     }
 
     @Put("x-www-form-urlencoded:html|json")
@@ -174,7 +172,7 @@ public abstract class PutEntityServerResource<T extends Identifiable> extends Sk
         if (handledRequest.getConstraintViolationsResponse() != null) {
             return handledRequest.getConstraintViolationsResponse();
         }
-        return new FormResponse<T>(handledRequest.getEntity(),".");
+        return new FormResponse<T>(getResponse(), handledRequest.getEntity(),".");
     }
 
 
@@ -200,7 +198,7 @@ public abstract class PutEntityServerResource<T extends Identifiable> extends Sk
         }
 
         getApplication().stopPerformanceMonitoring(perfTimer);
-        return new FormResponse<T>(handledRequest.getEntity(),".");
+        return new FormResponse<T>(getResponse(), handledRequest.getEntity(),".");
     }
 
     @Override

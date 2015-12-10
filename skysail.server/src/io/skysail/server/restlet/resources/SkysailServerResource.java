@@ -124,7 +124,7 @@ public abstract class SkysailServerResource<T> extends ServerResource {
                 variant);
         ResourceContextResource context = new ResourceContextResource(this);
         getApplication().stopPerformanceMonitoring(perfTimer);
-        return new SkysailResponse<ResourceContextResource>(context);
+        return new SkysailResponse<ResourceContextResource>(getResponse(), context);
     }
 
     /**

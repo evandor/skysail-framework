@@ -1,12 +1,5 @@
 package io.skysail.server.restlet.resources;
 
-import io.skysail.api.domain.Identifiable;
-import io.skysail.api.links.LinkRelation;
-import io.skysail.api.responses.*;
-import io.skysail.server.restlet.RequestHandler;
-import io.skysail.server.restlet.filter.AbstractResourceFilter;
-import io.skysail.server.services.PerformanceTimer;
-
 import java.text.ParseException;
 import java.util.Set;
 
@@ -18,6 +11,12 @@ import org.restlet.resource.*;
 import org.slf4j.*;
 
 import de.twenty11.skysail.server.core.restlet.*;
+import io.skysail.api.domain.Identifiable;
+import io.skysail.api.links.LinkRelation;
+import io.skysail.api.responses.*;
+import io.skysail.server.restlet.RequestHandler;
+import io.skysail.server.restlet.filter.AbstractResourceFilter;
+import io.skysail.server.services.PerformanceTimer;
 
 /**
  * Abstract base class for skysail server-side resources representing a single
@@ -137,12 +136,12 @@ public abstract class EntityServerResource<T extends Identifiable> extends Skysa
         }
         T entity = getEntity3();
         getApplication().stopPerformanceMonitoring(perfTimer);
-        return new EntityServerResponse<>(entity);
+        return new EntityServerResponse<>(getResponse(), entity);
     }
 
     @Get("htmlform")
     public SkysailResponse<T> getDeleteForm() {
-        return new FormResponse<T>(getEntity("dummy"), ".", "/");
+        return new FormResponse<T>(getResponse(), getEntity("dummy"), ".", "/");
     }
 
     @Delete("x-www-form-urlencoded:html|html|json")
@@ -157,7 +156,7 @@ public abstract class EntityServerResource<T extends Identifiable> extends Skysa
         AbstractResourceFilter<EntityServerResource<T>, T> handler = requestHandler.createForEntity(Method.DELETE);
         T entity = handler.handle(this, getResponse()).getEntity();
         getApplication().stopPerformanceMonitoring(perfTimer);
-        return new EntityServerResponse<>(entity);
+        return new EntityServerResponse<>(getResponse(), entity);
     }
 
 //    @Options("json")

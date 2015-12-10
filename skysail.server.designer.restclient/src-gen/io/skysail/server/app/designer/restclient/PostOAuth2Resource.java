@@ -30,10 +30,9 @@ public class PostOAuth2Resource extends PostEntityServerResource<OAuth2> {
     }
 
     @Override
-    public SkysailResponse<OAuth2> addEntity(OAuth2 entity) {
+    public void addEntity(OAuth2 entity) {
         String id = repository.save(entity).toString();
         entity.setId(id);
-        return new SkysailResponse<>(entity);
     }
 
 	@Override

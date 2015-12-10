@@ -1,18 +1,16 @@
 package io.skysail.server.app.quartz.jobs;
 
-import io.skysail.api.links.Link;
-import io.skysail.api.responses.SkysailResponse;
-import io.skysail.server.app.quartz.QuartzApplication;
-import io.skysail.server.app.quartz.groups.resources.GroupsResource;
-import io.skysail.server.app.quartz.jobdetails.JobDetailsResource;
-import io.skysail.server.app.quartz.triggers.resources.TriggersResource;
-import io.skysail.server.restlet.resources.PostEntityServerResource;
-
 import java.util.List;
 
 import org.quartz.*;
 
 import de.twenty11.skysail.server.core.restlet.ResourceContextId;
+import io.skysail.api.links.Link;
+import io.skysail.server.app.quartz.QuartzApplication;
+import io.skysail.server.app.quartz.groups.resources.GroupsResource;
+import io.skysail.server.app.quartz.jobdetails.JobDetailsResource;
+import io.skysail.server.app.quartz.triggers.resources.TriggersResource;
+import io.skysail.server.restlet.resources.PostEntityServerResource;
 
 public class PostJobResource extends PostEntityServerResource<Job> {
 
@@ -29,7 +27,7 @@ public class PostJobResource extends PostEntityServerResource<Job> {
 	}
 
 	@Override
-	public SkysailResponse<Job> addEntity(Job entity) {
+	public void addEntity(Job entity) {
 		JobDetail jobDetail = org.quartz.JobBuilder.newJob(ConsoleTimePrinterJob.class)
 				.withIdentity(entity.getName(), entity.getGroup())
 				.storeDurably(true)
@@ -40,7 +38,6 @@ public class PostJobResource extends PostEntityServerResource<Job> {
         } catch (SchedulerException e) {
 	        e.printStackTrace();
         }
-		return new SkysailResponse<>();
 	}
 
 	@Override

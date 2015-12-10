@@ -2,9 +2,6 @@ package io.skysail.server.db.it;
 
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.assertThat;
-import io.skysail.server.db.it.folder.*;
-import io.skysail.server.db.it.folder.resources.*;
-import io.skysail.server.testsupport.categories.LargeTests;
 
 import java.util.*;
 
@@ -12,7 +9,13 @@ import org.junit.*;
 import org.junit.experimental.categories.Category;
 import org.restlet.representation.Variant;
 
+import io.skysail.server.db.it.folder.*;
+import io.skysail.server.db.it.folder.resources.*;
+import io.skysail.server.testsupport.categories.LargeTests;
+
 @Category(LargeTests.class)
+@Ignore
+//FIXME
 public class FolderDbTests extends DbIntegrationTests {
 
     private PostFolderResource postFolderResource;

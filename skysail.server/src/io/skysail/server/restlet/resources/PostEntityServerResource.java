@@ -11,6 +11,8 @@ import org.restlet.data.Status;
 import org.restlet.representation.Variant;
 import org.restlet.resource.*;
 
+import com.tinkerpop.blueprints.impls.orient.OrientVertex;
+
 import de.twenty11.skysail.server.core.restlet.*;
 import io.skysail.api.domain.Identifiable;
 import io.skysail.api.links.*;
@@ -114,12 +116,11 @@ public abstract class PostEntityServerResource<T extends Identifiable> extends S
      *            the entity
      * @return the response
      */
-    public SkysailResponse<T> addEntity(T entity) {
+    public void addEntity(T entity) {
         Class<? extends Identifiable> cls = createEntityTemplate().getClass();
-        OrientVertex vertex = getApplication().getRepository(cls).save(entity);
+        OrientVertex vertex = (OrientVertex) getApplication().getRepository(cls).save(entity);
         String id = vertex.getId().toString();
         entity.setId(id);
-        return new SkysailResponse<>(entity);
     }
 
     @Override
@@ -152,7 +153,7 @@ public abstract class PostEntityServerResource<T extends Identifiable> extends S
 
         T entity = createEntityTemplate();
         this.setCurrentEntity(entity);
-        return new FormResponse<T>(entity, links.get(0).getUri());
+        return new FormResponse<T>(getResponse(), entity, links.get(0).getUri());
     }
 
     @Get("json")
@@ -195,7 +196,7 @@ public abstract class PostEntityServerResource<T extends Identifiable> extends S
         if (handledRequest.getConstraintViolationsResponse() != null) {
             return handledRequest.getConstraintViolationsResponse();
         }
-        return new FormResponse<T>(handledRequest.getEntity(), ".");
+        return new FormResponse<T>(getResponse(), handledRequest.getEntity(), ".");
     }
 
     private ResponseWrapper<T> doPost(Form form, Variant variant) {

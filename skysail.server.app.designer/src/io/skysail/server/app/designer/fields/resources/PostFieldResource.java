@@ -3,7 +3,6 @@ package io.skysail.server.app.designer.fields.resources;
 import org.restlet.resource.ResourceException;
 
 import de.twenty11.skysail.server.core.restlet.ResourceContextId;
-import io.skysail.api.responses.SkysailResponse;
 import io.skysail.server.app.designer.DesignerApplication;
 import io.skysail.server.app.designer.application.DbApplication;
 import io.skysail.server.app.designer.entities.DbEntity;
@@ -33,11 +32,10 @@ public class PostFieldResource extends PostEntityServerResource<DbEntityField> {
     }
 
     @Override
-    public SkysailResponse<DbEntityField> addEntity(DbEntityField field) {
+    public void addEntity(DbEntityField field) {
         DbEntity theEntity = repo.getById(DbEntity.class, getAttribute(DesignerApplication.ENTITY_ID));
         theEntity.getFields().add(field);
         app.getRepository().update(theEntity, "fields");
-        return new SkysailResponse<>();
     }
 
 }

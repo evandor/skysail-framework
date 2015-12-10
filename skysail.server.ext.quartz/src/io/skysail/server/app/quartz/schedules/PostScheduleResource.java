@@ -1,13 +1,11 @@
 package io.skysail.server.app.quartz.schedules;
 
-import io.skysail.api.responses.SkysailResponse;
-import io.skysail.server.app.quartz.QuartzApplication;
-import io.skysail.server.restlet.resources.PostEntityServerResource;
-
 import org.quartz.*;
 import org.restlet.resource.ResourceException;
 
 import de.twenty11.skysail.server.core.restlet.ResourceContextId;
+import io.skysail.server.app.quartz.QuartzApplication;
+import io.skysail.server.restlet.resources.PostEntityServerResource;
 
 public class PostScheduleResource extends PostEntityServerResource<Schedule> {
 
@@ -47,7 +45,7 @@ public class PostScheduleResource extends PostEntityServerResource<Schedule> {
     }
 
     @Override
-    public SkysailResponse<Schedule> addEntity(Schedule entity) {
+    public void addEntity(Schedule entity) {
         Trigger trigger = org.quartz.TriggerBuilder.newTrigger().withIdentity("trigger1", "group1").startNow()
                 .forJob(JobKey.jobKey(entity.getJobName(), entity.getJobGroup()))
                 .withSchedule(SimpleScheduleBuilder.simpleSchedule().withIntervalInSeconds(60).repeatForever()).build();
@@ -56,6 +54,5 @@ public class PostScheduleResource extends PostEntityServerResource<Schedule> {
         } catch (SchedulerException e) {
             e.printStackTrace();
         }
-        return new SkysailResponse<>();
     }
 }

@@ -1,10 +1,9 @@
 package io.skysail.server.app.quartz.groups.resources;
 
-import io.skysail.api.responses.SkysailResponse;
+import de.twenty11.skysail.server.core.restlet.ResourceContextId;
 import io.skysail.server.app.quartz.QuartzRepository;
 import io.skysail.server.app.quartz.groups.Group;
 import io.skysail.server.restlet.resources.PostEntityServerResource;
-import de.twenty11.skysail.server.core.restlet.ResourceContextId;
 
 public class PostGroupResource extends PostEntityServerResource<Group> {
 
@@ -18,9 +17,8 @@ public class PostGroupResource extends PostEntityServerResource<Group> {
 	}
 
 	@Override
-	public SkysailResponse<Group> addEntity(Group entity) {
+	public void addEntity(Group entity) {
 		QuartzRepository.add(entity);
-		return new SkysailResponse<>();
 	}
 
 	@Override

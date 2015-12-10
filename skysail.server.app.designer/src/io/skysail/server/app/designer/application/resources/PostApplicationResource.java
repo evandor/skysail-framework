@@ -5,7 +5,6 @@ import org.apache.shiro.subject.Subject;
 import org.restlet.resource.ResourceException;
 
 import de.twenty11.skysail.server.core.restlet.ResourceContextId;
-import io.skysail.api.responses.SkysailResponse;
 import io.skysail.server.app.designer.DesignerApplication;
 import io.skysail.server.app.designer.application.DbApplication;
 import io.skysail.server.app.designer.repo.DesignerRepository;
@@ -31,13 +30,12 @@ public class PostApplicationResource extends PostEntityServerResource<DbApplicat
     }
 
     @Override
-    public SkysailResponse<DbApplication> addEntity(DbApplication entity) {
+    public void addEntity(DbApplication entity) {
         app.invalidateMenuCache();
         Subject subject = SecurityUtils.getSubject();
         entity.setOwner(subject.getPrincipal().toString());
         String id = DesignerRepository.add(entity).getId().toString();
         entity.setId(id);
-        return new SkysailResponse<>();
     }
 
     @Override

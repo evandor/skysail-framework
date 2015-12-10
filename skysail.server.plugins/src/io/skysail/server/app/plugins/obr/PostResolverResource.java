@@ -1,12 +1,11 @@
 package io.skysail.server.app.plugins.obr;
 
-import io.skysail.api.responses.SkysailResponse;
-import io.skysail.server.app.plugins.PluginApplication;
-import io.skysail.server.restlet.resources.PostEntityServerResource;
-
 import org.apache.commons.lang.StringEscapeUtils;
 import org.apache.felix.bundlerepository.*;
 import org.restlet.data.Form;
+
+import io.skysail.server.app.plugins.PluginApplication;
+import io.skysail.server.restlet.resources.PostEntityServerResource;
 
 public class PostResolverResource extends PostEntityServerResource<ObrResource> {
 
@@ -32,7 +31,7 @@ public class PostResolverResource extends PostEntityServerResource<ObrResource> 
         return entity;
     }
 
-    public SkysailResponse<ObrResource> addEntity(ObrResource entity) {
+    public void addEntity(ObrResource entity) {
         String filter = StringEscapeUtils.unescapeHtml(entity.getSearchFor());
         StringBuilder sb = new StringBuilder();
         sb.append("Discovering Resources for filter '").append(filter).append("'\n<br>");
@@ -46,6 +45,5 @@ public class PostResolverResource extends PostEntityServerResource<ObrResource> 
                 sb.append("Unable to resolve: " + reqs[i]).append("\\n<br>");
             }
         }
-        return new SkysailResponse<>();
     }
 }

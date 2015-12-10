@@ -1,9 +1,5 @@
 package de.twenty11.skysail.server.ext.mail.accounts.impl;
 
-import io.skysail.api.links.Link;
-import io.skysail.api.responses.*;
-import io.skysail.server.restlet.resources.EntityServerResource;
-
 import java.util.List;
 
 import org.restlet.resource.*;
@@ -11,6 +7,9 @@ import org.restlet.resource.*;
 import de.twenty11.skysail.server.ext.mail.MailApplication;
 import de.twenty11.skysail.server.ext.mail.accounts.Account;
 import de.twenty11.skysail.server.ext.mail.folders.FoldersResource;
+import io.skysail.api.links.Link;
+import io.skysail.api.responses.*;
+import io.skysail.server.restlet.resources.EntityServerResource;
 
 public class AccountResource extends EntityServerResource<Account> {
 
@@ -28,7 +27,7 @@ public class AccountResource extends EntityServerResource<Account> {
 
     @Get("htmlform")
     public SkysailResponse<Account> createForm() {
-        return new FormResponse<Account>(new Account(), ".");
+        return new FormResponse<Account>(getResponse(), new Account(), ".");
     }
 
     public SkysailResponse<?> addEntity(Account entity) {

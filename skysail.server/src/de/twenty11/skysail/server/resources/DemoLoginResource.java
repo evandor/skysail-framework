@@ -1,20 +1,19 @@
 package de.twenty11.skysail.server.resources;
 
-import io.skysail.api.responses.*;
-import io.skysail.server.restlet.resources.PostEntityServerResource;
-
 import org.apache.shiro.SecurityUtils;
 import org.restlet.data.Form;
 import org.restlet.resource.*;
 
 import de.twenty11.skysail.server.app.SkysailRootApplication;
 import de.twenty11.skysail.server.domain.Credentials;
+import io.skysail.api.responses.FormResponse;
+import io.skysail.server.restlet.resources.PostEntityServerResource;
 
 public class DemoLoginResource extends PostEntityServerResource<Credentials> {
 
     @Get("htmlform")
     public FormResponse<Credentials> createForm() {
-        return new FormResponse<Credentials>(getEntity(), SkysailRootApplication.DEMO_LOGIN_PATH);
+        return new FormResponse<Credentials>(getResponse(), getEntity(), SkysailRootApplication.DEMO_LOGIN_PATH);
     }
 
     @Override
@@ -40,9 +39,7 @@ public class DemoLoginResource extends PostEntityServerResource<Credentials> {
     }
 
     @Override
-    public SkysailResponse<Credentials> addEntity(Credentials entity) {
-        return null;
-    }
+    public void addEntity(Credentials entity) {}
 
     @Override
     public String redirectTo() {

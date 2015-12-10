@@ -1,7 +1,6 @@
 package io.skysail.server.app.designer.codegen;
 
 import de.twenty11.skysail.server.core.restlet.ResourceContextId;
-import io.skysail.api.responses.SkysailResponse;
 import io.skysail.server.app.designer.DesignerApplication;
 import io.skysail.server.app.designer.application.resources.ApplicationsResource;
 import io.skysail.server.restlet.resources.PostEntityServerResource;
@@ -25,11 +24,10 @@ public class PostCompilationResource extends PostEntityServerResource<Empty> {
     }
 
     @Override
-    public SkysailResponse<Empty> addEntity(Empty entity) {
+    public void addEntity(Empty entity) {
         //InMemoryJavaCompiler.resetClassloader();
         //app.updateBundle();
         app.compileApplication(getAttribute("id"));
-        return new SkysailResponse<>();
     }
 
     @Override

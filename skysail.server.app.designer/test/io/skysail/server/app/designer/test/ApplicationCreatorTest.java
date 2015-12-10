@@ -5,7 +5,7 @@ import static org.junit.Assert.assertThat;
 import static org.mockito.Matchers.isNull;
 import static org.mockito.Mockito.*;
 
-import java.io.IOException;
+import java.io.*;
 import java.net.URL;
 import java.nio.file.*;
 import java.util.*;
@@ -31,8 +31,10 @@ import io.skysail.server.db.DbService;
 import io.skysail.server.domain.core.Repositories;
 import io.skysail.server.menus.MenuItemProvider;
 import io.skysail.server.utils.BundleResourceReader;
+import lombok.extern.slf4j.Slf4j;
 
 @RunWith(MockitoJUnitRunner.class)
+@Slf4j
 public class ApplicationCreatorTest {
 
     @Mock
@@ -169,6 +171,8 @@ public class ApplicationCreatorTest {
 
     // FIXME
     private void assertFileExists(String path, String filename) {
-       // assertThat(Paths.get(path + "/" + filename).toFile().exists(), is(true));
+        File file = Paths.get(path + "/" + filename).toFile();
+        log.debug("checking if file {} exists...", file.getAbsolutePath());
+       // assertThat(file.exists(), is(true));
     }
 }

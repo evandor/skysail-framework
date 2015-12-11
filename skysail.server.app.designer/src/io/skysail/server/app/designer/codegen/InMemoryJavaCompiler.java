@@ -14,6 +14,8 @@ import org.osgi.framework.*;
 import org.osgi.service.component.annotations.Component;
 import org.restlet.resource.ServerResource;
 
+import com.tinkerpop.blueprints.impls.orient.OrientVertex;
+
 import io.skysail.api.links.Link;
 import io.skysail.server.app.SkysailApplication;
 import io.skysail.server.app.designer.DesignerApplication;
@@ -83,6 +85,7 @@ public class InMemoryJavaCompiler {
         getBundleLocationFor(org.apache.commons.lang3.text.StrBuilder.class, bundleLocations, bundles);
         getBundleLocationFor(Repositories.class, bundleLocations, bundles);
         getBundleLocationFor(io.skysail.server.queryfilter.Filter.class, bundleLocations, bundles);
+        getBundleLocationFor(OrientVertex.class, bundleLocations, bundles);
 
         String locs = bundleLocations.stream().map(l -> {
                 return l.replace("reference:", "").replace("file:/", "/").replace("%25", "%"); // replace("/","\\").

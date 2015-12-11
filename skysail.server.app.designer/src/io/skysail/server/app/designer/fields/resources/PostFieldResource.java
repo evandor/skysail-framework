@@ -5,6 +5,7 @@ import org.restlet.resource.ResourceException;
 import de.twenty11.skysail.server.core.restlet.ResourceContextId;
 import io.skysail.server.app.designer.DesignerApplication;
 import io.skysail.server.app.designer.application.DbApplication;
+import io.skysail.server.app.designer.application.resources.ApplicationsResource;
 import io.skysail.server.app.designer.entities.DbEntity;
 import io.skysail.server.app.designer.fields.DbEntityField;
 import io.skysail.server.app.designer.repo.DesignerRepository;
@@ -36,6 +37,11 @@ public class PostFieldResource extends PostEntityServerResource<DbEntityField> {
         DbEntity theEntity = repo.getById(DbEntity.class, getAttribute(DesignerApplication.ENTITY_ID));
         theEntity.getFields().add(field);
         app.getRepository().update(theEntity, "fields");
+    }
+    
+    @Override
+    public String redirectTo() {
+        return super.redirectTo(ApplicationsResource.class);
     }
 
 }

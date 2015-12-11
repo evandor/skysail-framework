@@ -5,7 +5,7 @@ import org.restlet.Response;
 import lombok.*;
 
 @Getter
-@ToString
+@ToString(callSuper = true)
 public class FormResponse<T> extends SkysailResponse<T> {
 
     private String target;

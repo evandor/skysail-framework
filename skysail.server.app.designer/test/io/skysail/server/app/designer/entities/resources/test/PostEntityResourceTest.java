@@ -1,5 +1,8 @@
 package io.skysail.server.app.designer.entities.resources.test;
 
+import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertThat;
+
 import org.junit.*;
 import org.restlet.data.*;
 import org.restlet.engine.resource.VariantInfo;
@@ -39,17 +42,34 @@ public class PostEntityResourceTest extends AbstractEntityResourceTest {
         form.add("rootEntity", "on");
 
         SkysailResponse<DbEntity> result = postEntityResource.post(form, HTML_VARIANT);
-        assertListResult(postEntityResource, result, DbEntity.builder().name("TestEntity").rootEntity(true).build(), Status.REDIRECTION_SEE_OTHER);
+        
+        DbEntity expectedDbEntity = DbEntity.builder().name("TestEntity").rootEntity(true).build();
+        assertListResult(postEntityResource, result, expectedDbEntity, Status.REDIRECTION_SEE_OTHER);
     }
 
-//    @Test
-//    public void valid_json_data_yields_new_entity() {
-//        DbEntity app = createValidEntity();
-//        SkysailResponse<DbEntity> result = postEntityResource.post(app, JSON_VARIANT);
-//        assertThat(responses.get(postEntityResource.getClass().getName()).getStatus(),
-//                is(equalTo(Status.SUCCESS_CREATED)));
-//        assertListResult(postEntityResource, result, app);
-//    }
+    @Test
+    public void valid_json_data_yields_new_entity() {
+        DbEntity entity = DbEntity.builder().name("AnEntity").rootEntity(true).build();
+        
+        SkysailResponse<DbEntity> result = postEntityResource.post(entity, JSON_VARIANT);
+        
+        assertThat(responses.get(postEntityResource.getClass().getName()).getStatus(),
+                is(Status.SUCCESS_CREATED));
+        assertListResult(postEntityResource, result, entity, Status.SUCCESS_CREATED);
+    }
+
+    @Test
+    public void two_entities_can_be_added() {
+        DbEntity entity1 = DbEntity.builder().name("AnEntity").rootEntity(true).build();
+        DbEntity entity2 = DbEntity.builder().name("AnotherEntity").rootEntity(true).build();
+        
+        SkysailResponse<DbEntity> result = postEntityResource.post(entity1, JSON_VARIANT);
+        SkysailResponse<DbEntity> result2 = postEntityResource.post(entity2, JSON_VARIANT);
+        
+        assertThat(responses.get(postEntityResource.getClass().getName()).getStatus(),
+                is(Status.SUCCESS_CREATED));
+        assertListResult(postEntityResource, result, entity1, Status.SUCCESS_CREATED);
+    }
 
     @Test
     public void two_entries_with_same_name_yields_failure() {

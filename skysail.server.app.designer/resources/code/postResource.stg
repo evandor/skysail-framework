@@ -30,7 +30,7 @@ public class Post$entity.simpleName$Resource extends PostEntityServerResource<$e
     \}
 
     @Override
-    public SkysailResponse<$entity.id$> addEntity($entity.id$ entity) {
+    public void addEntity($entity.id$ entity) {
         $addEntity$
     \}
 

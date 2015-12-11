@@ -36,6 +36,7 @@ Include-Resource: resources, templates=src;recursive:=true;filter:=*.st|*.stg
     de.twentyeleven.skysail.org.antlr.stringtemplate-osgi;version=4.0.8,\
     de.twentyeleven.skysail.org.json-osgi;version=20080701.0,\
     org.apache.shiro.core;version=1.2,\
+    com.orientechnologies.orientdb-core;version=${com.orientechnologies.orientdb.version},\
     com.orientechnologies.orientdb-graphdb;version=${com.orientechnologies.orientdb.version},\
     io.skysail.bundled.tinkerpop.blueprints-core;version=2.6
 

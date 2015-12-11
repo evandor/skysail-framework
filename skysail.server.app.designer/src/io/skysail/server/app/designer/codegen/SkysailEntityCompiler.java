@@ -106,7 +106,6 @@ public class SkysailEntityCompiler extends SkysailCompiler {
             addEntityCode.append("root.add"+entityModel.getId()+"(entity);\n");
             addEntityCode.append("app.getRepository().update(getAttribute(\"id\"), root);\n");
         }
-        addEntityCode.append("return new SkysailResponse<>();\n");
         template.add("addEntity", addEntityCode);
         String entityCode = template.render();
         String entityClassName = entityModel.getPackageName() + "." + simpleClassName;

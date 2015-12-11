@@ -3,7 +3,6 @@
 ########################################################################################
 
 -resolve.effective: active;skip:="osgi.service"
--runbundles: ${runbundles}
 -runee: JavaSE-1.8
 -runfw: org.apache.felix.framework;version=${org.apache.felix.framework.version}
 -runproperties: org.osgi.service.http.port=8081,\
@@ -22,3 +21,13 @@
 
 skysail.config.path            = config/common,config/local
 logback.configurationFile.path = config/common
+
+-runbundles:\
+    ${serverbundles-1.0.0},\
+    skysail.product.todos;version=latest,\
+    skysail.server.ext.initconfig;version=latest,\
+    skysail.server.codegen;version=latest,\
+    skysail.server.app.designer;version=latest
+        
+
+

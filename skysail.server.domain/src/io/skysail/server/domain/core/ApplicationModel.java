@@ -37,14 +37,16 @@ public class ApplicationModel {
 
     /**
      * adds an non-null entity model identified by its name. If an entity model with
-     * the same name exists already, a warning is issued.
+     * the same name exists already, a debug message is issued and the entity model will
+     * not be added again.
      */
-    public ApplicationModel add(@NonNull EntityModel entity) {
-        if (entities.get(entity.getId()) != null) {
-            log.warn("entity {} already exists - not adding to application {}", entity.getId(), this.getName());
+    public ApplicationModel addOnce(@NonNull EntityModel entityModel) {
+        if (entities.get(entityModel.getId()) != null) {
+            log.debug("entity {} already exists - not adding to application {}", entityModel.getId(), this.getName());
             return this;
         }
-        entities.put(entity.getId(), entity);
+        log.info("adding entity model with id '{}': {}", entityModel.getId(), entityModel );
+        entities.put(entityModel.getId(), entityModel);
         return this;
     }
 

@@ -18,8 +18,9 @@ public class Repositories {
     @aQute.bnd.annotation.component.Reference(dynamic = true, multiple = true, optional = true)
     public void setRepository(@NonNull DbRepository repo) {
         if (repo.getRootEntity() == null) {
-            throw new IllegalStateException("cannot set repository '" + repo.getClass().getName()
-                    + "' as it does not have a root entity");
+            //throw new IllegalStateException("cannot set repository '" + repo.getClass().getName()
+            //        + "' as it does not have a root entity");
+            return;
         }
         String identifier = repo.getRootEntity().getName();
         if (identifier == null) {

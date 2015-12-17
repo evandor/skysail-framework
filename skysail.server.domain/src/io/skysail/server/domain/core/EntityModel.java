@@ -20,6 +20,10 @@ public class EntityModel {
     @Setter
     /** the entities fields in a map with their id as key. */
     private Map<String, FieldModel> fields = new HashMap<>();
+    
+    @Setter
+    /** names of related entities. */
+    private List<String> relations = new ArrayList<>();
 
     @Setter
     /** should this entity be treated as "Aggregate" (DDD)" */

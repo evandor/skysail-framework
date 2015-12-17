@@ -1,0 +1,11 @@
+---
+name: "ChecklistWithEntityWithoutFields"
+projectName: "skysail.server.designer.checklist"
+packageName: "io.skysail.server.designer.checklist"
+path: "generated/checklist"
+owner: "#1"
+entities:
+- name: "List"
+  rootEntity: true
+  actionFields: []
+  subEntities: []

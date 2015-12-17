@@ -2,20 +2,21 @@ package io.skysail.server.app.todos.lists.test;
 
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.assertThat;
-import io.skysail.api.responses.*;
-import io.skysail.server.app.todos.TodoList;
 
 import org.junit.Test;
 import org.restlet.data.*;
 import org.restlet.engine.resource.VariantInfo;
 
+import io.skysail.api.responses.*;
+import io.skysail.server.app.todos.TodoList;
+
 public class PostListResourceTest extends AbstractListResourceTest {
 
     @Test
     public void valid_json_data_yields_new_entity() {
-        SkysailResponse<TodoList> result = postListResource.post(new TodoList("jsonList1"), JSON_VARIANT);
+        SkysailResponse<TodoList> result = postListResource.post(new TodoList("valid_json_data_yields_new_entity"), JSON_VARIANT);
         assertThat(responses.get(postListResource.getClass().getName()).getStatus(),is(equalTo(Status.SUCCESS_CREATED)));
-        assertListResult(postListResource, result, "jsonList1");
+        assertListResult(postListResource, result, "valid_json_data_yields_new_entity");
         assertThat(result.getEntity().getCreated(), is(notNullValue()));
         assertThat(result.getEntity().getOwner(), is("admin"));
     }

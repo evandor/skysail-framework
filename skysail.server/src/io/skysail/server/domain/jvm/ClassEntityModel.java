@@ -18,11 +18,12 @@ import lombok.extern.slf4j.Slf4j;
 public class ClassEntityModel extends EntityModel {
 
     protected Class<? extends Identifiable> identifiableClass;
-
+    
     public ClassEntityModel(Class<? extends Identifiable> identifiableClass) {
         super(identifiableClass.getName());
         this.identifiableClass = identifiableClass;
         deriveFields(identifiableClass);
+        deriveRelations(identifiableClass);
     }
 
     public Class<? extends ServerResource> getPostResourceClass() {
@@ -72,13 +73,23 @@ public class ClassEntityModel extends EntityModel {
     }
 
     private boolean filterFormFields(Field f) {
-        io.skysail.api.forms.Field formFieldAnnotation = f.getAnnotation(io.skysail.api.forms.Field.class);
-        return formFieldAnnotation != null;
+        return f.getAnnotation(io.skysail.api.forms.Field.class) != null;
     }
     
     private String packageOf(String fullQualifiedName) {
         String[] split = fullQualifiedName.split("\\.");
         return Arrays.stream(Arrays.copyOf(split, split.length-1)).collect(Collectors.joining("."));
+    }
+    
+    private void deriveRelations(Class<? extends Identifiable> cls) {
+        setRelations(ReflectionUtils.getInheritedFields(cls).stream()
+            .filter(f -> filterRelationFields(f))
+            .map(f -> f.getName())
+            .collect(Collectors.toList()));
+    }
+    
+    private boolean filterRelationFields(Field f) {
+        return f.getAnnotation(io.skysail.api.forms.Relation.class) != null;
     }
 
 

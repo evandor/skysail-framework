@@ -2,7 +2,6 @@ package io.skysail.server.app.designer.application.resources;
 
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
-import org.restlet.resource.ResourceException;
 
 import de.twenty11.skysail.server.core.restlet.ResourceContextId;
 import io.skysail.server.app.designer.DesignerApplication;
@@ -19,7 +18,7 @@ public class PostApplicationResource extends PostEntityServerResource<DbApplicat
     }
 
     @Override
-    protected void doInit() throws ResourceException {
+    protected void doInit() {
         super.doInit();
         app = (DesignerApplication) getApplication();
     }
@@ -34,7 +33,7 @@ public class PostApplicationResource extends PostEntityServerResource<DbApplicat
         app.invalidateMenuCache();
         Subject subject = SecurityUtils.getSubject();
         entity.setOwner(subject.getPrincipal().toString());
-        String id = DesignerRepository.add(entity).getId().toString();
+        String id = DesignerRepository.add(entity, app.getApplicationModel()).getId().toString();
         entity.setId(id);
     }
 

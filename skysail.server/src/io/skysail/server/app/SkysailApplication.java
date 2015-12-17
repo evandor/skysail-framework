@@ -32,7 +32,7 @@ import io.skysail.api.repos.Repository;
 import io.skysail.api.text.Translation;
 import io.skysail.api.um.*;
 import io.skysail.api.validation.ValidatorService;
-import io.skysail.server.domain.core.Repositories;
+import io.skysail.server.domain.core.*;
 import io.skysail.server.domain.jvm.ClassEntityModel;
 import io.skysail.server.menus.MenuItem;
 import io.skysail.server.restlet.filter.*;
@@ -134,7 +134,7 @@ public abstract class SkysailApplication extends RamlApplication implements Appl
      * class as it has to be derived from a restlet application.
      */
     @Getter
-    private  io.skysail.server.domain.core.ApplicationModel applicationModel;
+    private io.skysail.server.domain.core.ApplicationModel applicationModel;
 
     @Getter
     private  EncryptorService encryptorService;
@@ -159,7 +159,7 @@ public abstract class SkysailApplication extends RamlApplication implements Appl
         setName(appName);
         this.apiVersion = apiVersion;
         applicationModel = new io.skysail.server.domain.core.ApplicationModel(appName);
-        entityClasses.forEach(cls -> applicationModel.add(EntityFactory.createFrom(cls)));
+        entityClasses.forEach(cls -> applicationModel.addOnce(EntityFactory.createFrom(cls)));
     }
 
     /**
@@ -639,9 +639,9 @@ public abstract class SkysailApplication extends RamlApplication implements Appl
         return com.google.common.base.Predicates.and(predicates);
     }
 
-    public Set<PerformanceMonitor> getPerformanceMonitors() {
-        Set<PerformanceMonitor> performanceMonitors = serviceListProvider.getPerformanceMonitors();
-        return Collections.unmodifiableSet(performanceMonitors);
+    public Collection<PerformanceMonitor> getPerformanceMonitors() {
+        Collection<PerformanceMonitor> performanceMonitors = serviceListProvider.getPerformanceMonitors();
+        return Collections.unmodifiableCollection(performanceMonitors);
     }
 
     protected void addToAppContext(ApplicationContextId id, String value) {

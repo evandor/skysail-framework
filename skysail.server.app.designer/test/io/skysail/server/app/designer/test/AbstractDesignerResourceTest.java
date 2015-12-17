@@ -13,6 +13,7 @@ import io.skysail.server.app.designer.application.DbApplication;
 import io.skysail.server.app.designer.application.resources.*;
 import io.skysail.server.app.designer.entities.DbEntity;
 import io.skysail.server.app.designer.entities.resources.*;
+import io.skysail.server.app.designer.fields.resources.*;
 import io.skysail.server.app.designer.repo.DesignerRepository;
 import io.skysail.server.restlet.resources.SkysailServerResource;
 import io.skysail.server.testsupport.ResourceTestBase;
@@ -21,31 +22,34 @@ public abstract class AbstractDesignerResourceTest extends ResourceTestBase {
 
     @Spy
     protected PostApplicationResource postApplicationResource;
-
     @Spy
     protected PutApplicationResource putApplicationResource;
-
     @Spy
     protected ApplicationsResource applicationsResource;
-
     @Spy
     protected ApplicationResource applicationResource;
 
     @Spy
     protected PostEntityResource postEntityResource;
-
     @Spy
     protected PutEntityResource putEntityResource;
-
     @Spy
     protected EntitiesResource entitiesResource;
-
     @Spy
     protected EntityResource entityResource;
 
     @Spy
+    protected PostFieldResource postFieldResource;
+    @Spy
+    protected PutFieldResource putFieldResource;
+    @Spy
+    protected FieldsResource fieldsResource;
+    @Spy
+    protected FieldResource fieldResource;
+
+    @Spy
     protected DesignerApplication application;
-    
+
     protected DesignerRepository repo;
 
     @Before
@@ -53,18 +57,24 @@ public abstract class AbstractDesignerResourceTest extends ResourceTestBase {
         super.setUpFixture();
 
         Context context = super.setUpApplication(application);
-        
+
         setUpRepository(new DesignerRepository());
-        
+
         super.setUpResource(applicationResource, context);
         super.setUpResource(applicationsResource, context);
         super.setUpResource(putApplicationResource, context);
         super.setUpResource(postApplicationResource, context);
+
         super.setUpResource(entityResource, context);
         super.setUpResource(entitiesResource, context);
         super.setUpResource(putEntityResource, context);
         super.setUpResource(postEntityResource, context);
-        
+
+        super.setUpResource(fieldResource, context);
+        super.setUpResource(fieldsResource, context);
+        super.setUpResource(putFieldResource, context);
+        super.setUpResource(postFieldResource, context);
+
         setUpSubject("admin");
     }
 
@@ -72,8 +82,8 @@ public abstract class AbstractDesignerResourceTest extends ResourceTestBase {
         repo = designerRepository;
         repo.setDbService(testDb);
         repo.activate();
-        ((DesignerApplication)application).setDesignerRepository(repo);
-        Mockito.when(((DesignerApplication)application).getRepository()).thenReturn(repo);
+        ((DesignerApplication) application).setDesignerRepository(repo);
+        Mockito.when(((DesignerApplication) application).getRepository()).thenReturn(repo);
     }
 
     public void setUpSubject(String owner) {
@@ -92,18 +102,14 @@ public abstract class AbstractDesignerResourceTest extends ResourceTestBase {
     }
 
     protected DbApplication createValidApplication() {
-        DbApplication app = DbApplication.builder()
-                .name("app_name_" + randomString())
-                .packageName("app_packageName_" + randomString())
-                .path("../")
-                .projectName("projectName")
-                .build();
-//        DbApplication app = new DbApplication();
-//        app.setName("application_" + randomString());
-//        app.setPackageName("package");
-//        app.setPath("../");
-//        app.setProjectName("projectName");
-        SkysailResponse<DbApplication> post = postApplicationResource.post(app,JSON_VARIANT);
+        DbApplication app = DbApplication.builder().name("app_name_" + randomString())
+                .packageName("app_packageName_" + randomString()).path("../").projectName("projectName").build();
+        // DbApplication app = new DbApplication();
+        // app.setName("application_" + randomString());
+        // app.setPackageName("package");
+        // app.setPath("../");
+        // app.setProjectName("projectName");
+        SkysailResponse<DbApplication> post = postApplicationResource.post(app, JSON_VARIANT);
         getAttributes().clear();
 
         return post.getEntity();
@@ -112,13 +118,10 @@ public abstract class AbstractDesignerResourceTest extends ResourceTestBase {
     protected DbEntity createEntity() {
         DbEntity app = new DbEntity();
         app.setName("Entity_" + randomString());
-        SkysailResponse<DbEntity> post = postEntityResource.post(app,JSON_VARIANT);
+        SkysailResponse<DbEntity> post = postEntityResource.post(app, JSON_VARIANT);
         getAttributes().clear();
 
         return post.getEntity();
     }
-
-
-
 
 }

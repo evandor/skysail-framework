@@ -1,5 +1,6 @@
 package io.skysail.server.app.designer.entities;
 
+import java.io.Serializable;
 import java.util.*;
 
 import javax.persistence.Id;
@@ -15,7 +16,9 @@ import lombok.*;
 @Setter
 @EqualsAndHashCode(of = "id")
 @ToString(of = { "id", "name", "fields", "subEntities" })
-public class DbEntity implements Identifiable {
+public class DbEntity implements Identifiable, Serializable {
+
+    private static final long serialVersionUID = 7571240311935363328L;
 
     @Id
     private String id;
@@ -31,6 +34,7 @@ public class DbEntity implements Identifiable {
     @Field(inputType = InputType.CHECKBOX)
     private boolean rootEntity = true;
 
+    @Relation
     private List<DbEntityField> fields = new ArrayList<>();
 
     private List<ActionEntityField> actionFields;

@@ -16,11 +16,10 @@ import lombok.*;
  * JSON, XML and the like.
  * </p>
  *
- * @param <T>
- *            The type of the generic entity
  */
 @NoArgsConstructor
 @Getter
+@ToString
 public class SkysailResponse<T> {
 
     private T entity;
@@ -29,13 +28,6 @@ public class SkysailResponse<T> {
     public SkysailResponse(Response response, T entity) {
         this.response = response;
         this.entity = entity;
-    }
-
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(this.getClass().getSimpleName()).append(": ");
-        return sb.toString();
     }
 
     public boolean isForm() {

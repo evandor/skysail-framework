@@ -43,7 +43,7 @@ public class CheckBusinessViolationsFilter<R extends SkysailServerResource<?>, T
             violations = validate((T)entity);
         }
         Response response = responseWrapper.getResponse();
-        if (violations.size() > 0) {
+        if (!violations.isEmpty()) {
             log.info("found {} business validation violation(s): {}", violations.size(), violations.toString());
             responseWrapper.setConstraintViolationResponse(new ConstraintViolationsResponse<T>(response, (T)responseWrapper.getEntity(), violations));
             responseWrapper.setEntity(entity);

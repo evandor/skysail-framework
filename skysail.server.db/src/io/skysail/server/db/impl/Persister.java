@@ -9,6 +9,7 @@ import com.tinkerpop.blueprints.Vertex;
 import com.tinkerpop.blueprints.impls.orient.*;
 
 import io.skysail.api.domain.Identifiable;
+import io.skysail.server.domain.core.*;
 import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
 
@@ -20,9 +21,18 @@ public class Persister {
     protected EdgeHandler edgeHandler;
 
     private ObjectMapper mapper = new ObjectMapper();
+    private ApplicationModel applicationModel;
 
+    @Deprecated
     public Persister(OrientGraph db, String[] edges) {
         this.edges = Arrays.asList(edges);
+        this.db = db;
+        edgeHandler = new EdgeHandler((identifiable) -> (OrientVertex) execute(identifiable), db);
+    }
+
+    public Persister(OrientGraph db, ApplicationModel applicationModel) {
+        this.applicationModel = applicationModel;
+        this.edges = Collections.emptyList();
         this.db = db;
         edgeHandler = new EdgeHandler((identifiable) -> (OrientVertex) execute(identifiable), db);
     }
@@ -37,9 +47,6 @@ public class Persister {
             @SuppressWarnings("unchecked")
             Map<String, Object> props = mapper.convertValue(entity, Map.class);
             props.keySet().stream().forEach(setPropertyOrCreateEdge(entity, vertex, props));
-//            List<EdgeManipulation> newEdges = props.keySet().stream().map(key -> {
-//                return setPropertyOrCreateEdge2(key, entity, vertex, props);
-//            }).flatMap(m -> m.stream()).collect(Collectors.toList());
             return vertex;
         } catch (Exception e) {
             log.error(e.getMessage(), e);
@@ -47,23 +54,6 @@ public class Persister {
         }
     }
 
-//    protected List<EdgeManipulation> setPropertyOrCreateEdge2(String key, Identifiable entity, Vertex vertex, Map<String, Object> properties) {
-//        if ("id".equals(key)) {
-//            return new ArrayList<>();
-//        }
-//        if (!edges.contains(key)) {
-//            if (properties.get(key) != null && !("class".equals(key))) {
-//                setProperty(entity, vertex, key);
-//            }
-//        } else {
-//            try {
-//                return edgeHandler.handleEdges(entity, vertex, properties, key);
-//            } catch (Exception e) {
-//                log.error(e.getMessage(), e);
-//            }
-//        }
-//        return new ArrayList<>();
-//    }
 
     protected Consumer<? super String> setPropertyOrCreateEdge(Identifiable entity, Vertex vertex,
             Map<String, Object> properties) {
@@ -71,7 +61,7 @@ public class Persister {
             if ("id".equals(key)) {
                 return;
             }
-            if (!edges.contains(key)) {
+            if (isProperty(entity, key)) {
                 if (properties.get(key) != null && !("class".equals(key))) {
                     setProperty(entity, vertex, key);
                 }
@@ -119,13 +109,6 @@ public class Persister {
         return new StringBuilder(prefix).append(key.substring(0, 1).toUpperCase()).append(key.substring(1)).toString();
     }
 
-    /**
-     * Template Method to make sure that the orient db is called correctly.
-     *
-     * @param db
-     * @param entity
-     * @return
-     */
     private <T> OrientVertex runInTransaction(Identifiable entity) {
         try {
             OrientVertex result = execute(entity);
@@ -138,5 +121,18 @@ public class Persister {
             db.shutdown();
         }
     }
+    
+    private boolean isProperty(Identifiable entity, String key) {
+        if (applicationModel == null) {
+            return !edges.contains(key);            
+        }
+        EntityModel entityModel = applicationModel.getEntity(entity.getClass().getName());
+        if (entityModel == null) {
+            return true;
+        }
+        return !entityModel.getRelations().contains(key);
+    }
+
+
 
 }

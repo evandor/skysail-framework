@@ -1,13 +1,12 @@
 package io.skysail.server.app.designer.application.resources;
 
+import java.util.List;
+
+import de.twenty11.skysail.server.core.restlet.ResourceContextId;
 import io.skysail.api.links.Link;
 import io.skysail.server.app.designer.DesignerApplication;
 import io.skysail.server.app.designer.application.DbApplication;
 import io.skysail.server.restlet.resources.ListServerResource;
-
-import java.util.List;
-
-import de.twenty11.skysail.server.core.restlet.ResourceContextId;
 
 public class ApplicationsResource extends ListServerResource<DbApplication> {
 
@@ -32,7 +31,7 @@ public class ApplicationsResource extends ListServerResource<DbApplication> {
 
     @Override
     public List<Link> getLinks() {
-        return super.getLinks(PostApplicationResource.class);
+        return super.getLinks(PostApplicationResource.class, ImportResource.class);
     }
 
 }

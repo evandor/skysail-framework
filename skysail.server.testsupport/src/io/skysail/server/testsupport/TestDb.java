@@ -8,6 +8,7 @@ public class TestDb extends OrientGraphDbService {
 
     @Override
     protected String getDbUrl() {
+        //return "plocal:etc/db";//"remote:localhost/designer";//"memory:test";
         return "memory:test";
     }
 

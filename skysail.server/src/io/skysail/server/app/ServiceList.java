@@ -50,14 +50,13 @@ public class ServiceList implements ServiceListProvider {
 
     @Getter
     private volatile Set<TranslationStoreHolder> translationStores = Collections.synchronizedSet(new HashSet<>());
-    //private volatile Set<PerformanceMonitor> performanceMonitors = Collections.synchronizedSet(new HashSet<>());
 
     private AtomicReference<SkysailComponentProvider> skysailComponentProviderRef = new AtomicReference<>();
 
     
     @Getter
     @Reference(policy = ReferencePolicy.DYNAMIC, cardinality = ReferenceCardinality.MULTIPLE)
-    public volatile Set<PerformanceMonitor> performanceMonitors = new HashSet<>();
+    public volatile Collection<PerformanceMonitor> performanceMonitors = new HashSet<>();
         
     
     @Activate

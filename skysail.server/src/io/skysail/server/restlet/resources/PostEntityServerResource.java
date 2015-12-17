@@ -76,21 +76,6 @@ public abstract class PostEntityServerResource<T extends Identifiable> extends S
     /** the value of the submit button */
     protected String submitValue;
 
-    /**
-     * If you have a route defined as "/repository/{key}", you can get the key
-     * like this: key = (String) getRequest().getAttributes().get("key");
-     *
-     * <p>To get hold on any parameters passed, consider using this pattern:</p>
-     *
-     * <p>Form form = new Form(getRequest().getEntity()); action =
-     * form.getFirstValue("action");</p>
-     *
-     */
-    @Override
-    protected void doInit() {
-        super.doInit();
-    };
-
     public PostEntityServerResource() {
         addToContext(ResourceContextId.LINK_TITLE, "create");
         addToContext(ResourceContextId.LINK_GLYPH, "plus");
@@ -98,12 +83,7 @@ public abstract class PostEntityServerResource<T extends Identifiable> extends S
 
     /**
      * The concrete resource should provide a template (a potentially non-valid
-     * instance of type T) which will be passed to the client to indicate the
-     * structure the server expects, e.g. if the client asks for a json
-     * representation of a user resource, this method could return a new User()
-     * object which will be serialized as json (with all fields null), so that
-     * the client knows about the attributes and could provide a generic input
-     * form.
+     * instance of type T).
      *
      * @return a template instance of type T
      */
@@ -141,7 +121,7 @@ public abstract class PostEntityServerResource<T extends Identifiable> extends S
         T entity = createEntityTemplate();
         this.setCurrentEntity(entity);
         return populate(entity, form);
-    };
+    }
 
     @Get("htmlform|html")
     public SkysailResponse<T> createForm() {
@@ -213,8 +193,7 @@ public abstract class PostEntityServerResource<T extends Identifiable> extends S
         RequestHandler<T> requestHandler = new RequestHandler<T>(getApplication());
         AbstractResourceFilter<PostEntityServerResource<T>, T> handler = requestHandler.createForPost();
         getResponse().setStatus(Status.SUCCESS_CREATED);
-        ResponseWrapper<T> handledRequest = handler.handle(this, getResponse());
-        return handledRequest;
+        return handler.handle(this, getResponse());
     }
 
     @Override
@@ -232,19 +211,6 @@ public abstract class PostEntityServerResource<T extends Identifiable> extends S
                 .build());
     }
 
-    /**
-     * String id = entity.getRid().toString().replace("#",""); String link =
-     * ServerLink.fromResource(app, ClipResource.class).getUri();
-     *
-     * @param entity
-     *            the entity
-     * @param searchService
-     *            a search service
-     * @param link
-     *            the link
-     * @param id
-     *            the id
-     */
     protected void index(T entity, SearchService searchService, String link, String id) {
         if (searchService == null) {
             log.warn("no search service available - document will not be indexed");
@@ -253,12 +219,7 @@ public abstract class PostEntityServerResource<T extends Identifiable> extends S
         try {
             Map<String, String> getMap = describe(entity);
             getMap.put("_owner", SecurityUtils.getSubject().getPrincipal().toString());
-
-            // String link = ServerLink.fromResource(app,
-            // ClipResource.class).getUri();// + "/" + entity.getRid();
-            getPathSubstitutions();
-            link = link.replace("{id}", id);
-            getMap.put("_link", link);
+            getMap.put("_link", link.replace("{id}", id));
             searchService.addDocument(getMap);
         } catch (IOException e) {
             log.error("error indexing document", e);

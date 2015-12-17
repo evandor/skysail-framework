@@ -32,6 +32,7 @@ import de.twenty11.skysail.server.core.osgi.EventHelper;
 import de.twenty11.skysail.server.events.EventHandler;
 import io.skysail.api.domain.Identifiable;
 import io.skysail.server.db.impl.*;
+import io.skysail.server.domain.core.ApplicationModel;
 import io.skysail.server.utils.SkysailBeanUtils;
 import lombok.extern.slf4j.Slf4j;
 
@@ -76,8 +77,14 @@ public class OrientGraphDbService extends AbstractOrientDbService implements DbS
     }
 
     @Override
+    @Deprecated // use other persist method
     public OrientVertex persist(Identifiable entity, String... edges) {
         return new Persister(getGraphDb(), edges).persist(entity);
+    }
+
+    @Override
+    public OrientVertex persist(Identifiable entity, ApplicationModel applicationModel) {
+        return new Persister(getGraphDb(), applicationModel).persist(entity);
     }
 
     @Override

@@ -65,7 +65,7 @@ public class EntityProcessor extends Processors {
         printHeadline("Analysing project for code generation");
         for (Element entityElement : generateResourceElements) {
             printMessage("adding entity: " + entityElement.toString());
-            application.add(new JavaEntity(application, entityElement));
+            application.addOnce(new JavaEntity(application, entityElement));
         }
         printMessage("");
     }

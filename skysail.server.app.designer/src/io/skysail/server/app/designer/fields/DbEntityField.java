@@ -1,5 +1,7 @@
 package io.skysail.server.app.designer.fields;
 
+import java.io.Serializable;
+
 import javax.persistence.Id;
 import javax.validation.constraints.*;
 
@@ -11,8 +13,11 @@ import lombok.*;
 @Getter
 @Setter
 @ToString
+@NoArgsConstructor
 @EqualsAndHashCode(of = "id")
-public class DbEntityField implements Identifiable {
+public class DbEntityField implements Identifiable, Serializable {
+
+    private static final long serialVersionUID = -3876765006276811418L;
 
     @Id
     private String id;
@@ -33,5 +38,12 @@ public class DbEntityField implements Identifiable {
     
     @Field(inputType = InputType.TEXT)
     private Integer sizeMax;
+
+    @Builder
+    public DbEntityField(@NonNull String name, @NonNull InputType type, boolean notNull) {
+        this.type = type;
+        this.name = name;
+        this.notNull = notNull;
+    }
 
 }

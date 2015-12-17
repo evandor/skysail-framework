@@ -1,6 +1,6 @@
 package de.twenty11.skysail.server.app;
 
-import java.util.Set;
+import java.util.*;
 
 import de.twenty11.skysail.server.SkysailComponent;
 import io.skysail.api.um.*;
@@ -18,6 +18,6 @@ public interface ServiceListProvider {
     Set<TranslationRenderServiceHolder> getTranslationRenderServices();
     Set<TranslationStoreHolder> getTranslationStores();
     SkysailComponent getSkysailComponent();
-    Set<PerformanceMonitor> getPerformanceMonitors();
+    Collection<PerformanceMonitor> getPerformanceMonitors();
 
 }

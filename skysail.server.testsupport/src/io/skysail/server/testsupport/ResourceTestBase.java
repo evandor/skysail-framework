@@ -147,6 +147,11 @@ public class ResourceTestBase {
         resource.init(context, request, response);
     }
 
+    
+    protected void clearAttributes() {
+        getAttributes().clear();
+    }
+
     @After
     public void tearDownSubject() {
         clearSubject();

@@ -7,7 +7,7 @@ import static org.mockito.Mockito.*;
 
 import java.io.*;
 import java.net.URL;
-import java.nio.file.*;
+import java.nio.file.Paths;
 import java.util.*;
 
 import org.junit.*;
@@ -17,9 +17,6 @@ import org.mockito.runners.MockitoJUnitRunner;
 import org.osgi.framework.*;
 import org.osgi.service.component.ComponentContext;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
-
 import de.twenty11.skysail.server.app.ApplicationProvider;
 import io.skysail.server.app.SkysailApplication;
 import io.skysail.server.app.designer.ApplicationCreator;
@@ -27,6 +24,7 @@ import io.skysail.server.app.designer.application.DbApplication;
 import io.skysail.server.app.designer.codegen.JavaCompiler;
 import io.skysail.server.app.designer.model.CodegenApplicationModel;
 import io.skysail.server.app.designer.repo.DesignerRepository;
+import io.skysail.server.app.designer.test.utils.YamlTestFileReader;
 import io.skysail.server.db.DbService;
 import io.skysail.server.domain.core.Repositories;
 import io.skysail.server.menus.MenuItemProvider;
@@ -58,8 +56,6 @@ public class ApplicationCreatorTest {
     @Spy
     private JavaCompiler javaCompilerSpy = new TestJavaCompiler();
 
-    private ObjectMapper mapper = new ObjectMapper(new YAMLFactory());
-    
     @Before
     public void setUp() throws Exception {
         String currentDir = Paths.get("resources", "code").toAbsolutePath().toString();
@@ -69,7 +65,7 @@ public class ApplicationCreatorTest {
 
     @Test
     public void creates_InMemoryBundle_from_empty_application() throws IOException {
-        ApplicationCreator applicationCreator = setupApplicationCreator(readApplicationFromYamlFile("empty.yml"));
+        ApplicationCreator applicationCreator = setupApplicationCreator(YamlTestFileReader.read("empty.yml"));
 
         applicationCreator.createApplication(dbServiceMock, componentContextMock);
 
@@ -80,7 +76,7 @@ public class ApplicationCreatorTest {
 
     @Test
     public void creates_InMemoryBundle_from_application_with_one_entity() throws IOException {
-        ApplicationCreator applicationCreator = setupApplicationCreator(readApplicationFromYamlFile("transactions.yml"));
+        ApplicationCreator applicationCreator = setupApplicationCreator(YamlTestFileReader.read("transactions.yml"));
 
         applicationCreator.createApplication(dbServiceMock, componentContextMock);
 
@@ -91,7 +87,7 @@ public class ApplicationCreatorTest {
 
     @Test
     public void creates_InMemoryBundle_from_DB_Application_Definition2() throws IOException {
-        ApplicationCreator applicationCreator = setupApplicationCreator(readApplicationFromYamlFile("checklist.yml"));
+        ApplicationCreator applicationCreator = setupApplicationCreator(YamlTestFileReader.read("checklist.yml"));
         applicationCreator.createApplication(dbServiceMock, componentContextMock);
 
        // CodegenApplicationModel applicationModel = applicationCreator.getApplicationModel();
@@ -104,13 +100,6 @@ public class ApplicationCreatorTest {
         verifyApplicationServiceWasRegistered();
     }
     
-    private DbApplication readApplicationFromYamlFile(String testfile) throws IOException {
-        Path path = Paths.get("resources", "testinput", testfile);
-        StringBuilder sb = new StringBuilder();
-        Files.lines(path).forEach(line -> sb.append(line).append("\n"));
-        return mapper.readValue(sb.toString(), DbApplication.class);
-    }
-
     private void verifyJavaCompilerCalls() {
         verify(javaCompilerSpy, times(1)).reset();
     }

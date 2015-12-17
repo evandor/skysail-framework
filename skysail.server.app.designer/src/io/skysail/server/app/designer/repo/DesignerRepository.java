@@ -12,6 +12,7 @@ import io.skysail.server.app.designer.application.DbApplication;
 import io.skysail.server.app.designer.entities.DbEntity;
 import io.skysail.server.app.designer.fields.*;
 import io.skysail.server.db.*;
+import io.skysail.server.domain.core.ApplicationModel;
 import lombok.extern.slf4j.Slf4j;
 
 @Component(immediate = true, property = "name=DesignerRepository")
@@ -57,6 +58,10 @@ public class DesignerRepository implements DbRepository {
 
     public static OrientVertex add(Identifiable entity, String... edges) {
         return (OrientVertex) dbService.persist(entity, edges);
+    }
+
+    public static OrientVertex add(Identifiable entity, ApplicationModel applicationModel) {
+        return (OrientVertex) dbService.persist(entity, applicationModel);
     }
 
     public <T> T getById(Class<?> cls, String id) {

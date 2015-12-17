@@ -31,7 +31,7 @@ public class CodegenApplicationModel extends ApplicationModel {
     public CodegenEntityModel addEntity(DbEntity entity) {
         log.info("CodegenApplicationModel: adding DbEntity '{}'", entity);
         CodegenEntityModel entityModel = new CodegenEntityModel(entity, packageName);
-        add(entityModel);
+        addOnce(entityModel);
         return entityModel;
     }
 
@@ -47,7 +47,7 @@ public class CodegenApplicationModel extends ApplicationModel {
     private void createEntityModel(DbEntity dbEntity) {
         log.info("CodegenApplicationModel: adding DbEntity '{}'", dbEntity);
         CodegenEntityModel entityModel = new CodegenEntityModel(dbEntity, packageName);
-        add(entityModel);
+        addOnce(entityModel);
     }
 
 

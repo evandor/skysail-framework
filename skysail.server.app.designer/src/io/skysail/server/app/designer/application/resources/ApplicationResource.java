@@ -1,9 +1,6 @@
 package io.skysail.server.app.designer.application.resources;
 
 import java.util.List;
-import java.util.function.Consumer;
-
-import org.restlet.resource.ResourceException;
 
 import de.twenty11.skysail.server.core.restlet.ResourceContextId;
 import io.skysail.api.links.Link;
@@ -26,7 +23,7 @@ public class ApplicationResource extends EntityServerResource<DbApplication> {
     }
 
     @Override
-    protected void doInit() throws ResourceException {
+    protected void doInit() {
         super.doInit();
         id = getAttribute("id");
         app = (DesignerApplication) getApplication();
@@ -47,8 +44,7 @@ public class ApplicationResource extends EntityServerResource<DbApplication> {
 
     @Override
     public DbApplication getEntity() {
-        DbApplication application = repo.getById(DbApplication.class, id);
-        return application;
+        return repo.getById(DbApplication.class, id);
     }
 
     @Override
@@ -57,14 +53,14 @@ public class ApplicationResource extends EntityServerResource<DbApplication> {
                 EntitiesResource.class, PostCompilationResource.class);
     }
 
-    @Override
-    public Consumer<? super Link> getPathSubstitutions() {
-        return l -> {
-            if (id != null) {
-                l.substitute("id", id);
-            }
-        };
-    }
+//    @Override
+//    public Consumer<? super Link> getPathSubstitutions() {
+//        return l -> {
+//            if (id != null) {
+//                l.substitute("id", id);
+//            }
+//        };
+//    }
 
     @Override
     public String redirectTo(Class<? extends SkysailServerResource<?>> cls) {

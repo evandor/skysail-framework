@@ -19,9 +19,9 @@ public class ApplicationModelTest {
     @Test
     public void simple_application_structure_can_be_created() {
         ApplicationModel app = new ApplicationModel("app17")
-            .add(new EntityModel("e23")
+            .addOnce(new EntityModel("e23")
                     .add(new FieldModel("f23")))
-            .add(new EntityModel("e24"));
+            .addOnce(new EntityModel("e24"));
 
         assertThat(app.getName(),is("app17"));
         assertThat(app.getEntityIds().size(),is(2));
@@ -32,8 +32,8 @@ public class ApplicationModelTest {
     @Test
     public void same_entity_can_be_added_only_once() {
         ApplicationModel app = new ApplicationModel("app17")
-            .add(new EntityModel("e23"))
-            .add(new EntityModel("e23"));
+            .addOnce(new EntityModel("e23"))
+            .addOnce(new EntityModel("e23"));
 
         assertThat(app.getName(),is("app17"));
         assertThat(app.getEntityIds().size(),is(1));

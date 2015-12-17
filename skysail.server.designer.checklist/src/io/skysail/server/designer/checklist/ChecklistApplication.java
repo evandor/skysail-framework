@@ -47,11 +47,6 @@ public class ChecklistApplication extends SkysailApplication implements Applicat
         router.attach(new RouteBuilder("/io.skysail.server.designer.checklist.Lists/{id}/", io.skysail.server.designer.checklist.PutListResource.class));
         router.attach(new RouteBuilder("/io.skysail.server.designer.checklist.Lists", io.skysail.server.designer.checklist.ListsResource.class));
         router.attach(new RouteBuilder("", io.skysail.server.designer.checklist.ListsResource.class));
-        router.attach(new RouteBuilder("/io.skysail.server.designer.checklist.Templates/{id}", io.skysail.server.designer.checklist.TemplateResource.class));
-        router.attach(new RouteBuilder("/io.skysail.server.designer.checklist.Templates/", io.skysail.server.designer.checklist.PostTemplateResource.class));
-        router.attach(new RouteBuilder("/io.skysail.server.designer.checklist.Templates/{id}/", io.skysail.server.designer.checklist.PutTemplateResource.class));
-        router.attach(new RouteBuilder("/io.skysail.server.designer.checklist.Templates", io.skysail.server.designer.checklist.TemplatesResource.class));
-        router.attach(new RouteBuilder("", io.skysail.server.designer.checklist.TemplatesResource.class));
 
     }
 

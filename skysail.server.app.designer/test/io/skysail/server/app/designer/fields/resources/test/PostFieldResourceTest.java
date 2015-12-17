@@ -1,76 +1,49 @@
 package io.skysail.server.app.designer.fields.resources.test;
 
-import static org.hamcrest.CoreMatchers.*;
-import static org.junit.Assert.assertThat;
+import java.io.IOException;
 
-import java.util.HashMap;
+import org.junit.Test;
+import org.restlet.data.Status;
 
-import org.apache.shiro.subject.SimplePrincipalMap;
-import org.junit.*;
-import org.mockito.*;
-import org.restlet.Context;
-import org.restlet.data.*;
-import org.restlet.engine.resource.VariantInfo;
-
-import io.skysail.server.app.designer.DesignerApplication;
+import io.skysail.api.forms.InputType;
+import io.skysail.api.responses.SkysailResponse;
 import io.skysail.server.app.designer.application.DbApplication;
-import io.skysail.server.app.designer.entities.DbEntity;
-import io.skysail.server.app.designer.fields.resources.PostFieldResource;
-import io.skysail.server.app.designer.repo.DesignerRepository;
-import io.skysail.server.testsupport.ResourceTestBase;
+import io.skysail.server.app.designer.fields.DbEntityField;
+import io.skysail.server.app.designer.test.utils.YamlTestFileReader;
 
-public class PostFieldResourceTest extends ResourceTestBase {
+public class PostFieldResourceTest extends AbstractFieldResourceTest {
 
+    @Test
+    public void adds_field_by_form_to_empty_entity() throws Exception {
+        DbApplication application = prepareApplication();
+        setAttributes("eid", application.getEntities().get(0).getId());
+        form.add("name", "TestField");
+        form.add("type", "TEXT");
+        form.add("notNull", "on");
 
-    @Spy
-    private PostFieldResource resource;
-
-    private DesignerRepository repo;
-
-    @Before
-    public void setUp() throws Exception {
-        super.setUpFixture();
-
-        Context context = super.setUpApplication(Mockito.mock(DesignerApplication.class));
-        super.setUpResource(resource, context);
-
-
-        repo = new DesignerRepository();
-        repo.setDbService(testDb);
-        repo.activate();
-        ((DesignerApplication)application).setDesignerRepository(repo);
-        Mockito.when(((DesignerApplication)application).getRepository()).thenReturn(repo);
-
-        Mockito.when(subjectUnderTest.getPrincipal()).thenReturn("admin");
-        Mockito.when(subjectUnderTest.getPrincipals()).thenReturn(new SimplePrincipalMap(new HashMap<>()));
-        setSubject(subjectUnderTest);
+        SkysailResponse<DbEntityField> result = postFieldResource.post(form, HTML_VARIANT);
+        
+        DbEntityField expectedDbField = DbEntityField.builder().name("TestField").type(InputType.TEXT).notNull(true).build();
+        assertListResult(postFieldResource, result, expectedDbField, Status.REDIRECTION_SEE_OTHER);
     }
 
     @Test
-    @Ignore // TODO
-    public void valid_data_yields_new_entity() {
+    public void adds_field_with_json_to_empty_entity() throws Exception {
+        DbApplication application = prepareApplication();
+        setAttributes("eid", application.getEntities().get(0).getId());
+        DbEntityField dbField = DbEntityField.builder().name("TestField").type(InputType.TEXT).notNull(true).build();
 
-        DbEntity entity = new DbEntity() {{
-            setName("namefield");
-        }};
-
-        DbApplication application = new DbApplication();
-        application.setName("appForEntity2");
-        //application.setEntities(Arrays.asList(entity));
-        String id = DesignerRepository.add(application).getId().toString();
-
-        application = repo.getById(DbApplication.class, id);
-        //application.getEntities().add(entity);
-        repo.update(application);
-
-        resource.getRequestAttributes().put("id", id);
-        resource.init(null, request, responses.get(resource.getClass().getName()));
-
-        form.add("name", "entity1");
-        resource.post(form, new VariantInfo(MediaType.TEXT_HTML));
-        assertThat(responses.get(resource.getClass().getName()).getStatus(),is(equalTo(Status.SUCCESS_CREATED)));
+        SkysailResponse<DbEntityField> result = postFieldResource.post(dbField, HTML_VARIANT);
+        
+        assertListResult(postFieldResource, result, dbField, Status.REDIRECTION_SEE_OTHER);
     }
 
-
+    private DbApplication prepareApplication() throws IOException, Exception {
+        DbApplication appFromFile = YamlTestFileReader.read("fieldtests", "checklistWithEntityWithoutFields.yml");
+        SkysailResponse<DbApplication> response = postApplicationResource.post(appFromFile, JSON_VARIANT);
+        setAttributes("id", response.getEntity().getId().replace("#", ""));
+        setUpResource(applicationResource, application.getContext());
+        return applicationResource.getEntity();
+    }
 
 }

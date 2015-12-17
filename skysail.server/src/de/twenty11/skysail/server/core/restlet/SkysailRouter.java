@@ -1,15 +1,8 @@
 package de.twenty11.skysail.server.core.restlet;
 
-import io.skysail.api.domain.Identifiable;
-import io.skysail.server.app.*;
-import io.skysail.server.domain.core.ApplicationModel;
-import io.skysail.server.restlet.resources.*;
-
 import java.util.*;
 import java.util.Map.Entry;
 import java.util.concurrent.ConcurrentHashMap;
-
-import lombok.extern.slf4j.Slf4j;
 
 import org.restlet.Restlet;
 import org.restlet.resource.*;
@@ -19,6 +12,11 @@ import org.restlet.security.Authorizer;
 import com.google.common.base.Predicate;
 
 import de.twenty11.skysail.server.security.AuthenticatedAuthorizer;
+import io.skysail.api.domain.Identifiable;
+import io.skysail.server.app.*;
+import io.skysail.server.domain.core.ApplicationModel;
+import io.skysail.server.restlet.resources.*;
+import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public class SkysailRouter extends Router {
@@ -76,10 +74,9 @@ public class SkysailRouter extends Router {
         Class<? extends ServerResource> targetClass = routeBuilder.getTargetClass();
         if (targetClass != null) {
             try {
-                SkysailServerResource<?> newInstance = (SkysailServerResource<?>) targetClass.newInstance();
-                Class<? extends Identifiable> parameterizedType = (Class<? extends Identifiable>) newInstance.getParameterizedType();
-                applicationModel.add(EntityFactory.createFrom(parameterizedType));
-
+                SkysailServerResource<?> resourceInstance = (SkysailServerResource<?>) targetClass.newInstance();
+                Class<? extends Identifiable> parameterizedType = getResourcesGenericType(resourceInstance);
+                applicationModel.addOnce(EntityFactory.createFrom(parameterizedType));
             } catch (InstantiationException | IllegalAccessException e) {
                 e.printStackTrace();
             }
@@ -222,5 +219,11 @@ public class SkysailRouter extends Router {
     public void setApiVersion(ApiVersion apiVersion) {
         this.apiVersion = apiVersion;
     }
+
+    @SuppressWarnings("unchecked")
+    private static Class<? extends Identifiable> getResourcesGenericType(SkysailServerResource<?> resourceInstance) {
+        return (Class<? extends Identifiable>) resourceInstance.getParameterizedType();
+    }
+
 
 }

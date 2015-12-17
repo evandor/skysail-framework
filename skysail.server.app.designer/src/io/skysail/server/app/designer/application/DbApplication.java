@@ -48,6 +48,7 @@ public class DbApplication implements Identifiable {
     @ListView(hide = true)
     private String owner;
 
+    @Relation
     private List<DbEntity> entities = new ArrayList<>();
 
     /**

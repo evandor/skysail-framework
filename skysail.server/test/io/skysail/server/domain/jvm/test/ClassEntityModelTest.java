@@ -2,11 +2,12 @@ package io.skysail.server.domain.jvm.test;
 
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
-import io.skysail.api.domain.Identifiable;
-import io.skysail.server.domain.core.EntityModel;
-import io.skysail.server.domain.jvm.ClassEntityModel;
 
 import org.junit.*;
+
+import io.skysail.api.domain.Identifiable;
+import io.skysail.domain.core.EntityModel;
+import io.skysail.server.domain.jvm.ClassEntityModel;
 
 public class ClassEntityModelTest {
 

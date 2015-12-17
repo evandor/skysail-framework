@@ -32,7 +32,7 @@ import de.twenty11.skysail.server.core.osgi.EventHelper;
 import de.twenty11.skysail.server.events.EventHandler;
 import io.skysail.api.domain.Identifiable;
 import io.skysail.server.db.impl.*;
-import io.skysail.server.domain.core.ApplicationModel;
+import io.skysail.domain.core.ApplicationModel;
 import io.skysail.server.utils.SkysailBeanUtils;
 import lombok.extern.slf4j.Slf4j;
 

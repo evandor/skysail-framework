@@ -12,7 +12,7 @@ import de.twenty11.skysail.server.core.restlet.MessagesUtils;
 import de.twenty11.skysail.server.um.domain.SkysailUser;
 import io.skysail.api.forms.*;
 import io.skysail.api.responses.*;
-import io.skysail.server.domain.core.FieldModel;
+import io.skysail.domain.core.FieldModel;
 import io.skysail.server.forms.helper.CellRendererHelper;
 import io.skysail.server.restlet.resources.SkysailServerResource;
 import lombok.*;
@@ -37,7 +37,7 @@ import lombok.extern.slf4j.Slf4j;
  */
 @Slf4j
 @ToString(callSuper = true)
-public class FormField extends io.skysail.server.domain.core.FieldModel {
+public class FormField extends io.skysail.domain.core.FieldModel {
 
     @Getter
     private ListView listViewAnnotation;
@@ -76,7 +76,7 @@ public class FormField extends io.skysail.server.domain.core.FieldModel {
         violationMessage = validationMessage.orElse(null);
     }
 
-    public FormField(io.skysail.server.domain.core.FieldModel field, SkysailServerResource<?> theResource) {
+    public FormField(io.skysail.domain.core.FieldModel field, SkysailServerResource<?> theResource) {
         super(field.getId());
         //name = field.getId();
         setType(String.class);

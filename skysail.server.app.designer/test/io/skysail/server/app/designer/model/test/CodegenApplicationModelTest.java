@@ -19,7 +19,7 @@ import io.skysail.server.app.designer.entities.DbEntity;
 import io.skysail.server.app.designer.fields.DbEntityField;
 import io.skysail.server.app.designer.model.*;
 import io.skysail.server.app.designer.repo.DesignerRepository;
-import io.skysail.server.domain.core.EntityModel;
+import io.skysail.domain.core.EntityModel;
 
 @RunWith(MockitoJUnitRunner.class)
 public class CodegenApplicationModelTest {

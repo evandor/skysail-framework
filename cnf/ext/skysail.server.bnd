@@ -1,5 +1,5 @@
 skysail.server:\
-    skysail.server.domain;version=${skysail.server.domain.version},\
+    skysail.domain;version=${skysail.domain.version},\
     skysail.server;version=${skysail.server.version},\
     skysail.server.converter;version=${skysail.server.converter.version},\
     skysail.server.db;version=${skysail.server.db.version},\

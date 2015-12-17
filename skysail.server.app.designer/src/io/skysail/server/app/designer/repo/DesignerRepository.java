@@ -12,7 +12,7 @@ import io.skysail.server.app.designer.application.DbApplication;
 import io.skysail.server.app.designer.entities.DbEntity;
 import io.skysail.server.app.designer.fields.*;
 import io.skysail.server.db.*;
-import io.skysail.server.domain.core.ApplicationModel;
+import io.skysail.domain.core.ApplicationModel;
 import lombok.extern.slf4j.Slf4j;
 
 @Component(immediate = true, property = "name=DesignerRepository")

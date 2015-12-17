@@ -10,7 +10,7 @@ import de.twenty11.skysail.server.core.restlet.RouteBuilder;
 import io.skysail.server.app.*;
 import io.skysail.server.app.dbviewer.dbclasses.*;
 import io.skysail.server.app.dbviewer.dbentities.DbEntitiesResource;
-import io.skysail.server.domain.core.Repositories;
+import io.skysail.domain.core.Repositories;
 import io.skysail.server.menus.MenuItemProvider;
 import lombok.Getter;
 

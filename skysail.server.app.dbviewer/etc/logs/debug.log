@@ -258,12 +258,12 @@
 2015-10-30 18:40:31,832 DEBUG [i.skysail.server.db.OrientGraphDbService     ] - registering class 'class io.skysail.server.app.dbviewer.Connection' @ orientDB
 2015-10-30 18:40:31,840 INFO  [io.skysail.server.app.Repositories           ] - adding repository with name 'io.skysail.server.app.dbviewer.Connection'
 2015-10-30 18:40:31,846 DEBUG [io.skysail.server.app.SkysailApplication     ] - Instanciating new Skysail Application 'DbviewerApplication'
-2015-10-30 18:40:31,849 INFO  [i.skysail.server.domain.core.Application     ] - adding repository 'io.skysail.server.app.dbviewer.Connection' -> io.skysail.server.app.dbviewer.ConnectionRepo@724bf25f
-2015-10-30 18:40:31,850 INFO  [i.skysail.server.domain.core.Application     ] - adding repository 'io.skysail.server.app.um.db.domain.User' -> io.skysail.server.app.um.db.repo.UserRepository@2abafa97
-2015-10-30 18:40:31,850 INFO  [i.skysail.server.domain.core.Application     ] - adding repository 'io.skysail.server.db.versions.impl.ComponentDbVersion' -> io.skysail.server.db.versions.impl.VersionsRepository@6f6cc7da
-2015-10-30 18:40:31,850 INFO  [i.skysail.server.domain.core.Application     ] - adding repository 'io.skysail.server.app.um.db.domain.Role' -> io.skysail.server.app.um.db.repo.RoleRepository@40717ed
-2015-10-30 18:40:31,851 INFO  [i.skysail.server.domain.core.Application     ] - adding repository 'io.skysail.server.app.um.db.domain.Group' -> io.skysail.server.app.um.db.repo.GroupRepository@29f3c438
-2015-10-30 18:40:31,851 INFO  [i.skysail.server.domain.core.Application     ] - adding repository 'io.skysail.server.app.um.db.domain.Permission' -> io.skysail.server.app.um.db.repo.PermissionRepository@5460edd3
+2015-10-30 18:40:31,849 INFO  [i.skysail.domain.core.Application     ] - adding repository 'io.skysail.server.app.dbviewer.Connection' -> io.skysail.server.app.dbviewer.ConnectionRepo@724bf25f
+2015-10-30 18:40:31,850 INFO  [i.skysail.domain.core.Application     ] - adding repository 'io.skysail.server.app.um.db.domain.User' -> io.skysail.server.app.um.db.repo.UserRepository@2abafa97
+2015-10-30 18:40:31,850 INFO  [i.skysail.domain.core.Application     ] - adding repository 'io.skysail.server.db.versions.impl.ComponentDbVersion' -> io.skysail.server.db.versions.impl.VersionsRepository@6f6cc7da
+2015-10-30 18:40:31,850 INFO  [i.skysail.domain.core.Application     ] - adding repository 'io.skysail.server.app.um.db.domain.Role' -> io.skysail.server.app.um.db.repo.RoleRepository@40717ed
+2015-10-30 18:40:31,851 INFO  [i.skysail.domain.core.Application     ] - adding repository 'io.skysail.server.app.um.db.domain.Group' -> io.skysail.server.app.um.db.repo.GroupRepository@29f3c438
+2015-10-30 18:40:31,851 INFO  [i.skysail.domain.core.Application     ] - adding repository 'io.skysail.server.app.um.db.domain.Permission' -> io.skysail.server.app.um.db.repo.PermissionRepository@5460edd3
 2015-10-30 18:40:31,851 DEBUG [io.skysail.server.app.SkysailApplication     ] - Activating Application io.skysail.server.app.dbviewer.DbviewerApplication
 2015-10-30 18:40:31,852 INFO  [io.skysail.server.app.ApplicationList        ] - (+) Adding application 'dbviewer'
 2015-10-30 18:40:36,487 DEBUG [org.eclipse.jetty.io.SelectorManager         ] - Queued change org.eclipse.jetty.io.SelectorManager$ManagedSelector$Accept@7071aff1
@@ -500,20 +500,20 @@
 2015-10-30 18:40:37,068 INFO  [io.skysail.server.app.SkysailApplication     ] - adding extensions to metadata service
 2015-10-30 18:40:37,068 INFO  [io.skysail.server.app.SkysailApplication     ] - adding protocols
 2015-10-30 18:40:37,068 DEBUG [io.skysail.server.app.SkysailApplication     ] - attaching application-specific routes
-2015-10-30 18:40:37,069 INFO  [io.skysail.server.domain.core.Entity         ] - searching for class 'io.skysail.server.app.dbviewer.ConnectionsResource'
+2015-10-30 18:40:37,069 INFO  [io.skysail.domain.core.Entity         ] - searching for class 'io.skysail.server.app.dbviewer.ConnectionsResource'
 2015-10-30 18:40:37,070 INFO  [d.t.s.server.core.restlet.SkysailRouter      ] - routing path '/v1!meta' -> 'RolesPredicateAuthorizer' -> 'io.skysail.server.app.dbviewer.ConnectionsResource'
 2015-10-30 18:40:37,072 INFO  [d.t.s.server.core.restlet.SkysailRouter      ] - routing path '/v1' -> 'RolesPredicateAuthorizer' -> 'io.skysail.server.app.dbviewer.ConnectionsResource'
-2015-10-30 18:40:37,075 INFO  [io.skysail.server.domain.core.Entity         ] - searching for class 'io.skysail.server.app.dbviewer.ConnectionsResource'
+2015-10-30 18:40:37,075 INFO  [io.skysail.domain.core.Entity         ] - searching for class 'io.skysail.server.app.dbviewer.ConnectionsResource'
 2015-10-30 18:40:37,081 INFO  [d.t.s.server.core.restlet.SkysailRouter      ] - routing path '/v1/!meta' -> 'RolesPredicateAuthorizer' -> 'io.skysail.server.app.dbviewer.ConnectionsResource'
 2015-10-30 18:40:37,081 INFO  [d.t.s.server.core.restlet.SkysailRouter      ] - routing path '/v1/' -> 'RolesPredicateAuthorizer' -> 'io.skysail.server.app.dbviewer.ConnectionsResource'
-2015-10-30 18:40:37,083 INFO  [io.skysail.server.domain.core.Entity         ] - searching for class 'io.skysail.server.app.dbviewer.ConnectionsResource'
+2015-10-30 18:40:37,083 INFO  [io.skysail.domain.core.Entity         ] - searching for class 'io.skysail.server.app.dbviewer.ConnectionsResource'
 2015-10-30 18:40:37,100 INFO  [d.t.s.server.core.restlet.SkysailRouter      ] - routing path '/v1/Connection!meta' -> 'RolesPredicateAuthorizer' -> 'io.skysail.server.app.dbviewer.ConnectionsResource'
 2015-10-30 18:40:37,101 INFO  [d.t.s.server.core.restlet.SkysailRouter      ] - routing path '/v1/Connection' -> 'RolesPredicateAuthorizer' -> 'io.skysail.server.app.dbviewer.ConnectionsResource'
-2015-10-30 18:40:37,103 INFO  [io.skysail.server.domain.core.Entity         ] - searching for class 'io.skysail.server.app.dbviewer.PostConnectionResource'
+2015-10-30 18:40:37,103 INFO  [io.skysail.domain.core.Entity         ] - searching for class 'io.skysail.server.app.dbviewer.PostConnectionResource'
 2015-10-30 18:40:37,120 INFO  [d.t.s.server.core.restlet.SkysailRouter      ] - routing path '/v1/Connection/' -> 'RolesPredicateAuthorizer' -> 'io.skysail.server.app.dbviewer.PostConnectionResource'
-2015-10-30 18:40:37,122 INFO  [io.skysail.server.domain.core.Entity         ] - searching for class 'io.skysail.server.app.dbviewer.ConnectionResource'
+2015-10-30 18:40:37,122 INFO  [io.skysail.domain.core.Entity         ] - searching for class 'io.skysail.server.app.dbviewer.ConnectionResource'
 2015-10-30 18:40:37,122 INFO  [d.t.s.server.core.restlet.SkysailRouter      ] - routing path '/v1/Connection/{id}' -> 'RolesPredicateAuthorizer' -> 'io.skysail.server.app.dbviewer.ConnectionResource'
-2015-10-30 18:40:37,123 INFO  [io.skysail.server.domain.core.Entity         ] - searching for class 'io.skysail.server.app.dbviewer.PutConnectionResource'
+2015-10-30 18:40:37,123 INFO  [io.skysail.domain.core.Entity         ] - searching for class 'io.skysail.server.app.dbviewer.PutConnectionResource'
 2015-10-30 18:40:37,124 INFO  [d.t.s.server.core.restlet.SkysailRouter      ] - routing path '/v1/Connection/{id}/' -> 'RolesPredicateAuthorizer' -> 'io.skysail.server.app.dbviewer.PutConnectionResource'
 2015-10-30 18:40:37,125 INFO  [d.t.s.server.core.restlet.SkysailRouter      ] - routing path '/v1/connections/{id}/vertices!meta' -> 'RolesPredicateAuthorizer' -> 'io.skysail.server.app.dbviewer.dbclasses.DbClassesResource'
 2015-10-30 18:40:37,126 INFO  [d.t.s.server.core.restlet.SkysailRouter      ] - routing path '/v1/connections/{id}/vertices' -> 'RolesPredicateAuthorizer' -> 'io.skysail.server.app.dbviewer.dbclasses.DbClassesResource'

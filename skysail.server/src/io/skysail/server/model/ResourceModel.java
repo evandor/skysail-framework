@@ -18,8 +18,8 @@ import io.skysail.api.domain.Identifiable;
 import io.skysail.api.links.LinkRelation;
 import io.skysail.api.responses.*;
 import io.skysail.api.search.*;
+import io.skysail.domain.core.*;
 import io.skysail.server.app.SkysailApplication;
-import io.skysail.server.domain.core.*;
 import io.skysail.server.domain.jvm.ClassFieldModel;
 import io.skysail.server.forms.FormField;
 import io.skysail.server.forms.helper.CellRendererHelper;
@@ -432,7 +432,7 @@ public class ResourceModel<R extends SkysailServerResource<T>, T> {
 
     private Optional<FieldModel> getDomainField(String columnName) {
         ApplicationModel applicationModel = resource.getApplication().getApplicationModel();
-        io.skysail.server.domain.core.EntityModel entity = applicationModel.getEntity(parameterizedType.getName());
+        io.skysail.domain.core.EntityModel entity = applicationModel.getEntity(parameterizedType.getName());
         if (entity == null) {
             return Optional.empty();
         }
@@ -459,7 +459,7 @@ public class ResourceModel<R extends SkysailServerResource<T>, T> {
 
     public List<FormField> getFormfields() {
         ApplicationModel applicationModel = resource.getApplication().getApplicationModel();
-        io.skysail.server.domain.core.EntityModel entity = applicationModel.getEntity(parameterizedType.getName());
+        io.skysail.domain.core.EntityModel entity = applicationModel.getEntity(parameterizedType.getName());
 
         return new ArrayList<FormField>(fields.values());
     }
@@ -527,7 +527,7 @@ public class ResourceModel<R extends SkysailServerResource<T>, T> {
 
     private String checkPrefix(FormField formField, Map<String, Object> dataRow, String processed, Object id) {
         ApplicationModel applicationModel = resource.getApplication().getApplicationModel();
-        io.skysail.server.domain.core.EntityModel entity = applicationModel.getEntity(parameterizedType.getName());
+        io.skysail.domain.core.EntityModel entity = applicationModel.getEntity(parameterizedType.getName());
 
         if (this.resource instanceof ListServerResource) {
             if (formField.getListViewAnnotation() != null && !formField.getListViewAnnotation().prefix().equals("")) {

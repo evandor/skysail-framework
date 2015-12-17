@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 import org.restlet.resource.ServerResource;
 
 import io.skysail.api.domain.Identifiable;
-import io.skysail.server.domain.core.EntityModel;
+import io.skysail.domain.core.EntityModel;
 import io.skysail.server.utils.*;
 import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;

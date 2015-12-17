@@ -9,7 +9,7 @@ import com.tinkerpop.blueprints.Vertex;
 import com.tinkerpop.blueprints.impls.orient.*;
 
 import io.skysail.api.domain.Identifiable;
-import io.skysail.server.domain.core.*;
+import io.skysail.domain.core.*;
 import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
 

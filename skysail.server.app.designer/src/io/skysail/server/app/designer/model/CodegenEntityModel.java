@@ -4,7 +4,7 @@ import java.util.*;
 
 import io.skysail.server.app.designer.entities.DbEntity;
 import io.skysail.server.app.designer.fields.*;
-import io.skysail.server.domain.core.EntityModel;
+import io.skysail.domain.core.EntityModel;
 import lombok.*;
 import lombok.extern.slf4j.Slf4j;
 

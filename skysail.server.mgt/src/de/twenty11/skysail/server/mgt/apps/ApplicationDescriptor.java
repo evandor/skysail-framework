@@ -3,7 +3,7 @@ package de.twenty11.skysail.server.mgt.apps;
 import de.twenty11.skysail.server.app.ApplicationProvider;
 import io.skysail.api.domain.Identifiable;
 import io.skysail.api.forms.Field;
-import io.skysail.server.domain.core.ApplicationModel;
+import io.skysail.domain.core.ApplicationModel;
 import lombok.*;
 
 @Setter

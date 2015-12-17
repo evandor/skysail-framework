@@ -3,7 +3,7 @@ package de.twenty11.skysail.server.core.restlet.test;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
 import io.skysail.server.app.*;
-import io.skysail.server.domain.core.ApplicationModel;
+import io.skysail.domain.core.ApplicationModel;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

@@ -21,7 +21,7 @@ import io.skysail.server.app.designer.fields.DbEntityField;
 import io.skysail.server.app.designer.fields.resources.*;
 import io.skysail.server.app.designer.repo.DesignerRepository;
 import io.skysail.server.db.DbService;
-import io.skysail.server.domain.core.Repositories;
+import io.skysail.domain.core.Repositories;
 import io.skysail.server.menus.*;
 import lombok.Getter;
 

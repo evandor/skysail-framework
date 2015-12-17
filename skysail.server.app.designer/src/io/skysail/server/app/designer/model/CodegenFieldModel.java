@@ -1,7 +1,7 @@
 package io.skysail.server.app.designer.model;
 
 import io.skysail.server.app.designer.fields.DbEntityField;
-import io.skysail.server.domain.core.FieldModel;
+import io.skysail.domain.core.FieldModel;
 import lombok.*;
 
 @Getter

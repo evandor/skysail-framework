@@ -7,7 +7,7 @@ import de.twenty11.skysail.server.app.ApplicationProvider;
 import de.twenty11.skysail.server.core.restlet.*;
 import io.skysail.server.app.SkysailApplication;
 import io.skysail.server.app.bookmarks.resources.*;
-import io.skysail.server.domain.core.Repositories;
+import io.skysail.domain.core.Repositories;
 import io.skysail.server.menus.MenuItemProvider;
 import lombok.Getter;
 

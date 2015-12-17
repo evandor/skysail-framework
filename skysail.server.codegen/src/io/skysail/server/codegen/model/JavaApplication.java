@@ -1,6 +1,6 @@
 package io.skysail.server.codegen.model;
 
-import io.skysail.server.domain.core.ApplicationModel;
+import io.skysail.domain.core.ApplicationModel;
 import lombok.Getter;
 
 public class JavaApplication extends ApplicationModel implements JavaModel {

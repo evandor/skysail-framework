@@ -32,7 +32,7 @@ import io.skysail.api.repos.Repository;
 import io.skysail.api.text.Translation;
 import io.skysail.api.um.*;
 import io.skysail.api.validation.ValidatorService;
-import io.skysail.server.domain.core.*;
+import io.skysail.domain.core.*;
 import io.skysail.server.domain.jvm.ClassEntityModel;
 import io.skysail.server.menus.MenuItem;
 import io.skysail.server.restlet.filter.*;
@@ -134,7 +134,7 @@ public abstract class SkysailApplication extends RamlApplication implements Appl
      * class as it has to be derived from a restlet application.
      */
     @Getter
-    private io.skysail.server.domain.core.ApplicationModel applicationModel;
+    private io.skysail.domain.core.ApplicationModel applicationModel;
 
     @Getter
     private  EncryptorService encryptorService;
@@ -158,7 +158,7 @@ public abstract class SkysailApplication extends RamlApplication implements Appl
         this.home = appName;
         setName(appName);
         this.apiVersion = apiVersion;
-        applicationModel = new io.skysail.server.domain.core.ApplicationModel(appName);
+        applicationModel = new io.skysail.domain.core.ApplicationModel(appName);
         entityClasses.forEach(cls -> applicationModel.addOnce(EntityFactory.createFrom(cls)));
     }
 

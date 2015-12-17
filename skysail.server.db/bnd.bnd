@@ -9,7 +9,7 @@ Include-Resource: lib=lib,resources=resources
 -buildpath:  \
 	skysail.api;version=${skysail.api.version},\
 	skysail.server;version=${skysail.server.version},\
-    skysail.server.domain;version=${skysail.server.domain.version},\
+    skysail.domain;version=${skysail.domain.version},\
 	skysail.server.queryfilter;version=${skysail.server.queryfilter.version},\
 	biz.aQute.bnd.annotation;version=2.3,\
 	osgi.core;version=${osgi.version},\

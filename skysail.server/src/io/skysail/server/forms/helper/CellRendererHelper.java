@@ -7,7 +7,7 @@ import java.util.*;
 
 import io.skysail.api.links.Link;
 import io.skysail.api.responses.*;
-import io.skysail.server.domain.core.FieldModel;
+import io.skysail.domain.core.FieldModel;
 import io.skysail.server.domain.jvm.ClassFieldModel;
 import io.skysail.server.forms.*;
 import io.skysail.server.restlet.resources.SkysailServerResource;

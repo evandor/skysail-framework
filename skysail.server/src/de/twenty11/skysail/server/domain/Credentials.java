@@ -1,9 +1,9 @@
 package de.twenty11.skysail.server.domain;
 
+import javax.validation.constraints.Size;
+
 import io.skysail.api.domain.Identifiable;
 import io.skysail.api.forms.*;
-
-import javax.validation.constraints.Size;
 
 //import io.skysail.api.forms.Form;
 

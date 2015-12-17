@@ -19,7 +19,7 @@ Include-Resource: templates=templates,webapp=webapp
 	skysail.api.peers;version=${skysail.api.peers.version},\
     skysail.api.search;version=${skysail.api.search.version},\
 	skysail.api.text;version=${skysail.api.text.version},\
-    skysail.server.domain;version=${skysail.server.domain.version},\
+    skysail.domain;version=${skysail.domain.version},\
    	skysail.server;version=${skysail.server.version},\
     skysail.server.http;version=${skysail.server.http.version},\
 	skysail.server.testsupport;version=${skysail.server.testsupport.version},\

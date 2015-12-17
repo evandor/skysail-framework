@@ -19,7 +19,7 @@ import com.tinkerpop.blueprints.impls.orient.OrientVertex;
 import io.skysail.api.links.Link;
 import io.skysail.server.app.SkysailApplication;
 import io.skysail.server.app.designer.DesignerApplication;
-import io.skysail.server.domain.core.Repositories;
+import io.skysail.domain.core.Repositories;
 import io.skysail.server.restlet.resources.ListServerResource;
 import io.skysail.server.utils.CompositeClassLoader;
 import lombok.Getter;

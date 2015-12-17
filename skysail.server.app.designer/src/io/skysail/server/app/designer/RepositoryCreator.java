@@ -5,7 +5,7 @@ import java.util.stream.Collectors;
 
 import io.skysail.server.app.designer.codegen.*;
 import io.skysail.server.app.designer.model.CodegenApplicationModel;
-import io.skysail.server.domain.core.EntityModel;
+import io.skysail.domain.core.EntityModel;
 import lombok.val;
 
 public class RepositoryCreator {

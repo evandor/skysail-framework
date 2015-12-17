@@ -11,7 +11,7 @@ import lombok.*;
 
 @Value
 @EqualsAndHashCode(callSuper = true)
-public class ClassFieldModel extends io.skysail.server.domain.core.FieldModel {
+public class ClassFieldModel extends io.skysail.domain.core.FieldModel {
 
     @Getter
     private Class<? extends SkysailServerResource<?>> listViewLink;

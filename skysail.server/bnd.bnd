@@ -1,12 +1,13 @@
 Bundle-Version: 13.0.0.${tstamp}
 Bundle-Name: SKYSAIL :: server
 X-Api-Version: 1
-Export-Package:  \
+Export-Package: \
 	de.twenty11.skysail.server.metrics,\
 	io.skysail.server.services,\
 	io.skysail.server.forms,\
 	de.twenty11.skysail.server.help,\
 	io.skysail.server.menus,\
+	de.twenty11.skysail.server.domain,\
 	io.skysail.server.utils,\
 	de.twenty11.skysail.server.core.osgi,\
 	io.skysail.server.restlet.resources,\
@@ -26,7 +27,7 @@ Export-Package:  \
 	de.twenty11.skysail.server.app,\
 	de.twenty11.skysail.server.core.restlet.utils,\
 	de.twenty11.skysail.server.utils,\
-	de.twenty11.skysail.server.domain,\
+	de.twenty11.skysail.domain,\
 	de.twenty11.skysail.server.events,\
 	de.twenty11.skysail.server.resources,\
 	de.twenty11.skysail.server.core.restlet,\
@@ -74,7 +75,7 @@ Service-Component: *
 	skysail.api.text;version=${skysail.api.text.version},\
 	skysail.api.um;version=${skysail.api.um.version},\
 	skysail.api.validation;version=${skysail.api.validation.version},\
-	skysail.server.domain;version=${skysail.server.domain.version},\
+	skysail.domain;version=${skysail.domain.version},\
 	de.twentyeleven.skysail.org.antlr.stringtemplate-osgi;version=4.0.8,\
 	de.twenty11.owasp-java-html-sanitizer;version=239.0,\
 	javax.persistence,\

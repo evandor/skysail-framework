@@ -15,7 +15,7 @@ Test-Cases: \
     skysail.api.search;version=${skysail.api.search.version},\
     skysail.api.text;version=${skysail.api.text.version},\
 	skysail.api.um;version=${skysail.api.um.version},\
-    skysail.server.domain;version=${skysail.server.domain.version},\
+    skysail.domain;version=${skysail.domain.version},\
    	skysail.api.validation;version=${skysail.api.validation.version},\
 	skysail.server;version=${skysail.server.version},\
 	skysail.server.db;version=${skysail.server.db.version},\
@@ -127,7 +127,7 @@ Test-Cases: \
 	skysail.api.validation;version=latest,\
 	skysail.api.features;version=latest,\
 	skysail.client.testsupport;version=latest,\
-    skysail.server.domain;version=${skysail.server.domain.version},\
+    skysail.domain;version=${skysail.domain.version},\
    	skysail.server;version=${skysail.server.version},\
 	skysail.server.converter;version=${skysail.server.converter.version},\
 	skysail.server.db;version=${skysail.server.db.version},\

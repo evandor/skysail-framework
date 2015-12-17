@@ -18,7 +18,7 @@ import io.skysail.server.app.designer.codegen.*;
 import io.skysail.server.app.designer.model.*;
 import io.skysail.server.app.designer.repo.DesignerRepository;
 import io.skysail.server.db.DbService;
-import io.skysail.server.domain.core.Repositories;
+import io.skysail.domain.core.Repositories;
 import io.skysail.server.menus.MenuItemProvider;
 import io.skysail.server.utils.*;
 import lombok.*;

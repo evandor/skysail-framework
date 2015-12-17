@@ -2,7 +2,7 @@ package io.skysail.server.designer.checklist;
 
 import io.skysail.api.repos.*;
 import io.skysail.server.app.*;
-import io.skysail.server.domain.core.Repositories;
+import io.skysail.domain.core.Repositories;
 import io.skysail.server.menus.*;
 
 import java.util.*;

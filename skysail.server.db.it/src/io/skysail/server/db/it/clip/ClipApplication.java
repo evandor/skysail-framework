@@ -7,7 +7,7 @@ import org.osgi.service.event.EventAdmin;
 
 import de.twenty11.skysail.server.app.ApplicationProvider;
 import io.skysail.server.app.*;
-import io.skysail.server.domain.core.Repositories;
+import io.skysail.domain.core.Repositories;
 import lombok.Getter;
 
 @Component(immediate = true)

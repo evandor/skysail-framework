@@ -9,7 +9,7 @@ Export-Package:  \
 	skysail.api.validation;version=${skysail.api.validation.version},\
 	skysail.api;version=${skysail.api.version},\
 	skysail.server;version=${skysail.server.version},\
-    skysail.server.domain;version=${skysail.server.domain.version},\
+    skysail.domain;version=${skysail.domain.version},\
 	skysail.server.db;version=${skysail.server.db.version},\
 	org.restlet;version=${restlet.version},\
 	org.restlet.ext.raml;version=${restlet.version},\

@@ -4,7 +4,7 @@ import javax.lang.model.element.Element;
 
 import io.skysail.server.codegen.annotations.GenerateResources;
 import io.skysail.server.codegen.apt.processors.EntityProcessor;
-import io.skysail.server.domain.core.EntityModel;
+import io.skysail.domain.core.EntityModel;
 import lombok.Getter;
 
 public class JavaEntity extends EntityModel implements JavaModel {

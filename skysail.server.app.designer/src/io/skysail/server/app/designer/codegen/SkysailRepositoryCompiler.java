@@ -7,7 +7,7 @@ import org.stringtemplate.v4.ST;
 
 import io.skysail.server.app.designer.STGroupBundleDir;
 import io.skysail.server.app.designer.model.*;
-import io.skysail.server.domain.core.EntityModel;
+import io.skysail.domain.core.EntityModel;
 
 public class SkysailRepositoryCompiler extends SkysailCompiler {
 

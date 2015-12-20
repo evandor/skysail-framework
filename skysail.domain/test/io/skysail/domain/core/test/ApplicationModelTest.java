@@ -6,9 +6,9 @@ import static org.junit.Assert.assertThat;
 
 import org.junit.*;
 
-import io.skysail.api.domain.Identifiable;
-import io.skysail.api.repos.DbRepository;
+import io.skysail.domain.Identifiable;
 import io.skysail.domain.core.*;
+import io.skysail.domain.core.repos.DbRepository;
 
 public class ApplicationModelTest {
 

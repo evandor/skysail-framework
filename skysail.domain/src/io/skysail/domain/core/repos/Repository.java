@@ -1,6 +1,6 @@
-package io.skysail.api.repos;
+package io.skysail.domain.core.repos;
 
-import io.skysail.api.domain.Identifiable;
+import io.skysail.domain.Identifiable;
 
 public interface Repository {
 

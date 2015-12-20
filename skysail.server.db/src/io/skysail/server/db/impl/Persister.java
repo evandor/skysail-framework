@@ -8,7 +8,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.tinkerpop.blueprints.Vertex;
 import com.tinkerpop.blueprints.impls.orient.*;
 
-import io.skysail.api.domain.Identifiable;
+import io.skysail.domain.Identifiable;
 import io.skysail.domain.core.*;
 import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;

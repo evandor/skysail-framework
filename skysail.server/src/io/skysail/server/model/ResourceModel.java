@@ -14,10 +14,10 @@ import org.restlet.util.Series;
 import com.fasterxml.jackson.databind.*;
 
 import de.twenty11.skysail.server.core.restlet.ResourceContextId;
-import io.skysail.api.domain.Identifiable;
 import io.skysail.api.links.LinkRelation;
 import io.skysail.api.responses.*;
 import io.skysail.api.search.*;
+import io.skysail.domain.Identifiable;
 import io.skysail.domain.core.*;
 import io.skysail.server.app.SkysailApplication;
 import io.skysail.server.domain.jvm.ClassFieldModel;

@@ -18,6 +18,7 @@ Private-Package:  \
 	skysail.api.um;version=${skysail.api.um.version},\
 	skysail.api.validation;version=${skysail.api.validation.version},\
 	skysail.client.testsupport;version=latest,\
+    skysail.domain;version=${skysail.domain.version},\
 	skysail.server;version=${skysail.server.version},\
 	skysail.server.app.todos;version=latest,\
 	skysail.server.db;version=${skysail.server.db.version},\
@@ -119,6 +120,7 @@ Private-Package:  \
 	skysail.client.todos.angularjs;version=latest,\
 	skysail.product.todos;version=latest,\
 	${skysail.server},\
+    skysail.domain;version=${skysail.domain.version},\
 	skysail.server.peers.adminconfig;version=${skysail.server.peers.adminconfig.version},\
 	skysail.server.polymer;version=${skysail.server.polymer.version},\
 	skysail.server.plugins;version=${skysail.server.plugins.version},\

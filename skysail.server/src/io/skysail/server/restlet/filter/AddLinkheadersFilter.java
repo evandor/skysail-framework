@@ -1,7 +1,7 @@
 package io.skysail.server.restlet.filter;
 
-import io.skysail.api.domain.Identifiable;
 import io.skysail.api.links.Link;
+import io.skysail.domain.Identifiable;
 import io.skysail.server.restlet.resources.SkysailServerResource;
 import io.skysail.server.utils.*;
 

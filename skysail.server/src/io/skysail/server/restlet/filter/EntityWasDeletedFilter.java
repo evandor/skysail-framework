@@ -2,7 +2,7 @@ package io.skysail.server.restlet.filter;
 
 import de.twenty11.skysail.server.core.osgi.EventHelper;
 import de.twenty11.skysail.server.core.restlet.Wrapper;
-import io.skysail.api.domain.Identifiable;
+import io.skysail.domain.Identifiable;
 import io.skysail.server.app.SkysailApplication;
 import io.skysail.server.restlet.resources.SkysailServerResource;
 import lombok.extern.slf4j.Slf4j;

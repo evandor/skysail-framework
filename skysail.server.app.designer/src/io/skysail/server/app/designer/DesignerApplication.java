@@ -1,16 +1,18 @@
 package io.skysail.server.app.designer;
 
+
 import java.util.*;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
-import org.osgi.framework.BundleException;
+import org.osgi.framework.*;
 import org.osgi.service.component.annotations.*;
 import org.osgi.service.event.EventAdmin;
 
 import de.twenty11.skysail.server.app.ApplicationProvider;
 import de.twenty11.skysail.server.core.restlet.*;
-import io.skysail.api.repos.DbRepository;
+import io.skysail.domain.core.Repositories;
+import io.skysail.domain.core.repos.DbRepository;
 import io.skysail.server.app.SkysailApplication;
 import io.skysail.server.app.designer.application.DbApplication;
 import io.skysail.server.app.designer.application.resources.*;
@@ -21,11 +23,12 @@ import io.skysail.server.app.designer.fields.DbEntityField;
 import io.skysail.server.app.designer.fields.resources.*;
 import io.skysail.server.app.designer.repo.DesignerRepository;
 import io.skysail.server.db.DbService;
-import io.skysail.domain.core.Repositories;
 import io.skysail.server.menus.*;
 import lombok.Getter;
+import lombok.extern.slf4j.Slf4j;
 
 @Component(immediate = true)
+@Slf4j
 public class DesignerApplication extends SkysailApplication implements MenuItemProvider, ApplicationProvider {
 
     public static final String APP_NAME = "AppDesigner";
@@ -163,25 +166,18 @@ public class DesignerApplication extends SkysailApplication implements MenuItemP
         return null;
     }
 
-    public Optional<String> getEntityFromApplication(DbApplication application, String entityId) {
-//        return application.getEntities().stream().filter(e -> {
-////            if (e == null || e.getId() == null) {
-////                return false;
-////            }
-////            return e.getId().replace("#", "").equals(entityId);
-//        }).findFirst();
-        return null;
-    }
-
     public void updateBundle() {
         Runnable command = new Runnable() {
 
             @Override
             public void run() {
                 try {
-                    getBundle().update();
+                    Bundle bundle = getBundle();
+                    log.info("about to update bundle {} [{}]", bundle.getSymbolicName(), bundle.getVersion().toString());
+                    bundle.update();
+                    log.info("successfully updated bundle {} [{}]", bundle.getSymbolicName(), bundle.getVersion().toString());
                 } catch (BundleException e) {
-                    e.printStackTrace();
+                    log.error(e.getMessage(), e);
                 }
 
             }

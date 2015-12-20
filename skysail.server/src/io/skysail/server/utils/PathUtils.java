@@ -1,7 +1,5 @@
 package io.skysail.server.utils;
 
-import io.skysail.api.domain.Identifiable;
-
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -10,6 +8,7 @@ import lombok.*;
 import org.restlet.data.Reference;
 
 import de.twenty11.skysail.server.core.restlet.RouteBuilder;
+import io.skysail.domain.Identifiable;
 
 public class PathUtils {
 

@@ -5,7 +5,7 @@ import org.osgi.service.event.EventAdmin;
 
 import de.twenty11.skysail.server.app.ApplicationProvider;
 import de.twenty11.skysail.server.core.restlet.ApplicationContextId;
-import io.skysail.api.repos.DbRepository;
+import io.skysail.domain.core.repos.DbRepository;
 import io.skysail.server.app.SkysailApplication;
 import io.skysail.server.menus.MenuItemProvider;
 import lombok.Getter;

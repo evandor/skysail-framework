@@ -12,8 +12,8 @@ import org.restlet.security.Authorizer;
 import com.google.common.base.Predicate;
 
 import de.twenty11.skysail.server.security.AuthenticatedAuthorizer;
-import io.skysail.api.domain.Identifiable;
 import io.skysail.server.app.*;
+import io.skysail.domain.Identifiable;
 import io.skysail.domain.core.ApplicationModel;
 import io.skysail.server.restlet.resources.*;
 import lombok.extern.slf4j.Slf4j;

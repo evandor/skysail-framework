@@ -1,6 +1,6 @@
 package de.twenty11.skysail.products.website;
 
-import io.skysail.api.domain.Identifiable;
+import io.skysail.domain.Identifiable;
 
 public class Dummy implements Identifiable {
 

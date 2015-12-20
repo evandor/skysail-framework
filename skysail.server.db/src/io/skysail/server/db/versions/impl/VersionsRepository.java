@@ -1,6 +1,6 @@
 package io.skysail.server.db.versions.impl;
 
-import io.skysail.api.repos.DbRepository;
+import io.skysail.domain.core.repos.DbRepository;
 import io.skysail.server.db.*;
 
 import java.util.Collections;

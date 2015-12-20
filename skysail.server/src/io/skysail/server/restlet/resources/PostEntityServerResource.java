@@ -14,10 +14,10 @@ import org.restlet.resource.*;
 import com.tinkerpop.blueprints.impls.orient.OrientVertex;
 
 import de.twenty11.skysail.server.core.restlet.*;
-import io.skysail.api.domain.Identifiable;
 import io.skysail.api.links.*;
 import io.skysail.api.responses.*;
 import io.skysail.api.search.SearchService;
+import io.skysail.domain.Identifiable;
 import io.skysail.server.restlet.RequestHandler;
 import io.skysail.server.restlet.filter.*;
 import io.skysail.server.services.PerformanceTimer;

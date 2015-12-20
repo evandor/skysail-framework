@@ -2,8 +2,9 @@ package io.skysail.server.restlet.resources;
 
 import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.assertThat;
-import io.skysail.api.domain.Identifiable;
+
 import io.skysail.api.links.LinkRelation;
+import io.skysail.domain.Identifiable;
 import io.skysail.server.app.SkysailApplication;
 
 import org.junit.*;

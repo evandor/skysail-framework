@@ -5,7 +5,7 @@ import static org.junit.Assert.assertThat;
 
 import org.junit.*;
 
-import io.skysail.api.domain.Identifiable;
+import io.skysail.domain.Identifiable;
 import io.skysail.domain.core.EntityModel;
 import io.skysail.server.domain.jvm.ClassEntityModel;
 

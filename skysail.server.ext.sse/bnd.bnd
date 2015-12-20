@@ -11,6 +11,7 @@ Private-Package:  \
 	osgi.cmpn;version=${osgi.version},\
 	skysail.api;version=${skysail.api.version},\
     skysail.api.text;version=${skysail.api.text.version},\
+    skysail.domain;version=${skysail.domain.version},\
 	skysail.server;version=${skysail.server.version},\
 	skysail.server.testsupport;version=${skysail.server.testsupport.version},\
 	org.restlet;version=${restlet.version},\

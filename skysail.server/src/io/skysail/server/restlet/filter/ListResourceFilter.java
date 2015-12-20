@@ -1,6 +1,6 @@
 package io.skysail.server.restlet.filter;
 
-import io.skysail.api.domain.Identifiable;
+import io.skysail.domain.Identifiable;
 import io.skysail.server.restlet.resources.ListServerResource;
 
 import org.restlet.Request;

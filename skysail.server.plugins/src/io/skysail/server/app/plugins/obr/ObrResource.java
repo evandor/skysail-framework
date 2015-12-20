@@ -1,7 +1,7 @@
 package io.skysail.server.app.plugins.obr;
 
-import io.skysail.api.domain.Identifiable;
 import io.skysail.api.forms.Field;
+import io.skysail.domain.Identifiable;
 import lombok.Getter;
 
 import org.apache.felix.bundlerepository.Resource;

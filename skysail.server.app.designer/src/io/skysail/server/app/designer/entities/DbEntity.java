@@ -6,8 +6,8 @@ import java.util.*;
 import javax.persistence.Id;
 import javax.validation.constraints.*;
 
-import io.skysail.api.domain.Identifiable;
 import io.skysail.api.forms.*;
+import io.skysail.domain.Identifiable;
 import io.skysail.server.app.designer.fields.*;
 import lombok.*;
 

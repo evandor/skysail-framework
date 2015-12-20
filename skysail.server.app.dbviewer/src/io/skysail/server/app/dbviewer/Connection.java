@@ -1,7 +1,7 @@
 package io.skysail.server.app.dbviewer;
 
-import io.skysail.api.domain.Identifiable;
 import io.skysail.api.forms.*;
+import io.skysail.domain.Identifiable;
 import io.skysail.server.codegen.ResourceType;
 import io.skysail.server.codegen.annotations.GenerateResources;
 import io.skysail.server.forms.ListView;

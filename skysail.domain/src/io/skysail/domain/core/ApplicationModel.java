@@ -2,7 +2,7 @@ package io.skysail.domain.core;
 
 import java.util.*;
 
-import io.skysail.api.repos.Repository;
+import io.skysail.domain.core.repos.Repository;
 import lombok.*;
 import lombok.extern.slf4j.Slf4j;
 

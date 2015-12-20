@@ -3,7 +3,7 @@ package io.skysail.server.designer.checklist;
 
 import org.osgi.service.component.annotations.*;
 
-import io.skysail.api.repos.DbRepository;
+import io.skysail.domain.core.repos.DbRepository;
 import io.skysail.server.db.*;
 
 @Component(immediate = true, property = "name=ListsRepository")

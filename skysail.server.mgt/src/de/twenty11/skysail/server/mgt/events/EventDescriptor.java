@@ -1,9 +1,10 @@
 package de.twenty11.skysail.server.mgt.events;
 
-import io.skysail.api.domain.Identifiable;
 import lombok.*;
 
 import org.osgi.service.event.Event;
+
+import io.skysail.domain.Identifiable;
 
 @Getter
 @Setter

@@ -1,17 +1,15 @@
 package io.skysail.server.designer.checklist;
 
-import io.skysail.api.repos.*;
-import io.skysail.server.app.*;
-import io.skysail.domain.core.Repositories;
-import io.skysail.server.menus.*;
+import java.util.Arrays;
 
-import java.util.*;
 import org.osgi.service.component.annotations.*;
-
 import org.osgi.service.event.EventAdmin;
 
 import de.twenty11.skysail.server.app.ApplicationProvider;
 import de.twenty11.skysail.server.core.restlet.*;
+import io.skysail.domain.core.Repositories;
+import io.skysail.server.app.*;
+import io.skysail.server.menus.MenuItemProvider;
 
 @Component(immediate = true)
 public class ChecklistApplication extends SkysailApplication implements ApplicationProvider, MenuItemProvider {

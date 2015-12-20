@@ -2,8 +2,8 @@ package de.twenty11.skysail.server.core.restlet;
 
 import org.restlet.Response;
 
-import io.skysail.api.domain.Identifiable;
 import io.skysail.api.responses.ConstraintViolationsResponse;
+import io.skysail.domain.Identifiable;
 
 public class ResponseWrapper<T extends Identifiable> implements Wrapper<T> {
 

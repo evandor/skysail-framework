@@ -1,10 +1,10 @@
 package io.skysail.server.text.store.bundleresource.impl;
 
-import io.skysail.api.domain.Identifiable;
-
 import java.util.*;
 
 import org.osgi.framework.Bundle;
+
+import io.skysail.domain.Identifiable;
 
 public class BundleMessages implements Identifiable {
 

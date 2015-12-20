@@ -1,7 +1,7 @@
 package de.twenty11.skysail.server.osgi.osgimonitor.resources;
 
-import io.skysail.api.domain.Identifiable;
 import io.skysail.api.links.Link;
+import io.skysail.domain.Identifiable;
 import io.skysail.server.restlet.resources.ListServerResource;
 
 import java.util.*;

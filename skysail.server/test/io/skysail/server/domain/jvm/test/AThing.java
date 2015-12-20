@@ -1,7 +1,7 @@
 package io.skysail.server.domain.jvm.test;
 
-import io.skysail.api.domain.Identifiable;
 import io.skysail.api.forms.Field;
+import io.skysail.domain.Identifiable;
 import lombok.*;
 
 @Getter

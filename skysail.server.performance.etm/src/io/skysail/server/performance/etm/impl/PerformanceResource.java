@@ -1,7 +1,7 @@
 package io.skysail.server.performance.etm.impl;
 
-import io.skysail.api.domain.Identifiable;
 import io.skysail.api.responses.SkysailResponse;
+import io.skysail.domain.Identifiable;
 import io.skysail.server.restlet.resources.EntityServerResource;
 
 import java.io.StringWriter;

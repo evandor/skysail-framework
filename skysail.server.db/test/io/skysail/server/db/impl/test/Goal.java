@@ -1,7 +1,7 @@
 package io.skysail.server.db.impl.test;
 
-import io.skysail.api.domain.Identifiable;
 import io.skysail.api.forms.Field;
+import io.skysail.domain.Identifiable;
 
 import java.util.*;
 

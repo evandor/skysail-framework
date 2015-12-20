@@ -6,7 +6,7 @@ import java.util.function.Consumer;
 import com.tinkerpop.blueprints.Vertex;
 import com.tinkerpop.blueprints.impls.orient.*;
 
-import io.skysail.api.domain.Identifiable;
+import io.skysail.domain.Identifiable;
 import io.skysail.domain.core.ApplicationModel;
 import lombok.extern.slf4j.Slf4j;
 

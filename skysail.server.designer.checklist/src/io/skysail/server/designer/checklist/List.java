@@ -1,7 +1,7 @@
 package io.skysail.server.designer.checklist;
 
-import io.skysail.api.domain.Identifiable;
 import io.skysail.api.forms.*;
+import io.skysail.domain.Identifiable;
 import io.skysail.server.forms.ListView;
 
 import java.net.*;

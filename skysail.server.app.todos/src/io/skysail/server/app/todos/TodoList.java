@@ -8,10 +8,9 @@ import javax.validation.constraints.*;
 
 import com.fasterxml.jackson.annotation.*;
 
-import io.skysail.api.domain.Identifiable;
 import io.skysail.api.forms.*;
+import io.skysail.domain.Identifiable;
 import io.skysail.server.app.todos.lists.UniquePerOwner;
-import io.skysail.server.app.todos.repo.TodosRepository;
 import io.skysail.server.app.todos.todos.Todo;
 import io.skysail.server.app.todos.todos.resources.TodosResource;
 import io.skysail.server.forms.*;
@@ -53,7 +52,7 @@ public class TodoList implements Serializable, Identifiable {
     @ListView(hide = true)
     private String owner;
 
-    @Field(repository = TodosRepository.class)
+    @Field //FIXME Replace with @Relation
     @PostView(visibility = Visibility.HIDE)
     @PutView(visibility = Visibility.HIDE)
     private List<Todo> todos = new ArrayList<>();

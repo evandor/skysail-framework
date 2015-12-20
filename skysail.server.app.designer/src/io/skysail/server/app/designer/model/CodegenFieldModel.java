@@ -1,7 +1,8 @@
 package io.skysail.server.app.designer.model;
 
-import io.skysail.server.app.designer.fields.DbEntityField;
+import io.skysail.api.forms.*;
 import io.skysail.domain.core.FieldModel;
+import io.skysail.server.app.designer.fields.DbEntityField;
 import lombok.*;
 
 @Getter
@@ -24,8 +25,15 @@ public class CodegenFieldModel extends FieldModel {
     public String getSetMethodName() {
         return "set".concat(capitalized(name));
     }
+    
+    public String getHtmlPolicy() {
+        if (inputType.equals(InputType.TRIX_EDITOR)) {
+            return HtmlPolicy.DEFAULT_HTML.name();
+        }
+        return HtmlPolicy.NO_HTML.name();
+    }
 
-    private String capitalized(String string) {
+    private static String capitalized(String string) {
         return string.substring(0,1).toUpperCase().concat(string.substring(1));
     }
 

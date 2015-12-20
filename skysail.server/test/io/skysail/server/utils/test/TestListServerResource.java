@@ -1,6 +1,6 @@
 package io.skysail.server.utils.test;
 
-import io.skysail.api.domain.Identifiable;
+import io.skysail.domain.Identifiable;
 import io.skysail.server.app.SkysailApplication;
 import io.skysail.server.restlet.resources.ListServerResource;
 

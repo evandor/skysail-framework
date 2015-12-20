@@ -1,12 +1,12 @@
 package io.skysail.server.db.versions.impl;
 
-import io.skysail.api.domain.Identifiable;
-
 import javax.persistence.Id;
 
 import lombok.*;
 
 import org.osgi.framework.Bundle;
+
+import io.skysail.domain.Identifiable;
 
 @Data
 @NoArgsConstructor

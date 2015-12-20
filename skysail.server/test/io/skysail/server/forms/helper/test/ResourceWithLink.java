@@ -1,7 +1,7 @@
 package io.skysail.server.forms.helper.test;
 
-import io.skysail.api.domain.Identifiable;
 import io.skysail.api.links.Link;
+import io.skysail.domain.Identifiable;
 import io.skysail.server.restlet.resources.ListServerResource;
 
 import java.util.*;

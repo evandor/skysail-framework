@@ -1,6 +1,6 @@
 package io.skysail.server.app;
 
-import io.skysail.api.domain.Identifiable;
+import io.skysail.domain.Identifiable;
 import io.skysail.domain.core.EntityModel;
 import io.skysail.server.domain.jvm.ClassEntityModel;
 

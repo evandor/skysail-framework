@@ -2,7 +2,8 @@ package io.skysail.server.utils.test;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
-import io.skysail.api.domain.Identifiable;
+
+import io.skysail.domain.Identifiable;
 import io.skysail.server.restlet.resources.SkysailServerResource;
 import io.skysail.server.utils.PathUtils;
 

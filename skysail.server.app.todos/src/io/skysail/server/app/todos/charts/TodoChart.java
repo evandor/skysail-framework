@@ -1,6 +1,6 @@
 package io.skysail.server.app.todos.charts;
 
-import io.skysail.api.domain.Identifiable;
+import io.skysail.domain.Identifiable;
 import io.skysail.server.app.todos.todos.Todo;
 import lombok.*;
 

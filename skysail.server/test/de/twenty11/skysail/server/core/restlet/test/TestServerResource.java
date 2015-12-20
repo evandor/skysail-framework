@@ -1,7 +1,7 @@
 package de.twenty11.skysail.server.core.restlet.test;
 
-import io.skysail.api.domain.Identifiable;
 import io.skysail.api.links.LinkRelation;
+import io.skysail.domain.Identifiable;
 import io.skysail.server.restlet.resources.SkysailServerResource;
 
 public class TestServerResource extends SkysailServerResource<Identifiable> {

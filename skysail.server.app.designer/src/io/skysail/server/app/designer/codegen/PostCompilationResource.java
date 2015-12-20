@@ -25,9 +25,9 @@ public class PostCompilationResource extends PostEntityServerResource<Empty> {
 
     @Override
     public void addEntity(Empty entity) {
-        //InMemoryJavaCompiler.resetClassloader();
-        //app.updateBundle();
+        InMemoryJavaCompiler.reset();
         app.compileApplication(getAttribute("id"));
+        //app.updateBundle();
     }
 
     @Override

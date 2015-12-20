@@ -6,7 +6,7 @@ import com.orientechnologies.orient.core.metadata.schema.OType;
 import com.orientechnologies.orient.core.record.impl.ODocument;
 
 import aQute.bnd.annotation.ProviderType;
-import io.skysail.api.domain.Identifiable;
+import io.skysail.domain.Identifiable;
 import io.skysail.domain.core.ApplicationModel;
 
 @ProviderType

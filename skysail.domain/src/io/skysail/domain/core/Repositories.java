@@ -5,7 +5,7 @@ import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
 import aQute.bnd.annotation.component.Component;
-import io.skysail.api.repos.*;
+import io.skysail.domain.core.repos.*;
 import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
 

@@ -1,9 +1,8 @@
 package io.skysail.server.db.test.entities.folders;
 
-import io.skysail.api.domain.Identifiable;
-
 import java.util.*;
 
+import io.skysail.domain.Identifiable;
 import lombok.*;
 
 @Getter

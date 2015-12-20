@@ -2,7 +2,7 @@ fields(fields) ::= <<
 
 $fields.keys: { key| 
 
-@Field(inputType = InputType.$fields.(key).inputType$)
+@Field(inputType = InputType.$fields.(key).inputType$, htmlPolicy = HtmlPolicy.$fields.(key).htmlPolicy$)
 private String $key$;
 
 public void $fields.(key).setMethodName$(String value) {

@@ -1,7 +1,7 @@
 package io.skysail.server.restlet.filter;
 
-import io.skysail.api.domain.Identifiable;
 import io.skysail.api.responses.SkysailResponse;
+import io.skysail.domain.Identifiable;
 import io.skysail.server.restlet.resources.PutEntityServerResource;
 
 import org.slf4j.*;

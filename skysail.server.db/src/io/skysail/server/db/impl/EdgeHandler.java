@@ -8,7 +8,7 @@ import java.util.stream.*;
 import com.tinkerpop.blueprints.*;
 import com.tinkerpop.blueprints.impls.orient.*;
 
-import io.skysail.api.domain.Identifiable;
+import io.skysail.domain.Identifiable;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j

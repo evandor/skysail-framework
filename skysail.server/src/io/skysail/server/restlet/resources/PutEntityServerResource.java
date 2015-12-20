@@ -9,9 +9,9 @@ import org.restlet.representation.Variant;
 import org.restlet.resource.*;
 
 import de.twenty11.skysail.server.core.restlet.*;
-import io.skysail.api.domain.Identifiable;
 import io.skysail.api.links.*;
 import io.skysail.api.responses.*;
+import io.skysail.domain.Identifiable;
 import io.skysail.server.app.SkysailApplication;
 import io.skysail.server.restlet.RequestHandler;
 import io.skysail.server.restlet.filter.AbstractResourceFilter;

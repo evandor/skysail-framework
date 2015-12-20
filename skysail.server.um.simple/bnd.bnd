@@ -5,6 +5,7 @@ Bundle-Version: 0.1.6.${tstamp}
 	skysail.api.features;version=${skysail.api.features.version},\
     skysail.api.text;version=${skysail.api.text.version},\
 	skysail.api.um;version=${skysail.api.um.version},\
+    skysail.domain;version=${skysail.domain.version},\
 	skysail.server;version=${skysail.server.version},\
     skysail.server.um;version=${skysail.server.um.version},\
 	skysail.server.testsupport;version=${skysail.server.testsupport.version},\

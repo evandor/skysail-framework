@@ -4,7 +4,7 @@ import javax.annotation.Generated;
 
 import org.osgi.service.component.annotations.*;
 
-import io.skysail.api.repos.DbRepository;
+import io.skysail.domain.core.repos.DbRepository;
 import io.skysail.server.db.*;
 import lombok.extern.slf4j.Slf4j;
 

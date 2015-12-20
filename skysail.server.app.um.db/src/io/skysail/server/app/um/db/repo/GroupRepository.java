@@ -2,14 +2,14 @@ package io.skysail.server.app.um.db.repo;
 
 import org.osgi.service.component.annotations.*;
 
-import io.skysail.api.repos.DbRepository;
+import io.skysail.domain.core.repos.DbRepository;
 import io.skysail.server.app.um.db.domain.Group;
 import io.skysail.server.db.*;
 import lombok.extern.slf4j.Slf4j;
 
 @Component(immediate = true, property = "name=GroupRepository")
 @Slf4j
-public class GroupRepository extends GraphDbRepository<Group>  implements DbRepository {
+public class GroupRepository extends GraphDbRepository<Group> implements DbRepository {
 
     @Activate
     public void activate() { // NO_UCD

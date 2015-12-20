@@ -8,7 +8,7 @@ import org.mockito.Mockito;
 import com.tinkerpop.blueprints.*;
 import com.tinkerpop.blueprints.impls.orient.*;
 
-import io.skysail.api.domain.Identifiable;
+import io.skysail.domain.Identifiable;
 import io.skysail.server.db.impl.EdgeHandler;
 import io.skysail.server.db.impl.test.entities.*;
 

@@ -6,19 +6,19 @@ import java.nio.file.*;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import org.osgi.framework.Bundle;
+import org.osgi.framework.*;
 import org.osgi.service.component.ComponentContext;
 import org.stringtemplate.v4.ST;
 
 import de.twenty11.skysail.server.app.ApplicationProvider;
-import io.skysail.api.repos.DbRepository;
+import io.skysail.domain.core.Repositories;
+import io.skysail.domain.core.repos.DbRepository;
 import io.skysail.server.app.SkysailApplication;
 import io.skysail.server.app.designer.application.DbApplication;
 import io.skysail.server.app.designer.codegen.*;
 import io.skysail.server.app.designer.model.*;
 import io.skysail.server.app.designer.repo.DesignerRepository;
 import io.skysail.server.db.DbService;
-import io.skysail.domain.core.Repositories;
 import io.skysail.server.menus.MenuItemProvider;
 import io.skysail.server.utils.*;
 import lombok.*;
@@ -100,9 +100,11 @@ public class ApplicationCreator {
                     new Class[] { ComponentContext.class });
             setComponentContextMethod.invoke(applicationInstance, new Object[] { componentContext });
 
-            bundle.getBundleContext().registerService(
+            ServiceRegistration<?> registeredService = bundle.getBundleContext().registerService(
                     new String[] { ApplicationProvider.class.getName(), MenuItemProvider.class.getName() },
                     applicationInstance, null);
+            
+            log.info("new service {} was registered.",registeredService.getReference().toString());
 
         } catch (Exception e1) {
             log.error(e1.getMessage(), e1);
@@ -151,8 +153,8 @@ public class ApplicationCreator {
         bndrun.add("projectname", applicationModel.getProjectName());
         Files.write(Paths.get(path + "/bndrun.bnd"), bndrun.render().getBytes());
 
-        ST gradle = getStringTemplateIndex("gradle");
-        Files.write(Paths.get(path + "/build.gradle"), gradle.render().getBytes());
+        //ST gradle = getStringTemplateIndex("gradle");
+        //Files.write(Paths.get(path + "/build.gradle"), gradle.render().getBytes());
 
         new File(Paths.get(path + "/test").toString()).mkdir();
         new File(Paths.get(path + "/src-gen").toString()).mkdir();

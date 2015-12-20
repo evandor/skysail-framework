@@ -2,9 +2,10 @@ package io.skysail.server.forms.test;
 
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
-import io.skysail.api.domain.Identifiable;
+
 import io.skysail.api.forms.Reference;
 import io.skysail.api.links.LinkRelation;
+import io.skysail.domain.Identifiable;
 import io.skysail.server.forms.FormField;
 import io.skysail.server.restlet.resources.SkysailServerResource;
 

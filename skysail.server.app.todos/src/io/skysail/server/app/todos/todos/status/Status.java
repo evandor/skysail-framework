@@ -1,9 +1,8 @@
 package io.skysail.server.app.todos.todos.status;
 
-import io.skysail.api.domain.Identifiable;
-
 import java.util.*;
 
+import io.skysail.domain.Identifiable;
 import lombok.Getter;
 
 @Getter

@@ -5,6 +5,7 @@ Bundle-Version: 0.0.22.${tstamp}
 	osgi.cmpn;version=${osgi.version},\
 	skysail.api;version=${skysail.api.version},\
 	skysail.api.text;version=${skysail.api.text.version},\
+    skysail.domain;version=${skysail.domain.version},\
 	skysail.server;version=${skysail.server.version},\
 	javax.validation.api,\
 	org.hibernate.validator;version=5.0,\

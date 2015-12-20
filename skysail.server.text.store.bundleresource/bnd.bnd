@@ -9,6 +9,7 @@ Include-Resource: resources, templates=src;recursive:=true;filter:=*.st|*.stg
 	osgi.cmpn;version=${osgi.version},\
 	skysail.api;version=${skysail.api.version},\
 	skysail.api.text;version=${skysail.api.text.version},\
+    skysail.domain;version=${skysail.domain.version},\
 	skysail.server;version=${skysail.server.version},\
 	slf4j.api;version=1.7,\
 	org.restlet;version=${restlet.version},\

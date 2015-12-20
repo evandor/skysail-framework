@@ -1,13 +1,13 @@
 package de.twenty11.skysail.server.osgi.osgimonitor.domain;
 
-import io.skysail.api.domain.Identifiable;
-
 import java.util.*;
 
 import javax.persistence.Transient;
 
 import org.osgi.framework.*;
 import org.restlet.data.Reference;
+
+import io.skysail.domain.Identifiable;
 
 public class ServiceDescriptor implements Comparable<ServiceDescriptor>, Identifiable {
 

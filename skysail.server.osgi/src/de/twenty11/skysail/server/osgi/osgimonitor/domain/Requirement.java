@@ -1,10 +1,10 @@
 package de.twenty11.skysail.server.osgi.osgimonitor.domain;
 
-import io.skysail.api.domain.Identifiable;
-
 import java.util.Map;
 
 import org.osgi.framework.wiring.BundleRequirement;
+
+import io.skysail.domain.Identifiable;
 
 public class Requirement implements Identifiable {
 

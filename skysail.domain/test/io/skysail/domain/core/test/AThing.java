@@ -1,7 +1,7 @@
 package io.skysail.domain.core.test;
 
-import io.skysail.api.domain.Identifiable;
-import io.skysail.api.forms.Field;
+import io.skysail.api.forms.*;
+import io.skysail.domain.Identifiable;
 import lombok.*;
 
 @Getter
@@ -10,6 +10,6 @@ public class AThing implements Identifiable {
 
     private String id;
 
-    @Field
+    @Field(inputType = InputType.TEXT)
     private String stringField;
 }

@@ -16,6 +16,7 @@ Include-Resource: webapp, resources, templates=src;recursive:=true;filter:=*.st|
 	skysail.api.validation;version=${skysail.api.validation.version},\
 	skysail.api.peers;version=${skysail.api.peers.version},\
 	skysail.api.text;version=${skysail.api.text.version},\
+    skysail.domain;version=${skysail.domain.version},\
 	skysail.server;version=${skysail.server.version},\
 	skysail.server.testsupport;version=${skysail.server.testsupport.version},\
 	de.twentyeleven.skysail.org.antlr.stringtemplate-osgi;version=4.0.8,\

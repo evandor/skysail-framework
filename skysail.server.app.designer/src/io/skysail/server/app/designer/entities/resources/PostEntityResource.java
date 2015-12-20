@@ -3,7 +3,7 @@ package io.skysail.server.app.designer.entities.resources;
 import org.restlet.resource.ResourceException;
 
 import de.twenty11.skysail.server.core.restlet.ResourceContextId;
-import io.skysail.api.repos.Repository;
+import io.skysail.domain.core.repos.Repository;
 import io.skysail.server.app.designer.DesignerApplication;
 import io.skysail.server.app.designer.application.DbApplication;
 import io.skysail.server.app.designer.entities.DbEntity;

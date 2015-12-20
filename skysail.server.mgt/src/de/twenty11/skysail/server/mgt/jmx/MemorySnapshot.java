@@ -1,9 +1,8 @@
 package de.twenty11.skysail.server.mgt.jmx;
 
-import io.skysail.api.domain.Identifiable;
-
 import java.lang.management.MemoryUsage;
 
+import io.skysail.domain.Identifiable;
 import lombok.*;
 
 @Getter

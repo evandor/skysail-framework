@@ -1,6 +1,6 @@
 package io.skysail.server.app.todos.statuses;
 
-import io.skysail.api.domain.Identifiable;
+import io.skysail.domain.Identifiable;
 import io.skysail.server.app.todos.todos.status.Status;
 import io.skysail.server.restlet.resources.ListServerResource;
 

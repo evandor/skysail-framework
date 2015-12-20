@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.osgi.service.component.annotations.*;
 
-import io.skysail.api.repos.DbRepository;
+import io.skysail.domain.core.repos.DbRepository;
 import io.skysail.server.app.todos.TodoList;
 import io.skysail.server.app.todos.todos.Todo;
 import io.skysail.server.db.*;

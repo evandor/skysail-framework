@@ -1,8 +1,5 @@
 package io.skysail.api.forms;
 
-import io.skysail.api.forms.impl.NoRepository;
-import io.skysail.api.repos.DbRepository;
-
 import java.lang.annotation.*;
 
 /**
@@ -23,7 +20,7 @@ public @interface Field {
     Class<? extends SelectionProvider> selectionProvider() default IgnoreSelectionProvider.class;
 
 
-    Class<? extends DbRepository> repository() default NoRepository.class;
+    //Class<? extends DbRepository> repository() default NoRepository.class;
 
     /**
      * http://www.w3.org/TR/REC-html40/interact/forms.html#h-17.4

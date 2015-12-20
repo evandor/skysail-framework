@@ -1,7 +1,7 @@
 package io.skysail.server.app;
 
-import io.skysail.api.domain.Identifiable;
-import io.skysail.api.repos.*;
+import io.skysail.domain.Identifiable;
+import io.skysail.domain.core.repos.*;
 import lombok.ToString;
 
 @ToString

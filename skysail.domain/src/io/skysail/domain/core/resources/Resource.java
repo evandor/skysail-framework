@@ -1,6 +1,6 @@
 package io.skysail.domain.core.resources;
 
-import io.skysail.api.domain.Identifiable;
+import io.skysail.domain.Identifiable;
 import io.skysail.domain.core.Link;
 
 import java.util.List;

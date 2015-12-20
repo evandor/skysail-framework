@@ -1,7 +1,7 @@
 package de.twenty11.skysail.server.um.domain;
 
-import io.skysail.api.domain.Identifiable;
 import io.skysail.api.forms.*;
+import io.skysail.domain.Identifiable;
 
 import java.util.*;
 

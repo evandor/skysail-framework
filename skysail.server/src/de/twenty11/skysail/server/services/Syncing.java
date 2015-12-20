@@ -5,7 +5,7 @@ import java.util.List;
 import org.osgi.annotation.versioning.ProviderType;
 import org.restlet.Request;
 
-import io.skysail.api.domain.Identifiable;
+import io.skysail.domain.Identifiable;
 
 /**
  * The Syncing interface provides a common scheme to sync entities between different systems.

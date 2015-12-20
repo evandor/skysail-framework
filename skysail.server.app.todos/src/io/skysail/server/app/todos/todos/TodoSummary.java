@@ -1,7 +1,7 @@
 package io.skysail.server.app.todos.todos;
 
-import io.skysail.api.domain.Identifiable;
 import io.skysail.api.forms.*;
+import io.skysail.domain.Identifiable;
 import io.skysail.server.app.todos.todos.resources.*;
 import io.skysail.server.app.todos.todos.status.*;
 import io.skysail.server.forms.*;

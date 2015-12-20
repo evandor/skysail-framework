@@ -1,8 +1,5 @@
 package io.skysail.server.utils;
 
-import io.skysail.api.domain.Identifiable;
-import io.skysail.api.repos.DbRepository;
-
 import java.beans.*;
 import java.lang.reflect.*;
 import java.text.SimpleDateFormat;
@@ -11,11 +8,12 @@ import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.stream.Collectors;
 
-import lombok.extern.slf4j.Slf4j;
-
 import org.apache.commons.beanutils.*;
 import org.apache.commons.beanutils.expression.Resolver;
 import org.apache.commons.lang3.StringUtils;
+
+import io.skysail.domain.Identifiable;
+import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public class SkysailBeanUtilsBean extends BeanUtilsBean {
@@ -173,8 +171,9 @@ public class SkysailBeanUtilsBean extends BeanUtilsBean {
         if (fieldAnnotation == null) {
             return null;
         }
-        Class<? extends DbRepository> repository = fieldAnnotation.repository();
-        return ReflectionUtils.getParameterizedType(repository);
+        throw new IllegalStateException("not expected to reach this code");
+//        Class<? extends DbRepository> repository = fieldAnnotation.repository();
+//        return ReflectionUtils.getParameterizedType(repository);
     }
 
     @SuppressWarnings("unchecked")

@@ -68,13 +68,13 @@ Include-Resource: resources, templates=src;recursive:=true;filter:=*.st|*.stg
 Import-Package: org.osgi.framework,\
 	javassist.util.proxy,\
 	*
-Private-Package:  \
+Private-Package: \
 	io.skysail.server.app.designer.application.resources,\
 	io.skysail.server.app.designer.entities.resources,\
 	io.skysail.server.app.designer.fields.resources,\
 	io.skysail.server.app.designer.codegen,\
-	io.skysail.server.app.designer.codegen.utils,\
-	io.skysail.server.app.designer.model
+	io.skysail.server.app.designer.model,\
+	io.skysail.server.app.designer.exceptions
 Export-Package:  \
 	io.skysail.server.app.designer.repo,\
 	io.skysail.server.app.designer.application,\

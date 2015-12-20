@@ -1,6 +1,6 @@
 package de.twenty11.skysail.server.app.tutorial.model2rest;
 
-import io.skysail.api.domain.Identifiable;
+import io.skysail.domain.Identifiable;
 
 public class Dummy implements Identifiable {
 

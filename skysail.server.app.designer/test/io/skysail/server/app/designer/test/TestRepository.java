@@ -2,8 +2,8 @@ package io.skysail.server.app.designer.test;
 
 import org.osgi.service.component.annotations.*;
 
-import io.skysail.api.domain.Identifiable;
-import io.skysail.api.repos.DbRepository;
+import io.skysail.domain.Identifiable;
+import io.skysail.domain.core.repos.DbRepository;
 import io.skysail.server.db.DbService;
 
 public class TestRepository implements DbRepository {

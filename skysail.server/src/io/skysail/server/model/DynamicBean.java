@@ -1,13 +1,13 @@
 package io.skysail.server.model;
 
-import io.skysail.api.domain.Identifiable;
-
 import java.util.*;
 import java.util.Map.Entry;
 
 import lombok.Getter;
 
 import org.apache.commons.beanutils.*;
+
+import io.skysail.domain.Identifiable;
 
 public class DynamicBean extends BasicDynaClass implements Identifiable{
 

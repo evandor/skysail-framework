@@ -1,6 +1,6 @@
 package io.skysail.server.ext.sse.domain;
 
-import io.skysail.api.domain.Identifiable;
+import io.skysail.domain.Identifiable;
 import lombok.*;
 
 @Getter

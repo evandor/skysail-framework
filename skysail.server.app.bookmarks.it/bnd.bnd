@@ -15,6 +15,7 @@ Private-Package:  \
 	skysail.api;version=${skysail.api.version},\
     skysail.api.search;version=${skysail.api.search.version},\
 	skysail.server;version=${skysail.server.version},\
+    skysail.domain;version=${skysail.domain.version},\
 	skysail.server.db;version=${skysail.server.db.version},\
     skysail.server.converter;version=${skysail.server.converter.version},\
     skysail.server.http;version=${skysail.server.http.version},\
@@ -133,6 +134,7 @@ Private-Package:  \
 	skysail.api.peers;version=latest,\
 	skysail.api.features;version=latest,\
 	skysail.client.testsupport;version=latest,\
+    skysail.domain;version=${skysail.domain.version},\
 	skysail.server;version=${skysail.server.version},\
 	skysail.server.app.bookmarks;version=latest,\
 	skysail.server.converter;version=${skysail.server.converter.version},\

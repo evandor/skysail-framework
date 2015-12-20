@@ -1,7 +1,7 @@
 package io.skysail.server.app.designer;
 
-import io.skysail.api.domain.Identifiable;
 import io.skysail.api.links.Link;
+import io.skysail.domain.Identifiable;
 import io.skysail.server.app.designer.application.resources.ApplicationsResource;
 import io.skysail.server.restlet.resources.ListServerResource;
 

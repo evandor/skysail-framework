@@ -1,6 +1,6 @@
 package io.skysail.server.db.test.entities.one2many;
 
-import io.skysail.api.domain.Identifiable;
+import io.skysail.domain.Identifiable;
 import lombok.*;
 
 @Getter

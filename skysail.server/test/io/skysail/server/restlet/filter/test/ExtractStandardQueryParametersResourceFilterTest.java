@@ -2,7 +2,8 @@ package io.skysail.server.restlet.filter.test;
 
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.assertThat;
-import io.skysail.api.domain.Identifiable;
+
+import io.skysail.domain.Identifiable;
 import io.skysail.server.restlet.filter.ExtractStandardQueryParametersResourceFilter;
 import io.skysail.server.restlet.resources.SkysailServerResource;
 

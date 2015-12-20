@@ -1,7 +1,7 @@
 package io.skysail.server.app.twitter4j.resources;
 
-import io.skysail.api.domain.Identifiable;
 import io.skysail.api.forms.Field;
+import io.skysail.domain.Identifiable;
 
 import java.util.Arrays;
 

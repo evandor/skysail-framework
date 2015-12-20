@@ -1,12 +1,12 @@
 package de.twenty11.skysail.server.mgt.log;
 
-import io.skysail.api.domain.Identifiable;
-
 import java.text.SimpleDateFormat;
 
 import lombok.*;
 
 import org.osgi.service.log.LogService;
+
+import io.skysail.domain.Identifiable;
 
 @Getter
 public class LogEntry implements Identifiable {

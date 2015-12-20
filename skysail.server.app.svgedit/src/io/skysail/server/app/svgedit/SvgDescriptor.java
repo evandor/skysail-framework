@@ -1,6 +1,6 @@
 package io.skysail.server.app.svgedit;
 
-import io.skysail.api.domain.Identifiable;
+import io.skysail.domain.Identifiable;
 
 public class SvgDescriptor implements Identifiable {
 

@@ -20,18 +20,6 @@ public class FormResponse<T> extends SkysailResponse<T> {
         this(response, entity, null, target, redirectBackTo);
     }
 
-    /**
-     * Constructor.
-     *
-     * @param entity
-     *            e
-     * @param id
-     *            id
-     * @param target
-     *            target
-     * @param redirectBackTo
-     *            redirect
-     */
     public FormResponse(Response response, T entity, String id, String target, String redirectBackTo) {
         super(response, entity);
         this.id = id;

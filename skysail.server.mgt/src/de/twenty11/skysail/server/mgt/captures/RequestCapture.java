@@ -1,6 +1,6 @@
 package de.twenty11.skysail.server.mgt.captures;
 
-import io.skysail.api.domain.Identifiable;
+import io.skysail.domain.Identifiable;
 import lombok.*;
 
 @Getter

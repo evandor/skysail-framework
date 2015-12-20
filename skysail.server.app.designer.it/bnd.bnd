@@ -7,7 +7,6 @@ Bundle-Version: 0.1.0.${tstamp}
 	osgi.core;version=5.0,\
 	skysail.api;version=${skysail.api.version},\
     skysail.api.um;version=${skysail.api.um.version},\
-	skysail.api.validation;version=${skysail.api.validation.version},\
 	skysail.client.testsupport;version=latest,\
     skysail.domain;version=${skysail.domain.version},\
 	skysail.server;version=${skysail.server.version},\

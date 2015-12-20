@@ -16,7 +16,6 @@ Test-Cases: \
     skysail.api.text;version=${skysail.api.text.version},\
 	skysail.api.um;version=${skysail.api.um.version},\
     skysail.domain;version=${skysail.domain.version},\
-   	skysail.api.validation;version=${skysail.api.validation.version},\
 	skysail.server;version=${skysail.server.version},\
 	skysail.server.db;version=${skysail.server.db.version},\
 	skysail.server.queryfilter;version=${skysail.server.queryfilter.version},\

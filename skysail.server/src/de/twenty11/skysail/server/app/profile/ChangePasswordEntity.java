@@ -1,11 +1,10 @@
 package de.twenty11.skysail.server.app.profile;
 
-import io.skysail.api.forms.*;
-import io.skysail.domain.Identifiable;
-
 import javax.persistence.Transient;
 import javax.validation.constraints.*;
 
+import io.skysail.api.forms.*;
+import io.skysail.domain.Identifiable;
 import lombok.Data;
 
 /**

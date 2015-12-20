@@ -110,7 +110,6 @@
 	skysail.api.um;version=${skysail.api.um.version},\
 	skysail.api.peers;version=${skysail.api.peers.version},\
 	skysail.api.text;version=${skysail.api.text.version},\
-	skysail.api.validation;version=${skysail.api.validation.version},\
 	skysail.api.features;version=${skysail.api.features.version},\
 	skysail.client.todos.angularjs;version=latest,\
 	skysail.product.designer;version=latest,\

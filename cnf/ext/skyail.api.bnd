@@ -4,5 +4,4 @@ skysail.api:\
     skysail.api.peers;version='[0.1.1,0.1.2)',\
     skysail.api.search;version=${skysail.api.search.version},\
     skysail.api.text;version=${skysail.api.text.version},\
-    skysail.api.validation;version='[0.2.1,0.2.2)',\
     skysail.api.features;version='[0.1.2,0.1.3)'

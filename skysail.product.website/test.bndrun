@@ -94,7 +94,6 @@
 	skysail.api.peers;version=${skysail.api.peers.version},\
     skysail.api.search;version=${skysail.api.search.version},\
 	skysail.api.text;version=${skysail.api.text.version},\
-	skysail.api.validation;version=${skysail.api.validation.version},\
 	skysail.api.features;version=${skysail.api.features.version},\
 	skysail.product.website;version=latest,\
 	skysail.server;version=${skysail.server.version},\

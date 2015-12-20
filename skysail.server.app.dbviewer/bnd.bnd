@@ -31,7 +31,6 @@ Include-Resource: config=config, resources, templates=src;recursive:=true;filter
     com.sun.jna;version=4.2,\
     com.sun.jna.platform;version=4.2,\
     skysail.api;version=${skysail.api.version},\
-    skysail.api.validation;version=${skysail.api.validation.version},\
     skysail.api.search;version=${skysail.api.search.version},\
     skysail.api.text;version=${skysail.api.text.version},\
     skysail.api.um;version=${skysail.api.um.version},\

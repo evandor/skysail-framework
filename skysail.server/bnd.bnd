@@ -67,14 +67,13 @@ Service-Component: *
 	lib/markdown4j-2.2.jar;version=file,\
 	osgi.core;version=${osgi.version},\
 	osgi.enterprise;version=${osgi.version},\
-	osgi.annotation;version=${osgi.annotation.version},\
+    osgi.annotation;version=${osgi.annotation.version},\
 	skysail.api;version=${skysail.api.version},\
 	skysail.api.peers;version=${skysail.api.peers.version},\
 	skysail.api.features;version=${skysail.api.features.version},\
 	skysail.api.search;version=${skysail.api.search.version},\
 	skysail.api.text;version=${skysail.api.text.version},\
 	skysail.api.um;version=${skysail.api.um.version},\
-	skysail.api.validation;version=${skysail.api.validation.version},\
 	skysail.domain;version=${skysail.domain.version},\
 	de.twentyeleven.skysail.org.antlr.stringtemplate-osgi;version=4.0.8,\
 	de.twenty11.owasp-java-html-sanitizer;version=239.0,\

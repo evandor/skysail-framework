@@ -21,7 +21,6 @@ Include-Resource: resources, templates=src;recursive:=true;filter:=*.st|*.stg
 	${restlet},\
 	lombok;version=1.16.2,\
 	skysail.api;version=${skysail.api.version},\
-	skysail.api.validation;version=${skysail.api.validation.version},\
 	skysail.api.search;version=${skysail.api.search.version},\
 	skysail.api.text;version=${skysail.api.text.version},\
 	skysail.api.um;version=${skysail.api.um.version},\

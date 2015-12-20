@@ -7,7 +7,6 @@ Bundle-Version: 0.1.1.${tstamp}
 -buildpath:  \
 	osgi.core;version=${osgi.version},\
 	skysail.api.um;version=${skysail.api.um.version},\
-    skysail.api.validation;version=${skysail.api.validation.version},\
 	skysail.server.db;version=${skysail.server.db.version},\
 	skysail.server.um;version=${skysail.server.um.version},\
     skysail.server.um.simple;version=${skysail.server.um.simple.version},\

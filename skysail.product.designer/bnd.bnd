@@ -10,7 +10,6 @@ Private-Package:  \
 	skysail.api.features;version='[0.1.2,0.1.3)',\
 	skysail.api.peers;version=${skysail.api.peers.version},\
 	skysail.api.um;version=${skysail.api.um.version},\
-	skysail.api.validation;version=${skysail.api.validation.version},\
 	skysail.server.converter;version=${skysail.server.converter.version},\
 	skysail.server.db;version=${skysail.server.db.version},\
 	skysail.server.app.designer;version=latest,\

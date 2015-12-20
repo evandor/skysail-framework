@@ -32,7 +32,6 @@ Private-Package:  \
 	osgi.cmpn;version=${osgi.version},\
 	biz.aQute.bnd.annotation,\
 	skysail.api;version=${skysail.api.version},\
-	skysail.api.validation;version=${skysail.api.validation.version},\
 	skysail.api.search;version=${skysail.api.search.version},\
 	skysail.api.text;version=${skysail.api.text.version},\
 	skysail.api.um;version=${skysail.api.um.version},\

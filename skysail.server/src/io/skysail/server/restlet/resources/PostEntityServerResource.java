@@ -98,7 +98,7 @@ public abstract class PostEntityServerResource<T extends Identifiable> extends S
      */
     public void addEntity(T entity) {
         Class<? extends Identifiable> cls = createEntityTemplate().getClass();
-        OrientVertex vertex = (OrientVertex) getApplication().getRepository(cls).save(entity);
+        OrientVertex vertex = (OrientVertex) getApplication().getRepository(cls).save(entity, getApplication().getApplicationModel());
         String id = vertex.getId().toString();
         entity.setId(id);
     }

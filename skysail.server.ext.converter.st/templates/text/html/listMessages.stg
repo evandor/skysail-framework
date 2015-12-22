@@ -1,8 +1,0 @@
-listMessages(messages) ::= <<
-    $messages.keys: { key | $showMessage(key,messages)$}$
->>
-
-showMessage(key, messages) ::= <<
-    $key$: $messages.(key)$<br>
-    
->>

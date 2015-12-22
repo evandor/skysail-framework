@@ -98,7 +98,7 @@ public class SkysailEntityCompiler extends SkysailCompiler {
             return actionField.getCode("postEntity#addEntity").replace("$Methodname$", withFirstCapital(actionField.getName()));
         }).collect(Collectors.joining("\n")));
         if (entityModel.isAggregate()) {
-            addEntityCode.append("String id = app.getRepository("+entityModel.getId()+".class).save(entity).toString();\n");
+            addEntityCode.append("String id = app.getRepository("+entityModel.getId()+".class).save(entity, app.getApplicationModel()).toString();\n");
             addEntityCode.append("entity.setId(id);\n");
         } else {
             CodegenEntityModel parent = entityModel.getReferencedBy().get();

@@ -19,7 +19,6 @@ import io.skysail.server.app.designer.application.resources.*;
 import io.skysail.server.app.designer.codegen.PostCompilationResource;
 import io.skysail.server.app.designer.entities.DbEntity;
 import io.skysail.server.app.designer.entities.resources.*;
-import io.skysail.server.app.designer.fields.DbEntityField;
 import io.skysail.server.app.designer.fields.resources.*;
 import io.skysail.server.app.designer.repo.DesignerRepository;
 import io.skysail.server.db.DbService;
@@ -149,21 +148,6 @@ public class DesignerApplication extends SkysailApplication implements MenuItemP
 
     public DbApplication getApplication(String id) {
         return getRepository().getById(DbApplication.class, id);
-    }
-
-    public DbEntityField getEntityField(String appId, String entityId, String fieldId) {
-        DbApplication application = getRepository().getById(DbApplication.class, appId);
-        Optional<DbEntity> entityFromApplication = null;//getEntityFromApplication(application, entityId);
-        if (entityFromApplication.isPresent()) {
-            List<DbEntityField> fields = Collections.emptyList();//entityFromApplication.get().getFields();
-            return fields.stream().filter(f -> {
-                if (f == null || f.getId() == null) {
-                    return false;
-                }
-                return f.getId().replace("#", "").equals(fieldId);
-            }).findFirst().orElse(null);
-        }
-        return null;
     }
 
     public void updateBundle() {

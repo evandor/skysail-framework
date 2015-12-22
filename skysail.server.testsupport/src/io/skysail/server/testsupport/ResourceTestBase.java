@@ -56,6 +56,7 @@ public class ResourceTestBase {
     private ConcurrentMap<String, Object> attributes;
 
     protected Request request;
+    @Deprecated // use FormBuilder
     protected Form form;
     protected ClientInfo clientInfo;
     protected Form query;

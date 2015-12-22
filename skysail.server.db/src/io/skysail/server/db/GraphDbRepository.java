@@ -8,6 +8,7 @@ import org.restlet.engine.util.StringUtils;
 import com.tinkerpop.blueprints.impls.orient.OrientVertex;
 
 import io.skysail.domain.Identifiable;
+import io.skysail.domain.core.ApplicationModel;
 import io.skysail.domain.core.repos.DbRepository;
 import io.skysail.server.queryfilter.Filter;
 import io.skysail.server.queryfilter.pagination.Pagination;
@@ -48,9 +49,8 @@ public class GraphDbRepository<T extends Identifiable> implements DbRepository {
         return (OrientVertex) dbService.persist(entity, edges);
     }
 
-    @Override
-    public OrientVertex save(Identifiable entity) {
-        return (OrientVertex) dbService.persist(entity);
+    public OrientVertex save(Identifiable entity, ApplicationModel applicationModel) {
+        return (OrientVertex) dbService.persist(entity, applicationModel);
     }
 
     @Override
@@ -65,6 +65,11 @@ public class GraphDbRepository<T extends Identifiable> implements DbRepository {
     public void deleteVertex(String id) {
         dbService.deleteVertex(id);
     }
+
+    @Override
+    public void delete(Identifiable identifiable) {
+    }
+
 
     @Override
     public T findOne(String id) {

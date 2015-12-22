@@ -6,13 +6,13 @@ import org.osgi.service.component.annotations.*;
 
 import com.tinkerpop.blueprints.impls.orient.OrientVertex;
 
+import io.skysail.domain.Identifiable;
+import io.skysail.domain.core.ApplicationModel;
+import io.skysail.domain.core.repos.DbRepository;
 import io.skysail.server.app.designer.application.DbApplication;
 import io.skysail.server.app.designer.entities.DbEntity;
 import io.skysail.server.app.designer.fields.*;
 import io.skysail.server.db.*;
-import io.skysail.domain.Identifiable;
-import io.skysail.domain.core.ApplicationModel;
-import io.skysail.domain.core.repos.DbRepository;
 import lombok.extern.slf4j.Slf4j;
 
 @Component(immediate = true, property = "name=DesignerRepository")
@@ -101,7 +101,7 @@ public class DesignerRepository implements DbRepository {
     }
 
     @Override
-    public Object save(Identifiable identifiable) {
+    public Object save(Identifiable identifiable, ApplicationModel appModel) {
         return null;
     }
 
@@ -117,6 +117,11 @@ public class DesignerRepository implements DbRepository {
     @Override
     public Class<Identifiable> getRootEntity() {
         return null;
+    }
+
+    @Override
+    public void delete(Identifiable identifiable) {
+        dbService.delete2(identifiable.getClass(), identifiable.getId());
     }
 
 

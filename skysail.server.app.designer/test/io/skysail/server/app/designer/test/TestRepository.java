@@ -3,6 +3,7 @@ package io.skysail.server.app.designer.test;
 import org.osgi.service.component.annotations.*;
 
 import io.skysail.domain.Identifiable;
+import io.skysail.domain.core.ApplicationModel;
 import io.skysail.domain.core.repos.DbRepository;
 import io.skysail.server.db.DbService;
 
@@ -34,13 +35,17 @@ public class TestRepository implements DbRepository {
     }
 
     @Override
-    public Object save(Identifiable identifiable) {
+    public Object save(Identifiable identifiable, ApplicationModel appModel) {
         return null;
     }
 
     @Override
     public Object update(String id, Identifiable entity, String... edges) {
         return null;
+    }
+
+    @Override
+    public void delete(Identifiable identifiable) {
     }
 
 }

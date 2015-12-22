@@ -1,3 +1,0 @@
-appNavTitle(resource) ::= <<
-&nbsp;$resource.appNavTitle$
->>

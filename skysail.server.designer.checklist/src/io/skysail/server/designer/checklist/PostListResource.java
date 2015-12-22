@@ -31,7 +31,7 @@ public class PostListResource extends PostEntityServerResource<io.skysail.server
     @Override
     public void addEntity(io.skysail.server.designer.checklist.List entity) {
         Subject subject = SecurityUtils.getSubject();
-        String id = app.getRepository(io.skysail.server.designer.checklist.List.class).save(entity).toString();
+        String id = app.getRepository(io.skysail.server.designer.checklist.List.class).save(entity, app.getApplicationModel()).toString();
         entity.setId(id);
 
     }

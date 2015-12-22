@@ -23,7 +23,6 @@ public interface DbService {
     Object update(Object id, Identifiable entity, String... edges);
 
     // --- object api ---
-    //<T> T findObjectById(Class<?> cls, String id);
     <T> List<T> findObjects(String sql);
     <T> List<T> findObjects(String sql, Map<String, Object> params);
 

@@ -1,10 +1,12 @@
 package io.skysail.server.app;
 
 import io.skysail.domain.Identifiable;
+import io.skysail.domain.core.ApplicationModel;
 import io.skysail.domain.core.repos.*;
 import lombok.ToString;
 
 @ToString
+// FIXME needed?
 public class RepositoryHolder implements Repository {
 
     private String id;
@@ -33,13 +35,17 @@ public class RepositoryHolder implements Repository {
     }
 
     @Override
-    public Object save(Identifiable identifiable) {
+    public Object save(Identifiable identifiable, ApplicationModel appModel) {
         return null;
     }
 
     @Override
     public Object update(String id, Identifiable entity, String... edges) {
         return null;
+    }
+
+    @Override
+    public void delete(Identifiable identifiable) {
     }
 
 }

@@ -11,12 +11,14 @@ import io.skysail.api.responses.SkysailResponse;
 import io.skysail.server.app.designer.DesignerApplication;
 import io.skysail.server.app.designer.application.DbApplication;
 import io.skysail.server.app.designer.application.resources.*;
+import io.skysail.server.app.designer.application.validation.UniqueNameValidator;
 import io.skysail.server.app.designer.entities.DbEntity;
 import io.skysail.server.app.designer.entities.resources.*;
 import io.skysail.server.app.designer.fields.resources.*;
 import io.skysail.server.app.designer.repo.DesignerRepository;
 import io.skysail.server.restlet.resources.SkysailServerResource;
 import io.skysail.server.testsupport.ResourceTestBase;
+import lombok.NonNull;
 
 public abstract class AbstractDesignerResourceTest extends ResourceTestBase {
 
@@ -76,6 +78,9 @@ public abstract class AbstractDesignerResourceTest extends ResourceTestBase {
         super.setUpResource(postFieldResource, context);
 
         setUpSubject("admin");
+        
+        new UniqueNameValidator().setDbService(testDb);
+
     }
 
     public void setUpRepository(DesignerRepository designerRepository) {
@@ -96,9 +101,19 @@ public abstract class AbstractDesignerResourceTest extends ResourceTestBase {
         resource.init(null, request, responses.get(resource.getClass().getName()));
     }
 
-    protected void setAttributes(String name, String id) {
+    /**
+     * adds provided key/value pair to requests attributes map, removing '#' from the value.
+     */
+    protected void addAttribute(@NonNull String key, @NonNull String value) {
+        getAttributes().put(key, value.replace("#",""));
+    }
+    
+    /**
+     * clears the requests attribute map, and adds the provided key/value pair, removing '#' from the value.
+     */
+    protected void setAttributes(@NonNull String key, @NonNull String value) {
         getAttributes().clear();
-        getAttributes().put(name, id);
+        addAttribute(key, value);
     }
 
     protected DbApplication createValidApplication() {

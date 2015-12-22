@@ -7,6 +7,7 @@ import javax.validation.constraints.*;
 
 import io.skysail.api.forms.*;
 import io.skysail.domain.Identifiable;
+import io.skysail.server.app.designer.application.validation.UniqueName;
 import io.skysail.server.app.designer.entities.DbEntity;
 import io.skysail.server.forms.ListView;
 import lombok.*;
@@ -16,6 +17,7 @@ import lombok.*;
 @Setter
 @EqualsAndHashCode(of = "id")
 @ToString(of = { "id", "name", "entities" })
+@UniqueName
 public class DbApplication implements Identifiable {
 
     @Id

@@ -52,7 +52,7 @@ public class ApplicationModelTest {
             }
 
             @Override
-            public Object save(Identifiable identifiable) {
+            public Object save(Identifiable identifiable, ApplicationModel appModel) {
                 return null;
             }
 
@@ -64,6 +64,10 @@ public class ApplicationModelTest {
             @Override
             public Identifiable findOne(String id) {
                 return null;
+            }
+
+            @Override
+            public void delete(Identifiable identifiable) {
             }
         };
         repos.setRepository(aRepository);

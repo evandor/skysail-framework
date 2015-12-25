@@ -5,7 +5,7 @@ import java.lang.reflect.Field;
 import javax.validation.constraints.*;
 
 import io.skysail.api.forms.InputType;
-import io.skysail.server.forms.ListView;
+import io.skysail.server.forms.*;
 import io.skysail.server.restlet.resources.SkysailServerResource;
 import lombok.*;
 
@@ -16,13 +16,17 @@ public class ClassFieldModel extends io.skysail.domain.core.FieldModel {
     @Getter
     private Class<? extends SkysailServerResource<?>> listViewLink;
 
+    private Field f;
+
     public ClassFieldModel(String id) {
         super(id);
+        f = null;
         listViewLink = null;
     }
 
     public ClassFieldModel(java.lang.reflect.Field f) {
         super(f.getName());
+        this.f = f;
         setInputType(determineInputType(f));
         setMandatory(determineIfMandatory(f));
         setReadonly(false);
@@ -31,7 +35,12 @@ public class ClassFieldModel extends io.skysail.domain.core.FieldModel {
 
         listViewLink = determineListViewLink(f);
     }
-
+    
+    public String getPostTabName() {
+        PostView postAnnotation = f.getAnnotation(PostView.class);
+        return postAnnotation == null ? null : postAnnotation.tab(); 
+    }
+    
     private Class<? extends SkysailServerResource<?>> determineListViewLink(Field f) {
         ListView listViewAnnotation = f.getAnnotation(ListView.class);
         if (listViewAnnotation != null && !listViewAnnotation.link().equals(ListView.DEFAULT.class)) {

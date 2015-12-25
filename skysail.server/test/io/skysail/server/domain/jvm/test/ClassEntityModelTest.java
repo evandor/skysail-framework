@@ -40,5 +40,26 @@ public class ClassEntityModelTest {
         assertThat(entity.getFields().get("stringField").getId(),is("stringField"));
     }
 
+    @Test
+    public void entity_without_tab_definition_does_not_use_tabs() {
+        ClassEntityModel entity = new ClassEntityModel(identifiableClass);
+        assertThat(entity.getTabs().size(),is(0));
+    }
+
+    @Test
+    public void entity_with_incomplete_tab_definition_uses_tabs_and_additional_default_tab() {
+        ClassEntityModel entity = new ClassEntityModel(AThingWithSingleTabDefinition.class);
+        assertThat(entity.getTabs().size(),is(2));
+        assertThat(entity.getTabs().get(0).getName(),is("theTab"));
+        assertThat(entity.getTabs().get(1).getName(),is("more..."));
+    }
+
+    @Test
+    public void entity_with_complete_tab_definition_uses_defined_tabs() {
+        ClassEntityModel entity = new ClassEntityModel(AThingWithCompleteTabDefinition.class);
+        assertThat(entity.getTabs().size(),is(2));
+        assertThat(entity.getTabs().get(0).getName(),is("theTab"));
+        assertThat(entity.getTabs().get(1).getName(),is("optional"));
+    }
 
 }

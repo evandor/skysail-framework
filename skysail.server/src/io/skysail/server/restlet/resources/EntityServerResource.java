@@ -8,7 +8,6 @@ import javax.validation.*;
 import org.restlet.data.*;
 import org.restlet.representation.Variant;
 import org.restlet.resource.*;
-import org.slf4j.*;
 
 import de.twenty11.skysail.server.core.restlet.*;
 import io.skysail.api.links.LinkRelation;
@@ -17,6 +16,7 @@ import io.skysail.domain.Identifiable;
 import io.skysail.server.restlet.RequestHandler;
 import io.skysail.server.restlet.filter.AbstractResourceFilter;
 import io.skysail.server.services.PerformanceTimer;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Abstract base class for skysail server-side resources representing a single
@@ -62,9 +62,8 @@ import io.skysail.server.services.PerformanceTimer;
  * @param <T>
  *            the entity
  */
+@Slf4j
 public abstract class EntityServerResource<T extends Identifiable> extends SkysailServerResource<T> {
-
-    private static final Logger logger = LoggerFactory.getLogger(EntityServerResource.class);
 
     public EntityServerResource() {
         addToContext(ResourceContextId.LINK_TITLE, "show");
@@ -112,7 +111,7 @@ public abstract class EntityServerResource<T extends Identifiable> extends Skysa
      *             parse exception
      */
     public T getData(Form form) throws ParseException {
-        logger.warn("trying to read data from form {}, but getData(Form form) is not overwritten by {}", form, this
+        log.warn("trying to read data from form {}, but getData(Form form) is not overwritten by {}", form, this
                 .getClass().getName());
         return null;
 
@@ -130,7 +129,7 @@ public abstract class EntityServerResource<T extends Identifiable> extends Skysa
     @Get("html|json|eventstream|treeform|txt|csv|yaml|mailto")
     public EntityServerResponse<T> getEntity2(Variant variant) {
         Set<PerformanceTimer> perfTimer = getApplication().startPerformanceMonitoring(this.getClass().getSimpleName() + ":getEntity");
-        logger.info("Request entry point: {} @Get('html|json|eventstream|treeform|txt')", this.getClass().getSimpleName());
+        log.info("Request entry point: {} @Get('html|json|eventstream|treeform|txt')", this.getClass().getSimpleName());
         if (variant != null) {
             getRequest().getAttributes().put(SKYSAIL_SERVER_RESTLET_VARIANT, variant);
         }
@@ -147,7 +146,7 @@ public abstract class EntityServerResource<T extends Identifiable> extends Skysa
     @Delete("x-www-form-urlencoded:html|html|json")
     public EntityServerResponse<T> deleteEntity(Variant variant) {
         Set<PerformanceTimer> perfTimer = getApplication().startPerformanceMonitoring(this.getClass().getSimpleName() + ":deleteEntity");
-        logger.info("Request entry point: {} @Delete('x-www-form-urlencoded:html|html|json')", this.getClass()
+        log.info("Request entry point: {} @Delete('x-www-form-urlencoded:html|html|json')", this.getClass()
                 .getSimpleName());
         if (variant != null) {
             getRequest().getAttributes().put(SKYSAIL_SERVER_RESTLET_VARIANT, variant);
@@ -158,18 +157,6 @@ public abstract class EntityServerResource<T extends Identifiable> extends Skysa
         getApplication().stopPerformanceMonitoring(perfTimer);
         return new EntityServerResponse<>(getResponse(), entity);
     }
-
-//    @Options("json")
-//    public final SkysailResponse<ResourceContextResource> doOptions(Representation entity, Variant variant) {
-//        Set<PerformanceTimer> perfTimer = getApplication().startPerformanceMonitoring(
-//                this.getClass().getSimpleName() + ":doOptions");
-//        log.info("Request entry point: {}  @Options('json') with variant {}", this.getClass().getSimpleName(),
-//                variant);
-//        ResourceContextResource context = new ResourceContextResource(this);
-//        getApplication().stopPerformanceMonitoring(perfTimer);
-//        return new SkysailResponse<ResourceContextResource>(context);
-//    }
-
 
     protected T getEntity3() {
         RequestHandler<T> requestHandler = new RequestHandler<T>(getApplication());

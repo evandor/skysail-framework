@@ -9,6 +9,8 @@ import javax.validation.constraints.*;
 import io.skysail.api.forms.*;
 import io.skysail.domain.Identifiable;
 import io.skysail.server.app.designer.fields.*;
+import io.skysail.server.app.designer.fields.resources.FieldsResource;
+import io.skysail.server.forms.ListView;
 import lombok.*;
 
 @NoArgsConstructor
@@ -28,7 +30,7 @@ public class DbEntity implements Identifiable, Serializable {
     @Pattern(regexp="[A-Z_$][a-zA-Z\\d_$]*", message = "Please start with an uppercase letter, and don't use any special characters.")
     @NotNull
     @Size(min=2)
-    
+    @ListView(link = FieldsResource.class, truncate = 20)
     private String name;
 
     @Field(inputType = InputType.CHECKBOX)

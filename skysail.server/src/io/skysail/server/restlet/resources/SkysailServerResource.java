@@ -60,6 +60,7 @@ public abstract class SkysailServerResource<T> extends ServerResource {
 
     private List<Link> links;
 
+    // TODO use restlet context?
     private Map<ResourceContextId, String> stringContextMap = new HashMap<>();
 
     @Getter
@@ -325,6 +326,12 @@ public abstract class SkysailServerResource<T> extends ServerResource {
 
     public String getFromContext(ResourceContextId id) {
         return stringContextMap.get(id);
+    }
+
+    protected void setUrlSubsitution(String identifierName, String id, String substitution) {
+        Map<String, String> substitutions = new HashMap<>();
+        substitutions.put("/"+identifierName+"/" + id, substitution);
+        getContext().getAttributes().put(ResourceContextId.PATH_SUBSTITUTION.name(), substitutions);
     }
 
     protected T populate(T bean, Form form) {

@@ -8,7 +8,7 @@ import io.skysail.api.responses.SkysailResponse;
 import io.skysail.server.app.designer.DesignerApplication;
 import io.skysail.server.app.designer.application.DbApplication;
 import io.skysail.server.app.designer.codegen.PostCompilationResource;
-import io.skysail.server.app.designer.entities.resources.*;
+import io.skysail.server.app.designer.entities.resources.EntitiesResource;
 import io.skysail.server.app.designer.repo.DesignerRepository;
 import io.skysail.server.restlet.resources.*;
 
@@ -49,18 +49,9 @@ public class ApplicationResource extends EntityServerResource<DbApplication> {
 
     @Override
     public List<Link> getLinks() {
-        return super.getLinks(PutApplicationResource.class, ApplicationResource.class, PostEntityResource.class,
+        return super.getLinks(PutApplicationResource.class,
                 EntitiesResource.class, PostCompilationResource.class);
     }
-
-//    @Override
-//    public Consumer<? super Link> getPathSubstitutions() {
-//        return l -> {
-//            if (id != null) {
-//                l.substitute("id", id);
-//            }
-//        };
-//    }
 
     @Override
     public String redirectTo(Class<? extends SkysailServerResource<?>> cls) {

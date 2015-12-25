@@ -1,20 +1,47 @@
 postForm(model, messages) ::= <<
-    <form action="$model.formTarget$" method="POST" class="form-horizontal" role="form" id="form" name="form">
-      $handleField(first(model.data), first(model.formfields), messages,"1", " autofocus")$
-      $rest(model.formfields):{ field | $handleField(first(model.data), field, messages,i, "")$}$
-      $if (model.submitButtonNeeded)$
-        $submitPost("Submit","2","10",length(model.formfields))$
-      $endif$
-    </form>
+  <form action="$model.formTarget$" method="POST" class="form-horizontal" role="form" id="form" name="form">
+  $if(model.useTabs)$
+    <div>
+      <ul class="nav nav-tabs" role="tablist">
+        $model.tabs:{tab | $handleTabNav(model, tab)$}$
+      </ul>
+      <div class="tab-content">
+        <br>
+        $model.tabs:{tab | $handleTabContent(model, tab)$}$
+      </div>
+    </div>
+    $if (model.submitButtonNeeded)$
+      $submitPost("Submit","2","10",length(model.formfields))$
+    $endif$
+    
+  $else$
+    $handleField(first(model.data), first(model.formfields), messages,"1", " autofocus")$
+    $rest(model.formfields):{ field | $handleField(first(model.data), field, messages,i, "")$}$
+    $if (model.submitButtonNeeded)$
+      $submitPost("Submit","2","10",length(model.formfields))$
+    $endif$
+  $endif$
+  </form>
+>>
+
+handleTabNav(model,tab) ::= <<
+  <li role="presentation" $if(tab.active)$class="active"$endif$><a href="#tabId_$tab.counter$" aria-controls="tabId_$tab.counter$" role="tab" data-toggle="tab">$tab.name$</a></li>
+
+>>
+
+handleTabContent(model,tab) ::= <<
+  <div role="tabpanel" class="tab-pane$if(tab.active)$ active$endif$" id="tabId_$tab.counter$">
+    $model.tabFields.(tab.name):{ field | $handleField(first(model.data), field, messages,i, "")$}$
+  </div>
 >>
 
 submitPost(label, o1,o2,tabindex) ::= <<
-      <div class="form-group">
-        <div class="col-sm-offset-$o1$ col-sm-$o2$">
-          <button type="submit" name="submit" value="submit" class="btn btn-default" tabindex="$tabindex$">$label$</button>&nbsp;
-          <button type="submit" name="submit" value="submitAndNew" class="btn btn-default" tabindex="$tabindex$">$label$ and new</button>
-        </div>
-      </div>
+  <div class="form-group">
+    <div class="col-sm-offset-$o1$ col-sm-$o2$">
+      <button type="submit" name="submit" value="submit" class="btn btn-default" tabindex="$tabindex$">$label$</button>&nbsp;
+      <button type="submit" name="submit" value="submitAndNew" class="btn btn-default" tabindex="$tabindex$">$label$ and new</button>
+    </div>
+  </div>
 >>
 
 handleField(data, field, messages,i, autofocus) ::= <<

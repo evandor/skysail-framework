@@ -8,7 +8,7 @@ import io.skysail.server.app.designer.DesignerApplication;
 import io.skysail.server.app.designer.application.DbApplication;
 import io.skysail.server.app.designer.application.resources.ApplicationsResource;
 import io.skysail.server.app.designer.entities.DbEntity;
-import io.skysail.server.app.designer.fields.resources.*;
+import io.skysail.server.app.designer.fields.resources.FieldsResource;
 import io.skysail.server.app.designer.repo.DesignerRepository;
 import io.skysail.server.restlet.resources.EntityServerResource;
 
@@ -19,6 +19,7 @@ public class EntityResource extends EntityServerResource<DbEntity> {
     private DesignerApplication app;
     private DesignerRepository repo;
 
+    @Override
     protected void doInit() {
         super.doInit();
         appId = getAttribute("id");
@@ -27,13 +28,14 @@ public class EntityResource extends EntityServerResource<DbEntity> {
         repo = (DesignerRepository) app.getRepository(DbApplication.class);
     }
 
+    @Override
     public DbEntity getEntity() {
-        return (DbEntity) repo.findEntity(entityId);
+        return repo.findEntity(entityId);
     }
 
+    @Override
     public List<Link> getLinks() {
-        return super.getLinks(PutEntityResource.class, EntityResource.class, PostFieldResource.class,
-                FieldsResource.class, PostSubEntityResource.class, SubEntitiesResource.class);
+        return super.getLinks(PutEntityResource.class, FieldsResource.class, PostSubEntityResource.class, SubEntitiesResource.class);
     }
 
     @Override

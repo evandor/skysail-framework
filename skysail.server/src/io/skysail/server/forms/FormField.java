@@ -43,6 +43,9 @@ public class FormField extends io.skysail.domain.core.FieldModel {
     private ListView listViewAnnotation;
 
     @Getter
+    private PostView postViewAnnotation;
+
+    @Getter
     private SkysailServerResource<?> resource;
 
     @Getter
@@ -58,6 +61,7 @@ public class FormField extends io.skysail.domain.core.FieldModel {
     private NotNull notNullAnnotation;
     private Size sizeAnnotation;
     private List<Option> selectionOptions;
+
 
     public FormField(Field field, SkysailServerResource<?> resource) {
         super(field.getName());
@@ -89,6 +93,7 @@ public class FormField extends io.skysail.domain.core.FieldModel {
         referenceAnnotation = field.getAnnotation(Reference.class);
         formFieldAnnotation = field.getAnnotation(io.skysail.api.forms.Field.class);
         listViewAnnotation = field.getAnnotation(ListView.class);
+        postViewAnnotation = field.getAnnotation(PostView.class);
         submitAnnotation = field.getAnnotation(Submit.class);
         notNullAnnotation = field.getAnnotation(NotNull.class);
         sizeAnnotation = field.getAnnotation(Size.class);

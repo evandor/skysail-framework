@@ -20,8 +20,8 @@ import io.skysail.api.search.*;
 import io.skysail.domain.Identifiable;
 import io.skysail.domain.core.*;
 import io.skysail.server.app.SkysailApplication;
-import io.skysail.server.domain.jvm.ClassFieldModel;
-import io.skysail.server.forms.FormField;
+import io.skysail.server.domain.jvm.*;
+import io.skysail.server.forms.*;
 import io.skysail.server.forms.helper.CellRendererHelper;
 import io.skysail.server.menus.MenuItemProvider;
 import io.skysail.server.restlet.resources.*;
@@ -463,6 +463,26 @@ public class ResourceModel<R extends SkysailServerResource<T>, T> {
 
         return new ArrayList<FormField>(fields.values());
     }
+    
+    public Map<String, List<FormField>> getTabFields() {
+        Map<String, List<FormField>> result = new HashMap<>();
+        for (FormField field : fields.values()) {
+            PostView postViewAnnotation = field.getPostViewAnnotation();
+            String tab = postViewAnnotation == null ? "more..." : postViewAnnotation.tab();
+            if ("".equals(tab)) {
+                tab = "more...";
+            }
+            if (result.containsKey(tab)) {
+                result.get(tab).add(field);
+            } else {
+                List<FormField> tabFields = new ArrayList<>();
+                tabFields.add(field);
+                result.put(tab, tabFields);
+            }
+        }
+        return result;
+    }
+    
 
 //    public List<FieldModel> getFields() {
 //        ApplicationModel applicationModel = resource.getApplication().getApplicationModel();
@@ -523,6 +543,16 @@ public class ResourceModel<R extends SkysailServerResource<T>, T> {
             return "YYYY-MM-DD";
         }
         return "";
+    }
+    
+    public boolean isUseTabs() {
+        return !getTabs().isEmpty();
+    }
+    
+    public List<Tab> getTabs() {
+        ApplicationModel applicationModel = resource.getApplication().getApplicationModel();
+        ClassEntityModel entity = (ClassEntityModel) applicationModel.getEntity(parameterizedType.getName());
+        return entity.getTabs();
     }
 
     private String checkPrefix(FormField formField, Map<String, Object> dataRow, String processed, Object id) {

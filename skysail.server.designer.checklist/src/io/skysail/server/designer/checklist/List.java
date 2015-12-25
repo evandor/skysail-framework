@@ -1,7 +1,7 @@
 package io.skysail.server.designer.checklist;
 
-import io.skysail.api.forms.*;
 import io.skysail.domain.Identifiable;
+import io.skysail.api.forms.*;
 import io.skysail.server.forms.ListView;
 
 import java.net.*;
@@ -28,7 +28,7 @@ public class List implements Identifiable {
 
     // --- fields ---
 
-    @Field(inputType = InputType.TEXT)
+    @Field(inputType = InputType.TEXT, htmlPolicy = HtmlPolicy.NO_HTML)
     private String listname;
 
     public void setListname(String value) {

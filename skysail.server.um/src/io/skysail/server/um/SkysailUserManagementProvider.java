@@ -1,16 +1,16 @@
 package io.skysail.server.um;
 
-import io.skysail.api.um.*;
-import io.skysail.server.db.DbService;
-import io.skysail.server.um.security.shiro.*;
-
 import java.util.*;
 
 import aQute.bnd.annotation.component.*;
 import de.twenty11.skysail.server.services.UserManager;
 import de.twenty11.skysail.server.um.domain.*;
+import io.skysail.api.um.*;
+import io.skysail.server.db.DbService;
+import io.skysail.server.um.security.shiro.*;
 
 //@Component(immediate = true)
+// FIXME can be deleted?
 public class SkysailUserManagementProvider implements UserManagementProvider, UserManager {
 
     private ShiroServices authenticationService;

@@ -8,6 +8,7 @@ import javax.validation.constraints.*;
 import io.skysail.api.forms.*;
 import io.skysail.domain.Identifiable;
 import io.skysail.server.app.designer.fields.resources.InputTypeSelectionProvider;
+import io.skysail.server.forms.ListView;
 import lombok.*;
 
 @Getter
@@ -34,9 +35,11 @@ public class DbEntityField implements Identifiable, Serializable {
     private Boolean notNull;
     
     @Field(inputType = InputType.TEXT)
+    @ListView(hide = true)
     private Integer sizeMin;
     
     @Field(inputType = InputType.TEXT)
+    @ListView(hide = true)
     private Integer sizeMax;
 
     @Builder

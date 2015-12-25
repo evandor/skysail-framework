@@ -2,6 +2,7 @@ package io.skysail.server.app.designer.fields.resources;
 
 import java.util.*;
 
+import de.twenty11.skysail.server.core.restlet.ResourceContextId;
 import io.skysail.api.links.Link;
 import io.skysail.server.app.designer.DesignerApplication;
 import io.skysail.server.app.designer.entities.DbEntity;
@@ -11,18 +12,18 @@ import io.skysail.server.restlet.resources.ListServerResource;
 public class FieldsResource extends ListServerResource<DbEntityField> {
 
     private DesignerApplication app;
-    private String id;
     private String entityId;
 
     public FieldsResource() {
         super(FieldResource.class);
+        addToContext(ResourceContextId.LINK_TITLE, "list fields");
+        addToContext(ResourceContextId.LINK_GLYPH, "chevron-down");
     }
 
     @Override
     protected void doInit() {
         super.doInit();
         app = (DesignerApplication) getApplication();
-        id = getAttribute("id");
         entityId = getAttribute(DesignerApplication.ENTITY_ID);
     }
 
@@ -37,6 +38,6 @@ public class FieldsResource extends ListServerResource<DbEntityField> {
 
     @Override
     public List<Link> getLinks() {
-        return super.getLinks(PostFieldResource.class, PostActionFieldResource.class);
+        return super.getLinks(PostFieldResource.class);
     }
 }

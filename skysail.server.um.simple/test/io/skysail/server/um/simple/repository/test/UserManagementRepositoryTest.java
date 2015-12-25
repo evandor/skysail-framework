@@ -1,15 +1,13 @@
 package io.skysail.server.um.simple.repository.test;
 
-import static org.hamcrest.CoreMatchers.equalTo;
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.nullValue;
+import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.assertThat;
-import io.skysail.server.um.simple.repository.UserManagementRepository;
 
 import java.util.HashMap;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.*;
+
+import io.skysail.server.um.simple.repository.UserManagementRepository;
 
 public class UserManagementRepositoryTest {
 
@@ -28,10 +26,9 @@ public class UserManagementRepositoryTest {
 
     @Test
     public void username_with_password_is_found_inUsernamesAndPasswords() {
-        config.put("users", "admin , user");
+        config.put("users", "admin");
         config.put("admin.password", "pwd");
         config.put("admin.id", "#1");
-        config.put("user.id", "#2");
         UserManagementRepository repository = new UserManagementRepository(config);
         assertThat(repository.getByPrincipal("#1").getUsername(), is(equalTo("admin")));
         assertThat(repository.getByPrincipal("#1").getPassword(), is(equalTo("pwd")));
@@ -39,10 +36,9 @@ public class UserManagementRepositoryTest {
 
     @Test
     public void username_with_role_is_found_inUsernamesAndRoles() {
-        config.put("users", "admin , user");
+        config.put("users", "admin");
         config.put("admin.password", "pwd");
         config.put("admin.id", "#1");
-        config.put("user.id", "#2");
         config.put("admin.roles", "role1, role2");
         UserManagementRepository repository = new UserManagementRepository(config);
         assertThat(repository.getByPrincipal("#1").getRoles().size(), is(2));

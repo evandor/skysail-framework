@@ -11,6 +11,7 @@ public class PostCompilationResource extends PostEntityServerResource<Empty> {
 
     public PostCompilationResource() {
         addToContext(ResourceContextId.LINK_TITLE, "compile applications");
+        addToContext(ResourceContextId.LINK_GLYPH, "flash");
     }
 
     @Override

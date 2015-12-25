@@ -1,7 +1,7 @@
 package io.skysail.server.domain.jvm;
 
 import java.lang.reflect.Field;
-import java.util.Arrays;
+import java.util.*;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
@@ -17,7 +17,11 @@ import lombok.extern.slf4j.Slf4j;
 @ToString
 public class ClassEntityModel extends EntityModel {
 
+    private static final String MORE_TAB_NAME = "more...";
+
     protected Class<? extends Identifiable> identifiableClass;
+
+    private volatile List<Tab> tabs;
     
     public ClassEntityModel(Class<? extends Identifiable> identifiableClass) {
         super(identifiableClass.getName());
@@ -90,6 +94,36 @@ public class ClassEntityModel extends EntityModel {
     
     private boolean filterRelationFields(Field f) {
         return f.getAnnotation(io.skysail.api.forms.Relation.class) != null;
+    }
+
+    public synchronized List<Tab> getTabs() {
+        if (tabs != null) {
+            return tabs;
+        }
+        Set<String> tabNamesSet = getFieldValues().stream()
+            .map(ClassFieldModel.class::cast)
+            .map(f -> f.getPostTabName())
+            .map(name -> name == null ? MORE_TAB_NAME : name)
+            .collect(Collectors.toSet());
+
+        List<String> tabNamesList = getFieldValues().stream()
+                .map(ClassFieldModel.class::cast)
+                .map(f -> f.getPostTabName())
+                .map(name -> name == null ? MORE_TAB_NAME : name)
+                .collect(Collectors.toList());
+        if (tabNamesList.isEmpty() || (tabNamesSet.size() == 1 && tabNamesSet.iterator().next().equals(MORE_TAB_NAME))) {
+            return Collections.emptyList();
+        }
+        tabs = new ArrayList<>();
+        int i = 0;
+        for (String tabNameFromList : tabNamesList) {
+            if (tabNamesSet.contains(tabNameFromList)) {
+                tabs.add(new Tab(tabNameFromList, i++));
+                tabNamesSet.remove(tabNameFromList);
+            }
+        }
+        
+        return tabs;
     }
 
 

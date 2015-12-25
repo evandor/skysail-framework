@@ -66,7 +66,5 @@ public class EntityModel {
         return id.substring(indexOfLastDot+1);
     }
     
-//    public String getPostResourceClassName() {
-//        return getPackageName() + ".Post" + getSimpleName() + "Resource";
-//    }
+
 }

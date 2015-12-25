@@ -1,7 +1,7 @@
 package io.skysail.server.designer.presentation;
 
-import io.skysail.api.forms.*;
 import io.skysail.domain.Identifiable;
+import io.skysail.api.forms.*;
 import io.skysail.server.forms.ListView;
 
 import java.net.*;
@@ -28,48 +28,15 @@ public class Item implements Identifiable {
 
     // --- fields ---
 
-    @Field(inputType = InputType.TEXTAREA, htmlPolicy = HtmlPolicy.NO_HTML)
-    private String description;
-
-    public void setDescription(String value) {
-        this.description = value;
-    }
-
-    public String getDescription() {
-        return this.description;
-    }
-
-    @Field(inputType = InputType.CHECKBOX, htmlPolicy = HtmlPolicy.NO_HTML)
-    private String newone;
-
-    public void setNewone(String value) {
-        this.newone = value;
-    }
-
-    public String getNewone() {
-        return this.newone;
-    }
-
     @Field(inputType = InputType.TEXT, htmlPolicy = HtmlPolicy.NO_HTML)
-    private String title;
+    private String topic;
 
-    public void setTitle(String value) {
-        this.title = value;
+    public void setTopic(String value) {
+        this.topic = value;
     }
 
-    public String getTitle() {
-        return this.title;
-    }
-
-    @Field(inputType = InputType.TRIX_EDITOR, htmlPolicy = HtmlPolicy.DEFAULT_HTML)
-    private String info;
-
-    public void setInfo(String value) {
-        this.info = value;
-    }
-
-    public String getInfo() {
-        return this.info;
+    public String getTopic() {
+        return this.topic;
     }
 
 

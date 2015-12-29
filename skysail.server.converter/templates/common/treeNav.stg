@@ -1,0 +1,9 @@
+treeNav(treeStructure) ::= <<
+  <div><br><u>$first(treeStructure).headline$</u></div>
+  <ul>
+    $treeStructure: {folder| 
+      <li><a href='$folder.link$'>$folder.name$</a></li>
+      $treeNav(folder.subfolders)$
+    }$
+  </ul>
+>>

@@ -30,9 +30,9 @@ import com.tinkerpop.blueprints.impls.orient.*;
 import aQute.bnd.annotation.component.*;
 import de.twenty11.skysail.server.core.osgi.EventHelper;
 import de.twenty11.skysail.server.events.EventHandler;
-import io.skysail.server.db.impl.*;
 import io.skysail.domain.Identifiable;
 import io.skysail.domain.core.ApplicationModel;
+import io.skysail.server.db.impl.*;
 import io.skysail.server.utils.SkysailBeanUtils;
 import lombok.extern.slf4j.Slf4j;
 
@@ -143,9 +143,8 @@ public class OrientGraphDbService extends AbstractOrientDbService implements DbS
         ODatabaseRecordThreadLocal.INSTANCE.set(db);
         OTraverse predicate = new OTraverse().target(new ORecordId(id)).fields("out", "int").limit(1)
                 .predicate(new OSQLPredicate("$depth <= 3"));
-        OIdentifiable next = predicate.iterator().next();
-        ODocument document = (ODocument) next;
-        return documentToBean(document, cls);
+        ODocument document = (ODocument) predicate.iterator().next();
+        return document != null ? documentToBean(document, cls) : null;
     }
 
     @SuppressWarnings("unchecked")

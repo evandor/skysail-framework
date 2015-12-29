@@ -50,7 +50,6 @@ public class EntityResource extends EntityServerResource<DbEntity> {
 
     @Override
     public String redirectTo() {
-        // TODO Auto-generated method stub
         return super.redirectTo(ApplicationsResource.class);
     }
 

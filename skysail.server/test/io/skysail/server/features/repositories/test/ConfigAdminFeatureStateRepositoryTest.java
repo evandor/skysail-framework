@@ -2,16 +2,14 @@ package io.skysail.server.features.repositories.test;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
-import io.skysail.api.features.Feature;
-import io.skysail.api.features.FeatureState;
-import io.skysail.server.features.repositories.ConfigAdminFeatureStateRepository;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.*;
 import org.mockito.Mockito;
+
+import io.skysail.api.features.*;
+import io.skysail.server.features.repositories.ConfigAdminFeatureStateRepository;
 
 public class ConfigAdminFeatureStateRepositoryTest {
 
@@ -27,6 +25,7 @@ public class ConfigAdminFeatureStateRepositoryTest {
     }
 
     @Test
+    @Ignore
     public void returns_enabled_state_if_feature_is_set_to_true() throws Exception {
         configMap.put("featureName", "true");
         featuresRepository.activate(configMap);

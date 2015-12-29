@@ -23,6 +23,7 @@ import io.skysail.server.app.designer.fields.resources.*;
 import io.skysail.server.app.designer.repo.DesignerRepository;
 import io.skysail.server.db.DbService;
 import io.skysail.server.menus.*;
+import io.skysail.server.restlet.resources.TreeRepresentation;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 
@@ -80,7 +81,8 @@ public class DesignerApplication extends SkysailApplication implements MenuItemP
 
         router.attach(new RouteBuilder("/entities/{" + ENTITY_ID + "}/onetomany/", PostSubEntityResource.class));
 
-        router.attach(new RouteBuilder("/entities/{" + ENTITY_ID + "}/fields", FieldsResource.class));
+        router.attach(new RouteBuilder("/applications/{id}/entities/{" + ENTITY_ID + "}/fields", FieldsResource.class));
+        
         router.attach(new RouteBuilder("/entities/{" + ENTITY_ID + "}/fields/", PostFieldResource.class));
         router.attach(new RouteBuilder("/entities/{" + ENTITY_ID + "}/fields/{" + FIELD_ID + "}", FieldResource.class));
         router.attach(new RouteBuilder("/entities/{" + ENTITY_ID + "}/fields/{" + FIELD_ID + "}/",PutFieldResource.class));
@@ -88,7 +90,7 @@ public class DesignerApplication extends SkysailApplication implements MenuItemP
         router.attach(new RouteBuilder("/entities/{" + ENTITY_ID + "}/actionfields/", PostActionFieldResource.class));
         
         
-        router.attach(new RouteBuilder("/import/", ImportResource.class));
+        router.attach(new RouteBuilder("/import/", ImportResource.class).authorizeWith(anyOf("admin")));
     }
 
     @org.osgi.service.component.annotations.Reference(policy = ReferencePolicy.DYNAMIC, cardinality = ReferenceCardinality.MANDATORY, target = "(name=DesignerRepository)")
@@ -135,11 +137,14 @@ public class DesignerApplication extends SkysailApplication implements MenuItemP
 
     private List<MenuItem> addDesignerAppMenuItems() {
         List<DbApplication> apps = getRepository().findAll(DbApplication.class);
-        return apps.stream().map(a -> {
-            MenuItem menu = new MenuItem(a.getName(), "/" + APP_NAME + "/preview/" + a.getName(), this);
-            menu.setCategory(MenuItem.Category.DESIGNER_APP_MENU);
-            return menu;
-        }).collect(Collectors.toList());
+        return apps.stream()
+            .filter(a -> a != null)
+            .map(a -> {
+                MenuItem menu = new MenuItem(a.getName(), "/" + APP_NAME + "/preview/" + a.getName(), this);
+                menu.setCategory(MenuItem.Category.DESIGNER_APP_MENU);
+                return menu;
+            })
+            .collect(Collectors.toList());
     }
 
     public DbEntity getEntity(String entityId) {
@@ -167,6 +172,14 @@ public class DesignerApplication extends SkysailApplication implements MenuItemP
             }
         };
         getTaskService().schedule(command, 1, TimeUnit.SECONDS);
+    }
+
+    public List<TreeRepresentation> getTreeRepresentation(String appId) {
+        DbApplication dbApplication = getApplication(appId);
+        if (dbApplication != null) {
+            return Arrays.asList(new TreeRepresentation(dbApplication,""));
+        }
+        return Collections.emptyList();
     }
 
 }

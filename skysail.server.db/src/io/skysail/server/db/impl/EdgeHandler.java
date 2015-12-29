@@ -47,8 +47,17 @@ public class EdgeHandler {
                 }
             }
 
-            edgesToDelete.stream().forEach(edge -> db.removeEdge(edge));
-
+            edgesToDelete.stream().forEach(edge -> {
+                Vertex targetVertex = edge.getVertex(Direction.IN);
+                Iterable<Edge> vertexInEdges = targetVertex.getEdges(Direction.IN);
+                Iterator<Edge> iterator = vertexInEdges.iterator();
+                iterator.next();
+                db.removeEdge(edge);
+                if (!iterator.hasNext()) {
+                    db.removeVertex(targetVertex);
+                }
+            });
+            
             for (Identifiable referencedObject : references) {
                 OrientVertex target = fn.apply(referencedObject);
                 Iterable<Edge> existingEdges = vertex.getEdges(Direction.OUT, key);

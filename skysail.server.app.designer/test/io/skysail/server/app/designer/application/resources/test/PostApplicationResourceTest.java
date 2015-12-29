@@ -60,5 +60,47 @@ public class PostApplicationResourceTest extends AbstractApplicationResourceTest
                 HTML_VARIANT);
         assertValidationFailure(postApplicationResource, post);
     }
+    
+    @Test
+    public void projectName_is_set_if_not_provided() {
+        DbApplication app = createValidApplication();
+        app.setProjectName("");
+
+        SkysailResponse<DbApplication> response = postApplicationResource.post(app, JSON_VARIANT);
+        
+        setAttributes("id", response.getEntity().getId());
+        init(applicationResource);
+        DbApplication appFromDb = applicationResource.getEntity();
+        app.setProjectName("skysail.server.app." + app.getName());
+        assertListResult(postApplicationResource, appFromDb, app, Status.SUCCESS_CREATED);
+    }
+
+    @Test
+    public void packageName_is_set_if_not_provided() {
+        DbApplication app = createValidApplication();
+        app.setPackageName("");
+
+        SkysailResponse<DbApplication> response = postApplicationResource.post(app, JSON_VARIANT);
+        
+        setAttributes("id", response.getEntity().getId());
+        init(applicationResource);
+        DbApplication appFromDb = applicationResource.getEntity();
+        app.setPackageName("io.skysail.server.app." + app.getName());
+        assertListResult(postApplicationResource, appFromDb, app, Status.SUCCESS_CREATED);
+    }
+
+    @Test
+    public void path_is_set_if_not_provided() {
+        DbApplication app = createValidApplication();
+        app.setPath("");
+
+        SkysailResponse<DbApplication> response = postApplicationResource.post(app, JSON_VARIANT);
+        
+        setAttributes("id", response.getEntity().getId());
+        init(applicationResource);
+        DbApplication appFromDb = applicationResource.getEntity();
+        app.setPath("../");
+        assertListResult(postApplicationResource, appFromDb, app, Status.SUCCESS_CREATED);
+    }
 
 }

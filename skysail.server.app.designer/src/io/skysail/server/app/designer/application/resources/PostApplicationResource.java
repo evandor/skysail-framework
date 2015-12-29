@@ -1,5 +1,6 @@
 package io.skysail.server.app.designer.application.resources;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
 
@@ -33,6 +34,16 @@ public class PostApplicationResource extends PostEntityServerResource<DbApplicat
         app.invalidateMenuCache();
         Subject subject = SecurityUtils.getSubject();
         entity.setOwner(subject.getPrincipal().toString());
+        if (StringUtils.isBlank(entity.getProjectName())) {
+            entity.setProjectName("skysail.server.app." + entity.getName().substring(0, 1).toLowerCase() + entity.getName().substring(1));
+        }
+        if (StringUtils.isBlank(entity.getPackageName())) {
+            entity.setPackageName("io.skysail.server.app." + entity.getName().substring(0, 1).toLowerCase()
+                    + entity.getName().substring(1));
+        }
+        if (StringUtils.isBlank(entity.getPath())) {
+            entity.setPath("../");
+        }
         String id = DesignerRepository.add(entity, app.getApplicationModel()).getId().toString();
         entity.setId(id);
     }

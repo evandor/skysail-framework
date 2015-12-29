@@ -7,7 +7,7 @@ import javax.persistence.Id;
 import javax.validation.constraints.*;
 
 import io.skysail.api.forms.*;
-import io.skysail.domain.Identifiable;
+import io.skysail.domain.*;
 import io.skysail.server.app.designer.fields.*;
 import io.skysail.server.app.designer.fields.resources.FieldsResource;
 import io.skysail.server.forms.ListView;
@@ -18,7 +18,7 @@ import lombok.*;
 @Setter
 @EqualsAndHashCode(of = "id")
 @ToString(of = { "id", "name", "fields", "subEntities" })
-public class DbEntity implements Identifiable, Serializable {
+public class DbEntity implements Identifiable, Nameable, Serializable {
 
     private static final long serialVersionUID = 7571240311935363328L;
 

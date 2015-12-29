@@ -21,6 +21,7 @@ import io.skysail.domain.Identifiable;
 import io.skysail.domain.core.*;
 import io.skysail.server.app.SkysailApplication;
 import io.skysail.server.domain.jvm.*;
+import io.skysail.server.features.GuiFeatures;
 import io.skysail.server.forms.*;
 import io.skysail.server.forms.helper.CellRendererHelper;
 import io.skysail.server.menus.MenuItemProvider;
@@ -202,6 +203,10 @@ public class ResourceModel<R extends SkysailServerResource<T>, T> {
 
     public List<Breadcrumb> getBreadcrumbs() {
         return new Breadcrumbs().create(resource);
+    }
+    
+    public List<TreeStructure> getTreeStructure() {
+        return TreeStructure.from(resource);
     }
 
     public List<RepresentationLink> getRepresentations() {
@@ -553,6 +558,10 @@ public class ResourceModel<R extends SkysailServerResource<T>, T> {
         ApplicationModel applicationModel = resource.getApplication().getApplicationModel();
         ClassEntityModel entity = (ClassEntityModel) applicationModel.getEntity(parameterizedType.getName());
         return entity.getTabs();
+    }
+
+    public boolean isShowBreadcrumbs() {
+        return GuiFeatures.SHOW_BREADCRUMBS.isActive();
     }
 
     private String checkPrefix(FormField formField, Map<String, Object> dataRow, String processed, Object id) {

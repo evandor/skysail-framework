@@ -6,7 +6,7 @@ import javax.persistence.Id;
 import javax.validation.constraints.*;
 
 import io.skysail.api.forms.*;
-import io.skysail.domain.Identifiable;
+import io.skysail.domain.*;
 import io.skysail.server.app.designer.application.validation.UniqueName;
 import io.skysail.server.app.designer.entities.DbEntity;
 import io.skysail.server.app.designer.entities.resources.EntitiesResource;
@@ -19,7 +19,7 @@ import lombok.*;
 @EqualsAndHashCode(of = "id")
 @ToString(of = { "id", "name", "entities" })
 @UniqueName
-public class DbApplication implements Identifiable {
+public class DbApplication implements Identifiable, Nameable {
 
     @Id
     private String id;
@@ -33,24 +33,22 @@ public class DbApplication implements Identifiable {
     private String name;
 
     @Field
-    @NotNull
-    @Size(min = 1)
-    @Pattern(regexp = "[a-zA-Z_]([\\.\\w])*", message = "please choose a simpler Identifier like 'skysail.server.app.designer.myapp'. Some of the characters are not allowed.")
+    // FIXME change regex to empty|...
+    //@Pattern(regexp = "[a-zA-Z_]([\\.\\w])*", message = "please choose a simpler Identifier like 'skysail.server.app.designer.myapp'. Some of the characters are not allowed.")
     @ListView(hide = true)
-    @PostView(tab = "optional")
+    @PostView(tab = "details")
     private String projectName;
 
     @Field
-    @NotNull
-    @Size(min = 1)
-    @Pattern(regexp = "[a-zA-Z_]([\\.\\w])*", message = "please choose a valid java package name like 'io.skysail.some.package'. Some of the provided characters are not allowed.")
+    // FIXME change regex to empty|...
+    //@Pattern(regexp = "[a-zA-Z_]([\\.\\w])*", message = "please choose a valid java package name like 'io.skysail.some.package'. Some of the provided characters are not allowed.")
     @ListView(hide = true)
+    @PostView(tab = "details")
     private String packageName;
 
     @Field
-    @Size(min = 1)
-    @NotNull
     @ListView(hide = true)
+    @PostView(tab = "details")
     private String path;
 
     @Field(inputType = InputType.READONLY)

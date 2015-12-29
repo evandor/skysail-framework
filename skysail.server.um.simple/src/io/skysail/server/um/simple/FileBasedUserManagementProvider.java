@@ -46,6 +46,7 @@ public class FileBasedUserManagementProvider implements UserManagementProvider {
     private volatile RestletRolesProvider restletRolesProvider;
 
     private volatile UserManagementRepository userManagerRepo;
+    
     private volatile ConfigurationAdmin configurationAdmin;
 
     private CacheManager cacheManager;

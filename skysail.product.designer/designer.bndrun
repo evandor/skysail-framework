@@ -24,7 +24,7 @@ logback.configurationFile.path = config/common
 
 -runbundles:\
     ${serverbundles-1.0.0},\
-    skysail.product.todos;version=latest,\
+    skysail.product.designer;version=latest,\
     skysail.server.ext.initconfig;version=latest,\
     skysail.server.codegen;version=latest,\
     skysail.server.app.designer;version=latest

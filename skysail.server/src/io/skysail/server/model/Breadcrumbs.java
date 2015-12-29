@@ -1,12 +1,8 @@
 package io.skysail.server.model;
 
-import io.skysail.server.restlet.resources.SkysailServerResource;
-
 import java.util.*;
 
 import javax.validation.constraints.NotNull;
-
-import lombok.extern.slf4j.Slf4j;
 
 import org.apache.commons.lang.StringUtils;
 import org.restlet.Request;
@@ -15,15 +11,15 @@ import org.restlet.routing.Route;
 import org.restlet.util.RouteList;
 
 import de.twenty11.skysail.server.core.restlet.*;
+import io.skysail.server.restlet.resources.SkysailServerResource;
 
-@Slf4j
 public class Breadcrumbs {
 
     public List<Breadcrumb> create(@NotNull SkysailServerResource<?> resource) {
         List<Breadcrumb> result = new ArrayList<Breadcrumb>();
         result.add(homeBreadcrumb());
         List<String> segments = getCleanedSegments(resource.getReference());
-        if (segments.size() > 0) {
+        if (!segments.isEmpty()) {
             result.add(applicationBreadcrumb(resource));
         }
         addSegments(resource, result, segments);

@@ -35,7 +35,7 @@ public class ConfigAdminFeatureStateRepository implements FeatureStateRepository
     @Override
     public FeatureState getFeatureState(Feature feature) {
         boolean enabled = false;
-        String featureConfig = config.get(feature.name());
+        String featureConfig = config.get(feature.getClass().getName() + "." + feature.name());
         if (featureConfig != null && new Boolean(featureConfig)) {
             enabled = true;
         }

@@ -20,8 +20,6 @@ public @interface Field {
     Class<? extends SelectionProvider> selectionProvider() default IgnoreSelectionProvider.class;
 
 
-    //Class<? extends DbRepository> repository() default NoRepository.class;
-
     /**
      * http://www.w3.org/TR/REC-html40/interact/forms.html#h-17.4
      */

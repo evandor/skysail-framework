@@ -32,6 +32,6 @@ logback.configurationFile.path = config/common
 ########################################################################################
 ### --- Pool (currently not used)  ------------------------------------------------- ###
 ########################################################################################
-    skysail.server.ext.browser;version=latest,\
+#    skysail.server.ext.browser;version=latest,\
 
 

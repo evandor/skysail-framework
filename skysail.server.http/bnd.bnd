@@ -1,4 +1,4 @@
-Bundle-Version: 5.0.0.${tstamp}
+Bundle-Version: 5.0.1.${tstamp}
 Service-Component: *
 Bundle-Name: SKYSAIL :: server :: http
 Bundle-Description: provides the skysail http server

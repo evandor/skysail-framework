@@ -151,7 +151,7 @@ public class ApplicationCreator {
 
         ST bndrun = getStringTemplateIndex("bndrun");
         bndrun.add("projectname", applicationModel.getProjectName());
-        Files.write(Paths.get(path + "/bndrun.bnd"), bndrun.render().getBytes());
+        Files.write(Paths.get(path + "/test.bndrun"), bndrun.render().getBytes());
 
         //ST gradle = getStringTemplateIndex("gradle");
         //Files.write(Paths.get(path + "/build.gradle"), gradle.render().getBytes());

@@ -1,14 +1,12 @@
 javafile(application, entity) ::= <<
 package $application.packageName$;
 
-import io.skysail.domain.Identifiable;
-import io.skysail.api.forms.*;
-import io.skysail.server.forms.ListView;
-
-import java.net.*;
-import java.util.Date;
-
 import javax.persistence.Id;
+
+import io.skysail.domain.Identifiable;
+import io.skysail.domain.html.Field;
+import io.skysail.domain.html.HtmlPolicy;
+import io.skysail.domain.html.InputType;
 
 import org.apache.commons.lang3.StringUtils;
 

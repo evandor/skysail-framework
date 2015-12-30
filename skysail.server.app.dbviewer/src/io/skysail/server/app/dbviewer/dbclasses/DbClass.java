@@ -1,7 +1,7 @@
 package io.skysail.server.app.dbviewer.dbclasses;
 
-import io.skysail.api.forms.Field;
 import io.skysail.domain.Identifiable;
+import io.skysail.domain.html.Field;
 import lombok.*;
 
 import com.orientechnologies.orient.core.record.impl.ODocument;

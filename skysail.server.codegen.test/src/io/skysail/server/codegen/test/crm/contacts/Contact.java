@@ -1,9 +1,8 @@
 package io.skysail.server.codegen.test.crm.contacts;
 
-import io.skysail.api.forms.Field;
-
 import javax.validation.constraints.*;
 
+import io.skysail.domain.html.Field;
 import lombok.*;
 
 @Getter

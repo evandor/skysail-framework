@@ -1,11 +1,11 @@
 package de.twenty11.skysail.server.um.domain;
 
-import io.skysail.api.forms.*;
-import io.skysail.domain.Identifiable;
-
 import java.util.*;
 
 import javax.persistence.*;
+
+import io.skysail.domain.Identifiable;
+import io.skysail.domain.html.*;
 
 public class SkysailUser implements Identifiable {
 

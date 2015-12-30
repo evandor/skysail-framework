@@ -1,6 +1,6 @@
 package io.skysail.server.model;
 
-import io.skysail.api.forms.Reference;
+import io.skysail.domain.html.Reference;
 import io.skysail.server.forms.*;
 import io.skysail.server.restlet.resources.*;
 
@@ -23,7 +23,7 @@ public abstract class FieldFactory {
     }
 
     private boolean isValidFieldAnnotation(SkysailServerResource<?> resource, Field field, List<String> fieldNames) {
-        io.skysail.api.forms.Field fieldAnnotation = field.getAnnotation(io.skysail.api.forms.Field.class);
+        io.skysail.domain.html.Field fieldAnnotation = field.getAnnotation(io.skysail.domain.html.Field.class);
         Reference referenceAnnotation = field.getAnnotation(Reference.class);
         if (fieldAnnotation == null && referenceAnnotation == null) {
             return false;

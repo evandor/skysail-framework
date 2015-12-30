@@ -1,12 +1,11 @@
 package io.skysail.server.designer.presentation;
 
-import io.skysail.api.forms.*;
-import io.skysail.domain.Identifiable;
-import io.skysail.server.codegen.annotations.GenerateResources;
-
 import javax.persistence.Id;
 import javax.validation.constraints.*;
 
+import io.skysail.domain.Identifiable;
+import io.skysail.domain.html.*;
+import io.skysail.server.codegen.annotations.GenerateResources;
 import lombok.*;
 
 @Getter

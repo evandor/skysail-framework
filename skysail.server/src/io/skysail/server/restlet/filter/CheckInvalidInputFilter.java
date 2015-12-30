@@ -1,22 +1,20 @@
 package io.skysail.server.restlet.filter;
 
-import io.skysail.api.forms.*;
-import io.skysail.domain.Identifiable;
-import io.skysail.server.app.SkysailApplication;
-import io.skysail.server.restlet.resources.*;
-import io.skysail.server.utils.ReflectionUtils;
-
 import java.lang.reflect.Field;
 import java.util.*;
-
-import lombok.NoArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 
 import org.owasp.html.*;
 import org.restlet.*;
 import org.restlet.data.*;
 
 import de.twenty11.skysail.server.core.restlet.Wrapper;
+import io.skysail.domain.Identifiable;
+import io.skysail.domain.html.*;
+import io.skysail.server.app.SkysailApplication;
+import io.skysail.server.restlet.resources.*;
+import io.skysail.server.utils.ReflectionUtils;
+import lombok.NoArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @NoArgsConstructor
@@ -57,7 +55,7 @@ public class CheckInvalidInputFilter<R extends SkysailServerResource<?>, T exten
                 List<Field> fields = ReflectionUtils.getInheritedFields(entity.getClass());
 
                 for (Field field : fields) {
-                    io.skysail.api.forms.Field formField = field.getAnnotation(io.skysail.api.forms.Field.class);
+                    io.skysail.domain.html.Field formField = field.getAnnotation(io.skysail.domain.html.Field.class);
                     if (formField == null) {
                         continue;
                     }
@@ -146,7 +144,7 @@ public class CheckInvalidInputFilter<R extends SkysailServerResource<?>, T exten
         HtmlPolicyBuilder htmlPolicyBuilder = noHtmlPolicyBuilder;
         Optional<Field> found = fields.stream().filter(f -> f.getName().equals(parameter.getName())).findFirst();
         if (found.isPresent()) {
-            io.skysail.api.forms.Field fieldAnnotation = found.get().getAnnotation(io.skysail.api.forms.Field.class);
+            io.skysail.domain.html.Field fieldAnnotation = found.get().getAnnotation(io.skysail.domain.html.Field.class);
             if (fieldAnnotation != null && fieldAnnotation.htmlPolicy() != null) {
                 htmlPolicyBuilder = createHtmlPolicyBuilder(fieldAnnotation.htmlPolicy());
             }

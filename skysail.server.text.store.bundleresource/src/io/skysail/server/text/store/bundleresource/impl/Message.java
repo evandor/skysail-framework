@@ -1,8 +1,8 @@
 package io.skysail.server.text.store.bundleresource.impl;
 
-import io.skysail.api.forms.Field;
 import io.skysail.api.text.*;
 import io.skysail.domain.Identifiable;
+import io.skysail.domain.html.Field;
 
 import java.util.Set;
 import java.util.stream.Collectors;

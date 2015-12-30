@@ -2,14 +2,11 @@ package io.skysail.server.ext.browser;
 
 import java.util.concurrent.Executors;
 
-import javafx.application.Application;
-import javafx.application.Platform;
+import aQute.bnd.annotation.component.*;
+import javafx.application.*;
 import javafx.scene.Scene;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-import aQute.bnd.annotation.component.Activate;
-import aQute.bnd.annotation.component.Component;
-import aQute.bnd.annotation.component.Deactivate;
 
 @Component(immediate = true)
 public class FxApp extends Application implements StageProvider {
@@ -30,7 +27,7 @@ public class FxApp extends Application implements StageProvider {
         this.stage = primaryStage;
 
         stage.setTitle("skysail browser");
-        scene = new Scene(new Browser(), 750, 500, Color.web("#666970"));
+        scene = new Scene(new Browser(), 1024, 800, Color.web("#666970"));
         stage.setScene(scene);
         scene.getStylesheets().add("io/skysail/server/ext/browser/BrowserToolbar.css");
         stage.show();

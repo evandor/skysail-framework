@@ -5,8 +5,8 @@ import java.util.*;
 import javax.persistence.Id;
 import javax.validation.constraints.*;
 
-import io.skysail.api.forms.*;
 import io.skysail.domain.*;
+import io.skysail.domain.html.*;
 import io.skysail.server.app.designer.application.validation.UniqueName;
 import io.skysail.server.app.designer.entities.DbEntity;
 import io.skysail.server.app.designer.entities.resources.EntitiesResource;

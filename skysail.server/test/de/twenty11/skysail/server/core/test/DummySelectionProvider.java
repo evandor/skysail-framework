@@ -1,11 +1,11 @@
 package de.twenty11.skysail.server.core.test;
 
-import io.skysail.api.forms.SelectionProvider;
-
 import java.util.HashMap;
 import java.util.Map;
 
 import org.restlet.resource.Resource;
+
+import io.skysail.domain.html.SelectionProvider;
 
 public class DummySelectionProvider implements SelectionProvider {
 

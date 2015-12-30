@@ -1,15 +1,9 @@
 package io.skysail.server.designer.presentation;
 
-import io.skysail.domain.Identifiable;
-import io.skysail.api.forms.*;
-import io.skysail.server.forms.ListView;
-
-import java.net.*;
-import java.util.Date;
-
 import javax.persistence.Id;
 
-import org.apache.commons.lang3.StringUtils;
+import io.skysail.domain.Identifiable;
+import io.skysail.domain.html.*;
 
 public class Item implements Identifiable {
 

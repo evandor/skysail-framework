@@ -1,12 +1,13 @@
-package io.skysail.api.forms.test;
+package io.skysail.domain.html;
 
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
-import io.skysail.api.forms.AllowedAttribute;
 
 import org.junit.Before;
 import org.junit.Test;
+
+import io.skysail.domain.html.AllowedAttribute;
 
 public class AllowedAttributeTest {
 

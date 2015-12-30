@@ -2,12 +2,9 @@ package de.twenty11.skysail.server.domain;
 
 import javax.validation.constraints.Size;
 
-import io.skysail.api.forms.*;
 import io.skysail.domain.Identifiable;
+import io.skysail.domain.html.*;
 
-//import io.skysail.api.forms.Form;
-
-//@Form(name = "credentials")
 public class Credentials implements Identifiable {
 
     @Size(min = 3, message = "Username must have at least three characters")

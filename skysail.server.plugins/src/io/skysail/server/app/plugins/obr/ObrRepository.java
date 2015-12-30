@@ -1,7 +1,7 @@
 package io.skysail.server.app.plugins.obr;
 
-import io.skysail.api.forms.Field;
 import io.skysail.domain.Identifiable;
+import io.skysail.domain.html.Field;
 
 import java.util.*;
 import java.util.stream.Collectors;

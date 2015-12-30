@@ -1,9 +1,8 @@
 package io.skysail.server.app.um.db.domain;
 
-import io.skysail.api.forms.*;
-
 import javax.validation.constraints.*;
 
+import io.skysail.domain.html.*;
 import lombok.*;
 
 @Getter

@@ -1,12 +1,11 @@
 package io.skysail.server.app.um.db.domain;
 
-import io.skysail.api.forms.*;
-import io.skysail.domain.Identifiable;
-
 import java.util.Date;
 
 import javax.persistence.Id;
 
+import io.skysail.domain.Identifiable;
+import io.skysail.domain.html.*;
 import lombok.*;
 
 @Getter

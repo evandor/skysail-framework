@@ -10,9 +10,9 @@ import org.restlet.resource.Resource;
 
 import de.twenty11.skysail.server.core.restlet.MessagesUtils;
 import de.twenty11.skysail.server.um.domain.SkysailUser;
-import io.skysail.api.forms.*;
 import io.skysail.api.responses.*;
 import io.skysail.domain.core.FieldModel;
+import io.skysail.domain.html.*;
 import io.skysail.server.forms.helper.CellRendererHelper;
 import io.skysail.server.restlet.resources.SkysailServerResource;
 import lombok.*;
@@ -56,7 +56,7 @@ public class FormField extends io.skysail.domain.core.FieldModel {
     private boolean submitField;
 
     private Reference referenceAnnotation;
-    private io.skysail.api.forms.Field formFieldAnnotation;
+    private io.skysail.domain.html.Field formFieldAnnotation;
     private Submit submitAnnotation;
     private NotNull notNullAnnotation;
     private Size sizeAnnotation;
@@ -91,7 +91,7 @@ public class FormField extends io.skysail.domain.core.FieldModel {
 
     private void setAnnotations(Field field) {
         referenceAnnotation = field.getAnnotation(Reference.class);
-        formFieldAnnotation = field.getAnnotation(io.skysail.api.forms.Field.class);
+        formFieldAnnotation = field.getAnnotation(io.skysail.domain.html.Field.class);
         listViewAnnotation = field.getAnnotation(ListView.class);
         postViewAnnotation = field.getAnnotation(PostView.class);
         submitAnnotation = field.getAnnotation(Submit.class);
@@ -307,7 +307,7 @@ public class FormField extends io.skysail.domain.core.FieldModel {
     }
 
     private InputType getFromFieldAnnotation(Field fieldAnnotation) {
-        io.skysail.api.forms.Field annotation = fieldAnnotation.getAnnotation(io.skysail.api.forms.Field.class);
+        io.skysail.domain.html.Field annotation = fieldAnnotation.getAnnotation(io.skysail.domain.html.Field.class);
         return annotation != null ? annotation.inputType() : null;
     }
 

@@ -1,7 +1,7 @@
 package io.skysail.server.app.plugins.query;
 
-import io.skysail.api.forms.Field;
 import io.skysail.domain.Identifiable;
+import io.skysail.domain.html.Field;
 import lombok.Data;
 
 @Data

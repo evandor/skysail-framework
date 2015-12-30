@@ -77,7 +77,7 @@ public class ClassEntityModel extends EntityModel {
     }
 
     private boolean filterFormFields(Field f) {
-        return f.getAnnotation(io.skysail.api.forms.Field.class) != null;
+        return f.getAnnotation(io.skysail.domain.html.Field.class) != null;
     }
     
     private String packageOf(String fullQualifiedName) {
@@ -93,7 +93,7 @@ public class ClassEntityModel extends EntityModel {
     }
     
     private boolean filterRelationFields(Field f) {
-        return f.getAnnotation(io.skysail.api.forms.Relation.class) != null;
+        return f.getAnnotation(io.skysail.domain.html.Relation.class) != null;
     }
 
     public synchronized List<Tab> getTabs() {

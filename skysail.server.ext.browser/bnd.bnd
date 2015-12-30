@@ -1,3 +1,4 @@
+### javafx info: http://stackoverflow.com/questions/22812488/using-javafx-in-jre-8
 Bundle-Version: 0.1.0.${tstamp}
 Private-Package:  \
 	io.skysail.server.ext.browser

@@ -13,13 +13,11 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class Repositories {
 
-    private volatile Map<String, DbRepository> repositories = new ConcurrentHashMap<>();
+    private volatile Map<String, DbRepository> repositories = new ConcurrentHashMap<>(); // NOSONAR
 
     @aQute.bnd.annotation.component.Reference(dynamic = true, multiple = true, optional = true)
     public void setRepository(@NonNull DbRepository repo) {
         if (repo.getRootEntity() == null) {
-            //throw new IllegalStateException("cannot set repository '" + repo.getClass().getName()
-            //        + "' as it does not have a root entity");
             return;
         }
         String identifier = repo.getRootEntity().getName();

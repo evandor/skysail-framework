@@ -1,6 +1,6 @@
 package io.skysail.server.app.um.db.domain;
 
-import io.skysail.api.forms.SelectionProvider;
+import io.skysail.domain.html.SelectionProvider;
 import io.skysail.server.app.um.db.UmApplication;
 import io.skysail.server.queryfilter.Filter;
 

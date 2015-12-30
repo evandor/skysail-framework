@@ -8,8 +8,8 @@ import javax.validation.constraints.*;
 
 import com.fasterxml.jackson.annotation.*;
 
-import io.skysail.api.forms.*;
 import io.skysail.domain.Identifiable;
+import io.skysail.domain.html.*;
 import io.skysail.server.app.todos.lists.UniquePerOwner;
 import io.skysail.server.app.todos.todos.Todo;
 import io.skysail.server.app.todos.todos.resources.TodosResource;

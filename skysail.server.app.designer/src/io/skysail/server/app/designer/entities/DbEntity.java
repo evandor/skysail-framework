@@ -6,8 +6,8 @@ import java.util.*;
 import javax.persistence.Id;
 import javax.validation.constraints.*;
 
-import io.skysail.api.forms.*;
 import io.skysail.domain.*;
+import io.skysail.domain.html.*;
 import io.skysail.server.app.designer.fields.*;
 import io.skysail.server.app.designer.fields.resources.FieldsResource;
 import io.skysail.server.forms.ListView;

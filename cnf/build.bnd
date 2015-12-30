@@ -22,6 +22,7 @@
 #bin:                   bin
 #testsrc:               test
 #testbin:               bin_test
+#test-reports:          test-reports
 #target-dir:            generated
 #target:                ${project}/${target-dir}
 #build:                 ${workspace}/cnf
@@ -34,6 +35,7 @@
 #javac:                 javac
 javac.source:          1.8
 javac.target:          1.8
+#javac.profile:
 #javac.debug:           on
 
 ## Bnd Options
@@ -110,6 +112,6 @@ Bundle-License:         http://www.opensource.org/licenses/apache2.0.php;\
 
 
 ## If you use git, you might want to uncomment the following lines:
-#Git-Descriptor:       ${system-allow-fail;git describe --dirty --always}
-#Git-SHA:              ${system-allow-fail;git rev-list -1 HEAD}
-#-diffignore:          Git-Descriptor,Git-SHA
+# Git-Descriptor:       ${system-allow-fail;git describe --dirty --always}
+# Git-SHA:              ${system-allow-fail;git rev-list -1 HEAD}
+# -diffignore:          Git-Descriptor,Git-SHA

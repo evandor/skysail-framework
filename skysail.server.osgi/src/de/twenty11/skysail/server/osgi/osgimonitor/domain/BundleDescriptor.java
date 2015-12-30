@@ -1,7 +1,7 @@
 package de.twenty11.skysail.server.osgi.osgimonitor.domain;
 
-import io.skysail.api.forms.Field;
 import io.skysail.domain.Identifiable;
+import io.skysail.domain.html.Field;
 
 import java.io.Serializable;
 import java.text.*;

@@ -1,4 +1,4 @@
-package io.skysail.api.forms;
+package io.skysail.domain.html;
 
 import java.lang.annotation.*;
 

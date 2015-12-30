@@ -1,6 +1,6 @@
 package io.skysail.server.app.todos.todos.resources;
 
-import io.skysail.api.forms.SelectionProvider;
+import io.skysail.domain.html.SelectionProvider;
 import io.skysail.server.app.todos.*;
 import io.skysail.server.queryfilter.Filter;
 import io.skysail.server.queryfilter.pagination.Pagination;

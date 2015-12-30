@@ -1,6 +1,6 @@
 package io.skysail.domain.core;
 
-import io.skysail.api.forms.InputType;
+import io.skysail.domain.html.InputType;
 import lombok.*;
 
 /**

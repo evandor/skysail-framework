@@ -3,8 +3,8 @@ package de.twenty11.skysail.server.app.profile;
 import javax.persistence.Transient;
 import javax.validation.constraints.*;
 
-import io.skysail.api.forms.*;
 import io.skysail.domain.Identifiable;
+import io.skysail.domain.html.*;
 import lombok.Data;
 
 /**

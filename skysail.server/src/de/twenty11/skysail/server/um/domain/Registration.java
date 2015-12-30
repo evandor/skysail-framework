@@ -1,23 +1,12 @@
 package de.twenty11.skysail.server.um.domain;
 
-import io.skysail.api.forms.Field;
-import io.skysail.api.forms.HtmlPolicy;
-import io.skysail.api.forms.InputType;
-
 import java.util.Date;
 
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.Id;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-import javax.persistence.Transient;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
+import javax.persistence.*;
+import javax.validation.constraints.*;
 
-import lombok.Getter;
-import lombok.Setter;
+import io.skysail.domain.html.*;
+import lombok.*;
 
 @PasswordsMatch
 @Getter

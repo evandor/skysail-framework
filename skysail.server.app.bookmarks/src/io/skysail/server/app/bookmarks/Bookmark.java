@@ -7,8 +7,8 @@ import javax.persistence.Id;
 
 import org.apache.commons.lang3.StringUtils;
 
-import io.skysail.api.forms.*;
 import io.skysail.domain.Identifiable;
+import io.skysail.domain.html.*;
 import io.skysail.server.app.bookmarks.resources.BookmarkResource;
 import io.skysail.server.forms.ListView;
 import lombok.*;

@@ -1,6 +1,6 @@
 package io.skysail.server.app.todos.todos.status;
 
-import io.skysail.api.forms.SelectionProvider;
+import io.skysail.domain.html.SelectionProvider;
 import io.skysail.server.app.todos.todos.Todo;
 import io.skysail.server.restlet.resources.SkysailServerResource;
 

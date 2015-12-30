@@ -1,16 +1,17 @@
 package io.skysail.server.app.todos.todos;
 
-import io.skysail.api.forms.*;
-import io.skysail.domain.Identifiable;
-import io.skysail.server.app.todos.todos.resources.*;
-import io.skysail.server.app.todos.todos.status.*;
-import io.skysail.server.forms.*;
-
 import java.util.Date;
 
 import javax.persistence.Id;
 import javax.validation.constraints.*;
 
+import org.osgi.service.component.annotations.Reference;
+
+import io.skysail.domain.Identifiable;
+import io.skysail.domain.html.*;
+import io.skysail.server.app.todos.todos.resources.PutTodoResource;
+import io.skysail.server.app.todos.todos.status.*;
+import io.skysail.server.forms.*;
 import lombok.*;
 
 @Getter
@@ -29,7 +30,7 @@ public class TodoSummary implements Identifiable {
     @Size(min = 2)
     private String title;
 
-    @Reference(selectionProvider = ListSelectionProvider.class)
+    @Reference//(selectionProvider = ListSelectionProvider.class)
     @ValidListId
     private String list;
 

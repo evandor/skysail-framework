@@ -1,6 +1,6 @@
 package io.skysail.server.app.designer.restclient;
 
-import io.skysail.api.forms.*;
+import io.skysail.domain.html.*;
 import io.skysail.server.codegen.annotations.GenerateResources;
 import io.skysail.server.forms.ListView;
 import lombok.*;

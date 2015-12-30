@@ -2,8 +2,8 @@ package io.skysail.server.domain.jvm.test;
 
 import java.util.Date;
 
-import io.skysail.api.forms.Field;
 import io.skysail.domain.Identifiable;
+import io.skysail.domain.html.Field;
 import io.skysail.server.forms.PostView;
 import lombok.*;
 

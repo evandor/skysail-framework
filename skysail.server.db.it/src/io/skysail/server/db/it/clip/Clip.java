@@ -1,7 +1,7 @@
 package io.skysail.server.db.it.clip;
 
-import io.skysail.api.forms.Field;
 import io.skysail.domain.Identifiable;
+import io.skysail.domain.html.Field;
 
 import java.util.Date;
 

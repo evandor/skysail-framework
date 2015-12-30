@@ -1,7 +1,7 @@
 package io.skysail.server.codegen.test.simple.todos;
 
-import io.skysail.api.forms.Field;
 import io.skysail.domain.Identifiable;
+import io.skysail.domain.html.Field;
 import io.skysail.server.codegen.ResourceType;
 import io.skysail.server.codegen.annotations.GenerateResources;
 

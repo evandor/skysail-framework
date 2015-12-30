@@ -1,11 +1,11 @@
 package io.skysail.server.app.designer.fields.resources;
 
-import io.skysail.api.forms.*;
-
 import java.util.*;
 import java.util.stream.Collectors;
 
 import org.restlet.resource.Resource;
+
+import io.skysail.domain.html.*;
 
 public class InputTypeSelectionProvider implements SelectionProvider {
 

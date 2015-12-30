@@ -5,8 +5,8 @@ import java.io.Serializable;
 import javax.persistence.Id;
 import javax.validation.constraints.*;
 
-import io.skysail.api.forms.*;
 import io.skysail.domain.*;
+import io.skysail.domain.html.*;
 import io.skysail.server.app.designer.fields.resources.InputTypeSelectionProvider;
 import io.skysail.server.forms.ListView;
 import lombok.*;

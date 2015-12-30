@@ -1,10 +1,9 @@
 package de.twenty11.skysail.server.app.tutorial.model2rest.step6;
 
-import io.skysail.api.forms.*;
-import io.skysail.domain.Identifiable;
-
 import javax.persistence.Id;
 
+import io.skysail.domain.Identifiable;
+import io.skysail.domain.html.*;
 import lombok.Data;
 
 @Data

@@ -1,6 +1,6 @@
 package io.skysail.server.codegen.test.withlist.companies;
 
-import io.skysail.api.forms.Field;
+import io.skysail.domain.html.Field;
 import lombok.*;
 
 @Getter

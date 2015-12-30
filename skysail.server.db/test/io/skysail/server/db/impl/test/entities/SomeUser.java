@@ -1,10 +1,9 @@
 package io.skysail.server.db.impl.test.entities;
 
-import io.skysail.api.forms.*;
-import io.skysail.domain.Identifiable;
-
 import java.util.*;
 
+import io.skysail.domain.Identifiable;
+import io.skysail.domain.html.*;
 import lombok.*;
 
 @Data

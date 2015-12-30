@@ -1,7 +1,7 @@
 package io.skysail.server.app.todos.todos.resources;
 
-import io.skysail.api.forms.Field;
 import io.skysail.domain.Identifiable;
+import io.skysail.domain.html.Field;
 import io.skysail.server.app.todos.todos.Todo;
 
 import java.text.SimpleDateFormat;

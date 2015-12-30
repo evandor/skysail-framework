@@ -4,7 +4,7 @@ import java.util.*;
 
 import org.restlet.resource.Resource;
 
-import io.skysail.api.forms.SelectionProvider;
+import io.skysail.domain.html.SelectionProvider;
 import io.skysail.server.queryfilter.Filter;
 import io.skysail.server.restlet.resources.SkysailServerResource;
 

@@ -1,22 +1,21 @@
 package io.skysail.server.app.todos.todos;
 
-import io.skysail.api.forms.*;
-import io.skysail.domain.Identifiable;
-import io.skysail.server.app.todos.todos.resources.PutTodoResource;
-import io.skysail.server.app.todos.todos.status.*;
-import io.skysail.server.forms.*;
-
 import java.text.SimpleDateFormat;
 import java.util.*;
 
 import javax.persistence.Id;
 import javax.validation.constraints.*;
 
-import lombok.*;
-
 import org.restlet.data.Form;
 
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+
+import io.skysail.domain.Identifiable;
+import io.skysail.domain.html.*;
+import io.skysail.server.app.todos.todos.resources.PutTodoResource;
+import io.skysail.server.app.todos.todos.status.*;
+import io.skysail.server.forms.*;
+import lombok.*;
 
 @Getter
 @Setter

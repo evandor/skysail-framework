@@ -167,7 +167,7 @@ public class SkysailBeanUtilsBean extends BeanUtilsBean {
 
     private Class<?> getParameterizedType(Object bean, String name) throws NoSuchFieldException {
         Field declaredField = bean.getClass().getDeclaredField(name);
-        io.skysail.api.forms.Field fieldAnnotation = declaredField.getAnnotation(io.skysail.api.forms.Field.class);
+        io.skysail.domain.html.Field fieldAnnotation = declaredField.getAnnotation(io.skysail.domain.html.Field.class);
         if (fieldAnnotation == null) {
             return null;
         }

@@ -3,8 +3,8 @@ package io.skysail.server.app.designer.fields.resources.test;
 import org.junit.Test;
 import org.restlet.data.Status;
 
-import io.skysail.api.forms.InputType;
 import io.skysail.api.responses.SkysailResponse;
+import io.skysail.domain.html.InputType;
 import io.skysail.server.app.designer.application.DbApplication;
 import io.skysail.server.app.designer.fields.DbEntityField;
 import io.skysail.server.testsupport.FormBuilder;

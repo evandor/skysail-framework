@@ -1,7 +1,7 @@
 package de.twenty11.skysail.server.app.tutorial.model2rest.step2;
 
-import io.skysail.api.forms.Field;
 import io.skysail.domain.Identifiable;
+import io.skysail.domain.html.Field;
 
 import javax.validation.constraints.Size;
 

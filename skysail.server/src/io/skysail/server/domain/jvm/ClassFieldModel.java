@@ -4,7 +4,7 @@ import java.lang.reflect.Field;
 
 import javax.validation.constraints.*;
 
-import io.skysail.api.forms.InputType;
+import io.skysail.domain.html.InputType;
 import io.skysail.server.forms.*;
 import io.skysail.server.restlet.resources.SkysailServerResource;
 import lombok.*;
@@ -50,7 +50,7 @@ public class ClassFieldModel extends io.skysail.domain.core.FieldModel {
     }
 
     private InputType determineInputType(Field f) {
-        return f.getAnnotation(io.skysail.api.forms.Field.class).inputType();
+        return f.getAnnotation(io.skysail.domain.html.Field.class).inputType();
     }
 
     private boolean determineIfMandatory(Field f) {

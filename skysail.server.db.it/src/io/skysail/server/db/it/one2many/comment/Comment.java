@@ -1,7 +1,7 @@
 package io.skysail.server.db.it.one2many.comment;
 
-import io.skysail.api.forms.Field;
 import io.skysail.domain.Identifiable;
+import io.skysail.domain.html.Field;
 
 import java.util.concurrent.atomic.AtomicInteger;
 

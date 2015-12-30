@@ -1,7 +1,5 @@
 package io.skysail.server.app.designer.fields;
 
-import io.skysail.api.forms.SelectionProvider;
-
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -9,6 +7,8 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 import org.restlet.resource.Resource;
+
+import io.skysail.domain.html.SelectionProvider;
 
 public class ActionTypeSelectionProvider implements SelectionProvider {
 

@@ -6,6 +6,7 @@ Bundle-License: http://www.apache.org/licenses/LICENSE-2.0.txt
 	osgi.core;version=${osgi.version},\
 	osgi.cmpn;version=${osgi.version},\
     osgi.annotation;version=${osgi.annotation.version},\
+    skysail.domain;version=${skysail.domain.version},\
 	lombok;version=1.16,\
 	com.fasterxml.jackson.core.jackson-annotations,\
 	org.apache.commons.lang,\

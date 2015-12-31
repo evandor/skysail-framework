@@ -7,7 +7,7 @@ import org.restlet.representation.Representation;
 
 import io.skysail.client.testsupport.*;
 import io.skysail.server.app.designer.DesignerApplication;
-import io.skysail.server.app.designer.fields.DbEntityField;
+import io.skysail.server.app.designer.fields.*;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -25,8 +25,7 @@ public class EntityFieldsBrowser extends ApplicationBrowser<EntityFieldsBrowser,
     }
     
     public DbEntityField createRandomField() {
-        DbEntityField e = new DbEntityField();
-        e.setName("EntityField_" + new BigInteger(130, random).toString(32));
+        DbEntityField e = new DbEntityTextField("EntityField_" + new BigInteger(130, random).toString(32), false);
         return e;
     }
 

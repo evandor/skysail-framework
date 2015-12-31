@@ -8,45 +8,35 @@ import javax.validation.constraints.*;
 import io.skysail.domain.*;
 import io.skysail.domain.html.*;
 import io.skysail.server.app.designer.fields.resources.InputTypeSelectionProvider;
-import io.skysail.server.forms.ListView;
+import io.skysail.server.forms.*;
 import lombok.*;
 
 @Getter
-@Setter
 @ToString
 @NoArgsConstructor
 @EqualsAndHashCode(of = "id")
-public class DbEntityField implements Identifiable, Nameable, Serializable {
+public abstract class DbEntityField implements Identifiable, Nameable, Serializable {
 
     private static final long serialVersionUID = -3876765006276811418L;
 
     @Id
-    private String id;
+    @Setter
+    protected String id;
 
     @Field
     @NotNull
     @Size(min = 1)
-    private String name;
+    @PostView(tab = "new Field")
+    protected String name;
 
     @Field(selectionProvider = InputTypeSelectionProvider.class)
+    @Setter
+    @PostView(visibility = Visibility.HIDE)
     private InputType type;
     
     @Field(inputType = InputType.CHECKBOX)
-    private Boolean notNull;
+    @PostView(tab = "optional")
+    protected Boolean mandatory;
     
-    @Field(inputType = InputType.TEXT)
-    @ListView(hide = true)
-    private Integer sizeMin;
-    
-    @Field(inputType = InputType.TEXT)
-    @ListView(hide = true)
-    private Integer sizeMax;
-
-    @Builder
-    public DbEntityField(@NonNull String name, @NonNull InputType type, boolean notNull) {
-        this.type = type;
-        this.name = name;
-        this.notNull = notNull;
-    }
 
 }

@@ -42,6 +42,7 @@ public class EntitiesResource extends ListServerResource<DbEntity> {
         return super.getLinks(PostEntityResource.class);
     }
 
+    @Override
     public List<TreeRepresentation> getTreeRepresentation() {
         return app.getTreeRepresentation(getAttribute("id"));
     }

@@ -41,6 +41,8 @@ import lombok.extern.slf4j.Slf4j;
 public class OrientGraphDbService extends AbstractOrientDbService implements DbService {
 
     private OrientGraphFactory graphDbFactory;
+    
+    private Map<String, Identifiable> beanCache = new HashMap<>();
 
     @Activate
     public void activate() {
@@ -128,6 +130,7 @@ public class OrientGraphDbService extends AbstractOrientDbService implements DbS
 
         List<T> result = new ArrayList<>();
         Iterator<OrientVertex> iterator = execute.iterator();
+        beanCache .clear();
         while (iterator.hasNext()) {
             OrientVertex next = iterator.next();
             // OrientElement detached = next.detach();
@@ -144,6 +147,7 @@ public class OrientGraphDbService extends AbstractOrientDbService implements DbS
         OTraverse predicate = new OTraverse().target(new ORecordId(id)).fields("out", "int").limit(1)
                 .predicate(new OSQLPredicate("$depth <= 3"));
         ODocument document = (ODocument) predicate.iterator().next();
+        beanCache.clear();
         return document != null ? documentToBean(document, cls) : null;
     }
 
@@ -152,7 +156,9 @@ public class OrientGraphDbService extends AbstractOrientDbService implements DbS
         try {
             T bean = (T) beanType.newInstance();
             populateProperties(document.toMap(), bean, new SkysailBeanUtils(bean, Locale.getDefault()));
+            beanCache.put(bean.getId(), bean);
             populateOutgoingEdges(document, bean);
+            populateIngoingEdge(document, bean);
             return bean;
         } catch (Exception e) {
             log.error(e.getMessage(), e);
@@ -172,11 +178,19 @@ public class OrientGraphDbService extends AbstractOrientDbService implements DbS
             List<Identifiable> identifiables = new ArrayList<>();
             while (iterator.hasNext()) {
                 ODocument edge = (ODocument) iterator.next();
+                if (edge == null) {
+                    continue;
+                }
                 ODocument inDocumentFromEdge = edge.field("in");
                 String targetClassName = inDocumentFromEdge.getClassName().substring(
                         inDocumentFromEdge.getClassName().lastIndexOf("_") + 1);
                 Class<?> targetClass = getObjectDb().getEntityManager().getEntityClass(targetClassName);
-                identifiables.add(documentToBean(inDocumentFromEdge, targetClass));
+                Identifiable identifiable = beanCache.get(inDocumentFromEdge.getIdentity().toString());
+                if (identifiable != null) {
+                    identifiables.add(identifiable);
+                } else {
+                    identifiables.add(documentToBean(inDocumentFromEdge, targetClass));
+                }
             }
             String fieldName = edgeName.replace("out_", "");
             String setterName = "set" + fieldName.substring(0, 1).toUpperCase() + fieldName.substring(1);
@@ -188,9 +202,49 @@ public class OrientGraphDbService extends AbstractOrientDbService implements DbS
             }
         });
     }
+    
+    /**
+     * assuming for now we have only one ingoing edge (e.g. some kind of parent object)
+     */
+    private <T extends Identifiable> void populateIngoingEdge(ODocument document, T bean) {
+        List<String> inFields = getIngoingFieldNames(document);
+        inFields.forEach(edgeName -> {
+            ORidBag field = document.field(edgeName);
+            field.setAutoConvertToRecord(true);
+            field.convertLinks2Records();
+
+            ORidBag edgeIdBag = document.field(edgeName);
+            Iterator<OIdentifiable> iterator = edgeIdBag.iterator();
+            Identifiable identifiable = null;// = new ArrayList<>();
+            String targetClassName = null;
+            Class<?> targetClass = null;
+            if (iterator.hasNext()) {
+                ODocument edge = (ODocument) iterator.next();
+                ODocument outDocumentFromEdge = edge.field("out");
+                targetClassName = outDocumentFromEdge.getClassName().substring(
+                        outDocumentFromEdge.getClassName().lastIndexOf("_") + 1);
+                targetClass = getObjectDb().getEntityManager().getEntityClass(targetClassName);
+                identifiable = beanCache.get(outDocumentFromEdge.getIdentity().toString());
+                if (identifiable == null) {
+                    identifiable = documentToBean(outDocumentFromEdge, targetClass);
+                }
+            }
+            String setterName = "set" + targetClassName.substring(0, 1).toUpperCase() + targetClassName.substring(1);
+            try {
+                bean.getClass().getMethod(setterName, targetClass).invoke(bean, identifiable);
+            } catch (Exception e) {
+                log.error(e.getMessage(), e);
+            }
+        });
+    }
 
     private List<String> getOutgoingFieldNames(ODocument document) {
         return Arrays.stream(document.fieldNames()).filter(fieldname -> fieldname.startsWith("out_"))
+                .collect(Collectors.toList());
+    }
+
+    private List<String> getIngoingFieldNames(ODocument document) {
+        return Arrays.stream(document.fieldNames()).filter(fieldname -> fieldname.startsWith("in_"))
                 .collect(Collectors.toList());
     }
 

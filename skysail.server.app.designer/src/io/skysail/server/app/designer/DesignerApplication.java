@@ -20,6 +20,9 @@ import io.skysail.server.app.designer.codegen.PostCompilationResource;
 import io.skysail.server.app.designer.entities.DbEntity;
 import io.skysail.server.app.designer.entities.resources.*;
 import io.skysail.server.app.designer.fields.resources.*;
+import io.skysail.server.app.designer.fields.resources.date.PostDateFieldResource;
+import io.skysail.server.app.designer.fields.resources.text.PostTextFieldResource;
+import io.skysail.server.app.designer.fields.resources.textarea.PostTextareaFieldResource;
 import io.skysail.server.app.designer.repo.DesignerRepository;
 import io.skysail.server.db.DbService;
 import io.skysail.server.menus.*;
@@ -83,7 +86,10 @@ public class DesignerApplication extends SkysailApplication implements MenuItemP
 
         router.attach(new RouteBuilder("/applications/{id}/entities/{" + ENTITY_ID + "}/fields", FieldsResource.class));
         
-        router.attach(new RouteBuilder("/entities/{" + ENTITY_ID + "}/fields/", PostFieldResource.class));
+        router.attach(new RouteBuilder("/entities/{" + ENTITY_ID + "}/textfields/", PostTextFieldResource.class));
+        router.attach(new RouteBuilder("/entities/{" + ENTITY_ID + "}/textareafields/", PostTextareaFieldResource.class));
+        router.attach(new RouteBuilder("/entities/{" + ENTITY_ID + "}/datefields/", PostDateFieldResource.class));
+
         router.attach(new RouteBuilder("/entities/{" + ENTITY_ID + "}/fields/{" + FIELD_ID + "}", FieldResource.class));
         router.attach(new RouteBuilder("/entities/{" + ENTITY_ID + "}/fields/{" + FIELD_ID + "}/",PutFieldResource.class));
 
@@ -172,6 +178,13 @@ public class DesignerApplication extends SkysailApplication implements MenuItemP
             }
         };
         getTaskService().schedule(command, 1, TimeUnit.SECONDS);
+    }
+
+    public List<TreeRepresentation> getTreeRepresentation(DbApplication dbApplication) {
+        if (dbApplication != null) {
+            return Arrays.asList(new TreeRepresentation(dbApplication,""));
+        }
+        return Collections.emptyList();
     }
 
     public List<TreeRepresentation> getTreeRepresentation(String appId) {

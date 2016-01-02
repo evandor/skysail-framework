@@ -25,7 +25,7 @@ cp skysail.$APPNAME.jar /home/carsten/skysail/products/$APPNAME/int/bin/skysail.
 echo "stopping $APPNAME service"
 #/home/carsten/skysail/products/$APPNAME/int/bin/$APPNAME_int stop
 
-cd /home/carsten/.hudson/jobs/skysail.product.$APPNAME.export.int/workspace/skysail.product.$APPNAME
+cd /home/carsten/.hudson/jobs/ssp.$APPNAME.export.int/workspace/skysail.product.$APPNAME
 cp -r deployment/service/* /home/carsten/skysail/products/$APPNAME/int
 
 # needed for $APPNAME functionality (to get access to the contained jars for compiling)

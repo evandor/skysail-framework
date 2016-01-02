@@ -1,10 +1,8 @@
 package io.skysail.server.designer.checklist;
 
-import io.skysail.api.responses.SkysailResponse;
-import io.skysail.server.restlet.resources.PutEntityServerResource;
-
-import java.util.Date;
 import org.restlet.resource.ResourceException;
+
+import io.skysail.server.restlet.resources.PutEntityServerResource;
 
 public class PutTemplateResource extends PutEntityServerResource<io.skysail.server.designer.checklist.Template> {
 
@@ -19,12 +17,11 @@ public class PutTemplateResource extends PutEntityServerResource<io.skysail.serv
     }
 
     @Override
-    public SkysailResponse<io.skysail.server.designer.checklist.Template> updateEntity(Template  entity) {
+    public void updateEntity(Template  entity) {
         io.skysail.server.designer.checklist.Template original = getEntity();
         copyProperties(original,entity);
 
         app.getRepository(io.skysail.server.designer.checklist.Template.class).update(id, original);
-        return new SkysailResponse<>();
     }
 
     @Override

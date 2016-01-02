@@ -1,12 +1,10 @@
 package io.skysail.server.text.store.bundleresource.impl;
 
-import io.skysail.api.responses.SkysailResponse;
-import io.skysail.server.restlet.resources.PutEntityServerResource;
-
 import org.restlet.data.Reference;
 import org.restlet.resource.ResourceException;
 
 import de.twenty11.skysail.server.core.restlet.ResourceContextId;
+import io.skysail.server.restlet.resources.PutEntityServerResource;
 
 public class PutMessageResource extends PutEntityServerResource<Message> {
 
@@ -25,12 +23,11 @@ public class PutMessageResource extends PutEntityServerResource<Message> {
     }
 
     @Override
-    public SkysailResponse<Message> updateEntity(Message entity) {
+    public void updateEntity(Message entity) {
         if (!entity.getMsgKey().equals(msgKey)) {
             throw new IllegalStateException("wrong key");
         }
         app.setMessage(entity);
-        return new SkysailResponse<Message>();
     }
 
     // for stringtemplate

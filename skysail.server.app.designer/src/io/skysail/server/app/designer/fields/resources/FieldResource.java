@@ -48,7 +48,7 @@ public class FieldResource extends EntityServerResource<DbEntityField> {
 
     @Override
     public List<Link> getLinks() {
-        return super.getLinks(PutFieldResource.class);
+        return super.getLinks();
     }
     
     @Override

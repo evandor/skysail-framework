@@ -1,10 +1,37 @@
 putForm(model, messages) ::= <<
-    <form action="$model.formTarget$?method=PUT" method="POST" class="form-horizontal" role="form" id="form" name="form">
-      $model.formfields:{ field | $handleField(first(model.data), field, messages,i,"")$}$
-      $if (model.submitButtonNeeded)$
-        $submitPut("Update","1","9",length(fields))$
-      $endif$
-    </form>
+  <form action="$model.formTarget$?method=PUT" method="POST" class="form-horizontal" role="form" id="form" name="form">
+  $if(model.useTabs)$
+    <div>
+      <ul class="nav nav-tabs" role="tablist">
+        $model.tabs:{tab | $handleTabNav(model, tab)$}$
+      </ul>
+      <div class="tab-content">
+        <br>
+        $model.tabs:{tab | $handleTabContent(model, tab)$}$
+      </div>
+    </div>
+    $if (model.submitButtonNeeded)$
+      $submitPost("Submit","2","10",length(model.formfields))$
+    $endif$
+    
+  $else$
+    $model.formfields:{ field | $handleField(first(model.data), field, messages,i,"")$}$
+    $if (model.submitButtonNeeded)$
+      $submitPut("Update","1","9",length(fields))$
+    $endif$
+  $endif$
+  </form>
+>>
+
+handleTabNav(model,tab) ::= <<
+  <li role="presentation" $if(tab.active)$class="active"$endif$><a href="#tabId_$tab.counter$" aria-controls="tabId_$tab.counter$" role="tab" data-toggle="tab">$tab.name$</a></li>
+
+>>
+
+handleTabContent(model,tab) ::= <<
+  <div role="tabpanel" class="tab-pane$if(tab.active)$ active$endif$" id="tabId_$tab.counter$">
+    $model.tabFields.(tab.name):{ field | $handleField(first(model.data), field, messages,i, "")$}$
+  </div>
 >>
 
 submitPut(label, o1,o2,tabindex) ::= <<
@@ -15,9 +42,17 @@ submitPut(label, o1,o2,tabindex) ::= <<
       </div>
 >>
 
+handleField(data, field, messages,i, autofocus) ::= <<
+    $if (field.violationMessage)$
+        $handleConstraintViolationField(data, field, messages,i,autofocus)$
+    $else$
+        $handleInputField(data, field, messages,i, autofocus)$
+    $endif$
+>>
+
 renderDescription(field,converter) ::= <<
   $if(messages.(field.messageKey))$
-    <small class="help-block">$helpmessage(messages, field.descriptionFromResource)$ $editTextLink(field,converter)$</small>
+    <small class="help-block">$helpmessage(messages, field.messageKey)$ $editTextLink(field,converter)$</small>
   $else$
     $editTextLink(field,converter)$
   $endif$

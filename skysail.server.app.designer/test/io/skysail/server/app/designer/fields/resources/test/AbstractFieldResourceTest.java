@@ -9,7 +9,7 @@ import org.restlet.data.Status;
 
 import io.skysail.api.responses.SkysailResponse;
 import io.skysail.server.app.designer.application.DbApplication;
-import io.skysail.server.app.designer.fields.DbEntityField;
+import io.skysail.server.app.designer.fields.*;
 import io.skysail.server.app.designer.test.AbstractDesignerResourceTest;
 import io.skysail.server.app.designer.test.utils.YamlTestFileReader;
 import io.skysail.server.restlet.resources.SkysailServerResource;
@@ -26,7 +26,7 @@ public abstract class AbstractFieldResourceTest extends AbstractDesignerResource
         return post.getEntity();
     }
 
-    protected void assertListResult(SkysailServerResource<?> resource, SkysailResponse<DbEntityField> result,
+    protected void assertListResult(SkysailServerResource<?> resource, SkysailResponse<DbEntityTextField> result,
             DbEntityField entity, Status status) {
         DbEntityField dbEntity = result.getEntity();
         assertThat(responses.get(resource.getClass().getName()).getStatus(), is(status));

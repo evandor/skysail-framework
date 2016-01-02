@@ -1,17 +1,15 @@
 package io.skysail.server.app.todos.lists;
 
-import io.skysail.api.links.Link;
-import io.skysail.api.responses.SkysailResponse;
-import io.skysail.server.app.todos.*;
-import io.skysail.server.app.todos.services.ListService;
-import io.skysail.server.app.todos.todos.resources.Top10TodosResource;
-import io.skysail.server.restlet.resources.PutEntityServerResource;
-
 import java.util.List;
 
 import org.restlet.resource.ResourceException;
 
 import de.twenty11.skysail.server.core.restlet.ResourceContextId;
+import io.skysail.api.links.Link;
+import io.skysail.server.app.todos.*;
+import io.skysail.server.app.todos.services.ListService;
+import io.skysail.server.app.todos.todos.resources.Top10TodosResource;
+import io.skysail.server.restlet.resources.PutEntityServerResource;
 
 public class PutListResource extends PutEntityServerResource<TodoList> {
 
@@ -29,8 +27,8 @@ public class PutListResource extends PutEntityServerResource<TodoList> {
     }
 
     @Override
-    public SkysailResponse<TodoList> updateEntity(TodoList entity) {
-        return listService.updateList(this, entity);
+    public void updateEntity(TodoList entity) {
+        listService.updateList(this, entity);
     }
 
     @Override

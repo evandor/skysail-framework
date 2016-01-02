@@ -21,9 +21,8 @@ public class PutOAuth2Resource extends PutEntityServerResource<OAuth2> {
         return repository.findOne(getAttribute("id"));
     }
 
-    public SkysailResponse<OAuth2> updateEntity(OAuth2 entity) {
+    public void updateEntity(OAuth2 entity) {
         repository.update(getAttribute("id"), entity);
-        return new SkysailResponse<>();
     }
 
     @Override

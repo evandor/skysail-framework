@@ -4,6 +4,7 @@ import io.skysail.domain.html.*;
 import io.skysail.server.forms.*;
 import lombok.*;
 
+@NoArgsConstructor
 public class DbEntityTextField extends DbEntityField { // NOSONAR
 
     private static final long serialVersionUID = 4745549573124583164L;

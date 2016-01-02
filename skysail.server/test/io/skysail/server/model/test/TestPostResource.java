@@ -1,16 +1,14 @@
 package io.skysail.server.model.test;
 
-import io.skysail.api.responses.SkysailResponse;
+import org.mockito.Mockito;
+
 import io.skysail.server.app.SkysailApplication;
 import io.skysail.server.restlet.resources.PutEntityServerResource;
-
-import org.mockito.Mockito;
 
 public class TestPostResource extends PutEntityServerResource<TestEntity>{
 
     @Override
-    public SkysailResponse<TestEntity> updateEntity(TestEntity entity) {
-        return null;
+    public void updateEntity(TestEntity entity) {
     }
 
     @Override

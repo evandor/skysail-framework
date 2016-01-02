@@ -22,9 +22,8 @@ public class Put$entity.simpleName$Resource extends PutEntityServerResource<$ent
         return repository.findOne(getAttribute("id"));
     }
 
-    public SkysailResponse<$entity.simpleName$> updateEntity($entity.simpleName$ entity) {
+    public void updateEntity($entity.simpleName$ entity) {
         repository.update(getAttribute("id"), entity);
-        return new SkysailResponse<>();
     }
 
     @Override

@@ -20,10 +20,9 @@ public class Put$entity.simpleName$Resource extends PutEntityServerResource<$ent
     \}
     
     @Override
-    public SkysailResponse<$entity.id$> updateEntity($entity.simpleName$  entity) {
+    public void updateEntity($entity.simpleName$  entity) {
         $updateEntity$
         app.getRepository($entity.id$.class).update(id, original);
-        return new SkysailResponse<>();
     \}
 
     @Override

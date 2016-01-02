@@ -3,6 +3,7 @@ package io.skysail.server.app.designer.fields;
 import io.skysail.domain.html.InputType;
 import lombok.*;
 
+@NoArgsConstructor
 public class DbEntityDateField extends DbEntityField { // NOSONAR
 
     private static final long serialVersionUID = 4745549573124583164L;

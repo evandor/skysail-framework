@@ -21,9 +21,8 @@ public class PutConnectionResource extends PutEntityServerResource<Connection> {
         return repository.findOne(getAttribute("id"));
     }
 
-    public SkysailResponse<Connection> updateEntity(Connection entity) {
+    public void updateEntity(Connection entity) {
         repository.update(getAttribute("id"), entity);
-        return new SkysailResponse<>();
     }
 
     @Override

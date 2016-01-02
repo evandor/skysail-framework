@@ -1,16 +1,15 @@
 package io.skysail.server.app.todos.todos.resources;
 
+import java.util.List;
+
+import org.restlet.resource.ResourceException;
+
 import io.skysail.api.links.Link;
-import io.skysail.api.responses.SkysailResponse;
 import io.skysail.server.app.todos.TodoApplication;
 import io.skysail.server.app.todos.lists.ListsResource;
 import io.skysail.server.app.todos.services.TodosService;
 import io.skysail.server.app.todos.todos.Todo;
 import io.skysail.server.restlet.resources.*;
-
-import java.util.List;
-
-import org.restlet.resource.ResourceException;
 
 public class PutTodoResource extends PutEntityServerResource<Todo> {
 
@@ -30,8 +29,8 @@ public class PutTodoResource extends PutEntityServerResource<Todo> {
     }
 
     @Override
-    public SkysailResponse<Todo> updateEntity(Todo entityFromTheWire) {
-        return todosService.update(this, entityFromTheWire, getAttribute(TodoApplication.LIST_ID));
+    public void updateEntity(Todo entityFromTheWire) {
+        todosService.update(this, entityFromTheWire, getAttribute(TodoApplication.LIST_ID));
     }
 
     @Override

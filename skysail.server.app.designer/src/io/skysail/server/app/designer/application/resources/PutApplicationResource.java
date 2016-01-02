@@ -1,6 +1,5 @@
 package io.skysail.server.app.designer.application.resources;
 
-import io.skysail.api.responses.SkysailResponse;
 import io.skysail.server.app.designer.DesignerApplication;
 import io.skysail.server.app.designer.application.DbApplication;
 import io.skysail.server.restlet.resources.PutEntityServerResource;
@@ -20,10 +19,9 @@ public class PutApplicationResource extends PutEntityServerResource<DbApplicatio
         return app.getRepository().getById(DbApplication.class, id);
     }
 
-    public SkysailResponse<DbApplication> updateEntity(DbApplication entity) {
+    public void updateEntity(DbApplication entity) {
         app.invalidateMenuCache();
         app.getRepository().update(entity);
-        return new SkysailResponse<>();
     }
 
     @Override

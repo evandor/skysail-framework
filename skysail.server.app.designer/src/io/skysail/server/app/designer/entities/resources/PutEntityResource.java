@@ -2,7 +2,6 @@ package io.skysail.server.app.designer.entities.resources;
 
 import java.util.List;
 
-import io.skysail.api.responses.SkysailResponse;
 import io.skysail.server.app.designer.DesignerApplication;
 import io.skysail.server.app.designer.entities.DbEntity;
 import io.skysail.server.restlet.resources.*;
@@ -25,9 +24,8 @@ public class PutEntityResource extends PutEntityServerResource<DbEntity> {
     }
 
     @Override
-    public SkysailResponse<DbEntity> updateEntity(DbEntity entity) {
+    public void updateEntity(DbEntity entity) {
         app.getRepository().update(entity);
-        return new SkysailResponse<>();
     }
     
     @Override

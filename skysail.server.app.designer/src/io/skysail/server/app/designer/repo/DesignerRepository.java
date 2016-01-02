@@ -24,8 +24,10 @@ public class DesignerRepository implements DbRepository {
     @Activate
     public void activate() {
         dbService.createWithSuperClass("V", DbClassName.of(DbApplication.class), DbClassName.of(DbEntity.class),
-                DbClassName.of(DbEntityField.class), DbClassName.of(ActionEntityField.class));
-        dbService.register(DbApplication.class, DbEntity.class, DbEntityField.class, ActionEntityField.class);
+                DbClassName.of(DbEntityDateField.class), DbClassName.of(DbEntityTextField.class),
+                DbClassName.of(DbEntityTextareaField.class), DbClassName.of(ActionEntityField.class));
+        dbService.register(DbApplication.class, DbEntity.class, DbEntityDateField.class, DbEntityTextField.class,
+                DbEntityTextareaField.class, ActionEntityField.class);
         dbService.createEdges("entities", "fields", "subEntities");
     }
 
@@ -43,7 +45,7 @@ public class DesignerRepository implements DbRepository {
 
             return dbService.findGraphs(cls, "select from " + DbClassName.of(cls));
         } catch (Exception e) {
-            log.error(e.getMessage(),e);
+            log.error(e.getMessage(), e);
             return Collections.emptyList();
         }
     }
@@ -97,7 +99,7 @@ public class DesignerRepository implements DbRepository {
     }
 
     public Object getVertexById(Class<DbApplication> cls, String id) {
-        return dbService.findGraphs(cls.getClass(), "SELECT FROM "+cls.getSimpleName()+" WHERE @rid="+id);
+        return dbService.findGraphs(cls.getClass(), "SELECT FROM " + cls.getSimpleName() + " WHERE @rid=" + id);
     }
 
     @Override
@@ -109,7 +111,7 @@ public class DesignerRepository implements DbRepository {
     public Identifiable findOne(String id) {
         return dbService.findById2(DbApplication.class, id);
     }
-    
+
     public DbEntity findEntity(String id) {
         return dbService.findById2(DbEntity.class, id);
     }
@@ -123,6 +125,5 @@ public class DesignerRepository implements DbRepository {
     public void delete(Identifiable identifiable) {
         dbService.delete2(identifiable.getClass(), identifiable.getId());
     }
-
 
 }

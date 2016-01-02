@@ -101,12 +101,11 @@ public abstract class PutEntityServerResource<T extends Identifiable> extends Sk
     /**
      * will be called in case of a PUT request.
      */
-    public SkysailResponse<T> updateEntity(T entity) {
+    public void updateEntity(T entity) {
         T original = getEntity(null);
         SkysailApplication app = (SkysailApplication)getApplication();
         //app.getListRepo().update(listId, original);
         app.getRepository(parameterizedType).update(getAttribute("id"), original);
-        return new SkysailResponse<>();
     }
 
     /**

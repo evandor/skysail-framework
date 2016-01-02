@@ -1,14 +1,12 @@
 package de.twenty11.skysail.server.app.profile;
 
-import io.skysail.api.responses.SkysailResponse;
-import io.skysail.api.um.User;
-import io.skysail.server.restlet.resources.PutEntityServerResource;
-
 import org.apache.shiro.SecurityUtils;
 import org.restlet.resource.ResourceException;
 
 import de.twenty11.skysail.server.app.SkysailRootApplication;
 import de.twenty11.skysail.server.core.restlet.ResourceContextId;
+import io.skysail.api.um.User;
+import io.skysail.server.restlet.resources.PutEntityServerResource;
 
 public class PutPasswordResource extends PutEntityServerResource<ChangePasswordEntity> {
 
@@ -24,11 +22,10 @@ public class PutPasswordResource extends PutEntityServerResource<ChangePasswordE
     }
 
     @Override
-    public SkysailResponse<ChangePasswordEntity> updateEntity(ChangePasswordEntity entity) {
+    public void updateEntity(ChangePasswordEntity entity) {
         String username = (String) SecurityUtils.getSubject().getPrincipal();
         User user = new User(username, entity.getOld());
         app.getAuthenticationService().updatePassword(user, entity.getPassword());
-        return new SkysailResponse<ChangePasswordEntity>(){};
     }
 
     @Override

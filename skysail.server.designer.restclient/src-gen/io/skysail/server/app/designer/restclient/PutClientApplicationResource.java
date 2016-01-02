@@ -21,9 +21,8 @@ public class PutClientApplicationResource extends PutEntityServerResource<Client
         return repository.findOne(getAttribute("id"));
     }
 
-    public SkysailResponse<ClientApplication> updateEntity(ClientApplication entity) {
+    public void updateEntity(ClientApplication entity) {
         repository.update(getAttribute("id"), entity);
-        return new SkysailResponse<>();
     }
 
     @Override

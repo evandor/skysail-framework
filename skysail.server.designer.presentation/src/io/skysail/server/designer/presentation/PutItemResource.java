@@ -1,10 +1,8 @@
 package io.skysail.server.designer.presentation;
 
-import io.skysail.api.responses.SkysailResponse;
-import io.skysail.server.restlet.resources.PutEntityServerResource;
-
-import java.util.Date;
 import org.restlet.resource.ResourceException;
+
+import io.skysail.server.restlet.resources.PutEntityServerResource;
 
 public class PutItemResource extends PutEntityServerResource<io.skysail.server.designer.presentation.Item> {
 
@@ -19,12 +17,11 @@ public class PutItemResource extends PutEntityServerResource<io.skysail.server.d
     }
 
     @Override
-    public SkysailResponse<io.skysail.server.designer.presentation.Item> updateEntity(Item  entity) {
+    public void updateEntity(Item  entity) {
         io.skysail.server.designer.presentation.Item original = getEntity();
         copyProperties(original,entity);
 
         app.getRepository(io.skysail.server.designer.presentation.Item.class).update(id, original);
-        return new SkysailResponse<>();
     }
 
     @Override

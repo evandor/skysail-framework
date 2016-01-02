@@ -16,27 +16,27 @@ public class PostTextFieldResourceTest extends AbstractFieldResourceTest {
         DbApplication application = prepareApplication("checklistWithEntityWithoutFields.yml", "PostFieldResourceTest1");
         setAttributes("eid", application.getEntities().get(0).getId());
         
-        SkysailResponse<DbEntityField> response = postFieldResource.post(
+        SkysailResponse<DbEntityTextField> response = postTextFieldResource.post(
             new FormBuilder()
                 .add("name", "TestField")
                 .add("type", "TEXT")
                 .add("notNull", "on").build(), HTML_VARIANT);
         
         DbEntityField expectedDbField = DbEntityTextField.builder().name("TestField").mandatory(true).build();
-        assertListResult(postFieldResource, response, expectedDbField, Status.REDIRECTION_SEE_OTHER);
+        assertListResult(postTextFieldResource, response, expectedDbField, Status.REDIRECTION_SEE_OTHER);
     }
 
     @Test
     public void adds_field_with_json_to_empty_entity() throws Exception {
         DbApplication application = prepareApplication("checklistWithEntityWithoutFields.yml", "PostFieldResourceTest2");
         setAttributes("eid", application.getEntities().get(0).getId());
-        DbEntityField dbField = DbEntityTextField.builder()
+        DbEntityTextField dbField = DbEntityTextField.builder()
                 .name("TestField")
                 .mandatory(true).build();
 
-        SkysailResponse<DbEntityField> result = postFieldResource.post(dbField, HTML_VARIANT);
+        SkysailResponse<DbEntityTextField> result = postTextFieldResource.post(dbField, HTML_VARIANT);
         
-        assertListResult(postFieldResource, result, dbField, Status.REDIRECTION_SEE_OTHER);
+        assertListResult(postTextFieldResource, result, dbField, Status.REDIRECTION_SEE_OTHER);
     }
 
 }

@@ -12,6 +12,7 @@ import io.skysail.server.forms.*;
 import lombok.*;
 
 @Getter
+@Setter
 @ToString
 @NoArgsConstructor
 @EqualsAndHashCode(of = "id")
@@ -30,7 +31,6 @@ public abstract class DbEntityField implements Identifiable, Nameable, Serializa
     protected String name;
 
     @Field(selectionProvider = InputTypeSelectionProvider.class)
-    @Setter
     @PostView(visibility = Visibility.HIDE)
     private InputType type;
     

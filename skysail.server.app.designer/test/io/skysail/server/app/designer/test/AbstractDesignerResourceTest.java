@@ -15,6 +15,7 @@ import io.skysail.server.app.designer.application.validation.UniqueNameValidator
 import io.skysail.server.app.designer.entities.DbEntity;
 import io.skysail.server.app.designer.entities.resources.*;
 import io.skysail.server.app.designer.fields.resources.*;
+import io.skysail.server.app.designer.fields.resources.text.*;
 import io.skysail.server.app.designer.repo.DesignerRepository;
 import io.skysail.server.restlet.resources.SkysailServerResource;
 import io.skysail.server.testsupport.ResourceTestBase;
@@ -41,9 +42,9 @@ public abstract class AbstractDesignerResourceTest extends ResourceTestBase {
     protected EntityResource entityResource;
 
     @Spy
-    protected PostFieldResource postFieldResource;
+    protected PostTextFieldResource postTextFieldResource;
     @Spy
-    protected PutFieldResource putFieldResource;
+    protected PutTextFieldResource putTextFieldResource;
     @Spy
     protected FieldsResource fieldsResource;
     @Spy
@@ -74,8 +75,8 @@ public abstract class AbstractDesignerResourceTest extends ResourceTestBase {
 
         super.setUpResource(fieldResource, context);
         super.setUpResource(fieldsResource, context);
-        super.setUpResource(putFieldResource, context);
-        super.setUpResource(postFieldResource, context);
+        super.setUpResource(putTextFieldResource, context);
+        super.setUpResource(postTextFieldResource, context);
 
         setUpSubject("admin");
         

@@ -1,6 +1,5 @@
 package io.skysail.server.app.um.db.roles.resources;
 
-import io.skysail.api.responses.SkysailResponse;
 import io.skysail.server.app.um.db.UmApplication;
 import io.skysail.server.app.um.db.domain.Role;
 import io.skysail.server.restlet.resources.PutEntityServerResource;
@@ -18,9 +17,8 @@ public class PutRoleResource extends PutEntityServerResource<Role> {
         return app.getRoleRepo().findOne(getAttribute("id"));
     }
 
-    public SkysailResponse<Role> updateEntity(Role entity) {
+    public void updateEntity(Role entity) {
         app.getRoleRepo().update(getAttribute("id"), entity);
-        return new SkysailResponse<>();
     }
 
     @Override

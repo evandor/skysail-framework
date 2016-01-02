@@ -1,12 +1,11 @@
 package io.skysail.server.restlet.filter;
 
-import io.skysail.api.responses.SkysailResponse;
-import io.skysail.domain.Identifiable;
-import io.skysail.server.restlet.resources.PutEntityServerResource;
-
 import org.slf4j.*;
 
 import de.twenty11.skysail.server.core.restlet.Wrapper;
+import io.skysail.api.responses.SkysailResponse;
+import io.skysail.domain.Identifiable;
+import io.skysail.server.restlet.resources.PutEntityServerResource;
 
 public class UpdateEntityFilter<R extends PutEntityServerResource<T>, T extends Identifiable> extends AbstractResourceFilter<R, T> {
 
@@ -17,7 +16,8 @@ public class UpdateEntityFilter<R extends PutEntityServerResource<T>, T extends 
         logger.debug("entering {}#doHandle", this.getClass().getSimpleName());
         Object entity = responseWrapper.getEntity();
         if (entity != null) {
-            SkysailResponse<T> response = resource.updateEntity((T)entity);
+            resource.updateEntity((T)entity);
+            SkysailResponse<T> response = new SkysailResponse<>();
             responseWrapper.setEntity((T)(response.getEntity()));
             resource.setCurrentEntity(response.getEntity());
         }

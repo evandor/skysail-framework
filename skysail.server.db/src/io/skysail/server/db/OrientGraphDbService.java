@@ -218,22 +218,24 @@ public class OrientGraphDbService extends AbstractOrientDbService implements DbS
             Identifiable identifiable = null;// = new ArrayList<>();
             String targetClassName = null;
             Class<?> targetClass = null;
-            if (iterator.hasNext()) {
-                ODocument edge = (ODocument) iterator.next();
-                ODocument outDocumentFromEdge = edge.field("out");
-                targetClassName = outDocumentFromEdge.getClassName().substring(
-                        outDocumentFromEdge.getClassName().lastIndexOf("_") + 1);
-                targetClass = getObjectDb().getEntityManager().getEntityClass(targetClassName);
-                identifiable = beanCache.get(outDocumentFromEdge.getIdentity().toString());
-                if (identifiable == null) {
-                    identifiable = documentToBean(outDocumentFromEdge, targetClass);
-                }
+            if (!iterator.hasNext()) {
+                return;
             }
+            ODocument edge = (ODocument) iterator.next();
+            ODocument outDocumentFromEdge = edge.field("out");
+            targetClassName = outDocumentFromEdge.getClassName()
+                    .substring(outDocumentFromEdge.getClassName().lastIndexOf("_") + 1);
+            targetClass = getObjectDb().getEntityManager().getEntityClass(targetClassName);
+            identifiable = beanCache.get(outDocumentFromEdge.getIdentity().toString());
+            if (identifiable == null) {
+                identifiable = documentToBean(outDocumentFromEdge, targetClass);
+            }
+            
             String setterName = "set" + targetClassName.substring(0, 1).toUpperCase() + targetClassName.substring(1);
             try {
                 bean.getClass().getMethod(setterName, targetClass).invoke(bean, identifiable);
-            } catch (Exception e) {
-                log.error(e.getMessage(), e);
+            } catch (Exception e) { // NOSONAR
+                log.debug(e.getMessage());
             }
         });
     }

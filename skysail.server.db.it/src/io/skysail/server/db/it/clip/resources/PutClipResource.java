@@ -1,10 +1,9 @@
 package io.skysail.server.db.it.clip.resources;
 
-import io.skysail.api.responses.SkysailResponse;
+import java.util.Date;
+
 import io.skysail.server.db.it.clip.*;
 import io.skysail.server.restlet.resources.PutEntityServerResource;
-
-import java.util.Date;
 
 public class PutClipResource extends PutEntityServerResource<Clip> {
 
@@ -21,12 +20,11 @@ public class PutClipResource extends PutEntityServerResource<Clip> {
         return repository.findOne(getAttribute("id"));
     }
 
-    public SkysailResponse<Clip> updateEntity(Clip entity) {
+    public void updateEntity(Clip entity) {
         Clip original = getEntity(null);
         original.setTitle(entity.getTitle());
         original.setModified(new Date());
         Object update = repository.update(getAttribute("id"), original);
-        return new SkysailResponse<>();
     }
 
 }

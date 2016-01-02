@@ -2,13 +2,12 @@ package io.skysail.server.app.designer.fields.resources;
 
 import java.util.Optional;
 
-import io.skysail.api.responses.SkysailResponse;
 import io.skysail.server.app.designer.DesignerApplication;
 import io.skysail.server.app.designer.entities.DbEntity;
 import io.skysail.server.app.designer.fields.DbEntityField;
 import io.skysail.server.restlet.resources.PutEntityServerResource;
 
-public class PutFieldResource extends PutEntityServerResource<DbEntityField> {
+public class PutFieldResource<T extends DbEntityField> extends PutEntityServerResource<T> {
 
     private DesignerApplication app;
     private String entityId;
@@ -23,19 +22,18 @@ public class PutFieldResource extends PutEntityServerResource<DbEntityField> {
     }
 
     @Override
-    public DbEntityField getEntity() {
+    public T getEntity() {
         DbEntity entity = app.getEntity(entityId);
         Optional<DbEntityField> optionalField = entity.getFields().stream().filter(f -> f.getId().equals("#"+fieldId)).findFirst();
         if (optionalField.isPresent()) {
-            return optionalField.get();
+            return (T)optionalField.get();
         }
         return null;
     }
 
     @Override
-    public SkysailResponse<DbEntityField> updateEntity(DbEntityField entity) {
+    public void updateEntity(DbEntityField entity) {
         app.getRepository().update(entity);
-        return new SkysailResponse<>();
     }
 
 }

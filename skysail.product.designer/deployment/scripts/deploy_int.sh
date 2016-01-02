@@ -1,11 +1,11 @@
 #!/bin/bash -e
 
-APPNAME="designer"
+### config ###
 
+APPNAME="designer"
 export JAVA_HOME=/home/carsten/.hudson/tools/hudson.model.JDK/java_SDK_8u25/
 
 cd /home/carsten/.hudson/jobs/ssp.$APPNAME.export.int/workspace/skysail.product.$APPNAME/generated/distributions/executable
-
 echo "Creating ZIP Archive"
 cp $APPNAME.int.jar skysail.$APPNAME.jar
 
@@ -36,7 +36,7 @@ cd /home/carsten/skysail/products/$APPNAME/int/bin
 rm -rf config
 mkdir config
 cd config
-#svn checkout https://85.25.22.125/repos/skysale/skysailconfigs/$APPNAME/int/
+svn checkout https://85.25.22.125/repos/skysale/skysailconfigs/$APPNAME/int/
 
 #echo "starting $APPNAME service"
 cd /home/carsten/skysail/products/$APPNAME/int/bin/

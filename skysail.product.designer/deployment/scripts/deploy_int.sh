@@ -36,7 +36,7 @@ cd /home/carsten/skysail/products/$APPNAME/int/bin
 rm -rf config
 mkdir config
 cd config
-svn checkout https://85.25.22.125/repos/skysale/skysailconfigs/$APPNAME/int/
+#svn checkout https://85.25.22.125/repos/skysale/skysailconfigs/$APPNAME/int/
 
 #echo "starting $APPNAME service"
 cd /home/carsten/skysail/products/$APPNAME/int/bin/

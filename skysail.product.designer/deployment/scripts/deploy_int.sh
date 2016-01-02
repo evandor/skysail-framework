@@ -45,8 +45,8 @@ cd /home/carsten/skysail/products/$APPNAME/int/bin/
 #rm -rf jar
 # not really necessary:
 unzip -o skysail.$APPNAME.jar
-#chmod 755 $APPNAME_int
-./$APPNAME_int start
+chmod 755 designer_int
+./designer_int start
 
 
 

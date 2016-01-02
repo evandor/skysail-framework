@@ -4,7 +4,7 @@ APPNAME="designer"
 
 export JAVA_HOME=/home/carsten/.hudson/tools/hudson.model.JDK/java_SDK_8u25/
 
-cd /home/carsten/.hudson/jobs/skysail.product.$APPNAME.export.int/workspace/skysail.product.$APPNAME/generated/distributions/executable
+cd /home/carsten/.hudson/jobs/ssp.$APPNAME.export.int/workspace/skysail.product.$APPNAME/generated/distributions/executable
 
 #echo "Creating ZIP Archive"
 cp $APPNAME.int.jar skysail.$APPNAME.jar

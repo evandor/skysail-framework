@@ -6,7 +6,7 @@ export JAVA_HOME=/home/carsten/.hudson/tools/hudson.model.JDK/java_SDK_8u25/
 
 cd /home/carsten/.hudson/jobs/ssp.$APPNAME.export.int/workspace/skysail.product.$APPNAME/generated/distributions/executable
 
-#echo "Creating ZIP Archive"
+echo "Creating ZIP Archive"
 cp $APPNAME.int.jar skysail.$APPNAME.jar
 
 zip -r skysail.$APPNAME.zip ../../../config/int skysail.$APPNAME.jar
@@ -23,7 +23,7 @@ echo "copying skysail.$APPNAME.jar to products directory"
 cp skysail.$APPNAME.jar /home/carsten/skysail/products/$APPNAME/int/bin/skysail.$APPNAME.jar
 
 echo "stopping $APPNAME service"
-/home/carsten/skysail/products/$APPNAME/int/bin/$APPNAME_int stop
+#/home/carsten/skysail/products/$APPNAME/int/bin/$APPNAME_int stop
 
 cd /home/carsten/.hudson/jobs/skysail.product.$APPNAME.export.int/workspace/skysail.product.$APPNAME
 cp -r deployment/service/* /home/carsten/skysail/products/$APPNAME/int

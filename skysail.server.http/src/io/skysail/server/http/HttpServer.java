@@ -145,22 +145,6 @@ public class HttpServer extends ServerResource
 
     }
 
-    // @Override
-    // public void updated(Dictionary<String, ?> properties) {
-    // HttpServer.properties = properties;
-    // if (properties != null) {
-    // log.info("configuration was provided");
-    // configurationProvided = true;
-    // runningOnPort = (String) properties.get("port");
-    // if (!serverActive && runningOnPort != null) {
-    // if (runningOnPort.equals("0")) {
-    // runningOnPort = findAvailablePort();
-    // }
-    // startHttpServer(runningOnPort);
-    // }
-    // }
-    // }
-
     @Override
     public int getPort() {
         return runningOnPort;
@@ -193,40 +177,6 @@ public class HttpServer extends ServerResource
     public SkysailComponent getSkysailComponent() {
         return restletComponent;
     }
-
-//    private void scheduleCreationOfDefaultConfiguration() {
-//
-//        Runnable runnable = () -> {
-//            createDefaultConfigAfterWaiting(5000);
-//        };
-//        loggerThread = new Thread(runnable);
-//        loggerThread.start();
-//    }
-
-//    private void createDefaultConfigAfterWaiting(int ms) {
-//        try {
-//            Thread.sleep(ms);
-//
-//            if (configurationProvided) {
-//                return;
-//            }
-//            log.info("creating default configuration after waiting for {}ms for provided configuration", ms);
-//
-//            Configuration config = configurationAdmin.getConfiguration(this.getClass().getName());
-//            Dictionary<String, Object> props = config.getProperties();
-//            if (props == null) {
-//                props = new Hashtable<String, Object>();
-//            }
-//            props.put("port", DEFAULT_PORT);
-//            props.put("service.pid", this.getClass().getName());
-//            config.update(props);
-//        } catch (IOException e) {
-//            log.error(e.getMessage(), e);
-//        } catch (InterruptedException e) {
-//            log.error(e.getMessage(), e);
-//        }
-//
-//    }
 
     private void startHttpServer(int port) {
         log.info("");

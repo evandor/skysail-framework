@@ -1,4 +1,4 @@
-Bundle-Version: 4.0.1.${tstamp}
+Bundle-Version: 5.0.0.${tstamp}
 Bundle-Name: SKYSAIL :: server :: converter
 Bundle-Description: Converts resources into html
 #https://groups.google.com/forum/#!topic/bndtools-users/aYjvNAs5lPI
@@ -15,7 +15,6 @@ Include-Resource: templates=templates,webapp=webapp
 	osgi.cmpn;version=${osgi.version},\
 	skysail.api;version=${skysail.api.version},\
 	skysail.api.um;version=${skysail.api.um.version},\
-	skysail.api.peers;version=${skysail.api.peers.version},\
     skysail.api.search;version=${skysail.api.search.version},\
 	skysail.api.text;version=${skysail.api.text.version},\
     skysail.domain;version=${skysail.domain.version},\

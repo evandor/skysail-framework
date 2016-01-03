@@ -90,7 +90,6 @@ s-runsystemcapabilities: ${native_capability}
 	osgi.enterprise;version=${osgi.version},\
 	skysail.api;version=${skysail.api.version},\
 	skysail.api.um;version=${skysail.api.um.version},\
-	skysail.api.peers;version=${skysail.api.peers.version},\
     skysail.api.search;version=${skysail.api.search.version},\
 	skysail.api.text;version=${skysail.api.text.version},\
 	skysail.api.features;version=${skysail.api.features.version},\

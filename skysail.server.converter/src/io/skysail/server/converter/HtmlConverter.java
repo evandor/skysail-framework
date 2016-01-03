@@ -16,7 +16,6 @@ import de.twenty11.skysail.server.core.osgi.EventHelper;
 import de.twenty11.skysail.server.services.OsgiConverterHelper;
 import etm.core.configuration.EtmManager;
 import etm.core.monitor.*;
-import io.skysail.api.peers.PeersProvider;
 import io.skysail.api.search.SearchService;
 import io.skysail.server.app.SkysailApplication;
 import io.skysail.server.converter.impl.*;
@@ -45,7 +44,6 @@ public class HtmlConverter extends ConverterHelper implements OsgiConverterHelpe
     private List<Event> peityBarEvents= new CopyOnWriteArrayList<>();
 
     private volatile Set<MenuItemProvider> menuProviders = new HashSet<>();
-    private volatile PeersProvider peersProvider;
 
     //private InstallationProvider installationProvider;
 
@@ -86,17 +84,6 @@ public class HtmlConverter extends ConverterHelper implements OsgiConverterHelpe
 
     public void unsetSearchService(SearchService service) {
         this.searchService = null;
-    }
-
-    // --- Peers Provider Service ------------------------------------------------
-
-    @Reference(policy = ReferencePolicy.DYNAMIC, cardinality = ReferenceCardinality.OPTIONAL)
-    public void setPeersProvider(PeersProvider service) {
-        this.peersProvider = service;
-    }
-
-    public void unsetPeersProvider(PeersProvider service) {
-        this.peersProvider = null;
     }
 
     @Override
@@ -148,7 +135,6 @@ public class HtmlConverter extends ConverterHelper implements OsgiConverterHelpe
 
         StringTemplateRenderer stringTemplateRenderer = new StringTemplateRenderer(this);
         stringTemplateRenderer.setMenuProviders(menuProviders);
-        stringTemplateRenderer.setPeersProvider(peersProvider);
         stringTemplateRenderer.setSearchService(searchService);
         StringRepresentation rep = stringTemplateRenderer.createRepresenation(originalSource, target,
                 (SkysailServerResource<?>) resource);

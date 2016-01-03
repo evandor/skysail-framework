@@ -135,7 +135,6 @@ Bundle-Version: 0.1.0.${tstamp}
 	skysail.api.search;version=latest,\
 	skysail.api.text;version=latest,\
 	skysail.api.validation;version=latest,\
-	skysail.api.peers;version=latest,\
 	skysail.api.features;version=latest,\
 	skysail.client.testsupport;version=latest,\
 	skysail.server;version=${skysail.server.version},\

@@ -1,6 +1,17 @@
 package io.skysail.server.converter.impl;
 
-import io.skysail.api.peers.PeersProvider;
+import java.net.URL;
+import java.util.*;
+import java.util.stream.Collectors;
+
+import org.apache.shiro.SecurityUtils;
+import org.osgi.framework.Bundle;
+import org.restlet.data.MediaType;
+import org.restlet.representation.*;
+import org.restlet.resource.Resource;
+import org.stringtemplate.v4.ST;
+
+import de.twenty11.skysail.server.core.restlet.ResourceContextId;
 import io.skysail.api.responses.SkysailResponse;
 import io.skysail.api.search.SearchService;
 import io.skysail.api.text.Translation;
@@ -12,22 +23,8 @@ import io.skysail.server.menus.MenuItemProvider;
 import io.skysail.server.model.ResourceModel;
 import io.skysail.server.restlet.resources.SkysailServerResource;
 import io.skysail.server.utils.*;
-
-import java.net.URL;
-import java.util.*;
-import java.util.stream.Collectors;
-
 import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
-
-import org.apache.shiro.SecurityUtils;
-import org.osgi.framework.Bundle;
-import org.restlet.data.MediaType;
-import org.restlet.representation.*;
-import org.restlet.resource.Resource;
-import org.stringtemplate.v4.ST;
-
-import de.twenty11.skysail.server.core.restlet.ResourceContextId;
 
 @Slf4j
 public class StringTemplateRenderer {
@@ -38,7 +35,6 @@ public class StringTemplateRenderer {
     private Set<MenuItemProvider> menuProviders;
     private String templateFromCookie;
     private HtmlConverter htmlConverter;
-    private PeersProvider peersProvider;
     private String indexPageName;
 
     private SearchService searchService;
@@ -151,7 +147,7 @@ public class StringTemplateRenderer {
 
         String installationFromCookie = CookiesUtils.getInstallationFromCookie(resource.getRequest());
 
-        decl.add("user", new STUserWrapper(SecurityUtils.getSubject(), peersProvider, installationFromCookie));
+        decl.add("user", new STUserWrapper(SecurityUtils.getSubject(), installationFromCookie));
         decl.add("converter", this);
 
         Map<String, Translation> messages = resource.getMessages(resourceModel.getFields());
@@ -221,10 +217,6 @@ public class StringTemplateRenderer {
         if (resource.getHostRef().getHostDomain().contains("localhost") && inspect != null) {
             index.inspect();
         }
-    }
-
-    public void setPeersProvider(PeersProvider peersProvider) {
-        this.peersProvider = peersProvider;
     }
 
     public void setSearchService(SearchService searchService) {

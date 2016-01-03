@@ -13,7 +13,6 @@ Include-Resource: webapp, resources, templates=src;recursive:=true;filter:=*.st|
 	osgi.cmpn;version=${osgi.version},\
 	skysail.api;version=${skysail.api.version},\
 	skysail.api.um;version=${skysail.api.um.version},\
-	skysail.api.peers;version=${skysail.api.peers.version},\
 	skysail.api.text;version=${skysail.api.text.version},\
     skysail.domain;version=${skysail.domain.version},\
 	skysail.server;version=${skysail.server.version},\

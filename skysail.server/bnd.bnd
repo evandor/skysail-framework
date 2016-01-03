@@ -70,7 +70,6 @@ Service-Component: *
 	osgi.enterprise;version=${osgi.version},\
     osgi.annotation;version=${osgi.annotation.version},\
 	skysail.api;version=${skysail.api.version},\
-	skysail.api.peers;version=${skysail.api.peers.version},\
 	skysail.api.features;version=${skysail.api.features.version},\
 	skysail.api.search;version=${skysail.api.search.version},\
 	skysail.api.text;version=${skysail.api.text.version},\

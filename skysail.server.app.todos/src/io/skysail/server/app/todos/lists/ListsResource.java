@@ -1,5 +1,8 @@
 package io.skysail.server.app.todos.lists;
 
+import java.util.List;
+
+import de.twenty11.skysail.server.core.restlet.ResourceContextId;
 import io.skysail.api.links.Link;
 import io.skysail.api.text.*;
 import io.skysail.server.app.todos.*;
@@ -7,13 +10,6 @@ import io.skysail.server.app.todos.services.ListService;
 import io.skysail.server.app.todos.todos.resources.*;
 import io.skysail.server.restlet.resources.*;
 import io.skysail.server.utils.LinkUtils;
-
-import java.util.List;
-
-import org.restlet.data.MediaType;
-import org.restlet.resource.ClientResource;
-
-import de.twenty11.skysail.server.core.restlet.ResourceContextId;
 
 public class ListsResource extends ListServerResource<TodoList> implements I18nArgumentsProvider {
 
@@ -51,27 +47,6 @@ public class ListsResource extends ListServerResource<TodoList> implements I18nA
     @Override
     public List<TodoList> getEntity() {
         return listService.getLists(this);
-    }
-
-    @Override
-    public List<TodoList> getEntity(String installation) {
-        if (installation == null || installation.trim().length() == 0) {
-            return getEntity();
-        }
-        String peersCredentialsName = "Credentials_" + installation;
-        String peersCredentials = getRequest().getCookies().getFirstValue(peersCredentialsName);
-
-        String path = app.getRemotePath(installation, "/Todos/v2/Lists");
-
-        if (peersCredentials == null) {
-            getResponse().redirectSeeOther("/_remotelogin");
-            return null;
-        }
-        ClientResource cr = new ClientResource(path);
-        cr.getCookies().add("Credentials", peersCredentials);
-        cr.get(MediaType.APPLICATION_JSON);
-
-        return cr.get(List.class);
     }
 
     @Override

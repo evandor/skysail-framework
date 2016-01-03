@@ -3,11 +3,11 @@ package de.twenty11.skysail.server.core.osgi;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 
-import lombok.extern.slf4j.Slf4j;
-
 import org.apache.shiro.SecurityUtils;
 import org.osgi.service.event.*;
 import org.restlet.Request;
+
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Some utility methods to fire events.
@@ -92,7 +92,7 @@ public class EventHelper {
                 try {
                     Thread.sleep(500);
                 } catch (InterruptedException e) {
-                    e.printStackTrace();
+                    log.error(e.getMessage(), e);
                 }
                 log.debug("about to post event "  + event + ": " + event.getProperty(EVENT_MESSAGE));
                 eventAdmin.postEvent(event);

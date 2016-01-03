@@ -3,16 +3,12 @@ package io.skysail.domain.core.test;
 import static org.hamcrest.Matchers.containsString;
 import static org.junit.Assert.assertThat;
 
-import org.junit.*;
+import org.junit.Test;
 
 import io.skysail.domain.core.FieldModel;
 
 public class FieldModelTest {
 
-    @Before
-    public void setUp() throws Exception {
-    }
-    
     @Test
     public void testName() {
         FieldModel fieldModel = new FieldModel("fieldModel");

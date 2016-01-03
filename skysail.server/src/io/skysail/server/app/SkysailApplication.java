@@ -381,18 +381,6 @@ public abstract class SkysailApplication extends RamlApplication implements Appl
         }
         tracer.setNext(authenticationGuard);
 
-
-//        RoleAuthorizer roleAuthorizer = new RoleAuthorizer();
-//        roleAuthorizer.setAuthorizedRoles(Scopes.toRoles("status"));
-//        roleAuthorizer.setNext(router);
-//
-//        ChallengeAuthenticator bearerAuthenticator = new ChallengeAuthenticator(getContext(),
-//                ChallengeScheme.HTTP_OAUTH_BEARER, "ApplicationModel");
-//
-//        bearerAuthenticator.setVerifier(new TokenVerifier(new org.restlet.data.Reference("yourTokenAuthURI")));
-//        bearerAuthenticator.setNext(roleAuthorizer);
-
-
         return tracer;
     }
 

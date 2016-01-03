@@ -1,10 +1,8 @@
 package io.skysail.server.um;
 
-import java.util.*;
-
 import aQute.bnd.annotation.component.*;
 import de.twenty11.skysail.server.services.UserManager;
-import de.twenty11.skysail.server.um.domain.*;
+import de.twenty11.skysail.server.um.domain.SkysailUser;
 import io.skysail.api.um.*;
 import io.skysail.server.db.DbService;
 import io.skysail.server.um.security.shiro.*;
@@ -65,11 +63,6 @@ public class SkysailUserManagementProvider implements UserManagementProvider, Us
     @Override
     public SkysailUser findById(String id) {
         return getUserRepository().getById(id);
-    }
-
-    @Override
-    public List<SkysailGroup> getGroupsForUser(String username) {
-        return Collections.emptyList();// getUserRepository().getGroupsForUser(username);
     }
 
     @Override

@@ -2,7 +2,7 @@ package de.twenty11.skysail.server.um.domain;
 
 import java.util.*;
 
-import javax.persistence.*;
+import javax.persistence.Id;
 
 import io.skysail.domain.Identifiable;
 import io.skysail.domain.html.*;
@@ -26,11 +26,7 @@ public class SkysailUser implements Identifiable {
 
     private Set<SkysailRole> roles = new HashSet<SkysailRole>();
 
-    @ManyToMany
-    private List<SkysailGroup> groups = new ArrayList<SkysailGroup>();
-
     public SkysailUser() {
-        // roles.add(new SkysailRole("test"));
     }
 
     public SkysailUser(String username, String password, String id) {
@@ -61,14 +57,6 @@ public class SkysailUser implements Identifiable {
 
     public void setRoles(Set<SkysailRole> roles) {
         this.roles = roles;
-    }
-
-    public List<SkysailGroup> getGroups() {
-        return groups;
-    }
-
-    public void setGroups(List<SkysailGroup> groups) {
-        this.groups = groups;
     }
 
     @Override

@@ -69,6 +69,7 @@ public class PathSubstitutionsTest {
     }
 
     @Test
+    @Ignore
     public void substitutes_from_attributes_with_id_as_missing_pathvariable() {
         attributes.put("name", "theName");
         List<RouteBuilder> routes = new ArrayList<>();

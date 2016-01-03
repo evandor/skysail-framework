@@ -3,9 +3,6 @@ package io.skysail.server.utils.test;
 import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.Matchers.nullValue;
 import static org.junit.Assert.assertThat;
-import io.skysail.api.links.*;
-import io.skysail.server.app.*;
-import io.skysail.server.utils.LinkUtils;
 
 import java.util.*;
 
@@ -13,6 +10,9 @@ import org.junit.*;
 import org.mockito.Mockito;
 
 import de.twenty11.skysail.server.core.restlet.RouteBuilder;
+import io.skysail.api.links.*;
+import io.skysail.server.app.*;
+import io.skysail.server.utils.LinkUtils;
 
 public class LinkUtilsTest {
 
@@ -65,46 +65,5 @@ public class LinkUtilsTest {
         String replaced = LinkUtils.replaceValues("/abc/{id}/{value}/xyz", attributes);
         assertThat(replaced, is("/abc/id/value/xyz"));
     }
-
-//    @Test
-//    public void testName() {
-//        LinkUtils linkUtils = new LinkUtils();
-//        TestListServerResource resource = new TestListServerResource();
-//        Object entity = Mockito.mock(Identifiable.class);
-//        Class<? extends SkysailServerResource<?>>[] classes = null;
-//        List<Link> fromResources = linkUtils.fromResources(resource, entity, classes );
-//        System.out.println(fromResources);
-//    }
-
-//
-//    @Test
-//    public void no_classes_yield_no_links() {
-//        Mockito.when(app.getRouteBuilders(TestListServerResource.class)).thenReturn(routeBuilderList);
-//        SkysailServerResource<?> skysailServerResource = new TestListServerResource();
-//        Object entity = "stringEntity";
-//        Class<? extends SkysailServerResource<?>>[] classes = new Class[0];
-//        List<Link> links = LinkUtils.fromResources(skysailServerResource, entity, classes);
-//        assertThat(links.size(), is(0));
-//    }
-
-//    @Test
-//    @Ignore
-//    public void testName() {
-//        Mockito.when(app.getRouteBuilders(TestListServerResource.class)).thenReturn(routeBuilderList);
-//        SkysailServerResource<?> skysailServerResource = new TestListServerResource();
-//        Object entity = "stringEntity";
-//        Class<? extends SkysailServerResource<?>>[] classes = new Class[1];
-//        classes[0] = TestListServerResource.class;
-//        List<Link> links = LinkUtils.fromResources(skysailServerResource, entity, classes);
-//     //   LinkUtils.fromResources(null, null, new Class[0]);//TestListServerResource.class);//;  (app, TestListServerResource.class, "title");
-//        assertThat(links.size(), is(1));
-//        //        assertThat(link.getUri(), is(equalTo("/testapp/path")));
-////        assertThat(link.getNeedsAuthentication(), is(false));
-////        assertThat(link.getRefId(), is(nullValue()));
-////        assertThat(link.getRel(), is(equalTo(LinkRelation.COLLECTION)));
-////        assertThat(link.getRole(), is(equalTo(LinkRole.DEFAULT)));
-////        assertThat(link.getTitle(), is(equalTo("list")));
-////        assertThat(link.getImage(), is(nullValue()));
-//    }
 
 }

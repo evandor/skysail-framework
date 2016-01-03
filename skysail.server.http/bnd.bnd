@@ -28,6 +28,4 @@ Bundle-Description: provides the skysail http server
 	org.eclipse.jetty.util;version=9.2
 Export-Package:  \
 	io.skysail.server.http
-Private-Package:  \
-	io.skysail.server.http.impl
 Include-Resource: resources

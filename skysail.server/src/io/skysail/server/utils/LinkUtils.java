@@ -1,26 +1,28 @@
 package io.skysail.server.utils;
 
-import io.skysail.api.links.*;
-import io.skysail.server.app.SkysailApplication;
-import io.skysail.server.restlet.resources.*;
-
 import java.util.*;
 import java.util.Map.Entry;
 import java.util.function.Function;
 import java.util.regex.*;
 import java.util.stream.Collectors;
 
-import lombok.extern.slf4j.Slf4j;
-
 import org.restlet.data.*;
-import org.restlet.resource.*;
+import org.restlet.resource.ServerResource;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import de.twenty11.skysail.server.core.restlet.*;
+import io.skysail.api.links.*;
+import io.skysail.server.app.SkysailApplication;
+import io.skysail.server.restlet.resources.*;
+import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public class LinkUtils {
 
     private static Pattern pattern = Pattern.compile("\\{(.*?)\\}", Pattern.DOTALL);
+    
+    private static volatile ObjectMapper mapper = new ObjectMapper();
 
     public static Link fromResource(SkysailApplication app, Class<? extends SkysailServerResource<?>> ssr) {
         return fromResource(app, ssr, null);
@@ -197,10 +199,10 @@ public class LinkUtils {
                 List<Link> entityLinkTemplates = esr.getAuthorizedLinks();
                 for (Object object : (List<?>) entity) {
                     //String id = guessId(object);
-                    //Map<String, String> substitutions = PathUtils.getSubstitutions(object, skysailServerResource);
+                    //Map<String, String> substitutions = PathSubstitutions.getSubstitutions(object, skysailServerResource);
                     entityLinkTemplates.stream().filter(lh -> {
                         return lh.getRole().equals(LinkRole.DEFAULT);
-                    }).forEach(link -> addLink(link, esr, object, listServerResource, result));
+                    }).forEach(link -> addLink(link, object, listServerResource, result));
                 }
             }
         }
@@ -208,13 +210,23 @@ public class LinkUtils {
 
     }
 
-    private static void addLink(Link linkTemplate, Resource entityResource, Object object, ListServerResource<?> resource,
-            List<Link> result) {
+    private static void addLink(Link linkTemplate, Object object, ListServerResource<?> resource, List<Link> result) {
         String path = linkTemplate.getUri();
         Class<? extends ServerResource> linkedResourceClass = (Class<? extends ServerResource>) linkTemplate.getCls();
         List<RouteBuilder> routeBuilders = resource.getApplication().getRouteBuildersForResource(linkedResourceClass);
-        PathUtils pathUtils = new PathUtils(resource.getRequestAttributes(), routeBuilders);
-        Map<String, String> substitutions = pathUtils.getSubstitutions(object);//PathUtils.getSubstitutions(object, resource.getRequestAttributes(), routeBuilders);
+        PathSubstitutions pathUtils = new PathSubstitutions(resource.getRequestAttributes(), routeBuilders);
+        Map<String, String> substitutions = pathUtils.getFor(object);
+        
+        HashMap<String,Object> objectsMapRepresentation = mapper.convertValue(object, HashMap.class);
+        objectsMapRepresentation.keySet().stream().forEach(key -> {
+            if ("id".equals(key)) {
+                return;
+            }
+            if (objectsMapRepresentation.get(key) instanceof String) {
+                substitutions.put("entity."+key, (String)objectsMapRepresentation.get(key));
+            }
+        });
+        
         String href = path;
 
         for (Entry<String, String> entry : substitutions.entrySet()) {

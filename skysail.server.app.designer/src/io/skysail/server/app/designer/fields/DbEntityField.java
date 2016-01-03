@@ -28,6 +28,7 @@ public abstract class DbEntityField implements Identifiable, Nameable, Serializa
     @NotNull
     @Size(min = 1)
     @PostView(tab = "new Field")
+    //@ListView(link = PutFieldResource.class)
     protected String name;
 
     @Field(selectionProvider = InputTypeSelectionProvider.class)

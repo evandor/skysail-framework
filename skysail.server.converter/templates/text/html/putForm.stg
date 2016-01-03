@@ -11,13 +11,13 @@ putForm(model, messages) ::= <<
       </div>
     </div>
     $if (model.submitButtonNeeded)$
-      $submitPost("Submit","2","10",length(model.formfields))$
+      $submitPut("Update","2","8",length(fields))$
     $endif$
     
   $else$
     $model.formfields:{ field | $handleField(first(model.data), field, messages,i,"")$}$
     $if (model.submitButtonNeeded)$
-      $submitPut("Update","1","9",length(fields))$
+      $submitPut("Update","2","8",length(fields))$
     $endif$
   $endif$
   </form>

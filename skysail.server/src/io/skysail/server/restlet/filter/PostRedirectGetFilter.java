@@ -1,12 +1,11 @@
 package io.skysail.server.restlet.filter;
 
-import io.skysail.domain.Identifiable;
-import io.skysail.server.restlet.resources.*;
-
 import org.restlet.data.*;
 import org.restlet.representation.Variant;
 
 import de.twenty11.skysail.server.core.restlet.Wrapper;
+import io.skysail.domain.Identifiable;
+import io.skysail.server.restlet.resources.*;
 
 public class PostRedirectGetFilter<R extends PostEntityServerResource<T>, T extends Identifiable> extends AbstractResourceFilter<R, T> {
 

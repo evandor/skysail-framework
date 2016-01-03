@@ -132,6 +132,7 @@ public abstract class SkysailServerResource<T> extends ServerResource {
      * delegates to restlets getAttribute, but will decode the attribute as
      * well.
      */
+    @Override
     public String getAttribute(String name) {
         String attribute = super.getAttribute(name);
         if (attribute != null) {
@@ -307,8 +308,7 @@ public abstract class SkysailServerResource<T> extends ServerResource {
     }
 
     public String redirectTo(Class<? extends SkysailServerResource<?>> cls) {
-        SkysailApplication app = getApplication();
-        Link linkheader = LinkUtils.fromResource(app, cls);
+        Link linkheader = LinkUtils.fromResource(getApplication(), cls);
         if (linkheader == null) {
             return null;
         }

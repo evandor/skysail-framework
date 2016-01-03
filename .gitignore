@@ -24,3 +24,4 @@ skysail.server.polymer/_polymer/.bowerrc
 /config/
 /skysail.server.designer.money
 /skysail.server.designer.transactions
+/skysail.server.app.testapp/

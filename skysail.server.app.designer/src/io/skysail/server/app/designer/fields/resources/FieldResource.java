@@ -48,7 +48,9 @@ public class FieldResource extends EntityServerResource<DbEntityField> {
 
     @Override
     public List<Link> getLinks() {
-        return super.getLinks();
+         List<Link> links = super.getLinks(PutFieldRedirectResource.class);
+         links.stream().forEach(l -> l.setUri(l.getUri() + "?classHint={entity.type}"));
+         return links;
     }
     
     @Override

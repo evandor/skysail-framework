@@ -30,7 +30,7 @@
       <operations public="true" package="true" protected="false" private="false" static="true"/>    
     </display>  
   </class>  
-  <class id="4" language="java" name="de.twenty11.skysail.server.security.shiro.restlet.ShiroDelegatingVerifier" 
+  <class id="4" language="java" name="io.skysail.server.security.shiro.restlet.ShiroDelegatingVerifier" 
     project="skysail.server.security.shiro" 
     file="/skysail.server.security.shiro/src/de/twenty11/skysail/server/security/shiro/restlet/ShiroDelegatingVerifier.java" 
     binary="false" corner="BOTTOM_RIGHT">    
@@ -41,7 +41,7 @@
       <operations public="true" package="true" protected="false" private="false" static="true"/>    
     </display>  
   </class>  
-  <class id="5" language="java" name="de.twenty11.skysail.server.security.shiro.restlet.ShiroDelegationAuthenticator" 
+  <class id="5" language="java" name="io.skysail.server.security.shiro.restlet.ShiroDelegationAuthenticator" 
     project="skysail.server.security.shiro" 
     file="/skysail.server.security.shiro/src/de/twenty11/skysail/server/security/shiro/restlet/ShiroDelegationAuthenticator.java" 
     binary="false" corner="BOTTOM_RIGHT">    
@@ -70,7 +70,7 @@
       <operations public="true" package="true" protected="false" private="false" static="true"/>    
     </display>  
   </class>  
-  <class id="8" language="java" name="de.twenty11.skysail.server.security.shiro.ShiroServices" 
+  <class id="8" language="java" name="io.skysail.server.security.shiro.ShiroServices" 
     project="skysail.server.security.shiro" 
     file="/skysail.server.security.shiro/src/de/twenty11/skysail/server/security/shiro/ShiroServices.java" 
     binary="false" corner="BOTTOM_RIGHT">    

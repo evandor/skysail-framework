@@ -1,4 +1,4 @@
-package de.twenty11.skysail.server.security.test;
+package io.skysail.server.security.test;
 
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
@@ -6,7 +6,7 @@ import static org.junit.Assert.assertThat;
 import org.junit.Before;
 import org.junit.Test;
 
-import de.twenty11.skysail.server.security.RolePredicate;
+import io.skysail.server.security.RolePredicate;
 
 public class RolePredicateTest {
 

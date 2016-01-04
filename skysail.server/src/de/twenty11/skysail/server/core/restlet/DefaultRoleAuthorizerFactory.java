@@ -2,7 +2,7 @@
 //
 //import org.restlet.security.Authorizer;
 //
-//import de.twenty11.skysail.server.security.SkysailRoleAuthorizer;
+//import io.skysail.server.security.SkysailRoleAuthorizer;
 //
 //public class DefaultRoleAuthorizerFactory implements RoleAuthorizerFactory {
 //

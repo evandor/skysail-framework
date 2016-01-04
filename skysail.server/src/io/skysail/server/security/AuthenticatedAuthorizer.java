@@ -1,4 +1,4 @@
-package de.twenty11.skysail.server.security;
+package io.skysail.server.security;
 
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;

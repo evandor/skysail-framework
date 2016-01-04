@@ -1,4 +1,4 @@
-package de.twenty11.skysail.server.security;
+package io.skysail.server.security;
 
 import java.util.List;
 

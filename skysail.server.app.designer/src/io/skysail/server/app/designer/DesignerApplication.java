@@ -20,9 +20,10 @@ import io.skysail.server.app.designer.codegen.PostCompilationResource;
 import io.skysail.server.app.designer.entities.DbEntity;
 import io.skysail.server.app.designer.entities.resources.*;
 import io.skysail.server.app.designer.fields.resources.*;
-import io.skysail.server.app.designer.fields.resources.date.PostDateFieldResource;
+import io.skysail.server.app.designer.fields.resources.date.*;
+import io.skysail.server.app.designer.fields.resources.editors.*;
 import io.skysail.server.app.designer.fields.resources.text.*;
-import io.skysail.server.app.designer.fields.resources.textarea.PostTextareaFieldResource;
+import io.skysail.server.app.designer.fields.resources.textarea.*;
 import io.skysail.server.app.designer.repo.DesignerRepository;
 import io.skysail.server.db.DbService;
 import io.skysail.server.menus.*;
@@ -90,7 +91,14 @@ public class DesignerApplication extends SkysailApplication implements MenuItemP
         router.attach(new RouteBuilder("/entities/{" + ENTITY_ID + "}/textfields/{"+FIELD_ID+"}/", PutTextFieldResource.class));
 
         router.attach(new RouteBuilder("/entities/{" + ENTITY_ID + "}/textareafields/", PostTextareaFieldResource.class));
+        router.attach(new RouteBuilder("/entities/{" + ENTITY_ID + "}/textareafields/{"+FIELD_ID+"}/", PutTextareaFieldResource.class));
+
+        router.attach(new RouteBuilder("/entities/{" + ENTITY_ID + "}/trixeditor/", PostTrixeditorFieldResource.class));
+        router.attach(new RouteBuilder("/entities/{" + ENTITY_ID + "}/trixeditor/{"+FIELD_ID+"}/", PutTrixeditorFieldResource.class));
+
         router.attach(new RouteBuilder("/entities/{" + ENTITY_ID + "}/datefields/", PostDateFieldResource.class));
+        router.attach(new RouteBuilder("/entities/{" + ENTITY_ID + "}/datefields/{"+FIELD_ID+"}/", PutDateFieldResource.class));
+
 
         router.attach(new RouteBuilder("/entities/{" + ENTITY_ID + "}/fields/{" + FIELD_ID + "}", FieldResource.class));
         

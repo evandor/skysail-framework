@@ -23,11 +23,22 @@ public class DesignerRepository implements DbRepository {
 
     @Activate
     public void activate() {
-        dbService.createWithSuperClass("V", DbClassName.of(DbApplication.class), DbClassName.of(DbEntity.class),
-                DbClassName.of(DbEntityDateField.class), DbClassName.of(DbEntityTextField.class),
-                DbClassName.of(DbEntityTextareaField.class), DbClassName.of(ActionEntityField.class));
-        dbService.register(DbApplication.class, DbEntity.class, DbEntityDateField.class, DbEntityTextField.class,
-                DbEntityTextareaField.class, ActionEntityField.class);
+        dbService.createWithSuperClass("V", 
+                DbClassName.of(DbApplication.class), 
+                DbClassName.of(DbEntity.class),
+                DbClassName.of(DbEntityDateField.class), 
+                DbClassName.of(DbEntityTextField.class),
+                DbClassName.of(DbEntityTextareaField.class), 
+                DbClassName.of(DbEntityTrixeditorField.class), 
+                DbClassName.of(ActionEntityField.class));
+        dbService.register(
+                DbApplication.class, 
+                DbEntity.class, 
+                DbEntityDateField.class, 
+                DbEntityTextField.class,
+                DbEntityTextareaField.class, 
+                DbEntityTrixeditorField.class, 
+                ActionEntityField.class);
         dbService.createEdges("entities", "fields", "subEntities");
     }
 

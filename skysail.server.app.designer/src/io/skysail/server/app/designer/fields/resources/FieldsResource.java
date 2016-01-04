@@ -8,6 +8,8 @@ import io.skysail.server.app.designer.DesignerApplication;
 import io.skysail.server.app.designer.application.DbApplication;
 import io.skysail.server.app.designer.entities.DbEntity;
 import io.skysail.server.app.designer.fields.DbEntityField;
+import io.skysail.server.app.designer.fields.resources.date.PostDateFieldResource;
+import io.skysail.server.app.designer.fields.resources.editors.PostTrixeditorFieldResource;
 import io.skysail.server.app.designer.fields.resources.text.PostTextFieldResource;
 import io.skysail.server.app.designer.fields.resources.textarea.PostTextareaFieldResource;
 import io.skysail.server.restlet.resources.*;
@@ -41,7 +43,7 @@ public class FieldsResource extends ListServerResource<DbEntityField> {
 
     @Override
     public List<Link> getLinks() {
-        return super.getLinks(PostTextFieldResource.class, PostTextareaFieldResource.class);
+        return super.getLinks(PostTextFieldResource.class, PostTextareaFieldResource.class, PostTrixeditorFieldResource.class, PostDateFieldResource.class);
     }
     
     public List<TreeRepresentation> getTreeRepresentation() {

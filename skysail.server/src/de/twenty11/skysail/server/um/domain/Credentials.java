@@ -1,4 +1,4 @@
-package de.twenty11.skysail.server.domain;
+package de.twenty11.skysail.server.um.domain;
 
 import javax.validation.constraints.Size;
 

@@ -1,8 +1,7 @@
 package io.skysail.server.um;
 
 import aQute.bnd.annotation.component.*;
-import de.twenty11.skysail.server.services.UserManager;
-import de.twenty11.skysail.server.um.domain.SkysailUser;
+import de.twenty11.skysail.server.um.domain.*;
 import io.skysail.api.um.*;
 import io.skysail.server.db.DbService;
 import io.skysail.server.um.security.shiro.*;

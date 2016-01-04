@@ -1,4 +1,4 @@
-package de.twenty11.skysail.server.services;
+package io.skysail.server.services;
 
 import java.util.concurrent.Callable;
 

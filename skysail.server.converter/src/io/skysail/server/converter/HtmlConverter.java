@@ -13,7 +13,6 @@ import org.restlet.representation.*;
 import org.restlet.resource.Resource;
 
 import de.twenty11.skysail.server.core.osgi.EventHelper;
-import de.twenty11.skysail.server.services.OsgiConverterHelper;
 import etm.core.configuration.EtmManager;
 import etm.core.monitor.*;
 import io.skysail.api.search.SearchService;
@@ -21,6 +20,7 @@ import io.skysail.server.app.SkysailApplication;
 import io.skysail.server.converter.impl.*;
 import io.skysail.server.menus.MenuItemProvider;
 import io.skysail.server.restlet.resources.SkysailServerResource;
+import io.skysail.server.services.OsgiConverterHelper;
 import lombok.extern.slf4j.Slf4j;
 
 /**

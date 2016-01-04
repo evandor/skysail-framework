@@ -12,11 +12,11 @@ import org.restlet.resource.Resource;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.dataformat.csv.*;
 
-import de.twenty11.skysail.server.services.OsgiConverterHelper;
 import io.skysail.api.responses.SkysailResponse;
 import io.skysail.api.text.Translation;
 import io.skysail.server.model.ResourceModel;
 import io.skysail.server.restlet.resources.SkysailServerResource;
+import io.skysail.server.services.OsgiConverterHelper;
 import io.skysail.server.utils.HeadersUtils;
 
 @Component(immediate = true)

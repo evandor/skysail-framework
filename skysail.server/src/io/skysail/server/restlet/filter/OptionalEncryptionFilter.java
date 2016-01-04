@@ -6,10 +6,10 @@ import org.restlet.Response;
 import org.restlet.data.*;
 
 import de.twenty11.skysail.server.core.restlet.Wrapper;
-import de.twenty11.skysail.server.services.EncryptorService;
 import io.skysail.domain.Identifiable;
 import io.skysail.server.app.SkysailApplication;
 import io.skysail.server.restlet.resources.*;
+import io.skysail.server.services.EncryptorService;
 
 public class OptionalEncryptionFilter<R extends SkysailServerResource<T>, T extends Identifiable> extends AbstractResourceFilter<R, T> {
 

@@ -21,6 +21,7 @@ import org.restlet.service.ConverterService;
 import de.twenty11.skysail.server.SkysailComponent;
 import de.twenty11.skysail.server.app.*;
 import de.twenty11.skysail.server.services.*;
+import io.skysail.server.services.*;
 import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
 

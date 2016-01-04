@@ -26,7 +26,7 @@ import org.restlet.resource.Resource;
 
 import de.twenty11.skysail.server.app.ServiceListProvider;
 import de.twenty11.skysail.server.services.*;
-import de.twenty11.skysail.server.um.domain.SkysailUser;
+import de.twenty11.skysail.server.um.domain.*;
 import io.skysail.api.responses.*;
 import io.skysail.api.validation.*;
 import io.skysail.server.app.*;

@@ -13,7 +13,7 @@ indexSpa(user, messages, converter, model) ::= <<
     $pace()$
     $jquery()$
     $bootstrap()$
-    $polymer()$
+    <!-- $polymer()$ -->
     $select2()$
     $animate()$
     $jstree()$

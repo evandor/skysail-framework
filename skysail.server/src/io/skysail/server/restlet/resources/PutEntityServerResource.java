@@ -15,6 +15,7 @@ import io.skysail.domain.Identifiable;
 import io.skysail.server.app.SkysailApplication;
 import io.skysail.server.restlet.RequestHandler;
 import io.skysail.server.restlet.filter.AbstractResourceFilter;
+import io.skysail.server.restlet.response.ResponseWrapper;
 import io.skysail.server.services.PerformanceTimer;
 import io.skysail.server.utils.ReflectionUtils;
 import lombok.extern.slf4j.Slf4j;

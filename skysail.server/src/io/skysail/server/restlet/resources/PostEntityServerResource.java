@@ -20,6 +20,7 @@ import io.skysail.api.search.SearchService;
 import io.skysail.domain.Identifiable;
 import io.skysail.server.restlet.RequestHandler;
 import io.skysail.server.restlet.filter.*;
+import io.skysail.server.restlet.response.ResponseWrapper;
 import io.skysail.server.services.PerformanceTimer;
 import lombok.extern.slf4j.Slf4j;
 

@@ -1,4 +1,4 @@
-package de.twenty11.skysail.server.core.restlet;
+package io.skysail.server.restlet.response;
 
 import org.restlet.Response;
 

@@ -1,17 +1,16 @@
 package io.skysail.server.restlet.filter;
 
-import java.net.MalformedURLException;
-import java.net.URL;
+import java.net.*;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import org.restlet.Response;
-import org.restlet.data.MediaType;
-import org.restlet.data.Parameter;
+import org.restlet.data.*;
 import org.restlet.representation.Variant;
 
 import de.twenty11.skysail.server.core.restlet.Wrapper;
 import io.skysail.domain.Identifiable;
-import io.skysail.server.restlet.resources.PutEntityServerResource;
-import io.skysail.server.restlet.resources.SkysailServerResource;
+import io.skysail.server.restlet.resources.*;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -24,6 +23,7 @@ public class PutRedirectGetFilter<R extends PutEntityServerResource<T>, T extend
         if (redirectTo != null && noRedirects == null) {
             Variant variant = (Variant) resource.getRequest().getAttributes().get(SkysailServerResource.SKYSAIL_SERVER_RESTLET_VARIANT);
             if (variant != null && MediaType.TEXT_HTML.equals(variant.getMediaType())) {
+                redirectTo = augmentWithMessageIds(redirectTo, responseWrapper.getMessageIds());
                 resource.getResponse().redirectSeeOther(redirectTo);
                 return;
             }
@@ -34,11 +34,26 @@ public class PutRedirectGetFilter<R extends PutEntityServerResource<T>, T extend
                 : null;
         if (redirectFromQuery != null) {
             try {
-                response.redirectSeeOther(new URL(redirectFromQuery).toExternalForm());
+                String seeOther = new URL(redirectFromQuery).toExternalForm();
+                seeOther = augmentWithMessageIds(seeOther, responseWrapper.getMessageIds());
+                response.redirectSeeOther(seeOther);
                 return;
             } catch (MalformedURLException e) {
                 log.error(e.getMessage(), e);
             }
         }
+    }
+    
+    private String augmentWithMessageIds(String redirectTo, List<Long> messageIds) {
+        if (messageIds.isEmpty()) {
+            return redirectTo;
+        }
+        String result;
+        if (redirectTo.contains("?")) {
+            result = redirectTo + "&";
+        } else {
+            result = redirectTo + "?";
+        }
+        return result + "msgIds=" + messageIds.stream().map(id -> id.toString()).collect(Collectors.joining("|"));
     }
 }

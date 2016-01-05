@@ -2,6 +2,7 @@ package io.skysail.server.restlet.filter;
 
 import io.skysail.domain.Identifiable;
 import io.skysail.server.restlet.resources.*;
+import io.skysail.server.restlet.response.ResponseWrapper;
 
 import java.text.ParseException;
 import java.util.List;
@@ -10,8 +11,6 @@ import org.restlet.*;
 import org.restlet.data.Form;
 import org.restlet.routing.Filter;
 import org.slf4j.*;
-
-import de.twenty11.skysail.server.core.restlet.ResponseWrapper;
 
 /**
  * The abstract base class for Skysail Resource Filters.

@@ -29,7 +29,7 @@ public class CheckInvalidInputFilter<R extends SkysailServerResource<?>, T exten
     }
 
     @Override
-    public FilterResult doHandle(R resource, Wrapper responseWrapper) {
+    public FilterResult doHandle(R resource, Wrapper<T> responseWrapper) {
         log.debug("entering {}#doHandle", this.getClass().getSimpleName());
 
         // do in "before"?

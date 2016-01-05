@@ -2,10 +2,9 @@ package io.skysail.server.restlet.filter;
 
 import io.skysail.domain.Identifiable;
 import io.skysail.server.restlet.resources.EntityServerResource;
+import io.skysail.server.restlet.response.ResponseWrapper;
 
 import org.restlet.Request;
-
-import de.twenty11.skysail.server.core.restlet.ResponseWrapper;
 
 public interface EntityResourceFilter<T extends Identifiable> {
 

@@ -2,12 +2,11 @@ package io.skysail.server.restlet.filter;
 
 import io.skysail.domain.Identifiable;
 import io.skysail.server.restlet.resources.SkysailServerResource;
+import io.skysail.server.restlet.response.ResponseWrapper;
 import io.skysail.server.utils.HeadersUtils;
 
 import org.osgi.framework.*;
 import org.restlet.Response;
-
-import de.twenty11.skysail.server.core.restlet.ResponseWrapper;
 
 public class AddApiVersionHeaderListFilter<R extends SkysailServerResource<?>, T extends Identifiable, S extends java.util.List<T>>
         extends AbstractListResourceFilter<R, T, S> {

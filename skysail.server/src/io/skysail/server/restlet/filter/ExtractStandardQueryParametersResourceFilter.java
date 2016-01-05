@@ -1,8 +1,8 @@
 package io.skysail.server.restlet.filter;
 
+import de.twenty11.skysail.server.core.restlet.Wrapper;
 import io.skysail.domain.Identifiable;
 import io.skysail.server.restlet.resources.SkysailServerResource;
-import de.twenty11.skysail.server.core.restlet.Wrapper;
 
 /**
  * Extracts common query parameters for the skysail framework; those parameters have reserved names
@@ -15,7 +15,7 @@ public class ExtractStandardQueryParametersResourceFilter<R extends SkysailServe
         AbstractResourceFilter<R, T> {
 
     @Override
-    protected FilterResult beforeHandle(R resource, Wrapper responseWrapper) {
+    protected FilterResult beforeHandle(R resource, Wrapper<T> responseWrapper) {
         addToAttributes(resource, SkysailServerResource.FILTER_PARAM_NAME);
         addToAttributes(resource, SkysailServerResource.PAGE_PARAM_NAME);
         addToAttributes(resource, SkysailServerResource.INSPECT_PARAM_NAME);

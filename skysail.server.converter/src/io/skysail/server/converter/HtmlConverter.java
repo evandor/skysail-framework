@@ -45,14 +45,11 @@ public class HtmlConverter extends ConverterHelper implements OsgiConverterHelpe
 
     private volatile Set<MenuItemProvider> menuProviders = new HashSet<>();
 
-    //private InstallationProvider installationProvider;
-
     private SearchService searchService;
 
     static {
         mediaTypesMatch.put(MediaType.TEXT_HTML, 0.95F);
         mediaTypesMatch.put(SkysailApplication.SKYSAIL_TREE_FORM, 1.0F);
-        //mediaTypesMatch.put(SkysailApplication.SKYSAIL_MAILTO_MEDIATYPE, 1.0F);
         mediaTypesMatch.put(SkysailApplication.SKYSAIL_TIMELINE_MEDIATYPE, 1.0F);
     }
 
@@ -133,7 +130,7 @@ public class HtmlConverter extends ConverterHelper implements OsgiConverterHelpe
     public Representation toRepresentation(Object originalSource, Variant target, Resource resource) {
         EtmPoint point = etmMonitor.createPoint(this.getClass().getSimpleName() + ":toRepresentation");
 
-        StringTemplateRenderer stringTemplateRenderer = new StringTemplateRenderer(this);
+        StringTemplateRenderer stringTemplateRenderer = new StringTemplateRenderer(this, resource);
         stringTemplateRenderer.setMenuProviders(menuProviders);
         stringTemplateRenderer.setSearchService(searchService);
         StringRepresentation rep = stringTemplateRenderer.createRepresenation(originalSource, target,

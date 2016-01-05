@@ -1,19 +1,18 @@
 package io.skysail.server.restlet.filter;
 
+import java.util.*;
+
+import de.twenty11.skysail.server.core.restlet.Wrapper;
 import io.skysail.domain.Identifiable;
 import io.skysail.server.restlet.resources.*;
 import io.skysail.server.utils.CookiesUtils;
-
-import java.util.*;
-
 import lombok.extern.slf4j.Slf4j;
-import de.twenty11.skysail.server.core.restlet.Wrapper;
 
 @Slf4j
 public class DataExtractingFilter<R extends SkysailServerResource<?>, T extends Identifiable> extends AbstractResourceFilter<R, T> {
 
     @Override
-    public FilterResult doHandle(R resource, Wrapper responseWrapper) {
+    public FilterResult doHandle(R resource, Wrapper<T> responseWrapper) {
         log.debug("entering {}#doHandle", this.getClass().getSimpleName());
 
         String installation = CookiesUtils.getInstallationFromCookie(resource.getRequest());

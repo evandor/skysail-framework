@@ -16,12 +16,14 @@ import io.skysail.api.responses.SkysailResponse;
 import io.skysail.api.search.SearchService;
 import io.skysail.api.text.Translation;
 import io.skysail.server.app.SkysailApplication;
+import io.skysail.server.caches.Caches;
 import io.skysail.server.converter.HtmlConverter;
 import io.skysail.server.converter.stringtemplate.STGroupBundleDir;
 import io.skysail.server.converter.wrapper.STUserWrapper;
 import io.skysail.server.menus.MenuItemProvider;
 import io.skysail.server.model.ResourceModel;
 import io.skysail.server.restlet.resources.SkysailServerResource;
+import io.skysail.server.restlet.response.messages.Message;
 import io.skysail.server.utils.*;
 import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
@@ -39,8 +41,11 @@ public class StringTemplateRenderer {
 
     private SearchService searchService;
 
-    public StringTemplateRenderer(HtmlConverter htmlConverter) {
+    private Resource resource;
+
+    public StringTemplateRenderer(HtmlConverter htmlConverter, Resource resource) {
         this.htmlConverter = htmlConverter;
+        this.resource = resource;
     }
 
     public StringRepresentation createRepresenation(Object entity, Variant target,
@@ -159,7 +164,16 @@ public class StringTemplateRenderer {
     }
 
     public List<Notification> getNotifications() {
-        return htmlConverter.getNotifications();
+        List<Notification> notifications = htmlConverter.getNotifications();
+        String messageIds = resource.getQueryValue("msgIds");
+        if (messageIds != null) {
+            List<Message> messages = Arrays.stream(messageIds.split("|")).map(id -> Caches.getMessageCache().getIfPresent(id))
+                    .collect(Collectors.toList());
+            for (Message message : messages) {
+                notifications.add(new Notification(message.getMsg(),"success"));
+            }
+        }
+        return notifications;
     }
 
     public List<String> getPeitybars() {

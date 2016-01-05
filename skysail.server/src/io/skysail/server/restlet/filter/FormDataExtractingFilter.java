@@ -1,21 +1,19 @@
 package io.skysail.server.restlet.filter;
 
-import io.skysail.domain.Identifiable;
-import io.skysail.server.restlet.resources.SkysailServerResource;
-
 import java.text.ParseException;
-
-import lombok.extern.slf4j.Slf4j;
 
 import org.restlet.Response;
 
 import de.twenty11.skysail.server.core.restlet.Wrapper;
+import io.skysail.domain.Identifiable;
+import io.skysail.server.restlet.resources.SkysailServerResource;
+import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public class FormDataExtractingFilter<R extends SkysailServerResource<?>, T extends Identifiable> extends AbstractResourceFilter<R, T> {
 
     @Override
-    public FilterResult doHandle(R resource, Wrapper responseWrapper) {
+    public FilterResult doHandle(R resource, Wrapper<T> responseWrapper) {
         log.debug("entering {}#doHandle", this.getClass().getSimpleName());
         Response response = responseWrapper.getResponse();
         if (response.getRequest() == null || response.getRequest().getResourceRef() == null) {

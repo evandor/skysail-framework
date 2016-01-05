@@ -1,4 +1,4 @@
-package de.twenty11.skysail.server.core.restlet;
+package io.skysail.server.restlet.response;
 
 import java.util.List;
 
@@ -6,8 +6,7 @@ import org.restlet.Response;
 
 import io.skysail.api.responses.ConstraintViolationsResponse;
 import io.skysail.domain.Identifiable;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 public class ListResponseWrapper<T extends Identifiable> extends AbstractResponseWrapper<T> {
 
@@ -37,6 +36,7 @@ public class ListResponseWrapper<T extends Identifiable> extends AbstractRespons
 
     @Override
     public void setEntity(Object entity) {
-        this.entity = (List<T>)entity;
+        this.entity = (List<T>) entity;
     }
+
 }

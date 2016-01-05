@@ -23,7 +23,7 @@ echo "copying skysail.$APPNAME.jar to products directory"
 cp skysail.$APPNAME.jar /home/carsten/skysail/products/$APPNAME/int/bin/skysail.$APPNAME.jar
 
 echo "stopping $APPNAME service"
-#/home/carsten/skysail/products/$APPNAME/int/bin/$APPNAME_int stop
+/home/carsten/skysail/products/$APPNAME/int/bin/$APPNAME_int stop
 
 cd /home/carsten/.hudson/jobs/ssp.$APPNAME.export.int/workspace/skysail.product.$APPNAME
 cp -r deployment/service/* /home/carsten/skysail/products/$APPNAME/int

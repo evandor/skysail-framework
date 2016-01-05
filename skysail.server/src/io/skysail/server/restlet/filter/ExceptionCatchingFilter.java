@@ -1,14 +1,13 @@
 package io.skysail.server.restlet.filter;
 
+import org.restlet.resource.ResourceException;
+
+import de.twenty11.skysail.server.core.restlet.Wrapper;
 import io.skysail.domain.Identifiable;
 import io.skysail.server.app.SkysailApplication;
 import io.skysail.server.restlet.filter.helper.ExceptionCatchingFilterHelper;
 import io.skysail.server.restlet.resources.SkysailServerResource;
 import lombok.extern.slf4j.Slf4j;
-
-import org.restlet.resource.ResourceException;
-
-import de.twenty11.skysail.server.core.restlet.Wrapper;
 
 @Slf4j
 public class ExceptionCatchingFilter<R extends SkysailServerResource<?>, T extends Identifiable> extends
@@ -21,7 +20,7 @@ public class ExceptionCatchingFilter<R extends SkysailServerResource<?>, T exten
     }
 
     @Override
-    public FilterResult doHandle(R resource, Wrapper responseWrapper) {
+    public FilterResult doHandle(R resource, Wrapper<T> responseWrapper) {
         log.debug("entering {}#doHandle", this.getClass().getSimpleName());
         try {
             super.doHandle(resource, responseWrapper);

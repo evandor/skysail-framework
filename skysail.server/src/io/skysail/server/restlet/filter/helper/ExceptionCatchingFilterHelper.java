@@ -11,9 +11,16 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public class ExceptionCatchingFilterHelper {
+    
+    private ExceptionCatchingFilterHelper() {
+    }
 
-    public static void handleError(Exception e, SkysailApplication application, Wrapper responseWrapper, Class<?> cls) {
+    public static void handleError(Exception e, SkysailApplication application, Wrapper<?> responseWrapper, Class<?> cls) {
         log.error(e.getMessage(), e);
+
+        String genericErrorMessageForGui = cls.getSimpleName() + ".saved.failure";
+        responseWrapper.addError(genericErrorMessageForGui);
+        
         Response response = responseWrapper.getResponse();
         response.setStatus(Status.SERVER_ERROR_INTERNAL);
 
@@ -25,8 +32,9 @@ public class ExceptionCatchingFilterHelper {
         if (eventAdmin != null) {
             new EventHelper(eventAdmin)//
                     .channel(EventHelper.GUI_MSG)//
-                    .error(cls.getSimpleName() + ".saved.failure")//
+                    .error(genericErrorMessageForGui)//
                     .fire();
-        }   }
+        }
+    }
 
 }

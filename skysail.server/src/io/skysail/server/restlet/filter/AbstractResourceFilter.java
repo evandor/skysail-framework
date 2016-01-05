@@ -1,16 +1,22 @@
 package io.skysail.server.restlet.filter;
 
-import io.skysail.domain.Identifiable;
-import io.skysail.server.restlet.resources.*;
-
 import java.text.ParseException;
 
-import org.restlet.*;
+import org.restlet.Request;
+import org.restlet.Response;
 import org.restlet.data.Form;
 import org.restlet.routing.Filter;
-import org.slf4j.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import de.twenty11.skysail.server.core.restlet.*;
+import de.twenty11.skysail.server.core.restlet.ListResponseWrapper;
+import de.twenty11.skysail.server.core.restlet.ResponseWrapper;
+import de.twenty11.skysail.server.core.restlet.Wrapper;
+import io.skysail.domain.Identifiable;
+import io.skysail.server.restlet.resources.EntityServerResource;
+import io.skysail.server.restlet.resources.PostEntityServerResource;
+import io.skysail.server.restlet.resources.PutEntityServerResource;
+import io.skysail.server.restlet.resources.SkysailServerResource;
 
 /**
  * The abstract base class for Skysail Resource Filters.
@@ -33,13 +39,13 @@ public abstract class AbstractResourceFilter<R extends SkysailServerResource<?>,
      *
      */
     public final ResponseWrapper<T> handle(R resource, Response response) {
-        ResponseWrapper<T> responseWrapper = new ResponseWrapper<T>(response);
+        ResponseWrapper<T> responseWrapper = new ResponseWrapper<>(response);
         handleMe(resource, responseWrapper);
         return responseWrapper;
     }
 
     public final ListResponseWrapper<T> handleList(R resource, Response response) {
-        ListResponseWrapper<T> responseWrapper = new ListResponseWrapper<T>(response);
+        ListResponseWrapper<T> responseWrapper = new ListResponseWrapper<>(response);
         handleMe(resource, responseWrapper);
         return responseWrapper;
     }
@@ -53,7 +59,7 @@ public abstract class AbstractResourceFilter<R extends SkysailServerResource<?>,
      * @return the {@link FilterResult} of the processing, indicating whether to
      *         Continue, Skip or Stop.
      */
-    protected FilterResult beforeHandle(R resource, Wrapper responseWrapper) {
+    protected FilterResult beforeHandle(R resource, Wrapper<T> responseWrapper) { // NOSONAR
         return FilterResult.CONTINUE;
     }
 
@@ -67,7 +73,7 @@ public abstract class AbstractResourceFilter<R extends SkysailServerResource<?>,
      * @return the {@link FilterResult} of the processing, indicating whether to
      *         Continue, Skip or Stop.
      */
-    protected FilterResult doHandle(R resource, Wrapper responseWrapper) {
+    protected FilterResult doHandle(R resource, Wrapper<T> responseWrapper) {
         AbstractResourceFilter<R, T> next = getNext();
         if (next != null) {
             logger.debug("next filter in chain: {}", next.getClass().getSimpleName());
@@ -81,11 +87,11 @@ public abstract class AbstractResourceFilter<R extends SkysailServerResource<?>,
      * doHandle Method.
      *
      */
-    protected void afterHandle(R resource, Wrapper responseWrapper) {
+    protected void afterHandle(R resource, Wrapper<T> responseWrapper) {
         // default implementation doesn't do anything
     }
 
-    private final void handleMe(R resource, Wrapper responseWrapper) {
+    private final void handleMe(R resource, Wrapper<T> responseWrapper) {
         switch (beforeHandle(resource, responseWrapper)) {
         case CONTINUE:
             switch (doHandle(resource, responseWrapper)) {

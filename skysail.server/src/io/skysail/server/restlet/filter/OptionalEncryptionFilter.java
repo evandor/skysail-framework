@@ -3,12 +3,14 @@ package io.skysail.server.restlet.filter;
 import java.text.ParseException;
 
 import org.restlet.Response;
-import org.restlet.data.*;
+import org.restlet.data.Form;
+import org.restlet.data.Parameter;
 
 import de.twenty11.skysail.server.core.restlet.Wrapper;
 import io.skysail.domain.Identifiable;
 import io.skysail.server.app.SkysailApplication;
-import io.skysail.server.restlet.resources.*;
+import io.skysail.server.restlet.resources.EntityServerResource;
+import io.skysail.server.restlet.resources.SkysailServerResource;
 import io.skysail.server.services.EncryptorService;
 
 public class OptionalEncryptionFilter<R extends SkysailServerResource<T>, T extends Identifiable> extends AbstractResourceFilter<R, T> {
@@ -20,7 +22,7 @@ public class OptionalEncryptionFilter<R extends SkysailServerResource<T>, T exte
     }
 
     @Override
-    protected FilterResult doHandle(R resource, Wrapper responseWrapper) {
+    protected FilterResult doHandle(R resource, Wrapper<T> responseWrapper) {
         EncryptorService encryptorService = application.getEncryptorService();
         if (encryptorService == null) {
             return super.doHandle(resource, responseWrapper);

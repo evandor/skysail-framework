@@ -5,13 +5,9 @@ import org.restlet.Response;
 import io.skysail.api.responses.ConstraintViolationsResponse;
 import io.skysail.domain.Identifiable;
 
-public class ResponseWrapper<T extends Identifiable> implements Wrapper<T> {
+public class ResponseWrapper<T extends Identifiable> extends AbstractResponseWrapper<T> {
 
     private T entity;
-
-    private Response response;
-
-    private ConstraintViolationsResponse<T> constraintViolationsResponse;
 
     public ResponseWrapper(T entity) {
         this.entity = entity;
@@ -30,14 +26,6 @@ public class ResponseWrapper<T extends Identifiable> implements Wrapper<T> {
 
     public void setEntity(T entity) {
         this.entity = entity;
-    }
-
-    public void setResponse(Response response) {
-        this.response = response;
-    }
-
-    public Response getResponse() {
-        return response;
     }
 
     @Override

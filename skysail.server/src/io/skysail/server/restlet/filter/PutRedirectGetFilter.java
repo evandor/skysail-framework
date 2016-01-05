@@ -1,23 +1,24 @@
 package io.skysail.server.restlet.filter;
 
-import io.skysail.domain.Identifiable;
-import io.skysail.server.restlet.resources.*;
-
-import java.net.*;
-
-import lombok.extern.slf4j.Slf4j;
+import java.net.MalformedURLException;
+import java.net.URL;
 
 import org.restlet.Response;
-import org.restlet.data.*;
+import org.restlet.data.MediaType;
+import org.restlet.data.Parameter;
 import org.restlet.representation.Variant;
 
 import de.twenty11.skysail.server.core.restlet.Wrapper;
+import io.skysail.domain.Identifiable;
+import io.skysail.server.restlet.resources.PutEntityServerResource;
+import io.skysail.server.restlet.resources.SkysailServerResource;
+import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public class PutRedirectGetFilter<R extends PutEntityServerResource<T>, T extends Identifiable> extends AbstractResourceFilter<R, T> {
 
     @Override
-    protected void afterHandle(R resource, Wrapper responseWrapper) {
+    protected void afterHandle(R resource, Wrapper<T> responseWrapper) {
         String redirectTo = resource.redirectTo();
         Parameter noRedirects = resource.getQuery().getFirst(SkysailServerResource.NO_REDIRECTS);
         if (redirectTo != null && noRedirects == null) {

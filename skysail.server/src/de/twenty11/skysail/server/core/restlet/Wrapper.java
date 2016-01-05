@@ -15,4 +15,8 @@ public interface Wrapper<T extends Identifiable> {
 
     void setConstraintViolationResponse(ConstraintViolationsResponse<T> reponse);
 
+    void addError(String msg);
+    void addInfo(String msg);
+    void addWarning(String msg);
+
 }

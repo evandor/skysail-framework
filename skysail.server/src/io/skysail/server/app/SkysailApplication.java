@@ -24,7 +24,6 @@ import com.google.common.base.Predicate;
 
 import de.twenty11.skysail.server.app.*;
 import de.twenty11.skysail.server.core.restlet.*;
-import de.twenty11.skysail.server.services.*;
 import io.skysail.api.text.Translation;
 import io.skysail.api.um.*;
 import io.skysail.api.validation.ValidatorService;

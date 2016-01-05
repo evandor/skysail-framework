@@ -1,14 +1,12 @@
 package io.skysail.server.model;
 
+import java.util.Set;
+
 import io.skysail.api.search.SearchService;
 import io.skysail.server.menus.*;
 import io.skysail.server.menus.MenuItem.Category;
 import io.skysail.server.restlet.resources.SkysailServerResource;
 import io.skysail.server.utils.MenuItemUtils;
-
-import java.util.Set;
-
-import de.twenty11.skysail.server.services.*;
 
 public class STServicesWrapper {
 

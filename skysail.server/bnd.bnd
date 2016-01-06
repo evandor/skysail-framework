@@ -5,6 +5,7 @@ Export-Package: \
 	de.twenty11.skysail.server.metrics,\
 	io.skysail.server.services,\
 	io.skysail.server.forms,\
+	io.skysail.server.restlet.response.messages,\
 	de.twenty11.skysail.server.help,\
 	io.skysail.server.menus,\
 	de.twenty11.skysail.server.domain,\
@@ -61,8 +62,7 @@ Private-Package: \
 	io.skysail.server.features.strategy,\
 	io.skysail.server.restlet.sourceconverter,\
 	io.skysail.server.domain.jvm,\
-	io.skysail.server.restlet.response,\
-	io.skysail.server.restlet.response.messages
+	io.skysail.server.restlet.response
 ### markdown is moving to skysail.server.text.markdown;version=${skysail.server.text.markdown.version}, remove here when done
 Bundle-ClassPath: .,lib/jsr305.jar,lib/markdown4j-2.2.jar
 Service-Component: *

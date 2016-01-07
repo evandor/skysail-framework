@@ -1,4 +1,4 @@
-handleTrixEditor(field) ::= <<
+handleTrixEditor(field,i) ::= <<
   $handleLabel(field)$
   <div class='col-sm-10'>
     <input type="hidden" name='$field.name$' id='$field.name$' tabindex="$i$" $autofocus$ value="$data.(field.name)$">

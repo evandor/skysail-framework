@@ -8,11 +8,11 @@ import lombok.*;
 @Getter
 @EqualsAndHashCode(of = "name")
 @ToString
-public class CodegenFieldModel extends FieldModel {
+public class DesignerFieldModel extends FieldModel {
 
     private final String name;
 
-    public CodegenFieldModel(DbEntityField f) {
+    public DesignerFieldModel(DbEntityField f) {
         super(f.getName());
         this.name = f.getName();
         setInputType(f.getType());

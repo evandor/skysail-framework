@@ -1,4 +1,4 @@
-handleTextarea(field) ::= <<
+handleTextarea(field,i) ::= <<
   $handleLabel(field)$
   <div class='col-sm-10'>
     <textarea class='form-control' rows=3 name='$field.name$' id='$field.name$' tabindex="$i$" $autofocus$>$data.(field.name)$</textarea>

@@ -6,16 +6,16 @@ import static org.junit.Assert.assertThat;
 import org.junit.*;
 
 import io.skysail.server.app.designer.fields.*;
-import io.skysail.server.app.designer.model.CodegenFieldModel;
+import io.skysail.server.app.designer.model.DesignerFieldModel;
 
-public class CodegenFieldModelTest {
+public class DesignerFieldModelTest {
 
-    private CodegenFieldModel fieldModel;
+    private DesignerFieldModel fieldModel;
 
     @Before
     public void setUp()  {
         DbEntityField field = new DbEntityTextField("fieldName", false);
-        fieldModel = new CodegenFieldModel(field);
+        fieldModel = new DesignerFieldModel(field);
     }
 
     @Test

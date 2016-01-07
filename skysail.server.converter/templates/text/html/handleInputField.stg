@@ -10,7 +10,7 @@ handleInputField(data, field, messages,i,autofocus) ::= <<
         </div>
       $elseif(field.textareaInputType)$
         <div class='form-group $if(field.mandatory)$required$endif$'>
-          $handleTextarea(field)$
+          $handleTextarea(field,i)$
         </div>
       $elseif(field.markdownEditorInputType)$
         <div class='form-group $if(field.mandatory)$required$endif$'>
@@ -22,7 +22,7 @@ handleInputField(data, field, messages,i,autofocus) ::= <<
         </div>
       $elseif(field.trixEditorInputType)$
         <div class='form-group $if(field.mandatory)$required$endif$'>
-          $handleTrixEditor(field)$
+          $handleTrixEditor(field,i)$
         </div>
       $elseif(field.selectionProvider && field.multiselectInputType)$
         <div class='form-group $if(field.mandatory)$required$endif$'>
@@ -54,19 +54,19 @@ handleInputField(data, field, messages,i,autofocus) ::= <<
         </div>
     $elseif(field.checkbox)$
       <div class='form-group $if(field.mandatory)$required$endif$'>
-        $handleCheckbox(field)$
+        $handleCheckbox(field, i)$
       </div>
     $elseif(field.date)$
       <div class='form-group $if(field.mandatory)$required$endif$'>
-        $handleDateType(field)$
+        $handleDateType(field, i)$
       </div>
     $elseif(field.range)$
       <div class='form-group $if(field.mandatory)$required$endif$'>
-        $handleRange(field)$
+        $handleRange(field,i)$
       </div>
     $else$
       <div class='form-group $if(field.mandatory)$required$endif$'>
-        $handleDefault(field)$
+        $handleDefault(field, i)$
       </div>
     $endif$
   $endif$

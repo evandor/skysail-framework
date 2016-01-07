@@ -1,4 +1,4 @@
-handleDefault(field) ::= <<
+handleDefault(field,i) ::= <<
   $handleLabel(field)$
   <div class='col-sm-10'>
     <input type="$field.inputType$" class='form-control' name='$field.name$' id='$field.name$' placeholder='$helpmessage(messages, field.placeholderKey)$' value='$data.(field.name)$' tabindex="$i$" $autofocus$ title="$helpmessage(messages, field.placeholderKey)$">

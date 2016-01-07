@@ -13,7 +13,7 @@ public class SkysailRepositoryCompiler extends SkysailCompiler {
 
     private EntityModel entityModel;
 
-    public SkysailRepositoryCompiler(CodegenApplicationModel applicationModel, EntityModel entityModel, STGroupBundleDir stGroup, JavaCompiler compiler) {
+    public SkysailRepositoryCompiler(DesignerApplicationModel applicationModel, EntityModel entityModel, STGroupBundleDir stGroup, JavaCompiler compiler) {
         super(applicationModel, stGroup, compiler);
         this.entityModel = entityModel;
     }
@@ -23,7 +23,7 @@ public class SkysailRepositoryCompiler extends SkysailCompiler {
         return setupForCompilation(template, applicationModel);
     }
 
-    private String setupForCompilation(ST template, CodegenApplicationModel applicationModel) {
+    private String setupForCompilation(ST template, DesignerApplicationModel applicationModel) {
         template.add("activationcode", activationCode(applicationModel));
         template.add("entity", entityModel);
         String entityCode = template.render();
@@ -33,19 +33,19 @@ public class SkysailRepositoryCompiler extends SkysailCompiler {
         return entityClassName;
     }
 
-    private String activationCode(CodegenApplicationModel applicationModel) {
+    private String activationCode(DesignerApplicationModel applicationModel) {
         StringBuilder activationCode = new StringBuilder();
 
         List<String> entityNames = applicationModel.getEntityValues().stream()
-                .map(CodegenEntityModel.class::cast)
-                .map(CodegenEntityModel::getClassName).collect(Collectors.toList());
+                .map(DesignerEntityModel.class::cast)
+                .map(DesignerEntityModel::getClassName).collect(Collectors.toList());
         activationCode.append("        dbService.createWithSuperClass(\"V\", ").append(entityNames.stream().map(n -> {
             return "\"".concat(n).concat("\"");
         }).collect(Collectors.joining(","))).append(");\n"); //
 
         List<String> entityClassNames = applicationModel.getEntityValues().stream()
-                .map(CodegenEntityModel.class::cast)
-                .map(CodegenEntityModel::getClassName).collect(Collectors.toList());
+                .map(DesignerEntityModel.class::cast)
+                .map(DesignerEntityModel::getClassName).collect(Collectors.toList());
         activationCode.append("        dbService.register(").append(entityClassNames.stream().map(n -> {
             return n.concat(".class");
         }).collect(Collectors.joining(","))).append(");\n");

@@ -4,16 +4,16 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 import io.skysail.server.app.designer.codegen.*;
-import io.skysail.server.app.designer.model.CodegenApplicationModel;
+import io.skysail.server.app.designer.model.DesignerApplicationModel;
 import io.skysail.domain.core.EntityModel;
 import lombok.val;
 
 public class RepositoryCreator {
 
-    private CodegenApplicationModel applicationModel;
+    private DesignerApplicationModel applicationModel;
     private JavaCompiler compiler;
 
-    public RepositoryCreator(CodegenApplicationModel applicationModel, JavaCompiler compiler) {
+    public RepositoryCreator(DesignerApplicationModel applicationModel, JavaCompiler compiler) {
         this.applicationModel = applicationModel;
         this.compiler = compiler;
     }

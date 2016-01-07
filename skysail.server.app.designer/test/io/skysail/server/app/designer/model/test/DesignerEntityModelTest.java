@@ -7,18 +7,18 @@ import org.junit.*;
 import org.junit.rules.ExpectedException;
 
 import io.skysail.server.app.designer.entities.DbEntity;
-import io.skysail.server.app.designer.model.CodegenEntityModel;
+import io.skysail.server.app.designer.model.DesignerEntityModel;
 
-public class CodegenEntityModelTest {
+public class DesignerEntityModelTest {
 
     @Rule
     public ExpectedException thrown = ExpectedException.none();
     
-    private CodegenEntityModel entityModel;
+    private DesignerEntityModel entityModel;
 
     @Before
     public void setUp() throws Exception {
-        entityModel = new CodegenEntityModel(new DbEntity("name"), "pkg");
+        entityModel = new DesignerEntityModel(new DbEntity("name"), "pkg");
     }
 
     @Test

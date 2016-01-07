@@ -23,7 +23,7 @@ import io.skysail.server.app.SkysailApplication;
 import io.skysail.server.app.designer.ApplicationCreator;
 import io.skysail.server.app.designer.application.DbApplication;
 import io.skysail.server.app.designer.codegen.JavaCompiler;
-import io.skysail.server.app.designer.model.CodegenApplicationModel;
+import io.skysail.server.app.designer.model.DesignerApplicationModel;
 import io.skysail.server.app.designer.repo.DesignerRepository;
 import io.skysail.server.app.designer.test.utils.YamlTestFileReader;
 import io.skysail.server.db.DbService;
@@ -92,7 +92,7 @@ public class ApplicationCreatorTest {
         ApplicationCreator applicationCreator = setupApplicationCreator(YamlTestFileReader.read("checklist.yml"));
         applicationCreator.createApplication(dbServiceMock, componentContextMock);
 
-       // CodegenApplicationModel applicationModel = applicationCreator.getApplicationModel();
+       // DesignerApplicationModel applicationModel = applicationCreator.getApplicationModel();
     }
 
     private void verifyCreatedApplication(ApplicationCreator applicationCreator) {
@@ -140,13 +140,13 @@ public class ApplicationCreatorTest {
                 }), isNull(Dictionary.class));
     }
     
-    private void verifyJavaFilesExist(CodegenApplicationModel appModel) {
+    private void verifyJavaFilesExist(DesignerApplicationModel appModel) {
         String projectPath = "generated/" + appModel.getName() + "/" + appModel.getProjectName() + "/";
         String applicationPath = projectPath + "src/" + appModel.getPackageName().replace(".", "/") + "/";
         assertFileExists(applicationPath, appModel.getName() + "Application.java");
     }
 
-    private void verifyProjectFilesExist(CodegenApplicationModel appModel) {
+    private void verifyProjectFilesExist(DesignerApplicationModel appModel) {
         // "generated/empty/skysail.server.designer.empty"
         String projectPath = "generated/" + appModel.getName() + "/" + appModel.getProjectName() + "/";
         

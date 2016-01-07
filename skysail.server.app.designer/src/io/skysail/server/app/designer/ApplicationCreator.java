@@ -35,7 +35,7 @@ public class ApplicationCreator {
     private List<String> repositoryClassNames;
 
     @Getter
-    private final CodegenApplicationModel applicationModel;
+    private final DesignerApplicationModel applicationModel;
 
     @Setter
     private BundleResourceReader bundleResourceReader = new DefaultBundleResourceReader();
@@ -46,7 +46,7 @@ public class ApplicationCreator {
     public ApplicationCreator(DbApplication application, DesignerRepository designerRepository, Repositories repos, Bundle bundle) {
         this.repos = repos;
         this.bundle = bundle;
-        this.applicationModel = new CodegenApplicationModel(application);
+        this.applicationModel = new DesignerApplicationModel(application);
         stGroup = new STGroupBundleDir(bundle, "/code");
     }
 

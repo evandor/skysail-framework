@@ -14,13 +14,13 @@ import lombok.extern.slf4j.Slf4j;
 @Getter
 @ToString
 @Slf4j
-public class CodegenApplicationModel extends ApplicationModel {
+public class DesignerApplicationModel extends ApplicationModel {
 
     private final String packageName;
     private String path;
     private String projectName;
 
-    public CodegenApplicationModel(DbApplication appFromDb) {
+    public DesignerApplicationModel(DbApplication appFromDb) {
         super(appFromDb.getName());
         this.packageName = appFromDb.getPackageName();
         this.path = appFromDb.getPath();
@@ -28,9 +28,9 @@ public class CodegenApplicationModel extends ApplicationModel {
         setupModel(appFromDb);
     }
 
-    public CodegenEntityModel addEntity(DbEntity entity) {
-        log.info("CodegenApplicationModel: adding DbEntity '{}'", entity);
-        CodegenEntityModel entityModel = new CodegenEntityModel(entity, packageName);
+    public DesignerEntityModel addEntity(DbEntity entity) {
+        log.info("DesignerApplicationModel: adding DbEntity '{}'", entity);
+        DesignerEntityModel entityModel = new DesignerEntityModel(entity, packageName);
         addOnce(entityModel);
         return entityModel;
     }
@@ -45,8 +45,8 @@ public class CodegenApplicationModel extends ApplicationModel {
     }
 
     private void createEntityModel(DbEntity dbEntity) {
-        log.info("CodegenApplicationModel: adding DbEntity '{}'", dbEntity);
-        CodegenEntityModel entityModel = new CodegenEntityModel(dbEntity, packageName);
+        log.info("DesignerApplicationModel: adding DbEntity '{}'", dbEntity);
+        DesignerEntityModel entityModel = new DesignerEntityModel(dbEntity, packageName);
         addOnce(entityModel);
     }
 

@@ -85,10 +85,10 @@ public class ApplicationList implements ApplicationListProvider { // NO_UCD (unu
             rootApplication = (SkysailRootApplication) application;
         }
         SkysailApplication skysailApplication = (SkysailApplication) application;
-        if (skysailApplication.getHome() != null) {
+        if (skysailApplication.getName() != null) {
             // http://stackoverflow.com/questions/6810128/restlet-riap-protocol-deployed-in-java-app-server
-            skysailComponent.getDefaultHost().attach("/" + skysailApplication.getHome(), application);
-            skysailComponent.getInternalRouter().attach("/" + skysailApplication.getHome(), application);
+            skysailComponent.getDefaultHost().attach("/" + skysailApplication.getName(), application);
+            skysailComponent.getInternalRouter().attach("/" + skysailApplication.getName(), application);
             skysailComponent.getServers().add(riapServer);
         } else {
             // http://stackoverflow.com/questions/6810128/restlet-riap-protocol-deployed-in-java-app-server
@@ -121,7 +121,7 @@ public class ApplicationList implements ApplicationListProvider { // NO_UCD (unu
 
         // TODO make nicer
         log.debug(" >>> attaching skysailApplication '{}' to defaultHost", "/" + skysailApplication.getName());
-        if (skysailApplication.getHome() != null) {
+        if (skysailApplication.getName() != null) {
             // http://stackoverflow.com/questions/6810128/restlet-riap-protocol-deployed-in-java-app-server
             restletComponent.getDefaultHost().detach(app);
             restletComponent.getInternalRouter().detach(app);

@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 import org.restlet.resource.ServerResource;
 
 import io.skysail.domain.Identifiable;
-import io.skysail.domain.core.EntityModel;
+import io.skysail.domain.core.*;
 import io.skysail.server.utils.*;
 import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
@@ -89,6 +89,7 @@ public class ClassEntityModel extends EntityModel {
         setRelations(ReflectionUtils.getInheritedFields(cls).stream()
             .filter(f -> filterRelationFields(f))
             .map(f -> f.getName())
+            .map(r -> new EntityRelation(r, null, EntityRelationType.ONE_TO_MANY))
             .collect(Collectors.toList()));
     }
     

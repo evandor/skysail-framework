@@ -15,14 +15,14 @@ import lombok.extern.slf4j.Slf4j;
  */
 @Getter
 @Slf4j
-public class CodegenEntityModel extends EntityModel {
+public class DesignerEntityModel extends EntityModel {
 
     private final Set<ActionFieldModel> actionFields = new HashSet<>();
     private final Set<ReferenceModel> references = new HashSet<>();
     private String className;
-    private Optional<CodegenEntityModel> referencedBy;
+    private Optional<DesignerEntityModel> referencedBy;
 
-    public CodegenEntityModel(DbEntity entityFromDb, String packageName) {
+    public DesignerEntityModel(DbEntity entityFromDb, String packageName) {
         super(packageName + "." + entityFromDb.getName());
         setAggregate(entityFromDb.isRootEntity());
         setupModel(entityFromDb);
@@ -34,22 +34,22 @@ public class CodegenEntityModel extends EntityModel {
         });
     }
 
-    private CodegenFieldModel addField(DbEntityField fieldFromDb) {
-        log.info("CodegenApplicationModel: adding Field '{}'", fieldFromDb);
-        CodegenFieldModel fieldModel = new CodegenFieldModel(fieldFromDb);
+    private DesignerFieldModel addField(DbEntityField fieldFromDb) {
+        log.info("DesignerApplicationModel: adding Field '{}'", fieldFromDb);
+        DesignerFieldModel fieldModel = new DesignerFieldModel(fieldFromDb);
         add(fieldModel);
         return fieldModel;
     }
 
     public void addActionField(ActionEntityField f) {
-        log.info("CodegenEntityModel:      adding ActionField '{}' to DbEntity '{}'", f.getName(), f.getId());
+        log.info("DesignerEntityModel:      adding ActionField '{}' to DbEntity '{}'", f.getName(), f.getId());
         if (!actionFields.add(new ActionFieldModel(f))) {
             throw new IllegalStateException("actionField '" + f.getName() + "' already exists!");
         }
     }
 
     public void addReference(DbEntity referencedEntity) {
-        log.info("CodegenEntityModel:      adding Reference from DbEntity '{}' to DbEntity '{}'", referencedEntity.getId(),
+        log.info("DesignerEntityModel:      adding Reference from DbEntity '{}' to DbEntity '{}'", referencedEntity.getId(),
                 referencedEntity.getName());
         if (!references.add(new ReferenceModel(this, referencedEntity))) {
             throw new IllegalStateException("reference '" + referencedEntity.getName() + "' already exists!");
@@ -60,7 +60,7 @@ public class CodegenEntityModel extends EntityModel {
         this.className = entityClassName;
     }
     
-    public void setReferencedBy(@NonNull CodegenEntityModel entityModel) {
+    public void setReferencedBy(@NonNull DesignerEntityModel entityModel) {
         if (referencedBy != null && referencedBy.get() != null) {
             throw new IllegalStateException("setReferencedBy was called before on this object");
         }

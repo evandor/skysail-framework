@@ -4,14 +4,12 @@ import lombok.*;
 
 @Getter
 @ToString
+@AllArgsConstructor
 public class EntityRelation {
 
-    private EntityModel targetEntityModel;
-    private EntityRelationType type;
+    private final String name;
+    private final EntityModel targetEntityModel;
+    private final EntityRelationType type;
 
-    public EntityRelation(EntityModel targetEntityModel, EntityRelationType type) {
-        this.targetEntityModel = targetEntityModel;
-        this.type = type;
-    }
 
 }

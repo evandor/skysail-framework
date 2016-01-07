@@ -7,20 +7,20 @@ import io.skysail.server.app.designer.model.*;
 
 public class EntityCreator {
 
-    private CodegenApplicationModel applicationModel;
+    private DesignerApplicationModel applicationModel;
 
     private List<RouteModel> routeModels = new ArrayList<>();
 
     private JavaCompiler compiler;
 
-    public EntityCreator(CodegenApplicationModel applicationModel, JavaCompiler compiler) {
+    public EntityCreator(DesignerApplicationModel applicationModel, JavaCompiler compiler) {
         this.applicationModel = applicationModel;
         this.compiler = compiler;
     }
 
     public List<RouteModel> create(STGroupBundleDir stGroup) {
         applicationModel.getEntityValues().stream()
-            .map(CodegenEntityModel.class::cast)
+            .map(DesignerEntityModel.class::cast)
             .forEach(entity -> {
             // fireEvent(eventAdminRef, "compiling entity " + e.getName() +
             // " for application " + application.getName());
@@ -29,7 +29,7 @@ public class EntityCreator {
         return routeModels;
     }
 
-    private List<RouteModel> compileEntity(CodegenEntityModel entityModel, STGroupBundleDir stGroup, JavaCompiler compiler) {
+    private List<RouteModel> compileEntity(DesignerEntityModel entityModel, STGroupBundleDir stGroup, JavaCompiler compiler) {
         SkysailEntityCompiler entityCompiler = new SkysailEntityCompiler(applicationModel, stGroup, compiler);
         entityCompiler.createEntity(entityModel);
         entityCompiler.createResources(entityModel);

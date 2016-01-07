@@ -11,7 +11,7 @@ public class SkysailApplicationCompiler extends SkysailCompiler {
 
     private String applicationClassName;
 
-    public SkysailApplicationCompiler(CodegenApplicationModel applicationModel, STGroupBundleDir stGroup, JavaCompiler compiler) {
+    public SkysailApplicationCompiler(DesignerApplicationModel applicationModel, STGroupBundleDir stGroup, JavaCompiler compiler) {
         super(applicationModel, stGroup, compiler);
     }
 
@@ -20,7 +20,7 @@ public class SkysailApplicationCompiler extends SkysailCompiler {
         setupApplicationForCompilation(template, applicationModel, routeModels);
     }
    
-    private String setupApplicationForCompilation(ST template, CodegenApplicationModel applicationModel, List<RouteModel> routeModels) {
+    private String setupApplicationForCompilation(ST template, DesignerApplicationModel applicationModel, List<RouteModel> routeModels) {
         template.add("routercode", routerCode(routeModels));
         String entityCode = template.render();
         applicationClassName = applicationModel.getPackageName() + "." + applicationModel.getName() + "Application";

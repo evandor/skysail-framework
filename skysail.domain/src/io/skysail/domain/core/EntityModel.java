@@ -23,7 +23,7 @@ public class EntityModel {
     
     @Setter
     /** names of related entities. */
-    private List<String> relations = new ArrayList<>();
+    private List<EntityRelation> relations = new ArrayList<>();
 
     @Setter
     /** should this entity be treated as "Aggregate" (DDD)" */

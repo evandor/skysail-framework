@@ -115,7 +115,6 @@ public abstract class SkysailApplication extends RamlApplication implements Appl
 
     private volatile BundleContext bundleContext;
     private volatile HtmlPolicyBuilder noHtmlPolicyBuilder = new HtmlPolicyBuilder();
-    private String home;
     private volatile List<String> parametersToHandle = new CopyOnWriteArrayList<String>();
     private volatile Map<String, String> parameterMap = new ConcurrentHashMap<String, String>();
     private volatile List<String> securedByAllRoles = new CopyOnWriteArrayList<String>();
@@ -135,9 +134,6 @@ public abstract class SkysailApplication extends RamlApplication implements Appl
     @Getter
     private io.skysail.domain.core.ApplicationModel applicationModel;
 
-    @Getter
-    private  EncryptorService encryptorService;
-
     public SkysailApplication() {
         getEncoderService().getIgnoredMediaTypes().add(SkysailApplication.SKYSAIL_SERVER_SENT_EVENTS);
         getEncoderService().setEnabled(true);
@@ -154,7 +150,6 @@ public abstract class SkysailApplication extends RamlApplication implements Appl
     public SkysailApplication(String appName, ApiVersion apiVersion, List<Class<? extends Identifiable>> entityClasses) {
         this();
         log.debug("Instanciating new Skysail ApplicationModel '{}'", this.getClass().getSimpleName());
-        this.home = appName;
         setName(appName);
         this.apiVersion = apiVersion;
         applicationModel = new io.skysail.domain.core.ApplicationModel(appName);
@@ -290,15 +285,6 @@ public abstract class SkysailApplication extends RamlApplication implements Appl
         return componentContext != null ? componentContext.getBundleContext() : null;
     }
 
-    protected void setHome(String home) {
-        this.home = home;
-    }
-
-    // TODO getName vs getHome?
-    public String getHome() {
-        return home;
-    }
-
     @Override
     public synchronized Restlet createInboundRoot() {
 
@@ -418,7 +404,6 @@ public abstract class SkysailApplication extends RamlApplication implements Appl
     public List<RouteBuilder> getRouteBuildersForResource(Class<? extends ServerResource> cls) {
         return router.getRouteBuildersForResource(cls);
     }
-
 
     @Override
     public SkysailApplication getApplication() {
@@ -581,7 +566,7 @@ public abstract class SkysailApplication extends RamlApplication implements Appl
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder(getClass().getSimpleName()).append(" (SkysailApplication)\n");
-        sb.append("Home: ").append(home).append(", \nRouter: ").append(router).append("\n");
+        sb.append("Router: ").append(router).append("\n");
         return sb.toString();
     }
 

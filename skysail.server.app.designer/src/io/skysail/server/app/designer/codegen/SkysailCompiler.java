@@ -9,7 +9,7 @@ import org.osgi.framework.BundleContext;
 import org.stringtemplate.v4.*;
 
 import io.skysail.server.app.designer.STGroupBundleDir;
-import io.skysail.server.app.designer.model.CodegenApplicationModel;
+import io.skysail.server.app.designer.model.DesignerApplicationModel;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 
@@ -19,11 +19,11 @@ public class SkysailCompiler {
 
     @Getter
     protected boolean compiledSuccessfully = true;
-    protected CodegenApplicationModel applicationModel;
+    protected DesignerApplicationModel applicationModel;
     protected STGroupDir stGroupDir;
     private JavaCompiler compiler;
     
-    public SkysailCompiler(CodegenApplicationModel applicationModel, STGroupBundleDir stGroup, JavaCompiler compiler) {
+    public SkysailCompiler(DesignerApplicationModel applicationModel, STGroupBundleDir stGroup, JavaCompiler compiler) {
         this.applicationModel = applicationModel;
         this.stGroupDir = stGroup;
         this.compiler = compiler;

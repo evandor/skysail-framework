@@ -8,7 +8,8 @@ import io.skysail.server.app.designer.DesignerApplication;
 import io.skysail.server.app.designer.application.DbApplication;
 import io.skysail.server.app.designer.entities.DbEntity;
 import io.skysail.server.db.DbClassName;
-import io.skysail.server.restlet.resources.*;
+import io.skysail.server.restlet.resources.ListServerResource;
+import io.skysail.server.restlet.resources.TreeRepresentation;
 
 public class EntitiesResource extends ListServerResource<DbEntity> {
 

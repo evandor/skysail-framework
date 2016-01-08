@@ -1,9 +1,14 @@
 package io.skysail.domain.core;
 
-import java.util.*;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
 
 import io.skysail.domain.core.repos.Repository;
-import lombok.*;
+import lombok.Getter;
+import lombok.NonNull;
+import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -15,7 +20,6 @@ import lombok.extern.slf4j.Slf4j;
  * files and classes according to a specific core domain model.
  *
  */
-@ToString
 @Slf4j
 public class ApplicationModel {
 
@@ -76,4 +80,16 @@ public class ApplicationModel {
         return repositories.getRepositoryIdentifiers();
     }
 
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder(this.getClass().getSimpleName()).append(": ");
+        sb.append(name).append("\n");
+        sb.append("Entities: \n");
+        entities.keySet().stream().forEach(
+                key -> sb.append(" - ").append(key).append(":\n     ").append(entities.get(key).toString()).append("\n")
+        );
+        sb.append("Repositories: \n");
+        sb.append(repositories.toString()).append("\n");
+        return sb.toString();
+    }
 }

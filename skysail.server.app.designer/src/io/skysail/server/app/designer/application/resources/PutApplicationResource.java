@@ -21,7 +21,7 @@ public class PutApplicationResource extends PutEntityServerResource<DbApplicatio
 
     public void updateEntity(DbApplication entity) {
         app.invalidateMenuCache();
-        app.getRepository().update(entity);
+        app.getRepository().update(entity, ((DesignerApplication)getApplication()).getApplicationModel());
     }
 
     @Override

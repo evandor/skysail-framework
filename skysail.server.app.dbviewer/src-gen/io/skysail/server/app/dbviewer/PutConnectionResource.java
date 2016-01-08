@@ -22,7 +22,7 @@ public class PutConnectionResource extends PutEntityServerResource<Connection> {
     }
 
     public void updateEntity(Connection entity) {
-        repository.update(getAttribute("id"), entity);
+        repository.update(entity, app.getApplicationModel());
     }
 
     @Override

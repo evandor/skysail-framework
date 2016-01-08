@@ -1,9 +1,10 @@
 package io.skysail.server.app.designer.model;
 
+import io.skysail.domain.core.ApplicationModel;
 import io.skysail.server.app.designer.application.DbApplication;
 import io.skysail.server.app.designer.entities.DbEntity;
-import io.skysail.domain.core.ApplicationModel;
-import lombok.*;
+import lombok.Getter;
+import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -38,9 +39,9 @@ public class DesignerApplicationModel extends ApplicationModel {
     private void setupModel(DbApplication application) {
         application.getEntities().stream().forEach(entity -> {
             createEntityModel(entity);
-            for (DbEntity subEntity : entity.getSubEntities()) {
-                createEntityModel(subEntity);
-            }
+//            for (DbEntity subEntity : entity.getSubEntities()) {
+//                createEntityModel(subEntity);
+//            }
         });
     }
 

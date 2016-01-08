@@ -1,13 +1,15 @@
 package io.skysail.server.app.todos.services;
 
-import java.util.*;
+import java.util.Date;
+import java.util.List;
 
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
 import org.restlet.data.Status;
 
 import io.skysail.api.responses.SkysailResponse;
-import io.skysail.server.app.todos.*;
+import io.skysail.server.app.todos.TodoApplication;
+import io.skysail.server.app.todos.TodoList;
 import io.skysail.server.app.todos.lists.PostListResource;
 import io.skysail.server.app.todos.repo.ListsRepository;
 import io.skysail.server.queryfilter.Filter;
@@ -40,7 +42,7 @@ public class ListService {
         entity.setCreated(new Date());
         Subject subject = SecurityUtils.getSubject();
         entity.setOwner(subject.getPrincipal().toString());
-        String id = repo.save(entity, "todos").getId().toString();
+        String id = repo.save(entity, app.getApplicationModel()).getId().toString();
         entity.setId(id);
         return new SkysailResponse<>(null, entity);
     }
@@ -57,7 +59,7 @@ public class ListService {
         original.setDesc(entity.getDesc());
         original.setDefaultList(entity.isDefaultList());
         original.setModified(new Date());
-        app.getListRepo().update(resource.getAttribute(TodoApplication.LIST_ID), original, "todos");
+        app.getListRepo().update(original, app.getApplicationModel());
         return new SkysailResponse<>();
     }
 

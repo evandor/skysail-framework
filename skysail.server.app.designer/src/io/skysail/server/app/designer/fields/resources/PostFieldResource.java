@@ -9,7 +9,8 @@ import io.skysail.server.app.designer.application.resources.ApplicationsResource
 import io.skysail.server.app.designer.entities.DbEntity;
 import io.skysail.server.app.designer.fields.DbEntityField;
 import io.skysail.server.app.designer.repo.DesignerRepository;
-import io.skysail.server.restlet.resources.*;
+import io.skysail.server.restlet.resources.PostEntityServerResource;
+import io.skysail.server.restlet.resources.TreeRepresentation;
 
 public abstract class PostFieldResource<T extends DbEntityField> extends PostEntityServerResource<T> {
 
@@ -31,7 +32,7 @@ public abstract class PostFieldResource<T extends DbEntityField> extends PostEnt
     public void addEntity(DbEntityField field) {
         DbEntity theEntity = repo.getById(DbEntity.class, getAttribute(DesignerApplication.ENTITY_ID));
         theEntity.getFields().add(field);
-        app.getRepository().update(theEntity, "fields");
+        app.getRepository().update(theEntity, ((DesignerApplication)getApplication()).getApplicationModel());
     }
     
     @Override

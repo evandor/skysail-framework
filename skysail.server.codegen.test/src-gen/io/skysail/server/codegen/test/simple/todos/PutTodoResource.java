@@ -22,7 +22,7 @@ public class PutTodoResource extends PutEntityServerResource<Todo> {
     }
 
     public void updateEntity(Todo entity) {
-        repository.update(getAttribute("id"), entity);
+        repository.update(entity, app.getApplicationModel());
     }
 
     @Override

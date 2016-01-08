@@ -1,14 +1,20 @@
 package io.skysail.server.app.todos.lists.test;
 
-import static org.hamcrest.CoreMatchers.*;
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.Matchers.greaterThanOrEqualTo;
 import static org.junit.Assert.assertThat;
-import io.skysail.server.app.todos.TodoList;
 
 import java.util.List;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import org.restlet.data.Status;
+
+import io.skysail.server.app.todos.TodoList;
+
+@Ignore
 
 public class ListsResourceTest extends AbstractListResourceTest {
 

@@ -22,7 +22,7 @@ public class PutOAuth2Resource extends PutEntityServerResource<OAuth2> {
     }
 
     public void updateEntity(OAuth2 entity) {
-        repository.update(getAttribute("id"), entity);
+        repository.update(entity, app.getApplicationModel());
     }
 
     @Override

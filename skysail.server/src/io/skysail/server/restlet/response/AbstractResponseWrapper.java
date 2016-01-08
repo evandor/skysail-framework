@@ -1,6 +1,7 @@
 package io.skysail.server.restlet.response;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.atomic.AtomicLong;
 
 import org.restlet.Response;
@@ -9,8 +10,10 @@ import de.twenty11.skysail.server.core.restlet.Wrapper;
 import io.skysail.api.responses.ConstraintViolationsResponse;
 import io.skysail.domain.Identifiable;
 import io.skysail.server.caches.Caches;
-import io.skysail.server.restlet.response.messages.*;
-import lombok.*;
+import io.skysail.server.restlet.response.messages.Message;
+import io.skysail.server.restlet.response.messages.MessageType;
+import lombok.Getter;
+import lombok.Setter;
 
 public abstract class AbstractResponseWrapper<T extends Identifiable> implements Wrapper<T> {
 
@@ -25,8 +28,6 @@ public abstract class AbstractResponseWrapper<T extends Identifiable> implements
     @Getter
     private List<Long> messageIds = new ArrayList<>();
     
-   
-
     @Override
     public synchronized void addError(String msg) {
         Caches.getMessageCache().put(getAndRememberNewMessageId(), new Message(MessageType.ERROR, msg));

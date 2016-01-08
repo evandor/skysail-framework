@@ -8,13 +8,16 @@ import java.util.stream.Collectors;
 import org.restlet.resource.ServerResource;
 
 import io.skysail.domain.Identifiable;
-import io.skysail.domain.core.*;
-import io.skysail.server.utils.*;
+import io.skysail.domain.core.EntityModel;
+import io.skysail.domain.core.EntityRelation;
+import io.skysail.domain.core.EntityRelationType;
+import io.skysail.server.utils.MyCollectors;
+import io.skysail.server.utils.ReflectionUtils;
 import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-@ToString
+@ToString(callSuper = true)
 public class ClassEntityModel extends EntityModel {
 
     private static final String MORE_TAB_NAME = "more...";

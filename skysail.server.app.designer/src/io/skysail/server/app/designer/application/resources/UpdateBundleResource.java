@@ -1,16 +1,16 @@
-package io.skysail.server.app.designer.codegen;
+package io.skysail.server.app.designer.application.resources;
 
 import de.twenty11.skysail.server.core.restlet.ResourceContextId;
 import io.skysail.server.app.designer.DesignerApplication;
-import io.skysail.server.app.designer.application.resources.ApplicationsResource;
+import io.skysail.server.app.designer.codegen.Empty;
 import io.skysail.server.restlet.resources.PostEntityServerResource;
 
-public class PostCompilationResource extends PostEntityServerResource<Empty> {
+public class UpdateBundleResource extends PostEntityServerResource<Empty> {
 
     private DesignerApplication app;
 
-    public PostCompilationResource() {
-        addToContext(ResourceContextId.LINK_TITLE, "compile applications");
+    public UpdateBundleResource() {
+        addToContext(ResourceContextId.LINK_TITLE, "refresh bundle");
         addToContext(ResourceContextId.LINK_GLYPH, "flash");
     }
 
@@ -26,9 +26,7 @@ public class PostCompilationResource extends PostEntityServerResource<Empty> {
 
     @Override
     public void addEntity(Empty entity) {
-        InMemoryJavaCompiler.reset();
-        //app.updateBundle();
-        app.compileApplication(getAttribute("id"));
+        app.updateBundle();
     }
 
     @Override

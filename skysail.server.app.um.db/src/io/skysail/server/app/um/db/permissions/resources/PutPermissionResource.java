@@ -18,7 +18,7 @@ public class PutPermissionResource extends PutEntityServerResource<Permission> {
     }
 
     public void updateEntity(Permission entity) {
-        app.getPermissionRepo().update(getAttribute("id"), entity);
+        app.getPermissionRepo().update(entity, app.getApplicationModel());
     }
 
     @Override

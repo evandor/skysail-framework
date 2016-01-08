@@ -7,11 +7,16 @@ import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
 
 import io.skysail.api.responses.SkysailResponse;
-import io.skysail.server.app.todos.*;
+import io.skysail.server.app.todos.TodoApplication;
+import io.skysail.server.app.todos.TodoList;
 import io.skysail.server.app.todos.ranking.Ranker;
-import io.skysail.server.app.todos.repo.*;
+import io.skysail.server.app.todos.repo.ListsRepository;
+import io.skysail.server.app.todos.repo.TodosRepository;
 import io.skysail.server.app.todos.todos.Todo;
-import io.skysail.server.app.todos.todos.resources.*;
+import io.skysail.server.app.todos.todos.resources.PostTodoResource;
+import io.skysail.server.app.todos.todos.resources.PutTodoResource;
+import io.skysail.server.app.todos.todos.resources.TodoResource;
+import io.skysail.server.app.todos.todos.resources.TodosResource;
 import io.skysail.server.app.todos.todos.status.Status;
 import io.skysail.server.queryfilter.Filter;
 import io.skysail.server.queryfilter.pagination.Pagination;
@@ -47,7 +52,7 @@ public class TodosService {
         entity.setUrgency(Ranker.calcUrgency(entity));
 
         list.getTodos().add(entity);
-        listRepo.update(list.getId(), list, "todos").toString();
+        listRepo.update(list, app.getApplicationModel()).toString();
         return new SkysailResponse<>();
     }
 
@@ -55,12 +60,13 @@ public class TodosService {
         TodoApplication app = (TodoApplication) resource.getApplication();
         Todo todo = todosRepo.findOne(todoId);
         todo.setViews(todo.getViews() != null ? 1 + todo.getViews() : 1);
-        app.getTodosRepo().update(todo.getId(), todo, "todos");
+        app.getTodosRepo().update(todo, app.getApplicationModel());
         return todo;
     }
 
     public SkysailResponse<Todo> update(PutTodoResource resource, Todo entityFromTheWire, String listId) {
-        TodoList list = listRepo.findOne(listId);
+        TodoApplication app = (TodoApplication) resource.getApplication();
+         TodoList list = listRepo.findOne(listId);
 
         Todo entityToBeUpdated = resource.getEntity(null);
         resource.copyProperties(entityToBeUpdated, entityFromTheWire);
@@ -79,7 +85,7 @@ public class TodosService {
             list.getTodos().add(entityToBeUpdated);
         }
 
-        listRepo.update(list.getId(), list, "todos");
+        listRepo.update(list, app.getApplicationModel());
 
         return new SkysailResponse<>(null, entityToBeUpdated);
     }

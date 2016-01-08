@@ -21,7 +21,7 @@ public class PostUserResource extends PostEntityServerResource<User> {
 
     @Override
     public void addEntity(User entity) {
-        String id = app.getUserRepository().save(entity, "roles").getId().toString();
+        String id = app.getUserRepository().save(entity, app.getApplicationModel()).getId().toString();
         entity.setId(id);
     }
 

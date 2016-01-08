@@ -1,13 +1,18 @@
 package io.skysail.domain.core.test;
 
-import static org.hamcrest.CoreMatchers.*;
+import static org.hamcrest.CoreMatchers.containsString;
+import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.Matchers.contains;
 import static org.junit.Assert.assertThat;
 
-import org.junit.*;
+import org.junit.Before;
+import org.junit.Test;
 
 import io.skysail.domain.Identifiable;
-import io.skysail.domain.core.*;
+import io.skysail.domain.core.ApplicationModel;
+import io.skysail.domain.core.EntityModel;
+import io.skysail.domain.core.FieldModel;
+import io.skysail.domain.core.Repositories;
 import io.skysail.domain.core.repos.DbRepository;
 
 public class ApplicationModelTest {
@@ -47,7 +52,7 @@ public class ApplicationModelTest {
         DbRepository aRepository = new DbRepository() {
 
             @Override
-            public Object update(String id, Identifiable entity, String... edges) {
+            public Object update(Identifiable entity, ApplicationModel model) {
                 return null;
             }
 

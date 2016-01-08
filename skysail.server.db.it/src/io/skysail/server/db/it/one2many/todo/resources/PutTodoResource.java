@@ -22,7 +22,7 @@ public class PutTodoResource extends PutEntityServerResource<Todo> {
         Todo entityToBeUpdated = getEntity(null);
         copyProperties(entityToBeUpdated, entityFromTheWire);
         entityToBeUpdated.setModified(new Date());
-        app.getRepository().update(getAttribute("id"), entityToBeUpdated, "comments");
+        app.getRepository().update(entityToBeUpdated, app.getApplicationModel());
     }
 
 }

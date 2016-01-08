@@ -1,6 +1,7 @@
 package io.skysail.server.db;
 
-import java.util.*;
+import java.util.List;
+import java.util.Map;
 
 import com.orientechnologies.orient.core.metadata.schema.OType;
 import com.orientechnologies.orient.core.record.impl.ODocument;
@@ -20,15 +21,13 @@ public interface DbService {
     void register(Class<?>... classes);
     void createProperty(String simpleName, String string, OType date);
 
-    Object update(Object id, Identifiable entity, String... edges);
+    Object update(Identifiable entity, ApplicationModel applicationModel);
 
     // --- object api ---
     <T> List<T> findObjects(String sql);
     <T> List<T> findObjects(String sql, Map<String, Object> params);
 
     // --- graph api ---
-    @Deprecated
-    Object persist(Identifiable entity, String... edges);
     Object persist(Identifiable entity, ApplicationModel applicationModel);
     <T> List<T> findGraphs(Class<T> cls, String sql);
     <T> List<T> findGraphs(Class<T> cls, String sql, Map<String, Object> params);

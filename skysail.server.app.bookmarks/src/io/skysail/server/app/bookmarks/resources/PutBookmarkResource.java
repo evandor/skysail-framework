@@ -1,6 +1,7 @@
 package io.skysail.server.app.bookmarks.resources;
 
-import io.skysail.server.app.bookmarks.*;
+import io.skysail.server.app.bookmarks.Bookmark;
+import io.skysail.server.app.bookmarks.BookmarksApplication;
 import io.skysail.server.app.bookmarks.repo.BookmarksRepository;
 import io.skysail.server.restlet.resources.PutEntityServerResource;
 
@@ -22,6 +23,6 @@ public class PutBookmarkResource extends PutEntityServerResource<Bookmark> {
       }
 
       public void updateEntity(Bookmark entity) {
-         app.getRepository().update(entity.getId(), entity);
+         app.getRepository().update(entity, app.getApplicationModel());
       }
 }

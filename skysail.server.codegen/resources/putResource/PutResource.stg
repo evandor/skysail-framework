@@ -23,7 +23,7 @@ public class Put$entity.simpleName$Resource extends PutEntityServerResource<$ent
     }
 
     public void updateEntity($entity.simpleName$ entity) {
-        repository.update(getAttribute("id"), entity);
+        repository.update(entity, app.getApplicationModel());
     }
 
     @Override

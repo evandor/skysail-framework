@@ -1,7 +1,8 @@
 package io.skysail.domain.core;
 
 import io.skysail.domain.html.InputType;
-import lombok.*;
+import lombok.Getter;
+import lombok.Setter;
 
 /**
  * Part of skysail's core domain: A FieldModel belongs to an entity which belongs to an application.
@@ -9,7 +10,6 @@ import lombok.*;
  */
 @Getter
 @Setter
-@ToString(of = {"id", "type", "inputType"})
 public class FieldModel {
 
     /** the fields name or identifier, e.g. "title" */
@@ -40,6 +40,17 @@ public class FieldModel {
 
     public String getName() {
         return this.id;
+    }
+    
+    @Override
+    public String toString() {
+        //FieldModel(id=fieldModel, type=class java.lang.String, inputType=BUTTON)
+        StringBuilder sb = new StringBuilder(this.getClass().getSimpleName()).append("(");
+        sb.append("id=").append(id).append(", ");
+        sb.append("type=").append(type).append(", ");
+        sb.append("inputType=").append(inputType).append(", ");
+        sb.append(")");
+        return sb.toString();
     }
 
 

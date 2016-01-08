@@ -1,18 +1,19 @@
 package io.skysail.server.db.versions;
 
-import io.skysail.domain.core.repos.DbRepository;
-import io.skysail.server.db.versions.impl.*;
-import io.skysail.server.queryfilter.Filter;
-import io.skysail.server.utils.BundleUtils;
-
 import java.util.*;
 import java.util.stream.Collectors;
 
-import lombok.extern.slf4j.Slf4j;
-
 import org.osgi.framework.Bundle;
 
-import aQute.bnd.annotation.component.*;
+import aQute.bnd.annotation.component.Component;
+import aQute.bnd.annotation.component.Reference;
+import io.skysail.domain.core.repos.DbRepository;
+import io.skysail.server.db.versions.impl.ComponentDbVersion;
+import io.skysail.server.db.versions.impl.Migration;
+import io.skysail.server.db.versions.impl.VersionsRepository;
+import io.skysail.server.queryfilter.Filter;
+import io.skysail.server.utils.BundleUtils;
+import lombok.extern.slf4j.Slf4j;
 
 @Component(immediate = true, provide = VersioningService.class)
 @Slf4j
@@ -89,22 +90,23 @@ public class VersioningService {
 
     private List<String> runSql(Bundle bundle, Migration m) {
         ComponentDbVersion componentVersion = new ComponentDbVersion(bundle, m.getTitle(), m.getVersion());
-        String migrationId = repo.save(componentVersion).toString();
-        componentVersion.setId(migrationId);
-
-        List<String> results = new ArrayList<>();
-
-        try {
-            m.runMigration(repo, results);
-            componentVersion.setStatus(Status.SUCCESS);
-        } catch (Exception e) {
-            log.error(e.getMessage(), e);
-            results.add(e.getMessage());
-            componentVersion.setStatus(Status.FAILURE);
-        }
-
-        repo.update(migrationId, componentVersion);
-        return results;
+        throw new IllegalStateException("FIXME");
+//        String migrationId = repo.save(componentVersion).toString();
+//        componentVersion.setId(migrationId);
+//
+//        List<String> results = new ArrayList<>();
+//
+//        try {
+//            m.runMigration(repo, results);
+//            componentVersion.setStatus(Status.SUCCESS);
+//        } catch (Exception e) {
+//            log.error(e.getMessage(), e);
+//            results.add(e.getMessage());
+//            componentVersion.setStatus(Status.FAILURE);
+//        }
+//
+//        repo.update(migrationId, componentVersion);
+//        return results;
     }
 
 }

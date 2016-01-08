@@ -35,7 +35,7 @@ public class EntityResource extends EntityServerResource<DbEntity> {
 
     @Override
     public List<Link> getLinks() {
-        return super.getLinks(PutEntityResource.class, FieldsResource.class, PostSubEntityResource.class, SubEntitiesResource.class);
+        return super.getLinks(PutEntityResource.class, FieldsResource.class);//, PostSubEntityResource.class, SubEntitiesResource.class);
     }
 
     @Override
@@ -44,7 +44,7 @@ public class EntityResource extends EntityServerResource<DbEntity> {
         DbApplication dbApplication = (DbApplication) repo.findOne(appId);
         DbEntity entityToDelete = getEntity();
         dbApplication.getEntities().remove(entityToDelete);
-        repo.update(dbApplication.getId(), dbApplication, "entities").toString();
+        repo.update(dbApplication, ((DesignerApplication)getApplication()).getApplicationModel()).toString();
         return new SkysailResponse<>();
     }
 

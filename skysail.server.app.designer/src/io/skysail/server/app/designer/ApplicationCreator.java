@@ -1,12 +1,20 @@
 package io.skysail.server.app.designer;
 
-import java.io.*;
-import java.lang.reflect.*;
-import java.nio.file.*;
+import java.io.File;
+import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import org.osgi.framework.*;
+import org.osgi.framework.Bundle;
+import org.osgi.framework.ServiceReference;
+import org.osgi.framework.ServiceRegistration;
 import org.osgi.service.component.ComponentContext;
 import org.stringtemplate.v4.ST;
 
@@ -15,13 +23,18 @@ import io.skysail.domain.core.Repositories;
 import io.skysail.domain.core.repos.DbRepository;
 import io.skysail.server.app.SkysailApplication;
 import io.skysail.server.app.designer.application.DbApplication;
-import io.skysail.server.app.designer.codegen.*;
-import io.skysail.server.app.designer.model.*;
+import io.skysail.server.app.designer.codegen.DefaultJavaCompiler;
+import io.skysail.server.app.designer.codegen.JavaCompiler;
+import io.skysail.server.app.designer.codegen.SkysailApplicationCompiler;
+import io.skysail.server.app.designer.model.DesignerApplicationModel;
+import io.skysail.server.app.designer.model.RouteModel;
 import io.skysail.server.app.designer.repo.DesignerRepository;
 import io.skysail.server.db.DbService;
 import io.skysail.server.menus.MenuItemProvider;
-import io.skysail.server.utils.*;
-import lombok.*;
+import io.skysail.server.utils.BundleResourceReader;
+import io.skysail.server.utils.DefaultBundleResourceReader;
+import lombok.Getter;
+import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -80,26 +93,36 @@ public class ApplicationCreator {
         Class<?> applicationClass = skysailApplicationCompiler.getApplicationClass();
 
         List<Class<?>> repositoryClasses = repositoryClassNames.stream()
-                .map(repoName -> skysailApplicationCompiler.getClass(repoName)).collect(Collectors.toList());
+                .map(repoName -> skysailApplicationCompiler.getClass(repoName)).collect(Collectors.toList()); // NOSONAR
 
         try {
             SkysailApplication applicationInstance = (SkysailApplication) applicationClass.newInstance();
             repositoryClasses.stream().forEach(repositoryClass -> {
-                try {
+                try { // NOSONAR
                     DbRepository dbRepoInstance = (DbRepository) repositoryClass.newInstance();
                     setDbServiceInRepository(dbService, dbRepoInstance);
                     repos.setRepository(dbRepoInstance);
                     setRepositoriesInApplication(applicationInstance);
                     activateRepository(dbRepoInstance);
                 } catch (Exception e ) {
-                   throw new RuntimeException(e.getMessage(), e);
+                   throw new RuntimeException(e.getMessage(), e); // NOSONAR
                 }
             });
 
             Method setComponentContextMethod = applicationInstance.getClass().getMethod("setComponentContext",
                     new Class[] { ComponentContext.class });
             setComponentContextMethod.invoke(applicationInstance, new Object[] { componentContext });
-
+            
+            Collection<ServiceReference<ApplicationProvider>> appProviders = bundle.getBundleContext().getServiceReferences(ApplicationProvider.class, null);
+            appProviders.stream().forEach(appProvider -> {
+                System.out.println(Arrays.stream(appProvider.getPropertyKeys()).map(key -> key + ": " + appProvider.getProperty(key)).collect(Collectors.joining(", ")));
+            });
+            List<ServiceReference<ApplicationProvider>> virtualProviders = appProviders.stream().filter(appProvider -> {
+                return appProvider.getProperty("component.id") == null;
+            }).collect(Collectors.toList());
+            
+            virtualProviders.stream().forEach(p -> bundle.getBundleContext().ungetService(p));
+            
             ServiceRegistration<?> registeredService = bundle.getBundleContext().registerService(
                     new String[] { ApplicationProvider.class.getName(), MenuItemProvider.class.getName() },
                     applicationInstance, null);

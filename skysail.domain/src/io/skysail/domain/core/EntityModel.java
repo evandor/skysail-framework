@@ -2,7 +2,9 @@ package io.skysail.domain.core;
 
 import java.util.*;
 
-import lombok.*;
+import lombok.Getter;
+import lombok.NonNull;
+import lombok.Setter;
 
 /**
  * A central class of skysail's core domain: An entity belongs to exactly one application
@@ -11,7 +13,6 @@ import lombok.*;
  *
  */
 @Getter
-@ToString
 public class EntityModel {
 
     /** ID should be the full qualified java class name, i.e. io.skysail.entity.Customer */
@@ -66,5 +67,15 @@ public class EntityModel {
         return id.substring(indexOfLastDot+1);
     }
     
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder(this.getClass().getSimpleName()).append(": ");
+        sb.append(id).append("\n");
+        sb.append("Fields: \n");
+        fields.keySet().stream().forEach(
+                key -> sb.append(" - ").append(key).append(":\n     ").append(fields.get(key).toString()).append("\n")
+        );
+        return sb.toString();
+    }
 
 }

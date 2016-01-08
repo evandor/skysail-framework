@@ -1,16 +1,24 @@
 package io.skysail.server.app.designer;
 
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
-import org.osgi.framework.*;
-import org.osgi.service.component.annotations.*;
+import org.osgi.framework.Bundle;
+import org.osgi.framework.BundleException;
+import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.Reference;
+import org.osgi.service.component.annotations.ReferenceCardinality;
+import org.osgi.service.component.annotations.ReferencePolicy;
 import org.osgi.service.event.EventAdmin;
 
 import de.twenty11.skysail.server.app.ApplicationProvider;
-import de.twenty11.skysail.server.core.restlet.*;
+import de.twenty11.skysail.server.core.restlet.ApplicationContextId;
+import de.twenty11.skysail.server.core.restlet.RouteBuilder;
 import io.skysail.domain.core.Repositories;
 import io.skysail.domain.core.repos.DbRepository;
 import io.skysail.server.app.SkysailApplication;
@@ -18,14 +26,25 @@ import io.skysail.server.app.designer.application.DbApplication;
 import io.skysail.server.app.designer.application.resources.*;
 import io.skysail.server.app.designer.codegen.PostCompilationResource;
 import io.skysail.server.app.designer.entities.DbEntity;
-import io.skysail.server.app.designer.entities.resources.*;
-import io.skysail.server.app.designer.fields.resources.*;
+import io.skysail.server.app.designer.entities.resources.EntitiesResource;
+import io.skysail.server.app.designer.entities.resources.EntityResource;
+import io.skysail.server.app.designer.entities.resources.PostEntityResource;
+import io.skysail.server.app.designer.entities.resources.PutEntityResource;
+import io.skysail.server.app.designer.fields.resources.FieldResource;
+import io.skysail.server.app.designer.fields.resources.FieldsResource;
+import io.skysail.server.app.designer.fields.resources.PutFieldRedirectResource;
 import io.skysail.server.app.designer.fields.resources.date.PostDateFieldResource;
-import io.skysail.server.app.designer.fields.resources.text.*;
+import io.skysail.server.app.designer.fields.resources.date.PutDateFieldResource;
+import io.skysail.server.app.designer.fields.resources.editors.PostTrixeditorFieldResource;
+import io.skysail.server.app.designer.fields.resources.editors.PutTrixeditorFieldResource;
+import io.skysail.server.app.designer.fields.resources.text.PostTextFieldResource;
+import io.skysail.server.app.designer.fields.resources.text.PutTextFieldResource;
 import io.skysail.server.app.designer.fields.resources.textarea.PostTextareaFieldResource;
+import io.skysail.server.app.designer.fields.resources.textarea.PutTextareaFieldResource;
 import io.skysail.server.app.designer.repo.DesignerRepository;
 import io.skysail.server.db.DbService;
-import io.skysail.server.menus.*;
+import io.skysail.server.menus.MenuItem;
+import io.skysail.server.menus.MenuItemProvider;
 import io.skysail.server.restlet.resources.TreeRepresentation;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
@@ -73,30 +92,38 @@ public class DesignerApplication extends SkysailApplication implements MenuItemP
         router.attach(new RouteBuilder("/applications/{id}/", PutApplicationResource.class));
 
         router.attach(new RouteBuilder("/applications/{id}/compilations/", PostCompilationResource.class));
+        router.attach(new RouteBuilder("/update/", UpdateBundleResource.class));
 
         router.attach(new RouteBuilder("/applications/{id}/entities", EntitiesResource.class));
         router.attach(new RouteBuilder("/applications/{id}/entities/", PostEntityResource.class));
         router.attach(new RouteBuilder("/applications/{id}/entities/{eid}", EntityResource.class));
         router.attach(new RouteBuilder("/applications/{id}/entities/{eid}/", PutEntityResource.class));
 
-        router.attach(new RouteBuilder("/entities/{" + ENTITY_ID + "}/onetomany", SubEntitiesResource.class)); // NOSONAR
-        router.attach(new RouteBuilder("/entities/{" + ENTITY_ID + "}/onetomany/{subEntityId}", SubEntityResource.class));
-
-        router.attach(new RouteBuilder("/entities/{" + ENTITY_ID + "}/onetomany/", PostSubEntityResource.class));
+//        router.attach(new RouteBuilder("/entities/{" + ENTITY_ID + "}/onetomany", SubEntitiesResource.class)); // NOSONAR
+//        router.attach(new RouteBuilder("/entities/{" + ENTITY_ID + "}/onetomany/{subEntityId}", SubEntityResource.class));
+//
+//        router.attach(new RouteBuilder("/entities/{" + ENTITY_ID + "}/onetomany/", PostSubEntityResource.class));
 
         router.attach(new RouteBuilder("/applications/{id}/entities/{" + ENTITY_ID + "}/fields", FieldsResource.class));
         
+        router.attach(new RouteBuilder("/entities/{" + ENTITY_ID + "}/datefields/", PostDateFieldResource.class));
+        router.attach(new RouteBuilder("/entities/{" + ENTITY_ID + "}/datefields/{"+FIELD_ID+"}/", PutDateFieldResource.class));
+
         router.attach(new RouteBuilder("/entities/{" + ENTITY_ID + "}/textfields/", PostTextFieldResource.class));
         router.attach(new RouteBuilder("/entities/{" + ENTITY_ID + "}/textfields/{"+FIELD_ID+"}/", PutTextFieldResource.class));
 
         router.attach(new RouteBuilder("/entities/{" + ENTITY_ID + "}/textareafields/", PostTextareaFieldResource.class));
-        router.attach(new RouteBuilder("/entities/{" + ENTITY_ID + "}/datefields/", PostDateFieldResource.class));
+        router.attach(new RouteBuilder("/entities/{" + ENTITY_ID + "}/textareafields/{"+FIELD_ID+"}/", PutTextareaFieldResource.class));
+
+        router.attach(new RouteBuilder("/entities/{" + ENTITY_ID + "}/trixeditor/", PostTrixeditorFieldResource.class));
+        router.attach(new RouteBuilder("/entities/{" + ENTITY_ID + "}/trixeditor/{"+FIELD_ID+"}/", PutTrixeditorFieldResource.class));
+
 
         router.attach(new RouteBuilder("/entities/{" + ENTITY_ID + "}/fields/{" + FIELD_ID + "}", FieldResource.class));
         
         router.attach(new RouteBuilder("/entities/{" + ENTITY_ID + "}/fields/{" + FIELD_ID + "}/", PutFieldRedirectResource.class));
 
-        router.attach(new RouteBuilder("/entities/{" + ENTITY_ID + "}/actionfields/", PostActionFieldResource.class));
+        //router.attach(new RouteBuilder("/entities/{" + ENTITY_ID + "}/actionfields/", PostActionFieldResource.class));
         
         
         router.attach(new RouteBuilder("/import/", ImportResource.class).authorizeWith(anyOf("admin")));

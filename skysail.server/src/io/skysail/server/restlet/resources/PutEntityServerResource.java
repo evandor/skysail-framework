@@ -1,16 +1,25 @@
 package io.skysail.server.restlet.resources;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Set;
 
 import javax.validation.ConstraintViolation;
 
-import org.restlet.data.*;
+import org.restlet.data.Form;
+import org.restlet.data.Method;
 import org.restlet.representation.Variant;
-import org.restlet.resource.*;
+import org.restlet.resource.Get;
+import org.restlet.resource.Patch;
+import org.restlet.resource.Put;
+import org.restlet.resource.ResourceException;
 
-import de.twenty11.skysail.server.core.restlet.*;
-import io.skysail.api.links.*;
-import io.skysail.api.responses.*;
+import de.twenty11.skysail.server.core.restlet.ResourceContextId;
+import io.skysail.api.links.Link;
+import io.skysail.api.links.LinkRelation;
+import io.skysail.api.responses.FormResponse;
+import io.skysail.api.responses.SkysailResponse;
 import io.skysail.domain.Identifiable;
 import io.skysail.server.app.SkysailApplication;
 import io.skysail.server.restlet.RequestHandler;
@@ -106,7 +115,7 @@ public abstract class PutEntityServerResource<T extends Identifiable> extends Sk
         T original = getEntity(null);
         SkysailApplication app = (SkysailApplication)getApplication();
         //app.getListRepo().update(listId, original);
-        app.getRepository(parameterizedType).update(getAttribute("id"), original);
+        app.getRepository(parameterizedType).update(original, app.getApplicationModel());
     }
 
     /**

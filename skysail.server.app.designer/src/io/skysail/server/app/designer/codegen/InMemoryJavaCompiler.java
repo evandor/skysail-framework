@@ -5,21 +5,25 @@ import java.net.URL;
 import java.util.*;
 import java.util.stream.Collectors;
 
-import javax.tools.*;
+import javax.tools.Diagnostic;
 import javax.tools.Diagnostic.Kind;
+import javax.tools.DiagnosticCollector;
+import javax.tools.JavaFileObject;
+import javax.tools.ToolProvider;
 import javax.validation.ConstraintViolation;
 
 import org.apache.commons.beanutils.DynaProperty;
-import org.osgi.framework.*;
+import org.osgi.framework.Bundle;
+import org.osgi.framework.BundleContext;
 import org.osgi.service.component.annotations.Component;
 import org.restlet.resource.ServerResource;
 
 import com.tinkerpop.blueprints.impls.orient.OrientVertex;
 
 import io.skysail.api.links.Link;
+import io.skysail.domain.core.Repositories;
 import io.skysail.server.app.SkysailApplication;
 import io.skysail.server.app.designer.DesignerApplication;
-import io.skysail.domain.core.Repositories;
 import io.skysail.server.restlet.resources.ListServerResource;
 import io.skysail.server.utils.CompositeClassLoader;
 import lombok.Getter;

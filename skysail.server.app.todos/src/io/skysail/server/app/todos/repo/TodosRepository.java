@@ -1,15 +1,19 @@
 package io.skysail.server.app.todos.repo;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
-import org.osgi.service.component.annotations.*;
-
-import com.tinkerpop.blueprints.impls.orient.OrientVertex;
+import org.osgi.service.component.annotations.Activate;
+import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.Reference;
 
 import io.skysail.domain.core.repos.DbRepository;
 import io.skysail.server.app.todos.TodoList;
 import io.skysail.server.app.todos.todos.Todo;
-import io.skysail.server.db.*;
+import io.skysail.server.db.DbClassName;
+import io.skysail.server.db.DbService;
+import io.skysail.server.db.GraphDbRepository;
 import io.skysail.server.queryfilter.Filter;
 import io.skysail.server.queryfilter.pagination.Pagination;
 import lombok.extern.slf4j.Slf4j;
@@ -49,12 +53,12 @@ public class TodosRepository extends GraphDbRepository<Todo>  implements DbRepos
         return dbService.findGraphs(Todo.class, sql, filter.getParams());
     }
 
-    @Override
-    public OrientVertex save(Todo entity, String... edges) {
-        OrientVertex result = super.save(entity, edges);
-        increaseOtherTodosRank(entity);
-        return result;
-    }
+//    @Override
+//    public OrientVertex save(Todo entity, String... edges) {
+//        OrientVertex result = super.save(entity, edges);
+//        increaseOtherTodosRank(entity);
+//        return result;
+//    }
 
     private void increaseOtherTodosRank(Todo entity) {
         String sql = "update " + DbClassName.of(Todo.class)

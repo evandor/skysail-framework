@@ -7,9 +7,12 @@ import java.util.stream.Collectors;
 import org.apache.shiro.SecurityUtils;
 import org.osgi.framework.Bundle;
 import org.restlet.data.MediaType;
-import org.restlet.representation.*;
+import org.restlet.representation.StringRepresentation;
+import org.restlet.representation.Variant;
 import org.restlet.resource.Resource;
 import org.stringtemplate.v4.ST;
+
+import com.google.common.cache.CacheStats;
 
 import de.twenty11.skysail.server.core.restlet.ResourceContextId;
 import io.skysail.api.responses.SkysailResponse;
@@ -24,7 +27,8 @@ import io.skysail.server.menus.MenuItemProvider;
 import io.skysail.server.model.ResourceModel;
 import io.skysail.server.restlet.resources.SkysailServerResource;
 import io.skysail.server.restlet.response.messages.Message;
-import io.skysail.server.utils.*;
+import io.skysail.server.utils.CookiesUtils;
+import io.skysail.server.utils.RequestUtils;
 import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
 
@@ -165,15 +169,23 @@ public class StringTemplateRenderer {
 
     public List<Notification> getNotifications() {
         List<Notification> notifications = htmlConverter.getNotifications();
-        String messageIds = resource.getQueryValue("msgIds");
+        String messageIds = resource.getOriginalRef().getQueryAsForm().getFirstValue("msgIds");
         if (messageIds != null) {
-            List<Message> messages = Arrays.stream(messageIds.split("|")).map(id -> Caches.getMessageCache().getIfPresent(id))
+            List<Message> messages = Arrays.stream(messageIds.split("|"))
+                    .map(id -> getMessageFromCache(id))
+                    .filter(msg -> msg != null)
                     .collect(Collectors.toList());
             for (Message message : messages) {
                 notifications.add(new Notification(message.getMsg(),"success"));
             }
         }
         return notifications;
+    }
+
+    private Message getMessageFromCache(String id) {
+        CacheStats messageCacheStats = Caches.getMessageCacheStats();
+        System.out.println(messageCacheStats);
+        return Caches.getMessageCache().getIfPresent(Long.valueOf(id));
     }
 
     public List<String> getPeitybars() {

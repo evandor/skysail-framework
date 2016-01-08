@@ -1,6 +1,7 @@
 package io.skysail.server.db;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.List;
 import java.util.stream.Collectors;
 
 import org.restlet.engine.util.StringUtils;
@@ -45,19 +46,23 @@ public class GraphDbRepository<T extends Identifiable> implements DbRepository {
         return (Class<Identifiable>)entityType;
     }
 
-    public OrientVertex save(T entity, String... edges) {
-        return (OrientVertex) dbService.persist(entity, edges);
-    }
+//    public OrientVertex save(T entity, String... edges) {
+//        return (OrientVertex) dbService.persist(entity, edges);
+//    }
 
     public OrientVertex save(Identifiable entity, ApplicationModel applicationModel) {
         return (OrientVertex) dbService.persist(entity, applicationModel);
     }
 
-    @Override
-    public Object update(String id, Identifiable entity, String... edges) {
-        return dbService.update(id, entity, edges);
-    }
+//    @Override
+//    public Object update(String id, Identifiable entity, String... edges) {
+//        return dbService.update(id, entity, edges);
+//    }
 
+    public Object update(Identifiable entity, ApplicationModel model) {
+        return dbService.update(entity, model);
+    }
+    
     public void delete(String id) {
         dbService.delete2(entityType, id);
     }

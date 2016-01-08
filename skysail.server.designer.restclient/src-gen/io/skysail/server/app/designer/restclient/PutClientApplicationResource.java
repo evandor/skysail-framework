@@ -22,7 +22,7 @@ public class PutClientApplicationResource extends PutEntityServerResource<Client
     }
 
     public void updateEntity(ClientApplication entity) {
-        repository.update(getAttribute("id"), entity);
+        repository.update(entity, app.getApplicationModel());
     }
 
     @Override

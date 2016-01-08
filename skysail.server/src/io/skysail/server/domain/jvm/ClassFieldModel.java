@@ -2,12 +2,16 @@ package io.skysail.server.domain.jvm;
 
 import java.lang.reflect.Field;
 
-import javax.validation.constraints.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import io.skysail.domain.html.InputType;
-import io.skysail.server.forms.*;
+import io.skysail.server.forms.ListView;
+import io.skysail.server.forms.PostView;
 import io.skysail.server.restlet.resources.SkysailServerResource;
-import lombok.*;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Value;
 
 @Value
 @EqualsAndHashCode(callSuper = true)
@@ -17,12 +21,6 @@ public class ClassFieldModel extends io.skysail.domain.core.FieldModel {
     private Class<? extends SkysailServerResource<?>> listViewLink;
 
     private Field f;
-
-    public ClassFieldModel(String id) {
-        super(id);
-        f = null;
-        listViewLink = null;
-    }
 
     public ClassFieldModel(java.lang.reflect.Field f) {
         super(f.getName());

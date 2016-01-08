@@ -5,7 +5,9 @@ import java.io.IOException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
 
-import io.skysail.server.app.designer.application.*;
+import io.skysail.server.app.designer.DesignerApplication;
+import io.skysail.server.app.designer.application.DbApplication;
+import io.skysail.server.app.designer.application.ImportDefinition;
 import io.skysail.server.app.designer.exceptions.MappingException;
 import io.skysail.server.app.designer.repo.DesignerRepository;
 import io.skysail.server.restlet.resources.PostEntityServerResource;
@@ -24,7 +26,7 @@ public class ImportResource extends PostEntityServerResource<ImportDefinition> {
         String content = entity.getYamlImport().replace("&#34;", "\"");
         try {
             DbApplication dbApplication = mapper.readValue(content, DbApplication.class);
-            DesignerRepository.add(dbApplication, "entities");
+            DesignerRepository.add(dbApplication, ((DesignerApplication)getApplication()).getApplicationModel());
         } catch (IOException e) {
             throw new MappingException(e.getMessage(), e);
         }

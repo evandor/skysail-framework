@@ -5,8 +5,7 @@ import static org.junit.Assert.assertThat;
 
 import java.lang.reflect.Field;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.*;
 
 import io.skysail.server.domain.jvm.ClassFieldModel;
 
@@ -26,6 +25,6 @@ public class ClassFieldModelTest {
     @Test
     public void toString_is_formatted_nicely() {
         String[] toString = classFieldModel.toString().split("\\n");
-        assertThat(toString[0],is("ClassFieldModel(listViewLink=null, f=private java.lang.String io.skysail.server.domain.jvm.test.ClassFieldModelTest.aField)"));
+        assertThat(toString[0],is("ClassFieldModel(id=aField, type=String, inputType=TEXT)"));
     }
 }

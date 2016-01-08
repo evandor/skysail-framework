@@ -9,9 +9,7 @@ import io.skysail.domain.html.InputType;
 import io.skysail.server.forms.ListView;
 import io.skysail.server.forms.PostView;
 import io.skysail.server.restlet.resources.SkysailServerResource;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Value;
+import lombok.*;
 
 @Value
 @EqualsAndHashCode(callSuper = true)
@@ -37,6 +35,11 @@ public class ClassFieldModel extends io.skysail.domain.core.FieldModel {
     public String getPostTabName() {
         PostView postAnnotation = f.getAnnotation(PostView.class);
         return postAnnotation == null ? null : postAnnotation.tab(); 
+    }
+    
+    @Override
+    public String toString() {
+        return super.toString();
     }
     
     private Class<? extends SkysailServerResource<?>> determineListViewLink(Field f) {

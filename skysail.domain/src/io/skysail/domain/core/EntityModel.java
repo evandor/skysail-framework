@@ -2,9 +2,9 @@ package io.skysail.domain.core;
 
 import java.util.*;
 
-import lombok.Getter;
-import lombok.NonNull;
-import lombok.Setter;
+import org.apache.commons.lang.StringUtils;
+
+import lombok.*;
 
 /**
  * A central class of skysail's core domain: An entity belongs to exactly one application
@@ -20,7 +20,7 @@ public class EntityModel {
 
     @Setter
     /** the entities fields in a map with their id as key. */
-    private Map<String, FieldModel> fields = new HashMap<>();
+    private Map<String, FieldModel> fields = new LinkedHashMap<>();
     
     @Setter
     /** names of related entities. */
@@ -69,13 +69,35 @@ public class EntityModel {
     
     @Override
     public String toString() {
+        return toString(0);
+    }
+
+    public String toString(int indentation) {
         StringBuilder sb = new StringBuilder(this.getClass().getSimpleName()).append(": ");
         sb.append(id).append("\n");
-        sb.append("Fields: \n");
-        fields.keySet().stream().forEach(
-                key -> sb.append(" - ").append(key).append(":\n     ").append(fields.get(key).toString()).append("\n")
-        );
+        fieldsToString(sb);
+        relationsToString(sb);
         return sb.toString();
+    }
+
+    private void relationsToString(StringBuilder sb) {
+        if (relations.isEmpty()) {
+            return;
+        }
+        sb.append(StringUtils.repeat(" ", 3)).append("Relations:\n");
+        relations.stream().forEach(
+                relation -> sb.append(StringUtils.repeat(" ", 3)).append(" - ").append(relation.toString()).append("\n")
+        );
+    }
+
+    private void fieldsToString(StringBuilder sb) {
+        if (fields.isEmpty()) {
+            return;
+        }
+        sb.append(StringUtils.repeat(" ", 3)).append("Fields:\n");
+        fields.keySet().stream().forEach(
+                key -> sb.append(StringUtils.repeat(" ", 3)).append(" - ").append(fields.get(key).toString()).append("\n")
+        );
     }
 
 }

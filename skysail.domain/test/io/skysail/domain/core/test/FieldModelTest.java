@@ -4,8 +4,7 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.Matchers.containsString;
 import static org.junit.Assert.assertThat;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.*;
 
 import io.skysail.domain.core.FieldModel;
 import io.skysail.domain.html.InputType;
@@ -37,7 +36,7 @@ public class FieldModelTest {
         fieldModel.setReadonly(false);
         fieldModel.setType(String.class);
         String[] toString = fieldModel.toString().split("\\n");
-        assertThat(toString[0],is("FieldModel(id=fieldModel, type=class java.lang.String, inputType=BUTTON)"));
+        assertThat(toString[0],is("FieldModel(id=fieldModel, type=String, inputType=BUTTON)"));
     }
 
 }

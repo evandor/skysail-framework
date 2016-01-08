@@ -48,7 +48,7 @@ public class FieldModel {
         StringBuilder sb = new StringBuilder(this.getClass().getSimpleName()).append("(");
         sb.append("id=").append(id).append(", ");
         sb.append("type=").append(type).append(", ");
-        sb.append("inputType=").append(inputType).append(", ");
+        sb.append("inputType=").append(inputType);
         sb.append(")");
         return sb.toString();
     }

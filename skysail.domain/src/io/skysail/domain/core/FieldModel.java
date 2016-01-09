@@ -1,7 +1,8 @@
 package io.skysail.domain.core;
 
 import io.skysail.domain.html.InputType;
-import lombok.*;
+import lombok.Getter;
+import lombok.Setter;
 
 /**
  * Part of skysail's core domain: A FieldModel belongs to an entity which

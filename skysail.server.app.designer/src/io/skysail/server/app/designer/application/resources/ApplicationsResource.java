@@ -31,7 +31,7 @@ public class ApplicationsResource extends ListServerResource<DbApplication> {
 
     @Override
     public List<Link> getLinks() {
-        return super.getLinks(PostApplicationResource.class, UpdateBundleResource.class);//, ImportResource.class);
+        return super.getLinks(PostApplicationResource.class, UpdateBundleResource.class);
     }
 
 }

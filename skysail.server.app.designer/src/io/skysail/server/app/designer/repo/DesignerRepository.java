@@ -15,6 +15,7 @@ import io.skysail.domain.core.repos.DbRepository;
 import io.skysail.server.app.designer.application.DbApplication;
 import io.skysail.server.app.designer.entities.DbEntity;
 import io.skysail.server.app.designer.fields.*;
+import io.skysail.server.app.designer.relations.DbRelation;
 import io.skysail.server.db.DbClassName;
 import io.skysail.server.db.DbService;
 import lombok.extern.slf4j.Slf4j;
@@ -30,6 +31,7 @@ public class DesignerRepository implements DbRepository {
         dbService.createWithSuperClass("V", 
                 DbClassName.of(DbApplication.class), 
                 DbClassName.of(DbEntity.class),
+                DbClassName.of(DbRelation.class),
                 DbClassName.of(DbEntityDateField.class), 
                 DbClassName.of(DbEntityTextField.class),
                 DbClassName.of(DbEntityTextareaField.class), 
@@ -38,12 +40,13 @@ public class DesignerRepository implements DbRepository {
         dbService.register(
                 DbApplication.class, 
                 DbEntity.class, 
+                DbRelation.class,
                 DbEntityDateField.class, 
                 DbEntityTextField.class,
                 DbEntityTextareaField.class, 
                 DbEntityTrixeditorField.class,
                 ActionEntityField.class);
-        dbService.createEdges("entities", "fields", "subEntities");
+        dbService.createEdges("entities", "fields", "relations");
     }
 
     @Reference

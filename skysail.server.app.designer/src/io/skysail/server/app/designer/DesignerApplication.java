@@ -41,6 +41,9 @@ import io.skysail.server.app.designer.fields.resources.text.PostTextFieldResourc
 import io.skysail.server.app.designer.fields.resources.text.PutTextFieldResource;
 import io.skysail.server.app.designer.fields.resources.textarea.PostTextareaFieldResource;
 import io.skysail.server.app.designer.fields.resources.textarea.PutTextareaFieldResource;
+import io.skysail.server.app.designer.relations.resources.PostRelationResource;
+import io.skysail.server.app.designer.relations.resources.RelationResource;
+import io.skysail.server.app.designer.relations.resources.RelationsResource;
 import io.skysail.server.app.designer.repo.DesignerRepository;
 import io.skysail.server.db.DbService;
 import io.skysail.server.menus.MenuItem;
@@ -118,13 +121,14 @@ public class DesignerApplication extends SkysailApplication implements MenuItemP
         router.attach(new RouteBuilder("/entities/{" + ENTITY_ID + "}/trixeditor/", PostTrixeditorFieldResource.class));
         router.attach(new RouteBuilder("/entities/{" + ENTITY_ID + "}/trixeditor/{"+FIELD_ID+"}/", PutTrixeditorFieldResource.class));
 
+        router.attach(new RouteBuilder("/entities/{" + ENTITY_ID + "}/relations", RelationsResource.class));
+        router.attach(new RouteBuilder("/entities/{" + ENTITY_ID + "}/relations/", PostRelationResource.class));
+        router.attach(new RouteBuilder("/entities/{" + ENTITY_ID + "}/relations/{id}", RelationResource.class));
+
 
         router.attach(new RouteBuilder("/entities/{" + ENTITY_ID + "}/fields/{" + FIELD_ID + "}", FieldResource.class));
         
         router.attach(new RouteBuilder("/entities/{" + ENTITY_ID + "}/fields/{" + FIELD_ID + "}/", PutFieldRedirectResource.class));
-
-        //router.attach(new RouteBuilder("/entities/{" + ENTITY_ID + "}/actionfields/", PostActionFieldResource.class));
-        
         
         router.attach(new RouteBuilder("/import/", ImportResource.class).authorizeWith(anyOf("admin")));
     }

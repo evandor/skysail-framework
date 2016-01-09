@@ -28,6 +28,8 @@ public class $entity.simpleName$ implements Identifiable {
     // --- fields ---
     $fields(entity.fields)$
 
+    $relations(entity.relations)$
+
     $actionFields(entity.actionFields)$
     
     $references(entity.references)$

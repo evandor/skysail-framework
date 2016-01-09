@@ -1,0 +1,16 @@
+relations(relations) ::= <<
+
+$relations.keys: { key| 
+
+@Relation
+private List<String> $key$;
+
+public void $relations.(key).setMethodName$(String value) {
+    this.$key$ = value;
+\}
+
+public String $relations.(key).getMethodName$() {
+    return this.$key$;
+\}
+}$
+>>

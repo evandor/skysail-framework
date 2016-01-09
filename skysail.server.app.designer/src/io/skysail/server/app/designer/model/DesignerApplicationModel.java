@@ -1,10 +1,14 @@
 package io.skysail.server.app.designer.model;
 
+import java.util.List;
+import java.util.Optional;
+
 import io.skysail.domain.core.ApplicationModel;
+import io.skysail.domain.core.EntityModel;
 import io.skysail.server.app.designer.application.DbApplication;
 import io.skysail.server.app.designer.entities.DbEntity;
+import io.skysail.server.app.designer.relations.DbRelation;
 import lombok.Getter;
-import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -13,7 +17,6 @@ import lombok.extern.slf4j.Slf4j;
  *
  */
 @Getter
-@ToString
 @Slf4j
 public class DesignerApplicationModel extends ApplicationModel {
 
@@ -35,20 +38,44 @@ public class DesignerApplicationModel extends ApplicationModel {
         addOnce(entityModel);
         return entityModel;
     }
-
-    private void setupModel(DbApplication application) {
-        application.getEntities().stream().forEach(entity -> {
-            createEntityModel(entity);
-//            for (DbEntity subEntity : entity.getSubEntities()) {
-//                createEntityModel(subEntity);
-//            }
-        });
+    
+    @Override
+    public String toString() {
+        String addedInfo = 
+                new StringBuilder(", projectName=").append(projectName)
+                          .append(", path=").append(path).append("\n").toString();
+        return super.toString().replaceFirst("\\n", addedInfo);
+    }
+    
+    private void setupModel(DbApplication dbApplication) {
+        setupEntities(dbApplication);
+        setupRelations(dbApplication);
     }
 
-    private void createEntityModel(DbEntity dbEntity) {
+    private void setupEntities(DbApplication application) {
+        application.getEntities().stream().forEach(this::createEntityModel);
+    }
+
+    private void createEntityModel(DbEntity dbEntity) { // NOSONAR
         log.info("DesignerApplicationModel: adding DbEntity '{}'", dbEntity);
         DesignerEntityModel entityModel = new DesignerEntityModel(dbEntity, packageName);
         addOnce(entityModel);
+    }
+
+    private void setupRelations(DbApplication dbApplication) {
+        dbApplication.getEntities().stream().forEach(dbEntity -> {
+            List<DbRelation> relations = dbEntity.getRelations();
+            Optional<EntityModel> sourceEntityModel = getEntityModel(dbEntity);
+            if (sourceEntityModel.isPresent()) {
+                
+            }
+        });
+    }
+
+    private Optional<EntityModel> getEntityModel(DbEntity dbEntity) {
+        return getEntityValues().stream().filter(entity -> 
+            entity.getSimpleName().equals(dbEntity.getName())
+        ).findFirst();
     }
 
 

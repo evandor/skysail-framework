@@ -5,6 +5,7 @@ import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.junit.Before;
@@ -21,6 +22,8 @@ import org.osgi.framework.Bundle;
 import de.twenty11.skysail.server.core.restlet.SkysailRouter;
 import io.skysail.server.app.designer.application.DbApplication;
 import io.skysail.server.app.designer.entities.DbEntity;
+import io.skysail.server.app.designer.fields.DbEntityField;
+import io.skysail.server.app.designer.fields.DbEntityTextField;
 import io.skysail.server.app.designer.model.DesignerApplicationModel;
 import io.skysail.server.app.designer.model.DesignerEntityModel;
 import io.skysail.server.app.designer.repo.DesignerRepository;
@@ -67,15 +70,6 @@ public class DesignerApplicationModelTest {
     }
 
     @Test
-    @Ignore //FIXME
-    public void adding_entity_twice_throws_exception() {
-        thrown.expect(IllegalStateException.class);
-        DesignerApplicationModel applicationModel = new DesignerApplicationModel(application);
-        applicationModel.addEntity(new DbEntity("entityName"));
-        applicationModel.addEntity(new DbEntity("entityName"));
-    }
-
-    @Test
     public void validation_succeeds_for_reference_with_known_entity() {
         DesignerApplicationModel applicationModel = new DesignerApplicationModel(application);
         DesignerEntityModel entity = applicationModel.addEntity(new DbEntity("entityName"));
@@ -84,7 +78,7 @@ public class DesignerApplicationModelTest {
     }
 
     @Test
-    @Ignore
+    @Ignore // TO CHECK
     public void validation_throws_expection_for_reference_with_unknown_entity() {
         thrown.expect(IllegalStateException.class);
         DesignerApplicationModel applicationModel = new DesignerApplicationModel(application);
@@ -115,24 +109,22 @@ public class DesignerApplicationModelTest {
         assertThat(entityModel.getReferences().size(), is(0));
     }
 
-//    @Test
-//    @Ignore
-//    public void creates_model_for_Entity_with_field() {
-//        DbEntity entity = new DbEntity("Bank");
-//        DbEntityField field = new DbEntityField();
-//        field.setName("fieldname");
-//        //entity.setFields(Arrays.asList(field));
-//        entities.add(entity);
-//
-//        DesignerApplicationModel applicationModel = new DesignerApplicationModel(application);
-//
-//        assertThat(applicationModel.getName(), is(equalTo("testapp")));
-//
-//        DesignerEntityModel entityModel = (DesignerEntityModel) applicationModel.getEntityValues().iterator().next();
-//        assertThat(entityModel.getId(), is(equalTo("pkgName.Bank")));
-//        assertThat(entityModel.getFields().size(), is(1));
-//        assertThat(entityModel.getReferences().size(), is(0));
-//    }
+    @Test
+    public void creates_model_for_Entity_with_field() {
+        DbEntity entity = new DbEntity("Bank");
+        DbEntityField field = new DbEntityTextField("fieldname",true);
+        entity.setFields(Arrays.asList(field));
+        entities.add(entity);
+
+        DesignerApplicationModel applicationModel = new DesignerApplicationModel(application);
+
+        assertThat(applicationModel.getName(), is(equalTo("testapp")));
+
+        DesignerEntityModel entityModel = (DesignerEntityModel) applicationModel.getEntityValues().iterator().next();
+        assertThat(entityModel.getId(), is(equalTo("pkgName.Bank")));
+        assertThat(entityModel.getFields().size(), is(1));
+        assertThat(entityModel.getReferences().size(), is(0));
+    }
 
     @Test
     @Ignore
@@ -156,9 +148,8 @@ public class DesignerApplicationModelTest {
 //    @Ignore
 //    public void creates_model_for_two_entities_with_reference() {
 //        DbEntity bankEntity = new DbEntity("Bank");
-//        DbEntityField field = new DbEntityField();
-//        field.setName("iban");
-//       // bankEntity.setFields(Arrays.asList(field));
+//        DbEntityField field = new DbEntityTextField("iban");
+//        bankEntity.setFields(Arrays.asList(field));
 //
 //        DbEntity accountEntity = new DbEntity("Account");
 //        accountEntity.setSubEntities(Arrays.asList(bankEntity));
@@ -200,5 +191,20 @@ public class DesignerApplicationModelTest {
 //        assertThat(entityModel.getFields().size(), is(0));
 //        assertThat(entityModel.getReferences().size(), is(1));
 //    }
+    
+    @Test
+    public void toString_is_inherited() {
+        entities.add(new DbEntity("entityA"));
+        DesignerApplicationModel applicationModel = new DesignerApplicationModel(application);
+
+        String[] toString = applicationModel.toString().split("\n");
+        
+        int i = 0;
+        assertThat(toString[i++], is("DesignerApplicationModel: testapp, projectName=projectName, path=../"));
+        assertThat(toString[i++], is("Entities: "));
+        assertThat(toString[i++], is(" * DesignerEntityModel: pkgName.entityA"));
+        assertThat(toString[i++], is(""));
+        assertThat(toString[i++], is("Repositories: "));
+    }
 
 }

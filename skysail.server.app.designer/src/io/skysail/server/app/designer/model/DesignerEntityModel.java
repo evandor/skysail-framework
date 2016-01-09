@@ -1,16 +1,20 @@
 package io.skysail.server.app.designer.model;
 
-import java.util.*;
+import java.util.HashSet;
+import java.util.Optional;
+import java.util.Set;
 
-import io.skysail.server.app.designer.entities.DbEntity;
-import io.skysail.server.app.designer.fields.*;
 import io.skysail.domain.core.EntityModel;
-import lombok.*;
+import io.skysail.server.app.designer.entities.DbEntity;
+import io.skysail.server.app.designer.fields.ActionEntityField;
+import io.skysail.server.app.designer.fields.DbEntityField;
+import lombok.Getter;
+import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * Extension augmenting the core entity model with information to create
- * java entities from the model.
+ * Extension augmenting the core entity model with information to create java
+ * entities from the model.
  *
  */
 @Getter
@@ -26,19 +30,21 @@ public class DesignerEntityModel extends EntityModel {
         super(packageName + "." + entityFromDb.getName());
         setAggregate(entityFromDb.isRootEntity());
         setupModel(entityFromDb);
+        //setupRelations(entityFromDb);
     }
 
     private void setupModel(DbEntity entityFromDb) {
-        entityFromDb.getFields().stream().forEach(fieldFromDb -> {
-            addField(fieldFromDb);
-        });
+        entityFromDb.getFields().stream().forEach(this::addField);
     }
 
-    private DesignerFieldModel addField(DbEntityField fieldFromDb) {
+//    private void setupRelations(DbEntity entityFromDb) {
+//        entityFromDb.getRelations().stream().forEach(this::addRelation);
+//    }
+
+    private void addField(DbEntityField fieldFromDb) { // NOSONAR
         log.info("DesignerApplicationModel: adding Field '{}'", fieldFromDb);
         DesignerFieldModel fieldModel = new DesignerFieldModel(fieldFromDb);
         add(fieldModel);
-        return fieldModel;
     }
 
     public void addActionField(ActionEntityField f) {
@@ -49,8 +55,8 @@ public class DesignerEntityModel extends EntityModel {
     }
 
     public void addReference(DbEntity referencedEntity) {
-        log.info("DesignerEntityModel:      adding Reference from DbEntity '{}' to DbEntity '{}'", referencedEntity.getId(),
-                referencedEntity.getName());
+        log.info("DesignerEntityModel:      adding Reference from DbEntity '{}' to DbEntity '{}'",
+                referencedEntity.getId(), referencedEntity.getName());
         if (!references.add(new ReferenceModel(this, referencedEntity))) {
             throw new IllegalStateException("reference '" + referencedEntity.getName() + "' already exists!");
         }
@@ -59,13 +65,12 @@ public class DesignerEntityModel extends EntityModel {
     public void setClassName(String entityClassName) {
         this.className = entityClassName;
     }
-    
+
     public void setReferencedBy(@NonNull DesignerEntityModel entityModel) {
         if (referencedBy != null && referencedBy.get() != null) {
             throw new IllegalStateException("setReferencedBy was called before on this object");
         }
         this.referencedBy = Optional.of(entityModel);
     }
-
 
 }

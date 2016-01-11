@@ -5,6 +5,8 @@ import java.util.Optional;
 
 import io.skysail.domain.core.ApplicationModel;
 import io.skysail.domain.core.EntityModel;
+import io.skysail.domain.core.EntityRelation;
+import io.skysail.domain.core.EntityRelationType;
 import io.skysail.server.app.designer.application.DbApplication;
 import io.skysail.server.app.designer.entities.DbEntity;
 import io.skysail.server.app.designer.relations.DbRelation;
@@ -13,7 +15,7 @@ import lombok.extern.slf4j.Slf4j;
 
 /**
  * Extension augmenting the core application model with information needed
- * to create java classes from the model. 
+ * to create java classes from the model.
  *
  */
 @Getter
@@ -24,6 +26,9 @@ public class DesignerApplicationModel extends ApplicationModel {
     private String path;
     private String projectName;
 
+    /**
+     * Creates a DesignerApplicationModel from a persisted model.
+     */
     public DesignerApplicationModel(DbApplication appFromDb) {
         super(appFromDb.getName());
         this.packageName = appFromDb.getPackageName();
@@ -32,12 +37,12 @@ public class DesignerApplicationModel extends ApplicationModel {
         setupModel(appFromDb);
     }
 
-    public DesignerEntityModel addEntity(DbEntity entity) {
-        log.info("DesignerApplicationModel: adding DbEntity '{}'", entity);
-        DesignerEntityModel entityModel = new DesignerEntityModel(entity, packageName);
-        addOnce(entityModel);
-        return entityModel;
-    }
+//    public DesignerEntityModel addEntity(DbEntity entity) {
+//        log.info("DesignerApplicationModel: adding DbEntity '{}'", entity);
+//        DesignerEntityModel entityModel = new DesignerEntityModel(entity, packageName);
+//        addOnce(entityModel);
+//        return entityModel;
+//    }
     
     @Override
     public String toString() {
@@ -64,17 +69,30 @@ public class DesignerApplicationModel extends ApplicationModel {
 
     private void setupRelations(DbApplication dbApplication) {
         dbApplication.getEntities().stream().forEach(dbEntity -> {
-            List<DbRelation> relations = dbEntity.getRelations();
-            Optional<EntityModel> sourceEntityModel = getEntityModel(dbEntity);
-            if (sourceEntityModel.isPresent()) {
-                
+            List<DbRelation> dbRelations = dbEntity.getRelations();
+            Optional<EntityModel> sourceEntityModel = getEntityModel(dbEntity.getName());
+            if (!sourceEntityModel.isPresent()) {
+                log.error("error finding entityModel with name '{}'", dbEntity.getName());
+                System.out.println(dbApplication);
+                return;
             }
+            dbRelations.stream().forEach(dbRelation -> {
+                EntityRelationType relationType = EntityRelationType.ONE_TO_MANY;
+                Optional<EntityModel> targetEntityModel = getEntityModel(dbRelation.getTarget());
+                if (!targetEntityModel.isPresent()) {
+                    log.error("error finding entityModel with name '{}'", dbEntity.getName());
+                    System.out.println(dbApplication);
+                    return;
+                }
+                EntityRelation relation = new EntityRelation(dbRelation.getName(), targetEntityModel.get(), relationType);
+                sourceEntityModel.get().getRelations().add(relation);
+            });
         });
     }
 
-    private Optional<EntityModel> getEntityModel(DbEntity dbEntity) {
+    private Optional<EntityModel> getEntityModel(String dbEntityName) {
         return getEntityValues().stream().filter(entity -> 
-            entity.getSimpleName().equals(dbEntity.getName())
+            entity.getSimpleName().equals(dbEntityName)
         ).findFirst();
     }
 

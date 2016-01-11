@@ -22,29 +22,18 @@ import lombok.extern.slf4j.Slf4j;
 public class DesignerEntityModel extends EntityModel {
 
     private final Set<ActionFieldModel> actionFields = new HashSet<>();
-    private final Set<ReferenceModel> references = new HashSet<>();
-    private String className;
+
+    // links to other entities
+    private final Set<ReferenceModel> references = new HashSet<>();  
+    
     private Optional<DesignerEntityModel> referencedBy;
+
+    private String className;
 
     public DesignerEntityModel(DbEntity entityFromDb, String packageName) {
         super(packageName + "." + entityFromDb.getName());
         setAggregate(entityFromDb.isRootEntity());
         setupModel(entityFromDb);
-        //setupRelations(entityFromDb);
-    }
-
-    private void setupModel(DbEntity entityFromDb) {
-        entityFromDb.getFields().stream().forEach(this::addField);
-    }
-
-//    private void setupRelations(DbEntity entityFromDb) {
-//        entityFromDb.getRelations().stream().forEach(this::addRelation);
-//    }
-
-    private void addField(DbEntityField fieldFromDb) { // NOSONAR
-        log.info("DesignerApplicationModel: adding Field '{}'", fieldFromDb);
-        DesignerFieldModel fieldModel = new DesignerFieldModel(fieldFromDb);
-        add(fieldModel);
     }
 
     public void addActionField(ActionEntityField f) {
@@ -72,5 +61,17 @@ public class DesignerEntityModel extends EntityModel {
         }
         this.referencedBy = Optional.of(entityModel);
     }
+    
+    private void setupModel(DbEntity entityFromDb) {
+        entityFromDb.getFields().stream().forEach(this::addField);
+    }
+
+    private void addField(DbEntityField fieldFromDb) { // NOSONAR
+        log.info("DesignerApplicationModel: adding Field '{}'", fieldFromDb);
+        DesignerFieldModel fieldModel = new DesignerFieldModel(fieldFromDb);
+        add(fieldModel);
+    }
+
+
 
 }

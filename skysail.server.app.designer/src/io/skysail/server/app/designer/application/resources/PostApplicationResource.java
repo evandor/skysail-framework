@@ -1,5 +1,7 @@
 package io.skysail.server.app.designer.application.resources;
 
+import java.util.*;
+
 import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
@@ -8,6 +10,7 @@ import de.twenty11.skysail.server.core.restlet.ResourceContextId;
 import io.skysail.server.app.designer.DesignerApplication;
 import io.skysail.server.app.designer.application.DbApplication;
 import io.skysail.server.app.designer.repo.DesignerRepository;
+import io.skysail.server.forms.Tab;
 import io.skysail.server.restlet.resources.PostEntityServerResource;
 
 public class PostApplicationResource extends PostEntityServerResource<DbApplication> {
@@ -51,5 +54,13 @@ public class PostApplicationResource extends PostEntityServerResource<DbApplicat
     @Override
     public String redirectTo() {
         return super.redirectTo(ApplicationsResource.class);
+    }
+    
+    @Override
+    public List<Tab> getTabs() {
+        List<Tab> tabs = new ArrayList<>();
+        tabs.add(new Tab("newApp","new application",1));
+        tabs.add(new Tab("details","details",2));
+        return tabs;
     }
 }

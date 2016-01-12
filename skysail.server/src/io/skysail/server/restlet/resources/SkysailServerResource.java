@@ -21,7 +21,7 @@ import io.skysail.api.links.*;
 import io.skysail.api.responses.SkysailResponse;
 import io.skysail.api.text.Translation;
 import io.skysail.server.app.SkysailApplication;
-import io.skysail.server.forms.FormField;
+import io.skysail.server.forms.*;
 import io.skysail.server.menus.MenuItem;
 import io.skysail.server.services.PerformanceTimer;
 import io.skysail.server.utils.*;
@@ -408,6 +408,10 @@ public abstract class SkysailServerResource<T> extends ServerResource {
     }
 
     public List<TreeRepresentation> getTreeRepresentation() {
+        return Collections.emptyList();
+    }
+    
+    public List<Tab> getTabs() {
         return Collections.emptyList();
     }
 }

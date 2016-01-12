@@ -1,23 +1,17 @@
 package io.skysail.server.app.designer.application;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 import javax.persistence.Id;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 
 import io.skysail.domain.Nameable;
-import io.skysail.domain.html.Field;
-import io.skysail.domain.html.InputType;
-import io.skysail.domain.html.Relation;
+import io.skysail.domain.html.*;
 import io.skysail.server.app.designer.application.validation.UniqueName;
 import io.skysail.server.app.designer.entities.DbEntity;
 import io.skysail.server.app.designer.entities.resources.EntitiesResource;
-import io.skysail.server.forms.ListView;
-import io.skysail.server.forms.PostView;
+import io.skysail.server.forms.*;
 import lombok.*;
 
 @NoArgsConstructor
@@ -38,7 +32,7 @@ public class DbApplication implements Nameable, Serializable {
     @Size(min = 1)
     @Pattern(regexp = "[a-zA-Z_]([a-zA-Z0-9_])*", message = "please choose a simpler Identifier. Some of the characters are not allowed.")
     @ListView(link = EntitiesResource.class, truncate = 40)
-    @PostView(tab = "new application")
+    @PostView(tab = "newApp")
     private String name;
 
     @Field

@@ -557,7 +557,20 @@ public class ResourceModel<R extends SkysailServerResource<T>, T> {
     public List<Tab> getTabs() {
         ApplicationModel applicationModel = resource.getApplication().getApplicationModel();
         ClassEntityModel entity = (ClassEntityModel) applicationModel.getEntity(parameterizedType.getName());
-        return entity.getTabs();
+        Set<Tab> tabsFromEntityDefinition = entity.getTabs();
+        List<Tab> tabDefinitions = resource.getTabs();
+        
+        List<Tab> result = new ArrayList<>();
+        tabDefinitions.stream().forEach(tabDef -> {
+            result.add(tabDef);
+            tabsFromEntityDefinition.remove(tabDef);
+        });
+        
+        tabsFromEntityDefinition.stream().forEach(tabDef -> {
+            result.add(tabDef);
+        });
+        
+        return new ArrayList<Tab>(result);
     }
 
     public boolean isShowBreadcrumbs() {

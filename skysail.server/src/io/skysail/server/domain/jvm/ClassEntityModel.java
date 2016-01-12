@@ -8,11 +8,9 @@ import java.util.stream.Collectors;
 import org.restlet.resource.ServerResource;
 
 import io.skysail.domain.Identifiable;
-import io.skysail.domain.core.EntityModel;
-import io.skysail.domain.core.EntityRelation;
-import io.skysail.domain.core.EntityRelationType;
-import io.skysail.server.utils.MyCollectors;
-import io.skysail.server.utils.ReflectionUtils;
+import io.skysail.domain.core.*;
+import io.skysail.server.forms.Tab;
+import io.skysail.server.utils.*;
 import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
 
@@ -24,7 +22,7 @@ public class ClassEntityModel extends EntityModel {
 
     protected Class<? extends Identifiable> identifiableClass;
 
-    private volatile List<Tab> tabs;
+    private volatile Set<Tab> tabs;
     
     public ClassEntityModel(Class<? extends Identifiable> identifiableClass) {
         super(identifiableClass.getName());
@@ -100,31 +98,52 @@ public class ClassEntityModel extends EntityModel {
         return f.getAnnotation(io.skysail.domain.html.Relation.class) != null;
     }
 
-    public synchronized List<Tab> getTabs() {
+    public synchronized Set<Tab> getTabs() {
         if (tabs != null) {
             return tabs;
         }
         Set<String> tabNamesSet = getFieldValues().stream()
             .map(ClassFieldModel.class::cast)
             .map(f -> f.getPostTabName())
-            .map(name -> name == null ? MORE_TAB_NAME : name)
+            .filter(name -> name != null)
+            //.map(name -> name == "" ? MORE_TAB_NAME : name)
             .collect(Collectors.toSet());
 
-        List<String> tabNamesList = getFieldValues().stream()
-                .map(ClassFieldModel.class::cast)
-                .map(f -> f.getPostTabName())
-                .map(name -> name == null ? MORE_TAB_NAME : name)
-                .collect(Collectors.toList());
-        if (tabNamesList.isEmpty() || (tabNamesSet.size() == 1 && tabNamesSet.iterator().next().equals(MORE_TAB_NAME))) {
-            return Collections.emptyList();
+//        List<String> tabNamesList = getFieldValues().stream()
+//                .map(ClassFieldModel.class::cast)
+//                .map(f -> f.getPostTabName())
+//                .filter(name -> name != null)
+//                .map(name -> name == "" ? MORE_TAB_NAME : name)
+//                .collect(Collectors.toList());
+//        if (tabNamesList.isEmpty() || (tabNamesSet.size() == 1 && tabNamesSet.iterator().next().equals(MORE_TAB_NAME))) {
+//            return Collections.emptyList();
+//        }
+        if (tabNamesSet.isEmpty() || tabNamesSet.size() == 1) {
+            return Collections.emptySet();
         }
-        tabs = new ArrayList<>();
+       
+        
+//        List<io.skysail.server.forms.Tab2.Tab> tabsList = tabNamesSet.stream().map(tabIdentifier -> {
+//            Optional<io.skysail.server.forms.Tab2.Tab> theTab = Tab2.getTab(tabIdentifier);
+//            if (theTab.isPresent()) {
+//                return theTab.get();
+//            }
+//            return null;
+//        })
+//        .filter(t -> t != null)        
+//        .collect(Collectors.toList());
+        
+//        if (tabNamesSet.size() > tabsList.size()) {
+//            //tabsList.add( io.skysail.server.forms.Tab2.Tab("more...", "more..."));
+//        }
+//        
+        tabs = new HashSet<>();
         int i = 0;
-        for (String tabNameFromList : tabNamesList) {
-            if (tabNamesSet.contains(tabNameFromList)) {
-                tabs.add(new Tab(tabNameFromList, i++));
-                tabNamesSet.remove(tabNameFromList);
-            }
+        for (String aTab : tabNamesSet) {
+            //if (tabNamesSet.contains(tabNameFromList)) {
+                tabs.add(new Tab(aTab,aTab, i++));
+               // tabNamesSet.remove(tabNameFromList);
+            //}
         }
         
         return tabs;

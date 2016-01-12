@@ -2,12 +2,10 @@ package io.skysail.server.domain.jvm;
 
 import java.lang.reflect.Field;
 
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 
 import io.skysail.domain.html.InputType;
-import io.skysail.server.forms.ListView;
-import io.skysail.server.forms.PostView;
+import io.skysail.server.forms.*;
 import io.skysail.server.restlet.resources.SkysailServerResource;
 import lombok.*;
 

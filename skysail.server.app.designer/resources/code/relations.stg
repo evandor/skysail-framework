@@ -3,7 +3,7 @@ relations(relations) ::= <<
 $relations: { key| 
 
 @Relation
-private List<$key.targetEntityModel$> $key.name$ = new ArrayList<>();
+private List<$key.targetEntityModel.id$> $key.name$ = new ArrayList<>();
 
 public void $relations.(key).setMethodName$(String value) {
     this.$key$ = value;

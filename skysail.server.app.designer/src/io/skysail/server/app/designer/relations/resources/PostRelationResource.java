@@ -1,5 +1,7 @@
 package io.skysail.server.app.designer.relations.resources;
 
+import java.util.List;
+
 import io.skysail.server.app.designer.DesignerApplication;
 import io.skysail.server.app.designer.entities.DbEntity;
 import io.skysail.server.app.designer.relations.DbRelation;
@@ -23,7 +25,17 @@ public class PostRelationResource extends PostEntityServerResource<DbRelation> {
     @Override
     public void addEntity(DbRelation entity) {
         DbEntity dbEntity = app.getRepository().findEntity(getAttribute("eid"));
-        dbEntity.getRelations().add(entity);
+        switch (entity.getRelationType()) {
+        case "ONE_TO_MANY":
+            List<DbEntity> oneToManyRelations = dbEntity.getOneToManyRelations();
+            String target = entity.getTarget();
+            DbEntity targetEntity = app.getRepository().findEntity(target);
+            oneToManyRelations.add(targetEntity);
+            break;
+
+        default:
+            throw new IllegalStateException();
+        }
         app.getRepository().update(dbEntity, app.getApplicationModel());
     }
 

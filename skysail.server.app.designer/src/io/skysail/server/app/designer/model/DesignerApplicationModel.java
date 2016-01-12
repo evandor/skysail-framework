@@ -9,7 +9,6 @@ import io.skysail.domain.core.EntityRelation;
 import io.skysail.domain.core.EntityRelationType;
 import io.skysail.server.app.designer.application.DbApplication;
 import io.skysail.server.app.designer.entities.DbEntity;
-import io.skysail.server.app.designer.relations.DbRelation;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 
@@ -69,23 +68,21 @@ public class DesignerApplicationModel extends ApplicationModel {
 
     private void setupRelations(DbApplication dbApplication) {
         dbApplication.getEntities().stream().forEach(dbEntity -> {
-            List<DbRelation> dbRelations = dbEntity.getRelations();
+            List<DbEntity> oneToManyRelations = dbEntity.getOneToManyRelations();
             Optional<EntityModel> sourceEntityModel = getEntityModel(dbEntity.getName());
             if (!sourceEntityModel.isPresent()) {
                 log.error("error finding entityModel with name '{}'", dbEntity.getName());
-                System.out.println(dbApplication);
                 return;
             }
-            dbRelations.stream().forEach(dbRelation -> {
-                EntityRelationType relationType = EntityRelationType.ONE_TO_MANY;
-                Optional<EntityModel> targetEntityModel = getEntityModel(dbRelation.getTarget());
+            oneToManyRelations.stream().forEach(oneToManyRelation -> {
+                String relationName = oneToManyRelation.getName().substring(0, 1).toLowerCase() + oneToManyRelation.getName().substring(1) + "s";
+                Optional<EntityModel> targetEntityModel = getEntityModel(oneToManyRelation.getName());
                 if (!targetEntityModel.isPresent()) {
-                    log.error("error finding entityModel with name '{}'", dbEntity.getName());
-                    System.out.println(dbApplication);
+                    log.error("error finding entityModel with name '{}'", oneToManyRelation.getName());
                     return;
                 }
-                EntityRelation relation = new EntityRelation(dbRelation.getName(), targetEntityModel.get(), relationType);
-                sourceEntityModel.get().getRelations().add(relation);
+                EntityRelation newRelation = new EntityRelation(relationName, targetEntityModel.get(), EntityRelationType.ONE_TO_MANY);
+                sourceEntityModel.get().getRelations().add(newRelation);
             });
         });
     }

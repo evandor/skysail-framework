@@ -3,10 +3,11 @@ package $application.packageName$;
 
 import javax.persistence.Id;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import io.skysail.domain.Identifiable;
-import io.skysail.domain.html.Field;
-import io.skysail.domain.html.HtmlPolicy;
-import io.skysail.domain.html.InputType;
+import io.skysail.domain.html.*;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -28,6 +29,7 @@ public class $entity.simpleName$ implements Identifiable {
     // --- fields ---
     $fields(entity.fields)$
 
+    // --- relations ---
     $relations(entity.relations)$
 
     $actionFields(entity.actionFields)$

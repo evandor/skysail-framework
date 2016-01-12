@@ -23,14 +23,12 @@ import org.osgi.framework.Bundle;
 
 import de.twenty11.skysail.server.core.restlet.SkysailRouter;
 import io.skysail.domain.core.EntityModel;
-import io.skysail.domain.core.EntityRelationType;
 import io.skysail.server.app.designer.application.DbApplication;
 import io.skysail.server.app.designer.entities.DbEntity;
 import io.skysail.server.app.designer.fields.DbEntityField;
 import io.skysail.server.app.designer.fields.DbEntityTextField;
 import io.skysail.server.app.designer.model.DesignerApplicationModel;
 import io.skysail.server.app.designer.model.DesignerEntityModel;
-import io.skysail.server.app.designer.relations.DbRelation;
 import io.skysail.server.app.designer.repo.DesignerRepository;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -159,12 +157,12 @@ public class DesignerApplicationModelTest {
         DbEntityField accountNumberField = new DbEntityTextField("accountNumber", true);
         accountEntity.setFields(Arrays.asList(accountNumberField));
 
-        DbRelation relation = new DbRelation();
-        relation.setId("17");
-        relation.setName("accounts");
-        relation.setRelationType(EntityRelationType.ONE_TO_MANY.name());
-        relation.setTarget("Account");
-        bankEntity.setRelations(Arrays.asList(relation));
+//        DbRelation relation = new DbRelation();
+//        relation.setId("17");
+//        relation.setName("accounts");
+//        relation.setRelationType(EntityRelationType.ONE_TO_MANY.name());
+//        relation.setTarget("Account");
+        bankEntity.setOneToManyRelations(Arrays.asList(accountEntity));
 
         entities.add(bankEntity);
         entities.add(accountEntity);

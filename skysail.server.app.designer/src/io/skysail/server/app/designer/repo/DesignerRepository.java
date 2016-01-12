@@ -46,7 +46,7 @@ public class DesignerRepository implements DbRepository {
                 DbEntityTextareaField.class, 
                 DbEntityTrixeditorField.class,
                 ActionEntityField.class);
-        dbService.createEdges("entities", "fields", "relations");
+        dbService.createEdges("entities", "fields", "oneToManyRelations");
     }
 
     @Reference

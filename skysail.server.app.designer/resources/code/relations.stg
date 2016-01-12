@@ -1,9 +1,9 @@
 relations(relations) ::= <<
 
-$relations.keys: { key| 
+$relations: { key| 
 
 @Relation
-private List<String> $key$;
+private List<$key.targetEntityModel$> $key.name$ = new ArrayList<>();
 
 public void $relations.(key).setMethodName$(String value) {
     this.$key$ = value;

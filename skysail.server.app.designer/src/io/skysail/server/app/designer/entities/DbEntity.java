@@ -19,7 +19,6 @@ import io.skysail.domain.html.Relation;
 import io.skysail.server.app.designer.application.DbApplication;
 import io.skysail.server.app.designer.fields.DbEntityField;
 import io.skysail.server.app.designer.fields.resources.FieldsResource;
-import io.skysail.server.app.designer.relations.DbRelation;
 import io.skysail.server.forms.ListView;
 import lombok.*;
 
@@ -54,7 +53,7 @@ public class DbEntity implements Identifiable, Nameable, Serializable {
     private List<DbEntityField> fields = new ArrayList<>();
 
     @Relation
-    private List<DbRelation> relations = new ArrayList<>();
+    private List<DbEntity> oneToManyRelations = new ArrayList<>();
 
     public DbEntity(@NonNull String name) {
         this.name = name;

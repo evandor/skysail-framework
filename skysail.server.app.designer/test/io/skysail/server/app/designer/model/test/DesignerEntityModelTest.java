@@ -25,6 +25,13 @@ public class DesignerEntityModelTest {
     public void testName() {
         assertThat(entityModel.getId(),is(equalTo("pkg.name")));
     }
+    
+    @Test
+    public void getAggregateRoot_is_self_if_isAggregate_is_true() {
+        entityModel.setAggregate(true);
+        assertThat(entityModel.getAggregateRoot(),is(entityModel));
+        
+    }
 
 //    @Test
 //    public void adding_field_succeeds() {

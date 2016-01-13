@@ -39,9 +39,13 @@ public class ApplicationModel {
     }
 
     /**
-     * adds an non-null entity model identified by its name. If an entity model
-     * with the same name exists already, a debug message is issued and the
-     * entity model will not be added again.
+     * adds an non-null entity model identified by its name. 
+     * 
+     * If an entity model with the same name exists already, a debug message is 
+     * issued and the entity model will not be added again.
+     * 
+     * Otherwise, the entity will be added and the current application will be set
+     * in the entity.
      */
     public ApplicationModel addOnce(@NonNull EntityModel entityModel) {
         if (entities.get(entityModel.getId()) != null) {
@@ -49,6 +53,7 @@ public class ApplicationModel {
             return this;
         }
         log.info("adding entity model with id '{}'", entityModel.getId());
+        entityModel.setApplicationModel(this);
         entities.put(entityModel.getId(), entityModel);
         return this;
     }

@@ -57,4 +57,21 @@ public class EntityModelTest {
         assertThat(toString[i++], is("   Relations:"));
         assertThat(toString[i++], is("    - EntityRelation(name=relName, targetEntityModel=ASubThing, type=ONE_TO_MANY)"));
     }
+
+    @Test
+    public void finds_parent_AggregateRoot() {
+        ApplicationModel applicationModel = new ApplicationModel("appName");
+        
+        EntityModel entityModel = new EntityModel("rootEntity");
+        entityModel.setAggregate(true);
+        EntityModel subEntityModel = new EntityModel("subEntity");
+        subEntityModel.setAggregate(false);
+        entityModel.setRelations(Arrays.asList(new EntityRelation("relation", subEntityModel, EntityRelationType.ONE_TO_MANY)));
+        applicationModel.addOnce(entityModel);
+        applicationModel.addOnce(subEntityModel);
+       
+        assertThat(subEntityModel.getAggregateRoot(),is(entityModel));
+        
+    }
+
 }

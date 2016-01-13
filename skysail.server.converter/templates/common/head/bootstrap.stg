@@ -9,5 +9,6 @@ bootstrap() ::= <<
 
 <script type="text/javascript" src="/webapp/js/bootstrap-plugins/multiselect/bootstrap-multiselect.js"></script>
 <link rel="stylesheet" href="/webapp/css/bootstrap-plugins/multiselect/bootstrap-multiselect.css" type="text/css"/>
+<link rel="stylesheet" href="/webapp/css/bootstrap/custom.css" type="text/css"/>
 
 >>

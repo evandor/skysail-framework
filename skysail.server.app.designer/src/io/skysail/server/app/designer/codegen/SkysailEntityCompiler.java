@@ -1,15 +1,12 @@
 package io.skysail.server.app.designer.codegen;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import org.stringtemplate.v4.ST;
 
 import io.skysail.server.app.designer.STGroupBundleDir;
-import io.skysail.server.app.designer.model.DesignerApplicationModel;
-import io.skysail.server.app.designer.model.DesignerEntityModel;
-import io.skysail.server.app.designer.model.RouteModel;
+import io.skysail.server.app.designer.model.*;
 import lombok.Getter;
 
 public class SkysailEntityCompiler extends SkysailCompiler {
@@ -33,11 +30,18 @@ public class SkysailEntityCompiler extends SkysailCompiler {
     }
 
     public void createResources(DesignerEntityModel entityModel) {
-        ST template = getStringTemplateIndex("entityResource");
-        entityResourceClassName = setupEntityResourceForCompilation(template, applicationModel, entityModel);
-
-        routes.add(new RouteModel("/" + entityModel.getId() + "s/{id}", entityResourceClassName));
         
+        
+        if (entityModel.isAggregate()) {
+            ST template = getStringTemplateIndex("entityResource");
+            entityResourceClassName = setupEntityResourceForCompilation(template, applicationModel, entityModel);
+            routes.add(new RouteModel("/" + entityModel.getId() + "s/{id}", entityResourceClassName));
+        } else {
+            ST template = getStringTemplateIndex("entityResourceNonAggregate");
+            entityResourceClassName = setupEntityResourceForCompilation(template, applicationModel, entityModel);
+            routes.add(new RouteModel("/" + entityModel.getId() + "s/{id}", entityResourceClassName));
+        }
+
         if (entityModel.isAggregate()) {
             ST postResourceTemplate = getStringTemplateIndex("postResource");
             String postResourceClassName = setupPostResourceForCompilation(postResourceTemplate, applicationModel,
@@ -55,11 +59,19 @@ public class SkysailEntityCompiler extends SkysailCompiler {
         String putResourceClassName = setupPutResourceForCompilation(putResourceTemplate, applicationModel, entityModel);
         routes.add(new RouteModel("/" + entityModel.getId() + "s/{id}/", putResourceClassName));
 
-        ST listResourceTemplate = getStringTemplateIndex("listResource");
-        String listResourceClassName = setupListResourceForCompilation(listResourceTemplate, applicationModel,
+        String listResourceClassName = "";
+        if (entityModel.isAggregate()) {
+            ST listResourceTemplate = getStringTemplateIndex("listResource");
+            listResourceClassName = setupListResourceForCompilation(listResourceTemplate, applicationModel,
                 entityModel);
-        routes.add(new RouteModel("/" + entityModel.getId() + "s", listResourceClassName));
-
+            routes.add(new RouteModel("/" + entityModel.getId() + "s", listResourceClassName));
+        } else {
+            ST listResourceTemplate = getStringTemplateIndex("listResourceNonAggregate");
+            listResourceClassName = setupListResourceForCompilation(listResourceTemplate, applicationModel,
+                entityModel);
+            routes.add(new RouteModel("/" + entityModel.getId() + "s", listResourceClassName));
+        }
+        
         if (entityModel.isAggregate()) {
             routes.add(new RouteModel("", listResourceClassName));
         }

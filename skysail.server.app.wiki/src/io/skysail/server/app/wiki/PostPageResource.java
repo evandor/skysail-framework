@@ -1,12 +1,15 @@
 package io.skysail.server.app.wiki;
 
+import java.util.Date;
+
+import io.skysail.api.responses.SkysailResponse;
+import io.skysail.domain.core.repos.Repository;
+import de.twenty11.skysail.server.core.restlet.ResourceContextId;
+import io.skysail.server.restlet.resources.PostEntityServerResource;
+
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
 import org.restlet.resource.ResourceException;
-
-import de.twenty11.skysail.server.core.restlet.ResourceContextId;
-import io.skysail.domain.core.repos.Repository;
-import io.skysail.server.restlet.resources.PostEntityServerResource;
 
 public class PostPageResource extends PostEntityServerResource<io.skysail.server.app.wiki.Page> {
 
@@ -31,9 +34,10 @@ public class PostPageResource extends PostEntityServerResource<io.skysail.server
     @Override
     public void addEntity(io.skysail.server.app.wiki.Page entity) {
         Subject subject = SecurityUtils.getSubject();
-        Space space = (Space) repository.findOne(getAttribute("id"));
-        space.getPages().add(entity);
-        repository.update(space, app.getApplicationModel());
+
+        io.skysail.server.app.wiki.Space entityRoot = (io.skysail.server.app.wiki.Space) repository.findOne(getAttribute("id"));
+        entityRoot.getPages().add(entity);
+        repository.update(entityRoot, app.getApplicationModel());
     }
 
     @Override

@@ -46,6 +46,7 @@ public class WikiApplication extends SkysailApplication implements ApplicationPr
         router.attach(new RouteBuilder("/io.skysail.server.app.wiki.Spaces", io.skysail.server.app.wiki.SpacesResource.class));
         router.attach(new RouteBuilder("", io.skysail.server.app.wiki.SpacesResource.class));
         router.attach(new RouteBuilder("/io.skysail.server.app.wiki.Pages/{id}", io.skysail.server.app.wiki.PageResource.class));
+        router.attach(new RouteBuilder("/io.skysail.server.app.wiki.Pages/", io.skysail.server.app.wiki.PostPageResource.class));
         router.attach(new RouteBuilder("/io.skysail.server.app.wiki.Pages/{id}/", io.skysail.server.app.wiki.PutPageResource.class));
         router.attach(new RouteBuilder("/io.skysail.server.app.wiki.Pages", io.skysail.server.app.wiki.PagesResource.class));
 

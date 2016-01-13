@@ -1,6 +1,6 @@
 package io.skysail.server.app.designer.application.resources;
 
-import java.util.*;
+import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.SecurityUtils;
@@ -58,9 +58,6 @@ public class PostApplicationResource extends PostEntityServerResource<DbApplicat
     
     @Override
     public List<Tab> getTabs() {
-        List<Tab> tabs = new ArrayList<>();
-        tabs.add(new Tab("newApp","new application",1));
-        tabs.add(new Tab("details","details",2));
-        return tabs;
+        return super.getTabs(new Tab("newApp","new application",1), new Tab("details","details",2));
     }
 }

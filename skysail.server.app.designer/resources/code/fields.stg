@@ -1,15 +1,16 @@
-fields(fields) ::= <<
+fields(entity) ::= <<
 
-$fields.keys: { key| 
+$entity.fields.keys: { key| 
 
-@Field(inputType = InputType.$fields.(key).inputType$, htmlPolicy = HtmlPolicy.$fields.(key).htmlPolicy$)
+@Field(inputType = InputType.$entity.fields.(key).inputType$, htmlPolicy = HtmlPolicy.$entity.fields.(key).htmlPolicy$)
+$listView(entity)$
 private String $key$;
 
-public void $fields.(key).setMethodName$(String value) {
+public void $entity.fields.(key).setMethodName$(String value) {
     this.$key$ = value;
 \}
 
-public String $fields.(key).getMethodName$() {
+public String $entity.fields.(key).getMethodName$() {
     return this.$key$;
 \}
 }$

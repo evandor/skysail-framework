@@ -1,0 +1,5 @@
+listView(entity) ::= <<
+$if(first(entity.relations))$
+@ListView(link = $first(entity.relations).targetEntityModel.simpleName$sResource.class)
+$endif$
+>>

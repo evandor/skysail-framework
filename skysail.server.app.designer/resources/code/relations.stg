@@ -1,16 +1,16 @@
 relations(relations) ::= <<
 
-$relations: { key| 
+$relations: { relation| 
 
 @Relation
-private List<$key.targetEntityModel.id$> $key.name$ = new ArrayList<>();
+private List<$relation.targetEntityModel.id$> $relation.name$ = new ArrayList<>();
 
-public void $relations.(key).setMethodName$(String value) {
-    this.$key$ = value;
+public void $relation.setterMethodName$(List<$relation.targetEntityModel.id$> value) {
+    this.$relation.name$ = value;
 \}
 
-public String $relations.(key).getMethodName$() {
-    return this.$key$;
+public List<$relation.targetEntityModel.id$> $relation.getterMethodName$() {
+    return $relation.name$;
 \}
 }$
 >>

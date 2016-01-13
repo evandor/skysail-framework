@@ -8,6 +8,7 @@ import io.skysail.server.app.designer.application.DbApplication;
 import io.skysail.server.app.designer.entities.DbEntity;
 import io.skysail.server.app.designer.fields.DbEntityField;
 import io.skysail.server.app.designer.repo.DesignerRepository;
+import io.skysail.server.forms.Tab;
 import io.skysail.server.restlet.resources.PutEntityServerResource;
 import io.skysail.server.restlet.resources.TreeRepresentation;
 
@@ -47,5 +48,11 @@ public abstract class PutFieldResource<T extends DbEntityField> extends PutEntit
         DbEntity theEntity = repo.getById(DbEntity.class, getAttribute(DesignerApplication.ENTITY_ID));
         return app.getTreeRepresentation(theEntity.getDbApplication());
     }
+    
+    @Override
+    public List<Tab> getTabs() {
+        return super.getTabs(new Tab("newField","new Field",1), new Tab("optional","optional",2));
+    }
+
 
 }

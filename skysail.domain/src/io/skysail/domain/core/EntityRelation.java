@@ -1,6 +1,7 @@
 package io.skysail.domain.core;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
@@ -16,5 +17,13 @@ public class EntityRelation {
         sb.append("targetEntityModel=").append(targetEntityModel != null ? targetEntityModel.getSimpleName():"null").append(", ");
         sb.append("type=").append(type.name()).append(")");
         return sb.toString();
+    }
+    
+    public String getSetterMethodName () {
+        return "set" + name.substring(0,1).toUpperCase() + name.substring(1);
+    }
+    
+    public String getGetterMethodName () {
+        return "get" + name.substring(0,1).toUpperCase() + name.substring(1);
     }
 }

@@ -3,11 +3,11 @@ putForm(model, messages) ::= <<
   $if(model.useTabs)$
     <div>
       <ul class="nav nav-tabs" role="tablist">
-        $model.tabs:{tab | $handleTabNav(model, tab)$}$
+        $model.tabs:{tab | $handleTabNav(model, tab,i)$}$
       </ul>
       <div class="tab-content">
         <br>
-        $model.tabs:{tab | $handleTabContent(model, tab)$}$
+        $model.tabs:{tab | $handleTabContent(model, tab,i)$}$
       </div>
     </div>
     $if (model.submitButtonNeeded)$
@@ -23,14 +23,15 @@ putForm(model, messages) ::= <<
   </form>
 >>
 
-handleTabNav(model,tab) ::= <<
-  <li role="presentation" $if(tab.active)$class="active"$endif$><a href="#tabId_$tab.counter$" aria-controls="tabId_$tab.counter$" role="tab" data-toggle="tab">$tab.name$</a></li>
+handleTabNav(model,tab,i) ::= <<
+  <li role="presentation" $if(tab.active)$class="active"$endif$><a href="#tabId_$i$" aria-controls="tabId_$i$" role="tab" data-toggle="tab">$tab.name$</a></li>
 
 >>
 
-handleTabContent(model,tab) ::= <<
-  <div role="tabpanel" class="tab-pane$if(tab.active)$ active$endif$" id="tabId_$tab.counter$">
-    $model.tabFields.(tab.name):{ field | $handleField(first(model.data), field, messages,i, "")$}$
+handleTabContent(model,tab,i) ::= <<
+
+  <div role="tabpanel" class="tab-pane$if(tab.active)$ active$endif$" id="tabId_$i$">
+    $model.tabFields.(tab.identifier):{ field | $handleField(first(model.data), field, messages,i, "")$}$
   </div>
 >>
 

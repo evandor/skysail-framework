@@ -1,12 +1,15 @@
 package io.skysail.server.app.designer.codegen;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.stream.Collectors;
 
 import org.stringtemplate.v4.ST;
 
 import io.skysail.server.app.designer.STGroupBundleDir;
-import io.skysail.server.app.designer.model.*;
+import io.skysail.server.app.designer.model.DesignerApplicationModel;
+import io.skysail.server.app.designer.model.DesignerEntityModel;
+import io.skysail.server.app.designer.model.RouteModel;
 import lombok.Getter;
 
 public class SkysailEntityCompiler extends SkysailCompiler {
@@ -35,14 +38,18 @@ public class SkysailEntityCompiler extends SkysailCompiler {
 
         routes.add(new RouteModel("/" + entityModel.getId() + "s/{id}", entityResourceClassName));
         
-        ST postResourceTemplate = getStringTemplateIndex("postResource");
-        String postResourceClassName = setupPostResourceForCompilation(postResourceTemplate, applicationModel,
-                entityModel);
         if (entityModel.isAggregate()) {
+            ST postResourceTemplate = getStringTemplateIndex("postResource");
+            String postResourceClassName = setupPostResourceForCompilation(postResourceTemplate, applicationModel,
+                entityModel);
             routes.add(new RouteModel("/" + entityModel.getId() + "s/", postResourceClassName));
         } else {
-            DesignerEntityModel parentEntityModel = entityModel.getReferencedBy().get();
-            routes.add(new RouteModel("/" + parentEntityModel.getId() + "/{id}/" + entityModel.getId() + "s/", postResourceClassName));
+            ST postResourceTemplate = getStringTemplateIndex("postResourceNonAggregate");
+//            DesignerEntityModel parentEntityModel = entityModel.getReferencedBy().get();
+//            routes.add(new RouteModel("/" + parentEntityModel.getId() + "/{id}/" + entityModel.getId() + "s/", postResourceClassName));
+            String postResourceClassName = setupPostResourceForCompilation(postResourceTemplate, applicationModel,
+                    entityModel);
+                routes.add(new RouteModel("/" + entityModel.getId() + "s/", postResourceClassName));
         }
         ST putResourceTemplate = getStringTemplateIndex("putResource");
         String putResourceClassName = setupPutResourceForCompilation(putResourceTemplate, applicationModel, entityModel);
@@ -73,6 +80,11 @@ public class SkysailEntityCompiler extends SkysailCompiler {
         template.add("entity", entityModel);
         List<String> linkedClasses = new ArrayList<>();
         linkedClasses.add("Put" + entityModel.getSimpleName() + "Resource.class");
+        entityModel.getRelations().stream().forEach(relation -> {
+            String targetName = relation.getTargetEntityModel().getSimpleName();
+            linkedClasses.add("Post"+targetName+"Resource.class");
+            linkedClasses.add(targetName+"sResource.class");
+        });
 
         entityModel.getReferences().forEach(r -> {
             linkedClasses.add("Post" + r.getReferencedEntityName() + "Resource.class");
@@ -101,10 +113,10 @@ public class SkysailEntityCompiler extends SkysailCompiler {
             addEntityCode.append("String id = app.getRepository("+entityModel.getId()+".class).save(entity, app.getApplicationModel()).toString();\n");
             addEntityCode.append("entity.setId(id);\n");
         } else {
-            DesignerEntityModel parent = entityModel.getReferencedBy().get();
-            addEntityCode.append(parent.getId() + " root = app.getRepository().getById("+parent.getId()+".class, getAttribute(\"id\"));\n");
-            addEntityCode.append("root.add"+entityModel.getId()+"(entity);\n");
-            addEntityCode.append("app.getRepository().update(getAttribute(\"id\"), root);\n");
+//            DesignerEntityModel parent = entityModel.getReferencedBy().get();
+//            addEntityCode.append(parent.getId() + " root = app.getRepository().getById("+parent.getId()+".class, getAttribute(\"id\"));\n");
+//            addEntityCode.append("root.add"+entityModel.getId()+"(entity);\n");
+//            addEntityCode.append("app.getRepository().update(getAttribute(\"id\"), root);\n");
         }
         template.add("addEntity", addEntityCode);
         String entityCode = template.render();

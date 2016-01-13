@@ -8,6 +8,7 @@ import java.util.List;
 
 import io.skysail.domain.Identifiable;
 import io.skysail.domain.html.*;
+import io.skysail.server.forms.*;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -27,7 +28,7 @@ public class $entity.simpleName$ implements Identifiable {
     }
     
     // --- fields ---
-    $fields(entity.fields)$
+    $fields(entity)$
 
     // --- relations ---
     $relations(entity.relations)$

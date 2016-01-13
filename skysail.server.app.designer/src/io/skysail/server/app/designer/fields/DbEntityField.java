@@ -3,12 +3,16 @@ package io.skysail.server.app.designer.fields;
 import java.io.Serializable;
 
 import javax.persistence.Id;
-import javax.validation.constraints.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
-import io.skysail.domain.*;
-import io.skysail.domain.html.*;
+import io.skysail.domain.Identifiable;
+import io.skysail.domain.Nameable;
+import io.skysail.domain.html.Field;
+import io.skysail.domain.html.InputType;
 import io.skysail.server.app.designer.fields.resources.InputTypeSelectionProvider;
-import io.skysail.server.forms.*;
+import io.skysail.server.forms.PostView;
+import io.skysail.server.forms.Visibility;
 import lombok.*;
 
 @Getter
@@ -27,8 +31,7 @@ public abstract class DbEntityField implements Identifiable, Nameable, Serializa
     @Field
     @NotNull
     @Size(min = 1)
-    @PostView(tab = "new Field")
-    //@ListView(link = PutFieldResource.class)
+    @PostView(tab = "newField")
     protected String name;
 
     @Field(selectionProvider = InputTypeSelectionProvider.class)

@@ -9,6 +9,7 @@ import io.skysail.server.app.designer.application.resources.ApplicationsResource
 import io.skysail.server.app.designer.entities.DbEntity;
 import io.skysail.server.app.designer.fields.DbEntityField;
 import io.skysail.server.app.designer.repo.DesignerRepository;
+import io.skysail.server.forms.Tab;
 import io.skysail.server.restlet.resources.PostEntityServerResource;
 import io.skysail.server.restlet.resources.TreeRepresentation;
 
@@ -44,6 +45,11 @@ public abstract class PostFieldResource<T extends DbEntityField> extends PostEnt
     public List<TreeRepresentation> getTreeRepresentation() {
         DbEntity theEntity = repo.getById(DbEntity.class, getAttribute(DesignerApplication.ENTITY_ID));
         return app.getTreeRepresentation(theEntity.getDbApplication());
+    }
+    
+    @Override
+    public List<Tab> getTabs() {
+        return super.getTabs(new Tab("newField","new Field",1), new Tab("optional","optional",2));
     }
 
 }

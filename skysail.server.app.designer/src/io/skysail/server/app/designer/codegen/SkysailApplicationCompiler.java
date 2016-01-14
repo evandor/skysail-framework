@@ -28,7 +28,7 @@ public class SkysailApplicationCompiler extends SkysailCompiler {
 
     private String setupApplicationForCompilation(ST template, DesignerApplicationModel applicationModel,
             List<RouteModel> routeModels) {
-        applicationClassName = applicationModel.getPackageName() + "." + applicationModel.getName() + "ApplicationGen";
+        applicationClassName = applicationModel.getPackageName() + "." + applicationModel.getName() + "Application";
 
         String applicationClassNameInSourceFolder = applicationModel.getPath() + "/" + applicationModel.getProjectName()
                 + "/src/" + classNameToPath(applicationClassName);
@@ -42,6 +42,7 @@ public class SkysailApplicationCompiler extends SkysailCompiler {
 
         template.add("routercode", routerCode(routeModels));
         String entityCode = template.render();
+        applicationClassName += "Gen";
         collect(applicationClassName, entityCode);
         return applicationClassName;
     }

@@ -13,7 +13,7 @@ import io.skysail.server.app.*;
 import io.skysail.server.menus.MenuItemProvider;
 
 @Component(immediate = true)
-public class $application.name$Application extends SkysailApplication implements ApplicationProvider, MenuItemProvider {
+public class $application.name$ApplicationGen extends SkysailApplication implements ApplicationProvider, MenuItemProvider {
 
     public static final String LIST_ID = "lid";
     public static final String TODO_ID = "id";

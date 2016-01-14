@@ -1,9 +1,12 @@
 package io.skysail.domain.core;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 import io.skysail.domain.core.repos.Repository;
-import lombok.*;
+import lombok.Getter;
+import lombok.NonNull;
+import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -82,6 +85,10 @@ public class ApplicationModel {
 
     public Collection<String> getRepositoryIds() {
         return repositories.getRepositoryIdentifiers();
+    }
+    
+    public List<EntityModel> getRootEntities() {
+        return entities.values().stream().filter(e -> e.isAggregate()).collect(Collectors.toList());
     }
 
     @Override

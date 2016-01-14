@@ -1,12 +1,15 @@
 package io.skysail.server.app.designer.codegen;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.stream.Collectors;
 
 import org.stringtemplate.v4.ST;
 
 import io.skysail.server.app.designer.STGroupBundleDir;
-import io.skysail.server.app.designer.model.*;
+import io.skysail.server.app.designer.model.DesignerApplicationModel;
+import io.skysail.server.app.designer.model.DesignerEntityModel;
+import io.skysail.server.app.designer.model.RouteModel;
 import lombok.Getter;
 
 public class SkysailEntityCompiler extends SkysailCompiler {
@@ -49,7 +52,7 @@ public class SkysailEntityCompiler extends SkysailCompiler {
             routes.add(new RouteModel("/" + entityModel.getId() + "s/", postResourceClassName));
         } else {
             ST postResourceTemplate = getStringTemplateIndex("postResourceNonAggregate");
-//            DesignerEntityModel parentEntityModel = entityModel.getReferencedBy().get();
+//            DesignerEntityModel parentEntityModel = entityModel.getReferencedBy().get(); // NOSONAR
 //            routes.add(new RouteModel("/" + parentEntityModel.getId() + "/{id}/" + entityModel.getId() + "s/", postResourceClassName));
             String postResourceClassName = setupPostResourceForCompilation(postResourceTemplate, applicationModel,
                     entityModel);
@@ -62,6 +65,8 @@ public class SkysailEntityCompiler extends SkysailCompiler {
         String listResourceClassName = "";
         if (entityModel.isAggregate()) {
             ST listResourceTemplate = getStringTemplateIndex("listResource");
+            String collectionLinks = entityModel.getApplicationModel().getRootEntities().stream().map(e -> "," + e.getSimpleName() + "sResource.class").collect(Collectors.joining());
+            listResourceTemplate.add("listLinks", "       return super.getLinks(Post"+entityModel.getSimpleName()+"Resource.class"+ collectionLinks+");");
             listResourceClassName = setupListResourceForCompilation(listResourceTemplate, applicationModel,
                 entityModel);
             routes.add(new RouteModel("/" + entityModel.getId() + "s", listResourceClassName));

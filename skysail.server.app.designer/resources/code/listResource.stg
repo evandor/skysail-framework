@@ -1,4 +1,4 @@
-listResource(application, entity) ::= <<
+listResource(application, entity, listLinks) ::= <<
 package $application.packageName$;
 
 import io.skysail.server.queryfilter.Filter;
@@ -32,7 +32,7 @@ public class $entity.simpleName$sResource extends ListServerResource<$entity.id$
     \}
 
     public List<Link> getLinks() {
-       return super.getLinks(Post$entity.simpleName$Resource.class);
+       $listLinks$
     \}
 }
 >>

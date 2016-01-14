@@ -1,12 +1,17 @@
 package io.skysail.server.app.designer.codegen;
 
-import java.io.*;
-import java.nio.file.*;
-import java.util.*;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.Arrays;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 import org.osgi.framework.BundleContext;
-import org.stringtemplate.v4.*;
+import org.stringtemplate.v4.ST;
+import org.stringtemplate.v4.STGroupDir;
 
 import io.skysail.server.app.designer.STGroupBundleDir;
 import io.skysail.server.app.designer.model.DesignerApplicationModel;
@@ -49,7 +54,7 @@ public class SkysailCompiler {
             log.error(e.getMessage(), e);
         }
 
-        String filename = applicationModel.getPath() + "/" + applicationModel.getProjectName() + "/src/"
+        String filename = applicationModel.getPath() + "/" + applicationModel.getProjectName() + "/src-gen/"
                 + classNameToPath(className);
         filename = filename.replace("//", "/");
         try {

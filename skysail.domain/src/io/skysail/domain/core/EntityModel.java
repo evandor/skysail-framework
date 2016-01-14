@@ -4,7 +4,9 @@ import java.util.*;
 
 import org.apache.commons.lang.StringUtils;
 
-import lombok.*;
+import lombok.Getter;
+import lombok.NonNull;
+import lombok.Setter;
 
 /**
  * A central class of skysail's core domain: An entity belongs to exactly one application
@@ -103,7 +105,7 @@ public class EntityModel {
 
     public String toString(int indentation) {
         StringBuilder sb = new StringBuilder(this.getClass().getSimpleName()).append(": ");
-        sb.append(id).append("\n");
+        sb.append("id='").append(id).append("', isAggregate=").append(isAggregate()).append("\n");
         fieldsToString(sb);
         relationsToString(sb);
         return sb.toString();

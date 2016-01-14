@@ -3,18 +3,27 @@ package io.skysail.server.app.designer.test;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 import static org.mockito.Matchers.isNull;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
-import java.io.*;
+import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.nio.file.Paths;
-import java.util.*;
+import java.util.Collection;
+import java.util.Dictionary;
 
-import org.junit.*;
+import org.junit.Before;
+import org.junit.Ignore;
+import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.*;
+import org.mockito.ArgumentMatcher;
+import org.mockito.Mock;
+import org.mockito.Spy;
 import org.mockito.runners.MockitoJUnitRunner;
-import org.osgi.framework.*;
+import org.osgi.framework.Bundle;
+import org.osgi.framework.BundleContext;
 import org.osgi.service.component.ComponentContext;
 
 import de.twenty11.skysail.server.app.ApplicationProvider;
@@ -142,7 +151,7 @@ public class ApplicationCreatorTest {
     
     private void verifyJavaFilesExist(DesignerApplicationModel appModel) {
         String projectPath = "generated/" + appModel.getName() + "/" + appModel.getProjectName() + "/";
-        String applicationPath = projectPath + "src/" + appModel.getPackageName().replace(".", "/") + "/";
+        String applicationPath = projectPath + "src-gen/" + appModel.getPackageName().replace(".", "/") + "/";
         assertFileExists(applicationPath, appModel.getName() + "Application.java");
     }
 

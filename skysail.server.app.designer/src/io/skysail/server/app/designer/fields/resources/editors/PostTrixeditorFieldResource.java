@@ -7,7 +7,7 @@ import io.skysail.server.app.designer.fields.resources.PostFieldResource;
 public class PostTrixeditorFieldResource extends PostFieldResource<DbEntityTrixeditorField> {
 
     public PostTrixeditorFieldResource() {
-        addToContext(ResourceContextId.LINK_TITLE, "new Textarea");
+        addToContext(ResourceContextId.LINK_TITLE, "new Trix Editor");
     }
 
     @Override

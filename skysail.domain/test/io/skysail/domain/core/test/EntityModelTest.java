@@ -50,7 +50,7 @@ public class EntityModelTest {
         String[] toString = entity.toString().split("\n");
         
         int i = 0;
-        assertThat(toString[i++], is("EntityModel: AThing"));
+        assertThat(toString[i++], is("EntityModel: id='AThing', isAggregate=true"));
         assertThat(toString[i++], is("   Fields:"));
         assertThat(toString[i++], is("    - FieldModel(id=fieldname1, type=null, inputType=null)"));
         assertThat(toString[i++], is("    - FieldModel(id=fieldname2, type=null, inputType=null)"));

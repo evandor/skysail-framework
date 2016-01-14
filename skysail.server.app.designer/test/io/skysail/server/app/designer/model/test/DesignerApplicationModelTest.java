@@ -1,23 +1,16 @@
 package io.skysail.server.app.designer.model.test;
 
 import static org.hamcrest.CoreMatchers.hasItem;
-import static org.hamcrest.Matchers.equalTo;
-import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.assertThat;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
-import org.junit.Before;
-import org.junit.Ignore;
-import org.junit.Rule;
-import org.junit.Test;
+import org.junit.*;
 import org.junit.rules.ExpectedException;
 import org.junit.runner.RunWith;
-import org.mockito.Mock;
-import org.mockito.Mockito;
+import org.mockito.*;
 import org.mockito.runners.MockitoJUnitRunner;
 import org.osgi.framework.Bundle;
 
@@ -25,10 +18,8 @@ import de.twenty11.skysail.server.core.restlet.SkysailRouter;
 import io.skysail.domain.core.EntityModel;
 import io.skysail.server.app.designer.application.DbApplication;
 import io.skysail.server.app.designer.entities.DbEntity;
-import io.skysail.server.app.designer.fields.DbEntityField;
-import io.skysail.server.app.designer.fields.DbEntityTextField;
-import io.skysail.server.app.designer.model.DesignerApplicationModel;
-import io.skysail.server.app.designer.model.DesignerEntityModel;
+import io.skysail.server.app.designer.fields.*;
+import io.skysail.server.app.designer.model.*;
 import io.skysail.server.app.designer.repo.DesignerRepository;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -212,7 +203,7 @@ public class DesignerApplicationModelTest {
         int i = 0;
         assertThat(toString[i++], is("DesignerApplicationModel: testapp, projectName=projectName, path=../"));
         assertThat(toString[i++], is("Entities: "));
-        assertThat(toString[i++], is(" * DesignerEntityModel: pkgName.entityA"));
+        assertThat(toString[i++], is(" * DesignerEntityModel: id='pkgName.entityA', isAggregate=true"));
         assertThat(toString[i++], is(""));
         assertThat(toString[i++], is("Repositories: "));
     }

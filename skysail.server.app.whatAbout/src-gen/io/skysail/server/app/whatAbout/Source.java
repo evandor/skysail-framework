@@ -28,29 +28,6 @@ public class Source implements Identifiable {
 
     // --- fields ---
 
-    @Field(inputType = InputType.TEXT, htmlPolicy = HtmlPolicy.NO_HTML)
-    private String name;
-
-    public void setName(String value) {
-        this.name = value;
-    }
-
-    public String getName() {
-        return this.name;
-    }
-
-    @Field(inputType = InputType.URL, htmlPolicy = HtmlPolicy.NO_HTML)
-    private String url;
-
-    public void setUrl(String value) {
-        this.url = value;
-    }
-
-    public String getUrl() {
-        return this.url;
-    }
-
-
     // --- relations ---
 
 

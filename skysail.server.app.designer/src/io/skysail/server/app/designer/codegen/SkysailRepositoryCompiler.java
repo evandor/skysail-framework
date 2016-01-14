@@ -5,9 +5,9 @@ import java.util.stream.Collectors;
 
 import org.stringtemplate.v4.ST;
 
+import io.skysail.domain.core.EntityModel;
 import io.skysail.server.app.designer.STGroupBundleDir;
 import io.skysail.server.app.designer.model.*;
-import io.skysail.domain.core.EntityModel;
 
 public class SkysailRepositoryCompiler extends SkysailCompiler {
 
@@ -29,7 +29,7 @@ public class SkysailRepositoryCompiler extends SkysailCompiler {
         String entityCode = template.render();
         String entityClassName = applicationModel.getPackageName() + "." + entityModel.getSimpleName()
                 + "Repository";
-        collect(entityClassName, entityCode);
+        collect(entityClassName, entityCode, "src-gen");
         return entityClassName;
     }
 

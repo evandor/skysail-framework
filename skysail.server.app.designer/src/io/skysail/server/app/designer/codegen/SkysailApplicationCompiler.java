@@ -1,14 +1,14 @@
 package io.skysail.server.app.designer.codegen;
 
-import java.nio.file.Path;
-import java.nio.file.Paths;
+import java.io.IOException;
+import java.nio.file.*;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.stringtemplate.v4.ST;
 
 import io.skysail.server.app.designer.STGroupBundleDir;
-import io.skysail.server.app.designer.model.DesignerApplicationModel;
-import io.skysail.server.app.designer.model.RouteModel;
+import io.skysail.server.app.designer.model.*;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -38,13 +38,21 @@ public class SkysailApplicationCompiler extends SkysailCompiler {
         if (!path.toFile().exists()) {
             ST applicationExtendedtemplate = getStringTemplateIndex("applicationExtended");
             setupExtendedApplicationForCompilation(applicationExtendedtemplate, applicationModel, routeModels);
+        } else {
+            String existingCode;
+            try {
+                existingCode = Files.readAllLines(path).stream().collect(Collectors.joining("\n"));
+                collect(applicationClassName, existingCode,"src");
+            } catch (IOException e) {
+                log.error(e.getMessage(), e);
+            }
         }
 
         template.add("routercode", routerCode(routeModels));
         String entityCode = template.render();
-        applicationClassName += "Gen";
-        collect(applicationClassName, entityCode);
-        return applicationClassName;
+        
+        collect(applicationClassName + "Gen", entityCode, "src-gen");
+        return applicationClassName + "Gen";
     }
 
     private String setupExtendedApplicationForCompilation(ST template, DesignerApplicationModel applicationModel,
@@ -57,7 +65,7 @@ public class SkysailApplicationCompiler extends SkysailCompiler {
 
         template.add("routercode", routerCode(routeModels));
         String entityCode = template.render();
-        collect(applicationClassName, entityCode);
+        collect(applicationClassName, entityCode,"src");
         return applicationClassName;
     }
 

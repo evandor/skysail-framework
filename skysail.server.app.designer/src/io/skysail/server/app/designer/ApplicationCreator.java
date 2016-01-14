@@ -1,20 +1,12 @@
 package io.skysail.server.app.designer;
 
-import java.io.File;
-import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.List;
+import java.io.*;
+import java.lang.reflect.*;
+import java.nio.file.*;
+import java.util.*;
 import java.util.stream.Collectors;
 
-import org.osgi.framework.Bundle;
-import org.osgi.framework.ServiceReference;
-import org.osgi.framework.ServiceRegistration;
+import org.osgi.framework.*;
 import org.osgi.service.component.ComponentContext;
 import org.stringtemplate.v4.ST;
 
@@ -23,18 +15,13 @@ import io.skysail.domain.core.Repositories;
 import io.skysail.domain.core.repos.DbRepository;
 import io.skysail.server.app.SkysailApplication;
 import io.skysail.server.app.designer.application.DbApplication;
-import io.skysail.server.app.designer.codegen.DefaultJavaCompiler;
-import io.skysail.server.app.designer.codegen.JavaCompiler;
-import io.skysail.server.app.designer.codegen.SkysailApplicationCompiler;
-import io.skysail.server.app.designer.model.DesignerApplicationModel;
-import io.skysail.server.app.designer.model.RouteModel;
+import io.skysail.server.app.designer.codegen.*;
+import io.skysail.server.app.designer.model.*;
 import io.skysail.server.app.designer.repo.DesignerRepository;
 import io.skysail.server.db.DbService;
 import io.skysail.server.menus.MenuItemProvider;
-import io.skysail.server.utils.BundleResourceReader;
-import io.skysail.server.utils.DefaultBundleResourceReader;
-import lombok.Getter;
-import lombok.Setter;
+import io.skysail.server.utils.*;
+import lombok.*;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j

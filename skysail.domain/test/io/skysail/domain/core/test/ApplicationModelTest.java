@@ -95,11 +95,11 @@ public class ApplicationModelTest {
         int i=0;
         assertThat(toString[i++],is("ApplicationModel: app37"));
         assertThat(toString[i++],is("Entities: "));
-        assertThat(toString[i++],is(" * EntityModel: e23"));
+        assertThat(toString[i++],is(" * EntityModel: id='e23', isAggregate=true"));
         assertThat(toString[i++],is("   Fields:"));
         assertThat(toString[i++],is("    - FieldModel(id=f23, type=null, inputType=null)"));
         assertThat(toString[i++],is(""));
-        assertThat(toString[i++],is(" * EntityModel: e24"));
+        assertThat(toString[i++],is(" * EntityModel: id='e24', isAggregate=true"));
         assertThat(toString[i++],is(""));
         assertThat(toString[i++],is("Repositories: "));
         assertThat(toString[i++],is("Repositories(repositories={})"));

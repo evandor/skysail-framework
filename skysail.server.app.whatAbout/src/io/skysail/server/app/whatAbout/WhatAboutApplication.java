@@ -1,22 +1,20 @@
-applicationExtended(application,routercode, classAnnotations) ::= <<
-package $application.packageName$;
+package io.skysail.server.app.whatAbout;
 
-import java.util.*;
+import java.util.Arrays;
 
 import org.osgi.service.component.annotations.*;
 
-import de.twenty11.skysail.server.core.restlet.ApplicationContextId;
 import io.skysail.domain.core.Repositories;
 import io.skysail.server.app.ApiVersion;
 
 @Component(immediate = true)
-public class $application.name$Application extends $application.name$ApplicationGen {
+public class WhatAboutApplication extends WhatAboutApplicationGen {
 
-    public  $application.name$Application() {
-        super("$application.name$", new ApiVersion(1), Arrays.asList($entityClasses(application.entityModels)$));
+    public  WhatAboutApplication() {
+        super("WhatAbout", new ApiVersion(1), Arrays.asList());
         //addToAppContext(ApplicationContextId.IMG, "/static/img/silk/page_link.png");
     }
-    
+
     @Reference(policy = ReferencePolicy.DYNAMIC, cardinality = ReferenceCardinality.MANDATORY)
     public void setRepositories(Repositories repos) {
         super.setRepositories(repos);
@@ -26,6 +24,9 @@ public class $application.name$Application extends $application.name$Application
         super.setRepositories(null);
     }
     
-}
+    @Override
+    protected void attach() {
+        super.attach();
+    }
 
->>
+}

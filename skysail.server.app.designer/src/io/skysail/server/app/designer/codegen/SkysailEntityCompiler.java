@@ -1,15 +1,12 @@
 package io.skysail.server.app.designer.codegen;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import org.stringtemplate.v4.ST;
 
 import io.skysail.server.app.designer.STGroupBundleDir;
-import io.skysail.server.app.designer.model.DesignerApplicationModel;
-import io.skysail.server.app.designer.model.DesignerEntityModel;
-import io.skysail.server.app.designer.model.RouteModel;
+import io.skysail.server.app.designer.model.*;
 import lombok.Getter;
 
 public class SkysailEntityCompiler extends SkysailCompiler {
@@ -87,7 +84,7 @@ public class SkysailEntityCompiler extends SkysailCompiler {
         template.add("entity", entityModel);
         String entityCode = template.render();
         String entityClassName = entityModel.getId();
-        collect(entityClassName, entityCode);
+        collect(entityClassName, entityCode, "src-gen");
         return entityClassName;
     }
 
@@ -111,7 +108,7 @@ public class SkysailEntityCompiler extends SkysailCompiler {
         template.add("links", getLinksCode);
         String entityCode = template.render();
         String entityClassName = entityModel.getId() + "Resource";
-        collect(entityClassName, entityCode);
+        collect(entityClassName, entityCode, "src-gen");
         return entityClassName;
     }
 
@@ -138,7 +135,7 @@ public class SkysailEntityCompiler extends SkysailCompiler {
         template.add("addEntity", addEntityCode);
         String entityCode = template.render();
         String entityClassName = entityModel.getPackageName() + "." + simpleClassName;
-        collect(entityClassName, entityCode);
+        collect(entityClassName, entityCode, "src-gen");
         return entityClassName;
     }
 
@@ -152,7 +149,7 @@ public class SkysailEntityCompiler extends SkysailCompiler {
         template.add("updateEntity", updateEntityCode);
         String entityCode = template.render();
         String entityClassName = entityModel.getPackageName() + "." + simpleClassName;
-        collect(entityClassName, entityCode);
+        collect(entityClassName, entityCode, "src-gen");
         return entityClassName;
     }
 
@@ -163,7 +160,7 @@ public class SkysailEntityCompiler extends SkysailCompiler {
         template.add("entity", entityModel);
         String entityCode = template.render();
         String entityClassName = entityModel.getPackageName() + "." + simpleClassName;
-        collect(entityClassName, entityCode);
+        collect(entityClassName, entityCode, "src-gen");
         return entityClassName;
     }
 

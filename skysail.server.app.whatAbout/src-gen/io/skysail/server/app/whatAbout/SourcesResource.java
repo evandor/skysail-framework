@@ -31,6 +31,6 @@ public class SourcesResource extends ListServerResource<io.skysail.server.app.wh
     }
 
     public List<Link> getLinks() {
-              return super.getLinks(PostSourceResource.class,EventsResource.class,SourcesResource.class);
+              return super.getLinks(PostSourceResource.class,SourcesResource.class);
     }
 }

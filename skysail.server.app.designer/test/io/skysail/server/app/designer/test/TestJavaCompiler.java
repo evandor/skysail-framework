@@ -15,6 +15,8 @@ public class TestJavaCompiler implements JavaCompiler {
     public Class<?> getClass(String className) throws ClassNotFoundException {
         if (className.endsWith("Application")) {
             return TestSkysailApplication.class;
+        } else if (className.endsWith("ApplicationGen")) {
+            return TestSkysailApplicationGen.class;
         } else if (className.endsWith("Repository")) {
             return TestRepository.class;
         }

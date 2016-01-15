@@ -1,0 +1,32 @@
+#
+# YOOtheme uikit
+#
+
+base.version  = 2.24.3
+name = /yootheme/uikit
+
+path = static${name}/${base.version}
+
+Bundle-Description:     \
+   A lightweight and modular front-end framework \
+   for developing fast and powerful web interfaces.
+    
+Bundle-Vendor:          YOOtheme (bundled by skysail)
+Export-Package:         osgi.enroute.twitter.bootstrap.capabilities;-split-package:=first
+Bundle-License          http://opensource.org/licenses/mit-license.php
+Bundle-Copyright:       Copyright (c) YOOtheme
+Provide-Capability:     \
+    osgi.enroute.webresource; \
+        osgi.enroute.webresource=${name}; \
+        root=${path}; \
+        version:Version=${base.version}
+
+-buildpath: \
+    osgi.enroute.base.api
+
+-includeresource: ${path}=${base.version}, {readme.md}, LICENSE.txt
+
+-runrequires:  \
+    osgi.identity;filter:='(osgi.identity=osgi.enroute.twitter.bootstrap.webresource)'
+-runbundles:  \
+    osgi.enroute.twitter.bootstrap.webresource;version=latest

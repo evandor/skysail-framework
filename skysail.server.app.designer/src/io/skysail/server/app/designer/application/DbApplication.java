@@ -1,17 +1,23 @@
 package io.skysail.server.app.designer.application;
 
 import java.io.Serializable;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Id;
-import javax.validation.constraints.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 import io.skysail.domain.Nameable;
-import io.skysail.domain.html.*;
+import io.skysail.domain.html.Field;
+import io.skysail.domain.html.InputType;
+import io.skysail.domain.html.Relation;
 import io.skysail.server.app.designer.application.validation.UniqueName;
 import io.skysail.server.app.designer.entities.DbEntity;
 import io.skysail.server.app.designer.entities.resources.EntitiesResource;
-import io.skysail.server.forms.*;
+import io.skysail.server.forms.ListView;
+import io.skysail.server.forms.PostView;
 import lombok.*;
 
 @NoArgsConstructor
@@ -27,6 +33,9 @@ public class DbApplication implements Nameable, Serializable {
     @Id
     private String id;
 
+    @Field
+    private ApplicationStatus status = ApplicationStatus.UNDEFINED;
+    
     @Field
     @NotNull
     @Size(min = 1)

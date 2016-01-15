@@ -39,7 +39,7 @@ index(user, messages, converter, model) ::= <<
 
     <!-- Fixed navbar (upper navigation, menu, search, current user)-->
     <nav class="navbar navbar-inverse navbar-fixed-top">
-      $navbar(user, messages, converter, model)$
+    Standalone
     </nav>
 
     <div class="container-fluid" style="padding-top:55px;">
@@ -50,9 +50,8 @@ index(user, messages, converter, model) ::= <<
         $debug(messages, model)$
       $endif$
 
-
     </div>
-
+    
     <footer class="footer">
       <div class="container4footer" style="border-top: 1px dotted #a0a0a0; margin-right: 18px;">
         <div class="row">
@@ -99,13 +98,7 @@ index(user, messages, converter, model) ::= <<
         });
 
     </script>
-
-<script>
-function myFunction(target) {
-    var myWindow = window.open(target, "", "width=600, height=600");
-}
-</script>
-
+    
   </body>
 </html>
 

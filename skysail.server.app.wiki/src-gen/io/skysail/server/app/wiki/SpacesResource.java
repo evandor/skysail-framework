@@ -4,8 +4,7 @@ import io.skysail.server.queryfilter.Filter;
 import io.skysail.server.restlet.resources.ListServerResource;
 import io.skysail.api.links.Link;
 
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import de.twenty11.skysail.server.core.restlet.ResourceContextId;
 
@@ -26,11 +25,16 @@ public class SpacesResource extends ListServerResource<io.skysail.server.app.wik
     }
 
     @Override
+    public Set<String> getRestrictedToMediaTypes() {
+        return super.getRestrictedToMediaTypes("standalone/*");
+    }
+
+    @Override
     public List<io.skysail.server.app.wiki.Space> getEntity() {
        return repository.find(new Filter(getRequest()));
     }
 
     public List<Link> getLinks() {
-       return super.getLinks(PostSpaceResource.class);
+              return super.getLinks(PostSpaceResource.class,SpacesResource.class);
     }
 }

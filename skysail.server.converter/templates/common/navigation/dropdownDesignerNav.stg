@@ -1,0 +1,15 @@
+dropdownDesignerNav(services) ::= <<
+    $if(services.mainMenuItems)$
+    <li class="dropdown">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown">Designer Apps <span class="caret"></span></a>
+      <ul class="dropdown-menu" role="menu">
+        $services.designerAppMenuItems:{ item | $designerMenuItem(item)$}$
+      </ul>
+    </li>
+    $endif$
+>>
+
+designerMenuItem(item) ::= <<
+        <li><a onclick="myFunction('$item.link$')" href='#'><img src='$item.applicationImage$' width='16px' alt=''>&nbsp;$item.name$</a></li>
+        
+>>

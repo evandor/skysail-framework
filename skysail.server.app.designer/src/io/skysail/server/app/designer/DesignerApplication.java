@@ -1,10 +1,7 @@
 package io.skysail.server.app.designer;
 
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
@@ -22,6 +19,7 @@ import de.twenty11.skysail.server.core.restlet.RouteBuilder;
 import io.skysail.domain.core.Repositories;
 import io.skysail.domain.core.repos.DbRepository;
 import io.skysail.server.app.SkysailApplication;
+import io.skysail.server.app.designer.application.ApplicationStatus;
 import io.skysail.server.app.designer.application.DbApplication;
 import io.skysail.server.app.designer.application.resources.*;
 import io.skysail.server.app.designer.codegen.PostCompilationResource;
@@ -69,6 +67,8 @@ public class DesignerApplication extends SkysailApplication implements MenuItemP
     @Getter
     private volatile EventAdmin eventAdmin;
     private Repositories repos;
+    @Getter
+    private Map<String, ApplicationStatus> appStatus = new HashMap<>();
 
     public DesignerApplication() {
         super(APP_NAME);
@@ -173,11 +173,13 @@ public class DesignerApplication extends SkysailApplication implements MenuItemP
         return menuItems;
     }
 
-    public void compileApplication(String appId) {
-        getRepository().findAll(DbApplication.class).stream().filter(app -> app.getId().equals("#"+appId)).findFirst().ifPresent(app -> {
-            ApplicationCreator applicationCreator = new ApplicationCreator(app, repo, repos, getBundle());
-            applicationCreator.createApplication(dbService, getComponentContext());
-        });
+    public boolean compileApplication(String appId) {
+        Optional<DbApplication> optionalDbApp = getRepository().findAll(DbApplication.class).stream().filter(app -> app.getId().equals("#"+appId)).findFirst();
+        if (!optionalDbApp.isPresent()) {
+            return false;
+        }
+        ApplicationCreator applicationCreator = new ApplicationCreator(optionalDbApp.get(), repo, repos, getBundle());
+        return applicationCreator.createApplication(dbService, getComponentContext());
     }
 
     private List<MenuItem> addDesignerAppMenuItems() {
@@ -185,7 +187,7 @@ public class DesignerApplication extends SkysailApplication implements MenuItemP
         return apps.stream()
             .filter(a -> a != null)
             .map(a -> {
-                MenuItem menu = new MenuItem(a.getName(), "/" + APP_NAME + "/preview/" + a.getName(), this);
+                MenuItem menu = new MenuItem(a.getName(), "/" + a.getName() + "/v1", this);
                 menu.setCategory(MenuItem.Category.DESIGNER_APP_MENU);
                 return menu;
             })
@@ -232,6 +234,10 @@ public class DesignerApplication extends SkysailApplication implements MenuItemP
             return Arrays.asList(new TreeRepresentation(dbApplication,""));
         }
         return Collections.emptyList();
+    }
+
+    public void setApplicationStatus(String appId, ApplicationStatus status) {
+        appStatus .put(appId, status);
     }
 
 }

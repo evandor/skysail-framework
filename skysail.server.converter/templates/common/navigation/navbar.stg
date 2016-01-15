@@ -8,6 +8,7 @@ navbar(user, messages, converter, model) ::= <<
       $if (!user.demoUser)$
         $dropdownFrontendsNav(model.services)$
         $dropdownApplicationsNav(model.services)$
+        $dropdownDesignerNav(model.services)$
       $endif$
       $dropdownAdminNav(user, model.services)$
       $if(user.developer)$
@@ -21,7 +22,7 @@ navbar(user, messages, converter, model) ::= <<
           <li><a href='javascript:document.cookie="template=simple;path=/";window.location.reload(true)'>Simple</a></li>
           <li><a href='javascript:inspect()'>Inspect Page</a></li>
           <li><a href='javascript:document.cookie="mainpage=tests;path=/";window.location="/_largetests"'>Tests</a></li>
-          <li><a href='javascript:document.cookie="mainpage=indexMobile;path=/";window.location.reload(true)'>Mobile View</a></li>
+          <li><a href='javascript:document.cookie="mainpage=indexMobile;path=/Wiki";window.location.reload(true)'>Mobile View</a></li>
           <li><a href='javascript:document.cookie="mainpage=indexSpa;path=/";window.location.reload(true)'>Single Page App</a></li>
         </ul>
       </li>

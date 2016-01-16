@@ -34,7 +34,7 @@ INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/v1/
 DEBUG io.skysail.domain.core.ApplicationModel - entity io.skysail.server.app.designer.application.DbApplication already exists - not adding to application AppDesigner
 INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/v1/applications/{id}/' -> 'RolesPredicateAuthorizer' -> 'io.skysail.server.app.designer.application.resources.PutApplicationResource'
 DEBUG io.skysail.domain.core.ApplicationModel - entity io.skysail.server.app.designer.application.DbApplication already exists - not adding to application AppDesigner
-INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/v1/applications/{id}/compilations/' -> 'RolesPredicateAuthorizer' -> 'io.skysail.server.app.designer.codegen.PostCompilationResource'
+INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/v1/applications/{id}/compilations/' -> 'RolesPredicateAuthorizer' -> 'io.skysail.server.app.designer.codegen.resources.PostCompilationResource'
 INFO  io.skysail.domain.core.ApplicationModel - adding entity model with id 'io.skysail.server.app.designer.codegen.Empty': ClassEntityModel(identifiableClass=class io.skysail.server.app.designer.codegen.Empty, tabs=[])
 INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/v1/applications/{id}/entities!meta' -> 'RolesPredicateAuthorizer' -> 'io.skysail.server.app.designer.entities.resources.EntitiesResource'
 INFO  de.twenty11.skysail.server.core.restlet.SkysailRouter - routing path '/v1/applications/{id}/entities' -> 'RolesPredicateAuthorizer' -> 'io.skysail.server.app.designer.entities.resources.EntitiesResource'

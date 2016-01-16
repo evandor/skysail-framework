@@ -5,6 +5,7 @@ import java.util.List;
 import de.twenty11.skysail.server.core.restlet.ResourceContextId;
 import io.skysail.api.links.Link;
 import io.skysail.server.app.designer.DesignerApplication;
+import io.skysail.server.app.designer.application.ApplicationStatus;
 import io.skysail.server.app.designer.application.DbApplication;
 import io.skysail.server.restlet.resources.ListServerResource;
 
@@ -26,7 +27,13 @@ public class ApplicationsResource extends ListServerResource<DbApplication> {
 
     @Override
     public List<DbApplication> getEntity() {
-        return app.getRepository().findAll(DbApplication.class);
+        List<DbApplication> apps = app.getRepository().findAll(DbApplication.class);
+        apps.stream().forEach(dbApp -> {
+            ApplicationStatus status = app.getAppStatus().get(dbApp.getId().replace("#",""));
+            System.out.println(app.getAppStatus());
+            dbApp.setStatus(status != null ? status : ApplicationStatus.UNDEFINED);
+        });
+        return apps;
     }
 
     @Override

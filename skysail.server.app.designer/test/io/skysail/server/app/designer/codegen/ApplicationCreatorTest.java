@@ -1,4 +1,4 @@
-package io.skysail.server.app.designer.test;
+package io.skysail.server.app.designer.codegen;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
@@ -29,11 +29,10 @@ import org.osgi.service.component.ComponentContext;
 import de.twenty11.skysail.server.app.ApplicationProvider;
 import io.skysail.domain.core.Repositories;
 import io.skysail.server.app.SkysailApplication;
-import io.skysail.server.app.designer.ApplicationCreator;
 import io.skysail.server.app.designer.application.DbApplication;
-import io.skysail.server.app.designer.codegen.JavaCompiler;
 import io.skysail.server.app.designer.model.DesignerApplicationModel;
 import io.skysail.server.app.designer.repo.DesignerRepository;
+import io.skysail.server.app.designer.test.TestJavaCompiler;
 import io.skysail.server.app.designer.test.utils.YamlTestFileReader;
 import io.skysail.server.db.DbService;
 import io.skysail.server.menus.MenuItemProvider;
@@ -116,7 +115,7 @@ public class ApplicationCreatorTest {
     }
     
     private ApplicationCreator setupApplicationCreator(DbApplication application) {
-        ApplicationCreator applicationCreator = new ApplicationCreator(application, designerRepositoryMock, reposMock, bundleMock);
+        ApplicationCreator applicationCreator = new ApplicationCreator(application, reposMock, bundleMock);
         applicationCreator.setBundleResourceReader(new BundleResourceReader() {
             @Override
             public String readResource(Bundle bundle, String path) {

@@ -1,14 +1,15 @@
 package io.skysail.server.app.designer.codegen;
 
-import java.io.*;
-import java.nio.file.*;
-import java.util.*;
+import java.util.Arrays;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 import org.osgi.framework.BundleContext;
-import org.stringtemplate.v4.*;
+import org.stringtemplate.v4.ST;
+import org.stringtemplate.v4.STGroupDir;
 
 import io.skysail.server.app.designer.STGroupBundleDir;
+import io.skysail.server.app.designer.codegen.writer.ProjectFileWriter;
 import io.skysail.server.app.designer.model.DesignerApplicationModel;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
@@ -42,23 +43,16 @@ public class SkysailCompiler {
         return template;
     }
 
-    protected void collect(String className, String entityCode, String buildPathFolder) {
+    protected CompiledCode collect(String className, String entityCode, String buildPathFolder) {
+        CompiledCode compiledCode = null;
         try {
-            compiler.collect(className, entityCode);
+            compiledCode = compiler.collect(className, entityCode);
         } catch (Exception e) {
             log.error(e.getMessage(), e);
         }
-
-        String filename = applicationModel.getPath() + "/" + applicationModel.getProjectName() + "/"+buildPathFolder+"/"
-                + classNameToPath(className);
-        filename = filename.replace("//", "/");
-        try {
-            Path path = Paths.get(filename);
-            new File(path.getParent().toString()).mkdirs();
-            Files.write(path, entityCode.getBytes());
-        } catch (IOException e) {
-            log.debug("could not write source code for compilation unit '{}' to '{}'", className, filename);
-        }
+        
+        ProjectFileWriter.save(applicationModel, buildPathFolder, classNameToPath(className), entityCode.getBytes());
+        return compiledCode;
     }
    
     public void reset() {

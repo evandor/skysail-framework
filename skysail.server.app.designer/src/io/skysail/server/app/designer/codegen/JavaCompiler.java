@@ -10,5 +10,5 @@ public interface JavaCompiler {
     
     void reset();
 
-    void collect(String className, String entityCode) throws Exception;
+    CompiledCode collect(String className, String entityCode);
 }

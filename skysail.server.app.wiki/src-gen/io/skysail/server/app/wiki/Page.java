@@ -50,6 +50,17 @@ public class Page implements Identifiable {
         return this.content;
     }
 
+    @Field(inputType = InputType.TEXT, htmlPolicy = HtmlPolicy.NO_HTML)
+    private String test;
+
+    public void setTest(String value) {
+        this.test = value;
+    }
+
+    public String getTest() {
+        return this.test;
+    }
+
 
     // --- relations ---
 

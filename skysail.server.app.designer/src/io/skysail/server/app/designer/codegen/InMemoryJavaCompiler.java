@@ -1,6 +1,7 @@
 package io.skysail.server.app.designer.codegen;
 
 import java.io.File;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -53,13 +54,18 @@ public class InMemoryJavaCompiler {
         fileManager.setClassLoader(dcl);
     }
 
-    public static void collect(String className, String sourceCodeInText) throws Exception {
+    public static CompiledCode collect(String className, String sourceCodeInText) {
 
         SourceCode sourceCode = new SourceCode(className, sourceCodeInText);
-        CompiledCode compiledCode = new CompiledCode(className);
-
-        sourceCodes.add(sourceCode);
-        fileManager.add(compiledCode);
+        CompiledCode compiledCode = null;
+        try {
+            compiledCode = new CompiledCode(className);
+            sourceCodes.add(sourceCode);
+            fileManager.add(compiledCode);
+        } catch (URISyntaxException e) {
+            log.error(e.getMessage(), e);
+        }
+        return compiledCode;
     }
 
     public static void reset() {

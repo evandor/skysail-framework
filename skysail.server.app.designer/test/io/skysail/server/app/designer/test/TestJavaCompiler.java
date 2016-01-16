@@ -2,6 +2,7 @@ package io.skysail.server.app.designer.test;
 
 import org.osgi.framework.BundleContext;
 
+import io.skysail.server.app.designer.codegen.CompiledCode;
 import io.skysail.server.app.designer.codegen.JavaCompiler;
 
 public class TestJavaCompiler implements JavaCompiler {
@@ -28,7 +29,8 @@ public class TestJavaCompiler implements JavaCompiler {
     }
 
     @Override
-    public void collect(String className, String entityCode) throws Exception {
+    public CompiledCode collect(String className, String entityCode) {
+        return null;
     }
 
 }

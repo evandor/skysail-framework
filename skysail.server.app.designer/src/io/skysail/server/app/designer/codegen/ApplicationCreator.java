@@ -1,12 +1,23 @@
-package io.skysail.server.app.designer;
+package io.skysail.server.app.designer.codegen;
 
 import java.io.*;
-import java.lang.reflect.*;
-import java.nio.file.*;
-import java.util.*;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.List;
+import java.util.jar.Attributes;
+import java.util.jar.JarEntry;
+import java.util.jar.JarOutputStream;
+import java.util.jar.Manifest;
 import java.util.stream.Collectors;
 
-import org.osgi.framework.*;
+import org.osgi.framework.Bundle;
+import org.osgi.framework.ServiceReference;
+import org.osgi.framework.ServiceRegistration;
 import org.osgi.service.component.ComponentContext;
 import org.stringtemplate.v4.ST;
 
@@ -14,16 +25,26 @@ import de.twenty11.skysail.server.app.ApplicationProvider;
 import io.skysail.domain.core.Repositories;
 import io.skysail.domain.core.repos.DbRepository;
 import io.skysail.server.app.SkysailApplication;
+import io.skysail.server.app.designer.EntitiesCreator;
+import io.skysail.server.app.designer.RepositoryCreator;
+import io.skysail.server.app.designer.STGroupBundleDir;
 import io.skysail.server.app.designer.application.DbApplication;
-import io.skysail.server.app.designer.codegen.*;
-import io.skysail.server.app.designer.model.*;
-import io.skysail.server.app.designer.repo.DesignerRepository;
+import io.skysail.server.app.designer.codegen.writer.ProjectFileWriter;
+import io.skysail.server.app.designer.model.DesignerApplicationModel;
+import io.skysail.server.app.designer.model.RouteModel;
 import io.skysail.server.db.DbService;
 import io.skysail.server.menus.MenuItemProvider;
-import io.skysail.server.utils.*;
-import lombok.*;
+import io.skysail.server.utils.BundleResourceReader;
+import io.skysail.server.utils.DefaultBundleResourceReader;
+import lombok.Getter;
+import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 
+/**
+ * Creates a new skysail application from an application model defined by an
+ * DbApplication object.
+ *
+ */
 @Slf4j
 public class ApplicationCreator {
 
@@ -39,21 +60,31 @@ public class ApplicationCreator {
 
     @Setter
     private BundleResourceReader bundleResourceReader = new DefaultBundleResourceReader();
-    
+
     @Setter
     private JavaCompiler javaCompiler = new DefaultJavaCompiler();
 
-    public ApplicationCreator(DbApplication application, DesignerRepository designerRepository, Repositories repos, Bundle bundle) {
+    private EntitiesCreator entitiesCreator;
+
+    public ApplicationCreator(DbApplication application, Repositories repos, Bundle bundle) {
         this.repos = repos;
         this.bundle = bundle;
         this.applicationModel = new DesignerApplicationModel(application);
         stGroup = new STGroupBundleDir(bundle, "/code");
     }
 
+    /**
+     * creating a skysail application is done in a couple of steps: a project
+     * structure is set up on disk, the java code is created in memory (and
+     * stored to the project structure as java source files), and, if this was
+     * successful, a new bundle jar is created from the class files (and additional files).
+     */
     public boolean createApplication(DbService dbService, ComponentContext componentContext) {
         try {
-            createProjectIfNeeded();
+            createProject();
             if (createCode()) {
+                saveClassFiles();
+                createBundle();
                 setupInMemoryBundle(dbService, componentContext);
             }
         } catch (IOException e1) {
@@ -65,7 +96,8 @@ public class ApplicationCreator {
     private boolean createCode() {
         javaCompiler.reset();
 
-        List<RouteModel> routeModels = new EntityCreator(applicationModel, javaCompiler).create(stGroup);
+        entitiesCreator = new EntitiesCreator(applicationModel, javaCompiler);
+        List<RouteModel> routeModels = entitiesCreator.create(stGroup);
 
         repositoryClassNames = new RepositoryCreator(applicationModel, javaCompiler).create(stGroup);
 
@@ -73,7 +105,71 @@ public class ApplicationCreator {
         skysailApplicationCompiler.createApplication(routeModels);
         skysailApplicationCompiler.compile(bundle.getBundleContext());
 
+        entitiesCreator.getCode();
+
         return skysailApplicationCompiler.isCompiledSuccessfully();
+    }
+
+    private void saveClassFiles() {
+        entitiesCreator.getCode().values().stream().forEach(code -> {
+            ProjectFileWriter.save(applicationModel, "bundle", classNameToPath(code.getClassName()), code.getByteCode());
+        });
+    }
+
+    private String classNameToPath(String className) {
+        return Arrays.stream(className.split("\\.")).collect(Collectors.joining("/")).concat(".class");
+    }
+    
+    private void createBundle() throws FileNotFoundException, IOException {
+        Manifest manifest = new Manifest();
+        manifest.getMainAttributes().put(Attributes.Name.MANIFEST_VERSION, "1.0");
+        JarOutputStream target = new JarOutputStream(new FileOutputStream("output.jar"), manifest);
+        //add(new File("inputDirectory"), target);
+        target.close();
+    }
+    
+    private void add(File source, JarOutputStream target) throws IOException
+    {
+      BufferedInputStream in = null;
+      try
+      {
+        if (source.isDirectory())
+        {
+          String name = source.getPath().replace("\\", "/");
+          if (!name.isEmpty())
+          {
+            if (!name.endsWith("/"))
+              name += "/";
+            JarEntry entry = new JarEntry(name);
+            entry.setTime(source.lastModified());
+            target.putNextEntry(entry);
+            target.closeEntry();
+          }
+          for (File nestedFile: source.listFiles())
+            add(nestedFile, target);
+          return;
+        }
+
+        JarEntry entry = new JarEntry(source.getPath().replace("\\", "/"));
+        entry.setTime(source.lastModified());
+        target.putNextEntry(entry);
+        in = new BufferedInputStream(new FileInputStream(source));
+
+        byte[] buffer = new byte[1024];
+        while (true)
+        {
+          int count = in.read(buffer);
+          if (count == -1)
+            break;
+          target.write(buffer, 0, count);
+        }
+        target.closeEntry();
+      }
+      finally
+      {
+        if (in != null)
+          in.close();
+      }
     }
 
     private synchronized void setupInMemoryBundle(DbService dbService, ComponentContext componentContext) {
@@ -91,30 +187,32 @@ public class ApplicationCreator {
                     repos.setRepository(dbRepoInstance);
                     setRepositoriesInApplication(applicationInstance);
                     activateRepository(dbRepoInstance);
-                } catch (Exception e ) {
-                   throw new RuntimeException(e.getMessage(), e); // NOSONAR
+                } catch (Exception e) {
+                    throw new RuntimeException(e.getMessage(), e); // NOSONAR
                 }
             });
 
             Method setComponentContextMethod = applicationInstance.getClass().getMethod("setComponentContext",
                     new Class[] { ComponentContext.class });
             setComponentContextMethod.invoke(applicationInstance, new Object[] { componentContext });
-            
-            Collection<ServiceReference<ApplicationProvider>> appProviders = bundle.getBundleContext().getServiceReferences(ApplicationProvider.class, null);
+
+            Collection<ServiceReference<ApplicationProvider>> appProviders = bundle.getBundleContext()
+                    .getServiceReferences(ApplicationProvider.class, null);
             appProviders.stream().forEach(appProvider -> {
-                System.out.println(Arrays.stream(appProvider.getPropertyKeys()).map(key -> key + ": " + appProvider.getProperty(key)).collect(Collectors.joining(", ")));
+                System.out.println(Arrays.stream(appProvider.getPropertyKeys())
+                        .map(key -> key + ": " + appProvider.getProperty(key)).collect(Collectors.joining(", ")));
             });
             List<ServiceReference<ApplicationProvider>> virtualProviders = appProviders.stream().filter(appProvider -> {
                 return appProvider.getProperty("component.id") == null;
             }).collect(Collectors.toList());
-            
+
             virtualProviders.stream().forEach(p -> bundle.getBundleContext().ungetService(p));
-            
+
             ServiceRegistration<?> registeredService = bundle.getBundleContext().registerService(
                     new String[] { ApplicationProvider.class.getName(), MenuItemProvider.class.getName() },
                     applicationInstance, null);
-            
-            log.info("new service {} was registered.",registeredService.getReference().toString());
+
+            log.info("new service {} was registered.", registeredService.getReference().toString());
 
         } catch (Exception e1) {
             log.error(e1.getMessage(), e1);
@@ -141,7 +239,7 @@ public class ApplicationCreator {
         setDbServiceMethod.invoke(dbRepoInstance, dbService);
     }
 
-    private void createProjectIfNeeded() throws IOException {
+    private void createProject() throws IOException {
         String path = applicationModel.getPath() + "/" + applicationModel.getProjectName();
         path = path.replace("//", "/");
         Paths.get(path).toFile().mkdirs();
@@ -164,15 +262,12 @@ public class ApplicationCreator {
         bndrun.add("projectName", applicationModel.getProjectName());
         Files.write(Paths.get(path + "/test.bndrun"), bndrun.render().getBytes());
 
-        //ST gradle = getStringTemplateIndex("gradle");
-        //Files.write(Paths.get(path + "/build.gradle"), gradle.render().getBytes());
-
         new File(Paths.get(path + "/test").toString()).mkdir();
         new File(Paths.get(path + "/src-gen").toString()).mkdir();
         new File(Paths.get(path + "/resources").toString()).mkdir();
         new File(Paths.get(path + "/config/local").toString()).mkdirs();
 
-        Files.write(Paths.get(path + "/resources/.gitignore"), "".getBytes());
+        Files.write(Paths.get(path + "/resources/.gitignore"), "/bin/\n/bin_test/\n/generated/\n/src-gen/\n/bundle/".getBytes());
 
         copy(Paths.get(path), "io.skysail.server.db.DbConfigurations-skysailgraph.cfg");
         copy(Paths.get(path), "logback.xml");

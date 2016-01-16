@@ -3,12 +3,8 @@ package io.skysail.server.app.designer.codegen;
 import java.io.IOException;
 import java.util.Map;
 
-import javax.tools.FileObject;
-import javax.tools.ForwardingJavaFileManager;
+import javax.tools.*;
 import javax.tools.JavaCompiler;
-import javax.tools.JavaFileManager;
-import javax.tools.JavaFileObject;
-import javax.tools.ToolProvider;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -45,6 +41,17 @@ public class CompiledCodeTrackingJavaFileManager extends ForwardingJavaFileManag
     public void add(CompiledCode compiledCode) {
         this.compiledCodes.put(compiledCode.getName(), compiledCode);
         this.cl.setCode(compiledCode);
+        
+        
+//        String filename = "./test.class"; 
+//        filename = filename.replace("//", "/");
+//        try {
+//            Path path = Paths.get(filename);
+//            Files.write(path, compiledCode.getByteCode());
+//        } catch (IOException e) {
+//            log.debug("could not write source code for compilation unit");
+//        }
+        
     }
 
     public void setClassLoader(DynamicClassLoader dcl) {

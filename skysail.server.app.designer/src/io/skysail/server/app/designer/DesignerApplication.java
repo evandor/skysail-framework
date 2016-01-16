@@ -22,7 +22,8 @@ import io.skysail.server.app.SkysailApplication;
 import io.skysail.server.app.designer.application.ApplicationStatus;
 import io.skysail.server.app.designer.application.DbApplication;
 import io.skysail.server.app.designer.application.resources.*;
-import io.skysail.server.app.designer.codegen.PostCompilationResource;
+import io.skysail.server.app.designer.codegen.ApplicationCreator;
+import io.skysail.server.app.designer.codegen.resources.PostCompilationResource;
 import io.skysail.server.app.designer.entities.DbEntity;
 import io.skysail.server.app.designer.entities.resources.EntitiesResource;
 import io.skysail.server.app.designer.entities.resources.EntityResource;
@@ -67,12 +68,14 @@ public class DesignerApplication extends SkysailApplication implements MenuItemP
     @Getter
     private volatile EventAdmin eventAdmin;
     private Repositories repos;
+
     @Getter
-    private Map<String, ApplicationStatus> appStatus = new HashMap<>();
+    private static Map<String, ApplicationStatus> appStatus = new HashMap<>();
 
     public DesignerApplication() {
         super(APP_NAME);
         addToAppContext(ApplicationContextId.IMG, "/static/img/silk/paintbrush.png");
+        System.out.println(appStatus);
     }
     
     @Override
@@ -178,7 +181,7 @@ public class DesignerApplication extends SkysailApplication implements MenuItemP
         if (!optionalDbApp.isPresent()) {
             return false;
         }
-        ApplicationCreator applicationCreator = new ApplicationCreator(optionalDbApp.get(), repo, repos, getBundle());
+        ApplicationCreator applicationCreator = new ApplicationCreator(optionalDbApp.get(), repos, getBundle());
         return applicationCreator.createApplication(dbService, getComponentContext());
     }
 

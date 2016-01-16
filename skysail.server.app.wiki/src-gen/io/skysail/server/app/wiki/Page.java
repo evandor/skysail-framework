@@ -39,7 +39,7 @@ public class Page implements Identifiable {
         return this.title;
     }
 
-    @Field(inputType = InputType.TEXTAREA, htmlPolicy = HtmlPolicy.NO_HTML)
+    @Field(inputType = InputType.TEXT, htmlPolicy = HtmlPolicy.NO_HTML)
     private String content;
 
     public void setContent(String value) {

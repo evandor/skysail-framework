@@ -1,15 +1,19 @@
 package io.skysail.server.app.wiki;
 
-import java.util.*;
+import java.util.Arrays;
 
-import org.osgi.service.component.annotations.*;
+import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.Reference;
+import org.osgi.service.component.annotations.ReferenceCardinality;
+import org.osgi.service.component.annotations.ReferencePolicy;
 
-import de.twenty11.skysail.server.core.restlet.ApplicationContextId;
+import de.twenty11.skysail.server.app.ApplicationProvider;
 import io.skysail.domain.core.Repositories;
 import io.skysail.server.app.ApiVersion;
+import io.skysail.server.menus.MenuItemProvider;
 
 @Component(immediate = true)
-public class WikiApplication extends WikiApplicationGen {
+public class WikiApplication extends WikiApplicationGen implements ApplicationProvider, MenuItemProvider {
 
     public  WikiApplication() {
         super("Wiki", new ApiVersion(1), Arrays.asList());

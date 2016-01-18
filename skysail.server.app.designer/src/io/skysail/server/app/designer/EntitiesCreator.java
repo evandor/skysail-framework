@@ -41,8 +41,8 @@ public class EntitiesCreator {
     private List<RouteModel> compileEntity(DesignerEntityModel entityModel, STGroupBundleDir stGroup, JavaCompiler compiler) {
         SkysailEntityCompiler entityCompiler = new SkysailEntityCompiler(applicationModel, stGroup, compiler);
         CompiledCode compiledCode = entityCompiler.createEntity(entityModel);
-        code .put(compiledCode.getClassName(), compiledCode);
-        entityCompiler.createResources(entityModel);
+        code.put(compiledCode.getClassName(), compiledCode);
+        code.putAll(entityCompiler.createResources(entityModel));
         return entityCompiler.getRouteModels();
     }
 

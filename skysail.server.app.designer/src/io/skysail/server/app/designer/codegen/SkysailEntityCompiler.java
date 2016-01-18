@@ -1,7 +1,9 @@
 package io.skysail.server.app.designer.codegen;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 import org.stringtemplate.v4.ST;
@@ -38,32 +40,15 @@ public class SkysailEntityCompiler extends SkysailCompiler {
         return compiledCode;
     }
 
-    public void createResources(DesignerEntityModel entityModel) {
-        
-        
-        if (entityModel.isAggregate()) {
-            ST template = getStringTemplateIndex("entityResource");
-            entityResourceClassName = setupEntityResourceForCompilation(template, entityModel);
-            routes.add(new RouteModel("/" + entityModel.getId() + "s/{id}", entityResourceClassName));
-        } else {
-            ST template = getStringTemplateIndex("entityResourceNonAggregate");
-            entityResourceClassName = setupEntityResourceForCompilation(template, entityModel);
-            routes.add(new RouteModel("/" + entityModel.getId() + "s/{id}", entityResourceClassName));
-        }
+    public Map<String, CompiledCode> createResources(DesignerEntityModel entityModel) {
+                
+        Map<String, CompiledCode> codes = new HashMap<>();
 
-        if (entityModel.isAggregate()) {
-            ST postResourceTemplate = getStringTemplateIndex("postResource");
-            String postResourceClassName = setupPostResourceForCompilation(postResourceTemplate, applicationModel,
-                entityModel);
-            routes.add(new RouteModel("/" + entityModel.getId() + "s/", postResourceClassName));
-        } else {
-            ST postResourceTemplate = getStringTemplateIndex("postResourceNonAggregate");
-//            DesignerEntityModel parentEntityModel = entityModel.getReferencedBy().get(); // NOSONAR
-//            routes.add(new RouteModel("/" + parentEntityModel.getId() + "/{id}/" + entityModel.getId() + "s/", postResourceClassName));
-            String postResourceClassName = setupPostResourceForCompilation(postResourceTemplate, applicationModel,
-                    entityModel);
-                routes.add(new RouteModel("/" + entityModel.getId() + "s/", postResourceClassName));
-        }
+        createEntityResource(entityModel, codes);
+        createPostResource(entityModel, codes);
+
+        
+        
         ST putResourceTemplate = getStringTemplateIndex("putResource");
         String putResourceClassName = setupPutResourceForCompilation(putResourceTemplate, applicationModel, entityModel);
         routes.add(new RouteModel("/" + entityModel.getId() + "s/{id}/", putResourceClassName));
@@ -86,8 +71,40 @@ public class SkysailEntityCompiler extends SkysailCompiler {
         if (entityModel.isAggregate()) {
             routes.add(new RouteModel("", listResourceClassName));
         }
+        
+        return codes;
     }
 
+    private void createEntityResource(DesignerEntityModel entityModel, Map<String, CompiledCode> codes) {
+        CompiledCode compiledCode;
+        if (entityModel.isAggregate()) {
+            ST template = getStringTemplateIndex("entityResource");
+            compiledCode = setupEntityResourceForCompilation(template, entityModel);
+        } else {
+            ST template = getStringTemplateIndex("entityResourceNonAggregate");
+            compiledCode = setupEntityResourceForCompilation(template, entityModel);
+        }
+        entityResourceClassName = compiledCode.getClassName();
+        routes.add(new RouteModel("/" + entityModel.getId() + "s/{id}", entityResourceClassName));
+        codes.put(entityResourceClassName, compiledCode);
+    }
+
+    private void createPostResource(DesignerEntityModel entityModel, Map<String, CompiledCode> codes) {
+        CompiledCode compiledCode;
+        ST postResourceTemplate;
+        if (entityModel.isAggregate()) {
+            postResourceTemplate = getStringTemplateIndex("postResource");
+        } else {
+            postResourceTemplate = getStringTemplateIndex("postResourceNonAggregate");
+        }
+        compiledCode = setupPostResourceForCompilation(postResourceTemplate, applicationModel, entityModel);
+        String postResourceClassName = compiledCode.getClassName();
+        routes.add(new RouteModel("/" + entityModel.getId() + "s/", postResourceClassName));
+        codes.put(entityResourceClassName, compiledCode);
+    }
+
+    
+    
     private CompiledCode setupEntityForCompilation(ST template, DesignerEntityModel entityModel) {
         template.remove(ENTITY_IDENTIFIER);
         template.add(ENTITY_IDENTIFIER, entityModel);
@@ -96,7 +113,7 @@ public class SkysailEntityCompiler extends SkysailCompiler {
         return collect(entityName, entityCode, BUILD_PATH_SOURCE);
     }
 
-    private String setupEntityResourceForCompilation(ST template, DesignerEntityModel entityModel) {
+    private CompiledCode setupEntityResourceForCompilation(ST template, DesignerEntityModel entityModel) {
         template.remove(ENTITY_IDENTIFIER);
         template.add(ENTITY_IDENTIFIER, entityModel);
         List<String> linkedClasses = new ArrayList<>();
@@ -113,11 +130,10 @@ public class SkysailEntityCompiler extends SkysailCompiler {
         template.add("links", getLinksCode);
         String entityCode = template.render();
         String entityName = entityModel.getId() + "Resource";
-        collect(entityName, entityCode, BUILD_PATH_SOURCE);
-        return entityName;
+        return collect(entityName, entityCode, BUILD_PATH_SOURCE);
     }
 
-    private String setupPostResourceForCompilation(ST template, DesignerApplicationModel applicationModel,
+    private CompiledCode setupPostResourceForCompilation(ST template, DesignerApplicationModel applicationModel,
             DesignerEntityModel entityModel) {
         final String simpleClassName = "Post" + entityModel.getSimpleName() + "Resource";
         template.remove(ENTITY_IDENTIFIER);
@@ -140,8 +156,7 @@ public class SkysailEntityCompiler extends SkysailCompiler {
         template.add("addEntity", addEntityCode);
         String entityCode = template.render();
         String entityClassName = entityModel.getPackageName() + "." + simpleClassName;
-        collect(entityClassName, entityCode, BUILD_PATH_SOURCE);
-        return entityClassName;
+        return collect(entityClassName, entityCode, BUILD_PATH_SOURCE);
     }
 
     private String setupPutResourceForCompilation(ST template, DesignerApplicationModel applicationModel,

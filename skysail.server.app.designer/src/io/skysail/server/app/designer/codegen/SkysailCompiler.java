@@ -78,6 +78,11 @@ public class SkysailCompiler {
         return javafile;
     }
     
+    protected ST getStringTemplateIndex(STGroupBundleDir stgroup, String root) {
+        ST javafile = stgroup.getInstanceOf(root);
+        //javafile.add("application", applicationModel);
+        return javafile;
+    }
   
  
 

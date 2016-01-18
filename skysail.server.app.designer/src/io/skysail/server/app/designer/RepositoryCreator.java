@@ -1,28 +1,34 @@
 package io.skysail.server.app.designer;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.stream.Collectors;
 
-import io.skysail.server.app.designer.codegen.*;
-import io.skysail.server.app.designer.model.DesignerApplicationModel;
+import org.osgi.framework.Bundle;
+
 import io.skysail.domain.core.EntityModel;
+import io.skysail.server.app.designer.codegen.JavaCompiler;
+import io.skysail.server.app.designer.codegen.SkysailRepositoryCompiler;
+import io.skysail.server.app.designer.model.DesignerApplicationModel;
 import lombok.val;
 
 public class RepositoryCreator {
 
     private DesignerApplicationModel applicationModel;
     private JavaCompiler compiler;
+    private Bundle bundle;
 
-    public RepositoryCreator(DesignerApplicationModel applicationModel, JavaCompiler compiler) {
+    public RepositoryCreator(DesignerApplicationModel applicationModel, JavaCompiler compiler, Bundle bundle) {
         this.applicationModel = applicationModel;
         this.compiler = compiler;
+        this.bundle = bundle;
     }
 
     public List<String> create(STGroupBundleDir stGroup) {
         val result = new ArrayList<String>();
         List<EntityModel> aggregateEntities = applicationModel.getEntityValues().stream().filter(e -> e.isAggregate()).collect(Collectors.toList());
         aggregateEntities.stream().forEach(e -> {
-            SkysailRepositoryCompiler entityCompiler = new SkysailRepositoryCompiler(applicationModel, e, stGroup, compiler);
+            SkysailRepositoryCompiler entityCompiler = new SkysailRepositoryCompiler(applicationModel, e, stGroup, compiler, bundle);
             result.add(entityCompiler.createRepository());
         });
         return result;

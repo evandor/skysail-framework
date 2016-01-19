@@ -181,8 +181,8 @@ public class DesignerApplication extends SkysailApplication implements MenuItemP
         if (!optionalDbApp.isPresent()) {
             return false;
         }
-        ApplicationCreator applicationCreator = new ApplicationCreator(optionalDbApp.get(), repos, getBundle());
-        return applicationCreator.createApplication(dbService, getComponentContext());
+        ApplicationCreator applicationCreator = new ApplicationCreator(optionalDbApp.get(), getBundle());
+        return applicationCreator.createApplication();
     }
 
     private List<MenuItem> addDesignerAppMenuItems() {

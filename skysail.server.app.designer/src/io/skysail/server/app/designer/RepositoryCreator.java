@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 import org.osgi.framework.Bundle;
 
 import io.skysail.domain.core.EntityModel;
+import io.skysail.server.app.designer.codegen.CompiledCode;
 import io.skysail.server.app.designer.codegen.JavaCompiler;
 import io.skysail.server.app.designer.codegen.SkysailRepositoryCompiler;
 import io.skysail.server.app.designer.model.DesignerApplicationModel;
@@ -24,12 +25,13 @@ public class RepositoryCreator {
         this.bundle = bundle;
     }
 
-    public List<String> create(STGroupBundleDir stGroup) {
-        val result = new ArrayList<String>();
+    public List<CompiledCode> create(STGroupBundleDir stGroup) {
+        val result = new ArrayList<CompiledCode>();
         List<EntityModel> aggregateEntities = applicationModel.getEntityValues().stream().filter(e -> e.isAggregate()).collect(Collectors.toList());
         aggregateEntities.stream().forEach(e -> {
             SkysailRepositoryCompiler entityCompiler = new SkysailRepositoryCompiler(applicationModel, e, stGroup, compiler, bundle);
-            result.add(entityCompiler.createRepository());
+            CompiledCode compiledCode = entityCompiler.createRepository();
+            result.add(compiledCode);
         });
         return result;
     }

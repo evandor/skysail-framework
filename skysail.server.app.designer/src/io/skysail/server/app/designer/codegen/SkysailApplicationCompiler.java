@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -28,21 +29,24 @@ public class SkysailApplicationCompiler extends SkysailCompiler {
         this.bundle = bundle;
     }
 
-    public CompiledCode createApplication(List<RouteModel> routeModels) {
+    public List<CompiledCode> createApplication(List<RouteModel> routeModels) {
         ST template = getStringTemplateIndex("application");
-        CompiledCode compiledCode = setupApplicationForCompilation(template, applicationModel, routeModels);
-        
+        List<CompiledCode> compiledCode = setupApplicationForCompilation(template, applicationModel, routeModels);
+
         STGroupBundleDir stGroupBundleDir = new STGroupBundleDir(bundle, "/code/OSGI-INF");
-        ST dsTemplate = getStringTemplateIndex(stGroupBundleDir,"applicationXml");
+        ST dsTemplate = getStringTemplateIndex(stGroupBundleDir, "applicationXml");
         String xml = dsTemplate.render();
-        ProjectFileWriter.save(applicationModel, "bundle/OSGI-INF", applicationModel.getPackageName() + "."+applicationModel.getName()+"Application.xml", xml.getBytes());
+        ProjectFileWriter.save(applicationModel, "bundle/OSGI-INF",
+                applicationModel.getPackageName() + "." + applicationModel.getName() + "Application.xml",
+                xml.getBytes());
 
         return compiledCode;
     }
 
-
-    private CompiledCode setupApplicationForCompilation(ST template, DesignerApplicationModel applicationModel,
+    private List<CompiledCode> setupApplicationForCompilation(ST template, DesignerApplicationModel applicationModel,
             List<RouteModel> routeModels) {
+
+        List<CompiledCode> result = new ArrayList<>();
         applicationClassName = applicationModel.getPackageName() + "." + applicationModel.getName() + "Application";
 
         String applicationClassNameInSourceFolder = applicationModel.getPath() + "/" + applicationModel.getProjectName()
@@ -52,12 +56,13 @@ public class SkysailApplicationCompiler extends SkysailCompiler {
         Path path = Paths.get(applicationClassNameInSourceFolder);
         if (!path.toFile().exists()) {
             ST applicationExtendedtemplate = getStringTemplateIndex("applicationExtended");
-            setupExtendedApplicationForCompilation(applicationExtendedtemplate, applicationModel, routeModels);
+            result.add(
+                    setupExtendedApplicationForCompilation(applicationExtendedtemplate, applicationModel, routeModels));
         } else {
             String existingCode;
             try {
                 existingCode = Files.readAllLines(path).stream().collect(Collectors.joining("\n"));
-                collect(applicationClassName, existingCode,"src");
+                result.add(collect(applicationClassName, existingCode, "src"));
             } catch (IOException e) {
                 log.error(e.getMessage(), e);
             }
@@ -65,11 +70,13 @@ public class SkysailApplicationCompiler extends SkysailCompiler {
 
         template.add("routercode", routerCode(routeModels));
         String entityCode = template.render();
-        
-        return collect(applicationClassName + "Gen", entityCode, "src-gen");
+
+        result.add(collect(applicationClassName + "Gen", entityCode, "src-gen"));
+
+        return result;
     }
 
-    private String setupExtendedApplicationForCompilation(ST template, DesignerApplicationModel applicationModel,
+    private CompiledCode setupExtendedApplicationForCompilation(ST template, DesignerApplicationModel applicationModel,
             List<RouteModel> routeModels) {
         applicationClassName = applicationModel.getPackageName() + "." + applicationModel.getName() + "Application";
 
@@ -79,8 +86,7 @@ public class SkysailApplicationCompiler extends SkysailCompiler {
 
         template.add("routercode", routerCode(routeModels));
         String entityCode = template.render();
-        collect(applicationClassName, entityCode,"src");
-        return applicationClassName;
+        return collect(applicationClassName, entityCode, "src");
     }
 
     private String routerCode(List<RouteModel> routeModels) {

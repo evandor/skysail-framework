@@ -6,3 +6,4 @@ Private-Package:  \
 	biz.aQute.bnd.annotation;version=2.3
 Service-Component:  \
 	*
+Bundle-Name: SKYSAIL :: server :: ext :: browser

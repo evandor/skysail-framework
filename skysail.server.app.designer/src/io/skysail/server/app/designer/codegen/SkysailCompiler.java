@@ -18,8 +18,6 @@ import lombok.extern.slf4j.Slf4j;
 @Getter
 public class SkysailCompiler {
 
-    @Getter
-    protected boolean compiledSuccessfully = true;
     protected DesignerApplicationModel applicationModel;
     protected STGroupDir stGroupDir;
     private JavaCompiler compiler;
@@ -30,8 +28,8 @@ public class SkysailCompiler {
         this.compiler = compiler;
     }
 
-    public void compile(BundleContext bundleContext) {
-        compiledSuccessfully = compiler.compile(bundleContext);
+    public boolean compile(BundleContext bundleContext) {
+        return compiler.compile(bundleContext);
     }
 
     protected String substitute(String template, Map<String, String> substitutionMap) {

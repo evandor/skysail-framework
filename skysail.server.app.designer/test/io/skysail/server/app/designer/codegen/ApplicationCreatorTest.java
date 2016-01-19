@@ -66,8 +66,12 @@ public class ApplicationCreatorTest {
 
     @Before
     public void setUp() throws Exception {
-        String currentDir = Paths.get("resources", "code").toAbsolutePath().toString();
-        when(bundleMock.getResource("/code")).thenReturn(new URL("file:///" + currentDir));
+        String currentCodeDir = Paths.get("resources", "code").toAbsolutePath().toString();
+        when(bundleMock.getResource("/code")).thenReturn(new URL("file:///" + currentCodeDir));
+
+        String currentOsgiInfDir = Paths.get("resources", "code", "OSGI-INF").toAbsolutePath().toString();
+        when(bundleMock.getResource("/code/OSGI-INF")).thenReturn(new URL("file:///" + currentOsgiInfDir));
+
         when(bundleMock.getBundleContext()).thenReturn(bundleContextMock);
     }
 
@@ -75,7 +79,7 @@ public class ApplicationCreatorTest {
     public void creates_InMemoryBundle_from_empty_application() throws IOException {
         ApplicationCreator applicationCreator = setupApplicationCreator(YamlTestFileReader.read("empty.yml"));
 
-        applicationCreator.createApplication(dbServiceMock, componentContextMock);
+        applicationCreator.createApplication();
 
         verifyCreatedApplication(applicationCreator);
         Collection<String> repositoryIds = applicationCreator.getApplicationModel().getRepositoryIds();
@@ -87,7 +91,7 @@ public class ApplicationCreatorTest {
     public void creates_InMemoryBundle_from_application_with_one_entity() throws IOException {
         ApplicationCreator applicationCreator = setupApplicationCreator(YamlTestFileReader.read("transactions.yml"));
 
-        applicationCreator.createApplication(dbServiceMock, componentContextMock);
+        applicationCreator.createApplication();
 
         verifyCreatedApplication(applicationCreator);
         Collection<String> repositoryIds = applicationCreator.getApplicationModel().getRepositoryIds();
@@ -98,7 +102,7 @@ public class ApplicationCreatorTest {
     @Ignore // FIXME
     public void creates_InMemoryBundle_from_DB_Application_Definition2() throws IOException {
         ApplicationCreator applicationCreator = setupApplicationCreator(YamlTestFileReader.read("checklist.yml"));
-        applicationCreator.createApplication(dbServiceMock, componentContextMock);
+        applicationCreator.createApplication();
 
        // DesignerApplicationModel applicationModel = applicationCreator.getApplicationModel();
     }
@@ -107,7 +111,7 @@ public class ApplicationCreatorTest {
         verifyProjectFilesExist(applicationCreator.getApplicationModel());
         verifyJavaCompilerCalls();
         verifyJavaFilesExist(applicationCreator.getApplicationModel());
-        verifyApplicationServiceWasRegistered();
+       // verifyApplicationServiceWasRegistered();
     }
     
     private void verifyJavaCompilerCalls() {
@@ -115,7 +119,7 @@ public class ApplicationCreatorTest {
     }
     
     private ApplicationCreator setupApplicationCreator(DbApplication application) {
-        ApplicationCreator applicationCreator = new ApplicationCreator(application, reposMock, bundleMock);
+        ApplicationCreator applicationCreator = new ApplicationCreator(application, bundleMock);
         applicationCreator.setBundleResourceReader(new BundleResourceReader() {
             @Override
             public String readResource(Bundle bundle, String path) {

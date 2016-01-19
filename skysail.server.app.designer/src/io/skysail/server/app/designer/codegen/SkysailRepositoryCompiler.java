@@ -24,25 +24,26 @@ public class SkysailRepositoryCompiler extends SkysailCompiler {
         this.bundle = bundle;
     }
 
-    public String createRepository() {
+    public CompiledCode createRepository() {
         ST template = getStringTemplateIndex("repository");
-        String setupForCompilation = setupForCompilation(template, applicationModel);
+        CompiledCode compiledCode = setupForCompilation(template, applicationModel);
 
         STGroupBundleDir stGroupBundleDir = new STGroupBundleDir(bundle, "/code/OSGI-INF");
-        ST dsTemplate = getStringTemplateIndex(stGroupBundleDir,"repositoryXml");
+        ST dsTemplate = getStringTemplateIndex(stGroupBundleDir, "repositoryXml");
         String xml = dsTemplate.render();
-        ProjectFileWriter.save(applicationModel, "bundle/OSGI-INF", applicationModel.getPackageName() + "."+entityModel.getSimpleName()+"Repository.xml", xml.getBytes());
-        
-        return setupForCompilation;
+        ProjectFileWriter.save(applicationModel, "bundle/OSGI-INF",
+                applicationModel.getPackageName() + "." + entityModel.getSimpleName() + "Repository.xml",
+                xml.getBytes());
+
+        return compiledCode;
     }
 
-    private String setupForCompilation(ST template, DesignerApplicationModel applicationModel) {
+    private CompiledCode setupForCompilation(ST template, DesignerApplicationModel applicationModel) {
         template.add("activationcode", activationCode(applicationModel));
         template.add("entity", entityModel);
         String entityCode = template.render();
         String entityClassName = applicationModel.getPackageName() + "." + entityModel.getSimpleName() + "Repository";
-        collect(entityClassName, entityCode, "src-gen");
-        return entityClassName;
+        return collect(entityClassName, entityCode, "src-gen");
     }
 
     private String activationCode(DesignerApplicationModel applicationModel) {

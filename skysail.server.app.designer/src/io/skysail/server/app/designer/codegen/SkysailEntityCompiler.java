@@ -41,37 +41,11 @@ public class SkysailEntityCompiler extends SkysailCompiler {
     }
 
     public Map<String, CompiledCode> createResources(DesignerEntityModel entityModel) {
-                
         Map<String, CompiledCode> codes = new HashMap<>();
-
         createEntityResource(entityModel, codes);
         createPostResource(entityModel, codes);
-
-        
-        
-        ST putResourceTemplate = getStringTemplateIndex("putResource");
-        String putResourceClassName = setupPutResourceForCompilation(putResourceTemplate, applicationModel, entityModel);
-        routes.add(new RouteModel("/" + entityModel.getId() + "s/{id}/", putResourceClassName));
-
-        String listResourceClassName;
-        if (entityModel.isAggregate()) {
-            ST listResourceTemplate = getStringTemplateIndex("listResource");
-            String collectionLinks = entityModel.getApplicationModel().getRootEntities().stream().map(e -> "," + e.getSimpleName() + "sResource.class").collect(Collectors.joining());
-            listResourceTemplate.add("listLinks", "       return super.getLinks(Post"+entityModel.getSimpleName()+"Resource.class"+ collectionLinks+");");
-            listResourceClassName = setupListResourceForCompilation(listResourceTemplate, applicationModel,
-                entityModel);
-            routes.add(new RouteModel("/" + entityModel.getId() + "s", listResourceClassName));
-        } else {
-            ST listResourceTemplate = getStringTemplateIndex("listResourceNonAggregate");
-            listResourceClassName = setupListResourceForCompilation(listResourceTemplate, applicationModel,
-                entityModel);
-            routes.add(new RouteModel("/" + entityModel.getId() + "s", listResourceClassName));
-        }
-        
-        if (entityModel.isAggregate()) {
-            routes.add(new RouteModel("", listResourceClassName));
-        }
-        
+        createPutResource(entityModel, codes);
+        createListResource(entityModel, codes);
         return codes;
     }
 
@@ -100,11 +74,39 @@ public class SkysailEntityCompiler extends SkysailCompiler {
         compiledCode = setupPostResourceForCompilation(postResourceTemplate, applicationModel, entityModel);
         String postResourceClassName = compiledCode.getClassName();
         routes.add(new RouteModel("/" + entityModel.getId() + "s/", postResourceClassName));
-        codes.put(entityResourceClassName, compiledCode);
+        codes.put(postResourceClassName, compiledCode);
     }
 
-    
-    
+    private void createPutResource(DesignerEntityModel entityModel, Map<String, CompiledCode> codes) {
+        ST putResourceTemplate = getStringTemplateIndex("putResource");
+        CompiledCode compiledCode = setupPutResourceForCompilation(putResourceTemplate, applicationModel, entityModel);
+        String putResourceClassName = compiledCode.getClassName();
+        routes.add(new RouteModel("/" + entityModel.getId() + "s/{id}/", putResourceClassName));
+        codes.put(putResourceClassName, compiledCode);
+    }
+
+    private void createListResource(DesignerEntityModel entityModel, Map<String, CompiledCode> codes) {
+        String listResourceClassName;
+        CompiledCode compiledCode;
+        if (entityModel.isAggregate()) {
+            ST listResourceTemplate = getStringTemplateIndex("listResource");
+            String collectionLinks = entityModel.getApplicationModel().getRootEntities().stream().map(e -> "," + e.getSimpleName() + "sResource.class").collect(Collectors.joining());
+            listResourceTemplate.add("listLinks", "       return super.getLinks(Post"+entityModel.getSimpleName()+"Resource.class"+ collectionLinks+");");
+            compiledCode = setupListResourceForCompilation(listResourceTemplate, entityModel);
+        } else {
+            ST listResourceTemplate = getStringTemplateIndex("listResourceNonAggregate");
+            compiledCode = setupListResourceForCompilation(listResourceTemplate, entityModel);
+        }
+        listResourceClassName = compiledCode.getClassName();
+        routes.add(new RouteModel("/" + entityModel.getId() + "s", listResourceClassName));
+        codes.put(listResourceClassName, compiledCode);
+        
+        if (entityModel.isAggregate()) {
+            routes.add(new RouteModel("", listResourceClassName));
+        }
+    }
+
+
     private CompiledCode setupEntityForCompilation(ST template, DesignerEntityModel entityModel) {
         template.remove(ENTITY_IDENTIFIER);
         template.add(ENTITY_IDENTIFIER, entityModel);
@@ -159,7 +161,7 @@ public class SkysailEntityCompiler extends SkysailCompiler {
         return collect(entityClassName, entityCode, BUILD_PATH_SOURCE);
     }
 
-    private String setupPutResourceForCompilation(ST template, DesignerApplicationModel applicationModel,
+    private CompiledCode setupPutResourceForCompilation(ST template, DesignerApplicationModel applicationModel,
             DesignerEntityModel entityModel) {
         final String simpleClassName = "Put" + entityModel.getSimpleName() + "Resource";
         template.remove(ENTITY_IDENTIFIER);
@@ -169,19 +171,16 @@ public class SkysailEntityCompiler extends SkysailCompiler {
         template.add("updateEntity", updateEntityCode);
         String entityCode = template.render();
         String entityClassName = entityModel.getPackageName() + "." + simpleClassName;
-        collect(entityClassName, entityCode, BUILD_PATH_SOURCE);
-        return entityClassName;
+        return collect(entityClassName, entityCode, BUILD_PATH_SOURCE);
     }
 
-    private String setupListResourceForCompilation(ST template, DesignerApplicationModel applicationModel,
-            DesignerEntityModel entityModel) {
+    private CompiledCode setupListResourceForCompilation(ST template, DesignerEntityModel entityModel) {
         final String simpleClassName = entityModel.getSimpleName() + "sResource";
         template.remove(ENTITY_IDENTIFIER);
         template.add(ENTITY_IDENTIFIER, entityModel);
         String entityCode = template.render();
-        String entityClassName = entityModel.getPackageName() + "." + simpleClassName;
-        collect(entityClassName, entityCode, BUILD_PATH_SOURCE);
-        return entityClassName;
+        String className = entityModel.getPackageName() + "." + simpleClassName;
+        return collect(className, entityCode, BUILD_PATH_SOURCE);
     }
 
     public List<RouteModel> getRouteModels() {

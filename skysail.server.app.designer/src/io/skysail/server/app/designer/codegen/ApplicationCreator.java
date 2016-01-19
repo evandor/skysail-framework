@@ -1,13 +1,11 @@
 package io.skysail.server.app.designer.codegen;
 
 import java.io.*;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
-import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 import java.util.jar.Attributes;
 import java.util.jar.JarEntry;
@@ -16,15 +14,8 @@ import java.util.jar.Manifest;
 import java.util.stream.Collectors;
 
 import org.osgi.framework.Bundle;
-import org.osgi.framework.ServiceReference;
-import org.osgi.framework.ServiceRegistration;
-import org.osgi.service.component.ComponentContext;
 import org.stringtemplate.v4.ST;
 
-import de.twenty11.skysail.server.app.ApplicationProvider;
-import io.skysail.domain.core.Repositories;
-import io.skysail.domain.core.repos.DbRepository;
-import io.skysail.server.app.SkysailApplication;
 import io.skysail.server.app.designer.EntitiesCreator;
 import io.skysail.server.app.designer.RepositoryCreator;
 import io.skysail.server.app.designer.STGroupBundleDir;
@@ -32,8 +23,6 @@ import io.skysail.server.app.designer.application.DbApplication;
 import io.skysail.server.app.designer.codegen.writer.ProjectFileWriter;
 import io.skysail.server.app.designer.model.DesignerApplicationModel;
 import io.skysail.server.app.designer.model.RouteModel;
-import io.skysail.server.db.DbService;
-import io.skysail.server.menus.MenuItemProvider;
 import io.skysail.server.utils.BundleResourceReader;
 import io.skysail.server.utils.DefaultBundleResourceReader;
 import lombok.Getter;
@@ -55,27 +44,25 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class ApplicationCreator {
 
-    private final Bundle bundle;
-    private final STGroupBundleDir stGroup;
-    private final Repositories repos;
-
-    private SkysailApplicationCompiler skysailApplicationCompiler;
-    private List<String> repositoryClassNames;
-
+    private static final String BUNLDE_DIR_NAME = "bundle";
+    
     @Getter
     private final DesignerApplicationModel applicationModel;
-
+    
     @Setter
     private BundleResourceReader bundleResourceReader = new DefaultBundleResourceReader();
-
+    
     @Setter
     private JavaCompiler javaCompiler = new DefaultJavaCompiler();
+    
+    private final Bundle bundle;
+    private final STGroupBundleDir stGroup;
 
+    private SkysailApplicationCompiler skysailApplicationCompiler;
     private EntitiesCreator entitiesCreator;
-    private CompiledCode compiledApplicationCode;
+    private List<CompiledCode> compiledApplicationCode;
 
-    public ApplicationCreator(DbApplication application, Repositories repos, Bundle bundle) {
-        this.repos = repos;
+    public ApplicationCreator(DbApplication application, Bundle bundle) {
         this.bundle = bundle;
         this.applicationModel = new DesignerApplicationModel(application);
         stGroup = new STGroupBundleDir(bundle, "/code");
@@ -88,14 +75,12 @@ public class ApplicationCreator {
      * successful, a new bundle jar is created from the class files (and
      * additional files).
      */
-    public boolean createApplication(DbService dbService, ComponentContext componentContext) {
+    public boolean createApplication() {
         try {
             createProjectStructure();
             if (createCode()) {
                 saveClassFiles();
-                createDSFiles();
                 createBundle();
-                setupInMemoryBundle(dbService, componentContext);
             }
         } catch (IOException e1) {
             log.error(e1.getMessage(), e1);
@@ -109,25 +94,37 @@ public class ApplicationCreator {
         entitiesCreator = new EntitiesCreator(applicationModel, javaCompiler);
         List<RouteModel> routeModels = entitiesCreator.create(stGroup);
 
-        repositoryClassNames = new RepositoryCreator(applicationModel, javaCompiler, bundle).create(stGroup);
-
+        List<CompiledCode> repositoriesCode = new RepositoryCreator(applicationModel, javaCompiler, bundle).create(stGroup);
+        repositoriesCode.stream().forEach(code -> 
+            ProjectFileWriter.save(applicationModel, BUNLDE_DIR_NAME, classNameToPath(code.getClassName()), code.getByteCode()));
+        
+        createPackageInfoFile(repositoriesCode);
+        
+        ProjectFileWriter.save(applicationModel, BUNLDE_DIR_NAME, "translations/messages.properties", "".getBytes());
+        
         skysailApplicationCompiler = new SkysailApplicationCompiler(applicationModel, stGroup, bundle, javaCompiler);
         compiledApplicationCode = skysailApplicationCompiler.createApplication(routeModels);
-        skysailApplicationCompiler.compile(bundle.getBundleContext());
 
-        return skysailApplicationCompiler.isCompiledSuccessfully();
+        return skysailApplicationCompiler.compile(bundle.getBundleContext());
+    }
+
+    private void createPackageInfoFile(List<CompiledCode> repositoriesCode) {
+        if (repositoriesCode.isEmpty()) {
+            return;
+        }
+        String firstClassName = repositoriesCode.get(0).getClassName();
+        String firstClassNamePath = Arrays.stream(firstClassName.split("\\.")).collect(Collectors.joining("/"));
+        String thePath = firstClassNamePath.substring(0,firstClassNamePath.lastIndexOf("/"));
+        ProjectFileWriter.save(applicationModel, BUNLDE_DIR_NAME, thePath + "/packageinfo", "version 0.1.0".getBytes());
     }
 
     private void saveClassFiles() {
-        ProjectFileWriter.save(applicationModel, "bundle", classNameToPath(compiledApplicationCode.getClassName()), compiledApplicationCode.getByteCode());
-        entitiesCreator.getCode().values().stream().forEach(code -> ProjectFileWriter.save(applicationModel, "bundle",
+        compiledApplicationCode.stream().filter(c -> c != null).forEach(code -> 
+            ProjectFileWriter.save(applicationModel, BUNLDE_DIR_NAME, classNameToPath(code.getClassName()), code.getByteCode()));
+        entitiesCreator.getCode().values().stream().forEach(code -> ProjectFileWriter.save(applicationModel, BUNLDE_DIR_NAME,
                 classNameToPath(code.getClassName()), code.getByteCode()));
     }
     
-    private void createDSFiles() {
-        
-    }
-
     private String classNameToPath(String className) {
         return Arrays.stream(className.split("\\.")).collect(Collectors.joining("/")).concat(".class");
     }
@@ -136,6 +133,61 @@ public class ApplicationCreator {
         Manifest manifest = new Manifest();
         manifest.getMainAttributes().put(Attributes.Name.MANIFEST_VERSION, "1.0");
         //manifest.getEntries().put("Bnd-LastModified", new Date().getTime());
+        
+        Attributes global = manifest.getMainAttributes();
+        global.put(new Attributes.Name("Bnd-LastModified"), Long.toString(new Date().getTime()));
+        global.put(new Attributes.Name("Bundle-Description"), "skysail application bundle created by the designer");
+        global.put(new Attributes.Name("Bundle-License"), "http://www.opensource.org/licenses/apache2.0.php;description=\"Apache 2.0 Licensed\";link=LICENSE");
+        global.put(new Attributes.Name("Bundle-ManifestVersion"), "2");
+        global.put(new Attributes.Name("Bundle-Name"), "skysail.server.app.wiki");
+        global.put(new Attributes.Name("Bundle-SymbolicName"), "skysail.server.app.wiki");
+        global.put(new Attributes.Name("Bundle-Version"), "0.1.0");
+        
+        global.put(new Attributes.Name("Import-Package"), 
+                  "de.twenty11.skysail.server.app;version=\"[19.0,20)\","
+                + "de.twenty11.skysail.server.core.restlet;version=\"[22.0,23)\","
+                + "io.skysail.api.links;version=\"[4.0,5)\","
+                + "io.skysail.api.responses;version=\"[18.0,19)\","
+                + "io.skysail.domain;version=\"[0.1,1)\","
+                + "io.skysail.domain.core;version=\"[1.0,2)\","
+                + "io.skysail.domain.core.repos;version=\"[1.0,2)\","
+                + "io.skysail.domain.html;version=\"[0.1,1)\","
+                + "io.skysail.server.app;version=\"[7.0,8)\","
+                + "io.skysail.server.db;version=\"[8.0,9)\","
+                + "io.skysail.server.forms;version=\"[5.1,6)\","
+                + "io.skysail.server.menus;version=\"[0.1,0.2)\","
+                + "io.skysail.server.queryfilter;version=\"[0.5,1)\","
+                + "io.skysail.server.restlet.resources;version=\"[7.0,8)\","
+                + "javax.persistence;version=\"[2.1,3)\","
+                + "org.apache.shiro;version=\"[1.2,2)\","
+                + "org.apache.shiro.subject;version=\"[1.2,2)\","
+                + "org.osgi.service.event;version=\"[1.3,2)\","
+                + "org.restlet,org.restlet.resource,org.osgi.framework;version=\"[1.8,2)\","
+                + "javassist.util.proxy");
+                
+        global.put(new Attributes.Name("Include-Resource"), "templates=src;recursive:=true;filter:=*.st|*.stg");
+               
+        global.put(new Attributes.Name("Private-Package"), "io.skysail.server.app.wiki;version=\"0.1.0\","
+                + "templates.io.skysail.server.app.wiki.pages.resources,"
+                + "templates.io.skysail.server.app.wiki.spaces.resources,"
+                + "templates.io.skysail.server.app.wiki.versions,translations");
+               
+        global.put(new Attributes.Name("Provide-Capability"), 
+                  "osgi.service;objectClass:List<String>=\"de.twenty11.skysail.server.app.ApplicationProvider,"
+                + "io.skysail.server.menus.MenuItemProvider\","
+                + "osgi.service;objectClass:List<String>=\"io.skysail.domain.core.repos.DbRepository\"");
+
+        global.put(new Attributes.Name("Require-Capability"), 
+                  "osgi.service;filter:=\"(objectClass=io.skysail.domain.core.Repositories)\";effective:=active,"
+                + "osgi.service;filter:=\"(objectClass=io.skysail.server.db.DbService)\";effective:=active,"
+                + "osgi.ee;filter:=\"(&(osgi.ee=JavaSE)(version=1.8))\"");
+        
+        global.put(new Attributes.Name("Service-Component"), 
+                  "OSGI-INF/io.skysail.server.app.wiki.SpaceRepository.xml,"
+                + "OSGI-INF/io.skysail.server.app.wiki.WikiApplication.xml");
+        
+        global.put(new Attributes.Name("Tool"), "skysail");
+        
         String projectName = applicationModel.getProjectName();
         JarOutputStream bundleJar = new JarOutputStream(new FileOutputStream("designerbundles/" + projectName + ".jar"),
                 manifest);
@@ -185,73 +237,6 @@ public class ApplicationCreator {
             if (in != null)
                 in.close();
         }
-    }
-
-    private synchronized void setupInMemoryBundle(DbService dbService, ComponentContext componentContext) {
-        Class<?> applicationClass = skysailApplicationCompiler.getApplicationClass();
-
-        List<Class<?>> repositoryClasses = repositoryClassNames.stream()
-                .map(repoName -> skysailApplicationCompiler.getClass(repoName)).collect(Collectors.toList()); // NOSONAR
-
-        try {
-            SkysailApplication applicationInstance = (SkysailApplication) applicationClass.newInstance();
-            repositoryClasses.stream().forEach(repositoryClass -> {
-                try { // NOSONAR
-                    DbRepository dbRepoInstance = (DbRepository) repositoryClass.newInstance();
-                    setDbServiceInRepository(dbService, dbRepoInstance);
-                    repos.setRepository(dbRepoInstance);
-                    setRepositoriesInApplication(applicationInstance);
-                    activateRepository(dbRepoInstance);
-                } catch (Exception e) {
-                    throw new RuntimeException(e.getMessage(), e); // NOSONAR
-                }
-            });
-
-            Method setComponentContextMethod = applicationInstance.getClass().getMethod("setComponentContext",
-                    new Class[] { ComponentContext.class });
-            setComponentContextMethod.invoke(applicationInstance, new Object[] { componentContext });
-
-            Collection<ServiceReference<ApplicationProvider>> appProviders = bundle.getBundleContext()
-                    .getServiceReferences(ApplicationProvider.class, null);
-            appProviders.stream().forEach(appProvider -> {
-                System.out.println(Arrays.stream(appProvider.getPropertyKeys())
-                        .map(key -> key + ": " + appProvider.getProperty(key)).collect(Collectors.joining(", ")));
-            });
-            List<ServiceReference<ApplicationProvider>> virtualProviders = appProviders.stream().filter(appProvider -> {
-                return appProvider.getProperty("component.id") == null;
-            }).collect(Collectors.toList());
-
-            virtualProviders.stream().forEach(p -> bundle.getBundleContext().ungetService(p));
-
-            ServiceRegistration<?> registeredService = bundle.getBundleContext().registerService(
-                    new String[] { ApplicationProvider.class.getName(), MenuItemProvider.class.getName() },
-                    applicationInstance, null);
-
-            log.info("new service {} was registered.", registeredService.getReference().toString());
-
-        } catch (Exception e1) {
-            log.error(e1.getMessage(), e1);
-        }
-    }
-
-    private void activateRepository(DbRepository dbRepoInstance)
-            throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
-        Method activateRepoInstance = dbRepoInstance.getClass().getMethod("activate", new Class[] {});
-        activateRepoInstance.invoke(dbRepoInstance, new Object[] {});
-    }
-
-    private void setRepositoriesInApplication(SkysailApplication applicationInstance)
-            throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
-        Method setRepositoryMethod = applicationInstance.getClass().getMethod("setRepositories",
-                new Class[] { Repositories.class });
-        setRepositoryMethod.invoke(applicationInstance, repos);
-    }
-
-    private void setDbServiceInRepository(DbService dbService, DbRepository dbRepoInstance)
-            throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
-        Method setDbServiceMethod = dbRepoInstance.getClass().getMethod("setDbService",
-                new Class[] { DbService.class });
-        setDbServiceMethod.invoke(dbRepoInstance, dbService);
     }
 
     private void createProjectStructure() throws IOException {

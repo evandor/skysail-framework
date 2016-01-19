@@ -9,8 +9,7 @@ import org.stringtemplate.v4.ST;
 import io.skysail.domain.core.EntityModel;
 import io.skysail.server.app.designer.STGroupBundleDir;
 import io.skysail.server.app.designer.codegen.writer.ProjectFileWriter;
-import io.skysail.server.app.designer.model.DesignerApplicationModel;
-import io.skysail.server.app.designer.model.DesignerEntityModel;
+import io.skysail.server.app.designer.model.*;
 
 public class SkysailRepositoryCompiler extends SkysailCompiler {
 
@@ -30,6 +29,8 @@ public class SkysailRepositoryCompiler extends SkysailCompiler {
 
         STGroupBundleDir stGroupBundleDir = new STGroupBundleDir(bundle, "/code/OSGI-INF");
         ST dsTemplate = getStringTemplateIndex(stGroupBundleDir, "repositoryXml");
+        dsTemplate.add("appModel", applicationModel);
+        dsTemplate.add("entityModel", entityModel);
         String xml = dsTemplate.render();
         ProjectFileWriter.save(applicationModel, "bundle/OSGI-INF",
                 applicationModel.getPackageName() + "." + entityModel.getSimpleName() + "Repository.xml",

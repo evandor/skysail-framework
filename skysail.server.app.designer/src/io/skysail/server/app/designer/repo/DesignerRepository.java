@@ -1,11 +1,8 @@
 package io.skysail.server.app.designer.repo;
 
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
-import org.osgi.service.component.annotations.Activate;
-import org.osgi.service.component.annotations.Component;
-import org.osgi.service.component.annotations.Reference;
+import org.osgi.service.component.annotations.*;
 
 import com.tinkerpop.blueprints.impls.orient.OrientVertex;
 
@@ -16,8 +13,7 @@ import io.skysail.server.app.designer.application.DbApplication;
 import io.skysail.server.app.designer.entities.DbEntity;
 import io.skysail.server.app.designer.fields.*;
 import io.skysail.server.app.designer.relations.DbRelation;
-import io.skysail.server.db.DbClassName;
-import io.skysail.server.db.DbService;
+import io.skysail.server.db.*;
 import lombok.extern.slf4j.Slf4j;
 
 @Component(immediate = true, property = "name=DesignerRepository")
@@ -36,8 +32,7 @@ public class DesignerRepository implements DbRepository {
                 DbClassName.of(DbEntityTextField.class),
                 DbClassName.of(DbEntityTextareaField.class), 
                 DbClassName.of(DbEntityTrixeditorField.class),
-                DbClassName.of(DbEntityUrlField.class),
-                DbClassName.of(ActionEntityField.class));
+                DbClassName.of(DbEntityUrlField.class));
         dbService.register(
                 DbApplication.class, 
                 DbEntity.class, 
@@ -46,8 +41,7 @@ public class DesignerRepository implements DbRepository {
                 DbEntityTextField.class,
                 DbEntityTextareaField.class, 
                 DbEntityTrixeditorField.class,
-                DbEntityUrlField.class,
-                ActionEntityField.class);
+                DbEntityUrlField.class);
         dbService.createEdges("entities", "fields", "oneToManyRelations");
     }
 

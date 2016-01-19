@@ -12,7 +12,7 @@ Bundle-Description:     \
    for developing fast and powerful web interfaces.
     
 Bundle-Vendor:          YOOtheme (bundled by skysail)
-Export-Package:         osgi.enroute.twitter.bootstrap.capabilities;-split-package:=first
+Export-Package:         io.skysail.server.uikit.webresource;-split-package:=first
 Bundle-License          http://opensource.org/licenses/mit-license.php
 Bundle-Copyright:       Copyright (c) YOOtheme
 Provide-Capability:     \
@@ -27,6 +27,6 @@ Provide-Capability:     \
 -includeresource: ${path}=${base.version}, {readme.md}, LICENSE.txt
 
 -runrequires:  \
-    osgi.identity;filter:='(osgi.identity=osgi.enroute.twitter.bootstrap.webresource)'
+    osgi.identity;filter:='(osgi.identity=skysail.server.uikit.webresource)'
 -runbundles:  \
-    osgi.enroute.twitter.bootstrap.webresource;version=latest
+    skysail.server.uikit.webresource;version=latest

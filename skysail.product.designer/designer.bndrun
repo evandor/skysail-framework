@@ -28,7 +28,8 @@ logback.configurationFile.path = config/common
     skysail.server.ext.initconfig;version=latest,\
     skysail.server.codegen;version=latest,\
     skysail.server.app.designer;version=latest,\
-    skysail.server.app.todos;version=latest
+    skysail.server.app.todos;version=latest,\
+    skysail.server.uikit.webresource;version=latest
 
 ########################################################################################
 ### --- Pool (currently not used)  ------------------------------------------------- ###

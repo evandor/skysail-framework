@@ -1,12 +1,8 @@
 package io.skysail.server.app.designer.model;
 
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
-import io.skysail.domain.core.ApplicationModel;
-import io.skysail.domain.core.EntityModel;
-import io.skysail.domain.core.EntityRelation;
-import io.skysail.domain.core.EntityRelationType;
+import io.skysail.domain.core.*;
 import io.skysail.server.app.designer.application.DbApplication;
 import io.skysail.server.app.designer.entities.DbEntity;
 import lombok.Getter;
@@ -36,34 +32,9 @@ public class DesignerApplicationModel extends ApplicationModel {
         setupModel(appFromDb);
     }
 
-//    public DesignerEntityModel addEntity(DbEntity entity) {
-//        log.info("DesignerApplicationModel: adding DbEntity '{}'", entity);
-//        DesignerEntityModel entityModel = new DesignerEntityModel(entity, packageName);
-//        addOnce(entityModel);
-//        return entityModel;
-//    }
-    
-    @Override
-    public String toString() {
-        String addedInfo = 
-                new StringBuilder(", projectName=").append(projectName)
-                          .append(", path=").append(path).append("\n").toString();
-        return super.toString().replaceFirst("\\n", addedInfo);
-    }
-    
     private void setupModel(DbApplication dbApplication) {
         setupEntities(dbApplication);
         setupRelations(dbApplication);
-    }
-
-    private void setupEntities(DbApplication application) {
-        application.getEntities().stream().forEach(this::createEntityModel);
-    }
-
-    private void createEntityModel(DbEntity dbEntity) { // NOSONAR
-        log.info("DesignerApplicationModel: adding DbEntity '{}'", dbEntity);
-        DesignerEntityModel entityModel = new DesignerEntityModel(dbEntity, packageName);
-        addOnce(entityModel);
     }
 
     private void setupRelations(DbApplication dbApplication) {
@@ -85,6 +56,24 @@ public class DesignerApplicationModel extends ApplicationModel {
                 sourceEntityModel.get().getRelations().add(newRelation);
             });
         });
+    }
+
+    private void setupEntities(DbApplication application) {
+        application.getEntities().stream().forEach(this::createEntityModel);
+    }
+
+    private void createEntityModel(DbEntity dbEntity) { // NOSONAR
+        log.info("DesignerApplicationModel: adding DbEntity '{}'", dbEntity);
+        DesignerEntityModel entityModel = new DesignerEntityModel(dbEntity, packageName);
+        addOnce(entityModel);
+    }
+
+    @Override
+    public String toString() {
+        String addedInfo = 
+                new StringBuilder(", projectName=").append(projectName)
+                          .append(", path=").append(path).append("\n").toString();
+        return super.toString().replaceFirst("\\n", addedInfo);
     }
 
     private Optional<EntityModel> getEntityModel(String dbEntityName) {

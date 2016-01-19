@@ -1,17 +1,12 @@
 package io.skysail.server.app.designer.codegen;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import org.stringtemplate.v4.ST;
 
 import io.skysail.server.app.designer.STGroupBundleDir;
-import io.skysail.server.app.designer.model.DesignerApplicationModel;
-import io.skysail.server.app.designer.model.DesignerEntityModel;
-import io.skysail.server.app.designer.model.RouteModel;
+import io.skysail.server.app.designer.model.*;
 import lombok.Getter;
 
 public class SkysailEntityCompiler extends SkysailCompiler {
@@ -143,9 +138,9 @@ public class SkysailEntityCompiler extends SkysailCompiler {
 
         StringBuilder addEntityCode;
         addEntityCode = new StringBuilder("Subject subject = SecurityUtils.getSubject();\n");
-        addEntityCode.append(entityModel.getActionFields().stream().map(actionField -> {
-            return actionField.getCode("postEntity#addEntity").replace("$Methodname$", withFirstCapital(actionField.getName()));
-        }).collect(Collectors.joining("\n")));
+//        addEntityCode.append(entityModel.getActionFields().stream().map(actionField -> {
+//            return actionField.getCode("postEntity#addEntity").replace("$Methodname$", withFirstCapital(actionField.getName()));
+//        }).collect(Collectors.joining("\n")));
         if (entityModel.isAggregate()) {
             addEntityCode.append("String id = app.getRepository("+entityModel.getId()+".class).save(entity, app.getApplicationModel()).toString();\n");
             addEntityCode.append("entity.setId(id);\n");

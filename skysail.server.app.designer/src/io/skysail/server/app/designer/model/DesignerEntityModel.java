@@ -4,7 +4,7 @@ import java.util.*;
 
 import io.skysail.domain.core.EntityModel;
 import io.skysail.server.app.designer.entities.DbEntity;
-import io.skysail.server.app.designer.fields.*;
+import io.skysail.server.app.designer.fields.DbEntityField;
 import lombok.*;
 import lombok.extern.slf4j.Slf4j;
 
@@ -17,8 +17,6 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class DesignerEntityModel extends EntityModel {
 
-    private final Set<ActionFieldModel> actionFields = new HashSet<>();
-
     // links to other entities
     private final Set<ReferenceModel> references = new HashSet<>();  
     
@@ -30,13 +28,6 @@ public class DesignerEntityModel extends EntityModel {
         super(packageName + "." + entityFromDb.getName());
         setAggregate(entityFromDb.isRootEntity());
         setupModel(entityFromDb);
-    }
-
-    public void addActionField(ActionEntityField f) {
-        log.info("DesignerEntityModel:      adding ActionField '{}' to DbEntity '{}'", f.getName(), f.getId());
-        if (!actionFields.add(new ActionFieldModel(f))) {
-            throw new IllegalStateException("actionField '" + f.getName() + "' already exists!");
-        }
     }
 
     public void addReference(DbEntity referencedEntity) {

@@ -1,8 +1,6 @@
 package io.skysail.server.app.todos;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 import org.apache.shiro.SecurityUtils;
 import org.osgi.service.cm.ConfigurationException;
@@ -12,27 +10,18 @@ import org.osgi.service.event.EventAdmin;
 import org.restlet.Request;
 
 import de.twenty11.skysail.server.app.ApplicationProvider;
-import de.twenty11.skysail.server.core.restlet.ApplicationContextId;
-import de.twenty11.skysail.server.core.restlet.RouteBuilder;
+import de.twenty11.skysail.server.core.restlet.*;
 import io.skysail.domain.core.repos.DbRepository;
-import io.skysail.server.app.ApiVersion;
-import io.skysail.server.app.SkysailApplication;
+import io.skysail.server.app.*;
 import io.skysail.server.app.todos.charts.ListChartResource;
 import io.skysail.server.app.todos.columns.ListAsColumnsResource;
-import io.skysail.server.app.todos.lists.ListResource;
-import io.skysail.server.app.todos.lists.ListsResource;
-import io.skysail.server.app.todos.lists.PostListResource;
-import io.skysail.server.app.todos.lists.PutListResource;
-import io.skysail.server.app.todos.repo.ListsRepository;
-import io.skysail.server.app.todos.repo.TodosRepository;
-import io.skysail.server.app.todos.services.ListService;
-import io.skysail.server.app.todos.services.TodosService;
-import io.skysail.server.app.todos.statuses.NextStatusesResource;
-import io.skysail.server.app.todos.statuses.StatusesResource;
+import io.skysail.server.app.todos.lists.*;
+import io.skysail.server.app.todos.repo.*;
+import io.skysail.server.app.todos.services.*;
+import io.skysail.server.app.todos.statuses.*;
 import io.skysail.server.app.todos.todos.Todo;
 import io.skysail.server.app.todos.todos.resources.*;
 import io.skysail.server.db.versions.VersioningService;
-import io.skysail.server.menus.MenuItem;
 import io.skysail.server.menus.MenuItemProvider;
 import io.skysail.server.queryfilter.Filter;
 import io.skysail.server.restlet.resources.SkysailServerResource;
@@ -135,12 +124,6 @@ public class TodoApplication extends SkysailApplication implements ApplicationPr
 
         router.attach(new TodoRouteBuilder(this,"/_documents/", DocumentsResource.class));
 
-    }
-
-    public List<MenuItem> getMenuEntries() {
-        MenuItem appMenu = new MenuItem(APP_NAME, "/" + APP_NAME + getApiVersion().getVersionPath(), this);
-        appMenu.setCategory(MenuItem.Category.APPLICATION_MAIN_MENU);
-        return Arrays.asList(appMenu);
     }
 
     public List<TodoList> getUsersDefaultLists(Request request) {

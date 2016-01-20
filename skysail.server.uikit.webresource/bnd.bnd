@@ -5,7 +5,7 @@
 base.version  = 2.24.3
 name = /yootheme/uikit
 
-path = static${name}/${base.version}
+path = static1${name}/${base.version}
 
 Bundle-Description:     \
    A lightweight and modular front-end framework \
@@ -21,8 +21,15 @@ Provide-Capability:     \
         root=${path}; \
         version:Version=${base.version}
 
+Service-Component: *
+
 -buildpath: \
-    osgi.enroute.base.api
+    osgi.enroute.base.api,\
+    skysail.api;version=${skysail.api.version},\
+    skysail.server;version=${skysail.server.version},\
+    org.restlet;version=${restlet.version},\
+    org.restlet.ext.raml;version=${restlet.version},\
+    lombok;version=1.16
 
 -includeresource: ${path}=${base.version}, {readme.md}, LICENSE.txt
 

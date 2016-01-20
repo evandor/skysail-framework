@@ -27,7 +27,7 @@ public class $entity.simpleName$sResource extends ListServerResource<$entity.id$
     
     @Override
     public Set<String> getRestrictedToMediaTypes() {
-        return super.getRestrictedToMediaTypes("standalone/*");
+        return super.getRestrictedToMediaTypes("text/prs.skysail-uikit");
     }
 
     @Override

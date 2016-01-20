@@ -37,7 +37,7 @@ Include-Resource: resources, templates=src;recursive:=true;filter:=*.st|*.stg
     com.orientechnologies.orientdb-core;version=${com.orientechnologies.orientdb.version},\
     com.orientechnologies.orientdb-graphdb;version=${com.orientechnologies.orientdb.version},\
     io.skysail.bundled.tinkerpop.blueprints-core;version=2.6,\
-    skysail.server.uikit.webresource
+    skysail.server.uikit.webresource;version=latest
 
 
 Private-Package: \

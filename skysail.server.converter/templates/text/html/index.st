@@ -101,8 +101,8 @@ index(user, messages, converter, model) ::= <<
     </script>
 
 <script>
-function myFunction(target) {
-    var myWindow = window.open(target, "", "width=600, height=600");
+function openWindow(target,name) {
+    var myWindow = window.open(target, name, "width=800, height=600");
 }
 </script>
 

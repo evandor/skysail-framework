@@ -68,6 +68,9 @@ public class ApplicationCreator {
         try {
             createProjectStructure();
             if (createCode()) {
+                if (doNotCreateBundle()) {
+                    return true;
+                }
                 saveClassFiles();
                 createBundle();
             }
@@ -95,6 +98,20 @@ public class ApplicationCreator {
 
         return skysailApplicationCompiler.compile(bundle.getBundleContext());
     }
+    
+    private boolean doNotCreateBundle() {
+        Optional<Bundle> existingBundle = Arrays.stream(bundle.getBundleContext().getBundles()).filter(b -> b.getSymbolicName().equals(applicationModel.getProjectName())).findFirst();
+        if (existingBundle.isPresent()) {
+            String tool = existingBundle.get().getHeaders().get("Tool");
+            if (tool.contains("skysail")) {
+                return false;
+            }
+            return true;
+        }
+        return false;
+    }
+
+
     
     private void saveClassFiles() {
         compiledApplicationCode.stream().filter(c -> c != null).forEach(code -> 

@@ -1,20 +1,15 @@
 package io.skysail.server.restlet.resources;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 import org.restlet.Restlet;
 import org.restlet.data.Method;
 import org.restlet.representation.Variant;
-import org.restlet.resource.Get;
-import org.restlet.resource.ResourceException;
-import org.restlet.resource.ServerResource;
+import org.restlet.resource.*;
 
 import de.twenty11.skysail.server.core.restlet.ResourceContextId;
 import io.skysail.api.links.LinkRelation;
-import io.skysail.api.responses.ListServerResponse;
-import io.skysail.api.responses.SkysailResponse;
+import io.skysail.api.responses.*;
 import io.skysail.domain.Identifiable;
 import io.skysail.server.restlet.ListRequestHandler;
 import io.skysail.server.restlet.response.ListResponseWrapper;
@@ -114,13 +109,13 @@ public abstract class ListServerResource<T extends Identifiable> extends Skysail
      *
      * @return the list of entities in html, csv or treeform format
      */
-    @Get("html|json|yaml|xml|csv|timeline|standalone")
+    @Get("html|json|yaml|xml|csv|timeline|standalone|text/prs.skysail-uikit")
     // treeform, csv:broken http://stackoverflow.com/questions/24569318/writing-multi-line-csv-with-jacksonrepresentation
     // https://github.com/restlet/restlet-framework-java/issues/928
     public ListServerResponse<T> getEntities(Variant variant) {
         Set<PerformanceTimer> perfTimer = getApplication().startPerformanceMonitoring(
                 this.getClass().getSimpleName() + ":getEntities");
-        log.info("Request entry point: {} @Get('html|json|yaml|xml') with variant {}", this.getClass().getSimpleName(),
+        log.info("Request entry point: {} @Get('html|json|yaml|xml|csv|timeline|standalone|text/prs.skysail-uikit') with variant {}", this.getClass().getSimpleName(),
                 variant);
         List<T> response = (List<T>) listEntities();
         getApplication().stopPerformanceMonitoring(perfTimer);

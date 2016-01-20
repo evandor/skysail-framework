@@ -29,6 +29,8 @@ logback.configurationFile.path = config/common
     skysail.server.codegen;version=latest,\
     skysail.server.app.designer;version=latest,\
     skysail.server.app.todos;version=latest,\
+    skysail.server.app.checklist;version=latest,\
+    skysail.server.app.notes;version=latest,\
     skysail.server.uikit.webresource;version=latest
 
 ########################################################################################

@@ -24,10 +24,10 @@ public class NotesResource extends ListServerResource<io.skysail.server.app.note
         repository = (NoteRepository) app.getRepository(io.skysail.server.app.notes.Note.class);
     }
 
-    /*@Override
+    @Override
     public Set<String> getRestrictedToMediaTypes() {
-        return super.getRestrictedToMediaTypes("standalone/*");
-    }*/
+        return super.getRestrictedToMediaTypes("text/prs.skysail-uikit");
+    }
 
     @Override
     public List<io.skysail.server.app.notes.Note> getEntity() {

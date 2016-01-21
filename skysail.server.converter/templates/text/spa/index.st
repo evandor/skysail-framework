@@ -1,4 +1,4 @@
-indexSpa(user, messages, converter, model) ::= <<
+index(user, messages, converter, model) ::= <<
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -13,7 +13,7 @@ indexSpa(user, messages, converter, model) ::= <<
     $pace()$
     $jquery()$
     $bootstrap()$
-    <!-- $polymer()$ -->
+    $polymer()$
     $select2()$
     $animate()$
     $jstree()$

@@ -10,6 +10,6 @@ dropdownDesignerNav(services) ::= <<
 >>
 
 designerMenuItem(item) ::= <<
-        <li><a onclick="openWindow('$item.link$?media=text/prs.skysail-uikit','$item.name$')" href='#'><img src='$item.applicationImage$' width='16px' alt=''>&nbsp;$item.name$</a></li>
+        <li><a onclick="openWindow('$item.link$?_theme=text/uikit','$item.name$')" href='#'><img src='$item.applicationImage$' width='16px' alt=''>&nbsp;$item.name$</a></li>
         
 >>

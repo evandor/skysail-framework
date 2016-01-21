@@ -7,8 +7,7 @@ import java.util.stream.Collectors;
 import org.apache.shiro.SecurityUtils;
 import org.osgi.framework.Bundle;
 import org.restlet.data.MediaType;
-import org.restlet.representation.StringRepresentation;
-import org.restlet.representation.Variant;
+import org.restlet.representation.*;
 import org.restlet.resource.Resource;
 import org.stringtemplate.v4.ST;
 
@@ -27,8 +26,7 @@ import io.skysail.server.menus.MenuItemProvider;
 import io.skysail.server.model.ResourceModel;
 import io.skysail.server.restlet.resources.SkysailServerResource;
 import io.skysail.server.restlet.response.messages.Message;
-import io.skysail.server.utils.CookiesUtils;
-import io.skysail.server.utils.RequestUtils;
+import io.skysail.server.utils.*;
 import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
 
@@ -47,6 +45,8 @@ public class StringTemplateRenderer {
 
     private Resource resource;
 
+    private Theme theme;
+
     public StringTemplateRenderer(HtmlConverter htmlConverter, Resource resource) {
         this.htmlConverter = htmlConverter;
         this.resource = resource;
@@ -60,9 +60,9 @@ public class StringTemplateRenderer {
         resourceModel.setSearchService(searchService); // TODO: has to be set before menuItemProviders ;(
         resourceModel.setMenuItemProviders(menuProviders);
 
-        templateFromCookie = CookiesUtils.getTemplateFromCookie(resource.getRequest());
+        theme = Theme.determineFrom(resource);
 
-        STGroupBundleDir stGroup = createSringTemplateGroup(resource, target.getMediaType().getName());
+        STGroupBundleDir stGroup = createSringTemplateGroup(resource, theme);//target.getMediaType().getName());
 
         ST index = getStringTemplateIndex(resource, stGroup);
 
@@ -73,18 +73,16 @@ public class StringTemplateRenderer {
         return createRepresentation(index, stGroup);
     }
 
-    private STGroupBundleDir createSringTemplateGroup(Resource resource, String mediaType) {
+    private STGroupBundleDir createSringTemplateGroup(Resource resource, Theme theme) {
         SkysailApplication currentApplication = (SkysailApplication) resource.getApplication();
         Bundle appBundle = currentApplication.getBundle();
         if (appBundle == null) {
             log.warn("could not determine bundle of current ApplicationModel {}, follow-up errors might occur", currentApplication.getName());
         }
-        //String resourcePath = ("/templates/" + mediaType).replace("/*", "");
-        //log.debug("reading templates from resource path '{}'", resourcePath);
         URL templatesResource = appBundle.getResource("/templates");
         if (templatesResource != null) {
             STGroupBundleDir stGroup = new STGroupBundleDir(appBundle, resource, "/templates");
-            importTemplate("skysail.server.converter", resource, appBundle, "/templates", stGroup, mediaType);
+            importTemplate("skysail.server.converter", resource, appBundle, "/templates", stGroup, theme);
             //importTemplate("skysail.server.documentation", resource, appBundle, "/templates", stGroup, mediaType);
             return stGroup;
 
@@ -130,11 +128,11 @@ public class StringTemplateRenderer {
     }
 
     public boolean isDebug() {
-        return "debug".equalsIgnoreCase(templateFromCookie);
+        return "debug".equalsIgnoreCase(theme.getOption().toString());
     }
 
     public boolean isEdit() {
-        return "edit".equalsIgnoreCase(templateFromCookie);
+        return "edit".equalsIgnoreCase(theme.getOption().toString());
     }
 
 
@@ -193,10 +191,10 @@ public class StringTemplateRenderer {
     }
 
     private void importTemplate(String symbolicName, Resource resource, Bundle appBundle, String resourcePath,
-            STGroupBundleDir stGroup, String mediaType) {
+            STGroupBundleDir stGroup, Theme theme) {
         Optional<Bundle> theBundle = findBundle(appBundle, symbolicName);
         if (theBundle.isPresent()) {
-            String mediaTypedResourcePath = (resourcePath + "/" + mediaType).replace("/*", "");
+            String mediaTypedResourcePath = (resourcePath + "/" + theme).replace("/*", "");
             importTemplates(resource, mediaTypedResourcePath , stGroup, theBundle);
             importTemplates(resource, mediaTypedResourcePath + "/head", stGroup, theBundle);
             importTemplates(resource, mediaTypedResourcePath + "/navigation", stGroup, theBundle);

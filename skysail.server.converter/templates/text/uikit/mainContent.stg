@@ -1,5 +1,7 @@
 mainContent(user, converter, messages, model) ::= <<
 
+        <sky-links links='[$model.resourceLinks:{ link | $linkAsButton(link, i)$ }; separator=","$]'></sky-links>
+
   <div class="row">
     <div class="col-md-$if(user.demoUser)$8$else$10$endif$" style="border-top: 1px dotted #a0a0a0;margin-top:-21px;">
       <div class="row" style="background-color: #F8FAD4">
@@ -52,6 +54,9 @@ mainContent(user, converter, messages, model) ::= <<
     </div>
     $endif$
   </div>
+>>
 
 
+linkAsButton(link, cnt) ::= <<
+    {"link": "$link.uri$", "title": "$link.title$", "image": "$link.image$"}
 >>

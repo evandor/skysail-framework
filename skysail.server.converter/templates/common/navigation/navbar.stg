@@ -17,13 +17,12 @@ navbar(user, messages, converter, model) ::= <<
         <ul class="dropdown-menu" role="menu">
           <li class="divider"></li>
           <li class="dropdown-header">Nav header</li>
-          <li><a href='javascript:document.cookie="template=debug;path=/";window.location.reload(true)'>Debug</a></li>
-          <li><a href='javascript:document.cookie="template=edit;path=/";window.location.reload(true)'>Edit</a></li>
-          <li><a href='javascript:document.cookie="template=simple;path=/";window.location.reload(true)'>Simple</a></li>
+          <li><a href='javascript:document.cookie="template=text/html/debug;path=/";window.location.reload(true)'>Debug</a></li>
+          <li><a href='javascript:document.cookie="template=text/html/edit;path=/";window.location.reload(true)'>Edit</a></li>
+          <li><a href='javascript:document.cookie="template=text/html/default;path=/";window.location.reload(true)'>Simple</a></li>
           <li><a href='javascript:inspect()'>Inspect Page</a></li>
-          <li><a href='javascript:document.cookie="mainpage=tests;path=/";window.location="/_largetests"'>Tests</a></li>
-          <li><a href='javascript:document.cookie="mainpage=indexMobile;path=/";window.location.reload(true)'>Mobile View</a></li>
-          <li><a href='javascript:document.cookie="mainpage=indexSpa;path=/";window.location.reload(true)'>Single Page App</a></li>
+          <li><a href='javascript:document.cookie="template=text/jquerymobile;path=/";window.location.reload(true)'>Mobile View</a></li>
+          <li><a href='javascript:document.cookie="template=text/spa;path=/";window.location.reload(true)'>Single Page App</a></li>
         </ul>
       </li>
       $endif$

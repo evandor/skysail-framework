@@ -5,7 +5,7 @@
 base.version  = 2.24.3
 name = /yootheme/uikit
 
-path = static1${name}/${base.version}
+path = static/${name}/${base.version}
 
 Bundle-Description:     \
    A lightweight and modular front-end framework \

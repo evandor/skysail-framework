@@ -1,38 +1,31 @@
-/**
- *  Copyright 2011 Carsten Graef
- *
- *  Licensed under the Apache License, Version 2.0 (the "License");
- *  you may not use this file except in compliance with the License.
- *  You may obtain a copy of the License at
- *
- *   http://www.apache.org/licenses/LICENSE-2.0
- *
- *  Unless required by applicable law or agreed to in writing, software
- *  distributed under the License is distributed on an "AS IS" BASIS,
- *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *  See the License for the specific language governing permissions and
- *  limitations under the License.
- *
- */
-
 package io.skysail.server.uikit.webresource;
 
-import java.util.*;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 
 import org.osgi.service.component.annotations.ReferenceCardinality;
 import org.osgi.service.event.EventAdmin;
-import org.restlet.*;
-import org.restlet.data.*;
-import org.restlet.routing.*;
+import org.restlet.Request;
+import org.restlet.Response;
+import org.restlet.Restlet;
+import org.restlet.data.CacheDirective;
+import org.restlet.data.LocalReference;
+import org.restlet.data.Status;
+import org.restlet.routing.Filter;
+import org.restlet.routing.Router;
 
 import de.twenty11.skysail.server.app.ApplicationProvider;
 import io.skysail.server.app.SkysailApplication;
-import io.skysail.server.utils.*;
+import io.skysail.server.utils.ClassLoaderDirectory;
+import io.skysail.server.utils.CompositeClassLoader;
 import lombok.Getter;
 
 @org.osgi.service.component.annotations.Component
-public class WebappApplication extends SkysailApplication implements ApplicationProvider { // NO_UCD
+public class WebappApplication extends SkysailApplication implements ApplicationProvider {
 
+    private static final String ROOT = "static/yootheme/uikit";
+    
     @org.osgi.service.component.annotations.Reference(cardinality = ReferenceCardinality.OPTIONAL)
     @Getter
     private volatile EventAdmin eventAdmin;
@@ -42,15 +35,15 @@ public class WebappApplication extends SkysailApplication implements Application
     }
 
     public WebappApplication(String staticPathTemplate) {
-        super("static1");
-        setName("static1");
+        super(ROOT);
+        setName(ROOT);
     }
 
     
     @Override
     public Restlet createInboundRoot() {
 
-        LocalReference localReference = LocalReference.createClapReference(LocalReference.CLAP_THREAD, "/static1/");
+        LocalReference localReference = LocalReference.createClapReference(LocalReference.CLAP_THREAD, "/"+ROOT+"/");
 
         CompositeClassLoader customCL = new CompositeClassLoader();
         customCL.addClassLoader(Thread.currentThread().getContextClassLoader());

@@ -1,18 +1,6 @@
 mainContent(user, converter, messages, model) ::= <<
 
   <div class="row">
-    <div class="col-md-2" style="
-        min-width:200px;
-        min-height:500px;
-        text-align: left;
-        padding-top:17px;
-        margin-top:-21px;
-        border-right: 1px dotted #a0a0a0;
-        border-top: 1px dotted #a0a0a0;
-        background-image: linear-gradient(to bottom,#F5F5F5 0,#F5F5F5 100%)" id="leftMenu">
-      $menuNav(model.collectionLinks)$
-      $treeNav(model.treeStructure)$
-    </div>
     <div class="col-md-$if(user.demoUser)$8$else$10$endif$" style="border-top: 1px dotted #a0a0a0;margin-top:-21px;">
       <div class="row" style="background-color: #F8FAD4">
         <div class="col-md-12" style="border-bottom: 1px dotted #a0a0a0;">

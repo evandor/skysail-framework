@@ -73,6 +73,8 @@ public class ApplicationCreatorTest {
         when(bundleMock.getResource("/code/OSGI-INF")).thenReturn(new URL("file:///" + currentOsgiInfDir));
 
         when(bundleMock.getBundleContext()).thenReturn(bundleContextMock);
+        
+        when(bundleContextMock.getBundles()).thenReturn(new Bundle[0]);
     }
 
     @Test

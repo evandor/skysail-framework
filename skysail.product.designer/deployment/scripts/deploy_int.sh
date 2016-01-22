@@ -16,7 +16,7 @@ echo "copying skysail.designer.zip to public site"
 cp skysail.designer.zip /var/www/skysail/products/designer/skysail.designer.int.zip
 cp skysail.designer.jar /var/www/skysail/products/designer/skysail.designer.int.jar
 
-mkdir -p /home/carsten/skysail/products/designer/int/bin
+mkdir -p /home/carsten/skysail/products/designer/int/bin/designerbundles
 mkdir -p /home/carsten/skysail/products/designer/int/lib
 
 echo "copying skysail.designer.jar to products directory"

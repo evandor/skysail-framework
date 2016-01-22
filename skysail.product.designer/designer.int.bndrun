@@ -18,7 +18,7 @@
 ### --- run-file-specific settings ------------------------------------------------- ###
 ########################################################################################
 
-skysail.config.path            = config/common,config/int
+skysail.config.path            = config/common,config/int,designerbundles
 logback.configurationFile.path = config/common
 
 -runbundles:\
@@ -26,7 +26,10 @@ logback.configurationFile.path = config/common
     skysail.product.designer;version=latest,\
     skysail.server.ext.initconfig;version=latest,\
     skysail.server.codegen;version=latest,\
-    skysail.server.app.designer;version=latest
+    skysail.server.polymer;version=latest,\
+    skysail.server.app.designer;version=latest,\
+    skysail.server.app.notes;version=latest,\
+    skysail.server.uikit.webresource;version=latest
 
 
 

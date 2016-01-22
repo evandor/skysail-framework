@@ -33,8 +33,8 @@ cp -r deployment/service/* /home/carsten/skysail/products/designer/int
 
 #echo "getting config files for installation from svn"
 cd /home/carsten/skysail/products/designer/int/bin
-rm -rf config
-mkdir config
+#rm -rf config
+#mkdir config
 cd config
 svn checkout https://85.25.22.125/repos/skysale/skysailconfigs/designer/int/
 

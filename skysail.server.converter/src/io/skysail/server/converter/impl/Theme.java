@@ -37,7 +37,7 @@ public class Theme {
         String themeFromRequest = resource.getQuery() != null ? resource.getQuery().getFirstValue("_theme") : null;
         if (themeFromRequest != null) {
             Theme theme = themeFromSplit(themeFromRequest, themeFromRequest.split("/"));
-            CookieSetting templateCookie = CookiesUtils.createCookie(Constants.COOKIE_NAME_TEMPLATE, resource.getRequest().getResourceRef().getPath());
+            CookieSetting templateCookie = CookiesUtils.createCookie(Constants.COOKIE_NAME_TEMPLATE, resource.getRequest().getResourceRef().getPath(), -1);
             templateCookie.setValue(themeFromRequest);
             resource.getResponse().getCookieSettings().add(templateCookie);
             return theme;

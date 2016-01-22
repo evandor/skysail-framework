@@ -26,7 +26,7 @@ public class SpacesResource extends ListServerResource<io.skysail.server.app.wik
 
     @Override
     public Set<String> getRestrictedToMediaTypes() {
-        return super.getRestrictedToMediaTypes("standalone/*");
+        return super.getRestrictedToMediaTypes("text/prs.skysail-uikit");
     }
 
     @Override

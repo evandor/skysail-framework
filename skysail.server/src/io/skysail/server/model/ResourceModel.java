@@ -123,7 +123,7 @@ public class ResourceModel<R extends SkysailServerResource<T>, T> {
             fields = dynaFields;
         }
 
-        rootEntity = new EntityModel<R>(response.getEntity(), resource);
+        rootEntity = new EntityModel<>(response.getEntity(), resource);
 
         String identifierName = getIdentifierFormField(rawData);
         data = convert(identifierName, resource);

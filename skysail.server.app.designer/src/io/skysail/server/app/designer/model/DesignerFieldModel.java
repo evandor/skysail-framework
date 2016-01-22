@@ -1,9 +1,12 @@
 package io.skysail.server.app.designer.model;
 
 import io.skysail.domain.core.FieldModel;
-import io.skysail.domain.html.*;
+import io.skysail.domain.html.HtmlPolicy;
+import io.skysail.domain.html.InputType;
 import io.skysail.server.app.designer.fields.DbEntityField;
-import lombok.*;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.ToString;
 
 @Getter
 @EqualsAndHashCode(of = "name")
@@ -28,7 +31,7 @@ public class DesignerFieldModel extends FieldModel {
     
     public String getHtmlPolicy() {
         if (inputType.equals(InputType.TRIX_EDITOR)) {
-            return HtmlPolicy.DEFAULT_HTML.name();
+            return HtmlPolicy.TRIX_EDITOR.name();
         }
         return HtmlPolicy.NO_HTML.name();
     }

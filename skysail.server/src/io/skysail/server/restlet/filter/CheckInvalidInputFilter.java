@@ -1,17 +1,25 @@
 package io.skysail.server.restlet.filter;
 
 import java.lang.reflect.Field;
-import java.util.*;
+import java.util.List;
+import java.util.Optional;
 
-import org.owasp.html.*;
-import org.restlet.*;
-import org.restlet.data.*;
+import org.owasp.html.Handler;
+import org.owasp.html.HtmlPolicyBuilder;
+import org.owasp.html.HtmlSanitizer;
+import org.owasp.html.HtmlStreamRenderer;
+import org.restlet.Request;
+import org.restlet.Response;
+import org.restlet.data.Form;
+import org.restlet.data.Parameter;
 
 import de.twenty11.skysail.server.core.restlet.Wrapper;
 import io.skysail.domain.Identifiable;
-import io.skysail.domain.html.*;
+import io.skysail.domain.html.AllowedAttribute;
+import io.skysail.domain.html.HtmlPolicy;
 import io.skysail.server.app.SkysailApplication;
-import io.skysail.server.restlet.resources.*;
+import io.skysail.server.restlet.resources.EntityServerResource;
+import io.skysail.server.restlet.resources.SkysailServerResource;
 import io.skysail.server.utils.ReflectionUtils;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -22,10 +30,7 @@ public class CheckInvalidInputFilter<R extends SkysailServerResource<?>, T exten
 
     private static HtmlPolicyBuilder noHtmlPolicyBuilder = new HtmlPolicyBuilder();
 
-    private SkysailApplication application;
-
     public CheckInvalidInputFilter(SkysailApplication application) {
-        this.application = application;
     }
 
     @Override
@@ -44,7 +49,6 @@ public class CheckInvalidInputFilter<R extends SkysailServerResource<?>, T exten
         return FilterResult.CONTINUE;
     }
 
-    // TODO ugly! Where are the tests???
     private boolean containsInvalidInput(Request request, R resource, Form form) {
         boolean foundInvalidInput = false;
         if (form == null) {
@@ -54,42 +58,7 @@ public class CheckInvalidInputFilter<R extends SkysailServerResource<?>, T exten
                 T entity = (T) entityAsObject;
                 List<Field> fields = ReflectionUtils.getInheritedFields(entity.getClass());
 
-                for (Field field : fields) {
-                    io.skysail.domain.html.Field formField = field.getAnnotation(io.skysail.domain.html.Field.class);
-                    if (formField == null) {
-                        continue;
-                    }
-                    HtmlPolicy htmlPolicy = formField.htmlPolicy();
-                    // List<String> allowedElements =
-                    // htmlPolicy.getAllowedElements();
-                    HtmlPolicyBuilder htmlPolicyBuilder = createHtmlPolicyBuilder(htmlPolicy);
-
-                    field.setAccessible(true);
-                    String originalValue = "";
-                    try {
-                        Object fieldValue = field.get(entity);
-                        if (!(fieldValue instanceof String)) {
-                            continue;
-                        }
-                        originalValue = (String) fieldValue;
-                    } catch (Exception e) {
-                        log.error(e.getMessage(), e);
-                    }
-
-                    StringBuilder sb = new StringBuilder();
-                    HtmlSanitizer.Policy policy = createPolicy(htmlPolicyBuilder, sb);
-                    HtmlSanitizer.sanitize(originalValue, policy);
-                    String sanitizedHtml = sb.toString();
-                    if (!sanitizedHtml.equals(originalValue)) {
-                        try {
-                            field.set(entity, sanitizedHtml);
-                            log.info("sanitized '{}' to '{}'", originalValue, sanitizedHtml);
-                        } catch (Exception e) {
-                            log.error(e.getMessage(), e);
-                        }
-                        foundInvalidInput = true;
-                    }
-                }
+                foundInvalidInput = handleFields(foundInvalidInput, entity, fields);
                 return foundInvalidInput;
             }
             return false;
@@ -102,7 +71,7 @@ public class CheckInvalidInputFilter<R extends SkysailServerResource<?>, T exten
             String originalValue = parameter.getValue();
 
 
-            HtmlPolicyBuilder htmlPolicyBuilder = detectHtmlPolicyBuilder(resource, parameter, fields);
+            HtmlPolicyBuilder htmlPolicyBuilder = detectHtmlPolicyBuilder(parameter, fields);
 
             StringBuilder sb = new StringBuilder();
             // http://stackoverflow.com/questions/12558471/how-to-allow-specific-characters-with-owasp-html-sanitizer
@@ -110,9 +79,49 @@ public class CheckInvalidInputFilter<R extends SkysailServerResource<?>, T exten
             HtmlSanitizer.sanitize(originalValue, policy);
             String sanitizedHtml = sb.toString();
             if (!sanitizedHtml.equals(originalValue)) {
+                log.info(originalValue);
+                log.info(sanitizedHtml);
                 foundInvalidInput = true;
             }
             parameter.setValue(sanitizedHtml.trim());
+        }
+        return foundInvalidInput;
+    }
+
+    private boolean handleFields(boolean foundInvalidInput, T entity, List<Field> fields) {
+        for (Field field : fields) {
+            io.skysail.domain.html.Field formField = field.getAnnotation(io.skysail.domain.html.Field.class);
+            if (formField == null) {
+                continue;
+            }
+            HtmlPolicy htmlPolicy = formField.htmlPolicy();
+            HtmlPolicyBuilder htmlPolicyBuilder = createHtmlPolicyBuilder(htmlPolicy);
+
+            field.setAccessible(true);
+            String originalValue = "";
+            try {
+                Object fieldValue = field.get(entity);
+                if (!(fieldValue instanceof String)) {
+                    continue;
+                }
+                originalValue = (String) fieldValue;
+            } catch (Exception e) {
+                log.error(e.getMessage(), e);
+            }
+
+            StringBuilder sb = new StringBuilder();
+            HtmlSanitizer.Policy policy = createPolicy(htmlPolicyBuilder, sb);
+            HtmlSanitizer.sanitize(originalValue, policy);
+            String sanitizedHtml = sb.toString();
+            if (!sanitizedHtml.equals(originalValue)) {
+                try {
+                    field.set(entity, sanitizedHtml);
+                    log.info("sanitized '{}' to '{}'", originalValue, sanitizedHtml);
+                } catch (Exception e) {
+                    log.error(e.getMessage(), e);
+                }
+                foundInvalidInput = true;
+            }
         }
         return foundInvalidInput;
     }
@@ -131,16 +140,15 @@ public class CheckInvalidInputFilter<R extends SkysailServerResource<?>, T exten
     }
 
     private HtmlSanitizer.Policy createPolicy(HtmlPolicyBuilder htmlPolicyBuilder, StringBuilder sb) {
-        HtmlSanitizer.Policy policy = htmlPolicyBuilder.build(HtmlStreamRenderer.create(sb, new Handler<String>() {
+        return htmlPolicyBuilder.build(HtmlStreamRenderer.create(sb, new Handler<String>() {
             @Override
             public void handle(String x) {
-                System.out.println(x);
+                log.info(this.getClass().getName() + ": " + x);
             }
         }));
-        return policy;
     }
 
-    private HtmlPolicyBuilder detectHtmlPolicyBuilder(R resource, Parameter parameter, List<Field> fields) {
+    private HtmlPolicyBuilder detectHtmlPolicyBuilder(Parameter parameter, List<Field> fields) {
         HtmlPolicyBuilder htmlPolicyBuilder = noHtmlPolicyBuilder;
         Optional<Field> found = fields.stream().filter(f -> f.getName().equals(parameter.getName())).findFirst();
         if (found.isPresent()) {

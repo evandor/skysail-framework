@@ -2,14 +2,10 @@ package io.skysail.server.app.notes;
 
 import javax.persistence.Id;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import io.skysail.domain.Identifiable;
-import io.skysail.domain.html.*;
-import io.skysail.server.forms.*;
-
-import org.apache.commons.lang3.StringUtils;
+import io.skysail.domain.html.Field;
+import io.skysail.domain.html.HtmlPolicy;
+import io.skysail.domain.html.InputType;
 
 public class Note implements Identifiable {
 
@@ -28,7 +24,7 @@ public class Note implements Identifiable {
 
     // --- fields ---
 
-    @Field(inputType = InputType.TRIX_EDITOR, htmlPolicy = HtmlPolicy.DEFAULT_HTML)
+    @Field(inputType = InputType.TRIX_EDITOR, htmlPolicy = HtmlPolicy.TRIX_EDITOR)
     private String content;
 
     public void setContent(String value) {

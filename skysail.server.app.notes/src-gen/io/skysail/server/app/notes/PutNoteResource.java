@@ -1,16 +1,14 @@
 package io.skysail.server.app.notes;
 
-import io.skysail.api.responses.SkysailResponse;
-import io.skysail.server.restlet.resources.PutEntityServerResource;
-
-import java.util.Date;
 import org.restlet.resource.ResourceException;
+
+import io.skysail.server.restlet.resources.PutEntityServerResource;
 
 public class PutNoteResource extends PutEntityServerResource<io.skysail.server.app.notes.Note> {
 
 
     private String id;
-    private NotesApplication app;
+    protected NotesApplication app;
 
     @Override
     protected void doInit() throws ResourceException {

@@ -1,12 +1,13 @@
 package io.skysail.server.app.notes;
 
-import io.skysail.server.queryfilter.Filter;
-import io.skysail.server.restlet.resources.ListServerResource;
-import io.skysail.api.links.Link;
-
-import java.util.*;
+import java.util.List;
+import java.util.Set;
 
 import de.twenty11.skysail.server.core.restlet.ResourceContextId;
+import io.skysail.api.links.Link;
+import io.skysail.server.app.notes.resources.MyNoteResource;
+import io.skysail.server.queryfilter.Filter;
+import io.skysail.server.restlet.resources.ListServerResource;
 
 public class NotesResource extends ListServerResource<io.skysail.server.app.notes.Note> {
 
@@ -16,6 +17,10 @@ public class NotesResource extends ListServerResource<io.skysail.server.app.note
     public NotesResource() {
         super(NoteResource.class);
         addToContext(ResourceContextId.LINK_TITLE, "list Notes");
+    }
+
+    public NotesResource(Class<MyNoteResource> cls) {
+        super(cls);
     }
 
     @Override

@@ -11,8 +11,10 @@ import de.twenty11.skysail.server.app.ApplicationProvider;
 import de.twenty11.skysail.server.core.restlet.RouteBuilder;
 import io.skysail.domain.core.Repositories;
 import io.skysail.server.app.ApiVersion;
+import io.skysail.server.app.notes.resources.MyNoteResource;
 import io.skysail.server.app.notes.resources.MyNotesResource;
 import io.skysail.server.app.notes.resources.MyPostNoteResource;
+import io.skysail.server.app.notes.resources.MyPutNoteResource;
 import io.skysail.server.menus.MenuItemProvider;
 import io.skysail.server.uikit.webresource.RequireUiKitWebResource;
 
@@ -36,9 +38,12 @@ public class NotesApplication extends NotesApplicationGen implements Application
     
     @Override
     protected void attach() {
+        //super.attach();
         // overwrite
         router.attach(new RouteBuilder("/io.skysail.server.app.notes.Notes", MyNotesResource.class));
         router.attach(new RouteBuilder("/io.skysail.server.app.notes.Notes/", MyPostNoteResource.class));
+        router.attach(new RouteBuilder("/io.skysail.server.app.notes.Notes/{id}", MyNoteResource.class));
+        router.attach(new RouteBuilder("/io.skysail.server.app.notes.Notes/{id}/", MyPutNoteResource.class));
         router.attach(new RouteBuilder("", MyNotesResource.class));
 
     }

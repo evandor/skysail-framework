@@ -2,11 +2,17 @@ package io.skysail.server.app.notes;
 
 import java.util.Arrays;
 
-import org.osgi.service.component.annotations.*;
+import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.Reference;
+import org.osgi.service.component.annotations.ReferenceCardinality;
+import org.osgi.service.component.annotations.ReferencePolicy;
 
 import de.twenty11.skysail.server.app.ApplicationProvider;
+import de.twenty11.skysail.server.core.restlet.RouteBuilder;
 import io.skysail.domain.core.Repositories;
 import io.skysail.server.app.ApiVersion;
+import io.skysail.server.app.notes.resources.MyNotesResource;
+import io.skysail.server.app.notes.resources.MyPostNoteResource;
 import io.skysail.server.menus.MenuItemProvider;
 import io.skysail.server.uikit.webresource.RequireUiKitWebResource;
 
@@ -26,6 +32,15 @@ public class NotesApplication extends NotesApplicationGen implements Application
 
     public void unsetRepositories(Repositories repo) {
         super.setRepositories(null);
+    }
+    
+    @Override
+    protected void attach() {
+        // overwrite
+        router.attach(new RouteBuilder("/io.skysail.server.app.notes.Notes", MyNotesResource.class));
+        router.attach(new RouteBuilder("/io.skysail.server.app.notes.Notes/", MyPostNoteResource.class));
+        router.attach(new RouteBuilder("", MyNotesResource.class));
+
     }
 
 }

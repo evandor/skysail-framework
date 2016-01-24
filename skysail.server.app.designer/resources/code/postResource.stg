@@ -13,7 +13,7 @@ import org.restlet.resource.ResourceException;
 
 public class Post$entity.simpleName$Resource extends PostEntityServerResource<$entity.id$> {
 
-	private $application.name$Application app;
+	protected $application.name$Application app;
 
     public Post$entity.simpleName$Resource() {
         addToContext(ResourceContextId.LINK_TITLE, "Create new $entity.entityName$");

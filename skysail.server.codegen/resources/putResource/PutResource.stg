@@ -9,8 +9,8 @@ import io.skysail.server.restlet.resources.PutEntityServerResource;
 $entity.classAnnotations$
 public class Put$entity.simpleName$Resource extends PutEntityServerResource<$entity.simpleName$> {
 
-    private $entity.applicationName$ app;
-    private $entity.simpleName$Repo repository;
+    protected $entity.applicationName$ app;
+    protected $entity.simpleName$Repo repository;
 
 	protected void doInit() {
         super.doInit();

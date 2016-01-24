@@ -2,14 +2,13 @@ package io.skysail.server.app.notes;
 
 import javax.persistence.Id;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import io.skysail.domain.Identifiable;
-import io.skysail.domain.html.*;
-import io.skysail.server.forms.*;
-
-import org.apache.commons.lang3.StringUtils;
+import io.skysail.domain.html.Field;
+import io.skysail.domain.html.HtmlPolicy;
+import io.skysail.domain.html.InputType;
+import io.skysail.server.forms.PostView;
+import io.skysail.server.forms.PutView;
+import io.skysail.server.forms.Visibility;
 
 public class Note implements Identifiable {
 
@@ -40,6 +39,8 @@ public class Note implements Identifiable {
     }
 
     @Field(inputType = InputType.TEXT, htmlPolicy = HtmlPolicy.NO_HTML)
+    @PostView(visibility = Visibility.HIDE)
+    @PutView(visibility = Visibility.HIDE)
     private String title;
 
     public void setTitle(String value) {

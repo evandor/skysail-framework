@@ -8,8 +8,8 @@ import io.skysail.server.restlet.resources.PutEntityServerResource;
 @Generated("io.skysail.server.codegen.apt.processors.EntityProcessor")
 public class PutOAuth2Resource extends PutEntityServerResource<OAuth2> {
 
-    private RestclientApplication app;
-    private OAuth2Repo repository;
+    protected RestclientApplication app;
+    protected OAuth2Repo repository;
 
 	protected void doInit() {
         super.doInit();

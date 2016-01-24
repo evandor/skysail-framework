@@ -10,8 +10,8 @@ import org.restlet.resource.ResourceException;
 public class Put$entity.simpleName$Resource extends PutEntityServerResource<$entity.id$> {
 
 
-    private String id;
-    private $application.name$Application app;
+    protected String id;
+    protected $application.name$Application app;
 
     @Override
     protected void doInit() throws ResourceException {

@@ -70,6 +70,7 @@ Import-Package: org.osgi.framework,\
 	*
 Private-Package: \
 	io.skysail.server.app.designer.application.resources,\
+	io.skysail.server.app.designer.fields.provider,\
 	io.skysail.server.app.designer.codegen.writer,\
 	io.skysail.server.app.designer.codegen.resources,\
 	io.skysail.server.app.designer.fields.resources.url,\

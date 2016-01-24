@@ -1,20 +1,30 @@
 package io.skysail.server.app.designer.codegen;
 
-import java.io.*;
-import java.nio.file.*;
-import java.util.*;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Optional;
 import java.util.jar.JarOutputStream;
 import java.util.stream.Collectors;
 
 import org.osgi.framework.Bundle;
 import org.stringtemplate.v4.ST;
 
-import io.skysail.server.app.designer.*;
+import io.skysail.server.app.designer.EntitiesCreator;
+import io.skysail.server.app.designer.RepositoryCreator;
+import io.skysail.server.app.designer.STGroupBundleDir;
 import io.skysail.server.app.designer.application.DbApplication;
-import io.skysail.server.app.designer.codegen.writer.*;
-import io.skysail.server.app.designer.model.*;
-import io.skysail.server.utils.*;
-import lombok.*;
+import io.skysail.server.app.designer.codegen.writer.JarWriter;
+import io.skysail.server.app.designer.codegen.writer.ProjectFileWriter;
+import io.skysail.server.app.designer.model.DesignerApplicationModel;
+import io.skysail.server.app.designer.model.RouteModel;
+import io.skysail.server.utils.BundleResourceReader;
+import io.skysail.server.utils.DefaultBundleResourceReader;
+import lombok.Getter;
+import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -110,8 +120,6 @@ public class ApplicationCreator {
         }
         return false;
     }
-
-
     
     private void saveClassFiles() {
         compiledApplicationCode.stream().filter(c -> c != null).forEach(code -> 
@@ -136,7 +144,7 @@ public class ApplicationCreator {
         return Arrays.stream(className.split("\\.")).collect(Collectors.joining("/")).concat(".class");
     }
 
-    private void createBundle() throws FileNotFoundException, IOException {
+    private void createBundle() throws IOException {
         JarOutputStream bundleJar = JarWriter.startBundleJar(applicationModel);
         JarWriter.add(bundleJar, ProjectFileWriter.getProjectPath(applicationModel).replace("//", "/") + "/" + BUNLDE_DIR_NAME);
         bundleJar.close();
@@ -148,7 +156,7 @@ public class ApplicationCreator {
         ProjectFileWriter.mkdirs(root);
 
         createEclipseArtifacts(root);
-        createBndFile(root);
+        createBndFileIfNotExisting(root);
         createBndrunFile(root);
 
         ProjectFileWriter.deleteDir(root + "/src-gen");
@@ -177,10 +185,15 @@ public class ApplicationCreator {
         Files.write(Paths.get(root + "/.classpath"), classpath.render().getBytes());
     }
     
-    private void createBndFile(String root) throws IOException {
+    private void createBndFileIfNotExisting(String root) throws IOException {
+        Path bndPath = Paths.get(root + "/bnd.bnd");
+        if (bndPath.toFile().exists()) {
+            log.debug("did not create file '{}' as it already exists", bndPath.toString());
+            return;
+        }
         ST bnd = getStringTemplateIndex("bnd");
         bnd.add("packagename", applicationModel.getPackageName());
-        Files.write(Paths.get(root + "/bnd.bnd"), bnd.render().getBytes());
+        Files.write(bndPath, bnd.render().getBytes());
     }
 
     private void createBndrunFile(String root) throws IOException {
@@ -190,7 +203,7 @@ public class ApplicationCreator {
         Files.write(Paths.get(root + "/test.bndrun"), bndrun.render().getBytes());
     }
     
-    private void createGitIgnoreFile(String root) throws IOException {
+    private static void createGitIgnoreFile(String root) throws IOException {
         Files.write(Paths.get(root + "/resources/.gitignore"),
                 "/bin/\n/bin_test/\n/generated/\n/src-gen/\n/bundle/".getBytes());
     }

@@ -24,12 +24,12 @@ putForm(model, messages) ::= <<
 >>
 
 handleTabNav(model,tab,i) ::= <<
-  <li role="presentation" $if(tab.active)$class="active"$endif$><a href="#tabId_$i$" aria-controls="tabId_$i$" role="tab" data-toggle="tab">$tab.name$</a></li>
+  <li role="presentation" $if(tab.active)$class="active"$endif$><a href="#tabId_$i$" aria-controls="tabId_$i$" role="tab" data-toggle="tab">$tab.label$</a></li>
 
 >>
 
 handleTabContent(model,tab,i) ::= <<
-
+  
   <div role="tabpanel" class="tab-pane$if(tab.active)$ active$endif$" id="tabId_$i$">
     $model.tabFields.(tab.identifier):{ field | $handleField(first(model.data), field, messages,i, "")$}$
   </div>

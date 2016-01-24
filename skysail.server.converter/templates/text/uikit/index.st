@@ -73,6 +73,15 @@ index(user, messages, converter, model) ::= <<
                     $mainContent(user, converter, messages, model)$
                 </div>
             </div>
+            
+            $if(converter.debug && user.principal)$
+            <div class="uk-grid">
+                <div class="uk-width-1-1">
+                    $debug(messages, model)$
+                </div>
+            </div>
+            $endif$
+      
         </div>
         
     </body>

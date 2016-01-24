@@ -51,7 +51,8 @@ public abstract class PutFieldResource<T extends DbEntityField> extends PutEntit
     
     @Override
     public List<Tab> getTabs() {
-        return super.getTabs(new Tab("newField","new Field",1), new Tab("optional","optional",2));
+        int i = 1;
+        return super.getTabs(new Tab("newField","new Field",i++), new Tab("visibility","Visibility",i++), new Tab("optional","optional",i++));
     }
 
 

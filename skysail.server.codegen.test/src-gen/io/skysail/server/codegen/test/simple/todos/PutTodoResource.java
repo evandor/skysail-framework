@@ -8,8 +8,8 @@ import io.skysail.server.restlet.resources.PutEntityServerResource;
 @Generated("io.skysail.server.codegen.apt.processors.EntityProcessor")
 public class PutTodoResource extends PutEntityServerResource<Todo> {
 
-    private TodoApplication app;
-    private TodoRepo repository;
+    protected TodoApplication app;
+    protected TodoRepo repository;
 
 	protected void doInit() {
         super.doInit();

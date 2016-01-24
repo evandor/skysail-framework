@@ -8,8 +8,8 @@ import io.skysail.server.restlet.resources.PutEntityServerResource;
 @Generated("io.skysail.server.codegen.apt.processors.EntityProcessor")
 public class PutConnectionResource extends PutEntityServerResource<Connection> {
 
-    private DbviewerApplication app;
-    private ConnectionRepo repository;
+    protected DbviewerApplication app;
+    protected ConnectionRepo repository;
 
 	protected void doInit() {
         super.doInit();

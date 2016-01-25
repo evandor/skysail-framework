@@ -1,13 +1,13 @@
 package io.skysail.server.app.notes;
 
-import java.util.List;
-import java.util.Set;
-
-import de.twenty11.skysail.server.core.restlet.ResourceContextId;
-import io.skysail.api.links.Link;
 import io.skysail.server.queryfilter.Filter;
 import io.skysail.server.queryfilter.pagination.Pagination;
 import io.skysail.server.restlet.resources.ListServerResource;
+import io.skysail.api.links.Link;
+
+import java.util.*;
+
+import de.twenty11.skysail.server.core.restlet.ResourceContextId;
 
 public class NotesResource extends ListServerResource<io.skysail.server.app.notes.Note> {
 
@@ -29,10 +29,10 @@ public class NotesResource extends ListServerResource<io.skysail.server.app.note
         repository = (NoteRepository) app.getRepository(io.skysail.server.app.notes.Note.class);
     }
 
-    @Override
+    /*@Override
     public Set<String> getRestrictedToMediaTypes() {
         return super.getRestrictedToMediaTypes("text/prs.skysail-uikit");
-    }
+    }*/
 
     @Override
     public List<io.skysail.server.app.notes.Note> getEntity() {
@@ -42,6 +42,6 @@ public class NotesResource extends ListServerResource<io.skysail.server.app.note
     }
 
     public List<Link> getLinks() {
-        return super.getLinks(PostNoteResource.class, NotesResource.class);
+              return super.getLinks(PostNoteResource.class,NotesResource.class);
     }
 }

@@ -36,11 +36,8 @@ handleTabContent(model,tab,i) ::= <<
 >>
 
 submitPut(label, o1,o2,tabindex) ::= <<
-      <div class="form-group">
-        <div class="col-sm-offset-$o1$ col-sm-$o2$">
-          <button type="submit" id="submitButton" name="submitButton" class="btn btn-default" tabindex="$tabindex$">$label$</button>&nbsp;
-        </div>
-      </div>
+    <br>
+    <button id="submitButton" name="submitButton" type="submit" class="uk-button uk-button-primary" tabindex="$tabindex$">$label$</button>
 >>
 
 handleField(data, field, messages,i, autofocus) ::= <<

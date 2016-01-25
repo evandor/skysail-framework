@@ -1,22 +1,27 @@
 package io.skysail.server.converter;
 
-import java.util.*;
+import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 import org.osgi.service.component.annotations.Component;
 import org.restlet.data.MediaType;
-import org.restlet.ext.jackson.*;
-import org.restlet.representation.*;
+import org.restlet.ext.jackson.JacksonConverter;
+import org.restlet.ext.jackson.JacksonRepresentation;
+import org.restlet.representation.Representation;
+import org.restlet.representation.Variant;
 import org.restlet.resource.Resource;
 
 import com.fasterxml.jackson.databind.ObjectWriter;
-import com.fasterxml.jackson.dataformat.csv.*;
+import com.fasterxml.jackson.dataformat.csv.CsvMapper;
+import com.fasterxml.jackson.dataformat.csv.CsvSchema;
 
 import io.skysail.api.responses.SkysailResponse;
 import io.skysail.api.text.Translation;
 import io.skysail.server.model.ResourceModel;
 import io.skysail.server.restlet.resources.SkysailServerResource;
 import io.skysail.server.services.OsgiConverterHelper;
+import io.skysail.server.theme.Theme;
 import io.skysail.server.utils.HeadersUtils;
 
 @Component(immediate = true)
@@ -31,7 +36,7 @@ public class SkysailJacksonConverter extends JacksonConverter implements OsgiCon
 
 
                 @SuppressWarnings({ "rawtypes", "unchecked" })
-                ResourceModel<SkysailServerResource<?>, ?> resourceModel = new ResourceModel(skysailServerResource, (SkysailResponse<?>) source, target);
+                ResourceModel<SkysailServerResource<?>, ?> resourceModel = new ResourceModel(skysailServerResource, (SkysailResponse<?>) source, target, new Theme());
 
                 Map<String, Translation> messages = skysailServerResource.getMessages(resourceModel.getFields());
                 Translation descrition = messages.get("content.header");

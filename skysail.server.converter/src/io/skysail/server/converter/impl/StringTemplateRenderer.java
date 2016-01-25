@@ -7,7 +7,8 @@ import java.util.stream.Collectors;
 import org.apache.shiro.SecurityUtils;
 import org.osgi.framework.Bundle;
 import org.restlet.data.MediaType;
-import org.restlet.representation.*;
+import org.restlet.representation.StringRepresentation;
+import org.restlet.representation.Variant;
 import org.restlet.resource.Resource;
 import org.stringtemplate.v4.ST;
 
@@ -26,7 +27,9 @@ import io.skysail.server.menus.MenuItemProvider;
 import io.skysail.server.model.ResourceModel;
 import io.skysail.server.restlet.resources.SkysailServerResource;
 import io.skysail.server.restlet.response.messages.Message;
-import io.skysail.server.utils.*;
+import io.skysail.server.theme.Theme;
+import io.skysail.server.utils.CookiesUtils;
+import io.skysail.server.utils.RequestUtils;
 import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
 
@@ -55,14 +58,14 @@ public class StringTemplateRenderer {
     public StringRepresentation createRepresenation(Object entity, Variant target,
             SkysailServerResource<?> resource) {
 
-        @SuppressWarnings({ "rawtypes", "unchecked" })
-        ResourceModel<SkysailServerResource<?>,?> resourceModel = new ResourceModel(resource, (SkysailResponse<?>)entity, target);
-        resourceModel.setSearchService(searchService); // TODO: has to be set before menuItemProviders ;(
-        resourceModel.setMenuItemProviders(menuProviders);
-
         theme = Theme.determineFrom(resource);
 
-        STGroupBundleDir stGroup = createSringTemplateGroup(resource, theme);//target.getMediaType().getName());
+        @SuppressWarnings({ "rawtypes", "unchecked" })
+        ResourceModel<SkysailServerResource<?>,?> resourceModel = new ResourceModel(resource, (SkysailResponse<?>)entity, target, theme);
+        resourceModel.setSearchService(searchService); // has to be set before menuItemProviders ;(
+        resourceModel.setMenuItemProviders(menuProviders);
+
+        STGroupBundleDir stGroup = createSringTemplateGroup(resource, theme);
 
         ST index = getStringTemplateIndex(resource, stGroup);
 

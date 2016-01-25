@@ -7,6 +7,7 @@ Export-Package: \
 	io.skysail.server.forms,\
 	io.skysail.server.restlet.response.messages,\
 	de.twenty11.skysail.server.help,\
+	io.skysail.server.theme,\
 	io.skysail.server.menus,\
 	de.twenty11.skysail.server.domain,\
 	io.skysail.server.utils,\

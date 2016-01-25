@@ -4,6 +4,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.jsoup.Jsoup;
 
 import io.skysail.server.app.notes.Note;
+import io.skysail.server.app.notes.NotesApplication;
 import io.skysail.server.app.notes.PutNoteResource;
 
 public class MyPutNoteResource extends PutNoteResource {
@@ -18,7 +19,7 @@ public class MyPutNoteResource extends PutNoteResource {
             return;
         }
         String plainText = Jsoup.parse(content).text();
-        original.setTitle(plainText.length() > 20 ? plainText.substring(0, 20) + "..." : plainText);
+        original.setTitle(plainText.length() > NotesApplication.TITLE_MAX_LENGTH ? plainText.substring(0, NotesApplication.TITLE_MAX_LENGTH) + "..." : plainText);
         app.getRepository(io.skysail.server.app.notes.Note.class).update(original,app.getApplicationModel());
     }
 

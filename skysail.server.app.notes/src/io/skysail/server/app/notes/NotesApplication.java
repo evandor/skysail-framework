@@ -21,6 +21,8 @@ import io.skysail.server.uikit.webresource.RequireUiKitWebResource;
 @Component(immediate = true)
 @RequireUiKitWebResource
 public class NotesApplication extends NotesApplicationGen implements ApplicationProvider, MenuItemProvider {
+    
+    public static final int TITLE_MAX_LENGTH = 30;
 
     public  NotesApplication() {
         super("Notes", new ApiVersion(1), Arrays.asList());

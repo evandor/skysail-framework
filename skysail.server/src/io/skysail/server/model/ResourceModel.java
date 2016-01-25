@@ -40,6 +40,7 @@ import io.skysail.server.restlet.resources.ListServerResource;
 import io.skysail.server.restlet.resources.PostEntityServerResource;
 import io.skysail.server.restlet.resources.PutEntityServerResource;
 import io.skysail.server.restlet.resources.SkysailServerResource;
+import io.skysail.server.theme.Theme;
 import io.skysail.server.utils.FormfieldUtils;
 import io.skysail.server.utils.HeadersUtils;
 import io.skysail.server.utils.ResourceUtils;
@@ -93,17 +94,17 @@ public class ResourceModel<R extends SkysailServerResource<T>, T> {
     private String title = "Skysail";
     private STServicesWrapper services;
     private DateFormat dateFormat;
-
+    private Theme theme;
     private SearchService searchService;
-
     private Map<String, FormField> dynaFields = new HashMap<>();
 
     public ResourceModel(R resource, SkysailResponse<?> response) {
-        this(resource, response, new VariantInfo(MediaType.TEXT_HTML));
+        this(resource, response, new VariantInfo(MediaType.TEXT_HTML), new Theme());
     }
 
-    public ResourceModel(R resource, SkysailResponse<?> skysailResponse, Variant target) {
+    public ResourceModel(R resource, SkysailResponse<?> skysailResponse, Variant target, Theme theme) {
 
+        this.theme = theme;
         Locale locale = ResourceUtils.determineLocale(resource);
         dateFormat = DateFormat.getDateTimeInstance(DateFormat.MEDIUM, DateFormat.SHORT, locale);
 
@@ -275,7 +276,17 @@ public class ResourceModel<R extends SkysailServerResource<T>, T> {
         if (pageAsString != null) {
             page = Integer.parseInt(pageAsString);
         }
+        
+        if (theme.getVariant().equals(Theme.Variant.HTML)) {
+            return getBootstrapPagination(pages, page);
+        } else if (theme.getVariant().equals(Theme.Variant.UIKIT)) {
+            return getUiKitPagination(pages, page);
+        }
 
+        return "";
+    }
+
+    private static String getBootstrapPagination(int pages, int page) {
         StringBuilder sb = new StringBuilder();
         sb.append("<nav>");
         sb.append("<ul class='pagination'>");
@@ -298,6 +309,10 @@ public class ResourceModel<R extends SkysailServerResource<T>, T> {
         sb.append("</ul>");
         sb.append("</nav>");
         return sb.toString();
+    }
+
+    private static String getUiKitPagination(int pages, int page) {
+        return "<ul class='uk-pagination' data-uk-pagination='{pages:"+pages+", currentPage:"+page+"}'></ul>";
     }
 
     public String getStatus() {

@@ -18,6 +18,8 @@ index(user, messages, converter, model) ::= <<
         <script src="/static/yootheme/uikit/2.24.3/js/uikit.min.js"></script>
         <!-- <script src="../src/js/components/sticky.js"></script>-->
 
+        <script src="/static/yootheme/uikit/2.24.3/js/components/pagination.min.js"></script>
+        
         <link rel="stylesheet" href="/webapp/css/bootstrap.glyphicons.css" />
         
         $trix()$
@@ -67,7 +69,7 @@ index(user, messages, converter, model) ::= <<
 
         </nav>
     
-        <div class="uk-container" style="height:100%; min-height: 100%;"> <!-- uk-margin-top uk-margin-large-bottom -->
+        <div class="uk-container uk-container-center" style="height:100%; min-height: 100%;"> <!-- uk-margin-top uk-margin-large-bottom -->
             <div class="uk-grid" style="height:100%; min-height: 100%;"> <!-- data-uk-grid-margin -->
                 <div class="uk-width-1-1">
                     $mainContent(user, converter, messages, model)$

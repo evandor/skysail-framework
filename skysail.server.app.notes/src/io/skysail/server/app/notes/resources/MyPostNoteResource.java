@@ -6,6 +6,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.jsoup.Jsoup;
 
 import io.skysail.api.links.Link;
+import io.skysail.server.app.notes.NotesApplication;
 import io.skysail.server.app.notes.PostNoteResource;
 
 public class MyPostNoteResource extends PostNoteResource {
@@ -21,7 +22,7 @@ public class MyPostNoteResource extends PostNoteResource {
             return;
         }
         String plainText = Jsoup.parse(content).text();
-        entity.setTitle(plainText.length() > 20 ? plainText.substring(0, 20) + "..." : plainText);
+        entity.setTitle(plainText.length() > NotesApplication.TITLE_MAX_LENGTH ? plainText.substring(0, NotesApplication.TITLE_MAX_LENGTH) + "..." : plainText);
         String id = app.getRepository(io.skysail.server.app.notes.Note.class).save(entity, app.getApplicationModel()).toString();
         entity.setId(id);
     }

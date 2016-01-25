@@ -1,4 +1,4 @@
-package io.skysail.server.converter.impl.test;
+package io.skysail.server.theme;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
@@ -11,7 +11,7 @@ import org.restlet.resource.Resource;
 import org.restlet.util.Series;
 
 import de.twenty11.skysail.server.Constants;
-import io.skysail.server.converter.impl.Theme;
+import io.skysail.server.theme.Theme;
 
 public class ThemeTest {
 

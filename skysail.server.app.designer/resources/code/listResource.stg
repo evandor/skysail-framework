@@ -2,6 +2,7 @@ listResource(application, entity, listLinks) ::= <<
 package $application.packageName$;
 
 import io.skysail.server.queryfilter.Filter;
+import io.skysail.server.queryfilter.pagination.Pagination;
 import io.skysail.server.restlet.resources.ListServerResource;
 import io.skysail.api.links.Link;
                 
@@ -29,14 +30,16 @@ public class $entity.simpleName$sResource extends ListServerResource<$entity.id$
         repository = ($entity.simpleName$Repository) app.getRepository($entity.id$.class);
     }
     
-    @Override
+    /*@Override
     public Set<String> getRestrictedToMediaTypes() {
         return super.getRestrictedToMediaTypes("text/prs.skysail-uikit");
-    }
+    }*/
 
     @Override
     public List<$entity.id$> getEntity() {
-       return repository.find(new Filter(getRequest()));
+        Filter filter = new Filter(getRequest());
+        Pagination pagination = new Pagination(getRequest(), getResponse(), repository.count(filter));
+        return repository.find(filter, pagination);
     \}
 
     public List<Link> getLinks() {

@@ -41,17 +41,6 @@ public class CompiledCodeTrackingJavaFileManager extends ForwardingJavaFileManag
     public void add(CompiledCode compiledCode) {
         this.compiledCodes.put(compiledCode.getName(), compiledCode);
         this.cl.setCode(compiledCode);
-        
-        
-//        String filename = "./test.class"; 
-//        filename = filename.replace("//", "/");
-//        try {
-//            Path path = Paths.get(filename);
-//            Files.write(path, compiledCode.getByteCode());
-//        } catch (IOException e) {
-//            log.debug("could not write source code for compilation unit");
-//        }
-        
     }
 
     public void setClassLoader(DynamicClassLoader dcl) {

@@ -30,7 +30,6 @@ public class Space implements Identifiable {
 
     @Field(inputType = InputType.TEXT, htmlPolicy = HtmlPolicy.NO_HTML)
     @ListView(link = PagesResource.class)
-
     private String spacename;
 
     public void setSpacename(String value) {
@@ -39,6 +38,18 @@ public class Space implements Identifiable {
 
     public String getSpacename() {
         return this.spacename;
+    }
+
+    @Field(inputType = InputType.TEXT, htmlPolicy = HtmlPolicy.NO_HTML)
+    @ListView(link = PagesResource.class)
+    private String description;
+
+    public void setDescription(String value) {
+        this.description = value;
+    }
+
+    public String getDescription() {
+        return this.description;
     }
 
 

@@ -15,7 +15,7 @@ public class MyNotesResource extends NotesResource {
     
     @Override
     public List<Link> getLinks() {
-        return super.getLinks(MyPostNoteResource.class,MyNotesResource.class);
+        return super.getLinks(MyPostNoteResource.class  );
     }
 
 }

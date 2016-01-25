@@ -5,50 +5,31 @@ import java.util.*;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
-import org.osgi.framework.Bundle;
-import org.osgi.framework.BundleException;
-import org.osgi.service.component.annotations.Component;
-import org.osgi.service.component.annotations.Reference;
-import org.osgi.service.component.annotations.ReferenceCardinality;
-import org.osgi.service.component.annotations.ReferencePolicy;
+import org.osgi.framework.*;
+import org.osgi.service.component.annotations.*;
 import org.osgi.service.event.EventAdmin;
 
 import de.twenty11.skysail.server.app.ApplicationProvider;
-import de.twenty11.skysail.server.core.restlet.ApplicationContextId;
-import de.twenty11.skysail.server.core.restlet.RouteBuilder;
+import de.twenty11.skysail.server.core.restlet.*;
 import io.skysail.domain.core.Repositories;
 import io.skysail.domain.core.repos.DbRepository;
 import io.skysail.server.app.SkysailApplication;
-import io.skysail.server.app.designer.application.ApplicationStatus;
-import io.skysail.server.app.designer.application.DbApplication;
+import io.skysail.server.app.designer.application.*;
 import io.skysail.server.app.designer.application.resources.*;
 import io.skysail.server.app.designer.codegen.ApplicationCreator;
 import io.skysail.server.app.designer.codegen.resources.PostCompilationResource;
 import io.skysail.server.app.designer.entities.DbEntity;
-import io.skysail.server.app.designer.entities.resources.EntitiesResource;
-import io.skysail.server.app.designer.entities.resources.EntityResource;
-import io.skysail.server.app.designer.entities.resources.PostEntityResource;
-import io.skysail.server.app.designer.entities.resources.PutEntityResource;
-import io.skysail.server.app.designer.fields.resources.FieldResource;
-import io.skysail.server.app.designer.fields.resources.FieldsResource;
-import io.skysail.server.app.designer.fields.resources.PutFieldRedirectResource;
-import io.skysail.server.app.designer.fields.resources.date.PostDateFieldResource;
-import io.skysail.server.app.designer.fields.resources.date.PutDateFieldResource;
-import io.skysail.server.app.designer.fields.resources.editors.PostTrixeditorFieldResource;
-import io.skysail.server.app.designer.fields.resources.editors.PutTrixeditorFieldResource;
-import io.skysail.server.app.designer.fields.resources.text.PostTextFieldResource;
-import io.skysail.server.app.designer.fields.resources.text.PutTextFieldResource;
-import io.skysail.server.app.designer.fields.resources.textarea.PostTextareaFieldResource;
-import io.skysail.server.app.designer.fields.resources.textarea.PutTextareaFieldResource;
-import io.skysail.server.app.designer.fields.resources.url.PostUrlFieldResource;
-import io.skysail.server.app.designer.fields.resources.url.PutUrlFieldResource;
-import io.skysail.server.app.designer.relations.resources.PostRelationResource;
-import io.skysail.server.app.designer.relations.resources.RelationResource;
-import io.skysail.server.app.designer.relations.resources.RelationsResource;
+import io.skysail.server.app.designer.entities.resources.*;
+import io.skysail.server.app.designer.fields.resources.*;
+import io.skysail.server.app.designer.fields.resources.date.*;
+import io.skysail.server.app.designer.fields.resources.editors.*;
+import io.skysail.server.app.designer.fields.resources.text.*;
+import io.skysail.server.app.designer.fields.resources.textarea.*;
+import io.skysail.server.app.designer.fields.resources.url.*;
+import io.skysail.server.app.designer.relations.resources.*;
 import io.skysail.server.app.designer.repo.DesignerRepository;
 import io.skysail.server.db.DbService;
-import io.skysail.server.menus.MenuItem;
-import io.skysail.server.menus.MenuItemProvider;
+import io.skysail.server.menus.*;
 import io.skysail.server.restlet.resources.TreeRepresentation;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
@@ -226,7 +207,7 @@ public class DesignerApplication extends SkysailApplication implements MenuItemP
 
     public List<TreeRepresentation> getTreeRepresentation(DbApplication dbApplication) {
         if (dbApplication != null) {
-            return Arrays.asList(new TreeRepresentation(dbApplication,""));
+            return Arrays.asList(new TreeRepresentation(dbApplication,"", "th-large"));
         }
         return Collections.emptyList();
     }
@@ -234,7 +215,7 @@ public class DesignerApplication extends SkysailApplication implements MenuItemP
     public List<TreeRepresentation> getTreeRepresentation(String appId) {
         DbApplication dbApplication = getApplication(appId);
         if (dbApplication != null) {
-            return Arrays.asList(new TreeRepresentation(dbApplication,""));
+            return Arrays.asList(new TreeRepresentation(dbApplication,"", "th-large"));
         }
         return Collections.emptyList();
     }

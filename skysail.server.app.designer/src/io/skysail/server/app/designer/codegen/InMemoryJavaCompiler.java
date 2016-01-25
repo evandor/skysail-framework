@@ -1,21 +1,16 @@
 package io.skysail.server.app.designer.codegen;
 
 import java.io.File;
-import java.net.URISyntaxException;
-import java.net.URL;
+import java.net.*;
 import java.util.*;
 import java.util.stream.Collectors;
 
-import javax.tools.Diagnostic;
+import javax.tools.*;
 import javax.tools.Diagnostic.Kind;
-import javax.tools.DiagnosticCollector;
-import javax.tools.JavaFileObject;
-import javax.tools.ToolProvider;
 import javax.validation.ConstraintViolation;
 
 import org.apache.commons.beanutils.DynaProperty;
-import org.osgi.framework.Bundle;
-import org.osgi.framework.BundleContext;
+import org.osgi.framework.*;
 import org.osgi.service.component.annotations.Component;
 import org.restlet.resource.ServerResource;
 
@@ -96,6 +91,7 @@ public class InMemoryJavaCompiler {
         getBundleLocationFor(Repositories.class, bundleLocations, bundles);
         getBundleLocationFor(io.skysail.server.queryfilter.Filter.class, bundleLocations, bundles);
         getBundleLocationFor(OrientVertex.class, bundleLocations, bundles);
+        //getBundleLocationFor(Pagination.class, bundleLocations, bundles);
 
         String locs = bundleLocations.stream().map(l -> {
                 return l.replace("reference:", "").replace("file:/", "/").replace("%25", "%"); // replace("/","\\").

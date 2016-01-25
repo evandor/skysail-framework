@@ -1,8 +1,6 @@
 package io.skysail.server.app.designer.fields.resources;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 import de.twenty11.skysail.server.core.restlet.ResourceContextId;
 import io.skysail.api.links.Link;
@@ -14,8 +12,7 @@ import io.skysail.server.app.designer.fields.resources.editors.PostTrixeditorFie
 import io.skysail.server.app.designer.fields.resources.text.PostTextFieldResource;
 import io.skysail.server.app.designer.fields.resources.textarea.PostTextareaFieldResource;
 import io.skysail.server.app.designer.fields.resources.url.PostUrlFieldResource;
-import io.skysail.server.restlet.resources.ListServerResource;
-import io.skysail.server.restlet.resources.TreeRepresentation;
+import io.skysail.server.restlet.resources.*;
 
 public class FieldsResource extends ListServerResource<DbEntityField> {
 
@@ -52,7 +49,7 @@ public class FieldsResource extends ListServerResource<DbEntityField> {
     public List<TreeRepresentation> getTreeRepresentation() {
         DbApplication dbApplication = app.getRepository().getById(DbApplication.class, getAttribute("id"));
         if (dbApplication != null) {
-            return Arrays.asList(new TreeRepresentation(dbApplication,""));
+            return Arrays.asList(new TreeRepresentation(dbApplication,"", "leaf"));
         }
         return Collections.emptyList();
     }

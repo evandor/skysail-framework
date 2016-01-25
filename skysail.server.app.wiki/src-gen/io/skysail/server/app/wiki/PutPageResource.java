@@ -9,8 +9,8 @@ import org.restlet.resource.ResourceException;
 public class PutPageResource extends PutEntityServerResource<io.skysail.server.app.wiki.Page> {
 
 
-    private String id;
-    private WikiApplication app;
+    protected String id;
+    protected WikiApplication app;
 
     @Override
     protected void doInit() throws ResourceException {

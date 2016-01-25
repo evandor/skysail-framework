@@ -17,7 +17,6 @@ mainContent(user, converter, messages, model) ::= <<
         border-top: 1px dotted #a0a0a0;
         background-image: linear-gradient(to bottom,#F5F5F5 0,#F5F5F5 100%)" id="leftMenu">
       $menuNav(model.collectionLinks)$
-      $treeNav(model.treeStructure)$
       $jsTreeNav(model.treeStructure)$
     </div>
     <div class="col-md-$if(user.demoUser)$8$else$10$endif$" style="border-top: 1px dotted #a0a0a0;margin-top:-21px;">

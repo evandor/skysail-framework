@@ -12,7 +12,7 @@ import org.restlet.resource.ResourceException;
 
 public class PostSpaceResource extends PostEntityServerResource<io.skysail.server.app.wiki.Space> {
 
-	private WikiApplication app;
+	protected WikiApplication app;
 
     public PostSpaceResource() {
         addToContext(ResourceContextId.LINK_TITLE, "Create new ");

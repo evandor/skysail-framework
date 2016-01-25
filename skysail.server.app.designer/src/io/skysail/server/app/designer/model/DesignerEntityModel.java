@@ -1,11 +1,14 @@
 package io.skysail.server.app.designer.model;
 
-import java.util.*;
+import java.util.HashSet;
+import java.util.Optional;
+import java.util.Set;
 
 import io.skysail.domain.core.EntityModel;
 import io.skysail.server.app.designer.entities.DbEntity;
 import io.skysail.server.app.designer.fields.DbEntityField;
-import lombok.*;
+import lombok.Getter;
+import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -55,7 +58,7 @@ public class DesignerEntityModel extends EntityModel {
 
     private void addField(DbEntityField fieldFromDb) { // NOSONAR
         log.info("DesignerApplicationModel: adding Field '{}'", fieldFromDb);
-        DesignerFieldModel fieldModel = new DesignerFieldModel(fieldFromDb);
+        DesignerFieldModel fieldModel = new DesignerFieldModel(this, fieldFromDb);
         add(fieldModel);
     }
 

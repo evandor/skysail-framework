@@ -18,6 +18,10 @@ public class $entity.simpleName$sResource extends ListServerResource<$entity.id$
         super($entity.simpleName$Resource.class);
         addToContext(ResourceContextId.LINK_TITLE, "list $entity.simpleName$s");
     }
+    
+    public $entity.simpleName$sResource(Class<? extends $entity.simpleName$Resource> cls) {
+        super(cls);
+    }
 
     @Override
     protected void doInit() {

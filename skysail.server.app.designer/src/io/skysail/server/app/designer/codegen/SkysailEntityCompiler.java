@@ -1,26 +1,30 @@
 package io.skysail.server.app.designer.codegen;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 import org.stringtemplate.v4.ST;
 
 import io.skysail.server.app.designer.STGroupBundleDir;
-import io.skysail.server.app.designer.model.*;
+import io.skysail.server.app.designer.model.DesignerApplicationModel;
+import io.skysail.server.app.designer.model.DesignerEntityModel;
+import io.skysail.server.app.designer.model.RouteModel;
 import lombok.Getter;
 
 public class SkysailEntityCompiler extends SkysailCompiler {
 
     private static final String BUILD_PATH_SOURCE = "src-gen";
-
     private static final String ENTITY_IDENTIFIER = "entity";
+
+    private List<RouteModel> routes = new ArrayList<>();
 
     protected String entityResourceClassName;
 
     @Getter
     protected String entityClassName;
-
-    private List<RouteModel> routes = new ArrayList<>();
 
     public SkysailEntityCompiler(DesignerApplicationModel applicationModel, STGroupBundleDir stGroup, JavaCompiler compiler) {
         super(applicationModel, stGroup, compiler);

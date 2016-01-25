@@ -3,7 +3,9 @@ fields(entity) ::= <<
 $entity.fields.keys: { key| 
 
 @Field(inputType = InputType.$entity.fields.(key).inputType$, htmlPolicy = HtmlPolicy.$entity.fields.(key).htmlPolicy$)
-$listView(entity)$
+$listView(entity.fields.(key))$
+$postView(entity.fields.(key))$
+$putView(entity.fields.(key))$
 private String $key$;
 
 public void $entity.fields.(key).setMethodName$(String value) {

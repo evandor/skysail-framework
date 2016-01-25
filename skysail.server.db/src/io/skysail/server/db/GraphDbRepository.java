@@ -1,6 +1,7 @@
 package io.skysail.server.db;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.List;
 import java.util.stream.Collectors;
 
 import org.restlet.engine.util.StringUtils;
@@ -78,6 +79,13 @@ public class GraphDbRepository<T extends Identifiable> implements DbRepository {
 
     public List<T> find(Filter filter) {
         return find(filter, new Pagination());
+    }
+    
+    public long count(Filter filter) {
+        String sql = "SELECT count(*) as count from " + DbClassName.of(entityType)
+                + (!StringUtils.isNullOrEmpty(filter.getPreparedStatement()) ? " WHERE " + filter.getPreparedStatement()
+                        : "");
+        return dbService.getCount(sql, filter.getParams());
     }
 
     public List<T> find(Filter filter, Pagination pagination) {

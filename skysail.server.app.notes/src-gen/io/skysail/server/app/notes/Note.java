@@ -6,6 +6,7 @@ import io.skysail.domain.Identifiable;
 import io.skysail.domain.html.Field;
 import io.skysail.domain.html.HtmlPolicy;
 import io.skysail.domain.html.InputType;
+import io.skysail.server.forms.ListView;
 import io.skysail.server.forms.PostView;
 import io.skysail.server.forms.PutView;
 import io.skysail.server.forms.Visibility;
@@ -28,6 +29,7 @@ public class Note implements Identifiable {
     // --- fields ---
 
     @Field(inputType = InputType.TRIX_EDITOR, htmlPolicy = HtmlPolicy.TRIX_EDITOR)
+    @ListView(hide = true)
     private String content;
 
     public void setContent(String value) {

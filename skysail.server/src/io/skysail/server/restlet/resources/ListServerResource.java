@@ -137,10 +137,6 @@ public abstract class ListServerResource<T extends Identifiable> extends Skysail
 
     @SuppressWarnings("unchecked")
     private final List<T> listEntities() {
-        
-//        String searchQuery = getQuery().getFirstValue(Constants.SEARCH_PARAMETER_NAME);
-        
-
         ListResponseWrapper<?> responseWrapper = requestHandler.createForList(Method.GET).handleList(this, getResponse());
         return (List<T>) responseWrapper.getEntity();
     }

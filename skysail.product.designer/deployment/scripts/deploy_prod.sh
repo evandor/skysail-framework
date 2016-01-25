@@ -23,7 +23,10 @@ echo "copying skysail.designer.jar to products directory"
 cp skysail.designer.jar /home/carsten/skysail/products/designer/prod/bin/skysail.designer.jar
 
 echo "stopping designer service"
-/home/carsten/skysail/products/designer/prod/bin/designer_prod stop
+SERVICE = /home/carsten/skysail/products/designer/prod/bin/designer_prod
+if [ -f $SERVICE ]; then
+    $SERVICE stop
+fi
 
 cd /home/carsten/.hudson/jobs/ssp.designer.export.prod/workspace/skysail.product.designer
 cp -r deployment/service/* /home/carsten/skysail/products/designer/prod
@@ -46,7 +49,7 @@ cd /home/carsten/skysail/products/designer/prod/bin/
 # not really necessary:
 unzip -o skysail.designer.jar
 chmod 755 designer_prod
-./designer_prod start
+$SERVICE start
 
 
 

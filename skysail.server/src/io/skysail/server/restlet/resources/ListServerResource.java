@@ -1,15 +1,19 @@
 package io.skysail.server.restlet.resources;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Set;
 
 import org.restlet.Restlet;
 import org.restlet.data.Method;
 import org.restlet.representation.Variant;
-import org.restlet.resource.*;
+import org.restlet.resource.Get;
+import org.restlet.resource.ServerResource;
 
 import de.twenty11.skysail.server.core.restlet.ResourceContextId;
 import io.skysail.api.links.LinkRelation;
-import io.skysail.api.responses.*;
+import io.skysail.api.responses.ListServerResponse;
+import io.skysail.api.responses.SkysailResponse;
 import io.skysail.domain.Identifiable;
 import io.skysail.server.restlet.ListRequestHandler;
 import io.skysail.server.restlet.response.ListResponseWrapper;
@@ -82,12 +86,7 @@ public abstract class ListServerResource<T extends Identifiable> extends Skysail
         requestHandler = new ListRequestHandler<T>(null);
         addToContext(ResourceContextId.LINK_TITLE, "list");
     }
-
-    @Override
-    protected void doInit() throws ResourceException {
-        super.doInit();
-    }
-
+    
     /**
      * Constructor which associates this ListServerResource with a corresponding
      * EntityServerResource.
@@ -117,9 +116,9 @@ public abstract class ListServerResource<T extends Identifiable> extends Skysail
                 this.getClass().getSimpleName() + ":getEntities");
         log.info("Request entry point: {} @Get('html|json|yaml|xml|csv|timeline|standalone|text/prs.skysail-uikit') with variant {}", this.getClass().getSimpleName(),
                 variant);
-        List<T> response = (List<T>) listEntities();
+        List<T> response = listEntities();
         getApplication().stopPerformanceMonitoring(perfTimer);
-        return new ListServerResponse<T>(getResponse(), response);
+        return new ListServerResponse<>(getResponse(), response);
 
         // if (SecurityFeatures.ALLOW_ORIGIN_FEATURE.isActive()) {
         // responseHeaders.add("Access-Control-Allow-Origin", "*");
@@ -136,9 +135,14 @@ public abstract class ListServerResource<T extends Identifiable> extends Skysail
         return LinkRelation.COLLECTION;
     }
 
-    private final List<?> listEntities() {
+    @SuppressWarnings("unchecked")
+    private final List<T> listEntities() {
+        
+//        String searchQuery = getQuery().getFirstValue(Constants.SEARCH_PARAMETER_NAME);
+        
+
         ListResponseWrapper<?> responseWrapper = requestHandler.createForList(Method.GET).handleList(this, getResponse());
-        return (List<?>) responseWrapper.getEntity();
+        return (List<T>) responseWrapper.getEntity();
     }
 
     /**
@@ -147,7 +151,7 @@ public abstract class ListServerResource<T extends Identifiable> extends Skysail
      *
      * @return the response
      */
-    public SkysailResponse<?> eraseEntity() {
+    public SkysailResponse<T> eraseEntity() {
         throw new UnsupportedOperationException();
     }
 

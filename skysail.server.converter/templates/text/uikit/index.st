@@ -54,8 +54,8 @@ index(user, messages, converter, model) ::= <<
             </ul> -->
 
             <div class="uk-navbar-content uk-hidden-small">
-                  <form class="uk-form uk-margin-remove uk-display-inline-block">
-                      <input type="text" placeholder="Search" class="uk-form-small">
+                  <form class="uk-form uk-margin-remove uk-display-inline-block" action="">
+                      <input name="_search" type="text" placeholder="Search" class="uk-form-small">
                       <button class="uk-button uk-button-primary uk-button-small">&gt;&gt;</button>
                   </form>
               </div>

@@ -40,14 +40,11 @@ public class NotesApplication extends NotesApplicationGen implements Application
     
     @Override
     protected void attach() {
-        //super.attach();
-        // overwrite
         router.attach(new RouteBuilder("/io.skysail.server.app.notes.Notes", MyNotesResource.class));
         router.attach(new RouteBuilder("/io.skysail.server.app.notes.Notes/", MyPostNoteResource.class));
         router.attach(new RouteBuilder("/io.skysail.server.app.notes.Notes/{id}", MyNoteResource.class));
         router.attach(new RouteBuilder("/io.skysail.server.app.notes.Notes/{id}/", MyPutNoteResource.class));
         router.attach(new RouteBuilder("", MyNotesResource.class));
-
     }
 
 }

@@ -23,7 +23,7 @@ echo "copying skysail.designer.jar to products directory"
 cp skysail.designer.jar /home/carsten/skysail/products/designer/prod/bin/skysail.designer.jar
 
 echo "stopping designer service"
-SERVICE = /home/carsten/skysail/products/designer/prod/bin/designer_prod
+SERVICE = "/home/carsten/skysail/products/designer/prod/bin/designer_prod"
 if [ -f $SERVICE ]; then
     $SERVICE stop
 fi

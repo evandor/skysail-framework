@@ -450,7 +450,6 @@ public abstract class SkysailServerResource<T> extends ServerResource {
     }
 
     private boolean test(EntityModel e, Class<?> type) {
-        System.out.println(e);
-        return true;
+        return e.getId().equals(type.getName());
     }
 }

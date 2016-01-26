@@ -1,17 +1,14 @@
 package io.skysail.server.restlet.filter;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.StringUtils;
-import org.owasp.html.Handler;
-import org.owasp.html.HtmlPolicyBuilder;
-import org.owasp.html.HtmlSanitizer;
-import org.owasp.html.HtmlStreamRenderer;
+import org.owasp.html.*;
 
 import de.twenty11.skysail.server.core.restlet.Wrapper;
 import io.skysail.domain.Identifiable;
-import io.skysail.domain.html.AllowedAttribute;
-import io.skysail.domain.html.HtmlPolicy;
+import io.skysail.domain.html.*;
 import io.skysail.server.restlet.resources.SkysailServerResource;
 import lombok.extern.slf4j.Slf4j;
 
@@ -48,7 +45,15 @@ public class ExtractStandardQueryParametersResourceFilter<R extends SkysailServe
         String filter = (String) resource.getRequest().getAttributes().get(SkysailServerResource.FILTER_PARAM_NAME);
         if (StringUtils.isEmpty(filter)) {
             List<String> fields = resource.getEntityFields();
-            filter = "(content=*"+search+"*)";
+            switch (fields.size()) {
+            case 0:
+                return;
+            case 1:
+                filter = "("+fields.get(0)+"=*"+search+"*)";
+            default:
+                filter = "(|" + fields.stream().map(f -> "(" + f +"=*" + search + "*)").collect(Collectors.joining()) + ")";
+                break;
+            }
             resource.getRequest().getAttributes().put(SkysailServerResource.FILTER_PARAM_NAME, filter);
         } else {
             

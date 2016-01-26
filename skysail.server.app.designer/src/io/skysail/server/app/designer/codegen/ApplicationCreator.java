@@ -1,30 +1,20 @@
 package io.skysail.server.app.designer.codegen;
 
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
+import java.nio.file.*;
+import java.util.*;
 import java.util.jar.JarOutputStream;
 import java.util.stream.Collectors;
 
 import org.osgi.framework.Bundle;
 import org.stringtemplate.v4.ST;
 
-import io.skysail.server.app.designer.EntitiesCreator;
-import io.skysail.server.app.designer.RepositoryCreator;
-import io.skysail.server.app.designer.STGroupBundleDir;
+import io.skysail.server.app.designer.*;
 import io.skysail.server.app.designer.application.DbApplication;
-import io.skysail.server.app.designer.codegen.writer.JarWriter;
-import io.skysail.server.app.designer.codegen.writer.ProjectFileWriter;
-import io.skysail.server.app.designer.model.DesignerApplicationModel;
-import io.skysail.server.app.designer.model.RouteModel;
-import io.skysail.server.utils.BundleResourceReader;
-import io.skysail.server.utils.DefaultBundleResourceReader;
-import lombok.Getter;
-import lombok.Setter;
+import io.skysail.server.app.designer.codegen.writer.*;
+import io.skysail.server.app.designer.model.*;
+import io.skysail.server.utils.*;
+import lombok.*;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -77,13 +67,14 @@ public class ApplicationCreator {
     public boolean createApplication() {
         try {
             createProjectStructure();
-            if (createCode()) {
-                if (doNotCreateBundle()) {
-                    return true;
-                }
-                saveClassFiles();
-                createBundle();
+            if (!createCode()) {
+                return false;
             }
+            if (doNotCreateBundle()) {
+                return true;
+            }
+            saveClassFiles();
+            createBundle();
         } catch (IOException e1) {
             log.error(e1.getMessage(), e1);
         }
@@ -105,10 +96,13 @@ public class ApplicationCreator {
         
         skysailApplicationCompiler = new SkysailApplicationCompiler(applicationModel, stGroup, bundle, javaCompiler);
         compiledApplicationCode = skysailApplicationCompiler.createApplication(routeModels);
+        
+        //SkysailTestCompiler skysailTestCompiler = new SkysailTestCompiler(applicationModel, stGroup, bundle, javaCompiler);
+        //List<CompiledCode> compiledTestCode = skysailTestCompiler.createTests(routeModels);
 
         return skysailApplicationCompiler.compile(bundle.getBundleContext());
     }
-    
+        
     private boolean doNotCreateBundle() {
         Optional<Bundle> existingBundle = Arrays.stream(bundle.getBundleContext().getBundles()).filter(b -> b.getSymbolicName().equals(applicationModel.getProjectName())).findFirst();
         if (existingBundle.isPresent()) {
@@ -160,10 +154,12 @@ public class ApplicationCreator {
         createBndrunFile(root);
 
         ProjectFileWriter.deleteDir(root + "/src-gen");
+        ProjectFileWriter.deleteDir(root + "/test-gen");
         ProjectFileWriter.deleteDir(root + "/" + BUNLDE_DIR_NAME);
         
         ProjectFileWriter.mkdirs(root + "/test");
         ProjectFileWriter.mkdirs(root + "/src-gen");
+        ProjectFileWriter.mkdirs(root + "/test-gen");
         ProjectFileWriter.mkdirs(root + "/" + BUNLDE_DIR_NAME);
         ProjectFileWriter.mkdirs(root + "/resources");
         ProjectFileWriter.mkdirs(root + "/config/local");

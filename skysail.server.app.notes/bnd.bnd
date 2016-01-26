@@ -2,7 +2,7 @@ Bundle-Version: 0.1.0.${tstamp}
 
 Bundle-Description: generated code from the application designer bundle
 
-src: src,src-gen
+src: src,src-gen,test-gen
 
 Service-Component: *
 
@@ -28,9 +28,12 @@ Include-Resource: resources, templates=src;recursive:=true;filter:=*.st|*.stg
     skysail.server;version=${skysail.server.version},\
     skysail.server.queryfilter;version=${skysail.server.queryfilter.version},\
     skysail.server.db;version=${skysail.server.db.version},\
+    skysail.server.testsupport;version=${skysail.server.testsupport.version},\
+    com.springsource.org.junit;version=4.11,\
     ${logging},\
     ${commons},\
     ${javax},\
+    org.mockito.mockito-all;version=1.10,\
     de.twentyeleven.skysail.org.antlr.stringtemplate-osgi;version=4.0.8,\
     de.twentyeleven.skysail.org.json-osgi;version=20080701.0,\
     org.apache.shiro.core;version=1.2,\

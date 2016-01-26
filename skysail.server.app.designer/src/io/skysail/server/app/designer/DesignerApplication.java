@@ -56,7 +56,6 @@ public class DesignerApplication extends SkysailApplication implements MenuItemP
     public DesignerApplication() {
         super(APP_NAME);
         addToAppContext(ApplicationContextId.IMG, "/static/img/silk/paintbrush.png");
-        System.out.println(appStatus);
     }
     
     @Override

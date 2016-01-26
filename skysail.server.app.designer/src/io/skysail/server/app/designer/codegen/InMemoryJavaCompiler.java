@@ -50,7 +50,6 @@ public class InMemoryJavaCompiler {
     }
 
     public static CompiledCode collect(String className, String sourceCodeInText) {
-
         SourceCode sourceCode = new SourceCode(className, sourceCodeInText);
         CompiledCode compiledCode = null;
         try {
@@ -61,6 +60,10 @@ public class InMemoryJavaCompiler {
             log.error(e.getMessage(), e);
         }
         return compiledCode;
+    }
+
+    public static void collectSource(String className, String sourceCodeInText) {
+        sourceCodes.add(new SourceCode(className, sourceCodeInText));
     }
 
     public static void reset() {
@@ -91,7 +94,7 @@ public class InMemoryJavaCompiler {
         getBundleLocationFor(Repositories.class, bundleLocations, bundles);
         getBundleLocationFor(io.skysail.server.queryfilter.Filter.class, bundleLocations, bundles);
         getBundleLocationFor(OrientVertex.class, bundleLocations, bundles);
-        //getBundleLocationFor(Pagination.class, bundleLocations, bundles);
+        //getBundleLocationFor(ResourceTestBase.class, bundleLocations, bundles);
 
         String locs = bundleLocations.stream().map(l -> {
                 return l.replace("reference:", "").replace("file:/", "/").replace("%25", "%"); // replace("/","\\").

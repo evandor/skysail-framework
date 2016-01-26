@@ -43,6 +43,7 @@ public class JarWriter {
                 + "io.skysail.server.forms;version=\"[5.1,6)\","
                 + "io.skysail.server.menus;version=\"[0.1,0.2)\","
                 + "io.skysail.server.queryfilter;version=\"[0.5,1)\","
+                + "io.skysail.server.queryfilter.pagination;version=\"[0.2,1)\","
                 + "io.skysail.server.restlet.resources;version=\"[7.0,8)\","
                 + "javax.persistence;version=\"[2.1,3)\","
                 + "org.apache.shiro;version=\"[1.2,2)\","

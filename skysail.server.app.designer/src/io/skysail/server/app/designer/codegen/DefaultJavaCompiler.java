@@ -33,4 +33,9 @@ public class DefaultJavaCompiler implements JavaCompiler {
         return InMemoryJavaCompiler.collect(className, entityCode);
     }
 
+    @Override
+    public void collectSource(String className, String entityCode) {
+        InMemoryJavaCompiler.collectSource(className, entityCode);
+    }
+
 }

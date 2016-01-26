@@ -1,12 +1,10 @@
 package io.skysail.server.app.designer.codegen;
 
-import java.util.Arrays;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import org.osgi.framework.BundleContext;
-import org.stringtemplate.v4.ST;
-import org.stringtemplate.v4.STGroupDir;
+import org.stringtemplate.v4.*;
 
 import io.skysail.server.app.designer.STGroupBundleDir;
 import io.skysail.server.app.designer.codegen.writer.ProjectFileWriter;
@@ -52,7 +50,14 @@ public class SkysailCompiler {
         ProjectFileWriter.save(applicationModel, buildPathFolder, classNameToPath(className), entityCode.getBytes());
         return compiledCode;
     }
-   
+
+    protected CompiledCode collectSource(String className, String entityCode, String buildPathFolder) {
+        CompiledCode compiledCode = null;
+        compiler.collectSource(className, entityCode);
+        ProjectFileWriter.save(applicationModel, buildPathFolder, classNameToPath(className), entityCode.getBytes());
+        return compiledCode;
+    }
+
     public void reset() {
         compiler.reset();
     }

@@ -38,7 +38,6 @@ public class FieldsCrudIntegrationTests extends BrowserTests<EntityFieldsBrowser
         browser.create(field);
         String appId = browser.getParentEntityBrowser().getParentEntityBrowser().getId();
         String rep = browser.getApplication(appId).getText();
-        System.out.println(rep);
         assertThat(rep, containsString(field.getName()));
     }
 

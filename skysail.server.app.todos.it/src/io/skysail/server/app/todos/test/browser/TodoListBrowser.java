@@ -85,7 +85,6 @@ public class TodoListBrowser extends ApplicationBrowser<TodoListBrowser, TodoLis
         client.setUrl("/Todos/v2/Lists");
         return client.get();
 //        ApplicationClient<TodoList> appRoot = client.gotoAppRoot();
-//        System.out.println(appRoot.getLocation());
 //        if (appRoot.getLocation().toString().endsWith("/Todos/v2/Lists/")) {
 //
 //

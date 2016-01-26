@@ -1,0 +1,71 @@
+abstractAppResourceTest(application,routercode) ::= <<
+package $application.packageName$;
+
+import java.util.HashMap;
+
+import org.apache.shiro.subject.SimplePrincipalMap;
+import org.junit.Before;
+import org.mockito.*;
+import org.restlet.Context;
+
+import io.skysail.api.responses.SkysailResponse;
+import io.skysail.server.restlet.resources.SkysailServerResource;
+import io.skysail.server.testsupport.ResourceTestBase;
+import lombok.NonNull;
+
+public abstract class Abstract$application.name$ResourceTest extends ResourceTestBase {
+
+    $application.entityValues: {entity | $spiesAndRepo(entity.simpleName)$}$
+
+    @Before
+    public void setUp() throws Exception {
+        super.setUpFixture();
+
+        Context context = super.setUpApplication(application);
+
+       /* setUpRepository(new $application.name$Repository());
+
+        super.setUpResource(applicationResource, context);
+        super.setUpResource(applicationsResource, context);
+        super.setUpResource(putApplicationResource, context);
+        super.setUpResource(postApplicationResource, context);
+
+        setUpSubject("admin");*/
+        
+        //new UniqueNameValidator().setDbService(testDb);
+    }
+
+   /* public void setUpRepository($application.name$Repository $application.name$Repository) {
+        repo = $application.name$Repository;
+        repo.setDbService(testDb);
+        repo.activate();
+        (($application.name$Application) application).set$application.name$Repository(repo);
+        Mockito.when((($application.name$Application) application).getRepository()).thenReturn(repo);
+    }
+
+    public void setUpSubject(String owner) {
+        Mockito.when(subjectUnderTest.getPrincipal()).thenReturn(owner);
+        Mockito.when(subjectUnderTest.getPrincipals()).thenReturn(new SimplePrincipalMap(new HashMap<>()));
+        setSubject(subjectUnderTest);
+    }*/
+
+}
+>>
+
+spiesAndRepo(name) ::= <<
+
+@Spy
+protected Post$name$Resource post$name$Resource;
+
+@Spy
+protected Put$name$Resource put$name$Resource;
+
+@Spy
+protected $name$sResource $name$sResource;
+
+@Spy
+protected $name$Resource $name$Resource;
+
+protected $name$Repository repo;
+
+>>

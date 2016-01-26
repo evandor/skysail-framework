@@ -12,6 +12,9 @@ Bundle-ClassPath: .,lib/twitter4j-core-4.0.3.jar
 	com.springsource.org.junit;version=4.11,\
 	org.restlet;version=${restlet.version},\
 	org.restlet.ext.raml;version=${restlet.version},\
+    org.restlet.ext.oauth;version=${restlet.version},\
+    org.restlet.ext.json;version=${restlet.version},\
+    de.twentyeleven.skysail.org.json-osgi;version=latest,\
 	javax.validation.api;version=1.1,\
 	slf4j.api;version=1.7,\
 	org.apache.commons.beanutils;version=1.9,\

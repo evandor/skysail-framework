@@ -11,4 +11,7 @@ public interface JavaCompiler {
     void reset();
 
     CompiledCode collect(String className, String entityCode);
+
+    void collectSource(String className, String entityCode);
+
 }

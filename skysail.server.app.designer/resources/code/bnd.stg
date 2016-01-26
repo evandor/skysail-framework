@@ -4,7 +4,7 @@ Bundle-Version: 0.1.0.\${tstamp}
 
 Bundle-Description: generated code from the application designer bundle
 
-src: src,src-gen
+src: src,src-gen,test-gen
 
 Service-Component: *
 

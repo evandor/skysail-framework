@@ -34,7 +34,6 @@ public class PostEntityResource extends PostEntityServerResource<DbEntity> {
        // entity.setApplication(dbApplication);
         dbApplication.getEntities().add(entity);
         //repo.update(dbApplication.getId(), dbApplication, "entities").toString();
-        System.out.println(app.getApplicationModel());
         repo.update(dbApplication, app.getApplicationModel());
     }
 

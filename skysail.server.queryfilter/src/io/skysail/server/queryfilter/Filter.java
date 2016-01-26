@@ -1,6 +1,7 @@
 package io.skysail.server.queryfilter;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 import org.osgi.framework.InvalidSyntaxException;
@@ -9,7 +10,8 @@ import org.restlet.Request;
 import io.skysail.server.queryfilter.nodes.*;
 import io.skysail.server.queryfilter.parser.Parser;
 import io.skysail.server.restlet.resources.SkysailServerResource;
-import lombok.*;
+import lombok.Getter;
+import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
 
 @Getter
@@ -89,7 +91,7 @@ public class Filter {
             return;
         }
         try {
-            filterId = Long.parseLong(filterExpressionFromQuery);
+            filterId = Long.parseLong(filterExpressionFromQuery); // TODO remove filter id logic
             return;
         } catch (Exception e) {
             // that's ok
@@ -152,6 +154,10 @@ public class Filter {
             } else if (arg0 instanceof PresentNode) {
                 PresentNode node = (PresentNode) arg0;
                 ps.append(node.getAttribute()).append(" is ").append(" NOT NULL");
+                return ps;
+            } else if (arg0 instanceof SubstringNode) {
+                SubstringNode node = (SubstringNode) arg0;
+                ps.append(node.getAttribute()).append(" containstext '").append(node.getValue()).append("'");
                 return ps;
             } else {
                 throw new IllegalStateException("cannot visit node of type " + arg0.getClass());

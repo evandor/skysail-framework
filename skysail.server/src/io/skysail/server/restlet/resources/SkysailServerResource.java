@@ -29,6 +29,8 @@ import io.skysail.api.links.Link;
 import io.skysail.api.links.LinkRelation;
 import io.skysail.api.responses.SkysailResponse;
 import io.skysail.api.text.Translation;
+import io.skysail.domain.core.ApplicationModel;
+import io.skysail.domain.core.EntityModel;
 import io.skysail.server.app.SkysailApplication;
 import io.skysail.server.forms.FormField;
 import io.skysail.server.forms.Tab;
@@ -63,6 +65,8 @@ public abstract class SkysailServerResource<T> extends ServerResource {
 
     public static final String FILTER_PARAM_NAME = "_filter";
     public static final String PAGE_PARAM_NAME = "_page";
+    public static final String SEARCH_PARAM_NAME = "_search";
+    
 
     public static final String NO_REDIRECTS = "noRedirects";
     public static final String INSPECT_PARAM_NAME = "_inspect";
@@ -435,5 +439,18 @@ public abstract class SkysailServerResource<T> extends ServerResource {
         List<Tab> result = new ArrayList<>();
         Arrays.stream(tabs).forEach(result::add);
         return result;
+    }
+    
+    public List<String> getEntityFields() {
+        List<String> result = new ArrayList<>();
+        Class<?> type = getParameterizedType();
+        ApplicationModel model = getApplication().getApplicationModel();
+        model.getEntityValues().stream().filter(e -> test(e, type)).collect(Collectors.toList());
+        return result;
+    }
+
+    private boolean test(EntityModel e, Class<?> type) {
+        System.out.println(e);
+        return true;
     }
 }

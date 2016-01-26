@@ -37,7 +37,7 @@ cp -r deployment/service/* /home/carsten/skysail/products/designer/prod
 #echo "getting config files for installation from svn"
 cd /home/carsten/skysail/products/designer/prod/bin
 #rm -rf config
-mkdir config
+mkdir -p config
 cd config
 svn checkout https://85.25.22.125/repos/skysale/skysailconfigs/designer/prod/
 

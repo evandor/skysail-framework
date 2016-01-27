@@ -6,18 +6,22 @@ import java.util.stream.Collectors;
 
 import org.apache.shiro.SecurityUtils;
 import org.osgi.framework.Bundle;
-import org.osgi.service.cm.*;
+import org.osgi.service.cm.ConfigurationException;
+import org.osgi.service.cm.ManagedService;
 import org.osgi.service.component.ComponentContext;
 import org.osgi.service.component.annotations.*;
 import org.osgi.service.event.EventAdmin;
 import org.restlet.Request;
 
-import de.twenty11.skysail.server.app.profile.PutPasswordResource;
 import de.twenty11.skysail.server.core.restlet.RouteBuilder;
-import de.twenty11.skysail.server.resources.*;
+import de.twenty11.skysail.server.resources.DefaultResource;
+import de.twenty11.skysail.server.resources.DemoLoginResource;
+import de.twenty11.skysail.server.resources.LoginResource;
+import de.twenty11.skysail.server.resources.RemoteLoginResource;
 import io.skysail.server.app.SkysailApplication;
-import io.skysail.server.menus.*;
+import io.skysail.server.menus.MenuItem;
 import io.skysail.server.menus.MenuItem.Category;
+import io.skysail.server.menus.MenuItemProvider;
 import io.skysail.server.services.ResourceBundleProvider;
 import io.skysail.server.utils.MenuItemUtils;
 import lombok.Getter;
@@ -97,7 +101,7 @@ public class SkysailRootApplication extends SkysailApplication implements Applic
 //        router.attach(new RouteBuilder(VERSION_PATH, VersionResource.class));
 //        router.attach(new RouteBuilder(NAME_PATH, NameResource.class));
         //router.attach(new RouteBuilder(PROFILE_PATH, ProfileResource.class));
-        router.attach(new RouteBuilder(PROFILE_PATH + "/password/", PutPasswordResource.class));
+        //router.attach(new RouteBuilder(PROFILE_PATH + "/password/", PutPasswordResource.class));
 //        router.attach(new RouteBuilder(LARGETESTS_PATH, LargeTestsResource.class));
 //        router.attach(new RouteBuilder(LARGETESTS_PATH + "/{id}", LargeTestsFileResource.class));
 //        router.attach(new RouteBuilder(WELCOME_PATH, WelcomeResource.class).noAuthenticationNeeded()); // need for tests... why?

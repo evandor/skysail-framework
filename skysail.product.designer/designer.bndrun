@@ -7,7 +7,6 @@
 -runfw: org.apache.felix.framework;version=${org.apache.felix.framework.version}
 -runproperties: org.osgi.service.http.port=8081,\
     ds.loglevel=debug,\
-    ${proxy},\
     ${runproperties}
 -runrepos: ${runrepos}
 -runsystemcapabilities: ${native_capability}

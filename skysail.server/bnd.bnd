@@ -36,7 +36,6 @@ Export-Package: \
 	de.twenty11.skysail.server.resources,\
 	de.twenty11.skysail.server.core.restlet,\
 	de.twenty11.skysail.server.config,\
-	de.twenty11.skysail.server.services,\
 	de.twenty11.skysail.server.core.restlet.filter,\
 	io.skysail.server.security,\
 	de.twenty11.skysail.server,\

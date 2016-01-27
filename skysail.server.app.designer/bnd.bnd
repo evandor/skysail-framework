@@ -86,7 +86,7 @@ Private-Package: \
 	io.skysail.server.app.designer.fields.resources.date,\
 	io.skysail.server.app.designer.fields.resources.text,\
 	io.skysail.server.app.designer.fields.resources.textarea
-Export-Package:  \
+Export-Package: \
 	io.skysail.server.app.designer.repo,\
 	io.skysail.server.app.designer.application,\
 	io.skysail.server.app.designer.entities,\

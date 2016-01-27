@@ -23,18 +23,18 @@
 skysail.config.path            = config/common,config/local,designerbundles
 logback.configurationFile.path = config/common
 
--runbundles:\
-    ${serverbundles-1.0.0},\
-    skysail.product.designer;version=latest,\
-    skysail.server.ext.initconfig;version=latest,\
-    skysail.server.codegen;version=latest,\
-    skysail.server.polymer;version=latest,\
-    skysail.server.app.designer;version=latest,\
-    skysail.server.app.todos;version=latest,\
-    skysail.server.app.checklist;version=latest,\
-    skysail.server.app.notes;version=latest,\
-    skysail.server.uikit.webresource;version=latest,\
-    skysail.server.app.twitter4j;version=latest
+-runbundles: \
+	${serverbundles-1.0.0},\
+	skysail.product.designer;version=latest,\
+	skysail.server.ext.initconfig;version=latest,\
+	skysail.server.codegen;version=latest,\
+	skysail.server.polymer;version=latest,\
+	skysail.server.app.designer;version=latest,\
+	skysail.server.app.todos;version=latest,\
+	skysail.server.app.checklist;version=latest,\
+	skysail.server.app.notes;version=latest,\
+	skysail.server.uikit.webresource;version=latest,\
+	skysail.server.app.twitter4j;version=latest
 
 
 ########################################################################################

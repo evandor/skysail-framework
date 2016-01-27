@@ -10,9 +10,12 @@ import io.skysail.server.app.designer.entities.DbEntity;
 import io.skysail.server.app.designer.fields.DbEntityField;
 import io.skysail.server.app.designer.repo.DesignerRepository;
 import io.skysail.server.forms.Tab;
-import io.skysail.server.restlet.resources.PostEntityServerResource;
-import io.skysail.server.restlet.resources.TreeRepresentation;
+import io.skysail.server.restlet.resources.*;
 
+/**
+ * see DesignerRepository
+ * see FieldsResource
+ */
 public abstract class PostFieldResource<T extends DbEntityField> extends PostEntityServerResource<T> {
 
     private DesignerApplication app;

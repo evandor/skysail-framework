@@ -29,6 +29,7 @@ public class Note implements Identifiable {
     // --- fields ---
 
     @Field(inputType = InputType.TRIX_EDITOR, htmlPolicy = HtmlPolicy.TRIX_EDITOR)
+    @ListView(hide = true)
     private String content;
 
     public void setContent(String value) {
@@ -40,6 +41,8 @@ public class Note implements Identifiable {
     }
 
     @Field(inputType = InputType.TEXT, htmlPolicy = HtmlPolicy.NO_HTML)
+    @PostView(visibility = Visibility.HIDE)
+    @PutView(visibility = Visibility.HIDE)
     private String title;
 
     public void setTitle(String value) {
@@ -48,6 +51,19 @@ public class Note implements Identifiable {
 
     public String getTitle() {
         return this.title;
+    }
+
+    @Field(inputType = InputType.DATE, htmlPolicy = HtmlPolicy.NO_HTML)
+    @PostView(visibility = Visibility.HIDE)
+    @PutView(visibility = Visibility.HIDE)
+    private String modified;
+
+    public void setModified(String value) {
+        this.modified = value;
+    }
+
+    public String getModified() {
+        return this.modified;
     }
 
 

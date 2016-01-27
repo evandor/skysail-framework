@@ -2,12 +2,6 @@ mainContent(user, converter, messages, model) ::= <<
 
 <div class="uk-panel"">
     $contentHeader(converter, messages, model)$
-    <hr>
-</div>
-
-<div class="uk-panel">
-    <sky-links links='[$model.resourceLinks:{ link | $linkAsButton(link, i)$ }; separator=","$]'></sky-links>
-    <hr>
 </div>
 
 <div class="uk-panel">
@@ -32,6 +26,11 @@ mainContent(user, converter, messages, model) ::= <<
               </div>
             $endif$
 </div>
+
+<div class="uk-panel">
+    <sky-links links='[$model.resourceLinks:{ link | $linkAsButton(link, i)$ }; separator=","$]'></sky-links>
+</div>
+
 
 <div class="uk-panel">
             <p id="resourceDescription"></p>

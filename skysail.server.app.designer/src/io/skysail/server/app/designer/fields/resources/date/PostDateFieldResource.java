@@ -7,7 +7,7 @@ import io.skysail.server.app.designer.fields.resources.PostFieldResource;
 public class PostDateFieldResource extends PostFieldResource<DbEntityDateField> {
 
     public PostDateFieldResource() {
-        addToContext(ResourceContextId.LINK_TITLE, "new Text Field");
+        addToContext(ResourceContextId.LINK_TITLE, "new Date");
     }
 
     @Override

@@ -71,22 +71,22 @@ Import-Package: org.osgi.framework,\
 Private-Package: \
 	io.skysail.server.app.designer.application.resources,\
 	io.skysail.server.app.designer.codegen.templates,\
-	io.skysail.server.app.designer.fields.provider,\
+	io.skysail.server.app.designer.application.validation,\
+	io.skysail.server.app.designer.codegen,\
 	io.skysail.server.app.designer.codegen.writer,\
 	io.skysail.server.app.designer.codegen.resources,\
-	io.skysail.server.app.designer.fields.resources.url,\
-	io.skysail.server.app.designer.relations.resources,\
-	io.skysail.server.app.designer.relations,\
-	io.skysail.server.app.designer.fields.resources.editors,\
-	io.skysail.server.app.designer.application.validation,\
 	io.skysail.server.app.designer.entities.resources,\
-	io.skysail.server.app.designer.fields.resources,\
-	io.skysail.server.app.designer.codegen,\
-	io.skysail.server.app.designer.model,\
 	io.skysail.server.app.designer.exceptions,\
+	io.skysail.server.app.designer.fields.provider,\
+	io.skysail.server.app.designer.fields.resources,\
 	io.skysail.server.app.designer.fields.resources.date,\
+	io.skysail.server.app.designer.fields.resources.editors,\
 	io.skysail.server.app.designer.fields.resources.text,\
-	io.skysail.server.app.designer.fields.resources.textarea
+	io.skysail.server.app.designer.fields.resources.textarea,\
+	io.skysail.server.app.designer.fields.resources.url,\
+	io.skysail.server.app.designer.model,\
+	io.skysail.server.app.designer.relations,\
+	io.skysail.server.app.designer.relations.resources
 Export-Package: \
 	io.skysail.server.app.designer.repo,\
 	io.skysail.server.app.designer.application,\

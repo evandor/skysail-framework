@@ -4,15 +4,23 @@ import java.util.*;
 import java.util.Map.Entry;
 
 import org.osgi.framework.Bundle;
+<<<<<<< Updated upstream
 import org.osgi.service.component.ComponentContext;
 import org.osgi.service.component.annotations.*;
+=======
+import org.osgi.service.component.annotations.Component;
+>>>>>>> Stashed changes
 import org.stringtemplate.v4.ST;
 
 import io.skysail.server.app.designer.STGroupBundleDir;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
+<<<<<<< Updated upstream
 @Component(immediate = true, service = TemplateProvider.class)
+=======
+@Component(immediate = true)
+>>>>>>> Stashed changes
 public class TemplateProvider {
 
     private Bundle bundle;

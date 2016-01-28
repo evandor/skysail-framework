@@ -15,16 +15,8 @@ import io.skysail.server.restlet.resources.PostEntityServerResource;
 
 public class PostApplicationResource extends PostEntityServerResource<DbApplication> {
 
-    private DesignerApplication app;
-
     public PostApplicationResource() {
         addToContext(ResourceContextId.LINK_TITLE, "Create new DbApplication");
-    }
-
-    @Override
-    protected void doInit() {
-        super.doInit();
-        app = (DesignerApplication) getApplication();
     }
 
     @Override
@@ -34,6 +26,7 @@ public class PostApplicationResource extends PostEntityServerResource<DbApplicat
 
     @Override
     public void addEntity(DbApplication entity) {
+        DesignerApplication app = (DesignerApplication) getApplication();
         app.invalidateMenuCache();
         Subject subject = SecurityUtils.getSubject();
         entity.setOwner(subject.getPrincipal().toString());

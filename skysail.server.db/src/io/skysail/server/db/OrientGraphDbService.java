@@ -355,7 +355,7 @@ public class OrientGraphDbService extends AbstractOrientDbService implements DbS
             return;
         }
         try {
-            log.info("about to start db");
+            log.debug("about to start db");
             createDbIfNeeded();
 
             OPartitionedDatabasePool opDatabasePool = new OPartitionedDatabasePool(getDbUrl(), getDbUsername(),
@@ -363,7 +363,7 @@ public class OrientGraphDbService extends AbstractOrientDbService implements DbS
             ODatabaseDocumentTx oDatabaseDocumentTx = opDatabasePool.acquire();
             OObjectDatabaseTx db = new OObjectDatabaseTx(oDatabaseDocumentTx);
 
-            log.info("setting lazy loading to false");
+            log.debug("setting lazy loading to false");
             db.setLazyLoading(false);
             started = true;
             if (getDbUrl().startsWith("memory:")) {
@@ -385,13 +385,13 @@ public class OrientGraphDbService extends AbstractOrientDbService implements DbS
     private void createDbIfNeeded() {
         String dbUrl = getDbUrl();
         if (dbUrl.startsWith("remote")) {
-            log.info("registering remote engine");
+            log.debug("registering remote engine");
             Orient.instance().registerEngine(new OEngineRemote());
         } else if (dbUrl.startsWith("plocal")) {
 
             OrientGraph graph = new OrientGraph(dbUrl, getDbUsername(), getDbPassword());
             try {
-                log.info("testing graph factory connection");
+                log.debug("testing graph factory connection");
             } catch (Exception e) {
                 log.error(e.getMessage(), e);
             } finally {
@@ -399,12 +399,12 @@ public class OrientGraphDbService extends AbstractOrientDbService implements DbS
             }
         } else if (dbUrl.startsWith("memory:")) {
             ODatabase<?> create = new OObjectDatabaseTx(dbUrl).create();
-            log.info("created new in-memory database {}", create.toString());
+            log.debug("created new in-memory database {}", create.toString());
 
             final OrientGraphFactory factory = new OrientGraphFactory(dbUrl, getDbUsername(), getDbPassword())
                     .setupPool(1, 10);
             try {
-                log.info("testing graph factory connection");
+                log.debug("testing graph factory connection");
                 factory.getTx();
             } catch (Exception e) {
                 log.error(e.getMessage(), e);

@@ -31,10 +31,10 @@ logback.configurationFile.path = config/common
 	skysail.server.app.designer;version=latest,\
 	skysail.server.app.todos;version=latest,\
 	skysail.server.app.checklist;version=latest,\
-	skysail.server.app.notes;version=latest,\
+    skysail.server.app.notes;version=latest,\
+    skysail.server.app.facebookClient;version=latest,\
 	skysail.server.uikit.webresource;version=latest,\
 	skysail.server.app.twitter4j;version=latest
-
 
 ########################################################################################
 ### --- Pool (currently not used)  ------------------------------------------------- ###

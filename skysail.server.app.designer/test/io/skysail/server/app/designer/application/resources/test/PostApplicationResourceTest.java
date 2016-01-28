@@ -1,16 +1,21 @@
 package io.skysail.server.app.designer.application.resources.test;
 
-import static org.hamcrest.CoreMatchers.*;
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
 import org.junit.Test;
-import org.restlet.data.*;
+import org.restlet.data.Form;
+import org.restlet.data.MediaType;
+import org.restlet.data.Status;
 import org.restlet.engine.resource.VariantInfo;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import io.skysail.api.responses.*;
+import io.skysail.api.responses.ConstraintViolationsResponse;
+import io.skysail.api.responses.SkysailResponse;
 import io.skysail.server.app.designer.application.DbApplication;
+import io.skysail.server.testsupport.FormBuilder;
 
 public class PostApplicationResourceTest extends AbstractApplicationResourceTest {
 
@@ -18,7 +23,7 @@ public class PostApplicationResourceTest extends AbstractApplicationResourceTest
 
     @Test
     public void empty_form_data_yields_validation_failure() {
-        ConstraintViolationsResponse<?> post = (ConstraintViolationsResponse<?>) postApplicationResource.post(form,
+        ConstraintViolationsResponse<?> post = (ConstraintViolationsResponse<?>) postApplicationResource.post(new Form(),
                 HTML_VARIANT);
         assertValidationFailure(postApplicationResource, post);
     }
@@ -32,12 +37,13 @@ public class PostApplicationResourceTest extends AbstractApplicationResourceTest
 
     @Test
     public void valid_form_data_yields_new_entity() {
-        form.add("name", "TestApp");
-        form.add("projectName", "TestProject");
-        form.add("packageName", "io.skysail.testpackage");
-        form.add("path", "../");
+        Form aForm = new FormBuilder().add("name", "TestApp")
+            .add("projectName", "TestProject")
+            .add("packageName", "io.skysail.testpackage")
+            .add("path", "../")
+            .build();
 
-        SkysailResponse<DbApplication> result = postApplicationResource.post(form, HTML_VARIANT);
+        SkysailResponse<DbApplication> result = postApplicationResource.post(aForm, HTML_VARIANT);
         assertListResult(postApplicationResource, result, 
                 DbApplication.builder().name("TestApp").projectName("TestProject").packageName("io.skysail.testpackage").path("../").build(),
                 Status.REDIRECTION_SEE_OTHER);

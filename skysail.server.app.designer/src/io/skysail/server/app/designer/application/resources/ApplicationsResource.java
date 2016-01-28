@@ -10,22 +10,14 @@ import io.skysail.server.restlet.resources.ListServerResource;
 
 public class ApplicationsResource extends ListServerResource<DbApplication> {
 
-    private DesignerApplication app;
-
     public ApplicationsResource() {
         super(ApplicationResource.class);
         addToContext(ResourceContextId.LINK_TITLE, "list Applications");
     }
 
     @Override
-    protected void doInit() {
-        super.doInit();
-        app = (DesignerApplication) getApplication();
-        getResourceContext().addAjaxNavigation("ajax", "Applications:", ApplicationsResource.class, ApplicationResource.class, "id");
-    }
-
-    @Override
     public List<DbApplication> getEntity() {
+        DesignerApplication app = (DesignerApplication) getApplication();
         List<DbApplication> apps = app.getRepository().findAll(DbApplication.class);
         apps.stream().forEach(dbApp -> {
             ApplicationStatus status = app.getAppStatus().get(dbApp.getId().replace("#",""));

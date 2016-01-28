@@ -1,12 +1,15 @@
 package io.skysail.server.app.designer;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.stream.Collectors;
 
 import org.osgi.framework.Bundle;
 
 import io.skysail.domain.core.EntityModel;
-import io.skysail.server.app.designer.codegen.*;
+import io.skysail.server.app.designer.codegen.CompiledCode;
+import io.skysail.server.app.designer.codegen.JavaCompiler;
+import io.skysail.server.app.designer.codegen.SkysailRepositoryCompiler;
 import io.skysail.server.app.designer.codegen.templates.TemplateProvider;
 import io.skysail.server.app.designer.model.DesignerApplicationModel;
 import lombok.val;

@@ -114,7 +114,7 @@ public abstract class ListServerResource<T extends Identifiable> extends Skysail
     public ListServerResponse<T> getEntities(Variant variant) {
         Set<PerformanceTimer> perfTimer = getApplication().startPerformanceMonitoring(
                 this.getClass().getSimpleName() + ":getEntities");
-        log.info("Request entry point: {} @Get('html|json|yaml|xml|csv|timeline|standalone|text/prs.skysail-uikit') with variant {}", this.getClass().getSimpleName(),
+        log.debug("Request entry point: {} @Get('html|json|yaml|xml|csv|timeline|standalone|text/prs.skysail-uikit') with variant {}", this.getClass().getSimpleName(),
                 variant);
         List<T> response = listEntities();
         getApplication().stopPerformanceMonitoring(perfTimer);

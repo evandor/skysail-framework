@@ -4,18 +4,27 @@ import java.util.HashMap;
 
 import org.apache.shiro.subject.SimplePrincipalMap;
 import org.junit.Before;
-import org.mockito.*;
+import org.mockito.Mockito;
+import org.mockito.Spy;
 import org.restlet.Context;
 
 import io.skysail.api.responses.SkysailResponse;
 import io.skysail.server.app.designer.DesignerApplication;
 import io.skysail.server.app.designer.application.DbApplication;
-import io.skysail.server.app.designer.application.resources.*;
+import io.skysail.server.app.designer.application.resources.ApplicationResource;
+import io.skysail.server.app.designer.application.resources.ApplicationsResource;
+import io.skysail.server.app.designer.application.resources.PostApplicationResource;
+import io.skysail.server.app.designer.application.resources.PutApplicationResource;
 import io.skysail.server.app.designer.application.validation.UniqueNameValidator;
 import io.skysail.server.app.designer.entities.DbEntity;
-import io.skysail.server.app.designer.entities.resources.*;
-import io.skysail.server.app.designer.fields.resources.*;
-import io.skysail.server.app.designer.fields.resources.text.*;
+import io.skysail.server.app.designer.entities.resources.EntitiesResource;
+import io.skysail.server.app.designer.entities.resources.EntityResource;
+import io.skysail.server.app.designer.entities.resources.PostEntityResource;
+import io.skysail.server.app.designer.entities.resources.PutEntityResource;
+import io.skysail.server.app.designer.fields.resources.FieldResource;
+import io.skysail.server.app.designer.fields.resources.FieldsResource;
+import io.skysail.server.app.designer.fields.resources.text.PostTextFieldResource;
+import io.skysail.server.app.designer.fields.resources.text.PutTextFieldResource;
 import io.skysail.server.app.designer.repo.DesignerRepository;
 import io.skysail.server.restlet.resources.SkysailServerResource;
 import io.skysail.server.testsupport.ResourceTestBase;
@@ -120,11 +129,6 @@ public abstract class AbstractDesignerResourceTest extends ResourceTestBase {
     protected DbApplication createValidApplication() {
         DbApplication app = DbApplication.builder().name("app_name_" + randomString())
                 .packageName("app_packageName_" + randomString()).path("../").projectName("projectName").build();
-        // DbApplication app = new DbApplication();
-        // app.setName("application_" + randomString());
-        // app.setPackageName("package");
-        // app.setPath("../");
-        // app.setProjectName("projectName");
         SkysailResponse<DbApplication> post = postApplicationResource.post(app, JSON_VARIANT);
         getAttributes().clear();
 

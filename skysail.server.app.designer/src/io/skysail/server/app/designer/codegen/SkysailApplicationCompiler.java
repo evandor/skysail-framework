@@ -1,8 +1,11 @@
 package io.skysail.server.app.designer.codegen;
 
 import java.io.IOException;
-import java.nio.file.*;
-import java.util.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.stream.Collectors;
 
 import org.osgi.framework.Bundle;
@@ -11,7 +14,8 @@ import org.stringtemplate.v4.ST;
 import io.skysail.server.app.designer.STGroupBundleDir;
 import io.skysail.server.app.designer.codegen.templates.TemplateProvider;
 import io.skysail.server.app.designer.codegen.writer.ProjectFileWriter;
-import io.skysail.server.app.designer.model.*;
+import io.skysail.server.app.designer.model.DesignerApplicationModel;
+import io.skysail.server.app.designer.model.RouteModel;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -29,7 +33,7 @@ public class SkysailApplicationCompiler extends SkysailCompiler {
     }
 
     public List<CompiledCode> createApplication(List<RouteModel> routeModels) {
-        ST template = templateProvider.templateFor("application");
+        ST template =  templateProvider.templateFor("application.stg");
         List<CompiledCode> compiledCode = setupApplicationForCompilation(template, applicationModel, routeModels);
 
         ST dsTemplate = templateProvider.templateFor("OSGI-INF/applicationXml");

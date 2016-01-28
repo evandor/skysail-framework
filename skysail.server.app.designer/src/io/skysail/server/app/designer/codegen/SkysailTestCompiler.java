@@ -1,14 +1,17 @@
 package io.skysail.server.app.designer.codegen;
 
-import java.nio.file.*;
-import java.util.*;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.osgi.framework.Bundle;
 import org.stringtemplate.v4.ST;
 
 import io.skysail.server.app.designer.STGroupBundleDir;
 import io.skysail.server.app.designer.codegen.templates.TemplateProvider;
-import io.skysail.server.app.designer.model.*;
+import io.skysail.server.app.designer.model.DesignerApplicationModel;
+import io.skysail.server.app.designer.model.RouteModel;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -56,5 +59,4 @@ public class SkysailTestCompiler extends SkysailCompiler {
 
         return result;
     }
-
 }

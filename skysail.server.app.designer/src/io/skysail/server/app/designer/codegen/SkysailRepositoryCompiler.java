@@ -10,7 +10,8 @@ import io.skysail.domain.core.EntityModel;
 import io.skysail.server.app.designer.STGroupBundleDir;
 import io.skysail.server.app.designer.codegen.templates.TemplateProvider;
 import io.skysail.server.app.designer.codegen.writer.ProjectFileWriter;
-import io.skysail.server.app.designer.model.*;
+import io.skysail.server.app.designer.model.DesignerApplicationModel;
+import io.skysail.server.app.designer.model.DesignerEntityModel;
 
 public class SkysailRepositoryCompiler extends SkysailCompiler {
 

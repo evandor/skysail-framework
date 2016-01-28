@@ -1,10 +1,17 @@
 package io.skysail.server.app.designer;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
-import io.skysail.server.app.designer.codegen.*;
+import io.skysail.server.app.designer.codegen.CompiledCode;
+import io.skysail.server.app.designer.codegen.JavaCompiler;
+import io.skysail.server.app.designer.codegen.SkysailEntityCompiler;
 import io.skysail.server.app.designer.codegen.templates.TemplateProvider;
-import io.skysail.server.app.designer.model.*;
+import io.skysail.server.app.designer.model.DesignerApplicationModel;
+import io.skysail.server.app.designer.model.DesignerEntityModel;
+import io.skysail.server.app.designer.model.RouteModel;
 import lombok.Getter;
 
 public class EntitiesCreator {

@@ -10,7 +10,8 @@ import io.skysail.server.app.designer.application.DbApplication;
 import io.skysail.server.app.designer.codegen.resources.PostCompilationResource;
 import io.skysail.server.app.designer.entities.resources.EntitiesResource;
 import io.skysail.server.app.designer.repo.DesignerRepository;
-import io.skysail.server.restlet.resources.*;
+import io.skysail.server.restlet.resources.EntityServerResource;
+import io.skysail.server.restlet.resources.SkysailServerResource;
 
 public class ApplicationResource extends EntityServerResource<DbApplication> {
 
@@ -31,13 +32,7 @@ public class ApplicationResource extends EntityServerResource<DbApplication> {
     }
 
     @Override
-    public String getId() {
-        return id;
-    }
-
-    @Override
     public SkysailResponse<?> eraseEntity() {
-       // app.invalidateMenuCache();
         repo.delete(DbApplication.class, id);
         return new SkysailResponse<>();
     }

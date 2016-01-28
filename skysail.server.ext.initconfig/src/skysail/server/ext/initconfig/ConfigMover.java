@@ -1,18 +1,21 @@
 package skysail.server.ext.initconfig;
 
-import io.skysail.server.utils.BundleUtils;
-
 import java.io.IOException;
-import java.nio.file.*;
+import java.nio.file.FileAlreadyExistsException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.*;
 import java.util.stream.Collectors;
-
-import lombok.extern.slf4j.Slf4j;
 
 import org.osgi.framework.Bundle;
 import org.osgi.service.component.ComponentContext;
 
-import aQute.bnd.annotation.component.*;
+import aQute.bnd.annotation.component.Activate;
+import aQute.bnd.annotation.component.Component;
+import aQute.bnd.annotation.component.ConfigurationPolicy;
+import io.skysail.server.utils.BundleUtils;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * The ConfigMover, if included in a skysail installation, will try to copy the
@@ -38,7 +41,7 @@ public class ConfigMover {
 
     private void copyConfigurationFromProductJar(ComponentContext context) {
         String productBundleName = System.getProperty(PRODUCT_BUNDLE_IDENTIFIER);
-        log.info("determined product bundle to be '{}'", productBundleName);
+        log.debug("determined product bundle to be '{}'", productBundleName);
         Optional<Bundle> productBundle = Arrays.stream(context.getBundleContext().getBundles())
                 .filter(b -> b.getSymbolicName()
                 .equals(productBundleName))
@@ -59,16 +62,16 @@ public class ConfigMover {
         for (String fromPath : fromPaths) {
             Enumeration<String> entryPaths = bundle.getEntryPaths(fromPath);
             if (entryPaths == null) {
-                log.info("no configuration found in bundle {}", bundle.getSymbolicName());
+                log.debug("no configuration found in bundle {}", bundle.getSymbolicName());
                 return;
             }
             Path copyToPath = Paths.get("./" + fromPath);
             try {
-                log.info("will try to create directory '{}' if it not exists", copyToPath.toAbsolutePath().toString());
+                log.debug("will try to create directory '{}' if it not exists", copyToPath.toAbsolutePath().toString());
                 Files.createDirectories(copyToPath);
                 handleConfigFiles(bundle, entryPaths);
             } catch (FileAlreadyExistsException faee) {
-                log.info("file '{}' already exists, no config files will be copied", copyToPath.toAbsolutePath().toString());
+                log.debug("file '{}' already exists, no config files will be copied", copyToPath.toAbsolutePath().toString());
             } catch (IOException e1) {
                 log.error(e1.getMessage(), e1);
             }
@@ -81,7 +84,7 @@ public class ConfigMover {
         if (configPathSources == null) {
             return Collections.emptyList();
         }
-        log.info("checking directories '{}' in bundle {} for configurations", configPathSources.toString(), bundle.getSymbolicName());
+        log.debug("checking directories '{}' in bundle {} for configurations", configPathSources.toString(), bundle.getSymbolicName());
         return Arrays.stream(configPathSources.split(",")).map(String::trim).collect(Collectors.toList());
     }
 
@@ -102,7 +105,7 @@ public class ConfigMover {
         if (Files.exists(targetFilePath)) {
             log.debug("not copying '{}', as it already exists in {}", sourceFileName, targetFilePath.toString());
         } else {
-            log.info("about to copy configuration from product bundle to '{}'", targetFilePath.toString());
+            log.debug("about to copy configuration from product bundle to '{}'", targetFilePath.toString());
             Files.write(targetFilePath, content.getBytes());
         }
     }

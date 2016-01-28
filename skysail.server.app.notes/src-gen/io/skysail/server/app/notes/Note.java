@@ -53,6 +53,19 @@ public class Note implements Identifiable {
         return this.title;
     }
 
+    @Field(inputType = InputType.DATE, htmlPolicy = HtmlPolicy.NO_HTML)
+    @PostView(visibility = Visibility.HIDE)
+    @PutView(visibility = Visibility.HIDE)
+    private String modified;
+
+    public void setModified(String value) {
+        this.modified = value;
+    }
+
+    public String getModified() {
+        return this.modified;
+    }
+
 
     // --- relations ---
 

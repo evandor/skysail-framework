@@ -9,6 +9,7 @@ import org.osgi.framework.Bundle;
 import org.stringtemplate.v4.ST;
 
 import io.skysail.server.app.designer.STGroupBundleDir;
+import io.skysail.server.app.designer.codegen.templates.TemplateProvider;
 import io.skysail.server.app.designer.codegen.writer.ProjectFileWriter;
 import io.skysail.server.app.designer.model.*;
 import lombok.extern.slf4j.Slf4j;
@@ -18,20 +19,20 @@ public class SkysailApplicationCompiler extends SkysailCompiler {
 
     private String applicationClassName;
     private Bundle bundle;
+    private TemplateProvider templateProvider;
 
     public SkysailApplicationCompiler(DesignerApplicationModel applicationModel, STGroupBundleDir stGroup,
-            Bundle bundle, JavaCompiler compiler) {
+            Bundle bundle, JavaCompiler compiler, TemplateProvider templateProvider) {
         super(applicationModel, stGroup, compiler);
         this.bundle = bundle;
+        this.templateProvider = templateProvider;
     }
 
     public List<CompiledCode> createApplication(List<RouteModel> routeModels) {
-        ST template = getStringTemplateIndex("application");
+        ST template = templateProvider.templateFor("application");
         List<CompiledCode> compiledCode = setupApplicationForCompilation(template, applicationModel, routeModels);
 
-        STGroupBundleDir stGroupBundleDir = new STGroupBundleDir(bundle, "/code/OSGI-INF");
-        ST dsTemplate = getStringTemplateIndex(stGroupBundleDir, "applicationXml");
-        dsTemplate.add("model", applicationModel);
+        ST dsTemplate = templateProvider.templateFor("OSGI-INF/applicationXml");
         String xml = dsTemplate.render();
         ProjectFileWriter.save(applicationModel, "bundle/OSGI-INF",
                 applicationModel.getPackageName() + "." + applicationModel.getName() + "Application.xml",
@@ -52,7 +53,7 @@ public class SkysailApplicationCompiler extends SkysailCompiler {
 
         Path path = Paths.get(applicationClassNameInSourceFolder);
         if (!path.toFile().exists()) {
-            ST applicationExtendedtemplate = getStringTemplateIndex("applicationExtended");
+            ST applicationExtendedtemplate = templateProvider.templateFor("applicationExtended");
             result.add(
                     setupExtendedApplicationForCompilation(applicationExtendedtemplate, applicationModel, routeModels));
         } else {

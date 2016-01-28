@@ -8,6 +8,7 @@ import org.stringtemplate.v4.ST;
 
 import io.skysail.domain.core.EntityModel;
 import io.skysail.server.app.designer.STGroupBundleDir;
+import io.skysail.server.app.designer.codegen.templates.TemplateProvider;
 import io.skysail.server.app.designer.codegen.writer.ProjectFileWriter;
 import io.skysail.server.app.designer.model.*;
 
@@ -15,21 +16,21 @@ public class SkysailRepositoryCompiler extends SkysailCompiler {
 
     private EntityModel entityModel;
     private Bundle bundle;
+    private TemplateProvider templateProvider;
 
     public SkysailRepositoryCompiler(DesignerApplicationModel applicationModel, EntityModel entityModel,
-            STGroupBundleDir stGroup, JavaCompiler compiler, Bundle bundle) {
+            STGroupBundleDir stGroup, JavaCompiler compiler, Bundle bundle, TemplateProvider templateProvider) {
         super(applicationModel, stGroup, compiler);
         this.entityModel = entityModel;
         this.bundle = bundle;
+        this.templateProvider = templateProvider;
     }
 
     public CompiledCode createRepository() {
-        ST template = getStringTemplateIndex("repository");
+        ST template = templateProvider.templateFor("repository");
         CompiledCode compiledCode = setupForCompilation(template, applicationModel);
 
-        STGroupBundleDir stGroupBundleDir = new STGroupBundleDir(bundle, "/code/OSGI-INF");
-        ST dsTemplate = getStringTemplateIndex(stGroupBundleDir, "repositoryXml");
-        dsTemplate.add("appModel", applicationModel);
+        ST dsTemplate = templateProvider.templateFor("OSGI-INF/repositoryXml");
         dsTemplate.add("entityModel", entityModel);
         String xml = dsTemplate.render();
         ProjectFileWriter.save(applicationModel, "bundle/OSGI-INF",

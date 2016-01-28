@@ -1,7 +1,7 @@
-repositoryXml(appModel, entityModel) ::= <<
+repositoryXml(application, entityModel) ::= <<
 <?xml version="1.0" encoding="UTF-8"?>
-<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" name="$appModel.packageName$.$entityModel.simpleName$Repository" immediate="true" activate="activate">
-  <implementation class="$appModel.packageName$.$entityModel.simpleName$Repository"/>
+<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" name="$application.packageName$.$entityModel.simpleName$Repository" immediate="true" activate="activate">
+  <implementation class="$application.packageName$.$entityModel.simpleName$Repository"/>
   <service>
     <provide interface="io.skysail.domain.core.repos.DbRepository"/>
   </service>

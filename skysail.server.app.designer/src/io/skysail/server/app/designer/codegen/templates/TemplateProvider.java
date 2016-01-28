@@ -1,30 +1,37 @@
 package io.skysail.server.app.designer.codegen.templates;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 import java.util.Map.Entry;
 
 import org.osgi.framework.Bundle;
+import org.osgi.service.component.ComponentContext;
+import org.osgi.service.component.annotations.*;
 import org.stringtemplate.v4.ST;
 
 import io.skysail.server.app.designer.STGroupBundleDir;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
+@Component(immediate = true, service = TemplateProvider.class)
 public class TemplateProvider {
 
     private Bundle bundle;
-    
     private Map<String, STGroupBundleDir> stGroups = new HashMap<>();
-
     private Map<String, Object> defaultSubstitutions = new HashMap<>();
 
-    public TemplateProvider(Bundle bundle) {
-        this.bundle = bundle;
-        addBundleDir(bundle, "/code");
+    @Activate
+    public void activate(ComponentContext context) {
+        bundle = context.getBundleContext().getBundle();
+        addBundleDir("/code");
     }
 
-    private STGroupBundleDir addBundleDir(Bundle bundle, String key) {
+    @Deactivate
+    public void deactivate(ComponentContext context) {
+        bundle = null;
+        stGroups = new HashMap<>();
+    }
+
+    private STGroupBundleDir addBundleDir(String key) {
         return stGroups.put(key, new STGroupBundleDir(bundle, key));
     }
 
@@ -35,7 +42,7 @@ public class TemplateProvider {
         ST template;
         if (stGroupBundleDir == null) {
             log.info("template not found, adding path '{}' and trying again", bundleDir);
-            addBundleDir(bundle, bundleDir);
+            addBundleDir(bundleDir);
             stGroupBundleDir = stGroups.get(bundleDir);
             template = stGroupBundleDir.getInstanceOf(normalizedPath.getTemplateName());
         } else {

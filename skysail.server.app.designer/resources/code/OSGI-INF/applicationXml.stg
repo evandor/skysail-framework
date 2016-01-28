@@ -1,7 +1,7 @@
-applicationXml(model) ::= <<
+applicationXml(application) ::= <<
 <?xml version="1.0" encoding="UTF-8"?>
-<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" name="$model.packageName$.$model.name$Application" immediate="true">
-  <implementation class="$model.packageName$.$model.name$Application"/>
+<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" name="$application.packageName$.$application.name$Application" immediate="true">
+  <implementation class="$application.packageName$.$application.name$Application"/>
   <service>
     <provide interface="de.twenty11.skysail.server.app.ApplicationProvider"/>
     <provide interface="io.skysail.server.menus.MenuItemProvider"/>

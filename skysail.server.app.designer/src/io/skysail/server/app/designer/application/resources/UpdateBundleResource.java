@@ -26,7 +26,7 @@ public class UpdateBundleResource extends PostEntityServerResource<Empty> {
 
     @Override
     public void addEntity(Empty entity) {
-        app.updateBundle();
+        //app.updateBundle();
     }
 
     @Override

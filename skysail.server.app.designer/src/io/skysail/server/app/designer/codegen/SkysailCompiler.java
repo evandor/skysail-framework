@@ -4,7 +4,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 import org.osgi.framework.BundleContext;
-import org.stringtemplate.v4.*;
+import org.stringtemplate.v4.STGroupDir;
 
 import io.skysail.server.app.designer.STGroupBundleDir;
 import io.skysail.server.app.designer.codegen.writer.ProjectFileWriter;
@@ -75,17 +75,17 @@ public class SkysailCompiler {
         }
     }
     
-    protected ST getStringTemplateIndex(String root) {
-        ST javafile = stGroupDir.getInstanceOf(root);
-        javafile.add("application", applicationModel);
-        return javafile;
-    }
-    
-    protected ST getStringTemplateIndex(STGroupBundleDir stgroup, String root) {
-        ST javafile = stgroup.getInstanceOf(root);
-        //javafile.add("application", applicationModel);
-        return javafile;
-    }
+//    protected ST getStringTemplateIndex(String root) {
+//        ST javafile = stGroupDir.getInstanceOf(root);
+//        javafile.add("application", applicationModel);
+//        return javafile;
+//    }
+//    
+//    protected ST getStringTemplateIndex(STGroupBundleDir stgroup, String root) {
+//        ST javafile = stgroup.getInstanceOf(root);
+//        //javafile.add("application", applicationModel);
+//        return javafile;
+//    }
   
  
 

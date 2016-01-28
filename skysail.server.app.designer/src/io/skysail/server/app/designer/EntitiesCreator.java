@@ -1,16 +1,10 @@
 package io.skysail.server.app.designer;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
-import io.skysail.server.app.designer.codegen.CompiledCode;
-import io.skysail.server.app.designer.codegen.JavaCompiler;
-import io.skysail.server.app.designer.codegen.SkysailEntityCompiler;
-import io.skysail.server.app.designer.model.DesignerApplicationModel;
-import io.skysail.server.app.designer.model.DesignerEntityModel;
-import io.skysail.server.app.designer.model.RouteModel;
+import io.skysail.server.app.designer.codegen.*;
+import io.skysail.server.app.designer.codegen.templates.TemplateProvider;
+import io.skysail.server.app.designer.model.*;
 import lombok.Getter;
 
 public class EntitiesCreator {
@@ -24,9 +18,12 @@ public class EntitiesCreator {
     @Getter
     private Map<String, CompiledCode> code = new HashMap<>();
 
-    public EntitiesCreator(DesignerApplicationModel applicationModel, JavaCompiler compiler) {
+    private TemplateProvider templateProvider;
+
+    public EntitiesCreator(DesignerApplicationModel applicationModel, JavaCompiler compiler, TemplateProvider templateProvider) {
         this.applicationModel = applicationModel;
         this.compiler = compiler;
+        this.templateProvider = templateProvider;
     }
 
     public List<RouteModel> create(STGroupBundleDir stGroup) {
@@ -39,7 +36,7 @@ public class EntitiesCreator {
     }
 
     private List<RouteModel> compileEntity(DesignerEntityModel entityModel, STGroupBundleDir stGroup, JavaCompiler compiler) {
-        SkysailEntityCompiler entityCompiler = new SkysailEntityCompiler(applicationModel, stGroup, compiler);
+        SkysailEntityCompiler entityCompiler = new SkysailEntityCompiler(applicationModel, stGroup, compiler, templateProvider);
         CompiledCode compiledCode = entityCompiler.createEntity(entityModel);
         code.put(compiledCode.getClassName(), compiledCode);
         code.putAll(entityCompiler.createResources(entityModel));

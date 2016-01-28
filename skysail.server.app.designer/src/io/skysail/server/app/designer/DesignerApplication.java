@@ -2,10 +2,8 @@ package io.skysail.server.app.designer;
 
 
 import java.util.*;
-import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
-import org.osgi.framework.*;
 import org.osgi.service.component.annotations.*;
 import org.osgi.service.event.EventAdmin;
 
@@ -52,6 +50,9 @@ public class DesignerApplication extends SkysailApplication implements MenuItemP
 
     @Getter
     private static Map<String, ApplicationStatus> appStatus = new HashMap<>();
+    
+    @Reference
+    private ApplicationCreator applicationCreator;
 
     public DesignerApplication() {
         super(APP_NAME);
@@ -161,8 +162,7 @@ public class DesignerApplication extends SkysailApplication implements MenuItemP
         if (!optionalDbApp.isPresent()) {
             return false;
         }
-        ApplicationCreator applicationCreator = new ApplicationCreator(optionalDbApp.get(), getBundle());
-        return applicationCreator.createApplication();
+        return applicationCreator.createApplication(optionalDbApp.get());
     }
 
     private List<MenuItem> addDesignerAppMenuItems() {
@@ -183,25 +183,6 @@ public class DesignerApplication extends SkysailApplication implements MenuItemP
 
     public DbApplication getApplication(String id) {
         return getRepository().getById(DbApplication.class, id);
-    }
-
-    public void updateBundle() {
-        Runnable command = new Runnable() {
-
-            @Override
-            public void run() {
-                try {
-                    Bundle bundle = getBundle();
-                    log.info("about to update bundle {} [{}]", bundle.getSymbolicName(), bundle.getVersion().toString());
-                    bundle.update();
-                    log.info("successfully updated bundle {} [{}]", bundle.getSymbolicName(), bundle.getVersion().toString());
-                } catch (BundleException e) {
-                    log.error(e.getMessage(), e);
-                }
-
-            }
-        };
-        getTaskService().schedule(command, 1, TimeUnit.SECONDS);
     }
 
     public List<TreeRepresentation> getTreeRepresentation(DbApplication dbApplication) {

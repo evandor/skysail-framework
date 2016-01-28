@@ -1,4 +1,4 @@
-bnd(packagename)::=<<
+bnd(application, packagename)::=<<
 
 Bundle-Version: 0.1.0.\${tstamp}
 

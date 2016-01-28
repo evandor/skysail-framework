@@ -7,10 +7,13 @@ import java.util.jar.JarOutputStream;
 import java.util.stream.Collectors;
 
 import org.osgi.framework.Bundle;
+import org.osgi.service.component.ComponentContext;
+import org.osgi.service.component.annotations.*;
 import org.stringtemplate.v4.ST;
 
 import io.skysail.server.app.designer.*;
 import io.skysail.server.app.designer.application.DbApplication;
+import io.skysail.server.app.designer.codegen.templates.TemplateProvider;
 import io.skysail.server.app.designer.codegen.writer.*;
 import io.skysail.server.app.designer.model.*;
 import io.skysail.server.utils.*;
@@ -30,12 +33,14 @@ import lombok.extern.slf4j.Slf4j;
  *
  */
 @Slf4j
+@Component(immediate = true, service = ApplicationCreator.class)
+@NoArgsConstructor
 public class ApplicationCreator {
 
     private static final String BUNLDE_DIR_NAME = "bundle";
     
     @Getter
-    private final DesignerApplicationModel applicationModel;
+    private DesignerApplicationModel applicationModel;
     
     @Setter
     private BundleResourceReader bundleResourceReader = new DefaultBundleResourceReader();
@@ -43,18 +48,24 @@ public class ApplicationCreator {
     @Setter
     private JavaCompiler javaCompiler = new DefaultJavaCompiler();
     
-    private final Bundle bundle;
-    private final STGroupBundleDir stGroup;
-
+    private Bundle bundle;
     private SkysailApplicationCompiler skysailApplicationCompiler;
     private EntitiesCreator entitiesCreator;
     private List<CompiledCode> compiledApplicationCode;
     private List<CompiledCode> repositoriesCode;
 
-    public ApplicationCreator(DbApplication application, Bundle bundle) {
-        this.bundle = bundle;
-        this.applicationModel = new DesignerApplicationModel(application);
-        stGroup = new STGroupBundleDir(bundle, "/code");
+    @Reference
+    private TemplateProvider templateProvider;
+
+    @Activate
+    public void activate(ComponentContext componentContext) {
+        bundle = componentContext.getBundleContext().getBundle();
+    }
+    
+    @Deactivate
+    public void deactivate() {
+        templateProvider = null;
+        bundle = null;
     }
 
     /**
@@ -64,7 +75,9 @@ public class ApplicationCreator {
      * successful, a new bundle jar is created from the class files (and
      * additional files).
      */
-    public boolean createApplication() {
+    public boolean createApplication(DbApplication application) {
+        this.applicationModel = new DesignerApplicationModel(application);
+        templateProvider.add("application", applicationModel);
         try {
             createProjectStructure();
             if (!createCode()) {
@@ -84,17 +97,17 @@ public class ApplicationCreator {
     private boolean createCode() {
         javaCompiler.reset();
 
-        entitiesCreator = new EntitiesCreator(applicationModel, javaCompiler);
-        List<RouteModel> routeModels = entitiesCreator.create(stGroup);
+        entitiesCreator = new EntitiesCreator(applicationModel, javaCompiler, templateProvider);
+        List<RouteModel> routeModels = entitiesCreator.create(null);
 
-        repositoriesCode = new RepositoryCreator(applicationModel, javaCompiler, bundle).create(stGroup);
+        repositoriesCode = new RepositoryCreator(applicationModel, javaCompiler, bundle, templateProvider).create(null);
         
         createPackageInfoFile(repositoriesCode);
         
         ProjectFileWriter.save(applicationModel, BUNLDE_DIR_NAME, "translations/messages.properties", "\n".getBytes());
         ProjectFileWriter.save(applicationModel, BUNLDE_DIR_NAME, "templates/.gitignore", "\n".getBytes());
         
-        skysailApplicationCompiler = new SkysailApplicationCompiler(applicationModel, stGroup, bundle, javaCompiler);
+        skysailApplicationCompiler = new SkysailApplicationCompiler(applicationModel, null, bundle, javaCompiler, templateProvider);
         compiledApplicationCode = skysailApplicationCompiler.createApplication(routeModels);
         
         //SkysailTestCompiler skysailTestCompiler = new SkysailTestCompiler(applicationModel, stGroup, bundle, javaCompiler);
@@ -171,13 +184,13 @@ public class ApplicationCreator {
     }
 
     private void createEclipseArtifacts(String root) throws IOException {
-        ST project = getStringTemplateIndex("project");
+        ST project = templateProvider.templateFor("project");
         project.add("projectname", applicationModel.getProjectName());
         Path dotProjectFilePath = Paths.get(root + "/.project");
         log.info("creating file '{}'", dotProjectFilePath.toAbsolutePath());
         Files.write(dotProjectFilePath, project.render().getBytes());
 
-        ST classpath = getStringTemplateIndex("classpath");
+        ST classpath = templateProvider.templateFor("classpath");
         Files.write(Paths.get(root + "/.classpath"), classpath.render().getBytes());
     }
     
@@ -187,13 +200,13 @@ public class ApplicationCreator {
             log.debug("did not create file '{}' as it already exists", bndPath.toString());
             return;
         }
-        ST bnd = getStringTemplateIndex("bnd");
+        ST bnd = templateProvider.templateFor("bnd");
         bnd.add("packagename", applicationModel.getPackageName());
         Files.write(bndPath, bnd.render().getBytes());
     }
 
     private void createBndrunFile(String root) throws IOException {
-        ST bndrun = getStringTemplateIndex("bndrun");
+        ST bndrun = templateProvider.templateFor("bndrun");
         bndrun.add("name", applicationModel.getName());
         bndrun.add("projectName", applicationModel.getProjectName());
         Files.write(Paths.get(root + "/test.bndrun"), bndrun.render().getBytes());
@@ -212,9 +225,5 @@ public class ApplicationCreator {
             log.error(e.getMessage(), e);
         }
     }
-
-    private ST getStringTemplateIndex(String root) {
-        return stGroup.getInstanceOf(root);
-    }
-
+   
 }

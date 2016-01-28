@@ -1,26 +1,21 @@
 package io.skysail.server.app.designer.codegen.templates;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Map.Entry;
 
 import org.osgi.framework.Bundle;
-<<<<<<< Updated upstream
 import org.osgi.service.component.ComponentContext;
-import org.osgi.service.component.annotations.*;
-=======
+import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
->>>>>>> Stashed changes
+import org.osgi.service.component.annotations.Deactivate;
 import org.stringtemplate.v4.ST;
 
 import io.skysail.server.app.designer.STGroupBundleDir;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-<<<<<<< Updated upstream
 @Component(immediate = true, service = TemplateProvider.class)
-=======
-@Component(immediate = true)
->>>>>>> Stashed changes
 public class TemplateProvider {
 
     private Bundle bundle;
@@ -55,7 +50,7 @@ public class TemplateProvider {
             template = stGroupBundleDir.getInstanceOf(normalizedPath.getTemplateName());
         } else {
             template = stGroupBundleDir.getInstanceOf(normalizedPath.getTemplateName());
-            
+
         }
         for (Entry<String, Object> entry : defaultSubstitutions.entrySet()) {
             template.add(entry.getKey(), entry.getValue());
@@ -67,6 +62,5 @@ public class TemplateProvider {
         defaultSubstitutions.put(key, value);
         return this;
     }
-
 
 }

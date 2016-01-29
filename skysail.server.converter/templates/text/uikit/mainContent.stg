@@ -1,6 +1,6 @@
 mainContent(user, converter, messages, model) ::= <<
 
-<div class="uk-panel"">
+<div class="uk-panel">
     $contentHeader(converter, messages, model)$
 </div>
 

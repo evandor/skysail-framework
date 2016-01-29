@@ -86,7 +86,7 @@ public abstract class SkysailApplication extends RamlApplication implements Appl
     public static final MediaType SKYSAIL_TIMELINE_MEDIATYPE = MediaType.register("timeline", "vis.js timeline representation");
     public static final MediaType SKYSAIL_STANDLONE_APP_MEDIATYPE = MediaType.register("standalone", "standalone application representation");
 
-    public static final MediaType SKYSAIL_UIKIT_MEDIATYPE = MediaType.register("text/prs.skysail-uikit", "default uikit representation");
+    //public static final MediaType SKYSAIL_UIKIT_MEDIATYPE = MediaType.register("text/prs.skysail-uikit", "default uikit representation");
     
     protected static volatile ServiceListProvider serviceListProvider;
 
@@ -258,7 +258,7 @@ public abstract class SkysailApplication extends RamlApplication implements Appl
         getMetadataService().addExtension("mailto", SKYSAIL_MAILTO_MEDIATYPE);
         getMetadataService().addExtension("timeline", SKYSAIL_TIMELINE_MEDIATYPE);
         getMetadataService().addExtension("standalone", SKYSAIL_STANDLONE_APP_MEDIATYPE);
-        getMetadataService().addExtension("text/prs.skysail-uikit", SKYSAIL_UIKIT_MEDIATYPE);
+        //getMetadataService().addExtension("text/prs.skysail-uikit", SKYSAIL_UIKIT_MEDIATYPE);
 
         // see
         // http://nexnet.wordpress.com/2010/09/29/clap-protocol-in-restlet-and-osgi/

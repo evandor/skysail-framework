@@ -29,7 +29,7 @@ public class TemplateProvider {
     }
 
     @Deactivate
-    public void deactivate(ComponentContext context) {
+    public void deactivate(ComponentContext context) { // NOSONAR
         bundle = null;
         stGroups = new HashMap<>();
     }

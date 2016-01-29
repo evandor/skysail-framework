@@ -7,6 +7,7 @@ import io.skysail.server.app.designer.fields.resources.PostFieldResource;
 public class PostTextFieldResource extends PostFieldResource<DbEntityTextField> {
 
     public PostTextFieldResource() {
+        super(PostTextFieldResource.class);
         addToContext(ResourceContextId.LINK_TITLE, "new Text Field");
     }
 

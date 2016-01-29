@@ -108,13 +108,13 @@ public abstract class ListServerResource<T extends Identifiable> extends Skysail
      *
      * @return the list of entities in html, csv or treeform format
      */
-    @Get("html|json|yaml|xml|csv|timeline|standalone|text/prs.skysail-uikit")
+    @Get("html|json|yaml|xml|csv|timeline|standalone")
     // treeform, csv:broken http://stackoverflow.com/questions/24569318/writing-multi-line-csv-with-jacksonrepresentation
     // https://github.com/restlet/restlet-framework-java/issues/928
     public ListServerResponse<T> getEntities(Variant variant) {
         Set<PerformanceTimer> perfTimer = getApplication().startPerformanceMonitoring(
                 this.getClass().getSimpleName() + ":getEntities");
-        log.debug("Request entry point: {} @Get('html|json|yaml|xml|csv|timeline|standalone|text/prs.skysail-uikit') with variant {}", this.getClass().getSimpleName(),
+        log.debug("Request entry point: {} @Get('html|json|yaml|xml|csv|timeline|standalone') with variant {}", this.getClass().getSimpleName(),
                 variant);
         List<T> response = listEntities();
         getApplication().stopPerformanceMonitoring(perfTimer);

@@ -15,6 +15,7 @@ index(user, messages, converter, model) ::= <<
     $trix()$
     $jquery()$
     $bootstrap()$
+    $polymer()$
     $select2(model.formfields)$
     $animate()$
     $jstree()$

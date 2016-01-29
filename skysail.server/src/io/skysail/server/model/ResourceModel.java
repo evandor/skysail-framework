@@ -277,13 +277,16 @@ public class ResourceModel<R extends SkysailServerResource<T>, T> {
             page = Integer.parseInt(pageAsString);
         }
         
-        if (theme.getVariant().equals(Theme.Variant.HTML)) {
+        switch (theme.getVariant()) {
+        case HTML:
             return getBootstrapPagination(pages, page);
-        } else if (theme.getVariant().equals(Theme.Variant.UIKIT)) {
+        case UIKIT:
             return getUiKitPagination(pages, page);
+        case PURECSS:
+            return getPurecssPagination(pages, page);
+        default:
+            return "";
         }
-
-        return "";
     }
 
     private static String getBootstrapPagination(int pages, int page) {
@@ -312,6 +315,10 @@ public class ResourceModel<R extends SkysailServerResource<T>, T> {
     }
 
     private static String getUiKitPagination(int pages, int page) {
+        return "<ul class='uk-pagination' data-uk-pagination='{pages:"+pages+", currentPage:"+page+"}'></ul>";
+    }
+
+    private static String getPurecssPagination(int pages, int page) {
         return "<ul class='uk-pagination' data-uk-pagination='{pages:"+pages+", currentPage:"+page+"}'></ul>";
     }
 

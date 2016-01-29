@@ -30,11 +30,6 @@ public class $entity.simpleName$sResource extends ListServerResource<$entity.id$
         repository = ($entity.simpleName$Repository) app.getRepository($entity.id$.class);
     }
     
-    /*@Override
-    public Set<String> getRestrictedToMediaTypes() {
-        return super.getRestrictedToMediaTypes("text/prs.skysail-uikit");
-    }*/
-
     @Override
     public List<$entity.id$> getEntity() {
         Filter filter = new Filter(getRequest());

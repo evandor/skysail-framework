@@ -1,0 +1,44 @@
+mainContent(user, converter, messages, model) ::= <<
+
+<div>
+    $contentHeader(converter, messages, model)$
+</div>
+
+<div>
+      $if(model.form)$
+        <div>
+          <br>
+          $showForm(model.formfields, messages, model)$
+        </div>
+        <div>
+          <br>
+          $renderEntityInfo(model.formfields, messages, model)$
+        </div>
+      $elseif(model.list)$
+        <div>
+          <br>
+          $renderTable(converter, messages, model)$
+        </div>
+      $else$
+        <div>
+          <br>
+          $renderEntity(user, model)$
+        </div>
+        $endif$
+</div>
+
+<div>
+    $model.resourceLinks:{ link | $linkAsButton(link, i)$ }; separator="&nbsp;"$
+</div>
+
+
+<div class="uk-panel">
+            <p id="resourceDescription"></p>
+
+</div>
+>>
+
+
+linkAsButton(link, cnt) ::= <<
+  <a href='$link.uri$'>$link.title$</a>
+>>

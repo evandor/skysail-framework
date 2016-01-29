@@ -16,7 +16,7 @@ public class Theme {
     }
 
     public enum Variant {
-        HTML, SPA, JQUERYMOBILE, UIKIT
+        HTML, SPA, JQUERYMOBILE, UIKIT, PURECSS
     }
 
     public enum Option {

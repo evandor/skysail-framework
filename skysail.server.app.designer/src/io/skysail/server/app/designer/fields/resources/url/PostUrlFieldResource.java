@@ -7,6 +7,7 @@ import io.skysail.server.app.designer.fields.resources.PostFieldResource;
 public class PostUrlFieldResource extends PostFieldResource<DbEntityUrlField> {
 
     public PostUrlFieldResource() {
+        super(PostUrlFieldResource.class);
         addToContext(ResourceContextId.LINK_TITLE, "new URL");
     }
 

@@ -1,6 +1,9 @@
 package io.skysail.server.app.designer.fields.resources;
 
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import de.twenty11.skysail.server.core.restlet.ResourceContextId;
 import io.skysail.server.app.designer.DesignerApplication;
@@ -8,9 +11,12 @@ import io.skysail.server.app.designer.application.DbApplication;
 import io.skysail.server.app.designer.application.resources.ApplicationsResource;
 import io.skysail.server.app.designer.entities.DbEntity;
 import io.skysail.server.app.designer.fields.DbEntityField;
+import io.skysail.server.app.designer.fields.FieldRole;
 import io.skysail.server.app.designer.repo.DesignerRepository;
 import io.skysail.server.forms.Tab;
-import io.skysail.server.restlet.resources.*;
+import io.skysail.server.restlet.resources.PostEntityServerResource;
+import io.skysail.server.restlet.resources.TreeRepresentation;
+import lombok.Getter;
 
 /**
  * see DesignerRepository
@@ -20,9 +26,17 @@ public abstract class PostFieldResource<T extends DbEntityField> extends PostEnt
 
     private DesignerApplication app;
     private DesignerRepository repo;
+    
+    @Getter
+    private static Set<Class<? extends PostFieldResource<?>>> extendingClasses = new HashSet<>();
 
-    public PostFieldResource() {
+    @Getter
+    private List<FieldRole> fieldRoles;
+
+    public PostFieldResource(Class<? extends PostFieldResource<?>> cls, FieldRole... fieldRoles) {
+        this.fieldRoles = Arrays.asList(fieldRoles);
         addToContext(ResourceContextId.LINK_TITLE, "create new DbEntityField");
+        extendingClasses.add(cls);
     }
 
     @Override
@@ -53,7 +67,7 @@ public abstract class PostFieldResource<T extends DbEntityField> extends PostEnt
     @Override
     public List<Tab> getTabs() {
         int i = 1;
-        return super.getTabs(new Tab("newField","new Field",i++), new Tab("visibility","Visibility",i++), new Tab("optional","optional",i++));
+        return super.getTabs(new Tab("newField","new Field",i++), new Tab("visibility","Visibility",i++), new Tab("special","special Role",i++), new Tab("optional","optional",i++));
     }
 
 }

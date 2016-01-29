@@ -35,6 +35,7 @@ logback.configurationFile.path = config/common
     skysail.server.app.facebookClient;version=latest,\
 	skysail.server.uikit.webresource;version=latest,\
 	skysail.server.purecss.webresource;version=latest,\
+    skysail.server.w2ui.webresource;version=latest,\
 	skysail.server.app.twitter4j;version=latest
 
 ########################################################################################

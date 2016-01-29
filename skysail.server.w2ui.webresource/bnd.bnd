@@ -1,18 +1,18 @@
 #
-# yahoo purecss
+# vitmalina w2ui
 #
 
-base.version  = 0.6.0
-name = /yahoo/purecss
+base.version  = 1.4.3
+name = /vitmalina/w2ui
 
 path = static/${name}/${base.version}
 
 Bundle-Description:     \
-   A set of small, responsive CSS modules that you can use in every web project.
+   New JavaScript UI Library.
     
-Bundle-Vendor:          Yahoo! (bundled by skysail)
-Bundle-License          https://github.com/yahoo/pure-site/blob/master/LICENSE.md
-Bundle-Copyright:       Copyright (c) Yahoo!
+Bundle-Vendor:          vitmalina (bundled by skysail)
+Bundle-License          http://en.wikipedia.org/wiki/MIT_License
+Bundle-Copyright:       Copyright (c) vitmalina!
 Provide-Capability:     \
     osgi.enroute.webresource; \
         osgi.enroute.webresource=${name}; \
@@ -29,10 +29,10 @@ Service-Component: *
     org.restlet.ext.raml;version=${restlet.version},\
     lombok;version=1.16
 
--includeresource: ${path}=${base.version}, LICENSE.md
+-includeresource: ${path}=${base.version}
 
 -runrequires:  \
-    osgi.identity;filter:='(osgi.identity=skysail.server.purecss.webresource)'
+    osgi.identity;filter:='(osgi.identity=skysail.server.w2ui.webresource)'
 -runbundles:  \
-    skysail.server.purecss.webresource;version=latest
-Export-Package: io.skysail.server.purecss.webresource
+    skysail.server.w2ui.webresource;version=latest
+Export-Package: io.skysail.server.w2ui.webresource

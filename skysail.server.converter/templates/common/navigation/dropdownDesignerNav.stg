@@ -12,5 +12,6 @@ dropdownDesignerNav(services) ::= <<
 designerMenuItem(item) ::= <<
         <li><a onclick="openWindow('$item.link$?_theme=text/uikit','$item.name$')" href='#'><img src='$item.applicationImage$' width='16px' alt=''>&nbsp;$item.name$</a></li>
         <li><a onclick="openWindow('$item.link$?_theme=text/purecss','$item.name$')" href='#'><img src='$item.applicationImage$' width='16px' alt=''>&nbsp;$item.name$ (w/o JS)</a></li>
+        <li><a onclick="openWindow('$item.link$?_theme=text/w2ui','$item.name$')" href='#'><img src='$item.applicationImage$' width='16px' alt=''>&nbsp;$item.name$ (w2ui)</a></li>
         
 >>

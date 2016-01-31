@@ -30,7 +30,7 @@ public class DesignerEntityModel extends EntityModel {
     public DesignerEntityModel(DbEntity entityFromDb, String packageName) {
         super(packageName + "." + entityFromDb.getName());
         setAggregate(entityFromDb.isRootEntity());
-        setupModel(entityFromDb);
+        setupFieldModels(entityFromDb);
     }
 
     public void addReference(DbEntity referencedEntity) {
@@ -52,7 +52,7 @@ public class DesignerEntityModel extends EntityModel {
         this.referencedBy = Optional.of(entityModel);
     }
     
-    private void setupModel(DbEntity entityFromDb) {
+    private void setupFieldModels(DbEntity entityFromDb) {
         entityFromDb.getFields().stream().forEach(this::addField);
     }
 

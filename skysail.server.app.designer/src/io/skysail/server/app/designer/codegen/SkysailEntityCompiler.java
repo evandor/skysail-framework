@@ -1,17 +1,16 @@
 package io.skysail.server.app.designer.codegen;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import org.stringtemplate.v4.ST;
 
 import io.skysail.server.app.designer.STGroupBundleDir;
 import io.skysail.server.app.designer.codegen.templates.TemplateProvider;
+import io.skysail.server.app.designer.fields.FieldRole;
 import io.skysail.server.app.designer.model.DesignerApplicationModel;
 import io.skysail.server.app.designer.model.DesignerEntityModel;
+import io.skysail.server.app.designer.model.DesignerFieldModel;
 import io.skysail.server.app.designer.model.RouteModel;
 import lombok.Getter;
 
@@ -81,7 +80,7 @@ public class SkysailEntityCompiler extends SkysailCompiler {
 
     private void createPutResource(DesignerEntityModel entityModel, Map<String, CompiledCode> codes) {
         ST putResourceTemplate = templateProvider.templateFor("putResource");
-        CompiledCode compiledCode = setupPutResourceForCompilation(putResourceTemplate, applicationModel, entityModel);
+        CompiledCode compiledCode = setupPutResourceForCompilation(putResourceTemplate, entityModel);
         String putResourceClassName = compiledCode.getClassName();
         routes.add(new RouteModel("/" + entityModel.getId() + "s/{id}/", putResourceClassName));
         codes.put(putResourceClassName, compiledCode);
@@ -163,17 +162,25 @@ public class SkysailEntityCompiler extends SkysailCompiler {
         return collect(entityClassName, entityCode, BUILD_PATH_SOURCE);
     }
 
-    private CompiledCode setupPutResourceForCompilation(ST template, DesignerApplicationModel applicationModel,
-            DesignerEntityModel entityModel) {
+    private CompiledCode setupPutResourceForCompilation(ST template, DesignerEntityModel entityModel) {
         final String simpleClassName = "Put" + entityModel.getSimpleName() + "Resource";
         template.remove(ENTITY_IDENTIFIER);
         template.add(ENTITY_IDENTIFIER, entityModel);
         String updateEntityCode = entityModel.getId() + " original = getEntity();\n";
         updateEntityCode += "copyProperties(original,entity);\n";
+        
+        Optional<DesignerFieldModel> dfm = entityModel
+                .getFieldValues().stream()
+                .map(DesignerFieldModel.class::cast)
+                .filter(fieldModel -> fieldModel.getRole() != null)
+                .filter(fieldModel -> fieldModel.getRole().equals(FieldRole.MODIFIED_AT)).findFirst();
+        if (dfm.isPresent()) {
+            String methodName = dfm.get().getName().substring(0, 1).toUpperCase() + dfm.get().getName().substring(1);
+            updateEntityCode += "original.set"+methodName+"(new Date());\n";
+        }
+        
         template.add("updateEntity", updateEntityCode);
-        String entityCode = template.render();
-        String entityClassName = entityModel.getPackageName() + "." + simpleClassName;
-        return collect(entityClassName, entityCode, BUILD_PATH_SOURCE);
+        return collect(entityModel.getPackageName() + "." + simpleClassName, template.render(), BUILD_PATH_SOURCE);
     }
 
     private CompiledCode setupListResourceForCompilation(ST template, DesignerEntityModel entityModel) {

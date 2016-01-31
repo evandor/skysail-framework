@@ -6,13 +6,13 @@ $entity.fields.keys: { key|
 $listView(entity.fields.(key))$
 $postView(entity.fields.(key))$
 $putView(entity.fields.(key))$
-private String $key$;
+private $entity.fields.(key).type.simpleName$ $key$;
 
-public void $entity.fields.(key).setMethodName$(String value) {
+public void $entity.fields.(key).setMethodName$($entity.fields.(key).type.simpleName$ value) {
     this.$key$ = value;
 \}
 
-public String $entity.fields.(key).getMethodName$() {
+public $entity.fields.(key).type.simpleName$ $entity.fields.(key).getMethodName$() {
     return this.$key$;
 \}
 }$

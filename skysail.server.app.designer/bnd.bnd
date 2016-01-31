@@ -69,6 +69,7 @@ Import-Package: org.osgi.framework,\
 	javassist.util.proxy,\
 	*
 Private-Package: \
+	io.skysail.server.app.designer.fields.roles,\
 	io.skysail.server.app.designer.codegen.templates,\
 	io.skysail.server.app.designer.application.resources,\
 	io.skysail.server.app.designer.codegen.templates,\

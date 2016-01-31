@@ -4,7 +4,9 @@ import io.skysail.domain.core.EntityModel;
 import io.skysail.domain.core.FieldModel;
 import io.skysail.domain.html.HtmlPolicy;
 import io.skysail.domain.html.InputType;
+import io.skysail.server.app.designer.fields.DbEntityDateField;
 import io.skysail.server.app.designer.fields.DbEntityField;
+import io.skysail.server.app.designer.fields.FieldRole;
 import io.skysail.server.forms.Visibility;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -12,24 +14,28 @@ import lombok.ToString;
 
 @Getter
 @EqualsAndHashCode(of = "name")
-@ToString
+@ToString(of = {"name","role", "listViewVisibility", "postViewVisibility", "putViewVisibility"})
 public class DesignerFieldModel extends FieldModel {
 
     private final String name;
-    private Visibility listViewVisibility;
-    private Visibility postViewVisibility;
-    private Visibility putViewVisibility;
+    private final Visibility listViewVisibility;
+    private final Visibility postViewVisibility;
+    private final Visibility putViewVisibility;
+    private FieldRole role;
 
     private DesignerEntityModel entityModel;
 
-    public DesignerFieldModel(DesignerEntityModel entityModel, DbEntityField f) {
-        super(f.getName());
+    public DesignerFieldModel(DesignerEntityModel entityModel, DbEntityField dbField) {
+        super(dbField.getName(), dbField.getFieldType());
         this.entityModel = entityModel;
-        this.name = f.getName();
-        setInputType(f.getType());
-        listViewVisibility = Visibility.valueOf(f.getListViewVisibility());
-        postViewVisibility = Visibility.valueOf(f.getPostViewVisibility());
-        putViewVisibility = Visibility.valueOf(f.getPutViewVisibility());
+        this.name = dbField.getName();
+        setInputType(dbField.getType());
+        listViewVisibility = Visibility.valueOf(dbField.getListViewVisibility());
+        postViewVisibility = Visibility.valueOf(dbField.getPostViewVisibility());
+        putViewVisibility = Visibility.valueOf(dbField.getPutViewVisibility());
+        if (dbField instanceof DbEntityDateField) {
+            this.role = ((DbEntityDateField)dbField).getRole();
+        }
     }
     
     public String getGetMethodName() {

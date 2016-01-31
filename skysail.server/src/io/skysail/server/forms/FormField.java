@@ -1,21 +1,27 @@
 package io.skysail.server.forms;
 
-import java.lang.reflect.*;
 import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.*;
 
-import javax.validation.constraints.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import org.restlet.resource.Resource;
 
 import de.twenty11.skysail.server.core.restlet.MessagesUtils;
 import de.twenty11.skysail.server.um.domain.SkysailUser;
-import io.skysail.api.responses.*;
+import io.skysail.api.responses.ConstraintViolationDetails;
+import io.skysail.api.responses.ConstraintViolationsResponse;
+import io.skysail.api.responses.SkysailResponse;
 import io.skysail.domain.core.FieldModel;
 import io.skysail.domain.html.*;
 import io.skysail.server.forms.helper.CellRendererHelper;
 import io.skysail.server.restlet.resources.SkysailServerResource;
-import lombok.*;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -64,7 +70,7 @@ public class FormField extends io.skysail.domain.core.FieldModel {
 
 
     public FormField(Field field, SkysailServerResource<?> resource) {
-        super(field.getName());
+        super(field.getName(), String.class);
         //setName(field.getName());
         setType(field.getType());
         setInputType(getFromFieldAnnotation(field));
@@ -81,7 +87,7 @@ public class FormField extends io.skysail.domain.core.FieldModel {
     }
 
     public FormField(io.skysail.domain.core.FieldModel field, SkysailServerResource<?> theResource) {
-        super(field.getId());
+        super(field.getId(), String.class);
         //name = field.getId();
         setType(String.class);
         setInputType(null);//getFromFieldAnnotation(field);

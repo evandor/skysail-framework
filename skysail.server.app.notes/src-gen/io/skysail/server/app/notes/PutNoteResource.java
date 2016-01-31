@@ -22,6 +22,7 @@ public class PutNoteResource extends PutEntityServerResource<io.skysail.server.a
     public void updateEntity(Note  entity) {
         io.skysail.server.app.notes.Note original = getEntity();
         copyProperties(original,entity);
+        original.setModifiedAt(new Date());
 
         app.getRepository(io.skysail.server.app.notes.Note.class).update(original,app.getApplicationModel());
     }

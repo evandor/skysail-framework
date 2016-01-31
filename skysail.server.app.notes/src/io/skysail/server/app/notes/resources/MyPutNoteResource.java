@@ -1,5 +1,7 @@
 package io.skysail.server.app.notes.resources;
 
+import java.util.Date;
+
 import org.apache.commons.lang3.StringUtils;
 import org.jsoup.Jsoup;
 
@@ -20,6 +22,7 @@ public class MyPutNoteResource extends PutNoteResource {
         }
         String plainText = Jsoup.parse(content).text();
         original.setTitle(plainText.length() > NotesApplication.TITLE_MAX_LENGTH ? plainText.substring(0, NotesApplication.TITLE_MAX_LENGTH) + "..." : plainText);
+        original.setModifiedAt(new Date());
         app.getRepository(io.skysail.server.app.notes.Note.class).update(original,app.getApplicationModel());
     }
 

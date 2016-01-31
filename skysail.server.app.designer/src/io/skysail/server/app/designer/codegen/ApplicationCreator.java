@@ -34,8 +34,8 @@ import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * Creates a new skysail application project (and bundle) from an application model 
- * defined by an DbApplication object.
+ * Creates a new skysail application project (and OSGi bundle) from an application model 
+ * defined by an DbApplication entity.
  * 
  * The projects location (as everything else) is defined by the application model; the
  * project itself can be directly imported to an eclipse bndtools workspace.
@@ -85,8 +85,8 @@ public class ApplicationCreator {
      * creating a skysail application is done in a couple of steps: a project
      * structure is set up on disk, the java code is created in memory (and
      * stored to the project structure as java source files), and, if this was
-     * successful, a new bundle jar is created from the class files (and
-     * additional files).
+     * successful, a new bundle jar is created from the class (and additional)
+     * files.
      */
     public boolean createApplication(DbApplication application) {
         this.applicationModel = new DesignerApplicationModel(application);

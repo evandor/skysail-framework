@@ -2,8 +2,7 @@ package io.skysail.server.app.notes;
 
 import javax.persistence.Id;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 import io.skysail.domain.Identifiable;
 import io.skysail.domain.html.*;
@@ -54,16 +53,14 @@ public class Note implements Identifiable {
     }
 
     @Field(inputType = InputType.DATE, htmlPolicy = HtmlPolicy.NO_HTML)
-    @PostView(visibility = Visibility.HIDE)
-    @PutView(visibility = Visibility.HIDE)
-    private String modified;
+    private Date modifiedAt;
 
-    public void setModified(String value) {
-        this.modified = value;
+    public void setModifiedAt(Date value) {
+        this.modifiedAt = value;
     }
 
-    public String getModified() {
-        return this.modified;
+    public Date getModifiedAt() {
+        return this.modifiedAt;
     }
 
 

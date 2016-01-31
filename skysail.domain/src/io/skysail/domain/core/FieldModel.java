@@ -23,7 +23,7 @@ public class FieldModel {
     private boolean readonly;
 
     /** the fields (java) type, e.g. java.lang.String */
-    protected Class<?> type;
+    protected Class<?> type = String.class;
 
     /** text, textarea, radio, checkbox etc... */
     protected InputType inputType;
@@ -34,8 +34,9 @@ public class FieldModel {
      */
     private Integer truncateTo;
 
-    public FieldModel(String name) {
+    public FieldModel(String name, Class<?> cls) {
         this.id = name;
+        this.type = cls;
     }
 
     public String getInputType() {

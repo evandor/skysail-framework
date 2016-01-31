@@ -1,16 +1,25 @@
 package io.skysail.server.app;
 
 import java.text.DecimalFormat;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 import org.apache.commons.lang.Validate;
-import org.osgi.service.component.annotations.*;
 import org.osgi.service.component.annotations.Component;
-import org.restlet.*;
+import org.osgi.service.component.annotations.Reference;
+import org.osgi.service.component.annotations.ReferenceCardinality;
+import org.osgi.service.component.annotations.ReferencePolicy;
+import org.restlet.Application;
+import org.restlet.Server;
 import org.restlet.data.Protocol;
 
-import de.twenty11.skysail.server.*;
-import de.twenty11.skysail.server.app.*;
+import de.twenty11.skysail.server.SkysailComponent;
+import de.twenty11.skysail.server.SkysailStatusService;
+import de.twenty11.skysail.server.app.ApplicationListProvider;
+import de.twenty11.skysail.server.app.ApplicationProvider;
+import de.twenty11.skysail.server.app.ServiceListProvider;
+import de.twenty11.skysail.server.app.SkysailRootApplication;
 import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
 
@@ -42,9 +51,17 @@ public class ApplicationList implements ApplicationListProvider { // NO_UCD (unu
     public synchronized void addApplicationProvider(ApplicationProvider provider) {
         SkysailApplication application = getApplication(provider);
         application.setStatusService(new SkysailStatusService());
+        checkExistingApplications(application);
         applications.add(application);
         attachToComponent(application);
         log.info("(+ ApplicationModel) (#{}) with name '{}'", formatSize(applications), application.getName());
+    }
+
+    private void checkExistingApplications(SkysailApplication application) {
+        if (applications.stream().filter(a -> a.getName().equals(application.getName())).findAny().isPresent()) {
+            log.error("about to add application '{}' the second time!", application.getName());
+            throw new IllegalStateException("application was added a second time!");
+        }
     }
 
     public synchronized void removeApplicationProvider(ApplicationProvider provider) {
@@ -133,7 +150,7 @@ public class ApplicationList implements ApplicationListProvider { // NO_UCD (unu
         }
     }
 
-    private SkysailApplication getApplication(ApplicationProvider provider) {
+    private static SkysailApplication getApplication(ApplicationProvider provider) {
         SkysailApplication application = provider.getApplication();
         Validate.notNull(application, "application from applicationProvider may not be null");
         return application;

@@ -14,7 +14,6 @@ Private-Package:  \
 	skysail.server.app.designer;version=latest,\
 	skysail.server.app.dbviewer;version=latest,\
 	skysail.server.app.svgedit;version=latest,\
-	skysail.server.app.notes;version=latest,\
 	skysail.server.app.bookmarks;version=latest,\
 	skysail.server.static;version=${skysail.server.static.version},\
 	skysail.server.ext.sse;version=latest,\

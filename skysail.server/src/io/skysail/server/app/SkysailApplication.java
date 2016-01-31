@@ -350,6 +350,10 @@ public abstract class SkysailApplication extends RamlApplication implements Appl
     }
 
     public Map<String, RouteBuilder> getSkysailRoutes() {
+        if (router == null) {
+            log.error("router of application '{}' is null! - access the skysail server at least once with your browser", this.getName());
+            return Collections.emptyMap();
+        }
         return router.getRouteBuilders();
     }
 

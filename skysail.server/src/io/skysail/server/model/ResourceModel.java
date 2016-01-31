@@ -149,7 +149,7 @@ public class ResourceModel<R extends SkysailServerResource<T>, T> {
                         for (DynaProperty prop : dynaClass.getDynaProperties()) {
                             map.put(prop.getName(), bean.get(prop.getName()));
                             if (dynaFields.get(prop.getName()) == null) {
-                                dynaFields.put(prop.getName(), new FormField(new FieldModel(prop.getName()), theResource));
+                                dynaFields.put(prop.getName(), new FormField(new FieldModel(prop.getName(), String.class), theResource));
                             }
                         }
                         result.add(map);

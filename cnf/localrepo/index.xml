@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<repository increment="1453904421649" name="Local" xmlns="http://www.osgi.org/xmlns/repository/v1.0.0">
+<repository increment="1454224955000" name="Local" xmlns="http://www.osgi.org/xmlns/repository/v1.0.0">
   <resource>
     <capability namespace="osgi.identity">
       <attribute name="osgi.identity" value="bcprov"/>
@@ -3381,7 +3381,7 @@
     </requirement>
   </resource>
   <resource>
-    <!-- Error calling analyzer "org.osgi.service.indexer.impl.BundleAnalyzer" on resource C:/git/skysail-framework/cnf/localrepo/io.netty.buffer/io.netty.buffer-4.0.25.jar with message java.lang.IllegalArgumentException: invalid version "[1,)": non-numeric "[1,)" and stack: java.lang.IllegalArgumentException: invalid version "[1,)": non-numeric "[1,)"
+    <!-- Error calling analyzer "org.osgi.service.indexer.impl.BundleAnalyzer" on resource /Users/carsten/git/skysail-framework/cnf/localrepo/io.netty.buffer/io.netty.buffer-4.0.25.jar with message java.lang.IllegalArgumentException: invalid version "[1,)": non-numeric "[1,)" and stack: java.lang.IllegalArgumentException: invalid version "[1,)": non-numeric "[1,)"
 	at org.osgi.framework.Version.parseInt(Version.java:170)
 	at org.osgi.framework.Version.&lt;init&gt;(Version.java:126)
 	at org.osgi.service.indexer.impl.types.VersionRange.&lt;init&gt;(VersionRange.java:58)
@@ -3401,9 +3401,9 @@
 	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
 Caused by: java.lang.NumberFormatException: For input string: "[1,)"
-	at java.lang.NumberFormatException.forInputString(Unknown Source)
-	at java.lang.Integer.parseInt(Unknown Source)
-	at java.lang.Integer.parseInt(Unknown Source)
+	at java.lang.NumberFormatException.forInputString(NumberFormatException.java:65)
+	at java.lang.Integer.parseInt(Integer.java:580)
+	at java.lang.Integer.parseInt(Integer.java:615)
 	at org.osgi.framework.Version.parseInt(Version.java:168)
 	... 17 more
  -->
@@ -3447,7 +3447,7 @@ Caused by: java.lang.NumberFormatException: For input string: "[1,)"
     </requirement>
   </resource>
   <resource>
-    <!-- Error calling analyzer "org.osgi.service.indexer.impl.BundleAnalyzer" on resource C:/git/skysail-framework/cnf/localrepo/io.netty.common/io.netty.common-4.0.25.jar with message java.lang.IllegalArgumentException: invalid version "[1,)": non-numeric "[1,)" and stack: java.lang.IllegalArgumentException: invalid version "[1,)": non-numeric "[1,)"
+    <!-- Error calling analyzer "org.osgi.service.indexer.impl.BundleAnalyzer" on resource /Users/carsten/git/skysail-framework/cnf/localrepo/io.netty.common/io.netty.common-4.0.25.jar with message java.lang.IllegalArgumentException: invalid version "[1,)": non-numeric "[1,)" and stack: java.lang.IllegalArgumentException: invalid version "[1,)": non-numeric "[1,)"
 	at org.osgi.framework.Version.parseInt(Version.java:170)
 	at org.osgi.framework.Version.&lt;init&gt;(Version.java:126)
 	at org.osgi.service.indexer.impl.types.VersionRange.&lt;init&gt;(VersionRange.java:58)
@@ -3467,9 +3467,9 @@ Caused by: java.lang.NumberFormatException: For input string: "[1,)"
 	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
 Caused by: java.lang.NumberFormatException: For input string: "[1,)"
-	at java.lang.NumberFormatException.forInputString(Unknown Source)
-	at java.lang.Integer.parseInt(Unknown Source)
-	at java.lang.Integer.parseInt(Unknown Source)
+	at java.lang.NumberFormatException.forInputString(NumberFormatException.java:65)
+	at java.lang.Integer.parseInt(Integer.java:580)
+	at java.lang.Integer.parseInt(Integer.java:615)
 	at org.osgi.framework.Version.parseInt(Version.java:168)
 	... 17 more
  -->
@@ -3556,7 +3556,7 @@ Caused by: java.lang.NumberFormatException: For input string: "[1,)"
     </requirement>
   </resource>
   <resource>
-    <!-- Error calling analyzer "org.osgi.service.indexer.impl.BundleAnalyzer" on resource C:/git/skysail-framework/cnf/localrepo/io.netty.transport/io.netty.transport-4.0.25.jar with message java.lang.IllegalArgumentException: invalid version "[1,)": non-numeric "[1,)" and stack: java.lang.IllegalArgumentException: invalid version "[1,)": non-numeric "[1,)"
+    <!-- Error calling analyzer "org.osgi.service.indexer.impl.BundleAnalyzer" on resource /Users/carsten/git/skysail-framework/cnf/localrepo/io.netty.transport/io.netty.transport-4.0.25.jar with message java.lang.IllegalArgumentException: invalid version "[1,)": non-numeric "[1,)" and stack: java.lang.IllegalArgumentException: invalid version "[1,)": non-numeric "[1,)"
 	at org.osgi.framework.Version.parseInt(Version.java:170)
 	at org.osgi.framework.Version.&lt;init&gt;(Version.java:126)
 	at org.osgi.service.indexer.impl.types.VersionRange.&lt;init&gt;(VersionRange.java:58)
@@ -3576,9 +3576,9 @@ Caused by: java.lang.NumberFormatException: For input string: "[1,)"
 	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
 Caused by: java.lang.NumberFormatException: For input string: "[1,)"
-	at java.lang.NumberFormatException.forInputString(Unknown Source)
-	at java.lang.Integer.parseInt(Unknown Source)
-	at java.lang.Integer.parseInt(Unknown Source)
+	at java.lang.NumberFormatException.forInputString(NumberFormatException.java:65)
+	at java.lang.Integer.parseInt(Integer.java:580)
+	at java.lang.Integer.parseInt(Integer.java:615)
 	at org.osgi.framework.Version.parseInt(Version.java:168)
 	... 17 more
  -->
@@ -14737,6 +14737,136 @@ Caused by: java.lang.NumberFormatException: For input string: "[1,)"
     </requirement>
     <requirement namespace="osgi.wiring.package">
       <directive name="filter" value="(osgi.wiring.package=javax.net.ssl)"/>
+    </requirement>
+  </resource>
+  <resource>
+    <capability namespace="osgi.identity">
+      <attribute name="osgi.identity" value="org.apache.oltu.oauth2.client"/>
+      <attribute name="type" value="osgi.bundle"/>
+      <attribute name="version" type="Version" value="1.0.1"/>
+    </capability>
+    <capability namespace="osgi.content">
+      <attribute name="osgi.content" value="8838e5bea946c03a2103f68faa685cb7081ef6531bee762b4421e9ee7abcc476"/>
+      <attribute name="url" value="org.apache.oltu.oauth2.client/org.apache.oltu.oauth2.client-1.0.1.jar"/>
+      <attribute name="size" type="Long" value="76841"/>
+      <attribute name="mime" value="application/vnd.osgi.bundle"/>
+    </capability>
+    <capability namespace="osgi.wiring.bundle">
+      <attribute name="osgi.wiring.bundle" value="org.apache.oltu.oauth2.client"/>
+      <attribute name="bundle-version" type="Version" value="1.0.1"/>
+    </capability>
+    <capability namespace="osgi.wiring.host">
+      <attribute name="osgi.wiring.host" value="org.apache.oltu.oauth2.client"/>
+      <attribute name="bundle-version" type="Version" value="1.0.1"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.apache.oltu.oauth2.common.validators"/>
+      <attribute name="version" type="Version" value="1.0.1"/>
+      <attribute name="bundle-symbolic-name" value="org.apache.oltu.oauth2.client"/>
+      <attribute name="bundle-version" type="Version" value="1.0.1"/>
+      <directive name="uses" value="org.apache.oltu.oauth2.common.exception,org.apache.oltu.oauth2.common.utils,javax.servlet.http"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.apache.oltu.oauth2.client.validator"/>
+      <attribute name="version" type="Version" value="1.0.1"/>
+      <attribute name="bundle-symbolic-name" value="org.apache.oltu.oauth2.client"/>
+      <attribute name="bundle-version" type="Version" value="1.0.1"/>
+      <directive name="uses" value="org.apache.oltu.oauth2.common.exception,org.apache.oltu.oauth2.common.utils,org.apache.oltu.oauth2.client.response"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.apache.oltu.oauth2.common.token"/>
+      <attribute name="version" type="Version" value="1.0.1"/>
+      <attribute name="bundle-symbolic-name" value="org.apache.oltu.oauth2.client"/>
+      <attribute name="bundle-version" type="Version" value="1.0.1"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.apache.oltu.oauth2.client.request"/>
+      <attribute name="version" type="Version" value="1.0.1"/>
+      <attribute name="bundle-symbolic-name" value="org.apache.oltu.oauth2.client"/>
+      <attribute name="bundle-version" type="Version" value="1.0.1"/>
+      <directive name="uses" value="org.apache.oltu.oauth2.common.exception,org.apache.oltu.oauth2.common.parameters,org.apache.oltu.oauth2.common.utils,org.apache.oltu.oauth2.common.message,org.apache.oltu.oauth2.common.message.types,org.apache.oltu.oauth2.common"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.apache.oltu.oauth2.client"/>
+      <attribute name="version" type="Version" value="1.0.1"/>
+      <attribute name="bundle-symbolic-name" value="org.apache.oltu.oauth2.client"/>
+      <attribute name="bundle-version" type="Version" value="1.0.1"/>
+      <directive name="uses" value="org.apache.oltu.oauth2.common.exception,org.apache.oltu.oauth2.client.request,org.apache.oltu.oauth2.client.response,org.apache.oltu.oauth2.common.utils"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.apache.oltu.oauth2.common.domain.credentials"/>
+      <attribute name="version" type="Version" value="1.0.1"/>
+      <attribute name="bundle-symbolic-name" value="org.apache.oltu.oauth2.client"/>
+      <attribute name="bundle-version" type="Version" value="1.0.1"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.apache.oltu.oauth2.common.domain.client"/>
+      <attribute name="version" type="Version" value="1.0.1"/>
+      <attribute name="bundle-symbolic-name" value="org.apache.oltu.oauth2.client"/>
+      <attribute name="bundle-version" type="Version" value="1.0.1"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.apache.oltu.oauth2.common.message"/>
+      <attribute name="version" type="Version" value="1.0.1"/>
+      <attribute name="bundle-symbolic-name" value="org.apache.oltu.oauth2.client"/>
+      <attribute name="bundle-version" type="Version" value="1.0.1"/>
+      <directive name="uses" value="org.apache.oltu.oauth2.common.exception,org.apache.oltu.oauth2.common.parameters"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.apache.oltu.oauth2.common.error"/>
+      <attribute name="version" type="Version" value="1.0.1"/>
+      <attribute name="bundle-symbolic-name" value="org.apache.oltu.oauth2.client"/>
+      <attribute name="bundle-version" type="Version" value="1.0.1"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.apache.oltu.oauth2.client.response"/>
+      <attribute name="version" type="Version" value="1.0.1"/>
+      <attribute name="bundle-symbolic-name" value="org.apache.oltu.oauth2.client"/>
+      <attribute name="bundle-version" type="Version" value="1.0.1"/>
+      <directive name="uses" value="org.apache.oltu.oauth2.common.token,org.apache.oltu.oauth2.common.utils,org.apache.oltu.oauth2.common.exception,org.apache.oltu.oauth2.client.validator,javax.servlet.http"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.apache.oltu.oauth2.common.exception"/>
+      <attribute name="version" type="Version" value="1.0.1"/>
+      <attribute name="bundle-symbolic-name" value="org.apache.oltu.oauth2.client"/>
+      <attribute name="bundle-version" type="Version" value="1.0.1"/>
+      <directive name="uses" value="org.apache.oltu.oauth2.common.utils"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.apache.oltu.oauth2.common.parameters"/>
+      <attribute name="version" type="Version" value="1.0.1"/>
+      <attribute name="bundle-symbolic-name" value="org.apache.oltu.oauth2.client"/>
+      <attribute name="bundle-version" type="Version" value="1.0.1"/>
+      <directive name="uses" value="org.apache.oltu.oauth2.common.exception,org.apache.oltu.oauth2.common.utils,org.apache.oltu.oauth2.common.message"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.apache.oltu.oauth2.common.message.types"/>
+      <attribute name="version" type="Version" value="1.0.1"/>
+      <attribute name="bundle-symbolic-name" value="org.apache.oltu.oauth2.client"/>
+      <attribute name="bundle-version" type="Version" value="1.0.1"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.apache.oltu.oauth2.common"/>
+      <attribute name="version" type="Version" value="1.0.1"/>
+      <attribute name="bundle-symbolic-name" value="org.apache.oltu.oauth2.client"/>
+      <attribute name="bundle-version" type="Version" value="1.0.1"/>
+      <directive name="uses" value="org.apache.oltu.oauth2.common.message.types"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="org.apache.oltu.oauth2.common.utils"/>
+      <attribute name="version" type="Version" value="1.0.1"/>
+      <attribute name="bundle-symbolic-name" value="org.apache.oltu.oauth2.client"/>
+      <attribute name="bundle-version" type="Version" value="1.0.1"/>
+      <directive name="uses" value="org.json,org.apache.oltu.oauth2.common.exception,org.apache.commons.codec.binary,javax.servlet.http"/>
+    </capability>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=javax.servlet.http)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(&amp;(osgi.wiring.package=org.apache.commons.codec.binary)(version&gt;=1.9.0)(!(version&gt;=2.0.0)))"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.json)"/>
     </requirement>
   </resource>
   <resource>

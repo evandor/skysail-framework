@@ -4,7 +4,8 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.Matchers.containsString;
 import static org.junit.Assert.assertThat;
 
-import org.junit.*;
+import org.junit.Before;
+import org.junit.Test;
 
 import io.skysail.domain.core.FieldModel;
 import io.skysail.domain.html.InputType;
@@ -15,7 +16,7 @@ public class FieldModelTest {
 
     @Before
     public void setUp() {
-        fieldModel = new FieldModel("fieldModel");
+        fieldModel = new FieldModel("fieldModel", String.class);
     }
     
     @Test

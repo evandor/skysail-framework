@@ -54,6 +54,10 @@ public abstract class DbEntityField implements Identifiable, Nameable, Serializa
     @Field(inputType = InputType.CHECKBOX)
     @PostView(tab = "optional")
     protected Boolean mandatory;
+
+    public Class<?> getFieldType() {
+        return String.class;
+    }
     
 
 }

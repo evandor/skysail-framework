@@ -65,7 +65,7 @@ public class StringTemplateRenderer {
         resourceModel.setSearchService(searchService); // has to be set before menuItemProviders ;(
         resourceModel.setMenuItemProviders(menuProviders);
 
-        STGroupBundleDir stGroup = createSringTemplateGroup(resource, theme);
+        STGroupBundleDir stGroup = createSringTemplateGroup(resource, theme, target.getMediaType().getName());
 
         ST index = getStringTemplateIndex(resource, stGroup);
 
@@ -76,7 +76,7 @@ public class StringTemplateRenderer {
         return createRepresentation(index, stGroup);
     }
 
-    private STGroupBundleDir createSringTemplateGroup(Resource resource, Theme theme) {
+    private STGroupBundleDir createSringTemplateGroup(Resource resource, Theme theme, String mediaType) {
         SkysailApplication currentApplication = (SkysailApplication) resource.getApplication();
         Bundle appBundle = currentApplication.getBundle();
         if (appBundle == null) {
@@ -85,8 +85,7 @@ public class StringTemplateRenderer {
         URL templatesResource = appBundle.getResource("/templates");
         if (templatesResource != null) {
             STGroupBundleDir stGroup = new STGroupBundleDir(appBundle, resource, "/templates");
-            importTemplate("skysail.server.converter", resource, appBundle, "/templates", stGroup, theme);
-            //importTemplate("skysail.server.documentation", resource, appBundle, "/templates", stGroup, mediaType);
+            importTemplate("skysail.server.converter", resource, appBundle, "/templates", stGroup, theme, mediaType);
             return stGroup;
 
         } else {
@@ -194,7 +193,7 @@ public class StringTemplateRenderer {
     }
 
     private void importTemplate(String symbolicName, Resource resource, Bundle appBundle, String resourcePath,
-            STGroupBundleDir stGroup, Theme theme) {
+            STGroupBundleDir stGroup, Theme theme, String mediaType) {
         Optional<Bundle> theBundle = findBundle(appBundle, symbolicName);
         if (theBundle.isPresent()) {
             String mediaTypedResourcePath = (resourcePath + "/" + theme).replace("/*", "");

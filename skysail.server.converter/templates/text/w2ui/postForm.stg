@@ -1,0 +1,95 @@
+postForm(model, messages) ::= <<
+  <form action="$model.formTarget$" method="POST" class="form-horizontal" role="form" id="form" name="form">
+  $if(model.useTabs)$
+    <div>
+      <ul class="nav nav-tabs" role="tablist">
+        $model.tabs:{tab | $handleTabNav(model, tab,i)$}$
+      </ul>
+      <div class="tab-content">
+        <br>
+        $model.tabs:{tab | $handleTabContent(model, tab,i)$}$
+      </div>
+    </div>
+    $if (model.submitButtonNeeded)$
+      $submitPost("Submit","2","10",length(model.formfields))$
+    $endif$
+    
+  $else$
+    $handleField(first(model.data), first(model.formfields), messages,"1", " autofocus")$
+    $rest(model.formfields):{ field | $handleField(first(model.data), field, messages,i, "")$}$
+    $if (model.submitButtonNeeded)$
+      $submitPost("Submit","2","10",length(model.formfields))$
+    $endif$
+  $endif$
+  </form>
+>>
+
+handleTabNav(model,tab,i) ::= <<
+  <li role="presentation" $if(tab.active)$class="active"$endif$><a href="#tabId_$i$" aria-controls="tabId_$i$" role="tab" data-toggle="tab">$tab.label$</a></li>
+
+>>
+
+handleTabContent(model,tab,i) ::= <<
+  
+  <div role="tabpanel" class="tab-pane$if(tab.active)$ active$endif$" id="tabId_$i$">
+    $model.tabFields.(tab.identifier):{ field | $handleField(first(model.data), field, messages,i, "")$}$
+  </div>
+>>
+
+submitPost(label, o1,o2,tabindex) ::= <<
+    <button id="submit" name="submit" type="submit" class="uk-button uk-button-primary" value="submit" tabindex="$tabindex$">$label$</button>
+>>
+
+handleField(data, field, messages,i, autofocus) ::= <<
+    $if (field.violationMessage)$
+        $handleConstraintViolationField(data, field, messages,i,autofocus)$
+    $else$
+        $handleInputField(data, field, messages,i, autofocus)$
+    $endif$
+>>
+
+renderDescription(field,converter) ::= <<
+  $if(messages.(field.messageKey))$
+    <small class="help-block">$helpmessage(messages, field.messageKey)$ $editTextLink(field,converter)$</small>
+  $else$
+    $editTextLink(field,converter)$
+  $endif$
+>>
+
+renderDescription2(field,converter) ::= <<
+  $if(messages.(field.descriptionFromResource))$
+    &nbsp;
+    <span class="glyphicon glyphicon-question-sign text-muted" aria-hidden="true"
+        data-toggle="tooltip" data-placement="right" data-html="true" data-title="Info"
+        title="$helpmessage(messages, field.descriptionFromResource)$">
+    </span>
+  $endif$
+  $if(converter.edit)$
+      <a href='/i18n/v1/messages/$field.descriptionFromResource$/'><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>
+  $endif$
+>>
+
+editTextLink(field,converter) ::= <<
+  $if(converter.edit)$
+    <a href='/i18n/v1/messages/$model.classname$.$field.name$.desc/'><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>&nbsp;
+    <a href='/i18n/v1/messages/$model.classname$.$field.name$.placeholder/'><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>
+  $endif$
+>>
+
+label(prefix, formField) ::= <<
+      <label for='$prefix$$formField.name$' class='col-sm-2 control-label' style="text-align: left;">$helpmessage(messages, field.nameKey)$ $if(converter.edit)$<a href='/i18n/v1/messages/$source.entity.entity.class.name$.$field.name$/'><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>$endif$</label>
+>>
+
+helpmessage(messages, identifier) ::= <<$messages.(identifier).translated$>>
+
+options(option) ::= <<
+    <option value="$option.key$"$if(option.selected)$ selected$endif$>$option.value$</option>
+>>
+
+buttons(option, field) ::= <<
+    <input type="submit" name="$field.name$" class="btn $if(option.selected)$btn-info$else$btn-default$endif$" value="$option.value$">&nbsp;
+>>
+
+title(messages, ident) ::= <<
+    $helpmessage(messages, ident).translated$
+>>

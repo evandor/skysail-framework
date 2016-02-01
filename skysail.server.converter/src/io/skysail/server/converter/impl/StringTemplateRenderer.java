@@ -96,7 +96,7 @@ public class StringTemplateRenderer {
     }
 
     private ST getStringTemplateIndex(Resource resource, STGroupBundleDir stGroup) {
-        if (resource.getContext().getAttributes().containsKey(ResourceContextId.RENDERER_HINT.name())) {
+        if (resource.getContext() != null && resource.getContext().getAttributes().containsKey(ResourceContextId.RENDERER_HINT.name())) {
             String root = (String) resource.getContext().getAttributes().get(ResourceContextId.RENDERER_HINT.name());
             resource.getContext().getAttributes().remove(ResourceContextId.RENDERER_HINT.name());
             return stGroup.getInstanceOf(root);

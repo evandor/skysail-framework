@@ -46,4 +46,6 @@ Include-Resource: resources, templates=src;recursive:=true;filter:=*.st|*.stg
 
 
 Private-Package: \
-    io.skysail.server.ext.oauth2
+	io.skysail.server.ext.oauth2.configuration,\
+	io.skysail.server.ext.oauth2.impl
+Export-Package: io.skysail.server.ext.oauth2

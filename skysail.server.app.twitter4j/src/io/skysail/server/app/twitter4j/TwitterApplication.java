@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.oltu.oauth2.common.OAuthProviderType;
 import org.osgi.service.cm.ConfigurationException;
 import org.osgi.service.component.ComponentContext;
 import org.osgi.service.component.annotations.*;
@@ -13,9 +14,8 @@ import de.twenty11.skysail.server.app.ApplicationProvider;
 import de.twenty11.skysail.server.core.restlet.ApplicationContextId;
 import de.twenty11.skysail.server.core.restlet.RouteBuilder;
 import io.skysail.server.app.SkysailApplication;
-import io.skysail.server.app.twitter4j.resources.TimelineEntityResource;
-import io.skysail.server.app.twitter4j.resources.TimelineResource;
-import io.skysail.server.app.twitter4j.resources.Tweet2TodoResource;
+import io.skysail.server.app.twitter4j.resources.*;
+import io.skysail.server.ext.oauth2.OAuth2Proxy;
 import io.skysail.server.menus.MenuItem;
 import io.skysail.server.menus.MenuItemProvider;
 import lombok.Getter;
@@ -32,6 +32,9 @@ public class TwitterApplication extends SkysailApplication implements Applicatio
     @Reference(cardinality = ReferenceCardinality.OPTIONAL)
     @Getter
     private volatile EventAdmin eventAdmin;
+    
+    @Reference
+    private OAuth2Proxy oAuth2Proxy;
 
     public TwitterApplication() {
         super(APP_NAME);
@@ -55,6 +58,9 @@ public class TwitterApplication extends SkysailApplication implements Applicatio
         router.attach(new RouteBuilder("", TimelineResource.class));
         router.attach(new RouteBuilder("/tweet", TimelineEntityResource.class));
         router.attach(new RouteBuilder("/tweets/{id}", Tweet2TodoResource.class));
+        
+        router.attach(new RouteBuilder("/facebook", oAuth2Proxy.createProxy(OAuthProviderType.FACEBOOK, "facebook", FacebookMeServerResource.class)));
+        router.attach(new RouteBuilder("/github", oAuth2Proxy.createProxy(OAuthProviderType.GITHUB, "github", GithubUserResource.class)));
     }
 
     @Override

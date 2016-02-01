@@ -1,4 +1,4 @@
-package io.skysail.server.ext.oauth2;
+package io.skysail.server.ext.oauth2.impl;
 
 import io.skysail.domain.Identifiable;
 

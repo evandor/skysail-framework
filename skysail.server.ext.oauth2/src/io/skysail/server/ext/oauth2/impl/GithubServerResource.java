@@ -1,4 +1,4 @@
-package io.skysail.server.ext.oauth2;
+package io.skysail.server.ext.oauth2.impl;
 
 import java.io.IOException;
 
@@ -11,7 +11,10 @@ import org.restlet.resource.Get;
 import org.restlet.resource.ResourceException;
 import org.restlet.resource.ServerResource;
 
-public class FacebookMeServerResource extends ServerResource {
+import io.skysail.server.ext.oauth2.ProtectedClientResource;
+import io.skysail.server.ext.oauth2.Token;
+
+public class GithubServerResource extends ServerResource {
     @Get
     public Representation getMe() {
        System.out.println("Hier");

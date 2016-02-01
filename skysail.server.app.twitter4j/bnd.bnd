@@ -1,32 +1,35 @@
 Bundle-Version: 0.1.0.${tstamp}
 Bundle-ClassPath: .,lib/twitter4j-core-4.0.3.jar
--buildpath:  \
+-buildpath: \
 	lib/twitter4j-core-4.0.3.jar;version=file,\
 	osgi.core;version=${osgi.version},\
 	osgi.cmpn;version=${osgi.version},\
 	skysail.api;version=${skysail.api.version},\
-    skysail.api.search;version=${skysail.api.search.version},\
-    skysail.api.text;version=${skysail.api.text.version},\
-    skysail.domain;version=${skysail.domain.version},\
+	skysail.api.search;version=${skysail.api.search.version},\
+	skysail.api.text;version=${skysail.api.text.version},\
+	skysail.domain;version=${skysail.domain.version},\
 	skysail.server;version=${skysail.server.version},\
+	skysail.server.ext.oauth2;version=latest,\
 	com.springsource.org.junit;version=4.11,\
 	org.restlet;version=${restlet.version},\
 	org.restlet.ext.raml;version=${restlet.version},\
-    org.restlet.ext.json;version=${restlet.version},\
-    de.twentyeleven.skysail.org.json-osgi;version=latest,\
+	org.restlet.ext.json;version=${restlet.version},\
+	de.twentyeleven.skysail.org.json-osgi;version=latest,\
 	javax.validation.api;version=1.1,\
 	slf4j.api;version=1.7,\
 	org.apache.commons.beanutils;version=1.9,\
 	lombok;version=1.16,\
 	ch.qos.logback.core;version=1.1,\
-	ch.qos.logback.classic;version=1.1
+	ch.qos.logback.classic;version=1.1,\
+	org.apache.oltu.oauth2.client;version=1.0
 Service-Component:  \
 	*
 Bundle-Name: SKYSAIL :: server :: app :: twitter4j
 Include-Resource: lib=lib,resources, templates=src;recursive:=true;filter:=*.st|*.stg
-Private-Package:  \
+Private-Package: \
 	io.skysail.server.app.twitter4j,\
-	io.skysail.server.app.twitter4j.resources
+	io.skysail.server.app.twitter4j.resources,\
+	io.skysail.server.app.twitter4j.util
 Import-Package:  \
 	!org.apache.log4j,\
 	*

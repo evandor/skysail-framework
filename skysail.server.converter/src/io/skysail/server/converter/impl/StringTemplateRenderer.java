@@ -7,8 +7,7 @@ import java.util.stream.Collectors;
 import org.apache.shiro.SecurityUtils;
 import org.osgi.framework.Bundle;
 import org.restlet.data.MediaType;
-import org.restlet.representation.StringRepresentation;
-import org.restlet.representation.Variant;
+import org.restlet.representation.*;
 import org.restlet.resource.Resource;
 import org.stringtemplate.v4.ST;
 
@@ -28,8 +27,7 @@ import io.skysail.server.model.ResourceModel;
 import io.skysail.server.restlet.resources.SkysailServerResource;
 import io.skysail.server.restlet.response.messages.Message;
 import io.skysail.server.theme.Theme;
-import io.skysail.server.utils.CookiesUtils;
-import io.skysail.server.utils.RequestUtils;
+import io.skysail.server.utils.*;
 import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
 
@@ -40,7 +38,6 @@ public class StringTemplateRenderer {
 
     private STGroupBundleDir importedGroupBundleDir;
     private Set<MenuItemProvider> menuProviders;
-    private String templateFromCookie;
     private HtmlConverter htmlConverter;
     private String indexPageName;
 
@@ -58,14 +55,14 @@ public class StringTemplateRenderer {
     public StringRepresentation createRepresenation(Object entity, Variant target,
             SkysailServerResource<?> resource) {
 
-        theme = Theme.determineFrom(resource);
+        theme = Theme.determineFrom(resource, target);
 
         @SuppressWarnings({ "rawtypes", "unchecked" })
         ResourceModel<SkysailServerResource<?>,?> resourceModel = new ResourceModel(resource, (SkysailResponse<?>)entity, target, theme);
         resourceModel.setSearchService(searchService); // has to be set before menuItemProviders ;(
         resourceModel.setMenuItemProviders(menuProviders);
 
-        STGroupBundleDir stGroup = createSringTemplateGroup(resource, theme, target.getMediaType().getName());
+        STGroupBundleDir stGroup = createSringTemplateGroup(resource, theme);
 
         ST index = getStringTemplateIndex(resource, stGroup);
 
@@ -76,7 +73,7 @@ public class StringTemplateRenderer {
         return createRepresentation(index, stGroup);
     }
 
-    private STGroupBundleDir createSringTemplateGroup(Resource resource, Theme theme, String mediaType) {
+    private STGroupBundleDir createSringTemplateGroup(Resource resource, Theme theme) {
         SkysailApplication currentApplication = (SkysailApplication) resource.getApplication();
         Bundle appBundle = currentApplication.getBundle();
         if (appBundle == null) {
@@ -85,7 +82,7 @@ public class StringTemplateRenderer {
         URL templatesResource = appBundle.getResource("/templates");
         if (templatesResource != null) {
             STGroupBundleDir stGroup = new STGroupBundleDir(appBundle, resource, "/templates");
-            importTemplate("skysail.server.converter", resource, appBundle, "/templates", stGroup, theme, mediaType);
+            importTemplate("skysail.server.converter", resource, appBundle, "/templates", stGroup, theme);
             return stGroup;
 
         } else {
@@ -193,7 +190,7 @@ public class StringTemplateRenderer {
     }
 
     private void importTemplate(String symbolicName, Resource resource, Bundle appBundle, String resourcePath,
-            STGroupBundleDir stGroup, Theme theme, String mediaType) {
+            STGroupBundleDir stGroup, Theme theme) {
         Optional<Bundle> theBundle = findBundle(appBundle, symbolicName);
         if (theBundle.isPresent()) {
             String mediaTypedResourcePath = (resourcePath + "/" + theme).replace("/*", "");

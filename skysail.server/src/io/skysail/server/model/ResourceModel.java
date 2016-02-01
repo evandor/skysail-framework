@@ -260,7 +260,7 @@ public class ResourceModel<R extends SkysailServerResource<T>, T> {
         }
         
         switch (theme.getVariant()) {
-        case HTML:
+        case BOOTSTRAP:
             return getBootstrapPagination(pages, page);
         case UIKIT:
             return getUiKitPagination(pages, page);

@@ -17,9 +17,9 @@ navbar(user, messages, converter, model) ::= <<
         <ul class="dropdown-menu" role="menu">
           <li class="divider"></li>
           <li class="dropdown-header">Nav header</li>
-          <li><a href='javascript:document.cookie="template=text/html/debug;path=/";window.location.reload(true)'>Debug</a></li>
-          <li><a href='javascript:document.cookie="template=text/html/edit;path=/";window.location.reload(true)'>Edit</a></li>
-          <li><a href='javascript:document.cookie="template=text/html/default;path=/";window.location.reload(true)'>Simple</a></li>
+          <li><a href='javascript:document.cookie="template=bootstrap/debug;path=/";window.location.reload(true)'>Debug</a></li>
+          <li><a href='javascript:document.cookie="template=bootstrap/edit;path=/";window.location.reload(true)'>Edit</a></li>
+          <li><a href='javascript:document.cookie="template=bootstrap/default;path=/";window.location.reload(true)'>Simple</a></li>
           <li><a href='javascript:inspect()'>Inspect Page</a></li>
           <li><a href='javascript:document.cookie="template=text/jquerymobile;path=/";window.location.reload(true)'>Mobile View</a></li>
           <li><a href='javascript:document.cookie="template=text/spa;path=/";window.location.reload(true)'>Single Page App</a></li>

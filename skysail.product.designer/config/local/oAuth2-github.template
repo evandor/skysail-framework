@@ -1,0 +1,4 @@
+name=github
+clientId=
+clientSecret=
+redirectUrl=http://localhost:2016/Twitter/v1/github

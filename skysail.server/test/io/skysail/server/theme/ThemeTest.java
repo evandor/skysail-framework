@@ -3,15 +3,12 @@ package io.skysail.server.theme;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.*;
 import org.mockito.Mockito;
-import org.restlet.Request;
-import org.restlet.Response;
-import org.restlet.data.Cookie;
-import org.restlet.data.CookieSetting;
-import org.restlet.data.Form;
-import org.restlet.data.Reference;
+import org.restlet.*;
+import org.restlet.data.*;
+import org.restlet.engine.resource.VariantInfo;
+import org.restlet.representation.Variant;
 import org.restlet.resource.Resource;
 import org.restlet.util.Series;
 
@@ -24,6 +21,7 @@ public class ThemeTest {
     private Cookie cookie;
     private Resource resource;
     private Response response;
+    private Variant target;
     
     @Before
     @SuppressWarnings("unchecked")
@@ -35,14 +33,24 @@ public class ThemeTest {
         response = Mockito.mock(Response.class);
         Mockito.when(resource.getResponse()).thenReturn(response);
         Mockito.when(request.getCookies()).thenReturn(cookies);
+        target = new VariantInfo(MediaType.TEXT_HTML);
     }
+    
+    @Test
+    public void no_theme_from_request_nor_cookie_nor_mediatype_yields_bootstrap_theme() throws Exception {
+        //cookie = new Cookie(Constants.COOKIE_NAME_TEMPLATE, "text/html");
+        Mockito.when(cookies.getFirst(Constants.COOKIE_NAME_TEMPLATE)).thenReturn(null);
+        Theme theme = Theme.determineFrom(resource, target);
+        assertThat(theme.getVariant(),is(Theme.Variant.BOOTSTRAP));
+    }
+
 
     @Test
     public void theme_is_derived_from_text_html_cookie() throws Exception {
         cookie = new Cookie(Constants.COOKIE_NAME_TEMPLATE, "text/html");
         Mockito.when(cookies.getFirst(Constants.COOKIE_NAME_TEMPLATE)).thenReturn(cookie);
-        Theme theme = Theme.determineFrom(resource);
-        assertThat(theme.getGuiFramework(),is(Theme.GuiFramework.TEXT));
+        Theme theme = Theme.determineFrom(resource, target);
+       // assertThat(theme.getGuiFramework(),is(Theme.GuiFramework.TEXT));
     }
     
 
@@ -54,14 +62,15 @@ public class ThemeTest {
         Reference reference = Mockito.mock(Reference.class);
         Mockito.when(request.getResourceRef()).thenReturn(reference);
         Mockito.when(reference.getPath()).thenReturn("path");
+        @SuppressWarnings("unchecked")
         Series<CookieSetting> cookieSettings = new Series(CookieSetting.class);
         Mockito.when(response.getCookieSettings()).thenReturn(cookieSettings);
         cookie = new Cookie(Constants.COOKIE_NAME_TEMPLATE, "text/uikit");
         Mockito.when(cookies.getFirst(Constants.COOKIE_NAME_TEMPLATE)).thenReturn(cookie);
 
-        Theme theme = Theme.determineFrom(resource);
+        Theme theme = Theme.determineFrom(resource, target);
         
-        assertThat(theme.getGuiFramework(),is(Theme.GuiFramework.TEXT));
+       // assertThat(theme.getGuiFramework(),is(Theme.GuiFramework.TEXT));
         assertThat(theme.getVariant(),is(Theme.Variant.UIKIT));
     }
 }

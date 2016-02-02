@@ -3,17 +3,14 @@ package io.skysail.server.app.designer.fields;
 import java.io.Serializable;
 
 import javax.persistence.Id;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 
-import io.skysail.domain.Identifiable;
-import io.skysail.domain.Nameable;
-import io.skysail.domain.html.Field;
-import io.skysail.domain.html.InputType;
+import io.skysail.domain.*;
+import io.skysail.domain.html.*;
 import io.skysail.server.app.designer.fields.provider.VisibilitySelectionProvider;
 import io.skysail.server.app.designer.fields.resources.InputTypeSelectionProvider;
-import io.skysail.server.forms.PostView;
-import io.skysail.server.forms.Visibility;
+import io.skysail.server.app.designer.fields.roles.FieldRoleSelectionProvider;
+import io.skysail.server.forms.*;
 import lombok.*;
 
 @Getter
@@ -54,6 +51,10 @@ public abstract class DbEntityField implements Identifiable, Nameable, Serializa
     @Field(inputType = InputType.CHECKBOX)
     @PostView(tab = "optional")
     protected Boolean mandatory;
+    
+    @Field(selectionProvider = FieldRoleSelectionProvider.class)
+    @PostView(tab = "special")
+    protected FieldRole role;
 
     public Class<?> getFieldType() {
         return String.class;

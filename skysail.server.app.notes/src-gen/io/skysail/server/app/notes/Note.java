@@ -53,6 +53,8 @@ public class Note implements Identifiable {
     }
 
     @Field(inputType = InputType.DATE, htmlPolicy = HtmlPolicy.NO_HTML)
+    @PostView(visibility = Visibility.HIDE)
+    @PutView(visibility = Visibility.HIDE)
     private Date modifiedAt;
 
     public void setModifiedAt(Date value) {

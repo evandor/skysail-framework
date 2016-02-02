@@ -21,7 +21,9 @@ Bundle-ClassPath: .,lib/twitter4j-core-4.0.3.jar
 	lombok;version=1.16,\
 	ch.qos.logback.core;version=1.1,\
 	ch.qos.logback.classic;version=1.1,\
-	org.apache.oltu.oauth2.client;version=1.0
+	org.apache.oltu.oauth2.client;version=1.0,\
+	com.fasterxml.jackson.core.jackson-core;version=2.5,\
+	com.fasterxml.jackson.core.jackson-databind;version=2.5
 Service-Component:  \
 	*
 Bundle-Name: SKYSAIL :: server :: app :: twitter4j

@@ -1,5 +1,6 @@
 package io.skysail.server.app.twitter4j.resources;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -17,16 +18,30 @@ import lombok.Setter;
 public class JsonEntity implements Identifiable {
 
     private String id;
+
+    @Field
+    private String location;
     
     @Field(htmlPolicy = HtmlPolicy.DEFAULT_HTML)
     private String msg;
     
-    public JsonEntity(String endpoint, JSONObject json) {
+    public JsonEntity(String endpoint, String location, JSONObject json) {
         try {
+            this.location = location;
             String formatted = JsonFormatter.format(endpoint, json);
-            System.out.println(formatted);
             this.msg = formatted.replace(",", ",<br>,");
-            System.out.println(this.msg);
+        } catch (JSONException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        
+    }
+
+    public JsonEntity(String endpoint, String location, JSONArray jsonArray) {
+        try {
+            this.location = location;
+            String formatted = JsonFormatter.format(endpoint, jsonArray.getJSONObject(0));
+            this.msg = formatted.replace(",", ",<br>,");
         } catch (JSONException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();

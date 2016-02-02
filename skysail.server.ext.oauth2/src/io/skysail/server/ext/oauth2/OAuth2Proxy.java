@@ -7,6 +7,7 @@ import org.apache.commons.lang.StringUtils;
 import org.apache.oltu.oauth2.client.OAuthClient;
 import org.apache.oltu.oauth2.client.URLConnectionClient;
 import org.apache.oltu.oauth2.client.request.OAuthClientRequest;
+import org.apache.oltu.oauth2.client.request.OAuthClientRequest.AuthenticationRequestBuilder;
 import org.apache.oltu.oauth2.client.response.GitHubTokenResponse;
 import org.apache.oltu.oauth2.common.OAuthProviderType;
 import org.apache.oltu.oauth2.common.exception.OAuthProblemException;
@@ -18,6 +19,7 @@ import org.osgi.service.component.annotations.Deactivate;
 import org.restlet.Request;
 import org.restlet.Response;
 import org.restlet.data.*;
+import org.restlet.engine.util.Base64;
 import org.restlet.representation.Representation;
 import org.restlet.representation.StringRepresentation;
 import org.restlet.resource.ServerResource;
@@ -68,6 +70,15 @@ public class OAuth2Proxy extends Filter {
 
     @Override
     protected int beforeHandle(Request request, Response response) {
+        
+        String location = request.getOriginalRef().getQueryAsForm().getFirstValue("url");
+        String state = null;
+        if (location != null) {
+            String stateJson = "{\"location\" : \""+location+"\"}";
+            Base64 decoder = new Base64();
+            state = decoder.encode(stateJson.getBytes(), false);
+        }
+        
         request.setCacheDirectives(no);
 
         Form params = new Form(request.getOriginalRef().getQuery());
@@ -99,9 +110,15 @@ public class OAuth2Proxy extends Filter {
 
         OAuthClientRequest oAuthClientRequest;
         try {
-            oAuthClientRequest = OAuthClientRequest.authorizationProvider(providerType)
-                    .setClientId(oAuth2Config.getClientId()).setRedirectURI(oAuth2Config.getRedirectUrl())
-                    .buildQueryMessage();
+            
+            AuthenticationRequestBuilder builder = OAuthClientRequest
+                .authorizationProvider(providerType)
+                .setClientId(oAuth2Config.getClientId())
+                .setRedirectURI(oAuth2Config.getRedirectUrl());
+            if (state != null) {
+                builder.setState(state);
+            }
+            oAuthClientRequest = builder.buildQueryMessage();
             String locationUri = oAuthClientRequest.getLocationUri();
 
             Reference redirRef = new Reference(locationUri); // authRequest.toReference(getAuthorizationURI());

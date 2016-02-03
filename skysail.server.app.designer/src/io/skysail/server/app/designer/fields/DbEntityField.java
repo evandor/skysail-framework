@@ -54,7 +54,7 @@ public abstract class DbEntityField implements Identifiable, Nameable, Serializa
     
     @Field(selectionProvider = FieldRoleSelectionProvider.class)
     @PostView(tab = "special")
-    protected FieldRole role;
+    protected FieldRole role = FieldRole.NONE;
 
     public Class<?> getFieldType() {
         return String.class;

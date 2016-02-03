@@ -1,16 +1,10 @@
 package io.skysail.server.app.designer.model;
 
-import io.skysail.domain.core.EntityModel;
-import io.skysail.domain.core.FieldModel;
-import io.skysail.domain.html.HtmlPolicy;
-import io.skysail.domain.html.InputType;
-import io.skysail.server.app.designer.fields.DbEntityDateField;
-import io.skysail.server.app.designer.fields.DbEntityField;
-import io.skysail.server.app.designer.fields.FieldRole;
+import io.skysail.domain.core.*;
+import io.skysail.domain.html.*;
+import io.skysail.server.app.designer.fields.*;
 import io.skysail.server.forms.Visibility;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.ToString;
+import lombok.*;
 
 @Getter
 @EqualsAndHashCode(of = "name")
@@ -33,9 +27,7 @@ public class DesignerFieldModel extends FieldModel {
         listViewVisibility = Visibility.valueOf(dbField.getListViewVisibility());
         postViewVisibility = Visibility.valueOf(dbField.getPostViewVisibility());
         putViewVisibility = Visibility.valueOf(dbField.getPutViewVisibility());
-        if (dbField instanceof DbEntityDateField) {
-            this.role = ((DbEntityDateField)dbField).getRole();
-        }
+        this.role = dbField.getRole();
     }
     
     public String getGetMethodName() {

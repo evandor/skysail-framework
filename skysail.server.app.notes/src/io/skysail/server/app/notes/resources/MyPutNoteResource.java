@@ -5,9 +5,7 @@ import java.util.Date;
 import org.apache.commons.lang3.StringUtils;
 import org.jsoup.Jsoup;
 
-import io.skysail.server.app.notes.Note;
-import io.skysail.server.app.notes.NotesApplication;
-import io.skysail.server.app.notes.PutNoteResource;
+import io.skysail.server.app.notes.*;
 
 public class MyPutNoteResource extends PutNoteResource {
 

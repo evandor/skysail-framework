@@ -13,6 +13,10 @@ index(user, messages, converter, model) ::= <<
         <!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>-->
         $jquery()$
         <script type="text/javascript" src="/static/vitmalina/w2ui/1.4.3/w2ui-1.4.3.min.js"></script>
+        
+        $trix()$
+        
+        <link rel="stylesheet" href="/webapp/css/bootstrap.glyphicons.css" />
     </head>
 
     <body>

@@ -3,9 +3,11 @@ package io.skysail.server.theme;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
-import org.junit.*;
+import org.junit.Before;
+import org.junit.Test;
 import org.mockito.Mockito;
-import org.restlet.*;
+import org.restlet.Request;
+import org.restlet.Response;
 import org.restlet.data.*;
 import org.restlet.engine.resource.VariantInfo;
 import org.restlet.representation.Variant;
@@ -47,7 +49,7 @@ public class ThemeTest {
 
     @Test
     public void theme_is_derived_from_text_html_cookie() throws Exception {
-        cookie = new Cookie(Constants.COOKIE_NAME_TEMPLATE, "text/html");
+        cookie = new Cookie(Constants.COOKIE_NAME_TEMPLATE, "bootstrap");
         Mockito.when(cookies.getFirst(Constants.COOKIE_NAME_TEMPLATE)).thenReturn(cookie);
         Theme theme = Theme.determineFrom(resource, target);
        // assertThat(theme.getGuiFramework(),is(Theme.GuiFramework.TEXT));
@@ -57,7 +59,7 @@ public class ThemeTest {
     @Test
     public void theme_is_derived_from_query_if_existent() throws Exception {
         Form form = new Form();
-        form.add("_theme", "text/uikit");
+        form.add("_theme", "uikit");
         Mockito.when(resource.getQuery()).thenReturn(form);
         Reference reference = Mockito.mock(Reference.class);
         Mockito.when(request.getResourceRef()).thenReturn(reference);
@@ -65,7 +67,7 @@ public class ThemeTest {
         @SuppressWarnings("unchecked")
         Series<CookieSetting> cookieSettings = new Series(CookieSetting.class);
         Mockito.when(response.getCookieSettings()).thenReturn(cookieSettings);
-        cookie = new Cookie(Constants.COOKIE_NAME_TEMPLATE, "text/uikit");
+        cookie = new Cookie(Constants.COOKIE_NAME_TEMPLATE, "uikit");
         Mockito.when(cookies.getFirst(Constants.COOKIE_NAME_TEMPLATE)).thenReturn(cookie);
 
         Theme theme = Theme.determineFrom(resource, target);

@@ -15,8 +15,6 @@ import io.skysail.server.app.designer.application.resources.ApplicationResource;
 import io.skysail.server.app.designer.application.resources.ApplicationsResource;
 import io.skysail.server.app.designer.application.resources.PostApplicationResource;
 import io.skysail.server.app.designer.application.resources.PutApplicationResource;
-import io.skysail.server.app.designer.application.validation.UniqueEntityInApplicationValidator;
-import io.skysail.server.app.designer.application.validation.UniqueNameValidator;
 import io.skysail.server.app.designer.entities.DbEntity;
 import io.skysail.server.app.designer.entities.resources.EntitiesResource;
 import io.skysail.server.app.designer.entities.resources.EntityResource;
@@ -27,6 +25,7 @@ import io.skysail.server.app.designer.fields.resources.FieldsResource;
 import io.skysail.server.app.designer.fields.resources.text.PostTextFieldResource;
 import io.skysail.server.app.designer.fields.resources.text.PutTextFieldResource;
 import io.skysail.server.app.designer.repo.DesignerRepository;
+import io.skysail.server.db.validators.UniqueNameForParentValidator;
 import io.skysail.server.restlet.resources.SkysailServerResource;
 import io.skysail.server.testsupport.ResourceTestBase;
 import lombok.NonNull;
@@ -90,8 +89,8 @@ public abstract class AbstractDesignerResourceTest extends ResourceTestBase {
 
         setUpSubject("admin");
         
-        new UniqueNameValidator().setDbService(testDb);
-        new UniqueEntityInApplicationValidator().setDbService(testDb);
+        //new UniqueNameForParentValidator().setDbService(testDb);
+        new UniqueNameForParentValidator().setDbService(testDb);
 
     }
 

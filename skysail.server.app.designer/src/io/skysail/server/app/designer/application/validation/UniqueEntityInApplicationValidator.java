@@ -13,42 +13,42 @@ import org.osgi.service.component.annotations.Reference;
 import org.osgi.service.component.annotations.ReferenceCardinality;
 import org.osgi.service.component.annotations.ReferencePolicy;
 
-import io.skysail.server.app.designer.application.DbApplication;
+import io.skysail.server.app.designer.entities.DbEntity;
 import io.skysail.server.db.DbClassName;
 import io.skysail.server.db.DbService;
 
 @Component(immediate = true)
-public class UniqueNameValidator implements ConstraintValidator<UniqueName, DbApplication> {
+public class UniqueEntityInApplicationValidator implements ConstraintValidator<UniqueEntityInApplication, DbEntity> {
 
         private static DbService dbService;
 
         @Override
-        public void initialize(UniqueName uniquePerOwner) {
+        public void initialize(UniqueEntityInApplication uniquePerOwner) {
             // nothing to do
         }
 
         @Override
-        public boolean isValid(DbApplication app, ConstraintValidatorContext context) {
+        public boolean isValid(DbEntity dbEntity, ConstraintValidatorContext context) {
             String sql;
-            if (app.getId() != null) {
-                sql = "SELECT from " + DbClassName.of(DbApplication.class) + " WHERE name=:name AND id <> :id";
+            if (dbEntity.getId() != null) { // where name='Source' AND #14:2 IN in('entities') 
+                sql = "SELECT from " + DbClassName.of(DbEntity.class) + " WHERE name=:name  AND "+dbEntity.getDbApplication().getId()+" IN in('entities') AND id <> :id";
             } else {
-                sql = "SELECT from " + DbClassName.of(DbApplication.class) + " WHERE name=:name";
+                sql = "SELECT from " + DbClassName.of(DbEntity.class) + " WHERE name=:name AND "+dbEntity.getDbApplication().getId()+" IN in('entities')";
             }
             Map<String,Object> params = new HashMap<>();
-            params.put("name", app.getName());
-            params.put("id", app.getId());
+            params.put("name", dbEntity.getName());
+            params.put("id", dbEntity.getId());
             params.put("owner", SecurityUtils.getSubject().getPrincipal().toString());
-            List<DbApplication> findObjects = dbService.findGraphs(DbApplication.class, sql, params);
+            List<DbEntity> findObjects = dbService.findGraphs(DbEntity.class, sql, params);
             return findObjects.isEmpty();
         }
 
         @Reference(policy = ReferencePolicy.DYNAMIC, cardinality = ReferenceCardinality.MANDATORY)
         public void setDbService(DbService dbService) {
-            UniqueNameValidator.dbService = dbService;
+            UniqueEntityInApplicationValidator.dbService = dbService;
         }
 
         public void unsetDbService(DbService dbService) {
-            UniqueNameValidator.dbService = null;
+            UniqueEntityInApplicationValidator.dbService = null;
         }
     }

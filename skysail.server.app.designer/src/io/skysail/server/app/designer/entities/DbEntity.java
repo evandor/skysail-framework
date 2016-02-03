@@ -17,6 +17,7 @@ import io.skysail.domain.html.Field;
 import io.skysail.domain.html.InputType;
 import io.skysail.domain.html.Relation;
 import io.skysail.server.app.designer.application.DbApplication;
+import io.skysail.server.app.designer.application.validation.UniqueEntityInApplication;
 import io.skysail.server.app.designer.fields.DbEntityField;
 import io.skysail.server.app.designer.fields.resources.FieldsResource;
 import io.skysail.server.forms.ListView;
@@ -27,6 +28,7 @@ import lombok.*;
 @Setter
 @EqualsAndHashCode(of = "id")
 @ToString(of = { "id", "name", "fields" })
+@UniqueEntityInApplication
 public class DbEntity implements Identifiable, Nameable, Serializable {
 
     private static final long serialVersionUID = 7571240311935363328L;

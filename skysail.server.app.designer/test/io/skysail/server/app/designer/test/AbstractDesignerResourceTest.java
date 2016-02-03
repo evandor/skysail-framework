@@ -15,6 +15,7 @@ import io.skysail.server.app.designer.application.resources.ApplicationResource;
 import io.skysail.server.app.designer.application.resources.ApplicationsResource;
 import io.skysail.server.app.designer.application.resources.PostApplicationResource;
 import io.skysail.server.app.designer.application.resources.PutApplicationResource;
+import io.skysail.server.app.designer.application.validation.UniqueEntityInApplicationValidator;
 import io.skysail.server.app.designer.application.validation.UniqueNameValidator;
 import io.skysail.server.app.designer.entities.DbEntity;
 import io.skysail.server.app.designer.entities.resources.EntitiesResource;
@@ -90,6 +91,7 @@ public abstract class AbstractDesignerResourceTest extends ResourceTestBase {
         setUpSubject("admin");
         
         new UniqueNameValidator().setDbService(testDb);
+        new UniqueEntityInApplicationValidator().setDbService(testDb);
 
     }
 

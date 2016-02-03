@@ -66,19 +66,26 @@ public class PostEntityResourceTest extends AbstractEntityResourceTest {
     public void two_entities_to_the_same_application_cannot_have_the_same_name() {
         DbEntity entity1 = DbEntity.builder().name("AnEntity").rootEntity(true).build();
         DbEntity entity2 = DbEntity.builder().name("AnEntity").rootEntity(true).build();
-        
+
+        entity1.setDbApplication(anApplication);
+        entity2.setDbApplication(anApplication);
+
         SkysailResponse<DbEntity> result = postEntityResource.post(entity1, JSON_VARIANT);
         SkysailResponse<DbEntity> result2 = postEntityResource.post(entity2, JSON_VARIANT);
         
-        assertThat(responses.get(postEntityResource.getClass().getName()).getStatus(),
-                is(Status.SUCCESS_CREATED));
-        assertListResult(postEntityResource, result, entity1, Status.SUCCESS_CREATED);
+//        assertThat(responses.get(postEntityResource.getClass().getName()).getStatus(),
+//                is(Status.SUCCESS_CREATED));
+//        assertListResult(postEntityResource, result, entity1, Status.SUCCESS_CREATED);
+        assertValidationFailure(postEntityResource, result2);
     }
 
     @Test
     public void two_entities_can_be_added() {
         DbEntity entity1 = DbEntity.builder().name("AnEntity").rootEntity(true).build();
         DbEntity entity2 = DbEntity.builder().name("AnotherEntity").rootEntity(true).build();
+        
+        entity1.setDbApplication(anApplication);
+        entity2.setDbApplication(anApplication);
         
         SkysailResponse<DbEntity> result = postEntityResource.post(entity1, JSON_VARIANT);
         SkysailResponse<DbEntity> result2 = postEntityResource.post(entity2, JSON_VARIANT);

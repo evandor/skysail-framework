@@ -5,6 +5,8 @@ import java.util.*;
 import java.util.jar.*;
 import java.util.stream.Collectors;
 
+import org.apache.commons.io.FilenameUtils;
+
 import io.skysail.domain.core.EntityModel;
 import io.skysail.server.app.designer.model.DesignerApplicationModel;
 import lombok.extern.slf4j.Slf4j;
@@ -25,8 +27,8 @@ public class JarWriter {
         global.put(new Attributes.Name("Bundle-Description"), "skysail application bundle created by the designer");
         global.put(new Attributes.Name("Bundle-License"), "http://www.opensource.org/licenses/apache2.0.php;description=\"Apache 2.0 Licensed\";link=LICENSE");
         global.put(new Attributes.Name("Bundle-ManifestVersion"), "2");
-        global.put(new Attributes.Name("Bundle-Name"), "skysail.server.app.wiki");
-        global.put(new Attributes.Name("Bundle-SymbolicName"), "skysail.server.app.wiki");
+        global.put(new Attributes.Name("Bundle-Name"), applicationModel.getProjectName());
+        global.put(new Attributes.Name("Bundle-SymbolicName"), applicationModel.getProjectName());
         global.put(new Attributes.Name("Bundle-Version"), "0.1.0");
         
         global.put(new Attributes.Name("Import-Package"), 
@@ -86,6 +88,7 @@ public class JarWriter {
     private static void add(File source, String rootPath, String jarPath, JarOutputStream target) throws IOException {
         BufferedInputStream in = null;
         jarPath = jarPath.replace("\\", "/");
+        rootPath = FilenameUtils.normalize(rootPath);
         try {
             if (source.isDirectory()) {
                 String name = source.getPath().replace("\\", "/");

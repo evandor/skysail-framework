@@ -8,10 +8,7 @@ import org.stringtemplate.v4.ST;
 import io.skysail.server.app.designer.STGroupBundleDir;
 import io.skysail.server.app.designer.codegen.templates.TemplateProvider;
 import io.skysail.server.app.designer.fields.FieldRole;
-import io.skysail.server.app.designer.model.DesignerApplicationModel;
-import io.skysail.server.app.designer.model.DesignerEntityModel;
-import io.skysail.server.app.designer.model.DesignerFieldModel;
-import io.skysail.server.app.designer.model.RouteModel;
+import io.skysail.server.app.designer.model.*;
 import lombok.Getter;
 
 public class SkysailEntityCompiler extends SkysailCompiler {
@@ -148,6 +145,11 @@ public class SkysailEntityCompiler extends SkysailCompiler {
 //            return actionField.getCode("postEntity#addEntity").replace("$Methodname$", withFirstCapital(actionField.getName()));
 //        }).collect(Collectors.joining("\n")));
         if (entityModel.isAggregate()) {
+            Optional<DesignerFieldModel> dfm = getFieldModelFor(entityModel, FieldRole.GUID);
+            if (dfm.isPresent()) {
+                String methodName = dfm.get().getName().substring(0, 1).toUpperCase() + dfm.get().getName().substring(1);
+                addEntityCode.append("entity.set"+methodName+"(java.util.UUID.randomUUID().toString());\n");
+            }
             addEntityCode.append("String id = app.getRepository("+entityModel.getId()+".class).save(entity, app.getApplicationModel()).toString();\n");
             addEntityCode.append("entity.setId(id);\n");
         } else {
@@ -169,11 +171,7 @@ public class SkysailEntityCompiler extends SkysailCompiler {
         String updateEntityCode = entityModel.getId() + " original = getEntity();\n";
         updateEntityCode += "copyProperties(original,entity);\n";
         
-        Optional<DesignerFieldModel> dfm = entityModel
-                .getFieldValues().stream()
-                .map(DesignerFieldModel.class::cast)
-                .filter(fieldModel -> fieldModel.getRole() != null)
-                .filter(fieldModel -> fieldModel.getRole().equals(FieldRole.MODIFIED_AT)).findFirst();
+        Optional<DesignerFieldModel> dfm = getFieldModelFor(entityModel, FieldRole.MODIFIED_AT);
         if (dfm.isPresent()) {
             String methodName = dfm.get().getName().substring(0, 1).toUpperCase() + dfm.get().getName().substring(1);
             updateEntityCode += "original.set"+methodName+"(new Date());\n";
@@ -198,6 +196,14 @@ public class SkysailEntityCompiler extends SkysailCompiler {
     
     private CharSequence withFirstCapital(String name) {
         return name.substring(0, 1).toUpperCase().concat(name.substring(1));
+    }
+
+    private Optional<DesignerFieldModel> getFieldModelFor(DesignerEntityModel entityModel, FieldRole fieldRole) {
+        return entityModel
+                .getFieldValues().stream()
+                .map(DesignerFieldModel.class::cast)
+                .filter(fieldModel -> fieldModel.getRole() != null)
+                .filter(fieldModel -> fieldModel.getRole().equals(fieldRole)).findFirst();
     }
 
 

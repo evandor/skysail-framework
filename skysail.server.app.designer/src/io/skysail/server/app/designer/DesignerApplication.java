@@ -166,6 +166,10 @@ public class DesignerApplication extends SkysailApplication implements MenuItemP
     }
 
     private List<MenuItem> addDesignerAppMenuItems() {
+        if (getRepository() == null) {
+            log.warn("Repository is null!");
+            return Collections.emptyList();
+        }
         List<DbApplication> apps = getRepository().findAll(DbApplication.class);
         return apps.stream()
             .filter(a -> a != null)

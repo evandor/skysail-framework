@@ -20,9 +20,9 @@ public class FieldRoleSelectionProvider implements SelectionProvider {
     @Override
     public Map<String, String> getSelections() {
         Map<String, String> result = new HashMap<>(); 
-          ((PostFieldResource)resource).getFieldRoles();
-        result.put("", "Select...");
-        List<FieldRole> types = Arrays.stream(FieldRole.values()).collect(Collectors.toList());
+        List<FieldRole> roles =  ((PostFieldResource<?>)resource).getFieldRoles();
+        result.put("NONE", "");
+        List<FieldRole> types = roles.stream().collect(Collectors.toList());
         types.stream().forEach(v -> result.put(v.name(), v.name()));
         return result;
     }

@@ -1,14 +1,15 @@
 package de.twenty11.skysail.server.resources;
 
-import java.util.*;
+import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
-
-import org.apache.shiro.SecurityUtils;
 
 import com.google.common.base.Predicate;
 
 import de.twenty11.skysail.server.app.SkysailRootApplication;
-import io.skysail.api.links.*;
+import io.skysail.api.links.Link;
+import io.skysail.api.links.LinkRelation;
+import io.skysail.api.links.LinkRole;
 import io.skysail.server.menus.MenuItem;
 import io.skysail.server.restlet.resources.ListServerResource;
 
@@ -30,12 +31,6 @@ public class DefaultResource extends ListServerResource<MenuItemDescriptor> {
         Set<MenuItem> menuItems = defaultApp.getMenuItems();
         List<Link> links = menuItems.stream().map(mi -> createLinkForApp(mi))
                 .sorted((l1, l2) -> l1.getTitle().compareTo(l2.getTitle())).collect(Collectors.toList());
-        if (SecurityUtils.getSubject().isAuthenticated()) {
-
-        } else {
-            links.add(new Link.Builder(SkysailRootApplication.LOGIN_PATH)
-                    .relation(LinkRelation.CREATE_FORM).title("Login form").authenticationNeeded(false).build());
-        }
         return links;
     }
 

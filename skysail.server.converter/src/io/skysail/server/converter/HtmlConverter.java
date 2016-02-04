@@ -168,7 +168,11 @@ public class HtmlConverter extends ConverterHelper implements OsgiConverterHelpe
     }
 
     public List<Notification> getNotifications() {
-        String currentUser = SecurityUtils.getSubject().getPrincipal().toString();
+        Object principal = SecurityUtils.getSubject().getPrincipal();
+        if (principal == null) {
+            return new ArrayList<>();
+        }
+        String currentUser = principal.toString();
         if (currentUser == null) {
             return Collections.emptyList();
         }

@@ -1,11 +1,11 @@
 package io.skysail.server.um.security.shiro;
 
-import lombok.extern.slf4j.Slf4j;
-
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.subject.Subject;
 import org.restlet.security.SecretVerifier;
+
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * A simple SecretVerifier calling the subjects login method and dealing with
@@ -29,6 +29,8 @@ public class SimpleDelegatingVerifier extends SecretVerifier {
             log.debug("UnknownAccountException '" + uae.getMessage() + "' when login in " + identifier);
         } catch (IncorrectCredentialsException ice) {
             log.debug("IncorrectCredentialsException '" + ice.getMessage() + "' when login in " + identifier);
+            //String infoMessage = resource.getClass().getSimpleName() + ".saved.success";
+            //responseWrapper.addInfo(infoMessage);
         } catch (LockedAccountException lae) {
             log.info("LockedAccountException '" + lae.getMessage() + "' when login in " + identifier, lae);
         } catch (AuthenticationException ae) {

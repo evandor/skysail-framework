@@ -1,4 +1,4 @@
-menuNavSpa(links) ::= <<
+menuNav(links) ::= <<
     <sky-links links='[$links:{ link | $linkAsButton(link, i)$ }; separator=","$]'></sky-links>
 >>
 

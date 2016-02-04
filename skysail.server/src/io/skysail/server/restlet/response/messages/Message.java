@@ -1,8 +1,10 @@
 package io.skysail.server.restlet.response.messages;
 
 import lombok.Getter;
+import lombok.ToString;
 
 @Getter
+@ToString
 public class Message {
 
     private MessageType type;

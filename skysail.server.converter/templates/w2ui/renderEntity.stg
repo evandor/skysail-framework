@@ -1,0 +1,15 @@
+renderEntity(user, model) ::= <<
+  <table class="table">
+    $model.formfields: {field | $renderRow(model, field, first(model.data))$}$
+  </table>
+>>
+
+renderRow(model, field, data) ::= <<
+  <tr><th>$field.name$</th><td>&nbsp;<td>$data.(field.name)$</td><td>$handleDates(model, data,field)$</td></tr>
+>>
+
+handleDates(model, data, field) ::= <<
+    $if(field.dateType)$
+    <script>document.write(moment("$data.(field.name)$", "$model.dateFormat$").fromNow());</script>
+    $endif$
+>>

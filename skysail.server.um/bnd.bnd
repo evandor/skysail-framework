@@ -1,4 +1,4 @@
-Bundle-Version: 0.2.2.${tstamp}
+Bundle-Version: 1.0.0.${tstamp}
 Bundle-Name: SKYSAIL :: server :: um
 Bundle-Description: Default Usermanagement Implementation
 -buildpath:  \
@@ -22,7 +22,6 @@ Bundle-Description: Default Usermanagement Implementation
 	com.springsource.org.junit;version=4.11,\
 	com.orientechnologies.orientdb-core;version=2.0
 Private-Package:  \
-	io.skysail.server.um,\
 	io.skysail.server.um.security.shiro.restlet,\
 	io.skysail.server.um.security.shiro.subject,\
 	io.skysail.server.um.security.shiro.util,\

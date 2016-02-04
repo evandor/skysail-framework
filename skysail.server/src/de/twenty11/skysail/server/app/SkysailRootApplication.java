@@ -34,7 +34,6 @@ public class SkysailRootApplication extends SkysailApplication implements Applic
 
     private static final String CONFIG_IDENTIFIER_LANDINGPAGE_NOT_AUTHENTICATED = "landingPage.notAuthenticated";
     private static final String CONFIG_IDENTIFIER_LANDINGPAGE_AUTHENTICATED = "landingPage.authenticated";
-    //private static final String CONFIG_IDENTIFIER_LOGIN_PAGE = "loginPage";
 
     private static final String ROOT_APPLICATION_NAME = "root";
 

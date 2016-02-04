@@ -1,17 +1,20 @@
 package io.skysail.server.um.security.shiro;
 
-import lombok.extern.slf4j.Slf4j;
-
 import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.cache.*;
+import org.apache.shiro.cache.Cache;
+import org.apache.shiro.cache.CacheManager;
 import org.apache.shiro.subject.Subject;
 import org.apache.shiro.util.ThreadContext;
-import org.restlet.*;
-import org.restlet.data.*;
+import org.restlet.Context;
+import org.restlet.Request;
+import org.restlet.Response;
+import org.restlet.data.Cookie;
+import org.restlet.data.CookieSetting;
 import org.restlet.ext.crypto.CookieAuthenticator;
 import org.restlet.routing.Filter;
 
 import de.twenty11.skysail.server.app.SkysailRootApplication;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Overwriting the restlet cookie authenticator to provide a more specific

@@ -1,18 +1,24 @@
 package io.skysail.server.um.simple.web.impl;
 
-import io.skysail.server.um.simple.web.RestletSubjectContext;
-import io.skysail.server.um.simple.web.utils.RestletUtils;
-
 import java.io.Serializable;
 
+import org.apache.shiro.authc.AuthenticationException;
+import org.apache.shiro.authc.AuthenticationInfo;
+import org.apache.shiro.authc.AuthenticationListener;
+import org.apache.shiro.authc.AuthenticationToken;
+import org.apache.shiro.authc.pam.ModularRealmAuthenticator;
 import org.apache.shiro.cache.MemoryConstrainedCacheManager;
 import org.apache.shiro.realm.Realm;
 import org.apache.shiro.session.mgt.SessionKey;
+import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.subject.Subject;
 import org.apache.shiro.subject.SubjectContext;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.restlet.Request;
 import org.restlet.Response;
+
+import io.skysail.server.um.simple.web.RestletSubjectContext;
+import io.skysail.server.um.simple.web.utils.RestletUtils;
 
 public class SkysailWebSecurityManager extends DefaultWebSecurityManager {
 
@@ -21,6 +27,20 @@ public class SkysailWebSecurityManager extends DefaultWebSecurityManager {
         setSubjectFactory(new SkysailWebSubjectFactory());
         setSessionManager(new SkysailWebSessionManager());
         setCacheManager(new MemoryConstrainedCacheManager());
+        ((ModularRealmAuthenticator)getAuthenticator()).getAuthenticationListeners().add(new AuthenticationListener(){
+
+            @Override
+            public void onSuccess(AuthenticationToken token, AuthenticationInfo info) {
+            }
+
+            @Override
+            public void onFailure(AuthenticationToken token, AuthenticationException ae) {
+                System.out.println(ae);
+            }
+
+            @Override
+            public void onLogout(PrincipalCollection principals) {
+            }});
     }
 
     public SkysailWebSecurityManager(Realm singleRealm) {

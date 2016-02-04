@@ -37,10 +37,10 @@ index(user, messages, converter, model) ::= <<
 
     <div class="container-fluid">
 
-      $mainContentSpa(user, converter, messages, model)$
+      $mainContent(user, converter, messages, model)$
 
       $if(converter.debug && user.principal)$
-        $debugSpa(messages, model)$
+        $debug(messages, model)$
       $endif$
 
     </div>

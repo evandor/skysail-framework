@@ -18,7 +18,7 @@ public class Theme {
 //    }
 
     public enum Variant {
-        BOOTSTRAP, SPA, JQUERYMOBILE, UIKIT, PURECSS, W2UI, TIMELINE
+        BOOTSTRAP, SPA, JQUERYMOBILE, UIKIT, PURECSS, W2UI, TIMELINE, HOME
     }
 
     public enum Option {

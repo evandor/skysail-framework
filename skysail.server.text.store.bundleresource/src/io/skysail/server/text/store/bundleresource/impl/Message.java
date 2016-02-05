@@ -1,19 +1,21 @@
 package io.skysail.server.text.store.bundleresource.impl;
 
-import io.skysail.api.text.*;
-import io.skysail.domain.Identifiable;
-import io.skysail.domain.html.Field;
-
 import java.util.Set;
 import java.util.stream.Collectors;
-
-import lombok.Getter;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.google.common.base.Splitter;
 import com.google.common.collect.Iterables;
 
+import io.skysail.api.text.Translation;
+import io.skysail.api.text.TranslationRenderService;
+import io.skysail.domain.Identifiable;
+import io.skysail.domain.html.Field;
+import lombok.Getter;
+import lombok.ToString;
+
 @Getter
+@ToString(of = {"msgKey", "msg", "store"})
 public class Message implements Identifiable {
 
     @Field

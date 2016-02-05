@@ -14,6 +14,7 @@ index(user, messages, converter, model) ::= <<
     $pace()$
     $trix()$
     $jquery()$
+     <script src="/webapp/js/jinplace/1.2.1/jinplace.js"></script>
     $bootstrap()$
     $polymer()$
     $select2(model.formfields)$
@@ -100,12 +101,16 @@ index(user, messages, converter, model) ::= <<
         });
 
     </script>
+    
+    <script type="text/javascript">
+    \$('.editable').jinplace();
+    </script>
 
-<script>
-function openWindow(target,name) {
-    var myWindow = window.open(target, name, "width=800, height=600, location=no, top=150, left=250, menubar=no, status=yes");
-}
-</script>
+    <script>
+    function openWindow(target,name) {
+        var myWindow = window.open(target, name, "width=800, height=600, location=no, top=150, left=250, menubar=no, status=yes");
+    }
+    </script>
 
   </body>
 </html>

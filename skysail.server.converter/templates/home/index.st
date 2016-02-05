@@ -191,7 +191,7 @@ $animate()$ $moment()$ $cookieConsent()$
             <h3 class="feature_title">
               Download and follow three simple steps:
             </h3>
-            <h4 class="feature_sub">You can create a new application easily - including various user interfaces, persistence and
+            <h4 class="feature_sub" contenteditable="true">You can create a new application easily - including various user interfaces, persistence and
               validation.</h4>
             <div class="divider"></div>
           </div>

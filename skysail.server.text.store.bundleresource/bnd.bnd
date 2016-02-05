@@ -8,6 +8,7 @@ Include-Resource: resources, templates=src;recursive:=true;filter:=*.st|*.stg
 	osgi.core;version=${osgi.version},\
 	osgi.cmpn;version=${osgi.version},\
 	skysail.api;version=${skysail.api.version},\
+    skysail.api.search;version=${skysail.api.search.version},\
 	skysail.api.text;version=${skysail.api.text.version},\
     skysail.domain;version=${skysail.domain.version},\
 	skysail.server;version=${skysail.server.version},\

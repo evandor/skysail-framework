@@ -1,25 +1,16 @@
 package io.skysail.server.restlet.resources;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 import javax.validation.ConstraintViolation;
 
-import org.restlet.data.Form;
-import org.restlet.data.Method;
+import org.restlet.data.*;
 import org.restlet.representation.Variant;
-import org.restlet.resource.Get;
-import org.restlet.resource.Patch;
-import org.restlet.resource.Put;
-import org.restlet.resource.ResourceException;
+import org.restlet.resource.*;
 
 import de.twenty11.skysail.server.core.restlet.ResourceContextId;
-import io.skysail.api.links.Link;
-import io.skysail.api.links.LinkRelation;
-import io.skysail.api.responses.FormResponse;
-import io.skysail.api.responses.SkysailResponse;
+import io.skysail.api.links.*;
+import io.skysail.api.responses.*;
 import io.skysail.domain.Identifiable;
 import io.skysail.server.app.SkysailApplication;
 import io.skysail.server.restlet.RequestHandler;
@@ -167,7 +158,7 @@ public abstract class PutEntityServerResource<T extends Identifiable> extends Sk
     @Put("x-www-form-urlencoded:html|json")
     public SkysailResponse<T> put(Form form, Variant variant) {
         Set<PerformanceTimer> perfTimer = getApplication().startPerformanceMonitoring(this.getClass().getSimpleName() + ":put");
-        log.info("Request entry point: {} @Put('x-www-form-urlencoded:html|json')", this.getClass().getSimpleName());
+        log.info("Request entry point: {} @Put({})", this.getClass().getSimpleName(), variant.getMediaType());
         if (form != null) {
             getRequest().getAttributes().put(SKYSAIL_SERVER_RESTLET_FORM, form);
         }
@@ -185,30 +176,55 @@ public abstract class PutEntityServerResource<T extends Identifiable> extends Sk
     }
 
 
-    @Patch("json")
-    public Object patchEntity(T entity) {
-        Set<PerformanceTimer> perfTimer = getApplication().startPerformanceMonitoring(this.getClass().getSimpleName() + ":patchEntity");
-        log.info("Request entry point: {} @Patch('json')", this.getClass().getSimpleName());
-        getRequest().getAttributes().put(SKYSAIL_SERVER_RESTLET_ENTITY, entity);
-        //Object patch = put((Form) null, null);
-
+//    @Patch("json")
+//    public Object patchEntity(Form form, Variant variant) {
+//        Set<PerformanceTimer> perfTimer = getApplication().startPerformanceMonitoring(this.getClass().getSimpleName() + ":patchEntity");
+//        log.info("Request entry point: {} @Patch('json')", this.getClass().getSimpleName());
+//        //getRequest().getAttributes().put(SKYSAIL_SERVER_RESTLET_ENTITY, entity);
+//        //Object patch = put((Form) null, null);
+//
+////        if (form != null) {
+////            getRequest().getAttributes().put(SKYSAIL_SERVER_RESTLET_FORM, form);
+////        }
+////        if (variant != null) {
+////            getRequest().getAttributes().put(SKYSAIL_SERVER_RESTLET_VARIANT, variant);
+////        }
+//        RequestHandler<T> requestHandler = new RequestHandler<T>(getApplication());
+//        AbstractResourceFilter<PutEntityServerResource<T>, T> handler = requestHandler.createForPatch();
+//        ResponseWrapper<T> handledRequest = handler.handle(this, getResponse());
+//        getApplication().stopPerformanceMonitoring(perfTimer);
+//        if (handledRequest.getConstraintViolationsResponse() != null) {
+//            return handledRequest.getConstraintViolationsResponse();
+//        }
+//
+//        getApplication().stopPerformanceMonitoring(perfTimer);
+//        return new FormResponse<T>(getResponse(), handledRequest.getEntity(),".");
+//    }
+    
+//    @Patch("x-www-form-urlencoded:html")
+//    public Object patchEntity2(Form form, Variant variant) {
+//        Set<PerformanceTimer> perfTimer = getApplication().startPerformanceMonitoring(this.getClass().getSimpleName() + ":patchEntity");
+//        log.info("Request entry point: {} @Patch({})", this.getClass().getSimpleName(), variant);
+//       // getRequest().getAttributes().put(SKYSAIL_SERVER_RESTLET_ENTITY, entity);
+//        //Object patch = put((Form) null, null);
+//
 //        if (form != null) {
 //            getRequest().getAttributes().put(SKYSAIL_SERVER_RESTLET_FORM, form);
 //        }
 //        if (variant != null) {
 //            getRequest().getAttributes().put(SKYSAIL_SERVER_RESTLET_VARIANT, variant);
 //        }
-        RequestHandler<T> requestHandler = new RequestHandler<T>(getApplication());
-        AbstractResourceFilter<PutEntityServerResource<T>, T> handler = requestHandler.createForPatch();
-        ResponseWrapper<T> handledRequest = handler.handle(this, getResponse());
-        getApplication().stopPerformanceMonitoring(perfTimer);
-        if (handledRequest.getConstraintViolationsResponse() != null) {
-            return handledRequest.getConstraintViolationsResponse();
-        }
-
-        getApplication().stopPerformanceMonitoring(perfTimer);
-        return new FormResponse<T>(getResponse(), handledRequest.getEntity(),".");
-    }
+//        RequestHandler<T> requestHandler = new RequestHandler<T>(getApplication());
+//        AbstractResourceFilter<PatchEntityServerResource<T>, T> handler = requestHandler.createForPatch();
+//        ResponseWrapper<T> handledRequest = handler.handle(this, getResponse());
+//        getApplication().stopPerformanceMonitoring(perfTimer);
+//        if (handledRequest.getConstraintViolationsResponse() != null) {
+//            return handledRequest.getConstraintViolationsResponse();
+//        }
+//
+//        getApplication().stopPerformanceMonitoring(perfTimer);
+//        return new FormResponse<T>(getResponse(), handledRequest.getEntity(),".");
+//    }
 
     @Override
     public LinkRelation getLinkRelation() {

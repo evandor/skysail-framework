@@ -6,22 +6,14 @@ import java.util.stream.Collectors;
 
 import org.osgi.framework.Bundle;
 import org.osgi.framework.wiring.BundleWiring;
-import org.osgi.service.component.annotations.Component;
-import org.osgi.service.component.annotations.Reference;
-import org.osgi.service.component.annotations.ReferenceCardinality;
-import org.osgi.service.component.annotations.ReferencePolicy;
+import org.osgi.service.component.annotations.*;
 import org.osgi.service.event.EventAdmin;
 
-import de.twenty11.skysail.server.app.ApplicationProvider;
-import de.twenty11.skysail.server.app.TranslationRenderServiceHolder;
-import de.twenty11.skysail.server.core.restlet.ApplicationContextId;
-import de.twenty11.skysail.server.core.restlet.RouteBuilder;
-import io.skysail.api.text.Translation;
-import io.skysail.api.text.TranslationRenderService;
-import io.skysail.api.text.TranslationStore;
+import de.twenty11.skysail.server.app.*;
+import de.twenty11.skysail.server.core.restlet.*;
+import io.skysail.api.text.*;
 import io.skysail.server.app.SkysailApplication;
-import io.skysail.server.menus.MenuItem;
-import io.skysail.server.menus.MenuItemProvider;
+import io.skysail.server.menus.*;
 import io.skysail.server.restlet.resources.SkysailServerResource;
 import io.skysail.server.text.TranslationStoreHolder;
 import io.skysail.server.utils.TranslationUtils;
@@ -47,9 +39,8 @@ public class I18nApplication extends SkysailApplication implements ApplicationPr
         router.attach(new RouteBuilder("/messages/", MessagesResource.class));
         router.attach(new RouteBuilder("/messages/{key}", MessageResource.class));
         router.attach(new RouteBuilder("/messages/{key}/", PutMessageResource.class));
-        // jinplace only "Posts"
-        router.attach(new RouteBuilder("/messages1/{key}/", PostMessageResource.class));
         
+        router.attach(new RouteBuilder("/messages/{key}/{fieldname}/", PatchMessageResource.class));
     }
 
     @Override

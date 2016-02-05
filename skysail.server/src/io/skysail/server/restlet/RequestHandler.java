@@ -1,11 +1,11 @@
 package io.skysail.server.restlet;
 
+import org.restlet.data.Method;
+
 import io.skysail.domain.Identifiable;
 import io.skysail.server.app.SkysailApplication;
 import io.skysail.server.restlet.filter.*;
 import io.skysail.server.restlet.resources.*;
-
-import org.restlet.data.Method;
 
 public class RequestHandler<T extends Identifiable> {
 
@@ -57,7 +57,7 @@ public class RequestHandler<T extends Identifiable> {
         return chainForEntityPut();
     }
 
-    public AbstractResourceFilter<PutEntityServerResource<T>, T> createForPatch() {
+    public AbstractResourceFilter<PatchEntityServerResource<T>, T> createForPatch() {
         return chainForEntityPatch();
     }
 
@@ -97,16 +97,15 @@ public class RequestHandler<T extends Identifiable> {
                 .calling(new PutRedirectGetFilter<>());
     }
 
-    private AbstractResourceFilter<PutEntityServerResource<T>, T> chainForEntityPatch() {
-        return new ExceptionCatchingFilter<PutEntityServerResource<T>, T>(application)
+    private AbstractResourceFilter<PatchEntityServerResource<T>, T> chainForEntityPatch() {
+        return new ExceptionCatchingFilter<PatchEntityServerResource<T>, T>(application)
                 .calling(new ExtractStandardQueryParametersResourceFilter<>())
                 .calling(new CheckInvalidInputFilter<>(application))
                 .calling(new FormDataExtractingFilter<>())
                 //.calling(new CheckBusinessViolationsFilter<>(application))
-                .calling(new UpdateEntityFilter<>())
-                //.calling(new EntityWasAddedFilter<>(application))
-                .calling(new AddLinkheadersFilter<>())
-                .calling(new PutRedirectGetFilter<>());
+                .calling(new PatchEntityFilter<PatchEntityServerResource<T>, T>())
+                //.calling(new EntityWasPatchedFilter<>(application))
+                .calling(new AddLinkheadersFilter<>());
     }
 
     private AbstractResourceFilter<EntityServerResource<T>, T> chainForEntityDelete() {

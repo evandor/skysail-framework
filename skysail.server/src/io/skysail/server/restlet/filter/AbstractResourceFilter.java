@@ -2,19 +2,14 @@ package io.skysail.server.restlet.filter;
 
 import java.text.ParseException;
 
-import org.restlet.Request;
-import org.restlet.Response;
+import org.restlet.*;
 import org.restlet.data.Form;
 import org.restlet.routing.Filter;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.slf4j.*;
 
 import de.twenty11.skysail.server.core.restlet.Wrapper;
 import io.skysail.domain.Identifiable;
-import io.skysail.server.restlet.resources.EntityServerResource;
-import io.skysail.server.restlet.resources.PostEntityServerResource;
-import io.skysail.server.restlet.resources.PutEntityServerResource;
-import io.skysail.server.restlet.resources.SkysailServerResource;
+import io.skysail.server.restlet.resources.*;
 import io.skysail.server.restlet.response.*;
 
 /**
@@ -165,7 +160,10 @@ public abstract class AbstractResourceFilter<R extends SkysailServerResource<?>,
             return ((PostEntityServerResource<T>) resource).getData(form);
         }
         if (resource instanceof PutEntityServerResource) {
-            return ((PutEntityServerResource<T>) resource).getData(form);
+            return ((PutEntityServerResource<T>) resource).getData(form);   
+        }
+        if (resource instanceof PatchEntityServerResource) {
+            return ((PatchEntityServerResource<T>) resource).getData(form);
         }
 
         return null;

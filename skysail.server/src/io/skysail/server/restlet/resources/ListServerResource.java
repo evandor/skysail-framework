@@ -1,19 +1,15 @@
 package io.skysail.server.restlet.resources;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 import org.restlet.Restlet;
 import org.restlet.data.Method;
 import org.restlet.representation.Variant;
-import org.restlet.resource.Get;
-import org.restlet.resource.ServerResource;
+import org.restlet.resource.*;
 
 import de.twenty11.skysail.server.core.restlet.ResourceContextId;
 import io.skysail.api.links.LinkRelation;
-import io.skysail.api.responses.ListServerResponse;
-import io.skysail.api.responses.SkysailResponse;
+import io.skysail.api.responses.*;
 import io.skysail.domain.Identifiable;
 import io.skysail.server.restlet.ListRequestHandler;
 import io.skysail.server.restlet.response.ListResponseWrapper;
@@ -114,7 +110,7 @@ public abstract class ListServerResource<T extends Identifiable> extends Skysail
     public ListServerResponse<T> getEntities(Variant variant) {
         Set<PerformanceTimer> perfTimer = getApplication().startPerformanceMonitoring(
                 this.getClass().getSimpleName() + ":getEntities");
-        log.debug("Request entry point: {} @Get('html|json|yaml|xml|csv|timeline|standalone') with variant {}", this.getClass().getSimpleName(),
+        log.info("Request entry point: {} @Get({})", this.getClass().getSimpleName(),
                 variant);
         List<T> response = listEntities();
         getApplication().stopPerformanceMonitoring(perfTimer);

@@ -21,7 +21,6 @@ public class PatchMessageResource extends PatchEntityServerResource<Message> {
         store = getQueryValue("store");
     }
 
-    @Override
     public void updateEntity(Message entity) {
         if (!entity.getMsgKey().equals(msgKey)) {
             throw new IllegalStateException("wrong key");

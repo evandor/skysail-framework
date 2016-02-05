@@ -54,6 +54,7 @@ public class PostEntityResourceTest extends AbstractEntityResourceTest {
     @Test
     public void valid_json_data_yields_new_entity() {
         DbEntity entity = DbEntity.builder().name("AnEntity").rootEntity(true).build();
+        entity.setDbApplication(anApplication);
         
         SkysailResponse<DbEntity> result = postEntityResource.post(entity, JSON_VARIANT);
         

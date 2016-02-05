@@ -1,6 +1,8 @@
 package io.skysail.server.restlet.resources;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
 
 import javax.validation.ConstraintViolation;
 
@@ -16,16 +18,21 @@ import io.skysail.server.restlet.RequestHandler;
 import io.skysail.server.restlet.filter.AbstractResourceFilter;
 import io.skysail.server.restlet.response.ResponseWrapper;
 import io.skysail.server.services.PerformanceTimer;
-import io.skysail.server.utils.*;
+import io.skysail.server.utils.ResourceUtils;
+import io.skysail.server.utils.SkysailBeanUtils;
 import lombok.extern.slf4j.Slf4j;
 
 /**
  * An abstract resource template dealing with PATCH requests (see
  * http://www.ietf.org/rfc/rfc2616.txt, 9.6).
+ * 
+ * It is assumed that the request is changing only one field (indicated be the attribute
+ * "fieldname").
  */
 @Slf4j
 public abstract class PatchEntityServerResource<T extends Identifiable> extends SkysailServerResource<T> {
 
+    @Override
     protected T populate(T bean, Form form) {
         Map<String, Object> valuesMap = new HashMap<>();
         valuesMap.put(getAttribute("fieldname"), form.getFirstValue("value"));
@@ -45,8 +52,8 @@ public abstract class PatchEntityServerResource<T extends Identifiable> extends 
     public void updateEntity(T entity) {
         T original = getEntity(null);
         SkysailApplication app = (SkysailApplication) getApplication();
-        // app.getListRepo().update(listId, original);
-        //app.getRepository(parameterizedType).update(original, app.getApplicationModel());
+//         app.getListRepo().update(listId, original);
+//        app.getRepository(parameterizedType).update(original, app.getApplicationModel());
     }
 
     /**

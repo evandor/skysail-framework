@@ -26,6 +26,7 @@ import io.skysail.server.app.designer.fields.resources.text.PostTextFieldResourc
 import io.skysail.server.app.designer.fields.resources.text.PutTextFieldResource;
 import io.skysail.server.app.designer.repo.DesignerRepository;
 import io.skysail.server.db.validators.UniqueNameForParentValidator;
+import io.skysail.server.db.validators.UniqueNameValidator;
 import io.skysail.server.restlet.resources.SkysailServerResource;
 import io.skysail.server.testsupport.ResourceTestBase;
 import lombok.NonNull;
@@ -89,7 +90,7 @@ public abstract class AbstractDesignerResourceTest extends ResourceTestBase {
 
         setUpSubject("admin");
         
-        //new UniqueNameForParentValidator().setDbService(testDb);
+        new UniqueNameValidator().setDbService(testDb);
         new UniqueNameForParentValidator().setDbService(testDb);
 
     }

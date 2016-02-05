@@ -11,9 +11,7 @@ import org.restlet.representation.Variant;
 import org.restlet.resource.Patch;
 
 import io.skysail.api.links.LinkRelation;
-import io.skysail.api.responses.StringResponse;
 import io.skysail.domain.Identifiable;
-import io.skysail.server.app.SkysailApplication;
 import io.skysail.server.restlet.RequestHandler;
 import io.skysail.server.restlet.filter.AbstractResourceFilter;
 import io.skysail.server.restlet.response.ResponseWrapper;
@@ -26,16 +24,19 @@ import lombok.extern.slf4j.Slf4j;
  * An abstract resource template dealing with PATCH requests (see
  * http://www.ietf.org/rfc/rfc2616.txt, 9.6).
  * 
- * It is assumed that the request is changing only one field (indicated be the attribute
- * "fieldname").
+ * It is assumed that the request is changing only one field of the entity in qustion
+ * (indicated be the attribute "fieldname").
  */
 @Slf4j
 public abstract class PatchEntityServerResource<T extends Identifiable> extends SkysailServerResource<T> {
 
+    private String newValue;
+
     @Override
     protected T populate(T bean, Form form) {
         Map<String, Object> valuesMap = new HashMap<>();
-        valuesMap.put(getAttribute("fieldname"), form.getFirstValue("value"));
+        newValue = form.getFirstValue("value");
+        valuesMap.put(getAttribute("fieldname"), newValue);
         try {
             SkysailBeanUtils beanUtilsBean = new SkysailBeanUtils(bean, ResourceUtils.determineLocale(this));
             beanUtilsBean.populate(bean, valuesMap);
@@ -50,10 +51,7 @@ public abstract class PatchEntityServerResource<T extends Identifiable> extends 
      * will be called in case of a PUT request.
      */
     public void updateEntity(T entity) {
-        T original = getEntity(null);
-        SkysailApplication app = (SkysailApplication) getApplication();
-//         app.getListRepo().update(listId, original);
-//        app.getRepository(parameterizedType).update(original, app.getApplicationModel());
+        getEntity(null);
     }
 
     /**
@@ -73,7 +71,7 @@ public abstract class PatchEntityServerResource<T extends Identifiable> extends 
     }
 
     @Patch("x-www-form-urlencoded:html")
-    public Object patchEntity2(Form form, Variant variant) {
+    public Object patchEntity(Form form, Variant variant) {
         Set<PerformanceTimer> perfTimer = getApplication()
                 .startPerformanceMonitoring(this.getClass().getSimpleName() + ":patchEntity");
         log.info("Request entry point: {} @Patch({})", this.getClass().getSimpleName(), variant);
@@ -83,7 +81,7 @@ public abstract class PatchEntityServerResource<T extends Identifiable> extends 
         if (variant != null) {
             getRequest().getAttributes().put(SKYSAIL_SERVER_RESTLET_VARIANT, variant);
         }
-        RequestHandler<T> requestHandler = new RequestHandler<T>(getApplication());
+        RequestHandler<T> requestHandler = new RequestHandler<>(getApplication());
         AbstractResourceFilter<PatchEntityServerResource<T>, T> handler = requestHandler.createForPatch();
         ResponseWrapper<T> handledRequest = handler.handle(this, getResponse());
         getApplication().stopPerformanceMonitoring(perfTimer);
@@ -92,7 +90,8 @@ public abstract class PatchEntityServerResource<T extends Identifiable> extends 
         }
 
         getApplication().stopPerformanceMonitoring(perfTimer);
-        return new StringResponse<T>(getResponse(), handledRequest.getEntity());
+        //return new StringResponse<T>(getResponse(), handledRequest.getEntity());
+        return newValue;
     }
 
     @Override

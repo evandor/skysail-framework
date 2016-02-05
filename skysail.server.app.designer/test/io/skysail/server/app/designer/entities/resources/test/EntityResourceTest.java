@@ -1,9 +1,13 @@
 package io.skysail.server.app.designer.entities.resources.test;
 
-import static org.hamcrest.CoreMatchers.*;
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.notNullValue;
+import static org.hamcrest.CoreMatchers.nullValue;
 import static org.junit.Assert.assertThat;
 
-import org.junit.*;
+import org.junit.Before;
+import org.junit.Ignore;
+import org.junit.Test;
 
 import io.skysail.server.app.designer.application.DbApplication;
 import io.skysail.server.app.designer.entities.DbEntity;
@@ -31,6 +35,7 @@ public class EntityResourceTest extends AbstractEntityResourceTest {
     }
 
     @Test
+    @Ignore
     public void created_entity_can_be_deleted_again() {
         String entityId = createAndAddEntity();
         addAttribute("eid", entityId);

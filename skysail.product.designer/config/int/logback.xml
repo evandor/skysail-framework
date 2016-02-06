@@ -51,12 +51,10 @@
         <port>12201</port>
         <encoder class="me.moocar.logbackgelf.GZIPEncoder">
             <layout class="me.moocar.logbackgelf.GelfLayout">
-              
               <staticField class="me.moocar.logbackgelf.Field">
-			    <key>_source</key>
+			    <key>_srcIdent</key>
 			    <value>ssp.designer.int</value>
 			  </staticField>
-            
             </layout>
         </encoder>
     </appender>

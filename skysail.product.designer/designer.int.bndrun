@@ -7,6 +7,7 @@
 -runfw: org.apache.felix.framework;version=${org.apache.felix.framework.version}
 -runproperties: org.osgi.service.http.port=8081,\
     ds.loglevel=debug,\
+    osgi.shell.telnet.port=6669,\
     ${runproperties}
 -runrepos: ${runrepos}
 -runsystemcapabilities: ${native_capability}
@@ -23,6 +24,7 @@ logback.configurationFile.path = config/int
 
 -runbundles:\
     ${serverbundles-1.0.0},\
+    org.apache.felix.shell.remote;version=1.1.2,\
     skysail.product.designer;version=latest,\
     skysail.server.codegen;version=latest,\
     skysail.server.polymer;version=latest,\

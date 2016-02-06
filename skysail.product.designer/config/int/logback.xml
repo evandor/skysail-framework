@@ -50,12 +50,7 @@
         <remoteHost>localhost</remoteHost>
         <port>12201</port>
         <encoder class="me.moocar.logbackgelf.GZIPEncoder">
-            <layout class="me.moocar.logbackgelf.GelfLayout">
-              <staticField class="me.moocar.logbackgelf.Field">
-                <key>statictest</key>
-                <value>ssp</value>
-              </staticField>
-            </layout>
+          <layout class="me.moocar.logbackgelf.GelfLayout" />
         </encoder>
     </appender>
 

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<repository increment="1454424996664" name="Local" xmlns="http://www.osgi.org/xmlns/repository/v1.0.0">
+<repository increment="1454780786000" name="Local" xmlns="http://www.osgi.org/xmlns/repository/v1.0.0">
   <resource>
     <capability namespace="osgi.identity">
       <attribute name="osgi.identity" value="bcprov"/>
@@ -3381,7 +3381,7 @@
     </requirement>
   </resource>
   <resource>
-    <!-- Error calling analyzer "org.osgi.service.indexer.impl.BundleAnalyzer" on resource C:/git/skysail-framework/cnf/localrepo/io.netty.buffer/io.netty.buffer-4.0.25.jar with message java.lang.IllegalArgumentException: invalid version "[1,)": non-numeric "[1,)" and stack: java.lang.IllegalArgumentException: invalid version "[1,)": non-numeric "[1,)"
+    <!-- Error calling analyzer "org.osgi.service.indexer.impl.BundleAnalyzer" on resource /Users/carsten/git/skysail-framework/cnf/localrepo/io.netty.buffer/io.netty.buffer-4.0.25.jar with message java.lang.IllegalArgumentException: invalid version "[1,)": non-numeric "[1,)" and stack: java.lang.IllegalArgumentException: invalid version "[1,)": non-numeric "[1,)"
 	at org.osgi.framework.Version.parseInt(Version.java:170)
 	at org.osgi.framework.Version.&lt;init&gt;(Version.java:126)
 	at org.osgi.service.indexer.impl.types.VersionRange.&lt;init&gt;(VersionRange.java:58)
@@ -3401,9 +3401,9 @@
 	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
 Caused by: java.lang.NumberFormatException: For input string: "[1,)"
-	at java.lang.NumberFormatException.forInputString(Unknown Source)
-	at java.lang.Integer.parseInt(Unknown Source)
-	at java.lang.Integer.parseInt(Unknown Source)
+	at java.lang.NumberFormatException.forInputString(NumberFormatException.java:65)
+	at java.lang.Integer.parseInt(Integer.java:580)
+	at java.lang.Integer.parseInt(Integer.java:615)
 	at org.osgi.framework.Version.parseInt(Version.java:168)
 	... 17 more
  -->
@@ -3447,7 +3447,7 @@ Caused by: java.lang.NumberFormatException: For input string: "[1,)"
     </requirement>
   </resource>
   <resource>
-    <!-- Error calling analyzer "org.osgi.service.indexer.impl.BundleAnalyzer" on resource C:/git/skysail-framework/cnf/localrepo/io.netty.common/io.netty.common-4.0.25.jar with message java.lang.IllegalArgumentException: invalid version "[1,)": non-numeric "[1,)" and stack: java.lang.IllegalArgumentException: invalid version "[1,)": non-numeric "[1,)"
+    <!-- Error calling analyzer "org.osgi.service.indexer.impl.BundleAnalyzer" on resource /Users/carsten/git/skysail-framework/cnf/localrepo/io.netty.common/io.netty.common-4.0.25.jar with message java.lang.IllegalArgumentException: invalid version "[1,)": non-numeric "[1,)" and stack: java.lang.IllegalArgumentException: invalid version "[1,)": non-numeric "[1,)"
 	at org.osgi.framework.Version.parseInt(Version.java:170)
 	at org.osgi.framework.Version.&lt;init&gt;(Version.java:126)
 	at org.osgi.service.indexer.impl.types.VersionRange.&lt;init&gt;(VersionRange.java:58)
@@ -3467,9 +3467,9 @@ Caused by: java.lang.NumberFormatException: For input string: "[1,)"
 	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
 Caused by: java.lang.NumberFormatException: For input string: "[1,)"
-	at java.lang.NumberFormatException.forInputString(Unknown Source)
-	at java.lang.Integer.parseInt(Unknown Source)
-	at java.lang.Integer.parseInt(Unknown Source)
+	at java.lang.NumberFormatException.forInputString(NumberFormatException.java:65)
+	at java.lang.Integer.parseInt(Integer.java:580)
+	at java.lang.Integer.parseInt(Integer.java:615)
 	at org.osgi.framework.Version.parseInt(Version.java:168)
 	... 17 more
  -->
@@ -3556,7 +3556,7 @@ Caused by: java.lang.NumberFormatException: For input string: "[1,)"
     </requirement>
   </resource>
   <resource>
-    <!-- Error calling analyzer "org.osgi.service.indexer.impl.BundleAnalyzer" on resource C:/git/skysail-framework/cnf/localrepo/io.netty.transport/io.netty.transport-4.0.25.jar with message java.lang.IllegalArgumentException: invalid version "[1,)": non-numeric "[1,)" and stack: java.lang.IllegalArgumentException: invalid version "[1,)": non-numeric "[1,)"
+    <!-- Error calling analyzer "org.osgi.service.indexer.impl.BundleAnalyzer" on resource /Users/carsten/git/skysail-framework/cnf/localrepo/io.netty.transport/io.netty.transport-4.0.25.jar with message java.lang.IllegalArgumentException: invalid version "[1,)": non-numeric "[1,)" and stack: java.lang.IllegalArgumentException: invalid version "[1,)": non-numeric "[1,)"
 	at org.osgi.framework.Version.parseInt(Version.java:170)
 	at org.osgi.framework.Version.&lt;init&gt;(Version.java:126)
 	at org.osgi.service.indexer.impl.types.VersionRange.&lt;init&gt;(VersionRange.java:58)
@@ -3576,9 +3576,9 @@ Caused by: java.lang.NumberFormatException: For input string: "[1,)"
 	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
 Caused by: java.lang.NumberFormatException: For input string: "[1,)"
-	at java.lang.NumberFormatException.forInputString(Unknown Source)
-	at java.lang.Integer.parseInt(Unknown Source)
-	at java.lang.Integer.parseInt(Unknown Source)
+	at java.lang.NumberFormatException.forInputString(NumberFormatException.java:65)
+	at java.lang.Integer.parseInt(Integer.java:580)
+	at java.lang.Integer.parseInt(Integer.java:615)
 	at org.osgi.framework.Version.parseInt(Version.java:168)
 	... 17 more
  -->
@@ -10041,6 +10041,53 @@ Caused by: java.lang.NumberFormatException: For input string: "[1,)"
       <attribute name="version" type="Version" value="0.2.0"/>
       <attribute name="bundle-symbolic-name" value="me.moocar.logback-gelf"/>
       <attribute name="bundle-version" type="Version" value="0.2.0"/>
+      <directive name="uses" value="ch.qos.logback.classic.spi,ch.qos.logback.core,ch.qos.logback.core.encoder"/>
+    </capability>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(&amp;(osgi.wiring.package=ch.qos.logback.classic)(version&gt;=1.1.0)(!(version&gt;=2.0.0)))"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(&amp;(osgi.wiring.package=ch.qos.logback.classic.spi)(version&gt;=1.1.0)(!(version&gt;=2.0.0)))"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(&amp;(osgi.wiring.package=ch.qos.logback.classic.util)(version&gt;=1.1.0)(!(version&gt;=2.0.0)))"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(&amp;(osgi.wiring.package=ch.qos.logback.core)(version&gt;=1.1.0)(!(version&gt;=2.0.0)))"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(&amp;(osgi.wiring.package=ch.qos.logback.core.encoder)(version&gt;=1.1.0)(!(version&gt;=2.0.0)))"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(&amp;(osgi.wiring.package=com.google.gson)(version&gt;=2.3.0)(!(version&gt;=3.0.0)))"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(&amp;(osgi.wiring.package=org.slf4j)(version&gt;=1.7.0)(!(version&gt;=2.0.0)))"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.host">
+      <directive name="filter" value="(&amp;(osgi.wiring.host=ch.qos.logback.classic)(bundle-version&gt;=0.0.0))"/>
+    </requirement>
+    <requirement namespace="osgi.ee">
+      <directive name="filter" value="(&amp;(osgi.ee=JavaSE)(version=1.6))"/>
+    </requirement>
+  </resource>
+  <resource>
+    <capability namespace="osgi.identity">
+      <attribute name="osgi.identity" value="me.moocar.logback-gelf"/>
+      <attribute name="type" value="osgi.fragment"/>
+      <attribute name="version" type="Version" value="0.3.0"/>
+    </capability>
+    <capability namespace="osgi.content">
+      <attribute name="osgi.content" value="2d48244de026a1076bd4230aa8c98a80b036b3a14e45a5dade70c6690d17c215"/>
+      <attribute name="url" value="me.moocar.logback-gelf/me.moocar.logback-gelf-0.3.0.jar"/>
+      <attribute name="size" type="Long" value="17719"/>
+      <attribute name="mime" value="application/vnd.osgi.bundle"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="me.moocar.logbackgelf"/>
+      <attribute name="version" type="Version" value="0.3.0"/>
+      <attribute name="bundle-symbolic-name" value="me.moocar.logback-gelf"/>
+      <attribute name="bundle-version" type="Version" value="0.3.0"/>
       <directive name="uses" value="ch.qos.logback.classic.spi,ch.qos.logback.core,ch.qos.logback.core.encoder"/>
     </capability>
     <requirement namespace="osgi.wiring.package">

@@ -23,7 +23,7 @@ logback.configurationFile.path = config/common
 
 -runbundles:\
     ${osgi},\
-    me.moocar.logback-gelf;version=0.2.0,\
+    me.moocar.logback-gelf;version=0.3.0,\
     com.google.gson;version=2.4,\
     ${aQute},\
     ${etm},\

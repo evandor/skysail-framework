@@ -1,0 +1,159 @@
+2016-02-06 09:19:51,356 DEBUG [d.t.skysail.server.core.osgi.EventHelper     ] - about to post event org.osgi.service.event.Event [topic=GUI/peitybar/info]: 2.06591796875
+2016-02-06 09:20:01,335 DEBUG [d.t.skysail.server.core.osgi.EventHelper     ] - about to post event org.osgi.service.event.Event [topic=GUI/peitybar/info]: 2.22216796875
+2016-02-06 09:20:11,333 DEBUG [d.t.skysail.server.core.osgi.EventHelper     ] - about to post event org.osgi.service.event.Event [topic=GUI/peitybar/info]: 2.50146484375
+2016-02-06 09:20:21,337 DEBUG [d.t.skysail.server.core.osgi.EventHelper     ] - about to post event org.osgi.service.event.Event [topic=GUI/peitybar/info]: 2.8916015625
+2016-02-06 09:20:31,333 DEBUG [d.t.skysail.server.core.osgi.EventHelper     ] - about to post event org.osgi.service.event.Event [topic=GUI/peitybar/info]: 2.60009765625
+2016-02-06 09:20:41,336 DEBUG [d.t.skysail.server.core.osgi.EventHelper     ] - about to post event org.osgi.service.event.Event [topic=GUI/peitybar/info]: 2.728515625
+2016-02-06 09:20:51,336 DEBUG [d.t.skysail.server.core.osgi.EventHelper     ] - about to post event org.osgi.service.event.Event [topic=GUI/peitybar/info]: 2.68310546875
+2016-02-06 09:21:01,332 DEBUG [d.t.skysail.server.core.osgi.EventHelper     ] - about to post event org.osgi.service.event.Event [topic=GUI/peitybar/info]: 2.89111328125
+2016-02-06 09:21:11,336 DEBUG [d.t.skysail.server.core.osgi.EventHelper     ] - about to post event org.osgi.service.event.Event [topic=GUI/peitybar/info]: 2.90087890625
+2016-02-06 09:21:21,338 DEBUG [d.t.skysail.server.core.osgi.EventHelper     ] - about to post event org.osgi.service.event.Event [topic=GUI/peitybar/info]: 2.75537109375
+2016-02-06 09:21:31,333 DEBUG [d.t.skysail.server.core.osgi.EventHelper     ] - about to post event org.osgi.service.event.Event [topic=GUI/peitybar/info]: 2.77978515625
+2016-02-06 09:21:41,334 DEBUG [d.t.skysail.server.core.osgi.EventHelper     ] - about to post event org.osgi.service.event.Event [topic=GUI/peitybar/info]: 2.666015625
+2016-02-06 09:21:51,338 DEBUG [d.t.skysail.server.core.osgi.EventHelper     ] - about to post event org.osgi.service.event.Event [topic=GUI/peitybar/info]: 2.64306640625
+2016-02-06 09:22:01,335 DEBUG [d.t.skysail.server.core.osgi.EventHelper     ] - about to post event org.osgi.service.event.Event [topic=GUI/peitybar/info]: 2.47021484375
+2016-02-06 09:22:11,332 DEBUG [d.t.skysail.server.core.osgi.EventHelper     ] - about to post event org.osgi.service.event.Event [topic=GUI/peitybar/info]: 2.55078125
+2016-02-06 09:22:21,330 DEBUG [d.t.skysail.server.core.osgi.EventHelper     ] - about to post event org.osgi.service.event.Event [topic=GUI/peitybar/info]: 2.61279296875
+2016-02-06 09:22:31,336 DEBUG [d.t.skysail.server.core.osgi.EventHelper     ] - about to post event org.osgi.service.event.Event [topic=GUI/peitybar/info]: 2.4443359375
+2016-02-06 09:22:41,337 DEBUG [d.t.skysail.server.core.osgi.EventHelper     ] - about to post event org.osgi.service.event.Event [topic=GUI/peitybar/info]: 2.36279296875
+2016-02-06 09:22:51,331 DEBUG [d.t.skysail.server.core.osgi.EventHelper     ] - about to post event org.osgi.service.event.Event [topic=GUI/peitybar/info]: 2.38671875
+2016-02-06 09:23:01,337 DEBUG [d.t.skysail.server.core.osgi.EventHelper     ] - about to post event org.osgi.service.event.Event [topic=GUI/peitybar/info]: 2.6533203125
+2016-02-06 09:23:11,336 DEBUG [d.t.skysail.server.core.osgi.EventHelper     ] - about to post event org.osgi.service.event.Event [topic=GUI/peitybar/info]: 2.63232421875
+2016-02-06 09:23:21,334 DEBUG [d.t.skysail.server.core.osgi.EventHelper     ] - about to post event org.osgi.service.event.Event [topic=GUI/peitybar/info]: 3.17529296875
+2016-02-06 09:23:31,334 DEBUG [d.t.skysail.server.core.osgi.EventHelper     ] - about to post event org.osgi.service.event.Event [topic=GUI/peitybar/info]: 3.3818359375
+2016-02-06 09:23:41,337 DEBUG [d.t.skysail.server.core.osgi.EventHelper     ] - about to post event org.osgi.service.event.Event [topic=GUI/peitybar/info]: 3.67822265625
+2016-02-06 09:23:51,338 DEBUG [d.t.skysail.server.core.osgi.EventHelper     ] - about to post event org.osgi.service.event.Event [topic=GUI/peitybar/info]: 3.26611328125
+2016-02-06 09:24:01,331 DEBUG [d.t.skysail.server.core.osgi.EventHelper     ] - about to post event org.osgi.service.event.Event [topic=GUI/peitybar/info]: 2.9912109375
+2016-02-06 09:24:11,331 DEBUG [d.t.skysail.server.core.osgi.EventHelper     ] - about to post event org.osgi.service.event.Event [topic=GUI/peitybar/info]: 3.28662109375
+2016-02-06 09:24:21,331 DEBUG [d.t.skysail.server.core.osgi.EventHelper     ] - about to post event org.osgi.service.event.Event [topic=GUI/peitybar/info]: 3.16162109375
+2016-02-06 09:24:31,337 DEBUG [d.t.skysail.server.core.osgi.EventHelper     ] - about to post event org.osgi.service.event.Event [topic=GUI/peitybar/info]: 2.982421875
+2016-02-06 09:24:41,335 DEBUG [d.t.skysail.server.core.osgi.EventHelper     ] - about to post event org.osgi.service.event.Event [topic=GUI/peitybar/info]: 2.904296875
+2016-02-06 09:24:51,330 DEBUG [d.t.skysail.server.core.osgi.EventHelper     ] - about to post event org.osgi.service.event.Event [topic=GUI/peitybar/info]: 2.53076171875
+2016-02-06 09:25:01,336 DEBUG [d.t.skysail.server.core.osgi.EventHelper     ] - about to post event org.osgi.service.event.Event [topic=GUI/peitybar/info]: 2.52880859375
+2016-02-06 09:25:11,332 DEBUG [d.t.skysail.server.core.osgi.EventHelper     ] - about to post event org.osgi.service.event.Event [topic=GUI/peitybar/info]: 2.85400390625
+2016-02-06 09:25:21,334 DEBUG [d.t.skysail.server.core.osgi.EventHelper     ] - about to post event org.osgi.service.event.Event [topic=GUI/peitybar/info]: 2.56201171875
+2016-02-06 09:25:31,337 DEBUG [d.t.skysail.server.core.osgi.EventHelper     ] - about to post event org.osgi.service.event.Event [topic=GUI/peitybar/info]: 2.8369140625
+2016-02-06 09:25:41,333 DEBUG [d.t.skysail.server.core.osgi.EventHelper     ] - about to post event org.osgi.service.event.Event [topic=GUI/peitybar/info]: 2.76953125
+2016-02-06 09:25:44,161 INFO  [io.skysail.server.app.ApplicationList        ] - (- ApplicationModel) name '_polymer', count is 08 now
+2016-02-06 09:25:44,164 DEBUG [io.skysail.server.app.SkysailApplication     ] - Deactivating ApplicationModel io.skysail.server.polymer.PolymerStaticWebapp
+2016-02-06 09:25:44,165 DEBUG [io.skysail.server.app.SkysailApplication     ] - deactivating UserManagementApplication #1004766007
+2016-02-06 09:25:44,492 INFO  [io.skysail.server.app.ApplicationList        ] - (- ApplicationModel) name 'root', count is 07 now
+2016-02-06 09:25:44,501 INFO  [io.skysail.server.http.HttpServer            ] - (- Converter)   name 'java.util.concurrent.CopyOnWriteArrayList', count is 05 now
+2016-02-06 09:25:44,513 INFO  [io.skysail.server.app.ApplicationList        ] - (- ApplicationModel) name 'webapp', count is 06 now
+2016-02-06 09:25:44,513 INFO  [io.skysail.server.app.ApplicationList        ] - (- ApplicationModel) name 'OSGi', count is 05 now
+2016-02-06 09:25:44,514 INFO  [io.skysail.server.app.ApplicationList        ] - (- ApplicationModel) name 'Performance', count is 04 now
+2016-02-06 09:25:44,514 INFO  [io.skysail.server.app.ApplicationList        ] - (- ApplicationModel) name 'static', count is 03 now
+2016-02-06 09:25:44,515 INFO  [io.skysail.server.app.ApplicationList        ] - (- ApplicationModel) name 'i18n', count is 02 now
+2016-02-06 09:25:44,515 INFO  [io.skysail.server.app.ApplicationList        ] - (- ApplicationModel) name 'usermanagement', count is 01 now
+2016-02-06 09:25:44,516 INFO  [io.skysail.server.app.ApplicationList        ] - (- ApplicationModel) name 'website', count is 00 now
+2016-02-06 09:25:44,517 DEBUG [io.skysail.server.app.SkysailApplication     ] - Deactivating ApplicationModel io.skysail.server.converter.WebappApplication
+2016-02-06 09:25:44,517 DEBUG [io.skysail.server.app.SkysailApplication     ] - deactivating UserManagementApplication #856885183
+2016-02-06 09:25:44,518 DEBUG [io.skysail.server.app.SkysailApplication     ] - Deactivating ApplicationModel de.twenty11.skysail.server.webapp.internal.WebappApplication
+2016-02-06 09:25:44,519 DEBUG [io.skysail.server.app.SkysailApplication     ] - deactivating UserManagementApplication #1503221111
+2016-02-06 09:25:44,527 INFO  [io.skysail.server.services.ServerLoad        ] - deactivating ServerLoad task
+2016-02-06 09:25:44,574 INFO  [io.skysail.server.http.HttpServer            ] - (- Converter)   name 'java.util.concurrent.CopyOnWriteArrayList', count is 04 now
+2016-02-06 09:25:44,579 DEBUG [io.skysail.server.app.SkysailApplication     ] - Deactivating ApplicationModel de.twenty11.skysail.server.osgi.OsgiMonitorViewerApplication
+2016-02-06 09:25:44,580 DEBUG [io.skysail.server.app.SkysailApplication     ] - deactivating UserManagementApplication #1706655559
+2016-02-06 09:25:44,582 INFO  [io.skysail.server.http.HttpServer            ] - (- Converter)   name 'java.util.concurrent.CopyOnWriteArrayList', count is 03 now
+2016-02-06 09:25:44,667 DEBUG [io.skysail.server.http.HttpServer            ] - Deactivating io.skysail.server.http.HttpServer
+2016-02-06 09:25:44,667 INFO  [org.restlet                                  ] - Stopping the Jetty [HTTP/1.1] server on port 2015
+2016-02-06 09:25:44,668 DEBUG [o.e.j.util.component.AbstractLifeCycle       ] - stopping org.restlet.ext.jetty.JettyServerHelper$WrappedServer@47ffe971
+2016-02-06 09:25:44,675 DEBUG [org.eclipse.jetty.server.Server              ] - Graceful shutdown org.restlet.ext.jetty.JettyServerHelper$WrappedServer@47ffe971 by 
+2016-02-06 09:25:44,676 DEBUG [o.e.j.util.component.AbstractLifeCycle       ] - stopping ServerConnector@1a865273{HTTP/1.1}{0.0.0.0:2015}
+2016-02-06 09:25:44,676 DEBUG [o.e.j.util.component.AbstractLifeCycle       ] - stopping org.eclipse.jetty.server.ServerConnector$ServerConnectorManager@67c5ac52
+2016-02-06 09:25:44,677 DEBUG [o.e.j.util.component.AbstractLifeCycle       ] - stopping org.eclipse.jetty.io.SelectorManager$ManagedSelector@66273da0 keys=3 selected=0
+2016-02-06 09:25:44,677 DEBUG [org.eclipse.jetty.io.SelectorManager         ] - Stopping org.eclipse.jetty.io.SelectorManager$ManagedSelector@66273da0 keys=3 selected=0
+2016-02-06 09:25:44,678 DEBUG [org.eclipse.jetty.io.SelectorManager         ] - Queued change org.eclipse.jetty.io.SelectorManager$ManagedSelector$Stop@2d236878
+2016-02-06 09:25:44,679 DEBUG [org.eclipse.jetty.io.SelectorManager         ] - Selector loop woken up from select, 0/0 selected
+2016-02-06 09:25:44,680 DEBUG [org.eclipse.jetty.io.SelectorManager         ] - Running change org.eclipse.jetty.io.SelectorManager$ManagedSelector$Stop@2d236878
+2016-02-06 09:25:44,681 DEBUG [org.eclipse.jetty.io.SelectorManager         ] - Stopped org.eclipse.jetty.io.SelectorManager$ManagedSelector@66273da0 keys=-1 selected=-1
+2016-02-06 09:25:44,712 DEBUG [org.eclipse.jetty.io.SelectorManager         ] - Stopped Thread[qtp1840217399-60-selector-ServerConnectorManager@67c5ac52/0,5,main] on org.eclipse.jetty.io.SelectorManager$ManagedSelector@66273da0 keys=-1 selected=-1
+2016-02-06 09:25:44,712 DEBUG [o.e.j.util.component.AbstractLifeCycle       ] - STOPPED org.eclipse.jetty.io.SelectorManager$ManagedSelector@66273da0 keys=-1 selected=-1
+2016-02-06 09:25:44,714 DEBUG [o.e.j.util.component.AbstractLifeCycle       ] - stopping org.eclipse.jetty.io.SelectorManager$ManagedSelector@6069dd38 keys=3 selected=0
+2016-02-06 09:25:44,714 DEBUG [org.eclipse.jetty.io.SelectorManager         ] - Stopping org.eclipse.jetty.io.SelectorManager$ManagedSelector@6069dd38 keys=3 selected=0
+2016-02-06 09:25:44,714 DEBUG [org.eclipse.jetty.io.SelectorManager         ] - Queued change org.eclipse.jetty.io.SelectorManager$ManagedSelector$Stop@53b1d57d
+2016-02-06 09:25:44,715 DEBUG [org.eclipse.jetty.io.SelectorManager         ] - Selector loop woken up from select, 0/0 selected
+2016-02-06 09:25:44,715 DEBUG [org.eclipse.jetty.io.SelectorManager         ] - Running change org.eclipse.jetty.io.SelectorManager$ManagedSelector$Stop@53b1d57d
+2016-02-06 09:25:44,768 DEBUG [org.eclipse.jetty.io.SelectorManager         ] - Stopped org.eclipse.jetty.io.SelectorManager$ManagedSelector@6069dd38 keys=-1 selected=-1
+2016-02-06 09:25:44,768 DEBUG [o.e.j.util.component.AbstractLifeCycle       ] - STOPPED org.eclipse.jetty.io.SelectorManager$ManagedSelector@6069dd38 keys=-1 selected=-1
+2016-02-06 09:25:44,768 DEBUG [org.eclipse.jetty.io.SelectorManager         ] - Stopped Thread[qtp1840217399-61-selector-ServerConnectorManager@67c5ac52/1,5,main] on org.eclipse.jetty.io.SelectorManager$ManagedSelector@6069dd38 keys=-1 selected=-1
+2016-02-06 09:25:44,768 DEBUG [o.e.j.util.component.AbstractLifeCycle       ] - STOPPED org.eclipse.jetty.server.ServerConnector$ServerConnectorManager@67c5ac52
+2016-02-06 09:25:44,769 DEBUG [o.e.j.util.component.AbstractLifeCycle       ] - stopping HttpConnectionFactory@188cbcde{HTTP/1.1}
+2016-02-06 09:25:44,769 DEBUG [o.e.j.util.component.AbstractLifeCycle       ] - STOPPED HttpConnectionFactory@188cbcde{HTTP/1.1}
+2016-02-06 09:25:44,769 DEBUG [o.e.j.util.component.AbstractLifeCycle       ] - stopping org.eclipse.jetty.util.thread.ScheduledExecutorScheduler@711d1a52
+2016-02-06 09:25:44,769 DEBUG [o.e.j.util.component.AbstractLifeCycle       ] - STOPPED org.eclipse.jetty.util.thread.ScheduledExecutorScheduler@711d1a52
+2016-02-06 09:25:44,770 INFO  [org.eclipse.jetty.server.ServerConnector     ] - Stopped ServerConnector@1a865273{HTTP/1.1}{0.0.0.0:2015}
+2016-02-06 09:25:44,771 DEBUG [o.e.j.util.component.AbstractLifeCycle       ] - STOPPED ServerConnector@1a865273{HTTP/1.1}{0.0.0.0:2015}
+2016-02-06 09:25:44,771 DEBUG [o.e.jetty.server.handler.AbstractHandler     ] - stopping org.restlet.ext.jetty.JettyServerHelper$WrappedServer@47ffe971
+2016-02-06 09:25:44,771 DEBUG [o.e.j.util.component.AbstractLifeCycle       ] - stopping org.eclipse.jetty.server.LowResourceMonitor@51288417
+2016-02-06 09:25:44,771 DEBUG [o.e.j.util.component.AbstractLifeCycle       ] - stopping org.eclipse.jetty.server.LowResourceMonitor$LRMScheduler@4674d90
+2016-02-06 09:25:44,772 DEBUG [o.e.j.util.component.AbstractLifeCycle       ] - STOPPED org.eclipse.jetty.server.LowResourceMonitor$LRMScheduler@4674d90
+2016-02-06 09:25:44,772 DEBUG [o.e.j.util.component.AbstractLifeCycle       ] - STOPPED org.eclipse.jetty.server.LowResourceMonitor@51288417
+2016-02-06 09:25:44,772 DEBUG [o.e.j.util.component.AbstractLifeCycle       ] - stopping qtp1840217399{STARTED,8<=8<=200,i=8,q=0}
+2016-02-06 09:25:44,777 DEBUG [o.e.j.util.component.AbstractLifeCycle       ] - STOPPED qtp1840217399{STOPPED,8<=8<=200,i=0,q=0}
+2016-02-06 09:25:44,777 DEBUG [o.e.j.util.component.AbstractLifeCycle       ] - STOPPED org.restlet.ext.jetty.JettyServerHelper$WrappedServer@47ffe971
+2016-02-06 09:25:44,793 DEBUG [o.e.j.util.component.AbstractLifeCycle       ] - stopping org.eclipse.jetty.client.HttpClient@39b3d7d1
+2016-02-06 09:25:44,794 DEBUG [o.e.j.util.component.AbstractLifeCycle       ] - stopping org.eclipse.jetty.client.http.HttpClientTransportOverHTTP@e77a46c
+2016-02-06 09:25:44,795 DEBUG [o.e.j.util.component.AbstractLifeCycle       ] - stopping org.eclipse.jetty.client.AbstractHttpClientTransport$ClientSelectorManager@4ed9702a
+2016-02-06 09:25:44,795 DEBUG [o.e.j.util.component.AbstractLifeCycle       ] - stopping org.eclipse.jetty.io.SelectorManager$ManagedSelector@1a13144c keys=0 selected=0
+2016-02-06 09:25:44,795 DEBUG [org.eclipse.jetty.io.SelectorManager         ] - Stopping org.eclipse.jetty.io.SelectorManager$ManagedSelector@1a13144c keys=0 selected=0
+2016-02-06 09:25:44,795 DEBUG [org.eclipse.jetty.io.SelectorManager         ] - Queued change org.eclipse.jetty.io.SelectorManager$ManagedSelector$Stop@5524dd71
+2016-02-06 09:25:44,798 DEBUG [org.eclipse.jetty.io.SelectorManager         ] - Selector loop woken up from select, 0/0 selected
+2016-02-06 09:25:44,799 DEBUG [org.eclipse.jetty.io.SelectorManager         ] - Running change org.eclipse.jetty.io.SelectorManager$ManagedSelector$Stop@5524dd71
+2016-02-06 09:25:44,800 DEBUG [org.eclipse.jetty.io.SelectorManager         ] - Stopped org.eclipse.jetty.io.SelectorManager$ManagedSelector@1a13144c keys=-1 selected=-1
+2016-02-06 09:25:44,818 DEBUG [org.eclipse.jetty.io.SelectorManager         ] - Stopped Thread[HttpClient@968087505-72-selector-ClientSelectorManager@4ed9702a/0,5,main] on org.eclipse.jetty.io.SelectorManager$ManagedSelector@1a13144c keys=-1 selected=-1
+2016-02-06 09:25:44,818 DEBUG [o.e.j.util.component.AbstractLifeCycle       ] - STOPPED org.eclipse.jetty.io.SelectorManager$ManagedSelector@1a13144c keys=-1 selected=-1
+2016-02-06 09:25:44,819 DEBUG [o.e.j.util.component.AbstractLifeCycle       ] - stopping org.eclipse.jetty.io.SelectorManager$ManagedSelector@41f0dc72 keys=0 selected=0
+2016-02-06 09:25:44,821 DEBUG [org.eclipse.jetty.io.SelectorManager         ] - Stopping org.eclipse.jetty.io.SelectorManager$ManagedSelector@41f0dc72 keys=0 selected=0
+2016-02-06 09:25:44,822 DEBUG [org.eclipse.jetty.io.SelectorManager         ] - Queued change org.eclipse.jetty.io.SelectorManager$ManagedSelector$Stop@f9122ac
+2016-02-06 09:25:44,823 DEBUG [org.eclipse.jetty.io.SelectorManager         ] - Selector loop woken up from select, 0/0 selected
+2016-02-06 09:25:44,824 DEBUG [org.eclipse.jetty.io.SelectorManager         ] - Running change org.eclipse.jetty.io.SelectorManager$ManagedSelector$Stop@f9122ac
+2016-02-06 09:25:44,860 DEBUG [org.eclipse.jetty.io.SelectorManager         ] - Stopped org.eclipse.jetty.io.SelectorManager$ManagedSelector@41f0dc72 keys=-1 selected=-1
+2016-02-06 09:25:44,860 DEBUG [o.e.j.util.component.AbstractLifeCycle       ] - STOPPED org.eclipse.jetty.io.SelectorManager$ManagedSelector@41f0dc72 keys=-1 selected=-1
+2016-02-06 09:25:44,860 DEBUG [org.eclipse.jetty.io.SelectorManager         ] - Stopped Thread[HttpClient@968087505-73-selector-ClientSelectorManager@4ed9702a/1,5,main] on org.eclipse.jetty.io.SelectorManager$ManagedSelector@41f0dc72 keys=-1 selected=-1
+2016-02-06 09:25:44,860 DEBUG [o.e.j.util.component.AbstractLifeCycle       ] - STOPPED org.eclipse.jetty.client.AbstractHttpClientTransport$ClientSelectorManager@4ed9702a
+2016-02-06 09:25:44,861 DEBUG [o.e.j.util.component.AbstractLifeCycle       ] - STOPPED org.eclipse.jetty.client.http.HttpClientTransportOverHTTP@e77a46c
+2016-02-06 09:25:44,861 DEBUG [o.e.j.util.component.AbstractLifeCycle       ] - stopping org.eclipse.jetty.util.thread.ScheduledExecutorScheduler@706fa8da
+2016-02-06 09:25:44,861 DEBUG [o.e.j.util.component.AbstractLifeCycle       ] - STOPPED org.eclipse.jetty.util.thread.ScheduledExecutorScheduler@706fa8da
+2016-02-06 09:25:44,862 DEBUG [o.e.j.util.component.AbstractLifeCycle       ] - stopping HttpClient@968087505{STARTED,8<=8<=200,i=8,q=0}
+2016-02-06 09:25:44,874 DEBUG [o.e.j.util.component.AbstractLifeCycle       ] - STOPPED HttpClient@968087505{STOPPED,8<=8<=200,i=0,q=0}
+2016-02-06 09:25:44,875 DEBUG [o.e.j.util.component.AbstractLifeCycle       ] - stopping RestletSslContextFactory@2a30ccac(null,null)
+2016-02-06 09:25:44,875 DEBUG [o.e.j.util.component.AbstractLifeCycle       ] - STOPPED RestletSslContextFactory@2a30ccac(null,null)
+2016-02-06 09:25:44,875 DEBUG [o.e.j.util.component.AbstractLifeCycle       ] - STOPPED org.eclipse.jetty.client.HttpClient@39b3d7d1
+2016-02-06 09:25:44,877 DEBUG [o.e.j.util.component.AbstractLifeCycle       ] - stopping org.eclipse.jetty.client.HttpClient@43431174
+2016-02-06 09:25:44,879 DEBUG [o.e.j.util.component.AbstractLifeCycle       ] - stopping org.eclipse.jetty.client.http.HttpClientTransportOverHTTP@365f84c8
+2016-02-06 09:25:44,880 DEBUG [o.e.j.util.component.AbstractLifeCycle       ] - stopping org.eclipse.jetty.client.AbstractHttpClientTransport$ClientSelectorManager@5afd7513
+2016-02-06 09:25:44,880 DEBUG [o.e.j.util.component.AbstractLifeCycle       ] - stopping org.eclipse.jetty.io.SelectorManager$ManagedSelector@53e4366b keys=0 selected=0
+2016-02-06 09:25:44,880 DEBUG [org.eclipse.jetty.io.SelectorManager         ] - Stopping org.eclipse.jetty.io.SelectorManager$ManagedSelector@53e4366b keys=0 selected=0
+2016-02-06 09:25:44,880 DEBUG [org.eclipse.jetty.io.SelectorManager         ] - Queued change org.eclipse.jetty.io.SelectorManager$ManagedSelector$Stop@550adf1f
+2016-02-06 09:25:44,881 DEBUG [org.eclipse.jetty.io.SelectorManager         ] - Selector loop woken up from select, 0/0 selected
+2016-02-06 09:25:44,881 DEBUG [org.eclipse.jetty.io.SelectorManager         ] - Running change org.eclipse.jetty.io.SelectorManager$ManagedSelector$Stop@550adf1f
+2016-02-06 09:25:44,891 DEBUG [org.eclipse.jetty.io.SelectorManager         ] - Stopped org.eclipse.jetty.io.SelectorManager$ManagedSelector@53e4366b keys=-1 selected=-1
+2016-02-06 09:25:44,897 DEBUG [org.eclipse.jetty.io.SelectorManager         ] - Stopped Thread[HttpClient@1128468852-80-selector-ClientSelectorManager@5afd7513/0,5,main] on org.eclipse.jetty.io.SelectorManager$ManagedSelector@53e4366b keys=-1 selected=-1
+2016-02-06 09:25:44,898 DEBUG [o.e.j.util.component.AbstractLifeCycle       ] - STOPPED org.eclipse.jetty.io.SelectorManager$ManagedSelector@53e4366b keys=-1 selected=-1
+2016-02-06 09:25:44,898 DEBUG [o.e.j.util.component.AbstractLifeCycle       ] - stopping org.eclipse.jetty.io.SelectorManager$ManagedSelector@1a544a30 keys=0 selected=0
+2016-02-06 09:25:44,899 DEBUG [org.eclipse.jetty.io.SelectorManager         ] - Stopping org.eclipse.jetty.io.SelectorManager$ManagedSelector@1a544a30 keys=0 selected=0
+2016-02-06 09:25:44,901 DEBUG [org.eclipse.jetty.io.SelectorManager         ] - Queued change org.eclipse.jetty.io.SelectorManager$ManagedSelector$Stop@6b805224
+2016-02-06 09:25:44,901 DEBUG [org.eclipse.jetty.io.SelectorManager         ] - Selector loop woken up from select, 0/0 selected
+2016-02-06 09:25:44,901 DEBUG [org.eclipse.jetty.io.SelectorManager         ] - Running change org.eclipse.jetty.io.SelectorManager$ManagedSelector$Stop@6b805224
+2016-02-06 09:25:44,908 DEBUG [org.eclipse.jetty.io.SelectorManager         ] - Stopped org.eclipse.jetty.io.SelectorManager$ManagedSelector@1a544a30 keys=-1 selected=-1
+2016-02-06 09:25:44,917 DEBUG [o.e.j.util.component.AbstractLifeCycle       ] - STOPPED org.eclipse.jetty.io.SelectorManager$ManagedSelector@1a544a30 keys=-1 selected=-1
+2016-02-06 09:25:44,917 DEBUG [org.eclipse.jetty.io.SelectorManager         ] - Stopped Thread[HttpClient@1128468852-81-selector-ClientSelectorManager@5afd7513/1,5,main] on org.eclipse.jetty.io.SelectorManager$ManagedSelector@1a544a30 keys=-1 selected=-1
+2016-02-06 09:25:44,917 DEBUG [o.e.j.util.component.AbstractLifeCycle       ] - STOPPED org.eclipse.jetty.client.AbstractHttpClientTransport$ClientSelectorManager@5afd7513
+2016-02-06 09:25:44,917 DEBUG [o.e.j.util.component.AbstractLifeCycle       ] - STOPPED org.eclipse.jetty.client.http.HttpClientTransportOverHTTP@365f84c8
+2016-02-06 09:25:44,917 DEBUG [o.e.j.util.component.AbstractLifeCycle       ] - stopping org.eclipse.jetty.util.thread.ScheduledExecutorScheduler@6f84cfa8
+2016-02-06 09:25:44,918 DEBUG [o.e.j.util.component.AbstractLifeCycle       ] - STOPPED org.eclipse.jetty.util.thread.ScheduledExecutorScheduler@6f84cfa8
+2016-02-06 09:25:44,918 DEBUG [o.e.j.util.component.AbstractLifeCycle       ] - stopping HttpClient@1128468852{STARTED,8<=8<=200,i=8,q=0}
+2016-02-06 09:25:44,932 DEBUG [o.e.j.util.component.AbstractLifeCycle       ] - STOPPED HttpClient@1128468852{STOPPED,8<=8<=200,i=0,q=0}
+2016-02-06 09:25:44,932 DEBUG [o.e.j.util.component.AbstractLifeCycle       ] - stopping RestletSslContextFactory@5aa06454(null,null)
+2016-02-06 09:25:44,932 DEBUG [o.e.j.util.component.AbstractLifeCycle       ] - STOPPED RestletSslContextFactory@5aa06454(null,null)
+2016-02-06 09:25:44,932 DEBUG [o.e.j.util.component.AbstractLifeCycle       ] - STOPPED org.eclipse.jetty.client.HttpClient@43431174
+2016-02-06 09:25:44,985 DEBUG [i.s.s.p.etm.EtmPerformanceMonitor            ] - stopping etm performance monitor
+2016-02-06 09:25:44,992 DEBUG [io.skysail.server.app.SkysailApplication     ] - Deactivating ApplicationModel io.skysail.server.performance.etm.impl.PerformanceApplication
+2016-02-06 09:25:44,992 DEBUG [io.skysail.server.app.SkysailApplication     ] - deactivating UserManagementApplication #1182492749
+2016-02-06 09:25:45,038 DEBUG [io.skysail.server.app.SkysailApplication     ] - Deactivating ApplicationModel io.skysail.server.text.store.bundleresource.impl.I18nApplication
+2016-02-06 09:25:45,038 DEBUG [io.skysail.server.app.SkysailApplication     ] - deactivating UserManagementApplication #74735260
+2016-02-06 09:25:45,225 DEBUG [io.skysail.server.app.SkysailApplication     ] - Deactivating ApplicationModel io.skysail.server.um.simple.app.SimpleUserManagementApplication
+2016-02-06 09:25:45,225 DEBUG [io.skysail.server.app.SkysailApplication     ] - deactivating UserManagementApplication #1074976188
+2016-02-06 09:25:45,245 DEBUG [io.skysail.server.app.SkysailApplication     ] - Deactivating ApplicationModel de.twenty11.skysail.products.website.SkysailWebsiteApplication
+2016-02-06 09:25:45,245 DEBUG [io.skysail.server.app.SkysailApplication     ] - deactivating UserManagementApplication #1887115844

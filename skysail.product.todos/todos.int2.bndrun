@@ -55,7 +55,6 @@ logback.configurationFile.path = config/common
     skysail.product.todos;version=latest,\
     skysail.server.ext.initconfig;version=latest,\
     skysail.server.codegen;version=latest,\
-    skysail.server.app.bookmarks;version=latest,\
     skysail.server.app.dbviewer;version=latest,\
     skysail.server.app.svgedit;version=latest,\
     skysail.server.app.designer;version=latest,\

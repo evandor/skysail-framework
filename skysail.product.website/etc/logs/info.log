@@ -1,0 +1,15 @@
+2016-02-06 09:25:44,161 INFO  [io.skysail.server.app.ApplicationList        ] - (- ApplicationModel) name '_polymer', count is 08 now
+2016-02-06 09:25:44,492 INFO  [io.skysail.server.app.ApplicationList        ] - (- ApplicationModel) name 'root', count is 07 now
+2016-02-06 09:25:44,501 INFO  [io.skysail.server.http.HttpServer            ] - (- Converter)   name 'java.util.concurrent.CopyOnWriteArrayList', count is 05 now
+2016-02-06 09:25:44,513 INFO  [io.skysail.server.app.ApplicationList        ] - (- ApplicationModel) name 'webapp', count is 06 now
+2016-02-06 09:25:44,513 INFO  [io.skysail.server.app.ApplicationList        ] - (- ApplicationModel) name 'OSGi', count is 05 now
+2016-02-06 09:25:44,514 INFO  [io.skysail.server.app.ApplicationList        ] - (- ApplicationModel) name 'Performance', count is 04 now
+2016-02-06 09:25:44,514 INFO  [io.skysail.server.app.ApplicationList        ] - (- ApplicationModel) name 'static', count is 03 now
+2016-02-06 09:25:44,515 INFO  [io.skysail.server.app.ApplicationList        ] - (- ApplicationModel) name 'i18n', count is 02 now
+2016-02-06 09:25:44,515 INFO  [io.skysail.server.app.ApplicationList        ] - (- ApplicationModel) name 'usermanagement', count is 01 now
+2016-02-06 09:25:44,516 INFO  [io.skysail.server.app.ApplicationList        ] - (- ApplicationModel) name 'website', count is 00 now
+2016-02-06 09:25:44,527 INFO  [io.skysail.server.services.ServerLoad        ] - deactivating ServerLoad task
+2016-02-06 09:25:44,574 INFO  [io.skysail.server.http.HttpServer            ] - (- Converter)   name 'java.util.concurrent.CopyOnWriteArrayList', count is 04 now
+2016-02-06 09:25:44,582 INFO  [io.skysail.server.http.HttpServer            ] - (- Converter)   name 'java.util.concurrent.CopyOnWriteArrayList', count is 03 now
+2016-02-06 09:25:44,667 INFO  [org.restlet                                  ] - Stopping the Jetty [HTTP/1.1] server on port 2015
+2016-02-06 09:25:44,770 INFO  [org.eclipse.jetty.server.ServerConnector     ] - Stopped ServerConnector@1a865273{HTTP/1.1}{0.0.0.0:2015}

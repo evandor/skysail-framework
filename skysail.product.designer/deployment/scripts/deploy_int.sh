@@ -1,10 +1,13 @@
 #!/bin/bash -e
 
-### Deployment Script SSP Designer Integration ##############################
+##########################################################################
+### Deployment Script SSP Designer Integration ###########################
+##########################################################################
 
+### CONFIGURATION ########################################################
 echo ""
-echo "Configuration:"
-echo "--------------"
+echo "Script Configuration:"
+echo "---------------------"
 
 APPNAME="designer"
 STAGE="int"
@@ -18,12 +21,15 @@ echo "JOB_DIR:     $JOB_DIR"
 echo "PRODUCT_DIR: $PRODUCT_DIR"
 echo ""
 
+### ZIP ARCHIVE ###########################################################
+echo ""
+echo "Creating ZIP Archive:"
+echo "--------------------"
+
 cd $JOB_DIR/generated/distributions/executable
-echo "Creating ZIP Archive"
 cp $APPNAME.$STAGE.jar skysail.$APPNAME.jar
 
-zip -r skysail.designer.zip ../../../config/int skysail.designer.jar
-#zip -r skysail.designer.zip skysail.designer.jar
+zip -r skysail.$APPNAME.zip ../../../config/$STAGE skysail.$APPNAME.jar
 
 echo "copying skysail.designer.zip to public site"
 cp skysail.designer.zip /var/www/skysail/products/designer/skysail.designer.int.zip
@@ -35,10 +41,17 @@ mkdir -p /home/carsten/skysail/products/designer/int/lib
 echo "copying skysail.designer.jar to products directory"
 cp skysail.designer.jar /home/carsten/skysail/products/designer/int/bin/skysail.designer.jar
 
-echo "stopping designer service"
-SERVICE="/home/carsten/skysail/products/designer/int/bin/designer_int"
-if [ -f $SERVICE ]; then
-    $SERVICE stop
+
+### STOPPING SERVICE #####################################################
+echo ""
+echo "Stopping Service:"
+echo "-----------------"
+
+
+if [ -e "$PRODUCT_DIR/bin/$APPNAME_$STAGE" ]
+then
+  chmod 755 $PRODUCT_DIR/bin/$APPNAME_$STAGE
+  $PRODUCT_DIR/bin/$APPNAME_$STAGE stop
 fi
 
 cd /home/carsten/.hudson/jobs/ssp.designer.export.int/workspace/skysail.product.designer

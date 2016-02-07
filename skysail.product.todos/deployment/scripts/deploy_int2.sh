@@ -1,10 +1,13 @@
 #!/bin/bash -e
 
+##########################################################################
 ### Deployment Script SSP Todos Integration ##############################
+##########################################################################
 
+### CONFIGURATION ########################################################
 echo ""
-echo "Configuration:"
-echo "--------------"
+echo "Script Configuration:"
+echo "---------------------"
 
 APPNAME="todos"
 STAGE="int2"
@@ -18,25 +21,32 @@ echo "JOB_DIR:     $JOB_DIR"
 echo "PRODUCT_DIR: $PRODUCT_DIR"
 echo ""
 
+### ZIP ARCHIVE ###########################################################
+echo ""
+echo "Creating ZIP Archive:"
+echo "--------------------"
+
 cd $JOB_DIR/generated/distributions/executable
-echo "Creating ZIP Archive"
 cp $APPNAME.$STAGE.jar skysail.$APPNAME.jar
 
-echo "creating directories if not-existing"
-echo "------------------------------------"
+zip -r skysail.$APPNAME.zip ../../../config/int skysail.$APPNAME.jar
+
 mkdir -p $PRODUCT_DIR/bin/config/int
 mkdir -p $PRODUCT_DIR/lib
 
-echo "copying skysail.todos.jar to products directory"
-echo "-----------------------------------------------"
 cp skysail.todos.jar $PRODUCT_DIR/bin/skysail.todos.jar
 
-echo "stopping todos service: $PRODUCT_DIR/bin/todos_int2"
-echo "---------------------------------------------------"
-if [ -e "$PRODUCT_DIR/bin/todos_int2" ]
+
+### STOPPING SERVICE #####################################################
+echo ""
+echo "Stopping Service:"
+echo "-----------------"
+
+
+if [ -e "$PRODUCT_DIR/bin/$APPNAME_$STAGE" ]
 then
-  chmod 755 $PRODUCT_DIR/bin/todos_int2
-  $PRODUCT_DIR/bin/todos_int2 stop
+  chmod 755 $PRODUCT_DIR/bin/$APPNAME_$STAGE
+  $PRODUCT_DIR/bin/$APPNAME_$STAGE stop
 fi
 
 cd $JOB_DIR

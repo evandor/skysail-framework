@@ -23,7 +23,7 @@ logback.configurationFile.path = config/common
 
 -runbundles:\
     ${osgi},\
-    me.moocar.logback-gelf;version=0.2.0,\
+    me.moocar.logback-gelf;version=0.3.0,\
     com.google.gson;version=2.4,\
     ${aQute},\
     ${etm},\
@@ -55,9 +55,6 @@ logback.configurationFile.path = config/common
     skysail.product.todos;version=latest,\
     skysail.server.ext.initconfig;version=latest,\
     skysail.server.codegen;version=latest,\
-    skysail.server.app.bookmarks;version=latest,\
-    skysail.server.app.dbviewer;version=latest,\
     skysail.server.app.svgedit;version=latest,\
-    skysail.server.app.designer;version=latest,\
     io.skysail.bundled.org.osgi.service.component.annotations-runtime;version=latest,\
     skysail.server.app.todos;version=latest

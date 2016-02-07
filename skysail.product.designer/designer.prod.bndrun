@@ -18,7 +18,7 @@
 ########################################################################################
 
 skysail.config.path            = config/common,config/prod,designerbundles
-logback.configurationFile.path = config/common
+logback.configurationFile.path = config/prod
 
 -runbundles:\
     ${serverbundles-1.0.0},\

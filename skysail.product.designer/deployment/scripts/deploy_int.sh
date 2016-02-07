@@ -23,7 +23,10 @@ echo "copying skysail.designer.jar to products directory"
 cp skysail.designer.jar /home/carsten/skysail/products/designer/int/bin/skysail.designer.jar
 
 echo "stopping designer service"
-/home/carsten/skysail/products/designer/int/bin/designer_int stop
+SERVICE="/home/carsten/skysail/products/designer/int/bin/designer_int"
+if [ -f $SERVICE ]; then
+    $SERVICE stop
+fi
 
 cd /home/carsten/.hudson/jobs/ssp.designer.export.int/workspace/skysail.product.designer
 cp -r deployment/service/* /home/carsten/skysail/products/designer/int
@@ -31,10 +34,10 @@ cp -r deployment/service/* /home/carsten/skysail/products/designer/int
 # needed for designer functionality (to get access to the contained jars for compiling)
 #unzip -o /home/carsten/skysail/products/designer/int/bin/skysail.designer.jar
 
-#echo "getting config files for installation from svn"
+echo "getting config files for installation from svn (and from skysail jar itself)"
 cd /home/carsten/skysail/products/designer/int/bin
-#rm -rf config
-#mkdir config
+rm -rf config
+mkdir -p config
 cd config
 svn checkout https://85.25.22.125/repos/skysale/skysailconfigs/designer/int/
 
@@ -46,7 +49,7 @@ cd /home/carsten/skysail/products/designer/int/bin/
 # not really necessary:
 unzip -o skysail.designer.jar
 chmod 755 designer_int
-./designer_int start
+$SERVICE start
 
 
 

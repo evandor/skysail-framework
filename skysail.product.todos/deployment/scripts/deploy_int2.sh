@@ -42,15 +42,24 @@ echo ""
 echo "Stopping Service:"
 echo "-----------------"
 
-
 if [ -e "$PRODUCT_DIR/bin/$APPNAME_$STAGE" ]
 then
   chmod 755 $PRODUCT_DIR/bin/$APPNAME_$STAGE
   $PRODUCT_DIR/bin/$APPNAME_$STAGE stop
+  echo "service was stopped"
+else 
+  echo "service not yet set up"
 fi
 
+### PREPARING SERVICE #####################################################
+echo ""
+echo "Preparing Service:"
+echo "------------------"
+
 cd $JOB_DIR
+echo "copying deployment/service/* to $PRODUCT_DIR"
 cp -r deployment/service/* $PRODUCT_DIR
+echo "copying config/ing/* to $PRODUCT_DIR/bin/config/int"
 cp config/int/* $PRODUCT_DIR/bin/config/int
 
 echo "getting config files for installation from svn"

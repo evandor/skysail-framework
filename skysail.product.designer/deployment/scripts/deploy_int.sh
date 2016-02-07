@@ -47,15 +47,26 @@ echo ""
 echo "Stopping Service:"
 echo "-----------------"
 
-
 if [ -e "$PRODUCT_DIR/bin/$APPNAME_$STAGE" ]
 then
   chmod 755 $PRODUCT_DIR/bin/$APPNAME_$STAGE
   $PRODUCT_DIR/bin/$APPNAME_$STAGE stop
+  echo "service was stopped"
+else 
+  echo "service not yet set up"
 fi
 
-cd /home/carsten/.hudson/jobs/ssp.designer.export.int/workspace/skysail.product.designer
+### PREPARING SERVICE #####################################################
+echo ""
+echo "Preparing Service:"
+echo "------------------"
+
+
+cd $JOB_DIR
+echo "copying deployment/service/* to $PRODUCT_DIR"
 cp -r deployment/service/* /home/carsten/skysail/products/designer/int
+echo "copying config/ing/* to $PRODUCT_DIR/bin/config/int"
+
 
 # needed for designer functionality (to get access to the contained jars for compiling)
 #unzip -o /home/carsten/skysail/products/designer/int/bin/skysail.designer.jar

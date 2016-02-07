@@ -24,5 +24,6 @@ logback.configurationFile.path = config/int
 
 -runbundles:\
     ${serverbundles-1.0.0},\
+    org.apache.felix.shell.remote;version=1.1.2,\
     skysail.product.todos;version=latest,\
     skysail.server.app.todos;version=latest

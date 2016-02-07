@@ -6,7 +6,9 @@
 -runbundles: ${runbundles}
 -runee: JavaSE-1.8
 -runfw: org.apache.felix.framework;version=${org.apache.felix.framework.version}
--runproperties: ${runproperties}
+-runproperties: \
+    osgi.shell.telnet.port=6670,\
+    ${runproperties}
 -runrepos: ${runrepos}
 -runsystemcapabilities: ${native_capability}
 -runsystempackages: ${runsystempackages}
@@ -23,6 +25,7 @@ logback.configurationFile.path = config/int
 
 -runbundles:\
     ${osgi},\
+    org.apache.felix.shell.remote;version=1.1.2,\
     me.moocar.logback-gelf;version=0.3.0,\
     com.google.gson;version=2.4,\
     ${aQute},\

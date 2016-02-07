@@ -45,7 +45,6 @@ if [ -e "$PRODUCT_DIR/bin/$SERVICENAME" ]
 then
   chmod 755 $PRODUCT_DIR/bin/$SERVICENAME
   $PRODUCT_DIR/bin/$SERVICENAME stop
-  echo "service was stopped"
 else 
   echo "service not yet set up"
 fi

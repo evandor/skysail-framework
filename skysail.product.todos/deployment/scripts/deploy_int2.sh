@@ -1,12 +1,12 @@
 #!/bin/bash -e
 
-export JAVA_HOME=/home/carsten/.hudson/tools/hudson.model.JDK/java_SDK_8u25/
-JOB_DIR="/home/carsten/.hudson/jobs/ssp.todos.export.int/workspace/skysail.product.todos"
-PRODUCT_DIR="/home/carsten/skysail/products/todos/int2"
+### config ###
 
-echo "renaming skysail executable..."
-echo "------------------------------"
+APPNAME="todos"
+export JAVA_HOME=/home/carsten/.hudson/tools/hudson.model.JDK/java_SDK_8u25/
+
 cd $JOB_DIR/generated/distributions/executable
+echo "Creating ZIP Archive"
 cp todos.int2.jar skysail.todos.jar
 
 echo "creating directories if not-existing"
@@ -33,6 +33,8 @@ cp config/int/* $PRODUCT_DIR/bin/config/int
 echo "getting config files for installation from svn"
 echo "----------------------------------------------"
 cd $PRODUCT_DIR/bin
+rm -rf config
+mkdir -p config
 cd config
 svn export --force https://85.25.22.125/repos/skysale/skysailconfigs/todos/int/
 

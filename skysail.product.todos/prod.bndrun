@@ -19,4 +19,4 @@
 ########################################################################################
 
 skysail.config.path            = config/common,config/prod
-logback.configurationFile.path = config/common
+logback.configurationFile.path = config/prod

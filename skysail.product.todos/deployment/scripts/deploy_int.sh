@@ -21,7 +21,16 @@ echo "JOB_DIR:     $JOB_DIR"
 echo "PRODUCT_DIR: $PRODUCT_DIR"
 echo ""
 
-### ZIP ARCHIVE ###########################################################
+### DIRECTORY MANAGEMENT ########################################################
+echo ""
+echo "Setting up directory structures:"
+echo "--------------------------------"
+
+mkdir -p $PRODUCT_DIR/bin/config/int
+mkdir -p $PRODUCT_DIR/lib
+echo ""
+
+### ZIP ARCHIVE #################################################################
 echo ""
 echo "Creating ZIP Archive:"
 echo "--------------------"
@@ -29,13 +38,17 @@ echo "--------------------"
 cd $JOB_DIR/generated/distributions/executable
 cp $APPNAME.$STAGE.jar skysail.$APPNAME.jar
 
-zip -r skysail.$APPNAME.zip ../../../config/int skysail.$APPNAME.jar
+zip -r skysail.$APPNAME.zip ../../../config/$STAGE skysail.$APPNAME.jar
 
-mkdir -p $PRODUCT_DIR/bin/config/int
-mkdir -p $PRODUCT_DIR/lib
+### PUBLIC SITE #################################################################
+echo ""
+echo "Manage public site:"
+echo "-------------------"
 
-cp skysail.todos.jar $PRODUCT_DIR/bin/skysail.todos.jar
-
+echo "copying skysail.designer.zip to public site"
+cp skysail.designer.zip /var/www/skysail/products/designer/skysail.designer.int.zip
+cp skysail.designer.jar /var/www/skysail/products/designer/skysail.designer.int.jar
+echo ""
 
 ### STOPPING SERVICE #####################################################
 echo ""
@@ -50,30 +63,42 @@ then
 else 
   echo "service not yet set up"
 fi
+echo ""
 
-### PREPARING SERVICE #####################################################
+### PREPARING SERVICE ####################################################
 echo ""
 echo "Preparing Service:"
 echo "------------------"
+
+echo "copying skysail.$APPNAME.jar to $PRODUCT_DIR/bin/skysail.$APPNAME.jar"
+cp skysail.$APPNAME.jar $PRODUCT_DIR/bin/skysail.$APPNAME.jar
 
 cd $JOB_DIR
 echo "copying deployment/service/* to $PRODUCT_DIR"
 cp -r deployment/service/* $PRODUCT_DIR
 echo "copying config/ing/* to $PRODUCT_DIR/bin/config/int"
-cp config/int/* $PRODUCT_DIR/bin/config/int
+cp config/$STAGE/* $PRODUCT_DIR/bin/config/$STAGE
+echo ""
 
-echo "getting config files for installation from svn"
-echo "----------------------------------------------"
+### UPDATING CONFIG FROM SVN REP #########################################
+echo ""
+echo "Updating config from SVN:"
+echo "-------------------------"
+
+
 cd $PRODUCT_DIR/bin
 rm -rf config
 mkdir -p config
 cd config
-svn export --force https://85.25.22.125/repos/skysale/skysailconfigs/todos/int/
+svn export --force https://85.25.22.125/repos/skysale/skysailconfigs/$APPNAME/$STAGE/
 
-echo "starting todos service"
-echo "----------------------"
+### STARTING SERVICE #####################################################
+echo ""
+echo "Starting Service:"
+echo "----------------"
+
 cd $PRODUCT_DIR/bin/
-unzip -o skysail.todos.jar
-chmod 755 todos_$STAGE
-./todos_$STAGE start
+unzip -o skysail.$APPNAME.jar
+chmod 755 $APPNAME_$STAGE
+./$APPNAME_$STAGE start
 

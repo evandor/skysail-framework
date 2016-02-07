@@ -53,7 +53,7 @@
             <layout class="me.moocar.logbackgelf.GelfLayout">
               <staticField class="me.moocar.logbackgelf.Field">
 			    <key>_srcIdent</key>
-			    <value>ssp.designer.int</value>
+			    <value>ssp.designer.prod</value>
 			  </staticField>
             </layout>
         </encoder>

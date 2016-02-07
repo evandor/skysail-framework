@@ -3,16 +3,16 @@
 ########################################################################################
 
 -resolve.effective: active;skip:="osgi.service"
--runbundles: ${runbundles}
 -runee: JavaSE-1.8
 -runfw: org.apache.felix.framework;version=${org.apache.felix.framework.version}
--runproperties: ${runproperties}
+-runproperties: \
+    osgi.shell.telnet.port=6671,\
+    ${runproperties}
 -runrepos: ${runrepos}
 -runsystemcapabilities: ${native_capability}
 -runsystempackages: ${runsystempackages}
 -runtrace: false
 -runvm: -ea
-#, -XX:+UnlockCommercialFeatures,-XX:+FlightRecorder,-XX:StartFlightRecording="duration=120m,filename=etc/todos.jfr"
 
 ########################################################################################
 ### --- run-file-specific settings ------------------------------------------------- ###
@@ -20,3 +20,9 @@
 
 skysail.config.path            = config/common,config/prod
 logback.configurationFile.path = config/prod
+
+-runbundles:\
+    ${serverbundles-1.0.0},\
+    org.apache.felix.shell.remote;version=1.1.2,\
+    skysail.product.todos;version=latest,\
+    skysail.server.app.todos;version=latest

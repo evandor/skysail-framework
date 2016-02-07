@@ -14,7 +14,14 @@ echo ""
 echo "Setting up directory structures:"
 echo "--------------------------------"
 
+echo "clearing configuration dir $PRODUCT_DIR/bin/config"
+rm -rf $PRODUCT_DIR/bin/config
 mkdir -p $PRODUCT_DIR/bin/config/int
+
+echo "clearing jars in dir $PRODUCT_DIR/bin/jar"
+rm -rf $PRODUCT_DIR/bin/jar
+mkdir -p $PRODUCT_DIR/bin/jar
+
 mkdir -p $PRODUCT_DIR/lib
 
 ### ZIP ARCHIVE ##########################################################
@@ -68,10 +75,7 @@ echo ""
 echo "Updating config from SVN:"
 echo "-------------------------"
 
-cd $PRODUCT_DIR/bin
-rm -rf config
-mkdir -p config
-cd config
+cd $PRODUCT_DIR/bin/config
 svn export --force https://85.25.22.125/repos/skysale/skysailconfigs/$APPNAME/$STAGE/
 
 ### STARTING SERVICE #####################################################

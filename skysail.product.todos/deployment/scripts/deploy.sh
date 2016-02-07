@@ -1,16 +1,3 @@
-#!/bin/bash -e
-
-##########################################################################
-### Deployment Script SSP Designer Integration ###########################
-##########################################################################
-
-### CONFIGURATION ########################################################
-echo ""
-echo "Script Configuration:"
-echo "---------------------"
-
-APPNAME="designer"
-STAGE="int"
 JOB_DIR="/home/carsten/.hudson/jobs/ssp.$APPNAME.export.int/workspace/skysail.product.$APPNAME"
 PRODUCT_DIR="/home/carsten/skysail/products/$APPNAME/$STAGE"
 SERVICENAME=${APPNAME}_${STAGE}
@@ -29,8 +16,6 @@ echo "--------------------------------"
 
 mkdir -p $PRODUCT_DIR/bin/config/int
 mkdir -p $PRODUCT_DIR/lib
-mkdir -p /home/carsten/skysail/products/designer/int/bin/designerbundles
-mkdir -p /home/carsten/skysail/products/designer/int/lib
 
 ### ZIP ARCHIVE ##########################################################
 echo ""

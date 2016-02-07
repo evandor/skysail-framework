@@ -24,7 +24,7 @@
 
 # Application
 APP_NAME="todos_int"
-APP_LONG_NAME="skysail todos (integration)"
+APP_LONG_NAME="skysail todos (integration2)"
 
 # Wrapper
 WRAPPER_CMD="./wrapper"

@@ -1,9 +1,17 @@
 #!/bin/bash -e
 
-### config ###
+###  Config ##############################
+
+echo "Configuration:"
+echo "--------------"
 
 APPNAME="todos"
+JOB_DIR="/home/carsten/.hudson/jobs/ssp.todos.export.int/workspace/skysail.product.todos"
 export JAVA_HOME=/home/carsten/.hudson/tools/hudson.model.JDK/java_SDK_8u25/
+
+echo "APPNAME: $APPNAME"
+echo "JOB_DIR: $JOB_DIR"
+echo ""
 
 cd $JOB_DIR/generated/distributions/executable
 echo "Creating ZIP Archive"

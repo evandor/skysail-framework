@@ -1,16 +1,19 @@
 #!/bin/bash -e
 
-###  Config ##############################
+### Deployment Script SSP Todos Integration ##############################
 
+echo ""
 echo "Configuration:"
 echo "--------------"
 
 APPNAME="todos"
-JOB_DIR="/home/carsten/.hudson/jobs/ssp.todos.export.int/workspace/skysail.product.todos"
+JOB_DIR="/home/carsten/.hudson/jobs/ssp.$APPNAME.export.int/workspace/skysail.product.$APPNAME"
+PRODUCT_DIR="/home/carsten/skysail/products/$APPNAME/int"
 export JAVA_HOME=/home/carsten/.hudson/tools/hudson.model.JDK/java_SDK_8u25/
 
-echo "APPNAME: $APPNAME"
-echo "JOB_DIR: $JOB_DIR"
+echo "APPNAME:     $APPNAME"
+echo "JOB_DIR:     $JOB_DIR"
+echo "PRODUCT_DIR: $PRODUCT_DIR"
 echo ""
 
 cd $JOB_DIR/generated/distributions/executable

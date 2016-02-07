@@ -7,18 +7,20 @@ echo "Configuration:"
 echo "--------------"
 
 APPNAME="todos"
+STAGE="int2"
 JOB_DIR="/home/carsten/.hudson/jobs/ssp.$APPNAME.export.int/workspace/skysail.product.$APPNAME"
 PRODUCT_DIR="/home/carsten/skysail/products/$APPNAME/int2"
 export JAVA_HOME=/home/carsten/.hudson/tools/hudson.model.JDK/java_SDK_8u25/
 
 echo "APPNAME:     $APPNAME"
+echo "STAGE:       $STAGE"
 echo "JOB_DIR:     $JOB_DIR"
 echo "PRODUCT_DIR: $PRODUCT_DIR"
 echo ""
 
 cd $JOB_DIR/generated/distributions/executable
 echo "Creating ZIP Archive"
-cp todos.int2.jar skysail.todos.jar
+cp $APPNAME.$STAGE.jar skysail.$APPNAME.jar
 
 echo "creating directories if not-existing"
 echo "------------------------------------"

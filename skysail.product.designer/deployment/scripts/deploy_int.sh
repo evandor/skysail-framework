@@ -21,7 +21,8 @@ echo "JOB_DIR:     $JOB_DIR"
 echo "PRODUCT_DIR: $PRODUCT_DIR"
 echo ""
 
-### DIRECTORY MANAGEMENT ########################################################
+### DIRECTORY MANAGEMENT #################################################
+echo ""
 echo "Setting up directory structures:"
 echo "--------------------------------"
 
@@ -29,9 +30,8 @@ mkdir -p $PRODUCT_DIR/bin/config/int
 mkdir -p $PRODUCT_DIR/lib
 mkdir -p /home/carsten/skysail/products/designer/int/bin/designerbundles
 mkdir -p /home/carsten/skysail/products/designer/int/lib
-echo ""
 
-### ZIP ARCHIVE ###########################################################
+### ZIP ARCHIVE ##########################################################
 echo ""
 echo "Creating ZIP Archive:"
 echo "--------------------"
@@ -41,7 +41,7 @@ cp $APPNAME.$STAGE.jar skysail.$APPNAME.jar
 
 zip -r skysail.$APPNAME.zip ../../../config/$STAGE skysail.$APPNAME.jar
 
-### PUBLIC SITE #################################################################
+### PUBLIC SITE ##########################################################
 echo ""
 echo "Manage public site:"
 echo "-------------------"
@@ -49,7 +49,6 @@ echo "-------------------"
 echo "copying skysail.$APPNAME.zip to public site"
 cp skysail.$APPNAME.zip /var/www/skysail/products/$APPNAME/skysail.$APPNAME.$STAGE.zip
 cp skysail.$APPNAME.jar /var/www/skysail/products/$APPNAME/skysail.$APPNAME.$STAGE.jar
-echo ""
 
 ### STOPPING SERVICE #####################################################
 echo ""
@@ -64,7 +63,6 @@ then
 else 
   echo "service not yet set up"
 fi
-echo ""
 
 ### PREPARING SERVICE ####################################################
 echo ""
@@ -79,13 +77,11 @@ echo "copying deployment/service/* to $PRODUCT_DIR"
 cp -r deployment/service/* $PRODUCT_DIR
 echo "copying config/ing/* to $PRODUCT_DIR/bin/config/int"
 cp config/$STAGE/* $PRODUCT_DIR/bin/config/$STAGE
-echo ""
 
 ### UPDATING CONFIG FROM SVN REP #########################################
 echo ""
 echo "Updating config from SVN:"
 echo "-------------------------"
-
 
 cd $PRODUCT_DIR/bin
 rm -rf config

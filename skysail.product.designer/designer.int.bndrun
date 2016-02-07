@@ -8,6 +8,7 @@
 -runproperties: org.osgi.service.http.port=8081,\
     ds.loglevel=debug,\
     osgi.shell.telnet.port=6669,\
+    felix.fileinstall.optionalImportRefreshScope=managed,\
     ${runproperties}
 -runrepos: ${runrepos}
 -runsystemcapabilities: ${native_capability}

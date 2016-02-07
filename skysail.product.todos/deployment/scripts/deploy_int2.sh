@@ -8,7 +8,7 @@ echo "--------------"
 
 APPNAME="todos"
 JOB_DIR="/home/carsten/.hudson/jobs/ssp.$APPNAME.export.int/workspace/skysail.product.$APPNAME"
-PRODUCT_DIR="/home/carsten/skysail/products/$APPNAME/int"
+PRODUCT_DIR="/home/carsten/skysail/products/$APPNAME/int2"
 export JAVA_HOME=/home/carsten/.hudson/tools/hudson.model.JDK/java_SDK_8u25/
 
 echo "APPNAME:     $APPNAME"

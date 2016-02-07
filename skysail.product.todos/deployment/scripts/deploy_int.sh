@@ -11,8 +11,10 @@ echo "---------------------"
 
 APPNAME="todos"
 STAGE="int"
-JOB_DIR="/home/carsten/.hudson/jobs/ssp.$APPNAME.export.int/workspace/skysail.product.$APPNAME"
 
-echo "calling ${JOB_DIR}../skysail.server/deployment/scripts/deploy.sh"
-source ${JOB_DIR}../skysail.server/deployment/scripts/deploy.sh
+MAIN_DEPLOY_SCRIPT=../../../skysail.server/deployment/scripts/deploy.sh
+echo "calling $MAIN_DEPLOY_SCRIPT"
+
+chmod 775 $MAIN_DEPLOY_SCRIPT
+source $MAIN_DEPLOY_SCRIPT
 

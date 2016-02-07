@@ -12,5 +12,5 @@ echo "---------------------"
 APPNAME="todos"
 STAGE="int"
 
-source deploy.sh
+source ../../../skysail.server/deployment/scripts/deploy.sh
 

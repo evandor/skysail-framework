@@ -16,7 +16,7 @@ echo "--------------------------------"
 
 echo "clearing configuration dir $PRODUCT_DIR/bin/config"
 rm -rf $PRODUCT_DIR/bin/config
-mkdir -p $PRODUCT_DIR/bin/config/int
+mkdir -p $PRODUCT_DIR/bin/config/$STAGE
 
 echo "clearing jars in dir $PRODUCT_DIR/bin/jar"
 rm -rf $PRODUCT_DIR/bin/jar
@@ -25,7 +25,7 @@ mkdir -p $PRODUCT_DIR/bin/jar
 echo "creating dir $PRODUCT_DIR/lib if not existent"
 mkdir -p $PRODUCT_DIR/lib
 
-echo "moving old wrapper log"
+echo "moving old wrapper logfile"
 mv $PRODUCT_DIR/bin/wrapper.log $PRODUCT_DIR/bin/wrapper.lastRun.log 
 
 ### ZIP ARCHIVE ##########################################################
@@ -71,7 +71,7 @@ cp skysail.$APPNAME.jar $PRODUCT_DIR/bin/skysail.$APPNAME.jar
 cd $JOB_DIR
 echo "copying deployment/service/* to $PRODUCT_DIR"
 cp -r deployment/service/* $PRODUCT_DIR
-echo "copying config/ing/* to $PRODUCT_DIR/bin/config/int"
+echo "copying config/ing/* to $PRODUCT_DIR/bin/config/$STAGE"
 cp config/$STAGE/* $PRODUCT_DIR/bin/config/$STAGE
 
 ### UPDATING CONFIG FROM SVN REP #########################################

@@ -26,7 +26,10 @@ echo "creating dir $PRODUCT_DIR/lib if not existent"
 mkdir -p $PRODUCT_DIR/lib
 
 echo "moving old wrapper logfile"
-mv $PRODUCT_DIR/bin/wrapper.log $PRODUCT_DIR/bin/wrapper.lastRun.log 
+if [ -e "$PRODUCT_DIR/bin/wrapper.log" ]
+then
+  mv $PRODUCT_DIR/bin/wrapper.log $PRODUCT_DIR/bin/wrapper.lastRun.log 
+fi
 
 ### ZIP ARCHIVE ##########################################################
 echo ""

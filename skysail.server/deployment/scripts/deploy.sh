@@ -22,7 +22,11 @@ echo "clearing jars in dir $PRODUCT_DIR/bin/jar"
 rm -rf $PRODUCT_DIR/bin/jar
 mkdir -p $PRODUCT_DIR/bin/jar
 
+echo "creating dir $PRODUCT_DIR/lib if not existent"
 mkdir -p $PRODUCT_DIR/lib
+
+echo "moving old wrapper log"
+mv $PRODUCT_DIR/bin/wrapper.log $PRODUCT_DIR/bin/wrapper.lastRun.log 
 
 ### ZIP ARCHIVE ##########################################################
 echo ""

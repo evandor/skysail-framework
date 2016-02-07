@@ -13,12 +13,14 @@ APPNAME="todos"
 STAGE="int"
 JOB_DIR="/home/carsten/.hudson/jobs/ssp.$APPNAME.export.int/workspace/skysail.product.$APPNAME"
 PRODUCT_DIR="/home/carsten/skysail/products/$APPNAME/$STAGE"
+SERVICENAME="$APPNAME_$STAGE"
 export JAVA_HOME=/home/carsten/.hudson/tools/hudson.model.JDK/java_SDK_8u25/
 
 echo "APPNAME:     $APPNAME"
 echo "STAGE:       $STAGE"
 echo "JOB_DIR:     $JOB_DIR"
 echo "PRODUCT_DIR: $PRODUCT_DIR"
+echo "SERVICENAME: $SERVICENAME"
 
 ### DIRECTORY MANAGEMENT #################################################
 echo ""
@@ -52,10 +54,10 @@ echo ""
 echo "Stopping Service:"
 echo "-----------------"
 
-if [ -e "$PRODUCT_DIR/bin/$APPNAME_$STAGE" ]
+if [ -e "$PRODUCT_DIR/bin/$SERVICENAME" ]
 then
-  chmod 755 $PRODUCT_DIR/bin/$APPNAME_$STAGE
-  $PRODUCT_DIR/bin/$APPNAME_$STAGE stop
+  chmod 755 $PRODUCT_DIR/bin/$SERVICENAME
+  $PRODUCT_DIR/bin/$SERVICENAME stop
   echo "service was stopped"
 else 
   echo "service not yet set up"
@@ -93,6 +95,6 @@ echo "----------------"
 
 cd $PRODUCT_DIR/bin/
 unzip -o skysail.$APPNAME.jar
-chmod 755 $APPNAME_$STAGE
-./$APPNAME_$STAGE start
+chmod 755 $SERVICENAME
+./$SERVICENAME start
 

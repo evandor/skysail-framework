@@ -22,7 +22,6 @@ echo "PRODUCT_DIR: $PRODUCT_DIR"
 echo ""
 
 ### DIRECTORY MANAGEMENT ########################################################
-echo ""
 echo "Setting up directory structures:"
 echo "--------------------------------"
 
@@ -45,9 +44,9 @@ echo ""
 echo "Manage public site:"
 echo "-------------------"
 
-echo "copying skysail.designer.zip to public site"
-cp skysail.designer.zip /var/www/skysail/products/designer/skysail.designer.int.zip
-cp skysail.designer.jar /var/www/skysail/products/designer/skysail.designer.int.jar
+echo "copying skysail.$APPNAME.zip to public site"
+cp skysail.$APPNAME.zip /var/www/skysail/products/$APPNAME/skysail.$APPNAME.$STAGE.zip
+cp skysail.$APPNAME.jar /var/www/skysail/products/$APPNAME/skysail.$APPNAME.$STAGE.jar
 echo ""
 
 ### STOPPING SERVICE #####################################################

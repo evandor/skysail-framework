@@ -34,9 +34,9 @@ cp -r deployment/service/* /home/carsten/skysail/products/designer/prod
 # needed for designer functionality (to get access to the contained jars for compiling)
 #unzip -o /home/carsten/skysail/products/designer/prod/bin/skysail.designer.jar
 
-#echo "getting config files for installation from svn"
+echo "getting config files for installation from svn (and from skysail jar itself)"
 cd /home/carsten/skysail/products/designer/prod/bin
-#rm -rf config
+rm -rf config
 mkdir -p config
 cd config
 svn checkout https://85.25.22.125/repos/skysale/skysailconfigs/designer/prod/

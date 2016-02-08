@@ -1,16 +1,11 @@
 package io.skysail.server.app.designer.codegen;
 
 import io.skysail.domain.Identifiable;
+import lombok.Data;
 
+@Data
 public class Empty implements Identifiable {
-
-    @Override
-    public String getId() {
-        return null;
-    }
-
-    @Override
-    public void setId(String id) {
-    }
+    
+    private String id;
 
 }

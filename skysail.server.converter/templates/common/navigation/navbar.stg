@@ -8,6 +8,7 @@ navbar(user, messages, converter, model) ::= <<
       $if (!user.demoUser)$
         $dropdownFrontendsNav(model.services)$
         $dropdownApplicationsNav(model.services)$
+        $dropdownDesignerNav(model.services)$
       $endif$
       $dropdownAdminNav(user, model.services)$
       $if(user.developer)$
@@ -16,13 +17,13 @@ navbar(user, messages, converter, model) ::= <<
         <ul class="dropdown-menu" role="menu">
           <li class="divider"></li>
           <li class="dropdown-header">Nav header</li>
-          <li><a href='javascript:document.cookie="template=debug;path=/";window.location.reload(true)'>Debug</a></li>
-          <li><a href='javascript:document.cookie="template=edit;path=/";window.location.reload(true)'>Edit</a></li>
-          <li><a href='javascript:document.cookie="template=simple;path=/";window.location.reload(true)'>Simple</a></li>
+          <li><a href='javascript:document.cookie="template=bootstrap/debug;path=/";window.location.reload(true)'>Debug</a></li>
+          <li><a href='javascript:document.cookie="template=bootstrap/edit;path=/";window.location.reload(true)'>Edit</a></li>
+          <li><a href='javascript:document.cookie="template=bootstrap/default;path=/";window.location.reload(true)'>Simple</a></li>
           <li><a href='javascript:inspect()'>Inspect Page</a></li>
-          <li><a href='javascript:document.cookie="mainpage=tests;path=/";window.location="/_largetests"'>Tests</a></li>
-          <li><a href='javascript:document.cookie="mainpage=indexMobile;path=/";window.location.reload(true)'>Mobile View</a></li>
-          <li><a href='javascript:document.cookie="mainpage=indexSpa;path=/";window.location.reload(true)'>Single Page App</a></li>
+          <li><a href='javascript:document.cookie="template=jquerymobile;path=/";window.location.reload(true)'>Mobile View</a></li>
+          <li><a href='javascript:document.cookie="template=spa;path=/";window.location.reload(true)'>Single Page App</a></li>
+          <li><a href='javascript:document.cookie="template=home;path=/";window.location.reload(true)'>Homepage</a></li>
         </ul>
       </li>
       $endif$
@@ -35,11 +36,16 @@ navbar(user, messages, converter, model) ::= <<
         <ul class="dropdown-menu" role="menu">
           <li><a href='/_logout?targetUri=/'>Logout</a></li>
           <!--<li><a href='/_profile'>Profile</a></li>-->
-          $backends(user)$
+          <!-- $backends(user)$-->
         </ul>
       </li>
     </ul>
+    $else$
+    <ul class="nav navbar-nav navbar-right">
+        <li><a href="_login">Login</a></li>
+    </ul>
     $endif$
+    
     $if(model.services.searchService && user.principal)$
     <ul class="nav navbar-nav navbar-right" >
       <form class="navbar-form" role="search" action="./_documents/" method="GET"> <!-- action="/_search" -->

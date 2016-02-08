@@ -1,11 +1,10 @@
 package io.skysail.server.um.security.shiro;
 
 
-import io.skysail.server.db.DbService;
-
 import java.util.List;
 
 import de.twenty11.skysail.server.um.domain.SkysailUser;
+import io.skysail.server.db.DbService;
 
 public class UserRepository {
 
@@ -40,7 +39,7 @@ public class UserRepository {
     }
 
     public void add(SkysailUser entity) {
-        dbService.persist(entity);
+       // dbService.persist(entity);
     }
 
     // public SkysailGroup getGroups(String id) {

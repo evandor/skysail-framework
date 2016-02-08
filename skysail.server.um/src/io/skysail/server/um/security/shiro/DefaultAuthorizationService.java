@@ -1,12 +1,7 @@
 package io.skysail.server.um.security.shiro;
 
-import io.skysail.api.um.*;
-import io.skysail.server.db.DbService;
-
 import java.util.*;
 import java.util.stream.Collectors;
-
-import lombok.extern.slf4j.Slf4j;
 
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
@@ -15,6 +10,9 @@ import org.restlet.security.*;
 
 import aQute.bnd.annotation.component.Reference;
 import de.twenty11.skysail.server.um.domain.*;
+import io.skysail.api.um.*;
+import io.skysail.server.db.DbService;
+import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public class DefaultAuthorizationService implements AuthorizationService, Enroler {
@@ -64,8 +62,6 @@ public class DefaultAuthorizationService implements AuthorizationService, Enrole
         if (subject == null) {
             return;
         }
-        // Find all the inherited groups of this user
-        // Set<Group> userGroups = findGroups(user);
 
         // Add roles specific to this user
         Set<Role> userRoles = findRoles(subject);
@@ -74,12 +70,7 @@ public class DefaultAuthorizationService implements AuthorizationService, Enrole
             clientInfo.getRoles().add(role);
         }
 
-        // Add roles common to group members
-        // Set<Role> groupRoles = findRoles(userGroups);
 
-        // for (Role role : groupRoles) {
-        // clientInfo.getRoles().add(role);
-        // }
     }
 
     private Set<Role> findRoles(Subject subject) {

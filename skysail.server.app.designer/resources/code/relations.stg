@@ -1,0 +1,16 @@
+relations(relations) ::= <<
+
+$relations: { relation| 
+
+@Relation
+private List<$relation.targetEntityModel.id$> $relation.name$ = new ArrayList<>();
+
+public void $relation.setterMethodName$(List<$relation.targetEntityModel.id$> value) {
+    this.$relation.name$ = value;
+\}
+
+public List<$relation.targetEntityModel.id$> $relation.getterMethodName$() {
+    return $relation.name$;
+\}
+}$
+>>

@@ -1,4 +1,4 @@
-bndrun(name, projectName)::=<<
+bndrun(application, name, projectName)::=<<
 ########################################################################################
 ### --- general settings, do not change unless you know what you are doing --------- ###
 ########################################################################################

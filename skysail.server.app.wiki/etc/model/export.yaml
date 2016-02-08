@@ -1,0 +1,36 @@
+---
+- id: "15:2"
+  name: "Space"
+  rootEntity: true
+  fields:
+  - id: "#17:2"
+    name: "spacename"
+    type: "TEXT"
+    mandatory: true
+  oneToManyRelations:
+  - id: "#15:3"
+    name: "Page"
+    rootEntity: false
+    fields:
+    - id: "#17:3"
+      name: "title"
+      type: "TEXT"
+      mandatory: true
+    - id: "#17:4"
+      name: "content"
+      type: "TEXT"
+      mandatory: true
+    oneToManyRelations: []
+- id: "15:3"
+  name: "Page"
+  rootEntity: false
+  fields:
+  - id: "#17:3"
+    name: "title"
+    type: "TEXT"
+    mandatory: true
+  - id: "#17:4"
+    name: "content"
+    type: "TEXT"
+    mandatory: true
+  oneToManyRelations: []

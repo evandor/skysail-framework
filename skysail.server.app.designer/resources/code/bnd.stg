@@ -1,10 +1,10 @@
-bnd(packagename)::=<<
+bnd(application, packagename)::=<<
 
 Bundle-Version: 0.1.0.\${tstamp}
 
 Bundle-Description: generated code from the application designer bundle
 
-src: src,src-gen
+src: src,src-gen,test-gen
 
 Service-Component: *
 
@@ -38,7 +38,9 @@ Include-Resource: resources, templates=src;recursive:=true;filter:=*.st|*.stg
     org.apache.shiro.core;version=1.2,\\
     com.orientechnologies.orientdb-core;version=\${com.orientechnologies.orientdb.version},\\
     com.orientechnologies.orientdb-graphdb;version=\${com.orientechnologies.orientdb.version},\\
-    io.skysail.bundled.tinkerpop.blueprints-core;version=2.6
+    io.skysail.bundled.tinkerpop.blueprints-core;version=2.6,\
+    skysail.server.uikit.webresource;version=latest,\
+    org.jsoup;version=1.8
 
 
 Private-Package: \\

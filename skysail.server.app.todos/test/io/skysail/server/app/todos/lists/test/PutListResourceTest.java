@@ -1,12 +1,19 @@
 package io.skysail.server.app.todos.lists.test;
 
-import static org.hamcrest.CoreMatchers.*;
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.not;
+import static org.hamcrest.CoreMatchers.nullValue;
 import static org.junit.Assert.assertThat;
+
+import org.junit.Ignore;
+import org.junit.Test;
+
 import io.skysail.api.responses.SkysailResponse;
-import io.skysail.server.app.todos.*;
+import io.skysail.server.app.todos.TodoApplication;
+import io.skysail.server.app.todos.TodoList;
 
-import org.junit.*;
-
+@Ignore
 public class PutListResourceTest extends AbstractListResourceTest {
 
     @Test

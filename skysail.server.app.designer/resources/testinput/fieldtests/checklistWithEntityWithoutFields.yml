@@ -7,5 +7,3 @@ owner: "#1"
 entities:
 - name: "List"
   rootEntity: true
-  actionFields: []
-  subEntities: []

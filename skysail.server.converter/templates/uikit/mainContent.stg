@@ -1,0 +1,44 @@
+mainContent(user, converter, messages, model) ::= <<
+
+<div class="uk-panel">
+    $contentHeader(converter, messages, model)$
+</div>
+
+<div class="uk-panel">
+            $if(model.form)$
+              <div class="col-md-10">
+                <br>
+                $showForm(model.formfields, messages, model)$
+              </div>
+              <div class="col-md-2">
+                <br>
+                $renderEntityInfo(model.formfields, messages, model)$
+              </div>
+            $elseif(model.list)$
+              <div class="col-md-12">
+                <br>
+                $renderTable(converter, messages, model)$
+              </div>
+            $else$
+              <div class="col-md-12">
+                <br>
+                $renderEntity(user, model)$
+              </div>
+            $endif$
+</div>
+
+<div class="uk-panel">
+    <sky-links links='[$model.resourceLinks:{ link | $linkAsButton(link, i)$ }; separator=","$]'></sky-links>
+</div>
+
+
+<div class="uk-panel">
+            <p id="resourceDescription"></p>
+
+</div>
+>>
+
+
+linkAsButton(link, cnt) ::= <<
+    {"link": "$link.uri$", "title": "$link.title$", "image": "$link.image$"}
+>>

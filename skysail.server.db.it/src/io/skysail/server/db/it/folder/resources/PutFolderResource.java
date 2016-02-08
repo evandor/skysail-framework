@@ -2,7 +2,8 @@ package io.skysail.server.db.it.folder.resources;
 
 import java.util.Date;
 
-import io.skysail.server.db.it.folder.*;
+import io.skysail.server.db.it.folder.Folder;
+import io.skysail.server.db.it.folder.FolderApplication;
 import io.skysail.server.restlet.resources.PutEntityServerResource;
 
 public class PutFolderResource extends PutEntityServerResource<Folder> {
@@ -22,7 +23,7 @@ public class PutFolderResource extends PutEntityServerResource<Folder> {
         Folder original = getEntity(null);
         original.setName(entity.getName());
         original.setModified(new Date());
-        app.getRepository().update(getAttribute("id"), original);
+        app.getRepository().update(original, ((FolderApplication)getApplication()).getApplicationModel());
     }
 
 }

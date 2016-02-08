@@ -1,16 +1,23 @@
 package io.skysail.server.app.designer.application;
 
-import java.util.*;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Id;
-import javax.validation.constraints.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
-import io.skysail.domain.*;
-import io.skysail.domain.html.*;
-import io.skysail.server.app.designer.application.validation.UniqueName;
+import io.skysail.domain.Nameable;
+import io.skysail.domain.html.Field;
+import io.skysail.domain.html.InputType;
+import io.skysail.domain.html.Relation;
 import io.skysail.server.app.designer.entities.DbEntity;
 import io.skysail.server.app.designer.entities.resources.EntitiesResource;
-import io.skysail.server.forms.*;
+import io.skysail.server.db.validators.UniqueName;
+import io.skysail.server.forms.ListView;
+import io.skysail.server.forms.PostView;
 import lombok.*;
 
 @NoArgsConstructor
@@ -18,18 +25,23 @@ import lombok.*;
 @Setter
 @EqualsAndHashCode(of = "id")
 @ToString(of = { "id", "name", "entities" })
-@UniqueName
-public class DbApplication implements Identifiable, Nameable {
+@UniqueName(entityClass = DbApplication.class)
+public class DbApplication implements Nameable, Serializable {
+
+    private static final long serialVersionUID = -7673527765463838726L;
 
     @Id
     private String id;
 
     @Field
+    private ApplicationStatus status = ApplicationStatus.UNDEFINED;
+    
+    @Field
     @NotNull
     @Size(min = 1)
     @Pattern(regexp = "[a-zA-Z_]([a-zA-Z0-9_])*", message = "please choose a simpler Identifier. Some of the characters are not allowed.")
     @ListView(link = EntitiesResource.class, truncate = 40)
-    @PostView(tab = "new application")
+    @PostView(tab = "newApp")
     private String name;
 
     @Field

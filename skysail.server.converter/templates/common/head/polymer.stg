@@ -15,6 +15,7 @@ polymer() ::= <<
 <link rel="import" href="/_polymer/sky-form-text.html">
 <link rel="import" href="/_polymer/sky-ajax-thumbnails.html">
 <link rel="import" href="/_polymer/sky-links.html">
+<link rel="import" href="/_polymer/sky-link-nav-bs.html">
 
 <link rel="import" href="/_polymer/bower_components/google-chart/google-chart.html">
 

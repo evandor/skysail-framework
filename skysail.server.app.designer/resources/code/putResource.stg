@@ -10,8 +10,8 @@ import org.restlet.resource.ResourceException;
 public class Put$entity.simpleName$Resource extends PutEntityServerResource<$entity.id$> {
 
 
-    private String id;
-    private $application.name$Application app;
+    protected String id;
+    protected $application.name$Application app;
 
     @Override
     protected void doInit() throws ResourceException {
@@ -22,7 +22,7 @@ public class Put$entity.simpleName$Resource extends PutEntityServerResource<$ent
     @Override
     public void updateEntity($entity.simpleName$  entity) {
         $updateEntity$
-        app.getRepository($entity.id$.class).update(id, original);
+        app.getRepository($entity.id$.class).update(original,app.getApplicationModel());
     \}
 
     @Override

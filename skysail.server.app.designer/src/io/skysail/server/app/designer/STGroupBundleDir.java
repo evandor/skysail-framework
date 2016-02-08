@@ -1,16 +1,21 @@
 package io.skysail.server.app.designer;
 
-import java.io.*;
-import java.net.*;
-import java.util.*;
-
-import lombok.extern.slf4j.Slf4j;
+import java.io.BufferedInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.osgi.framework.Bundle;
-import org.stringtemplate.v4.*;
+import org.stringtemplate.v4.ST;
+import org.stringtemplate.v4.STGroupDir;
 import org.stringtemplate.v4.compiler.CompiledST;
 import org.stringtemplate.v4.misc.Misc;
 
+import lombok.extern.slf4j.Slf4j;
 import st4hidden.org.antlr.runtime.ANTLRInputStream;
 
 @Slf4j
@@ -21,12 +26,11 @@ public class STGroupBundleDir extends STGroupDir {
     private List<String> usedTemplates = new ArrayList<>();
 
     static {
-        // verbose = true;
+        //verbose = true;
     }
 
     public STGroupBundleDir(Bundle bundle, String resourcePath) {
         super(bundle.getResource(resourcePath), "UTF-8", '$', '$');
-//        this.resourceName = resource.getClass().getName();
         this.bundleName = bundle.getSymbolicName() + " [" + bundle.getVersion() + "]";
     }
 

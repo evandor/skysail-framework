@@ -1,9 +1,14 @@
 package io.skysail.server.app.designer.fields;
 
+import java.util.Date;
+
 import io.skysail.domain.html.InputType;
 import lombok.*;
 
 @NoArgsConstructor
+@Getter
+@Setter
+@ToString(callSuper = true)
 public class DbEntityDateField extends DbEntityField { // NOSONAR
 
     private static final long serialVersionUID = 4745549573124583164L;
@@ -13,6 +18,11 @@ public class DbEntityDateField extends DbEntityField { // NOSONAR
         setType(InputType.DATE);
         this.name = name;
         this.mandatory = mandatory;
+    }
+    
+    @Override
+    public Class<?> getFieldType() {
+        return Date.class;
     }
 
 }

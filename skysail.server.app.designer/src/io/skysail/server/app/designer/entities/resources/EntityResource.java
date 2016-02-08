@@ -9,6 +9,7 @@ import io.skysail.server.app.designer.application.DbApplication;
 import io.skysail.server.app.designer.application.resources.ApplicationsResource;
 import io.skysail.server.app.designer.entities.DbEntity;
 import io.skysail.server.app.designer.fields.resources.FieldsResource;
+import io.skysail.server.app.designer.relations.resources.RelationsResource;
 import io.skysail.server.app.designer.repo.DesignerRepository;
 import io.skysail.server.restlet.resources.EntityServerResource;
 
@@ -35,7 +36,7 @@ public class EntityResource extends EntityServerResource<DbEntity> {
 
     @Override
     public List<Link> getLinks() {
-        return super.getLinks(PutEntityResource.class, FieldsResource.class, PostSubEntityResource.class, SubEntitiesResource.class);
+        return super.getLinks(PutEntityResource.class, FieldsResource.class, RelationsResource.class);
     }
 
     @Override
@@ -44,7 +45,7 @@ public class EntityResource extends EntityServerResource<DbEntity> {
         DbApplication dbApplication = (DbApplication) repo.findOne(appId);
         DbEntity entityToDelete = getEntity();
         dbApplication.getEntities().remove(entityToDelete);
-        repo.update(dbApplication.getId(), dbApplication, "entities").toString();
+        repo.update(dbApplication, ((DesignerApplication)getApplication()).getApplicationModel()).toString();
         return new SkysailResponse<>();
     }
 

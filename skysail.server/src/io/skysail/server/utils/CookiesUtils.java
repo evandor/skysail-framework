@@ -2,11 +2,25 @@ package io.skysail.server.utils;
 
 import org.restlet.Request;
 import org.restlet.data.Cookie;
+import org.restlet.data.CookieSetting;
 
 import de.twenty11.skysail.server.Constants;
 
 public class CookiesUtils {
+    
+    public static CookieSetting createCookie(String name, String path, int maxAgeInSeconds) {
+        CookieSetting cookieSetting = new CookieSetting(name, null);
+        cookieSetting.setAccessRestricted(true);
+        cookieSetting.setPath(path);
+        //cookieSetting.setComment("cookie to remember where to redirect to after posts or puts");
+        cookieSetting.setMaxAge(maxAgeInSeconds);
+        return cookieSetting;
+    }
 
+
+    /**
+     * cookie is set by navbar.stg 
+     */
     public static String getTemplateFromCookie(Request request) {
         return returnCookieOrNull(request,Constants.COOKIE_NAME_TEMPLATE);
     }
@@ -37,5 +51,5 @@ public class CookiesUtils {
         }
         return templateCookie.getValue();
     }
-
+    
 }

@@ -11,8 +11,8 @@ import org.restlet.engine.resource.VariantInfo;
 import org.restlet.representation.*;
 import org.restlet.resource.Resource;
 
-import de.twenty11.skysail.server.services.OsgiConverterHelper;
 import io.skysail.server.app.SkysailApplication;
+import io.skysail.server.services.OsgiConverterHelper;
 import lombok.extern.slf4j.Slf4j;
 
 @Component(immediate = true)

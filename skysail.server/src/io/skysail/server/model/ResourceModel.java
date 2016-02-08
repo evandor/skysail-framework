@@ -26,6 +26,7 @@ import io.skysail.server.forms.*;
 import io.skysail.server.forms.helper.CellRendererHelper;
 import io.skysail.server.menus.MenuItemProvider;
 import io.skysail.server.restlet.resources.*;
+import io.skysail.server.theme.Theme;
 import io.skysail.server.utils.*;
 import lombok.*;
 
@@ -75,17 +76,17 @@ public class ResourceModel<R extends SkysailServerResource<T>, T> {
     private String title = "Skysail";
     private STServicesWrapper services;
     private DateFormat dateFormat;
-
+    private Theme theme;
     private SearchService searchService;
-
     private Map<String, FormField> dynaFields = new HashMap<>();
 
     public ResourceModel(R resource, SkysailResponse<?> response) {
-        this(resource, response, new VariantInfo(MediaType.TEXT_HTML));
+        this(resource, response, new VariantInfo(MediaType.TEXT_HTML), new Theme());
     }
 
-    public ResourceModel(R resource, SkysailResponse<?> skysailResponse, Variant target) {
+    public ResourceModel(R resource, SkysailResponse<?> skysailResponse, Variant target, Theme theme) {
 
+        this.theme = theme;
         Locale locale = ResourceUtils.determineLocale(resource);
         dateFormat = DateFormat.getDateTimeInstance(DateFormat.MEDIUM, DateFormat.SHORT, locale);
 
@@ -105,7 +106,7 @@ public class ResourceModel<R extends SkysailServerResource<T>, T> {
             fields = dynaFields;
         }
 
-        rootEntity = new EntityModel<R>(response.getEntity(), resource);
+        rootEntity = new EntityModel<>(response.getEntity(), resource);
 
         String identifierName = getIdentifierFormField(rawData);
         data = convert(identifierName, resource);
@@ -130,7 +131,7 @@ public class ResourceModel<R extends SkysailServerResource<T>, T> {
                         for (DynaProperty prop : dynaClass.getDynaProperties()) {
                             map.put(prop.getName(), bean.get(prop.getName()));
                             if (dynaFields.get(prop.getName()) == null) {
-                                dynaFields.put(prop.getName(), new FormField(new FieldModel(prop.getName()), theResource));
+                                dynaFields.put(prop.getName(), new FormField(new FieldModel(prop.getName(), String.class), theResource));
                             }
                         }
                         result.add(map);
@@ -218,17 +219,17 @@ public class ResourceModel<R extends SkysailServerResource<T>, T> {
         }).collect(Collectors.toList());
     }
 
-    public List<io.skysail.api.links.Link> getLinks() throws Exception {
+    public List<io.skysail.api.links.Link> getLinks() {
         return resource.getAuthorizedLinks();
     }
 
-    public List<io.skysail.api.links.Link> getCollectionLinks() throws Exception {
+    public List<io.skysail.api.links.Link> getCollectionLinks()  {
         return resource.getAuthorizedLinks().stream()
                 .filter(l -> LinkRelation.COLLECTION.equals(l.getRel()) || LinkRelation.SELF.equals(l.getRel()))
                 .collect(Collectors.toList());
     }
 
-    public List<io.skysail.api.links.Link> getCreateFormLinks() throws Exception {
+    public List<io.skysail.api.links.Link> getCreateFormLinks() {
         return resource.getAuthorizedLinks().stream().filter(l -> LinkRelation.CREATE_FORM.equals(l.getRel()))
                 .collect(Collectors.toList());
     }
@@ -257,7 +258,22 @@ public class ResourceModel<R extends SkysailServerResource<T>, T> {
         if (pageAsString != null) {
             page = Integer.parseInt(pageAsString);
         }
+        
+        switch (theme.getVariant()) {
+        case BOOTSTRAP:
+            return getBootstrapPagination(pages, page);
+        case UIKIT:
+            return getUiKitPagination(pages, page);
+        case PURECSS:
+            return getPurecssPagination(pages, page);
+        case W2UI:
+            return "";//getPurecssPagination(pages, page);
+        default:
+            return "";
+        }
+    }
 
+    private static String getBootstrapPagination(int pages, int page) {
         StringBuilder sb = new StringBuilder();
         sb.append("<nav>");
         sb.append("<ul class='pagination'>");
@@ -280,6 +296,14 @@ public class ResourceModel<R extends SkysailServerResource<T>, T> {
         sb.append("</ul>");
         sb.append("</nav>");
         return sb.toString();
+    }
+
+    private static String getUiKitPagination(int pages, int page) {
+        return "<ul class='uk-pagination' data-uk-pagination='{pages:"+pages+", currentPage:"+page+"}'></ul>";
+    }
+
+    private static String getPurecssPagination(int pages, int page) {
+        return "<ul class='uk-pagination' data-uk-pagination='{pages:"+pages+", currentPage:"+page+"}'></ul>";
     }
 
     public String getStatus() {
@@ -557,7 +581,20 @@ public class ResourceModel<R extends SkysailServerResource<T>, T> {
     public List<Tab> getTabs() {
         ApplicationModel applicationModel = resource.getApplication().getApplicationModel();
         ClassEntityModel entity = (ClassEntityModel) applicationModel.getEntity(parameterizedType.getName());
-        return entity.getTabs();
+        Set<Tab> tabsFromEntityDefinition = entity.getTabs();
+        List<Tab> tabDefinitions = resource.getTabs();
+        
+        List<Tab> result = new ArrayList<>();
+        tabDefinitions.stream().forEach(tabDef -> {
+            result.add(tabDef);
+            tabsFromEntityDefinition.remove(tabDef);
+        });
+        
+        tabsFromEntityDefinition.stream().forEach(tabDef -> {
+            result.add(tabDef);
+        });
+        
+        return new ArrayList<Tab>(result);
     }
 
     public boolean isShowBreadcrumbs() {

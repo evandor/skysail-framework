@@ -39,6 +39,8 @@ public class I18nApplication extends SkysailApplication implements ApplicationPr
         router.attach(new RouteBuilder("/messages/", MessagesResource.class));
         router.attach(new RouteBuilder("/messages/{key}", MessageResource.class));
         router.attach(new RouteBuilder("/messages/{key}/", PutMessageResource.class));
+        
+        router.attach(new RouteBuilder("/messages/{key}/{fieldname}/", PatchMessageResource.class));
     }
 
     @Override

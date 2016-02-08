@@ -22,7 +22,7 @@ import io.skysail.server.app.todos.statuses.*;
 import io.skysail.server.app.todos.todos.Todo;
 import io.skysail.server.app.todos.todos.resources.*;
 import io.skysail.server.db.versions.VersioningService;
-import io.skysail.server.menus.*;
+import io.skysail.server.menus.MenuItemProvider;
 import io.skysail.server.queryfilter.Filter;
 import io.skysail.server.restlet.resources.SkysailServerResource;
 import lombok.Getter;
@@ -126,12 +126,6 @@ public class TodoApplication extends SkysailApplication implements ApplicationPr
 
     }
 
-    public List<MenuItem> getMenuEntries() {
-        MenuItem appMenu = new MenuItem(APP_NAME, "/" + APP_NAME + getApiVersion().getVersionPath(), this);
-        appMenu.setCategory(MenuItem.Category.APPLICATION_MAIN_MENU);
-        return Arrays.asList(appMenu);
-    }
-
     public List<TodoList> getUsersDefaultLists(Request request) {
         Filter filter = new Filter(request);
         filter.add("owner", SecurityUtils.getSubject().getPrincipal().toString());
@@ -144,7 +138,7 @@ public class TodoApplication extends SkysailApplication implements ApplicationPr
         for (TodoList todoList : usersDefaultLists) {
             todoList.setDefaultList(false);
             log.info("removing default-List Flag from todo list with id '{}'", todoList.getId());
-            getListRepo().update(todoList.getId(), todoList, "todos");
+// FIXME            getListRepo().update(todoList, app.getApplicationModel());
         }
     }
 

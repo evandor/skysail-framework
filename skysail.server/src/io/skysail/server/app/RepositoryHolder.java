@@ -2,7 +2,8 @@ package io.skysail.server.app;
 
 import io.skysail.domain.Identifiable;
 import io.skysail.domain.core.ApplicationModel;
-import io.skysail.domain.core.repos.*;
+import io.skysail.domain.core.repos.DbRepository;
+import io.skysail.domain.core.repos.Repository;
 import lombok.ToString;
 
 @ToString
@@ -39,8 +40,7 @@ public class RepositoryHolder implements Repository {
         return null;
     }
 
-    @Override
-    public Object update(String id, Identifiable entity, String... edges) {
+    public Object update(Identifiable entity, ApplicationModel model) {
         return null;
     }
 

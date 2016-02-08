@@ -11,7 +11,7 @@ public interface Repository {
 
     Object save (Identifiable identifiable, ApplicationModel applicationModel);
 
-    Object update(String id, Identifiable entity, String... edges);
+    Object update(Identifiable entity, ApplicationModel applicationModel);
     
     void delete(Identifiable identifiable);
 

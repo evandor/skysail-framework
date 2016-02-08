@@ -1,0 +1,55 @@
+<link rel="import" href="/_polymer/bower_components/polymer/polymer.html">
+<link rel="import" href="/_polymer/bower_components/iron-ajax/iron-ajax.html">
+<link rel="import" href="/_polymer/bower_components/paper-input/paper-input.html">
+<link rel="import" href="/_polymer/bower_components/paper-input/paper-textarea.html">
+
+<dom-module id="sky-link-nav-bs">
+
+  <template>
+
+    <template is="dom-if" if="{{showButtonList(links)}}">
+      <template is="dom-repeat" items="{{links}}">
+        <a href="{{item.link}}" class="btn btn-default btn-xs" role="button" tabindex="1">
+          <template is="dom-if" if="{{item.title}}">
+            <template is="dom-if" if="{{item.image}}"><span class$="{{glyph(item.image)}}" aria-hidden="true"></span></template>
+            <template is="dom-if" if="{{item.title}}"><span>{{item.title}}</span></template>
+          </template>
+          <template is="dom-if" if="{{!item.title}}">
+            <span>{{item.link}}</span>
+          </template>
+        </a>
+      </template>
+    </template>
+
+    <template is="dom-if" if="{{!showButtonList(links)}}">
+      <form>
+        <select onchange="this.options[this.selectedIndex].value && (window.location = this.options[this.selectedIndex].value);">
+          <option value="" disabled="disabled">Choose...</option>
+          <template is="dom-repeat" items="{{links}}">
+            <option value="{{item.link}}">{{item.title}}</option>
+          </template>
+        </select>
+      </form>
+    </template>
+
+  </template>
+  
+  <script>
+    Polymer({
+      is: 'sky-link-nav-bs',
+      properties: {
+    	  links: {
+    		  type: Object,
+    		  value: [{"link": "a"}]
+    	  }
+      },
+      showButtonList: function(links) {
+          return links.length < 5;
+      },
+      glyph: function (glyph) {
+    	  return "glyphicon glyphicon-" + glyph;
+      }
+    });
+  </script>
+
+</dom-module>

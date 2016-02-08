@@ -17,11 +17,13 @@ import org.restlet.security.Role;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import de.twenty11.skysail.server.core.restlet.*;
-import io.skysail.api.links.*;
+import io.skysail.api.links.Link;
+import io.skysail.api.links.LinkRelation;
 import io.skysail.api.responses.SkysailResponse;
 import io.skysail.api.text.Translation;
+import io.skysail.domain.core.*;
 import io.skysail.server.app.SkysailApplication;
-import io.skysail.server.forms.FormField;
+import io.skysail.server.forms.*;
 import io.skysail.server.menus.MenuItem;
 import io.skysail.server.services.PerformanceTimer;
 import io.skysail.server.utils.*;
@@ -47,6 +49,8 @@ public abstract class SkysailServerResource<T> extends ServerResource {
 
     public static final String FILTER_PARAM_NAME = "_filter";
     public static final String PAGE_PARAM_NAME = "_page";
+    public static final String SEARCH_PARAM_NAME = "_search";
+    
 
     public static final String NO_REDIRECTS = "noRedirects";
     public static final String INSPECT_PARAM_NAME = "_inspect";
@@ -409,5 +413,29 @@ public abstract class SkysailServerResource<T> extends ServerResource {
 
     public List<TreeRepresentation> getTreeRepresentation() {
         return Collections.emptyList();
+    }
+    
+    public List<Tab> getTabs() {
+        return Collections.emptyList();
+    }
+    
+    public List<Tab> getTabs(Tab... tabs) {
+        List<Tab> result = new ArrayList<>();
+        Arrays.stream(tabs).forEach(result::add);
+        return result;
+    }
+    
+    public List<String> getEntityFields() {
+        Class<?> type = getParameterizedType();
+        ApplicationModel model = getApplication().getApplicationModel();
+        Optional<EntityModel> entity = model.getEntityValues().stream().filter(e -> test(e, type)).findFirst();
+        if (entity.isPresent()) {
+            return new ArrayList<>(entity.get().getFieldNames());
+        }
+        return Collections.emptyList();
+    }
+
+    private boolean test(EntityModel e, Class<?> type) {
+        return e.getId().equals(type.getName());
     }
 }

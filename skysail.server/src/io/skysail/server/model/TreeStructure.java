@@ -10,23 +10,19 @@ import lombok.*;
 
 @NoArgsConstructor
 @ToString
+@Getter
 public class TreeStructure {
 
-    @Getter
     private String name;
-    
-    @Getter
     private String headline;
-
-    @Getter
     private String link = "/";
-
-    @Getter
     private List<TreeStructure> subfolders = new ArrayList<>();
+    private String glyph;
 
     public TreeStructure(TreeRepresentation treeRepresentation, SkysailServerResource<?> resource) {
         this.name = treeRepresentation.getName();
         this.headline = treeRepresentation.getHeadline();
+        this.glyph = treeRepresentation.getGlyph();
         List<String> baseRef = resource.getReference().getSegments();
         this.link = "/" + baseRef.get(0) + "/" + baseRef.get(1) + "/" + baseRef.get(2) + treeRepresentation.getLink();
         treeRepresentation.getSubfolders().stream().forEach(subfolder -> 

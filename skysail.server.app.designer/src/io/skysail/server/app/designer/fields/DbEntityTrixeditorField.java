@@ -14,5 +14,5 @@ public class DbEntityTrixeditorField extends DbEntityField { // NOSONAR
         this.name = name;
         this.mandatory = mandatory;
     }
-    
+
 }

@@ -5,7 +5,7 @@ import org.restlet.data.*;
 import org.restlet.resource.*;
 
 import de.twenty11.skysail.server.app.SkysailRootApplication;
-import de.twenty11.skysail.server.domain.Credentials;
+import de.twenty11.skysail.server.um.domain.Credentials;
 import io.skysail.api.responses.FormResponse;
 import io.skysail.server.restlet.resources.PostEntityServerResource;
 import io.skysail.server.utils.CookiesUtils;

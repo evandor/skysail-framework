@@ -10,29 +10,41 @@ import com.orientechnologies.orient.client.remote.OEngineRemote;
 import com.orientechnologies.orient.core.Orient;
 import com.orientechnologies.orient.core.command.OCommandRequest;
 import com.orientechnologies.orient.core.command.traverse.OTraverse;
-import com.orientechnologies.orient.core.db.*;
+import com.orientechnologies.orient.core.db.ODatabase;
+import com.orientechnologies.orient.core.db.ODatabaseDocumentInternal;
+import com.orientechnologies.orient.core.db.ODatabaseRecordThreadLocal;
+import com.orientechnologies.orient.core.db.OPartitionedDatabasePool;
 import com.orientechnologies.orient.core.db.document.ODatabaseDocumentTx;
 import com.orientechnologies.orient.core.db.record.OIdentifiable;
 import com.orientechnologies.orient.core.db.record.ridbag.ORidBag;
 import com.orientechnologies.orient.core.id.ORecordId;
-import com.orientechnologies.orient.core.metadata.schema.*;
+import com.orientechnologies.orient.core.metadata.schema.OClass;
 import com.orientechnologies.orient.core.metadata.schema.OClass.INDEX_TYPE;
+import com.orientechnologies.orient.core.metadata.schema.OType;
 import com.orientechnologies.orient.core.record.impl.ODocument;
-import com.orientechnologies.orient.core.sql.*;
+import com.orientechnologies.orient.core.sql.OCommandSQL;
+import com.orientechnologies.orient.core.sql.OSQLEngine;
 import com.orientechnologies.orient.core.sql.filter.OSQLPredicate;
 import com.orientechnologies.orient.core.sql.functions.OSQLFunction;
 import com.orientechnologies.orient.core.sql.query.OSQLSynchQuery;
 import com.orientechnologies.orient.graph.sql.functions.OGraphFunctionFactory;
 import com.orientechnologies.orient.object.db.OObjectDatabaseTx;
 import com.orientechnologies.orient.object.metadata.schema.OSchemaProxyObject;
-import com.tinkerpop.blueprints.impls.orient.*;
+import com.tinkerpop.blueprints.impls.orient.OrientGraph;
+import com.tinkerpop.blueprints.impls.orient.OrientGraphFactory;
+import com.tinkerpop.blueprints.impls.orient.OrientVertex;
 
-import aQute.bnd.annotation.component.*;
+import aQute.bnd.annotation.component.Activate;
+import aQute.bnd.annotation.component.Component;
+import aQute.bnd.annotation.component.Deactivate;
+import aQute.bnd.annotation.component.Reference;
 import de.twenty11.skysail.server.core.osgi.EventHelper;
 import de.twenty11.skysail.server.events.EventHandler;
 import io.skysail.domain.Identifiable;
 import io.skysail.domain.core.ApplicationModel;
-import io.skysail.server.db.impl.*;
+import io.skysail.server.db.impl.AbstractOrientDbService;
+import io.skysail.server.db.impl.Persister;
+import io.skysail.server.db.impl.Updater;
 import io.skysail.server.utils.SkysailBeanUtils;
 import lombok.extern.slf4j.Slf4j;
 
@@ -79,20 +91,15 @@ public class OrientGraphDbService extends AbstractOrientDbService implements DbS
     }
 
     @Override
-    @Deprecated // use other persist method
-    public OrientVertex persist(Identifiable entity, String... edges) {
-        return new Persister(getGraphDb(), edges).persist(entity);
-    }
-
-    @Override
     public OrientVertex persist(Identifiable entity, ApplicationModel applicationModel) {
         return new Persister(getGraphDb(), applicationModel).persist(entity);
     }
-
+    
     @Override
-    public OrientVertex update(Object id, Identifiable entity, String... edges) {
-        return new Updater(getGraphDb(), edges).persist(entity);
+    public OrientVertex update(Identifiable entity, ApplicationModel applicationModel) {
+        return new Updater(getGraphDb(), applicationModel).persist(entity);
     }
+
 
     @Override
     public <T> List<T> findObjects(String sql) {
@@ -348,7 +355,7 @@ public class OrientGraphDbService extends AbstractOrientDbService implements DbS
             return;
         }
         try {
-            log.info("about to start db");
+            log.debug("about to start db");
             createDbIfNeeded();
 
             OPartitionedDatabasePool opDatabasePool = new OPartitionedDatabasePool(getDbUrl(), getDbUsername(),
@@ -356,7 +363,7 @@ public class OrientGraphDbService extends AbstractOrientDbService implements DbS
             ODatabaseDocumentTx oDatabaseDocumentTx = opDatabasePool.acquire();
             OObjectDatabaseTx db = new OObjectDatabaseTx(oDatabaseDocumentTx);
 
-            log.info("setting lazy loading to false");
+            log.debug("setting lazy loading to false");
             db.setLazyLoading(false);
             started = true;
             if (getDbUrl().startsWith("memory:")) {
@@ -378,13 +385,13 @@ public class OrientGraphDbService extends AbstractOrientDbService implements DbS
     private void createDbIfNeeded() {
         String dbUrl = getDbUrl();
         if (dbUrl.startsWith("remote")) {
-            log.info("registering remote engine");
+            log.debug("registering remote engine");
             Orient.instance().registerEngine(new OEngineRemote());
         } else if (dbUrl.startsWith("plocal")) {
 
             OrientGraph graph = new OrientGraph(dbUrl, getDbUsername(), getDbPassword());
             try {
-                log.info("testing graph factory connection");
+                log.debug("testing graph factory connection");
             } catch (Exception e) {
                 log.error(e.getMessage(), e);
             } finally {
@@ -392,12 +399,12 @@ public class OrientGraphDbService extends AbstractOrientDbService implements DbS
             }
         } else if (dbUrl.startsWith("memory:")) {
             ODatabase<?> create = new OObjectDatabaseTx(dbUrl).create();
-            log.info("created new in-memory database {}", create.toString());
+            log.debug("created new in-memory database {}", create.toString());
 
             final OrientGraphFactory factory = new OrientGraphFactory(dbUrl, getDbUsername(), getDbPassword())
                     .setupPool(1, 10);
             try {
-                log.info("testing graph factory connection");
+                log.debug("testing graph factory connection");
                 factory.getTx();
             } catch (Exception e) {
                 log.error(e.getMessage(), e);

@@ -1,15 +1,15 @@
 package io.skysail.server.app.plugins.obr;
 
+import java.util.List;
+import java.util.function.Consumer;
+
+import org.restlet.resource.ResourceException;
+
 import io.skysail.api.links.Link;
 import io.skysail.api.responses.SkysailResponse;
 import io.skysail.server.app.plugins.PluginApplication;
 import io.skysail.server.app.plugins.resources.ResourcesResource;
 import io.skysail.server.restlet.resources.ListServerResource;
-
-import java.util.List;
-import java.util.function.Consumer;
-
-import org.restlet.resource.ResourceException;
 
 public class RepositoryResource extends ListServerResource<ObrResource> {
 
@@ -26,7 +26,7 @@ public class RepositoryResource extends ListServerResource<ObrResource> {
     }
 
     @Override
-    public SkysailResponse<?> eraseEntity() {
+    public SkysailResponse<ObrResource> eraseEntity() {
         return null;
     }
 

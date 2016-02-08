@@ -1,11 +1,12 @@
 package io.skysail.server.queryfilter.parser;
 
-import io.skysail.server.queryfilter.ExprNode;
-import io.skysail.server.queryfilter.nodes.*;
-
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.osgi.framework.InvalidSyntaxException;
+
+import io.skysail.server.queryfilter.ExprNode;
+import io.skysail.server.queryfilter.nodes.*;
 
 /**
  * @author org.osgi.framework.FrameworkUtil.ExprNode.Parser
@@ -172,8 +173,21 @@ public class Parser {
 
             if (string instanceof String) {
                 return new EqualityNode(attr, (String) string);
+            } 
+            if (string instanceof String[]) {
+                String[] value = (String[])string;
+                if (value.length == 3) {
+                    return new SubstringNode(attr, value[1]);                
+                } else if (value.length == 2) {
+                    if (value[0] == null) {
+                        return new SubstringNode(attr, value[1]);                
+                    } else if (value[1] == null) {
+                        return new SubstringNode(attr, value[0]);                
+                    }
+                }
             }
-            return null;// new ExprNode(Operation.SUBSTRING, attr, string);
+            return null;
+            
         }
         case '∈': { // "element of", "is in" \u2208, not standard LDAP syntax!
             pos++;

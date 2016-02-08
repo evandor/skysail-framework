@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <sequence-diagram version="1.1.4" icons="true" automaticImage="PNG">  
-  <object id="1" language="java" name="de.twenty11.skysail.server.security.shiro.restlet.ShiroDelegationAuthenticator" 
+  <object id="1" language="java" name="io.skysail.server.security.shiro.restlet.ShiroDelegationAuthenticator" 
     project="skysail.server.security.shiro" 
     file="/skysail.server.security.shiro/src/de/twenty11/skysail/server/security/shiro/restlet/ShiroDelegationAuthenticator.java" 
     binary="false" label="shiroDelegationAuthenticator" type="class" autoSize="true">    

@@ -31,7 +31,7 @@ public class PostConnectionResource extends PostEntityServerResource<Connection>
 
     @Override
     public void addEntity(Connection entity) {
-        String id = repository.save(entity).toString();
+        String id = repository.save(entity, app.getApplicationModel()).toString();
         entity.setId(id);
     }
 

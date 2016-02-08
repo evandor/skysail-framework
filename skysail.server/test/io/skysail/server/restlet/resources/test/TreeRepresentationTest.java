@@ -43,7 +43,7 @@ public class TreeRepresentationTest {
 
     @Test
     public void simpleEntity_is_processed_correctly() {
-        TreeRepresentation treeRepresentation = new TreeRepresentation(root,"");
+        TreeRepresentation treeRepresentation = new TreeRepresentation(root,"","leaf");
         assertThat(treeRepresentation.getName(),is("root"));
         assertThat(treeRepresentation.getSubfolders().size(),is(0));
     }
@@ -55,7 +55,7 @@ public class TreeRepresentationTest {
         subEntities.add(new NameableSubEntity("sub2"));
         root.setSubEntities(subEntities);
         
-        TreeRepresentation treeRepresentation = new TreeRepresentation(root,"");
+        TreeRepresentation treeRepresentation = new TreeRepresentation(root,"","leaf");
         assertThat(treeRepresentation.getName(),is("root"));
         assertThat(treeRepresentation.getSubfolders().size(),is(2));
         assertThat(treeRepresentation.getSubfolders().get(0).getName(),is("sub1"));

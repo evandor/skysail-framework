@@ -24,7 +24,7 @@ import org.osgi.service.cm.ConfigurationException;
 import org.osgi.service.component.ComponentContext;
 import org.osgi.service.component.annotations.*;
 
-import de.twenty11.skysail.server.services.SocketIoBroadcasting;
+import io.skysail.server.services.SocketIoBroadcasting;
 import lombok.extern.slf4j.Slf4j;
 
 /**

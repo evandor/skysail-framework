@@ -18,7 +18,7 @@ public class PutUserResource extends PutEntityServerResource<User> {
     }
 
     public void updateEntity(User entity) {
-        app.getUserRepository().update(getAttribute("id"), entity);
+        app.getUserRepository().update(entity, app.getApplicationModel());
     }
 
     @Override

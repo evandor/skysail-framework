@@ -7,11 +7,12 @@ import org.restlet.data.Method;
 import org.restlet.representation.Variant;
 import org.restlet.resource.*;
 
-import de.twenty11.skysail.server.core.restlet.*;
+import de.twenty11.skysail.server.core.restlet.ResourceContextId;
 import io.skysail.api.links.LinkRelation;
 import io.skysail.api.responses.*;
 import io.skysail.domain.Identifiable;
 import io.skysail.server.restlet.ListRequestHandler;
+import io.skysail.server.restlet.response.ListResponseWrapper;
 import io.skysail.server.services.PerformanceTimer;
 import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
@@ -81,12 +82,7 @@ public abstract class ListServerResource<T extends Identifiable> extends Skysail
         requestHandler = new ListRequestHandler<T>(null);
         addToContext(ResourceContextId.LINK_TITLE, "list");
     }
-
-    @Override
-    protected void doInit() throws ResourceException {
-        super.doInit();
-    }
-
+    
     /**
      * Constructor which associates this ListServerResource with a corresponding
      * EntityServerResource.
@@ -108,17 +104,17 @@ public abstract class ListServerResource<T extends Identifiable> extends Skysail
      *
      * @return the list of entities in html, csv or treeform format
      */
-    @Get("html|json|yaml|xml|csv|timeline")
+    @Get("html|json|yaml|xml|csv|timeline|standalone")
     // treeform, csv:broken http://stackoverflow.com/questions/24569318/writing-multi-line-csv-with-jacksonrepresentation
     // https://github.com/restlet/restlet-framework-java/issues/928
     public ListServerResponse<T> getEntities(Variant variant) {
         Set<PerformanceTimer> perfTimer = getApplication().startPerformanceMonitoring(
                 this.getClass().getSimpleName() + ":getEntities");
-        log.info("Request entry point: {} @Get('html|json|yaml|xml') with variant {}", this.getClass().getSimpleName(),
+        log.info("Request entry point: {} @Get({})", this.getClass().getSimpleName(),
                 variant);
-        List<T> response = (List<T>) listEntities();
+        List<T> response = listEntities();
         getApplication().stopPerformanceMonitoring(perfTimer);
-        return new ListServerResponse<T>(getResponse(), response);
+        return new ListServerResponse<>(getResponse(), response);
 
         // if (SecurityFeatures.ALLOW_ORIGIN_FEATURE.isActive()) {
         // responseHeaders.add("Access-Control-Allow-Origin", "*");
@@ -135,9 +131,10 @@ public abstract class ListServerResource<T extends Identifiable> extends Skysail
         return LinkRelation.COLLECTION;
     }
 
-    private final List<?> listEntities() {
+    @SuppressWarnings("unchecked")
+    private final List<T> listEntities() {
         ListResponseWrapper<?> responseWrapper = requestHandler.createForList(Method.GET).handleList(this, getResponse());
-        return (List<?>) responseWrapper.getEntity();
+        return (List<T>) responseWrapper.getEntity();
     }
 
     /**
@@ -146,7 +143,7 @@ public abstract class ListServerResource<T extends Identifiable> extends Skysail
      *
      * @return the response
      */
-    public SkysailResponse<?> eraseEntity() {
+    public SkysailResponse<T> eraseEntity() {
         throw new UnsupportedOperationException();
     }
 

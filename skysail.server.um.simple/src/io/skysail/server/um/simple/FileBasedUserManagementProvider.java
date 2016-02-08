@@ -49,6 +49,7 @@ public class FileBasedUserManagementProvider implements UserManagementProvider {
     
     private volatile ConfigurationAdmin configurationAdmin;
 
+    @Getter
     private CacheManager cacheManager;
 
     @Activate
@@ -126,8 +127,5 @@ public class FileBasedUserManagementProvider implements UserManagementProvider {
 
     }
 
-    public CacheManager getCacheManager() {
-        return cacheManager;
-    }
 
 }

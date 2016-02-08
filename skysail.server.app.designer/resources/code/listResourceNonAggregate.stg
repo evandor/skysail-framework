@@ -1,0 +1,39 @@
+listResourceNonAggregate(application, entity) ::= <<
+package $application.packageName$;
+
+import io.skysail.server.db.DbClassName;
+import io.skysail.server.queryfilter.Filter;
+import io.skysail.server.restlet.resources.ListServerResource;
+import io.skysail.api.links.Link;
+                
+import java.util.List;
+import java.util.Map;
+
+import de.twenty11.skysail.server.core.restlet.ResourceContextId;
+
+public class $entity.simpleName$sResource extends ListServerResource<$entity.id$> {
+
+    private $application.name$Application app;
+
+    public $entity.simpleName$sResource() {
+        super($entity.simpleName$Resource.class);
+        addToContext(ResourceContextId.LINK_TITLE, "list $entity.simpleName$s");
+    }
+
+    @Override
+    protected void doInit() {
+        app = ($application.name$Application) getApplication();
+    }
+
+    @Override
+    public List<?> getEntity() {
+       //return repository.find(new Filter(getRequest()));
+        String sql = "SELECT from " + DbClassName.of($entity.simpleName$.class) + " WHERE #" + getAttribute("id") + " IN in('pages')";
+        return ((SpaceRepository)app.getRepository(Space.class)).execute($entity.simpleName$.class, sql);   
+    \}
+    
+    public List<Link> getLinks() {
+       return super.getLinks(Post$entity.simpleName$Resource.class);
+    \}
+}
+>>

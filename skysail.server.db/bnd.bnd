@@ -1,4 +1,4 @@
-Bundle-Version: 5.0.1.${tstamp}
+Bundle-Version: 6.0.0.${tstamp}
 Service-Component: *
 Bundle-Name: SKYSAIL :: server :: db
 Private-Package:  \
@@ -6,10 +6,10 @@ Private-Package:  \
 	io.skysail.server.db.impl
 Include-Resource: lib=lib,resources=resources
 
--buildpath:  \
+-buildpath: \
 	skysail.api;version=${skysail.api.version},\
 	skysail.server;version=${skysail.server.version},\
-    skysail.domain;version=${skysail.domain.version},\
+	skysail.domain;version=${skysail.domain.version},\
 	skysail.server.queryfilter;version=${skysail.server.queryfilter.version},\
 	biz.aQute.bnd.annotation;version=2.3,\
 	osgi.core;version=${osgi.version},\
@@ -34,7 +34,9 @@ Include-Resource: lib=lib,resources=resources
 	org.apache.commons.logging;version=1.1,\
 	com.googlecode.concurrentlinkedhashmap.lru;version=1.4,\
 	org.apache.commons.collections;version=3.2,\
-	com.google.guava;version=15.0
+	com.google.guava;version=15.0,\
+	javax.validation.api;version=1.1,\
+	org.apache.commons.lang3;version=3.3
 
 Import-Package:  \
 	javassist.util.proxy,\
@@ -45,8 +47,9 @@ Import-Package:  \
 	com.orientechnologies.orient.client.remote;resolution:=optional,\
 	*
 
-Export-Package:  \
+Export-Package: \
 	io.skysail.server.db,\
-	io.skysail.server.db.versions
+	io.skysail.server.db.versions,\
+	io.skysail.server.db.validators
 
 DynamicImport-Package: *

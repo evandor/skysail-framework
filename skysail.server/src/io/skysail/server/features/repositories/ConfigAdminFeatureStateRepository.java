@@ -1,10 +1,16 @@
 package io.skysail.server.features.repositories;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
 
-import org.osgi.service.component.annotations.*;
+import org.osgi.service.component.annotations.Activate;
+import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.ConfigurationPolicy;
+import org.osgi.service.component.annotations.Deactivate;
 
-import io.skysail.api.features.*;
+import io.skysail.api.features.Feature;
+import io.skysail.api.features.FeatureState;
+import io.skysail.api.features.FeatureStateRepository;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -24,7 +30,7 @@ public class ConfigAdminFeatureStateRepository implements FeatureStateRepository
     @Activate
     public void activate(Map<String, String> config) {
         this.config = config;
-        log.info("activating {} with config {}", this.getClass().getSimpleName(), config);
+        log.debug("activating {} with config {}", this.getClass().getSimpleName(), config);
     }
 
     @Deactivate

@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sequence-diagram version="1.1.9" icons="true" automaticImage="PNG">  
+  <object id="1" language="java" name="io.skysail.server.app.designer.codegen.ApplicationCreator" 
+    project="skysail.server.app.designer" 
+    file="/skysail.server.app.designer/src/io/skysail/server/app/designer/codegen/ApplicationCreator.java" 
+    binary="false" label="applicationCreator" type="class" autoSize="true">    
+    <position height="-1" width="-1" x="175" y="0"/>    
+    <execution id="2">      
+      <position height="691" width="0" x="0" y="88"/>    
+    </execution>    
+    <execution id="4">      
+      <position height="628" width="0" x="0" y="130"/>    
+    </execution>    
+    <execution id="6">      
+      <position height="21" width="0" x="0" y="182"/>    
+    </execution>    
+    <execution id="8">      
+      <position height="451" width="0" x="0" y="234"/>    
+    </execution>    
+    <execution id="10">      
+      <position height="21" width="0" x="0" y="716"/>    
+    </execution>  
+  </object>  
+  <object id="27" language="java" name="io.skysail.server.app.designer.EntitiesCreator" 
+    project="skysail.server.app.designer" 
+    file="/skysail.server.app.designer/src/io/skysail/server/app/designer/EntitiesCreator.java" binary="false" 
+    type="class" autoSize="true">    
+    <position height="0" width="0" x="0" y="0"/>    
+    <execution id="12">      
+      <position height="21" width="0" x="0" y="307"/>    
+    </execution>    
+    <execution id="14">      
+      <position height="21" width="0" x="0" y="349"/>    
+    </execution>  
+  </object>  
+  <object id="28" language="java" name="io.skysail.server.app.designer.RepositoryCreator" 
+    project="skysail.server.app.designer" 
+    file="/skysail.server.app.designer/src/io/skysail/server/app/designer/RepositoryCreator.java" binary="false" 
+    type="class" autoSize="true">    
+    <position height="0" width="0" x="0" y="0"/>    
+    <execution id="16">      
+      <position height="21" width="0" x="0" y="391"/>    
+    </execution>    
+    <execution id="18">      
+      <position height="21" width="0" x="0" y="433"/>    
+    </execution>  
+  </object>  
+  <object id="29" language="java" name="io.skysail.server.app.designer.codegen.SkysailApplicationCompiler" 
+    project="skysail.server.app.designer" 
+    file="/skysail.server.app.designer/src/io/skysail/server/app/designer/codegen/SkysailApplicationCompiler.java" 
+    binary="false" label="skysailApplicationCompiler" type="class" autoSize="true">    
+    <position height="0" width="0" x="0" y="0"/>    
+    <execution id="20">      
+      <position height="21" width="0" x="0" y="475"/>    
+    </execution>    
+    <execution id="22">      
+      <position height="21" width="0" x="0" y="517"/>    
+    </execution>    
+    <execution id="24">      
+      <position height="21" width="0" x="0" y="559"/>    
+    </execution>    
+    <execution id="26">      
+      <position height="21" width="0" x="0" y="643"/>    
+    </execution>  
+  </object>  
+  <message id="3" 
+    operation="createApplication(io.skysail.server.db.DbService,org.osgi.service.component.ComponentContext):boolean" 
+    asynchronous="false">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="4"/>  
+  </message>  
+  <message id="5" operation="createProject():void" asynchronous="false">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="6"/>  
+  </message>  
+  <message id="7" operation="createCode():boolean" asynchronous="false">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="8"/>  
+  </message>  
+  <message id="9" 
+    operation="setupInMemoryBundle(io.skysail.server.db.DbService,org.osgi.service.component.ComponentContext):void" 
+    asynchronous="false">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="10"/>  
+  </message>  
+  <message id="11" asynchronous="false">    
+    <end type="SOURCE" refId="8"/>    
+    <end type="TARGET" refId="12"/>  
+  </message>  
+  <message id="13" operation="create(io.skysail.server.app.designer.STGroupBundleDir):java.util.List&lt;RouteModel&gt;" 
+    asynchronous="false">    
+    <end type="SOURCE" refId="8"/>    
+    <end type="TARGET" refId="14"/>  
+  </message>  
+  <message id="15" 
+    operation="RepositoryCreator(io.skysail.server.app.designer.model.DesignerApplicationModel,io.skysail.server.app.designer.codegen.JavaCompiler)" 
+    asynchronous="false">    
+    <end type="SOURCE" refId="8"/>    
+    <end type="TARGET" refId="16"/>  
+  </message>  
+  <message id="17" operation="create(io.skysail.server.app.designer.STGroupBundleDir):java.util.List&lt;String&gt;" 
+    asynchronous="false">    
+    <end type="SOURCE" refId="8"/>    
+    <end type="TARGET" refId="18"/>  
+  </message>  
+  <message id="19" 
+    operation="SkysailApplicationCompiler(io.skysail.server.app.designer.model.DesignerApplicationModel,io.skysail.server.app.designer.STGroupBundleDir,io.skysail.server.app.designer.codegen.JavaCompiler)" 
+    asynchronous="false">    
+    <end type="SOURCE" refId="8"/>    
+    <end type="TARGET" refId="20"/>  
+  </message>  
+  <message id="21" 
+    operation="createApplication(java.util.List&lt;io.skysail.server.app.designer.model.RouteModel&gt;):void" 
+    asynchronous="false">    
+    <end type="SOURCE" refId="8"/>    
+    <end type="TARGET" refId="22"/>  
+  </message>  
+  <message id="23" operation="compile(org.osgi.framework.BundleContext):void" asynchronous="false">    
+    <end type="SOURCE" refId="8"/>    
+    <end type="TARGET" refId="24"/>  
+  </message>  
+  <message id="25" operation="isCompiledSuccessfully():boolean" asynchronous="false">    
+    <end type="SOURCE" refId="8"/>    
+    <end type="TARGET" refId="26"/>  
+  </message>
+</sequence-diagram>

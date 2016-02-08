@@ -13,5 +13,3 @@ entities:
     notNull: true
     sizeMin: 0
     sizeMax: 0
-  actionFields: []
-  subEntities: []

@@ -9,6 +9,9 @@ public @interface PostView {
 
     Visibility visibility() default Visibility.SHOW;
 
+    /**
+     * A string identifier used to organize fields in tabs.
+     */
     String tab() default "";
 
 }

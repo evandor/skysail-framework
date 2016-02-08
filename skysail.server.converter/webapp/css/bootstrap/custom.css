@@ -1,0 +1,18 @@
+.table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
+    /* similar to class .success */
+    background-color:#fdf88e
+}
+
+
+table.ROWCLICK td a, table.ROWCLICK td a:hover {
+    background-color: transparent;
+    text-decoration: none;
+    color: inherit;
+}
+
+.renderedTableCell {
+	white-space: nowrap; 
+	overflow: hidden; 
+	text-overflow:ellipsis; 
+	max-width:10em;
+}

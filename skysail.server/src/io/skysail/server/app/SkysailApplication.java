@@ -24,19 +24,18 @@ import com.google.common.base.Predicate;
 
 import de.twenty11.skysail.server.app.*;
 import de.twenty11.skysail.server.core.restlet.*;
-import de.twenty11.skysail.server.security.*;
-import de.twenty11.skysail.server.services.*;
 import io.skysail.api.text.Translation;
 import io.skysail.api.um.*;
 import io.skysail.api.validation.ValidatorService;
 import io.skysail.domain.Identifiable;
-import io.skysail.domain.core.*;
+import io.skysail.domain.core.Repositories;
 import io.skysail.domain.core.repos.Repository;
 import io.skysail.domain.html.*;
 import io.skysail.server.domain.jvm.ClassEntityModel;
 import io.skysail.server.menus.MenuItem;
 import io.skysail.server.restlet.filter.*;
 import io.skysail.server.restlet.resources.SkysailServerResource;
+import io.skysail.server.security.*;
 import io.skysail.server.services.*;
 import io.skysail.server.text.TranslationStoreHolder;
 import io.skysail.server.utils.*;
@@ -46,43 +45,6 @@ import lombok.extern.slf4j.Slf4j;
 /**
  * A skysail application is the entry point to provide additional functionality
  * to the skysail server.
- *
- * <p>Typically you will create a subclass of SkysailApplication like this:</p>
- *
- * <pre>
- * <code>
- *
- * {@literal @}org.osgi.service.component.annotations.Component(immediate = true)
- * public class MyApplication extends SkysailApplication implements ApplicationProvider, MenuItemProvider {
- *
- *     private static final String APP_NAME = "myapp";
- *
- *     public DbClientApplication() {
- *          super(APP_NAME, new ApiVersion(1), Arrays.asList(Clip.class);
- *     }
- *
- *      {@literal @}Reference(dynamic = true, multiple = false, optional = false)
- *      public void setRepositories(Repositories repos) {
- *         super.setRepositories(repos);
- *      }
- *
- *      public void unsetRepositories(DbRepository repo) {
- *          super.setRepositories(null);
- *      }
- *
- * }
- * </code>
- * </pre>
- *
- * Important:
- *
- * A {@link SkysailApplication} is a {@link ApplicationModel}, which
- *
- * - handles access to its resources issues via its {@link AuthenticationService} and {@link AuthorizationService}
- *
- * - knows about the OSGi {@link ComponentContext}
- *
- * - deals with XSS issues via its {@link HtmlPolicyBuilder} - can encrypt/decrypt resource entitiies via its {@link EncryptorService}
  *
  * Concurrency note from parent class: instances of this class or its subclasses
  * can be invoked by several threads at the same time and therefore must be
@@ -94,18 +56,16 @@ import lombok.extern.slf4j.Slf4j;
 public abstract class SkysailApplication extends RamlApplication implements ApplicationProvider, ResourceBundleProvider,
         Comparable<ApplicationProvider> {
 
-    private Map<ApplicationContextId, String> stringContextMap = new HashMap<>();
+    private Map<ApplicationContextId, String> stringContextMap = new HashMap<>(); // NOSONAR
 
-    /**
-     * do not forget to add those media types as extensions in.
-     *
-     * {@link #createInboundRoot()}
-     */
     public static final MediaType SKYSAIL_SERVER_SENT_EVENTS = MediaType.register("text/event-stream","Server Side Events");
     public static final MediaType SKYSAIL_TREE_FORM = MediaType.register("treeform", "Html Form as tree representation");
     public static final MediaType SKYSAIL_MAILTO_MEDIATYPE = MediaType.register("mailto", "href mailto target");
     public static final MediaType SKYSAIL_TIMELINE_MEDIATYPE = MediaType.register("timeline", "vis.js timeline representation");
+    public static final MediaType SKYSAIL_STANDLONE_APP_MEDIATYPE = MediaType.register("standalone", "standalone application representation");
 
+    //public static final MediaType SKYSAIL_UIKIT_MEDIATYPE = MediaType.register("text/prs.skysail-uikit", "default uikit representation");
+    
     protected static volatile ServiceListProvider serviceListProvider;
 
     /** the restlet router. */
@@ -114,17 +74,16 @@ public abstract class SkysailApplication extends RamlApplication implements Appl
     @Getter
     private volatile ComponentContext componentContext;
 
-    private volatile BundleContext bundleContext;
-    private volatile HtmlPolicyBuilder noHtmlPolicyBuilder = new HtmlPolicyBuilder();
-    private String home;
-    private volatile List<String> parametersToHandle = new CopyOnWriteArrayList<String>();
-    private volatile Map<String, String> parameterMap = new ConcurrentHashMap<String, String>();
-    private volatile List<String> securedByAllRoles = new CopyOnWriteArrayList<String>();
-
-    private List<MenuItem> applicationMenu;
-
     @Getter
     private ApiVersion apiVersion = new ApiVersion(1);
+    
+    private volatile BundleContext bundleContext;
+    private volatile HtmlPolicyBuilder noHtmlPolicyBuilder = new HtmlPolicyBuilder();
+    private volatile List<String> parametersToHandle = new CopyOnWriteArrayList<>();
+    private volatile Map<String, String> parameterMap = new ConcurrentHashMap<>();
+    private volatile List<String> securedByAllRoles = new CopyOnWriteArrayList<>();
+
+    private List<MenuItem> applicationMenu;
 
     private Map<String, Object> documentedEntities = new ConcurrentHashMap<>();
 
@@ -135,9 +94,6 @@ public abstract class SkysailApplication extends RamlApplication implements Appl
      */
     @Getter
     private io.skysail.domain.core.ApplicationModel applicationModel;
-
-    @Getter
-    private  EncryptorService encryptorService;
 
     public SkysailApplication() {
         getEncoderService().getIgnoredMediaTypes().add(SkysailApplication.SKYSAIL_SERVER_SENT_EVENTS);
@@ -155,36 +111,12 @@ public abstract class SkysailApplication extends RamlApplication implements Appl
     public SkysailApplication(String appName, ApiVersion apiVersion, List<Class<? extends Identifiable>> entityClasses) {
         this();
         log.debug("Instanciating new Skysail ApplicationModel '{}'", this.getClass().getSimpleName());
-        this.home = appName;
         setName(appName);
         this.apiVersion = apiVersion;
         applicationModel = new io.skysail.domain.core.ApplicationModel(appName);
         entityClasses.forEach(cls -> applicationModel.addOnce(EntityFactory.createFrom(cls)));
     }
 
-    /**
-     * probably you want to do something like
-     * "router.attach(new RouteBuilder("", RootResource.class))".
-     *
-     * Important: Call <pre>super.attach()</pre> in the first line of this method.
-     *
-     * <p>
-     * You can add authorization information like this for all routes:
-     * </p>
-     *
-     * <p>
-     * <code>router.setAuthorizationDefaults(anyOf("usermanagement.user", "admin"));</code>
-     * </p>
-     *
-     * <p>
-     * or for specific routes:
-     * </p>
-     *
-     * <p>
-     * <code>router.attach(new RouteBuilder("/",
-     * UsersResource.class).authorizeWith(anyOf("admin")));</code>
-     * </p>
-     */
     protected void attach() {
         if (applicationModel.getEntityIds().isEmpty()) {
             log.warn("there are no entities defined for the applicationModel {}", applicationModel);
@@ -195,7 +127,7 @@ public abstract class SkysailApplication extends RamlApplication implements Appl
         router.attach(new RouteBuilder("/" , firstClassEntity.getListResourceClass()));
 
         applicationModel.getEntityIds().stream()
-            .map(key -> applicationModel.getEntity(key))
+            .map(key -> applicationModel.getEntity(key)) // NOSONAR
             .map(ClassEntityModel.class::cast)
             .forEach(entity -> {
                 router.attach(new RouteBuilder("/" + entity.getId(), entity.getListResourceClass()));
@@ -218,7 +150,7 @@ public abstract class SkysailApplication extends RamlApplication implements Appl
     }
 
     @Deactivate
-    protected void deactivate(ComponentContext componentContext) {
+    protected void deactivate(ComponentContext componentContext) { // NOSONAR
         log.debug("Deactivating ApplicationModel {}", this.getClass().getName());
         this.componentContext = null;
         this.bundleContext = null;
@@ -247,25 +179,25 @@ public abstract class SkysailApplication extends RamlApplication implements Appl
             return repository;
         }
         log.warn("trying to access repository for entity class {}, but failed...", entityClass.getName());
-        applicationModel.getRepositoryIds().stream().sorted().forEach(identifier -> {
+        applicationModel.getRepositoryIds().stream().sorted().forEach(identifier -> { // NOSONAR
             log.info(" - available: {}", identifier);
         });
         return getRepository();
     }
 
     protected void documentEntities(Object... entitiesToDocument) {
-        Arrays.stream(entitiesToDocument).forEach(e -> {
+        Arrays.stream(entitiesToDocument).forEach(e -> { // NOSONAR
             documentedEntities .put(e.getClass().getName(), e);
         });
     }
     
     public abstract EventAdmin getEventAdmin();
 
-    public void setServiceListProvider(ServiceListProvider service) {
+    public static void setServiceListProvider(ServiceListProvider service) {
         serviceListProvider = service;
     }
 
-    protected void unsetServiceListProvider(ServiceListProvider service) {
+    protected static void unsetServiceListProvider(ServiceListProvider service) { // NOSONAR
         serviceListProvider = null;
     }
 
@@ -291,49 +223,37 @@ public abstract class SkysailApplication extends RamlApplication implements Appl
         return componentContext != null ? componentContext.getBundleContext() : null;
     }
 
-    protected void setHome(String home) {
-        this.home = home;
-    }
-
-    // TODO getName vs getHome?
-    public String getHome() {
-        return home;
-    }
-
     @Override
     public synchronized Restlet createInboundRoot() {
 
         log.info("creating new Router in {}", this.getClass().getName());
         router = new SkysailRouter(this);
         router.setApiVersion(apiVersion);
-        // router.setDefaultMatchingQuery(true);
 
         log.info("adding extensions to metadata service");
         getMetadataService().addExtension("eventstream", SKYSAIL_SERVER_SENT_EVENTS);
         getMetadataService().addExtension("treeform", SKYSAIL_TREE_FORM);
         getMetadataService().addExtension("mailto", SKYSAIL_MAILTO_MEDIATYPE);
         getMetadataService().addExtension("timeline", SKYSAIL_TIMELINE_MEDIATYPE);
+        getMetadataService().addExtension("standalone", SKYSAIL_STANDLONE_APP_MEDIATYPE);
+        //getMetadataService().addExtension("text/prs.skysail-uikit", SKYSAIL_UIKIT_MEDIATYPE);
+
+        getMetadataService().addExtension("x-www-form-urlencoded", MediaType.APPLICATION_WWW_FORM);
 
         // see
         // http://nexnet.wordpress.com/2010/09/29/clap-protocol-in-restlet-and-osgi/
         log.info("adding protocols");
         getConnectorService().getClientProtocols().add(Protocol.HTTP);
-        // getConnectorService().getClientProtocols().add(Protocol.HTTPS);
         getConnectorService().getClientProtocols().add(Protocol.FILE);
         getConnectorService().getClientProtocols().add(Protocol.CLAP);
-        // getConnectorService().getClientProtocols().add(Protocol.RIAP);
 
-        // here or somewhere else? ServiceList?
-        // enrolerService.setAuthorizationService(authorizationService);
         getContext().setDefaultEnroler((Enroler) serviceListProvider.getAuthorizationService());
 
         final class MyVerifier extends SecretVerifier {
-
             @Override
             public int verify(String identifier, char[] secret) {
                 return 0;
             }
-
         }
 
         getContext().setDefaultVerifier(new MyVerifier());
@@ -347,12 +267,11 @@ public abstract class SkysailApplication extends RamlApplication implements Appl
 
         log.debug("creating original request filter...");
         OriginalRequestFilter originalRequestFilter = new OriginalRequestFilter(getContext());
-        // blocker.setNext(originalRequestFilter);
         originalRequestFilter.setNext(router);
 
         log.debug("determining authentication service...");
         AuthenticationService authenticationService = getAuthenticationService();
-        Authenticator authenticationGuard = null;
+        Authenticator authenticationGuard;
         if (authenticationService != null) {
             log.debug("setting authenticationGuard from authentication service");
             authenticationGuard = authenticationService.getAuthenticator(getContext());
@@ -367,12 +286,10 @@ public abstract class SkysailApplication extends RamlApplication implements Appl
         }
 
         Filter authorizationGuard = null;
-        if (getAuthorizationService() != null && securedByAllRoles.size() > 0) {
+        if (getAuthorizationService() != null && !securedByAllRoles.isEmpty()) {
             log.debug("setting authorization guard: new SkysailRolesAuthorizer");
             authorizationGuard = new SkysailRolesAuthorizer(securedByAllRoles);
         }
-        // tracer -> linker -> authenticationGuard (-> authorizationGuard) ->
-        // originalRequest -> router
         if (authorizationGuard != null) {
             authorizationGuard.setNext(originalRequestFilter);
             authenticationGuard.setNext(authorizationGuard);
@@ -380,18 +297,6 @@ public abstract class SkysailApplication extends RamlApplication implements Appl
             authenticationGuard.setNext(originalRequestFilter);
         }
         tracer.setNext(authenticationGuard);
-
-
-//        RoleAuthorizer roleAuthorizer = new RoleAuthorizer();
-//        roleAuthorizer.setAuthorizedRoles(Scopes.toRoles("status"));
-//        roleAuthorizer.setNext(router);
-//
-//        ChallengeAuthenticator bearerAuthenticator = new ChallengeAuthenticator(getContext(),
-//                ChallengeScheme.HTTP_OAUTH_BEARER, "ApplicationModel");
-//
-//        bearerAuthenticator.setVerifier(new TokenVerifier(new org.restlet.data.Reference("yourTokenAuthURI")));
-//        bearerAuthenticator.setNext(roleAuthorizer);
-
 
         return tracer;
     }
@@ -425,13 +330,16 @@ public abstract class SkysailApplication extends RamlApplication implements Appl
     }
 
     public Map<String, RouteBuilder> getSkysailRoutes() {
+        if (router == null) {
+            log.error("router of application '{}' is null! - access the skysail server at least once with your browser", this.getName());
+            return Collections.emptyMap();
+        }
         return router.getRouteBuilders();
     }
 
     public List<RouteBuilder> getRouteBuildersForResource(Class<? extends ServerResource> cls) {
         return router.getRouteBuildersForResource(cls);
     }
-
 
     @Override
     public SkysailApplication getApplication() {
@@ -483,7 +391,7 @@ public abstract class SkysailApplication extends RamlApplication implements Appl
                 }
                 result.add(resourceBundleEn);
             }
-        } catch (MissingResourceException mre) {
+        } catch (MissingResourceException mre) { // NOSONAR
             // ok
         }
     }
@@ -594,7 +502,7 @@ public abstract class SkysailApplication extends RamlApplication implements Appl
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder(getClass().getSimpleName()).append(" (SkysailApplication)\n");
-        sb.append("Home: ").append(home).append(", \nRouter: ").append(router).append("\n");
+        sb.append("Router: ").append(router).append("\n");
         return sb.toString();
     }
 
@@ -656,12 +564,9 @@ public abstract class SkysailApplication extends RamlApplication implements Appl
         return serviceListProvider.getValidatorService();
     }
 
-
     public Set<PerformanceTimer> startPerformanceMonitoring(String identifier) {
         Collection<PerformanceMonitor> performanceMonitors = serviceListProvider.getPerformanceMonitors();
-        return performanceMonitors.stream().map(monitor -> {
-            return monitor.start(identifier);
-        }).collect(Collectors.toSet());
+        return performanceMonitors.stream().map(monitor -> monitor.start(identifier)).collect(Collectors.toSet());
     }
 
     public void stopPerformanceMonitoring(Set<PerformanceTimer> perfTimer) {
@@ -688,7 +593,7 @@ public abstract class SkysailApplication extends RamlApplication implements Appl
     }
 
     public List<MenuItem> getMenuEntries() {
-        MenuItem appMenu = new MenuItem(getName(), "/" + getName() + getApiVersion().getVersionPath());
+        MenuItem appMenu = new MenuItem(getName(), "/" + getName() + getApiVersion().getVersionPath(), this);
         appMenu.setCategory(MenuItem.Category.APPLICATION_MAIN_MENU);
         return Arrays.asList(appMenu);
     }

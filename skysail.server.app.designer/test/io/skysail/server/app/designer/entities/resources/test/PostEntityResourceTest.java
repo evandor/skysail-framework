@@ -3,13 +3,18 @@ package io.skysail.server.app.designer.entities.resources.test;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
-import org.junit.*;
-import org.restlet.data.*;
+import org.junit.Before;
+import org.junit.Test;
+import org.restlet.data.Form;
+import org.restlet.data.MediaType;
+import org.restlet.data.Status;
 import org.restlet.engine.resource.VariantInfo;
 
-import io.skysail.api.responses.*;
+import io.skysail.api.responses.ConstraintViolationsResponse;
+import io.skysail.api.responses.SkysailResponse;
 import io.skysail.server.app.designer.application.DbApplication;
 import io.skysail.server.app.designer.entities.DbEntity;
+import io.skysail.server.testsupport.FormBuilder;
 
 public class PostEntityResourceTest extends AbstractEntityResourceTest {
 
@@ -24,7 +29,7 @@ public class PostEntityResourceTest extends AbstractEntityResourceTest {
 
     @Test
     public void empty_form_data_yields_validation_failure() {
-        ConstraintViolationsResponse<?> post = (ConstraintViolationsResponse<?>) postEntityResource.post(form,
+        ConstraintViolationsResponse<?> post = (ConstraintViolationsResponse<?>) postEntityResource.post(new FormBuilder().build(),
                 HTML_VARIANT);
         assertValidationFailure(postEntityResource, post);
     }
@@ -38,8 +43,7 @@ public class PostEntityResourceTest extends AbstractEntityResourceTest {
 
     @Test
     public void valid_form_data_yields_new_entity() {
-        form.add("name", "TestEntity");
-        form.add("rootEntity", "on");
+        Form form = new FormBuilder().add("name", "TestEntity").add("rootEntity", "on").build();
 
         SkysailResponse<DbEntity> result = postEntityResource.post(form, HTML_VARIANT);
         
@@ -50,6 +54,7 @@ public class PostEntityResourceTest extends AbstractEntityResourceTest {
     @Test
     public void valid_json_data_yields_new_entity() {
         DbEntity entity = DbEntity.builder().name("AnEntity").rootEntity(true).build();
+        entity.setDbApplication(anApplication);
         
         SkysailResponse<DbEntity> result = postEntityResource.post(entity, JSON_VARIANT);
         
@@ -59,9 +64,26 @@ public class PostEntityResourceTest extends AbstractEntityResourceTest {
     }
 
     @Test
+    public void two_entities_to_the_same_application_cannot_have_the_same_name() {
+        DbEntity entity1 = DbEntity.builder().name("AnEntity").rootEntity(true).build();
+        DbEntity entity2 = DbEntity.builder().name("AnEntity").rootEntity(true).build();
+
+        entity1.setDbApplication(anApplication);
+        entity2.setDbApplication(anApplication);
+
+        postEntityResource.post(entity1, JSON_VARIANT);
+        SkysailResponse<DbEntity> secondPostResult = postEntityResource.post(entity2, JSON_VARIANT);
+        
+        assertValidationFailure(postEntityResource, secondPostResult);
+    }
+
+    @Test
     public void two_entities_can_be_added() {
         DbEntity entity1 = DbEntity.builder().name("AnEntity").rootEntity(true).build();
         DbEntity entity2 = DbEntity.builder().name("AnotherEntity").rootEntity(true).build();
+        
+        entity1.setDbApplication(anApplication);
+        entity2.setDbApplication(anApplication);
         
         SkysailResponse<DbEntity> result = postEntityResource.post(entity1, JSON_VARIANT);
         SkysailResponse<DbEntity> result2 = postEntityResource.post(entity2, JSON_VARIANT);
@@ -73,7 +95,8 @@ public class PostEntityResourceTest extends AbstractEntityResourceTest {
 
     @Test
     public void two_entries_with_same_name_yields_failure() {
-        form.add("name", "list2");
+        Form form = new FormBuilder().add("name", "list2").build();
+
         postEntityResource.post(form, new VariantInfo(MediaType.TEXT_HTML));
         ConstraintViolationsResponse<?> post = (ConstraintViolationsResponse<?>) postEntityResource.post(form,
                 HTML_VARIANT);

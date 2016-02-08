@@ -1,0 +1,6 @@
+handleCheckbox(field, i) ::= <<
+  $handleLabel(field)$
+  <div class='col-sm-10'>
+    <input type="$field.inputType$" class='form-control' name='$field.name$' id='$field.name$' $if(data.(field.name))$checked$endif$ tabindex="$i$" title="$helpmessage(messages, field.placeholderKey)$">
+  </div>
+>>

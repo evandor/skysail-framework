@@ -7,6 +7,8 @@
 -runfw: org.apache.felix.framework;version=${org.apache.felix.framework.version}
 -runproperties: org.osgi.service.http.port=8081,\
     ds.loglevel=debug,\
+    osgi.shell.telnet.port=6669,\
+    felix.fileinstall.optionalImportRefreshScope=managed,\
     ${runproperties}
 -runrepos: ${runrepos}
 -runsystemcapabilities: ${native_capability}
@@ -18,15 +20,18 @@
 ### --- run-file-specific settings ------------------------------------------------- ###
 ########################################################################################
 
-skysail.config.path            = config/common,config/int
-logback.configurationFile.path = config/common
+skysail.config.path            = config/common,config/int,designerbundles
+logback.configurationFile.path = config/int
 
 -runbundles:\
     ${serverbundles-1.0.0},\
+    org.apache.felix.shell.remote;version=1.1.2,\
     skysail.product.designer;version=latest,\
-    skysail.server.ext.initconfig;version=latest,\
     skysail.server.codegen;version=latest,\
-    skysail.server.app.designer;version=latest
+    skysail.server.polymer;version=latest,\
+    skysail.server.app.designer;version=latest,\
+    skysail.server.app.notes;version=latest,\
+    skysail.server.uikit.webresource;version=latest
 
 
 

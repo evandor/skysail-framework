@@ -11,17 +11,22 @@ import org.restlet.representation.*;
 import org.restlet.resource.Resource;
 import org.stringtemplate.v4.ST;
 
+import com.google.common.cache.CacheStats;
+
 import de.twenty11.skysail.server.core.restlet.ResourceContextId;
 import io.skysail.api.responses.SkysailResponse;
 import io.skysail.api.search.SearchService;
 import io.skysail.api.text.Translation;
 import io.skysail.server.app.SkysailApplication;
+import io.skysail.server.caches.Caches;
 import io.skysail.server.converter.HtmlConverter;
 import io.skysail.server.converter.stringtemplate.STGroupBundleDir;
 import io.skysail.server.converter.wrapper.STUserWrapper;
 import io.skysail.server.menus.MenuItemProvider;
 import io.skysail.server.model.ResourceModel;
 import io.skysail.server.restlet.resources.SkysailServerResource;
+import io.skysail.server.restlet.response.messages.Message;
+import io.skysail.server.theme.Theme;
 import io.skysail.server.utils.*;
 import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
@@ -33,27 +38,31 @@ public class StringTemplateRenderer {
 
     private STGroupBundleDir importedGroupBundleDir;
     private Set<MenuItemProvider> menuProviders;
-    private String templateFromCookie;
     private HtmlConverter htmlConverter;
     private String indexPageName;
 
     private SearchService searchService;
 
-    public StringTemplateRenderer(HtmlConverter htmlConverter) {
+    private Resource resource;
+
+    private Theme theme;
+
+    public StringTemplateRenderer(HtmlConverter htmlConverter, Resource resource) {
         this.htmlConverter = htmlConverter;
+        this.resource = resource;
     }
 
     public StringRepresentation createRepresenation(Object entity, Variant target,
             SkysailServerResource<?> resource) {
 
+        theme = Theme.determineFrom(resource, target);
+
         @SuppressWarnings({ "rawtypes", "unchecked" })
-        ResourceModel<SkysailServerResource<?>,?> resourceModel = new ResourceModel(resource, (SkysailResponse<?>)entity, target);
-        resourceModel.setSearchService(searchService); // TODO: has to be set before menuItemProviders ;(
+        ResourceModel<SkysailServerResource<?>,?> resourceModel = new ResourceModel(resource, (SkysailResponse<?>)entity, target, theme);
+        resourceModel.setSearchService(searchService); // has to be set before menuItemProviders ;(
         resourceModel.setMenuItemProviders(menuProviders);
 
-        templateFromCookie = CookiesUtils.getTemplateFromCookie(resource.getRequest());
-
-        STGroupBundleDir stGroup = createSringTemplateGroup(resource, target.getMediaType().getName());
+        STGroupBundleDir stGroup = createSringTemplateGroup(resource, theme);
 
         ST index = getStringTemplateIndex(resource, stGroup);
 
@@ -64,19 +73,16 @@ public class StringTemplateRenderer {
         return createRepresentation(index, stGroup);
     }
 
-    private STGroupBundleDir createSringTemplateGroup(Resource resource, String mediaType) {
+    private STGroupBundleDir createSringTemplateGroup(Resource resource, Theme theme) {
         SkysailApplication currentApplication = (SkysailApplication) resource.getApplication();
         Bundle appBundle = currentApplication.getBundle();
         if (appBundle == null) {
             log.warn("could not determine bundle of current ApplicationModel {}, follow-up errors might occur", currentApplication.getName());
         }
-        //String resourcePath = ("/templates/" + mediaType).replace("/*", "");
-        //log.debug("reading templates from resource path '{}'", resourcePath);
         URL templatesResource = appBundle.getResource("/templates");
         if (templatesResource != null) {
             STGroupBundleDir stGroup = new STGroupBundleDir(appBundle, resource, "/templates");
-            importTemplate("skysail.server.converter", resource, appBundle, "/templates", stGroup, mediaType);
-            //importTemplate("skysail.server.documentation", resource, appBundle, "/templates", stGroup, mediaType);
+            importTemplate("skysail.server.converter", resource, appBundle, "/templates", stGroup, theme);
             return stGroup;
 
         } else {
@@ -86,7 +92,7 @@ public class StringTemplateRenderer {
     }
 
     private ST getStringTemplateIndex(Resource resource, STGroupBundleDir stGroup) {
-        if (resource.getContext().getAttributes().containsKey(ResourceContextId.RENDERER_HINT.name())) {
+        if (resource.getContext() != null && resource.getContext().getAttributes().containsKey(ResourceContextId.RENDERER_HINT.name())) {
             String root = (String) resource.getContext().getAttributes().get(ResourceContextId.RENDERER_HINT.name());
             resource.getContext().getAttributes().remove(ResourceContextId.RENDERER_HINT.name());
             return stGroup.getInstanceOf(root);
@@ -121,11 +127,11 @@ public class StringTemplateRenderer {
     }
 
     public boolean isDebug() {
-        return "debug".equalsIgnoreCase(templateFromCookie);
+        return "debug".equalsIgnoreCase(theme.getOption().toString());
     }
 
     public boolean isEdit() {
-        return "edit".equalsIgnoreCase(templateFromCookie);
+        return "edit".equalsIgnoreCase(theme.getOption().toString());
     }
 
 
@@ -159,7 +165,24 @@ public class StringTemplateRenderer {
     }
 
     public List<Notification> getNotifications() {
-        return htmlConverter.getNotifications();
+        List<Notification> notifications = htmlConverter.getNotifications();
+        String messageIds = resource.getOriginalRef().getQueryAsForm().getFirstValue("msgIds");
+        if (messageIds != null) {
+            List<Message> messages = Arrays.stream(messageIds.split("|"))
+                    .map(id -> getMessageFromCache(id))
+                    .filter(msg -> msg != null)
+                    .collect(Collectors.toList());
+            for (Message message : messages) {
+                notifications.add(new Notification(message.getMsg(),"success"));
+            }
+        }
+        return notifications;
+    }
+
+    private Message getMessageFromCache(String id) {
+        CacheStats messageCacheStats = Caches.getMessageCacheStats();
+        System.out.println(messageCacheStats);
+        return Caches.getMessageCache().getIfPresent(Long.valueOf(id));
     }
 
     public List<String> getPeitybars() {
@@ -167,10 +190,10 @@ public class StringTemplateRenderer {
     }
 
     private void importTemplate(String symbolicName, Resource resource, Bundle appBundle, String resourcePath,
-            STGroupBundleDir stGroup, String mediaType) {
+            STGroupBundleDir stGroup, Theme theme) {
         Optional<Bundle> theBundle = findBundle(appBundle, symbolicName);
         if (theBundle.isPresent()) {
-            String mediaTypedResourcePath = (resourcePath + "/" + mediaType).replace("/*", "");
+            String mediaTypedResourcePath = (resourcePath + "/" + theme).replace("/*", "");
             importTemplates(resource, mediaTypedResourcePath , stGroup, theBundle);
             importTemplates(resource, mediaTypedResourcePath + "/head", stGroup, theBundle);
             importTemplates(resource, mediaTypedResourcePath + "/navigation", stGroup, theBundle);

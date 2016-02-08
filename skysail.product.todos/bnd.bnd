@@ -12,12 +12,7 @@ Private-Package:  \
     skysail.domain;version=${skysail.domain.version},\
 	skysail.server.converter;version=${skysail.server.converter.version},\
 	skysail.server.db;version=${skysail.server.db.version},\
-	skysail.server.app.designer;version=latest,\
-	skysail.server.app.dbviewer;version=latest,\
-	skysail.server.app.svgedit;version=latest,\
 	skysail.server.app.todos;version=latest,\
-	skysail.server.app.bookmarks;version=latest,\
-	skysail.server.app.um.db;version=latest,\
 	skysail.server.static;version=${skysail.server.static.version},\
 	skysail.server.ext.sse;version=latest,\
 	skysail.server.ext.initconfig;version=latest,\
@@ -25,7 +20,6 @@ Private-Package:  \
 	skysail.server.osgi;version=${skysail.server.osgi.version},\
     skysail.server.performance.etm;version=latest,\
 	skysail.server.plugins;version=${skysail.server.plugins.version},\
-	skysail.server.polymer;version=${skysail.server.polymer.version},\
 	skysail.server.queryfilter;version=${skysail.server.queryfilter.version},\
 	skysail.server.testsupport;version=${skysail.server.testsupport.version},\
 	skysail.server.text.markdown;version=${skysail.server.text.markdown.version},\

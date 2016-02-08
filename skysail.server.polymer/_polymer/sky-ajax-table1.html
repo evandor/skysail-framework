@@ -40,7 +40,7 @@
       </tr>
       <template is="dom-repeat" items="{{data}}" as="row">
         <tr>
-          <template is="dom-repeat" items="{{_toArray(row,columns,meta)}}" as="column">
+          <template is="dom-repeat" items="{{_toArray(row,columns)}}" as="column">
             <td><sky-html html="{{column.value}}"></sky-html></td>
           </template>
         </tr>
@@ -120,17 +120,19 @@
   	  _entityTypeUrlChanged: function(newValue, oldValue) {
           debug("SKY-AJAX-TABLE (_entityTypeUrlChanged)> calling '" + newValue + "'", true);
           this.$.skyMeta.url = newValue;
-          this.$.skyMeta.generateRequest();
+          //this.$.skyMeta.generateRequest();
   	  },
   	  _columnNamesChanged:function(newValue, oldValue) {
         console.log("SKY-AJAX-TABLE (_columnNamesChanged)> '" + oldValue + "' --> '" + newValue + "'");
         this.$.skyTable.columnNames=newValue;
   	  },
-  	  _toArray: function(obj, columns, meta) {
-  		console.log("SKY-AJAX-TABLE (_toArray)> " + obj + ", " + columns);
+  	  _toArray: function(obj, columns) {
+  		console.log("SKY-AJAX-TABLE (_toArray)> " + obj + ", ");
+  		//return {name: "key", value: "value"};
         return columns.map(function(key) {
-          //console.log("SKY-AJAX-TABLE (_toArray)> key: "+key+", value: "+obj[key]+", meta:" + meta[key]);
-          var type = "?";
+          console.log("SKY-AJAX-TABLE (_toArray)> key: "+key+", value: "+obj[key]);//+", meta:" + meta[key]);
+          return {name: key, value: obj[key]};
+          /*var type = "?";
           if (meta[key]) {
         	  type = meta[key].type;
           }
@@ -147,7 +149,7 @@
           }
 
           value = processMetadata(meta, obj, key, value);
-          return {name: key, value: value};
+          return {name: key, value: value};*/
         });
       },
       _headersFrom: function(obj) {

@@ -1,0 +1,68 @@
+renderTable(converter, messages, model) ::= <<
+
+  $model.pagination$
+
+  <div id="myToolbar"></div>
+  <div id="gridtable" style="width: 100%; height: 350px;"></div>
+  
+  <script>
+    \$(function () {
+        \$('#myToolbar').w2toolbar({
+            name : 'myToolbar',
+            items: [
+                { type: 'check',  id: 'item1', caption: 'Check', img: 'icon-add', checked: true },
+                { type: 'break' },
+                { type: 'menu',   id: 'item2', caption: 'Drop Down', img: 'icon-folder', 
+                    items: [
+                        { text: 'Item 1', img: 'icon-page' }, 
+                        { text: 'Item 2', img: 'icon-page' }, 
+                        { text: 'Item 3', img: 'icon-page' }
+                    ]
+                },
+                { type: 'break' },
+                { type: 'radio',  id: 'item3',  group: '1', caption: 'Radio 1', img: 'icon-page' },
+                { type: 'radio',  id: 'item4',  group: '1', caption: 'Radio 2', img: 'icon-page' },
+                { type: 'spacer' },
+                { type: 'button',  id: 'item5',  caption: 'Item 5', img: 'icon-save' }
+            ]
+        });
+    });    
+    
+\$(function () {
+    \$('#gridtable').w2grid({
+        name: 'gridtable',
+        header: 'List of Names',
+        columns: [
+            { field: 'title', caption: 'Title', size: '30%' },
+            { field: 'modified', caption: 'Modified', size: '30%' },
+            { field: 'action', caption: 'Action', size: '120px' }
+        ],
+        records: [
+            $model.data:{ row | $printRow(i,row)$}; separator=",\n"$
+        ]
+    });
+});
+</script>
+  
+  
+>>
+
+renderRow(fields, row,i) ::= <<
+  <tr>$fields: { field | <td class="renderedTableCell">$row.(field.name)$</td>}$<td>$row.("_links")$</td></tr>
+>>
+
+renderHeader(fields, converter) ::= <<
+  $if(converter.edit)$
+    $fields: { field | <th><a href='/i18n/v1/messages/$field.nameKey$/'>$helpmessage(messages, field.nameKey)$</a></th>}$
+  $else$
+    $fields: { field | <th>$helpmessage(messages, field.nameKey)$</th>}$
+  $endif$
+>>
+
+helpmessage(messages, identifier) ::= <<
+    $messages.(identifier).translated$
+>>
+
+printRow(i,row) ::= <<
+ {recid: $i$, title: '$row.title$', modified: '$row.modifiedAt$', action: "$row.("_links")$"}
+>>

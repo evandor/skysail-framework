@@ -7,7 +7,9 @@ import javax.validation.constraints.*;
 
 import io.skysail.domain.*;
 import io.skysail.domain.html.*;
+import io.skysail.server.app.designer.fields.provider.VisibilitySelectionProvider;
 import io.skysail.server.app.designer.fields.resources.InputTypeSelectionProvider;
+import io.skysail.server.app.designer.fields.roles.FieldRoleSelectionProvider;
 import io.skysail.server.forms.*;
 import lombok.*;
 
@@ -27,9 +29,20 @@ public abstract class DbEntityField implements Identifiable, Nameable, Serializa
     @Field
     @NotNull
     @Size(min = 1)
-    @PostView(tab = "new Field")
-    //@ListView(link = PutFieldResource.class)
+    @PostView(tab = "newField")
     protected String name;
+
+    @Field(selectionProvider = VisibilitySelectionProvider.class)
+    @PostView(tab = "visibility")
+    protected String listViewVisibility = Visibility.SHOW.name();
+
+    @Field(selectionProvider = VisibilitySelectionProvider.class)
+    @PostView(tab = "visibility")
+    protected String postViewVisibility = Visibility.SHOW.name();
+
+    @Field(selectionProvider = VisibilitySelectionProvider.class)
+    @PostView(tab = "visibility")
+    protected String putViewVisibility = Visibility.SHOW.name();
 
     @Field(selectionProvider = InputTypeSelectionProvider.class)
     @PostView(visibility = Visibility.HIDE)
@@ -38,6 +51,14 @@ public abstract class DbEntityField implements Identifiable, Nameable, Serializa
     @Field(inputType = InputType.CHECKBOX)
     @PostView(tab = "optional")
     protected Boolean mandatory;
+    
+    @Field(selectionProvider = FieldRoleSelectionProvider.class)
+    @PostView(tab = "special")
+    protected FieldRole role = FieldRole.NONE;
+
+    public Class<?> getFieldType() {
+        return String.class;
+    }
     
 
 }

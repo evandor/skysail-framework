@@ -1,6 +1,7 @@
 package io.skysail.server.app.todos.todos.resources;
 
-import java.util.*;
+import java.util.Date;
+import java.util.List;
 
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
@@ -25,7 +26,7 @@ public class PostTodoWoListResource extends PostTodoResource {
 //        listIdFromEntity = entity.getParent().replace("#","");
 //        entity.setParent(listIdFromEntity);
         //String id = app.getRepository().add(entity).toString();
-        String id = app.getTodosRepo().save(entity, "parent").toString();
+        String id = app.getTodosRepo().save(entity, app.getApplicationModel()).toString();
         entity.setId(id);
     }
 

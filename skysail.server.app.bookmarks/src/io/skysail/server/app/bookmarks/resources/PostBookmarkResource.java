@@ -7,10 +7,12 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
 import org.jsoup.Jsoup;
-import org.jsoup.nodes.*;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-import io.skysail.server.app.bookmarks.*;
+import io.skysail.server.app.bookmarks.Bookmark;
+import io.skysail.server.app.bookmarks.BookmarksApplication;
 import io.skysail.server.app.bookmarks.repo.BookmarksRepository;
 import io.skysail.server.restlet.resources.PostEntityServerResource;
 import lombok.extern.slf4j.Slf4j;
@@ -19,10 +21,11 @@ import lombok.extern.slf4j.Slf4j;
 public class PostBookmarkResource extends PostEntityServerResource<Bookmark> {
 
     private BookmarksRepository repository;
+    private BookmarksApplication app;
 
     @Override
     public void doInit() {
-        BookmarksApplication app = (BookmarksApplication) getApplication();
+        app = (BookmarksApplication) getApplication();
         repository = (BookmarksRepository) app.getRepository(Bookmark.class);
     }
 
@@ -39,7 +42,7 @@ public class PostBookmarkResource extends PostEntityServerResource<Bookmark> {
         entity.setCreated(new Date());
         Subject subject = SecurityUtils.getSubject();
         entity.setOwner(subject.getPrincipal().toString());
-        String id = repository.save(entity).toString();
+        String id = repository.save(entity, app.getApplicationModel()).toString();
         entity.setId(id);
     }
 

@@ -1,0 +1,19 @@
+showForm(fields, messages, model) ::= <<
+
+  $if (model.constraintViolationsResponse && model.classlevelViolationMessage)$
+    Sorry, there was at least one problem submitting this form:
+    <div class="alert alert-danger" role="alert">
+      <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+      <span class="sr-only">Error:</span>
+        $model.classlevelViolationMessage$
+    </div>
+  $endif$
+
+  $if (model.postEntityServerResource)$
+    $postForm(model, messages)$
+  $elseif (model.putEntityServerResource)$
+    $putForm(model, messages)$
+  $endif$
+
+>>
+

@@ -1,12 +1,12 @@
-listResource(application, entity) ::= <<
+listResource(application, entity, listLinks) ::= <<
 package $application.packageName$;
 
 import io.skysail.server.queryfilter.Filter;
+import io.skysail.server.queryfilter.pagination.Pagination;
 import io.skysail.server.restlet.resources.ListServerResource;
 import io.skysail.api.links.Link;
                 
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import de.twenty11.skysail.server.core.restlet.ResourceContextId;
 
@@ -19,20 +19,26 @@ public class $entity.simpleName$sResource extends ListServerResource<$entity.id$
         super($entity.simpleName$Resource.class);
         addToContext(ResourceContextId.LINK_TITLE, "list $entity.simpleName$s");
     }
+    
+    public $entity.simpleName$sResource(Class<? extends $entity.simpleName$Resource> cls) {
+        super(cls);
+    }
 
     @Override
     protected void doInit() {
         app = ($application.name$Application) getApplication();
         repository = ($entity.simpleName$Repository) app.getRepository($entity.id$.class);
     }
-
+    
     @Override
     public List<$entity.id$> getEntity() {
-       return repository.find(new Filter(getRequest()));
+        Filter filter = new Filter(getRequest());
+        Pagination pagination = new Pagination(getRequest(), getResponse(), repository.count(filter));
+        return repository.find(filter, pagination);
     \}
 
     public List<Link> getLinks() {
-       return super.getLinks(Post$entity.simpleName$Resource.class);
+       $listLinks$
     \}
 }
 >>

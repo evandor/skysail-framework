@@ -12,6 +12,7 @@ import io.skysail.domain.core.repos.DbRepository;
 import io.skysail.server.app.designer.application.DbApplication;
 import io.skysail.server.app.designer.entities.DbEntity;
 import io.skysail.server.app.designer.fields.*;
+import io.skysail.server.app.designer.relations.DbRelation;
 import io.skysail.server.db.*;
 import lombok.extern.slf4j.Slf4j;
 
@@ -25,21 +26,24 @@ public class DesignerRepository implements DbRepository {
     public void activate() {
         dbService.createWithSuperClass("V", 
                 DbClassName.of(DbApplication.class), 
+                DbClassName.of(DbRelation.class),
                 DbClassName.of(DbEntity.class),
                 DbClassName.of(DbEntityDateField.class), 
                 DbClassName.of(DbEntityTextField.class),
                 DbClassName.of(DbEntityTextareaField.class), 
                 DbClassName.of(DbEntityTrixeditorField.class), 
-                DbClassName.of(ActionEntityField.class));
+                DbClassName.of(DbEntityUrlField.class));
+
         dbService.register(
                 DbApplication.class, 
+                DbRelation.class,
                 DbEntity.class, 
                 DbEntityDateField.class, 
                 DbEntityTextField.class,
                 DbEntityTextareaField.class, 
                 DbEntityTrixeditorField.class, 
-                ActionEntityField.class);
-        dbService.createEdges("entities", "fields", "subEntities");
+                DbEntityUrlField.class);
+        dbService.createEdges("entities", "fields", "oneToManyRelations");
     }
 
     @Reference
@@ -69,10 +73,6 @@ public class DesignerRepository implements DbRepository {
         return dbService.findGraphs(DbEntity.class, sql);
     }
 
-    public static OrientVertex add(Identifiable entity, String... edges) {
-        return (OrientVertex) dbService.persist(entity, edges);
-    }
-
     public static OrientVertex add(Identifiable entity, ApplicationModel applicationModel) {
         return (OrientVertex) dbService.persist(entity, applicationModel);
     }
@@ -81,21 +81,14 @@ public class DesignerRepository implements DbRepository {
         return dbService.findById2(cls, id);
     }
 
-    public Object update(DbApplication entity, String... edges) {
-        return dbService.update(entity.getId(), entity, edges);
+    public void update(DbEntityField field, ApplicationModel applicationModel) {
+        dbService.update(field, applicationModel);
     }
 
-    public Object update(DbEntity entity, String... edges) {
-        return dbService.update(entity.getId(), entity, edges);
+    public Object update(Identifiable entity, ApplicationModel applicationModel) {
+        return dbService.update(entity, applicationModel);
     }
 
-    public void update(DbEntityField field) {
-        dbService.update(field.getId(), field);
-    }
-
-    public Object update(String id, Identifiable entity, String... edges) {
-        return dbService.update(id, entity, edges);
-    }
 
     public void register(Class<?>... classes) {
         dbService.register(classes);

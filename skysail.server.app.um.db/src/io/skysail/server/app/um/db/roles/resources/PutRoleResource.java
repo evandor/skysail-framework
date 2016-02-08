@@ -18,7 +18,7 @@ public class PutRoleResource extends PutEntityServerResource<Role> {
     }
 
     public void updateEntity(Role entity) {
-        app.getRoleRepo().update(getAttribute("id"), entity);
+        app.getRoleRepo().update(entity, app.getApplicationModel());
     }
 
     @Override

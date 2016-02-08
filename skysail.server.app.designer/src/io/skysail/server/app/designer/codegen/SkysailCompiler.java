@@ -1,15 +1,15 @@
 package io.skysail.server.app.designer.codegen;
 
-import java.io.*;
-import java.nio.file.*;
-import java.util.*;
+import java.util.Arrays;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 import org.osgi.framework.BundleContext;
-import org.stringtemplate.v4.*;
+import org.stringtemplate.v4.STGroupDir;
 
 import io.skysail.server.app.designer.STGroupBundleDir;
-import io.skysail.server.app.designer.model.CodegenApplicationModel;
+import io.skysail.server.app.designer.codegen.writer.ProjectFileWriter;
+import io.skysail.server.app.designer.model.DesignerApplicationModel;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 
@@ -17,20 +17,18 @@ import lombok.extern.slf4j.Slf4j;
 @Getter
 public class SkysailCompiler {
 
-    @Getter
-    protected boolean compiledSuccessfully = true;
-    protected CodegenApplicationModel applicationModel;
+    protected DesignerApplicationModel applicationModel;
     protected STGroupDir stGroupDir;
     private JavaCompiler compiler;
     
-    public SkysailCompiler(CodegenApplicationModel applicationModel, STGroupBundleDir stGroup, JavaCompiler compiler) {
+    public SkysailCompiler(DesignerApplicationModel applicationModel, STGroupBundleDir stGroup, JavaCompiler compiler) {
         this.applicationModel = applicationModel;
         this.stGroupDir = stGroup;
         this.compiler = compiler;
     }
 
-    public void compile(BundleContext bundleContext) {
-        compiledSuccessfully = compiler.compile(bundleContext);
+    public boolean compile(BundleContext bundleContext) {
+        return compiler.compile(bundleContext);
     }
 
     protected String substitute(String template, Map<String, String> substitutionMap) {
@@ -42,25 +40,25 @@ public class SkysailCompiler {
         return template;
     }
 
-    protected void collect(String className, String entityCode) {
+    protected CompiledCode collect(String className, String entityCode, String buildPathFolder) {
+        CompiledCode compiledCode = null;
         try {
-            compiler.collect(className, entityCode);
+            compiledCode = compiler.collect(className, entityCode);
         } catch (Exception e) {
             log.error(e.getMessage(), e);
         }
-
-        String filename = applicationModel.getPath() + "/" + applicationModel.getProjectName() + "/src/"
-                + classNameToPath(className);
-        filename = filename.replace("//", "/");
-        try {
-            Path path = Paths.get(filename);
-            new File(path.getParent().toString()).mkdirs();
-            Files.write(path, entityCode.getBytes());
-        } catch (IOException e) {
-            log.debug("could not write source code for compilation unit '{}' to '{}'", className, filename);
-        }
+        
+        ProjectFileWriter.save(applicationModel, buildPathFolder, classNameToPath(className), entityCode.getBytes());
+        return compiledCode;
     }
-   
+
+    protected CompiledCode collectSource(String className, String entityCode, String buildPathFolder) {
+        CompiledCode compiledCode = null;
+        compiler.collectSource(className, entityCode);
+        ProjectFileWriter.save(applicationModel, buildPathFolder, classNameToPath(className), entityCode.getBytes());
+        return compiledCode;
+    }
+
     public void reset() {
         compiler.reset();
     }
@@ -77,15 +75,5 @@ public class SkysailCompiler {
             return null;
         }
     }
-    
-    protected ST getStringTemplateIndex(String root) {
-        ST javafile = stGroupDir.getInstanceOf(root);
-        javafile.add("application", applicationModel);
-        return javafile;
-    }
-    
-  
- 
-
 
 }

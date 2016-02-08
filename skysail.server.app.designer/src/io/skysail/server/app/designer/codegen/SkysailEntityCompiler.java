@@ -6,136 +6,188 @@ import java.util.stream.Collectors;
 import org.stringtemplate.v4.ST;
 
 import io.skysail.server.app.designer.STGroupBundleDir;
+import io.skysail.server.app.designer.codegen.templates.TemplateProvider;
+import io.skysail.server.app.designer.fields.FieldRole;
 import io.skysail.server.app.designer.model.*;
 import lombok.Getter;
 
 public class SkysailEntityCompiler extends SkysailCompiler {
 
+    private static final String BUILD_PATH_SOURCE = "src-gen";
+    private static final String ENTITY_IDENTIFIER = "entity";
+
+    private List<RouteModel> routes = new ArrayList<>();
+
     protected String entityResourceClassName;
 
     @Getter
     protected String entityClassName;
+    private TemplateProvider templateProvider;
 
-    private List<RouteModel> routes = new ArrayList<>();
-
-    public SkysailEntityCompiler(CodegenApplicationModel applicationModel, STGroupBundleDir stGroup, JavaCompiler compiler) {
+    public SkysailEntityCompiler(DesignerApplicationModel applicationModel, STGroupBundleDir stGroup, JavaCompiler compiler, TemplateProvider templateProvider) {
         super(applicationModel, stGroup, compiler);
         this.stGroupDir = stGroup;
+        this.templateProvider = templateProvider;
     }
 
-    public void createEntity(CodegenEntityModel entityModel) {
-        ST template = getStringTemplateIndex("javafile");
-        entityClassName = setupEntityForCompilation(template, applicationModel, entityModel);
+    public CompiledCode createEntity(DesignerEntityModel entityModel) {
+        ST template = templateProvider.templateFor("javafile");
+        CompiledCode compiledCode = setupEntityForCompilation(template, entityModel);
+        entityClassName = compiledCode.getClassName();
         entityModel.setClassName(entityClassName);
+        return compiledCode;
     }
 
-    public void createResources(CodegenEntityModel entityModel) {
-        ST template = getStringTemplateIndex("entityResource");
-        entityResourceClassName = setupEntityResourceForCompilation(template, applicationModel, entityModel);
+    public Map<String, CompiledCode> createResources(DesignerEntityModel entityModel) {
+        Map<String, CompiledCode> codes = new HashMap<>();
+        createEntityResource(entityModel, codes);
+        createPostResource(entityModel, codes);
+        createPutResource(entityModel, codes);
+        createListResource(entityModel, codes);
+        return codes;
+    }
 
-        routes.add(new RouteModel("/" + entityModel.getId() + "s/{id}", entityResourceClassName));
-        
-        ST postResourceTemplate = getStringTemplateIndex("postResource");
-        String postResourceClassName = setupPostResourceForCompilation(postResourceTemplate, applicationModel,
-                entityModel);
+    private void createEntityResource(DesignerEntityModel entityModel, Map<String, CompiledCode> codes) {
+        CompiledCode compiledCode;
         if (entityModel.isAggregate()) {
-            routes.add(new RouteModel("/" + entityModel.getId() + "s/", postResourceClassName));
+            ST template = templateProvider.templateFor("entityResource");
+            compiledCode = setupEntityResourceForCompilation(template, entityModel);
         } else {
-            CodegenEntityModel parentEntityModel = entityModel.getReferencedBy().get();
-            routes.add(new RouteModel("/" + parentEntityModel.getId() + "/{id}/" + entityModel.getId() + "s/", postResourceClassName));
+            ST template = templateProvider.templateFor("entityResourceNonAggregate");
+            compiledCode = setupEntityResourceForCompilation(template, entityModel);
         }
-        ST putResourceTemplate = getStringTemplateIndex("putResource");
-        String putResourceClassName = setupPutResourceForCompilation(putResourceTemplate, applicationModel, entityModel);
+        entityResourceClassName = compiledCode.getClassName();
+        routes.add(new RouteModel("/" + entityModel.getId() + "s/{id}", entityResourceClassName));
+        codes.put(entityResourceClassName, compiledCode);
+    }
+
+    private void createPostResource(DesignerEntityModel entityModel, Map<String, CompiledCode> codes) {
+        CompiledCode compiledCode;
+        ST postResourceTemplate;
+        if (entityModel.isAggregate()) {
+            postResourceTemplate = templateProvider.templateFor("postResource");
+        } else {
+            postResourceTemplate = templateProvider.templateFor("postResourceNonAggregate");
+        }
+        compiledCode = setupPostResourceForCompilation(postResourceTemplate, applicationModel, entityModel);
+        String postResourceClassName = compiledCode.getClassName();
+        routes.add(new RouteModel("/" + entityModel.getId() + "s/", postResourceClassName));
+        codes.put(postResourceClassName, compiledCode);
+    }
+
+    private void createPutResource(DesignerEntityModel entityModel, Map<String, CompiledCode> codes) {
+        ST putResourceTemplate = templateProvider.templateFor("putResource");
+        CompiledCode compiledCode = setupPutResourceForCompilation(putResourceTemplate, entityModel);
+        String putResourceClassName = compiledCode.getClassName();
         routes.add(new RouteModel("/" + entityModel.getId() + "s/{id}/", putResourceClassName));
+        codes.put(putResourceClassName, compiledCode);
+    }
 
-        ST listResourceTemplate = getStringTemplateIndex("listResource");
-        String listResourceClassName = setupListResourceForCompilation(listResourceTemplate, applicationModel,
-                entityModel);
+    private void createListResource(DesignerEntityModel entityModel, Map<String, CompiledCode> codes) {
+        String listResourceClassName;
+        CompiledCode compiledCode;
+        if (entityModel.isAggregate()) {
+            ST listResourceTemplate = templateProvider.templateFor("listResource");
+            String collectionLinks = entityModel.getApplicationModel().getRootEntities().stream().map(e -> "," + e.getSimpleName() + "sResource.class").collect(Collectors.joining());
+            listResourceTemplate.add("listLinks", "       return super.getLinks(Post"+entityModel.getSimpleName()+"Resource.class"+ collectionLinks+");");
+            compiledCode = setupListResourceForCompilation(listResourceTemplate, entityModel);
+        } else {
+            ST listResourceTemplate = templateProvider.templateFor("listResourceNonAggregate");
+            compiledCode = setupListResourceForCompilation(listResourceTemplate, entityModel);
+        }
+        listResourceClassName = compiledCode.getClassName();
         routes.add(new RouteModel("/" + entityModel.getId() + "s", listResourceClassName));
-
+        codes.put(listResourceClassName, compiledCode);
+        
         if (entityModel.isAggregate()) {
             routes.add(new RouteModel("", listResourceClassName));
         }
     }
 
-    private String setupEntityForCompilation(ST template, CodegenApplicationModel applicationModel, CodegenEntityModel entityModel) {
-        template.remove("entity");
-        template.add("entity", entityModel);
+
+    private CompiledCode setupEntityForCompilation(ST template, DesignerEntityModel entityModel) {
+        template.remove(ENTITY_IDENTIFIER);
+        template.add(ENTITY_IDENTIFIER, entityModel);
         String entityCode = template.render();
-        String entityClassName = entityModel.getId();
-        collect(entityClassName, entityCode);
-        return entityClassName;
+        String entityName = entityModel.getId();
+        return collect(entityName, entityCode, BUILD_PATH_SOURCE);
     }
 
-    private String setupEntityResourceForCompilation(ST template, CodegenApplicationModel applicationModel,
-            CodegenEntityModel entityModel) {
-        template.remove("entity");
-        template.add("entity", entityModel);
+    private CompiledCode setupEntityResourceForCompilation(ST template, DesignerEntityModel entityModel) {
+        template.remove(ENTITY_IDENTIFIER);
+        template.add(ENTITY_IDENTIFIER, entityModel);
         List<String> linkedClasses = new ArrayList<>();
         linkedClasses.add("Put" + entityModel.getSimpleName() + "Resource.class");
-
-        entityModel.getReferences().forEach(r -> {
-            linkedClasses.add("Post" + r.getReferencedEntityName() + "Resource.class");
+        entityModel.getRelations().stream().forEach(relation -> {
+            String targetName = relation.getTargetEntityModel().getSimpleName();
+            linkedClasses.add("Post"+targetName+"Resource.class");
+            linkedClasses.add(targetName+"sResource.class");
         });
+
+        entityModel.getReferences().forEach(r -> linkedClasses.add("Post" + r.getReferencedEntityName() + "Resource.class"));
 
         String getLinksCode = "return super.getLinks(" + linkedClasses.stream().collect(Collectors.joining(",")) + ");";
         template.add("links", getLinksCode);
         String entityCode = template.render();
-        String entityClassName = entityModel.getId() + "Resource";
-        collect(entityClassName, entityCode);
-        return entityClassName;
+        String entityName = entityModel.getId() + "Resource";
+        return collect(entityName, entityCode, BUILD_PATH_SOURCE);
     }
 
-    private String setupPostResourceForCompilation(ST template, CodegenApplicationModel applicationModel,
-            CodegenEntityModel entityModel) {
+    private CompiledCode setupPostResourceForCompilation(ST template, DesignerApplicationModel applicationModel,
+            DesignerEntityModel entityModel) {
         final String simpleClassName = "Post" + entityModel.getSimpleName() + "Resource";
-        template.remove("entity");
-        template.add("entity", entityModel);
+        template.remove(ENTITY_IDENTIFIER);
+        template.add(ENTITY_IDENTIFIER, entityModel);
 
         StringBuilder addEntityCode;
         addEntityCode = new StringBuilder("Subject subject = SecurityUtils.getSubject();\n");
-        addEntityCode.append(entityModel.getActionFields().stream().map(actionField -> {
-            return actionField.getCode("postEntity#addEntity").replace("$Methodname$", withFirstCapital(actionField.getName()));
-        }).collect(Collectors.joining("\n")));
+//        addEntityCode.append(entityModel.getActionFields().stream().map(actionField -> {
+//            return actionField.getCode("postEntity#addEntity").replace("$Methodname$", withFirstCapital(actionField.getName()));
+//        }).collect(Collectors.joining("\n")));
         if (entityModel.isAggregate()) {
+            Optional<DesignerFieldModel> dfm = getFieldModelFor(entityModel, FieldRole.GUID);
+            if (dfm.isPresent()) {
+                String methodName = dfm.get().getName().substring(0, 1).toUpperCase() + dfm.get().getName().substring(1);
+                addEntityCode.append("entity.set"+methodName+"(java.util.UUID.randomUUID().toString());\n");
+            }
             addEntityCode.append("String id = app.getRepository("+entityModel.getId()+".class).save(entity, app.getApplicationModel()).toString();\n");
             addEntityCode.append("entity.setId(id);\n");
         } else {
-            CodegenEntityModel parent = entityModel.getReferencedBy().get();
-            addEntityCode.append(parent.getId() + " root = app.getRepository().getById("+parent.getId()+".class, getAttribute(\"id\"));\n");
-            addEntityCode.append("root.add"+entityModel.getId()+"(entity);\n");
-            addEntityCode.append("app.getRepository().update(getAttribute(\"id\"), root);\n");
+//            DesignerEntityModel parent = entityModel.getReferencedBy().get();
+//            addEntityCode.append(parent.getId() + " root = app.getRepository().getById("+parent.getId()+".class, getAttribute(\"id\"));\n");
+//            addEntityCode.append("root.add"+entityModel.getId()+"(entity);\n");
+//            addEntityCode.append("app.getRepository().update(getAttribute(\"id\"), root);\n");
         }
         template.add("addEntity", addEntityCode);
         String entityCode = template.render();
         String entityClassName = entityModel.getPackageName() + "." + simpleClassName;
-        collect(entityClassName, entityCode);
-        return entityClassName;
+        return collect(entityClassName, entityCode, BUILD_PATH_SOURCE);
     }
 
-    private String setupPutResourceForCompilation(ST template, CodegenApplicationModel applicationModel,
-            CodegenEntityModel entityModel) {
+    private CompiledCode setupPutResourceForCompilation(ST template, DesignerEntityModel entityModel) {
         final String simpleClassName = "Put" + entityModel.getSimpleName() + "Resource";
-        template.remove("entity");
-        template.add("entity", entityModel);
+        template.remove(ENTITY_IDENTIFIER);
+        template.add(ENTITY_IDENTIFIER, entityModel);
         String updateEntityCode = entityModel.getId() + " original = getEntity();\n";
         updateEntityCode += "copyProperties(original,entity);\n";
+        
+        Optional<DesignerFieldModel> dfm = getFieldModelFor(entityModel, FieldRole.MODIFIED_AT);
+        if (dfm.isPresent()) {
+            String methodName = dfm.get().getName().substring(0, 1).toUpperCase() + dfm.get().getName().substring(1);
+            updateEntityCode += "original.set"+methodName+"(new Date());\n";
+        }
+        
         template.add("updateEntity", updateEntityCode);
-        String entityCode = template.render();
-        String entityClassName = entityModel.getPackageName() + "." + simpleClassName;
-        collect(entityClassName, entityCode);
-        return entityClassName;
+        return collect(entityModel.getPackageName() + "." + simpleClassName, template.render(), BUILD_PATH_SOURCE);
     }
 
-    private String setupListResourceForCompilation(ST template, CodegenApplicationModel applicationModel,
-            CodegenEntityModel entityModel) {
+    private CompiledCode setupListResourceForCompilation(ST template, DesignerEntityModel entityModel) {
         final String simpleClassName = entityModel.getSimpleName() + "sResource";
-        template.remove("entity");
-        template.add("entity", entityModel);
+        template.remove(ENTITY_IDENTIFIER);
+        template.add(ENTITY_IDENTIFIER, entityModel);
         String entityCode = template.render();
-        String entityClassName = entityModel.getPackageName() + "." + simpleClassName;
-        collect(entityClassName, entityCode);
-        return entityClassName;
+        String className = entityModel.getPackageName() + "." + simpleClassName;
+        return collect(className, entityCode, BUILD_PATH_SOURCE);
     }
 
     public List<RouteModel> getRouteModels() {
@@ -144,6 +196,14 @@ public class SkysailEntityCompiler extends SkysailCompiler {
     
     private CharSequence withFirstCapital(String name) {
         return name.substring(0, 1).toUpperCase().concat(name.substring(1));
+    }
+
+    private Optional<DesignerFieldModel> getFieldModelFor(DesignerEntityModel entityModel, FieldRole fieldRole) {
+        return entityModel
+                .getFieldValues().stream()
+                .map(DesignerFieldModel.class::cast)
+                .filter(fieldModel -> fieldModel.getRole() != null)
+                .filter(fieldModel -> fieldModel.getRole().equals(fieldRole)).findFirst();
     }
 
 

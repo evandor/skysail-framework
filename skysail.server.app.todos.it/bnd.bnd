@@ -121,7 +121,6 @@ Private-Package:  \
 	${skysail.server},\
     skysail.domain;version=${skysail.domain.version},\
 	skysail.server.peers.adminconfig;version=${skysail.server.peers.adminconfig.version},\
-	skysail.server.polymer;version=${skysail.server.polymer.version},\
 	skysail.server.plugins;version=${skysail.server.plugins.version},\
 	skysail.server.app.bookmarks;version=latest,\
 	skysail.server.app.crm;version=latest,\

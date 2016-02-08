@@ -1,15 +1,21 @@
 package io.skysail.server.app.todos.lists.test;
 
-import static org.hamcrest.CoreMatchers.*;
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.junit.Assert.assertThat;
 
+import org.junit.Ignore;
 import org.junit.Test;
-import org.restlet.data.*;
+import org.restlet.data.MediaType;
+import org.restlet.data.Status;
 import org.restlet.engine.resource.VariantInfo;
 
-import io.skysail.api.responses.*;
+import io.skysail.api.responses.ConstraintViolationsResponse;
+import io.skysail.api.responses.SkysailResponse;
 import io.skysail.server.app.todos.TodoList;
 
+@Ignore
 public class PostListResourceTest extends AbstractListResourceTest {
 
     @Test

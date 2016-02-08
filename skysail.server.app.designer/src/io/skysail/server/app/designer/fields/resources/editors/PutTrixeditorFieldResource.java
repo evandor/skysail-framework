@@ -7,7 +7,7 @@ import io.skysail.server.app.designer.fields.resources.PutFieldResource;
 public class PutTrixeditorFieldResource extends PutFieldResource<DbEntityTrixeditorField> {
 
     public PutTrixeditorFieldResource() {
-        addToContext(ResourceContextId.LINK_TITLE, "update Trixeditor Field");
+        addToContext(ResourceContextId.LINK_TITLE, "update Editor Field (Trix)");
     }
 
 }

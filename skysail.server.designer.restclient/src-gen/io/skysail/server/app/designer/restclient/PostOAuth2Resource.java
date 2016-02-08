@@ -31,7 +31,7 @@ public class PostOAuth2Resource extends PostEntityServerResource<OAuth2> {
 
     @Override
     public void addEntity(OAuth2 entity) {
-        String id = repository.save(entity).toString();
+        String id = repository.save(entity, app.getApplicationModel()).toString();
         entity.setId(id);
     }
 

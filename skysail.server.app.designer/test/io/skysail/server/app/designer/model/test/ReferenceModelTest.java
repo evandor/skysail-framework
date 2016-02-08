@@ -15,7 +15,7 @@ public class ReferenceModelTest {
     @Before
     public void setUp()  {
         DbEntity entity = new DbEntity("entityName");
-        CodegenEntityModel entityModel = new CodegenEntityModel(entity, "pgk");
+        DesignerEntityModel entityModel = new DesignerEntityModel(entity, "pgk");
         referenceModel = new ReferenceModel(entityModel, entity);
     }
 

@@ -1,0 +1,3 @@
+postView(field) ::= <<
+$field.postViewAnnotation$
+>>

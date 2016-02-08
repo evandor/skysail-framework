@@ -18,12 +18,15 @@ public class TreeRepresentation {
     private String headline;
     
     private String link = "#";
+    
+    private String glyph = "leaf";
 
     private List<TreeRepresentation> subfolders = new ArrayList<>();
 
-    public TreeRepresentation(@NonNull Nameable nameable, String link) {
+    public TreeRepresentation(@NonNull Nameable nameable, String link, String glyph) {
         this.name = nameable.getName();
         this.headline = nameable.getClass().getSimpleName();
+        this.glyph = glyph;
         List<Field> collectionsFields = Arrays.stream(nameable.getClass().getDeclaredFields())
             .filter(field -> Collection.class.isAssignableFrom(field.getType()))
             .collect(Collectors.toList());
@@ -41,7 +44,7 @@ public class TreeRepresentation {
                         .filter(e -> e instanceof Nameable)
                         .map(Nameable.class::cast).collect(Collectors.toList());
                 subs.stream().forEach(subFolder -> 
-                    addFolder(new TreeRepresentation(subFolder, this.link))
+                    addFolder(new TreeRepresentation(subFolder, this.link, glyph.equals("list-alt") ? "chevron-right" : "list-alt"))
                 );
             } catch (Exception e) {
                 log.error(e.getMessage(), e);

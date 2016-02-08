@@ -5,7 +5,6 @@ runproperties:\
     felix.fileinstall.poll=1000,\
     org.apache.felix.log.storeDebug=true,\
     felix.fileinstall.log.level=4,\
-    org.apache.felix.log.storeDebug=true,\
     logback.configurationFile=${logback.configurationFile.path}/logback.xml,\
     obr.repository.url=${obrRepositories},\
     product.bundle=${p}

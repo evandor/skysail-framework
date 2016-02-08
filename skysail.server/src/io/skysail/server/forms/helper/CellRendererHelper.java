@@ -11,6 +11,7 @@ import io.skysail.domain.core.FieldModel;
 import io.skysail.server.domain.jvm.ClassFieldModel;
 import io.skysail.server.forms.*;
 import io.skysail.server.restlet.resources.SkysailServerResource;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * For the given field definition (formField) and (skysail) response, the provided cellData object is being rendered as
@@ -21,6 +22,7 @@ import io.skysail.server.restlet.resources.SkysailServerResource;
  *
  *
  */
+@Slf4j
 public class CellRendererHelper {
 
     @Deprecated
@@ -109,7 +111,7 @@ public class CellRendererHelper {
                 String theColor = (String) getColorMethod.invoke(valueOf);
                 string = "<span class='ui-li-icon' style='border: 1px solid gray; background-color:"+theColor+"' title='"+ff.getId()+": "+ string +"'>&nbsp;&nbsp;</span>";
             } catch (Exception e) {
-                e.printStackTrace();
+                log.error(e.getMessage(),e);
             }
         }
         return string;

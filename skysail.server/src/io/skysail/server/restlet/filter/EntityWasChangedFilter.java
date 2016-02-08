@@ -1,6 +1,5 @@
 package io.skysail.server.restlet.filter;
 
-import de.twenty11.skysail.server.core.osgi.EventHelper;
 import de.twenty11.skysail.server.core.restlet.Wrapper;
 import io.skysail.domain.Identifiable;
 import io.skysail.server.app.SkysailApplication;
@@ -17,13 +16,15 @@ public class EntityWasChangedFilter<R extends SkysailServerResource<T>, T extend
     }
 
     @Override
-    public FilterResult doHandle(R resource, Wrapper responseWrapper) {
+    public FilterResult doHandle(R resource, Wrapper<T> responseWrapper) {
         log.debug("entering {}#doHandle", this.getClass().getSimpleName());
+        String infoMessage = resource.getClass().getSimpleName() + ".changed.success";
+        responseWrapper.addInfo(infoMessage);
 
-        new EventHelper(application.getEventAdmin())//
-                .channel(EventHelper.GUI_MSG)//
-                .info(resource.getClass().getSimpleName() + ".changed.success")//
-                .fire();
+//        new EventHelper(application.getEventAdmin())//
+//                .channel(EventHelper.GUI_MSG)//
+//                .info(infoMessage)//
+//                .fire();
 
         super.doHandle(resource, responseWrapper);
         return FilterResult.CONTINUE;

@@ -4,7 +4,7 @@ import java.util.concurrent.*;
 
 import org.osgi.service.component.annotations.*;
 
-import de.twenty11.skysail.server.services.*;
+import io.skysail.server.services.*;
 
 @Component(immediate = true)
 public class SkysailManagerThreadPool implements SkysailThreadPool {

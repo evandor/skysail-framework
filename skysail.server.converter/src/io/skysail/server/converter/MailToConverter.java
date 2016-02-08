@@ -2,6 +2,7 @@ package io.skysail.server.converter;
 
 import io.skysail.server.app.SkysailApplication;
 import io.skysail.server.restlet.resources.SkysailServerResource;
+import io.skysail.server.services.OsgiConverterHelper;
 import io.skysail.server.utils.ReflectionUtils;
 
 import java.lang.reflect.Field;
@@ -16,7 +17,6 @@ import org.restlet.engine.resource.VariantInfo;
 import org.restlet.representation.*;
 import org.restlet.resource.Resource;
 
-import de.twenty11.skysail.server.services.OsgiConverterHelper;
 import etm.core.configuration.EtmManager;
 import etm.core.monitor.*;
 

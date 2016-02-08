@@ -36,6 +36,12 @@
     , \
     aQute.bnd.deployer.repository.FixedIndexedRepo;  \
         name=Skysail Repository; \
-        locations=https://github.com/evandor/skysail-repository/raw/master/index.xml.gz;
+        locations=https://github.com/evandor/skysail-repository/raw/master/index.xml.gz; \
+    , \
+    aQute.bnd.deployer.repository.FixedIndexedRepo; \
+        name=Distro; \
+        locations=https://raw.githubusercontent.com/osgi/osgi.enroute/v1.0.0/cnf/distro/index.xml;
+            
+    
 
 -releaserepo: Release

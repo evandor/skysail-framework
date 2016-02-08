@@ -13,7 +13,6 @@ import org.restlet.representation.*;
 import org.restlet.resource.Resource;
 
 import de.twenty11.skysail.server.core.osgi.EventHelper;
-import de.twenty11.skysail.server.services.OsgiConverterHelper;
 import etm.core.configuration.EtmManager;
 import etm.core.monitor.*;
 import io.skysail.api.search.SearchService;
@@ -21,6 +20,7 @@ import io.skysail.server.app.SkysailApplication;
 import io.skysail.server.converter.impl.*;
 import io.skysail.server.menus.MenuItemProvider;
 import io.skysail.server.restlet.resources.SkysailServerResource;
+import io.skysail.server.services.OsgiConverterHelper;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -45,15 +45,14 @@ public class HtmlConverter extends ConverterHelper implements OsgiConverterHelpe
 
     private volatile Set<MenuItemProvider> menuProviders = new HashSet<>();
 
-    //private InstallationProvider installationProvider;
-
     private SearchService searchService;
 
     static {
         mediaTypesMatch.put(MediaType.TEXT_HTML, 0.95F);
+        //mediaTypesMatch.put(MediaType.APPLICATION_WWW_FORM, 0.95F);
         mediaTypesMatch.put(SkysailApplication.SKYSAIL_TREE_FORM, 1.0F);
-        //mediaTypesMatch.put(SkysailApplication.SKYSAIL_MAILTO_MEDIATYPE, 1.0F);
         mediaTypesMatch.put(SkysailApplication.SKYSAIL_TIMELINE_MEDIATYPE, 1.0F);
+        mediaTypesMatch.put(SkysailApplication.SKYSAIL_STANDLONE_APP_MEDIATYPE, 1.0F);
     }
 
     // --- Menu Providers ------------------------------------------------
@@ -96,7 +95,8 @@ public class HtmlConverter extends ConverterHelper implements OsgiConverterHelpe
         return Arrays.asList(
                 new VariantInfo(SkysailApplication.SKYSAIL_TREE_FORM),
                 new VariantInfo(SkysailApplication.SKYSAIL_MAILTO_MEDIATYPE),
-                new VariantInfo(SkysailApplication.SKYSAIL_TIMELINE_MEDIATYPE)
+                new VariantInfo(SkysailApplication.SKYSAIL_TIMELINE_MEDIATYPE),
+                new VariantInfo(SkysailApplication.SKYSAIL_STANDLONE_APP_MEDIATYPE)
         );
     }
 
@@ -133,7 +133,7 @@ public class HtmlConverter extends ConverterHelper implements OsgiConverterHelpe
     public Representation toRepresentation(Object originalSource, Variant target, Resource resource) {
         EtmPoint point = etmMonitor.createPoint(this.getClass().getSimpleName() + ":toRepresentation");
 
-        StringTemplateRenderer stringTemplateRenderer = new StringTemplateRenderer(this);
+        StringTemplateRenderer stringTemplateRenderer = new StringTemplateRenderer(this, resource);
         stringTemplateRenderer.setMenuProviders(menuProviders);
         stringTemplateRenderer.setSearchService(searchService);
         StringRepresentation rep = stringTemplateRenderer.createRepresenation(originalSource, target,
@@ -161,7 +161,11 @@ public class HtmlConverter extends ConverterHelper implements OsgiConverterHelpe
     }
 
     public List<Notification> getNotifications() {
-        String currentUser = SecurityUtils.getSubject().getPrincipal().toString();
+        Object principal = SecurityUtils.getSubject().getPrincipal();
+        if (principal == null) {
+            return new ArrayList<>();
+        }
+        String currentUser = principal.toString();
         if (currentUser == null) {
             return Collections.emptyList();
         }

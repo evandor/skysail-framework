@@ -20,46 +20,19 @@
 ########################################################################################
 
 skysail.config.path            = config/common,config/local
-logback.configurationFile.path = config/common
+logback.configurationFile.path = config/local
 
 -runbundles:\
     ${serverbundles-1.0.0},\
     skysail.product.todos;version=latest,\
     skysail.server.ext.initconfig;version=latest,\
-    skysail.server.codegen;version=latest,\
     skysail.server.app.bookmarks;version=latest,\
-    skysail.server.app.dbviewer;version=latest,\
     skysail.server.app.svgedit;version=latest,\
     skysail.server.app.designer;version=latest,\
     skysail.server.app.todos;version=latest
         
 
     ### Pool #############################
-
-    skysail.server.app.twitter4j;version=latest,\
-    skysail.server.designer.presentation;version=latest,\
-    ${javamelody},\
-    skysail.server.mgt;version=latest,\
-    skysail.server.designer.matrix;version=latest,\
-    skysail.server.designer.restclient;version=latest,\
-    skysail.server.app.tap;version=latest,\
-    skysail.product.todos;version=latest,\
-    skysail.server.peers.adminconfig;version=${skysail.server.peers.adminconfig.version},\
-    skysail.server.polymer;version=${skysail.server.polymer.version},\
-    skysail.server.plugins;version=${skysail.server.plugins.version},\
-    de.twentyeleven.skysail.org.json-osgi;version=latest,\
-    javassist;version='[3.18.1,3.18.2)',\
-    org.apache.servicemix.bundles.c3p0;version=0.9.1,\
-    org.apache.servicemix.bundles.jakarta-regexp,\
-    org.codehaus.jettison.jettison;version=1.3.7,\
-    org.hibernate.validator;version='[5.1.2,5.1.3)',\
-    org.jboss.logging.jboss-logging;version='[3.1.4,3.1.5)',\
-    osgi.enterprise;version=${osgi.version},\
-    skysail.server.ext.initconfig;version=latest,\
-    org.quartz-scheduler.quartz;version=2.2.1,\
-    org.eclipse.equinox.http.jetty;version=3.1.0,\
-    org.eclipse.equinox.http.servlet;version=1.2.0
-    org.apache.felix.http.bundle;version=2.4
-    org.apache.felix.webconsole;version=4.2.10.all,\
+    #${javamelody},\
 
 

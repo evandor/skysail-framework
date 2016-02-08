@@ -3,12 +3,8 @@ package io.skysail.server.app.designer.codegen;
 import java.io.IOException;
 import java.util.Map;
 
-import javax.tools.FileObject;
-import javax.tools.ForwardingJavaFileManager;
+import javax.tools.*;
 import javax.tools.JavaCompiler;
-import javax.tools.JavaFileManager;
-import javax.tools.JavaFileObject;
-import javax.tools.ToolProvider;
 
 import lombok.extern.slf4j.Slf4j;
 

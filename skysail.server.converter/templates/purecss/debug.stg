@@ -1,0 +1,134 @@
+debug(messages, model) ::= <<
+
+      <div class="panel">
+          $model.status$
+          <div class="panel panel-default">
+
+            <div class="panel-heading" role="tab" id="headingResource">
+              <h4 class="panel-title">
+                <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseResource" aria-expanded="false" aria-controls="collapseResource">
+                  Resource: $model.classname$
+                </a>
+              </h4>
+            </div>
+            <div id="collapseResource" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingResource">
+              <div class="panel-body">
+                  <h4>Entity</h4>
+                  <p>$model.resource.entity$</p>
+                  <h4>ResourceContext</h4>
+                  <h5>Application (see below)</h5>
+                  <h5>Resource (see below)</h5>
+                  <h5>NavItems</h5>
+                  <p>$model.resource.resourceContext.navItems$</p>
+                  <h4>all</h4>
+                  <p>$model.resource$</p>
+              </div>
+            </div>
+          </div>
+          <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="headingResourceModel">
+              <h4 class="panel-title">
+                <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseResourceModel"
+                	aria-expanded="false" aria-controls="collapseResourceModel">ResourceModel ($model.parameterizedType$)</a>
+              </h4>
+            </div>
+            <div id="collapseResourceModel" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingResourceModel">
+              <div class="panel-body">
+              	<h4>Formfields</h4>
+              	<ol>$model.formfields: { field | <li>$field$</li>}$</ol>
+              	<h4>EntityModel</h4>
+              	<ol>$model.entityModel.fieldDescriptors: {descriptor | <li>$descriptor$</li>}$</ol>
+                  <h4>Data</h4>
+                  <ol>$model.data: {row | <li>$row.keys: {key | <b>$key$</b>: $row.(key)$ }$</li>}$</ol>
+                  <h4>Raw Data</h4>
+                  <ol>$model.rawData: {row | <li>$row.keys: {key | <b>$key$</b>: $row.(key)$ }$</li>}$</ol>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="headingLinks">
+              <h4 class="panel-title">
+                <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseLinks" aria-expanded="false" aria-controls="collapseLinks">Links</a>
+              </h4>
+            </div>
+            <div id="collapseLinks" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingLinks">
+              <div class="panel-body">$linkheader(model.links)$</div>
+            </div>
+          </div>
+
+          <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="headingEntity">
+              <h4 class="panel-title">
+                <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseEntity" aria-expanded="false" aria-controls="collapseEntity">Entity</a>
+              </h4>
+            </div>
+            <div id="collapseEntity" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingEntity">
+              <div class="panel-body">EntityType: <code>$model.entityType$</code></div>
+            </div>
+          </div>
+
+          <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="headingApplication">
+              <h4 class="panel-title">
+                <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseApplication" aria-expanded="false" aria-controls="collapseApplication">Application</a>
+              </h4>
+            </div>
+            <div id="collapseApplication" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingApplication">
+              <div class="panel-body"><pre>$model.resource.application$</pre></div>
+            </div>
+          </div>
+          
+          <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="headingApplicationModel">
+              <h4 class="panel-title">
+                <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseApplicationModel" aria-expanded="false" aria-controls="collapseApplicationModel">ApplicationModel</a>
+              </h4>
+            </div>
+            <div id="collapseApplicationModel" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingApplicationModel">
+              <div class="panel-body">
+                <pre>$model.resource.application.applicationModel$</pre>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="headingTemplates">
+              <h4 class="panel-title">
+                <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTemplates" aria-expanded="false" aria-controls="collapseTemplates">Templates</a>
+              </h4>
+            </div>
+            <div id="collapseTemplates" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTemplates">
+              <div class="panel-body">
+                <ul>
+                  %%templates%%
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="headingMessages">
+              <h4 class="panel-title">
+                <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseMessages" aria-expanded="false" aria-controls="collapseMessages">Messages</a>
+              </h4>
+            </div>
+            <div id="collapseMessages" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingMessages">
+              <div class="panel-body">$listMessages(messages)$</div>
+            </div>
+          </div>
+
+          <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="headingProduct">
+              <h4 class="panel-title">
+                <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProduct" aria-expanded="false" aria-controls="collapseProduct">Product</a>
+              </h4>
+            </div>
+            <div id="collapseProduct" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingProduct">
+              <div class="panel-body">$messages.("productName").value$ [$messages.("productVersion").value$]</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+>>

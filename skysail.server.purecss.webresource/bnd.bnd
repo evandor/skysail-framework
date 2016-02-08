@@ -1,0 +1,38 @@
+#
+# yahoo purecss
+#
+
+base.version  = 0.6.0
+name = /yahoo/purecss
+
+path = static/${name}/${base.version}
+
+Bundle-Description:     \
+   A set of small, responsive CSS modules that you can use in every web project.
+    
+Bundle-Vendor:          Yahoo! (bundled by skysail)
+Bundle-License          https://github.com/yahoo/pure-site/blob/master/LICENSE.md
+Bundle-Copyright:       Copyright (c) Yahoo!
+Provide-Capability:     \
+    osgi.enroute.webresource; \
+        osgi.enroute.webresource=${name}; \
+        root=${path}; \
+        version:Version=${base.version}
+
+Service-Component: *
+
+-buildpath: \
+    osgi.enroute.base.api,\
+    skysail.api;version=${skysail.api.version},\
+    skysail.server;version=${skysail.server.version},\
+    org.restlet;version=${restlet.version},\
+    org.restlet.ext.raml;version=${restlet.version},\
+    lombok;version=1.16
+
+-includeresource: ${path}=${base.version}, LICENSE.md
+
+-runrequires:  \
+    osgi.identity;filter:='(osgi.identity=skysail.server.purecss.webresource)'
+-runbundles:  \
+    skysail.server.purecss.webresource;version=latest
+Export-Package: io.skysail.server.purecss.webresource

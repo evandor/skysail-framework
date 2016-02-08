@@ -1,15 +1,12 @@
 package io.skysail.server.restlet.filter;
 
-import java.text.ParseException;
-
-import org.restlet.Response;
 import org.restlet.data.*;
 
 import de.twenty11.skysail.server.core.restlet.Wrapper;
-import de.twenty11.skysail.server.services.EncryptorService;
 import io.skysail.domain.Identifiable;
 import io.skysail.server.app.SkysailApplication;
 import io.skysail.server.restlet.resources.*;
+import io.skysail.server.services.EncryptorService;
 
 public class OptionalEncryptionFilter<R extends SkysailServerResource<T>, T extends Identifiable> extends AbstractResourceFilter<R, T> {
 
@@ -20,27 +17,29 @@ public class OptionalEncryptionFilter<R extends SkysailServerResource<T>, T exte
     }
 
     @Override
-    protected FilterResult doHandle(R resource, Wrapper responseWrapper) {
-        EncryptorService encryptorService = application.getEncryptorService();
-        if (encryptorService == null) {
-            return super.doHandle(resource, responseWrapper);
-        }
-
-        Response response = responseWrapper.getResponse();
-        Form form = (Form) response.getRequest().getAttributes().get(EntityServerResource.SKYSAIL_SERVER_RESTLET_FORM);
-
-        if (encryptorService != null) {
-            encryptFields(resource, form, encryptorService);
-        }
-
-        Object data;
-        try {
-            data = getDataFromRequest(response.getRequest(), resource);
-                responseWrapper.setEntity((T) data);
-        } catch (ParseException e) {
-            throw new RuntimeException("could not parse form", e);
-        }
+    protected FilterResult doHandle(R resource, Wrapper<T> responseWrapper) {
+        
         return super.doHandle(resource, responseWrapper);
+//        EncryptorService encryptorService = application.getEncryptorService();
+//        if (encryptorService == null) {
+//            return super.doHandle(resource, responseWrapper);
+//        }
+//
+//        Response response = responseWrapper.getResponse();
+//        Form form = (Form) response.getRequest().getAttributes().get(EntityServerResource.SKYSAIL_SERVER_RESTLET_FORM);
+//
+//        if (encryptorService != null) {
+//            encryptFields(resource, form, encryptorService);
+//        }
+//
+//        Object data;
+//        try {
+//            data = getDataFromRequest(response.getRequest(), resource);
+//                responseWrapper.setEntity((T) data);
+//        } catch (ParseException e) {
+//            throw new RuntimeException("could not parse form", e);
+//        }
+//        return super.doHandle(resource, responseWrapper);
     }
 
     private void encryptFields(R resource, Form form, EncryptorService encryptorService) {

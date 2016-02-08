@@ -6,11 +6,12 @@ import java.util.concurrent.ConcurrentHashMap;
 
 import aQute.bnd.annotation.component.Component;
 import io.skysail.domain.core.repos.*;
-import lombok.NonNull;
+import lombok.*;
 import lombok.extern.slf4j.Slf4j;
 
 @Component(immediate = true, provide = Repositories.class)
 @Slf4j
+@ToString
 public class Repositories {
 
     private volatile Map<String, DbRepository> repositories = new ConcurrentHashMap<>(); // NOSONAR

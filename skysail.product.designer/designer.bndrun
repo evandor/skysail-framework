@@ -19,17 +19,27 @@
 ### --- run-file-specific settings ------------------------------------------------- ###
 ########################################################################################
 
-skysail.config.path            = config/common,config/local
+skysail.config.path            = config/common,config/local,designerbundles
 logback.configurationFile.path = config/common
 
--runbundles:\
-    ${serverbundles-1.0.0},\
-    skysail.product.designer;version=latest,\
-    skysail.server.ext.initconfig;version=latest,\
-    skysail.server.codegen;version=latest,\
-    skysail.server.app.designer;version=latest,\
-    skysail.server.app.todos;version=latest
-
+-runbundles: \
+	${serverbundles-1.0.0},\
+	skysail.product.designer;version=latest,\
+	skysail.server.ext.initconfig;version=latest,\
+	skysail.server.codegen;version=latest,\
+	skysail.server.polymer;version=latest,\
+	skysail.server.app.designer;version=latest,\
+	skysail.server.app.todos;version=latest,\
+	skysail.server.app.checklist;version=latest,\
+	skysail.server.app.notes;version=latest,\
+	skysail.server.uikit.webresource;version=latest,\
+	skysail.server.purecss.webresource;version=latest,\
+    skysail.server.w2ui.webresource;version=latest,\
+	skysail.server.app.twitter4j;version=latest,\
+	skysail.server.ext.oauth2;version=latest,\
+	org.apache.oltu.oauth2.client;version=1.0,\
+	org.apache.commons.codec;version=1.9.0
+	
 ########################################################################################
 ### --- Pool (currently not used)  ------------------------------------------------- ###
 ########################################################################################

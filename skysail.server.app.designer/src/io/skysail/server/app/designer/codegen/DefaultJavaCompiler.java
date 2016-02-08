@@ -29,8 +29,13 @@ public class DefaultJavaCompiler implements JavaCompiler {
     }
 
     @Override
-    public void collect(String className, String entityCode) throws Exception {
-        InMemoryJavaCompiler.collect(className, entityCode);
+    public CompiledCode collect(String className, String entityCode) {
+        return InMemoryJavaCompiler.collect(className, entityCode);
+    }
+
+    @Override
+    public void collectSource(String className, String entityCode) {
+        InMemoryJavaCompiler.collectSource(className, entityCode);
     }
 
 }

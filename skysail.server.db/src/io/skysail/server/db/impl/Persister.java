@@ -130,7 +130,8 @@ public class Persister {
         if (entityModel == null) {
             return true;
         }
-        return !entityModel.getRelations().contains(key);
+        List<EntityRelation> relations = entityModel.getRelations();
+        return !relations.stream().map(r -> r.getName()).filter(n -> n.equals(key)).findFirst().isPresent();
     }
 
 

@@ -1,0 +1,7 @@
+menuNav(links) ::= <<
+    <sky-links links='[$links:{ link | $linkAsButton(link, i)$ }; separator=","$]'></sky-links>
+>>
+
+linkAsButton(link, cnt) ::= <<
+    {"link": "$link.uri$", "title": "$link.title$", "image": "$link.image$"}
+>>

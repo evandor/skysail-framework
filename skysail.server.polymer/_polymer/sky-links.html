@@ -3,11 +3,9 @@
 <link rel="import" href="/_polymer/bower_components/paper-input/paper-input.html">
 <link rel="import" href="/_polymer/bower_components/paper-input/paper-textarea.html">
 
-
 <dom-module id="sky-links">
 
   <template>
-
     <template is="dom-repeat" items="{{links}}">
       <a href="{{item.link}}" class="btn btn-default btn-xs" role="button" tabindex="1">
         <template is="dom-if" if="{{item.title}}">
@@ -19,8 +17,8 @@
         </template>
       </a>
     </template>
-
   </template>
+  
   <script>
     Polymer({
       is: 'sky-links',

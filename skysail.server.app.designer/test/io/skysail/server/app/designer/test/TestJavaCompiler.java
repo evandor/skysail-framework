@@ -2,7 +2,7 @@ package io.skysail.server.app.designer.test;
 
 import org.osgi.framework.BundleContext;
 
-import io.skysail.server.app.designer.codegen.JavaCompiler;
+import io.skysail.server.app.designer.codegen.*;
 
 public class TestJavaCompiler implements JavaCompiler {
 
@@ -15,6 +15,8 @@ public class TestJavaCompiler implements JavaCompiler {
     public Class<?> getClass(String className) throws ClassNotFoundException {
         if (className.endsWith("Application")) {
             return TestSkysailApplication.class;
+        } else if (className.endsWith("ApplicationGen")) {
+            return TestSkysailApplicationGen.class;
         } else if (className.endsWith("Repository")) {
             return TestRepository.class;
         }
@@ -26,7 +28,12 @@ public class TestJavaCompiler implements JavaCompiler {
     }
 
     @Override
-    public void collect(String className, String entityCode) throws Exception {
+    public CompiledCode collect(String className, String entityCode) {
+        return null;
+    }
+
+    @Override
+    public void collectSource(String className, String entityCode) {
     }
 
 }

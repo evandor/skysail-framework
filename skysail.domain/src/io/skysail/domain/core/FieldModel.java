@@ -1,15 +1,16 @@
 package io.skysail.domain.core;
 
 import io.skysail.domain.html.InputType;
-import lombok.*;
+import lombok.Getter;
+import lombok.Setter;
 
 /**
- * Part of skysail's core domain: A FieldModel belongs to an entity which belongs to an application.
+ * Part of skysail's core domain: A FieldModel belongs to an entity which
+ * belongs to an application.
  *
  */
 @Getter
 @Setter
-@ToString(of = {"id", "type", "inputType"})
 public class FieldModel {
 
     /** the fields name or identifier, e.g. "title" */
@@ -22,16 +23,20 @@ public class FieldModel {
     private boolean readonly;
 
     /** the fields (java) type, e.g. java.lang.String */
-    protected Class<?> type;
+    protected Class<?> type = String.class;
 
     /** text, textarea, radio, checkbox etc... */
     protected InputType inputType;
 
-    /** if set for a FieldModel of type String, indicates that the rendered value should be truncated */
+    /**
+     * if set for a FieldModel of type String, indicates that the rendered value
+     * should be truncated
+     */
     private Integer truncateTo;
 
-    public FieldModel(String name) {
+    public FieldModel(String name, Class<?> cls) {
         this.id = name;
+        this.type = cls;
     }
 
     public String getInputType() {
@@ -42,5 +47,14 @@ public class FieldModel {
         return this.id;
     }
 
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder(this.getClass().getSimpleName()).append("(");
+        sb.append("id=").append(id).append(", ");
+        sb.append("type=").append(type != null ? type.getSimpleName() : "null").append(", ");
+        sb.append("inputType=").append(inputType);
+        sb.append(")");
+        return sb.toString();
+    }
 
 }

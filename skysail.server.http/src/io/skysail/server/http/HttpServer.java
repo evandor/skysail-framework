@@ -7,10 +7,12 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.stream.Collectors;
 
-import org.osgi.service.component.*;
+import org.osgi.service.component.ComponentContext;
+import org.osgi.service.component.ComponentException;
 import org.osgi.service.component.annotations.*;
 import org.osgi.service.metatype.annotations.Designate;
-import org.restlet.*;
+import org.restlet.Context;
+import org.restlet.Server;
 import org.restlet.data.Protocol;
 import org.restlet.engine.Engine;
 import org.restlet.engine.converter.ConverterHelper;
@@ -19,8 +21,10 @@ import org.restlet.resource.ServerResource;
 import org.restlet.service.ConverterService;
 
 import de.twenty11.skysail.server.SkysailComponent;
-import de.twenty11.skysail.server.app.*;
-import de.twenty11.skysail.server.services.*;
+import de.twenty11.skysail.server.app.SkysailComponentProvider;
+import de.twenty11.skysail.server.app.SkysailRootApplication;
+import io.skysail.server.services.OsgiConverterHelper;
+import io.skysail.server.services.RestletServicesProvider;
 import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
 
@@ -60,7 +64,7 @@ public class HttpServer extends ServerResource
 
     @Activate
     public void activate(ServerConfig serverConfig, ComponentContext componentContext) {
-        log.info("Activating {}", this.getClass().getName());
+        log.debug("Activating {}", this.getClass().getName());
         this.componentContext = componentContext;
         if (restletComponent == null) {
             restletComponent = new SkysailComponent();
@@ -77,7 +81,7 @@ public class HttpServer extends ServerResource
 
     @Deactivate
     protected void deactivate(ComponentContext ctxt) {
-        log.info("Deactivating {}", this.getClass().getName());
+        log.debug("Deactivating {}", this.getClass().getName());
 
         serverActive = false;
         try {
@@ -134,7 +138,7 @@ public class HttpServer extends ServerResource
     }
 
     private void configure(ServerConfig serverConfig) {
-        log.info("configuration was provided");
+        log.debug("configuration was provided");
         runningOnPort = serverConfig.port();
         if (!serverActive) {
             if (serverConfig.port() == 0) {

@@ -1,7 +1,7 @@
 package io.skysail.server.app.designer.codegen;
 
 import java.io.File;
-import java.net.URL;
+import java.net.*;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -17,9 +17,9 @@ import org.restlet.resource.ServerResource;
 import com.tinkerpop.blueprints.impls.orient.OrientVertex;
 
 import io.skysail.api.links.Link;
+import io.skysail.domain.core.Repositories;
 import io.skysail.server.app.SkysailApplication;
 import io.skysail.server.app.designer.DesignerApplication;
-import io.skysail.domain.core.Repositories;
 import io.skysail.server.restlet.resources.ListServerResource;
 import io.skysail.server.utils.CompositeClassLoader;
 import lombok.Getter;
@@ -49,13 +49,21 @@ public class InMemoryJavaCompiler {
         fileManager.setClassLoader(dcl);
     }
 
-    public static void collect(String className, String sourceCodeInText) throws Exception {
-
+    public static CompiledCode collect(String className, String sourceCodeInText) {
         SourceCode sourceCode = new SourceCode(className, sourceCodeInText);
-        CompiledCode compiledCode = new CompiledCode(className);
+        CompiledCode compiledCode = null;
+        try {
+            compiledCode = new CompiledCode(className);
+            sourceCodes.add(sourceCode);
+            fileManager.add(compiledCode);
+        } catch (URISyntaxException e) {
+            log.error(e.getMessage(), e);
+        }
+        return compiledCode;
+    }
 
-        sourceCodes.add(sourceCode);
-        fileManager.add(compiledCode);
+    public static void collectSource(String className, String sourceCodeInText) {
+        sourceCodes.add(new SourceCode(className, sourceCodeInText));
     }
 
     public static void reset() {
@@ -86,6 +94,7 @@ public class InMemoryJavaCompiler {
         getBundleLocationFor(Repositories.class, bundleLocations, bundles);
         getBundleLocationFor(io.skysail.server.queryfilter.Filter.class, bundleLocations, bundles);
         getBundleLocationFor(OrientVertex.class, bundleLocations, bundles);
+        //getBundleLocationFor(ResourceTestBase.class, bundleLocations, bundles);
 
         String locs = bundleLocations.stream().map(l -> {
                 return l.replace("reference:", "").replace("file:/", "/").replace("%25", "%"); // replace("/","\\").

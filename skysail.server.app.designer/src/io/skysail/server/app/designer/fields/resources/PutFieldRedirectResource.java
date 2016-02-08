@@ -7,7 +7,7 @@ import io.skysail.server.app.designer.fields.DbEntityField;
 import io.skysail.server.app.designer.fields.resources.date.PutDateFieldResource;
 import io.skysail.server.app.designer.fields.resources.editors.PutTrixeditorFieldResource;
 import io.skysail.server.app.designer.fields.resources.text.PutTextFieldResource;
-import io.skysail.server.app.designer.fields.resources.textarea.*;
+import io.skysail.server.app.designer.fields.resources.textarea.PutTextareaFieldResource;
 import io.skysail.server.restlet.resources.*;
 
 public class PutFieldRedirectResource extends RedirectResource<DbEntityField> {

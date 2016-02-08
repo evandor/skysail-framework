@@ -3,7 +3,7 @@ navbar(user, messages, converter, model) ::= <<
   <div class="navbar-collapse collapse">
     <ul class="nav navbar-nav">
       <li class="dropdown">
-        <a href="/"><img src="/webapp/skysail-logo-white-bg.png" height="16" width="16"></a>
+        <a href="/" class="navbar-brand">skysail</a>
       </li>
       $if (!user.demoUser)$
         $dropdownFrontendsNav(model.services)$

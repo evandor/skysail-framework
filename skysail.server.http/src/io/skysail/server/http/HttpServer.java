@@ -112,7 +112,7 @@ public class HttpServer extends ServerResource
     public synchronized void addConverterHelper(OsgiConverterHelper converterHelper) {
         if (converterHelper instanceof ConverterHelper) {
             this.registeredConverters.add((ConverterHelper) converterHelper);
-            log.info("(+ Converter)   (#{}) with name '{}'", formatSize(registeredConverters),
+            log.debug("(+ Converter)   (#{}) with name '{}'", formatSize(registeredConverters),
                     converterHelper.getClass().getName());
         }
     }
@@ -120,7 +120,7 @@ public class HttpServer extends ServerResource
     public synchronized void removeConverterHelper(OsgiConverterHelper converterHelper) {
         if (converterHelper instanceof ConverterHelper) {
             this.registeredConverters.remove(converterHelper);
-            log.info("(- Converter)   name '{}', count is {} now", registeredConverters.getClass().getName(),
+            log.debug("(- Converter)   name '{}', count is {} now", registeredConverters.getClass().getName(),
                     formatSize(registeredConverters));
         }
     }

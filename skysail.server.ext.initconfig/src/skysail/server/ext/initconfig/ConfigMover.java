@@ -1,19 +1,15 @@
 package skysail.server.ext.initconfig;
 
 import java.io.IOException;
-import java.nio.file.FileAlreadyExistsException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
+import java.nio.file.*;
 import java.util.*;
 import java.util.stream.Collectors;
 
 import org.osgi.framework.Bundle;
 import org.osgi.service.component.ComponentContext;
 
-import aQute.bnd.annotation.component.Activate;
-import aQute.bnd.annotation.component.Component;
-import aQute.bnd.annotation.component.ConfigurationPolicy;
+import aQute.bnd.annotation.component.*;
+import de.twenty11.skysail.server.Constants;
 import io.skysail.server.utils.BundleUtils;
 import lombok.extern.slf4j.Slf4j;
 
@@ -31,8 +27,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class ConfigMover {
 
-    public static final String PRODUCT_BUNDLE_IDENTIFIER = "product.bundle";
-    public static final String CONFIG_SOURCE_SYSTEM_PROPERTY_IDENTIFIER = "felix.fileinstall.dir";
+    public static final String CONFIG_SOURCE_SYSTEM_PROPERTY_IDENTIFIER = "felix.fileTCoinstall.dir";
 
     @Activate
     public void activate(ComponentContext context) {
@@ -40,7 +35,7 @@ public class ConfigMover {
     }
 
     private void copyConfigurationFromProductJar(ComponentContext context) {
-        String productBundleName = System.getProperty(PRODUCT_BUNDLE_IDENTIFIER);
+        String productBundleName = System.getProperty(Constants.PRODUCT_BUNDLE_IDENTIFIER);
         log.debug("determined product bundle to be '{}'", productBundleName);
         Optional<Bundle> productBundle = Arrays.stream(context.getBundleContext().getBundles())
                 .filter(b -> b.getSymbolicName()

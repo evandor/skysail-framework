@@ -36,14 +36,14 @@ public class ConfigMoverTest {
 
     @Test
     public void does_nothing_if_no_config_is_found() {
-        System.setProperty(ConfigMover.PRODUCT_BUNDLE_IDENTIFIER, "product.bundle");
+        System.setProperty(de.twenty11.skysail.server.Constants.PRODUCT_BUNDLE_IDENTIFIER, "product.bundle");
         configMover.activate(context);
     }
 
     @Test
     @Ignore // to be done
     public void testMe() {
-        System.setProperty(ConfigMover.PRODUCT_BUNDLE_IDENTIFIER, "product.bundle");
+        System.setProperty(de.twenty11.skysail.server.Constants.PRODUCT_BUNDLE_IDENTIFIER, "product.bundle");
         System.setProperty(ConfigMover.CONFIG_SOURCE_SYSTEM_PROPERTY_IDENTIFIER, "configpath");
         configMover.activate(context);
     }

@@ -6,9 +6,13 @@ Private-Package:  \
 	io.skysail.product.designer
 
 -buildpath: \
+    osgi.cmpn;version=${osgi.version},\
+    skysail.domain;version=${skysail.domain.version},\
 	skysail.api;version=${skysail.api.version},\
 	skysail.api.features;version='[0.1.2,0.1.3)',\
+    skysail.api.text;version=${skysail.api.text.version},\
 	skysail.api.um;version=${skysail.api.um.version},\
+    skysail.server;version=${skysail.server.version},\
 	skysail.server.converter;version=${skysail.server.converter.version},\
 	skysail.server.db;version=${skysail.server.db.version},\
 	skysail.server.app.designer;version=latest,\
@@ -32,6 +36,7 @@ Private-Package:  \
 	skysail.server.purecss.webresource;version=latest,\
     skysail.server.w2ui.webresource;version=latest,\
 	slf4j.api;version=1.7,\
+	${restlet},\
 	org.apache.commons.exec;version=1.3.0,\
 	org.codehaus.jettison.jettison;version=1.3,\
 	com.springsource.org.junit;version=4.11,\
@@ -73,6 +78,7 @@ Private-Package:  \
 	org.apache.commons.logging;version=1.1,\
 	lombok;version=1.16
 	
-Include-Resource: config=config
+Include-Resource: config=config, templates=templates
 
 
+-dsannotations: *

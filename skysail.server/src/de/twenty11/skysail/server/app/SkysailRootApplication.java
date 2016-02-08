@@ -6,22 +6,17 @@ import java.util.stream.Collectors;
 
 import org.apache.shiro.SecurityUtils;
 import org.osgi.framework.Bundle;
-import org.osgi.service.cm.ConfigurationException;
-import org.osgi.service.cm.ManagedService;
+import org.osgi.service.cm.*;
 import org.osgi.service.component.ComponentContext;
 import org.osgi.service.component.annotations.*;
 import org.osgi.service.event.EventAdmin;
 import org.restlet.Request;
 
 import de.twenty11.skysail.server.core.restlet.RouteBuilder;
-import de.twenty11.skysail.server.resources.DefaultResource;
-import de.twenty11.skysail.server.resources.DemoLoginResource;
-import de.twenty11.skysail.server.resources.LoginResource;
-import de.twenty11.skysail.server.resources.RemoteLoginResource;
+import de.twenty11.skysail.server.resources.*;
 import io.skysail.server.app.SkysailApplication;
-import io.skysail.server.menus.MenuItem;
+import io.skysail.server.menus.*;
 import io.skysail.server.menus.MenuItem.Category;
-import io.skysail.server.menus.MenuItemProvider;
 import io.skysail.server.services.ResourceBundleProvider;
 import io.skysail.server.utils.MenuItemUtils;
 import lombok.Getter;
@@ -40,6 +35,8 @@ public class SkysailRootApplication extends SkysailApplication implements Applic
     public static final String LOGIN_PATH = "/_login";
     public static final String DEMO_LOGIN_PATH = "/_demologin";
     public static final String PEERS_LOGIN_PATH = "/_remotelogin";
+
+    public static final String PUPLIC_PATH = "/_public";
 
     public static final String LOGOUT_PATH = "/_logout";
     private static final String PROFILE_PATH = "/_profile";
@@ -106,7 +103,6 @@ public class SkysailRootApplication extends SkysailApplication implements Applic
 //        router.attach(new RouteBuilder(WELCOME_PATH, WelcomeResource.class).noAuthenticationNeeded()); // need for tests... why?
 
         router.attach(new RouteBuilder(PEERS_LOGIN_PATH, RemoteLoginResource.class).noAuthenticationNeeded());
-
     }
 
     public Set<SkysailApplication> getApplications() {

@@ -13,6 +13,7 @@ import org.stringtemplate.v4.ST;
 
 import com.google.common.cache.CacheStats;
 
+import de.twenty11.skysail.server.Constants;
 import de.twenty11.skysail.server.core.restlet.ResourceContextId;
 import io.skysail.api.responses.SkysailResponse;
 import io.skysail.api.search.SearchService;
@@ -62,7 +63,7 @@ public class StringTemplateRenderer {
         resourceModel.setSearchService(searchService); // has to be set before menuItemProviders ;(
         resourceModel.setMenuItemProviders(menuProviders);
 
-        STGroupBundleDir stGroup = createSringTemplateGroup(resource, theme);
+        STGroupBundleDir stGroup = createStringTemplateGroup(resource, theme);
 
         ST index = getStringTemplateIndex(resource, stGroup);
 
@@ -73,7 +74,7 @@ public class StringTemplateRenderer {
         return createRepresentation(index, stGroup);
     }
 
-    private STGroupBundleDir createSringTemplateGroup(Resource resource, Theme theme) {
+    private STGroupBundleDir createStringTemplateGroup(Resource resource, Theme theme) {
         SkysailApplication currentApplication = (SkysailApplication) resource.getApplication();
         Bundle appBundle = currentApplication.getBundle();
         if (appBundle == null) {
@@ -83,11 +84,20 @@ public class StringTemplateRenderer {
         if (templatesResource != null) {
             STGroupBundleDir stGroup = new STGroupBundleDir(appBundle, resource, "/templates");
             importTemplate("skysail.server.converter", resource, appBundle, "/templates", stGroup, theme);
+            
+            String productBundleName = System.getProperty(Constants.PRODUCT_BUNDLE_IDENTIFIER);
+            importTemplate(productBundleName, resource, appBundle, "/templates", stGroup, theme);
+            
             return stGroup;
 
         } else {
             Optional<Bundle> thisBundle = findBundle(appBundle, "skysail.server.converter");
-            return new STGroupBundleDir(thisBundle.get(), resource, "/templates");
+            STGroupBundleDir stGroup =  new STGroupBundleDir(thisBundle.get(), resource, "/templates");
+
+            String productBundleName = System.getProperty(Constants.PRODUCT_BUNDLE_IDENTIFIER);
+            importTemplate(productBundleName, resource, appBundle, "/templates", stGroup, theme);
+
+            return stGroup;
         }
     }
 

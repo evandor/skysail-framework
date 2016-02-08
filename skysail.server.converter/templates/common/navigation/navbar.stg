@@ -23,7 +23,6 @@ navbar(user, messages, converter, model) ::= <<
           <li><a href='javascript:inspect()'>Inspect Page</a></li>
           <li><a href='javascript:document.cookie="template=jquerymobile;path=/";window.location.reload(true)'>Mobile View</a></li>
           <li><a href='javascript:document.cookie="template=spa;path=/";window.location.reload(true)'>Single Page App</a></li>
-          <li><a href='javascript:document.cookie="template=home;path=/";window.location.reload(true)'>Homepage</a></li>
         </ul>
       </li>
       $endif$

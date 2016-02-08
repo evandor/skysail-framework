@@ -38,7 +38,7 @@ import lombok.extern.slf4j.Slf4j;
  *
  *
  */
-@Component(immediate = true)
+@Component(immediate = true, service = ApplicationList.class)
 @Slf4j
 public class ApplicationList implements ApplicationListProvider { // NO_UCD (unused code)
 
@@ -54,7 +54,7 @@ public class ApplicationList implements ApplicationListProvider { // NO_UCD (unu
         checkExistingApplications(application);
         applications.add(application);
         attachToComponent(application);
-        log.info("(+ ApplicationModel) (#{}) with name '{}'", formatSize(applications), application.getName());
+        log.debug("(+ ApplicationModel) (#{}) with name '{}'", formatSize(applications), application.getName());
     }
 
     private void checkExistingApplications(SkysailApplication application) {
@@ -68,7 +68,7 @@ public class ApplicationList implements ApplicationListProvider { // NO_UCD (unu
         SkysailApplication application = getApplication(provider);
         detachFromComponent(application);
         applications.remove(application);
-        log.info("(- ApplicationModel) name '{}', count is {} now", application.getName(), formatSize(applications));
+        log.debug("(- ApplicationModel) name '{}', count is {} now", application.getName(), formatSize(applications));
     }
 
     @Override

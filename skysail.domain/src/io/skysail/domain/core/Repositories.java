@@ -1,12 +1,16 @@
 package io.skysail.domain.core;
 
 import java.text.DecimalFormat;
-import java.util.*;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 import aQute.bnd.annotation.component.Component;
-import io.skysail.domain.core.repos.*;
-import lombok.*;
+import io.skysail.domain.core.repos.DbRepository;
+import io.skysail.domain.core.repos.Repository;
+import lombok.NonNull;
+import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
 
 @Component(immediate = true, provide = Repositories.class)
@@ -26,13 +30,13 @@ public class Repositories {
             throw new IllegalStateException("cannot set repository, name is missing");
         }
         repositories.put(identifier, repo);
-        log.info("(+ Repository)  (#{}) with name '{}'", formatSize(repositories.keySet()),identifier);
+        log.debug("(+ Repository)  (#{}) with name '{}'", formatSize(repositories.keySet()),identifier);
     }
 
     public void unsetRepository(DbRepository repo) {
         String identifier = repo.getRootEntity().getName();
         repositories.remove(identifier);
-        log.info("(- Repository)  name '{}', count is {} now", identifier, formatSize(repositories.keySet()));
+        log.debug("(- Repository)  name '{}', count is {} now", identifier, formatSize(repositories.keySet()));
     }
 
     public synchronized Map<String, DbRepository> getRepositories() {

@@ -5,9 +5,7 @@
 -resolve.effective: active;skip:="osgi.service"
 -runee: JavaSE-1.8
 -runfw: org.apache.felix.framework;version=${org.apache.felix.framework.version}
--runproperties: org.osgi.service.http.port=8081,\
-    ds.loglevel=debug,\
-    ${runproperties}
+-runproperties: ${runproperties}
 -runrepos: ${runrepos}
 -runsystemcapabilities: ${native_capability}
 -runsystempackages: ${runsystempackages}
@@ -20,7 +18,7 @@
 ########################################################################################
 
 skysail.config.path            = config/common,config/local,designerbundles
-logback.configurationFile.path = config/common
+logback.configurationFile.path = config/local
 
 -runbundles: \
 	${serverbundles-1.0.0},\

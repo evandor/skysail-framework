@@ -109,6 +109,9 @@ $animate()$ $moment()$ $cookieConsent()$
           <li><a href="https://github.com/evandor/skysail-framework" target="_blank">Github</a></li>
           <li><a href="http://skysailserver.blogspot.de/" target="_blank">Blog</a></li>
           <li><a href="http://skysail.io/" target="_blank">Landing Page</a></li>
+          $if(user.principal)$
+            <li><a href="/" style="color: red;">Designer</a></li>
+          $endif$
           <!-- <li class="dropdown">
               <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="download">Paper <span class="caret"></span></a>
               <ul class="dropdown-menu" aria-labelledby="download">
@@ -119,9 +122,20 @@ $animate()$ $moment()$ $cookieConsent()$
               </ul>
             </li>-->
         </ul>
+        $if(user.principal)$
+        <ul class="nav navbar-nav navbar-right" >
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">$user.username$ <font style="color:red">$user.backend$</font><span class="caret"></span></a>
+            <ul class="dropdown-menu" role="menu">
+              <li><a href='/_logout?targetUri=/'>Logout</a></li>
+            </ul>
+          </li>
+        </ul>
+        $else$
         <ul class="nav navbar-nav navbar-right">
           <li><a href="_login">Login</a></li>
         </ul>
+        $endif$
       </div>
     </div>
   </div>

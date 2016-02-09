@@ -8,19 +8,23 @@ import java.util.Map;
 import org.osgi.framework.Constants;
 import org.osgi.service.cm.Configuration;
 import org.osgi.service.cm.ConfigurationAdmin;
+import org.osgi.service.component.annotations.Activate;
+import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.ConfigurationPolicy;
+import org.osgi.service.component.annotations.Reference;
 
-import aQute.bnd.annotation.component.Activate;
-import aQute.bnd.annotation.component.Component;
-import aQute.bnd.annotation.component.ConfigurationPolicy;
-import aQute.bnd.annotation.component.Reference;
 import lombok.extern.slf4j.Slf4j;
 
-@Component(immediate = true, configurationPolicy = ConfigurationPolicy.optional)
+//@Component(immediate = true, configurationPolicy = ConfigurationPolicy.OPTIONAL)
+@Component(immediate = true, configurationPolicy = ConfigurationPolicy.OPTIONAL, configurationPid = "db")
 @Slf4j
 public class DbConfigurations implements DbConfigurationProvider {
 
     private DbConfig dbConfig;
+    
+    @Reference
     private ConfigurationAdmin configurationAdmin;
+    
     private Thread loggerThread;
 
     @Activate
@@ -69,14 +73,14 @@ public class DbConfigurations implements DbConfigurationProvider {
 
     // --- ConfigurationAdmin ------------------------------------------------
 
-    @Reference(dynamic = true, optional = false, multiple = false)
-    public void setConfigurationAdmin(ConfigurationAdmin configurationAdmin) {
-        this.configurationAdmin = configurationAdmin;
-    }
-
-    public void unsetConfigurationAdmin(ConfigurationAdmin configurationAdmin) {
-        this.configurationAdmin = null;
-    }
+//    @Reference(cardinality = ReferenceCardinality.MANDATORY)//        dynamic = true, optional = false, multiple = false)
+//    public void setConfigurationAdmin(ConfigurationAdmin configurationAdmin) {
+//        this.configurationAdmin = configurationAdmin;
+//    }
+//
+//    public void unsetConfigurationAdmin(ConfigurationAdmin configurationAdmin) {
+//        this.configurationAdmin = null;
+//    }
 
     @Override
     public DbConfig getConfig() {

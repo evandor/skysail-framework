@@ -1,6 +1,7 @@
 javafile(application, entity) ::= <<
 package $application.packageName$;
 
+import java.io.Serializable;
 import javax.persistence.Id;
 
 import java.util.*;
@@ -11,7 +12,8 @@ import io.skysail.server.forms.*;
 
 import org.apache.commons.lang3.StringUtils;
 
-public class $entity.simpleName$ implements Identifiable {
+@SuppressWarnings("serial")
+public class $entity.simpleName$ implements Identifiable, Serializable {
 
     @Id
     private String id;

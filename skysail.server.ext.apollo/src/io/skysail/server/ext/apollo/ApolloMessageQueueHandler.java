@@ -14,75 +14,78 @@ public class ApolloMessageQueueHandler implements MessageQueueHandler {
     private String password = "password";
     private String host = "localhost";
     private int port = 61613;
-    private Runnable runnable;
+    private Thread t;
+
+    public static void main(String[] args) {
+        String destination = "/topic/event";
+
+        StompJmsConnectionFactory factory = new StompJmsConnectionFactory();
+        factory.setBrokerURI("tcp://localhost:61613");
+
+        Connection connection;
+        try {
+            connection = factory.createConnection("admin", "password");
+            connection.start();
+            Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
+            Destination dest = new StompJmsDestination(destination);
+
+            MessageConsumer consumer = session.createConsumer(dest);
+            long start = System.currentTimeMillis();
+            long count = 1;
+            System.out.println("Waiting for messages...");
+            while (true) {
+                Message msg = consumer.receive();
+                if (msg instanceof TextMessage) {
+                    String body = ((TextMessage) msg).getText();
+                    System.out.println(body);
+                    if ("SHUTDOWN".equals(body)) {
+                        long diff = System.currentTimeMillis() - start;
+                        System.out.println(String.format("Received %d in %.2f seconds", count, (1.0 * diff / 1000.0)));
+                        break;
+                    } else {
+                        if (count != msg.getIntProperty("id")) {
+                            System.out.println("mismatch: " + count + "!=" + msg.getIntProperty("id"));
+                        }
+                        count = msg.getIntProperty("id");
+
+                        if (count == 0) {
+                            start = System.currentTimeMillis();
+                        }
+                        if (count % 1000 == 0) {
+                            System.out.println(String.format("Received %d messages.", count));
+                        }
+                        count++;
+                    }
+
+                } else {
+                    System.out.println("Unexpected message type: " + msg.getClass());
+                }
+            }
+            connection.close();
+        } catch (JMSException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+
+    }
 
     @Activate
     public void activate() {
-        runnable = new Runnable() {
+
+        t = new Thread(new Runnable() {
             @Override
             public void run() {
-                listen();
-            }
-
-            private void listen() {
-               
-                String destination = "/topic/event";
-
-                StompJmsConnectionFactory factory = new StompJmsConnectionFactory();
-                factory.setBrokerURI("tcp://" + host + ":" + port);
-
-                Connection connection;
-                try {
-                    connection = factory.createConnection(user, password);
-                    connection.start();
-                    Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
-                    Destination dest = new StompJmsDestination(destination);
-
-                    MessageConsumer consumer = session.createConsumer(dest);
-                    long start = System.currentTimeMillis();
-                    long count = 1;
-                    System.out.println("Waiting for messages...");
-                    while(true) {
-                        Message msg = consumer.receive();
-                        if( msg instanceof  TextMessage ) {
-                            String body = ((TextMessage) msg).getText();
-                            System.out.println(body);
-                            if( "SHUTDOWN".equals(body)) {
-                                long diff = System.currentTimeMillis() - start;
-                                System.out.println(String.format("Received %d in %.2f seconds", count, (1.0*diff/1000.0)));
-                                break;
-                            } else {
-                                if( count != msg.getIntProperty("id") ) {
-                                    System.out.println("mismatch: "+count+"!="+msg.getIntProperty("id"));
-                                }
-                                count = msg.getIntProperty("id");
-
-                                if( count == 0 ) {
-                                    start = System.currentTimeMillis();
-                                }
-                                if( count % 1000 == 0 ) {
-                                    System.out.println(String.format("Received %d messages.", count));
-                                }
-                                count ++;
-                            }
-
-                        } else {
-                            System.out.println("Unexpected message type: "+msg.getClass());
-                        }
-                    }
-                    connection.close();
-                } catch (JMSException e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
+                while (!Thread.interrupted()) {
+                    listen();
                 }
             }
-        };
-        runnable.run();
+        });
+        t.start();
     }
 
     @Deactivate
     public void deactivate() {
-       // runnable.
+        t.interrupt();
     }
 
     @Override
@@ -105,7 +108,7 @@ public class ApolloMessageQueueHandler implements MessageQueueHandler {
             msg.setIntProperty("id", 1);
             producer.send(msg);
 
-            producer.send(session.createTextMessage("SHUTDOWN"));
+            //producer.send(session.createTextMessage("SHUTDOWN"));
             connection.close();
         } catch (JMSException e) {
             e.printStackTrace();
@@ -128,6 +131,60 @@ public class ApolloMessageQueueHandler implements MessageQueueHandler {
         // return;
         // }
 
+    }
+    
+    private void listen() {
+
+        String destination = "/topic/event";
+
+        StompJmsConnectionFactory factory = new StompJmsConnectionFactory();
+        factory.setBrokerURI("tcp://" + host + ":" + port);
+
+        Connection connection;
+        try {
+            connection = factory.createConnection(user, password);
+            connection.start();
+            Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
+            Destination dest = new StompJmsDestination(destination);
+
+            MessageConsumer consumer = session.createConsumer(dest);
+            long start = System.currentTimeMillis();
+            long count = 1;
+            System.out.println("Waiting for messages...");
+            while (true) {
+                Message msg = consumer.receive();
+                if (msg instanceof TextMessage) {
+                    String body = ((TextMessage) msg).getText();
+                    System.out.println(body);
+                    if ("SHUTDOWN".equals(body)) {
+                        long diff = System.currentTimeMillis() - start;
+                        System.out.println(
+                                String.format("Received %d in %.2f seconds", count, (1.0 * diff / 1000.0)));
+                        break;
+                    } else {
+                        if (count != msg.getIntProperty("id")) {
+                            System.out.println("mismatch: " + count + "!=" + msg.getIntProperty("id"));
+                        }
+                        count = msg.getIntProperty("id");
+
+                        if (count == 0) {
+                            start = System.currentTimeMillis();
+                        }
+                        if (count % 1000 == 0) {
+                            System.out.println(String.format("Received %d messages.", count));
+                        }
+                        count++;
+                    }
+
+                } else {
+                    System.out.println("Unexpected message type: " + msg.getClass());
+                }
+            }
+            connection.close();
+        } catch (JMSException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
     }
 
 }

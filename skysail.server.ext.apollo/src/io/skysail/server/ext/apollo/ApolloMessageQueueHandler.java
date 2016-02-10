@@ -6,8 +6,10 @@ import org.fusesource.stomp.jms.*;
 import org.osgi.service.component.annotations.*;
 
 import io.skysail.server.services.MessageQueueHandler;
+import lombok.extern.slf4j.Slf4j;
 
-@Component(immediate = true)
+//@Component(immediate = true)
+@Slf4j
 public class ApolloMessageQueueHandler implements MessageQueueHandler {
 
     private String user = "admin";
@@ -15,6 +17,10 @@ public class ApolloMessageQueueHandler implements MessageQueueHandler {
     private String host = "localhost";
     private int port = 61613;
     private Thread t;
+    private StompJmsConnectionFactory factory;
+    private Connection connection;
+    private Session session;
+    private int cnt = 1;
 
     public static void main(String[] args) {
         String destination = "/topic/event";
@@ -71,7 +77,18 @@ public class ApolloMessageQueueHandler implements MessageQueueHandler {
 
     @Activate
     public void activate() {
+        
+        factory = new StompJmsConnectionFactory();
+        factory.setBrokerURI("tcp://" + host + ":" + port);
 
+        try {
+            connection = factory.createConnection(user, password);
+            connection.start();
+            session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
+        } catch (Exception e) {
+            log.error(e.getMessage(),e);
+        }
+        
         t = new Thread(new Runnable() {
             @Override
             public void run() {
@@ -92,24 +109,19 @@ public class ApolloMessageQueueHandler implements MessageQueueHandler {
     public void send(String topic, String message) {
         String destination = topic;
 
-        StompJmsConnectionFactory factory = new StompJmsConnectionFactory();
-        factory.setBrokerURI("tcp://" + host + ":" + port);
-
-        Connection connection;
+        
         try {
-            connection = factory.createConnection(user, password);
-            connection.start();
-            Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
+            
             Destination dest = new StompJmsDestination(destination);
             MessageProducer producer = session.createProducer(dest);
             producer.setDeliveryMode(DeliveryMode.PERSISTENT);
 
             TextMessage msg = session.createTextMessage(message);
-            msg.setIntProperty("id", 1);
+            msg.setIntProperty("id", cnt++);
             producer.send(msg);
 
             //producer.send(session.createTextMessage("SHUTDOWN"));
-            connection.close();
+           // connection.close();
         } catch (JMSException e) {
             e.printStackTrace();
         }
@@ -137,14 +149,8 @@ public class ApolloMessageQueueHandler implements MessageQueueHandler {
 
         String destination = "/topic/event";
 
-        StompJmsConnectionFactory factory = new StompJmsConnectionFactory();
-        factory.setBrokerURI("tcp://" + host + ":" + port);
-
-        Connection connection;
         try {
-            connection = factory.createConnection(user, password);
-            connection.start();
-            Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
+            //Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
             Destination dest = new StompJmsDestination(destination);
 
             MessageConsumer consumer = session.createConsumer(dest);

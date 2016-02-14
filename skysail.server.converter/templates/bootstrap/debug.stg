@@ -1,7 +1,7 @@
 debug(messages, model) ::= <<
 
 <!-- Template Modal -->
-$modal("templateModal","Templates used in this page", "<ul>%%templates%%</ul>")$
+$modal("templateModal","Templates used in this page", "%%templates%%")$
 $modal("linksModal","Links defined in this page", linkheader(model.links))$
 
 <!-- Links Modal -->

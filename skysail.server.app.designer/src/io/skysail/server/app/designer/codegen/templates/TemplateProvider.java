@@ -11,7 +11,7 @@ import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Deactivate;
 import org.stringtemplate.v4.ST;
 
-import io.skysail.server.app.designer.STGroupBundleDir;
+import io.skysail.server.stringtemplate.STGroupBundleDir;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j

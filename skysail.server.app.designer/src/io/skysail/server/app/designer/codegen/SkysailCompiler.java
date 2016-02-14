@@ -7,9 +7,9 @@ import java.util.stream.Collectors;
 import org.osgi.framework.BundleContext;
 import org.stringtemplate.v4.STGroupDir;
 
-import io.skysail.server.app.designer.STGroupBundleDir;
 import io.skysail.server.app.designer.codegen.writer.ProjectFileWriter;
 import io.skysail.server.app.designer.model.DesignerApplicationModel;
+import io.skysail.server.stringtemplate.STGroupBundleDir;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 

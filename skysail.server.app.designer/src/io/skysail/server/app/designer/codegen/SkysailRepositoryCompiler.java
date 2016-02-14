@@ -7,11 +7,11 @@ import org.osgi.framework.Bundle;
 import org.stringtemplate.v4.ST;
 
 import io.skysail.domain.core.EntityModel;
-import io.skysail.server.app.designer.STGroupBundleDir;
 import io.skysail.server.app.designer.codegen.templates.TemplateProvider;
 import io.skysail.server.app.designer.codegen.writer.ProjectFileWriter;
 import io.skysail.server.app.designer.model.DesignerApplicationModel;
 import io.skysail.server.app.designer.model.DesignerEntityModel;
+import io.skysail.server.stringtemplate.STGroupBundleDir;
 
 public class SkysailRepositoryCompiler extends SkysailCompiler {
 

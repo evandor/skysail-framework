@@ -12,6 +12,7 @@ import io.skysail.server.app.designer.codegen.JavaCompiler;
 import io.skysail.server.app.designer.codegen.SkysailRepositoryCompiler;
 import io.skysail.server.app.designer.codegen.templates.TemplateProvider;
 import io.skysail.server.app.designer.model.DesignerApplicationModel;
+import io.skysail.server.stringtemplate.STGroupBundleDir;
 import lombok.val;
 
 public class RepositoryCreator {

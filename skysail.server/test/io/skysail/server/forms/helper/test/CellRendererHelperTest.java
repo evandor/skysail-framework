@@ -4,14 +4,19 @@ import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
 
 import java.net.URL;
-import java.util.*;
+import java.util.Arrays;
+import java.util.Date;
+import java.util.HashSet;
 
-import org.junit.*;
+import org.junit.Before;
+import org.junit.Ignore;
+import org.junit.Test;
 import org.mockito.Mockito;
 
 import io.skysail.api.links.Link;
 import io.skysail.api.responses.ListServerResponse;
-import io.skysail.server.forms.*;
+import io.skysail.server.forms.FormField;
+import io.skysail.server.forms.ListView;
 import io.skysail.server.forms.helper.CellRendererHelper;
 import io.skysail.server.restlet.resources.SkysailServerResource;
 
@@ -59,6 +64,7 @@ public class CellRendererHelperTest {
     }
 
     @Test
+    @Ignore // Not time-zone save
     public void other_non_string_objects_are_formatted_to_their_string_representation() {
         FormField ff = null;
         Object formatted = new CellRendererHelper(ff, null).render(new Date(1100000000L), "id", null);

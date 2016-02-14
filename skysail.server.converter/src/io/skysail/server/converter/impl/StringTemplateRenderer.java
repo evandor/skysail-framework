@@ -1,13 +1,13 @@
 package io.skysail.server.converter.impl;
 
-import java.net.URL;
 import java.util.*;
 import java.util.stream.Collectors;
 
 import org.apache.shiro.SecurityUtils;
 import org.osgi.framework.Bundle;
 import org.restlet.data.MediaType;
-import org.restlet.representation.*;
+import org.restlet.representation.StringRepresentation;
+import org.restlet.representation.Variant;
 import org.restlet.resource.Resource;
 import org.stringtemplate.v4.ST;
 
@@ -21,14 +21,15 @@ import io.skysail.api.text.Translation;
 import io.skysail.server.app.SkysailApplication;
 import io.skysail.server.caches.Caches;
 import io.skysail.server.converter.HtmlConverter;
-import io.skysail.server.converter.stringtemplate.STGroupBundleDir;
 import io.skysail.server.converter.wrapper.STUserWrapper;
 import io.skysail.server.menus.MenuItemProvider;
 import io.skysail.server.model.ResourceModel;
 import io.skysail.server.restlet.resources.SkysailServerResource;
 import io.skysail.server.restlet.response.messages.Message;
+import io.skysail.server.stringtemplate.STGroupBundleDir;
 import io.skysail.server.theme.Theme;
-import io.skysail.server.utils.*;
+import io.skysail.server.utils.CookiesUtils;
+import io.skysail.server.utils.RequestUtils;
 import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
 
@@ -63,6 +64,7 @@ public class StringTemplateRenderer {
         resourceModel.setSearchService(searchService); // has to be set before menuItemProviders ;(
         resourceModel.setMenuItemProviders(menuProviders);
 
+        STGroupBundleDir.clearUsedTemplates();
         STGroupBundleDir stGroup = createStringTemplateGroup(resource, theme);
 
         ST index = getStringTemplateIndex(resource, stGroup);
@@ -80,13 +82,12 @@ public class StringTemplateRenderer {
         if (appBundle == null) {
             log.warn("could not determine bundle of current ApplicationModel {}, follow-up errors might occur", currentApplication.getName());
         }
-        URL templatesResource = appBundle.getResource("/templates");
-        if (templatesResource != null) {
+        if (appBundle.getResource("/templates") != null) {
             STGroupBundleDir stGroup = new STGroupBundleDir(appBundle, resource, "/templates");
-            importTemplate("skysail.server.converter", resource, appBundle, "/templates", stGroup, theme);
+            importTemplates("skysail.server.converter", resource, appBundle, "/templates", stGroup, theme);
             
             String productBundleName = System.getProperty(Constants.PRODUCT_BUNDLE_IDENTIFIER);
-            importTemplate(productBundleName, resource, appBundle, "/templates", stGroup, theme);
+            importTemplates(productBundleName, resource, appBundle, "/templates", stGroup, theme);
             
             return stGroup;
 
@@ -95,7 +96,7 @@ public class StringTemplateRenderer {
             STGroupBundleDir stGroup =  new STGroupBundleDir(thisBundle.get(), resource, "/templates");
 
             String productBundleName = System.getProperty(Constants.PRODUCT_BUNDLE_IDENTIFIER);
-            importTemplate(productBundleName, resource, appBundle, "/templates", stGroup, theme);
+            importTemplates(productBundleName, resource, appBundle, "/templates", stGroup, theme);
 
             return stGroup;
         }
@@ -153,8 +154,12 @@ public class StringTemplateRenderer {
      * @param stGroup
      */
     private String getTemplatesHtml(STGroupBundleDir stGroup) {
-        return stGroup.getUsedTemplates().stream().map(template -> "<li>" + template + "</li>")
+        StringBuilder sb = new StringBuilder();
+        sb.append(stGroup.toString().replace("\n", "<br>\n")).append("\n<hr>");
+        String templates = stGroup.getUsedTemplates().stream().map(template -> "<li>" + template + "</li>")
                 .collect(Collectors.joining("\n"));
+        sb.append("<ul>").append(templates).append("</ul>");
+        return sb.toString();
     }
 
     private void addSubstitutions(ResourceModel<SkysailServerResource<?>,?> resourceModel, @NonNull ST decl) {
@@ -199,7 +204,7 @@ public class StringTemplateRenderer {
         return htmlConverter.getPeitybars();
     }
 
-    private void importTemplate(String symbolicName, Resource resource, Bundle appBundle, String resourcePath,
+    private void importTemplates(String symbolicName, Resource resource, Bundle appBundle, String resourcePath,
             STGroupBundleDir stGroup, Theme theme) {
         Optional<Bundle> theBundle = findBundle(appBundle, symbolicName);
         if (theBundle.isPresent()) {
@@ -218,7 +223,7 @@ public class StringTemplateRenderer {
         if (resourcePathExists(resourcePath, theBundle)) {
             importedGroupBundleDir = new STGroupBundleDir(theBundle.get(), resource, resourcePath);
             stGroup.importTemplates(importedGroupBundleDir);
-            log.debug("importing templates from '{}'", resourcePath);
+            log.info("importing templates from {}: '{}'", theBundle.get().getSymbolicName(), resourcePath);
         }
     }
 

@@ -43,7 +43,7 @@ index(user, messages, converter, model) ::= <<
       $navbar(user, messages, converter, model)$
     </nav>
 
-    <div class="container-fluid" style="padding-top:55px;">
+    <div class="container-fluid" style="padding-top:55px;">***
       $mainContent(user, converter, messages, model)$
 
       $if(converter.debug && user.principal)$

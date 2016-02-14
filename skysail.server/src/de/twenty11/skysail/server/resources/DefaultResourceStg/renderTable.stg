@@ -1,5 +1,5 @@
 renderTable(converter, messages, model) ::= <<
-
++++
   $model.pagination$
 
   <sky-ajax-thumbnails

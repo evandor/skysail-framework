@@ -2,12 +2,17 @@ package io.skysail.server.ext.apollo;
 
 import javax.jms.*;
 
-import org.fusesource.stomp.jms.*;
-import org.osgi.service.component.annotations.*;
+import org.fusesource.stomp.jms.StompJmsConnectionFactory;
+import org.fusesource.stomp.jms.StompJmsDestination;
+import org.osgi.service.component.annotations.Activate;
+import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.Deactivate;
 
 import io.skysail.server.services.MessageQueueHandler;
+import lombok.extern.slf4j.Slf4j;
 
 @Component(immediate = true)
+@Slf4j
 public class ApolloMessageQueueHandler implements MessageQueueHandler {
 
     private String user = "admin";
@@ -21,7 +26,7 @@ public class ApolloMessageQueueHandler implements MessageQueueHandler {
         runnable = new Runnable() {
             @Override
             public void run() {
-                listen();
+                //listen();
             }
 
             private void listen() {
@@ -108,7 +113,7 @@ public class ApolloMessageQueueHandler implements MessageQueueHandler {
             producer.send(session.createTextMessage("SHUTDOWN"));
             connection.close();
         } catch (JMSException e) {
-            e.printStackTrace();
+            log.warn(e.getMessage(), e);
         }
 
         // try {

@@ -5,10 +5,13 @@ import java.util.stream.Collectors;
 
 import org.stringtemplate.v4.ST;
 
-import io.skysail.server.app.designer.STGroupBundleDir;
 import io.skysail.server.app.designer.codegen.templates.TemplateProvider;
 import io.skysail.server.app.designer.fields.FieldRole;
-import io.skysail.server.app.designer.model.*;
+import io.skysail.server.app.designer.model.DesignerApplicationModel;
+import io.skysail.server.app.designer.model.DesignerEntityModel;
+import io.skysail.server.app.designer.model.DesignerFieldModel;
+import io.skysail.server.app.designer.model.RouteModel;
+import io.skysail.server.stringtemplate.STGroupBundleDir;
 import lombok.Getter;
 
 public class SkysailEntityCompiler extends SkysailCompiler {

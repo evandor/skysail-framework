@@ -91,7 +91,7 @@ public class StringTemplateRenderer {
             
             String productBundleName = System.getProperty(Constants.PRODUCT_BUNDLE_IDENTIFIER);
             importTemplates(productBundleName, resource, appBundle, TEMPLATES_DIR, stGroup, theme);
-            
+
             return stGroup;
 
         } else {

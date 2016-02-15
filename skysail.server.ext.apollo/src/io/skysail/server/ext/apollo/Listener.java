@@ -42,9 +42,10 @@ public class Listener {
                     if( count == 0 ) {
                         start = System.currentTimeMillis();
                     }
-                    if( count % 1000 == 0 ) {
+                    //if( count % 1000 == 0 ) {
                         System.out.println(String.format("Received %d messages.", count));
-                    }
+                        System.out.println(body);
+                    //}
                     count ++;
                 }
 

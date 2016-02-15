@@ -82,7 +82,7 @@ public class OrientGraphDbService extends AbstractOrientDbService implements DbS
         graphDbFactory = null;
     }
 
-    @Reference(dynamic = true, multiple = false, optional = false, target = "(name=skysailgraph)")
+    @Reference(dynamic = true, multiple = false, optional = false, target = "(name=default)")
     public void setDbConfigurationProvider(DbConfigurationProvider provider) {
         updated(provider);
     }

@@ -26,6 +26,7 @@ Private-Package:  \
 	skysail.server.osgi;version=${skysail.server.osgi.version},\
 	skysail.server.performance.etm;version=latest,\
 	skysail.server.plugins;version=${skysail.server.plugins.version},\
+    skysail.server.polymer;version=latest,\
 	skysail.server.queryfilter;version=${skysail.server.queryfilter.version},\
 	skysail.server.testsupport;version=${skysail.server.testsupport.version},\
 	skysail.server.text.markdown;version=${skysail.server.text.markdown.version},\

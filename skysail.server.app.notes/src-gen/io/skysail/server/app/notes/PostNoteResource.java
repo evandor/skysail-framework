@@ -31,6 +31,7 @@ public class PostNoteResource extends PostEntityServerResource<io.skysail.server
     @Override
     public void addEntity(io.skysail.server.app.notes.Note entity) {
         Subject subject = SecurityUtils.getSubject();
+        entity.setUuid(java.util.UUID.randomUUID().toString());
         String id = app.getRepository(io.skysail.server.app.notes.Note.class).save(entity, app.getApplicationModel()).toString();
         entity.setId(id);
 

@@ -1,5 +1,6 @@
 package io.skysail.server.app.notes;
 
+import java.io.Serializable;
 import javax.persistence.Id;
 
 import java.util.*;
@@ -10,7 +11,8 @@ import io.skysail.server.forms.*;
 
 import org.apache.commons.lang3.StringUtils;
 
-public class Note implements Identifiable {
+@SuppressWarnings("serial")
+public class Note implements Identifiable, Serializable {
 
     @Id
     private String id;
@@ -63,6 +65,17 @@ public class Note implements Identifiable {
 
     public Date getModifiedAt() {
         return this.modifiedAt;
+    }
+
+    @Field(inputType = InputType.TEXT, htmlPolicy = HtmlPolicy.NO_HTML)
+    private String uuid;
+
+    public void setUuid(String value) {
+        this.uuid = value;
+    }
+
+    public String getUuid() {
+        return this.uuid;
     }
 
 

@@ -180,7 +180,7 @@ public class ApplicationCreator {
 
         createGitIgnoreFile(root);
 
-        copy(Paths.get(root), "io.skysail.server.db.DbConfigurations-skysailgraph.cfg");
+        copy(Paths.get(root), "db-default.cfg");
         copy(Paths.get(root), "logback.xml");
     }
 

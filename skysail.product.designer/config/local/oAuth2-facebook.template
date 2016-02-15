@@ -1,0 +1,4 @@
+name=facebook
+clientId=
+clientSecret=
+redirectUrl=http://localhost:2016/Twitter/v1/facebook

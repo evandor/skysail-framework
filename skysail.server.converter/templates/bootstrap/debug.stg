@@ -1,4 +1,12 @@
 debug(messages, model) ::= <<
+
+<!-- Template Modal -->
+$modal("templateModal","Templates used in this page", "<ul>%%templates%%</ul>")$
+$modal("linksModal","Links defined in this page", linkheader(model.links))$
+
+<!-- Links Modal -->
+
+
   <div class="row">
     <div class="col-md-12">
       <br><br>
@@ -56,17 +64,6 @@ debug(messages, model) ::= <<
           </div>
 
           <div class="panel panel-default">
-            <div class="panel-heading" role="tab" id="headingLinks">
-              <h4 class="panel-title">
-                <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseLinks" aria-expanded="false" aria-controls="collapseLinks">Links</a>
-              </h4>
-            </div>
-            <div id="collapseLinks" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingLinks">
-              <div class="panel-body">$linkheader(model.links)$</div>
-            </div>
-          </div>
-
-          <div class="panel panel-default">
             <div class="panel-heading" role="tab" id="headingEntity">
               <h4 class="panel-title">
                 <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseEntity" aria-expanded="false" aria-controls="collapseEntity">Entity</a>
@@ -102,21 +99,6 @@ debug(messages, model) ::= <<
           </div>
 
           <div class="panel panel-default">
-            <div class="panel-heading" role="tab" id="headingTemplates">
-              <h4 class="panel-title">
-                <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTemplates" aria-expanded="false" aria-controls="collapseTemplates">Templates</a>
-              </h4>
-            </div>
-            <div id="collapseTemplates" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTemplates">
-              <div class="panel-body">
-                <ul>
-                  %%templates%%
-                </ul>
-              </div>
-            </div>
-          </div>
-
-          <div class="panel panel-default">
             <div class="panel-heading" role="tab" id="headingMessages">
               <h4 class="panel-title">
                 <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseMessages" aria-expanded="false" aria-controls="collapseMessages">Messages</a>
@@ -142,4 +124,24 @@ debug(messages, model) ::= <<
       </div>
     </div>
   </div>
+>>
+
+modal(name, title, content) ::= <<
+<div class="modal fade" id="$name$" tabindex="-1" role="dialog" aria-labelledby="$name$Label">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="$name$Label">$title$</h4>
+      </div>
+      <div class="modal-body">
+          $content$
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 >>

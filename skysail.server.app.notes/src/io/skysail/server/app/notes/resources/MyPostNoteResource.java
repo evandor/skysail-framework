@@ -23,6 +23,7 @@ public class MyPostNoteResource extends PostNoteResource {
         }
         String plainText = Jsoup.parse(content).text();
         entity.setTitle(plainText.length() > NotesApplication.TITLE_MAX_LENGTH ? plainText.substring(0, NotesApplication.TITLE_MAX_LENGTH) + "..." : plainText);
+        entity.setUuid(java.util.UUID.randomUUID().toString());
         String id = app.getRepository(io.skysail.server.app.notes.Note.class).save(entity, app.getApplicationModel()).toString();
         entity.setId(id);
     }

@@ -1,0 +1,85 @@
+Bundle-Version: 0.1.0.${tstamp}
+
+Bundle-Name: SKYSAIL :: product :: notes
+
+Private-Package:  \
+    io.skysail.product.notes
+
+-buildpath: \
+    osgi.cmpn;version=${osgi.version},\
+    skysail.domain;version=${skysail.domain.version},\
+    skysail.api;version=${skysail.api.version},\
+    skysail.api.features;version='[0.1.2,0.1.3)',\
+    skysail.api.text;version=${skysail.api.text.version},\
+    skysail.api.um;version=${skysail.api.um.version},\
+    skysail.server;version=${skysail.server.version},\
+    skysail.server.converter;version=${skysail.server.converter.version},\
+    skysail.server.db;version=${skysail.server.db.version},\
+    skysail.server.app.designer;version=latest,\
+    skysail.server.app.dbviewer;version=latest,\
+    skysail.server.app.svgedit;version=latest,\
+    skysail.server.app.bookmarks;version=latest,\
+    skysail.server.static;version=${skysail.server.static.version},\
+    skysail.server.ext.sse;version=latest,\
+    skysail.server.ext.initconfig;version=latest,\
+    skysail.server.http;version=${skysail.server.http.version},\
+    skysail.server.osgi;version=${skysail.server.osgi.version},\
+    skysail.server.performance.etm;version=latest,\
+    skysail.server.plugins;version=${skysail.server.plugins.version},\
+    skysail.server.polymer;version=latest,\
+    skysail.server.queryfilter;version=${skysail.server.queryfilter.version},\
+    skysail.server.testsupport;version=${skysail.server.testsupport.version},\
+    skysail.server.text.markdown;version=${skysail.server.text.markdown.version},\
+    skysail.server.text.store.bundleresource;version=${skysail.server.text.store.bundleresource.version},\
+    skysail.server.text.store.git;version=${skysail.server.text.store.git.version},\
+    skysail.server.um.simple;version=${skysail.server.um.simple.version},\
+    skysail.server.uikit.webresource;version=latest,\
+    skysail.server.purecss.webresource;version=latest,\
+    skysail.server.w2ui.webresource;version=latest,\
+    slf4j.api;version=1.7,\
+    ${restlet},\
+    org.apache.commons.exec;version=1.3.0,\
+    org.codehaus.jettison.jettison;version=1.3,\
+    com.springsource.org.junit;version=4.11,\
+    io.skysail.bundled.serenity-junit;version=1.0,\
+    io.skysail.bundled.serenity-core;version=1.1,\
+    com.typesafe.config;version=1.3,\
+    com.google.inject;version=4.0,\
+    javax.inject;version=1.0,\
+    org.apache.servicemix.bundles.aopalliance;version=1.0,\
+    joda-time;version=2.7,\
+    org.freemarker.freemarker;version=2.3,\
+    io.skysail.bundled.selenium;version=2.47,\
+    com.google.gson;version=2.2,\
+    io.skysail.bundled.java-client;version=3.2,\
+    io.skysail.bundled.asciidoctorj;version=1.5,\
+    io.skysail.bundled.lambdaj;version=2.3,\
+    org.apache.servicemix.bundles.cglib;version=3.1,\
+    com.google.guava;version=16.0,\
+    io.skysail.bundled.operadriver;version=1.5,\
+    io.skysail.bundled.phantomjsdriver;version=1.2,\
+    io.skysail.bundled.htmlunit;version=2.18,\
+    io.skysail.bundled.xml-apis;version=1.4,\
+    io.skysail.bundled.htmlunit-core-js;version=2.17,\
+    io.skysail.bundled.sac;version=1.3,\
+    io.skysail.bundled.xalan;version=2.7,\
+    io.skysail.bundled.xerces;version=2.11,\
+    io.skysail.bundled.cssparser;version=0.9,\
+    io.skysail.bundled.nekohtml;version=1.9,\
+    org.apache.httpcomponents.httpclient;version=4.5.1,\
+    org.apache.commons.io;version=2.4,\
+    org.apache.commons.codec;version=1.9,\
+    org.apache.httpcomponents.httpcore;version=4.4,\
+    io.skysail.bundled.httpmime;version=4.5,\
+    biz.aQute.launcher;version=999999999.0,\
+    biz.aQute.bnd;version=2.4,\
+    com.sun.jna.platform;version=4.2,\
+    com.sun.jna;version=4.2,\
+    org.apache.commons.lang3;version=3.3,\
+    org.apache.commons.logging;version=1.1,\
+    lombok;version=1.16
+    
+Include-Resource: config=config
+
+
+-dsannotations: *

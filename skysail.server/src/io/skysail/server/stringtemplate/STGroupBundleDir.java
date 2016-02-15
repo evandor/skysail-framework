@@ -40,6 +40,7 @@ public class STGroupBundleDir extends STGroupDir {
         this.bundleName = bundle.getSymbolicName();
         this.groupDirName = new StringBuilder(getClass().getSimpleName()).append(": ").append(bundle.getSymbolicName())
                 .append(" - ").append(resourcePath).toString();
+        log.info("created '{}'", groupDirName);
     }
 
     public void addUsedTemplates(Set<String> list) {
@@ -58,11 +59,11 @@ public class STGroupBundleDir extends STGroupDir {
         Validate.isTrue(!name.substring(1).contains("/"), "name must not contain another '/' char.");
         
         String resourceLevelTemplate = (resourceName + "Stg").replace(".", "/") + "/" + name;
-        CompiledST st = loadFromBundle(resourceLevelTemplate);
+        CompiledST st = loadFromBundle(name, resourceLevelTemplate);
         if (st != null) {
             return st;
         }
-        return loadFromBundle(name);
+        return loadFromBundle(name, name);
     }
 
     /** Load .st as relative file name relative to root by prefix */
@@ -86,7 +87,7 @@ public class STGroupBundleDir extends STGroupDir {
         return sb.toString();
     }
 
-    private CompiledST loadFromBundle(String name) {
+    private CompiledST loadFromBundle(String originalName, String name) {
         Validate.isTrue(!name.contains("."), "name is not supposed to contain a dot");
         
         URL groupFileURL = determineGroupFileUrl(name);
@@ -96,11 +97,12 @@ public class STGroupBundleDir extends STGroupDir {
         }
         String fileName = root + ("/" + name + ".stg").replace("//", "/");
         if (exists(groupFileURL)) {
-            log.info("found resource in {}: {}", bundleName, groupFileURL.toString());
             usedTemplates.add(bundleName + ": " + groupFileURL.toString());
             try {
                 loadGroupFile("/", fileName);
-                return rawGetTemplate(name);
+                log.info("found resource in {}: {}", bundleName, groupFileURL.toString());
+                log.info("");
+                return rawGetTemplate(originalName);
             } catch (Exception e) { // NOSONAR
             }
         } else {

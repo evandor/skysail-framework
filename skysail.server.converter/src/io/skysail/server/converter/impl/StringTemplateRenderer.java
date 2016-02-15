@@ -5,6 +5,7 @@ import java.util.stream.Collectors;
 
 import org.apache.shiro.SecurityUtils;
 import org.osgi.framework.Bundle;
+import org.osgi.framework.BundleContext;
 import org.restlet.data.MediaType;
 import org.restlet.representation.StringRepresentation;
 import org.restlet.representation.Variant;
@@ -35,6 +36,8 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public class StringTemplateRenderer {
+
+    private static final String TEMPLATES_DIR = "/templates";
 
     private static final String INDEX_FOR_MOBILES = "indexMobile";
 
@@ -82,21 +85,21 @@ public class StringTemplateRenderer {
         if (appBundle == null) {
             log.warn("could not determine bundle of current ApplicationModel {}, follow-up errors might occur", currentApplication.getName());
         }
-        if (appBundle.getResource("/templates") != null) {
-            STGroupBundleDir stGroup = new STGroupBundleDir(appBundle, resource, "/templates");
-            importTemplates("skysail.server.converter", resource, appBundle, "/templates", stGroup, theme);
+        if (appBundle.getResource(TEMPLATES_DIR) != null) {
+            STGroupBundleDir stGroup = new STGroupBundleDir(appBundle, resource, TEMPLATES_DIR);
+            importTemplates("skysail.server.converter", resource, appBundle, TEMPLATES_DIR, stGroup, theme);
             
             String productBundleName = System.getProperty(Constants.PRODUCT_BUNDLE_IDENTIFIER);
-            importTemplates(productBundleName, resource, appBundle, "/templates", stGroup, theme);
+            importTemplates(productBundleName, resource, appBundle, TEMPLATES_DIR, stGroup, theme);
             
             return stGroup;
 
         } else {
-            Optional<Bundle> thisBundle = findBundle(appBundle, "skysail.server.converter");
-            STGroupBundleDir stGroup =  new STGroupBundleDir(thisBundle.get(), resource, "/templates");
+            Optional<Bundle> thisBundle = findBundle(appBundle.getBundleContext(), "skysail.server.converter");
+            STGroupBundleDir stGroup =  new STGroupBundleDir(thisBundle.get(), resource, TEMPLATES_DIR);
 
             String productBundleName = System.getProperty(Constants.PRODUCT_BUNDLE_IDENTIFIER);
-            importTemplates(productBundleName, resource, appBundle, "/templates", stGroup, theme);
+            importTemplates(productBundleName, resource, appBundle, TEMPLATES_DIR, stGroup, theme);
 
             return stGroup;
         }
@@ -206,7 +209,7 @@ public class StringTemplateRenderer {
 
     private void importTemplates(String symbolicName, Resource resource, Bundle appBundle, String resourcePath,
             STGroupBundleDir stGroup, Theme theme) {
-        Optional<Bundle> theBundle = findBundle(appBundle, symbolicName);
+        Optional<Bundle> theBundle = findBundle(appBundle.getBundleContext(), symbolicName);
         if (theBundle.isPresent()) {
             String mediaTypedResourcePath = (resourcePath + "/" + theme).replace("/*", "");
             importTemplates(resource, mediaTypedResourcePath , stGroup, theBundle);
@@ -227,7 +230,7 @@ public class StringTemplateRenderer {
         }
     }
 
-    private boolean resourcePathExists(String resourcePath, Optional<Bundle> theBundle) {
+    private static boolean resourcePathExists(String resourcePath, Optional<Bundle> theBundle) {
         return theBundle.get().getResource(resourcePath) != null;
     }
 
@@ -238,8 +241,8 @@ public class StringTemplateRenderer {
         return htmlConverter.getProductName();
     }
 
-    private Optional<Bundle> findBundle(Bundle bundle, String bundleName) {
-        Bundle[] bundles = bundle.getBundleContext().getBundles();
+    private Optional<Bundle> findBundle(BundleContext bundleContext, String bundleName) {
+        Bundle[] bundles = bundleContext.getBundles();
         Optional<Bundle> thisBundle = Arrays.stream(bundles).filter(b -> b.getSymbolicName().equals(bundleName))
                 .findFirst();
         return thisBundle;

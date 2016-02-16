@@ -68,6 +68,8 @@ public class Note implements Identifiable, Serializable {
     }
 
     @Field(inputType = InputType.TEXT, htmlPolicy = HtmlPolicy.NO_HTML)
+    @PostView(visibility = Visibility.HIDE)
+    @PutView(visibility = Visibility.HIDE)
     private String uuid;
 
     public void setUuid(String value) {

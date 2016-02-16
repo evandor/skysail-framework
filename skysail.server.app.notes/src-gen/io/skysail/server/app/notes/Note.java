@@ -80,6 +80,20 @@ public class Note implements Identifiable, Serializable {
         return this.uuid;
     }
 
+    @Field(inputType = InputType.TEXT, htmlPolicy = HtmlPolicy.NO_HTML)
+    @ListView(hide = true)
+    @PostView(visibility = Visibility.HIDE)
+    @PutView(visibility = Visibility.HIDE)
+    private String owner;
+
+    public void setOwner(String value) {
+        this.owner = value;
+    }
+
+    public String getOwner() {
+        return this.owner;
+    }
+
 
     // --- relations ---
 

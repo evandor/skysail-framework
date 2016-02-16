@@ -2,90 +2,38 @@ package io.skysail.server.ext.apollo;
 
 import javax.jms.*;
 
-import org.fusesource.stomp.jms.*;
+import org.apache.qpid.amqp_1_0.jms.impl.*;
 import org.osgi.service.component.annotations.*;
+import org.osgi.service.metatype.annotations.Designate;
 
-import io.skysail.server.services.MessageQueueHandler;
+import io.skysail.server.services.*;
 import lombok.extern.slf4j.Slf4j;
 
-//@Component(immediate = true)
+@Component(immediate = true, configurationPolicy = ConfigurationPolicy.REQUIRE, configurationPid = "apolloMQ")
+@Designate(ocd = ApolloConfig.class)
 @Slf4j
 public class ApolloMessageQueueHandler implements MessageQueueHandler {
-
-    private String user = "admin";
-    private String password = "password";
-    private String host = "localhost";
-    private int port = 61613;
+    
+    private String user;
+    private String password;
+    private String host;
+    private int port;
     private Thread t;
-    private StompJmsConnectionFactory factory;
-    private Connection connection;
-    private Session session;
     private int cnt = 1;
-
-    public static void main(String[] args) {
-        String destination = "/topic/event";
-
-        StompJmsConnectionFactory factory = new StompJmsConnectionFactory();
-        factory.setBrokerURI("tcp://localhost:61613");
-
-        Connection connection;
-        try {
-            connection = factory.createConnection("admin", "password");
-            connection.start();
-            Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
-            Destination dest = new StompJmsDestination(destination);
-
-            MessageConsumer consumer = session.createConsumer(dest);
-            long start = System.currentTimeMillis();
-            long count = 1;
-            System.out.println("Waiting for messages...");
-            while (true) {
-                Message msg = consumer.receive();
-                if (msg instanceof TextMessage) {
-                    String body = ((TextMessage) msg).getText();
-                    System.out.println(body);
-                    if ("SHUTDOWN".equals(body)) {
-                        long diff = System.currentTimeMillis() - start;
-                        System.out.println(String.format("Received %d in %.2f seconds", count, (1.0 * diff / 1000.0)));
-                        break;
-                    } else {
-                        if (count != msg.getIntProperty("id")) {
-                            System.out.println("mismatch: " + count + "!=" + msg.getIntProperty("id"));
-                        }
-                        count = msg.getIntProperty("id");
-
-                        if (count == 0) {
-                            start = System.currentTimeMillis();
-                        }
-                        if (count % 1000 == 0) {
-                            System.out.println(String.format("Received %d messages.", count));
-                        }
-                        count++;
-                    }
-
-                } else {
-                    System.out.println("Unexpected message type: " + msg.getClass());
-                }
-            }
-            connection.close();
-        } catch (JMSException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-
-    }
+    private ConnectionFactoryImpl factory;
+    private ConnectionImpl connection;
 
     @Activate
-    public void activate() {
+    public void activate(ApolloConfig apolloConfig) {
+        user = apolloConfig.getUser();
+        password = apolloConfig.getPassword();
+        host = apolloConfig.getHost();
+        port = apolloConfig.getPort();
         
-        factory = new StompJmsConnectionFactory();
-        factory.setBrokerURI("tcp://" + host + ":" + port);
-
+        factory = new ConnectionFactoryImpl(host, port, user, password);
         try {
             connection = factory.createConnection(user, password);
-            connection.start();
-            session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
-        } catch (Exception e) {
+        } catch (JMSException e) {
             log.error(e.getMessage(),e);
         }
         
@@ -107,90 +55,95 @@ public class ApolloMessageQueueHandler implements MessageQueueHandler {
 
     @Override
     public void send(String topic, String message) {
-        String destination = topic;
-
         
+        Destination dest = null;
+        //String destination = "topic://event";
+        if (topic.startsWith("topic://")) {
+            dest = new TopicImpl(topic);
+        } else {
+            dest = new QueueImpl(topic);
+        }
         try {
             
-            Destination dest = new StompJmsDestination(destination);
+            connection.start();
+            Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
             MessageProducer producer = session.createProducer(dest);
-            producer.setDeliveryMode(DeliveryMode.PERSISTENT);
+            //producer.setDeliveryMode(DeliveryMode.NON_PERSISTENT);
 
             TextMessage msg = session.createTextMessage(message);
             msg.setIntProperty("id", cnt++);
             producer.send(msg);
-
-            //producer.send(session.createTextMessage("SHUTDOWN"));
-           // connection.close();
+            System.out.println(String.format("Sent %d messages", cnt));
         } catch (JMSException e) {
+            // TODO Auto-generated catch block
             e.printStackTrace();
         }
 
-        // try {
-        // ByteArrayInputStream fileIn = new
-        // ByteArrayInputStream(message.getBytes());
-        // ObjectInputStream in = new ObjectInputStream(fileIn);
-        // Object readObject = in.readObject();
-        // in.close();
-        // fileIn.close();
-        // System.out.println(readObject);
-        // } catch (IOException i) {
-        // i.printStackTrace();
-        // return;
-        // } catch (ClassNotFoundException c) {
-        // System.out.println("Employee class not found");
-        // c.printStackTrace();
-        // return;
-        // }
-
     }
-    
+
     private void listen() {
 
-        String destination = "/topic/event";
-
+        String destination = "topic://entity.io_skysail_server_app_notes_Note.post";
+        Destination dest = null;
+        if (destination.startsWith("topic://")) {
+            dest = new TopicImpl(destination);
+        } else {
+            dest = new QueueImpl(destination);
+        }
+        
         try {
-            //Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
-            Destination dest = new StompJmsDestination(destination);
-
+            connection = factory.createConnection(user, password);
+            connection.start();
+            Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
             MessageConsumer consumer = session.createConsumer(dest);
-            long start = System.currentTimeMillis();
-            long count = 1;
             System.out.println("Waiting for messages...");
             while (true) {
                 Message msg = consumer.receive();
                 if (msg instanceof TextMessage) {
                     String body = ((TextMessage) msg).getText();
-                    System.out.println(body);
-                    if ("SHUTDOWN".equals(body)) {
-                        long diff = System.currentTimeMillis() - start;
-                        System.out.println(
-                                String.format("Received %d in %.2f seconds", count, (1.0 * diff / 1000.0)));
-                        break;
-                    } else {
-                        if (count != msg.getIntProperty("id")) {
-                            System.out.println("mismatch: " + count + "!=" + msg.getIntProperty("id"));
-                        }
-                        count = msg.getIntProperty("id");
-
-                        if (count == 0) {
-                            start = System.currentTimeMillis();
-                        }
-                        if (count % 1000 == 0) {
-                            System.out.println(String.format("Received %d messages.", count));
-                        }
-                        count++;
-                    }
-
+                    System.out.println("received: " + body);
+                   
                 } else {
                     System.out.println("Unexpected message type: " + msg.getClass());
                 }
             }
-            connection.close();
         } catch (JMSException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
+
+    }
+
+    @Override
+    public void addMessageListener(String topic, SkysailMessageListener listener) {
+        String destination = topic;
+        Destination dest = null;
+        if (destination.startsWith("topic://")) {
+            dest = new TopicImpl(destination);
+        } else {
+            dest = new QueueImpl(destination);
+        }
+        
+        try {
+            connection = factory.createConnection(user, password);
+            connection.start();
+            Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
+            MessageConsumer consumer = session.createConsumer(dest);
+            consumer.setMessageListener(new MessageListener() {
+                @Override
+                public void onMessage(Message message) {
+                    if (message instanceof TextMessage) {
+                        try {
+                            listener.processBody(((TextMessage)message).getText());
+                        } catch (JMSException e) {
+                            log.error(e.getMessage(),e);
+                        }
+                    }
+                }
+            });
+        } catch (JMSException e) {
+            e.printStackTrace();
+        }
+
     }
 
 }

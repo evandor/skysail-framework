@@ -52,13 +52,13 @@ public class SkysailEntityCompiler extends SkysailCompiler {
 
     private void createEntityResource(DesignerEntityModel entityModel, Map<String, CompiledCode> codes) {
         CompiledCode compiledCode;
+        ST template;
         if (entityModel.isAggregate()) {
-            ST template = templateProvider.templateFor("entityResource");
-            compiledCode = setupEntityResourceForCompilation(template, entityModel);
+            template = templateProvider.templateFor("entityResource");
         } else {
-            ST template = templateProvider.templateFor("entityResourceNonAggregate");
-            compiledCode = setupEntityResourceForCompilation(template, entityModel);
+            template = templateProvider.templateFor("entityResourceNonAggregate");
         }
+        compiledCode = setupEntityResourceForCompilation(template, entityModel);
         entityResourceClassName = compiledCode.getClassName();
         routes.add(new RouteModel("/" + entityModel.getId() + "s/{id}", entityResourceClassName));
         codes.put(entityResourceClassName, compiledCode);
@@ -148,10 +148,16 @@ public class SkysailEntityCompiler extends SkysailCompiler {
 //            return actionField.getCode("postEntity#addEntity").replace("$Methodname$", withFirstCapital(actionField.getName()));
 //        }).collect(Collectors.joining("\n")));
         if (entityModel.isAggregate()) {
-            Optional<DesignerFieldModel> dfm = getFieldModelFor(entityModel, FieldRole.GUID);
-            if (dfm.isPresent()) {
-                String methodName = dfm.get().getName().substring(0, 1).toUpperCase() + dfm.get().getName().substring(1);
+            Optional<DesignerFieldModel> uuidField = getFieldModelFor(entityModel, FieldRole.GUID);
+            if (uuidField.isPresent()) {
+                String methodName = uuidField.get().getName().substring(0, 1).toUpperCase() + uuidField.get().getName().substring(1);
                 addEntityCode.append("entity.set"+methodName+"(java.util.UUID.randomUUID().toString());\n");
+            }
+            Optional<DesignerFieldModel> ownerField = getFieldModelFor(entityModel, FieldRole.OWNER);
+            if (ownerField.isPresent()) {
+                String methodName = ownerField.get().getName().substring(0, 1).toUpperCase() + ownerField.get().getName().substring(1);
+                //addEntityCode.append("Subject subject = SecurityUtils.getSubject();\n");
+                addEntityCode.append("entity.set"+methodName+"(subject.getPrincipal().toString());\n");
             }
             addEntityCode.append("String id = app.getRepository("+entityModel.getId()+".class).save(entity, app.getApplicationModel()).toString();\n");
             addEntityCode.append("entity.setId(id);\n");

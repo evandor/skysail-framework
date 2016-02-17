@@ -1,5 +1,0 @@
-name=skysailgraph
-url = remote:localhost/designer
-#url = plocal:etc/db/designer
-username=admin
-password=admin

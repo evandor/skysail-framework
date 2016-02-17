@@ -8,7 +8,7 @@ public class PostTrixeditorFieldResource extends PostFieldResource<DbEntityTrixe
 
     public PostTrixeditorFieldResource() {
         super(PostTrixeditorFieldResource.class);
-        addToContext(ResourceContextId.LINK_TITLE, "new Trix Editor");
+        addToContext(ResourceContextId.LINK_TITLE, "new HtmlEditor (Trix)");
     }
 
     @Override

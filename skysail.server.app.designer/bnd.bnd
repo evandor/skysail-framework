@@ -85,11 +85,13 @@ Private-Package: \
 	io.skysail.server.app.designer.fields.resources.editors,\
 	io.skysail.server.app.designer.fields.resources.text,\
 	io.skysail.server.app.designer.fields.resources.textarea,\
+	io.skysail.server.app.designer.fields.resources.editors
+
+Export-Package: \
 	io.skysail.server.app.designer.fields.resources.url,\
 	io.skysail.server.app.designer.model,\
 	io.skysail.server.app.designer.relations,\
-	io.skysail.server.app.designer.relations.resources
-Export-Package: \
+	io.skysail.server.app.designer.relations.resources,\
 	io.skysail.server.app.designer.repo,\
 	io.skysail.server.app.designer.application,\
 	io.skysail.server.app.designer.entities,\

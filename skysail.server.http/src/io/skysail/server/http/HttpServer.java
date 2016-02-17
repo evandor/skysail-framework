@@ -7,12 +7,10 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.stream.Collectors;
 
-import org.osgi.service.component.ComponentContext;
-import org.osgi.service.component.ComponentException;
+import org.osgi.service.component.*;
 import org.osgi.service.component.annotations.*;
 import org.osgi.service.metatype.annotations.Designate;
-import org.restlet.Context;
-import org.restlet.Server;
+import org.restlet.*;
 import org.restlet.data.Protocol;
 import org.restlet.engine.Engine;
 import org.restlet.engine.converter.ConverterHelper;
@@ -21,15 +19,15 @@ import org.restlet.resource.ServerResource;
 import org.restlet.service.ConverterService;
 
 import de.twenty11.skysail.server.SkysailComponent;
-import de.twenty11.skysail.server.app.SkysailComponentProvider;
-import de.twenty11.skysail.server.app.SkysailRootApplication;
-import io.skysail.server.services.OsgiConverterHelper;
-import io.skysail.server.services.RestletServicesProvider;
+import de.twenty11.skysail.server.app.*;
+import io.skysail.server.services.*;
 import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
 
-@org.osgi.service.component.annotations.Component(immediate = true, configurationPolicy = ConfigurationPolicy.OPTIONAL, configurationPid = "server", property = {
-        "event.topics=de/twenty11/skysail/server/configuration/UPDATED" })
+@org.osgi.service.component.annotations.Component(
+        immediate = true, 
+        configurationPolicy = ConfigurationPolicy.OPTIONAL, 
+        configurationPid = "server", property = { "event.topics=de/twenty11/skysail/server/configuration/UPDATED" })
 @Designate(ocd = ServerConfig.class)
 @Slf4j
 public class HttpServer extends ServerResource

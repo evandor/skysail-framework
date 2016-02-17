@@ -1,9 +1,7 @@
 package io.skysail.server.app.designer.fields;
 
 import io.skysail.domain.html.InputType;
-import lombok.Builder;
-import lombok.NoArgsConstructor;
-import lombok.NonNull;
+import lombok.*;
 
 @NoArgsConstructor
 public class DbEntityTrixeditorField extends DbEntityField { // NOSONAR
@@ -16,5 +14,5 @@ public class DbEntityTrixeditorField extends DbEntityField { // NOSONAR
         this.name = name;
         this.mandatory = mandatory;
     }
-    
+
 }

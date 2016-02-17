@@ -1,9 +1,6 @@
 package io.skysail.server.app.designer.fields.resources;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 import de.twenty11.skysail.server.core.restlet.ResourceContextId;
 import io.skysail.api.links.Link;
@@ -11,9 +8,7 @@ import io.skysail.server.app.designer.DesignerApplication;
 import io.skysail.server.app.designer.application.DbApplication;
 import io.skysail.server.app.designer.entities.DbEntity;
 import io.skysail.server.app.designer.fields.DbEntityField;
-import io.skysail.server.restlet.resources.ListServerResource;
-import io.skysail.server.restlet.resources.SkysailServerResource;
-import io.skysail.server.restlet.resources.TreeRepresentation;
+import io.skysail.server.restlet.resources.*;
 
 public class FieldsResource extends ListServerResource<DbEntityField> {
 

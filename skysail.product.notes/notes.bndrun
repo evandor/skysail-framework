@@ -20,13 +20,11 @@ skysail.config.path            = config/common,config/local
 logback.configurationFile.path = config/local
 
 -runbundles: \
-	${serverbundles-1.0.0},\
+	${serverbundles-minimal-1.0.0},\
 	skysail.product.notes;version=latest,\
 	skysail.server.ext.initconfig;version=latest,\
 	skysail.server.polymer;version=latest,\
 	skysail.server.app.notes;version=latest,\
-	skysail.server.uikit.webresource;version=latest,\
-	skysail.server.purecss.webresource;version=latest,\
-    skysail.server.w2ui.webresource;version=latest
+	skysail.server.uikit.webresource;version=latest
 
 

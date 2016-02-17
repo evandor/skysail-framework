@@ -1,7 +1,9 @@
 package io.skysail.server.services;
 
-import java.lang.management.*;
-import java.util.*;
+import java.lang.management.ManagementFactory;
+import java.lang.management.OperatingSystemMXBean;
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.concurrent.atomic.AtomicReference;
 
 import org.osgi.service.component.annotations.*;
@@ -41,7 +43,7 @@ public class ServerLoad {
         log.debug("activating ServerLoad task");
         timerTask = new ServerLoadTimerTask(eventAdminRef);
         Timer timer = new Timer(true);
-        timer.scheduleAtFixedRate(timerTask, 10000, 10 * 1000);
+        timer.scheduleAtFixedRate(timerTask, 10000, 60 * 1000);
     }
 
     @Deactivate

@@ -11,6 +11,16 @@ navbar(user, messages, converter, model) ::= <<
         $dropdownDesignerNav(model.services)$
       $endif$
       $dropdownAdminNav(user, model.services)$
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Themes <span class="caret"></span></a>
+        <ul class="dropdown-menu" role="menu">
+          <li><a href='/?_theme=bootstrap'>Bootstrap</a></li>
+          <li><a href='/?_theme=uikit'>UIKit</a></li>
+          <li><a href='/?_theme=purecss'>pureCss</a></li>
+          <li><a href='/?_theme=w2ui'>w2ui</a></li>
+        </ul>
+      </li>
+      
       $if(user.developer)$
       <li class="dropdown">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown">View (advanced) <span class="caret"></span></a>

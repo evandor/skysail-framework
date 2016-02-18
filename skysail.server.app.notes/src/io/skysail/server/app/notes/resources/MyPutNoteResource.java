@@ -12,7 +12,11 @@ public class MyPutNoteResource extends PutNoteResource {
     @Override
     public void updateEntity(Note  entity) {
         io.skysail.server.app.notes.Note original = getEntity();
-        copyProperties(original,entity);
+        if (original == null) {
+            original = entity;
+        } else {
+            copyProperties(original,entity);
+        }
         
         String content = entity.getContent();
         if (StringUtils.isEmpty(content)) {

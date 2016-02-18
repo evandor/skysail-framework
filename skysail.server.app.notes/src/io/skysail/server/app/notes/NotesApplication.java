@@ -6,15 +6,20 @@ import java.util.Arrays;
 import org.osgi.service.cm.ConfigurationException;
 import org.osgi.service.component.ComponentContext;
 import org.osgi.service.component.annotations.*;
+import org.osgi.service.component.annotations.Component;
+import org.restlet.*;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import de.twenty11.skysail.server.app.ApplicationProvider;
-import de.twenty11.skysail.server.core.restlet.RouteBuilder;
+import de.twenty11.skysail.server.core.restlet.*;
 import io.skysail.domain.core.Repositories;
 import io.skysail.server.app.ApiVersion;
 import io.skysail.server.app.notes.resources.*;
 import io.skysail.server.menus.MenuItemProvider;
+import io.skysail.server.restlet.filter.*;
+import io.skysail.server.restlet.resources.PutEntityServerResource;
+import io.skysail.server.restlet.response.ResponseWrapper;
 import io.skysail.server.services.*;
 import io.skysail.server.uikit.webresource.RequireUiKitWebResource;
 
@@ -27,7 +32,7 @@ public class NotesApplication extends NotesApplicationGen implements Application
     public static final int TITLE_MAX_LENGTH = 30;
     
     @Reference(cardinality = ReferenceCardinality.MANDATORY)
-    public volatile MessageQueueHandler messageQueueHandler;
+    private volatile MessageQueueHandler messageQueueHandler;
     
     public  NotesApplication() {
         super("Notes", new ApiVersion(1), Arrays.asList());
@@ -42,7 +47,17 @@ public class NotesApplication extends NotesApplicationGen implements Application
             public void processBody(String text) {
                 try {
                     Note noteFromOtherInstallation = mapper.readValue(text, Note.class);
+                    noteFromOtherInstallation.setId(null);
                     System.out.println(noteFromOtherInstallation);
+                    UpdateEntityFilter<PutEntityServerResource<Note>, Note> updateEntityFilter = new UpdateEntityFilter<>();
+                    PutEntityServerResource<Note> resource = new MyPutNoteResource();
+                    resource.setApplication(NotesApplication.this);
+                    Response response = null;
+                    Wrapper<Note> responseWrapper = new ResponseWrapper<>(response);
+                    responseWrapper.setEntity(noteFromOtherInstallation);
+                    Request request = new Request();
+                    resource.init(getContext(), request, response);
+                    FilterResult result = updateEntityFilter.doHandle(resource, responseWrapper);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }

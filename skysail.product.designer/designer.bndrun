@@ -42,6 +42,7 @@ logback.configurationFile.path = config/local
     org.fusesource.hawtbuf.hawtbuf;version=1.11,\
     org.fusesource.hawtdispatch.hawtdispatch;version=1.22,\
     org.fusesource.hawtdispatch.hawtdispatch-transport;version=1.22,\
+    skysail.server.ext.browser;version=latest,\
    	org.apache.commons.codec;version=1.9.0
 	
 ########################################################################################

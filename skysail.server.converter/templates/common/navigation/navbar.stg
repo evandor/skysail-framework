@@ -14,10 +14,11 @@ navbar(user, messages, converter, model) ::= <<
       <li class="dropdown">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Themes <span class="caret"></span></a>
         <ul class="dropdown-menu" role="menu">
-          <li><a href='/?_theme=bootstrap'>Bootstrap</a></li>
-          <li><a href='/?_theme=uikit'>UIKit</a></li>
-          <li><a href='/?_theme=purecss'>pureCss</a></li>
-          <li><a href='/?_theme=w2ui'>w2ui</a></li>
+          <li><a href='?_theme=bootstrap'>Bootstrap</a></li>
+          <li><a href='?_theme=jquerymobile'>Mobile View</a></li>
+          <li><a href='?_theme=spa'>Single Page App</a></li>
+          <li class="divider"></li>
+          $converter.themes: {theme | $renderTheme(theme.name,theme.selected)$}$
         </ul>
       </li>
       
@@ -25,18 +26,14 @@ navbar(user, messages, converter, model) ::= <<
       <li class="dropdown">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown">View (advanced) <span class="caret"></span></a>
         <ul class="dropdown-menu" role="menu">
-          <li class="divider"></li>
-          <li class="dropdown-header">Nav header</li>
-          <li><a href='javascript:document.cookie="template=bootstrap/debug;path=/";window.location.reload(true)'>Debug</a></li>
-          <li><a href='javascript:document.cookie="template=bootstrap/edit;path=/";window.location.reload(true)'>Edit</a></li>
-          <li><a href='javascript:document.cookie="template=bootstrap/default;path=/";window.location.reload(true)'>Simple</a></li>
+          <li><a href='javascript:document.cookie="mode=debug;path=/";window.location.reload(true)'>Debug</a></li>
+          <li><a href='javascript:document.cookie="mode=edit;path=/";window.location.reload(true)'>Edit</a></li>
+          <li><a href='javascript:document.cookie="mode=default;path=/";window.location.reload(true)'>Simple</a></li>
           <li><a href='javascript:inspect()'>Inspect Page</a></li>
-          <li><a href='javascript:document.cookie="template=jquerymobile;path=/";window.location.reload(true)'>Mobile View</a></li>
-          <li><a href='javascript:document.cookie="template=spa;path=/";window.location.reload(true)'>Single Page App</a></li>
         </ul>
       </li>
       $endif$
-      $if(converter.debug && user.principal)$
+      $if(converter.debug && user.developer)$
       <li class="dropdown">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Debug <span class="caret"></span></a>
         <ul class="dropdown-menu" role="menu">
@@ -79,4 +76,12 @@ navbar(user, messages, converter, model) ::= <<
     $endif$
   </div><!--/.nav-collapse -->
 </div>
+>>
+
+renderTheme(name,selected) ::= <<
+  $if(selected)$
+    <li>&nbsp;&nbsp;<b> &gt; $name$</b></li>
+  $else$
+    <li><a href="?_theme=$theme.name$">$name$</a></li>
+  $endif$
 >>

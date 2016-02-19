@@ -21,8 +21,12 @@ public class CookiesUtils {
     /**
      * cookie is set by navbar.stg 
      */
-    public static String getTemplateFromCookie(Request request) {
-        return returnCookieOrNull(request,Constants.COOKIE_NAME_TEMPLATE);
+    public static String getThemeFromCookie(Request request) {
+        return returnCookieOrNull(request,Constants.COOKIE_NAME_THEME);
+    }
+
+    public static String getModeFromCookie(Request request) {
+        return returnCookieOrNull(request,Constants.COOKIE_NAME_MODE);
     }
 
     public static String getMainPageFromCookie(Request request) {
@@ -51,5 +55,7 @@ public class CookiesUtils {
         }
         return templateCookie.getValue();
     }
+
+
     
 }

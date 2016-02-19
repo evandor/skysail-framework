@@ -1,0 +1,10 @@
+div.boxed {
+  border:1px solid red;
+  position: absolute;
+  top: 0px;
+  right:0px;
+  height: 20px;
+  color: white; 
+  z-index:10000;
+  opacity:0.8;
+}

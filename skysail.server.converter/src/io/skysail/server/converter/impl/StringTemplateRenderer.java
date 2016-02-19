@@ -27,6 +27,7 @@ import io.skysail.server.menus.MenuItemProvider;
 import io.skysail.server.model.ResourceModel;
 import io.skysail.server.restlet.resources.SkysailServerResource;
 import io.skysail.server.restlet.response.messages.Message;
+import io.skysail.server.services.ThemeDefinition;
 import io.skysail.server.stringtemplate.STGroupBundleDir;
 import io.skysail.server.theme.Theme;
 import io.skysail.server.utils.CookiesUtils;
@@ -52,19 +53,23 @@ public class StringTemplateRenderer {
 
     private Theme theme;
 
+    private String mode;
+
     public StringTemplateRenderer(HtmlConverter htmlConverter, Resource resource) {
         this.htmlConverter = htmlConverter;
         this.resource = resource;
     }
 
-    public StringRepresentation createRepresenation(Object entity, Variant target,
-            SkysailServerResource<?> resource) {
+    public StringRepresentation createRepresenation(Object entity, Variant target, SkysailServerResource<?> resource) {
 
         theme = Theme.determineFrom(resource, target);
-
+        mode = CookiesUtils.getModeFromCookie(resource.getRequest());
+        
         @SuppressWarnings({ "rawtypes", "unchecked" })
-        ResourceModel<SkysailServerResource<?>,?> resourceModel = new ResourceModel(resource, (SkysailResponse<?>)entity, target, theme);
-        resourceModel.setSearchService(searchService); // has to be set before menuItemProviders ;(
+        ResourceModel<SkysailServerResource<?>, ?> resourceModel = new ResourceModel(resource,
+                (SkysailResponse<?>) entity, target, theme);
+        resourceModel.setSearchService(searchService); // has to be set before
+                                                       // menuItemProviders ;(
         resourceModel.setMenuItemProviders(menuProviders);
 
         STGroupBundleDir.clearUsedTemplates();
@@ -83,12 +88,13 @@ public class StringTemplateRenderer {
         SkysailApplication currentApplication = (SkysailApplication) resource.getApplication();
         Bundle appBundle = currentApplication.getBundle();
         if (appBundle == null) {
-            log.warn("could not determine bundle of current ApplicationModel {}, follow-up errors might occur", currentApplication.getName());
+            log.warn("could not determine bundle of current ApplicationModel {}, follow-up errors might occur",
+                    currentApplication.getName());
         }
         if (appBundle.getResource(TEMPLATES_DIR) != null) {
             STGroupBundleDir stGroup = new STGroupBundleDir(appBundle, resource, TEMPLATES_DIR);
             importTemplates("skysail.server.converter", resource, appBundle, TEMPLATES_DIR, stGroup, theme);
-            
+
             String productBundleName = System.getProperty(Constants.PRODUCT_BUNDLE_IDENTIFIER);
             importTemplates(productBundleName, resource, appBundle, TEMPLATES_DIR, stGroup, theme);
 
@@ -96,7 +102,7 @@ public class StringTemplateRenderer {
 
         } else {
             Optional<Bundle> thisBundle = findBundle(appBundle.getBundleContext(), "skysail.server.converter");
-            STGroupBundleDir stGroup =  new STGroupBundleDir(thisBundle.get(), resource, TEMPLATES_DIR);
+            STGroupBundleDir stGroup = new STGroupBundleDir(thisBundle.get(), resource, TEMPLATES_DIR);
 
             String productBundleName = System.getProperty(Constants.PRODUCT_BUNDLE_IDENTIFIER);
             importTemplates(productBundleName, resource, appBundle, TEMPLATES_DIR, stGroup, theme);
@@ -106,7 +112,8 @@ public class StringTemplateRenderer {
     }
 
     private ST getStringTemplateIndex(Resource resource, STGroupBundleDir stGroup) {
-        if (resource.getContext() != null && resource.getContext().getAttributes().containsKey(ResourceContextId.RENDERER_HINT.name())) {
+        if (resource.getContext() != null
+                && resource.getContext().getAttributes().containsKey(ResourceContextId.RENDERER_HINT.name())) {
             String root = (String) resource.getContext().getAttributes().get(ResourceContextId.RENDERER_HINT.name());
             resource.getContext().getAttributes().remove(ResourceContextId.RENDERER_HINT.name());
             return stGroup.getInstanceOf(root);
@@ -124,30 +131,29 @@ public class StringTemplateRenderer {
         }
     }
 
-
-
     private StringRepresentation createRepresentation(ST index, STGroupBundleDir stGroup) {
         String stringTemplateRenderedHtml = index.render();
+
+        // index.getEvents()
 
         if (importedGroupBundleDir != null) {
             stGroup.addUsedTemplates(importedGroupBundleDir.getUsedTemplates());
         }
         String templatesHtml = isDebug() ? getTemplatesHtml(stGroup) : "";
-        StringRepresentation rep = new StringRepresentation(stringTemplateRenderedHtml.replace("%%templates%%",
-                templatesHtml));
+        StringRepresentation rep = new StringRepresentation(
+                stringTemplateRenderedHtml.replace("%%templates%%", templatesHtml));
 
         rep.setMediaType(MediaType.TEXT_HTML);
         return rep;
     }
 
     public boolean isDebug() {
-        return "debug".equalsIgnoreCase(theme.getOption().toString());
+        return "debug".equalsIgnoreCase(mode);
     }
 
     public boolean isEdit() {
         return "edit".equalsIgnoreCase(theme.getOption().toString());
     }
-
 
     /**
      * As the templates used for creating the output cannot be added to the
@@ -165,7 +171,7 @@ public class StringTemplateRenderer {
         return sb.toString();
     }
 
-    private void addSubstitutions(ResourceModel<SkysailServerResource<?>,?> resourceModel, @NonNull ST decl) {
+    private void addSubstitutions(ResourceModel<SkysailServerResource<?>, ?> resourceModel, @NonNull ST decl) {
 
         SkysailServerResource<?> resource = resourceModel.getResource();
 
@@ -186,12 +192,10 @@ public class StringTemplateRenderer {
         List<Notification> notifications = htmlConverter.getNotifications();
         String messageIds = resource.getOriginalRef().getQueryAsForm().getFirstValue("msgIds");
         if (messageIds != null) {
-            List<Message> messages = Arrays.stream(messageIds.split("|"))
-                    .map(id -> getMessageFromCache(id))
-                    .filter(msg -> msg != null)
-                    .collect(Collectors.toList());
+            List<Message> messages = Arrays.stream(messageIds.split("|")).map(id -> getMessageFromCache(id))
+                    .filter(msg -> msg != null).collect(Collectors.toList());
             for (Message message : messages) {
-                notifications.add(new Notification(message.getMsg(),"success"));
+                notifications.add(new Notification(message.getMsg(), "success"));
             }
         }
         return notifications;
@@ -212,7 +216,7 @@ public class StringTemplateRenderer {
         Optional<Bundle> theBundle = findBundle(appBundle.getBundleContext(), symbolicName);
         if (theBundle.isPresent()) {
             String mediaTypedResourcePath = (resourcePath + "/" + theme).replace("/*", "");
-            importTemplates(resource, mediaTypedResourcePath , stGroup, theBundle);
+            importTemplates(resource, mediaTypedResourcePath, stGroup, theBundle);
             importTemplates(resource, mediaTypedResourcePath + "/head", stGroup, theBundle);
             importTemplates(resource, mediaTypedResourcePath + "/navigation", stGroup, theBundle);
             importTemplates(resource, resourcePath + "/common", stGroup, theBundle);
@@ -264,6 +268,18 @@ public class StringTemplateRenderer {
         this.searchService = searchService;
     }
 
+    public List<ThemeDefinition> getThemes() {
+        List<ThemeDefinition> themeDefs = htmlConverter.getThemeProviders().stream().map(p -> p.getTheme())
+                .collect(Collectors.toList());
+        themeDefs.stream().forEach(td -> setIsSelected(td)); // NOSONAR
+        return themeDefs;
+    }
 
+    private void setIsSelected(ThemeDefinition themeDef) {
+        themeDef.setSelected(false);
+        if (themeDef.getName().equalsIgnoreCase(theme.getVariant().name())) {
+            themeDef.setSelected(true);
+        }
+    }
 
 }

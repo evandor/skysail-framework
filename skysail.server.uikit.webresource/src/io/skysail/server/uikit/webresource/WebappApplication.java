@@ -17,12 +17,14 @@ import org.restlet.routing.Router;
 
 import de.twenty11.skysail.server.app.ApplicationProvider;
 import io.skysail.server.app.SkysailApplication;
+import io.skysail.server.services.ThemeDefinition;
+import io.skysail.server.services.ThemeProvider;
 import io.skysail.server.utils.ClassLoaderDirectory;
 import io.skysail.server.utils.CompositeClassLoader;
 import lombok.Getter;
 
-@org.osgi.service.component.annotations.Component
-public class WebappApplication extends SkysailApplication implements ApplicationProvider {
+@org.osgi.service.component.annotations.Component(immediate = true)
+public class WebappApplication extends SkysailApplication implements ApplicationProvider, ThemeProvider {
 
     private static final String ROOT = "static/yootheme/uikit";
     
@@ -88,6 +90,11 @@ public class WebappApplication extends SkysailApplication implements Application
     @Override
     public SkysailApplication getApplication() {
         return this;
+    }
+
+    @Override
+    public ThemeDefinition getTheme() {
+        return new ThemeDefinition(UiKitConstants.SHORT_NAME, UiKitConstants.BOOTSTRAP_WEB_RESOURCE_VERSION, "UIkit");
     }
 
 }

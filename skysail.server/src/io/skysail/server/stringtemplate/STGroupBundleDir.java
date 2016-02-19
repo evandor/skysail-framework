@@ -91,7 +91,7 @@ public class STGroupBundleDir extends STGroupDir {
         Validate.isTrue(!name.contains("."), "name is not supposed to contain a dot");
         
         URL groupFileURL = determineGroupFileUrl(name);
-        log.info("checking group file {}", groupFileURL);
+        log.debug("checking group file {}", groupFileURL);
         if (groupFileURL == null) {
             return null;
         }

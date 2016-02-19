@@ -13,20 +13,14 @@ public class Theme {
 
     private static final String DEFAULT_TEMPLATE = "bootstrap";
 
-//    public enum GuiFramework {
-//        TEXT, TIMELINE
-//    }
-
     public enum Variant {
         BOOTSTRAP, SPA, JQUERYMOBILE, UIKIT, PURECSS, W2UI, TIMELINE, HOME
     }
 
+    @Deprecated
     public enum Option {
         DEFAULT, EDIT, DEBUG
     }
-
-//    @Getter
-//    private GuiFramework guiFramework = GuiFramework.TEXT;
 
     @Getter
     private Variant variant = Variant.BOOTSTRAP;
@@ -38,12 +32,12 @@ public class Theme {
         String themeFromRequest = resource.getQuery() != null ? resource.getQuery().getFirstValue("_theme") : null;
         if (themeFromRequest != null) {
             Theme theme = themeFromSplit(themeFromRequest, themeFromRequest.split("/"));
-            CookieSetting templateCookie = CookiesUtils.createCookie(Constants.COOKIE_NAME_TEMPLATE, resource.getRequest().getResourceRef().getPath(), -1);
-            templateCookie.setValue(themeFromRequest);
-            resource.getResponse().getCookieSettings().add(templateCookie);
+            CookieSetting themeCookie = CookiesUtils.createCookie(Constants.COOKIE_NAME_THEME, resource.getRequest().getResourceRef().getPath(), -1);
+            themeCookie.setValue(themeFromRequest);
+            resource.getResponse().getCookieSettings().add(themeCookie);
             return theme;
         }
-        String themeToUse = CookiesUtils.getTemplateFromCookie(resource.getRequest());
+        String themeToUse = CookiesUtils.getThemeFromCookie(resource.getRequest());
         if (themeToUse == null) {
             themeToUse = DEFAULT_TEMPLATE;
         }

@@ -1,6 +1,7 @@
 index(user, messages, converter, model) ::= <<
 <!DOCTYPE html>
 <html lang="en">
+  <!-- skysail.server/src/de/twenty11/skysail/server/resources/DefaultResourceStg/index.st -->
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -39,21 +40,23 @@ index(user, messages, converter, model) ::= <<
   <body role="document">
 
     <!-- Fixed navbar (upper navigation, menu, search, current user)-->
-    <nav class="navbar navbar-inverse navbar-fixed-top">
+    <nav class="navbar navbar-inverse navbar-fixed-top" $if(converter.debug && user.principal)$style="border:3px solid red;"$endif$>
       $navbar(user, messages, converter, model)$
+      $if(converter.debug && user.principal)$
+      <div style="border:3px solid red;position: absolute;top: 2px;right:2px;width: 100px;height: 30px;background-color: white;z-index:10000;opacity:0.8">navbar</div>
+      $endif$
     </nav>
 
-    <div class="container-fluid" style="padding-top:55px;$if(converter.debug && user.principal)$ border:1px solid green;$endif$">
+    <div class="container-fluid" style="margin-top:55px;">
       $mainContent(user, converter, messages, model)$
 
       $if(converter.debug && user.principal)$
         $debug(messages, model)$
       $endif$
 
-      <div style="border:1px solid green;position: absolute;top: 40px;right:20px;width: 200px;height: 30px;background-color: white;z-index:10000;opacity:0.5">mainContent</div>
     </div>
 
-    <footer class="footer">
+    <footer class="footer" $if(converter.debug && user.principal)$style="border:3px solid orange;"$endif$>
       <div class="container4footer" style="border-top: 1px dotted #a0a0a0; margin-right: 18px;">
         <div class="row">
           <div class="col-md-8" id="output"></div>
@@ -61,6 +64,9 @@ index(user, messages, converter, model) ::= <<
           <div class="col-md-1" style="margin-top:10px; text-align: right">$peityBars(converter.peitybars)$</div>
          </div>
       </div>
+      $if(converter.debug && user.principal)$
+      <div style="border:3px solid orange;position: absolute;top: 2px;right:2px;width: 100px;height: 30px;background-color: white;z-index:10000;opacity:0.8">footer</div>
+      $endif$
     </footer>
 
     <script>

@@ -1,0 +1,54 @@
+navbar(user, messages, converter, model) ::= <<
+    <div class="pure-menu pure-menu-horizontal" $if(converter.debug && user.principal)$style="border:1px solid red;"$endif$>
+      <a href="#" class="pure-menu-heading pure-menu-link">skysail</a>
+      <ul class="pure-menu-list">
+        <li class="pure-menu-item"><a href="#" class="pure-menu-link">Applications</a></li>
+        <li class="pure-menu-item pure-menu-has-children pure-menu-allow-hover">
+          <a href="#" id="menuLink1" class="pure-menu-link">Themes</a>
+          <ul class="pure-menu-children">
+            <li class="pure-menu-item"><a href="?_theme=bootstrap" class="pure-menu-link">Bootstrap</a></li>
+            $converter.themes: {theme | $renderTheme(theme.name,theme.selected)$}$
+          </ul>
+        </li>
+        $if(user.developer)$
+        <li class="pure-menu-item pure-menu-has-children pure-menu-allow-hover">
+          <a href="#" id="menuLink1" class="pure-menu-link">Mode</a>
+          <ul class="pure-menu-children">
+            <li class="pure-menu-item"><a href='javascript:document.cookie="mode=debug;path=/";window.location.reload(true)' class="pure-menu-link">Debug</a></li>
+            <li class="pure-menu-item"><a href='javascript:document.cookie="mode=edit;path=/";window.location.reload(true)' class="pure-menu-link">Edit</a></li>
+            <li class="pure-menu-item"><a href='javascript:document.cookie="mode=default;path=/";window.location.reload(true)' class="pure-menu-link">Simple</a></li>
+            <li class="pure-menu-item"><a href='javascript:inspect()'>Inspect Page</a></li>
+          </ul>
+        </li>
+        $endif$
+        $if(converter.debug && user.developer)$
+        <li class="pure-menu-item pure-menu-has-children pure-menu-allow-hover">
+          <a href="#" id="menuLink1" class="pure-menu-link">Debug</a>
+          <ul class="pure-menu-children">
+            <li class="divider"></li>
+            <li class="pure-menu-item"><a href='#' data-toggle="modal" data-target="#linksModal" class="pure-menu-link">Links</a></li>
+            <li class="pure-menu-item"><a href='#' data-toggle="modal" data-target="#templateModal" class="pure-menu-link">Templates</a></li>
+          </ul>
+        </li>
+        $endif$
+        
+        $if(user.principal)$
+        <li class="pure-menu-item pure-menu-has-children pure-menu-allow-hover">
+          <a href="#" id="menuLink1" class="pure-menu-link">$user.username$</a>
+          <ul class="pure-menu-children">
+            <li class="pure-menu-item"><a href='/_logout?targetUri=/' class="pure-menu-link">Logout</a></li>
+          </ul>
+        </li>
+        $else$
+        <li class="pure-menu-item"><a href="#" class="pure-menu-link"><a href="_login" class="pure-menu-link">Login</a></li>
+        $endif$
+      </ul>
+      <div class="boxed" style="background-color: red">navbar</div>
+    </div>
+>>
+
+renderTheme(name,selected) ::= <<
+  $if(!selected)$
+    <li class="pure-menu-item"><a href="?_theme=$theme.name$" class="pure-menu-link">$name$</a></li>
+  $endif$
+>>

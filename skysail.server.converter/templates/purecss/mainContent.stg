@@ -33,7 +33,7 @@ mainContent(user, converter, messages, model) ::= <<
 
 
 <div class="uk-panel">
-            <p id="resourceDescription"></p>
+  <p id="resourceDescription"></p>
 
 </div>
 >>

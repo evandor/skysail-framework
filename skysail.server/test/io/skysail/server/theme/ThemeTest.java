@@ -41,7 +41,7 @@ public class ThemeTest {
     @Test
     public void no_theme_from_request_nor_cookie_nor_mediatype_yields_bootstrap_theme() throws Exception {
         //cookie = new Cookie(Constants.COOKIE_NAME_TEMPLATE, "text/html");
-        Mockito.when(cookies.getFirst(Constants.COOKIE_NAME_TEMPLATE)).thenReturn(null);
+        Mockito.when(cookies.getFirst(Constants.COOKIE_NAME_THEME)).thenReturn(null);
         Theme theme = Theme.determineFrom(resource, target);
         assertThat(theme.getVariant(),is(Theme.Variant.BOOTSTRAP));
     }
@@ -49,8 +49,8 @@ public class ThemeTest {
 
     @Test
     public void theme_is_derived_from_text_html_cookie() throws Exception {
-        cookie = new Cookie(Constants.COOKIE_NAME_TEMPLATE, "bootstrap");
-        Mockito.when(cookies.getFirst(Constants.COOKIE_NAME_TEMPLATE)).thenReturn(cookie);
+        cookie = new Cookie(Constants.COOKIE_NAME_THEME, "bootstrap");
+        Mockito.when(cookies.getFirst(Constants.COOKIE_NAME_THEME)).thenReturn(cookie);
         Theme theme = Theme.determineFrom(resource, target);
        // assertThat(theme.getGuiFramework(),is(Theme.GuiFramework.TEXT));
     }
@@ -67,8 +67,8 @@ public class ThemeTest {
         @SuppressWarnings("unchecked")
         Series<CookieSetting> cookieSettings = new Series(CookieSetting.class);
         Mockito.when(response.getCookieSettings()).thenReturn(cookieSettings);
-        cookie = new Cookie(Constants.COOKIE_NAME_TEMPLATE, "uikit");
-        Mockito.when(cookies.getFirst(Constants.COOKIE_NAME_TEMPLATE)).thenReturn(cookie);
+        cookie = new Cookie(Constants.COOKIE_NAME_THEME, "uikit");
+        Mockito.when(cookies.getFirst(Constants.COOKIE_NAME_THEME)).thenReturn(cookie);
 
         Theme theme = Theme.determineFrom(resource, target);
         

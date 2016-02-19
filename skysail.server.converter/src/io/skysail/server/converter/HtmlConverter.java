@@ -4,23 +4,33 @@ import java.util.*;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 import org.apache.shiro.SecurityUtils;
-import org.osgi.service.component.annotations.*;
-import org.osgi.service.event.*;
+import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.Reference;
+import org.osgi.service.component.annotations.ReferenceCardinality;
+import org.osgi.service.component.annotations.ReferencePolicy;
+import org.osgi.service.event.Event;
+import org.osgi.service.event.EventHandler;
 import org.restlet.data.MediaType;
 import org.restlet.engine.converter.ConverterHelper;
 import org.restlet.engine.resource.VariantInfo;
-import org.restlet.representation.*;
+import org.restlet.representation.Representation;
+import org.restlet.representation.StringRepresentation;
+import org.restlet.representation.Variant;
 import org.restlet.resource.Resource;
 
 import de.twenty11.skysail.server.core.osgi.EventHelper;
 import etm.core.configuration.EtmManager;
-import etm.core.monitor.*;
+import etm.core.monitor.EtmMonitor;
+import etm.core.monitor.EtmPoint;
 import io.skysail.api.search.SearchService;
 import io.skysail.server.app.SkysailApplication;
-import io.skysail.server.converter.impl.*;
+import io.skysail.server.converter.impl.Notification;
+import io.skysail.server.converter.impl.StringTemplateRenderer;
 import io.skysail.server.menus.MenuItemProvider;
 import io.skysail.server.restlet.resources.SkysailServerResource;
 import io.skysail.server.services.OsgiConverterHelper;
+import io.skysail.server.services.ThemeProvider;
+import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -44,6 +54,10 @@ public class HtmlConverter extends ConverterHelper implements OsgiConverterHelpe
     private List<Event> peityBarEvents= new CopyOnWriteArrayList<>();
 
     private volatile Set<MenuItemProvider> menuProviders = new HashSet<>();
+    
+    @Reference(cardinality = ReferenceCardinality.MULTIPLE)
+    @Getter
+    private volatile List<ThemeProvider> themeProviders = new ArrayList<>();
 
     private SearchService searchService;
 

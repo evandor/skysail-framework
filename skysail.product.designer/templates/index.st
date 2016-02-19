@@ -186,7 +186,7 @@ $animate()$ $moment()$ $cookieConsent()$
   
   <div class="container">
     <div class="jumbotron">
-      <h1 style="text-align: center;">Rapid Prototyping with skysail</h1>
+      <h1 style="text-align: center;">FASTER BACKEND PROTOTYPING WITH SKYSAIL</h1>
       <p class="lead" style="text-align: center;">
        You want to create a <b><i>real application</i></b> to validate your new idea?<br>
        You think <b>visual mockups</b> are not enough?<br>
@@ -203,10 +203,16 @@ $animate()$ $moment()$ $cookieConsent()$
         <div class="col-md-12 col-sm-12 col-xs-12">
           <div class="feature_header text-center">
             <h3 class="feature_title">
-              Download and follow three simple steps:
+              Just focus on your business requirements
             </h3>
-            <h4 class="feature_sub" contenteditable="true">You can create a new application easily - including various user interfaces, persistence and
-              validation.</h4>
+            <h4 class="feature_sub" contenteditable="true">No need to start from scratch each time</h4>
+            <p>Use skysail for your prototypes and add security, persistence, validation and more on the fly</p>
+            <div class="divider"></div>
+            <h4 class="feature_sub" contenteditable="true">Accelerate implementation trough better prototyping</h4>
+            <p>create living specifications and handle requirement gaps in an early stage without additional effort</p>
+            <div class="divider"></div>
+            <h4 class="feature_sub" contenteditable="true">Get faster by simultaneous frontend and backend specification</h4>
+            <p>some more text</p>
             <div class="divider"></div>
           </div>
         </div>

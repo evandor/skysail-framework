@@ -1,11 +1,11 @@
 package io.skysail.server.restlet;
 
+import org.restlet.data.Method;
+
 import io.skysail.domain.Identifiable;
 import io.skysail.server.app.SkysailApplication;
 import io.skysail.server.restlet.filter.*;
 import io.skysail.server.restlet.resources.ListServerResource;
-
-import org.restlet.data.Method;
 
 public class ListRequestHandler<T extends Identifiable> {
 

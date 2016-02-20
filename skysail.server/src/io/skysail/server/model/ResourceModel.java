@@ -1,34 +1,52 @@
 package io.skysail.server.model;
 
-import java.text.*;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.stream.Collectors;
 
-import org.apache.commons.beanutils.*;
+import org.apache.commons.beanutils.DynaBean;
+import org.apache.commons.beanutils.DynaProperty;
 import org.apache.commons.lang.StringUtils;
-import org.restlet.data.*;
+import org.restlet.data.Header;
+import org.restlet.data.MediaType;
+import org.restlet.data.Reference;
+import org.restlet.data.Status;
 import org.restlet.engine.resource.VariantInfo;
 import org.restlet.representation.Variant;
 import org.restlet.util.Series;
 
-import com.fasterxml.jackson.databind.*;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 
 import de.twenty11.skysail.server.core.restlet.ResourceContextId;
 import io.skysail.api.links.LinkRelation;
 import io.skysail.api.responses.*;
-import io.skysail.api.search.*;
+import io.skysail.api.search.Document;
+import io.skysail.api.search.SearchService;
 import io.skysail.domain.Identifiable;
-import io.skysail.domain.core.*;
+import io.skysail.domain.core.ApplicationModel;
+import io.skysail.domain.core.FieldModel;
 import io.skysail.server.app.SkysailApplication;
-import io.skysail.server.domain.jvm.*;
+import io.skysail.server.domain.jvm.ClassEntityModel;
+import io.skysail.server.domain.jvm.ClassFieldModel;
 import io.skysail.server.features.GuiFeatures;
-import io.skysail.server.forms.*;
+import io.skysail.server.forms.FormField;
+import io.skysail.server.forms.PostView;
+import io.skysail.server.forms.Tab;
 import io.skysail.server.forms.helper.CellRendererHelper;
 import io.skysail.server.menus.MenuItemProvider;
-import io.skysail.server.restlet.resources.*;
+import io.skysail.server.restlet.resources.ListServerResource;
+import io.skysail.server.restlet.resources.PostEntityServerResource;
+import io.skysail.server.restlet.resources.PutEntityServerResource;
+import io.skysail.server.restlet.resources.SkysailServerResource;
 import io.skysail.server.theme.Theme;
-import io.skysail.server.utils.*;
-import lombok.*;
+import io.skysail.server.utils.FormfieldUtils;
+import io.skysail.server.utils.HeadersUtils;
+import io.skysail.server.utils.ResourceUtils;
+import lombok.Getter;
+import lombok.NonNull;
+import lombok.ToString;
 
 /**
  * The model of the resource from which the html representation is derived.
@@ -375,6 +393,10 @@ public class ResourceModel<R extends SkysailServerResource<T>, T> {
 
     public boolean isForm() {
         return response.isForm();
+    }
+    
+    public boolean isRelationTargetList() {
+        return response.isRelationTargetList();
     }
 
     public boolean isList() {

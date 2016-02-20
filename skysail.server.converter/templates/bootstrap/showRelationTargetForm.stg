@@ -1,0 +1,8 @@
+showRelationTargetForm(fields, messages, model) ::= <<
+  <form action="$model.formTarget$" method="POST" class="form-horizontal" role="form" id="form" name="form">
+    $handleField(first(model.data), first(model.formfields), messages,"1", " autofocus")$
+    $rest(model.formfields):{ field | $handleField(first(model.data), field, messages,i, "")$}$
+    $submitPost("Submit","2","10",length(model.formfields))$
+  </form>
+>>
+

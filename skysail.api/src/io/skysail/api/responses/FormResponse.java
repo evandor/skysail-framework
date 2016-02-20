@@ -2,8 +2,14 @@ package io.skysail.api.responses;
 
 import org.restlet.Response;
 
-import lombok.*;
+import lombok.Getter;
+import lombok.ToString;
 
+/**
+ * indicates that the response is to be handled as some kind of input form for an entity of type &lt;T&gt;.
+ * 
+ * Rendering of a such a response typically results in an html form or the like.
+ */
 @Getter
 @ToString(callSuper = true)
 public class FormResponse<T> extends SkysailResponse<T> {

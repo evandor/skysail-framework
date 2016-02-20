@@ -39,6 +39,11 @@ mainContent(user, converter, messages, model) ::= <<
                 <br>
                 $renderEntityInfo(model.formfields, messages, model)$
               </div>
+            $elseif(model.relationTargetList)$
+              <div class="col-md-12">
+                <br>
+                $showRelationTargetForm(model.formfields, messages, model)$
+              </div>
             $elseif(model.list)$
               <div class="col-md-12">
                 <br>

@@ -30,12 +30,12 @@ logback.configurationFile.path = config/local
 	skysail.server.app.todos;version=latest,\
 	skysail.server.app.checklist;version=latest,\
 	skysail.server.app.notes;version=latest,\
+    skysail.server.app.oEService;version=latest,\
 	skysail.server.uikit.webresource;version=latest,\
 	skysail.server.purecss.webresource;version=latest,\
     skysail.server.w2ui.webresource;version=latest,\
 	skysail.server.app.twitter4j;version=latest,\
 	skysail.server.ext.oauth2;version=latest,\
-    skysail.server.ext.apollo;version=latest,\
     org.apache.oltu.oauth2.client;version=1.0,\
     org.fusesource.stompjms.stompjms-client,\
     org.apache.geronimo.specs.geronimo-jms_1.1_spec;version=1.1,\
@@ -48,5 +48,6 @@ logback.configurationFile.path = config/local
 ### --- Pool (currently not used)  ------------------------------------------------- ###
 ########################################################################################
 #    skysail.server.ext.browser;version=latest,\
+#    skysail.server.ext.apollo;version=latest,\
 
 

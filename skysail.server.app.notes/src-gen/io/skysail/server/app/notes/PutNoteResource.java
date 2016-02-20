@@ -1,10 +1,10 @@
 package io.skysail.server.app.notes;
 
-import io.skysail.api.responses.SkysailResponse;
-import io.skysail.server.restlet.resources.PutEntityServerResource;
-
 import java.util.Date;
+
 import org.restlet.resource.ResourceException;
+
+import io.skysail.server.restlet.resources.PutEntityServerResource;
 
 public class PutNoteResource extends PutEntityServerResource<io.skysail.server.app.notes.Note> {
 
@@ -21,6 +21,9 @@ public class PutNoteResource extends PutEntityServerResource<io.skysail.server.a
     @Override
     public void updateEntity(Note  entity) {
         io.skysail.server.app.notes.Note original = getEntity();
+        if (original == null) {
+            original = new Note();
+        }
         copyProperties(original,entity);
         original.setModifiedAt(new Date());
 

@@ -6,11 +6,14 @@ import java.util.Arrays;
 import org.osgi.service.cm.ConfigurationException;
 import org.osgi.service.component.ComponentContext;
 import org.osgi.service.component.annotations.*;
+import org.restlet.Request;
+import org.restlet.Response;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import de.twenty11.skysail.server.app.ApplicationProvider;
 import de.twenty11.skysail.server.core.restlet.RouteBuilder;
+import de.twenty11.skysail.server.core.restlet.Wrapper;
 import io.skysail.domain.core.Repositories;
 import io.skysail.server.app.ApiVersion;
 import io.skysail.server.app.notes.resources.MyNoteResource;
@@ -18,6 +21,10 @@ import io.skysail.server.app.notes.resources.MyNotesResource;
 import io.skysail.server.app.notes.resources.MyPostNoteResource;
 import io.skysail.server.app.notes.resources.MyPutNoteResource;
 import io.skysail.server.menus.MenuItemProvider;
+import io.skysail.server.restlet.filter.FilterResult;
+import io.skysail.server.restlet.filter.UpdateEntityFilter;
+import io.skysail.server.restlet.resources.PutEntityServerResource;
+import io.skysail.server.restlet.response.ResponseWrapper;
 import io.skysail.server.services.MessageQueueHandler;
 import io.skysail.server.services.MessageQueueProvider;
 import io.skysail.server.services.SkysailMessageListener;
@@ -44,20 +51,27 @@ public class NotesApplication extends NotesApplicationGen
     @Activate
     public void activate(ComponentContext componentContext) throws ConfigurationException {
         super.activate(componentContext);
-        if (messageQueueHandler != null) {
-            messageQueueHandler.addMessageListener("topic://entity.io_skysail_server_app_notes_Note.post",
-                    new SkysailMessageListener() {
-                        @Override
-                        public void processBody(String text) {
-                            try {
-                                Note noteFromOtherInstallation = mapper.readValue(text, Note.class);
-                                System.out.println(noteFromOtherInstallation);
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                            }
-                        }
-                    });
-        }
+        messageQueueHandler.addMessageListener("topic://entity.io_skysail_server_app_notes_Note.post", new SkysailMessageListener() {
+            @Override
+            public void processBody(String text) {
+                try {
+                    Note noteFromOtherInstallation = mapper.readValue(text, Note.class);
+                    noteFromOtherInstallation.setId(null);
+                    System.out.println(noteFromOtherInstallation);
+                    UpdateEntityFilter<PutEntityServerResource<Note>, Note> updateEntityFilter = new UpdateEntityFilter<>();
+                    PutEntityServerResource<Note> resource = new MyPutNoteResource();
+                    resource.setApplication(NotesApplication.this);
+                    Response response = null;
+                    Wrapper<Note> responseWrapper = new ResponseWrapper<>(response);
+                    responseWrapper.setEntity(noteFromOtherInstallation);
+                    Request request = new Request();
+                    resource.init(getContext(), request, response);
+                    FilterResult result = updateEntityFilter.doHandle(resource, responseWrapper);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
     }
 
     @Deactivate

@@ -2,7 +2,10 @@ package io.skysail.api.responses;
 
 import org.restlet.Response;
 
-import lombok.*;
+import io.skysail.domain.Identifiable;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 
 /**
@@ -11,9 +14,7 @@ import lombok.*;
  * (like html, json, xml, csv, ...).
  * <p>
  * The actual data contained in the response is described by the generic type
- * parameter &lt;T&gt;; there are no formal restrictions on that type, but you
- * have to keep in mind that it is supposed to be serializable into formats as
- * JSON, XML and the like.
+ * parameter &lt;T&gt;; which has to be {@link Identifiable}.
  * </p>
  *
  */
@@ -32,5 +33,9 @@ public class SkysailResponse<T> {
 
     public boolean isForm() {
         return this instanceof FormResponse || this instanceof ConstraintViolationsResponse;
+    }
+    
+    public boolean isRelationTargetList() {
+        return this instanceof RelationTargetResponse;
     }
 }

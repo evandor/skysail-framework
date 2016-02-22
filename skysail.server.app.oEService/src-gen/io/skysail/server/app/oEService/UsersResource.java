@@ -1,12 +1,13 @@
 package io.skysail.server.app.oEService;
 
-import java.util.List;
-
-import de.twenty11.skysail.server.core.restlet.ResourceContextId;
-import io.skysail.api.links.Link;
 import io.skysail.server.queryfilter.Filter;
 import io.skysail.server.queryfilter.pagination.Pagination;
 import io.skysail.server.restlet.resources.ListServerResource;
+import io.skysail.api.links.Link;
+
+import java.util.*;
+
+import de.twenty11.skysail.server.core.restlet.ResourceContextId;
 
 public class UsersResource extends ListServerResource<io.skysail.server.app.oEService.User> {
 
@@ -14,7 +15,7 @@ public class UsersResource extends ListServerResource<io.skysail.server.app.oESe
     private UserRepository repository;
 
     public UsersResource() {
-        super(UserResource.class, UsersOEsResource.class);
+        super(UserResource.class);
         addToContext(ResourceContextId.LINK_TITLE, "list Users");
     }
 
@@ -36,6 +37,6 @@ public class UsersResource extends ListServerResource<io.skysail.server.app.oESe
     }
 
     public List<Link> getLinks() {
-              return super.getLinks(PostUserResource.class);
+              return super.getLinks(PostUserResource.class,OEsResource.class,UsersResource.class);
     }
 }

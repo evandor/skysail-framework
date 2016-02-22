@@ -5,12 +5,10 @@ import java.util.stream.Collectors;
 
 import org.stringtemplate.v4.ST;
 
+import io.skysail.domain.core.EntityRelation;
 import io.skysail.server.app.designer.codegen.templates.TemplateProvider;
 import io.skysail.server.app.designer.fields.FieldRole;
-import io.skysail.server.app.designer.model.DesignerApplicationModel;
-import io.skysail.server.app.designer.model.DesignerEntityModel;
-import io.skysail.server.app.designer.model.DesignerFieldModel;
-import io.skysail.server.app.designer.model.RouteModel;
+import io.skysail.server.app.designer.model.*;
 import io.skysail.server.stringtemplate.STGroupBundleDir;
 import lombok.Getter;
 
@@ -47,6 +45,9 @@ public class SkysailEntityCompiler extends SkysailCompiler {
         createPostResource(entityModel, codes);
         createPutResource(entityModel, codes);
         createListResource(entityModel, codes);
+        
+        entityModel.getRelations().stream().forEach(relation -> createRelationResources(entityModel, relation, codes));
+        
         return codes;
     }
 
@@ -63,7 +64,7 @@ public class SkysailEntityCompiler extends SkysailCompiler {
         routes.add(new RouteModel("/" + entityModel.getId() + "s/{id}", entityResourceClassName));
         codes.put(entityResourceClassName, compiledCode);
     }
-
+    
     private void createPostResource(DesignerEntityModel entityModel, Map<String, CompiledCode> codes) {
         CompiledCode compiledCode;
         ST postResourceTemplate;
@@ -107,6 +108,28 @@ public class SkysailEntityCompiler extends SkysailCompiler {
         }
     }
 
+    private void createRelationResources(DesignerEntityModel entityModel, EntityRelation relation, Map<String, CompiledCode> codes) {
+        CompiledCode compiledCode;
+        ST template;
+        if (entityModel.isAggregate()) {
+            template = templateProvider.templateFor("relationResource");
+        } else {
+            return;//   template = templateProvider.templateFor("entityResourceNonAggregate");
+        }
+        compiledCode = setupRelationResourceForCompilation(template, entityModel, relation);
+        String name = compiledCode.getClassName();
+        routes.add(new RouteModel("/" + entityModel.getId() + "s/{id}/OEs", name));
+        codes.put(name, compiledCode);
+        
+        
+        template = templateProvider.templateFor("postRelationResource");
+        compiledCode = setupPostRelationResourceForCompilation(template, entityModel, relation);
+        name = compiledCode.getClassName();
+        routes.add(new RouteModel("/" + entityModel.getId() + "s/{id}/OEs/", name));
+        codes.put(name, compiledCode);
+        
+        
+    }
 
     private CompiledCode setupEntityForCompilation(ST template, DesignerEntityModel entityModel) {
         template.remove(ENTITY_IDENTIFIER);
@@ -192,6 +215,24 @@ public class SkysailEntityCompiler extends SkysailCompiler {
 
     private CompiledCode setupListResourceForCompilation(ST template, DesignerEntityModel entityModel) {
         final String simpleClassName = entityModel.getSimpleName() + "sResource";
+        template.remove(ENTITY_IDENTIFIER);
+        template.add(ENTITY_IDENTIFIER, entityModel);
+        String entityCode = template.render();
+        String className = entityModel.getPackageName() + "." + simpleClassName;
+        return collect(className, entityCode, BUILD_PATH_SOURCE);
+    }
+    
+    private CompiledCode setupRelationResourceForCompilation(ST template, DesignerEntityModel entityModel, EntityRelation relation) {
+        final String simpleClassName = entityModel.getSimpleName() + "sOEsResource";
+        template.remove(ENTITY_IDENTIFIER);
+        template.add(ENTITY_IDENTIFIER, entityModel);
+        String entityCode = template.render();
+        String className = entityModel.getPackageName() + "." + simpleClassName;
+        return collect(className, entityCode, BUILD_PATH_SOURCE);
+    }
+    
+    private CompiledCode setupPostRelationResourceForCompilation(ST template, DesignerEntityModel entityModel, EntityRelation relation) {
+        final String simpleClassName = "Post" + entityModel.getSimpleName() + "sOERelationResource";
         template.remove(ENTITY_IDENTIFIER);
         template.add(ENTITY_IDENTIFIER, entityModel);
         String entityCode = template.render();

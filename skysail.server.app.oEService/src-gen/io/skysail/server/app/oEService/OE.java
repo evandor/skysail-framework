@@ -30,6 +30,7 @@ public class OE implements Identifiable, Serializable {
     // --- fields ---
 
     @Field(inputType = InputType.TEXT, htmlPolicy = HtmlPolicy.NO_HTML)
+    @ListView(link = OEsResource.class)
     private String name;
 
     public void setName(String value) {
@@ -41,6 +42,7 @@ public class OE implements Identifiable, Serializable {
     }
 
     @Field(inputType = InputType.DATE, htmlPolicy = HtmlPolicy.NO_HTML)
+    @ListView(link = OEsResource.class)
     private Date expires;
 
     public void setExpires(Date value) {
@@ -53,6 +55,18 @@ public class OE implements Identifiable, Serializable {
 
 
     // --- relations ---
+
+    @Relation
+    private List<io.skysail.server.app.oEService.OE> oes = new ArrayList<>();
+
+    public void setOes(List<io.skysail.server.app.oEService.OE> value) {
+        this.oes = value;
+    }
+
+    public List<io.skysail.server.app.oEService.OE> getOes() {
+        return oes;
+    }
+
 
 
 

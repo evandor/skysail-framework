@@ -46,7 +46,7 @@ public class DesignerApplicationModel extends ApplicationModel {
                 return;
             }
             oneToManyRelations.stream().forEach(oneToManyRelation -> {
-                String relationName = oneToManyRelation.getName().substring(0, 1).toLowerCase() + oneToManyRelation.getName().substring(1) + "s";
+                String relationName = oneToManyRelation.getName().substring(0, 1).toLowerCase() + oneToManyRelation.getName().substring(1).toLowerCase() + "s";
                 Optional<EntityModel> targetEntityModel = getEntityModel(oneToManyRelation.getName());
                 if (!targetEntityModel.isPresent()) {
                     log.error("error finding entityModel with name '{}'", oneToManyRelation.getName());

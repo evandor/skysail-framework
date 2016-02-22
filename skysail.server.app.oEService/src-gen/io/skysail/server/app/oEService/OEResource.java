@@ -39,7 +39,7 @@ public class OEResource extends EntityServerResource<io.skysail.server.app.oESer
 
 	@Override
     public List<Link> getLinks() {
-        return super.getLinks(PutOEResource.class);
+        return super.getLinks(PutOEResource.class,PostOEResource.class,OEsResource.class);
     }
 
 }

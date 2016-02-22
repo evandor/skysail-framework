@@ -1,4 +1,5 @@
-package io.skysail.server.app.oEService;
+relationResource(application, entity) ::= <<
+package $application.packageName$;
 
 import java.util.List;
 
@@ -36,3 +37,4 @@ public class UsersOEsResource extends ListServerResource<OE> {
         return super.getLinks(UsersOEsResource.class, PostUsersOERelationResource.class);
     }
 }
+>>

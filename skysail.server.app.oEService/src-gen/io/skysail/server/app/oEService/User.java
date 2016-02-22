@@ -1,17 +1,15 @@
 package io.skysail.server.app.oEService;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.persistence.Id;
 
+import java.util.*;
+
 import io.skysail.domain.Identifiable;
-import io.skysail.domain.html.Field;
-import io.skysail.domain.html.HtmlPolicy;
-import io.skysail.domain.html.InputType;
-import io.skysail.domain.html.Relation;
-import io.skysail.server.forms.ListView;
+import io.skysail.domain.html.*;
+import io.skysail.server.forms.*;
+
+import org.apache.commons.lang3.StringUtils;
 
 @SuppressWarnings("serial")
 public class User implements Identifiable, Serializable {
@@ -32,7 +30,7 @@ public class User implements Identifiable, Serializable {
     // --- fields ---
 
     @Field(inputType = InputType.TEXT, htmlPolicy = HtmlPolicy.NO_HTML)
-    @ListView(link = UsersOEsResource.class)
+    @ListView(link = OEsResource.class)
     private String name;
 
     public void setName(String value) {

@@ -1,5 +1,7 @@
 package io.skysail.server.restlet.filter;
 
+import java.util.List;
+
 import org.restlet.Response;
 
 import de.twenty11.skysail.server.core.restlet.Wrapper;
@@ -21,7 +23,7 @@ public class PersistRelationFilter<R extends SkysailServerResource<?>, T extends
     public FilterResult doHandle(R resource, Wrapper<T> responseWrapper) {
         log.debug("entering {}#doHandle", this.getClass().getSimpleName());
         Response response = responseWrapper.getResponse();
-        Object entity = responseWrapper.getEntity();
+        List<T> entity = (List<T>) responseWrapper.getEntity();
         ((PostRelationResource) resource).addRelations(entity);
 //        String id = ((T)entity).getId();
 //        if (id != null) {

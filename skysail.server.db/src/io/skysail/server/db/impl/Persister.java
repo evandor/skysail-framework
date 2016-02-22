@@ -1,15 +1,22 @@
 package io.skysail.server.db.impl;
 
-import java.lang.reflect.*;
-import java.util.*;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
 import java.util.function.Consumer;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.tinkerpop.blueprints.Vertex;
-import com.tinkerpop.blueprints.impls.orient.*;
+import com.tinkerpop.blueprints.impls.orient.OrientGraph;
+import com.tinkerpop.blueprints.impls.orient.OrientVertex;
 
 import io.skysail.domain.Identifiable;
-import io.skysail.domain.core.*;
+import io.skysail.domain.core.ApplicationModel;
+import io.skysail.domain.core.EntityModel;
+import io.skysail.domain.core.EntityRelation;
 import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
 
@@ -106,7 +113,7 @@ public class Persister {
     }
 
     private static String getMethodName(String prefix, String key) {
-        return new StringBuilder(prefix).append(key.substring(0, 1).toUpperCase()).append(key.substring(1)).toString();
+        return new StringBuilder(prefix).append(key.substring(0, 1).toUpperCase()).append(key.substring(1).toLowerCase()).toString();
     }
 
     private <T> OrientVertex runInTransaction(Identifiable entity) {

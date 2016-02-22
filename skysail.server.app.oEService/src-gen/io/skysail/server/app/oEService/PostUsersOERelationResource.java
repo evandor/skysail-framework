@@ -9,7 +9,8 @@ import io.skysail.server.restlet.resources.PostRelationResource;
 public class PostUsersOERelationResource extends PostRelationResource<User, OE> {
 
     private OEServiceApplication app;
-    private OERepository repository;
+    private OERepository oeRepo;
+    private UserRepository userRepo;
 
     public PostUsersOERelationResource() {
         // addToContext(ResourceContextId.LINK_TITLE, "add");
@@ -18,28 +19,36 @@ public class PostUsersOERelationResource extends PostRelationResource<User, OE> 
     @Override
     protected void doInit() {
         app = (OEServiceApplication) getApplication();
-        repository = (OERepository) app.getRepository(io.skysail.server.app.oEService.OE.class);
+        oeRepo = (OERepository) app.getRepository(io.skysail.server.app.oEService.OE.class);
+        userRepo = (UserRepository) app.getRepository(io.skysail.server.app.oEService.User.class);
     }
 
     @Override
     public List<OE> getEntity() {
         Filter filter = new Filter(getRequest());
-        Pagination pagination = new Pagination(getRequest(), getResponse(), repository.count(filter));
-        return repository.find(filter, pagination);
+        Pagination pagination = new Pagination(getRequest(), getResponse(), oeRepo.count(filter));
+        return oeRepo.find(filter, pagination);
     }
 
     @Override
     protected List<OE> getRelationTargets(String selectedValues) {
         Filter filter = new Filter(getRequest());
-        Pagination pagination = new Pagination(getRequest(), getResponse(), repository.count(filter));
-        return repository.find(filter, pagination);//.stream().filter(predicate);
+        Pagination pagination = new Pagination(getRequest(), getResponse(), oeRepo.count(filter));
+        return oeRepo.find(filter, pagination);//.stream().filter(predicate);
     }
     
     @Override
-    public void addRelations(Object entity) {
-        String attribute = getAttribute("id");
-        System.out.println(attribute);
-        System.out.println(entity);
+    public void addRelations(List<OE> entities) {
+        String id = getAttribute("id");
+        User theUser = userRepo.findOne(id);
+        entities.stream().forEach(e -> addIfNotPresentYet(theUser, e));
+        userRepo.save(theUser, getApplication().getApplicationModel());
+    }
+
+    private void addIfNotPresentYet(User theUser, OE e) {
+        if (!theUser.getOes().stream().filter(oe -> oe.getId().equals(oe.getId())).findFirst().isPresent()) {
+            theUser.getOes().add(e);
+        }
     }
 
 

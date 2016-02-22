@@ -38,7 +38,7 @@ public abstract class PostRelationResource<FROM extends Identifiable, TO extends
 
     protected abstract List<TO> getRelationTargets(String selectedValues);
     
-    public abstract void addRelations(Object entity);
+    public abstract void addRelations(List<TO> entity);
 
     @Get("html|json|yaml|xml|csv|timeline|standalone")
     public RelationTargetResponse<TO> getEntities(Variant variant) {

@@ -47,14 +47,14 @@ public class User implements Identifiable, Serializable {
     // --- relations ---
 
     @Relation
-    private List<io.skysail.server.app.oEService.OE> oEs = new ArrayList<>();
+    private List<io.skysail.server.app.oEService.OE> oes = new ArrayList<>();
 
-    public void setOEs(List<io.skysail.server.app.oEService.OE> value) {
-        this.oEs = value;
+    public void setOes(List<io.skysail.server.app.oEService.OE> value) {
+        this.oes = value;
     }
 
-    public List<io.skysail.server.app.oEService.OE> getOEs() {
-        return oEs;
+    public List<io.skysail.server.app.oEService.OE> getOes() {
+        return oes;
     }
 
 

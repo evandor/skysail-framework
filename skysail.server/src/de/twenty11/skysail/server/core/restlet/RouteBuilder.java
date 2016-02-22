@@ -1,16 +1,18 @@
 package de.twenty11.skysail.server.core.restlet;
 
-import io.skysail.server.app.ApiVersion;
-
-import java.util.*;
-import java.util.regex.*;
-
-import lombok.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.restlet.Restlet;
 import org.restlet.resource.ServerResource;
 
 import com.google.common.base.Predicate;
+
+import io.skysail.server.app.ApiVersion;
+import lombok.NonNull;
+import lombok.Setter;
 
 public class RouteBuilder {
 
@@ -43,7 +45,7 @@ public class RouteBuilder {
 
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder("RouteBuilder: ['");
+        StringBuilder sb = new StringBuilder("RouteBuilder: [\n  '");
         sb.append(pathTemplate).append("' -> ");
         if (targetClass != null) {
             sb.append(targetClass);
@@ -51,7 +53,7 @@ public class RouteBuilder {
         if (restlet != null) {
             sb.append(restlet);
         }
-        sb.append("]");
+        sb.append("\n]");
         return sb.toString();
     }
 

@@ -158,6 +158,19 @@ public class ResourceModel<R extends SkysailServerResource<T>, T> {
                     }
                 }
             }
+        } else if (source instanceof RelationTargetResponse) {
+            List<?> list = ((RelationTargetResponse<?>) source).getEntity();
+            if (list != null) {
+                for (Object object : list) {
+                    if (object instanceof Document) {
+                        throw new UnsupportedOperationException();
+                    } else if (object instanceof DynamicBean) {
+                        throw new UnsupportedOperationException();
+                    } else {
+                        result.add((Map<String, Object>) mapper.convertValue(object, LinkedHashMap.class));
+                    }
+                }
+            }
         } else if (source instanceof EntityServerResponse) {
             result.add((Map<String, Object>) mapper.convertValue(((EntityServerResponse<?>) source).getEntity(),
                     LinkedHashMap.class));
@@ -326,31 +339,11 @@ public class ResourceModel<R extends SkysailServerResource<T>, T> {
 
     public String getStatus() {
         Status status = resource.getStatus();
-        StringBuilder sb = new StringBuilder();
-        String panelClass = "panel-success";
-        if (String.valueOf(status.getCode()).startsWith("4")) {
-            panelClass = "panel-warning";
-        }
-        if (String.valueOf(status.getCode()).startsWith("5")) {
-            panelClass = "panel-danger";
-        }
-        sb.append("<div class='panel ").append(panelClass).append("'>");
-        sb.append("  <div class='panel-heading' role='tab' id='headingStatus'>");
-        sb.append("    <h4 class='panel-title'>");
-        sb.append("      <a rawData-toggle='collapse' rawData-parent='#accordion' href='#collapseStatus' aria-expanded='false' aria-controls='collapseStatus'>");
-        sb.append("        Http Status Code: ").append(status.getCode());
-        sb.append("      </a>");
-        sb.append("    </h4>");
-        sb.append("  </div>");
-        sb.append("  <div id='collapseStatus' class='panel-collapse collapse in' role='tabpanel' aria-labelledby='headingStatus'>");
-        sb.append("    <div class='panel-body'>").append(status.getDescription()).append("</div>");
-        sb.append("  </div>");
-        sb.append("</div>");
-        return sb.toString();
+        return status.getCode() + ": " + status.getDescription();
     }
 
     public String getClassname() {
-        return resource.getClass().getName();
+        return resource.getClass().getSimpleName();
     }
 
     public String getEntityname() {
@@ -364,19 +357,20 @@ public class ResourceModel<R extends SkysailServerResource<T>, T> {
     }
 
     public String getEntityType() {
+        return resource.getEntityType().replace("<", "&lt;").replace(">", "&gt;");
+    }
+
+    public String getEntityTypeGithubLink() {
         String result = resource.getEntityType().replace("<", "&lt;").replace(">", "&gt;");
         if (!result.contains("skysail")) {
-            return result;
+            return "#";
         }
-        // https://github.com/evandor/skysail/blob/master/skysail.server.app.i18n/src/de/twenty11/skysail/server/app/i18n/messages/BundleMessages.java
         String bundleName = resource.getApplication().getBundle().getSymbolicName();
-        StringBuilder sb = new StringBuilder("<a target='_blank' href='https://github.com/evandor/skysail/blob/master/")
-                //
+        StringBuilder sb = new StringBuilder("https://github.com/evandor/skysail-framework/tree/master/")
                 .append(bundleName).append("/").append("src/")
-                //
                 .append(resource.getEntityType().replace("List of ", "").replace(".", "/")).append(".java")
-                .append("'>View on github</a>");
-        return result + "&nbsp;" + sb.toString();
+                .append("'");
+        return sb.toString();
     }
 
     public Map<String, String> getHeaders() {

@@ -12,8 +12,6 @@ import org.restlet.representation.Variant;
 import org.restlet.resource.Resource;
 import org.stringtemplate.v4.ST;
 
-import com.google.common.cache.CacheStats;
-
 import de.twenty11.skysail.server.Constants;
 import de.twenty11.skysail.server.core.restlet.ResourceContextId;
 import io.skysail.api.responses.SkysailResponse;
@@ -198,12 +196,16 @@ public class StringTemplateRenderer {
                 notifications.add(new Notification(message.getMsg(), "success"));
             }
         }
+        String errorMessage = resource.getAttribute("message.error");
+        if (errorMessage != null) {
+            notifications.add(new Notification(errorMessage, "error"));
+        }
         return notifications;
     }
 
     private Message getMessageFromCache(String id) {
-        CacheStats messageCacheStats = Caches.getMessageCacheStats();
-        System.out.println(messageCacheStats);
+        //CacheStats messageCacheStats = Caches.getMessageCacheStats();
+        //System.out.println(messageCacheStats);
         return Caches.getMessageCache().getIfPresent(Long.valueOf(id));
     }
 
@@ -230,7 +232,7 @@ public class StringTemplateRenderer {
         if (resourcePathExists(resourcePath, theBundle)) {
             importedGroupBundleDir = new STGroupBundleDir(theBundle.get(), resource, resourcePath);
             stGroup.importTemplates(importedGroupBundleDir);
-            log.info("importing templates from {}: '{}'", theBundle.get().getSymbolicName(), resourcePath);
+            log.debug("importing templates from {}: '{}'", theBundle.get().getSymbolicName(), resourcePath);
         }
     }
 

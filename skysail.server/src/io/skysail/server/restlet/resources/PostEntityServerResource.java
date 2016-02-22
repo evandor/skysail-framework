@@ -187,7 +187,7 @@ public abstract class PostEntityServerResource<T extends Identifiable> extends S
         if (handledRequest.getConstraintViolationsResponse() != null) {
             return handledRequest.getConstraintViolationsResponse();
         }
-        return new FormResponse<T>(getResponse(), handledRequest.getEntity(), ".");
+        return new FormResponse<>(getResponse(), handledRequest.getEntity(), ".");
     }
 
     private ResponseWrapper<T> doPost(Form form, Variant variant) {

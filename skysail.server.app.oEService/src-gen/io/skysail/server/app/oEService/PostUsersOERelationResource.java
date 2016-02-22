@@ -11,6 +11,10 @@ public class PostUsersOERelationResource extends PostRelationResource<User, OE> 
     private OEServiceApplication app;
     private OERepository repository;
 
+    public PostUsersOERelationResource() {
+        // addToContext(ResourceContextId.LINK_TITLE, "add");
+    }
+
     @Override
     protected void doInit() {
         app = (OEServiceApplication) getApplication();
@@ -24,10 +28,27 @@ public class PostUsersOERelationResource extends PostRelationResource<User, OE> 
         return repository.find(filter, pagination);
     }
 
-    public PostUsersOERelationResource() {
-        // addToContext(ResourceContextId.LINK_TITLE, "add");
+    @Override
+    protected List<OE> getRelationTargets(String selectedValues) {
+        Filter filter = new Filter(getRequest());
+        Pagination pagination = new Pagination(getRequest(), getResponse(), repository.count(filter));
+        return repository.find(filter, pagination);//.stream().filter(predicate);
+    }
+    
+    @Override
+    public void addRelations(Object entity) {
+        String attribute = getAttribute("id");
+        System.out.println(attribute);
+        System.out.println(entity);
     }
 
+
+
+//    @Override
+//    public String redirectTo() {
+//        return super.redirectTo(UsersResource.class);
+//    }
+    
     
 
 }

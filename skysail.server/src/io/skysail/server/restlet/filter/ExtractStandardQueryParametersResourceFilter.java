@@ -4,11 +4,15 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.StringUtils;
-import org.owasp.html.*;
+import org.owasp.html.Handler;
+import org.owasp.html.HtmlPolicyBuilder;
+import org.owasp.html.HtmlSanitizer;
+import org.owasp.html.HtmlStreamRenderer;
 
 import de.twenty11.skysail.server.core.restlet.Wrapper;
 import io.skysail.domain.Identifiable;
-import io.skysail.domain.html.*;
+import io.skysail.domain.html.AllowedAttribute;
+import io.skysail.domain.html.HtmlPolicy;
 import io.skysail.server.restlet.resources.SkysailServerResource;
 import lombok.extern.slf4j.Slf4j;
 

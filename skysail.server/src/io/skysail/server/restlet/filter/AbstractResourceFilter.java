@@ -2,15 +2,18 @@ package io.skysail.server.restlet.filter;
 
 import java.text.ParseException;
 
-import org.restlet.*;
+import org.restlet.Request;
+import org.restlet.Response;
 import org.restlet.data.Form;
 import org.restlet.routing.Filter;
-import org.slf4j.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import de.twenty11.skysail.server.core.restlet.Wrapper;
 import io.skysail.domain.Identifiable;
 import io.skysail.server.restlet.resources.*;
-import io.skysail.server.restlet.response.*;
+import io.skysail.server.restlet.response.ListResponseWrapper;
+import io.skysail.server.restlet.response.ResponseWrapper;
 
 /**
  * The abstract base class for Skysail Resource Filters.
@@ -155,15 +158,14 @@ public abstract class AbstractResourceFilter<R extends SkysailServerResource<?>,
         Form form = (Form) request.getAttributes().get(EntityServerResource.SKYSAIL_SERVER_RESTLET_FORM);
         if (resource instanceof EntityServerResource) {
             return ((EntityServerResource<T>) resource).getData(form);
-        }
-        if (resource instanceof PostEntityServerResource) {
+        } else if (resource instanceof PostEntityServerResource) {
             return ((PostEntityServerResource<T>) resource).getData(form);
-        }
-        if (resource instanceof PutEntityServerResource) {
+        } else if (resource instanceof PutEntityServerResource) {
             return ((PutEntityServerResource<T>) resource).getData(form);   
-        }
-        if (resource instanceof PatchEntityServerResource) {
+        } else if (resource instanceof PatchEntityServerResource) {
             return ((PatchEntityServerResource<T>) resource).getData(form);
+        } else if (resource instanceof PostRelationResource) {
+            return ((PostRelationResource<?,?>) resource).getData(form);
         }
 
         return null;

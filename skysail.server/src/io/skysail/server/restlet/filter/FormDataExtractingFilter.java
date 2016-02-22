@@ -23,7 +23,7 @@ public class FormDataExtractingFilter<R extends SkysailServerResource<?>, T exte
         Object data;
         try {
             data = getDataFromRequest(response.getRequest(), resource);
-            responseWrapper.setEntity((T) data);
+            responseWrapper.setEntity(data);
         } catch (ParseException e) {
             throw new RuntimeException("could not parse form", e);
         }

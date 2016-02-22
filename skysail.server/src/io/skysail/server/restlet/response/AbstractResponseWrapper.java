@@ -30,16 +30,19 @@ public abstract class AbstractResponseWrapper<T extends Identifiable> implements
     
     @Override
     public synchronized void addError(String msg) {
+        response.getRequest().getAttributes().put("message.error", msg);
         Caches.getMessageCache().put(getAndRememberNewMessageId(), new Message(MessageType.ERROR, msg));
     }
 
     @Override
     public void addInfo(String msg) {
+        response.getRequest().getAttributes().put("message.info", msg);
         Caches.getMessageCache().put(getAndRememberNewMessageId(), new Message(MessageType.INFO, msg));
     }
 
     @Override
     public void addWarning(String msg) {
+        response.getRequest().getAttributes().put("message.warning", msg);
         Caches.getMessageCache().put(getAndRememberNewMessageId(), new Message(MessageType.WARNING, msg));
     }
 

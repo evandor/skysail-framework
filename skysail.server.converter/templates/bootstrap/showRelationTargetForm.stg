@@ -1,8 +1,37 @@
 showRelationTargetForm(fields, messages, model) ::= <<
   <form action="$model.formTarget$" method="POST" class="form-horizontal" role="form" id="form" name="form">
-    $handleField(first(model.data), first(model.formfields), messages,"1", " autofocus")$
-    $rest(model.formfields):{ field | $handleField(first(model.data), field, messages,i, "")$}$
-    $submitPost("Submit","2","10",length(model.formfields))$
+    
+    <table class="table table-striped table-condensed table-hover ROWCLICK" $if(converter.debug && user.principal)$style="border:1px solid orange;"$endif$>
+    <tr><th style="width:50px;">Select</th>$renderHeader(model.formfields, converter)$</tr>
+      $model.data:{ row | $renderRow(model.formfields,row,i)$}$
+    </table>
+    
+    $submitPost("Submit","1","11",length(model.formfields))$
   </form>
 >>
 
+submitPost(label, o1,o2,tabindex) ::= <<
+  <div class="form-group">
+    <div class="col-sm-offset-$o1$ col-sm-$o2$">
+      <button type="submit" name="submit" value="submit" class="btn btn-default" tabindex="$tabindex$">$label$</button>&nbsp;
+      <!-- <button type="submit" name="submit" onclick="\$(this).attr('disabled', '')" value="submitAndNew" class="btn btn-default" tabindex="$tabindex$">$label$ and new</button> -->
+    </div>
+  </div>
+>>
+
+renderRow(fields, row,i) ::= <<
+  <tr><td><input type="checkbox" name="selected" value="$row.("id")$"></td>$fields: { field | <td class="renderedTableCell">$row.(field.name)$</td>}$</tr>
+  
+>>
+
+renderHeader(fields, converter) ::= <<
+  $if(converter.edit)$
+    $fields: { field | <th contenteditable="true" data-url="/i18n/v1/messages/$field.nameKey$/msg/" class="editable">$helpmessage(messages, field.nameKey)$</th>}$
+  $else$
+    $fields: { field | <th>$helpmessage(messages, field.nameKey)$</th>}$
+  $endif$
+>>
+
+helpmessage(messages, identifier) ::= <<
+    $messages.(identifier).translated$
+>>

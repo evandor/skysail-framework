@@ -3,14 +3,15 @@ package io.skysail.server.restlet.filter;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import org.restlet.data.*;
+import org.restlet.data.MediaType;
+import org.restlet.data.Parameter;
 import org.restlet.representation.Variant;
 
 import de.twenty11.skysail.server.core.restlet.Wrapper;
 import io.skysail.domain.Identifiable;
-import io.skysail.server.restlet.resources.*;
+import io.skysail.server.restlet.resources.SkysailServerResource;
 
-public class PostRedirectGetFilter<R extends PostEntityServerResource<T>, T extends Identifiable> extends AbstractResourceFilter<R, T> {
+public class PostRedirectGetFilter<R extends SkysailServerResource<?>, T extends Identifiable> extends AbstractResourceFilter<R, T> {
 
     @Override
     protected void afterHandle(R resource, Wrapper<T> responseWrapper) {

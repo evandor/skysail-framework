@@ -22,6 +22,8 @@ public class ExceptionCatchingFilterHelper {
         Response response = responseWrapper.getResponse();
         response.setStatus(Status.SERVER_ERROR_INTERNAL);
 
+        responseWrapper.addInfo(e.getMessage());
+        
         if (application == null) {
             return;
         }

@@ -40,7 +40,7 @@ public class STGroupBundleDir extends STGroupDir {
         this.bundleName = bundle.getSymbolicName();
         this.groupDirName = new StringBuilder(getClass().getSimpleName()).append(": ").append(bundle.getSymbolicName())
                 .append(" - ").append(resourcePath).toString();
-        log.info("created '{}'", groupDirName);
+        log.debug("created '{}'", groupDirName);
     }
 
     public void addUsedTemplates(Set<String> list) {
@@ -100,8 +100,8 @@ public class STGroupBundleDir extends STGroupDir {
             usedTemplates.add(bundleName + ": " + groupFileURL.toString());
             try {
                 loadGroupFile("/", fileName);
-                log.info("found resource in {}: {}", bundleName, groupFileURL.toString());
-                log.info("");
+                log.debug("found resource in {}: {}", bundleName, groupFileURL.toString());
+                log.debug("");
                 return rawGetTemplate(originalName);
             } catch (Exception e) { // NOSONAR
             }

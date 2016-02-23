@@ -8,10 +8,7 @@ import org.stringtemplate.v4.ST;
 import io.skysail.domain.core.EntityRelation;
 import io.skysail.server.app.designer.codegen.templates.TemplateProvider;
 import io.skysail.server.app.designer.fields.FieldRole;
-import io.skysail.server.app.designer.model.DesignerApplicationModel;
-import io.skysail.server.app.designer.model.DesignerEntityModel;
-import io.skysail.server.app.designer.model.DesignerFieldModel;
-import io.skysail.server.app.designer.model.RouteModel;
+import io.skysail.server.app.designer.model.*;
 import io.skysail.server.stringtemplate.STGroupBundleDir;
 import lombok.Getter;
 
@@ -64,7 +61,7 @@ public class SkysailEntityCompiler extends SkysailCompiler {
         }
         compiledCode = setupEntityResourceForCompilation(template, entityModel);
         entityResourceClassName = compiledCode.getClassName();
-        routes.add(new RouteModel("/" + entityModel.getId() + "s/{id}", entityResourceClassName));
+        routes.add(new RouteModel("/" + entityModel.getSimpleName() + "s/{id}", entityResourceClassName));
         codes.put(entityResourceClassName, compiledCode);
     }
     
@@ -78,7 +75,7 @@ public class SkysailEntityCompiler extends SkysailCompiler {
         }
         compiledCode = setupPostResourceForCompilation(postResourceTemplate, applicationModel, entityModel);
         String postResourceClassName = compiledCode.getClassName();
-        routes.add(new RouteModel("/" + entityModel.getId() + "s/", postResourceClassName));
+        routes.add(new RouteModel("/" + entityModel.getSimpleName() + "s/", postResourceClassName));
         codes.put(postResourceClassName, compiledCode);
     }
 
@@ -86,7 +83,7 @@ public class SkysailEntityCompiler extends SkysailCompiler {
         ST putResourceTemplate = templateProvider.templateFor("putResource");
         CompiledCode compiledCode = setupPutResourceForCompilation(putResourceTemplate, entityModel);
         String putResourceClassName = compiledCode.getClassName();
-        routes.add(new RouteModel("/" + entityModel.getId() + "s/{id}/", putResourceClassName));
+        routes.add(new RouteModel("/" + entityModel.getSimpleName() + "s/{id}/", putResourceClassName));
         codes.put(putResourceClassName, compiledCode);
     }
 
@@ -103,7 +100,7 @@ public class SkysailEntityCompiler extends SkysailCompiler {
             compiledCode = setupListResourceForCompilation(listResourceTemplate, entityModel);
         }
         listResourceClassName = compiledCode.getClassName();
-        routes.add(new RouteModel("/" + entityModel.getId() + "s", listResourceClassName));
+        routes.add(new RouteModel("/" + entityModel.getSimpleName() + "s", listResourceClassName));
         codes.put(listResourceClassName, compiledCode);
         
         if (entityModel.isAggregate()) {
@@ -121,16 +118,21 @@ public class SkysailEntityCompiler extends SkysailCompiler {
         }
         compiledCode = setupRelationResourceForCompilation(template, entityModel, relation);
         String name = compiledCode.getClassName();
-        routes.add(new RouteModel("/" + entityModel.getId() + "s/{id}/OEs", name));
+        routes.add(new RouteModel("/" + entityModel.getSimpleName() + "s/{id}/"+relation.getTargetEntityModel().getSimpleName()+"s", name));
         codes.put(name, compiledCode);
         
         
         template = templateProvider.templateFor("postRelationResource");
         compiledCode = setupPostRelationResourceForCompilation(template, entityModel, relation);
         name = compiledCode.getClassName();
-        routes.add(new RouteModel("/" + entityModel.getId() + "s/{id}/OEs/", name));
+        routes.add(new RouteModel("/" + entityModel.getSimpleName() + "s/{id}/"+relation.getTargetEntityModel().getSimpleName()+"s/", name));
         codes.put(name, compiledCode);
         
+        template = templateProvider.templateFor("targetRelationResource");
+        compiledCode = setupTargetRelationResourceForCompilation(template, entityModel, relation);
+        name = compiledCode.getClassName();
+        routes.add(new RouteModel("/" + entityModel.getSimpleName() + "s/{id}/"+relation.getTargetEntityModel().getSimpleName()+"s/{targetId}", name));
+        codes.put(name, compiledCode);
         
     }
 
@@ -244,15 +246,21 @@ public class SkysailEntityCompiler extends SkysailCompiler {
         String className = entityModel.getPackageName() + "." + simpleClassName;
         return collect(className, entityCode, BUILD_PATH_SOURCE);
     }
+    
+    private CompiledCode setupTargetRelationResourceForCompilation(ST template, DesignerEntityModel entityModel, EntityRelation relation) {
+        final String simpleClassName = entityModel.getSimpleName() + "s"+relation.getTargetEntityModel().getSimpleName()+"Resource";
+        template.remove(ENTITY_IDENTIFIER);
+        template.add(ENTITY_IDENTIFIER, entityModel);
+        template.add("relation", relation);
+        String entityCode = template.render();
+        String className = entityModel.getPackageName() + "." + simpleClassName;
+        return collect(className, entityCode, BUILD_PATH_SOURCE);
+    }
 
     public List<RouteModel> getRouteModels() {
         return routes;
     }
     
-    private CharSequence withFirstCapital(String name) {
-        return name.substring(0, 1).toUpperCase().concat(name.substring(1));
-    }
-
     private Optional<DesignerFieldModel> getFieldModelFor(DesignerEntityModel entityModel, FieldRole fieldRole) {
         return entityModel
                 .getFieldValues().stream()

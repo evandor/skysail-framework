@@ -3,6 +3,7 @@ relations(relations) ::= <<
 $relations: { relation| 
 
 @Relation
+@JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class, property="@id")
 private List<$relation.targetEntityModel.id$> $relation.name$ = new ArrayList<>();
 
 public void $relation.setterMethodName$(List<$relation.targetEntityModel.id$> value) {

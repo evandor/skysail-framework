@@ -1,22 +1,15 @@
 package io.skysail.server.db.impl;
 
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-import java.util.Map;
+import java.lang.reflect.*;
+import java.util.*;
 import java.util.function.Consumer;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.tinkerpop.blueprints.Vertex;
-import com.tinkerpop.blueprints.impls.orient.OrientGraph;
-import com.tinkerpop.blueprints.impls.orient.OrientVertex;
+import com.tinkerpop.blueprints.impls.orient.*;
 
 import io.skysail.domain.Identifiable;
-import io.skysail.domain.core.ApplicationModel;
-import io.skysail.domain.core.EntityModel;
-import io.skysail.domain.core.EntityRelation;
+import io.skysail.domain.core.*;
 import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
 
@@ -51,6 +44,7 @@ public class Persister {
     protected OrientVertex execute(@NonNull Identifiable entity) {
         OrientVertex vertex = determineVertex(entity);
         try {
+            //Object removeRelationData = AnnotationUtils.removeRelationData(entity);
             @SuppressWarnings("unchecked")
             Map<String, Object> props = mapper.convertValue(entity, Map.class);
             props.keySet().stream().forEach(setPropertyOrCreateEdge(entity, vertex, props));
@@ -69,10 +63,12 @@ public class Persister {
                 return;
             }
             if (isProperty(entity, key)) {
+                System.out.println(entity.getClass() + ": " + key + ":= \""+properties.get(key)+"\"");
                 if (properties.get(key) != null && !("class".equals(key))) {
                     setProperty(entity, vertex, key);
                 }
             } else {
+                System.out.println(entity.getClass() + ": " + key + ":= [EDGE]");
                 try {
                     edgeHandler.handleEdges(entity, vertex, properties, key);
                 } catch (Exception e) {

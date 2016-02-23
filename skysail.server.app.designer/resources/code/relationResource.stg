@@ -11,7 +11,7 @@ import io.skysail.server.restlet.resources.ListServerResource;
 
 public class $entity.simpleName$s$relation.targetEntityModel.simpleName$sResource extends ListServerResource<$relation.targetEntityModel.className$> {
 
-    private $relation.targetEntityModel.className$ServiceApplication app;
+    private $application.name$Application app;
     private $relation.targetEntityModel.className$Repository oeRepo;
 
     public $entity.simpleName$s$relation.targetEntityModel.simpleName$sResource() {
@@ -21,7 +21,7 @@ public class $entity.simpleName$s$relation.targetEntityModel.simpleName$sResourc
 
     @Override
     protected void doInit() {
-        app = ($relation.targetEntityModel.simpleName$ServiceApplication) getApplication();
+        app = ($application.name$Application) getApplication();
         oeRepo = ($relation.targetEntityModel.className$Repository) app.getRepository($relation.targetEntityModel.className$.class);
     }
 

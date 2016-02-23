@@ -39,14 +39,14 @@ public class FoldersApplicationGen extends SkysailApplication implements Applica
     @Override
     protected void attach() {
         super.attach();
-        router.attach(new RouteBuilder("/io.skysail.server.designer.demo.folders.Folders/{id}", io.skysail.server.designer.demo.folders.FolderResource.class));
-        router.attach(new RouteBuilder("/io.skysail.server.designer.demo.folders.Folders/", io.skysail.server.designer.demo.folders.PostFolderResource.class));
-        router.attach(new RouteBuilder("/io.skysail.server.designer.demo.folders.Folders/{id}/", io.skysail.server.designer.demo.folders.PutFolderResource.class));
-        router.attach(new RouteBuilder("/io.skysail.server.designer.demo.folders.Folders", io.skysail.server.designer.demo.folders.FoldersResource.class));
+        router.attach(new RouteBuilder("/Folders/{id}", io.skysail.server.designer.demo.folders.FolderResource.class));
+        router.attach(new RouteBuilder("/Folders/", io.skysail.server.designer.demo.folders.PostFolderResource.class));
+        router.attach(new RouteBuilder("/Folders/{id}/", io.skysail.server.designer.demo.folders.PutFolderResource.class));
+        router.attach(new RouteBuilder("/Folders", io.skysail.server.designer.demo.folders.FoldersResource.class));
         router.attach(new RouteBuilder("", io.skysail.server.designer.demo.folders.FoldersResource.class));
-        router.attach(new RouteBuilder("/io.skysail.server.designer.demo.folders.Folders/{id}/Folders", io.skysail.server.designer.demo.folders.FoldersFoldersResource.class));
-        router.attach(new RouteBuilder("/io.skysail.server.designer.demo.folders.Folders/{id}/Folders/", io.skysail.server.designer.demo.folders.PostFoldersFolderRelationResource.class));
-        router.attach(new RouteBuilder("/io.skysail.server.designer.demo.folders.Folders/{id}/Folders/{targetId}", io.skysail.server.designer.demo.folders.FoldersFolderResource.class));
+        router.attach(new RouteBuilder("/Folders/{id}/Folders", io.skysail.server.designer.demo.folders.FoldersFoldersResource.class));
+        router.attach(new RouteBuilder("/Folders/{id}/Folders/", io.skysail.server.designer.demo.folders.PostFoldersFolderRelationResource.class));
+        router.attach(new RouteBuilder("/Folders/{id}/Folders/{targetId}", io.skysail.server.designer.demo.folders.FoldersFolderResource.class));
 
     }
 

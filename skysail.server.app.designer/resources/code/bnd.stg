@@ -39,8 +39,9 @@ Include-Resource: resources, templates=src;recursive:=true;filter:=*.st|*.stg
     com.orientechnologies.orientdb-core;version=\${com.orientechnologies.orientdb.version},\\
     com.orientechnologies.orientdb-graphdb;version=\${com.orientechnologies.orientdb.version},\\
     io.skysail.bundled.tinkerpop.blueprints-core;version=2.6,\
-    skysail.server.uikit.webresource;version=latest,\
-    org.jsoup;version=1.8
+    skysail.server.uikit.webresource;version=latest,\\
+    org.jsoup;version=1.8,\\
+    com.fasterxml.jackson.core.jackson-annotations;version=2.5    
 
 
 Private-Package: \\

@@ -1,23 +1,19 @@
 package io.skysail.server.app.designer.application;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 import javax.persistence.Id;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import io.skysail.domain.Nameable;
-import io.skysail.domain.html.Field;
-import io.skysail.domain.html.InputType;
-import io.skysail.domain.html.Relation;
+import io.skysail.domain.html.*;
 import io.skysail.server.app.designer.entities.DbEntity;
 import io.skysail.server.app.designer.entities.resources.EntitiesResource;
 import io.skysail.server.db.validators.UniqueName;
-import io.skysail.server.forms.ListView;
-import io.skysail.server.forms.PostView;
+import io.skysail.server.forms.*;
 import lombok.*;
 
 @NoArgsConstructor
@@ -68,6 +64,7 @@ public class DbApplication implements Nameable, Serializable {
     private String owner;
 
     @Relation
+    @JsonManagedReference
     private List<DbEntity> entities = new ArrayList<>();
 
     /**

@@ -1,21 +1,15 @@
 package io.skysail.server.app.designer.entities;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 import javax.persistence.Id;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.*;
 
-import io.skysail.domain.Identifiable;
-import io.skysail.domain.Nameable;
-import io.skysail.domain.html.Field;
-import io.skysail.domain.html.InputType;
-import io.skysail.domain.html.Relation;
+import io.skysail.domain.*;
+import io.skysail.domain.html.*;
 import io.skysail.server.app.designer.application.DbApplication;
 import io.skysail.server.app.designer.fields.DbEntityField;
 import io.skysail.server.app.designer.fields.resources.FieldsResource;
@@ -29,6 +23,7 @@ import lombok.*;
 @EqualsAndHashCode(of = "id")
 @ToString(of = { "id", "name", "fields" })
 @UniqueNameForParent(entityClass = DbEntity.class, parent = "dbApplication", relationName = "entities")
+@JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class, property="@id")
 public class DbEntity implements Identifiable, Nameable, Serializable {
 
     private static final long serialVersionUID = 7571240311935363328L;
@@ -47,15 +42,17 @@ public class DbEntity implements Identifiable, Nameable, Serializable {
     @Field(inputType = InputType.CHECKBOX)
     private boolean rootEntity = true;
 
-//    @Relation
-    @JsonIgnore
+    @JsonBackReference
     private DbApplication dbApplication;
 
     @Relation
+    @JsonManagedReference
     private List<DbEntityField> fields = new ArrayList<>();
 
+    @JsonBackReference
+    private DbEntity parent;
+    
     @Relation
-    //@JsonIgnore
     private List<DbEntity> oneToManyRelations = new ArrayList<>();
 
     public DbEntity(@NonNull String name) {

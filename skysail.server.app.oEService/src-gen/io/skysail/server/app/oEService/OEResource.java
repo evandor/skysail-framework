@@ -2,10 +2,10 @@ package io.skysail.server.app.oEService;
 
 import java.util.List;
 
+import de.twenty11.skysail.server.core.restlet.ResourceContextId;
 import io.skysail.api.links.Link;
 import io.skysail.api.responses.SkysailResponse;
 import io.skysail.server.restlet.resources.EntityServerResource;
-import de.twenty11.skysail.server.core.restlet.ResourceContextId;
 
 public class OEResource extends EntityServerResource<io.skysail.server.app.oEService.OE> {
 
@@ -39,7 +39,7 @@ public class OEResource extends EntityServerResource<io.skysail.server.app.oESer
 
 	@Override
     public List<Link> getLinks() {
-        return super.getLinks(PutOEResource.class,PostOEResource.class,OEsResource.class);
+        return super.getLinks(PutOEResource.class);
     }
 
 }

@@ -8,7 +8,10 @@ import org.stringtemplate.v4.ST;
 import io.skysail.domain.core.EntityRelation;
 import io.skysail.server.app.designer.codegen.templates.TemplateProvider;
 import io.skysail.server.app.designer.fields.FieldRole;
-import io.skysail.server.app.designer.model.*;
+import io.skysail.server.app.designer.model.DesignerApplicationModel;
+import io.skysail.server.app.designer.model.DesignerEntityModel;
+import io.skysail.server.app.designer.model.DesignerFieldModel;
+import io.skysail.server.app.designer.model.RouteModel;
 import io.skysail.server.stringtemplate.STGroupBundleDir;
 import lombok.Getter;
 
@@ -226,6 +229,7 @@ public class SkysailEntityCompiler extends SkysailCompiler {
         final String simpleClassName = entityModel.getSimpleName() + "sOEsResource";
         template.remove(ENTITY_IDENTIFIER);
         template.add(ENTITY_IDENTIFIER, entityModel);
+        template.add("relation", relation);
         String entityCode = template.render();
         String className = entityModel.getPackageName() + "." + simpleClassName;
         return collect(className, entityCode, BUILD_PATH_SOURCE);
@@ -235,6 +239,7 @@ public class SkysailEntityCompiler extends SkysailCompiler {
         final String simpleClassName = "Post" + entityModel.getSimpleName() + "sOERelationResource";
         template.remove(ENTITY_IDENTIFIER);
         template.add(ENTITY_IDENTIFIER, entityModel);
+        template.add("relation", relation);
         String entityCode = template.render();
         String className = entityModel.getPackageName() + "." + simpleClassName;
         return collect(className, entityCode, BUILD_PATH_SOURCE);

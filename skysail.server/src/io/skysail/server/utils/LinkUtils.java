@@ -1,20 +1,28 @@
 package io.skysail.server.utils;
 
+import java.lang.reflect.Field;
 import java.util.*;
 import java.util.Map.Entry;
 import java.util.function.Function;
-import java.util.regex.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
-import org.restlet.data.*;
+import org.restlet.data.MediaType;
+import org.restlet.data.Reference;
 import org.restlet.resource.ServerResource;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import de.twenty11.skysail.server.core.restlet.*;
-import io.skysail.api.links.*;
+import de.twenty11.skysail.server.core.restlet.ResourceContextId;
+import de.twenty11.skysail.server.core.restlet.RouteBuilder;
+import io.skysail.api.links.Link;
+import io.skysail.api.links.LinkRelation;
+import io.skysail.api.links.LinkRole;
+import io.skysail.domain.html.Relation;
 import io.skysail.server.app.SkysailApplication;
-import io.skysail.server.restlet.resources.*;
+import io.skysail.server.restlet.resources.ListServerResource;
+import io.skysail.server.restlet.resources.SkysailServerResource;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -216,6 +224,18 @@ public class LinkUtils {
         List<RouteBuilder> routeBuilders = resource.getApplication().getRouteBuildersForResource(linkedResourceClass);
         PathSubstitutions pathUtils = new PathSubstitutions(resource.getRequestAttributes(), routeBuilders);
         Map<String, String> substitutions = pathUtils.getFor(object);
+        
+        // remove relations from deserialization
+        for (Field field : object.getClass().getDeclaredFields()) {
+            if (field.getDeclaredAnnotation(Relation.class) != null) {
+                try {
+                    field.setAccessible(true);
+                    field.set(object, null);
+                } catch (IllegalArgumentException | IllegalAccessException e) {
+                    log.error(e.getMessage(),e);
+                }
+            }
+        }
         
         HashMap<String,Object> objectsMapRepresentation = mapper.convertValue(object, HashMap.class);
         objectsMapRepresentation.keySet().stream().forEach(key -> {

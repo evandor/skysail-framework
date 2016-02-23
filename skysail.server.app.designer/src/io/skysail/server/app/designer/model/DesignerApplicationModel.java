@@ -1,8 +1,12 @@
 package io.skysail.server.app.designer.model;
 
-import java.util.*;
+import java.util.List;
+import java.util.Optional;
 
-import io.skysail.domain.core.*;
+import io.skysail.domain.core.ApplicationModel;
+import io.skysail.domain.core.EntityModel;
+import io.skysail.domain.core.EntityRelation;
+import io.skysail.domain.core.EntityRelationType;
 import io.skysail.server.app.designer.application.DbApplication;
 import io.skysail.server.app.designer.entities.DbEntity;
 import lombok.Getter;
@@ -46,7 +50,7 @@ public class DesignerApplicationModel extends ApplicationModel {
                 return;
             }
             oneToManyRelations.stream().forEach(oneToManyRelation -> {
-                String relationName = oneToManyRelation.getName().substring(0, 1).toLowerCase() + oneToManyRelation.getName().substring(1).toLowerCase() + "s";
+                String relationName = oneToManyRelation.getName().substring(0, 1).toLowerCase() + oneToManyRelation.getName().substring(1) + "s";
                 Optional<EntityModel> targetEntityModel = getEntityModel(oneToManyRelation.getName());
                 if (!targetEntityModel.isPresent()) {
                     log.error("error finding entityModel with name '{}'", oneToManyRelation.getName());

@@ -6,7 +6,7 @@ import io.skysail.server.queryfilter.Filter;
 import io.skysail.server.queryfilter.pagination.Pagination;
 import io.skysail.server.restlet.resources.PostRelationResource;
 
-public class PostUsersOERelationResource extends PostRelationResource<User, OE> {
+public class PostUsersOERelationResource extends PostRelationResource<io.skysail.server.app.oEService.OE, io.skysail.server.app.oEService.OE> {
 
     private OEServiceApplication app;
     private OERepository oeRepo;
@@ -46,8 +46,8 @@ public class PostUsersOERelationResource extends PostRelationResource<User, OE> 
     }
 
     private void addIfNotPresentYet(User theUser, OE e) {
-        if (!theUser.getOes().stream().filter(oe -> oe.getId().equals(oe.getId())).findFirst().isPresent()) {
-            theUser.getOes().add(e);
+        if (!theUser.getOEs().stream().filter(oe -> oe.getId().equals(oe.getId())).findFirst().isPresent()) {
+            theUser.getOEs().add(e);
         }
     }
 

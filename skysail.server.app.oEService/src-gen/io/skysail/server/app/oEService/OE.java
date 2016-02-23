@@ -1,15 +1,18 @@
 package io.skysail.server.app.oEService;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
 import javax.persistence.Id;
 
-import java.util.*;
-
 import io.skysail.domain.Identifiable;
-import io.skysail.domain.html.*;
-import io.skysail.server.forms.*;
-
-import org.apache.commons.lang3.StringUtils;
+import io.skysail.domain.html.Field;
+import io.skysail.domain.html.HtmlPolicy;
+import io.skysail.domain.html.InputType;
+import io.skysail.domain.html.Relation;
+import io.skysail.server.forms.ListView;
 
 @SuppressWarnings("serial")
 public class OE implements Identifiable, Serializable {
@@ -42,7 +45,6 @@ public class OE implements Identifiable, Serializable {
     }
 
     @Field(inputType = InputType.DATE, htmlPolicy = HtmlPolicy.NO_HTML)
-    @ListView(link = OEsResource.class)
     private Date expires;
 
     public void setExpires(Date value) {
@@ -57,14 +59,14 @@ public class OE implements Identifiable, Serializable {
     // --- relations ---
 
     @Relation
-    private List<io.skysail.server.app.oEService.OE> oes = new ArrayList<>();
+    private List<io.skysail.server.app.oEService.OE> oEs = new ArrayList<>();
 
-    public void setOes(List<io.skysail.server.app.oEService.OE> value) {
-        this.oes = value;
+    public void setOEs(List<io.skysail.server.app.oEService.OE> value) {
+        this.oEs = value;
     }
 
-    public List<io.skysail.server.app.oEService.OE> getOes() {
-        return oes;
+    public List<io.skysail.server.app.oEService.OE> getOEs() {
+        return oEs;
     }
 
 

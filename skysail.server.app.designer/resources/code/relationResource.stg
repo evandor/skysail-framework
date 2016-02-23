@@ -1,4 +1,4 @@
-relationResource(application, entity) ::= <<
+relationResource(application, entity, relation) ::= <<
 package $application.packageName$;
 
 import java.util.List;
@@ -9,24 +9,24 @@ import io.skysail.server.queryfilter.Filter;
 import io.skysail.server.queryfilter.pagination.Pagination;
 import io.skysail.server.restlet.resources.ListServerResource;
 
-public class UsersOEsResource extends ListServerResource<OE> {
+public class $entity.simpleName$s$relation.targetEntityModel.simpleName$sResource extends ListServerResource<$relation.targetEntityModel.className$> {
 
-    private OEServiceApplication app;
-    private OERepository oeRepo;
+    private $relation.targetEntityModel.className$ServiceApplication app;
+    private $relation.targetEntityModel.className$Repository oeRepo;
 
-    public UsersOEsResource() {
-        // super(UsersOEResource.class);
-        addToContext(ResourceContextId.LINK_TITLE, "list OEs for user");
+    public $entity.simpleName$s$relation.targetEntityModel.simpleName$sResource() {
+        // super($entity.simpleName$s$relation.targetEntityModel.className$Resource.class);
+        addToContext(ResourceContextId.LINK_TITLE, "list $relation.targetEntityModel.className$s for $entity.simpleName$");
     }
 
     @Override
     protected void doInit() {
-        app = (OEServiceApplication) getApplication();
-        oeRepo = (OERepository) app.getRepository(io.skysail.server.app.oEService.OE.class);
+        app = ($relation.targetEntityModel.simpleName$ServiceApplication) getApplication();
+        oeRepo = ($relation.targetEntityModel.className$Repository) app.getRepository($relation.targetEntityModel.className$.class);
     }
 
     @Override
-    public List<OE> getEntity() {
+    public List<$relation.targetEntityModel.className$> getEntity() {
         Filter filter = new Filter(getRequest());
         Pagination pagination = new Pagination(getRequest(), getResponse(), oeRepo.count(filter));
         return oeRepo.find(filter, pagination);// .stream().filter(predicate);
@@ -34,7 +34,7 @@ public class UsersOEsResource extends ListServerResource<OE> {
 
     @Override
     public List<Link> getLinks() {
-        return super.getLinks(UsersOEsResource.class, PostUsersOERelationResource.class);
+        return super.getLinks($entity.simpleName$s$relation.targetEntityModel.simpleName$sResource.class, Post$entity.simpleName$s$relation.targetEntityModel.simpleName$RelationResource.class);
     }
 }
 >>

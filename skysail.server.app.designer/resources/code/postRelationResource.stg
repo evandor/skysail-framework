@@ -1,4 +1,4 @@
-postRelationResource(application, entity) ::= <<
+postRelationResource(application, entity, relation) ::= <<
 package $application.packageName$;
 
 import java.util.List;
@@ -7,13 +7,13 @@ import io.skysail.server.queryfilter.Filter;
 import io.skysail.server.queryfilter.pagination.Pagination;
 import io.skysail.server.restlet.resources.PostRelationResource;
 
-public class PostUsersOERelationResource extends PostRelationResource<User, OE> {
+public class Post$entity.simpleName$s$relation.targetEntityModel.simpleName$RelationResource extends PostRelationResource<$relation.targetEntityModel.className$, $relation.targetEntityModel.className$> {
 
     private OEServiceApplication app;
     private OERepository oeRepo;
     private UserRepository userRepo;
 
-    public PostUsersOERelationResource() {
+    public Post$entity.simpleName$s$relation.targetEntityModel.simpleName$RelationResource() {
         // addToContext(ResourceContextId.LINK_TITLE, "add");
     }
 
@@ -47,8 +47,8 @@ public class PostUsersOERelationResource extends PostRelationResource<User, OE> 
     }
 
     private void addIfNotPresentYet(User theUser, OE e) {
-        if (!theUser.getOes().stream().filter(oe -> oe.getId().equals(oe.getId())).findFirst().isPresent()) {
-            theUser.getOes().add(e);
+        if (!theUser.get$relation.targetEntityModel.simpleName$s().stream().filter(oe -> oe.getId().equals(oe.getId())).findFirst().isPresent()) {
+            theUser.get$relation.targetEntityModel.simpleName$s().add(e);
         }
     }
 

@@ -113,7 +113,7 @@ public class Persister {
     }
 
     private static String getMethodName(String prefix, String key) {
-        return new StringBuilder(prefix).append(key.substring(0, 1).toUpperCase()).append(key.substring(1).toLowerCase()).toString();
+        return new StringBuilder(prefix).append(key.substring(0, 1).toUpperCase()).append(key.substring(1)).toString();
     }
 
     private <T> OrientVertex runInTransaction(Identifiable entity) {

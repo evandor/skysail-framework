@@ -1,16 +1,21 @@
 package io.skysail.server.app.designer.codegen;
 
 import java.io.File;
-import java.net.*;
+import java.net.URISyntaxException;
+import java.net.URL;
 import java.util.*;
 import java.util.stream.Collectors;
 
-import javax.tools.*;
+import javax.tools.Diagnostic;
 import javax.tools.Diagnostic.Kind;
+import javax.tools.DiagnosticCollector;
+import javax.tools.JavaFileObject;
+import javax.tools.ToolProvider;
 import javax.validation.ConstraintViolation;
 
 import org.apache.commons.beanutils.DynaProperty;
-import org.osgi.framework.*;
+import org.osgi.framework.Bundle;
+import org.osgi.framework.BundleContext;
 import org.osgi.service.component.annotations.Component;
 import org.restlet.resource.ServerResource;
 
@@ -109,7 +114,8 @@ public class InMemoryJavaCompiler {
         DiagnosticCollector<JavaFileObject> diagnostics = new DiagnosticCollector<JavaFileObject>();
         javax.tools.JavaCompiler.CompilationTask task = javac
                 .getTask(null, fileManager, diagnostics, optionList, null, sourceCodes);
-        task.call();
+        task.call(); 
+        // TODO manage error information
         boolean errorFound = dumpErrorsIfExistent(diagnostics, "xxx");
         if (errorFound) {
             compiledSuccessfully = false;

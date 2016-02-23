@@ -8,24 +8,24 @@ import io.skysail.server.queryfilter.Filter;
 import io.skysail.server.queryfilter.pagination.Pagination;
 import io.skysail.server.restlet.resources.ListServerResource;
 
-public class UsersOEsResource extends ListServerResource<OE> {
+public class UsersOEsResource extends ListServerResource<io.skysail.server.app.oEService.OE> {
 
-    private OEServiceApplication app;
-    private OERepository oeRepo;
+    private io.skysail.server.app.oEService.OEServiceApplication app;
+    private io.skysail.server.app.oEService.OERepository oeRepo;
 
     public UsersOEsResource() {
-        // super(UsersOEResource.class);
-        addToContext(ResourceContextId.LINK_TITLE, "list OEs for user");
+        // super(Usersio.skysail.server.app.oEService.OEResource.class);
+        addToContext(ResourceContextId.LINK_TITLE, "list io.skysail.server.app.oEService.OEs for User");
     }
 
     @Override
     protected void doInit() {
         app = (OEServiceApplication) getApplication();
-        oeRepo = (OERepository) app.getRepository(io.skysail.server.app.oEService.OE.class);
+        oeRepo = (io.skysail.server.app.oEService.OERepository) app.getRepository(io.skysail.server.app.oEService.OE.class);
     }
 
     @Override
-    public List<OE> getEntity() {
+    public List<io.skysail.server.app.oEService.OE> getEntity() {
         Filter filter = new Filter(getRequest());
         Pagination pagination = new Pagination(getRequest(), getResponse(), oeRepo.count(filter));
         return oeRepo.find(filter, pagination);// .stream().filter(predicate);

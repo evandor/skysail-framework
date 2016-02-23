@@ -1,15 +1,21 @@
 package io.skysail.server.app.designer.entities;
 
 import java.io.Serializable;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Id;
-import javax.validation.constraints.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import io.skysail.domain.*;
-import io.skysail.domain.html.*;
+import io.skysail.domain.Identifiable;
+import io.skysail.domain.Nameable;
+import io.skysail.domain.html.Field;
+import io.skysail.domain.html.InputType;
+import io.skysail.domain.html.Relation;
 import io.skysail.server.app.designer.application.DbApplication;
 import io.skysail.server.app.designer.fields.DbEntityField;
 import io.skysail.server.app.designer.fields.resources.FieldsResource;
@@ -49,7 +55,7 @@ public class DbEntity implements Identifiable, Nameable, Serializable {
     private List<DbEntityField> fields = new ArrayList<>();
 
     @Relation
-    @JsonIgnore
+    //@JsonIgnore
     private List<DbEntity> oneToManyRelations = new ArrayList<>();
 
     public DbEntity(@NonNull String name) {

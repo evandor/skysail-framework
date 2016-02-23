@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" name="io.skysail.server.designer.demo.folders.FolderRepository" immediate="true" activate="activate">
+  <implementation class="io.skysail.server.designer.demo.folders.FolderRepository"/>
+  <service>
+    <provide interface="io.skysail.domain.core.repos.DbRepository"/>
+  </service>
+  <reference name="DbService" interface="io.skysail.server.db.DbService" bind="setDbService" unbind="unsetDbService"/>
+  <property name="name" type="String" value="FoldersRepository"/>
+</scr:component>

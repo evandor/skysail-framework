@@ -1,8 +1,12 @@
 package io.skysail.server.app.designer.codegen.writer;
 
 import java.io.*;
-import java.util.*;
-import java.util.jar.*;
+import java.util.Collection;
+import java.util.Date;
+import java.util.jar.Attributes;
+import java.util.jar.JarEntry;
+import java.util.jar.JarOutputStream;
+import java.util.jar.Manifest;
 import java.util.stream.Collectors;
 
 import org.apache.commons.io.FilenameUtils;
@@ -88,7 +92,7 @@ public class JarWriter {
     private static void add(File source, String rootPath, String jarPath, JarOutputStream target) throws IOException {
         BufferedInputStream in = null;
         jarPath = jarPath.replace("\\", "/");
-        rootPath = FilenameUtils.normalize(rootPath);
+        rootPath = FilenameUtils.normalize(new File(rootPath).getAbsolutePath());
         try {
             if (source.isDirectory()) {
                 String name = source.getPath().replace("\\", "/");
@@ -108,7 +112,8 @@ public class JarWriter {
                 }
                 for (File nestedFile : source.listFiles()) {
                     //jarPath = "." + nestedFile.toString().substring(rootPath.length());
-                    jarPath = nestedFile.toString().substring(rootPath.length()+1);
+                    String normalized = FilenameUtils.normalize(nestedFile.getAbsolutePath());
+                    jarPath = normalized.substring(rootPath.length()+1);
                     add(nestedFile, rootPath, jarPath, target);
                 }
                 return;

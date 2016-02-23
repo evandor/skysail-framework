@@ -226,7 +226,7 @@ public class SkysailEntityCompiler extends SkysailCompiler {
     }
     
     private CompiledCode setupRelationResourceForCompilation(ST template, DesignerEntityModel entityModel, EntityRelation relation) {
-        final String simpleClassName = entityModel.getSimpleName() + "sOEsResource";
+        final String simpleClassName = entityModel.getSimpleName() + "s"+relation.getTargetEntityModel().getSimpleName()+"sResource";
         template.remove(ENTITY_IDENTIFIER);
         template.add(ENTITY_IDENTIFIER, entityModel);
         template.add("relation", relation);
@@ -236,7 +236,7 @@ public class SkysailEntityCompiler extends SkysailCompiler {
     }
     
     private CompiledCode setupPostRelationResourceForCompilation(ST template, DesignerEntityModel entityModel, EntityRelation relation) {
-        final String simpleClassName = "Post" + entityModel.getSimpleName() + "sOERelationResource";
+        final String simpleClassName = "Post" + entityModel.getSimpleName() + "s"+relation.getTargetEntityModel().getSimpleName()+"RelationResource";
         template.remove(ENTITY_IDENTIFIER);
         template.add(ENTITY_IDENTIFIER, entityModel);
         template.add("relation", relation);

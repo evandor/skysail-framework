@@ -3,6 +3,7 @@ package io.skysail.server.app.designer.relations.resources;
 import java.util.List;
 
 import io.skysail.server.app.designer.DesignerApplication;
+import io.skysail.server.app.designer.application.resources.ApplicationsResource;
 import io.skysail.server.app.designer.entities.DbEntity;
 import io.skysail.server.app.designer.relations.DbRelation;
 import io.skysail.server.restlet.resources.PostEntityServerResource;
@@ -39,4 +40,8 @@ public class PostRelationResource extends PostEntityServerResource<DbRelation> {
         app.getRepository().update(dbEntity, app.getApplicationModel());
     }
 
+    @Override
+    public String redirectTo() {
+        return super.redirectTo(ApplicationsResource.class);
+    }
 }

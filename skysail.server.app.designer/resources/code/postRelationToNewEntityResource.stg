@@ -1,15 +1,19 @@
-package io.skysail.server.designer.demo.folders;
+postRelationToNewEntityResource(application, entity, relation) ::= <<
+package $application.packageName$;
 
-import io.skysail.domain.core.repos.Repository;
+import java.util.List;
+
+import io.skysail.server.queryfilter.Filter;
+import io.skysail.server.queryfilter.pagination.Pagination;
 import io.skysail.server.restlet.resources.PostRelationResource2;
 
-public class PostFolderToNewFolderRelationResource extends PostRelationResource2<Folder> {
+public class Post$entity.simpleName$ToNew$relation.targetEntity.simpleName$RelationResource extends PostRelationResource2<$relation.targetEntity.simpleName$> {
 
     private FoldersApplication app;
-    private Repository repo;
+    private $relation.targetEntity.simpleName$Repository repo;
     private String parentId;
 
-    public PostFolderToNewFolderRelationResource() {
+    public Post$entity.simpleName$ToNew$relation.targetEntity.simpleName$RelationResource() {
         // addToContext(ResourceContextId.LINK_TITLE, "add");
     }
 
@@ -19,21 +23,22 @@ public class PostFolderToNewFolderRelationResource extends PostRelationResource2
         repo = (FolderRepository) app.getRepository(io.skysail.server.designer.demo.folders.Folder.class);
         parentId = getAttribute("id");
     }
-
-    public Folder createEntityTemplate() {
-        return new Folder();
+    
+    public $relation.targetEntity.simpleName$ createEntityTemplate() {
+        return new $relation.targetEntity.simpleName$();
     }
 
     @Override
-    public void addEntity( entity) {
- parent = repo.findOne(parentId);
+    public void addEntity($relation.targetEntity.simpleName$ entity) {
+        $relation.targetEntity.simpleName$ parent = repo.findOne(parentId);
         parent.getFolders().add(entity);
         repo.save(parent, getApplication().getApplicationModel());
     }
-
+ 
     private void addIfNotPresentYet(io.skysail.server.designer.demo.folders.Folder theUser, Folder e) {
         if (!theUser.getFolders().stream().filter(oe -> oe.getId().equals(oe.getId())).findFirst().isPresent()) {
             theUser.getFolders().add(e);
         }
     }
 }
+>>

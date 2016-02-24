@@ -1,18 +1,15 @@
 package io.skysail.server.designer.demo.folders;
 
-import java.util.List;
+import java.util.*;
 
-import org.osgi.service.component.annotations.Reference;
-import org.osgi.service.component.annotations.ReferenceCardinality;
-import org.osgi.service.component.annotations.ReferencePolicy;
+import org.osgi.service.component.annotations.*;
 import org.osgi.service.event.EventAdmin;
 
 import de.twenty11.skysail.server.app.ApplicationProvider;
-import de.twenty11.skysail.server.core.restlet.RouteBuilder;
+import de.twenty11.skysail.server.core.restlet.*;
 import io.skysail.domain.Identifiable;
 import io.skysail.domain.core.Repositories;
-import io.skysail.server.app.ApiVersion;
-import io.skysail.server.app.SkysailApplication;
+import io.skysail.server.app.*;
 import io.skysail.server.menus.MenuItemProvider;
 
 public class FoldersApplicationGen extends SkysailApplication implements ApplicationProvider, MenuItemProvider {
@@ -48,8 +45,8 @@ public class FoldersApplicationGen extends SkysailApplication implements Applica
         router.attach(new RouteBuilder("/Folders", io.skysail.server.designer.demo.folders.FoldersResource.class));
         router.attach(new RouteBuilder("", io.skysail.server.designer.demo.folders.FoldersResource.class));
         router.attach(new RouteBuilder("/Folders/{id}/Folders", io.skysail.server.designer.demo.folders.FoldersFoldersResource.class));
-        router.attach(new RouteBuilder("/Folders/{id}/Folders/", io.skysail.server.designer.demo.folders.PostFolderToNewFolderRelationResource.class));
         router.attach(new RouteBuilder("/Folders/{id}/Folders/{targetId}", io.skysail.server.designer.demo.folders.FoldersFolderResource.class));
+        router.attach(new RouteBuilder("/Folders/{id}/Folders/", io.skysail.server.designer.demo.folders.PostFolderToNewFolderRelationResource.class));
 
     }
 

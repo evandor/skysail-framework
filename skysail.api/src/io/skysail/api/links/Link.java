@@ -3,13 +3,17 @@ package io.skysail.api.links;
 import java.util.*;
 import java.util.stream.Collectors;
 
-import lombok.*;
-import lombok.extern.slf4j.Slf4j;
-
 import org.restlet.Request;
-import org.restlet.data.*;
+import org.restlet.data.MediaType;
+import org.restlet.data.Method;
 
 import com.google.common.base.Predicate;
+
+import lombok.Getter;
+import lombok.NonNull;
+import lombok.Setter;
+import lombok.ToString;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Basic implementation of http://tools.ietf.org/html/rfc5988 to be used in
@@ -33,6 +37,8 @@ public class Link {
 
     private String title;
 
+    private String alt;
+    
     /** Indicates the relation between the current resource and the link target. */
     private LinkRelation rel;
 
@@ -60,10 +66,12 @@ public class Link {
 
     private Class<?> cls;
 
+    @Getter
     public static class Builder {
 
         private String uri;
         private String title;
+        private String alt;
         private LinkRelation rel = LinkRelation.ITEM;
         private Set<Method> verbs = new HashSet<>();
         private boolean authenticationNeeded = true;
@@ -107,7 +115,12 @@ public class Link {
             this.title = title;
             return this;
         }
-
+        
+        public Builder alt(@NonNull String alt) {
+            this.alt = alt;
+            return this;
+        }
+        
         public Builder relation(@NonNull LinkRelation relation) {
             this.rel = relation;
             return this;
@@ -161,6 +174,7 @@ public class Link {
         if (title == null) {
             title = linkBuilder.rel.getName();
         }
+        alt = linkBuilder.alt;
         rel = linkBuilder.rel;
         verbs = linkBuilder.verbs;
         needsAuthentication = linkBuilder.authenticationNeeded;

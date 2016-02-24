@@ -23,11 +23,12 @@ import io.skysail.server.converter.HtmlConverter;
 import io.skysail.server.converter.wrapper.STUserWrapper;
 import io.skysail.server.menus.MenuItemProvider;
 import io.skysail.server.model.ResourceModel;
+import io.skysail.server.rendering.RenderingMode;
+import io.skysail.server.rendering.Theme;
 import io.skysail.server.restlet.resources.SkysailServerResource;
 import io.skysail.server.restlet.response.messages.Message;
 import io.skysail.server.services.ThemeDefinition;
 import io.skysail.server.stringtemplate.STGroupBundleDir;
-import io.skysail.server.theme.Theme;
 import io.skysail.server.utils.CookiesUtils;
 import io.skysail.server.utils.RequestUtils;
 import lombok.NonNull;
@@ -51,7 +52,7 @@ public class StringTemplateRenderer {
 
     private Theme theme;
 
-    private String mode;
+    private RenderingMode mode;
 
     public StringTemplateRenderer(HtmlConverter htmlConverter, Resource resource) {
         this.htmlConverter = htmlConverter;
@@ -146,7 +147,7 @@ public class StringTemplateRenderer {
     }
 
     public boolean isDebug() {
-        return "debug".equalsIgnoreCase(mode);
+        return mode.equals(RenderingMode.DEBUG);
     }
 
     public boolean isEdit() {

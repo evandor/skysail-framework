@@ -3,18 +3,26 @@ package io.skysail.server.utils;
 import java.util.*;
 import java.util.Map.Entry;
 import java.util.function.Function;
-import java.util.regex.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
-import org.restlet.data.*;
+import org.restlet.data.MediaType;
+import org.restlet.data.Reference;
 import org.restlet.resource.ServerResource;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import de.twenty11.skysail.server.core.restlet.*;
-import io.skysail.api.links.*;
+import de.twenty11.skysail.server.core.restlet.ResourceContextId;
+import de.twenty11.skysail.server.core.restlet.RouteBuilder;
+import io.skysail.api.links.Link;
+import io.skysail.api.links.Link.Builder;
+import io.skysail.api.links.LinkRelation;
+import io.skysail.api.links.LinkRole;
 import io.skysail.server.app.SkysailApplication;
-import io.skysail.server.restlet.resources.*;
+import io.skysail.server.rendering.RenderingMode;
+import io.skysail.server.restlet.resources.ListServerResource;
+import io.skysail.server.restlet.resources.SkysailServerResource;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -100,11 +108,14 @@ public class LinkUtils {
 
     private static Link createLink(SkysailServerResource<?> skysailServerResource,
             Class<? extends SkysailServerResource<?>> resourceClass) {
-        return createLink2(skysailServerResource, resourceClass, null);
+        return createLink2(skysailServerResource, resourceClass);
     }
 
     private static Link createLink2(SkysailServerResource<?> skysailServerResource,
-            Class<? extends SkysailServerResource<?>> resourceClass, Object object) {
+            Class<? extends SkysailServerResource<?>> resourceClass) {
+        
+        RenderingMode mode = CookiesUtils.getModeFromCookie(skysailServerResource.getRequest());
+        
         SkysailApplication app = skysailServerResource.getApplication();
         RouteBuilder routeBuilder = app.getRouteBuilders(resourceClass).get(0);
         Optional<SkysailServerResource<?>> resource = createNewInstance(resourceClass);
@@ -115,19 +126,31 @@ public class LinkUtils {
         if (uri.equals(resourceRef.getPath())) {
             relation = LinkRelation.SELF;
         }
-        Link link = new Link.Builder(uri)
+       Builder linkBuilder = new Link.Builder(uri)
                 .definingClass(resourceClass)
                 .relation(relation)
                 .title(resource.isPresent() ? resource.get().getFromContext(ResourceContextId.LINK_TITLE) : "unknown")
                 .authenticationNeeded(routeBuilder.needsAuthentication())
                 .needsRoles(routeBuilder.getRolesForAuthorization())
                 .image(MediaType.TEXT_HTML,
-                        resource.isPresent() ? resource.get().getFromContext(ResourceContextId.LINK_GLYPH) : null)
-                .build();
+                        resource.isPresent() ? resource.get().getFromContext(ResourceContextId.LINK_GLYPH) : null);
+        if (mode.equals(RenderingMode.DEBUG)) {
+            linkBuilder.alt(mode.equals(RenderingMode.DEBUG) ? renderDebugInfo(linkBuilder, resourceClass) : "title");
+        }
+        Link link = linkBuilder.build();
 
+       
         log.debug("created link {}", link);
         return link;
 
+    }
+
+    private static String renderDebugInfo(Builder linkBuilder, Class<? extends SkysailServerResource<?>> resourceClass) {
+        StringBuilder sb = new StringBuilder();
+        sb.append("URI:      ").append(linkBuilder.getUri()).append(",\\n");
+        sb.append("Target:   ").append(resourceClass.getSimpleName()).append(",\\n");
+        sb.append("Relation: ").append(linkBuilder.getRel());
+        return sb.toString();
     }
 
     private static Optional<SkysailServerResource<?>> createNewInstance(
@@ -238,7 +261,12 @@ public class LinkUtils {
         }
 
         Link newLink = new Link.Builder(linkTemplate)
-                .uri(href).role(LinkRole.LIST_VIEW).relation(LinkRelation.ITEM).refId(substitutions.get(pathUtils.getIdVariable())).build();
+                .uri(href)
+                .alt(linkTemplate.getAlt())
+                .role(LinkRole.LIST_VIEW)
+                .relation(LinkRelation.ITEM)
+                .refId(substitutions.get(pathUtils.getIdVariable()))
+            .build();
         result.add(newLink);
     }
 }

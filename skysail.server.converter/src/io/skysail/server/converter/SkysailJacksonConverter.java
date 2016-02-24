@@ -19,9 +19,9 @@ import com.fasterxml.jackson.dataformat.csv.CsvSchema;
 import io.skysail.api.responses.SkysailResponse;
 import io.skysail.api.text.Translation;
 import io.skysail.server.model.ResourceModel;
+import io.skysail.server.rendering.Theme;
 import io.skysail.server.restlet.resources.SkysailServerResource;
 import io.skysail.server.services.OsgiConverterHelper;
-import io.skysail.server.theme.Theme;
 import io.skysail.server.utils.HeadersUtils;
 
 @Component(immediate = true)

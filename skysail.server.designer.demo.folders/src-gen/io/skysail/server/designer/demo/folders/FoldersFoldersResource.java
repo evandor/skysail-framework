@@ -4,8 +4,7 @@ import java.util.List;
 
 import de.twenty11.skysail.server.core.restlet.ResourceContextId;
 import io.skysail.api.links.Link;
-import io.skysail.server.queryfilter.Filter;
-import io.skysail.server.queryfilter.pagination.Pagination;
+import io.skysail.server.db.DbClassName;
 import io.skysail.server.restlet.resources.ListServerResource;
 
 public class FoldersFoldersResource extends ListServerResource<io.skysail.server.designer.demo.folders.Folder> {
@@ -15,7 +14,8 @@ public class FoldersFoldersResource extends ListServerResource<io.skysail.server
 
     public FoldersFoldersResource() {
         // super(Foldersio.skysail.server.designer.demo.folders.FolderResource.class);
-        addToContext(ResourceContextId.LINK_TITLE, "list io.skysail.server.designer.demo.folders.Folders for Folder");
+        super(FolderResource.class, FoldersFolderResource.class);
+        addToContext(ResourceContextId.LINK_TITLE, "[FoldersFoldersResource]");
     }
 
     @Override
@@ -26,9 +26,8 @@ public class FoldersFoldersResource extends ListServerResource<io.skysail.server
 
     @Override
     public List<io.skysail.server.designer.demo.folders.Folder> getEntity() {
-        Filter filter = new Filter(getRequest());
-        Pagination pagination = new Pagination(getRequest(), getResponse(), oeRepo.count(filter));
-        return oeRepo.find(filter, pagination);// .stream().filter(predicate);
+        return (List<Folder>) oeRepo.execute(Folder.class, "select * from " + DbClassName.of(Folder.class) + " where #"+getAttribute("id")+" in IN(folders)");
+
     }
 
     @Override

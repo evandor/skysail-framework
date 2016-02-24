@@ -9,7 +9,7 @@
 
     <template is="dom-if" if="{{showButtonList(links)}}">
       <template is="dom-repeat" items="{{links}}">
-        <a href="{{item.link}}" class="btn btn-default btn-xs" role="button" tabindex="1">
+        <a href="{{item.link}}" class="btn btn-default btn-xs" title="{{item.alt}}" role="button" tabindex="1">
           <template is="dom-if" if="{{item.title}}">
             <template is="dom-if" if="{{item.image}}"><span class$="{{glyph(item.image)}}" aria-hidden="true"></span></template>
             <template is="dom-if" if="{{item.title}}"><span>{{item.title}}</span></template>
@@ -26,7 +26,7 @@
         <select onchange="this.options[this.selectedIndex].value && (window.location = this.options[this.selectedIndex].value);">
           <option value="" disabled="disabled">Choose...</option>
           <template is="dom-repeat" items="{{links}}">
-            <option value="{{item.link}}">{{item.title}}</option>
+            <option value="{{item.link}}" label="{{item.alt}}">{{item.title}}</option>
           </template>
         </select>
       </form>

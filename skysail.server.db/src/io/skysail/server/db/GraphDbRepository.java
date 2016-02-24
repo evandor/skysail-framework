@@ -74,7 +74,7 @@ public class GraphDbRepository<T extends Identifiable> implements DbRepository {
 
     public Object getVertexById(String id) {
         return dbService.findGraphs(entityType.getClass(),
-                "SELECT FROM " + entityType.getSimpleName() + " WHERE @rid=" + id);
+                "SELECT FROM " + DbClassName.of(entityType) + " WHERE @rid=" + id);
     }
 
     public List<T> find(Filter filter) {

@@ -5,6 +5,7 @@ import org.restlet.data.Cookie;
 import org.restlet.data.CookieSetting;
 
 import de.twenty11.skysail.server.Constants;
+import io.skysail.server.rendering.RenderingMode;
 
 public class CookiesUtils {
     
@@ -25,8 +26,12 @@ public class CookiesUtils {
         return returnCookieOrNull(request,Constants.COOKIE_NAME_THEME);
     }
 
-    public static String getModeFromCookie(Request request) {
-        return returnCookieOrNull(request,Constants.COOKIE_NAME_MODE);
+    public static RenderingMode getModeFromCookie(Request request) {
+         String returnCookieOrNull = returnCookieOrNull(request,Constants.COOKIE_NAME_MODE);
+         if (returnCookieOrNull == null) {
+             return RenderingMode.DEFAULT;
+         }
+         return RenderingMode.valueOf(returnCookieOrNull.toUpperCase());
     }
 
     public static String getMainPageFromCookie(Request request) {

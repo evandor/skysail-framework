@@ -1,4 +1,4 @@
-package io.skysail.server.theme;
+package io.skysail.server.rendering;
 
 import org.restlet.data.CookieSetting;
 import org.restlet.resource.Resource;

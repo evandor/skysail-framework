@@ -4,15 +4,15 @@ import java.util.List;
 
 import io.skysail.server.queryfilter.Filter;
 import io.skysail.server.queryfilter.pagination.Pagination;
-import io.skysail.server.restlet.resources.PostRelationResource2;
+import io.skysail.server.restlet.resources.PostRelationResource;
 
-public class PostFolderToNewFolderRelationResource extends PostRelationResource2<io.skysail.server.designer.demo.folders.Folder> {
+public class PostFoldersFolderRelationResource extends PostRelationResource<io.skysail.server.designer.demo.folders.Folder, io.skysail.server.designer.demo.folders.Folder> {
 
     private FoldersApplication app;
     private FolderRepository repo;
-    private String parentId;
+    //private UserRepository userRepo;
 
-    public PostFolderToNewFolderRelationResource() {
+    public PostFoldersFolderRelationResource() {
         // addToContext(ResourceContextId.LINK_TITLE, "add");
     }
 
@@ -20,34 +20,24 @@ public class PostFolderToNewFolderRelationResource extends PostRelationResource2
     protected void doInit() {
         app = (FoldersApplication) getApplication();
         repo = (FolderRepository) app.getRepository(io.skysail.server.designer.demo.folders.Folder.class);
-        parentId = getAttribute("id");
-    }
-    
-    public Folder createEntityTemplate() {
-        return new Folder();
+        //userRepo = (UserRepository) app.getRepository(io.skysail.server.app.oEService.User.class);
     }
 
     @Override
-    public void addEntity(Folder entity) {
-        Folder parent = repo.findOne(parentId);
-        parent.getFolders().add(entity);
-        repo.save(parent, getApplication().getApplicationModel());
+    public List<Folder> getEntity() {
+        Filter filter = new Filter(getRequest());
+        Pagination pagination = new Pagination(getRequest(), getResponse(), repo.count(filter));
+        return repo.find(filter, pagination);
     }
-    //@Override
-//    public List<Folder> getEntity() {
-//        Filter filter = new Filter(getRequest());
-//        Pagination pagination = new Pagination(getRequest(), getResponse(), repo.count(filter));
-//        return repo.find(filter, pagination);
-//    }
 
-   // @Override
+    @Override
     protected List<Folder> getRelationTargets(String selectedValues) {
         Filter filter = new Filter(getRequest());
         Pagination pagination = new Pagination(getRequest(), getResponse(), repo.count(filter));
         return repo.find(filter, pagination);//.stream().filter(predicate);
     }
 
-   // @Override
+    @Override
     public void addRelations(List<Folder> entities) {
         String id = getAttribute("id");
         io.skysail.server.designer.demo.folders.Folder theUser = repo.findOne(id);
@@ -61,10 +51,12 @@ public class PostFolderToNewFolderRelationResource extends PostRelationResource2
         }
     }
 
-    
 
 
-
+//    @Override
+//    public String redirectTo() {
+//        return super.redirectTo(UsersResource.class);
+//    }
 
 
 }

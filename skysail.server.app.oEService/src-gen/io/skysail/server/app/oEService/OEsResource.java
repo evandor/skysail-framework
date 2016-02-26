@@ -1,5 +1,6 @@
 package io.skysail.server.app.oEService;
 
+import io.skysail.server.db.DbClassName;
 import io.skysail.server.queryfilter.Filter;
 import io.skysail.server.queryfilter.pagination.Pagination;
 import io.skysail.server.restlet.resources.ListServerResource;
@@ -15,7 +16,7 @@ public class OEsResource extends ListServerResource<io.skysail.server.app.oEServ
     private OERepository repository;
 
     public OEsResource() {
-        super(OEResource.class);
+        super(OEResource.class, OEsOEResource.class);
         addToContext(ResourceContextId.LINK_TITLE, "list OEs");
     }
 
@@ -31,9 +32,7 @@ public class OEsResource extends ListServerResource<io.skysail.server.app.oEServ
 
     @Override
     public List<io.skysail.server.app.oEService.OE> getEntity() {
-        Filter filter = new Filter(getRequest());
-        Pagination pagination = new Pagination(getRequest(), getResponse(), repository.count(filter));
-        return repository.find(filter, pagination);
+        return (List<OE>) repository.execute(OE.class, "select * from " + DbClassName.of(OE.class) + " where IN(OEs).size() = 0");
     }
 
     public List<Link> getLinks() {

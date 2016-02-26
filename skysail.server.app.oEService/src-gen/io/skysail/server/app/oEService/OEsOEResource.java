@@ -5,7 +5,7 @@ import io.skysail.api.links.Link;
 import io.skysail.api.responses.SkysailResponse;
 import io.skysail.server.restlet.resources.EntityServerResource;
 
-public class UsersOEResource extends EntityServerResource<OE> {
+public class OEsOEResource extends EntityServerResource<OE> {
 
     @Override
     public SkysailResponse<?> eraseEntity() {
@@ -19,7 +19,7 @@ public class UsersOEResource extends EntityServerResource<OE> {
 
     @Override
     public List<Link> getLinks() {
-        return super.getLinks(UsersOEsResource.class, PostUsersOERelationResource.class);
+        return super.getLinks(OEsOEsResource.class, PostOEsOERelationResource.class);
     }
 
 }

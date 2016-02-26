@@ -1,5 +1,6 @@
 package io.skysail.server.designer.demo.folders;
 
+import io.skysail.server.db.DbClassName;
 import io.skysail.server.queryfilter.Filter;
 import io.skysail.server.queryfilter.pagination.Pagination;
 import io.skysail.server.restlet.resources.ListServerResource;
@@ -15,7 +16,7 @@ public class FoldersResource extends ListServerResource<io.skysail.server.design
     private FolderRepository repository;
 
     public FoldersResource() {
-        super(FolderResource.class);
+        super(FolderResource.class, FoldersFolderResource.class);
         addToContext(ResourceContextId.LINK_TITLE, "list Folders");
     }
 
@@ -31,9 +32,7 @@ public class FoldersResource extends ListServerResource<io.skysail.server.design
 
     @Override
     public List<io.skysail.server.designer.demo.folders.Folder> getEntity() {
-        Filter filter = new Filter(getRequest());
-        Pagination pagination = new Pagination(getRequest(), getResponse(), repository.count(filter));
-        return repository.find(filter, pagination);
+        return (List<Folder>) repository.execute(Folder.class, "select * from " + DbClassName.of(Folder.class) + " where IN(Folders).size() = 0");
     }
 
     public List<Link> getLinks() {

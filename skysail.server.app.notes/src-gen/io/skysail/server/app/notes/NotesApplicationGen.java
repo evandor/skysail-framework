@@ -39,10 +39,10 @@ public class NotesApplicationGen extends SkysailApplication implements Applicati
     @Override
     protected void attach() {
         super.attach();
-        router.attach(new RouteBuilder("/io.skysail.server.app.notes.Notes/{id}", io.skysail.server.app.notes.NoteResource.class));
-        router.attach(new RouteBuilder("/io.skysail.server.app.notes.Notes/", io.skysail.server.app.notes.PostNoteResource.class));
-        router.attach(new RouteBuilder("/io.skysail.server.app.notes.Notes/{id}/", io.skysail.server.app.notes.PutNoteResource.class));
-        router.attach(new RouteBuilder("/io.skysail.server.app.notes.Notes", io.skysail.server.app.notes.NotesResource.class));
+        router.attach(new RouteBuilder("/Notes/{id}", io.skysail.server.app.notes.NoteResource.class));
+        router.attach(new RouteBuilder("/Notes/", io.skysail.server.app.notes.PostNoteResource.class));
+        router.attach(new RouteBuilder("/Notes/{id}/", io.skysail.server.app.notes.PutNoteResource.class));
+        router.attach(new RouteBuilder("/Notes", io.skysail.server.app.notes.NotesResource.class));
         router.attach(new RouteBuilder("", io.skysail.server.app.notes.NotesResource.class));
 
     }

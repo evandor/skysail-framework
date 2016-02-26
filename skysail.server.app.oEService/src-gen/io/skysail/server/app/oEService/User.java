@@ -3,8 +3,10 @@ package io.skysail.server.app.oEService;
 import java.io.Serializable;
 import javax.persistence.Id;
 
-import java.util.*;
+import com.fasterxml.jackson.annotation.*;
 
+import java.util.*;
+import io.skysail.server.db.DbClassName;
 import io.skysail.domain.Identifiable;
 import io.skysail.domain.html.*;
 import io.skysail.server.forms.*;
@@ -12,6 +14,7 @@ import io.skysail.server.forms.*;
 import org.apache.commons.lang3.StringUtils;
 
 @SuppressWarnings("serial")
+@JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class, property="id")
 public class User implements Identifiable, Serializable {
 
     @Id
@@ -45,6 +48,7 @@ public class User implements Identifiable, Serializable {
     // --- relations ---
 
     @Relation
+    @JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class, property="@id")
     private List<io.skysail.server.app.oEService.OE> oEs = new ArrayList<>();
 
     public void setOEs(List<io.skysail.server.app.oEService.OE> value) {

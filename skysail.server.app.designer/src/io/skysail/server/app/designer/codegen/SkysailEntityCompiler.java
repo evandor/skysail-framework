@@ -93,15 +93,18 @@ public class SkysailEntityCompiler extends SkysailCompiler {
     private void createListResource(DesignerEntityModel entityModel, Map<String, CompiledCode> codes) {
         String listResourceClassName;
         CompiledCode compiledCode;
-        if (entityModel.isAggregate()) {
-            ST listResourceTemplate = templateProvider.templateFor("listResource");
-            String collectionLinks = entityModel.getApplicationModel().getRootEntities().stream().map(e -> "," + e.getSimpleName() + "sResource.class").collect(Collectors.joining());
+        String collectionLinks = entityModel.getApplicationModel().getRootEntities().stream().map(e -> "," + e.getSimpleName() + "sResource.class").collect(Collectors.joining());
+        ST listResourceTemplate;
+        if (entityModel.isAggregate() && !entityModel.hasSelfReference()) {
+            listResourceTemplate = templateProvider.templateFor("listResource");
             listResourceTemplate.add("listLinks", "       return super.getLinks(Post"+entityModel.getSimpleName()+"Resource.class"+ collectionLinks+");");
-            compiledCode = setupListResourceForCompilation(listResourceTemplate, entityModel);
+        } else if (entityModel.isAggregate() && entityModel.hasSelfReference()) {
+            listResourceTemplate = templateProvider.templateFor("listResourceWithSelfReference");
+            listResourceTemplate.add("listLinks", "       return super.getLinks(Post"+entityModel.getSimpleName()+"Resource.class"+ collectionLinks+");");
         } else {
-            ST listResourceTemplate = templateProvider.templateFor("listResourceNonAggregate");
-            compiledCode = setupListResourceForCompilation(listResourceTemplate, entityModel);
+            listResourceTemplate = templateProvider.templateFor("listResourceNonAggregate");
         }
+        compiledCode = setupListResourceForCompilation(listResourceTemplate, entityModel);
         listResourceClassName = compiledCode.getClassName();
         routes.add(new RouteModel("/" + entityModel.getSimpleName() + "s", listResourceClassName));
         codes.put(listResourceClassName, compiledCode);

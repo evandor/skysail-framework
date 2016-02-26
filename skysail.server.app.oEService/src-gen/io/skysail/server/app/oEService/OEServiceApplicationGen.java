@@ -1,18 +1,15 @@
 package io.skysail.server.app.oEService;
 
-import java.util.List;
+import java.util.*;
 
-import org.osgi.service.component.annotations.Reference;
-import org.osgi.service.component.annotations.ReferenceCardinality;
-import org.osgi.service.component.annotations.ReferencePolicy;
+import org.osgi.service.component.annotations.*;
 import org.osgi.service.event.EventAdmin;
 
 import de.twenty11.skysail.server.app.ApplicationProvider;
-import de.twenty11.skysail.server.core.restlet.RouteBuilder;
+import de.twenty11.skysail.server.core.restlet.*;
 import io.skysail.domain.Identifiable;
 import io.skysail.domain.core.Repositories;
-import io.skysail.server.app.ApiVersion;
-import io.skysail.server.app.SkysailApplication;
+import io.skysail.server.app.*;
 import io.skysail.server.menus.MenuItemProvider;
 
 public class OEServiceApplicationGen extends SkysailApplication implements ApplicationProvider, MenuItemProvider {
@@ -42,22 +39,22 @@ public class OEServiceApplicationGen extends SkysailApplication implements Appli
     @Override
     protected void attach() {
         super.attach();
-        router.attach(new RouteBuilder("/io.skysail.server.app.oEService.OEs/{id}", io.skysail.server.app.oEService.OEResource.class));
-        router.attach(new RouteBuilder("/io.skysail.server.app.oEService.OEs/", io.skysail.server.app.oEService.PostOEResource.class));
-        router.attach(new RouteBuilder("/io.skysail.server.app.oEService.OEs/{id}/", io.skysail.server.app.oEService.PutOEResource.class));
-        router.attach(new RouteBuilder("/io.skysail.server.app.oEService.OEs", io.skysail.server.app.oEService.OEsResource.class));
+        router.attach(new RouteBuilder("/OEs/{id}", io.skysail.server.app.oEService.OEResource.class));
+        router.attach(new RouteBuilder("/OEs/", io.skysail.server.app.oEService.PostOEResource.class));
+        router.attach(new RouteBuilder("/OEs/{id}/", io.skysail.server.app.oEService.PutOEResource.class));
+        router.attach(new RouteBuilder("/OEs", io.skysail.server.app.oEService.OEsResource.class));
         router.attach(new RouteBuilder("", io.skysail.server.app.oEService.OEsResource.class));
-        router.attach(new RouteBuilder("/io.skysail.server.app.oEService.OEs/{id}/OEs", io.skysail.server.app.oEService.OEsOEsResource.class));
-        router.attach(new RouteBuilder("/io.skysail.server.app.oEService.OEs/{id}/OEs/", io.skysail.server.app.oEService.PostOEsOERelationResource.class));
-        router.attach(new RouteBuilder("/io.skysail.server.app.oEService.Users/{id}", io.skysail.server.app.oEService.UserResource.class));
-        router.attach(new RouteBuilder("/io.skysail.server.app.oEService.Users/", io.skysail.server.app.oEService.PostUserResource.class));
-        router.attach(new RouteBuilder("/io.skysail.server.app.oEService.Users/{id}/", io.skysail.server.app.oEService.PutUserResource.class));
-        router.attach(new RouteBuilder("/io.skysail.server.app.oEService.Users", io.skysail.server.app.oEService.UsersResource.class));
+        router.attach(new RouteBuilder("/OEs/{id}/OEs", io.skysail.server.app.oEService.OEsOEsResource.class));
+        router.attach(new RouteBuilder("/OEs/{id}/OEs/", io.skysail.server.app.oEService.PostOEToNewOERelationResource.class));
+        router.attach(new RouteBuilder("/OEs/{id}/OEs/{targetId}", io.skysail.server.app.oEService.OEsOEResource.class));
+        router.attach(new RouteBuilder("/Users/{id}", io.skysail.server.app.oEService.UserResource.class));
+        router.attach(new RouteBuilder("/Users/", io.skysail.server.app.oEService.PostUserResource.class));
+        router.attach(new RouteBuilder("/Users/{id}/", io.skysail.server.app.oEService.PutUserResource.class));
+        router.attach(new RouteBuilder("/Users", io.skysail.server.app.oEService.UsersResource.class));
         router.attach(new RouteBuilder("", io.skysail.server.app.oEService.UsersResource.class));
-        router.attach(new RouteBuilder("/io.skysail.server.app.oEService.Users/{id}/OEs", io.skysail.server.app.oEService.UsersOEsResource.class));
-        router.attach(new RouteBuilder("/io.skysail.server.app.oEService.Users/{id}/OEs/", io.skysail.server.app.oEService.PostUsersOERelationResource.class));
-
-        router.attach(new RouteBuilder("/io.skysail.server.app.oEService.Users/{id}/OEs/{oeId}", io.skysail.server.app.oEService.UsersOEResource.class));
+        router.attach(new RouteBuilder("/Users/{id}/OEs", io.skysail.server.app.oEService.UsersOEsResource.class));
+        router.attach(new RouteBuilder("/Users/{id}/OEs/", io.skysail.server.app.oEService.PostUserToNewOERelationResource.class));
+        router.attach(new RouteBuilder("/Users/{id}/OEs/{targetId}", io.skysail.server.app.oEService.UsersOEResource.class));
 
     }
 

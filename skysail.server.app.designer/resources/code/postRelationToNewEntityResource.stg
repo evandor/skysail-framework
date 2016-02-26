@@ -9,7 +9,7 @@ import io.skysail.server.restlet.resources.PostRelationResource2;
 
 public class Post$entity.simpleName$ToNew$relation.targetEntityModel.simpleName$RelationResource extends PostRelationResource2<$relation.targetEntityModel.simpleName$> {
 
-    private FoldersApplication app;
+    private $application.name$Application app;
     private $relation.targetEntityModel.simpleName$Repository repo;
     private String parentId;
 
@@ -19,8 +19,8 @@ public class Post$entity.simpleName$ToNew$relation.targetEntityModel.simpleName$
 
     @Override
     protected void doInit() {
-        app = (FoldersApplication) getApplication();
-        repo = (FolderRepository) app.getRepository(io.skysail.server.designer.demo.folders.Folder.class);
+        app = ($application.name$Application) getApplication();
+        repo = ($relation.targetEntityModel.simpleName$Repository) app.getRepository($relation.targetEntityModel.className$.class);
         parentId = getAttribute("id");
     }
     
@@ -31,7 +31,7 @@ public class Post$entity.simpleName$ToNew$relation.targetEntityModel.simpleName$
     @Override
     public void addEntity($relation.targetEntityModel.simpleName$ entity) {
         $relation.targetEntityModel.simpleName$ parent = repo.findOne(parentId);
-        parent.getFolders().add(entity);
+        parent.get$relation.targetEntityModel.simpleName$s().add(entity);
         repo.save(parent, getApplication().getApplicationModel());
     }
 }

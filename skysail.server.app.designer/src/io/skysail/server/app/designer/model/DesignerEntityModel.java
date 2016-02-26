@@ -21,8 +21,8 @@ import lombok.extern.slf4j.Slf4j;
 public class DesignerEntityModel extends EntityModel {
 
     // links to other entities
-    private final Set<ReferenceModel> references = new HashSet<>();  
-    
+    private final Set<ReferenceModel> references = new HashSet<>();
+
     private Optional<DesignerEntityModel> referencedBy;
 
     private String className;
@@ -51,7 +51,11 @@ public class DesignerEntityModel extends EntityModel {
         }
         this.referencedBy = Optional.of(entityModel);
     }
-    
+
+    public boolean hasSelfReference() {
+        return getRelations().stream().filter(r -> r.getTargetEntityModel().equals(this)).findFirst().isPresent();
+    }
+
     private void setupFieldModels(DbEntity entityFromDb) {
         entityFromDb.getFields().stream().forEach(this::addField);
     }

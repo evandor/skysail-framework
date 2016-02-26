@@ -3,8 +3,10 @@ package io.skysail.server.app.notes;
 import java.io.Serializable;
 import javax.persistence.Id;
 
-import java.util.*;
+import com.fasterxml.jackson.annotation.*;
 
+import java.util.*;
+import io.skysail.server.db.DbClassName;
 import io.skysail.domain.Identifiable;
 import io.skysail.domain.html.*;
 import io.skysail.server.forms.*;
@@ -12,6 +14,7 @@ import io.skysail.server.forms.*;
 import org.apache.commons.lang3.StringUtils;
 
 @SuppressWarnings("serial")
+@JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class, property="id")
 public class Note implements Identifiable, Serializable {
 
     @Id
@@ -81,9 +84,6 @@ public class Note implements Identifiable, Serializable {
     }
 
     @Field(inputType = InputType.TEXT, htmlPolicy = HtmlPolicy.NO_HTML)
-    @ListView(hide = true)
-    @PostView(visibility = Visibility.HIDE)
-    @PutView(visibility = Visibility.HIDE)
     private String owner;
 
     public void setOwner(String value) {

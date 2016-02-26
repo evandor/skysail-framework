@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="bnd:org.restlet.ext.apispark:2.3.4.v20150716-1217">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/cnf/localrepo/org.restlet.ext.apispark/org.restlet.ext.apispark-2.3.4.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

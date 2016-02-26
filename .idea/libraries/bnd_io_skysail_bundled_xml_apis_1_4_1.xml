@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="bnd:io.skysail.bundled.xml-apis:1.4.1">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/cnf/localrepo/io.skysail.bundled.xml-apis/io.skysail.bundled.xml-apis-1.4.1.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

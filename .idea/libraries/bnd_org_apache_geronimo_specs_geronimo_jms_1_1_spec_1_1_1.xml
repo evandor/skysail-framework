@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="bnd:org.apache.geronimo.specs.geronimo-jms_1.1_spec:1.1.1">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/cnf/localrepo/org.apache.geronimo.specs.geronimo-jms_1.1_spec/org.apache.geronimo.specs.geronimo-jms_1.1_spec-1.1.1.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

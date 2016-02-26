@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="bnd:org.apache.httpcomponents.httpclient:4.5.1">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/cnf/localrepo/org.apache.httpcomponents.httpclient/org.apache.httpcomponents.httpclient-4.5.1.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

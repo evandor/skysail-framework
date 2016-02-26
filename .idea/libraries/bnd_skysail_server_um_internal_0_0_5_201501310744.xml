@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="bnd:skysail.server.um.internal:0.0.5.201501310744">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.bnd/cache/https%3A%2F%2Fgithub.com%2Fevandor%2Fskysail%2Fraw%2Fmaster%2Fcnf%2Freleaserepo%2Fskysail.server.um.internal/skysail.server.um.internal-0.0.5.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.bnd/cache/https%3A%2F%2Fgithub.com%2Fevandor%2Fskysail%2Fraw%2Fmaster%2Fcnf%2Freleaserepo%2Fskysail.server.um.internal/skysail.server.um.internal-0.0.5.jar!/OSGI-OPT/src" />
+    </SOURCES>
+  </library>
+</component>

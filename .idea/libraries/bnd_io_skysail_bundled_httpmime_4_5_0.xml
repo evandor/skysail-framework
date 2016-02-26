@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="bnd:io.skysail.bundled.httpmime:4.5.0">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/cnf/localrepo/io.skysail.bundled.httpmime/io.skysail.bundled.httpmime-4.5.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

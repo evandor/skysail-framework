@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="bnd:org.codehaus.jettison.jettison:1.3.7">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/cnf/localrepo/org.codehaus.jettison.jettison/org.codehaus.jettison.jettison-1.3.7.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

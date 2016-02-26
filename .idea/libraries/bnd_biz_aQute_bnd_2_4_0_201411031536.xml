@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="bnd:biz.aQute.bnd:2.4.0.201411031536">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.bnd/cache/https%3A%2F%2Fraw.githubusercontent.com%2Fbndtools%2Fbundle-hub%2Fmaster%2Fbiz.aQute.bnd/biz.aQute.bnd-2.4.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.bnd/cache/https%3A%2F%2Fraw.githubusercontent.com%2Fbndtools%2Fbundle-hub%2Fmaster%2Fbiz.aQute.bnd/biz.aQute.bnd-2.4.0.jar!/OSGI-OPT/src" />
+    </SOURCES>
+  </library>
+</component>

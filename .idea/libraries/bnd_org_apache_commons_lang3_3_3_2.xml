@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="bnd:org.apache.commons.lang3:3.3.2">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/cnf/localrepo/org.apache.commons.lang3/org.apache.commons.lang3-3.3.2.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="bnd:ch.qos.logback.classic:1.0.0">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.bnd/cache/https%3A%2F%2Fraw.githubusercontent.com%2Fbndtools%2Fbundle-hub%2Fmaster%2Fch.qos.logback.classic/ch.qos.logback.classic-1.0.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

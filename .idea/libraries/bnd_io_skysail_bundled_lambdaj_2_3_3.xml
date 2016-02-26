@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="bnd:io.skysail.bundled.lambdaj:2.3.3">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/cnf/localrepo/io.skysail.bundled.lambdaj/io.skysail.bundled.lambdaj-2.3.3.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

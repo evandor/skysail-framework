@@ -48,7 +48,7 @@ public class SkysailServerResourceTest {
 
     @Test
     public void testName() throws Exception {
-        assertThat(serverResource.getEntityType(), is(equalTo(Identifiable.class.getName())));
+        assertThat(serverResource.getEntityType(), is(equalTo(Identifiable.class.getSimpleName())));
     }
 
 }

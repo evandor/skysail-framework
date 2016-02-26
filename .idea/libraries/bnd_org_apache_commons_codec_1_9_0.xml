@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="bnd:org.apache.commons.codec:1.9.0">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/cnf/localrepo/org.apache.commons.codec/org.apache.commons.codec-1.9.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

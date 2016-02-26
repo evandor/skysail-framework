@@ -1,0 +1,42 @@
+2016-02-25 17:35:33,270 WARN  [io.skysail.server.app.SkysailApplication     ] - there are no entities defined for the applicationModel ApplicationModel: Notes2
+Repositories: 
+Repositories(repositories={io.skysail.server.app.checklist.Template=io.skysail.server.app.checklist.TemplateRepository@33428c11, io.skysail.server.app.notes2.Note=io.skysail.server.app.notes2.NoteRepository@1cd1d95, io.skysail.server.db.versions.impl.ComponentDbVersion=io.skysail.server.db.versions.impl.VersionsRepository@75a18f49, io.skysail.server.app.notes.Note=io.skysail.server.app.notes.NoteRepository@542404e, io.skysail.server.app.oEService.OE=io.skysail.server.app.oEService.OERepository@22c776f3, io.skysail.server.app.todos.todos.Todo=io.skysail.server.app.todos.repo.TodosRepository@4b0fe68b, io.skysail.server.designer.demo.folders.Folder=io.skysail.server.designer.demo.folders.FolderRepository@32ade364, io.skysail.server.app.checklist.Item=io.skysail.server.app.checklist.ItemRepository@257a854f, io.skysail.server.app.oEService.User=io.skysail.server.app.oEService.UserRepository@3c131ffd, io.skysail.server.app.todos.TodoList=io.skysail.server.app.todos.repo.ListsRepository@89c9d4a})
+
+2016-02-25 17:35:33,287 WARN  [d.t.s.server.core.restlet.SkysailRouter      ] - please use a RouteBuilder to attach this resource: class de.twenty11.skysail.server.resources.DefaultResource
+2016-02-25 17:35:33,288 WARN  [d.t.s.server.core.restlet.SkysailRouter      ] - please use a RouteBuilder to attach this resource: class de.twenty11.skysail.server.resources.LoginResource
+2016-02-25 17:35:33,288 WARN  [d.t.s.server.core.restlet.SkysailRouter      ] - please use a RouteBuilder to attach this resource: class de.twenty11.skysail.server.resources.DemoLoginResource
+2016-02-25 17:35:33,289 WARN  [d.t.s.server.core.restlet.SkysailRouter      ] - please use a RouteBuilder to attach this resource: class de.twenty11.skysail.server.resources.RemoteLoginResource
+2016-02-25 17:35:33,293 WARN  [io.skysail.server.app.SkysailApplication     ] - there are no entities defined for the applicationModel ApplicationModel: OSGi
+Repositories: 
+Repositories(repositories={})
+
+2016-02-25 17:35:33,304 WARN  [io.skysail.server.app.SkysailApplication     ] - there are no entities defined for the applicationModel ApplicationModel: Performance
+Repositories: 
+Repositories(repositories={})
+
+2016-02-25 17:35:33,317 WARN  [io.skysail.server.app.SkysailApplication     ] - there are no entities defined for the applicationModel ApplicationModel: usermanagement
+Repositories: 
+Repositories(repositories={})
+
+2016-02-25 17:35:33,318 WARN  [d.t.s.server.core.restlet.SkysailRouter      ] - please use a RouteBuilder to attach this resource: class io.skysail.server.um.simple.app.users.resources.CurrentUserResource
+2016-02-25 17:35:33,321 WARN  [d.t.s.server.core.restlet.SkysailRouter      ] - please use a RouteBuilder to attach this resource: class io.skysail.product.designer.PublicResource
+2016-02-25 17:35:33,325 WARN  [io.skysail.server.app.SkysailApplication     ] - there are no entities defined for the applicationModel ApplicationModel: AppDesigner
+Repositories: 
+Repositories(repositories={})
+
+2016-02-25 17:35:33,354 WARN  [io.skysail.server.app.SkysailApplication     ] - there are no entities defined for the applicationModel ApplicationModel: Todos
+Repositories: 
+Repositories(repositories={})
+
+2016-02-25 17:35:33,382 WARN  [io.skysail.server.app.SkysailApplication     ] - there are no entities defined for the applicationModel ApplicationModel: Checklist
+Repositories: 
+Repositories(repositories={io.skysail.server.app.checklist.Template=io.skysail.server.app.checklist.TemplateRepository@33428c11, io.skysail.server.app.notes2.Note=io.skysail.server.app.notes2.NoteRepository@1cd1d95, io.skysail.server.db.versions.impl.ComponentDbVersion=io.skysail.server.db.versions.impl.VersionsRepository@75a18f49, io.skysail.server.app.notes.Note=io.skysail.server.app.notes.NoteRepository@542404e, io.skysail.server.app.oEService.OE=io.skysail.server.app.oEService.OERepository@22c776f3, io.skysail.server.app.todos.todos.Todo=io.skysail.server.app.todos.repo.TodosRepository@4b0fe68b, io.skysail.server.designer.demo.folders.Folder=io.skysail.server.designer.demo.folders.FolderRepository@32ade364, io.skysail.server.app.checklist.Item=io.skysail.server.app.checklist.ItemRepository@257a854f, io.skysail.server.app.oEService.User=io.skysail.server.app.oEService.UserRepository@3c131ffd, io.skysail.server.app.todos.TodoList=io.skysail.server.app.todos.repo.ListsRepository@89c9d4a})
+
+2016-02-25 17:35:33,403 WARN  [io.skysail.server.app.SkysailApplication     ] - there are no entities defined for the applicationModel ApplicationModel: OEService
+Repositories: 
+Repositories(repositories={io.skysail.server.app.checklist.Template=io.skysail.server.app.checklist.TemplateRepository@33428c11, io.skysail.server.app.notes2.Note=io.skysail.server.app.notes2.NoteRepository@1cd1d95, io.skysail.server.db.versions.impl.ComponentDbVersion=io.skysail.server.db.versions.impl.VersionsRepository@75a18f49, io.skysail.server.app.notes.Note=io.skysail.server.app.notes.NoteRepository@542404e, io.skysail.server.app.oEService.OE=io.skysail.server.app.oEService.OERepository@22c776f3, io.skysail.server.app.todos.todos.Todo=io.skysail.server.app.todos.repo.TodosRepository@4b0fe68b, io.skysail.server.designer.demo.folders.Folder=io.skysail.server.designer.demo.folders.FolderRepository@32ade364, io.skysail.server.app.checklist.Item=io.skysail.server.app.checklist.ItemRepository@257a854f, io.skysail.server.app.oEService.User=io.skysail.server.app.oEService.UserRepository@3c131ffd, io.skysail.server.app.todos.TodoList=io.skysail.server.app.todos.repo.ListsRepository@89c9d4a})
+
+2016-02-25 17:35:33,418 WARN  [io.skysail.server.app.SkysailApplication     ] - there are no entities defined for the applicationModel ApplicationModel: Folders
+Repositories: 
+Repositories(repositories={io.skysail.server.app.checklist.Template=io.skysail.server.app.checklist.TemplateRepository@33428c11, io.skysail.server.app.notes2.Note=io.skysail.server.app.notes2.NoteRepository@1cd1d95, io.skysail.server.db.versions.impl.ComponentDbVersion=io.skysail.server.db.versions.impl.VersionsRepository@75a18f49, io.skysail.server.app.notes.Note=io.skysail.server.app.notes.NoteRepository@542404e, io.skysail.server.app.oEService.OE=io.skysail.server.app.oEService.OERepository@22c776f3, io.skysail.server.app.todos.todos.Todo=io.skysail.server.app.todos.repo.TodosRepository@4b0fe68b, io.skysail.server.designer.demo.folders.Folder=io.skysail.server.designer.demo.folders.FolderRepository@32ade364, io.skysail.server.app.checklist.Item=io.skysail.server.app.checklist.ItemRepository@257a854f, io.skysail.server.app.oEService.User=io.skysail.server.app.oEService.UserRepository@3c131ffd, io.skysail.server.app.todos.TodoList=io.skysail.server.app.todos.repo.ListsRepository@89c9d4a})
+

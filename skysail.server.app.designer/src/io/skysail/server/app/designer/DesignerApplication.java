@@ -24,7 +24,7 @@ import io.skysail.server.app.designer.fields.resources.editors.*;
 import io.skysail.server.app.designer.fields.resources.text.*;
 import io.skysail.server.app.designer.fields.resources.textarea.*;
 import io.skysail.server.app.designer.fields.resources.url.*;
-import io.skysail.server.app.designer.layout.LayoutsResource;
+import io.skysail.server.app.designer.layout.*;
 import io.skysail.server.app.designer.relations.resources.*;
 import io.skysail.server.app.designer.repo.DesignerRepository;
 import io.skysail.server.db.DbService;
@@ -123,6 +123,7 @@ public class DesignerApplication extends SkysailApplication implements MenuItemP
         router.attach(new RouteBuilder("/import/", ImportResource.class).authorizeWith(anyOf("admin")));
         
         router.attach(new RouteBuilder("/layouts", LayoutsResource.class));
+        router.attach(new RouteBuilder("/bpmn", BpmnLayoutResource.class));
     }
 
     @org.osgi.service.component.annotations.Reference(policy = ReferencePolicy.DYNAMIC, cardinality = ReferenceCardinality.MANDATORY, target = "(name=DesignerRepository)")

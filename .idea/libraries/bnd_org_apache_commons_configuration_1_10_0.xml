@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="bnd:org.apache.commons.configuration:1.10.0">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/cnf/localrepo/org.apache.commons.configuration/org.apache.commons.configuration-1.10.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

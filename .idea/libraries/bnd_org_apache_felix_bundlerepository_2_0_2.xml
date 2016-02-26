@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="bnd:org.apache.felix.bundlerepository:2.0.2">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/cnf/localrepo/org.apache.felix.bundlerepository/org.apache.felix.bundlerepository-2.0.2.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

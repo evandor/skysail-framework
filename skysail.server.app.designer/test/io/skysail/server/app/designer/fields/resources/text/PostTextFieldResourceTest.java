@@ -1,5 +1,6 @@
 package io.skysail.server.app.designer.fields.resources.text;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import org.restlet.data.Status;
 
@@ -9,6 +10,7 @@ import io.skysail.server.app.designer.fields.*;
 import io.skysail.server.app.designer.fields.resources.test.AbstractFieldResourceTest;
 import io.skysail.server.testsupport.FormBuilder;
 
+@Ignore
 public class PostTextFieldResourceTest extends AbstractFieldResourceTest {
     
     @Test

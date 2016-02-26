@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="bnd:skysail.server.text.markdown:0.1.1.201509190553">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/cnf/releaserepo/skysail.server.text.markdown/skysail.server.text.markdown-0.1.1.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$PROJECT_DIR$/cnf/releaserepo/skysail.server.text.markdown/skysail.server.text.markdown-0.1.1.jar!/OSGI-OPT/src" />
+    </SOURCES>
+  </library>
+</component>

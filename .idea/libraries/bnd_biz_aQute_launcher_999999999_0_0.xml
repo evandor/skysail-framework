@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="bnd:biz.aQute.launcher:999999999.0.0">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/cnf/buildrepo/biz.aQute.launcher/biz.aQute.launcher-latest.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$PROJECT_DIR$/cnf/buildrepo/biz.aQute.launcher/biz.aQute.launcher-latest.jar!/OSGI-OPT/src" />
+    </SOURCES>
+  </library>
+</component>

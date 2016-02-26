@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="bnd:osgi.enroute.base.api:1.6.0.201508270946">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.bnd/cache/https%3A%2F%2Fraw.githubusercontent.com%2Fosgi%2Fosgi.enroute%2Fv1.0.0%2Fcnf%2Fdistro%2Fosgi.enroute.base.api/osgi.enroute.base.api-1.6.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.bnd/cache/https%3A%2F%2Fraw.githubusercontent.com%2Fosgi%2Fosgi.enroute%2Fv1.0.0%2Fcnf%2Fdistro%2Fosgi.enroute.base.api/osgi.enroute.base.api-1.6.0.jar!/OSGI-OPT/src" />
+    </SOURCES>
+  </library>
+</component>

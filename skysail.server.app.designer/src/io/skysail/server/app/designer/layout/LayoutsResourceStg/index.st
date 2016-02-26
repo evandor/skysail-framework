@@ -108,6 +108,31 @@ index(user, messages, converter, model) ::= <<
 }
 </style>
 
+  <style>
+  .draggable { width: 90%; height: 25px; padding: 0.2em; float: left; margin: 2px; z-index:10000;}
+  .droppable { width: 150px; height: 150px; padding: 0.5em; float: left; margin: 10px; }
+  </style>
+  <script>
+  \$(function() {
+    \$( ".draggable" ).draggable({ 
+        revert: "invalid",
+        helper: "clone",
+        cursor: "move"
+    });
+    
+    \$( "#droppable" ).droppable({
+      activeClass: "ui-state-default",
+      hoverClass: "ui-state-hover",
+      drop: function( event, ui ) {
+        \$( this )
+          .addClass( "ui-state-highlight" )
+          .find( "p" )
+            .html( "<div class='row' style='border:1px dotted red;'><div class='col-md-12'>ID: "+ui.draggable.prop('id')+"</div></div>" );
+      }
+    });
+  });
+  </script>
+
   </head>
 
   <body role="document">

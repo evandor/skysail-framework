@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="bnd:de.twentyeleven.skysail.org.json-osgi:20080701.0.0">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/cnf/localrepo/de.twentyeleven.skysail.org.json-osgi/de.twentyeleven.skysail.org.json-osgi-20080701.0.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

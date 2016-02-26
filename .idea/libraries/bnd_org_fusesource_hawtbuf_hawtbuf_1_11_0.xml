@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="bnd:org.fusesource.hawtbuf.hawtbuf:1.11.0">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/cnf/localrepo/org.fusesource.hawtbuf.hawtbuf/org.fusesource.hawtbuf.hawtbuf-1.11.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

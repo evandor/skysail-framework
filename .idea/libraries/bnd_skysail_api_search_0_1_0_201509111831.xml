@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="bnd:skysail.api.search:0.1.0.201509111831">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/cnf/releaserepo/skysail.api.search/skysail.api.search-0.1.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$PROJECT_DIR$/cnf/releaserepo/skysail.api.search/skysail.api.search-0.1.0.jar!/OSGI-OPT/src" />
+    </SOURCES>
+  </library>
+</component>

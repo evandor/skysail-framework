@@ -19,7 +19,7 @@ public class FoldersFolderResource extends EntityServerResource<Folder> {
 
     @Override
     public List<Link> getLinks() {
-        return super.getLinks(FoldersFoldersResource.class, PostFoldersFolderRelationResource.class);
+        return super.getLinks(FoldersFoldersResource.class);
     }
 
 }

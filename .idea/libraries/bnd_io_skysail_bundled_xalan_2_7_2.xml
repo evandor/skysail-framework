@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="bnd:io.skysail.bundled.xalan:2.7.2">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/cnf/localrepo/io.skysail.bundled.xalan/io.skysail.bundled.xalan-2.7.2.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

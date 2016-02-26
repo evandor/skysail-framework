@@ -1,20 +1,17 @@
 package io.skysail.server.designer.demo.folders;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.persistence.Id;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import com.fasterxml.jackson.annotation.*;
 
+import java.util.*;
+import io.skysail.server.db.DbClassName;
 import io.skysail.domain.Identifiable;
-import io.skysail.domain.html.Field;
-import io.skysail.domain.html.HtmlPolicy;
-import io.skysail.domain.html.InputType;
-import io.skysail.domain.html.Relation;
-import io.skysail.server.forms.ListView;
+import io.skysail.domain.html.*;
+import io.skysail.server.forms.*;
+
+import org.apache.commons.lang3.StringUtils;
 
 @SuppressWarnings("serial")
 @JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class, property="id")

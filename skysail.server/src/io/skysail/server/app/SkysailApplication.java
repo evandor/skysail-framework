@@ -1,44 +1,66 @@
 package io.skysail.server.app;
 
 import java.util.*;
-import java.util.concurrent.*;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.stream.Collectors;
 
 import org.apache.commons.lang.Validate;
-import org.osgi.framework.*;
+import org.osgi.framework.Bundle;
+import org.osgi.framework.BundleContext;
 import org.osgi.service.cm.ConfigurationException;
 import org.osgi.service.component.ComponentContext;
-import org.osgi.service.component.annotations.*;
+import org.osgi.service.component.annotations.Activate;
+import org.osgi.service.component.annotations.Deactivate;
 import org.osgi.service.event.EventAdmin;
 import org.owasp.html.HtmlPolicyBuilder;
-import org.restlet.*;
-import org.restlet.data.*;
+import org.restlet.Context;
+import org.restlet.Request;
+import org.restlet.Response;
+import org.restlet.Restlet;
+import org.restlet.data.MediaType;
+import org.restlet.data.Protocol;
 import org.restlet.data.Reference;
-import org.restlet.ext.raml.*;
+import org.restlet.ext.raml.RamlApplication;
+import org.restlet.ext.raml.RamlSpecificationRestlet;
 import org.restlet.resource.ServerResource;
 import org.restlet.routing.Filter;
-import org.restlet.security.*;
+import org.restlet.security.Authenticator;
+import org.restlet.security.Enroler;
+import org.restlet.security.Role;
+import org.restlet.security.SecretVerifier;
 import org.restlet.util.RouteList;
 
 import com.google.common.base.Predicate;
 
-import de.twenty11.skysail.server.app.*;
-import de.twenty11.skysail.server.core.restlet.*;
+import de.twenty11.skysail.server.app.ApplicationProvider;
+import de.twenty11.skysail.server.app.ServiceListProvider;
+import de.twenty11.skysail.server.app.TranslationRenderServiceHolder;
+import de.twenty11.skysail.server.core.restlet.ApplicationContextId;
+import de.twenty11.skysail.server.core.restlet.RouteBuilder;
+import de.twenty11.skysail.server.core.restlet.SkysailRouter;
 import io.skysail.api.text.Translation;
-import io.skysail.api.um.*;
+import io.skysail.api.um.AuthenticationService;
+import io.skysail.api.um.AuthorizationService;
 import io.skysail.api.validation.ValidatorService;
 import io.skysail.domain.Identifiable;
 import io.skysail.domain.core.Repositories;
 import io.skysail.domain.core.repos.Repository;
-import io.skysail.domain.html.*;
+import io.skysail.domain.html.Field;
+import io.skysail.domain.html.HtmlPolicy;
 import io.skysail.server.domain.jvm.ClassEntityModel;
 import io.skysail.server.menus.MenuItem;
-import io.skysail.server.restlet.filter.*;
+import io.skysail.server.restlet.filter.OriginalRequestFilter;
+import io.skysail.server.restlet.filter.TracerFilter;
 import io.skysail.server.restlet.resources.SkysailServerResource;
-import io.skysail.server.security.*;
-import io.skysail.server.services.*;
+import io.skysail.server.security.RolePredicate;
+import io.skysail.server.security.SkysailRolesAuthorizer;
+import io.skysail.server.services.PerformanceMonitor;
+import io.skysail.server.services.PerformanceTimer;
+import io.skysail.server.services.ResourceBundleProvider;
 import io.skysail.server.text.TranslationStoreHolder;
-import io.skysail.server.utils.*;
+import io.skysail.server.utils.ReflectionUtils;
+import io.skysail.server.utils.TranslationUtils;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 
@@ -145,13 +167,13 @@ public abstract class SkysailApplication extends RamlApplication implements Appl
      */
     @Activate
     protected void activate(ComponentContext componentContext) throws ConfigurationException {
-        log.debug("Activating ApplicationModel {}", this.getClass().getName());
+        log.info("Activating ApplicationModel {}", this.getClass().getName());
         this.componentContext = componentContext;
     }
 
     @Deactivate
     protected void deactivate(ComponentContext componentContext) { // NOSONAR
-        log.debug("Deactivating ApplicationModel {}", this.getClass().getName());
+        log.info("Deactivating ApplicationModel {}", this.getClass().getName());
         this.componentContext = null;
         this.bundleContext = null;
         if (router != null) {

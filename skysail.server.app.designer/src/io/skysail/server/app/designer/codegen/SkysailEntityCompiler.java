@@ -125,22 +125,22 @@ public class SkysailEntityCompiler extends SkysailCompiler {
         codes.put(name, compiledCode);
         
         
-//        template = templateProvider.templateFor("postRelationResource");
-//        compiledCode = setupPostRelationResourceForCompilation(template, entityModel, relation);
-//        name = compiledCode.getClassName();
-//        routes.add(new RouteModel("/" + entityModel.getSimpleName() + "s/{id}/"+relation.getTargetEntityModel().getSimpleName()+"s/", name));
-//        codes.put(name, compiledCode);
-        
-        template = templateProvider.templateFor("targetRelationResource");
-        compiledCode = setupTargetRelationResourceForCompilation(template, entityModel, relation);
+        template = templateProvider.templateFor("postRelationResource");
+        compiledCode = setupPostRelationResourceForCompilation(template, entityModel, relation);
         name = compiledCode.getClassName();
-        routes.add(new RouteModel("/" + entityModel.getSimpleName() + "s/{id}/"+relation.getTargetEntityModel().getSimpleName()+"s/{targetId}", name));
+        //routes.add(new RouteModel("/" + entityModel.getSimpleName() + "s/{id}/"+relation.getTargetEntityModel().getSimpleName()+"s/", name));
         codes.put(name, compiledCode);
         
         template = templateProvider.templateFor("postRelationToNewEntityResource");
         compiledCode = setupPostRelationToNewEntityesourceForCompilation(template, entityModel, relation);
         name = compiledCode.getClassName();
         routes.add(new RouteModel("/" + entityModel.getSimpleName() + "s/{id}/"+relation.getTargetEntityModel().getSimpleName()+"s/", name));
+        codes.put(name, compiledCode);
+        
+        template = templateProvider.templateFor("targetRelationResource");
+        compiledCode = setupTargetRelationResourceForCompilation(template, entityModel, relation);
+        name = compiledCode.getClassName();
+        routes.add(new RouteModel("/" + entityModel.getSimpleName() + "s/{id}/"+relation.getTargetEntityModel().getSimpleName()+"s/{targetId}", name));
         codes.put(name, compiledCode);
         
         

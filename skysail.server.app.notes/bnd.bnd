@@ -12,7 +12,7 @@ Import-Package: org.osgi.framework,\
 
 Service-Component: *
 
-Include-Resource: resources, templates=src;recursive:=true;filter:=*.st|*.stg
+Include-Resource: templates=src;recursive:=true;filter:=*.st|*.stg
 
 -buildpath: \
 	${osgi},\

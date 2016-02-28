@@ -1,14 +1,23 @@
 package io.skysail.api.links.test;
 
-import static org.hamcrest.Matchers.*;
+import static org.hamcrest.Matchers.contains;
+import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
-import io.skysail.api.links.*;
 
-import org.junit.*;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Rule;
+import org.junit.Test;
 import org.junit.rules.ExpectedException;
 import org.mockito.Mockito;
 import org.restlet.Request;
-import org.restlet.data.*;
+import org.restlet.data.Method;
+import org.restlet.data.Reference;
+
+import io.skysail.api.links.Link;
+import io.skysail.api.links.LinkRelation;
+import io.skysail.api.links.LinkRole;
 
 public class LinkTest {
 
@@ -105,6 +114,24 @@ public class LinkTest {
         assertThat(linkFromTemplate.getUri(),is("uri"));
         assertThat(linkFromTemplate.getRel(),is(LinkRelation.CREATE_FORM));
         assertThat(linkFromTemplate.getRefId(),is("refId"));
+    }
+    
+    @Test
+    public void button_is_not_shown_for_ListView_Role_Link() {
+        Link link = new Link.Builder("uri").role(LinkRole.LIST_VIEW).build();
+        assertThat(link.isShowAsButtonInHtml(), is(false));
+    }
+
+    @Test
+    public void button_is_not_shown_for_menuItem_Role_Link() {
+        Link link = new Link.Builder("uri").role(LinkRole.MENU_ITEM).build();
+        assertThat(link.isShowAsButtonInHtml(), is(false));
+    }
+
+    @Test
+    public void button_is_shown_for_GET_links_if_not_menuItem_or_listView() {
+        Link link = new Link.Builder("uri").build();
+        assertThat(link.isShowAsButtonInHtml(), is(true));
     }
 
 }

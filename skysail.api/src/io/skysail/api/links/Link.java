@@ -43,7 +43,7 @@ public class Link {
     private LinkRelation rel;
 
     /** the HTTP methods applicable for the link. */
-    private Set<Method> verbs = new HashSet<Method>();
+    private Set<Method> verbs = new HashSet<>();
 
     /** true if the target is not publicly available. */
     private boolean needsAuthentication;
@@ -146,7 +146,7 @@ public class Link {
          *
          */
         public Builder verbs(Method... verbs) {
-            this.verbs = new HashSet<Method>();
+            this.verbs = new HashSet<>();
             this.verbs.addAll(Arrays.asList(verbs));
             return this;
         }
@@ -306,7 +306,7 @@ public class Link {
         String pattern = new StringBuilder("{").append(key).append("}").toString();
         if (uri.contains(pattern)) {
             String uriBefore = uri;
-            uri = uri.replace(pattern, value == null ? "" : value);
+            uri = uri.replace(pattern, value);
             log.info("uri substitution: '{}' -> '{}'", uriBefore, uri);
         } else {
             log.warn("could not find pattern {} in link uri {}", pattern, uri);

@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<repository increment="1456659915311" name="skysail.server.designer.demo.folders" xmlns="http://www.osgi.org/xmlns/repository/v1.0.0">
+<repository increment="1456661454843" name="skysail.server.designer.demo.folders" xmlns="http://www.osgi.org/xmlns/repository/v1.0.0">
   <resource>
     <capability namespace="osgi.identity">
       <attribute name="osgi.identity" value="skysail.server.designer.demo.folders"/>
       <attribute name="type" value="osgi.bundle"/>
-      <attribute name="version" type="Version" value="0.1.0.201602281145"/>
+      <attribute name="version" type="Version" value="0.1.0.201602281210"/>
     </capability>
     <capability namespace="osgi.content">
-      <attribute name="osgi.content" value="0fbfa951202ad13041e4793951d0c956cbc741b140a96a12f7eb467c33e2912f"/>
+      <attribute name="osgi.content" value="4ff8719a09d09c7f602624d559c15ec6a39b48e11b10acec8ba50fd41b1fc0d9"/>
       <attribute name="url" value="generated/skysail.server.designer.demo.folders.jar"/>
-      <attribute name="size" type="Long" value="29057"/>
+      <attribute name="size" type="Long" value="29056"/>
       <attribute name="mime" value="application/vnd.osgi.bundle"/>
     </capability>
     <capability namespace="osgi.wiring.bundle">
       <attribute name="osgi.wiring.bundle" value="skysail.server.designer.demo.folders"/>
-      <attribute name="bundle-version" type="Version" value="0.1.0.201602281145"/>
+      <attribute name="bundle-version" type="Version" value="0.1.0.201602281210"/>
     </capability>
     <capability namespace="osgi.wiring.host">
       <attribute name="osgi.wiring.host" value="skysail.server.designer.demo.folders"/>
-      <attribute name="bundle-version" type="Version" value="0.1.0.201602281145"/>
+      <attribute name="bundle-version" type="Version" value="0.1.0.201602281210"/>
     </capability>
     <capability namespace="osgi.service">
       <attribute name="objectClass" type="List&lt;String&gt;" value="io.skysail.domain.core.repos.DbRepository"/>

@@ -17,8 +17,8 @@ import org.mockito.runners.MockitoJUnitRunner;
 import org.osgi.framework.*;
 import org.osgi.service.component.ComponentContext;
 
-import de.twenty11.skysail.server.app.ApplicationProvider;
 import io.skysail.domain.core.Repositories;
+import io.skysail.server.app.ApplicationProvider;
 import io.skysail.server.app.SkysailApplication;
 import io.skysail.server.app.designer.application.DbApplication;
 import io.skysail.server.app.designer.model.DesignerApplicationModel;

@@ -33,9 +33,6 @@ import org.restlet.util.RouteList;
 
 import com.google.common.base.Predicate;
 
-import de.twenty11.skysail.server.app.ApplicationProvider;
-import de.twenty11.skysail.server.app.ServiceListProvider;
-import de.twenty11.skysail.server.app.TranslationRenderServiceHolder;
 import de.twenty11.skysail.server.core.restlet.ApplicationContextId;
 import de.twenty11.skysail.server.core.restlet.RouteBuilder;
 import de.twenty11.skysail.server.core.restlet.SkysailRouter;

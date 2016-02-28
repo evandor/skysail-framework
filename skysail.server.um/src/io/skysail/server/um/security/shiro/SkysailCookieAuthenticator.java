@@ -13,7 +13,7 @@ import org.restlet.data.CookieSetting;
 import org.restlet.ext.crypto.CookieAuthenticator;
 import org.restlet.routing.Filter;
 
-import de.twenty11.skysail.server.app.SkysailRootApplication;
+import io.skysail.server.app.SkysailRootApplication;
 import lombok.extern.slf4j.Slf4j;
 
 /**

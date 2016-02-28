@@ -1,16 +1,21 @@
 package io.skysail.server.app;
 
 import java.text.DecimalFormat;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 import org.apache.commons.lang.Validate;
-import org.osgi.service.component.annotations.*;
 import org.osgi.service.component.annotations.Component;
-import org.restlet.*;
+import org.osgi.service.component.annotations.Reference;
+import org.osgi.service.component.annotations.ReferenceCardinality;
+import org.osgi.service.component.annotations.ReferencePolicy;
+import org.restlet.Application;
+import org.restlet.Server;
 import org.restlet.data.Protocol;
 
-import de.twenty11.skysail.server.*;
-import de.twenty11.skysail.server.app.*;
+import de.twenty11.skysail.server.SkysailStatusService;
+import io.skysail.server.SkysailComponent;
 import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
 

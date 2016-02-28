@@ -5,7 +5,6 @@ import java.util.Arrays;
 import org.osgi.service.component.annotations.*;
 import org.osgi.service.event.EventAdmin;
 
-import de.twenty11.skysail.server.app.ApplicationProvider;
 import de.twenty11.skysail.server.core.restlet.RouteBuilder;
 import io.skysail.server.app.*;
 import io.skysail.server.app.dbviewer.dbclasses.*;

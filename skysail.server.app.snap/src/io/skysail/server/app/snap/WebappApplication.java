@@ -15,7 +15,7 @@ import org.restlet.data.Status;
 import org.restlet.routing.Filter;
 import org.restlet.routing.Router;
 
-import de.twenty11.skysail.server.app.ApplicationProvider;
+import io.skysail.server.app.ApplicationProvider;
 import io.skysail.server.app.SkysailApplication;
 import io.skysail.server.utils.ClassLoaderDirectory;
 import io.skysail.server.utils.CompositeClassLoader;

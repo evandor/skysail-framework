@@ -7,8 +7,8 @@ import org.osgi.service.event.EventAdmin;
 import org.restlet.data.LocalReference;
 import org.restlet.routing.Router;
 
-import de.twenty11.skysail.server.app.ApplicationProvider;
 import de.twenty11.skysail.server.core.restlet.RouteBuilder;
+import io.skysail.server.app.ApplicationProvider;
 import io.skysail.server.app.SkysailApplication;
 import io.skysail.server.menus.*;
 import io.skysail.server.utils.*;

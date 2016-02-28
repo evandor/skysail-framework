@@ -10,7 +10,6 @@ import org.osgi.service.component.annotations.*;
 import org.osgi.service.event.EventAdmin;
 import org.restlet.data.MediaType;
 
-import de.twenty11.skysail.server.app.ApplicationProvider;
 import de.twenty11.skysail.server.core.restlet.*;
 import de.twenty11.skysail.server.mgt.apps.*;
 import de.twenty11.skysail.server.mgt.captures.RequestCaptureResource;
@@ -19,6 +18,7 @@ import de.twenty11.skysail.server.mgt.jmx.JmxMonitor;
 import de.twenty11.skysail.server.mgt.performance.PerformanceResource;
 import etm.core.configuration.*;
 import etm.core.monitor.EtmMonitor;
+import io.skysail.server.app.ApplicationProvider;
 import io.skysail.server.app.SkysailApplication;
 import io.skysail.server.menus.MenuItemProvider;
 import lombok.Getter;

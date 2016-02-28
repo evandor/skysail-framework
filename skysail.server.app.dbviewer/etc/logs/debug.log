@@ -154,7 +154,7 @@
 2015-10-30 18:40:30,750 DEBUG [i.skysail.server.db.OrientGraphDbService     ] - registering class 'class io.skysail.server.db.versions.impl.ComponentDbVersion' @ orientDB
 2015-10-30 18:40:30,766 INFO  [io.skysail.server.app.Repositories           ] - adding repository with name 'io.skysail.server.db.versions.impl.ComponentDbVersion'
 2015-10-30 18:40:30,797 INFO  [io.skysail.server.http.HttpServer            ] - Activating io.skysail.server.http.HttpServer
-2015-10-30 18:40:30,813 INFO  [d.t.skysail.server.SkysailComponent          ] - Creating Restlet Component: de.twenty11.skysail.server.SkysailComponent
+2015-10-30 18:40:30,813 INFO  [d.t.skysail.server.SkysailComponent          ] - Creating Restlet Component: io.skysail.server.SkysailComponent
 2015-10-30 18:40:30,818 INFO  [io.skysail.server.http.HttpServer            ] - configuration was provided
 2015-10-30 18:40:30,818 INFO  [io.skysail.server.http.HttpServer            ] - 
 2015-10-30 18:40:30,819 INFO  [io.skysail.server.http.HttpServer            ] - ====================================
@@ -381,8 +381,8 @@
 2015-10-30 18:40:36,936 DEBUG [o.e.j.util.component.AbstractLifeCycle       ] - STARTED @11395ms org.eclipse.jetty.client.http.HttpClientTransportOverHTTP@15fc3f03
 2015-10-30 18:40:36,936 DEBUG [org.eclipse.jetty.io.SelectorManager         ] - Selector loop waiting on select
 2015-10-30 18:40:36,936 DEBUG [o.e.j.util.component.AbstractLifeCycle       ] - STARTED @11395ms org.eclipse.jetty.client.HttpClient@11b272e8
-2015-10-30 18:40:36,937 INFO  [o.r.S.SkysailRootApplication                 ] - Starting de.twenty11.skysail.server.app.SkysailRootApplication application
-2015-10-30 18:40:36,943 INFO  [io.skysail.server.app.SkysailApplication     ] - creating new Router in de.twenty11.skysail.server.app.SkysailRootApplication
+2015-10-30 18:40:36,937 INFO  [o.r.S.SkysailRootApplication                 ] - Starting io.skysail.server.app.SkysailRootApplication application
+2015-10-30 18:40:36,943 INFO  [io.skysail.server.app.SkysailApplication     ] - creating new Router in io.skysail.server.app.SkysailRootApplication
 2015-10-30 18:40:36,945 INFO  [io.skysail.server.app.SkysailApplication     ] - adding extensions to metadata service
 2015-10-30 18:40:36,946 INFO  [io.skysail.server.app.SkysailApplication     ] - adding protocols
 2015-10-30 18:40:36,947 DEBUG [io.skysail.server.app.SkysailApplication     ] - attaching application-specific routes

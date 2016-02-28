@@ -1,13 +1,12 @@
 package io.skysail.server.utils;
 
 import io.skysail.api.text.*;
+import io.skysail.server.app.TranslationRenderServiceHolder;
 import io.skysail.server.restlet.resources.SkysailServerResource;
 import io.skysail.server.text.TranslationStoreHolder;
 
 import java.util.*;
 import java.util.stream.Collectors;
-
-import de.twenty11.skysail.server.app.TranslationRenderServiceHolder;
 
 public class TranslationUtils {
 

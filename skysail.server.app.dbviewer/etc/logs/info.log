@@ -9,7 +9,7 @@
 2015-10-30 18:40:30,724 INFO  [i.s.s.d.versions.impl.VersionsRepository     ] - activating VersionsRepository
 2015-10-30 18:40:30,766 INFO  [io.skysail.server.app.Repositories           ] - adding repository with name 'io.skysail.server.db.versions.impl.ComponentDbVersion'
 2015-10-30 18:40:30,797 INFO  [io.skysail.server.http.HttpServer            ] - Activating io.skysail.server.http.HttpServer
-2015-10-30 18:40:30,813 INFO  [d.t.skysail.server.SkysailComponent          ] - Creating Restlet Component: de.twenty11.skysail.server.SkysailComponent
+2015-10-30 18:40:30,813 INFO  [d.t.skysail.server.SkysailComponent          ] - Creating Restlet Component: io.skysail.server.SkysailComponent
 2015-10-30 18:40:30,818 INFO  [io.skysail.server.http.HttpServer            ] - configuration was provided
 2015-10-30 18:40:30,818 INFO  [io.skysail.server.http.HttpServer            ] - 
 2015-10-30 18:40:30,819 INFO  [io.skysail.server.http.HttpServer            ] - ====================================
@@ -51,8 +51,8 @@
 2015-10-30 18:40:31,851 INFO  [i.skysail.domain.core.Application     ] - adding repository 'io.skysail.server.app.um.db.domain.Group' -> io.skysail.server.app.um.db.repo.GroupRepository@29f3c438
 2015-10-30 18:40:31,851 INFO  [i.skysail.domain.core.Application     ] - adding repository 'io.skysail.server.app.um.db.domain.Permission' -> io.skysail.server.app.um.db.repo.PermissionRepository@5460edd3
 2015-10-30 18:40:31,852 INFO  [io.skysail.server.app.ApplicationList        ] - (+) Adding application 'dbviewer'
-2015-10-30 18:40:36,937 INFO  [o.r.S.SkysailRootApplication                 ] - Starting de.twenty11.skysail.server.app.SkysailRootApplication application
-2015-10-30 18:40:36,943 INFO  [io.skysail.server.app.SkysailApplication     ] - creating new Router in de.twenty11.skysail.server.app.SkysailRootApplication
+2015-10-30 18:40:36,937 INFO  [o.r.S.SkysailRootApplication                 ] - Starting io.skysail.server.app.SkysailRootApplication application
+2015-10-30 18:40:36,943 INFO  [io.skysail.server.app.SkysailApplication     ] - creating new Router in io.skysail.server.app.SkysailRootApplication
 2015-10-30 18:40:36,945 INFO  [io.skysail.server.app.SkysailApplication     ] - adding extensions to metadata service
 2015-10-30 18:40:36,946 INFO  [io.skysail.server.app.SkysailApplication     ] - adding protocols
 2015-10-30 18:40:36,950 INFO  [d.t.s.server.core.restlet.SkysailRouter      ] - routing path '/!meta' -> 'RolesPredicateAuthorizer' -> 'de.twenty11.skysail.server.resources.DefaultResource'

@@ -7,9 +7,9 @@ import org.osgi.service.component.annotations.Reference;
 import org.osgi.service.component.annotations.ReferenceCardinality;
 import org.osgi.service.component.annotations.ReferencePolicy;
 
-import de.twenty11.skysail.server.app.ApplicationProvider;
 import io.skysail.domain.core.Repositories;
 import io.skysail.server.app.ApiVersion;
+import io.skysail.server.app.ApplicationProvider;
 import io.skysail.server.menus.MenuItemProvider;
 
 @Component(immediate = true)

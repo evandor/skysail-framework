@@ -1,16 +1,6 @@
 package io.skysail.server.app.oEService;
 
-import java.util.*;
-
-import org.osgi.service.component.annotations.*;
-import org.osgi.service.event.EventAdmin;
-
-import de.twenty11.skysail.server.app.ApplicationProvider;
-import de.twenty11.skysail.server.core.restlet.*;
-import io.skysail.domain.Identifiable;
-import io.skysail.domain.core.Repositories;
-import io.skysail.server.app.*;
-import io.skysail.server.menus.MenuItemProvider;
+import java.util.List;
 
 public class OEServiceApplicationGen extends SkysailApplication implements ApplicationProvider, MenuItemProvider {
 

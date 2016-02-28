@@ -11,9 +11,9 @@ import org.restlet.Restlet;
 import org.restlet.data.LocalReference;
 import org.restlet.routing.Router;
 
-import de.twenty11.skysail.server.app.ApplicationProvider;
 import de.twenty11.skysail.server.core.restlet.RouteBuilder;
 import de.twenty11.skysail.server.core.restlet.SkysailRouter;
+import io.skysail.server.app.ApplicationProvider;
 import io.skysail.server.app.SkysailApplication;
 import io.skysail.server.menus.MenuItem;
 import io.skysail.server.menus.MenuItemProvider;

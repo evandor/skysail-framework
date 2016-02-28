@@ -3,8 +3,8 @@ package io.skysail.server.db.it.folder;
 import org.osgi.service.component.annotations.*;
 import org.osgi.service.event.EventAdmin;
 
-import de.twenty11.skysail.server.app.ApplicationProvider;
 import io.skysail.domain.core.repos.DbRepository;
+import io.skysail.server.app.ApplicationProvider;
 import io.skysail.server.app.SkysailApplication;
 import lombok.Getter;
 

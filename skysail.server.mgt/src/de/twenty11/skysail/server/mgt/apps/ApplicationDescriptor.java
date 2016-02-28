@@ -1,9 +1,9 @@
 package de.twenty11.skysail.server.mgt.apps;
 
-import de.twenty11.skysail.server.app.ApplicationProvider;
 import io.skysail.domain.Identifiable;
 import io.skysail.domain.core.ApplicationModel;
 import io.skysail.domain.html.Field;
+import io.skysail.server.app.ApplicationProvider;
 import lombok.*;
 
 @Setter

@@ -6,10 +6,10 @@ import java.util.stream.Collectors;
 
 import com.google.common.base.Predicate;
 
-import de.twenty11.skysail.server.app.SkysailRootApplication;
 import io.skysail.api.links.Link;
 import io.skysail.api.links.LinkRelation;
 import io.skysail.api.links.LinkRole;
+import io.skysail.server.app.SkysailRootApplication;
 import io.skysail.server.menus.MenuItem;
 import io.skysail.server.restlet.resources.ListServerResource;
 

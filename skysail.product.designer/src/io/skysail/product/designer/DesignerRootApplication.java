@@ -3,7 +3,6 @@ package io.skysail.product.designer;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.event.EventAdmin;
 
-import de.twenty11.skysail.server.app.ApplicationProvider;
 import de.twenty11.skysail.server.core.restlet.RouteBuilder;
 import io.skysail.server.app.*;
 

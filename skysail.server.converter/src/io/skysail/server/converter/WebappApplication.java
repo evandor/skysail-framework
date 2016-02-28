@@ -25,7 +25,7 @@ import org.restlet.*;
 import org.restlet.data.*;
 import org.restlet.routing.*;
 
-import de.twenty11.skysail.server.app.ApplicationProvider;
+import io.skysail.server.app.ApplicationProvider;
 import io.skysail.server.app.SkysailApplication;
 import io.skysail.server.utils.*;
 import lombok.Getter;

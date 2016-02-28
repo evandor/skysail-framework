@@ -10,8 +10,8 @@ import org.osgi.framework.*;
 import org.osgi.service.component.annotations.*;
 import org.osgi.service.event.EventAdmin;
 
-import de.twenty11.skysail.server.app.ApplicationProvider;
 import de.twenty11.skysail.server.core.restlet.*;
+import io.skysail.server.app.ApplicationProvider;
 import io.skysail.server.app.SkysailApplication;
 import io.skysail.server.app.plugins.features.*;
 import io.skysail.server.app.plugins.installations.PostInstallationResource;

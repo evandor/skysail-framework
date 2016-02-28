@@ -7,10 +7,10 @@ import java.util.stream.Collectors;
 import org.osgi.service.component.annotations.*;
 import org.osgi.service.event.EventAdmin;
 
-import de.twenty11.skysail.server.app.ApplicationProvider;
 import de.twenty11.skysail.server.core.restlet.*;
 import io.skysail.domain.core.Repositories;
 import io.skysail.domain.core.repos.DbRepository;
+import io.skysail.server.app.ApplicationProvider;
 import io.skysail.server.app.SkysailApplication;
 import io.skysail.server.app.designer.application.*;
 import io.skysail.server.app.designer.application.resources.*;

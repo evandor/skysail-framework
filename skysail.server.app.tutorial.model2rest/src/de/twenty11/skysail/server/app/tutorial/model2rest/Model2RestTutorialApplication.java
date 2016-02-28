@@ -5,7 +5,6 @@ import java.util.*;
 import org.osgi.service.component.annotations.*;
 import org.osgi.service.event.EventAdmin;
 
-import de.twenty11.skysail.server.app.ApplicationProvider;
 import de.twenty11.skysail.server.app.tutorial.model2rest.conclusion.ConclusionResource;
 import de.twenty11.skysail.server.app.tutorial.model2rest.home.TutorialHomeResource;
 import de.twenty11.skysail.server.app.tutorial.model2rest.step3.Step3DemoResource;
@@ -14,6 +13,7 @@ import de.twenty11.skysail.server.app.tutorial.model2rest.step5.*;
 import de.twenty11.skysail.server.app.tutorial.model2rest.step6.StepDemoResource;
 import de.twenty11.skysail.server.core.restlet.*;
 import io.skysail.api.links.Link;
+import io.skysail.server.app.ApplicationProvider;
 import io.skysail.server.app.SkysailApplication;
 import io.skysail.server.menus.*;
 import io.skysail.server.restlet.resources.SkysailServerResource;

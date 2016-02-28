@@ -7,8 +7,8 @@ import org.apache.felix.service.command.CommandProcessor;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 
-import de.twenty11.skysail.server.app.ApplicationListProvider;
 import de.twenty11.skysail.server.core.restlet.RouteBuilder;
+import io.skysail.server.app.ApplicationListProvider;
 import io.skysail.server.app.SkysailApplication;
 import lombok.extern.slf4j.Slf4j;
 

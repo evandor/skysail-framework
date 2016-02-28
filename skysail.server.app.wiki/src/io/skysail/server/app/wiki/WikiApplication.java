@@ -4,9 +4,9 @@ import java.util.Arrays;
 
 import org.osgi.service.component.annotations.*;
 
-import de.twenty11.skysail.server.app.ApplicationProvider;
 import io.skysail.domain.core.Repositories;
 import io.skysail.server.app.ApiVersion;
+import io.skysail.server.app.ApplicationProvider;
 import io.skysail.server.menus.MenuItemProvider;
 
 //@RequireUiKitWebResource(resource="css/bootstrap.css")

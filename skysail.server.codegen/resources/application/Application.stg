@@ -6,7 +6,7 @@ import java.util.List;
 XXX
 import aQute.bnd.annotation.component.Component;
 import aQute.bnd.annotation.component.Reference;
-import de.twenty11.skysail.server.app.ApplicationProvider;
+import io.skysail.server.app.ApplicationProvider;
 import de.twenty11.skysail.server.app.SkysailApplication;
 
 $importPostResources(postResources, applicationModel.typeName, package)$

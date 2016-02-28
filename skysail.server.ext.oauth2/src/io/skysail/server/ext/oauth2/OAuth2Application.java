@@ -6,10 +6,10 @@ import org.osgi.service.component.ComponentContext;
 import org.osgi.service.component.annotations.*;
 import org.osgi.service.metatype.annotations.Designate;
 
-import de.twenty11.skysail.server.app.ApplicationProvider;
 import de.twenty11.skysail.server.core.restlet.RouteBuilder;
 import io.skysail.domain.core.Repositories;
 import io.skysail.server.app.ApiVersion;
+import io.skysail.server.app.ApplicationProvider;
 import io.skysail.server.ext.oauth2.configuration.OAuth2Config;
 import io.skysail.server.ext.oauth2.impl.OAuth2RootResource;
 import io.skysail.server.menus.MenuItemProvider;

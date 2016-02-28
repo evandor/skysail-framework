@@ -6,6 +6,7 @@ Export-Package: \
 	de.twenty11.skysail.server.help,\
 	io.skysail.server.theme,\
 	io.skysail.server.menus,\
+	io.skysail.server,\
 	de.twenty11.skysail.server.domain,\
 	io.skysail.server.rendering,\
 	io.skysail.server.utils,\

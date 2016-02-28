@@ -7,11 +7,13 @@ import java.util.stream.Stream;
 import org.osgi.service.component.annotations.*;
 import org.restlet.Context;
 
-import de.twenty11.skysail.server.SkysailComponent;
-import de.twenty11.skysail.server.app.*;
-import io.skysail.api.text.*;
-import io.skysail.api.um.*;
+import io.skysail.api.text.TranslationRenderService;
+import io.skysail.api.text.TranslationStore;
+import io.skysail.api.um.AuthenticationService;
+import io.skysail.api.um.AuthorizationService;
+import io.skysail.api.um.UserManagementProvider;
 import io.skysail.api.validation.ValidatorService;
+import io.skysail.server.SkysailComponent;
 import io.skysail.server.services.PerformanceMonitor;
 import io.skysail.server.text.TranslationStoreHolder;
 import lombok.Getter;

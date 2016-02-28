@@ -9,7 +9,6 @@ import org.osgi.service.component.annotations.*;
 import org.osgi.service.event.EventAdmin;
 import org.restlet.Request;
 
-import de.twenty11.skysail.server.app.ApplicationProvider;
 import de.twenty11.skysail.server.core.restlet.*;
 import io.skysail.domain.core.repos.DbRepository;
 import io.skysail.server.app.*;

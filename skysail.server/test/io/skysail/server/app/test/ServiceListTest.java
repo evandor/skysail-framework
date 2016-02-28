@@ -13,7 +13,6 @@ import org.osgi.framework.BundleContext;
 import org.osgi.service.event.EventAdmin;
 import org.restlet.Request;
 
-import de.twenty11.skysail.server.app.ApplicationListProvider;
 import io.skysail.api.text.*;
 import io.skysail.server.app.*;
 

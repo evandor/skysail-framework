@@ -50,6 +50,18 @@ public class LinkTest {
         String nullString = null;
         new Link.Builder(nullString).build();
     }
+    
+    @Test
+    public void builder_method_rejects_link_with_null_uri() throws Exception {
+        thrown.expect(NullPointerException.class);
+        new Link.Builder("someurl").uri(null).build();
+    }
+    
+    @Test
+    public void builder_uri_method_sets_uri() throws Exception {
+        Link link = new Link.Builder("someurl").uri("otherurl").build();
+        assertThat(link.getUri(),is("otherurl"));
+    }
 
     @Test
     public void builder_creates_link_with_default_linkrelation() throws Exception {
@@ -108,12 +120,14 @@ public class LinkTest {
     public void createsBuilder_from_link() {
         Link linkTemplate = new Link.Builder("uri")
             .relation(LinkRelation.CREATE_FORM)
+            .definingClass(String.class)
             .refId("refId")
             .build();
         Link linkFromTemplate = new Link.Builder(linkTemplate).build();
         assertThat(linkFromTemplate.getUri(),is("uri"));
         assertThat(linkFromTemplate.getRel(),is(LinkRelation.CREATE_FORM));
         assertThat(linkFromTemplate.getRefId(),is("refId"));
+        assertThat(linkFromTemplate.getCls().getName(),is(String.class.getName()));
     }
     
     @Test

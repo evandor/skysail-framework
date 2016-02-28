@@ -116,7 +116,7 @@ public class Link {
             return this;
         }
         
-        public Builder alt(@NonNull String alt) {
+        public Builder alt(String alt) {
             this.alt = alt;
             return this;
         }

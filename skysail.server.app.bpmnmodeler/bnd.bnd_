@@ -7,7 +7,7 @@ name = /bpmn.io/bpmn-js
 
 path = static/${name}/${base.version}
 
-src: src,src-gen,test-gen
+src: src,src-gen
 
 Service-Component: *
 

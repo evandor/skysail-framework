@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<repository increment="1456656463719" name="skysail.server.designer.demo.folders" xmlns="http://www.osgi.org/xmlns/repository/v1.0.0">
+<repository increment="1456657294788" name="skysail.server.designer.demo.folders" xmlns="http://www.osgi.org/xmlns/repository/v1.0.0">
   <resource>
     <capability namespace="osgi.identity">
       <attribute name="osgi.identity" value="skysail.server.designer.demo.folders"/>
       <attribute name="type" value="osgi.bundle"/>
-      <attribute name="version" type="Version" value="0.1.0.201602281047"/>
+      <attribute name="version" type="Version" value="0.1.0.201602281101"/>
     </capability>
     <capability namespace="osgi.content">
-      <attribute name="osgi.content" value="8044cf0e66fd5b75602e2e06fdf9389aaa82cd9172837f6f5b093396ccd66b1a"/>
+      <attribute name="osgi.content" value="524705adfa7438fa2a412d43a7d162e4cbcab345f93427563344077171d70178"/>
       <attribute name="url" value="generated/skysail.server.designer.demo.folders.jar"/>
       <attribute name="size" type="Long" value="29104"/>
       <attribute name="mime" value="application/vnd.osgi.bundle"/>
     </capability>
     <capability namespace="osgi.wiring.bundle">
       <attribute name="osgi.wiring.bundle" value="skysail.server.designer.demo.folders"/>
-      <attribute name="bundle-version" type="Version" value="0.1.0.201602281047"/>
+      <attribute name="bundle-version" type="Version" value="0.1.0.201602281101"/>
     </capability>
     <capability namespace="osgi.wiring.host">
       <attribute name="osgi.wiring.host" value="skysail.server.designer.demo.folders"/>
-      <attribute name="bundle-version" type="Version" value="0.1.0.201602281047"/>
+      <attribute name="bundle-version" type="Version" value="0.1.0.201602281101"/>
     </capability>
     <capability namespace="osgi.service">
       <attribute name="objectClass" type="List&lt;String&gt;" value="de.twenty11.skysail.server.app.ApplicationProvider,io.skysail.server.menus.MenuItemProvider"/>

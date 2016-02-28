@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<repository increment="1456656466107" name="skysail.server.app.grapesjs" xmlns="http://www.osgi.org/xmlns/repository/v1.0.0">
+<repository increment="1456657296928" name="skysail.server.app.grapesjs" xmlns="http://www.osgi.org/xmlns/repository/v1.0.0">
   <resource>
     <capability namespace="osgi.identity">
       <attribute name="osgi.identity" value="skysail.server.app.grapesjs"/>
       <attribute name="type" value="osgi.bundle"/>
-      <attribute name="version" type="Version" value="0.1.0.201602281047"/>
+      <attribute name="version" type="Version" value="0.1.0.201602281101"/>
     </capability>
     <capability namespace="osgi.content">
-      <attribute name="osgi.content" value="c5d929b743814072ecdf9faf7faa61ac5d20e3f48097d7c019225a3869433cb5"/>
+      <attribute name="osgi.content" value="fb2e1980d03ab0b85389aeb27d1bcb2ed311250fcb7a9c646b8d96abda89b76f"/>
       <attribute name="url" value="generated/skysail.server.app.grapesjs.jar"/>
-      <attribute name="size" type="Long" value="673161"/>
+      <attribute name="size" type="Long" value="673160"/>
       <attribute name="mime" value="application/vnd.osgi.bundle"/>
     </capability>
     <capability namespace="osgi.wiring.bundle">
       <attribute name="osgi.wiring.bundle" value="skysail.server.app.grapesjs"/>
-      <attribute name="bundle-version" type="Version" value="0.1.0.201602281047"/>
+      <attribute name="bundle-version" type="Version" value="0.1.0.201602281101"/>
     </capability>
     <capability namespace="osgi.wiring.host">
       <attribute name="osgi.wiring.host" value="skysail.server.app.grapesjs"/>
-      <attribute name="bundle-version" type="Version" value="0.1.0.201602281047"/>
+      <attribute name="bundle-version" type="Version" value="0.1.0.201602281101"/>
     </capability>
     <capability namespace="osgi.service">
       <attribute name="objectClass" type="List&lt;String&gt;" value="de.twenty11.skysail.server.app.ApplicationProvider"/>

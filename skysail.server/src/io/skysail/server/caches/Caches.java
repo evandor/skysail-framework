@@ -20,7 +20,7 @@ public class Caches {
             .expireAfterWrite(10, TimeUnit.MINUTES)
             .recordStats()
             .build();
-    
+
     public static CacheStats getMessageCacheStats() {
         return messageCache.stats();
     }

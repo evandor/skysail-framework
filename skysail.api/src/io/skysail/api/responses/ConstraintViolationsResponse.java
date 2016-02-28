@@ -1,6 +1,7 @@
 package io.skysail.api.responses;
 
-import java.util.*;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.validation.ConstraintViolation;
 
@@ -10,7 +11,8 @@ import org.restlet.data.Reference;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import lombok.*;
+import lombok.Getter;
+import lombok.NonNull;
 
 /**
  * Being a "business server", skysail has to deal with business requirements
@@ -23,7 +25,7 @@ import lombok.*;
 public class ConstraintViolationsResponse<T> extends SkysailResponse<T> {
 
     @Getter
-    private Set<ConstraintViolationDetails> violations = new HashSet<ConstraintViolationDetails>();
+    private Set<ConstraintViolationDetails> violations = new HashSet<>();
 
     @JsonIgnore
     @Getter

@@ -1,5 +1,5 @@
 Bundle-Name: SKYSAIL :: api :: features
-Bundle-Version: 0.1.3.${tstamp}
+Bundle-Version: 0.1.4.${tstamp}
 Bundle-Description: Features API to toggle functionality based on various strategies
 -buildpath: \
     osgi.cmpn;version=${osgi.version},\

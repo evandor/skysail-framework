@@ -14,8 +14,8 @@ import org.restlet.Application;
 import org.restlet.Server;
 import org.restlet.data.Protocol;
 
-import de.twenty11.skysail.server.SkysailStatusService;
 import io.skysail.server.SkysailComponent;
+import io.skysail.server.SkysailStatusService;
 import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
 

@@ -4,7 +4,7 @@ import org.restlet.Request;
 import org.restlet.data.Cookie;
 import org.restlet.data.CookieSetting;
 
-import de.twenty11.skysail.server.Constants;
+import io.skysail.server.Constants;
 import io.skysail.server.rendering.RenderingMode;
 
 public class CookiesUtils {

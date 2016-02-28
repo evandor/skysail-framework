@@ -9,7 +9,7 @@ import org.osgi.framework.Bundle;
 import org.osgi.service.component.ComponentContext;
 
 import aQute.bnd.annotation.component.*;
-import de.twenty11.skysail.server.Constants;
+import io.skysail.server.Constants;
 import io.skysail.server.utils.BundleUtils;
 import lombok.extern.slf4j.Slf4j;
 

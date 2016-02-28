@@ -14,7 +14,7 @@ import org.restlet.representation.Variant;
 import org.restlet.resource.Resource;
 import org.restlet.util.Series;
 
-import de.twenty11.skysail.server.Constants;
+import io.skysail.server.Constants;
 import io.skysail.server.rendering.Theme;
 
 public class ThemeTest {

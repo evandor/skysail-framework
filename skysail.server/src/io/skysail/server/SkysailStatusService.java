@@ -1,4 +1,4 @@
-package de.twenty11.skysail.server;
+package io.skysail.server;
 
 import org.restlet.*;
 import org.restlet.data.*;

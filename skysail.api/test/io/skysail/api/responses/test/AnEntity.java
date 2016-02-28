@@ -1,9 +1,8 @@
 package io.skysail.api.responses.test;
 
-import io.skysail.domain.Identifiable;
 import lombok.Data;
 
 @Data
-public class AnEntity implements Identifiable{
+public class AnEntity {
     private String id;
 }

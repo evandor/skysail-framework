@@ -2,7 +2,6 @@ package io.skysail.api.responses;
 
 import org.restlet.Response;
 
-import io.skysail.domain.Identifiable;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
@@ -14,7 +13,7 @@ import lombok.ToString;
  * (like html, json, xml, csv, ...).
  * <p>
  * The actual data contained in the response is described by the generic type
- * parameter &lt;T&gt;; which has to be {@link Identifiable}.
+ * parameter &lt;T&gt;
  * </p>
  *
  */

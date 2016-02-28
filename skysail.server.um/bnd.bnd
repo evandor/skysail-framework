@@ -3,24 +3,23 @@ Bundle-Name: SKYSAIL :: server :: um
 Bundle-Description: Default Usermanagement Implementation
 -buildpath:  \
 	osgi.core;version=${osgi.version},\
+	lombok;version=1.16,\
+    skysail.domain;version=${skysail.domain.version},\
     skysail.api;version=${skysail.api.version},\
     skysail.api.features;version=${skysail.api.features.version},\
 	skysail.api.um;version=${skysail.api.um.version},\
     skysail.server;version=${skysail.server.version},\
-    skysail.domain;version=${skysail.domain.version},\
 	skysail.server.db;version=${skysail.server.db.version},\
     skysail.server.testsupport;version=${skysail.server.testsupport.version},\
 	biz.aQute.bnd.annotation;version=2.4,\
 	org.apache.shiro.core;version=1.2,\
 	org.restlet;version=2.1,\
 	slf4j.api;version=1.7,\
-	lombok;version=1.16,\
 	org.apache.shiro.web;version=1.2,\
 	javax.servlet;version=3.0,\
 	org.restlet.ext.crypto;version=${restlet.version},\
 	org.mockito.mockito-all;version=1.10,\
-	com.springsource.org.junit;version=4.11,\
-	com.orientechnologies.orientdb-core;version=2.0
+	com.springsource.org.junit;version=4.11
 Private-Package:  \
 	io.skysail.server.um.security.shiro.restlet,\
 	io.skysail.server.um.security.shiro.subject,\

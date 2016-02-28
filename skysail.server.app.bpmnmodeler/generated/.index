@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<repository increment="1456676153072" name="skysail.server.app.bpmnmodeler" xmlns="http://www.osgi.org/xmlns/repository/v1.0.0">
+<repository increment="1456677296482" name="skysail.server.app.bpmnmodeler" xmlns="http://www.osgi.org/xmlns/repository/v1.0.0">
   <resource>
     <capability namespace="osgi.identity">
       <attribute name="osgi.identity" value="skysail.server.app.bpmnmodeler"/>
       <attribute name="type" value="osgi.bundle"/>
-      <attribute name="version" type="Version" value="0.1.0.201602281615"/>
+      <attribute name="version" type="Version" value="0.1.0.201602281634"/>
     </capability>
     <capability namespace="osgi.content">
-      <attribute name="osgi.content" value="22dea761b064980ada416c8b07dca5c47de7c036da871cafa327b40aa87c46c5"/>
+      <attribute name="osgi.content" value="919b7cfb2bc0ae6f5184828dd6898a1eafbfa0a98f16446dfa2b8f587f6360bd"/>
       <attribute name="url" value="generated/skysail.server.app.bpmnmodeler.jar"/>
-      <attribute name="size" type="Long" value="587205"/>
+      <attribute name="size" type="Long" value="587206"/>
       <attribute name="mime" value="application/vnd.osgi.bundle"/>
     </capability>
     <capability namespace="osgi.wiring.bundle">
       <attribute name="osgi.wiring.bundle" value="skysail.server.app.bpmnmodeler"/>
-      <attribute name="bundle-version" type="Version" value="0.1.0.201602281615"/>
+      <attribute name="bundle-version" type="Version" value="0.1.0.201602281634"/>
     </capability>
     <capability namespace="osgi.wiring.host">
       <attribute name="osgi.wiring.host" value="skysail.server.app.bpmnmodeler"/>
-      <attribute name="bundle-version" type="Version" value="0.1.0.201602281615"/>
+      <attribute name="bundle-version" type="Version" value="0.1.0.201602281634"/>
     </capability>
     <capability namespace="osgi.service">
       <attribute name="objectClass" type="List&lt;String&gt;" value="io.skysail.domain.core.repos.DbRepository"/>

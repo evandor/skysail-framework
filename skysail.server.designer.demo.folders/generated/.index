@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<repository increment="1456676148282" name="skysail.server.designer.demo.folders" xmlns="http://www.osgi.org/xmlns/repository/v1.0.0">
+<repository increment="1456677289264" name="skysail.server.designer.demo.folders" xmlns="http://www.osgi.org/xmlns/repository/v1.0.0">
   <resource>
     <capability namespace="osgi.identity">
       <attribute name="osgi.identity" value="skysail.server.designer.demo.folders"/>
       <attribute name="type" value="osgi.bundle"/>
-      <attribute name="version" type="Version" value="0.1.0.201602281615"/>
+      <attribute name="version" type="Version" value="0.1.0.201602281634"/>
     </capability>
     <capability namespace="osgi.content">
-      <attribute name="osgi.content" value="68f31c60023117114d97ba00358f2a180f5e1f4159059f0c6971e53b03d6f207"/>
+      <attribute name="osgi.content" value="19770291e13c48aa51b4942ca49a6be72fcbfeca01c29e280c1c72dd5330ac89"/>
       <attribute name="url" value="generated/skysail.server.designer.demo.folders.jar"/>
       <attribute name="size" type="Long" value="29057"/>
       <attribute name="mime" value="application/vnd.osgi.bundle"/>
     </capability>
     <capability namespace="osgi.wiring.bundle">
       <attribute name="osgi.wiring.bundle" value="skysail.server.designer.demo.folders"/>
-      <attribute name="bundle-version" type="Version" value="0.1.0.201602281615"/>
+      <attribute name="bundle-version" type="Version" value="0.1.0.201602281634"/>
     </capability>
     <capability namespace="osgi.wiring.host">
       <attribute name="osgi.wiring.host" value="skysail.server.designer.demo.folders"/>
-      <attribute name="bundle-version" type="Version" value="0.1.0.201602281615"/>
+      <attribute name="bundle-version" type="Version" value="0.1.0.201602281634"/>
     </capability>
     <capability namespace="osgi.service">
       <attribute name="objectClass" type="List&lt;String&gt;" value="io.skysail.domain.core.repos.DbRepository"/>

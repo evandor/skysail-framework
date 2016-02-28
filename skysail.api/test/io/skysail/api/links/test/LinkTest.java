@@ -1,5 +1,6 @@
 package io.skysail.api.links.test;
 
+import static org.hamcrest.CoreMatchers.nullValue;
 import static org.hamcrest.Matchers.contains;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
@@ -94,13 +95,19 @@ public class LinkTest {
     }
 
     @Test
-    public void testName() {
-        Link link = new Link.Builder("uri").refId("refid").build();
+    public void toString_gives_expected_value() {
+        Link link = new Link.Builder("uri").build();
+        assertThat(link.toString("path"),is (equalTo("<pathuri>; rel=\"item\"; title=\"item\"; verbs=\"GET\"")));
+        link = new Link.Builder("uri").refId("refid").build();
         assertThat(link.toString("path"),is (equalTo("<pathuri>; rel=\"item\"; title=\"item\"; refId=\"refid\"; verbs=\"GET\"")));
+        link = new Link.Builder("uri").title("theTitle").refId("refid").build();
+        assertThat(link.toString("path"),is (equalTo("<pathuri>; rel=\"item\"; title=\"theTitle\"; refId=\"refid\"; verbs=\"GET\"")));
     }
 
     @Test
     public void parses_a_serialized_linkheader_to_an_linkheader_object() {
+        assertThat(Link.valueOf(null), is(nullValue()));
+        assertThat(Link.valueOf(""), is(nullValue()));
         String linkheader = "<pathuri>; rel=\"create-form\"; title=\"create-form\"; verbs=\"GET\"";
         assertThat(Link.valueOf(linkheader).getUri(), is(equalTo("pathuri")));
         assertThat(Link.valueOf(linkheader).getRel(), is(equalTo(LinkRelation.CREATE_FORM)));
@@ -109,11 +116,19 @@ public class LinkTest {
 
     @Test
     public void parses_a_serialized_linkheader_to_an_linkheader_object2() {
-        String linkheader = "<pathuri>; rel=\"about\"; title=\"about me\"; verbs=\"POST\"";
-        assertThat(Link.valueOf(linkheader).getUri(), is(equalTo("pathuri")));
-        assertThat(Link.valueOf(linkheader).getRel(), is(equalTo(LinkRelation.ABOUT)));
-        assertThat(Link.valueOf(linkheader).getTitle(), is(equalTo("about me")));
+        String linkheader = "<pathuri>; rel=\"about\"; title=\"about me\"; refId=\"theId\"; verbs=\"POST\"";
+        assertThat(Link.valueOf(linkheader).getUri(), is("pathuri"));
+        assertThat(Link.valueOf(linkheader).getRel(), is(LinkRelation.ABOUT));
+        assertThat(Link.valueOf(linkheader).getTitle(), is("about me"));
         assertThat(Link.valueOf(linkheader).getVerbs(), contains(Method.POST));
+        assertThat(Link.valueOf(linkheader).getRefId(), is("theId"));
+    }
+
+    @Test
+    public void parsing_throws_exception_for_broken_part() {
+        thrown.expect(IllegalArgumentException.class);
+        String linkheader = "<pathuri>; rel=; title=\"about me\"; verbs=\"POST\"";
+        Link.valueOf(linkheader);
     }
 
     @Test

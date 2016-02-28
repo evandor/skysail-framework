@@ -3,6 +3,7 @@ package io.skysail.api.links;
 import java.util.*;
 import java.util.stream.Collectors;
 
+import org.apache.commons.lang.StringUtils;
 import org.restlet.Request;
 import org.restlet.data.MediaType;
 import org.restlet.data.Method;
@@ -192,13 +193,10 @@ public class Link {
      * creates a Link from its string representation.
      */
     public static Link valueOf(String linkheaderString) {
-        if (linkheaderString == null) {
+        if (StringUtils.isEmpty(linkheaderString)) {
             return null;
         }
         String[] parts = linkheaderString.split(";");
-        if (parts.length == 0) {
-            return null;
-        }
         String uriPart = parts[0].trim();
         String substring = uriPart.substring(1).substring(0, uriPart.length() - 2);
 
@@ -215,8 +213,8 @@ public class Link {
 
     private static void parsePart(Builder builder, String part) {
         String[] keyValue = part.split("=");
-        if (keyValue == null || keyValue.length != 2) {
-            return;
+        if (keyValue.length != 2) {
+            throw new IllegalArgumentException();
         }
         switch (keyValue[0].trim()) {
         case "rel":
@@ -252,9 +250,7 @@ public class Link {
      */
     public String toString(String path) {
         StringBuilder sb = new StringBuilder().append("<").append(path + getUri()).append(">");
-        if (getRel() != null) {
-            sb.append("; rel=\"").append(getRel().getName()).append("\"");
-        }
+        sb.append("; rel=\"").append(getRel().getName()).append("\"");
         if (getTitle() != null) {
             sb.append("; title=\"").append(getTitle()).append("\"");
         }

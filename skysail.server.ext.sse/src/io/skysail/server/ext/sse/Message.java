@@ -5,7 +5,7 @@ import lombok.ToString;
 
 import org.osgi.service.event.Event;
 
-import de.twenty11.skysail.server.core.osgi.EventHelper;
+import io.skysail.server.EventHelper;
 
 @Getter
 @ToString

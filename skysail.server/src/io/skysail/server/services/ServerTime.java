@@ -7,7 +7,7 @@ import java.util.concurrent.atomic.AtomicReference;
 import org.osgi.service.component.annotations.*;
 import org.osgi.service.event.EventAdmin;
 
-import de.twenty11.skysail.server.core.osgi.EventHelper;
+import io.skysail.server.EventHelper;
 import lombok.extern.slf4j.Slf4j;
 
 //@Component(immediate = true)

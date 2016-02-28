@@ -1,11 +1,11 @@
-package de.twenty11.skysail.server.core.restlet.test;
+package io.skysail.server.features;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
 import org.junit.Test;
 
-import de.twenty11.skysail.server.core.restlet.SecurityFeatures;
+import io.skysail.server.features.SecurityFeatures;
 
 public class SecurityFeaturesTest {
 

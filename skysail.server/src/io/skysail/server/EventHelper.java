@@ -1,4 +1,4 @@
-package de.twenty11.skysail.server.core.osgi;
+package io.skysail.server;
 
 import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;

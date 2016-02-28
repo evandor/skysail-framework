@@ -19,7 +19,7 @@ import org.restlet.Request;
 import org.restlet.data.Method;
 import org.restlet.data.Reference;
 
-import de.twenty11.skysail.server.core.osgi.EventHelper;
+import io.skysail.server.EventHelper;
 
 public class EventHelperTest {
 

@@ -576,7 +576,7 @@ public abstract class SkysailApplication extends RamlApplication implements Appl
     }
 
     public String getFromContext(ApplicationContextId id) {
-        return stringContextMap.get(id);
+       return stringContextMap.get(id);
     }
 
     public ValidatorService getValidatorService() {

@@ -1,5 +1,6 @@
 package io.skysail.server.um.security.shiro;
 
+import io.skysail.server.features.SecurityFeatures;
 import io.skysail.server.utils.*;
 
 import java.time.*;
@@ -9,8 +10,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authc.credential.SimpleCredentialsMatcher;
 import org.apache.shiro.cache.*;
-
-import de.twenty11.skysail.server.core.restlet.SecurityFeatures;
 
 /**
  * A CredentialsMatcher delegating to the PasswordUtils, and adding caching of

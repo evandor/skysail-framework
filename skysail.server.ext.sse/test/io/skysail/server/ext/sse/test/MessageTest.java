@@ -3,14 +3,14 @@ package io.skysail.server.ext.sse.test;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
+
+import io.skysail.server.EventHelper;
 import io.skysail.server.ext.sse.Message;
 import io.skysail.server.testsupport.ResourceTestBase;
 
 import org.junit.Ignore;
 import org.junit.Test;
 import org.osgi.service.event.Event;
-
-import de.twenty11.skysail.server.core.osgi.EventHelper;
 
 @Ignore
 public class MessageTest extends ResourceTestBase {

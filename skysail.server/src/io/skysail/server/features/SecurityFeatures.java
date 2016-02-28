@@ -1,4 +1,4 @@
-package de.twenty11.skysail.server.core.restlet;
+package io.skysail.server.features;
 
 import io.skysail.api.features.*;
 import io.skysail.api.features.annotations.Label;

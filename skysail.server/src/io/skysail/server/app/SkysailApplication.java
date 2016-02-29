@@ -12,6 +12,7 @@ import org.osgi.service.cm.ConfigurationException;
 import org.osgi.service.component.ComponentContext;
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Deactivate;
+import org.osgi.service.component.annotations.ReferenceCardinality;
 import org.osgi.service.event.EventAdmin;
 import org.owasp.html.HtmlPolicyBuilder;
 import org.restlet.Context;
@@ -74,6 +75,14 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public abstract class SkysailApplication extends RamlApplication implements ApplicationProvider, ResourceBundleProvider,
         Comparable<ApplicationProvider> {
+    
+    @Getter
+    @org.osgi.service.component.annotations.Reference
+    private volatile List<PerformanceMonitor> performanceMonitors;
+    
+    @Getter
+    @org.osgi.service.component.annotations.Reference(cardinality = ReferenceCardinality.MANDATORY)
+    public volatile ValidatorService validatorService;
 
     private Map<ApplicationContextId, String> stringContextMap = new HashMap<>(); // NOSONAR
 
@@ -83,9 +92,15 @@ public abstract class SkysailApplication extends RamlApplication implements Appl
     public static final MediaType SKYSAIL_TIMELINE_MEDIATYPE = MediaType.register("timeline", "vis.js timeline representation");
     public static final MediaType SKYSAIL_STANDLONE_APP_MEDIATYPE = MediaType.register("standalone", "standalone application representation");
 
-    //public static final MediaType SKYSAIL_UIKIT_MEDIATYPE = MediaType.register("text/prs.skysail-uikit", "default uikit representation");
-    
     protected static volatile ServiceListProvider serviceListProvider;
+
+    /**
+     * The core domain: a model defining an application with its entities, repositories,
+     * entities fields, relations and so on. SkysailApplication itself cannot extend this
+     * class as it has to be derived from a restlet application.
+     */
+    @Getter
+    private io.skysail.domain.core.ApplicationModel applicationModel;
 
     /** the restlet router. */
     protected volatile SkysailRouter router;
@@ -103,16 +118,7 @@ public abstract class SkysailApplication extends RamlApplication implements Appl
     private volatile List<String> securedByAllRoles = new CopyOnWriteArrayList<>();
 
     private List<MenuItem> applicationMenu;
-
     private Map<String, Object> documentedEntities = new ConcurrentHashMap<>();
-
-    /**
-     * The core domain: a model defining an application with its entities, repositories,
-     * entities fields, relations and so on. SkysailApplication itself cannot extend this
-     * class as it has to be derived from a restlet application.
-     */
-    @Getter
-    private io.skysail.domain.core.ApplicationModel applicationModel;
 
     public SkysailApplication() {
         getEncoderService().getIgnoredMediaTypes().add(SkysailApplication.SKYSAIL_SERVER_SENT_EVENTS);
@@ -566,11 +572,6 @@ public abstract class SkysailApplication extends RamlApplication implements Appl
         return com.google.common.base.Predicates.and(predicates);
     }
 
-    public Collection<PerformanceMonitor> getPerformanceMonitors() {
-        Collection<PerformanceMonitor> performanceMonitors = serviceListProvider.getPerformanceMonitors();
-        return Collections.unmodifiableCollection(performanceMonitors);
-    }
-
     protected void addToAppContext(ApplicationContextId id, String value) {
         stringContextMap.put(id, value);
     }
@@ -579,12 +580,11 @@ public abstract class SkysailApplication extends RamlApplication implements Appl
        return stringContextMap.get(id);
     }
 
-    public ValidatorService getValidatorService() {
-        return serviceListProvider.getValidatorService();
-    }
+//    public ValidatorService getValidatorService() {
+//        return serviceListProvider.getValidatorService();
+//    }
 
     public Set<PerformanceTimer> startPerformanceMonitoring(String identifier) {
-        Collection<PerformanceMonitor> performanceMonitors = serviceListProvider.getPerformanceMonitors();
         return performanceMonitors.stream().map(monitor -> monitor.start(identifier)).collect(Collectors.toSet());
     }
 

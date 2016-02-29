@@ -12,7 +12,6 @@ import io.skysail.api.text.TranslationStore;
 import io.skysail.api.um.AuthenticationService;
 import io.skysail.api.um.AuthorizationService;
 import io.skysail.api.um.UserManagementProvider;
-import io.skysail.api.validation.ValidatorService;
 import io.skysail.server.SkysailComponent;
 import io.skysail.server.services.PerformanceMonitor;
 import io.skysail.server.text.TranslationStoreHolder;
@@ -34,10 +33,6 @@ import lombok.extern.slf4j.Slf4j;
 @Component(immediate = true)
 @Slf4j
 public class ServiceList implements ServiceListProvider {
-
-    @Getter
-    @Reference(cardinality = ReferenceCardinality.MANDATORY)
-    public volatile ValidatorService validatorService;
 
     @Getter
     @Reference(cardinality = ReferenceCardinality.MANDATORY)

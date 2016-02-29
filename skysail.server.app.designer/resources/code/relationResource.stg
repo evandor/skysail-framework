@@ -3,8 +3,8 @@ package $application.packageName$;
 
 import java.util.List;
 
-import io.skysail.server.ResourceContextId;
 import io.skysail.api.links.Link;
+import io.skysail.server.ResourceContextId;
 import io.skysail.server.db.DbClassName;
 import io.skysail.server.queryfilter.Filter;
 import io.skysail.server.queryfilter.pagination.Pagination;

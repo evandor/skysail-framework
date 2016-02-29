@@ -25,6 +25,7 @@ import org.osgi.service.event.EventAdmin;
 
 import de.twenty11.skysail.server.core.restlet.*;
 import de.twenty11.skysail.server.osgi.osgimonitor.resources.*;
+import io.skysail.server.ApplicationContextId;
 import io.skysail.server.app.ApplicationProvider;
 import io.skysail.server.app.SkysailApplication;
 import io.skysail.server.menus.*;

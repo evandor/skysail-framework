@@ -9,7 +9,7 @@ import io.skysail.api.links.Link;
                 
 import java.util.*;
 
-import de.twenty11.skysail.server.core.restlet.ResourceContextId;
+import io.skysail.server.ResourceContextId;
 
 public class $entity.simpleName$sResource extends ListServerResource<$entity.id$> {
 

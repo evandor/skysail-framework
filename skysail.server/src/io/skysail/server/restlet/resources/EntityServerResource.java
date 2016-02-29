@@ -13,6 +13,7 @@ import de.twenty11.skysail.server.core.restlet.*;
 import io.skysail.api.links.LinkRelation;
 import io.skysail.api.responses.*;
 import io.skysail.domain.Identifiable;
+import io.skysail.server.ResourceContextId;
 import io.skysail.server.restlet.RequestHandler;
 import io.skysail.server.restlet.filter.AbstractResourceFilter;
 import io.skysail.server.restlet.response.ResponseWrapper;

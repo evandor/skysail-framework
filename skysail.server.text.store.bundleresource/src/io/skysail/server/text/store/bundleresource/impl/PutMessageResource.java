@@ -3,7 +3,7 @@ package io.skysail.server.text.store.bundleresource.impl;
 import org.restlet.data.Reference;
 import org.restlet.resource.ResourceException;
 
-import de.twenty11.skysail.server.core.restlet.ResourceContextId;
+import io.skysail.server.ResourceContextId;
 import io.skysail.server.restlet.resources.PutEntityServerResource;
 
 public class PutMessageResource extends PutEntityServerResource<Message> {

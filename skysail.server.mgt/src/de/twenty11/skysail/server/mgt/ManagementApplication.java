@@ -18,6 +18,7 @@ import de.twenty11.skysail.server.mgt.jmx.JmxMonitor;
 import de.twenty11.skysail.server.mgt.performance.PerformanceResource;
 import etm.core.configuration.*;
 import etm.core.monitor.EtmMonitor;
+import io.skysail.server.ApplicationContextId;
 import io.skysail.server.app.ApplicationProvider;
 import io.skysail.server.app.SkysailApplication;
 import io.skysail.server.menus.MenuItemProvider;

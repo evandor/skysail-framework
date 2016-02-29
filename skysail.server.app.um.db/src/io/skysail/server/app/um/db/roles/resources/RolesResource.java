@@ -1,14 +1,13 @@
 package io.skysail.server.app.um.db.roles.resources;
 
 import io.skysail.api.links.Link;
+import io.skysail.server.ResourceContextId;
 import io.skysail.server.app.um.db.UmApplication;
 import io.skysail.server.app.um.db.domain.Role;
 import io.skysail.server.queryfilter.Filter;
 import io.skysail.server.restlet.resources.ListServerResource;
 
 import java.util.List;
-
-import de.twenty11.skysail.server.core.restlet.ResourceContextId;
 
 public class RolesResource extends ListServerResource<Role> {
 

@@ -1,6 +1,6 @@
 package io.skysail.server.app.designer.codegen.resources;
 
-import de.twenty11.skysail.server.core.restlet.ResourceContextId;
+import io.skysail.server.ResourceContextId;
 import io.skysail.server.app.designer.DesignerApplication;
 import io.skysail.server.app.designer.application.ApplicationStatus;
 import io.skysail.server.app.designer.application.resources.ApplicationsResource;

@@ -1,6 +1,7 @@
 package io.skysail.server.app.todos.todos.resources;
 
 import io.skysail.api.links.Link;
+import io.skysail.server.ResourceContextId;
 import io.skysail.server.app.todos.lists.ListsResource;
 import io.skysail.server.app.todos.todos.Todo;
 import io.skysail.server.app.todos.todos.status.Status;
@@ -10,8 +11,6 @@ import io.skysail.server.queryfilter.pagination.Pagination;
 import java.util.List;
 
 import org.apache.shiro.SecurityUtils;
-
-import de.twenty11.skysail.server.core.restlet.ResourceContextId;
 
 public class ArchivedTodosResource extends TodosResource {
 

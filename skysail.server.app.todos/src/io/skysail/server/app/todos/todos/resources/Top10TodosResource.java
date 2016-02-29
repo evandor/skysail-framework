@@ -1,5 +1,6 @@
 package io.skysail.server.app.todos.todos.resources;
 
+import io.skysail.server.ResourceContextId;
 import io.skysail.server.app.todos.services.ListService;
 import io.skysail.server.app.todos.todos.*;
 import io.skysail.server.app.todos.todos.status.Status;
@@ -10,8 +11,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.apache.shiro.SecurityUtils;
-
-import de.twenty11.skysail.server.core.restlet.ResourceContextId;
 
 /**
  * The default Resource, mapped on "/".

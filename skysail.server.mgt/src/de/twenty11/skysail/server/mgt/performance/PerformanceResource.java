@@ -2,12 +2,12 @@ package de.twenty11.skysail.server.mgt.performance;
 
 import io.skysail.api.links.Link;
 import io.skysail.api.responses.SkysailResponse;
+import io.skysail.server.ResourceContextId;
 import io.skysail.server.restlet.resources.EntityServerResource;
 
 import java.io.StringWriter;
 import java.util.List;
 
-import de.twenty11.skysail.server.core.restlet.ResourceContextId;
 import de.twenty11.skysail.server.mgt.ManagementApplication;
 import de.twenty11.skysail.server.mgt.apps.ApplicationsResource;
 import etm.contrib.renderer.SimpleHtmlRenderer;

@@ -1,4 +1,4 @@
-package de.twenty11.skysail.server.core.restlet;
+package io.skysail.server;
 
 public enum ApplicationContextId {
 	IMG // an image identifying the application

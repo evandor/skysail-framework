@@ -5,10 +5,10 @@ import java.util.Set;
 import org.restlet.representation.Variant;
 import org.restlet.resource.Get;
 
-import de.twenty11.skysail.server.core.restlet.ResourceContextId;
 import io.skysail.api.links.*;
 import io.skysail.api.responses.EntityServerResponse;
 import io.skysail.domain.Identifiable;
+import io.skysail.server.ResourceContextId;
 import io.skysail.server.services.PerformanceTimer;
 import io.skysail.server.utils.LinkUtils;
 import lombok.extern.slf4j.Slf4j;

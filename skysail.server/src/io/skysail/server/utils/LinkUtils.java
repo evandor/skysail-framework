@@ -13,12 +13,12 @@ import org.restlet.resource.ServerResource;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import de.twenty11.skysail.server.core.restlet.ResourceContextId;
 import de.twenty11.skysail.server.core.restlet.RouteBuilder;
 import io.skysail.api.links.Link;
 import io.skysail.api.links.Link.Builder;
 import io.skysail.api.links.LinkRelation;
 import io.skysail.api.links.LinkRole;
+import io.skysail.server.ResourceContextId;
 import io.skysail.server.app.SkysailApplication;
 import io.skysail.server.rendering.RenderingMode;
 import io.skysail.server.restlet.resources.ListServerResource;

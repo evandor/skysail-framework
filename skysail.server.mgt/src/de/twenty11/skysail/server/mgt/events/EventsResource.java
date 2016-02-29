@@ -1,12 +1,11 @@
 package de.twenty11.skysail.server.mgt.events;
 
+import io.skysail.server.ResourceContextId;
 import io.skysail.server.restlet.resources.ListServerResource;
 
 import java.util.*;
 
 import org.osgi.service.event.Event;
-
-import de.twenty11.skysail.server.core.restlet.ResourceContextId;
 
 public class EventsResource extends ListServerResource<EventDescriptor> {
 

@@ -19,13 +19,13 @@ import org.restlet.resource.Post;
 
 import com.tinkerpop.blueprints.impls.orient.OrientVertex;
 
-import de.twenty11.skysail.server.core.restlet.ResourceContextId;
 import io.skysail.api.links.Link;
 import io.skysail.api.links.LinkRelation;
 import io.skysail.api.responses.FormResponse;
 import io.skysail.api.responses.SkysailResponse;
 import io.skysail.api.search.SearchService;
 import io.skysail.domain.Identifiable;
+import io.skysail.server.ResourceContextId;
 import io.skysail.server.restlet.RequestHandler;
 import io.skysail.server.restlet.filter.AbstractResourceFilter;
 import io.skysail.server.restlet.filter.CheckBusinessViolationsFilter;

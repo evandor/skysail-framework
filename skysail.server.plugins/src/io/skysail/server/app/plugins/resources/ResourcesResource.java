@@ -1,5 +1,6 @@
 package io.skysail.server.app.plugins.resources;
 
+import io.skysail.server.ResourceContextId;
 import io.skysail.server.app.plugins.PluginApplication;
 import io.skysail.server.app.plugins.obr.ObrResource;
 import io.skysail.server.restlet.resources.ListServerResource;
@@ -7,8 +8,6 @@ import io.skysail.server.restlet.resources.ListServerResource;
 import java.util.List;
 
 import org.restlet.resource.ResourceException;
-
-import de.twenty11.skysail.server.core.restlet.ResourceContextId;
 
 public class ResourcesResource extends ListServerResource<ObrResource> {
 

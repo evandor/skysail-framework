@@ -1,4 +1,4 @@
-package de.twenty11.skysail.server.core.restlet;
+package io.skysail.server;
 
 public enum ResourceContextId {
     APPLICATION_NAVIGATION_TITLE, // identifying a string to be shown above the

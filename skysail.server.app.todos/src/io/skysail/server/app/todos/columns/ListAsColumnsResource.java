@@ -1,6 +1,7 @@
 package io.skysail.server.app.todos.columns;
 
 import io.skysail.api.links.Link;
+import io.skysail.server.ResourceContextId;
 import io.skysail.server.app.todos.TodoApplication;
 import io.skysail.server.app.todos.todos.status.Status;
 import io.skysail.server.queryfilter.Filter;
@@ -9,8 +10,6 @@ import io.skysail.server.restlet.resources.*;
 import java.util.*;
 
 import org.apache.shiro.SecurityUtils;
-
-import de.twenty11.skysail.server.core.restlet.ResourceContextId;
 
 public class ListAsColumnsResource extends ListServerResource<TodoColumn> {
 

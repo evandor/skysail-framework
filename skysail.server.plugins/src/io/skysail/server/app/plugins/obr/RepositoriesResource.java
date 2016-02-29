@@ -1,12 +1,11 @@
 package io.skysail.server.app.plugins.obr;
 
 import io.skysail.api.links.Link;
+import io.skysail.server.ResourceContextId;
 import io.skysail.server.app.plugins.PluginApplication;
 import io.skysail.server.restlet.resources.ListServerResource;
 
 import java.util.List;
-
-import de.twenty11.skysail.server.core.restlet.ResourceContextId;
 
 public class RepositoriesResource extends ListServerResource<ObrRepository> {
 

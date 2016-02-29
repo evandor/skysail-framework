@@ -1,10 +1,10 @@
 package de.twenty11.skysail.server.mgt.jmx;
 
+import io.skysail.server.ResourceContextId;
 import io.skysail.server.restlet.resources.ListServerResource;
 
 import java.util.List;
 
-import de.twenty11.skysail.server.core.restlet.ResourceContextId;
 import de.twenty11.skysail.server.mgt.ManagementApplication;
 
 public class HeapStatsResource extends ListServerResource<MemorySnapshot> {

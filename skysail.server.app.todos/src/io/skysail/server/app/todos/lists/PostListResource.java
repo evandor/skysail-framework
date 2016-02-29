@@ -4,8 +4,8 @@ import java.util.List;
 
 import org.restlet.resource.ResourceException;
 
-import de.twenty11.skysail.server.core.restlet.ResourceContextId;
 import io.skysail.api.links.Link;
+import io.skysail.server.ResourceContextId;
 import io.skysail.server.app.todos.TodoList;
 import io.skysail.server.app.todos.services.ListService;
 import io.skysail.server.app.todos.todos.resources.Top10TodosResource;

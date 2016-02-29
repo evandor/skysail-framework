@@ -3,8 +3,8 @@ package io.skysail.server.app.designer.relations.resources;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import de.twenty11.skysail.server.core.restlet.ResourceContextId;
 import io.skysail.api.links.Link;
+import io.skysail.server.ResourceContextId;
 import io.skysail.server.app.designer.DesignerApplication;
 import io.skysail.server.app.designer.entities.DbEntity;
 import io.skysail.server.app.designer.relations.DbRelation;

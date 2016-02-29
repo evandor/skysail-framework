@@ -1,5 +1,6 @@
 package io.skysail.server.app.todos.charts;
 
+import io.skysail.server.ResourceContextId;
 import io.skysail.server.app.todos.*;
 import io.skysail.server.app.todos.lists.ListsResource;
 import io.skysail.server.app.todos.todos.resources.TodosResource;
@@ -13,8 +14,6 @@ import java.util.stream.Collectors;
 
 import org.apache.shiro.SecurityUtils;
 import org.restlet.resource.ResourceException;
-
-import de.twenty11.skysail.server.core.restlet.ResourceContextId;
 
 public class ListChartResource extends ListServerResource<TodoChart> {
 

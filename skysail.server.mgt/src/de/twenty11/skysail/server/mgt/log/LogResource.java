@@ -1,13 +1,12 @@
 package de.twenty11.skysail.server.mgt.log;
 
+import io.skysail.server.ResourceContextId;
 import io.skysail.server.restlet.resources.ListServerResource;
 
 import java.util.*;
 
 import org.osgi.service.log.LogReaderService;
 import org.restlet.resource.ResourceException;
-
-import de.twenty11.skysail.server.core.restlet.ResourceContextId;
 
 public class LogResource extends ListServerResource<LogEntry> {
 

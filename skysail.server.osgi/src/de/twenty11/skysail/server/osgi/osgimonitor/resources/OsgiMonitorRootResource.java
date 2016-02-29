@@ -2,11 +2,10 @@ package de.twenty11.skysail.server.osgi.osgimonitor.resources;
 
 import io.skysail.api.links.Link;
 import io.skysail.domain.Identifiable;
+import io.skysail.server.ResourceContextId;
 import io.skysail.server.restlet.resources.ListServerResource;
 
 import java.util.*;
-
-import de.twenty11.skysail.server.core.restlet.ResourceContextId;
 
 /**
  * Restlet Root Resource for dbViewer application.

@@ -1,14 +1,13 @@
 package io.skysail.server.app.um.db.users.resources;
 
 import io.skysail.api.links.Link;
+import io.skysail.server.ResourceContextId;
 import io.skysail.server.app.um.db.UmApplication;
 import io.skysail.server.app.um.db.domain.User;
 import io.skysail.server.queryfilter.Filter;
 import io.skysail.server.restlet.resources.*;
 
 import java.util.List;
-
-import de.twenty11.skysail.server.core.restlet.ResourceContextId;
 
 public class UsersResource extends ListServerResource<User> {
 

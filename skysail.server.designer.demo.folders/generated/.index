@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<repository increment="1456687636099" name="skysail.server.designer.demo.folders" xmlns="http://www.osgi.org/xmlns/repository/v1.0.0">
+<repository increment="1456688102558" name="skysail.server.designer.demo.folders" xmlns="http://www.osgi.org/xmlns/repository/v1.0.0">
   <resource>
     <capability namespace="osgi.identity">
       <attribute name="osgi.identity" value="skysail.server.designer.demo.folders"/>
       <attribute name="type" value="osgi.bundle"/>
-      <attribute name="version" type="Version" value="0.1.0.201602281927"/>
+      <attribute name="version" type="Version" value="0.1.0.201602281935"/>
     </capability>
     <capability namespace="osgi.content">
-      <attribute name="osgi.content" value="fecdb869f0a04ca90cf2923de2f45c7cdf40fefafd3e26559e4e35d8a2024bb5"/>
+      <attribute name="osgi.content" value="d3c88f09e953283442f78f5a75b05f72fdd450f21b90ab9fd624ccea07115aa6"/>
       <attribute name="url" value="generated/skysail.server.designer.demo.folders.jar"/>
-      <attribute name="size" type="Long" value="29058"/>
+      <attribute name="size" type="Long" value="28955"/>
       <attribute name="mime" value="application/vnd.osgi.bundle"/>
     </capability>
     <capability namespace="osgi.wiring.bundle">
       <attribute name="osgi.wiring.bundle" value="skysail.server.designer.demo.folders"/>
-      <attribute name="bundle-version" type="Version" value="0.1.0.201602281927"/>
+      <attribute name="bundle-version" type="Version" value="0.1.0.201602281935"/>
     </capability>
     <capability namespace="osgi.wiring.host">
       <attribute name="osgi.wiring.host" value="skysail.server.designer.demo.folders"/>
-      <attribute name="bundle-version" type="Version" value="0.1.0.201602281927"/>
+      <attribute name="bundle-version" type="Version" value="0.1.0.201602281935"/>
     </capability>
     <capability namespace="osgi.service">
       <attribute name="objectClass" type="List&lt;String&gt;" value="io.skysail.domain.core.repos.DbRepository"/>
@@ -67,13 +67,16 @@
       <directive name="filter" value="(&amp;(osgi.wiring.package=io.skysail.domain.html)(version&gt;=0.2.0)(!(version&gt;=1.0.0)))"/>
     </requirement>
     <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(&amp;(osgi.wiring.package=io.skysail.server)(version&gt;=0.1.0)(!(version&gt;=1.0.0)))"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
       <directive name="filter" value="(&amp;(osgi.wiring.package=io.skysail.server.app)(version&gt;=7.0.0)(!(version&gt;=8.0.0)))"/>
     </requirement>
     <requirement namespace="osgi.wiring.package">
       <directive name="filter" value="(&amp;(osgi.wiring.package=io.skysail.server.db)(version&gt;=8.0.0)(!(version&gt;=9.0.0)))"/>
     </requirement>
     <requirement namespace="osgi.wiring.package">
-      <directive name="filter" value="(&amp;(osgi.wiring.package=io.skysail.server.forms)(version&gt;=5.1.0)(!(version&gt;=6.0.0)))"/>
+      <directive name="filter" value="(&amp;(osgi.wiring.package=io.skysail.server.forms)(version&gt;=6.0.0)(!(version&gt;=7.0.0)))"/>
     </requirement>
     <requirement namespace="osgi.wiring.package">
       <directive name="filter" value="(&amp;(osgi.wiring.package=io.skysail.server.menus)(version&gt;=0.1.0)(!(version&gt;=0.2.0)))"/>

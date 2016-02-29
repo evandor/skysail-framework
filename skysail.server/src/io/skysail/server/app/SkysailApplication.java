@@ -33,7 +33,6 @@ import org.restlet.util.RouteList;
 
 import com.google.common.base.Predicate;
 
-import de.twenty11.skysail.server.core.restlet.ApplicationContextId;
 import de.twenty11.skysail.server.core.restlet.RouteBuilder;
 import de.twenty11.skysail.server.core.restlet.SkysailRouter;
 import io.skysail.api.text.Translation;
@@ -45,6 +44,7 @@ import io.skysail.domain.core.Repositories;
 import io.skysail.domain.core.repos.Repository;
 import io.skysail.domain.html.Field;
 import io.skysail.domain.html.HtmlPolicy;
+import io.skysail.server.ApplicationContextId;
 import io.skysail.server.domain.jvm.ClassEntityModel;
 import io.skysail.server.menus.MenuItem;
 import io.skysail.server.restlet.filter.OriginalRequestFilter;

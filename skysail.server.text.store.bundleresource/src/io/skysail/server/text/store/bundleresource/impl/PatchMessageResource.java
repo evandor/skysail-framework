@@ -1,6 +1,6 @@
 package io.skysail.server.text.store.bundleresource.impl;
 
-import de.twenty11.skysail.server.core.restlet.ResourceContextId;
+import io.skysail.server.ResourceContextId;
 import io.skysail.server.restlet.resources.PatchEntityServerResource;
 
 public class PatchMessageResource extends PatchEntityServerResource<Message> {

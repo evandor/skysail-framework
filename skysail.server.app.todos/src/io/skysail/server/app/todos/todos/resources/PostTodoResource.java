@@ -2,8 +2,8 @@ package io.skysail.server.app.todos.todos.resources;
 
 import java.util.List;
 
-import de.twenty11.skysail.server.core.restlet.ResourceContextId;
 import io.skysail.api.links.Link;
+import io.skysail.server.ResourceContextId;
 import io.skysail.server.app.todos.TodoApplication;
 import io.skysail.server.app.todos.lists.ListsResource;
 import io.skysail.server.app.todos.services.TodosService;

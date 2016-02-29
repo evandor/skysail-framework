@@ -7,9 +7,9 @@ import java.util.stream.Collectors;
 import org.apache.shiro.SecurityUtils;
 import org.restlet.resource.ResourceException;
 
-import de.twenty11.skysail.server.core.restlet.ResourceContextId;
 import io.skysail.api.links.Link;
 import io.skysail.api.responses.SkysailResponse;
+import io.skysail.server.ResourceContextId;
 import io.skysail.server.app.todos.TodoApplication;
 import io.skysail.server.queryfilter.Filter;
 import io.skysail.server.restlet.resources.ListServerResource;

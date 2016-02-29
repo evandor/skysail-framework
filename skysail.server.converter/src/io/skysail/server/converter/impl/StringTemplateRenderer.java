@@ -12,11 +12,11 @@ import org.restlet.representation.Variant;
 import org.restlet.resource.Resource;
 import org.stringtemplate.v4.ST;
 
-import de.twenty11.skysail.server.core.restlet.ResourceContextId;
 import io.skysail.api.responses.SkysailResponse;
 import io.skysail.api.search.SearchService;
 import io.skysail.api.text.Translation;
 import io.skysail.server.Constants;
+import io.skysail.server.ResourceContextId;
 import io.skysail.server.app.SkysailApplication;
 import io.skysail.server.caches.Caches;
 import io.skysail.server.converter.HtmlConverter;

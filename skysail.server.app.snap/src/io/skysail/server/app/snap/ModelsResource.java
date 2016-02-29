@@ -1,5 +1,6 @@
 package io.skysail.server.app.snap;
 
+import io.skysail.server.ResourceContextId;
 import io.skysail.server.app.snap.SnapApplication;
 import io.skysail.server.queryfilter.Filter;
 import io.skysail.server.queryfilter.pagination.Pagination;
@@ -7,8 +8,6 @@ import io.skysail.server.restlet.resources.ListServerResource;
 import io.skysail.api.links.Link;
 
 import java.util.*;
-
-import de.twenty11.skysail.server.core.restlet.ResourceContextId;
 
 public class ModelsResource extends ListServerResource<io.skysail.server.app.snap.Model> {
 

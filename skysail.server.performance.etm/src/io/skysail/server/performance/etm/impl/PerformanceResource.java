@@ -2,11 +2,11 @@ package io.skysail.server.performance.etm.impl;
 
 import io.skysail.api.responses.SkysailResponse;
 import io.skysail.domain.Identifiable;
+import io.skysail.server.ResourceContextId;
 import io.skysail.server.restlet.resources.EntityServerResource;
 
 import java.io.StringWriter;
 
-import de.twenty11.skysail.server.core.restlet.ResourceContextId;
 import etm.contrib.renderer.SimpleHtmlRenderer;
 import etm.core.monitor.EtmMonitor;
 

@@ -1,6 +1,7 @@
 package io.skysail.server.app.dbviewer.dbclasses;
 
 import io.skysail.api.links.Link;
+import io.skysail.server.ResourceContextId;
 import io.skysail.server.app.dbviewer.*;
 import io.skysail.server.restlet.resources.ListServerResource;
 
@@ -11,8 +12,6 @@ import org.restlet.resource.ResourceException;
 
 import com.orientechnologies.orient.core.sql.OCommandSQL;
 import com.tinkerpop.blueprints.impls.orient.*;
-
-import de.twenty11.skysail.server.core.restlet.ResourceContextId;
 
 public class DbClassesResource extends ListServerResource<DbClass> {
 

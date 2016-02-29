@@ -1,11 +1,9 @@
 package io.skysail.server.codegen.test.simple.todos;
 
+import io.skysail.server.ResourceContextId;
 import io.skysail.server.restlet.resources.PostEntityServerResource;
 
 import javax.annotation.Generated;
-
-import de.twenty11.skysail.server.core.restlet.ResourceContextId;
-//import io.skysail.server.codegen.test.simple.todos.*;
 
 @Generated("io.skysail.server.codegen.apt.processors.EntityProcessor")
 public class PostTodoResource extends PostEntityServerResource<Todo> {

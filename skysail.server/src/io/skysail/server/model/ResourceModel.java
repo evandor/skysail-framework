@@ -19,7 +19,6 @@ import org.restlet.util.Series;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 
-import de.twenty11.skysail.server.core.restlet.ResourceContextId;
 import io.skysail.api.links.LinkRelation;
 import io.skysail.api.responses.*;
 import io.skysail.api.search.Document;
@@ -27,6 +26,7 @@ import io.skysail.api.search.SearchService;
 import io.skysail.domain.Identifiable;
 import io.skysail.domain.core.ApplicationModel;
 import io.skysail.domain.core.FieldModel;
+import io.skysail.server.ResourceContextId;
 import io.skysail.server.app.SkysailApplication;
 import io.skysail.server.domain.jvm.ClassEntityModel;
 import io.skysail.server.domain.jvm.ClassFieldModel;

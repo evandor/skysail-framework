@@ -1,5 +1,6 @@
 package io.skysail.server.app.wiki;
 
+import io.skysail.server.ResourceContextId;
 import io.skysail.server.db.DbClassName;
 import io.skysail.server.queryfilter.Filter;
 import io.skysail.server.restlet.resources.ListServerResource;
@@ -7,8 +8,6 @@ import io.skysail.api.links.Link;
 
 import java.util.List;
 import java.util.Map;
-
-import de.twenty11.skysail.server.core.restlet.ResourceContextId;
 
 public class PagesResource extends ListServerResource<io.skysail.server.app.wiki.Page> {
 

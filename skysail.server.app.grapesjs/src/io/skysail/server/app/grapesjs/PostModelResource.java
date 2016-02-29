@@ -3,7 +3,7 @@ package io.skysail.server.app.grapesjs;
 import java.util.Date;
 
 import io.skysail.api.responses.SkysailResponse;
-import de.twenty11.skysail.server.core.restlet.ResourceContextId;
+import io.skysail.server.ResourceContextId;
 import io.skysail.server.app.grapesjs.GrapesJsApplication;
 import io.skysail.server.restlet.resources.PostEntityServerResource;
 

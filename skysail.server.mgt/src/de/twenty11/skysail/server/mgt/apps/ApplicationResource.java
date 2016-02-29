@@ -2,11 +2,11 @@ package de.twenty11.skysail.server.mgt.apps;
 
 import io.skysail.api.links.Link;
 import io.skysail.api.responses.SkysailResponse;
+import io.skysail.server.ResourceContextId;
 import io.skysail.server.restlet.resources.EntityServerResource;
 
 import java.util.*;
 
-import de.twenty11.skysail.server.core.restlet.ResourceContextId;
 import de.twenty11.skysail.server.mgt.ManagementApplication;
 
 public class ApplicationResource extends EntityServerResource<ApplicationDescriptor> {

@@ -4,8 +4,8 @@ import java.util.*;
 
 import org.osgi.service.component.annotations.*;
 
-import de.twenty11.skysail.server.core.restlet.ApplicationContextId;
 import io.skysail.domain.core.Repositories;
+import io.skysail.server.ApplicationContextId;
 import io.skysail.server.app.ApiVersion;
 
 @Component(immediate = true)

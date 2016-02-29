@@ -2,7 +2,7 @@ package de.twenty11.skysail.server.app.tutorial.model2rest.step5;
 
 import org.restlet.resource.ResourceException;
 
-import de.twenty11.skysail.server.core.restlet.ResourceContextId;
+import io.skysail.server.ResourceContextId;
 import io.skysail.server.restlet.resources.PutEntityServerResource;
 
 public class PutTodoResource extends PutEntityServerResource<TodoModel> {

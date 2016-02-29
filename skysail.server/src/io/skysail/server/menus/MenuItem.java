@@ -1,12 +1,11 @@
 package io.skysail.server.menus;
 
+import io.skysail.server.ApplicationContextId;
 import io.skysail.server.app.SkysailApplication;
 
 import java.util.*;
 
 import com.google.common.base.Predicate;
-
-import de.twenty11.skysail.server.core.restlet.ApplicationContextId;
 
 public class MenuItem {
 

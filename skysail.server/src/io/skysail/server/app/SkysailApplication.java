@@ -55,14 +55,6 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public abstract class SkysailApplication extends RamlApplication implements ApplicationProvider, ResourceBundleProvider,
         Comparable<ApplicationProvider> {
-    
-    @Getter
-    @org.osgi.service.component.annotations.Reference
-    private volatile List<PerformanceMonitor> performanceMonitors = new ArrayList<>();
-    
-    @Getter
-    @org.osgi.service.component.annotations.Reference(cardinality = ReferenceCardinality.MANDATORY)
-    private volatile ValidatorService validatorService;
 
     private Map<ApplicationContextId, String> stringContextMap = new HashMap<>(); // NOSONAR
 
@@ -552,6 +544,11 @@ public abstract class SkysailApplication extends RamlApplication implements Appl
         return com.google.common.base.Predicates.and(predicates);
     }
 
+    public Collection<PerformanceMonitor> getPerformanceMonitors() {
+        Collection<PerformanceMonitor> performanceMonitors = serviceListProvider.getPerformanceMonitors();
+        return Collections.unmodifiableCollection(performanceMonitors);
+    }
+
     protected void addToAppContext(ApplicationContextId id, String value) {
         stringContextMap.put(id, value);
     }
@@ -560,11 +557,12 @@ public abstract class SkysailApplication extends RamlApplication implements Appl
        return stringContextMap.get(id);
     }
 
-//    public ValidatorService getValidatorService() {
-//        return serviceListProvider.getValidatorService();
-//    }
+    public ValidatorService getValidatorService() {
+        return serviceListProvider.getValidatorService();
+    }
 
     public Set<PerformanceTimer> startPerformanceMonitoring(String identifier) {
+        Collection<PerformanceMonitor> performanceMonitors = serviceListProvider.getPerformanceMonitors();
         return performanceMonitors.stream().map(monitor -> monitor.start(identifier)).collect(Collectors.toSet());
     }
 

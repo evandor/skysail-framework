@@ -7,9 +7,14 @@ import java.util.stream.Stream;
 import org.osgi.service.component.annotations.*;
 import org.restlet.Context;
 
-import io.skysail.api.text.*;
-import io.skysail.api.um.*;
+import io.skysail.api.text.TranslationRenderService;
+import io.skysail.api.text.TranslationStore;
+import io.skysail.api.um.AuthenticationService;
+import io.skysail.api.um.AuthorizationService;
+import io.skysail.api.um.UserManagementProvider;
+import io.skysail.api.validation.ValidatorService;
 import io.skysail.server.SkysailComponent;
+import io.skysail.server.services.PerformanceMonitor;
 import io.skysail.server.text.TranslationStoreHolder;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
@@ -32,6 +37,10 @@ public class ServiceList implements ServiceListProvider {
 
     @Getter
     @Reference(cardinality = ReferenceCardinality.MANDATORY)
+    public volatile ValidatorService validatorService;
+
+    @Getter
+    @Reference(cardinality = ReferenceCardinality.MANDATORY)
     private volatile ApplicationListProvider applicationListProvider;
 
     private volatile AuthorizationService authorizationService;
@@ -47,9 +56,9 @@ public class ServiceList implements ServiceListProvider {
     private AtomicReference<SkysailComponentProvider> skysailComponentProviderRef = new AtomicReference<>();
 
     
-    //@Getter
-    //@Reference(policy = ReferencePolicy.DYNAMIC, cardinality = ReferenceCardinality.MULTIPLE)
-    //public volatile Collection<PerformanceMonitor> performanceMonitors = new HashSet<>();
+    @Getter
+    @Reference(policy = ReferencePolicy.DYNAMIC, cardinality = ReferenceCardinality.MULTIPLE)
+    public volatile Collection<PerformanceMonitor> performanceMonitors = new HashSet<>();
         
     
     @Activate

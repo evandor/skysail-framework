@@ -41,8 +41,7 @@ public class DbApplication implements Nameable, Serializable {
     private String name;
 
     @Field
-    // FIXME change regex to empty|...
-    //@Pattern(regexp = "[a-zA-Z_]([\\.\\w])*", message = "please choose a simpler Identifier like 'skysail.server.app.designer.myapp'. Some of the characters are not allowed.")
+    @Pattern(regexp = "[a-z_.]*", message = "packages should be lowercase with dots and underscores only")
     @ListView(hide = true)
     @PostView(tab = "details")
     private String projectName;

@@ -34,8 +34,7 @@ public class PostApplicationResource extends PostEntityServerResource<DbApplicat
             entity.setProjectName("skysail.server.app." + entity.getName().substring(0, 1).toLowerCase() + entity.getName().substring(1));
         }
         if (StringUtils.isBlank(entity.getPackageName())) {
-            entity.setPackageName("io.skysail.server.app." + entity.getName().substring(0, 1).toLowerCase()
-                    + entity.getName().substring(1));
+            entity.setPackageName("io.skysail.server.app." + entity.getName().toLowerCase());
         }
         if (StringUtils.isBlank(entity.getPath())) {
             entity.setPath("../");

@@ -7,12 +7,11 @@ import java.util.stream.Collectors;
 import org.osgi.service.component.annotations.*;
 import org.osgi.service.event.EventAdmin;
 
-import de.twenty11.skysail.server.core.restlet.*;
+import de.twenty11.skysail.server.core.restlet.RouteBuilder;
 import io.skysail.domain.core.Repositories;
 import io.skysail.domain.core.repos.DbRepository;
 import io.skysail.server.ApplicationContextId;
-import io.skysail.server.app.ApplicationProvider;
-import io.skysail.server.app.SkysailApplication;
+import io.skysail.server.app.*;
 import io.skysail.server.app.designer.application.*;
 import io.skysail.server.app.designer.application.resources.*;
 import io.skysail.server.app.designer.codegen.ApplicationCreator;
@@ -90,26 +89,34 @@ public class DesignerApplication extends SkysailApplication implements MenuItemP
         router.attach(new RouteBuilder("/applications/{id}/entities/{eid}", EntityResource.class));
         router.attach(new RouteBuilder("/applications/{id}/entities/{eid}/", PutEntityResource.class));
 
-//        router.attach(new RouteBuilder("/entities/{" + ENTITY_ID + "}/onetomany", SubEntitiesResource.class)); // NOSONAR
-//        router.attach(new RouteBuilder("/entities/{" + ENTITY_ID + "}/onetomany/{subEntityId}", SubEntityResource.class));
-//
-//        router.attach(new RouteBuilder("/entities/{" + ENTITY_ID + "}/onetomany/", PostSubEntityResource.class));
-
         router.attach(new RouteBuilder("/applications/{id}/entities/{" + ENTITY_ID + "}/fields", FieldsResource.class));
         
         router.attach(new RouteBuilder("/entities/{" + ENTITY_ID + "}/datefields/", PostDateFieldResource.class));
+        router.attach(new RouteBuilder("/entities/{" + ENTITY_ID + "}/datefields/{"+FIELD_ID+"}", FieldResource.class));
         router.attach(new RouteBuilder("/entities/{" + ENTITY_ID + "}/datefields/{"+FIELD_ID+"}/", PutDateFieldResource.class));
 
+        router.attach(new RouteBuilder("/entities/{" + ENTITY_ID + "}/timefields/", PostTimeFieldResource.class));
+        router.attach(new RouteBuilder("/entities/{" + ENTITY_ID + "}/timefields/{"+FIELD_ID+"}", FieldResource.class));
+        router.attach(new RouteBuilder("/entities/{" + ENTITY_ID + "}/timefields/{"+FIELD_ID+"}/", PutTimeFieldResource.class));
+
+        router.attach(new RouteBuilder("/entities/{" + ENTITY_ID + "}/datetimefields/", PostDateTimeFieldResource.class));
+        router.attach(new RouteBuilder("/entities/{" + ENTITY_ID + "}/datetimefields/{"+FIELD_ID+"}", FieldResource.class));
+        router.attach(new RouteBuilder("/entities/{" + ENTITY_ID + "}/datetimefields/{"+FIELD_ID+"}/", PutDateTimeFieldResource.class));
+
         router.attach(new RouteBuilder("/entities/{" + ENTITY_ID + "}/textfields/", PostTextFieldResource.class));
+        router.attach(new RouteBuilder("/entities/{" + ENTITY_ID + "}/textfields/{"+FIELD_ID+"}", FieldResource.class));
         router.attach(new RouteBuilder("/entities/{" + ENTITY_ID + "}/textfields/{"+FIELD_ID+"}/", PutTextFieldResource.class));
 
         router.attach(new RouteBuilder("/entities/{" + ENTITY_ID + "}/textareafields/", PostTextareaFieldResource.class));
+        router.attach(new RouteBuilder("/entities/{" + ENTITY_ID + "}/textareafields/{"+FIELD_ID+"}", FieldResource.class));
         router.attach(new RouteBuilder("/entities/{" + ENTITY_ID + "}/textareafields/{"+FIELD_ID+"}/", PutTextareaFieldResource.class));
 
         router.attach(new RouteBuilder("/entities/{" + ENTITY_ID + "}/trixeditor/", PostTrixeditorFieldResource.class));
+        router.attach(new RouteBuilder("/entities/{" + ENTITY_ID + "}/trixeditor/{"+FIELD_ID+"}", FieldResource.class));
         router.attach(new RouteBuilder("/entities/{" + ENTITY_ID + "}/trixeditor/{"+FIELD_ID+"}/", PutTrixeditorFieldResource.class));
 
         router.attach(new RouteBuilder("/entities/{" + ENTITY_ID + "}/url/", PostUrlFieldResource.class));
+        router.attach(new RouteBuilder("/entities/{" + ENTITY_ID + "}/url/{"+FIELD_ID+"}", FieldResource.class));
         router.attach(new RouteBuilder("/entities/{" + ENTITY_ID + "}/url/{"+FIELD_ID+"}/", PutUrlFieldResource.class));
 
         router.attach(new RouteBuilder("/entities/{" + ENTITY_ID + "}/relations", RelationsResource.class));

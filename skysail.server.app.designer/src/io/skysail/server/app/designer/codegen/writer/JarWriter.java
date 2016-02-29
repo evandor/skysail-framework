@@ -1,12 +1,8 @@
 package io.skysail.server.app.designer.codegen.writer;
 
 import java.io.*;
-import java.util.Collection;
-import java.util.Date;
-import java.util.jar.Attributes;
-import java.util.jar.JarEntry;
-import java.util.jar.JarOutputStream;
-import java.util.jar.Manifest;
+import java.util.*;
+import java.util.jar.*;
 import java.util.stream.Collectors;
 
 import org.apache.commons.io.FilenameUtils;
@@ -36,9 +32,8 @@ public class JarWriter {
         global.put(new Attributes.Name("Bundle-Version"), "0.1.0");
         
         global.put(new Attributes.Name("Import-Package"), 
-                  "de.twenty11.skysail.server.app;version=\"[19.0,20)\","
-                + "de.twenty11.skysail.server.core.restlet;version=\"[22.0,23)\","
-                + "io.skysail.api.links;version=\"[4.0,5)\","
+                  "de.twenty11.skysail.server.core.restlet;version=\"[22.0,23)\","
+                + "io.skysail.api.links;version=\"[5.0,6)\","
                 + "io.skysail.api.responses;version=\"[18.0,19)\","
                 + "io.skysail.domain;version=\"[0.1,1)\","
                 + "io.skysail.domain.core;version=\"[1.0,2)\","
@@ -46,7 +41,7 @@ public class JarWriter {
                 + "io.skysail.domain.html;version=\"[0.1,1)\","
                 + "io.skysail.server.app;version=\"[7.0,8)\","
                 + "io.skysail.server.db;version=\"[8.0,9)\","
-                + "io.skysail.server.forms;version=\"[5.1,6)\","
+                + "io.skysail.server.forms;version=\"[6.0,7)\","
                 + "io.skysail.server.menus;version=\"[0.1,0.2)\","
                 + "io.skysail.server.queryfilter;version=\"[0.5,1)\","
                 + "io.skysail.server.queryfilter.pagination;version=\"[0.2,1)\","

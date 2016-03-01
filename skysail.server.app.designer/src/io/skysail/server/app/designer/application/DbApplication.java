@@ -41,14 +41,13 @@ public class DbApplication implements Nameable, Serializable {
     private String name;
 
     @Field
-    @Pattern(regexp = "[a-z_.]*", message = "packages should be lowercase with dots and underscores only")
+    //@Pattern(regexp = "[a-z_.]*", message = "packages should be lowercase with dots and underscores only")
     @ListView(hide = true)
     @PostView(tab = "details")
     private String projectName;
 
     @Field
-    // FIXME change regex to empty|...
-    //@Pattern(regexp = "[a-zA-Z_]([\\.\\w])*", message = "please choose a valid java package name like 'io.skysail.some.package'. Some of the provided characters are not allowed.")
+    @Pattern(regexp = "[a-z_.]*", message = "packages should be lowercase with dots and underscores only")
     @ListView(hide = true)
     @PostView(tab = "details")
     private String packageName;

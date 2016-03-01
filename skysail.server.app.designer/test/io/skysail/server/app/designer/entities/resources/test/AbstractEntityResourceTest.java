@@ -15,7 +15,7 @@ public abstract class AbstractEntityResourceTest extends AbstractDesignerResourc
 
     protected DbApplication createApplication() {
         DbApplication anApplication = DbApplication.builder().name("Application_" + randomString())
-                .packageName("pgkName").path("../").projectName("projectName").build();
+                .packageName("pgkname").path("../").projectName("projectName").build();
         SkysailResponse<DbApplication> post = postApplicationResource.post(anApplication, JSON_VARIANT);
         assertThat(post.getResponse().getStatus(), is(Status.SUCCESS_CREATED));
         getAttributes().clear();

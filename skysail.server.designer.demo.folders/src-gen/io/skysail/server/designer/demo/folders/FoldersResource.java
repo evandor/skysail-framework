@@ -1,13 +1,11 @@
 package io.skysail.server.designer.demo.folders;
 
+import java.util.List;
+
+import io.skysail.api.links.Link;
 import io.skysail.server.ResourceContextId;
 import io.skysail.server.db.DbClassName;
-import io.skysail.server.queryfilter.Filter;
-import io.skysail.server.queryfilter.pagination.Pagination;
 import io.skysail.server.restlet.resources.ListServerResource;
-import io.skysail.api.links.Link;
-
-import java.util.*;
 
 public class FoldersResource extends ListServerResource<io.skysail.server.designer.demo.folders.Folder> {
 
@@ -29,12 +27,14 @@ public class FoldersResource extends ListServerResource<io.skysail.server.design
         repository = (FolderRepository) app.getRepository(io.skysail.server.designer.demo.folders.Folder.class);
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     public List<io.skysail.server.designer.demo.folders.Folder> getEntity() {
         return (List<Folder>) repository.execute(Folder.class, "select * from " + DbClassName.of(Folder.class) + " where IN(Folders).size() = 0");
     }
 
+    @Override
     public List<Link> getLinks() {
-              return super.getLinks(PostFolderResource.class,FoldersResource.class);
+              return super.getLinks(PostFolderResource.class);
     }
 }

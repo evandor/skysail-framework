@@ -1,5 +1,9 @@
 package io.skysail.server.designer.demo.folders;
 
+import java.util.List;
+
+import io.skysail.server.queryfilter.Filter;
+import io.skysail.server.queryfilter.pagination.Pagination;
 import io.skysail.server.restlet.resources.PostRelationResource2;
 
 public class PostFolderToNewFolderRelationResource extends PostRelationResource2<Folder> {
@@ -25,7 +29,7 @@ public class PostFolderToNewFolderRelationResource extends PostRelationResource2
 
     @Override
     public void addEntity(Folder entity) {
-        Folder parent = (Folder) repo.findOne(parentId);
+        Folder parent = repo.findOne(parentId);
         parent.getFolders().add(entity);
         repo.save(parent, getApplication().getApplicationModel());
     }

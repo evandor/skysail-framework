@@ -39,7 +39,7 @@ public class FolderResource extends EntityServerResource<io.skysail.server.desig
 
 	@Override
     public List<Link> getLinks() {
-        return super.getLinks(PutFolderResource.class,PostFolderResource.class,FoldersResource.class);
+        return super.getLinks(PutFolderResource.class,FoldersResource.class);
     }
 
 }

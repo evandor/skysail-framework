@@ -31,12 +31,14 @@ public class $entity.simpleName$sResource extends ListServerResource<$entity.id$
     }
     
     @Override
+    @SuppressWarnings("unchecked")
     public List<$entity.id$> getEntity() {
         Filter filter = new Filter(getRequest());
         Pagination pagination = new Pagination(getRequest(), getResponse(), repository.count(filter));
         return repository.find(filter, pagination);
     \}
 
+    @Override
     public List<Link> getLinks() {
        $listLinks$
     \}

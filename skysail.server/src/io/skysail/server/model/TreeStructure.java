@@ -1,12 +1,16 @@
 package io.skysail.server.model;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.stream.Collectors;
 
 import javax.validation.constraints.NotNull;
 
-import io.skysail.server.restlet.resources.*;
-import lombok.*;
+import io.skysail.server.restlet.resources.SkysailServerResource;
+import io.skysail.server.restlet.resources.TreeRepresentation;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @NoArgsConstructor
 @ToString
@@ -23,7 +27,7 @@ public class TreeStructure {
         this.name = treeRepresentation.getName();
         this.headline = treeRepresentation.getHeadline();
         this.glyph = treeRepresentation.getGlyph();
-        List<String> baseRef = resource.getReference().getSegments();
+        List<String> baseRef = resource.getOriginalRef().getSegments();
         this.link = "/" + baseRef.get(0) + "/" + baseRef.get(1) + "/" + baseRef.get(2) + treeRepresentation.getLink();
         treeRepresentation.getSubfolders().stream().forEach(subfolder -> 
             subfolders.add(new TreeStructure(subfolder, resource))

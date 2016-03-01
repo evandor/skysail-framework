@@ -8,7 +8,8 @@ import io.skysail.server.app.designer.DesignerApplication;
 import io.skysail.server.app.designer.application.DbApplication;
 import io.skysail.server.app.designer.entities.DbEntity;
 import io.skysail.server.app.designer.fields.DbEntityField;
-import io.skysail.server.restlet.resources.*;
+import io.skysail.server.model.TreeStructure;
+import io.skysail.server.restlet.resources.ListServerResource;
 
 public class FieldsResource extends ListServerResource<DbEntityField> {
 
@@ -42,10 +43,10 @@ public class FieldsResource extends ListServerResource<DbEntityField> {
         return super.getLinks(new ArrayList<>(PostFieldResource.getExtendingClasses()));
     }
     
-    public List<TreeRepresentation> getTreeRepresentation() {
+    public List<TreeStructure> getTreeRepresentation() {
         DbApplication dbApplication = app.getRepository().getById(DbApplication.class, getAttribute("id"));
         if (dbApplication != null) {
-            return Arrays.asList(new TreeRepresentation(dbApplication,"", "leaf"));
+            return Arrays.asList(new TreeStructure(dbApplication,"", "leaf"));
         }
         return Collections.emptyList();
     }

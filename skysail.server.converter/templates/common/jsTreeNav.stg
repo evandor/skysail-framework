@@ -8,8 +8,9 @@ jsTreeNav(treeStructure) ::= <<
     \$('#jstree_tree_nav').jstree({
         "plugins" : [ "wholerow" ]
     });
-    \$('#jstree_tree_nav').on("changed.jstree", function (e, data) {
-      console.log(data.selected);
+    \$('#jstree_tree_nav').on("select_node.jstree", function (e, data) {
+      console.dir(data);
+      document.location = data.instance.get_node(data.node, true).children('a').attr('href');
     });
   });
   </script>

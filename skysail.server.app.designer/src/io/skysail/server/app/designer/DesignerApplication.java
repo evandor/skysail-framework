@@ -29,7 +29,7 @@ import io.skysail.server.app.designer.relations.resources.*;
 import io.skysail.server.app.designer.repo.DesignerRepository;
 import io.skysail.server.db.DbService;
 import io.skysail.server.menus.*;
-import io.skysail.server.restlet.resources.TreeRepresentation;
+import io.skysail.server.model.TreeStructure;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 
@@ -201,17 +201,17 @@ public class DesignerApplication extends SkysailApplication implements MenuItemP
         return getRepository().getById(DbApplication.class, id);
     }
 
-    public List<TreeRepresentation> getTreeRepresentation(DbApplication dbApplication) {
+    public List<TreeStructure> getTreeRepresentation(DbApplication dbApplication) {
         if (dbApplication != null) {
-            return Arrays.asList(new TreeRepresentation(dbApplication,"", "th-large"));
+            return Arrays.asList(new TreeStructure(dbApplication,"", "th-large"));
         }
         return Collections.emptyList();
     }
 
-    public List<TreeRepresentation> getTreeRepresentation(String appId) {
+    public List<TreeStructure> getTreeRepresentation(String appId) {
         DbApplication dbApplication = getApplication(appId);
         if (dbApplication != null) {
-            return Arrays.asList(new TreeRepresentation(dbApplication,"", "th-large"));
+            return Arrays.asList(new TreeStructure(dbApplication,"", "th-large"));
         }
         return Collections.emptyList();
     }

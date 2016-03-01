@@ -8,10 +8,10 @@ import java.util.*;
 import org.junit.*;
 
 import io.skysail.domain.Nameable;
-import io.skysail.server.restlet.resources.TreeRepresentation;
+import io.skysail.server.restlet.resources.TreeNode;
 import lombok.*;
 
-public class TreeRepresentationTest {
+public class TreeNodeTest {
 
     private NameableRootEntity root;
 
@@ -43,9 +43,9 @@ public class TreeRepresentationTest {
 
     @Test
     public void simpleEntity_is_processed_correctly() {
-        TreeRepresentation treeRepresentation = new TreeRepresentation(root,"","leaf");
+        TreeNode treeRepresentation = new TreeNode(root,"","leaf");
         assertThat(treeRepresentation.getName(),is("root"));
-        assertThat(treeRepresentation.getSubfolders().size(),is(0));
+        assertThat(treeRepresentation.getSubNodes().size(),is(0));
     }
     
     @Test
@@ -55,10 +55,10 @@ public class TreeRepresentationTest {
         subEntities.add(new NameableSubEntity("sub2"));
         root.setSubEntities(subEntities);
         
-        TreeRepresentation treeRepresentation = new TreeRepresentation(root,"","leaf");
+        TreeNode treeRepresentation = new TreeNode(root,"","leaf");
         assertThat(treeRepresentation.getName(),is("root"));
-        assertThat(treeRepresentation.getSubfolders().size(),is(2));
-        assertThat(treeRepresentation.getSubfolders().get(0).getName(),is("sub1"));
-        assertThat(treeRepresentation.getSubfolders().get(1).getName(),is("sub2"));
+        assertThat(treeRepresentation.getSubNodes().size(),is(2));
+        assertThat(treeRepresentation.getSubNodes().get(0).getName(),is("sub1"));
+        assertThat(treeRepresentation.getSubNodes().get(1).getName(),is("sub2"));
     }
 }

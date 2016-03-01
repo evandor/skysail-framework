@@ -8,8 +8,8 @@ import io.skysail.server.ResourceContextId;
 import io.skysail.server.app.designer.DesignerApplication;
 import io.skysail.server.app.designer.entities.DbEntity;
 import io.skysail.server.app.designer.relations.DbRelation;
+import io.skysail.server.model.TreeStructure;
 import io.skysail.server.restlet.resources.ListServerResource;
-import io.skysail.server.restlet.resources.TreeRepresentation;
 
 public class RelationsResource extends ListServerResource<DbRelation> {
 
@@ -42,7 +42,7 @@ public class RelationsResource extends ListServerResource<DbRelation> {
     }
 
     @Override
-    public List<TreeRepresentation> getTreeRepresentation() {
+    public List<TreeStructure> getTreeRepresentation() {
         return app.getTreeRepresentation(getAttribute("id"));
     }
     

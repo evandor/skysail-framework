@@ -1,24 +1,17 @@
 package io.skysail.server.restlet.resources;
 
-import java.lang.reflect.Field;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.ParameterizedType;
+import java.lang.reflect.*;
 import java.util.*;
 import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
-import org.apache.commons.beanutils.BeanUtils;
-import org.apache.commons.beanutils.ConvertUtils;
-import org.apache.commons.beanutils.converters.DateConverter;
-import org.apache.commons.beanutils.converters.DateTimeConverter;
+import org.apache.commons.beanutils.*;
+import org.apache.commons.beanutils.converters.*;
 import org.apache.shiro.SecurityUtils;
 import org.restlet.Application;
-import org.restlet.data.Form;
-import org.restlet.data.Reference;
-import org.restlet.representation.Representation;
-import org.restlet.representation.Variant;
-import org.restlet.resource.Options;
-import org.restlet.resource.ServerResource;
+import org.restlet.data.*;
+import org.restlet.representation.*;
+import org.restlet.resource.*;
 import org.restlet.security.Role;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -28,22 +21,15 @@ import io.skysail.api.links.Link;
 import io.skysail.api.links.LinkRelation;
 import io.skysail.api.responses.SkysailResponse;
 import io.skysail.api.text.Translation;
-import io.skysail.domain.core.ApplicationModel;
-import io.skysail.domain.core.EntityModel;
+import io.skysail.domain.core.*;
 import io.skysail.server.ResourceContextId;
 import io.skysail.server.app.SkysailApplication;
-import io.skysail.server.forms.FormField;
-import io.skysail.server.forms.Tab;
+import io.skysail.server.forms.*;
 import io.skysail.server.menus.MenuItem;
+import io.skysail.server.model.TreeStructure;
 import io.skysail.server.services.PerformanceTimer;
-import io.skysail.server.utils.LinkUtils;
-import io.skysail.server.utils.ReflectionUtils;
-import io.skysail.server.utils.ResourceUtils;
-import io.skysail.server.utils.SkysailBeanUtils;
-import lombok.Getter;
-import lombok.NonNull;
-import lombok.Setter;
-import lombok.ToString;
+import io.skysail.server.utils.*;
+import lombok.*;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -427,7 +413,7 @@ public abstract class SkysailServerResource<T> extends ServerResource {
         return cls.cast(getContext().getAttributes().get(cls.getName()));
     }
 
-    public List<TreeRepresentation> getTreeRepresentation() {
+    public List<TreeStructure> getTreeRepresentation() {
         return Collections.emptyList();
     }
     

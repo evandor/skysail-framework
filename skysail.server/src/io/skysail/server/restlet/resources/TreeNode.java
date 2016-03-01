@@ -11,19 +11,15 @@ import lombok.extern.slf4j.Slf4j;
 @Getter
 @ToString
 @Slf4j
-public class TreeRepresentation {
+public class TreeNode {
 
     private String name;
-    
     private String headline;
-    
     private String link = "#";
-    
     private String glyph = "leaf";
+    private List<TreeNode> subNodes = new ArrayList<>();
 
-    private List<TreeRepresentation> subfolders = new ArrayList<>();
-
-    public TreeRepresentation(@NonNull Nameable nameable, String link, String glyph) {
+    public TreeNode(@NonNull Nameable nameable, String link, String glyph) {
         this.name = nameable.getName();
         this.headline = nameable.getClass().getSimpleName();
         this.glyph = glyph;
@@ -44,7 +40,7 @@ public class TreeRepresentation {
                         .filter(e -> e instanceof Nameable)
                         .map(Nameable.class::cast).collect(Collectors.toList());
                 subs.stream().forEach(subFolder -> 
-                    addFolder(new TreeRepresentation(subFolder, this.link, glyph.equals("list-alt") ? "chevron-right" : "list-alt"))
+                    addFolder(new TreeNode(subFolder, this.link, glyph.equals("list-alt") ? "chevron-right" : "list-alt"))
                 );
             } catch (Exception e) {
                 log.error(e.getMessage(), e);
@@ -52,8 +48,8 @@ public class TreeRepresentation {
         });
     }
 
-    public void addFolder(TreeRepresentation treeRepresentation) {
-        subfolders.add(treeRepresentation);
+    public void addFolder(TreeNode treeRepresentation) {
+        subNodes.add(treeRepresentation);
     }
 
 }

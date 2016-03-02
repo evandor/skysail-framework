@@ -1,5 +1,5 @@
 DEBUG io.skysail.server.db.OrientGraphDbService - about to start db
-DEBUG io.skysail.server.db.OrientGraphDbService - created new in-memory database com.orientechnologies.orient.core.db.document.ODatabaseDocumentTx@15fa55a6
+DEBUG io.skysail.server.db.OrientGraphDbService - created new in-memory database com.orientechnologies.orient.core.db.document.ODatabaseDocumentTx@7fab4be7
 DEBUG io.skysail.server.db.OrientGraphDbService - testing graph factory connection
 DEBUG io.skysail.server.db.OrientGraphDbService - setting lazy loading to false
 DEBUG io.skysail.server.db.OrientGraphDbService - activating io.skysail.server.testsupport.TestDb
@@ -16,8 +16,8 @@ DEBUG io.skysail.server.db.OrientGraphDbService - ODB graph function [gremlin] i
 DEBUG io.skysail.server.db.OrientGraphDbService - ODB graph function [shortestpath] is registered: [shortestPath(<sourceVertex>, <destinationVertex>, [<direction>, [ <edgeTypeAsString> ]])]
 DEBUG io.skysail.server.db.OrientGraphDbService - ODB graph function [outv] is registered: [Syntax error: outV([<labels>])]
 DEBUG io.skysail.server.db.OrientGraphDbService - ODB graph function [bothe] is registered: [Syntax error: bothE([<labels>])]
-DEBUG io.skysail.server.app.SkysailApplication - Instanciating new Skysail ApplicationModel 'DesignerApplication$$EnhancerByMockitoWithCGLIB$$bac24694'
-INFO  io.skysail.server.app.SkysailApplication - creating new Router in io.skysail.server.app.designer.DesignerApplication$$EnhancerByMockitoWithCGLIB$$bac24694
+DEBUG io.skysail.server.app.SkysailApplication - Instanciating new Skysail ApplicationModel 'DesignerApplication$$EnhancerByMockitoWithCGLIB$$b48d12aa'
+INFO  io.skysail.server.app.SkysailApplication - creating new Router in io.skysail.server.app.designer.DesignerApplication$$EnhancerByMockitoWithCGLIB$$b48d12aa
 INFO  io.skysail.server.app.SkysailApplication - adding extensions to metadata service
 INFO  io.skysail.server.app.SkysailApplication - adding protocols
 DEBUG io.skysail.server.app.SkysailApplication - attaching application-specific routes
@@ -130,8 +130,8 @@ WARN  io.skysail.server.app.SkysailApplication - trying to access repository for
 WARN  io.skysail.server.app.SkysailApplication - trying to access repository for entity class io.skysail.server.app.designer.application.DbApplication, but failed...
 WARN  io.skysail.server.app.SkysailApplication - trying to access repository for entity class io.skysail.server.app.designer.application.DbApplication, but failed...
 WARN  io.skysail.server.app.SkysailApplication - trying to access repository for entity class io.skysail.server.app.designer.application.DbApplication, but failed...
-INFO  i.s.server.restlet.resources.PostEntityServerResource - Request entry point: PostApplicationResource$$EnhancerByMockitoWithCGLIB$$86ae5836 @Post('json')
-INFO  i.s.server.restlet.resources.PostEntityServerResource - Request entry point: PostApplicationResource$$EnhancerByMockitoWithCGLIB$$86ae5836 @Post('x-www-form-urlencoded:html|json|xml')
+INFO  i.s.server.restlet.resources.PostEntityServerResource - Request entry point: PostApplicationResource$$EnhancerByMockitoWithCGLIB$$8079244c @Post('json')
+INFO  i.s.server.restlet.resources.PostEntityServerResource - Request entry point: PostApplicationResource$$EnhancerByMockitoWithCGLIB$$8079244c @Post('x-www-form-urlencoded:html|json|xml')
 INFO  i.s.server.restlet.resources.PostEntityServerResource - calling post(Form), media types '[]'
 DEBUG org.jboss.logging - Logging Provider: org.jboss.logging.Slf4jLoggerProvider
 INFO  org.hibernate.validator.internal.util.Version - HV000001: Hibernate Validator 5.0.1.Final
@@ -149,11 +149,11 @@ DEBUG io.skysail.server.restlet.filter.AbstractResourceFilter - next filter in c
 DEBUG i.s.server.restlet.filter.CheckBusinessViolationsFilter - entering CheckBusinessViolationsFilter#doHandle
 DEBUG o.h.v.resourceloading.PlatformResourceBundleLocator - ValidationMessages not found.
 DEBUG o.h.v.resourceloading.PlatformResourceBundleLocator - org.hibernate.validator.ValidationMessages found.
-WARN  i.s.server.restlet.filter.CheckBusinessViolationsFilter - constraint violations found on DbApplication(id=null, name=app_name_f9msnqr5s5rnoecb3id8cd02lj, entities=[]): [ConstraintViolationImpl{interpolatedMessage='packages should be lowercase with dots and underscores only', propertyPath=packageName, rootBeanClass=class io.skysail.server.app.designer.application.DbApplication, messageTemplate='packages should be lowercase with dots and underscores only'}]
+WARN  i.s.server.restlet.filter.CheckBusinessViolationsFilter - constraint violations found on DbApplication(id=null, name=app_name_rk2mikltq84dercm8nrijbukma, entities=[]): [ConstraintViolationImpl{interpolatedMessage='packages should be lowercase with dots and underscores only', propertyPath=packageName, rootBeanClass=class io.skysail.server.app.designer.application.DbApplication, messageTemplate='packages should be lowercase with dots and underscores only'}]
 INFO  i.s.server.restlet.filter.CheckBusinessViolationsFilter - found 1 business validation violation(s): [ConstraintViolationImpl{interpolatedMessage='packages should be lowercase with dots and underscores only', propertyPath=packageName, rootBeanClass=class io.skysail.server.app.designer.application.DbApplication, messageTemplate='packages should be lowercase with dots and underscores only'}]
 INFO  io.skysail.server.restlet.filter.AbstractResourceFilter - stopping filter chain at filter CheckBusinessViolationsFilter
-DEBUG io.skysail.server.app.SkysailApplication - Instanciating new Skysail ApplicationModel 'DesignerApplication$$EnhancerByMockitoWithCGLIB$$bac24694'
-INFO  io.skysail.server.app.SkysailApplication - creating new Router in io.skysail.server.app.designer.DesignerApplication$$EnhancerByMockitoWithCGLIB$$bac24694
+DEBUG io.skysail.server.app.SkysailApplication - Instanciating new Skysail ApplicationModel 'DesignerApplication$$EnhancerByMockitoWithCGLIB$$b48d12aa'
+INFO  io.skysail.server.app.SkysailApplication - creating new Router in io.skysail.server.app.designer.DesignerApplication$$EnhancerByMockitoWithCGLIB$$b48d12aa
 INFO  io.skysail.server.app.SkysailApplication - adding extensions to metadata service
 INFO  io.skysail.server.app.SkysailApplication - adding protocols
 DEBUG io.skysail.server.app.SkysailApplication - attaching application-specific routes
@@ -266,8 +266,8 @@ WARN  io.skysail.server.app.SkysailApplication - trying to access repository for
 WARN  io.skysail.server.app.SkysailApplication - trying to access repository for entity class io.skysail.server.app.designer.application.DbApplication, but failed...
 WARN  io.skysail.server.app.SkysailApplication - trying to access repository for entity class io.skysail.server.app.designer.application.DbApplication, but failed...
 WARN  io.skysail.server.app.SkysailApplication - trying to access repository for entity class io.skysail.server.app.designer.application.DbApplication, but failed...
-INFO  i.s.server.restlet.resources.PostEntityServerResource - Request entry point: PostApplicationResource$$EnhancerByMockitoWithCGLIB$$86ae5836 @Post('json')
-INFO  i.s.server.restlet.resources.PostEntityServerResource - Request entry point: PostApplicationResource$$EnhancerByMockitoWithCGLIB$$86ae5836 @Post('x-www-form-urlencoded:html|json|xml')
+INFO  i.s.server.restlet.resources.PostEntityServerResource - Request entry point: PostApplicationResource$$EnhancerByMockitoWithCGLIB$$8079244c @Post('json')
+INFO  i.s.server.restlet.resources.PostEntityServerResource - Request entry point: PostApplicationResource$$EnhancerByMockitoWithCGLIB$$8079244c @Post('x-www-form-urlencoded:html|json|xml')
 INFO  i.s.server.restlet.resources.PostEntityServerResource - calling post(Form), media types '[]'
 DEBUG o.h.v.i.engine.resolver.DefaultTraversableResolver - Found javax.persistence.Persistence on classpath containing 'getPersistenceUtil'. Assuming JPA 2 environment. Trying to instantiate JPA aware TraversableResolver
 DEBUG o.h.v.i.engine.resolver.DefaultTraversableResolver - Instantiated JPA aware TraversableResolver of type org.hibernate.validator.internal.engine.resolver.JPATraversableResolver.
@@ -283,6 +283,6 @@ DEBUG io.skysail.server.restlet.filter.AbstractResourceFilter - next filter in c
 DEBUG i.s.server.restlet.filter.CheckBusinessViolationsFilter - entering CheckBusinessViolationsFilter#doHandle
 DEBUG o.h.v.resourceloading.PlatformResourceBundleLocator - ValidationMessages not found.
 DEBUG o.h.v.resourceloading.PlatformResourceBundleLocator - org.hibernate.validator.ValidationMessages found.
-WARN  i.s.server.restlet.filter.CheckBusinessViolationsFilter - constraint violations found on DbApplication(id=null, name=app_name_ubjduao8pal111vhi6hqbo825q, entities=[]): [ConstraintViolationImpl{interpolatedMessage='packages should be lowercase with dots and underscores only', propertyPath=packageName, rootBeanClass=class io.skysail.server.app.designer.application.DbApplication, messageTemplate='packages should be lowercase with dots and underscores only'}]
+WARN  i.s.server.restlet.filter.CheckBusinessViolationsFilter - constraint violations found on DbApplication(id=null, name=app_name_7c25k4m8scihhhisnk2cn8u8hc, entities=[]): [ConstraintViolationImpl{interpolatedMessage='packages should be lowercase with dots and underscores only', propertyPath=packageName, rootBeanClass=class io.skysail.server.app.designer.application.DbApplication, messageTemplate='packages should be lowercase with dots and underscores only'}]
 INFO  i.s.server.restlet.filter.CheckBusinessViolationsFilter - found 1 business validation violation(s): [ConstraintViolationImpl{interpolatedMessage='packages should be lowercase with dots and underscores only', propertyPath=packageName, rootBeanClass=class io.skysail.server.app.designer.application.DbApplication, messageTemplate='packages should be lowercase with dots and underscores only'}]
 INFO  io.skysail.server.restlet.filter.AbstractResourceFilter - stopping filter chain at filter CheckBusinessViolationsFilter

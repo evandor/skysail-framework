@@ -1,0 +1,16 @@
+{
+  "name": "skysail.lib.js.designer",
+  "version": "0.0.1",
+  "description": "A web modeler for skysail applications",
+  "scripts": {
+    "test": "grunt test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/evandor/skysail-framework"
+  },
+  "dependencies": {
+  },
+  "devDependencies": {
+  }
+}

@@ -1,14 +1,21 @@
 package io.skysail.server.model;
 
 import java.lang.reflect.Field;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.List;
 import java.util.stream.Collectors;
 
 import javax.validation.constraints.NotNull;
 
-import io.skysail.domain.*;
-import io.skysail.server.restlet.resources.*;
-import lombok.*;
+import io.skysail.domain.Identifiable;
+import io.skysail.domain.Nameable;
+import io.skysail.server.restlet.resources.SkysailServerResource;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.NonNull;
+import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
 
 @NoArgsConstructor
@@ -63,15 +70,15 @@ public class TreeStructure {
         subfolders.add(treeRepresentation);
     }
 
-    private TreeStructure(TreeNode treeNode, SkysailServerResource<?> resource) {
-        this.name = treeNode.getName();
-        this.headline = treeNode.getHeadline();
-        this.glyph = treeNode.getGlyph();
-        List<String> baseRef = resource.getOriginalRef().getSegments();
-        this.link = "/" + baseRef.get(0) + "/" + baseRef.get(1) + "/" + baseRef.get(2) + treeNode.getLink();
-        treeNode.getSubNodes().stream().forEach(subNodes -> 
-            subfolders.add(new TreeStructure(subNodes, resource))
-        );
-    }
+//    private TreeStructure(TreeNode treeNode, SkysailServerResource<?> resource) {
+//        this.name = treeNode.getName();
+//        this.headline = treeNode.getHeadline();
+//        this.glyph = treeNode.getGlyph();
+//        List<String> baseRef = resource.getOriginalRef().getSegments();
+//        this.link = "/" + baseRef.get(0) + "/" + baseRef.get(1) + "/" + baseRef.get(2) + treeNode.getLink();
+//        treeNode.getSubNodes().stream().forEach(subNodes -> 
+//            subfolders.add(new TreeStructure(subNodes, resource))
+//        );
+//    }
 
 }

@@ -8,6 +8,9 @@ import io.skysail.api.responses.SkysailResponse;
 import io.skysail.server.ResourceContextId;
 import io.skysail.server.restlet.resources.EntityServerResource;
 
+/**
+ * generated from entityResource.stg
+ */
 public class $entity.simpleName$Resource extends EntityServerResource<$entity.id$> {
 
     private String id;

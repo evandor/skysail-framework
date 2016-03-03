@@ -5,10 +5,12 @@ import java.util.List;
 import io.skysail.api.links.Link;
 import io.skysail.server.ResourceContextId;
 import io.skysail.server.db.DbClassName;
+import io.skysail.server.queryfilter.Filter;
+import io.skysail.server.queryfilter.pagination.Pagination;
 import io.skysail.server.restlet.resources.ListServerResource;
 
 /**
- * generated from listResource.stg
+ * generated from relationResource.stg
  */
 public class UsersOEsResource extends ListServerResource<OE> {
 
@@ -16,7 +18,7 @@ public class UsersOEsResource extends ListServerResource<OE> {
     private OERepository oeRepo;
 
     public UsersOEsResource() {
-        super(UserResource.class);
+        super(UserResource.class);//, UsersUserResource.class);
         addToContext(ResourceContextId.LINK_TITLE, "["+this.getClass().getSimpleName()+"]");
     }
 

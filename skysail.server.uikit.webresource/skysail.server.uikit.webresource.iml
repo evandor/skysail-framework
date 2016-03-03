@@ -15,15 +15,84 @@
     <content url="file://$MODULE_DIR$">
       <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/test" isTestSource="true" />
+      <excludeFolder url="file://$MODULE_DIR$/.gradle" />
       <excludeFolder url="file://$MODULE_DIR$/generated" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="bnd:osgi.enroute.base.api:1.6.0.201508270946" level="project" />
-    <orderEntry type="module" module-name="skysail.api" />
-    <orderEntry type="module" module-name="skysail.server" />
-    <orderEntry type="library" name="bnd:org.restlet:2.3.4.v20150716-1217" level="project" />
-    <orderEntry type="library" name="bnd:org.restlet.ext.raml:2.3.4.v20150716-1217" level="project" />
-    <orderEntry type="library" name="bnd:lombok:1.16.2" level="project" />
+    <orderEntry type="module" module-name="skysail.server" exported="" />
+    <orderEntry type="module" module-name="skysail.domain" exported="" />
+    <orderEntry type="module-library" exported="">
+      <library name="Gradle: osgi.enroute.base.api-1.6.0">
+        <CLASSES>
+          <root url="jar://$USER_HOME$/.bnd/cache/https%3A%2F%2Fraw.githubusercontent.com%2Fosgi%2Fosgi.enroute%2Fv1.0.0%2Fcnf%2Fdistro%2Fosgi.enroute.base.api/osgi.enroute.base.api-1.6.0.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library name="Gradle: skysail.api-12.0.0">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../cnf/releaserepo/skysail.api/skysail.api-12.0.0.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library name="Gradle: skysail.server">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../skysail.server/generated/skysail.server.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library name="Gradle: org.restlet">
+        <CLASSES>
+          <root url="jar://$USER_HOME$/.bnd/cache/https%3A%2F%2Fgithub.com%2Fevandor%2Fskysail-repository%2Fraw%2Fmaster%2Frelease/org.restlet.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library name="Gradle: org.restlet.ext.raml">
+        <CLASSES>
+          <root url="jar://$USER_HOME$/.bnd/cache/https%3A%2F%2Fgithub.com%2Fevandor%2Fskysail-repository%2Fraw%2Fmaster%2Frelease/org.restlet.ext.raml.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library name="Gradle: lombok-1.16.2">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../cnf/buildrepo/lombok/lombok-1.16.2.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="" scope="RUNTIME">
+      <library name="Gradle: C__git_skysail_framework_skysail_server_uikit_webresource_bin:webresource\bin">
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/bin" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" scope="TEST">
+      <library name="Gradle: C__git_skysail_framework_skysail_server_uikit_webresource_bin_test:webresource\bin_test">
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/bin_test" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
   </component>
 </module>

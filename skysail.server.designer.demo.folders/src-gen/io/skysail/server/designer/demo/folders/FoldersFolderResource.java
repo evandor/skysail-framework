@@ -5,6 +5,9 @@ import io.skysail.api.links.Link;
 import io.skysail.api.responses.SkysailResponse;
 import io.skysail.server.restlet.resources.EntityServerResource;
 
+/**
+ * generated from targetRelationResource.stg
+ */
 public class FoldersFolderResource extends EntityServerResource<Folder> {
 
     @Override

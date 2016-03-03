@@ -7,11 +7,14 @@ import io.skysail.server.queryfilter.Filter;
 import io.skysail.server.queryfilter.pagination.Pagination;
 import io.skysail.server.restlet.resources.PostRelationResource;
 
+/**
+ * generated from postRelationResource.stg
+ */
 public class Post$entity.simpleName$s$relation.targetEntityModel.simpleName$RelationResource extends PostRelationResource<$entity.className$, $relation.targetEntityModel.className$> {
 
     private $application.name$Application app;
-    private $relation.targetEntityModel.simpleName$Repository repo;
-    //private UserRepository userRepo;
+    private $relation.targetEntityModel.simpleName$Repository $relation.targetEntityModel.simpleName$Repo;
+    private $entity.simpleName$Repository $entity.simpleName$Repo;
 
     public Post$entity.simpleName$s$relation.targetEntityModel.simpleName$RelationResource() {
         // addToContext(ResourceContextId.LINK_TITLE, "add");
@@ -20,30 +23,30 @@ public class Post$entity.simpleName$s$relation.targetEntityModel.simpleName$Rela
     @Override
     protected void doInit() {
         app = ($application.name$Application) getApplication();
-        repo = ($relation.targetEntityModel.simpleName$Repository) app.getRepository($relation.targetEntityModel.className$.class);
+        $relation.targetEntityModel.simpleName$Repo = ($relation.targetEntityModel.simpleName$Repository) app.getRepository($relation.targetEntityModel.className$.class);
         //userRepo = (UserRepository) app.getRepository(io.skysail.server.app.oEService.User.class);
     }
 
     @Override
     public List<$relation.targetEntityModel.simpleName$> getEntity() {
         Filter filter = new Filter(getRequest());
-        Pagination pagination = new Pagination(getRequest(), getResponse(), repo.count(filter));
-        return repo.find(filter, pagination);
+        Pagination pagination = new Pagination(getRequest(), getResponse(), $relation.targetEntityModel.simpleName$Repo.count(filter));
+        return $relation.targetEntityModel.simpleName$Repo.find(filter, pagination);
     }
 
     @Override
     protected List<$relation.targetEntityModel.simpleName$> getRelationTargets(String selectedValues) {
         Filter filter = new Filter(getRequest());
-        Pagination pagination = new Pagination(getRequest(), getResponse(), repo.count(filter));
-        return repo.find(filter, pagination);//.stream().filter(predicate);
+        Pagination pagination = new Pagination(getRequest(), getResponse(), $relation.targetEntityModel.simpleName$Repo.count(filter));
+        return $relation.targetEntityModel.simpleName$Repo.find(filter, pagination);//.stream().filter(predicate);
     }
 
     @Override
     public void addRelations(List<$relation.targetEntityModel.simpleName$> entities) {
         String id = getAttribute("id");
-        $entity.className$ theUser = repo.findOne(id);
+        $entity.className$ theUser = $entity.simpleName$Repo.findOne(id);
         entities.stream().forEach(e -> addIfNotPresentYet(theUser, e));
-        repo.save(theUser, getApplication().getApplicationModel());
+        $relation.targetEntityModel.simpleName$Repo.save(theUser, getApplication().getApplicationModel());
     }
 
     private void addIfNotPresentYet($entity.className$ theUser, $relation.targetEntityModel.simpleName$ e) {

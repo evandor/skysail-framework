@@ -10,7 +10,7 @@ import io.skysail.server.queryfilter.pagination.Pagination;
 import io.skysail.server.restlet.resources.ListServerResource;
 
 /**
- * generated from listResource.stg
+ * generated from relationResource.stg
  */
 public class OEsOEsResource extends ListServerResource<OE> {
 
@@ -18,7 +18,7 @@ public class OEsOEsResource extends ListServerResource<OE> {
     private OERepository oeRepo;
 
     public OEsOEsResource() {
-        super(OEResource.class, OEsOEResource.class);
+        super(OEResource.class);//, OEsOEResource.class);
         addToContext(ResourceContextId.LINK_TITLE, "["+this.getClass().getSimpleName()+"]");
     }
 

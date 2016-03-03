@@ -15,90 +15,858 @@
     <content url="file://$MODULE_DIR$">
       <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/test" isTestSource="true" />
+      <excludeFolder url="file://$MODULE_DIR$/.gradle" />
       <excludeFolder url="file://$MODULE_DIR$/generated" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="bnd:osgi.core:6.0.0.201403061837" level="project" />
-    <orderEntry type="library" name="bnd:osgi.cmpn:6.0.0.201505202027" level="project" />
-    <orderEntry type="module" module-name="skysail.api" />
-    <orderEntry type="library" name="bnd:skysail.api.search:0.1.0.201509111831" level="project" />
-    <orderEntry type="library" name="bnd:skysail.api.text:2.0.0.201509110729" level="project" />
-    <orderEntry type="library" name="bnd:skysail.api.um:0.2.2.201509111916" level="project" />
-    <orderEntry type="module" module-name="skysail.server" />
-    <orderEntry type="module" module-name="skysail.domain" />
-    <orderEntry type="module" module-name="skysail.server.db" />
-    <orderEntry type="module" module-name="skysail.server.codegen" />
-    <orderEntry type="module" module-name="skysail.server.queryfilter" />
-    <orderEntry type="module" module-name="skysail.server.testsupport" />
-    <orderEntry type="library" name="bnd:slf4j.api:1.7.7" level="project" />
-    <orderEntry type="library" name="bnd:org.mockito.mockito-core:1.10.19" level="project" />
-    <orderEntry type="library" name="bnd:com.springsource.org.junit:4.11.0" level="project" />
-    <orderEntry type="library" name="bnd:de.twentyeleven.skysail.org.hamcrest.hamcrest-all-osgi:1.3.0.1" level="project" />
-    <orderEntry type="library" name="bnd:org.restlet:2.3.4.v20150716-1217" level="project" />
-    <orderEntry type="library" name="bnd:org.restlet.ext.raml:2.3.4.v20150716-1217" level="project" />
-    <orderEntry type="library" name="bnd:javax.validation.api:1.1.0.Final" level="project" />
-    <orderEntry type="library" name="bnd:javax.persistence:2.1.0.v201304241213" level="project" />
-    <orderEntry type="library" name="bnd:com.sun.el:2.2.0.v201303151357" level="project" />
-    <orderEntry type="library" name="bnd:de.twentyeleven.skysail.org.antlr.stringtemplate-osgi:4.0.2" level="project" />
-    <orderEntry type="library" name="bnd:de.twenty11.owasp-java-html-sanitizer:239.0.0" level="project" />
-    <orderEntry type="library" name="bnd:lombok:1.16.2" level="project" />
-    <orderEntry type="library" name="bnd:com.sun.mail.javax.mail:1.5.1" level="project" />
-    <orderEntry type="library" name="bnd:org.apache.shiro.core:1.2.2" level="project" />
-    <orderEntry type="library" name="bnd:org.codehaus.jettison.jettison:1.3.7" level="project" />
-    <orderEntry type="library" name="bnd:org.apache.commons.beanutils:1.9.2" level="project" />
-    <orderEntry type="library" name="bnd:com.google.guava:16.0.1" level="project" />
-    <orderEntry type="library" name="bnd:org.apache.commons.logging:1.1.3" level="project" />
-    <orderEntry type="library" name="bnd:org.hibernate.validator:5.1.2.Final" level="project" />
-    <orderEntry type="library" name="bnd:org.jboss.logging.jboss-logging:3.1.2.GA" level="project" />
-    <orderEntry type="library" name="bnd:javax.el-api:3.0.0" level="project" />
-    <orderEntry type="library" name="bnd:classmate:1.0.0" level="project" />
-    <orderEntry type="library" name="bnd:com.orientechnologies.orientdb-core:2.1.3" level="project" />
-    <orderEntry type="library" name="bnd:com.orientechnologies.orientdb-graphdb:2.1.3" level="project" />
-    <orderEntry type="library" name="bnd:com.orientechnologies.orientdb-object:2.1.3" level="project" />
-    <orderEntry type="library" name="bnd:com.orientechnologies.orientdb-server:2.1.3" level="project" />
-    <orderEntry type="library" name="bnd:com.orientechnologies.orientdb-tools:2.1.3" level="project" />
-    <orderEntry type="library" name="bnd:com.googlecode.concurrentlinkedhashmap.lru:1.4.0" level="project" />
-    <orderEntry type="library" name="bnd:com.fasterxml.jackson.core.jackson-annotations:2.5.1" level="project" />
-    <orderEntry type="library" name="bnd:com.fasterxml.jackson.core.jackson-core:2.5.1" level="project" />
-    <orderEntry type="library" name="bnd:com.fasterxml.jackson.core.jackson-databind:2.5.1" level="project" />
-    <orderEntry type="library" name="bnd:com.fasterxml.jackson.dataformat.jackson-dataformat-smile:2.5.1" level="project" />
-    <orderEntry type="library" name="bnd:com.fasterxml.jackson.dataformat.jackson-dataformat-xml:2.5.1" level="project" />
-    <orderEntry type="library" name="bnd:com.fasterxml.jackson.dataformat.jackson-dataformat-yaml:2.5.1" level="project" />
-    <orderEntry type="library" name="bnd:javassist:3.18.1.GA" level="project" />
-    <orderEntry type="library" name="bnd:org.apache.commons.lang:2.6.0" level="project" />
-    <orderEntry type="library" name="bnd:org.apache.commons.collections:3.2.1" level="project" />
-    <orderEntry type="library" name="bnd:org.apache.commons.lang3:3.3.2" level="project" />
-    <orderEntry type="library" name="bnd:ch.qos.logback.core:1.1.2" level="project" />
-    <orderEntry type="library" name="bnd:ch.qos.logback.classic:1.1.2" level="project" />
-    <orderEntry type="library" name="bnd:org.objenesis:2.1.0" level="project" />
-    <orderEntry type="library" name="bnd:io.skysail.bundled.serenity-junit:1.0.47" level="project" />
-    <orderEntry type="library" name="bnd:io.skysail.bundled.serenity-core:1.1.12" level="project" />
-    <orderEntry type="library" name="bnd:com.typesafe.config:1.3.0" level="project" />
-    <orderEntry type="library" name="bnd:com.google.inject:4.0.0" level="project" />
-    <orderEntry type="library" name="bnd:javax.inject:1.0.0" level="project" />
-    <orderEntry type="library" name="bnd:org.apache.servicemix.bundles.aopalliance:1.0.0.6" level="project" />
-    <orderEntry type="library" name="bnd:joda-time:2.7.0" level="project" />
-    <orderEntry type="library" name="bnd:org.freemarker.freemarker:2.3.23.stable" level="project" />
-    <orderEntry type="library" name="bnd:io.skysail.bundled.selenium:2.47.1" level="project" />
-    <orderEntry type="library" name="bnd:com.google.gson:2.2.4" level="project" />
-    <orderEntry type="library" name="bnd:io.skysail.bundled.java-client:3.2.0" level="project" />
-    <orderEntry type="library" name="bnd:io.skysail.bundled.asciidoctorj:1.5.2" level="project" />
-    <orderEntry type="library" name="bnd:io.skysail.bundled.lambdaj:2.3.3" level="project" />
-    <orderEntry type="library" name="bnd:org.apache.servicemix.bundles.cglib:3.1.0.1" level="project" />
-    <orderEntry type="library" name="bnd:io.skysail.bundled.tinkerpop.blueprints-core:2.6.0" level="project" />
-    <orderEntry type="library" name="bnd:com.sun.jna:4.2.0" level="project" />
-    <orderEntry type="library" name="bnd:com.sun.jna.platform:4.2.0" level="project" />
-    <orderEntry type="library" name="bnd:org.eclipse.jetty.util:9.2.11.v20150529" level="project" />
-    <orderEntry type="library" name="bnd:org.eclipse.jetty.http:9.2.11.v20150529" level="project" />
-    <orderEntry type="library" name="bnd:org.eclipse.jetty.io:9.2.11.v20150529" level="project" />
-    <orderEntry type="library" name="bnd:org.eclipse.jetty.security:9.2.11.v20150529" level="project" />
-    <orderEntry type="library" name="bnd:org.eclipse.jetty.server:9.2.11.v20150529" level="project" />
-    <orderEntry type="library" name="bnd:org.eclipse.jetty.servlet:9.2.11.v20150529" level="project" />
-    <orderEntry type="library" name="bnd:org.eclipse.jetty.webapp:9.2.11.v20150529" level="project" />
-    <orderEntry type="library" name="bnd:org.eclipse.jetty.deploy:9.2.11.v20150529" level="project" />
-    <orderEntry type="library" name="bnd:org.eclipse.jetty.xml:9.2.11.v20150529" level="project" />
-    <orderEntry type="library" name="bnd:org.eclipse.jetty.osgi-servlet-api:3.1.0.M3" level="project" />
-    <orderEntry type="library" name="bnd:org.eclipse.jetty.client:9.2.11.v20150529" level="project" />
+    <orderEntry type="module" module-name="skysail.server" exported="" />
+    <orderEntry type="module" module-name="skysail.domain" exported="" />
+    <orderEntry type="module" module-name="skysail.server.db" exported="" />
+    <orderEntry type="module" module-name="skysail.server.codegen" exported="" />
+    <orderEntry type="module" module-name="skysail.server.queryfilter" exported="" />
+    <orderEntry type="module" module-name="skysail.server.testsupport" exported="" />
+    <orderEntry type="module-library" exported="">
+      <library name="Gradle: osgi.core-6.0.0">
+        <CLASSES>
+          <root url="jar://$USER_HOME$/.bnd/cache/https%3A%2F%2Fraw.githubusercontent.com%2Fbndtools%2Fbundle-hub%2Fmaster%2Fosgi.core/osgi.core-6.0.0.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library name="Gradle: osgi.cmpn-6.0.0">
+        <CLASSES>
+          <root url="jar://$USER_HOME$/.bnd/cache/https%3A%2F%2Fraw.githubusercontent.com%2Fbndtools%2Fbundle-hub%2Fmaster%2Fosgi.cmpn/osgi.cmpn-6.0.0.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library name="Gradle: skysail.api-12.0.0">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../cnf/releaserepo/skysail.api/skysail.api-12.0.0.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library name="Gradle: skysail.api.search-0.1.0">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../cnf/releaserepo/skysail.api.search/skysail.api.search-0.1.0.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library name="Gradle: skysail.api.text-2.0.0">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../cnf/releaserepo/skysail.api.text/skysail.api.text-2.0.0.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library name="Gradle: skysail.api.um-0.2.2">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../cnf/releaserepo/skysail.api.um/skysail.api.um-0.2.2.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library name="Gradle: skysail.server">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../skysail.server/generated/skysail.server.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library name="Gradle: skysail.domain">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../skysail.domain/generated/skysail.domain.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library name="Gradle: skysail.server.db">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../skysail.server.db/generated/skysail.server.db.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library name="Gradle: skysail.server.codegen">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../skysail.server.codegen/generated/skysail.server.codegen.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library name="Gradle: skysail.server.queryfilter">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../skysail.server.queryfilter/generated/skysail.server.queryfilter.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library name="Gradle: skysail.server.testsupport">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../skysail.server.testsupport/generated/skysail.server.testsupport.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library name="Gradle: slf4j.api-1.7.7">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../cnf/localrepo/slf4j.api/slf4j.api-1.7.7.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library name="Gradle: org.mockito.mockito-core-1.10.19">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../cnf/localrepo/org.mockito.mockito-core/org.mockito.mockito-core-1.10.19.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library name="Gradle: com.springsource.org.junit-4.11.0">
+        <CLASSES>
+          <root url="jar://$USER_HOME$/.bnd/cache/https%3A%2F%2Fgithub.com%2Fevandor%2Fskysail-repository%2Fraw%2Fmaster%2Frelease/com.springsource.org.junit-4.11.0.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library name="Gradle: de.twentyeleven.skysail.org.hamcrest.hamcrest-all-osgi-1.3.0">
+        <CLASSES>
+          <root url="jar://$USER_HOME$/.bnd/cache/https%3A%2F%2Fgithub.com%2Fevandor%2Fskysail-repository%2Fraw%2Fmaster%2Frelease/de.twentyeleven.skysail.org.hamcrest.hamcrest-all-osgi-1.3.0.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library name="Gradle: org.restlet">
+        <CLASSES>
+          <root url="jar://$USER_HOME$/.bnd/cache/https%3A%2F%2Fgithub.com%2Fevandor%2Fskysail-repository%2Fraw%2Fmaster%2Frelease/org.restlet.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library name="Gradle: org.restlet.ext.raml">
+        <CLASSES>
+          <root url="jar://$USER_HOME$/.bnd/cache/https%3A%2F%2Fgithub.com%2Fevandor%2Fskysail-repository%2Fraw%2Fmaster%2Frelease/org.restlet.ext.raml.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library name="Gradle: javax.validation.api-1.1.0">
+        <CLASSES>
+          <root url="jar://$USER_HOME$/.bnd/cache/https%3A%2F%2Fgithub.com%2Fevandor%2Fskysail-repository%2Fraw%2Fmaster%2Frelease/javax.validation.api-1.1.0.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library name="Gradle: javax.persistence-2.1.0">
+        <CLASSES>
+          <root url="jar://$USER_HOME$/.bnd/cache/https%3A%2F%2Fgithub.com%2Fevandor%2Fskysail-repository%2Fraw%2Fmaster%2Frelease/javax.persistence-2.1.0.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library name="Gradle: com.sun.el-2.2.0">
+        <CLASSES>
+          <root url="jar://$USER_HOME$/.bnd/cache/https%3A%2F%2Fgithub.com%2Fevandor%2Fskysail-repository%2Fraw%2Fmaster%2Frelease/com.sun.el-2.2.0.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library name="Gradle: de.twentyeleven.skysail.org.antlr.stringtemplate-osgi-4.0.2">
+        <CLASSES>
+          <root url="jar://$USER_HOME$/.bnd/cache/https%3A%2F%2Fgithub.com%2Fevandor%2Fskysail-repository%2Fraw%2Fmaster%2Frelease/de.twentyeleven.skysail.org.antlr.stringtemplate-osgi-4.0.2.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library name="Gradle: de.twenty11.owasp-java-html-sanitizer-239.0.0">
+        <CLASSES>
+          <root url="jar://$USER_HOME$/.bnd/cache/https%3A%2F%2Fgithub.com%2Fevandor%2Fskysail-repository%2Fraw%2Fmaster%2Frelease/de.twenty11.owasp-java-html-sanitizer-239.0.0.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library name="Gradle: lombok-1.16.2">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../cnf/buildrepo/lombok/lombok-1.16.2.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library name="Gradle: com.sun.mail.javax.mail-1.5.1">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../cnf/localrepo/com.sun.mail.javax.mail/com.sun.mail.javax.mail-1.5.1.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library name="Gradle: org.apache.shiro.core-1.2.2">
+        <CLASSES>
+          <root url="jar://$USER_HOME$/.bnd/cache/https%3A%2F%2Fgithub.com%2Fevandor%2Fskysail-repository%2Fraw%2Fmaster%2Frelease/org.apache.shiro.core-1.2.2.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library name="Gradle: org.codehaus.jettison.jettison-1.3.7">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../cnf/localrepo/org.codehaus.jettison.jettison/org.codehaus.jettison.jettison-1.3.7.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library name="Gradle: org.apache.commons.beanutils-1.9.2">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../cnf/localrepo/org.apache.commons.beanutils/org.apache.commons.beanutils-1.9.2.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library name="Gradle: guava-16.0.1">
+        <CLASSES>
+          <root url="jar://$USER_HOME$/.bnd/cache/https%3A%2F%2Fgithub.com%2Fevandor%2Fskysail-repository%2Fraw%2Fmaster%2Frelease/guava-16.0.1.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library name="Gradle: org.apache.commons.logging-1.1.3">
+        <CLASSES>
+          <root url="jar://$USER_HOME$/.bnd/cache/https%3A%2F%2Fgithub.com%2Fevandor%2Fskysail-repository%2Fraw%2Fmaster%2Frelease/org.apache.commons.logging-1.1.3.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library name="Gradle: org.hibernate.validator-5.1.2">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../cnf/localrepo/org.hibernate.validator/org.hibernate.validator-5.1.2.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library name="Gradle: org.jboss.logging.jboss-logging-3.1.2">
+        <CLASSES>
+          <root url="jar://$USER_HOME$/.bnd/cache/https%3A%2F%2Fgithub.com%2Fevandor%2Fskysail-repository%2Fraw%2Fmaster%2Frelease/org.jboss.logging.jboss-logging-3.1.2.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library name="Gradle: javax.el-api-3.0.0">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../cnf/localrepo/javax.el-api/javax.el-api-3.0.0.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library name="Gradle: classmate-1.0.0">
+        <CLASSES>
+          <root url="jar://$USER_HOME$/.bnd/cache/https%3A%2F%2Fgithub.com%2Fevandor%2Fskysail-repository%2Fraw%2Fmaster%2Frelease/classmate-1.0.0.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library name="Gradle: orientdb-core-2.1.3">
+        <CLASSES>
+          <root url="jar://$USER_HOME$/.bnd/cache/https%3A%2F%2Fgithub.com%2Fevandor%2Fskysail-repository%2Fraw%2Fmaster%2Frelease/orientdb-core-2.1.3.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library name="Gradle: orientdb-graphdb-2.1.3">
+        <CLASSES>
+          <root url="jar://$USER_HOME$/.bnd/cache/https%3A%2F%2Fgithub.com%2Fevandor%2Fskysail-repository%2Fraw%2Fmaster%2Frelease/orientdb-graphdb-2.1.3.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library name="Gradle: orientdb-object-2.1.3">
+        <CLASSES>
+          <root url="jar://$USER_HOME$/.bnd/cache/https%3A%2F%2Fgithub.com%2Fevandor%2Fskysail-repository%2Fraw%2Fmaster%2Frelease/orientdb-object-2.1.3.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library name="Gradle: orientdb-server-2.1.3">
+        <CLASSES>
+          <root url="jar://$USER_HOME$/.bnd/cache/https%3A%2F%2Fgithub.com%2Fevandor%2Fskysail-repository%2Fraw%2Fmaster%2Frelease/orientdb-server-2.1.3.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library name="Gradle: orientdb-tools-2.1.3">
+        <CLASSES>
+          <root url="jar://$USER_HOME$/.bnd/cache/https%3A%2F%2Fgithub.com%2Fevandor%2Fskysail-repository%2Fraw%2Fmaster%2Frelease/orientdb-tools-2.1.3.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library name="Gradle: com.googlecode.concurrentlinkedhashmap.lru-1.4.0">
+        <CLASSES>
+          <root url="jar://$USER_HOME$/.bnd/cache/https%3A%2F%2Fgithub.com%2Fevandor%2Fskysail-repository%2Fraw%2Fmaster%2Frelease/com.googlecode.concurrentlinkedhashmap.lru-1.4.0.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library name="Gradle: jackson-annotations-2.5.1">
+        <CLASSES>
+          <root url="jar://$USER_HOME$/.bnd/cache/https%3A%2F%2Fgithub.com%2Fevandor%2Fskysail-repository%2Fraw%2Fmaster%2Frelease/jackson-annotations-2.5.1.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library name="Gradle: jackson-core-2.5.1">
+        <CLASSES>
+          <root url="jar://$USER_HOME$/.bnd/cache/https%3A%2F%2Fgithub.com%2Fevandor%2Fskysail-repository%2Fraw%2Fmaster%2Frelease/jackson-core-2.5.1.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library name="Gradle: jackson-databind-2.5.1">
+        <CLASSES>
+          <root url="jar://$USER_HOME$/.bnd/cache/https%3A%2F%2Fgithub.com%2Fevandor%2Fskysail-repository%2Fraw%2Fmaster%2Frelease/jackson-databind-2.5.1.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library name="Gradle: jackson-dataformat-smile-2.5.1">
+        <CLASSES>
+          <root url="jar://$USER_HOME$/.bnd/cache/https%3A%2F%2Fgithub.com%2Fevandor%2Fskysail-repository%2Fraw%2Fmaster%2Frelease/jackson-dataformat-smile-2.5.1.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library name="Gradle: jackson-dataformat-xml-2.5.1">
+        <CLASSES>
+          <root url="jar://$USER_HOME$/.bnd/cache/https%3A%2F%2Fgithub.com%2Fevandor%2Fskysail-repository%2Fraw%2Fmaster%2Frelease/jackson-dataformat-xml-2.5.1.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library name="Gradle: jackson-dataformat-yaml-2.5.1">
+        <CLASSES>
+          <root url="jar://$USER_HOME$/.bnd/cache/https%3A%2F%2Fgithub.com%2Fevandor%2Fskysail-repository%2Fraw%2Fmaster%2Frelease/jackson-dataformat-yaml-2.5.1.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library name="Gradle: javassist-3.18.1">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../cnf/localrepo/javassist/javassist-3.18.1.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library name="Gradle: org.apache.commons.lang-2.6.0">
+        <CLASSES>
+          <root url="jar://$USER_HOME$/.bnd/cache/https%3A%2F%2Fgithub.com%2Fevandor%2Fskysail-repository%2Fraw%2Fmaster%2Frelease/org.apache.commons.lang-2.6.0.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library name="Gradle: org.apache.commons.collections-3.2.1">
+        <CLASSES>
+          <root url="jar://$USER_HOME$/.bnd/cache/https%3A%2F%2Fgithub.com%2Fevandor%2Fskysail-repository%2Fraw%2Fmaster%2Frelease/org.apache.commons.collections-3.2.1.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library name="Gradle: org.apache.commons.lang3-3.3.2">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../cnf/localrepo/org.apache.commons.lang3/org.apache.commons.lang3-3.3.2.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library name="Gradle: ch.qos.logback.core-1.1.2">
+        <CLASSES>
+          <root url="jar://$USER_HOME$/.bnd/cache/https%3A%2F%2Fraw.githubusercontent.com%2Fbndtools%2Fbundle-hub%2Fmaster%2Fch.qos.logback.core/ch.qos.logback.core-1.1.2.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library name="Gradle: ch.qos.logback.classic-1.1.2">
+        <CLASSES>
+          <root url="jar://$USER_HOME$/.bnd/cache/https%3A%2F%2Fraw.githubusercontent.com%2Fbndtools%2Fbundle-hub%2Fmaster%2Fch.qos.logback.classic/ch.qos.logback.classic-1.1.2.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library name="Gradle: org.objenesis-2.1.0">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../cnf/localrepo/org.objenesis/org.objenesis-2.1.0.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library name="Gradle: io.skysail.bundled.serenity-junit-1.0.47">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../cnf/localrepo/io.skysail.bundled.serenity-junit/io.skysail.bundled.serenity-junit-1.0.47.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library name="Gradle: io.skysail.bundled.serenity-core-1.1.12">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../cnf/localrepo/io.skysail.bundled.serenity-core/io.skysail.bundled.serenity-core-1.1.12.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library name="Gradle: com.typesafe.config-1.3.0">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../cnf/localrepo/com.typesafe.config/com.typesafe.config-1.3.0.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library name="Gradle: com.google.inject-4.0.0">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../cnf/localrepo/com.google.inject/com.google.inject-4.0.0.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library name="Gradle: javax.inject-1.0.0">
+        <CLASSES>
+          <root url="jar://$USER_HOME$/.bnd/cache/https%3A%2F%2Fraw.githubusercontent.com%2Fbndtools%2Fbundle-hub%2Fmaster%2Fjavax.inject/javax.inject-1.0.0.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library name="Gradle: org.apache.servicemix.bundles.aopalliance-1.0.0">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../cnf/localrepo/org.apache.servicemix.bundles.aopalliance/org.apache.servicemix.bundles.aopalliance-1.0.0.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library name="Gradle: joda-time-2.7">
+        <CLASSES>
+          <root url="jar://$USER_HOME$/.bnd/cache/https%3A%2F%2Fgithub.com%2Fevandor%2Fskysail-repository%2Fraw%2Fmaster%2Frelease/joda-time-2.7.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library name="Gradle: org.freemarker.freemarker-2.3.23">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../cnf/localrepo/org.freemarker.freemarker/org.freemarker.freemarker-2.3.23.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library name="Gradle: io.skysail.bundled.selenium-2.47.1">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../cnf/localrepo/io.skysail.bundled.selenium/io.skysail.bundled.selenium-2.47.1.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library name="Gradle: com.google.gson-2.2.4">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../cnf/localrepo/com.google.gson/com.google.gson-2.2.4.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library name="Gradle: io.skysail.bundled.java-client-3.2.0">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../cnf/localrepo/io.skysail.bundled.java-client/io.skysail.bundled.java-client-3.2.0.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library name="Gradle: io.skysail.bundled.asciidoctorj-1.5.2">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../cnf/localrepo/io.skysail.bundled.asciidoctorj/io.skysail.bundled.asciidoctorj-1.5.2.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library name="Gradle: io.skysail.bundled.lambdaj-2.3.3">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../cnf/localrepo/io.skysail.bundled.lambdaj/io.skysail.bundled.lambdaj-2.3.3.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library name="Gradle: org.apache.servicemix.bundles.cglib-3.1.0">
+        <CLASSES>
+          <root url="jar://$USER_HOME$/.bnd/cache/https%3A%2F%2Fgithub.com%2Fevandor%2Fskysail-repository%2Fraw%2Fmaster%2Frelease/org.apache.servicemix.bundles.cglib-3.1.0.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library name="Gradle: io.skysail.bundled.tinkerpop.blueprints-core-2.6.0">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../cnf/localrepo/io.skysail.bundled.tinkerpop.blueprints-core/io.skysail.bundled.tinkerpop.blueprints-core-2.6.0.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library name="Gradle: com.sun.jna-4.2.0">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../cnf/localrepo/com.sun.jna/com.sun.jna-4.2.0.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library name="Gradle: com.sun.jna.platform-4.2.0">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../cnf/localrepo/com.sun.jna.platform/com.sun.jna.platform-4.2.0.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library name="Gradle: jetty-util-9.2.11.v20150529">
+        <CLASSES>
+          <root url="jar://$USER_HOME$/.bnd/cache/https%3A%2F%2Fgithub.com%2Fevandor%2Fskysail-repository%2Fraw%2Fmaster%2Frelease/jetty-util-9.2.11.v20150529.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library name="Gradle: jetty-http-9.2.11.v20150529">
+        <CLASSES>
+          <root url="jar://$USER_HOME$/.bnd/cache/https%3A%2F%2Fgithub.com%2Fevandor%2Fskysail-repository%2Fraw%2Fmaster%2Frelease/jetty-http-9.2.11.v20150529.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library name="Gradle: jetty-io-9.2.11.v20150529">
+        <CLASSES>
+          <root url="jar://$USER_HOME$/.bnd/cache/https%3A%2F%2Fgithub.com%2Fevandor%2Fskysail-repository%2Fraw%2Fmaster%2Frelease/jetty-io-9.2.11.v20150529.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library name="Gradle: jetty-security-9.2.11.v20150529">
+        <CLASSES>
+          <root url="jar://$USER_HOME$/.bnd/cache/https%3A%2F%2Fgithub.com%2Fevandor%2Fskysail-repository%2Fraw%2Fmaster%2Frelease/jetty-security-9.2.11.v20150529.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library name="Gradle: jetty-server-9.2.11.v20150529">
+        <CLASSES>
+          <root url="jar://$USER_HOME$/.bnd/cache/https%3A%2F%2Fgithub.com%2Fevandor%2Fskysail-repository%2Fraw%2Fmaster%2Frelease/jetty-server-9.2.11.v20150529.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library name="Gradle: jetty-servlet-9.2.11.v20150529">
+        <CLASSES>
+          <root url="jar://$USER_HOME$/.bnd/cache/https%3A%2F%2Fgithub.com%2Fevandor%2Fskysail-repository%2Fraw%2Fmaster%2Frelease/jetty-servlet-9.2.11.v20150529.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library name="Gradle: jetty-webapp-9.2.11.v20150529">
+        <CLASSES>
+          <root url="jar://$USER_HOME$/.bnd/cache/https%3A%2F%2Fgithub.com%2Fevandor%2Fskysail-repository%2Fraw%2Fmaster%2Frelease/jetty-webapp-9.2.11.v20150529.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library name="Gradle: jetty-deploy-9.2.11.v20150529">
+        <CLASSES>
+          <root url="jar://$USER_HOME$/.bnd/cache/https%3A%2F%2Fgithub.com%2Fevandor%2Fskysail-repository%2Fraw%2Fmaster%2Frelease/jetty-deploy-9.2.11.v20150529.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library name="Gradle: jetty-xml-9.2.11.v20150529">
+        <CLASSES>
+          <root url="jar://$USER_HOME$/.bnd/cache/https%3A%2F%2Fgithub.com%2Fevandor%2Fskysail-repository%2Fraw%2Fmaster%2Frelease/jetty-xml-9.2.11.v20150529.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library name="Gradle: org.eclipse.jetty.osgi-servlet-api-3.1.0">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../cnf/localrepo/org.eclipse.jetty.osgi-servlet-api/org.eclipse.jetty.osgi-servlet-api-3.1.0.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library name="Gradle: jetty-client-9.2.11.v20150529">
+        <CLASSES>
+          <root url="jar://$USER_HOME$/.bnd/cache/https%3A%2F%2Fgithub.com%2Fevandor%2Fskysail-repository%2Fraw%2Fmaster%2Frelease/jetty-client-9.2.11.v20150529.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="" scope="RUNTIME">
+      <library name="Gradle: C__git_skysail_framework_skysail_server_app_todos_bin:todos\bin">
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/bin" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="library" scope="TEST" name="Gradle: net.serenity-bdd:core:1.0.47" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: net.serenity-bdd:serenity-junit:1.0.47" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.assertj:assertj-core:1.7.0" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.google.guava:guava:18.0" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.google.inject:guice:3.0" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: cglib:cglib:3.1" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.ow2.asm:asm:5.0.3" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: commons-codec:commons-codec:1.9" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.objenesis:objenesis:2.1" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.slf4j:slf4j-api:1.7.7" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: xml-apis:xml-apis:1.4.01" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: info.cukes:cucumber-core:1.2.2" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: commons-logging:commons-logging:1.2" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: junit:junit:4.11" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: net.serenity-bdd:serenity-report-resources:1.0.47" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.google.code.gson:gson:2.3.1" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: commons-io:commons-io:2.4" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.apache.httpcomponents:httpclient:4.4" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.opera:operadriver:1.5" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.seleniumhq.selenium:selenium-server:2.45.0" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.codeborne:phantomjsdriver:1.2.1" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: io.appium:java-client:2.1.0" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.codehaus.groovy:groovy:2.3.6" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: net.sf.opencsv:opencsv:2.0" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: commons-beanutils:commons-beanutils-core:1.8.3" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.googlecode.lambdaj:lambdaj:2.3.3" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: joda-time:joda-time:2.2" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.thoughtworks.xstream:xstream:1.4.5" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.apache.commons:commons-lang3:3.3.2" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: commons-collections:commons-collections:3.2.1" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.freemarker:freemarker:2.3.21" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: net.sourceforge.jexcelapi:jxl:2.6.12" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.hamcrest:hamcrest-core:1.3" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.hamcrest:hamcrest-library:1.3" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: net.sourceforge.htmlunit:htmlunit:2.15" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.fluentlenium:fluentlenium-core:0.10.2" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.jhlabs:filters:2.0.235" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.asciidoctor:asciidoctor-java-integration:0.1.3" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: javax.validation:validation-api:1.1.0.Final" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.hibernate:hibernate-validator:5.1.1.Final" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: javax.el:javax.el-api:2.2.4" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.glassfish.web:javax.el:2.2.4" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.jayway.awaitility:awaitility:1.6.3" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: javax.inject:javax.inject:1" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: aopalliance:aopalliance:1.0" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.sonatype.sisu.inject:cglib:2.2.1-v20090111" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: info.cukes:cucumber-html:0.2.3" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: info.cukes:cucumber-jvm-deps:1.0.3" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: info.cukes:gherkin:2.12.2" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.apache.httpcomponents:httpcore:4.4" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.opera:operalaunchers:1.1" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.google.protobuf:protobuf-java:2.4.1" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: commons-jxpath:commons-jxpath:1.3" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.apache.commons:commons-exec:1.1" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.ini4j:ini4j:0.5.2" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.bouncycastle:bcprov-jdk15on:1.48" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.bouncycastle:bcpkix-jdk15on:1.48" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: mx4j:mx4j-tools:3.0.1" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.mortbay.jetty:servlet-api-2.5:6.1.9" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.seleniumhq.selenium:jetty-repacked:7.6.1" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.seleniumhq.selenium:jetty-rc-repacked:5" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: net.jcip:jcip-annotations:1.0" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.seleniumhq.selenium:selenium-java:2.45.0" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.yaml:snakeyaml:1.8" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: xmlpull:xmlpull:1.1.3.1" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: xpp3:xpp3_min:1.1.4c" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: xalan:xalan:2.7.1" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.apache.httpcomponents:httpmime:4.3.3" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: net.sourceforge.htmlunit:htmlunit-core-js:2.15" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: xerces:xercesImpl:2.11.0" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: net.sourceforge.nekohtml:nekohtml:1.9.21" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: net.sourceforge.cssparser:cssparser:0.9.14" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.eclipse.jetty:jetty-websocket:8.1.15.v20140411" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.jruby:jruby-complete:1.7.4" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.beust:jcommander:1.30" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.jboss.logging:jboss-logging:3.1.3.GA" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.fasterxml:classmate:1.0.0" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.seleniumhq.selenium:selenium-chrome-driver:2.45.0" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.seleniumhq.selenium:selenium-htmlunit-driver:2.45.0" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.seleniumhq.selenium:selenium-firefox-driver:2.45.0" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.seleniumhq.selenium:selenium-ie-driver:2.45.0" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.seleniumhq.selenium:selenium-safari-driver:2.45.0" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.seleniumhq.selenium:selenium-support:2.45.0" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.webbitserver:webbit:0.4.14" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.seleniumhq.selenium:selenium-leg-rc:2.45.0" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: xalan:serializer:2.7.1" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.w3c.css:sac:1.3" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.eclipse.jetty:jetty-util:8.1.15.v20140411" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.eclipse.jetty:jetty-io:8.1.15.v20140411" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.eclipse.jetty:jetty-http:8.1.15.v20140411" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.seleniumhq.selenium:selenium-remote-driver:2.45.0" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: net.java.dev.jna:jna:3.4.0" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: net.java.dev.jna:platform:3.4.0" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: io.netty:netty:3.5.2.Final" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.seleniumhq.selenium:selenium-api:2.45.0" level="project" />
+    <orderEntry type="module-library" scope="TEST">
+      <library name="Gradle: C__git_skysail_framework_skysail_server_app_todos_bin_test:todos\bin_test">
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/bin_test" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
   </component>
 </module>

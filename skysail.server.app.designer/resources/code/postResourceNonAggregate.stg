@@ -12,6 +12,9 @@ import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
 import org.restlet.resource.ResourceException;
 
+/**
+ * generated from postResourceNonAggregate.stg
+ */
 public class Post$entity.simpleName$Resource extends PostEntityServerResource<$entity.id$> {
 
 	private $application.name$Application app;

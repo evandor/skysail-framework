@@ -12,8 +12,8 @@ import io.skysail.server.restlet.resources.PostRelationResource;
 public class PostUsersOERelationResource extends PostRelationResource<io.skysail.server.app.oEService.User, io.skysail.server.app.oEService.OE> {
 
     private OEServiceApplication app;
-    private OERepository repo;
-    private UserRepository userRepo;
+    private OERepository OERepo;
+    private UserRepository UserRepo;
 
     public PostUsersOERelationResource() {
         // addToContext(ResourceContextId.LINK_TITLE, "add");
@@ -22,30 +22,30 @@ public class PostUsersOERelationResource extends PostRelationResource<io.skysail
     @Override
     protected void doInit() {
         app = (OEServiceApplication) getApplication();
-        repo = (OERepository) app.getRepository(io.skysail.server.app.oEService.OE.class);
-        userRepo = (UserRepository) app.getRepository(io.skysail.server.app.oEService.User.class);
+        OERepo = (OERepository) app.getRepository(io.skysail.server.app.oEService.OE.class);
+        //userRepo = (UserRepository) app.getRepository(io.skysail.server.app.oEService.User.class);
     }
 
     @Override
     public List<OE> getEntity() {
         Filter filter = new Filter(getRequest());
-        Pagination pagination = new Pagination(getRequest(), getResponse(), repo.count(filter));
-        return repo.find(filter, pagination);
+        Pagination pagination = new Pagination(getRequest(), getResponse(), OERepo.count(filter));
+        return OERepo.find(filter, pagination);
     }
 
     @Override
     protected List<OE> getRelationTargets(String selectedValues) {
         Filter filter = new Filter(getRequest());
-        Pagination pagination = new Pagination(getRequest(), getResponse(), repo.count(filter));
-        return repo.find(filter, pagination);//.stream().filter(predicate);
+        Pagination pagination = new Pagination(getRequest(), getResponse(), OERepo.count(filter));
+        return OERepo.find(filter, pagination);//.stream().filter(predicate);
     }
 
     @Override
     public void addRelations(List<OE> entities) {
         String id = getAttribute("id");
-        io.skysail.server.app.oEService.User theUser = userRepo.findOne(id);
+        io.skysail.server.app.oEService.User theUser = UserRepo.findOne(id);
         entities.stream().forEach(e -> addIfNotPresentYet(theUser, e));
-        repo.save(theUser, getApplication().getApplicationModel());
+        OERepo.save(theUser, getApplication().getApplicationModel());
     }
 
     private void addIfNotPresentYet(io.skysail.server.app.oEService.User theUser, OE e) {

@@ -11,6 +11,9 @@ import java.util.Map;
 
 import io.skysail.server.ResourceContextId;
 
+/**
+ * generated from listResourceNonAggregate.stg
+ */
 public class $entity.simpleName$sResource extends ListServerResource<$entity.id$> {
 
     private $application.name$Application app;

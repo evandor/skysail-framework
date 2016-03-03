@@ -7,6 +7,7 @@ import static org.mockito.Mockito.*;
 import java.util.*;
 
 import org.junit.*;
+import org.mockito.Mockito;
 import org.restlet.data.Reference;
 
 import io.skysail.domain.Nameable;
@@ -51,17 +52,24 @@ public class TreeStructureTest {
         List<TreeStructure> treeStructureList = TreeStructure.from(resource);
         assertThat(treeStructureList.size(), is(0));
     }
+    
+    @Test
+    public void from_delegates_to_resource_method() {
+        TreeStructure.from(resource);
+        Mockito.verify(resource).getTreeRepresentation();
+    }
 
     @Test
     @Ignore
     public void resource_with_simple_treeStructureInfo_yields_one_element_tree() {
-        resourceTreeRepresentation.add(new TreeStructure(rootFolder, "link", "glyph"));
-        when(theReference.getSegments()).thenReturn(Arrays.asList("seg1", "seg2", "seg3"));
-
-        List<TreeStructure> treeStructureList = TreeStructure.from(resource);
-        
-        assertThat(treeStructureList.size(), is(1));
-        assertTreeStructure(treeStructureList.get(0), "root", "/seg1/seg2/seg3#", "glyph", 0);
+        TreeStructure treeStructure = new TreeStructure(rootFolder, "link", "glyph");
+//        resourceTreeRepresentation.add(new TreeStructure(rootFolder, "link", "glyph"));
+//        when(theReference.getSegments()).thenReturn(Arrays.asList("seg1", "seg2", "seg3"));
+//
+//        List<TreeStructure> treeStructureList = TreeStructure.from(resource);
+//        
+//        assertThat(treeStructureList.size(), is(1));
+        assertTreeStructure(treeStructure, "root", "/seg1/seg2/seg3#", "glyph", 0);
     }
 
 //    @Test

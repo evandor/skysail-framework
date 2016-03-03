@@ -6,6 +6,9 @@ import io.skysail.api.links.Link;
 import io.skysail.api.responses.SkysailResponse;
 import io.skysail.server.restlet.resources.EntityServerResource;
 
+/**
+ * generated from targetRelationResource.stg
+ */
 public class $entity.simpleName$s$relation.targetEntityModel.simpleName$Resource extends EntityServerResource<$relation.targetEntityModel.simpleName$> {
 
     @Override

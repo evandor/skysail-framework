@@ -64,17 +64,13 @@ mainContent(user, converter, messages, model) ::= <<
               });*/
               
               function logArrayElements(element, index, array) {
-            	  console.log('a[' + index + '] = ' + element);
-            	  
             	  var therect = new joint.shapes.basic.Rect({
                       position: { x: 100 * index * 3, y: 30 * index },
                       size: { width: 100, height: 30 },
                       attrs: { rect: { fill: '#bfbfbf' }, text: { text: element, fill: '#000066' } }
                   })
-            	  
-            	  
             	  graph.addCells([therect]);
-            	}
+              }
               entities.forEach(logArrayElements);
           
               //graph.addCells([rect, rect2, link]);
@@ -110,5 +106,5 @@ mainContent(user, converter, messages, model) ::= <<
 >>
 
 entities(model) ::= <<
-  $model.data: {row | '$row.('name')$'}; separator=","$
+  $model.data: {row | '$row.("name")$'}; separator=","$
 >>

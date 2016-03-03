@@ -10,6 +10,9 @@ import java.util.*;
 
 import io.skysail.server.ResourceContextId;
 
+/**
+ * generated from listResource.stg
+ */
 public class $entity.simpleName$sResource extends ListServerResource<$entity.id$> {
 
     private $application.name$Application app;

@@ -7,6 +7,9 @@ import io.skysail.api.responses.SkysailResponse;
 import io.skysail.server.ResourceContextId;
 import io.skysail.server.restlet.resources.EntityServerResource;
 
+/**
+ * generated from entityResource.stg
+ */
 public class FolderResource extends EntityServerResource<io.skysail.server.designer.demo.folders.Folder> {
 
     private String id;
@@ -39,7 +42,7 @@ public class FolderResource extends EntityServerResource<io.skysail.server.desig
 
 	@Override
     public List<Link> getLinks() {
-        return super.getLinks(PutFolderResource.class,FoldersResource.class);
+        return super.getLinks(PutFolderResource.class,PostFolderResource.class,FoldersResource.class);
     }
 
 }

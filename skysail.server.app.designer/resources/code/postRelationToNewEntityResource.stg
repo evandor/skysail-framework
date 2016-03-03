@@ -7,6 +7,9 @@ import io.skysail.server.queryfilter.Filter;
 import io.skysail.server.queryfilter.pagination.Pagination;
 import io.skysail.server.restlet.resources.PostRelationResource2;
 
+/**
+ * generated from postRelationToNewEntityResource.stg
+ */
 public class Post$entity.simpleName$ToNew$relation.targetEntityModel.simpleName$RelationResource extends PostRelationResource2<$relation.targetEntityModel.simpleName$> {
 
     private $application.name$Application app;

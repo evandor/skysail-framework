@@ -6,11 +6,14 @@ import io.skysail.server.queryfilter.Filter;
 import io.skysail.server.queryfilter.pagination.Pagination;
 import io.skysail.server.restlet.resources.PostRelationResource;
 
+/**
+ * generated from postRelationResource.stg
+ */
 public class PostFoldersFolderRelationResource extends PostRelationResource<io.skysail.server.designer.demo.folders.Folder, io.skysail.server.designer.demo.folders.Folder> {
 
     private FoldersApplication app;
-    private FolderRepository repo;
-    //private UserRepository userRepo;
+    private FolderRepository FolderRepo;
+    //private FolderRepository FolderRepo;
 
     public PostFoldersFolderRelationResource() {
         // addToContext(ResourceContextId.LINK_TITLE, "add");
@@ -19,30 +22,30 @@ public class PostFoldersFolderRelationResource extends PostRelationResource<io.s
     @Override
     protected void doInit() {
         app = (FoldersApplication) getApplication();
-        repo = (FolderRepository) app.getRepository(io.skysail.server.designer.demo.folders.Folder.class);
+        FolderRepo = (FolderRepository) app.getRepository(io.skysail.server.designer.demo.folders.Folder.class);
         //userRepo = (UserRepository) app.getRepository(io.skysail.server.app.oEService.User.class);
     }
 
     @Override
     public List<Folder> getEntity() {
         Filter filter = new Filter(getRequest());
-        Pagination pagination = new Pagination(getRequest(), getResponse(), repo.count(filter));
-        return repo.find(filter, pagination);
+        Pagination pagination = new Pagination(getRequest(), getResponse(), FolderRepo.count(filter));
+        return FolderRepo.find(filter, pagination);
     }
 
     @Override
     protected List<Folder> getRelationTargets(String selectedValues) {
         Filter filter = new Filter(getRequest());
-        Pagination pagination = new Pagination(getRequest(), getResponse(), repo.count(filter));
-        return repo.find(filter, pagination);//.stream().filter(predicate);
+        Pagination pagination = new Pagination(getRequest(), getResponse(), FolderRepo.count(filter));
+        return FolderRepo.find(filter, pagination);//.stream().filter(predicate);
     }
 
     @Override
     public void addRelations(List<Folder> entities) {
         String id = getAttribute("id");
-        io.skysail.server.designer.demo.folders.Folder theUser = repo.findOne(id);
+        io.skysail.server.designer.demo.folders.Folder theUser = FolderRepo.findOne(id);
         entities.stream().forEach(e -> addIfNotPresentYet(theUser, e));
-        repo.save(theUser, getApplication().getApplicationModel());
+        FolderRepo.save(theUser, getApplication().getApplicationModel());
     }
 
     private void addIfNotPresentYet(io.skysail.server.designer.demo.folders.Folder theUser, Folder e) {

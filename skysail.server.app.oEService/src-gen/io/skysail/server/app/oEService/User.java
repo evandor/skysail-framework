@@ -13,6 +13,9 @@ import io.skysail.server.forms.*;
 
 import org.apache.commons.lang3.StringUtils;
 
+/**
+ * generated from javafile.stg
+ */
 @SuppressWarnings("serial")
 @JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class, property="id")
 public class User implements Identifiable, Serializable {

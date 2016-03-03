@@ -6,11 +6,14 @@ import io.skysail.server.queryfilter.Filter;
 import io.skysail.server.queryfilter.pagination.Pagination;
 import io.skysail.server.restlet.resources.PostRelationResource;
 
+/**
+ * generated from postRelationResource.stg
+ */
 public class PostUsersOERelationResource extends PostRelationResource<io.skysail.server.app.oEService.User, io.skysail.server.app.oEService.OE> {
 
     private OEServiceApplication app;
     private OERepository repo;
-    //private UserRepository userRepo;
+    private UserRepository userRepo;
 
     public PostUsersOERelationResource() {
         // addToContext(ResourceContextId.LINK_TITLE, "add");
@@ -20,7 +23,7 @@ public class PostUsersOERelationResource extends PostRelationResource<io.skysail
     protected void doInit() {
         app = (OEServiceApplication) getApplication();
         repo = (OERepository) app.getRepository(io.skysail.server.app.oEService.OE.class);
-        //userRepo = (UserRepository) app.getRepository(io.skysail.server.app.oEService.User.class);
+        userRepo = (UserRepository) app.getRepository(io.skysail.server.app.oEService.User.class);
     }
 
     @Override
@@ -40,7 +43,7 @@ public class PostUsersOERelationResource extends PostRelationResource<io.skysail
     @Override
     public void addRelations(List<OE> entities) {
         String id = getAttribute("id");
-        io.skysail.server.app.oEService.User theUser = repo.findOne(id);
+        io.skysail.server.app.oEService.User theUser = userRepo.findOne(id);
         entities.stream().forEach(e -> addIfNotPresentYet(theUser, e));
         repo.save(theUser, getApplication().getApplicationModel());
     }

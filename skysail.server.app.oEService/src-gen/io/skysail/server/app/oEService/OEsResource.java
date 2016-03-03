@@ -8,8 +8,11 @@ import io.skysail.api.links.Link;
 
 import java.util.*;
 
-import de.twenty11.skysail.server.core.restlet.ResourceContextId;
+import io.skysail.server.ResourceContextId;
 
+/**
+ * generated from listResourceWithSelfReference.stg
+ */
 public class OEsResource extends ListServerResource<io.skysail.server.app.oEService.OE> {
 
     private OEServiceApplication app;

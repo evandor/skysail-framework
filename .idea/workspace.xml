@@ -2,109 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2e3a6cee-0822-47aa-be5c-20a104598131" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/gradle.xml" afterPath="$PROJECT_DIR$/.idea/gradle.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/skysail.api.features/skysail.api.features.iml" afterPath="$PROJECT_DIR$/skysail.api.features/skysail.api.features.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/skysail.api.search/skysail.api.search.iml" afterPath="$PROJECT_DIR$/skysail.api.search/skysail.api.search.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/skysail.api.text/skysail.api.text.iml" afterPath="$PROJECT_DIR$/skysail.api.text/skysail.api.text.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/skysail.api.um/skysail.api.um.iml" afterPath="$PROJECT_DIR$/skysail.api.um/skysail.api.um.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/skysail.api/skysail.api.iml" afterPath="$PROJECT_DIR$/skysail.api/skysail.api.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/skysail.client.testsupport/skysail.client.testsupport.iml" afterPath="$PROJECT_DIR$/skysail.client.testsupport/skysail.client.testsupport.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/skysail.domain/skysail.domain.iml" afterPath="$PROJECT_DIR$/skysail.domain/skysail.domain.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/skysail.ms.um.simple/skysail.ms.um.simple.iml" afterPath="$PROJECT_DIR$/skysail.ms.um.simple/skysail.ms.um.simple.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/skysail.product.designer/skysail.product.designer.iml" afterPath="$PROJECT_DIR$/skysail.product.designer/skysail.product.designer.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/skysail.product.notes/skysail.product.notes.iml" afterPath="$PROJECT_DIR$/skysail.product.notes/skysail.product.notes.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/skysail.product.todos/skysail.product.todos.iml" afterPath="$PROJECT_DIR$/skysail.product.todos/skysail.product.todos.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/skysail.product.website/skysail.product.website.iml" afterPath="$PROJECT_DIR$/skysail.product.website/skysail.product.website.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/skysail.server.app.argusAdmin/skysail.server.app.argusAdmin.iml" afterPath="$PROJECT_DIR$/skysail.server.app.argusAdmin/skysail.server.app.argusAdmin.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/skysail.server.app.bookmarks.it/skysail.server.app.bookmarks.it.iml" afterPath="$PROJECT_DIR$/skysail.server.app.bookmarks.it/skysail.server.app.bookmarks.it.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/skysail.server.app.bookmarks/skysail.server.app.bookmarks.iml" afterPath="$PROJECT_DIR$/skysail.server.app.bookmarks/skysail.server.app.bookmarks.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/skysail.server.app.bpmnmodeler/skysail.server.app.bpmnmodeler.iml" afterPath="$PROJECT_DIR$/skysail.server.app.bpmnmodeler/skysail.server.app.bpmnmodeler.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/skysail.server.app.dbviewer/skysail.server.app.dbviewer.iml" afterPath="$PROJECT_DIR$/skysail.server.app.dbviewer/skysail.server.app.dbviewer.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/skysail.server.app.designer.it/skysail.server.app.designer.it.iml" afterPath="$PROJECT_DIR$/skysail.server.app.designer.it/skysail.server.app.designer.it.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/skysail.server.app.designer/resources/code/entityResource.stg" afterPath="$PROJECT_DIR$/skysail.server.app.designer/resources/code/entityResource.stg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/skysail.server.app.designer/resources/code/entityResourceNonAggregate.stg" afterPath="$PROJECT_DIR$/skysail.server.app.designer/resources/code/entityResourceNonAggregate.stg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/skysail.server.app.designer/resources/code/javafile.stg" afterPath="$PROJECT_DIR$/skysail.server.app.designer/resources/code/javafile.stg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/skysail.server.app.designer/resources/code/listResource.stg" afterPath="$PROJECT_DIR$/skysail.server.app.designer/resources/code/listResource.stg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/skysail.server.app.designer/resources/code/listResourceNonAggregate.stg" afterPath="$PROJECT_DIR$/skysail.server.app.designer/resources/code/listResourceNonAggregate.stg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/skysail.server.app.designer/resources/code/listResourceWithSelfReference.stg" afterPath="$PROJECT_DIR$/skysail.server.app.designer/resources/code/listResourceWithSelfReference.stg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/skysail.server.app.designer/resources/code/postRelationResource.stg" afterPath="$PROJECT_DIR$/skysail.server.app.designer/resources/code/postRelationResource.stg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/skysail.server.app.designer/resources/code/postRelationToNewEntityResource.stg" afterPath="$PROJECT_DIR$/skysail.server.app.designer/resources/code/postRelationToNewEntityResource.stg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/skysail.server.app.designer/resources/code/postResource.stg" afterPath="$PROJECT_DIR$/skysail.server.app.designer/resources/code/postResource.stg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/skysail.server.app.designer/resources/code/postResourceNonAggregate.stg" afterPath="$PROJECT_DIR$/skysail.server.app.designer/resources/code/postResourceNonAggregate.stg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/skysail.server.app.designer/resources/code/putResource.stg" afterPath="$PROJECT_DIR$/skysail.server.app.designer/resources/code/putResource.stg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/skysail.server.app.designer/resources/code/relationResource.stg" afterPath="$PROJECT_DIR$/skysail.server.app.designer/resources/code/relationResource.stg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/skysail.server.app.designer/resources/code/targetRelationResource.stg" afterPath="$PROJECT_DIR$/skysail.server.app.designer/resources/code/targetRelationResource.stg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/skysail.server.app.designer/skysail.server.app.designer.iml" afterPath="$PROJECT_DIR$/skysail.server.app.designer/skysail.server.app.designer.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/skysail.server.app.designer/src/io/skysail/server/app/designer/layout/DesignerResourceStg/mainContent.stg" afterPath="$PROJECT_DIR$/skysail.server.app.designer/src/io/skysail/server/app/designer/layout/DesignerResourceStg/mainContent.stg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/skysail.server.app.notes/skysail.server.app.notes.iml" afterPath="$PROJECT_DIR$/skysail.server.app.notes/skysail.server.app.notes.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/skysail.server.app.oEService/skysail.server.app.oEService.iml" afterPath="$PROJECT_DIR$/skysail.server.app.oEService/skysail.server.app.oEService.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/skysail.server.app.oEService/src-gen/io/skysail/server/app/oEService/OEsOEsResource.java" afterPath="$PROJECT_DIR$/skysail.server.app.oEService/src-gen/io/skysail/server/app/oEService/OEsOEsResource.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/skysail.server.app.oEService/src-gen/io/skysail/server/app/oEService/PostOEsOERelationResource.java" afterPath="$PROJECT_DIR$/skysail.server.app.oEService/src-gen/io/skysail/server/app/oEService/PostOEsOERelationResource.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/skysail.server.app.oEService/src-gen/io/skysail/server/app/oEService/PostUsersOERelationResource.java" afterPath="$PROJECT_DIR$/skysail.server.app.oEService/src-gen/io/skysail/server/app/oEService/PostUsersOERelationResource.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/skysail.server.app.oEService/src-gen/io/skysail/server/app/oEService/UsersOEsResource.java" afterPath="$PROJECT_DIR$/skysail.server.app.oEService/src-gen/io/skysail/server/app/oEService/UsersOEsResource.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/skysail.server.app.svgedit/skysail.server.app.svgedit.iml" afterPath="$PROJECT_DIR$/skysail.server.app.svgedit/skysail.server.app.svgedit.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/skysail.server.app.todos.it/skysail.server.app.todos.it.iml" afterPath="$PROJECT_DIR$/skysail.server.app.todos.it/skysail.server.app.todos.it.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/skysail.server.app.todos/skysail.server.app.todos.iml" afterPath="$PROJECT_DIR$/skysail.server.app.todos/skysail.server.app.todos.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/skysail.server.app.tutorial.model2rest/skysail.server.app.tutorial.model2rest.iml" afterPath="$PROJECT_DIR$/skysail.server.app.tutorial.model2rest/skysail.server.app.tutorial.model2rest.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/skysail.server.app.twitter4j/skysail.server.app.twitter4j.iml" afterPath="$PROJECT_DIR$/skysail.server.app.twitter4j/skysail.server.app.twitter4j.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/skysail.server.app.um.db/skysail.server.app.um.db.iml" afterPath="$PROJECT_DIR$/skysail.server.app.um.db/skysail.server.app.um.db.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/skysail.server.app.whatAbout/skysail.server.app.whatAbout.iml" afterPath="$PROJECT_DIR$/skysail.server.app.whatAbout/skysail.server.app.whatAbout.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/skysail.server.app.wiki/skysail.server.app.wiki.iml" afterPath="$PROJECT_DIR$/skysail.server.app.wiki/skysail.server.app.wiki.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/skysail.server.app.wishlist/skysail.server.app.wishlist.iml" afterPath="$PROJECT_DIR$/skysail.server.app.wishlist/skysail.server.app.wishlist.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/skysail.server.codegen.test/skysail.server.codegen.test.iml" afterPath="$PROJECT_DIR$/skysail.server.codegen.test/skysail.server.codegen.test.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/skysail.server.codegen/skysail.server.codegen.iml" afterPath="$PROJECT_DIR$/skysail.server.codegen/skysail.server.codegen.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/skysail.server.converter/skysail.server.converter.iml" afterPath="$PROJECT_DIR$/skysail.server.converter/skysail.server.converter.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/skysail.server.db.it/skysail.server.db.it.iml" afterPath="$PROJECT_DIR$/skysail.server.db.it/skysail.server.db.it.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/skysail.server.db/skysail.server.db.iml" afterPath="$PROJECT_DIR$/skysail.server.db/skysail.server.db.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/skysail.server.designer.demo.folders/bundle/templates/.gitignore" afterPath="$PROJECT_DIR$/skysail.server.designer.demo.folders/bundle/templates/.gitignore" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/skysail.server.designer.demo.folders/bundle/translations/messages.properties" afterPath="$PROJECT_DIR$/skysail.server.designer.demo.folders/bundle/translations/messages.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/skysail.server.designer.demo.folders/config/local/db-default.cfg" afterPath="$PROJECT_DIR$/skysail.server.designer.demo.folders/config/local/db-default.cfg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/skysail.server.designer.demo.folders/config/local/logback.xml" afterPath="$PROJECT_DIR$/skysail.server.designer.demo.folders/config/local/logback.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/skysail.server.designer.demo.folders/resources/.gitignore" afterPath="$PROJECT_DIR$/skysail.server.designer.demo.folders/resources/.gitignore" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/skysail.server.designer.demo.folders/skysail.server.designer.demo.folders.iml" afterPath="$PROJECT_DIR$/skysail.server.designer.demo.folders/skysail.server.designer.demo.folders.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/skysail.server.designer.demo.folders/src-gen/io/skysail/server/designer/demo/folders/Folder.java" afterPath="$PROJECT_DIR$/skysail.server.designer.demo.folders/src-gen/io/skysail/server/designer/demo/folders/Folder.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/skysail.server.designer.demo.folders/src-gen/io/skysail/server/designer/demo/folders/FolderResource.java" afterPath="$PROJECT_DIR$/skysail.server.designer.demo.folders/src-gen/io/skysail/server/designer/demo/folders/FolderResource.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/skysail.server.designer.demo.folders/src-gen/io/skysail/server/designer/demo/folders/FoldersFolderResource.java" afterPath="$PROJECT_DIR$/skysail.server.designer.demo.folders/src-gen/io/skysail/server/designer/demo/folders/FoldersFolderResource.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/skysail.server.designer.demo.folders/src-gen/io/skysail/server/designer/demo/folders/FoldersFoldersResource.java" afterPath="$PROJECT_DIR$/skysail.server.designer.demo.folders/src-gen/io/skysail/server/designer/demo/folders/FoldersFoldersResource.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/skysail.server.designer.demo.folders/src-gen/io/skysail/server/designer/demo/folders/FoldersResource.java" afterPath="$PROJECT_DIR$/skysail.server.designer.demo.folders/src-gen/io/skysail/server/designer/demo/folders/FoldersResource.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/skysail.server.designer.demo.folders/src-gen/io/skysail/server/designer/demo/folders/PostFolderResource.java" afterPath="$PROJECT_DIR$/skysail.server.designer.demo.folders/src-gen/io/skysail/server/designer/demo/folders/PostFolderResource.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/skysail.server.designer.demo.folders/src-gen/io/skysail/server/designer/demo/folders/PostFolderToNewFolderRelationResource.java" afterPath="$PROJECT_DIR$/skysail.server.designer.demo.folders/src-gen/io/skysail/server/designer/demo/folders/PostFolderToNewFolderRelationResource.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/skysail.server.designer.demo.folders/src-gen/io/skysail/server/designer/demo/folders/PostFoldersFolderRelationResource.java" afterPath="$PROJECT_DIR$/skysail.server.designer.demo.folders/src-gen/io/skysail/server/designer/demo/folders/PostFoldersFolderRelationResource.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/skysail.server.designer.demo.folders/src-gen/io/skysail/server/designer/demo/folders/PutFolderResource.java" afterPath="$PROJECT_DIR$/skysail.server.designer.demo.folders/src-gen/io/skysail/server/designer/demo/folders/PutFolderResource.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/skysail.server.designer.demo.folders/src/io/skysail/server/designer/demo/folders/FoldersApplication.java" afterPath="$PROJECT_DIR$/skysail.server.designer.demo.folders/src/io/skysail/server/designer/demo/folders/FoldersApplication.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/skysail.server.ext.apollo/skysail.server.ext.apollo.iml" afterPath="$PROJECT_DIR$/skysail.server.ext.apollo/skysail.server.ext.apollo.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/skysail.server.ext.browser/skysail.server.ext.browser.iml" afterPath="$PROJECT_DIR$/skysail.server.ext.browser/skysail.server.ext.browser.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/skysail.server.ext.initconfig/skysail.server.ext.initconfig.iml" afterPath="$PROJECT_DIR$/skysail.server.ext.initconfig/skysail.server.ext.initconfig.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/skysail.server.ext.oauth2/skysail.server.ext.oauth2.iml" afterPath="$PROJECT_DIR$/skysail.server.ext.oauth2/skysail.server.ext.oauth2.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/skysail.server.ext.rome/skysail.server.ext.rome.iml" afterPath="$PROJECT_DIR$/skysail.server.ext.rome/skysail.server.ext.rome.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/skysail.server.ext.sse/skysail.server.ext.sse.iml" afterPath="$PROJECT_DIR$/skysail.server.ext.sse/skysail.server.ext.sse.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/skysail.server.http.javamelody/skysail.server.http.javamelody.iml" afterPath="$PROJECT_DIR$/skysail.server.http.javamelody/skysail.server.http.javamelody.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/skysail.server.http/skysail.server.http.iml" afterPath="$PROJECT_DIR$/skysail.server.http/skysail.server.http.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/skysail.server.mgt/skysail.server.mgt.iml" afterPath="$PROJECT_DIR$/skysail.server.mgt/skysail.server.mgt.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/skysail.server.osgi/skysail.server.osgi.iml" afterPath="$PROJECT_DIR$/skysail.server.osgi/skysail.server.osgi.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/skysail.server.peers.adminconfig/skysail.server.peers.adminconfig.iml" afterPath="$PROJECT_DIR$/skysail.server.peers.adminconfig/skysail.server.peers.adminconfig.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/skysail.server.performance.etm/skysail.server.performance.etm.iml" afterPath="$PROJECT_DIR$/skysail.server.performance.etm/skysail.server.performance.etm.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/skysail.server.plugins/skysail.server.plugins.iml" afterPath="$PROJECT_DIR$/skysail.server.plugins/skysail.server.plugins.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/skysail.server.polymer/skysail.server.polymer.iml" afterPath="$PROJECT_DIR$/skysail.server.polymer/skysail.server.polymer.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/skysail.server.purecss.webresource/skysail.server.purecss.webresource.iml" afterPath="$PROJECT_DIR$/skysail.server.purecss.webresource/skysail.server.purecss.webresource.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/skysail.server.queryfilter/skysail.server.queryfilter.iml" afterPath="$PROJECT_DIR$/skysail.server.queryfilter/skysail.server.queryfilter.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/skysail.server.static/skysail.server.static.iml" afterPath="$PROJECT_DIR$/skysail.server.static/skysail.server.static.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/skysail.server.testsupport/skysail.server.testsupport.iml" afterPath="$PROJECT_DIR$/skysail.server.testsupport/skysail.server.testsupport.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/skysail.server.text.asciidoc/skysail.server.text.asciidoc.iml" afterPath="$PROJECT_DIR$/skysail.server.text.asciidoc/skysail.server.text.asciidoc.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/skysail.server.text.markdown/skysail.server.text.markdown.iml" afterPath="$PROJECT_DIR$/skysail.server.text.markdown/skysail.server.text.markdown.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/skysail.server.text.store.bundleresource/skysail.server.text.store.bundleresource.iml" afterPath="$PROJECT_DIR$/skysail.server.text.store.bundleresource/skysail.server.text.store.bundleresource.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/skysail.server.text.store.db/skysail.server.text.store.db.iml" afterPath="$PROJECT_DIR$/skysail.server.text.store.db/skysail.server.text.store.db.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/skysail.server.text.store.git/skysail.server.text.store.git.iml" afterPath="$PROJECT_DIR$/skysail.server.text.store.git/skysail.server.text.store.git.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/skysail.server.uikit.webresource/skysail.server.uikit.webresource.iml" afterPath="$PROJECT_DIR$/skysail.server.uikit.webresource/skysail.server.uikit.webresource.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/skysail.server.um.simple.it/skysail.server.um.simple.it.iml" afterPath="$PROJECT_DIR$/skysail.server.um.simple.it/skysail.server.um.simple.it.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/skysail.server.um.simple/skysail.server.um.simple.iml" afterPath="$PROJECT_DIR$/skysail.server.um.simple/skysail.server.um.simple.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/skysail.server.um/skysail.server.um.iml" afterPath="$PROJECT_DIR$/skysail.server.um/skysail.server.um.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/skysail.server.w2ui.webresource/skysail.server.w2ui.webresource.iml" afterPath="$PROJECT_DIR$/skysail.server.w2ui.webresource/skysail.server.w2ui.webresource.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/skysail.server/skysail.server.iml" afterPath="$PROJECT_DIR$/skysail.server/skysail.server.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/skysail.server/src/io/skysail/server/model/TreeStructure.java" afterPath="$PROJECT_DIR$/skysail.server/src/io/skysail/server/model/TreeStructure.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/skysail.server/test/io/skysail/server/model/test/TreeStructureTest.java" afterPath="$PROJECT_DIR$/skysail.server/test/io/skysail/server/model/test/TreeStructureTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/skysail.product.designer/designer.bndrun" afterPath="$PROJECT_DIR$/skysail.product.designer/designer.bndrun" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/skysail.server.app.designer/src/io/skysail/server/app/designer/codegen/InMemoryJavaCompiler.java" afterPath="$PROJECT_DIR$/skysail.server.app.designer/src/io/skysail/server/app/designer/codegen/InMemoryJavaCompiler.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/skysail.server.designer.demo.transactions/.project" afterPath="$PROJECT_DIR$/skysail.server.designer.demo.transactions/.project" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/skysail.server.designer.demo.transactions/src/io/skysail/server/designer/demo/transactions/TransactionsApplication.java" afterPath="$PROJECT_DIR$/skysail.server.designer.demo.transactions/src/io/skysail/server/designer/demo/transactions/TransactionsApplication.java" />
     </list>
     <ignored path="skysail-framework.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -455,7 +357,13 @@
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
               <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
+              <folding>
+                <element signature="imports" expanded="false" />
+                <element signature="e#911#912#0" expanded="false" />
+                <element signature="e#963#964#0" expanded="false" />
+                <element signature="e#1013#1014#0" expanded="false" />
+                <element signature="e#1052#1053#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -19387,12 +19295,12 @@
       <workItem from="1456417069719" duration="1772000" />
       <workItem from="1456474213851" duration="369000" />
       <workItem from="1456751866923" duration="249000" />
-      <workItem from="1457016063969" duration="236000" />
+      <workItem from="1457016063969" duration="832000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="15928000" />
+    <option name="totallyTimeSpent" value="16524000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-4" y="-4" width="1928" height="1180" extended-state="6" />
@@ -19403,7 +19311,7 @@
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32925683" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32987747" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32925683" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24973376" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -19470,7 +19378,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#911#912#0" expanded="false" />
+            <element signature="e#963#964#0" expanded="false" />
+            <element signature="e#1013#1014#0" expanded="false" />
+            <element signature="e#1052#1053#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -19736,7 +19650,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#911#912#0" expanded="false" />
+            <element signature="e#963#964#0" expanded="false" />
+            <element signature="e#1013#1014#0" expanded="false" />
+            <element signature="e#1052#1053#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>

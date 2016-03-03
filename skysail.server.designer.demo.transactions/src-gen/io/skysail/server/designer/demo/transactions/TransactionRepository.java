@@ -6,8 +6,11 @@ import org.osgi.service.component.annotations.*;
 import io.skysail.domain.core.repos.DbRepository;
 import io.skysail.server.db.*;
 
+/**
+ * generated from repository.stg
+ */
 @Component(immediate = true, property = "name=TransactionsRepository")
-public class TransactionRepository extends GraphDbRepository<io.skysail.server.designer.demo.transactions.Transaction> implements DbRepository {
+public class TransactionRepository extends GraphDbRepository<io.skysail.server.designer.demo.transactions.transaction.Transaction> implements DbRepository {
 
     @Reference
     public void setDbService(DbService dbService) {
@@ -20,9 +23,9 @@ public class TransactionRepository extends GraphDbRepository<io.skysail.server.d
 
     @Activate
     public void activate() {
-        //log.debug("activating io.skysail.server.designer.demo.transactions.Transaction" Repository);
-        dbService.createWithSuperClass("V", DbClassName.of(io.skysail.server.designer.demo.transactions.Transaction.class));
-        dbService.register(Transaction.class);
+        //log.debug("activating io.skysail.server.designer.demo.transactions.transaction.Transaction" Repository);
+        dbService.createWithSuperClass("V", DbClassName.of(io.skysail.server.designer.demo.transactions.transaction.Transaction.class));
+        dbService.register(io.skysail.server.designer.demo.transactions.transaction.Transaction.class);
     }
 
 }

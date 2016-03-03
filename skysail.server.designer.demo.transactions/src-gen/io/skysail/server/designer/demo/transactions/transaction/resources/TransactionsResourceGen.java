@@ -1,4 +1,4 @@
-package io.skysail.server.designer.demo.transactions;
+package io.skysail.server.designer.demo.transactions.transaction.resources;
 
 import io.skysail.server.queryfilter.Filter;
 import io.skysail.server.queryfilter.pagination.Pagination;
@@ -8,33 +8,34 @@ import io.skysail.api.links.Link;
 import java.util.*;
 
 import io.skysail.server.ResourceContextId;
+import io.skysail.server.designer.demo.transactions.*;
 
 /**
  * generated from listResource.stg
  */
-public class TransactionsResource extends ListServerResource<io.skysail.server.designer.demo.transactions.Transaction> {
+public class TransactionsResourceGen extends ListServerResource<io.skysail.server.designer.demo.transactions.transaction.Transaction> {
 
     private TransactionsApplication app;
     private TransactionRepository repository;
 
-    public TransactionsResource() {
-        super(TransactionResource.class);
+    public TransactionsResourceGen() {
+        super(TransactionResourceGen.class);
         addToContext(ResourceContextId.LINK_TITLE, "list Transactions");
     }
 
-    public TransactionsResource(Class<? extends TransactionResource> cls) {
+    public TransactionsResourceGen(Class<? extends TransactionResourceGen> cls) {
         super(cls);
     }
 
     @Override
     protected void doInit() {
         app = (TransactionsApplication) getApplication();
-        repository = (TransactionRepository) app.getRepository(io.skysail.server.designer.demo.transactions.Transaction.class);
+        repository = (TransactionRepository) app.getRepository(io.skysail.server.designer.demo.transactions.transaction.Transaction.class);
     }
 
     @Override
     @SuppressWarnings("unchecked")
-    public List<io.skysail.server.designer.demo.transactions.Transaction> getEntity() {
+    public List<io.skysail.server.designer.demo.transactions.transaction.Transaction> getEntity() {
         Filter filter = new Filter(getRequest());
         Pagination pagination = new Pagination(getRequest(), getResponse(), repository.count(filter));
         return repository.find(filter, pagination);
@@ -42,6 +43,6 @@ public class TransactionsResource extends ListServerResource<io.skysail.server.d
 
     @Override
     public List<Link> getLinks() {
-              return super.getLinks(PostTransactionResource.class,TransactionsResource.class);
+              return super.getLinks(PostTransactionResourceGen.class,TransactionsResourceGen.class);
     }
 }

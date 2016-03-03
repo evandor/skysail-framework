@@ -1,5 +1,5 @@
 entityResource(application, entity, links) ::= <<
-package $application.packageName$;
+package $entity.packageName$.resources;
 
 import java.util.List;
 
@@ -7,17 +7,18 @@ import io.skysail.api.links.Link;
 import io.skysail.api.responses.SkysailResponse;
 import io.skysail.server.ResourceContextId;
 import io.skysail.server.restlet.resources.EntityServerResource;
+import $application.packageName$.*;
 
 /**
  * generated from entityResource.stg
  */
-public class $entity.simpleName$Resource extends EntityServerResource<$entity.id$> {
+public class $entity.simpleName$ResourceGen extends EntityServerResource<$entity.id$> {
 
     private String id;
     private $application.name$Application app;
     private $entity.simpleName$Repository repository;
     
-    public $entity.simpleName$Resource() {
+    public $entity.simpleName$ResourceGen() {
         addToContext(ResourceContextId.LINK_TITLE, "details");
         addToContext(ResourceContextId.LINK_GLYPH, "search");
     \}

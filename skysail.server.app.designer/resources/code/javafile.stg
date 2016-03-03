@@ -1,5 +1,5 @@
 javafile(application, entity) ::= <<
-package $application.packageName$;
+package $entity.packageName$;
 
 import java.io.Serializable;
 import javax.persistence.Id;

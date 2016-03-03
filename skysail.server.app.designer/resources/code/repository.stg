@@ -7,6 +7,9 @@ import org.osgi.service.component.annotations.*;
 import io.skysail.domain.core.repos.DbRepository;
 import io.skysail.server.db.*;
 
+/**
+ * generated from repository.stg
+ */
 @Component(immediate = true, property = "name=$entity.simpleName$sRepository")
 public class $entity.simpleName$Repository extends GraphDbRepository<$entity.id$> implements DbRepository {
     
@@ -23,7 +26,7 @@ public class $entity.simpleName$Repository extends GraphDbRepository<$entity.id$
     public void activate() {
         //log.debug("activating $entity.id$" Repository);
         dbService.createWithSuperClass("V", DbClassName.of($entity.id$.class));
-        dbService.register($entity.simpleName$.class);
+        dbService.register($entity.className$.class);
     }
    
 }

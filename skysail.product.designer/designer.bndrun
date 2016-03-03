@@ -28,7 +28,6 @@ logback.configurationFile.path = ${basedir}/config/local
 	skysail.server.polymer;version=latest,\
 	skysail.server.app.designer;version=latest,\
 	skysail.server.app.todos;version=latest,\
-	skysail.server.app.snap;version=latest,\
 	skysail.server.app.notes;version=latest,\
     skysail.server.app.oEService;version=latest,\
     skysail.server.app.bpmnmodeler;version=latest,\
@@ -53,5 +52,6 @@ logback.configurationFile.path = ${basedir}/config/local
 ########################################################################################
 #    skysail.server.ext.browser;version=latest,\
 #    skysail.server.ext.apollo;version=latest,\
+#   skysail.server.app.snap;version=latest,\
 
 

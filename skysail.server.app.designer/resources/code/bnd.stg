@@ -45,5 +45,5 @@ Include-Resource: resources, templates=src;recursive:=true;filter:=*.st|*.stg
 
 
 Private-Package: \\
-    $packagename$
+    $packagename$.*
 >>

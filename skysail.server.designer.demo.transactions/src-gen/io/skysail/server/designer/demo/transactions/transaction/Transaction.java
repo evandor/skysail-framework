@@ -1,4 +1,4 @@
-package io.skysail.server.designer.demo.transactions;
+package io.skysail.server.designer.demo.transactions.transaction;
 
 import java.io.Serializable;
 import javax.persistence.Id;

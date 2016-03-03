@@ -1,4 +1,4 @@
-package io.skysail.server.designer.demo.transactions;
+package io.skysail.server.designer.demo.transactions.transaction.resources;
 
 import java.util.List;
 
@@ -6,17 +6,18 @@ import io.skysail.api.links.Link;
 import io.skysail.api.responses.SkysailResponse;
 import io.skysail.server.ResourceContextId;
 import io.skysail.server.restlet.resources.EntityServerResource;
+import io.skysail.server.designer.demo.transactions.*;
 
 /**
  * generated from entityResource.stg
  */
-public class TransactionResource extends EntityServerResource<io.skysail.server.designer.demo.transactions.Transaction> {
+public class TransactionResourceGen extends EntityServerResource<io.skysail.server.designer.demo.transactions.transaction.Transaction> {
 
     private String id;
     private TransactionsApplication app;
     private TransactionRepository repository;
 
-    public TransactionResource() {
+    public TransactionResourceGen() {
         addToContext(ResourceContextId.LINK_TITLE, "details");
         addToContext(ResourceContextId.LINK_GLYPH, "search");
     }
@@ -25,7 +26,7 @@ public class TransactionResource extends EntityServerResource<io.skysail.server.
     protected void doInit() {
         id = getAttribute("id");
         app = (TransactionsApplication) getApplication();
-        repository = (TransactionRepository) app.getRepository(io.skysail.server.designer.demo.transactions.Transaction.class);
+        repository = (TransactionRepository) app.getRepository(io.skysail.server.designer.demo.transactions.transaction.Transaction.class);
     }
 
 
@@ -36,13 +37,13 @@ public class TransactionResource extends EntityServerResource<io.skysail.server.
     }
 
     @Override
-    public io.skysail.server.designer.demo.transactions.Transaction getEntity() {
-        return (io.skysail.server.designer.demo.transactions.Transaction)app.getRepository().findOne(id);
+    public io.skysail.server.designer.demo.transactions.transaction.Transaction getEntity() {
+        return (io.skysail.server.designer.demo.transactions.transaction.Transaction)app.getRepository().findOne(id);
     }
 
 	@Override
     public List<Link> getLinks() {
-        return super.getLinks(PutTransactionResource.class);
+        return super.getLinks(PutTransactionResourceGen.class);
     }
 
 }

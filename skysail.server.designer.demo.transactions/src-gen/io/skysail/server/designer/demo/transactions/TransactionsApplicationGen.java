@@ -39,11 +39,11 @@ public class TransactionsApplicationGen extends SkysailApplication implements Ap
     @Override
     protected void attach() {
         super.attach();
-        router.attach(new RouteBuilder("/Transactions/{id}", io.skysail.server.designer.demo.transactions.TransactionResource.class));
-        router.attach(new RouteBuilder("/Transactions/", io.skysail.server.designer.demo.transactions.PostTransactionResource.class));
-        router.attach(new RouteBuilder("/Transactions/{id}/", io.skysail.server.designer.demo.transactions.PutTransactionResource.class));
-        router.attach(new RouteBuilder("/Transactions", io.skysail.server.designer.demo.transactions.TransactionsResource.class));
-        router.attach(new RouteBuilder("", io.skysail.server.designer.demo.transactions.TransactionsResource.class));
+        router.attach(new RouteBuilder("/Transactions/{id}", io.skysail.server.designer.demo.transactions.transaction.resources.TransactionResourceGen.class));
+        router.attach(new RouteBuilder("/Transactions/", io.skysail.server.designer.demo.transactions.transaction.resources.PostTransactionResourceGen.class));
+        router.attach(new RouteBuilder("/Transactions/{id}/", io.skysail.server.designer.demo.transactions.transaction.resources.PutTransactionResourceGen.class));
+        router.attach(new RouteBuilder("/Transactions", io.skysail.server.designer.demo.transactions.transaction.resources.TransactionsResourceGen.class));
+        router.attach(new RouteBuilder("", io.skysail.server.designer.demo.transactions.transaction.resources.TransactionsResourceGen.class));
 
     }
 

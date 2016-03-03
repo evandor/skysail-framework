@@ -87,7 +87,7 @@ debug(messages, model) ::= <<
             </div>
             <div id="collapseApplicationModel" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingApplicationModel">
               <div class="panel-body">
-                <pre>$model.resource.application.applicationModel$</pre>
+                <pre>$model.applicationModel$</pre>
               </div>
             </div>
           </div>

@@ -601,6 +601,10 @@ public class ResourceModel<R extends SkysailServerResource<T>, T> {
         return GuiFeatures.SHOW_BREADCRUMBS.isActive();
     }
 
+    public ApplicationModel getApplicationModel() {
+        return resource.getApplication().getApplicationModel();
+    }
+    
     private String checkPrefix(FormField formField, Map<String, Object> dataRow, String processed, Object id) {
         ApplicationModel applicationModel = resource.getApplication().getApplicationModel();
         io.skysail.domain.core.EntityModel entity = applicationModel.getEntity(parameterizedType.getName());

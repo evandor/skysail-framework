@@ -1,0 +1,114 @@
+mainContent(user, converter, messages, model) ::= <<
+
+  $if(model.showBreadcrumbs)$
+    $breadcrumbsRow(model,user)$
+  $else$
+    <div class="row" style="background-color:#f5f5f5; height:17px;">&nbsp;</div>
+  $endif$
+  
+  <div class="row" $if(converter.debug && user.principal)$style="border:3px solid blue;"$endif$>
+    <div class="col-md-2" style="
+        min-width:200px;
+        min-height:500px;
+        text-align: left;
+        padding-top:17px;
+        margin-top:-21px;
+        border-right: 1px dotted #a0a0a0;
+        border-top: 1px dotted #a0a0a0;
+        background-image: linear-gradient(to bottom,#F5F5F5 0,#F5F5F5 100%) $if(converter.debug && user.principal)$border:3px solid green;$endif$" id="leftMenu">
+
+
+    <div class="sidebar-nav">
+      <ul class="nav nav-list ">
+        <li class="nav-header"><i class="fa fa fa-th"> </i>&nbsp; Entities</li>
+      </ul>
+      <br>
+    </div>
+
+
+    $if(converter.debug && user.principal)$
+    <div
+      style="border: 3px solid green; position: absolute; bottom: 20px; right: 2px; width: 100px; height: 30px; background-color: white; z-index: 10000; opacity: 0.8">menuNav/jsTreeNav</div>
+    $endif$
+  </div>
+    <div class="col-md-$if(user.demoUser)$8$else$10$endif$" style="border-top: 1px dotted #a0a0a0;margin-top:-21px;">
+      <div class="row" style="background-color: #F8FAD4">
+        <div class="col-md-12" style="border-bottom: 1px dotted #a0a0a0;">
+          $contentHeader(converter, messages, model)$
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12"  $if(converter.debug && user.principal)$style="border:3px solid yellow;"$endif$>
+            
+            
+            <div id="myholder" style="border: 1px dotted gray"></div>
+            <script type="text/javascript">
+          
+              var graph = new joint.dia.Graph;
+              
+              var entities = [$entities(model)$];
+          
+              var paper = new joint.dia.Paper({
+                  el: \$('#myholder'),
+                  width: '100%',
+                  height: '100%',
+                  model: graph,
+                  gridSize: 10
+              });
+          
+            /* 
+          
+              var link = new joint.dia.Link({
+                  source: { id: rect.id },
+                  target: { id: rect2.id }
+              });*/
+              
+              function logArrayElements(element, index, array) {
+            	  console.log('a[' + index + '] = ' + element);
+            	  
+            	  var therect = new joint.shapes.basic.Rect({
+                      position: { x: 100 * index * 3, y: 30 * index },
+                      size: { width: 100, height: 30 },
+                      attrs: { rect: { fill: '#bfbfbf' }, text: { text: element, fill: '#000066' } }
+                  })
+            	  
+            	  
+            	  graph.addCells([therect]);
+            	}
+              entities.forEach(logArrayElements);
+          
+              //graph.addCells([rect, rect2, link]);
+          
+            </script>
+            
+            
+            
+
+        </div>
+      </div>
+    </div>
+    
+  </div>
+
+  <script lang="text/javascript">
+
+    function getDocHeight() {
+	    var D = document;
+	    return Math.max(
+	        D.body.scrollHeight, D.documentElement.scrollHeight,
+	        D.body.offsetHeight, D.documentElement.offsetHeight,
+	        D.body.clientHeight, D.documentElement.clientHeight
+	    );
+	}
+    var h = window.innerHeight;
+    height = (h - 133)+"px";
+    if (window.innerWidth > 1000) {
+      document.getElementById('leftMenu').style.height = height;
+    }
+  </script>
+
+>>
+
+entities(model) ::= <<
+  $model.data: {row | '$row.('name')$'}; separator=","$
+>>

@@ -2,11 +2,16 @@ package io.skysail.server.model.test;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
-import org.junit.*;
+import org.junit.Before;
+import org.junit.Ignore;
+import org.junit.Test;
 import org.restlet.data.Reference;
 
 import io.skysail.domain.Nameable;
@@ -62,6 +67,32 @@ public class TreeStructureTest {
         
         assertThat(treeStructureList.size(), is(1));
         assertTreeStructure(treeStructureList.get(0), "root", "/seg1/seg2/seg3#", "glyph", 0);
+    }
+    
+    @Test
+    public void resource_with_simple_treeStructureInfo_yields_one_element_tree2() {
+        //resourceTreeRepresentation.add(new TreeStructure(rootFolder, "link", "glyph"));
+        //when(theReference.getSegments()).thenReturn(Arrays.asList("seg1", "seg2", "seg3"));
+
+         TreeStructure tree = new TreeStructure(rootFolder, "link", "glyph");
+
+         assertThat(tree.getHeadline(), is("AFolder"));
+         assertThat(tree.getGlyph(), is("glyph"));
+         assertThat(tree.getLink(), is("/"));
+         assertThat(tree.getSubfolders().size(), is(0));
+    }
+
+    @Test
+    public void resource_with_simple_treeStructureInfo_yields_one_element_tree3() {
+        //resourceTreeRepresentation.add(new TreeStructure(rootFolder, "link", "glyph"));
+        //when(theReference.getSegments()).thenReturn(Arrays.asList("seg1", "seg2", "seg3"));
+
+         TreeStructure tree = new TreeStructure(rootFolder, "link", "glyph");
+
+         assertThat(tree.getHeadline(), is("AFolder"));
+         assertThat(tree.getGlyph(), is("glyph"));
+         assertThat(tree.getLink(), is("/"));
+         assertThat(tree.getSubfolders().size(), is(0));
     }
 
 //    @Test

@@ -9,6 +9,8 @@ import java.util.stream.Collectors;
 
 import javax.validation.constraints.NotNull;
 
+import org.restlet.resource.Resource;
+
 import io.skysail.domain.Identifiable;
 import io.skysail.domain.Nameable;
 import io.skysail.server.restlet.resources.SkysailServerResource;
@@ -29,21 +31,15 @@ public class TreeStructure {
     private String link = "/";
     private String glyph;
     private List<TreeStructure> subfolders = new ArrayList<>();
-
-    public static List<TreeStructure> from(@NotNull SkysailServerResource<?> resource) {
-        List<TreeStructure> result = new ArrayList<>();
-        return resource.getTreeRepresentation();
-//        result.addAll(rootNodes.stream().map(rootNode -> new TreeStructure(rootNode, resource)).collect(Collectors.toList()));
-//        return result;
-    }
     
-    public TreeStructure(@NonNull Nameable nameable, String link, String glyph) {
+    public TreeStructure(@NonNull Nameable nameable, Resource resource, String link, String glyph) {
         this.name = nameable.getName();
         this.headline = nameable.getClass().getSimpleName();
         this.glyph = glyph;
-        List<Field> collectionsFields = Arrays.stream(nameable.getClass().getDeclaredFields())
-            .filter(field -> Collection.class.isAssignableFrom(field.getType()))
-            .collect(Collectors.toList());
+        List<String> baseRef = resource.getOriginalRef().getSegments();
+        this.link = "/" + baseRef.get(0) + "/" + baseRef.get(1) + "/" + baseRef.get(2) + treeNode.getLink();
+        
+        List<Field> collectionsFields = getFieldsOfTypeCollection(nameable);
 
         if (!collectionsFields.isEmpty()) {
             this.link = link + "/" + ((Identifiable)nameable).getId().replace("#", "") + "/";
@@ -52,20 +48,36 @@ public class TreeStructure {
         
         collectionsFields.stream().forEach(collectionField -> {
             try {
-                collectionField.setAccessible(true);
-                Collection<?> collection = (Collection<?>) collectionField.get(nameable);
-                List<Nameable> subs = collection.stream()
-                        .filter(e -> e instanceof Nameable)
-                        .map(Nameable.class::cast).collect(Collectors.toList());
-                subs.stream().forEach(subFolder -> 
-                    addFolder(new TreeStructure(subFolder, this.link, glyph.equals("list-alt") ? "chevron-right" : "list-alt"))
-                );
+                handleCollectionField(nameable, glyph, collectionField);
             } catch (Exception e) {
                 log.error(e.getMessage(), e);
             }
         });
     }
-    
+
+    private void handleCollectionField(Nameable nameable, String glyph, Field collectionField)
+            throws IllegalAccessException {
+        collectionField.setAccessible(true);
+        Collection<?> collection = (Collection<?>) collectionField.get(nameable);
+        List<Nameable> subs = collection.stream()
+                .filter(e -> e instanceof Nameable)
+                .map(Nameable.class::cast).collect(Collectors.toList());
+        subs.stream().forEach(subFolder -> 
+            addFolder(new TreeStructure(subFolder, this.link, glyph.equals("list-alt") ? "chevron-right" : "list-alt"))
+        );
+    }
+
+    private List<Field> getFieldsOfTypeCollection(Nameable nameable) {
+        List<Field> collectionsFields = Arrays.stream(nameable.getClass().getDeclaredFields())
+            .filter(field -> Collection.class.isAssignableFrom(field.getType()))
+            .collect(Collectors.toList());
+        return collectionsFields;
+    }
+
+    public static List<TreeStructure> from(@NotNull SkysailServerResource<?> resource) {
+        return resource.getTreeRepresentation();
+    }
+
     private void addFolder(TreeStructure treeRepresentation) {
         subfolders.add(treeRepresentation);
     }
@@ -74,8 +86,6 @@ public class TreeStructure {
 //        this.name = treeNode.getName();
 //        this.headline = treeNode.getHeadline();
 //        this.glyph = treeNode.getGlyph();
-//        List<String> baseRef = resource.getOriginalRef().getSegments();
-//        this.link = "/" + baseRef.get(0) + "/" + baseRef.get(1) + "/" + baseRef.get(2) + treeNode.getLink();
 //        treeNode.getSubNodes().stream().forEach(subNodes -> 
 //            subfolders.add(new TreeStructure(subNodes, resource))
 //        );

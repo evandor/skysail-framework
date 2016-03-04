@@ -1,9 +1,0 @@
-<component name="libraryTable">
-  <library name="bnd:org.apache.felix.gogo.runtime:0.12.1">
-    <CLASSES>
-      <root url="jar://$USER_HOME$/.bnd/cache/https%3A%2F%2Fraw.githubusercontent.com%2Fbndtools%2Fbundle-hub%2Fmaster%2Forg.apache.felix.gogo.runtime/org.apache.felix.gogo.runtime-0.12.1.jar!/" />
-    </CLASSES>
-    <JAVADOC />
-    <SOURCES />
-  </library>
-</component>

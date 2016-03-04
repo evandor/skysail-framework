@@ -22,20 +22,20 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="skysail.domain" exported="" />
     <orderEntry type="module" module-name="skysail.server" exported="" />
+    <orderEntry type="module" module-name="skysail.server.queryfilter" exported="" />
     <orderEntry type="module" module-name="skysail.server.db" exported="" />
     <orderEntry type="module" module-name="skysail.server.static" exported="" />
+    <orderEntry type="module" module-name="skysail.server.codegen" exported="" />
+    <orderEntry type="module" module-name="skysail.server.testsupport" exported="" />
     <orderEntry type="module" module-name="skysail.server.app.todos" exported="" />
     <orderEntry type="module" module-name="skysail.server.app.tutorial.model2rest" exported="" />
     <orderEntry type="module" module-name="skysail.server.converter" exported="" />
     <orderEntry type="module" module-name="skysail.server.ext.sse" exported="" />
     <orderEntry type="module" module-name="skysail.server.plugins" exported="" />
-    <orderEntry type="module" module-name="skysail.server.queryfilter" exported="" />
     <orderEntry type="module" module-name="skysail.server.text.store.bundleresource" exported="" />
     <orderEntry type="module" module-name="skysail.server.text.store.git" exported="" />
-    <orderEntry type="module" module-name="skysail.server.um.simple" exported="" />
-    <orderEntry type="module" module-name="skysail.server.codegen" exported="" />
-    <orderEntry type="module" module-name="skysail.server.testsupport" exported="" />
     <orderEntry type="module" module-name="skysail.server.um" exported="" />
+    <orderEntry type="module" module-name="skysail.server.um.simple" exported="" />
     <orderEntry type="module-library" exported="">
       <library name="Gradle: osgi.core-6.0.0">
         <CLASSES>
@@ -112,15 +112,6 @@
       <library name="Gradle: skysail.server.db">
         <CLASSES>
           <root url="jar://$MODULE_DIR$/../skysail.server.db/generated/skysail.server.db.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library" exported="">
-      <library name="Gradle: skysail.server.static">
-        <CLASSES>
-          <root url="jar://$MODULE_DIR$/../skysail.server.static/generated/skysail.server.static.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -442,7 +433,7 @@
       </library>
     </orderEntry>
     <orderEntry type="module-library" exported="" scope="RUNTIME">
-      <library name="Gradle: C__git_skysail_framework_skysail_product_website_bin:website\bin">
+      <library name="Gradle: _Users_carsten_git_skysail_framework_skysail_product_website_bin:website/bin">
         <CLASSES>
           <root url="file://$MODULE_DIR$/bin" />
         </CLASSES>
@@ -451,7 +442,7 @@
       </library>
     </orderEntry>
     <orderEntry type="module-library" scope="TEST">
-      <library name="Gradle: C__git_skysail_framework_skysail_product_website_bin_test:website\bin_test">
+      <library name="Gradle: _Users_carsten_git_skysail_framework_skysail_product_website_bin_test:website/bin_test">
         <CLASSES>
           <root url="file://$MODULE_DIR$/bin_test" />
         </CLASSES>

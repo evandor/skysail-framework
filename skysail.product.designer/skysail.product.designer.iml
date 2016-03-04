@@ -22,11 +22,15 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="skysail.domain" exported="" />
     <orderEntry type="module" module-name="skysail.server" exported="" />
-    <orderEntry type="module" module-name="skysail.server.converter" exported="" />
+    <orderEntry type="module" module-name="skysail.server.queryfilter" exported="" />
     <orderEntry type="module" module-name="skysail.server.db" exported="" />
+    <orderEntry type="module" module-name="skysail.server.testsupport" exported="" />
+    <orderEntry type="module" module-name="skysail.server.converter" exported="" />
+    <orderEntry type="module" module-name="skysail.server.codegen" exported="" />
     <orderEntry type="module" module-name="skysail.server.app.designer" exported="" />
     <orderEntry type="module" module-name="skysail.server.app.dbviewer" exported="" />
     <orderEntry type="module" module-name="skysail.server.app.svgedit" exported="" />
+    <orderEntry type="module" module-name="skysail.client.testsupport" exported="" />
     <orderEntry type="module" module-name="skysail.server.app.bookmarks" exported="" />
     <orderEntry type="module" module-name="skysail.server.static" exported="" />
     <orderEntry type="module" module-name="skysail.server.ext.sse" exported="" />
@@ -35,17 +39,13 @@
     <orderEntry type="module" module-name="skysail.server.performance.etm" exported="" />
     <orderEntry type="module" module-name="skysail.server.plugins" exported="" />
     <orderEntry type="module" module-name="skysail.server.polymer" exported="" />
-    <orderEntry type="module" module-name="skysail.server.queryfilter" exported="" />
-    <orderEntry type="module" module-name="skysail.server.testsupport" exported="" />
     <orderEntry type="module" module-name="skysail.server.text.store.bundleresource" exported="" />
     <orderEntry type="module" module-name="skysail.server.text.store.git" exported="" />
+    <orderEntry type="module" module-name="skysail.server.um" exported="" />
     <orderEntry type="module" module-name="skysail.server.um.simple" exported="" />
     <orderEntry type="module" module-name="skysail.server.uikit.webresource" exported="" />
     <orderEntry type="module" module-name="skysail.server.purecss.webresource" exported="" />
     <orderEntry type="module" module-name="skysail.server.w2ui.webresource" exported="" />
-    <orderEntry type="module" module-name="skysail.server.codegen" exported="" />
-    <orderEntry type="module" module-name="skysail.client.testsupport" exported="" />
-    <orderEntry type="module" module-name="skysail.server.um" exported="" />
     <orderEntry type="module-library" exported="">
       <library name="Gradle: osgi.cmpn-6.0.0">
         <CLASSES>
@@ -158,15 +158,6 @@
       <library name="Gradle: skysail.server.app.bookmarks">
         <CLASSES>
           <root url="jar://$MODULE_DIR$/../skysail.server.app.bookmarks/generated/skysail.server.app.bookmarks.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library" exported="">
-      <library name="Gradle: skysail.server.static">
-        <CLASSES>
-          <root url="jar://$MODULE_DIR$/../skysail.server.static/generated/skysail.server.static.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -767,7 +758,7 @@
       </library>
     </orderEntry>
     <orderEntry type="module-library" exported="" scope="RUNTIME">
-      <library name="Gradle: C__git_skysail_framework_skysail_product_designer_bin:designer\bin">
+      <library name="Gradle: _Users_carsten_git_skysail_framework_skysail_product_designer_bin:designer/bin">
         <CLASSES>
           <root url="file://$MODULE_DIR$/bin" />
         </CLASSES>
@@ -776,7 +767,7 @@
       </library>
     </orderEntry>
     <orderEntry type="module-library" scope="TEST">
-      <library name="Gradle: C__git_skysail_framework_skysail_product_designer_bin_test:designer\bin_test">
+      <library name="Gradle: _Users_carsten_git_skysail_framework_skysail_product_designer_bin_test:designer/bin_test">
         <CLASSES>
           <root url="file://$MODULE_DIR$/bin_test" />
         </CLASSES>

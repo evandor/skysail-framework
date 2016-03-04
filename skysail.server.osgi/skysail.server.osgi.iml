@@ -185,7 +185,7 @@
       </library>
     </orderEntry>
     <orderEntry type="module-library" exported="" scope="RUNTIME">
-      <library name="Gradle: C__git_skysail_framework_skysail_server_osgi_bin:osgi\bin">
+      <library name="Gradle: _Users_carsten_git_skysail_framework_skysail_server_osgi_bin:osgi/bin">
         <CLASSES>
           <root url="file://$MODULE_DIR$/bin" />
         </CLASSES>
@@ -194,7 +194,7 @@
       </library>
     </orderEntry>
     <orderEntry type="module-library" scope="TEST">
-      <library name="Gradle: C__git_skysail_framework_skysail_server_osgi_bin_test:osgi\bin_test">
+      <library name="Gradle: _Users_carsten_git_skysail_framework_skysail_server_osgi_bin_test:osgi/bin_test">
         <CLASSES>
           <root url="file://$MODULE_DIR$/bin_test" />
         </CLASSES>

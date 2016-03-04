@@ -22,10 +22,19 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="skysail.domain" exported="" />
     <orderEntry type="module" module-name="skysail.server" exported="" />
-    <orderEntry type="module" module-name="skysail.server.ext.oauth2" exported="" />
     <orderEntry type="module" module-name="skysail.server.queryfilter" exported="" />
     <orderEntry type="module" module-name="skysail.server.db" exported="" />
     <orderEntry type="module" module-name="skysail.server.uikit.webresource" exported="" />
+    <orderEntry type="module" module-name="skysail.server.ext.oauth2" exported="" />
+    <orderEntry type="module-library" exported="">
+      <library name="Gradle: twitter4j-core-4.0.3">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/lib/twitter4j-core-4.0.3.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
     <orderEntry type="module-library" exported="">
       <library name="Gradle: osgi.core-6.0.0">
         <CLASSES>
@@ -225,7 +234,7 @@
       </library>
     </orderEntry>
     <orderEntry type="module-library" exported="" scope="RUNTIME">
-      <library name="Gradle: C__git_skysail_framework_skysail_server_app_twitter4j_bin:twitter4j\bin">
+      <library name="Gradle: _Users_carsten_git_skysail_framework_skysail_server_app_twitter4j_bin:twitter4j/bin">
         <CLASSES>
           <root url="file://$MODULE_DIR$/bin" />
         </CLASSES>
@@ -234,7 +243,7 @@
       </library>
     </orderEntry>
     <orderEntry type="module-library" scope="TEST">
-      <library name="Gradle: C__git_skysail_framework_skysail_server_app_twitter4j_bin_test:twitter4j\bin_test">
+      <library name="Gradle: _Users_carsten_git_skysail_framework_skysail_server_app_twitter4j_bin_test:twitter4j/bin_test">
         <CLASSES>
           <root url="file://$MODULE_DIR$/bin_test" />
         </CLASSES>

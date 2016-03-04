@@ -1,9 +1,0 @@
-<component name="libraryTable">
-  <library name="bnd:org.fusesource.stompjms.stompjms-client:1.19.0">
-    <CLASSES>
-      <root url="jar://$PROJECT_DIR$/cnf/localrepo/org.fusesource.stompjms.stompjms-client/org.fusesource.stompjms.stompjms-client-1.19.0.jar!/" />
-    </CLASSES>
-    <JAVADOC />
-    <SOURCES />
-  </library>
-</component>

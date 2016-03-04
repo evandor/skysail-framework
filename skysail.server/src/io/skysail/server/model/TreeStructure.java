@@ -40,7 +40,7 @@ public class TreeStructure {
         this.name = nameable.getName();
         this.headline = nameable.getClass().getSimpleName();
         this.glyph = glyph;
-        List<String> baseRef = resource.getOriginalRef().getSegments();
+        List<String> baseRef = resource != null ? resource.getOriginalRef().getSegments() : Arrays.asList("#");
         this.link = "/" ;//+ baseRef.get(0) + "/" + baseRef.get(1) + "/" + baseRef.get(2) + treeNode.getLink();
         
         List<Field> collectionsFields = getFieldsOfTypeCollection(nameable);

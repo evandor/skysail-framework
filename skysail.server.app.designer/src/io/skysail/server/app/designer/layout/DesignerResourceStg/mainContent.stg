@@ -45,17 +45,92 @@ mainContent(user, converter, messages, model) ::= <<
             <script type="text/javascript">
           
               var graph = new joint.dia.Graph;
-              
-              var entities = [$entities(model)$];
-          
+                        
               var paper = new joint.dia.Paper({
                   el: \$('#myholder'),
                   width: '100%',
-                  height: '100%',
+                  height: '800px',
                   model: graph,
                   gridSize: 10
               });
-          
+              
+              joint.shapes.html = {};
+              joint.shapes.html.Element = joint.shapes.basic.Rect.extend({
+                  defaults: joint.util.deepSupplement({
+                      type: 'html.Element',
+                      attrs: {
+                          rect: { stroke: 'none', 'fill-opacity': 0 }
+                      }
+                  }, joint.shapes.basic.Rect.prototype.defaults)
+              });
+              
+              
+              joint.shapes.html.ElementView = joint.dia.ElementView.extend({
+
+            	    template: [
+            	        '<div class="html-element">',
+            	        '<button class="delete">x</button>',
+            	        '<label></label>',
+            	        '<hr>',
+            	        '<span></span>', '<br/>',
+            	        '<select><option>--</option><option>one</option><option>two</option></select>',
+            	        '<input type="text" value="I\'m HTML input" />',
+            	        '</div>'
+            	    ].join(''),
+
+            	    initialize: function() {
+            	        _.bindAll(this, 'updateBox');
+            	        joint.dia.ElementView.prototype.initialize.apply(this, arguments);
+
+            	        this.\$box = \$(_.template(this.template)());
+            	        // Prevent paper from handling pointerdown.
+            	        this.\$box.find('input,select').on('mousedown click', function(evt) { evt.stopPropagation(); });
+            	        // This is an example of reacting on the input change and storing the input data in the cell model.
+            	        this.\$box.find('input').on('change', _.bind(function(evt) {
+            	            this.model.set('input', \$(evt.target).val());
+            	        }, this));
+            	        this.\$box.find('select').on('change', _.bind(function(evt) {
+            	            this.model.set('select', \$(evt.target).val());
+            	        }, this));
+            	        this.\$box.find('select').val(this.model.get('select'));
+            	        this.\$box.find('.delete').on('click', _.bind(this.model.remove, this.model));
+            	        // Update the box position whenever the underlying model changes.
+            	        this.model.on('change', this.updateBox, this);
+            	        // Remove the box when the model gets removed from the graph.
+            	        this.model.on('remove', this.removeBox, this);
+
+            	        this.updateBox();
+            	    },
+            	    render: function() {
+            	        joint.dia.ElementView.prototype.render.apply(this, arguments);
+            	        this.paper.\$el.prepend(this.\$box);
+            	        this.updateBox();
+            	        return this;
+            	    },
+            	    updateBox: function() {
+            	        // Set the position and dimension of the box so that it covers the JointJS element.
+            	        var bbox = this.model.getBBox();
+            	        // Example of updating the HTML with a data stored in the cell model.
+            	        this.\$box.find('label').text(this.model.get('label'));
+            	        this.\$box.find('span').text(this.model.get('select'));
+            	        this.\$box.css({ width: bbox.width, height: bbox.height, left: bbox.x, top: bbox.y, transform: 'rotate(' + (this.model.get('angle') || 0) + 'deg)' });
+            	    },
+            	    removeBox: function(evt) {
+            	        this.\$box.remove();
+            	    }
+            	});
+
+              
+              //var el1 = new joint.shapes.html.Element({ position: { x: 80, y: 80 }, size: { width: 170, height: 100 }, label: 'I am HTML', select: 'one' });
+              //var el2 = new joint.shapes.html.Element({ position: { x: 370, y: 160 }, size: { width: 170, height: 100 }, label: 'Me too', select: 'two' });
+              /*var l = new joint.dia.Link({
+                  source: { id: el1.id },
+                  target: { id: el2.id },
+                  attrs: { '.connection': { 'stroke-width': 5, stroke: '#34495E' } }
+              });
+
+              graph.addCells([el1, el2, l]);
+          */
             /* 
           
               var link = new joint.dia.Link({
@@ -63,17 +138,38 @@ mainContent(user, converter, messages, model) ::= <<
                   target: { id: rect2.id }
               });*/
               
+              var entitiesNodes = [];
+
               function logArrayElements(element, index, array) {
-            	  var therect = new joint.shapes.basic.Rect({
-                      position: { x: 100 * index * 3, y: 30 * index },
-                      size: { width: 100, height: 30 },
-                      attrs: { rect: { fill: '#bfbfbf' }, text: { text: element, fill: '#000066' } }
-                  })
-            	  graph.addCells([therect]);
+            	  /*var therect = new joint.shapes.basic.Rect({
+                      position: { x: 50 + 100 * index * 3, y: 50 + 30 * index },
+                      size: { width: 140, height: 40 },
+                      attrs: { 
+                    	  rect: { fill: '#bfbfbf', rx: 5, ry: 5, 'stroke-width': 2, stroke: 'black' }, 
+                    	  text: { text: element, fill: '#000066', 'font-size': 18, 'font-weight': 'bold' } 
+                      }
+                  })*/
+                  entitiesNodes.push(new joint.shapes.html.Element({ 
+                	  position: { x: 50 + 100 * index * 3, y: 50 + 30 * index }, 
+                	  size: { width: 190, height: 120 }, 
+                	  label: element.name, 
+                	  select: 'one' 
+                  }));
+
               }
+              var entities = [$entities(model)$];
+
               entities.forEach(logArrayElements);
+
+              graph.addCells(entitiesNodes);
+              
+              var l = new joint.dia.Link({
+            	    source: { id: entitiesNodes[0].id },
+            	    target: { id: entitiesNodes[1].id },
+            	    attrs: { '.connection': { 'stroke-width': 5, stroke: '#34495E' } }
+            	});
           
-              //graph.addCells([rect, rect2, link]);
+              graph.addCells([l]);
           
             </script>
             
@@ -106,5 +202,8 @@ mainContent(user, converter, messages, model) ::= <<
 >>
 
 entities(model) ::= <<
-  $model.data: {row | '$row.("name")$'}; separator=","$
+  $model.data: {row | 
+  {
+    name: "$row.("name")$"
+  \}}; separator=","$
 >>

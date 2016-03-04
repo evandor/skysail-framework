@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="CompilerConfiguration">
-    <option name="DEFAULT_COMPILER" value="Javac" />
     <resourceExtensions />
     <wildcardResourcePatterns>
       <entry name="!?*.java" />
@@ -12,81 +11,14 @@
       <entry name="!?*.flex" />
       <entry name="!?*.kt" />
       <entry name="!?*.clj" />
+      <entry name="!?*.aj" />
     </wildcardResourcePatterns>
     <annotationProcessing>
-      <profile default="true" name="Default" enabled="true">
+      <profile default="true" name="Default" enabled="false">
         <processorPath useClasspath="true" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel target="1.8">
-      <module name="skysail.api" target="1.8" />
-      <module name="skysail.api.features" target="1.8" />
-      <module name="skysail.api.search" target="1.8" />
-      <module name="skysail.api.text" target="1.8" />
-      <module name="skysail.api.um" target="1.8" />
-      <module name="skysail.client.testsupport" target="1.8" />
-      <module name="skysail.domain" target="1.8" />
-      <module name="skysail.ms.um.simple" target="1.8" />
-      <module name="skysail.product.designer" target="1.8" />
-      <module name="skysail.product.notes" target="1.8" />
-      <module name="skysail.product.todos" target="1.8" />
-      <module name="skysail.product.website" target="1.8" />
-      <module name="skysail.server" target="1.8" />
-      <module name="skysail.server.app.argusAdmin" target="1.8" />
-      <module name="skysail.server.app.bookmarks" target="1.8" />
-      <module name="skysail.server.app.bookmarks.it" target="1.8" />
-      <module name="skysail.server.app.bpmnmodeler" target="1.8" />
-      <module name="skysail.server.app.checklist" target="1.8" />
-      <module name="skysail.server.app.dbviewer" target="1.8" />
-      <module name="skysail.server.app.designer" target="1.8" />
-      <module name="skysail.server.app.designer.it" target="1.8" />
-      <module name="skysail.server.app.folders" target="1.8" />
-      <module name="skysail.server.app.notes" target="1.8" />
-      <module name="skysail.server.app.oEService" target="1.8" />
-      <module name="skysail.server.app.svgedit" target="1.8" />
-      <module name="skysail.server.app.todos" target="1.8" />
-      <module name="skysail.server.app.todos.it" target="1.8" />
-      <module name="skysail.server.app.tutorial.model2rest" target="1.8" />
-      <module name="skysail.server.app.twitter4j" target="1.8" />
-      <module name="skysail.server.app.um.db" target="1.8" />
-      <module name="skysail.server.app.whatAbout" target="1.8" />
-      <module name="skysail.server.app.wiki" target="1.8" />
-      <module name="skysail.server.app.wishlist" target="1.8" />
-      <module name="skysail.server.codegen" target="1.8" />
-      <module name="skysail.server.codegen.test" target="1.8" />
-      <module name="skysail.server.converter" target="1.8" />
-      <module name="skysail.server.db" target="1.8" />
-      <module name="skysail.server.db.it" target="1.8" />
-      <module name="skysail.server.designer.demo.folders" target="1.8" />
-      <module name="skysail.server.ext.apollo" target="1.8" />
-      <module name="skysail.server.ext.browser" target="1.8" />
-      <module name="skysail.server.ext.initconfig" target="1.8" />
-      <module name="skysail.server.ext.oauth2" target="1.8" />
-      <module name="skysail.server.ext.rome" target="1.8" />
-      <module name="skysail.server.ext.sse" target="1.8" />
-      <module name="skysail.server.http" target="1.8" />
-      <module name="skysail.server.http.javamelody" target="1.8" />
-      <module name="skysail.server.mgt" target="1.8" />
-      <module name="skysail.server.osgi" target="1.8" />
-      <module name="skysail.server.peers.adminconfig" target="1.8" />
-      <module name="skysail.server.performance.etm" target="1.8" />
-      <module name="skysail.server.plugins" target="1.8" />
-      <module name="skysail.server.polymer" target="1.8" />
-      <module name="skysail.server.purecss.webresource" target="1.8" />
-      <module name="skysail.server.queryfilter" target="1.8" />
-      <module name="skysail.server.static" target="1.8" />
-      <module name="skysail.server.testsupport" target="1.8" />
-      <module name="skysail.server.text.asciidoc" target="1.8" />
-      <module name="skysail.server.text.markdown" target="1.8" />
-      <module name="skysail.server.text.store.bundleresource" target="1.8" />
-      <module name="skysail.server.text.store.db" target="1.8" />
-      <module name="skysail.server.text.store.git" target="1.8" />
-      <module name="skysail.server.uikit.webresource" target="1.8" />
-      <module name="skysail.server.um" target="1.8" />
-      <module name="skysail.server.um.simple" target="1.8" />
-      <module name="skysail.server.um.simple.it" target="1.8" />
-      <module name="skysail.server.w2ui.webresource" target="1.8" />
-    </bytecodeTargetLevel>
+    <bytecodeTargetLevel target="1.8" />
   </component>
   <component name="JavacSettings">
     <option name="DEPRECATION" value="false" />

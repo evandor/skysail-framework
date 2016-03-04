@@ -1,9 +1,0 @@
-<component name="libraryTable">
-  <library name="bnd:org.jruby.jruby:1.7.19">
-    <CLASSES>
-      <root url="jar://$PROJECT_DIR$/cnf/localrepo/org.jruby.jruby/org.jruby.jruby-1.7.19.jar!/" />
-    </CLASSES>
-    <JAVADOC />
-    <SOURCES />
-  </library>
-</component>

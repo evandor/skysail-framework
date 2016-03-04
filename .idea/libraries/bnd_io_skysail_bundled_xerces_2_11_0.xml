@@ -1,9 +1,0 @@
-<component name="libraryTable">
-  <library name="bnd:io.skysail.bundled.xerces:2.11.0">
-    <CLASSES>
-      <root url="jar://$PROJECT_DIR$/cnf/localrepo/io.skysail.bundled.xerces/io.skysail.bundled.xerces-2.11.0.jar!/" />
-    </CLASSES>
-    <JAVADOC />
-    <SOURCES />
-  </library>
-</component>

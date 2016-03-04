@@ -20,11 +20,11 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="module" module-name="skysail.server" exported="" />
     <orderEntry type="module" module-name="skysail.domain" exported="" />
+    <orderEntry type="module" module-name="skysail.server" exported="" />
+    <orderEntry type="module" module-name="skysail.server.queryfilter" exported="" />
     <orderEntry type="module" module-name="skysail.server.db" exported="" />
     <orderEntry type="module" module-name="skysail.server.codegen" exported="" />
-    <orderEntry type="module" module-name="skysail.server.queryfilter" exported="" />
     <orderEntry type="module" module-name="skysail.server.testsupport" exported="" />
     <orderEntry type="module-library" exported="">
       <library name="Gradle: osgi.core-6.0.0">
@@ -756,9 +756,18 @@
       </library>
     </orderEntry>
     <orderEntry type="module-library" exported="" scope="RUNTIME">
-      <library name="Gradle: C__git_skysail_framework_skysail_server_app_todos_bin:todos\bin">
+      <library name="Gradle: _Users_carsten_git_skysail_framework_skysail_server_app_todos_bin:todos/bin">
         <CLASSES>
           <root url="file://$MODULE_DIR$/bin" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" scope="TEST">
+      <library name="Gradle: _Users_carsten_git_skysail_framework_skysail_server_app_todos_bin_test:todos/bin_test">
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/bin_test" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -859,14 +868,5 @@
     <orderEntry type="library" scope="TEST" name="Gradle: net.java.dev.jna:platform:3.4.0" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: io.netty:netty:3.5.2.Final" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: org.seleniumhq.selenium:selenium-api:2.45.0" level="project" />
-    <orderEntry type="module-library" scope="TEST">
-      <library name="Gradle: C__git_skysail_framework_skysail_server_app_todos_bin_test:todos\bin_test">
-        <CLASSES>
-          <root url="file://$MODULE_DIR$/bin_test" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
   </component>
 </module>

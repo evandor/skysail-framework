@@ -1,9 +1,0 @@
-<component name="libraryTable">
-  <library name="bnd:io.skysail.bundled.serenity-junit:1.0.47">
-    <CLASSES>
-      <root url="jar://$PROJECT_DIR$/cnf/localrepo/io.skysail.bundled.serenity-junit/io.skysail.bundled.serenity-junit-1.0.47.jar!/" />
-    </CLASSES>
-    <JAVADOC />
-    <SOURCES />
-  </library>
-</component>

@@ -1,9 +1,0 @@
-<component name="libraryTable">
-  <library name="bnd:org.apache.directory.api.ldap.model:1.0.0.M30">
-    <CLASSES>
-      <root url="jar://$PROJECT_DIR$/cnf/localrepo/org.apache.directory.api.ldap.model/org.apache.directory.api.ldap.model-1.0.0.jar!/" />
-    </CLASSES>
-    <JAVADOC />
-    <SOURCES />
-  </library>
-</component>

@@ -1,9 +1,0 @@
-<component name="libraryTable">
-  <library name="bnd:javax.el-api:3.0.0">
-    <CLASSES>
-      <root url="jar://$PROJECT_DIR$/cnf/localrepo/javax.el-api/javax.el-api-3.0.0.jar!/" />
-    </CLASSES>
-    <JAVADOC />
-    <SOURCES />
-  </library>
-</component>

@@ -3,11 +3,11 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/OAuthSampleServer/OAuthSampleServer.iml" filepath="$PROJECT_DIR$/OAuthSampleServer/OAuthSampleServer.iml" />
-      <module fileurl="file://$PROJECT_DIR$/build/build.iml" filepath="$PROJECT_DIR$/build/build.iml" />
       <module fileurl="file://$PROJECT_DIR$/cnf/cnf.iml" filepath="$PROJECT_DIR$/cnf/cnf.iml" />
+      <module fileurl="file://$PROJECT_DIR$/config/config.iml" filepath="$PROJECT_DIR$/config/config.iml" />
       <module fileurl="file://$PROJECT_DIR$/etc/etc.iml" filepath="$PROJECT_DIR$/etc/etc.iml" />
+      <module fileurl="file://$PROJECT_DIR$/generated/generated.iml" filepath="$PROJECT_DIR$/generated/generated.iml" />
       <module fileurl="file://$PROJECT_DIR$/gradle/gradle.iml" filepath="$PROJECT_DIR$/gradle/gradle.iml" />
-      <module fileurl="file://$PROJECT_DIR$/hellowithoutannotations/hellowithoutannotations.iml" filepath="$PROJECT_DIR$/hellowithoutannotations/hellowithoutannotations.iml" />
       <module fileurl="file://$PROJECT_DIR$/io.skysail.bundled/io.skysail.bundled.iml" filepath="$PROJECT_DIR$/io.skysail.bundled/io.skysail.bundled.iml" />
       <module fileurl="file://$PROJECT_DIR$/setup/setup.iml" filepath="$PROJECT_DIR$/setup/setup.iml" />
       <module fileurl="file://$PROJECT_DIR$/skysail-framework.iml" filepath="$PROJECT_DIR$/skysail-framework.iml" />
@@ -36,6 +36,7 @@
       <module fileurl="file://$PROJECT_DIR$/skysail.server.app.checklist/skysail.server.app.checklist.iml" filepath="$PROJECT_DIR$/skysail.server.app.checklist/skysail.server.app.checklist.iml" />
       <module fileurl="file://$PROJECT_DIR$/skysail.server.app.config/skysail.server.app.config.iml" filepath="$PROJECT_DIR$/skysail.server.app.config/skysail.server.app.config.iml" />
       <module fileurl="file://$PROJECT_DIR$/skysail.server.app.crm/skysail.server.app.crm.iml" filepath="$PROJECT_DIR$/skysail.server.app.crm/skysail.server.app.crm.iml" />
+      <module fileurl="file://$PROJECT_DIR$/skysail.server.app.crm.test/skysail.server.app.crm.test.iml" filepath="$PROJECT_DIR$/skysail.server.app.crm.test/skysail.server.app.crm.test.iml" />
       <module fileurl="file://$PROJECT_DIR$/skysail.server.app.dbviewer/skysail.server.app.dbviewer.iml" filepath="$PROJECT_DIR$/skysail.server.app.dbviewer/skysail.server.app.dbviewer.iml" />
       <module fileurl="file://$PROJECT_DIR$/skysail.server.app.designer/skysail.server.app.designer.iml" filepath="$PROJECT_DIR$/skysail.server.app.designer/skysail.server.app.designer.iml" />
       <module fileurl="file://$PROJECT_DIR$/skysail.server.app.designer.it/skysail.server.app.designer.it.iml" filepath="$PROJECT_DIR$/skysail.server.app.designer.it/skysail.server.app.designer.it.iml" />
@@ -49,7 +50,6 @@
       <module fileurl="file://$PROJECT_DIR$/skysail.server.app.notes/skysail.server.app.notes.iml" filepath="$PROJECT_DIR$/skysail.server.app.notes/skysail.server.app.notes.iml" />
       <module fileurl="file://$PROJECT_DIR$/skysail.server.app.oEService/skysail.server.app.oEService.iml" filepath="$PROJECT_DIR$/skysail.server.app.oEService/skysail.server.app.oEService.iml" />
       <module fileurl="file://$PROJECT_DIR$/skysail.server.app.snap/skysail.server.app.snap.iml" filepath="$PROJECT_DIR$/skysail.server.app.snap/skysail.server.app.snap.iml" />
-      <module fileurl="file://$PROJECT_DIR$/skysail.server.app.statusMessages/skysail.server.app.statusMessages.iml" filepath="$PROJECT_DIR$/skysail.server.app.statusMessages/skysail.server.app.statusMessages.iml" />
       <module fileurl="file://$PROJECT_DIR$/skysail.server.app.svgedit/skysail.server.app.svgedit.iml" filepath="$PROJECT_DIR$/skysail.server.app.svgedit/skysail.server.app.svgedit.iml" />
       <module fileurl="file://$PROJECT_DIR$/skysail.server.app.tap/skysail.server.app.tap.iml" filepath="$PROJECT_DIR$/skysail.server.app.tap/skysail.server.app.tap.iml" />
       <module fileurl="file://$PROJECT_DIR$/skysail.server.app.todos/skysail.server.app.todos.iml" filepath="$PROJECT_DIR$/skysail.server.app.todos/skysail.server.app.todos.iml" />
@@ -70,6 +70,7 @@
       <module fileurl="file://$PROJECT_DIR$/skysail.server.designer.csvreader/skysail.server.designer.csvreader.iml" filepath="$PROJECT_DIR$/skysail.server.designer.csvreader/skysail.server.designer.csvreader.iml" />
       <module fileurl="file://$PROJECT_DIR$/skysail.server.designer.demo.folders/skysail.server.designer.demo.folders.iml" filepath="$PROJECT_DIR$/skysail.server.designer.demo.folders/skysail.server.designer.demo.folders.iml" />
       <module fileurl="file://$PROJECT_DIR$/skysail.server.designer.demo.transactions/skysail.server.designer.demo.transactions.iml" filepath="$PROJECT_DIR$/skysail.server.designer.demo.transactions/skysail.server.designer.demo.transactions.iml" />
+      <module fileurl="file://$PROJECT_DIR$/skysail.server.designer.matrix/skysail.server.designer.matrix.iml" filepath="$PROJECT_DIR$/skysail.server.designer.matrix/skysail.server.designer.matrix.iml" />
       <module fileurl="file://$PROJECT_DIR$/skysail.server.designer.presentation/skysail.server.designer.presentation.iml" filepath="$PROJECT_DIR$/skysail.server.designer.presentation/skysail.server.designer.presentation.iml" />
       <module fileurl="file://$PROJECT_DIR$/skysail.server.designer.restclient/skysail.server.designer.restclient.iml" filepath="$PROJECT_DIR$/skysail.server.designer.restclient/skysail.server.designer.restclient.iml" />
       <module fileurl="file://$PROJECT_DIR$/skysail.server.domain/skysail.server.domain.iml" filepath="$PROJECT_DIR$/skysail.server.domain/skysail.server.domain.iml" />

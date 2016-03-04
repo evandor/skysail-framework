@@ -23,8 +23,8 @@
     <orderEntry type="module" module-name="skysail.domain" exported="" />
     <orderEntry type="module" module-name="skysail.server" exported="" />
     <orderEntry type="module" module-name="skysail.server.codegen" exported="" />
-    <orderEntry type="module" module-name="skysail.server.db" exported="" />
     <orderEntry type="module" module-name="skysail.server.queryfilter" exported="" />
+    <orderEntry type="module" module-name="skysail.server.db" exported="" />
     <orderEntry type="module" module-name="skysail.server.testsupport" exported="" />
     <orderEntry type="module-library" exported="">
       <library name="Gradle: osgi.core-6.0.0">
@@ -531,7 +531,7 @@
       </library>
     </orderEntry>
     <orderEntry type="module-library" exported="" scope="RUNTIME">
-      <library name="Gradle: C__git_skysail_framework_skysail_server_app_designer_bin:designer\bin">
+      <library name="Gradle: _Users_carsten_git_skysail_framework_skysail_server_app_designer_bin:designer/bin">
         <CLASSES>
           <root url="file://$MODULE_DIR$/bin" />
         </CLASSES>
@@ -540,7 +540,7 @@
       </library>
     </orderEntry>
     <orderEntry type="module-library" scope="TEST">
-      <library name="Gradle: C__git_skysail_framework_skysail_server_app_designer_bin_test:designer\bin_test">
+      <library name="Gradle: _Users_carsten_git_skysail_framework_skysail_server_app_designer_bin_test:designer/bin_test">
         <CLASSES>
           <root url="file://$MODULE_DIR$/bin_test" />
         </CLASSES>

@@ -1,9 +1,0 @@
-<component name="libraryTable">
-  <library name="bnd:io.skysail.bundled.htmlunit-core-js:2.17.0">
-    <CLASSES>
-      <root url="jar://$PROJECT_DIR$/cnf/localrepo/io.skysail.bundled.htmlunit-core-js/io.skysail.bundled.htmlunit-core-js-2.17.0.jar!/" />
-    </CLASSES>
-    <JAVADOC />
-    <SOURCES />
-  </library>
-</component>

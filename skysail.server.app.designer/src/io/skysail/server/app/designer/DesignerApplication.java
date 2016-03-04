@@ -225,7 +225,7 @@ public class DesignerApplication extends SkysailApplication implements MenuItemP
 
     public List<TreeStructure> getTreeRepresentation(DbApplication dbApplication) {
         if (dbApplication != null) {
-            return Arrays.asList(new TreeStructure(dbApplication,"", "th-large"));
+            return Arrays.asList(new TreeStructure(dbApplication,null,"", "th-large"));
         }
         return Collections.emptyList();
     }
@@ -233,7 +233,7 @@ public class DesignerApplication extends SkysailApplication implements MenuItemP
     public List<TreeStructure> getTreeRepresentation(String appId) {
         DbApplication dbApplication = getApplication(appId);
         if (dbApplication != null) {
-            return Arrays.asList(new TreeStructure(dbApplication,"", "th-large"));
+            return Arrays.asList(new TreeStructure(dbApplication,null,"", "th-large"));
         }
         return Collections.emptyList();
     }

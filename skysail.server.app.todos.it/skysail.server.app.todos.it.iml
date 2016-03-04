@@ -20,14 +20,14 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="module" module-name="skysail.client.testsupport" exported="" />
     <orderEntry type="module" module-name="skysail.domain" exported="" />
     <orderEntry type="module" module-name="skysail.server" exported="" />
-    <orderEntry type="module" module-name="skysail.server.app.todos" exported="" />
-    <orderEntry type="module" module-name="skysail.server.db" exported="" />
-    <orderEntry type="module" module-name="skysail.server.testsupport" exported="" />
+    <orderEntry type="module" module-name="skysail.client.testsupport" exported="" />
     <orderEntry type="module" module-name="skysail.server.queryfilter" exported="" />
+    <orderEntry type="module" module-name="skysail.server.db" exported="" />
     <orderEntry type="module" module-name="skysail.server.codegen" exported="" />
+    <orderEntry type="module" module-name="skysail.server.testsupport" exported="" />
+    <orderEntry type="module" module-name="skysail.server.app.todos" exported="" />
     <orderEntry type="module-library" exported="">
       <library name="Gradle: skysail.api-12.0.0">
         <CLASSES>
@@ -308,7 +308,7 @@
       </library>
     </orderEntry>
     <orderEntry type="module-library" exported="" scope="RUNTIME">
-      <library name="Gradle: C__git_skysail_framework_skysail_server_app_todos_it_bin:it\bin">
+      <library name="Gradle: _Users_carsten_git_skysail_framework_skysail_server_app_todos_it_bin:it/bin">
         <CLASSES>
           <root url="file://$MODULE_DIR$/bin" />
         </CLASSES>
@@ -317,7 +317,7 @@
       </library>
     </orderEntry>
     <orderEntry type="module-library" scope="TEST">
-      <library name="Gradle: C__git_skysail_framework_skysail_server_app_todos_it_bin_test:it\bin_test">
+      <library name="Gradle: _Users_carsten_git_skysail_framework_skysail_server_app_todos_it_bin_test:it/bin_test">
         <CLASSES>
           <root url="file://$MODULE_DIR$/bin_test" />
         </CLASSES>

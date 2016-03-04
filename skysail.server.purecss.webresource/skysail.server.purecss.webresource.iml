@@ -20,8 +20,8 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="module" module-name="skysail.server" exported="" />
     <orderEntry type="module" module-name="skysail.domain" exported="" />
+    <orderEntry type="module" module-name="skysail.server" exported="" />
     <orderEntry type="module-library" exported="">
       <library name="Gradle: osgi.enroute.base.api-1.6.0">
         <CLASSES>
@@ -77,7 +77,7 @@
       </library>
     </orderEntry>
     <orderEntry type="module-library" exported="" scope="RUNTIME">
-      <library name="Gradle: C__git_skysail_framework_skysail_server_purecss_webresource_bin:webresource\bin">
+      <library name="Gradle: _Users_carsten_git_skysail_framework_skysail_server_purecss_webresource_bin:webresource/bin">
         <CLASSES>
           <root url="file://$MODULE_DIR$/bin" />
         </CLASSES>
@@ -86,7 +86,7 @@
       </library>
     </orderEntry>
     <orderEntry type="module-library" scope="TEST">
-      <library name="Gradle: C__git_skysail_framework_skysail_server_purecss_webresource_bin_test:webresource\bin_test">
+      <library name="Gradle: _Users_carsten_git_skysail_framework_skysail_server_purecss_webresource_bin_test:webresource/bin_test">
         <CLASSES>
           <root url="file://$MODULE_DIR$/bin_test" />
         </CLASSES>

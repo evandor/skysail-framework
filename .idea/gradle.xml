@@ -5,17 +5,16 @@
       <GradleProjectSettings>
         <option name="distributionType" value="DEFAULT_WRAPPED" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="gradleHome" value="D:/dev/gradle" />
         <option name="gradleJvm" value="1.8" />
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/OAuthSampleServer" />
-            <option value="$PROJECT_DIR$/build" />
             <option value="$PROJECT_DIR$/cnf" />
+            <option value="$PROJECT_DIR$/config" />
             <option value="$PROJECT_DIR$/etc" />
+            <option value="$PROJECT_DIR$/generated" />
             <option value="$PROJECT_DIR$/gradle" />
-            <option value="$PROJECT_DIR$/hellowithoutannotations" />
             <option value="$PROJECT_DIR$/io.skysail.bundled" />
             <option value="$PROJECT_DIR$/setup" />
             <option value="$PROJECT_DIR$/skysail.api" />
@@ -43,6 +42,7 @@
             <option value="$PROJECT_DIR$/skysail.server.app.checklist" />
             <option value="$PROJECT_DIR$/skysail.server.app.config" />
             <option value="$PROJECT_DIR$/skysail.server.app.crm" />
+            <option value="$PROJECT_DIR$/skysail.server.app.crm.test" />
             <option value="$PROJECT_DIR$/skysail.server.app.dbviewer" />
             <option value="$PROJECT_DIR$/skysail.server.app.designer" />
             <option value="$PROJECT_DIR$/skysail.server.app.designer.it" />
@@ -56,7 +56,6 @@
             <option value="$PROJECT_DIR$/skysail.server.app.notes" />
             <option value="$PROJECT_DIR$/skysail.server.app.oEService" />
             <option value="$PROJECT_DIR$/skysail.server.app.snap" />
-            <option value="$PROJECT_DIR$/skysail.server.app.statusMessages" />
             <option value="$PROJECT_DIR$/skysail.server.app.svgedit" />
             <option value="$PROJECT_DIR$/skysail.server.app.tap" />
             <option value="$PROJECT_DIR$/skysail.server.app.todos" />
@@ -77,6 +76,7 @@
             <option value="$PROJECT_DIR$/skysail.server.designer.csvreader" />
             <option value="$PROJECT_DIR$/skysail.server.designer.demo.folders" />
             <option value="$PROJECT_DIR$/skysail.server.designer.demo.transactions" />
+            <option value="$PROJECT_DIR$/skysail.server.designer.matrix" />
             <option value="$PROJECT_DIR$/skysail.server.designer.presentation" />
             <option value="$PROJECT_DIR$/skysail.server.designer.restclient" />
             <option value="$PROJECT_DIR$/skysail.server.domain" />
@@ -128,11 +128,11 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/OAuthSampleServer" />
-            <option value="$PROJECT_DIR$/build" />
             <option value="$PROJECT_DIR$/cnf" />
+            <option value="$PROJECT_DIR$/config" />
             <option value="$PROJECT_DIR$/etc" />
+            <option value="$PROJECT_DIR$/generated" />
             <option value="$PROJECT_DIR$/gradle" />
-            <option value="$PROJECT_DIR$/hellowithoutannotations" />
             <option value="$PROJECT_DIR$/io.skysail.bundled" />
             <option value="$PROJECT_DIR$/setup" />
             <option value="$PROJECT_DIR$/skysail.api" />
@@ -160,6 +160,7 @@
             <option value="$PROJECT_DIR$/skysail.server.app.checklist" />
             <option value="$PROJECT_DIR$/skysail.server.app.config" />
             <option value="$PROJECT_DIR$/skysail.server.app.crm" />
+            <option value="$PROJECT_DIR$/skysail.server.app.crm.test" />
             <option value="$PROJECT_DIR$/skysail.server.app.dbviewer" />
             <option value="$PROJECT_DIR$/skysail.server.app.designer" />
             <option value="$PROJECT_DIR$/skysail.server.app.designer.it" />
@@ -173,7 +174,6 @@
             <option value="$PROJECT_DIR$/skysail.server.app.notes" />
             <option value="$PROJECT_DIR$/skysail.server.app.oEService" />
             <option value="$PROJECT_DIR$/skysail.server.app.snap" />
-            <option value="$PROJECT_DIR$/skysail.server.app.statusMessages" />
             <option value="$PROJECT_DIR$/skysail.server.app.svgedit" />
             <option value="$PROJECT_DIR$/skysail.server.app.tap" />
             <option value="$PROJECT_DIR$/skysail.server.app.todos" />
@@ -194,6 +194,7 @@
             <option value="$PROJECT_DIR$/skysail.server.designer.csvreader" />
             <option value="$PROJECT_DIR$/skysail.server.designer.demo.folders" />
             <option value="$PROJECT_DIR$/skysail.server.designer.demo.transactions" />
+            <option value="$PROJECT_DIR$/skysail.server.designer.matrix" />
             <option value="$PROJECT_DIR$/skysail.server.designer.presentation" />
             <option value="$PROJECT_DIR$/skysail.server.designer.restclient" />
             <option value="$PROJECT_DIR$/skysail.server.domain" />

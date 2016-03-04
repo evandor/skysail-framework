@@ -1,9 +1,0 @@
-<component name="libraryTable">
-  <library name="bnd:org.jsoup:1.8.1">
-    <CLASSES>
-      <root url="jar://$PROJECT_DIR$/cnf/localrepo/org.jsoup/org.jsoup-1.8.1.jar!/" />
-    </CLASSES>
-    <JAVADOC />
-    <SOURCES />
-  </library>
-</component>

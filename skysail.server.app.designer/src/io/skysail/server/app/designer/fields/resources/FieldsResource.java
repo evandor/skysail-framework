@@ -1,6 +1,9 @@
 package io.skysail.server.app.designer.fields.resources;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 import io.skysail.api.links.Link;
 import io.skysail.server.ResourceContextId;
@@ -46,7 +49,7 @@ public class FieldsResource extends ListServerResource<DbEntityField> {
     public List<TreeStructure> getTreeRepresentation() {
         DbApplication dbApplication = app.getRepository().getById(DbApplication.class, getAttribute("id"));
         if (dbApplication != null) {
-            return Arrays.asList(new TreeStructure(dbApplication,"", "leaf"));
+            return Arrays.asList(new TreeStructure(dbApplication,null,"", "leaf"));
         }
         return Collections.emptyList();
     }

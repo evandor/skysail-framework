@@ -1,9 +1,0 @@
-<component name="libraryTable">
-  <library name="bnd:de.twentyeleven.skysail.org.antlr.stringtemplate-osgi:4.0.8">
-    <CLASSES>
-      <root url="jar://$PROJECT_DIR$/cnf/localrepo/de.twentyeleven.skysail.org.antlr.stringtemplate-osgi/de.twentyeleven.skysail.org.antlr.stringtemplate-osgi-4.0.8.jar!/" />
-    </CLASSES>
-    <JAVADOC />
-    <SOURCES />
-  </library>
-</component>

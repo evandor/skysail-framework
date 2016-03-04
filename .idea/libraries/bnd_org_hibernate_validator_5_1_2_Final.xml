@@ -1,9 +1,0 @@
-<component name="libraryTable">
-  <library name="bnd:org.hibernate.validator:5.1.2.Final">
-    <CLASSES>
-      <root url="jar://$PROJECT_DIR$/cnf/localrepo/org.hibernate.validator/org.hibernate.validator-5.1.2.jar!/" />
-    </CLASSES>
-    <JAVADOC />
-    <SOURCES />
-  </library>
-</component>

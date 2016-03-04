@@ -1,9 +1,0 @@
-<component name="libraryTable">
-  <library name="bnd:org.eclipse.jetty.webapp:9.2.11.v20150529">
-    <CLASSES>
-      <root url="jar://$USER_HOME$/.bnd/cache/https%3A%2F%2Fgithub.com%2Fevandor%2Fskysail-repository%2Fraw%2Fmaster%2Frelease/jetty-webapp-9.2.11.v20150529.jar!/" />
-    </CLASSES>
-    <JAVADOC />
-    <SOURCES />
-  </library>
-</component>

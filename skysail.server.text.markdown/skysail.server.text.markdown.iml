@@ -75,6 +75,15 @@
       </library>
     </orderEntry>
     <orderEntry type="module-library" exported="">
+      <library name="Gradle: markdown4j-2.2">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/lib/markdown4j-2.2.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
       <library name="Gradle: org.restlet">
         <CLASSES>
           <root url="jar://$USER_HOME$/.bnd/cache/https%3A%2F%2Fgithub.com%2Fevandor%2Fskysail-repository%2Fraw%2Fmaster%2Frelease/org.restlet.jar!/" />
@@ -111,7 +120,7 @@
       </library>
     </orderEntry>
     <orderEntry type="module-library" exported="" scope="RUNTIME">
-      <library name="Gradle: C__git_skysail_framework_skysail_server_text_markdown_bin:markdown\bin">
+      <library name="Gradle: _Users_carsten_git_skysail_framework_skysail_server_text_markdown_bin:markdown/bin">
         <CLASSES>
           <root url="file://$MODULE_DIR$/bin" />
         </CLASSES>
@@ -120,7 +129,7 @@
       </library>
     </orderEntry>
     <orderEntry type="module-library" scope="TEST">
-      <library name="Gradle: C__git_skysail_framework_skysail_server_text_markdown_bin_test:markdown\bin_test">
+      <library name="Gradle: _Users_carsten_git_skysail_framework_skysail_server_text_markdown_bin_test:markdown/bin_test">
         <CLASSES>
           <root url="file://$MODULE_DIR$/bin_test" />
         </CLASSES>

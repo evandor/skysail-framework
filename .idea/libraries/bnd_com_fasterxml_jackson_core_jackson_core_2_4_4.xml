@@ -1,9 +1,0 @@
-<component name="libraryTable">
-  <library name="bnd:com.fasterxml.jackson.core.jackson-core:2.4.4">
-    <CLASSES>
-      <root url="jar://$PROJECT_DIR$/cnf/localrepo/com.fasterxml.jackson.core.jackson-core/com.fasterxml.jackson.core.jackson-core-2.4.4.jar!/" />
-    </CLASSES>
-    <JAVADOC />
-    <SOURCES />
-  </library>
-</component>

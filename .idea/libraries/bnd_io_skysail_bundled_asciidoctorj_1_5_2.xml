@@ -1,9 +1,0 @@
-<component name="libraryTable">
-  <library name="bnd:io.skysail.bundled.asciidoctorj:1.5.2">
-    <CLASSES>
-      <root url="jar://$PROJECT_DIR$/cnf/localrepo/io.skysail.bundled.asciidoctorj/io.skysail.bundled.asciidoctorj-1.5.2.jar!/" />
-    </CLASSES>
-    <JAVADOC />
-    <SOURCES />
-  </library>
-</component>

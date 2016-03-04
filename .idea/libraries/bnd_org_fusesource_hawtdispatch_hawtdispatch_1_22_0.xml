@@ -1,9 +1,0 @@
-<component name="libraryTable">
-  <library name="bnd:org.fusesource.hawtdispatch.hawtdispatch:1.22.0">
-    <CLASSES>
-      <root url="jar://$PROJECT_DIR$/cnf/localrepo/org.fusesource.hawtdispatch.hawtdispatch/org.fusesource.hawtdispatch.hawtdispatch-1.22.0.jar!/" />
-    </CLASSES>
-    <JAVADOC />
-    <SOURCES />
-  </library>
-</component>

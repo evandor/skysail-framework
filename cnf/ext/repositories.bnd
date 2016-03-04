@@ -17,7 +17,7 @@
         name=Non OSGi; \
         location=${workspace}/cnf/nonosgi-repo; \
         latest=false; \
-    , \
+    ,\
     aQute.lib.deployer.FileRepo; \
         name=Build; \
         location=${workspace}/cnf/buildrepo;latest=false;\
@@ -25,11 +25,11 @@
     aQute.bnd.deployer.repository.FixedIndexedRepo; \
         name=Skysail Hub; \
         locations=https://github.com/evandor/skysail/raw/master/cnf/releaserepo/index.xml; \
-    , \
+    ,\
     aQute.bnd.deployer.repository.FixedIndexedRepo; \
         name=Skysail Framework Master Hub; \
         locations=https://github.com/evandor/skysail-framework/raw/master/cnf/releaserepo/index.xml; \
-    , \
+    ,\
     aQute.bnd.deployer.repository.FixedIndexedRepo; \
         name=Skysail Framework Dev Hub; \
         locations=https://github.com/evandor/skysail-framework/raw/develop/cnf/releaserepo/index.xml; \

@@ -9,25 +9,28 @@ import io.skysail.server.queryfilter.Filter;
 import io.skysail.server.queryfilter.pagination.Pagination;
 import io.skysail.server.restlet.resources.ListServerResource;
 
-public class FoldersFoldersResource extends ListServerResource<io.skysail.server.designer.demo.folders.Folder> {
+/**
+ * generated from relationResource.stg
+ */
+public class FoldersFoldersResource extends ListServerResource<Folder> {
 
     private FoldersApplication app;
-    private io.skysail.server.designer.demo.folders.FolderRepository oeRepo;
+    private FolderRepository oeRepo;
 
     public FoldersFoldersResource() {
-        super(FolderResource.class, FoldersFolderResource.class);
+        super(FolderResource.class);//, FoldersFolderResource.class);
         addToContext(ResourceContextId.LINK_TITLE, "["+this.getClass().getSimpleName()+"]");
     }
 
     @Override
     protected void doInit() {
         app = (FoldersApplication) getApplication();
-        oeRepo = (io.skysail.server.designer.demo.folders.FolderRepository) app.getRepository(io.skysail.server.designer.demo.folders.Folder.class);
+        oeRepo = (io.skysail.server.designer.demo.folders.FolderRepository) app.getRepository(Folder.class);
     }
 
     @Override
-    public List<io.skysail.server.designer.demo.folders.Folder> getEntity() {
-        return (List<Folder>) oeRepo.execute(Folder.class, "select * from " + DbClassName.of(io.skysail.server.designer.demo.folders.Folder.class) + " where #"+getAttribute("id")+" in IN(folders)");
+    public List<Folder> getEntity() {
+        return (List<Folder>) oeRepo.execute(Folder.class, "select * from " + DbClassName.of(Folder.class) + " where #"+getAttribute("id")+" in IN(folders)");
     }
 
     @Override

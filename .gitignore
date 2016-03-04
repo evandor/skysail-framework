@@ -28,3 +28,5 @@ skysail.server.polymer/_polymer/.bowerrc
 /skysail.server.app.checklist/
 /skysail.server.app.folders/
 /skysail.server.app.statusMessages/
+bin/
+bin_test/

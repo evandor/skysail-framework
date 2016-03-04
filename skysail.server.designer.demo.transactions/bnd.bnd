@@ -39,8 +39,8 @@ Include-Resource: resources, templates=src;recursive:=true;filter:=*.st|*.stg
     io.skysail.bundled.tinkerpop.blueprints-core;version=2.6,\
     skysail.server.uikit.webresource;version=latest,\
     org.jsoup;version=1.8,\
-    com.fasterxml.jackson.core.jackson-annotations;version=2.5
+    com.fasterxml.jackson.core.jackson-annotations;version=2.5    
 
 
 Private-Package: \
-    io.skysail.server.app.oEService
+    io.skysail.server.designer.demo.transactions.*

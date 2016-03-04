@@ -31,13 +31,17 @@ public class TreeStructure {
     private String link = "/";
     private String glyph;
     private List<TreeStructure> subfolders = new ArrayList<>();
+
+    public static List<TreeStructure> from(@NotNull SkysailServerResource<?> resource) {
+        return resource.getTreeRepresentation();
+    }
     
     public TreeStructure(@NonNull Nameable nameable, Resource resource, String link, String glyph) {
         this.name = nameable.getName();
         this.headline = nameable.getClass().getSimpleName();
         this.glyph = glyph;
         List<String> baseRef = resource.getOriginalRef().getSegments();
-        this.link = "/" + baseRef.get(0) + "/" + baseRef.get(1) + "/" + baseRef.get(2) + treeNode.getLink();
+        this.link = "/" ;//+ baseRef.get(0) + "/" + baseRef.get(1) + "/" + baseRef.get(2) + treeNode.getLink();
         
         List<Field> collectionsFields = getFieldsOfTypeCollection(nameable);
 
@@ -48,14 +52,14 @@ public class TreeStructure {
         
         collectionsFields.stream().forEach(collectionField -> {
             try {
-                handleCollectionField(nameable, glyph, collectionField);
+                handleCollectionField(nameable, resource, glyph, collectionField);
             } catch (Exception e) {
                 log.error(e.getMessage(), e);
             }
         });
     }
 
-    private void handleCollectionField(Nameable nameable, String glyph, Field collectionField)
+    private void handleCollectionField(Nameable nameable, Resource resource, String glyph, Field collectionField)
             throws IllegalAccessException {
         collectionField.setAccessible(true);
         Collection<?> collection = (Collection<?>) collectionField.get(nameable);
@@ -63,7 +67,7 @@ public class TreeStructure {
                 .filter(e -> e instanceof Nameable)
                 .map(Nameable.class::cast).collect(Collectors.toList());
         subs.stream().forEach(subFolder -> 
-            addFolder(new TreeStructure(subFolder, this.link, glyph.equals("list-alt") ? "chevron-right" : "list-alt"))
+            addFolder(new TreeStructure(subFolder, resource, this.link, glyph.equals("list-alt") ? "chevron-right" : "list-alt"))
         );
     }
 
@@ -72,10 +76,6 @@ public class TreeStructure {
             .filter(field -> Collection.class.isAssignableFrom(field.getType()))
             .collect(Collectors.toList());
         return collectionsFields;
-    }
-
-    public static List<TreeStructure> from(@NotNull SkysailServerResource<?> resource) {
-        return resource.getTreeRepresentation();
     }
 
     private void addFolder(TreeStructure treeRepresentation) {
@@ -90,5 +90,4 @@ public class TreeStructure {
 //            subfolders.add(new TreeStructure(subNodes, resource))
 //        );
 //    }
-
 }

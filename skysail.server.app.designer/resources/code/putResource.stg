@@ -1,13 +1,18 @@
 putResource(application, entity, updateEntity) ::= <<
-package $application.packageName$;
+package $entity.packageName$.resources;
 
 import io.skysail.api.responses.SkysailResponse;
 import io.skysail.server.restlet.resources.PutEntityServerResource;
 
 import java.util.Date;
 import org.restlet.resource.ResourceException;
+import $application.packageName$.*;
+import $entity.packageName$.*;
 
-public class Put$entity.simpleName$Resource extends PutEntityServerResource<$entity.id$> {
+/**
+ * generated from putResource.stg
+ */
+public class Put$entity.simpleName$ResourceGen extends PutEntityServerResource<$entity.id$> {
 
 
     protected String id;
@@ -32,7 +37,7 @@ public class Put$entity.simpleName$Resource extends PutEntityServerResource<$ent
 
     @Override
     public String redirectTo() {
-        return super.redirectTo($entity.simpleName$sResource.class);
+        return super.redirectTo($entity.simpleName$sResourceGen.class);
     }
 }
 >>

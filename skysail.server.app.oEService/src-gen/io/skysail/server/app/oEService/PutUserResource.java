@@ -6,6 +6,9 @@ import io.skysail.server.restlet.resources.PutEntityServerResource;
 import java.util.Date;
 import org.restlet.resource.ResourceException;
 
+/**
+ * generated from putResource.stg
+ */
 public class PutUserResource extends PutEntityServerResource<io.skysail.server.app.oEService.User> {
 
 

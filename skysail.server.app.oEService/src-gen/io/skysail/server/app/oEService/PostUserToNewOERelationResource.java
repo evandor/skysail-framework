@@ -6,6 +6,9 @@ import io.skysail.server.queryfilter.Filter;
 import io.skysail.server.queryfilter.pagination.Pagination;
 import io.skysail.server.restlet.resources.PostRelationResource2;
 
+/**
+ * generated from postRelationToNewEntityResource.stg
+ */
 public class PostUserToNewOERelationResource extends PostRelationResource2<OE> {
 
     private OEServiceApplication app;

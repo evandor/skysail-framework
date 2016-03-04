@@ -39,6 +39,7 @@ public class JarWriter {
                 + "io.skysail.domain.core;version=\"[1.0,2)\","
                 + "io.skysail.domain.core.repos;version=\"[1.0,2)\","
                 + "io.skysail.domain.html;version=\"[0.1,1)\","
+                + "io.skysail.server,"
                 + "io.skysail.server.app;version=\"[7.0,8)\","
                 + "io.skysail.server.db;version=\"[8.0,9)\","
                 + "io.skysail.server.forms;version=\"[6.0,7)\","

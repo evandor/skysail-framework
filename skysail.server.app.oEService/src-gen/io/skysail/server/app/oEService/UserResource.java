@@ -4,9 +4,12 @@ import java.util.List;
 
 import io.skysail.api.links.Link;
 import io.skysail.api.responses.SkysailResponse;
+import io.skysail.server.ResourceContextId;
 import io.skysail.server.restlet.resources.EntityServerResource;
-import de.twenty11.skysail.server.core.restlet.ResourceContextId;
 
+/**
+ * generated from entityResource.stg
+ */
 public class UserResource extends EntityServerResource<io.skysail.server.app.oEService.User> {
 
     private String id;

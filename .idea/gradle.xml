@@ -29,6 +29,7 @@
             <option value="$PROJECT_DIR$/skysail.client.testsupport" />
             <option value="$PROJECT_DIR$/skysail.client.todos.angularjs" />
             <option value="$PROJECT_DIR$/skysail.domain" />
+            <option value="$PROJECT_DIR$/skysail.lib.js.designer" />
             <option value="$PROJECT_DIR$/skysail.ms.um.simple" />
             <option value="$PROJECT_DIR$/skysail.product.designer" />
             <option value="$PROJECT_DIR$/skysail.product.notes" />
@@ -38,7 +39,9 @@
             <option value="$PROJECT_DIR$/skysail.server.app.argusAdmin" />
             <option value="$PROJECT_DIR$/skysail.server.app.bookmarks" />
             <option value="$PROJECT_DIR$/skysail.server.app.bookmarks.it" />
+            <option value="$PROJECT_DIR$/skysail.server.app.bpmnmodeler" />
             <option value="$PROJECT_DIR$/skysail.server.app.checklist" />
+            <option value="$PROJECT_DIR$/skysail.server.app.config" />
             <option value="$PROJECT_DIR$/skysail.server.app.crm" />
             <option value="$PROJECT_DIR$/skysail.server.app.dbviewer" />
             <option value="$PROJECT_DIR$/skysail.server.app.designer" />
@@ -47,10 +50,13 @@
             <option value="$PROJECT_DIR$/skysail.server.app.facebookClient" />
             <option value="$PROJECT_DIR$/skysail.server.app.fileserver" />
             <option value="$PROJECT_DIR$/skysail.server.app.folders" />
+            <option value="$PROJECT_DIR$/skysail.server.app.grapesjs" />
             <option value="$PROJECT_DIR$/skysail.server.app.hive2hive" />
             <option value="$PROJECT_DIR$/skysail.server.app.intro" />
             <option value="$PROJECT_DIR$/skysail.server.app.notes" />
             <option value="$PROJECT_DIR$/skysail.server.app.oEService" />
+            <option value="$PROJECT_DIR$/skysail.server.app.snap" />
+            <option value="$PROJECT_DIR$/skysail.server.app.statusMessages" />
             <option value="$PROJECT_DIR$/skysail.server.app.svgedit" />
             <option value="$PROJECT_DIR$/skysail.server.app.tap" />
             <option value="$PROJECT_DIR$/skysail.server.app.todos" />
@@ -70,6 +76,7 @@
             <option value="$PROJECT_DIR$/skysail.server.designer.checklist" />
             <option value="$PROJECT_DIR$/skysail.server.designer.csvreader" />
             <option value="$PROJECT_DIR$/skysail.server.designer.demo.folders" />
+            <option value="$PROJECT_DIR$/skysail.server.designer.demo.transactions" />
             <option value="$PROJECT_DIR$/skysail.server.designer.presentation" />
             <option value="$PROJECT_DIR$/skysail.server.designer.restclient" />
             <option value="$PROJECT_DIR$/skysail.server.domain" />
@@ -139,6 +146,7 @@
             <option value="$PROJECT_DIR$/skysail.client.testsupport" />
             <option value="$PROJECT_DIR$/skysail.client.todos.angularjs" />
             <option value="$PROJECT_DIR$/skysail.domain" />
+            <option value="$PROJECT_DIR$/skysail.lib.js.designer" />
             <option value="$PROJECT_DIR$/skysail.ms.um.simple" />
             <option value="$PROJECT_DIR$/skysail.product.designer" />
             <option value="$PROJECT_DIR$/skysail.product.notes" />
@@ -148,7 +156,9 @@
             <option value="$PROJECT_DIR$/skysail.server.app.argusAdmin" />
             <option value="$PROJECT_DIR$/skysail.server.app.bookmarks" />
             <option value="$PROJECT_DIR$/skysail.server.app.bookmarks.it" />
+            <option value="$PROJECT_DIR$/skysail.server.app.bpmnmodeler" />
             <option value="$PROJECT_DIR$/skysail.server.app.checklist" />
+            <option value="$PROJECT_DIR$/skysail.server.app.config" />
             <option value="$PROJECT_DIR$/skysail.server.app.crm" />
             <option value="$PROJECT_DIR$/skysail.server.app.dbviewer" />
             <option value="$PROJECT_DIR$/skysail.server.app.designer" />
@@ -157,10 +167,13 @@
             <option value="$PROJECT_DIR$/skysail.server.app.facebookClient" />
             <option value="$PROJECT_DIR$/skysail.server.app.fileserver" />
             <option value="$PROJECT_DIR$/skysail.server.app.folders" />
+            <option value="$PROJECT_DIR$/skysail.server.app.grapesjs" />
             <option value="$PROJECT_DIR$/skysail.server.app.hive2hive" />
             <option value="$PROJECT_DIR$/skysail.server.app.intro" />
             <option value="$PROJECT_DIR$/skysail.server.app.notes" />
             <option value="$PROJECT_DIR$/skysail.server.app.oEService" />
+            <option value="$PROJECT_DIR$/skysail.server.app.snap" />
+            <option value="$PROJECT_DIR$/skysail.server.app.statusMessages" />
             <option value="$PROJECT_DIR$/skysail.server.app.svgedit" />
             <option value="$PROJECT_DIR$/skysail.server.app.tap" />
             <option value="$PROJECT_DIR$/skysail.server.app.todos" />
@@ -180,6 +193,7 @@
             <option value="$PROJECT_DIR$/skysail.server.designer.checklist" />
             <option value="$PROJECT_DIR$/skysail.server.designer.csvreader" />
             <option value="$PROJECT_DIR$/skysail.server.designer.demo.folders" />
+            <option value="$PROJECT_DIR$/skysail.server.designer.demo.transactions" />
             <option value="$PROJECT_DIR$/skysail.server.designer.presentation" />
             <option value="$PROJECT_DIR$/skysail.server.designer.restclient" />
             <option value="$PROJECT_DIR$/skysail.server.domain" />

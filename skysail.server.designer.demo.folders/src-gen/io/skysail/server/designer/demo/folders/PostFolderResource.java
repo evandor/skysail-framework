@@ -10,6 +10,9 @@ import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
 import org.restlet.resource.ResourceException;
 
+/**
+ * generated from postResource.stg
+ */
 public class PostFolderResource extends PostEntityServerResource<io.skysail.server.designer.demo.folders.Folder> {
 
 	protected FoldersApplication app;

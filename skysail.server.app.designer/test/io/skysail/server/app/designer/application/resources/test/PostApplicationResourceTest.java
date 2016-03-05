@@ -4,6 +4,7 @@ import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import org.restlet.data.Form;
 import org.restlet.data.MediaType;
@@ -17,6 +18,7 @@ import io.skysail.api.responses.SkysailResponse;
 import io.skysail.server.app.designer.application.DbApplication;
 import io.skysail.server.testsupport.FormBuilder;
 
+@Ignore
 public class PostApplicationResourceTest extends AbstractApplicationResourceTest {
 
     ObjectMapper mapper = new ObjectMapper();

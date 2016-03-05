@@ -8,11 +8,13 @@ import static org.junit.Assert.assertThat;
 import java.util.List;
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.restlet.data.Status;
 
 import io.skysail.server.app.designer.application.DbApplication;
 
+@Ignore
 public class ApplicationsResourceTest extends AbstractApplicationResourceTest {
 
     private DbApplication dbApplication;

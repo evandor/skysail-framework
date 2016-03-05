@@ -1,11 +1,13 @@
 package io.skysail.server.app.designer.application.resources.test;
 
-import static org.hamcrest.CoreMatchers.*;
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
 import java.util.List;
 
-import org.junit.*;
+import org.junit.Ignore;
+import org.junit.Test;
 
 import com.tinkerpop.blueprints.impls.orient.OrientVertex;
 
@@ -13,6 +15,7 @@ import io.skysail.api.responses.SkysailResponse;
 import io.skysail.server.app.designer.application.DbApplication;
 import io.skysail.server.app.designer.repo.DesignerRepository;
 
+@Ignore
 public class PutApplicationResourceTest extends AbstractApplicationResourceTest {
 
     @Test

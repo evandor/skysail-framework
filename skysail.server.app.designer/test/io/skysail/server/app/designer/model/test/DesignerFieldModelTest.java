@@ -5,6 +5,7 @@ import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import io.skysail.server.app.designer.entities.DbEntity;
@@ -13,6 +14,7 @@ import io.skysail.server.app.designer.fields.DbEntityTextField;
 import io.skysail.server.app.designer.model.DesignerEntityModel;
 import io.skysail.server.app.designer.model.DesignerFieldModel;
 
+@Ignore
 public class DesignerFieldModelTest {
 
     private DesignerFieldModel fieldModel;

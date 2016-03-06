@@ -1,14 +1,19 @@
 package skysail.server.ext.initconfig;
 
 import java.io.IOException;
-import java.nio.file.*;
+import java.nio.file.FileAlreadyExistsException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.*;
 import java.util.stream.Collectors;
 
 import org.osgi.framework.Bundle;
 import org.osgi.service.component.ComponentContext;
 
-import aQute.bnd.annotation.component.*;
+import aQute.bnd.annotation.component.Activate;
+import aQute.bnd.annotation.component.Component;
+import aQute.bnd.annotation.component.ConfigurationPolicy;
 import io.skysail.server.Constants;
 import io.skysail.server.utils.BundleUtils;
 import lombok.extern.slf4j.Slf4j;
@@ -54,7 +59,9 @@ public class ConfigMover {
 
     private void copyConfigurationFiles(Bundle bundle) {
         List<String> fromPaths = getFrom(bundle);
+        log.debug("copyConfigurationFiles...");
         for (String fromPath : fromPaths) {
+            log.debug("checking path {}", fromPath);
             Enumeration<String> entryPaths = bundle.getEntryPaths(fromPath);
             if (entryPaths == null) {
                 log.debug("no configuration found in bundle {}", bundle.getSymbolicName());
